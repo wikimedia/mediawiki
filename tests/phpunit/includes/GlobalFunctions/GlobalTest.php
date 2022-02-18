@@ -192,7 +192,8 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 			[ 'foo', [ 'foo' => '' ] ], // missing =
 			[ 'foo=bar&qwerty=asdf', [ 'foo' => 'bar', 'qwerty' => 'asdf' ] ], // multiple value
 			[ 'foo=A%26B%3D5%2B6%40%21%22%27', [ 'foo' => 'A&B=5+6@!"\'' ] ], // urldecoding test
-			[ 'foo%5Bbar%5D=baz', [ 'foo' => [ 'bar' => 'baz' ] ] ],
+			[ 'foo[bar]=baz', [ 'foo' => [ 'bar' => 'baz' ] ] ],
+			[ 'foo%5Bbar%5D=baz', [ 'foo' => [ 'bar' => 'baz' ] ] ],  // urldecoding test 2
 			[
 				'foo%5Bbar%5D=baz&foo%5Bqwerty%5D=asdf',
 				[ 'foo' => [ 'bar' => 'baz', 'qwerty' => 'asdf' ] ]
@@ -202,6 +203,8 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 				'foo%5Bbar%5D%5Bbar%5D=baz',
 				[ 'foo' => [ 'bar' => [ 'bar' => 'baz' ] ] ]
 			],
+			[ 'foo[]=x&foo[]=y', [ 'foo' => [ '' => 'y' ] ] ], // implicit keys are NOT handled like in PHP (bug?)
+			[ 'foo=x&foo[]=y', [ 'foo' => [ '' => 'y' ] ] ], // mixed value/array doesn't cause errors
 		];
 	}
 
@@ -232,31 +235,6 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testCgiRoundTrip( $cgi ) {
 		$this->assertEquals( $cgi, wfArrayToCgi( wfCgiToArray( $cgi ) ) );
-	}
-
-	/**
-	 * @covers ::mimeTypeMatch
-	 */
-	public function testMimeTypeMatch() {
-		$this->assertEquals(
-			'text/html',
-			mimeTypeMatch( 'text/html',
-				[ 'application/xhtml+xml' => 1.0,
-					'text/html' => 0.7,
-					'text/plain' => 0.3 ] ) );
-		$this->assertEquals(
-			'text/*',
-			mimeTypeMatch( 'text/html',
-				[ 'image/*' => 1.0,
-					'text/*' => 0.5 ] ) );
-		$this->assertEquals(
-			'*/*',
-			mimeTypeMatch( 'text/html',
-				[ '*/*' => 1.0 ] ) );
-		$this->assertNull(
-			mimeTypeMatch( 'text/html',
-				[ 'image/png' => 1.0,
-					'image/svg+xml' => 0.5 ] ) );
 	}
 
 	/**
@@ -605,7 +583,11 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $actual, $description );
 	}
 
-	public function wfWikiID() {
+	/**
+	 * @covers ::wfWikiID
+	 */
+	public function testWfWikiID() {
+		$this->hideDeprecated( 'wfWikiID' );
 		$this->setMwGlobals( [
 			'wgDBname' => 'example',
 			'wgDBprefix' => '',

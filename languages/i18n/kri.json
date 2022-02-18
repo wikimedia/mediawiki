@@ -13,7 +13,6 @@
 	"tog-newpageshidepatrolled": "Haid patrol pejdèm na dhi nyu pej list",
 	"tog-extendwatchlist": "Èkspand dhi wachlist fòr show òll dhi chenjdèm,  pas dhi resènt chenjdèm nòmòr",
 	"tog-usenewrc": "Grup chenjdèm bay pej na dhi risènt chenj wachlist",
-	"tog-numberheadings": "Auto-nùmbar hedtindèm",
 	"tog-editondblclick": "Èdit pejdèm with tutèm klik",
 	"tog-editsectiononrightclick": "Ebul sèkshòn èdit whe yu raiht klik pan sèkshòn tituldèm",
 	"tog-watchcreations": "Add pejdèm whe a kreat èn faildèm whe a ùplod tu mi wachlist",
@@ -238,7 +237,6 @@
 	"edit-gone-missing": "Wi nò ebul fòr ùpdat dhis pej hyar.\nSòmtèm dèn dòn delet am.",
 	"edit-conflict": "Èdit kònflikt",
 	"edit-no-change": "Dèn ignòr yu èdit, bikòs dhi tèkst nò chenj.",
-	"editwarning-warning": "If yu lèf dhis pej hyar sòmtèm yu go lòss òll dhi chenjdèm we yu dòn mek. If yu dòn lògin yu kin disebul dhis wòrntin hyar na dhi \"{{int:prefss-editing}}\" sèkshòn na yu prèfèrèntiadèm",
 	"viewpagelogs": "Luk dhi lògdèm fòr dhis pej",
 	"previousrevision": "pass ol vèrsiòn",
 	"cur": "kùr",
@@ -371,7 +369,7 @@
 	"watchlist-options": "Wachlist òptiòndèm",
 	"watching": "A de wach...",
 	"unwatching": "A de lèf fòr wach...",
-	"deletepage": "Delet dhis pej hyar",
+	"deletepage-submit": "Delet dhis pej hyar",
 	"confirm": "Kònfirm",
 	"excontent": "Dhi content bin bi: '$1'",
 	"delete-legend": "Delet",
@@ -485,5 +483,6 @@
 	"watchlisttools-edit": "Vyu èn èdit wachlist",
 	"fileduplicatesearch-submit": "Sarch",
 	"specialpages": "Spèshal pejdèm",
+	"deletepage": "Delet dhis pej hyar",
 	"searchsuggest-search": "Sarch"
 }

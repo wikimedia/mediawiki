@@ -301,7 +301,7 @@ abstract class ApiBase extends ContextSource {
 	 * Get the module manager, or null if this module has no sub-modules
 	 * @since 1.21
 	 * @stable to override
-	 * @return ApiModuleManager
+	 * @return ApiModuleManager|null
 	 */
 	public function getModuleManager() {
 		return null;
@@ -315,7 +315,7 @@ abstract class ApiBase extends ContextSource {
 	 * formats. This should be used only when there is a fundamental
 	 * requirement for a specific format.
 	 * @stable to override
-	 * @return mixed Instance of a derived class of ApiFormatBase, or null
+	 * @return ApiFormatBase|null Instance of a derived class of ApiFormatBase, or null
 	 */
 	public function getCustomPrinter() {
 		return null;
@@ -1444,8 +1444,10 @@ abstract class ApiBase extends ContextSource {
 	 * @param Throwable $exception See ApiErrorFormatter::getMessageFromException()
 	 * @param array $options See ApiErrorFormatter::getMessageFromException()
 	 * @throws ApiUsageException always
+	 * @return never
 	 */
 	public function dieWithException( Throwable $exception, array $options = [] ) {
+		// @phan-suppress-previous-line PhanTypeMissingReturn
 		$this->dieWithError(
 			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$this->getErrorFormatter()->getMessageFromException( $exception, $options )
@@ -1459,8 +1461,10 @@ abstract class ApiBase extends ContextSource {
 	 * @since 1.27
 	 * @param Block $block The block used to generate the ApiUsageException
 	 * @throws ApiUsageException always
+	 * @return never
 	 */
 	public function dieBlocked( Block $block ) {
+		// @phan-suppress-previous-line PhanTypeMissingReturn
 		// Die using the appropriate message depending on block type
 		if ( $block->getType() == Block::TYPE_AUTO ) {
 			$this->dieWithError(
@@ -1519,8 +1523,10 @@ abstract class ApiBase extends ContextSource {
 	 * Helper function for readonly errors
 	 *
 	 * @throws ApiUsageException always
+	 * @return never
 	 */
 	public function dieReadOnly() {
+		// @phan-suppress-previous-line PhanTypeMissingReturn
 		$this->dieWithError(
 			'apierror-readonly',
 			'readonly',

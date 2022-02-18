@@ -223,7 +223,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$lb = $lbFactory->newMainLB();
 		$db = $lb->getConnection( DB_REPLICA );
 
-		// sanity
 		$this->assertNotSame( $this->db, $db );
 
 		// Make sure the DB connection has the fake table clones and the fake table prefix
@@ -253,7 +252,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 			$n++;
 		}, true );
 
-		// sanity check
 		$this->assertSame( $myReadOnlyMode, $services->getService( 'ReadOnlyMode' ) );
 
 		// define a custom service
@@ -265,7 +263,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 			}
 		);
 
-		// sanity check
 		$lang = $services->getMainConfig()->get( 'LanguageCode' );
 		$dummy = $services->getService( '_TEST_ResetService_Dummy' );
 		$this->assertSame( $lang, $dummy->lang );
@@ -386,7 +383,8 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $prevented, 'create() should fail' );
 
 		try {
-			$httpRequestFactory->createGuzzleClient();
+			$client = $httpRequestFactory->createGuzzleClient();
+			$client->get( 'http://0.0.0.0/' );
 			$prevented = false;
 		} catch ( AssertionFailedError $e ) {
 			// pass

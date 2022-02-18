@@ -21,11 +21,11 @@
  * @ingroup FileAbstraction
  */
 
+use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -41,7 +41,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * to generate image thumbnails or for uploading.
  *
  * Note that only the repo object knows what its file class is called. You should
- * never name a file class explictly outside of the repo class. Instead use the
+ * never name a file class explicitly outside of the repo class. Instead use the
  * repo's factory functions to generate file objects, for example:
  *
  * RepoGroup::singleton()->getLocalRepo()->newFile( $title );
@@ -124,10 +124,10 @@ class LocalFile extends File {
 	protected $sha1;
 
 	/** @var bool Whether or not core data has been loaded from the database (loadFromXxx) */
-	protected $dataLoaded;
+	protected $dataLoaded = false;
 
 	/** @var bool Whether or not lazy-loaded data has been loaded from the database */
-	protected $extraDataLoaded;
+	protected $extraDataLoaded = false;
 
 	/** @var int Bitfield akin to rev_deleted */
 	protected $deleted;
@@ -136,10 +136,10 @@ class LocalFile extends File {
 	protected $repoClass = LocalRepo::class;
 
 	/** @var int Number of line to return by nextHistoryLine() (constructor) */
-	private $historyLine;
+	private $historyLine = 0;
 
 	/** @var IResultWrapper|null Result of the query for the file's history (nextHistoryLine) */
-	private $historyRes;
+	private $historyRes = null;
 
 	/** @var string Major MIME type */
 	private $major_mime;
@@ -165,7 +165,7 @@ class LocalFile extends File {
 	/** @var bool Whether the row was scheduled to upgrade on load */
 	private $upgrading;
 
-	/** @var bool True if the image row is locked */
+	/** @var int If >= 1 the image row is locked */
 	private $locked;
 
 	/** @var bool True if the image row is locked with a lock initiated transaction */
@@ -315,11 +315,6 @@ class LocalFile extends File {
 	public function __construct( $title, $repo ) {
 		parent::__construct( $title, $repo );
 
-		$this->historyLine = 0;
-		$this->historyRes = null;
-		$this->dataLoaded = false;
-		$this->extraDataLoaded = false;
-
 		$this->assertRepoDefined();
 		$this->assertTitleDefined();
 	}
@@ -411,7 +406,7 @@ class LocalFile extends File {
 				}
 
 				if ( $this->fileExists ) {
-					$ttl = $cache->adaptiveTTL( wfTimestamp( TS_UNIX, $this->timestamp ), $ttl );
+					$ttl = $cache->adaptiveTTL( (int)wfTimestamp( TS_UNIX, $this->timestamp ), $ttl );
 				} else {
 					$ttl = $cache::TTL_DAY;
 				}
@@ -620,7 +615,7 @@ class LocalFile extends File {
 		$array = (array)$row;
 		$prefixLength = strlen( $prefix );
 
-		// Sanity check prefix once
+		// Double check prefix once
 		if ( substr( key( $array ), 0, $prefixLength ) !== $prefix ) {
 			throw new MWException( __METHOD__ . ': incorrect $prefix parameter' );
 		}
@@ -656,10 +651,11 @@ class LocalFile extends File {
 		$this->name = $unprefixed['name'];
 		$this->media_type = $unprefixed['media_type'];
 
-		$this->description = MediaWikiServices::getInstance()->getCommentStore()
+		$services = MediaWikiServices::getInstance();
+		$this->description = $services->getCommentStore()
 			->getComment( "{$prefix}description", $row )->text;
 
-		$this->user = User::newFromAnyId(
+		$this->user = $services->getUserFactory()->newFromAnyId(
 			$unprefixed['user'] ?? null,
 			$unprefixed['user_text'] ?? null,
 			$unprefixed['actor'] ?? null
@@ -688,7 +684,7 @@ class LocalFile extends File {
 
 		// Normalize some fields to integer type, per their database definition.
 		// Use unary + so that overflows will be upgraded to double instead of
-		// being trucated as with intval(). This is important to allow > 2 GiB
+		// being truncated as with intval(). This is important to allow > 2 GiB
 		// files on 32-bit systems.
 		$this->size = +$unprefixed['size'];
 		$this->width = +$unprefixed['width'];
@@ -806,31 +802,28 @@ class LocalFile extends File {
 	 * @stable to override
 	 */
 	public function upgradeRow() {
-		$this->lock();
+		$dbw = $this->repo->getPrimaryDB();
+
+		// Make a DB query condition that will fail to match the image row if the
+		// image was reuploaded while the upgrade was in process.
+		$freshnessCondition = [ 'img_timestamp' => $dbw->timestamp( $this->getTimestamp() ) ];
 
 		$this->loadFromFile();
 
 		# Don't destroy file info of missing files
 		if ( !$this->fileExists ) {
-			$this->unlock();
 			wfDebug( __METHOD__ . ": file does not exist, aborting" );
 
 			return;
 		}
 
-		$dbw = $this->repo->getPrimaryDB();
 		list( $major, $minor ) = self::splitMime( $this->mime );
 
-		if ( wfReadOnly() ) {
-			$this->unlock();
-
-			return;
-		}
 		wfDebug( __METHOD__ . ': upgrading ' . $this->getName() . " to the current schema" );
 
 		$dbw->update( 'image',
 			[
-				'img_size' => $this->size, // sanity
+				'img_size' => $this->size,
 				'img_width' => $this->width,
 				'img_height' => $this->height,
 				'img_bits' => $this->bits,
@@ -840,13 +833,15 @@ class LocalFile extends File {
 				'img_metadata' => $this->getMetadataForDb( $dbw ),
 				'img_sha1' => $this->sha1,
 			],
-			[ 'img_name' => $this->getName() ],
+			array_merge(
+				[ 'img_name' => $this->getName() ],
+				$freshnessCondition
+			),
 			__METHOD__
 		);
 
 		$this->invalidateCache();
 
-		$this->unlock();
 		$this->upgraded = true; // avoid rework/retries
 	}
 
@@ -1527,11 +1522,12 @@ class LocalFile extends File {
 	 * @since 1.28
 	 */
 	public function prerenderThumbnails() {
-		global $wgUploadThumbnailRenderMap;
+		$uploadThumbnailRenderMap = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'UploadThumbnailRenderMap' );
 
 		$jobs = [];
 
-		$sizes = $wgUploadThumbnailRenderMap;
+		$sizes = $uploadThumbnailRenderMap;
 		rsort( $sizes );
 
 		foreach ( $sizes as $size ) {
@@ -1554,7 +1550,7 @@ class LocalFile extends File {
 		}
 
 		if ( $jobs ) {
-			JobQueueGroup::singleton()->lazyPush( $jobs );
+			MediaWikiServices::getInstance()->getJobQueueGroup()->lazyPush( $jobs );
 		}
 	}
 
@@ -1580,7 +1576,7 @@ class LocalFile extends File {
 		$purgeList = [];
 		foreach ( $files as $file ) {
 			# Check that the reference (filename or sha1) is part of the thumb name
-			# This is a basic sanity check to avoid erasing unrelated directories
+			# This is a basic check to avoid erasing unrelated directories
 			if ( strpos( $file, $reference ) !== false
 				|| strpos( $file, "-thumbnail" ) !== false // "short" thumb name
 			) {
@@ -1687,7 +1683,7 @@ class LocalFile extends File {
 				$fileQuery['joins']
 			);
 
-			if ( $dbr->numRows( $this->historyRes ) == 0 ) {
+			if ( $this->historyRes->numRows() == 0 ) {
 				$this->historyRes = null;
 
 				return false;
@@ -1705,7 +1701,7 @@ class LocalFile extends File {
 		}
 		$this->historyLine++;
 
-		return $dbr->fetchObject( $this->historyRes );
+		return $this->historyRes->fetchObject();
 	}
 
 	/**
@@ -1800,7 +1796,6 @@ class LocalFile extends File {
 		// Trim spaces on user supplied text
 		$comment = trim( $comment );
 
-		$this->lock();
 		$status = $this->publish( $src, $flags, $options );
 
 		if ( $status->successCount >= 2 ) {
@@ -1838,7 +1833,6 @@ class LocalFile extends File {
 			}
 		}
 
-		$this->unlock();
 		return $status;
 	}
 
@@ -1942,10 +1936,10 @@ class LocalFile extends File {
 
 			if ( $allowTimeKludge ) {
 				# Use LOCK IN SHARE MODE to ignore any transaction snapshotting
-				$lUnixtime = $row ? wfTimestamp( TS_UNIX, $row->img_timestamp ) : false;
+				$lUnixtime = $row ? (int)wfTimestamp( TS_UNIX, $row->img_timestamp ) : false;
 				# Avoid a timestamp that is not newer than the last version
 				# TODO: the image/oldimage tables should be like page/revision with an ID field
-				if ( $lUnixtime && wfTimestamp( TS_UNIX, $timestamp ) <= $lUnixtime ) {
+				if ( $lUnixtime && (int)wfTimestamp( TS_UNIX, $timestamp ) <= $lUnixtime ) {
 					sleep( 1 ); // fast enough re-uploads would go far in the future otherwise
 					$timestamp = $dbw->timestamp( $lUnixtime + 1 );
 					$this->timestamp = wfTimestamp( TS_MW, $timestamp ); // DB -> TS_MW
@@ -2073,9 +2067,9 @@ class LocalFile extends File {
 			$newPageContent = ContentHandler::makeContent( $pageText, $descTitle );
 		}
 
-		// NOTE: Even after ending this atomic section, we are probably still in the transaction
-		//       started by the call to lock() in publishTo(). We cannot yet safely schedule jobs,
-		//       see T263301.
+		// NOTE: Even after ending this atomic section, we are probably still in the implicit
+		// transaction started by any prior master query in the request. We cannot yet safely
+		// schedule jobs, see T263301.
 		$dbw->endAtomic( __METHOD__ );
 		$fname = __METHOD__;
 
@@ -2196,12 +2190,11 @@ class LocalFile extends File {
 			[ 'causeAction' => 'file-upload', 'causeAgent' => $performer->getUser()->getName() ]
 		);
 
-		// NOTE: We are probably still in the transaction started by the call to lock() in
-		//       publishTo(). We should only schedule jobs after that transaction was committed,
-		//       so a job queue failure doesn't cause the upload to fail (T263301).
-		//       Also, we should generally not schedule any Jobs or the DeferredUpdates that
-		//       assume the update is complete until after the transaction has been committed and
-		//       we are sure that the upload was indeed successful.
+		// NOTE: We are probably still in the implicit transaction started by DBO_TRX. We should
+		// only schedule jobs after that transaction was committed, so a job queue failure
+		// doesn't cause the upload to fail (T263301). Also, we should generally not schedule any
+		// Jobs or the DeferredUpdates that assume the update is complete until after the
+		// transaction has been committed and we are sure that the upload was indeed successful.
 		$dbw->onTransactionCommitOrIdle( static function () use ( $reupload, $purgeUpdate, $cacheUpdateJob ) {
 			DeferredUpdates::addUpdate( $purgeUpdate, DeferredUpdates::PRESEND );
 
@@ -2210,7 +2203,7 @@ class LocalFile extends File {
 				DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [ 'images' => 1 ] ) );
 			}
 
-			JobQueueGroup::singleton()->lazyPush( $cacheUpdateJob );
+			MediaWikiServices::getInstance()->getJobQueueGroup()->lazyPush( $cacheUpdateJob );
 		}, __METHOD__ );
 
 		return Status::newGood();
@@ -2260,7 +2253,10 @@ class LocalFile extends File {
 			return $this->readOnlyFatalStatus();
 		}
 
-		$this->lock();
+		$status = $this->acquireFileLock();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
 
 		if ( $this->isOld() ) {
 			$archiveRel = $dstRel;
@@ -2297,7 +2293,7 @@ class LocalFile extends File {
 			}
 		}
 
-		$this->unlock();
+		$this->releaseFileLock();
 		return $status;
 	}
 
@@ -2328,11 +2324,12 @@ class LocalFile extends File {
 		wfDebugLog( 'imagemove', "Got request to move {$this->name} to " . $target->getText() );
 		$batch = new LocalFileMoveBatch( $this, $target );
 
-		$this->lock();
-		$batch->addCurrent();
+		$status = $batch->addCurrent();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
 		$archiveNames = $batch->addOlds();
 		$status = $batch->execute();
-		$this->unlock();
 
 		wfDebugLog( 'imagemove', "Finished moving {$this->name}" );
 
@@ -2390,12 +2387,10 @@ class LocalFile extends File {
 
 		$batch = new LocalFileDeleteBatch( $this, $user, $reason, $suppress );
 
-		$this->lock();
 		$batch->addCurrent();
 		// Get old version relative paths
 		$archiveNames = $batch->addOlds();
 		$status = $batch->execute();
-		$this->unlock();
 
 		if ( $status->isOK() ) {
 			DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [ 'images' => -1 ] ) );
@@ -2453,10 +2448,8 @@ class LocalFile extends File {
 
 		$batch = new LocalFileDeleteBatch( $this, $user, $reason, $suppress );
 
-		$this->lock();
 		$batch->addOld( $archiveName );
 		$status = $batch->execute();
-		$this->unlock();
 
 		$this->purgeOldThumbnails( $archiveName );
 		if ( $status->isOK() ) {
@@ -2477,7 +2470,7 @@ class LocalFile extends File {
 	 * May throw database exceptions on error.
 	 * @stable to override
 	 *
-	 * @param array $versions Set of record ids of deleted items to restore,
+	 * @param int[] $versions Set of record ids of deleted items to restore,
 	 *   or empty to restore all revisions.
 	 * @param bool $unsuppress
 	 * @return Status
@@ -2489,7 +2482,6 @@ class LocalFile extends File {
 
 		$batch = new LocalFileRestoreBatch( $this, $unsuppress );
 
-		$this->lock();
 		if ( !$versions ) {
 			$batch->addAll();
 		} else {
@@ -2503,7 +2495,6 @@ class LocalFile extends File {
 			$status->merge( $cleanupStatus );
 		}
 
-		$this->unlock();
 		return $status;
 	}
 
@@ -2539,28 +2530,29 @@ class LocalFile extends File {
 			return false; // Avoid hard failure when the file does not exist. T221812
 		}
 
-		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$revision = $store->getRevisionByTitle( $this->title, 0, RevisionStore::READ_NORMAL );
-		if ( !$revision ) {
+		$services = MediaWikiServices::getInstance();
+		$page = $services->getPageStore()->getPageByReference( $this->getTitle() );
+		if ( !$page ) {
 			return false;
 		}
 
-		$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
-		$rendered = $renderer->getRenderedRevision(
-			$revision,
-			ParserOptions::newFromUserAndLang(
+		if ( $lang ) {
+			$parserOptions = ParserOptions::newFromUserAndLang(
 				RequestContext::getMain()->getUser(),
 				$lang
-			)
-		);
-
-		if ( !$rendered ) {
-			// audience check failed
-			return false;
+			);
+		} else {
+			$parserOptions = ParserOptions::newFromContext( RequestContext::getMain() );
 		}
 
-		$pout = $rendered->getRevisionParserOutput();
-		return $pout->getText();
+		$parseStatus = $services->getParserOutputAccess()
+			->getParserOutput( $page, $parserOptions );
+
+		if ( !$parseStatus->isGood() ) {
+			// Rendering failed.
+			return false;
+		}
+		return $parseStatus->getValue()->getText();
 	}
 
 	/**
@@ -2638,23 +2630,6 @@ class LocalFile extends File {
 	 */
 	public function getSha1() {
 		$this->load();
-		// Initialise now if necessary
-		if ( $this->sha1 == '' && $this->fileExists ) {
-			$this->lock();
-
-			$this->sha1 = $this->repo->getFileSha1( $this->getPath() );
-			if ( !wfReadOnly() && strval( $this->sha1 ) != '' ) {
-				$dbw = $this->repo->getPrimaryDB();
-				$dbw->update( 'image',
-					[ 'img_sha1' => $this->sha1 ],
-					[ 'img_name' => $this->getName() ],
-					__METHOD__ );
-				$this->invalidateCache();
-			}
-
-			$this->unlock();
-		}
-
 		return $this->sha1;
 	}
 
@@ -2670,16 +2645,22 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * Acquire an exclusive lock on the file, indicating an intention to write
+	 * to the file backend.
+	 *
+	 * @param float|int $timeout The timeout in seconds
 	 * @return Status
 	 * @since 1.28
 	 */
-	public function acquireFileLock() {
+	public function acquireFileLock( $timeout = 0 ) {
 		return Status::wrap( $this->getRepo()->getBackend()->lockFiles(
-			[ $this->getPath() ], LockManager::LOCK_EX, 10
+			[ $this->getPath() ], LockManager::LOCK_EX, $timeout
 		) );
 	}
 
 	/**
+	 * Release a lock acquired with acquireFileLock().
+	 *
 	 * @return Status
 	 * @since 1.28
 	 */
@@ -2695,6 +2676,7 @@ class LocalFile extends File {
 	 *
 	 * This method should not be used outside of LocalFile/LocalFile*Batch
 	 *
+	 * @deprecated since 1.38 Use acquireFileLock()
 	 * @throws LocalFileLockError Throws an error if the lock was not acquired
 	 * @return bool Whether the file lock owns/spawned the DB transaction
 	 */
@@ -2708,7 +2690,7 @@ class LocalFile extends File {
 			// T56736: use simple lock to handle when the file does not exist.
 			// SELECT FOR UPDATE prevents changes, not other SELECTs with FOR UPDATE.
 			// Also, that would cause contention on INSERT of similarly named rows.
-			$status = $this->acquireFileLock(); // represents all versions of the file
+			$status = $this->acquireFileLock( 10 ); // represents all versions of the file
 			if ( !$status->isGood() ) {
 				$dbw->endAtomic( self::ATOMIC_SECTION_LOCK );
 				$logger->warning( "Failed to lock '{file}'", [ 'file' => $this->name ] );
@@ -2742,6 +2724,8 @@ class LocalFile extends File {
 	 *
 	 * The commit and lock release will happen when no atomic sections are active, which
 	 * may happen immediately or at some point after calling this
+	 *
+	 * @deprecated since 1.38 Use releaseFileLock()
 	 */
 	public function unlock() {
 		if ( $this->locked ) {

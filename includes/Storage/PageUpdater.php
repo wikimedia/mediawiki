@@ -25,6 +25,7 @@
 namespace MediaWiki\Storage;
 
 use AtomicSectionUpdate;
+use ChangeTags;
 use CommentStoreComment;
 use Content;
 use ContentHandler;
@@ -34,6 +35,7 @@ use LogicException;
 use ManualLogEntry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\ValidationParams;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\PageIdentity;
@@ -159,6 +161,11 @@ class PageUpdater {
 	private $usePageCreationLog = true;
 
 	/**
+	 * @var bool Whether null-edits create a revision.
+	 */
+	private $forceEmptyRevision = false;
+
+	/**
 	 * @var array
 	 */
 	private $tags = [];
@@ -184,14 +191,17 @@ class PageUpdater {
 	private $editResult = null;
 
 	/**
-	 * @var string[] currently enabled software change tags
-	 */
-	private $softwareTags;
-
-	/**
 	 * @var ServiceOptions
 	 */
 	private $serviceOptions;
+
+	/**
+	 * @var int
+	 */
+	private $flags = 0;
+
+	/** @var string[] */
+	private $softwareTags = [];
 
 	/**
 	 * @param UserIdentity $author
@@ -240,7 +250,6 @@ class PageUpdater {
 		$this->userEditTracker = $userEditTracker;
 		$this->userGroupManager = $userGroupManager;
 		$this->titleFormatter = $titleFormatter;
-		$this->softwareTags = $softwareTags;
 
 		$this->slotsUpdate = new RevisionSlotsUpdate();
 		$this->editResultBuilder = new EditResultBuilder(
@@ -254,6 +263,66 @@ class PageUpdater {
 				]
 			)
 		);
+		$this->softwareTags = $softwareTags;
+	}
+
+	/**
+	 * Sets any flags to use when performing the update.
+	 * Flags passed in subsequent calls to this method as well as calls to prepareUpdate()
+	 * or saveRevision() are aggregated using bitwise OR.
+	 *
+	 * Known flags:
+	 *
+	 *      EDIT_NEW
+	 *          Create a new page, or fail with "edit-already-exists" if the page exists.
+	 *      EDIT_UPDATE
+	 *          Create a new revision, or fail with "edit-gone-missing" if the page does not exist.
+	 *      EDIT_MINOR
+	 *          Mark this revision as minor
+	 *      EDIT_SUPPRESS_RC
+	 *          Do not log the change in recentchanges
+	 *      EDIT_FORCE_BOT
+	 *          Mark the revision as automated ("bot edit")
+	 *      EDIT_AUTOSUMMARY
+	 *          Fill in blank summaries with generated text where possible
+	 *      EDIT_INTERNAL
+	 *          Signal that the page retrieve/save cycle happened entirely in this request.
+	 *
+	 * @param int $flags Bitfield
+	 * @return $this
+	 */
+	public function setFlags( int $flags ) {
+		$this->flags |= $flags;
+		return $this;
+	}
+
+	/**
+	 * Prepare the update.
+	 * This sets up the RevisionRecord to be saved.
+	 * @since 1.37
+	 *
+	 * @param int $flags Bitfield, will be combined with flags set via setFlags().
+	 *        EDIT_FORCE_BOT and EDIT_INTERNAL will bypass the edit stash.
+	 *
+	 * @return PreparedUpdate
+	 */
+	public function prepareUpdate( int $flags = 0 ): PreparedUpdate {
+		$this->setFlags( $flags );
+
+		// Load the data from the primary database if needed. Needed to check flags.
+		$this->grabParentRevision();
+		if ( !$this->derivedDataUpdater->isUpdatePrepared() ) {
+			// Avoid statsd noise and wasted cycles check the edit stash (T136678)
+			$useStashed = !( ( $this->flags & EDIT_INTERNAL ) || ( $this->flags & EDIT_FORCE_BOT ) );
+			// Prepare the update. This performs PST and generates the canonical ParserOutput.
+			$this->derivedDataUpdater->prepareContent(
+				$this->author,
+				$this->slotsUpdate,
+				$useStashed
+			);
+		}
+
+		return $this->derivedDataUpdater;
 	}
 
 	/**
@@ -306,6 +375,37 @@ class PageUpdater {
 		return $this;
 	}
 
+	/**
+	 * Set whether null-edits should create a revision. Enabling this allows the creation of dummy
+	 * revisions ("null revisions") to mark events such as renaming in the page history.
+	 *
+	 * Callers should typically also call setOriginalRevisionId() to indicate the ID of the revision
+	 * that is being repeated. That ID can be obtained from grabParentRevision()->getId().
+	 *
+	 * @since 1.38
+	 *
+	 * @note this calls $this->setOriginalRevisionId() with the ID of the current revision,
+	 * starting the CAS bracket by virtue of calling $this->grabParentRevision().
+	 *
+	 * @note saveRevision() will fail with a LogicException if setForceEmptyRevision( true )
+	 * was called and also content was changed via setContent(), removeSlot(), or inheritSlot().
+	 *
+	 * @param bool $forceEmptyRevision
+	 * @return $this
+	 */
+	public function setForceEmptyRevision( bool $forceEmptyRevision ): self {
+		$this->forceEmptyRevision = $forceEmptyRevision;
+
+		if ( $forceEmptyRevision ) {
+			// XXX: throw if there is no current/parent revision?
+			$original = $this->grabParentRevision();
+			$this->setOriginalRevisionId( $original ? $original->getId() : false );
+		}
+
+		$this->derivedDataUpdater->setForceEmptyRevision( $forceEmptyRevision );
+		return $this;
+	}
+
 	private function getWikiId() {
 		return false; // TODO: get from RevisionStore!
 	}
@@ -323,7 +423,7 @@ class PageUpdater {
 	 * Get the page we're currently updating.
 	 * @return PageIdentity
 	 */
-	private function getPage(): PageIdentity {
+	public function getPage(): PageIdentity {
 		return $this->wikiPage;
 	}
 
@@ -415,20 +515,6 @@ class PageUpdater {
 	}
 
 	/**
-	 * Check flags and add EDIT_NEW or EDIT_UPDATE to them as needed.
-	 *
-	 * @param int $flags
-	 * @return int Updated $flags
-	 */
-	private function checkFlags( $flags ) {
-		if ( !( $flags & EDIT_NEW ) && !( $flags & EDIT_UPDATE ) ) {
-			$flags |= ( $this->derivedDataUpdater->pageExisted() ) ? EDIT_UPDATE : EDIT_NEW;
-		}
-
-		return $flags;
-	}
-
-	/**
 	 * Set the new content for the given slot role
 	 *
 	 * @param string $role A slot role name (such as "main")
@@ -499,41 +585,36 @@ class PageUpdater {
 	 * Sets the ID of an earlier revision that is being repeated or restored by this update.
 	 * The new revision is expected to have the exact same content as the given original revision.
 	 * This is used with rollbacks and with dummy "null" revisions which are created to record
-	 * things like page moves.
-	 *
-	 * TODO This value was passed to the PageContentSaveComplete and NewRevisionFromEditComplete
-	 * hooks, but those were removed - where is it used now?.
+	 * things like page moves. setForceEmptyRevision() calls this implicitly.
 	 *
 	 * @param int|bool $originalRevId The original revision id, or false if no earlier revision
 	 * is known to be repeated or restored by this update.
 	 * @return $this
 	 */
 	public function setOriginalRevisionId( $originalRevId ) {
-		$this->editResultBuilder->setOriginalRevisionId( $originalRevId );
+		$this->editResultBuilder->setOriginalRevision( $originalRevId );
 		return $this;
 	}
 
 	/**
 	 * Marks this edit as a revert and applies relevant information.
 	 * Will also cause the PageUpdater to add a relevant change tag when saving the edit.
-	 * Will do nothing if $oldestRevertedRevId is 0.
 	 *
 	 * @param int $revertMethod The method used to make the revert:
 	 *        REVERT_UNDO, REVERT_ROLLBACK or REVERT_MANUAL
-	 * @param int $oldestRevertedRevId The ID of the oldest revision that was reverted.
-	 * @param int $newestRevertedRevId The ID of the newest revision that was reverted. This
-	 *        parameter is optional, default value is $oldestRevertedRevId
+	 * @param int $newestRevertedRevId the revision ID of the latest reverted revision.
+	 * @param int|null $revertAfterRevId the revision ID after which revisions
+	 *   are being reverted. Defaults to the revision before the $newestRevertedRevId.
 	 * @return $this
-	 *
 	 * @see EditResultBuilder::markAsRevert()
 	 */
 	public function markAsRevert(
 		int $revertMethod,
-		int $oldestRevertedRevId,
-		int $newestRevertedRevId = 0
+		int $newestRevertedRevId,
+		int $revertAfterRevId = null
 	) {
 		$this->editResultBuilder->markAsRevert(
-			$revertMethod, $oldestRevertedRevId, $newestRevertedRevId
+			$revertMethod, $newestRevertedRevId, $revertAfterRevId
 		);
 		return $this;
 	}
@@ -577,6 +658,21 @@ class PageUpdater {
 	}
 
 	/**
+	 * Sets software tag to this update. If the tag is not defined in the
+	 * current software tags, it's ignored.
+	 *
+	 * @since 1.38
+	 * @param string $tag
+	 * @return $this
+	 */
+	public function addSoftwareTag( string $tag ): self {
+		if ( in_array( $tag, $this->softwareTags ) ) {
+			$this->addTag( $tag );
+		}
+		return $this;
+	}
+
+	/**
 	 * Returns the list of tags set using the addTag() method.
 	 *
 	 * @return string[]
@@ -586,10 +682,9 @@ class PageUpdater {
 	}
 
 	/**
-	 * @param int $flags Bit mask: a bit mask of EDIT_XXX flags.
 	 * @return string[]
 	 */
-	private function computeEffectiveTags( $flags ) {
+	private function computeEffectiveTags() {
 		$tags = $this->tags;
 		$editResult = $this->getEditResult();
 
@@ -600,7 +695,7 @@ class PageUpdater {
 			$content = $this->slotsUpdate->getModifiedSlot( $role )->getContent();
 
 			// TODO: MCR: Do this for all slots. Also add tags for removing roles!
-			$tag = $handler->getChangeTag( $old_content, $content, $flags );
+			$tag = $handler->getChangeTag( $old_content, $content, $this->flags );
 			// If there is no applicable tag, null is returned, so we need to check
 			if ( $tag ) {
 				$tags[] = $tag;
@@ -653,12 +748,10 @@ class PageUpdater {
 	}
 
 	/**
-	 * @param int $flags Bit mask: a bit mask of EDIT_XXX flags.
-	 *
 	 * @return CommentStoreComment
 	 */
-	private function makeAutoSummary( $flags ) {
-		if ( !$this->useAutomaticEditSummaries || ( $flags & EDIT_AUTOSUMMARY ) === 0 ) {
+	private function makeAutoSummary() {
+		if ( !$this->useAutomaticEditSummaries || ( $this->flags & EDIT_AUTOSUMMARY ) === 0 ) {
 			return CommentStoreComment::newUnsavedComment( '' );
 		}
 
@@ -675,7 +768,7 @@ class PageUpdater {
 		$handler = $this->getContentHandler( $role );
 		$content = $this->slotsUpdate->getModifiedSlot( $role )->getContent();
 		$old_content = $this->getParentContent( $role );
-		$summary = $handler->getAutosummary( $old_content, $content, $flags );
+		$summary = $handler->getAutosummary( $old_content, $content, $this->flags );
 
 		return CommentStoreComment::newUnsavedComment( $summary );
 	}
@@ -696,43 +789,32 @@ class PageUpdater {
 	 * saveRevision() now need to check the "minoredit" themselves before using EDIT_MINOR.
 	 *
 	 * @param CommentStoreComment $summary Edit summary
-	 * @param int $flags Bitfield:
-	 *      EDIT_NEW
-	 *          Create a new page, or fail with "edit-already-exists" if the page exists.
-	 *      EDIT_UPDATE
-	 *          Create a new revision, or fail with "edit-gone-missing" if the page does not exist.
-	 *      EDIT_MINOR
-	 *          Mark this revision as minor
-	 *      EDIT_SUPPRESS_RC
-	 *          Do not log the change in recentchanges
-	 *      EDIT_FORCE_BOT
-	 *          Mark the revision as automated ("bot edit")
-	 *      EDIT_AUTOSUMMARY
-	 *          Fill in blank summaries with generated text where possible
-	 *      EDIT_INTERNAL
-	 *          Signal that the page retrieve/save cycle happened entirely in this request.
+	 * @param int $flags Bitfield, will be combined with the flags set via setFlags(). See
+	 *        there for details.
 	 *
-	 * If neither EDIT_NEW nor EDIT_UPDATE is specified, the expected state is detected
+	 * @note If neither EDIT_NEW nor EDIT_UPDATE is specified, the expected state is detected
 	 * automatically via grabParentRevision(). In this case, the "edit-already-exists" or
 	 * "edit-gone-missing" errors may still be triggered due to race conditions, if the page
 	 * was unexpectedly created or deleted while revision creation is in progress. This can be
 	 * viewed as part of the CAS mechanism described above.
 	 *
 	 * @return RevisionRecord|null The new revision, or null if no new revision was created due
-	 *         to a failure or a null-edit. Use isUnchanged(), wasSuccessful() and getStatus()
+	 *         to a failure or a null-edit. Use wasRevisionCreated(), wasSuccessful() and getStatus()
 	 *         to determine the outcome of the revision creation.
 	 *
 	 * @throws MWException
 	 * @throws RuntimeException
 	 */
 	public function saveRevision( CommentStoreComment $summary, int $flags = 0 ) {
+		$this->setFlags( $flags );
+
 		if ( $this->wasCommitted() ) {
 			throw new RuntimeException(
 				'saveRevision() or updateRevision() has already been called on this PageUpdater!'
 			);
 		}
 
-		// Low-level sanity check
+		// Low-level check
 		if ( $this->getPage()->getDBkey() === '' ) {
 			throw new RuntimeException( 'Something is trying to edit an article with an empty title' );
 		}
@@ -774,25 +856,19 @@ class PageUpdater {
 		// NOTE: This grabs the parent revision as the CAS token, if grabParentRevision
 		// wasn't called yet. If the page is modified by another process before we are done with
 		// it, this method must fail (with status 'edit-conflict')!
-		// NOTE: The parent revision may be different from $this->originalRevisionId.
-		$this->grabParentRevision();
-		$flags = $this->checkFlags( $flags );
+		// NOTE: The parent revision may be different from the edit's base revision.
+		$this->prepareUpdate();
 
-		// Avoid statsd noise and wasted cycles check the edit stash (T136678)
-		$useStashed = !( ( $flags & EDIT_INTERNAL ) || ( $flags & EDIT_FORCE_BOT ) );
-
-		// Prepare the update. This performs PST and generates the canonical ParserOutput.
-		$this->derivedDataUpdater->prepareContent(
-			$this->author,
-			$this->slotsUpdate,
-			$useStashed
-		);
+		// Detect whether update or creation should be performed.
+		if ( !( $this->flags & EDIT_NEW ) && !( $this->flags & EDIT_UPDATE ) ) {
+			$this->flags |= ( $this->derivedDataUpdater->pageExisted() ) ? EDIT_UPDATE : EDIT_NEW;
+		}
 
 		// Trigger pre-save hook (using provided edit summary)
 		$renderedRevision = $this->derivedDataUpdater->getRenderedRevision();
 		$hookStatus = Status::newGood( [] );
 		$allowedByHook = $this->hookRunner->onMultiContentSave(
-			$renderedRevision, $this->author, $summary, $flags, $hookStatus
+			$renderedRevision, $this->author, $summary, $this->flags, $hookStatus
 		);
 		if ( $allowedByHook && $this->hookContainer->isRegistered( 'PageContentSave' ) ) {
 			// Also run the legacy hook.
@@ -805,7 +881,7 @@ class PageUpdater {
 			// Deprecated since 1.35.
 			$allowedByHook = $this->hookRunner->onPageContentSave(
 				$this->getWikiPage(), $legacyUser, $mainContent, $summary,
-				$flags & EDIT_MINOR, null, null, $flags, $hookStatus
+				$this->flags & EDIT_MINOR, null, null, $this->flags, $hookStatus
 			);
 		}
 
@@ -824,15 +900,15 @@ class PageUpdater {
 		// XXX: $summary == null seems logical, but the empty string may actually come from the user
 		// XXX: Move this logic out of the storage layer! It does not belong here! Use a callback?
 		if ( $summary->text === '' && $summary->data === null ) {
-			$summary = $this->makeAutoSummary( $flags );
+			$summary = $this->makeAutoSummary();
 		}
 
 		// Actually create the revision and create/update the page.
 		// Do NOT yet set $this->status!
-		if ( $flags & EDIT_UPDATE ) {
-			$status = $this->doModify( $summary, $this->author, $flags );
+		if ( $this->flags & EDIT_UPDATE ) {
+			$status = $this->doModify( $summary );
 		} else {
-			$status = $this->doCreate( $summary, $this->author, $flags );
+			$status = $this->doCreate( $summary );
 		}
 
 		// Promote user to any groups they meet the criteria for
@@ -857,7 +933,7 @@ class PageUpdater {
 	 * caches, optionally via the deferred update array. This does not check user permissions.
 	 * Does not do a PST.
 	 *
-	 * Use isUnchanged(), wasSuccessful() and getStatus() to determine the outcome of the
+	 * Use wasRevisionCreated(), wasSuccessful() and getStatus() to determine the outcome of the
 	 * revision update.
 	 *
 	 * @param int $revId
@@ -870,7 +946,7 @@ class PageUpdater {
 			);
 		}
 
-		// Low-level sanity check
+		// Low-level check
 		if ( $this->getPage()->getDBkey() === '' ) {
 			throw new RuntimeException( 'Something is trying to edit an article with an empty title' );
 		}
@@ -922,9 +998,10 @@ class PageUpdater {
 			}
 		}
 
-		// do we need PST?
+		// XXX: do we need PST?
 
-		$this->status = $this->doUpdate( $this->author, $revision );
+		$this->flags |= EDIT_INTERNAL;
+		$this->status = $this->doUpdate( $revision );
 	}
 
 	/**
@@ -964,7 +1041,10 @@ class PageUpdater {
 	}
 
 	/**
-	 * Whether saveRevision() completed successfully
+	 * Whether saveRevision() completed successfully. This is not the same as wasRevisionCreated():
+	 * when the new content is exactly the same as the old one (DerivedPageDataUpdater::isChange()
+	 * returns false) and setForceEmptyRevision( true ) is not set, no new revision is created, but
+	 * the save is considered successful. This behavior constitutes a "null edit".
 	 *
 	 * @return bool
 	 */
@@ -982,16 +1062,30 @@ class PageUpdater {
 	}
 
 	/**
-	 * Whether saveRevision() did not create a revision because the content didn't change
-	 * (null-edit). Whether the content changed or not is determined by
-	 * DerivedPageDataUpdater::isChange().
+	 * Whether saveRevision() did create a revision because the content didn't change: (null-edit).
+	 * Whether the content changed or not is determined by DerivedPageDataUpdater::isChange().
 	 *
+	 * @deprecated since 1.38, use wasRevisionCreated() instead.
 	 * @return bool
 	 */
 	public function isUnchanged() {
+		return !$this->wasRevisionCreated();
+	}
+
+	/**
+	 * Whether saveRevision() did create a revision. This is not the same as wasSuccessful():
+	 * when the new content is exactly the same as the old one (DerivedPageDataUpdater::isChange()
+	 * returns false) and setForceEmptyRevision( true ) is not set, no new revision is created, but
+	 * the save is considered successful. This behavior constitutes a "null edit".
+	 *
+	 * @since 1.38
+	 *
+	 * @return bool
+	 */
+	public function wasRevisionCreated(): bool {
 		return $this->status
 			&& $this->status->isOK()
-			&& $this->status->value['revision-record'] === null;
+			&& $this->status->value['revision-record'] !== null;
 	}
 
 	/**
@@ -1015,16 +1109,12 @@ class PageUpdater {
 	 * The $status parameter is updated with any errors or warnings found by Content::prepareSave().
 	 *
 	 * @param CommentStoreComment $comment
-	 * @param UserIdentity $user
-	 * @param int $flags
 	 * @param Status $status
 	 *
 	 * @return MutableRevisionRecord
 	 */
 	private function makeNewRevision(
 		CommentStoreComment $comment,
-		UserIdentity $user,
-		$flags,
 		Status $status
 	) {
 		$wikiPage = $this->getWikiPage();
@@ -1067,17 +1157,16 @@ class PageUpdater {
 		}
 
 		$rev->setComment( $comment );
-		$rev->setUser( $user );
-		$rev->setMinorEdit( ( $flags & EDIT_MINOR ) > 0 );
+		$rev->setUser( $this->author );
+		$rev->setMinorEdit( ( $this->flags & EDIT_MINOR ) > 0 );
 
 		foreach ( $rev->getSlots()->getSlots() as $slot ) {
 			$content = $slot->getContent();
 
 			// XXX: We may push this up to the "edit controller" level, see T192777.
-			// XXX: prepareSave() and isValid() could live in SlotRoleHandler
-			// XXX: PrepareSave should not take a WikiPage!
-			$legacyUser = self::toLegacyUser( $user );
-			$prepStatus = $content->prepareSave( $wikiPage, $flags, $oldid, $legacyUser );
+			$contentHandler = $this->contentHandlerFactory->getContentHandler( $content->getModel() );
+			$validationParams = new ValidationParams( $wikiPage, $this->flags, $oldid );
+			$prepStatus = $contentHandler->validateSave( $content, $validationParams );
 
 			// TODO: MCR: record which problem arose in which slot.
 			$status->merge( $prepStatus );
@@ -1112,11 +1201,10 @@ class PageUpdater {
 	 * here, so, as opposed to doCreate(), updating recentchanges is left as the responsibility
 	 * of the caller.
 	 *
-	 * @param UserIdentity $user
 	 * @param RevisionRecord $revision
 	 * @return Status
 	 */
-	private function doUpdate( UserIdentity $user, RevisionRecord $revision ): Status {
+	private function doUpdate( RevisionRecord $revision ): Status {
 		$currentRevision = $this->grabParentRevision();
 		if ( !$currentRevision ) {
 			// Article gone missing
@@ -1153,9 +1241,7 @@ class PageUpdater {
 					$dbw,
 					$wikiPage,
 					$newRevisionRecord,
-					$user,
 					$revision->getComment(),
-					EDIT_INTERNAL,
 					[ 'changed' => false, ]
 				),
 				DeferredUpdates::PRESEND
@@ -1167,13 +1253,11 @@ class PageUpdater {
 
 	/**
 	 * @param CommentStoreComment $summary The edit summary
-	 * @param UserIdentity $user The revision's author
-	 * @param int $flags EDIT_XXX constants
 	 *
 	 * @throws MWException
 	 * @return Status
 	 */
-	private function doModify( CommentStoreComment $summary, UserIdentity $user, $flags ) {
+	private function doModify( CommentStoreComment $summary ) {
 		$wikiPage = $this->getWikiPage(); // TODO: use for legacy hooks only!
 
 		// Update article, but only if changed.
@@ -1191,8 +1275,6 @@ class PageUpdater {
 
 		$newRevisionRecord = $this->makeNewRevision(
 			$summary,
-			$user,
-			$flags,
 			$status
 		);
 
@@ -1202,8 +1284,13 @@ class PageUpdater {
 
 		$now = $newRevisionRecord->getTimestamp();
 
-		// XXX: we may want a flag that allows a null revision to be forced!
 		$changed = $this->derivedDataUpdater->isChange();
+
+		if ( $this->forceEmptyRevision && $changed ) {
+			throw new LogicException(
+				'Content was changed even though forceEmptyRevision() was called.'
+			);
+		}
 
 		// We build the EditResult before the $change if/else branch in order to pass
 		// the correct $newRevisionRecord to EditResultBuilder. In case this is a null
@@ -1211,13 +1298,13 @@ class PageUpdater {
 		// would confuse EditResultBuilder.
 		if ( !$changed ) {
 			// This is a null edit, ensure original revision ID is set properly
-			$this->editResultBuilder->setOriginalRevisionId( $oldid );
+			$this->editResultBuilder->setOriginalRevision( $oldRev );
 		}
 		$this->buildEditResult( $newRevisionRecord, false );
 
 		$dbw = $this->getDBConnectionRef( DB_PRIMARY );
 
-		if ( $changed ) {
+		if ( $changed || $this->forceEmptyRevision ) {
 			$dbw->startAtomic( __METHOD__ );
 
 			// Get the latest page_latest value while locking it.
@@ -1234,7 +1321,7 @@ class PageUpdater {
 				return $status->fatal( 'edit-conflict' );
 			}
 
-			// At this point we are now comitted to returning an OK
+			// At this point we are now committed to returning an OK
 			// status unless some DB query error or other exception comes up.
 			// This way callers don't have to call rollback() if $status is bad
 			// unless they actually try to catch exceptions (which is rare).
@@ -1250,23 +1337,27 @@ class PageUpdater {
 			}
 
 			$editResult = $this->getEditResult();
-			$tags = $this->computeEffectiveTags( $flags );
+			$tags = $this->computeEffectiveTags();
 			$this->hookRunner->onRevisionFromEditComplete(
-				$wikiPage, $newRevisionRecord, $editResult->getOriginalRevisionId(), $user, $tags
+				$wikiPage,
+				$newRevisionRecord,
+				$editResult->getOriginalRevisionId(),
+				$this->author,
+				$tags
 			);
 
 			// Update recentchanges
-			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
+			if ( !( $this->flags & EDIT_SUPPRESS_RC ) ) {
 				// Add RC row to the DB
 				RecentChange::notifyEdit(
 					$now,
 					$this->getPage(),
 					$newRevisionRecord->isMinor(),
-					$user,
+					$this->author,
 					$summary->text, // TODO: pass object when that becomes possible
 					$oldid,
 					$newRevisionRecord->getTimestamp(),
-					( $flags & EDIT_FORCE_BOT ) > 0,
+					( $this->flags & EDIT_FORCE_BOT ) > 0,
 					'',
 					$oldRev->getSize(),
 					$newRevisionRecord->getSize(),
@@ -1275,9 +1366,11 @@ class PageUpdater {
 					$tags,
 					$editResult
 				);
+			} else {
+				ChangeTags::addTags( $tags, null, $newRevisionRecord->getId(), null );
 			}
 
-			$this->userEditTracker->incrementUserEditCount( $user );
+			$this->userEditTracker->incrementUserEditCount( $this->author );
 
 			$dbw->endAtomic( __METHOD__ );
 
@@ -1308,9 +1401,7 @@ class PageUpdater {
 				$dbw,
 				$wikiPage,
 				$newRevisionRecord,
-				$user,
 				$summary,
-				$flags,
 				[ 'changed' => $changed, ]
 			),
 			DeferredUpdates::PRESEND
@@ -1321,14 +1412,12 @@ class PageUpdater {
 
 	/**
 	 * @param CommentStoreComment $summary The edit summary
-	 * @param UserIdentity $user The revision's author
-	 * @param int $flags EDIT_XXX constants
 	 *
 	 * @throws DBUnexpectedError
 	 * @throws MWException
 	 * @return Status
 	 */
-	private function doCreate( CommentStoreComment $summary, UserIdentity $user, $flags ) {
+	private function doCreate( CommentStoreComment $summary ) {
 		$wikiPage = $this->getWikiPage(); // TODO: use for legacy hooks only!
 
 		if ( !$this->derivedDataUpdater->getSlots()->hasSlot( SlotRecord::MAIN ) ) {
@@ -1341,8 +1430,6 @@ class PageUpdater {
 
 		$newRevisionRecord = $this->makeNewRevision(
 			$summary,
-			$user,
-			$flags,
 			$status
 		);
 
@@ -1364,7 +1451,7 @@ class PageUpdater {
 			return $status->fatal( 'edit-already-exists' );
 		}
 
-		// At this point we are now comitted to returning an OK
+		// At this point we are now committed to returning an OK
 		// status unless some DB query error or other exception comes up.
 		// This way callers don't have to call rollback() if $status is bad
 		// unless they actually try to catch exceptions (which is rare).
@@ -1379,36 +1466,38 @@ class PageUpdater {
 			throw new PageUpdateException( "Failed to update page row to use new revision." );
 		}
 
-		$tags = $this->computeEffectiveTags( $flags );
+		$tags = $this->computeEffectiveTags();
 		$this->hookRunner->onRevisionFromEditComplete(
-			$wikiPage, $newRevisionRecord, false, $user, $tags
+			$wikiPage, $newRevisionRecord, false, $this->author, $tags
 		);
 
 		// Update recentchanges
-		if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
+		if ( !( $this->flags & EDIT_SUPPRESS_RC ) ) {
 			// Add RC row to the DB
 			RecentChange::notifyNew(
 				$now,
 				$this->getPage(),
 				$newRevisionRecord->isMinor(),
-				$user,
+				$this->author,
 				$summary->text, // TODO: pass object when that becomes possible
-				( $flags & EDIT_FORCE_BOT ) > 0,
+				( $this->flags & EDIT_FORCE_BOT ) > 0,
 				'',
 				$newRevisionRecord->getSize(),
 				$newRevisionRecord->getId(),
 				$this->rcPatrolStatus,
 				$tags
 			);
+		} else {
+			ChangeTags::addTags( $tags, null, $newRevisionRecord->getId(), null );
 		}
 
-		$this->userEditTracker->incrementUserEditCount( $user );
+		$this->userEditTracker->incrementUserEditCount( $this->author );
 
 		if ( $this->usePageCreationLog ) {
 			// Log the page creation
 			// @TODO: Do we want a 'recreate' action?
 			$logEntry = new ManualLogEntry( 'create', 'create' );
-			$logEntry->setPerformer( $user );
+			$logEntry->setPerformer( $this->author );
 			$logEntry->setTarget( $this->getPage() );
 			$logEntry->setComment( $summary->text );
 			$logEntry->setTimestamp( $now );
@@ -1430,9 +1519,7 @@ class PageUpdater {
 				$dbw,
 				$wikiPage,
 				$newRevisionRecord,
-				$user,
 				$summary,
-				$flags,
 				[ 'created' => true ]
 			),
 			DeferredUpdates::PRESEND
@@ -1445,21 +1532,19 @@ class PageUpdater {
 		IDatabase $dbw,
 		WikiPage $wikiPage,
 		RevisionRecord $newRevisionRecord,
-		UserIdentity $user,
 		CommentStoreComment $summary,
-		$flags,
-		$hints = []
+		array $hints = []
 	) {
 		return new AtomicSectionUpdate(
 			$dbw,
 			__METHOD__,
 			function () use (
-				$wikiPage, $newRevisionRecord, $user,
-				$summary, $flags, $hints
+				$wikiPage, $newRevisionRecord,
+				$summary, $hints
 			) {
 				// set debug data
 				$hints['causeAction'] = 'edit-page';
-				$hints['causeAgent'] = $user->getName();
+				$hints['causeAgent'] = $this->author->getName();
 
 				$editResult = $this->getEditResult();
 				$hints['editResult'] = $editResult;
@@ -1475,9 +1560,9 @@ class PageUpdater {
 					// Allow extensions to override the patrolling subsystem.
 					$this->hookRunner->onBeforeRevertedTagUpdate(
 						$wikiPage,
-						$user,
+						$this->author,
 						$summary,
-						$flags,
+						$this->flags,
 						$newRevisionRecord,
 						$editResult,
 						$approved
@@ -1490,15 +1575,15 @@ class PageUpdater {
 				$this->derivedDataUpdater->doUpdates();
 
 				$created = $hints['created'] ?? false;
-				$flags |= ( $created ? EDIT_NEW : EDIT_UPDATE );
+				$this->flags |= ( $created ? EDIT_NEW : EDIT_UPDATE );
 
 				// PageSaveComplete replaced old PageContentInsertComplete and
 				// PageContentSaveComplete hooks since 1.35
 				$this->hookRunner->onPageSaveComplete(
 					$wikiPage,
-					$user,
+					$this->author,
 					$summary->text,
-					$flags,
+					$this->flags,
 					$newRevisionRecord,
 					$editResult
 				);

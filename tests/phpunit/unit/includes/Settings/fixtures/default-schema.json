@@ -1,0 +1,12 @@
+{
+	"config-schema": {
+		"ExtensionDirectory": {
+			"type": "string",
+			"default": "/DEFAULT/"
+		},
+		"StyleDirectory": {
+			"type": "string",
+			"default": "/DEFAULT/"
+		}
+	}
+}

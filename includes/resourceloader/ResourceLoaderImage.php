@@ -144,7 +144,7 @@ class ResourceLoaderImage {
 	}
 
 	/**
-	 * @internal For unit testing overrride
+	 * @internal For unit testing override
 	 * @param string $lang
 	 * @return string[]
 	 */
@@ -203,7 +203,7 @@ class ResourceLoaderImage {
 	/**
 	 * Get the extension of the image.
 	 *
-	 * @param string $format Format to get the extension for, 'original' or 'rasterized'
+	 * @param string|null $format Format to get the extension for, 'original' or 'rasterized'
 	 * @return string Extension without leading dot, e.g. 'png'
 	 */
 	public function getExtension( $format = 'original' ) {
@@ -216,7 +216,7 @@ class ResourceLoaderImage {
 	/**
 	 * Get the MIME type of the image.
 	 *
-	 * @param string $format Format to get the MIME type for, 'original' or 'rasterized'
+	 * @param string|null $format Format to get the MIME type for, 'original' or 'rasterized'
 	 * @return string
 	 */
 	public function getMimeType( $format = 'original' ) {
@@ -274,9 +274,9 @@ class ResourceLoaderImage {
 	 *
 	 * @param ResourceLoaderContext $context Image context, or any context if $variant and $format
 	 *     given.
-	 * @param string|null $variant Variant to get the data for. Optional; if given, overrides the data
+	 * @param string|null|false $variant Variant to get the data for. Optional; if given, overrides the data
 	 *     from $context.
-	 * @param string $format Format to get the data for, 'original' or 'rasterized'. Optional; if
+	 * @param string|false $format Format to get the data for, 'original' or 'rasterized'. Optional; if
 	 *     given, overrides the data from $context.
 	 * @return string|false Possibly binary image data, or false on failure
 	 * @throws MWException If the image file doesn't exist
@@ -399,13 +399,13 @@ class ResourceLoaderImage {
 	 * @return string|bool PNG image data, or false on failure
 	 */
 	protected function rasterize( $svg ) {
-		global $wgSVGConverter, $wgSVGConverterPath;
-
+		$svgConverter = MediaWikiServices::getInstance()->getMainConfig()->get( 'SVGConverter' );
+		$svgConverterPath = MediaWikiServices::getInstance()->getMainConfig()->get( 'SVGConverterPath' );
 		// This code should be factored out to a separate method on SvgHandler, or perhaps a separate
 		// class, with a separate set of configuration settings.
 		//
 		// This is a distinct use case from regular SVG rasterization:
-		// * We can skip many sanity and security checks (as the images come from a trusted source,
+		// * We can skip many checks (as the images come from a trusted source,
 		//   rather than from the user).
 		// * We need to provide extra options to some converters to achieve acceptable quality for very
 		//   small images, which might cause performance issues in the general case.
@@ -420,10 +420,10 @@ class ResourceLoaderImage {
 		$svg = $this->massageSvgPathdata( $svg );
 
 		// Sometimes this might be 'rsvg-secure'. Long as it's rsvg.
-		if ( strpos( $wgSVGConverter, 'rsvg' ) === 0 ) {
+		if ( strpos( $svgConverter, 'rsvg' ) === 0 ) {
 			$command = 'rsvg-convert';
-			if ( $wgSVGConverterPath ) {
-				$command = Shell::escape( "$wgSVGConverterPath/" ) . $command;
+			if ( $svgConverterPath ) {
+				$command = Shell::escape( "{$svgConverterPath}/" ) . $command;
 			}
 
 			$process = proc_open(
@@ -432,7 +432,7 @@ class ResourceLoaderImage {
 				$pipes
 			);
 
-			if ( is_resource( $process ) ) {
+			if ( $process ) {
 				fwrite( $pipes[0], $svg );
 				fclose( $pipes[0] );
 				$png = stream_get_contents( $pipes[1] );

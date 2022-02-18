@@ -46,6 +46,8 @@ class PageProps {
 	private $cache;
 
 	/**
+	 * @deprecated since 1.38, use MediaWikiServices::getPageProps() instead
+	 *
 	 * @return PageProps
 	 */
 	public static function getInstance() {

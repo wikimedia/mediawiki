@@ -1,7 +1,8 @@
 'use strict';
 
 var util,
-	config = require( './config.json' );
+	config = require( './config.json' ),
+	portletLinkOptions = require( './portletLinkOptions.json' );
 
 require( './jquery.accessKeyLabel.js' );
 
@@ -43,7 +44,7 @@ function escapeIdInternal( str, mode ) {
 }
 
 /**
- * Utility library
+ * Utility library provided by the `mediawiki.util` module.
  *
  * @class mw.util
  * @singleton
@@ -85,23 +86,85 @@ util = {
 	},
 
 	/**
-	 * Return a wrapper function that is debounced for the given duration.
+	 * Return a function, that, as long as it continues to be invoked, will not
+	 * be triggered. The function will be called after it stops being called for
+	 * N milliseconds. If `immediate` is passed, trigger the function on the
+	 * leading edge, instead of the trailing.
 	 *
-	 * When it is first called, a timeout is scheduled. If before the timer
-	 * is reached the wrapper is called again, it gets rescheduled for the
-	 * same duration from now until it stops being called. The original function
-	 * is called from the "tail" of such chain, with the last set of arguments.
+	 * Ported from Underscore.js 1.5.2, Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud
+	 * and Investigative Reporters & Editors, distributed under the MIT license, from
+	 * <https://github.com/jashkenas/underscore/blob/1.5.2/underscore.js#L689>.
 	 *
 	 * @since 1.34
-	 * @param {number} delay Time in milliseconds
-	 * @param {Function} callback
-	 * @return {Function}
+	 * @param {Function} func Function to debounce
+	 * @param {number} [wait=0] Wait period in milliseconds
+	 * @param {boolean} [immediate] Trigger on leading edge
+	 * @return {Function} Debounced function
 	 */
-	debounce: function ( delay, callback ) {
+	debounce: function ( func, wait, immediate ) {
+		// Old signature (wait, func).
+		if ( typeof func === 'number' ) {
+			var tmpWait = wait;
+			wait = func;
+			func = tmpWait;
+		}
 		var timeout;
 		return function () {
-			clearTimeout( timeout );
-			timeout = setTimeout( Function.prototype.apply.bind( callback, this, arguments ), delay );
+			var context = this,
+				args = arguments,
+				later = function () {
+					timeout = null;
+					if ( !immediate ) {
+						func.apply( context, args );
+					}
+				};
+			if ( immediate && !timeout ) {
+				func.apply( context, args );
+			}
+			if ( !timeout || wait ) {
+				clearTimeout( timeout );
+				timeout = setTimeout( later, wait );
+			}
+		};
+	},
+
+	/**
+	 * Return a function, that, when invoked, will only be triggered at most once
+	 * during a given window of time. If called again during that window, it will
+	 * wait until the window ends and then trigger itself again.
+	 *
+	 * As it's not knowable to the caller whether the function will actually run
+	 * when the wrapper is called, return values from the function are entirely
+	 * discarded.
+	 *
+	 * Ported from OOUI.
+	 *
+	 * @param {Function} func Function to throttle
+	 * @param {number} wait Throttle window length, in milliseconds
+	 * @return {Function} Throttled function
+	 */
+	throttle: function ( func, wait ) {
+		var context, args, timeout,
+			previous = Date.now() - wait,
+			run = function () {
+				timeout = null;
+				previous = Date.now();
+				func.apply( context, args );
+			};
+		return function () {
+			// Check how long it's been since the last time the function was
+			// called, and whether it's more or less than the requested throttle
+			// period. If it's less, run the function immediately. If it's more,
+			// set a timeout for the remaining time -- but don't replace an
+			// existing timeout, since that'd indefinitely prolong the wait.
+			var remaining = Math.max( wait - ( Date.now() - previous ), 0 );
+			context = this;
+			args = arguments;
+			if ( !timeout ) {
+				// If time is up, do setTimeout( run, 0 ) so the function
+				// always runs asynchronously, just like Promise#then .
+				timeout = setTimeout( run, remaining );
+			}
 		};
 	},
 
@@ -135,12 +198,12 @@ util = {
 	},
 
 	/**
-	 * Get the link to a page name (relative to `wgServer`),
+	 * Get the URL to a given local wiki page name,
 	 *
 	 * @param {string|null} [pageName=wgPageName] Page name
 	 * @param {Object} [params] A mapping of query parameter names to values,
 	 *  e.g. `{ action: 'edit' }`
-	 * @return {string} Url of the page with name of `pageName`
+	 * @return {string} URL, relative to `wgServer`.
 	 */
 	getUrl: function ( pageName, params ) {
 		var fragmentIdx, url, query, fragment,
@@ -180,11 +243,13 @@ util = {
 	},
 
 	/**
-	 * Get URL to a MediaWiki entry point.
+	 * Get URL to a MediaWiki server entry point.
+	 *
+	 * Similar to `wfScript()` in PHP.
 	 *
 	 * @since 1.18
-	 * @param {string} [str="index"] Name of MW entry point (e.g. 'index' or 'api')
-	 * @return {string} URL to the script file (e.g. '/w/api.php' )
+	 * @param {string} [str="index"] Name of entry point (e.g. 'index' or 'api')
+	 * @return {string} URL to the script file (e.g. `/w/api.php`)
 	 */
 	wikiScript: function ( str ) {
 		if ( !str || str === 'index' ) {
@@ -198,18 +263,23 @@ util = {
 
 	/**
 	 * Append a new style block to the head and return the CSSStyleSheet object.
-	 * Use .ownerNode to access the `<style>` element, or use mw.loader#addStyleTag.
-	 * This function returns the styleSheet object for convience (due to cross-browsers
-	 * difference as to where it is located).
+	 *
+	 * To access the `<style>` element, reference `sheet.ownerNode`, or call
+	 * the mw.loader#addStyleTag method directly.
+	 *
+	 * This function returns the CSSStyleSheet object for convience with features
+	 * that are managed at that level, such as toggling of styles:
 	 *
 	 *     var sheet = util.addCSS( '.foobar { display: none; }' );
-	 *     $( foo ).click( function () {
+	 *     $( '#myButton' ).click( function () {
 	 *         // Toggle the sheet on and off
 	 *         sheet.disabled = !sheet.disabled;
 	 *     } );
 	 *
+	 * See also [MDN: CSSStyleSheet](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet).
+	 *
 	 * @param {string} text CSS to be appended
-	 * @return {CSSStyleSheet} Use .ownerNode to get to the `<style>` element.
+	 * @return {CSSStyleSheet} The sheet object
 	 */
 	addCSS: function ( text ) {
 		var s = mw.loader.addStyleTag( text );
@@ -217,12 +287,15 @@ util = {
 	},
 
 	/**
-	 * Grab the URL parameter value for the given parameter.
-	 * Returns null if not found.
+	 * Get the value for a given URL query parameter.
+	 *
+	 *     mw.util.getParamValue( 'foo', '/?foo=x' ); // "x"
+	 *     mw.util.getParamValue( 'foo', '/?foo=' ); // ""
+	 *     mw.util.getParamValue( 'foo', '/' ); // null
 	 *
 	 * @param {string} param The parameter name.
 	 * @param {string} [url=location.href] URL to search through, defaulting to the current browsing location.
-	 * @return {string|null} Parameter value or null when the parameter cannot be decoded or is absent.
+	 * @return {string|null} Parameter value, or null if parameter was not found.
 	 */
 	getParamValue: function ( param, url ) {
 		// Get last match, stop at hash
@@ -302,23 +375,24 @@ util = {
 	/**
 	 * Add a link to a portlet menu on the page, such as:
 	 *
-	 * p-cactions (Content actions), p-personal (Personal tools),
-	 * p-navigation (Navigation), p-tb (Toolbox)
+	 * - p-cactions (Content actions),
+	 * - p-personal (Personal tools),
+	 * - p-navigation (Navigation),
+	 * - p-tb (Toolbox).
 	 *
 	 * The first three parameters are required, the others are optional and
 	 * may be null. Though providing an id and tooltip is recommended.
 	 *
-	 * By default the new link will be added to the end of the list. To
-	 * add the link before a given existing item, pass the DOM node
-	 * (e.g. `document.getElementById( 'foobar' )`) or a jQuery-selector
-	 * (e.g. `'#foobar'`) for that item.
+	 * By default, the new link will be added to the end of the menu. To
+	 * add the link before an existing item, pass the DOM node or a CSS selector
+	 * for that item, e.g. `'#foobar'` or `document.getElementById( 'foobar' )`.
 	 *
-	 *     util.addPortletLink(
+	 *     mw.util.addPortletLink(
 	 *         'p-tb', 'https://www.mediawiki.org/',
 	 *         'mediawiki.org', 't-mworg', 'Go to mediawiki.org', 'm', '#t-print'
 	 *     );
 	 *
-	 *     var node = util.addPortletLink(
+	 *     var node = mw.util.addPortletLink(
 	 *         'p-tb',
 	 *         new mw.Title( 'Special:Example' ).getUrl(),
 	 *         'Example'
@@ -326,6 +400,13 @@ util = {
 	 *     $( node ).on( 'click', function ( e ) {
 	 *         console.log( 'Example' );
 	 *         e.preventDefault();
+	 *     } );
+	 *
+	 * Remember that to call this inside a user script, you may have to ensure the
+	 * `mediawiki.util` is loaded first:
+	 *
+	 *     $.when( mw.loader.using( [ 'mediawiki.util' ] ), $.ready ).then( function () {
+	 *          mw.util.addPortletLink( 'p-tb', 'https://www.mediawiki.org/', 'mediawiki.org' );
 	 *     } );
 	 *
 	 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal')
@@ -359,7 +440,22 @@ util = {
 		// Setup the anchor tag and set any the properties
 		link = document.createElement( 'a' );
 		link.href = href;
-		link.textContent = text;
+
+		var linkChild = document.createTextNode( text );
+		var i = portletLinkOptions[ 'text-wrapper' ].length;
+		// Wrap link using text-wrapper option if provided
+		// Iterate backward since the wrappers are declared from outer to inner,
+		// and we build it up from the inside out.
+		while ( i-- ) {
+			var wrapper = portletLinkOptions[ 'text-wrapper' ][ i ];
+			var wrapperElement = document.createElement( wrapper.tag );
+			if ( wrapper.attributes ) {
+				$( wrapperElement ).attr( wrapper.attributes );
+			}
+			wrapperElement.appendChild( linkChild );
+			linkChild = wrapperElement;
+		}
+		link.appendChild( linkChild );
 
 		if ( tooltip ) {
 			link.title = tooltip;
@@ -372,7 +468,8 @@ util = {
 		util.showPortlet( portletId );
 
 		item = $( '<li>' ).append( link )[ 0 ];
-
+		// mw-list-item-js distinguishes portlet links added via javascript and the server
+		item.className = 'mw-list-item mw-list-item-js';
 		if ( id ) {
 			item.id = id;
 		}
@@ -423,20 +520,17 @@ util = {
 	},
 
 	/**
-	 * Validate a string as representing a valid e-mail address
-	 * according to HTML5 specification. Please note the specification
-	 * does not validate a domain with one character.
+	 * Validate a string as representing a valid e-mail address.
 	 *
-	 * FIXME: should be moved to or replaced by a validation module.
+	 * This validation is based on the HTML5 specification.
 	 *
-	 * @param {string} mailtxt E-mail address to be validated.
-	 * @return {boolean|null} Null if `mailtxt` was an empty string, otherwise true/false
-	 * as determined by validation.
+	 *     mw.util.validateEmail( "me@example.org" ) === true;
+	 *
+	 * @param {string} email E-mail address
+	 * @return {boolean|null} True if valid, false if invalid, null if `email` was empty.
 	 */
-	validateEmail: function ( mailtxt ) {
-		var rfc5322Atext, rfc1034LdhStr, html5EmailRegexp;
-
-		if ( mailtxt === '' ) {
+	validateEmail: function ( email ) {
+		if ( email === '' ) {
 			return null;
 		}
 
@@ -460,7 +554,7 @@ util = {
 		//     "`" / "{" /
 		//     "|" / "}" /
 		//     "~"
-		rfc5322Atext = 'a-z0-9!#$%&\'*+\\-/=?^_`{|}~';
+		var rfc5322Atext = 'a-z0-9!#$%&\'*+\\-/=?^_`{|}~';
 
 		// Next define the RFC 1034 'ldh-str'
 		//     <domain> ::= <subdomain> | " "
@@ -469,9 +563,9 @@ util = {
 		//     <ldh-str> ::= <let-dig-hyp> | <let-dig-hyp> <ldh-str>
 		//     <let-dig-hyp> ::= <let-dig> | "-"
 		//     <let-dig> ::= <letter> | <digit>
-		rfc1034LdhStr = 'a-z0-9\\-';
+		var rfc1034LdhStr = 'a-z0-9\\-';
 
-		html5EmailRegexp = new RegExp(
+		var html5EmailRegexp = new RegExp(
 			// start of string
 			'^' +
 			// User part which is liberal :p
@@ -487,11 +581,21 @@ util = {
 			// RegExp is case insensitive
 			'i'
 		);
-		return ( mailtxt.match( html5EmailRegexp ) !== null );
+		return ( email.match( html5EmailRegexp ) !== null );
 	},
 
 	/**
-	 * Note: borrows from \Wikimedia\IPUtils::isIPv4
+	 * Whether a string is a valid IPv4 address or not.
+	 *
+	 * Based on \Wikimedia\IPUtils::isIPv4 in PHP.
+	 *
+	 *     // Valid
+	 *     mw.util.isIPv4Address( '80.100.20.101' );
+	 *     mw.util.isIPv4Address( '192.168.1.101' );
+	 *
+	 *     // Invalid
+	 *     mw.util.isIPv4Address( '192.0.2.0/24' );
+	 *     mw.util.isIPv4Address( 'hello' );
 	 *
 	 * @param {string} address
 	 * @param {boolean} [allowBlock=false]
@@ -512,7 +616,17 @@ util = {
 	},
 
 	/**
-	 * Note: borrows from \Wikimedia\IPUtils::isIPv6
+	 * Whether a string is a valid IPv6 address or not.
+	 *
+	 * Based on \Wikimedia\IPUtils::isIPv6 in PHP.
+	 *
+	 *     // Valid
+	 *     mw.util.isIPv4Address( '2001:db8:a:0:0:0:0:0' );
+	 *     mw.util.isIPv4Address( '2001:db8:a::' );
+	 *
+	 *     // Invalid
+	 *     mw.util.isIPv4Address( '2001:db8:a::/32' );
+	 *     mw.util.isIPv4Address( 'hello' );
 	 *
 	 * @param {string} address
 	 * @param {boolean} [allowBlock=false]
@@ -562,7 +676,7 @@ util = {
 	},
 
 	/**
-	 * Check whether a string is an IP address
+	 * Check whether a string is a valid IP address
 	 *
 	 * @since 1.25
 	 * @param {string} address String to check

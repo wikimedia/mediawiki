@@ -10,6 +10,19 @@
 		}
 	} ) );
 
+	function getPropertySummary( uri ) {
+		return {
+			protocol: uri.protocol,
+			user: uri.user,
+			password: uri.password,
+			host: uri.host,
+			port: uri.port,
+			path: uri.path,
+			query: uri.query,
+			fragment: uri.fragment
+		};
+	}
+
 	[ true, false ].forEach( function ( strictMode ) {
 		QUnit.test( 'Basic construction and properties (' + ( strictMode ? '' : 'non-' ) + 'strict mode)', function ( assert ) {
 			var uriString, uri;
@@ -19,15 +32,11 @@
 			} );
 
 			assert.deepEqual(
+				getPropertySummary( uri ),
 				{
-					protocol: uri.protocol,
-					host: uri.host,
-					port: uri.port,
-					path: uri.path,
-					query: uri.query,
-					fragment: uri.fragment
-				}, {
 					protocol: 'http',
+					user: undefined,
+					password: undefined,
 					host: 'www.ietf.org',
 					port: undefined,
 					path: '/rfc/rfc2396.txt',
@@ -82,16 +91,7 @@
 		uri = new mw.Uri( 'ftp://usr:pwd@192.0.2.16/' );
 
 		assert.deepEqual(
-			{
-				protocol: uri.protocol,
-				user: uri.user,
-				password: uri.password,
-				host: uri.host,
-				port: uri.port,
-				path: uri.path,
-				query: uri.query,
-				fragment: uri.fragment
-			},
+			getPropertySummary( uri ),
 			{
 				protocol: 'ftp',
 				user: 'usr',
@@ -240,29 +240,25 @@
 			foo: 'quux',
 			pif: 'paf'
 		} );
-		// eslint-disable-next-line qunit/no-ok-equality
-		assert.ok( uri.toString().indexOf( 'foo=quux' ) !== -1, 'extend query arguments' );
-		// eslint-disable-next-line qunit/no-ok-equality
-		assert.notOk( uri.toString().indexOf( 'foo=bar' ) !== -1, 'extend query arguments' );
-		// eslint-disable-next-line qunit/no-ok-equality
-		assert.ok( uri.toString().indexOf( 'pif=paf' ) !== -1, 'extend query arguments' );
+		assert.true( uri.toString().indexOf( 'foo=quux' ) !== -1, 'extend query arguments' );
+		assert.false( uri.toString().indexOf( 'foo=bar' ) !== -1, 'extend query arguments' );
+		assert.true( uri.toString().indexOf( 'pif=paf' ) !== -1, 'extend query arguments' );
 	} );
 
 	QUnit.test( '.getQueryString()', function ( assert ) {
 		var uri = new mw.Uri( 'http://search.example.com/?q=uri' );
 
 		assert.deepEqual(
-			{
-				protocol: uri.protocol,
-				host: uri.host,
-				port: uri.port,
-				path: uri.path,
-				query: uri.query,
-				fragment: uri.fragment,
-				queryString: uri.getQueryString()
-			},
+			$.extend(
+				getPropertySummary( uri ),
+				{
+					queryString: uri.getQueryString()
+				}
+			),
 			{
 				protocol: 'http',
+				user: undefined,
+				password: undefined,
 				host: 'search.example.com',
 				port: undefined,
 				path: '/',
@@ -338,8 +334,8 @@
 		assert.notStrictEqual( clone, original, 'clone is a different object when compared by reference' );
 
 		clone.host = 'bar.example.org';
-		assert.notEqual( original.host, clone.host, 'manipulating clone did not effect original' );
-		assert.notEqual( original.toString(), clone.toString(), 'Stringified url no longer matches original' );
+		assert.notStrictEqual( original.host, clone.host, 'manipulating clone did not effect original' );
+		assert.notStrictEqual( original.toString(), clone.toString(), 'Stringified url no longer matches original' );
 
 		clone.query.three = 3;
 
@@ -361,10 +357,8 @@
 
 		// Verify parts and total length instead of entire string because order
 		// of iteration can vary.
-		// eslint-disable-next-line qunit/no-ok-equality
-		assert.ok( uri.toString().indexOf( 'm=bar' ) !== -1, 'toString preserves other values' );
-		// eslint-disable-next-line qunit/no-ok-equality
-		assert.ok( uri.toString().indexOf( 'n=x&n=y&n=z' ) !== -1, 'toString parameter includes all values of an array query parameter' );
+		assert.true( uri.toString().indexOf( 'm=bar' ) !== -1, 'toString preserves other values' );
+		assert.true( uri.toString().indexOf( 'n=x&n=y&n=z' ) !== -1, 'toString parameter includes all values of an array query parameter' );
 		assert.strictEqual( uri.toString().length, 'http://www.example.com/dir/?m=bar&n=x&n=y&n=z'.length, 'toString matches expected string' );
 
 		uri = new mw.Uri( 'http://www.example.com/dir/?m=foo&m=bar&n=1', {
@@ -376,10 +370,8 @@
 
 		// Verify parts and total length instead of entire string because order
 		// of iteration can vary.
-		// eslint-disable-next-line qunit/no-ok-equality
-		assert.ok( uri.toString().indexOf( 'm=foo&m=bar' ) !== -1, 'toString preserves other values' );
-		// eslint-disable-next-line qunit/no-ok-equality
-		assert.ok( uri.toString().indexOf( 'n=x&n=y&n=z' ) !== -1, 'toString parameter includes all values of an array query parameter' );
+		assert.true( uri.toString().indexOf( 'm=foo&m=bar' ) !== -1, 'toString preserves other values' );
+		assert.true( uri.toString().indexOf( 'n=x&n=y&n=z' ) !== -1, 'toString parameter includes all values of an array query parameter' );
 		assert.strictEqual( uri.toString().length, 'http://www.example.com/dir/?m=foo&m=bar&n=x&n=y&n=z'.length, 'toString matches expected string' );
 
 		// Remove query values
@@ -402,16 +394,7 @@
 
 		uri = new UriClass();
 		assert.deepEqual(
-			{
-				protocol: uri.protocol,
-				user: uri.user,
-				password: uri.password,
-				host: uri.host,
-				port: uri.port,
-				path: uri.path,
-				query: uri.query,
-				fragment: uri.fragment
-			},
+			getPropertySummary( uri ),
 			{
 				protocol: 'http',
 				user: undefined,
@@ -429,16 +412,7 @@
 		href = 'https://example.com/wiki/Foo?v=2';
 		uri = new UriClass();
 		assert.deepEqual(
-			{
-				protocol: uri.protocol,
-				user: uri.user,
-				password: uri.password,
-				host: uri.host,
-				port: uri.port,
-				path: uri.path,
-				query: uri.query,
-				fragment: uri.fragment
-			},
+			getPropertySummary( uri ),
 			{
 				protocol: 'https',
 				user: undefined,
@@ -459,16 +433,7 @@
 		uri = new mw.Uri( 'http://auth@www.example.com:81/dir/dir.2/index.htm?q1=0&&test1&test2=value+%28escaped%29#caf%C3%A9' );
 
 		assert.deepEqual(
-			{
-				protocol: uri.protocol,
-				user: uri.user,
-				password: uri.password,
-				host: uri.host,
-				port: uri.port,
-				path: uri.path,
-				query: uri.query,
-				fragment: uri.fragment
-			},
+			getPropertySummary( uri ),
 			{
 				protocol: 'http',
 				user: 'auth',
@@ -489,36 +454,27 @@
 		assert.strictEqual( uri.getHostPort(), 'www.example.com:81', 'hostport equal to host:port' );
 
 		queryString = uri.getQueryString();
-		// eslint-disable-next-line qunit/no-ok-equality
-		assert.ok( queryString.indexOf( 'q1=0' ) !== -1, 'query param with numbers' );
-		// eslint-disable-next-line qunit/no-ok-equality
-		assert.ok( queryString.indexOf( 'test1' ) !== -1, 'query param with null value is included' );
-		// eslint-disable-next-line qunit/no-ok-equality
-		assert.notOk( queryString.indexOf( 'test1=' ) !== -1, 'query param with null value does not generate equals sign' );
-		// eslint-disable-next-line qunit/no-ok-equality
-		assert.ok( queryString.indexOf( 'test2=value+%28escaped%29' ) !== -1, 'query param is url escaped' );
+		assert.true( queryString.indexOf( 'q1=0' ) !== -1, 'query param with numbers' );
+		assert.true( queryString.indexOf( 'test1' ) !== -1, 'query param with null value is included' );
+		assert.false( queryString.indexOf( 'test1=' ) !== -1, 'query param with null value does not generate equals sign' );
+		assert.true( queryString.indexOf( 'test2=value+%28escaped%29' ) !== -1, 'query param is url escaped' );
 
 		relativePath = uri.getRelativePath();
-		assert.ok( relativePath.indexOf( uri.path ) >= 0, 'path in relative path' );
-		assert.ok( relativePath.indexOf( uri.getQueryString() ) >= 0, 'query string in relative path' );
-		assert.ok( relativePath.indexOf( mw.Uri.encode( uri.fragment ) ) >= 0, 'escaped fragment in relative path' );
+		assert.true( relativePath.indexOf( uri.path ) >= 0, 'path in relative path' );
+		assert.true( relativePath.indexOf( uri.getQueryString() ) >= 0, 'query string in relative path' );
+		assert.true( relativePath.indexOf( mw.Uri.encode( uri.fragment ) ) >= 0, 'escaped fragment in relative path' );
 	} );
 
 	QUnit.test( 'Parse a uri with an @ symbol in the path and query', function ( assert ) {
 		var uri = new mw.Uri( 'http://www.example.com/test@test?x=@uri&y@=uri&z@=@' );
 
 		assert.deepEqual(
-			{
-				protocol: uri.protocol,
-				user: uri.user,
-				password: uri.password,
-				host: uri.host,
-				port: uri.port,
-				path: uri.path,
-				query: uri.query,
-				fragment: uri.fragment,
-				queryString: uri.getQueryString()
-			},
+			$.extend(
+				getPropertySummary( uri ),
+				{
+					queryString: uri.getQueryString()
+				}
+			),
 			{
 				protocol: 'http',
 				user: undefined,

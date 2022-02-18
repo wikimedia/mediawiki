@@ -561,7 +561,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		// Fill fields
 		$parts['dbkey'] = $dbkey;
 
-		// Sanity check to ensure that the return value can be used to construct a TitleValue.
+		// Check to ensure that the return value can be used to construct a TitleValue.
 		// All issues should in theory be caught above, this is here to enforce consistency.
 		try {
 			TitleValue::assertValidSpec(
@@ -599,8 +599,6 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 				'|%[0-9A-Fa-f]{2}' .
 				# XML/HTML character references produce similar issues.
 				'|&[A-Za-z0-9\x80-\xff]+;' .
-				'|&#[0-9]+;' .
-				'|&#x[0-9A-Fa-f]+;' .
 				'/S';
 		}
 

@@ -32,7 +32,7 @@ class GenerateRandomImages extends Maintenance {
 		$format = $options['format'] ?? 'jpg';
 		unset( $options['format'] );
 
-		$number = isset( $options['number'] ) ? intval( $options['number'] ) : 10;
+		$number = (int)( $options['number'] ?? 10 );
 		unset( $options['number'] );
 
 		$randomImageGenerator = new RandomImageGenerator( $options );

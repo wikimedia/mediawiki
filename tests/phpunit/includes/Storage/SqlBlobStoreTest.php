@@ -6,14 +6,13 @@ use ExternalStoreAccess;
 use ExternalStoreFactory;
 use HashBagOStuff;
 use InvalidArgumentException;
-use LoadBalancer;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiIntegrationTestCase;
 use TitleValue;
 use WANObjectCache;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * @covers \MediaWiki\Storage\SqlBlobStore
@@ -31,7 +30,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		WANObjectCache $cache = null,
 		ExternalStoreAccess $extStore = null
 	) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$store = new SqlBlobStore(
 			$services->getDBLoadBalancer(),
@@ -425,7 +424,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\SqlBlobStore::getBlob
 	 */
 	public function testSimpleStoreGetBlobSimpleRoundtripWindowsLegacyEncodingGzip( $blob ) {
-		// FIXME: fails under postgres
+		// FIXME: fails under postgres - T298692
 		$this->markTestSkippedIfDbType( 'postgres' );
 		$store = $this->getBlobStore();
 		$store->setLegacyEncoding( 'windows-1252' );
@@ -695,7 +694,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		$lb = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$access = MediaWikiServices::getInstance()->getExternalStoreAccess();
+		$access = $this->getServiceContainer()->getExternalStoreAccess();
 
 		$blobStore = new SqlBlobStore( $lb, $access, $cache );
 

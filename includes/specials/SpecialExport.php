@@ -23,6 +23,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Export\WikiExporterFactory;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -37,14 +38,26 @@ class SpecialExport extends SpecialPage {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
+	/** @var WikiExporterFactory */
+	private $wikiExporterFactory;
+
+	/** @var TitleFormatter */
+	private $titleFormatter;
+
 	/**
 	 * @param ILoadBalancer $loadBalancer
+	 * @param WikiExporterFactory $wikiExporterFactory
+	 * @param TitleFormatter $titleFormatter
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer
+		ILoadBalancer $loadBalancer,
+		WikiExporterFactory $wikiExporterFactory,
+		TitleFormatter $titleFormatter
 	) {
 		parent::__construct( 'Export' );
 		$this->loadBalancer = $loadBalancer;
+		$this->wikiExporterFactory = $wikiExporterFactory;
+		$this->titleFormatter = $titleFormatter;
 	}
 
 	public function execute( $par ) {
@@ -192,7 +205,7 @@ class SpecialExport extends SpecialPage {
 			$request->response()->header( 'X-Robots-Tag: noindex,nofollow' );
 
 			if ( $request->getCheck( 'wpDownload' ) ) {
-				// Provide a sane filename suggestion
+				// Provide a sensible filename suggestion
 				$filename = urlencode( $config->get( 'Sitename' ) . '-' . wfTimestampNow() . '.xml' );
 				$request->response()->header( "Content-disposition: attachment;filename={$filename}" );
 			}
@@ -210,6 +223,8 @@ class SpecialExport extends SpecialPage {
 		} else {
 			$categoryName = '';
 		}
+		$canExportAll = $config->get( 'ExportAllowAll' );
+		$hideIf = $canExportAll ? [ 'hide-if' => [ '===', 'exportall', '1' ] ] : [];
 
 		$formDescriptor = [
 			'catname' => [
@@ -222,8 +237,7 @@ class SpecialExport extends SpecialPage {
 				'buttontype' => 'submit',
 				'buttonname' => 'addcat',
 				'buttondefault' => $this->msg( 'export-addcat' )->text(),
-				'hide-if' => [ '===', 'exportall', '1' ],
-			],
+			] + $hideIf,
 		];
 		if ( $config->get( 'ExportFromNamespaces' ) ) {
 			$formDescriptor += [
@@ -238,12 +252,11 @@ class SpecialExport extends SpecialPage {
 					'buttontype' => 'submit',
 					'buttonname' => 'addns',
 					'buttondefault' => $this->msg( 'export-addns' )->text(),
-					'hide-if' => [ '===', 'exportall', '1' ],
-				],
+				] + $hideIf,
 			];
 		}
 
-		if ( $config->get( 'ExportAllowAll' ) ) {
+		if ( $canExportAll ) {
 			$formDescriptor += [
 				'exportall' => [
 					'type' => 'check',
@@ -263,8 +276,7 @@ class SpecialExport extends SpecialPage {
 				'nodata' => true,
 				'rows' => 10,
 				'default' => $page,
-				'hide-if' => [ '===', 'exportall', '1' ],
-			],
+			] + $hideIf,
 		];
 
 		if ( $config->get( 'ExportAllowHistory' ) ) {
@@ -372,6 +384,7 @@ class SpecialExport extends SpecialPage {
 			if ( $this->templates ) {
 				$pageSet = $this->getTemplates( $inputPages, $pageSet );
 			}
+			$pageSet = $this->getExtraPages( $inputPages, $pageSet );
 			$linkDepth = $this->pageLinkDepth;
 			if ( $linkDepth ) {
 				$pageSet = $this->getPageLinks( $inputPages, $pageSet, $linkDepth );
@@ -390,7 +403,7 @@ class SpecialExport extends SpecialPage {
 		/* Ok, let's get to it... */
 		$db = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 
-		$exporter = new WikiExporter( $db, $history );
+		$exporter = $this->wikiExporterFactory->getWikiExporter( $db, $history );
 		$exporter->list_authors = $list_authors;
 		$exporter->openStream();
 
@@ -481,6 +494,21 @@ class SpecialExport extends SpecialPage {
 			[ 'namespace' => 'tl_namespace', 'title' => 'tl_title' ],
 			[ 'page_id=tl_from' ]
 		);
+	}
+
+	/**
+	 * Add extra pages to the list of pages to export.
+	 * @param string[] $inputPages List of page titles to export
+	 * @param bool[] $pageSet Initial associative array indexed by string page titles
+	 * @return bool[] Associative array indexed by string page titles including extra pages
+	 */
+	private function getExtraPages( $inputPages, $pageSet ) {
+		$extraPages = [];
+		$this->getHookRunner()->onSpecialExportGetExtraPages( $inputPages, $extraPages );
+		foreach ( $extraPages as $extraPage ) {
+			$pageSet[$this->titleFormatter->getPrefixedText( $extraPage )] = true;
+		}
+		return $pageSet;
 	}
 
 	/**

@@ -8,8 +8,6 @@
 @ooui-spacing-small: 8 / @ooui-font-size-browser / @ooui-font-size-base; // equals `0.57142857em`≈`8px`
 @ooui-spacing-medium: 12 / @ooui-font-size-browser / @ooui-font-size-base; // equals `0.8571429em`≈`12px`
 @ooui-spacing-large: 16 / @ooui-font-size-browser / @ooui-font-size-base; // equals `1.1428571em`≈`16px`
-@ooui-padding-horizontal: 12 / @ooui-font-size-browser / @ooui-font-size-base;
-@ooui-padding-vertical: 4 / @ooui-font-size-browser / @ooui-font-size-base; // equals `0.285714em`≈`4px`
 
 .mw-htmlform-ooui {
 	line-height: 1.4; // Override MediaWiki's default of `1.6`
@@ -35,7 +33,7 @@
 		}
 
 		td {
-			padding: @ooui-padding-vertical @ooui-padding-horizontal;
+			padding: @ooui-spacing-small @ooui-spacing-medium;
 			text-align: center;
 			.transition( background-color 250ms );
 
@@ -61,9 +59,10 @@
 			background-color: #eaecf0;
 		}
 
-		// Specificity needed because of necessary high OOUI specificity due to modularity
-		.oo-ui-fieldLayout.oo-ui-fieldLayout-align-top .oo-ui-fieldLayout-help {
-			margin-top: 0;
+		.oo-ui-fieldLayout-help {
+			// Clickable size is much larger than visual size,
+			// adjust so that it doesn't affect row height.
+			margin-bottom: -6px;
 		}
 
 		.oo-ui-fieldLayout.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Bosnian (bosanski) specific code.
  *
@@ -21,6 +22,8 @@
  * @ingroup Language
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Bosnian (bosanski)
  *
@@ -39,9 +42,9 @@ class LanguageBs extends Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms['bs'][$case][$word] ) ) {
-			return $wgGrammarForms['bs'][$case][$word];
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		if ( isset( $grammarForms['bs'][$case][$word] ) ) {
+			return $grammarForms['bs'][$case][$word];
 		}
 		switch ( $case ) {
 			case 'instrumental': # instrumental

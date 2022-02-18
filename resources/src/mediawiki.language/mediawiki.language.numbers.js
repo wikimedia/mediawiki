@@ -252,7 +252,7 @@
 				numberString = String( num );
 			} else {
 				// This check being here means that digits can still be unformatted
-				// even if we do not produce them. This seems sane behavior.
+				// even if we do not produce them.
 				if ( mw.config.get( 'wgTranslateNumerals' ) ) {
 					transformTable = digitTransformTable;
 				}

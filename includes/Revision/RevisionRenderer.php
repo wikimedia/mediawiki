@@ -24,12 +24,12 @@ namespace MediaWiki\Revision;
 
 use Html;
 use InvalidArgumentException;
+use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Permissions\Authority;
 use ParserOptions;
 use ParserOutput;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Title;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -53,21 +53,27 @@ class RevisionRenderer {
 	/** @var SlotRoleRegistry */
 	private $roleRegistery;
 
+	/** @var ContentRenderer */
+	private $contentRenderer;
+
 	/** @var string|bool */
 	private $dbDomain;
 
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param SlotRoleRegistry $roleRegistry
+	 * @param ContentRenderer $contentRenderer
 	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
 		SlotRoleRegistry $roleRegistry,
+		ContentRenderer $contentRenderer,
 		$dbDomain = false
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->roleRegistery = $roleRegistry;
+		$this->contentRenderer = $contentRenderer;
 		$this->dbDomain = $dbDomain;
 		$this->saveParseLogger = new NullLogger();
 	}
@@ -144,12 +150,10 @@ class RevisionRenderer {
 			$options->setTimestamp( $rev->getTimestamp() );
 		}
 
-		$title = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
-
 		$renderedRevision = new RenderedRevision(
-			$title,
 			$rev,
 			$options,
+			$this->contentRenderer,
 			function ( RenderedRevision $rrev, array $hints ) {
 				return $this->combineSlotOutput( $rrev, $hints );
 			},

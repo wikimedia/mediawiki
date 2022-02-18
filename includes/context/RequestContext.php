@@ -72,7 +72,7 @@ class RequestContext implements IContextSource, MutableContext {
 	private $authority;
 
 	/**
-	 * @var Language
+	 * @var Language|null
 	 */
 	private $lang;
 
@@ -92,7 +92,7 @@ class RequestContext implements IContextSource, MutableContext {
 	private $config;
 
 	/**
-	 * @var RequestContext
+	 * @var RequestContext|null
 	 */
 	private static $instance = null;
 
@@ -319,8 +319,8 @@ class RequestContext implements IContextSource, MutableContext {
 	}
 
 	/**
-	 * Accepts a language code and ensures it's sane. Outputs a cleaned up language
-	 * code and replaces with $wgLanguageCode if not sane.
+	 * Accepts a language code and ensures it's sensible. Outputs a cleaned up language
+	 * code and replaces with $wgLanguageCode if not sensible.
 	 * @param string $code Language code
 	 * @return string
 	 */
@@ -499,7 +499,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public static function getMainAndWarn( $func = __METHOD__ ) {
 		wfDebug( $func . ' called without context. ' .
-			"Using RequestContext::getMain() for sanity" );
+			"Using RequestContext::getMain()" );
 
 		return self::getMain();
 	}
@@ -561,7 +561,7 @@ class RequestContext implements IContextSource, MutableContext {
 		if ( strlen( $params['sessionId'] ) &&
 			MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent()
 		) {
-			// Sanity check to avoid sending random cookies for the wrong users.
+			// Check to avoid sending random cookies for the wrong users.
 			// This method should only called by CLI scripts or by HTTP job runners.
 			throw new MWException( "Sessions can only be imported when none is active." );
 		} elseif ( !IPUtils::isValid( $params['ip'] ) ) {

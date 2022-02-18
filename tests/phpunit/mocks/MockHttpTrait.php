@@ -86,6 +86,8 @@ trait MockHttpTrait {
 			'HTTPConnectTimeout' => 1,
 			'HTTPMaxTimeout' => 1,
 			'HTTPMaxConnectTimeout' => 1,
+			'LocalVirtualHosts' => [],
+			'LocalHTTPProxy' => false,
 		] );
 
 		$failCallback = static function ( /* discard any arguments */ ) {

@@ -53,6 +53,8 @@
 
 // Hide elements that are marked as "empty" according to legacy Tidy rules,
 // except if a client script removes the `.mw-hide-empty-elt` class from the body.
-/* body */ .mw-hide-empty-elt .mw-parser-output .mw-empty-elt {
+// Allow individual parser-output blocks to show empty elements using `.mw-show-empty-elt`,
+// for example an editing interface. (T295984)
+/* body */ .mw-hide-empty-elt .mw-parser-output:not( .mw-show-empty-elt ) .mw-empty-elt {
 	display: none;
 }

@@ -105,9 +105,7 @@ class MySqlLockManager extends DBLockManager {
 		}
 
 		if ( $blocked ) {
-			foreach ( $paths as $path ) {
-				$status->fatal( 'lockmanager-fail-acquirelock', $path );
-			}
+			$status->fatal( 'lockmanager-fail-conflict' );
 		}
 
 		return $status;

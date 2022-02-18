@@ -235,7 +235,6 @@ class GIFMetadataExtractor {
 						if ( substr( $xmp, -257, 3 ) !== "\x01\xFF\xFE"
 							|| substr( $xmp, -4 ) !== "\x03\x02\x01\x00"
 						) {
-							// this is just a sanity check.
 							throw new Exception( "XMP does not have magic trailer!" );
 						}
 

@@ -93,7 +93,7 @@ class PruneFileCache extends Maintenance {
 					$this->prune_directory( $path );
 				} else {
 					$mts = filemtime( $path );
-					// Sanity check the file extension against known cache types
+					// Check the file extension against known cache types
 					if ( $mts < $this->minSurviveTimestamp
 						&& preg_match( '/\.(?:html|cache)(?:\.gz)?$/', $file )
 						&& unlink( $path )

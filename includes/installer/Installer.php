@@ -28,7 +28,6 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Interwiki\NullInterwikiLookup;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Shell\Shell;
 
 /**
  * The Installer helps admins create or upgrade their wiki.
@@ -144,7 +143,6 @@ abstract class Installer {
 		'envCheckGit',
 		'envCheckServer',
 		'envCheckPath',
-		'envCheckShellLocale',
 		'envCheckUploadsDirectory',
 		'envCheckLibicu',
 		'envCheckSuhosinMaxValueLength',
@@ -191,7 +189,6 @@ abstract class Installer {
 		'wgMetaNamespace',
 		'wgDeletedDirectory',
 		'wgEnableUploads',
-		'wgShellLocale',
 		'wgSecretKey',
 		'wgUseInstantCommons',
 		'wgUpgradeKey',
@@ -411,11 +408,7 @@ abstract class Installer {
 		// Disable all storage services, since we don't have any configuration yet!
 		MediaWikiServices::disableStorageBackend();
 
-		$this->settings = $this->internalDefaults;
-
-		foreach ( $this->defaultVarNames as $var ) {
-			$this->settings[$var] = $GLOBALS[$var];
-		}
+		$this->settings = $this->getDefaultSettings();
 
 		$this->doEnvironmentPreps();
 
@@ -430,6 +423,19 @@ abstract class Installer {
 		}
 
 		$this->parserTitle = Title::newFromText( 'Installer' );
+	}
+
+	/**
+	 * @return array
+	 * @return-taint none Taint-check really doesn't like the assignment from $GLOBALS
+	 */
+	private function getDefaultSettings(): array {
+		$ret = $this->internalDefaults;
+
+		foreach ( $this->defaultVarNames as $var ) {
+			$ret[$var] = $GLOBALS[$var];
+		}
+		return $ret;
 	}
 
 	/**
@@ -646,16 +652,35 @@ abstract class Installer {
 		global $wgExtensionDirectory, $wgStyleDirectory;
 
 		Wikimedia\suppressWarnings();
-		$_lsExists = file_exists( "$IP/LocalSettings.php" );
+		wfDetectLocalSettingsFile( $IP ); // defines MW_CONFIG_FILE
+		$_lsExists = file_exists( MW_CONFIG_FILE );
 		Wikimedia\restoreWarnings();
 
 		if ( !$_lsExists ) {
 			return false;
 		}
+
+		if ( !str_ends_with( MW_CONFIG_FILE, '.php' ) ) {
+			throw new Exception(
+				'The installer cannot yet handle non-php settings files: ' . MW_CONFIG_FILE . '. ' .
+				'Use maintenance/update.php to update an existing installation.'
+			);
+		}
+
+		// NOTE: To support YAML settings files, this needs to start using SettingsBuilder.
+		//       However, as of 1.38, YAML settings files are still experimental and
+		//       SettingsBuilder is still unstable. For now, the installer will fail if
+		//       the existing settings file is not PHP. The updater should still work though.
+		// NOTE: When adding support for YAML settings file, all references to LocalSettings.php
+		//       in localisation messages need to be replaced.
+
 		unset( $_lsExists );
 
 		require "$IP/includes/DefaultSettings.php";
-		require "$IP/LocalSettings.php";
+		$wgExtensionDirectory = "$IP/extensions";
+		$wgStyleDirectory = "$IP/skins";
+
+		require MW_CONFIG_FILE;
 
 		return get_defined_vars();
 	}
@@ -1012,87 +1037,6 @@ abstract class Installer {
 	}
 
 	/**
-	 * Environment check for preferred locale in shell
-	 * @return bool
-	 */
-	protected function envCheckShellLocale() {
-		$os = php_uname( 's' );
-		$supported = [ 'Linux', 'SunOS', 'HP-UX', 'Darwin' ]; # Tested these
-
-		if ( !in_array( $os, $supported ) ) {
-			return true;
-		}
-
-		if ( Shell::isDisabled() ) {
-			return true;
-		}
-
-		# Get a list of available locales.
-		$result = Shell::command( '/usr/bin/locale', '-a' )->execute();
-
-		if ( $result->getExitCode() != 0 ) {
-			return true;
-		}
-
-		$lines = $result->getStdout();
-		$lines = array_map( 'trim', explode( "\n", $lines ) );
-		$candidatesByLocale = [];
-		$candidatesByLang = [];
-		foreach ( $lines as $line ) {
-			if ( $line === '' ) {
-				continue;
-			}
-
-			if ( !preg_match( '/^([a-zA-Z]+)(_[a-zA-Z]+|)\.(utf8|UTF-8)(@[a-zA-Z_]*|)$/i', $line, $m ) ) {
-				continue;
-			}
-
-			list( , $lang, , , ) = $m;
-
-			$candidatesByLocale[$m[0]] = $m;
-			$candidatesByLang[$lang][] = $m;
-		}
-
-		# Try the current value of LANG.
-		if ( isset( $candidatesByLocale[getenv( 'LANG' )] ) ) {
-			$this->setVar( 'wgShellLocale', getenv( 'LANG' ) );
-
-			return true;
-		}
-
-		# Try the most common ones.
-		$commonLocales = [ 'C.UTF-8', 'en_US.UTF-8', 'en_US.utf8', 'de_DE.UTF-8', 'de_DE.utf8' ];
-		foreach ( $commonLocales as $commonLocale ) {
-			if ( isset( $candidatesByLocale[$commonLocale] ) ) {
-				$this->setVar( 'wgShellLocale', $commonLocale );
-
-				return true;
-			}
-		}
-
-		# Is there an available locale in the Wiki's language?
-		$wikiLang = $this->getVar( 'wgLanguageCode' );
-
-		if ( isset( $candidatesByLang[$wikiLang] ) ) {
-			$m = reset( $candidatesByLang[$wikiLang] );
-			$this->setVar( 'wgShellLocale', $m[0] );
-
-			return true;
-		}
-
-		# Are there any at all?
-		if ( count( $candidatesByLocale ) ) {
-			$m = reset( $candidatesByLocale );
-			$this->setVar( 'wgShellLocale', $m[0] );
-
-			return true;
-		}
-
-		# Give up.
-		return true;
-	}
-
-	/**
 	 * Environment check for the permissions of the uploads directory
 	 * @return bool
 	 */
@@ -1321,7 +1265,6 @@ abstract class Installer {
 			return Status::newGood( [] );
 		}
 
-		// @phan-suppress-next-line SecurityCheck-PathTraversal False positive
 		$dh = opendir( $extDir );
 		$exts = [];
 		$status = new Status;
@@ -1575,11 +1518,13 @@ abstract class Installer {
 		 * but we're not opening that can of worms
 		 * @see https://phabricator.wikimedia.org/T28857
 		 */
-		// @phan-suppress-next-line SecurityCheck-PathTraversal
 		require "$IP/includes/DefaultSettings.php";
 
 		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables
-		global $wgAutoloadClasses;
+		global $wgAutoloadClasses, $wgExtensionDirectory, $wgStyleDirectory;
+		$wgExtensionDirectory = "$IP/extensions";
+		$wgStyleDirectory = "$IP/skins";
+
 		foreach ( $files as $file ) {
 			require_once $file;
 		}
@@ -1799,7 +1744,7 @@ abstract class Installer {
 			] );
 			if ( !$status->isGood() ) {
 				return Status::newFatal( 'config-admin-error-password',
-					$name, $status->getWikiText( null, null, $this->getVar( '_UserLang' ) ) );
+					$name, $status->getWikiText( false, false, $this->getVar( '_UserLang' ) ) );
 			}
 
 			$userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();

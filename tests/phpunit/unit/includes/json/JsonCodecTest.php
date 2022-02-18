@@ -8,7 +8,6 @@ use JsonSerializable;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Json\JsonConstants;
 use MediaWikiUnitTestCase;
-use stdClass;
 use Title;
 use Wikimedia\Assert\PreconditionException;
 
@@ -136,7 +135,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		yield 'Null' => [ null, true, null ];
 		yield 'Class' => [ $classInstance, false, '$' ];
 		yield 'Empty array' => [ [], true, null ];
-		yield 'Empty stdClass' => [ new stdClass(), true, null ];
+		yield 'Empty stdClass' => [ (object)[], true, null ];
 		yield 'Non-empty array' => [ [ 1, 2, 3 ], true, null ];
 		yield 'Non-empty map' => [ [ 'a' => 'b' ], true, null ];
 		yield 'Nested, serializable' => [ [ 'a' => [ 'b' => [ 'c' => 'd' ] ] ], true, null ];
@@ -174,9 +173,9 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		$classInstance = new class() {
 		};
 		yield 'non-serializable class' => [ $classInstance ];
-		yield 'crash in serialization, gzipped data' => [
-			"\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\x03\xcb\x48\xcd\xc9\xc9\x57\x28\xcf\x2f'
-			. '\xca\x49\x01\x00\x85\x11\x4a\x0d\x0b\x00\x00\x00"
+		yield 'invalid UTF-8' => [
+			"\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\x03\xcb\x48\xcd\xc9\xc9\x57\x28\xcf\x2f"
+				. "\xca\x49\x01\x00\x85\x11\x4a\x0d\x0b\x00\x00\x00"
 		];
 	}
 

@@ -21,6 +21,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
 /**
@@ -141,12 +142,12 @@ class JpegHandler extends ExifBitmapHandler {
 	 * @return bool|MediaTransformError
 	 */
 	public function rotate( $file, $params ) {
-		global $wgJpegTran;
+		$jpegTran = MediaWikiServices::getInstance()->getMainConfig()->get( 'JpegTran' );
 
 		$rotation = ( $params['rotation'] + $this->getRotation( $file ) ) % 360;
 
-		if ( $wgJpegTran && is_executable( $wgJpegTran ) ) {
-			$command = Shell::command( $wgJpegTran,
+		if ( $jpegTran && is_executable( $jpegTran ) ) {
+			$command = Shell::command( $jpegTran,
 				'-rotate',
 				$rotation,
 				'-outfile',
@@ -188,7 +189,8 @@ class JpegHandler extends ExifBitmapHandler {
 	 * @inheritDoc
 	 */
 	protected function transformImageMagick( $image, $params ) {
-		global $wgUseTinyRGBForJPGThumbnails;
+		$useTinyRGBForJPGThumbnails = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'UseTinyRGBForJPGThumbnails' );
 
 		$ret = parent::transformImageMagick( $image, $params );
 
@@ -196,7 +198,7 @@ class JpegHandler extends ExifBitmapHandler {
 			return $ret;
 		}
 
-		if ( $wgUseTinyRGBForJPGThumbnails ) {
+		if ( $useTinyRGBForJPGThumbnails ) {
 			// T100976 If the profile embedded in the JPG is sRGB, swap it for the smaller
 			// (and free) TinyRGB
 
@@ -206,14 +208,14 @@ class JpegHandler extends ExifBitmapHandler {
 			 *   (other profiles will be left untouched)
 			 * * without color space or profile, in which case browsers
 			 *   should assume sRGB, but don't always do (e.g. on wide-gamut
-			 *   monitors (unless it's meant for low bandwith)
+			 *   monitors (unless it's meant for low bandwidth)
 			 * @see https://phabricator.wikimedia.org/T134498
 			 */
 			$colorSpaces = [ self::SRGB_EXIF_COLOR_SPACE, '-' ];
 			$profiles = [ self::SRGB_ICC_PROFILE_DESCRIPTION ];
 
 			// we'll also add TinyRGB profile to images lacking a profile, but
-			// only if they're not low quality (which are meant to save bandwith
+			// only if they're not low quality (which are meant to save bandwidth
 			// and we don't want to increase the filesize by adding a profile)
 			if ( isset( $params['quality'] ) && $params['quality'] > 30 ) {
 				$profiles[] = '-';
@@ -244,14 +246,14 @@ class JpegHandler extends ExifBitmapHandler {
 	public function swapICCProfile( $filepath, array $colorSpaces,
 		array $oldProfileStrings, $profileFilepath
 	) {
-		global $wgExiftool;
+		$exiftool = MediaWikiServices::getInstance()->getMainConfig()->get( 'Exiftool' );
 
-		if ( !$wgExiftool || !is_executable( $wgExiftool ) ) {
+		if ( !$exiftool || !is_executable( $exiftool ) ) {
 			return false;
 		}
 
 		$result = Shell::command(
-			$wgExiftool,
+			$exiftool,
 			'-EXIF:ColorSpace',
 			'-ICC_Profile:ProfileDescription',
 			'-S',
@@ -282,7 +284,7 @@ class JpegHandler extends ExifBitmapHandler {
 			return false;
 		}
 
-		$command = Shell::command( $wgExiftool,
+		$command = Shell::command( $exiftool,
 			'-overwrite_original',
 			'-icc_profile<=' . $profileFilepath,
 			$filepath

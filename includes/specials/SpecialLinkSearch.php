@@ -69,7 +69,7 @@ class SpecialLinkSearch extends QueryPage {
 		$this->outputHeader();
 
 		$out = $this->getOutput();
-		$out->allowClickjacking();
+		$out->setPreventClickjacking( false );
 
 		$request = $this->getRequest();
 		$target = $request->getVal( 'target', $par );

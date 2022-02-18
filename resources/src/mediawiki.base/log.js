@@ -9,6 +9,31 @@
  */
 
 /**
+ * Create a function that returns true for the first call from any particular call stack.
+ *
+ * @private
+ * @return {Function}
+ * @return {boolean|undefined} return.return True if the caller was not seen before.
+ */
+function stackSet() {
+	// Optimisation: Don't create or compute anything for the common case
+	// where deprecations are not triggered.
+	var stacks;
+
+	return function isFirst() {
+		if ( !stacks ) {
+			/* global Set */
+			stacks = new Set();
+		}
+		var stack = new Error().stack;
+		if ( !stacks.has( stack ) ) {
+			stacks.add( stack );
+			return true;
+		}
+	};
+}
+
+/**
  * Write a message to the browser console's error channel.
  *
  * Most browsers also print a stacktrace when calling this method if the
@@ -24,56 +49,86 @@ mw.log.error = console.error ?
 	function () {};
 
 /**
- * Create a property on a host object that, when accessed, will produce
- * a deprecation warning in the console.
+ * Create a function that logs a deprecation warning when called.
+ *
+ * Usage:
+ *
+ *     var deprecatedNoB = mw.log.makeDeprecated( 'hello_without_b', 'Use of hello without b is deprecated.' );
+ *
+ *     function hello( a, b ) {
+ *       if ( b === undefined ) {
+ *         deprecatedNoB();
+ *         b = 0;
+ *       }
+ *       return a + b;
+ *     }
+ *
+ *     hello( 1 );
+ *
+ *
+ * @since 1.38
+ * @param {string|null} key Name of the feature for deprecation tracker,
+ *  or null for a console-only deprecation.
+ * @param {string} msg Deprecation warning.
+ * @return {Function}
+ */
+mw.log.makeDeprecated = function ( key, msg ) {
+	// Support IE 11, Safari 5: Use ES6 Set conditionally. Fallback to not logging.
+	var isFirst = window.Set ? stackSet() : function () {};
+
+	return function maybeLog() {
+		if ( isFirst() ) {
+			if ( key ) {
+				mw.track( 'mw.deprecate', key );
+			}
+			mw.log.warn( msg );
+		}
+	};
+};
+
+/**
+ * Create a property on a host object that, when accessed, will log
+ * a deprecation warning to the console.
+ *
+ * Usage:
+ *
+ *    mw.log.deprecate( window, 'myGlobalFn', myGlobalFn );
+ *
+ *    mw.log.deprecate( Thing, 'old', old, 'Use Other.thing instead', 'Thing.old'  );
+ *
  *
  * @param {Object} obj Host object of deprecated property
  * @param {string} key Name of property to create in `obj`
  * @param {Mixed} val The value this property should return when accessed
- * @param {string} [msg] Optional text to include in the deprecation message
- * @param {string} [logName] Name for the feature for logging and tracking
- *  purposes. Except for properties of the window object, tracking is only
- *  enabled if logName is set.
+ * @param {string} [msg] Optional extra text to add to the deprecation warning
+ * @param {string} [logName] Name of the feature for deprecation tracker.
+ *  Tracking is disabled by default, except for global variables on `window`.
  */
 mw.log.deprecate = function ( obj, key, val, msg, logName ) {
-	var stacks;
-	function maybeLog() {
-		var name = logName || key,
-			trace = new Error().stack;
-		if ( !stacks ) {
-			/* global Set */
-			stacks = new Set();
-		}
-		if ( !stacks.has( trace ) ) {
-			stacks.add( trace );
-			if ( logName || obj === window ) {
-				mw.track( 'mw.deprecate', name );
-			}
-			mw.log.warn(
-				'Use of "' + name + '" is deprecated.' + ( msg ? ' ' + msg : '' )
-			);
-		}
-	}
-
 	// Support IE 11, ES5: Use ES6 Set conditionally. Fallback to not logging.
 	//
 	// Support Safari 5.0: Object.defineProperty throws  "not supported on DOM Objects" for
 	// Node or Element objects (incl. document)
 	// Safari 4.0 doesn't have this method, and it was fixed in Safari 5.1.
-	if ( window.Set ) {
-		Object.defineProperty( obj, key, {
-			configurable: true,
-			enumerable: true,
-			get: function () {
-				maybeLog();
-				return val;
-			},
-			set: function ( newVal ) {
-				maybeLog();
-				val = newVal;
-			}
-		} );
-	} else {
+	if ( !window.Set ) {
 		obj[ key ] = val;
+		return;
 	}
+
+	var maybeLog = mw.log.makeDeprecated(
+		logName || ( obj === window ? key : null ),
+		'Use of "' + ( logName || key ) + '" is deprecated.' + ( msg ? ' ' + msg : '' )
+	);
+	Object.defineProperty( obj, key, {
+		configurable: true,
+		enumerable: true,
+		get: function () {
+			maybeLog();
+			return val;
+		},
+		set: function ( newVal ) {
+			maybeLog();
+			val = newVal;
+		}
+	} );
 };

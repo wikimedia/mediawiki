@@ -4,7 +4,6 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
-use MediaWiki\MediaWikiServices;
 use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 
@@ -49,7 +48,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	private function getBlockManagerConstructorArgs( $overrideConfig ) {
 		$blockManagerConfig = array_merge( $this->blockManagerConfig, $overrideConfig );
 		$this->setMwGlobals( $blockManagerConfig );
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		return [
 			new LoggedServiceOptions(
 				self::$serviceOptionsAccessLog,
@@ -68,7 +67,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetBlock() {
 		// Reset so that hooks are called
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
 		$permissionManager->invalidateUsersRightsCache();
 
 		// Ensure that the `UserGetRights` hook in PermissionManager is triggerred
@@ -107,7 +106,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $onUserGetRightsCalled, 'Extensions should be able to grant rights' );
 		$this->assertTrue(
 			$onGetUserBlockCalled,
-			'Sanity check: HookRunner::onGetUserBlock should have been called'
+			'Check that HookRunner::onGetUserBlock was called'
 		);
 		$this->assertNull(
 			$onGetUserBlockIP,
@@ -130,7 +129,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			] )
 		);
 
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$block = new DatabaseBlock( array_merge( [
 			'address' => $options['target'] ?: $this->user,
 			'by' => $this->sysopUser,
@@ -162,7 +161,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			] )
 		);
 
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$block = new DatabaseBlock( array_merge( [
 			'address' => $options['target'] ?: $this->user,
 			'by' => $this->sysopUser,

@@ -131,7 +131,7 @@ class ZhConverter extends LanguageConverter {
 			'zh-hans' => '简体',
 			'zh-hant' => '繁體',
 			'zh-cn' => '大陆',
-			'zh-tw' => '台灣',
+			'zh-tw' => '臺灣',
 			'zh-hk' => '香港',
 			'zh-mo' => '澳門',
 			'zh-sg' => '新加坡',

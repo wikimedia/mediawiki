@@ -59,7 +59,7 @@ class JpegTest extends MediaWikiMediaTestCase {
 			],
 		];
 
-		$this->assertEquals( $res, $expected );
+		$this->assertEquals( $expected, $res );
 	}
 
 	/**

@@ -114,14 +114,15 @@ class DumpRenderer extends Maintenance {
 		$options = ParserOptions::newFromUser( $user );
 
 		$content = $rev->getContent();
-		$output = $content->getParserOutput( $title, null, $options );
+		$contentRenderer = MediaWikiServices::getInstance()->getContentRenderer();
+		$output = $contentRenderer->getParserOutput( $content, $title, null, $options );
 
 		file_put_contents( $filename,
 			"<!DOCTYPE html>\n" .
 			"<html lang=\"en\" dir=\"ltr\">\n" .
 			"<head>\n" .
 			"<meta charset=\"UTF-8\" />\n" .
-			"<title>" . htmlspecialchars( $display ) . "</title>\n" .
+			"<title>" . htmlspecialchars( $display, ENT_COMPAT ) . "</title>\n" .
 			"</head>\n" .
 			"<body>\n" .
 			$output->getText() .

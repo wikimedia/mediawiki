@@ -20,6 +20,7 @@
  * @file
  */
 class FileContentsHasher {
+	private const ALGO = 'md4';
 
 	/** @var BagOStuff */
 	protected $cache;
@@ -28,7 +29,7 @@ class FileContentsHasher {
 	private static $instance;
 
 	public function __construct() {
-		$this->cache = ObjectCache::getLocalServerInstance( 'hash' );
+		$this->cache = function_exists( 'apcu_fetch' ) ? new APCUBagOStuff() : new EmptyBagOStuff();
 	}
 
 	/**
@@ -49,31 +50,30 @@ class FileContentsHasher {
 	 * computed hash from the cache, or by computing a hash from the file.
 	 *
 	 * @param string $filePath Full path to the file.
-	 * @param string $algo Name of selected hashing algorithm.
 	 * @return string|bool Hash of file contents, or false if the file could not be read.
 	 */
-	private function getFileContentsHashInternal( $filePath, $algo = 'md4' ) {
-		$mtime = filemtime( $filePath );
+	private function getFileContentsHashInternal( $filePath ) {
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$mtime = @filemtime( $filePath );
 		if ( $mtime === false ) {
 			return false;
 		}
 
-		$cacheKey = $this->cache->makeGlobalKey( __CLASS__, $filePath, $mtime, $algo );
-		$hash = $this->cache->get( $cacheKey );
+		$cacheKey = $this->cache->makeGlobalKey( __CLASS__, $filePath, $mtime, self::ALGO );
+		return $this->cache->getWithSetCallback(
+			$cacheKey,
+			$this->cache::TTL_DAY,
+			static function () use ( $filePath ) {
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				$contents = @file_get_contents( $filePath );
+				if ( $contents === false ) {
+					// Don't cache false
+					return false;
+				}
 
-		if ( $hash ) {
-			return $hash;
-		}
-
-		$contents = file_get_contents( $filePath );
-		if ( $contents === false ) {
-			return false;
-		}
-
-		$hash = hash( $algo, $contents );
-		$this->cache->set( $cacheKey, $hash, 60 * 60 * 24 );  // 24h
-
-		return $hash;
+				return hash( self::ALGO, $contents );
+			}
+		);
 	}
 
 	/**
@@ -82,33 +82,27 @@ class FileContentsHasher {
 	 * a hash from the files.
 	 *
 	 * @param string|string[] $filePaths One or more file paths.
-	 * @param string $algo Name of selected hashing algorithm.
 	 * @return string|bool Hash of files' contents, or false if no file could not be read.
 	 */
-	public static function getFileContentsHash( $filePaths, $algo = 'md4' ) {
+	public static function getFileContentsHash( $filePaths ) {
 		$instance = self::singleton();
 
 		if ( !is_array( $filePaths ) ) {
 			$filePaths = (array)$filePaths;
 		}
 
-		Wikimedia\suppressWarnings();
-
 		if ( count( $filePaths ) === 1 ) {
-			$hash = $instance->getFileContentsHashInternal( $filePaths[0], $algo );
-			Wikimedia\restoreWarnings();
+			$hash = $instance->getFileContentsHashInternal( $filePaths[0] );
 			return $hash;
 		}
 
 		sort( $filePaths );
 		$hashes = [];
 		foreach ( $filePaths as $filePath ) {
-			$hashes[] = $instance->getFileContentsHashInternal( $filePath, $algo ) ?: '';
+			$hashes[] = $instance->getFileContentsHashInternal( $filePath ) ?: '';
 		}
 
-		Wikimedia\restoreWarnings();
-
 		$hashes = implode( '', $hashes );
-		return $hashes ? hash( $algo, $hashes ) : false;
+		return $hashes ? hash( self::ALGO, $hashes ) : false;
 	}
 }

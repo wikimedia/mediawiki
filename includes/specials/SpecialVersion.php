@@ -85,7 +85,7 @@ class SpecialVersion extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$out = $this->getOutput();
-		$out->allowClickjacking();
+		$out->setPreventClickjacking( false );
 
 		// Explode the sub page information into useful bits
 		$parts = explode( '/', (string)$par );
@@ -189,7 +189,7 @@ class SpecialVersion extends SpecialPage {
 					$this->getParserTags() .
 					$this->getParserFunctionHooks()
 				);
-				$out->addWikiTextAsInterface( $this->getWgHooks() );
+				$out->addWikiTextAsInterface( $this->getHooks() );
 				$out->addHTML( $this->IPInfo() );
 
 				break;
@@ -276,7 +276,7 @@ class SpecialVersion extends SpecialPage {
 		];
 
 		if ( defined( 'INTL_ICU_VERSION' ) ) {
-			$software['[http://site.icu-project.org/ ICU]'] = INTL_ICU_VERSION;
+			$software['[https://icu.unicode.org/ ICU]'] = INTL_ICU_VERSION;
 		}
 
 		// Allow a hook to add/remove items.
@@ -897,7 +897,7 @@ class SpecialVersion extends SpecialPage {
 
 			if ( is_array( $descriptionMsg ) ) {
 				$descriptionMsgKey = array_shift( $descriptionMsg );
-				$descriptionMsg = array_map( 'htmlspecialchars', $descriptionMsg ); // For sanity
+				$descriptionMsg = array_map( 'htmlspecialchars', $descriptionMsg );
 				$description = $this->msg( $descriptionMsgKey, ...$descriptionMsg )->text();
 			} else {
 				$description = $this->msg( $descriptionMsg )->text();
@@ -937,12 +937,10 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @return string Wikitext
 	 */
-	private function getWgHooks() {
-		global $wgSpecialVersionShowHooks, $wgHooks;
-
-		if ( $wgSpecialVersionShowHooks && count( $wgHooks ) ) {
-			$myWgHooks = $wgHooks;
-			ksort( $myWgHooks );
+	private function getHooks() {
+		if ( $this->getConfig()->get( 'SpecialVersionShowHooks' ) && count( $this->getConfig()->get( 'Hooks' ) ) ) {
+			$myHooks = $this->getConfig()->get( 'Hooks' );
+			ksort( $myHooks );
 
 			$ret = [];
 			$ret[] = '== {{int:version-hooks}} ==';
@@ -952,7 +950,7 @@ class SpecialVersion extends SpecialPage {
 			$ret[] = Html::element( 'th', [], $this->msg( 'version-hook-subscribedby' )->text() );
 			$ret[] = Html::closeElement( 'tr' );
 
-			foreach ( $myWgHooks as $hook => $hooks ) {
+			foreach ( $myHooks as $hook => $hooks ) {
 				$ret[] = Html::openElement( 'tr' );
 				$ret[] = Html::element( 'td', [], $hook );
 				// @phan-suppress-next-line SecurityCheck-DoubleEscaped false positive

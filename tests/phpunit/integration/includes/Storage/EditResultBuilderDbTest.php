@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Storage;
 
 use ChangeTags;
 use CommentStoreComment;
-use IDatabase;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -14,6 +13,7 @@ use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultBuilder;
 use MediaWikiIntegrationTestCase;
 use MockTitleTrait;
+use Wikimedia\Rdbms\IDatabase;
 use WikiPage;
 use WikitextContent;
 
@@ -309,7 +309,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 		$erb->setRevisionRecord( $newRevision );
 		// emulate WikiPage's behaviour for null edits
 		if ( $newRevision->getSha1() === $parentRevision->getSha1() ) {
-			$erb->setOriginalRevisionId( $parentRevision->getId() );
+			$erb->setOriginalRevision( $parentRevision );
 		}
 
 		$er = $erb->buildEditResult();

@@ -79,9 +79,11 @@ class SkinFactory {
 	 *     available.
 	 * @param array|callable $spec Callback that takes the skin name as an argument, or
 	 *     object factory spec specifying how to create the skin
+	 * @param bool $skippable whether the skin is skippable and should be hidden
+	 *   in preferences.
 	 * @throws InvalidArgumentException If an invalid callback is provided
 	 */
-	public function register( $name, $displayName, $spec ) {
+	public function register( $name, $displayName, $spec, $skippable = false ) {
 		if ( !is_callable( $spec ) ) {
 			if ( is_array( $spec ) ) {
 				if ( !isset( $spec['args'] ) ) {
@@ -96,12 +98,16 @@ class SkinFactory {
 		}
 		$this->factoryFunctions[$name] = $spec;
 		$this->displayNames[$name] = $displayName;
+		// Register as hidden if necessary.
+		if ( $skippable ) {
+			$this->skipSkins[] = $name;
+		}
 	}
 
 	/**
 	 * Returns an associative array of:
 	 *  skin name => human readable name
-	 *
+	 * @deprecated since 1.37 use getInstalledSkins instead
 	 * @return array
 	 */
 	public function getSkinNames() {
@@ -131,22 +137,43 @@ class SkinFactory {
 	/**
 	 * Fetch the list of user-selectable skins in regards to $wgSkipSkins.
 	 * Useful for Special:Preferences and other places where you
-	 * only want to show skins users _can_ use.
+	 * only want to show skins users _can_ select from preferences page.
 	 *
 	 * @return string[]
 	 * @since 1.36
 	 */
 	public function getAllowedSkins() {
-		$allowedSkins = $this->getSkinNames();
-
-		// Internal skins not intended for general use
-		unset( $allowedSkins['fallback'] );
-		unset( $allowedSkins['apioutput'] );
+		$skins = $this->getInstalledSkins();
 
 		foreach ( $this->skipSkins as $skip ) {
-			unset( $allowedSkins[$skip] );
+			unset( $skins[$skip] );
 		}
 
-		return $allowedSkins;
+		return $skins;
+	}
+
+	/**
+	 * Fetch the list of all installed skins.
+	 *
+	 * Returns an associative array of skin name => human readable name
+	 *
+	 * @return string[]
+	 * @since 1.37
+	 */
+	public function getInstalledSkins() {
+		return $this->displayNames;
+	}
+
+	/**
+	 * Return options provided for a given skin name
+	 *
+	 * @since 1.38
+	 * @param string $name Name of the skin you want options from
+	 * @return array Skin options passed into constructor
+	 */
+	public function getSkinOptions( string $name ): array {
+		$skin = $this->makeSkin( $name );
+		$options = $skin->getOptions();
+		return $options;
 	}
 }

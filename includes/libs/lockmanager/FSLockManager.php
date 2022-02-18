@@ -143,7 +143,7 @@ class FSLockManager extends LockManager {
 					$this->handles[$path] = $handle;
 				} else {
 					fclose( $handle );
-					$status->fatal( 'lockmanager-fail-acquirelock', $path );
+					$status->fatal( 'lockmanager-fail-conflict' );
 				}
 			} else {
 				$status->fatal( 'lockmanager-fail-openlock', $path );
@@ -244,7 +244,7 @@ class FSLockManager extends LockManager {
 	}
 
 	/**
-	 * Make sure remaining locks get cleared for sanity
+	 * Make sure remaining locks get cleared
 	 */
 	public function __destruct() {
 		while ( count( $this->locksHeld ) ) {

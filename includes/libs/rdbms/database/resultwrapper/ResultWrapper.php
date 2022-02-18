@@ -45,33 +45,6 @@ abstract class ResultWrapper implements IResultWrapper {
 	private $fieldNames;
 
 	/**
-	 * Get the underlying RDBMS driver-specific result resource
-	 *
-	 * The result resource field should not be accessed from non-Database related classes.
-	 * It is database class specific and is stored here to associate iterators with queries.
-	 *
-	 * @since 1.34
-	 * @deprecated since 1.37
-	 *
-	 * @param self|mixed $res
-	 * @return mixed
-	 */
-	public static function unwrap( $res ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		if ( $res instanceof MysqliResultWrapper ) {
-			return $res->getInternalResult();
-		} elseif ( $res instanceof SqliteResultWrapper ) {
-			return $res->getInternalResult();
-		} elseif ( $res instanceof PostgresResultWrapper ) {
-			return $res->getInternalResult();
-		} elseif ( $res instanceof IResultWrapper ) {
-			throw new \InvalidArgumentException( __METHOD__ . ': $res does not support unwrap()' );
-		} else {
-			return $res;
-		}
-	}
-
-	/**
 	 * Get the number of rows in the result set
 	 *
 	 * @since 1.37
@@ -158,6 +131,7 @@ abstract class ResultWrapper implements IResultWrapper {
 		$this->currentRow = false;
 	}
 
+	#[\ReturnTypeWillChange]
 	public function rewind() {
 		$this->seek( 0 );
 	}
@@ -178,6 +152,7 @@ abstract class ResultWrapper implements IResultWrapper {
 		return $this->fetchObject();
 	}
 
+	#[\ReturnTypeWillChange]
 	public function valid() {
 		return $this->currentPos >= 0
 			&& $this->currentPos < $this->numRows();

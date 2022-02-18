@@ -23,6 +23,9 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
+use Psr\Log\LoggerInterface;
 
 /**
  * Context object that contains information about the state of a specific
@@ -41,29 +44,47 @@ class ResourceLoaderContext implements MessageLocalizer {
 	public const DEBUG_LEGACY = 1;
 	private const DEBUG_MAIN = 2;
 
+	/** @var ResourceLoader */
 	protected $resourceLoader;
+	/** @var WebRequest */
 	protected $request;
+	/** @var LoggerInterface */
 	protected $logger;
 
 	// Module content vary
+	/** @var string */
 	protected $skin;
+	/** @var string */
 	protected $language;
 	/** @var int */
 	protected $debug;
+	/** @var string|null */
 	protected $user;
 
 	// Request vary (in addition to cache vary)
+	/** @var string[] */
 	protected $modules;
+	/** @var string|null */
 	protected $only;
+	/** @var string|null */
 	protected $version;
+	/** @var bool */
 	protected $raw;
+	/** @var string|null */
 	protected $image;
+	/** @var string|null */
 	protected $variant;
+	/** @var string|null */
 	protected $format;
 
+	/** @var string|null */
 	protected $direction;
+	/** @var string|null */
 	protected $hash;
+	/** @var User|null */
 	protected $userObj;
+	/** @var UserIdentity|null|false */
+	protected $userIdentity = false;
 	/** @var ResourceLoaderImage|false */
 	protected $imageObj;
 
@@ -97,7 +118,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 
 		$this->skin = $request->getRawVal( 'skin' );
 		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
-		$skinnames = $skinFactory->getSkinNames();
+		$skinnames = $skinFactory->getInstalledSkins();
 
 		if ( !$this->skin || !isset( $skinnames[$this->skin] ) ) {
 			// The 'skin' parameter is required. (Not yet enforced.)
@@ -170,7 +191,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 * @deprecated since 1.34 Use ResourceLoaderModule::getLogger instead
 	 * inside module methods. Use ResourceLoader::getLogger elsewhere.
 	 * @since 1.27
-	 * @return \Psr\Log\LoggerInterface
+	 * @return LoggerInterface
 	 */
 	public function getLogger() {
 		return $this->logger;
@@ -185,6 +206,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 			// Must be a valid language code after this point (T64849)
 			// Only support uselang values that follow built-in conventions (T102058)
 			$lang = $this->getRequest()->getRawVal( 'lang', '' );
+			'@phan-var string $lang'; // getRawVal does not return null here
 			// Stricter version of RequestContext::sanitizeLangCode()
 			$validBuiltinCode = MediaWikiServices::getInstance()->getLanguageNameUtils()
 				->isValidBuiltInCode( $lang );
@@ -234,11 +256,38 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 */
 	public function msg( $key, ...$params ): Message {
 		return wfMessage( $key, ...$params )
+			// Do not use MediaWiki user language from session. Use the provided one instead.
 			->inLanguage( $this->getLanguage() )
-			// Use a dummy title because there is no real title
-			// for this endpoint, and the cache won't vary on it
-			// anyways.
-			->page( PageReferenceValue::localReference( NS_MAIN, 'Dwimmerlaik' ) );
+			// inLanguage() clears the interface flag, so we need re-enable it. (T291601)
+			->setInterfaceMessageFlag( true )
+			// Use a dummy title because there is no real title for this endpoint, and the cache won't
+			// vary on it anyways.
+			->page( PageReferenceValue::localReference( NS_SPECIAL, 'Badtitle/ResourceLoaderContext' ) );
+	}
+
+	/**
+	 * Get the possibly-cached UserIdentity object for the specified username
+	 *
+	 * This will be null on most requests,
+	 * except for load.php requests that have a 'user' parameter set.
+	 *
+	 * @since 1.38
+	 * @return UserIdentity|null
+	 */
+	public function getUserIdentity(): ?UserIdentity {
+		if ( $this->userIdentity === false ) {
+			$username = $this->getUser();
+			if ( $username === null ) {
+				// Anonymous user
+				$this->userIdentity = null;
+			} else {
+				// Use provided username if valid
+				$this->userIdentity = MediaWikiServices::getInstance()
+					->getUserFactory()
+					->newFromName( $username, UserFactory::RIGOR_VALID );
+			}
+		}
+		return $this->userIdentity;
 	}
 
 	/**
@@ -377,25 +426,25 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 * split up handling of individual modules. Including it here would massively fragment
 	 * the cache and decrease its usefulness.
 	 *
-	 * E.g. Used by RequestFileCache to form a cache key for storing the reponse output.
+	 * E.g. Used by RequestFileCache to form a cache key for storing the response output.
 	 *
 	 * @return string
 	 */
 	public function getHash(): string {
-		if ( !isset( $this->hash ) ) {
+		if ( $this->hash === null ) {
 			$this->hash = implode( '|', [
 				// Module content vary
 				$this->getLanguage(),
 				$this->getSkin(),
-				$this->getDebug(),
-				$this->getUser(),
+				(string)$this->getDebug(),
+				$this->getUser() ?? '',
 				// Request vary
-				$this->getOnly(),
-				$this->getVersion(),
-				$this->getRaw(),
-				$this->getImage(),
-				$this->getVariant(),
-				$this->getFormat(),
+				$this->getOnly() ?? '',
+				$this->getVersion() ?? '',
+				(string)$this->getRaw(),
+				$this->getImage() ?? '',
+				$this->getVariant() ?? '',
+				$this->getFormat() ?? '',
 			] );
 		}
 		return $this->hash;
@@ -409,14 +458,17 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 */
 	public function getReqBase(): array {
 		$reqBase = [];
-		if ( $this->getLanguage() !== self::DEFAULT_LANG ) {
-			$reqBase['lang'] = $this->getLanguage();
+		$lang = $this->getLanguage();
+		if ( $lang !== self::DEFAULT_LANG ) {
+			$reqBase['lang'] = $lang;
 		}
-		if ( $this->getSkin() !== self::DEFAULT_SKIN ) {
-			$reqBase['skin'] = $this->getSkin();
+		$skin = $this->getSkin();
+		if ( $skin !== self::DEFAULT_SKIN ) {
+			$reqBase['skin'] = $skin;
 		}
-		if ( $this->getDebug() !== self::DEBUG_OFF ) {
-			$reqBase['debug'] = strval( $this->getDebug() );
+		$debug = $this->getDebug();
+		if ( $debug !== self::DEBUG_OFF ) {
+			$reqBase['debug'] = strval( $debug );
 		}
 		return $reqBase;
 	}

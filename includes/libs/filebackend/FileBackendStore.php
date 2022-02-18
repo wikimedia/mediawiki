@@ -405,8 +405,8 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	protected function doConcatenate( array $params ) {
 		$status = $this->newStatus();
-		$tmpPath = $params['dst']; // convenience
-		unset( $params['latest'] ); // sanity
+		$tmpPath = $params['dst'];
+		unset( $params['latest'] );
 
 		// Check that the specified temp file is valid...
 		AtEase::suppressWarnings();
@@ -471,6 +471,9 @@ abstract class FileBackendStore extends FileBackend {
 		return $status;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	final protected function doPrepare( array $params ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = $this->scopedProfileSection( __METHOD__ . "-{$this->name}" );
@@ -502,7 +505,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
-	 * @return StatusValue
+	 * @return StatusValue Good status without value for success, fatal otherwise.
 	 */
 	protected function doPrepareInternal( $container, $dir, array $params ) {
 		return $this->newStatus();
@@ -539,7 +542,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param string $container
 	 * @param string $dir
 	 * @param array $params
-	 * @return StatusValue
+	 * @return StatusValue Good status without value for success, fatal otherwise.
 	 */
 	protected function doSecureInternal( $container, $dir, array $params ) {
 		return $this->newStatus();
@@ -980,7 +983,7 @@ abstract class FileBackendStore extends FileBackend {
 				}
 			}
 		}
-		// Fetch local references of any remaning files...
+		// Fetch local references of any remaining files...
 		$params['srcs'] = array_diff( $params['srcs'], array_keys( $fsFiles ) );
 		foreach ( $this->doGetLocalReferenceMulti( $params ) as $path => $fsFile ) {
 			if ( $fsFile instanceof FSFile ) {
@@ -1305,7 +1308,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $ok ) {
 			// Actually attempt the operation batch...
 			$opts = $this->setConcurrencyFlags( $opts );
-			$subStatus = FileOpBatch::attempt( $fileOps, $opts, $this->fileJournal );
+			$subStatus = FileOpBatch::attempt( $fileOps, $opts );
 		} else {
 			// If we could not even stat some files, then bail out
 			$subStatus = $this->newStatus( 'backend-fail-internal', $this->name );
@@ -1562,7 +1565,7 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	final protected static function isValidShortContainerName( $container ) {
 		// Suffixes like '.xxx' (hex shard chars) or '.seg' (file segments)
-		// might be used by subclasses. Reserve the dot character for sanity.
+		// might be used by subclasses. Reserve the dot character.
 		// The only way dots end up in containers (e.g. resolveStoragePath)
 		// is due to the wikiId container prefix or the above suffixes.
 		return self::isValidContainerName( $container ) && !preg_match( '/[.]/', $container );
@@ -1691,7 +1694,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Container dirs like "a", where the container shards on "x/xy",
 	 * can reside on several shards. Such paths are tricky to handle.
 	 *
-	 * @param string $storagePath Storage path
+	 * @param string $storagePath
 	 * @return bool
 	 */
 	final public function isSingleShardPathInternal( $storagePath ) {
@@ -1892,7 +1895,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $path === null ) {
 			return; // invalid storage path
 		}
-		$mtime = ConvertibleTimestamp::convert( TS_UNIX, $val['mtime'] );
+		$mtime = (int)ConvertibleTimestamp::convert( TS_UNIX, $val['mtime'] );
 		$ttl = $this->memCache->adaptiveTTL( $mtime, 7 * 86400, 300, 0.1 );
 		$key = $this->fileCacheKey( $path );
 		// Set the cache unless it is currently salted.
@@ -1953,7 +1956,7 @@ abstract class FileBackendStore extends FileBackend {
 		// Load all of the results into process cache...
 		foreach ( array_filter( $values, 'is_array' ) as $cacheKey => $stat ) {
 			$path = $pathNames[$cacheKey];
-			// Sanity; this flag only applies to stat info loaded directly
+			// This flag only applies to stat info loaded directly
 			// from a high consistency backend query to the process cache
 			unset( $stat['latest'] );
 

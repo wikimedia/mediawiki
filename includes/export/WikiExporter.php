@@ -27,6 +27,7 @@
  * @defgroup Dump Dump
  */
 
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -91,16 +92,18 @@ class WikiExporter {
 	private $hookRunner;
 
 	/**
-	 * Returns the default export schema version, as defined by $wgXmlDumpSchemaVersion.
+	 * Returns the default export schema version, as defined by the XmlDumpSchemaVersion setting.
 	 * @return string
 	 */
 	public static function schemaVersion() {
-		global $wgXmlDumpSchemaVersion;
-		return $wgXmlDumpSchemaVersion;
+		return MediaWikiServices::getInstance()->getMainConfig()->get( 'XmlDumpSchemaVersion' );
 	}
 
 	/**
 	 * @param IDatabase $db
+	 * @param HookContainer $hookContainer
+	 * @param RevisionStore $revisionStore
+	 * @param TitleParser $titleParser
 	 * @param int|array $history One of WikiExporter::FULL, WikiExporter::CURRENT,
 	 *   WikiExporter::RANGE or WikiExporter::STABLE, or an associative array:
 	 *   - offset: non-inclusive offset at which to start the query
@@ -112,20 +115,24 @@ class WikiExporter {
 	 */
 	public function __construct(
 		$db,
+		HookContainer $hookContainer,
+		RevisionStore $revisionStore,
+		TitleParser $titleParser,
 		$history = self::CURRENT,
 		$text = self::TEXT,
 		$limitNamespaces = null
 	) {
 		$this->db = $db;
 		$this->history = $history;
+		// TODO: add a $hookContainer parameter to XmlDumpWriter so that we can inject
+		// and then be able to convert the factory test to a unit test
 		$this->writer = new XmlDumpWriter( $text, self::schemaVersion() );
 		$this->sink = new DumpOutput();
 		$this->text = $text;
 		$this->limitNamespaces = $limitNamespaces;
-		$services = MediaWikiServices::getInstance();
-		$this->hookRunner = new HookRunner( $services->getHookContainer() );
-		$this->revisionStore = $services->getRevisionStore();
-		$this->titleParser = $services->getTitleParser();
+		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->revisionStore = $revisionStore;
+		$this->titleParser = $titleParser;
 	}
 
 	/**
@@ -301,7 +308,7 @@ class WikiExporter {
 	 * @throws Exception
 	 */
 	protected function dumpFrom( $cond = '', $orderRevs = false ) {
-		if ( $this->history & self::LOGS ) {
+		if ( is_int( $this->history ) && ( $this->history & self::LOGS ) ) {
 			$this->dumpLogs( $cond );
 		} else {
 			$this->dumpPages( $cond, $orderRevs );
@@ -424,7 +431,6 @@ class WikiExporter {
 			# query optimization for history stub dumps
 			if ( $this->text == self::STUB ) {
 				$opts[] = 'STRAIGHT_JOIN';
-				$opts['USE INDEX']['revision'] = 'rev_page_id';
 				unset( $join['revision'] );
 				$join['page'] = [ 'JOIN', 'rev_page=page_id' ];
 			}
@@ -504,7 +510,7 @@ class WikiExporter {
 	 * and be sorted/grouped by page and revision to avoid duplicate page records in the output.
 	 *
 	 * @param IResultWrapper $results
-	 * @param stdClass $lastRow the last row output from the previous call (or null if none)
+	 * @param stdClass|null $lastRow the last row output from the previous call (or null if none)
 	 * @return stdClass the last row processed
 	 */
 	protected function outputPageStreamBatch( $results, $lastRow ) {

@@ -167,7 +167,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 			[
 				'A ZIP file similar to the above, but without either of those two ' .
 					'problems. Not a valid ZIP file, but it passes MimeAnalyzer\'s ' .
-					'definition of a ZIP file. This is mostly a sanity check of the ' .
+					'definition of a ZIP file. This is mostly a double check of the ' .
 					'above two tests.',
 				'zip-kind-of-valid.png',
 				'application/zip',

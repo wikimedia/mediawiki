@@ -1,6 +1,6 @@
 /**
  * @private
- * @class mw.plugin.pageready
+ * @class mw.plugin.page.ready
  */
 /**
  * Enable checkboxes to be checked or unchecked in a row by clicking one,

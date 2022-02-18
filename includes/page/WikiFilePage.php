@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Actions\FileDeleteAction;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
@@ -38,6 +39,9 @@ class WikiFilePage extends WikiPage {
 	/** @var array|null */
 	protected $mDupes = null;
 
+	/**
+	 * @param Title $title
+	 */
 	public function __construct( $title ) {
 		parent::__construct( $title );
 		$this->mDupes = null;
@@ -131,9 +135,9 @@ class WikiFilePage extends WikiPage {
 	}
 
 	/**
-	 * @return bool|File
+	 * @return File
 	 */
-	public function getFile() {
+	public function getFile(): File {
 		$this->loadFile();
 		return $this->mFile;
 	}
@@ -186,7 +190,7 @@ class WikiFilePage extends WikiPage {
 				'imagelinks',
 				[ 'causeAction' => 'file-purge' ]
 			);
-			JobQueueGroup::singleton()->lazyPush( $job );
+			MediaWikiServices::getInstance()->getJobQueueGroup()->lazyPush( $job );
 		} else {
 			wfDebug( 'ImagePage::doPurge no image for '
 				. $this->mFile->getName() . "; limiting purge to cache only" );
@@ -266,5 +270,18 @@ class WikiFilePage extends WikiPage {
 	 */
 	public function getSourceURL() {
 		return $this->getFile()->getDescriptionUrl();
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getActionOverrides() {
+		$file = $this->getFile();
+		if ( $file->exists() && $file->isLocal() && !$file->getRedirected() ) {
+			// Would be an actual file deletion
+			return [ 'delete' => FileDeleteAction::class ] + parent::getActionOverrides();
+		}
+		// It should use the normal article deletion interface
+		return parent::getActionOverrides();
 	}
 }

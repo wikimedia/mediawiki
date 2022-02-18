@@ -28,7 +28,7 @@
 class MappedIterator extends FilterIterator {
 	/** @var callable */
 	protected $vCallback;
-	/** @var callable */
+	/** @var callable|null */
 	protected $aCallback;
 	/** @var array */
 	protected $cache = [];

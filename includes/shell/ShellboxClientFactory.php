@@ -3,8 +3,13 @@
 namespace MediaWiki\Shell;
 
 use GuzzleHttp\Psr7\Uri;
+use GuzzleHttp\RequestOptions;
 use MediaWiki\Http\HttpRequestFactory;
+use RuntimeException;
 use Shellbox\Client;
+use Shellbox\RPC\LocalRpcClient;
+use Shellbox\RPC\RpcClient;
+use WebRequest;
 
 /**
  * This is a service which provides a configured client to access a remote
@@ -54,21 +59,55 @@ class ShellboxClientFactory {
 	 *   - timeout: The request timeout in seconds
 	 *   - service: the shellbox backend name to get the URL from the mapping
 	 * @return Client
-	 * @throws \RuntimeException
+	 * @throws RuntimeException
 	 */
 	public function getClient( array $options = [] ) {
 		$url = $this->getUrl( $options['service'] ?? null );
 		if ( $url === null ) {
-			throw new \RuntimeException( 'To use a remote shellbox to run shell commands, ' .
+			throw new RuntimeException( 'To use a remote shellbox to run shell commands, ' .
 				'$wgShellboxUrls and $wgShellboxSecretKey must be configured.' );
 		}
 
 		return new Client(
-			new ShellboxHttpClient( $this->requestFactory,
-				$options['timeout'] ?? self::DEFAULT_TIMEOUT ),
+			$this->requestFactory->createGuzzleClient( [
+				RequestOptions::TIMEOUT => $options['timeout'] ?? self::DEFAULT_TIMEOUT,
+				RequestOptions::HEADERS => [
+					'X-Request-Id' => WebRequest::getRequestId(),
+				],
+				RequestOptions::HTTP_ERRORS => false,
+			] ),
 			new Uri( $url ),
 			$this->key
 		);
+	}
+
+	/**
+	 * Get a Shellbox RPC client with the specified options. If remote Shellbox is
+	 * not configured (isEnabled() returns false), an exception will be thrown.
+	 *
+	 * @param array $options Associative array of options:
+	 *   - timeout: The request timeout in seconds
+	 *   - service: the shellbox backend name to get the URL from the mapping
+	 * @return RpcClient
+	 * @throws RuntimeException
+	 */
+	public function getRemoteRpcClient( array $options = [] ): RpcClient {
+		return $this->getClient( $options );
+	}
+
+	/**
+	 * Get a Shellbox RPC client with specified options. If remote Shellbox is
+	 * not configured (isEnabled() returns false), a local fallback is returned.
+	 *
+	 * @param array $options
+	 * @return RpcClient
+	 */
+	public function getRpcClient( array $options = [] ): RpcClient {
+		$url = $this->getUrl( $options['service'] ?? null );
+		if ( $url === null ) {
+			return new LocalRpcClient();
+		}
+		return $this->getRemoteRpcClient( $options );
 	}
 
 	private function getUrl( ?string $service ): ?string {

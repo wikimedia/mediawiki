@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\LightweightObjectStore\StorageAwareness;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -18,7 +19,12 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->cache = $this->newCacheInstance();
+		try {
+			$this->cache = $this->newCacheInstance();
+		} catch ( InvalidArgumentException $e ) {
+			$this->markTestSkipped( "Cannot create cache instance for " . static::class .
+				': the configuration is presumably missing from $wgObjectCaches' );
+		}
 		$this->cache->deleteMulti( [
 			$this->cache->makeKey( self::TEST_KEY ),
 			$this->cache->makeKey( self::TEST_KEY ) . ':lock'
@@ -29,6 +35,16 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 	 * @return BagOStuff
 	 */
 	abstract protected function newCacheInstance();
+
+	protected function getCacheByClass( $className ) {
+		$caches = $this->getConfVar( 'ObjectCaches' );
+		foreach ( $caches as $id => $cache ) {
+			if ( ( $cache['class'] ?? '' ) === $className ) {
+				return ObjectCache::getInstance( $id );
+			}
+		}
+		$this->markTestSkipped( "No $className is configured" );
+	}
 
 	/**
 	 * @covers MediumSpecificBagOStuff::makeGlobalKey
@@ -500,15 +516,46 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 	 * @covers MediumSpecificBagOStuff::unlock()
 	 */
 	public function testLocking() {
-		$key = 'test';
+		$key = $this->cache->makeKey( self::TEST_KEY );
 		$this->assertTrue( $this->cache->lock( $key ) );
 		$this->assertFalse( $this->cache->lock( $key ) );
 		$this->assertTrue( $this->cache->unlock( $key ) );
+		$this->assertFalse( $this->cache->unlock( $key ) );
 
-		$key2 = 'test2';
-		$this->assertTrue( $this->cache->lock( $key2, 5, 5, 'rclass' ) );
-		$this->assertTrue( $this->cache->lock( $key2, 5, 5, 'rclass' ) );
-		$this->assertTrue( $this->cache->unlock( $key2 ) );
-		$this->assertTrue( $this->cache->unlock( $key2 ) );
+		$this->assertTrue( $this->cache->lock( $key, 5, 5, 'rclass' ) );
+		$this->assertTrue( $this->cache->lock( $key, 5, 5, 'rclass' ) );
+		$this->assertTrue( $this->cache->unlock( $key ) );
+		$this->assertTrue( $this->cache->unlock( $key ) );
+	}
+
+	/**
+	 * @covers MediumSpecificBagOStuff::watchErrors()
+	 * @covers MediumSpecificBagOStuff::getLastError()
+	 * @covers MediumSpecificBagOStuff::setLastError()
+	 */
+	public function testErrorHandling() {
+		$key = $this->cache->makeKey( self::TEST_KEY );
+		$wrapper = TestingAccessWrapper::newFromObject( $this->cache );
+
+		$wp = $this->cache->watchErrors();
+		$this->cache->get( $key );
+		$this->assertSame( StorageAwareness::ERR_NONE, $this->cache->getLastError() );
+		$this->assertSame( StorageAwareness::ERR_NONE, $this->cache->getLastError( $wp ) );
+
+		$wrapper->setLastError( StorageAwareness::ERR_UNREACHABLE );
+		$this->assertSame( StorageAwareness::ERR_UNREACHABLE, $this->cache->getLastError() );
+		$this->assertSame( StorageAwareness::ERR_UNREACHABLE, $this->cache->getLastError( $wp ) );
+
+		$wp = $this->cache->watchErrors();
+		$wrapper->setLastError( StorageAwareness::ERR_UNEXPECTED );
+		$wp2 = $this->cache->watchErrors();
+		$this->assertSame( StorageAwareness::ERR_UNEXPECTED, $this->cache->getLastError() );
+		$this->assertSame( StorageAwareness::ERR_UNEXPECTED, $this->cache->getLastError( $wp ) );
+		$this->assertSame( StorageAwareness::ERR_NONE, $this->cache->getLastError( $wp2 ) );
+
+		$this->cache->get( $key );
+		$this->assertSame( StorageAwareness::ERR_UNEXPECTED, $this->cache->getLastError() );
+		$this->assertSame( StorageAwareness::ERR_UNEXPECTED, $this->cache->getLastError( $wp ) );
+		$this->assertSame( StorageAwareness::ERR_NONE, $this->cache->getLastError( $wp2 ) );
 	}
 }

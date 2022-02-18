@@ -5,6 +5,8 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\Storage\PageUpdaterFactory;
+use MediaWiki\User\UserFactory;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -43,6 +45,12 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 	 */
 	private $wikiPageFactory;
 
+	/** @var PageUpdaterFactory */
+	private $pageUpdaterFactory;
+
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @param bool $doUpdates
 	 * @param LoggerInterface $logger
@@ -50,6 +58,8 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 	 * @param RevisionStore $revisionStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param WikiPageFactory|null $wikiPageFactory
+	 * @param PageUpdaterFactory|null $pageUpdaterFactory
+	 * @param UserFactory|null $userFactory
 	 */
 	public function __construct(
 		$doUpdates,
@@ -57,15 +67,21 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		ILoadBalancer $loadBalancer,
 		RevisionStore $revisionStore,
 		SlotRoleRegistry $slotRoleRegistry,
-		WikiPageFactory $wikiPageFactory = null
+		WikiPageFactory $wikiPageFactory = null,
+		PageUpdaterFactory $pageUpdaterFactory = null,
+		UserFactory $userFactory = null
 	) {
 		$this->doUpdates = $doUpdates;
 		$this->logger = $logger;
 		$this->loadBalancer = $loadBalancer;
 		$this->revisionStore = $revisionStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
+
+		$services = MediaWikiServices::getInstance();
 		// @todo: temporary - remove when FileImporter extension is updated
-		$this->wikiPageFactory = $wikiPageFactory ?? MediaWikiServices::getInstance()->getWikiPageFactory();
+		$this->wikiPageFactory = $wikiPageFactory ?? $services->getWikiPageFactory();
+		$this->pageUpdaterFactory = $pageUpdaterFactory ?? $services->getPageUpdaterFactory();
+		$this->userFactory = $userFactory ?? $services->getUserFactory();
 	}
 
 	/** @inheritDoc */
@@ -73,21 +89,21 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
 		# Sneak a single revision into place
-		$user = $importableRevision->getUserObj() ?: User::newFromName( $importableRevision->getUser() );
+		$user = $importableRevision->getUserObj() ?: $this->userFactory->newFromName( $importableRevision->getUser() );
 		if ( $user ) {
 			$userId = $user->getId();
 			$userText = $user->getName();
 		} else {
 			$userId = 0;
 			$userText = $importableRevision->getUser();
-			$user = new User;
+			$user = $this->userFactory->newAnonymous();
 		}
 
 		// avoid memory leak...?
 		Title::clearCaches();
 
 		$page = $this->wikiPageFactory->newFromTitle( $importableRevision->getTitle() );
-		$page->loadPageData( 'fromdbmaster' );
+		$page->loadPageData( WikiPage::READ_LATEST );
 		if ( !$page->exists() ) {
 			// must create the page...
 			$pageId = $page->insertOn( $dbw );
@@ -152,7 +168,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		);
 
 		try {
-			$revUser = User::newFromAnyId(
+			$revUser = $this->userFactory->newFromAnyId(
 				$userId,
 				$userText,
 				null
@@ -219,12 +235,17 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		if ( $changed !== false && $this->doUpdates ) {
 			$this->logger->debug( __METHOD__ . ": running updates" );
 			// countable/oldcountable stuff is handled in WikiImporter::finishImportPage
-			// @todo replace deprecated function
-			$page->doEditUpdates(
-				$inserted,
-				$user,
-				[ 'created' => $created, 'oldcountable' => 'no-change' ]
-			);
+
+			$options = [
+				'created' => $created,
+				'oldcountable' => 'no-change',
+				'causeAction' => 'edit-page',
+				'causeAgent' => $user->getName(),
+			];
+
+			$updater = $this->pageUpdaterFactory->newDerivedPageDataUpdater( $page );
+			$updater->prepareUpdate( $inserted, $options );
+			$updater->doUpdates();
 		}
 
 		return true;

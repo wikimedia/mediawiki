@@ -83,10 +83,10 @@
 
 		this.server.respond( function ( request ) {
 			if ( window.FormData ) {
-				assert.notOk( request.url.match( /action=/ ), 'Request has no query string' );
-				assert.ok( request.requestBody instanceof FormData, 'Request uses FormData body' );
+				assert.false( /action=/.test( request.url ), 'Request has no query string' );
+				assert.true( request.requestBody instanceof FormData, 'Request uses FormData body' );
 			} else {
-				assert.notOk( request.url.match( /action=test/ ), 'Request has no query string' );
+				assert.false( /action=test/.test( request.url ), 'Request has no query string' );
 				assert.strictEqual( request.requestBody, 'action=test&format=json', 'Request uses query string body' );
 			}
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
@@ -133,8 +133,8 @@
 		var api = new mw.Api();
 
 		this.server.respond( function ( request ) {
-			assert.notOk( request.url.match( /foo/ ), 'foo query parameter is not present' );
-			assert.ok( request.url.match( /bar=true/ ), 'bar query parameter is present with value true' );
+			assert.false( /foo/.test( request.url ), 'foo query parameter is not present' );
+			assert.true( /bar=true/.test( request.url ), 'bar query parameter is present with value true' );
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
 		} );
 
@@ -149,7 +149,7 @@
 		// a request as it should be retrieved from mw.user.tokens.
 		return api.getToken( 'csrf' )
 			.then( function ( token ) {
-				assert.ok( token.length, 'Got a token' );
+				assert.true( token.length > 0, 'Got a token' );
 			}, function ( err ) {
 				assert.strictEqual( err, '', 'API error' );
 			} )
@@ -364,7 +364,7 @@
 			return api.postWithToken( 'csrf',
 				{ action: 'example' },
 				function () {
-					assert.ok( false, 'This parameter cannot be a callback' );
+					assert.true( false, 'This parameter cannot be a callback' );
 				}
 			);
 		} ).then( function ( data ) {
@@ -473,7 +473,7 @@
 		this.api.abort();
 		assert.strictEqual( this.requests.length, 2, 'Check both requests triggered' );
 		this.requests.forEach( function ( request, i ) {
-			assert.ok( request.abort.calledOnce, 'abort request number ' + i );
+			assert.true( request.abort.calledOnce, 'abort request number ' + i );
 		} );
 	} );
 }() );

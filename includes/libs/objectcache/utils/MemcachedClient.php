@@ -348,7 +348,7 @@ class MemcachedClient {
 		}
 
 		$sock = $this->get_sock( $key );
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return false;
 		}
 
@@ -390,7 +390,7 @@ class MemcachedClient {
 		}
 
 		$sock = $this->get_sock( $key );
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return false;
 		}
 
@@ -483,7 +483,7 @@ class MemcachedClient {
 
 		$sock = $this->get_sock( $key );
 
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return false;
 		}
 
@@ -541,7 +541,7 @@ class MemcachedClient {
 		$socks = array();
 		foreach ( $keys as $key ) {
 			$sock = $this->get_sock( $key );
-			if ( !is_resource( $sock ) ) {
+			if ( !$sock ) {
 				continue;
 			}
 			$key = is_array( $key ) ? $key[1] : $key;
@@ -611,7 +611,7 @@ class MemcachedClient {
 	 * @param int $exp (optional) Expiration time. This can be a number of seconds
 	 * to cache for (up to 30 days inclusive).  Any timespans of 30 days + 1 second or
 	 * longer must be the timestamp of the time at which the mapping should expire. It
-	 * is safe to use timestamps in all cases, regardless of exipration
+	 * is safe to use timestamps in all cases, regardless of expiration
 	 * eg: strtotime("+3 hour")
 	 *
 	 * @return bool
@@ -633,7 +633,7 @@ class MemcachedClient {
 	 * @return array Output array
 	 */
 	public function run_command( $sock, $cmd ) {
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return array();
 		}
 
@@ -667,7 +667,7 @@ class MemcachedClient {
 	 * @param int $exp (optional) Expiration time. This can be a number of seconds
 	 * to cache for (up to 30 days inclusive).  Any timespans of 30 days + 1 second or
 	 * longer must be the timestamp of the time at which the mapping should expire. It
-	 * is safe to use timestamps in all cases, regardless of exipration
+	 * is safe to use timestamps in all cases, regardless of expiration
 	 * eg: strtotime("+3 hour")
 	 *
 	 * @return bool True on success
@@ -689,7 +689,7 @@ class MemcachedClient {
 	 * @param int $exp (optional) Expiration time. This can be a number of seconds
 	 * to cache for (up to 30 days inclusive).  Any timespans of 30 days + 1 second or
 	 * longer must be the timestamp of the time at which the mapping should expire. It
-	 * is safe to use timestamps in all cases, regardless of exipration
+	 * is safe to use timestamps in all cases, regardless of expiration
 	 * eg: strtotime("+3 hour")
 	 *
 	 * @return bool True on success
@@ -895,7 +895,7 @@ class MemcachedClient {
 		for ( $tries = 0; $tries < 20; $tries++ ) {
 			$host = $this->_buckets[$hv % $this->_bucketcount];
 			$sock = $this->sock_to_host( $host );
-			if ( is_resource( $sock ) ) {
+			if ( $sock ) {
 				return $sock;
 			}
 			$hv = $this->_hashfunc( $hv . $realkey );
@@ -926,7 +926,7 @@ class MemcachedClient {
 	// {{{ _incrdecr()
 
 	/**
-	 * Perform increment/decriment on $key
+	 * Perform increment/decrement on $key
 	 *
 	 * @param string $cmd Command to perform
 	 * @param string|array $key Key to perform it on
@@ -941,7 +941,7 @@ class MemcachedClient {
 		}
 
 		$sock = $this->get_sock( $key );
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return null;
 		}
 
@@ -1061,7 +1061,7 @@ class MemcachedClient {
 	 * @param int $exp (optional) Expiration time. This can be a number of seconds
 	 * to cache for (up to 30 days inclusive).  Any timespans of 30 days + 1 second or
 	 * longer must be the timestamp of the time at which the mapping should expire. It
-	 * is safe to use timestamps in all cases, regardless of exipration
+	 * is safe to use timestamps in all cases, regardless of expiration
 	 * eg: strtotime("+3 hour")
 	 * @param float $casToken [optional]
 	 *
@@ -1074,7 +1074,7 @@ class MemcachedClient {
 		}
 
 		$sock = $this->get_sock( $key );
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return false;
 		}
 
@@ -1310,7 +1310,7 @@ class MemcachedClient {
 	 * @param Resource $f
 	 */
 	function _flush_read_buffer( $f ) {
-		if ( !is_resource( $f ) ) {
+		if ( !$f ) {
 			return;
 		}
 		$r = array( $f );

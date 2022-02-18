@@ -8,7 +8,7 @@ class MysqliResultWrapper extends ResultWrapper {
 	/** @var DatabaseMysqli */
 	private $db;
 
-	/** @var mysqli_result */
+	/** @var mysqli_result|null */
 	private $result;
 
 	/**
@@ -63,17 +63,6 @@ class MysqliResultWrapper extends ResultWrapper {
 
 	protected function doSeek( $pos ) {
 		$this->result->data_seek( $pos );
-	}
-
-	/**
-	 * Get the underlying result object or array
-	 *
-	 * @since 1.37
-	 * @deprecated since 1.37 Only exists to support deprecated methods
-	 * @return mysqli_result
-	 */
-	public function getInternalResult() {
-		return $this->result;
 	}
 
 	protected function doFree() {

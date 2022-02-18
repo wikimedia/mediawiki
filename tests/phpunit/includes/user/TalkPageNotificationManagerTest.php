@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -35,7 +34,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 			NS_MAIN,
 			$this->getTestSysop()->getUser()
 		);
-		$this->assertTrue( $status->isGood(), 'Sanity: create revision of user talk' );
+		$this->assertTrue( $status->isGood(), 'create revision of user talk' );
 		return $status->getValue()['revision-record'];
 	}
 
@@ -44,7 +43,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 		bool $isReadOnly = false,
 		RevisionLookup $revisionLookup = null
 	) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		return new TalkPageNotificationManager(
 			new ServiceOptions(
 				TalkPageNotificationManager::CONSTRUCTOR_OPTIONS,

@@ -9,7 +9,7 @@ class HTMLInfoField extends HTMLFormField {
 	 * @stable to call
 	 *
 	 * @param array $info
-	 *   In adition to the usual HTMLFormField parameters, this can take the following fields:
+	 *   In addition to the usual HTMLFormField parameters, this can take the following fields:
 	 *   - default: the value (text) of the field. Unlike other form field types, HTMLInfoField can
 	 *     take a closure as a default value, which will be evaluated with $info as its only parameter.
 	 *   - raw: if true, the value won't be escaped.

@@ -19,8 +19,8 @@ class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 		$tp->setExpectation( 'maxAffected', 100, __METHOD__ );
 
 		$tp->transactionWritingIn( 'srv1', 'db1', '123' );
-		$tp->recordQueryCompletion( "SQL 1", microtime( true ) - 3, true, 200 );
-		$tp->recordQueryCompletion( "SQL 2", microtime( true ) - 3, true, 200 );
+		$tp->recordQueryCompletion( "SQL 1", microtime( true ) - 3, true, 200, '1' );
+		$tp->recordQueryCompletion( "SQL 2", microtime( true ) - 3, true, 200, '1' );
 		$tp->transactionWritingOut( 'srv1', 'db1', '123', 1, 400 );
 	}
 
@@ -34,8 +34,8 @@ class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 		$tp->setExpectation( 'readQueryTime', 5, __METHOD__ );
 
 		$tp->transactionWritingIn( 'srv1', 'db1', '123' );
-		$tp->recordQueryCompletion( "SQL 1", microtime( true ) - 10, false, 1 );
-		$tp->recordQueryCompletion( "SQL 2", microtime( true ) - 10, false, 1 );
+		$tp->recordQueryCompletion( "SQL 1", microtime( true ) - 10, false, 1, '1' );
+		$tp->recordQueryCompletion( "SQL 2", microtime( true ) - 10, false, 1, '1' );
 		$tp->transactionWritingOut( 'srv1', 'db1', '123', 0, 0 );
 	}
 
@@ -49,8 +49,8 @@ class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 		$tp->setExpectation( 'writeQueryTime', 5, __METHOD__ );
 
 		$tp->transactionWritingIn( 'srv1', 'db1', '123' );
-		$tp->recordQueryCompletion( "SQL 1", microtime( true ) - 10, true, 1 );
-		$tp->recordQueryCompletion( "SQL 2", microtime( true ) - 10, true, 1 );
+		$tp->recordQueryCompletion( "SQL 1", microtime( true ) - 10, true, 1, '1' );
+		$tp->recordQueryCompletion( "SQL 2", microtime( true ) - 10, true, 1, '1' );
 		$tp->transactionWritingOut( 'srv1', 'db1', '123', 20, 1 );
 	}
 
@@ -118,10 +118,10 @@ class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 		$tp->setLogger( $logger );
 		$tp->setExpectation( 'queries', 2, __METHOD__ );
 
-		$tp->recordQueryCompletion( "SQL 1", microtime( true ) - 0.01, false, 0 );
-		$tp->recordQueryCompletion( "SQL 2", microtime( true ) - 0.01, false, 0 );
-		$tp->recordQueryCompletion( "SQL 3", microtime( true ) - 0.01, false, 0 ); // warn
-		$tp->recordQueryCompletion( "SQL 4", microtime( true ) - 0.01, false, 0 ); // warn
+		$tp->recordQueryCompletion( "SQL 1", microtime( true ) - 0.01, false, 0, '1' );
+		$tp->recordQueryCompletion( "SQL 2", microtime( true ) - 0.01, false, 0, '1' );
+		$tp->recordQueryCompletion( "SQL 3", microtime( true ) - 0.01, false, 0, '1' ); // warn
+		$tp->recordQueryCompletion( "SQL 4", microtime( true ) - 0.01, false, 0, '1' ); // warn
 	}
 
 	public function testWriteQueryCount() {
@@ -132,16 +132,16 @@ class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 		$tp->setLogger( $logger );
 		$tp->setExpectation( 'writes', 2, __METHOD__ );
 
-		$tp->recordQueryCompletion( "SQL 1", microtime( true ) - 0.01, false, 0 );
-		$tp->recordQueryCompletion( "SQL 2", microtime( true ) - 0.01, false, 0 );
-		$tp->recordQueryCompletion( "SQL 3", microtime( true ) - 0.01, false, 0 );
-		$tp->recordQueryCompletion( "SQL 4", microtime( true ) - 0.01, false, 0 );
+		$tp->recordQueryCompletion( "SQL 1", microtime( true ) - 0.01, false, 0, '1' );
+		$tp->recordQueryCompletion( "SQL 2", microtime( true ) - 0.01, false, 0, '1' );
+		$tp->recordQueryCompletion( "SQL 3", microtime( true ) - 0.01, false, 0, '1' );
+		$tp->recordQueryCompletion( "SQL 4", microtime( true ) - 0.01, false, 0, '1' );
 
 		$tp->transactionWritingIn( 'srv1', 'db1', '123' );
-		$tp->recordQueryCompletion( "SQL 1w", microtime( true ) - 0.01, true, 2 );
-		$tp->recordQueryCompletion( "SQL 2w", microtime( true ) - 0.01, true, 5 );
-		$tp->recordQueryCompletion( "SQL 3w", microtime( true ) - 0.01, true, 3 );
-		$tp->recordQueryCompletion( "SQL 4w", microtime( true ) - 0.01, true, 1 );
+		$tp->recordQueryCompletion( "SQL 1w", microtime( true ) - 0.01, true, 2, '1' );
+		$tp->recordQueryCompletion( "SQL 2w", microtime( true ) - 0.01, true, 5, '1' );
+		$tp->recordQueryCompletion( "SQL 3w", microtime( true ) - 0.01, true, 3, '1' );
+		$tp->recordQueryCompletion( "SQL 4w", microtime( true ) - 0.01, true, 1, '1' );
 		$tp->transactionWritingOut( 'srv1', 'db1', '123', 1, 1 );
 	}
 }

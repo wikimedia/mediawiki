@@ -47,9 +47,6 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	/** @var ChangeTagsList Storing the list of items to be tagged */
 	private $revList;
 
-	/** @var bool Whether user is allowed to perform the action */
-	private $isAllowed;
-
 	/** @var string */
 	private $reason;
 
@@ -109,7 +106,6 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$this->typeName = $request->getVal( 'type' );
 		$this->targetObj = Title::newFromText( $request->getText( 'target' ) );
 
-		// sanity check of parameter
 		switch ( $this->typeName ) {
 			case 'logentry':
 			case 'logging':
@@ -128,8 +124,6 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$this->targetObj,
 			$this->ids
 		);
-
-		$this->isAllowed = $this->permissionManager->userHasRight( $user, 'changetags' );
 
 		$this->reason = $request->getVal( 'wpReason' );
 		// We need a target page!
@@ -159,7 +153,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$this->showConvenienceLinks();
 
 		// Either submit or create our form
-		if ( $this->isAllowed && $this->submitClicked ) {
+		if ( $this->submitClicked ) {
 			$this->submit();
 		} else {
 			$this->showForm();
@@ -265,45 +259,42 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		// Explanation text
 		$out->wrapWikiMsg( '<p>$1</p>', "tags-edit-{$this->typeName}-explanation" );
 
-		// Show form if the user can submit
-		if ( $this->isAllowed ) {
-			$form = Xml::openElement( 'form', [ 'method' => 'post',
-					'action' => $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] ),
-					'id' => 'mw-revdel-form-revisions' ] ) .
-				Xml::fieldset( $this->msg( "tags-edit-{$this->typeName}-legend",
-					count( $this->ids ) )->text() ) .
-				$this->buildCheckBoxes() .
-				Xml::openElement( 'table' ) .
-				"<tr>\n" .
-					'<td class="mw-label">' .
-						Xml::label( $this->msg( 'tags-edit-reason' )->text(), 'wpReason' ) .
-					'</td>' .
-					'<td class="mw-input">' .
-						Xml::input( 'wpReason', 60, $this->reason, [
-							'id' => 'wpReason',
-							// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
-							// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
-							// Unicode codepoints.
-							'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT,
-						] ) .
-					'</td>' .
-				"</tr><tr>\n" .
-					'<td></td>' .
-					'<td class="mw-submit">' .
-						Xml::submitButton( $this->msg( "tags-edit-{$this->typeName}-submit",
-							$numRevisions )->text(), [ 'name' => 'wpSubmit' ] ) .
-					'</td>' .
-				"</tr>\n" .
-				Xml::closeElement( 'table' ) .
-				Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() ) .
-				Html::hidden( 'target', $this->targetObj->getPrefixedText() ) .
-				Html::hidden( 'type', $this->typeName ) .
-				Html::hidden( 'ids', implode( ',', $this->ids ) ) .
-				Xml::closeElement( 'fieldset' ) . "\n" .
-				Xml::closeElement( 'form' ) . "\n";
-		} else {
-			$form = '';
-		}
+		// Show form
+		$form = Xml::openElement( 'form', [ 'method' => 'post',
+				'action' => $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] ),
+				'id' => 'mw-revdel-form-revisions' ] ) .
+			Xml::fieldset( $this->msg( "tags-edit-{$this->typeName}-legend",
+				count( $this->ids ) )->text() ) .
+			$this->buildCheckBoxes() .
+			Xml::openElement( 'table' ) .
+			"<tr>\n" .
+				'<td class="mw-label">' .
+					Xml::label( $this->msg( 'tags-edit-reason' )->text(), 'wpReason' ) .
+				'</td>' .
+				'<td class="mw-input">' .
+					Xml::input( 'wpReason', 60, $this->reason, [
+						'id' => 'wpReason',
+						// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
+						// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
+						// Unicode codepoints.
+						'maxlength' => CommentStore::COMMENT_CHARACTER_LIMIT,
+					] ) .
+				'</td>' .
+			"</tr><tr>\n" .
+				'<td></td>' .
+				'<td class="mw-submit">' .
+					Xml::submitButton( $this->msg( "tags-edit-{$this->typeName}-submit",
+						$numRevisions )->text(), [ 'name' => 'wpSubmit' ] ) .
+				'</td>' .
+			"</tr>\n" .
+			Xml::closeElement( 'table' ) .
+			Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() ) .
+			Html::hidden( 'target', $this->targetObj->getPrefixedText() ) .
+			Html::hidden( 'type', $this->typeName ) .
+			Html::hidden( 'ids', implode( ',', $this->ids ) ) .
+			Xml::closeElement( 'fieldset' ) . "\n" .
+			Xml::closeElement( 'form' ) . "\n";
+
 		$out->addHTML( $form );
 	}
 

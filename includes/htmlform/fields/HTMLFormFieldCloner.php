@@ -46,6 +46,9 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	 */
 	protected $uniqueId;
 
+	/* @var HTMLFormField[] */
+	protected $mFields = [];
+
 	/**
 	 * @stable to call
 	 * @inheritDoc
@@ -58,7 +61,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			throw new MWException( 'HTMLFormFieldCloner called without any fields' );
 		}
 
-		// Make sure the delete button, if explicitly specified, is sane
+		// Make sure the delete button, if explicitly specified, is sensible
 		if ( isset( $this->mParams['fields']['delete'] ) ) {
 			$class = 'mw-htmlform-cloner-delete-button';
 			$info = $this->mParams['fields']['delete'] + [
@@ -82,6 +85,17 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	}
 
 	/**
+	 * @param string $key Array key under which these fields should be named
+	 * @return HTMLFormField[]
+	 */
+	protected function getFieldsForKey( $key ) {
+		if ( !isset( $this->mFields[$key] ) ) {
+			$this->mFields[$key] = $this->createFieldsForKey( $key );
+		}
+		return $this->mFields[$key];
+	}
+
+	/**
 	 * Create the HTMLFormFields that go inside this element, using the
 	 * specified key.
 	 *
@@ -102,18 +116,27 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			} else {
 				$info['id'] = Sanitizer::escapeIdForAttribute( "{$this->mID}--$key--$fieldname" );
 			}
-			// Copy the hide-if rules to "child" fields, so that the JavaScript code handling them
-			// (resources/src/mediawiki/htmlform/hide-if.js) doesn't have to handle nested fields.
-			if ( $this->mHideIf ) {
-				if ( isset( $info['hide-if'] ) ) {
-					// Hide child field if either its rules say it's hidden, or parent's rules say it's hidden
-					$info['hide-if'] = [ 'OR', $info['hide-if'], $this->mHideIf ];
-				} else {
-					// Hide child field if parent's rules say it's hidden
-					$info['hide-if'] = $this->mHideIf;
+			// Copy the hide-if and disable-if rules to "child" fields, so that the JavaScript code handling them
+			// (resources/src/mediawiki.htmlform/cond-state.js) doesn't have to handle nested fields.
+			if ( $this->mCondState ) {
+				foreach ( [ 'hide', 'disable' ] as $type ) {
+					if ( !isset( $this->mCondState[$type] ) ) {
+						continue;
+					}
+					$param = $type . '-if';
+					if ( isset( $info[$param] ) ) {
+						// Hide or disable child field if either its rules say so, or parent's rules say so.
+						$info[$param] = [ 'OR', $info[$param], $this->mCondState[$type] ];
+					} else {
+						// Hide or disable child field if parent's rules say so.
+						$info[$param] = $this->mCondState[$type];
+					}
 				}
 			}
-			$field = HTMLForm::loadInputFromParameters( $name, $info, $this->mParent );
+			$cloner = $this;
+			$info['cloner'] = &$cloner;
+			$info['cloner-key'] = $key;
+			$field = HTMLForm::loadInputFromParameters( $fieldname, $info, $this->mParent );
 			$fields[$fieldname] = $field;
 		}
 		return $fields;
@@ -134,6 +157,71 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			$data[$name] = $value;
 		}
 		return $data;
+	}
+
+	/**
+	 * @param string $name
+	 * @return string[]
+	 */
+	protected function parseFieldPath( $name ) {
+		$fieldKeys = [];
+		while ( preg_match( '/^(.+)\[([^\]]+)\]$/', $name, $m ) ) {
+			array_unshift( $fieldKeys, $m[2] );
+			$name = $m[1];
+		}
+		array_unshift( $fieldKeys, $name );
+		return $fieldKeys;
+	}
+
+	/**
+	 * Find the nearest field to a field in this cloner matched the given name,
+	 * walk through the chain of cloners.
+	 *
+	 * @param HTMLFormField $field
+	 * @param string $find
+	 * @return HTMLFormField|null
+	 */
+	public function findNearestField( $field, $find ) {
+		$findPath = $this->parseFieldPath( $find );
+		// Access to fields as child or in other group is not allowed.
+		// Further support for a more complicated path may conduct here.
+		if ( count( $findPath ) > 1 ) {
+			return null;
+		}
+		if ( !isset( $this->mParams['fields'][$find] ) ) {
+			if ( isset( $this->mParams['cloner'] ) ) {
+				return $this->mParams['cloner']->findNearestField( $this, $find );
+			}
+			return null;
+		}
+		$fields = $this->getFieldsForKey( $field->mParams['cloner-key'] );
+		return $fields[$find];
+	}
+
+	/**
+	 * @param HTMLFormField $field
+	 * @return string[]
+	 */
+	protected function getFieldPath( $field ) {
+		$path = [ $this->mParams['fieldname'], $field->mParams['cloner-key'] ];
+		if ( isset( $this->mParams['cloner'] ) ) {
+			$path = array_merge( $this->mParams['cloner']->getFieldPath( $this ), $path );
+		}
+		return $path;
+	}
+
+	/**
+	 * Extract field data for a given field that belongs to this cloner.
+	 *
+	 * @param HTMLFormField $field
+	 * @param mixed[] $alldata
+	 * @return mixed
+	 */
+	public function extractFieldData( $field, $alldata ) {
+		foreach ( $this->getFieldPath( $field ) as $key ) {
+			$alldata = $alldata[$key];
+		}
+		return $alldata[$field->mParams['fieldname']];
 	}
 
 	protected function needsLabel() {
@@ -163,7 +251,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			// wpEditToken don't fail.
 			$data = $this->rekeyValuesArray( $key, $value ) + $request->getValues();
 
-			$fields = $this->createFieldsForKey( $key );
+			$fields = $this->getFieldsForKey( $key );
 			$subrequest = new DerivativeRequest( $request, $data, $request->wasPosted() );
 			$row = [];
 			foreach ( $fields as $fieldname => $field ) {
@@ -181,7 +269,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 
 		if ( isset( $values['create'] ) ) {
 			// Non-JS client clicked the "create" button.
-			$fields = $this->createFieldsForKey( $this->uniqueId );
+			$fields = $this->getFieldsForKey( $this->uniqueId );
 			$row = [];
 			foreach ( $fields as $fieldname => $field ) {
 				if ( !empty( $field->mParams['nodata'] ) ) {
@@ -200,7 +288,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 
 		// The default is one entry with all subfields at their defaults.
 		if ( $ret === null ) {
-			$fields = $this->createFieldsForKey( $this->uniqueId );
+			$fields = $this->getFieldsForKey( $this->uniqueId );
 			$row = [];
 			foreach ( $fields as $fieldname => $field ) {
 				if ( !empty( $field->mParams['nodata'] ) ) {
@@ -224,7 +312,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		}
 
 		foreach ( $values as $key => $value ) {
-			$fields = $this->createFieldsForKey( $key );
+			$fields = $this->getFieldsForKey( $key );
 			foreach ( $fields as $fieldname => $field ) {
 				if ( !array_key_exists( $fieldname, $value ) ) {
 					continue;
@@ -258,7 +346,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		}
 
 		foreach ( $values as $key => $value ) {
-			$fields = $this->createFieldsForKey( $key );
+			$fields = $this->getFieldsForKey( $key );
 			foreach ( $fields as $fieldname => $field ) {
 				if ( !array_key_exists( $fieldname, $value ) ) {
 					continue;
@@ -293,7 +381,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		$hidden = '';
 		$hasLabel = false;
 
-		$fields = $this->createFieldsForKey( $key );
+		$fields = $this->getFieldsForKey( $key );
 		foreach ( $fields as $fieldname => $field ) {
 			$v = array_key_exists( $fieldname, $values )
 				? $values[$fieldname]
@@ -422,7 +510,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		$html = '';
 		$hidden = '';
 
-		$fields = $this->createFieldsForKey( $key );
+		$fields = $this->getFieldsForKey( $key );
 		foreach ( $fields as $fieldname => $field ) {
 			$v = array_key_exists( $fieldname, $values )
 				? $values[$fieldname]

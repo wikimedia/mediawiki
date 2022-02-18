@@ -90,15 +90,16 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			);
 			$page->clear();
 
-			// sanity check
-			$currentText = ContentHandler::getContentText( $page->getContent() );
+			$content = $page->getContent();
+			$this->assertInstanceOf( TextContent::class, $content );
+			$currentText = $content->getText();
 
 			# EditPage rtrim() the user input, so we alter our expected text
 			# to reflect that.
 			$this->assertEquals(
 				rtrim( $baseText ),
 				rtrim( $currentText ),
-				'Sanity check: page should have the text specified'
+				'page should have the text specified'
 			);
 		}
 
@@ -264,7 +265,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$this->assertSame(
 			CONTENT_MODEL_WIKITEXT,
 			$title->getContentModel(),
-			'Sanity check: title should start as wikitext content model'
+			'title should start as wikitext content model'
 		);
 
 		$this->assertEdit(

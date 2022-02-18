@@ -25,10 +25,6 @@ register_shutdown_function( static function () {
 	// This will:
 	// - clear the temporary job queue.
 	// - allow extensions to delete any temporary tables they created.
-	// - restore ability to connect to the real database,
-	//   (for logging profiling data).
+	// - restore ability to connect to the real database.
 	MediaWikiIntegrationTestCase::teardownTestDB();
-
-	// Log profiling data, e.g. in the database or UDP
-	wfLogProfilingData();
 } );

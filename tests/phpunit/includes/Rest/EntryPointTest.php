@@ -10,6 +10,7 @@ use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\CorsUtils;
 use MediaWiki\Rest\EntryPoint;
 use MediaWiki\Rest\Handler;
+use MediaWiki\Rest\Reporter\PHPErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
@@ -47,6 +48,7 @@ class EntryPointTest extends \MediaWikiIntegrationTestCase {
 			$authority,
 			$objectFactory,
 			new Validator( $objectFactory, $request, $authority ),
+			new PHPErrorReporter(),
 			$this->createHookContainer()
 		);
 	}

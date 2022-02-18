@@ -231,11 +231,12 @@ class ResponseFactory {
 			}
 		} else {
 			$response = $this->createHttpError( 500, [
-				'message' => 'Error: exception of type ' . get_class( $exception ),
+				'message' => 'Error: exception of type ' . get_class( $exception ) . ': '
+					. $exception->getMessage(),
 				'exception' => MWExceptionHandler::getStructuredExceptionData( $exception )
 			] );
-			// FIXME should we try to do something useful with ILocalizedException?
-			// FIXME should we try to do something useful with common MediaWiki errors like ReadOnlyError?
+			// XXX: should we try to do something useful with ILocalizedException?
+			// XXX: should we try to do something useful with common MediaWiki errors like ReadOnlyError?
 		}
 		return $response;
 	}
@@ -283,7 +284,7 @@ class ResponseFactory {
 	 * @return string
 	 */
 	protected function getHyperLink( $url ) {
-		$url = htmlspecialchars( $url );
+		$url = htmlspecialchars( $url, ENT_COMPAT );
 		return "<!doctype html><title>Redirect</title><a href=\"$url\">$url</a>";
 	}
 

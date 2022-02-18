@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @group API
  * @group Database
@@ -34,7 +32,7 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 	}
 
 	private function getWatchedItemStore() {
-		return MediaWikiServices::getInstance()->getWatchedItemStore();
+		return $this->getServiceContainer()->getWatchedItemStore();
 	}
 
 	private function doListWatchlistRawRequest( array $params = [] ) {
@@ -472,8 +470,11 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 	}
 
 	public function testOwnerAndTokenParams() {
+		$services = $this->getServiceContainer();
+		$userOptionsManager = $services->getUserOptionsManager();
+
 		$otherUser = $this->getNotLoggedInTestUser();
-		$otherUser->setOption( 'watchlisttoken', '1234567890' );
+		$userOptionsManager->setOption( $otherUser, 'watchlisttoken', '1234567890' );
 		$otherUser->saveSettings();
 
 		$store = $this->getWatchedItemStore();
@@ -482,7 +483,7 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 			new TitleValue( 1, 'ApiQueryWatchlistRawIntegrationTestPage1' ),
 		] );
 
-		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
+		$services->getMainWANObjectCache()->clearProcessCache();
 		$result = $this->doListWatchlistRawRequest( [
 			'wrowner' => $otherUser->getName(),
 			'wrtoken' => '1234567890',
@@ -504,8 +505,10 @@ class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 	}
 
 	public function testOwnerAndTokenParams_wrongToken() {
+		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
+
 		$otherUser = $this->getNotLoggedInTestUser();
-		$otherUser->setOption( 'watchlisttoken', '1234567890' );
+		$userOptionsManager->setOption( $otherUser, 'watchlisttoken', '1234567890' );
 		$otherUser->saveSettings();
 
 		$this->expectException( ApiUsageException::class );

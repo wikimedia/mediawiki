@@ -48,7 +48,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 	/**
 	 * Send the standalone JavaScript payload.
 	 *
-	 * Loaded by the GUI (on Special:JavacriptTest), and by the CLI (via grunt-karma).
+	 * Loaded by the GUI (on Special:JavaScriptTest), and by the CLI (via grunt-karma).
 	 */
 	private function exportJS() {
 		$out = $this->getOutput();
@@ -56,12 +56,12 @@ class SpecialJavaScriptTest extends SpecialPage {
 
 		// Allow framing (disabling wgBreakFrames). Otherwise, mediawiki.page.ready
 		// will close this tab when running from CLI using karma-qunit.
-		$out->allowClickjacking();
+		$out->setPreventClickjacking( false );
 
 		$query = [
 			'lang' => 'qqx',
 			'skin' => 'fallback',
-			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
+			'debug' => (string)ResourceLoader::inDebugMode(),
 			'target' => 'test',
 		];
 		$embedContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
@@ -69,6 +69,20 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$startupContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
 
 		$modules = $rl->getTestSuiteModuleNames();
+		$component = $this->getContext()->getRequest()->getVal( 'component' );
+		if ( $component ) {
+			$module = 'test.' . $component;
+			if ( !in_array( 'test.' . $component, $modules ) ) {
+				wfHttpError(
+					404,
+					'Unknown test module',
+					"'$module' is not a defined test module. "
+						. 'Register one via the QUnitTestModules attribute in extension.json.'
+				);
+				return;
+			}
+			$modules = [ 'test.' . $component ];
+		}
 
 		// Disable module storage.
 		// The unit test for mw.loader.store will enable it (with a mock timers).
@@ -139,7 +153,7 @@ JAVASCRIPT
 			->parseAsBlock();
 
 		$scriptUrl = $this->getPageTitle( 'qunit/export' )->getFullURL( [
-			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
+			'debug' => (string)ResourceLoader::inDebugMode(),
 		] );
 		$script = Html::linkedScript( $scriptUrl );
 

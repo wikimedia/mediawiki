@@ -181,7 +181,7 @@ class EmailNotification {
 		}
 
 		if ( $sendEmail ) {
-			JobQueueGroup::singleton()->lazyPush( new EnotifNotifyJob(
+			$mwServices->getJobQueueGroup()->lazyPush( new EnotifNotifyJob(
 				$title,
 				[
 					'editor' => $editor->getUser()->getName(),
@@ -256,7 +256,7 @@ class EmailNotification {
 		$userTalkId = false;
 
 		if ( !$minorEdit ||
-			( $config->get( 'EnotifMinorEdits' ) && !$editor->isAllowed( 'nominornewtalk' )	)
+			( $config->get( 'EnotifMinorEdits' ) && !$editor->isAllowed( 'nominornewtalk' ) )
 		) {
 			if ( $config->get( 'EnotifUserTalk' )
 				&& $isUserTalkPage

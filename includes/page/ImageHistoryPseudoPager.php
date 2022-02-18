@@ -26,7 +26,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	protected $preventClickjacking = false;
 
 	/**
-	 * @var File
+	 * @var File|null
 	 */
 	protected $mImg;
 
@@ -114,7 +114,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		$this->doQuery();
 		if ( count( $this->mHist ) ) {
 			if ( $this->mImg->isLocal() ) {
-				// Do a batch existence check for user pages and talkpages
+				// Do a batch existence check for user pages and talkpages.
 				$linkBatch = $this->linkBatchFactory->newLinkBatch();
 				for ( $i = $this->mRange[0]; $i <= $this->mRange[1]; $i++ ) {
 					$file = $this->mHist[$i];
@@ -127,6 +127,19 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 				$linkBatch->execute();
 			}
 
+			// Batch-format comments
+			$comments = [];
+			for ( $i = $this->mRange[0]; $i <= $this->mRange[1]; $i++ ) {
+				$file = $this->mHist[$i];
+				$comments[$i] = $file->getDescription(
+					File::FOR_THIS_USER,
+					$this->getUser()
+				) ?: '';
+			}
+			$formattedComments = MediaWikiServices::getInstance()
+				->getCommentFormatter()
+				->formatStrings( $comments, $this->getTitle() );
+
 			$list = new ImageHistoryList( $this->mImagePage );
 			# Generate prev/next links
 			$navLink = $this->getNavigationBar();
@@ -134,12 +147,12 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 			// Skip rows there just for paging links
 			for ( $i = $this->mRange[0]; $i <= $this->mRange[1]; $i++ ) {
 				$file = $this->mHist[$i];
-				$s .= $list->imageHistoryLine( !$file->isOld(), $file );
+				$s .= $list->imageHistoryLine( !$file->isOld(), $file, $formattedComments[$i] );
 			}
 			$s .= $list->endImageHistoryList( $navLink );
 
 			if ( $list->getPreventClickjacking() ) {
-				$this->preventClickjacking();
+				$this->setPreventClickjacking( true );
 			}
 		}
 		return $s;
@@ -236,8 +249,17 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 
 	/**
 	 * @param bool $enable
+	 * @deprecated since 1.38, use ::setPreventClickjacking()
 	 */
 	protected function preventClickjacking( $enable = true ) {
+		$this->preventClickjacking = $enable;
+	}
+
+	/**
+	 * @param bool $enable
+	 * @since 1.38
+	 */
+	protected function setPreventClickjacking( bool $enable ) {
 		$this->preventClickjacking = $enable;
 	}
 

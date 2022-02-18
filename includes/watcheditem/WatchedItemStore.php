@@ -3,12 +3,9 @@
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionLookup;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
@@ -113,20 +110,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	private $expiryEnabled;
 
 	/**
-	 * @var HookRunner
-	 */
-	private $hookRunner;
-
-	/**
 	 * @var LinkBatchFactory
 	 */
 	private $linkBatchFactory;
-
-	/** @var UserFactory */
-	private $userFactory;
-
-	/** @var TitleFactory */
-	private $titleFactory;
 
 	/**
 	 * @var string|null Maximum configured relative expiry.
@@ -145,10 +131,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param NamespaceInfo $nsInfo
 	 * @param RevisionLookup $revisionLookup
-	 * @param HookContainer $hookContainer
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param UserFactory $userFactory
-	 * @param TitleFactory $titleFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -159,10 +142,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		ReadOnlyMode $readOnlyMode,
 		NamespaceInfo $nsInfo,
 		RevisionLookup $revisionLookup,
-		HookContainer $hookContainer,
-		LinkBatchFactory $linkBatchFactory,
-		UserFactory $userFactory,
-		TitleFactory $titleFactory
+		LinkBatchFactory $linkBatchFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->updateRowsPerQuery = $options->get( 'UpdateRowsPerQuery' );
@@ -181,10 +161,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			[ DeferredUpdates::class, 'addCallableUpdate' ];
 		$this->nsInfo = $nsInfo;
 		$this->revisionLookup = $revisionLookup;
-		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->userFactory = $userFactory;
-		$this->titleFactory = $titleFactory;
 
 		$this->latestUpdateCache = new HashBagOStuff( [ 'maxKeys' => 3 ] );
 	}
@@ -443,7 +420,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$max = mt_getrandmax();
 		if ( mt_rand( 0, $max ) < $max * $this->watchlistPurgeRate ) {
 			// The higher the watchlist purge rate, the more likely we are to enqueue a job.
-			$this->queueGroup->push( new WatchlistExpiryJob() );
+			$this->queueGroup->lazyPush( new WatchlistExpiryJob() );
 		}
 	}
 
@@ -1319,12 +1296,12 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		$seenTimestamps = $this->getPageSeenTimestamps( $user );
-		if (
-			$seenTimestamps &&
-			$seenTimestamps->get( $this->getPageSeenKey( $target ) ) >= $timestamp
-		) {
-			// If a reset job did not yet run, then the "seen" timestamp will be higher
-			return null;
+		if ( $seenTimestamps ) {
+			$seenKey = $this->getPageSeenKey( $target );
+			if ( isset( $seenTimestamps[$seenKey] ) && $seenTimestamps[$seenKey] >= $timestamp ) {
+				// If a reset job did not yet run, then the "seen" timestamp will be higher
+				return null;
+			}
 		}
 
 		return $timestamp;
@@ -1451,29 +1428,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			return false;
 		}
 
-		// Hook expects User and Title, not UserIdentity and LinkTarget|PageIdentity
-		$userObj = $this->userFactory->newFromUserIdentity( $user );
-		if ( $title instanceof LinkTarget ) {
-			$titleObj = $this->titleFactory->castFromLinkTarget( $title );
-		} else {
-			// instanceof PageIdentity
-			$titleObj = $this->titleFactory->castFromPageIdentity( $title );
-		}
-		if ( !$this->hookRunner->onBeforeResetNotificationTimestamp(
-			$userObj, $titleObj, $force, $oldid )
-		) {
-			return false;
-		}
-		if ( !$userObj->equals( $user ) ) {
-			$user = $userObj;
-		}
-		if ( !$titleObj->equals( $title ) ) {
-			$title = $titleObj;
-		}
-
 		$item = null;
 		if ( $force != 'force' ) {
-			$item = $this->loadWatchedItem( $user, $title );
+			$item = $this->getWatchedItem( $user, $title );
 			if ( !$item || $item->getNotificationTimestamp() === null ) {
 				return false;
 			}
@@ -1498,29 +1455,40 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->stash->merge(
 			$this->getPageSeenTimestampsKey( $user ),
 			function ( $cache, $key, $current ) use ( $title, $seenTime ) {
-				$value = $current ?: new MapCacheLRU( 300 );
+				if ( !$current ) {
+					$value = new MapCacheLRU( 300 );
+				} elseif ( is_array( $current ) ) {
+					$value = MapCacheLRU::newFromArray( $current, 300 );
+				} else {
+					// Backwards compatibility for T282105
+					$value = $current;
+				}
 				$subKey = $this->getPageSeenKey( $title );
 
 				if ( $seenTime > $value->get( $subKey ) ) {
 					// Revision is newer than the last one seen
 					$value->set( $subKey, $seenTime );
-					$this->latestUpdateCache->set( $key, $value, BagOStuff::TTL_PROC_LONG );
+
+					$this->latestUpdateCache->set( $key, $value->toArray(), BagOStuff::TTL_PROC_LONG );
 				} elseif ( $seenTime === false ) {
 					// Revision does not exist
 					$value->set( $subKey, wfTimestamp( TS_MW ) );
-					$this->latestUpdateCache->set( $key, $value, BagOStuff::TTL_PROC_LONG );
+					$this->latestUpdateCache->set( $key,
+						$value->toArray(),
+						BagOStuff::TTL_PROC_LONG );
 				} else {
 					return false; // nothing to update
 				}
 
-				return $value;
+				return $value->toArray();
 			},
 			BagOStuff::TTL_HOUR
 		);
 
 		// If the page is watched by the user (or may be watched), update the timestamp
+		// ActivityUpdateJob accepts both LinkTarget and PageReference
 		$job = new ActivityUpdateJob(
-			$titleObj,
+			$title,
 			[
 				'type'      => 'updateWatchlistNotification',
 				'userid'    => $user->getId(),
@@ -1538,18 +1506,23 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @param UserIdentity $user
-	 * @return MapCacheLRU|null The map contains prefixed title keys and TS_MW values
+	 * @return array|null The map contains prefixed title keys and TS_MW values
 	 */
 	private function getPageSeenTimestamps( UserIdentity $user ) {
 		$key = $this->getPageSeenTimestampsKey( $user );
 
-		return $this->latestUpdateCache->getWithSetCallback(
+		$cache = $this->latestUpdateCache->getWithSetCallback(
 			$key,
 			BagOStuff::TTL_PROC_LONG,
 			function () use ( $key ) {
 				return $this->stash->get( $key ) ?: null;
 			}
 		);
+		// Backwards compatibility for T282105
+		if ( $cache instanceof MapCacheLRU ) {
+			$cache = $cache->toArray();
+		}
+		return $cache;
 	}
 
 	/**

@@ -18,7 +18,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$filename = $this->makeTemp( __FUNCTION__ );
 		unlink( $filename );
 
-		$this->assertFileNotExists( $filename, 'sanity check' );
+		$this->assertFileNotExists( $filename, 'Non existence check' );
 		$this->expectException( RuntimeException::class );
 		$this->expectExceptionMessage( "Failed to open file:" );
 		$stream = new UploadedFileStream( $filename );
@@ -41,7 +41,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$filename = $this->makeTemp( __FUNCTION__ );
 		$stream = new UploadedFileStream( $filename );
 		$fp = TestingAccessWrapper::newFromObject( $stream )->fp;
-		$this->assertSame( 'f', fread( $fp, 1 ), 'sanity check' );
+		$this->assertSame( 'f', fread( $fp, 1 ), 'read check' );
 		unset( $stream );
 		try {
 			// PHP 7 raises warnings
@@ -131,7 +131,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		// Cached
 		file_put_contents( $filename, 'baz' );
 		clearstatcache();
-		$this->assertSame( 3, stat( $filename )['size'], 'sanity check' );
+		$this->assertSame( 3, stat( $filename )['size'], 'size check' );
 		$this->assertSame( 9, $stream->getSize() );
 
 		// No error if closed

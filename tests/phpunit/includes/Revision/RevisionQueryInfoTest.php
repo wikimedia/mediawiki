@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Revision;
 
-use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -382,7 +381,7 @@ class RevisionQueryInfoTest extends MediaWikiIntegrationTestCase {
 	public function testRevisionStoreGetQueryInfo( $migrationStageSettings, $options, $expected ) {
 		$this->setMwGlobals( $migrationStageSettings );
 
-		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$store = $this->getServiceContainer()->getRevisionStore();
 
 		$queryInfo = $store->getQueryInfo( $options );
 		$this->assertQueryInfoEquals( $expected, $queryInfo );
@@ -399,7 +398,7 @@ class RevisionQueryInfoTest extends MediaWikiIntegrationTestCase {
 	) {
 		$this->setMwGlobals( $migrationStageSettings );
 
-		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$store = $this->getServiceContainer()->getRevisionStore();
 
 		$queryInfo = $store->getSlotsQueryInfo( $options );
 		$this->assertQueryInfoEquals( $expected, $queryInfo );
@@ -412,7 +411,7 @@ class RevisionQueryInfoTest extends MediaWikiIntegrationTestCase {
 	public function testRevisionStoreGetArchiveQueryInfo( $migrationStageSettings, $expected ) {
 		$this->setMwGlobals( $migrationStageSettings );
 
-		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$store = $this->getServiceContainer()->getRevisionStore();
 
 		$queryInfo = $store->getArchiveQueryInfo();
 		$this->assertQueryInfoEquals( $expected, $queryInfo );

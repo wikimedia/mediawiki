@@ -45,6 +45,7 @@ abstract class MWLBFactory {
 	 * @internal For use by ServiceWiring
 	 */
 	public const APPLY_DEFAULT_CONFIG_OPTIONS = [
+		'CommandLineMode',
 		'DBcompress',
 		'DBDefaultGroup',
 		'DBmwschema',
@@ -87,8 +88,6 @@ abstract class MWLBFactory {
 	) {
 		$options->assertRequiredOptions( self::APPLY_DEFAULT_CONFIG_OPTIONS );
 
-		global $wgCommandLineMode;
-
 		$typesWithSchema = self::getDbTypesWithSchemas();
 
 		$lbConf += [
@@ -107,7 +106,7 @@ abstract class MWLBFactory {
 			'perfLogger' => LoggerFactory::getInstance( 'DBPerformance' ),
 			'errorLogger' => [ MWExceptionHandler::class, 'logException' ],
 			'deprecationLogger' => [ static::class, 'logDeprecation' ],
-			'cliMode' => $wgCommandLineMode,
+			'cliMode' => $options->get( 'CommandLineMode' ),
 			'readOnlyReason' => $readOnlyMode->getReason(),
 			'defaultGroup' => $options->get( 'DBDefaultGroup' ),
 			'criticalSectionProvider' => $csProvider
@@ -397,24 +396,6 @@ abstract class MWLBFactory {
 		] );
 
 		if ( $config->get( 'CommandLineMode' ) ) {
-
-			// Add a comment for easy SHOW PROCESSLIST interpretation
-			// TODO: For web requests this is still handled eagerly in MediaWiki.php.
-			if ( function_exists( 'posix_getpwuid' ) ) {
-				$uid = posix_geteuid();
-
-				// NOTE: posix_getpwuid will return false if the current user has no name,
-				//       which is common when running inside a Docker container.
-				$pwuid = posix_getpwuid( $uid );
-				$agent = $pwuid['name'] ?? "uid:$uid";
-			} else {
-				$agent = 'sysadmin';
-			}
-			$agent .= '@' . wfHostname();
-			$lbFactory->setAgentName(
-				mb_strlen( $agent ) > 15 ? mb_substr( $agent, 0, 15 ) . '...' : $agent
-			);
-
 			// Disable buffering and delaying of DeferredUpdates and stats
 			// for maintenance scripts and PHPUnit tests.
 			// Hook into period lag checks which often happen in long-running scripts
@@ -422,7 +403,7 @@ abstract class MWLBFactory {
 				__METHOD__,
 				static function () use ( $stats, $config ) {
 					DeferredUpdates::tryOpportunisticExecute( 'run' );
-					// Try to periodically flush buffered metrics to avoid OOMs
+					// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
 					MediaWiki::emitBufferedStatsdData( $stats, $config );
 				}
 			);
@@ -434,7 +415,7 @@ abstract class MWLBFactory {
 					if ( $trigger === IDatabase::TRIGGER_COMMIT ) {
 						DeferredUpdates::tryOpportunisticExecute( 'run' );
 					}
-					// Try to periodically flush buffered metrics to avoid OOMs
+					// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
 					MediaWiki::emitBufferedStatsdData( $stats, $config );
 				}
 			);

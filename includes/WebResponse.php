@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Http\SetCookieCompat;
 
 /**
@@ -139,21 +140,25 @@ class WebResponse {
 	 * @since 1.22 Replaced $prefix, $domain, and $forceSecure with $options
 	 */
 	public function setCookie( $name, $value, $expire = 0, $options = [] ) {
-		global $wgCookiePath, $wgCookiePrefix, $wgCookieDomain;
-		global $wgCookieSecure, $wgCookieExpiration, $wgCookieHttpOnly;
-		global $wgUseSameSiteLegacyCookies;
-
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$cookiePath = $mainConfig->get( 'CookiePath' );
+		$cookiePrefix = $mainConfig->get( 'CookiePrefix' );
+		$cookieDomain = $mainConfig->get( 'CookieDomain' );
+		$cookieSecure = $mainConfig->get( 'CookieSecure' );
+		$cookieExpiration = $mainConfig->get( 'CookieExpiration' );
+		$cookieHttpOnly = $mainConfig->get( 'CookieHttpOnly' );
+		$useSameSiteLegacyCookies = $mainConfig->get( 'UseSameSiteLegacyCookies' );
 		$options = array_filter( $options, static function ( $a ) {
 			return $a !== null;
 		} ) + [
-			'prefix' => $wgCookiePrefix,
-			'domain' => $wgCookieDomain,
-			'path' => $wgCookiePath,
-			'secure' => $wgCookieSecure,
-			'httpOnly' => $wgCookieHttpOnly,
+			'prefix' => $cookiePrefix,
+			'domain' => $cookieDomain,
+			'path' => $cookiePath,
+			'secure' => $cookieSecure,
+			'httpOnly' => $cookieHttpOnly,
 			'raw' => false,
 			'sameSite' => '',
-			'sameSiteLegacy' => $wgUseSameSiteLegacyCookies
+			'sameSiteLegacy' => $useSameSiteLegacyCookies
 		];
 
 		if ( strcasecmp( $options['sameSite'], 'none' ) === 0
@@ -167,8 +172,8 @@ class WebResponse {
 
 		if ( $expire === null ) {
 			$expire = 0; // Session cookie
-		} elseif ( $expire == 0 && $wgCookieExpiration != 0 ) {
-			$expire = time() + $wgCookieExpiration;
+		} elseif ( $expire == 0 && $cookieExpiration != 0 ) {
+			$expire = time() + $cookieExpiration;
 		}
 
 		if ( self::$disableForPostSend ) {

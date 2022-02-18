@@ -4,7 +4,6 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
@@ -39,7 +38,7 @@ class ApiBlockTest extends ApiTestCase {
 	 * @return array result of doApiRequest
 	 */
 	private function doBlock( array $extraParams = [], User $blocker = null ) {
-		$this->assertNotNull( $this->mUser, 'Sanity check' );
+		$this->assertNotNull( $this->mUser );
 
 		$params = [
 			'action' => 'block',
@@ -93,7 +92,7 @@ class ApiBlockTest extends ApiTestCase {
 			'timestamp' => '19370101000000',
 			'expiry' => 'infinity',
 		] );
-		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$this->doBlock( [], $blocked );
 	}
@@ -112,7 +111,7 @@ class ApiBlockTest extends ApiTestCase {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( "There is no user with ID $id." );
 
-		$this->assertFalse( User::whoIs( $id ), 'Sanity check' );
+		$this->assertFalse( User::whoIs( $id ) );
 
 		$this->doBlock( [ 'userid' => $id ] );
 	}
@@ -282,7 +281,7 @@ class ApiBlockTest extends ApiTestCase {
 			'wgEnablePartialActionBlocks' => true,
 		] );
 
-		$blockActionInfo = MediaWikiServices::getInstance()->getBlockActionInfo();
+		$blockActionInfo = $this->getServiceContainer()->getBlockActionInfo();
 		$action = 'upload';
 
 		$this->doBlock( [

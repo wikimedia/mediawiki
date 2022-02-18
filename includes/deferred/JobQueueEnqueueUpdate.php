@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\JobQueue\JobQueueGroupFactory;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -29,34 +31,43 @@ use Wikimedia\Assert\Assert;
  * @since 1.33
  */
 class JobQueueEnqueueUpdate implements DeferrableUpdate, MergeableUpdate {
-	/** @var array[] Map of (domain ID => IJobSpecification[]) */
+	/** @var IJobSpecification[][] */
 	private $jobsByDomain;
+
+	/** @var JobQueueGroupFactory */
+	private $jobQueueGroupFactory;
 
 	/**
 	 * @param string $domain DB domain ID
 	 * @param IJobSpecification[] $jobs
 	 */
-	public function __construct( $domain, array $jobs ) {
+	public function __construct( string $domain, array $jobs ) {
 		$this->jobsByDomain[$domain] = $jobs;
+		// TODO Inject services, when DeferredUpdates supports DI
+		$this->jobQueueGroupFactory = MediaWikiServices::getInstance()->getJobQueueGroupFactory();
 	}
 
+	/** @inheritDoc */
 	public function merge( MergeableUpdate $update ) {
 		/** @var self $update */
 		Assert::parameterType( __CLASS__, $update, '$update' );
 		'@phan-var self $update';
 
 		foreach ( $update->jobsByDomain as $domain => $jobs ) {
-			$this->jobsByDomain[$domain] = $this->jobsByDomain[$domain] ?? [];
-			$this->jobsByDomain[$domain] = array_merge( $this->jobsByDomain[$domain], $jobs );
+			$this->jobsByDomain[$domain] = array_merge(
+				$this->jobsByDomain[$domain] ?? [],
+				$jobs
+			);
 		}
 	}
 
+	/** @inheritDoc */
 	public function doUpdate() {
 		foreach ( $this->jobsByDomain as $domain => $jobs ) {
-			$group = JobQueueGroup::singleton( $domain );
+			$group = $this->jobQueueGroupFactory->makeJobQueueGroup( $domain );
 			try {
 				$group->push( $jobs );
-			} catch ( Exception $e ) {
+			} catch ( Throwable $e ) {
 				// Get in as many jobs as possible and let other post-send updates happen
 				MWExceptionHandler::logException( $e );
 			}

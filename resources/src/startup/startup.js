@@ -11,9 +11,8 @@
  *
  * Capabilities required for modern run-time:
  * - ECMAScript 5
- * - DOM Level 4 & Selectors API Level 1
- * - HTML5 & Web Storage
- * - DOM Level 2 Events
+ * - DOM Level 4 (including Selectors API)
+ * - HTML5 (including Web Storage API)
  *
  * Browsers we support in our modern run-time (Grade A):
  * - Chrome 13+
@@ -52,10 +51,9 @@ function isCompatible( ua ) {
 	return !!(
 		// https://caniuse.com/#feat=es5
 		// https://caniuse.com/#feat=use-strict
-		// https://caniuse.com/#feat=json / https://phabricator.wikimedia.org/T141344#2784065
 		( function () {
 			'use strict';
-			return !this && Function.prototype.bind && window.JSON;
+			return !this && Function.prototype.bind;
 		}() ) &&
 
 		// https://caniuse.com/#feat=queryselector
@@ -66,14 +64,53 @@ function isCompatible( ua ) {
 		// https://blog.whatwg.org/this-week-in-html-5-episode-30
 		'localStorage' in window &&
 
-		// https://caniuse.com/#feat=addeventlistener
-		'addEventListener' in window &&
-
-		// Hardcoded exceptions for browsers that pass the requirement but we don't
-		// want to support in the modern run-time.
+		// Force certain browsers into Basic mode, even if they pass the check.
 		//
-		// Please extend the regex instead of adding new ones!
-		// And add a test case to startup.test.js
+		// Some of the below are "remote browsers", where the webpage is actually
+		// rendered remotely in a capable browser (cloud service) by the vendor,
+		// with the client app receiving a graphical representation through a
+		// format that is not HTML/CSS. These get a better user experience if
+		// we turn JavaScript off, to avoid triggering JavaScript calls, which
+		// either don't work or require a roundtrip to the server with added
+		// latency. Note that remote browsers are sometimes referred to as
+		// "proxy browsers", but that term is also conflated with browsers
+		// that accelerate or compress web pages through a "proxy", where
+		// client-side JS would generally be okay.
+		//
+		// Remember:
+		//
+		// - Add new entries on top, and document why and since when.
+		// - Please extend the regex instead of adding new ones, for performance.
+		// - Add a test case to startup.test.js.
+		//
+		// Forced into Basic mode:
+		//
+		// - MSIE 10: Bugs (since 2018, T187869).
+		//   Low traffic. Reduce support cost by no longer having to workaround
+		//   bugs in its JavaScript APIs.
+		//
+		// - UC Mini "Speed Mode": Improve UX, save data (since 2016, T147369).
+		//   Does not have an obvious user agent, other than ending with an
+		//   incomplete `Gecko/` token.
+		//
+		// - Google Web Light: Bugs, save data (since 2016, T152602).
+		//   Proxy breaks most JavaScript.
+		//
+		// - MeeGo: Bugs (since 2015, T97546).
+		//
+		// - Opera Mini: Improve UX, save data. (since 2013, T49572).
+		//   It is a remote browser.
+		//
+		// - Ovi Browser: Improve UX, save data (since 2013, T57600).
+		//   It is a remote browser. UA contains "S40OviBrowser".
+		//
+		// - Google Glass: Improve UX (since 2013, T58008).
+		//   Run modern browser engine, but limited UI is better served when
+		//   content is expand by default, requiring little interaction.
+		//
+		// - NetFront: Unsupported by jQuery (since 2013, commit c46fc74).
+		// - PlayStation: Unsupported by jQuery (since 2013, commit c46fc74).
+		//
 		!ua.match( /MSIE 10|NetFront|Opera Mini|S40OviBrowser|MeeGo|Android.+Glass|^Mozilla\/5\.0 .+ Gecko\/$|googleweblight|PLAYSTATION|PlayStation/ )
 	);
 }

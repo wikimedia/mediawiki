@@ -3,6 +3,7 @@
 namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
+use stdClass;
 
 /**
  * Helper class used for automatically marking an IDatabase connection as reusable (once it no
@@ -92,11 +93,6 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function getTopologyRootMaster() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function trxLevel() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
@@ -106,10 +102,6 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function explicitTrxActive() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function assertNoOpenTransactions() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -165,10 +157,6 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function preCommitCallbacksPending() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function writesOrCallbacksPending() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
@@ -178,10 +166,6 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function pendingWriteCallers() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function pendingWriteRowsAffected() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -236,31 +220,37 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/**
+	 * @deprecated since 1.37 use IResultWrapper::fetchObject()
+	 * @param IResultWrapper $res
+	 * @return stdClass|bool
+	 */
 	public function fetchObject( $res ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/**
+	 * @deprecated since 1.37 use IResultWrapper::fetchRow()
+	 * @param IResultWrapper $res
+	 * @return array|bool
+	 */
 	public function fetchRow( $res ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	/**
+	 * @deprecated since 1.37 use IResultWrapper::numRows()
+	 * @param IResultWrapper|bool $res A SQL result
+	 * @return int
+	 */
 	public function numRows( $res ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function numFields( $res ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function fieldName( $res, $n ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
 	public function insertId() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function dataSeek( $res, $row ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -297,11 +287,16 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, [ $sql, $fname, $flags ] );
 	}
 
+	/**
+	 * @deprecated since 1.37 Use IResultWrapper::free()
+	 * @param IResultWrapper $res A SQL result
+	 */
 	public function freeResult( $res ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function newSelectQueryBuilder() {
+	public function newSelectQueryBuilder(): SelectQueryBuilder {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -394,7 +389,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function aggregateValue( $valuedata, $valuename = 'value' ) {
+	public function factorConds( $condsArray ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -567,10 +562,6 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function getServerUptime() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function wasDeadlock() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
@@ -595,22 +586,12 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function masterPosWait( DBPrimaryPos $pos, $timeout ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function getReplicaPos() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
 	public function getPrimaryPos() {
 		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function getMasterPos() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->getPrimaryPos();
 	}
 
 	public function serverIsReadOnly() {
@@ -625,10 +606,6 @@ class DBConnRef implements IDatabase {
 	public function onTransactionCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
 		// DB_REPLICA role: caller might want to refresh cache after a REPEATABLE-READ snapshot
 		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function onTransactionIdle( callable $callback, $fname = __METHOD__ ) {
-		return $this->onTransactionCommitOrIdle( $callback, $fname );
 	}
 
 	public function onTransactionPreCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
@@ -703,10 +680,6 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function getSessionLagStatus() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function maxListLen() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

@@ -21,8 +21,10 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\UserGroupMembershipParam;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * The Message class deals with fetching and processing of interface message
@@ -169,7 +171,7 @@ class Message implements MessageSpecifier, Serializable {
 	/**
 	 * In which language to get this message. Overrides the $interface setting.
 	 *
-	 * @var Language|bool Explicit language object, or false for user language
+	 * @var Language|false Explicit language object, or false for user language
 	 */
 	protected $language = false;
 
@@ -200,12 +202,12 @@ class Message implements MessageSpecifier, Serializable {
 	protected $contextPage = null;
 
 	/**
-	 * @var Content Content object representing the message.
+	 * @var Content|null Content object representing the message.
 	 */
 	protected $content = null;
 
 	/**
-	 * @var string
+	 * @var string|null|false
 	 */
 	protected $message;
 
@@ -230,17 +232,18 @@ class Message implements MessageSpecifier, Serializable {
 			$key = $key->getKey();
 		}
 
-		if ( !is_string( $key ) && !is_array( $key ) ) {
+		if ( is_string( $key ) ) {
+			$this->keysToTry = [ $key ];
+			$this->key = $key;
+		} elseif ( is_array( $key ) ) {
+			if ( !$key ) {
+				throw new InvalidArgumentException( '$key must not be an empty list' );
+			}
+			$this->keysToTry = $key;
+			$this->key = reset( $this->keysToTry );
+		} else {
 			throw new InvalidArgumentException( '$key must be a string or an array' );
 		}
-
-		$this->keysToTry = (array)$key;
-
-		if ( empty( $this->keysToTry ) ) {
-			throw new InvalidArgumentException( '$key must not be an empty list' );
-		}
-
-		$this->key = reset( $this->keysToTry );
 
 		$this->parameters = array_values( $params );
 		// User language is only resolved in getLanguage(). This helps preserve the
@@ -254,7 +257,16 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string
 	 */
 	public function serialize() {
-		return serialize( [
+		return serialize( $this->__serialize() );
+	}
+
+	/**
+	 * @see Serializable::serialize()
+	 * @since 1.38
+	 * @return array
+	 */
+	public function __serialize() {
+		return [
 			'interface' => $this->interface,
 			'language' => $this->language ? $this->language->getCode() : false,
 			'key' => $this->key,
@@ -268,20 +280,27 @@ class Message implements MessageSpecifier, Serializable {
 				? [ 0 => $this->contextPage->getNamespace(), 1 => $this->contextPage->getDBkey() ]
 				: null
 			),
-		] );
+		];
+	}
+
+	/**
+	 * @see Serializable::unserialize()
+	 * @since 1.38
+	 * @param string $serialized
+	 */
+	public function unserialize( $serialized ) {
+		$this->__unserialize( unserialize( $serialized ) );
 	}
 
 	/**
 	 * @see Serializable::unserialize()
 	 * @since 1.26
-	 * @param string $serialized
+	 * @param array $data
 	 */
-	public function unserialize( $serialized ) {
-		$data = unserialize( $serialized );
+	public function __unserialize( $data ) {
 		if ( !is_array( $data ) ) {
 			throw new InvalidArgumentException( __METHOD__ . ': Invalid serialized data' );
 		}
-
 		$this->interface = $data['interface'];
 		$this->key = $data['key'];
 		$this->keysToTry = $data['keysToTry'];
@@ -303,7 +322,7 @@ class Message implements MessageSpecifier, Serializable {
 			// TODO: figure out what's needed to remove this codepath
 			$this->contextPage = Title::newFromText( $data['titlestr'] );
 		} else {
-			$this->contextPage = null; // Explicit for sanity
+			$this->contextPage = null;
 		}
 	}
 
@@ -419,7 +438,7 @@ class Message implements MessageSpecifier, Serializable {
 	/**
 	 * Factory function accepting multiple message keys and returning a message instance
 	 * for the first message which is non-empty. If all messages are empty then an
-	 * instance of the first message key is returned.
+	 * instance of the last message key is returned.
 	 *
 	 * @since 1.18
 	 *
@@ -453,14 +472,14 @@ class Message implements MessageSpecifier, Serializable {
 	 * @since 1.26
 	 */
 	public function getTitle() {
-		global $wgForceUIMsgAsContentMsg;
+		$forceUIMsgAsContentMsg = MediaWikiServices::getInstance()->getMainConfig()->get( 'ForceUIMsgAsContentMsg' );
 
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$lang = $this->getLanguage();
 		$title = $this->key;
 		if (
 			!$lang->equals( $contLang )
-			&& in_array( $this->key, (array)$wgForceUIMsgAsContentMsg )
+			&& in_array( $this->key, (array)$forceUIMsgAsContentMsg )
 		) {
 			$title .= '/' . $lang->getCode();
 		}
@@ -625,6 +644,46 @@ class Message implements MessageSpecifier, Serializable {
 		}
 		foreach ( $params as $param ) {
 			$this->parameters[] = self::dateParam( $param );
+		}
+		return $this;
+	}
+
+	/**
+	 * Add parameters that represent user groups
+	 *
+	 * @since 1.38
+	 *
+	 * @param string|string[] ...$params User Group parameters, or a single argument that is
+	 * an array of user group parameters.
+	 *
+	 * @return Message $this
+	 */
+	public function userGroupParams( ...$params ) {
+		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
+			$params = $params[0];
+		}
+		foreach ( $params as $param ) {
+			$this->parameters[] = self::userGroupParam( $param );
+		}
+		return $this;
+	}
+
+	/**
+	 * Add parameters that represent stringable objects
+	 *
+	 * @since 1.38
+	 *
+	 * @param Stringable|Stringable[] ...$params stringable parameters,
+	 * or a single argument that is an array of stringable parameters.
+	 *
+	 * @return Message $this
+	 */
+	public function objectParams( ...$params ) {
+		if ( isset( $params[0] ) && is_array( $params[0] ) ) {
+			$params = $params[0];
+		}
+		foreach ( $params as $param ) {
+			$this->parameters[] = self::objectParam( $param );
 		}
 		return $this;
 	}
@@ -801,8 +860,8 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return Message $this
 	 */
 	public function inContentLanguage() {
-		global $wgForceUIMsgAsContentMsg;
-		if ( in_array( $this->key, (array)$wgForceUIMsgAsContentMsg ) ) {
+		$forceUIMsgAsContentMsg = MediaWikiServices::getInstance()->getMainConfig()->get( 'ForceUIMsgAsContentMsg' );
+		if ( in_array( $this->key, (array)$forceUIMsgAsContentMsg ) ) {
 			return $this;
 		}
 
@@ -870,10 +929,11 @@ class Message implements MessageSpecifier, Serializable {
 
 	/**
 	 * Returns the message as a Content object.
-	 *
+	 * @deprecated since 1.38, MessageContent class is hard-deprecated.
 	 * @return Content
 	 */
 	public function content() {
+		wfDeprecated( __METHOD__, '1.38' );
 		if ( !$this->content ) {
 			$this->content = new MessageContent( $this );
 		}
@@ -913,6 +973,11 @@ class Message implements MessageSpecifier, Serializable {
 			return '⧼' . htmlspecialchars( $this->key ) . '⧽';
 		}
 
+		# Replace $/ with a list of alternative message keys for &uselang=qqx.
+		if ( strpos( $string, '$/' ) !== false ) {
+			$keylist = implode( ' / ', $this->keysToTry );
+			$string = str_replace( '$/', $keylist, $string );
+		}
 		# Replace $* with a list of parameters for &uselang=qqx.
 		if ( strpos( $string, '$*' ) !== false ) {
 			$paramlist = '';
@@ -954,20 +1019,26 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string
 	 */
 	public function __toString() {
-		// PHP doesn't allow __toString to throw exceptions and will
+		// PHP before 7.4.0 doesn't allow __toString to throw exceptions and will
 		// trigger a fatal error if it does. So, catch any exceptions.
-
-		try {
-			return $this->format( self::FORMAT_PARSE );
-		} catch ( Exception $ex ) {
+		if ( version_compare( PHP_VERSION, '7.4.0', '<' ) ) {
 			try {
-				trigger_error( "Exception caught in " . __METHOD__ . " (message " . $this->key . "): "
-					. $ex, E_USER_WARNING );
+				return $this->format( self::FORMAT_PARSE );
+			} catch ( TimeoutException $e ) {
+				// Fatal is OK in this case
+				throw $e;
 			} catch ( Exception $ex ) {
-				// Doh! Cause a fatal error after all?
-			}
+				try {
+					trigger_error( "Exception caught in " . __METHOD__ . " (message " . $this->key . "): "
+						. $ex, E_USER_WARNING );
+				} catch ( Exception $ex ) {
+					// Doh! Cause a fatal error after all?
+				}
 
-			return '⧼' . htmlspecialchars( $this->key ) . '⧽';
+				return '⧼' . htmlspecialchars( $this->key ) . '⧽';
+			}
+		} else {
+			return $this->format( self::FORMAT_PARSE );
 		}
 	}
 
@@ -1142,6 +1213,28 @@ class Message implements MessageSpecifier, Serializable {
 	}
 
 	/**
+	 * @since 1.38
+	 *
+	 * @param string $userGroup
+	 *
+	 * @return string[] Array with a single "group" key.
+	 */
+	public static function userGroupParam( string $userGroup ) {
+		return [ 'group' => $userGroup ];
+	}
+
+	/**
+	 * @since 1.38
+	 *
+	 * @param Stringable $object
+	 *
+	 * @return Stringable[] Array with a single "object" key.
+	 */
+	public static function objectParam( Stringable $object ) {
+		return [ 'object' => $object ];
+	}
+
+	/**
 	 * @since 1.22
 	 *
 	 * @param int $period
@@ -1216,7 +1309,7 @@ class Message implements MessageSpecifier, Serializable {
 		// A temporary marker for $1 parameters that is only valid
 		// in non-attribute contexts. However if the entire message is escaped
 		// then we don't want to use it because it will be mangled in all contexts
-		// and its unnessary as ->escaped() messages aren't html.
+		// and its unnecessary as ->escaped() messages aren't html.
 		$marker = $format === self::FORMAT_ESCAPED ? '$' : '$\'"';
 		$replacementKeys = [];
 		foreach ( $this->parameters as $n => $param ) {
@@ -1267,6 +1360,8 @@ class Message implements MessageSpecifier, Serializable {
 				return [ 'before', $this->getLanguage()->date( $param['date'] ) ];
 			} elseif ( isset( $param['time'] ) ) {
 				return [ 'before', $this->getLanguage()->time( $param['time'] ) ];
+			} elseif ( isset( $param['group'] ) ) {
+				return [ 'before', $this->getLanguage()->getGroupName( $param['group'] ) ];
 			} elseif ( isset( $param['period'] ) ) {
 				return [ 'before', $this->getLanguage()->formatTimePeriod( $param['period'] ) ];
 			} elseif ( isset( $param['size'] ) ) {
@@ -1277,6 +1372,16 @@ class Message implements MessageSpecifier, Serializable {
 				return [ 'after', $this->formatPlaintext( $param['plaintext'], $format ) ];
 			} elseif ( isset( $param['list'] ) ) {
 				return $this->formatListParam( $param['list'], $param['type'], $format );
+			} elseif ( isset( $param['object'] ) ) {
+				$obj = $param['object'];
+				if ( $obj instanceof UserGroupMembershipParam ) {
+					return [
+						'before',
+						$this->getLanguage()->getGroupMemberName( $obj->getGroup(), $obj->getMember() )
+					];
+				} else {
+					return [ 'before', $obj->__toString() ];
+				}
 			} else {
 				LoggerFactory::getInstance( 'Bug58676' )->warning(
 					'Invalid parameter for message "{msgkey}": {param}',
@@ -1368,7 +1473,7 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @since 1.17
 	 *
-	 * @return string
+	 * @return string|false
 	 * @throws MWException If message key array is empty.
 	 */
 	protected function fetchMessage() {

@@ -8,10 +8,8 @@ use Content;
 use ContentHandler;
 use DeferredUpdates;
 use DummyContentHandlerForTesting;
-use JobQueueGroup;
-use LinksUpdate;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RevisionRecord;
@@ -145,7 +143,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater->prepareContent( $user, $update, false );
 
 		$options1 = $updater->getCanonicalParserOptions();
-		$this->assertSame( MediaWikiServices::getInstance()->getContentLanguage(),
+		$this->assertSame( $this->getServiceContainer()->getContentLanguage(),
 			$options1->getUserLangObj() );
 
 		$speculativeId = $options1->getSpeculativeRevId();
@@ -204,7 +202,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::getCanonicalParserOutput()
 	 */
 	public function testPrepareContent() {
-		$slotRoleRegistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
+		$slotRoleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
 		if ( !$slotRoleRegistry->isDefinedRole( 'aux' ) ) {
 			$slotRoleRegistry->defineRoleWithModel(
 				'aux',
@@ -322,7 +320,21 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( '(' . $userName . ')', $html, '{{REVISIONUSER}}' );
 		$this->assertStringContainsString( '>' . $userName . '<', $html, 'signature ~~~' );
 
-		// TODO: MCR: test inheritance from parent
+		// prepare forced dummy revision
+		$emptyUpdate = new RevisionSlotsUpdate();
+		$updater1 = $this->getDerivedPageDataUpdater( $page );
+		$updater1->setForceEmptyRevision( true );
+		$updater1->prepareContent( $sysop, $emptyUpdate, false );
+
+		// dummy revision inherits slots, but not revision ID
+		$mainSlot0 = $rev->getSlot( SlotRecord::MAIN );
+		$dummyRev = $updater1->getRevision();
+		$dummySlot = $dummyRev->getSlot( SlotRecord::MAIN );
+		$this->assertSame( $mainSlot0->getAddress(), $dummySlot->getAddress() );
+		$this->assertNull( $dummyRev->getId() );
+		$this->assertSame( $rev->getId(), $dummyRev->getParentId() );
+
+		// prepare non-null
 		$update = new RevisionSlotsUpdate();
 		$update->modifyContent( SlotRecord::MAIN, $mainContent2 );
 		$updater2 = $this->getDerivedPageDataUpdater( $page );
@@ -574,7 +586,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			],
 		] );
 
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'ContentHandlerFactory' );
+		$this->getServiceContainer()->resetServiceForTesting( 'ContentHandlerFactory' );
 		$user = $this->getTestUser()->getUser();
 		$page = $this->getPage( __METHOD__ );
 		$this->createRevision( $page, __METHOD__ );
@@ -582,7 +594,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$contentHandler = new DummyContentHandlerForTesting( 'testing' );
 		$mainContent1 = $contentHandler->unserializeContent( serialize( 'first' ) );
 		$update = new RevisionSlotsUpdate();
-		$pcache = MediaWikiServices::getInstance()->getParserCache();
+		$pcache = $this->getServiceContainer()->getParserCache();
 		$pcache->deleteOptionsKey( $page );
 		$rev = $this->createRevision( $page, 'first', $mainContent1 );
 
@@ -620,7 +632,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		// Test that nothing happens if the page was deleted in the meantime
 		// This can happen when started by the job queue
-		$page->doDeleteArticleReal( 'Test', $user );
+		$this->deletePage( $page );
 
 		$dataUpdates = $updater->getSecondaryDataUpdates();
 
@@ -691,7 +703,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$m2 = $this->defineMockContentModelForUpdateTesting( 'M2' );
 
 		$role = 'dpdu-test-a1';
-		$slotRoleRegistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
+		$slotRoleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
 		$slotRoleRegistry->defineRoleWithModel(
 			$role,
 			$a1->getModelID()
@@ -1029,7 +1041,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$content['aux'] = new WikitextContent( 'Aux [[Nix]]' );
 
-		$slotRoleRegistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
+		$slotRoleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
 		if ( !$slotRoleRegistry->isDefinedRole( 'aux' ) ) {
 			$slotRoleRegistry->defineRoleWithModel(
 				'aux',
@@ -1043,7 +1055,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$oldStats = $this->db->selectRow( 'site_stats', '*', '1=1' );
 		$this->db->delete( 'pagelinks', '*' );
 
-		$pcache = MediaWikiServices::getInstance()->getParserCache();
+		$pcache = $this->getServiceContainer()->getParserCache();
 		$pcache->deleteOptionsKey( $page );
 
 		$updater = $this->getDerivedPageDataUpdater( $page, $rev );
@@ -1104,7 +1116,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		// Case where user has canonical parser options
 		$content = [ 'main' => new WikitextContent( 'rev ID ver #1: {{REVISIONID}}' ) ];
 		$rev = $this->createRevision( $page, 'first', $content );
-		$pcache = MediaWikiServices::getInstance()->getParserCache();
+		$pcache = $this->getServiceContainer()->getParserCache();
 		$pcache->deleteOptionsKey( $page );
 
 		$this->db->startAtomic( __METHOD__ ); // let deferred updates queue up
@@ -1131,13 +1143,15 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		// Case where user does not have canonical parser options
 		$user = $this->getMutableTestUser()->getUser();
-		$user->setOption(
+		$services = $this->getServiceContainer();
+		$services->getUserOptionsManager()->setOption(
+			$user,
 			'thumbsize',
 			$user->getOption( 'thumbsize' ) + 1
 		);
 		$content = [ 'main' => new WikitextContent( 'rev ID ver #2: {{REVISIONID}}' ) ];
 		$rev = $this->createRevision( $page, 'first', $content, $user );
-		$pcache = MediaWikiServices::getInstance()->getParserCache();
+		$pcache = $services->getParserCache();
 		$pcache->deleteOptionsKey( $page );
 
 		$this->db->startAtomic( __METHOD__ ); // let deferred updates queue up
@@ -1191,7 +1205,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		] );
 		$updater->doUpdates();
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$editResultCache = new EditResultCache(
 			$services->getMainObjectStash(),
 			$services->getDBLoadBalancer(),
@@ -1214,7 +1228,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			);
 		}
 
-		$jobQueueGroup = JobQueueGroup::singleton();
+		$jobQueueGroup = $this->getServiceContainer()->getJobQueueGroup();
 		$jobQueue = $jobQueueGroup->get( 'revertedTagUpdate' );
 		$this->assertSame(
 			$queueSize,
@@ -1226,7 +1240,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
 	 */
 	public function testDoParserCacheUpdate() {
-		$slotRoleRegistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
+		$slotRoleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
 		if ( !$slotRoleRegistry->isDefinedRole( 'aux' ) ) {
 			$slotRoleRegistry->defineRoleWithModel(
 				'aux',
@@ -1244,7 +1258,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$update->modifyContent( 'aux', new WikitextContent( 'Aux [[Nix]]' ) );
 
 		// Emulate update after edit ----------
-		$pcache = MediaWikiServices::getInstance()->getParserCache();
+		$pcache = $this->getServiceContainer()->getParserCache();
 		$pcache->deleteOptionsKey( $page );
 
 		$rev = $this->makeRevision( $page->getTitle(), $update, $user, 'rev', null );

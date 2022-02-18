@@ -80,16 +80,24 @@ class VueComponentParserTest extends PHPUnit\Framework\TestCase {
 			[
 				'<template></template><script>bar</script><style>baz</style>',
 				false,
-				null,
+				[
+					'script' => 'bar',
+					'template' => '',
+					'style' => 'baz',
+					'styleLang' => 'css',
+				],
 				'Empty <template> tag',
-				'<template> tag may not be empty',
 			],
 			[
 				'<template><p>{{foo}}</p><p></p></template><script>bar</script>',
 				false,
-				null,
+				[
+					'script' => 'bar',
+					'template' => '<p>{{foo}}</p><p></p>',
+					'style' => null,
+					'styleLang' => null,
+				],
 				'Template with two root nodes',
-				'<template> tag may not have multiple child tags',
 			],
 			[
 				'<template><!-- Explanation --><p>{{foo}}</p></template><script>bar</script>',
@@ -145,13 +153,6 @@ class VueComponentParserTest extends PHPUnit\Framework\TestCase {
 					'styleLang' => null,
 				],
 				'Comment before template tag',
-			],
-			[
-				'<template>blah</template><script>bar</script>',
-				false,
-				null,
-				'Template with text',
-				'<template> tag may not contain text',
 			],
 			[
 				"<template>\n\t<div>\t\t<div> {{foo}}\n{{bar}}  </div>\n\t</div>\n</template><script>blah</script>",

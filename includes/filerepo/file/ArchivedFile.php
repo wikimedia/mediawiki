@@ -101,7 +101,7 @@ class ArchivedFile {
 	/** @var MediaHandler */
 	protected $handler;
 
-	/** @var Title */
+	/** @var Title|null */
 	protected $title; # image title
 
 	/** @var bool */
@@ -110,14 +110,14 @@ class ArchivedFile {
 	/**
 	 * @stable to call
 	 * @throws MWException
-	 * @param Title $title
+	 * @param Title|null $title
 	 * @param int $id
 	 * @param string $key
 	 * @param string $sha1
 	 */
 	public function __construct( $title, $id = 0, $key = '', $sha1 = '' ) {
 		$this->id = -1;
-		$this->title = false;
+		$this->title = null;
 		$this->name = false;
 		$this->group = 'deleted'; // needed for direct use of constructor
 		$this->key = '';
@@ -299,10 +299,12 @@ class ArchivedFile {
 		$this->metadata = $row->fa_metadata;
 		$this->mime = "$row->fa_major_mime/$row->fa_minor_mime";
 		$this->media_type = $row->fa_media_type;
-		$this->description = MediaWikiServices::getInstance()->getCommentStore()
+		$services = MediaWikiServices::getInstance();
+		$this->description = $services->getCommentStore()
 			// Legacy because $row may have come from self::selectFields()
 			->getCommentLegacy( wfGetDB( DB_REPLICA ), 'fa_description', $row )->text;
-		$this->user = User::newFromAnyId( $row->fa_user, $row->fa_user_text, $row->fa_actor );
+		$this->user = $services->getUserFactory()
+			->newFromAnyId( $row->fa_user, $row->fa_user_text, $row->fa_actor );
 		$this->timestamp = $row->fa_timestamp;
 		$this->deleted = $row->fa_deleted;
 		if ( isset( $row->fa_sha1 ) ) {
@@ -513,33 +515,6 @@ class ArchivedFile {
 	}
 
 	/**
-	 * Returns ID or name of user who uploaded the file
-	 *
-	 * @note Prior to MediaWiki 1.23, this method always
-	 *   returned the user id, and was inconsistent with
-	 *   the rest of the file classes.
-	 * @deprecated since 1.37. Use ::getUploader instead.
-	 * @param string $type 'text', 'id', or 'object'
-	 * @return int|string|User|null
-	 * @throws MWException
-	 * @since 1.31 added 'object'
-	 */
-	public function getUser( $type = 'text' ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->load();
-
-		if ( $type === 'object' ) {
-			return $this->user ? User::newFromIdentity( $this->user ) : null;
-		} elseif ( $type === 'text' ) {
-			return $this->user ? $this->user->getName() : '';
-		} elseif ( $type === 'id' ) {
-			return $this->user ? $this->user->getId() : 0;
-		}
-
-		throw new MWException( "Unknown type '$type'." );
-	}
-
-	/**
 	 * @since 1.37
 	 * @stable to override
 	 * @param int $audience One of:
@@ -582,40 +557,6 @@ class ArchivedFile {
 		} else {
 			return $this->description;
 		}
-	}
-
-	/**
-	 * Return the user ID of the uploader.
-	 *
-	 * @deprecated since 1.37. Use ::getUploader with self::RAW audience.
-	 * @return int
-	 */
-	public function getRawUser() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->getUser( 'id' );
-	}
-
-	/**
-	 * Return the user name of the uploader.
-	 *
-	 * @deprecated since 1.37. Use ::getUploader with self::RAW audience.
-	 * @return string
-	 */
-	public function getRawUserText() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->getUser( 'text' );
-	}
-
-	/**
-	 * Return upload description.
-	 *
-	 * @deprecated since 1.37. Use ::getDescription with self::RAW audience.
-	 * @return string
-	 */
-	public function getRawDescription() {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->load();
-		return $this->description;
 	}
 
 	/**

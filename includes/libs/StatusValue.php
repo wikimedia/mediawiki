@@ -397,11 +397,19 @@ class StatusValue {
 					$params = [];
 				}
 
-				$out .= sprintf( "| %4d | %-25.25s | %-40.40s |\n",
-					$i,
-					$key,
-					$this->flattenParams( $params )
-				);
+				$keyChunks = str_split( $key, 25 );
+				$paramsChunks = str_split( substr( $this->flattenParams( $params ), 0, 100 ), 25 );
+				// array_map(null,...) is like Python's zip()
+				foreach ( array_map( null, [ $i ], $keyChunks, $paramsChunks )
+					as [ $iChunk, $keyChunk, $paramsChunk ]
+				) {
+					$out .= sprintf( "| %4s | %-25.25s | %-40.40s |\n",
+						$iChunk,
+						$keyChunk,
+						$paramsChunk
+					);
+				}
+
 				$i++;
 			}
 			$out .= $hdr;

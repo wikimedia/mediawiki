@@ -213,13 +213,13 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$this->objectFactory = new ObjectFactory( $services );
 		}
 		if ( $regen || !$this->readOnlyMode ) {
-			$this->readOnlyMode = MediaWikiServices::getInstance()->getReadOnlyMode();
+			$this->readOnlyMode = $this->getServiceContainer()->getReadOnlyMode();
 		}
 		if ( $regen || !$this->blockManager ) {
-			$this->blockManager = MediaWikiServices::getInstance()->getBlockManager();
+			$this->blockManager = $this->getServiceContainer()->getBlockManager();
 		}
 		if ( $regen || !$this->watchlistManager ) {
-			$this->watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
+			$this->watchlistManager = $this->getServiceContainer()->getWatchlistManager();
 		}
 		if ( $regen || !$this->hookContainer ) {
 			// Set up a HookContainer similar to the normal one except that it
@@ -241,28 +241,28 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			);
 		}
 		if ( $regen || !$this->userNameUtils ) {
-			$this->userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
+			$this->userNameUtils = $this->getServiceContainer()->getUserNameUtils();
 		}
 		if ( $regen || !$this->loadBalancer ) {
-			$this->loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
+			$this->loadBalancer = $this->getServiceContainer()->getDBLoadBalancer();
 		}
 		if ( $regen || !$this->contentLanguage ) {
-			$this->contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
+			$this->contentLanguage = $this->getServiceContainer()->getContentLanguage();
 		}
 		if ( $regen || !$this->languageConverterFactory ) {
-			$this->languageConverterFactory = MediaWikiServices::getInstance()->getLanguageConverterFactory();
+			$this->languageConverterFactory = $this->getServiceContainer()->getLanguageConverterFactory();
 		}
 		if ( $regen || !$this->botPasswordStore ) {
-			$this->botPasswordStore = MediaWikiServices::getInstance()->getBotPasswordStore();
+			$this->botPasswordStore = $this->getServiceContainer()->getBotPasswordStore();
 		}
 		if ( $regen || !$this->userFactory ) {
-			$this->userFactory = MediaWikiServices::getInstance()->getUserFactory();
+			$this->userFactory = $this->getServiceContainer()->getUserFactory();
 		}
 		if ( $regen || !$this->userIdentityLookup ) {
-			$this->userIdentityLookup = MediaWikiServices::getInstance()->getUserIdentityLookup();
+			$this->userIdentityLookup = $this->getServiceContainer()->getUserIdentityLookup();
 		}
 		if ( $regen || !$this->userOptionsManager ) {
-			$this->userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
+			$this->userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
 		}
 		if ( !$this->logger ) {
 			$this->logger = new \TestLogger();
@@ -413,7 +413,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->config->set( 'AllowSecuritySensitiveOperationIfCannotReauthenticate', [] );
 		$provideUser = new \User;
 		$session = $provider->getManager()->getSessionForRequest( $this->request );
-		$this->assertSame( 0, $session->getUser()->getId(), 'sanity check' );
+		$this->assertSame( 0, $session->getUser()->getId() );
 
 		// Anonymous user => reauth
 		$session->set( 'AuthManager:lastAuthId', 0 );
@@ -422,7 +422,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 		$provideUser = $user;
 		$session = $provider->getManager()->getSessionForRequest( $this->request );
-		$this->assertSame( $user->getId(), $session->getUser()->getId(), 'sanity check' );
+		$this->assertSame( $user->getId(), $session->getUser()->getId() );
 
 		// Error for no default (only gets thrown for non-anonymous user)
 		$session->set( 'AuthManager:lastAuthId', $user->getId() + 1 );
@@ -711,8 +711,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->initializeManager( false );
 		$this->assertSame(
 			[ 'A' => $mock1, 'B' => $mock2, 'C' => $mock3 ],
-			$this->managerPriv->getPrimaryAuthenticationProviders(),
-			'sanity check'
+			$this->managerPriv->getPrimaryAuthenticationProviders()
 		);
 
 		$config['primaryauth']['A']['sort'] = 100;
@@ -751,7 +750,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		return [
 			[ 'zh', false, 'zh', 'zh' ],
 			[ 'zh', true, 'de', 'zh' ],
-			[ 'fr', true, 'de', null ],
+			[ 'fr', true, 'de', 'fr' ],
 		];
 	}
 
@@ -946,7 +945,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			->willReturn( $res );
 		$this->logger->setCollect( true );
 		$ret = $this->manager->beginAuthentication( [], 'http://localhost/' );
-		$this->assertSame( AuthenticationResponse::UI, $ret->status, 'sanity check' );
+		$this->assertSame( AuthenticationResponse::UI, $ret->status );
 		$ret = $this->manager->continueAuthentication( [] );
 		$this->logger->setCollect( false );
 		$this->assertSame( AuthenticationResponse::FAIL, $ret->status );
@@ -1816,7 +1815,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 'noname', $ret->message->getKey() );
 
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
-		$readOnlyMode = \MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode();
+		$readOnlyMode = $this->getServiceContainer()->getReadOnlyMode();
 		$readOnlyMode->setReason( 'Because' );
 		$userReq->username = self::usernameForCreation();
 		$ret = $this->manager->beginAccountCreation( $creator, [ $userReq ], 'http://localhost/' );
@@ -1989,7 +1988,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
 		$this->request->getSession()->setSecret( 'AuthManager::accountCreationState',
 			[ 'username' => $creator->getName() ] + $session );
-		$readOnlyMode = \MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode();
+		$readOnlyMode = $this->getServiceContainer()->getReadOnlyMode();
 		$readOnlyMode->setReason( 'Because' );
 		$ret = $this->manager->continueAccountCreation( [] );
 		$this->unhook( 'LocalUserCreated' );
@@ -2510,8 +2509,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( AuthenticationResponse::PASS, $ret->status );
 
 		$user = \User::newFromName( $username );
-		$this->assertNotEquals( 0, $user->getId(), 'sanity check' );
-		$this->assertNotEquals( $creator->getId(), $user->getId(), 'sanity check' );
+		$this->assertNotEquals( 0, $user->getId() );
+		$this->assertNotEquals( $creator->getId(), $user->getId() );
 
 		$data = \DatabaseLogEntry::getSelectQueryData();
 		$rows = iterator_to_array( $dbw->select(
@@ -2688,7 +2687,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		// Wiki is read-only
 		$session->clear();
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
-		$readOnlyMode = \MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode();
+		$readOnlyMode = $this->getServiceContainer()->getReadOnlyMode();
 		$readOnlyMode->setReason( 'Because' );
 		$user = \User::newFromName( $username );
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, true, true );
@@ -2919,7 +2918,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		// Test addToDatabase throws an exception
 		$cache = \ObjectCache::getLocalClusterInstance();
 		$backoffKey = $cache->makeKey( 'AuthManager', 'autocreate-failed', md5( $username ) );
-		$this->assertFalse( $cache->get( $backoffKey ), 'sanity check' );
+		$this->assertFalse( $cache->get( $backoffKey ) );
 		$session->clear();
 		$user = $this->getMockBuilder( \User::class )
 			->onlyMethods( [ 'addToDatabase' ] )->getMock();
@@ -2951,7 +2950,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			->will( $this->returnCallback( function () use ( $username, &$user ) {
 				$oldUser = \User::newFromName( $username );
 				$status = $oldUser->addToDatabase();
-				$this->assertTrue( $status->isOK(), 'sanity check' );
+				$this->assertTrue( $status->isOK() );
 				$user->setId( $oldUser->getId() );
 				return Status::newFatal( 'userexists' );
 			} ) );
@@ -3408,8 +3407,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$session = $this->request->getSession();
 		$session->clear();
 
-		$this->assertSame( 0, \User::newFromName( $username )->getId(),
-			'sanity check' );
+		$this->assertSame( 0, \User::newFromName( $username )->getId() );
 
 		$callback = $this->callback( static function ( $user ) use ( $username ) {
 			return $user->getName() === $username;
@@ -3457,10 +3455,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$session = $this->request->getSession();
 		$session->clear();
 
-		$this->assertSame( 0, $session->getUser()->getId(),
-			'sanity check' );
-		$this->assertSame( 0, \User::newFromName( $username )->getId(),
-			'sanity check' );
+		$this->assertSame( 0, $session->getUser()->getId() );
+		$this->assertSame( 0, \User::newFromName( $username )->getId() );
 
 		$this->hook( 'UserLoggedIn', UserLoggedInHook::class, $this->never() );
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );

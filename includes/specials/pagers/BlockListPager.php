@@ -27,6 +27,8 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\CommentFormatter\RowCommentFormatter;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
@@ -47,56 +49,68 @@ class BlockListPager extends TablePager {
 	 */
 	protected $restrictions = [];
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
+	/** @var BlockActionInfo */
+	private $blockActionInfo;
 
 	/** @var BlockRestrictionStore */
 	private $blockRestrictionStore;
 
-	/** @var SpecialPageFactory */
-	private $specialPageFactory;
+	/** @var BlockUtils */
+	private $blockUtils;
 
 	/** @var CommentStore */
 	private $commentStore;
 
-	/** @var BlockUtils */
-	private $blockUtils;
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
 
-	/** @var BlockActionInfo */
-	private $blockActionInfo;
+	/** @var RowCommentFormatter */
+	private $rowCommentFormatter;
+
+	/** @var SpecialPageFactory */
+	private $specialPageFactory;
+
+	/** @var string[] */
+	private $formattedComments = [];
 
 	/**
-	 * @param SpecialPage $page
-	 * @param array $conds
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param BlockRestrictionStore $blockRestrictionStore
-	 * @param ILoadBalancer $loadBalancer
-	 * @param SpecialPageFactory $specialPageFactory
-	 * @param CommentStore $commentStore
-	 * @param BlockUtils $blockUtils
+	 * @param IContextSource $context
 	 * @param BlockActionInfo $blockActionInfo
+	 * @param BlockRestrictionStore $blockRestrictionStore
+	 * @param BlockUtils $blockUtils
+	 * @param CommentStore $commentStore
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LinkRenderer $linkRenderer
+	 * @param ILoadBalancer $loadBalancer
+	 * @param RowCommentFormatter $rowCommentFormatter
+	 * @param SpecialPageFactory $specialPageFactory
+	 * @param array $conds
 	 */
 	public function __construct(
-		$page,
-		$conds,
-		LinkBatchFactory $linkBatchFactory,
+		IContextSource $context,
+		BlockActionInfo $blockActionInfo,
 		BlockRestrictionStore $blockRestrictionStore,
-		ILoadBalancer $loadBalancer,
-		SpecialPageFactory $specialPageFactory,
-		CommentStore $commentStore,
 		BlockUtils $blockUtils,
-		BlockActionInfo $blockActionInfo
+		CommentStore $commentStore,
+		LinkBatchFactory $linkBatchFactory,
+		LinkRenderer $linkRenderer,
+		ILoadBalancer $loadBalancer,
+		RowCommentFormatter $rowCommentFormatter,
+		SpecialPageFactory $specialPageFactory,
+		$conds
 	) {
+		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
-		parent::__construct( $page->getContext(), $page->getLinkRenderer() );
+		parent::__construct( $context, $linkRenderer );
+		$this->blockActionInfo = $blockActionInfo;
+		$this->blockRestrictionStore = $blockRestrictionStore;
+		$this->blockUtils = $blockUtils;
+		$this->commentStore = $commentStore;
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->rowCommentFormatter = $rowCommentFormatter;
+		$this->specialPageFactory = $specialPageFactory;
 		$this->conds = $conds;
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->blockRestrictionStore = $blockRestrictionStore;
-		$this->specialPageFactory = $specialPageFactory;
-		$this->commentStore = $commentStore;
-		$this->blockUtils = $blockUtils;
-		$this->blockActionInfo = $blockActionInfo;
 	}
 
 	protected function getFieldNames() {
@@ -224,7 +238,7 @@ class BlockListPager extends TablePager {
 					$formatted .= '<br />' . $this->msg(
 						'ipb-blocklist-duration-left',
 						$language->formatDuration(
-							$timestamp->getTimestamp() - MWTimestamp::time(),
+							(int)$timestamp->getTimestamp( TS_UNIX ) - MWTimestamp::time(),
 							// reasonable output
 							[
 								'minutes',
@@ -243,8 +257,7 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_reason':
-				$value = $this->commentStore->getComment( 'ipb_reason', $row )->text;
-				$formatted = Linker::formatComment( $value );
+				$formatted = $this->formattedComments[$this->getResultOffset()];
 				break;
 
 			case 'ipb_params':
@@ -469,7 +482,7 @@ class BlockListPager extends TablePager {
 	 * @param IResultWrapper $result
 	 */
 	public function preprocessResults( $result ) {
-		# Do a link batch query
+		// Do a link batch query
 		$lb = $this->linkBatchFactory->newLinkBatch();
 		$lb->setCaller( __METHOD__ );
 
@@ -505,6 +518,10 @@ class BlockListPager extends TablePager {
 		}
 
 		$lb->execute();
+
+		// Format comments
+		// The keys of formattedComments will be the corresponding offset into $result
+		$this->formattedComments = $this->rowCommentFormatter->formatRows( $result, 'ipb_reason' );
 	}
 
 }

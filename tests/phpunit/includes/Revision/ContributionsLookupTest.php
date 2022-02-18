@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Revision;
 
 use ChangeTags;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Permissions\UltimateAuthority;
@@ -61,12 +60,12 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		ChangeTags::$avoidReopeningTablesForTesting = true;
 
 		// MessageCache needs to be explicitly enabled to load changetag display text.
-		MediaWikiServices::getInstance()->getMessageCache()->enable();
+		$this->getServiceContainer()->getMessageCache()->enable();
 	}
 
 	public function tearDown(): void {
 		ChangeTags::$avoidReopeningTablesForTesting = false;
-		MediaWikiServices::getInstance()->getMessageCache()->disable();
+		$this->getServiceContainer()->getMessageCache()->disable();
 
 		parent::tearDown();
 	}
@@ -368,7 +367,6 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			__METHOD__
 		);
 
-		// sanity
 		$this->assertSame( 2, $this->db->affectedRows() );
 
 		// anons should not see suppressed contribs
@@ -400,18 +398,15 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		ContributionsSegment $segmentObject,
 		RevisionRecord $actual
 	): void {
-		// FIXME: fails under postgres, see T195807
-		if ( $this->db->getType() !== 'postgres' ) {
-			$actualTags = $segmentObject->getTagsForRevision( $actual->getId() );
+		$actualTags = $segmentObject->getTagsForRevision( $actual->getId() );
 
-			// Tag 3 was disabled and should not be included in results
-			$this->assertArrayNotHasKey( self::TAG3, $actualTags );
-			foreach ( $actualTags as $tagName => $actualTag ) {
-				$this->assertContains( $tagName, $expectedTags );
-				$this->assertInstanceOf( Message::class, $actualTag );
-				$this->assertEquals( "<i>" . self::TAG_DISPLAY . "</i>", $actualTag->parse() );
-				$this->assertEquals( "''" . self::TAG_DISPLAY . "''", $actualTag->text() );
-			}
+		// Tag 3 was disabled and should not be included in results
+		$this->assertArrayNotHasKey( self::TAG3, $actualTags );
+		foreach ( $actualTags as $tagName => $actualTag ) {
+			$this->assertContains( $tagName, $expectedTags );
+			$this->assertInstanceOf( Message::class, $actualTag );
+			$this->assertEquals( "<i>" . self::TAG_DISPLAY . "</i>", $actualTag->parse() );
+			$this->assertEquals( "''" . self::TAG_DISPLAY . "''", $actualTag->text() );
 		}
 	}
 }

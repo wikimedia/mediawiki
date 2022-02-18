@@ -58,16 +58,13 @@ trait MediaTestTrait {
 		/** @var MockObject|LocalFile $file */
 		$file = $this->createNoOpMock(
 			LocalFile::class,
-			[ 'getTitle', 'getDescriptionUrl', 'exists', 'userCan', 'getUser', 'getUploader', 'getTimestamp',
+			[ 'getTitle', 'getDescriptionUrl', 'exists', 'userCan', 'getUploader', 'getTimestamp',
 				'getMediaType', 'getSize', 'getHeight', 'getWidth', 'getDisplayWidthHeight',
 				'getLength', 'getUrl', 'allowInlineDisplay', 'transform', 'getSha1', 'load', 'getMimeType' ]
 		);
 		$file->method( 'getTitle' )->willReturn( $title );
 		$file->method( 'exists' )->willReturn( true );
 		$file->method( 'userCan' )->willReturn( true );
-		$file->method( 'getUser' )->willReturnCallback( static function ( $type ) {
-			return $type === 'id' ? 7 : 'Alice';
-		} );
 		$file->method( 'getUploader' )
 			->willReturn( UserIdentityValue::newRegistered( 7, 'Alice' ) );
 		$file->method( 'getTimestamp' )->willReturn( '20200102030405' );

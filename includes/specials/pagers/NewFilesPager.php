@@ -47,19 +47,19 @@ class NewFilesPager extends RangeChronologicalPager {
 
 	/**
 	 * @param IContextSource $context
-	 * @param FormOptions $opts
-	 * @param LinkRenderer $linkRenderer
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
-	 * @param ILoadBalancer $loadBalancer
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LinkRenderer $linkRenderer
+	 * @param ILoadBalancer $loadBalancer
+	 * @param FormOptions $opts
 	 */
 	public function __construct(
 		IContextSource $context,
-		FormOptions $opts,
-		LinkRenderer $linkRenderer,
 		GroupPermissionsLookup $groupPermissionsLookup,
+		LinkBatchFactory $linkBatchFactory,
+		LinkRenderer $linkRenderer,
 		ILoadBalancer $loadBalancer,
-		LinkBatchFactory $linkBatchFactory
+		FormOptions $opts
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
@@ -134,19 +134,6 @@ class NewFilesPager extends RangeChronologicalPager {
 			$conds['img_media_type'] = $opts->getValue( 'mediatype' );
 		}
 
-		$likeVal = $opts->getValue( 'like' );
-		if ( !$this->getConfig()->get( 'MiserMode' ) && $likeVal !== '' ) {
-			$likeObj = Title::newFromText( $likeVal );
-			if ( $likeObj instanceof Title ) {
-				$like = $dbr->buildLike(
-					$dbr->anyString(),
-					strtolower( $likeObj->getDBkey() ),
-					$dbr->anyString()
-				);
-				$conds[] = "LOWER(img_name) $like";
-			}
-		}
-
 		// We're ordering by img_timestamp, but MariaDB sometimes likes to query other tables first
 		// and filesort the result set later.
 		// See T124205 / https://mariadb.atlassian.net/browse/MDEV-8880, and T244533
@@ -173,7 +160,7 @@ class NewFilesPager extends RangeChronologicalPager {
 			$mode = $this->getRequest()->getVal( 'gallerymode', null );
 			try {
 				$this->gallery = ImageGalleryBase::factory( $mode, $this->getContext() );
-			} catch ( Exception $e ) {
+			} catch ( ImageGalleryClassNotFoundException $e ) {
 				// User specified something invalid, fallback to default.
 				$this->gallery = ImageGalleryBase::factory( false, $this->getContext() );
 			}

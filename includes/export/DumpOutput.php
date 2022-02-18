@@ -43,7 +43,7 @@ class DumpOutput {
 	}
 
 	/**
-	 * @param stdClass $page
+	 * @param stdClass|null $page
 	 * @param string $string
 	 */
 	public function writeOpenPage( $page, $string ) {
@@ -58,7 +58,7 @@ class DumpOutput {
 	}
 
 	/**
-	 * @param stdClass $rev
+	 * @param stdClass|null $rev
 	 * @param string $string
 	 */
 	public function writeRevision( $rev, $string ) {

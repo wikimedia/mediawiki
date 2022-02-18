@@ -351,7 +351,7 @@ class Article implements Page {
 					wfDebug( __METHOD__ . " failed to find page data for title " .
 						$this->getTitle()->getPrefixedText() );
 
-					// Just for sanity, output for this case is done by showMissingArticle().
+					// Output for this case is done by showMissingArticle().
 					$this->fetchResult = Status::newFatal( 'noarticletext' );
 					return null;
 				}
@@ -370,7 +370,7 @@ class Article implements Page {
 		if ( !$this->mRevisionRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getContext()->getAuthority() ) ) {
 			wfDebug( __METHOD__ . " failed to retrieve content of revision " . $this->mRevisionRecord->getId() );
 
-			// Just for sanity, output for this case is done by showDeletedRevisionHeader().
+			// Output for this case is done by showDeletedRevisionHeader().
 			// title used in wikilinks, should not contain whitespaces
 			$this->fetchResult = new Status;
 			$title = $this->getTitle()->getPrefixedDBkey();
@@ -425,7 +425,7 @@ class Article implements Page {
 	 * page of the given title.
 	 */
 	public function view() {
-		global $wgUseFileCache;
+		$useFileCache = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseFileCache' );
 
 		# Get variables from query string
 		# As side effect this will load the revision and update the title
@@ -465,10 +465,16 @@ class Article implements Page {
 
 		$outputPage->setArticleFlag( true );
 		# Allow frames by default
-		$outputPage->allowClickjacking();
+		$outputPage->setPreventClickjacking( false );
+
+		$skin = $outputPage->getSkin();
+		$skinOptions = $skin->getOptions();
 
 		$parserOptions = $this->getParserOptions();
-		$poOptions = [];
+		$poOptions = [
+			'skin' => $skin,
+			'injectTOC' => $skinOptions['toc'],
+		];
 		# Allow extensions to vary parser options used for article rendering
 		Hooks::runner()->onArticleParserOptions( $this, $parserOptions );
 		# Render printable version, use printable version cache
@@ -489,7 +495,7 @@ class Article implements Page {
 		# Try client and file cache
 		if ( $oldid === 0 && $this->mPage->checkTouched() ) {
 			# Try to stream the output from file cache
-			if ( $wgUseFileCache && $this->tryFileCache() ) {
+			if ( $useFileCache && $this->tryFileCache() ) {
 				wfDebug( __METHOD__ . ": done file cache" );
 				# tell wgOut that output is taken care of
 				$outputPage->disable();
@@ -501,6 +507,11 @@ class Article implements Page {
 
 		$this->showRedirectedFromHeader();
 		$this->showNamespaceHeader();
+
+		if ( $this->viewIsRenderAction ) {
+			$poOptions += [ 'absoluteURLs' => true ];
+		}
+		$poOptions += [ 'includeDebugInfo' => true ];
 
 		$continue =
 			$this->generateContentOutput( $user, $parserOptions, $oldid, $outputPage, $poOptions );
@@ -741,7 +752,10 @@ class Article implements Page {
 		# Ensure that UI elements requiring revision ID have
 		# the correct version information.
 		$outputPage->setRevisionId( $pOutput->getCacheRevisionId() ?? $this->getRevIdFetched() );
-
+		# Ensure that the skin has the necessary ToC information
+		# (and do this before OutputPage::addParserOutput() calls the
+		# OutputPageParserOutput hook)
+		$outputPage->setSections( $pOutput->getSections() );
 		$outputPage->addParserOutput( $pOutput, $textOptions );
 		# Preload timestamp to avoid a DB hit
 		$cachedTimestamp = $pOutput->getTimestamp();
@@ -763,14 +777,14 @@ class Article implements Page {
 		OutputPage $outputPage,
 		array $textOptions
 	) {
-		global $wgCdnMaxageStale;
+		$cdnMaxageStale = MediaWikiServices::getInstance()->getMainConfig()->get( 'CdnMaxageStale' );
 		$ok = $renderStatus->isOK();
 
 		$pOutput = $ok ? $renderStatus->getValue() : null;
 
 		// Cache stale ParserOutput object with a short expiry
 		if ( $ok && $renderStatus->hasMessage( 'view-pool-dirty-output' ) ) {
-			$outputPage->setCdnMaxage( $wgCdnMaxageStale );
+			$outputPage->setCdnMaxage( $cdnMaxageStale );
 			$outputPage->setLastModified( $pOutput->getCacheTime() );
 			$staleReason = $renderStatus->hasMessage( 'view-pool-contention' )
 				? $this->getContext()->msg( 'view-pool-contention' )
@@ -872,7 +886,8 @@ class Article implements Page {
 			$unhide
 		);
 		$de->setSlotDiffOptions( [
-			'diff-type' => $request->getVal( 'diff-type' )
+			'diff-type' => $request->getVal( 'diff-type' ),
+			'expand-url' => $this->viewIsRenderAction
 		] );
 		$de->showDiffPage( $diffOnly );
 
@@ -891,8 +906,10 @@ class Article implements Page {
 	 * @todo actions other than 'view'
 	 */
 	public function getRobotPolicy( $action, ParserOutput $pOutput = null ) {
-		global $wgArticleRobotPolicies, $wgNamespaceRobotPolicies, $wgDefaultRobotPolicy;
-
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$articleRobotPolicies = $mainConfig->get( 'ArticleRobotPolicies' );
+		$namespaceRobotPolicies = $mainConfig->get( 'NamespaceRobotPolicies' );
+		$defaultRobotPolicy = $mainConfig->get( 'DefaultRobotPolicy' );
 		$ns = $this->getTitle()->getNamespace();
 
 		# Don't index user and user talk pages for blocked users (T13443)
@@ -934,29 +951,29 @@ class Article implements Page {
 		}
 
 		# Otherwise, construct the policy based on the various config variables.
-		$policy = self::formatRobotPolicy( $wgDefaultRobotPolicy );
+		$policy = self::formatRobotPolicy( $defaultRobotPolicy );
 
-		if ( isset( $wgNamespaceRobotPolicies[$ns] ) ) {
+		if ( isset( $namespaceRobotPolicies[$ns] ) ) {
 			# Honour customised robot policies for this namespace
 			$policy = array_merge(
 				$policy,
-				self::formatRobotPolicy( $wgNamespaceRobotPolicies[$ns] )
+				self::formatRobotPolicy( $namespaceRobotPolicies[$ns] )
 			);
 		}
 		if ( $this->getTitle()->canUseNoindex() && is_object( $pOutput ) && $pOutput->getIndexPolicy() ) {
 			# __INDEX__ and __NOINDEX__ magic words, if allowed. Incorporates
-			# a final sanity check that we have really got the parser output.
+			# a final check that we have really got the parser output.
 			$policy = array_merge(
 				$policy,
 				[ 'index' => $pOutput->getIndexPolicy() ]
 			);
 		}
 
-		if ( isset( $wgArticleRobotPolicies[$this->getTitle()->getPrefixedText()] ) ) {
+		if ( isset( $articleRobotPolicies[$this->getTitle()->getPrefixedText()] ) ) {
 			# (T16900) site config can override user-defined __INDEX__ or __NOINDEX__
 			$policy = array_merge(
 				$policy,
-				self::formatRobotPolicy( $wgArticleRobotPolicies[$this->getTitle()->getPrefixedText()] )
+				self::formatRobotPolicy( $articleRobotPolicies[$this->getTitle()->getPrefixedText()] )
 			);
 		}
 
@@ -1000,7 +1017,7 @@ class Article implements Page {
 	 * @return bool
 	 */
 	public function showRedirectedFromHeader() {
-		global $wgRedirectSources;
+		$redirectSources = MediaWikiServices::getInstance()->getMainConfig()->get( 'RedirectSources' );
 
 		$context = $this->getContext();
 		$outputPage = $context->getOutput();
@@ -1050,7 +1067,7 @@ class Article implements Page {
 		} elseif ( $rdfrom ) {
 			// This is an externally redirected view, from some other wiki.
 			// If it was reported from a trusted site, supply a backlink.
-			if ( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
+			if ( $redirectSources && preg_match( $redirectSources, $rdfrom ) ) {
 				$redir = Linker::makeExternalLink( $rdfrom, $rdfrom );
 				$outputPage->addSubtitle( "<span class=\"mw-redirectedfrom\">" .
 					$context->msg( 'redirectedfrom' )->rawParams( $redir )->parse()
@@ -1105,13 +1122,15 @@ class Article implements Page {
 	 * desired, does nothing.
 	 *
 	 * Side effect: When the patrol link is build, this method will call
-	 * OutputPage::preventClickjacking() and load a JS module.
+	 * OutputPage::setPreventClickjacking(true) and load a JS module.
 	 *
 	 * @return bool
 	 */
 	public function showPatrolFooter() {
-		global $wgUseNPPatrol, $wgUseRCPatrol, $wgUseFilePatrol;
-
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$useNPPatrol = $mainConfig->get( 'UseNPPatrol' );
+		$useRCPatrol = $mainConfig->get( 'UseRCPatrol' );
+		$useFilePatrol = $mainConfig->get( 'UseFilePatrol' );
 		// Allow hooks to decide whether to not output this at all
 		if ( !$this->getHookRunner()->onArticleShowPatrolFooter( $this ) ) {
 			return false;
@@ -1123,8 +1142,8 @@ class Article implements Page {
 		$rc = false;
 
 		if ( !$this->getContext()->getAuthority()->probablyCan( 'patrol', $title )
-			|| !( $wgUseRCPatrol || $wgUseNPPatrol
-				|| ( $wgUseFilePatrol && $title->inNamespace( NS_FILE ) ) )
+			|| !( $useRCPatrol || $useNPPatrol
+				|| ( $useFilePatrol && $title->inNamespace( NS_FILE ) ) )
 		) {
 			// Patrolling is disabled or the user isn't allowed to
 			return false;
@@ -1153,7 +1172,7 @@ class Article implements Page {
 			__METHOD__
 		);
 
-		// New page patrol: Get the timestamp of the oldest revison which
+		// New page patrol: Get the timestamp of the oldest revision which
 		// the revision table holds for the given page. Then we look
 		// whether it's within the RC lifespan and if it is, we try
 		// to get the recentchanges row belonging to that entry
@@ -1184,7 +1203,7 @@ class Article implements Page {
 		// to get the recentchanges row belonging to that entry
 		// (with rc_type = RC_LOG, rc_log_type = upload).
 		$recentFileUpload = false;
-		if ( ( !$rc || $rc->getAttribute( 'rc_patrolled' ) ) && $wgUseFilePatrol
+		if ( ( !$rc || $rc->getAttribute( 'rc_patrolled' ) ) && $useFilePatrol
 			&& $title->getNamespace() === NS_FILE ) {
 			// Retrieve timestamp of most recent upload
 			$newestUploadTimestamp = $dbr->selectField(
@@ -1248,7 +1267,7 @@ class Article implements Page {
 			return false;
 		}
 
-		$outputPage->preventClickjacking();
+		$outputPage->setPreventClickjacking( true );
 		if ( $this->getContext()->getAuthority()->isAllowed( 'writeapi' ) ) {
 			$outputPage->addModules( 'mediawiki.misc-authed-curate' );
 		}
@@ -1289,7 +1308,7 @@ class Article implements Page {
 	 * namespace, show the default message text. To be called from Article::view().
 	 */
 	public function showMissingArticle() {
-		global $wgSend404Code;
+		$send404Code = MediaWikiServices::getInstance()->getMainConfig()->get( 'Send404Code' );
 
 		$outputPage = $this->getContext()->getOutput();
 		// Whether the page is a root user page of an existing user (but not a subpage)
@@ -1319,8 +1338,10 @@ class Article implements Page {
 			}
 
 			if ( !( $user && $user->isRegistered() ) && !$ip ) { # User does not exist
-				$outputPage->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
-					[ 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) ] );
+				$outputPage->addHtml( Html::warningBox(
+					$outputPage->msg( 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) )->parse(),
+					'mw-userpage-userdoesnotexist'
+				) );
 			} elseif (
 				$block !== null &&
 				$block->getType() != DatabaseBlock::TYPE_AUTO &&
@@ -1357,7 +1378,7 @@ class Article implements Page {
 		# Show delete and move logs if there were any such events.
 		# The logging query can DOS the site when bots/crawlers cause 404 floods,
 		# so be careful showing this. 404 pages must be cheap as they are hard to cache.
-		$dbCache = ObjectCache::getInstance( 'db-replicated' );
+		$dbCache = MediaWikiServices::getInstance()->getMainObjectStash();
 		$key = $dbCache->makeKey( 'page-recent-delete', md5( $title->getPrefixedText() ) );
 		$isRegistered = $contextUser->isRegistered();
 		$sessionExists = $this->getContext()->getRequest()->getSession()->isPersistent();
@@ -1387,13 +1408,13 @@ class Article implements Page {
 			);
 		}
 
-		if ( !$this->mPage->hasViewableContent() && $wgSend404Code && !$validUserPage ) {
+		if ( !$this->mPage->hasViewableContent() && $send404Code && !$validUserPage ) {
 			// If there's no backing content, send a 404 Not Found
 			// for better machine handling of broken links.
 			$this->getContext()->getRequest()->response()->statusHeader( 404 );
 		}
 
-		// Also apply the robot policy for nonexisting pages (even if a 404 was used for sanity)
+		// Also apply the robot policy for nonexisting pages (even if a 404 was used)
 		$policy = $this->getRobotPolicy( 'view' );
 		$outputPage->setIndexPolicy( $policy['index'] );
 		$outputPage->setFollowPolicy( $policy['follow'] );
@@ -1413,7 +1434,7 @@ class Article implements Page {
 			if ( $oldid ) {
 				// T251066: Try loading the revision from the archive table.
 				// Show link to view it if it exists and the user has permission to view it.
-				$pa = new PageArchive( $title, $this->getContext()->getConfig() );
+				$pa = new PageArchive( $title );
 				$revRecord = $pa->getArchivedRevisionRecord( $oldid );
 				if ( $revRecord && $revRecord->userCan(
 					RevisionRecord::DELETED_TEXT,
@@ -1453,7 +1474,7 @@ class Article implements Page {
 	private function showViewError( string $errortext ) {
 		$outputPage = $this->getContext()->getOutput();
 		$outputPage->setPageTitle( $this->getContext()->msg( 'errorpagetitle' ) );
-		$outputPage->enableClientCache( false );
+		$outputPage->disableClientCache();
 		$outputPage->setRobotPolicy( 'noindex,nofollow' );
 		$outputPage->clearHTML();
 		$outputPage->wrapWikiTextAsInterface( 'errorbox', $errortext );
@@ -1792,7 +1813,11 @@ class Article implements Page {
 	}
 
 	/**
-	 * Perform a deletion and output success or failure messages
+	 * Perform a deletion and output success or failure messages.
+	 *
+	 * @deprecated since 1.37 Use WikiPage::doDeleteArticleReal if you only need to delete the article. If you also need
+	 * things to happen with OutputPage, you may want to check the hooks in DeleteAction instead.
+	 *
 	 * @param string $reason
 	 * @param bool $suppress
 	 * @param bool $immediate false allows deleting over time via the job queue
@@ -1956,7 +1981,7 @@ class Article implements Page {
 			return $this->mContext;
 		} else {
 			wfDebug( __METHOD__ . " called and \$mContext is null. " .
-				"Return RequestContext::getMain(); for sanity" );
+				"Return RequestContext::getMain()" );
 			return RequestContext::getMain();
 		}
 	}

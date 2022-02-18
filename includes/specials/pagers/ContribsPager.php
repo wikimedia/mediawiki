@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
@@ -56,7 +57,7 @@ class ContribsPager extends RangeChronologicalPager {
 	private $namespace;
 
 	/**
-	 * @var string|false Name of tag to filter, or false to ignore tags
+	 * @var string[]|false Name of tag to filter, or false to ignore tags
 	 */
 	private $tagFilter;
 
@@ -112,22 +113,32 @@ class ContribsPager extends RangeChronologicalPager {
 	 */
 	private $templateParser;
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var CommentFormatter */
+	private $commentFormatter;
 
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
-	/** @var RevisionStore */
-	private $revisionStore;
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
 
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/** @var string[] */
+	private $formattedComments = [];
+
+	/** @var RevisionRecord[] Cached revisions by ID */
+	private $revisions = [];
+
 	/**
+	 * FIXME List services first T266484 / T290405
 	 * @param IContextSource $context
 	 * @param array $options
 	 * @param LinkRenderer|null $linkRenderer
@@ -138,6 +149,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 * @param RevisionStore|null $revisionStore
 	 * @param NamespaceInfo|null $namespaceInfo
 	 * @param UserIdentity|null $targetUser
+	 * @param CommentFormatter|null $commentFormatter
 	 */
 	public function __construct(
 		IContextSource $context,
@@ -149,7 +161,8 @@ class ContribsPager extends RangeChronologicalPager {
 		ActorMigration $actorMigration = null,
 		RevisionStore $revisionStore = null,
 		NamespaceInfo $namespaceInfo = null,
-		UserIdentity $targetUser = null
+		UserIdentity $targetUser = null,
+		CommentFormatter $commentFormatter = null
 	) {
 		// Class is used directly in extensions - T266484
 		$services = MediaWikiServices::getInstance();
@@ -191,7 +204,7 @@ class ContribsPager extends RangeChronologicalPager {
 		$this->revisionsOnly = !empty( $options['revisionsOnly'] );
 
 		// Most of this code will use the 'contributions' group DB, which can map to replica DBs
-		// with extra user based indexes or partioning by user.
+		// with extra user based indexes or partitioning by user.
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA, 'contributions' );
 		// Needed by call to getIndexField -> getTargetTable from parent constructor
@@ -225,6 +238,7 @@ class ContribsPager extends RangeChronologicalPager {
 		$this->hookRunner = new HookRunner( $hookContainer ?? $services->getHookContainer() );
 		$this->revisionStore = $revisionStore ?? $services->getRevisionStore();
 		$this->namespaceInfo = $namespaceInfo ?? $services->getNamespaceInfo();
+		$this->commentFormatter = $commentFormatter ?? $services->getCommentFormatter();
 	}
 
 	public function getDefaultQuery() {
@@ -263,6 +277,7 @@ class ContribsPager extends RangeChronologicalPager {
 			$order
 		);
 
+		$options['MAX_EXECUTION_TIME'] = $this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' );
 		/*
 		 * This hook will allow extensions to add in additional queries, so they can get their data
 		 * in My Contributions as well. Extensions should append their results to the $data array.
@@ -511,7 +526,7 @@ class ContribsPager extends RangeChronologicalPager {
 	}
 
 	/**
-	 * @return false|string
+	 * @return false|string[]
 	 */
 	public function getTagFilter() {
 		return $this->tagFilter;
@@ -567,63 +582,63 @@ class ContribsPager extends RangeChronologicalPager {
 		$this->mResult->seek( 0 );
 		$parentRevIds = [];
 		$this->mParentLens = [];
-		$batch = $this->linkBatchFactory->newLinkBatch();
+		$revisions = [];
+		$linkBatch = $this->linkBatchFactory->newLinkBatch();
 		$isIpRange = $this->isQueryableRange( $this->target );
 		# Give some pointers to make (last) links
 		foreach ( $this->mResult as $row ) {
 			if ( isset( $row->rev_parent_id ) && $row->rev_parent_id ) {
-				$parentRevIds[] = $row->rev_parent_id;
+				$parentRevIds[] = (int)$row->rev_parent_id;
 			}
-			if ( isset( $row->rev_id ) ) {
-				$this->mParentLens[$row->rev_id] = $row->rev_len;
+			if ( $this->revisionStore->isRevisionRow( $row ) ) {
+				$this->mParentLens[(int)$row->rev_id] = $row->rev_len;
 				if ( $isIpRange ) {
 					// If this is an IP range, batch the IP's talk page
-					$batch->add( NS_USER_TALK, $row->rev_user_text );
+					$linkBatch->add( NS_USER_TALK, $row->rev_user_text );
 				}
-				$batch->add( $row->page_namespace, $row->page_title );
+				$linkBatch->add( $row->page_namespace, $row->page_title );
+				$revisions[$row->rev_id] = $this->revisionStore->newRevisionFromRow( $row );
 			}
 		}
 		# Fetch rev_len for revisions not already scanned above
 		$this->mParentLens += $this->revisionStore->getRevisionSizes(
 			array_diff( $parentRevIds, array_keys( $this->mParentLens ) )
 		);
-		$batch->execute();
-		$this->mResult->seek( 0 );
+		$linkBatch->execute();
+
+		$this->formattedComments = $this->commentFormatter->createRevisionBatch()
+			->authority( $this->getAuthority() )
+			->revisions( $revisions )
+			->hideIfDeleted()
+			->execute();
+
+		# For performance, save the revision objects for later.
+		# The array is indexed by rev_id. doBatchLookups() may be called
+		# multiple times with different results, so merge the revisions array,
+		# ignoring any duplicates.
+		$this->revisions += $revisions;
 	}
 
 	/**
-	 * @return string
-	 */
-	protected function getStartBody() {
-		return "<ul class=\"mw-contributions-list\">\n";
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getEndBody() {
-		return "</ul>\n";
-	}
-
-	/**
-	 * Check whether the revision associated is valid for formatting. If has no
-	 * associated revision ID then null is returned.
-	 *
-	 * This was previously used by formatRow() but now exists only for the
-	 * convenience of extensions.
+	 * If the object looks like a revision row, or corresponds to a previously
+	 * cached revision, return the RevisionRecord. Otherwise, return null.
 	 *
 	 * @since 1.35
-	 * @deprecated since 1.37 use RevisionStore::isRevisionRow()
 	 *
-	 * @param stdClass $row
+	 * @param mixed $row
 	 * @param Title|null $title
 	 * @return RevisionRecord|null
 	 */
 	public function tryCreatingRevisionRecord( $row, $title = null ) {
-		if ( !$this->revisionStore->isRevisionRow( $row ) ) {
+		if ( $row instanceof stdClass && isset( $row->rev_id )
+			&& isset( $this->revisions[$row->rev_id] )
+		) {
+			return $this->revisions[$row->rev_id];
+		} elseif ( $this->revisionStore->isRevisionRow( $row ) ) {
+			return $this->revisionStore->newRevisionFromRow( $row, 0, $title );
+		} else {
 			return null;
 		}
-		return $this->revisionStore->newRevisionFromRow( $row, 0, $title );
 	}
 
 	/**
@@ -656,7 +671,8 @@ class ContribsPager extends RangeChronologicalPager {
 		// skip formatting so that the row can be formatted by the
 		// ContributionsLineEnding hook below.
 		// FIXME: have some better way for extensions to provide formatted rows.
-		if ( $this->revisionStore->isRevisionRow( $row ) ) {
+		$revRecord = $this->tryCreatingRevisionRecord( $row, $page );
+		if ( $revRecord ) {
 			$revRecord = $this->revisionStore->newRevisionFromRow( $row, 0, $page );
 			$attribs['data-mw-revid'] = $revRecord->getId();
 
@@ -678,7 +694,7 @@ class ContribsPager extends RangeChronologicalPager {
 					$this->getAuthority()->probablyCan( 'rollback', $page ) &&
 					$this->getAuthority()->probablyCan( 'edit', $page )
 				) {
-					$this->preventClickjacking();
+					$this->setPreventClickjacking( true );
 					$topmarktext .= ' ' . Linker::generateRollback(
 						$revRecord,
 						$this->getContext(),
@@ -732,7 +748,16 @@ class ContribsPager extends RangeChronologicalPager {
 			}
 
 			$lang = $this->getLanguage();
-			$comment = $lang->getDirMark() . Linker::revComment( $revRecord, false, true, false );
+
+			$comment = $this->formattedComments[$row->rev_id];
+
+			if ( $comment === '' ) {
+				$defaultComment = $this->msg( 'changeslist-nocomment' )->escaped();
+				$comment = "<span class=\"comment mw-comment-none\">$defaultComment</span>";
+			}
+
+			$comment = $lang->getDirMark() . $comment;
+
 			$d = ChangesList::revDateLink( $revRecord, $user, $lang, $page );
 
 			# When querying for an IP range, we want to always show user and user talk links.
@@ -845,8 +870,19 @@ class ContribsPager extends RangeChronologicalPager {
 		}
 	}
 
+	/**
+	 * @deprecated since 1.38, use ::setPreventClickjacking() instead
+	 */
 	protected function preventClickjacking() {
-		$this->preventClickjacking = true;
+		$this->setPreventClickjacking( true );
+	}
+
+	/**
+	 * @param bool $enable
+	 * @since 1.38
+	 */
+	protected function setPreventClickjacking( bool $enable ) {
+		$this->preventClickjacking = $enable;
 	}
 
 	/**

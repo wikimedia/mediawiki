@@ -1,8 +1,8 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 
@@ -26,7 +26,7 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 			'wgScriptPath' => '/w',
 			'wgScript' => '/w/index.php',
 		] );
-		$this->factory = MediaWikiServices::getInstance()->getLinkRendererFactory();
+		$this->factory = $this->getServiceContainer()->getLinkRendererFactory();
 	}
 
 	public function provideMergeAttribs() {
@@ -202,9 +202,8 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 	 * @covers \MediaWiki\Linker\LinkRenderer::getLinkClasses
 	 */
 	public function testGetLinkClasses( $foobarTitle, $redirectTitle, $userTitle ) {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$titleFormatter = $services->getTitleFormatter();
-		$nsInfo = $services->getNamespaceInfo();
 		$specialPageFactory = $services->getSpecialPageFactory();
 		$hookContainer = $services->getHookContainer();
 		$linkCache = $services->getLinkCache();
@@ -228,8 +227,13 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 		}
 		$this->addGoodLinkObject( 3, $cacheTitle, 10, 0 );
 
-		$linkRenderer = new LinkRenderer( $titleFormatter, $linkCache,
-			$nsInfo, $specialPageFactory, $hookContainer );
+		$linkRenderer = new LinkRenderer(
+			$titleFormatter,
+			$linkCache,
+			$specialPageFactory,
+			$hookContainer,
+			new ServiceOptions( LinkRenderer::CONSTRUCTOR_OPTIONS, [ 'renderForComment' => false ] )
+		);
 		$this->assertSame(
 			'',
 			$linkRenderer->getLinkClasses( $foobarTitle )

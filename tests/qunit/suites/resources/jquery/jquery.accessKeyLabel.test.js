@@ -53,8 +53,8 @@
 			// The "a" could be capitalized, and the prefix could be anything, e.g. a simple "^" for ctrl-
 			// (no browser is known using such a short prefix, though) or "Alt+Umschalt+" in German Firefox.
 			result = /^Title \[(.+)[aA]\]$/.exec( title );
-		assert.ok( result, 'title should match expected structure.' );
-		assert.notEqual( result[ 1 ], 'test-', 'Prefix used for testing shouldn\'t be used in production.' );
+		assert.notStrictEqual( result, null, 'title should match expected structure.' );
+		assert.notStrictEqual( result[ 1 ], 'test-', 'Prefix used for testing shouldn\'t be used in production.' );
 	} );
 
 	QUnit.test( 'updateTooltipAccessKeys - no access key', function ( assert ) {

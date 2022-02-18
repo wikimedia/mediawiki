@@ -456,7 +456,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 * and/or ID may be persisted, and should be used to construct an
 	 * unverified UserInfo to pass to SessionInfo::__construct().
 	 *
-	 * A backend that cannot persist sesison ID or user info should implement
+	 * A backend that cannot persist session ID or user info should implement
 	 * this as a no-op.
 	 *
 	 * @note For use by \MediaWiki\Session\SessionBackend only
@@ -470,7 +470,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 *
 	 * For example, blank and expire any cookies set by self::persistSession().
 	 *
-	 * A backend that cannot persist sesison ID or user info should implement
+	 * A backend that cannot persist session ID or user info should implement
 	 * this as a no-op.
 	 *
 	 * @note For use by \MediaWiki\Session\SessionManager only

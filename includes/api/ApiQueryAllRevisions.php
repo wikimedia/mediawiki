@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
@@ -53,6 +54,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param ActorMigration $actorMigration
 	 * @param NamespaceInfo $namespaceInfo
+	 * @param ContentRenderer $contentRenderer
 	 * @param ContentTransformer $contentTransformer
 	 */
 	public function __construct(
@@ -64,6 +66,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		SlotRoleRegistry $slotRoleRegistry,
 		ActorMigration $actorMigration,
 		NamespaceInfo $namespaceInfo,
+		ContentRenderer $contentRenderer,
 		ContentTransformer $contentTransformer
 	) {
 		parent::__construct(
@@ -74,6 +77,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			$contentHandlerFactory,
 			$parserFactory,
 			$slotRoleRegistry,
+			$contentRenderer,
 			$contentTransformer
 		);
 		$this->revisionStore = $revisionStore;
@@ -86,8 +90,6 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 	 * @return void
 	 */
 	protected function run( ApiPageSet $resultPageSet = null ) {
-		global $wgActorTableSchemaMigrationStage;
-
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
 
@@ -99,7 +101,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		$idField = 'rev_id';
 		$pageField = 'rev_page';
 		if ( $params['user'] !== null &&
-			( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_TEMP )
+			( $this->getConfig()->get( 'ActorTableSchemaMigrationStage' ) & SCHEMA_COMPAT_READ_TEMP )
 		) {
 			// The query is probably best done using the actor_timestamp index on
 			// revision_actor_temp. Use the denormalized fields from that table.

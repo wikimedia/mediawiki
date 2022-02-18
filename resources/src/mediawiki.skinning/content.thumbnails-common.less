@@ -1,0 +1,66 @@
+/**
+ * These styles are common to both print and screen media.
+ * Use the -print or without postfix files to apply styles more selectively.
+ */
+
+/* stylelint-disable selector-class-pattern */
+
+@import 'variables.less';
+
+/* @noflip */
+div.tright,
+div.floatright,
+table.floatright {
+	clear: right;
+	float: right;
+}
+
+/* @noflip */
+div.tleft,
+div.floatleft,
+table.floatleft {
+	float: left;
+	clear: left;
+}
+
+/* @noflip */
+div.floatright,
+table.floatright {
+	margin: @margin-floatright;
+}
+
+/* @noflip */
+div.floatleft,
+table.floatleft {
+	margin: @margin-floatleft;
+}
+
+div.thumb {
+	width: auto;
+	background-color: transparent;
+	margin-bottom: @margin-bottom-thumb;
+}
+
+/* @noflip */
+div.tleft {
+	margin: @margin-tleft;
+}
+
+/* @noflip */
+div.tright {
+	margin: @margin-tright;
+}
+
+.thumbcaption {
+	text-align: left;
+	line-height: @line-height-thumbcaption;
+	padding: 3px;
+}
+
+div.thumbinner {
+	padding: 3px;
+	text-align: center;
+	/* new block formatting context,
+	 * to clear background from floating content */
+	overflow: hidden;
+}

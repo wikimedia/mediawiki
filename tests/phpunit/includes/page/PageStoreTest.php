@@ -2,10 +2,8 @@
 namespace MediaWiki\Tests\Page;
 
 use Exception;
-use IDatabase;
 use InvalidArgumentException;
 use LinkCacheTestTrait;
-use LoadBalancer;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Page\PageIdentity;
@@ -14,9 +12,12 @@ use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\PageStore;
 use MediaWikiIntegrationTestCase;
 use MockTitleTrait;
+use Title;
 use TitleValue;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\LoadBalancer;
 
 /**
  * @group Database
@@ -288,42 +289,6 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 	 * Test that we get a PageRecord when an incomplete row exists in the cache
 	 * @covers \MediaWiki\Page\PageStore::getPageByName
 	 */
-	public function testGetPageByName_cachedIncompleteRow() {
-		$existingPage = $this->getExistingTestPage();
-		$ns = $existingPage->getNamespace();
-		$dbkey = $existingPage->getDBkey();
-
-		$linkCache = $this->getServiceContainer()->getLinkCache();
-		$linkCache->clearLink( $existingPage );
-
-		// Has all fields needed by LinkCache, but not all fields needed by PageStore.
-		// This may happen when legacy code injects rows directly into LinkCache.
-		// LinkCache::addLinkObj itself produces incomplete rows as well.
-		$row = (object)[
-			'page_id' => 8,
-			'page_is_redirect' => 0,
-			'page_latest' => 118,
-			'page_len' => 155,
-			'page_content_model' => CONTENT_FORMAT_TEXT,
-			'page_lang' => 'xyz',
-			'page_restrictions' => 'test'
-		];
-
-		$linkCache->addGoodLinkObjFromRow( $existingPage, $row );
-
-		$pageStore = $this->getPageStore();
-		$page = $pageStore->getPageByName( $ns, $dbkey );
-
-		$this->assertSame( $existingPage->getId(), $page->getId() );
-		$this->assertSame( $existingPage->getNamespace(), $page->getNamespace() );
-		$this->assertSame( $existingPage->getDBkey(), $page->getDBkey() );
-		$this->assertSame( $existingPage->getLatest(), $page->getLatest() );
-	}
-
-	/**
-	 * Test that we get a PageRecord when an incomplete row exists in the cache
-	 * @covers \MediaWiki\Page\PageStore::getPageByName
-	 */
 	public function testGetPageByName_cachedFakeRow() {
 		$nonexistingPage = $this->getNonexistingTestPage();
 		$ns = $nonexistingPage->getNamespace();
@@ -564,6 +529,23 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * Test that we get a PageRecord from cached data even if we pass in a
+	 * PageIdentity that provides a page ID (T296063#7520023).
+	 *
+	 * @covers \MediaWiki\Page\PageStore::getPageByReference
+	 */
+	public function testGetPageByIdentity_cached() {
+		$title = $this->makeMockTitle( __METHOD__, [ 'id' => 23 ] );
+		$this->addGoodLinkObject( 23, $title );
+
+		$pageStore = $this->getPageStore();
+		$page = $pageStore->getPageByReference( $title );
+
+		$this->assertNotNull( $page );
+		$this->assertSame( 23, $page->getId() );
+	}
+
+	/**
 	 * Test that we get null if we look up a page with ID 0
 	 *
 	 * @covers \MediaWiki\Page\PageStore::getPageByReference
@@ -781,6 +763,22 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 
 		$pageStore = $this->getPageStore();
 		$this->assertEmpty( $pageStore->getSubpages( $title, 100 ) );
+	}
+
+	/**
+	 * See T295931. If removing TitleExists hook, remove this test.
+	 *
+	 * @covers \MediaWiki\Page\PageStore::getPageByReference
+	 */
+	public function testGetPageByReferenceTitleExistsHook() {
+		$this->setTemporaryHook( 'TitleExists', static function ( $title, &$exists ) {
+			$exists = true;
+		} );
+		$this->assertNull(
+			$this->getPageStore()->getPageByReference(
+				Title::newFromText( __METHOD__ )
+			)
+		);
 	}
 
 }

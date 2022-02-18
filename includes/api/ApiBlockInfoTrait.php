@@ -36,7 +36,10 @@ trait ApiBlockInfoTrait {
 	 *  - blockedbyid - user ID of the blocker
 	 *  - blockreason - reason provided for the block
 	 *  - blockedtimestamp - timestamp for when the block was placed/modified
+	 *  - blockedtimestampformatted - blockedtimestamp, formatted for the current locale
 	 *  - blockexpiry - expiry time of the block
+	 *  - blockexpiryformatted - blockexpiry formatted for the current locale, omitted if infinite
+	 *  - blockexpiryrelative - relative time to blockexpiry (e.g. 'in 5 days'), omitted if infinite
 	 *  - blockpartial - block only applies to certain pages, namespaces and/or actions
 	 *  - systemblocktype - system block type, if any
 	 */
@@ -57,10 +60,25 @@ trait ApiBlockInfoTrait {
 		$vals['blockreason'] = $block->getReasonComment()
 			->message->inLanguage( $language )->plain();
 		$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->getTimestamp() );
-		$vals['blockexpiry'] = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
+		$expiry = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
+		$vals['blockexpiry'] = $expiry;
 		$vals['blockpartial'] = !$block->isSitewide();
 		$vals['blocknocreate'] = $block->isCreateAccountBlocked();
 		$vals['blockanononly'] = !$block->isHardblock();
+
+		$user = $this->getUser();
+		// Formatted timestamps
+		$vals['blockedtimestampformatted'] = $language->formatExpiry(
+			$block->getTimestamp(), true, 'infinity', $user
+		);
+		if ( $expiry !== 'infinite' ) {
+			$vals['blockexpiryformatted'] = $language->formatExpiry(
+				$expiry, true, 'infinity', $user
+			);
+			$vals['blockexpiryrelative'] = $language->getHumanTimestamp(
+				new MWTimestamp( $expiry ), new MWTimestamp(), $user
+			);
+		}
 
 		if ( $block instanceof SystemBlock ) {
 			$vals['systemblocktype'] = $block->getSystemBlockType();
@@ -79,6 +97,12 @@ trait ApiBlockInfoTrait {
 	 * @return Language
 	 */
 	abstract public function getLanguage();
+
+	/**
+	 * @see IContextSource::getUser
+	 * @return User
+	 */
+	abstract public function getUser();
 
 	/** @} */
 	// endregion -- end of methods required from ApiBase

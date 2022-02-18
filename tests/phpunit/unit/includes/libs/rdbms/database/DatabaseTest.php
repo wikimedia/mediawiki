@@ -11,6 +11,7 @@ use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactorySingle;
+use Wikimedia\Rdbms\TransactionManager;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\RequestTimeout\CriticalSectionScope;
 use Wikimedia\TestingAccessWrapper;
@@ -444,12 +445,10 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		static $abstractMethods = [
 			'fetchAffectedRowCount',
 			'closeConnection',
-			'dataSeek',
 			'doQuery',
 			'fetchObject',
 			'fetchRow',
 			'fieldInfo',
-			'fieldName',
 			'getSoftwareLink',
 			'getServerVersion',
 			'getType',
@@ -457,7 +456,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			'insertId',
 			'lastError',
 			'lastErrno',
-			'numFields',
 			'numRows',
 			'open',
 			'strencode',
@@ -483,6 +481,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$wdb->currentDomain = DatabaseDomain::newUnspecified();
 
 		$db->method( 'getServer' )->willReturn( '*dummy*' );
+		$db->setTransactionManager( new TransactionManager() );
 
 		return $db;
 	}

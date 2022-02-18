@@ -20,7 +20,6 @@
  */
 
 use MediaWiki\Interwiki\InterwikiLookup;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -103,7 +102,7 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 
 	protected function makeCodec( $lang ) {
 		return new MediaWikiTitleCodec(
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $lang ),
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( $lang ),
 			$this->getGenderCache(),
 			[ 'localtestiw' ],
 			$this->getInterwikiLookup(),
@@ -506,7 +505,6 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideMakeTitleValueSafe
-	 * @covers IP::sanitizeIP
 	 */
 	public function testMakeTitleValueSafe(
 		$expected, $ns, $text, $fragment = '', $interwiki = '', $lang = 'en'
@@ -521,7 +519,6 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	 * @covers Title::makeTitleSafe
 	 * @covers Title::makeName
 	 * @covers Title::secureAndSplit
-	 * @covers IP::sanitizeIP
 	 */
 	public function testMakeTitleSafe(
 		$expected, $ns, $text, $fragment = '', $interwiki = '', $lang = 'en'
@@ -534,7 +531,8 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 
 		if ( $expected ) {
 			$this->assertNotNull( $actual );
-			$this->assertTrue( Title::castFromLinkTarget( $expected )->equals( $actual ) );
+			$expectedTitle = Title::castFromLinkTarget( $expected );
+			$this->assertSame( $expectedTitle->getPrefixedDBkey(), $actual->getPrefixedDBkey() );
 		} else {
 			$this->assertNull( $actual );
 		}

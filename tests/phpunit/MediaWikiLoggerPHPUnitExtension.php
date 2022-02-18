@@ -6,6 +6,7 @@ use MediaWiki\Logger\Spi;
 use PHPUnit\Runner\AfterIncompleteTestHook;
 use PHPUnit\Runner\AfterRiskyTestHook;
 use PHPUnit\Runner\AfterSkippedTestHook;
+use PHPUnit\Runner\AfterSuccessfulTestHook;
 use PHPUnit\Runner\AfterTestErrorHook;
 use PHPUnit\Runner\AfterTestFailureHook;
 use PHPUnit\Runner\AfterTestHook;
@@ -13,15 +14,17 @@ use PHPUnit\Runner\AfterTestWarningHook;
 use PHPUnit\Runner\BeforeTestHook;
 
 /**
- * Replaces the logging SPI on each test run. This allows
- * another component (the printer) to fetch the logs when
- * reporting why a test failed.
+ * Replaces the logging SPI on each test run. This allows another component
+ * (the printer) to fetch the logs when reporting why a test failed.
+ *
+ * Also logs test start and end messages to the original log.
  */
 class MediaWikiLoggerPHPUnitExtension implements
 	BeforeTestHook,
 	AfterRiskyTestHook,
 	AfterIncompleteTestHook,
 	AfterSkippedTestHook,
+	AfterSuccessfulTestHook,
 	AfterTestErrorHook,
 	AfterTestWarningHook,
 	AfterTestFailureHook,
@@ -45,6 +48,7 @@ class MediaWikiLoggerPHPUnitExtension implements
 		$this->originalSpi = LoggerFactory::getProvider();
 		$this->spi = new LogCapturingSpi( $this->originalSpi );
 		LoggerFactory::registerProvider( $this->spi );
+		$this->log( "Start test $test" );
 	}
 
 	/** @inheritDoc */
@@ -55,25 +59,30 @@ class MediaWikiLoggerPHPUnitExtension implements
 	/** @inheritDoc */
 	public function executeAfterIncompleteTest( string $test, string $message, float $time ): void {
 		$this->augmentTestWithLogs( $test );
+		$this->log( "Incomplete test $test: $message" );
 	}
 
 	/** @inheritDoc */
 	public function executeAfterSkippedTest( string $test, string $message, float $time ): void {
 		$this->augmentTestWithLogs( $test );
+		$this->log( "Skipped test $test: $message" );
 	}
 
 	/** @inheritDoc */
 	public function executeAfterTestError( string $test, string $message, float $time ): void {
 		$this->augmentTestWithLogs( $test );
+		$this->log( "ERROR in test $test: $message" );
 	}
 
 	/** @inheritDoc */
 	public function executeAfterTestWarning( string $test, string $message, float $time ): void {
+		$this->log( "Warning in test $test: $message" );
 		$this->augmentTestWithLogs( $test );
 	}
 
 	/** @inheritDoc */
 	public function executeAfterTestFailure( string $test, string $message, float $time ): void {
+		$this->log( "FAILURE in test $test: $message" );
 		$this->augmentTestWithLogs( $test );
 	}
 
@@ -83,6 +92,13 @@ class MediaWikiLoggerPHPUnitExtension implements
 			$formatted = $this->formatLogs( $logs );
 			self::$testsCollection[$test] = $formatted;
 		}
+	}
+
+	/** @inheritDoc */
+	public function executeAfterSuccessfulTest( string $test, float $time ): void {
+		$this->log(
+			sprintf( "Successful test %s, completed in %.6f seconds",
+			$test, $time ) );
 	}
 
 	/** @inheritDoc */
@@ -118,4 +134,9 @@ class MediaWikiLoggerPHPUnitExtension implements
 		return implode( "\n", $message );
 	}
 
+	private function log( $message ) {
+		$spi = $this->originalSpi ?: LoggerFactory::getProvider();
+		$logger = $spi->getLogger( 'PHPUnit' );
+		$logger->debug( $message );
+	}
 }

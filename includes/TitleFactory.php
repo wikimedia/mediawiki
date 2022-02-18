@@ -127,8 +127,10 @@ class TitleFactory {
 	 * @see Title::newFromIDs
 	 * @param int[] $ids
 	 * @return Title[]
+	 * @deprecated since 1.38 use a PageStore QueryBuilder instead
 	 */
 	public function newFromIDs( $ids ): array {
+		wfDeprecated( __METHOD__, '1.38' );
 		return Title::newFromIDs( $ids );
 	}
 

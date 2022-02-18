@@ -32,7 +32,7 @@
  * bucket. Each bucket maps to one or several peer servers, each running redis.
  * A majority of peers must agree for a lock to be acquired.
  *
- * This class requires Redis 2.6 as it makes use Lua scripts for fast atomic operations.
+ * This class requires Redis 2.6 as it makes use of Lua scripts for fast atomic operations.
  *
  * @ingroup LockManager
  * @since 1.22
@@ -56,18 +56,23 @@ class RedisLockManager extends QuorumLockManager {
 	 *
 	 * @param array $config Parameters include:
 	 *   - lockServers  : Associative array of server names to "<IP>:<port>" strings.
-	 *   - srvsByBucket : Array of 1-16 consecutive integer keys, starting from 0,
-	 *                    each having an odd-numbered list of server names (peers) as values.
-	 *   - redisConfig  : Configuration for RedisConnectionPool::__construct().
+	 *   - srvsByBucket : An array of up to 16 arrays, each containing the server names
+	 *                    in a bucket. Each bucket should have an odd number of servers.
+	 *                    If omitted, all servers will be in one bucket. (optional).
+	 *   - redisConfig  : Configuration for RedisConnectionPool::singleton() (optional).
 	 * @throws Exception
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
 
 		$this->lockServers = $config['lockServers'];
-		// Sanitize srvsByBucket config to prevent PHP errors
-		$this->srvsByBucket = array_filter( $config['srvsByBucket'], 'is_array' );
-		$this->srvsByBucket = array_values( $this->srvsByBucket ); // consecutive
+		if ( isset( $config['srvsByBucket'] ) ) {
+			// Sanitize srvsByBucket config to prevent PHP errors
+			$this->srvsByBucket = array_filter( $config['srvsByBucket'], 'is_array' );
+			$this->srvsByBucket = array_values( $this->srvsByBucket ); // consecutive
+		} else {
+			$this->srvsByBucket = [ array_keys( $this->lockServers ) ];
+		}
 
 		$config['redisConfig']['serializer'] = 'none';
 		$this->redisPool = RedisConnectionPool::singleton( $config['redisConfig'] );
@@ -159,10 +164,8 @@ LUA;
 			foreach ( $pathList as $path ) {
 				$status->fatal( 'lockmanager-fail-acquirelock', $path );
 			}
-		} else {
-			foreach ( $res as $key ) {
-				$status->fatal( 'lockmanager-fail-acquirelock', $pathsByKey[$key] );
-			}
+		} elseif ( count( $res ) ) {
+			$status->fatal( 'lockmanager-fail-conflict' );
 		}
 
 		return $status;
@@ -260,7 +263,7 @@ LUA;
 	}
 
 	/**
-	 * Make sure remaining locks get cleared for sanity
+	 * Make sure remaining locks get cleared
 	 */
 	public function __destruct() {
 		while ( count( $this->locksHeld ) ) {

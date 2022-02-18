@@ -2,14 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"1233qwer1234qwer4",
+			"Abuluntu",
 			"Chameleon222",
 			"Event",
 			"Jeblad",
 			"Jon Harald Søby",
 			"Kingu",
 			"Macofe",
-			"Matma Rex",
-			"Abuluntu"
+			"Matma Rex"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentasjon]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etikette og retningslinjer for bruk]]\n* [[mw:Special:MyLanguage/API:FAQ|Ofte stilte spørsmål]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-post-liste]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-kunngjøringer]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Feil & forespørsler]\n</div>\n<strong>Status:</strong> Alle funksjonene som vises på denne siden skal virke, men API-en er fortsatt i aktiv utvikling, og kan bli endret når som helst. Abonner på [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ MediaWiki sin API-kunnkjøringsepostliste] for nyheter om oppdateringer.\n\n<strong>Feile kall:</strong> Hvis det blir sendt feile kall til API-et, blir det sendt en HTTP-header med nøkkelen \"MediaWiki-API-Error\" og da blir både header-verdien og feilkoden sendt tilbake med samme verdi. For mer informasjon se [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Feil og advarsler]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testing:</strong> For enkelt å teste API-kall, se [[Special:ApiSandbox]].</p>",
@@ -26,6 +26,7 @@
 	"apihelp-main-param-responselanginfo": "Inkluder språkene brukt for <var>uselang</var> og <var>errorlang</var> i resultatet.",
 	"apihelp-main-param-origin": "Når man aksesserer API-en som bruker en domene-kryssende AJAX-forespørsel (CORS), sett denne til det opprinnelige domenet. Denne må tas med i alle pre-flight-forespørsler, og derfor være en del av spørre-URI-en (ikke POST-kroppen).\n\nFor autentiserte forespørsler må denne stemme helt med en av de opprinnelige i <code>Origin</code>-headeren, slik at den må settes til noe a la <kbd>https://en.wikipedia.org</kbd> eller <kbd>https://meta.wikimedia.org</kbd>. Hvis denne parameteren ikke stemmer med <code>Origin</code>-headeren, returneres et 403-svar. Hvis denne parameteren stemmer med <code>Origin</code>-headeren og originalen er hvitlistet, vil <code>Access-Control-Allow-Origin</code> og <code>Access-Control-Allow-Credentials</code>-headere bli satt.\n\nFor ikke-autentiserte forepørsler, spesifiser <kbd>*</kbd>. Denne vil gjøre at <code>Access-Control-Allow-Origin</code>-headeren blir satt, men <code>Access-Control-Allow-Credentials</code> blir <code>false</code> og alle bruerspesifikke data blir begrenset.",
 	"apihelp-main-param-uselang": "Språk å bruke for meldingsoversettelser. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> med <kbd>siprop=languages</kbd> returnerer en liste over språkkoder, eller spesifiser <kbd>user</kbd> for å bruke den nåværende brukerens språkpreferanser, eller spesifiser <kbd>content</kbd> for å bruke denne wikiens innholdsspråk.",
+	"apihelp-main-param-variant": "Språkvarianten. Virker bare dersom grunnspråket støtter variantkonvertering.",
 	"apihelp-main-param-errorformat": "Formater som kan brukes for advarsels- og feiltekster",
 	"apihelp-main-paramvalue-errorformat-plaintext": "Wikitext hvor HTML-tagger er fjernet og elementer er erstattet.",
 	"apihelp-main-paramvalue-errorformat-wikitext": "Ubehandlet wikitext.",
@@ -83,7 +84,7 @@
 	"apihelp-compare-param-frompst": "Gjør en transformering av <var>fromtext-{slot}</var> før lagring.",
 	"apihelp-compare-param-fromslots": "Overstyr innholdet til revisjonen gitt av <var>fromtitle</var>, <var>fromid</var> eller <var>fromrev</var>.\n\nDenne parameteren angir spaltene som skal endres. Bruk <var>fromtext-{slot}</var>, <var>fromcontentmodel-{slot}</var> og <var>fromcontentformat-{slot}</var> for å angi innholdet for hver spalte.",
 	"apihelp-compare-param-fromtext-{slot}": "Teksten til den gitte spalten. Hvis denne omgås fjernes spalten fra revisjonen.",
-	"apihelp-compare-param-fromsection-{slot}": "Når <var>fromtext-{slot}</var> er innholdet til én enkel seksjon er dette seksjonsnummeret. Den blir slått sammen til revisjonen angitt av <var>fromtitle</var>, <var>fromid</var> eller <var>fromrev</var> som om det var for en seksjonsredigering.",
+	"apihelp-compare-param-fromsection-{slot}": "Når <var>fromtext-&#x7B;slot}</var> er innholdet til én enkel seksjon er dette seksjons-ID-en. Den blir slått sammen til revisjonen angitt av <var>fromtitle</var>, <var>fromid</var> eller <var>fromrev</var> som om det var for en seksjonsredigering.",
 	"apihelp-compare-param-fromcontentmodel-{slot}": "Innholdsmodellen til <var>fromtext-{slot}</var>. Hvis denne ikke er gitt vil den gjettes basert på de andre parameterne.",
 	"apihelp-compare-param-fromcontentformat-{slot}": "Innholdsserialiseringsformatet til <var>fromtext-{slot}</var>.",
 	"apihelp-compare-param-fromtext": "Angi <kbd>fromslots=main</kbd> og bruk <var>fromtext-main</var> i stedet.",
@@ -97,7 +98,7 @@
 	"apihelp-compare-param-topst": "Gjør en transformering av <var>totext</var> før lagring.",
 	"apihelp-compare-param-toslots": "Overstyr innholdet til revisjonen gitt av <var>tititle</var>, <var>tiid</var> eller <var>tirev</var>.\n\nDenne parameteren angir spaltene som skal endres. Bruk <var>totext-{slot}</var>, <var>tocontentmodel-{slot}</var> og <var>tocontentformat-{slot}</var> for å angi innholdet for hver spalte.",
 	"apihelp-compare-param-totext-{slot}": "Teksten til den gitte spalten. Hvis den omgås blir spalten fjernet fra revisjonen.",
-	"apihelp-compare-param-tosection-{slot}": "Når <var>totext-{slot}</var> er innholdet til én enkel seksjon er dette seksjonsnummeret. Den blir slått sammen til revisjonen angitt av <var>totitle</var>, <var>toid</var> eller <var>torev</var> som om det var for en seksjonsredigering.",
+	"apihelp-compare-param-tosection-{slot}": "Når <var>totext-&#x7B;slot}</var> er innholdet til én enkel seksjon er dette seksjons-ID-en. Den blir slått sammen til revisjonen angitt av <var>totitle</var>, <var>toid</var> eller <var>torev</var> som om det var for en seksjonsredigering.",
 	"apihelp-compare-param-tocontentmodel-{slot}": "Innholdsmodellen til <var>totext-{slot}</var>. Hvis denne ikke er gitt vil den gjettes basert på de andre parameterne.",
 	"apihelp-compare-param-tocontentformat-{slot}": "Innholdsserialiseringsformatet til <var>totext-{slot}</var>.",
 	"apihelp-compare-param-totext": "Angi <kbd>toslots=main</kbd> og bruk <var>totext-main</var> i stedet.",

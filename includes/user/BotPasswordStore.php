@@ -174,7 +174,7 @@ class BotPasswordStore implements IDBAccessObject {
 
 		$row = (object)[
 			'bp_user' => 0,
-			'bp_app_id' => isset( $data['appId'] ) ? trim( $data['appId'] ) : '',
+			'bp_app_id' => trim( $data['appId'] ?? '' ),
 			'bp_token' => '**unsaved**',
 			'bp_restrictions' => $data['restrictions'] ?? MWRestrictions::newDefault(),
 			'bp_grants' => $data['grants'] ?? [],
@@ -366,7 +366,7 @@ class BotPasswordStore implements IDBAccessObject {
 
 	/**
 	 * Invalidate all passwords for a user, by name
-	 * @param string $username User name
+	 * @param string $username
 	 * @return bool Whether any passwords were invalidated
 	 */
 	public function invalidateUserPasswords( string $username ): bool {
@@ -395,7 +395,7 @@ class BotPasswordStore implements IDBAccessObject {
 
 	/**
 	 * Remove all passwords for a user, by name
-	 * @param string $username User name
+	 * @param string $username
 	 * @return bool Whether any passwords were removed
 	 */
 	public function removeUserPasswords( string $username ): bool {

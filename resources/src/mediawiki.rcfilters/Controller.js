@@ -32,7 +32,8 @@ Controller = function MwRcfiltersController( filtersModel, changesListModel, sav
 	this.collapsedPreferenceName = config.collapsedPreferenceName;
 	this.normalizeTarget = !!config.normalizeTarget;
 
-	this.pollingRate = require( './config.json' ).StructuredChangeFiltersLiveUpdatePollingRate;
+	// TODO merge dmConfig.json and config.json virtual files, see T256836
+	this.pollingRate = require( './dmConfig.json' ).StructuredChangeFiltersLiveUpdatePollingRate;
 
 	this.requestCounter = {};
 	this.uriProcessor = null;
@@ -841,7 +842,7 @@ Controller.prototype._saveSavedQueries = function () {
 	stringified = JSON.stringify( state );
 
 	if ( byteLength( stringified ) > 65535 ) {
-		// Sanity check, since the preference can only hold that.
+		// Double check, since the preference can only hold that.
 		return;
 	}
 
@@ -1140,7 +1141,7 @@ Controller.prototype._trackHighlight = function ( action, filters ) {
  */
 Controller.prototype.trackFilterGroupings = function ( action ) {
 	var controller = this,
-		rightNow = new Date().getTime(),
+		rightNow = Date.now(),
 		randomIdentifier = String( mw.user.sessionId() ) + String( rightNow ) + String( Math.random() ),
 		// Get all current filters
 		filters = this.filtersModel.findSelectedItems().map( function ( item ) {

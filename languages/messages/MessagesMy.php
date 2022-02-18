@@ -173,6 +173,6 @@ $dateFormats = [
 	'my normal both' => ' H:i"၊" j F Y',
 
 	'my long time' => 'H:i',
-	'my long date' => 'Y "ဇန်နဝါရီ" F"လ" j "ရက်"',
-	'my long both' => 'H:i"၊" Y "ဇန်နဝါရီ" F"လ" j "ရက်"',
+	'my long date' => 'Y F"လ" j "ရက်"',
+	'my long both' => 'H:i"၊" Y F"လ" j "ရက်"',
 ];

@@ -23,10 +23,12 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
@@ -68,6 +70,12 @@ class SpecialContributions extends IncludableSpecialPage {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
+	/** @var UserFactory */
+	private $userFactory;
+
 	/** @var ContribsPager|null */
 	private $pager = null;
 
@@ -81,6 +89,8 @@ class SpecialContributions extends IncludableSpecialPage {
 	 * @param UserNameUtils|null $userNameUtils
 	 * @param UserNamePrefixSearch|null $userNamePrefixSearch
 	 * @param UserOptionsLookup|null $userOptionsLookup
+	 * @param CommentFormatter|null $commentFormatter
+	 * @param UserFactory|null $userFactory
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory = null,
@@ -91,7 +101,9 @@ class SpecialContributions extends IncludableSpecialPage {
 		NamespaceInfo $namespaceInfo = null,
 		UserNameUtils $userNameUtils = null,
 		UserNamePrefixSearch $userNamePrefixSearch = null,
-		UserOptionsLookup $userOptionsLookup = null
+		UserOptionsLookup $userOptionsLookup = null,
+		CommentFormatter $commentFormatter = null,
+		UserFactory $userFactory = null
 	) {
 		parent::__construct( 'Contributions' );
 		// This class is extended and therefore falls back to global state - T269521
@@ -105,6 +117,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->userNameUtils = $userNameUtils ?? $services->getUserNameUtils();
 		$this->userNamePrefixSearch = $userNamePrefixSearch ?? $services->getUserNamePrefixSearch();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
+		$this->commentFormatter = $commentFormatter ?? $services->getCommentFormatter();
+		$this->userFactory = $userFactory ?? $services->getUserFactory();
 	}
 
 	public function execute( $par ) {
@@ -166,7 +180,12 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['nsInvert'] = in_array( 'nsInvert', $nsFilters );
 		}
 
-		$this->opts['tagfilter'] = (string)$request->getVal( 'tagfilter' );
+		$this->opts['tagfilter'] = array_filter( explode(
+			'|',
+			(string)$request->getVal( 'tagfilter' )
+		), static function ( $el ) {
+			return $el !== '';
+		} );
 
 		// Allows reverts to have the bot flag in recent changes. It is just here to
 		// be passed in the form at the top of the page
@@ -177,8 +196,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		$skip = $request->getText( 'offset' ) || $request->getText( 'dir' ) == 'prev';
 		# Offset overrides year/month selection
 		if ( !$skip ) {
-			$this->opts['year'] = $request->getVal( 'year' );
-			$this->opts['month'] = $request->getVal( 'month' );
+			$this->opts['year'] = $request->getIntOrNull( 'year' );
+			$this->opts['month'] = $request->getIntOrNull( 'month' );
 
 			$this->opts['start'] = $request->getVal( 'start' );
 			$this->opts['end'] = $request->getVal( 'end' );
@@ -186,7 +205,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$id = 0;
 		if ( ExternalUserNames::isExternal( $target ) ) {
-			$userObj = User::newFromName( $target, false );
+			$userObj = $this->userFactory->newFromName( $target, UserFactory::RIGOR_NONE );
 			if ( !$userObj ) {
 				$out->addHTML( $this->getForm( $this->opts ) );
 				return;
@@ -200,7 +219,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				$out->addHTML( $this->getForm( $this->opts ) );
 				return;
 			}
-			$userObj = User::newFromName( $nt->getText(), false );
+			$userObj = $this->userFactory->newFromName( $nt->getText(), UserFactory::RIGOR_NONE );
 			if ( !$userObj ) {
 				$out->addHTML( $this->getForm( $this->opts ) );
 				return;
@@ -255,7 +274,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( $this->opts['deletedOnly'] ) {
 			$feedParams['deletedonly'] = true;
 		}
-		if ( $this->opts['tagfilter'] !== '' ) {
+
+		if ( $this->opts['tagfilter'] !== [] ) {
 			$feedParams['tagfilter'] = $this->opts['tagfilter'];
 		}
 		if ( $this->opts['namespace'] !== '' ) {
@@ -335,7 +355,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				$work->execute();
 			}
 
-			$out->preventClickjacking( $pager->getPreventClickjacking() );
+			$out->setPreventClickjacking( $pager->getPreventClickjacking() );
 
 			# Show the appropriate "footer" message - WHOIS tools, etc.
 			if ( IPUtils::isValidRange( $target ) && $pager->isQueryableRange( $target ) ) {
@@ -391,13 +411,11 @@ class SpecialContributions extends IncludableSpecialPage {
 			if ( !$this->userNameUtils->isIP( $userObj->getName() )
 				&& !IPUtils::isValidRange( $userObj->getName() )
 			) {
-				$this->getOutput()->wrapWikiMsg(
-					"<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
-					[
-						'contributions-userdoesnotexist',
-						wfEscapeWikiText( $userObj->getName() ),
-					]
-				);
+				$this->getOutput()->addHtml( Html::warningBox(
+					$this->getOutput()->msg( 'contributions-userdoesnotexist',
+						wfEscapeWikiText( $userObj->getName() ) )->parse(),
+					'mw-userpage-userdoesnotexist'
+				) );
 				if ( !$this->including() ) {
 					$this->getOutput()->setStatusCode( 404 );
 				}
@@ -585,7 +603,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				$sp->msg( 'sp-contributions-logs' )->text()
 			);
 
-			# Add link to deleted user contributions for priviledged users
+			# Add link to deleted user contributions for privileged users
 			# Todo: T183457
 			if ( $permissionManager->userHasRight( $sp->getUser(), 'deletedhistory' ) ) {
 				$tools['deletedcontribs'] = $linkRenderer->makeKnownLink(
@@ -853,7 +871,8 @@ class SpecialContributions extends IncludableSpecialPage {
 				$this->actorMigration,
 				$this->revisionStore,
 				$this->namespaceInfo,
-				$targetUser
+				$targetUser,
+				$this->commentFormatter
 			);
 		}
 

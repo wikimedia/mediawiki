@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageReference;
 
 /**
  * Job for updating user activity like "last viewed" timestamps
@@ -34,10 +35,18 @@ use MediaWiki\Linker\LinkTarget;
  * @since 1.26
  */
 class ActivityUpdateJob extends Job {
-	public function __construct( LinkTarget $title, array $params ) {
-		$title = Title::newFromLinkTarget( $title );
+	/**
+	 * @param LinkTarget|PageReference $title
+	 * @param array $params
+	 */
+	public function __construct( $title, array $params ) {
+		// If we know its a PageReference, we could just pass that to the parent
+		// constructor, but its simpler to just extract namespace and dbkey, and
+		// that works for both LinkTarget and PageReference
+		$params['namespace'] = $title->getNamespace();
+		$params['title'] = $title->getDBkey();
 
-		parent::__construct( 'activityUpdateJob', $title, $params );
+		parent::__construct( 'activityUpdateJob', $params );
 
 		static $required = [ 'type', 'userid', 'notifTime', 'curTime' ];
 		$missing = implode( ', ', array_diff( $required, array_keys( $this->params ) ) );
@@ -62,21 +71,38 @@ class ActivityUpdateJob extends Job {
 		$casTimestamp = $this->params['notifTime'] ?? $this->params['curTime'];
 
 		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->update( 'watchlist',
-			[
-				'wl_notificationtimestamp' => $dbw->timestampOrNull( $this->params['notifTime'] )
-			],
+		// Add a "check and set" style comparison to handle conflicts.
+		// The inequality always avoids updates when the current value
+		// is already NULL per ANSI SQL. This is desired since NULL means
+		// that the user is "caught up" on edits already. When the field
+		// is non-NULL, make sure not to set it back in time or set it to
+		// NULL when newer revisions were in fact added to the page.
+		$casTimeCond = 'wl_notificationtimestamp < ' . $dbw->addQuotes( $dbw->timestamp( $casTimestamp ) );
+
+		// select primary key first instead of directly update to avoid deadlocks per T204561
+		$wlId = $dbw->selectField(
+			'watchlist',
+			'wl_id',
 			[
 				'wl_user' => $this->params['userid'],
 				'wl_namespace' => $this->title->getNamespace(),
 				'wl_title' => $this->title->getDBkey(),
-				// Add a "check and set" style comparison to handle conflicts.
-				// The inequality always avoids updates when the current value
-				// is already NULL per ANSI SQL. This is desired since NULL means
-				// that the user is "caught up" on edits already. When the field
-				// is non-NULL, make sure not to set it back in time or set it to
-				// NULL when newer revisions were in fact added to the page.
-				'wl_notificationtimestamp < ' . $dbw->addQuotes( $dbw->timestamp( $casTimestamp ) )
+				$casTimeCond
+			],
+			__METHOD__
+		);
+
+		if ( !$wlId ) {
+			return;
+		}
+
+		$dbw->update(
+			'watchlist',
+			[ 'wl_notificationtimestamp' => $dbw->timestampOrNull( $this->params['notifTime'] )	],
+			[
+				'wl_id' => (int)$wlId,
+				// For paranoia, enforce the CAS time condition here too
+				$casTimeCond
 			],
 			__METHOD__
 		);

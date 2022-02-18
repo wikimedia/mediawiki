@@ -130,7 +130,7 @@ class ApiModuleManager extends ContextSource {
 	/**
 	 * Get module instance by name, or instantiate it if it does not exist
 	 *
-	 * @param string $moduleName Module name
+	 * @param string $moduleName
 	 * @param string|null $group Optionally validate that the module is in a specific group
 	 * @param bool $ignoreCache If true, force-creates a new instance and does not cache it
 	 *
@@ -237,7 +237,7 @@ class ApiModuleManager extends ContextSource {
 
 	/**
 	 * Returns true if the specific module is defined at all or in a specific group.
-	 * @param string $moduleName Module name
+	 * @param string $moduleName
 	 * @param string|null $group Group name to check against, or null to check all groups,
 	 * @return bool True if defined
 	 */

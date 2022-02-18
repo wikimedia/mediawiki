@@ -31,13 +31,14 @@ use IDBAccessObject;
 use InvalidArgumentException;
 use JobQueueGroup;
 use Language;
-use LinksUpdate;
 use LogicException;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
+use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RenderedRevision;
@@ -102,7 +103,7 @@ use WikiPage;
  * @since 1.32
  * @ingroup Page
  */
-class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
+class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, PreparedUpdate {
 
 	/**
 	 * @var UserIdentity|null
@@ -178,6 +179,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		'newrev' => false,
 		'created' => false,
 		'moved' => false,
+		'oldtitle' => null,
 		'restored' => false,
 		'oldrevision' => null,
 		'oldcountable' => null,
@@ -239,6 +241,11 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 
 	/** @var SlotRoleRegistry */
 	private $slotRoleRegistry;
+
+	/**
+	 * @var bool Whether null-edits create a revision.
+	 */
+	private $forceEmptyRevision = false;
 
 	/**
 	 * A stage identifier for managing the life cycle of this instance.
@@ -307,7 +314,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	private $permissionManager;
 
 	/**
-	 * @param WikiPage $wikiPage ,
+	 * @param WikiPage $wikiPage
 	 * @param RevisionStore $revisionStore
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param SlotRoleRegistry $slotRoleRegistry
@@ -371,15 +378,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		$this->logger = new NullLogger();
 	}
 
-	/**
-	 * @param UserIdentity $user
-	 *
-	 * @return User
-	 */
-	private static function toLegacyUser( UserIdentity $user ) {
-		return User::newFromIdentity( $user );
-	}
-
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
 	}
@@ -389,7 +387,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 *
 	 * @see docs/pageupdater.md for documentation of the life cycle.
 	 *
-	 * @param string $newStage the new stage
+	 * @param string $newStage
 	 * @return string the previous stage
 	 *
 	 * @throws LogicException If a transition to the given stage is not possible in the current
@@ -409,7 +407,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 *
 	 * @see docs/pageupdater.md for documentation of the life cycle.
 	 *
-	 * @param string $newStage the new stage
+	 * @param string $newStage
 	 *
 	 * @throws LogicException If this instance is not in the expected stage
 	 */
@@ -490,6 +488,25 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	}
 
 	/**
+	 * Set whether null-edits should create a revision. Enabling this allows the creation of dummy
+	 * revisions ("null revisions") to mark events such as renaming in the page history.
+	 *
+	 * Must not be called once prepareContent() or prepareUpdate() have been called.
+	 *
+	 * @since 1.38
+	 * @see PageUpdater setForceEmptyRevision
+	 *
+	 * @param bool $forceEmptyRevision
+	 */
+	public function setForceEmptyRevision( bool $forceEmptyRevision ) {
+		if ( $this->revision ) {
+			throw new LogicException( 'prepareContent() or prepareUpdate() was already called.' );
+		}
+
+		$this->forceEmptyRevision = $forceEmptyRevision;
+	}
+
+	/**
 	 * @param string $articleCountMethod "any" or "link".
 	 * @see $wgArticleCountMethod
 	 */
@@ -519,6 +536,15 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	private function getWikiPage() {
 		// NOTE: eventually, we won't get a WikiPage passed into the constructor any more
 		return $this->wikiPage;
+	}
+
+	/**
+	 * Returns the page being updated.
+	 * @since 1.37
+	 * @return PageIdentity
+	 */
+	public function getPage(): PageIdentity {
+		return $this->getTitle();
 	}
 
 	/**
@@ -675,7 +701,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * @param string $role slot role name
 	 * @return Content
 	 */
-	public function getRawContent( $role ) {
+	public function getRawContent( string $role ): Content {
 		return $this->getRawSlot( $role )->getContent();
 	}
 
@@ -707,7 +733,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	/**
 	 * @return bool
 	 */
-	public function isCountable() {
+	public function isCountable(): bool {
 		// NOTE: Keep in sync with WikiPage::isCountable.
 
 		if ( !$this->getTitle()->isContentPage() ) {
@@ -732,7 +758,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			// isCountable() method. However, that would break parity with
 			// WikiPage::isCountable, which uses the pagelinks table to determine
 			// whether the current revision has links.
-			$hasLinks = (bool)count( $this->getCanonicalParserOutput()->getLinks() );
+			$hasLinks = (bool)count( $this->getParserOutputForMetaData()->getLinks() );
 		}
 
 		foreach ( $this->getSlots()->getSlotRoles() as $role ) {
@@ -752,7 +778,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	/**
 	 * @return bool
 	 */
-	public function isRedirect() {
+	public function isRedirect(): bool {
 		// NOTE: main slot determines redirect status
 		// TODO: MCR: this should be controlled by a PageTypeHandler
 		$mainContent = $this->getRawContent( SlotRecord::MAIN );
@@ -791,7 +817,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * @note Calling this method after prepareUpdate() has been called will cause an exception.
 	 *
 	 * @param UserIdentity $user The user to act as context for pre-save transformation (PST).
-	 *        Type hint should be reduced to UserIdentity at some point.
 	 * @param RevisionSlotsUpdate $slotsUpdate The new content of the slots to be updated
 	 *        by this edit, before PST.
 	 * @param bool $useStash Whether to use stashed ParserOutput
@@ -834,14 +859,12 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		// The edit may have already been prepared via api.php?action=stashedit
 		$stashedEdit = false;
 
-		$legacyUser = self::toLegacyUser( $user );
-
 		// TODO: MCR: allow output for all slots to be stashed.
 		if ( $useStash && $slotsUpdate->isModifiedSlot( SlotRecord::MAIN ) ) {
 			$stashedEdit = $this->pageEditStash->checkCache(
 				$title,
 				$slotsUpdate->getModifiedSlot( SlotRecord::MAIN )->getContent(),
-				$legacyUser
+				$user
 			);
 		}
 
@@ -911,21 +934,27 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		$this->doTransition( 'has-content' );
 
 		if ( !$this->options['changed'] ) {
-			// null-edit!
+			if ( $this->forceEmptyRevision ) {
+				// dummy revision, inherit all slots
+				foreach ( $parentRevision->getSlotRoles() as $role ) {
+					$this->revision->inheritSlot( $parentRevision->getSlot( $role ) );
+				}
+			} else {
+				// null-edit, the new revision *is* the old revision.
 
-			// TODO: move this into MutableRevisionRecord
-			// TODO: This needs to behave differently for a forced dummy edit!
-			$this->revision->setId( $parentRevision->getId() );
-			$this->revision->setTimestamp( $parentRevision->getTimestamp() );
-			$this->revision->setPageId( $parentRevision->getPageId() );
-			$this->revision->setParentId( $parentRevision->getParentId() );
-			$this->revision->setUser( $parentRevision->getUser( RevisionRecord::RAW ) );
-			$this->revision->setComment( $parentRevision->getComment( RevisionRecord::RAW ) );
-			$this->revision->setMinorEdit( $parentRevision->isMinor() );
-			$this->revision->setVisibility( $parentRevision->getVisibility() );
+				// TODO: move this into MutableRevisionRecord
+				$this->revision->setId( $parentRevision->getId() );
+				$this->revision->setTimestamp( $parentRevision->getTimestamp() );
+				$this->revision->setPageId( $parentRevision->getPageId() );
+				$this->revision->setParentId( $parentRevision->getParentId() );
+				$this->revision->setUser( $parentRevision->getUser( RevisionRecord::RAW ) );
+				$this->revision->setComment( $parentRevision->getComment( RevisionRecord::RAW ) );
+				$this->revision->setMinorEdit( $parentRevision->isMinor() );
+				$this->revision->setVisibility( $parentRevision->getVisibility() );
 
-			// prepareUpdate() is redundant for null-edits
-			$this->doTransition( 'has-revision' );
+				// prepareUpdate() is redundant for null-edits (but not for dummy revisions)
+				$this->doTransition( 'has-revision' );
+			}
 		} else {
 			$this->parentRevision = $parentRevision;
 		}
@@ -970,7 +999,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 *
 	 * @return RevisionRecord
 	 */
-	public function getRevision() {
+	public function getRevision(): RevisionRecord {
 		$this->assertPrepared( __METHOD__ );
 		return $this->revision;
 	}
@@ -978,7 +1007,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	/**
 	 * @return RenderedRevision
 	 */
-	public function getRenderedRevision() {
+	public function getRenderedRevision(): RenderedRevision {
 		$this->assertPrepared( __METHOD__ );
 
 		return $this->renderedRevision;
@@ -1020,11 +1049,14 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	}
 
 	/**
-	 * Whether the edit created, or should create, a new revision (that is, it's not a null-edit).
+	 * Whether the content of the current revision after the edit is different from the content of the
+	 * current revision before the edit. This will return false for a null-edit (no revision created),
+	 * as well as for a dummy revision (a "null-revision" that has the same content as its parent).
 	 *
-	 * @warning at present, "null-revisions" that do not change content but do have a revision
-	 * record would return false after prepareContent(), but true after prepareUpdate()!
-	 * This should probably be fixed.
+	 * @warning at present, dummy revision would return false after prepareContent(),
+	 * but true after prepareUpdate()!
+	 *
+	 * @todo This should probably be fixed.
 	 *
 	 * @return bool
 	 */
@@ -1101,7 +1133,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 *
 	 * @return string[]
 	 */
-	public function getModifiedSlotRoles() {
+	public function getModifiedSlotRoles(): array {
 		return $this->getRevisionSlotsUpdate()->getModifiedRoles();
 	}
 
@@ -1110,7 +1142,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 *
 	 * @return string[]
 	 */
-	public function getRemovedSlotRoles() {
+	public function getRemovedSlotRoles(): array {
 		return $this->getRevisionSlotsUpdate()->getRemovedRoles();
 	}
 
@@ -1137,6 +1169,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * - changed: bool, whether the revision changed the content (default true)
 	 * - created: bool, whether the revision created the page (default false)
 	 * - moved: bool, whether the page was moved (default false)
+	 * - oldtitle: PageIdentity, if the page was moved this is the source title (default null)
 	 * - restored: bool, whether the page was undeleted (default false)
 	 * - oldrevision: RevisionRecord object for the pre-update revision (default null)
 	 * - triggeringUser: The user triggering the update (UserIdentity, defaults to the
@@ -1356,7 +1389,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			: $this->revision->getContent( SlotRecord::MAIN ); // XXX: can we just remove this?
 		$preparedEdit->oldContent = null; // unused. // XXX: could get this from the parent revision
 		$preparedEdit->revid = $this->revision ? $this->revision->getId() : null;
-		$preparedEdit->timestamp = $preparedEdit->output->getCacheTime();
 		$preparedEdit->format = $preparedEdit->pstContent->getDefaultFormat();
 
 		return $preparedEdit;
@@ -1383,16 +1415,17 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	}
 
 	/**
+	 * @inheritDoc
 	 * @return ParserOutput
 	 */
-	public function getCanonicalParserOutput() {
+	public function getCanonicalParserOutput(): ParserOutput {
 		return $this->getRenderedRevision()->getRevisionParserOutput();
 	}
 
 	/**
 	 * @return ParserOptions
 	 */
-	public function getCanonicalParserOptions() {
+	public function getCanonicalParserOptions(): ParserOptions {
 		return $this->getRenderedRevision()->getOptions();
 	}
 
@@ -1411,7 +1444,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		$wikiPage = $this->getWikiPage();
 		$wikiPage->loadPageData( WikiPage::READ_LATEST );
 		if ( !$wikiPage->exists() ) {
-			// page deleted while defering the update
+			// page deleted while deferring the update
 			return [];
 		}
 
@@ -1426,6 +1459,9 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			$parserOutput,
 			$recursive
 		);
+		if ( $this->options['moved'] ) {
+			$linksUpdate->setMoveDetails( $this->options['oldtitle'] );
+		}
 
 		$allUpdates[] = $linksUpdate;
 		// NOTE: Run updates for all slots, not just the modified slots! Otherwise,
@@ -1581,18 +1617,13 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $mainSlot->getContent() ) );
 		}
 
-		$legacyUser = self::toLegacyUser( $this->user );
-
 		// If this is another user's talk page, update newtalk.
 		// Don't do this if $options['changed'] = false (null-edits) nor if
 		// it's a minor edit and the user making the edit doesn't generate notifications for those.
 		// TODO: the permission check should be performed by the callers, see T276181.
 		if ( $this->options['changed']
 			&& $title->getNamespace() === NS_USER_TALK
-
-			// TODO User::getTitleKey is just a string manipulation of the user name,
-			// duplicate it here and use $this->user (a UserIdentity) instead
-			&& $shortTitle != $legacyUser->getTitleKey()
+			&& $title->getText() != $this->user->getName()
 			&& !( $this->revision->isMinor() && $this->permissionManager
 				->userHasRight( $this->user, 'nominornewtalk' )
 			)
@@ -1728,6 +1759,9 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		$triggeringUser = $this->options['triggeringUser'] ?? $this->user;
 		$causeAction = $this->options['causeAction'] ?? 'unknown';
 		$causeAgent = $this->options['causeAgent'] ?? 'unknown';
+		if ( isset( $options['known-revision-output'] ) ) {
+			$this->getRenderedRevision()->setRevisionParserOutput( $options['known-revision-output'] );
+		}
 
 		// Bundle all of the data updates into a single deferred update wrapper so that
 		// any failure will cause at most one refreshLinks job to be enqueued by

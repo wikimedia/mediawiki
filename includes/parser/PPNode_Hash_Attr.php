@@ -53,7 +53,7 @@ class PPNode_Hash_Attr implements PPNode {
 	}
 
 	public function __toString() {
-		return "<@{$this->name}>" . htmlspecialchars( $this->value ) . "</@{$this->name}>";
+		return "<@{$this->name}>" . htmlspecialchars( $this->value, ENT_COMPAT ) . "</@{$this->name}>";
 	}
 
 	public function getName() {

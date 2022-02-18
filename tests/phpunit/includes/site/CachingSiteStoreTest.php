@@ -115,8 +115,8 @@ class CachingSiteStoreTest extends \MediaWikiIntegrationTestCase {
 
 		$store->getSite( 'enwiki' )->setLanguageCode( 'en-ca' );
 
-		// sanity check: $store should have the new language code for 'enwiki'
-		$this->assertEquals( 'en-ca', $store->getSite( 'enwiki' )->getLanguageCode(), 'sanity check' );
+		// check: $store should have the new language code for 'enwiki'
+		$this->assertEquals( 'en-ca', $store->getSite( 'enwiki' )->getLanguageCode() );
 
 		// purge cache
 		$store->reset();

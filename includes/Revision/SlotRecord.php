@@ -127,7 +127,7 @@ class SlotRecord {
 	 * @return SlotRecord
 	 */
 	public static function newInherited( SlotRecord $slot ) {
-		// Sanity check - we can't inherit from a Slot that's not attached to a revision.
+		// We can't inherit from a Slot that's not attached to a revision.
 		$slot->getRevision();
 		$slot->getOrigin();
 		$slot->getAddress();

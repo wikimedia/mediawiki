@@ -119,7 +119,7 @@ class SpecialMIMESearch extends QueryPage {
 	 * The index is on (img_media_type, img_major_mime, img_minor_mime)
 	 * which unfortunately doesn't have img_name at the end for sorting.
 	 * So tell db to sort it however it wishes (Its not super important
-	 * that this report gives results in a logical order). As an aditional
+	 * that this report gives results in a logical order). As an additional
 	 * note, mysql seems to by default order things by img_name ASC, which
 	 * is what we ideally want, so everything works out fine anyhow.
 	 * @return array

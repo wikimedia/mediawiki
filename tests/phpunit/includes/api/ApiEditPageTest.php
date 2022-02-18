@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -142,7 +141,7 @@ class ApiEditPageTest extends ApiTestCase {
 				'title' => $name,
 				'text' => $text, ] );
 
-			$this->assertSame( 'Success', $re['edit']['result'] ); // sanity
+			$this->assertSame( 'Success', $re['edit']['result'] );
 		}
 
 		// -- try append/prepend --------------------------------------------
@@ -601,7 +600,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 	public function testSupportsDirectApiEditing_withContentHandlerOverride() {
 		$name = 'DummyNonText:ApiEditPageTest_testNonTextEdit';
-		$data = serialize( 'some bla bla text' );
+		$data = 'some bla bla text';
 
 		$result = $this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1365,8 +1364,8 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->editPage( $name, 'Some text' );
 
-		$pageObj = new WikiPage( Title::newFromText( $name ) );
-		$pageObj->doDeleteArticleReal( 'Bye-bye', $this->getTestSysop()->getUser() );
+		$pageObj = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) );
+		$this->deletePage( $pageObj );
 
 		$this->assertFalse( $pageObj->exists() );
 
@@ -1394,7 +1393,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'minor' => '',
 		] );
 
-		$revisionStore = \MediaWiki\MediaWikiServices::getInstance()->getRevisionStore();
+		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 		$revision = $revisionStore->getRevisionByTitle( Title::newFromText( $name ) );
 		$this->assertTrue( $revision->isMinor() );
 	}
@@ -1406,8 +1405,8 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->editPage( $name, 'Some text' );
 
-		$pageObj = new WikiPage( Title::newFromText( $name ) );
-		$pageObj->doDeleteArticleReal( 'Bye-bye', $this->getTestSysop()->getUser() );
+		$pageObj = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) );
+		$this->deletePage( $pageObj );
 
 		$this->assertFalse( $pageObj->exists() );
 
@@ -1560,7 +1559,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testEditWhileBlocked() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$this->assertNull( DatabaseBlock::newFromTarget( '127.0.0.1' ), 'Sanity check' );
+		$this->assertNull( DatabaseBlock::newFromTarget( '127.0.0.1' ) );
 
 		$block = new DatabaseBlock( [
 			'address' => self::$users['sysop']->getUser()->getName(),
@@ -1570,7 +1569,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'expiry' => 'infinity',
 			'enableAutoblock' => true,
 		] );
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		try {
@@ -1595,7 +1594,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( 'The wiki is currently in read-only mode.' );
 
-		$svc = \MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode();
+		$svc = $this->getServiceContainer()->getReadOnlyMode();
 		$svc->setReason( "Read-only for testing" );
 
 		try {

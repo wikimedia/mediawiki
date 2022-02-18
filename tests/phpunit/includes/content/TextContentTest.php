@@ -44,53 +44,6 @@ class TextContentTest extends MediaWikiLangTestCase {
 		return new TextContent( $text );
 	}
 
-	public static function dataGetParserOutput() {
-		return [
-			[
-				'TextContentTest_testGetParserOutput',
-				CONTENT_MODEL_TEXT,
-				"hello ''world'' & [[stuff]]\n", "hello ''world'' &amp; [[stuff]]",
-				[
-					'Links' => []
-				]
-			],
-			// TODO: more...?
-		];
-	}
-
-	/**
-	 * @dataProvider dataGetParserOutput
-	 * @covers TextContent::getParserOutput
-	 */
-	public function testGetParserOutput( $title, $model, $text, $expectedHtml,
-		$expectedFields = null
-	) {
-		$title = Title::newFromText( $title );
-		$content = ContentHandler::makeContent( $text, $title, $model );
-
-		$po = $content->getParserOutput( $title );
-
-		$html = $po->getText();
-		$html = preg_replace( '#<!--.*?-->#sm', '', $html ); // strip comments
-
-		$this->assertEquals( $expectedHtml, trim( $html ) );
-
-		if ( $expectedFields ) {
-			foreach ( $expectedFields as $field => $exp ) {
-				$getter = 'get' . ucfirst( $field );
-				$v = $po->$getter();
-
-				if ( is_array( $exp ) ) {
-					$this->assertArrayEquals( $exp, $v );
-				} else {
-					$this->assertEquals( $exp, $v );
-				}
-			}
-		}
-
-		// TODO: assert more properties
-	}
-
 	public static function dataGetRedirectTarget() {
 		return [
 			[ '#REDIRECT [[Test]]',

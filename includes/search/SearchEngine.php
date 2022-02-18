@@ -113,7 +113,7 @@ abstract class SearchEngine {
 	 * Perform a title search in the article archive.
 	 * NOTE: these results still should be filtered by
 	 * matching against PageArchive, permissions checks etc
-	 * The results returned by this methods are only sugegstions and
+	 * The results returned by this methods are only suggestions and
 	 * may not end up being shown to the user.
 	 *
 	 * @note As of 1.32 overriding this function is deprecated. It will

@@ -25,15 +25,14 @@ namespace MediaWiki\Block;
 use CommentStore;
 use Hooks;
 use Html;
+use InvalidArgumentException;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\UserIdentityValue;
 use MWException;
 use stdClass;
 use Title;
@@ -92,10 +91,7 @@ class DatabaseBlock extends AbstractBlock {
 	 *  - allowUsertalk: (bool) Allow the target to edit its own talk page
 	 *  - sitewide: (bool) Disallow editing all pages and all contribution actions,
 	 *    except those specifically allowed by other block flags
-	 *  - by: (int|UserIdentity) UserIdentity object or an ID of the blocker.
-	 *      Calling with ID is deprecated since 1.36, hard deprecated since 1.37.
-	 *  - byText: (string) Username of the blocker (for foreign users)
-	 *      Deprecated since 1.36, hard deprecated since 1.37. Use 'by' parameter instead.
+	 *  - by: (UserIdentity) UserIdentity object of the blocker.
 	 *
 	 * @since 1.26 $options array
 	 */
@@ -112,40 +108,15 @@ class DatabaseBlock extends AbstractBlock {
 			'allowUsertalk'   => false,
 			'sitewide'        => true,
 			'by'              => null,
-			'byText'          => '',
 		];
 
 		$options += $defaults;
 
-		if ( $options['by'] ) {
-			if ( $options['by'] instanceof UserIdentity ) {
-				$this->setBlocker( $options['by'] );
-			} else {
-				// Local user, passed by ID. Deprecated case,
-				// callers should provide UserIdentity in the 'by'
-				// option.
-				wfDeprecatedMsg( __METHOD__ . ': $options[\'by\'] calling with ID is deprecated', '1.36' );
-				$localBlocker = MediaWikiServices::getInstance()
-					->getUserFactory()
-					->newFromId( $options['by'] );
-				$this->setBlocker( $localBlocker );
-			}
-		} elseif ( $options['byText'] ) {
-			// Foreign user. Deprecated case, callers should
-			// provide UserIdentity in the 'by' option.
-			wfDeprecatedMsg( __METHOD__ . ': $options[\'byText\'] is deprecated', '1.36' );
-			$foreignBlocker = MediaWikiServices::getInstance()
-				->getActorStore()
-				->getUserIdentityByName( $options['byText'] );
-			if ( !$foreignBlocker ) {
-				// An actor for an interwiki user might not exist on this wiki,
-				// so it's ok to create one. Interwiki actors are still local actors.
-				$foreignBlocker = new UserIdentityValue( 0, $options['byText'], UserIdentity::LOCAL );
-			}
-			$this->setBlocker( $foreignBlocker );
+		if ( $options['by'] && $options['by'] instanceof UserIdentity ) {
+			$this->setBlocker( $options['by'] );
 		}
 
-		$this->setExpiry( wfGetDB( DB_REPLICA )->decodeExpiry( $options['expiry'] ) );
+		$this->setExpiry( $this->getDBConnection( DB_REPLICA )->decodeExpiry( $options['expiry'] ) );
 
 		# Boolean settings
 		$this->mAuto = (bool)$options['auto'];
@@ -299,6 +270,7 @@ class DatabaseBlock extends AbstractBlock {
 					$conds['ipb_address'][] = (string)$target;
 					$conds['ipb_address'] = array_unique( $conds['ipb_address'] );
 					$conds[] = self::getRangeCond( IPUtils::toHex( $target ) );
+					// @phan-suppress-next-line SecurityCheck-SQLInjection
 					$conds = $db->makeList( $conds, LIST_OR );
 					break;
 
@@ -306,6 +278,7 @@ class DatabaseBlock extends AbstractBlock {
 					list( $start, $end ) = IPUtils::parseRange( $target );
 					$conds['ipb_address'][] = (string)$target;
 					$conds[] = self::getRangeCond( $start, $end );
+					// @phan-suppress-next-line SecurityCheck-SQLInjection
 					$conds = $db->makeList( $conds, LIST_OR );
 					break;
 
@@ -445,11 +418,11 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return string
 	 */
 	protected static function getIpFragment( $hex ) {
-		global $wgBlockCIDRLimit;
+		$blockCIDRLimit = MediaWikiServices::getInstance()->getMainConfig()->get( 'BlockCIDRLimit' );
 		if ( substr( $hex, 0, 3 ) == 'v6-' ) {
-			return 'v6-' . substr( substr( $hex, 3 ), 0, floor( $wgBlockCIDRLimit['IPv6'] / 4 ) );
+			return 'v6-' . substr( substr( $hex, 3 ), 0, floor( $blockCIDRLimit['IPv6'] / 4 ) );
 		} else {
-			return substr( $hex, 0, floor( $wgBlockCIDRLimit['IPv4'] / 4 ) );
+			return substr( $hex, 0, floor( $blockCIDRLimit['IPv4'] / 4 ) );
 		}
 	}
 
@@ -472,7 +445,7 @@ class DatabaseBlock extends AbstractBlock {
 			->newActorFromRowFields( $row->ipb_by, $row->ipb_by_text, $row->ipb_by_actor ) );
 
 		// I wish I didn't have to do this
-		$db = wfGetDB( DB_REPLICA );
+		$db = $this->getDBConnection( DB_REPLICA );
 		$this->setExpiry( $db->decodeExpiry( $row->ipb_expiry ) );
 		$this->setReason(
 			CommentStore::getStore()
@@ -540,20 +513,6 @@ class DatabaseBlock extends AbstractBlock {
 		return MediaWikiServices::getInstance()
 			->getDatabaseBlockStore()
 			->updateBlock( $this );
-	}
-
-	/**
-	 * Checks whether a given IP is on the autoblock exemption list.
-	 *
-	 * @deprecated since 1.36; use DatabaseBlock::isExemptedFromAutoblocks()
-	 *
-	 * @param string $ip The IP to check
-	 * @return bool
-	 */
-	public static function isWhitelistedFromAutoblocks( $ip ) {
-		// Hard-deprecated since MW 1.37.
-		wfDeprecated( __METHOD__, '1.36' );
-		return self::isExemptedFromAutoblocks( $ip );
 	}
 
 	/**
@@ -706,14 +665,14 @@ class DatabaseBlock extends AbstractBlock {
 			$this->setTimestamp( wfTimestamp() );
 			$this->setExpiry( self::getAutoblockExpiry( $this->getTimestamp() ) );
 
-			$dbw = wfGetDB( DB_PRIMARY );
+			$dbw = $this->getDBConnection( DB_PRIMARY );
 			$dbw->update( 'ipblocks',
 				[ /* SET */
 					'ipb_timestamp' => $dbw->timestamp( $this->getTimestamp() ),
 					'ipb_expiry' => $dbw->timestamp( $this->getExpiry() ),
 				],
 				[ /* WHERE */
-					'ipb_id' => $this->getId(),
+					'ipb_id' => $this->getId( $this->getWikiId() ),
 				],
 				__METHOD__
 			);
@@ -772,7 +731,9 @@ class DatabaseBlock extends AbstractBlock {
 	/**
 	 * @inheritDoc
 	 */
-	public function getId(): ?int {
+	public function getId( $wikiId = self::LOCAL ): ?int {
+		// TODO: Enable deprecation warnings once cross-wiki accesses have been removed, see T274817
+		// $this->deprecateInvalidCrossWiki( $wikiId, '1.38' );
 		return $this->mId;
 	}
 
@@ -854,17 +815,19 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return string
 	 */
 	public static function getAutoblockExpiry( $timestamp ) {
-		global $wgAutoblockExpiry;
+		$autoblockExpiry = MediaWikiServices::getInstance()->getMainConfig()->get( 'AutoblockExpiry' );
 
-		return wfTimestamp( TS_MW, (int)wfTimestamp( TS_UNIX, $timestamp ) + $wgAutoblockExpiry );
+		return wfTimestamp( TS_MW, (int)wfTimestamp( TS_UNIX, $timestamp ) + $autoblockExpiry );
 	}
 
 	/**
 	 * Purge expired blocks from the ipblocks table
 	 *
-	 * @deprecated since 1.36 Use DatabaseBlockStore::purgeExpiredBlocks instead.
+	 * @deprecated since 1.36, hard deprecated since 1.38
+	 * Use DatabaseBlockStore::purgeExpiredBlocks instead.
 	 */
 	public static function purgeExpired() {
+		wfDeprecated( __METHOD__, '1.36' );
 		MediaWikiServices::getInstance()->getDatabaseBlockStore()->purgeExpiredBlocks();
 	}
 
@@ -1012,8 +975,8 @@ class DatabaseBlock extends AbstractBlock {
 	/**
 	 * @inheritDoc
 	 */
-	public function getIdentifier() {
-		return $this->getId();
+	public function getIdentifier( $wikiId = self::LOCAL ) {
+		return $this->getId( $wikiId );
 	}
 
 	/**
@@ -1170,14 +1133,18 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return BlockRestrictionStore
 	 */
 	private function getBlockRestrictionStore(): BlockRestrictionStore {
-		return MediaWikiServices::getInstance()->getBlockRestrictionStore();
+		// TODO: get rid of global state here
+		return MediaWikiServices::getInstance()
+			->getBlockRestrictionStoreFactory()
+			->getBlockRestrictionStore( $this->getWikiId() );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function getBy() {
-		return ( $this->blocker ) ? $this->blocker->getId() : 0;
+	public function getBy( $wikiId = self::LOCAL ): int {
+		$this->deprecateInvalidCrossWiki( $wikiId, '1.38' );
+		return ( $this->blocker ) ? $this->blocker->getId( $wikiId ) : 0;
 	}
 
 	/**
@@ -1199,17 +1166,9 @@ class DatabaseBlock extends AbstractBlock {
 	/**
 	 * Set the user who implemented (or will implement) this block
 	 *
-	 * @param UserIdentity|string $user Local user object or username string.
-	 *   Calling with string is deprecated since 1.36
+	 * @param UserIdentity $user
 	 */
 	public function setBlocker( $user ) {
-		if ( is_string( $user ) ) {
-			wfDeprecatedMsg( 'Calling ' . __METHOD__ . ' with string as $user', '1.36' );
-			$user = MediaWikiServices::getInstance()
-				->getUserFactory()
-				->newFromName( $user, UserFactory::RIGOR_NONE );
-		}
-
 		if ( !$user->isRegistered() &&
 			MediaWikiServices::getInstance()->getUserNameUtils()->isUsable( $user->getName() )
 		) {
@@ -1219,15 +1178,26 @@ class DatabaseBlock extends AbstractBlock {
 				'Blocker is neither a local user nor an invalid username',
 				[
 					'blocker' => (string)$user,
-					'blockId' => $this->getId(),
+					'blockId' => $this->getId( $this->getWikiId() ),
 				]
 			);
-			throw new \InvalidArgumentException(
+			throw new InvalidArgumentException(
 				'Blocker must be a local user or a name that cannot be a local user'
 			);
 		}
-
+		$this->assertWiki( $user->getWikiId() );
 		$this->blocker = $user;
+	}
+
+	/**
+	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
+	 * @return IDatabase
+	 */
+	private function getDBConnection( int $i ) {
+		return MediaWikiServices::getInstance()
+			->getDBLoadBalancerFactory()
+			->getMainLB( $this->getWikiId() )
+			->getConnectionRef( $i, [], $this->getWikiId() );
 	}
 }
 

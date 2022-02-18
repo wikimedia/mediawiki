@@ -76,7 +76,7 @@ class LanguageCode {
 	 * @see https://phabricator.wikimedia.org/T125073
 	 */
 	private const NON_STANDARD_LANGUAGE_CODE_MAPPING = [
-		// All codes returned by Language::fetchLanguageNames() validated
+		// All codes returned by LanguageNameUtils::getLanguageNames() validated
 		// against IANA registry at
 		//   https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry
 		// with help of validator at

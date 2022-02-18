@@ -31,3 +31,5 @@ $namespaceNames = [
 
 // Remove Russian aliases
 $namespaceGenderAliases = [];
+
+$linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюяјҥӧӱ]+)(.*)$/sDu';

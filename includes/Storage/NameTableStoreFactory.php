@@ -85,7 +85,7 @@ class NameTableStoreFactory {
 	/**
 	 * Get a NameTableStore for a specific table
 	 *
-	 * @param string $tableName The table name
+	 * @param string $tableName
 	 * @param string|false $wiki The target wiki ID, or false for the current wiki
 	 * @return NameTableStore
 	 */

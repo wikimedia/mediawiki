@@ -1311,7 +1311,8 @@ class WebRequest {
 				if (
 					IPUtils::isPublic( $ipchain[$i + 1] ) ||
 					$wgUsePrivateIPs ||
-					$proxyLookup->isConfiguredProxy( $curIP ) // T50919; treat IP as sane
+					// T50919; treat IP as valid
+					$proxyLookup->isConfiguredProxy( $curIP )
 				) {
 					$nextIP = $ipchain[$i + 1];
 

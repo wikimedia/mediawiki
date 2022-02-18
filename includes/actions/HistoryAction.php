@@ -89,7 +89,7 @@ class HistoryAction extends FormlessAction {
 		// Precache various messages
 		if ( !isset( $this->message ) ) {
 			$this->message = [];
-			$msgs = [ 'cur', 'last', 'pipe-separator' ];
+			$msgs = [ 'cur', 'tooltip-cur', 'last', 'tooltip-last', 'pipe-separator' ];
 			foreach ( $msgs as $msg ) {
 				$this->message[$msg] = $this->msg( $msg )->escaped();
 			}
@@ -203,8 +203,8 @@ class HistoryAction extends FormlessAction {
 
 		// Fail nicely if article doesn't exist.
 		if ( !$this->getWikiPage()->exists() ) {
-			global $wgSend404Code;
-			if ( $wgSend404Code ) {
+			$send404Code = $config->get( 'Send404Code' );
+			if ( $send404Code ) {
 				$out->setStatusCode( 404 );
 			}
 			$out->addWikiMsg( 'nohistory' );
@@ -312,14 +312,15 @@ class HistoryAction extends FormlessAction {
 			$conds,
 			$d,
 			$services->getLinkBatchFactory(),
-			$watchlistManager
+			$watchlistManager,
+			$services->getCommentFormatter()
 		);
 		$out->addHTML(
 			$pager->getNavigationBar() .
 			$pager->getBody() .
 			$pager->getNavigationBar()
 		);
-		$out->preventClickjacking( $pager->getPreventClickjacking() );
+		$out->setPreventClickjacking( $pager->getPreventClickjacking() );
 
 		return null;
 	}
@@ -395,7 +396,7 @@ class HistoryAction extends FormlessAction {
 			$this->getTitle()->getFullURL( 'action=history' )
 		);
 
-		// Get a limit on number of feed entries. Provide a sane default
+		// Get a limit on number of feed entries. Provide a sensible default
 		// of 10 if none is defined (but limit to $wgFeedLimit max)
 		$limit = $request->getInt( 'limit', 10 );
 		$limit = min(
@@ -405,11 +406,15 @@ class HistoryAction extends FormlessAction {
 
 		$items = $this->fetchRevisions( $limit, 0, self::DIR_NEXT );
 
+		// Preload comments
+		$formattedComments = MediaWikiServices::getInstance()->getRowCommentFormatter()
+			->formatRows( $items, 'rev_comment' );
+
 		// Generate feed elements enclosed between header and footer.
 		$feed->outHeader();
 		if ( $items->numRows() ) {
-			foreach ( $items as $row ) {
-				$feed->outItem( $this->feedItem( $row ) );
+			foreach ( $items as $i => $row ) {
+				$feed->outItem( $this->feedItem( $row, $formattedComments[$i] ) );
 			}
 		} else {
 			$feed->outItem( $this->feedEmpty() );
@@ -434,19 +439,20 @@ class HistoryAction extends FormlessAction {
 	 * includes a diff to the previous revision (if any).
 	 *
 	 * @param stdClass|array $row Database row
+	 * @param string $formattedComment The comment in HTML format
 	 * @return FeedItem
 	 */
-	private function feedItem( $row ) {
+	private function feedItem( $row, $formattedComment ) {
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$rev = $revisionStore->newRevisionFromRow( $row, 0, $this->getTitle() );
 		$prevRev = $revisionStore->getPreviousRevision( $rev );
 		$revComment = $rev->getComment() === null ? null : $rev->getComment()->text;
-		$text = FeedUtils::formatDiffRow(
+		$text = FeedUtils::formatDiffRow2(
 			$this->getTitle(),
 			$prevRev ? $prevRev->getId() : false,
 			$rev->getId(),
 			$rev->getTimestamp(),
-			$revComment
+			$formattedComment
 		);
 		$revUserText = $rev->getUser() ? $rev->getUser()->getName() : '';
 		if ( $revComment == '' ) {

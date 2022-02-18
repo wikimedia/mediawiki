@@ -7,6 +7,7 @@ use Wikimedia\RemexHtml\Tokenizer\NullTokenHandler;
  * @internal
  */
 class RemexStripTagHandler extends NullTokenHandler {
+	private $insideNonVisibleTag = false;
 	private $text = '';
 
 	public function getResult() {
@@ -14,10 +15,15 @@ class RemexStripTagHandler extends NullTokenHandler {
 	}
 
 	public function characters( $text, $start, $length, $sourceStart, $sourceLength ) {
-		$this->text .= substr( $text, $start, $length );
+		if ( !$this->insideNonVisibleTag ) {
+			$this->text .= substr( $text, $start, $length );
+		}
 	}
 
 	public function startTag( $name, Attributes $attrs, $selfClose, $sourceStart, $sourceLength ) {
+		if ( $this->isNonVisibleTag( $name ) ) {
+			$this->insideNonVisibleTag = true;
+		}
 		// Inject whitespace for typical block-level tags to
 		// prevent merging unrelated<br>words.
 		if ( $this->isBlockLevelTag( $name ) ) {
@@ -26,6 +32,9 @@ class RemexStripTagHandler extends NullTokenHandler {
 	}
 
 	public function endTag( $name, $sourceStart, $sourceLength ) {
+		if ( $this->isNonVisibleTag( $name ) ) {
+			$this->insideNonVisibleTag = false;
+		}
 		// Inject whitespace for typical block-level tags to
 		// prevent merging unrelated<br>words.
 		if ( $this->isBlockLevelTag( $name ) ) {
@@ -93,4 +102,26 @@ class RemexStripTagHandler extends NullTokenHandler {
 		$key = strtolower( trim( $tagName ) );
 		return isset( self::BLOCK_LEVEL_TAGS[$key] );
 	}
+
+	private const NON_VISIBLE_TAGS = [
+		'style' => true,
+		'script' => true,
+	];
+
+	/**
+	 * Detect block tags which by default are non-visible items.
+	 * Of course css can make anything non-visible,
+	 * but this is still better than nothing.
+	 *
+	 * We use this primarily to hide TemplateStyles
+	 * from output in notifications/emails etc.
+	 *
+	 * @param string $tagName HTML tag name
+	 * @return bool True when tag is a html element which should be filtered out
+	 */
+	private function isNonVisibleTag( $tagName ) {
+		$key = strtolower( trim( $tagName ) );
+		return isset( self::NON_VISIBLE_TAGS[$key] );
+	}
+
 }

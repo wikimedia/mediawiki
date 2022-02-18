@@ -38,6 +38,8 @@ class SkinMustache extends SkinTemplate {
 	protected function getTemplateParser() {
 		if ( $this->templateParser === null ) {
 			$this->templateParser = new TemplateParser( $this->options['templateDirectory'] );
+			// For table of contents rendering.
+			$this->templateParser->enableRecursivePartials( true );
 		}
 		return $this->templateParser;
 	}
@@ -83,7 +85,6 @@ class SkinMustache extends SkinTemplate {
 			'html-site-notice' => $this->getSiteNotice() ?: null,
 			'html-user-message' => $newTalksHtml ?
 				Html::rawElement( 'div', [ 'class' => 'usermessage' ], $newTalksHtml ) : null,
-			'html-title' => $out->getPageTitle(),
 			'html-subtitle' => $this->prepareSubtitle(),
 			'html-body-content' => $this->wrapHTML( $out->getTitle(), $bodyContent ),
 			'html-categories' => $this->getCategories(),

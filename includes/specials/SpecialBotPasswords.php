@@ -37,10 +37,10 @@ class SpecialBotPasswords extends FormSpecialPage {
 	/** @var BotPassword|null Bot password being edited, if any */
 	private $botPassword = null;
 
-	/** @var string Operation being performed: create, update, delete */
+	/** @var string|null Operation being performed: create, update, delete */
 	private $operation = null;
 
-	/** @var string New password set, for communication between onSubmit() and onSuccess() */
+	/** @var string|null New password set, for communication between onSubmit() and onSuccess() */
 	private $password = null;
 
 	/** @var Psr\Log\LoggerInterface */

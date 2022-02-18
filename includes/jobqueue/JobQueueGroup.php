@@ -175,7 +175,19 @@ class JobQueueGroup {
 
 		$jobsByType = []; // (job type => list of jobs)
 		foreach ( $jobs as $job ) {
-			$jobsByType[$job->getType()][] = $job;
+			$type = $job->getType();
+			if ( isset( $this->jobTypeConfiguration[$type] ) ) {
+				$jobsByType[$type][] = $job;
+			} else {
+				if (
+					isset( $this->jobTypeConfiguration['default']['typeAgnostic'] ) &&
+					$this->jobTypeConfiguration['default']['typeAgnostic']
+				) {
+					$jobsByType['default'][] = $job;
+				} else {
+					$jobsByType[$type][] = $job;
+				}
+			}
 		}
 
 		foreach ( $jobsByType as $type => $jobs ) {
@@ -476,7 +488,7 @@ class JobQueueGroup {
 	 * @throws InvalidArgumentException
 	 */
 	private function assertValidJobs( array $jobs ) {
-		foreach ( $jobs as $job ) { // sanity checks
+		foreach ( $jobs as $job ) {
 			if ( !( $job instanceof IJobSpecification ) ) {
 				$type = is_object( $job ) ? get_class( $job ) : gettype( $job );
 				throw new InvalidArgumentException( "Expected IJobSpecification objects, got " . $type );

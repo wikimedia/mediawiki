@@ -105,6 +105,9 @@ class SessionManager implements SessionManagerInterface {
 	/** @var UserNameUtils */
 	private $userNameUtils;
 
+	/** @var ObjectFactory */
+	private $objectFactory;
+
 	/** @var CachedBagOStuff|null */
 	private $store;
 
@@ -226,7 +229,9 @@ class SessionManager implements SessionManagerInterface {
 
 		$this->logger->debug( 'SessionManager using store ' . get_class( $store ) );
 		$this->store = $store instanceof CachedBagOStuff ? $store : new CachedBagOStuff( $store );
-		$this->userNameUtils = MediawikiServices::getInstance()->getUserNameUtils();
+		$services = MediawikiServices::getInstance();
+		$this->userNameUtils = $services->getUserNameUtils();
+		$this->objectFactory = $services->getObjectFactory();
 
 		register_shutdown_function( [ $this, 'shutdown' ] );
 	}
@@ -462,7 +467,7 @@ class SessionManager implements SessionManagerInterface {
 			$this->sessionProviders = [];
 			foreach ( $this->config->get( 'SessionProviders' ) as $spec ) {
 				/** @var SessionProvider */
-				$provider = ObjectFactory::getObjectFromSpec( $spec );
+				$provider = $this->objectFactory->createObject( $spec );
 				$provider->init(
 					$this->logger,
 					$this->config,
@@ -605,7 +610,7 @@ class SessionManager implements SessionManagerInterface {
 		$newParams = [];
 
 		if ( $blob !== false ) {
-			// Sanity check: blob must be an array, if it's saved at all
+			// Double check: blob must be an array, if it's saved at all
 			if ( !is_array( $blob ) ) {
 				$this->logger->warning( 'Session "{session}": Bad data', [
 					'session' => $info->__toString(),
@@ -614,7 +619,7 @@ class SessionManager implements SessionManagerInterface {
 				return $failHandler();
 			}
 
-			// Sanity check: blob has data and metadata arrays
+			// Double check: blob has data and metadata arrays
 			if ( !isset( $blob['data'] ) || !is_array( $blob['data'] ) ||
 				!isset( $blob['metadata'] ) || !is_array( $blob['metadata'] )
 			) {
@@ -628,7 +633,7 @@ class SessionManager implements SessionManagerInterface {
 			$data = $blob['data'];
 			$metadata = $blob['metadata'];
 
-			// Sanity check: metadata must be an array and must contain certain
+			// Double check: metadata must be an array and must contain certain
 			// keys, if it's saved at all
 			if ( !array_key_exists( 'userId', $metadata ) ||
 				!array_key_exists( 'userName', $metadata ) ||
@@ -877,13 +882,15 @@ class SessionManager implements SessionManagerInterface {
 	public function getSessionFromInfo( SessionInfo $info, WebRequest $request ) {
 		// @codeCoverageIgnoreStart
 		if ( defined( 'MW_NO_SESSION' ) ) {
+			$ep = defined( 'MW_ENTRY_POINT' ) ? MW_ENTRY_POINT : 'this';
+
 			if ( MW_NO_SESSION === 'warn' ) {
 				// Undocumented safety case for converting existing entry points
 				$this->logger->error( 'Sessions are supposed to be disabled for this entry point', [
-					'exception' => new \BadMethodCallException( 'Sessions are disabled for this entry point' ),
+					'exception' => new \BadMethodCallException( "Sessions are disabled for $ep entry point" ),
 				] );
 			} else {
-				throw new \BadMethodCallException( 'Sessions are disabled for this entry point' );
+				throw new \BadMethodCallException( "Sessions are disabled for $ep entry point" );
 			}
 		}
 		// @codeCoverageIgnoreEnd

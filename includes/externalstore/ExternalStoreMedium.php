@@ -1,7 +1,5 @@
 <?php
 /**
- * External storage in some particular medium.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup ExternalStorage
  */
 
 use Psr\Log\LoggerAwareInterface;
@@ -26,12 +23,13 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 
 /**
- * Key/value blob storage for a particular storage medium type (e.g. RDBMs, files)
+ * Base class for external storage.
  *
  * There can be multiple "locations" for a storage medium type (e.g. DB clusters, filesystems).
- * Blobs are stored under URLs of the form "<protocol>://<location>/<path>". Each type of storage
+ * Blobs are stored under URLs of the form `<protocol>://<location>/<path>`. Each type of storage
  * medium has an associated protocol.
  *
+ * @see ExternalStoreAccess
  * @ingroup ExternalStorage
  * @since 1.21
  */

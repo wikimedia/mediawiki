@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Content\Renderer\ContentParseParams;
+
 class DummyNonTextContentHandler extends DummyContentHandlerForTesting {
 
 	public function __construct( $dataModel ) {
@@ -27,9 +29,7 @@ class DummyNonTextContentHandler extends DummyContentHandlerForTesting {
 	 * @return Content
 	 */
 	public function unserializeContent( $blob, $format = null ) {
-		$d = unserialize( $blob );
-
-		return new DummyNonTextContent( $d );
+		return new DummyNonTextContent( $blob );
 	}
 
 	/**
@@ -44,4 +44,20 @@ class DummyNonTextContentHandler extends DummyContentHandlerForTesting {
 		return true;
 	}
 
+	/**
+	 * @see ContentHandler::fillParserOutput()
+	 *
+	 * @since 1.38
+	 * @param Content $content
+	 * @param ContentParseParams $cpoParams
+	 * @param ParserOutput &$output The output object to fill (reference).
+	 */
+	protected function fillParserOutput(
+		Content $content,
+		ContentParseParams $cpoParams,
+		ParserOutput &$output
+	) {
+			'@phan-var DummyNonTextContent $content';
+			$output = new ParserOutput( $content->serialize() );
+	}
 }

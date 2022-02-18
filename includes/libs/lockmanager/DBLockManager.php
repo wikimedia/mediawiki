@@ -65,8 +65,9 @@ abstract class DBLockManager extends QuorumLockManager {
 	 *                     - password    : DB user password
 	 *                     - tablePrefix : DB table prefix
 	 *                     - flags       : DB flags; bitfield of IDatabase::DBO_* constants
-	 *   - dbsByBucket : Array of 1-16 consecutive integer keys, starting from 0,
-	 *                   each having an odd-numbered list of DB names (peers) as values.
+	 *   - dbsByBucket : An array of up to 16 arrays, each containing the DB names
+	 *                   in a bucket. Each bucket should have an odd number of servers.
+	 *                   If omitted, all DBs will be in one bucket. (optional).
 	 *   - lockExpiry  : Lock timeout (seconds) for dropped connections. [optional]
 	 *                   This tells the DB server how long to wait before assuming
 	 *                   connection failure and releasing all the locks for a session.
@@ -76,15 +77,19 @@ abstract class DBLockManager extends QuorumLockManager {
 		parent::__construct( $config );
 
 		$this->dbServers = $config['dbServers'];
-		// Sanitize srvsByBucket config to prevent PHP errors
-		$this->srvsByBucket = array_filter( $config['dbsByBucket'], 'is_array' );
-		$this->srvsByBucket = array_values( $this->srvsByBucket ); // consecutive
+		if ( isset( $config['dbsByBucket'] ) ) {
+			// Sanitize srvsByBucket config to prevent PHP errors
+			$this->srvsByBucket = array_filter( $config['dbsByBucket'], 'is_array' );
+			$this->srvsByBucket = array_values( $this->srvsByBucket ); // consecutive
+		} else {
+			$this->srvsByBucket = [ array_keys( $this->dbServers ) ];
+		}
 
 		if ( isset( $config['lockExpiry'] ) ) {
 			$this->lockExpiry = $config['lockExpiry'];
 		} else {
 			$met = ini_get( 'max_execution_time' );
-			$this->lockExpiry = $met ?: 60; // use some sane amount if 0
+			$this->lockExpiry = $met ?: 60; // use some sensible amount if 0
 		}
 		$this->safeDelay = ( $this->lockExpiry <= 0 )
 			? 60 // pick a safe-ish number to match DB timeout default
@@ -160,6 +165,9 @@ abstract class DBLockManager extends QuorumLockManager {
 				$config['flags'] = ( $config['flags'] ?? 0 );
 				$config['flags'] &= ~( IDatabase::DBO_TRX | IDatabase::DBO_DEFAULT );
 				$db = Database::factory( $config['type'], $config );
+				if ( !$db ) {
+					throw new UnexpectedValueException( "No database connection for server called '$lockDb'." );
+				}
 			} else {
 				throw new UnexpectedValueException( "No server called '$lockDb'." );
 			}
@@ -226,7 +234,7 @@ abstract class DBLockManager extends QuorumLockManager {
 	}
 
 	/**
-	 * Make sure remaining locks get cleared for sanity
+	 * Make sure remaining locks get cleared
 	 */
 	public function __destruct() {
 		$this->releaseAllLocks();

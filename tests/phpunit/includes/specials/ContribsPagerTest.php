@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
@@ -33,10 +32,13 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	protected function setUp(): void {
 		parent::setUp();
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		$this->linkRenderer = $services->getLinkRenderer();
 		$this->revisionStore = $services->getRevisionStore();
 		$this->linkBatchFactory = $services->getLinkBatchFactory();
@@ -44,6 +46,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$this->loadBalancer = $services->getDBLoadBalancer();
 		$this->actorMigration = $services->getActorMigration();
 		$this->namespaceInfo = $services->getNamespaceInfo();
+		$this->commentFormatter = $services->getCommentFormatter();
 		$this->pager = $this->getContribsPager( [
 			'start' => '2017-01-01',
 			'end' => '2017-02-02',
@@ -61,7 +64,8 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 			$this->actorMigration,
 			$this->revisionStore,
 			$this->namespaceInfo,
-			$targetUser
+			$targetUser,
+			$this->commentFormatter
 		);
 	}
 

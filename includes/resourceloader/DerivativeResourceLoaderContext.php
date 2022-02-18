@@ -20,6 +20,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
 
 /**
  * A mutable version of ResourceLoaderContext.
@@ -38,17 +40,29 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	 */
 	private $context;
 
-	/** @var int|array */
+	/** @var int|string[] */
 	protected $modules = self::INHERIT_VALUE;
+	/** @var int|string */
 	protected $language = self::INHERIT_VALUE;
+	/** @var int|string|null */
 	protected $direction = self::INHERIT_VALUE;
+	/** @var int|string */
 	protected $skin = self::INHERIT_VALUE;
+	/** @var int|string|null */
 	protected $user = self::INHERIT_VALUE;
+	/** @var int|UserIdentity|null|false */
+	protected $userIdentity = self::INHERIT_VALUE;
+	/** @var int|User|null */
 	protected $userObj = self::INHERIT_VALUE;
+	/** @var int */
 	protected $debug = self::INHERIT_VALUE;
+	/** @var int|string|null */
 	protected $only = self::INHERIT_VALUE;
+	/** @var int|string|null */
 	protected $version = self::INHERIT_VALUE;
+	/** @var int|bool */
 	protected $raw = self::INHERIT_VALUE;
+	/** @var int|callable|null */
 	protected $contentOverrideCallback = self::INHERIT_VALUE;
 
 	public function __construct( ResourceLoaderContext $context ) {
@@ -119,6 +133,25 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		return $this->user;
 	}
 
+	public function getUserIdentity(): ?UserIdentity {
+		if ( $this->userIdentity === self::INHERIT_VALUE ) {
+			return $this->context->getUserIdentity();
+		}
+		if ( $this->userIdentity === false ) {
+			$username = $this->getUser();
+			if ( $username === null ) {
+				// Anonymous user
+				$this->userIdentity = null;
+			} else {
+				// Use provided username if valid
+				$this->userIdentity = MediaWikiServices::getInstance()
+					->getUserFactory()
+					->newFromName( $username, UserFactory::RIGOR_VALID );
+			}
+		}
+		return $this->userIdentity;
+	}
+
 	public function getUserObj(): User {
 		if ( $this->userObj === self::INHERIT_VALUE ) {
 			return $this->context->getUserObj();
@@ -142,6 +175,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		$this->hash = null;
 		// Clear getUserObj cache
 		$this->userObj = null;
+		$this->userIdentity = false;
 	}
 
 	public function getDebug(): int {

@@ -27,8 +27,10 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreloadTransformParamsValue;
 use MediaWiki\Content\Transform\PreSaveTransformParamsValue;
+use MediaWiki\Content\ValidationParams;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -203,7 +205,7 @@ abstract class AbstractContent implements Content {
 	 * Two Content objects MUST not be considered equal if they do not share the same content model.
 	 * Two Content objects that are equal SHOULD have the same serialization.
 	 *
-	 * This default implementation relies on equalsInternal() to determin whether the
+	 * This default implementation relies on equalsInternal() to determine whether the
 	 * Content objects are logically equivalent. Subclasses that need to implement a custom
 	 * equality check should consider overriding equalsInternal(). Subclasses that override
 	 * equals() itself MUST make sure that the implementation returns false for $that === null,
@@ -266,20 +268,22 @@ abstract class AbstractContent implements Content {
 
 	/**
 	 * @since 1.21
+	 * @deprecated since 1.38 Support for $wgMaxRedirect will be removed
+	 *   soon so this will go away with it. See T296430.
 	 *
 	 * @return Title[]|null
 	 *
 	 * @see Content::getRedirectChain
 	 */
 	public function getRedirectChain() {
-		global $wgMaxRedirects;
+		$maxRedirects = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxRedirects' );
 		$title = $this->getRedirectTarget();
 		if ( $title === null ) {
 			return null;
 		}
 		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
 		// recursive check to follow double redirects
-		$recurse = $wgMaxRedirects;
+		$recurse = $maxRedirects;
 		$titles = [ $title ];
 		while ( --$recurse > 0 ) {
 			if ( $title->isRedirect() ) {
@@ -320,6 +324,8 @@ abstract class AbstractContent implements Content {
 	 * @note Migrated here from Title::newFromRedirectRecurse.
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.38 Support for $wgMaxRedirect will be removed
+	 *   soon so this will go away with it. See T296430.
 	 *
 	 * @return Title|null
 	 *
@@ -443,8 +449,9 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @stable to override
 	 * @since 1.21
+	 * @deprecated since 1.38. Hard-deprecated since 1.38.
+	 * Use ContentHandler::validateSave instead.
 	 *
 	 * @param WikiPage $page
 	 * @param int $flags
@@ -455,11 +462,29 @@ abstract class AbstractContent implements Content {
 	 * @see Content::prepareSave
 	 */
 	public function prepareSave( WikiPage $page, $flags, $parentRevId, User $user ) {
-		if ( $this->isValid() ) {
-			return Status::newGood();
-		} else {
-			return Status::newFatal( "invalid-content-data" );
+		wfDeprecated( __METHOD__, '1.38' );
+		$detectPSDeprecatedOverride = MWDebug::detectDeprecatedOverride(
+			$this,
+			self::class,
+			'prepareSave',
+			'1.38'
+		);
+
+		if ( $detectPSDeprecatedOverride ) {
+			if ( $this->isValid() ) {
+				return Status::newGood();
+			} else {
+				return Status::newFatal( "invalid-content-data" );
+			}
 		}
+
+		$validationParams = new ValidationParams( $page, $flags, $parentRevId );
+		$statusValue = $this->getContentHandler()->validateSave(
+			$this,
+			$validationParams
+		);
+
+		return Status::wrap( $statusValue );
 	}
 
 	/**
@@ -517,10 +542,9 @@ abstract class AbstractContent implements Content {
 	 * Subclasses that override getParserOutput() itself should take care to call the
 	 * ContentGetParserOutput hook.
 	 *
-	 * @stable to override
-	 *
 	 * @since 1.24
-	 *
+	 * @deprecated since 1.38. Hard-deprecated since 1.38. Use ContentRenderer::getParserOutput instead.
+	 * Extensions defining a content model should override ContentHandler::fillParserOutput.
 	 * @param Title $title Context title for parsing
 	 * @param int|null $revId Revision ID being rendered
 	 * @param ParserOptions|null $options
@@ -531,28 +555,50 @@ abstract class AbstractContent implements Content {
 	public function getParserOutput( Title $title, $revId = null,
 		ParserOptions $options = null, $generateHtml = true
 	) {
-		if ( $options === null ) {
-			$options = ParserOptions::newCanonical( 'canonical' );
+		wfDeprecated( __METHOD__, '1.38' );
+		$detectGPODeprecatedOverride = MWDebug::detectDeprecatedOverride(
+			$this,
+			self::class,
+			'getParserOutput',
+			'1.38'
+		);
+		$detectFPODeprecatedOverride = MWDebug::detectDeprecatedOverride(
+			$this,
+			self::class,
+			'fillParserOutput',
+			'1.38'
+		);
+
+		if ( $detectGPODeprecatedOverride || $detectFPODeprecatedOverride ) {
+			if ( $options === null ) {
+				$options = ParserOptions::newCanonical( 'canonical' );
+			}
+
+			$po = new ParserOutput();
+			$options->registerWatcher( [ $po, 'recordOption' ] );
+
+			if ( Hooks::runner()->onContentGetParserOutput(
+				$this, $title, $revId, $options, $generateHtml, $po )
+			) {
+				// Save and restore the old value, just in case something is reusing
+				// the ParserOptions object in some weird way.
+				$oldRedir = $options->getRedirectTarget();
+				$options->setRedirectTarget( $this->getRedirectTarget() );
+				$this->fillParserOutput( $title, $revId, $options, $generateHtml, $po );
+				$options->setRedirectTarget( $oldRedir );
+			}
+
+			Hooks::runner()->onContentAlterParserOutput( $this, $title, $po );
+			$options->registerWatcher( null );
+
+			return $po;
 		}
 
-		$po = new ParserOutput();
-		$options->registerWatcher( [ $po, 'recordOption' ] );
-
-		if ( Hooks::runner()->onContentGetParserOutput(
-			$this, $title, $revId, $options, $generateHtml, $po )
-		) {
-			// Save and restore the old value, just in case something is reusing
-			// the ParserOptions object in some weird way.
-			$oldRedir = $options->getRedirectTarget();
-			$options->setRedirectTarget( $this->getRedirectTarget() );
-			$this->fillParserOutput( $title, $revId, $options, $generateHtml, $po );
-			$options->setRedirectTarget( $oldRedir );
-		}
-
-		Hooks::runner()->onContentAlterParserOutput( $this, $title, $po );
-		$options->registerWatcher( null );
-
-		return $po;
+		$cpoParams = new ContentParseParams( $title, $revId, $options, $generateHtml );
+		return $this->getContentHandler()->getParserOutput(
+			$this,
+			$cpoParams
+		);
 	}
 
 	/**
@@ -565,10 +611,8 @@ abstract class AbstractContent implements Content {
 	 *
 	 * This placeholder implementation always throws an exception.
 	 *
-	 * @stable to override
-	 *
 	 * @since 1.24
-	 *
+	 * @deprecated since 1.38. Hard-deprecated since 1.38. Use ContentHandler::fillParserOutput instead.
 	 * @param Title $title Context title for parsing
 	 * @param int|null $revId ID of the revision being rendered.
 	 *  See Parser::parse() for the ramifications.
@@ -581,7 +625,8 @@ abstract class AbstractContent implements Content {
 	protected function fillParserOutput( Title $title, $revId,
 		ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
-		// Don't make abstract, so subclasses that override getParserOutput() directly don't fail.
-		throw new MWException( 'Subclasses of AbstractContent must override fillParserOutput!' );
+		wfDeprecated( __METHOD__, '1.38' );
+		$cpoParams = new ContentParseParams( $title, $revId, $options, $generateHtml );
+		return $this->getContentHandler()->fillParserOutputInternal( $this, $cpoParams, $output );
 	}
 }

@@ -21,6 +21,8 @@
  */
 
 use MediaWiki\Logger\LegacyLogger;
+use Wikimedia\WrappedString;
+use Wikimedia\WrappedStringList;
 
 /**
  * New debugger system that outputs a toolbar on page view.
@@ -604,12 +606,12 @@ class MWDebug {
 	 *
 	 * @since 1.19
 	 * @param IContextSource $context
-	 * @return string
+	 * @return WrappedStringList
 	 */
 	public static function getDebugHTML( IContextSource $context ) {
 		global $wgDebugComments;
 
-		$html = '';
+		$html = [];
 
 		if ( self::$enabled ) {
 			self::log( 'MWDebug output complete' );
@@ -617,19 +619,21 @@ class MWDebug {
 
 			// Cannot use OutputPage::addJsConfigVars because those are already outputted
 			// by the time this method is called.
-			$html = ResourceLoader::makeInlineScript(
+			$html[] = ResourceLoader::makeInlineScript(
 				ResourceLoader::makeConfigSetScript( [ 'debugInfo' => $debugInfo ] ),
 				$context->getOutput()->getCSP()->getNonce()
 			);
 		}
 
 		if ( $wgDebugComments ) {
-			$html .= "<!-- Debug output:\n" .
-				htmlspecialchars( implode( "\n", self::$debug ), ENT_NOQUOTES ) .
-				"\n\n-->";
+			$html[] = '<!-- Debug output:';
+			foreach ( self::$debug as $line ) {
+				$html[] = htmlspecialchars( $line, ENT_NOQUOTES );
+			}
+			$html[] = '-->';
 		}
 
-		return $html;
+		return WrappedString::join( "\n", $html );
 	}
 
 	/**
@@ -638,26 +642,26 @@ class MWDebug {
 	 * If $wgShowDebug is false, an empty string is always returned.
 	 *
 	 * @since 1.20
-	 * @return string HTML fragment
+	 * @return WrappedStringList HTML fragment
 	 */
 	public static function getHTMLDebugLog() {
 		global $wgShowDebug;
 
-		if ( !$wgShowDebug ) {
-			return '';
+		$html = [];
+		if ( $wgShowDebug ) {
+			$html[] = Html::openElement( 'div', [ 'id' => 'mw-html-debug-log' ] );
+			$html[] = "<hr />\n<strong>Debug data:</strong><ul id=\"mw-debug-html\">";
+
+			foreach ( self::$debug as $line ) {
+				$display = nl2br( htmlspecialchars( trim( $line ) ) );
+
+				$html[] = "<li><code>$display</code></li>";
+			}
+
+			$html[] = '</ul>';
+			$html[] = '</div>';
 		}
-
-		$ret = "\n<hr />\n<strong>Debug data:</strong><ul id=\"mw-debug-html\">\n";
-
-		foreach ( self::$debug as $line ) {
-			$display = nl2br( htmlspecialchars( trim( $line ) ) );
-
-			$ret .= "<li><code>$display</code></li>\n";
-		}
-
-		$ret .= '</ul>' . "\n";
-
-		return Html::rawElement( 'div', [ 'id' => 'mw-html-debug-log' ], $ret );
+		return WrappedString::join( "\n", $html );
 	}
 
 	/**

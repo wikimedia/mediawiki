@@ -4,6 +4,8 @@ namespace MediaWiki\Tests\Message;
 
 use MediaWiki\Message\Converter;
 use MediaWiki\Message\TextFormatter;
+use MediaWiki\Message\UserGroupMembershipParam;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use Message;
 use Wikimedia\Message\MessageValue;
@@ -77,17 +79,37 @@ class TextFormatterTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'test a, 100 bps $2', $result );
 	}
 
-	public function testFormatMessage() {
-		$formatter = $this->createTextFormatter( 'en' );
-		$mv = ( new MessageValue( 'test' ) )
+	public function provideTestFormatMessage() {
+		yield [ ( new MessageValue( 'test' ) )
 			->params( new MessageValue( 'test2', [ 'a', 'b' ] ) )
 			->commaListParams( [
 				'x',
 				new ScalarParam( ParamType::BITRATE, 100 ),
 				new MessageValue( 'test3', [ 'c', new MessageValue( 'test4', [ 'd', 'e' ] ) ] )
-			] );
-		$result = $formatter->format( $mv );
-		$this->assertSame( 'test test2 a b x, 100 bps, test3 c test4 d e', $result );
+			] ),
+			'test test2 a b x(comma-separator)(bitrate-bits)(comma-separator)test3 c test4 d e'
+		];
+
+		yield [ ( new MessageValue( 'test' ) )
+			->userGroupParams( 'bot' ),
+			'test (group-bot) $2'
+		];
+
+		yield [ ( new MessageValue( 'test' ) )
+			->objectParams(
+				new UserGroupMembershipParam( 'bot', new UserIdentityValue( 1, 'user' ) )
+			),
+			'test (group-bot-member: user) $2'
+		];
+	}
+
+	/**
+	 * @dataProvider provideTestFormatMessage
+	 */
+	public function testFormatMessage( $message, $expected ) {
+		$formatter = $this->createTextFormatter( 'qqx' );
+		$result = $formatter->format( $message );
+		$this->assertSame( $expected, $result );
 	}
 
 	public function testFormatMessageFormatsWikitext() {

@@ -224,7 +224,7 @@ SavedQueriesModel.prototype.convertToParameters = function ( data ) {
 SavedQueriesModel.prototype.addNewQuery = function ( label, fulldata, isDefault, id ) {
 	var normalizedData = { params: {}, highlights: {} },
 		highlightParamNames = Object.keys( this.filtersModel.getEmptyHighlightParameters() ),
-		randomID = String( id || ( new Date() ).getTime() ),
+		randomID = String( id || Date.now() ),
 		data = this.filtersModel.getMinimizedParamRepresentation( fulldata );
 
 	// Split highlight/params

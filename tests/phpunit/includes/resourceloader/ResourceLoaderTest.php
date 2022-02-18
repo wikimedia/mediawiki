@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\User\StaticUserOptionsLookup;
 use Wikimedia\TestingAccessWrapper;
 
 class ResourceLoaderTest extends ResourceLoaderTestCase {
@@ -28,7 +28,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 			]
 		] );
 
-		MediaWikiServices::getInstance()->getResourceLoader();
+		$this->getServiceContainer()->getResourceLoader();
 
 		$this->assertSame( 1, $ranHook, 'Hook was called' );
 	}
@@ -211,6 +211,17 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	}
 
 	/**
+	 * @covers ResourceLoader::makeHash
+	 */
+	public function testGetVersionHash_length() {
+		$hash = ResourceLoader::makeHash(
+			'Anything you do could have serious repercussions on future events.'
+		);
+		$this->assertSame( 'xhh1x', $hash, 'Hash' );
+		$this->assertSame( ResourceLoader::HASH_LENGTH, strlen( $hash ), 'Hash length' );
+	}
+
+	/**
 	 * @covers ResourceLoader::getLessCompiler
 	 */
 	public function testLessImportDirs() {
@@ -258,7 +269,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$this->setMwGlobals( $config );
 		$reset = ExtensionRegistry::getInstance()->setAttributeForTest( 'SkinLessImportPaths', $importPaths );
 		// Reset Skin::getSkinNames for ResourceLoaderContext
-		MediaWiki\MediaWikiServices::getInstance()->resetServiceForTesting( 'SkinFactory' );
+		$this->getServiceContainer()->resetServiceForTesting( 'SkinFactory' );
 
 		$context = $this->getResourceLoaderContext( [ 'skin' => $skin ] );
 		$module = new ResourceLoaderFileModule( [
@@ -530,38 +541,6 @@ mw.example( 5 );
 } );
 END
 			] ],
-			[ [
-				'title' => 'Implement multi-file script, non-debug mode',
-
-				'name' => 'test.multifile',
-				'debug' => 'false',
-				'scripts' => [
-					'files' => [
-						'one.js' => [
-							'type' => 'script',
-							'content' => 'mw.example( 1 );',
-						],
-						'two.json' => [
-							'type' => 'data',
-							'content' => [ 'n' => 2 ],
-						],
-						'three.js' => [
-							'type' => 'script',
-							'content' => 'mw.example( 3 );//'
-						],
-					],
-					'main' => 'three.js',
-				],
-
-				'expected' => implode( '', [
-					'mw.loader.implement("test.multifile",',
-					'{"main":"three.js","files":{',
-					'"one.js":function(require,module){mw.example( 1 );' . "\n" . '},',
-					'"two.json":{"n":2},',
-					'"three.js":function(require,module){mw.example( 3 );//' . "\n" . '}',
-					'}});',
-				] ),
-			] ],
 		];
 	}
 
@@ -577,11 +556,10 @@ END
 			'templates' => [],
 			'messages' => new XmlJsCode( '{}' ),
 			'packageFiles' => [],
-			'debug' => 'true',
 		];
 		$rl = TestingAccessWrapper::newFromClass( ResourceLoader::class );
 		$context = new ResourceLoaderContext( new EmptyResourceLoader(), new FauxRequest( [
-			'debug' => $case['debug'],
+			'debug' => 'true',
 		] ) );
 		$this->assertEquals(
 			$case['expected'],
@@ -777,7 +755,7 @@ END
 			],
 			'bar' => [ 'class' => ResourceLoaderTestModule::class ],
 		] );
-		$context = $this->getResourceLoaderContext( [], $rl );
+		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ], $rl );
 
 		$this->assertSame(
 			'',
@@ -981,7 +959,7 @@ END
 	public function testMakeModuleResponseStartupError() {
 		// This is an integration test that uses a lot of MediaWiki state,
 		// provide the full Config object here.
-		$rl = new EmptyResourceLoader( MediaWikiServices::getInstance()->getMainConfig() );
+		$rl = new EmptyResourceLoader( $this->getServiceContainer()->getMainConfig() );
 		$rl->register( [
 			'foo' => [ 'factory' => function () {
 				return $this->getSimpleModuleMock( 'foo();' );
@@ -997,6 +975,8 @@ END
 			[
 				'modules' => 'startup',
 				'only' => 'scripts',
+				// No module build for version hash in debug mode
+				'debug' => 'false',
 			],
 			$rl
 		);
@@ -1014,7 +994,7 @@ END
 		$response = $rl->makeModuleResponse( $context, $modules );
 		$errors = $rl->getErrors();
 
-		$this->assertRegExp( '/Ferry not found/', $errors[0] );
+		$this->assertRegExp( '/Ferry not found/', $errors[0] ?? '' );
 		$this->assertCount( 1, $errors );
 		$this->assertRegExp(
 			'/isCompatible.*window\.RLQ/s',
@@ -1228,10 +1208,31 @@ END
 		$stats->expects( $this->once() )->method( 'timing' )
 			->with( 'resourceloader.responseTime', $this->anything() );
 
-		$timing = new Timing();
-		$timing->mark( 'requestShutdown' );
 		$rl = TestingAccessWrapper::newFromObject( new EmptyResourceLoader );
-		$rl->measureResponseTime( $timing );
-		DeferredUpdates::doUpdates();
+		$rl->measureResponseTime();
+	}
+
+	/**
+	 * @covers ResourceLoader::getUserDefaults
+	 */
+	public function testGetUserDefaults() {
+		$this->setService( 'UserOptionsLookup', new StaticUserOptionsLookup(
+			[],
+			[
+				'include' => 1,
+				'exclude' => 1,
+			]
+		) );
+		$ctx = $this->createStub( ResourceLoaderContext::class );
+		$this->setTemporaryHook( 'ResourceLoaderExcludeUserOptions', function (
+			array &$keysToExclude,
+			ResourceLoaderContext $context
+		) use ( $ctx ): void {
+			$this->assertSame( $ctx, $context );
+			$keysToExclude[] = 'exclude';
+		}, true );
+
+		$defaults = ResourceLoader::getUserDefaults( $ctx );
+		$this->assertSame( [ 'include' => 1 ], $defaults );
 	}
 }

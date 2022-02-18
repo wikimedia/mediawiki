@@ -22,6 +22,7 @@
 namespace MediaWiki\Block;
 
 use CommentStoreComment;
+use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -33,8 +34,10 @@ use MediaWiki\User\UserIdentity;
  *
  * @since 1.37 Extracted from the AbstractBlock base class,
  * which was in turn factored out of DatabaseBlock in 1.34.
+ *
+ * Extends WikiAwareEntity since 1.38.
  */
-interface Block {
+interface Block extends WikiAwareEntity {
 
 	# TYPE constants
 	# Do not introduce negative constants without changing BlockUser command object.
@@ -46,9 +49,11 @@ interface Block {
 
 	/**
 	 * Get the block ID
+	 *
+	 * @param string|false $wikiId (since 1.38)
 	 * @return ?int
 	 */
-	public function getId(): ?int;
+	public function getId( $wikiId = self::LOCAL ): ?int;
 
 	/**
 	 * Get the information that identifies this block, such that a user could
@@ -56,9 +61,10 @@ interface Block {
 	 * or string), but can also return a list of IDs, or an associative array encoding a composite
 	 * ID. Must be safe to serialize as JSON.
 	 *
+	 * @param string|false $wikiId (since 1.38)
 	 * @return mixed Identifying information
 	 */
-	public function getIdentifier();
+	public function getIdentifier( $wikiId = self::LOCAL );
 
 	/**
 	 * Get the user who applied this block

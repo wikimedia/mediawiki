@@ -344,7 +344,7 @@ class CopyFileBackend extends Maintenance {
 		}
 		// Initial fast checks to see if files are obviously different
 		$sameFast = (
-			is_array( $srcStat ) // sanity check that source exists
+			is_array( $srcStat )
 			&& is_array( $dstStat ) // dest exists
 			&& $srcStat['size'] === $dstStat['size']
 		);

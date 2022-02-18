@@ -18,6 +18,7 @@
  * @file
  * @ingroup Media
  */
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -315,7 +316,7 @@ abstract class MediaHandler {
 	 *
 	 * @note This method is currently unused.
 	 * @param File $image
-	 * @return string
+	 * @return string|false
 	 */
 	public function getMetadataType( $image ) {
 		return false;
@@ -423,7 +424,7 @@ abstract class MediaHandler {
 	 * @param File $image
 	 * @param string $script
 	 * @param array $params
-	 * @return bool|ThumbnailImage
+	 * @return ThumbnailImage|false
 	 */
 	public function getScriptedTransform( $image, $script, $params ) {
 		return false;
@@ -472,7 +473,7 @@ abstract class MediaHandler {
 	 * @return array Thumbnail extension and MIME type
 	 */
 	public function getThumbType( $ext, $mime, $params = null ) {
-		$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
+		$magic = MediaWikiServices::getInstance()->getMimeAnalyzer();
 		if ( !$ext || $magic->isMatchingExtension( $ext, $mime ) === false ) {
 			// The extension is not valid for this MIME type and we do
 			// recognize the MIME type
@@ -613,7 +614,7 @@ abstract class MediaHandler {
 	 *
 	 * @param File $image
 	 * @param int $page Page number to get information for
-	 * @return bool|string Page text or false when no text found or if
+	 * @return string|false Page text or false when no text found or if
 	 *   unsupported.
 	 */
 	public function getPageText( File $image, $page ) {
@@ -623,7 +624,7 @@ abstract class MediaHandler {
 	/**
 	 * Get the text of the entire document.
 	 * @param File $file
-	 * @return bool|string The text of the document or false if unsupported.
+	 * @return string|false The text of the document or false if unsupported.
 	 */
 	public function getEntireText( File $file ) {
 		$numPages = $file->pageCount();
@@ -739,7 +740,7 @@ abstract class MediaHandler {
 	 *
 	 * @param string $key The metadata field key
 	 * @param string|array $vals The unformatted value of this metadata field
-	 * @param bool|IContextSource $context Context to use (optional)
+	 * @param IContextSource|false $context Context to use (optional)
 	 * @return false|null|string|array False to use default formatting, null
 	 *   to remove this tag from the formatted list; otherwise return
 	 *   a formatted HTML string (or array of them).
@@ -816,7 +817,7 @@ abstract class MediaHandler {
 	}
 
 	/**
-	 * Long description. Shown under image on image description page surounded by ().
+	 * Long description. Shown under image on image description page surrounded by ().
 	 *
 	 * @stable to override
 	 *

@@ -13,7 +13,6 @@
 	"tog-newpageshidepatrolled": "Mushuk pankakunapak kamupi, ña rikushka pankakunata pakana",
 	"tog-extendwatchlist": "Rikushka pankakunapak mushuk killkaykunapak kamupi, ama yallik mushuk killkaykunatalla rikuchina, tukuykunatami rikuchina",
 	"tog-usenewrc": "Mushuk killkaykunata chapashka pankakunapak killkaykunatapash ashtawan alli rikuchina (Javascriptwanlla)",
-	"tog-numberheadings": "Uma killkaykunata yupayta churak antawata llankachina",
 	"tog-editondblclick": "Ishkayta klik rurashpa pankapi killkanata kallarina (JavaScriptwanlla)",
 	"tog-watchcreations": "Ñukapak wacharishka pankakunata rikuna",
 	"tog-watchdefault": "Ñukapak shukchishka pankakunata rikuna",
@@ -440,7 +439,7 @@
 	"watchlist-options": "rikukushka pankakuna pankapa akllaykuna",
 	"watching": "Ñami chay pankata rikukukripanki...",
 	"unwatching": "Ñamana rikukuchishpa...",
-	"deletepage": "kay pankata pichana",
+	"deletepage-submit": "kay pankata pichana",
 	"actioncomplete": "Ñami rurashka",
 	"actionfailed": "Mana ushanchu",
 	"deletedtext": "\"$1\" ñami pichashkami kan.\n$2 rikpika, ima pankakunaka pichashkami kan yachakupanki.",
@@ -597,5 +596,6 @@
 	"duplicate-defaultsort": "'''Rikupay''': Kikinmanta ordenankapak llawita «$2» ñawpak pachamanta «$1» llawita pichankami.",
 	"specialpages": "Sapak pankakuna",
 	"external_image_whitelist": "  #Kay aspita kay shinallami sakipay<pre>\n#Uraypi ''regex'' samikunata churapay (// chawpipilla)\n#Kay samikunaka hawa rikchakunapa URLwan taripachishkami kanka.\n#Alli taripashkakunaka rikcha shinami rikushishkami kanka, shukkunaka tinki shinallami riksichinka, \n#«#» llikawan kallarik aspikunaka willaykunallami kanka\n#Uchilla, hatun llikakunatapash churanata ushapanki, kaypi shinallami kan\n\n#Tukuy regex samikunata kay aspi hawapi churapay. Kay aspita kay shinallami sakipay</pre>",
-	"tag-filter": "[[Special:Tags|Wipalakunapa]] susuna:"
+	"tag-filter": "[[Special:Tags|Wipalakunapa]] susuna:",
+	"deletepage": "kay pankata pichana"
 }

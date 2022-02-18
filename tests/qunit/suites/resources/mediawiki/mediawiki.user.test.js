@@ -21,7 +21,7 @@
 	} ) );
 
 	QUnit.test( 'options', function ( assert ) {
-		assert.ok( mw.user.options instanceof mw.Map, 'options instance of mw.Map' );
+		assert.true( mw.user.options instanceof mw.Map, 'options instance of mw.Map' );
 	} );
 
 	QUnit.test( 'getters (anonymous)', function ( assert ) {
@@ -95,7 +95,7 @@
 		assert.strictEqual( result.length, 20, 'size' );
 
 		result2 = mw.user.generateRandomSessionId();
-		assert.notEqual( result, result2, 'different when called multiple times' );
+		assert.notStrictEqual( result, result2, 'different when called multiple times' );
 
 	} );
 
@@ -118,7 +118,7 @@
 		assert.strictEqual( result.length, 20, 'size' );
 
 		result2 = mw.user.generateRandomSessionId();
-		assert.notEqual( result, result2, 'different when called multiple times' );
+		assert.notStrictEqual( result, result2, 'different when called multiple times' );
 	} );
 
 	QUnit.test( 'getPageviewToken', function ( assert ) {

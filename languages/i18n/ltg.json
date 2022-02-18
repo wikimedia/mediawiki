@@ -150,7 +150,6 @@
 	"site-atom-feed": "$1 Atoma pādi",
 	"page-rss-feed": "\"$1\" RSS pādi",
 	"page-atom-feed": "\"$1\" Atom pādi",
-	"feed-rss": "RSS",
 	"red-link-title": "$1 (itaidys puslopys navā)",
 	"nstab-main": "Rakstīņs",
 	"nstab-user": "Lītuotuoja puslopa",
@@ -397,7 +396,7 @@
 	"watchlist-options": "Puorraugamū rokstu saroksta īspiejis",
 	"watching": "Davīnoj puorraudzeišonai...",
 	"unwatching": "Atslādz puorraudzeišonu...",
-	"deletepage": "Iztreit puslopu",
+	"deletepage-submit": "Iztreit puslopu",
 	"excontent": "lopys turīņs beja: \"$1\"",
 	"excontentauthor": "turīņs beja: \"$1\" (vīneigais autors: [[Special:Contributions/$2|$2]])",
 	"confirmdeletetext": "Tu tagad nu datu bazys iztreisi lopu voi biļdi, kai ari tūs īprīškejuos versejis. Lyudzu, apstypryni, ka tu pa eistam tū gribi dareit, ka tu saprūt, ka tū dori i atbylstūši [[{{MediaWiki:Policy-url}}|nūsacejumim]].",
@@ -580,5 +579,6 @@
 	"version-software-version": "Verseja",
 	"fileduplicatesearch-filename": "Faila pasauka:",
 	"specialpages": "Specialuos puslopys",
+	"deletepage": "Iztreit puslopu",
 	"rightsnone": "(navā)"
 }

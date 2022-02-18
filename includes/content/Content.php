@@ -268,7 +268,8 @@ interface Content {
 	 * @note To control which options are used in the cache key for the
 	 *       generated parser output, implementations of this method
 	 *       may call ParserOutput::recordOption() on the output object.
-	 *
+	 * @deprecated since 1.38. Hard-deprecated since 1.38. Use ContentRenderer::getParserOutput
+	 * and override ContentHandler::fillParserOutput.
 	 * @param Title $title The page title to use as a context for rendering.
 	 * @param int|null $revId ID of the revision being rendered.
 	 *  See Parser::parse() for the ramifications. (default: null)
@@ -293,6 +294,8 @@ interface Content {
 	 * have been resolved (up to $wgMaxRedirects times).
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.38 Support for $wgMaxRedirect will be removed
+	 *   soon so this will go away with it. See T296430.
 	 *
 	 * @return Title[]|null List of Titles, with the destination last.
 	 */
@@ -322,6 +325,8 @@ interface Content {
 	 * want to implement redirects should override getRedirectTarget().
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.38 Support for $wgMaxRedirect will be removed
+	 *   soon so this will go away with it. See T296430.
 	 *
 	 * @return Title|null
 	 */
@@ -439,6 +444,7 @@ interface Content {
 	 * performed. This means that $page may not yet know a page ID.
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.38. Hard-deprecated since 1.38. Use ContentHandler::validateSave instead.
 	 *
 	 * @param WikiPage $page The page to be saved.
 	 * @param int $flags Bitfield for use with EDIT_XXX constants, see WikiPage::doUserEditContent()
@@ -479,7 +485,7 @@ interface Content {
 	public function convert( $toModel, $lossy = '' );
 
 	// @todo ImagePage and CategoryPage interfere with per-content action handlers
-	// @todo nice&sane integration of GeSHi syntax highlighting
+	// @todo nice integration of GeSHi syntax highlighting
 	//   [11:59] <vvv> Hooks are ugly; make CodeHighlighter interface and a
 	//   config to set the class which handles syntax highlighting
 	//   [12:00] <vvv> And default it to a DummyHighlighter

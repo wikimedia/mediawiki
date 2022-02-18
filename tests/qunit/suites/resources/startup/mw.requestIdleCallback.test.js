@@ -4,7 +4,7 @@
 			var clock = this.clock = this.sandbox.useFakeTimers();
 
 			this.sandbox.stub( mw, 'now', function () {
-				return +new Date();
+				return Date.now();
 			} );
 
 			this.tick = function ( forward ) {

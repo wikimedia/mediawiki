@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
 
@@ -20,7 +19,7 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$sysop = static::getTestSysop()->getUserIdentity();
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 
 		$block = new DatabaseBlock( [
 			'address' => $this->localUsers[2]->getName(),

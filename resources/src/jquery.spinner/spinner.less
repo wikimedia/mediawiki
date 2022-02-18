@@ -65,6 +65,9 @@
 	display: block;
 	position: absolute;
 	top: 3px;
+	// If this was allowed to flip, then transform-origin would also need to be flipped,
+	// but that's not supported. Partial flipping causes visual issues (T292673).
+	/* @noflip */
 	left: 29px;
 	width: 5px;
 	height: 14px;

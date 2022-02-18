@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\User\UserIdentity;

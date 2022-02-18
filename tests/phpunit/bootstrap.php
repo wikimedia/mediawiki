@@ -52,7 +52,8 @@ define( 'MW_ENTRY_POINT', 'cli' );
 
 $IP = realpath( __DIR__ . '/../../' );
 // We don't use a settings file here but some code still assumes that one exists
-define( 'MW_CONFIG_FILE', "$IP/LocalSettings.php" );
+wfRequireOnceInGlobalScope( "$IP/includes/BootstrapHelperFunctions.php" );
+wfDetectLocalSettingsFile( $IP );
 
 // these variables must be defined before setup runs
 $GLOBALS['IP'] = $IP;
@@ -69,9 +70,16 @@ wfRequireOnceInGlobalScope( "$IP/includes/AutoLoader.php" );
 wfRequireOnceInGlobalScope( "$IP/tests/common/TestsAutoLoader.php" );
 wfRequireOnceInGlobalScope( "$IP/includes/Defines.php" );
 wfRequireOnceInGlobalScope( "$IP/includes/DefaultSettings.php" );
+wfRequireOnceInGlobalScope( "$IP/includes/DevelopmentSettings.php" );
 wfRequireOnceInGlobalScope( "$IP/includes/GlobalFunctions.php" );
 
 TestSetup::applyInitialConfig();
+MediaWikiCliOptions::initialize();
+
+// Since we do not load settings, expect to find extensions and skins
+// in their respective default locations.
+$GLOBALS['wgExtensionDirectory'] = "$IP/extensions";
+$GLOBALS['wgStyleDirectory'] = "$IP/skins";
 
 // Populate classes and namespaces from extensions and skins present in filesystem.
 $directoryToJsonMap = [

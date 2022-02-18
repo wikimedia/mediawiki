@@ -283,7 +283,7 @@ class DateFormatter {
 
 	/**
 	 * Makes an ISO month, e.g. 02, from a month name
-	 * @param string $monthName Month name
+	 * @param string $monthName
 	 * @return string|false ISO month name, or false if the input was invalid
 	 */
 	private function makeIsoMonth( $monthName ) {

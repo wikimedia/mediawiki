@@ -48,19 +48,39 @@ abstract class FormSpecialPage extends SpecialPage {
 	abstract protected function getFormFields();
 
 	/**
+	 * Add pre-HTML to the form
+	 * @return string HTML which will be sent to $form->addPreHtml()
+	 * @since 1.38
+	 */
+	protected function preHtml() {
+		return '';
+	}
+
+	/**
+	 * Add post-HTML to the form
+	 * @return string HTML which will be sent to $form->addPostHtml()
+	 * @since 1.38
+	 */
+	protected function postHtml() {
+		return '';
+	}
+
+	/**
 	 * Add pre-text to the form
 	 * @return string HTML which will be sent to $form->addPreText()
+	 * @deprecated since 1.38, use preHtml() instead
 	 */
 	protected function preText() {
-		return '';
+		return $this->preHtml();
 	}
 
 	/**
 	 * Add post-text to the form
 	 * @return string HTML which will be sent to $form->addPostText()
+	 * @deprecated since 1.38, use postHtml() instead
 	 */
 	protected function postText() {
-		return '';
+		return $this->postHtml();
 	}
 
 	/**
@@ -131,6 +151,8 @@ abstract class FormSpecialPage extends SpecialPage {
 			$form->addHeaderText( $headerMsg->parseAsBlock() );
 		}
 
+		// preText / postText are deprecated, but we need to keep calling them until the end of
+		// the deprecation process so a subclass overriding *Text and *Html both work
 		$form->addPreText( $this->preText() );
 		$form->addPostText( $this->postText() );
 		$this->alterForm( $form );

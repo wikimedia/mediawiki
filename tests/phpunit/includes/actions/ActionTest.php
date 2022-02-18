@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\Permissions\PermissionManager;
 
 /**
  * @covers Action
@@ -269,11 +271,8 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestUser()->getUser();
 		$this->overrideUserPermissions( $user, [] );
 		$action = $this->getAction( 'access' );
-		try {
-			$action->canExecute( $user );
-		} catch ( Exception $e ) {
-			$this->assertInstanceOf( PermissionsError::class, $e );
-		}
+		$this->expectException( PermissionsError::class );
+		$action->canExecute( $user );
 	}
 
 	public function testCanExecuteRequiresUnblock() {
@@ -281,6 +280,8 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		$action = $this->getAction( 'unblock', $page );
 
 		$user = $this->createMock( User::class );
+
+		$user->method( 'getWikiId' )->willReturn( WikiAwareEntity::LOCAL );
 
 		$block = new DatabaseBlock( [
 			'address' => $user,
@@ -290,19 +291,15 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$user->expects( $this->once() )
-			->method( 'isBlockedFrom' )
-			->with( $page->getTitle() )
-			->willReturn( true );
-		$user->expects( $this->once() )
 			->method( 'getBlock' )
 			->willReturn( $block );
 
-		try {
-			$action->canExecute( $user );
-			$this->assertFalse( true );
-		} catch ( Exception $e ) {
-			$this->assertInstanceOf( UserBlockedError::class, $e );
-		}
+		$permissionManager = $this->createMock( PermissionManager::class );
+		$permissionManager->method( 'isBlockedFrom' )->willReturn( true );
+		$this->setService( 'PermissionManager', $permissionManager );
+
+		$this->expectException( UserBlockedError::class );
+		$action->canExecute( $user );
 	}
 
 }

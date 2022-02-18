@@ -10,6 +10,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Page\RollbackPage;
+use MediaWiki\Page\UndeletePage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\MockServiceDependenciesTrait;
 use MediaWiki\User\UserIdentity;
@@ -112,4 +113,11 @@ class PageCommandFactoryTest extends MediaWikiUnitTestCase {
 		);
 	}
 
+	public function testUndeletePage() {
+		$undeletePage = $this->getFactory()->newUndeletePage(
+			$this->createMock( ProperPageIdentity::class ),
+			$this->createMock( Authority::class )
+		);
+		$this->assertInstanceOf( UndeletePage::class, $undeletePage );
+	}
 }

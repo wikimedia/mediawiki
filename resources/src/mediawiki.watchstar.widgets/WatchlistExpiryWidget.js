@@ -48,7 +48,7 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 			// This is because there is no CSS class or ID on the link itself,
 			// and skins could manipulate the position of the link. The accessKey
 			// however is always present on the link.
-			if ( document.activeElement.accessKey === mw.message( 'accesskey-ca-watch' ).text() ) {
+			if ( document.activeElement.accessKey === mw.msg( 'accesskey-ca-watch' ) ) {
 				e.preventDefault();
 				expiryDropdown.focus();
 
@@ -109,13 +109,7 @@ function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 					// Resume the mw.notify once the label has been updated
 					notif.resume();
 
-					updateWatchLink( $link, 'unwatch', 'idle', watchResponse.expiry );
-
-					// Update the "Watch this page" checkbox on action=edit when the
-					// page is watched or unwatched via the tab.
-					if ( document.getElementById( 'wpWatchlistExpiryWidget' ) ) {
-						OO.ui.infuse( $( '#wpWatchlistExpiryWidget' ) ).setValue( value );
-					}
+					updateWatchLink( mwTitle, 'unwatch', 'idle', watchResponse.expiry, value );
 				} )
 				.fail( function ( code, data ) {
 					// Format error message

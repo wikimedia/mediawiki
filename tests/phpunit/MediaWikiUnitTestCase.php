@@ -60,6 +60,9 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 			'wgDevelopmentWarnings',
 			// Dependency of wfParseUrl()
 			'wgUrlProtocols',
+			// For LegacyLogger, injected by DevelopmentSettings.php
+			'wgDebugLogFile',
+			'wgDebugLogGroups',
 		];
 	}
 

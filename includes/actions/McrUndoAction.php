@@ -5,7 +5,7 @@
  * @ingroup Actions
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -45,24 +45,30 @@ class McrUndoAction extends FormAction {
 	/** @var RevisionRenderer */
 	private $revisionRenderer;
 
+	/** @var bool */
+	private $useRCPatrol;
+
 	/**
 	 * @param Page $page
 	 * @param IContextSource $context
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param RevisionLookup $revisionLookup
 	 * @param RevisionRenderer $revisionRenderer
+	 * @param Config $config
 	 */
 	public function __construct(
 		Page $page,
 		IContextSource $context,
 		ReadOnlyMode $readOnlyMode,
 		RevisionLookup $revisionLookup,
-		RevisionRenderer $revisionRenderer
+		RevisionRenderer $revisionRenderer,
+		Config $config
 	) {
 		parent::__construct( $page, $context );
 		$this->readOnlyMode = $readOnlyMode;
 		$this->revisionLookup = $revisionLookup;
 		$this->revisionRenderer = $revisionRenderer;
+		$this->useRCPatrol = $config->get( 'UseRCPatrol' );
 	}
 
 	public function getName() {
@@ -298,12 +304,14 @@ class McrUndoAction extends FormAction {
 			$parserOptions = $this->getWikiPage()->makeParserOptions( $this->context );
 			$parserOptions->setIsPreview( true );
 			$parserOptions->setIsSectionPreview( false );
-			$parserOptions->enableLimitReport();
 
 			$parserOutput = $this->revisionRenderer
 				->getRenderedRevision( $rev, $parserOptions, $this->context->getUser() )
 				->getRevisionParserOutput();
-			$previewHTML = $parserOutput->getText( [ 'enableSectionEditLinks' => false ] );
+			$previewHTML = $parserOutput->getText( [
+				'enableSectionEditLinks' => false,
+				'includeDebugInfo' => true,
+			] );
 
 			$out->addParserOutputMetadata( $parserOutput );
 			if ( count( $parserOutput->getWarnings() ) ) {
@@ -338,8 +346,6 @@ class McrUndoAction extends FormAction {
 	}
 
 	public function onSubmit( $data ) {
-		global $wgUseRCPatrol;
-
 		if ( !$this->getRequest()->getCheck( 'wpSave' ) ) {
 			// Diff or preview
 			return false;
@@ -355,12 +361,10 @@ class McrUndoAction extends FormAction {
 			return Status::newFatal( 'mcrundo-changed' );
 		}
 
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		$errors = $permissionManager->getPermissionErrors(
-			'edit', $this->context->getUser(), $this->getTitle()
-		);
-		if ( count( $errors ) ) {
-			throw new PermissionsError( 'edit', $errors );
+		$status = new PermissionStatus();
+		$this->getContext()->getAuthority()->authorizeWrite( 'edit', $this->getTitle(), $status );
+		if ( !$status->isOK() ) {
+			throw new PermissionsError( 'edit', $status );
 		}
 
 		$newRev = $this->getNewRevision();
@@ -405,26 +409,9 @@ class McrUndoAction extends FormAction {
 				}
 			}
 
-			// The revision we revert to is specified by the undoafter param.
-			// $oldRev is not null, we check this and more in getNewRevision()
-			$oldRev = $this->revisionLookup->getRevisionById( $this->undoafter );
-			$oldestRevertedRev = $this->revisionLookup->getNextRevision( $oldRev );
-			if ( $oldestRevertedRev ) {
-				$updater->markAsRevert(
-					EditResult::REVERT_UNDO,
-					$oldestRevertedRev->getId(),
-					$this->undo
-				);
-			} else {
-				// fallback in case something goes wrong
-				$updater->markAsRevert( EditResult::REVERT_UNDO, $this->undo );
-			}
-			// Set the original revision ID if this is an exact revert.
-			if ( $oldRev->hasSameContent( $newRev ) ) {
-				$updater->setOriginalRevisionId( $oldRev->getId() );
-			}
+			$updater->markAsRevert( EditResult::REVERT_UNDO, $this->undo, $this->undoafter );
 
-			if ( $wgUseRCPatrol && $this->getContext()->getAuthority()
+			if ( $this->useRCPatrol && $this->getContext()->getAuthority()
 					->authorizeWrite( 'autopatrol', $this->getTitle() )
 			) {
 				$updater->setRcPatrolStatus( RecentChange::PRC_AUTOPATROLLED );

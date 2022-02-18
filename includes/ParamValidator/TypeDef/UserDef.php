@@ -3,11 +3,12 @@
 namespace MediaWiki\ParamValidator\TypeDef;
 
 use ExternalUserNames;
-use MediaWiki\User\UserFactory;
+use MalformedTitleException;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
-use TitleFactory;
+use TitleParser;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\Callbacks;
@@ -53,30 +54,30 @@ class UserDef extends TypeDef {
 	 */
 	public const PARAM_RETURN_OBJECT = 'param-return-object';
 
-	/** @var UserFactory */
-	private $userFactory;
+	/** @var UserIdentityLookup */
+	private $userIdentityLookup;
 
-	/** @var TitleFactory */
-	private $titleFactory;
+	/** @var TitleParser */
+	private $titleParser;
 
 	/** @var UserNameUtils */
 	private $userNameUtils;
 
 	/**
 	 * @param Callbacks $callbacks
-	 * @param UserFactory $userFactory
-	 * @param TitleFactory $titleFactory
+	 * @param UserIdentityLookup $userIdentityLookup
+	 * @param TitleParser $titleParser
 	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		Callbacks $callbacks,
-		UserFactory $userFactory,
-		TitleFactory $titleFactory,
+		UserIdentityLookup $userIdentityLookup,
+		TitleParser $titleParser,
 		UserNameUtils $userNameUtils
 	) {
 		parent::__construct( $callbacks );
-		$this->userFactory = $userFactory;
-		$this->titleFactory = $titleFactory;
+		$this->userIdentityLookup = $userIdentityLookup;
+		$this->titleParser = $titleParser;
 		$this->userNameUtils = $userNameUtils;
 	}
 
@@ -162,8 +163,25 @@ class UserDef extends TypeDef {
 	private function processUser( string $value ): array {
 		// A user ID?
 		if ( preg_match( '/^#(\d+)$/D', $value, $m ) ) {
-			return [ 'id', $this->userFactory->newFromId( $m[1] ) ];
-
+			// This used to use the IP address of the current request if the
+			// id was 0, to match the behavior of User objects, but was switched
+			// to "Unknown user" because the former behavior is likely unexpected.
+			// If the id corresponds to a user in the database, use that user, otherwise
+			// return a UserIdentityValue with id 0 (regardless of the input id) and
+			// the name "Unknown user"
+			$userId = (int)$m[1];
+			if ( $userId !== 0 ) {
+				// Check the database.
+				$userIdentity = $this->userIdentityLookup->getUserIdentityByUserId( $userId );
+				if ( $userIdentity ) {
+					return [ 'id', $userIdentity ];
+				}
+			}
+			// Fall back to "Unknown user"
+			return [
+				'id',
+				new UserIdentityValue( 0, "Unknown user" )
+			];
 		}
 
 		// An interwiki username?
@@ -180,9 +198,22 @@ class UserDef extends TypeDef {
 		}
 
 		// A valid user name?
-		$user = $this->userFactory->newFromName( $value, UserFactory::RIGOR_VALID );
-		if ( $user ) {
-			return [ 'name', $user ];
+		// Match behavior of UserFactory::newFromName with RIGOR_VALID and User::getId()
+		// we know that if there is a canonical form from UserNameUtils then this can't
+		// look like an IP, and since we checked for external user names above it isn't
+		// that either, so if this is a valid user name then we check the database for
+		// the id, and if there is no user with this name the id is 0
+		$canonicalName = $this->userNameUtils->getCanonical( $value, UserNameUtils::RIGOR_VALID );
+		if ( $canonicalName ) {
+			$userIdentity = $this->userIdentityLookup->getUserIdentityByName( $canonicalName );
+			if ( $userIdentity ) {
+				return [ 'name', $userIdentity ];
+			}
+			// Fall back to id 0
+			return [
+				'name',
+				new UserIdentityValue( 0, $canonicalName )
+			];
 		}
 
 		// (T232672) Reproduce the normalization applied in UserNameUtils::getCanonical() when
@@ -191,9 +222,17 @@ class UserDef extends TypeDef {
 			return [ '', null ];
 		}
 
-		$t = $this->titleFactory->newFromText( $value );
+		try {
+			$t = $this->titleParser->parseTitle( $value );
+		} catch ( MalformedTitleException $_ ) {
+			$t = null;
+		}
 		if ( !$t || $t->getNamespace() !== NS_USER || $t->isExternal() ) { // likely
-			$t = $this->titleFactory->newFromText( "User:$value" );
+			try {
+				$t = $this->titleParser->parseTitle( "User:$value" );
+			} catch ( MalformedTitleException $_ ) {
+				$t = null;
+			}
 		}
 		if ( !$t || $t->getNamespace() !== NS_USER || $t->isExternal() ) {
 			// If it wasn't a valid User-namespace title, fail.

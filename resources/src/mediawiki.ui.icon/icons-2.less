@@ -1,0 +1,247 @@
+/**
+* MediaWiki UI icons specification 2.0
+*
+* Applies the MinervaNeue icon styles, adding more mobile-friendly
+* features like increased touch-area sizes and highlights.
+*
+* - mw-ui-icon = base class. 20px square with icon.
+* - mw-ui-icon + mw-ui-icon-element = icon with padding & pseudo-states.
+* - mw-ui-icon + mw-ui-icon-small = small icon with padding & pseudo-states.
+* - mw-ui-icon + mw-ui-icon-flush-left = negative right-margin.
+* - mw-ui-icon + mw-ui-icon-flush-right = negative left-margin.
+* - mw-ui-icon + mw-ui-icon-before = *deprecated*, icon with text.
+*   Labels should be placed in a separate element beside the icon.
+*
+*/
+
+@import 'mediawiki.ui/variables.less';
+@import 'mediawiki.mixins.less';
+
+// == Icons ==
+@icon-touch-area-sm: 34;
+@icon-touch-area-md: 44;
+@font-size-browser: 16; // Assumed browser default of `16px`.
+// Small icon
+@icon-glyph-size-sm: 16;
+@icon-size-sm: unit( @icon-glyph-size-sm / @font-size-browser, em );
+@icon-padding-sm: unit( ( @icon-touch-area-sm - @icon-glyph-size-sm ) / 2 / @font-size-browser, em );
+// Medium icon
+@icon-glyph-size-md: 20;
+@icon-size-md: unit( @icon-glyph-size-md / @font-size-browser, em );
+@icon-padding-md: unit( ( @icon-touch-area-md - @icon-glyph-size-md ) / 2 / @font-size-browser, em );
+// Colors
+@icon-color: @colorGray5;
+@margin-icon-md-labelled: 8px;
+@icon-background-color--selected:  rgba( 0, 0, 0, 0.03 );
+
+/**
+* Mixin for a pseudo-element with a background image.
+*/
+.mixin-background-square( @size ) {
+	// Sizing properties
+	content: '';
+	display: block;
+	width: 100%;
+	height: 100%;
+	// In case display: block is overridden and display gets set to `flex`
+	// because of inheritance T233521.
+	min-width: @size;
+	min-height: @size;
+
+	// Background properties.
+	background-repeat: no-repeat;
+	// Using static value instead of `background-size: contain` because of T233521#5545513.
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+	background-size: @size @size;
+	background-position: center;
+}
+
+/**
+* A standalone 20px square with screen-reader text. Contains a :before element
+* to house the icon as a background image. Total size is increased with padding via
+* `box-sizing: content-box`. This separates control over size of icon vs the size of
+* the touch-area.
+*/
+.mw-ui-icon {
+	// reset font-size so the "em" value is relative to the more
+	// predictable rem font size ...and no rems because we can't have nice things.
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+	font-size: initial;
+
+	// sizing
+	position: relative;
+	display: inline-block;
+
+	// this is important for increasing the size via padding. Overrides `.view-border-box *`.
+	// stylelint-disable-next-line declaration-no-important
+	box-sizing: content-box !important;
+	width: @icon-size-md;
+	height: @icon-size-md;
+
+	// Guarding against flex-box variability.
+	min-width: @icon-size-md;
+	min-height: @icon-size-md;
+	flex-basis: @icon-size-md;
+
+	// alignment
+	vertical-align: middle;
+	line-height: 0;
+
+	// Overflow ellipsis.
+	.text-overflow( @visible: false );
+
+	// resetting styles for <button> elements
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+	-moz-appearance: none;
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+	-webkit-appearance: none;
+	background-color: transparent;
+	margin: 0;
+	padding: 0;
+
+	&:not( .mw-ui-button ) {
+		border: 0;
+	}
+
+	&:before {
+		.mixin-background-square( @icon-size-md );
+	}
+
+	& + span {
+		// Margin is added to separate accompanying text.
+		margin-left: @margin-icon-md-labelled;
+	}
+}
+
+/**
+* When aligning a series of similar icons (e.g. list items)
+* prefer using a `:first-child` or `:last-child` selector.
+* The flush-left/right classes are appropriate when that's unavailable.
+*/
+.mw-ui-icon-flush-top {
+	margin-top: -@icon-padding-md;
+}
+
+.mw-ui-icon-flush-left {
+	margin-left: -@icon-padding-md;
+}
+
+.mw-ui-icon-flush-right {
+	margin-right: -@icon-padding-md;
+}
+
+.mw-ui-icon-element {
+	border-radius: @border-radius-base;
+	padding: @icon-padding-md;
+	// Use semi-colon if multiple arguments are needed!
+	// See https://stackoverflow.com/questions/11419741/less-css-mixins-with-variable-number-of-arguments
+	.transition( background-color @transition-duration-base; );
+
+	// Combined with nowrap & ellipsis from .mw-ui-icon, forms safe "screen-reader" text.
+	color: transparent;
+
+	&:focus,
+	&:active,
+	&:visited {
+		color: transparent;
+	}
+
+	// Assume a mobile device - and avoid tap state remaining after click (T233046).
+	&:active {
+		background-color: @icon-background-color--selected;
+	}
+}
+
+// When the user's device primary input is capable of hover, like a mouse,
+// use hover (T233046). Only on active elements.
+@media ( hover: hover ) {
+	// stylelint-disable-next-line selector-class-pattern
+	.mw-ui-icon-element:not( .disabled ):hover {
+		background-color: @icon-background-color--selected;
+	}
+}
+
+.mw-ui-icon-small {
+	width: @icon-size-sm;
+	height: @icon-size-sm;
+	min-width: @icon-size-sm;
+	min-height: @icon-size-sm;
+	flex-basis: @icon-size-sm;
+	line-height: @icon-size-sm;
+
+	&:before {
+		.mixin-background-square( @icon-size-sm );
+	}
+}
+
+.mw-ui-icon-small.mw-ui-icon-element {
+	padding: @icon-padding-sm;
+}
+
+.mw-ui-icon-small.mw-ui-icon-flush-left {
+	margin-left: -@icon-padding-sm;
+}
+
+.mw-ui-icon-small.mw-ui-icon-flush-right {
+	margin-right: -@icon-padding-sm;
+}
+
+.mw-ui-icon-small.mw-ui-icon-before:before {
+	min-width: @icon-size-sm;
+	min-height: @icon-size-sm;
+	margin-right: @icon-padding-sm;
+}
+
+.mw-ui-icon-before {
+	width: auto;
+	max-width: 100%;
+
+	&:before {
+		// sizing
+		display: inline-block;
+		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+		font-size: initial;
+		width: auto;
+		min-width: @icon-size-md;
+		min-height: @icon-size-md;
+
+		// alignment. Margin is added to separate accompanying text.
+		margin-right: @margin-icon-md-labelled;
+		vertical-align: middle;
+	}
+
+	span {
+		vertical-align: middle;
+	}
+}
+
+@media all and ( min-width: @width-breakpoint-desktop ) {
+	.mw-ui-icon-with-label-desktop {
+		// stylelint-disable-next-line declaration-no-important
+		color: @icon-color !important;
+		width: auto;
+		line-height: inherit;
+		flex-basis: auto;
+		// Special case outside of standard buttons styling due to surrounding
+		// interface elements, see T237019.
+		// stylelint-disable-next-line declaration-no-important
+		font-weight: 500 !important;
+
+		&:hover,
+		&:focus,
+		&:active,
+		&:visited {
+			color: @icon-color;
+			text-decoration: none;
+		}
+
+		&:before {
+			width: auto;
+			display: inline-block;
+			// Don't use `@icon-padding-md` as we are adjacent to text.
+			margin-right: @margin-icon-md-labelled;
+			// Seems to be more visually centered than `middle`.
+			vertical-align: text-bottom;
+		}
+	}
+}

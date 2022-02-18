@@ -9,11 +9,14 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
+use MediaWiki\Session\SessionId;
+use MediaWiki\Session\TestUtils;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -54,7 +57,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$this->context = new RequestContext();
 		$this->context->setTitle( Title::newFromText( self::class ) );
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$this->setMwGlobals( 'wgParser', $services->getParserFactory()->create() );
 		$this->setMwGlobals( 'wgDisableLangConversion', false );
@@ -124,7 +127,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		// DummyServicesTrait::getDummyNamespaceInfo
 		$nsInfo = $this->getDummyNamespaceInfo();
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		// The PermissionManager should not be used for anything, its only a parameter
 		// until we figure out how to remove it without breaking the GlobalPreferences
@@ -179,6 +182,39 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers ::sortSkinNames
+	 */
+	public function testSortSkinNames() {
+		/** @var DefaultPreferencesFactory $factory */
+		$factory = TestingAccessWrapper::newFromObject(
+			$this->getPreferencesFactory()
+		);
+		$validSkinNames = [
+			'minerva' => 'Minerva Neue',
+			'monobook' => 'Monobook',
+			'cologne-blue' => 'Cologne Blue',
+			'vector' => 'Vector',
+			'vector-2022' => 'Vector 2022',
+			'timeless' => 'Timeless',
+		];
+		$currentSkin = 'monobook';
+		$preferredSkins = [ 'vector-2022', 'invalid-skin', 'vector' ];
+
+		uksort( $validSkinNames, static function ( $a, $b ) use ( $factory, $currentSkin, $preferredSkins ) {
+			return $factory->sortSkinNames( $a, $b, $currentSkin, $preferredSkins );
+		} );
+
+		$this->assertArrayEquals( [
+			'monobook' => 'Monobook',
+			'vector-2022' => 'Vector 2022',
+			'vector' => 'Vector',
+			'cologne-blue' => 'Cologne Blue',
+			'minerva' => 'Minerva Neue',
+			'timeless' => 'Timeless',
+		], $validSkinNames );
+	}
+
+	/**
 	 * CSS classes for emailauthentication preference field when there's no email.
 	 * @see https://phabricator.wikimedia.org/T36302
 	 *
@@ -206,6 +242,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		);
 
 		$userOptionsManagerMock = $this->createUserOptionsManagerMock( [ 'test' => 'yes' ], true );
+		$userMock = $this->getUserMockWithSession( $userMock );
 		$prefs = $this->getPreferencesFactory( [
 			'userOptionsManager' => $userOptionsManagerMock,
 		] )->getFormDescriptor( $userMock, $this->context );
@@ -224,6 +261,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 				return $permission === 'editmyoptions' || $permission === 'rollback';
 			}
 		);
+		$userMock = $this->getUserMockWithSession( $userMock );
 
 		$userOptionsManagerMock = $this->createUserOptionsManagerMock( [ 'test' => 'yes' ], true );
 		$prefs = $this->getPreferencesFactory( [
@@ -356,6 +394,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 		$userMock->method( 'isAllowed' )->willReturn( true );
+		$userMock = $this->getUserMockWithSession( $userMock );
 
 		$language = $this->createMock( Language::class );
 		$language->method( 'getCode' )
@@ -383,6 +422,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$userMock->method( 'isAllowed' )->willReturn( true );
 		$userMock->method( 'isAllowedAny' )->willReturn( true );
 		$userMock->method( 'isRegistered' )->willReturn( true );
+		$userMock = $this->getUserMockWithSession( $userMock );
 
 		$language = $this->createMock( Language::class );
 		$language->method( 'getCode' )
@@ -431,5 +471,26 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			$mock->method( 'getDefaultOptions' )->willReturn( $defaults );
 		}
 		return $mock;
+	}
+
+	/**
+	 * @param MockObject $userMock
+	 * @return MockObject
+	 */
+	private function getUserMockWithSession( MockObject $userMock ): MockObject {
+		// We're mocking a stdClass because the Session class is final, and thus not mockable.
+		$mock = $this->getMockBuilder( stdClass::class )
+			->addMethods( [ 'getAllowedUserRights', 'deregisterSession', 'getSessionId' ] )
+			->getMock();
+		$mock->method( 'getSessionId' )->willReturn(
+			new SessionId( str_repeat( 'X', 32 ) )
+		);
+		$session = TestUtils::getDummySession( $mock );
+		$mockRequest = $this->getMockBuilder( FauxRequest::class )
+			->onlyMethods( [ 'getSession' ] )
+			->getMock();
+		$mockRequest->method( 'getSession' )->willReturn( $session );
+		$userMock->method( 'getRequest' )->willReturn( $mockRequest );
+		return $userMock;
 	}
 }

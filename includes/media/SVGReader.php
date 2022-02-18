@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Extraction of SVG image metadata.
  *
@@ -24,6 +25,8 @@
  * @copyright Copyright © 2010-2010 Brion Vibber, Derk-Jan Hartman
  * @license GPL-2.0-or-later
  */
+
+use MediaWiki\MediaWikiServices;
 
 /**
  * @ingroup Media
@@ -52,7 +55,7 @@ class SVGReader {
 	 * @throws MWException|Exception
 	 */
 	public function __construct( $source ) {
-		global $wgSVGMetadataCutoff;
+		$svgMetadataCutoff = MediaWikiServices::getInstance()->getMainConfig()->get( 'SVGMetadataCutoff' );
 		$this->reader = new XMLReader();
 
 		// Don't use $file->getSize() since file object passed to SVGHandler::getMetadata is bogus.
@@ -61,9 +64,9 @@ class SVGReader {
 			throw new MWException( "Error getting filesize of SVG." );
 		}
 
-		if ( $size > $wgSVGMetadataCutoff ) {
-			$this->debug( "SVG is $size bytes, which is bigger than $wgSVGMetadataCutoff. Truncating." );
-			$contents = file_get_contents( $source, false, null, 0, $wgSVGMetadataCutoff );
+		if ( $size > $svgMetadataCutoff ) {
+			$this->debug( "SVG is $size bytes, which is bigger than {$svgMetadataCutoff}. Truncating." );
+			$contents = file_get_contents( $source, false, null, 0, $svgMetadataCutoff );
 			if ( $contents === false ) {
 				throw new MWException( 'Error reading SVG file.' );
 			}
@@ -80,7 +83,8 @@ class SVGReader {
 		// libxml_disable_entity_loader() to avoid arbitrary local file
 		// inclusion, or even arbitrary code execution if the expect
 		// extension is installed (T48859).
-		$oldDisable = libxml_disable_entity_loader( true );
+		// phpcs:ignore Generic.PHP.NoSilencedErrors -- suppress deprecation per T268847
+		$oldDisable = @libxml_disable_entity_loader( true );
 		$this->reader->setParserProperty( XMLReader::SUBST_ENTITIES, true );
 
 		$this->metadata['width'] = self::DEFAULT_WIDTH;
@@ -103,8 +107,8 @@ class SVGReader {
 			// Should we consider it the default 512x512 instead?
 			throw $e;
 		} finally {
-			Wikimedia\restoreWarnings();
 			libxml_disable_entity_loader( $oldDisable );
+			Wikimedia\restoreWarnings();
 		}
 	}
 

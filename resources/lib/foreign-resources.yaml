@@ -93,6 +93,27 @@ CLDRPluralRuleParser:
   src: https://raw.githubusercontent.com/santhoshtr/CLDRPluralRuleParser/0dda851/src/CLDRPluralRuleParser.js
   integrity: sha384-M4taeYYG2+9Ob1/La16iO+zlRRmBV5lBR3xUKkQT6kfkJ0aLbCi6yc0RYI1BDzdh
 
+codex:
+  type: tar
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.1.0-alpha.2.tgz
+  integrity: sha512-ec03OegaOTTLDHCNtIp1NnYVo35UE7KoxWCYj32PggEoAhp+xs22xq1moOmMUieN0nCOktdishCZYHLY+/MclQ==
+  dest:
+    package/dist/codex.es.js:
+    package/dist/codex.umd.js:
+    package/dist/codex.style.css:
+    package/dist/codex.style-rtl.css:
+    package/LICENSE:
+    package/README.md:
+
+codex-icons:
+  type: tar
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.1.0-alpha.2.tgz
+  integrity: sha512-WGSNW2UbhNAeyh5Nq4nAVkz7i+DkIRZMeHbVmELrd1nqchLdYZDt10t2q93JxXEKjsqjNait1ZCiUhqr7e68Pg==
+  dest:
+    package/dist/codex-icons.json:
+    package/LICENSE:
+    package/README.md:
+
 fetch-polyfill:
   type: tar
   src: https://registry.npmjs.com/whatwg-fetch/-/whatwg-fetch-3.6.2.tgz
@@ -100,6 +121,14 @@ fetch-polyfill:
   dest:
     package/dist/fetch.umd.js:
     package/LICENSE:
+    package/README.md:
+
+intersection-observer:
+  type: tar
+  src: https://registry.npmjs.org/intersection-observer/-/intersection-observer-0.12.0.tgz
+  integrity: sha384-zCaiM7krKokKgwmrn87MtEtBUfsddhfofL0x+6KiGr+nHRa4b/ZdcfkBUSEtuEUw
+  dest:
+    package/intersection-observer.js:
     package/README.md:
 
 jquery:
@@ -186,11 +215,6 @@ jquery.i18n:
     jquery.i18n-1.0.7/README.md:
     jquery.i18n-1.0.7/src:
 
-jquery.jStorage:
-  type: file
-  src: https://raw.githubusercontent.com/andris9/jStorage/v0.4.12/jstorage.js
-  integrity: sha384-geMeN8k803kPp6cqRL4VNfuSM1L8DcbKRk0St/KHJzxgpX9S0y9FA6HxA/JgucrJ
-
 jquery.throttle-debounce:
   type: file
   src: https://raw.githubusercontent.com/cowboy/jquery-throttle-debounce/v1.1/jquery.ba-throttle-debounce.js
@@ -241,8 +265,8 @@ oojs-router:
 
 ooui:
   type: tar
-  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.42.0.tgz
-  integrity: sha384-tu/8BxaO7ZZItJFfcc8QYeLwD/dvLevmNPcBbwWc6GSNO1vUkG25+v68mfydCFJG
+  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.43.1.tgz
+  integrity: sha384-vurR15549MlQicj/4X39T2IHJhWTFRbG7FO4PM8JcyZl/8dDRlfQmp74zIPKgLV/
 
   dest:
     # Main stuff
@@ -256,7 +280,6 @@ ooui:
     package/dist/oojs-ui-windows-{wikimediaui,apex}.css:
     package/dist/oojs-ui-{wikimediaui,apex}.js{,.map.json}:
     package/dist/i18n:
-    package/dist/images:
     # For jsduck/eg-iframe
     package/dist/oojs-ui-images-wikimediaui.css:
     # WikimediaUI theme
@@ -315,30 +338,30 @@ sinonjs:
 
 vue:
   type: tar
-  src: https://codeload.github.com/vuejs/vue/tar.gz/v2.6.11
-  integrity: sha384-BEkoIZmPWNcsSd1uY37iJdjLDsPjpVT0Ai6yq6chddUw0UkuIKwIruXGMUsi4tb9
-
+  # This is the migration build of Vue 3.2.23 which provides compatibility for Vue 2 code
+  src: https://registry.npmjs.org/@vue/compat/-/compat-3.2.23.tgz
+  integrity: sha512-ap/aO8V1j3dveHGcELRQZdb3dlnMgCK5N5Ur6Q37RRtMcB1glJldqUP46aAhY7kMberaUVWwYehMothocsF6Dg==
   dest:
-    vue-2.6.11/README.md:
-    vue-2.6.11/LICENSE:
-    vue-2.6.11/dist/vue.common.prod.js:
-    vue-2.6.11/dist/vue.common.dev.js:
+    package/README.md:
+    package/LICENSE:
+    package/dist/vue.global.js:
+    package/dist/vue.global.prod.js:
 
 vuex:
   type: tar
-  src: https://codeload.github.com/vuejs/vuex/tar.gz/v3.1.3
-  integrity: sha384-Q+Mapd6G1U76N7ZSdYApIqr/+u/c0HxSiYw+IKQAqcKPFFOLD5ASFQ9pOBrE4qcw
+  src: https://registry.npmjs.org/vuex/-/vuex-4.0.2.tgz
+  integrity: sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q==
 
   dest:
-    vuex-3.1.3/README.md:
-    vuex-3.1.3/LICENSE:
-    vuex-3.1.3/dist/vuex.js:
-    vuex-3.1.3/dist/vuex.min.js:
+    package/README.md:
+    package/LICENSE:
+    package/dist/vuex.global.js:
+    package/dist/vuex.global.prod.js:
 
 wvui:
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/wvui/-/wvui-0.3.0.tgz
-  integrity: sha512-RiVvKReEn7KtvPzYghLr+e5FOYh71BWzaT1/uG/A2d8D6QM+0U5arF0MKJnB6drNvkQZPM/YcWu/IbV3zItcOA==
+  src: https://registry.npmjs.org/@wikimedia/wvui/-/wvui-0.3.5.tgz
+  integrity: sha512-daP3YkK5YaiwDSsB/A1IJ2REql2XfzwddUGdseAL2FnK1wY1Xxrf++4/kTKbMOO3aoZNa866vjlBHIfas25Hkw==
 
   dest:
     package/README.md:

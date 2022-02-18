@@ -81,7 +81,7 @@ class StubGlobalUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf(
 			StubGlobalUser::class,
 			$wgUser,
-			'Sanity check: $wgUser should be a StubGlobalUser at the start of the test'
+			'Check: $wgUser should be a StubGlobalUser at the start of the test'
 		);
 		$this->assertSame(
 			12345,
@@ -103,7 +103,7 @@ class StubGlobalUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf(
 			StubGlobalUser::class,
 			$wgUser,
-			'Sanity check: $wgUser should be a StubGlobalUser at the start of the test'
+			'Check: $wgUser should be a StubGlobalUser at the start of the test'
 		);
 		$this->assertSame(
 			12345,
@@ -129,7 +129,7 @@ class StubGlobalUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf(
 			StubGlobalUser::class,
 			$wgUser,
-			'Sanity check: $wgUser should be a StubGlobalUser at the start of the test'
+			'Check: $wgUser should be a StubGlobalUser at the start of the test'
 		);
 		$wgUser->mId = 2000;
 		$this->assertInstanceOf(

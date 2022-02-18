@@ -1,1 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>recent changes</title><g fill="#fff"><circle cx="18" cy="4" r="2"/><circle cx="18" cy="10" r="2"/><circle cx="18" cy="16" r="2"/><path d="M14 3H3v2h11zm0 6h-2v2h2zm0 6h-4v2h4zM6.11 9.24l1.113-1.08a.556.556 0 01.783 0l1.833 1.857a.556.556 0 010 .782l-1.078 1.09-2.65-2.65zm2.062 3.226L2.64 18H0v-2.64l5.533-5.532z"/></g></svg>
+<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><title>
+		recent changes
+	</title><path fill="#fff" d="M19 3H3v2h16zm0 6h-7v2h7zm0 6H8v2h11zM8.8 11.9l1-1.1a.6.6 0 0 0 0-.8L8 8.2a.6.6 0 0 0-.8 0l-1 1L8.7 12zm-3.3-2L0 15.3V18h2.6l5.6-5.5-2.7-2.7Z"/></svg>

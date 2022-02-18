@@ -12,7 +12,7 @@
 	 * @param {Object} response Response data
 	 */
 	function parsePreviewRequest( response ) {
-		var indicators, newList, $displaytitle, $content, $parent, $list, arrow, $previewHeader, $wikiPreview, $editform;
+		var indicators, newList, $content, $parent, $list, arrow, $previewHeader, $wikiPreview, $editform;
 
 		$editform = $( '#editform' );
 		$wikiPreview = $( '#wikiPreview' );
@@ -48,30 +48,7 @@
 		$( '.mw-indicators' ).empty().append( newList );
 
 		if ( response.parse.displaytitle ) {
-			$displaytitle = $( $.parseHTML( response.parse.displaytitle ) );
-			// The following messages can be used here:
-			// * editconflict
-			// * editingcomment
-			// * editingsection
-			// * editing
-			// * creating
-			$( '#firstHeading' ).msg(
-				mw.config.get( 'wgEditMessage', 'editing' ),
-				$displaytitle
-			);
-			document.title = mw.msg(
-				'pagetitle',
-				// The following messages can be used here:
-				// * editconflict
-				// * editingcomment
-				// * editingsection
-				// * editing
-				// * creating
-				mw.msg(
-					mw.config.get( 'wgEditMessage', 'editing' ),
-					$displaytitle.text()
-				)
-			);
+			$( '#firstHeadingTitle' ).html( response.parse.displaytitle );
 		}
 		if ( response.parse.categorieshtml ) {
 			$content = $( $.parseHTML( response.parse.categorieshtml ) );
@@ -140,7 +117,7 @@
 			.addClass( 'previewnote' )
 			.append( $( '<h2>' )
 				.attr( 'id', 'mw-previewheader' )
-				.text( mw.message( 'preview' ).escaped() )
+				.text( mw.msg( 'preview' ) )
 			)
 			.append( $( '<div>' )
 				.addClass( 'warningbox' )
@@ -180,7 +157,8 @@
 	 */
 	function doLivePreview( e ) {
 		var isDiff, api, parseRequest, diffRequest, postData, copySelectors, section, summary,
-			$wikiPreview, $wikiDiff, $editform, $textbox, $copyElements, $spinner, $errorBox;
+			$wikiPreview, $wikiDiff, $editform, $textbox, $summaryWidget, $copyElements,
+			$spinner, $errorBox;
 
 		isDiff = ( e.target.name === 'wpDiff' );
 		$wikiPreview = $( '#wikiPreview' );
@@ -188,7 +166,10 @@
 		$editform = $( '#editform' );
 		$textbox = $editform.find( '#wpTextbox1' );
 
-		summary = OO.ui.infuse( $( '#wpSummaryWidget' ) );
+		$summaryWidget = $( '#wpSummaryWidget' );
+		if ( $summaryWidget.length ) {
+			summary = OO.ui.infuse( $summaryWidget ).getValue();
+		}
 
 		$spinner = $( '.mw-spinner-preview' );
 		$errorBox = $( '.errorbox' );
@@ -249,7 +230,7 @@
 			formatversion: 2,
 			action: 'parse',
 			title: mw.config.get( 'wgPageName' ),
-			summary: summary.getValue(),
+			summary: summary,
 			prop: ''
 		};
 
@@ -260,29 +241,55 @@
 				parseRequest = api.post( postData );
 			}
 
-			diffRequest = api.post( {
-				formatversion: 2,
-				action: 'query',
-				prop: 'revisions',
-				titles: mw.config.get( 'wgPageName' ),
-				rvdifftotext: $textbox.textSelection( 'getContents' ),
-				rvdifftotextpst: true,
-				rvprop: '',
-				rvsection: section === '' ? undefined : section,
+			var diffPar = {
+				action: 'compare',
+				fromtitle: mw.config.get( 'wgPageName' ),
+				totitle: mw.config.get( 'wgPageName' ),
+				toslots: 'main',
+				// Remove trailing whitespace for consistency with EditPage diffs.
+				// TODO trimEnd() when we can use that.
+				'totext-main': $textbox.textSelection( 'getContents' ).replace( /\s\s*$/, '' ),
+				'tocontentmodel-main': mw.config.get( 'wgPageContentModel' ),
+				topst: true,
+				slots: 'main',
 				uselang: mw.config.get( 'wgUserLanguage' )
-			} );
+			};
+			if ( mw.config.get( 'wgUserVariant' ) ) {
+				diffPar.variant = mw.config.get( 'wgUserVariant' );
+			}
+			if ( section ) {
+				diffPar[ 'tosection-main' ] = section;
+			}
+			if ( mw.config.get( 'wgArticleId' ) === 0 ) {
+				diffPar.fromslots = 'main';
+				diffPar[ 'fromcontentmodel-main' ] = mw.config.get( 'wgPageContentModel' );
+				diffPar[ 'fromtext-main' ] = '';
+			}
+			diffRequest = api.post( diffPar );
 
 			// Wait for the summary before showing the diff so the page doesn't jump twice
 			$.when( diffRequest, parseRequest ).done( function ( response ) {
-				var diffHtml;
-				try {
-					diffHtml = response[ 0 ].query.pages[ 0 ]
-						.revisions[ 0 ].diff.body;
-					$wikiDiff.find( 'table.diff tbody' ).html( diffHtml );
+				var diff = response[ 0 ].compare.bodies;
+
+				if ( diff.main ) {
+					$wikiDiff.find( 'table.diff tbody' ).html( diff.main );
 					mw.hook( 'wikipage.diff' ).fire( $wikiDiff.find( 'table.diff' ) );
-				} catch ( err ) {
-					// "result.blah is undefined" error, ignore
-					mw.log.warn( err );
+				} else {
+					// The diff is empty.
+					$wikiDiff.find( 'table.diff tbody' )
+						.empty()
+						.append(
+							$( '<tr>' ).append(
+								$( '<td>' )
+									.attr( 'colspan', 4 )
+									.addClass( 'diff-notice' )
+									.append(
+										$( '<div>' )
+											.addClass( 'mw-diff-empty' )
+											.text( mw.msg( 'diff-empty' ) )
+									)
+							)
+						);
 				}
 				$wikiDiff.show();
 			} );
@@ -299,6 +306,9 @@
 				useskin: mw.config.get( 'skin' ),
 				uselang: mw.config.get( 'wgUserLanguage' )
 			} );
+			if ( mw.config.get( 'wgUserVariant' ) ) {
+				postData.variant = mw.config.get( 'wgUserVariant' );
+			}
 			if ( section === 'new' ) {
 				postData.section = 'new';
 				postData.sectiontitle = postData.summary;
@@ -337,7 +347,7 @@
 			var $errorMsg = api.getErrorMessage( result );
 			$errorBox = $( '<div>' )
 				.addClass( 'errorbox' )
-				.append( $( '<strong>' ).text( mw.message( 'previewerrortext' ).text() ) )
+				.append( $( '<strong>' ).text( mw.msg( 'previewerrortext' ) ) )
 				.append( $errorMsg );
 			$wikiDiff.hide();
 			$wikiPreview.hide().before( $errorBox );
@@ -347,7 +357,7 @@
 	$( function () {
 		var selector;
 
-		// Enable only live diff on user .js/.css pages, as there's no sane way of
+		// Enable only live diff on user .js/.css pages, as there's no sensible way of
 		// "previewing" the scripts or styles without reloading the page.
 		if ( $( '#mw-userjsyoucanpreview, #mw-usercssyoucanpreview, #mw-userjspreview, #mw-usercsspreview' ).length ) {
 			selector = '#wpDiff';
@@ -383,6 +393,9 @@
 		}
 
 		if ( !document.getElementById( 'wikiDiff' ) && document.getElementById( 'wikiPreview' ) ) {
+			var alignStart, rtlDir;
+			rtlDir = $( '#wpTextbox1' ).attr( 'dir' ) === 'rtl';
+			alignStart = rtlDir ? 'right' : 'left';
 			$( '#wikiPreview' ).after(
 				$( '<div>' )
 					.hide()
@@ -392,13 +405,28 @@
 					// * diff-editfont-sans-serif
 					// * diff-editfont-serif
 					.addClass( 'diff-editfont-' + mw.user.options.get( 'editfont' ) )
-					// TODO: Set diff-contentalign-* classes
+					// The following classes are used here:
+					// * diff-contentalign-left
+					// * diff-contentalign-right
+					.addClass( 'diff-contentalign-' + alignStart )
 					.append(
 						$( '<table>' ).addClass( 'diff' ).append(
 							$( '<col>' ).addClass( 'diff-marker' ),
 							$( '<col>' ).addClass( 'diff-content' ),
 							$( '<col>' ).addClass( 'diff-marker' ),
 							$( '<col>' ).addClass( 'diff-content' ),
+							$( '<thead>' ).append(
+								$( '<tr>' ).addClass( 'diff-title' ).append(
+									$( '<td>' )
+										.attr( 'colspan', 2 )
+										.addClass( 'diff-otitle diff-side-deleted' )
+										.text( mw.msg( 'currentrev' ) ),
+									$( '<td>' )
+										.attr( 'colspan', 2 )
+										.addClass( 'diff-ntitle diff-side-added' )
+										.text( mw.msg( 'yourtext' ) )
+								)
+							),
 							$( '<tbody>' )
 						)
 					)

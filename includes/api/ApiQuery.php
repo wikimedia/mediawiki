@@ -20,8 +20,10 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Export\WikiExporterFactory;
+use Wikimedia\ObjectFactory;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * This is the main query class. It behaves similar to ApiMain: based on the
@@ -64,6 +66,7 @@ class ApiQuery extends ApiBase {
 				'SlotRoleRegistry',
 				'ChangeTagDefStore',
 				'LinkBatchFactory',
+				'ContentRenderer',
 				'ContentTransformer',
 			]
 		],
@@ -140,6 +143,7 @@ class ApiQuery extends ApiBase {
 				'SlotRoleRegistry',
 				'ChangeTagDefStore',
 				'ActorMigration',
+				'ContentRenderer',
 				'ContentTransformer',
 			]
 		],
@@ -179,6 +183,7 @@ class ApiQuery extends ApiBase {
 				'SlotRoleRegistry',
 				'ChangeTagDefStore',
 				'NamespaceInfo',
+				'ContentRenderer',
 				'ContentTransformer',
 			]
 		],
@@ -229,6 +234,7 @@ class ApiQuery extends ApiBase {
 				'SlotRoleRegistry',
 				'ActorMigration',
 				'NamespaceInfo',
+				'ContentRenderer',
 				'ContentTransformer',
 			]
 		],
@@ -249,6 +255,7 @@ class ApiQuery extends ApiBase {
 				'UserFactory',
 				'UserGroupManager',
 				'GroupPermissionsLookup',
+				'ContentLanguage',
 			]
 		],
 		'backlinks' => [
@@ -273,6 +280,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryDeletedrevs::class,
 			'services' => [
 				'CommentStore',
+				'RowCommentFormatter',
 				'RevisionStore',
 				'ChangeTagDefStore',
 				'LinkBatchFactory',
@@ -288,6 +296,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryFilearchive::class,
 			'services' => [
 				'CommentStore',
+				'CommentFormatter',
 			],
 		],
 		'imageusage' => [
@@ -303,6 +312,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryLogEvents::class,
 			'services' => [
 				'CommentStore',
+				'RowCommentFormatter',
 				'ChangeTagDefStore',
 			],
 		],
@@ -323,6 +333,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryProtectedTitles::class,
 			'services' => [
 				'CommentStore',
+				'RowCommentFormatter'
 			],
 		],
 		'querypage' => [
@@ -338,6 +349,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryRecentChanges::class,
 			'services' => [
 				'CommentStore',
+				'RowCommentFormatter',
 				'ChangeTagDefStore',
 				'SlotRoleStore',
 				'SlotRoleRegistry',
@@ -473,16 +485,31 @@ class ApiQuery extends ApiBase {
 	private $mNamedDB = [];
 	private $mModuleMgr;
 
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var WikiExporterFactory */
+	private $wikiExporterFactory;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
+	 * @param ObjectFactory $objectFactory
+	 * @param ILoadBalancer $loadBalancer
+	 * @param WikiExporterFactory $wikiExporterFactory
 	 */
-	public function __construct( ApiMain $main, $action ) {
+	public function __construct(
+		ApiMain $main,
+		$action,
+		ObjectFactory $objectFactory,
+		ILoadBalancer $loadBalancer,
+		WikiExporterFactory $wikiExporterFactory
+	) {
 		parent::__construct( $main, $action );
 
 		$this->mModuleMgr = new ApiModuleManager(
 			$this,
-			MediaWikiServices::getInstance()->getObjectFactory()
+			$objectFactory
 		);
 
 		// Allow custom modules to be added in LocalSettings.php
@@ -498,6 +525,8 @@ class ApiQuery extends ApiBase {
 
 		// Create PageSet that will process titles/pageids/revids/generator
 		$this->mPageSet = new ApiPageSet( $this );
+		$this->loadBalancer = $loadBalancer;
+		$this->wikiExporterFactory = $wikiExporterFactory;
 	}
 
 	/**
@@ -520,7 +549,7 @@ class ApiQuery extends ApiBase {
 	 */
 	public function getNamedDB( $name, $db, $groups ) {
 		if ( !array_key_exists( $name, $this->mNamedDB ) ) {
-			$this->mNamedDB[$name] = wfGetDB( $db, $groups );
+			$this->mNamedDB[$name] = $this->loadBalancer->getConnectionRef( $db, $groups );
 		}
 
 		return $this->mNamedDB[$name];
@@ -789,7 +818,7 @@ class ApiQuery extends ApiBase {
 			}
 		}
 
-		$exporter = new WikiExporter( $this->getDB() );
+		$exporter = $this->wikiExporterFactory->getWikiExporter( $this->getDB() );
 		$sink = new DumpStringOutput;
 		$exporter->setOutputSink( $sink );
 		$exporter->setSchemaVersion( $this->mParams['exportschema'] );

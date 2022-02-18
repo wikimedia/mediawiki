@@ -32,7 +32,7 @@ class SearchResultSet extends BaseSearchResultSet {
 	/**
 	 * Cache of titles.
 	 * Lists titles of the result set, in the same order as results.
-	 * @var Title[]
+	 * @var Title[]|null
 	 */
 	private $titles;
 

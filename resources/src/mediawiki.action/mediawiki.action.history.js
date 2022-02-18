@@ -4,7 +4,7 @@
 $( function () {
 	var $historyCompareForm = $( '#mw-history-compare' ),
 		$historySubmitter,
-		$lis = $( '#pagehistory > li' );
+		$lis = $( '#pagehistory .mw-contributions-list > li' );
 
 	/**
 	 * @ignore
@@ -38,12 +38,18 @@ $( function () {
 			if ( $oldidRadio.prop( 'checked' ) ) {
 				$li.addClass( 'selected after' );
 				nextState = 'after';
+				// Disable the hidden radio because it can still be selected with
+				// arrow keys on Firefox
+				$diffRadio.prop( 'disabled', true );
 			} else if ( $diffRadio.prop( 'checked' ) ) {
 				// The following classes are used here:
 				// * before
 				// * after
 				$li.addClass( 'selected ' + nextState );
 				nextState = 'between';
+				// Disable the hidden radio because it can still be selected with
+				// arrow keys on Firefox
+				$oldidRadio.prop( 'disabled', true );
 			} else {
 				// This list item has neither checked
 				// apply the appropriate class following the previous item.
@@ -51,6 +57,11 @@ $( function () {
 				// * before
 				// * after
 				$li.addClass( nextState );
+				// Disable or re-enable for Firefox, provided the revision is accessible
+				if ( $li.find( 'a.mw-changeslist-date' ).length ) {
+					$oldidRadio.prop( 'disabled', nextState === 'before' );
+					$diffRadio.prop( 'disabled', nextState === 'after' );
+				}
 			}
 		} );
 
@@ -82,7 +93,7 @@ $( function () {
 
 		if ( $historySubmitter ) {
 			$copyForm = $historyCompareForm.clone();
-			$copyRadios = $copyForm.find( '#pagehistory > li' ).find( 'input[name="diff"], input[name="oldid"]' );
+			$copyRadios = $copyForm.find( '#pagehistory .mw-contributions-list > li' ).find( 'input[name="diff"], input[name="oldid"]' );
 			$copyAction = $copyForm.find( '> [name="action"]' );
 
 			// Remove action=historysubmit and ids[..]=..

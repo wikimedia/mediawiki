@@ -23,6 +23,10 @@ class HttpRequestFactoryTest extends MediaWikiUnitTestCase {
 				'HTTPMaxConnectTimeout' => INF
 			];
 		}
+		$options += [
+			'LocalVirtualHosts' => [],
+			'LocalHTTPProxy' => false,
+		];
 		return new HttpRequestFactory(
 			new ServiceOptions( HttpRequestFactory::CONSTRUCTOR_OPTIONS, $options ),
 			new NullLogger
@@ -50,7 +54,7 @@ class HttpRequestFactoryTest extends MediaWikiUnitTestCase {
 				function ( $url, array $options = [], $caller = __METHOD__ )
 					use ( $req, $expectedUrl, $expectedOptions )
 				{
-					$this->assertSame( $url, $expectedUrl );
+					$this->assertSame( $expectedUrl, $url );
 
 					foreach ( $expectedOptions as $opt => $exp ) {
 						$this->assertArrayHasKey( $opt, $options );
@@ -88,7 +92,7 @@ class HttpRequestFactoryTest extends MediaWikiUnitTestCase {
 
 	public function testCreate() {
 		$factory = $this->newFactory();
-		$this->assertInstanceOf( 'MWHttpRequest', $factory->create( 'http://example.test' ) );
+		$this->assertInstanceOf( MWHttpRequest::class, $factory->create( 'http://example.test' ) );
 	}
 
 	public function testGetUserAgent() {

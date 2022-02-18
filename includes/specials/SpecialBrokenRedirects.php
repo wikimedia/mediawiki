@@ -121,7 +121,11 @@ class SpecialBrokenRedirects extends QueryPage {
 	public function formatResult( $skin, $result ) {
 		$fromObj = Title::makeTitle( $result->namespace, $result->title );
 		if ( isset( $result->rd_title ) ) {
-			$toObj = Title::makeTitle( $result->rd_namespace, $result->rd_title, $result->rd_fragment );
+			$toObj = Title::makeTitle(
+				$result->rd_namespace,
+				$result->rd_title,
+				$result->rd_fragment ?? ''
+			);
 		} else {
 			$blinks = $fromObj->getBrokenLinksFrom(); # TODO: check for redirect, not for links
 			if ( $blinks ) {

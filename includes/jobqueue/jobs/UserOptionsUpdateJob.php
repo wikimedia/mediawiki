@@ -21,6 +21,8 @@
  * @ingroup JobQueue
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Job that updates a user's preferences
  *
@@ -47,8 +49,10 @@ class UserOptionsUpdateJob extends Job implements GenericParameterJob {
 			return true;
 		}
 
+		$userOptionsManager = MediaWikiServices::getInstance()
+			->getUserOptionsManager();
 		foreach ( $this->params['options'] as $name => $value ) {
-			$user->setOption( $name, $value );
+			$userOptionsManager->setOption( $user, $name, $value );
 		}
 
 		$user->saveSettings();

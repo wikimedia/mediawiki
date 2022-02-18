@@ -17,7 +17,6 @@
 	"tog-hideminor": "Küçük diişmäkleri \"Bitki diişmäkler\" sayfasında sakla",
 	"tog-extendwatchlist": "İlerlemiş bakmaa listası",
 	"tog-usenewrc": "İlerlemiş bitki diişmäkler listası (JavaScript uymêêr)",
-	"tog-numberheadings": "Başlıklara avtomatik nomer yaz",
 	"tog-editondblclick": "Sayfayı çift tuşlayarak diiştirmää başla (JavaScript)",
 	"tog-editsectiononrightclick": "Bölüm başlıına saa tuşla basarak bölümü düzmää izin ver.(JavaScript)",
 	"tog-watchcreations": "Yarattıım sayfaları bakmaa listama ekle",
@@ -510,7 +509,7 @@
 	"watchlist-options": "İzlemäk listası opţiyaları",
 	"watching": "Bakılêr...",
 	"unwatching": "Durgundurulêr...",
-	"deletepage": "Sayfayı sil",
+	"deletepage-submit": "Sayfayı sil",
 	"historywarning": "Bak: O sayfa angısını isteersiniz silmää istoriyası var:",
 	"confirmdeletetext": "Bu sayfayı yaki faylı silersiniz hepsi istoriyasılan bilä.\nLütfen doorulayın ani siz neetlenersiniz bunu yapmaa, annêêrsiniz onun rezultatlarını hem inanêrsiniz ani bu [[{{MediaWiki:Policy-url}}|Silmää kanonnarına]] uyêr.",
 	"actioncomplete": "İşlik tamannandı.",
@@ -677,5 +676,6 @@
 	"watchlisttools-edit": "Siir listasını gör hem düzelt",
 	"watchlisttools-raw": "Ham siir listasını düz",
 	"version": "Versiya",
-	"specialpages": "Maasus sayfalar"
+	"specialpages": "Maasus sayfalar",
+	"deletepage": "Sayfayı sil"
 }

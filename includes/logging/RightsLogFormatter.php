@@ -32,12 +32,13 @@ use MediaWiki\MediaWikiServices;
  */
 class RightsLogFormatter extends LogFormatter {
 	protected function makePageLink( Title $title = null, $parameters = [], $html = null ) {
-		global $wgUserrightsInterwikiDelimiter;
+		$userrightsInterwikiDelimiter = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'UserrightsInterwikiDelimiter' );
 
 		if ( !$this->plaintext ) {
 			$text = MediaWikiServices::getInstance()->getContentLanguage()->
 				ucfirst( $title->getDBkey() );
-			$parts = explode( $wgUserrightsInterwikiDelimiter, $text, 2 );
+			$parts = explode( $userrightsInterwikiDelimiter, $text, 2 );
 
 			if ( count( $parts ) === 2 ) {
 				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
@@ -46,7 +47,7 @@ class RightsLogFormatter extends LogFormatter {
 					$parts[0],
 					htmlspecialchars(
 						strtr( $parts[0], '_', ' ' ) .
-						$wgUserrightsInterwikiDelimiter .
+						$userrightsInterwikiDelimiter .
 						$parts[1]
 					)
 				);
@@ -149,7 +150,7 @@ class RightsLogFormatter extends LogFormatter {
 		}
 
 		// place all temporary memberships first, to avoid the ambiguity of
-		// "adinistrator, bureaucrat and importer (temporary, until X time)"
+		// "administrator, bureaucrat and importer (temporary, until X time)"
 		return $uiLanguage->listToText( array_merge( $tempList, $permList ) );
 	}
 

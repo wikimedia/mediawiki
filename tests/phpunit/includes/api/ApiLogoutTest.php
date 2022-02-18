@@ -34,7 +34,7 @@ class ApiLogoutTest extends ApiTestCase {
 	public function testUserLogout() {
 		$user = $this->getTestSysop()->getUser();
 
-		$this->assertTrue( $user->isRegistered(), 'sanity check' );
+		$this->assertTrue( $user->isRegistered() );
 		$token = $this->getUserCsrfTokenFromApi( $user );
 		$this->doUserLogout( $token, $user );
 		$this->assertFalse( $user->isRegistered() );
@@ -44,7 +44,7 @@ class ApiLogoutTest extends ApiTestCase {
 		global $wgRequest;
 
 		$user = $this->getTestSysop()->getUser();
-		$this->assertTrue( $user->isRegistered(), 'sanity check' );
+		$this->assertTrue( $user->isRegistered() );
 
 		// Logic copied from SkinTemplate.
 		$token = $user->getEditToken( 'logoutToken', $wgRequest );

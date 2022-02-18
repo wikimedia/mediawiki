@@ -52,7 +52,7 @@
 			}
 			ns = String( ns );
 			if ( ns === String( mainNamespace ) ) {
-				name = mw.message( 'blanknamespace' ).text();
+				name = mw.msg( 'blanknamespace' );
 			}
 			return { data: ns, label: name };
 		} ).sort( function ( a, b ) {
@@ -63,7 +63,7 @@
 		if ( config.includeAllValue !== null && config.includeAllValue !== undefined ) {
 			options.unshift( {
 				data: config.includeAllValue,
-				label: mw.message( 'namespacesall' ).text()
+				label: mw.msg( 'namespacesall' )
 			} );
 		}
 

@@ -77,6 +77,9 @@ class ParserFactory {
 	/** @var HttpRequestFactory */
 	private $httpRequestFactory;
 
+	/** @var TrackingCategories */
+	private $trackingCategories;
+
 	/**
 	 * Track calls to Parser constructor to aid in deprecation of direct
 	 * Parser invocation.  This is temporary: it will be removed once the
@@ -114,6 +117,7 @@ class ParserFactory {
 	 * @param UserFactory $userFactory
 	 * @param TitleFormatter $titleFormatter
 	 * @param HttpRequestFactory $httpRequestFactory
+	 * @param TrackingCategories $trackingCategories
 	 * @since 1.32
 	 * @internal
 	 */
@@ -134,7 +138,8 @@ class ParserFactory {
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
 		TitleFormatter $titleFormatter,
-		HttpRequestFactory $httpRequestFactory
+		HttpRequestFactory $httpRequestFactory,
+		TrackingCategories $trackingCategories
 	) {
 		$svcOptions->assertRequiredOptions( Parser::CONSTRUCTOR_OPTIONS );
 
@@ -157,6 +162,7 @@ class ParserFactory {
 		$this->userFactory = $userFactory;
 		$this->titleFormatter = $titleFormatter;
 		$this->httpRequestFactory = $httpRequestFactory;
+		$this->trackingCategories = $trackingCategories;
 	}
 
 	/**
@@ -186,7 +192,8 @@ class ParserFactory {
 				$this->userOptionsLookup,
 				$this->userFactory,
 				$this->titleFormatter,
-				$this->httpRequestFactory
+				$this->httpRequestFactory,
+				$this->trackingCategories
 			);
 		} finally {
 			self::$inParserFactory--;

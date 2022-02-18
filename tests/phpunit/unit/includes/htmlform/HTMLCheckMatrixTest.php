@@ -67,7 +67,7 @@ class HTMLCheckMatrixTest extends MediaWikiUnitTestCase {
 	 * This form object actually has no visibility into what happens later on, but essentially
 	 * if the data submitted by the user passes validate the following is run:
 	 * foreach ( $field->filterDataForSubmit( $data ) as $k => $v ) {
-	 *     $user->setOption( $k, $v );
+	 *     $userOptionsManager->setOption( $user, $k, $v );
 	 * }
 	 */
 	public function testValuesForcedOnRemainOn() {

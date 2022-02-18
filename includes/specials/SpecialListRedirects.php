@@ -25,6 +25,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Page\WikiPageFactory;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -42,20 +43,26 @@ class SpecialListRedirects extends QueryPage {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
+	/** @var RedirectLookup */
+	private $redirectLookup;
+
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param ILoadBalancer $loadBalancer
 	 * @param WikiPageFactory $wikiPageFactory
+	 * @param RedirectLookup $redirectLookup
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		ILoadBalancer $loadBalancer,
-		WikiPageFactory $wikiPageFactory
+		WikiPageFactory $wikiPageFactory,
+		RedirectLookup $redirectLookup
 	) {
 		parent::__construct( 'Listredirects' );
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->setDBLoadBalancer( $loadBalancer );
 		$this->wikiPageFactory = $wikiPageFactory;
+		$this->redirectLookup = $redirectLookup;
 	}
 
 	public function isExpensive() {
@@ -124,15 +131,21 @@ class SpecialListRedirects extends QueryPage {
 	 */
 	protected function getRedirectTarget( $row ) {
 		if ( isset( $row->rd_title ) ) {
-			return Title::makeTitle( $row->rd_namespace,
-				$row->rd_title, $row->rd_fragment,
-				$row->rd_interwiki
+			return Title::makeTitle(
+				$row->rd_namespace,
+				$row->rd_title,
+				$row->rd_fragment ?? '',
+				$row->rd_interwiki ?? ''
 			);
 		} else {
 			$title = Title::makeTitle( $row->namespace, $row->title );
-			$page = $this->wikiPageFactory->newFromTitle( $title );
+			if ( !$title->canExist() ) {
+				return null;
+			}
 
-			return $page->getRedirectTarget();
+			return Title::castFromLinkTarget(
+				$this->redirectLookup->getRedirectTarget( $title )
+			);
 		}
 	}
 

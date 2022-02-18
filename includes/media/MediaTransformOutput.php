@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Base class for the output of file transformation methods.
  *
@@ -20,6 +21,8 @@
  * @file
  * @ingroup Media
  */
+
+use MediaWiki\MediaWikiServices;
 
 /**
  * Base class for the output of MediaHandler::doTransform() and File::transform().
@@ -242,8 +245,9 @@ abstract class MediaTransformOutput {
 		if ( $linkAttribs ) {
 			return Xml::tags( 'a', $linkAttribs, $contents );
 		} else {
-			global $wgParserEnableLegacyMediaDOM;
-			if ( $wgParserEnableLegacyMediaDOM ) {
+			$parserEnableLegacyMediaDOM = MediaWikiServices::getInstance()
+				->getMainConfig()->get( 'ParserEnableLegacyMediaDOM' );
+			if ( $parserEnableLegacyMediaDOM ) {
 				return $contents;
 			} else {
 				return Xml::tags( 'span', null, $contents );
@@ -277,8 +281,9 @@ abstract class MediaTransformOutput {
 			'href' => $this->file->getTitle()->getLocalURL( $query ),
 		];
 
-		global $wgParserEnableLegacyMediaDOM;
-		if ( $wgParserEnableLegacyMediaDOM ) {
+		$parserEnableLegacyMediaDOM = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'ParserEnableLegacyMediaDOM' );
+		if ( $parserEnableLegacyMediaDOM ) {
 			$attribs['class'] = 'image';
 		}
 

@@ -13,12 +13,12 @@ class CreateAccountPage extends Page {
 		super.openTitle( 'Special:CreateAccount' );
 	}
 
-	createAccount( username, password ) {
-		this.open();
-		this.username.setValue( username );
-		this.password.setValue( password );
-		this.confirmPassword.setValue( password );
-		this.create.click();
+	async createAccount( username, password ) {
+		await this.open();
+		await this.username.setValue( username );
+		await this.password.setValue( password );
+		await this.confirmPassword.setValue( password );
+		await this.create.click();
 	}
 }
 

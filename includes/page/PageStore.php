@@ -19,7 +19,6 @@ use TitleParser;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
-use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * @since 1.36
@@ -206,6 +205,10 @@ class PageStore implements PageLookup {
 
 		if ( $row ) {
 			try {
+				// NOTE: LinkCache may not include namespace and title in the cached row,
+				//       since it's already used as the cache key!
+				$row->page_namespace = $namespace;
+				$row->page_title = $dbKey;
 				$page = $this->newPageRecordFromRow( $row );
 
 				// We were able to use the row we got from link cache.
@@ -317,17 +320,9 @@ class PageStore implements PageLookup {
 		if ( $page instanceof ExistingPageRecord && $queryFlags === self::READ_NORMAL ) {
 			return $page;
 		}
-
 		if ( $page instanceof PageIdentity ) {
 			Assert::parameter( $page->canExist(), '$page', 'Must be a proper page' );
-
-			if ( $page->exists() ) {
-				// if we have a page ID, use it
-				$id = $page->getId( $this->wikiId );
-				return $this->getPageById( $id, $queryFlags );
-			}
 		}
-
 		return $this->getPageByName( $page->getNamespace(), $page->getDBkey(), $queryFlags );
 	}
 
@@ -403,7 +398,7 @@ class PageStore implements PageLookup {
 	 *
 	 * @return PageSelectQueryBuilder
 	 */
-	public function newSelectQueryBuilder( $dbOrFlags = self::READ_NORMAL ): SelectQueryBuilder {
+	public function newSelectQueryBuilder( $dbOrFlags = self::READ_NORMAL ): PageSelectQueryBuilder {
 		if ( $dbOrFlags instanceof IDatabase ) {
 			$db = $dbOrFlags;
 			$options = [];

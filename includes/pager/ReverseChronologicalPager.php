@@ -37,6 +37,46 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	public $mDay;
 
 	/**
+	 * @param string $timestamp
+	 * @return string
+	 */
+	protected function getHeaderRow( string $timestamp ): string {
+		$user = $this->getUser();
+		$headingClass = $this->isFirstHeaderRow() ?
+			// We use mw-index-pager- prefix here on the anticipation that this method will
+			// eventually be upstreamed to apply to other pagers. For now we constrain the
+			// change to ReverseChronologicalPager to reduce the risk of pages this touches
+			// in case there are any bugs.
+			'mw-index-pager-list-header-first mw-index-pager-list-header' :
+			'mw-index-pager-list-header';
+
+		$s = $this->getEndGroup();
+		$s .= Html::element( 'h4', [
+				'class' => $headingClass,
+			],
+			$this->getLanguage()->userDate(
+				$timestamp, $user
+			)
+		);
+		$s .= $this->getStartGroup();
+		return $s;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	protected function getStartGroup(): string {
+		return "<ul class=\"mw-contributions-list\">\n";
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	protected function getEndGroup(): string {
+		return '</ul>';
+	}
+
+	/**
 	 * @stable to override
 	 * @return string
 	 */

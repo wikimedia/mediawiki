@@ -58,34 +58,34 @@ class DeletedContribsPager extends IndexPager {
 	 */
 	protected $mNavigationBar;
 
-	/** @var HookRunner */
-	private $hookRunner;
-
 	/** @var CommentStore */
 	private $commentStore;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/** @var RevisionFactory */
 	private $revisionFactory;
 
 	/**
 	 * @param IContextSource $context
+	 * @param CommentStore $commentStore
+	 * @param HookContainer $hookContainer
+	 * @param LinkRenderer $linkRenderer
+	 * @param ILoadBalancer $loadBalancer
+	 * @param RevisionFactory $revisionFactory
 	 * @param string $target
 	 * @param string|int $namespace
-	 * @param LinkRenderer $linkRenderer
-	 * @param HookContainer $hookContainer
-	 * @param ILoadBalancer $loadBalancer
-	 * @param CommentStore $commentStore
-	 * @param RevisionFactory $revisionFactory
 	 */
 	public function __construct(
 		IContextSource $context,
-		$target,
-		$namespace,
-		LinkRenderer $linkRenderer,
-		HookContainer $hookContainer,
-		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
-		RevisionFactory $revisionFactory
+		HookContainer $hookContainer,
+		LinkRenderer $linkRenderer,
+		ILoadBalancer $loadBalancer,
+		RevisionFactory $revisionFactory,
+		$target,
+		$namespace
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA, 'contributions' );

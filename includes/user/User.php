@@ -36,12 +36,10 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\UserAuthority;
 use MediaWiki\Session\SessionManager;
-use MediaWiki\Session\Token;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
-use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\IPUtils;
@@ -49,6 +47,7 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBExpectedError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * The User object encapsulates all of the user-specific settings (user_id,
@@ -96,13 +95,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * {@link $mCacheVars} or one of it's members changes.
 	 */
 	private const VERSION = 17;
-
-	/**
-	 * Exclude user options that are set to their default value.
-	 * @deprecated since 1.35 Use UserOptionsLookup::EXCLUDE_DEFAULTS
-	 * @since 1.25
-	 */
-	public const GETOPTIONS_EXCLUDE_DEFAULTS = UserOptionsLookup::EXCLUDE_DEFAULTS;
 
 	/**
 	 * @since 1.27
@@ -239,13 +231,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 */
 	public $mBlock;
 
-	/**
-	 * TODO: This should be removed when User::isAllowUsertalk
-	 * is removed.
-	 * @var bool
-	 */
-	protected $mAllowUsertalk;
-
 	/** @var AbstractBlock|bool */
 	private $mBlockedFromCreateAccount = false;
 
@@ -324,9 +309,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			);
 		} elseif ( $name === 'mOptions' ) {
 			wfDeprecated( 'User::$mOptions', '1.35' );
-			MediaWikiServices::getInstance()->getUserOptionsManager()->clearUserOptionsCache( $this );
+			$userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
+			$userOptionsManager->clearUserOptionsCache( $this );
 			foreach ( $value as $key => $val ) {
-				$this->setOption( $key, $val );
+				$userOptionsManager->setOption( $this, $key, $val );
 			}
 		} elseif ( !property_exists( $this, $name ) ) {
 			$this->$name = $value;
@@ -545,7 +531,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 					$data[$name] = $this->$name;
 				}
 
-				$ttl = $cache->adaptiveTTL( wfTimestamp( TS_UNIX, $this->mTouched ), $ttl );
+				$ttl = $cache->adaptiveTTL( (int)wfTimestamp( TS_UNIX, $this->mTouched ), $ttl );
 
 				if ( $wgFullyInitialised ) {
 					$groupMemberships = MediaWikiServices::getInstance()
@@ -557,7 +543,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 					foreach ( $groupMemberships as $ugm ) {
 						if ( $ugm->getExpiry() ) {
 							$secondsUntilExpiry =
-								wfTimestamp( TS_UNIX, $ugm->getExpiry() ) - time();
+								(int)wfTimestamp( TS_UNIX, $ugm->getExpiry() ) - time();
 
 							if ( $secondsUntilExpiry > 0 && $secondsUntilExpiry < $ttl ) {
 								$ttl = $secondsUntilExpiry;
@@ -594,9 +580,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * you have both an ID and a name handy.
 	 *
 	 * @param string $name Username, validated by Title::newFromText()
-	 * @param string|bool $validate Validate username. Takes the same parameters as
-	 *  User::getCanonicalName(), except that true is accepted as an alias
-	 *  for 'valid', for BC.
+	 * @param string|bool $validate Validate username.Type of validation to use:
+	 *   - false        No validation
+	 *   - 'valid'      Valid for batch processes
+	 *   - 'usable'     Valid for batch processes and login
+	 *   - 'creatable'  Valid for batch processes, login and account creation,
+	 *  except that true is accepted as an alias for 'valid', for BC.
 	 *
 	 * @return User|bool User object, or false if the username is invalid
 	 *  (e.g. if it contains illegal characters or is an IP address). If the
@@ -799,7 +788,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 *
 	 * @param string $name Username
 	 * @param array $options Options are:
-	 *  - validate: As for User::getCanonicalName(), default 'valid'. Deprecated since 1.36.
+	 *  - validate: Type of validation to use:
+	 *    - false        No validation
+	 *    - 'valid'      Valid for batch processes
+	 *    - 'usable'     Valid for batch processes and login
+	 *    - 'creatable'  Valid for batch processes, login and account creation,
+	 *    default 'valid'. Deprecated since 1.36.
 	 *  - create: Whether to create the user if it doesn't already exist, default true
 	 *  - steal: Whether to "disable" the account for normal use if it already
 	 *    exists, default false
@@ -945,95 +939,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Reset the cache used in idFromName(). In tests, reset the service container.
-	 * There is no use-case for this in production code.
-	 *
-	 * @deprecated since 1.37.
-	 */
-	public static function resetIdByNameCache() {
-		// TODO: when removing this call, also remove the ActorStore::clearCaches() method!
-		wfDeprecated( __METHOD__, '1.37' );
-		MediaWikiServices::getInstance()->getActorStore()->clearCaches();
-	}
-
-	/**
-	 * Does the string match an anonymous IP address?
-	 *
-	 * This function exists for username validation, in order to reject
-	 * usernames which are similar in form to IP addresses. Strings such
-	 * as 300.300.300.300 will return true because it looks like an IP
-	 * address, despite not being strictly valid.
-	 *
-	 * We match "\d{1,3}\.\d{1,3}\.\d{1,3}\.xxx" as an anonymous IP
-	 * address because the usemod software would "cloak" anonymous IP
-	 * addresses like this, if we allowed accounts like this to be created
-	 * new users could get the old edits of these anonymous users.
-	 *
-	 * @deprecated since 1.35, use the UserNameUtils service.
-	 * Hard deprecated since 1.37.
-	 *    Note that UserNameUtils::isIP does not accept IPv6 ranges, while this method does
-	 * @param string $name Name to match
-	 * @return bool
-	 */
-	public static function isIP( $name ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/', $name )
-			|| IPUtils::isIPv6( $name );
-	}
-
-	/**
-	 * Is the user an IP range?
-	 *
-	 * @deprecated since 1.35, hard deprecated since 1.36
-	 * Use the UserNameUtils service or IPUtils directly
-	 *
-	 * @since 1.30
-	 * @return bool
-	 */
-	public function isIPRange() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return IPUtils::isValidRange( $this->mName );
-	}
-
-	/**
-	 * Is the input a valid username?
-	 *
-	 * Checks if the input is a valid username, we don't want an empty string,
-	 * an IP address, anything that contains slashes (would mess up subpages),
-	 * is longer than the maximum allowed username size or doesn't begin with
-	 * a capital letter.
-	 *
-	 * @deprecated since 1.35, hard deprecated in 1.36
-	 * Use the UserNameUtils service
-	 *
-	 * @param string $name Name to match
-	 * @return bool
-	 */
-	public static function isValidUserName( $name ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()->getUserNameUtils()->isValid( $name );
-	}
-
-	/**
-	 * Usernames which fail to pass this function will be blocked
-	 * from user login and new account registrations, but may be used
-	 * internally by batch processes.
-	 *
-	 * If an account already exists in this form, login will be blocked
-	 * by a failure to pass this function.
-	 *
-	 * @deprecated since 1.35, use the UserNameUtils service.
-	 * Hard deprecated since 1.37
-	 *
-	 * @param string $name Name to match
-	 * @return bool
-	 */
-	public static function isUsableName( $name ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()->getUserNameUtils()->isUsable( $name );
-	}
-
-	/**
 	 * Return the users who are members of the given group(s). In case of multiple groups,
 	 * users who are members of at least one of them are returned.
 	 *
@@ -1072,26 +977,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Usernames which fail to pass this function will be blocked
-	 * from new account registrations, but may be used internally
-	 * either by batch processes or by user accounts which have
-	 * already been created.
-	 *
-	 * Additional preventions may be added here rather than in
-	 * isValidUserName() to avoid disrupting existing accounts.
-	 *
-	 * @deprecated since 1.35, use the UserNameUtils service.
-	 * Hard deprecated since 1.37
-	 *
-	 * @param string $name String to match
-	 * @return bool
-	 */
-	public static function isCreatableName( $name ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()->getUserNameUtils()->isCreatable( $name );
-	}
-
-	/**
 	 * Is the input a valid password for this user?
 	 *
 	 * @param string $password Desired password
@@ -1124,11 +1009,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @since 1.23
 	 */
 	public function checkPasswordValidity( $password ) {
-		global $wgPasswordPolicy;
+		$passwordPolicy = MediaWikiServices::getInstance()->getMainConfig()->get( 'PasswordPolicy' );
 
 		$upp = new UserPasswordPolicy(
-			$wgPasswordPolicy['policies'],
-			$wgPasswordPolicy['checks']
+			$passwordPolicy['policies'],
+			$passwordPolicy['checks']
 		);
 
 		$status = Status::newGood( [] );
@@ -1150,47 +1035,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 
 		$status->error( $result );
 		return $status; // the isValidPassword hook set a string $result and returned true
-	}
-
-	/**
-	 * Given unvalidated user input, return a canonical username, or false if
-	 * the username is invalid.
-	 *
-	 * @deprecated since 1.35, use the UserNameUtils service.
-	 * Hard deprecated since 1.37
-	 *
-	 * @param string $name User input
-	 * @param string|bool $validate Type of validation to use:
-	 *   - false        No validation
-	 *   - 'valid'      Valid for batch processes
-	 *   - 'usable'     Valid for batch processes and login
-	 *   - 'creatable'  Valid for batch processes, login and account creation
-	 *
-	 * @throws InvalidArgumentException
-	 * @return bool|string
-	 */
-	public static function getCanonicalName( $name, $validate = 'valid' ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		// Backwards compatibility with strings / false
-		$validationLevels = [
-			'valid' => UserNameUtils::RIGOR_VALID,
-			'usable' => UserNameUtils::RIGOR_USABLE,
-			'creatable' => UserNameUtils::RIGOR_CREATABLE
-		];
-
-		if ( $validate === false ) {
-			$validation = UserNameUtils::RIGOR_NONE;
-		} elseif ( array_key_exists( $validate, $validationLevels ) ) {
-			$validation = $validationLevels[ $validate ];
-		} else {
-			// Not a recognized value, probably a test for unsupported validation
-			// levels, regardless, just pass it along
-			$validation = $validate;
-		}
-
-		return MediaWikiServices::getInstance()
-			->getUserNameUtils()
-			->getCanonical( (string)$name, $validation );
 	}
 
 	/**
@@ -1382,7 +1226,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		}
 
 		if ( isset( $row->user_editcount ) ) {
-			// Sanity check - don't try to set edit count for anonymous users
+			// Don't try to set edit count for anonymous users
 			// We check the id here and not in UserEditTracker because calling
 			// User::getId() can trigger some other loading. This will result in
 			// discarding the user_editcount field for rows if the id wasn't set.
@@ -1451,29 +1295,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		foreach ( self::$mCacheVars as $var ) {
 			$this->$var = $user->$var;
 		}
-	}
-
-	/**
-	 * Add the user to the group if he/she meets given criteria.
-	 *
-	 * Contrary to autopromotion by \ref $wgAutopromote, the group will be
-	 *   possible to remove manually via Special:UserRights. In such case it
-	 *   will not be re-added automatically. The user will also not lose the
-	 *   group if they no longer meet the criteria.
-	 *
-	 * @param string $event Key in $wgAutopromoteOnce (each one has groups/criteria)
-	 *
-	 * @return string[] Array of groups the user has been promoted to.
-	 *
-	 * @deprecated since 1.35 Use UserGroupManager::addUserToAutopromoteOnceGroups.
-	 * Hard deprecated since 1.37.
-	 * @see $wgAutopromoteOnce
-	 */
-	public function addAutopromoteOnceGroups( $event ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->addUserToAutopromoteOnceGroups( $this, $event );
 	}
 
 	/**
@@ -1566,34 +1387,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Combine the language default options with any site-specific options
-	 * and add the default language variants.
-	 *
-	 * @deprecated since 1.35 Use UserOptionsLookup::getDefaultOptions instead.
-	 * @return array Array of options; typically strings, possibly booleans
-	 */
-	public static function getDefaultOptions() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserOptionsLookup()
-			->getDefaultOptions();
-	}
-
-	/**
-	 * Get a given default option value.
-	 *
-	 * @deprecated since 1.35 Use UserOptionsLookup::getDefaultOption instead.
-	 * @param string $opt Name of option to retrieve
-	 * @return string|null Default option value
-	 */
-	public static function getDefaultOption( $opt ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserOptionsLookup()
-			->getDefaultOption( $opt );
-	}
-
-	/**
 	 * Get blocking information
 	 *
 	 * TODO: Move this into the BlockManager, along with block-related properties.
@@ -1643,13 +1436,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			$this->mBlockedby = $block->getByName();
 			$this->mBlockreason = $block->getReason();
 			$this->mHideName = $block->getHideName();
-			$this->mAllowUsertalk = $block->isUsertalkEditAllowed();
 		} else {
 			$this->mBlock = null;
 			$this->mBlockedby = '';
 			$this->mBlockreason = '';
 			$this->mHideName = 0;
-			$this->mAllowUsertalk = false;
 		}
 	}
 
@@ -1659,8 +1450,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool True if rate limited
 	 */
 	public function isPingLimitable() {
-		global $wgRateLimitsExcludedIPs;
-		if ( IPUtils::isInRanges( $this->getRequest()->getIP(), $wgRateLimitsExcludedIPs ) ) {
+		$rateLimitsExcludedIPs = MediaWikiServices::getInstance()->getMainConfig()->get( 'RateLimitsExcludedIPs' );
+		if ( IPUtils::isInRanges( $this->getRequest()->getIP(), $rateLimitsExcludedIPs ) ) {
 			// No other good way currently to disable rate limits
 			// for specific IPs. :P
 			// But this is a crappy hack and should die.
@@ -1694,14 +1485,14 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			return $result;
 		}
 
-		global $wgRateLimits;
-		if ( !isset( $wgRateLimits[$action] ) ) {
+		$rateLimits = MediaWikiServices::getInstance()->getMainConfig()->get( 'RateLimits' );
+		if ( !isset( $rateLimits[$action] ) ) {
 			return false;
 		}
 
 		$limits = array_merge(
 			[ '&can-bypass' => true ],
-			$wgRateLimits[$action]
+			$rateLimits[$action]
 		);
 
 		// Some groups shouldn't trigger the ping limiter, ever
@@ -1972,8 +1763,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * If user is blocked, return the name of the user who placed the block
 	 * @return string Name of blocker
+	 * @deprecated since 1.38
+	 * Hard deprecated since 1.38.
 	 */
 	public function blockedBy() {
+		wfDeprecated( __METHOD__, '1.38' );
 		$this->getBlockedStatus();
 		return $this->mBlockedby;
 	}
@@ -1992,8 +1786,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * If user is blocked, return the ID for the block
 	 * @return int|false
+	 * @deprecated since 1.38
+	 * Hard deprecated since 1.38.
 	 */
 	public function getBlockId() {
+		wfDeprecated( __METHOD__, '1.38' );
 		$this->getBlockedStatus();
 		return ( $this->mBlock ? $this->mBlock->getId() : false );
 	}
@@ -2215,12 +2012,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return string Timestamp in TS_MW format
 	 */
 	private function newTouchedTimestamp() {
-		$time = time();
+		$time = (int)ConvertibleTimestamp::now( TS_UNIX );
 		if ( $this->mTouched ) {
-			$time = max( $time, wfTimestamp( TS_UNIX, $this->mTouched ) + 1 );
+			$time = max( $time, (int)ConvertibleTimestamp::convert( TS_UNIX, $this->mTouched ) + 1 );
 		}
 
-		return wfTimestamp( TS_MW, $time );
+		return ConvertibleTimestamp::convert( TS_MW, $time );
 	}
 
 	/**
@@ -2371,7 +2168,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return string|null Token
 	 */
 	public function getToken( $forceCreation = true ) {
-		global $wgAuthenticationTokenVersion;
+		$authenticationTokenVersion = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'AuthenticationTokenVersion' );
 
 		$this->load();
 		if ( !$this->mToken && $forceCreation ) {
@@ -2389,13 +2187,13 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			return MWCryptRand::generateHex( self::TOKEN_LENGTH );
 		}
 
-		if ( $wgAuthenticationTokenVersion === null ) {
+		if ( $authenticationTokenVersion === null ) {
 			// $wgAuthenticationTokenVersion not in use, so return the raw secret
 			return $this->mToken;
 		}
 
 		// $wgAuthenticationTokenVersion in use, so hmac it.
-		$ret = MWCryptHash::hmac( $wgAuthenticationTokenVersion, $this->mToken, false );
+		$ret = MWCryptHash::hmac( $authenticationTokenVersion, $this->mToken, false );
 
 		// The raw hash can be overly long. Shorten it up.
 		$len = max( 32, self::TOKEN_LENGTH );
@@ -2471,9 +2269,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return Status
 	 */
 	public function setEmailWithConfirmation( string $str ) {
-		global $wgEnableEmail, $wgEmailAuthentication;
-
-		if ( !$wgEnableEmail ) {
+		$enableEmail = MediaWikiServices::getInstance()->getMainConfig()->get( 'EnableEmail' );
+		$emailAuthentication = MediaWikiServices::getInstance()->getMainConfig()->get( 'EmailAuthentication' );
+		if ( !$enableEmail ) {
 			return Status::newFatal( 'emaildisabled' );
 		}
 
@@ -2485,7 +2283,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		$type = $oldaddr != '' ? 'changed' : 'set';
 		$notificationResult = null;
 
-		if ( $wgEmailAuthentication && $type === 'changed' ) {
+		if ( $emailAuthentication && $type === 'changed' ) {
 			// Send the user an email notifying the user of the change in registered
 			// email address on their previous email address
 			$change = $str != '' ? 'changed' : 'removed';
@@ -2500,7 +2298,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 
 		$this->setEmail( $str );
 
-		if ( $str !== '' && $wgEmailAuthentication ) {
+		if ( $str !== '' && $emailAuthentication ) {
 			// Send a confirmation request to the new address if needed
 			$result = $this->sendConfirmationMail( $type );
 
@@ -2548,8 +2346,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 *   Default values set via $wgDefaultUserOptions / UserGetDefaultOptions take precedence.
 	 * @param bool $ignoreHidden Whether to ignore the effects of $wgHiddenPrefs
 	 * @return mixed|null User's current value for the option
-	 * @see getBoolOption()
-	 * @see getIntOption()
 	 * @deprecated since 1.35 Use UserOptionsLookup::getOption instead
 	 */
 	public function getOption( $oname, $defaultOverride = null, $ignoreHidden = false ) {
@@ -2559,74 +2355,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		return MediaWikiServices::getInstance()
 			->getUserOptionsLookup()
 			->getOption( $this, $oname, $defaultOverride, $ignoreHidden );
-	}
-
-	/**
-	 * Get all user's options
-	 *
-	 * @param int $flags Bitwise combination of:
-	 *   User::GETOPTIONS_EXCLUDE_DEFAULTS  Exclude user options that are set
-	 *                                      to the default value. (Since 1.25)
-	 * @return array
-	 * @deprecated since 1.35 Use UserOptionsLookup::getOptions instead.
-	 * Hard deprecated since 1.37.
-	 */
-	public function getOptions( $flags = 0 ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserOptionsLookup()
-			->getOptions( $this, $flags );
-	}
-
-	/**
-	 * Get the user's current setting for a given option, as a boolean value.
-	 *
-	 * @param string $oname The option to check
-	 * @return bool User's current value for the option
-	 * @see getOption()
-	 * @deprecated since 1.35, hard deprecated since 1.37
-	 * Use UserOptionsLookup::getBoolOption instead
-	 */
-	public function getBoolOption( $oname ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserOptionsLookup()
-			->getBoolOption( $this, $oname );
-	}
-
-	/**
-	 * Get the user's current setting for a given option, as an integer value.
-	 *
-	 * @param string $oname The option to check
-	 * @param int $defaultOverride A default value returned if the option does not exist
-	 * @return int User's current value for the option
-	 * @see getOption()
-	 * @deprecated since 1.35, hard deprecated since 1.37
-	 * Use UserOptionsLookup::getIntOption instead
-	 */
-	public function getIntOption( $oname, $defaultOverride = 0 ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( $oname === null ) {
-			return null; // b/c
-		}
-		return MediaWikiServices::getInstance()
-			->getUserOptionsLookup()
-			->getIntOption( $this, $oname, $defaultOverride );
-	}
-
-	/**
-	 * Set the given option for a user.
-	 *
-	 * You need to call saveSettings() to actually write to the database.
-	 *
-	 * @param string $oname The option to set
-	 * @param mixed $val New value to set
-	 * @deprecated since 1.35 Use UserOptionsManager::setOption instead
-	 */
-	public function setOption( $oname, $val ) {
-		MediaWikiServices::getInstance()
-			->getUserOptionsManager()
-			->setOption( $this, $oname, $val );
 	}
 
 	/**
@@ -2640,10 +2368,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @deprecated since 1.26 Applications should use the OAuth extension
 	 */
 	public function getTokenFromOption( $oname ) {
-		global $wgHiddenPrefs;
+		$hiddenPrefs = MediaWikiServices::getInstance()->getMainConfig()->get( 'HiddenPrefs' );
 
 		$id = $this->getId();
-		if ( !$id || in_array( $oname, $wgHiddenPrefs ) ) {
+		if ( !$id || in_array( $oname, $hiddenPrefs ) ) {
 			return false;
 		}
 
@@ -2668,98 +2396,16 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @see setOption()
 	 */
 	public function resetTokenFromOption( $oname ) {
-		global $wgHiddenPrefs;
-		if ( in_array( $oname, $wgHiddenPrefs ) ) {
+		$hiddenPrefs = MediaWikiServices::getInstance()->getMainConfig()->get( 'HiddenPrefs' );
+		if ( in_array( $oname, $hiddenPrefs ) ) {
 			return false;
 		}
 
 		$token = MWCryptRand::generateHex( 40 );
-		$this->setOption( $oname, $token );
-		return $token;
-	}
-
-	/**
-	 * Return a list of the types of user options currently returned by
-	 * User::getOptionKinds().
-	 *
-	 * Currently, the option kinds are:
-	 * - 'registered' - preferences which are registered in core MediaWiki or
-	 *                  by extensions using the UserGetDefaultOptions hook.
-	 * - 'registered-multiselect' - as above, using the 'multiselect' type.
-	 * - 'registered-checkmatrix' - as above, using the 'checkmatrix' type.
-	 * - 'userjs' - preferences with names starting with 'userjs-', intended to
-	 *              be used by user scripts.
-	 * - 'special' - "preferences" that are not accessible via User::getOptions
-	 *               or User::setOptions.
-	 * - 'unused' - preferences about which MediaWiki doesn't know anything.
-	 *              These are usually legacy options, removed in newer versions.
-	 *
-	 * The API (and possibly others) use this function to determine the possible
-	 * option types for validation purposes, so make sure to update this when a
-	 * new option kind is added.
-	 *
-	 * @see User::getOptionKinds
-	 * @return array Option kinds
-	 * @deprecated since 1.35, hard deprecated since 1.37
-	 * Use UserOptionsManager::listOptionKinds instead
-	 */
-	public static function listOptionKinds() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserOptionsManager()
-			->listOptionKinds();
-	}
-
-	/**
-	 * Return an associative array mapping preferences keys to the kind of a preference they're
-	 * used for. Different kinds are handled differently when setting or reading preferences.
-	 *
-	 * See UserOptionsManager::listOptionKinds for the list of valid option types that can be
-	 * provided.
-	 *
-	 * @see UserOptionsManager::listOptionKinds
-	 * @param IContextSource $context
-	 * @param array|null $options Assoc. array with options keys to check as keys.
-	 *   Defaults to $this->mOptions.
-	 * @return string[] The key => kind mapping data
-	 * @deprecated since 1.35, hard deprecated since 1.37
-	 * Use UserOptionsManager::getOptionKinds instead
-	 */
-	public function getOptionKinds( IContextSource $context, $options = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserOptionsManager()
-			->getOptionKinds( $this, $context, $options );
-	}
-
-	/**
-	 * Reset certain (or all) options to the site defaults
-	 *
-	 * The optional parameter determines which kinds of preferences will be reset.
-	 * Supported values are everything that can be reported by getOptionKinds()
-	 * and 'all', which forces a reset of *all* preferences and overrides everything else.
-	 *
-	 * @param array|string $resetKinds Which kinds of preferences to reset. Defaults to
-	 *  [ 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ]
-	 *  for backwards-compatibility.
-	 * @param IContextSource|null $context Context source used when $resetKinds
-	 *  does not contain 'all', passed to getOptionKinds().
-	 *  Defaults to RequestContext::getMain() when null.
-	 * @deprecated since 1.35, hard deprecated since 1.37
-	 *  Use UserOptionsManager::resetOptions instead (Warning: Different argument order).
-	 */
-	public function resetOptions(
-		$resetKinds = [ 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ],
-		IContextSource $context = null
-	) {
-		wfDeprecated( __METHOD__, '1.35' );
 		MediaWikiServices::getInstance()
 			->getUserOptionsManager()
-			->resetOptions(
-				$this,
-				$context ?? RequestContext::getMain(),
-				$resetKinds
-			);
+			->setOption( $this, $oname, $token );
+		return $token;
 	}
 
 	/**
@@ -2787,43 +2433,17 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function requiresHTTPS() {
-		global $wgForceHTTPS, $wgSecureLogin;
-		if ( $wgForceHTTPS ) {
+		$forceHTTPS = MediaWikiServices::getInstance()->getMainConfig()->get( 'ForceHTTPS' );
+		$secureLogin = MediaWikiServices::getInstance()->getMainConfig()->get( 'SecureLogin' );
+		if ( $forceHTTPS ) {
 			return true;
 		}
-		if ( !$wgSecureLogin ) {
+		if ( !$secureLogin ) {
 			return false;
 		}
 		return MediaWikiServices::getInstance()
 			->getUserOptionsLookup()
 			->getBoolOption( $this, 'prefershttps' );
-	}
-
-	/**
-	 * Get the user preferred stub threshold
-	 *
-	 * @deprecated since 1.37. The stub threshold preference support
-	 * was removed. See T284917
-	 *
-	 * @return int
-	 */
-	public function getStubThreshold() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return 0;
-	}
-
-	/**
-	 * Get the permissions this user has.
-	 * @return string[] permission names
-	 *
-	 * @deprecated since 1.34, hard deprecated since 1.37
-	 * Use MediaWikiServices::getInstance()->getPermissionManager()
-	 * ->getUserPermissions(..) instead
-	 *
-	 */
-	public function getRights() {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getPermissionManager()->getUserPermissions( $this );
 	}
 
 	/**
@@ -2853,61 +2473,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->getUserGroupMemberships( $this, $this->queryFlagsUsed );
-	}
-
-	/**
-	 * Get the list of implicit group memberships this user has.
-	 * This includes all explicit groups, plus 'user' if logged in,
-	 * '*' for all accounts, and autopromoted groups
-	 *
-	 * @deprecated since 1.35 Use UserGroupManager::getUserEffectiveGroups instead.
-	 * Hard deprecated since 1.37.
-	 *
-	 * @param bool $recache Whether to avoid the cache
-	 * @return string[] internal group names
-	 */
-	public function getEffectiveGroups( $recache = false ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->getUserEffectiveGroups( $this, $this->queryFlagsUsed, $recache );
-	}
-
-	/**
-	 * Get the list of implicit group memberships this user has.
-	 * This includes 'user' if logged in, '*' for all accounts,
-	 * and autopromoted groups
-	 *
-	 * @deprecated since 1.35 Use UserGroupManager::getUserImplicitGroups instead.
-	 * Hard deprecated since 1.37.
-	 *
-	 * @param bool $recache Whether to avoid the cache
-	 * @return string[] internal group names
-	 */
-	public function getAutomaticGroups( $recache = false ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->getUserImplicitGroups( $this, $this->queryFlagsUsed, $recache );
-	}
-
-	/**
-	 * Returns the groups the user has belonged to.
-	 *
-	 * The user may still belong to the returned groups. Compare with getGroups().
-	 *
-	 * The function will not return groups the user had belonged to before MW 1.17
-	 *
-	 * @deprecated since 1.35 Use UserGroupManager::getUserFormerGroups instead.
-	 * Hard deprecated since 1.37.
-	 *
-	 * @return array Names of the groups the user has belonged to.
-	 */
-	public function getFormerGroups() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->getUserFormerGroups( $this, $this->queryFlagsUsed );
 	}
 
 	/**
@@ -2964,18 +2529,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 */
 	public function isRegistered(): bool {
 		return $this->getId() != 0;
-	}
-
-	/**
-	 * Get whether the user is registered.
-	 *
-	 * @deprecated since 1.36; use isRegistered() directly
-	 * @return bool
-	 */
-	public function isLoggedIn() {
-		// Hard-deprecated in 1.37
-		wfDeprecated( __METHOD__, '1.36' );
-		return $this->isRegistered();
 	}
 
 	/**
@@ -3038,8 +2591,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool True or false
 	 */
 	public function useRCPatrol() {
-		global $wgUseRCPatrol;
-		return $wgUseRCPatrol && $this->isAllowedAny( 'patrol', 'patrolmarks' );
+		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseRCPatrol' );
+		return $useRCPatrol && $this->isAllowedAny( 'patrol', 'patrolmarks' );
 	}
 
 	/**
@@ -3047,9 +2600,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool True or false
 	 */
 	public function useNPPatrol() {
-		global $wgUseRCPatrol, $wgUseNPPatrol;
+		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseRCPatrol' );
+		$useNPPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseNPPatrol' );
 		return (
-			( $wgUseRCPatrol || $wgUseNPPatrol )
+			( $useRCPatrol || $useNPPatrol )
 				&& ( $this->isAllowedAny( 'patrol', 'patrolmarks' ) )
 		);
 	}
@@ -3059,9 +2613,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool True or false
 	 */
 	public function useFilePatrol() {
-		global $wgUseRCPatrol, $wgUseFilePatrol;
+		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseRCPatrol' );
+		$useFilePatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseFilePatrol' );
 		return (
-			( $wgUseRCPatrol || $wgUseFilePatrol )
+			( $useRCPatrol || $useFilePatrol )
 				&& ( $this->isAllowedAny( 'patrol', 'patrolmarks' ) )
 		);
 	}
@@ -3079,99 +2634,16 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Check the watched status of an article.
-	 * @since 1.22 $checkRights parameter added
-	 * @param PageIdentity $title the article to look at
-	 * @param bool $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
-	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
-	 * @return bool
-	 * @deprecated since 1.37, use WatchlistManager::isWatched() or
-	 *     WatchlistManager::isWatchedIgnoringRights()
-	 */
-	public function isWatched( PageIdentity $title, $checkRights = self::CHECK_USER_RIGHTS ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
-		if ( $checkRights ) {
-			return $watchlistManager->isWatched( $this, $title );
-		}
-		return $watchlistManager->isWatchedIgnoringRights( $this, $title );
-	}
-
-	/**
-	 * Check if the article is temporarily watched.
-	 * @since 1.35
-	 * @internal This, isWatched() and related User methods may be deprecated soon (T208766).
-	 *     If possible, implement permissions checks and call WatchedItemStore::isTempWatched()
-	 * @param PageIdentity $title the article to look at
-	 * @param bool $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
-	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
-	 * @return bool
-	 * @deprecated since 1.37, use WatchlistManager::isTempWatched() or
-	 *     WatchlistManager::isTempWatchedIgnoringRights()
-	 */
-	public function isTempWatched( PageIdentity $title, $checkRights = self::CHECK_USER_RIGHTS ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
-		if ( $checkRights ) {
-			return $watchlistManager->isTempWatched( $this, $title );
-		}
-		return $watchlistManager->isTempWatchedIgnoringRights( $this, $title );
-	}
-
-	/**
-	 * Watch an article.
-	 * @since 1.22 $checkRights parameter added
-	 * @param PageIdentity $title the article to look at
-	 * @param bool $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
-	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
-	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
-	 *   null will not create expiries, or leave them unchanged should they already exist.
-	 * @deprecated since 1.37, use WatchlistManager::addWatch() or WatchlistManager::addWatchIgnoringRights()
-	 */
-	public function addWatch(
-		PageIdentity $title,
-		$checkRights = self::CHECK_USER_RIGHTS,
-		?string $expiry = null
-	) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
-		if ( $checkRights ) {
-			$watchlistManager->addWatch( $this, $title, $expiry );
-		} else {
-			$watchlistManager->addWatchIgnoringRights( $this, $title, $expiry );
-		}
-	}
-
-	/**
-	 * Stop watching an article.
-	 * @since 1.22 $checkRights parameter added
-	 * @param PageIdentity $title the article to look at
-	 * @param bool $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
-	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
-	 * @deprecated since 1.37, use WatchlistManager::removeWatch() or
-	 *     WatchlistManager::removeWatchIgnoringRights
-	 */
-	public function removeWatch( PageIdentity $title, $checkRights = self::CHECK_USER_RIGHTS ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
-		if ( $checkRights ) {
-			$watchlistManager->removeWatch( $this, $title );
-		} else {
-			$watchlistManager->removeWatchIgnoringRights( $this, $title );
-		}
-	}
-
-	/**
 	 * Compute experienced level based on edit count and registration date.
 	 *
 	 * @return string|false 'newcomer', 'learner', or 'experienced', false for anonymous users
 	 */
 	public function getExperienceLevel() {
-		global $wgLearnerEdits,
-			$wgExperiencedUserEdits,
-			$wgLearnerMemberSince,
-			$wgExperiencedUserMemberSince;
-
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$learnerEdits = $mainConfig->get( 'LearnerEdits' );
+		$experiencedUserEdits = $mainConfig->get( 'ExperiencedUserEdits' );
+		$learnerMemberSince = $mainConfig->get( 'LearnerMemberSince' );
+		$experiencedUserMemberSince = $mainConfig->get( 'ExperiencedUserMemberSince' );
 		if ( $this->isAnon() ) {
 			return false;
 		}
@@ -3179,20 +2651,20 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		$editCount = $this->getEditCount();
 		$registration = $this->getRegistration();
 		$now = time();
-		$learnerRegistration = wfTimestamp( TS_MW, $now - $wgLearnerMemberSince * 86400 );
-		$experiencedRegistration = wfTimestamp( TS_MW, $now - $wgExperiencedUserMemberSince * 86400 );
+		$learnerRegistration = wfTimestamp( TS_MW, $now - $learnerMemberSince * 86400 );
+		$experiencedRegistration = wfTimestamp( TS_MW, $now - $experiencedUserMemberSince * 86400 );
 		if ( $registration === null ) {
 			// for some very old accounts, this information is missing in the database
 			// treat them as old enough to be 'experienced'
 			$registration = $experiencedRegistration;
 		}
 
-		if ( $editCount < $wgLearnerEdits ||
+		if ( $editCount < $learnerEdits ||
 		$registration > $learnerRegistration ) {
 			return 'newcomer';
 		}
 
-		if ( $editCount > $wgExperiencedUserEdits &&
+		if ( $editCount > $experiencedUserEdits &&
 			$registration <= $experiencedRegistration
 		) {
 			return 'experienced';
@@ -3355,7 +2827,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		} );
 
 		$this->mTouched = $newTouched;
-		MediaWikiServices::getInstance()->getUserOptionsManager()->saveOptions( $this );
+		MediaWikiServices::getInstance()->getUserOptionsManager()->saveOptionsInternal( $this, $dbw );
 
 		$this->getHookRunner()->onUserSaveSettings( $this );
 		$this->clearSharedCache( 'changed' );
@@ -3733,23 +3205,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Check given value against the token value stored in the session,
-	 * ignoring the suffix.
-	 *
-	 * @deprecated since 1.37. No replacement was provided.
-	 * @param string $val Input value to compare
-	 * @param string|array $salt Optional function-specific data for hashing
-	 * @param WebRequest|null $request Object to use, or null to use the global request
-	 * @param int|null $maxage Fail tokens older than this, in seconds
-	 * @return bool Whether the token matches
-	 */
-	public function matchEditTokenNoSuffix( $val, $salt = '', $request = null, $maxage = null ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$val = substr( $val, 0, strspn( $val, '0123456789abcdef' ) ) . Token::SUFFIX;
-		return $this->matchEditToken( $val, $salt, $request, $maxage );
-	}
-
-	/**
 	 * Generate a new e-mail confirmation token and send a confirmation/invalidation
 	 * mail to the user's given address.
 	 *
@@ -3812,12 +3267,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return Status
 	 */
 	public function sendMail( $subject, $body, $from = null, $replyto = null ) {
-		global $wgPasswordSender;
+		$passwordSender = MediaWikiServices::getInstance()->getMainConfig()->get( 'PasswordSender' );
 
 		if ( $from instanceof User ) {
 			$sender = MailAddress::newFromUser( $from );
 		} else {
-			$sender = new MailAddress( $wgPasswordSender,
+			$sender = new MailAddress( $passwordSender,
 				wfMessage( 'emailsender' )->inContentLanguage()->text() );
 		}
 		$to = MailAddress::newFromUser( $this );
@@ -3838,9 +3293,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return string New token
 	 */
 	protected function confirmationToken( &$expiration ) {
-		global $wgUserEmailConfirmationTokenExpiry;
+		$userEmailConfirmationTokenExpiry = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'UserEmailConfirmationTokenExpiry' );
 		$now = time();
-		$expires = $now + $wgUserEmailConfirmationTokenExpiry;
+		$expires = $now + $userEmailConfirmationTokenExpiry;
 		$expiration = wfTimestamp( TS_MW, $expires );
 		$this->load();
 		$token = MWCryptRand::generateHex( 32 );
@@ -3874,7 +3330,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * hardcoded English names of the Special: pages, for ASCII safety.
 	 *
 	 * @note Since these URLs get dropped directly into emails, using the
-	 * short English names avoids insanely long URL-encoded links, which
+	 * short English names avoids really long URL-encoded links, which
 	 * also sometimes can get corrupted in some browsers/mailers
 	 * (T8957 with Gmail and Internet Explorer).
 	 *
@@ -3939,8 +3395,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function canSendEmail() {
-		global $wgEnableEmail, $wgEnableUserEmail;
-		if ( !$wgEnableEmail || !$wgEnableUserEmail || !$this->isAllowed( 'sendemail' ) ) {
+		$enableEmail = MediaWikiServices::getInstance()->getMainConfig()->get( 'EnableEmail' );
+		$enableUserEmail = MediaWikiServices::getInstance()->getMainConfig()->get( 'EnableUserEmail' );
+		if ( !$enableEmail || !$enableUserEmail || !$this->isAllowed( 'sendemail' ) ) {
 			return false;
 		}
 		$hookErr = $this->isEmailConfirmed();
@@ -3968,7 +3425,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function isEmailConfirmed(): bool {
-		global $wgEmailAuthentication;
+		$emailAuthentication = MediaWikiServices::getInstance()->getMainConfig()->get( 'EmailAuthentication' );
 		$this->load();
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$user = $this;
@@ -3980,7 +3437,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			if ( !Sanitizer::validateEmail( $this->getEmail() ) ) {
 				return false;
 			}
-			if ( $wgEmailAuthentication && !$this->getEmailAuthenticationTimestamp() ) {
+			if ( $emailAuthentication && !$this->getEmailAuthenticationTimestamp() ) {
 				return false;
 			}
 			return true;
@@ -3994,8 +3451,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function isEmailConfirmationPending() {
-		global $wgEmailAuthentication;
-		return $wgEmailAuthentication &&
+		$emailAuthentication = MediaWikiServices::getInstance()->getMainConfig()->get( 'EmailAuthentication' );
+		return $emailAuthentication &&
 			!$this->isEmailConfirmed() &&
 			$this->mEmailToken &&
 			$this->mEmailTokenExpires > wfTimestamp();
@@ -4014,37 +3471,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		}
 		$this->load();
 		return $this->mRegistration;
-	}
-
-	/**
-	 * Get the timestamp of the first edit
-	 *
-	 * @deprecated since 1.36, use a UserEditTracker instead
-	 *
-	 * @return string|bool Timestamp of first edit, or false for
-	 *  non-existent/anonymous user accounts.
-	 */
-	public function getFirstEditTimestamp() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MediaWikiServices::getInstance()
-			->getUserEditTracker()
-			->getFirstEditTimestamp( $this );
-	}
-
-	/**
-	 * Get the timestamp of the latest edit
-	 *
-	 * @deprecated since 1.36, use a UserEditTracker instead
-	 *
-	 * @since 1.33
-	 * @return string|bool Timestamp of first edit, or false for
-	 *  non-existent/anonymous user accounts.
-	 */
-	public function getLatestEditTimestamp() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MediaWikiServices::getInstance()
-			->getUserEditTracker()
-			->getLatestEditTimestamp( $this );
 	}
 
 	/**
@@ -4114,38 +3540,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->listAllImplicitGroups();
-	}
-
-	/**
-	 * Returns an array of the groups that a particular group can add/remove.
-	 *
-	 * @param string $group The group to check for whether it can add/remove
-	 * @return array [ 'add' => [ addablegroups ],
-	 *     'remove' => [ removablegroups ],
-	 *     'add-self' => [ addablegroups to self ],
-	 *     'remove-self' => [ removable groups from self ] ]
-	 * @deprecated since 1.37 Use UserGroupManager::getGroupsChangeableByGroup instead.
-	 */
-	public static function changeableByGroup( $group ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->getGroupsChangeableByGroup( $group );
-	}
-
-	/**
-	 * Returns an array of groups that this user can add and remove
-	 * @return array [ 'add' => [ addablegroups ],
-	 *  'remove' => [ removablegroups ],
-	 *  'add-self' => [ addablegroups to self ],
-	 *  'remove-self' => [ removable groups from self ] ]
-	 * @deprecated since 1.37 Use UserGroupManager::getGroupsChangeableBy instead.
-	 */
-	public function changeableGroups() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return MediaWikiServices::getInstance()
-			->getUserGroupManager()
-			->getGroupsChangeableBy( $this );
 	}
 
 	/**
@@ -4262,18 +3656,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		}
 		// XXX it's not clear whether central ID providers are supposed to obey this
 		return $this->getName() === $user->getName();
-	}
-
-	/**
-	 * Checks if usertalk is allowed
-	 *
-	 * @deprecated since 1.37 Use AbstractBlock::isUsertalkEditAllowed
-	 *
-	 * @return bool|null Returns null when no block has been loaded
-	 */
-	public function isAllowUsertalk() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->mAllowUsertalk;
 	}
 
 	/**

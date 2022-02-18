@@ -232,7 +232,7 @@ abstract class LBFactory implements ILBFactory {
 		}
 		$cpClientId = $chronProt->getClientId();
 
-		$this->commitPrimaryChanges( __METHOD__ ); // sanity
+		$this->commitPrimaryChanges( __METHOD__ );
 
 		$this->replLogger->debug( 'LBFactory shutdown completed' );
 	}
@@ -286,11 +286,6 @@ abstract class LBFactory implements ILBFactory {
 		$this->trxRoundStage = self::ROUND_CURSORY;
 	}
 
-	public function beginMasterChanges( $fname = __METHOD__ ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->beginPrimaryChanges( $fname );
-	}
-
 	final public function commitPrimaryChanges( $fname = __METHOD__, array $options = [] ) {
 		$this->assertTransactionRoundStage( self::ROUND_CURSORY );
 		/** @noinspection PhpUnusedLocalVariableInspection */
@@ -327,11 +322,6 @@ abstract class LBFactory implements ILBFactory {
 		}
 	}
 
-	final public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->commitPrimaryChanges( $fname, $options );
-	}
-
 	final public function rollbackPrimaryChanges( $fname = __METHOD__ ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
@@ -344,11 +334,6 @@ abstract class LBFactory implements ILBFactory {
 		$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;
 		$this->executePostTransactionCallbacks();
 		$this->trxRoundStage = self::ROUND_CURSORY;
-	}
-
-	final public function rollbackMasterChanges( $fname = __METHOD__ ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->rollbackPrimaryChanges( $fname );
 	}
 
 	/**
@@ -413,11 +398,6 @@ abstract class LBFactory implements ILBFactory {
 		return $ret;
 	}
 
-	public function hasMasterChanges() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->hasPrimaryChanges();
-	}
-
 	public function laggedReplicaUsed() {
 		$ret = false;
 		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( &$ret ) {
@@ -433,11 +413,6 @@ abstract class LBFactory implements ILBFactory {
 			$ret = $ret || $lb->hasOrMadeRecentPrimaryChanges( $age );
 		} );
 		return $ret;
-	}
-
-	public function hasOrMadeRecentMasterChanges( $age = null ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->hasOrMadeRecentPrimaryChanges( $age );
 	}
 
 	public function waitForReplication( array $opts = [] ) {
@@ -765,7 +740,7 @@ abstract class LBFactory implements ILBFactory {
 	/**
 	 * Build a string conveying the client and write index of the chronology protector data
 	 *
-	 * @param int $writeIndex Write index
+	 * @param int $writeIndex
 	 * @param int $time UNIX timestamp; can be used to detect stale cookies (T190082)
 	 * @param string $clientId Client ID hash from ILBFactory::shutdown()
 	 * @return string Value to use for "cpPosIndex" cookie

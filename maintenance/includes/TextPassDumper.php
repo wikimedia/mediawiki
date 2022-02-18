@@ -30,6 +30,7 @@ require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
@@ -79,12 +80,12 @@ class TextPassDumper extends BackupDumper {
 	protected $spawnProc = false;
 
 	/**
-	 * @var resource
+	 * @var resource|null
 	 */
 	protected $spawnWrite;
 
 	/**
-	 * @var resource
+	 * @var resource|null
 	 */
 	protected $spawnRead;
 
@@ -151,8 +152,8 @@ TEXT
 		}
 	}
 
-	public function finalSetup() {
-		parent::finalSetup();
+	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+		parent::finalSetup( $settingsBuilder );
 
 		SevenZipStream::register();
 	}
@@ -569,7 +570,7 @@ TEXT
 	 * @param string|bool|null $model The content model used to determine
 	 *  applicable export transformations. If $model is null, no transformation is applied.
 	 * @param string|null $format The content format used when applying export transformations.
-	 * @param int|null $expSize Expected length of the text, for sanity checks
+	 * @param int|null $expSize Expected length of the text, for checks
 	 *
 	 * @return string The revision text for $id, or ""
 	 * @throws MWException
@@ -1044,7 +1045,7 @@ TEXT
 			}
 			$this->checkpointJustWritten = false;
 		}
-		$this->buffer .= htmlspecialchars( $data );
+		$this->buffer .= htmlspecialchars( $data, ENT_COMPAT );
 	}
 
 	protected function clearOpenElement( $style ) {

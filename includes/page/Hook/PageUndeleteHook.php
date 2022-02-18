@@ -25,7 +25,7 @@ interface PageUndeleteHook {
 	 * @param bool $unsuppress Whether content is being unsuppressed or not
 	 * @param string[] $timestamps Timestamps of revisions that we're going to undelete. If empty, means all revisions.
 	 * @param int[] $fileVersions Versions of a file that we're going to undelete. If empty, means all versions.
-	 * @param StatusValue $status Add any error here. NOTE: For now, errors are not used, but this will change in 1.38.
+	 * @param StatusValue $status Add any error here.
 	 * @return bool|void True or no return value to continue; false to abort, which also requires adding
 	 * a fatal error to $status.
 	 */

@@ -23,6 +23,7 @@
  */
 
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * Special page to direct the user to a random page
@@ -165,7 +166,6 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	public function getRandomTitle() {
 		// Convert to float, since we do math with the random number.
 		$rand = (float)wfRandom();
-		$title = null;
 
 		// Given that timestamps are rather unevenly distributed, we also
 		// use an offset between 0 and 30 to make any biases less noticeable.
@@ -256,6 +256,8 @@ class SpecialRandomInCategory extends FormSpecialPage {
 		if ( !$this->minTimestamp || !$this->maxTimestamp ) {
 			try {
 				list( $this->minTimestamp, $this->maxTimestamp ) = $this->getMinAndMaxForCat( $this->category );
+			} catch ( TimeoutException $e ) {
+				throw $e;
 			} catch ( Exception $e ) {
 				// Possibly no entries in category.
 				return false;
@@ -291,7 +293,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 			throw new MWException( 'No entries in category' );
 		}
 
-		return [ wfTimestamp( TS_UNIX, $res->low ), wfTimestamp( TS_UNIX, $res->high ) ];
+		return [ (int)wfTimestamp( TS_UNIX, $res->low ), (int)wfTimestamp( TS_UNIX, $res->high ) ];
 	}
 
 	/**

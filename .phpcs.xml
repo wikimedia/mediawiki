@@ -16,9 +16,7 @@
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgVersion" />
-		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionConfigUsage" />
 		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage" />
-		<exclude name="MediaWiki.Usage.ForbiddenFunctions.is_resource" />
 		<exclude name="MediaWiki.Usage.ForbiddenFunctions.passthru" />
 		<exclude name="MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
@@ -27,8 +25,6 @@
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>
 			<!--
-			includes/GlobalFunctions.php
-			* mimeTypeMatch
 			maintenance/language/transstat.php
 			* showUsage
 			maintenance/mcc.php
@@ -45,7 +41,7 @@
 			tests/qunit/data/styleTest.css.php
 			* cssfilter
 			-->
-			<property name="ignoreList" type="array" value="cssfilter,mccGetHelp,mccShowUsage,mimeTypeMatch,moveToExternal,NothingFunction,NothingFunctionData,resolveStub,resolveStubs,showUsage" />
+			<property name="ignoreList" type="array" value="cssfilter,mccGetHelp,mccShowUsage,moveToExternal,NothingFunction,NothingFunctionData,resolveStub,resolveStubs,showUsage" />
 		</properties>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName">
@@ -181,15 +177,6 @@
 	</rule>
 	<rule ref="MediaWiki.Usage.AssignmentInReturn.AssignmentInReturn">
 		<exclude-pattern>*/tests/phpunit/*</exclude-pattern>
-	</rule>
-	<rule ref="MediaWiki.Usage.ForbiddenFunctions.escapeshellarg">
-		<!--
-			Continue to allow existing violations, but enable the sniff to prevent
-			any new occurrences.
-		-->
-		<exclude-pattern>*/includes/libs/filebackend/FSFileBackend\.php</exclude-pattern>
-		<exclude-pattern>*/includes/shell/Command\.php</exclude-pattern>
-		<exclude-pattern>*/includes/shell/Shell\.php</exclude-pattern>
 	</rule>
 	<rule ref="MediaWiki.Usage.ForbiddenFunctions.popen">
 		<!--

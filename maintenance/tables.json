@@ -17,7 +17,7 @@
 			},
 			{
 				"name": "si_site",
-				"comment": "Key on site.site_id",
+				"comment": "Key on sites.site_id",
 				"type": "integer",
 				"options": { "unsigned": true, "notnull": true }
 			}
@@ -263,7 +263,7 @@
 	},
 	{
 		"name": "user_properties",
-		"comment": "User preferences and perhaps other fun stuff. :) Replaces the old user.user_options blob, with a couple nice properties: 1) We only store non-default settings, so changes to the defaults are now reflected for everybody, not just new accounts. 2) We can more easily do bulk lookups, statistics, or modifications of saved options since it's a sane table structure.",
+		"comment": "User preferences and perhaps other fun stuff. :) Replaces the old user.user_options blob, with a couple nice properties: 1) We only store non-default settings, so changes to the defaults are now reflected for everybody, not just new accounts. 2) We can more easily do bulk lookups, statistics, or modifications of saved options since it's a sensible table structure.",
 		"columns": [
 			{
 				"name": "up_user",
@@ -563,6 +563,12 @@
 				"name": "tl_title",
 				"type": "binary",
 				"options": { "notnull": true, "length": 255, "default": "" }
+			},
+			{
+				"name": "tl_target_id",
+				"type": "bigint",
+				"comment": "Foreign key to linktarget.lt_id",
+				"options": { "notnull": false, "unsigned": true, "default": null }
 			}
 		],
 		"indexes": [
@@ -575,6 +581,18 @@
 			{
 				"name": "tl_backlinks_namespace",
 				"columns": [ "tl_from_namespace", "tl_namespace", "tl_title", "tl_from" ],
+				"comment": "Index for Special:Whatlinkshere with namespace filter",
+				"unique": false
+			},
+			{
+				"name": "tl_target_id",
+				"columns": [ "tl_target_id", "tl_from" ],
+				"comment": "Reverse index, for Special:Whatlinkshere",
+				"unique": false
+			},
+			{
+				"name": "tl_backlinks_namespace_target_id",
+				"columns": [ "tl_from_namespace", "tl_target_id", "tl_from" ],
 				"comment": "Index for Special:Whatlinkshere with namespace filter",
 				"unique": false
 			}
@@ -711,17 +729,17 @@
 			{
 				"name": "cat_pages",
 				"type": "integer",
-				"options": { "notnull": true, "unsigned": false, "default": 0 }
+				"options": { "notnull": true, "default": 0 }
 			},
 			{
 				"name": "cat_subcats",
 				"type": "integer",
-				"options": { "notnull": true, "unsigned": false, "default": 0 }
+				"options": { "notnull": true, "default": 0 }
 			},
 			{
 				"name": "cat_files",
 				"type": "integer",
-				"options": { "notnull": true, "unsigned": false, "default": 0 }
+				"options": { "notnull": true, "default": 0 }
 			}
 		],
 		"indexes": [
@@ -809,7 +827,7 @@
 				"name": "ir_ipb_id",
 				"comment": "The ipb_id from ipblocks",
 				"type": "integer",
-				"options": { "unsigned": false, "notnull": true }
+				"options": { "notnull": true }
 			},
 			{
 				"name": "ir_type",
@@ -821,7 +839,7 @@
 				"name": "ir_value",
 				"comment": "The restriction id that corresponds to the type. Typically a Page ID or a Namespace ID.",
 				"type": "integer",
-				"options": { "unsigned": false, "notnull": true }
+				"options": { "notnull": true, "unsigned": true }
 			}
 		],
 		"indexes": [
@@ -853,7 +871,7 @@
 			{
 				"name": "qc_namespace",
 				"type": "integer",
-				"options": { "notnull": true, "unsigned": false, "default": 0 }
+				"options": { "notnull": true, "default": 0 }
 			},
 			{
 				"name": "qc_title",
@@ -885,7 +903,7 @@
 			{
 				"name": "qcc_namespace",
 				"type": "integer",
-				"options": { "notnull": true, "unsigned": false, "default": 0 }
+				"options": { "notnull": true, "default": 0 }
 			},
 			{
 				"name": "qcc_title",
@@ -895,7 +913,7 @@
 			{
 				"name": "qcc_namespacetwo",
 				"type": "integer",
-				"options": { "notnull": true, "unsigned": false, "default": 0 }
+				"options": { "notnull": true, "default": 0 }
 			},
 			{
 				"name": "qcc_titletwo",
@@ -924,7 +942,7 @@
 				"name": "pr_page",
 				"comment": "Page to apply restrictions to (Foreign Key to page).",
 				"type": "integer",
-				"options": { "notnull": true }
+				"options": { "notnull": true, "unsigned": true }
 			},
 			{
 				"name": "pr_type",
@@ -942,12 +960,6 @@
 				"name": "pr_cascade",
 				"type": "mwtinyint",
 				"options": { "notnull": true }
-			},
-			{
-				"name": "pr_user",
-				"comment": "Field for future support of per-user restriction.",
-				"type": "integer",
-				"options": { "notnull": false, "unsigned": true }
 			},
 			{
 				"name": "pr_expiry",
@@ -1018,7 +1030,7 @@
 				"name": "qci_timestamp",
 				"comment": "Timestamp of last update",
 				"type": "mwtimestamp",
-				"options": { "length": 14, "notnull": true, "default": "19700101000000" }
+				"options": { "notnull": true, "default": "19700101000000" }
 			}
 		],
 		"indexes": [],
@@ -1040,7 +1052,7 @@
 			{
 				"name": "wl_namespace",
 				"type": "integer",
-				"options": { "notnull": true, "unsigned": false, "default": 0 }
+				"options": { "notnull": true, "default": 0 }
 			},
 			{
 				"name": "wl_title",
@@ -1416,7 +1428,7 @@
 			{
 				"name": "pp_page",
 				"type": "integer",
-				"options": { "unsigned": false, "notnull": true }
+				"options": { "notnull": true, "unsigned": true }
 			},
 			{
 				"name": "pp_propname",
@@ -1822,8 +1834,7 @@
 				"comment": "the date/time on which the file was added",
 				"type": "mwtimestamp",
 				"options": {
-					"notnull": true,
-					"length": 14
+					"notnull": true
 				}
 			},
 			{
@@ -1955,6 +1966,7 @@
 				"type": "integer",
 				"options": {
 					"autoincrement": true,
+					"unsigned": true,
 					"notnull": true
 				}
 			},
@@ -2008,8 +2020,7 @@
 				"name": "fa_deleted_timestamp",
 				"type": "mwtimestamp",
 				"options": {
-					"notnull": false,
-					"length": 14
+					"notnull": false
 				}
 			},
 			{
@@ -2112,8 +2123,7 @@
 				"name": "fa_timestamp",
 				"type": "mwtimestamp",
 				"options": {
-					"notnull": false,
-					"length": 14
+					"notnull": false
 				}
 			},
 			{
@@ -2302,8 +2312,7 @@
 				"name": "oi_timestamp",
 				"type": "mwtimestamp",
 				"options": {
-					"notnull": true,
-					"length": 14
+					"notnull": true
 				}
 			},
 			{
@@ -2797,8 +2806,7 @@
 				"comment": "Time of the upload.",
 				"type": "mwtimestamp",
 				"options": {
-					"notnull": true,
-					"length": 14
+					"notnull": true
 				}
 			},
 			{
@@ -2879,8 +2887,7 @@
 				"name": "rc_timestamp",
 				"type": "mwtimestamp",
 				"options": {
-					"notnull": true,
-					"length": 14
+					"notnull": true
 				}
 			},
 			{
@@ -3227,8 +3234,7 @@
 				"comment": "Basic revision stuff.",
 				"type": "mwtimestamp",
 				"options": {
-					"notnull": true,
-					"length": 14
+					"notnull": true
 				}
 			},
 			{
@@ -3491,7 +3497,7 @@
 				"name": "user_newpass_time",
 				"comment": "Timestamp of the last time when a new password was sent, for throttling and expiring purposes. Emailed passwords will expire $wgNewPasswordExpiry (a week) after being set. If user_newpass_time is NULL (eg. created by mail) it doesn't expire.",
 				"type": "mwtimestamp",
-				"options": { "notnull": false, "length": 14 }
+				"options": { "notnull": false }
 			},
 			{
 				"name": "user_email",
@@ -3503,7 +3509,7 @@
 				"name": "user_touched",
 				"comment": "If the browser sends an If-Modified-Since header, a 304 response is suppressed if the value in this field for the current user is later than the value in the IMS header. That is, this field is an invalidation timestamp for the browser cache of logged-in users. Among other things, it is used to prevent pages generated for a previously logged in user from being displayed after a session expiry followed by a fresh login.",
 				"type": "mwtimestamp",
-				"options": { "notnull": true, "length": 14 }
+				"options": { "notnull": true }
 			},
 			{
 				"name": "user_token",
@@ -3515,7 +3521,7 @@
 				"name": "user_email_authenticated",
 				"comment": "Initially NULL; when a user's e-mail address has been validated by returning with a mailed token, this is set to the current timestamp.",
 				"type": "mwtimestamp",
-				"options": { "notnull": false, "length": 14 }
+				"options": { "notnull": false }
 			},
 			{
 				"name": "user_email_token",
@@ -3527,13 +3533,13 @@
 				"name": "user_email_token_expires",
 				"comment": "Expiration date for the user_email_token.",
 				"type": "mwtimestamp",
-				"options": { "notnull": false, "length": 14 }
+				"options": { "notnull": false }
 			},
 			{
 				"name": "user_registration",
 				"comment": "Timestamp of account registration. Accounts predating this schema addition may contain NULL.",
 				"type": "mwtimestamp",
-				"options": { "notnull": false, "length": 14 }
+				"options": { "notnull": false }
 			},
 			{
 				"name": "user_editcount",
@@ -3627,12 +3633,6 @@
 		],
 		"indexes": [
 			{
-				"name": "rev_page_id",
-				"columns": [ "rev_page", "rev_id" ],
-				"comment": "The index is proposed for removal, do not use it in new code: T163532. Used for ordering revisions within a page by rev_id, which is usually incorrect, since rev_timestamp is normally the correct order. It can also be used by dumpBackup.php, if a page and rev_id range is specified.",
-				"unique": false
-			},
-			{
 				"name": "rev_timestamp",
 				"columns": [ "rev_timestamp" ],
 				"comment": "Used by ApiQueryAllRevisions",
@@ -3711,5 +3711,33 @@
 			"ENGINE=MyISAM",
 			"DEFAULT CHARSET=utf8"
 		]
+	},
+	{
+		"name": "linktarget",
+		"comment": "Holds immutable records of link targets, used mostly for links tables.",
+		"columns": [
+			{
+				"name": "lt_id",
+				"comment": "primary key",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "lt_namespace",
+				"comment": "Namespace of the link target",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "lt_title",
+				"comment": "Text part of link target excluding namespace",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true }
+			}
+		],
+		"indexes": [
+			{ "name": "lt_namespace_title", "columns": [ "lt_namespace", "lt_title" ], "unique": true }
+		],
+		"pk": [ "lt_id" ]
 	}
 ]

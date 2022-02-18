@@ -59,6 +59,18 @@ class ParamType {
 	 */
 	public const TIME = 'time';
 
+	/**
+	 * User Group
+	 * @since 1.38
+	 */
+	public const GROUP = 'group';
+
+	/**
+	 * For arbitrary stringable objects
+	 * @since 1.38
+	 */
+	public const OBJECT = 'object';
+
 	/** A number of bytes. The output will be rounded to an appropriate magnitude. */
 	public const SIZE = 'size';
 

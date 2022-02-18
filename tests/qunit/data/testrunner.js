@@ -25,19 +25,6 @@
 		return wrap;
 	}
 
-	/**
-	 * Add bogus to url to prevent IE crazy caching
-	 *
-	 * @param {string} value a relative path (eg. 'data/foo.js'
-	 * or 'data/test.php?foo=bar').
-	 * @return {string} Such as 'data/foo.js?131031765087663960'
-	 */
-	QUnit.fixurl = function ( value ) {
-		return value + ( /\?/.test( value ) ? '&' : '?' ) +
-			String( new Date().getTime() ) +
-			String( parseInt( Math.random() * 100000, 10 ) );
-	};
-
 	// For each test that is asynchronous, allow this time to pass before
 	// killing the test and assuming timeout failure.
 	QUnit.config.testTimeout = 60 * 1000;
@@ -61,10 +48,10 @@
 	// Glue code for nicer integration with QUnit setup/teardown
 	// Inspired by http://sinonjs.org/releases/sinon-qunit-1.0.0.js
 	sinon.assert.fail = function ( msg ) {
-		QUnit.assert.ok( false, msg );
+		QUnit.assert.true( false, msg );
 	};
 	sinon.assert.pass = function ( msg ) {
-		QUnit.assert.ok( true, msg );
+		QUnit.assert.true( true, msg );
 	};
 	sinon.config = {
 		injectIntoThis: true,
@@ -614,7 +601,7 @@
 		}
 	} );
 	QUnit.test( 'beforeEach', function ( assert ) {
-		assert.ok( this.mwHtmlLive, 'setup() ran' );
+		assert.notStrictEqual( this.mwHtmlLive, undefined, 'setup() ran' );
 		mw.html = null;
 	} );
 	QUnit.test( 'afterEach', function ( assert ) {
@@ -632,7 +619,7 @@
 		}
 	} );
 	QUnit.test( 'setup', function ( assert ) {
-		assert.ok( this.mwHtmlLive, 'setup() ran' );
+		assert.notStrictEqual( this.mwHtmlLive, undefined, 'setup() ran' );
 		mw.html = null;
 	} );
 	QUnit.test( 'teardown', function ( assert ) {
@@ -644,7 +631,7 @@
 	QUnit.module( 'testrunner-nested', function () {
 		QUnit.module( 'testrunner-nested-inner', function () {
 			QUnit.test( 'Dummy', function ( assert ) {
-				assert.ok( true, 'Nested modules supported' );
+				assert.true( true, 'Nested modules supported' );
 			} );
 		} );
 	} );
@@ -662,7 +649,7 @@
 				QUnit.test(
 					'`after` hook for module `testrunner-hooks` was executed',
 					function ( assert ) {
-						assert.ok( afterHookWasExecuted );
+						assert.true( afterHookWasExecuted );
 					}
 				);
 			},
@@ -672,7 +659,7 @@
 		} );
 
 		QUnit.test( '`before` hook was executed', function ( assert ) {
-			assert.ok( beforeHookWasExecuted );
+			assert.true( beforeHookWasExecuted );
 		} );
 	} );
 

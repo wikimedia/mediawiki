@@ -20,6 +20,7 @@
 
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * Sub class of HTMLForm that provides the form section of SpecialUpload
@@ -183,9 +184,7 @@ class UploadForm extends HTMLForm {
 			UploadBase::getMaxPhpUploadSize()
 		);
 
-		$help = $this->msg( 'upload-maxfilesize',
-				$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['file'] )
-			)->parse();
+		$help = $this->msg( 'upload-maxfilesize' )->sizeParams( $this->mMaxUploadSize['file'] )->parse();
 
 		// If the user can also upload by URL, there are 2 different file size limits.
 		// This extra message helps stress which limit corresponds to what.
@@ -217,9 +216,7 @@ class UploadForm extends HTMLForm {
 				'label-message' => 'sourceurl',
 				'upload-type' => 'url',
 				'radio' => &$radio,
-				'help' => $this->msg( 'upload-maxfilesize',
-					$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['url'] )
-				)->parse() .
+				'help' => $this->msg( 'upload-maxfilesize' )->sizeParams( $this->mMaxUploadSize['url'] )->parse() .
 					$this->msg( 'word-separator' )->escaped() .
 					$this->msg( 'upload_source_url' )->parse(),
 				'checked' => $selectedSourceType == 'url',
@@ -296,6 +293,8 @@ class UploadForm extends HTMLForm {
 			$stash = $this->localRepo->getUploadStash( $this->getUser() );
 			try {
 				$file = $stash->getFile( $this->mSessionKey );
+			} catch ( TimeoutException $e ) {
+				throw $e;
 			} catch ( Exception $e ) {
 				$file = null;
 			}
@@ -449,7 +448,6 @@ class UploadForm extends HTMLForm {
 		$this->mMaxUploadSize['*'] = UploadBase::getMaxUploadSize();
 
 		$scriptVars = [
-			'wgAjaxUploadDestCheck' => $config->get( 'AjaxUploadDestCheck' ),
 			'wgAjaxLicensePreview' => $config->get( 'AjaxLicensePreview' ),
 			'wgUploadAutoFill' => !$this->mForReUpload &&
 				// If we received mDestFile from the request, don't autofill
@@ -459,7 +457,6 @@ class UploadForm extends HTMLForm {
 			'wgCheckFileExtensions' => $config->get( 'CheckFileExtensions' ),
 			'wgStrictFileExtensions' => $config->get( 'StrictFileExtensions' ),
 			'wgFileExtensions' => array_values( array_unique( $config->get( 'FileExtensions' ) ) ),
-			'wgCapitalizeUploads' => $this->nsInfo->isCapitalized( NS_FILE ),
 			'wgMaxUploadSize' => $this->mMaxUploadSize,
 			'wgFileCanRotate' => SpecialUpload::rotationEnabled(),
 		];

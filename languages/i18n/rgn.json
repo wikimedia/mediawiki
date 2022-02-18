@@ -14,7 +14,6 @@
 	"tog-newpageshidepatrolled": "Nascònd al pàgin verifichèdi da la lèsta dal pàgin növi",
 	"tog-extendwatchlist": "Slèrga la funziòn \"tènn sot occ\" d'mod ch'us pòsa avdé toti al mudefchi, no sol l'ultma.",
 	"tog-usenewrc": "Drova agl'j ultmi mudèfchi avanzëdi (u j vô JavaScript)",
-	"tog-numberheadings": "Titul d'un paràgraf ch'l'à un nòmar daparlò",
 	"tog-editondblclick": "Mudèfiga al pàgin scjazènd do volt (u j vò JavaScript)",
 	"tog-editsectiononrightclick": "S't'vù l'abilitaziòn ad cambié al seziòn <br />scjazénd e tast a dèstra sora e titul (u j vò JavaScript)",
 	"tog-watchcreations": "Mett insèn al pàgin ch't'e' fat adès, intla lèsta da tní sot'occ",
@@ -335,7 +334,7 @@
 	"watchlist-options": "Scielt int la lèsta d'pàgin da tnì d'öcc",
 	"watching": "Mêt insèn al pàgin da t'nì d'öcc...",
 	"unwatching": "Scanzèla dal pàgin da t'nì d'öcc...",
-	"deletepage": "Scanzela la pàgina",
+	"deletepage-submit": "Scanzela la pàgina",
 	"confirmdeletetext": "Oci! T'ste par scanzlè una pàgina cun tòta la storia d'j su cambiamént.\nPar piasé, cunferma ch't'ê propri l'intenziòn d'fël, ch'at capèss al su conseguenzi e quel ch't fë adès l'è in regola cun al [[{{MediaWiki:Policy-url}}]].",
 	"actioncomplete": "Lavor fät e finì",
 	"deletedtext": "La pàgina \"$1\" l'è stëda scanzlèda.\nGuèrda $2 par avdé la lèsta daglj ultum scanzeladür.",
@@ -487,5 +486,6 @@
 	"watchlisttools-view": "Fam avdè al mudèfich impurtènti",
 	"watchlisttools-edit": "Guèrda e mudèfica la lèsta d'pàgin da tnì d'öcc",
 	"watchlisttools-raw": "Mudèfiga la lèsta - scrètta - dal pàgin da tnì d'öcc",
-	"specialpages": "Pàgin particulèri"
+	"specialpages": "Pàgin particulèri",
+	"deletepage": "Scanzela la pàgina"
 }

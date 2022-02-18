@@ -36,6 +36,7 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
@@ -43,12 +44,14 @@ use MediaWiki\User\UserIdentity;
 use MergeHistory;
 use MovePage;
 use NamespaceInfo;
+use Psr\Log\LoggerInterface;
 use ReadOnlyMode;
 use RepoGroup;
 use Title;
 use TitleFactory;
 use TitleFormatter;
 use WatchedItemStoreInterface;
+use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Rdbms\LBFactory;
 use WikiPage;
 
@@ -62,7 +65,8 @@ class PageCommandFactory implements
 	DeletePageFactory,
 	MergeHistoryFactory,
 	MovePageFactory,
-	RollbackPageFactory
+	RollbackPageFactory,
+	UndeletePageFactory
 {
 
 	/** @var Config */
@@ -126,7 +130,7 @@ class PageCommandFactory implements
 	private $commentStore;
 
 	/** @var BagOStuff */
-	private $dbReplicatedCache;
+	private $mainStash;
 
 	/** @var string */
 	private $localWikiID;
@@ -136,6 +140,15 @@ class PageCommandFactory implements
 
 	/** @var BacklinkCacheFactory */
 	private $backlinkCacheFactory;
+
+	/** @var LoggerInterface */
+	private $undeletePageLogger;
+
+	/** @var PageUpdaterFactory */
+	private $pageUpdaterFactory;
+
+	/** @var ITextFormatter */
+	private $contLangMsgTextFormatter;
 
 	public function __construct(
 		Config $config,
@@ -158,10 +171,13 @@ class PageCommandFactory implements
 		CollationFactory $collationFactory,
 		JobQueueGroup $jobQueueGroup,
 		CommentStore $commentStore,
-		BagOStuff $dbReplicatedCache,
+		BagOStuff $mainStash,
 		string $localWikiID,
 		string $webRequestID,
-		BacklinkCacheFactory $backlinkCacheFactory
+		BacklinkCacheFactory $backlinkCacheFactory,
+		LoggerInterface $undeletePageLogger,
+		PageUpdaterFactory $pageUpdaterFactory,
+		ITextFormatter $contLangMsgTextFormatter
 	) {
 		$this->config = $config;
 		$this->lbFactory = $lbFactory;
@@ -183,10 +199,13 @@ class PageCommandFactory implements
 		$this->collationFactory = $collationFactory;
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->commentStore = $commentStore;
-		$this->dbReplicatedCache = $dbReplicatedCache;
+		$this->mainStash = $mainStash;
 		$this->localWikiID = $localWikiID;
 		$this->webRequestID = $webRequestID;
 		$this->backlinkCacheFactory = $backlinkCacheFactory;
+		$this->undeletePageLogger = $undeletePageLogger;
+		$this->pageUpdaterFactory = $pageUpdaterFactory;
+		$this->contLangMsgTextFormatter = $contLangMsgTextFormatter;
 	}
 
 	/**
@@ -222,14 +241,16 @@ class PageCommandFactory implements
 			$this->jobQueueGroup,
 			$this->commentStore,
 			new ServiceOptions( DeletePage::CONSTRUCTOR_OPTIONS, $this->config ),
-			$this->dbReplicatedCache,
+			$this->mainStash,
 			$this->localWikiID,
 			$this->webRequestID,
 			$this->wikiPageFactory,
 			$this->userFactory,
+			$this->backlinkCacheFactory,
+			$this->namespaceInfo,
+			$this->contLangMsgTextFormatter,
 			$page,
-			$deleter,
-			$this->backlinkCacheFactory
+			$deleter
 		);
 	}
 
@@ -282,7 +303,8 @@ class PageCommandFactory implements
 			$this->userFactory,
 			$this->userEditTracker,
 			$this,
-			$this->collationFactory
+			$this->collationFactory,
+			$this->pageUpdaterFactory
 		);
 	}
 
@@ -313,6 +335,26 @@ class PageCommandFactory implements
 			$page,
 			$performer,
 			$byUser
+		);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function newUndeletePage( ProperPageIdentity $page, Authority $authority ): UndeletePage {
+		return new UndeletePage(
+			$this->hookContainer,
+			$this->jobQueueGroup,
+			$this->lbFactory->getMainLB(),
+			$this->readOnlyMode,
+			$this->repoGroup,
+			$this->undeletePageLogger,
+			$this->revisionStore,
+			$this->wikiPageFactory,
+			$this->pageUpdaterFactory,
+			$this->contentHandlerFactory,
+			$page,
+			$authority
 		);
 	}
 }

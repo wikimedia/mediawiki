@@ -9,11 +9,11 @@ use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWikiUnitTestCase;
 use User;
-use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\LoadBalancer;
 
 /**
- * @covers MediaWiki\User\UserNamePrefixSearch
+ * @covers \MediaWiki\User\UserNamePrefixSearch
  * @author DannyS712
  */
 class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
@@ -51,7 +51,7 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 				->willReturn( $hasHideuser );
 		}
 
-		$database = $this->createMock( Database::class );
+		$database = $this->createMock( DBConnRef::class );
 		$database->expects( $this->once() )
 			->method( 'anyString' )
 			->willReturn( 'anyStringGoesHere' );

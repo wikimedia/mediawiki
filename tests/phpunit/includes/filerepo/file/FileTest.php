@@ -13,7 +13,7 @@ class FileTest extends MediaWikiMediaTestCase {
 	public function testCanAnimateThumbIfAppropriate( $filename, $expected ) {
 		$this->setMwGlobals( 'wgMaxAnimatedGifArea', 9000 );
 		$file = $this->dataFile( $filename );
-		$this->assertEquals( $file->canAnimateThumbIfAppropriate(), $expected );
+		$this->assertEquals( $expected, $file->canAnimateThumbIfAppropriate() );
 	}
 
 	public function providerCanAnimate() {
@@ -139,7 +139,7 @@ class FileTest extends MediaWikiMediaTestCase {
 	 */
 	public function testGetThumbnailSource( $data ) {
 		$backendMock = $this->getMockBuilder( FSFileBackend::class )
-			->setConstructorArgs( [ [ 'name' => 'backendMock', 'wikiId' => wfWikiID() ] ] )
+			->setConstructorArgs( [ [ 'name' => 'backendMock', 'wikiId' => WikiMap::getCurrentWikiId() ] ] )
 			->getMock();
 
 		$repoMock = $this->getMockBuilder( FileRepo::class )
@@ -252,7 +252,7 @@ class FileTest extends MediaWikiMediaTestCase {
 		$this->setMwGlobals( 'wgThumbnailBuckets', $data['buckets'] );
 
 		$backendMock = $this->getMockBuilder( FSFileBackend::class )
-			->setConstructorArgs( [ [ 'name' => 'backendMock', 'wikiId' => wfWikiID() ] ] )
+			->setConstructorArgs( [ [ 'name' => 'backendMock', 'wikiId' => WikiMap::getCurrentWikiId() ] ] )
 			->getMock();
 
 		$repoMock = $this->getMockBuilder( FileRepo::class )
@@ -403,7 +403,7 @@ class FileTest extends MediaWikiMediaTestCase {
 		$fileMock->method( 'getHeight' )->willReturn( $dim[3] );
 
 		$actual = $fileMock->getDisplayWidthHeight( $dim[0], $dim[1] );
-		$this->assertEquals( $actual, $expected );
+		$this->assertEquals( $expected, $actual );
 	}
 
 	public function providerGetDisplayWidthHeight() {
@@ -477,7 +477,7 @@ class FileTest extends MediaWikiMediaTestCase {
 	 * @covers File::getHandlerState
 	 */
 	public function testSetHandlerState() {
-		$obj = new stdClass;
+		$obj = (object)[];
 		$file = new class extends File {
 			public function __construct() {
 			}

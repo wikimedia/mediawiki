@@ -93,7 +93,7 @@ class ReassignEdits extends Maintenance {
 			[],
 			$revQueryInfo['joins']
 		);
-		$row = $dbw->fetchObject( $res );
+		$row = $res->fetchObject();
 		$cur = $row->count;
 		$this->output( "found {$cur}.\n" );
 
@@ -104,7 +104,7 @@ class ReassignEdits extends Maintenance {
 			[ 'ar_actor' => $fromActorId ],
 			__METHOD__
 		);
-		$row = $dbw->fetchObject( $res );
+		$row = $res->fetchObject();
 		$del = $row->count;
 		$this->output( "found {$del}.\n" );
 
@@ -117,7 +117,7 @@ class ReassignEdits extends Maintenance {
 				[ 'rc_actor' => $fromActorId ],
 				__METHOD__
 			);
-			$row = $dbw->fetchObject( $res );
+			$row = $res->fetchObject();
 			$rec = $row->count;
 			$this->output( "found {$rec}.\n" );
 		} else {
@@ -128,43 +128,41 @@ class ReassignEdits extends Maintenance {
 		$this->output( "\nTotal entries to change: {$total}\n" );
 
 		$toActorId = $actorNormalization->acquireActorId( $to, $dbw );
-		if ( !$report ) {
-			if ( $total ) {
-				# Reassign edits
-				$this->output( "\nReassigning current edits..." );
-				if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_TEMP ) {
-					$dbw->update(
-						'revision_actor_temp',
-						[ 'revactor_actor' => $toActorId ],
-						[ 'revactor_actor' => $fromActorId ],
-						__METHOD__
-					);
-				}
-				if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-					$dbw->update(
-						'revision',
-						[ 'rev_actor' => $toActorId ],
-						[ 'rev_actor' => $fromActorId ],
-						__METHOD__
-					);
-				}
-				$this->output( "done.\nReassigning deleted edits..." );
-				$dbw->update( 'archive',
-					[ 'ar_actor' => $toActorId ],
-					[ 'ar_actor' => $fromActorId ],
+		if ( !$report && $total ) {
+			# Reassign edits
+			$this->output( "\nReassigning current edits..." );
+			if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_TEMP ) {
+				$dbw->update(
+					'revision_actor_temp',
+					[ 'revactor_actor' => $toActorId ],
+					[ 'revactor_actor' => $fromActorId ],
+					__METHOD__
+				);
+			}
+			if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+				$dbw->update(
+					'revision',
+					[ 'rev_actor' => $toActorId ],
+					[ 'rev_actor' => $fromActorId ],
+					__METHOD__
+				);
+			}
+			$this->output( "done.\nReassigning deleted edits..." );
+			$dbw->update( 'archive',
+				[ 'ar_actor' => $toActorId ],
+				[ 'ar_actor' => $fromActorId ],
+				__METHOD__
+			);
+			$this->output( "done.\n" );
+			# Update recent changes if required
+			if ( $rc ) {
+				$this->output( "Updating recent changes..." );
+				$dbw->update( 'recentchanges',
+					[ 'rc_actor' => $toActorId ],
+					[ 'rc_actor' => $fromActorId ],
 					__METHOD__
 				);
 				$this->output( "done.\n" );
-				# Update recent changes if required
-				if ( $rc ) {
-					$this->output( "Updating recent changes..." );
-					$dbw->update( 'recentchanges',
-						[ 'rc_actor' => $toActorId ],
-						[ 'rc_actor' => $fromActorId ],
-						__METHOD__
-					);
-					$this->output( "done.\n" );
-				}
 			}
 		}
 

@@ -44,7 +44,7 @@ class DatabaseSqlite extends Database {
 	/** @var int The number of rows affected as an integer */
 	protected $lastAffectedRowCount;
 
-	/** @var PDO */
+	/** @var PDO|null */
 	protected $conn;
 
 	/** @var FSLockManager (hopefully on the same server as the DB) */
@@ -57,10 +57,10 @@ class DatabaseSqlite extends Database {
 	private $sessionAttachedDbs = [];
 
 	/** @var string[] See https://www.sqlite.org/lang_transaction.html */
-	private static $VALID_TRX_MODES = [ '', 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ];
+	private const VALID_TRX_MODES = [ '', 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ];
 
 	/** @var string[][] */
-	private static $VALID_PRAGMAS = [
+	private const VALID_PRAGMAS = [
 		// Optimizations or requirements regarding fsync() usage
 		'synchronous' => [ 'EXTRA', 'FULL', 'NORMAL', 'OFF' ],
 		// Optimizations for TEMPORARY tables
@@ -152,11 +152,11 @@ class DatabaseSqlite extends Database {
 		// Check if the database file already exists but is non-readable
 		if ( !self::isProcessMemoryPath( $path ) && is_file( $path ) && !is_readable( $path ) ) {
 			throw $this->newExceptionAfterConnectError( 'SQLite database file is not readable' );
-		} elseif ( !in_array( $this->trxMode, self::$VALID_TRX_MODES, true ) ) {
+		} elseif ( !in_array( $this->trxMode, self::VALID_TRX_MODES, true ) ) {
 			throw $this->newExceptionAfterConnectError( "Got mode '{$this->trxMode}' for BEGIN" );
 		}
 
-		$attributes = [];
+		$attributes = [ PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT ];
 		if ( $this->getFlag( self::DBO_PERSISTENT ) ) {
 			// Persistent connections can avoid some schema index reading overhead.
 			// On the other hand, they can cause horrible contention with DBO_TRX.
@@ -180,14 +180,14 @@ class DatabaseSqlite extends Database {
 		$this->currentDomain = new DatabaseDomain( $db, null, $tablePrefix );
 
 		try {
-			$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY;
+			$flags = self::QUERY_CHANGE_TRX | self::QUERY_NO_RETRY;
 			// Enforce LIKE to be case sensitive, just like MySQL
 			$this->query( 'PRAGMA case_sensitive_like = 1', __METHOD__, $flags );
 			// Set any connection-level custom PRAGMA options
-			$pragmas = array_intersect_key( $this->connectionVariables, self::$VALID_PRAGMAS );
+			$pragmas = array_intersect_key( $this->connectionVariables, self::VALID_PRAGMAS );
 			$pragmas += $this->getDefaultPragmas();
 			foreach ( $pragmas as $name => $value ) {
-				$allowed = self::$VALID_PRAGMAS[$name];
+				$allowed = self::VALID_PRAGMAS[$name];
 				if ( in_array( $value, $allowed, true ) ) {
 					$this->query( "PRAGMA $name = $value", __METHOD__, $flags );
 				}
@@ -334,7 +334,7 @@ class DatabaseSqlite extends Database {
 		return $this->query(
 			"ATTACH DATABASE $encFile AS $name",
 			$fname,
-			self::QUERY_IGNORE_DBO_TRX
+			self::QUERY_CHANGE_TRX
 		);
 	}
 
@@ -462,7 +462,7 @@ class DatabaseSqlite extends Database {
 		$res = $this->query(
 			"SELECT 1 FROM sqlite_master WHERE type='table' AND name=$encTable",
 			__METHOD__,
-			self::QUERY_IGNORE_DBO_TRX
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
 
 		return $res->numRows() ? true : false;
@@ -480,7 +480,7 @@ class DatabaseSqlite extends Database {
 	 */
 	public function indexInfo( $table, $index, $fname = __METHOD__ ) {
 		$sql = 'PRAGMA index_info(' . $this->addQuotes( $this->indexName( $index ) ) . ')';
-		$res = $this->query( $sql, $fname, self::QUERY_IGNORE_DBO_TRX );
+		$res = $this->query( $sql, $fname, self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE );
 		if ( !$res || $res->numRows() == 0 ) {
 			return false;
 		}
@@ -564,7 +564,11 @@ class DatabaseSqlite extends Database {
 		$encTable = $this->tableName( $table );
 		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
 		// https://sqlite.org/lang_insert.html
-		$this->query( "REPLACE INTO $encTable ($sqlColumns) VALUES $sqlTuples", $fname );
+		$this->query(
+			"REPLACE INTO $encTable ($sqlColumns) VALUES $sqlTuples",
+			$fname,
+			self::QUERY_CHANGE_ROWS
+		);
 	}
 
 	/**
@@ -611,7 +615,7 @@ class DatabaseSqlite extends Database {
 		return $this->lastErrno() == 8; // SQLITE_READONLY;
 	}
 
-	public function wasConnectionError( $errno ) {
+	protected function isConnectionError( $errno ) {
 		return $errno == 17; // SQLITE_SCHEMA;
 	}
 
@@ -664,8 +668,11 @@ class DatabaseSqlite extends Database {
 	 */
 	public function fieldInfo( $table, $field ) {
 		$tableName = $this->tableName( $table );
-		$sql = 'PRAGMA table_info(' . $this->addQuotes( $tableName ) . ')';
-		$res = $this->query( $sql, __METHOD__, self::QUERY_IGNORE_DBO_TRX );
+		$res = $this->query(
+			'PRAGMA table_info(' . $this->addQuotes( $tableName ) . ')',
+			__METHOD__,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 		foreach ( $res as $row ) {
 			if ( $row->name == $field ) {
 				return new SQLiteField( $row, $tableName );
@@ -677,9 +684,9 @@ class DatabaseSqlite extends Database {
 
 	protected function doBegin( $fname = '' ) {
 		if ( $this->trxMode != '' ) {
-			$this->query( "BEGIN {$this->trxMode}", $fname );
+			$this->query( "BEGIN {$this->trxMode}", $fname, self::QUERY_CHANGE_TRX );
 		} else {
-			$this->query( 'BEGIN', $fname );
+			$this->query( 'BEGIN', $fname, self::QUERY_CHANGE_TRX );
 		}
 	}
 
@@ -813,7 +820,7 @@ class DatabaseSqlite extends Database {
 			$s = preg_replace( '/\bauto_increment\b/i', 'AUTOINCREMENT', $s );
 			// No explicit options
 			$s = preg_replace( '/\)[^);]*(;?)\s*$/', ')\1', $s );
-			// AUTOINCREMENT should immedidately follow PRIMARY KEY
+			// AUTOINCREMENT should immediately follow PRIMARY KEY
 			$s = preg_replace( '/primary key (.*?) autoincrement/i', 'PRIMARY KEY AUTOINCREMENT $1', $s );
 		} elseif ( preg_match( '/^\s*CREATE (\s*(?:UNIQUE|FULLTEXT)\s+)?INDEX/i', $s ) ) {
 			// No truncated indexes
@@ -889,44 +896,50 @@ class DatabaseSqlite extends Database {
 	public function duplicateTableStructure(
 		$oldName, $newName, $temporary = false, $fname = __METHOD__
 	) {
-		$queryFlags = self::QUERY_PSEUDO_PERMANENT | self::QUERY_IGNORE_DBO_TRX;
-
 		$res = $this->query(
 			"SELECT sql FROM sqlite_master WHERE tbl_name=" .
 			$this->addQuotes( $oldName ) . " AND type='table'",
 			$fname,
-			$queryFlags
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$obj = $this->fetchObject( $res );
+		$obj = $res->fetchObject();
 		if ( !$obj ) {
 			throw new RuntimeException( "Couldn't retrieve structure for table $oldName" );
 		}
-		$sql = $obj->sql;
-		$sql = preg_replace(
+		$sqlCreateTable = $obj->sql;
+		$sqlCreateTable = preg_replace(
 			'/(?<=\W)"?' .
 				preg_quote( trim( $this->addIdentifierQuotes( $oldName ), '"' ), '/' ) .
 				'"?(?=\W)/',
 			$this->addIdentifierQuotes( $newName ),
-			$sql,
+			$sqlCreateTable,
 			1
 		);
 		if ( $temporary ) {
-			if ( preg_match( '/^\\s*CREATE\\s+VIRTUAL\\s+TABLE\b/i', $sql ) ) {
+			if ( preg_match( '/^\\s*CREATE\\s+VIRTUAL\\s+TABLE\b/i', $sqlCreateTable ) ) {
 				$this->queryLogger->debug(
 					"Table $oldName is virtual, can't create a temporary duplicate." );
 			} else {
-				$sql = str_replace( 'CREATE TABLE', 'CREATE TEMPORARY TABLE', $sql );
+				$sqlCreateTable = str_replace(
+					'CREATE TABLE',
+					'CREATE TEMPORARY TABLE',
+					$sqlCreateTable
+				 );
 			}
 		}
 
 		// @phan-suppress-next-line SecurityCheck-SQLInjection SQL is taken from database
-		$res = $this->query( $sql, $fname, $queryFlags );
+		$res = $this->query(
+			$sqlCreateTable,
+			$fname,
+			self::QUERY_CHANGE_SCHEMA | self::QUERY_PSEUDO_PERMANENT
+		);
 
 		// Take over indexes
 		$indexList = $this->query(
 			'PRAGMA INDEX_LIST(' . $this->addQuotes( $oldName ) . ')',
 			$fname,
-			$queryFlags
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
 		foreach ( $indexList as $index ) {
 			if ( strpos( $index->name, 'sqlite_autoindex' ) === 0 ) {
@@ -946,7 +959,7 @@ class DatabaseSqlite extends Database {
 			$indexInfo = $this->query(
 				'PRAGMA INDEX_INFO(' . $this->addQuotes( $index->name ) . ')',
 				$fname,
-				$queryFlags
+				self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 			);
 			$fields = [];
 			foreach ( $indexInfo as $indexInfoRow ) {
@@ -955,7 +968,11 @@ class DatabaseSqlite extends Database {
 
 			$sqlIndex .= '(' . implode( ',', $fields ) . ')';
 
-			$this->query( $sqlIndex, __METHOD__ );
+			$this->query(
+				$sqlIndex,
+				__METHOD__,
+				self::QUERY_CHANGE_SCHEMA | self::QUERY_PSEUDO_PERMANENT
+			);
 		}
 
 		return $res;
@@ -973,7 +990,7 @@ class DatabaseSqlite extends Database {
 		$result = $this->query(
 			"SELECT name FROM sqlite_master WHERE type = 'table'",
 			$fname,
-			self::QUERY_IGNORE_DBO_TRX
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
 
 		$endArray = [];
@@ -999,7 +1016,7 @@ class DatabaseSqlite extends Database {
 
 		// No CASCADE support; https://www.sqlite.org/lang_droptable.html
 		$sql = "DROP TABLE " . $this->tableName( $table );
-		$this->query( $sql, $fname, self::QUERY_IGNORE_DBO_TRX );
+		$this->query( $sql, $fname, self::QUERY_CHANGE_SCHEMA );
 
 		return true;
 	}

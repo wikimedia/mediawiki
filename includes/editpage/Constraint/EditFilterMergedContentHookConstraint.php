@@ -55,7 +55,7 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 	private $status;
 
 	/** @var string */
-	private $hookError;
+	private $hookError = '';
 
 	/**
 	 * @param HookContainer $hookContainer
@@ -77,7 +77,6 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 		$this->summary = $summary;
 		$this->minorEdit = $minorEdit;
 		$this->status = Status::newGood();
-		$this->hookError = '';
 	}
 
 	public function checkConstraint(): string {

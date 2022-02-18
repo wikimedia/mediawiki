@@ -1,0 +1,42 @@
+/* stylelint-disable selector-class-pattern */
+
+/**
+ * NOTE: This file is exclusively used by the legacy stylesheet, deprecated in 1.37
+ * It is frozen, please don't add to it further.
+ */
+
+/* @noflip */ div.tright,
+div.floatright,
+table.floatright {
+	clear: right;
+	float: right;
+}
+
+/* @noflip */ div.tleft,
+div.floatleft,
+table.floatleft {
+	float: left;
+	clear: left;
+}
+
+/* Directionality-specific styles for thumbnails - their positioning depends on content language */
+
+/* @noflip */
+.mw-content-ltr .thumbcaption {
+	text-align: left;
+}
+
+/* @noflip */
+.mw-content-ltr .magnify {
+	float: right;
+}
+
+/* @noflip */
+.mw-content-rtl .thumbcaption {
+	text-align: right;
+}
+
+/* @noflip */
+.mw-content-rtl .magnify {
+	float: left;
+}

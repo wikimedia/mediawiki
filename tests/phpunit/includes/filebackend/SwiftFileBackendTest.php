@@ -41,7 +41,7 @@ class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 	public function testExtractPostableContentHeaders( $raw, $sanitized ) {
 		$hdrs = $this->backend->extractMutableContentHeaders( $raw );
 
-		$this->assertEquals( $hdrs, $sanitized, 'Correct extractPostableContentHeaders() result' );
+		$this->assertEquals( $sanitized, $hdrs, 'Correct extractPostableContentHeaders() result' );
 	}
 
 	public static function provider_testExtractPostableContentHeaders() {
@@ -141,7 +141,7 @@ class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 	public function testGetMetadataHeaders( $raw, $sanitized ) {
 		$hdrs = $this->backend->extractMetadataHeaders( $raw );
 
-		$this->assertEquals( $hdrs, $sanitized, 'getMetadataHeaders() has expected result' );
+		$this->assertEquals( $sanitized, $hdrs, 'getMetadataHeaders() has unexpected result' );
 	}
 
 	public static function provider_testGetMetadataHeaders() {
@@ -169,7 +169,7 @@ class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 	public function testGetMetadata( $raw, $sanitized ) {
 		$hdrs = $this->backend->getMetadataFromHeaders( $raw );
 
-		$this->assertEquals( $hdrs, $sanitized, 'getMetadata() has expected result' );
+		$this->assertEquals( $sanitized, $hdrs, 'getMetadata() has unexpected result' );
 	}
 
 	public static function provider_testGetMetadata() {

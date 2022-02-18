@@ -7,7 +7,7 @@
 	 * extra config from a matching PHP widget (defined in HTMLFormElement.php) when constructed using
 	 * OO.ui.infuse().
 	 *
-	 * Currently only supports passing 'hide-if' data.
+	 * Currently only supports passing 'cond-state' data.
 	 *
 	 * @ignore
 	 * @param {Object} [config] Configuration options
@@ -17,12 +17,7 @@
 		config = config || {};
 
 		// Properties
-		this.hideIf = config.hideIf;
-
-		// Initialization
-		if ( this.hideIf ) {
-			this.$element.addClass( 'mw-htmlform-hide-if' );
-		}
+		this.condState = config.condState;
 	};
 
 	mw.htmlform.FieldLayout = function ( config ) {

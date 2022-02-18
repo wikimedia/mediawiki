@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,7 +35,7 @@ class DBSiteStoreTest extends MediaWikiIntegrationTestCase {
 	private function newDBSiteStore() {
 		// NOTE: Use the real DB load balancer for now. Eventually, the test framework should
 		// provide a LoadBalancer that is safe to use in unit tests.
-		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$lb = $this->getServiceContainer()->getDBLoadBalancer();
 		return new DBSiteStore( $lb );
 	}
 
@@ -116,7 +114,7 @@ class DBSiteStoreTest extends MediaWikiIntegrationTestCase {
 		// cache in $store1, but not the internal cache in store2.
 		$this->assertTrue( $store1->clear() );
 
-		// sanity check: $store2 should have a stale cache now
+		// check: $store2 should have a stale cache now
 		$this->assertNotNull( $store2->getSite( 'enwiki' ) );
 
 		// purge cache

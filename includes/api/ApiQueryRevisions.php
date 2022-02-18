@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
@@ -57,6 +58,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param NameTableStore $changeTagDefStore
 	 * @param ActorMigration $actorMigration
+	 * @param ContentRenderer $contentRenderer
 	 * @param ContentTransformer $contentTransformer
 	 */
 	public function __construct(
@@ -68,6 +70,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		SlotRoleRegistry $slotRoleRegistry,
 		NameTableStore $changeTagDefStore,
 		ActorMigration $actorMigration,
+		ContentRenderer $contentRenderer,
 		ContentTransformer $contentTransformer
 	) {
 		parent::__construct(
@@ -78,6 +81,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$contentHandlerFactory,
 			$parserFactory,
 			$slotRoleRegistry,
+			$contentRenderer,
 			$contentTransformer
 		);
 		$this->revisionStore = $revisionStore;
@@ -86,8 +90,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	}
 
 	protected function run( ApiPageSet $resultPageSet = null ) {
-		global $wgActorTableSchemaMigrationStage;
-
 		$params = $this->extractRequestParams( false );
 
 		// If any of those parameters are used, work in 'enumeration' mode.
@@ -147,7 +149,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		$useIndex = [];
 
 		if ( $params['user'] !== null &&
-			( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_TEMP )
+			( $this->getConfig()->get( 'ActorTableSchemaMigrationStage' ) & SCHEMA_COMPAT_READ_TEMP )
 		) {
 			// We're going to want to use the page_actor_timestamp index (on revision_actor_temp)
 			// so use that table's denormalized fields.
@@ -318,7 +320,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$this->addOption( 'ORDER BY', [ "rev_timestamp $sort", "rev_id $sort" ] );
 
 			// There is only one ID, use it
-			$ids = array_keys( $pageSet->getGoodTitles() );
+			$ids = array_keys( $pageSet->getGoodPages() );
 			$this->addWhereFld( $pageField, reset( $ids ) );
 
 			if ( $params['user'] !== null ) {
@@ -372,16 +374,16 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		} elseif ( $pageCount > 0 ) {
 			// Always targets the rev_page_id index
 
-			$titles = $pageSet->getGoodTitles();
+			$pageids = array_keys( $pageSet->getGoodPages() );
 
 			// When working in multi-page non-enumeration mode,
 			// limit to the latest revision only
 			$this->addWhere( 'page_latest=rev_id' );
 
 			// Get all page IDs
-			$this->addWhereFld( 'page_id', array_keys( $titles ) );
+			$this->addWhereFld( 'page_id', $pageids );
 			// Every time someone relies on equality propagation, god kills a kitten :)
-			$this->addWhereFld( 'rev_page', array_keys( $titles ) );
+			$this->addWhereFld( 'rev_page', $pageids );
 
 			if ( $params['continue'] !== null ) {
 				$cont = explode( '|', $params['continue'] );

@@ -9,7 +9,7 @@ class ApiPrefixUniquenessTest extends MediaWikiIntegrationTestCase {
 
 	public function testPrefixes() {
 		$main = new ApiMain( new FauxRequest() );
-		$query = new ApiQuery( $main, 'foo' );
+		$query = $main->getModuleManager()->getModule( 'query' );
 		$moduleManager = $query->getModuleManager();
 
 		$modules = $moduleManager->getNames();

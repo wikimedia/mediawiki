@@ -105,40 +105,44 @@ function wfLoadSkins( array $skins ) {
 }
 
 /**
- * Like array_diff( $a, $b ) except that it works with two-dimensional arrays.
- * @param array $a
- * @param array $b
+ * Like array_diff( $arr1, $arr2 ) except that it works with two-dimensional arrays.
+ * @param string[]|array[] $arr1
+ * @param string[]|array[] $arr2
  * @return array
  */
-function wfArrayDiff2( $a, $b ) {
-	return array_udiff( $a, $b, 'wfArrayDiff2_cmp' );
-}
-
-/**
- * @param array|string $a
- * @param array|string $b
- * @return int
- */
-function wfArrayDiff2_cmp( $a, $b ) {
-	if ( is_string( $a ) && is_string( $b ) ) {
-		return strcmp( $a, $b );
-	} elseif ( count( $a ) !== count( $b ) ) {
-		return count( $a ) <=> count( $b );
-	} else {
-		reset( $a );
-		reset( $b );
-		while ( key( $a ) !== null && key( $b ) !== null ) {
-			$valueA = current( $a );
-			$valueB = current( $b );
-			$cmp = strcmp( $valueA, $valueB );
-			if ( $cmp !== 0 ) {
-				return $cmp;
-			}
-			next( $a );
-			next( $b );
+function wfArrayDiff2( $arr1, $arr2 ) {
+	/**
+	 * @param string|array $a
+	 * @param string|array $b
+	 */
+	$comparator = static function ( $a, $b ): int {
+		if ( is_string( $a ) && is_string( $b ) ) {
+			return strcmp( $a, $b );
 		}
-		return 0;
-	}
+		if ( !is_array( $a ) && !is_array( $b ) ) {
+			throw new InvalidArgumentException(
+				'This function assumes that array elements are all strings or all arrays'
+			);
+		}
+		if ( count( $a ) !== count( $b ) ) {
+			return count( $a ) <=> count( $b );
+		} else {
+			reset( $a );
+			reset( $b );
+			while ( key( $a ) !== null && key( $b ) !== null ) {
+				$valueA = current( $a );
+				$valueB = current( $b );
+				$cmp = strcmp( $valueA, $valueB );
+				if ( $cmp !== 0 ) {
+					return $cmp;
+				}
+				next( $a );
+				next( $b );
+			}
+			return 0;
+		}
+	};
+	return array_udiff( $arr1, $arr2, $comparator );
 }
 
 /**
@@ -399,7 +403,7 @@ function wfCgiToArray( $query ) {
 				$k = substr( $k, 0, -1 );
 				$temp = [ $k => $temp ];
 			}
-			if ( isset( $ret[$key] ) ) {
+			if ( isset( $ret[$key] ) && is_array( $ret[$key] ) ) {
 				$ret[$key] = array_merge( $ret[$key], $temp );
 			} else {
 				$ret[$key] = $temp;
@@ -1058,41 +1062,24 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
 }
 
 /**
- * @todo document
- * @todo Move logic to MediaWiki.php
+ * @deprecated since 1.38
  */
 function wfLogProfilingData() {
-	$context = RequestContext::getMain();
-
+	wfDeprecated( __FUNCTION__, '1.38' );
 	$profiler = Profiler::instance();
-	$profiler->setContext( $context );
 	$profiler->logData();
 
 	// Send out any buffered statsd metrics as needed
 	MediaWiki::emitBufferedStatsdData(
 		MediaWikiServices::getInstance()->getStatsdDataFactory(),
-		$context->getConfig()
+		MediaWikiServices::getInstance()->getMainConfig()
 	);
 }
 
 /**
- * Increment a statistics counter
- *
- * @param string $key
- * @param int $count
- * @return void
- *
- * @deprecated since 1.36 (emits deprecation warnings since 1.37),
- * use MediaWikiServices::getInstance()->getStatsdDataFactory()->updateCount() instead
- */
-function wfIncrStats( $key, $count = 1 ) {
-	wfDeprecated( __FUNCTION__, '1.36' );
-	$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-	$stats->updateCount( $key, $count );
-}
-
-/**
  * Check whether the wiki is in read-only mode.
+ *
+ * @deprecated since 1.38, use ReadOnlyMode::isReadOnly() instead
  *
  * @return bool
  */
@@ -1106,6 +1093,8 @@ function wfReadOnly() {
  *
  * This checks wfConfiguredReadOnlyReason() and the main load balancer
  * for replica DB lag. This may result in DB connection being made.
+ *
+ * @deprecated since 1.38, use ReadOnlyMode::getReason() instead
  *
  * @return string|bool String when in read-only mode; false otherwise
  */
@@ -1193,7 +1182,7 @@ function wfMessage( $key, ...$params ) {
 /**
  * This function accepts multiple message keys and returns a message instance
  * for the first message which is non-empty. If all messages are empty then an
- * instance of the first message key is returned.
+ * instance of the last message key is returned.
  *
  * @param string ...$keys Message keys
  * @return Message
@@ -1654,33 +1643,6 @@ function wfClearOutputBuffers() {
 }
 
 /**
- * Checks if a given MIME type matches any of the keys in the given
- * array. Basic wildcards are accepted in the array keys.
- *
- * Returns the matching MIME type (or wildcard) if a match, otherwise
- * NULL if no match.
- *
- * @param string $type
- * @param array $avail
- * @return string
- * @internal
- */
-function mimeTypeMatch( $type, $avail ) {
-	if ( array_key_exists( $type, $avail ) ) {
-		return $type;
-	} else {
-		$mainType = explode( '/', $type )[0];
-		if ( array_key_exists( "$mainType/*", $avail ) ) {
-			return "$mainType/*";
-		} elseif ( array_key_exists( '*/*', $avail ) ) {
-			return '*/*';
-		} else {
-			return null;
-		}
-	}
-}
-
-/**
  * Get a timestamp string in one of various formats
  *
  * @param mixed $outputtype A timestamp in one of the supported formats, the
@@ -1773,7 +1735,7 @@ function wfTempDir() {
 function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	global $wgDirectoryMode;
 
-	if ( FileBackend::isStoragePath( $dir ) ) { // sanity
+	if ( FileBackend::isStoragePath( $dir ) ) {
 		throw new MWException( __FUNCTION__ . " given storage path '$dir'." );
 	}
 
@@ -1893,11 +1855,12 @@ function wfStringToBool( $val ) {
 }
 
 /**
- * Version of escapeshellarg() that works better on Windows.
+ * Locale-independent version of escapeshellarg()
  *
  * Originally, this fixed the incorrect use of single quotes on Windows
  * (https://bugs.php.net/bug.php?id=26285) and the locale problems on Linux in
- * PHP 5.2.6+ (bug backported to earlier distro releases of PHP).
+ * PHP 5.2.6+ (https://bugs.php.net/bug.php?id=54391). The second bug is still
+ * open as of 2021.
  *
  * @param string|string[] ...$args strings to escape and glue together,
  *  or a single array of strings parameter
@@ -2178,10 +2141,12 @@ function wfRelativePath( $path, $from ) {
  * Get an ASCII string identifying this wiki
  * This is used as a prefix in memcached keys
  *
- * @deprecated since 1.35 Use WikiMap::getCurrentWikiId()
+ * @deprecated since 1.35, hard deprecated since 1.38
+ * Use WikiMap::getCurrentWikiId() instead
  * @return string
  */
 function wfWikiID() {
+	wfDeprecated( __FUNCTION__, '1.35' );
 	global $wgDBprefix, $wgDBname;
 
 	if ( $wgDBprefix ) {
@@ -2469,21 +2434,27 @@ function wfShorthandToInteger( $string = '', $default = -1 ) {
 /**
  * Get a specific cache object.
  *
- * @deprecated since 1.32, use ObjectCache::getInstance() instead
+ * @deprecated since 1.32, hard deprecated since 1.38
+ * Use ObjectCache::getInstance() instead
+ *
  * @param int|string $cacheType A CACHE_* constants, or other key in $wgObjectCaches
  * @return BagOStuff
  */
 function wfGetCache( $cacheType ) {
+	wfDeprecated( __FUNCTION__, '1.32' );
 	return ObjectCache::getInstance( $cacheType );
 }
 
 /**
  * Get the main cache object
  *
- * @deprecated since 1.32, use ObjectCache::getLocalClusterInstance() instead
+ * @deprecated since 1.32, hard deprecated since 1.38
+ * Use ObjectCache::getLocalClusterInstance() instead
+ *
  * @return BagOStuff
  */
 function wfGetMainCache() {
+	wfDeprecated( __FUNCTION__, '1.32' );
 	return ObjectCache::getLocalClusterInstance();
 }
 

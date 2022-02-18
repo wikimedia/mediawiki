@@ -96,17 +96,19 @@ abstract class BagOStuff implements
 	 */
 	protected $wrapperInfoByPrefix = [];
 
-	/** @var int[] Map of (ATTR_* class constant => QOS_* class constant) */
+	/** @var int[] Map of (BagOStuff:ATTR_* constant => BagOStuff:QOS_* constant) */
 	protected $attrMap = [];
 
 	/** @var string Default keyspace; used by makeKey() */
 	protected $keyspace;
 
-	/**
-	 * @var bool Whether to send debug log entries to the SPI logger instance
-	 * @deprecated since 1.36 -- unused
-	 */
-	protected $debugMode = true;
+	/** @var int BagOStuff:ERR_* constant of the last error that occurred */
+	protected $lastError = self::ERR_NONE;
+	/** @var int Error event sequence number of the last error that occurred */
+	protected $lastErrorId = 0;
+
+	/** @var int Next sequence number to use for watch/error events */
+	protected static $nextErrorMonitorId = 1;
 
 	/** @var float|null */
 	private $wallClockOverride;
@@ -178,14 +180,6 @@ abstract class BagOStuff implements
 	 */
 	public function getLogger(): LoggerInterface {
 		return $this->logger;
-	}
-
-	/**
-	 * @param bool $enabled
-	 * @deprecated since 1.36, always true
-	 */
-	public function setDebug( $enabled ) {
-		wfDeprecated( __METHOD__, '1.36' );
 	}
 
 	/**
@@ -270,7 +264,7 @@ abstract class BagOStuff implements
 	 * The callback function returns the new value given the current value
 	 * (which will be false if not present), and takes the arguments:
 	 * (this BagOStuff, cache key, current value, TTL).
-	 * The TTL parameter is reference set to $exptime. It can be overriden in the callback.
+	 * The TTL parameter is reference set to $exptime. It can be overridden in the callback.
 	 * Nothing is stored nor deleted if the callback returns false.
 	 *
 	 * @param string $key
@@ -435,6 +429,7 @@ abstract class BagOStuff implements
 	 * @param int $value Value to add to $key (default: 1) [optional]
 	 * @param int $flags Bit field of class WRITE_* constants [optional]
 	 * @return int|bool New value or false on failure
+	 * @deprecated Since 1.38
 	 */
 	abstract public function incr( $key, $value = 1, $flags = 0 );
 
@@ -445,6 +440,7 @@ abstract class BagOStuff implements
 	 * @param int $value Value to subtract from $key (default: 1) [optional]
 	 * @param int $flags Bit field of class WRITE_* constants [optional]
 	 * @return int|bool New value or false on failure
+	 * @deprecated Since 1.38
 	 */
 	abstract public function decr( $key, $value = 1, $flags = 0 );
 
@@ -452,31 +448,71 @@ abstract class BagOStuff implements
 	 * Increase the value of the given key (no TTL change) if it exists or create it otherwise
 	 *
 	 * This will create the key with the value $init and TTL $exptime instead if not present.
-	 * Callers should make sure that both ($init - $value) and $exptime are invariants for all
-	 * operations to any given key. The value of $init should be at least that of $value.
+	 * Callers should make sure that both ($init - $step) and $exptime are invariants for all
+	 * operations to any given key. The value of $init should be at least that of $step.
 	 *
 	 * @param string $key Key built via makeKey() or makeGlobalKey()
 	 * @param int $exptime Time-to-live (in seconds) or a UNIX timestamp expiration
-	 * @param int $value Amount to increase the key value by [default: 1]
-	 * @param int|null $init Value to initialize the key to if it does not exist [default: $value]
+	 * @param int $step Amount to increase the key value by [default: 1]
+	 * @param int|null $init Value to initialize the key to if it does not exist [default: $step]
 	 * @param int $flags Bit field of class WRITE_* constants [optional]
 	 * @return int|bool New value or false on failure
 	 * @since 1.24
 	 */
-	abstract public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 );
+	abstract public function incrWithInit( $key, $exptime, $step = 1, $init = null, $flags = 0 );
 
 	/**
-	 * Get the "last error" registered; clearLastError() should be called manually
-	 * @return int ERR_* constant for the "last error" registry
+	 * Get a "watch point" token that can be used to get the "last error" to occur after now
+	 *
+	 * @return int A token that the current error event
+	 * @since 1.38
+	 */
+	public function watchErrors() {
+		return self::$nextErrorMonitorId++;
+	}
+
+	/**
+	 * Get the "last error" registry
+	 *
+	 * The method should be invoked by a caller as part of the following pattern:
+	 *   - The caller invokes watchErrors() to get a "since token"
+	 *   - The caller invokes a sequence of cache operation methods
+	 *   - The caller invokes getLastError() with the "since token"
+	 *
+	 * External callers can also invoke this method as part of the following pattern:
+	 *   - The caller invokes clearLastError()
+	 *   - The caller invokes a sequence of cache operation methods
+	 *   - The caller invokes getLastError()
+	 *
+	 * @param int $watchPoint Only consider errors from after this "watch point" [optional]
+	 * @return int BagOStuff:ERR_* constant for the "last error" registry
+	 * @note Parameters added in 1.38: $watchPoint
 	 * @since 1.23
 	 */
-	abstract public function getLastError();
+	public function getLastError( $watchPoint = 0 ) {
+		return ( $this->lastErrorId > $watchPoint ) ? $this->lastError : self::ERR_NONE;
+	}
 
 	/**
 	 * Clear the "last error" registry
+	 *
+	 * @since 1.23
+	 * @deprecated Since 1.38
+	 */
+	public function clearLastError() {
+		$this->lastError = self::ERR_NONE;
+	}
+
+	/**
+	 * Set the "last error" registry due to a problem encountered during an attempted operation
+	 *
+	 * @param int $error BagOStuff:ERR_* constant
 	 * @since 1.23
 	 */
-	abstract public function clearLastError();
+	protected function setLastError( $error ) {
+		$this->lastError = $error;
+		$this->lastErrorId = self::$nextErrorMonitorId++;
+	}
 
 	/**
 	 * Let a callback be run to avoid wasting time on special blocking calls
@@ -551,8 +587,8 @@ abstract class BagOStuff implements
 	}
 
 	/**
-	 * @param int $flag ATTR_* class constant
-	 * @return int QOS_* class constant
+	 * @param int $flag BagOStuff::ATTR_* constant
+	 * @return int BagOStuff:QOS_* constant
 	 * @since 1.28
 	 */
 	public function getQoS( $flag ) {
@@ -644,7 +680,7 @@ abstract class BagOStuff implements
 	 * encoding.
 	 *
 	 * The provided callback takes a transformed key, having the specified prefix component,
-	 * and extracts the key collection name. For sanity, the callback must be able to handle
+	 * and extracts the key collection name. The callback must be able to handle
 	 * keys that bear the prefix (by coincidence) but do not originate from the wrapper class.
 	 *
 	 * Calls to this method should be idempotent.
@@ -721,9 +757,16 @@ abstract class BagOStuff implements
 	 * @param int $arg0Sig BagOStuff::ARG0_* constant describing argument 0
 	 * @param int $resSig BagOStuff::RES_* constant describing the return value
 	 * @param array $genericArgs Method arguments passed to the wrapper instance
-	 * @return mixed Method result with any resulting cache keys remapped to "generic" keys
+	 * @param BagOStuff $wrapper The wrapper BagOStuff instance using this result
+	 * @return mixed Method result with any keys remapped to "generic" keys
 	 */
-	protected function proxyCall( $method, $arg0Sig, $resSig, array $genericArgs ) {
+	protected function proxyCall(
+		string $method,
+		int $arg0Sig,
+		int $resSig,
+		array $genericArgs,
+		BagOStuff $wrapper
+	) {
 		// Get the corresponding store-specific cache keys...
 		$storeArgs = $genericArgs;
 		switch ( $arg0Sig ) {
@@ -744,7 +787,12 @@ abstract class BagOStuff implements
 		}
 
 		// Result of invoking the method with the corresponding store-specific cache keys
+		$watchPoint = $this->watchErrors();
 		$storeRes = $this->$method( ...$storeArgs );
+		$lastError = $this->getLastError( $watchPoint );
+		if ( $lastError !== self::ERR_NONE ) {
+			$wrapper->setLastError( $lastError );
+		}
 
 		// Convert any store-specific cache keys in the result back to generic cache keys
 		if ( $resSig === self::RES_KEYMAP ) {

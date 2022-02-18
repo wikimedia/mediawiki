@@ -165,7 +165,7 @@ class RollbackPage {
 	 * @return $this
 	 */
 	public function setSummary( ?string $summary ): self {
-		$this->summary = $summary ?: '';
+		$this->summary = $summary ?? '';
 		return $this;
 	}
 
@@ -348,18 +348,11 @@ class RollbackPage {
 			}
 		}
 
-		$updater->setOriginalRevisionId( $targetRevision->getId() );
-		$oldestRevertedRevision = $this->revisionStore->getNextRevision(
-			$targetRevision,
-			RevisionStore::READ_LATEST
+		$updater->markAsRevert(
+			EditResult::REVERT_ROLLBACK,
+			$currentRevision->getId(),
+			$targetRevision->getId()
 		);
-		if ( $oldestRevertedRevision !== null ) {
-			$updater->markAsRevert(
-				EditResult::REVERT_ROLLBACK,
-				$oldestRevertedRevision->getId(),
-				$currentRevision->getId()
-			);
-		}
 
 		// TODO: this logic should not be in the storage layer, it's here for compatibility
 		// with 1.31 behavior. Applying the 'autopatrol' right should be done in the same
@@ -386,7 +379,7 @@ class RollbackPage {
 		}
 
 		// Report if the edit was not created because it did not change the content.
-		if ( $updater->isUnchanged() ) {
+		if ( !$updater->wasRevisionCreated() ) {
 			$result = StatusValue::newGood( [
 				'current-revision-record' => $currentRevision
 			] );
@@ -481,7 +474,7 @@ class RollbackPage {
 	 */
 	private function getSummary( RevisionRecord $current, RevisionRecord $target ): string {
 		$currentEditorForPublic = $current->getUser( RevisionRecord::FOR_PUBLIC );
-		if ( !$this->summary ) {
+		if ( $this->summary === '' ) {
 			if ( !$currentEditorForPublic ) { // no public user name
 				$summary = MessageValue::new( 'revertpage-nouser' );
 			} elseif ( $this->options->get( 'DisableAnonTalk' ) && !$currentEditorForPublic->isRegistered() ) {

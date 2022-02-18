@@ -33,7 +33,7 @@
  */
 class PHPVersionCheck {
 	/** @var string The number of the MediaWiki version used. If you're updating MW_VERSION in Defines.php, you must also update this value. */
-	var $mwVersion = '1.37';
+	var $mwVersion = '1.38';
 
 	/** @var string[] A mapping of PHP functions to PHP extensions. */
 	var $functionsExtensionsMapping = array(
@@ -78,7 +78,7 @@ class PHPVersionCheck {
 	 * Displays an error, if the installed PHP version does not meet the minimum requirement.
 	 */
 	function checkRequiredPHPVersion() {
-		$minimumVersion = '7.3.19';
+		$minimumVersion = '7.2.22';
 
 		/**
 		 * This is a list of known-bad ranges of PHP versions. Syntax is like SemVer – either:
@@ -94,6 +94,7 @@ class PHPVersionCheck {
 		 * Remember to drop irrelevant ranges when bumping $minimumVersion.
 		 */
 		$knownBad = array(
+			'CVE-2019-11048' => '7.3.0 - 7.3.18',
 			// https://bugs.php.net/bug.php?id=79174 as a regression from https://bugs.php.net/bug.php?id=78929
 			'T243667, T291127' => '7.4.0 - 7.4.2'
 		);

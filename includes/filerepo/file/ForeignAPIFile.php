@@ -71,9 +71,7 @@ class ForeignAPIFile extends File {
 		$info = $repo->getImageInfo( $data );
 
 		if ( $info ) {
-			$lastRedirect = isset( $data['query']['redirects'] )
-				? count( $data['query']['redirects'] ) - 1
-				: -1;
+			$lastRedirect = count( $data['query']['redirects'] ?? [] ) - 1;
 			if ( $lastRedirect >= 0 ) {
 				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$newtitle = Title::newFromText( $data['query']['redirects'][$lastRedirect]['to'] );
@@ -136,13 +134,20 @@ class ForeignAPIFile extends File {
 		$otherParams = $this->handler->makeParamString( $params );
 		$width = $params['width'] ?? -1;
 		$height = $params['height'] ?? -1;
+		$thumbUrl = false;
 
-		$thumbUrl = $this->repo->getThumbUrlFromCache(
-			$this->getName(),
-			$width,
-			$height,
-			$otherParams
-		);
+		if ( $width > 0 || $height > 0 ) {
+			// Only query the remote if there are dimensions
+			$thumbUrl = $this->repo->getThumbUrlFromCache(
+				$this->getName(),
+				$width,
+				$height,
+				$otherParams
+			);
+		} elseif ( $this->getMediaType() === MEDIATYPE_AUDIO ) {
+			// This has no dimensions, but we still need to pass a value to getTransform()
+			$thumbUrl = '/';
+		}
 		if ( $thumbUrl === false ) {
 			global $wgLang;
 
@@ -165,7 +170,7 @@ class ForeignAPIFile extends File {
 	 * @return int
 	 */
 	public function getWidth( $page = 1 ) {
-		return isset( $this->mInfo['width'] ) ? intval( $this->mInfo['width'] ) : 0;
+		return (int)( $this->mInfo['width'] ?? 0 );
 	}
 
 	/**
@@ -173,7 +178,7 @@ class ForeignAPIFile extends File {
 	 * @return int
 	 */
 	public function getHeight( $page = 1 ) {
-		return isset( $this->mInfo['height'] ) ? intval( $this->mInfo['height'] ) : 0;
+		return (int)( $this->mInfo['height'] ?? 0 );
 	}
 
 	/**
@@ -316,7 +321,7 @@ class ForeignAPIFile extends File {
 	 */
 	public function getMimeType() {
 		if ( !isset( $this->mInfo['mime'] ) ) {
-			$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
+			$magic = MediaWikiServices::getInstance()->getMimeAnalyzer();
 			$this->mInfo['mime'] = $magic->getMimeTypeFromExtensionOrNull( $this->getExtension() );
 		}
 
@@ -330,7 +335,7 @@ class ForeignAPIFile extends File {
 		if ( isset( $this->mInfo['mediatype'] ) ) {
 			return $this->mInfo['mediatype'];
 		}
-		$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
+		$magic = MediaWikiServices::getInstance()->getMimeAnalyzer();
 
 		return $magic->getMediaType( null, $this->getMimeType() );
 	}
@@ -383,12 +388,10 @@ class ForeignAPIFile extends File {
 
 	private function purgeDescriptionPage() {
 		$services = MediaWikiServices::getInstance();
-		$url = $this->repo->getDescriptionRenderUrl(
-			$this->getName(),
-			$services->getContentLanguage()->getCode()
-		);
+		$langCode = $services->getContentLanguage()->getCode();
 
-		$key = $this->repo->getLocalCacheKey( 'file-remote-description', md5( $url ) );
+		// Key must match File::getDescriptionText
+		$key = $this->repo->getLocalCacheKey( 'file-remote-description', $langCode, md5( $this->getName() ) );
 		$services->getMainWANObjectCache()->delete( $key );
 	}
 

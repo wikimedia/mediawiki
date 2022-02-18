@@ -44,25 +44,23 @@ class ImageListPager extends TablePager {
 	 */
 	protected $mUser = null;
 
-	protected $mSearch = '';
-
 	protected $mIncluding = false;
 
 	protected $mShowAll = false;
 
 	protected $mTableName = 'image';
 
-	/** @var LocalRepo */
-	private $localRepo;
-
 	/** @var CommentStore */
 	private $commentStore;
+
+	/** @var LocalRepo */
+	private $localRepo;
 
 	/** @var UserCache */
 	private $userCache;
 
 	/**
-	 * The unique sort fields for the sort options for unique pagniate
+	 * The unique sort fields for the sort options for unique paginate
 	 */
 	private const INDEX_FIELDS = [
 		'img_timestamp' => [ 'img_timestamp', 'img_name' ],
@@ -72,29 +70,29 @@ class ImageListPager extends TablePager {
 
 	/**
 	 * @param IContextSource $context
+	 * @param CommentStore $commentStore
+	 * @param LinkRenderer $linkRenderer
+	 * @param ILoadBalancer $loadBalancer
+	 * @param RepoGroup $repoGroup
+	 * @param UserCache $userCache
+	 * @param UserNameUtils $userNameUtils
 	 * @param string $userName
 	 * @param string $search
 	 * @param bool $including
 	 * @param bool $showAll
-	 * @param LinkRenderer $linkRenderer
-	 * @param RepoGroup $repoGroup
-	 * @param ILoadBalancer $loadBalancer
-	 * @param CommentStore $commentStore
-	 * @param UserCache $userCache
-	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		IContextSource $context,
+		CommentStore $commentStore,
+		LinkRenderer $linkRenderer,
+		ILoadBalancer $loadBalancer,
+		RepoGroup $repoGroup,
+		UserCache $userCache,
+		UserNameUtils $userNameUtils,
 		$userName,
 		$search,
 		$including,
-		$showAll,
-		LinkRenderer $linkRenderer,
-		RepoGroup $repoGroup,
-		ILoadBalancer $loadBalancer,
-		CommentStore $commentStore,
-		UserCache $userCache,
-		UserNameUtils $userNameUtils
+		$showAll
 	) {
 		$this->setContext( $context );
 
@@ -118,17 +116,6 @@ class ImageListPager extends TablePager {
 			}
 		}
 
-		if ( $search !== '' && !$this->getConfig()->get( 'MiserMode' ) ) {
-			$this->mSearch = $search;
-			$nt = Title::newFromText( $this->mSearch );
-
-			if ( $nt ) {
-				$this->mQueryConds[] = 'LOWER(img_name)' .
-					$dbr->buildLike( $dbr->anyString(),
-						strtolower( $nt->getDBkey() ), $dbr->anyString() );
-			}
-		}
-
 		if ( !$including ) {
 			if ( $this->getRequest()->getText( 'sort', 'img_date' ) == 'img_date' ) {
 				$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
@@ -142,8 +129,8 @@ class ImageListPager extends TablePager {
 		$this->mDb = $dbr;
 
 		parent::__construct( $context, $linkRenderer );
-		$this->localRepo = $repoGroup->getLocalRepo();
 		$this->commentStore = $commentStore;
+		$this->localRepo = $repoGroup->getLocalRepo();
 		$this->userCache = $userCache;
 	}
 
@@ -162,13 +149,10 @@ class ImageListPager extends TablePager {
 	 * @param string $userName Unescaped user name
 	 */
 	protected function outputUserDoesNotExist( $userName ) {
-		$this->getOutput()->wrapWikiMsg(
-			"<div class=\"mw-userpage-userdoesnotexist error\">\n$1\n</div>",
-			[
-				'listfiles-userdoesnotexist',
-				wfEscapeWikiText( $userName ),
-			]
-		);
+		$this->getOutput()->addHtml( Html::warningBox(
+			$this->getOutput()->msg( 'listfiles-userdoesnotexist', wfEscapeWikiText( $userName ) )->parse(),
+			'mw-userpage-userdoesnotexist'
+		) );
 	}
 
 	/**
@@ -185,16 +169,6 @@ class ImageListPager extends TablePager {
 		if ( $this->mUserName !== null ) {
 			// getQueryInfoReal() should have handled the tables and joins.
 			$conds['actor_name'] = $this->mUserName;
-		}
-
-		if ( $this->mSearch !== '' ) {
-			$nt = Title::newFromText( $this->mSearch );
-			if ( $nt ) {
-				$dbr = $this->getDatabase();
-				$conds[] = 'LOWER(' . $prefix . '_name)' .
-					$dbr->buildLike( $dbr->anyString(),
-						strtolower( $nt->getDBkey() ), $dbr->anyString() );
-			}
 		}
 
 		if ( $table === 'oldimage' ) {
@@ -239,7 +213,7 @@ class ImageListPager extends TablePager {
 			return false;
 		}
 		$sortable = array_keys( self::INDEX_FIELDS );
-		/* For reference, the indicies we can use for sorting are:
+		/* For reference, the indices we can use for sorting are:
 		 * On the image table: img_actor_timestamp, img_size, img_timestamp
 		 * On oldimage: oi_actor_timestamp, oi_name_timestamp
 		 *
@@ -455,15 +429,7 @@ class ImageListPager extends TablePager {
 	/**
 	 * @param string $field
 	 * @param string|null $value
-	 * @return Message|string|int The return type depends on the value of $field:
-	 *   - thumb: string
-	 *   - img_timestamp: string
-	 *   - img_name: string
-	 *   - img_actor: string
-	 *   - img_size: string
-	 *   - img_description: string
-	 *   - count: int
-	 *   - top: Message
+	 * @return string
 	 * @throws MWException
 	 */
 	public function formatValue( $field, $value ) {
@@ -542,7 +508,7 @@ class ImageListPager extends TablePager {
 				$value = $this->commentStore->getComment( $field, $this->mCurrentRow )->text;
 				return Linker::formatComment( $value );
 			case 'count':
-				return $this->getLanguage()->formatNum( intval( $value ) + 1 );
+				return htmlspecialchars( $this->getLanguage()->formatNum( intval( $value ) + 1 ) );
 			case 'top':
 				// Messages: listfiles-latestversion-yes, listfiles-latestversion-no
 				return $this->msg( 'listfiles-latestversion-' . $value )->escaped();
@@ -560,18 +526,6 @@ class ImageListPager extends TablePager {
 			'options' => $this->getLimitSelectList(),
 			'default' => $this->mLimit,
 		];
-
-		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
-			$formDescriptor['ilsearch'] = [
-				'type' => 'text',
-				'name' => 'ilsearch',
-				'id' => 'mw-ilsearch',
-				'label-message' => 'listfiles_search_for',
-				'default' => $this->mSearch,
-				'size' => '40',
-				'maxlength' => '255',
-			];
-		}
 
 		$formDescriptor['user'] = [
 			'type' => 'user',

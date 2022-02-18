@@ -180,6 +180,7 @@ CREATE TABLE /*_*/templatelinks (
   tl_namespace INTEGER DEFAULT 0 NOT NULL,
   tl_title BLOB DEFAULT '' NOT NULL,
   tl_from_namespace INTEGER DEFAULT 0 NOT NULL,
+  tl_target_id BIGINT UNSIGNED DEFAULT NULL,
   PRIMARY KEY(tl_from, tl_namespace, tl_title)
 );
 
@@ -188,6 +189,13 @@ CREATE INDEX tl_namespace ON /*_*/templatelinks (tl_namespace, tl_title, tl_from
 CREATE INDEX tl_backlinks_namespace ON /*_*/templatelinks (
   tl_from_namespace, tl_namespace,
   tl_title, tl_from
+);
+
+CREATE INDEX tl_target_id ON /*_*/templatelinks (tl_target_id, tl_from);
+
+CREATE INDEX tl_backlinks_namespace_target_id ON /*_*/templatelinks (
+  tl_from_namespace, tl_target_id,
+  tl_from
 );
 
 
@@ -264,7 +272,7 @@ CREATE INDEX ctd_user_defined ON /*_*/change_tag_def (ctd_user_defined);
 CREATE TABLE /*_*/ipblocks_restrictions (
   ir_ipb_id INTEGER NOT NULL,
   ir_type SMALLINT NOT NULL,
-  ir_value INTEGER NOT NULL,
+  ir_value INTEGER UNSIGNED NOT NULL,
   PRIMARY KEY(ir_ipb_id, ir_type, ir_value)
 );
 
@@ -301,10 +309,9 @@ CREATE INDEX qcc_titletwo ON /*_*/querycachetwo (
 
 CREATE TABLE /*_*/page_restrictions (
   pr_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-  pr_page INTEGER NOT NULL, pr_type BLOB NOT NULL,
-  pr_level BLOB NOT NULL, pr_cascade SMALLINT NOT NULL,
-  pr_user INTEGER UNSIGNED DEFAULT NULL,
-  pr_expiry BLOB DEFAULT NULL
+  pr_page INTEGER UNSIGNED NOT NULL,
+  pr_type BLOB NOT NULL, pr_level BLOB NOT NULL,
+  pr_cascade SMALLINT NOT NULL, pr_expiry BLOB DEFAULT NULL
 );
 
 CREATE UNIQUE INDEX pr_pagetype ON /*_*/page_restrictions (pr_page, pr_type);
@@ -478,7 +485,7 @@ CREATE INDEX page_actor_timestamp ON /*_*/revision_actor_temp (
 
 
 CREATE TABLE /*_*/page_props (
-  pp_page INTEGER NOT NULL,
+  pp_page INTEGER UNSIGNED NOT NULL,
   pp_propname BLOB NOT NULL,
   pp_value BLOB NOT NULL,
   pp_sortkey DOUBLE PRECISION DEFAULT NULL,
@@ -879,8 +886,6 @@ CREATE TABLE /*_*/revision (
   rev_sha1 BLOB DEFAULT '' NOT NULL
 );
 
-CREATE INDEX rev_page_id ON /*_*/revision (rev_page, rev_id);
-
 CREATE INDEX rev_timestamp ON /*_*/revision (rev_timestamp);
 
 CREATE INDEX rev_page_timestamp ON /*_*/revision (rev_page, rev_timestamp);
@@ -903,3 +908,11 @@ CREATE UNIQUE INDEX si_page ON /*_*/searchindex (si_page);
 CREATE INDEX si_title ON /*_*/searchindex (si_title);
 
 CREATE INDEX si_text ON /*_*/searchindex (si_text);
+
+
+CREATE TABLE /*_*/linktarget (
+  lt_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  lt_namespace INTEGER NOT NULL, lt_title BLOB NOT NULL
+);
+
+CREATE UNIQUE INDEX lt_namespace_title ON /*_*/linktarget (lt_namespace, lt_title);

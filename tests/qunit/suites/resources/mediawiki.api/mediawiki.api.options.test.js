@@ -15,7 +15,7 @@
 
 		api.saveOption( 'foo', 'bar' );
 
-		assert.ok( stub.calledOnce, '#saveOptions called once' );
+		assert.true( stub.calledOnce, '#saveOptions called once' );
 		assert.deepEqual( stub.getCall( 0 ).args, [ { foo: 'bar' } ], '#saveOptions called correctly' );
 	} );
 
@@ -50,32 +50,32 @@
 				// reset an option, not bundleable
 				'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=%2B%5C'
 			].indexOf( request.requestBody ) !== -1 ) {
-				assert.ok( true, 'Repond to ' + request.requestBody );
+				assert.true( true, 'Repond to ' + request.requestBody );
 				request.respond( 200, { 'Content-Type': 'application/json' },
 					'{ "options": "success" }' );
 			} else {
-				assert.ok( false, 'Unexpected request: ' + request.requestBody );
+				assert.true( false, 'Unexpected request: ' + request.requestBody );
 			}
 		} );
 
 		return QUnit.whenPromisesComplete(
 			api.saveOptions( {} ).then( function () {
-				assert.ok( true, 'Request completed: empty case' );
+				assert.true( true, 'Request completed: empty case' );
 			} ),
 			api.saveOptions( { foo: 'bar' } ).then( function () {
-				assert.ok( true, 'Request completed: simple' );
+				assert.true( true, 'Request completed: simple' );
 			} ),
 			api.saveOptions( { foo: 'bar', baz: 'quux' } ).then( function () {
-				assert.ok( true, 'Request completed: two options' );
+				assert.true( true, 'Request completed: two options' );
 			} ),
 			api.saveOptions( { foo: 'bar|quux', bar: 'a|b|c', baz: 'quux' } ).then( function () {
-				assert.ok( true, 'Request completed: not bundleable' );
+				assert.true( true, 'Request completed: not bundleable' );
 			} ),
 			api.saveOptions( { foo: null } ).then( function () {
-				assert.ok( true, 'Request completed: reset an option' );
+				assert.true( true, 'Request completed: reset an option' );
 			} ),
 			api.saveOptions( { 'foo|bar=quux': null } ).then( function () {
-				assert.ok( true, 'Request completed: reset an option, not bundleable' );
+				assert.true( true, 'Request completed: reset an option, not bundleable' );
 			} )
 		);
 	} );
@@ -112,38 +112,38 @@
 				// reset an option, not bundleable
 				'action=options&format=json&formatversion=2&optionname=foo%7Cbar%3Dquux&token=%2B%5C'
 			].indexOf( request.requestBody ) !== -1 ) {
-				assert.ok( true, 'Repond to ' + request.requestBody );
+				assert.true( true, 'Repond to ' + request.requestBody );
 				request.respond(
 					200,
 					{ 'Content-Type': 'application/json' },
 					'{ "options": "success" }'
 				);
 			} else {
-				assert.ok( false, 'Unexpected request: ' + request.requestBody );
+				assert.true( false, 'Unexpected request: ' + request.requestBody );
 			}
 		} );
 
 		return QUnit.whenPromisesComplete(
 			api.saveOptions( {} ).done( function () {
-				assert.ok( true, 'Request completed: empty case' );
+				assert.true( true, 'Request completed: empty case' );
 			} ),
 			api.saveOptions( { foo: 'bar' } ).done( function () {
-				assert.ok( true, 'Request completed: simple' );
+				assert.true( true, 'Request completed: simple' );
 			} ),
 			api.saveOptions( { foo: 'bar', baz: 'quux' } ).done( function () {
-				assert.ok( true, 'Request completed: two options' );
+				assert.true( true, 'Request completed: two options' );
 			} ),
 			api.saveOptions( { foo: 'bar|quux', bar: 'a|b|c', baz: 'quux' } ).done( function () {
-				assert.ok( true, 'Request completed: bundleable with unit separator' );
+				assert.true( true, 'Request completed: bundleable with unit separator' );
 			} ),
 			api.saveOptions( { foo: 'bar|quux', bar: 'a|b|c', 'baz=baz': 'quux' } ).done( function () {
-				assert.ok( true, 'Request completed: not bundleable with unit separator' );
+				assert.true( true, 'Request completed: not bundleable with unit separator' );
 			} ),
 			api.saveOptions( { foo: null } ).done( function () {
-				assert.ok( true, 'Request completed: reset an option' );
+				assert.true( true, 'Request completed: reset an option' );
 			} ),
 			api.saveOptions( { 'foo|bar=quux': null } ).done( function () {
-				assert.ok( true, 'Request completed: reset an option, not bundleable' );
+				assert.true( true, 'Request completed: reset an option, not bundleable' );
 			} )
 		);
 	} );

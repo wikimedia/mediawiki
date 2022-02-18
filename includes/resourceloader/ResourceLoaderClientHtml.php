@@ -142,13 +142,14 @@ class ResourceLoaderClientHtml {
 			$context = $this->getContext( $group, ResourceLoaderModule::TYPE_COMBINED );
 			$shouldEmbed = $module->shouldEmbedModule( $this->context );
 
-			if ( ( $group === 'user' || $shouldEmbed ) && $module->isKnownEmpty( $context ) ) {
+			if ( ( $group === ResourceLoaderModule::GROUP_USER || $shouldEmbed ) &&
+				$module->isKnownEmpty( $context ) ) {
 				// This is a user-specific or embedded module, which means its output
 				// can be specific to the current page or user. As such, we can optimise
 				// the way we load it based on the current version of the module.
 				// Avoid needless embed for empty module, preset ready state.
 				$data['states'][$name] = 'ready';
-			} elseif ( $group === 'user' || $shouldEmbed ) {
+			} elseif ( $group === ResourceLoaderModule::GROUP_USER || $shouldEmbed ) {
 				// - For group=user: We need to provide a pre-generated load.php
 				//   url to the client that has the 'user' and 'version' parameters
 				//   filled in. Without this, the client would wrongly use the static
@@ -180,9 +181,14 @@ class ResourceLoaderClientHtml {
 			// Stylesheet doesn't trigger mw.loader callback.
 			// Set "ready" state to allow script modules to depend on this module  (T87871).
 			// And to avoid duplicate requests at run-time from mw.loader.
-			$data['states'][$name] = 'ready';
-
+			//
+			// Optimization: Exclude state for "noscript" modules. Since these are also excluded
+			// from the startup registry, no need to send their states (T291735).
 			$group = $module->getGroup();
+			if ( $group !== ResourceLoaderModule::GROUP_NOSCRIPT ) {
+				$data['states'][$name] = 'ready';
+			}
+
 			$context = $this->getContext( $group, ResourceLoaderModule::TYPE_STYLES );
 			if ( $module->shouldEmbedModule( $this->context ) ) {
 				// Avoid needless embed for private embeds we know are empty.
@@ -205,7 +211,7 @@ class ResourceLoaderClientHtml {
 			// * ... are used on page views not publicly cached.
 			// * ... are in their own group and thus a require a request we can avoid
 			// * ... have known-empty status preloaded by ResourceLoader.
-			} elseif ( $group !== 'user' || !$module->isKnownEmpty( $context ) ) {
+			} elseif ( $group !== ResourceLoaderModule::GROUP_USER || !$module->isKnownEmpty( $context ) ) {
 				// Load from load.php?only=styles via <link rel=stylesheet>
 				$data['styles'][] = $name;
 			}
@@ -251,33 +257,33 @@ class ResourceLoaderClientHtml {
 		$nojsClass = $nojsClass ?? $this->getDocumentAttributes()['class'];
 		$jsClass = preg_replace( '/(^|\s)client-nojs(\s|$)/', '$1client-js$2', $nojsClass );
 		$jsClassJson = $this->context->encodeJson( $jsClass );
-		$script = <<<JAVASCRIPT
+		$script = "
 document.documentElement.className = {$jsClassJson};
-JAVASCRIPT;
+";
 
 		// Inline script: Declare mw.config variables for this page.
 		if ( $this->config ) {
 			$confJson = $this->context->encodeJson( $this->config );
-			$script .= <<<JAVASCRIPT
+			$script .= "
 RLCONF = {$confJson};
-JAVASCRIPT;
+";
 		}
 
 		// Inline script: Declare initial module states for this page.
 		$states = array_merge( $this->exemptStates, $data['states'] );
 		if ( $states ) {
 			$stateJson = $this->context->encodeJson( $states );
-			$script .= <<<JAVASCRIPT
+			$script .= "
 RLSTATE = {$stateJson};
-JAVASCRIPT;
+";
 		}
 
 		// Inline script: Declare general modules to load on this page.
 		if ( $data['general'] ) {
 			$pageModulesJson = $this->context->encodeJson( $data['general'] );
-			$script .= <<<JAVASCRIPT
+			$script .= "
 RLPAGEMODULES = {$pageModulesJson};
-JAVASCRIPT;
+";
 		}
 
 		if ( !$this->context->getDebug() ) {
@@ -365,7 +371,7 @@ JAVASCRIPT;
 		// Set 'only' if not combined
 		$ret->setOnly( $type === ResourceLoaderModule::TYPE_COMBINED ? null : $type );
 		// Remove user parameter in most cases
-		if ( $group !== 'user' && $group !== 'private' ) {
+		if ( $group !== ResourceLoaderModule::GROUP_USER && $group !== ResourceLoaderModule::GROUP_PRIVATE ) {
 			$ret->setUser( null );
 		}
 		if ( isset( $extraQuery['raw'] ) ) {
@@ -450,7 +456,7 @@ JAVASCRIPT;
 						// timestamp of these user-changeable modules so we can ensure cache misses on change
 						// This should NOT be done for the site group (T29564) because anons get that too
 						// and we shouldn't be putting timestamps in CDN-cached HTML
-						if ( $group === 'user' ) {
+						if ( $group === ResourceLoaderModule::GROUP_USER ) {
 							$context->setVersion( $rl->makeVersionQuery( $context, $moduleSetNames ) );
 						}
 
@@ -467,7 +473,7 @@ JAVASCRIPT;
 							// - startup (naturally because this is what will define mw.loader)
 							$chunk = Html::element( 'script', [
 								'async' => true,
-								'src' => $url
+								'src' => $url,
 							] );
 						} else {
 							$chunk = ResourceLoader::makeInlineScript(
@@ -476,7 +482,7 @@ JAVASCRIPT;
 							);
 						}
 
-						if ( $group == 'noscript' ) {
+						if ( $group == ResourceLoaderModule::GROUP_NOSCRIPT ) {
 							$chunks[] = Html::rawElement( 'noscript', [], $chunk );
 						} else {
 							$chunks[] = $chunk;

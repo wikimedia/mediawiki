@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -26,7 +25,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 		$this->setUserLang( 'en' );
 		$this->setContentLang( 'en' );
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$contLang = $services->getContentLanguage();
 
@@ -234,7 +233,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 		$cat = Title::makeTitleSafe( NS_CATEGORY, $catName );
 		$expected = [ $cat->getDBkey() ];
 		$parserOutput = $this->parser->parse( "[[file:nonexistent]]", $title, $this->options );
-		$result = $parserOutput->getCategoryLinks();
+		$result = $parserOutput->getCategoryNames();
 		$this->assertEquals( $expected, $result );
 	}
 
@@ -245,7 +244,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 		// Special pages shouldn't have tracking cats.
 		$title = SpecialPage::getTitleFor( 'Contributions' );
 		$parserOutput = $this->parser->parse( "[[file:nonexistent]]", $title, $this->options );
-		$result = $parserOutput->getCategoryLinks();
+		$result = $parserOutput->getCategoryNames();
 		$this->assertSame( [], $result );
 	}
 
@@ -274,7 +273,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 			'wgInterwikiCache',
 			ClassicInterwikiLookup::buildCdbHash( $testInterwikis )
 		);
-		MediaWikiServices::getInstance()->resetServiceForTesting(
+		$this->getServiceContainer()->resetServiceForTesting(
 			'InterwikiLookup'
 		);
 		Title::clearCaches();

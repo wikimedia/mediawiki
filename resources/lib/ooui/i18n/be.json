@@ -3,6 +3,7 @@
 		"authors": [
 			"Artificial123",
 			"Artsiom91",
+			"Chadyka",
 			"Goshaproject",
 			"Mechanizatar",
 			"Чаховіч Уладзіслаў"
@@ -17,7 +18,7 @@
 	"ooui-dialog-message-accept": "ОК",
 	"ooui-dialog-message-reject": "Адмяніць",
 	"ooui-dialog-process-error": "Штось пайшло не так…",
-	"ooui-dialog-process-dismiss": "Прапусціць",
+	"ooui-dialog-process-dismiss": "Закрыць",
 	"ooui-dialog-process-retry": "Паспрабаваць яшчэ раз",
 	"ooui-dialog-process-continue": "Працягнуць",
 	"ooui-selectfile-button-select": "Выбраць файл",

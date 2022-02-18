@@ -115,8 +115,8 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 			// The timeout should always be set by HttpRequestFactory, so this
 			// should only happen if the class was directly constructed
 			wfDeprecated( __METHOD__ . ' without the timeout option', '1.35' );
-			global $wgHTTPTimeout;
-			$this->timeout = $wgHTTPTimeout;
+			$httpTimeout = MediaWikiServices::getInstance()->getMainConfig()->get( 'HTTPTimeout' );
+			$this->timeout = $httpTimeout;
 		}
 		if ( isset( $options['connectTimeout'] ) && $options['connectTimeout'] != 'default' ) {
 			$this->connectTimeout = $options['connectTimeout'];
@@ -124,8 +124,8 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 			// The timeout should always be set by HttpRequestFactory, so this
 			// should only happen if the class was directly constructed
 			wfDeprecated( __METHOD__ . ' without the connectTimeout option', '1.35' );
-			global $wgHTTPConnectTimeout;
-			$this->connectTimeout = $wgHTTPConnectTimeout;
+			$httpConnectTimeout = MediaWikiServices::getInstance()->getMainConfig()->get( 'HTTPConnectTimeout' );
+			$this->connectTimeout = $httpConnectTimeout;
 		}
 		if ( isset( $options['userAgent'] ) ) {
 			$this->setUserAgent( $options['userAgent'] );
@@ -224,19 +224,58 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @return void
 	 */
 	protected function proxySetup() {
-		// If there is an explicit proxy set and proxies are not disabled, then use it
-		if ( $this->proxy && !$this->noProxy ) {
+		$httpProxy = MediaWikiServices::getInstance()->getMainConfig()->get( 'HTTPProxy' );
+		$localHTTPProxy = MediaWikiServices::getInstance()->getMainConfig()->get( 'LocalHTTPProxy' );
+		// If proxies are disabled, clear any other proxy
+		if ( $this->noProxy ) {
+			$this->proxy = '';
 			return;
 		}
 
-		// Otherwise, fallback to $wgHTTPProxy if this is not a machine
-		// local URL and proxies are not disabled
-		if ( self::isLocalURL( $this->url ) || $this->noProxy ) {
-			$this->proxy = '';
-		} else {
-			global $wgHTTPProxy;
-			$this->proxy = (string)$wgHTTPProxy;
+		// If there is an explicit proxy already set, use it
+		if ( $this->proxy ) {
+			return;
 		}
+
+		// Otherwise, fallback to $wgLocalHTTPProxy for local URLs
+		// or $wgHTTPProxy for everything else
+		if ( self::isLocalURL( $this->url ) ) {
+			if ( $localHTTPProxy !== false ) {
+				$this->setReverseProxy( $localHTTPProxy );
+			}
+		} else {
+			$this->proxy = (string)$httpProxy;
+		}
+	}
+
+	/**
+	 * Enable use of a reverse proxy in which the hostname is
+	 * passed as a "Host" header, and the request is sent to the
+	 * proxy's host:port instead.
+	 *
+	 * Note that any custom port in the request URL will be lost
+	 * and cookies and redirects may not work properly.
+	 *
+	 * @param string $proxy URL of proxy
+	 */
+	protected function setReverseProxy( string $proxy ) {
+		$parsedProxy = wfParseUrl( $proxy );
+		if ( $parsedProxy === false ) {
+			throw new Exception( "Invalid reverseProxy configured: $proxy" );
+		}
+		// Set the current host in the Host header
+		$this->setHeader( 'Host', $this->parsedUrl['host'] );
+		// Replace scheme, host and port in the request
+		$this->parsedUrl['scheme'] = $parsedProxy['scheme'];
+		$this->parsedUrl['host'] = $parsedProxy['host'];
+		if ( isset( $parsedProxy['port'] ) ) {
+			$this->parsedUrl['port'] = $parsedProxy['port'];
+		} else {
+			unset( $this->parsedUrl['port'] );
+		}
+		$this->url = wfAssembleUrl( $this->parsedUrl );
+		// Mark that we're already using a proxy
+		$this->noProxy = true;
 	}
 
 	/**
@@ -246,9 +285,9 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @return bool
 	 */
 	private static function isLocalURL( $url ) {
-		global $wgCommandLineMode, $wgLocalVirtualHosts;
-
-		if ( $wgCommandLineMode ) {
+		$commandLineMode = MediaWikiServices::getInstance()->getMainConfig()->get( 'CommandLineMode' );
+		$localVirtualHosts = MediaWikiServices::getInstance()->getMainConfig()->get( 'LocalVirtualHosts' );
+		if ( $commandLineMode ) {
 			return false;
 		}
 
@@ -271,7 +310,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 					$domain = $domainPart . '.' . $domain;
 				}
 
-				if ( in_array( $domain, $wgLocalVirtualHosts ) ) {
+				if ( in_array( $domain, $localVirtualHosts ) ) {
 					return true;
 				}
 			}

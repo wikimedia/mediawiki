@@ -473,7 +473,7 @@
 	"watchlist-options": "Was un wii alles af Dajnâr beobachdungslisdn dsajchd wärn sol",
 	"watching": "Ghumd undâr beoobachdung ...",
 	"unwatching": "Beobachdn ajschränggn",
-	"deletepage": "Sajdn leschn",
+	"deletepage-submit": "Sajdn leschn",
 	"confirmdeletetext": "Duu bisd grôd dâbaj, â sajdn midsamd alle dsugheeriche alde wärsjoona ds'leschn. Bide beschdäädich, das De wasd, was des als bewirgd, un das De Dich dâbaj aa an d'[[{{MediaWiki:Policy-url}}|richliinjen]] fo dem wighi hiir häldsd.",
 	"actioncomplete": "Erleedichd",
 	"actionfailed": "Agdsion fehlgschloong",
@@ -655,5 +655,6 @@
 	"duplicate-defaultsort": "Der Sordierungsschlissl „$2“ ieberschreibt den vuurher verwendten Schlissl „$1“.",
 	"specialpages": "Schbedsjaal-sajdn",
 	"external_image_whitelist": " # Däi Zeiln net verändern.<pre>\n# Undnstehnd könna Fragmende vo reguläre Asdrigg (der Deil zwischa die //) eigeem werrn.\n# Däi werrn miid die URLs vo Bilder aus egsderne Gwelln verglichng.\n# A bositiver Vergleich fiehrt zur Ozeich vom Bild, sunsd werrds Bild blouss als Link ozeichd.\n# Zeiln, däi wou miid an # ofanga, werrn als Gommendar behandld.\n# Zwischa Grouß- un Klaaschreibung werrd net underschiedn.\n\n# Fragmende vo reguläre Asdrigg nach dera Zeiln eidroong. Däi Zeiln net verändern.</pre>",
-	"tag-filter": "[[Special:Tags|Marrgierungs]]-Fillder:"
+	"tag-filter": "[[Special:Tags|Marrgierungs]]-Fillder:",
+	"deletepage": "Sajdn leschn"
 }

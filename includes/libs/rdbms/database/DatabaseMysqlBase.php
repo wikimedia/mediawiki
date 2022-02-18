@@ -23,7 +23,6 @@
 namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
-use mysqli_result;
 use RuntimeException;
 use stdClass;
 use Wikimedia\AtEase\AtEase;
@@ -152,7 +151,7 @@ abstract class DatabaseMysqlBase extends Database {
 				null,
 				$tablePrefix
 			);
-			// Abstract over any insane MySQL defaults
+			// Abstract over any excessive MySQL defaults
 			$set = [ 'group_concat_max_len = 262144' ];
 			// Set SQL mode, default is turning them all off, can be overridden or skipped with null
 			if ( is_string( $this->sqlMode ) ) {
@@ -174,7 +173,7 @@ abstract class DatabaseMysqlBase extends Database {
 				$this->query(
 					'SET ' . implode( ', ', $set ),
 					__METHOD__,
-					self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX
+					self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX
 				);
 			}
 		} catch ( RuntimeException $e ) {
@@ -230,33 +229,6 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @throws DBConnectionError
 	 */
 	abstract protected function mysqlConnect( $server, $user, $password, $db );
-
-	/**
-	 * mysql_field_type() wrapper
-	 *
-	 * Not part of the interface and apparently not called by anything.
-	 *
-	 * @deprecated since 1.37
-	 *
-	 * @param MysqliResultWrapper $res
-	 * @param int $n
-	 * @return string
-	 */
-	public function fieldType( $res, $n ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->mysqlFieldType( $res->getInternalResult(), $n );
-	}
-
-	/**
-	 * Get the type of the specified field in a result
-	 *
-	 * @deprecated since 1.37
-	 *
-	 * @param mysqli_result $res
-	 * @param int $n
-	 * @return string
-	 */
-	abstract protected function mysqlFieldType( $res, $n );
 
 	/**
 	 * @return string
@@ -368,7 +340,7 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( $res === false ) {
 			return false;
 		}
-		if ( !$this->numRows( $res ) ) {
+		if ( !$res->numRows() ) {
 			return 0;
 		}
 
@@ -462,6 +434,17 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		return $result ?: false;
+	}
+
+	protected function normalizeJoinType( string $joinType ) {
+		switch ( strtoupper( $joinType ) ) {
+			case 'STRAIGHT_JOIN':
+			case 'STRAIGHT JOIN':
+				return 'STRAIGHT_JOIN';
+
+			default:
+				return parent::normalizeJoinType( $joinType );
+		}
 	}
 
 	/**
@@ -746,7 +729,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$start = microtime( true );
 		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 		$res = $this->query( $sql, __METHOD__, $flags );
-		$row = $this->fetchRow( $res );
+		$row = $res->fetchRow();
 		$seconds = max( microtime( true ) - $start, 0 );
 
 		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual
@@ -859,11 +842,6 @@ abstract class DatabaseMysqlBase extends Database {
 		return $pos;
 	}
 
-	public function getMasterPos() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->getPrimaryPos();
-	}
-
 	/**
 	 * @inheritDoc
 	 * @return string|null 32 bit integer ID; null if not applicable or unknown
@@ -885,7 +863,7 @@ abstract class DatabaseMysqlBase extends Database {
 				$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 				$res = $this->query( "SELECT @@server_id AS id", $fname, $flags );
 
-				return $this->fetchObject( $res )->id;
+				return $res->fetchObject()->id;
 			}
 		);
 	}
@@ -902,7 +880,7 @@ abstract class DatabaseMysqlBase extends Database {
 			function () use ( $fname ) {
 				$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 				$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'server_uuid'", $fname, $flags );
-				$row = $this->fetchObject( $res );
+				$row = $res->fetchObject();
 
 				return $row ? $row->Value : null;
 			}
@@ -948,7 +926,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// Avoid SHOW to avoid internal temporary tables
 		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 		$res = $this->query( "SELECT @@GLOBAL.read_only AS Value", __METHOD__, $flags );
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 
 		return $row ? (bool)$row->Value : false;
 	}
@@ -1026,11 +1004,20 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param array $options
 	 */
 	public function setSessionOptions( array $options ) {
+		$sqlAssignments = [];
+
 		if ( isset( $options['connTimeout'] ) ) {
-			$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_TRX;
-			$timeout = (int)$options['connTimeout'];
-			$this->query( "SET net_read_timeout=$timeout", __METHOD__, $flags );
-			$this->query( "SET net_write_timeout=$timeout", __METHOD__, $flags );
+			$encTimeout = (int)$options['connTimeout'];
+			$sqlAssignments[] = "net_read_timeout=$encTimeout";
+			$sqlAssignments[] = "net_write_timeout=$encTimeout";
+		}
+
+		if ( $sqlAssignments ) {
+			$this->query(
+				'SET ' . implode( ', ', $sqlAssignments ),
+				__METHOD__,
+				self::QUERY_CHANGE_TRX | self::QUERY_CHANGE_NONE
+			);
 		}
 	}
 
@@ -1054,25 +1041,25 @@ abstract class DatabaseMysqlBase extends Database {
 		$res = $this->query(
 			"SELECT IS_FREE_LOCK($encName) AS unlocked",
 			$method,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+			self::QUERY_CHANGE_LOCKS
 		);
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 
 		return ( $row->unlocked == 1 );
 	}
 
 	public function doLock( string $lockName, string $method, int $timeout ) {
 		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
-		// Unlike NOW(), SYSDATE() gets the time at invokation rather than query start.
+		// Unlike NOW(), SYSDATE() gets the time at invocation rather than query start.
 		// The precision argument is silently ignored for MySQL < 5.6 and MariaDB < 5.3.
 		// https://dev.mysql.com/doc/refman/5.6/en/date-and-time-functions.html#function_sysdate
 		// https://dev.mysql.com/doc/refman/5.6/en/fractional-seconds.html
 		$res = $this->query(
 			"SELECT IF(GET_LOCK($encName,$timeout),UNIX_TIMESTAMP(SYSDATE(6)),NULL) AS acquired",
 			$method,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+			self::QUERY_CHANGE_LOCKS
 		);
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 
 		return ( $row->acquired !== null ) ? (float)$row->acquired : null;
 	}
@@ -1083,9 +1070,9 @@ abstract class DatabaseMysqlBase extends Database {
 		$res = $this->query(
 			"SELECT RELEASE_LOCK($encName) AS released",
 			$method,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+			self::QUERY_CHANGE_LOCKS
 		);
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 
 		return ( $row->released == 1 );
 	}
@@ -1151,7 +1138,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$this->query(
 			"SET sql_big_selects=" . ( $value ? '1' : '0' ),
 			__METHOD__,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_TRX
+			self::QUERY_CHANGE_TRX
 		);
 	}
 
@@ -1211,17 +1198,6 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
-	 * Determines how long the server has been up
-	 *
-	 * @return int
-	 */
-	public function getServerUptime() {
-		$vars = $this->getMysqlStatus( 'Uptime' );
-
-		return (int)$vars['Uptime'];
-	}
-
-	/**
 	 * Determines if the last failure was due to a deadlock
 	 *
 	 * @return bool
@@ -1249,7 +1225,7 @@ abstract class DatabaseMysqlBase extends Database {
 			( $this->lastErrno() == 1290 && strpos( $this->lastError(), '--read-only' ) !== false );
 	}
 
-	public function wasConnectionError( $errno ) {
+	protected function isConnectionError( $errno ) {
 		return $errno == 2013 || $errno == 2006;
 	}
 
@@ -1323,27 +1299,6 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
-	 * Get status information from SHOW STATUS in an associative array
-	 *
-	 * @param string $which
-	 * @return array
-	 */
-	private function getMysqlStatus( $which = "%" ) {
-		$res = $this->query(
-			"SHOW STATUS LIKE '{$which}'",
-			__METHOD__,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
-		);
-
-		$status = [];
-		foreach ( $res as $row ) {
-			$status[$row->Variable_name] = $row->Value;
-		}
-
-		return $status;
-	}
-
-	/**
 	 * Lists VIEWs in the database
 	 *
 	 * @param string|null $prefix Only show VIEWs with this prefix, eg.
@@ -1412,7 +1367,36 @@ abstract class DatabaseMysqlBase extends Database {
 		return 'CAST( ' . $field . ' AS SIGNED )';
 	}
 
-	/**
+	public function selectSQLText(
+		$table,
+		$vars,
+		$conds = '',
+		$fname = __METHOD__,
+		$options = [],
+		$join_conds = []
+	) {
+		$sql = parent::selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
+		// https://dev.mysql.com/doc/refman/5.7/en/optimizer-hints.html
+		// https://mariadb.com/kb/en/library/aborting-statements/
+		$timeoutMsec = intval( $options['MAX_EXECUTION_TIME'] ?? 0 );
+		if ( $timeoutMsec > 0 ) {
+			list( $vendor, $number ) = $this->getMySqlServerVariant();
+			if ( $vendor === 'MariaDB' && version_compare( $number, '10.1.2', '>=' ) ) {
+				$timeoutSec = $timeoutMsec / 1000;
+				$sql = "SET STATEMENT max_statement_time=$timeoutSec FOR $sql";
+			} elseif ( $vendor === 'MySQL' && version_compare( $number, '5.7.0', '>=' ) ) {
+				$sql = preg_replace(
+					'/^SELECT(?=\s)/',
+					"SELECT /*+ MAX_EXECUTION_TIME($timeoutMsec)*/",
+					$sql
+				);
+			}
+		}
+
+		return $sql;
+	}
+
+	/*
 	 * @return bool Whether GTID support is used (mockable for testing)
 	 */
 	protected function useGTIDs() {

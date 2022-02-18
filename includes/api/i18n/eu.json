@@ -217,7 +217,6 @@
 	"apihelp-query+revisions-example-first5": "<kbd>Orrialde Nagusiaren</kbd> lehen 5 berrikuspenak eskuratu.",
 	"apihelp-query+search-paramvalue-prop-score": "Ezikusia.",
 	"apihelp-query+search-paramvalue-prop-hasrelated": "Ezikusia.",
-	"apihelp-query+userinfo-paramvalue-prop-preferencestoken": "Ikurra lortu oraingo lehentasunak aldatzeko.",
 	"apihelp-query+watchlist-paramvalue-prop-title": "Orrialdearen izenburua gehitzen du.",
 	"apihelp-query+watchlist-paramvalue-prop-user": "Aldaketa egin duen erabiltzailea gehitzen du.",
 	"apihelp-upload-param-file": "Fitxategiaren edukia.",

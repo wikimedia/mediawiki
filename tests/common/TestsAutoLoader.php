@@ -30,9 +30,6 @@ $wgAutoloadClasses += [
 	# tests/common
 	'TestSetup' => "$testDir/common/TestSetup.php",
 
-	# tests/integration
-	'MWHttpRequestTestCase' => "$testDir/integration/includes/http/MWHttpRequestTestCase.php",
-
 	# tests/exception
 	'TestThrowerDummy' => "$testDir/phpunit/data/exception/TestThrowerDummy.php",
 
@@ -63,7 +60,6 @@ $wgAutoloadClasses += [
 	'MediaWikiLoggerPHPUnitExtension' => "$testDir/phpunit/MediaWikiLoggerPHPUnitExtension.php",
 	'MediaWikiPHPUnitCommand' => "$testDir/phpunit/MediaWikiPHPUnitCommand.php",
 	'MediaWikiPHPUnitResultPrinter' => "$testDir/phpunit/MediaWikiPHPUnitResultPrinter.php",
-	'MediaWikiTestCase' => "$testDir/phpunit/MediaWikiIntegrationTestCase.php",
 	'MediaWikiTestCaseTrait' => "$testDir/phpunit/MediaWikiTestCaseTrait.php",
 	'MediaWikiUnitTestCase' => "$testDir/phpunit/MediaWikiUnitTestCase.php",
 	'MediaWikiIntegrationTestCase' => "$testDir/phpunit/MediaWikiIntegrationTestCase.php",
@@ -207,6 +203,7 @@ $wgAutoloadClasses += [
 	'MockChangesListFilter' => "$testDir/phpunit/mocks/MockChangesListFilter.php",
 	'MockChangesListFilterGroup' => "$testDir/phpunit/mocks/MockChangesListFilterGroup.php",
 	'MockTitleTrait' => "$testDir/phpunit/mocks/MockTitleTrait.php",
+	'NullGuzzleClient' => "$testDir/phpunit/mocks/NullGuzzleClient.php",
 	'NullHttpRequestFactory' => "$testDir/phpunit/mocks/NullHttpRequestFactory.php",
 	'NullMultiHttpClient' => "$testDir/phpunit/mocks/NullMultiHttpClient.php",
 	'MediaWiki\\Tests\\Unit\\MockServiceDependenciesTrait'
@@ -227,6 +224,9 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/unit/includes/auth
 	'MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait' => "$testDir/phpunit/unit/includes/auth/AuthenticationProviderTestTrait.php",
+
+	# tests/phpunit/unit/includes/CommentFormatter
+	'MediaWiki\Tests\Unit\CommentFormatter\CommentFormatterTestUtils' => "$testDir/phpunit/unit/includes/CommentFormatter/CommentFormatterTestUtils.php",
 
 	# tests/phpunit/unit/includes/editpage/Constraint and tests/phpunit/integration/includes/editpage/Constraint
 	'EditConstraintTestTrait' => "$testDir/phpunit/unit/includes/editpage/Constraint/EditConstraintTestTrait.php",
@@ -254,6 +254,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/integration/includes/user
 	'MediaWiki\Tests\User\ActorStoreTestBase' => "$testDir/phpunit/integration/includes/user/ActorStoreTestBase.php",
 
+	# tests/phpunit/structure
+	'MediaWiki\Tests\Structure\BundleSizeTest' => "$testDir/phpunit/structure/BundleSizeTest.php",
+
 	# tests/phpunit/unit/includes/Rest/Handler
 	'MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait' => "$testDir/phpunit/mocks/permissions/MockAuthorityTrait.php",
 	'MediaWiki\Tests\Rest\Handler\ActionModuleBasedHandlerTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/ActionModuleBasedHandlerTestTrait.php",
@@ -265,6 +268,9 @@ $wgAutoloadClasses += [
 	'MediaWiki\Tests\Unit\Revision\RevisionRecordTests' => "$testDir/phpunit/unit/includes/Revision/RevisionRecordTests.php",
 	'MediaWiki\Tests\Unit\Revision\RevisionSlotsTest' => "$testDir/phpunit/unit/includes/Revision/RevisionSlotsTest.php",
 	'MediaWiki\Tests\Unit\Revision\RevisionStoreRecordTest' => "$testDir/phpunit/unit/includes/Revision/RevisionStoreRecordTest.php",
+
+	# tests/phpunit/unit/includes/Settings/Config
+	'MediaWiki\Tests\Unit\Settings\Config\ConfigSinkTestTrait' => "$testDir/phpunit/unit/includes/Settings/Config/ConfigSinkTestTrait.php",
 
 	# tests/phpunit/unit/includes/session
 	'MediaWiki\Session\SessionProviderTestTrait' => "$testDir/phpunit/unit/includes/session/SessionProviderTestTrait.php",

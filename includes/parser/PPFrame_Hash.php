@@ -121,10 +121,12 @@ class PPFrame_Hash implements PPFrame {
 					// Numbered parameter
 					$index = $bits['index'] - $indexOffset;
 					if ( isset( $namedArgs[$index] ) || isset( $numberedArgs[$index] ) ) {
-						$this->parser->getOutput()->addWarning( wfMessage( 'duplicate-args-warning',
-							wfEscapeWikiText( $this->title ),
-							wfEscapeWikiText( $title ),
-							wfEscapeWikiText( $index ) )->text() );
+						$this->parser->getOutput()->addWarningMsg(
+							'duplicate-args-warning',
+							Message::plaintextParam( (string)$this->title ),
+							Message::plaintextParam( (string)$title ),
+							Message::numParam( $index )
+						);
 						$this->parser->addTrackingCategory( 'duplicate-args-category' );
 					}
 					$numberedArgs[$index] = $bits['value'];
@@ -133,11 +135,12 @@ class PPFrame_Hash implements PPFrame {
 					// Named parameter
 					$name = trim( $this->expand( $bits['name'], PPFrame::STRIP_COMMENTS ) );
 					if ( isset( $namedArgs[$name] ) || isset( $numberedArgs[$name] ) ) {
-						$this->parser->getOutput()->addWarning( wfMessage( 'duplicate-args-warning',
-							wfEscapeWikiText( $this->title ),
-							wfEscapeWikiText( $title ),
-							// @phan-suppress-next-line SecurityCheck-DoubleEscaped taint track for named args
-							wfEscapeWikiText( $name ) )->text() );
+						$this->parser->getOutput()->addWarningMsg(
+							'duplicate-args-warning',
+							Message::plaintextParam( (string)$this->title ),
+							Message::plaintextParam( (string)$title ),
+							Message::plaintextParam( $name )
+						);
 						$this->parser->addTrackingCategory( 'duplicate-args-category' );
 					}
 					$namedArgs[$name] = $bits['value'];
@@ -360,7 +363,7 @@ class PPFrame_Hash implements PPFrame {
 					$serial = count( $this->parser->mHeadings ) - 1;
 					$marker = Parser::MARKER_PREFIX . "-h-$serial-" . Parser::MARKER_SUFFIX;
 					$s = substr( $s, 0, $bits['level'] ) . $marker . substr( $s, $bits['level'] );
-					$this->parser->mStripState->addGeneral( $marker, '' );
+					$this->parser->getStripState()->addGeneral( $marker, '' );
 					$out .= $s;
 				} else {
 					# Expand in virtual stack

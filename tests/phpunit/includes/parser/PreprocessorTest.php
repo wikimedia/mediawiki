@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @covers Preprocessor
  *
@@ -28,7 +26,7 @@ class PreprocessorTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->mOptions = ParserOptions::newFromUserAndLang( new User,
-			MediaWikiServices::getInstance()->getContentLanguage() );
+			$this->getServiceContainer()->getContentLanguage() );
 
 		$wanCache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 		$parser = $this->getMockBuilder( Parser::class )
@@ -207,7 +205,7 @@ class PreprocessorTest extends MediaWikiIntegrationTestCase {
 		$output = $this->preprocessToXml( $wikiText );
 
 		$expectedFilename = "$folder/$filename.expected";
-		if ( file_exists( $expectedFilename ) ) {
+		if ( is_file( $expectedFilename ) ) {
 			$expectedXml = $this->normalizeXml( file_get_contents( $expectedFilename ) );
 			$this->assertEquals( $expectedXml, $output );
 		} else {

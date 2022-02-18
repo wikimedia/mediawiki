@@ -32,8 +32,8 @@ use MediaWiki\User\UserIdentity;
  * summary box. By the time of submission, the parse may have already
  * finished, and can be immediately used on page save. Certain parser
  * functions like {{REVISIONID}} or {{CURRENTTIME}} may cause the cache
- * to not be used on edit. Template and files used are check for changes
- * since the output was generated. The cache TTL is also kept low for sanity.
+ * to not be used on edit. Template and files used are checked for changes
+ * since the output was generated. The cache TTL is also kept low.
  *
  * @ingroup API
  * @since 1.25
@@ -86,7 +86,7 @@ class ApiStashEdit extends ApiBase {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
-		if ( $user->isBot() ) { // sanity
+		if ( $user->isBot() ) {
 			$this->dieWithError( 'apierror-botsnotsupported' );
 		}
 
@@ -195,7 +195,8 @@ class ApiStashEdit extends ApiBase {
 		if ( $user->pingLimiter( 'stashedit' ) ) {
 			$status = 'ratelimited';
 		} else {
-			$status = $this->pageEditStash->parseAndCache( $page, $content, $user, $params['summary'] );
+			$updater = $page->newPageUpdater( $user );
+			$status = $this->pageEditStash->parseAndCache( $updater, $content, $user, $params['summary'] );
 			$this->pageEditStash->stashInputText( $text, $textHash );
 		}
 
@@ -217,10 +218,12 @@ class ApiStashEdit extends ApiBase {
 	 * @param string $summary Edit summary
 	 * @return string ApiStashEdit::ERROR_* constant
 	 * @since 1.25
-	 * @deprecated Since 1.34
+	 * @deprecated Since 1.34, hard deprecated since 1.38
 	 */
 	public function parseAndStash( WikiPage $page, Content $content, UserIdentity $user, $summary ) {
-		return $this->pageEditStash->parseAndCache( $page, $content, $user, $summary ?? '' );
+		wfDeprecated( __METHOD__, '1.34' );
+		$updater = $page->newPageUpdater( $user );
+		return $this->pageEditStash->parseAndCache( $updater, $content, $user, $summary ?? '' );
 	}
 
 	public function getAllowedParams() {

@@ -15,7 +15,6 @@
 	"tog-newpageshidepatrolled": "Itago ang mga napatrolya nga mga pahina halin sa bag-o nga lista sang pahina",
 	"tog-extendwatchlist": "Palapadon ang lista sang mga ginabantayan para makita ang tanan nga nagla-in, indi lang man ang pinakabag-o",
 	"tog-usenewrc": "Gamiton ang ginpatahum nga mga bag-ong ilis {kinanglan ang Javascript}",
-	"tog-numberheadings": "Insigida nga pag-isip sang numero sa mga titulo",
 	"tog-editondblclick": "Liwaton ang mga pahina sa duwa ka pindot {kinahanglan ang Javascript}",
 	"tog-editsectiononrightclick": "Pasugtan ang pag-ilis sang mga bahin pama-agi sa tu-o nga pagpindot sa mga titulo sang pahina {kinanglan ang JavaScript}",
 	"tog-watchcreations": "Idugang sa akon balantayan ang mga pahina nga gin-ubra ko.",
@@ -491,7 +490,7 @@
 	"watchlist-options": "Pililian para sa listahan sang mga ginabantayan",
 	"watching": "Ginabantayan...",
 	"unwatching": "Wala ginabantayan...",
-	"deletepage": "Panason ang pahina",
+	"deletepage-submit": "Panason ang pahina",
 	"confirmdeletetext": "Imo na pagapanason ang isa ka pahina kaupod sang iya mga kasaysayan.\nPalihog kumpirmahon nga intensyon mo nga himu-on mini, nga na-intindihan mo ang abtan, kag gina-ubra mo mini nga nagasunod sa [[{{MediaWiki:Policy-url}}|patakaran]].",
 	"actioncomplete": "Tapos na ang aksyon",
 	"deletedtext": "Napanas na ang \"$1\".\nTan-awon ang $2 para sa nalista sang mga bag-o lang napanas.",
@@ -647,5 +646,6 @@
 	"watchlisttools-edit": "Tan-awon kag islan ang listahan sang balantayan",
 	"watchlisttools-raw": "Liwaton ang hilaw nga listahan sang mga ginabantayan",
 	"specialpages": "Pinasahi nga mga pahina",
-	"tag-filter": "[[Special:Tags|Tatakan]] ang pansala:"
+	"tag-filter": "[[Special:Tags|Tatakan]] ang pansala:",
+	"deletepage": "Panason ang pahina"
 }

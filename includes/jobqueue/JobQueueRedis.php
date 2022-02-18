@@ -88,7 +88,7 @@ class JobQueueRedis extends JobQueue {
 	 *   - compression : The type of compression to use; one of (none,gzip).
 	 *   - daemonized  : Set to true if the redisJobRunnerService runs in the background.
 	 *                   This will disable job recycling/undelaying from the MediaWiki side
-	 *                   to avoid redundance and out-of-sync configuration.
+	 *                   to avoid redundancy and out-of-sync configuration.
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $params ) {
@@ -330,7 +330,7 @@ LUA;
 					continue;
 				}
 
-				// If $item is invalid, the runner loop recyling will cleanup as needed
+				// If $item is invalid, the runner loop recycling will cleanup as needed
 				$job = $this->getJobFromFields( $item ); // may be false
 			} while ( !$job ); // job may be false if invalid
 		} catch ( RedisException $e ) {
@@ -447,7 +447,7 @@ LUA;
 		}
 		$params = $job->getRootJobParams();
 
-		$key = $this->getRootJobCacheKey( $params['rootJobSignature'] );
+		$key = $this->getRootJobCacheKey( $params['rootJobSignature'], $job->getType() );
 
 		$conn = $this->getConnection();
 		try {
@@ -471,14 +471,14 @@ LUA;
 	 */
 	protected function doIsRootJobOldDuplicate( IJobSpecification $job ) {
 		if ( !$job->hasRootJobParams() ) {
-			return false; // job has no de-deplication info
+			return false; // job has no de-duplication info
 		}
 		$params = $job->getRootJobParams();
 
 		$conn = $this->getConnection();
 		try {
 			// Get the last time this root job was enqueued
-			$timestamp = $conn->get( $this->getRootJobCacheKey( $params['rootJobSignature'] ) );
+			$timestamp = $conn->get( $this->getRootJobCacheKey( $params['rootJobSignature'], $job->getType() ) );
 		} catch ( RedisException $e ) {
 			throw $this->handleErrorAndMakeException( $conn, $e );
 		}
@@ -821,7 +821,7 @@ LUA;
 
 		$parts = [ $keyspace, 'jobqueue', $type, $prop ];
 
-		// Parts are typically ASCII, but encode for sanity to escape ":"
+		// Parts are typically ASCII, but encode to escape ":"
 		return implode( ':', array_map( 'rawurlencode', $parts ) );
 	}
 }

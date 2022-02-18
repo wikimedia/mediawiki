@@ -238,7 +238,7 @@ class RefreshLinks extends Maintenance {
 		$rt = null;
 		$content = $page->getContent( RevisionRecord::RAW );
 		if ( $content !== null ) {
-			$rt = $content->getUltimateRedirectTarget();
+			$rt = $content->getRedirectTarget();
 		}
 
 		if ( $rt === null ) {
@@ -487,8 +487,7 @@ class RefreshLinks extends Maintenance {
 	 * @return Title[]
 	 */
 	private function getPossibleCategories( $categoryKey ) {
-		$trackingCategories = new TrackingCategories( $this->getConfig() );
-		$cats = $trackingCategories->getTrackingCategories();
+		$cats = MediaWikiServices::getInstance()->getTrackingCategories()->getTrackingCategories();
 		if ( isset( $cats[$categoryKey] ) ) {
 			return $cats[$categoryKey]['cats'];
 		}

@@ -37,7 +37,7 @@ function filePath( title, extension ) {
  * @return {string} File path
  */
 function saveScreenshot( title ) {
-	// Create sane file name for current test title
+	// Create sensible file name for current test title
 	const path = filePath( title, 'png' );
 	// Ensure directory exists, based on WebDriverIO#saveScreenshotSync()
 	try {

@@ -120,7 +120,7 @@ class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
 		$backendMock = $this->getMockBuilder( FSFileBackend::class )
 			->setConstructorArgs( [ [
 					'name' => $this->backendName,
-					'wikiId' => wfWikiID()
+					'wikiId' => WikiMap::getCurrentWikiId()
 				] ] )
 			->getMock();
 

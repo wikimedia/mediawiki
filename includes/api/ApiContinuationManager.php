@@ -171,7 +171,7 @@ class ApiContinuationManager {
 	 * Set the continuation parameter for the generator module
 	 * @param ApiBase $module
 	 * @param string $paramName
-	 * @param string|array $paramValue
+	 * @param int|string|array $paramValue
 	 */
 	public function addGeneratorContinueParam( ApiBase $module, $paramName, $paramValue ) {
 		$name = $module->getModuleName();

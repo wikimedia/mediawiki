@@ -7,7 +7,7 @@ use InvalidArgumentException;
 use MediaWiki\Linker\LinkTarget;
 
 /**
- * Service interface for looking up infermation about wiki pages
+ * Service interface for looking up information about wiki pages
  *
  * @since 1.36
  * @unstable
@@ -104,6 +104,7 @@ interface PageLookup extends IDBAccessObject {
 	/**
 	 * Returns the PageRecord of the given page.
 	 * May return $page if that already is a PageRecord.
+	 * If $page is a PageIdentity, implementations may call methods like exists() and getId() on it.
 	 *
 	 * The PageReference must refer to a proper page - that is, it must not refer to a special page.
 	 *

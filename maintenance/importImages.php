@@ -498,7 +498,7 @@ class ImportImages extends Maintenance {
 	}
 
 	/**
-	 * @todo FIXME: Access the api in a saner way and performing just one query
+	 * @todo FIXME: Access the api in a better way and performing just one query
 	 * (preferably batching files too).
 	 *
 	 * @param string $wiki_host

@@ -329,7 +329,7 @@
 				$( this ).trigger( 'keypress' );
 			} )
 			// In most skins (at least Monobook and Vector), the font-size is messed up in <body>.
-			// (they use 2 elements to get a sane font-height). So, instead of making exceptions for
+			// (they use 2 elements to get a sensible font-height). So, instead of making exceptions for
 			// each skin or adding more stylesheets, just copy it from the active element so auto-fit.
 			.each( function () {
 				var $this = $( this );

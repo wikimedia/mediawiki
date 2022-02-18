@@ -44,32 +44,10 @@ class FloatDef extends NumericDef {
 		return $this->checkRange( $ret, $name, $value, $settings, $options );
 	}
 
-	/**
-	 * Attempt to fix locale weirdness
-	 *
-	 * We don't have any usable number formatting function that's not locale-aware,
-	 * and `setlocale()` isn't safe in multithreaded environments. Sigh.
-	 *
-	 * @param string $value Value to fix
-	 * @return string
-	 */
-	private function fixLocaleWeirdness( $value ) {
-		$localeData = localeconv();
-		if ( $localeData['decimal_point'] !== '.' ) {
-			$value = strtr( $value, [
-				$localeData['decimal_point'] => '.',
-				// PHP's number formatting currently uses only the first byte from 'decimal_point'.
-				// See upstream bug https://bugs.php.net/bug.php?id=78113
-				$localeData['decimal_point'][0] => '.',
-			] );
-		}
-		return $value;
-	}
-
 	public function stringifyValue( $name, $value, array $settings, array $options ) {
 		// Ensure sufficient precision for round-tripping. PHP_FLOAT_DIG was added in PHP 7.2.
 		$digits = defined( 'PHP_FLOAT_DIG' ) ? PHP_FLOAT_DIG : 15;
-		return $this->fixLocaleWeirdness( sprintf( "%.{$digits}g", $value ) );
+		return sprintf( "%.{$digits}g", $value );
 	}
 
 	public function getHelpInfo( $name, array $settings, array $options ) {

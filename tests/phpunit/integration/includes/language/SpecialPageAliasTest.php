@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Languages\LanguageNameUtils;
+
 /**
  * Verifies that special page aliases are valid, with no slashes.
  *
@@ -15,19 +17,29 @@ class SpecialPageAliasTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @coversNothing
-	 * @dataProvider validSpecialPageAliasesProvider
 	 */
-	public function testValidSpecialPageAliases( $code, $specialPageAliases ) {
-		foreach ( $specialPageAliases as $specialPage => $aliases ) {
-			foreach ( $aliases as $alias ) {
-				$msg = "Special:$specialPage alias '$alias' in $code must not contain slashes";
-				$this->assertStringNotContainsString( '/', $alias, $msg );
+	public function testValidSpecialPageAliases() {
+		foreach ( $this->validSpecialPageAliasesProvider() as $expected ) {
+			$code = $expected[0];
+			$specialPageAliases = $expected[1];
+			foreach ( $specialPageAliases as $specialPage => $aliases ) {
+				foreach ( $aliases as $alias ) {
+					$msg = "Special:$specialPage alias '$alias' in $code must not contain slashes";
+					$this->assertStringNotContainsString( '/', $alias, $msg );
+				}
 			}
 		}
 	}
 
+	/**
+	 * FIXME: Cannot access MW services in a dataProvider.
+	 *
+	 * @return Generator
+	 */
 	public function validSpecialPageAliasesProvider() {
-		$codes = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );
+		$codes = array_keys( $this->getServiceContainer()
+				->getLanguageNameUtils()
+				->getLanguageNames( LanguageNameUtils::AUTONYMS, LanguageNameUtils::SUPPORTED ) );
 
 		foreach ( $codes as $code ) {
 			$specialPageAliases = $this->getSpecialPageAliases( $code );

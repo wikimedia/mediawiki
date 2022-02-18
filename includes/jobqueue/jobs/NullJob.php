@@ -21,6 +21,8 @@
  * @ingroup JobQueue
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Degenerate job that does nothing, but can optionally replace itself
  * in the queue and/or sleep for a brief time period. These can be used
@@ -30,7 +32,7 @@
  * Inserting a null job in the configured job queue:
  * @code
  * $ php maintenance/eval.php
- * > $queue = JobQueueGroup::singleton();
+ * > $queue = MediaWikiServices::getInstance()->getJobQueueGroup();
  * > $job = new NullJob( [ 'lives' => 10 ] );
  * > $queue->push( $job );
  * @endcode
@@ -67,7 +69,7 @@ class NullJob extends Job implements GenericParameterJob {
 			$params = $this->params;
 			$params['lives']--;
 			$job = new self( $params );
-			JobQueueGroup::singleton()->push( $job );
+			MediaWikiServices::getInstance()->getJobQueueGroup()->push( $job );
 		}
 
 		return true;

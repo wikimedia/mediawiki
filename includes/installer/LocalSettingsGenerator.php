@@ -56,7 +56,7 @@ class LocalSettingsGenerator {
 		$confItems = array_merge(
 			[
 				'wgServer', 'wgScriptPath',
-				'wgPasswordSender', 'wgImageMagickConvertCommand', 'wgShellLocale',
+				'wgPasswordSender', 'wgImageMagickConvertCommand',
 				'wgLanguageCode', 'wgLocaltimezone', 'wgEnableEmail', 'wgEnableUserEmail',
 				'wgDiff3', 'wgEnotifUserTalk', 'wgEnotifWatchlist', 'wgEmailAuthentication',
 				'wgDBtype', 'wgSecretKey', 'wgRightsUrl', 'wgSitename', 'wgRightsIcon',
@@ -242,13 +242,6 @@ class LocalSettingsGenerator {
 			$magic = '';
 		}
 
-		if ( !$this->values['wgShellLocale'] ) {
-			$this->values['wgShellLocale'] = 'C.UTF-8';
-			$locale = '#';
-		} else {
-			$locale = '';
-		}
-
 		$metaNamespace = '';
 		if ( $this->values['wgMetaNamespace'] !== $this->values['wgSitename'] ) {
 			$metaNamespace = "\$wgMetaNamespace = \"{$this->values['wgMetaNamespace']}\";\n";
@@ -391,14 +384,6 @@ ${serverSetting}
 # about this MediaWiki instance. The Wikimedia Foundation shares this data
 # with MediaWiki developers to help guide future development efforts.
 \$wgPingback = {$this->values['wgPingback']};
-
-## If you use ImageMagick (or any other shell command) on a
-## Linux server, this will need to be set to the name of an
-## available UTF-8 locale. This should ideally be set to an English
-## language locale so that the behaviour of C library functions will
-## be consistent with typical installations. Use \$wgLanguageCode to
-## localise the wiki.
-{$locale}\$wgShellLocale = \"{$this->values['wgShellLocale']}\";
 
 # Site language code, should be one of the list in ./languages/data/Names.php
 \$wgLanguageCode = \"{$this->values['wgLanguageCode']}\";

@@ -837,7 +837,7 @@ class JobQueueDB extends JobQueue {
 				// However, SQLite has the opposite behavior due to DB-level locking.
 				$flags = $lb::CONN_TRX_AUTOCOMMIT;
 			} else {
-				// Jobs insertion will be defered until the PRESEND stage to reduce contention.
+				// Jobs insertion will be deferred until the PRESEND stage to reduce contention.
 				$flags = 0;
 			}
 

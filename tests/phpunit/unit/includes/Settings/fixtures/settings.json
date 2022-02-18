@@ -1,0 +1,12 @@
+{
+	"config": {
+		"Something": "TEST",
+		"ExtensionDirectory": "/test/extensions",
+		"StyleDirectory": "/test/skins"
+	},
+	"php-ini": {
+		"foo": "bar"
+	},
+	"extensions": [ "Foo", "Bar" ],
+	"skins": [ "Quux" ]
+}

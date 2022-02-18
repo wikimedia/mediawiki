@@ -505,7 +505,7 @@ class RestrictionStore {
 	 *
 	 * @param string $oldRestrictions Restrictions in legacy format (page.page_restrictions).
 	 *   Example: "edit=autoconfirmed,sysop:move=sysop"
-	 * @return array As returned by getAllRestrictions()
+	 * @return string[][] As returned by getAllRestrictions()
 	 * @codeCoverageIgnore We're planning to drop support for this
 	 */
 	private function convertOldRestrictions( string $oldRestrictions ): array {

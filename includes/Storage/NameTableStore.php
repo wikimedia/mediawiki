@@ -28,6 +28,7 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * @author Addshore
@@ -481,6 +482,8 @@ class NameTableStore {
 				},
 				IDatabase::ATOMIC_CANCELABLE
 			);
+		} catch ( TimeoutException $e ) {
+			throw $e;
 		} catch ( Exception $ex ) {
 			$this->logger->error(
 				'Re-insertion of name into table ' . $this->table . ' failed: ' . $ex->getMessage()

@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -169,7 +168,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 			'enableAutoblock' => true,
 		] );
 
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		$page = $this->getExistingTestPage( 'Pluto' );
@@ -240,6 +239,32 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$this->assertEquals(
 			'Page does not exist',
 			$info['associatedpage']
+		);
+	}
+
+	/**
+	 * @covers ::execute
+	 * @covers ::extractPageInfo
+	 */
+	public function testDisplayTitle() {
+		list( $data ) = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'info',
+			'inprop' => 'displaytitle',
+			'titles' => 'Art&copy',
+		] );
+
+		$this->assertArrayHasKey( 'query', $data );
+		$this->assertArrayHasKey( 'pages', $data['query'] );
+
+		// For the non-existing page
+		$this->assertArrayHasKey( -1, $data['query']['pages'] );
+
+		$info = $data['query']['pages'][ -1 ];
+		$this->assertArrayHasKey( 'displaytitle', $info );
+		$this->assertEquals(
+			'Art&amp;copy',
+			$info['displaytitle']
 		);
 	}
 

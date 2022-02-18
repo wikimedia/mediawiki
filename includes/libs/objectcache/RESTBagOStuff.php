@@ -214,19 +214,37 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	public function incr( $key, $value = 1, $flags = 0 ) {
-		// @TODO: make this atomic
+		return $this->doIncr( $key, $value, $flags );
+	}
+
+	public function decr( $key, $value = 1, $flags = 0 ) {
+		return $this->doIncr( $key, -$value, $flags );
+	}
+
+	private function doIncr( $key, $value = 1, $flags = 0 ) {
+		// @TODO: make this atomic and respect existing key expiration
 		$n = $this->get( $key, self::READ_LATEST );
 		if ( $this->isInteger( $n ) ) { // key exists?
 			$n = max( $n + (int)$value, 0 );
-			// @TODO: respect $exptime
 			return $this->set( $key, $n ) ? $n : false;
 		}
 
 		return false;
 	}
 
-	public function decr( $key, $value = 1, $flags = 0 ) {
-		return $this->incr( $key, -$value, $flags );
+	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
+		// @TODO: make this atomic and respect existing key expiration
+		$curValue = $this->doGet( $key );
+		if ( $curValue === false ) {
+			$newValue = $this->doSet( $key, $init, $exptime ) ? $init : false;
+		} elseif ( $this->isInteger( $curValue ) ) {
+			$sum = max( $curValue + $step, 0 );
+			$newValue = $this->doSet( $key, $sum, $exptime ) ? $sum : false;
+		} else {
+			$newValue = false;
+		}
+
+		return $newValue;
 	}
 
 	public function makeKeyInternal( $keyspace, $components ) {

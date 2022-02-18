@@ -12,7 +12,7 @@ describe( 'Listing Users', function () {
 
 	before( async () => {
 		prefix = await utils.title();
-		prefix = prefix.substring( 0, 7 );
+		prefix = prefix.slice( 0, 7 );
 
 		// NOTE: Because of T199393, the accounts have to be created sequentially.
 		// Doing so in parallel triggers a race condition that often results in a DBQueryError.
@@ -22,7 +22,7 @@ describe( 'Listing Users', function () {
 	} );
 
 	it( 'should get a list of registered users that begin with a given prefix', async () => {
-		const result = await user1.list( 'allusers', { auprefix: prefix.charAt( 0 ).toUpperCase() + prefix.slice( 1 ) } );
+		const result = await user1.list( 'allusers', { auprefix: prefix } );
 
 		assert.sameDeepMembers( result, [
 			{ name: user1.username, userid: user1.userid },

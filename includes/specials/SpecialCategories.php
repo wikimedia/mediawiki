@@ -52,16 +52,16 @@ class SpecialCategories extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->addHelpLink( 'Help:Categories' );
-		$this->getOutput()->allowClickjacking();
+		$this->getOutput()->setPreventClickjacking( false );
 
 		$from = $this->getRequest()->getText( 'from', $par );
 
 		$cap = new CategoryPager(
 			$this->getContext(),
-			$from,
-			$this->getLinkRenderer(),
 			$this->linkBatchFactory,
-			$this->loadBalancer
+			$this->getLinkRenderer(),
+			$this->loadBalancer,
+			$from
 		);
 		$cap->doQuery();
 

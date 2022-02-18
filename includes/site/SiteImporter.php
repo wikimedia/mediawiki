@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\RequestTimeout\TimeoutException;
+
 /**
  * Utility for importing site entries from XML.
  * For the expected format of the input, see docs/sitelist.md and docs/sitelist-1.0.xsd.
@@ -82,13 +84,15 @@ class SiteImporter {
 		$document = new DOMDocument();
 
 		$oldLibXmlErrors = libxml_use_internal_errors( true );
-		$oldDisable = libxml_disable_entity_loader( true );
+		// phpcs:ignore Generic.PHP.NoSilencedErrors -- suppress deprecation per T268847
+		$oldDisable = @libxml_disable_entity_loader( true );
 		$ok = $document->loadXML( $xml, LIBXML_NONET );
 
 		if ( !$ok ) {
 			$errors = libxml_get_errors();
 			libxml_use_internal_errors( $oldLibXmlErrors );
-			libxml_disable_entity_loader( $oldDisable );
+			// phpcs:ignore Generic.PHP.NoSilencedErrors
+			@libxml_disable_entity_loader( $oldDisable );
 
 			foreach ( $errors as $error ) {
 				/** @var LibXMLError $error */
@@ -101,7 +105,8 @@ class SiteImporter {
 		}
 
 		libxml_use_internal_errors( $oldLibXmlErrors );
-		libxml_disable_entity_loader( $oldDisable );
+		// phpcs:ignore Generic.PHP.NoSilencedErrors
+		@libxml_disable_entity_loader( $oldDisable );
 		$this->importFromDOM( $document->documentElement );
 	}
 
@@ -138,6 +143,8 @@ class SiteImporter {
 					}
 
 					$sites[$key] = $site;
+				} catch ( TimeoutException $e ) {
+					throw $e;
 				} catch ( Exception $ex ) {
 					$this->handleException( $ex );
 				}

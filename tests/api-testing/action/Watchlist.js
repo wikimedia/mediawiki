@@ -1,6 +1,6 @@
 'use strict';
 
-const { action, assert, utils } = require( 'api-testing' );
+const { action, assert, utils, wiki } = require( 'api-testing' );
 
 describe( 'The watchlist', function testWatch() {
 	let alice;
@@ -17,6 +17,7 @@ describe( 'The watchlist', function testWatch() {
 
 	it( 'can have items added by an edit', async () => {
 		edits.walter1 = await walter.edit( title, { watchlist: 'watch' } );
+		await wiki.runAllJobs();
 		const list = await walter.list( 'watchlist', {
 			wltype: 'edit|new',
 			wlprop: 'ids|title|flags|user|comment|timestamp'
@@ -52,6 +53,7 @@ describe( 'The watchlist', function testWatch() {
 
 		edits.alice2 = await alice.edit( title, {} );
 
+		await wiki.runAllJobs();
 		// FIXME: this is needed to force a sync with the replica database.
 		//  This trick only works with a single replica. We need a better
 		//  way to ensure a sync! Not to mention waiting for the job queue...

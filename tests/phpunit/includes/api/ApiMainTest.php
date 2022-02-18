@@ -2,7 +2,9 @@
 
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBQueryError;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -342,12 +344,9 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	private function doTestCheckMaxLag( $lag ) {
-		$mockLB = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->onlyMethods( [ 'getMaxLag', 'getConnectionRef', '__destruct' ] )
-			->getMock();
+		$mockLB = $this->createMock( ILoadBalancer::class );
 		$mockLB->method( 'getMaxLag' )->willReturn( [ 'somehost', $lag ] );
-		$mockLB->method( 'getConnectionRef' )->willReturn( $this->db );
+		$mockLB->method( 'getConnectionRef' )->willReturn( $this->createMock( DBConnRef::class ) );
 		$this->setService( 'DBLoadBalancer', $mockLB );
 
 		$req = new FauxRequest();
@@ -448,7 +447,7 @@ class ApiMainTest extends ApiTestCase {
 	 * Test that 'assert' is processed before module errors
 	 */
 	public function testAssertBeforeModule() {
-		// Sanity check that the query without assert throws too-many-titles
+		// Check that the query without assert throws too-many-titles
 		try {
 			$this->doApiRequest( [
 				'action' => 'query',
@@ -456,7 +455,7 @@ class ApiMainTest extends ApiTestCase {
 			], null, null, new User );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( ApiUsageException $e ) {
-			$this->assertTrue( self::apiExceptionHasCode( $e, 'toomanyvalues' ), 'sanity check' );
+			$this->assertTrue( self::apiExceptionHasCode( $e, 'toomanyvalues' ) );
 		}
 
 		// Now test that the assert happens first
@@ -1172,5 +1171,52 @@ class ApiMainTest extends ApiTestCase {
 		$this->assertTrue( $api->matchRequestedHeaders( 'accEpt, oRIGIN', $allowedHeaders ) );
 		$this->assertFalse( $api->matchRequestedHeaders( 'Accept,Foo', $allowedHeaders ) );
 		$this->assertFalse( $api->matchRequestedHeaders( 'Accept, fOO', $allowedHeaders ) );
+	}
+
+	/**
+	 * @param string $cacheMode
+	 * @param string|null $expectedVary
+	 * @param string $expectedCacheControl
+	 * @param array $requestData
+	 * @param Config|null $config
+	 * @dataProvider provideCacheHeaders
+	 */
+	public function testCacheHeaders(
+		string $cacheMode,
+		?string $expectedVary,
+		string $expectedCacheControl,
+		array $requestData = [],
+		Config $config = null
+	) {
+		$req = new FauxRequest( $requestData );
+		$ctx = new RequestContext();
+		$ctx->setRequest( $req );
+		if ( $config ) {
+			$ctx->setConfig( $config );
+		}
+		/** @var ApiMain|TestingAccessWrapper $api */
+		$api = TestingAccessWrapper::newFromObject( new ApiMain( $ctx ) );
+
+		$api->setCacheMode( $cacheMode );
+		$this->assertSame( $cacheMode, $api->mCacheMode, 'Cache mode precondition' );
+		$api->sendCacheHeaders( false );
+
+		$this->assertSame( $expectedVary, $req->response()->getHeader( 'Vary' ), 'Vary' );
+		$this->assertSame( $expectedCacheControl, $req->response()->getHeader( 'Cache-Control' ), 'Cache-Control' );
+	}
+
+	public function provideCacheHeaders(): Generator {
+		yield 'Private' => [ 'private', null, 'private, must-revalidate, max-age=0' ];
+		yield 'Public' => [
+			'public',
+			'Accept-Encoding, Treat-as-Untrusted, Cookie',
+			'private, must-revalidate, max-age=0',
+			[ 'uselang' => 'en' ]
+		];
+		yield 'Anon public, user private' => [
+			'anon-public-user-private',
+			'Accept-Encoding, Treat-as-Untrusted, Cookie',
+			'private, must-revalidate, max-age=0'
+		];
 	}
 }

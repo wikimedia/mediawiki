@@ -139,13 +139,11 @@ class MySqlLockManagerTest extends MediaWikiUnitTestCase {
 
 		$expectedErrors = [];
 		if ( !( $params['expectedOK'] ?? true ) ) {
-			foreach ( $params['lockArgs'][0] as $path ) {
-				$expectedErrors[] = [
-					'type' => 'error',
-					'message' => 'lockmanager-fail-acquirelock',
-					'params' => [ $path ],
-				];
-			}
+			$expectedErrors[] = [
+				'type' => 'error',
+				'message' => 'lockmanager-fail-conflict',
+				'params' => [],
+			];
 		}
 		$this->assertSame( $expectedErrors, $status->getErrors() );
 		$this->assertSame( !$expectedErrors, $status->isOK() );

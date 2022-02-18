@@ -106,7 +106,7 @@ class ApiUpload extends ApiBase {
 			$this->dieStatus( $status );
 		}
 
-		// Check if the uploaded file is sane
+		// Check the uploaded file
 		$this->verifyUpload();
 
 		// Check if the user has the rights to modify or overwrite the requested title
@@ -246,7 +246,7 @@ class ApiUpload extends ApiBase {
 		$totalSoFar = $this->mParams['offset'] + $chunkSize;
 		$minChunkSize = self::getMinUploadChunkSize( $this->getConfig() );
 
-		// Sanity check sizing
+		// Double check sizing
 		if ( $totalSoFar > $this->mParams['filesize'] ) {
 			$this->dieWithError( 'apierror-invalid-chunk' );
 		}
@@ -407,8 +407,10 @@ class ApiUpload extends ApiBase {
 	 *  arrays, or StatusValue::getErrors()-style arrays
 	 * @param string|null $parameter Parameter that needs revising
 	 * @throws ApiUsageException
+	 * @return never
 	 */
 	private function dieRecoverableError( $errors, $parameter = null ) {
+		// @phan-suppress-previous-line PhanTypeMissingReturn
 		$this->performStash( 'optional', $data );
 
 		if ( $parameter ) {
@@ -432,8 +434,10 @@ class ApiUpload extends ApiBase {
 	 * @param string $overrideCode Error code to use if there isn't one from IApiMessage
 	 * @param array|null $moreExtraData
 	 * @throws ApiUsageException
+	 * @return never
 	 */
 	public function dieStatusWithCode( $status, $overrideCode, $moreExtraData = null ) {
+		// @phan-suppress-previous-line PhanTypeMissingReturn
 		$sv = StatusValue::newGood();
 		foreach ( $status->getErrors() as $error ) {
 			$msg = ApiMessage::create( $error, $overrideCode );
@@ -642,8 +646,10 @@ class ApiUpload extends ApiBase {
 	/**
 	 * Performs file verification, dies on error.
 	 * @param array $verification
+	 * @return never
 	 */
 	protected function checkVerification( array $verification ) {
+		// @phan-suppress-previous-line PhanTypeMissingReturn
 		switch ( $verification['status'] ) {
 			// Recoverable errors
 			case UploadBase::MIN_LENGTH_PARTNAME:

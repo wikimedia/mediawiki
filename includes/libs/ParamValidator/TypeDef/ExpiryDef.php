@@ -132,6 +132,15 @@ class ExpiryDef extends TypeDef {
 		return self::normalizeExpiry( $expiry, $style );
 	}
 
+	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
+		$ret = parent::checkSettings( $name, $settings, $options, $ret );
+
+		$ret['allowedKeys'][] = self::PARAM_USE_MAX;
+		$ret['allowedKeys'][] = self::PARAM_MAX;
+
+		return $ret;
+	}
+
 	/**
 	 * Given an expiry, test if the normalized value exceeds the given maximum.
 	 *

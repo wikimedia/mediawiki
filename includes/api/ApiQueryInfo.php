@@ -370,11 +370,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		if ( $this->fld_displaytitle ) {
-			if ( isset( $this->displaytitles[$pageid] ) ) {
-				$pageInfo['displaytitle'] = $this->displaytitles[$pageid];
-			} else {
-				$pageInfo['displaytitle'] = $title->getPrefixedText();
-			}
+			$pageInfo['displaytitle'] = $this->displaytitles[$pageid] ??
+				htmlspecialchars( $title->getPrefixedText(), ENT_NOQUOTES );
 		}
 
 		if ( $this->fld_varianttitles && isset( $this->variantTitles[$pageid] ) ) {

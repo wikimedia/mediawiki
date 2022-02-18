@@ -361,7 +361,7 @@ class OldLocalFile extends LocalFile {
 		wfDebug( __METHOD__ . ': upgrading ' . $this->archive_name . " to the current schema" );
 		$dbw->update( 'oldimage',
 			[
-				'oi_size' => $this->size, // sanity
+				'oi_size' => $this->size,
 				'oi_width' => $this->width,
 				'oi_height' => $this->height,
 				'oi_bits' => $this->bits,
@@ -432,8 +432,6 @@ class OldLocalFile extends LocalFile {
 	 * @return Status
 	 */
 	public function uploadOld( $srcPath, $timestamp, $comment, UserIdentity $user ) {
-		$this->lock();
-
 		$archiveName = $this->getArchiveName();
 		$dstRel = $this->getArchiveRel( $archiveName );
 		$status = $this->publishTo( $srcPath, $dstRel );
@@ -443,8 +441,6 @@ class OldLocalFile extends LocalFile {
 		) {
 			$status->fatal( 'filenotfound', $srcPath );
 		}
-
-		$this->unlock();
 
 		return $status;
 	}
@@ -471,6 +467,7 @@ class OldLocalFile extends LocalFile {
 		}
 		$this->setProps( $props );
 
+		$dbw->startAtomic( __METHOD__ );
 		$commentFields = $services->getCommentStore()
 			->insert( $dbw, 'oi_description', $comment );
 		$actorId = $services->getActorNormalization()
@@ -492,6 +489,7 @@ class OldLocalFile extends LocalFile {
 				'oi_sha1' => $props['sha1'],
 			] + $commentFields, __METHOD__
 		);
+		$dbw->endAtomic( __METHOD__ );
 
 		return true;
 	}

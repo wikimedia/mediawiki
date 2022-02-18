@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\DeletePage;
 
 /**
  * Class DeletePageJob
@@ -13,18 +14,27 @@ class DeletePageJob extends Job implements GenericParameterJob {
 	}
 
 	public function run() {
+		$services = MediaWikiServices::getInstance();
 		// Failure to load the page is not job failure.
 		// A parallel deletion operation may have already completed the page deletion.
-		$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromID( $this->params['wikiPageId'] );
+		$wikiPage = $services->getWikiPageFactory()->newFromID( $this->params['wikiPageId'] );
 		if ( $wikiPage ) {
-			$wikiPage->doDeleteArticleBatched(
-				$this->params['reason'],
-				$this->params['suppress'],
-				User::newFromId( $this->params['userId'] ),
-				json_decode( $this->params['tags'] ),
-				$this->params['logsubtype'],
-				false,
-				$this->getRequestId() );
+			$deletePage = $services->getDeletePageFactory()->newDeletePage(
+				$wikiPage,
+				$services->getUserFactory()->newFromId( $this->params['userId'] )
+			);
+			$deletePage
+				->setSuppress( $this->params['suppress'] )
+				->setTags( json_decode( $this->params['tags'] ) )
+				->setLogSubtype( $this->params['logsubtype'] )
+				->setDeletionAttempted()
+				->deleteInternal(
+					$wikiPage,
+					// Use a fallback for BC with queued jobs.
+					$this->params['pageRole'] ?? DeletePage::PAGE_BASE,
+					$this->params['reason'],
+					$this->getRequestId()
+				);
 		}
 		return true;
 	}

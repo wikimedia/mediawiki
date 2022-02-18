@@ -21,11 +21,9 @@
 namespace MediaWiki\Tests\User;
 
 use InvalidArgumentException;
-use JobQueueGroup;
 use LogEntryBase;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\SessionManager;
@@ -63,7 +61,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		UserEditTracker $userEditTrackerOverride = null,
 		callable $callback = null
 	): UserGroupManager {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		return new UserGroupManager(
 			new ServiceOptions(
 				UserGroupManager::CONSTRUCTOR_OPTIONS,
@@ -105,12 +103,6 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'user_former_groups';
 		$this->tablesUsed[] = 'logging';
 		$this->expiryTime = wfTimestamp( TS_MW, time() + 100500 );
-
-		// Workaround: Force instantiate JobQueueGroup before overriding ConfiguredReadOnlyMode.
-		// Setting read-only mode before JobQueueGroup instantiation will cache the read-only state
-		// inside JobQueueGroup and JobQueue instances and will prevent them from being reset by
-		// resetNonServiceCaches().
-		JobQueueGroup::singleton();
 	}
 
 	/**
@@ -181,7 +173,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertTrue(
 			$manager->addUserToGroup( $user, self::GROUP ),
-			'Sanity: added user to group'
+			'added user to group'
 		);
 		$this->assertArrayEquals(
 			[ '*', 'user', 'autoconfirmed' ],
@@ -285,7 +277,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAddUserToGroupReadonly() {
 		$user = $this->getTestUser()->getUser();
-		MediaWikiServices::getInstance()->getConfiguredReadOnlyMode()->setReason( 'TEST' );
+		$this->getServiceContainer()->getConfiguredReadOnlyMode()->setReason( 'TEST' );
 		$manager = $this->getManager();
 		$this->assertFalse( $manager->addUserToGroup( $user, 'test' ) );
 		$this->assertNotContains( 'test', $manager->getUserGroups( $user ) );
@@ -451,7 +443,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testRemoveUserFromGroupReadOnly() {
 		$user = $this->getTestUser( [ 'test' ] )->getUser();
-		MediaWikiServices::getInstance()->getConfiguredReadOnlyMode()->setReason( 'TEST' );
+		$this->getServiceContainer()->getConfiguredReadOnlyMode()->setReason( 'TEST' );
 		$manager = $this->getManager();
 		$this->assertFalse( $manager->removeUserFromGroup( $user, 'test' ) );
 		$this->assertContains( 'test', $manager->getUserGroups( $user ) );
@@ -494,7 +486,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$expiryInPast = wfTimestamp( TS_MW, time() - 100500 );
 		$this->assertTrue(
 			$manager->addUserToGroup( $user, 'expired', $expiryInPast ),
-			'Sanity: can add expired group'
+			'can add expired group'
 		);
 		$manager->purgeExpired();
 		$this->assertNotContains( 'expired', $manager->getUserGroups( $user ) );
@@ -506,7 +498,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\User\UserGroupManager::purgeExpired
 	 */
 	public function testPurgeExpiredReadOnly() {
-		MediaWikiServices::getInstance()->getConfiguredReadOnlyMode()->setReason( 'TEST' );
+		$this->getServiceContainer()->getConfiguredReadOnlyMode()->setReason( 'TEST' );
 		$manager = $this->getManager();
 		$this->assertFalse( $manager->purgeExpired() );
 	}
@@ -871,7 +863,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$block->setTarget( $blockedUser );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 		$block->isSitewide( true );
-		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
+		$this->getServiceContainer()->getDatabaseBlockStore()->insertBlock( $block );
 		$this->assertArrayEquals( [ 'test_autoconfirmed' ],
 			$manager->getUserAutopromoteGroups( $blockedUser ) );
 	}
@@ -989,9 +981,9 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			$manager->removeUserFromGroup( $user, $formerGroup );
 		}
 		$this->assertArrayEquals( $userGroups, $manager->getUserGroups( $user ),
-			false, 'Sanity: user groups are correct ' );
+			false, 'user groups are correct ' );
 		$this->assertArrayEquals( $formerGroups, $manager->getUserFormerGroups( $user ),
-			false, 'Sanity: user former groups are correct ' );
+			false, 'user former groups are correct ' );
 		$this->assertArrayEquals(
 			$expected,
 			$manager->getUserAutopromoteOnceGroups( $user, 'EVENT' )
@@ -1002,7 +994,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\User\UserGroupManager::addUserToAutopromoteOnceGroups
 	 */
 	public function testAddUserToAutopromoteOnceGroupsForeignDomain() {
-		$manager = MediaWikiServices::getInstance()
+		$manager = $this->getServiceContainer()
 			->getUserGroupManagerFactory()
 			->getUserGroupManager( 'TEST_DOMAIN' );
 		$user = $this->getTestUser()->getUser();
@@ -1025,7 +1017,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	public function testAddUserToAutopromoteOnceGroupsReadOnly() {
 		$manager = $this->getManager();
 		$user = $this->getTestUser()->getUser();
-		MediaWikiServices::getInstance()->getConfiguredReadOnlyMode()->setReason( 'TEST' );
+		$this->getServiceContainer()->getConfiguredReadOnlyMode()->setReason( 'TEST' );
 		$this->assertEmpty( $manager->addUserToAutopromoteOnceGroups( $user, 'TEST' ) );
 	}
 

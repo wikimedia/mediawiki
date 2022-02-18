@@ -81,7 +81,7 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertGreaterThan(
 			0,
 			$actorId,
-			'Sanity check: valid actor id for a user'
+			'Valid actor id for a user'
 		);
 
 		$user2 = $factory->newFromActorId( $actorId );
@@ -117,13 +117,13 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertGreaterThan(
 			0,
 			$id,
-			'Sanity check: valid user'
+			'Valid user'
 		);
 		$actorId = $user1->getActorId();
 		$this->assertGreaterThan(
 			0,
 			$actorId,
-			'Sanity check: valid actor id for a user'
+			'Valid actor id for a user'
 		);
 
 		$user2 = $factory->newFromAnyId( $id, null, null );

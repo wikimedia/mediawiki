@@ -36,7 +36,7 @@
 		if ( message ) {
 			$target.removeClass( 'empty' )
 				// eslint-disable-next-line mediawiki/msg-doc
-				.text( mw.message( message ).text() );
+				.text( mw.msg( message ) );
 		}
 	}
 

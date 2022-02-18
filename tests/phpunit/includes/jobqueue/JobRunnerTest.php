@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\DeletePage;
 
 /**
  * Class JobRunnerTest
@@ -31,9 +31,9 @@ class JobRunnerTest extends MediaWikiIntegrationTestCase {
 		$str = wfRandomString( 10 );
 		$this->page = $this->insertPage( $str )['title'];
 
-		$this->assertTrue( $this->page->exists(), 'Sanity: The created page exists' );
+		$this->assertTrue( $this->page->exists(), 'The created page exists' );
 
-		$this->jobRunner = MediaWikiServices::getInstance()->getJobRunner();
+		$this->jobRunner = $this->getServiceContainer()->getJobRunner();
 		$jobParams = [
 			'namespace' => $this->page->getNamespace(),
 			'title' => $this->page->getDBkey(),
@@ -44,6 +44,7 @@ class JobRunnerTest extends MediaWikiIntegrationTestCase {
 			'userId' => $this->getTestUser()->getUser()->getId(),
 			'tags' => json_encode( [] ),
 			'logsubtype' => 'delete',
+			'pageRole' => DeletePage::PAGE_BASE,
 		];
 		$this->deletePageJob = new DeletePageJob( $jobParams );
 	}
@@ -52,11 +53,11 @@ class JobRunnerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideTestRun
 	 */
 	public function testRun( $options, $expectedVal ) {
-		JobQueueGroup::singleton()->push( $this->deletePageJob );
+		$this->getServiceContainer()->getJobQueueGroup()->push( $this->deletePageJob );
 
 		$results = $this->jobRunner->run( $options );
 
-		$this->assertEquals( $results['reached'], $expectedVal );
+		$this->assertEquals( $expectedVal, $results['reached'] );
 	}
 
 	public function provideTestRun() {

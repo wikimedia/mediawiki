@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
@@ -41,7 +40,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 			// still work for the merge.
 			$timestamp = time() + ( 24 * 3600 );
 		}
-		$factory = MediaWikiServices::getInstance()->getMergeHistoryFactory();
+		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
 		$mh = $factory->newMergeHistory(
 			Title::newFromText( $source ),
 			Title::newFromText( $dest ),
@@ -113,7 +112,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers MergeHistory::probablyCanMerge
 	 */
 	public function testCheckPermissions() {
-		$factory = MediaWikiServices::getInstance()->getMergeHistoryFactory();
+		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
 		$mh = $factory->newMergeHistory(
 			Title::newFromText( 'Test' ),
 			Title::newFromText( 'Test2' )
@@ -140,7 +139,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers MergeHistory::getMergedRevisionCount
 	 */
 	public function testGetMergedRevisionCount() {
-		$factory = MediaWikiServices::getInstance()->getMergeHistoryFactory();
+		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
 		$mh = $factory->newMergeHistory(
 			Title::newFromText( 'Merge1' ),
 			Title::newFromText( 'Merge2' )
@@ -161,7 +160,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$title = Title::newFromText( 'Merge1' );
 		$title2 = Title::newFromText( 'Merge2' );
 
-		$factory = MediaWikiServices::getInstance()->getMergeHistoryFactory();
+		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
 		$mh = $factory->newMergeHistory( $title, $title2 );
 
 		$this->assertTrue( $title->exists() );
@@ -200,7 +199,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$title2 = Title::newFromText( 'Merge4' );
 		$title2->setContentModel( 'testing' );
 
-		$factory = MediaWikiServices::getInstance()->getMergeHistoryFactory();
+		$factory = $this->getServiceContainer()->getMergeHistoryFactory();
 		$mh = $factory->newMergeHistory( $title, $title2 );
 
 		$this->assertTrue( $title->exists() );

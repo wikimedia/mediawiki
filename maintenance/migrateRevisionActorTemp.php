@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -15,6 +17,13 @@ class MigrateRevisionActorTemp extends LoggedUpdateMaintenance {
 		$this->addDescription(
 			'Copy the data from the revision_actor_temp into the revision table'
 		);
+		$this->addOption(
+			'sleep',
+			'Sleep time (in seconds) between every batch. Default: 0',
+			false,
+			true
+		);
+		$this->addOption( 'start', 'Start after this rev_id', false, true );
 	}
 
 	protected function getUpdateKey() {
@@ -37,6 +46,10 @@ class MigrateRevisionActorTemp extends LoggedUpdateMaintenance {
 		$this->output( "Merging the revision_actor_temp table into the revision table...\n" );
 		$conds = [];
 		$updated = 0;
+		$start = (int)$this->getOption( 'start', 0 );
+		if ( $start > 0 ) {
+			$conds[] = 'rev_id >= ' . $dbw->addQuotes( $start );
+		}
 		while ( true ) {
 			$res = $dbw->newSelectQueryBuilder()
 				->select( [ 'rev_id', 'rev_actor', 'revactor_actor' ] )
@@ -76,6 +89,13 @@ class MigrateRevisionActorTemp extends LoggedUpdateMaintenance {
 
 			$this->output( "... rev_id=$last, updated $updated\n" );
 			$conds = [ 'rev_id > ' . $dbw->addQuotes( $last ) ];
+
+			// Sleep between batches for replication to catch up
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
+			$sleep = (int)$this->getOption( 'sleep', 0 );
+			if ( $sleep > 0 ) {
+				sleep( $sleep );
+			}
 		}
 
 		$this->output(

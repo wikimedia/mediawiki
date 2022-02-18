@@ -22,6 +22,7 @@
  *
  * @file
  */
+
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -109,8 +110,9 @@ class Html {
 	 * @return array Modified attributes array
 	 */
 	public static function buttonAttributes( array $attrs, array $modifiers = [] ) {
-		global $wgUseMediaWikiUIEverywhere;
-		if ( $wgUseMediaWikiUIEverywhere ) {
+		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'UseMediaWikiUIEverywhere' );
+		if ( $useMediaWikiUIEverywhere ) {
 			if ( isset( $attrs['class'] ) ) {
 				if ( is_array( $attrs['class'] ) ) {
 					$attrs['class'][] = 'mw-ui-button';
@@ -136,8 +138,9 @@ class Html {
 	 * @return array Modified attributes array
 	 */
 	public static function getTextInputAttributes( array $attrs ) {
-		global $wgUseMediaWikiUIEverywhere;
-		if ( $wgUseMediaWikiUIEverywhere ) {
+		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'UseMediaWikiUIEverywhere' );
+		if ( $useMediaWikiUIEverywhere ) {
 			if ( isset( $attrs['class'] ) ) {
 				if ( is_array( $attrs['class'] ) ) {
 					$attrs['class'][] = 'mw-ui-input';
@@ -741,7 +744,26 @@ class Html {
 		if ( $heading !== '' ) {
 			$html = self::element( 'h2', [], $heading ) . $html;
 		}
+		if ( is_array( $className ) ) {
+			$className[] = 'mw-message-box';
+		} else {
+			$className .= ' mw-message-box';
+		}
 		return self::rawElement( 'div', [ 'class' => $className ], $html );
+	}
+
+	/**
+	 * Return the HTML for a notice message box.
+	 * @since 1.38
+	 * @param string $html of contents of notice
+	 * @param string|array $className corresponding to notice
+	 * @return string of HTML representing the notice
+	 */
+	public static function noticeBox( $html, $className ) {
+		return self::messageBox( $html, [
+			'mw-message-box-notice',
+			$className
+		] );
 	}
 
 	/**
@@ -753,7 +775,12 @@ class Html {
 	 * @return string of HTML representing a warning box.
 	 */
 	public static function warningBox( $html, $className = '' ) {
-		return self::messageBox( $html, [ 'warningbox', $className ] );
+		return self::messageBox( $html, [
+			'mw-message-box-warning',
+			// Deprecated class kept for cached HTML. Will be removed shortly.
+			'warningbox',
+			$className
+		] );
 	}
 
 	/**
@@ -766,7 +793,12 @@ class Html {
 	 * @return string of HTML representing an error box.
 	 */
 	public static function errorBox( $html, $heading = '', $className = '' ) {
-		return self::messageBox( $html, [ 'errorbox', $className ], $heading );
+		return self::messageBox( $html, [
+			'mw-message-box-error',
+			// Deprecated class kept for cached HTML. Will be removed shortly.
+			'errorbox',
+			$className
+		], $heading );
 	}
 
 	/**
@@ -778,7 +810,12 @@ class Html {
 	 * @return string of HTML representing a success box.
 	 */
 	public static function successBox( $html, $className = '' ) {
-		return self::messageBox( $html, [ 'successbox', $className ] );
+		return self::messageBox( $html, [
+			'mw-message-box-success',
+			// Deprecated class `successbox`. Kept for gadgets/user styles.
+			'successbox',
+			$className
+		] );
 	}
 
 	/**
@@ -993,10 +1030,12 @@ class Html {
 	 */
 	public static function htmlHeader( array $attribs = [] ) {
 		$ret = '';
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$html5Version = $mainConfig->get( 'Html5Version' );
+		$mimeType = $mainConfig->get( 'MimeType' );
+		$xhtmlNamespaces = $mainConfig->get( 'XhtmlNamespaces' );
 
-		global $wgHtml5Version, $wgMimeType, $wgXhtmlNamespaces;
-
-		$isXHTML = self::isXmlMimeType( $wgMimeType );
+		$isXHTML = self::isXmlMimeType( $mimeType );
 
 		if ( $isXHTML ) { // XHTML5
 			// XML MIME-typed markup should have an xml header.
@@ -1007,15 +1046,15 @@ class Html {
 			$attribs['xmlns'] = 'http://www.w3.org/1999/xhtml';
 
 			// And support custom namespaces
-			foreach ( $wgXhtmlNamespaces as $tag => $ns ) {
+			foreach ( $xhtmlNamespaces as $tag => $ns ) {
 				$attribs["xmlns:$tag"] = $ns;
 			}
 		} else { // HTML5
 			$ret .= "<!DOCTYPE html>\n";
 		}
 
-		if ( $wgHtml5Version ) {
-			$attribs['version'] = $wgHtml5Version;
+		if ( $html5Version ) {
+			$attribs['version'] = $html5Version;
 		}
 
 		$ret .= self::openElement( 'html', $attribs );
@@ -1026,7 +1065,7 @@ class Html {
 	/**
 	 * Determines if the given MIME type is xml.
 	 *
-	 * @param string $mimetype MIME type
+	 * @param string $mimetype
 	 * @return bool
 	 */
 	public static function isXmlMimeType( $mimetype ) {

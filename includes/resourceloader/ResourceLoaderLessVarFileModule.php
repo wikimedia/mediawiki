@@ -63,7 +63,7 @@ class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
 	private function pluckFromMessageBlob( $blob, array $allowed ): array {
 		$data = $blob ? json_decode( $blob, true ) : [];
 		// Keep only the messages intended for LESS export
-		// (opposite of getMesssages essentially).
+		// (opposite of getMessages essentially).
 		return array_intersect_key( $data, array_fill_keys( $allowed, true ) );
 	}
 

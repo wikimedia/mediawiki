@@ -625,6 +625,11 @@
 						"type": "boolean",
 						"description": "Whether it is possible to move pages in this namespace",
 						"default": true
+					},
+					"includable": {
+						"type": "boolean",
+						"description": "Whether it is possible to include/transclude pages in this namespace",
+						"default": true
 					}
 				},
 				"required": ["id", "constant", "name"]
@@ -728,10 +733,19 @@
 		},
 		"ContentHandlers": {
 			"type": "object",
-			"description": "Mapping of model ID to class name",
+			"description": "Mapping of model ID to class name or an ObjectFactory specification.",
 			"patternProperties": {
 				"^[A-Za-z]+$": {
-					"type": "string"
+					"oneOf": [
+						{
+							"type": "string",
+							"description": "Class name of the ContentHandler."
+						},
+						{
+							"type": "object",
+							"description": "ObjectFactory specification of the ContentHandler."
+						}
+					]
 				}
 			}
 		},
@@ -1168,26 +1182,38 @@
 					},
 					{
 						"type": "object",
-						"description": "An object factory specification for a class implementing Wikimedia\\Parsoid\\Ext\\ExtensionModule",
+						"description": "Object factory specification for a class implementing Wikimedia\\Parsoid\\Ext\\ExtensionModule",
 						"properties": {
 							"factory": {
 								"type": ["string", "array"],
 								"description": "A factory function to be called to create an ExtensionModule. This should be omitted if a class is specified."
-							},
+							}
+						},
+						"required": [ "factory" ]
+					},
+					{
+						"type": "object",
+						"description": "Object factory specification for a class implementing Wikimedia\\Parsoid\\Ext\\ExtensionModule",
+						"properties": {
 							"class": {
 								"type": "string",
 								"description": "The fully-qualified class name of a class implemeting Wikimedia\\Parsoid\\Ext\\ExtensionModule. This should be omitted if a factory is specified."
-							},
-							"args": {
-								"type": "array",
-								"description": "The arguments passed to the ExtensionModule constructor or factory"
 							}
-						}
+						},
+						"required": [ "class" ]
 					},
 					{
 						"type": "object",
 						"description": "A Parsoid extension module configuration array",
 						"properties": {
+							"class": {
+								"type": "null",
+								"description": "This property must not be present in a configuration array"
+							},
+							"factory": {
+								"type": "null",
+								"description": "This property must not be present in a configuration array"
+							},
 							"domProcessors": {
 								"type": "array",
 								"items": {
@@ -1201,6 +1227,13 @@
 									"description": "Additional ResourceLoader styles to include"
 								}
 							},
+							"annotations": {
+								"type": "array",
+								"items": {
+									"type": "string",
+									"description": "The name of an annotation tag"
+								}
+							},
 							"tags": {
 								"type": "array",
 								"items": {
@@ -1209,8 +1242,7 @@
 									"properties": {
 										"name": {
 											"type": "string",
-											"description": "The name of the extension tag",
-											"required": true
+											"description": "The name of the extension tag"
 										},
 										"handler": {
 											"description": "An object factory specification of a class extending Wikimedia\\Parsoid\\Ext\\ExtensionTagHandler"
@@ -1219,7 +1251,8 @@
 											"type": "object",
 											"description": "Additional Parsoid processing configuration for this extension tag"
 										}
-									}
+									},
+									"required": ["name"]
 								}
 							}
 						}

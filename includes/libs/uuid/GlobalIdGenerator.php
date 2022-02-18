@@ -517,12 +517,12 @@ class GlobalIdGenerator {
 				$randOffset = mt_rand( 0, $offsetSize - 1 );
 				trigger_error( "Clock was set back; sequence number incremented." );
 			} elseif ( $sec === $prevSec ) {
-				// Sanity check, only keep remainder if a previous writer wrote
+				// Double check, only keep remainder if a previous writer wrote
 				// something here that we don't accept.
 				$msecCounter = (int)$data[2] % $msecCounterSize;
 				// Bump the counter if the time has not changed yet
 				if ( ++$msecCounter >= $msecCounterSize ) {
-					// More IDs generated with the same time than counterSize can accomodate
+					// More IDs generated with the same time than counterSize can accommodate
 					flock( $handle, LOCK_UN );
 					throw new RuntimeException( "Counter overflow for timestamp value." );
 				}

@@ -21,7 +21,9 @@
  * @ingroup Parser
  */
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 
@@ -30,12 +32,28 @@ use MediaWiki\Revision\RevisionRecord;
  * @ingroup Parser
  */
 class CoreParserFunctions {
+
+	/**
+	 * @internal
+	 */
+	public const REGISTER_OPTIONS = [
+		// See documentation for the corresponding config options
+		'AllowDisplayTitle',
+		'AllowSlowParserFunctions',
+	];
+
 	/**
 	 * @param Parser $parser
+	 * @param ServiceOptions $options
+	 *
 	 * @return void
+	 * @throws MWException
+	 * @internal
 	 */
-	public static function register( $parser ) {
-		global $wgAllowDisplayTitle, $wgAllowSlowParserFunctions;
+	public static function register( Parser $parser, ServiceOptions $options ) {
+		$options->assertRequiredOptions( self::REGISTER_OPTIONS );
+		$allowDisplayTitle = $options->get( 'AllowDisplayTitle' );
+		$allowSlowParserFunctions = $options->get( 'AllowSlowParserFunctions' );
 
 		# Syntax for arguments (see Parser::setFunctionHook):
 		#  "name for lookup in localized magic words array",
@@ -75,14 +93,14 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'tag', [ __CLASS__, 'tagObj' ], Parser::SFH_OBJECT_ARGS );
 		$parser->setFunctionHook( 'formatdate', [ __CLASS__, 'formatDate' ] );
 
-		if ( $wgAllowDisplayTitle ) {
+		if ( $allowDisplayTitle ) {
 			$parser->setFunctionHook(
 				'displaytitle',
 				[ __CLASS__, 'displaytitle' ],
 				Parser::SFH_NO_HASH
 			);
 		}
-		if ( $wgAllowSlowParserFunctions ) {
+		if ( $allowSlowParserFunctions ) {
 			$parser->setFunctionHook(
 				'pagesinnamespace',
 				[ __CLASS__, 'pagesinnamespace' ],
@@ -228,7 +246,7 @@ class CoreParserFunctions {
 		if ( !is_string( $temp ) ) {
 			return $temp;
 		} else {
-			return htmlspecialchars( $temp );
+			return htmlspecialchars( $temp, ENT_COMPAT );
 		}
 	}
 
@@ -241,7 +259,7 @@ class CoreParserFunctions {
 		if ( !is_string( $temp ) ) {
 			return $temp;
 		} else {
-			return htmlspecialchars( $temp );
+			return htmlspecialchars( $temp, ENT_COMPAT );
 		}
 	}
 
@@ -254,7 +272,7 @@ class CoreParserFunctions {
 		if ( !is_string( $temp ) ) {
 			return $temp;
 		} else {
-			return htmlspecialchars( $temp );
+			return htmlspecialchars( $temp, ENT_COMPAT );
 		}
 	}
 
@@ -424,7 +442,7 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function displaytitle( $parser, $text = '', $uarg = '' ) {
-		global $wgRestrictDisplayTitle;
+		$restrictDisplayTitle = MediaWikiServices::getInstance()->getMainConfig()->get( 'RestrictDisplayTitle' );
 
 		static $magicWords = null;
 		if ( $magicWords === null ) {
@@ -445,7 +463,7 @@ class CoreParserFunctions {
 			'table', 'tr', 'th', 'td', 'dl', 'dd', 'caption', 'p', 'ruby', 'rb', 'rt', 'rtc', 'rp', 'br' ];
 
 		// disallow some styles that could be used to bypass $wgRestrictDisplayTitle
-		if ( $wgRestrictDisplayTitle ) {
+		if ( $restrictDisplayTitle ) {
 			$htmlTagsCallback = static function ( &$params ) {
 				$decoded = Sanitizer::decodeTagAttributes( $params );
 
@@ -477,12 +495,12 @@ class CoreParserFunctions {
 		) );
 		$title = Title::newFromText( Sanitizer::stripAllTags( $text ) );
 
-		if ( !$wgRestrictDisplayTitle ||
+		if ( !$restrictDisplayTitle ||
 			( $title instanceof Title
 			&& !$title->hasFragment()
 			&& $title->equals( $parser->getTitle() ) )
 		) {
-			$old = $parser->getOutput()->getProperty( 'displaytitle' );
+			$old = $parser->getOutput()->getPageProperty( 'displaytitle' );
 			if ( $old === false || $arg !== 'displaytitle_noreplace' ) {
 				$parser->getOutput()->setDisplayTitle( $text );
 			}
@@ -500,11 +518,10 @@ class CoreParserFunctions {
 				return '';
 			}
 		} else {
-			$parser->getOutput()->addWarning(
-				wfMessage( 'restricted-displaytitle',
-					// Message should be parsed, but this param should only be escaped.
-					wfEscapeWikiText( $text )
-				)->text()
+			$parser->getOutput()->addWarningMsg(
+				'restricted-displaytitle',
+				// Message should be parsed, but this param should only be escaped.
+				Message::plaintextParam( $text )
 			);
 			$parser->addTrackingCategory( 'restricted-displaytitle-ignored' );
 		}
@@ -837,17 +854,15 @@ class CoreParserFunctions {
 		if ( !isset( $cache[$name] ) ) {
 			$category = Category::newFromTitle( $title );
 
-			$allCount = $subcatCount = $fileCount = $pagesCount = 0;
+			$allCount = $subcatCount = $fileCount = $pageCount = 0;
 			if ( $parser->incrementExpensiveFunctionCount() ) {
-				// $allCount is the total number of cat members,
-				// not the count of how many members are normal pages.
-				$allCount = (int)$category->getPageCount();
-				$subcatCount = (int)$category->getSubcatCount();
-				$fileCount = (int)$category->getFileCount();
-				$pagesCount = $allCount - $subcatCount - $fileCount;
+				$allCount = $category->getMemberCount();
+				$subcatCount = $category->getSubcatCount();
+				$fileCount = $category->getFileCount();
+				$pageCount = $category->getPageCount( Category::COUNT_CONTENT_PAGES );
 			}
 			$cache[$name]['pagesincategory_all'] = $allCount;
-			$cache[$name]['pagesincategory_pages'] = $pagesCount;
+			$cache[$name]['pagesincategory_pages'] = $pageCount;
 			$cache[$name]['pagesincategory_subcats'] = $subcatCount;
 			$cache[$name]['pagesincategory_files'] = $fileCount;
 		}
@@ -873,7 +888,7 @@ class CoreParserFunctions {
 		}
 
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $title, 'vary-revision-sha1' );
+		$rev = self::getCachedRevisionObject( $parser, $title, ParserOutputFlags::VARY_REVISION_SHA1 );
 		$length = $rev ? $rev->getSize() : 0;
 		if ( $length === null ) {
 			// We've had bugs where rev_len was not being recorded for empty pages, see T135414
@@ -1053,7 +1068,7 @@ class CoreParserFunctions {
 		if ( $old === false || $old == $text || $arg ) {
 			return '';
 		} else {
-			$converter = $parser->getTargetLanguage()->getConverter();
+			$converter = $parser->getTargetLanguageConverter();
 			return '<span class="error">' .
 				wfMessage( 'duplicate-defaultsort',
 					// Message should be parsed, but these params should only be escaped.
@@ -1146,7 +1161,8 @@ class CoreParserFunctions {
 			// we can't handle this tag (at least not now), so just re-emit it as an ordinary tag
 			$attrText = '';
 			foreach ( $attributes as $name => $value ) {
-				$attrText .= ' ' . htmlspecialchars( $name ) . '="' . htmlspecialchars( $value ) . '"';
+				$attrText .= ' ' . htmlspecialchars( $name ) .
+					'="' . htmlspecialchars( $value, ENT_COMPAT ) . '"';
 			}
 			if ( $inner === null ) {
 				return "<$tagName$attrText/>";
@@ -1219,8 +1235,8 @@ class CoreParserFunctions {
 		if ( $isSelfReferential ) {
 			wfDebug( __METHOD__ . ": used current revision, setting $vary" );
 			// Upon page save, the result of the parser function using this might change
-			$parserOutput->setFlag( $vary );
-			if ( $vary === 'vary-revision-sha1' && $revisionRecord ) {
+			$parserOutput->setOutputFlag( $vary );
+			if ( $vary === ParserOutputFlags::VARY_REVISION_SHA1 && $revisionRecord ) {
 				try {
 					$sha1 = $revisionRecord->getSha1();
 				} catch ( RevisionAccessException $e ) {
@@ -1253,7 +1269,7 @@ class CoreParserFunctions {
 		if ( $t->equals( $parser->getTitle() ) ) {
 			// Revision is for the same title that is currently being parsed.
 			// Use the title from Parser in case a new page ID was injected into it.
-			$parserOutput->setFlag( 'vary-page-id' );
+			$parserOutput->setOutputFlag( ParserOutputFlags::VARY_PAGE_ID );
 			$id = $parser->getTitle()->getArticleID();
 			if ( $id ) {
 				$parserOutput->setSpeculativePageIdUsed( $id );
@@ -1309,12 +1325,12 @@ class CoreParserFunctions {
 			if ( $parser->getRevisionId() || $parser->getOptions()->getSpeculativeRevId() ) {
 				return '-';
 			} else {
-				$parser->getOutput()->setFlag( 'vary-revision-exists' );
+				$parser->getOutput()->setOutputFlag( ParserOutputFlags::VARY_REVISION_EXISTS );
 				return '';
 			}
 		}
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-revision-id' );
+		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_REVISION_ID );
 		return $rev ? $rev->getId() : '';
 	}
 
@@ -1331,7 +1347,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-revision-timestamp' );
+		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_REVISION_TIMESTAMP );
 		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'j' ) : '';
 	}
 
@@ -1348,7 +1364,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-revision-timestamp' );
+		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_REVISION_TIMESTAMP );
 		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'd' ) : '';
 	}
 
@@ -1365,7 +1381,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-revision-timestamp' );
+		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_REVISION_TIMESTAMP );
 		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'm' ) : '';
 	}
 
@@ -1382,7 +1398,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-revision-timestamp' );
+		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_REVISION_TIMESTAMP );
 		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'n' ) : '';
 	}
 
@@ -1399,7 +1415,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-revision-timestamp' );
+		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_REVISION_TIMESTAMP );
 		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'Y' ) : '';
 	}
 
@@ -1416,7 +1432,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-revision-timestamp' );
+		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_REVISION_TIMESTAMP );
 		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'YmdHis' ) : '';
 	}
 
@@ -1433,7 +1449,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t, 'vary-user' );
+		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_USER );
 		if ( $rev === null ) {
 			return '';
 		}

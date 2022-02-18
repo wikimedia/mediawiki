@@ -12,12 +12,13 @@
  */
 
 var slice = Array.prototype.slice,
-	charAt = require( 'mediawiki.String' ).charAt,
+	mwString = require( 'mediawiki.String' ),
 	parserDefaults = {
 		// Magic words and their expansions. Server-side data is added to this below.
 		magic: {
 			PAGENAME: mw.config.get( 'wgPageName' ),
-			PAGENAMEE: mw.util.wikiUrlencode( mw.config.get( 'wgPageName' ) )
+			PAGENAMEE: mw.util.wikiUrlencode( mw.config.get( 'wgPageName' ) ),
+			SERVERNAME: mw.config.get( 'wgServerName' )
 		},
 		// Whitelist for allowed HTML elements in wikitext.
 		// Self-closing tags are not currently supported.
@@ -432,7 +433,7 @@ mw.jqueryMsg.Parser.prototype = {
 			var len = s.length;
 			return function () {
 				var result = null;
-				if ( input.substr( pos, len ) === s ) {
+				if ( input.slice( pos, pos + len ) === s ) {
 					result = s;
 					pos += len;
 				}
@@ -1351,8 +1352,7 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 	 */
 	int: function ( nodes ) {
 		var msg = textify( nodes[ 0 ] );
-		var firstChar = charAt( msg, 0 );
-		return mw.jqueryMsg.getMessageFunction()( firstChar.toLowerCase() + msg.slice( firstChar.length ) );
+		return mw.jqueryMsg.getMessageFunction()( mwString.lcFirst( msg ) );
 	},
 
 	/**
@@ -1419,8 +1419,7 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 	 */
 	lcfirst: function ( nodes ) {
 		var text = textify( nodes[ 0 ] );
-		var firstChar = charAt( text, 0 );
-		return firstChar.toLowerCase() + text.slice( firstChar.length );
+		return mwString.lcFirst( text );
 	},
 
 	/**
@@ -1431,8 +1430,7 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 	 */
 	ucfirst: function ( nodes ) {
 		var text = textify( nodes[ 0 ] );
-		var firstChar = charAt( text, 0 );
-		return firstChar.toUpperCase() + text.slice( firstChar.length );
+		return mwString.ucFirst( text );
 	}
 };
 
@@ -1445,11 +1443,11 @@ $.fn.msg = mw.jqueryMsg.getPlugin();
 
 // Replace the default message parser with jqueryMsg
 var oldParser = mw.Message.prototype.parser;
-mw.Message.prototype.parser = function () {
+mw.Message.prototype.parser = function ( format ) {
 	// Fall back to mw.msg's simple parser where possible
 	if (
 		// Plain text output always uses the simple parser
-		this.format === 'plain' ||
+		format === 'plain' ||
 		(
 			// jqueryMsg parser is needed for messages containing wikitext
 			!/\{\{|[<>[&]/.test( this.map.get( this.key ) ) &&
@@ -1459,17 +1457,17 @@ mw.Message.prototype.parser = function () {
 			} )
 		)
 	) {
-		return oldParser.apply( this );
+		return oldParser.call( this, format );
 	}
 
-	if ( !Object.prototype.hasOwnProperty.call( this.map, this.format ) ) {
-		this.map[ this.format ] = mw.jqueryMsg.getMessageFunction( {
+	if ( !Object.prototype.hasOwnProperty.call( this.map, format ) ) {
+		this.map[ format ] = mw.jqueryMsg.getMessageFunction( {
 			messages: this.map,
 			// For format 'escaped', escaping part is handled by mediawiki.js
-			format: this.format
+			format: format
 		} );
 	}
-	return this.map[ this.format ]( this.key, this.parameters );
+	return this.map[ format ]( this.key, this.parameters );
 };
 
 /**

@@ -349,7 +349,7 @@ class SpecialUpload extends SpecialPage {
 	}
 
 	/**
-	 * Shows the "view X deleted revivions link""
+	 * Shows the "view X deleted revisions link""
 	 */
 	protected function showViewDeletedLinks() {
 		$title = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
@@ -381,7 +381,7 @@ class SpecialUpload extends SpecialPage {
 	 *
 	 * Note: only errors that can be handled by changing the name or
 	 * description should be redirected here. It should be assumed that the
-	 * file itself is sane and has passed UploadBase::verifyFile. This
+	 * file itself is sensible and has passed UploadBase::verifyFile. This
 	 * essentially means that UploadBase::VERIFICATION_ERROR and
 	 * UploadBase::EMPTY_FILE should not be passed here.
 	 *

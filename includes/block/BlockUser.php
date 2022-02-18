@@ -136,7 +136,7 @@ class BlockUser {
 	 * @var bool|null
 	 *
 	 * This may be null when an invalid option was passed to the constructor.
-	 * Such a case is catched in placeBlockUnsafe.
+	 * Such a case is caught in placeBlockUnsafe.
 	 */
 	private $isUserTalkEditBlocked = null;
 
@@ -189,18 +189,18 @@ class BlockUser {
 	 * @param Authority $performer Performer of the block
 	 * @param string $expiry Expiry of the block (timestamp or 'infinity')
 	 * @param string $reason Reason of the block
-	 * @param bool[] $blockOptions Block options
+	 * @param bool[] $blockOptions
 	 *    Valid options:
-	 *    - isCreateAccountBlocked      : Are acount creations prevented?
+	 *    - isCreateAccountBlocked      : Are account creations prevented?
 	 *    - isEmailBlocked              : Is emailing other users prevented?
 	 *    - isHardBlock                 : Are registered users prevented from editing?
 	 *    - isAutoblocking              : Should this block spread to others to
 	 *                                    limit block evasion?
 	 *    - isUserTalkEditBlocked       : Is editing blocked user's own talkpage allowed?
-	 *    - isHideUser                  : Should blocked user's name be hiden (needs hideuser)?
+	 *    - isHideUser                  : Should blocked user's name be hidden (needs hideuser)?
 	 *    - isPartial                   : Is this block partial? This is ignored when
 	 *                                    blockRestrictions is not an empty array.
-	 * @param array $blockRestrictions Block restrictions
+	 * @param array $blockRestrictions
 	 * @param string[] $tags Tags that should be assigned to the log entry
 	 */
 	public function __construct(
@@ -531,7 +531,7 @@ class BlockUser {
 	}
 
 	/**
-	 * Places a block without any sort of sanity/permission checks, hooks can still
+	 * Places a block without any sort of permission or double checking, hooks can still
 	 * abort the block through, as well as already existing block.
 	 *
 	 * @param bool $reblock Should this reblock?

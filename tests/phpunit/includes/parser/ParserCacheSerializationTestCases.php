@@ -55,6 +55,8 @@ abstract class ParserCacheSerializationTestCases {
 			. '\xca\x49\x01\x00\x85\x11\x4a\x0d\x0b\x00\x00\x00",
 	];
 
+	private const CACHE_TIME = '20010419042521';
+
 	/**
 	 * Get acceptance test cases for CacheTime class.
 	 * @see SerializationTestTrait::getTestInstancesAndAssertions()
@@ -64,9 +66,8 @@ abstract class ParserCacheSerializationTestCases {
 		$cacheTimeWithUsedOptions = new CacheTime();
 		$cacheTimeWithUsedOptions->recordOptions( [ 'optA', 'optX' ] );
 
-		$cacheTimestamp = MWTimestamp::convert( TS_MW, 987654321 );
 		$cacheTimeWithTime = new CacheTime();
-		$cacheTimeWithTime->setCacheTime( $cacheTimestamp );
+		$cacheTimeWithTime->setCacheTime( self::CACHE_TIME );
 
 		$cacheExpiry = 10;
 		$cacheTimeWithExpiry = new CacheTime();
@@ -106,8 +107,8 @@ abstract class ParserCacheSerializationTestCases {
 				'instance' => $cacheTimeWithTime,
 				'assertions' => static function (
 					MediaWikiIntegrationTestCase $testCase, CacheTime $object
-				) use ( $cacheTimestamp ) {
-					$testCase->assertSame( $cacheTimestamp, $object->getCacheTime() );
+				) {
+					$testCase->assertSame( self::CACHE_TIME, $object->getCacheTime() );
 				}
 			],
 			'cacheExpiry' => [
@@ -135,6 +136,11 @@ abstract class ParserCacheSerializationTestCases {
 	 * @return array[]
 	 */
 	public static function getParserOutputTestCases() {
+		$parserOutputWithCacheTimeProps = new ParserOutput( 'CacheTime' );
+		$parserOutputWithCacheTimeProps->setCacheTime( self::CACHE_TIME );
+		$parserOutputWithCacheTimeProps->updateCacheExpiry( 10 );
+		$parserOutputWithCacheTimeProps->setCacheRevisionId( 42 );
+
 		$parserOutputWithUsedOptions = new ParserOutput( 'Dummy' );
 		$parserOutputWithUsedOptions->recordOption( 'optA' );
 		$parserOutputWithUsedOptions->recordOption( 'optX' );
@@ -146,12 +152,12 @@ abstract class ParserCacheSerializationTestCases {
 
 		$parserOutputWithProperties = new ParserOutput();
 		foreach ( self::MOCK_EXT_DATA as $key => $value ) {
-			$parserOutputWithProperties->setProperty( $key, $value );
+			$parserOutputWithProperties->setPageProperty( $key, $value );
 		}
 
 		$parserOutputWithBinaryProperties = new ParserOutput();
 		foreach ( self::MOCK_BINARY_PROPERTIES as $key => $value ) {
-			$parserOutputWithBinaryProperties->setProperty( $key, $value );
+			$parserOutputWithBinaryProperties->setPageProperty( $key, $value );
 		}
 
 		$parserOutputWithMetadata = new ParserOutput();
@@ -160,8 +166,8 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadata->addLanguageLink( 'link2' );
 		$parserOutputWithMetadata->addInterwikiLink( Title::makeTitle( NS_MAIN, 'interwiki1', '', 'enwiki' ) );
 		$parserOutputWithMetadata->addInterwikiLink( Title::makeTitle( NS_MAIN, 'interwiki2', '', 'enwiki' ) );
-		$parserOutputWithMetadata->addCategory( 'category2', 1 );
-		$parserOutputWithMetadata->addCategory( 'category1', 2 );
+		$parserOutputWithMetadata->addCategory( 'category2', '1' );
+		$parserOutputWithMetadata->addCategory( 'category1', '2' );
 		$parserOutputWithMetadata->setIndicator( 'indicator1', 'indicator1_value' );
 		$parserOutputWithMetadata->setTitleText( 'title_text1' );
 		$parserOutputWithMetadata->setSections( [ 'section1', 'section2' ] );
@@ -179,17 +185,17 @@ abstract class ParserCacheSerializationTestCases {
 		);
 		$parserOutputWithMetadata->addExternalLink( 'https://test.org' );
 		$parserOutputWithMetadata->addHeadItem( 'head_item1', 'tag1' );
-		$parserOutputWithMetadata->addModules( 'module1' );
-		$parserOutputWithMetadata->addModuleStyles( 'module_style1' );
-		$parserOutputWithMetadata->addJsConfigVars( 'key1', 'value1' );
+		$parserOutputWithMetadata->addModules( [ 'module1' ] );
+		$parserOutputWithMetadata->addModuleStyles( [ 'module_style1' ] );
+		$parserOutputWithMetadata->setJsConfigVar( 'key1', 'value1' );
 		$parserOutputWithMetadata->addOutputHook( 'hook1', self::MOCK_EXT_DATA );
 		$parserOutputWithMetadata->addWarning( 'warning1' );
-		$parserOutputWithMetadata->setIndexPolicy( 'policy1' );
+		$parserOutputWithMetadata->setIndexPolicy( 'noindex' );
 		$parserOutputWithMetadata->setTOCHTML( 'tochtml1' );
 		$parserOutputWithMetadata->setTimestamp( MWTimestamp::convert( TS_MW, 987654321 ) );
 		$parserOutputWithMetadata->setLimitReportData( 'limit_report_key1', 'value1' );
 		$parserOutputWithMetadata->setEnableOOUI( true );
-		$parserOutputWithMetadata->hideNewSection( true );
+		$parserOutputWithMetadata->setHideNewSection( true );
 		$parserOutputWithMetadata->setNewSection( true );
 		$parserOutputWithMetadata->setFlag( 'test' );
 
@@ -225,7 +231,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertNull( $object->getRevisionUsedSha1Base36() );
 					$testCase->assertArrayEquals( [], $object->getLanguageLinks() );
 					$testCase->assertArrayEquals( [], $object->getInterwikiLinks() );
-					$testCase->assertArrayEquals( [], $object->getCategoryLinks() );
+					$testCase->assertArrayEquals( [], $object->getCategoryNames() );
 					$testCase->assertArrayEquals( [], $object->getCategories() );
 					$testCase->assertArrayEquals( [], $object->getIndicators() );
 					$testCase->assertSame( '', $object->getTitleText() );
@@ -258,11 +264,19 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertFalse( $object->getDisplayTitle() );
 					$testCase->assertFalse( $object->getFlag( 'test' ) );
 					$testCase->assertArrayEquals( [], $object->getAllFlags() );
-					$testCase->assertFalse( $object->getProperty( 'test_prop' ) );
-					$testCase->assertArrayEquals( [], $object->getProperties() );
+					$testCase->assertFalse( $object->getPageProperty( 'test_prop' ) );
+					$testCase->assertArrayEquals( [], $object->getPageProperties() );
 					$testCase->assertArrayEquals( [], $object->getUsedOptions() );
 					$testCase->assertNull( $object->getExtensionData( 'test_ext_data' ) );
 					$testCase->assertNull( $object->getTimeSinceStart( 'wall' ) );
+				}
+			],
+			'cacheTime' => [
+				'instance' => $parserOutputWithCacheTimeProps,
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+					$testCase->assertSame( self::CACHE_TIME, $object->getCacheTime() );
+					$testCase->assertSame( 10, $object->getCacheExpiry() );
+					$testCase->assertSame( 42, $object->getCacheRevisionId() );
 				}
 			],
 			'text' => [
@@ -293,23 +307,23 @@ abstract class ParserCacheSerializationTestCases {
 			'pageProperties' => [
 				'instance' => $parserOutputWithProperties,
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
-					$testCase->assertSame( self::MOCK_EXT_DATA['boolean'], $object->getProperty( 'boolean' ) );
+					$testCase->assertSame( self::MOCK_EXT_DATA['boolean'], $object->getPageProperty( 'boolean' ) );
 					// Falsy properties return false even though null was given.
-					$testCase->assertFalse( $object->getProperty( 'null' ) );
-					$testCase->assertSame( self::MOCK_EXT_DATA['number'], $object->getProperty( 'number' ) );
-					$testCase->assertSame( self::MOCK_EXT_DATA['string'], $object->getProperty( 'string' ) );
-					$testCase->assertArrayEquals( self::MOCK_EXT_DATA['array'], $object->getProperty( 'array' ) );
-					$testCase->assertSame( self::MOCK_EXT_DATA['map'], $object->getProperty( 'map' ) );
-					$testCase->assertArrayEquals( self::MOCK_EXT_DATA, $object->getProperties() );
+					$testCase->assertFalse( $object->getPageProperty( 'null' ) );
+					$testCase->assertSame( self::MOCK_EXT_DATA['number'], $object->getPageProperty( 'number' ) );
+					$testCase->assertSame( self::MOCK_EXT_DATA['string'], $object->getPageProperty( 'string' ) );
+					$testCase->assertArrayEquals( self::MOCK_EXT_DATA['array'], $object->getPageProperty( 'array' ) );
+					$testCase->assertSame( self::MOCK_EXT_DATA['map'], $object->getPageProperty( 'map' ) );
+					$testCase->assertArrayEquals( self::MOCK_EXT_DATA, $object->getPageProperties() );
 				}
 			],
 			'binaryPageProperties' => [
 				'instance' => $parserOutputWithBinaryProperties,
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
-					$testCase->assertSame( self::MOCK_BINARY_PROPERTIES['empty'], $object->getProperty( 'empty' ) );
-					$testCase->assertSame( self::MOCK_BINARY_PROPERTIES['\x00'], $object->getProperty( '\x00' ) );
-					$testCase->assertSame( self::MOCK_BINARY_PROPERTIES['gzip'], $object->getProperty( 'gzip' ) );
-					$testCase->assertArrayEquals( self::MOCK_BINARY_PROPERTIES, $object->getProperties() );
+					$testCase->assertSame( self::MOCK_BINARY_PROPERTIES['empty'], $object->getPageProperty( 'empty' ) );
+					$testCase->assertSame( self::MOCK_BINARY_PROPERTIES['\x00'], $object->getPageProperty( '\x00' ) );
+					$testCase->assertSame( self::MOCK_BINARY_PROPERTIES['gzip'], $object->getPageProperty( 'gzip' ) );
+					$testCase->assertArrayEquals( self::MOCK_BINARY_PROPERTIES, $object->getPageProperties() );
 				}
 			],
 			'withMetadata' => [
@@ -321,10 +335,10 @@ abstract class ParserCacheSerializationTestCases {
 						'interwiki1' => 1,
 						'interwiki2' => 1
 					] ], $object->getInterwikiLinks() );
-					$testCase->assertArrayEquals( [ 'category1', 'category2' ], $object->getCategoryLinks() );
+					$testCase->assertArrayEquals( [ 'category1', 'category2' ], $object->getCategoryNames() );
 					$testCase->assertArrayEquals( [
-						'category1' => 2,
-						'vategory2' => 1
+						'category1' => '2',
+						'category2' => '1'
 					], $object->getCategories() );
 					$testCase->assertArrayEquals( [ 'indicator1' => 'indicator1_value' ], $object->getIndicators() );
 					$testCase->assertSame( 'title_text1', $object->getTitleText() );
@@ -350,7 +364,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [ 'key1' => 'value1' ], $object->getJsConfigVars() );
 					$testCase->assertArrayEquals( [ [ 'hook1', self::MOCK_EXT_DATA ] ], $object->getOutputHooks() );
 					$testCase->assertArrayEquals( [ 'warning1' ], $object->getWarnings() );
-					$testCase->assertSame( 'policy1', $object->getIndexPolicy() );
+					$testCase->assertSame( 'noindex', $object->getIndexPolicy() );
 					$testCase->assertSame( 'tochtml1', $object->getTOCHTML() );
 					$testCase->assertSame( MWTimestamp::convert( TS_MW, 987654321 ), $object->getTimestamp() );
 					$testCase->assertArrayEquals(

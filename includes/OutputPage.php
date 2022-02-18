@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
@@ -27,6 +28,7 @@ use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\Tidy\RemexDriver;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\RelPath;
 use Wikimedia\WrappedString;
@@ -102,6 +104,11 @@ class OutputPage extends ContextSource {
 	 * never be printed (ex: redirections).
 	 */
 	private $mPrintable = false;
+
+	/**
+	 * @var array sections from ParserOutput
+	 */
+	private $mSections = [];
 
 	/**
 	 * @var array Contains the page subtitle. Special pages usually have some
@@ -211,9 +218,6 @@ class OutputPage extends ContextSource {
 
 	// Parser related.
 
-	/** @var int */
-	protected $mContainsNewMagic = 0;
-
 	/**
 	 * lazy initialised, use parserOptions()
 	 * @var ParserOptions
@@ -227,7 +231,11 @@ class OutputPage extends ContextSource {
 	 */
 	private $mFeedLinks = [];
 
-	/** @var bool Gwicke work on squid caching? Roughly from 2003. */
+	/**
+	 * @var bool Set to false to send no-cache headers, disabling
+	 * client-side caching. (This variable should really be named
+	 * in the opposite sense; see ::disableClientCache().)
+	 */
 	protected $mEnableClientCache = true;
 
 	/** @var bool Flag if output should only contain the body of the article. */
@@ -254,7 +262,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * @var bool Controls if anti-clickjacking / frame-breaking headers will
 	 * be sent. This should be done for pages where edit actions are possible.
-	 * Setters: $this->preventClickjacking() and $this->allowClickjacking().
+	 * Setter: $this->setPreventClickjacking()
 	 */
 	protected $mPreventClickjacking = true;
 
@@ -984,7 +992,15 @@ class OutputPage extends ContextSource {
 
 		# change "<script>foo&bar</script>" to "&lt;script&gt;foo&amp;bar&lt;/script&gt;"
 		# but leave "<i>foobar</i>" alone
-		$nameWithTags = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $name ) );
+		# == start explicit tidy ==
+		# T299722/T298401: The explicit tidy here can be removed once
+		# Sanitizer::removeHTMLtags() is made more robust.
+		$tidy = new RemexDriver( new ServiceOptions( [ 'TidyConfig' ], [
+			'TidyConfig' => [ 'pwrap' => false ],
+		] ) );
+		$nameWithTags = $tidy->tidy( $name, [ Sanitizer::class, 'armorFrenchSpaces' ] );
+		# == end explicit tidy ==
+		$nameWithTags = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $nameWithTags ) );
 		$this->mPageTitle = $nameWithTags;
 
 		# change "<i>foo&amp;bar</i>" to "foo&bar"
@@ -1025,7 +1041,7 @@ class OutputPage extends ContextSource {
 	public function getDisplayTitle() {
 		$html = $this->displayTitle;
 		if ( $html === null ) {
-			$html = $this->getTitle()->getPrefixedText();
+			return htmlspecialchars( $this->getTitle()->getPrefixedText(), ENT_NOQUOTES );
 		}
 
 		return Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $html ) );
@@ -1380,11 +1396,16 @@ class OutputPage extends ContextSource {
 
 		# Set all the values to 'normal'.
 		$categories = array_fill_keys( array_keys( $categories ), 'normal' );
+		$pageData = [];
 
 		# Mark hidden categories
 		foreach ( $res as $row ) {
 			if ( isset( $row->pp_value ) ) {
 				$categories[$row->page_title] = 'hidden';
+			}
+			// Page exists, cache results
+			if ( isset( $row->page_id ) ) {
+				$pageData[$row->page_title] = $row;
 			}
 		}
 
@@ -1400,7 +1421,11 @@ class OutputPage extends ContextSource {
 				// array keys will cast numeric category names to ints, so cast back to string
 				$category = (string)$category;
 				$origcategory = $category;
-				$title = Title::makeTitleSafe( NS_CATEGORY, $category );
+				if ( array_key_exists( $category, $pageData ) ) {
+					$title = Title::newFromRow( $pageData[$category] );
+				} else {
+					$title = Title::makeTitleSafe( NS_CATEGORY, $category );
+				}
 				if ( !$title ) {
 					continue;
 				}
@@ -1469,6 +1494,7 @@ class OutputPage extends ContextSource {
 	 * page
 	 *
 	 * @return string[][]
+	 * @return-taint none
 	 */
 	public function getCategoryLinks() {
 		return $this->mCategoryLinks;
@@ -1881,9 +1907,27 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Adds sections to OutputPage from ParserOutput
+	 * @param array $sections
+	 * @internal For use by Article.php
+	 */
+	public function setSections( array $sections ) {
+		$this->mSections = $sections;
+	}
+
+	/**
+	 * @internal For usage in Skin::getSectionsData() only.
+	 * @return array Array of sections.
+	 *   Empty if OutputPage::setSections() has not been called.
+	 */
+	public function getSections(): array {
+		return $this->mSections;
+	}
+
+	/**
 	 * Add all metadata associated with a ParserOutput object, but without the actual HTML. This
 	 * includes categories, language links, ResourceLoader modules, effects of certain magic words,
-	 * and so on.
+	 * and so on.  It does *not* include section information.
 	 *
 	 * @since 1.24
 	 * @param ParserOutput $parserOutput
@@ -1893,19 +1937,24 @@ class OutputPage extends ContextSource {
 			array_merge( $this->mLanguageLinks, $parserOutput->getLanguageLinks() );
 		$this->addCategoryLinks( $parserOutput->getCategories() );
 		$this->setIndicators( $parserOutput->getIndicators() );
+
+		// FIXME: Best practice is for OutputPage to be an accumulator, as
+		// addParserOutputMetadata() may be called multiple times, but the
+		// following lines overwrite any previous data.  These should
+		// be migrated to an injection pattern.
 		$this->mNewSectionLink = $parserOutput->getNewSection();
 		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();
+		$this->mNoGallery = $parserOutput->getNoGallery();
 
 		if ( !$parserOutput->isCacheable() ) {
-			$this->enableClientCache( false );
+			$this->disableClientCache();
 		}
-		$this->mNoGallery = $parserOutput->getNoGallery();
 		$this->mHeadItems = array_merge( $this->mHeadItems, $parserOutput->getHeadItems() );
 		$this->addModules( $parserOutput->getModules() );
 		$this->addModuleStyles( $parserOutput->getModuleStyles() );
 		$this->addJsConfigVars( $parserOutput->getJsConfigVars() );
 		$this->mPreventClickjacking = $this->mPreventClickjacking
-			|| $parserOutput->preventClickjacking();
+			|| $parserOutput->getPreventClickjacking();
 		$scriptSrcs = $parserOutput->getExtraCSPScriptSrcs();
 		foreach ( $scriptSrcs as $src ) {
 			$this->getCSP()->addScriptSrc( $src );
@@ -1969,6 +2018,9 @@ class OutputPage extends ContextSource {
 		}
 
 		// Include parser limit report
+		// FIXME: This should append, rather than overwrite, or else this
+		// data should be injected into the OutputPage like is done for the
+		// other page-level things (like OutputPage::setSections()).
 		if ( !$this->limitReportJSData ) {
 			$this->limitReportJSData = $parserOutput->getLimitReportJSData();
 		}
@@ -2186,9 +2238,20 @@ class OutputPage extends ContextSource {
 	 * @param bool|null $state New value, or null to not set the value
 	 *
 	 * @return bool Old value
+	 * @deprecated since 1.38; use disableClientCache() instead
+	 * ($state is almost always `false` when this method is called)
 	 */
 	public function enableClientCache( $state ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		return wfSetVar( $this->mEnableClientCache, $state );
+	}
+
+	/**
+	 * Force the page to send nocache headers
+	 * @since 1.38
+	 */
+	public function disableClientCache(): void {
+		$this->mEnableClientCache = false;
 	}
 
 	/**
@@ -2200,7 +2263,7 @@ class OutputPage extends ContextSource {
 	public function couldBePublicCached() {
 		if ( !$this->cacheIsFinal ) {
 			// - The entry point handles its own caching and/or doesn't use OutputPage.
-			//   (such as load.php, AjaxDispatcher, or MediaWiki\Rest\EntryPoint).
+			//   (such as load.php, or MediaWiki\Rest\EntryPoint).
 			//
 			// - Or, we haven't finished processing the main part of the request yet
 			//   (e.g. Action::show, SpecialPage::execute), and the state may still
@@ -2351,6 +2414,7 @@ class OutputPage extends ContextSource {
 	 * form on an ordinary view page, then you need to call this function.
 	 *
 	 * @param bool $enable
+	 * @deprecated since 1.38, use ::setPreventClickjacking( true )
 	 */
 	public function preventClickjacking( $enable = true ) {
 		$this->mPreventClickjacking = $enable;
@@ -2360,9 +2424,33 @@ class OutputPage extends ContextSource {
 	 * Turn off frame-breaking. Alias for $this->preventClickjacking(false).
 	 * This can be called from pages which do not contain any CSRF-protected
 	 * HTML form.
+	 *
+	 * @deprecated since 1.38, use ::setPreventClickjacking( false )
 	 */
 	public function allowClickjacking() {
 		$this->mPreventClickjacking = false;
+	}
+
+	/**
+	 * Set the prevent-clickjacking flag.
+	 *
+	 * If true, will cause an X-Frame-Options header appropriate for
+	 * edit pages to be sent. The header value is controlled by
+	 * $wgEditPageFrameOptions.  This is the default for special
+	 * pages. If you display a CSRF-protected form on an ordinary view
+	 * page, then you need to call this function.
+	 *
+	 * Setting this flag to false will turn off frame-breaking.  This
+	 * can be called from pages which do not contain any
+	 * CSRF-protected HTML form.
+	 *
+	 * @param bool $enable If true, will cause an X-Frame-Options header
+	 *  appropriate for edit pages to be sent.
+	 *
+	 * @since 1.38
+	 */
+	public function setPreventClickjacking( bool $enable ) {
+		$this->mPreventClickjacking = $enable;
 	}
 
 	/**
@@ -2481,20 +2569,11 @@ class OutputPage extends ContextSource {
 					"s-maxage={$this->mCdnMaxage}, must-revalidate, max-age=0" );
 			} else {
 				# We do want clients to cache if they can, but they *must* check for updates
-				# on revisiting the page, after the max-age period.
+				# on revisiting the page.
 				wfDebug( __METHOD__ . ": private caching ($privateReason); {$this->mLastModified} **", 'private' );
 
-				if ( $response->hasCookies() || SessionManager::getGlobalSession()->isPersistent() ) {
-					$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
-					$response->header( "Cache-Control: private, must-revalidate, max-age=0" );
-				} else {
-					$response->header(
-						'Expires: ' . gmdate( 'D, d M Y H:i:s', time() + $config->get( 'LoggedOutMaxAge' ) ) . ' GMT'
-					);
-					$response->header(
-						"Cache-Control: private, must-revalidate, max-age={$config->get( 'LoggedOutMaxAge' )}"
-					);
-				}
+				$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
+				$response->header( "Cache-Control: private, must-revalidate, max-age=0" );
 			}
 			if ( $this->mLastModified ) {
 				$response->header( "Last-Modified: {$this->mLastModified}" );
@@ -2565,7 +2644,7 @@ class OutputPage extends ContextSource {
 				}
 				$this->sendCacheControl();
 
-				$response->header( "Content-Type: text/html; charset=utf-8" );
+				$response->header( 'Content-Type: text/html; charset=UTF-8' );
 				if ( $config->get( 'DebugRedirects' ) ) {
 					$url = htmlspecialchars( $redirect );
 					$content = "<!DOCTYPE html>\n<html>\n<head>\n"
@@ -2683,7 +2762,7 @@ class OutputPage extends ContextSource {
 		}
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
-		$this->enableClientCache( false );
+		$this->disableClientCache();
 		$this->mRedirect = '';
 		$this->clearSubtitle();
 		$this->clearHTML();
@@ -2966,8 +3045,7 @@ class OutputPage extends ContextSource {
 				null, // version; not relevant
 				ResourceLoader::inDebugMode(),
 				null, // only; not relevant
-				$this->isPrintable(),
-				$this->getRequest()->getBool( 'handheld' )
+				$this->isPrintable()
 			);
 			$this->rlClientContext = new ResourceLoaderContext(
 				$this->getResourceLoader(),
@@ -2979,7 +3057,7 @@ class OutputPage extends ContextSource {
 					foreach ( $this->contentOverrideCallbacks as $callback ) {
 						$content = $callback( $title );
 						if ( $content !== null ) {
-							$text = ContentHandler::getContentText( $content );
+							$text = ( $content instanceof TextContent ) ? $content->getText() : '';
 							if ( strpos( $text, '</script>' ) !== false ) {
 								// Proactively replace this so that we can display a message
 								// to the user, instead of letting it go to Html::inlineScript(),
@@ -3026,7 +3104,12 @@ class OutputPage extends ContextSource {
 			] );
 
 			// Prepare exempt modules for buildExemptModules()
-			$exemptGroups = [ 'site' => [], 'noscript' => [], 'private' => [], 'user' => [] ];
+			$exemptGroups = [
+				ResourceLoaderModule::GROUP_SITE => [],
+				ResourceLoaderModule::GROUP_NOSCRIPT => [],
+				ResourceLoaderModule::GROUP_PRIVATE => [],
+				ResourceLoaderModule::GROUP_USER => []
+			];
 			$exemptStates = [];
 			$moduleStyles = $this->getModuleStyles( /*filter*/ true );
 
@@ -3045,7 +3128,12 @@ class OutputPage extends ContextSource {
 					if ( $module ) {
 						$group = $module->getGroup();
 						if ( isset( $exemptGroups[$group] ) ) {
-							$exemptStates[$name] = 'ready';
+							// The `noscript` module is excluded from the client
+							// side registry, no need to set its state either.
+							// But we still output it. See T291735
+							if ( $group !== ResourceLoaderModule::GROUP_NOSCRIPT ) {
+								$exemptStates[$name] = 'ready';
+							}
 							if ( !$module->isKnownEmpty( $context ) ) {
 								// E.g. Don't output empty <styles>
 								$exemptGroups[$group][] = $name;
@@ -3063,7 +3151,7 @@ class OutputPage extends ContextSource {
 				'nonce' => $this->CSP->getNonce(),
 				// When 'safemode', disallowUserJs(), or reduceAllowedModules() is used
 				// to only restrict modules to ORIGIN_CORE (ie. disallow ORIGIN_USER), the list of
-				// modules enqueud for loading on this page is filtered to just those.
+				// modules enqueued for loading on this page is filtered to just those.
 				// However, to make sure we also apply the restriction to dynamic dependencies and
 				// lazy-loaded modules at run-time on the client-side, pass 'safemode' down to the
 				// StartupModule so that the client-side registry will not contain any restricted
@@ -3116,7 +3204,7 @@ class OutputPage extends ContextSource {
 			$pieces[] = Html::element( 'meta', [ 'charset' => 'UTF-8' ] );
 		}
 
-		$pieces[] = Html::element( 'title', null, $this->getHTMLTitle() );
+		$pieces[] = Html::element( 'title', [], $this->getHTMLTitle() );
 		$pieces[] = $this->getRlClient()->getHeadHtml( $htmlAttribs['class'] ?? null );
 		$pieces[] = $this->buildExemptModules();
 		$pieces = array_merge( $pieces, array_values( $this->getHeadLinksArray() ) );
@@ -3124,7 +3212,8 @@ class OutputPage extends ContextSource {
 
 		$pieces[] = Html::closeElement( 'head' );
 
-		$bodyClasses = $this->mAdditionalBodyClasses;
+		$skinOptions = $sk->getOptions();
+		$bodyClasses = array_merge( $this->mAdditionalBodyClasses, $skinOptions['bodyClasses'] );
 		$bodyClasses[] = 'mediawiki';
 
 		# Classes for LTR/RTL directionality support
@@ -3188,7 +3277,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Explicily load or embed modules on a page.
+	 * Explicitly load or embed modules on a page.
 	 *
 	 * @param array|string $modules One or more module names
 	 * @param string $only ResourceLoaderModule TYPE_ class constant
@@ -3387,7 +3476,7 @@ class OutputPage extends ContextSource {
 			}
 		}
 		$languageConverter = $services->getLanguageConverterFactory()
-			->getLanguageConverter( $services->getContentLanguage() );
+			->getLanguageConverter( $title->getPageLanguage() );
 		if ( $languageConverter->hasVariants() ) {
 			$vars['wgUserVariant'] = $languageConverter->getPreferredVariant();
 		}
@@ -3566,20 +3655,13 @@ class OutputPage extends ContextSource {
 			$tags[] = Html::element( 'link', $tag );
 		}
 
-		# Universal edit button
 		if ( $config->get( 'UniversalEditButton' ) && $this->isArticleRelated() ) {
 			if ( $this->getAuthority()->probablyCan( 'edit', $this->getTitle() ) ) {
-				// Original UniversalEditButton
 				$msg = $this->msg( 'edit' )->text();
+				// Use mime type per https://phabricator.wikimedia.org/T21165#6946526
 				$tags['universal-edit-button'] = Html::element( 'link', [
 					'rel' => 'alternate',
 					'type' => 'application/x-wiki',
-					'title' => $msg,
-					'href' => $this->getTitle()->getEditURL(),
-				] );
-				// Alternate edit link
-				$tags['alternative-edit'] = Html::element( 'link', [
-					'rel' => 'edit',
 					'title' => $msg,
 					'href' => $this->getTitle()->getEditURL(),
 				] );
@@ -4016,7 +4098,7 @@ class OutputPage extends ContextSource {
 		// This MUST match the equivalent logic in CSSMin::remapOne()
 		$localFile = "$localPath/$file";
 		$url = "$remotePathPrefix/$file";
-		if ( file_exists( $localFile ) ) {
+		if ( is_file( $localFile ) ) {
 			$hash = md5_file( $localFile );
 			if ( $hash === false ) {
 				wfLogWarning( __METHOD__ . ": Failed to hash $localFile" );
@@ -4031,42 +4113,34 @@ class OutputPage extends ContextSource {
 	 * Transform "media" attribute based on request parameters
 	 *
 	 * @param string $media Current value of the "media" attribute
-	 * @return string|null Modified value of the "media" attribute, or null to skip
+	 * @return string|null Modified value of the "media" attribute, or null to disable
 	 * this stylesheet
 	 */
 	public static function transformCssMedia( $media ) {
 		global $wgRequest;
 
-		// https://www.w3.org/TR/css3-mediaqueries/#syntax
-		$screenMediaQueryRegex = '/^(?:only\s+)?screen\b/i';
+		if ( $wgRequest->getBool( 'printable' ) ) {
+			// When browsing with printable=yes, apply "print" media styles
+			// as if they are screen styles (no media, media="").
+			if ( $media === 'print' ) {
+				return '';
+			}
 
-		// Switch in on-screen display for media testing
-		$switches = [
-			'printable' => 'print',
-			'handheld' => 'handheld',
-		];
-		foreach ( $switches as $switch => $targetMedia ) {
-			if ( $wgRequest->getBool( $switch ) ) {
-				if ( $media == $targetMedia ) {
-					$media = '';
-				} elseif ( preg_match( $screenMediaQueryRegex, $media ) === 1 ) {
-					/* This regex will not attempt to understand a comma-separated media_query_list
-					 *
-					 * Example supported values for $media:
-					 * 'screen', 'only screen', 'screen and (min-width: 982px)' ),
-					 * Example NOT supported value for $media:
-					 * '3d-glasses, screen, print and resolution > 90dpi'
-					 *
-					 * If it's a print request, we never want any kind of screen stylesheets
-					 * If it's a handheld request (currently the only other choice with a switch),
-					 * we don't want simple 'screen' but we might want screen queries that
-					 * have a max-width or something, so we'll pass all others on and let the
-					 * client do the query.
-					 */
-					if ( $targetMedia == 'print' || $media == 'screen' ) {
-						return null;
-					}
-				}
+			// https://www.w3.org/TR/css3-mediaqueries/#syntax
+			//
+			// This regex will not attempt to understand a comma-separated media_query_list
+			// Example supported values for $media:
+			//
+			//     'screen', 'only screen', 'screen and (min-width: 982px)' ),
+			//
+			// Example NOT supported value for $media:
+			//
+			//     '3d-glasses, screen, print and resolution > 90dpi'
+			//
+			// If it's a "printable" request, we disable all screen stylesheets.
+			$screenMediaQueryRegex = '/^(?:only\s+)?screen\b/i';
+			if ( preg_match( $screenMediaQueryRegex, $media ) === 1 ) {
+				return null;
 			}
 		}
 
@@ -4226,9 +4300,9 @@ class OutputPage extends ContextSource {
 			MWDebug::getDebugHTML( $skin ),
 			$this->getBottomScripts( $extraHtml ),
 			wfReportTime( $this->getCSP()->getNonce() ),
-			MWDebug::getHTMLDebugLog()
-			. Html::closeElement( 'body' )
-			. Html::closeElement( 'html' )
+			MWDebug::getHTMLDebugLog(),
+			Html::closeElement( 'body' ),
+			Html::closeElement( 'html' ),
 		];
 
 		return WrappedStringList::join( "\n", $tail );

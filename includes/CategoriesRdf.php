@@ -79,7 +79,7 @@ class CategoriesRdf {
 
 	/**
 	 * Write out the data for single category.
-	 * @param string $categoryName Category name
+	 * @param string $categoryName
 	 * @param bool $isHidden Hidden category?
 	 * @param int $pages Page count (note this includes only Wiki articles, not subcats or files)
 	 * @param int $subcategories Subcategory count

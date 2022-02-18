@@ -22,6 +22,8 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
+use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\XMPReader\Reader as XMPReader;
 
 /**
@@ -68,6 +70,8 @@ class BitmapMetadataHandler {
 	private function doApp13( $app13 ) {
 		try {
 			$this->iptcType = JpegMetadataExtractor::doPSIR( $app13 );
+		} catch ( TimeoutException $e ) {
+			throw $e;
 		} catch ( Exception $e ) {
 			// Error reading the iptc hash information.
 			// This probably means the App13 segment is something other than what we expect.
@@ -91,8 +95,8 @@ class BitmapMetadataHandler {
 	 * @param string $byteOrder
 	 */
 	public function getExif( $filename, $byteOrder ) {
-		global $wgShowEXIF;
-		if ( file_exists( $filename ) && $wgShowEXIF ) {
+		$showEXIF = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowEXIF' );
+		if ( file_exists( $filename ) && $showEXIF ) {
 			$exif = new Exif( $filename, $byteOrder );
 			$data = $exif->getFilteredData();
 			if ( $data ) {
@@ -118,7 +122,7 @@ class BitmapMetadataHandler {
 
 	/**
 	 * Merge together the various types of metadata
-	 * the different types have different priorites,
+	 * the different types have different priorities,
 	 * and are merged in order.
 	 *
 	 * This function is generally called by the media handlers' getMetadata()
@@ -301,7 +305,7 @@ class BitmapMetadataHandler {
 	 * Little Endian or Big Endian. Needed for exif stuff.
 	 *
 	 * @param string $filename
-	 * @return string 'BE' or 'LE' or false
+	 * @return string|false 'BE' or 'LE' or false
 	 */
 	public static function getTiffByteOrder( $filename ) {
 		$fh = fopen( $filename, 'rb' );

@@ -276,7 +276,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				$revIds = [];
 				foreach ( $res as $row ) {
 					if ( $row->rev_parent_id ) {
-						$revIds[] = $row->rev_parent_id;
+						$revIds[] = (int)$row->rev_parent_id;
 					}
 				}
 				$this->parentLens = $this->revisionStore->getRevisionSizes( $revIds );
@@ -309,15 +309,13 @@ class ApiQueryUserContribs extends ApiQueryBase {
 	 * @param int $limit
 	 */
 	private function prepareQuery( array $users, $limit ) {
-		global $wgActorTableSchemaMigrationStage;
-
 		$this->resetQueryParams();
 		$db = $this->getDB();
 
 		$revQuery = $this->revisionStore->getQueryInfo( [ 'page' ] );
 		$revWhere = $this->actorMigration->getWhere( $db, 'rev_user', $users );
 
-		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_TEMP ) {
+		if ( $this->getConfig()->get( 'ActorTableSchemaMigrationStage' ) & SCHEMA_COMPAT_READ_TEMP ) {
 			$orderUserField = 'rev_actor';
 			$userField = $this->orderBy === 'actor' ? 'revactor_actor' : 'actor_name';
 			$tsField = 'revactor_timestamp';
@@ -334,7 +332,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				$revQuery['joins']['revision'] = $revQuery['joins']['temp_rev_user'];
 				unset( $revQuery['joins']['temp_rev_user'] );
 				$this->addOption( 'STRAIGHT_JOIN' );
-				// It isn't actually necesssary to reorder $revQuery['tables'] as Database does the right thing
+				// It isn't actually necessary to reorder $revQuery['tables'] as Database does the right thing
 				// when join conditions are given for all joins, but Gergő is wary of relying on that so pull
 				// `revision_actor_temp` to the start.
 				$revQuery['tables'] =
@@ -488,6 +486,10 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				$this->addWhere( '1=0' );
 			}
 		}
+		$this->addOption(
+			'MAX_EXECUTION_TIME',
+			$this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' )
+		);
 	}
 
 	/**

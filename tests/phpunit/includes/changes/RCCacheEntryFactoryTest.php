@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\MediaWikiServices;
 
 /**
  * @covers RCCacheEntryFactory
@@ -29,7 +28,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 			'wgArticlePath' => '/wiki/$1'
 		] );
 
-		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$this->linkRenderer = $this->getServiceContainer()->getLinkRenderer();
 		$this->testRecentChangesHelper = new TestRecentChangesHelper();
 	}
 

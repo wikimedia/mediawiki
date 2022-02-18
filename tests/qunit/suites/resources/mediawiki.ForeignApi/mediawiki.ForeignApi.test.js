@@ -10,7 +10,7 @@
 		var api = new mw.ForeignApi( '//localhost:4242/w/api.php' );
 
 		this.server.respond( function ( request ) {
-			assert.ok( request.url.match( /origin=/ ), 'origin is included in GET requests' );
+			assert.true( /origin=/.test( request.url ), 'origin is included in GET requests' );
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
 		} );
 
@@ -21,8 +21,8 @@
 		var api = new mw.ForeignApi( '//localhost:4242/w/api.php' );
 
 		this.server.respond( function ( request ) {
-			assert.ok( request.requestBody.match( /origin=/ ), 'origin is included in POST request body' );
-			assert.ok( request.url.match( /origin=/ ), 'origin is included in POST request URL, too' );
+			assert.true( /origin=/.test( request.requestBody ), 'origin is included in POST request body' );
+			assert.true( /origin=/.test( request.url ), 'origin is included in POST request URL, too' );
 			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
 		} );
 

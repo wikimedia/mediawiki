@@ -48,16 +48,6 @@ class JavaScriptContent extends TextContent {
 	}
 
 	/**
-	 * @return string JavaScript wrapped in a <pre> tag.
-	 */
-	protected function getHtml() {
-		return Html::element( 'pre',
-			[ 'class' => 'mw-code mw-js', 'dir' => 'ltr' ],
-			"\n" . $this->getText() . "\n"
-		) . "\n";
-	}
-
-	/**
 	 * If this page is a redirect, return the content
 	 * if it should redirect to $target instead
 	 *

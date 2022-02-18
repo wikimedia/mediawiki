@@ -21,13 +21,14 @@
  * @defgroup JobQueue JobQueue
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 
 /**
  * Class to both describe a background job and handle jobs.
- * To push jobs onto queues, use JobQueueGroup::singleton()->push();
+ * To push jobs onto queues, use MediaWikiServices::getInstance()->getJobQueueGroup()->push();
  *
- * Job objects are constructed by the job queue, and must have an approriate
+ * Job objects are constructed by the job queue, and must have an appropriate
  * constructor signature; see IJobSpecification.
  *
  * @stable to extend
@@ -68,7 +69,7 @@ abstract class Job implements RunnableJob {
 	 * @return Job
 	 */
 	public static function factory( $command, $params = [] ) {
-		global $wgJobClasses;
+		$jobClasses = MediaWikiServices::getInstance()->getMainConfig()->get( 'JobClasses' );
 
 		if ( $params instanceof PageReference ) {
 			// Backwards compatibility for old signature ($command, $title, $params)
@@ -87,8 +88,8 @@ abstract class Job implements RunnableJob {
 			$title = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
 		}
 
-		if ( isset( $wgJobClasses[$command] ) ) {
-			$handler = $wgJobClasses[$command];
+		if ( isset( $jobClasses[$command] ) ) {
+			$handler = $jobClasses[$command];
 
 			if ( is_callable( $handler ) ) {
 				$job = call_user_func( $handler, $title, $params );

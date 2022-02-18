@@ -22,6 +22,7 @@
  * @license GPL-2.0-or-later
  * @since 1.19
  */
+
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
@@ -52,10 +53,10 @@ class LogFormatter {
 	 * @return LogFormatter
 	 */
 	public static function newFromEntry( LogEntry $entry ) {
-		global $wgLogActionsHandlers;
+		$logActionsHandlers = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogActionsHandlers' );
 		$fulltype = $entry->getFullType();
 		$wildcard = $entry->getType() . '/*';
-		$handler = $wgLogActionsHandlers[$fulltype] ?? $wgLogActionsHandlers[$wildcard] ?? '';
+		$handler = $logActionsHandlers[$fulltype] ?? $logActionsHandlers[$wildcard] ?? '';
 
 		if ( $handler !== '' && is_string( $handler ) && class_exists( $handler ) ) {
 			return new $handler( $entry );
@@ -94,11 +95,11 @@ class LogFormatter {
 	 * be included in page history or send to IRC feed. Links are replaced
 	 * with plaintext or with [[pagename]] kind of syntax, that is parsed
 	 * by page histories and IRC feeds.
-	 * @var string
+	 * @var bool
 	 */
 	protected $plaintext = false;
 
-	/** @var string */
+	/** @var bool */
 	protected $irctext = false;
 
 	/**
@@ -404,7 +405,7 @@ class LogFormatter {
 						$duration = $contLang->translateBlockExpiry(
 							$rawDuration,
 							null,
-							wfTimestamp( TS_UNIX, $entry->getTimestamp() )
+							(int)wfTimestamp( TS_UNIX, $entry->getTimestamp() )
 						);
 						$flags = BlockLogFormatter::formatBlockFlags( $rawFlags, $contLang );
 						$text = wfMessage( 'blocklogentry' )
@@ -418,7 +419,7 @@ class LogFormatter {
 						$duration = $contLang->translateBlockExpiry(
 							$parameters['5::duration'],
 							null,
-							wfTimestamp( TS_UNIX, $entry->getTimestamp() )
+							(int)wfTimestamp( TS_UNIX, $entry->getTimestamp() )
 						);
 						$flags = BlockLogFormatter::formatBlockFlags( $parameters['6::flags'],
 							$contLang );
@@ -612,7 +613,7 @@ class LogFormatter {
 	 *     * number: Format value as number
 	 *     * list: Format value as a comma-separated list
 	 * @param mixed $value The parameter value that should be formatted
-	 * @return string|array Formated value
+	 * @return string|array Formatted value
 	 * @since 1.21
 	 */
 	protected function formatParameterValue( $type, $value ) {
@@ -814,7 +815,7 @@ class LogFormatter {
 					true, // redContribsWhenNoEdits
 					$toolFlags,
 					$editCount,
-					// do not render parenthesises in the HTML markup (CSS will provide)
+					// do not render parentheses in the HTML markup (CSS will provide)
 					false
 				);
 			}
@@ -941,7 +942,6 @@ class LogFormatter {
 			case 'title-link':
 				$title = Title::newFromText( $value );
 				if ( !$title ) {
-					// Huh? Do something halfway sane.
 					$title = SpecialPage::getTitleFor( 'Badtitle', $value );
 				}
 				$value = [];

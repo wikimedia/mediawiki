@@ -3,7 +3,6 @@
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
-use MediaWiki\MediaWikiServices;
 
 /**
  * @todo Can this be converted to unit tests?
@@ -29,11 +28,11 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 			->willReturn( '1.2.3.4' );
 		$context->setRequest( $request );
 
-		$formatter = MediaWikiServices::getInstance()->getBlockErrorFormatter();
+		$formatter = $this->getServiceContainer()->getBlockErrorFormatter();
 		$message = $formatter->getMessage(
 			$block,
 			$context->getUser(),
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' ),
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'qqx' ),
 			$context->getRequest()->getIP()
 		);
 
@@ -179,7 +178,7 @@ class BlockErrorFormatterTest extends MediaWikiIntegrationTestCase {
 
 		$context = RequestContext::getMain();
 
-		$formatter = MediaWikiServices::getInstance()->getBlockErrorFormatter();
+		$formatter = $this->getServiceContainer()->getBlockErrorFormatter();
 		$this->assertContains(
 			$expected,
 			$formatter->getMessage(

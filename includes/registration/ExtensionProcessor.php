@@ -229,6 +229,12 @@ class ExtensionProcessor implements Processor {
 		// Record the extension name in the ParsoidModules property
 		if ( isset( $info['ParsoidModules'] ) ) {
 			foreach ( $info['ParsoidModules'] as &$module ) {
+				if ( is_string( $module ) ) {
+					$className = $module;
+					$module = [
+						'class' => $className,
+					];
+				}
 				$module['name'] = $name;
 			}
 		}
@@ -530,7 +536,9 @@ class ExtensionProcessor implements Processor {
 				if ( isset( $ns['capitallinkoverride'] ) ) {
 					$this->globals['wgCapitalLinkOverrides'][$id] = $ns['capitallinkoverride'];
 				}
-
+				if ( isset( $ns['includable'] ) && !$ns['includable'] ) {
+					$this->globals['wgNonincludableNamespaces'][] = $id;
+				}
 			}
 		}
 	}
@@ -640,7 +648,7 @@ class ExtensionProcessor implements Processor {
 					} else {
 						$data['args'][0]['templateDirectory'] = $templateDirectory;
 						wfDeprecatedMsg(
-							'Template directory should be relative to skin or omitted.',
+							'Template directory should be relative to skin or omitted for skin ' . $skinKey,
 							'1.37'
 						);
 					}

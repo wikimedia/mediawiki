@@ -8,6 +8,8 @@ use Wikimedia\IPUtils;
 
 /**
  * @group Database
+ * @coversDefaultClass \PageArchive
+ * @covers ::__construct
  */
 class PageArchiveTest extends MediaWikiIntegrationTestCase {
 
@@ -17,7 +19,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	protected $pageId;
 
 	/**
-	 * @var PageArchive
+	 * @var Title
 	 */
 	protected $archivedPage;
 
@@ -67,8 +69,8 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// First create our dummy page
-		$page = Title::newFromText( 'PageArchiveTest_thePage' );
-		$page = new WikiPage( $page );
+		$this->archivedPage = Title::newFromText( 'PageArchiveTest_thePage' );
+		$page = new WikiPage( $this->archivedPage );
 		$content = ContentHandler::makeContent(
 			'testing',
 			$page->getTitle(),
@@ -76,7 +78,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$user = $this->getTestUser()->getUser();
-		$page->doUserEditContent( $content, $user, 'testing', EDIT_NEW );
+		$page->doUserEditContent( $content, $user, 'testing', EDIT_NEW | EDIT_SUPPRESS_RC );
 
 		$this->pageId = $page->getId();
 		$this->firstRev = $page->getRevisionRecord();
@@ -99,15 +101,11 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		$dbw = wfGetDB( DB_PRIMARY );
 		$this->ipRev = $revisionStore->insertRevisionOn( $rev, $dbw );
 
-		// Delete the page
-		$page->doDeleteArticleReal( 'Just a test deletion', $user );
-
-		$this->archivedPage = new PageArchive( $page->getTitle() );
+		$this->deletePage( $page, '', $user );
 	}
 
 	/**
 	 * @covers PageArchive::undeleteAsUser
-	 * @covers PageArchive::undeleteRevisions
 	 */
 	public function testUndeleteRevisions() {
 		// TODO: MCR: Test undeletion with multiple slots. Check that slots remain untouched.
@@ -135,7 +133,8 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $row );
 
 		// Restore the page
-		$this->archivedPage->undeleteAsUser( [], $this->getTestSysop()->getUser() );
+		$archive = new PageArchive( $this->archivedPage );
+		$archive->undeleteAsUser( [], $this->getTestSysop()->getUser() );
 
 		// Should be back in revision
 		$revQuery = $revisionStore->getQueryInfo();
@@ -172,7 +171,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 				'ar_page_id' => strval( $this->ipRev->getPageId() ),
 				'ar_comment_text' => 'just a test',
 				'ar_comment_data' => null,
-				'ar_comment_cid' => '2',
+				'ar_comment_cid' => strval( $this->ipRev->getComment()->id ),
 				'ts_tags' => null,
 				'ar_id' => '2',
 				'ar_namespace' => '0',
@@ -192,7 +191,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 				'ar_page_id' => strval( $this->firstRev->getPageId() ),
 				'ar_comment_text' => 'testing',
 				'ar_comment_data' => null,
-				'ar_comment_cid' => '1',
+				'ar_comment_cid' => strval( $this->firstRev->getComment()->id ),
 				'ts_tags' => null,
 				'ar_id' => '1',
 				'ar_namespace' => '0',
@@ -203,51 +202,9 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers PageArchive::listRevisions
-	 */
-	public function testListRevisions() {
-		$revisions = $this->archivedPage->listRevisions();
-		$this->assertEquals( 2, $revisions->numRows() );
-
-		// Get the rows as arrays
-		$row0 = (array)$revisions->current();
-		$row1 = (array)$revisions->next();
-
-		$expectedRows = $this->getExpectedArchiveRows();
-
-		$this->assertEquals(
-			$expectedRows[0],
-			$row0
-		);
-		$this->assertEquals(
-			$expectedRows[1],
-			$row1
-		);
-	}
-
-	/**
-	 * @covers PageArchive::listRevisions
-	 */
-	public function testListRevisions_slots() {
-		$revisions = $this->archivedPage->listRevisions();
-
-		$revisionStore = $this->getServiceContainer()->getRevisionStore();
-		$slotsQuery = $revisionStore->getSlotsQueryInfo( [ 'content' ] );
-
-		foreach ( $revisions as $row ) {
-			$this->assertSelect(
-				$slotsQuery['tables'],
-				'count(*)',
-				[ 'slot_revision_id' => $row->ar_rev_id ],
-				[ [ 1 ] ],
-				[],
-				$slotsQuery['joins']
-			);
-		}
-	}
-
-	/**
 	 * @covers PageArchive::listPagesBySearch
+	 * @covers PageArchive::listPagesByPrefix
+	 * @covers PageArchive::listPages
 	 */
 	public function testListPagesBySearch() {
 		$pages = PageArchive::listPagesBySearch( 'PageArchiveTest_thePage' );
@@ -266,7 +223,8 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers PageArchive::listPagesBySearch
+	 * @covers PageArchive::listPagesByPrefix
+	 * @covers PageArchive::listPages
 	 */
 	public function testListPagesByPrefix() {
 		$pages = PageArchive::listPagesByPrefix( 'PageArchiveTest' );
@@ -282,42 +240,6 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 			],
 			$page
 		);
-	}
-
-	public function provideGetTextFromRowThrowsInvalidArgumentException() {
-		yield 'missing ar_text_id field' => [ [] ];
-		yield 'ar_text_id is null' => [ [ 'ar_text_id' => null ] ];
-		yield 'ar_text_id is zero' => [ [ 'ar_text_id' => 0 ] ];
-		yield 'ar_text_id is "0"' => [ [ 'ar_text_id' => '0' ] ];
-	}
-
-	/**
-	 * @covers PageArchive::getLastRevisionId
-	 */
-	public function testGetLastRevisionId() {
-		$id = $this->archivedPage->getLastRevisionId();
-		$this->assertSame( $this->ipRev->getId(), $id );
-	}
-
-	/**
-	 * @covers PageArchive::isDeleted
-	 */
-	public function testIsDeleted() {
-		$this->assertTrue( $this->archivedPage->isDeleted() );
-	}
-
-	/**
-	 * @covers PageArchive::getRevisionRecordByTimestamp
-	 */
-	public function testGetRevisionRecordByTimestamp() {
-		$revRecord = $this->archivedPage->getRevisionRecordByTimestamp(
-			$this->ipRev->getTimestamp()
-		);
-		$this->assertNotNull( $revRecord );
-		$this->assertSame( $this->pageId, $revRecord->getPageId() );
-
-		$revRecord = $this->archivedPage->getRevisionRecordByTimestamp( '22991212115555' );
-		$this->assertNull( $revRecord );
 	}
 
 }

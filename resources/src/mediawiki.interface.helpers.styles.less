@@ -124,6 +124,9 @@ span.comment {
 	font-style: italic;
 	unicode-bidi: -moz-isolate;
 	unicode-bidi: isolate;
+	word-wrap: break-word;
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+	overflow-wrap: break-word;
 }
 
 /** rev_deleted stuff */
@@ -135,9 +138,9 @@ span.history-deleted {
 }
 
 span.mw-history-suppressed {
-	font-weight: bold;
 	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	text-decoration-style: double;
+	color: #202122;
 }
 
 /* The auto-generated edit comments */
@@ -145,6 +148,10 @@ span.mw-history-suppressed {
 .autocomment a,
 .autocomment a:visited {
 	color: #72777d;
+}
+
+.mw-comment-none {
+	.mixin-screen-reader-text();
 }
 
 /* (show/hide) revision deletion links */

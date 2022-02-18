@@ -1,7 +1,8 @@
 <?php
 
+use MediaWiki\Content\Renderer\ContentRenderer;
+use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Edit\PreparedEdit;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\Authority;
@@ -61,14 +62,9 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	}
 
 	protected function tearDown(): void {
-		$user = $this->getTestSysop()->getUser();
 		foreach ( $this->pagesToDelete as $p ) {
-			try {
-				if ( $p->canExist() && $p->exists() ) {
-					$p->doDeleteArticleReal( "testing done.", $user );
-				}
-			} catch ( MWException $ex ) {
-				// fail silently
+			if ( $p->exists() ) {
+				$this->deletePage( $p, "testing done." );
 			}
 		}
 		parent::tearDown();
@@ -151,6 +147,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers WikiPage::prepareContentForEdit
+	 * @covers WikiPage::getCurrentUpdate
 	 */
 	public function testPrepareContentForEdit() {
 		$performer = $this->mockUserAuthorityWithPermissions(
@@ -195,16 +192,26 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertSame( $edit->popts, $edit->popts, "popts field" );
 		$this->assertSame( null, $edit->revid, "revid field" );
 
+		// PreparedUpdate matches PreparedEdit
+		$update = $page->getCurrentUpdate();
+		$this->assertSame( $edit->output, $update->getCanonicalParserOutput() );
+
 		// Re-using the prepared info if possible
 		$sameEdit = $page->prepareContentForEdit( $content, null, $performer->getUser(), null, false );
 		$this->assertPreparedEditEquals( $edit, $sameEdit, 'equivalent PreparedEdit' );
 		$this->assertSame( $edit->pstContent, $sameEdit->pstContent, 're-use output' );
 		$this->assertSame( $edit->output, $sameEdit->output, 're-use output' );
 
+		// re-using the same PreparedUpdate
+		$this->assertSame( $update, $page->getCurrentUpdate() );
+
 		// Not re-using the same PreparedEdit if not possible
 		$edit2 = $page->prepareContentForEdit( $content2, null, $performer->getUser(), null, false );
 		$this->assertPreparedEditNotEquals( $edit, $edit2 );
 		$this->assertStringContainsString( 'At vero eos', $edit2->pstContent->serialize(), "content" );
+
+		// Not re-using the same PreparedUpdate
+		$this->assertNotSame( $update, $page->getCurrentUpdate() );
 
 		// Check pre-safe transform
 		$this->assertStringContainsString( '[[gubergren]]', $edit2->pstContent->serialize() );
@@ -598,7 +605,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		// Test deletion logging
 		$logId = $status->getValue();
-		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
+		$commentQuery = $this->getServiceContainer()->getCommentStore()->getJoin( 'log_comment' );
 		$this->assertSelect(
 			[ 'logging' ] + $commentQuery['tables'], /* table */
 			[
@@ -644,7 +651,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		// Test suppression logging
 		$logId = $status->getValue();
-		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
+		$commentQuery = $this->getServiceContainer()->getCommentStore()->getJoin( 'log_comment' );
 		$this->assertSelect(
 			[ 'logging' ] + $commentQuery['tables'], /* table */
 			[
@@ -668,12 +675,12 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			$commentQuery['joins']
 		);
 
-		$archive = new PageArchive( $page->getTitle(), MediaWikiServices::getInstance()->getMainConfig() );
+		$archive = new PageArchive( $page->getTitle(), $this->getServiceContainer()->getMainConfig() );
 		$archivedRevs = $archive->listRevisions();
 		if ( !$archivedRevs || $archivedRevs->numRows() !== 1 ) {
 			$this->fail( 'Unexpected number of archived revisions' );
 		}
-		$archivedRev = MediaWikiServices::getInstance()->getRevisionStore()
+		$archivedRev = $this->getServiceContainer()->getRevisionStore()
 			->newRevisionFromArchiveRow( $archivedRevs->current() );
 
 		$this->assertNull(
@@ -843,7 +850,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $page->exists() );
 
 		# -----------------
-		$page->doDeleteArticleReal( "done testing", $this->getTestSysop()->getUser() );
+		$this->deletePage( $page, "done testing" );
 		$this->assertFalse( $page->exists() );
 
 		$page = new WikiPage( $page->getTitle() );
@@ -907,6 +914,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideGetRedirectTarget
 	 * @covers WikiPage::getRedirectTarget
+	 * @covers \Mediawiki\Page\RedirectLookup::getRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $model, $text, $target ) {
 		$this->setMwGlobals( [
@@ -915,12 +923,13 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		$page = $this->createPage( $title, $text, $model );
 
-		# sanity check, because this test seems to fail for no reason for some people.
+		# double check, because this test seems to fail for no reason for some people.
 		$c = $page->getContent();
 		$this->assertEquals( WikitextContent::class, get_class( $c ) );
 
 		# now, test the actual redirect
-		$t = $page->getRedirectTarget();
+		$redirectStore = $this->getServiceContainer()->getRedirectStore();
+		$t = $redirectStore->getRedirectTarget( $page );
 		$this->assertEquals( $target, $t ? $t->getFullText() : null );
 	}
 
@@ -1285,6 +1294,8 @@ more stuff
 			$c += 1;
 		}
 
+		$this->hideDeprecated( 'WikiPage::getAutoDeleteReason:' );
+		$this->hideDeprecated( 'ContentHandler::getAutoDeleteReason:' );
 		$reason = $page->getAutoDeleteReason( $hasHistory );
 
 		if ( is_bool( $expectedResult ) || $expectedResult === null ) {
@@ -1378,30 +1389,30 @@ more stuff
 		// Add an initial category
 		$page->updateCategoryCounts( [ 'A' ], [], 0 );
 
-		$this->assertSame( '1', Category::newFromName( 'A' )->getPageCount() );
-		$this->assertSame( 0, Category::newFromName( 'B' )->getPageCount() );
-		$this->assertSame( 0, Category::newFromName( 'C' )->getPageCount() );
+		$this->assertSame( 1, Category::newFromName( 'A' )->getMemberCount() );
+		$this->assertSame( 0, Category::newFromName( 'B' )->getMemberCount() );
+		$this->assertSame( 0, Category::newFromName( 'C' )->getMemberCount() );
 
 		// Add a new category
 		$page->updateCategoryCounts( [ 'B' ], [], 0 );
 
-		$this->assertSame( '1', Category::newFromName( 'A' )->getPageCount() );
-		$this->assertSame( '1', Category::newFromName( 'B' )->getPageCount() );
-		$this->assertSame( 0, Category::newFromName( 'C' )->getPageCount() );
+		$this->assertSame( 1, Category::newFromName( 'A' )->getMemberCount() );
+		$this->assertSame( 1, Category::newFromName( 'B' )->getMemberCount() );
+		$this->assertSame( 0, Category::newFromName( 'C' )->getMemberCount() );
 
 		// Add and remove a category
 		$page->updateCategoryCounts( [ 'C' ], [ 'A' ], 0 );
 
-		$this->assertSame( 0, Category::newFromName( 'A' )->getPageCount() );
-		$this->assertSame( '1', Category::newFromName( 'B' )->getPageCount() );
-		$this->assertSame( '1', Category::newFromName( 'C' )->getPageCount() );
+		$this->assertSame( 0, Category::newFromName( 'A' )->getMemberCount() );
+		$this->assertSame( 1, Category::newFromName( 'B' )->getMemberCount() );
+		$this->assertSame( 1, Category::newFromName( 'C' )->getMemberCount() );
 	}
 
 	public function provideUpdateRedirectOn() {
-		yield [ '#REDIRECT [[Foo]]', true, null, true, true, 0 ];
-		yield [ '#REDIRECT [[Foo]]', true, 'Foo', true, true, 1 ];
-		yield [ 'SomeText', false, null, false, true, 0 ];
-		yield [ 'SomeText', false, 'Foo', false, true, 1 ];
+		yield [ '#REDIRECT [[Foo]]', true, null, true, true, [] ];
+		yield [ '#REDIRECT [[Foo]]', true, 'Foo', true, true, [ [ NS_MAIN, 'Foo' ] ] ];
+		yield [ 'SomeText', false, null, false, true, [] ];
+		yield [ 'SomeText', false, 'Foo', false, true, [ [ NS_MAIN, 'Foo' ] ] ];
 	}
 
 	/**
@@ -1413,7 +1424,7 @@ more stuff
 	 * @param string|null $redirectTitle
 	 * @param bool|null $lastRevIsRedirect
 	 * @param bool $expectedSuccess
-	 * @param int $expectedRowCount
+	 * @param array $expectedRows
 	 */
 	public function testUpdateRedirectOn(
 		$initialText,
@@ -1421,11 +1432,8 @@ more stuff
 		$redirectTitle,
 		$lastRevIsRedirect,
 		$expectedSuccess,
-		$expectedRowCount
+		$expectedRows
 	) {
-		// FIXME: fails under sqlite and postgres
-		$this->markTestSkippedIfDbType( 'sqlite' );
-		$this->markTestSkippedIfDbType( 'postgres' );
 		static $pageCounter = 0;
 		$pageCounter++;
 
@@ -1443,15 +1451,15 @@ more stuff
 		 * Most of core checks the page table for redirect status, so we have to be ugly and
 		 * assert a select from the table here.
 		 */
-		$this->assertRedirectTableCountForPageId( $page->getId(), $expectedRowCount );
+		$this->assertRedirectTableCountForPageId( $page->getId(), $expectedRows );
 	}
 
-	private function assertRedirectTableCountForPageId( $pageId, $expected ) {
+	private function assertRedirectTableCountForPageId( $pageId, $expectedRows ) {
 		$this->assertSelect(
 			'redirect',
-			'COUNT(*)',
+			[ 'rd_namespace', 'rd_title' ],
 			[ 'rd_from' => $pageId ],
-			[ [ strval( $expected ) ] ]
+			$expectedRows
 		);
 	}
 
@@ -1460,10 +1468,11 @@ more stuff
 	 */
 	public function testInsertRedirectEntry_insertsRedirectEntry() {
 		$page = $this->createPage( Title::newFromText( __METHOD__ ), 'A' );
-		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
+		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
 
 		$targetTitle = Title::newFromText( 'SomeTarget#Frag' );
-		$targetTitle->mInterwiki = 'eninter';
+		$reflectedTitle = TestingAccessWrapper::newFromObject( $targetTitle );
+		$reflectedTitle->mInterwiki = 'eninter';
 		$page->insertRedirectEntry( $targetTitle, null );
 
 		$this->assertSelect(
@@ -1485,10 +1494,11 @@ more stuff
 	 */
 	public function testInsertRedirectEntry_insertsRedirectEntryWithPageLatest() {
 		$page = $this->createPage( Title::newFromText( __METHOD__ ), 'A' );
-		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
+		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
 
 		$targetTitle = Title::newFromText( 'SomeTarget#Frag' );
-		$targetTitle->mInterwiki = 'eninter';
+		$reflectedTitle = TestingAccessWrapper::newFromObject( $targetTitle );
+		$reflectedTitle->mInterwiki = 'eninter';
 		$page->insertRedirectEntry( $targetTitle, $page->getLatest() );
 
 		$this->assertSelect(
@@ -1510,13 +1520,14 @@ more stuff
 	 */
 	public function testInsertRedirectEntry_doesNotInsertIfPageLatestIncorrect() {
 		$page = $this->createPage( Title::newFromText( __METHOD__ ), 'A' );
-		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
+		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
 
 		$targetTitle = Title::newFromText( 'SomeTarget#Frag' );
-		$targetTitle->mInterwiki = 'eninter';
+		$reflectedTitle = TestingAccessWrapper::newFromObject( $targetTitle );
+		$reflectedTitle->mInterwiki = 'eninter';
 		$page->insertRedirectEntry( $targetTitle, 215251 );
 
-		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
+		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
 	}
 
 	/**
@@ -1524,13 +1535,13 @@ more stuff
 	 */
 	public function testInsertRedirectEntry_T278367() {
 		$page = $this->createPage( Title::newFromText( __METHOD__ ), 'A' );
-		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
+		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
 
 		$targetTitle = Title::newFromText( '#Frag' );
 		$ok = $page->insertRedirectEntry( $targetTitle );
 
 		$this->assertFalse( $ok );
-		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
+		$this->assertRedirectTableCountForPageId( $page->getId(), [] );
 	}
 
 	private function getRow( array $overrides = [] ) {
@@ -1638,7 +1649,7 @@ more stuff
 	 * @param callable $assertions
 	 */
 	public function testNewFromRow( $row, $assertions ) {
-		$page = WikiPage::newFromRow( $row, 'fromdb' );
+		$page = WikiPage::newFromRow( $row, WikiPage::READ_NORMAL );
 		$assertions( $page, $this );
 	}
 
@@ -1707,7 +1718,7 @@ more stuff
 	public function testUpdateRevisionOn_NonExistingPage() {
 		$user = $this->getTestSysop()->getUser();
 		$page = $this->createPage( __METHOD__, 'StartText' );
-		$page->doDeleteArticleReal( 'reason', $user );
+		$this->deletePage( $page, '', $user );
 
 		$revisionRecord = new MutableRevisionRecord( $page );
 		$revisionRecord->setContent(
@@ -1897,7 +1908,7 @@ more stuff
 
 		// Make sure the log entry looks good
 		// log_params is not checked here
-		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
+		$commentQuery = $this->getServiceContainer()->getCommentStore()->getJoin( 'log_comment' );
 		$this->assertSelect(
 			[ 'logging' ] + $commentQuery['tables'],
 			[
@@ -2041,35 +2052,48 @@ more stuff
 	public function testNewPageUpdater() {
 		$user = $this->getTestUser()->getUser();
 		$page = $this->newPage( __METHOD__, __METHOD__ );
+		$content = new WikitextContent( 'Hello World' );
 
-		/** @var Content $content */
-		$content = $this->getMockBuilder( WikitextContent::class )
-			->setConstructorArgs( [ 'Hello World' ] )
+		/** @var ContentRenderer $contentRenderer */
+		$contentRenderer = $this->getMockBuilder( ContentRenderer::class )
 			->onlyMethods( [ 'getParserOutput' ] )
+			->disableOriginalConstructor()
 			->getMock();
-		$content->expects( $this->once() )
+		$contentRenderer->expects( $this->once() )
 			->method( 'getParserOutput' )
 			->willReturn( new ParserOutput( 'HTML' ) );
 
+		$this->setService( 'ContentRenderer', $contentRenderer );
+
 		$preparedEditBefore = $page->prepareContentForEdit( $content, null, $user );
+		$preparedUpdateBefore = $page->getCurrentUpdate();
 
 		// provide context, so the cache can be kept in place
 		$slotsUpdate = new revisionSlotsUpdate();
 		$slotsUpdate->modifyContent( SlotRecord::MAIN, $content );
 
-		$updater = $page->newPageUpdater( $user, $slotsUpdate );
-		$updater->setContent( SlotRecord::MAIN, $content );
-		$revision = $updater->saveRevision(
-			CommentStoreComment::newUnsavedComment( 'test' ),
-			EDIT_NEW
-		);
+		$revision = $page->newPageUpdater( $user, $slotsUpdate )
+			->setContent( SlotRecord::MAIN, $content )
+			->saveRevision( CommentStoreComment::newUnsavedComment( 'test' ), EDIT_NEW );
 
 		$preparedEditAfter = $page->prepareContentForEdit( $content, $revision, $user );
+		$preparedUpdateAfter = $page->getCurrentUpdate();
 
 		$this->assertSame( $revision->getId(), $page->getLatest() );
 
 		// Parsed output must remain cached throughout.
-		$this->assertSame( $preparedEditBefore->output, $preparedEditAfter->output );
+		$this->assertSame(
+			$preparedEditBefore->output,
+			$preparedEditAfter->output
+		);
+		$this->assertSame(
+			$preparedEditBefore->output,
+			$preparedUpdateBefore->getCanonicalParserOutput()
+		);
+		$this->assertSame(
+			$preparedEditBefore->output,
+			$preparedUpdateAfter->getCanonicalParserOutput()
+		);
 	}
 
 	/**
@@ -2140,11 +2164,13 @@ more stuff
 		PreparedEdit $edit, PreparedEdit $edit2, $message = ''
 	) {
 		// suppress differences caused by a clock tick between generating the two PreparedEdits
-		if ( abs( $edit->timestamp - $edit2->timestamp ) < 3 ) {
-			$edit2 = clone $edit2;
-			$edit2->timestamp = $edit->timestamp;
+		$editTimestamp = $edit->timestamp;
+		$edit2Timetamp = $edit2->timestamp;
+		if ( abs( $editTimestamp - $edit2Timetamp ) < 3 ) {
+			$edit2Timetamp = $editTimestamp;
 		}
 		$this->assertEquals( $edit, $edit2, $message );
+		$this->assertEquals( $editTimestamp, $edit2Timetamp, $message );
 	}
 
 	protected function assertPreparedEditNotEquals(
@@ -2197,7 +2223,7 @@ more stuff
 		$this->assertFalse( $title->isRedirect() );
 
 		$dbw = wfGetDB( DB_PRIMARY );
-		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$store = $this->getServiceContainer()->getRevisionStore();
 		$page = $this->newPage( $title );
 		$page->insertOn( $dbw );
 

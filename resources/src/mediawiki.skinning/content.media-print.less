@@ -1,0 +1,36 @@
+@import 'variables.less';
+
+figure[ typeof~='mw:Image/Thumb' ],
+figure[ typeof~='mw:Video/Thumb' ],
+figure[ typeof~='mw:Audio/Thumb' ],
+figure[ typeof~='mw:Image/Frame' ],
+figure[ typeof~='mw:Video/Frame' ],
+figure[ typeof~='mw:Audio/Frame' ] {
+	border: @border-thumbinner-print;
+	border-bottom: 0;  // No border to figcaption
+	background-color: @background-color-thumbinner-print;
+
+	> *:first-child {
+		> audio,
+		> img,
+		> video {
+			border: @border-thumbimage-print;
+		}
+	}
+
+	> figcaption {
+		border: @border-thumbinner-print;
+		border-top: 0;
+		background-color: @background-color-thumbinner-print;
+		font-size: @font-size-thumbinner-print;
+		color: @color-thumbinner-print;
+	}
+}
+
+.mw-image-border > *:first-child {
+	> audio,
+	> img,
+	> video {
+		border: @border-thumbborder-print;
+	}
+}

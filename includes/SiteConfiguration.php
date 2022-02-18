@@ -110,13 +110,21 @@ use MediaWiki\Shell\Shell;
  * extract( $globals );
  * @endcode
  *
+ * Simple suffix system where "pt_brwiki" becomes lang="pt-br", site="wiki":
+ *
+ * @code
+ * $conf->suffixes[] = 'wiki';
+ * @endcode
+ *
+ * Suffix is resolved as an alias, so "dewiki" becomes lang="de", site="wikipedia":
+ * @code
+ * $conf->suffixes['wikipedia'] = 'wiki';
+ * @endcode
+ *
  * @note For WikiMap to function, the configuration must define string values for
  *  $wgServer (or $wgCanonicalServer) and $wgArticlePath, even if these are the
  *  same for all wikis or can be correctly determined by the logic in
  *  Setup.php.
- *
- * @todo Give examples for suffixes:
- * $conf->suffixes = [ 'wiki' ];
  */
 class SiteConfiguration {
 
@@ -156,7 +164,7 @@ class SiteConfiguration {
 	 * if suffix and lang are passed they will be used for the return value of
 	 * self::siteFromDB() and self::$suffixes will be ignored
 	 *
-	 * @var string|array
+	 * @var callable|null
 	 */
 	public $siteParamsCallback = null;
 
@@ -246,10 +254,7 @@ class SiteConfiguration {
 					// Found a mergable override by Tag with "+" operator.
 					// Merge it with any "+wiki" or "+tag" matches from before,
 					// and keep looking for more merge candidates.
-					if ( $retval === null ) {
-						$retval = [];
-					}
-					$retval = self::arrayMerge( $retval, $thisSetting["+$tag"] );
+					$retval = self::arrayMerge( $retval ?? [], $thisSetting["+$tag"] );
 				}
 			}
 
@@ -268,13 +273,13 @@ class SiteConfiguration {
 			}
 		}
 
-		// Type-safe string replacemens, don't do replacements on non-strings.
+		// Type-safe string replacements, don't do replacements on non-strings.
 		if ( is_string( $retval ) ) {
 			$retval = strtr( $retval, $params['replacements'] );
 		} elseif ( is_array( $retval ) ) {
-			foreach ( $retval as $key => $val ) {
+			foreach ( $retval as &$val ) {
 				if ( is_string( $val ) ) {
-					$retval[$key] = strtr( $val, $params['replacements'] );
+					$val = strtr( $val, $params['replacements'] );
 				}
 			}
 		}
@@ -294,12 +299,8 @@ class SiteConfiguration {
 		$params = $this->mergeParams( $wiki, $suffix, $params, $wikiTags );
 		$localSettings = [];
 		foreach ( $this->settings as $varname => $overrides ) {
-			$append = false;
-			$var = $varname;
-			if ( substr( $varname, 0, 1 ) == '+' ) {
-				$append = true;
-				$var = substr( $varname, 1 );
-			}
+			$append = substr( $varname, 0, 1 ) === '+';
+			$var = $append ? substr( $varname, 1 ) : $varname;
 
 			$value = $this->processSetting( $overrides, $wiki, $params );
 			if ( $append && is_array( $value ) && is_array( $GLOBALS[$var] ) ) {
@@ -445,7 +446,7 @@ class SiteConfiguration {
 	 * Values returned by self::getWikiParams() have the priority.
 	 *
 	 * @param string $wiki Wiki ID of the wiki in question.
-	 * @param string $suffix The suffix of the wiki in question.
+	 * @param string|null $suffix The suffix of the wiki in question.
 	 * @param array $params List of parameters. $.'key' is replaced by $value in
 	 *   all returned data.
 	 * @param array $wikiTags The tags assigned to the wiki.
@@ -468,7 +469,7 @@ class SiteConfiguration {
 		$ret['params'] += $params;
 
 		// Make the $lang and $site parameters automatically available if they
-		// were provided by `siteParamsCallback`  via getWikiParams()
+		// were provided by `siteParamsCallback` via getWikiParams()
 		if ( !isset( $ret['params']['lang'] ) && $ret['lang'] !== null ) {
 			$ret['params']['lang'] = $ret['lang'];
 		}
@@ -490,7 +491,7 @@ class SiteConfiguration {
 	 * Work out the site and language name from a database name
 	 * @param string $wiki Wiki ID
 	 *
-	 * @return array
+	 * @return array [ string|null $site, string|null $languageCode ]
 	 */
 	public function siteFromDB( $wiki ) {
 		// Allow override
@@ -499,22 +500,18 @@ class SiteConfiguration {
 			return [ $def['suffix'], $def['lang'] ];
 		}
 
-		$site = null;
-		$lang = null;
+		$languageCode = str_replace( '_', '-', $wiki );
 		foreach ( $this->suffixes as $altSite => $suffix ) {
 			if ( $suffix === '' ) {
-				$site = '';
-				$lang = $wiki;
-				break;
-			} elseif ( substr( $wiki, -strlen( $suffix ) ) == $suffix ) {
-				$site = is_numeric( $altSite ) ? $suffix : $altSite;
-				$lang = substr( $wiki, 0, strlen( $wiki ) - strlen( $suffix ) );
-				break;
+				return [ '', $languageCode ];
+			} elseif ( substr( $wiki, -strlen( $suffix ) ) === $suffix ) {
+				$site = is_string( $altSite ) ? $altSite : $suffix;
+				$languageCode = substr( $languageCode, 0, -strlen( $suffix ) );
+				return [ $site, $languageCode ];
 			}
 		}
-		$lang = str_replace( '_', '-', $lang );
 
-		return [ $site, $lang ];
+		return [ null, null ];
 	}
 
 	/**
@@ -523,7 +520,7 @@ class SiteConfiguration {
 	 * scripts are setup to handle the --wiki parameter such as in wiki farms.
 	 *
 	 * @param string $wiki
-	 * @param array|string $settings A setting name or array of setting names
+	 * @param string|string[] $settings A setting name or array of setting names
 	 * @return mixed|mixed[] Array if $settings is an array, otherwise the value
 	 * @throws MWException
 	 * @since 1.21
@@ -603,7 +600,7 @@ class SiteConfiguration {
 					// It is important that we generally preserve numerical keys and only
 					// fallback to appending values if there are conflicts. This is needed
 					// by configuration variables that hold associative arrays with
-					// meaningul numerical keys, such as $wgNamespacesWithSubpages,
+					// meaningful numerical keys, such as $wgNamespacesWithSubpages,
 					// $wgNamespaceProtection, $wgNamespacesToBeSearchedDefault, etc.
 					$out[] = $value;
 				} elseif ( $out[$key] === false ) {

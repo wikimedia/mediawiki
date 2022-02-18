@@ -268,7 +268,7 @@ class PathRouterTest extends MediaWikiUnitTestCase {
 			}
 		}
 		$matches = $router->parse( $path );
-		$this->assertEquals( $matches, $expected );
+		$this->assertEquals( $expected, $matches );
 	}
 
 	public static function callbackForTest( &$matches, $data ) {
@@ -308,7 +308,7 @@ class PathRouterTest extends MediaWikiUnitTestCase {
 		$router->add( [ 'qwerty' => "/qwerty/$1" ], [ 'qwerty' => '$key' ] );
 		$router->add( "/$2/$1", [ 'restricted-to-y' => '$2' ], [ '$2' => 'y' ] );
 
-		$this->assertEquals( $router->parse( $path ), $expected );
+		$this->assertEquals( $expected, $router->parse( $path ) );
 	}
 
 	public static function provideValidateRoute() {

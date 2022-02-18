@@ -1,16 +1,16 @@
 @import 'mediawiki.mixins.less';
 
 .mw-category {
-	.column-count(3);
-	.column-width(24em);
+	.mw-category-group ul {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
 
-	.mw-category-group {
-		ul {
-			margin-top: 0;
-			margin-bottom: 0;
-		}
+	&.mw-category-columns {
+		.column-count(3);
+		.column-width(24em);
 
-		li {
+		.mw-category-group li {
 			.column-break-inside-avoid;
 		}
 	}

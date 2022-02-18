@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -11,13 +10,13 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		// These services cache their joins
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'CommentStore' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'ActorMigration' );
+		$this->getServiceContainer()->resetServiceForTesting( 'CommentStore' );
+		$this->getServiceContainer()->resetServiceForTesting( 'ActorMigration' );
 	}
 
 	protected function tearDown(): void {
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'CommentStore' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'ActorMigration' );
+		$this->getServiceContainer()->resetServiceForTesting( 'CommentStore' );
+		$this->getServiceContainer()->resetServiceForTesting( 'ActorMigration' );
 		parent::tearDown();
 	}
 

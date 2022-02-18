@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * A checkbox field
  *
@@ -12,7 +14,8 @@ class HTMLCheckField extends HTMLFormField {
 	 * @stable to override
 	 */
 	public function getInputHTML( $value ) {
-		global $wgUseMediaWikiUIEverywhere;
+		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'UseMediaWikiUIEverywhere' );
 
 		if ( !empty( $this->mParams['invert'] ) ) {
 			$value = !$value;
@@ -37,7 +40,7 @@ class HTMLCheckField extends HTMLFormField {
 			"\u{00A0}" .
 			Html::rawElement( 'label', $attrLabel, $this->mLabel );
 
-		if ( $wgUseMediaWikiUIEverywhere || $this->mParent instanceof VFormHTMLForm ) {
+		if ( $useMediaWikiUIEverywhere || $this->mParent instanceof VFormHTMLForm ) {
 			$chkLabel = Html::rawElement(
 				'div',
 				[ 'class' => 'mw-ui-checkbox' ],

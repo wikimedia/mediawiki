@@ -2,6 +2,7 @@
 
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Shell\ShellboxClientFactory;
+use Shellbox\RPC\RpcClient;
 
 /**
  * @group Shell
@@ -80,5 +81,24 @@ class ShellboxClientFactoryTest extends MediaWikiUnitTestCase {
 		);
 
 		$this->assertFalse( $shellboxClientFactory->isEnabled() );
+	}
+
+	public function testGetRemoteRpcClientNotEnabled() {
+		$shellboxClientFactory = new ShellboxClientFactory(
+			$this->createMock( HttpRequestFactory::class ),
+			null,
+			'key'
+		);
+		$this->expectException( RuntimeException::class );
+		$shellboxClientFactory->getRemoteRpcClient();
+	}
+
+	public function testGetRpcClientNotEnabled() {
+		$shellboxClientFactory = new ShellboxClientFactory(
+			$this->createMock( HttpRequestFactory::class ),
+			null,
+			'key'
+		);
+		$this->assertInstanceOf( RpcClient::class, $shellboxClientFactory->getRpcClient() );
 	}
 }

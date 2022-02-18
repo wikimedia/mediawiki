@@ -22,7 +22,7 @@ namespace MediaWiki\Preferences;
 
 use Html;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
@@ -39,8 +39,8 @@ use VirtualRESTServiceClient;
  */
 class SignatureValidator {
 
-	/** @var array */
-	private const CONSTRUCTOR_OPTIONS = [
+	/** @var array Made public for use in services */
+	public const CONSTRUCTOR_OPTIONS = [
 		'SignatureAllowedLintErrors',
 		'VirtualRestConfig',
 	];
@@ -61,30 +61,34 @@ class SignatureValidator {
 	private $titleFactory;
 
 	/**
+	 * @param ServiceOptions $options
 	 * @param UserIdentity $user
 	 * @param ?MessageLocalizer $localizer
 	 * @param ParserOptions $popts
+	 * @param Parser $parser
+	 * @param SpecialPageFactory $specialPageFactory
+	 * @param TitleFactory $titleFactory
 	 */
-	public function __construct( UserIdentity $user, ?MessageLocalizer $localizer, ParserOptions $popts ) {
+	public function __construct(
+		ServiceOptions $options,
+		UserIdentity $user,
+		?MessageLocalizer $localizer,
+		ParserOptions $popts,
+		Parser $parser,
+		SpecialPageFactory $specialPageFactory,
+		TitleFactory $titleFactory
+	) {
 		$this->user = $user;
 		$this->localizer = $localizer;
 		$this->popts = $popts;
-
-		// TODO inject these
-		$services = MediaWikiServices::getInstance();
 		// Fetch the parser, will be used to create a new parser via getFreshParser() when needed
-		$this->parser = $services->getParser();
+		$this->parser = $parser;
 		// Configuration
-		$this->serviceOptions = new ServiceOptions(
-			self::CONSTRUCTOR_OPTIONS,
-			$services->getMainConfig()
-		);
+		$this->serviceOptions = $options;
 		$this->serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		// Services
-		$this->specialPageFactory = $services->getSpecialPageFactory();
-		$this->titleFactory = $services->getTitleFactory();
-
 		// TODO SpecialPage::getTitleFor should also be available via SpecialPageFactory
+		$this->specialPageFactory = $specialPageFactory;
+		$this->titleFactory = $titleFactory;
 	}
 
 	/**
@@ -133,23 +137,23 @@ class SignatureValidator {
 				$details = $this->getLintErrorDetails( $error );
 				$location = $this->getLintErrorLocation( $error );
 				// Messages used here:
-				// * linter-pager-bogus-image-options-details
-				// * linter-pager-deletable-table-tag-details
-				// * linter-pager-html5-misnesting-details
-				// * linter-pager-misc-tidy-replacement-issues-details
-				// * linter-pager-misnested-tag-details
-				// * linter-pager-missing-end-tag-details
-				// * linter-pager-multi-colon-escape-details
-				// * linter-pager-multiline-html-table-in-list-details
-				// * linter-pager-multiple-unclosed-formatting-tags-details
-				// * linter-pager-obsolete-tag-details
-				// * linter-pager-pwrap-bug-workaround-details
-				// * linter-pager-self-closed-tag-details
-				// * linter-pager-stripped-tag-details
-				// * linter-pager-tidy-font-bug-details
-				// * linter-pager-tidy-whitespace-bug-details
-				// * linter-pager-unclosed-quotes-in-heading-details
-				$label = $this->localizer->msg( "linter-pager-{$error['type']}-details" )->parse();
+				// * linterror-bogus-image-options
+				// * linterror-deletable-table-tag
+				// * linterror-html5-misnesting
+				// * linterror-misc-tidy-replacement-issues
+				// * linterror-misnested-tag
+				// * linterror-missing-end-tag
+				// * linterror-multi-colon-escape
+				// * linterror-multiline-html-table-in-list
+				// * linterror-multiple-unclosed-formatting-tags
+				// * linterror-obsolete-tag
+				// * linterror-pwrap-bug-workaround
+				// * linterror-self-closed-tag
+				// * linterror-stripped-tag
+				// * linterror-tidy-font-bug
+				// * linterror-tidy-whitespace-bug
+				// * linterror-unclosed-quotes-in-heading
+				$label = $this->localizer->msg( "linterror-{$error['type']}" )->parse();
 				$docsLink = new \OOUI\ButtonWidget( [
 					'href' =>
 						"https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Lint_errors/{$error['type']}",
@@ -214,7 +218,7 @@ class SignatureValidator {
 		);
 
 		// The signature wikitext contains another '~~~~' or similar (T230652)
-		if ( $parser->getOutput()->getFlag( 'user-signature' ) ) {
+		if ( $parser->getOutput()->getOutputFlag( ParserOutputFlags::USER_SIGNATURE ) ) {
 			return false;
 		}
 

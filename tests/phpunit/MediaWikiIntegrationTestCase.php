@@ -5,8 +5,11 @@ use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestResult;
 use Psr\Log\LoggerInterface;
@@ -184,8 +187,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	final public static function mediaWikiSetUpBeforeClass(): void {
 		global $IP;
-		if ( !file_exists( "$IP/LocalSettings.php" ) ) {
-				echo "File \"$IP/LocalSettings.php\" could not be found. "
+		$settingsFile = wfDetectLocalSettingsFile( $IP );
+		if ( !is_file( $settingsFile ) ) {
+				echo "The file $settingsFile could not be found. "
 				. "Test case " . static::class . " extends " . self::class . " "
 				. "which requires a working MediaWiki installation.\n"
 				. ( new RuntimeException() )->getTraceAsString();
@@ -295,10 +299,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		$title = ( $title === null ) ? 'UTPage-' . rand( 0, 100000 ) : $title;
 		$title = is_string( $title ) ? Title::newFromText( $title ) : $title;
-		$page = WikiPage::factory( $title );
+		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
+		$page = $wikiPageFactory->newFromTitle( $title );
 
 		if ( $page->exists() ) {
-			$page->doDeleteArticleReal( 'Testing', static::getTestSysop()->getUser() );
+			$this->deletePage( $page );
 		}
 
 		return $page;
@@ -675,6 +680,17 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		return $this->localServices;
+	}
+
+	/**
+	 * Get a configuration variable
+	 *
+	 * @param string $name
+	 * @return mixed
+	 * @since 1.38
+	 */
+	protected function getConfVar( $name ) {
+		return $this->getServiceContainer()->getMainConfig()->get( $name );
 	}
 
 	/**
@@ -1403,9 +1419,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			);
 			// an edit always attempt to purge backlink links such as history
 			// pages. That is unnecessary.
-			JobQueueGroup::singleton()->get( 'htmlCacheUpdate' )->delete();
+			$jobQueueGroup = MediaWikiServices::getInstance()->getJobQueueGroup();
+			$jobQueueGroup->get( 'htmlCacheUpdate' )->delete();
 			// WikiPages::doEditUpdates randomly adds RC purges
-			JobQueueGroup::singleton()->get( 'recentChangesUpdate' )->delete();
+			$jobQueueGroup->get( 'recentChangesUpdate' )->delete();
 
 			// doUserEditContent() probably started the session via
 			// User::loadFromSession(). Close it now.
@@ -1434,9 +1451,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		Hooks::runner()->onUnitTestsBeforeDatabaseTeardown();
 
+		$services = MediaWikiServices::getInstance();
+		$jobQueueGroup = $services->getJobQueueGroup();
 		foreach ( $wgJobClasses as $type => $class ) {
 			// Delete any jobs under the clone DB (or old prefix in other stores)
-			JobQueueGroup::singleton()->get( $type )->delete();
+			$jobQueueGroup->get( $type )->delete();
 		}
 
 		if ( self::$dbClone ) {
@@ -1446,7 +1465,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		// T219673: close any connections from code that failed to call reuseConnection()
 		// or is still holding onto a DBConnRef instance (e.g. in a singleton).
-		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->closeAll();
+		$services->getDBLoadBalancerFactory()->closeAll();
 		CloneDatabase::changePrefix( self::$oldTablePrefix );
 
 		self::$oldTablePrefix = false;
@@ -2268,7 +2287,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		# This check may also protect against code injection in
 		# case of broken installations.
 		Wikimedia\suppressWarnings();
-		$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
+		$haveDiff3 = $wgDiff3 && is_file( $wgDiff3 );
 		Wikimedia\restoreWarnings();
 
 		if ( !$haveDiff3 ) {
@@ -2315,7 +2334,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Registers the given hook handler for the duration of the current test case.
 	 *
-	 * @param string $hookName Hook name
+	 * @param string $hookName
 	 * @param mixed $handler Value suitable for a hook handler
 	 * @param bool $replace (optional) Default is to replace all existing handlers for the given hook.
 	 *        Set false to add to existing handler list.
@@ -2404,6 +2423,18 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @param ProperPageIdentity $page
+	 * @param string $summary
+	 * @param Authority|null $deleter
+	 */
+	protected function deletePage( ProperPageIdentity $page, string $summary = '', Authority $deleter = null ): void {
+		$deleter = $deleter ?? new UltimateAuthority( new UserIdentityValue( 0, 'MediaWiki default' ) );
+		MediaWikiServices::getInstance()->getDeletePageFactory()
+			->newDeletePage( $page, $deleter )
+			->deleteUnsafe( $summary );
+	}
+
+	/**
 	 * Revision-deletes a revision.
 	 *
 	 * @param RevisionRecord|int $rev Revision to delete
@@ -2471,8 +2502,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			if ( $ignoreFormat !== false ) {
 				$this->assertThat( $jobStatus['error'],
 					$this->logicalOr(
-						$this->matches( $ignoreFormat ),
-						$this->isNull()
+						$this->isNull(),
+						$this->matches( $ignoreFormat )
 					),
 					"Error for job of type {$jobStatus['type']}"
 				);
@@ -2483,5 +2514,3 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 	}
 }
-
-class_alias( 'MediaWikiIntegrationTestCase', 'MediaWikiTestCase' );

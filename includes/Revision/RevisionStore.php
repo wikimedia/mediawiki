@@ -28,6 +28,7 @@
 namespace MediaWiki\Revision;
 
 use ActorMigration;
+use BagOStuff;
 use CommentStore;
 use CommentStoreComment;
 use Content;
@@ -120,6 +121,11 @@ class RevisionStore
 	private $cache;
 
 	/**
+	 * @var BagOStuff
+	 */
+	private $localCache;
+
+	/**
 	 * @var CommentStore
 	 */
 	private $commentStore;
@@ -171,6 +177,7 @@ class RevisionStore
 	 *        the same database to be re-used between wikis. For example, enwiki and frwiki will
 	 *        use the same cache keys for revision rows from the wikidatawiki database, regardless
 	 *        of the cache's default key space.
+	 * @param BagOStuff $localCache Another layer of cache, best to use APCu here.
 	 * @param CommentStore $commentStore
 	 * @param NameTableStore $contentModelStore
 	 * @param NameTableStore $slotRoleStore
@@ -190,6 +197,7 @@ class RevisionStore
 		ILoadBalancer $loadBalancer,
 		SqlBlobStore $blobStore,
 		WANObjectCache $cache,
+		BagOStuff $localCache,
 		CommentStore $commentStore,
 		NameTableStore $contentModelStore,
 		NameTableStore $slotRoleStore,
@@ -207,6 +215,7 @@ class RevisionStore
 		$this->loadBalancer = $loadBalancer;
 		$this->blobStore = $blobStore;
 		$this->cache = $cache;
+		$this->localCache = $localCache;
 		$this->commentStore = $commentStore;
 		$this->contentModelStore = $contentModelStore;
 		$this->slotRoleStore = $slotRoleStore;
@@ -494,7 +503,6 @@ class RevisionStore
 			}
 		);
 
-		// sanity checks
 		Assert::postcondition( $rev->getId( $this->wikiId ) > 0, 'revision must have an ID' );
 		Assert::postcondition( $rev->getPageId( $this->wikiId ) > 0, 'revision must have a page ID' );
 		Assert::postcondition(
@@ -1367,6 +1375,49 @@ class RevisionStore
 	 * @return SlotRecord[]
 	 */
 	private function loadSlotRecords( $revId, $queryFlags, PageIdentity $page ) {
+		// TODO: Find a way to add NS_MODULE from Scribunto here
+		if ( $page->getNamespace() !== NS_TEMPLATE ) {
+			$res = $this->loadSlotRecordsFromDb( $revId, $queryFlags, $page );
+			return $this->constructSlotRecords( $revId, $res, $queryFlags, $page );
+		}
+
+		// TODO: These caches should not be needed. See T297147#7563670
+		$res = $this->localCache->getWithSetCallback(
+			$this->localCache->makeKey(
+				'revision-slots',
+				$page->getWikiId(),
+				$page->getId( $page->getWikiId() ),
+				$revId
+			),
+			$this->localCache::TTL_HOUR,
+			function () use ( $revId, $queryFlags, $page ) {
+				return $this->cache->getWithSetCallback(
+					$this->cache->makeKey(
+						'revision-slots',
+						$page->getWikiId(),
+						$page->getId( $page->getWikiId() ),
+						$revId
+					),
+					WANObjectCache::TTL_DAY,
+					function () use ( $revId, $queryFlags, $page ) {
+						$res = $this->loadSlotRecordsFromDb( $revId, $queryFlags, $page );
+						if ( !$res ) {
+							// Avoid caching
+							return false;
+						}
+						return $res;
+					}
+				);
+			}
+		);
+		if ( !$res ) {
+			$res = [];
+		}
+
+		return $this->constructSlotRecords( $revId, $res, $queryFlags, $page );
+	}
+
+	private function loadSlotRecordsFromDb( $revId, $queryFlags, PageIdentity $page ): array {
 		$revQuery = $this->getSlotsQueryInfo( [ 'content' ] );
 
 		list( $dbMode, $dbOptions ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
@@ -1392,14 +1443,13 @@ class RevisionStore
 					'trace' => wfBacktrace( true )
 				]
 			);
-			return $this->loadSlotRecords(
+			return $this->loadSlotRecordsFromDb(
 				$revId,
 				$queryFlags | self::READ_LATEST,
 				$page
 			);
 		}
-
-		return $this->constructSlotRecords( $revId, $res, $queryFlags, $page );
+		return iterator_to_array( $res );
 	}
 
 	/**
@@ -1504,9 +1554,6 @@ class RevisionStore
 				$this->constructSlotRecords( $revId, $slotRows, $queryFlags, $page )
 			);
 		} else {
-			// XXX: do we need the same kind of caching here
-			// that getKnownCurrentRevision uses (if $revId == page_latest?)
-
 			$slots = new RevisionSlots( function () use( $revId, $queryFlags, $page ) {
 				return $this->loadSlotRecords( $revId, $queryFlags, $page );
 			} );
@@ -1956,9 +2003,13 @@ class RevisionStore
 			Assert::invariant( !$archiveMode, 'Titles are not loaded by ID in archive mode.' );
 
 			$pageIdsToFetchTitles = array_unique( $pageIdsToFetchTitles );
-			foreach ( Title::newFromIDs( $pageIdsToFetchTitles ) as $t ) {
-				$titlesByPageKey[$t->getArticleID()] = $t;
-			}
+			$pageRecords = $this->pageStore
+				->newSelectQueryBuilder()
+				->wherePageIds( $pageIdsToFetchTitles )
+				->caller( __METHOD__ )
+				->fetchPageRecordArray();
+			// Cannot array_merge because it re-indexes entries
+			$titlesByPageKey = $pageRecords + $titlesByPageKey;
 		}
 
 		// which method to use for creating RevisionRecords
@@ -2071,7 +2122,7 @@ class RevisionStore
 	 *               'slots' - a list of slot role names to fetch. If omitted or true or null,
 	 *                         all slots are fetched
 	 *               'blobs' - whether the serialized content of each slot should be loaded.
-	 *                        If true, the serialiezd content will be present in the slot row
+	 *                        If true, the serialized content will be present in the slot row
 	 *                        in the blob_data field.
 	 * @param int $queryFlags
 	 *
@@ -2118,9 +2169,10 @@ class RevisionStore
 			}
 
 			$roleIdField = $slotQueryInfo['keys']['role_id'];
-			$slotQueryConds[$roleIdField] = array_map( function ( $slot_name ) {
-				return $this->slotRoleStore->getId( $slot_name );
-			}, $options['slots'] );
+			$slotQueryConds[$roleIdField] = array_map(
+				[ $this->slotRoleStore, 'getId' ],
+				$options['slots']
+			);
 		}
 
 		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
@@ -2662,7 +2714,7 @@ class RevisionStore
 			return null;
 		}
 
-		return $this->getRevisionById( intval( $revId ) );
+		return $this->getRevisionById( intval( $revId ), $flags );
 	}
 
 	/**

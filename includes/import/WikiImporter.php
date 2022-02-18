@@ -28,11 +28,13 @@ use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
+use Wikimedia\NormalizedException\NormalizedException;
 
 /**
  * XML file reader for the page data importer.
@@ -53,16 +55,16 @@ class WikiImporter {
 	/** @var callable */
 	private $mUploadCallback;
 
-	/** @var callable */
+	/** @var callable|null */
 	private $mRevisionCallback;
 
-	/** @var callable */
+	/** @var callable|null */
 	private $mPageCallback;
 
 	/** @var callable|null */
 	private $mSiteInfoCallback;
 
-	/** @var callable */
+	/** @var callable|null */
 	private $mPageOutCallback;
 
 	/** @var callable|null */
@@ -172,7 +174,8 @@ class WikiImporter {
 
 		// Enable the entity loader, as it is needed for loading external URLs via
 		// XMLReader::open (T86036)
-		$oldDisable = libxml_disable_entity_loader( false );
+		// phpcs:ignore Generic.PHP.NoSilencedErrors -- suppress deprecation per T268847
+		$oldDisable = @libxml_disable_entity_loader( false );
 		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
 			$status = $this->reader->open( "uploadsource://$id", null, LIBXML_PARSEHUGE );
 		} else {
@@ -180,11 +183,13 @@ class WikiImporter {
 		}
 		if ( !$status ) {
 			$error = libxml_get_last_error();
-			libxml_disable_entity_loader( $oldDisable );
+			// phpcs:ignore Generic.PHP.NoSilencedErrors
+			@libxml_disable_entity_loader( $oldDisable );
 			throw new MWException( 'Encountered an internal error while initializing WikiImporter object: ' .
 				$error->message );
 		}
-		libxml_disable_entity_loader( $oldDisable );
+		// phpcs:ignore Generic.PHP.NoSilencedErrors
+		@libxml_disable_entity_loader( $oldDisable );
 
 		// Default callbacks
 		$this->setPageCallback( [ $this, 'beforeImportPage' ] );
@@ -284,8 +289,8 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform as each new page in the stream is reached.
-	 * @param callable $callback
-	 * @return callable
+	 * @param callable|null $callback
+	 * @return callable|null
 	 */
 	public function setPageCallback( $callback ) {
 		$previous = $this->mPageCallback;
@@ -299,8 +304,8 @@ class WikiImporter {
 	 * with the original title form (in case it's been overridden into a
 	 * local namespace), and a count of revisions.
 	 *
-	 * @param callable $callback
-	 * @return callable
+	 * @param callable|null $callback
+	 * @return callable|null
 	 */
 	public function setPageOutCallback( $callback ) {
 		$previous = $this->mPageOutCallback;
@@ -310,8 +315,8 @@ class WikiImporter {
 
 	/**
 	 * Sets the action to perform as each page revision is reached.
-	 * @param callable $callback
-	 * @return callable
+	 * @param callable|null $callback
+	 * @return callable|null
 	 */
 	public function setRevisionCallback( $callback ) {
 		$previous = $this->mRevisionCallback;
@@ -553,17 +558,17 @@ class WikiImporter {
 		if ( !$this->disableStatisticsUpdate ) {
 			$page = $this->wikiPageFactory->newFromTitle( $pageIdentity );
 
-			$page->loadPageData( 'fromdbmaster' );
-			$content = $page->getContent();
-			if ( $content === null ) {
+			$page->loadPageData( WikiPage::READ_LATEST );
+			$rev = $page->getRevisionRecord();
+			if ( $rev === null ) {
+
 				wfDebug( __METHOD__ . ': Skipping article count adjustment for ' . $pageIdentity .
-					' because WikiPage::getContent() returned null' );
+					' because WikiPage::getRevisionRecord() returned null' );
 			} else {
-				// No user is available
 				$user = RequestContext::getMain()->getUser();
-				$editInfo = $page->prepareContentForEdit( $content, null, $user );
+				$update = $page->newPageUpdater( $user )->prepareUpdate();
 				$countKey = 'title_' . CacheKeyHelper::getKeyForPage( $pageIdentity );
-				$countable = $page->isCountable( $editInfo );
+				$countable = $update->isCountable();
 				if ( array_key_exists( $countKey, $this->countableCache ) &&
 					$countable != $this->countableCache[$countKey] ) {
 					DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [
@@ -699,14 +704,24 @@ class WikiImporter {
 		// Calls to reader->read need to be wrapped in calls to
 		// libxml_disable_entity_loader() to avoid local file
 		// inclusion attacks (T48932).
-		$oldDisable = libxml_disable_entity_loader( true );
+		// phpcs:ignore Generic.PHP.NoSilencedErrors -- suppress deprecation per T268847
+		$oldDisable = @libxml_disable_entity_loader( true );
 		try {
 			$this->reader->read();
 
 			if ( $this->reader->localName != 'mediawiki' ) {
-				libxml_disable_entity_loader( $oldDisable );
-				throw new MWException( "Expected <mediawiki> tag, got " .
-					$this->reader->localName );
+				// phpcs:ignore Generic.PHP.NoSilencedErrors
+				@libxml_disable_entity_loader( $oldDisable );
+				$error = libxml_get_last_error();
+				if ( $error ) {
+					throw new NormalizedException( "XML error at line {line}: {message}", [
+						'line' => $error->line,
+						'message' => $error->message,
+					] );
+				} else {
+					throw new MWException( "Expected <mediawiki> tag, got " .
+						$this->reader->localName );
+				}
 			}
 			$this->debug( "<mediawiki> tag is correct." );
 
@@ -753,7 +768,8 @@ class WikiImporter {
 				}
 			}
 		} finally {
-			libxml_disable_entity_loader( $oldDisable );
+			// phpcs:ignore Generic.PHP.NoSilencedErrors
+			@libxml_disable_entity_loader( $oldDisable );
 			$this->reader->close();
 		}
 
@@ -1030,7 +1046,7 @@ class WikiImporter {
 	 * @throws MWException
 	 */
 	private function makeContent( Title $title, $revisionId, $contentInfo ) {
-		global $wgMaxArticleSize;
+		$maxArticleSize = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxArticleSize' );
 
 		if ( !isset( $contentInfo['text'] ) ) {
 			throw new MWException( 'Missing text field in import.' );
@@ -1049,13 +1065,13 @@ class WikiImporter {
 					'text',
 					''
 				] ) ) &&
-			strlen( $contentInfo['text'] ) > $wgMaxArticleSize * 1024
+			strlen( $contentInfo['text'] ) > $maxArticleSize * 1024
 		) {
 			throw new MWException( 'The text of ' .
 				( $revisionId ?
 					"the revision with ID $revisionId" :
 					'a revision'
-				) . " exceeds the maximum allowable size ($wgMaxArticleSize KiB)" );
+				) . " exceeds the maximum allowable size ({$maxArticleSize} KiB)" );
 		}
 
 		$role = $contentInfo['role'] ?? SlotRecord::MAIN;

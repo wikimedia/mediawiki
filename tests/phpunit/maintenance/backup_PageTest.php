@@ -33,11 +33,11 @@ class BackupDumperPageTest extends DumpTestCase {
 	}
 
 	protected function tearDown(): void {
-		parent::tearDown();
-
-		if ( isset( $this->streamingLoadBalancer ) ) {
+		if ( $this->streamingLoadBalancer ) {
 			$this->streamingLoadBalancer->closeAll();
 		}
+
+		parent::tearDown();
 	}
 
 	/**

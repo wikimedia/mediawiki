@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\DefaultOptionsLookup;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -43,12 +42,14 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 					], $defaultOptionsOverrides ),
 					'NamespacesToBeSearchedDefault' => [
 						NS_MAIN => true,
-						NS_TALK => true
+						NS_TALK => true,
+						NS_MEDIAWIKI => false,
 					]
 				] )
 			),
 			$lang,
-			MediaWikiServices::getInstance()->getHookContainer()
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getNamespaceInfo()
 		);
 	}
 

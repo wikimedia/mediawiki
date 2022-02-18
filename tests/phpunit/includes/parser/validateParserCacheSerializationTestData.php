@@ -84,8 +84,8 @@ class ValidateParserCacheSerializationTestData extends Maintenance {
 		} else {
 			if ( $data !== $fileInfo->data ) {
 				if ( $this->hasOption( 'update' ) ) {
-					$this->output( 'Data mismatch, updating file: ' . $fileInfo->path . "\n" );
-					file_put_contents( $fileInfo->path, $data );
+					$this->output( 'Data mismatch, updating file: ' . $fileInfo->currentVersionPath . "\n" );
+					file_put_contents( $fileInfo->currentVersionPath, $data );
 				} else {
 					$this->fatalError( "Serialization data mismatch: {$fileInfo->path}. "
 						. "If this was expected, rerun the script with the --update option "

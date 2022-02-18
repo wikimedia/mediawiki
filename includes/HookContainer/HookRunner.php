@@ -4,6 +4,7 @@ namespace MediaWiki\HookContainer;
 
 use Article;
 use Config;
+use File;
 use IContextSource;
 use ManualLogEntry;
 use MediaWiki\Linker\LinkRenderer;
@@ -12,6 +13,7 @@ use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
+use Parser;
 use ParserOptions;
 use ResourceLoaderContext;
 use Skin;
@@ -115,7 +117,6 @@ class HookRunner implements
 	\MediaWiki\Hook\BeforeParserFetchTemplateAndtitleHook,
 	\MediaWiki\Hook\BeforeParserFetchTemplateRevisionRecordHook,
 	\MediaWiki\Hook\BeforeParserrenderImageGalleryHook,
-	\MediaWiki\Hook\BeforeResetNotificationTimestampHook,
 	\MediaWiki\Hook\BeforeWelcomeCreationHook,
 	\MediaWiki\Hook\BitmapHandlerCheckImageAreaHook,
 	\MediaWiki\Hook\BitmapHandlerTransformHook,
@@ -288,6 +289,7 @@ class HookRunner implements
 	\MediaWiki\Hook\ParserLimitReportFormatHook,
 	\MediaWiki\Hook\ParserLimitReportPrepareHook,
 	\MediaWiki\Hook\ParserMakeImageParamsHook,
+	\MediaWiki\Hook\ParserModifyImageHTML,
 	\MediaWiki\Hook\ParserOptionsRegisterHook,
 	\MediaWiki\Hook\ParserOutputPostCacheTransformHook,
 	\MediaWiki\Hook\ParserPreSaveTransformCompleteHook,
@@ -333,6 +335,7 @@ class HookRunner implements
 	\MediaWiki\Hook\SpecialBlockModifyFormFieldsHook,
 	\MediaWiki\Hook\SpecialContributionsBeforeMainOutputHook,
 	\MediaWiki\Hook\SpecialContributions__formatRow__flagsHook,
+	\MediaWiki\Hook\SpecialExportGetExtraPagesHook,
 	\MediaWiki\Hook\SpecialContributions__getForm__filtersHook,
 	\MediaWiki\Hook\SpecialListusersDefaultQueryHook,
 	\MediaWiki\Hook\SpecialListusersFormatRowHook,
@@ -375,7 +378,6 @@ class HookRunner implements
 	\MediaWiki\Hook\UnblockUserHook,
 	\MediaWiki\Hook\UndeleteForm__showHistoryHook,
 	\MediaWiki\Hook\UndeleteForm__showRevisionHook,
-	\MediaWiki\Hook\UndeleteForm__undeleteHook,
 	\MediaWiki\Hook\UndeletePageToolLinksHook,
 	\MediaWiki\Hook\UnitTestsAfterDatabaseSetupHook,
 	\MediaWiki\Hook\UnitTestsBeforeDatabaseTeardownHook,
@@ -393,6 +395,7 @@ class HookRunner implements
 	\MediaWiki\Hook\UploadStashFileHook,
 	\MediaWiki\Hook\UploadVerifyFileHook,
 	\MediaWiki\Hook\UploadVerifyUploadHook,
+	\MediaWiki\Hook\UserEditCountUpdateHook,
 	\MediaWiki\Hook\UserGetLanguageObjectHook,
 	\MediaWiki\Hook\UserLoginCompleteHook,
 	\MediaWiki\Hook\UserLogoutCompleteHook,
@@ -436,7 +439,6 @@ class HookRunner implements
 	\MediaWiki\Page\Hook\ArticleRevisionViewCustomHook,
 	\MediaWiki\Page\Hook\ArticleShowPatrolFooterHook,
 	\MediaWiki\Page\Hook\ArticleUndeleteHook,
-	\MediaWiki\Page\Hook\ArticleUndeleteLogEntryHook,
 	\MediaWiki\Page\Hook\ArticleViewFooterHook,
 	\MediaWiki\Page\Hook\ArticleViewHeaderHook,
 	\MediaWiki\Page\Hook\ArticleViewRedirectHook,
@@ -544,11 +546,8 @@ class HookRunner implements
 	\MediaWiki\User\Hook\UserLoadAfterLoadFromSessionHook,
 	\MediaWiki\User\Hook\UserLoadDefaultsHook,
 	\MediaWiki\User\Hook\UserLoadFromDatabaseHook,
-	\MediaWiki\User\Hook\UserLoadOptionsHook,
 	\MediaWiki\User\Hook\UserLogoutHook,
 	\MediaWiki\User\Hook\UserRemoveGroupHook,
-	\MediaWiki\User\Hook\UserResetAllOptionsHook,
-	\MediaWiki\User\Hook\UserSaveOptionsHook,
 	\MediaWiki\User\Hook\UserSaveSettingsHook,
 	\MediaWiki\User\Hook\UserSendConfirmationMailHook,
 	\MediaWiki\User\Hook\UserSetEmailAuthenticationTimestampHook,
@@ -827,13 +826,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onArticleUndeleteLogEntry( $pageArchive, &$logEntry, $user ) {
-		return $this->container->run(
-			'ArticleUndeleteLogEntry',
-			[ $pageArchive, &$logEntry, $user ]
-		);
-	}
-
 	public function onArticleUpdateBeforeRedirect( $article, &$sectionanchor,
 		&$extraq
 	) {
@@ -987,15 +979,6 @@ class HookRunner implements
 		return $this->container->run(
 			'BeforeParserrenderImageGallery',
 			[ $parser, $ig ]
-		);
-	}
-
-	public function onBeforeResetNotificationTimestamp( &$userObj, &$titleObj,
-		$force, &$oldid
-	) {
-		return $this->container->run(
-			'BeforeResetNotificationTimestamp',
-			[ &$userObj, &$titleObj, $force, &$oldid ]
 		);
 	}
 
@@ -2690,10 +2673,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onOutputPageParserOutput( $out, $parserOutput ): void {
+	public function onOutputPageParserOutput( $outputPage, $parserOutput ): void {
 		$this->container->run(
 			'OutputPageParserOutput',
-			[ $out, $parserOutput ],
+			[ $outputPage, $parserOutput ],
 			[ 'abortable' => false ]
 		);
 	}
@@ -2933,6 +2916,16 @@ class HookRunner implements
 		return $this->container->run(
 			'ParserMakeImageParams',
 			[ $title, $file, &$params, $parser ]
+		);
+	}
+
+	public function onParserModifyImageHTML( Parser $parser, File $file,
+		array $params, string &$html
+	): void {
+		$this->container->run(
+			'ParserModifyImageHTML',
+			[ $parser, $file, $params, &$html ],
+			[ 'abortable' => false ]
 		);
 	}
 
@@ -3546,6 +3539,13 @@ class HookRunner implements
 		);
 	}
 
+	public function onSpecialExportGetExtraPages( $inputPages, &$extraPages ) {
+		return $this->container->run(
+			'SpecialExportGetExtraPages',
+			[ $inputPages, &$extraPages ]
+		);
+	}
+
 	public function onSpecialListusersDefaultQuery( $pager, &$query ) {
 		return $this->container->run(
 			'SpecialListusersDefaultQuery',
@@ -3917,13 +3917,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onUndeleteForm__undelete( &$archive, $title ) {
-		return $this->container->run(
-			'UndeleteForm::undelete',
-			[ &$archive, $title ]
-		);
-	}
-
 	public function onUndeletePageToolLinks( IContextSource $context, LinkRenderer $linkRenderer, array &$links ) {
 		return $this->container->run(
 			'UndeletePageToolLinks',
@@ -4082,6 +4075,14 @@ class HookRunner implements
 		);
 	}
 
+	public function onUserEditCountUpdate( $infos ): void {
+		$this->container->run(
+			'UserEditCountUpdate',
+			[ $infos ],
+			[ 'abortable' => false ]
+		);
+	}
+
 	public function onUserEffectiveGroups( $user, &$groups ) {
 		return $this->container->run(
 			'UserEffectiveGroups',
@@ -4211,13 +4212,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onUserLoadOptions( $user, &$options ) {
-		return $this->container->run(
-			'UserLoadOptions',
-			[ $user, &$options ]
-		);
-	}
-
 	public function onLoadUserOptions( UserIdentity $user, array &$options ): void {
 		$this->container->run(
 			'LoadUserOptions',
@@ -4288,22 +4282,6 @@ class HookRunner implements
 		return $this->container->run(
 			'UserRemoveGroup',
 			[ $user, &$group ]
-		);
-	}
-
-	public function onUserResetAllOptions( $user, &$newOptions, $options,
-		$resetKinds
-	) {
-		return $this->container->run(
-			'UserResetAllOptions',
-			[ $user, &$newOptions, $options, $resetKinds ]
-		);
-	}
-
-	public function onUserSaveOptions( $user, &$options, $originalOptions ) {
-		return $this->container->run(
-			'UserSaveOptions',
-			[ $user, &$options, $originalOptions ]
 		);
 	}
 

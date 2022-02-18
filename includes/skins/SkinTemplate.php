@@ -38,7 +38,6 @@ class SkinTemplate extends Skin {
 	 */
 	public $template;
 
-	protected $action;
 	public $thispage;
 	public $titletxt;
 	public $userpage;
@@ -47,6 +46,9 @@ class SkinTemplate extends Skin {
 	public $loggedin;
 	public $username;
 	public $userpageUrlDetails;
+	private $templateContextSet = false;
+	/** @var array|null */
+	private $contentNavigationCached;
 
 	/**
 	 * Create the template engine object; we feed it a bunch of data
@@ -86,12 +88,13 @@ class SkinTemplate extends Skin {
 	 * @since 1.35
 	 */
 	final protected function setupTemplateContext() {
+		if ( $this->templateContextSet ) {
+			return;
+		}
+
 		$request = $this->getRequest();
 		$user = $this->getUser();
 		$title = $this->getTitle();
-
-		// Optimization: Cache getActionName() because it's expensive to compute
-		$this->action = Action::getActionName( $this );
 		$this->thispage = $title->getPrefixedDBkey();
 		$this->titletxt = $title->getPrefixedText();
 		$this->userpage = $user->getUserPage()->getPrefixedText();
@@ -113,6 +116,8 @@ class SkinTemplate extends Skin {
 			# To save time, we check for existence
 			$this->userpageUrlDetails = self::makeKnownUrlDetails( $this->userpage );
 		}
+
+		$this->templateContextSet = true;
 	}
 
 	/**
@@ -142,72 +147,6 @@ class SkinTemplate extends Skin {
 
 		// result may be an error
 		echo $this->generateHTML();
-	}
-
-	/**
-	 * Returns array of config variables that should be added only to this skin
-	 * for use in JavaScript.
-	 * Skins can override this to add variables to the page.
-	 * @since 1.35
-	 * @return array
-	 */
-	protected function getJsConfigVars(): array {
-		return [];
-	}
-
-	/**
-	 * Wrap the body text with language information and identifiable element
-	 *
-	 * @param Title $title
-	 * @param string $html body text
-	 * @return string html
-	 */
-	protected function wrapHTML( $title, $html ) {
-		# An ID that includes the actual body text; without categories, contentSub, ...
-		$realBodyAttribs = [
-			'id' => 'mw-content-text',
-			'class' => [
-				'mw-body-content',
-			],
-		];
-
-		# Add a mw-content-ltr/rtl class to be able to style based on text
-		# direction when the content is different from the UI language (only
-		# when viewing)
-		# Most information on special pages and file pages is in user language,
-		# rather than content language, so those will not get this
-		if ( $this->action === 'view' &&
-			( !$title->inNamespaces( NS_SPECIAL, NS_FILE ) || $title->isRedirect() ) ) {
-			$pageLang = $title->getPageViewLanguage();
-			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
-			$realBodyAttribs['dir'] = $pageLang->getDir();
-			$realBodyAttribs['class'][] = 'mw-content-' . $pageLang->getDir();
-		}
-
-		return Html::rawElement( 'div', $realBodyAttribs, $html );
-	}
-
-	/**
-	 * Prepare user language attribute links
-	 * @since 1.35
-	 * @return string HTML attributes
-	 */
-	final protected function prepareUserLanguageAttributes() {
-		$userLang = $this->getLanguage();
-		$userLangCode = $userLang->getHtmlCode();
-		$userLangDir = $userLang->getDir();
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		if (
-			$userLangCode !== $contLang->getHtmlCode() ||
-			$userLangDir !== $contLang->getDir()
-		) {
-			$escUserlang = htmlspecialchars( $userLangCode );
-			$escUserdir = htmlspecialchars( $userLangDir );
-			// Attributes must be in double quotes because htmlspecialchars() doesn't
-			// escape single quotes
-			return " lang=\"$escUserlang\" dir=\"$escUserdir\"";
-		}
-		return '';
 	}
 
 	/**
@@ -253,38 +192,12 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * Prepare undelete link for output in page.
-	 * @since 1.35
-	 * @return null|string HTML, or null if there is no undelete link.
-	 */
-	final protected function prepareUndeleteLink() {
-		$undelete = $this->getUndeleteLink();
-		return $undelete === '' ? null : '<span class="subpages">' . $undelete . '</span>';
-	}
-
-	/**
-	 * Subclasses may extend this method to add additional
-	 * template data.
-	 *
-	 * The data keys should be valid English words. Compound words should
-	 * be hypenated except if they are normally written as one word. Each
-	 * key should be prefixed with a type hint, this may be enforced by the
-	 * class PHPUnit test.
-	 *
-	 * Plain strings are prefixed with 'html-', plain arrays with 'array-'
-	 * and complex array data with 'data-'. 'is-' and 'has-' prefixes can
-	 * be used for boolean variables.
-	 * Messages are prefixed with 'msg-', followed by their message key.
-	 * All messages specified in the skin option 'messages' will be available
-	 * under 'msg-MESSAGE-NAME'.
-	 *
-	 * @return array Data for a mustache template
+	 * @inheritDoc
 	 */
 	public function getTemplateData() {
-		return [
+		return parent::getTemplateData() + [
 			// Data objects
 			'data-search-box' => $this->buildSearchProps(),
-			'data-logos' => $this->getLogoData(),
 		] + $this->getPortletsTemplateData() + $this->getFooterTemplateData();
 	}
 
@@ -331,11 +244,12 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'loggedin', $this->loggedin );
 		$tpl->set( 'notspecialpage', !$title->isSpecialPage() );
 
-		// Deprecated since 1.36
-		$searchLink = $this->getSearchPageTitle()->getLocalURL();
+		$searchTitle = SpecialPage::newSearchPage( $this->getUser() );
+		$searchLink = $searchTitle->getLocalURL();
 		$tpl->set( 'searchaction', $searchLink );
+		$tpl->deprecate( 'searchaction', '1.36' );
 
-		$tpl->set( 'searchtitle', $this->getSearchPageTitle()->getPrefixedDBkey() );
+		$tpl->set( 'searchtitle', $searchTitle->getPrefixedDBkey() );
 		$tpl->set( 'search', trim( $request->getVal( 'search' ) ) );
 		$tpl->set( 'stylepath', $config->get( 'StylePath' ) );
 		$tpl->set( 'articlepath', $config->get( 'ArticlePath' ) );
@@ -380,10 +294,12 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'numberofwatchingusers', false );
 
 		$tpl->set( 'copyrightico', BaseTemplate::getCopyrightIconHTML( $config, $this ) );
+		$tpl->deprecate( 'copyrightico', '1.37' ); // [[phab:T290583]]
 		$poweredBy = BaseTemplate::getPoweredByHTML( $config );
 		// Run deprecated hook.
 		$this->getHookRunner()->onSkinGetPoweredBy( $poweredBy, $this );
 		$tpl->set( 'poweredbyico', $poweredBy );
+		$tpl->deprecate( 'poweredbyico', '1.37' ); // [[phab:T290583]]
 
 		$tpl->set( 'disclaimer', $footerData['places']['disclaimer'] ?? false );
 		$tpl->set( 'privacy', $footerData['places']['privacy'] ?? false );
@@ -411,7 +327,7 @@ class SkinTemplate extends Skin {
 
 		$tpl->set( 'language_urls', $this->getLanguages() ?: false );
 
-		$content_navigation = $this->buildContentNavigationUrls();
+		$content_navigation = $this->buildContentNavigationUrlsInternal();
 		# Personal toolbar
 		$tpl->set( 'personal_urls', $this->makeSkinTemplatePersonalUrls( $content_navigation ) );
 		// The user-menu, notifications, and user-interface-preferences are new content navigation entries which aren't
@@ -421,7 +337,9 @@ class SkinTemplate extends Skin {
 			$content_navigation['user-menu'],
 			$content_navigation['notifications'],
 			$content_navigation['user-page'],
-			$content_navigation['user-interface-preferences']
+			$content_navigation['user-interface-preferences'],
+			$content_navigation['category-normal'],
+			$content_navigation['category-hidden']
 		);
 		$content_actions = $this->buildContentActionUrls( $content_navigation );
 		$tpl->set( 'content_navigation', $content_navigation );
@@ -463,17 +381,17 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * Get the HTML for the p-personal list
-	 * @deprecated since 1.35, use SkinTemplate::makePersonalToolsList()
+	 * @deprecated since 1.35, hard deprecated since 1.38
+	 * Use SkinTemplate::makePersonalToolsList() instead
 	 * @return string
 	 */
 	public function getPersonalToolsList() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->makePersonalToolsList();
 	}
 
 	/**
 	 * Get the HTML for the personal tools list
-	 * Please ensure setupTemplateContext is called before calling this method.
-	 *
 	 * @since 1.31
 	 *
 	 * @param array|null $personalTools
@@ -481,7 +399,6 @@ class SkinTemplate extends Skin {
 	 * @return string
 	 */
 	public function makePersonalToolsList( $personalTools = null, $options = [] ) {
-		$this->setupTemplateContext();
 		$html = '';
 
 		if ( $personalTools === null ) {
@@ -505,21 +422,19 @@ class SkinTemplate extends Skin {
 	 * @return array[]
 	 */
 	public function getStructuredPersonalTools() {
-		// buildPersonalUrls requires the template context.
-		$this->setupTemplateContext();
 		return $this->getPersonalToolsForMakeListItem(
 			$this->buildPersonalUrls()
 		);
 	}
 
 	/**
-	 * build array of urls for personal toolbar
-	 * Please ensure setupTemplateContext is called before calling
-	 * this method.
-	 * @param bool $includeNotifications Sinc 1.36, notifications are optional
+	 * Build array of urls for personal toolbar
+	 *
+	 * @param bool $includeNotifications Since 1.36, notifications are optional
 	 * @return array
 	 */
 	protected function buildPersonalUrls( bool $includeNotifications = true ) {
+		$this->setupTemplateContext();
 		$title = $this->getTitle();
 		$request = $this->getRequest();
 		$pageurl = $title->getLocalURL();
@@ -536,7 +451,7 @@ class SkinTemplate extends Skin {
 
 			// Merge notifications into the personal menu for older skins.
 			if ( $includeNotifications ) {
-				$contentNavigation = $this->buildContentNavigationUrls();
+				$contentNavigation = $this->buildContentNavigationUrlsInternal();
 
 				$personal_urls += $contentNavigation['notifications'];
 			}
@@ -564,7 +479,7 @@ class SkinTemplate extends Skin {
 					'text' => $this->msg( 'mywatchlist' )->text(),
 					'href' => $href,
 					'active' => ( $href == $pageurl ),
-					'icon' => 'unStar'
+					'icon' => 'watchlist'
 				];
 			}
 
@@ -736,14 +651,35 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
+	 * @param array $links return value from OutputPage::getCategoryLinks
+	 * @return array of data
+	 */
+	private function getCategoryPortletsData( array $links ): array {
+		$categories = [];
+		foreach ( $links as $group => $links ) {
+			$allLinks = [];
+			$groupName = 'category-' . $group;
+			foreach ( $links as $i => $link ) {
+				$allLinks[$groupName . '-' . $i] = [
+					'html' => $link,
+				];
+			}
+			$categories[ $groupName ] = $allLinks;
+		}
+		return $categories;
+	}
+
+	/**
 	 * @since 1.37 for non-SkinMustache base classes. Available since 1.36 for SkinMustache
-	 * @stable to override
+	 * @internal read only function, not for extension. Support for extending this method is
+	 *  deprecated in 1.38. Please use getTemplateData instead.
 	 * @param string $name of the portal e.g. p-personal the name is personal.
 	 * @param array $items that are accepted input to Skin::makeListItem
 	 * @return array data that can be passed to a Mustache template that
 	 *   represents a single menu.
 	 */
 	protected function getPortletData( $name, array $items ) {
+		MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'getPortletData', '1.38' );
 		// Monobook and Vector historically render this portal as an element with ID p-cactions
 		// This inconsistency is regretful from a code point of view
 		// However this ensures compatibility with gadgets.
@@ -759,10 +695,22 @@ class SkinTemplate extends Skin {
 			$name = 'personal';
 		}
 
-		$id = Sanitizer::escapeIdForAttribute( "p-$name" );
+		$legacyClasses = '';
+		if ( $name === 'category-normal' ) {
+			// retain historic category IDs and classes
+			$id = 'mw-normal-catlinks';
+			$legacyClasses .= ' mw-normal-catlinks';
+		} elseif ( $name === 'category-hidden' ) {
+			// retain historic category IDs and classes
+			$id = 'mw-hidden-catlinks';
+			$legacyClasses .= ' mw-hidden-catlinks mw-hidden-cats-hidden';
+		} else {
+			$id = Sanitizer::escapeIdForAttribute( "p-$name" );
+		}
+
 		$data = [
 			'id' => $id,
-			'class' => 'mw-portlet ' . Sanitizer::escapeClass( "mw-portlet-$name" ),
+			'class' => 'mw-portlet ' . Sanitizer::escapeClass( "mw-portlet-$name" ) . $legacyClasses,
 			'html-tooltip' => Linker::tooltip( $id ),
 			'html-items' => '',
 			// Will be populated by SkinAfterPortlet hook.
@@ -792,9 +740,19 @@ class SkinTemplate extends Skin {
 		}
 
 		$data['label'] = $this->getPortletLabel( $name );
-		$data['class'] .= ( count( $items ) === 0 && $content === '' )
-			? ' emptyPortlet' : '';
+		$data['is-empty'] = count( $items ) === 0 && $content === '';
+		$data['class'] .= $data['is-empty'] ? ' emptyPortlet' : '';
 		return $data;
+	}
+
+	/**
+	 * Extends category links with Skin::getAfterPortlet functionality.
+	 * @return string HTML
+	 */
+	public function getCategoryLinks() {
+		$afterPortlet = $this->getPortletsTemplateData()['data-portlets']['data-category-normal']['html-after-portal']
+			?? '';
+		return parent::getCategoryLinks() . $afterPortlet;
 	}
 
 	/**
@@ -820,7 +778,7 @@ class SkinTemplate extends Skin {
 	 */
 	private function getPortletsTemplateData() {
 		$portlets = [];
-		$contentNavigation = $this->buildContentNavigationUrls();
+		$contentNavigation = $this->buildContentNavigationUrlsInternal();
 		$sidebar = [];
 		$sidebarData = $this->buildSidebar();
 		foreach ( $sidebarData as $name => $items ) {
@@ -947,45 +905,55 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * @return array of logo data localised to the current language variant
-	 */
-	private function getLogoData(): array {
-		$logoData = ResourceLoaderSkinModule::getAvailableLogos( $this->getConfig() );
-		// check if the logo supports variants
-		$variantsLogos = $logoData['variants'] ?? null;
-		if ( $variantsLogos ) {
-			$preferred = $this->getOutput()->getTitle()
-				->getPageViewLanguage()->getCode();
-			$variantOverrides = $variantsLogos[$preferred] ?? null;
-			// Overrides the logo
-			if ( $variantOverrides ) {
-				foreach ( $variantOverrides as $key => $val ) {
-					$logoData[$key] = $val;
-				}
-			}
-		}
-		return $logoData;
-	}
-
-	/**
 	 * @return array
 	 */
 	private function buildSearchProps(): array {
 		$config = $this->getConfig();
+		$searchButtonAttributes = [
+			'class' => 'searchButton'
+		];
+		$fallbackButtonAttributes = [
+			'class' => 'searchButton mw-fallbackSearchButton'
+		];
+		$buttonAttributes = [
+			'type' => 'submit',
+		];
 
 		$props = [
 			'form-action' => $config->get( 'Script' ),
 			'html-button-search-fallback' => $this->makeSearchButton(
 				'fulltext',
-				[ 'id' => 'mw-searchButton', 'class' => 'searchButton mw-fallbackSearchButton' ]
+				$fallbackButtonAttributes + [
+					'id' => 'mw-searchButton',
+				]
 			),
 			'html-button-search' => $this->makeSearchButton(
 				'go',
-				[ 'id' => 'searchButton', 'class' => 'searchButton' ]
+				$searchButtonAttributes + [
+					'id' => 'searchButton',
+				]
 			),
 			'html-input' => $this->makeSearchInput( [ 'id' => 'searchInput' ] ),
 			'msg-search' => $this->msg( 'search' )->text(),
-			'page-title' => $this->getSearchPageTitle()->getPrefixedDBkey(),
+			'page-title' => SpecialPage::newSearchPage(
+				$this->getUser()
+			)->getPrefixedDBkey(),
+			// @since 1.38
+			'html-button-go-attributes' => Html::expandAttributes(
+				$searchButtonAttributes + $buttonAttributes + [
+					'name' => 'go',
+				] + Linker::tooltipAndAccesskeyAttribs( 'search-go' )
+			),
+			// @since 1.38
+			'html-button-fulltext-attributes' => Html::expandAttributes(
+				$fallbackButtonAttributes + $buttonAttributes + [
+					'name' => 'fulltext'
+				] + Linker::tooltipAndAccesskeyAttribs( 'search-fulltext' )
+			),
+			// @since 1.38
+			'html-input-attributes' => Html::expandAttributes(
+				$this->getSearchInputAttributes( [] )
+			),
 		];
 
 		return $props;
@@ -1075,7 +1043,12 @@ class SkinTemplate extends Skin {
 		}
 		$exists = true;
 		if ( $checkEdit && !$title->isKnown() ) {
-			$classes[] = 'new';
+			// Selected tabs should not show as red link. It doesn't make sense
+			// to show a red link on a page the user has already navigated to.
+			// https://phabricator.wikimedia.org/T294129#7451549
+			if ( !$selected ) {
+				$classes[] = 'new';
+			}
 			$exists = false;
 			if ( $query !== '' ) {
 				$query = 'action=edit&redlink=1&' . $query;
@@ -1100,7 +1073,7 @@ class SkinTemplate extends Skin {
 			}
 		}
 		$msg->setContext( $this->getContext() );
-		if ( $msg->exists() ) {
+		if ( !$msg->isDisabled() ) {
 			$text = $msg->text();
 		} else {
 			$text = $services->getLanguageConverterFactory()
@@ -1181,7 +1154,7 @@ class SkinTemplate extends Skin {
 	/**
 	 * Run hooks relating to navigation menu data.
 	 * Skins should extend this if they want to run opinionated transformations to the data after all
-	 * hooks have been run. Note hooks are run in an arbitary order.
+	 * hooks have been run. Note hooks are run in an arbitrary order.
 	 *
 	 * @param SkinTemplate $skin
 	 * @param array &$content_navigation representing all menus.
@@ -1235,7 +1208,10 @@ class SkinTemplate extends Skin {
 	 *
 	 * @return array
 	 */
-	protected function buildContentNavigationUrls() {
+	private function buildContentNavigationUrlsInternal() {
+		if ( $this->contentNavigationCached ) {
+			return $this->contentNavigationCached;
+		}
 		// Display tabs for the relevant title rather than always the title itself
 		$title = $this->getRelevantTitle();
 		$onPage = $title->equals( $this->getTitle() );
@@ -1243,9 +1219,10 @@ class SkinTemplate extends Skin {
 		$out = $this->getOutput();
 		$request = $this->getRequest();
 		$performer = $this->getAuthority();
+		$action = $this->getAction();
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-
-		$content_navigation = [
+		$categoriesData = $this->getCategoryPortletsData( $this->getOutput()->getCategoryLinks() );
+		$content_navigation = $categoriesData + [
 			// Modern keys: Please ensure these get unset inside Skin::prepareQuickTemplate
 			'user-interface-preferences' => [],
 			'user-page' => $this->loggedin ? [
@@ -1307,7 +1284,7 @@ class SkinTemplate extends Skin {
 					$content_navigation['views']['view'] = $this->tabAction(
 						$isTalk ? $talkPage : $subjectPage,
 						[ "$skname-view-view", 'view' ],
-						( $onPage && ( $this->action == 'view' || $this->action == 'purge' ) ), '', true
+						( $onPage && ( $action == 'view' || $action == 'purge' ) ), '', true
 					);
 					// signal to hide this from simple content_actions
 					$content_navigation['views']['view']['redundant'] = true;
@@ -1334,7 +1311,7 @@ class SkinTemplate extends Skin {
 					// Builds CSS class for talk page links
 					$isTalkClass = $isTalk ? ' istalk' : '';
 					// Whether the user is editing the page
-					$isEditing = $onPage && ( $this->action == 'edit' || $this->action == 'submit' );
+					$isEditing = $onPage && ( $action == 'edit' || $action == 'submit' );
 					// Whether to show the "Add a new section" tab
 					// Checks if this is a current rev of talk page and is not forced to be hidden
 					$showNewSection = !$out->forceHideNewSectionLink()
@@ -1376,7 +1353,7 @@ class SkinTemplate extends Skin {
 				} elseif ( $title->hasSourceText() ) {
 					// Adds view source view link
 					$content_navigation['views']['viewsource'] = [
-						'class' => ( $onPage && $this->action == 'edit' ) ? 'selected' : false,
+						'class' => ( $onPage && $action == 'edit' ) ? 'selected' : false,
 						'text' => wfMessageFallback( "$skname-action-viewsource", 'viewsource' )
 							->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( $this->editUrlOptions() ),
@@ -1388,7 +1365,7 @@ class SkinTemplate extends Skin {
 				if ( $title->exists() ) {
 					// Adds history view link
 					$content_navigation['views']['history'] = [
-						'class' => ( $onPage && $this->action == 'history' ) ? 'selected' : false,
+						'class' => ( $onPage && $action == 'history' ) ? 'selected' : false,
 						'text' => wfMessageFallback( "$skname-view-history", 'history_short' )
 							->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( 'action=history' ),
@@ -1396,7 +1373,7 @@ class SkinTemplate extends Skin {
 
 					if ( $this->getAuthority()->probablyCan( 'delete', $title ) ) {
 						$content_navigation['actions']['delete'] = [
-							'class' => ( $onPage && $this->action == 'delete' ) ? 'selected' : false,
+							'class' => ( $onPage && $action == 'delete' ) ? 'selected' : false,
 							'text' => wfMessageFallback( "$skname-action-delete", 'delete' )
 								->setContext( $this->getContext() )->text(),
 							'href' => $title->getLocalURL( 'action=delete' )
@@ -1441,7 +1418,7 @@ class SkinTemplate extends Skin {
 				) {
 					$mode = $title->isProtected() ? 'unprotect' : 'protect';
 					$content_navigation['actions'][$mode] = [
-						'class' => ( $onPage && $this->action == $mode ) ? 'selected' : false,
+						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
 						'text' => wfMessageFallback( "$skname-action-$mode", $mode )
 							->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( "action=$mode" )
@@ -1469,7 +1446,7 @@ class SkinTemplate extends Skin {
 						$mode,
 						$performer,
 						$title,
-						$this->action,
+						$action,
 						$onPage
 					);
 				}
@@ -1490,7 +1467,7 @@ class SkinTemplate extends Skin {
 					// Gets preferred variant (note that user preference is
 					// only possible for wiki content language variant)
 					$preferred = $converter->getPreferredVariant();
-					if ( $this->action === 'view' ) {
+					if ( $action === 'view' ) {
 						$params = $request->getQueryValues();
 						unset( $params['title'] );
 					} else {
@@ -1531,7 +1508,7 @@ class SkinTemplate extends Skin {
 		foreach ( $content_navigation as $section => &$links ) {
 			foreach ( $links as $key => &$link ) {
 				// Allow links to set their own id for backwards compatibility reasons.
-				if ( isset( $link['id'] ) ) {
+				if ( isset( $link['id'] ) || isset( $link['html' ] ) ) {
 					continue;
 				}
 				$xmlID = $key;
@@ -1542,6 +1519,7 @@ class SkinTemplate extends Skin {
 					$link['rel'] = 'discussion';
 				} elseif ( $section == 'variants' ) {
 					$xmlID = 'ca-varlang-' . $xmlID;
+					$link['class'] .= ' ca-variants-' . $link['lang'];
 				} else {
 					$xmlID = 'ca-' . $xmlID;
 				}
@@ -1555,7 +1533,7 @@ class SkinTemplate extends Skin {
 		# give the edit tab an accesskey, because that's fairly
 		# superfluous and conflicts with an accesskey (Ctrl-E) often
 		# used for editing in Safari.
-		if ( in_array( $this->action, [ 'edit', 'submit' ] ) ) {
+		if ( in_array( $action, [ 'edit', 'submit' ] ) ) {
 			if ( isset( $content_navigation['views']['edit'] ) ) {
 				$content_navigation['views']['edit']['tooltiponly'] = true;
 			}
@@ -1567,7 +1545,18 @@ class SkinTemplate extends Skin {
 			}
 		}
 
+		$this->contentNavigationCached = $content_navigation;
 		return $content_navigation;
+	}
+
+	/**
+	 * Wrapper for private buildContentNavigationUrlsInternal
+	 * @deprecated 1.38 skins can use runOnSkinTemplateNavigationHooks instead.
+	 * @return array
+	 */
+	protected function buildContentNavigationUrls() {
+		wfDeprecated( __METHOD__, '1.38' );
+		return $this->buildContentNavigationUrlsInternal();
 	}
 
 	/**

@@ -40,6 +40,7 @@ use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Service for storing and loading Content objects.
@@ -396,10 +397,14 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			__METHOD__,
 			$options
 		);
+		$numRows = 0;
+		if ( $rows instanceof IResultWrapper ) {
+			$numRows = $rows->numRows();
+		}
 
 		// Fallback to DB_PRIMARY in some cases if not all the rows were found, using the appropriate
 		// options, such as FOR UPDATE to avoid missing rows due to REPEATABLE-READ.
-		if ( $dbConnection->numRows( $rows ) !== count( $textIds ) && $fallbackIndex !== null ) {
+		if ( $numRows !== count( $textIds ) && $fallbackIndex !== null ) {
 			$fetchedTextIds = [];
 			foreach ( $rows as $row ) {
 				$fetchedTextIds[] = $row->old_id;
@@ -712,7 +717,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 
 		$schema = strtolower( $m[1] );
 		$id = $m[2];
-		$parameters = isset( $m[4] ) ? wfCgiToArray( $m[4] ) : [];
+		$parameters = wfCgiToArray( $m[4] ?? '' );
 
 		return [ $schema, $id, $parameters ];
 	}

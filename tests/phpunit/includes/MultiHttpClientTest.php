@@ -1,6 +1,8 @@
 <?php
 
+use PHPUnit\Framework\Constraint\IsType;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * The urls herein are not actually called, because we mock the return results.
@@ -33,7 +35,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 			'timeout' => 1,
 			'connectTimeout' => 1
 		];
-		$httpRequest = $this->getMockBuilder( PhpHttpRequest::class )
+		$httpRequest = $this->getMockBuilder( MWHttpRequest::class )
 			->setConstructorArgs( [ '', $options ] )
 			->getMock();
 		$httpRequest->method( 'execute' )
@@ -270,5 +272,57 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->addToAssertionCount( 1 );
+	}
+
+	public function testUseReverseProxy() {
+		// TODO: Cannot use TestingAccessWrapper here because it doesn't
+		// support pass-by-reference (T287318)
+		$class = new ReflectionClass( MultiHttpClient::class );
+		$func = $class->getMethod( 'useReverseProxy' );
+		$func->setAccessible( true );
+		$req = [
+			'url' => 'https://example.org/path?query=string',
+		];
+		$func->invokeArgs( new MultiHttpClient( [] ), [ &$req, 'http://localhost:1234' ] );
+		$this->assertSame( 'http://localhost:1234/path?query=string', $req['url'] );
+		$this->assertSame( 'example.org', $req['headers']['Host'] );
+	}
+
+	public function testNormalizeRequests() {
+		// TODO: Cannot use TestingAccessWrapper here because it doesn't
+		// support pass-by-reference (T287318)
+		$class = new ReflectionClass( MultiHttpClient::class );
+		$func = $class->getMethod( 'normalizeRequests' );
+		$func->setAccessible( true );
+		$reqs = [
+			[ 'GET', 'https://example.org/path?query=string' ],
+			[
+				'method' => 'GET',
+				'url' => 'https://example.com/path?query=another%20string'
+			],
+		];
+		$client = new MultiHttpClient( [
+			'localVirtualHosts' => [ 'example.org' ],
+			'localProxy' => 'http://localhost:1234',
+		] );
+		$func->invokeArgs( $client, [ &$reqs ] );
+		// Req #0 transformed to use reverse proxy
+		$this->assertSame( 'http://localhost:1234/path?query=string', $reqs[0]['url'] );
+		$this->assertSame( 'example.org', $reqs[0]['headers']['host'] );
+		$this->assertFalse( $reqs[0]['proxy'] );
+		// Req #1 left alone, domain doesn't match
+		$this->assertSame( 'https://example.com/path?query=another%20string', $reqs[1]['url'] );
+	}
+
+	public function testGetCurlMulti() {
+		$cm = TestingAccessWrapper::newFromObject( new MultiHttpClient( [] ) );
+		$resource = $cm->getCurlMulti( [ 'usePipelining' => true ] );
+		$this->assertThat(
+			$resource,
+			$this->logicalOr(
+				$this->isType( IsType::TYPE_RESOURCE ),
+				$this->isInstanceOf( 'CurlMultiHandle' )
+			)
+		);
 	}
 }

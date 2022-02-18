@@ -5,7 +5,6 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
@@ -129,70 +128,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * TODO: Remove. This is the same as PermissionManagerTest::testGetUserPermissions
-	 * @covers User::getRights
-	 */
-	public function testUserPermissions() {
-		$this->hideDeprecated( 'User::getRights' );
-		$rights = $this->user->getRights();
-		$this->assertContains( 'runtest', $rights );
-		$this->assertNotContains( 'writetest', $rights );
-		$this->assertNotContains( 'modifytest', $rights );
-		$this->assertNotContains( 'nukeworld', $rights );
-	}
-
-	/**
-	 * TODO: Remove. This is the same as PermissionManagerTest::testGetUserPermissionsHooks
-	 * @covers User::getRights
-	 */
-	public function testUserGetRightsHooks() {
-		$this->hideDeprecated( 'User::getRights' );
-		$user = $this->getTestUser( [ 'unittesters', 'testwriters' ] )->getUser();
-		$userWrapper = TestingAccessWrapper::newFromObject( $user );
-
-		$rights = $user->getRights();
-		$this->assertContains( 'test', $rights, 'sanity check' );
-		$this->assertContains( 'runtest', $rights, 'sanity check' );
-		$this->assertContains( 'writetest', $rights, 'sanity check' );
-		$this->assertNotContains( 'nukeworld', $rights, 'sanity check' );
-
-		// Add a hook manipulating the rights
-		$this->setTemporaryHook( 'UserGetRights', static function ( $user, &$rights ) {
-			$rights[] = 'nukeworld';
-			$rights = array_diff( $rights, [ 'writetest' ] );
-		} );
-
-		MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache( $user );
-		$rights = $user->getRights();
-		$this->assertContains( 'test', $rights );
-		$this->assertContains( 'runtest', $rights );
-		$this->assertNotContains( 'writetest', $rights );
-		$this->assertContains( 'nukeworld', $rights );
-
-		// Add a Session that limits rights
-		$mock = $this->getMockBuilder( stdClass::class )
-			->addMethods( [ 'getAllowedUserRights', 'deregisterSession', 'getSessionId' ] )
-			->getMock();
-		$mock->method( 'getAllowedUserRights' )->willReturn( [ 'test', 'writetest' ] );
-		$mock->method( 'getSessionId' )->willReturn(
-			new MediaWiki\Session\SessionId( str_repeat( 'X', 32 ) )
-		);
-		$session = MediaWiki\Session\TestUtils::getDummySession( $mock );
-		$mockRequest = $this->getMockBuilder( FauxRequest::class )
-			->onlyMethods( [ 'getSession' ] )
-			->getMock();
-		$mockRequest->method( 'getSession' )->willReturn( $session );
-		$userWrapper->mRequest = $mockRequest;
-
-		$this->resetServices();
-		$rights = $user->getRights();
-		$this->assertContains( 'test', $rights );
-		$this->assertNotContains( 'runtest', $rights );
-		$this->assertNotContains( 'writetest', $rights );
-		$this->assertNotContains( 'nukeworld', $rights );
-	}
-
-	/**
 	 * @dataProvider provideGetGroupsWithPermission
 	 * @covers User::getGroupsWithPermission
 	 */
@@ -299,64 +234,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideIPs
-	 * @covers User::isIP
-	 */
-	public function testIsIP( $value, $result, $message ) {
-		$this->hideDeprecated( 'User::isIP' );
-		$this->assertSame( $result, $this->user->isIP( $value ), $message );
-	}
-
-	public static function provideIPs() {
-		return [
-			[ '', false, 'Empty string' ],
-			[ ' ', false, 'Blank space' ],
-			[ '10.0.0.0', true, 'IPv4 private 10/8' ],
-			[ '10.255.255.255', true, 'IPv4 private 10/8' ],
-			[ '192.168.1.1', true, 'IPv4 private 192.168/16' ],
-			[ '203.0.113.0', true, 'IPv4 example' ],
-			[ '2002:ffff:ffff:ffff:ffff:ffff:ffff:ffff', true, 'IPv6 example' ],
-			// Not valid IPs but classified as such by MediaWiki for negated asserting
-			// of whether this might be the identifier of a logged-out user or whether
-			// to allow usernames like it.
-			[ '300.300.300.300', true, 'Looks too much like an IPv4 address' ],
-			[ '203.0.113.xxx', true, 'Assigned by UseMod to cloaked logged-out users' ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideUserNames
-	 * @covers User::isValidUserName
-	 */
-	public function testIsValidUserName( $username, $result, $message ) {
-		$this->hideDeprecated( 'User::isValidUserName' );
-		$this->assertSame( $result, $this->user->isValidUserName( $username ), $message );
-	}
-
-	public static function provideUserNames() {
-		return [
-			[ '', false, 'Empty string' ],
-			[ ' ', false, 'Blank space' ],
-			[ 'abcd', false, 'Starts with small letter' ],
-			[ 'Ab/cd', false, 'Contains slash' ],
-			[ 'Ab cd', true, 'Whitespace' ],
-			[ '192.168.1.1', false, 'IP' ],
-			[ '116.17.184.5/32', false, 'IP range' ],
-			[ '::e:f:2001/96', false, 'IPv6 range' ],
-			[ 'User:Abcd', false, 'Reserved Namespace' ],
-			[ '12abcd232', true, 'Starts with Numbers' ],
-			[ '?abcd', true, 'Start with ? mark' ],
-			[ '#abcd', false, 'Start with #' ],
-			[ 'Abcdകഖഗഘ', true, ' Mixed scripts' ],
-			[ 'ജോസ്‌തോമസ്', false, 'ZWNJ- Format control character' ],
-			[ 'Ab　cd', false, ' Ideographic space' ],
-			[ '300.300.300.300', false, 'Looks too much like an IPv4 address' ],
-			[ '302.113.311.900', false, 'Looks too much like an IPv4 address' ],
-			[ '203.0.113.xxx', false, 'Reserved for usage by UseMod for cloaked logged-out users' ],
-		];
-	}
-
-	/**
 	 * Test User::editCount
 	 * @group medium
 	 * @covers User::getEditCount
@@ -436,69 +313,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test changing user options.
-	 * @covers User::setOption
-	 * @covers User::getOptions
-	 * @covers User::getBoolOption
-	 * @covers User::getIntOption
-	 */
-	public function testOptions() {
-		$this->hideDeprecated( 'User::getBoolOption' );
-		$this->hideDeprecated( 'User::getIntOption' );
-		$this->setMwGlobals( [
-			'wgMaxArticleSize' => 2,
-		] );
-		$user = $this->getMutableTestUser()->getUser();
-
-		$user->setOption( 'userjs-someoption', 'test' );
-		$user->setOption( 'userjs-someintoption', '42' );
-		$user->setOption( 'rclimit', 200 );
-		$user->setOption( 'wpwatchlistdays', '0' );
-		$user->setOption( 'userjs-usedefaultoverride', '' );
-		$user->saveSettings();
-
-		MediaWikiServices::getInstance()->getUserOptionsManager()->clearUserOptionsCache( $user );
-		$this->assertSame( 'test', $user->getOption( 'userjs-someoption' ) );
-		$this->assertTrue( $user->getBoolOption( 'userjs-someoption' ) );
-		$this->assertEquals( 200, $user->getOption( 'rclimit' ) );
-		$this->assertSame( 42, $user->getIntOption( 'userjs-someintoption' ) );
-		$this->assertSame(
-			123,
-			$user->getIntOption( 'userjs-usedefaultoverride', 123 ),
-			'Int options that are empty string can have a default returned'
-		);
-
-		MediaWikiServices::getInstance()->getUserOptionsManager()->clearUserOptionsCache( $user );
-		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
-		$this->assertSame( 'test', $user->getOption( 'userjs-someoption' ) );
-		$this->assertTrue( $user->getBoolOption( 'userjs-someoption' ) );
-		$this->assertEquals( 200, $user->getOption( 'rclimit' ) );
-		$this->assertSame( 42, $user->getIntOption( 'userjs-someintoption' ) );
-		$this->assertSame(
-			0,
-			$user->getIntOption( 'userjs-usedefaultoverride' ),
-			'Int options that are empty string and have no default specified default to 0'
-		);
-
-		// Check that an option saved as a string '0' is returned as an integer.
-		MediaWikiServices::getInstance()->getUserOptionsManager()->clearUserOptionsCache( $user );
-		$this->assertSame( 0, $user->getOption( 'wpwatchlistdays' ) );
-		$this->assertFalse( $user->getBoolOption( 'wpwatchlistdays' ) );
-	}
-
-	/**
-	 * T39963
-	 * Make sure defaults are loaded when setOption is called.
-	 * @covers User::setOption
-	 */
-	public function testAnonOptions() {
-		global $wgDefaultUserOptions;
-		$this->user->setOption( 'userjs-someoption', 'test' );
-		$this->assertSame( $wgDefaultUserOptions['rclimit'], $this->user->getOption( 'rclimit' ) );
-		$this->assertSame( 'test', $this->user->getOption( 'userjs-someoption' ) );
-	}
-
-	/**
 	 * Test password validity checks. There are 3 checks in core,
 	 *	- ensure the password meets the minimal length
 	 *	- ensure the password is not the same as the username
@@ -533,7 +347,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			],
 		] );
 
-		// Sanity
 		$this->assertTrue( $this->user->isValidPassword( 'Password1234' ) );
 
 		// Minimum length
@@ -590,57 +403,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers User::getCanonicalName()
-	 * @dataProvider provideGetCanonicalName
-	 */
-	public function testGetCanonicalName( $name, array $expectedArray ) {
-		$this->hideDeprecated( 'User::getCanonicalName' );
-		// fake interwiki map for the 'Interwiki prefix' testcase
-		// DummyServicesTrait::getDummyInterwikiLookup
-		$interwikiLookup = $this->getDummyInterwikiLookup( [ 'interwiki' ] );
-		$this->setService( 'InterwikiLookup', $interwikiLookup );
-
-		foreach ( $expectedArray as $validate => $expected ) {
-			$this->assertSame(
-				$expected,
-				User::getCanonicalName( $name, $validate === 'false' ? false : $validate ),
-				$validate
-			);
-		}
-	}
-
-	public static function provideGetCanonicalName() {
-		return [
-			'Leading space' => [ ' Leading space', [ 'creatable' => 'Leading space' ] ],
-			'Trailing space ' => [ 'Trailing space ', [ 'creatable' => 'Trailing space' ] ],
-			'Namespace prefix' => [ 'Talk:Username', [ 'creatable' => false, 'usable' => false,
-				'valid' => false, 'false' => 'Talk:Username' ] ],
-			'Interwiki prefix' => [ 'interwiki:Username', [ 'creatable' => false, 'usable' => false,
-				'valid' => false, 'false' => 'Interwiki:Username' ] ],
-			'With hash' => [ 'name with # hash', [ 'creatable' => false, 'usable' => false ] ],
-			'Multi spaces' => [ 'Multi  spaces', [ 'creatable' => 'Multi spaces',
-				'usable' => 'Multi spaces' ] ],
-			'Lowercase' => [ 'lowercase', [ 'creatable' => 'Lowercase' ] ],
-			'Invalid character' => [ 'in[]valid', [ 'creatable' => false, 'usable' => false,
-				'valid' => false, 'false' => 'In[]valid' ] ],
-			'With slash' => [ 'with / slash', [ 'creatable' => false, 'usable' => false, 'valid' => false,
-				'false' => 'With / slash' ] ],
-		];
-	}
-
-	/**
-	 * @covers User::getCanonicalName()
-	 */
-	public function testGetCanonicalName_bad() {
-		$this->hideDeprecated( 'User::getCanonicalName' );
-		$this->expectException( InvalidArgumentException::class );
-		$this->expectExceptionMessage(
-			'Invalid parameter value for validation'
-		);
-		User::getCanonicalName( 'ValidName', 'InvalidValidationValue' );
-	}
-
-	/**
 	 * @covers User::equals
 	 */
 	public function testEquals() {
@@ -692,15 +454,12 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers User::isRegistered
-	 * @covers User::isLoggedIn
 	 * @covers User::isAnon
 	 * @covers User::logOut
 	 */
 	public function testIsRegistered() {
 		$user = $this->getMutableTestUser()->getUser();
 		$this->assertTrue( $user->isRegistered() );
-		$this->hideDeprecated( 'User::isLoggedIn' );
-		$this->assertTrue( $user->isLoggedIn() ); // Deprecated wrapper method
 		$this->assertFalse( $user->isAnon() );
 
 		$this->setTemporaryHook( 'UserLogout', static function ( &$user ) {
@@ -716,14 +475,10 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		// Non-existent users are perceived as anonymous
 		$user = User::newFromName( 'UTNonexistent' );
 		$this->assertFalse( $user->isRegistered() );
-		$this->hideDeprecated( 'User::isLoggedIn' );
-		$this->assertFalse( $user->isLoggedIn() ); // Deprecated wrapper method
 		$this->assertTrue( $user->isAnon() );
 
 		$user = new User;
 		$this->assertFalse( $user->isRegistered() );
-		$this->hideDeprecated( 'User::isLoggedIn' );
-		$this->assertFalse( $user->isLoggedIn() ); // Deprecated wrapper method
 		$this->assertTrue( $user->isAnon() );
 	}
 
@@ -804,9 +559,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::findUsersByGroup
 	 */
 	public function testFindUsersByGroup() {
-		// FIXME: fails under postgres
-		$this->markTestSkippedIfDbType( 'postgres' );
-
 		$users = User::findUsersByGroup( [] );
 		$this->assertSame( 0, iterator_count( $users ) );
 
@@ -862,7 +614,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$request = new FauxRequest();
 		$request->setIP( '10.20.30.40' );
 		$this->setSessionUser( $this->user, $request );
-		$this->assertFalse( $this->user->isAnon(), 'sanity check' );
+		$this->assertFalse( $this->user->isAnon() );
 		$this->assertNull( $this->user->getBlock() );
 	}
 
@@ -972,7 +724,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertGreaterThan(
 			0,
 			$userId,
-			'Sanity check: user has a working id'
+			'user has a working id'
 		);
 
 		$otherUser = User::newFromId( $userId );
@@ -1027,7 +779,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			'User::saveSettings updates actor table for name change'
 		);
 
-		// For sanity
 		$ip = '192.168.12.34';
 		$this->db->delete( 'actor', [ 'actor_name' => $ip ], __METHOD__ );
 
@@ -1097,7 +848,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		// Anon user. Can't load by only user ID when that's 0.
 		$user = User::newFromName( '192.168.12.34', false );
 		// Make sure an actor ID exists
-		MediaWikiServices::getInstance()->getActorNormalization()->acquireActorId( $user, $this->db );
+		$this->getServiceContainer()->getActorNormalization()->acquireActorId( $user, $this->db );
 
 		$test = User::newFromAnyId( null, '192.168.12.34', null );
 		$this->assertSame( $user->getId(), $test->getId() );
@@ -1251,7 +1002,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame(
 			$req1,
 			$req2,
-			'Sanity check: passing a request that does not match $wgRequest'
+			'passing a request that does not match $wgRequest'
 		);
 		$user = User::newFromSession( $req2 );
 		$request = $user->getRequest();
@@ -1294,14 +1045,16 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::isBlockedFrom
 	 */
 	public function testBlockInstanceCache() {
+		$this->hideDeprecated( 'User::blockedBy' );
+		$this->hideDeprecated( 'User::getBlockId' );
 		// First, check the user isn't blocked
 		$user = $this->getMutableTestUser()->getUser();
 		$ut = Title::makeTitle( NS_USER_TALK, $user->getName() );
-		$this->assertNull( $user->getBlock( false ), 'sanity check' );
-		$this->assertSame( '', $user->blockedBy(), 'sanity check' );
-		$this->assertSame( '', $user->blockedFor(), 'sanity check' );
-		$this->assertFalse( $user->isHidden(), 'sanity check' );
-		$this->assertFalse( $user->isBlockedFrom( $ut ), 'sanity check' );
+		$this->assertNull( $user->getBlock( false ) );
+		$this->assertSame( '', $user->blockedBy() );
+		$this->assertSame( '', $user->blockedFor() );
+		$this->assertFalse( $user->isHidden() );
+		$this->assertFalse( $user->isBlockedFrom( $ut ) );
 
 		// Block the user
 		$blocker = $this->getTestSysop()->getUser();
@@ -1312,9 +1065,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 		$block->setTarget( $user );
 		$block->setBlocker( $blocker );
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$res = $blockStore->insertBlock( $block );
-		$this->assertTrue( (bool)$res['id'], 'sanity check: Failed to insert block' );
+		$this->assertTrue( (bool)$res['id'], 'Failed to insert block' );
 
 		// Clear cache and confirm it loaded the block properly
 		$user->clearInstanceCache();
@@ -1348,7 +1101,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$request = $user->getRequest();
 		$this->setSessionUser( $user, $request );
 
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$ipBlock = new DatabaseBlock( [
 			'address' => $user->getRequest()->getIP(),
 			'by' => $this->getTestSysop()->getUser(),
@@ -1380,7 +1133,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$request = $user->getRequest();
 		$this->setSessionUser( $user, $request );
 
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$ipBlock = new DatabaseBlock( [
 			'address' => $user,
 			'by' => $this->getTestSysop()->getUser(),
@@ -1438,7 +1191,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		if ( $restrictions ) {
 			$block->setRestrictions( $restrictions );
 		}
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		try {
@@ -1543,7 +1296,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		try {
@@ -1578,7 +1331,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		try {
@@ -1593,31 +1346,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			'sitewide blocks block uploads' => [ true, true ],
 			'partial blocks allow uploads' => [ false, false ],
 		];
-	}
-
-	/**
-	 * @covers User::getFirstEditTimestamp
-	 * @covers User::getLatestEditTimestamp
-	 */
-	public function testGetFirstLatestEditTimestamp() {
-		$this->hideDeprecated( 'User::getFirstEditTimestamp' );
-		$this->hideDeprecated( 'User::getLatestEditTimestamp' );
-		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );
-		MWTimestamp::setFakeTime( static function () use ( &$clock ) {
-			return $clock += 1000;
-		} );
-		try {
-			$user = $this->user;
-			$firstRevision = self::makeEdit( $user, 'Help:UserTest_GetEditTimestamp', 'one', 'test' );
-			$secondRevision = self::makeEdit( $user, 'Help:UserTest_GetEditTimestamp', 'two', 'test' );
-			// Sanity check: revisions timestamp are different
-			$this->assertNotEquals( $firstRevision->getTimestamp(), $secondRevision->getTimestamp() );
-
-			$this->assertSame( $firstRevision->getTimestamp(), $user->getFirstEditTimestamp() );
-			$this->assertSame( $secondRevision->getTimestamp(), $user->getLatestEditTimestamp() );
-		} finally {
-			MWTimestamp::setFakeTime( false );
-		}
 	}
 
 	/**
@@ -1769,138 +1497,11 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers User::getDefaultOption
-	 * @covers User::getDefaultOptions
-	 */
-	public function testGetDefaultOptions() {
-		$this->hideDeprecated( 'User::getDefaultOption' );
-		$this->hideDeprecated( 'User::getDefaultOptions' );
-		$this->resetServices();
-
-		$this->setTemporaryHook( 'UserGetDefaultOptions', static function ( &$defaults ) {
-			$defaults['extraoption'] = 42;
-		} );
-
-		$defaultOptions = User::getDefaultOptions();
-		$this->assertArrayHasKey( 'search-match-redirect', $defaultOptions );
-		$this->assertArrayHasKey( 'extraoption', $defaultOptions );
-
-		$extraOption = User::getDefaultOption( 'extraoption' );
-		$this->assertSame( 42, $extraOption );
-	}
-
-	/**
-	 * @covers User::getDefaultOption
-	 */
-	public function testGetDefaultOption_deprecated() {
-		$this->expectDeprecation();
-		User::getDefaultOption( 'extraoption' );
-	}
-
-	/**
-	 * @covers User::getDefaultOptions
-	 */
-	public function testGetDefaultOptions_deprecated() {
-		$this->expectDeprecation();
-		User::getDefaultOptions();
-	}
-
-	/**
-	 * @covers User::getAutomaticGroups
-	 */
-	public function testGetAutomaticGroups() {
-		$this->hideDeprecated( 'User::getAutomaticGroups' );
-		$this->assertArrayEquals( [
-			'*',
-			'user',
-			'autoconfirmed'
-		], $this->user->getAutomaticGroups( true ) );
-
-		$user = $this->getTestUser( [ 'bureaucrat', 'test' ] )->getUser();
-		$this->assertArrayEquals( [
-			'*',
-			'user',
-			'autoconfirmed'
-		], $user->getAutomaticGroups( true ) );
-		$user->addGroup( 'something' );
-		$this->assertArrayEquals( [
-			'*',
-			'user',
-			'autoconfirmed'
-		], $user->getAutomaticGroups( true ) );
-
-		$user = User::newFromName( 'UTUser1' );
-		$this->assertSame( [ '*' ], $user->getAutomaticGroups( true ) );
-		$this->setMwGlobals( [
-			'wgAutopromote' => [
-				'dummy' => APCOND_EMAILCONFIRMED
-			]
-		] );
-
-		$this->user->confirmEmail();
-		$this->assertArrayEquals( [
-			'*',
-			'user',
-			'dummy'
-		], $this->user->getAutomaticGroups( true ) );
-
-		$user = $this->getTestUser( [ 'dummy' ] )->getUser();
-		$user->confirmEmail();
-		$this->assertArrayEquals( [
-			'*',
-			'user',
-			'dummy'
-		], $user->getAutomaticGroups( true ) );
-	}
-
-	/**
-	 * @covers User::getEffectiveGroups
-	 */
-	public function testGetEffectiveGroups() {
-		$this->hideDeprecated( 'User::getEffectiveGroups' );
-		$user = $this->getTestUser()->getUser();
-		$this->assertArrayEquals( [
-			'*',
-			'user',
-			'autoconfirmed'
-		], $user->getEffectiveGroups( true ) );
-
-		$user = $this->getTestUser( [ 'bureaucrat', 'test' ] )->getUser();
-		$this->assertArrayEquals( [
-			'*',
-			'user',
-			'autoconfirmed',
-			'bureaucrat',
-			'test'
-		], $user->getEffectiveGroups( true ) );
-
-		$user = $this->getTestUser( [ 'autoconfirmed', 'test' ] )->getUser();
-		$this->assertArrayEquals( [
-			'*',
-			'user',
-			'autoconfirmed',
-			'test'
-		], $user->getEffectiveGroups( true ) );
-	}
-
-	/**
 	 * @covers User::getGroups
 	 */
 	public function testGetGroups() {
 		$user = $this->getTestUser( [ 'a', 'b' ] )->getUser();
 		$this->assertArrayEquals( [ 'a', 'b' ], $user->getGroups() );
-	}
-
-	/**
-	 * @covers User::getFormerGroups
-	 */
-	public function testGetFormerGroups() {
-		$this->hideDeprecated( 'User::getFormerGroups' );
-		$user = $this->getTestUser( [ 'a', 'b', 'c' ] )->getUser();
-		$this->assertArrayEquals( [], $user->getFormerGroups() );
-		$user->addGroup( 'test' );
-		$user->removeGroup( 'test' );
-		$this->assertArrayEquals( [ 'test' ], $user->getFormerGroups() );
 	}
 
 	/**
@@ -1947,154 +1548,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertFalse( $user->removeGroup( 'test3' ) );
 		$this->assertSame( [ 'test3' ], $user->getGroups(), 'Hooks can stop removal of a group' );
-	}
-
-	private const CHANGEABLE_GROUPS_TEST_CONFIG = [
-		'wgGroupPermissions' => [
-			'doEverything' => [
-				'userrights' => true,
-			],
-		],
-		'wgAddGroups' => [
-			'sysop' => [ 'rollback' ],
-			'bureaucrat' => [ 'sysop', 'bureaucrat' ],
-		],
-		'wgRemoveGroups' => [
-			'sysop' => [ 'rollback' ],
-			'bureaucrat' => [ 'sysop' ],
-		],
-		'wgGroupsAddToSelf' => [
-			'sysop' => [ 'flood' ],
-		],
-		'wgGroupsRemoveFromSelf' => [
-			'flood' => [ 'flood' ],
-		],
-	];
-
-	/**
-	 * @covers User::changeableGroups
-	 */
-	public function testChangeableGroups() {
-		$this->setMwGlobals( self::CHANGEABLE_GROUPS_TEST_CONFIG );
-		$this->hideDeprecated( 'User::changeableGroups' );
-
-		$allGroups = User::getAllGroups();
-
-		$user = $this->getTestUser( [ 'doEverything' ] )->getUser();
-		$changeableGroups = $user->changeableGroups();
-		$this->assertGroupsEquals(
-			[
-				'add' => $allGroups,
-				'remove' => $allGroups,
-				'add-self' => [],
-				'remove-self' => [],
-			],
-			$changeableGroups
-		);
-
-		$user = $this->getTestUser( [ 'bureaucrat', 'sysop' ] )->getUser();
-		$changeableGroups = $user->changeableGroups();
-		$this->assertGroupsEquals(
-			[
-				'add' => [ 'bureaucrat', 'sysop', 'rollback' ],
-				'remove' => [ 'sysop', 'rollback' ],
-				'add-self' => [ 'flood' ],
-				'remove-self' => [],
-			],
-			$changeableGroups
-		);
-
-		$user = $this->getTestUser( [ 'flood' ] )->getUser();
-		$changeableGroups = $user->changeableGroups();
-		$this->assertGroupsEquals(
-			[
-				'add' => [],
-				'remove' => [],
-				'add-self' => [],
-				'remove-self' => [ 'flood' ],
-			],
-			$changeableGroups
-		);
-	}
-
-	public function provideChangeableByGroup() {
-		yield 'sysop' => [ 'sysop', [
-			'add' => [ 'rollback' ],
-			'remove' => [ 'rollback' ],
-			'add-self' => [ 'flood' ],
-			'remove-self' => [],
-		] ];
-		yield 'flood' => [ 'flood', [
-			'add' => [],
-			'remove' => [],
-			'add-self' => [],
-			'remove-self' => [ 'flood' ],
-		] ];
-	}
-
-	/**
-	 * @dataProvider provideChangeableByGroup
-	 * @covers User::changeableByGroup
-	 * @param string $group
-	 * @param array $expected
-	 */
-	public function testChangeableByGroup( string $group, array $expected ) {
-		$this->setMwGlobals( self::CHANGEABLE_GROUPS_TEST_CONFIG );
-		$this->hideDeprecated( 'User::changeableByGroup' );
-		$this->assertGroupsEquals( $expected, User::changeableByGroup( $group ) );
-	}
-
-	private function assertGroupsEquals( array $expected, array $actual ) {
-		// assertArrayEquals can compare without requiring the same order,
-		// but the elements of an array are still required to be in the same order,
-		// so just compare each element
-		$this->assertArrayEquals( $expected['add'], $actual['add'] );
-		$this->assertArrayEquals( $expected['remove'], $actual['remove'] );
-		$this->assertArrayEquals( $expected['add-self'], $actual['add-self'] );
-		$this->assertArrayEquals( $expected['remove-self'], $actual['remove-self'] );
-	}
-
-	/**
-	 * @covers User::isWatched
-	 * @covers User::isTempWatched
-	 * @covers User::addWatch
-	 * @covers User::removeWatch
-	 */
-	public function testWatchlist() {
-		$user = $this->user;
-		$articleTitle = Title::makeTitle( NS_MAIN, 'FooBar' );
-
-		$this->hideDeprecated( 'User::isWatched' );
-		$this->hideDeprecated( 'User::isTempWatched' );
-		$this->hideDeprecated( 'User::addWatch' );
-		$this->hideDeprecated( 'User::removeWatch' );
-
-		$this->assertFalse( $user->isWatched( $articleTitle ), 'The article has not been watched yet' );
-
-		$user->addWatch( $articleTitle );
-		$this->assertTrue( $user->isWatched( $articleTitle ), 'The article has been watched' );
-		$this->assertFalse(
-			$user->isTempWatched( $articleTitle ),
-			"The article hasn't been temporarily watched"
-		);
-
-		$user->removeWatch( $articleTitle );
-		$this->assertFalse( $user->isWatched( $articleTitle ), 'The article has been unwatched' );
-		$this->assertFalse(
-			$user->isTempWatched( $articleTitle ),
-			"The article hasn't been temporarily watched"
-		);
-
-		$user->addWatch( $articleTitle, true, '2 weeks' );
-		$this->assertTrue(
-			$user->isTempWatched( $articleTitle ), 'The article has been tempoarily watched'
-		);
-
-		$specialTitle = Title::makeTitle( NS_SPECIAL, 'Version' );
-		$this->assertFalse( $user->isWatched( $specialTitle ), 'Special pages cannot be watched' );
-		// Assume no exceptions
-		$user->addWatch( $specialTitle );
-		$user->removeWatch( $specialTitle );
 	}
 
 	/**
@@ -2243,7 +1696,11 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$user = User::newFromName( 'UserWhoMayRequireHTTPS' );
-		$user->setOption( 'prefershttps', $preference );
+		$this->getServiceContainer()->getUserOptionsManager()->setOption(
+			$user,
+			'prefershttps',
+			$preference
+		);
 		$user->saveSettings();
 
 		$user = User::newFromName( $user->getName() );
@@ -2267,7 +1724,11 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$user = User::newFromName( 'UserWhoMayRequireHTTP' );
-		$user->setOption( 'prefershttps', true );
+		$this->getServiceContainer()->getUserOptionsManager()->setOption(
+			$user,
+			'prefershttps',
+			true
+		);
 		$user->saveSettings();
 
 		$user = User::newFromName( $user->getName() );
@@ -2287,71 +1748,17 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$user = User::newFromName( 'UserWhoMayRequireHTTP' );
-		$user->setOption( 'prefershttps', false );
+		$this->getServiceContainer()->getUserOptionsManager()->setOption(
+			$user,
+			'prefershttps',
+			false
+		);
 		$user->saveSettings();
 
 		$user = User::newFromName( $user->getName() );
 		$this->assertTrue(
 			$user->requiresHTTPS(),
 			'User preference ignored if wgForceHTTPS is true'
-		);
-	}
-
-	/**
-	 * @covers User::isCreatableName
-	 */
-	public function testIsCreatableName() {
-		$this->hideDeprecated( 'User::isCreatableName' );
-		$this->setMwGlobals( [
-			'wgInvalidUsernameCharacters' => '@',
-		] );
-
-		$longUserName = str_repeat( 'x', 260 );
-
-		$this->assertFalse(
-			User::isCreatableName( $longUserName ),
-			'longUserName is too long'
-		);
-		$this->assertFalse(
-			User::isCreatableName( 'Foo@Bar' ),
-			'User name contains invalid character'
-		);
-		$this->assertTrue(
-			User::isCreatableName( 'FooBar' ),
-			'User names with no issues can be created'
-		);
-	}
-
-	/**
-	 * @covers User::isUsableName
-	 */
-	public function testIsUsableName() {
-		$this->hideDeprecated( 'User::isUsableName' );
-		$this->setMwGlobals( [
-			'wgReservedUsernames' => [
-				'MediaWiki default',
-				'msg:reserved-user'
-			],
-			'wgForceUIMsgAsContentMsg' => [
-				'reserved-user'
-			],
-		] );
-
-		$this->assertFalse(
-			User::isUsableName( '' ),
-			'Only valid user names are creatable'
-		);
-		$this->assertFalse(
-			User::isUsableName( 'MediaWiki default' ),
-			'Reserved names cannot be used'
-		);
-		$this->assertFalse(
-			User::isUsableName( 'reserved-user' ),
-			'Names can also be reserved via msg: '
-		);
-		$this->assertTrue(
-			User::isUsableName( 'FooBar' ),
-			'User names with no issues can be used'
 		);
 	}
 

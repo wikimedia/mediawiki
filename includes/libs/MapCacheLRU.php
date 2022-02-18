@@ -140,12 +140,17 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 	 * @since 1.32 Added $maxAge
 	 */
 	public function has( $key, $maxAge = INF ) {
-		// Optimization: Forego type check because array_key_exists does it already (T275673)
-		if ( !array_key_exists( $key, $this->cache ) ) {
-			return false;
+		if ( !is_int( $key ) && !is_string( $key ) ) {
+			throw new UnexpectedValueException(
+				__METHOD__ . ': invalid key; must be string or integer.' );
 		}
-
-		return ( $maxAge <= 0 || $this->getAge( $key ) <= $maxAge );
+		return array_key_exists( $key, $this->cache )
+			&& (
+				// Optimization: Avoid expensive getAge/getCurrentTime for common case (T275673)
+				$maxAge === INF
+				|| $maxAge <= 0
+				|| $this->getKeyAge( $key ) <= $maxAge
+			);
 	}
 
 	/**
@@ -193,8 +198,8 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 		}
 
 		if ( !is_string( $field ) && !is_int( $field ) ) {
-			trigger_error( "Field keys must be string or integer (key '$key')", E_USER_WARNING );
-			return;
+			throw new UnexpectedValueException(
+				__METHOD__ . ": invalid field for '$key'; must be string or integer." );
 		}
 
 		$this->cache[$key][$field] = $value;
@@ -211,12 +216,17 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 	public function hasField( $key, $field, $maxAge = INF ) {
 		$value = $this->get( $key );
 
-		// Optimization: Forego type check because array_key_exists does it already (T275673)
-		if ( !is_array( $value ) || !array_key_exists( $field, $value ) ) {
-			return false;
+		if ( !is_int( $field ) && !is_string( $field ) ) {
+			throw new UnexpectedValueException(
+				__METHOD__ . ": invalid field for '$key'; must be string or integer." );
 		}
-
-		return ( $maxAge <= 0 || $this->getAge( $key, $field ) <= $maxAge );
+		return is_array( $value )
+			&& array_key_exists( $field, $value )
+			&& (
+				$maxAge === INF
+				|| $maxAge <= 0
+				|| $this->getKeyFieldAge( $key, $field ) <= $maxAge
+			);
 	}
 
 	/**
@@ -332,34 +342,47 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 
 	/**
 	 * @param string|int $key
-	 * @param string|int|null $field [optional]
-	 * @return float UNIX timestamp; the age of the given entry or entry field
+	 * @return float UNIX timestamp; the age of the given entry
 	 */
-	private function getAge( $key, $field = null ) {
-		if ( $field !== null ) {
-			$mtime = $this->timestamps[$key][self::FIELDS][$field] ?? $this->epoch;
-		} else {
-			$mtime = $this->timestamps[$key][self::SIMPLE] ?? $this->epoch;
-		}
+	private function getKeyAge( $key ) {
+		$mtime = $this->timestamps[$key][self::SIMPLE] ?? $this->epoch;
 
 		return ( $this->getCurrentTime() - $mtime );
 	}
 
-	public function serialize() {
-		return serialize( [
+	/**
+	 * @param string|int $key
+	 * @param string|int|null $field
+	 * @return float UNIX timestamp; the age of the given entry field
+	 */
+	private function getKeyFieldAge( $key, $field ) {
+		$mtime = $this->timestamps[$key][self::FIELDS][$field] ?? $this->epoch;
+
+		return ( $this->getCurrentTime() - $mtime );
+	}
+
+	public function __serialize() {
+		return [
 			'entries' => $this->cache,
 			'timestamps' => $this->timestamps,
 			'maxCacheKeys' => $this->maxCacheKeys,
-		] );
+		];
 	}
 
-	public function unserialize( $serialized ) {
-		$data = unserialize( $serialized );
+	public function serialize() {
+		return serialize( $this->__serialize() );
+	}
+
+	public function __unserialize( $data ) {
 		$this->cache = $data['entries'] ?? [];
 		$this->timestamps = $data['timestamps'] ?? [];
 		// Fallback needed for serializations prior to T218511
 		$this->maxCacheKeys = $data['maxCacheKeys'] ?? ( count( $this->cache ) + 1 );
 		$this->epoch = $this->getCurrentTime();
+	}
+
+	public function unserialize( $serialized ) {
+		$this->__unserialize( unserialize( $serialized ) );
 	}
 
 	/**

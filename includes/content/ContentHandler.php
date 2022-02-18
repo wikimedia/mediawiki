@@ -26,8 +26,10 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreloadTransformParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
+use MediaWiki\Content\ValidationParams;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -93,7 +95,8 @@ abstract class ContentHandler {
 	 * @return string|null Textual form of the content, if available.
 	 */
 	public static function getContentText( Content $content = null ) {
-		global $wgContentHandlerTextFallback;
+		$contentHandlerTextFallback = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'ContentHandlerTextFallback' );
 
 		if ( $content === null ) {
 			return '';
@@ -105,14 +108,14 @@ abstract class ContentHandler {
 
 		wfDebugLog( 'ContentHandler', 'Accessing ' . $content->getModel() . ' content as text!' );
 
-		if ( $wgContentHandlerTextFallback == 'fail' ) {
+		if ( $contentHandlerTextFallback == 'fail' ) {
 			throw new MWException(
 				"Attempt to get text from Content with model " .
 				$content->getModel()
 			);
 		}
 
-		if ( $wgContentHandlerTextFallback == 'serialize' ) {
+		if ( $contentHandlerTextFallback == 'serialize' ) {
 			return $content->serialize();
 		}
 
@@ -667,7 +670,7 @@ abstract class ContentHandler {
 	 */
 	protected function getSlotDiffRendererWithOptions( IContextSource $context, $options = [] ) {
 		$internalRenderer = $this->getSlotDiffRendererInternal( $context );
-		// `getSlotDiffRendererInternal` has been overriden by a class using the deprecated method.
+		// `getSlotDiffRendererInternal` has been overridden by a class using the deprecated method.
 		// Options will not work so exit early!
 		if ( $internalRenderer !== null ) {
 			return $internalRenderer;
@@ -735,7 +738,12 @@ abstract class ContentHandler {
 
 		$this->getHookRunner()->onPageContentLanguage( $title, $pageLang, $wgLang );
 
-		return wfGetLangObj( $pageLang );
+		if ( !$pageLang instanceof Language ) {
+			wfDeprecated( 'the hook PageContentLanguage with other types than a Language object in $pageLang', '1.33' );
+			$pageLang = wfGetLangObj( $pageLang );
+		}
+
+		return $pageLang;
 	}
 
 	/**
@@ -1048,11 +1056,11 @@ abstract class ContentHandler {
 	 *
 	 * @return mixed String containing deletion reason or empty string, or
 	 *    boolean false if no revision occurred
-	 *
-	 * @todo &$hasHistory is extremely ugly, it's here because WikiPage::getAutoDeleteReason()
-	 * have it / want it.
 	 */
-	public function getAutoDeleteReason( Title $title, &$hasHistory ) {
+	public function getAutoDeleteReason( Title $title, &$hasHistory = false ) {
+		if ( func_num_args() === 2 ) {
+			wfDeprecated( __METHOD__ . ': $hasHistory parameter', '1.38' );
+		}
 		$dbr = wfGetDB( DB_REPLICA );
 		$revStore = MediaWikiServices::getInstance()->getRevisionStore();
 
@@ -1103,7 +1111,7 @@ abstract class ContentHandler {
 		}
 
 		$hasHistory = ( $res->numRows() > 1 );
-		$row = $dbr->fetchObject( $res );
+		$row = $res->fetchObject();
 
 		if ( $row ) { // $row is false if the only contributor is hidden
 			$onlyAuthor = $row->rev_user_text;
@@ -1256,10 +1264,12 @@ abstract class ContentHandler {
 
 	/**
 	 * Return true if this content model supports direct editing, such as via EditPage.
+	 * This should return true for TextContent and its derivatives, and return false
+	 * for structured data content.
 	 *
 	 * @stable to override
 	 *
-	 * @return bool Default is false, and true for TextContent and its derivatives.
+	 * @return bool Default is false.
 	 */
 	public function supportsDirectEditing() {
 		return false;
@@ -1433,9 +1443,6 @@ abstract class ContentHandler {
 					// subclasses may want to add the following here:
 					// 'generate-html' => false,
 				] );
-			if ( $cache ) {
-				$cache->save( $parserOutput, $page, $parserOptions );
-			}
 		}
 		return $parserOutput;
 	}
@@ -1607,6 +1614,173 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Validate content for saving it.
+	 *
+	 * This may be used to check the content's consistency with global state. This function should
+	 * NOT write any information to the database.
+	 *
+	 * Note that this method will usually be called inside the same transaction
+	 * bracket that will be used to save the new revision, so the revision passed
+	 * in is probably unsaved (has no id) and might belong to unsaved page.
+	 *
+	 * @since 1.38
+	 * @stable to override
+	 *
+	 * @param Content $content
+	 * @param ValidationParams $validationParams
+	 *
+	 * @return StatusValue A status object indicating if content can be saved in the given revision.
+	 */
+	public function validateSave(
+		Content $content,
+		ValidationParams $validationParams
+	) {
+		$detectPSDeprecatedOverride = MWDebug::detectDeprecatedOverride(
+			$content,
+			AbstractContent::class,
+			'prepareSave',
+			'1.38'
+		);
+
+		if ( $detectPSDeprecatedOverride ) {
+			$services = MediaWikiServices::getInstance();
+			$page = $validationParams->getPageIdentity();
+			$user = RequestContext::getMain()->getUser();
+
+			if ( !( $page instanceof WikiPage ) ) {
+				$wikiPageFactory = $services->getWikiPageFactory();
+				$page = $wikiPageFactory->newFromTitle( $page );
+			}
+
+			return $content->prepareSave(
+				$page,
+				$validationParams->getFlags(),
+				$validationParams->getParentRevisionId(),
+				$user
+			);
+		}
+
+		if ( $content->isValid() ) {
+			return StatusValue::newGood();
+		} else {
+			return StatusValue::newFatal( "invalid-content-data" );
+		}
+	}
+
+	/**
+	 * Returns a ParserOutput object containing information derived from this content.
+	 * Most importantly, unless $cpoParams->getGenerateHtml was false, the return value contains an
+	 * HTML representation of the content.
+	 *
+	 * Subclasses that want to control the parser output may override
+	 * fillParserOutput() instead.
+	 *
+	 *
+	 *
+	 * @since 1.38
+	 *
+	 * @param Content $content
+	 * @param ContentParseParams $cpoParams
+	 * @return ParserOutput Containing information derived from this content.
+	 */
+	public function getParserOutput(
+		Content $content,
+		ContentParseParams $cpoParams
+	) {
+		$detectGPODeprecatedOverride = MWDebug::detectDeprecatedOverride(
+			$content,
+			AbstractContent::class,
+			'getParserOutput',
+			'1.38'
+		);
+		$detectFPODeprecatedOverride = MWDebug::detectDeprecatedOverride(
+			$content,
+			AbstractContent::class,
+			'fillParserOutput',
+			'1.38'
+		);
+		if ( $detectGPODeprecatedOverride || $detectFPODeprecatedOverride ) {
+			return $this->callDeprecatedContentGPO( $content, $cpoParams );
+		}
+
+		$services = MediaWikiServices::getInstance();
+		$title = $services->getTitleFactory()->castFromPageReference( $cpoParams->getPage() );
+		$parserOptions = $cpoParams->getParserOptions();
+
+		$po = new ParserOutput();
+		$parserOptions->registerWatcher( [ $po, 'recordOption' ] );
+		if ( Hooks::runner()->onContentGetParserOutput(
+			$content, $title, $cpoParams->getRevId(), $parserOptions, $cpoParams->getGenerateHtml(), $po )
+		) {
+			// Save and restore the old value, just in case something is reusing
+			// the ParserOptions object in some weird way.
+			$oldRedir = $parserOptions->getRedirectTarget();
+			$parserOptions->setRedirectTarget( $content->getRedirectTarget() );
+			$this->fillParserOutput(
+				$content,
+				$cpoParams,
+				$po
+			);
+			MediaWikiServices::getInstance()->get( '_ParserObserver' )->notifyParse(
+				$title,
+				$cpoParams->getRevId(),
+				$parserOptions,
+				$po
+			);
+			$parserOptions->setRedirectTarget( $oldRedir );
+		}
+
+		Hooks::runner()->onContentAlterParserOutput( $content, $title, $po );
+		$parserOptions->registerWatcher( null );
+
+		return $po;
+	}
+
+	/**
+	 * A temporary layer to move AbstractContent::fillParserOutput to ContentHandler::fillParserOutput
+	 *
+	 * @internal only core AbstractContent::fillParserOutput implementations need to call this.
+	 * @since 1.38
+	 * @param Content $content
+	 * @param ContentParseParams $cpoParams
+	 * @param ParserOutput &$output The output object to fill (reference).
+	 */
+	public function fillParserOutputInternal(
+		Content $content,
+		ContentParseParams $cpoParams,
+		ParserOutput &$output
+	) {
+		$this->fillParserOutput( $content, $cpoParams, $output );
+	}
+
+	/**
+	 * Fills the provided ParserOutput with information derived from the content.
+	 * Unless $cpoParams->getGenerateHtml() was false,
+	 * this includes an HTML representation of the content.
+	 *
+	 * Subclasses are expected to override this method.
+	 *
+	 * This placeholder implementation always throws an exception.
+	 *
+	 * @stable to override
+	 *
+	 * @since 1.38
+	 * @param Content $content
+	 * @param ContentParseParams $cpoParams
+	 * @param ParserOutput &$output The output object to fill (reference).
+	 *
+	 * @throws MWException
+	 */
+	protected function fillParserOutput(
+		Content $content,
+		ContentParseParams $cpoParams,
+		ParserOutput &$output
+	) {
+		// Subclasses must override fillParserOutput() to directly don't fail.
+		throw new MWException( 'Subclasses of ContentHandler must override fillParserOutput!' );
+	}
+
+	/**
 	 * Check if we need to provide content overrides deprecated Content method.
 	 *
 	 * @internal only core ContentHandler implementations need to call this.
@@ -1670,6 +1844,28 @@ abstract class ContentHandler {
 			$legacyTitle,
 			$params->getParserOptions(),
 			$params->getParams()
+		);
+	}
+
+	/**
+	 * If provided content overrides deprecated Content::getParserOutput,
+	 * call it and return.
+	 * @internal only core ContentHandler implementations need to call this.
+	 * @param Content $content
+	 * @param ContentParseParams $cpoParams
+	 * @return ParserOutput
+	 */
+	protected function callDeprecatedContentGPO(
+		Content $content,
+		ContentParseParams $cpoParams
+	) {
+		$services = MediaWikiServices::getInstance();
+		$legacyTitle = $services->getTitleFactory()->castFromPageReference( $cpoParams->getPage() );
+		return $content->getParserOutput(
+			$legacyTitle,
+			$cpoParams->getRevId(),
+			$cpoParams->getParserOptions(),
+			$cpoParams->getGenerateHtml()
 		);
 	}
 }

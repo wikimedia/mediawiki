@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\Rdbms\IDatabase;
@@ -34,9 +35,6 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup SpecialPage
  */
 class SpecialWatchlist extends ChangesListSpecialPage {
-	protected static $savedQueriesPreferenceName = 'rcfilters-wl-saved-queries';
-	protected static $daysPreferenceName = 'watchlistdays';
-	protected static $collapsedPreferenceName = 'rcfilters-wl-collapsed';
 
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;
@@ -49,6 +47,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
+
+	/**
+	 * @var int|false where the value is one of the SpecialEditWatchlist:EDIT_ prefixed
+	 * constants (e.g. EDIT_NORMAL)
+	 */
+	private $currentMode;
 
 	/**
 	 * @param WatchedItemStoreInterface $watchedItemStore
@@ -93,6 +97,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		] );
 
 		$mode = SpecialEditWatchlist::getMode( $request, $subpage );
+		$this->currentMode = $mode;
+
 		if ( $mode !== false ) {
 			if ( $mode === SpecialEditWatchlist::EDIT_RAW ) {
 				$title = SpecialPage::getTitleFor( 'EditWatchlist', 'raw' );
@@ -139,7 +145,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			wfDeprecated( __METHOD__ . ' with Config argument', '1.34' );
 			$user = func_get_arg( 1 );
 		}
-		return !$user->getOption( 'wlenhancedfilters-disable' );
+		return !MediaWikiServices::getInstance()
+			->getUserOptionsLookup()
+			->getOption( $user, 'wlenhancedfilters-disable' );
 	}
 
 	/**
@@ -459,6 +467,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		// array_merge() is used intentionally here so that hooks can, should
 		// they so desire, override the ORDER BY / LIMIT condition(s)
 		$query_options = array_merge( $orderByAndLimit, $query_options );
+		$query_options['MAX_EXECUTION_TIME'] = $this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' );
 
 		return $dbr->select(
 			$tables,
@@ -517,7 +526,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			return;
 		}
 
-		$dbr->dataSeek( $rows, 0 );
+		$rows->seek( 0 );
 
 		$list = ChangesList::newFromContext( $this->getContext(), $this->filterGroups );
 		$list->setWatchlistDivs();
@@ -557,7 +566,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				}
 			} );
 		}
-		$dbr->dataSeek( $rows, 0 );
+		$rows->seek( 0 );
 
 		$s = $list->beginRecentChangesList();
 
@@ -621,11 +630,22 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$out = $this->getOutput();
 
 		$out->addSubtitle(
-			$this->msg( 'watchlistfor2', $user->getName() )
-				->rawParams( SpecialEditWatchlist::buildTools(
-					$this->getLanguage(),
-					$this->getLinkRenderer()
-				) )
+			Html::element(
+				'span',
+				[
+					'class' => 'mw-watchlist-owner'
+				],
+				// Previously the watchlistfor2 message took 2 parameters.
+				// It now only takes 1 so empty string is passed.
+				// Empty string parameter can be removed when all messages
+				// are updated to not use $2
+				$this->msg( 'watchlistfor2', $this->getUser()->getName(), '' )->text()
+			) . ' ' .
+			SpecialEditWatchlist::buildTools(
+				$this->getLanguage(),
+				$this->getLinkRenderer(),
+				$this->currentMode
+			)
 		);
 
 		$this->setTopText( $opts );
@@ -885,7 +905,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			'span',
 			$attribs,
 			// not using Html::checkLabel because that would escape the contents
-			Html::check( $name, (int)$value, [ 'id' => $name ] ) . Html::rawElement(
+			Html::check( $name, (int)$value, [ 'id' => $name ] ) . "\n" . Html::rawElement(
 				'label',
 				$attribs + [ 'for' => $name ],
 				// <nowiki/> at beginning to avoid messages with "$1 ..." being parsed as pre tags
@@ -934,4 +954,26 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	protected function getLimitPreferenceName(): string {
 		return 'wllimit';
 	}
+
+	/**
+	 * @return string
+	 */
+	protected function getSavedQueriesPreferenceName(): string {
+		return 'rcfilters-wl-saved-queries';
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getDefaultDaysPreferenceName(): string {
+		return 'watchlistdays';
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getCollapsedPreferenceName(): string {
+		return 'rcfilters-wl-collapsed';
+	}
+
 }

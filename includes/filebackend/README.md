@@ -89,9 +89,7 @@ when possible.
 doOperations() should be used for working on important original data, i.e. when
 consistency is important. The former will only pipeline operations that do not
 depend on each other. It is best if the operations that do not depend on each
-other occur in consecutive groups. This function can also log file changes to
-a journal (see FileJournal), which can be used to sync two backend instances.
-One might use this function for user uploads of file for example.
+other occur in consecutive groups.
 
 doQuickOperations() is more geared toward ephemeral items that can be easily
 regenerated from original data. It will always pipeline without checking for

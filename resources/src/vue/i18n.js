@@ -6,19 +6,15 @@
  */
 
 module.exports = {
-	install: function ( Vue ) {
-		/**
-		 * @class Vue
-		 */
-
+	install: function ( app ) {
 		/**
 		 * Adds an `$i18n()` instance method that can be used in all components. This method is a
 		 * proxy to mw.message.
 		 *
 		 * Usage:
-		 *     `<p>{{ $i18n( 'my-message-keys', param1, param2 ) }}</p>`
+		 *     `<p>{{ $i18n( 'my-message-key', param1, param2 ) }}</p>`
 		 *     or
-		 *     `<p>{{ $i18n( 'my-message-keys' ).params( [ param1, param2 ] ) }}</p>`
+		 *     `<p>{{ $i18n( 'my-message-key' ).params( [ param1, param2 ] ) }}</p>`
 		 *
 		 * Note that this method only works for messages that return text. For messages that
 		 * need to be parsed to HTML, use the v-i18n-html directive.
@@ -27,8 +23,12 @@ module.exports = {
 		 * @param {...Mixed} parameters Values for $N replacements
 		 * @return {mw.Message}
 		 */
-		Vue.prototype.$i18n = function () {
-			return mw.message.apply( mw, arguments );
+		// This should be app.config.globalProperties.$i18n = ... , but that doesn't work
+		// with Vue 2-style app construction. Change this to use globalProperties when we're
+		// ready to drop compatibility for Vue 2-style new Vue( ... )
+		app.prototype.$i18n = function ( key, ...parameters ) {
+			// eslint-disable-next-line mediawiki/msg-doc
+			return mw.message( key, ...parameters );
 		};
 
 		/*
@@ -63,8 +63,8 @@ module.exports = {
 		 *     Note that you can use mw.message() in computed properties, but in template attributes
 		 *     you have to use $i18n() instead as demonstrated above.
 		 */
-		Vue.directive( 'i18n-html', function ( el, binding ) {
-			var message;
+		app.directive( 'i18n-html', function ( el, binding ) {
+			let message;
 			/* eslint-disable mediawiki/msg-doc */
 			if ( Array.isArray( binding.value ) ) {
 				if ( binding.arg === undefined ) {

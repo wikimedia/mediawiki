@@ -143,7 +143,11 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 			 */
 			public function getUser() {
 				$user = TestUserRegistry::getImmutableTestUser( [] )->getUser();
-				$user->setOption( 'skin-responsive', $this->options['userPreference'] );
+				\MediaWiki\MediaWikiServices::getInstance()->getUserOptionsManager()->setOption(
+					$user,
+					'skin-responsive',
+					$this->options['userPreference']
+				);
 				return $user;
 			}
 		};
@@ -220,6 +224,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 			->with( $relevantUser )
 			->willReturn( new DatabaseBlock( [
 				'address' => $relevantUser,
+				'wiki' => $relevantUser->getWikiId(),
 				'by' => UserIdentityValue::newAnonymous( '123.123.123.123' ),
 				'hideName' => true
 			] ) );

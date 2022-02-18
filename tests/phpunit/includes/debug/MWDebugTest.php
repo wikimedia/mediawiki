@@ -67,7 +67,7 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 
 		// create a dummy subclass that overrides a method
 		$subclassInstance = new class ( NS_MAIN, 'Test' ) extends TitleValue {
-			public function getNamespace() {
+			public function getNamespace(): int {
 				// never called
 				return -100;
 			}

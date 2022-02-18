@@ -1,13 +1,5 @@
 <?php
 /**
- * @defgroup ExternalStorage ExternalStorage
- */
-
-use MediaWiki\MediaWikiServices;
-
-/**
- * Interface for data storage in external repositories.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -26,25 +18,11 @@ use MediaWiki\MediaWikiServices;
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
- * Constructor class for key/value blob data kept in external repositories.
- *
- * Objects in external stores are defined by a special URL. The URL is of
- * the form "<store protocol>://<location>/<object name>". The protocol is used
- * to determine what ExternalStoreMedium class is used. The location identifies
- * particular storage instances or database clusters for store class to use.
- *
- * When an object is inserted into a store, the calling code uses a partial URL of
- * the form "<store protocol>://<location>" and receives the full object URL on success.
- * This is useful since object names can be sequential IDs, UUIDs, or hashes.
- * Callers are not responsible for unique name generation.
- *
- * External repositories might be populated by maintenance/async
- * scripts, thus partial moving of data may be possible, as well
- * as the possibility to have any storage format (i.e. for archives).
- *
  * @ingroup ExternalStorage
- * @deprecated 1.34 Use ExternalStoreFactory directly instead
+ * @deprecated 1.34 Use the ExternalStoreAccess service instead.
  */
 class ExternalStore {
 	/**

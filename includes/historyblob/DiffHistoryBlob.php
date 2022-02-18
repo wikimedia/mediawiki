@@ -32,7 +32,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	public $mSize = 0;
 
 	/**
-	 * @var array Array of diffs. If a diff D from A to B is notated D = B - A,
+	 * @var array|null Array of diffs. If a diff D from A to B is notated D = B - A,
 	 * and Z is an empty string:
 	 *
 	 *              { item[map[i]] - item[map[i-1]]   where i > 0

@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\CommentFormatter\CommentItem;
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/../includes/Benchmarker.php';
 
 class BenchmarkCommentFormatter extends Benchmarker {
@@ -23,11 +26,13 @@ class BenchmarkCommentFormatter extends Benchmarker {
 		}
 		$entries = $result['query']['recentchanges'];
 		$inputs = [];
+		$comments = [];
 		foreach ( $entries as $entry ) {
 			$inputs[] = [
 				'comment' => $entry['comment'],
 				'title' => Title::newFromText( $entry['title'] )
 			];
+			$comments[] = $entry['comment'];
 		}
 		$this->bench( [
 			'Linker::formatComment' => [
@@ -41,6 +46,30 @@ class BenchmarkCommentFormatter extends Benchmarker {
 					}
 				},
 			],
+
+			'CommentFormatter::createBatch' => [
+				'function' => static function () use ( $inputs ) {
+					Title::clearCaches();
+					$formatter = MediaWikiServices::getInstance()->getCommentFormatter();
+					$comments = [];
+					foreach ( $inputs as $input ) {
+						$comments[] = ( new CommentItem( $input['comment'] ) )
+							->selfLinkTarget( $input['title'] );
+					}
+					$formatter->createBatch()
+						->comments( $comments )
+						->execute();
+				}
+			],
+
+			'CommentFormatter::formatStrings' => [
+				'function' => static function () use ( $comments ) {
+					Title::clearCaches();
+					$formatter = MediaWikiServices::getInstance()->getCommentFormatter();
+					$formatter->formatStrings( $comments );
+				}
+			],
+
 		] );
 	}
 }

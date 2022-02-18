@@ -31,7 +31,7 @@ class DeduplicateArchiveRevId extends LoggedUpdateMaintenance {
 	protected function doDBUpdates() {
 		$this->output( "Deduplicating ar_rev_id...\n" );
 		$dbw = $this->getDB( DB_PRIMARY );
-		// Sanity check. If this is a new install, we don't need to do anything here.
+		// If this is a new install, we don't need to do anything here.
 		if ( PopulateArchiveRevId::isNewInstall( $dbw ) ) {
 			$this->output( "New install, nothing to do here.\n" );
 			return true;

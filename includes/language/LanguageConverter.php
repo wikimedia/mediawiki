@@ -21,6 +21,7 @@
  * @author shinjiman <shinjiman@gmail.com>
  * @author PhiLiP <philip.npc@gmail.com>
  */
+
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -89,7 +90,6 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$this->deprecatePublicProperty( 'mMaxDepth = 10', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mVarSeparatorPattern', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mLangObj', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mVariantFallbacks', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mTablesLoaded', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mTables', '1.35', __CLASS__ );
 
@@ -249,13 +249,13 @@ abstract class LanguageConverter implements ILanguageConverter {
 	}
 
 	/**
-	 * Get all valid variants for current Coverter. It uses abstract
+	 * Get all valid variants for current Converter. It uses abstract
 	 *
 	 * @return string[] Contains all valid variants
 	 */
 	final public function getVariants() {
-		global $wgDisabledVariants;
-		return array_diff( $this->getLanguageVariants(), $wgDisabledVariants );
+		$disabledVariants = MediaWikiServices::getInstance()->getMainConfig()->get( 'DisabledVariants' );
+		return array_diff( $this->getLanguageVariants(), $disabledVariants );
 	}
 
 	/**
@@ -275,7 +275,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 
 	/**
 	 * Get the title produced by the conversion rule.
-	 * @return string The converted title text
+	 * @return string|false The converted title text
 	 */
 	public function getConvRuleTitle() {
 		return $this->mConvRuleTitle;
@@ -286,7 +286,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return string The preferred language code
 	 */
 	public function getPreferredVariant() {
-		global $wgDefaultLanguageVariant;
+		$defaultLanguageVariant = MediaWikiServices::getInstance()->getMainConfig()->get( 'DefaultLanguageVariant' );
 
 		$req = $this->getURLVariant();
 
@@ -303,8 +303,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 			$req = $this->getHeaderVariant();
 		}
 
-		if ( $wgDefaultLanguageVariant && !$req ) {
-			$req = $this->validateVariant( $wgDefaultLanguageVariant );
+		if ( $defaultLanguageVariant && !$req ) {
+			$req = $this->validateVariant( $defaultLanguageVariant );
 		}
 
 		$req = $this->validateVariant( $req );
@@ -324,7 +324,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return string The default variant code
 	 */
 	public function getDefaultVariant() {
-		global $wgDefaultLanguageVariant;
+		$defaultLanguageVariant = MediaWikiServices::getInstance()->getMainConfig()->get( 'DefaultLanguageVariant' );
 
 		$req = $this->getURLVariant();
 
@@ -332,8 +332,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 			$req = $this->getHeaderVariant();
 		}
 
-		if ( $wgDefaultLanguageVariant && !$req ) {
-			$req = $this->validateVariant( $wgDefaultLanguageVariant );
+		if ( $defaultLanguageVariant && !$req ) {
+			$req = $this->validateVariant( $defaultLanguageVariant );
 		}
 
 		if ( $req ) {
@@ -410,25 +410,28 @@ abstract class LanguageConverter implements ILanguageConverter {
 			return false;
 		}
 
-		$services = MediaWikiServices::getInstance();
-		if ( $user->isRegistered() ) {
-			// Get language variant preference from logged in users
-			if (
-				$this->getMainCode() ==
-				$services->getContentLanguage()->getCode()
-			) {
-				$optionName = 'variant';
+		if ( !$this->mUserVariant ) {
+			$services = MediaWikiServices::getInstance();
+			if ( $user->isRegistered() ) {
+				// Get language variant preference from logged in users
+				if (
+					$this->getMainCode() ==
+					$services->getContentLanguage()->getCode()
+				) {
+					$optionName = 'variant';
+				} else {
+					$optionName = 'variant-' . $this->getMainCode();
+				}
 			} else {
-				$optionName = 'variant-' . $this->getMainCode();
+				// figure out user lang without constructing wgLang to avoid
+				// infinite recursion
+				$optionName = 'language';
 			}
-		} else {
-			// figure out user lang without constructing wgLang to avoid
-			// infinite recursion
-			$optionName = 'language';
-		}
-		$ret = $services->getUserOptionsLookup()->getOption( $user, $optionName );
+			$ret = $services->getUserOptionsLookup()->getOption( $user, $optionName );
 
-		$this->mUserVariant = $this->validateVariant( $ret );
+			$this->mUserVariant = $this->validateVariant( $ret );
+		}
+
 		return $this->mUserVariant;
 	}
 
@@ -522,7 +525,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 			$htmlfix = '|<[^>\004]++(?=\004$)|^[^<>]*+>';
 
 			// Optimize for the common case where these tags have
-			// few or no children. Thus try and possesively get as much as
+			// few or no children. Thus try and possessively get as much as
 			// possible, and only engage in backtracking when we hit a '<'.
 
 			// disable convert to variants between <code> tags
@@ -692,7 +695,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		// T26072: $mConvRuleTitle was overwritten by other manual
 		// rule(s) not for title, this breaks the title conversion.
 		$newConvRuleTitle = $convRule->getTitle();
-		if ( $newConvRuleTitle ) {
+		if ( $newConvRuleTitle !== false ) {
 			// So I add an empty check for getTitle()
 			$this->mConvRuleTitle = $newConvRuleTitle;
 		}
@@ -756,10 +759,22 @@ abstract class LanguageConverter implements ILanguageConverter {
 
 		$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
 		$key = $cache->makeKey( 'languageconverter', 'namespace-text', $index, $variant );
-		$nsVariantText = $cache->get( $key );
-		if ( $nsVariantText !== false ) {
-			return $nsVariantText;
-		}
+		return $cache->getWithSetCallback(
+			$key,
+			BagOStuff::TTL_MINUTE,
+			function () use ( $index, $variant ) {
+				return $this->computeNsVariantText( $index, $variant );
+			}
+		);
+	}
+
+	/**
+	 * @param int $index
+	 * @param string|null $variant
+	 * @return string
+	 */
+	private function computeNsVariantText( int $index, ?string $variant ): string {
+		$nsVariantText = false;
 
 		// First check if a message gives a converted name in the target variant.
 		$nsConvMsg = wfMessage( 'conversion-ns' . $index )->inLanguage( $variant );
@@ -783,9 +798,6 @@ abstract class LanguageConverter implements ILanguageConverter {
 				->getLanguage( $variant );
 			$nsVariantText = $mLangObj->getFormattedNsText( $index );
 		}
-
-		$cache->set( $key, $nsVariantText, 60 );
-
 		return $nsVariantText;
 	}
 
@@ -896,7 +908,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return string Converted text
 	 */
 	protected function recursiveConvertRule( $text, $variant, &$startPos, $depth = 0 ) {
-		// Quick sanity check (no function calls)
+		// Quick check (no function calls)
 		if ( $text[$startPos] !== '-' || $text[$startPos + 1] !== '{' ) {
 			throw new MWException( __METHOD__ . ': invalid input string' );
 		}
@@ -1079,7 +1091,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @param bool $fromCache Load from memcached? Defaults to true.
 	 */
 	protected function loadTables( $fromCache = true ) {
-		global $wgLanguageConverterCacheType;
+		$languageConverterCacheType = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'LanguageConverterCacheType' );
 
 		if ( $this->mTablesLoaded ) {
 			return;
@@ -1088,7 +1101,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$this->mTablesLoaded = true;
 		// Do not use null as starting value, as that would confuse phan a lot.
 		$this->mTables = [];
-		$cache = ObjectCache::getInstance( $wgLanguageConverterCacheType );
+		$cache = ObjectCache::getInstance( $languageConverterCacheType );
 		$cacheKey = $cache->makeKey( 'conversiontables', $this->getMainCode() );
 		if ( $fromCache ) {
 			$this->mTables = $cache->get( $cacheKey );
@@ -1242,7 +1255,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 				if ( count( $m ) != 2 ) {
 					continue;
 				}
-				// trim any trailling comments starting with '//'
+				// trim any trailing comments starting with '//'
 				$tt = explode( '//', $m[1], 2 );
 				$ret[trim( $m[0] )] = trim( $tt[0] );
 			}
@@ -1319,7 +1332,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	public function getVarSeparatorPattern() {
 		if ( $this->mVarSeparatorPattern === null ) {
 			// varsep_pattern for preg_split:
-			// text should be splited by ";" only if a valid variant
+			// text should be split by ";" only if a valid variant
 			// name exist after the markup, for example:
 			//  -{zh-hans:<span style="font-size:120%;">xxx</span>;zh-hant:\
 			//  <span style="font-size:120%;">yyy</span>;}-

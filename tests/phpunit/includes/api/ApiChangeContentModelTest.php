@@ -44,7 +44,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 
 		$this->assertFalse(
 			Title::newFromText( $name )->exists(),
-			'Sanity check that title does not exist already'
+			'Check that title does not exist already'
 		);
 
 		$this->setExpectedApiException( 'apierror-changecontentmodel-missingtitle' );
@@ -81,7 +81,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		$this->assertSame(
 			'wikitext',
 			Title::newFromText( 'ExistingPage' )->getContentModel(),
-			'Sanity check: `ExistingPage` should be wikitext'
+			'`ExistingPage` should be wikitext'
 		);
 
 		$this->setExpectedApiException( 'apierror-nochanges' );
@@ -108,7 +108,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		$this->assertSame(
 			'wikitext',
 			$wikipage->getTitle()->getContentModel(),
-			'Sanity check: `PageWithTextThatIsNotValidJSON` should be wikitext at first'
+			'`PageWithTextThatIsNotValidJSON` should be wikitext at first'
 		);
 
 		$this->setExpectedApiException( 'invalid-content-data' );
@@ -135,7 +135,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		$this->assertSame(
 			'wikitext',
 			$title->getContentModel( Title::READ_LATEST ),
-			'Sanity check: `ExistingPage` should be wikitext'
+			'`ExistingPage` should be wikitext'
 		);
 
 		$this->setTemporaryHook( 'EditFilterMergedContent',
@@ -180,7 +180,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		$this->assertSame(
 			'wikitext',
 			$title->getContentModel( Title::READ_LATEST ),
-			'Sanity check: `ExistingPage` should be wikitext'
+			'`ExistingPage` should be wikitext'
 		);
 
 		$this->setTemporaryHook( 'ContentModelCanBeUsedOn',
@@ -265,7 +265,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		$this->assertSame(
 			'wikitext',
 			$title->getContentModel( Title::READ_LATEST ),
-			'Sanity check: `ExistingPage` should be wikitext'
+			'`ExistingPage` should be wikitext'
 		);
 
 		ChangeTags::defineTag( 'api edit content model tag' );

@@ -257,7 +257,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 *        doing all row updates within that transaction. It will not be possible to update
 	 *        rows in batches; this might result in high replication lag.
 	 *   - b) Forgo table locks entirely and avoid calling this method. Careful use of hints like
-	 *        LOCK IN SHARE MODE and FOR UPDATE and the use of query batching may be preferrable
+	 *        LOCK IN SHARE MODE and FOR UPDATE and the use of query batching may be preferable
 	 *        to using table locks with a potentially large transaction. Use of MySQL and Postges
 	 *        style REPEATABLE-READ (Snapshot Isolation with or without First-Committer-Rule) can
 	 *        also be considered for certain tasks that require a consistent view of entire tables.
@@ -276,6 +276,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 * @param string $method Name of caller
 	 * @return bool
 	 * @since 1.29
+	 * @deprecated Since 1.38
 	 */
 	public function lockTables( array $read, array $write, $method );
 
@@ -287,6 +288,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 *
 	 * @param string $method The caller
 	 * @return bool
+	 * @deprecated Since 1.38
 	 * @since 1.29
 	 */
 	public function unlockTables( $method );

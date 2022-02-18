@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -41,6 +42,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	/** @var CommentStore */
 	private $commentStore;
 
+	/** @var RowCommentFormatter */
+	private $commentFormatter;
+
 	/** @var RevisionStore */
 	private $revisionStore;
 
@@ -54,6 +58,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param CommentStore $commentStore
+	 * @param RowCommentFormatter $commentFormatter
 	 * @param RevisionStore $revisionStore
 	 * @param NameTableStore $changeTagDefStore
 	 * @param LinkBatchFactory $linkBatchFactory
@@ -62,12 +67,14 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		ApiQuery $query,
 		$moduleName,
 		CommentStore $commentStore,
+		RowCommentFormatter $commentFormatter,
 		RevisionStore $revisionStore,
 		NameTableStore $changeTagDefStore,
 		LinkBatchFactory $linkBatchFactory
 	) {
 		parent::__construct( $query, $moduleName, 'dr' );
 		$this->commentStore = $commentStore;
+		$this->commentFormatter = $commentFormatter;
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $changeTagDefStore;
 		$this->linkBatchFactory = $linkBatchFactory;
@@ -295,6 +302,18 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addWhereRange( 'ar_id', $dir, null, null );
 		}
 		$res = $this->select( __METHOD__ );
+
+		$formattedComments = [];
+		if ( $fld_parsedcomment ) {
+			$formattedComments = $this->commentFormatter->formatItems(
+				$this->commentFormatter->rows( $res )
+					->indexField( 'ar_id' )
+					->commentKey( 'ar_comment' )
+					->namespaceField( 'ar_namespace' )
+					->titleField( 'ar_title' )
+			);
+		}
+
 		$pageMap = []; // Maps ns&title to (fake) pageid
 		$count = 0;
 		$newPageID = 0;
@@ -355,8 +374,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 						$rev['comment'] = $comment;
 					}
 					if ( $fld_parsedcomment ) {
-						$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
-						$rev['parsedcomment'] = Linker::formatComment( $comment, $title );
+						$rev['parsedcomment'] = $formattedComments[$row->ar_id];
 					}
 				}
 			}

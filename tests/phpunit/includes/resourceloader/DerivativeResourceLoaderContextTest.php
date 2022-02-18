@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\User\UserIdentity;
+
 /**
  * @group ResourceLoader
  * @covers DerivativeResourceLoaderContext
@@ -66,17 +68,24 @@ class DerivativeResourceLoaderContextTest extends MediaWikiIntegrationTestCase {
 
 	public function testChangeUserObj() {
 		$user = $this->createMock( User::class );
+		$userIdentity = $this->createMock( UserIdentity::class );
 		$parent = $this->createMock( ResourceLoaderContext::class );
 		$parent
 			->expects( $this->once() )
 			->method( 'getUserObj' )
 			->willReturn( $user );
+		$parent
+			->expects( $this->once() )
+			->method( 'getUserIdentity' )
+			->willReturn( $userIdentity );
 
 		$derived = new DerivativeResourceLoaderContext( $parent );
 		$this->assertSame( $derived->getUserObj(), $user, 'inherit from parent' );
+		$this->assertSame( $derived->getUserIdentity(), $userIdentity, 'inherit from parent' );
 
 		$derived->setUser( null );
 		$this->assertNotSame( $derived->getUserObj(), $user, 'different' );
+		$this->assertNull( $derived->getUserIdentity(), 'no user identity' );
 	}
 
 	public function testChangeDebug() {

@@ -118,8 +118,6 @@ class SearchFormWidget {
 		$offset,
 		array $options = []
 	) {
-		$html = '';
-
 		$searchWidget = new SearchInputWidget( $options + [
 			'id' => 'searchText',
 			'name' => 'search',
@@ -130,15 +128,13 @@ class SearchFormWidget {
 			'infusable' => true,
 		] );
 
-		$layout = new \OOUI\ActionFieldLayout( $searchWidget, new \OOUI\ButtonInputWidget( [
+		$html = new \OOUI\ActionFieldLayout( $searchWidget, new \OOUI\ButtonInputWidget( [
 			'type' => 'submit',
 			'label' => $this->specialSearch->msg( 'searchbutton' )->text(),
 			'flags' => [ 'progressive', 'primary' ],
 		] ), [
 			'align' => 'top',
 		] );
-
-		$html .= $layout;
 
 		if ( $this->specialSearch->getPrefix() !== '' ) {
 			$html .= Html::hidden( 'prefix', $this->specialSearch->getPrefix() );
@@ -213,9 +209,7 @@ class SearchFormWidget {
 	protected function startsWithImage( $term ) {
 		$parts = explode( ':', $term );
 		return count( $parts ) > 1
-			? $this->specialSearch->getContentLanguage()->getNsIndex( $parts[0] ) ===
-				NS_FILE
-			: false;
+			&& $this->specialSearch->getContentLanguage()->getNsIndex( $parts[0] ) === NS_FILE;
 	}
 
 	/**
@@ -253,15 +247,13 @@ class SearchFormWidget {
 	 * @return string HTML
 	 */
 	protected function optionsHtml( $term, $isPowerSearch, $profile ) {
-		$html = '';
-
 		if ( $isPowerSearch ) {
-			$html .= $this->powerSearchBox( $term, [] );
+			$html = $this->powerSearchBox( $term, [] );
 		} else {
-			$form = '';
+			$html = '';
 			$this->getHookRunner()->onSpecialSearchProfileForm(
-				$this->specialSearch, $form, $profile, $term, [] );
-			$html .= $form;
+				$this->specialSearch, $html, $profile, $term, []
+			);
 		}
 
 		return $html;
@@ -274,6 +266,103 @@ class SearchFormWidget {
 	 * @return string HTML
 	 */
 	protected function powerSearchBox( $term, array $opts ) {
+		$namespaceTables =
+			[ 'namespaceTables' => $this->createCheckboxesForEverySearchableNamespace() ];
+		$this->getHookRunner()->onSpecialSearchPowerBox( $namespaceTables, $term, $opts );
+
+		$outputHtml = '';
+		$outputHtml .= $this->createSearchBoxHeadHtml();
+		$outputHtml .= $this->searchFilterSeparatorHtml();
+		$outputHtml .= implode( $this->searchFilterSeparatorHtml(), $namespaceTables );
+		$outputHtml .= $this->createHiddenOptsHtml( $opts );
+
+		// Stuff to feed SpecialSearch::saveNamespaces()
+		if ( $this->specialSearch->getUser()->isRegistered() ) {
+			$outputHtml .= $this->searchFilterSeparatorHtml();
+			$outputHtml .= $this->createPowerSearchRememberCheckBoxHtml();
+		}
+
+		return Html::rawElement( 'fieldset', [ 'id' => 'mw-searchoptions' ], $outputHtml );
+	}
+
+	/**
+	 * @return HookContainer
+	 * @since 1.35
+	 */
+	protected function getHookContainer() {
+		return $this->hookContainer;
+	}
+
+	/**
+	 * @return HookRunner
+	 * @since 1.35
+	 * @internal This is for use by core only. Hook interfaces may be removed
+	 *   without notice.
+	 */
+	protected function getHookRunner() {
+		return $this->hookRunner;
+	}
+
+	private function searchFilterSeparatorHtml(): string {
+		return Html::rawElement( 'div', [ 'class' => 'divider' ], '' );
+	}
+
+	private function createPowerSearchRememberCheckBoxHtml(): string {
+		return Xml::checkLabel( $this->specialSearch->msg( 'powersearch-remember' )->text(),
+			'nsRemember', 'mw-search-powersearch-remember', false,
+			// The token goes here rather than in a hidden field so it
+			// is only sent when necessary (not every form submission)
+			[
+				'value' => $this->specialSearch->getUser()
+					->getEditToken( 'searchnamespace', $this->specialSearch->getRequest() ),
+			] );
+	}
+
+	private function createNamespaceToggleBoxHtml(): string {
+		$toggleBoxContents = "";
+		$toggleBoxContents .= Html::rawElement( 'label', [],
+				$this->specialSearch->msg( 'powersearch-togglelabel' )->escaped() );
+		$toggleBoxContents .= Html::rawElement( 'input', [
+					'type' => 'button',
+					'id' => 'mw-search-toggleall',
+					'value' => $this->specialSearch->msg( 'powersearch-toggleall' )->text(),
+				] );
+		$toggleBoxContents .= Html::rawElement( 'input', [
+					'type' => 'button',
+					'id' => 'mw-search-togglenone',
+					'value' => $this->specialSearch->msg( 'powersearch-togglenone' )->text(),
+				] );
+
+		// Handled by JavaScript if available
+		return Html::rawElement( 'div', [ 'id' => 'mw-search-togglebox' ], $toggleBoxContents );
+	}
+
+	private function createSearchBoxHeadHtml(): string {
+		return Html::rawElement( 'legend', [],
+				$this->specialSearch->msg( 'powersearch-legend' )->escaped() ) .
+			Html::rawElement( 'h4', [], $this->specialSearch->msg( 'powersearch-ns' )->parse() ) .
+			$this->createNamespaceToggleBoxHtml();
+	}
+
+	private function createNamespaceCheckbox( string $namespace, array $activeNamespaces ): string {
+		$namespaceDisplayName = $this->getNamespaceDisplayName( $namespace );
+
+		return Html::rawElement( 'div', [ 'class' => 'mw-ui-checkbox' ],
+			Xml::check( "ns{$namespace}", in_array( $namespace, $activeNamespaces ),
+				[ 'id' => "mw-search-ns{$namespace}" ] ) . "\u{00A0}" .
+			Xml::label( $namespaceDisplayName, "mw-search-ns{$namespace}" ) );
+	}
+
+	private function getNamespaceDisplayName( string $namespace ): string {
+		$name = $this->languageConverter->convertNamespace( $namespace );
+		if ( $name === '' ) {
+			$name = $this->specialSearch->msg( 'blanknamespace' )->text();
+		}
+
+		return $name;
+	}
+
+	private function createCheckboxesForEverySearchableNamespace(): string {
 		$rows = [];
 		$activeNamespaces = $this->specialSearch->getNamespaces();
 		foreach ( $this->searchConfig->searchableNamespaces() as $namespace => $name ) {
@@ -282,112 +371,24 @@ class SearchFormWidget {
 				$rows[$subject] = "";
 			}
 
-			$name = $this->languageConverter->convertNamespace( $namespace );
-			if ( $name === '' ) {
-				$name = $this->specialSearch->msg( 'blanknamespace' )->text();
-			}
-
-			$rows[$subject] .= Html::rawElement(
-				'td',
-				[],
-				Xml::checkLabel(
-					$name,
-					"ns{$namespace}",
-					"mw-search-ns{$namespace}",
-					in_array( $namespace, $activeNamespaces )
-				)
-			);
+			$rows[$subject] .= $this->createNamespaceCheckbox( $namespace, $activeNamespaces );
 		}
 
-		// Lays out namespaces in multiple floating two-column tables so they'll
-		// be arranged nicely while still accomodating diferent screen widths
-		$tableRows = [];
-		foreach ( $rows as $row ) {
-			$tableRows[] = Html::rawElement( 'tr', [], $row );
-		}
 		$namespaceTables = [];
-		foreach ( array_chunk( $tableRows, 4 ) as $chunk ) {
+		foreach ( array_chunk( $rows, 4 ) as $chunk ) {
 			$namespaceTables[] = implode( '', $chunk );
 		}
 
-		$showSections = [
-			'namespaceTables' => "<table>" . implode( '</table><table>', $namespaceTables ) . '</table>',
-		];
-		$this->getHookRunner()->onSpecialSearchPowerBox( $showSections, $term, $opts );
+		return '<div class="checkbox-container">' .
+			implode( '</div><div class="checkbox-container">', $namespaceTables ) . '</div>';
+	}
 
+	private function createHiddenOptsHtml( array $opts ): string {
 		$hidden = '';
 		foreach ( $opts as $key => $value ) {
 			$hidden .= Html::hidden( $key, $value );
 		}
 
-		$divider = Html::rawElement( 'div', [ 'class' => 'divider' ], '' );
-
-		// Stuff to feed SpecialSearch::saveNamespaces()
-		$user = $this->specialSearch->getUser();
-		$remember = '';
-		if ( $user->isRegistered() ) {
-			$remember = $divider . Xml::checkLabel(
-				$this->specialSearch->msg( 'powersearch-remember' )->text(),
-				'nsRemember',
-				'mw-search-powersearch-remember',
-				false,
-				// The token goes here rather than in a hidden field so it
-				// is only sent when necessary (not every form submission)
-				[ 'value' => $user->getEditToken(
-					'searchnamespace',
-					$this->specialSearch->getRequest()
-				) ]
-			);
-		}
-
-		// Temporary variables to reduce nesting needed
-		$toggleBoxContents =
-			Html::rawElement( 'label', [], $this->specialSearch->msg( 'powersearch-togglelabel' )->escaped() ) .
-			Html::rawElement(
-				'input',
-				[
-					'type' => 'button',
-					'id' => 'mw-search-toggleall',
-					'value' => $this->specialSearch->msg( 'powersearch-toggleall' )->text(),
-				]
-			) .
-			Html::rawElement(
-				'input',
-				[
-					'type' => 'button',
-					'id' => 'mw-search-togglenone',
-					'value' => $this->specialSearch->msg( 'powersearch-togglenone' )->text(),
-				]
-			);
-		$fieldSetContents =
-			Html::rawElement( 'legend', [], $this->specialSearch->msg( 'powersearch-legend' )->escaped() ) .
-			Html::rawElement( 'h4', [], $this->specialSearch->msg( 'powersearch-ns' )->parse() ) .
-			// Handled by JavaScript if available
-			Html::rawElement(
-				'div',
-				[ 'id' => 'mw-search-togglebox' ],
-				$toggleBoxContents
-			) .
-			$divider . implode( $divider, $showSections ) . $hidden . $remember;
-
-		return Html::rawElement( 'fieldset', [ 'id' => 'mw-searchoptions' ], $fieldSetContents );
-	}
-
-	/**
-	 * @since 1.35
-	 * @return HookContainer
-	 */
-	protected function getHookContainer() {
-		return $this->hookContainer;
-	}
-
-	/**
-	 * @internal This is for use by core only. Hook interfaces may be removed
-	 *   without notice.
-	 * @since 1.35
-	 * @return HookRunner
-	 */
-	protected function getHookRunner() {
-		return $this->hookRunner;
+		return $hidden;
 	}
 }

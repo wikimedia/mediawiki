@@ -8,6 +8,7 @@ use ContribsPager;
 use FauxRequest;
 use IContextSource;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Permissions\Authority;
@@ -43,6 +44,9 @@ class ContributionsLookup {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/**
 	 * @param RevisionStore $revisionStore
 	 * @param LinkRendererFactory $linkRendererFactory
@@ -51,6 +55,7 @@ class ContributionsLookup {
 	 * @param ILoadBalancer $loadBalancer
 	 * @param ActorMigration $actorMigration
 	 * @param NamespaceInfo $namespaceInfo
+	 * @param CommentFormatter $commentFormatter
 	 */
 	public function __construct(
 		RevisionStore $revisionStore,
@@ -59,7 +64,8 @@ class ContributionsLookup {
 		HookContainer $hookContainer,
 		ILoadBalancer $loadBalancer,
 		ActorMigration $actorMigration,
-		NamespaceInfo $namespaceInfo
+		NamespaceInfo $namespaceInfo,
+		CommentFormatter $commentFormatter
 	) {
 		$this->revisionStore = $revisionStore;
 		$this->linkRendererFactory = $linkRendererFactory;
@@ -68,6 +74,7 @@ class ContributionsLookup {
 		$this->loadBalancer = $loadBalancer;
 		$this->actorMigration = $actorMigration;
 		$this->namespaceInfo = $namespaceInfo;
+		$this->commentFormatter = $commentFormatter;
 	}
 
 	/**
@@ -272,7 +279,8 @@ class ContributionsLookup {
 			$this->actorMigration,
 			$this->revisionStore,
 			$this->namespaceInfo,
-			$targetUser
+			$targetUser,
+			$this->commentFormatter
 		);
 	}
 

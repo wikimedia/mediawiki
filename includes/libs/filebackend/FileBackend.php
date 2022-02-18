@@ -4,6 +4,7 @@
  *
  * File backend is used to interact with file storage systems,
  * such as the local file system, NFS, or cloud storage systems.
+ * See [the architecture doc](@ref filebackendarch) for more information.
  */
 
 /**
@@ -116,8 +117,6 @@ abstract class FileBackend implements LoggerAwareInterface {
 
 	/** @var LockManager */
 	protected $lockManager;
-	/** @var FileJournal */
-	protected $fileJournal;
 	/** @var LoggerInterface */
 	protected $logger;
 	/** @var callable|null */
@@ -166,7 +165,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @param array $config Parameters include:
 	 *   - name : The unique name of this backend.
 	 *      This should consist of alphanumberic, '-', and '_' characters.
-	 *      This name should not be changed after use (e.g. with journaling).
+	 *      This name should not be changed after use.
 	 *      Note that the name is *not* used in actual container names.
 	 *   - domainId : Prefix to container names that is unique to this backend.
 	 *      It should only consist of alphanumberic, '-', and '_' characters.
@@ -174,8 +173,6 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *      use the same storage system, so this should be set carefully.
 	 *   - lockManager : LockManager object to use for any file locking.
 	 *      If not provided, then no file locking will be enforced.
-	 *   - fileJournal : FileJournal object to use for logging changes to files.
-	 *      If not provided, then change journaling will be disabled.
 	 *   - readOnly : Write operations are disallowed if this is a non-empty string.
 	 *      It should be an explanation for the backend being read-only.
 	 *   - parallelize : When to do file operations in parallel (when possible).
@@ -209,7 +206,6 @@ abstract class FileBackend implements LoggerAwareInterface {
 				"Backend domain ID not provided for '{$this->name}'." );
 		}
 		$this->lockManager = $config['lockManager'] ?? new NullLockManager( [] );
-		$this->fileJournal = $config['fileJournal'] ?? new NullFileJournal;
 		$this->readOnly = isset( $config['readOnly'] )
 			? (string)$config['readOnly']
 			: '';
@@ -434,8 +430,6 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - nonLocking          : No locks are acquired for the operations.
 	 *                           This can increase performance for non-critical writes.
 	 *                           This has no effect unless the 'force' flag is set.
-	 *   - nonJournaled        : Don't log this operation batch in the file journal.
-	 *                           This limits the ability of recovery scripts.
 	 *   - parallelize         : Try to do operations in parallel when possible.
 	 *   - bypassReadOnly      : Allow writes in read-only mode. (since 1.20)
 	 *   - preserveCache       : Don't clear the process cache before checking files.
@@ -461,7 +455,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @phan-param array<int,array{ignoreMissingSource?:bool,overwrite?:bool,overwriteSame?:bool,headers?:bool}> $ops
 	 * @param array $opts Batch operation options
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{force?:bool,nonLocking?:bool,nonJournaled?:bool,parallelize?:bool,bypassReadOnly?:bool,preserveCache?:bool} $opts
+	 * @phan-param array{force?:bool,nonLocking?:bool,parallelize?:bool,bypassReadOnly?:bool,preserveCache?:bool} $opts
 	 * @return StatusValue
 	 */
 	final public function doOperations( array $ops, array $opts = [] ) {
@@ -473,7 +467,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 		}
 
 		$ops = $this->resolveFSFileObjects( $ops );
-		if ( empty( $opts['force'] ) ) { // sanity
+		if ( empty( $opts['force'] ) ) {
 			unset( $opts['nonLocking'] );
 		}
 
@@ -594,7 +588,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	/**
 	 * Perform a set of independent file operations on some files.
 	 *
-	 * This does no locking, nor journaling, and possibly no stat calls.
+	 * This does no locking, and possibly no stat calls.
 	 * Any destination files that already exist will be overwritten.
 	 * This should *only* be used on non-original files, like cache files.
 	 *
@@ -868,7 +862,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - noAccess       : try to deny file access (since 1.20)
 	 *   - noListing      : try to deny file listing (since 1.20)
 	 *   - bypassReadOnly : allow writes in read-only mode (since 1.20)
-	 * @return StatusValue
+	 * @return StatusValue Good status without value for success, fatal otherwise.
 	 */
 	final public function prepare( array $params ) {
 		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
@@ -882,7 +876,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	/**
 	 * @see FileBackend::prepare()
 	 * @param array $params
-	 * @return StatusValue
+	 * @return StatusValue Good status without value for success, fatal otherwise.
 	 */
 	abstract protected function doPrepare( array $params );
 
@@ -1482,15 +1476,6 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 */
 	final public function getContainerStoragePath( $container ) {
 		return $this->getRootStoragePath() . "/{$container}";
-	}
-
-	/**
-	 * Get the file journal object for this backend
-	 *
-	 * @return FileJournal
-	 */
-	final public function getJournal() {
-		return $this->fileJournal;
 	}
 
 	/**

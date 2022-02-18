@@ -3,7 +3,7 @@
 
 	QUnit.test( 'Basic functionality', function ( assert ) {
 		var api = new mw.Api();
-		assert.ok( api.upload );
+		assert.strictEqual( typeof api.upload, 'function' );
 		assert.throws( function () {
 			api.upload();
 		} );

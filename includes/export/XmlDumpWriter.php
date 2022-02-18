@@ -92,13 +92,13 @@ class XmlDumpWriter {
 		$schemaVersion = XML_DUMP_SCHEMA_VERSION_11
 	) {
 		Assert::parameter(
-			in_array( $contentMode, [ self::WRITE_CONTENT, self::WRITE_STUB ] ),
+			in_array( $contentMode, [ self::WRITE_CONTENT, self::WRITE_STUB ], true ),
 			'$contentMode',
 			'must be one of the following constants: WRITE_CONTENT or WRITE_STUB.'
 		);
 
 		Assert::parameter(
-			in_array( $schemaVersion, self::$supportedSchemas ),
+			in_array( $schemaVersion, self::$supportedSchemas, true ),
 			'$schemaVersion',
 			'must be one of the following schema versions: '
 				. implode( ',', self::$supportedSchemas )
@@ -163,16 +163,16 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	private function sitename() {
-		global $wgSitename;
-		return Xml::element( 'sitename', [], $wgSitename );
+		$sitename = MediaWikiServices::getInstance()->getMainConfig()->get( 'Sitename' );
+		return Xml::element( 'sitename', [], $sitename );
 	}
 
 	/**
 	 * @return string
 	 */
 	private function dbname() {
-		global $wgDBname;
-		return Xml::element( 'dbname', [], $wgDBname );
+		$dbname = MediaWikiServices::getInstance()->getMainConfig()->get( 'DBname' );
+		return Xml::element( 'dbname', [], $dbname );
 	}
 
 	/**
@@ -193,9 +193,9 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	private function caseSetting() {
-		global $wgCapitalLinks;
+		$capitalLinks = MediaWikiServices::getInstance()->getMainConfig()->get( 'CapitalLinks' );
 		// "case-insensitive" option is reserved for future
-		$sensitivity = $wgCapitalLinks ? 'first-letter' : 'case-sensitive';
+		$sensitivity = $capitalLinks ? 'first-letter' : 'case-sensitive';
 		return Xml::element( 'case', [], $sensitivity );
 	}
 
@@ -246,10 +246,12 @@ class XmlDumpWriter {
 		$out .= '    ' . Xml::element( 'ns', [], strval( $row->page_namespace ) ) . "\n";
 		$out .= '    ' . Xml::element( 'id', [], strval( $row->page_id ) ) . "\n";
 		if ( $row->page_is_redirect ) {
-			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->currentTitle );
+			$services = MediaWikiServices::getInstance();
+			$page = $services->getWikiPageFactory()->newFromTitle( $this->currentTitle );
+			$redirectStore = $services->getRedirectStore();
 			$redirect = $this->invokeLenient(
-				static function () use ( $page ) {
-					return $page->getRedirectTarget();
+				static function () use ( $page, $redirectStore ) {
+					return $redirectStore->getRedirectTarget( $page );
 				},
 				'Failed to get redirect target of page ' . $page->getId()
 			);
@@ -375,7 +377,6 @@ class XmlDumpWriter {
 		} else {
 			if ( $rev->getComment()->text != '' ) {
 				$out .= "      "
-					// @phan-suppress-next-line SecurityCheck-DoubleEscaped getComment is polluted by truncate
 					. Xml::elementClean( 'comment', [], strval( $rev->getComment()->text ) )
 					. "\n";
 			}
@@ -599,7 +600,6 @@ class XmlDumpWriter {
 		} else {
 			$comment = CommentStore::getStore()->getComment( 'log_comment', $row )->text;
 			if ( $comment != '' ) {
-				// @phan-suppress-next-line SecurityCheck-DoubleEscaped CommentStore is polluted by truncate
 				$out .= "    " . Xml::elementClean( 'comment', null, strval( $comment ) ) . "\n";
 			}
 		}
@@ -705,7 +705,7 @@ class XmlDumpWriter {
 			$uploader = Xml::element( 'contributor', [ 'deleted' => 'deleted' ] ) . "\n";
 		}
 		$comment = $file->getDescription( File::FOR_PUBLIC );
-		if ( $comment ) {
+		if ( ( $comment ?? '' ) !== '' ) {
 			$comment = Xml::elementClean( 'comment', null, $comment );
 		} else {
 			$comment = Xml::element( 'comment', [ 'deleted' => 'deleted' ] );

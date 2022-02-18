@@ -42,24 +42,30 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	/** @var GroupPermissionsLookup */
 	private $groupPermissionsLookup;
 
+	/** @var Language */
+	private $contentLanguage;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param UserFactory $userFactory
 	 * @param UserGroupManager $userGroupManager
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
+	 * @param Language $contentLanguage
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		UserFactory $userFactory,
 		UserGroupManager $userGroupManager,
-		GroupPermissionsLookup $groupPermissionsLookup
+		GroupPermissionsLookup $groupPermissionsLookup,
+		Language $contentLanguage
 	) {
 		parent::__construct( $query, $moduleName, 'au' );
 		$this->userFactory = $userFactory;
 		$this->userGroupManager = $userGroupManager;
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
+		$this->contentLanguage = $contentLanguage;
 	}
 
 	/**
@@ -69,6 +75,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	 * @return string
 	 */
 	private function getCanonicalUserName( $name ) {
+		$name = $this->contentLanguage->ucfirst( $name );
 		return strtr( $name, '_', ' ' );
 	}
 
@@ -251,7 +258,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 			if ( $lastUser === $row->user_name ) {
 				// Duplicate row due to one of the needed subtable joins.
-				// Ignore it, but count the number of them to sanely handle
+				// Ignore it, but count the number of them to sensibly handle
 				// miscalculation of $maxDuplicateRows.
 				$countDuplicates++;
 				if ( $countDuplicates == $maxDuplicateRows ) {
@@ -277,7 +284,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				ApiBase::dieDebug( __METHOD__, 'Saw more duplicate rows than expected' );
 			}
 
-			if ( $params['activeusers'] && $row->recentactions === 0 ) {
+			if ( $params['activeusers'] && (int)$row->recentactions === 0 ) {
 				// activeusers cache was out of date
 				continue;
 			}

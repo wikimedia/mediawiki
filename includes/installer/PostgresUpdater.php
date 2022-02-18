@@ -47,12 +47,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			// Introduced in 1.37.
 			[ 'renameTable', 'mwuser', 'user' ],
 
-			// 1.28
-			[ 'addPgIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
-				'( rc_namespace, rc_type, rc_patrolled, rc_timestamp )' ],
-			[ 'addPgField', 'change_tag', 'ct_id',
-				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('change_tag_ct_id_seq')" ],
-
 			// 1.29
 			[ 'addPgField', 'externallinks', 'el_index_60', "BYTEA NOT NULL DEFAULT ''" ],
 			[ 'addPgIndex', 'externallinks', 'el_index_60', '( el_index_60, el_id )' ],
@@ -638,6 +632,13 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'change_tag', 'change_tag_log_tag_id', 'ct_log_tag_id' ],
 			[ 'renameIndex', 'change_tag', 'change_tag_rev_tag_id', 'ct_rev_tag_id' ],
 			[ 'renameIndex', 'change_tag', 'change_tag_tag_id_id', 'ct_tag_id_id' ],
+
+			// 1.38
+			[ 'doConvertDjvuMetadata' ],
+			[ 'dropPgField', 'page_restrictions', 'pr_user' ],
+			[ 'addTable', 'linktarget', 'patch-linktarget.sql' ],
+			[ 'dropIndex', 'revision', 'rev_page_id', 'patch-drop-rev_page_id.sql' ],
+			[ 'addField', 'templatelinks', 'tl_target_id', 'patch-templatelinks-target_id.sql' ],
 		];
 	}
 
@@ -691,7 +692,7 @@ END;
 		if ( !$res ) {
 			return null;
 		}
-		$r = $this->db->fetchRow( $res );
+		$r = $res->fetchRow();
 		if ( !$r ) {
 			return null;
 		}
@@ -712,7 +713,7 @@ END;
 			if ( !$r2 ) {
 				return null;
 			}
-			$row2 = $this->db->fetchRow( $r2 );
+			$row2 = $r2->fetchRow();
 			if ( !$row2 ) {
 				return null;
 			}
@@ -737,7 +738,7 @@ END;
 			),
 			__METHOD__
 		);
-		$row = $this->db->fetchRow( $r );
+		$row = $r->fetchRow();
 		if ( !$row ) {
 			return null;
 		}
@@ -761,7 +762,7 @@ END;
 			),
 			__METHOD__
 		);
-		$row = $this->db->fetchRow( $r );
+		$row = $r->fetchRow();
 		if ( !$row ) {
 			return null;
 		}

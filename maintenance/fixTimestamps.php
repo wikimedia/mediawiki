@@ -54,7 +54,7 @@ class FixTimestamps extends Maintenance {
 		$revisionTable = $dbw->tableName( 'revision' );
 		$res = $dbw->query( "SELECT MIN(rev_id) as minrev, MAX(rev_id) as maxrev FROM $revisionTable " .
 			"WHERE rev_timestamp BETWEEN '{$start}' AND '{$end}'", __METHOD__ );
-		$row = $dbw->fetchObject( $res );
+		$row = $res->fetchObject();
 
 		if ( $row->minrev === null ) {
 			$this->fatalError( "No revisions in search period." );
@@ -80,7 +80,7 @@ class FixTimestamps extends Maintenance {
 		$numGoodRevs = 0;
 
 		foreach ( $res as $row ) {
-			$timestamp = wfTimestamp( TS_UNIX, $row->rev_timestamp );
+			$timestamp = (int)wfTimestamp( TS_UNIX, $row->rev_timestamp );
 			$delta = $timestamp - $lastNormal;
 			$sign = $delta == 0 ? 0 : $delta / abs( $delta );
 			if ( $sign == 0 || $sign == $expectedSign ) {

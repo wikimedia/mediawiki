@@ -47,7 +47,8 @@ class ApiQueryLangLinks extends ApiQueryBase {
 	}
 
 	public function execute() {
-		if ( $this->getPageSet()->getGoodTitleCount() == 0 ) {
+		$pages = $this->getPageSet()->getGoodPages();
+		if ( $pages === [] ) {
 			return;
 		}
 
@@ -78,7 +79,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		] );
 
 		$this->addTables( 'langlinks' );
-		$this->addWhereFld( 'll_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
+		$this->addWhereFld( 'll_from', array_keys( $pages ) );
 		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
@@ -107,7 +108,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			$this->addOption( 'ORDER BY', 'll_from' . $sort );
 		} else {
 			// Don't order by ll_from if it's constant in the WHERE clause
-			if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
+			if ( count( $pages ) === 1 ) {
 				$this->addOption( 'ORDER BY', 'll_lang' . $sort );
 			} else {
 				$this->addOption( 'ORDER BY', [

@@ -2,7 +2,6 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\InterwikiLookup;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Rest\Handler\MediaTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -27,10 +26,10 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function newMovePageWithMocks( $old, $new, array $params = [] ): MovePage {
 		$mockLB = $this->createMock( LoadBalancer::class );
-		$mockLB->method( 'getConnection' )
+		$mockLB->method( 'getConnectionRef' )
 			->willReturn( $params['db'] ?? $this->createNoOpMock( IDatabase::class ) );
 		$mockLB->expects( $this->never() )
-			->method( $this->anythingBut( 'getConnection', '__destruct' ) );
+			->method( $this->anythingBut( 'getConnectionRef', '__destruct' ) );
 
 		// If we don't use a manual mock for something specific, get a full
 		// NamespaceInfo service from DummyServicesTrait::getDummyNamespaceInfo
@@ -54,14 +53,17 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				[ 'Existent.jpg', 'Existent2.jpg', 'Existent-file-no-page.jpg' ]
 			),
 			$params['contentHandlerFactory']
-				?? MediaWikiServices::getInstance()->getContentHandlerFactory(),
+				?? $this->getServiceContainer()->getContentHandlerFactory(),
 			$this->getServiceContainer()->getRevisionStore(),
 			$this->getServiceContainer()->getSpamChecker(),
 			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getWikiPageFactory(),
 			$this->getServiceContainer()->getUserFactory(),
 			$this->getServiceContainer()->getUserEditTracker(),
-			$this->getServiceContainer()->getMovePageFactory()
+			$this->getServiceContainer()->getMovePageFactory(),
+			$this->getServiceContainer()->getCollationFactory(),
+			$this->getServiceContainer()->getPageUpdaterFactory(),
+			$this->getServiceContainer()->getDeletePageFactory()
 		);
 	}
 
@@ -110,7 +112,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	 * @covers MovePage::__construct
 	 */
 	public function testConstructorDefaults() {
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 
 		$this->filterDeprecated( '/MovePage::__construct/' );
 
@@ -454,7 +456,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			$this->assertTrue( $fromTitle->isRedirect(),
 				"Source {$fromTitle->getPrefixedText()} is not a redirect" );
 
-			$target = MediaWikiServices::getInstance()
+			$target = $this->getServiceContainer()
 				->getRevisionLookup()
 				->getRevisionByTitle( $fromTitle )
 				->getContent( SlotRecord::MAIN )
@@ -479,7 +481,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			[],
 			$mp->isValidMove()->getErrorsArray(),
-			'Sanity check - can move over normal redirect'
+			'Can move over normal redirect'
 		);
 
 		$this->editPage( 'ExistentRedirect3', '#REDIRECT [[Existent]]' );
@@ -504,4 +506,54 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			'Multi-revision redirects count as articles'
 		);
 	}
+
+	/**
+	 * Assert that links tables are updated after cross namespace page move (T299275).
+	 */
+	public function testCrossNamespaceLinksUpdate() {
+		$this->getExistingTestPage( Title::makeTitle( NS_TEMPLATE, 'Test' ) );
+
+		$wikitext = "[[Test]], [[Image:Existent.jpg]], {{Test}}";
+
+		$old = Title::makeTitle( NS_USER, __METHOD__ );
+		$this->editPage( $old, $wikitext );
+		$pageId = $old->getId();
+
+		// do a cross-namespace move
+		$new = Title::makeTitle( NS_PROJECT, __METHOD__ );
+		$obj = $this->newMovePageWithMocks( $old, $new, [ 'db' => $this->db ] );
+		$status = $obj->move( $this->getTestUser()->getUser() );
+
+		// sanity checks
+		$this->assertTrue( $status->isOK() );
+		$this->assertSame( $pageId, $new->getId() );
+		$this->assertNotSame( $pageId, $old->getId() );
+
+		// ensure links tables where updated
+		$this->assertSelect(
+			'pagelinks',
+			[ 'pl_namespace', 'pl_title', 'pl_from_namespace' ],
+			[ 'pl_from' => $pageId ],
+			[
+				[ NS_MAIN, 'Test', NS_PROJECT ]
+			]
+		);
+		$this->assertSelect(
+			'templatelinks',
+			[ 'tl_namespace', 'tl_title', 'tl_from_namespace' ],
+			[ 'tl_from' => $pageId ],
+			[
+				[ NS_TEMPLATE, 'Test', NS_PROJECT ]
+			]
+		);
+		$this->assertSelect(
+			'imagelinks',
+			[ 'il_to', 'il_from_namespace' ],
+			[ 'il_from' => $pageId ],
+			[
+				[ 'Existent.jpg', NS_PROJECT ]
+			]
+		);
+	}
+
 }

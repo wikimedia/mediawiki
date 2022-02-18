@@ -122,7 +122,7 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 				] );
 			}
 		}
-		// order of $languageCodes is guaranteed by Language::fetchLanguageNames()
+		// order of $languageCodes is guaranteed by LanguageNameUtils::getLanguageNames()
 		// and preserved by array_values() + array_intersect()
 
 		$continue = $this->getParameter( 'continue' );

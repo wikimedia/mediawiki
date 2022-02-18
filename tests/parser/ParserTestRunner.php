@@ -199,7 +199,7 @@ class ParserTestRunner {
 		$registry = ExtensionRegistry::getInstance();
 		foreach ( $registry->getAllThings() as $info ) {
 			$dir = dirname( $info['path'] ) . '/tests/parser';
-			if ( !file_exists( $dir ) ) {
+			if ( !is_dir( $dir ) ) {
 				continue;
 			}
 			$counter = 1;
@@ -276,6 +276,7 @@ class ParserTestRunner {
 
 		// Some settings which influence HTML output
 		$setup['wgSitename'] = 'MediaWiki';
+		$setup['wgMetaNamespace'] = "TestWiki";
 		$setup['wgServer'] = 'http://example.org';
 		$setup['wgServerName'] = 'example.org';
 		$setup['wgScriptPath'] = '';
@@ -307,8 +308,6 @@ class ParserTestRunner {
 		// Parsoid settings for testing
 		$setup['wgParsoidSettings'] = [
 			'nativeGalleryEnabled' => true,
-			// Parsoid deliberately ignores the per-user thumbsize preference
-			'thumbsize' => 220,
 		];
 
 		// All FileRepo changes should be done here by injecting services,
@@ -436,7 +435,7 @@ class ParserTestRunner {
 			}
 			$backend = new FSFileBackend( [
 				'name' => 'local-backend',
-				'wikiId' => wfWikiID(),
+				'wikiId' => WikiMap::getCurrentWikiId(),
 				'basePath' => $this->uploadDir,
 				'tmpDirectory' => wfTempDir()
 			] );
@@ -454,7 +453,6 @@ class ParserTestRunner {
 			}
 			$useConfig['name'] = 'local-backend'; // swap name
 			unset( $useConfig['lockManager'] );
-			unset( $useConfig['fileJournal'] );
 			$class = $useConfig['class'];
 			$backend = new $class( $useConfig );
 		} else {
@@ -463,7 +461,7 @@ class ParserTestRunner {
 			# informations.
 			$backend = new MockFileBackend( [
 				'name' => 'local-backend',
-				'wikiId' => wfWikiID()
+				'wikiId' => WikiMap::getCurrentWikiId()
 			] );
 		}
 
@@ -590,8 +588,16 @@ class ParserTestRunner {
 		static $testInterwikis = [
 			[
 				'iw_prefix' => 'local',
-				'iw_url' => 'http://doesnt.matter.org/$1',
-				'iw_local' => 0,
+				// This is a "local interwiki" (see wgLocalInterwikis elsewhere in this file)
+				'iw_url' => 'http://example.org/wiki/$1',
+				'iw_local' => 1,
+			],
+			// Local interwiki that matches a namespace name (T228616)
+			[
+				'iw_prefix' => 'project',
+				// This is a "local interwiki" (see wgLocalInterwikis elsewhere in this file)
+				'iw_url' => 'http://example.org/wiki/$1',
+				'iw_local' => 1,
 			],
 			[
 				'iw_prefix' => 'wikipedia',
@@ -632,7 +638,8 @@ class ParserTestRunner {
 			],
 			[
 				'iw_prefix' => 'mi',
-				'iw_url' => 'http://mi.wikipedia.org/wiki/$1',
+				// This is a "local interwiki" (see wgLocalInterwikis elsewhere in this file)
+				'iw_url' => 'http://example.org/wiki/$1',
 				'iw_local' => 1,
 			],
 			[
@@ -681,7 +688,8 @@ class ParserTestRunner {
 
 		// This affects title normalization in links. It invalidates
 		// MediaWikiTitleCodec objects.
-		$setup['wgLocalInterwikis'] = [ 'local', 'mi' ];
+		// These interwikis should have 'iw_url' that matches wgServer.
+		$setup['wgLocalInterwikis'] = [ 'local', 'project', 'mi' ];
 		$reset = function () {
 			$this->resetTitleServices();
 		};
@@ -958,7 +966,7 @@ class ParserTestRunner {
 			// into <link> tags), add tag hooks to allow them to be generated.
 			$parser->setHook( 'style', static function ( $content, $attributes, $parser ) {
 				$marker = Parser::MARKER_PREFIX . '-style-' . md5( $content ) . Parser::MARKER_SUFFIX;
-				$parser->mStripState->addNoWiki( $marker, $content );
+				$parser->getStripState()->addNoWiki( $marker, $content );
 				return Html::inlineStyle( $marker, 'all', $attributes );
 			} );
 			$parser->setHook( 'link', static function ( $content, $attributes, $parser ) {
@@ -990,33 +998,7 @@ class ParserTestRunner {
 			] );
 			$out = preg_replace( '/\s+$/', '', $out );
 
-			if ( isset( $opts['showtitle'] ) ) {
-				if ( $output->getTitleText() ) {
-					$title = $output->getTitleText();
-				}
-
-				$out = "$title\n$out";
-			}
-
-			if ( isset( $opts['showindicators'] ) ) {
-				$indicators = '';
-				foreach ( $output->getIndicators() as $id => $content ) {
-					$indicators .= "$id=$content\n";
-				}
-				$out = $indicators . $out;
-			}
-
-			if ( isset( $opts['ill'] ) ) {
-				$out = implode( ' ', $output->getLanguageLinks() );
-			} elseif ( isset( $opts['cat'] ) ) {
-				$out = '';
-				foreach ( $output->getCategories() as $name => $sortkey ) {
-					if ( $out !== '' ) {
-						$out .= "\n";
-					}
-					$out .= "cat=$name sort=$sortkey";
-				}
-			}
+			$this->addParserOutputInfo( $out, $output, $opts, $title );
 		}
 
 		if ( isset( $output ) && isset( $opts['showflags'] ) ) {
@@ -1036,6 +1018,69 @@ class ParserTestRunner {
 
 		$testResult = new ParserTestResult( $test, $expected, $out );
 		return $testResult;
+	}
+
+	/**
+	 * Add information from the parser output to the result string
+	 *
+	 * @param string &$out
+	 * @param ParserOutput $output
+	 * @param array $opts
+	 * @param Title $title
+	 */
+	private function addParserOutputInfo( &$out, ParserOutput $output, array $opts, Title $title ) {
+		if ( isset( $opts['showtitle'] ) ) {
+			if ( $output->getTitleText() ) {
+				$titleText = $output->getTitleText();
+			} else {
+				$titleText = $title->getPrefixedText();
+			}
+
+			$out = "$titleText\n$out";
+		}
+
+		if ( isset( $opts['showindicators'] ) ) {
+			$indicators = '';
+			foreach ( $output->getIndicators() as $id => $content ) {
+				$indicators .= "$id=$content\n";
+			}
+			$out = $indicators . $out;
+		}
+
+		if ( isset( $opts['ill'] ) ) {
+			$out = implode( ' ', $output->getLanguageLinks() );
+		} elseif ( isset( $opts['cat'] ) ) {
+			$out = '';
+			foreach ( $output->getCategories() as $name => $sortkey ) {
+				if ( $out !== '' ) {
+					$out .= "\n";
+				}
+				$out .= "cat=$name sort=$sortkey";
+			}
+		}
+
+		if ( isset( $opts['extension'] ) ) {
+			foreach ( explode( ',', $opts['extension'] ) as $ext ) {
+				if ( $out !== '' ) {
+					$out .= "\n";
+				}
+				$out .= "extension[$ext]=" .
+					json_encode(
+						$output->getExtensionData( $ext ),
+						JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
+					);
+			}
+		}
+
+		if ( isset( $opts['property'] ) ) {
+			foreach ( explode( ',', $opts['property'] ) as $prop ) {
+				if ( $out !== '' ) {
+					$out .= "\n";
+				}
+				$out .= "property[$prop]=" .
+					$output->getPageProperty( $prop );
+			}
+		}
 	}
 
 	/**
@@ -1075,7 +1120,6 @@ class ParserTestRunner {
 		$normOpts = [
 			'parsoidOnly' => $parsoidOnly,
 			'preserveIEW' => isset( $opts['parsoid']['preserveIEW'] ),
-			'scrubWikitext' => isset( $opts['parsoid']['scrubWikitext'] ),
 		];
 
 		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
@@ -1150,7 +1194,6 @@ class ParserTestRunner {
 		$out = $parsoid->wikitext2html( $pageConfig, [
 			'body_only' => true,
 			'wrapSections' => $opts['parsoid']['wrapSections'] ?? false,
-			'scrubWikitext' => $normOpts['scrubWikitext'],
 		] );
 		$expected = $parsoidHtml;
 
@@ -1285,13 +1328,14 @@ class ParserTestRunner {
 		$setup[] = $reset;
 		$teardown[] = $reset;
 
+		$userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
 		// Make a user object with the same language
 		$user = new User;
-		$user->setOption( 'language', $langCode );
+		$userOptionsManager->setOption( $user, 'language', $langCode );
 		$setup['wgLang'] = $lang;
 
 		// We (re)set $wgThumbLimits to a single-element array above.
-		$user->setOption( 'thumbsize', 0 );
+		$userOptionsManager->setOption( $user, 'thumbsize', 0 );
 
 		$setup['wgUser'] = $user;
 
@@ -1544,6 +1588,17 @@ class ParserTestRunner {
 
 		# A DjVu file
 		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'LoremIpsum.djvu' ) );
+		$djvuMetadata = [
+			'data' => [
+				'pages' => [
+					[ 'height' => 3508, 'width' => 2480, 'dpi' => 300, 'gamma' => 2.2 ],
+					[ 'height' => 3508, 'width' => 2480, 'dpi' => 300, 'gamma' => 2.2 ],
+					[ 'height' => 3508, 'width' => 2480, 'dpi' => 300, 'gamma' => 2.2 ],
+					[ 'height' => 3508, 'width' => 2480, 'dpi' => 300, 'gamma' => 2.2 ],
+					[ 'height' => 3508, 'width' => 2480, 'dpi' => 300, 'gamma' => 2.2 ],
+				],
+			],
+		];
 		$image->recordUpload3(
 			'',
 			'Upload a DjVu',
@@ -1556,32 +1611,7 @@ class ParserTestRunner {
 				'bits' => 0,
 				'media_type' => MEDIATYPE_OFFICE,
 				'mime' => 'image/vnd.djvu',
-				'metadata' => [ 'xml' => '<?xml version="1.0" ?>
-<!DOCTYPE DjVuXML PUBLIC "-//W3C//DTD DjVuXML 1.1//EN" "pubtext/DjVuXML-s.dtd">
-<DjVuXML>
-<HEAD></HEAD>
-<BODY><OBJECT height="3508" width="2480">
-<PARAM name="DPI" value="300" />
-<PARAM name="GAMMA" value="2.2" />
-</OBJECT>
-<OBJECT height="3508" width="2480">
-<PARAM name="DPI" value="300" />
-<PARAM name="GAMMA" value="2.2" />
-</OBJECT>
-<OBJECT height="3508" width="2480">
-<PARAM name="DPI" value="300" />
-<PARAM name="GAMMA" value="2.2" />
-</OBJECT>
-<OBJECT height="3508" width="2480">
-<PARAM name="DPI" value="300" />
-<PARAM name="GAMMA" value="2.2" />
-</OBJECT>
-<OBJECT height="3508" width="2480">
-<PARAM name="DPI" value="300" />
-<PARAM name="GAMMA" value="2.2" />
-</OBJECT>
-</BODY>
-</DjVuXML>' ],
+				'metadata' => $djvuMetadata,
 				'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
 				'fileExists' => true
 			],
@@ -1758,11 +1788,13 @@ class ParserTestRunner {
 		$this->checkSetupDone( 'setupDatabase' );
 		$this->checkSetupDone( 'staticSetup' );
 		$user = MediaWikiIntegrationTestCase::getTestSysop()->getUser();
+		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
+		$delPageFactory = MediaWikiServices::getInstance()->getDeletePageFactory();
 		foreach ( $articles as $info ) {
 			$name = self::chomp( $info['name'] );
 			$title = Title::newFromText( $name );
-			$page = WikiPage::factory( $title );
-			$page->doDeleteArticleReal( 'cleaning up', $user );
+			$page = $wikiPageFactory->newFromTitle( $title );
+			$delPageFactory->newDeletePage( $page, $user )->deleteUnsafe( 'cleaning up' );
 		}
 	}
 
@@ -1795,7 +1827,7 @@ class ParserTestRunner {
 		$newContent = ContentHandler::makeContent( $text, $title );
 
 		$page = WikiPage::factory( $title );
-		$page->loadPageData( 'fromdbmaster' );
+		$page->loadPageData( WikiPage::READ_LATEST );
 
 		if ( $page->exists() ) {
 			$content = $page->getContent( RevisionRecord::RAW );
@@ -1809,11 +1841,13 @@ class ParserTestRunner {
 			);
 		}
 
+		$services = MediaWikiServices::getInstance();
+
 		// Optionally use mock parser, to make debugging of actual parser tests simpler.
 		// But initialise the MessageCache clone first, don't let MessageCache
 		// get a reference to the mock object.
 		if ( $this->disableSaveParse ) {
-			MediaWikiServices::getInstance()->getMessageCache()->getParser();
+			$services->getMessageCache()->getParser();
 			$restore = $this->executeSetupSnippets( [ 'wgParser' => new ParserTestMockParser ] );
 		} else {
 			$restore = false;
@@ -1837,13 +1871,14 @@ class ParserTestRunner {
 
 		// an edit always attempt to purge backlink links such as history
 		// pages. That is unnecessary.
-		JobQueueGroup::singleton()->get( 'htmlCacheUpdate' )->delete();
+		$jobQueueGroup = $services->getJobQueueGroup();
+		$jobQueueGroup->get( 'htmlCacheUpdate' )->delete();
 		// WikiPages::doEditUpdates randomly adds RC purges
-		JobQueueGroup::singleton()->get( 'recentChangesUpdate' )->delete();
+		$jobQueueGroup->get( 'recentChangesUpdate' )->delete();
 
 		// The RepoGroup cache is invalidated by the creation of file redirects
 		if ( $title->inNamespace( NS_FILE ) ) {
-			MediaWikiServices::getInstance()->getRepoGroup()->clearCache( $title );
+			$services->getRepoGroup()->clearCache( $title );
 		}
 	}
 

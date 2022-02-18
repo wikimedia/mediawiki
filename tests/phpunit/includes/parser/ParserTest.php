@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
@@ -13,6 +14,14 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 	 * @return array
 	 */
 	private function createConstructorArguments() {
+		$options = new ServiceOptions(
+			Parser::CONSTRUCTOR_OPTIONS,
+			array_combine(
+				Parser::CONSTRUCTOR_OPTIONS,
+				array_fill( 0, count( Parser::CONSTRUCTOR_OPTIONS ), null )
+			)
+		);
+
 		// Stub out a MagicWordFactory so the Parser can initialize its
 		// function hooks when it is created.
 		$mwFactory = $this->getMockBuilder( MagicWordFactory::class )
@@ -32,7 +41,7 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			->method( 'getVariableIDs' )->willReturn( [] );
 
 		return [
-			$this->createMock( MediaWiki\Config\ServiceOptions::class ),
+			$options,
 			$mwFactory,
 			$this->createMock( Language::class ),
 			$this->createMock( ParserFactory::class ),
@@ -49,7 +58,8 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( MediaWiki\User\UserOptionsLookup::class ),
 			$this->createMock( MediaWiki\User\UserFactory::class ),
 			$this->createMock( TitleFormatter::class ),
-			$this->createMock( HttpRequestFactory::class )
+			$this->createMock( HttpRequestFactory::class ),
+			$this->createMock( TrackingCategories::class )
 		];
 	}
 

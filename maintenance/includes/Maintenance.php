@@ -22,6 +22,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -200,7 +201,7 @@ abstract class Maintenance {
 		$bt = debug_backtrace();
 		$count = count( $bt );
 		if ( $count < 2 ) {
-			return false; // sanity
+			return false;
 		}
 		if ( $bt[0]['class'] !== self::class || $bt[0]['function'] !== 'shouldExecute' ) {
 			return false; // last call should be to this function
@@ -435,7 +436,7 @@ abstract class Maintenance {
 	protected function output( $out, $channel = null ) {
 		// This is sometimes called very early, before Setup.php is included.
 		if ( class_exists( MediaWikiServices::class ) ) {
-			// Try to periodically flush buffered metrics to avoid OOMs
+			// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
 			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 			if ( $stats->getDataCount() > 1000 ) {
 				MediaWiki::emitBufferedStatsdData( $stats, $this->getConfig() );
@@ -694,7 +695,7 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Do some sanity checking and basic setup
+	 * Do some checking and basic setup
 	 */
 	public function setup() {
 		global $IP, $wgCommandLineMode;
@@ -725,7 +726,7 @@ abstract class Maintenance {
 		$this->loadParamsAndArgs();
 
 		# Set the memory limit
-		# Note we need to set it again later in cache LocalSettings changed it
+		# Note we need to set it again later in case LocalSettings changed it
 		$this->adjustMemoryLimit();
 
 		# Set max execution time to 0 (no limit). PHP.net says that
@@ -922,15 +923,15 @@ abstract class Maintenance {
 	 */
 	public function loadParamsAndArgs( $self = null, $opts = null, $args = null ) {
 		# If we were given opts or args, set those and return early
-		if ( $self ) {
+		if ( $self !== null ) {
 			$this->mSelf = $self;
 			$this->mInputLoaded = true;
 		}
-		if ( $opts ) {
+		if ( $opts !== null ) {
 			$this->mOptions = $opts;
 			$this->mInputLoaded = true;
 		}
-		if ( $args ) {
+		if ( $args !== null ) {
 			$this->mArgs = $args;
 			$this->mInputLoaded = true;
 		}
@@ -1124,34 +1125,46 @@ abstract class Maintenance {
 
 	/**
 	 * Handle some last-minute setup here.
+	 *
 	 * @stable to override
+	 *
+	 * @param SettingsBuilder|null $settingsBuilder
 	 */
-	public function finalSetup() {
-		global $wgCommandLineMode, $wgServer, $wgShowExceptionDetails, $wgShowHostnames;
-		global $wgDBadminuser, $wgDBadminpassword, $wgDBDefaultGroup;
-		global $wgDBuser, $wgDBpassword, $wgDBservers, $wgLBFactoryConf;
+	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+		if ( !$settingsBuilder ) {
+			// HACK for backwards compatibility. All subclasses that override
+			// finalSetup() should be updated to pass $settingsBuilder along.
+			// XXX: We don't want the parameter to be nullable! How can we make it required
+			//      without breaking backwards compatibility?
+			$settingsBuilder = $GLOBALS['wgSettings'];
+		}
+
+		$config = $settingsBuilder->getConfig();
+		$overrides = [];
+		$overrides['DBadminuser'] = $config->get( 'DBadminuser' );
+		$overrides['DBadminpassword'] = $config->get( 'DBadminpassword' );
 
 		# Turn off output buffering again, it might have been turned on in the settings files
 		if ( ob_get_level() ) {
 			ob_end_flush();
 		}
 		# Same with these
-		$wgCommandLineMode = true;
+		$overrides['CommandLineMode'] = true;
 
 		# Override $wgServer
 		if ( $this->hasOption( 'server' ) ) {
-			$wgServer = $this->getOption( 'server', $wgServer );
+			$overrides['Server'] = $this->getOption( 'server', $config->get( 'Server' ) );
 		}
 
 		# If these were passed, use them
 		if ( $this->mDbUser ) {
-			$wgDBadminuser = $this->mDbUser;
+			$overrides['DBadminuser'] = $this->mDbUser;
 		}
 		if ( $this->mDbPass ) {
-			$wgDBadminpassword = $this->mDbPass;
+			$overrides['DBadminpassword'] = $this->mDbPass;
 		}
 		if ( $this->hasOption( 'dbgroupdefault' ) ) {
-			$wgDBDefaultGroup = $this->getOption( 'dbgroupdefault', null );
+			$overrides['DBDefaultGroup'] = $this->getOption( 'dbgroupdefault', null );
 			// TODO: once MediaWikiServices::getInstance() starts throwing exceptions
 			// and not deprecation warnings for premature access to service container,
 			// we can remove this line. This method is called before Setup.php,
@@ -1164,23 +1177,27 @@ abstract class Maintenance {
 			}
 		}
 
-		if ( $this->getDbType() == self::DB_ADMIN && isset( $wgDBadminuser ) ) {
-			$wgDBuser = $wgDBadminuser;
-			$wgDBpassword = $wgDBadminpassword;
+		if ( $this->getDbType() == self::DB_ADMIN && isset( $overrides[ 'DBadminuser' ] ) ) {
+			$overrides['DBuser'] = $overrides[ 'DBadminuser' ];
+			$overrides['DBpassword'] = $overrides[ 'DBadminpassword' ];
 
-			if ( $wgDBservers ) {
-				/**
-				 * @var array $wgDBservers
-				 */
-				foreach ( $wgDBservers as $i => $server ) {
-					$wgDBservers[$i]['user'] = $wgDBuser;
-					$wgDBservers[$i]['password'] = $wgDBpassword;
+			/** @var array $dbServers */
+			$dbServers = $config->get( 'DBservers' );
+			if ( $dbServers ) {
+				foreach ( $dbServers as $i => $server ) {
+					$dbServers[$i]['user'] = $overrides['DBuser'];
+					$dbServers[$i]['password'] = $overrides['DBpassword'];
 				}
+				$overrides['DBservers'] = $dbServers;
 			}
-			if ( isset( $wgLBFactoryConf['serverTemplate'] ) ) {
-				$wgLBFactoryConf['serverTemplate']['user'] = $wgDBuser;
-				$wgLBFactoryConf['serverTemplate']['password'] = $wgDBpassword;
+
+			$lbFactoryConf = $config->get( 'LBFactoryConf' );
+			if ( isset( $lbFactoryConf['serverTemplate'] ) ) {
+				$lbFactoryConf['serverTemplate']['user'] = $overrides['DBuser'];
+				$lbFactoryConf['serverTemplate']['password'] = $overrides['DBpassword'];
+				$overrides['LBFactoryConf'] = $lbFactoryConf;
 			}
+
 			// TODO: once MediaWikiServices::getInstance() starts throwing exceptions
 			// and not deprecation warnings for premature access to service container,
 			// we can remove this line. This method is called before Setup.php,
@@ -1198,14 +1215,16 @@ abstract class Maintenance {
 
 		$this->afterFinalSetup();
 
-		$wgShowExceptionDetails = true;
-		$wgShowHostnames = true;
+		$overrides['ShowExceptionDetails'] = true;
+		$overrides['ShowHostname'] = true;
 
-		Wikimedia\suppressWarnings();
-		set_time_limit( 0 );
-		Wikimedia\restoreWarnings();
+		$ini = [
+			'max_execution_time' => 0,
+		];
 
 		$this->adjustMemoryLimit();
+
+		$settingsBuilder->loadArray( [ 'config' => $overrides, 'php-ini' => $ini ] );
 	}
 
 	/**
@@ -1229,7 +1248,12 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Call before shutdown to run any deferred updates
+	 * Call before exiting CLI process for the last DB commit, and flush
+	 * any remaining buffers and other deferred work.
+	 *
+	 * Equivalent to MediaWiki::restInPeace which handles shutdown for web requests,
+	 * and should perform the same operations and in the same order.
+	 *
 	 * @since 1.36
 	 */
 	public function shutdown() {
@@ -1240,16 +1264,27 @@ abstract class Maintenance {
 			!MediaWikiServices::getInstance()->isServiceDisabled( 'DBLoadBalancerFactory' )
 		) {
 			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-			$lbFactory->commitPrimaryChanges( get_class( $this ) );
-			// @TODO: make less assumptions about deferred updates being coupled to the DB
+			if ( $lbFactory->isReadyForRoundOperations() ) {
+				$lbFactory->commitPrimaryChanges( get_class( $this ) );
+			}
+
 			DeferredUpdates::doUpdates();
 		}
 
-		wfLogProfilingData();
+		// Handle external profiler outputs
+		// FIXME: Handle embedded outputs as well, such as ProfilerOutputText (T253547)
+		$profiler = Profiler::instance();
+		$profiler->logData();
+
+		MediaWiki::emitBufferedStatsdData(
+			MediaWikiServices::getInstance()->getStatsdDataFactory(),
+			$this->getConfig()
+		);
 
 		if ( $lbFactory ) {
-			$lbFactory->commitPrimaryChanges( 'doMaintenance' );
-			$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
+			if ( $lbFactory->isReadyForRoundOperations() ) {
+				$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
+			}
 		}
 	}
 
@@ -1261,12 +1296,13 @@ abstract class Maintenance {
 		global $wgCommandLineMode, $IP;
 
 		if ( isset( $this->mOptions['conf'] ) ) {
-			$settingsFile = $this->mOptions['conf'];
-		} elseif ( defined( "MW_CONFIG_FILE" ) ) {
-			$settingsFile = MW_CONFIG_FILE;
-		} else {
-			$settingsFile = "$IP/LocalSettings.php";
+			// Define the constant instead of directly setting $settingsFile
+			// to ensure consistency. wfDetectLocalSettingsFile() will return
+			// MW_CONFIG_FILE if it is defined.
+			define( 'MW_CONFIG_FILE', $this->mOptions['conf'] );
 		}
+		$settingsFile = wfDetectLocalSettingsFile( $IP );
+
 		if ( isset( $this->mOptions['wiki'] ) ) {
 			$bits = explode( '-', $this->mOptions['wiki'], 2 );
 			define( 'MW_DB', $bits[0] );
@@ -1280,8 +1316,7 @@ abstract class Maintenance {
 		}
 
 		if ( !is_readable( $settingsFile ) ) {
-			$this->fatalError( "A copy of your installation's LocalSettings.php\n" .
-				"must exist and be readable in the source directory.\n" .
+			$this->fatalError( "The file $settingsFile must exist and be readable.\n" .
 				"Use --conf to specify it." );
 		}
 		$wgCommandLineMode = true;
@@ -1476,9 +1511,9 @@ abstract class Maintenance {
 	public static function posix_isatty( $fd ) {
 		if ( !function_exists( 'posix_isatty' ) ) {
 			return !$fd;
-		} else {
-			return posix_isatty( $fd );
 		}
+
+		return posix_isatty( $fd );
 	}
 
 	/**
@@ -1494,23 +1529,20 @@ abstract class Maintenance {
 
 		if ( $isatty && function_exists( 'readline' ) ) {
 			return readline( $prompt );
-		} else {
-			if ( $isatty ) {
-				$st = self::readlineEmulation( $prompt );
-			} else {
-				if ( feof( STDIN ) ) {
-					$st = false;
-				} else {
-					$st = fgets( STDIN, 1024 );
-				}
-			}
-			if ( $st === false ) {
-				return false;
-			}
-			$resp = trim( $st );
-
-			return $resp;
 		}
+
+		if ( $isatty ) {
+			$st = self::readlineEmulation( $prompt );
+		} elseif ( feof( STDIN ) ) {
+			$st = false;
+		} else {
+			$st = fgets( STDIN, 1024 );
+		}
+		if ( $st === false ) {
+			return false;
+		}
+
+		return trim( $st );
 	}
 
 	/**
@@ -1530,7 +1562,9 @@ abstract class Maintenance {
 
 			if ( $result->getExitCode() == 0 ) {
 				return $result->getStdout();
-			} elseif ( $result->getExitCode() == 127 ) {
+			}
+
+			if ( $result->getExitCode() == 127 ) {
 				// Couldn't execute bash even though we thought we saw it.
 				// Shell probably spit out an error message, sorry :(
 				// Fall through to fgets()...

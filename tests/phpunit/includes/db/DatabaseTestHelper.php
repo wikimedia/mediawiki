@@ -195,20 +195,8 @@ class DatabaseTestHelper extends Database {
 		return -1;
 	}
 
-	public function numFields( $res ) {
-		return -1;
-	}
-
-	public function fieldName( $res, $n ) {
-		return 'test';
-	}
-
 	public function insertId() {
 		return -1;
-	}
-
-	public function dataSeek( $res, $row ) {
-		/* nop */
 	}
 
 	public function lastErrno() {

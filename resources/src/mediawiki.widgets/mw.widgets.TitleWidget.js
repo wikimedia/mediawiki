@@ -148,8 +148,7 @@
 	 * @return {jQuery.Promise} Suggestions promise
 	 */
 	mw.widgets.TitleWidget.prototype.getSuggestionsPromise = function () {
-		var req,
-			api = this.getApi(),
+		var api = this.getApi(),
 			query = this.getQueryValue(),
 			widget = this,
 			promiseAbortObject = { abort: function () {
@@ -163,12 +162,11 @@
 		}
 
 		return this.getInterwikiPrefixesPromise().then( function ( interwikiPrefixes ) {
-			var interwiki;
 			// Optimization: check we have any prefixes.
 			if ( interwikiPrefixes.length ) {
-				interwiki = query.substring( 0, query.indexOf( ':' ) );
+				var interwiki = query.slice( 0, Math.max( 0, query.indexOf( ':' ) ) );
 				if (
-					interwiki && interwiki !== '' &&
+					interwiki !== '' &&
 					interwikiPrefixes.indexOf( interwiki ) !== -1
 				) {
 					// Interwiki prefix is valid: return the original query as a valid title
@@ -180,17 +178,65 @@
 					} } ).promise( promiseAbortObject );
 				}
 			}
-			// Not a interwiki: do an API lookup of the query
-			req = api.get( widget.getApiParams( query ) );
-			promiseAbortObject.abort = req.abort.bind( req ); // TODO ew
-			return req.then( function ( ret ) {
-				if ( widget.showMissing && ret.query === undefined ) {
-					ret = api.get( { action: 'query', titles: query } );
-					promiseAbortObject.abort = ret.abort.bind( ret );
+			// Not a interwiki: do a prefix-search API lookup of the query.
+			var prefixSearchRequest = api.get( widget.getApiParams( query ) );
+			promiseAbortObject.abort = prefixSearchRequest.abort.bind( prefixSearchRequest ); // TODO ew
+			return prefixSearchRequest.then( function ( prefixSearchResponse ) {
+				if ( !widget.showMissing ) {
+					return prefixSearchResponse;
 				}
-				return ret;
+				// Add the query title as the first result, after looking up its details.
+				var queryTitleRequest = api.get( { action: 'query', titles: query } );
+				promiseAbortObject.abort = queryTitleRequest.abort.bind( queryTitleRequest );
+				return queryTitleRequest.then( function ( queryTitleResponse ) {
+					// By default, return the prefix-search result.
+					var result = prefixSearchResponse;
+					if ( prefixSearchResponse.query === undefined ) {
+						// There are no prefix-search results, so make the only result the query title.
+						// The API response structures are identical because both API calls are action=query.
+						result.query = queryTitleResponse.query;
+					} else if ( queryTitleResponse.query.pages[ -1 ] !== undefined &&
+						!widget.responseContainsNonExistingTitle( prefixSearchResponse, queryTitleResponse.query.pages[ -1 ].title )
+					) {
+						// There are prefix-search results, but the query title isn't in them,
+						// so add it as a new result. It's under the new key 'queryTitle', because
+						// all other results will be under their page ID or a negative integer ID,
+						// and the keys aren't actually used for anything.
+						result.query.pages.queryTitle = queryTitleResponse.query.pages[ -1 ];
+						// Give it the lowest possible sort-index (the API only returns index > 0)
+						// to make this result be sorted at the top.
+						result.query.pages.queryTitle.index = 0;
+					}
+					return result;
+				} );
 			} );
 		} ).promise( promiseAbortObject );
+	};
+
+	/**
+	 * Check for the existence of a given title in an API result set.
+	 *
+	 * As the title is known not to exist, this doesn't check in apiResponse.query.pages,
+	 * but only in the redirect targets in apiResponse.query.redirects.
+	 *
+	 * @private
+	 * @param {Object} apiResponse The API result set to search in.
+	 * @param {string} title The page title to search for.
+	 * @return {boolean}
+	 */
+	mw.widgets.TitleWidget.prototype.responseContainsNonExistingTitle = function ( apiResponse, title ) {
+		// Make sure there are redirects in the data.
+		if ( apiResponse.query.redirects === undefined ) {
+			return false;
+		}
+		// Check the targets against the given title.
+		for ( var redirect in apiResponse.query.redirects ) {
+			if ( apiResponse.query.redirects[ redirect ].to === title ) {
+				return true;
+			}
+		}
+		// The title wasn't found.
+		return false;
 	};
 
 	/**
@@ -246,6 +292,7 @@
 			disambigs = [],
 			titleObj = mw.Title.newFromText( this.getQueryValue() ),
 			redirectsTo = {},
+			redirectIndices = {},
 			pageData = {};
 
 		if ( data.redirects ) {
@@ -253,6 +300,8 @@
 				redirect = data.redirects[ i ];
 				redirectsTo[ redirect.to ] = redirectsTo[ redirect.to ] || [];
 				redirectsTo[ redirect.to ].push( redirect.from );
+				// Save the lowest index for this redirect target.
+				redirectIndices[ redirect.to ] = Math.min( redirectIndices[ redirect.to ] || redirect.index, redirect.index );
 			}
 		}
 
@@ -276,7 +325,7 @@
 				imageUrl: OO.getProp( suggestionPage, 'thumbnail', 'source' ),
 				description: suggestionPage.description,
 				// Sort index
-				index: suggestionPage.index,
+				index: suggestionPage.index !== undefined ? suggestionPage.index : redirectIndices[ suggestionPage.title ],
 				originalData: suggestionPage
 			};
 
@@ -295,7 +344,7 @@
 					disambiguation: false,
 					description: mw.msg( 'mw-widgets-titleinput-description-redirect', suggestionPage.title ),
 					// Sort index, just below its target
-					index: suggestionPage.index + 0.5,
+					index: pageData[ suggestionPage.title ].index + 0.5,
 					originalData: suggestionPage
 				};
 				titles.push( redirects[ i ] );

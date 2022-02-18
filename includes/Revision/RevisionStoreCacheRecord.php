@@ -37,7 +37,7 @@ use MediaWiki\User\UserIdentity;
 class RevisionStoreCacheRecord extends RevisionStoreRecord {
 
 	/**
-	 * @var callable ( int $revId ): [ int $rev_deleted, UserIdentity $user ]
+	 * @var null|callable ( int $revId ): [ int $rev_deleted, UserIdentity $user ]
 	 */
 	private $mCallback;
 

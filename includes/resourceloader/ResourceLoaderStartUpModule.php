@@ -20,6 +20,8 @@
  * @author Roan Kattouw
  */
 
+use Wikimedia\RequestTimeout\TimeoutException;
+
 /**
  * Module for ResourceLoader initialization.
  *
@@ -48,8 +50,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// for forward compatibility so that they can be safely referenced by mediawiki.js,
 		// even when the code is cached and the order of registrations (and implicit
 		// group ids) changes between versions of the software.
-		'user' => 0,
-		'private' => 1,
+		self::GROUP_USER => 0,
+		self::GROUP_PRIVATE => 1,
 	];
 
 	/**
@@ -168,6 +170,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// don't require on-demand loading of more information.
 		try {
 			$resourceLoader->preloadModuleInfo( $moduleNames, $context );
+		} catch ( TimeoutException $e ) {
+			throw $e;
 		} catch ( Exception $e ) {
 			// Don't fail the request (T152266)
 			// Also print the error in the main output
@@ -203,8 +207,19 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				continue;
 			}
 
+			// Optimization: Exclude modules in the `noscript` group. These are only ever used
+			// directly by HTML without use of JavaScript (T291735).
+			if ( $module->getGroup() === self::GROUP_NOSCRIPT ) {
+				continue;
+			}
+
 			try {
+				// The version should be formatted by ResourceLoader::makeHash and be of
+				// length ResourceLoader::HASH_LENGTH (or empty string).
+				// The getVersionHash method is final and is covered by tests, as is makeHash().
 				$versionHash = $module->getVersionHash( $context );
+			} catch ( TimeoutException $e ) {
+				throw $e;
 			} catch ( Exception $e ) {
 				// Don't fail the request (T152266)
 				// Also print the error in the main output
@@ -217,20 +232,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				);
 				$versionHash = '';
 				$states[$name] = 'error';
-			}
-
-			if ( $versionHash !== '' && strlen( $versionHash ) !== ResourceLoader::HASH_LENGTH ) {
-				$e = new RuntimeException( "Badly formatted module version hash" );
-				$resourceLoader->outputErrorAndLog( $e,
-						"Module '{module}' produced an invalid version hash: '{version}'.",
-					[
-						'module' => $name,
-						'version' => $versionHash,
-					]
-				);
-				// Module implementation either broken or deviated from ResourceLoader::makeHash
-				// Asserted by tests/phpunit/structure/ResourcesTest.
-				$versionHash = ResourceLoader::makeHash( $versionHash );
 			}
 
 			$skipFunction = $module->getSkipFunction();
@@ -369,7 +370,15 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// (such as when using the default lang/skin).
 			'$VARS.reqBase' => $context->encodeJson( (object)$context->getReqBase() ),
 			'$VARS.baseModules' => $context->encodeJson( $this->getBaseModules() ),
-			'$VARS.maxQueryLength' => $context->encodeJson( $this->getMaxQueryLength() ),
+			'$VARS.maxQueryLength' => $context->encodeJson(
+				// In debug mode (except legacy debug mode), let the client fetch each module in
+				// its own dedicated request (T85805).
+				// This is effectively the equivalent of ResourceLoaderClientHtml::makeLoad,
+				// which does this for stylesheets.
+				( !$context->getDebug() || $context->getDebug() === $context::DEBUG_LEGACY ) ?
+					$this->getMaxQueryLength() :
+					0
+			),
 			// The client-side module cache can be disabled by site configuration.
 			// It is also always disabled in debug mode.
 			'$VARS.storeDisabled' => $context->encodeJson(
@@ -377,8 +386,12 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			),
 			'$VARS.storeKey' => $context->encodeJson( $this->getStoreKey() ),
 			'$VARS.storeVary' => $context->encodeJson( $this->getStoreVary( $context ) ),
-			'$VARS.groupUser' => $context->encodeJson( $this->getGroupId( 'user' ) ),
-			'$VARS.groupPrivate' => $context->encodeJson( $this->getGroupId( 'private' ) ),
+			'$VARS.groupUser' => $context->encodeJson( $this->getGroupId( self::GROUP_USER ) ),
+			'$VARS.groupPrivate' => $context->encodeJson( $this->getGroupId( self::GROUP_PRIVATE ) ),
+			// Only expose private mw.loader.isES6ForTest in test mode.
+			'$CODE.test( isES6Supported )' => $conf->get( 'EnableJavaScriptTest' ) ?
+				'(mw.loader.isES6ForTest !== undefined ? mw.loader.isES6ForTest : isES6Supported)' :
+				'isES6Supported',
 			// Only expose private mw.redefineFallbacksForTest in test mode.
 			'$CODE.maybeRedefineFallbacksForTest();' => $conf->get( 'EnableJavaScriptTest' ) ?
 				'mw.redefineFallbacksForTest = defineFallbacks;' :

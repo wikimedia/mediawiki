@@ -33,28 +33,28 @@ class CategoryPager extends AlphabeticPager {
 
 	/**
 	 * @param IContextSource $context
-	 * @param string $from
-	 * @param LinkRenderer $linkRenderer
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LinkRenderer $linkRenderer
 	 * @param ILoadBalancer $loadBalancer
+	 * @param string $from
 	 */
 	public function __construct(
 		IContextSource $context,
-		$from,
-		LinkRenderer $linkRenderer,
 		LinkBatchFactory $linkBatchFactory,
-		ILoadBalancer $loadBalancer
+		LinkRenderer $linkRenderer,
+		ILoadBalancer $loadBalancer,
+		$from
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		parent::__construct( $context, $linkRenderer );
+		$this->linkBatchFactory = $linkBatchFactory;
 		$from = str_replace( ' ', '_', $from );
 		if ( $from !== '' ) {
 			$from = Title::capitalize( $from, NS_CATEGORY );
 			$this->setOffset( $from );
 			$this->setIncludeOffset( true );
 		}
-		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
 	public function getQueryInfo() {
@@ -97,7 +97,7 @@ class CategoryPager extends AlphabeticPager {
 		$link = $this->getLinkRenderer()->makeLink( $title, $text );
 
 		$count = $this->msg( 'nmembers' )->numParams( $result->cat_pages )->escaped();
-		return Html::rawElement( 'li', null, $this->getLanguage()->specialList( $link, $count ) ) . "\n";
+		return Html::rawElement( 'li', [], $this->getLanguage()->specialList( $link, $count ) ) . "\n";
 	}
 
 	public function getStartForm( $from ) {

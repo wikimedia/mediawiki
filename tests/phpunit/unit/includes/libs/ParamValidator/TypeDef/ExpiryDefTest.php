@@ -144,6 +144,21 @@ class ExpiryDefTest extends TypeDefTestCase {
 		];
 	}
 
+	public function provideCheckSettings() {
+		$keys = [ 'Y', ExpiryDef::PARAM_USE_MAX, ExpiryDef::PARAM_MAX ];
+		return [
+			'Basic test' => [
+				[],
+				self::STDRET,
+				[
+					'issues' => [ 'X' ],
+					'allowedKeys' => $keys,
+					'messages' => [],
+				],
+			]
+		];
+	}
+
 	/**
 	 * @covers \Wikimedia\ParamValidator\TypeDef\ExpiryDef::normalizeUsingMaxExpiry
 	 */

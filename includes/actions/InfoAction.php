@@ -29,6 +29,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\Database;
@@ -81,6 +82,12 @@ class InfoAction extends FormlessAction {
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;
 
+	/** @var RedirectLookup */
+	private $redirectLookup;
+
+	/** @var int */
+	private $actorTableSchemaMigrationStage;
+
 	/**
 	 * @param Page $page
 	 * @param IContextSource $context
@@ -97,6 +104,8 @@ class InfoAction extends FormlessAction {
 	 * @param RevisionLookup $revisionLookup
 	 * @param WANObjectCache $wanObjectCache
 	 * @param WatchedItemStoreInterface $watchedItemStore
+	 * @param RedirectLookup $redirectLookup
+	 * @param Config $config
 	 */
 	public function __construct(
 		Page $page,
@@ -113,7 +122,9 @@ class InfoAction extends FormlessAction {
 		RepoGroup $repoGroup,
 		RevisionLookup $revisionLookup,
 		WANObjectCache $wanObjectCache,
-		WatchedItemStoreInterface $watchedItemStore
+		WatchedItemStoreInterface $watchedItemStore,
+		RedirectLookup $redirectLookup,
+		Config $config
 	) {
 		parent::__construct( $page, $context );
 		$this->contentLanguage = $contentLanguage;
@@ -129,6 +140,8 @@ class InfoAction extends FormlessAction {
 		$this->revisionLookup = $revisionLookup;
 		$this->wanObjectCache = $wanObjectCache;
 		$this->watchedItemStore = $watchedItemStore;
+		$this->redirectLookup = $redirectLookup;
+		$this->actorTableSchemaMigrationStage = $config->get( 'ActorTableSchemaMigrationStage' );
 	}
 
 	/**
@@ -185,7 +198,10 @@ class InfoAction extends FormlessAction {
 	 * @return string Page information that will be added to the output
 	 */
 	public function onView() {
-		$this->getOutput()->addModuleStyles( 'mediawiki.interface.helpers.styles' );
+		$this->getOutput()->addModuleStyles( [
+			'mediawiki.interface.helpers.styles',
+			'mediawiki.action.styles',
+		] );
 
 		// "Help" button
 		$this->addHelpLink( 'Page information' );
@@ -212,21 +228,6 @@ class InfoAction extends FormlessAction {
 		if ( !$this->msg( 'pageinfo-header' )->isDisabled() ) {
 			$content .= $this->msg( 'pageinfo-header' )->parse();
 		}
-
-		// TODO we shouldn't be adding styles manually like thes
-		// Hide "This page is a member of # hidden categories" explanation
-		$content .= Html::element(
-			'style',
-			[],
-			'.mw-hiddenCategoriesExplanation { display: none; }'
-		) . "\n";
-
-		// Hide "Templates used on this page" explanation
-		$content .= Html::element(
-			'style',
-			[],
-			'.mw-templatesUsedExplanation { display: none; }'
-		) . "\n";
 
 		// Get page information
 		$pageInfo = $this->pageInfo();
@@ -358,7 +359,8 @@ class InfoAction extends FormlessAction {
 		$pageInfo['header-basic'] = [];
 
 		// Display title
-		$displayTitle = $pageProperties['displaytitle'] ?? $title->getPrefixedText();
+		$displayTitle = $pageProperties['displaytitle'] ??
+			htmlspecialchars( $title->getPrefixedText(), ENT_NOQUOTES );
 
 		$pageInfo['header-basic'][] = [
 			$this->msg( 'pageinfo-display-title' ),
@@ -366,7 +368,7 @@ class InfoAction extends FormlessAction {
 		];
 
 		// Is it a redirect? If so, where to?
-		$redirectTarget = $this->getWikiPage()->getRedirectTarget();
+		$redirectTarget = $this->redirectLookup->getRedirectTarget( $this->getWikiPage() );
 		if ( $redirectTarget !== null ) {
 			$pageInfo['header-basic'][] = [
 				$this->msg( 'pageinfo-redirectsto' ),
@@ -448,16 +450,16 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Search engine status
-		$pOutput = new ParserOutput();
+		$parserOutput = new ParserOutput();
 		if ( isset( $pageProperties['noindex'] ) ) {
-			$pOutput->setIndexPolicy( 'noindex' );
+			$parserOutput->setIndexPolicy( 'noindex' );
 		}
 		if ( isset( $pageProperties['index'] ) ) {
-			$pOutput->setIndexPolicy( 'index' );
+			$parserOutput->setIndexPolicy( 'index' );
 		}
 
 		// Use robot policy logic
-		$policy = $this->getArticle()->getRobotPolicy( 'view', $pOutput );
+		$policy = $this->getArticle()->getRobotPolicy( 'view', $parserOutput );
 		$pageInfo['header-basic'][] = [
 			// Messages: pageinfo-robot-index, pageinfo-robot-noindex
 			$this->msg( 'pageinfo-robot-policy' ),
@@ -547,12 +549,10 @@ class InfoAction extends FormlessAction {
 		if ( $title->inNamespace( NS_CATEGORY ) ) {
 			$category = Category::newFromTitle( $title );
 
-			// $allCount is the total number of cat members,
-			// not the count of how many members are normal pages.
-			$allCount = (int)$category->getPageCount();
-			$subcatCount = (int)$category->getSubcatCount();
-			$fileCount = (int)$category->getFileCount();
-			$pagesCount = $allCount - $subcatCount - $fileCount;
+			$allCount = $category->getMemberCount();
+			$subcatCount = $category->getSubcatCount();
+			$fileCount = $category->getFileCount();
+			$pageCount = $category->getPageCount( Category::COUNT_CONTENT_PAGES );
 
 			$pageInfo['category-info'] = [
 				[
@@ -561,7 +561,7 @@ class InfoAction extends FormlessAction {
 				],
 				[
 					$this->msg( 'pageinfo-category-pages' ),
-					$lang->formatNum( $pagesCount )
+					$lang->formatNum( $pageCount )
 				],
 				[
 					$this->msg( 'pageinfo-category-subcats' ),
@@ -919,8 +919,6 @@ class InfoAction extends FormlessAction {
 			self::getCacheKey( $cache, $page->getTitle(), $page->getLatest() ),
 			WANObjectCache::TTL_WEEK,
 			function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname ) {
-				global $wgActorTableSchemaMigrationStage;
-
 				$title = $page->getTitle();
 				$id = $title->getArticleID();
 
@@ -931,7 +929,7 @@ class InfoAction extends FormlessAction {
 				);
 				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
 
-				if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
+				if ( $this->actorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
 					$tables = [ 'revision' ];
 					$field = 'rev_actor';
 					$pageField = 'rev_page';

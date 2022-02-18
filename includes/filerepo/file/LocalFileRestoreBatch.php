@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ScopedCallback;
 
 /**
  * Helper class for file undeletion
@@ -34,7 +35,7 @@ class LocalFileRestoreBatch {
 	/** @var string[] List of file IDs to restore */
 	private $cleanupBatch;
 
-	/** @var string[] List of file IDs to restore */
+	/** @var int[] List of file IDs to restore */
 	private $ids;
 
 	/** @var bool Add all revisions of the file */
@@ -95,9 +96,21 @@ class LocalFileRestoreBatch {
 			return $repo->newGood();
 		}
 
-		$lockOwnsTrx = $this->file->lock();
+		$status = $this->file->acquireFileLock();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
 
 		$dbw = $this->file->repo->getPrimaryDB();
+
+		$ownTrx = !$dbw->trxLevel();
+		$funcName = __METHOD__;
+		$dbw->startAtomic( __METHOD__ );
+
+		$unlockScope = new ScopedCallback( function () use ( $dbw, $funcName ) {
+			$dbw->endAtomic( $funcName );
+			$this->file->releaseFileLock();
+		} );
 
 		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
 
@@ -106,10 +119,10 @@ class LocalFileRestoreBatch {
 		$exists = (bool)$dbw->selectField( 'image', '1',
 			[ 'img_name' => $this->file->getName() ],
 			__METHOD__,
-			// The lock() should already prevents changes, but this still may need
-			// to bypass any transaction snapshot. However, if lock() started the
-			// trx (which it probably did) then snapshot is post-lock and up-to-date.
-			$lockOwnsTrx ? [] : [ 'LOCK IN SHARE MODE' ]
+			// The acquireFileLock() should already prevent changes, but this still may need
+			// to bypass any transaction snapshot. However, if we started the
+			// trx (which we probably did) then snapshot is post-lock and up-to-date.
+			$ownTrx ? [] : [ 'LOCK IN SHARE MODE' ]
 		);
 
 		// Fetch all or selected archived revisions for the file,
@@ -218,7 +231,6 @@ class LocalFileRestoreBatch {
 				// The live (current) version cannot be hidden!
 				if ( !$this->unsuppress && $row->fa_deleted ) {
 					$status->fatal( 'undeleterevdel' );
-					$this->file->unlock();
 					return $status;
 				}
 			} else {
@@ -228,7 +240,7 @@ class LocalFileRestoreBatch {
 					// This was originally a current version; we
 					// have to devise a new archive name for it.
 					// Format is <timestamp of archiving>!<name>
-					$timestamp = wfTimestamp( TS_UNIX, $row->fa_deleted_timestamp );
+					$timestamp = (int)wfTimestamp( TS_UNIX, $row->fa_deleted_timestamp );
 
 					do {
 						$archiveName = wfTimestamp( TS_MW, $timestamp ) . '!' . $row->fa_name;
@@ -297,8 +309,6 @@ class LocalFileRestoreBatch {
 				// easiest thing to do without data loss
 				$this->cleanupFailedBatch( $storeStatus, $storeBatch );
 				$status->setOK( false );
-				$this->file->unlock();
-
 				return $status;
 			}
 		}
@@ -337,7 +347,7 @@ class LocalFileRestoreBatch {
 			}
 		}
 
-		$this->file->unlock();
+		ScopedCallback::consume( $unlockScope );
 
 		return $status;
 	}

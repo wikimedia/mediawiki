@@ -53,6 +53,10 @@
 use MediaWiki\HeaderCallback;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Settings\Config\GlobalConfigBuilder;
+use MediaWiki\Settings\Config\PhpIniSink;
+use MediaWiki\Settings\SettingsBuilder;
+use MediaWiki\Settings\Source\PhpSettingsSource;
 use Psr\Log\LoggerInterface;
 use Wikimedia\RequestTimeout\RequestTimeout;
 
@@ -83,7 +87,7 @@ if ( ini_get( 'mbstring.func_overload' ) ) {
 }
 
 // The MW_ENTRY_POINT constant must always exists, to make it safe to access.
-// For compat, we do support older and custom MW entryoints that don't set this,
+// For compat, we do support older and custom MW entrypoints that don't set this,
 // in which case we assign a default here.
 if ( !defined( 'MW_ENTRY_POINT' ) ) {
 	/**
@@ -99,11 +103,9 @@ if ( !defined( 'MW_ENTRY_POINT' ) ) {
  *
  * These are changes and additions to runtime that don't vary on site configuration.
  */
-
 require_once "$IP/includes/AutoLoader.php";
 require_once "$IP/includes/Defines.php";
-require_once "$IP/includes/DefaultSettings.php";
-require_once "$IP/includes/GlobalFunctions.php";
+require_once "$IP/includes/BootstrapHelperFunctions.php";
 
 // Load composer's autoloader if present
 if ( is_readable( "$IP/vendor/autoload.php" ) ) {
@@ -126,6 +128,21 @@ if ( !interface_exists( LoggerInterface::class ) ) {
 	trigger_error( $message, E_USER_ERROR );
 }
 
+// Define $wgSettings for use in DefaultSettings.php and in LocalSettings.php
+global $wgSettings; // explicitly global, so it works with wfRequireOnceInGlobalScope()
+$wgSettings = new SettingsBuilder(
+	$IP,
+	ExtensionRegistry::getInstance(),
+	new GlobalConfigBuilder( 'wg' ),
+	new PhpIniSink()
+);
+
+require_once "$IP/includes/DefaultSettings.php";
+require_once "$IP/includes/GlobalFunctions.php";
+
+// This is temporary until we transition to config-schema.yaml
+$wgSettings->load( new PhpSettingsSource( "$IP/includes/config-merge-strategies.php" ) );
+
 HeaderCallback::register();
 
 // Set the encoding used by PHP for reading HTTP input, and writing output.
@@ -136,14 +153,31 @@ mb_internal_encoding( 'UTF-8' );
  * Load LocalSettings.php
  */
 
+// Initialize some config settings with dynamic defaults, and
+// make default settings available in globals for use in LocalSettings.php.
+$wgSettings->setConfigValues( [
+	'ExtensionDirectory' => "{$IP}/extensions",
+	'StyleDirectory' => "{$IP}/skins",
+	'ServiceWiringFiles' => [ "{$IP}/includes/ServiceWiring.php" ],
+] );
+$wgSettings->apply();
+
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	call_user_func( MW_CONFIG_CALLBACK );
 } else {
-	if ( !defined( 'MW_CONFIG_FILE' ) ) {
-		define( 'MW_CONFIG_FILE', "$IP/LocalSettings.php" );
+	wfDetectLocalSettingsFile( $IP );
+
+	if ( str_ends_with( MW_CONFIG_FILE, '.php' ) ) {
+		// make defaults available as globals
+		$wgSettings->apply();
+		require_once MW_CONFIG_FILE;
+	} else {
+		$wgSettings->loadFile( MW_CONFIG_FILE );
 	}
-	require_once MW_CONFIG_FILE;
 }
+
+// Make settings loaded by LocalSettings.php available in globals for use here
+$wgSettings->apply();
 
 /**
  * Customization point after all loading (constants, functions, classes,
@@ -153,8 +187,13 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
  */
 
 if ( defined( 'MW_SETUP_CALLBACK' ) ) {
-	call_user_func( MW_SETUP_CALLBACK );
+	call_user_func( MW_SETUP_CALLBACK, $wgSettings );
+	// Make any additional settings available in globals for use here
+	$wgSettings->apply();
 }
+
+// All settings should be loaded now.
+$wgSettings->finalize();
 
 // Start time limit
 if ( $wgRequestTimeLimit && !$wgCommandLineMode ) {
@@ -169,10 +208,13 @@ ExtensionRegistry::getInstance()->loadFromQueue();
 // Don't let any other extensions load
 ExtensionRegistry::getInstance()->finish();
 
-// Set the configured locale on all requests for consistency
-// This must be after LocalSettings.php (and is informed by the installer).
-putenv( "LC_ALL=$wgShellLocale" );
-setlocale( LC_ALL, $wgShellLocale );
+// Set an appropriate locale (T291234)
+// setlocale() will return the locale name actually set.
+// The putenv() is meant to propagate the choice of locale to shell commands
+// so that they will interpret UTF-8 correctly. If you have a problem with a
+// shell command and need to send a special locale, you can override the locale
+// with Command::environment().
+putenv( "LC_ALL=" . setlocale( LC_ALL, 'C.UTF-8', 'C' ) );
 
 /**
  * Expand dynamic defaults and shortcuts
@@ -357,6 +399,7 @@ if ( !$wgLocalFileRepo ) {
 		'name' => 'local',
 		'directory' => $wgUploadDirectory,
 		'scriptDirUrl' => $wgScriptPath,
+		'favicon' => $wgFavicon,
 		'url' => $wgUploadBaseUrl ? $wgUploadBaseUrl . $wgUploadPath : $wgUploadPath,
 		'hashLevels' => $wgHashedUploadDirectory ? 2 : 0,
 		'thumbScriptUrl' => $wgThumbnailScriptPath,
@@ -562,9 +605,9 @@ if ( isset( $wgSlaveLagCritical ) ) {
 	$wgSlaveLagCritical = $wgDatabaseReplicaLagCritical;
 }
 
-if ( $wgInvalidateCacheOnLocalSettingsChange ) {
+if ( $wgInvalidateCacheOnLocalSettingsChange && defined( 'MW_CONFIG_FILE' ) ) {
 	Wikimedia\suppressWarnings();
-	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', filemtime( "$IP/LocalSettings.php" ) ) );
+	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', filemtime( MW_CONFIG_FILE ) ) );
 	Wikimedia\restoreWarnings();
 }
 

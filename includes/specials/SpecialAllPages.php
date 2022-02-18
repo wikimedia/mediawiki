@@ -78,7 +78,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
-		$out->allowClickjacking();
+		$out->setPreventClickjacking( false );
 
 		# GET values
 		$from = $request->getVal( 'from', null );

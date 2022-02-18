@@ -7,7 +7,6 @@ use FormatJson;
 use HashConfig;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Rest\Handler\UpdateHandler;
-use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Revision\RevisionLookup;
@@ -551,6 +550,9 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 		$this->assertSame( $expectedStatus, $exception->getCode(), 'HTTP status' );
 	}
 
+	/**
+	 * FIXME: Can't access MW services in a dataProvider.
+	 */
 	public function provideErrorMapping() {
 		yield "missingtitle" => [
 			new ApiUsageException( null, Status::newFatal( 'apierror-missingtitle' ) ),
@@ -603,47 +605,45 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 		];
 	}
 
-	/**
-	 * @dataProvider provideErrorMapping
-	 */
-	public function testErrorMapping(
-		ApiUsageException $apiUsageException,
-		HttpException $expectedHttpException
-	) {
-		$requestData = [ // Request data received by UpdateHandler
-			'method' => 'POST',
-			'pathParams' => [ 'title' => 'Foo' ],
-			'headers' => [
-				'Content-Type' => 'application/json',
-			],
-			'bodyContents' => json_encode( [
-				'source' => 'Lorem Ipsum',
-				'comment' => 'Testing',
-				'content_model' => CONTENT_MODEL_WIKITEXT,
-			] ),
-		];
-		$request = new RequestData( $requestData );
+	public function testErrorMapping() {
+		foreach ( $this->provideErrorMapping() as $expected ) {
+			$apiUsageException = $expected[0];
+			$expectedHttpException = $expected[1];
+			$requestData = [ // Request data received by UpdateHandler
+				'method' => 'POST',
+				'pathParams' => [ 'title' => 'Foo' ],
+				'headers' => [
+					'Content-Type' => 'application/json',
+				],
+				'bodyContents' => json_encode( [
+					'source' => 'Lorem Ipsum',
+					'comment' => 'Testing',
+					'content_model' => CONTENT_MODEL_WIKITEXT,
+				] ),
+			];
+			$request = new RequestData( $requestData );
 
-		$handler = $this->newHandler( [], $apiUsageException );
+			$handler = $this->newHandler( [], $apiUsageException );
 
-		$exception = $this->executeHandlerAndGetHttpException( $handler, $request );
+			$exception = $this->executeHandlerAndGetHttpException( $handler, $request );
 
-		$this->assertSame( $expectedHttpException->getMessage(), $exception->getMessage() );
-		$this->assertSame( $expectedHttpException->getCode(), $exception->getCode(), 'HTTP status' );
+			$this->assertSame( $expectedHttpException->getMessage(), $exception->getMessage() );
+			$this->assertSame( $expectedHttpException->getCode(), $exception->getCode(), 'HTTP status' );
 
-		$errorData = $exception->getErrorData();
-		if ( $expectedHttpException->getErrorData() ) {
-			foreach ( $expectedHttpException->getErrorData() as $key => $value ) {
-				$this->assertSame( $value, $errorData[$key], 'Error data key $key' );
+			$errorData = $exception->getErrorData();
+			if ( $expectedHttpException->getErrorData() ) {
+				foreach ( $expectedHttpException->getErrorData() as $key => $value ) {
+					$this->assertSame( $value, $errorData[$key], 'Error data key $key' );
+				}
 			}
-		}
 
-		if ( $expectedHttpException instanceof LocalizedHttpException ) {
-			/** @var LocalizedHttpException $exception */
-			$this->assertEquals(
-				$expectedHttpException->getMessageValue(),
-				$exception->getMessageValue()
-			);
+			if ( $expectedHttpException instanceof LocalizedHttpException ) {
+				/** @var LocalizedHttpException $exception */
+				$this->assertEquals(
+					$expectedHttpException->getMessageValue(),
+					$exception->getMessageValue()
+				);
+			}
 		}
 	}
 

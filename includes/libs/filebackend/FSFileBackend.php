@@ -41,6 +41,7 @@
  * @ingroup FileBackend
  */
 
+use Shellbox\Shellbox;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -61,7 +62,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @since 1.19
  */
 class FSFileBackend extends FileBackendStore {
-	/** @var MapCacheLRU Cache for known prepared/usable directorries */
+	/** @var MapCacheLRU Cache for known prepared/usable directories */
 	protected $usableDirCache;
 
 	/** @var string Directory holding the container directories */
@@ -135,7 +136,7 @@ class FSFileBackend extends FileBackendStore {
 	protected function resolveContainerPath( $container, $relStoragePath ) {
 		// Check that container has a root directory
 		if ( isset( $this->containerPaths[$container] ) || isset( $this->basePath ) ) {
-			// Check for sane relative paths (assume the base paths are OK)
+			// Check for sensible relative paths (assume the base paths are OK)
 			if ( $this->isLegalRelPath( $relStoragePath ) ) {
 				return $relStoragePath;
 			}
@@ -145,7 +146,7 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * Sanity check a relative file system path for validity
+	 * Check a relative file system path for validity
 	 *
 	 * @param string $fsPath Normalized relative path
 	 * @return bool
@@ -183,7 +184,7 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * Get the absolute file system path for a storage path
 	 *
-	 * @param string $storagePath Storage path
+	 * @param string $storagePath
 	 * @return string|null
 	 */
 	protected function resolveToFSPath( $storagePath ) {
@@ -289,7 +290,7 @@ class FSFileBackend extends FileBackendStore {
 		if ( $fsSrcPath === $fsDstPath ) {
 			$status->fatal( 'backend-fail-internal', $this->name );
 
-			return $status; // sanity
+			return $status;
 		}
 
 		if ( !empty( $params['async'] ) ) { // deferred
@@ -480,10 +481,7 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * @param string $fullCont
-	 * @param string $dirRel
-	 * @param array $params
-	 * @return StatusValue
+	 * @inheritDoc
 	 */
 	protected function doPrepareInternal( $fullCont, $dirRel, array $params ) {
 		$status = $this->newStatus();
@@ -514,7 +512,7 @@ class FSFileBackend extends FileBackendStore {
 			$status->merge( $this->doSecureInternal( $fullCont, $dirRel, $params ) );
 		}
 
-		if ( $status->isOK() ) {
+		if ( $status->isGood() ) {
 			$this->usableDirCache->set( $fsDirectory, 1 );
 		}
 
@@ -814,7 +812,7 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * @param string $fsSrcPath Absolute file system path
 	 * @param string $fsDstPath Absolute file system path
-	 * @param bool $ignoreMissing Whether to no-op if the source file is non-existant
+	 * @param bool $ignoreMissing Whether to no-op if the source file is non-existent
 	 * @return string Command
 	 */
 	private function makeCopyCommand( $fsSrcPath, $fsDstPath, $ignoreMissing ) {
@@ -822,9 +820,9 @@ class FSFileBackend extends FileBackendStore {
 		// inode are unaffected since it writes to a new inode, and (c) new threads reading
 		// the file will either totally see the old version or totally see the new version
 		$fsStagePath = $this->makeStagingPath( $fsDstPath );
-		$encSrc = escapeshellarg( $this->cleanPathSlashes( $fsSrcPath ) );
-		$encStage = escapeshellarg( $this->cleanPathSlashes( $fsStagePath ) );
-		$encDst = escapeshellarg( $this->cleanPathSlashes( $fsDstPath ) );
+		$encSrc = Shellbox::escape( $this->cleanPathSlashes( $fsSrcPath ) );
+		$encStage = Shellbox::escape( $this->cleanPathSlashes( $fsStagePath ) );
+		$encDst = Shellbox::escape( $this->cleanPathSlashes( $fsDstPath ) );
 		if ( $this->os === 'Windows' ) {
 			// https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/copy
 			// https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/move
@@ -854,8 +852,8 @@ class FSFileBackend extends FileBackendStore {
 	private function makeMoveCommand( $fsSrcPath, $fsDstPath, $ignoreMissing = false ) {
 		// https://manpages.debian.org/buster/coreutils/mv.1.en.html
 		// https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/move
-		$encSrc = escapeshellarg( $this->cleanPathSlashes( $fsSrcPath ) );
-		$encDst = escapeshellarg( $this->cleanPathSlashes( $fsDstPath ) );
+		$encSrc = Shellbox::escape( $this->cleanPathSlashes( $fsSrcPath ) );
+		$encDst = Shellbox::escape( $this->cleanPathSlashes( $fsDstPath ) );
 		if ( $this->os === 'Windows' ) {
 			$writeCmd = "MOVE /Y $encSrc $encDst 2>&1";
 			$cmd = $ignoreMissing ? "IF EXIST $encSrc $writeCmd" : $writeCmd;
@@ -875,7 +873,7 @@ class FSFileBackend extends FileBackendStore {
 	private function makeUnlinkCommand( $fsPath, $ignoreMissing = false ) {
 		// https://manpages.debian.org/buster/coreutils/rm.1.en.html
 		// https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/del
-		$encSrc = escapeshellarg( $this->cleanPathSlashes( $fsPath ) );
+		$encSrc = Shellbox::escape( $this->cleanPathSlashes( $fsPath ) );
 		if ( $this->os === 'Windows' ) {
 			$writeCmd = "DEL /Q $encSrc 2>&1";
 			$cmd = $ignoreMissing ? "IF EXIST $encSrc $writeCmd" : $writeCmd;
@@ -974,7 +972,7 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * Clean up directory separators for the given OS
 	 *
-	 * @param string $fsPath FS path
+	 * @param string $fsPath
 	 * @return string
 	 */
 	protected function cleanPathSlashes( $fsPath ) {

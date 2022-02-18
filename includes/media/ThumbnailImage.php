@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Base class for the output of file transformation methods.
  *
@@ -20,6 +21,8 @@
  * @file
  * @ingroup Media
  */
+
+use MediaWiki\MediaWikiServices;
 
 /**
  * Media transform output for images
@@ -98,10 +101,11 @@ class ThumbnailImage extends MediaTransformOutput {
 	 *                        set in CSS)
 	 *     custom-url-link    Custom URL to link to
 	 *     custom-title-link  Custom Title object to link to
-	 *     custom target-link Value of the target attribute, for custom-target-link
+	 *     custom-target-link Value of the target attribute, for custom-url-link
 	 *     parser-extlink-*   Attributes added by parser for external links:
 	 *          parser-extlink-rel: add rel="nofollow"
 	 *          parser-extlink-target: link target, but overridden by custom-target-link
+	 *     resource           Override the resource derived from the description link
 	 *
 	 * For images, desc-link and file-link are implemented as a click-through. For
 	 * sounds and videos, they may be displayed in other ways.
@@ -110,29 +114,44 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * @return string
 	 */
 	public function toHtml( $options = [] ) {
-		global $wgPriorityHints, $wgPriorityHintsRatio, $wgElementTiming, $wgNativeImageLazyLoading;
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$priorityHints = $mainConfig->get( 'PriorityHints' );
+		$priorityHintsRatio = $mainConfig->get( 'PriorityHintsRatio' );
+		$elementTiming = $mainConfig->get( 'ElementTiming' );
+		$nativeImageLazyLoading = $mainConfig->get( 'NativeImageLazyLoading' );
+		$parserEnableLegacyMediaDOM = $mainConfig->get( 'ParserEnableLegacyMediaDOM' );
 
 		if ( func_num_args() == 2 ) {
 			throw new MWException( __METHOD__ . ' called in the old style' );
 		}
 
 		$alt = $options['alt'] ?? '';
-
 		$query = $options['desc-query'] ?? '';
+		$descLinkAttribs = $this->getDescLinkAttribs(
+			empty( $options['title'] ) ? null : $options['title'],
+			$query
+		);
 
 		$attribs = [
-			'alt' => $alt,
+			'alt' => $alt
+		];
+
+		if ( !$parserEnableLegacyMediaDOM ) {
+			$attribs['resource'] = $options['resource'] ?? $descLinkAttribs['href'];
+		}
+
+		$attribs += [
 			'src' => $this->url,
 			'decoding' => 'async',
 		];
 
-		if ( $options['loading'] ?? $wgNativeImageLazyLoading ) {
+		if ( $options['loading'] ?? $nativeImageLazyLoading ) {
 			$attribs['loading'] = $options['loading'] ?? 'lazy';
 		}
 
 		$elementTimingName = 'thumbnail';
 
-		if ( $wgPriorityHints
+		if ( $priorityHints
 			&& !self::$firstNonIconImageRendered
 			&& $this->width * $this->height > 100 * 100 ) {
 			self::$firstNonIconImageRendered = true;
@@ -140,7 +159,7 @@ class ThumbnailImage extends MediaTransformOutput {
 			// Generate a random number between 0.01 and 1.0, included
 			$random = rand( 1, 100 ) / 100.0;
 
-			if ( $random <= $wgPriorityHintsRatio ) {
+			if ( $random <= $priorityHintsRatio ) {
 				$attribs['importance'] = 'high';
 				$elementTimingName = 'thumbnail-high';
 			} else {
@@ -149,7 +168,7 @@ class ThumbnailImage extends MediaTransformOutput {
 			}
 		}
 
-		if ( $wgElementTiming ) {
+		if ( $elementTiming ) {
 			$attribs['elementtiming'] = $elementTimingName;
 		}
 
@@ -174,10 +193,7 @@ class ThumbnailImage extends MediaTransformOutput {
 				'title' => empty( $options['title'] ) ? $title->getFullText() : $options['title']
 			];
 		} elseif ( !empty( $options['desc-link'] ) ) {
-			$linkAttribs = $this->getDescLinkAttribs(
-				empty( $options['title'] ) ? null : $options['title'],
-				$query
-			);
+			$linkAttribs = $descLinkAttribs;
 		} elseif ( !empty( $options['file-link'] ) ) {
 			$linkAttribs = [ 'href' => $this->file->getUrl() ];
 		} else {

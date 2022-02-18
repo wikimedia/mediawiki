@@ -148,9 +148,7 @@ var toUpperMap,
 		// to round-trip titles -- you can't link to them consistently.
 		'|%[\\dA-Fa-f]{2}' +
 		// XML/HTML character references produce similar issues.
-		'|&[\\dA-Za-z\u0080-\uFFFF]+;' +
-		'|&#\\d+;' +
-		'|&#x[\\dA-Fa-f]+;'
+		'|&[\\dA-Za-z\u0080-\uFFFF]+;'
 	),
 
 	// From MediaWikiTitleCodec::splitTitleString() in PHP
@@ -522,7 +520,7 @@ Title.newFromUserInput = function ( title, defaultNamespace, options ) {
 		namespace = NS_MAIN;
 		title = title
 			// Strip colon
-			.substr( 1 )
+			.slice( 1 )
 			// Trim underscores
 			.replace( rUnderscoreTrim, '' );
 	}
@@ -611,7 +609,7 @@ Title.newFromImg = function ( img ) {
 /**
  * Check if a given namespace is a talk namespace
  *
- * See MWNamespace::isTalk in PHP
+ * See NamespaceInfo::isTalk in PHP
  *
  * @param {number} namespaceId Namespace ID
  * @return {boolean} Namespace is a talk namespace
@@ -735,9 +733,9 @@ Title.phpCharToUpper = function ( chr ) {
 	if ( !toUpperMap ) {
 		toUpperMap = require( './phpCharToUpper.json' );
 	}
-	if ( toUpperMap[ chr ] === '' ) {
+	if ( toUpperMap[ chr ] === 0 ) {
 		// Optimisation: When the override is to keep the character unchanged,
-		// we use an empty string in JSON. This reduces the data by 50%.
+		// we use 0 in JSON. This reduces the data by 50%.
 		return chr;
 	}
 	return toUpperMap[ chr ] || chr.toUpperCase();
@@ -828,7 +826,8 @@ Title.prototype = {
 		) {
 			return this.title;
 		}
-		return mw.Title.phpCharToUpper( this.title[ 0 ] ) + this.title.slice( 1 );
+		var firstChar = mwString.charAt( this.title, 0 );
+		return mw.Title.phpCharToUpper( firstChar ) + this.title.slice( firstChar.length );
 	},
 
 	/**

@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\User\UserIdentity;
@@ -20,7 +19,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$contLang = $this->getServiceContainer()->getContentLanguage();
 		$this->setContentLang( $contLang );
 
 		$this->setMwGlobals( [
@@ -110,7 +109,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 *              * editRevId: revision ID of the edit's base revision (optional)
 	 *              * wpStarttime: timestamp when the edit started (will be inserted if not provided)
 	 *              * wpSectionTitle: the section to edit
-	 *              * wpMinorEdit: mark as minor edit
+	 *              * wpMinoredit: mark as minor edit
 	 *              * wpWatchthis: whether to watch the page
 	 * @param int|null $expectedCode The expected result code (EditPage::AS_XXX constants).
 	 *                  Set to null to skip the check.
@@ -148,9 +147,11 @@ class EditPageTest extends MediaWikiLangTestCase {
 			$page->doUserEditContent( $content, $user, "base text for test" );
 			$this->forceRevisionDate( $page, '20120101000000' );
 
-			// sanity check
 			$page->clear();
-			$currentText = ContentHandler::getContentText( $page->getContent() );
+			$content = $page->getContent();
+
+			$this->assertInstanceOf( TextContent::class, $content );
+			$currentText = $content->getText();
 
 			# EditPage rtrim() the user input, so we alter our expected text
 			# to reflect that.
@@ -185,12 +186,10 @@ class EditPageTest extends MediaWikiLangTestCase {
 		$ep->setContextTitle( $title );
 		$ep->importFormData( $req );
 
-		$bot = isset( $edit['bot'] ) ? (bool)$edit['bot'] : false;
-
 		// this is where the edit happens!
 		// Note: don't want to use EditPage::AttemptSave, because it messes with $wgOut
 		// and throws exceptions like PermissionsError
-		$status = $ep->internalAttemptSave( $result, $bot );
+		$status = $ep->attemptSave( $result );
 
 		if ( $expectedCode !== null ) {
 			// check edit code
@@ -203,7 +202,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 		if ( $expectedText !== null ) {
 			// check resulting page text
 			$content = $page->getContent();
-			$text = ContentHandler::getContentText( $content );
+			$text = ( $content instanceof TextContent ) ? $content->getText() : '';
 
 			# EditPage rtrim() the user input, so we alter our expected text
 			# to reflect that.
@@ -305,7 +304,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		if ( $expectedCode != EditPage::AS_BLANK_ARTICLE ) {
 			$latest = $page->getLatest();
-			$page->doDeleteArticleReal( $pageTitle, $this->getTestSysop()->getUser() );
+			$this->deletePage( $page );
 
 			$this->assertGreaterThan( 0, $latest, "Page revision ID updated in object" );
 			$this->assertEquals( $latest, $checkId, "Revision in Status for hook" );
@@ -350,13 +349,13 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		if ( $expectedCode != EditPage::AS_BLANK_ARTICLE ) {
 			$latest = $page->getLatest();
-			$page->doDeleteArticleReal( $pageTitle, $this->getTestSysop()->getUser() );
+			$this->deletePage( $page );
 
 			$this->assertGreaterThan( 0, $latest, "Page #1 revision ID updated in object" );
 			$this->assertEquals( $latest, $checkIds[0], "Revision #1 in Status for hook" );
 
 			$latest2 = $page2->getLatest();
-			$page2->doDeleteArticleReal( $pageTitle2, $this->getTestSysop()->getUser() );
+			$this->deletePage( $page2 );
 
 			$this->assertGreaterThan( 0, $latest2, "Page #2 revision ID updated in object" );
 			$this->assertEquals( $latest2, $checkIds[1], "Revision #2 in Status for hook" );
@@ -402,6 +401,63 @@ class EditPageTest extends MediaWikiLangTestCase {
 			"expected successful update with given text" );
 		$this->assertGreaterThan( 0, $checkIds[1], "Second edit hook rev ID set" );
 		$this->assertGreaterThan( $checkIds[0], $checkIds[1], "Second event rev ID is higher" );
+	}
+
+	/**
+	 * @covers EditPage
+	 */
+	public function testUpdateNoMinor() {
+		$user = $this->getTestUser()->getUser();
+		$anon = new User(); // anon
+
+		// Test that page creation can never be minor
+		$edit = [
+			'wpTextbox1' => 'testing',
+			'wpSummary' => 'first update',
+			'wpMinoredit' => 'minor'
+		];
+
+		$page = $this->assertEdit( 'EditPageTest_testUpdateNoMinor', null, $user, $edit,
+			EditPage::AS_SUCCESS_NEW_ARTICLE, 'testing', "expected successful update" );
+
+		$this->assertFalse(
+			$page->getRevisionRecord()->isMinor(),
+			'page creation should not be minor'
+		);
+
+		// Test that anons can't make an update minor
+		$this->forceRevisionDate( $page, '20120101000000' );
+
+		$edit = [
+			'wpTextbox1' => 'testing 2',
+			'wpSummary' => 'second update',
+			'wpMinoredit' => 'minor'
+		];
+
+		$page = $this->assertEdit( 'EditPageTest_testUpdateNoMinor', null, $anon, $edit,
+			EditPage::AS_SUCCESS_UPDATE, 'testing 2', "expected successful update" );
+
+		$this->assertFalse(
+			$page->getRevisionRecord()->isMinor(),
+			'anon edit should not be minor'
+		);
+
+		// Test that users can make an update minor
+		$this->forceRevisionDate( $page, '20120102000000' );
+
+		$edit = [
+			'wpTextbox1' => 'testing 3',
+			'wpSummary' => 'third update',
+			'wpMinoredit' => 'minor'
+		];
+
+		$page = $this->assertEdit( 'EditPageTest_testUpdateNoMinor', null, $user, $edit,
+			EditPage::AS_SUCCESS_UPDATE, 'testing 3', "expected successful update" );
+
+		$this->assertTrue(
+			$page->getRevisionRecord()->isMinor(),
+			'users can make edits minor'
+		);
 	}
 
 	/**
@@ -605,13 +661,11 @@ hello
 		// create page
 		$ns = $this->getDefaultWikitextNS();
 		$title = Title::newFromText( __METHOD__, $ns );
-		$page = WikiPage::factory( $title );
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+		$page = $wikiPageFactory->newFromTitle( $title );
 
 		if ( $page->exists() ) {
-			$page->doDeleteArticleReal(
-				"clean slate for testing",
-				$this->getTestSysop()->getUser()
-			);
+			$this->deletePage( $page, "clean slate for testing" );
 		}
 
 		$elmosEdit['wpTextbox1'] = 'Elmo\'s text';
@@ -737,13 +791,11 @@ hello
 		// create page
 		$ns = $this->getDefaultWikitextNS();
 		$title = Title::newFromText( 'EditPageTest_testAutoMerge', $ns );
-		$page = WikiPage::factory( $title );
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+		$page = $wikiPageFactory->newFromTitle( $title );
 
 		if ( $page->exists() ) {
-			$page->doDeleteArticleReal(
-				"clean slate for testing",
-				$this->getTestSysop()->getUser()
-			);
+			$this->deletePage( $page, "clean slate for testing" );
 		}
 
 		$baseEdit = [

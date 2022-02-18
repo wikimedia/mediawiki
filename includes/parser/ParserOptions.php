@@ -79,7 +79,6 @@ class ParserOptions {
 	 */
 	private static $initialCacheVaryingOptionsHash = [
 		'dateformat' => true,
-		'numberheadings' => true,
 		'thumbsize' => true,
 		'printable' => true,
 		'userlang' => true,
@@ -113,7 +112,7 @@ class ParserOptions {
 	/**
 	 * Stored user object
 	 * @var UserIdentity
-	 * @todo Track this for caching somehow without fragmenting the cache insanely
+	 * @todo Track this for caching somehow without fragmenting the cache
 	 */
 	private $mUser;
 
@@ -329,23 +328,6 @@ class ParserOptions {
 	}
 
 	/**
-	 * Automatically number headings?
-	 * @return bool
-	 */
-	public function getNumberHeadings() {
-		return $this->getOption( 'numberheadings' );
-	}
-
-	/**
-	 * Automatically number headings?
-	 * @param bool|null $x New value (null is no change)
-	 * @return bool Old value
-	 */
-	public function setNumberHeadings( $x ) {
-		return $this->setOptionLegacy( 'numberheadings', $x );
-	}
-
-	/**
 	 * Allow inclusion of special pages?
 	 * @return bool
 	 */
@@ -360,18 +342,6 @@ class ParserOptions {
 	 */
 	public function setAllowSpecialInclusion( $x ) {
 		return $this->setOptionLegacy( 'allowSpecialInclusion', $x );
-	}
-
-	/**
-	 * Use tidy to cleanup output HTML?
-	 * @param bool|null $x New value (null is no change)
-	 * @return null
-	 * @deprecated since 1.35; tidy is always enabled so this has no effect
-	 */
-	public function setTidy( $x ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		// This has no effect.
-		return null;
 	}
 
 	/**
@@ -506,20 +476,26 @@ class ParserOptions {
 	}
 
 	/**
+	 * @deprecated since 1.38. This does nothing now, to control limit reporting
+	 * please provide 'includeDebugInfo' option to ParserOutput::getText.
+	 *
 	 * Enable limit report in an HTML comment on output
 	 * @return bool
 	 */
 	public function getEnableLimitReport() {
-		return $this->getOption( 'enableLimitReport' );
+		return false;
 	}
 
 	/**
+	 * @deprecated since 1.38. This does nothing now, to control limit reporting
+	 * please provide 'includeDebugInfo' option to ParserOutput::getText.
+	 *
 	 * Enable limit report in an HTML comment on output
 	 * @param bool|null $x New value (null is no change)
 	 * @return bool Old value
 	 */
 	public function enableLimitReport( $x = true ) {
-		return $this->setOptionLegacy( 'enableLimitReport', $x );
+		return false;
 	}
 
 	/**
@@ -1027,19 +1003,6 @@ class ParserOptions {
 	}
 
 	/**
-	 * Current user
-	 * @deprecated since 1.36. Use ::getUserIdentity instead.
-	 * Hard deprecated since 1.37.
-	 * @return User
-	 */
-	public function getUser() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MediaWikiServices::getInstance()
-			->getUserFactory()
-			->newFromUserIdentity( $this->mUser );
-	}
-
-	/**
 	 * Get the identity of the user for whom the parse is made.
 	 * @since 1.36
 	 * @return UserIdentity
@@ -1049,8 +1012,6 @@ class ParserOptions {
 	}
 
 	/**
-	 * @warning For interaction with the parser cache, use
-	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
 	 * @param UserIdentity $user
 	 * @param Language|null $lang
 	 */
@@ -1065,8 +1026,6 @@ class ParserOptions {
 
 	/**
 	 * Get a ParserOptions object for an anonymous user
-	 * @warning For interaction with the parser cache, use
-	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
 	 * @since 1.27
 	 * @return ParserOptions
 	 */
@@ -1079,8 +1038,6 @@ class ParserOptions {
 	 * Get a ParserOptions object from a given user.
 	 * Language will be taken from $wgLang.
 	 *
-	 * @warning For interaction with the parser cache, use
-	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
 	 * @param UserIdentity $user
 	 * @return ParserOptions
 	 */
@@ -1091,8 +1048,6 @@ class ParserOptions {
 	/**
 	 * Get a ParserOptions object from a given user and language
 	 *
-	 * @warning For interaction with the parser cache, use
-	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
 	 * @param UserIdentity $user
 	 * @param Language $lang
 	 * @return ParserOptions
@@ -1104,8 +1059,6 @@ class ParserOptions {
 	/**
 	 * Get a ParserOptions object from a IContextSource object
 	 *
-	 * @warning For interaction with the parser cache, use
-	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
 	 * @param IContextSource $context
 	 * @return ParserOptions
 	 */
@@ -1122,6 +1075,8 @@ class ParserOptions {
 	 * @since 1.30
 	 * @since 1.32 Added string and IContextSource as options for the first parameter
 	 * @since 1.36 UserIdentity is also allowed
+	 * @deprecated since 1.38. Use ::newFromContext, ::newFromAnon or ::newFromUserAndLang instead.
+	 *   Canonical ParserOptions are now exactly the same as non-canonical.
 	 * @param IContextSource|string|UserIdentity $context
 	 *  - If an IContextSource, the options are initialized based on the source's UserIdentity and Language.
 	 *  - If the string 'canonical', the options are initialized with an anonymous user and
@@ -1143,10 +1098,6 @@ class ParserOptions {
 				'$context must be an IContextSource, the string "canonical", or a UserIdentity'
 			);
 		}
-
-		foreach ( self::getCanonicalOverrides() as $k => $v ) {
-			$ret->setOption( $k, $v );
-		}
 		return $ret;
 	}
 
@@ -1165,20 +1116,28 @@ class ParserOptions {
 
 	/**
 	 * Get default option values
-	 * @warning If you change the default for an existing option (unless it's
-	 *  being overridden by self::getCanonicalOverrides()), all existing parser
-	 *  cache entries will be invalid. To avoid bugs, you'll need to handle
+	 * @warning If you change the default for an existing option, all existing
+	 *  parser cache entries will be invalid. To avoid bugs, you'll need to handle
 	 *  that somehow (e.g. with the RejectParserCacheValue hook) because
 	 *  MediaWiki won't do it for you.
 	 * @return array
 	 */
 	private static function getDefaults() {
-		global $wgInterwikiMagic, $wgAllowExternalImages,
-			$wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion,
-			$wgMaxArticleSize, $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth,
-			$wgCleanSignatures, $wgExternalLinkTarget, $wgExpensiveParserFunctionLimit,
-			$wgEnableMagicLinks;
 		$services = MediaWikiServices::getInstance();
+		$mainConfig = $services->getMainConfig();
+		$interwikiMagic = $mainConfig->get( 'InterwikiMagic' );
+		$allowExternalImages = $mainConfig->get( 'AllowExternalImages' );
+		$allowExternalImagesFrom = $mainConfig->get( 'AllowExternalImagesFrom' );
+		$enableImageWhitelist = $mainConfig->get( 'EnableImageWhitelist' );
+		$allowSpecialInclusion = $mainConfig->get( 'AllowSpecialInclusion' );
+		$maxArticleSize = $mainConfig->get( 'MaxArticleSize' );
+		$maxPPNodeCount = $mainConfig->get( 'MaxPPNodeCount' );
+		$maxTemplateDepth = $mainConfig->get( 'MaxTemplateDepth' );
+		$maxPPExpandDepth = $mainConfig->get( 'MaxPPExpandDepth' );
+		$cleanSignatures = $mainConfig->get( 'CleanSignatures' );
+		$externalLinkTarget = $mainConfig->get( 'ExternalLinkTarget' );
+		$expensiveParserFunctionLimit = $mainConfig->get( 'ExpensiveParserFunctionLimit' );
+		$enableMagicLinks = $mainConfig->get( 'EnableMagicLinks' );
 		$languageConverterFactory = $services->getLanguageConverterFactory();
 		$userOptionsLookup = $services->getUserOptionsLookup();
 		$contentLanguage = $services->getContentLanguage();
@@ -1219,43 +1178,25 @@ class ParserOptions {
 
 		// Unit tests depend on being able to modify the globals at will
 		return self::$defaults + [
-			'interwikiMagic' => $wgInterwikiMagic,
-			'allowExternalImages' => $wgAllowExternalImages,
-			'allowExternalImagesFrom' => $wgAllowExternalImagesFrom,
-			'enableImageWhitelist' => $wgEnableImageWhitelist,
-			'allowSpecialInclusion' => $wgAllowSpecialInclusion,
-			'maxIncludeSize' => $wgMaxArticleSize * 1024,
-			'maxPPNodeCount' => $wgMaxPPNodeCount,
-			'maxPPExpandDepth' => $wgMaxPPExpandDepth,
-			'maxTemplateDepth' => $wgMaxTemplateDepth,
-			'expensiveParserFunctionLimit' => $wgExpensiveParserFunctionLimit,
-			'externalLinkTarget' => $wgExternalLinkTarget,
-			'cleanSignatures' => $wgCleanSignatures,
+			'interwikiMagic' => $interwikiMagic,
+			'allowExternalImages' => $allowExternalImages,
+			'allowExternalImagesFrom' => $allowExternalImagesFrom,
+			'enableImageWhitelist' => $enableImageWhitelist,
+			'allowSpecialInclusion' => $allowSpecialInclusion,
+			'maxIncludeSize' => $maxArticleSize * 1024,
+			'maxPPNodeCount' => $maxPPNodeCount,
+			'maxPPExpandDepth' => $maxPPExpandDepth,
+			'maxTemplateDepth' => $maxTemplateDepth,
+			'expensiveParserFunctionLimit' => $expensiveParserFunctionLimit,
+			'externalLinkTarget' => $externalLinkTarget,
+			'cleanSignatures' => $cleanSignatures,
 			'disableContentConversion' => $languageConverterFactory->isConversionDisabled(),
 			'disableTitleConversion' => $languageConverterFactory->isLinkConversionDisabled(),
-			'magicISBNLinks' => $wgEnableMagicLinks['ISBN'],
-			'magicPMIDLinks' => $wgEnableMagicLinks['PMID'],
-			'magicRFCLinks' => $wgEnableMagicLinks['RFC'],
-			'numberheadings' => $userOptionsLookup->getDefaultOption( 'numberheadings' ),
+			'magicISBNLinks' => $enableMagicLinks['ISBN'],
+			'magicPMIDLinks' => $enableMagicLinks['PMID'],
+			'magicRFCLinks' => $enableMagicLinks['RFC'],
 			'thumbsize' => $userOptionsLookup->getDefaultOption( 'thumbsize' ),
 			'userlang' => $contentLanguage,
-		];
-	}
-
-	/**
-	 * Get "canonical" non-default option values
-	 * @see self::newCanonical
-	 * @warning If you change the override for an existing option, all existing
-	 *  parser cache entries will be invalid. To avoid bugs, you'll need to
-	 *  handle that somehow (e.g. with the RejectParserCacheValue hook) because
-	 *  MediaWiki won't do it for you.
-	 * @return array
-	 */
-	private static function getCanonicalOverrides() {
-		global $wgEnableParserLimitReporting;
-
-		return [
-			'enableLimitReport' => $wgEnableParserLimitReporting,
 		];
 	}
 
@@ -1274,7 +1215,6 @@ class ParserOptions {
 		$this->mUser = $user;
 		$services = MediaWikiServices::getInstance();
 		$optionsLookup = $services->getUserOptionsLookup();
-		$this->options['numberheadings'] = $optionsLookup->getOption( $user, 'numberheadings' );
 		$this->options['thumbsize'] = $optionsLookup->getOption( $user, 'thumbsize' );
 		$this->options['userlang'] = $lang;
 	}
@@ -1351,7 +1291,8 @@ class ParserOptions {
 
 	/**
 	 * Registers a callback for tracking which ParserOptions which are used.
-	 * This is a private API with the parser.
+	 *
+	 * @since 1.16
 	 * @param callable|null $callback
 	 */
 	public function registerWatcher( $callback ) {
@@ -1359,14 +1300,15 @@ class ParserOptions {
 	}
 
 	/**
-	 * Called when an option is accessed.
-	 * Calls the watcher that was set using registerWatcher().
+	 * Record that an option was internally accessed.
+	 *
+	 * This calls the watcher set by ParserOptions::registerWatcher().
 	 * Typically, the watcher callback is ParserOutput::registerOption().
-	 * The information registered that way will be used by ParserCache::save().
+	 * The information registered this way is consumed by ParserCache::save().
 	 *
 	 * @param string $optionName Name of the option
 	 */
-	public function optionUsed( $optionName ) {
+	private function optionUsed( $optionName ) {
 		if ( $this->onAccessCallback ) {
 			call_user_func( $this->onAccessCallback, $optionName );
 		}
@@ -1415,7 +1357,7 @@ class ParserOptions {
 	 * @return string Page rendering hash
 	 */
 	public function optionsHash( $forOptions, $title = null ) {
-		global $wgRenderHashAppend;
+		$renderHashAppend = MediaWikiServices::getInstance()->getMainConfig()->get( 'RenderHashAppend' );
 
 		$inCacheKey = self::allCacheVaryingOptions();
 
@@ -1427,7 +1369,7 @@ class ParserOptions {
 		}
 
 		$options = $this->options;
-		$defaults = self::getCanonicalOverrides() + self::getDefaults();
+		$defaults = self::getDefaults();
 
 		// We only include used options with non-canonical values in the key
 		// so adding a new option doesn't invalidate the entire parser cache.
@@ -1452,7 +1394,7 @@ class ParserOptions {
 		$converter = $services->getLanguageConverterFactory()->getLanguageConverter( $lang );
 		$confstr .= $converter->getExtraHashOptions();
 
-		$confstr .= $wgRenderHashAppend;
+		$confstr .= $renderHashAppend;
 
 		if ( $this->mExtraKey != '' ) {
 			$confstr .= $this->mExtraKey;
@@ -1480,7 +1422,7 @@ class ParserOptions {
 	 * @since 1.30
 	 */
 	public function isSafeToCache( array $usedOptions = null ) {
-		$defaults = self::getCanonicalOverrides() + self::getDefaults();
+		$defaults = self::getDefaults();
 		$inCacheKey = self::getCacheVaryingOptionsHash();
 		$usedOptions = $usedOptions ?? array_keys( $this->options );
 		foreach ( $usedOptions as $option ) {
@@ -1524,21 +1466,23 @@ class ParserOptions {
 			}
 		);
 
-		global $wgHooks;
-		$wgHooks['TitleExists'][] =
+		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		$hookScope = $hookContainer->scopedRegister(
+			'TitleExists',
 			static function ( $titleToCheck, &$exists ) use ( $title ) {
 				if ( $titleToCheck->equals( $title ) ) {
 					$exists = true;
 				}
-			};
-		end( $wgHooks['TitleExists'] );
-		$key = key( $wgHooks['TitleExists'] );
+			}
+		);
+
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		$linkCache->clearBadLink( $title->getPrefixedDBkey() );
-		return new ScopedCallback( static function () use ( $title, $key, $linkCache ) {
-			global $wgHooks;
-			unset( $wgHooks['TitleExists'][$key] );
+
+		return new ScopedCallback( function () use ( $title, $hookScope, $linkCache, $oldCallback ) {
+			ScopedCallback::consume( $hookScope );
 			$linkCache->clearLink( $title );
+			$this->setCurrentRevisionRecordCallback( $oldCallback );
 		} );
 	}
 }

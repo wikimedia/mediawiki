@@ -25,6 +25,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\SqlBlobStore;
@@ -38,12 +39,23 @@ class FetchText extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-
 		$this->addDescription( "Fetch the raw revision blob from a blob address.\n" .
 			"Integer IDs are interpreted as referring to text.old_id for backwards compatibility.\n" .
 			"NOTE: Export transformations are NOT applied. " .
 			"This is left to dumpTextPass.php"
 		);
+	}
+
+	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+		// This script should always try to run all db queries in the 'dump' group if such
+		// a group exists, just like the BackupDumper and TextPassDumper modules.
+		// To account for parts of MediaWiki that get their own db connection outside of
+		// Maintenance::getDB(), we set this global variable so that they will attempt
+		// to use this group.
+		$settingsBuilder->setConfigValue( 'DBDefaultGroup', 'dump' );
+		// do this last so that options can override
+
+		parent::finalSetup( $settingsBuilder );
 	}
 
 	/**

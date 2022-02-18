@@ -25,12 +25,14 @@ namespace MediaWiki\Revision;
 use Content;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Content\Renderer\ContentRenderer;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Permissions\Authority;
 use ParserOptions;
 use ParserOutput;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Title;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -41,11 +43,6 @@ use Wikimedia\Assert\Assert;
  * @since 1.32
  */
 class RenderedRevision implements SlotRenderingProvider {
-
-	/**
-	 * @var Title
-	 */
-	private $title;
 
 	/** @var RevisionRecord */
 	private $revision;
@@ -89,34 +86,40 @@ class RenderedRevision implements SlotRenderingProvider {
 	private $saveParseLogger;
 
 	/**
+	 * @var ContentRenderer Service to render content.
+	 */
+	private $contentRenderer;
+
+	/**
 	 * @note Application logic should not instantiate RenderedRevision instances directly,
 	 * but should use a RevisionRenderer instead.
 	 *
-	 * @param Title $title
 	 * @param RevisionRecord $revision The revision to render. The content for rendering will be
 	 *        taken from this RevisionRecord. However, if the RevisionRecord is not complete
 	 *        according isReadyForInsertion(), but a revision ID is known, the parser may load
 	 *        the revision from the database if it needs revision meta data to handle magic
 	 *        words like {{REVISIONUSER}}.
 	 * @param ParserOptions $options
+	 * @param ContentRenderer $contentRenderer
 	 * @param callable $combineOutput Callback for combining slot output into revision output.
 	 *        Signature: function ( RenderedRevision $this ): ParserOutput.
 	 * @param int $audience Use RevisionRecord::FOR_PUBLIC, FOR_THIS_USER, or RAW.
 	 * @param Authority|null $performer Required if $audience is FOR_THIS_USER.
 	 */
 	public function __construct(
-		Title $title,
 		RevisionRecord $revision,
 		ParserOptions $options,
+		ContentRenderer $contentRenderer,
 		callable $combineOutput,
 		$audience = RevisionRecord::FOR_PUBLIC,
 		Authority $performer = null
 	) {
-		$this->title = $title;
 		$this->options = $options;
+		$this->contentRenderer = $contentRenderer;
 
 		$this->setRevisionInternal( $revision );
 
+		$this->contentRenderer = $contentRenderer;
 		$this->combineOutput = $combineOutput;
 		$this->saveParseLogger = new NullLogger();
 
@@ -238,7 +241,8 @@ class RenderedRevision implements SlotRenderingProvider {
 					throw new LogicException(
 						'HTML generation was requested, but '
 						. get_class( $content )
-						. '::getParserOutput() returns a ParserOutput with no text set.'
+						. ' that passed to '
+						. 'ContentRenderer::getParserOutput() returns a ParserOutput with no text set.'
 					);
 				}
 
@@ -259,8 +263,9 @@ class RenderedRevision implements SlotRenderingProvider {
 	 * @return ParserOutput
 	 */
 	private function getSlotParserOutputUncached( Content $content, $withHtml ) {
-		$parserOutput = $content->getParserOutput(
-			$this->title,
+		$parserOutput = $this->contentRenderer->getParserOutput(
+			$content,
+			$this->revision->getPage(),
 			$this->revision->getId(),
 			$this->options,
 			$withHtml
@@ -367,7 +372,7 @@ class RenderedRevision implements SlotRenderingProvider {
 		// should not expected to work, since there may not even be an actual revision to
 		// refer to.
 		//
-		// 3) If the revision is a fake constructed around a Title, a Content object, and
+		// 3) If the revision is a fake constructed around a page, a Content object, and
 		// a revision ID, to provide backwards compatibility to code that has access to those
 		// but not to a complete RevisionRecord for rendering, then we want the Parser to
 		// load the actual revision from the database when it encounters a magic word like
@@ -383,14 +388,13 @@ class RenderedRevision implements SlotRenderingProvider {
 		// {{subst::REVISIONUSER}} to function as expected.
 
 		if ( $this->revision->isReadyForInsertion() || !$this->revision->getId() ) {
-			$title = $this->title;
 			$oldCallback = $this->options->getCurrentRevisionRecordCallback();
 			$this->options->setCurrentRevisionRecordCallback(
-				function ( Title $parserTitle, $parser = null ) use ( $title, $oldCallback ) {
-					if ( $title->equals( $parserTitle ) ) {
+				function ( PageReference $parserPage, $parser = null ) use ( $oldCallback ) {
+					if ( $this->revision->getPage()->isSamePageAs( $parserPage ) ) {
 						return $this->revision;
 					} else {
-						return call_user_func( $oldCallback, $parserTitle, $parser );
+						return call_user_func( $oldCallback, $parserPage, $parser );
 					}
 				}
 			);
@@ -398,7 +402,7 @@ class RenderedRevision implements SlotRenderingProvider {
 	}
 
 	/**
-	 * @param ParserOutput $out
+	 * @param ParserOutput $parserOutput
 	 * @param int|bool $actualPageId The actual page id, to check the used speculative page ID
 	 *        against; false, to not purge on vary-page-id; true, to purge on vary-page-id
 	 *        unconditionally.
@@ -411,50 +415,50 @@ class RenderedRevision implements SlotRenderingProvider {
 	 * @return bool
 	 */
 	private function outputVariesOnRevisionMetaData(
-		ParserOutput $out,
+		ParserOutput $parserOutput,
 		$actualPageId,
 		$actualRevId,
 		$actualRevTimestamp
 	) {
 		$logger = $this->saveParseLogger;
 		$varyMsg = __METHOD__ . ": cannot use prepared output for '{title}'";
-		$context = [ 'title' => $this->title->getPrefixedText() ];
+		$context = [ 'title' => (string)$this->revision->getPage() ];
 
-		if ( $out->getFlag( 'vary-revision' ) ) {
+		if ( $parserOutput->getOutputFlag( ParserOutputFlags::VARY_REVISION ) ) {
 			// If {{PAGEID}} resolved to 0, then that word need to resolve to the actual page ID
 			$logger->info( "$varyMsg (vary-revision)", $context );
 			return true;
 		} elseif (
-			$out->getFlag( 'vary-revision-id' )
+			$parserOutput->getOutputFlag( ParserOutputFlags::VARY_REVISION_ID )
 			&& $actualRevId !== false
-			&& ( $actualRevId === true || $out->getSpeculativeRevIdUsed() !== $actualRevId )
+			&& ( $actualRevId === true || $parserOutput->getSpeculativeRevIdUsed() !== $actualRevId )
 		) {
 			$logger->info( "$varyMsg (vary-revision-id and wrong ID)", $context );
 			return true;
 		} elseif (
-			$out->getFlag( 'vary-revision-timestamp' )
+			$parserOutput->getOutputFlag( ParserOutputFlags::VARY_REVISION_TIMESTAMP )
 			&& $actualRevTimestamp !== false
 			&& ( $actualRevTimestamp === true ||
-				$out->getRevisionTimestampUsed() !== $actualRevTimestamp )
+				$parserOutput->getRevisionTimestampUsed() !== $actualRevTimestamp )
 		) {
 			$logger->info( "$varyMsg (vary-revision-timestamp and wrong timestamp)", $context );
 			return true;
 		} elseif (
-			$out->getFlag( 'vary-page-id' )
+			$parserOutput->getOutputFlag( ParserOutputFlags::VARY_PAGE_ID )
 			&& $actualPageId !== false
-			&& ( $actualPageId === true || $out->getSpeculativePageIdUsed() !== $actualPageId )
+			&& ( $actualPageId === true || $parserOutput->getSpeculativePageIdUsed() !== $actualPageId )
 		) {
 			$logger->info( "$varyMsg (vary-page-id and wrong ID)", $context );
 			return true;
-		} elseif ( $out->getFlag( 'vary-revision-exists' ) ) {
+		} elseif ( $parserOutput->getOutputFlag( ParserOutputFlags::VARY_REVISION_EXISTS ) ) {
 			// If {{REVISIONID}} resolved to '', it now needs to resolve to '-'.
 			// Note that edit stashing always uses '-', which can be used for both
 			// edit filter checks and canonical parser cache.
 			$logger->info( "$varyMsg (vary-revision-exists)", $context );
 			return true;
 		} elseif (
-			$out->getFlag( 'vary-revision-sha1' ) &&
-			$out->getRevisionUsedSha1Base36() !== $this->revision->getSha1()
+			$parserOutput->getOutputFlag( ParserOutputFlags::VARY_REVISION_SHA1 ) &&
+			$parserOutput->getRevisionUsedSha1Base36() !== $this->revision->getSha1()
 		) {
 			// If a self-transclusion used the proposed page text, it must match the final
 			// page content after PST transformations and automatically merged edit conflicts
@@ -462,7 +466,7 @@ class RenderedRevision implements SlotRenderingProvider {
 			return true;
 		}
 
-		// NOTE: In the original fix for T135261, the output was discarded if 'vary-user' was
+		// NOTE: In the original fix for T135261, the output was discarded if ParserOutputFlags::VARY_USER was
 		// set for a null-edit. The reason was that the original rendering in that case was
 		// targeting the user making the null-edit, not the user who made the original edit,
 		// causing {{REVISIONUSER}} to return the wrong name.

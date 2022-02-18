@@ -299,7 +299,7 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
-	 * Sometime we don't want to build rss / atom feeds.
+	 * Sometimes we don't want to build rss / atom feeds.
 	 *
 	 * @stable to override
 	 * @return bool
@@ -381,8 +381,7 @@ abstract class QueryPage extends SpecialPage {
 				foreach ( $res as $i => $row ) {
 					if ( isset( $row->value ) ) {
 						if ( $this->usesTimestamps() ) {
-							$value = wfTimestamp( TS_UNIX,
-								$row->value );
+							$value = (int)wfTimestamp( TS_UNIX, $row->value );
 						} else {
 							$value = intval( $row->value ); // T16414
 						}
@@ -868,7 +867,7 @@ abstract class QueryPage extends SpecialPage {
 	 *
 	 * @param IResultWrapper $res The result wrapper to process. Needs to include the title
 	 *  field and namespace field, if the $ns parameter isn't set.
-	 * @param null $ns Use this namespace for the given titles in the result wrapper,
+	 * @param int|null $ns Use this namespace for the given titles in the result wrapper,
 	 *  instead of the namespace value of $res.
 	 */
 	protected function executeLBFromResultWrapper( IResultWrapper $res, $ns = null ) {

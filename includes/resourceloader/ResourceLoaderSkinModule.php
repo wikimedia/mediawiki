@@ -62,7 +62,8 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 *
 	 * "content-media":
 	 *     Styles for thumbnails and floated elements.
-	 *     Will add styles for the new media structure on wikis where $wgParserEnableLegacyMediaDOM is disabled.
+	 *     Will add styles for the new media structure on wikis where $wgParserEnableLegacyMediaDOM is disabled,
+	 *     or $wgUseContentMediaStyles is enabled.
 	 *     See https://www.mediawiki.org/wiki/Parsing/Media_structure
 	 *
 	 * "content-links":
@@ -123,7 +124,8 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			'print' => [ 'resources/src/mediawiki.skinning/logo-print.less' ],
 		],
 		'content-media' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/content.thumbnails.less' ],
+			'all' => [ 'resources/src/mediawiki.skinning/content.thumbnails-common.less' ],
+			'screen' => [ 'resources/src/mediawiki.skinning/content.thumbnails-screen.less' ],
 			'print' => [ 'resources/src/mediawiki.skinning/content.thumbnails-print.less' ],
 		],
 		'content-links' => [
@@ -194,7 +196,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	/**
 	 * Default for when the 'features' parameter is absent.
 	 *
-	 * For backward-compatiblity, when the parameter is not declared
+	 * For backward-compatibility, when the parameter is not declared
 	 * only 'logo' and 'legacy' styles are loaded.
 	 *
 	 * @var string[]
@@ -241,8 +243,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		$messages = '';
 		// NOTE: Compatibility is only applied when features are provided
 		// in map-form. The list-form does not currently get these.
-		$features = $listMode ? self::applyFeaturesCompatibility( array_fill_keys( $features, true ), $messages ) :
-			self::applyFeaturesCompatibility( $features, $messages );
+		$features = $listMode ? self::applyFeaturesCompatibility(
+			array_fill_keys( $features, true ), false, $messages
+		) : self::applyFeaturesCompatibility( $features, true, $messages );
 
 		foreach ( $features as $key => $enabled ) {
 			if ( !isset( self::FEATURE_FILES[$key] ) ) {
@@ -274,10 +277,13 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	/**
 	 * @internal
 	 * @param array $features
+	 * @param bool $addUnspecifiedFeatures whether to add new features if missing
 	 * @param string &$messages to report deprecations
 	 * @return array
 	 */
-	protected static function applyFeaturesCompatibility( array $features, &$messages = '' ): array {
+	protected static function applyFeaturesCompatibility(
+		array $features, bool $addUnspecifiedFeatures = true, &$messages = ''
+	): array {
 		// The `content` feature is mapped to `content-media`.
 		if ( isset( $features[ 'content' ] ) ) {
 			$features[ 'content-media' ] = $features[ 'content' ];
@@ -295,7 +301,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		}
 
 		// If `content-links` feature is set but no preference for `content-links-external` is set
-		if ( isset( $features[ 'content-links' ] ) && !isset( $features[ 'content-links-external' ] ) ) {
+		if ( $addUnspecifiedFeatures && isset( $features[ 'content-links' ] )
+			&& !isset( $features[ 'content-links-external' ] )
+		) {
 			// Assume the same true/false preference for both.
 			$features[ 'content-links-external' ] = $features[ 'content-links' ];
 		}
@@ -308,7 +316,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 
 		// The `content-links` feature was split out from `elements`.
 		// Make sure skins asking for `elements` also get these by default.
-		if ( isset( $features[ 'element' ] ) && !isset( $features[ 'content-links' ] ) ) {
+		if ( $addUnspecifiedFeatures && isset( $features[ 'element' ] ) && !isset( $features[ 'content-links' ] ) ) {
 			$features[ 'content-links' ] = $features[ 'element' ];
 		}
 
@@ -355,9 +363,22 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 						);
 					}
 				}
-				if ( $feature === 'content-media' && !$this->getConfig()->get( 'ParserEnableLegacyMediaDOM' ) ) {
+				if ( $feature === 'content-media' && (
+					!$this->getConfig()->get( 'ParserEnableLegacyMediaDOM' ) ||
+					$this->getConfig()->get( 'UseContentMediaStyles' )
+				) ) {
+					$featureFilePaths['all'][] = new ResourceLoaderFilePath(
+						'resources/src/mediawiki.skinning/content.media-common.less',
+						$defaultLocalBasePath,
+						$defaultRemoteBasePath
+					);
 					$featureFilePaths['screen'][] = new ResourceLoaderFilePath(
-						'resources/src/mediawiki.skinning/content.media.less',
+						'resources/src/mediawiki.skinning/content.media-screen.less',
+						$defaultLocalBasePath,
+						$defaultRemoteBasePath
+					);
+					$featureFilePaths['print'][] = new ResourceLoaderFilePath(
+						'resources/src/mediawiki.skinning/content.media-print.less',
 						$defaultLocalBasePath,
 						$defaultRemoteBasePath
 					);
@@ -531,7 +552,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	}
 
 	/**
-	 * Modifies configured logo width/height to ensure they are present and scaleable
+	 * Modifies configured logo width/height to ensure they are present and scalable
 	 * with different font-sizes.
 	 * @param array $logoElement with width, height and src keys.
 	 * @return array modified version of $logoElement

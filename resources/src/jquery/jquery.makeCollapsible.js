@@ -214,7 +214,7 @@
 	 * @param {jQuery} [options.$customTogglers] Elements to be used as togglers
 	 *   for this collapsible element. By default, if the collapsible element
 	 *   has an id attribute like 'mw-customcollapsible-XXX', elements with a
-	 *   *class* of 'mw-customtoggle-XXX' are made togglers for it.
+	 *   **class** of 'mw-customtoggle-XXX' are made togglers for it.
 	 * @param {boolean} [options.plainMode=false] Whether to use a "plain mode" when making the
 	 *   element collapsible - that is, hide entire tables and lists (instead
 	 *   of hiding only all rows but first of tables, and hiding each list
@@ -387,7 +387,7 @@
 			// eslint-disable-next-line no-jquery/no-class-state
 			if ( options.collapsed || $collapsible.hasClass( 'mw-collapsed' ) ) {
 				// One toggler can hook to multiple elements, and one element can have
-				// multiple togglers. This is the sanest way to handle that.
+				// multiple togglers. This is the best way to handle that.
 				actionHandler.call( $toggle.get( 0 ), null, { wasCollapsed: false } );
 			}
 

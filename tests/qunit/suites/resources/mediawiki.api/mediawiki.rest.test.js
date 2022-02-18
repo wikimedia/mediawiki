@@ -11,7 +11,7 @@
 
 		this.server.respond( function ( request ) {
 			assert.strictEqual( request.method, 'GET' );
-			assert.ok(
+			assert.true(
 				/rest.php\/test\/rest\/path\?queryParam=%2Fslash-will-be-encoded%3F$/.test( request.url ),
 				'Should have correct request URL'
 			);
@@ -36,7 +36,7 @@
 		} );
 
 		this.server.respond( function ( request ) {
-			assert.ok( /test.php\/test\/rest\/path$/.test( request.url ), 'Should have correct request URL' );
+			assert.true( /test.php\/test\/rest\/path$/.test( request.url ), 'Should have correct request URL' );
 			request.respond( 200, { 'Content-Type': 'application/json' }, '{}' );
 		} );
 
@@ -50,8 +50,8 @@
 
 		this.server.respond( function ( request ) {
 			assert.strictEqual( request.method, 'POST', 'Method should be POST' );
-			assert.ok( /rest.php\/test\/bla\/bla\/bla$/.test( request.url ), 'Url should be correct' );
-			assert.ok( /^application\/json/.test( request.requestHeaders[ 'Content-Type' ] ), 'Should set JSON content-type' );
+			assert.true( /rest.php\/test\/bla\/bla\/bla$/.test( request.url ), 'Url should be correct' );
+			assert.true( /^application\/json/.test( request.requestHeaders[ 'Content-Type' ] ), 'Should set JSON content-type' );
 			assert.strictEqual( request.requestHeaders.authorization, 'my_token', 'Should pass request header' );
 			assert.deepEqual( JSON.parse( request.requestBody ), { param: 'value' }, 'Body should be correct' );
 			request.respond( 201, { 'Content-Type': 'application/json' }, '{}' );
@@ -99,7 +99,7 @@
 		this.api.abort();
 		assert.strictEqual( this.requests.length, 2, 'Check both requests triggered' );
 		this.requests.forEach( function ( request, i ) {
-			assert.ok( request.abort.calledOnce, 'abort request number ' + i );
+			assert.true( request.abort.calledOnce, 'abort request number ' + i );
 		} );
 	} );
 }() );

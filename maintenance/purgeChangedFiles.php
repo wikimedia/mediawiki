@@ -178,7 +178,7 @@ class PurgeChangedFiles extends Maintenance {
 					if ( !$file->exists() && $repo->fileExists( $file->getPath() ) ) {
 						$dpath = $this->getDeletedPath( $repo, $file );
 						if ( $repo->fileExists( $dpath ) ) {
-							// Sanity check to avoid data loss
+							// Check to avoid data loss
 							$repo->getBackend()->delete( [ 'src' => $file->getPath() ] );
 							$this->verbose( "Deleted orphan file: {$file->getPath()}.\n" );
 						} else {
@@ -230,7 +230,7 @@ class PurgeChangedFiles extends Maintenance {
 			if ( !$file->exists() && $repo->fileExists( $ofile->getPath() ) ) {
 				$dpath = $this->getDeletedPath( $repo, $ofile );
 				if ( $repo->fileExists( $dpath ) ) {
-					// Sanity check to avoid data loss
+					// Check to avoid data loss
 					$repo->getBackend()->delete( [ 'src' => $ofile->getPath() ] );
 					$this->output( "Deleted orphan file: {$ofile->getPath()}.\n" );
 				} else {

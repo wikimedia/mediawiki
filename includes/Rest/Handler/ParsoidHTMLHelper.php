@@ -21,6 +21,7 @@
  */
 namespace MediaWiki\Rest\Handler;
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Parser\RevisionOutputCache;
@@ -99,11 +100,20 @@ class ParsoidHTMLHelper {
 		$parsoid = $this->createParsoid();
 		$pageConfig = $this->createPageConfig();
 		try {
+			$startTime = microtime( true );
 			$pageBundle = $parsoid->wikitext2html( $pageConfig, [
 				'discardDataParsoid' => true,
 				'pageBundle' => true,
 			] );
 			$fakeParserOutput = new ParserOutput( $pageBundle->html );
+			$time = microtime( true ) - $startTime;
+			if ( $time > 3 ) {
+				LoggerFactory::getInstance( 'slow-parsoid' )
+					->info( 'Parsing {title} was slow, took {time} seconds', [
+						'time' => number_format( $time, 2 ),
+						'title' => (string)$this->page,
+					] );
+			}
 			return $fakeParserOutput;
 		} catch ( ClientError $e ) {
 			throw new LocalizedHttpException(

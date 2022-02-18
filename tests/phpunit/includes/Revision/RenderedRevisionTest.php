@@ -5,6 +5,9 @@ namespace MediaWiki\Tests\Revision;
 use Content;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Content\Renderer\ContentRenderer;
+use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RenderedRevision;
@@ -14,13 +17,13 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
-use MockTitleTrait;
 use ParserOptions;
 use ParserOutput;
 use PHPUnit\Framework\MockObject\MockObject;
-use Title;
+use TitleValue;
 use Wikimedia\TestingAccessWrapper;
 use WikitextContent;
 
@@ -28,10 +31,13 @@ use WikitextContent;
  * @covers \MediaWiki\Revision\RenderedRevision
  */
 class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
-	use MockTitleTrait;
+	use MockAuthorityTrait;
 
 	/** @var callable */
 	private $combinerCallback;
+
+	/** @var ContentRenderer */
+	private $contentRenderer;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -39,6 +45,8 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$this->combinerCallback = function ( RenderedRevision $rr, array $hints = [] ) {
 			return $this->combineOutput( $rr, $hints );
 		};
+
+		$this->contentRenderer = $this->getServiceContainer()->getContentRenderer();
 	}
 
 	private function combineOutput( RenderedRevision $rrev, array $hints = [] ) {
@@ -80,21 +88,8 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param int $articleId
-	 * @param int $revisionId
-	 * @return Title
-	 */
-	private function getMockTitle( $articleId, $revisionId ) {
-		return $this->makeMockTitle( 'RenderTestPage', [
-			'id' => $articleId,
-			'revision' => $revisionId,
-			'language' => $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' )
-		] );
-	}
-
-	/**
 	 * @param string $class
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param null|int $id
 	 * @param int $visibility
 	 * @param Content[]|null $content
@@ -102,7 +97,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getMockRevision(
 		$class,
-		$title,
+		$page,
 		$id = null,
 		$visibility = 0,
 		array $content = null
@@ -127,14 +122,16 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 				'getId',
 				'getPageId',
 				'getPageAsLinkTarget',
+				'getPage',
 				'getUser',
 				'getVisibility',
 				'getTimestamp',
 			] )->getMock();
 
 		$mock->method( 'getId' )->willReturn( $id );
-		$mock->method( 'getPageId' )->willReturn( $title->getArticleID() );
-		$mock->method( 'getPageAsLinkTarget' )->willReturn( $title );
+		$mock->method( 'getPageId' )->willReturn( $page->getId() );
+		$mock->method( 'getPageAsLinkTarget' )->willReturn( TitleValue::castPageToLinkTarget( $page ) );
+		$mock->method( 'getPage' )->willReturn( $page );
 		$mock->method( 'getUser' )->willReturn( $frank );
 		$mock->method( 'getVisibility' )->willReturn( $visibility );
 		$mock->method( 'getTimestamp' )->willReturn( '20180101000003' );
@@ -151,8 +148,10 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testConstructorInvalidArguments() {
-		$title = $this->getMockTitle( 0, 21 );
-		$rev = $this->getMockRevision( RevisionStoreRecord::class, $title );
+		$rev = $this->getMockRevision(
+			RevisionStoreRecord::class,
+			PageIdentityValue::localIdentity( 0, NS_MAIN, __METHOD__ )
+		);
 		$options = ParserOptions::newCanonical( 'canonical' );
 
 		$this->expectException( InvalidArgumentException::class );
@@ -160,20 +159,27 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			'User must be specified when setting audience to FOR_THIS_USER'
 		);
 		$rr = new RenderedRevision(
-			$title,
 			$rev,
 			$options,
+			$this->contentRenderer,
 			$this->combinerCallback,
 			RevisionRecord::FOR_THIS_USER
 		);
 	}
 
 	public function testGetRevisionParserOutput_new() {
-		$title = $this->getMockTitle( 0, 21 );
-		$rev = $this->getMockRevision( RevisionStoreRecord::class, $title );
+		$rev = $this->getMockRevision(
+			RevisionStoreRecord::class,
+			PageIdentityValue::localIdentity( 0, NS_MAIN, 'RenderTestPage' )
+		);
 
 		$options = ParserOptions::newCanonical( 'canonical' );
-		$rr = new RenderedRevision( $title, $rev, $options, $this->combinerCallback );
+		$rr = new RenderedRevision(
+			$rev,
+			$options,
+			$this->contentRenderer,
+			$this->combinerCallback
+		);
 
 		$this->assertFalse( $rr->isContentDeleted(), 'isContentDeleted' );
 
@@ -188,8 +194,8 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetRevisionParserOutput_previewWithSelfTransclusion() {
-		$title = $this->getMockTitle( 0, 21 );
-		$name = $title->getPrefixedText();
+		$title = PageIdentityValue::localIdentity( 0, NS_MAIN, __METHOD__ );
+		$name = $this->getServiceContainer()->getTitleFormatter()->getPrefixedText( $title );
 
 		$text = "(ONE)<includeonly>(TWO)</includeonly><noinclude>#{{:$name}}#</noinclude>";
 
@@ -200,18 +206,31 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rev = $this->getMockRevision( RevisionStoreRecord::class, $title, null, 0, $content );
 
 		$options = ParserOptions::newCanonical( 'canonical' );
-		$rr = new RenderedRevision( $title, $rev, $options, $this->combinerCallback );
+		$rr = new RenderedRevision(
+			$rev,
+			$options,
+			$this->contentRenderer,
+			$this->combinerCallback
+		);
 
 		$html = $rr->getRevisionParserOutput()->getText();
 		$this->assertStringContainsString( '(ONE)#(ONE)(TWO)#', $html );
 	}
 
 	public function testGetRevisionParserOutput_current() {
-		$title = $this->getMockTitle( 7, 21 );
-		$rev = $this->getMockRevision( RevisionStoreRecord::class, $title, 21 );
+		$rev = $this->getMockRevision(
+			RevisionStoreRecord::class,
+			PageIdentityValue::localIdentity( 0, NS_MAIN, 'RenderTestPage' ),
+			21
+		);
 
 		$options = ParserOptions::newCanonical( 'canonical' );
-		$rr = new RenderedRevision( $title, $rev, $options, $this->combinerCallback );
+		$rr = new RenderedRevision(
+			$rev,
+			$options,
+			$this->contentRenderer,
+			$this->combinerCallback
+		);
 
 		$this->assertFalse( $rr->isContentDeleted(), 'isContentDeleted' );
 
@@ -229,11 +248,19 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetRevisionParserOutput_old() {
-		$title = $this->getMockTitle( 7, 21 );
-		$rev = $this->getMockRevision( RevisionStoreRecord::class, $title, 11 );
+		$rev = $this->getMockRevision(
+			RevisionStoreRecord::class,
+			PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' ),
+			11
+		);
 
 		$options = ParserOptions::newCanonical( 'canonical' );
-		$rr = new RenderedRevision( $title, $rev, $options, $this->combinerCallback );
+		$rr = new RenderedRevision(
+			$rev,
+			$options,
+			$this->contentRenderer,
+			$this->combinerCallback
+		);
 
 		$this->assertFalse( $rr->isContentDeleted(), 'isContentDeleted' );
 
@@ -251,11 +278,19 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetRevisionParserOutput_archive() {
-		$title = $this->getMockTitle( 7, 21 );
-		$rev = $this->getMockRevision( RevisionArchiveRecord::class, $title, 11 );
+		$rev = $this->getMockRevision(
+			RevisionArchiveRecord::class,
+			PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' ),
+			11
+		);
 
 		$options = ParserOptions::newCanonical( 'canonical' );
-		$rr = new RenderedRevision( $title, $rev, $options, $this->combinerCallback );
+		$rr = new RenderedRevision(
+			$rev,
+			$options,
+			$this->contentRenderer,
+			$this->combinerCallback
+		);
 
 		$this->assertFalse( $rr->isContentDeleted(), 'isContentDeleted' );
 
@@ -273,39 +308,41 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetRevisionParserOutput_suppressed() {
-		$title = $this->getMockTitle( 7, 21 );
 		$rev = $this->getMockRevision(
 			RevisionStoreRecord::class,
-			$title,
+			PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' ),
 			11,
 			RevisionRecord::DELETED_TEXT
 		);
 
 		$options = ParserOptions::newCanonical( 'canonical' );
-		$rr = new RenderedRevision( $title, $rev, $options, $this->combinerCallback );
+		$rr = new RenderedRevision(
+			$rev,
+			$options,
+			$this->contentRenderer,
+			$this->combinerCallback
+		);
 
 		$this->expectException( SuppressedDataException::class );
 		$rr->getRevisionParserOutput();
 	}
 
 	public function testGetRevisionParserOutput_privileged() {
-		$title = $this->getMockTitle( 7, 21 );
 		$rev = $this->getMockRevision(
 			RevisionStoreRecord::class,
-			$title,
+			PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' ),
 			11,
 			RevisionRecord::DELETED_TEXT
 		);
 
 		$options = ParserOptions::newCanonical( 'canonical' );
-		$sysop = $this->getTestUser( [ 'sysop' ] )->getUser(); // privileged!
 		$rr = new RenderedRevision(
-			$title,
 			$rev,
 			$options,
+			$this->contentRenderer,
 			$this->combinerCallback,
 			RevisionRecord::FOR_THIS_USER,
-			$sysop
+			$this->mockRegisteredUltimateAuthority()
 		);
 
 		$this->assertTrue( $rr->isContentDeleted(), 'isContentDeleted' );
@@ -325,19 +362,18 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetRevisionParserOutput_raw() {
-		$title = $this->getMockTitle( 7, 21 );
 		$rev = $this->getMockRevision(
 			RevisionStoreRecord::class,
-			$title,
+			PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' ),
 			11,
 			RevisionRecord::DELETED_TEXT
 		);
 
 		$options = ParserOptions::newCanonical( 'canonical' );
 		$rr = new RenderedRevision(
-			$title,
 			$rev,
 			$options,
+			$this->contentRenderer,
 			$this->combinerCallback,
 			RevisionRecord::RAW
 		);
@@ -364,11 +400,20 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			'aux' => new WikitextContent( '[[Goats]]' ),
 		];
 
-		$title = $this->getMockTitle( 7, 21 );
-		$rev = $this->getMockRevision( RevisionStoreRecord::class, $title, 11, 0, $content );
+		$rev = $this->getMockRevision(
+			RevisionStoreRecord::class,
+			PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' ),
+			11,
+			0,
+			$content );
 
 		$options = ParserOptions::newCanonical( 'canonical' );
-		$rr = new RenderedRevision( $title, $rev, $options, $this->combinerCallback );
+		$rr = new RenderedRevision(
+			$rev,
+			$options,
+			$this->contentRenderer,
+			$this->combinerCallback
+		);
 
 		$combinedOutput = $rr->getRevisionParserOutput();
 		$mainOutput = $rr->getSlotParserOutput( SlotRecord::MAIN );
@@ -396,9 +441,9 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetRevisionParserOutput_incompleteNoId() {
-		$title = $this->getMockTitle( 7, 21 );
-
-		$rev = new MutableRevisionRecord( $title );
+		$rev = new MutableRevisionRecord(
+			PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' )
+		);
 
 		$text = "";
 		$text .= "* page:{{PAGENAME}}!\n";
@@ -409,7 +454,12 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 
 		$options = ParserOptions::newCanonical( 'canonical' );
-		$rr = new RenderedRevision( $title, $rev, $options, $this->combinerCallback );
+		$rr = new RenderedRevision(
+			$rev,
+			$options,
+			$this->contentRenderer,
+			$this->combinerCallback
+		);
 
 		// MutableRevisionRecord without ID should be used by the parser.
 		// USeful for fake
@@ -422,9 +472,8 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetRevisionParserOutput_incompleteWithId() {
-		$title = $this->getMockTitle( 7, 21 );
-
-		$rev = new MutableRevisionRecord( $title );
+		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' );
+		$rev = new MutableRevisionRecord( $page );
 		$rev->setId( 21 );
 
 		$text = "";
@@ -437,13 +486,18 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 
 		$actualRevision = $this->getMockRevision(
 			RevisionStoreRecord::class,
-			$title,
+			$page,
 			21,
 			RevisionRecord::DELETED_TEXT
 		);
 
 		$options = ParserOptions::newCanonical( 'canonical' );
-		$rr = new RenderedRevision( $title, $rev, $options, $this->combinerCallback );
+		$rr = new RenderedRevision(
+			$rev,
+			$options,
+			$this->contentRenderer,
+			$this->combinerCallback
+		);
 
 		// MutableRevisionRecord with ID should not be used by the parser,
 		// revision should be loaded instead!
@@ -453,7 +507,6 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 
 		$revisionStore->expects( $this->once() )
 			->method( 'getKnownCurrentRevision' )
-			->with( $title, 0 )
 			->willReturn( $actualRevision );
 
 		$this->setService( 'RevisionStore', $revisionStore );
@@ -467,11 +520,18 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSetRevisionParserOutput() {
-		$title = $this->getMockTitle( 3, 21 );
-		$rev = $this->getMockRevision( RevisionStoreRecord::class, $title );
+		$rev = $this->getMockRevision(
+			RevisionStoreRecord::class,
+			PageIdentityValue::localIdentity( 3, NS_MAIN, 'RenderTestPage' )
+		);
 
 		$options = ParserOptions::newCanonical( 'canonical' );
-		$rr = new RenderedRevision( $title, $rev, $options, $this->combinerCallback );
+		$rr = new RenderedRevision(
+			$rev,
+			$options,
+			$this->contentRenderer,
+			$this->combinerCallback
+		);
 
 		$output = new ParserOutput( 'Kittens' );
 		$rr->setRevisionParserOutput( $output );
@@ -484,13 +544,15 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNoHtml() {
-		/** @var MockObject|Content $mockContent */
-		$mockContent = $this->getMockBuilder( WikitextContent::class )
+		$content = new WikitextContent( 'whatever' );
+
+		/** @var MockObject|ContentRenderer $mockContentRenderer */
+		$mockContentRenderer = $this->getMockBuilder( ContentRenderer::class )
 			->onlyMethods( [ 'getParserOutput' ] )
-			->setConstructorArgs( [ 'Whatever' ] )
+			->disableOriginalConstructor()
 			->getMock();
-		$mockContent->method( 'getParserOutput' )
-			->willReturnCallback( function ( Title $title, $revId = null,
+		$mockContentRenderer->method( 'getParserOutput' )
+			->willReturnCallback( function ( Content $content, PageReference $page, $revId = null,
 				ParserOptions $options = null, $generateHtml = true
 			) {
 				if ( !$generateHtml ) {
@@ -501,14 +563,19 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 				}
 			} );
 
-		$title = $this->getMockTitle( 7, 21 );
-
-		$rev = new MutableRevisionRecord( $title );
-		$rev->setContent( SlotRecord::MAIN, $mockContent );
-		$rev->setContent( 'aux', $mockContent );
+		$rev = new MutableRevisionRecord(
+			PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' )
+		);
+		$rev->setContent( SlotRecord::MAIN, $content );
+		$rev->setContent( 'aux', $content );
 
 		$options = ParserOptions::newCanonical( 'canonical' );
-		$rr = new RenderedRevision( $title, $rev, $options, $this->combinerCallback );
+		$rr = new RenderedRevision(
+			$rev,
+			$options,
+			$mockContentRenderer,
+			$this->combinerCallback
+		);
 
 		$output = $rr->getSlotParserOutput( SlotRecord::MAIN, [ 'generate-html' => false ] );
 		$this->assertFalse( $output->hasText(), 'hasText' );
@@ -518,9 +585,8 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testUpdateRevision() {
-		$title = $this->getMockTitle( 7, 21 );
-
-		$rev = new MutableRevisionRecord( $title );
+		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' );
+		$rev = new MutableRevisionRecord( $page );
 
 		$text = "";
 		$text .= "* page:{{PAGENAME}}!\n";
@@ -532,14 +598,19 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rev->setContent( 'aux', new WikitextContent( '[[Goats]]' ) );
 
 		$options = ParserOptions::newCanonical( 'canonical' );
-		$rr = new RenderedRevision( $title, $rev, $options, $this->combinerCallback );
+		$rr = new RenderedRevision(
+			$rev,
+			$options,
+			$this->contentRenderer,
+			$this->combinerCallback
+		);
 
 		$firstOutput = $rr->getRevisionParserOutput();
 		$mainOutput = $rr->getSlotParserOutput( SlotRecord::MAIN );
 		$auxOutput = $rr->getSlotParserOutput( 'aux' );
 
 		// emulate a saved revision
-		$savedRev = new MutableRevisionRecord( $title );
+		$savedRev = new MutableRevisionRecord( $page );
 		$savedRev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 		$savedRev->setContent( 'aux', new WikitextContent( '[[Goats]]' ) );
 		$savedRev->setId( 23 ); // saved, new
@@ -566,16 +637,20 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testUpdateRevision_revIdSet() {
-		$title = $this->getMockTitle( 7, 21 );
-
-		$rev = new MutableRevisionRecord( $title );
+		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'RenderTestPage' );
+		$rev = new MutableRevisionRecord( $page );
 		$rev->setId( 123 );
 		$rev->setContent( SlotRecord::MAIN, new WikitextContent( 'FooBar' ) );
 
 		$options = ParserOptions::newCanonical( 'canonical' );
-		$rr = new RenderedRevision( $title, $rev, $options, $this->combinerCallback );
+		$rr = new RenderedRevision(
+			$rev,
+			$options,
+			$this->contentRenderer,
+			$this->combinerCallback
+		);
 
-		$newRev = new MutableRevisionRecord( $title );
+		$newRev = new MutableRevisionRecord( $page );
 		$newRev->setId( 321 ); // Different
 		$newRev->setContent( SlotRecord::MAIN, new WikitextContent( 'FooBar' ) );
 

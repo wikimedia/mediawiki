@@ -11,6 +11,7 @@
 /vendor/
 /tests/coverage/
 /tests/phpunit/data/registration/duplicate_keys.json
+/tests/phpunit/unit/includes/Settings/Source/fixtures/bad.json
 /maintenance/benchmarks/data/
 
 # Nested projects
@@ -19,7 +20,11 @@
 
 # Language files written automatically by TranslateWiki
 /**/i18n/**/*.json
-!/**/i18n/**/{en,qqq}.json
+!/**/i18n/**/en.json
+!/**/i18n/**/qqq.json
 
-# Default upload path
+# Ignore directories where MW may write internal files (T291674)
+# Ref $wgCacheDirectory (installer)
+# Ref $wgUploadDirectory (run-time default)
+/cache/
 /images/

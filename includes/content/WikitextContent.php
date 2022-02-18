@@ -25,7 +25,6 @@
  * @author Daniel Kinzler
  */
 
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -41,11 +40,6 @@ class WikitextContent extends TextContent {
 	 * @var string[] flags set by PST
 	 */
 	private $preSaveTransformFlags = [];
-
-	/**
-	 * @var string|null Stack trace of the previous parse
-	 */
-	private $previousParseStackTrace = null;
 
 	/**
 	 * @stable to call
@@ -150,14 +144,14 @@ class WikitextContent extends TextContent {
 	 *
 	 * @return array List of two elements: Title|null and string.
 	 */
-	protected function getRedirectTargetAndText() {
-		global $wgMaxRedirects;
+	public function getRedirectTargetAndText() {
+		$maxRedirects = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxRedirects' );
 
 		if ( $this->redirectTargetAndText !== null ) {
 			return $this->redirectTargetAndText;
 		}
 
-		if ( $wgMaxRedirects < 1 ) {
+		if ( $maxRedirects < 1 ) {
 			// redirects are disabled, so quit early
 			$this->redirectTargetAndText = [ null, $this->getText() ];
 			return $this->redirectTargetAndText;
@@ -245,21 +239,21 @@ class WikitextContent extends TextContent {
 	 * @return bool
 	 */
 	public function isCountable( $hasLinks = null, Title $title = null ) {
-		global $wgArticleCountMethod;
+		$articleCountMethod = MediaWikiServices::getInstance()->getMainConfig()->get( 'ArticleCountMethod' );
 
 		if ( $this->isRedirect() ) {
 			return false;
 		}
 
-		if ( $wgArticleCountMethod === 'link' ) {
+		if ( $articleCountMethod === 'link' ) {
 			if ( $hasLinks === null ) { # not known, find out
 				// @TODO: require an injected title
 				if ( !$title ) {
 					$context = RequestContext::getMain();
 					$title = $context->getTitle();
 				}
-
-				$po = $this->getParserOutput( $title, null, null, false );
+				$contentRenderer = MediaWikiServices::getInstance()->getContentRenderer();
+				$po = $contentRenderer->getParserOutput( $this, $title, null, null, false );
 				$links = $po->getLinks();
 				$hasLinks = !empty( $links );
 			}
@@ -286,78 +280,6 @@ class WikitextContent extends TextContent {
 	}
 
 	/**
-	 * Returns a ParserOutput object resulting from parsing the content's text
-	 * using the global Parser service.
-	 *
-	 * @param Title $title
-	 * @param int|null $revId ID of the revision being rendered.
-	 *  See Parser::parse() for the ramifications. (default: null)
-	 * @param ParserOptions $options (default: null)
-	 * @param bool $generateHtml (default: true)
-	 * @param ParserOutput &$output ParserOutput representing the HTML form of the text,
-	 *           may be manipulated or replaced.
-	 */
-	protected function fillParserOutput( Title $title, $revId,
-			ParserOptions $options, $generateHtml, ParserOutput &$output
-	) {
-		$stackTrace = ( new RuntimeException() )->getTraceAsString();
-		if ( $this->previousParseStackTrace ) {
-			// NOTE: there may be legitimate changes to re-parse the same WikiText content,
-			// e.g. if predicted revision ID for the REVISIONID magic word mismatched.
-			// But that should be rare.
-			$logger = LoggerFactory::getInstance( 'DuplicateParse' );
-			$logger->debug(
-				__METHOD__ . ': Possibly redundant parse!',
-				[
-					'title' => $title->getPrefixedDBkey(),
-					'rev' => $revId,
-					'options-hash' => $options->optionsHash(
-						ParserOptions::allCacheVaryingOptions(),
-						$title
-					),
-					'trace' => $stackTrace,
-					'previous-trace' => $this->previousParseStackTrace,
-				]
-			);
-		}
-		$this->previousParseStackTrace = $stackTrace;
-
-		list( $redir, $text ) = $this->getRedirectTargetAndText();
-		$output = MediaWikiServices::getInstance()->getParser()
-			->parse( $text, $title, $options, true, true, $revId );
-
-		// Add redirect indicator at the top
-		if ( $redir ) {
-			// Make sure to include the redirect link in pagelinks
-			$output->addLink( $redir );
-			if ( $generateHtml ) {
-				$chain = $this->getRedirectChain();
-				$output->setText(
-					Article::getRedirectHeaderHtml( $title->getPageLanguage(), $chain, false ) .
-					$output->getRawText()
-				);
-				$output->addModuleStyles( 'mediawiki.action.view.redirectPage' );
-			}
-		}
-
-		// Pass along user-signature flag
-		if ( in_array( 'user-signature', $this->preSaveTransformFlags ) ) {
-			$output->setFlag( 'user-signature' );
-		}
-	}
-
-	/**
-	 * @throws MWException
-	 */
-	protected function getHtml() {
-		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
-		throw new MWException(
-			"getHtml() not implemented for wikitext. "
-				. "Use getParserOutput()->getText()."
-		);
-	}
-
-	/**
 	 * This implementation calls $word->match() on the this TextContent object's text.
 	 *
 	 * @param MagicWord $word
@@ -377,5 +299,14 @@ class WikitextContent extends TextContent {
 	 */
 	public function setPreSaveTransformFlags( array $flags ) {
 		$this->preSaveTransformFlags = $flags;
+	}
+
+	/**
+	 * Records flags set by preSaveTransform
+	 * @internal for use by WikitextContentHandler
+	 * @return string[]
+	 */
+	public function getPreSaveTransformFlags() {
+		return $this->preSaveTransformFlags;
 	}
 }

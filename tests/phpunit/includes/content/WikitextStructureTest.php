@@ -12,7 +12,8 @@ class WikitextStructureTest extends MediaWikiLangTestCase {
 	 */
 	private function getStructure( $text ) {
 		$content = new WikitextContent( $text );
-		$parserOutput = $content->getParserOutput( Title::newFromText( 'TestTitle' ) );
+		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
+		$parserOutput = $contentRenderer->getParserOutput( $content, Title::newFromText( 'TestTitle' ) );
 		return new WikiTextStructure( $parserOutput );
 	}
 

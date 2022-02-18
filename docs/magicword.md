@@ -78,7 +78,7 @@ class MyExtensionHooks {
 }
 ```
 
-- Online documentation (contains more informations):
+- Online documentation (contains more information):
 - Magic words: <https://www.mediawiki.org/wiki/Manual:Magic_words>
 - Variables: <https://www.mediawiki.org/wiki/Manual:Variable>
 - Parser functions: <https://www.mediawiki.org/wiki/Manual:Parser_functions>

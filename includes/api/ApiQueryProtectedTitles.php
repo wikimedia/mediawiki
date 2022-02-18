@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\CommentFormatter\RowCommentFormatter;
+
 /**
  * Query module to enumerate all create-protected pages.
  *
@@ -30,18 +32,24 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 	/** @var CommentStore */
 	private $commentStore;
 
+	/** @var RowCommentFormatter */
+	private $commentFormatter;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param CommentStore $commentStore
+	 * @param RowCommentFormatter $commentFormatter
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
-		CommentStore $commentStore
+		CommentStore $commentStore,
+		RowCommentFormatter $commentFormatter
 	) {
 		parent::__construct( $query, $moduleName, 'pt' );
 		$this->commentStore = $commentStore;
+		$this->commentFormatter = $commentFormatter;
 	}
 
 	public function execute() {
@@ -112,6 +120,14 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
 		if ( $resultPageSet === null ) {
 			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__, 'pt' );
+			if ( isset( $prop['parsedcomment'] ) ) {
+				$formattedComments = $this->commentFormatter->formatItems(
+					$this->commentFormatter->rows( $res )
+						->commentKey( 'pt_reason' )
+						->namespaceField( 'pt_namespace' )
+						->titleField( 'pt_title' )
+				);
+			}
 		}
 
 		$count = 0;
@@ -119,7 +135,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
 		$titles = [];
 
-		foreach ( $res as $row ) {
+		foreach ( $res as $rowOffset => $row ) {
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are
 				// additional pages to be had. Stop here...
@@ -150,9 +166,8 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				}
 
 				if ( isset( $prop['parsedcomment'] ) ) {
-					$vals['parsedcomment'] = Linker::formatComment(
-						$this->commentStore->getComment( 'pt_reason', $row )->text
-					);
+					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+					$vals['parsedcomment'] = $formattedComments[$rowOffset];
 				}
 
 				if ( isset( $prop['expiry'] ) ) {

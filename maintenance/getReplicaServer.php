@@ -34,19 +34,33 @@ class GetReplicaServer extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( "group", "Query group to check specifically" );
+		$this->addOption( 'cluster', 'Use an external cluster by name', false, true );
 		$this->addDescription( 'Report the hostname of a replica DB server' );
 	}
 
 	public function execute() {
-		if ( $this->hasOption( 'group' ) ) {
-			$db = $this->getDB( DB_REPLICA, $this->getOption( 'group' ) );
-			$host = $db->getServer();
+		$lbf = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		if ( $this->hasOption( 'cluster' ) ) {
+			try {
+				$lb = $lbf->getExternalLB( $this->getOption( 'cluster' ) );
+			} catch ( InvalidArgumentException $e ) {
+				$this->fatalError( 'Error: ' . $e->getMessage() );
+			}
 		} else {
-			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-			$i = $lb->getReaderIndex();
-			$host = $lb->getServerName( $i );
+			$lb = $lbf->getMainLB();
 		}
-		$this->output( "$host\n" );
+
+		$group = $this->getOption( 'group', false );
+		$index = $lb->getReaderIndex( $group );
+		if ( $index === false && $group ) {
+			// retry without the group; it may not exist
+			$index = $lb->getReaderIndex( false );
+		}
+		if ( $index === false ) {
+			$this->fatalError( 'Error: unable to get reader index' );
+		}
+
+		$this->output( $lb->getServerName( $index ) . "\n" );
 	}
 }
 

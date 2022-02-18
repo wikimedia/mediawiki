@@ -23,6 +23,7 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Wikimedia\AtEase\AtEase;
 
@@ -115,10 +116,10 @@ class GitInfo {
 	 * fallback in the extension directory itself
 	 * @since 1.24
 	 */
-	protected static function getCacheFilePath( $repoDir, $forceCache ) {
-		global $IP, $wgGitInfoCacheDirectory;
-
-		if ( $wgGitInfoCacheDirectory ) {
+	protected static function getCacheFilePath( $repoDir ) {
+		global $IP;
+		$gitInfoCacheDirectory = MediaWikiServices::getInstance()->getMainConfig()->get( 'GitInfoCacheDirectory' );
+		if ( $gitInfoCacheDirectory ) {
 			// Convert both $IP and $repoDir to canonical paths to protect against
 			// $IP having changed between the settings files and runtime.
 			$realIP = realpath( $IP );
@@ -229,20 +230,20 @@ class GitInfo {
 	 * @return int|bool Commit date (UNIX timestamp) or false
 	 */
 	public function getHeadCommitDate() {
-		global $wgGitBin;
+		$gitBin = MediaWikiServices::getInstance()->getMainConfig()->get( 'GitBin' );
 
 		if ( !isset( $this->cache['headCommitDate'] ) ) {
 			$date = false;
 
 			// Suppress warnings about any open_basedir restrictions affecting $wgGitBin (T74445).
-			$isFile = AtEase::quietCall( 'is_file', $wgGitBin );
+			$isFile = AtEase::quietCall( 'is_file', $gitBin );
 			if ( $isFile &&
-				is_executable( $wgGitBin ) &&
+				is_executable( $gitBin ) &&
 				!Shell::isDisabled() &&
 				$this->getHead() !== false
 			) {
 				$cmd = [
-					$wgGitBin,
+					$gitBin,
 					'show',
 					'-s',
 					'--format=format:%ct',
@@ -425,10 +426,10 @@ class GitInfo {
 	 * @return array
 	 */
 	protected static function getViewers() {
-		global $wgGitRepositoryViewers;
+		$gitRepositoryViewers = MediaWikiServices::getInstance()->getMainConfig()->get( 'GitRepositoryViewers' );
 
 		if ( self::$viewers === false ) {
-			self::$viewers = $wgGitRepositoryViewers;
+			self::$viewers = $gitRepositoryViewers;
 			Hooks::runner()->onGitViewers( self::$viewers );
 		}
 

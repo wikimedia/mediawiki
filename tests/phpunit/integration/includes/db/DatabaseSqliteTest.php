@@ -344,8 +344,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 
 		// Versions tested
 		$versions = [
-			'1.27',
-			'1.28',
 			'1.29',
 			'1.30',
 			'1.31',
@@ -353,6 +351,8 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 			'1.33',
 			'1.34',
 			'1.35',
+			'1.36',
+			'1.37',
 		];
 
 		// Mismatches for these columns we can safely ignore
@@ -529,24 +529,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$res = $db->query( 'SELECT "a" LIKE "A" AS a' );
 		$row = $res->fetchRow();
 		$this->assertFalse( (bool)$row['a'] );
-	}
-
-	/**
-	 * @covers DatabaseSqlite::numFields
-	 */
-	public function testNumFields() {
-		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
-
-		$databaseCreation = $db->query( 'CREATE TABLE a ( a_1 )', __METHOD__ );
-		$this->assertInstanceOf( ResultWrapper::class, $databaseCreation, "Failed to create table a" );
-		$res = $db->select( 'a', '*' );
-		$this->assertSame( 0, $db->numFields( $res ), "expects to get 0 fields for an empty table" );
-		$insertion = $db->insert( 'a', [ 'a_1' => 10 ], __METHOD__ );
-		$this->assertTrue( $insertion, "Insertion failed" );
-		$res = $db->select( 'a', '*' );
-		$this->assertSame( 1, $db->numFields( $res ), "wrong number of fields" );
-
-		$this->assertTrue( $db->close(), "closing database" );
 	}
 
 	/**

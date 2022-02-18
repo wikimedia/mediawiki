@@ -8,7 +8,7 @@ $( function () {
 	// Always required if checked, otherwise it depends, so we use the original
 	var $emailLabel = $( 'label[for="wpEmail"]' ),
 		originalText = $emailLabel.text(),
-		requiredText = mw.message( 'createacct-emailrequired' ).text(),
+		requiredText = mw.msg( 'createacct-emailrequired' ),
 		$createByMailCheckbox = $( '#wpCreateaccountMail' ),
 		$beforePwds = $( '.mw-row-password' ).first().prev(),
 		$pwds;

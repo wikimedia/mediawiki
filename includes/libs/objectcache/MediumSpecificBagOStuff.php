@@ -34,8 +34,6 @@ use Wikimedia\WaitConditionLoop;
 abstract class MediumSpecificBagOStuff extends BagOStuff {
 	/** @var array<string,array> Map of (key => (class, depth, expiry) */
 	protected $locks = [];
-	/** @var int ERR_* class constant */
-	protected $lastError = self::ERR_NONE;
 	/** @var int Seconds */
 	protected $syncTimeout;
 	/** @var int Bytes; chunk size of segmented cache values */
@@ -258,7 +256,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * The callback function returns the new value given the current value
 	 * (which will be false if not present), and takes the arguments:
 	 * (this BagOStuff, cache key, current value, TTL).
-	 * The TTL parameter is reference set to $exptime. It can be overriden in the callback.
+	 * The TTL parameter is reference set to $exptime. It can be overridden in the callback.
 	 * Nothing is stored nor deleted if the callback returns false.
 	 *
 	 * @param string $key
@@ -286,12 +284,12 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		do {
 			$token = self::PASS_BY_REF; // passed by reference
 			// Get the old value and CAS token from cache
-			$this->clearLastError();
+			$watchPoint = $this->watchErrors();
 			$currentValue = $this->resolveSegments(
 				$key,
 				$this->doGet( $key, $flags, $token )
 			);
-			if ( $this->getLastError() ) {
+			if ( $this->getLastError( $watchPoint ) ) {
 				// Don't spam slow retries due to network problems (retry only on races)
 				$this->logger->warning(
 					__METHOD__ . ' failed due to read I/O error on get() for {key}.',
@@ -307,7 +305,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			$valueMatchesOldValue = ( $value === $currentValue );
 			unset( $currentValue ); // free RAM in case the value is large
 
-			$this->clearLastError();
+			$watchPoint = $this->watchErrors();
 			if ( $value === false || $exptime < 0 ) {
 				$success = true; // do nothing
 			} elseif ( $valueMatchesOldValue && $attemptsLeft !== $attempts ) {
@@ -319,7 +317,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 				// Try to update the key, failing if it gets changed in the meantime
 				$success = $this->cas( $token, $key, $value, $exptime, $flags );
 			}
-			if ( $this->getLastError() ) {
+			if ( $this->getLastError( $watchPoint ) ) {
 				// Don't spam slow retries due to network problems (retry only on races)
 				$this->logger->warning(
 					__METHOD__ . ' failed due to write I/O error for {key}.',
@@ -376,13 +374,13 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		}
 
 		$curCasToken = self::PASS_BY_REF; // passed by reference
-		$this->clearLastError();
+		$watchPoint = $this->watchErrors();
 		$this->doGet( $key, self::READ_LATEST, $curCasToken );
 		if ( is_object( $curCasToken ) ) {
 			// Using === does not work with objects since it checks for instance identity
 			throw new UnexpectedValueException( "CAS token cannot be an object" );
 		}
-		if ( $this->getLastError() ) {
+		if ( $this->getLastError( $watchPoint ) ) {
 			// Fail if the old CAS token could not be read
 			$success = false;
 			$this->logger->warning(
@@ -457,6 +455,23 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return $ok;
 	}
 
+	public function incrWithInit( $key, $exptime, $step = 1, $init = null, $flags = 0 ) {
+		$step = (int)$step;
+		$init = is_int( $init ) ? $init : $step;
+
+		return $this->doIncrWithInit( $key, $exptime, $step, $init, $flags );
+	}
+
+	/**
+	 * @param string $key
+	 * @param int $exptime
+	 * @param int $step
+	 * @param int $init
+	 * @param int $flags
+	 * @return int|bool New value or false on failure
+	 */
+	abstract protected function doIncrWithInit( $key, $exptime, $step, $init, $flags );
+
 	/**
 	 * @param string $key
 	 * @param int $timeout
@@ -506,12 +521,12 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		$fname = __METHOD__;
 		$loop = new WaitConditionLoop(
 			function () use ( $key, $exptime, $fname, &$lockTsUnix ) {
-				$this->clearLastError();
+				$watchPoint = $this->watchErrors();
 				if ( $this->add( $this->makeLockKey( $key ), 1, $exptime ) ) {
 					$lockTsUnix = microtime( true );
 
 					return WaitConditionLoop::CONDITION_REACHED; // locked!
-				} elseif ( $this->getLastError() ) {
+				} elseif ( $this->getLastError( $watchPoint ) ) {
 					$this->logger->warning(
 						"$fname failed due to I/O error for {key}.",
 						[ 'key' => $key ]
@@ -752,22 +767,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return $res;
 	}
 
-	public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 ) {
-		$init = is_int( $init ) ? $init : $value;
-		$this->clearLastError();
-		$newValue = $this->incr( $key, $value, $flags );
-		if ( $newValue === false && !$this->getLastError() ) {
-			// No key set; initialize
-			$newValue = $this->add( $key, (int)$init, $exptime, $flags ) ? $init : false;
-			if ( $newValue === false && !$this->getLastError() ) {
-				// Raced out initializing; increment
-				$newValue = $this->incr( $key, $value, $flags );
-			}
-		}
-
-		return $newValue;
-	}
-
 	/**
 	 * Get and reassemble the chunks of blob at the given key
 	 *
@@ -803,32 +802,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		}
 
 		return $mainValue;
-	}
-
-	/**
-	 * Get the "last error" registered; clearLastError() should be called manually
-	 * @return int ERR_* constant for the "last error" registry
-	 * @since 1.23
-	 */
-	public function getLastError() {
-		return $this->lastError;
-	}
-
-	/**
-	 * Clear the "last error" registry
-	 * @since 1.23
-	 */
-	public function clearLastError() {
-		$this->lastError = self::ERR_NONE;
-	}
-
-	/**
-	 * Set the "last error" registry
-	 * @param int $err ERR_* constant
-	 * @since 1.23
-	 */
-	protected function setLastError( $err ) {
-		$this->lastError = $err;
 	}
 
 	final public function addBusyCallback( callable $workCallback ) {
@@ -879,7 +852,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 					$chunksByKey[$chunkKey] = $segment;
 					$segmentHashes[] = $hash;
 				}
-				$flags &= ~self::WRITE_ALLOW_SEGMENTS; // sanity
+				$flags &= ~self::WRITE_ALLOW_SEGMENTS;
 				$usable = $this->setMulti( $chunksByKey, $exptime, $flags );
 				$entry = SerializedValueContainer::newSegmented( $segmentHashes );
 			}
@@ -1054,46 +1027,11 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @since 1.35
 	 */
 	protected function guessSerialValueSize( $value, $depth = 0, &$loops = 0 ) {
-		// Include serialization format overhead estimates roughly based on serialize(),
-		// without counting . Also, int/float variables use the largest case
-		// byte size for numbers of that type; this avoids CPU overhead for large arrays.
-		switch ( gettype( $value ) ) {
-			case 'string':
-				// E.g. "<type><delim1><quote><value><quote><delim2>"
-				return strlen( $value ) + 5;
-			case 'integer':
-				// E.g. "<type><delim1><sign><2^63><delim2>";
-				// ceil(log10 (2^63)) = 19
-				return 23;
-			case 'double':
-				// E.g. "<type><delim1><sign><2^52><esign><2^10><delim2>"
-				// ceil(log10 (2^52)) = 16 and ceil(log10 (2^10)) = 4
-				return 25;
-			case 'boolean':
-				// E.g. "true" becomes "1" and "false" is not storable
-				return $value ? 1 : null;
-			case 'NULL':
-				return 1; // "\0"
-			case 'array':
-			case 'object':
-				// Give up and guess if there is too much depth
-				if ( $depth >= 5 && $loops >= 256 ) {
-					return 1024;
-				}
-
-				++$loops;
-				// E.g. "<type><delim1><brace><<Kn><Vn> for all n><brace><delim2>"
-				$size = 5;
-				// Note that casting to an array includes private object members
-				foreach ( (array)$value as $k => $v ) {
-					// Inline the recursive result here for performance
-					$size += is_string( $k ) ? ( strlen( $k ) + 5 ) : 23;
-					$size += $this->guessSerialValueSize( $v, $depth + 1, $loops );
-				}
-
-				return $size;
-			default:
-				return null; // invalid
+		if ( is_string( $value ) ) {
+			// E.g. "<type><delim1><quote><value><quote><delim2>"
+			return strlen( $value ) + 5;
+		} else {
+			return strlen( serialize( $value ) );
 		}
 	}
 

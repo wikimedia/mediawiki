@@ -180,7 +180,7 @@ class LogEventsList extends ContextSource {
 		if ( isset( $extraInputsString ) ) {
 			$htmlForm->addFooterText( Html::rawElement(
 				'div',
-				null,
+				[],
 				$extraInputsString
 			) );
 		}
@@ -683,23 +683,11 @@ class LogEventsList extends ContextSource {
 
 		if ( $logBody ) {
 			if ( $msgKey[0] ) {
-				$dir = $context->getLanguage()->getDir();
-				$lang = $context->getLanguage()->getHtmlCode();
-
-				$s = Xml::openElement( 'div', [
-					'class' => "warningbox mw-warning-with-logexcerpt mw-content-$dir",
-					'dir' => $dir,
-					'lang' => $lang,
-				] );
-
-				// @phan-suppress-next-line PhanSuspiciousValueComparison
-				if ( count( $msgKey ) == 1 ) {
-					$s .= $context->msg( $msgKey[0] )->parseAsBlock();
-				} else { // Process additional arguments
-					$args = $msgKey;
-					array_shift( $args );
-					$s .= $context->msg( $msgKey[0], $args )->parseAsBlock();
+				$msg = $context->msg( ...$msgKey );
+				if ( $page instanceof PageReference ) {
+					$msg->page( $page );
 				}
+				$s .= $msg->parseAsBlock();
 			}
 			$s .= $loglist->beginLogEventsList() .
 				$logBody .
@@ -753,7 +741,23 @@ class LogEventsList extends ContextSource {
 		}
 
 		if ( $logBody && $msgKey[0] ) {
-			$s .= '</div>';
+			// TODO: The condition above is weird. Should this be done in any other cases?
+			// Or is it always true in practice?
+
+			// Mark as interface language (T60685)
+			$dir = $context->getLanguage()->getDir();
+			$lang = $context->getLanguage()->getHtmlCode();
+			$s = Html::rawElement( 'div', [
+				'class' => "mw-content-$dir",
+				'dir' => $dir,
+				'lang' => $lang,
+			], $s );
+
+			// Wrap in warning box
+			$s = Html::warningBox(
+				$s,
+				'mw-warning-with-logexcerpt'
+			);
 		}
 
 		// @phan-suppress-next-line PhanSuspiciousValueComparison
@@ -784,7 +788,7 @@ class LogEventsList extends ContextSource {
 	 * @throws InvalidArgumentException
 	 */
 	public static function getExcludeClause( $db, $audience = 'public', Authority $performer = null ) {
-		global $wgLogRestrictions;
+		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
 
 		if ( $audience != 'public' && $performer === null ) {
 			throw new InvalidArgumentException(
@@ -796,7 +800,7 @@ class LogEventsList extends ContextSource {
 		$hiddenLogs = [];
 
 		// Don't show private logs to unprivileged users
-		foreach ( $wgLogRestrictions as $logType => $right ) {
+		foreach ( $logRestrictions as $logType => $right ) {
 			if ( $audience == 'public' || !$performer->isAllowed( $right )
 			) {
 				$hiddenLogs[] = $logType;

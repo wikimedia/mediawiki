@@ -72,7 +72,7 @@ class CreditsAction extends FormlessAction {
 			'mediawiki.action.styles',
 		] );
 
-		if ( $this->getWikiPage()->getId() == 0 ) {
+		if ( $this->getWikiPage()->getId() === 0 ) {
 			$s = $this->msg( 'nocredits' )->parse();
 		} else {
 			$s = $this->getCredits( -1 );
@@ -91,7 +91,7 @@ class CreditsAction extends FormlessAction {
 	public function getCredits( $cnt, $showIfMax = true ) {
 		$s = '';
 
-		if ( $cnt != 0 ) {
+		if ( $cnt !== 0 ) {
 			$s = $this->getAuthor();
 			if ( $cnt > 1 || $cnt < 0 ) {
 				$s .= ' ' . $this->getContributors( $cnt - 1, $showIfMax );
@@ -174,7 +174,7 @@ class CreditsAction extends FormlessAction {
 				$anon_ips[] = $this->link( $user );
 			}
 
-			if ( $cnt == 0 ) {
+			if ( $cnt === 0 ) {
 				break;
 			}
 		}
@@ -203,19 +203,19 @@ class CreditsAction extends FormlessAction {
 		}
 
 		# This is the big list, all mooshed together. We sift for blank strings
-		$fulllist = [];
+		$fullList = [];
 		foreach ( [ $real, $user, $anon, $others_link ] as $s ) {
 			if ( $s !== false ) {
-				array_push( $fulllist, $s );
+				$fullList[] = $s;
 			}
 		}
 
-		$count = count( $fulllist );
+		$count = count( $fullList );
 
 		# "Based on work by ..."
 		return $count
 			? $this->msg( 'othercontribs' )->rawParams(
-				$lang->listToText( $fulllist ) )->params( $count )->escaped()
+				$lang->listToText( $fullList ) )->params( $count )->escaped()
 			: '';
 	}
 

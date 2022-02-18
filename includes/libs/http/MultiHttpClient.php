@@ -53,6 +53,8 @@ use Psr\Log\NullLogger;
  * @since 1.23
  */
 class MultiHttpClient implements LoggerAwareInterface {
+	/** Regex for headers likely to contain tokens, etc. that we want to redact from logs */
+	private const SENSITIVE_HEADERS = '/(^|-|_)(authorization|auth|password|cookie)($|-|_)/';
 	/** @var resource curl_multi_init() handle */
 	protected $cmh;
 	/** @var string|null SSL certificates path */
@@ -71,6 +73,10 @@ class MultiHttpClient implements LoggerAwareInterface {
 	protected $maxConnsPerHost = 50;
 	/** @var string|null proxy */
 	protected $proxy;
+	/** @var string|bool */
+	protected $localProxy = false;
+	/** @var string[] */
+	protected $localVirtualHosts = [];
 	/** @var string */
 	protected $userAgent = 'wikimedia/multi-http-client v1.0';
 	/** @var LoggerInterface */
@@ -87,16 +93,18 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * a MultiHttpClient directly.
 	 *
 	 * @param array $options
-	 *   - connTimeout     : default connection timeout (seconds)
-	 *   - reqTimeout      : default request timeout (seconds)
-	 *   - maxConnTimeout  : maximum connection timeout (seconds)
-	 *   - maxReqTimeout   : maximum request timeout (seconds)
-	 *   - proxy           : HTTP proxy to use
-	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
-	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
-	 *   - userAgent       : The User-Agent header value to send
-	 *   - logger          : a \Psr\Log\LoggerInterface instance for debug logging
-	 *   - caBundlePath    : path to specific Certificate Authority bundle (if any)
+	 *   - connTimeout       : default connection timeout (seconds)
+	 *   - reqTimeout        : default request timeout (seconds)
+	 *   - maxConnTimeout    : maximum connection timeout (seconds)
+	 *   - maxReqTimeout     : maximum request timeout (seconds)
+	 *   - proxy             : HTTP proxy to use
+	 *   - localProxy        : Reverse proxy to use for domains in localVirtualHosts
+	 *   - localVirtualHosts : Domains that are configured as virtual hosts on the same machine
+	 *   - usePipelining     : whether to use HTTP pipelining if possible (for all hosts)
+	 *   - maxConnsPerHost   : maximum number of concurrent connections (per host)
+	 *   - userAgent         : The User-Agent header value to send
+	 *   - logger            : a \Psr\Log\LoggerInterface instance for debug logging
+	 *   - caBundlePath      : path to specific Certificate Authority bundle (if any)
 	 * @throws Exception
 	 */
 	public function __construct( array $options ) {
@@ -108,7 +116,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 		}
 		static $opts = [
 			'connTimeout', 'maxConnTimeout', 'reqTimeout', 'maxReqTimeout',
-			'usePipelining', 'maxConnsPerHost', 'proxy', 'userAgent', 'logger'
+			'usePipelining', 'maxConnsPerHost', 'proxy', 'userAgent', 'logger',
+			'localProxy', 'localVirtualHosts',
 		];
 		foreach ( $opts as $key ) {
 			if ( isset( $options[$key] ) ) {
@@ -139,6 +148,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
 	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
+	 *   - httpVersion     : One of 'v1.0', 'v1.1', 'v2' or 'v2.0'. Leave empty to use
+	 *                       PHP/curl's default
 	 * @return array Response array for request
 	 */
 	public function run( array $req, array $opts = [] ) {
@@ -171,6 +182,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
 	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
+	 *   - httpVersion     : One of 'v1.0', 'v1.1', 'v2' or 'v2.0'. Leave empty to use
+	 *                       PHP/curl's default
 	 * @return array[] $reqs With response array populated for each
 	 * @throws Exception
 	 */
@@ -178,16 +191,31 @@ class MultiHttpClient implements LoggerAwareInterface {
 		$this->normalizeRequests( $reqs );
 		$opts += [ 'connTimeout' => $this->connTimeout, 'reqTimeout' => $this->reqTimeout ];
 
-		if ( $opts['connTimeout'] > $this->maxConnTimeout ) {
+		if ( $this->maxConnTimeout && $opts['connTimeout'] > $this->maxConnTimeout ) {
 			$opts['connTimeout'] = $this->maxConnTimeout;
 		}
-		if ( $opts['reqTimeout'] > $this->maxReqTimeout ) {
+		if ( $this->maxReqTimeout && $opts['reqTimeout'] > $this->maxReqTimeout ) {
 			$opts['reqTimeout'] = $this->maxReqTimeout;
 		}
 
 		if ( $this->isCurlEnabled() ) {
+			switch ( $opts['httpVersion'] ?? null ) {
+				case 'v1.0':
+					$opts['httpVersion'] = CURL_HTTP_VERSION_1_0;
+					break;
+				case 'v1.1':
+					$opts['httpVersion'] = CURL_HTTP_VERSION_1_1;
+					break;
+				case 'v2':
+				case 'v2.0':
+					$opts['httpVersion'] = CURL_HTTP_VERSION_2_0;
+					break;
+				default:
+					$opts['httpVersion'] = CURL_HTTP_VERSION_NONE;
+			}
 			return $this->runMultiCurl( $reqs, $opts );
 		} else {
+			# TODO: Add handling for httpVersion option
 			return $this->runMultiHttp( $reqs, $opts );
 		}
 	}
@@ -214,6 +242,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
 	 *   - usePipelining   : whether to use HTTP pipelining if possible
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
+	 *   - httpVersion:    : HTTP version to use
 	 * @phan-param array{connTimeout?:int,reqTimeout?:int,usePipelining?:bool,maxConnsPerHost?:int} $opts
 	 * @return array $reqs With response array populated for each
 	 * @throws Exception
@@ -241,6 +270,9 @@ class MultiHttpClient implements LoggerAwareInterface {
 				$mrc = curl_multi_exec( $chm, $active );
 				$info = curl_multi_info_read( $chm );
 				if ( $info !== false ) {
+					// Note: cast to integer even works on PHP 8.0+ despite the
+					// handle being an object not a resource, because CurlHandle
+					// has a backwards-compatible cast_object handler.
 					$infos[(int)$info['handle']] = $info;
 				}
 			} while ( $mrc == CURLM_CALL_MULTI_PERFORM );
@@ -313,6 +345,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * @param array $opts
 	 *   - connTimeout : default connection timeout
 	 *   - reqTimeout : default request timeout
+	 *   - httpVersion: default HTTP version
 	 * @return resource
 	 * @throws Exception
 	 */
@@ -339,9 +372,11 @@ class MultiHttpClient implements LoggerAwareInterface {
 		curl_setopt( $ch, CURLOPT_URL, $url );
 		curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, $req['method'] );
 		curl_setopt( $ch, CURLOPT_NOBODY, ( $req['method'] === 'HEAD' ) );
+		curl_setopt( $ch, CURLOPT_HTTP_VERSION, $opts['httpVersion'] ?? CURL_HTTP_VERSION_NONE );
 
 		if ( $req['method'] === 'PUT' ) {
 			curl_setopt( $ch, CURLOPT_PUT, 1 );
+			// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.is_resource
 			if ( is_resource( $req['body'] ) ) {
 				curl_setopt( $ch, CURLOPT_INFILE, $req['body'] );
 				if ( isset( $req['headers']['content-length'] ) ) {
@@ -372,6 +407,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 			curl_setopt( $ch, CURLOPT_POST, 1 );
 			curl_setopt( $ch, CURLOPT_POSTFIELDS, $req['body'] );
 		} else {
+			// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.is_resource
 			if ( is_resource( $req['body'] ) || $req['body'] !== '' ) {
 				throw new Exception( "HTTP body specified for a non PUT/POST request." );
 			}
@@ -453,18 +489,30 @@ class MultiHttpClient implements LoggerAwareInterface {
 			$this->cmh = $cmh;
 		}
 
+		$curlVersion = curl_version()['version'];
+
 		// CURLMOPT_MAX_HOST_CONNECTIONS is available since PHP 7.0.7 and cURL 7.30.0
-		if ( version_compare( curl_version()['version'], '7.30.0', '>=' ) ) {
+		if ( version_compare( $curlVersion, '7.30.0', '>=' ) ) {
 			// Limit the number of in-flight requests for any given host
 			$maxHostConns = $opts['maxConnsPerHost'] ?? $this->maxConnsPerHost;
 			curl_multi_setopt( $this->cmh, CURLMOPT_MAX_HOST_CONNECTIONS, (int)$maxHostConns );
 		}
 
-		// Configure when to multiplex multiple requests onto single TCP handles
-		$pipelining = $opts['usePipelining'] ?? $this->usePipelining;
-		// HACK: We manually remove the use of the http 1 constantine
-		// to fix php 7.4 support.
-		curl_multi_setopt( $this->cmh, CURLMOPT_PIPELINING, $pipelining ? 2 : 0 );
+		if ( $opts['usePipelining'] ?? $this->usePipelining ) {
+			if ( version_compare( $curlVersion, '7.43', '<' ) ) {
+				// The option is a boolean
+				$pipelining = 1;
+			} elseif ( version_compare( $curlVersion, '7.62', '<' ) ) {
+				// The option is a bitfield and HTTP/1.x pipelining is supported
+				$pipelining = CURLPIPE_HTTP1 | CURLPIPE_MULTIPLEX;
+			} else {
+				// The option is a bitfield but HTTP/1.x pipelining has been removed
+				$pipelining = CURLPIPE_MULTIPLEX;
+			}
+			// Suppress deprecation, we know already (T264735)
+			// phpcs:ignore Generic.PHP.NoSilencedErrors
+			@curl_multi_setopt( $this->cmh, CURLMOPT_PIPELINING, $pipelining );
+		}
 
 		return $this->cmh;
 	}
@@ -490,8 +538,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * Execute a set of HTTP(S) requests sequentially.
 	 *
 	 * @see MultiHttpClient::runMulti()
-	 * @todo Remove dependency on MediaWikiServices: use a separate HTTP client
-	 *  library or copy code from PhpHttpRequest
+	 * @todo Remove dependency on MediaWikiServices: rewrite using Guzzle T202352
 	 * @param array $reqs Map of HTTP request arrays
 	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array<int,array{url:string,query:array,method:string,body:string,proxy?:?string,headers?:string[]}> $reqs
@@ -598,12 +645,9 @@ class MultiHttpClient implements LoggerAwareInterface {
 			} elseif ( !isset( $req['url'] ) ) {
 				throw new Exception( "Request has no 'url' field set." );
 			}
-			$this->logger->debug( "HTTP start: {method} {url}",
-				[
-					'method' => $req['method'],
-					'url' => $req['url'],
-				]
-			);
+			if ( $this->localProxy !== false && $this->isLocalURL( $req['url'] ) ) {
+				$this->useReverseProxy( $req, $this->localProxy );
+			}
 			$req['query'] = $req['query'] ?? [];
 			$headers = []; // normalized headers
 			if ( isset( $req['headers'] ) ) {
@@ -616,8 +660,88 @@ class MultiHttpClient implements LoggerAwareInterface {
 				$req['body'] = '';
 				$req['headers']['content-length'] = 0;
 			}
+			// Redact some headers we know to have tokens before logging them
+			$logHeaders = $req['headers'];
+			foreach ( $logHeaders as $header => $value ) {
+				if ( preg_match( self::SENSITIVE_HEADERS, $header ) === 1 ) {
+					$logHeaders[$header] = '[redacted]';
+				}
+			}
+			$this->logger->debug( "HTTP start: {method} {url}",
+				[
+					'method' => $req['method'],
+					'url' => $req['url'],
+					'headers' => $logHeaders,
+				]
+			);
 			$req['flags'] = $req['flags'] ?? [];
 		}
+	}
+
+	private function useReverseProxy( array &$req, $proxy ) {
+		$parsedProxy = wfParseUrl( $proxy );
+		if ( $parsedProxy === false ) {
+			throw new Exception( "Invalid reverseProxy configured: $proxy" );
+		}
+		$parsedUrl = wfParseUrl( $req['url'] );
+		if ( $parsedUrl === false ) {
+			throw new Exception( "Invalid url specified: ${req['url']}" );
+		}
+		// Set the current host in the Host header
+		$req['headers']['Host'] = $parsedUrl['host'];
+		// Replace scheme, host and port in the request
+		$parsedUrl['scheme'] = $parsedProxy['scheme'];
+		$parsedUrl['host'] = $parsedProxy['host'];
+		if ( isset( $parsedProxy['port'] ) ) {
+			$parsedUrl['port'] = $parsedProxy['port'];
+		} else {
+			unset( $parsedUrl['port'] );
+		}
+		$req['url'] = wfAssembleUrl( $parsedUrl );
+		// Explicitly disable use of another proxy by setting to false,
+		// since null will fallback to $this->proxy
+		$req['proxy'] = false;
+	}
+
+	/**
+	 * Check if the URL can be served by localhost
+	 *
+	 * @note this is mostly a copy of MWHttpRequest::isLocalURL()
+	 * @param string $url Full url to check
+	 * @return bool
+	 */
+	private function isLocalURL( $url ) {
+		if ( !$this->localVirtualHosts ) {
+			// Shortcut
+			return false;
+		}
+
+		// Extract host part
+		$matches = [];
+		if ( preg_match( '!^https?://([\w.-]+)[/:].*$!', $url, $matches ) ) {
+			$host = $matches[1];
+			// Split up dotwise
+			$domainParts = explode( '.', $host );
+			// Check if this domain or any superdomain is listed as a local virtual host
+			$domainParts = array_reverse( $domainParts );
+
+			$domain = '';
+			$countParts = count( $domainParts );
+			for ( $i = 0; $i < $countParts; $i++ ) {
+				$domainPart = $domainParts[$i];
+				if ( $i == 0 ) {
+					$domain = $domainPart;
+				} else {
+					$domain = $domainPart . '.' . $domain;
+				}
+
+				if ( in_array( $domain, $this->localVirtualHosts ) ) {
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -635,7 +759,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		}
 
 		$selectTimeout = min( $timeouts ) * self::TIMEOUT_ACCURACY_FACTOR;
-		// Minimum 10us for sanity
+		// Minimum 10us
 		if ( $selectTimeout < 10e-6 ) {
 			$selectTimeout = 10e-6;
 		}

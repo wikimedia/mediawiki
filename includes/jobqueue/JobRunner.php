@@ -27,6 +27,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBReadOnlyError;
 use Wikimedia\Rdbms\ILBFactory;
@@ -134,7 +135,7 @@ class JobRunner implements LoggerAwareInterface {
 
 		$this->options = $serviceOptions;
 		$this->lbFactory = $lbFactory ?? MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$this->jobQueueGroup = $jobQueueGroup ?? JobQueueGroup::singleton();
+		$this->jobQueueGroup = $jobQueueGroup ?? MediaWikiServices::getInstance()->getJobQueueGroup();
 		$this->readOnlyMode = $readOnlyMode ?: MediaWikiServices::getInstance()->getReadOnlyMode();
 		$this->linkCache = $linkCache ?? MediaWikiServices::getInstance()->getLinkCache();
 		$this->stats = $statsdDataFactory ?? MediaWikiServices::getInstance()->getStatsdDataFactory();
@@ -153,7 +154,7 @@ class JobRunner implements LoggerAwareInterface {
 	 *   - backoffs : the (job/queue type => seconds) map of backoff times
 	 *   - elapsed  : the total time spent running tasks in ms
 	 *   - reached  : the reason the script finished, one of (none-ready, job-limit, time-limit,
-	 *  memory-limit)
+	 *  memory-limit, exception)
 	 *
 	 * This method outputs status information only if a debug handler was set.
 	 * Any exceptions are caught and logged, but are not reported as output.
@@ -271,6 +272,15 @@ class JobRunner implements LoggerAwareInterface {
 					break;
 				} elseif ( $maxTime && ( microtime( true ) - $loopStartTime ) > $maxTime ) {
 					$response['reached'] = 'time-limit';
+					break;
+				}
+
+				// Stop if we caught a DBConnectionError. In theory it would be
+				// possible to explicitly reconnect, but the present behaviour
+				// is to just throw more exceptions every time something database-
+				// related is attempted.
+				if ( in_array( DBConnectionError::class, $info['caught'], true ) ) {
+					$response['reached'] = 'exception';
 					break;
 				}
 
@@ -402,7 +412,7 @@ class JobRunner implements LoggerAwareInterface {
 		// Record root job age for jobs being run
 		$rootTimestamp = $job->getRootJobParams()['rootJobTimestamp'];
 		if ( $rootTimestamp ) {
-			$age = max( 0, $jobStartTime - wfTimestamp( TS_UNIX, $rootTimestamp ) );
+			$age = max( 0, $jobStartTime - (int)wfTimestamp( TS_UNIX, $rootTimestamp ) );
 			$this->stats->timing( "jobqueue.pickup_root_age.$jType", 1000 * $age );
 		}
 		// Track the execution time for jobs

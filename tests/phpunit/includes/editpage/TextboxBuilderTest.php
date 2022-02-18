@@ -22,6 +22,8 @@ namespace MediaWiki\Tests\EditPage;
 
 use Language;
 use MediaWiki\EditPage\TextboxBuilder;
+use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
@@ -82,15 +84,17 @@ class TextboxBuilderTest extends MediaWikiIntegrationTestCase {
 			'wgRestrictionLevels' => $restrictionLevels
 		] );
 
-		$title = $this->createMock( Title::class );
-		$title->method( 'getNamespace' )->willReturn( 1 );
+		$mockRestrictionStore = $this->createMock( RestrictionStore::class );
+		$pageIdValue = PageIdentityValue::localIdentity( 1, NS_MAIN, 'test' );
 
-		foreach ( $protectionModes as $method ) {
-			$title->method( $method )->willReturn( true );
-		}
+		$mockRestrictionStore->method(
+			$this->logicalOr( ...array_map( [ $this, 'identicalTo' ], $protectionModes ) )
+		)->willReturn( true );
+
+		$this->setService( 'RestrictionStore', $mockRestrictionStore );
 
 		$builder = new TextboxBuilder();
-		$this->assertSame( $expected, $builder->getTextboxProtectionCSSClasses( $title ) );
+		$this->assertSame( $expected, $builder->getTextboxProtectionCSSClasses( $pageIdValue ) );
 	}
 
 	public function testBuildTextboxAttribs() {

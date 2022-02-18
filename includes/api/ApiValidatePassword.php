@@ -35,7 +35,6 @@ class ApiValidatePassword extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		// For sanity
 		$this->requirePostedParameters( [ 'password' ] );
 
 		if ( $params['user'] !== null ) {

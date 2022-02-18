@@ -22,6 +22,7 @@
  * @ingroup Language
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -39,9 +40,9 @@ class LanguageFi extends Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms['fi'][$case][$word] ) ) {
-			return $wgGrammarForms['fi'][$case][$word];
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		if ( isset( $grammarForms['fi'][$case][$word] ) ) {
+			return $grammarForms['fi'][$case][$word];
 		}
 
 		# These rules don't cover the whole language.

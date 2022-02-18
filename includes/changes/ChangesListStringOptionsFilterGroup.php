@@ -59,7 +59,7 @@ class ChangesListStringOptionsFilterGroup extends ChangesListFilterGroup {
 	public const NONE = '';
 
 	/**
-	 * Defaul parameter value
+	 * Default parameter value
 	 *
 	 * @var string
 	 */

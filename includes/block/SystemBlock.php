@@ -74,7 +74,7 @@ class SystemBlock extends AbstractBlock {
 	/**
 	 * @inheritDoc
 	 */
-	public function getIdentifier() {
+	public function getIdentifier( $wikiId = self::LOCAL ) {
 		return $this->getSystemBlockType();
 	}
 
@@ -99,7 +99,8 @@ class SystemBlock extends AbstractBlock {
 	/**
 	 * @inheritDoc
 	 */
-	public function getBy() {
+	public function getBy( $wikiId = self::LOCAL ): int {
+		$this->deprecateInvalidCrossWiki( $wikiId, '1.38' );
 		return 0;
 	}
 

@@ -160,6 +160,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAddLocalisedTitleTooltips( $input, $expected ) {
 		$this->setContentLang( 'qqx' );
+		/** @var DifferenceEngine $diffEngine */
 		$diffEngine = TestingAccessWrapper::newFromObject( new DifferenceEngine() );
 		$this->assertEquals( $expected, $diffEngine->addLocalisedTitleTooltips( $input ) );
 	}
@@ -341,9 +342,9 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$page = $this->getNonExistingTestPage( 'Page1' );
-		$this->assertTrue( $this->editPage( $page, 'Edit1' )->isGood(), 'Sanity: edited a page' );
+		$this->assertTrue( $this->editPage( $page, 'Edit1' )->isGood(), 'edited a page' );
 		$rev1 = $page->getRevisionRecord();
-		$this->assertTrue( $this->editPage( $page, 'Edit2' )->isGood(), 'Sanity: edited a page' );
+		$this->assertTrue( $this->editPage( $page, 'Edit2' )->isGood(), 'edited a page' );
 		$rev2 = $page->getRevisionRecord();
 
 		$diffEngine = new DifferenceEngine( $this->context );

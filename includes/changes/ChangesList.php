@@ -22,6 +22,7 @@
  * @file
  */
 
+use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
@@ -57,6 +58,16 @@ class ChangesList extends ContextSource {
 	protected $linkRenderer;
 
 	/**
+	 * @var RowCommentFormatter
+	 */
+	protected $commentFormatter;
+
+	/**
+	 * @var string[] Comments indexed by rc_id
+	 */
+	protected $formattedComments;
+
+	/**
 	 * @var ChangesListFilterGroup[]
 	 */
 	protected $filterGroups;
@@ -69,8 +80,11 @@ class ChangesList extends ContextSource {
 		$this->setContext( $context );
 		$this->preCacheMessages();
 		$this->watchMsgCache = new MapCacheLRU( 50 );
-		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$this->filterGroups = $filterGroups;
+
+		$services = MediaWikiServices::getInstance();
+		$this->linkRenderer = $services->getLinkRenderer();
+		$this->commentFormatter = $services->getRowCommentFormatter();
 	}
 
 	/**
@@ -261,9 +275,9 @@ class ChangesList extends ContextSource {
 		static $flagInfos = null;
 
 		if ( $flagInfos === null ) {
-			global $wgRecentChangesFlags;
+			$recentChangesFlags = MediaWikiServices::getInstance()->getMainConfig()->get( 'RecentChangesFlags' );
 			$flagInfos = [];
-			foreach ( $wgRecentChangesFlags as $key => $value ) {
+			foreach ( $recentChangesFlags as $key => $value ) {
 				$flagInfos[$key]['letter'] = $value['letter'];
 				$flagInfos[$key]['title'] = $value['title'];
 				// Allow customized class name, fall back to flag name
@@ -273,7 +287,7 @@ class ChangesList extends ContextSource {
 
 		$context = $context ?: RequestContext::getMain();
 
-		// Inconsistent naming, kepted for b/c
+		// Inconsistent naming, kept for b/c
 		if ( isset( $map[$flag] ) ) {
 			$flag = $map[$flag];
 		}
@@ -308,6 +322,16 @@ class ChangesList extends ContextSource {
 	 */
 	public function initChangesListRows( $rows ) {
 		$this->getHookRunner()->onChangesListInitRows( $this, $rows );
+		$this->formattedComments = $this->commentFormatter->createBatch()
+			->comments(
+				$this->commentFormatter->rows( $rows )
+					->commentKey( 'rc_comment' )
+					->namespaceField( 'rc_namespace' )
+					->titleField( 'rc_title' )
+					->indexField( 'rc_id' )
+			)
+			->useBlock()
+			->execute();
 	}
 
 	/**
@@ -419,6 +443,7 @@ class ChangesList extends ContextSource {
 		$title = null
 	) {
 		$ts = $rev->getTimestamp();
+		$time = $lang->userTime( $ts, $performer->getUser() );
 		$date = $lang->userTimeAndDate( $ts, $performer->getUser() );
 		if ( $rev->userCan( RevisionRecord::DELETED_TEXT, $performer ) ) {
 			$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
@@ -434,7 +459,9 @@ class ChangesList extends ContextSource {
 			$deletedClass = Linker::getRevisionDeletedClass( $rev );
 			$link = "<span class=\"$deletedClass mw-changeslist-date\">$link</span>";
 		}
-		return $link;
+		return Html::element( 'span', [
+			'class' => 'mw-changeslist-time'
+		], $time ) . $link;
 	}
 
 	/**
@@ -547,9 +574,9 @@ class ChangesList extends ContextSource {
 			[ 'class' => 'mw-changeslist-title' ],
 			$params
 		);
-		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_TEXT ) ) {
+		if ( static::isDeleted( $rc, RevisionRecord::DELETED_TEXT ) ) {
 			$class = 'history-deleted';
-			if ( $this->isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
+			if ( static::isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
 				$class .= ' mw-history-suppressed';
 			}
 			$articlelink = '<span class="' . $class . '">' . $articlelink . '</span>';
@@ -614,15 +641,19 @@ class ChangesList extends ContextSource {
 	 */
 	public function getTimestamp( $rc ) {
 		// This uses the semi-colon separator unless there's a watchlist expiry date for the entry,
-		// because in that case the timestamp is preceeded by a clock icon.
-		// A space is important after mw-changeslist-separator--semicolon to make sure
+		// because in that case the timestamp is preceded by a clock icon.
+		// A space is important after `.mw-changeslist-separator--semicolon` to make sure
 		// that whatever comes before it is distinguishable.
 		// (Otherwise your have the text of titles pushing up against the timestamp)
-		// A specific element is used for this purpose as `mw-changeslist-date` is used in a variety
+		// A specific element is used for this purpose rather than styling `.mw-changeslist-date`
+		// as the `.mw-changeslist-date` class is used in a variety
 		// of other places with a different position and the information proceeding getTimestamp can vary.
+		// The `.mw-changeslist-time` class allows us to distinguish from `.mw-changeslist-date` elements that
+		// contain the full date (month, year) and adds consistency with Special:Contributions
+		// and other pages.
 		$separatorClass = $rc->watchlistExpiry ? 'mw-changeslist-separator' : 'mw-changeslist-separator--semicolon';
 		return Html::element( 'span', [ 'class' => $separatorClass ] ) . ' ' .
-			'<span class="mw-changeslist-date">' .
+			'<span class="mw-changeslist-date mw-changeslist-time">' .
 			htmlspecialchars( $this->getLanguage()->userTime(
 				$rc->mAttribs['rc_timestamp'],
 				$this->getUser()
@@ -646,10 +677,10 @@ class ChangesList extends ContextSource {
 	 * @param RecentChange &$rc
 	 */
 	public function insertUserRelatedLinks( &$s, &$rc ) {
-		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_USER ) ) {
+		if ( static::isDeleted( $rc, RevisionRecord::DELETED_USER ) ) {
 			$deletedClass = 'history-deleted';
-			if ( $this->isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
-				$deletedClass = ' mw-history-suppressed';
+			if ( static::isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
+				$deletedClass .= ' mw-history-suppressed';
 			}
 			$s .= ' <span class="' . $deletedClass . '">' .
 				$this->msg( 'rev-deleted-user' )->escaped() . '</span>';
@@ -659,7 +690,7 @@ class ChangesList extends ContextSource {
 			$s .= Linker::userToolLinks(
 				$rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'],
 				false, 0, null,
-				// The text content of tools is not wrapped with parenthesises or "piped".
+				// The text content of tools is not wrapped with parentheses or "piped".
 				// This will be handled in CSS (T205581).
 				false
 			);
@@ -689,21 +720,28 @@ class ChangesList extends ContextSource {
 	 * @return string
 	 */
 	public function insertComment( $rc ) {
-		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_COMMENT ) ) {
+		if ( static::isDeleted( $rc, RevisionRecord::DELETED_COMMENT ) ) {
 			$deletedClass = 'history-deleted';
-			if ( $this->isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
+			if ( static::isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
 				$deletedClass .= ' mw-history-suppressed';
 			}
 			return ' <span class="' . $deletedClass . ' comment">' .
 				$this->msg( 'rev-deleted-comment' )->escaped() . '</span>';
+		} elseif ( isset( $rc->mAttribs['rc_id'] )
+			&& isset( $this->formattedComments[$rc->mAttribs['rc_id']] )
+		) {
+			return $this->formattedComments[$rc->mAttribs['rc_id']];
 		} else {
-			return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle(),
+			return $this->commentFormatter->formatBlock(
+				$rc->mAttribs['rc_comment'],
+				$rc->getTitle(),
 				// Whether section links should refer to local page (using default false)
 				false,
 				// wikid to generate links for (using default null) */
 				null,
 				// whether parentheses should be rendered as part of the message
-				false );
+				false
+			);
 		}
 	}
 

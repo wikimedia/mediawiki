@@ -21,9 +21,12 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -73,6 +76,12 @@ class ApiParse extends ApiBase {
 	/** @var ContentTransformer */
 	private $contentTransformer;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
+	/** @var ContentRenderer */
+	private $contentRenderer;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
@@ -84,7 +93,9 @@ class ApiParse extends ApiBase {
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param Parser $parser
 	 * @param WikiPageFactory $wikiPageFactory
+	 * @param ContentRenderer $contentRenderer
 	 * @param ContentTransformer $contentTransformer
+	 * @param CommentFormatter $commentFormatter
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -97,7 +108,9 @@ class ApiParse extends ApiBase {
 		IContentHandlerFactory $contentHandlerFactory,
 		Parser $parser,
 		WikiPageFactory $wikiPageFactory,
-		ContentTransformer $contentTransformer
+		ContentRenderer $contentRenderer,
+		ContentTransformer $contentTransformer,
+		CommentFormatter $commentFormatter
 	) {
 		parent::__construct( $main, $action );
 		$this->revisionLookup = $revisionLookup;
@@ -108,7 +121,9 @@ class ApiParse extends ApiBase {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->parser = $parser;
 		$this->wikiPageFactory = $wikiPageFactory;
+		$this->contentRenderer = $contentRenderer;
 		$this->contentTransformer = $contentTransformer;
+		$this->commentFormatter = $commentFormatter;
 	}
 
 	private function getPoolKey(): string {
@@ -123,14 +138,14 @@ class ApiParse extends ApiBase {
 
 	private function getContentParserOutput(
 		Content $content,
-		Title $title,
+		PageReference $page,
 		$revId,
 		ParserOptions $popts
 	) {
 		$worker = new PoolCounterWorkViaCallback( 'ApiParser', $this->getPoolKey(),
 			[
-				'doWork' => static function () use ( $content, $title, $revId, $popts ) {
-					return $content->getParserOutput( $title, $revId, $popts );
+				'doWork' => function () use ( $content, $page, $revId, $popts ) {
+					return $this->contentRenderer->getParserOutput( $content, $page, $revId, $popts );
 				},
 				'error' => function () {
 					$this->dieWithError( 'apierror-concurrency-limit' );
@@ -476,12 +491,18 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['text'] ) ) {
+			$skin = $context ? $context->getSkin() : null;
+			$skinOptions = $skin ? $skin->getOptions() : [
+				'toc' => true,
+			];
 			$result_array['text'] = $p_result->getText( [
 				'allowTOC' => !$params['disabletoc'],
+				'injectTOC' => $skinOptions['toc'],
 				'enableSectionEditLinks' => !$params['disableeditsection'],
 				'wrapperDivClass' => $params['wrapoutputclass'],
 				'deduplicateStyles' => !$params['disablestylededuplication'],
-				'skin' => $context ? $context->getSkin() : null,
+				'skin' => $skin,
+				'includeDebugInfo' => !$params['disablepp'] && !$params['disablelimitreport']
 			] );
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
 			if ( $context ) {
@@ -547,7 +568,8 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $prop['displaytitle'] ) ) {
 			$result_array['displaytitle'] = $p_result->getDisplayTitle() !== false
-				? $p_result->getDisplayTitle() : $titleObj->getPrefixedText();
+				? $p_result->getDisplayTitle()
+				: htmlspecialchars( $titleObj->getPrefixedText(), ENT_NOQUOTES );
 		}
 
 		if ( isset( $prop['subtitle'] ) ) {
@@ -624,7 +646,7 @@ class ApiParse extends ApiBase {
 			}
 		}
 		if ( isset( $prop['properties'] ) ) {
-			$result_array['properties'] = (array)$p_result->getProperties();
+			$result_array['properties'] = $p_result->getPageProperties();
 			ApiResult::setArrayType( $result_array['properties'], 'BCkvp', 'name' );
 		}
 
@@ -696,7 +718,6 @@ class ApiParse extends ApiBase {
 	 * @return array [ ParserOptions, ScopedCallback, bool $suppressCache ]
 	 */
 	private function tweakParserOptions( ParserOptions $popts, Title $title, array $params ) {
-		$popts->enableLimitReport( !$params['disablepp'] && !$params['disablelimitreport'] );
 		$popts->setIsPreview( $params['preview'] || $params['sectionpreview'] );
 		$popts->setIsSectionPreview( $params['sectionpreview'] );
 
@@ -792,7 +813,7 @@ class ApiParse extends ApiBase {
 	}
 
 	/**
-	 * This mimicks the behavior of EditPage in formatting a summary
+	 * This mimics the behavior of EditPage in formatting a summary
 	 *
 	 * @param Title $title of the page being parsed
 	 * @param array $params The API parameters of the request
@@ -812,7 +833,7 @@ class ApiParse extends ApiBase {
 					->inContentLanguage()->text();
 			}
 		}
-		return Linker::formatComment( $summary, $title, $this->section === 'new' );
+		return $this->commentFormatter->format( $summary, $title, $this->section === 'new' );
 	}
 
 	private function formatLangLinks( $links ) {
@@ -1049,7 +1070,9 @@ class ApiParse extends ApiBase {
 			'sectionpreview' => false,
 			'disabletoc' => false,
 			'useskin' => [
-				ApiBase::PARAM_TYPE => array_keys( $this->skinFactory->getAllowedSkins() ),
+				// T237856; We use all installed skins here to allow hidden (but usable) skins
+				// to continue working correctly with some features such as Live Preview
+				ApiBase::PARAM_TYPE => array_keys( $this->skinFactory->getInstalledSkins() ),
 			],
 			'contentformat' => [
 				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),

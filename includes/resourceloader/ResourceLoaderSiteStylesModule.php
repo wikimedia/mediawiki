@@ -59,6 +59,6 @@ class ResourceLoaderSiteStylesModule extends ResourceLoaderWikiModule {
 	 * @return string
 	 */
 	public function getGroup() {
-		return 'site';
+		return self::GROUP_SITE;
 	}
 }

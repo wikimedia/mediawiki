@@ -375,7 +375,7 @@
 	"watching": "Kolanda...",
 	"unwatching": "Kolanda tɛ́...",
 	"created": "ekomákí",
-	"deletepage": "Kolímwisa lonkásá loye",
+	"deletepage-submit": "Kolímwisa lonkásá loye",
 	"dellogpage": "zuluná ya bolímwisi",
 	"deletionlog": "zuluná ya bolímwisi",
 	"deletecomment": "Ntína:",
@@ -496,6 +496,7 @@
 	"watchlisttools-edit": "Komɔ́nisela mpé kobóngola nkásá nalandí",
 	"watchlisttools-raw": "Kobimisela nkásá nalandí (na pɛpɛ)",
 	"specialpages": "Nkásá gudi",
+	"deletepage": "Kolímwisa lonkásá loye",
 	"htmlform-submit": "Kotínda",
 	"htmlform-selectorother-other": "Mosúsu",
 	"searchsuggest-search": "Boluki {{SITENAME}}"

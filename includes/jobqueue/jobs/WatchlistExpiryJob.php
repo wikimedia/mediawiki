@@ -14,11 +14,12 @@ class WatchlistExpiryJob extends Job {
 	 * @return bool Always true, to indicate success.
 	 */
 	public function run() {
-		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$services = MediaWikiServices::getInstance();
+		$watchedItemStore = $services->getWatchedItemStore();
 		$watchedItemStore->removeExpired( 100 );
 		if ( $watchedItemStore->countExpired() ) {
 			// If there are still items, add a new job.
-			JobQueueGroup::singleton()->push( new static() );
+			$services->getJobQueueGroup()->push( new static() );
 		}
 		return true;
 	}

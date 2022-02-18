@@ -130,22 +130,6 @@ class FallbackContent extends AbstractContent {
 	}
 
 	/**
-	 * Fills the ParserOutput with an error message.
-	 * @param Title $title
-	 * @param int $revId
-	 * @param ParserOptions $options
-	 * @param bool $generateHtml
-	 * @param ParserOutput &$output
-	 */
-	protected function fillParserOutput( Title $title, $revId,
-		ParserOptions $options, $generateHtml, ParserOutput &$output
-	) {
-		$msg = wfMessage( 'unsupported-content-model', [ $this->getModel() ] );
-		$html = Html::rawElement( 'div', [ 'class' => 'error' ], $msg->inContentLanguage()->parse() );
-		$output->setText( $html );
-	}
-
-	/**
 	 * @param string $toModel
 	 * @param string $lossy
 	 * @return false

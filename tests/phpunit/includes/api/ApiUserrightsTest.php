@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\MediaWikiServices;
 
 /**
  * @group API
@@ -141,7 +140,7 @@ class ApiUserrightsTest extends ApiTestCase {
 		$user = $this->getTestSysop()->getUser();
 
 		$block = new DatabaseBlock( [ 'address' => $user, 'by' => $user, ] );
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		try {
@@ -158,7 +157,7 @@ class ApiUserrightsTest extends ApiTestCase {
 		$this->setPermissions( true, true );
 
 		$block = new DatabaseBlock( [ 'address' => $user, 'by' => $user ] );
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		try {
@@ -260,50 +259,6 @@ class ApiUserrightsTest extends ApiTestCase {
 		$this->assertSame( [ 'sysop' ], $this->getServiceContainer()->getUserGroupManager()->getUserGroups( $user ) );
 
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
-	}
-
-	/**
-	 * Helper for testCanProcessExpiries that returns a mock ApiUserrights that either can or cannot
-	 * process expiries.  Although the regular page can process expiries, we use a mock here to
-	 * ensure that it's the result of canProcessExpiries() that makes a difference, and not some
-	 * error in the way we construct the mock.
-	 *
-	 * @param bool $canProcessExpiries
-	 * @return ApiUserrights
-	 */
-	private function getMockForProcessingExpiries( $canProcessExpiries ) {
-		$sysop = $this->getTestSysop()->getUser();
-		$user = $this->getMutableTestUser()->getUser();
-
-		$token = $sysop->getEditToken( 'userrights' );
-
-		$main = new ApiMain( new FauxRequest( [
-			'action' => 'userrights',
-			'user' => $user->getName(),
-			'add' => 'sysop',
-			'token' => $token,
-		] ) );
-
-		$mockUserRightsPage = $this->getMockBuilder( UserrightsPage::class )
-			->onlyMethods( [ 'canProcessExpiries' ] )
-			->getMock();
-		$mockUserRightsPage->method( 'canProcessExpiries' )->willReturn( $canProcessExpiries );
-
-		$mockApi = $this->getMockBuilder( ApiUserrights::class )
-			->setConstructorArgs( [ $main, 'userrights' ] )
-			->onlyMethods( [ 'getUserRightsPage' ] )
-			->getMock();
-		$mockApi->method( 'getUserRightsPage' )->willReturn( $mockUserRightsPage );
-
-		return $mockApi;
-	}
-
-	public function testCanProcessExpiries() {
-		$mock1 = $this->getMockForProcessingExpiries( true );
-		$this->assertArrayHasKey( 'expiry', $mock1->getAllowedParams() );
-
-		$mock2 = $this->getMockForProcessingExpiries( false );
-		$this->assertArrayNotHasKey( 'expiry', $mock2->getAllowedParams() );
 	}
 
 	/**

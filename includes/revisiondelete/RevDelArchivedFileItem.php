@@ -137,7 +137,7 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 			];
 		}
 		$comment = $file->getDescription( ArchivedFile::FOR_THIS_USER, $user );
-		if ( $comment ) {
+		if ( $comment !== '' ) {
 			$ret += [
 				'comment' => $comment,
 			];

@@ -26,24 +26,6 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers FallbackContent::getParserOutput
-	 */
-	public function testGetParserOutput() {
-		$this->setUserLang( 'en' );
-		$this->setContentLang( 'qqx' );
-
-		$title = Title::newFromText( 'Test' );
-		$content = $this->newContent( 'Horkyporky' );
-
-		$po = $content->getParserOutput( $title );
-		$html = $po->getText();
-		$html = preg_replace( '#<!--.*?-->#sm', '', $html ); // strip comments
-
-		$this->assertStringNotContainsString( 'Horkyporky', $html );
-		$this->assertStringNotContainsString( '(unsupported-content-model)', $html );
-	}
-
-	/**
 	 * @covers FallbackContent::getRedirectTarget
 	 */
 	public function testGetRedirectTarget() {

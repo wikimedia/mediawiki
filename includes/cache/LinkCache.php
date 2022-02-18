@@ -25,6 +25,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageStoreRecord;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -96,18 +97,6 @@ class LinkCache implements LoggerAwareInterface {
 	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
-	}
-
-	/**
-	 * Get an instance of this class.
-	 *
-	 * @return LinkCache
-	 * @deprecated since 1.28, hard deprecated since 1.37
-	 * Use MediaWikiServices::getLinkCache instead
-	 */
-	public static function singleton() {
-		wfDeprecated( __METHOD__, '1.28' );
-		return MediaWikiServices::getInstance()->getLinkCache();
 	}
 
 	/**
@@ -294,6 +283,7 @@ class LinkCache implements LoggerAwareInterface {
 	public function addGoodLinkObj( $id, $page, $len = -1, $redir = null,
 		$revision = 0, $model = null, $lang = null
 	) {
+		wfDeprecated( __METHOD__, '1.38' );
 		$this->addGoodLinkObjFromRow( $page, (object)[
 			'page_id' => (int)$id,
 			'page_namespace' => $page->getNamespace(),
@@ -392,18 +382,18 @@ class LinkCache implements LoggerAwareInterface {
 	 * @return array
 	 */
 	public static function getSelectFields() {
-		global $wgPageLanguageUseDB;
+		$pageLanguageUseDB = MediaWikiServices::getInstance()->getMainConfig()->get( 'PageLanguageUseDB' );
 
-		$fields = [
-			'page_id',
-			'page_len',
-			'page_is_redirect',
-			'page_latest',
-			'page_restrictions',
-			'page_content_model',
-		];
+		$fields = array_merge(
+			PageStoreRecord::REQUIRED_FIELDS,
+			[
+				'page_len',
+				'page_restrictions',
+				'page_content_model',
+			]
+		);
 
-		if ( $wgPageLanguageUseDB ) {
+		if ( $pageLanguageUseDB ) {
 			$fields[] = 'page_lang';
 		}
 
@@ -436,6 +426,75 @@ class LinkCache implements LoggerAwareInterface {
 	}
 
 	/**
+	 * @param TitleValue|null $link
+	 * @param callable|null $fetchCallback
+	 * @param int $queryFlags
+	 * @return array [ $shouldAddGoodLink, $row ], $shouldAddGoodLink is a bool indicating
+	 * whether addGoodLinkObjFromRow should be called, and $row is the row the caller was looking
+	 * for (or false, when it was not found).
+	 */
+	private function getGoodLinkRowInternal(
+		?TitleValue $link,
+		callable $fetchCallback = null,
+		int $queryFlags = IDBAccessObject::READ_NORMAL
+	): array {
+		$key = $link ? $this->getCacheKey( $link ) : null;
+		if ( $key === null ) {
+			return [ false, false ];
+		}
+
+		$ns = $link->getNamespace();
+		$dbkey = $link->getDBkey();
+		$callerShouldAddGoodLink = false;
+
+		if ( $this->mForUpdate ) {
+			$queryFlags |= IDBAccessObject::READ_LATEST;
+		}
+		$forUpdate = $queryFlags & IDBAccessObject::READ_LATEST;
+
+		if ( !$forUpdate && $this->isBadLink( $key ) ) {
+			return [ $callerShouldAddGoodLink, false ];
+		}
+
+		[ $row, $rowFlags ] = $this->goodLinks->get( $key );
+		if ( $row && $rowFlags >= $queryFlags ) {
+			return [ $callerShouldAddGoodLink, $row ];
+		}
+
+		if ( !$fetchCallback ) {
+			return [ $callerShouldAddGoodLink, false ];
+		}
+
+		$callerShouldAddGoodLink = true;
+		if ( $this->usePersistentCache( $ns ) && !$forUpdate ) {
+			// Some pages are often transcluded heavily, so use persistent caching
+			$wanCacheKey = $this->wanCache->makeKey( 'page', $ns, sha1( $dbkey ) );
+
+			$row = $this->wanCache->getWithSetCallback(
+				$wanCacheKey,
+				WANObjectCache::TTL_DAY,
+				function ( $curValue, &$ttl, array &$setOpts ) use ( $fetchCallback, $ns, $dbkey ) {
+					$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+					$setOpts += Database::getCacheSetOptions( $dbr );
+
+					$row = $fetchCallback( $dbr, $ns, $dbkey, [] );
+					$mtime = $row ? (int)wfTimestamp( TS_UNIX, $row->page_touched ) : false;
+					$ttl = $this->wanCache->adaptiveTTL( $mtime, $ttl );
+
+					return $row;
+				}
+			);
+		} else {
+			// No persistent caching needed, but we can still use the callback.
+			[ $mode, $options ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
+			$dbr = $this->loadBalancer->getConnectionRef( $mode );
+			$row = $fetchCallback( $dbr, $ns, $dbkey, $options );
+		}
+
+		return [ $callerShouldAddGoodLink, $row ];
+	}
+
+	/**
 	 * Returns the row for the page if the page exists (subject to race conditions).
 	 * The row will be returned from local cache or WAN cache if possible, or it
 	 * will be looked up using the callback provided.
@@ -456,56 +515,30 @@ class LinkCache implements LoggerAwareInterface {
 		int $queryFlags = IDBAccessObject::READ_NORMAL
 	): ?stdClass {
 		$link = TitleValue::tryNew( $ns, $dbkey );
-		$key = $link ? $this->getCacheKey( $link ) : null;
-		if ( $key === null ) {
+		if ( $link === null ) {
 			return null;
 		}
-
-		if ( $this->mForUpdate ) {
-			$queryFlags |= IDBAccessObject::READ_LATEST;
-		}
-		$forUpdate = $queryFlags & IDBAccessObject::READ_LATEST;
-
-		if ( !$forUpdate && $this->isBadLink( $key ) ) {
-			return null;
-		}
-
-		[ $row, $rowFlags ] = $this->goodLinks->get( $key );
-		if ( $row && $rowFlags >= $queryFlags ) {
-			return $row;
-		}
-
-		if ( !$fetchCallback ) {
-			return null;
-		}
-
-		if ( $this->usePersistentCache( $ns ) && !$forUpdate ) {
-			// Some pages are often transcluded heavily, so use persistent caching
-			$wanCacheKey = $this->wanCache->makeKey( 'page', $ns, sha1( $dbkey ) );
-
-			$row = $this->wanCache->getWithSetCallback(
-				$wanCacheKey,
-				WANObjectCache::TTL_DAY,
-				function ( $curValue, &$ttl, array &$setOpts ) use ( $fetchCallback, $ns, $dbkey ) {
-					$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
-					$setOpts += Database::getCacheSetOptions( $dbr );
-
-					$row = $fetchCallback( $dbr, $ns, $dbkey, [] );
-					$mtime = $row ? wfTimestamp( TS_UNIX, $row->page_touched ) : false;
-					$ttl = $this->wanCache->adaptiveTTL( $mtime, $ttl );
-
-					return $row;
-				}
-			);
-		} else {
-			// No persistent caching needed, but we can still use the callback.
-			[ $mode, $options ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
-			$dbr = $this->loadBalancer->getConnectionRef( $mode );
-			$row = $fetchCallback( $dbr, $ns, $dbkey, $options );
-		}
+		[ $shouldAddGoodLink, $row ] = $this->getGoodLinkRowInternal(
+			$link,
+			$fetchCallback,
+			$queryFlags
+		);
 
 		if ( $row ) {
-			$this->addGoodLinkObjFromRow( $link, $row );
+			if ( $shouldAddGoodLink ) {
+				try {
+					$this->addGoodLinkObjFromRow( $link, $row, $queryFlags );
+				} catch ( InvalidArgumentException $e ) {
+					// a field is missing from $row; maybe we used a cache?; invalidate it and try again
+					$this->invalidateTitle( $link );
+					[ $shouldAddGoodLink, $row ] = $this->getGoodLinkRowInternal(
+						$link,
+						$fetchCallback,
+						$queryFlags
+					);
+					$this->addGoodLinkObjFromRow( $link, $row, $queryFlags );
+				}
+			}
 		} else {
 			$this->addBadLinkObj( $link );
 		}

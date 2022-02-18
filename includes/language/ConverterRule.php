@@ -66,7 +66,7 @@ class ConverterRule {
 	 * Check if variants array in convert array.
 	 *
 	 * @param array|string $variants Variant language code
-	 * @return string Translated text
+	 * @return string|false Translated text
 	 */
 	public function getTextInBidtable( $variants ) {
 		$variants = (array)$variants;
@@ -264,7 +264,7 @@ class ConverterRule {
 	 *
 	 * @since 1.22
 	 * @param string $variant The variant code to display page title in
-	 * @return string|bool The converted title or false if just page name
+	 * @return string|false The converted title or false if just page name
 	 */
 	private function getRuleConvertedTitle( $variant ) {
 		if ( $variant === $this->mConverter->getMainCode() ) {
@@ -470,7 +470,7 @@ class ConverterRule {
 
 	/**
 	 * Get converted title.
-	 * @return string
+	 * @return string|false
 	 */
 	public function getTitle() {
 		return $this->mRuleTitle;

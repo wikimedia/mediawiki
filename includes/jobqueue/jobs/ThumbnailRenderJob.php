@@ -34,7 +34,8 @@ class ThumbnailRenderJob extends Job {
 	}
 
 	public function run() {
-		global $wgUploadThumbnailRenderMethod;
+		$uploadThumbnailRenderMethod = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'UploadThumbnailRenderMethod' );
 
 		$transformParams = $this->params['transformParams'];
 
@@ -43,7 +44,7 @@ class ThumbnailRenderJob extends Job {
 		$file->load( File::READ_LATEST );
 
 		if ( $file && $file->exists() ) {
-			if ( $wgUploadThumbnailRenderMethod === 'jobqueue' ) {
+			if ( $uploadThumbnailRenderMethod === 'jobqueue' ) {
 				$thumb = $file->transform( $transformParams, File::RENDER_NOW );
 
 				if ( !$thumb || $thumb->isError() ) {
@@ -56,11 +57,11 @@ class ThumbnailRenderJob extends Job {
 					return false;
 				}
 				return true;
-			} elseif ( $wgUploadThumbnailRenderMethod === 'http' ) {
+			} elseif ( $uploadThumbnailRenderMethod === 'http' ) {
 				return $this->hitThumbUrl( $file, $transformParams );
 			} else {
 				$this->setLastError( __METHOD__ . ': unknown thumbnail render method ' .
-					$wgUploadThumbnailRenderMethod );
+					$uploadThumbnailRenderMethod );
 				return false;
 			}
 		} else {
@@ -75,8 +76,9 @@ class ThumbnailRenderJob extends Job {
 	 * @return bool Success status (error will be set via setLastError() when false)
 	 */
 	protected function hitThumbUrl( LocalFile $file, $transformParams ) {
-		global $wgUploadThumbnailRenderHttpCustomHost, $wgUploadThumbnailRenderHttpCustomDomain;
-
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$uploadThumbnailRenderHttpCustomHost = $config->get( 'UploadThumbnailRenderHttpCustomHost' );
+		$uploadThumbnailRenderHttpCustomDomain = $config->get( 'UploadThumbnailRenderHttpCustomDomain' );
 		$handler = $file->getHandler();
 		if ( !$handler ) {
 			$this->setLastError( __METHOD__ . ': could not get handler' );
@@ -93,7 +95,7 @@ class ThumbnailRenderJob extends Job {
 			return false;
 		}
 
-		if ( $wgUploadThumbnailRenderHttpCustomDomain ) {
+		if ( $uploadThumbnailRenderHttpCustomDomain ) {
 			$parsedUrl = wfParseUrl( $thumbUrl );
 
 			if ( !isset( $parsedUrl['path'] ) || $parsedUrl['path'] === '' ) {
@@ -101,21 +103,21 @@ class ThumbnailRenderJob extends Job {
 				return false;
 			}
 
-			$thumbUrl = '//' . $wgUploadThumbnailRenderHttpCustomDomain . $parsedUrl['path'];
+			$thumbUrl = '//' . $uploadThumbnailRenderHttpCustomDomain . $parsedUrl['path'];
 		}
 
 		wfDebug( __METHOD__ . ": hitting url {$thumbUrl}" );
 
 		// T203135 We don't wait for the request to complete, as this is mostly fire & forget.
-		// Looking at the HTTP status of requests that take less than 1s is a sanity check.
+		// Looking at the HTTP status of requests that take less than 1s is a double check.
 		$request = MediaWikiServices::getInstance()->getHttpRequestFactory()->create(
 			$thumbUrl,
 			[ 'method' => 'HEAD', 'followRedirects' => true, 'timeout' => 1 ],
 			__METHOD__
 		);
 
-		if ( $wgUploadThumbnailRenderHttpCustomHost ) {
-			$request->setHeader( 'Host', $wgUploadThumbnailRenderHttpCustomHost );
+		if ( $uploadThumbnailRenderHttpCustomHost ) {
+			$request->setHeader( 'Host', $uploadThumbnailRenderHttpCustomHost );
 		}
 
 		$status = $request->execute();
@@ -134,7 +136,7 @@ class ThumbnailRenderJob extends Job {
 			return true;
 		} else {
 			$this->setLastError( __METHOD__ . ': HTTP request failure: '
-				. Status::wrap( $status )->getWikiText( null, null, 'en' ) );
+				. Status::wrap( $status )->getWikiText( false, false, 'en' ) );
 		}
 		return false;
 	}

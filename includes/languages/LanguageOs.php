@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Ossetian (Ирон) specific code.
  *
@@ -21,6 +22,8 @@
  * @author Soslan Khubulov
  * @ingroup Language
  */
+
+use MediaWiki\MediaWikiServices;
 
 /**
  * Ossetian (Ирон)
@@ -54,9 +57,9 @@ class LanguageOs extends Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms['os'][$case][$word] ) ) {
-			return $wgGrammarForms['os'][$case][$word];
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		if ( isset( $grammarForms['os'][$case][$word] ) ) {
+			return $grammarForms['os'][$case][$word];
 		}
 		# Ending for allative case
 		$end_allative = 'мæ';

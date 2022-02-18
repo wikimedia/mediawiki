@@ -22,6 +22,7 @@
 
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -63,6 +64,16 @@ class ApiEditPage extends ApiBase {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
+	/** @var RedirectLookup */
+	private $redirectLookup;
+
+	/**
+	 * Sends a cookie so anons get talk message notifications, mirroring SubmitAction (T295910)
+	 */
+	private function persistGlobalSession() {
+		MediaWiki\Session\SessionManager::getGlobalSession()->persist();
+	}
+
 	/**
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
@@ -72,6 +83,7 @@ class ApiEditPage extends ApiBase {
 	 * @param WikiPageFactory|null $wikiPageFactory
 	 * @param WatchlistManager|null $watchlistManager
 	 * @param UserOptionsLookup|null $userOptionsLookup
+	 * @param RedirectLookup|null $redirectLookup
 	 */
 	public function __construct(
 		ApiMain $mainModule,
@@ -81,7 +93,8 @@ class ApiEditPage extends ApiBase {
 		WatchedItemStoreInterface $watchedItemStore = null,
 		WikiPageFactory $wikiPageFactory = null,
 		WatchlistManager $watchlistManager = null,
-		UserOptionsLookup $userOptionsLookup = null
+		UserOptionsLookup $userOptionsLookup = null,
+		RedirectLookup $redirectLookup = null
 	) {
 		parent::__construct( $mainModule, $moduleName );
 
@@ -97,6 +110,7 @@ class ApiEditPage extends ApiBase {
 		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
 		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
+		$this->redirectLookup = $redirectLookup ?? $services->getRedirectLookup();
 	}
 
 	public function execute() {
@@ -120,49 +134,35 @@ class ApiEditPage extends ApiBase {
 				$this->dieWithError( 'apierror-redirect-appendonly' );
 			}
 			if ( $titleObj->isRedirect() ) {
-				$oldTitle = $titleObj;
+				$oldTarget = $titleObj;
+				$redirTarget = $this->redirectLookup->getRedirectTarget( $oldTarget );
+				$redirTarget = Title::castFromLinkTarget( $redirTarget );
 
-				$titles = $this->revisionLookup
-					->getRevisionByTitle( $oldTitle, 0, IDBAccessObject::READ_LATEST )
-					->getContent( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $user )
-					->getRedirectChain();
-				// array_shift( $titles );
-				'@phan-var Title[] $titles';
+				$redirValues = [
+					'from' => $titleObj->getPrefixedText(),
+					'to' => $redirTarget->getPrefixedText()
+				];
 
-				$redirValues = [];
-
-				/** @var Title $newTitle */
-				foreach ( $titles as $id => $newTitle ) {
-					$titles[$id - 1] = $titles[$id - 1] ?? $oldTitle;
-
-					$redirValues[] = [
-						'from' => $titles[$id - 1]->getPrefixedText(),
-						'to' => $newTitle->getPrefixedText()
-					];
-
-					$titleObj = $newTitle;
-
-					// T239428: Check whether the new title is valid
-					if ( $titleObj->isExternal() || !$titleObj->canExist() ) {
-						$redirValues[count( $redirValues ) - 1]['to'] = $titleObj->getFullText();
-						$this->dieWithError(
-							[
-								'apierror-edit-invalidredirect',
-								Message::plaintextParam( $oldTitle->getPrefixedText() ),
-								Message::plaintextParam( $titleObj->getFullText() ),
-							],
-							'edit-invalidredirect',
-							[ 'redirects' => $redirValues ]
-						);
-					}
+				// T239428: Check whether the new title is valid
+				if ( $redirTarget->isExternal() || !$redirTarget->canExist() ) {
+					$redirValues['to'] = $redirTarget->getFullText();
+					$this->dieWithError(
+						[
+							'apierror-edit-invalidredirect',
+							Message::plaintextParam( $oldTarget->getPrefixedText() ),
+							Message::plaintextParam( $redirTarget->getFullText() ),
+						],
+						'edit-invalidredirect',
+						[ 'redirects' => $redirValues ]
+					);
 				}
 
 				ApiResult::setIndexedTagName( $redirValues, 'r' );
 				$apiResult->addValue( null, 'redirects', $redirValues );
 
 				// Since the page changed, update $pageObj
-				$pageObj = $this->wikiPageFactory->newFromTitle( $titleObj );
-				$this->getErrorFormatter()->setContextTitle( $titleObj );
+				$pageObj = $this->wikiPageFactory->newFromTitle( $redirTarget );
+				$this->getErrorFormatter()->setContextTitle( $redirTarget );
 			}
 		}
 
@@ -476,9 +476,16 @@ class ApiEditPage extends ApiBase {
 		// and fetched revision remain the same before attempting to save.
 		$editRevId = $requestArray['editRevId'] ?? false;
 		$baseRev = $this->revisionLookup->getRevisionByTitle( $titleObj, $editRevId );
-		$baseContentModel = $baseRev
-			? $baseRev->getContent( SlotRecord::MAIN )->getModel()
-			: $pageObj->getContentModel();
+		$baseContentModel = null;
+
+		if ( $baseRev ) {
+			$baseContent = $baseRev->getContent( SlotRecord::MAIN );
+			$baseContentModel = $baseContent ? $baseContent->getModel() : null;
+		}
+
+		if ( $baseContentModel === null ) {
+			$baseContentModel = $pageObj->getContentModel();
+		}
 
 		// However, allow the content models to possibly differ if we are intentionally
 		// changing them or we are doing an undo edit that is reverting content model change.
@@ -563,6 +570,7 @@ class ApiEditPage extends ApiBase {
 						$r['watchlistexpiry'] = $watchlistExpiry;
 					}
 				}
+				$this->persistGlobalSession();
 				break;
 
 			default:

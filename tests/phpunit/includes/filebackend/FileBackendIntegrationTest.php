@@ -77,12 +77,6 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 				$useConfig['shardViaHashLevels'] = [ // test sharding
 					'unittest-cont1' => [ 'levels' => 1, 'base' => 16, 'repeat' => 1 ]
 				];
-				if ( isset( $useConfig['fileJournal'] ) ) {
-					$useConfig['fileJournal'] = ObjectFactory::getObjectFromSpec(
-						[ 'backend' => $name ] + $useConfig['fileJournal'],
-						[ 'specIsArg' => true, 'assertClass' => FileJournal::class ]
-					);
-				}
 				$useConfig['lockManager'] = $lockManagerGroup->get( $useConfig['lockManager'] );
 				$class = $useConfig['class'];
 				self::$backendToUse = new $class( $useConfig );
@@ -92,7 +86,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			$this->singleBackend = new FSFileBackend( [
 				'name' => 'localtesting',
 				'lockManager' => $lockManagerGroup->get( 'fsLockManager' ),
-				'wikiId' => wfWikiID(),
+				'wikiId' => WikiMap::getCurrentWikiId(),
 				'logger' => LoggerFactory::getInstance( 'FileOperation' ),
 				'containerPaths' => [
 					'unittest-cont1' => "{$tmpDir}/localtesting-cont1",
@@ -172,7 +166,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			"Store from $source to $dest succeeded ($backendName)." );
 		$this->assertEquals( [ 0 => true ], $status->success,
 			"Store from $source to $dest has proper 'success' field in Status ($backendName)." );
-		$this->assertTrue( file_exists( $source ),
+		$this->assertTrue( is_file( $source ),
 			"Source file $source still exists ($backendName)." );
 		$this->assertTrue( $this->backend->fileExists( [ 'src' => $dest ] ),
 			"Destination file $dest exists ($backendName)." );
@@ -1554,7 +1548,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		$url = $this->backend->getFileHttpUrl( [ 'src' => $source ] );
 
 		if ( $url !== null ) { // supported
-			$data = MediaWikiServices::getInstance()->getHttpRequestFactory()->
+			$data = $this->getServiceContainer()->getHttpRequestFactory()->
 				get( $url, [], __METHOD__ );
 			$this->assertEquals( $content, $data,
 				"HTTP GET of URL has right contents ($backendName)." );
@@ -2512,7 +2506,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		$be = TestingAccessWrapper::newFromObject(
 			new FileBackendMultiWrite( [
 				'name' => 'localtesting',
-				'wikiId' => wfWikiID() . mt_rand(),
+				'wikiId' => WikiMap::getCurrentWikiId() . mt_rand(),
 				'backends' => [
 					[ // backend 0
 						'name' => 'multitesting0',
@@ -2562,7 +2556,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		$be = TestingAccessWrapper::newFromObject(
 			new FileBackendMultiWrite( [
 				'name' => 'localtesting',
-				'wikiId' => wfWikiID() . mt_rand(),
+				'wikiId' => WikiMap::getCurrentWikiId() . mt_rand(),
 				'backends' => [
 					[ // backend 0
 						'name' => 'multitesting0',
@@ -2607,7 +2601,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testSanitizeOpHeaders() {
 		$be = TestingAccessWrapper::newFromObject( new MemoryFileBackend( [
 			'name' => 'localtesting',
-			'wikiId' => wfWikiID()
+			'wikiId' => WikiMap::getCurrentWikiId()
 		] ) );
 
 		$input = [

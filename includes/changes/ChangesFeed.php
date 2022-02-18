@@ -48,19 +48,21 @@ class ChangesFeed {
 	 * @return ChannelFeed|bool ChannelFeed subclass or false on failure
 	 */
 	public function getFeedObject( $title, $description, $url ) {
-		global $wgSitename, $wgLanguageCode, $wgFeedClasses;
-
-		if ( !isset( $wgFeedClasses[$this->format] ) ) {
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$sitename = $mainConfig->get( 'Sitename' );
+		$languageCode = $mainConfig->get( 'LanguageCode' );
+		$feedClasses = $mainConfig->get( 'FeedClasses' );
+		if ( !isset( $feedClasses[$this->format] ) ) {
 			return false;
 		}
 
-		if ( !array_key_exists( $this->format, $wgFeedClasses ) ) {
+		if ( !array_key_exists( $this->format, $feedClasses ) ) {
 			// falling back to atom
 			$this->format = 'atom';
 		}
 
-		$feedTitle = "$wgSitename  - {$title} [$wgLanguageCode]";
-		return new $wgFeedClasses[$this->format](
+		$feedTitle = "{$sitename}  - {$title} [{$languageCode}]";
+		return new $feedClasses[$this->format](
 			$feedTitle, htmlspecialchars( $description ), $url );
 	}
 
@@ -93,7 +95,15 @@ class ChangesFeed {
 			}
 		}
 
-		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		$services = MediaWikiServices::getInstance();
+		$commentFormatter = $services->getRowCommentFormatter();
+		$formattedComments = $commentFormatter->formatItems(
+			$commentFormatter->rows( $rows )
+				->commentKey( 'rc_comment' )
+				->indexField( 'rc_id' )
+		);
+
+		$nsInfo = $services->getNamespaceInfo();
 		foreach ( $sorted as $obj ) {
 			$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
 			$talkpage = $nsInfo->hasTalkNamespace( $obj->rc_namespace ) && $title->canExist()
@@ -117,7 +127,7 @@ class ChangesFeed {
 
 			$items[] = new FeedItem(
 				$title->getPrefixedText(),
-				FeedUtils::formatDiff( $obj ),
+				FeedUtils::formatDiff( $obj, $formattedComments[$obj->rc_id] ),
 				$url,
 				$obj->rc_timestamp,
 				( $obj->rc_deleted & RevisionRecord::DELETED_USER )

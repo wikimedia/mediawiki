@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -267,8 +266,9 @@ class LinkerTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideCasesForFormatComment
 	 * @covers Linker::formatComment
-	 * @covers Linker::formatAutocomments
 	 * @covers Linker::formatLinksInComment
+	 * @covers \MediaWiki\CommentFormatter\CommentParser
+	 * @covers \MediaWiki\CommentFormatter\CommentFormatter
 	 */
 	public function testFormatComment(
 		$expected, $comment, $title = false, $local = false, $wikiId = null
@@ -490,6 +490,8 @@ class LinkerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers Linker::formatLinksInComment
+	 * @covers \MediaWiki\CommentFormatter\CommentParser
+	 * @covers \MediaWiki\CommentFormatter\CommentFormatter
 	 * @dataProvider provideCasesForFormatLinksInComment
 	 */
 	public function testFormatLinksInComment( $expected, $input, $wiki ) {
@@ -521,11 +523,13 @@ class LinkerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideCasesForRollbackGeneration
 	 */
 	public function testGenerateRollback( $rollbackEnabled, $expectedModules, $title ) {
-		$this->markTestSkippedIfDbType( 'postgres' );
-
 		$context = RequestContext::getMain();
 		$user = $context->getUser();
-		$user->setOption( 'showrollbackconfirmation', $rollbackEnabled );
+		$this->getServiceContainer()->getUserOptionsManager()->setOption(
+			$user,
+			'showrollbackconfirmation',
+			$rollbackEnabled
+		);
 
 		$this->assertSame( 0, Title::newFromText( $title )->getArticleID() );
 		$pageData = $this->insertPage( $title );
@@ -542,7 +546,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$rollbackOutput = Linker::generateRollback( $page->getRevisionRecord(), $context );
 		$modules = $context->getOutput()->getModules();
 		$currentRev = $page->getRevisionRecord();
-		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$revisionLookup = $this->getServiceContainer()->getRevisionLookup();
 		$oldestRev = $revisionLookup->getFirstRevision( $page->getTitle() );
 
 		$this->assertEquals( $expectedModules, $modules );
@@ -647,7 +651,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 		] );
 		$user = $this->createMock( User::class );
 		$user->method( 'isRegistered' )->willReturn( true );
-		$user->method( 'isLoggedIn' )->willReturn( true );
 
 		$title = SpecialPage::getTitleFor( 'Blankpage' );
 
@@ -660,53 +663,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$result = Linker::tooltipAndAccesskeyAttribs( $name, $msgParams, $options );
 
 		$this->assertEquals( $expected, $result );
-	}
-
-	/**
-	 * @covers Linker::makeCommentLink
-	 * @dataProvider provideMakeCommentLink
-	 */
-	public function testMakeCommentLink( $expected, $linkTarget, $text, $wikiId = null, $options = [] ) {
-		$conf = new SiteConfiguration();
-		$conf->settings = [
-			'wgServer' => [
-				'enwiki' => '//en.example.org'
-			],
-			'wgArticlePath' => [
-				'enwiki' => '/w/$1',
-			],
-		];
-		$conf->suffixes = [ 'wiki' ];
-		$this->setMwGlobals( [
-			'wgScript' => '/wiki/index.php',
-			'wgArticlePath' => '/wiki/$1',
-			'wgCapitalLinks' => true,
-			'wgConf' => $conf,
-		] );
-
-		$this->assertEquals( $expected, Linker::makeCommentLink( $linkTarget, $text, $wikiId, $options ) );
-	}
-
-	public static function provideMakeCommentLink() {
-		return [
-			[
-				'<a href="/wiki/Special:BlankPage" title="Special:BlankPage">Test</a>',
-				new TitleValue( NS_SPECIAL, 'BlankPage' ),
-				'Test'
-			],
-			'External comment link' => [
-				'<a class="external" rel="nofollow" href="//en.example.org/w/BlankPage">Test</a>',
-				new TitleValue( NS_MAIN, 'BlankPage' ),
-				'Test',
-				'enwiki'
-			],
-			'External special page comment link' => [
-				'<a class="external" rel="nofollow" href="//en.example.org/w/Special:BlankPage">Test</a>',
-				new TitleValue( NS_SPECIAL, 'BlankPage' ),
-				'Test',
-				'enwiki'
-			],
-		];
 	}
 
 	/**

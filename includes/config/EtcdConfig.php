@@ -38,9 +38,15 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	private $procCache;
 	/** @var LoggerInterface */
 	private $logger;
+	/** @var DnsSrvDiscoverer */
+	private $dsd;
 
 	/** @var string */
+	private $service;
+	/** @var string */
 	private $host;
+	/** @var ?int */
+	private $port;
 	/** @var string */
 	private $protocol;
 	/** @var string */
@@ -56,9 +62,11 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 
 	/**
 	 * @param array $params Parameter map:
-	 *   - host: the host address and port
-	 *   - protocol: either http or https
+	 *   - host: the host address
 	 *   - directory: the etc "directory" were MediaWiki specific variables are located
+	 *   - service: service name used in SRV discovery. Defaults to 'etcd'. [optional]
+	 *   - port: custom host port [optional]
+	 *   - protocol: one of ("http", "https"). Defaults to http. [optional]
 	 *   - encoding: one of ("JSON", "YAML"). Defaults to JSON. [optional]
 	 *   - cache: BagOStuff instance or ObjectFactory spec thereof for a server cache.
 	 *            The cache will also be used as a fallback if etcd is down. [optional]
@@ -68,6 +76,8 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	 */
 	public function __construct( array $params ) {
 		$params += [
+			'service' => 'etcd',
+			'port' => null,
 			'protocol' => 'http',
 			'encoding' => 'JSON',
 			'cacheTTL' => 10,
@@ -75,13 +85,33 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 			'timeout' => 2
 		];
 
+		$this->service = $params['service'];
 		$this->host = $params['host'];
+		$this->port = $params['port'];
 		$this->protocol = $params['protocol'];
 		$this->directory = trim( $params['directory'], '/' );
 		$this->encoding = $params['encoding'];
 		$this->skewCacheTTL = $params['skewTTL'];
 		$this->baseCacheTTL = max( $params['cacheTTL'] - $this->skewCacheTTL, 0 );
 		$this->timeout = $params['timeout'];
+
+		// For backwards compatibility, check the host for an embedded port
+		$hostAndPort = IPUtils::splitHostAndPort( $this->host );
+
+		if ( $hostAndPort ) {
+			$this->host = $hostAndPort[0];
+
+			if ( $hostAndPort[1] ) {
+				$this->port = $hostAndPort[1];
+			}
+		}
+
+		// Also for backwards compatibility, check for a host in the format of
+		// an SRV record and use the service specified therein
+		if ( preg_match( '/^_([^\.]+)\._tcp\.(.+)$/', $this->host, $m ) ) {
+			$this->service = $m[1];
+			$this->host = $m[2];
+		}
 
 		if ( !isset( $params['cache'] ) ) {
 			$this->srvCache = new HashBagOStuff();
@@ -97,6 +127,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 			'reqTimeout' => $this->timeout,
 			'logger' => $this->logger
 		] );
+		$this->dsd = new DnsSrvDiscoverer( $this->service, 'tcp', $this->host );
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -212,39 +243,37 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	 * @return array (containing the keys config, error, retry, modifiedIndex)
 	 */
 	public function fetchAllFromEtcd() {
-		// TODO: inject DnsSrvDiscoverer in order to be able to test this method
-		$dsd = new DnsSrvDiscoverer( $this->host );
-		$servers = $dsd->getServers();
-		if ( !$servers ) {
-			return $this->fetchAllFromEtcdServer( $this->host );
-		}
+		$servers = $this->dsd->getServers() ?: [ [ $this->host, $this->port ] ];
 
-		do {
-			// Pick a random etcd server from dns
-			$server = $dsd->pickServer( $servers );
-			$host = IPUtils::combineHostAndPort( $server['target'], $server['port'] );
+		foreach ( $servers as $server ) {
+			list( $host, $port ) = $server;
+
 			// Try to load the config from this particular server
-			$response = $this->fetchAllFromEtcdServer( $host );
+			$response = $this->fetchAllFromEtcdServer( $host, $port );
 			if ( is_array( $response['config'] ) || $response['retry'] ) {
 				break;
 			}
-
-			// Avoid the server next time if that failed
-			$servers = $dsd->removeServer( $server, $servers );
-		} while ( $servers );
+		}
 
 		return $response;
 	}
 
 	/**
-	 * @param string $address Host and port
+	 * @param string $address Host
+	 * @param ?int $port Port
 	 * @return array (containing the keys config, error, retry, modifiedIndex)
 	 */
-	protected function fetchAllFromEtcdServer( $address ) {
+	protected function fetchAllFromEtcdServer( string $address, ?int $port = null ) {
+		$host = $address;
+
+		if ( $port !== null ) {
+			$host = IPUtils::combineHostAndPort( $address, $port );
+		}
+
 		// Retrieve all the values under the MediaWiki config directory
 		list( $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ) = $this->http->run( [
 			'method' => 'GET',
-			'url' => "{$this->protocol}://{$address}/v2/keys/{$this->directory}/?recursive=true",
+			'url' => "{$this->protocol}://{$host}/v2/keys/{$this->directory}/?recursive=true",
 			'headers' => [ 'content-type' => 'application/json' ]
 		] );
 

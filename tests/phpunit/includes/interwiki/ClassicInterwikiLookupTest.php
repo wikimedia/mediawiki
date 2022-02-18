@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @covers MediaWiki\Interwiki\ClassicInterwikiLookup
  * @group Database
@@ -38,10 +36,10 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 
 		$this->populateDB( [ $dewiki, $zzwiki ] );
 		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ),
 			WANObjectCache::newEmpty(),
-			MediaWikiServices::getInstance()->getHookContainer(),
-			MediaWikiServices::getInstance()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getDBLoadBalancer(),
 			60 * 60,
 			false,
 			3,
@@ -93,7 +91,7 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function populateHash( $thisSite, $local, $global ) {
 		$hash = [];
-		$hash[ '__sites:' . wfWikiID() ] = $thisSite;
+		$hash[ '__sites:' . WikiMap::getCurrentWikiId() ] = $thisSite;
 
 		$globals = [];
 		$locals = [];
@@ -118,77 +116,6 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 		return $hash;
 	}
 
-	private function populateCDB( $thisSite, $local, $global ) {
-		$cdbFile = $this->getNewTempFile();
-		$cdb = \Cdb\Writer::open( $cdbFile );
-
-		$hash = $this->populateHash( $thisSite, $local, $global );
-
-		foreach ( $hash as $key => $value ) {
-			$cdb->set( $key, $value );
-		}
-
-		$cdb->close();
-		return $cdbFile;
-	}
-
-	public function testCDBStorage() {
-		// NOTE: CDB setup is expensive, so we only do
-		//  it once and run all the tests in one go.
-
-		$zzwiki = [
-			'iw_prefix' => 'zz',
-			'iw_url' => 'http://zzwiki.org/wiki/',
-			'iw_local' => 0
-		];
-
-		$dewiki = [
-			'iw_prefix' => 'de',
-			'iw_url' => 'http://de.wikipedia.org/wiki/',
-			'iw_local' => 1
-		];
-
-		$cdbFile = $this->populateCDB(
-			'en',
-			[ $dewiki ],
-			[ $zzwiki ]
-		);
-		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
-			WANObjectCache::newEmpty(),
-			MediaWikiServices::getInstance()->getHookContainer(),
-			MediaWikiServices::getInstance()->getDBLoadBalancer(),
-			60 * 60,
-			$cdbFile,
-			3,
-			'en'
-		);
-
-		$this->assertEquals(
-			[ $zzwiki, $dewiki ],
-			$lookup->getAllPrefixes(),
-			'getAllPrefixes()'
-		);
-
-		$this->assertTrue( $lookup->isValidInterwiki( 'de' ), 'known prefix is valid' );
-		$this->assertTrue( $lookup->isValidInterwiki( 'zz' ), 'known prefix is valid' );
-
-		$interwiki = $lookup->fetch( 'de' );
-		$this->assertInstanceOf( Interwiki::class, $interwiki );
-
-		$this->assertSame( 'http://de.wikipedia.org/wiki/', $interwiki->getURL(), 'getURL' );
-		$this->assertSame( true, $interwiki->isLocal(), 'isLocal' );
-
-		$interwiki = $lookup->fetch( 'zz' );
-		$this->assertInstanceOf( Interwiki::class, $interwiki );
-
-		$this->assertSame( 'http://zzwiki.org/wiki/', $interwiki->getURL(), 'getURL' );
-		$this->assertSame( false, $interwiki->isLocal(), 'isLocal' );
-
-		// cleanup temp file
-		unlink( $cdbFile );
-	}
-
 	public function testArrayStorage() {
 		$zzwiki = [
 			'iw_prefix' => 'zz',
@@ -207,10 +134,10 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 			[ $zzwiki ]
 		);
 		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ),
 			WANObjectCache::newEmpty(),
-			MediaWikiServices::getInstance()->getHookContainer(),
-			MediaWikiServices::getInstance()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getDBLoadBalancer(),
 			60 * 60,
 			$hash,
 			3,
@@ -262,10 +189,10 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 			[ $zz, $de, $azz ]
 		);
 		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ),
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ),
 			WANObjectCache::newEmpty(),
-			MediaWikiServices::getInstance()->getHookContainer(),
-			MediaWikiServices::getInstance()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getDBLoadBalancer(),
 			60 * 60,
 			$hash,
 			3,

@@ -431,9 +431,9 @@ public static $zh2Hant = [\n'''
         + '\n];\n}\n'
 
     if pyversion[:1] in ['2']:
-        f = open(os.path.join('..', '..', '..', 'languages', 'data', 'ZhConversion.php'), 'wb', encoding='utf8')
+        f = open(os.path.join('..', '..', '..', 'includes', 'languages', 'data', 'ZhConversion.php'), 'wb', encoding='utf8')
     else:
-        f = open(os.path.join('..', '..', '..', 'languages', 'data', 'ZhConversion.php'), 'w', buffering=4096, encoding='utf8')
+        f = open(os.path.join('..', '..', '..', 'includes', 'languages', 'data', 'ZhConversion.php'), 'w', buffering=4096, encoding='utf8')
     print ('Writing ZhConversion.php ... ')
     f.write(php)
     f.close()

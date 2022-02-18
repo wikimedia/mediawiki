@@ -131,7 +131,7 @@ class DatabasePostgres extends Database {
 				$this->query(
 					'SET ' . $this->addIdentifierQuotes( $var ) . ' = ' . $this->addQuotes( $val ),
 					__METHOD__,
-					self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX
+					self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX
 				);
 			}
 			$this->determineCoreSchema( $schema );
@@ -246,7 +246,7 @@ class DatabasePostgres extends Database {
 			__METHOD__,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchRow( $res );
+		$row = $res->fetchRow();
 
 		return $row[0] === null ? null : (int)$row[0];
 	}
@@ -307,7 +307,7 @@ class DatabasePostgres extends Database {
 		$res = $this->select( $table, $var, $conds, $fname, $options, $join_conds );
 		$rows = -1;
 		if ( $res ) {
-			$row = $this->fetchRow( $res );
+			$row = $res->fetchRow();
 			$count = [];
 			if ( preg_match( '/rows=(\d+)/', $row[0], $count ) ) {
 				$rows = (int)$count[1];
@@ -578,10 +578,6 @@ __INDEXATTR__;
 		}
 	}
 
-	public function tableName( $name, $format = 'quoted' ) {
-		return parent::tableName( $name, $format );
-	}
-
 	/**
 	 * @param string $name
 	 * @return string Value of $name or remapped name if $name is a reserved keyword
@@ -618,7 +614,7 @@ __INDEXATTR__;
 			__METHOD__,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchRow( $res );
+		$row = $res->fetchRow();
 		$currval = $row[0];
 
 		return $currval;
@@ -632,7 +628,7 @@ __INDEXATTR__;
 			WHERE relname='$encTable' AND a.attrelid=c.oid AND
 				a.atttypid=t.oid and a.attname='$field'";
 		$res = $this->query( $sql, __METHOD__, $flags );
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 		if ( $row->ftype == 'varchar' ) {
 			$size = $row->size - 4;
 		} else {
@@ -656,7 +652,7 @@ __INDEXATTR__;
 		return $this->lastErrno() === '55P03';
 	}
 
-	public function wasConnectionError( $errno ) {
+	protected function isConnectionError( $errno ) {
 		// https://www.postgresql.org/docs/9.2/static/errcodes-appendix.html
 		static $codes = [ '08000', '08003', '08006', '08001', '08004', '57P01', '57P03', '53300' ];
 
@@ -697,7 +693,7 @@ __INDEXATTR__;
 			$fname,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 		if ( $row ) {
 			$field = $row->attname;
 			$newSeq = "{$newName}_{$field}_seq";
@@ -802,10 +798,6 @@ __INDEXATTR__;
 		return $output;
 	}
 
-	public function aggregateValue( $valuedata, $valuename = 'value' ) {
-		return $valuedata;
-	}
-
 	public function getSoftwareLink() {
 		return '[{{int:version-db-postgres-url}} PostgreSQL]';
 	}
@@ -823,7 +815,7 @@ __INDEXATTR__;
 			__METHOD__,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchRow( $res );
+		$row = $res->fetchRow();
 
 		return $row[0];
 	}
@@ -836,7 +828,7 @@ __INDEXATTR__;
 	 * @see getSearchPath()
 	 * @see setSearchPath()
 	 * @since 1.19
-	 * @return array List of actual schemas for the current sesson
+	 * @return array List of actual schemas for the current session
 	 */
 	public function getSchemas() {
 		$res = $this->query(
@@ -844,7 +836,7 @@ __INDEXATTR__;
 			__METHOD__,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchRow( $res );
+		$row = $res->fetchRow();
 		$schemas = [];
 
 		/* PHP pgsql support does not support array type, "{a,b}" string is returned */
@@ -867,7 +859,7 @@ __INDEXATTR__;
 			__METHOD__,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchRow( $res );
+		$row = $res->fetchRow();
 
 		/* PostgreSQL returns SHOW values as strings */
 
@@ -885,14 +877,14 @@ __INDEXATTR__;
 		$this->query(
 			"SET search_path = " . implode( ", ", $search_path ),
 			__METHOD__,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_TRX
+			self::QUERY_CHANGE_TRX
 		);
 	}
 
 	/**
 	 * Determine default schema for the current application
 	 * Adjust this session schema search path if desired schema exists
-	 * and is not alread there.
+	 * and is not already there.
 	 *
 	 * We need to have name of the core schema stored to be able
 	 * to query database metadata.
@@ -961,7 +953,7 @@ __INDEXATTR__;
 			__METHOD__,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 		if ( $row ) {
 			$this->tempSchema = $row->nspname;
 			return [ $this->tempSchema, $this->getCoreSchema() ];
@@ -1117,7 +1109,7 @@ SQL;
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
 
-		return ( $this->numRows( $res ) > 0 );
+		return ( $res->numRows() > 0 );
 	}
 
 	/**
@@ -1133,7 +1125,7 @@ SQL;
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
 
-		return ( $this->numRows( $res ) > 0 );
+		return ( $res->numRows() > 0 );
 	}
 
 	/**
@@ -1143,20 +1135,6 @@ SQL;
 	 */
 	public function fieldInfo( $table, $field ) {
 		return PostgresField::fromText( $this, $table, $field );
-	}
-
-	/**
-	 * pg_field_type() wrapper
-	 *
-	 * @deprecated since 1.37
-	 *
-	 * @param PostgresResultWrapper $res ResultWrapper or PostgreSQL query result resource
-	 * @param int $index Field number, starting from 0
-	 * @return string
-	 */
-	public function fieldType( $res, $index ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return pg_field_type( $res->getInternalResult(), $index );
 	}
 
 	public function encodeBlob( $b ) {
@@ -1235,9 +1213,9 @@ SQL;
 	}
 
 	public function buildGroupConcatField(
-		$delimiter, $table, $field, $conds = '', $options = [], $join_conds = []
+		$delim, $table, $field, $conds = '', $join_conds = []
 	) {
-		$fld = "array_to_string(array_agg($field)," . $this->addQuotes( $delimiter ) . ')';
+		$fld = "array_to_string(array_agg($field)," . $this->addQuotes( $delim ) . ')';
 
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
 	}
@@ -1274,14 +1252,14 @@ SQL;
 			$this->query(
 				'LOCK TABLE ONLY ' . implode( ',', $tablesWrite ) . ' IN EXCLUSIVE MODE',
 				$method,
-				self::QUERY_CHANGE_ROWS
+				self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
 			);
 		}
 		if ( $tablesRead ) {
 			$this->query(
 				'LOCK TABLE ONLY ' . implode( ',', $tablesRead ) . ' IN SHARE MODE',
 				$method,
-				self::QUERY_CHANGE_ROWS
+				self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
 			);
 		}
 
@@ -1296,9 +1274,9 @@ SQL;
 			"SELECT (CASE(pg_try_advisory_lock($key))
 			WHEN 'f' THEN 'f' ELSE pg_advisory_unlock($key) END) AS unlocked",
 			$method,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+			self::QUERY_CHANGE_LOCKS
 		);
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 
 		return ( $row->unlocked === 't' );
 	}
@@ -1316,9 +1294,9 @@ SQL;
 						"ELSE NULL " .
 					"END) AS acquired",
 					$method,
-					self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
+					self::QUERY_CHANGE_LOCKS
 				);
-				$row = $this->fetchObject( $res );
+				$row = $res->fetchObject();
 
 				if ( $row->acquired !== null ) {
 					$acquired = (float)$row->acquired;
@@ -1342,9 +1320,9 @@ SQL;
 		$result = $this->query(
 			"SELECT pg_advisory_unlock($key) AS released",
 			$method,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
+			self::QUERY_CHANGE_LOCKS
 		);
-		$row = $this->fetchObject( $result );
+		$row = $result->fetchObject();
 
 		return ( $row->released === 't' );
 	}
@@ -1355,7 +1333,7 @@ SQL;
 			__METHOD__,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
-		$row = $this->fetchObject( $res );
+		$row = $res->fetchObject();
 
 		return $row ? ( strtolower( $row->default_transaction_read_only ) === 'on' ) : false;
 	}

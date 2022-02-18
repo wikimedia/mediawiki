@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @group ContentHandler
  * @group Database
@@ -196,7 +194,7 @@ class JavaScriptContentTest extends TextContentTest {
 	 * @covers JavaScriptContent::matchMagicWord
 	 */
 	public function testMatchMagicWord() {
-		$mw = MediaWikiServices::getInstance()->getMagicWordFactory()->get( "staticredirect" );
+		$mw = $this->getServiceContainer()->getMagicWordFactory()->get( "staticredirect" );
 
 		$content = $this->newContent( "#REDIRECT [[FOO]]\n__STATICREDIRECT__" );
 		$this->assertFalse(

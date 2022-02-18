@@ -1,352 +1,328 @@
-<p align="center"><a href="https://vuejs.org" target="_blank" rel="noopener noreferrer"><img width="100" src="https://vuejs.org/images/logo.png" alt="Vue logo"></a></p>
+## Overview
 
-<p align="center">
-  <a href="https://circleci.com/gh/vuejs/vue/tree/dev"><img src="https://img.shields.io/circleci/project/github/vuejs/vue/dev.svg" alt="Build Status"></a>
-  <a href="https://codecov.io/github/vuejs/vue?branch=dev"><img src="https://img.shields.io/codecov/c/github/vuejs/vue/dev.svg" alt="Coverage Status"></a>
-  <a href="https://npmcharts.com/compare/vue?minimal=true"><img src="https://img.shields.io/npm/dm/vue.svg" alt="Downloads"></a>
-  <a href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/npm/v/vue.svg" alt="Version"></a>
-  <a href="https://www.npmjs.com/package/vue"><img src="https://img.shields.io/npm/l/vue.svg" alt="License"></a>
-  <a href="https://chat.vuejs.org/"><img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="Chat"></a>
-  <br>
-  <a href="https://app.saucelabs.com/builds/50f8372d79f743a3b25fb6ca4851ca4c"><img src="https://app.saucelabs.com/buildstatus/vuejs" alt="Build Status"></a>
-</p>
+`@vue/compat` (aka "the migration build") is a build of Vue 3 that provides configurable Vue 2 compatible behavior.
 
-<h2 align="center">Supporting Vue.js</h2>
+The migration build runs in Vue 2 mode by default - most public APIs behave exactly like Vue 2, with only a few exceptions. Usage of features that have changed or been deprecated in Vue 3 will emit runtime warnings. A feature's compatibility can also be enabled/disabled on a per-component basis.
 
-Vue.js is an MIT-licensed open source project with its ongoing development made possible entirely by the support of these awesome [backers](https://github.com/vuejs/vue/blob/dev/BACKERS.md). If you'd like to join them, please consider:
+### Intended Use Cases
 
-- [Become a backer or sponsor on Patreon](https://www.patreon.com/evanyou).
-- [Become a backer or sponsor on Open Collective](https://opencollective.com/vuejs).
-- [One-time donation via PayPal or crypto-currencies.](https://vuejs.org/support-vuejs/#One-time-Donations)
+- Upgrading a Vue 2 application to Vue 3 (with [limitations](#known-limitations))
+- Migrating a library to support Vue 3
+- For experienced Vue 2 developers who have not tried Vue 3 yet, the migration build can be used in place of Vue 3 to help learn the difference between versions.
 
-#### What's the difference between Patreon and OpenCollective?
+### Known Limitations
 
-Funds donated via Patreon go directly to support Evan You's full-time work on Vue.js. Funds donated via OpenCollective are managed with transparent expenses and will be used for compensating work and expenses for core team members or sponsoring community events. Your name/logo will receive proper recognition and exposure by donating on either platform.
+While we've tried hard to make the migration build mimic Vue 2 behavior as much as possible, there are some limitations that may prevent your app from being eligible for upgrading:
 
-<h3 align="center">Special Sponsors</h3>
-<!--special start-->
+- Dependencies that rely on Vue 2 internal APIs or undocumented behavior. The most common case is usage of private properties on `VNodes`. If your project relies on component libraries like [Vuetify](https://vuetifyjs.com/en/), [Quasar](https://quasar.dev/) or [ElementUI](https://element.eleme.io/#/en-US), it is best to wait for their Vue 3 compatible versions.
 
-<p align="center">
-  <a href="https://stdlib.com/" target="_blank">
-    <img width="260px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/stdlib.png">
-  </a>
-</p>
-  
-<!--special end-->
+- Internet Explorer 11 support: [Vue 3 has officially dropped the plan for IE11 support](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0038-vue3-ie11-support.md). If you still need to support IE11 or below, you will have to stay on Vue 2.
 
-<h3 align="center">Platinum Sponsors</h3>
+- Server-side rendering: the migration build can be used for SSR, but migrating a custom SSR setup is much more involved. The general idea is replacing `vue-server-renderer` with [`@vue/server-renderer`](https://github.com/vuejs/vue-next/tree/master/packages/server-renderer). Vue 3 no longer provides a bundle renderer and it is recommended to use Vue 3 SSR with [Vite](https://vitejs.dev/guide/ssr.html). If you are using [Nuxt.js](https://nuxtjs.org/), it is probably better to wait for Nuxt 3.
 
-<!--platinum start-->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="middle">
-        <a href="https://vueschool.io/?utm_source=Vuejs.org&utm_medium=Banner&utm_campaign=Sponsored%20Banner&utm_content=V1" target="_blank">
-          <img width="222px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/vueschool.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://vehikl.com/" target="_blank">
-          <img width="222px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/vehikl.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://www.nativescript.org/vue?utm_source=vue-js-org&utm_medium=website&utm_campaign=nativescript-awareness" target="_blank">
-          <img width="222px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/nativescript.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://retool.com/?utm_source=sponsor&utm_campaign=vue" target="_blank">
-          <img width="222px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/retool.png">
-        </a>
-      </td>
-    </tr><tr></tr>
-  </tbody>
-</table>
-<!--platinum end-->
+### Expectations
 
-<!--special-china start-->
-<h3 align="center">Platinum Sponsors (China)</h3>
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="middle">
-        <a href="http://www.dcloud.io/?hmsr=vuejsorg&hmpl=&hmcu=&hmkw=&hmci=" target="_blank">
-          <img width="177px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/dcloud.gif">
-        </a>
-      </td>
-    </tr><tr></tr>
-  </tbody>
-</table>
-<!--special-china end-->
+Please note that the migration build aims to cover only publicly documented Vue 2 APIs and behavior. If your application fails to run under the migration build due to reliance on undocumented behavior, it is unlikely that we'll tweak the migration build to cater to your specific case. Consider refactoring to remove reliance on the behavior in question instead.
 
-<h3 align="center">Gold Sponsors</h3>
+A word of caution: if your application is large and complex, migration will likely be a challenge even with the migration build. If your app is unfortunately not suitable for upgrade, do note that we are planning to backport Composition API and some other Vue 3 features to the 2.7 release (estimated late Q3 2021).
 
-<!--gold start-->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="middle">
-        <a href="https://www.vuemastery.com/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/vuemastery.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://laravel.com" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/laravel.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://chaitin.cn/en/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/chaitin.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://htmlburger.com" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/html_burger.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://www.frontenddeveloperlove.com/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/frontendlove.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://onsen.io/vue/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/onsen_ui.png">
-        </a>
-      </td>
-    </tr><tr></tr>
-    <tr>
-      <td align="center" valign="middle">
-        <a href="https://neds.com.au/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/neds.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://icons8.com/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/icons_8.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://vuejobs.com/?ref=vuejs" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/vuejobs.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://tidelift.com/subscription/npm/vue" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/tidelift.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://opteo.com/vue" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/opteo.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://devsquad.com/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/devsquad.png">
-        </a>
-      </td>
-    </tr><tr></tr>
-    <tr>
-      <td align="center" valign="middle">
-        <a href="https://www.firesticktricks.com/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/firestick_tricks.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://intygrate.com/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/intygrate.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://passionatepeople.io/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/passionate_people.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="http://en.shopware.com/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/shopware_ag.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://www.vpnranks.com/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/vpnranks.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://www.simplyswitch.com/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/energy_comparison.png">
-        </a>
-      </td>
-    </tr><tr></tr>
-    <tr>
-      <td align="center" valign="middle">
-        <a href="https://www.bacancytechnology.com" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/bacancy_technology.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://www.bestvpn.co/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/bestvpn_co.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://www.y8.com/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/y8.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://js.devexpress.com/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/devexpress.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://fastcoding.jp/javascript/ " target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/fastcoding_inc.svg">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://usave.co.uk/utilities/broadband" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/usave.png">
-        </a>
-      </td>
-    </tr><tr></tr>
-    <tr>
-      <td align="center" valign="middle">
-        <a href="https://www.dailynow.co/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/daily.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://storekit.com" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/storekit.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="http://www.pullrequest.com" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/pullrequest.svg">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://unicorn.io/" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/unicorn_io.svg">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://thepiratebayproxylist.se" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/piratebayproxy.png">
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://www.programmers.io" target="_blank">
-          <img width="148px" src="https://raw.githubusercontent.com/vuejs/vuejs.org/master/themes/vue/source/images/programmers_io.png">
-        </a>
-      </td>
-    </tr><tr></tr>
-  </tbody>
-</table>
-<!--gold end-->
+If you do get your app running on the migration build, you **can** ship it to production before the migration is complete. Although there is a small performance/size overhead, it should not noticeably affect production UX. You may have to do so when you have dependencies that rely on Vue 2 behavior, and cannot be upgraded/replaced.
 
-<h3 align="center">Sponsors via <a href="https://opencollective.com/vuejs">Open Collective</a></h3>
+The migration build will be provided starting with 3.1, and will continue to be published alongside the 3.2 release line. We do plan to eventually stop publishing the migration build in a future minor version (no earlier than EOY 2021), so you should still aim to switch to the standard build before then.
 
-<h4 align="center">Platinum</h4>
+## Upgrade Workflow
 
-<a href="https://opencollective.com/vuejs/tiers/platinum-sponsors/0/website" target="_blank" rel="noopener noreferrer"><img src="https://opencollective.com/vuejs/tiers/platinum-sponsors/0/avatar.svg"></a>
-<a href="https://opencollective.com/vuejs/tiers/platinum-sponsors/1/website" target="_blank" rel="noopener noreferrer"><img src="https://opencollective.com/vuejs/tiers/platinum-sponsors/1/avatar.svg"></a>
+The following workflow walks through the steps of migrating an actual Vue 2 app (Vue HackerNews 2.0) to Vue 3. The full commits can be found [here](https://github.com/vuejs/vue-hackernews-2.0/compare/migration). Note that the actual steps required for your project may vary, and these steps should be treated as general guidance rather than strict instructions.
 
-<h4 align="center">Gold</h4>
+### Preparations
 
-<a href="https://opencollective.com/vuejs/tiers/gold-sponsors/0/website" target="_blank" rel="noopener noreferrer"><img src="https://opencollective.com/vuejs/tiers/gold-sponsors/0/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/vuejs/tiers/gold-sponsors/1/website" target="_blank" rel="noopener noreferrer"><img src="https://opencollective.com/vuejs/tiers/gold-sponsors/1/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/vuejs/tiers/gold-sponsors/2/website" target="_blank" rel="noopener noreferrer"><img src="https://opencollective.com/vuejs/tiers/gold-sponsors/2/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/vuejs/tiers/gold-sponsors/3/website" target="_blank" rel="noopener noreferrer"><img src="https://opencollective.com/vuejs/tiers/gold-sponsors/3/avatar.svg" height="60px"></a>
-<a href="https://opencollective.com/vuejs/tiers/gold-sponsors/4/website" target="_blank" rel="noopener noreferrer"><img src="https://opencollective.com/vuejs/tiers/gold-sponsors/4/avatar.svg" height="60px"></a>
+- If you are still using the [deprecated named / scoped slot syntax](https://vuejs.org/v2/guide/components-slots.html#Deprecated-Syntax), update it to the latest syntax first (which is already supported in 2.6).
 
----
+### Installation
 
-## Introduction
+1. Upgrade tooling if applicable.
 
-Vue (pronounced `/vjuː/`, like view) is a **progressive framework** for building user interfaces. It is designed from the ground up to be incrementally adoptable, and can easily scale between a library and a framework depending on different use cases. It consists of an approachable core library that focuses on the view layer only, and an ecosystem of supporting libraries that helps you tackle complexity in large Single-Page Applications.
+   - If using custom webpack setup: Upgrade `vue-loader` to `^16.0.0`.
+   - If using `vue-cli`: upgrade to the latest `@vue/cli-service` with `vue upgrade`
+   - (Alternative) migrate to [Vite](https://vitejs.dev/) + [vite-plugin-vue2](https://github.com/underfin/vite-plugin-vue2). [[Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/565b948919eb58f22a32afca7e321b490cb3b074)]
 
-#### Browser Compatibility
+2. In `package.json`, update `vue` to 3.1, install `@vue/compat` of the same version, and replace `vue-template-compiler` (if present) with `@vue/compiler-sfc`:
 
-Vue.js supports all browsers that are [ES5-compliant](http://kangax.github.io/compat-table/es5/) (IE8 and below are not supported).
+   ```diff
+   "dependencies": {
+   -  "vue": "^2.6.12",
+   +  "vue": "^3.1.0",
+   +  "@vue/compat": "^3.1.0"
+      ...
+   },
+   "devDependencies": {
+   -  "vue-template-compiler": "^2.6.12"
+   +  "@vue/compiler-sfc": "^3.1.0"
+   }
+   ```
 
-## Ecosystem
+   [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/14f6f1879b43f8610add60342661bf915f5c4b20)
 
-| Project | Status | Description |
-|---------|--------|-------------|
-| [vue-router]          | [![vue-router-status]][vue-router-package] | Single-page application routing |
-| [vuex]                | [![vuex-status]][vuex-package] | Large-scale state management |
-| [vue-cli]             | [![vue-cli-status]][vue-cli-package] | Project scaffolding |
-| [vue-loader]          | [![vue-loader-status]][vue-loader-package] | Single File Component (`*.vue` file) loader for webpack |
-| [vue-server-renderer] | [![vue-server-renderer-status]][vue-server-renderer-package] | Server-side rendering support |
-| [vue-class-component] | [![vue-class-component-status]][vue-class-component-package] | TypeScript decorator for a class-based API |
-| [vue-rx]              | [![vue-rx-status]][vue-rx-package] | RxJS integration |
-| [vue-devtools]        | [![vue-devtools-status]][vue-devtools-package] | Browser DevTools extension |
+3. In the build setup, alias `vue` to `@vue/compat` and enable compat mode via Vue compiler options.
 
-[vue-router]: https://github.com/vuejs/vue-router
-[vuex]: https://github.com/vuejs/vuex
-[vue-cli]: https://github.com/vuejs/vue-cli
-[vue-loader]: https://github.com/vuejs/vue-loader
-[vue-server-renderer]: https://github.com/vuejs/vue/tree/dev/packages/vue-server-renderer
-[vue-class-component]: https://github.com/vuejs/vue-class-component
-[vue-rx]: https://github.com/vuejs/vue-rx
-[vue-devtools]:  https://github.com/vuejs/vue-devtools
+   **Example Configs**
 
-[vue-router-status]: https://img.shields.io/npm/v/vue-router.svg
-[vuex-status]: https://img.shields.io/npm/v/vuex.svg
-[vue-cli-status]: https://img.shields.io/npm/v/@vue/cli.svg
-[vue-loader-status]: https://img.shields.io/npm/v/vue-loader.svg
-[vue-server-renderer-status]: https://img.shields.io/npm/v/vue-server-renderer.svg
-[vue-class-component-status]: https://img.shields.io/npm/v/vue-class-component.svg
-[vue-rx-status]: https://img.shields.io/npm/v/vue-rx.svg
-[vue-devtools-status]: https://img.shields.io/chrome-web-store/v/nhdogjmejiglipccpnnnanhbledajbpd.svg
+   <details>
+     <summary><b>vue-cli</b></summary>
 
-[vue-router-package]: https://npmjs.com/package/vue-router
-[vuex-package]: https://npmjs.com/package/vuex
-[vue-cli-package]: https://npmjs.com/package/@vue/cli
-[vue-loader-package]: https://npmjs.com/package/vue-loader
-[vue-server-renderer-package]: https://npmjs.com/package/vue-server-renderer
-[vue-class-component-package]: https://npmjs.com/package/vue-class-component
-[vue-rx-package]: https://npmjs.com/package/vue-rx
-[vue-devtools-package]: https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd
+   ```js
+   // vue.config.js
+   module.exports = {
+     chainWebpack: config => {
+       config.resolve.alias.set('vue', '@vue/compat')
 
-## Documentation
+       config.module
+         .rule('vue')
+         .use('vue-loader')
+         .tap(options => {
+           return {
+             ...options,
+             compilerOptions: {
+               compatConfig: {
+                 MODE: 2
+               }
+             }
+           }
+         })
+   }
+   ```
 
-To check out [live examples](https://vuejs.org/v2/examples/) and docs, visit [vuejs.org](https://vuejs.org).
+   </details>
 
-## Questions
+   <details>
+     <summary><b>Plain webpack</b></summary>
 
-For questions and support please use [the official forum](http://forum.vuejs.org) or [community chat](https://chat.vuejs.org/). The issue list of this repo is **exclusively** for bug reports and feature requests.
+   ```js
+   // webpack.config.js
+   module.exports = {
+     resolve: {
+       alias: {
+         vue: '@vue/compat'
+       }
+     },
+     module: {
+       rules: [
+         {
+           test: /\.vue$/,
+           loader: 'vue-loader',
+           options: {
+             compilerOptions: {
+               compatConfig: {
+                 MODE: 2
+               }
+             }
+           }
+         }
+       ]
+     }
+   }
+   ```
 
-## Issues
+   </details>
 
-Please make sure to read the [Issue Reporting Checklist](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md#issue-reporting-guidelines) before opening an issue. Issues not conforming to the guidelines may be closed immediately.
+   <details>
+     <summary><b>Vite</b></summary>
 
-## Changelog
+   ```js
+   // vite.config.js
+   export default {
+     resolve: {
+       alias: {
+         vue: '@vue/compat'
+       }
+     },
+     plugins: [
+       vue({
+         template: {
+           compilerOptions: {
+             compatConfig: {
+               MODE: 2
+             }
+           }
+         }
+       })
+     ]
+   }
+   ```
 
-Detailed changes for each release are documented in the [release notes](https://github.com/vuejs/vue/releases).
+   </details>
 
-## Stay In Touch
+4. At this point, your application may encounter some compile-time errors / warnings (e.g. use of filters). Fix them first. If all compiler warnings are gone, you can also set the compiler to Vue 3 mode.
 
-- [Twitter](https://twitter.com/vuejs)
-- [Blog](https://medium.com/the-vue-point)
-- [Job Board](https://vuejobs.com/?ref=vuejs)
+   [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/b05d9555f6e115dea7016d7e5a1a80e8f825be52)
 
-## Contribution
+5. After fixing the errors, the app should be able to run if it is not subject to the [limitations](#known-limitations) mentioned above.
 
-Please make sure to read the [Contributing Guide](https://github.com/vuejs/vue/blob/dev/.github/CONTRIBUTING.md) before making a pull request. If you have a Vue-related project/component/tool, add it with a pull request to [this curated list](https://github.com/vuejs/awesome-vue)!
+   You will likely see a LOT of warnings from both the command line and the browser console. Here are some general tips:
 
-Thank you to all the people who already contributed to Vue!
+   - You can filter for specific warnings in the browser console. It's a good idea to use the filter and focus on fixing one item at a time. You can also use negated filters like `-GLOBAL_MOUNT`.
 
-<a href="https://github.com/vuejs/vue/graphs/contributors"><img src="https://opencollective.com/vuejs/contributors.svg?width=890" /></a>
+   - You can suppress specific deprecations via [compat configuration](#compat-configuration).
 
+   - Some warnings may be caused by a dependency that you use (e.g. `vue-router`). You can check this from the warning's component trace or stack trace (expanded on click). Focus on fixing the warnings that originate from your own source code first.
 
-## License
+   - If you are using `vue-router`, note `<transition>` and `<keep-alive>` will not work with `<router-view>` until you upgrade to `vue-router` v4.
 
-[MIT](http://opensource.org/licenses/MIT)
+6. Update [`<transition>` class names](https://v3.vuejs.org/guide/migration/transition.html). This is the only feature that does not have a runtime warning. You can do a project-wide search for `.*-enter` and `.*-leave` CSS class names.
 
-Copyright (c) 2013-present, Yuxi (Evan) You
+   [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/d300103ba622ae26ac26a82cd688e0f70b6c1d8f)
+
+7. Update app entry to use [new global mounting API](https://v3.vuejs.org/guide/migration/global-api.html#a-new-global-api-createapp).
+
+   [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/a6e0c9ac7b1f4131908a4b1e43641f608593f714)
+
+8. [Upgrade `vuex` to v4](https://next.vuex.vuejs.org/guide/migrating-to-4-0-from-3-x.html).
+
+   [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/5bfd4c61ee50f358cd5daebaa584f2c3f91e0205)
+
+9. [Upgrade `vue-router` to v4](https://next.router.vuejs.org/guide/migration/index.html). If you also use `vuex-router-sync`, you can replace it with a store getter.
+
+   After the upgrade, to use `<transition>` and `<keep-alive>` with `<router-view>` requires using the new [scoped-slot based syntax](https://next.router.vuejs.org/guide/migration/index.html#router-view-keep-alive-and-transition).
+
+   [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/758961e73ac4089890079d4ce14996741cf9344b)
+
+10. Pick off individual warnings. Note some features have conflicting behavior between Vue 2 and Vue 3 - for example, the render function API, or the functional component vs. async component change. To migrate to Vue 3 API without affecting the rest of the application, you can opt-in to Vue 3 behavior on a per-component basis with the [`compatConfig` option](#per-component-config).
+
+    [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/d0c7d3ae789be71b8fd56ce79cb4cb1f921f893b)
+
+11. When all warnings are fixed, you can remove the migration build and switch to Vue 3 proper. Note you may not be able to do so if you still have dependencies that rely on Vue 2 behavior.
+
+    [Example commit](https://github.com/vuejs/vue-hackernews-2.0/commit/9beb45490bc5f938c9e87b4ac1357cfb799565bd)
+
+## Compat Configuration
+
+### Global Config
+
+Compat features can be disabled individually:
+
+```js
+import { configureCompat } from 'vue'
+
+// disable compat for certain features
+configureCompat({
+  FEATURE_ID_A: false,
+  FEATURE_ID_B: false
+})
+```
+
+Alternatively, the entire application can default to Vue 3 behavior, with only certain compat features enabled:
+
+```js
+import { configureCompat } from 'vue'
+
+// default everything to Vue 3 behavior, and only enable compat
+// for certain features
+configureCompat({
+  MODE: 3,
+  FEATURE_ID_A: true,
+  FEATURE_ID_B: true
+})
+```
+
+### Per-Component Config
+
+A component can use the `compatConfig` option, which expects the same options as the global `configureCompat` method:
+
+```js
+export default {
+  compatConfig: {
+    MODE: 3, // opt-in to Vue 3 behavior for this component only
+    FEATURE_ID_A: true // features can also be toggled at component level
+  }
+  // ...
+}
+```
+
+### Compiler-specific Config
+
+Features that start with `COMPILER_` are compiler-specific: if you are using the full build (with in-browser compiler), they can be configured at runtime. However if using a build setup, they must be configured via the `compilerOptions` in the build config instead (see example configs above).
+
+## Feature Reference
+
+### Compatibility Types
+
+- ✔ Fully compatible
+- ◐ Partially Compatible with caveats
+- ⨂ Incompatible (warning only)
+- ⭘ Compat only (no warning)
+
+### Incompatible
+
+> Should be fixed upfront or will likely lead to errors
+
+| ID                                    | Type | Description                                                             | Docs                                                                                           |
+| ------------------------------------- | ---- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| GLOBAL_MOUNT_CONTAINER                | ⨂    | Mounted application does not replace the element it's mounted to        | [link](https://v3.vuejs.org/guide/migration/mount-changes.html)                                                    |
+| CONFIG_DEVTOOLS                       | ⨂    | production devtools is now a build-time flag                            | [link](https://github.com/vuejs/vue-next/tree/master/packages/vue#bundler-build-feature-flags) |
+| COMPILER_V_IF_V_FOR_PRECEDENCE        | ⨂    | `v-if` and `v-for` precedence when used on the same element has changed | [link](https://v3.vuejs.org/guide/migration/v-if-v-for.html)                                                       |
+| COMPILER_V_IF_SAME_KEY                | ⨂    | `v-if` branches can no longer have the same key                         | [link](https://v3.vuejs.org/guide/migration/key-attribute.html#on-conditional-branches)                            |
+| COMPILER_V_FOR_TEMPLATE_KEY_PLACEMENT | ⨂    | `<template v-for>` key should now be placed on `<template>`             | [link](https://v3.vuejs.org/guide/migration/key-attribute.html#with-template-v-for)                                |
+| COMPILER_SFC_FUNCTIONAL               | ⨂    | `<template functional>` is no longer supported in SFCs                  | [link](https://v3.vuejs.org/guide/migration/functional-components.html#single-file-components-sfcs)                |  |  |
+
+### Partially Compatible with Caveats
+
+| ID                       | Type | Description                                                                                                                                                                                | Docs                                                                                          |
+| ------------------------ | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| CONFIG_IGNORED_ELEMENTS  | ◐    | `config.ignoredElements` is now `config.compilerOptions.isCustomElement` (only in browser compiler build). If using build setup, `isCustomElement` must be passed via build configuration. | [link](https://v3.vuejs.org/guide/migration/global-api.html#config-ignoredelements-is-now-config-iscustomelement) |
+| COMPILER_INLINE_TEMPLATE | ◐    | `inline-template` removed (compat only supported in browser compiler build)                                                                                                                | [link](https://v3.vuejs.org/guide/migration/inline-template-attribute.html)                                       |
+| PROPS_DEFAULT_THIS       | ◐    | props default factory no longer have access to `this` (in compat mode, `this` is not a real instance - it only exposes props, `$options` and injections)                                   | [link](https://v3.vuejs.org/guide/migration/props-default-this.html)                                              |
+| INSTANCE_DESTROY         | ◐    | `$destroy` instance method removed (in compat mode, only supported on root instance)                                                                                                       |                                                                                               |
+| GLOBAL_PRIVATE_UTIL      | ◐    | `Vue.util` is private and no longer available                                                                                                                                              |                                                                                               |
+| CONFIG_PRODUCTION_TIP    | ◐    | `config.productionTip` no longer necessary                                                                                                                                                 | [link](https://v3.vuejs.org/guide/migration/global-api.html#config-productiontip-removed)                         |
+| CONFIG_SILENT            | ◐    | `config.silent` removed                                                                                                                                                                    |
+
+### Compat only (no warning)
+
+| ID                 | Type | Description                           | Docs                                     |
+| ------------------ | ---- | ------------------------------------- | ---------------------------------------- |
+| TRANSITION_CLASSES | ⭘    | Transtion enter/leave classes changed | [link](https://v3.vuejs.org/guide/migration/transition.html) |
+
+### Fully Compatible
+
+| ID                           | Type | Description                                                           | Docs                                                                                       |
+| ---------------------------- | ---- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| GLOBAL_MOUNT                 | ✔    | new Vue() -> createApp                                                | [link](https://v3.vuejs.org/guide/migration/global-api.html#mounting-app-instance)                             |
+| GLOBAL_EXTEND                | ✔    | Vue.extend removed (use `defineComponent` or `extends` option)        | [link](https://v3.vuejs.org/guide/migration/global-api.html#vue-extend-replaced-by-definecomponent)            |
+| GLOBAL_PROTOTYPE             | ✔    | `Vue.prototype` -> `app.config.globalProperties`                      | [link](https://v3.vuejs.org/guide/migration/global-api.html#vue-prototype-replaced-by-config-globalproperties) |
+| GLOBAL_SET                   | ✔    | `Vue.set` removed (no longer needed)                                  |                                                                                            |
+| GLOBAL_DELETE                | ✔    | `Vue.delete` removed (no longer needed)                               |                                                                                            |
+| GLOBAL_OBSERVABLE            | ✔    | `Vue.observable` removed (use `reactive`)                             | [link](https://v3.vuejs.org/api/basic-reactivity.html)                                                         |
+| CONFIG_KEY_CODES             | ✔    | config.keyCodes removed                                               | [link](https://v3.vuejs.org/guide/migration/keycode-modifiers.html)                                            |
+| CONFIG_WHITESPACE            | ✔    | In Vue 3 whitespace defaults to `"condense"`                          |                                                                                            |
+| INSTANCE_SET                 | ✔    | `vm.$set` removed (no longer needed)                                  |                                                                                            |
+| INSTANCE_DELETE              | ✔    | `vm.$delete` removed (no longer needed)                               |                                                                                            |
+| INSTANCE_EVENT_EMITTER       | ✔    | `vm.$on`, `vm.$off`, `vm.$once` removed                               | [link](https://v3.vuejs.org/guide/migration/events-api.html)                                                   |
+| INSTANCE_EVENT_HOOKS         | ✔    | Instance no longer emits `hook:x` events                              | [link](https://v3.vuejs.org/guide/migration/vnode-lifecycle-events.html)                                       |
+| INSTANCE_CHILDREN            | ✔    | `vm.$children` removed                                                | [link](https://v3.vuejs.org/guide/migration/children.html)                                                     |
+| INSTANCE_LISTENERS           | ✔    | `vm.$listeners` removed                                               | [link](https://v3.vuejs.org/guide/migration/listeners-removed.html)                                            |
+| INSTANCE_SCOPED_SLOTS        | ✔    | `vm.$scopedSlots` removed; `vm.$slots` now exposes functions          | [link](https://v3.vuejs.org/guide/migration/slots-unification.html)                                            |
+| INSTANCE_ATTRS_CLASS_STYLE   | ✔    | `$attrs` now includes `class` and `style`                             | [link](https://v3.vuejs.org/guide/migration/attrs-includes-class-style.html)                                   |
+| OPTIONS_DATA_FN              | ✔    | `data` must be a function in all cases                                | [link](https://v3.vuejs.org/guide/migration/data-option.html)                                                  |
+| OPTIONS_DATA_MERGE           | ✔    | `data` from mixin or extension is now shallow merged                  | [link](https://v3.vuejs.org/guide/migration/data-option.html)                                                  |
+| OPTIONS_BEFORE_DESTROY       | ✔    | `beforeDestroy` -> `beforeUnmount`                                    |                                                                                            |
+| OPTIONS_DESTROYED            | ✔    | `destroyed` -> `unmounted`                                            |                                                                                            |
+| WATCH_ARRAY                  | ✔    | watching an array no longer triggers on mutation unless deep          | [link](https://v3.vuejs.org/guide/migration/watch.html)                                                        |
+| V_FOR_REF                    | ✔    | `ref` inside `v-for` no longer registers array of refs                | [link](https://v3.vuejs.org/guide/migration/array-refs.html)                                                   |
+| V_ON_KEYCODE_MODIFIER        | ✔    | `v-on` no longer supports keyCode modifiers                           | [link](https://v3.vuejs.org/guide/migration/keycode-modifiers.html)                                            |
+| CUSTOM_DIR                   | ✔    | Custom directive hook names changed                                   | [link](https://v3.vuejs.org/guide/migration/custom-directives.html)                                            |
+| ATTR_FALSE_VALUE             | ✔    | No longer removes attribute if binding value is boolean `false`       | [link](https://v3.vuejs.org/guide/migration/attribute-coercion.html)                                           |
+| ATTR_ENUMERATED_COERSION     | ✔    | No longer special case enumerated attributes                          | [link](https://v3.vuejs.org/guide/migration/attribute-coercion.html)                                           |
+| TRANSITION_GROUP_ROOT        | ✔    | `<transition-group>` no longer renders a root element by default      | [link](https://v3.vuejs.org/guide/migration/transition-group.html)                                             |
+| COMPONENT_ASYNC              | ✔    | Async component API changed (now requires `defineAsyncComponent`)     | [link](https://v3.vuejs.org/guide/migration/async-components.html)                                             |
+| COMPONENT_FUNCTIONAL         | ✔    | Functional component API changed (now must be plain functions)        | [link](https://v3.vuejs.org/guide/migration/functional-components.html)                                        |
+| COMPONENT_V_MODEL            | ✔    | Component v-model reworked                                            | [link](https://v3.vuejs.org/guide/migration/v-model.html)                                                      |
+| RENDER_FUNCTION              | ✔    | Render function API changed                                           | [link](https://v3.vuejs.org/guide/migration/render-function-api.html)                                          |
+| FILTERS                      | ✔    | Filters removed (this option affects only runtime filter APIs)        | [link](https://v3.vuejs.org/guide/migration/filters.html)                                                      |
+| COMPILER_IS_ON_ELEMENT       | ✔    | `is` usage is now restricted to `<component>` only                    | [link](https://v3.vuejs.org/guide/migration/custom-elements-interop.html)                                      |
+| COMPILER_V_BIND_SYNC         | ✔    | `v-bind.sync` replaced by `v-model` with arguments                    | [link](https://v3.vuejs.org/guide/migration/v-model.html)                                                      |
+| COMPILER_V_BIND_PROP         | ✔    | `v-bind.prop` modifier removed                                        |                                                                                            |
+| COMPILER_V_BIND_OBJECT_ORDER | ✔    | `v-bind="object"` is now order sensitive                              | [link](https://v3.vuejs.org/guide/migration/v-bind.html)                                                       |
+| COMPILER_V_ON_NATIVE         | ✔    | `v-on.native` modifier removed                                        | [link](https://v3.vuejs.org/guide/migration/v-on-native-modifier-removed.html)                                 |
+| COMPILER_V_FOR_REF           | ✔    | `ref` in `v-for` (compiler support)                                   |                                                                                            |
+| COMPILER_NATIVE_TEMPLATE     | ✔    | `<template>` with no special directives now renders as native element |                                                                                            |
+| COMPILER_FILTERS             | ✔    | filters (compiler support)                                            |                                                                                            |

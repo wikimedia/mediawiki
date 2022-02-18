@@ -39,12 +39,12 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	public function toHTML() {
 		$resolveFilesViaParser = $this->mParser instanceof Parser;
 		if ( $resolveFilesViaParser ) {
-			$out = $this->mParser->getOutput();
+			$parserOutput = $this->mParser->getOutput();
 			$repoGroup = null;
 			$linkRenderer = $this->mParser->getLinkRenderer();
 			$badFileLookup = $this->mParser->getBadFileLookup();
 		} else {
-			$out = $this->getOutput();
+			$parserOutput = $this->getOutput();
 			$services = MediaWikiServices::getInstance();
 			$repoGroup = $services->getRepoGroup();
 			$linkRenderer = $services->getLinkRenderer();
@@ -60,8 +60,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		$attribs = Sanitizer::mergeAttributes(
 			[ 'class' => 'gallery mw-gallery-' . $this->mMode ], $this->mAttribs );
 
-		$out->addModules( $this->getModules() );
-		$out->addModuleStyles( 'mediawiki.page.gallery.styles' );
+		$parserOutput->addModules( $this->getModules() );
+		$parserOutput->addModuleStyles( [ 'mediawiki.page.gallery.styles' ] );
 		$output = Xml::openElement( 'ul', $attribs );
 		if ( $this->mCaption ) {
 			$output .= "\n\t<li class='gallerycaption'>{$this->mCaption}</li>";
@@ -87,7 +87,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			/** @var Title $nt */
 
 			$descQuery = false;
-			if ( $nt->getNamespace() === NS_FILE ) {
+			if ( $nt->inNamespace( NS_FILE ) && !$nt->isExternal() ) {
 				# Get the file...
 				if ( $resolveFilesViaParser ) {
 					# Give extensions a chance to select the file revision for us
@@ -176,26 +176,37 @@ class TraditionalImageGallery extends ImageGalleryBase {
 						);
 					}
 
-					$thumbhtml = Html::rawElement( 'div', [
-						# Auto-margin centering for block-level elements. Needed
-						# now that we have video handlers since they may emit block-
-						# level elements as opposed to simple <img> tags. ref
-						# http://css-discuss.incutio.com/?page=CenteringBlockElement
-						'style' => "margin:{$vpad}px auto;",
-					], $thumbhtml );
+					if ( $enableLegacyMediaDOM ) {
+						$thumbhtml = Html::rawElement( 'div', [
+							# Auto-margin centering for block-level elements. Needed
+							# now that we have video handlers since they may emit block-
+							# level elements as opposed to simple <img> tags. ref
+							# http://css-discuss.incutio.com/?page=CenteringBlockElement
+							'style' => "margin:{$vpad}px auto;",
+						], $thumbhtml );
+					}
 
 					# Set both fixed width and min-height.
 					$width = $this->getThumbDivWidth( $thumb->getWidth() );
+					$height = $this->getThumbPadding() + $this->mHeights;
 					$thumbhtml = "\n\t\t\t" . Html::rawElement( 'div', [
 						'class' => 'thumb',
-						'style' => "width: {$width}px;",
+						'style' => "width: {$width}px;" .
+							( !$enableLegacyMediaDOM && $this->mMode === 'traditional' ?
+								" height: {$height}px;" : '' ),
 					], $thumbhtml );
 
 					// Call parser transform hook
-					/** @var MediaHandler $handler */
-					$handler = $img->getHandler();
-					if ( $resolveFilesViaParser && $handler ) {
-						$handler->parserTransformHook( $this->mParser, $img );
+					if ( $resolveFilesViaParser ) {
+						/** @var MediaHandler $handler */
+						$handler = $img->getHandler();
+						if ( $handler ) {
+							$handler->parserTransformHook( $this->mParser, $img );
+						}
+						if ( $img ) {
+							$this->mParser->modifyImageHtml(
+								$img, [ 'handler' => $imageParameters ], $thumbhtml );
+						}
 					}
 				}
 			}
@@ -203,7 +214,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			$meta = [];
 			if ( $img ) {
 				if ( $this->mShowDimensions ) {
-					$meta[] = $img->getDimensionsString();
+					$meta[] = htmlspecialchars( $img->getDimensionsString() );
 				}
 				if ( $this->mShowBytes ) {
 					$meta[] = htmlspecialchars( $lang->formatSize( $img->getSize() ) );
@@ -231,10 +242,12 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			# Can be safely removed if FF2 falls completely out of existence
 			$output .= "\n\t\t" . '<li class="gallerybox" style="width: '
 				. $gbWidth . '">'
-				. '<div style="width: ' . $gbWidth . '">'
+				. ( $enableLegacyMediaDOM ? '<div style="width: ' . $gbWidth . '">' : '' )
 				. $thumbhtml
 				. $galleryText
-				. "\n\t\t</div></li>";
+				. "\n\t\t"
+				. ( $enableLegacyMediaDOM ? '</div>' : '' )
+				. "</li>";
 		}
 		$output .= "\n</ul>";
 
@@ -251,7 +264,6 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		// Preloaded into LinkCache in toHTML
 		return $linkRenderer->makeKnownLink(
 			$nt,
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped Triggered by Language::truncateForVisual
 			is_int( $this->getCaptionLength() ) ?
 				$lang->truncateForVisual( $nt->getText(), $this->getCaptionLength() ) :
 				$nt->getText(),

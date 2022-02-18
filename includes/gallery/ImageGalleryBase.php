@@ -111,7 +111,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string|bool $mode Mode to use. False to use the default
 	 * @param IContextSource|null $context
 	 * @return ImageGalleryBase
-	 * @throws MWException
+	 * @throws ImageGalleryClassNotFoundException
 	 */
 	public static function factory( $mode = false, IContextSource $context = null ) {
 		self::loadModes();
@@ -129,7 +129,7 @@ abstract class ImageGalleryBase extends ContextSource {
 			$class = self::$modeMapping[$mode];
 			return new $class( $mode, $context );
 		} else {
-			throw new MWException( "No gallery class registered for mode $mode" );
+			throw new ImageGalleryClassNotFoundException( "No gallery class registered for mode $mode" );
 		}
 	}
 

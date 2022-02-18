@@ -40,45 +40,45 @@ class NewPagesPager extends ReverseChronologicalPager {
 	 */
 	protected $mForm;
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
+	/** @var GroupPermissionsLookup */
+	private $groupPermissionsLookup;
 
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var GroupPermissionsLookup */
-	private $groupPermissionsLookup;
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
 
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
 	/**
 	 * @param SpecialNewpages $form
-	 * @param FormOptions $opts
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param HookContainer $hookContainer
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
+	 * @param HookContainer $hookContainer
+	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param ILoadBalancer $loadBalancer
 	 * @param NamespaceInfo $namespaceInfo
+	 * @param FormOptions $opts
 	 */
 	public function __construct(
-		$form,
-		FormOptions $opts,
-		LinkBatchFactory $linkBatchFactory,
-		HookContainer $hookContainer,
+		SpecialNewpages $form,
 		GroupPermissionsLookup $groupPermissionsLookup,
+		HookContainer $hookContainer,
+		LinkBatchFactory $linkBatchFactory,
 		ILoadBalancer $loadBalancer,
-		NamespaceInfo $namespaceInfo
+		NamespaceInfo $namespaceInfo,
+		FormOptions $opts
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		parent::__construct( $form->getContext() );
+		$this->groupPermissionsLookup = $groupPermissionsLookup;
+		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->namespaceInfo = $namespaceInfo;
 		$this->mForm = $form;
 		$this->opts = $opts;
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->groupPermissionsLookup = $groupPermissionsLookup;
-		$this->namespaceInfo = $namespaceInfo;
 	}
 
 	public function getQueryInfo() {

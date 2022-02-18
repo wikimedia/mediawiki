@@ -318,7 +318,7 @@ abstract class Action implements MessageLocalizer {
 
 	/**
 	 * Indicates whether this action requires read rights
-	 * @since 1.37.1
+	 * @since 1.38
 	 * @stable to override
 	 * @return bool
 	 */
@@ -338,9 +338,9 @@ abstract class Action implements MessageLocalizer {
 	 */
 	protected function checkCanExecute( User $user ) {
 		$right = $this->getRestriction();
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( $right !== null ) {
-			$errors = MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( $right, $user, $this->getTitle() );
+			$errors = $permissionManager->getPermissionErrors( $right, $user, $this->getTitle() );
 			if ( count( $errors ) ) {
 				throw new PermissionsError( $right, $errors );
 			}
@@ -350,7 +350,7 @@ abstract class Action implements MessageLocalizer {
 		$checkReplica = !$this->getRequest()->wasPosted();
 		if (
 			$this->requiresUnblock() &&
-			$user->isBlockedFrom( $this->getTitle(), $checkReplica )
+			$permissionManager->isBlockedFrom( $user, $this->getTitle(), $checkReplica )
 		) {
 			$block = $user->getBlock();
 			if ( $block ) {
@@ -368,7 +368,8 @@ abstract class Action implements MessageLocalizer {
 		// This should be checked at the end so that the user won't think the
 		// error is only temporary when he also don't have the rights to execute
 		// this action
-		if ( $this->requiresWrite() && wfReadOnly() ) {
+		$readOnlyMode = MediaWikiServices::getInstance()->getReadOnlyMode();
+		if ( $this->requiresWrite() && $readOnlyMode->isReadOnly() ) {
 			throw new ReadOnlyError();
 		}
 	}

@@ -121,24 +121,24 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 	 * @covers SiteConfiguration::siteFromDB
 	 */
 	public function testSiteFromDb() {
-		$this->assertEquals(
+		$this->assertSame(
 			[ 'wikipedia', 'en' ],
 			$this->mConf->siteFromDB( 'enwiki' ),
 			'siteFromDB()'
 		);
-		$this->assertEquals(
+		$this->assertSame(
 			[ 'wikipedia', '' ],
 			$this->mConf->siteFromDB( 'wiki' ),
 			'siteFromDB() on a suffix'
 		);
-		$this->assertEquals(
+		$this->assertSame(
 			[ null, null ],
 			$this->mConf->siteFromDB( 'wikien' ),
 			'siteFromDB() on a non-existing wiki'
 		);
 
 		$this->mConf->suffixes = [ 'wiki', '' ];
-		$this->assertEquals(
+		$this->assertSame(
 			[ '', 'wikien' ],
 			$this->mConf->siteFromDB( 'wikien' ),
 			'siteFromDB() on a non-existing wiki (2)'
@@ -289,19 +289,19 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 	 * @covers SiteConfiguration::siteFromDB
 	 */
 	public function testSiteFromDbWithCallback() {
-		$this->mConf->siteParamsCallback = 'SiteConfigurationTest::getSiteParamsCallback';
+		$this->mConf->siteParamsCallback = [ __CLASS__, 'getSiteParamsCallback' ];
 
-		$this->assertEquals(
+		$this->assertSame(
 			[ 'wiki', 'en' ],
 			$this->mConf->siteFromDB( 'enwiki' ),
 			'siteFromDB() with callback'
 		);
-		$this->assertEquals(
+		$this->assertSame(
 			[ 'wiki', '' ],
 			$this->mConf->siteFromDB( 'wiki' ),
 			'siteFromDB() with callback on a suffix'
 		);
-		$this->assertEquals(
+		$this->assertSame(
 			[ null, null ],
 			$this->mConf->siteFromDB( 'wikien' ),
 			'siteFromDB() with callback on a non-existing wiki'
@@ -312,7 +312,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 	 * @covers SiteConfiguration
 	 */
 	public function testParameterReplacement() {
-		$this->mConf->siteParamsCallback = 'SiteConfigurationTest::getSiteParamsCallback';
+		$this->mConf->siteParamsCallback = [ __CLASS__, 'getSiteParamsCallback' ];
 
 		$this->assertEquals(
 			'en wiki enwiki',
@@ -363,7 +363,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 	 * @covers SiteConfiguration::getAll
 	 */
 	public function testGetAllGlobals() {
-		$this->mConf->siteParamsCallback = 'SiteConfigurationTest::getSiteParamsCallback';
+		$this->mConf->siteParamsCallback = [ __CLASS__, 'getSiteParamsCallback' ];
 
 		$getall = [
 			'SimpleKey' => 'enwiki',

@@ -36,12 +36,13 @@ class MagicWordArray {
 	/** @var MagicWordFactory */
 	private $factory;
 
-	/** @var array */
+	/** @var array|null */
 	private $hash;
 
 	/** @var string[]|null */
 	private $baseRegex;
 
+	/** @var string[]|null */
 	private $regex;
 
 	/**

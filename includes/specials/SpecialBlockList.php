@@ -26,6 +26,7 @@ use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\CommentFormatter\RowCommentFormatter;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -60,13 +61,17 @@ class SpecialBlockList extends SpecialPage {
 	/** @var BlockActionInfo */
 	private $blockActionInfo;
 
+	/** @var RowCommentFormatter */
+	private $rowCommentFormatter;
+
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		BlockRestrictionStore $blockRestrictionStore,
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
 		BlockUtils $blockUtils,
-		BlockActionInfo $blockActionInfo
+		BlockActionInfo $blockActionInfo,
+		RowCommentFormatter $rowCommentFormatter
 	) {
 		parent::__construct( 'BlockList' );
 
@@ -76,6 +81,7 @@ class SpecialBlockList extends SpecialPage {
 		$this->commentStore = $commentStore;
 		$this->blockUtils = $blockUtils;
 		$this->blockActionInfo = $blockActionInfo;
+		$this->rowCommentFormatter = $rowCommentFormatter;
 	}
 
 	/**
@@ -241,15 +247,17 @@ class SpecialBlockList extends SpecialPage {
 		}
 
 		return new BlockListPager(
-			$this,
-			$conds,
-			$this->linkBatchFactory,
+			$this->getContext(),
+			$this->blockActionInfo,
 			$this->blockRestrictionStore,
-			$this->loadBalancer,
-			$this->getSpecialPageFactory(),
-			$this->commentStore,
 			$this->blockUtils,
-			$this->blockActionInfo
+			$this->commentStore,
+			$this->linkBatchFactory,
+			$this->getLinkRenderer(),
+			$this->loadBalancer,
+			$this->rowCommentFormatter,
+			$this->getSpecialPageFactory(),
+			$conds
 		);
 	}
 

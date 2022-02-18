@@ -91,6 +91,30 @@ class SpecialPage implements MessageLocalizer {
 	private $specialPageFactory;
 
 	/**
+	 * Get the users preferred search page.
+	 *
+	 * It will fall back to Special:Search if the preference points to a page
+	 * that doesn't exist or is not defined.
+	 *
+	 * @since 1.38
+	 * @param User $user Search page can be customized by user preference.
+	 * @return Title
+	 */
+	public static function newSearchPage( User $user ) {
+		// Try user preference first
+		$userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
+		$title = $userOptionsManager->getOption( $user, 'search-special-page' );
+		if ( $title ) {
+			$page = self::getTitleFor( $title );
+			$factory = MediaWikiServices::getInstance()->getSpecialPageFactory();
+			if ( $factory->exists( $page->getText() ) ) {
+				return $page;
+			}
+		}
+		return self::getTitleFor( 'Search' );
+	}
+
+	/**
 	 * Get a localised Title object for a specified special page name
 	 * If you don't need a full Title object, consider using TitleValue through
 	 * getTitleValueFor() below.
@@ -99,7 +123,7 @@ class SpecialPage implements MessageLocalizer {
 	 * @since 1.21 $fragment parameter added
 	 *
 	 * @param string $name
-	 * @param string|bool $subpage Subpage string, or false to not use a subpage
+	 * @param string|false $subpage Subpage string, or false to not use a subpage
 	 * @param string $fragment The link fragment (after the "#")
 	 * @return Title
 	 * @throws MWException
@@ -115,7 +139,7 @@ class SpecialPage implements MessageLocalizer {
 	 *
 	 * @since 1.28
 	 * @param string $name
-	 * @param string|bool $subpage Subpage string, or false to not use a subpage
+	 * @param string|false $subpage Subpage string, or false to not use a subpage
 	 * @param string $fragment The link fragment (after the "#")
 	 * @return TitleValue
 	 */
@@ -130,7 +154,7 @@ class SpecialPage implements MessageLocalizer {
 	 * Get a localised Title object for a page name with a possibly unvalidated subpage
 	 *
 	 * @param string $name
-	 * @param string|bool $subpage Subpage string, or false to not use a subpage
+	 * @param string|false $subpage Subpage string, or false to not use a subpage
 	 * @return Title|null Title object or null if the page doesn't exist
 	 */
 	public static function getSafeTitleFor( $name, $subpage = false ) {
@@ -737,7 +761,7 @@ class SpecialPage implements MessageLocalizer {
 	/**
 	 * Get a self-referential title object
 	 *
-	 * @param string|bool $subpage
+	 * @param string|false $subpage
 	 * @return Title
 	 * @since 1.23
 	 */
@@ -764,7 +788,7 @@ class SpecialPage implements MessageLocalizer {
 	public function getContext() {
 		if ( !( $this->mContext instanceof IContextSource ) ) {
 			wfDebug( __METHOD__ . " called and \$mContext is null. " .
-				"Using RequestContext::getMain(); for sanity" );
+				"Using RequestContext::getMain()" );
 
 			$this->mContext = RequestContext::getMain();
 		}
@@ -1049,7 +1073,7 @@ class SpecialPage implements MessageLocalizer {
 	 * @param int $limit
 	 * @param array $query Optional URL query parameter string
 	 * @param bool $atend Optional param for specified if this is the last page
-	 * @param string|bool $subpage Optional param for specifying subpage
+	 * @param string|false $subpage Optional param for specifying subpage
 	 * @return string
 	 */
 	protected function buildPrevNextNavigation(

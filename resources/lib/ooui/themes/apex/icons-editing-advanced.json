@@ -92,6 +92,9 @@
 				"rtl": "../wikimediaui/images/icons/quotes-rtl.svg"
 			}
 		},
+		"sandbox": {
+			"file": "../wikimediaui/images/icons/sandbox.svg"
+		},
 		"searchCaseSensitive": {
 			"file": "../wikimediaui/images/icons/searchCaseSensitive.svg"
 		},

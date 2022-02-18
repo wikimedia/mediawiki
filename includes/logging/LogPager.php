@@ -194,7 +194,7 @@ class LogPager extends ReverseChronologicalPager {
 		}
 		$this->types = $types;
 		// Don't show private logs to unprivileged users.
-		// Also, only show them upon specific request to avoid suprises.
+		// Also, only show them upon specific request to avoid surprises.
 		// Exception: if we are showing only a single log entry based on the log id,
 		// we don't require that "specific request" so that the links-in-logs feature
 		// works. See T269761
@@ -379,6 +379,8 @@ class LogPager extends ReverseChronologicalPager {
 		if ( !$this->mTagFilter && !array_key_exists( 'ls_field', $this->mConds ) ) {
 			$options[] = 'STRAIGHT_JOIN';
 		}
+
+		$options['MAX_EXECUTION_TIME'] = $this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' );
 
 		$info = [
 			'tables' => $tables,

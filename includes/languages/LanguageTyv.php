@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Tyvan (Тыва дыл) specific code.
  *
@@ -21,6 +22,8 @@
  * @ingroup Language
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Tyvan localization (Тыва дыл)
  *
@@ -38,9 +41,9 @@ class LanguageTyv extends Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		global $wgGrammarForms;
-		if ( isset( $wgGrammarForms['tyv'][$case][$word] ) ) {
-			return $wgGrammarForms['tyv'][$case][$word];
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		if ( isset( $grammarForms['tyv'][$case][$word] ) ) {
+			return $grammarForms['tyv'][$case][$word];
 		}
 
 		// Set up some constants...

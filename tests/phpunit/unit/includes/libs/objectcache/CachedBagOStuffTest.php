@@ -1,5 +1,8 @@
 <?php
 
+use Wikimedia\LightweightObjectStore\StorageAwareness;
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group BagOStuff
  */
@@ -137,5 +140,37 @@ class CachedBagOStuffTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertSame( 'special/logic', $backend->makeGlobalKey( 'special', 'logic' ) );
 		$this->assertSame( 'global:special:logic', $cache->makeGlobalKey( 'special', 'logic' ) );
+	}
+
+	/**
+	 * @covers CachedBagOStuff::watchErrors()
+	 * @covers CachedBagOStuff::getLastError()
+	 * @covers CachedBagOStuff::setLastError()
+	 */
+	public function testErrorHandling() {
+		$backend = new HashBagOStuff;
+		$cache = new CachedBagOStuff( $backend );
+		$wrapper = TestingAccessWrapper::newFromObject( $cache );
+		$key = $cache->makeKey( 'test' );
+
+		$wp = $cache->watchErrors();
+		$cache->get( $key );
+		$this->assertSame( StorageAwareness::ERR_NONE, $cache->getLastError( $wp ) );
+
+		$wrapper->setLastError( StorageAwareness::ERR_UNREACHABLE );
+		$this->assertSame( StorageAwareness::ERR_UNREACHABLE, $cache->getLastError() );
+		$this->assertSame( StorageAwareness::ERR_UNREACHABLE, $cache->getLastError( $wp ) );
+
+		$wp = $cache->watchErrors();
+		$wrapper->setLastError( StorageAwareness::ERR_UNEXPECTED );
+		$wp2 = $cache->watchErrors();
+		$this->assertSame( StorageAwareness::ERR_UNEXPECTED, $cache->getLastError() );
+		$this->assertSame( StorageAwareness::ERR_UNEXPECTED, $cache->getLastError( $wp ) );
+		$this->assertSame( StorageAwareness::ERR_NONE, $cache->getLastError( $wp2 ) );
+
+		$cache->get( $key );
+		$this->assertSame( StorageAwareness::ERR_UNEXPECTED, $cache->getLastError() );
+		$this->assertSame( StorageAwareness::ERR_UNEXPECTED, $cache->getLastError( $wp ) );
+		$this->assertSame( StorageAwareness::ERR_NONE, $cache->getLastError( $wp2 ) );
 	}
 }

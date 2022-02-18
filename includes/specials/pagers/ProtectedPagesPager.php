@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Linker\LinkRenderer;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -28,17 +29,29 @@ class ProtectedPagesPager extends TablePager {
 	public $mConds;
 	private $type, $level, $namespace, $sizetype, $size, $indefonly, $cascadeonly, $noredirect;
 
-	/** @var LinkBatchFactory */
-	private $linkBatchFactory;
-
 	/** @var CommentStore */
 	private $commentStore;
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
 
 	/** @var UserCache */
 	private $userCache;
 
+	/** @var RowCommentFormatter */
+	private $rowCommentFormatter;
+
+	/** @var string[] */
+	private $formattedComments = [];
+
 	/**
-	 * @param SpecialPage $form
+	 * @param IContextSource $context
+	 * @param CommentStore $commentStore
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LinkRenderer $linkRenderer
+	 * @param ILoadBalancer $loadBalancer
+	 * @param RowCommentFormatter $rowCommentFormatter
+	 * @param UserCache $userCache
 	 * @param array $conds
 	 * @param string $type
 	 * @param string $level
@@ -48,14 +61,15 @@ class ProtectedPagesPager extends TablePager {
 	 * @param bool $indefonly
 	 * @param bool $cascadeonly
 	 * @param bool $noredirect
-	 * @param LinkRenderer $linkRenderer
-	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param ILoadBalancer $loadBalancer
-	 * @param CommentStore $commentStore
-	 * @param UserCache $userCache
 	 */
 	public function __construct(
-		$form,
+		IContextSource $context,
+		CommentStore $commentStore,
+		LinkBatchFactory $linkBatchFactory,
+		LinkRenderer $linkRenderer,
+		ILoadBalancer $loadBalancer,
+		RowCommentFormatter $rowCommentFormatter,
+		UserCache $userCache,
 		$conds,
 		$type,
 		$level,
@@ -64,16 +78,15 @@ class ProtectedPagesPager extends TablePager {
 		$size,
 		$indefonly,
 		$cascadeonly,
-		$noredirect,
-		LinkRenderer $linkRenderer,
-		LinkBatchFactory $linkBatchFactory,
-		ILoadBalancer $loadBalancer,
-		CommentStore $commentStore,
-		UserCache $userCache
+		$noredirect
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
-		parent::__construct( $form->getContext(), $linkRenderer );
+		parent::__construct( $context, $linkRenderer );
+		$this->commentStore = $commentStore;
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->rowCommentFormatter = $rowCommentFormatter;
+		$this->userCache = $userCache;
 		$this->mConds = $conds;
 		$this->type = $type ?: 'edit';
 		$this->level = $level;
@@ -83,9 +96,6 @@ class ProtectedPagesPager extends TablePager {
 		$this->indefonly = (bool)$indefonly;
 		$this->cascadeonly = (bool)$cascadeonly;
 		$this->noredirect = (bool)$noredirect;
-		$this->linkBatchFactory = $linkBatchFactory;
-		$this->commentStore = $commentStore;
-		$this->userCache = $userCache;
 	}
 
 	public function preprocessResults( $result ) {
@@ -113,6 +123,9 @@ class ProtectedPagesPager extends TablePager {
 		}
 
 		$lb->execute();
+
+		// Format the comments
+		$this->formattedComments = $this->rowCommentFormatter->formatRows( $result, 'log_comment' );
 	}
 
 	protected function getFieldNames() {
@@ -255,8 +268,7 @@ class ProtectedPagesPager extends TablePager {
 						LogPage::DELETED_COMMENT,
 						$this->getUser()
 					) ) {
-						$value = $this->commentStore->getComment( 'log_comment', $row )->text;
-						$formatted = Linker::formatComment( $value ?? '' );
+						$formatted = $this->formattedComments[$this->getResultOffset()];
 					} else {
 						$formatted = $this->msg( 'rev-deleted-comment' )->escaped();
 					}

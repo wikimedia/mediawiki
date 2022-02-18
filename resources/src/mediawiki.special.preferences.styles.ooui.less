@@ -1,3 +1,4 @@
+@import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
 
 /* Uses standard message block colors, compare mediawiki.legacy/shared.css */
@@ -30,9 +31,7 @@
  */
 .mw-prefs-buttons {
 	background-color: #fff;
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	position: -webkit-sticky;
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	position: sticky;
 	bottom: 0;
 	margin-top: -1px;
@@ -45,7 +44,6 @@
 // Support Edge: The `position: sticky` rule above causes the buttons to
 // disappear in RTL languages on Microsoft Edge. This magically fixes the issue. See T220706.
 #preferences {
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	filter: brightness( 1 );
 }
 
@@ -53,6 +51,11 @@
 .mw-prefs-buttons .mw-htmlform-submit-buttons {
 	display: inline;
 	margin: 0;
+}
+
+// This button has a very long label, allow wrapping for mobile (T227131)
+#mw-prefs-restoreprefs .oo-ui-buttonElement-button {
+	white-space: normal;
 }
 
 #prefcontrol {
@@ -143,24 +146,33 @@
 	}
 }
 
-/* Make the "Basic information" section more compact */
-/* OOUI's `align: 'left'` for FieldLayouts sucks, so we do our own */
-#mw-htmlform-info {
-	> .oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
-		display: inline-block;
-		width: 20%;
-		padding: 0;
-		vertical-align: middle;
-	}
+// Highlight section header when linking to a section, e.g. Special:Preferences#mw-prefsection-editing-preview.
+.oo-ui-fieldsetLayout:target > .oo-ui-fieldsetLayout-header > .oo-ui-labelElement-label {
+	width: 100%;
+	background-color: #eaf3ff;
+	outline: 4px solid #eaf3ff;
+}
 
-	> .oo-ui-fieldLayout-align-top .oo-ui-fieldLayout-help {
-		margin-right: 0;
-	}
+@media all and ( min-width: @width-breakpoint-tablet ) {
+	/* Make the "Basic information" section more compact */
+	/* OOUI's `align: 'left'` for FieldLayouts sucks, so we do our own */
+	#mw-htmlform-info {
+		> .oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
+			display: inline-block;
+			width: 20%;
+			padding: 0;
+			vertical-align: middle;
+		}
 
-	> .oo-ui-fieldLayout.oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
-		display: inline-block;
-		width: 80%;
-		vertical-align: middle;
+		> .oo-ui-fieldLayout-align-top .oo-ui-fieldLayout-help {
+			margin-right: 0;
+		}
+
+		> .oo-ui-fieldLayout.oo-ui-fieldLayout-align-top > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
+			display: inline-block;
+			width: 80%;
+			vertical-align: middle;
+		}
 	}
 }
 
@@ -182,10 +194,4 @@
 
 #wpTimeCorrection .oo-ui-textInputWidget {
 	margin-top: 0.5em;
-}
-
-/* HACK: expand width of gadget descriptions.
- * This should be moved to the Gadgets extension */
-#mw-htmlform-gadgets .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body {
-	max-width: none;
 }

@@ -6,7 +6,7 @@
 
 	function addMulti( $oldContainer, $container ) {
 		var name = $oldContainer.find( 'input:first-child' ).attr( 'name' ),
-			oldClass = ( ' ' + $oldContainer.attr( 'class' ) + ' ' ).replace( /(mw-htmlform-field-HTMLMultiSelectField|mw-htmlform-dropdown)/g, '' ),
+			oldClass = ( ' ' + $oldContainer.attr( 'class' ) + ' ' ).replace( /(mw-htmlform-field-[A-Za-z]+|mw-htmlform-dropdown)/g, '' ),
 			$select = $( '<select>' ),
 			dataPlaceholder = mw.message( 'htmlform-chosen-placeholder' );
 		oldClass = oldClass.trim();
@@ -53,44 +53,65 @@
 	}
 
 	function convertCheckboxesWidgetToTags( fieldLayout ) {
-		var checkboxesWidget, checkboxesOptions, menuTagOptions, menuTagWidget;
-
-		checkboxesWidget = fieldLayout.fieldWidget;
-		checkboxesOptions = checkboxesWidget.checkboxMultiselectWidget.getItems();
-		menuTagOptions = checkboxesOptions.map( function ( option ) {
+		var checkboxesWidget = fieldLayout.fieldWidget;
+		var checkboxesOptions = checkboxesWidget.checkboxMultiselectWidget.getItems();
+		var menuTagOptions = checkboxesOptions.map( function ( option ) {
 			return new OO.ui.MenuOptionWidget( {
 				data: option.getData(),
-				label: option.getLabel()
+				label: option.getLabel(),
+				disabled: option.disabled // Don't take the state of parent elements into account.
 			} );
 		} );
-		menuTagWidget = new OO.ui.MenuTagMultiselectWidget( {
+		var fieldData = checkboxesWidget.data || {};
+		var menuTagWidget = new OO.ui.MenuTagMultiselectWidget( {
 			$overlay: true,
 			menu: {
 				items: menuTagOptions
-			}
+			},
+			placeholder: fieldData.placeholder || ''
 		} );
 		menuTagWidget.setValue( checkboxesWidget.getValue() );
 
-		// Data from CapsuleMultiselectWidget will not be submitted with the form, so keep the original
+		menuTagOptions.forEach( function ( option ) {
+			if ( option.disabled ) {
+				var tagItem = menuTagWidget.findItemFromData( option.getData() );
+				// When this disabled option is selected by default.
+				if ( tagItem ) {
+					tagItem.setFixed( true );
+				}
+			}
+		} );
+
+		// Data from TagMultiselectWidget will not be submitted with the form, so keep the original
 		// CheckboxMultiselectInputWidget up-to-date.
 		menuTagWidget.on( 'change', function () {
 			checkboxesWidget.setValue( menuTagWidget.getValue() );
 		} );
+		// Synchronize the disable state for submission, and set the proper state of the label.
+		menuTagWidget.on( 'disable', function ( isDisabled ) {
+			checkboxesWidget.setDisabled( isDisabled );
+		} );
+		// Change the connected fieldWidget to the new one, so other scripts can infuse the layout
+		// and make changes to this widget.
+		fieldLayout.fieldWidget = menuTagWidget;
 
-		// Hide original widget and add new one in its place. This is a bit hacky, since the FieldLayout
-		// still thinks it's connected to the old widget.
+		// Hide original widget and add new one in its place.
 		checkboxesWidget.toggle( false );
 		checkboxesWidget.$element.after( menuTagWidget.$element );
 	}
 
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
-		var $dropdowns = $root.find( '.mw-htmlform-field-HTMLMultiSelectField.mw-htmlform-dropdown' );
+		var $dropdowns = $root.find( '.mw-htmlform-dropdown:not(.oo-ui-widget)' );
 		if ( $dropdowns.length ) {
 			$dropdowns.each( function () {
 				var $el = $( this ),
 					data, modules, extraModules;
 				if ( $el.is( '[data-ooui]' ) ) {
-					// Load 'oojs-ui-widgets' for CapsuleMultiselectWidget
+					// Avoid kicks in multiple times and causing a mess
+					if ( $el.find( '.oo-ui-menuTagMultiselectWidget' ).length ) {
+						return;
+					}
+					// Load 'oojs-ui-widgets' for TagMultiselectWidget
 					modules = [ 'mediawiki.htmlform.ooui', 'oojs-ui-widgets' ];
 					data = $el.data( 'mw-modules' );
 					if ( data ) {

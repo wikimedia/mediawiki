@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @group API
  * @group medium
@@ -14,10 +12,10 @@ class ApiClearHasMsgTest extends ApiTestCase {
 	 */
 	public function testClearFlag() {
 		$user = self::$users['sysop']->getUser();
-		$talkPageNotificationManager = MediaWikiServices::getInstance()
+		$talkPageNotificationManager = $this->getServiceContainer()
 			->getTalkPageNotificationManager();
 		$talkPageNotificationManager->setUserHasNewMessages( $user );
-		$this->assertTrue( $talkPageNotificationManager->userHasNewMessages( $user ), 'sanity check' );
+		$this->assertTrue( $talkPageNotificationManager->userHasNewMessages( $user ) );
 
 		$data = $this->doApiRequest( [ 'action' => 'clearhasmsg' ], [] );
 

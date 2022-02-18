@@ -261,30 +261,39 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * @param float $sTime Starting UNIX wall time
 	 * @param bool $isWrite Whether this is a write query
 	 * @param int|null $rowCount Number of affected/read rows
+	 * @param string $trxId Transaction id
+	 * @param string|null $serverName db host name like db1234
 	 */
-	public function recordQueryCompletion( $query, float $sTime, bool $isWrite, ?int $rowCount ) {
+	public function recordQueryCompletion(
+		$query,
+		float $sTime,
+		bool $isWrite,
+		?int $rowCount,
+		string $trxId,
+		?string $serverName = null
+	) {
 		$eTime = microtime( true );
 		$elapsed = ( $eTime - $sTime );
 
 		if ( $isWrite && $this->isAboveThreshold( $rowCount, 'maxAffected' ) ) {
-			$this->reportExpectationViolated( 'maxAffected', $query, $rowCount );
+			$this->reportExpectationViolated( 'maxAffected', $query, $rowCount, $trxId, $serverName );
 		} elseif ( !$isWrite && $this->isAboveThreshold( $rowCount, 'readQueryRows' ) ) {
-			$this->reportExpectationViolated( 'readQueryRows', $query, $rowCount );
+			$this->reportExpectationViolated( 'readQueryRows', $query, $rowCount, $trxId, $serverName );
 		}
 
 		// Report when too many writes/queries happen...
 		if ( $this->pingAndCheckThreshold( 'queries' ) ) {
-			$this->reportExpectationViolated( 'queries', $query, $this->hits['queries'] );
+			$this->reportExpectationViolated( 'queries', $query, $this->hits['queries'], $trxId, $serverName );
 		}
 		if ( $isWrite && $this->pingAndCheckThreshold( 'writes' ) ) {
-			$this->reportExpectationViolated( 'writes', $query, $this->hits['writes'] );
+			$this->reportExpectationViolated( 'writes', $query, $this->hits['writes'], $trxId, $serverName );
 		}
 		// Report slow queries...
 		if ( !$isWrite && $this->isAboveThreshold( $elapsed, 'readQueryTime' ) ) {
-			$this->reportExpectationViolated( 'readQueryTime', $query, $elapsed );
+			$this->reportExpectationViolated( 'readQueryTime', $query, $elapsed, $trxId, $serverName );
 		}
 		if ( $isWrite && $this->isAboveThreshold( $elapsed, 'writeQueryTime' ) ) {
-			$this->reportExpectationViolated( 'writeQueryTime', $query, $elapsed );
+			$this->reportExpectationViolated( 'writeQueryTime', $query, $elapsed, $trxId, $serverName );
 		}
 
 		if ( !$this->dbTrxHoldingLocks ) {
@@ -300,7 +309,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 			if ( $lastQuery ) {
 				// Additional query in the trx...
 				$lastEnd = $lastQuery[2];
-				if ( $sTime >= $lastEnd ) { // sanity check
+				if ( $sTime >= $lastEnd ) {
 					if ( ( $sTime - $lastEnd ) > self::EVENT_THRESHOLD_SEC ) {
 						// Add an entry representing the time spent doing non-queries
 						$this->dbTrxMethodTimes[$name][] = [ '...delay...', $lastEnd, $sTime ];
@@ -309,7 +318,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 				}
 			} else {
 				// First query in the trx...
-				if ( $sTime >= $info['start'] ) { // sanity check
+				if ( $sTime >= $info['start'] ) {
 					$this->dbTrxMethodTimes[$name][] = [ $query, $sTime, $eTime ];
 				}
 			}
@@ -348,8 +357,9 @@ class TransactionProfiler implements LoggerAwareInterface {
 		if ( $this->isAboveThreshold( $writeTime, 'writeQueryTime' ) ) {
 			$this->reportExpectationViolated(
 				'writeQueryTime',
-				"[transaction $id writes to {$server} ({$db})]",
-				$writeTime
+				"[transaction writes to {$server} ({$db})]",
+				$writeTime,
+				$id
 			);
 			$slow = true;
 		}
@@ -357,8 +367,9 @@ class TransactionProfiler implements LoggerAwareInterface {
 		if ( $this->isAboveThreshold( $affected, 'maxAffected' ) ) {
 			$this->reportExpectationViolated(
 				'maxAffected',
-				"[transaction $id writes to {$server} ({$db})]",
-				$affected
+				"[transaction writes to {$server} ({$db})]",
+				$affected,
+				$id
 			);
 		}
 		// Fill in the last non-query period...
@@ -382,7 +393,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 			$trace = '';
 			foreach ( $this->dbTrxMethodTimes[$name] as $i => [ $query, $sTime, $end ] ) {
 				$trace .= sprintf(
-					"%d\t%.6f\t%s\n", $i, ( $end - $sTime ), self::queryString( $query ) );
+					"%d\t%.6f\t%s\n", $i, ( $end - $sTime ), $this->getGeneralizedSql( $query ) );
 			}
 			$this->logger->warning( "Sub-optimal transaction on DB(s) [{dbs}]: \n{trace}", [
 				'dbs' => implode( ', ', array_keys( $this->dbTrxHoldingLocks[$name]['conns'] ) ),
@@ -425,23 +436,39 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * @param string $expectation
 	 * @param string|GeneralizedSql $query
 	 * @param float|int $actual
+	 * @param string|null $trxId Transaction id
+	 * @param string|null $serverName db host name like db1234
 	 */
-	private function reportExpectationViolated( $expectation, $query, $actual ) {
+	private function reportExpectationViolated(
+		$expectation,
+		$query,
+		$actual,
+		?string $trxId = null,
+		?string $serverName = null
+	) {
 		if ( $this->silenced ) {
 			return;
 		}
 
 		$max = $this->expect[$expectation][self::FLD_LIMIT];
 		$by = $this->expect[$expectation][self::FLD_FNAME];
+		$message = "Expectation ($expectation <=) $max by $by not met (actual: {actual})";
+		if ( $trxId ) {
+			$message .= ' in trx #{trxId}';
+		}
+		$message .= ":\n{query}\n";
 		$this->logger->warning(
-			"Expectation ($expectation <=) $max by $by not met (actual: {actual}):\n{query}\n",
+			$message,
 			[
 				'measure' => $expectation,
-				'max' => $max,
+				'maxSeconds' => $max,
 				'by' => $by,
-				'actual' => $actual,
-				'query' => self::queryString( $query ),
-				'exception' => new RuntimeException()
+				'actualSeconds' => $actual,
+				'query' => $this->getGeneralizedSql( $query ),
+				'exception' => new RuntimeException(),
+				'trxId' => $trxId,
+				'fullQuery' => $this->getRawSql( $query ),
+				'dbHost' => $serverName
 			]
 		);
 	}
@@ -450,7 +477,15 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * @param GeneralizedSql|string $query
 	 * @return string
 	 */
-	private static function queryString( $query ) {
+	private function getGeneralizedSql( $query ) {
 		return $query instanceof GeneralizedSql ? $query->stringify() : $query;
+	}
+
+	/**
+	 * @param GeneralizedSql|string $query
+	 * @return string
+	 */
+	private function getRawSql( $query ) {
+		return $query instanceof GeneralizedSql ? $query->getRawSql() : $query;
 	}
 }

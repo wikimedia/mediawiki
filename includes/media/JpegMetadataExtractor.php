@@ -33,7 +33,7 @@ use Wikimedia\XMPReader\Reader as XMPReader;
  */
 class JpegMetadataExtractor {
 	/**
-	 * The max segment is a sanity check. A JPEG file should never even remotely have
+	 * The max segment is a safety check. A JPEG file should never even remotely have
 	 * that many segments. Your average file has about 10.
 	 */
 	private const MAX_JPEG_SEGMENTS = 200;
@@ -81,7 +81,6 @@ class JpegMetadataExtractor {
 			$buffer = fread( $fh, 1 );
 			$segmentCount++;
 			if ( $segmentCount > self::MAX_JPEG_SEGMENTS ) {
-				// this is just a sanity check
 				throw new MWException( 'Too many jpeg segments. Aborting' );
 			}
 			while ( $buffer !== "\xFF" && !feof( $fh ) ) {

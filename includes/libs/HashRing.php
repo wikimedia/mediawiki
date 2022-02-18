@@ -51,7 +51,7 @@ class HashRing implements Serializable {
 
 	/** @var array[] Non-empty position-ordered list of (position, location name) */
 	protected $baseRing;
-	/** @var array[] Non-empty position-ordered list of (position, location name) */
+	/** @var array[]|null Non-empty position-ordered list of (position, location name) */
 	protected $liveRing;
 
 	/** @var integer Overall number of node groups per server */
@@ -303,7 +303,7 @@ class HashRing implements Serializable {
 					$node = ( $qi * self::SECTORS_PER_HASH + $gi ) . "@$location";
 					$posKey = (string)$position; // large integer
 					if ( isset( $claimed[$posKey] ) ) {
-						// Disallow duplicates for sanity (name decides precedence)
+						// Disallow duplicates  (name decides precedence)
 						if ( $claimed[$posKey]['node'] > $node ) {
 							continue;
 						} else {
@@ -399,7 +399,7 @@ class HashRing implements Serializable {
 		$now = $this->getCurrentTime();
 
 		if ( $this->liveRing === null || min( $this->ejectExpiryByLocation ) <= $now ) {
-			// Live ring needs to be regerenated...
+			// Live ring needs to be regenerated...
 			$this->ejectExpiryByLocation = array_filter(
 				$this->ejectExpiryByLocation,
 				static function ( $expiry ) use ( $now ) {
@@ -438,15 +438,22 @@ class HashRing implements Serializable {
 	}
 
 	public function serialize() {
-		return serialize( [
+		return serialize( $this->__serialize() );
+	}
+
+	public function __serialize() {
+		return [
 			'algorithm' => $this->algo,
 			'locations' => $this->weightByLocation,
 			'ejections' => $this->ejectExpiryByLocation
-		] );
+		];
 	}
 
 	public function unserialize( $serialized ) {
-		$data = unserialize( $serialized );
+		$this->__unserialize( unserialize( $serialized ) );
+	}
+
+	public function __unserialize( $data ) {
 		if ( is_array( $data ) ) {
 			$this->init( $data['locations'], $data['algorithm'], $data['ejections'] );
 		} else {

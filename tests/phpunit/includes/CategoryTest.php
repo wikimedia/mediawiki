@@ -49,21 +49,21 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 			// Existing title
 			[ 'newFromName', 'Example', 'getID', 1 ],
 			[ 'newFromName', 'Example', 'getName', 'Example' ],
-			[ 'newFromName', 'Example', 'getPageCount', 3 ],
+			[ 'newFromName', 'Example', 'getMemberCount', 3 ],
 			[ 'newFromName', 'Example', 'getSubcatCount', 4 ],
 			[ 'newFromName', 'Example', 'getFileCount', 5 ],
 
 			// Non-existing title
 			[ 'newFromName', 'NoExample', 'getID', 0 ],
 			[ 'newFromName', 'NoExample', 'getName', 'NoExample' ],
-			[ 'newFromName', 'NoExample', 'getPageCount', 0 ],
+			[ 'newFromName', 'NoExample', 'getMemberCount', 0 ],
 			[ 'newFromName', 'NoExample', 'getSubcatCount', 0 ],
 			[ 'newFromName', 'NoExample', 'getFileCount', 0 ],
 
 			// Existing ID
 			[ 'newFromID', 1, 'getID', 1 ],
 			[ 'newFromID', 1, 'getName', 'Example' ],
-			[ 'newFromID', 1, 'getPageCount', 3 ],
+			[ 'newFromID', 1, 'getMemberCount', 3 ],
 			[ 'newFromID', 1, 'getSubcatCount', 4 ],
 			[ 'newFromID', 1, 'getFileCount', 5 ]
 		];
@@ -170,14 +170,14 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Category::getPageCount()
+	 * @covers Category::getMemberCount()
 	 * @covers Category::getSubcatCount()
 	 * @covers Category::getFileCount()
 	 */
 	public function testGetCounts() {
 		// See data set in addDBDataOnce
 		$category = Category::newFromID( 1 );
-		$this->assertEquals( 3, $category->getPageCount() );
+		$this->assertEquals( 3, $category->getMemberCount() );
 		$this->assertEquals( 4, $category->getSubcatCount() );
 		$this->assertEquals( 5, $category->getFileCount() );
 	}

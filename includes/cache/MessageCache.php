@@ -35,6 +35,7 @@ use MediaWiki\Revision\SlotRecord;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -128,20 +129,6 @@ class MessageCache implements LoggerAwareInterface {
 	private $hookRunner;
 
 	/**
-	 * Get the singleton instance of this class
-	 *
-	 * @deprecated in 1.34, hard depreacted in 1.37
-	 * Inject an instance of this class instead of using global state
-	 *
-	 * @since 1.18
-	 * @return MessageCache
-	 */
-	public static function singleton() {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getMessageCache();
-	}
-
-	/**
 	 * Normalize message key input
 	 *
 	 * @param string $key Input message key to be normalized
@@ -149,6 +136,11 @@ class MessageCache implements LoggerAwareInterface {
 	 */
 	public static function normalizeKey( $key ) {
 		$lckey = strtr( $key, ' ', '_' );
+		if ( $lckey === '' ) {
+			// T300792
+			return $lckey;
+		}
+
 		if ( ord( $lckey ) < 128 ) {
 			$lckey[0] = strtolower( $lckey[0] );
 		} else {
@@ -202,7 +194,8 @@ class MessageCache implements LoggerAwareInterface {
 		$this->languageFallback = $languageFallback;
 		$this->hookRunner = new HookRunner( $hookContainer );
 
-		$this->cache = new MapCacheLRU( 5 ); // limit size for sanity
+		// limit size
+		$this->cache = new MapCacheLRU( 5 );
 
 		$this->mDisable = !( $options['useDB'] ?? true );
 	}
@@ -218,7 +211,8 @@ class MessageCache implements LoggerAwareInterface {
 	 */
 	private function getParserOptions() {
 		if ( !$this->mParserOptions ) {
-			$user = RequestContext::getMain()->getUser();
+			$context = RequestContext::getMain();
+			$user = $context->getUser();
 			if ( !$user->isSafeToLoad() ) {
 				// It isn't safe to use the context user yet, so don't try to get a
 				// ParserOptions for it. And don't cache this ParserOptions
@@ -228,7 +222,7 @@ class MessageCache implements LoggerAwareInterface {
 				return $po;
 			}
 
-			$this->mParserOptions = new ParserOptions( $user );
+			$this->mParserOptions = ParserOptions::newFromContext( $context );
 			// Messages may take parameters that could come
 			// from malicious sources. As a precaution, disable
 			// the <html> parser tag when parsing messages.
@@ -409,7 +403,7 @@ class MessageCache implements LoggerAwareInterface {
 			# the whole wiki being instantly down if the memcached server died
 		}
 
-		if ( !$this->isLanguageLoaded( $code ) ) { // sanity
+		if ( !$this->isLanguageLoaded( $code ) ) {
 			throw new LogicException( "Process cache for '$code' should be set by now." );
 		}
 
@@ -488,8 +482,8 @@ class MessageCache implements LoggerAwareInterface {
 	 * @return array Loaded messages for storing in caches
 	 */
 	protected function loadFromDB( $code, $mode = null ) {
-		global $wgMaxMsgCacheEntrySize, $wgAdaptiveMessageCache;
-
+		$maxMsgCacheEntrySize = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxMsgCacheEntrySize' );
+		$adaptiveMessageCache = MediaWikiServices::getInstance()->getMainConfig()->get( 'AdaptiveMessageCache' );
 		// (T164666) The query here performs really poorly on WMF's
 		// contributions replicas. We don't have a way to say "any group except
 		// contributions", so for the moment let's specify 'api'.
@@ -499,7 +493,7 @@ class MessageCache implements LoggerAwareInterface {
 		$cache = [];
 
 		$mostused = []; // list of "<cased message key>/<code>"
-		if ( $wgAdaptiveMessageCache && $code !== $this->contLangCode ) {
+		if ( $adaptiveMessageCache && $code !== $this->contLangCode ) {
 			if ( !$this->cache->has( $this->contLangCode ) ) {
 				$this->load( $this->contLangCode );
 			}
@@ -529,12 +523,12 @@ class MessageCache implements LoggerAwareInterface {
 		$res = $dbr->select(
 			'page',
 			[ 'page_title', 'page_latest' ],
-			array_merge( $conds, [ 'page_len > ' . intval( $wgMaxMsgCacheEntrySize ) ] ),
+			array_merge( $conds, [ 'page_len > ' . intval( $maxMsgCacheEntrySize ) ] ),
 			__METHOD__ . "($code)-big"
 		);
 		foreach ( $res as $row ) {
 			// Include entries/stubs for all keys in $mostused in adaptive mode
-			if ( $wgAdaptiveMessageCache || $this->isMainCacheable( $row->page_title )
+			if ( $adaptiveMessageCache || $this->isMainCacheable( $row->page_title )
 			) {
 				$cache[$row->page_title] = '!TOO BIG';
 			}
@@ -554,7 +548,7 @@ class MessageCache implements LoggerAwareInterface {
 		// `revision` first rather than `page`).
 		$revQuery['joins']['revision'] = $revQuery['joins']['page'];
 		unset( $revQuery['joins']['page'] );
-		// It isn't actually necesssary to reorder $revQuery['tables'] as Database does the right thing
+		// It isn't actually necessary to reorder $revQuery['tables'] as Database does the right thing
 		// when join conditions are given for all joins, but Gergő is wary of relying on that so pull
 		// `page` to the start.
 		$revQuery['tables'] = array_merge(
@@ -566,7 +560,7 @@ class MessageCache implements LoggerAwareInterface {
 			$revQuery['tables'],
 			$revQuery['fields'],
 			array_merge( $conds, [
-				'page_len <= ' . intval( $wgMaxMsgCacheEntrySize ),
+				'page_len <= ' . intval( $maxMsgCacheEntrySize ),
 				'page_latest = rev_id' // get the latest revision only
 			] ),
 			__METHOD__ . "($code)-small",
@@ -580,12 +574,14 @@ class MessageCache implements LoggerAwareInterface {
 		$revisions = $result->isOK() ? $result->getValue() : [];
 		foreach ( $res as $row ) {
 			// Include entries/stubs for all keys in $mostused in adaptive mode
-			if ( $wgAdaptiveMessageCache || $this->isMainCacheable( $row->page_title )
+			if ( $adaptiveMessageCache || $this->isMainCacheable( $row->page_title )
 			) {
 				try {
 					$rev = $revisions[$row->rev_id] ?? null;
 					$content = $rev ? $rev->getContent( SlotRecord::MAIN ) : null;
 					$text = $this->getMessageTextFromContent( $content );
+				} catch ( TimeoutException $e ) {
+					throw $e;
 				} catch ( Exception $ex ) {
 					$text = false;
 				}
@@ -629,7 +625,7 @@ class MessageCache implements LoggerAwareInterface {
 	private function isLanguageLoaded( $lang ) {
 		// It is important that this only returns true if the cache was fully
 		// populated by load(), so that callers can assume all cache keys exist.
-		// It is possible for $this->cache to be only patially populated through
+		// It is possible for $this->cache to be only partially populated through
 		// methods like MessageCache::replace(), which must not make this method
 		// return true (T208897). And this method must cease to return true
 		// if the language was evicted by MapCacheLRU (T230690).
@@ -710,7 +706,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @throws MWException
 	 */
 	public function refreshAndReplaceInternal( $code, array $replacements ) {
-		global $wgMaxMsgCacheEntrySize;
+		$maxMsgCacheEntrySize = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxMsgCacheEntrySize' );
 
 		// Allow one caller at a time to avoid race conditions
 		$scopedLock = $this->getReentrantScopedLock(
@@ -746,7 +742,7 @@ class MessageCache implements LoggerAwareInterface {
 			// Note that if $text is false, then $cache should have a !NONEXISTANT entry
 			if ( !is_string( $text ) ) {
 				$cache[$title] = '!NONEXISTENT';
-			} elseif ( strlen( $text ) > $wgMaxMsgCacheEntrySize ) {
+			} elseif ( strlen( $text ) > $maxMsgCacheEntrySize ) {
 				$cache[$title] = '!TOO BIG';
 				$newBigTitles[$title] = $page->getLatest();
 			} else {
@@ -1359,7 +1355,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * Mainly used after a mass rebuild
 	 */
 	public function clear() {
-		$langs = $this->languageNameUtils->getLanguageNames( null, 'mw' );
+		$langs = $this->languageNameUtils->getLanguageNames();
 		foreach ( array_keys( $langs ) as $code ) {
 			$this->wanCache->touchCheckKey( $this->getCheckKey( $code ) );
 		}
@@ -1377,7 +1373,11 @@ class MessageCache implements LoggerAwareInterface {
 		}
 
 		$lang = array_pop( $pieces );
-		if ( !$this->languageNameUtils->getLanguageName( $lang, null, 'mw' ) ) {
+		if ( !$this->languageNameUtils->getLanguageName(
+			$lang,
+			LanguageNameUtils::AUTONYMS,
+			LanguageNameUtils::DEFINED
+		) ) {
 			return [ $key, $this->contLangCode ];
 		}
 

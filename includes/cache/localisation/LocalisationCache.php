@@ -725,7 +725,7 @@ class LocalisationCache {
 	protected function readSourceFilesAndRegisterDeps( $code, &$deps ) {
 		// This reads in the PHP i18n file with non-messages l10n data
 		$fileName = $this->langNameUtils->getMessagesFileName( $code );
-		if ( !file_exists( $fileName ) ) {
+		if ( !is_file( $fileName ) ) {
 			$data = [];
 		} else {
 			$deps[] = new FileDependency( $fileName );
@@ -1027,7 +1027,7 @@ class LocalisationCache {
 		$this->hookRunner->onLocalisationCacheRecache( $this, $code, $allData, $unused );
 
 		if ( $allData['namespaceNames'] === null ) {
-			throw new MWException( __METHOD__ . ': Localisation data failed sanity check! ' .
+			throw new MWException( __METHOD__ . ': Localisation data failed validation check! ' .
 				'Check that your languages/messages/MessagesEn.php file is intact.' );
 		}
 

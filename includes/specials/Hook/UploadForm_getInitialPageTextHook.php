@@ -20,7 +20,7 @@ interface UploadForm_getInitialPageTextHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param string &$pageText The page text
+	 * @param string &$pageText
 	 * @param string[] $msg Array of header messages
 	 * @param Config $config
 	 * @return bool|void True or no return value to continue or false to abort

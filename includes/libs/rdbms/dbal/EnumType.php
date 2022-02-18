@@ -52,7 +52,7 @@ class EnumType extends Type {
 	/**
 	 * Gets the sql portion to create ENUM for Postgres table column
 	 *
-	 * @param mixed[] $column Column
+	 * @param mixed[] $column
 	 * @param AbstractPlatform $platform
 	 *
 	 * @see MWPostgreSqlPlatform::_getCreateTableSQL()

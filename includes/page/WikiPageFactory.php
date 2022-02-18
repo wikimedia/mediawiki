@@ -3,7 +3,6 @@
 namespace MediaWiki\Page;
 
 use DBAccessObjectUtils;
-use InvalidArgumentException;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\Hook\WikiPageFactoryHook;
 use stdClass;
@@ -50,15 +49,16 @@ class WikiPageFactory {
 	 *
 	 * @return WikiPage
 	 */
-	public function newFromTitle( PageIdentity $pageIdentity ) {
+	public function newFromTitle( PageIdentity $pageIdentity ): WikiPage {
 		if ( $pageIdentity instanceof WikiPage ) {
 			return $pageIdentity;
 		}
 
 		if ( !$pageIdentity->canExist() ) {
 			// BC with the Title class
-			throw new InvalidArgumentException(
-				"The given PageIdentity does not represent a proper page"
+			throw new PageAssertionException(
+				'The given PageIdentity {pageIdentity} does not represent a proper page',
+				[ 'pageIdentity' => $pageIdentity ]
 			);
 		}
 

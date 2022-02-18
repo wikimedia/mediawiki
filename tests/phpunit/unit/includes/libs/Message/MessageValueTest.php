@@ -2,6 +2,8 @@
 
 namespace Wikimedia\Tests\Message;
 
+use MediaWiki\Message\UserGroupMembershipParam;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Message\ListType;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
@@ -168,6 +170,28 @@ class MessageValueTest extends \PHPUnit\Framework\TestCase {
 		$mv2 = $mv->timeParams( $ts );
 		$this->assertSame( '<message key="key">' .
 			"<time>$ts</time>" .
+			'</message>',
+			$mv->dump() );
+		$this->assertSame( $mv, $mv2 );
+	}
+
+	public function testUserGroupParams() {
+		$mv = new MessageValue( 'key' );
+		$mv2 = $mv->userGroupParams( 'bot' );
+		$this->assertSame( '<message key="key">' .
+			"<group>bot</group>" .
+			'</message>',
+			$mv->dump() );
+		$this->assertSame( $mv, $mv2 );
+	}
+
+	public function testUserGroupMemberParams() {
+		$mv = new MessageValue( 'key' );
+		$mv2 = $mv->objectParams(
+			new UserGroupMembershipParam( 'bot', new UserIdentityValue( 1, 'user' ) )
+		);
+		$this->assertSame( '<message key="key">' .
+			'<object>bot:user</object>' .
 			'</message>',
 			$mv->dump() );
 		$this->assertSame( $mv, $mv2 );

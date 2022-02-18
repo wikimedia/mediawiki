@@ -21,6 +21,7 @@
  * @ingroup MaintenanceLanguage
  */
 
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
 
 require_once __DIR__ . '/../Maintenance.php';
@@ -50,7 +51,7 @@ class LangMemUsage extends Maintenance {
 		$languages = array_keys(
 			MediaWikiServices::getInstance()
 				->getLanguageNameUtils()
-				->getLanguageNames( null, 'mwfile' )
+				->getLanguageNames( LanguageNameUtils::AUTONYMS, LanguageNameUtils::SUPPORTED )
 		);
 		sort( $languages );
 

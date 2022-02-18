@@ -49,12 +49,13 @@ class MwSql extends Maintenance {
 			'The database wiki ID to use if not the current one', false, true );
 		$this->addOption( 'replicadb',
 			'Replica DB server to use instead of the primary DB (can be "any")', false, true );
+		$this->setBatchSize( 100 );
 	}
 
 	public function execute() {
 		global $IP;
 
-		// We wan't to allow "" for the wikidb, meaning don't call select_db()
+		// We want to allow "" for the wikidb, meaning don't call select_db()
 		$wiki = $this->hasOption( 'wikidb' ) ? $this->getOption( 'wikidb' ) : false;
 		// Get the appropriate load balancer (for this wiki)
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
@@ -132,6 +133,7 @@ class MwSql extends Maintenance {
 		$prompt = $newPrompt;
 		$doDie = !Maintenance::posix_isatty( 0 );
 		$res = 1;
+		$batchCount = 0;
 		while ( ( $line = Maintenance::readconsole( $prompt ) ) !== false ) {
 			if ( !$line ) {
 				# User simply pressed return key
@@ -147,13 +149,17 @@ class MwSql extends Maintenance {
 				continue;
 			}
 			if ( $historyFile ) {
-				# Delimiter is eated by streamStatementEnd, we add it
+				# Delimiter is eaten by streamStatementEnd, we add it
 				# up in the history (T39020)
 				readline_add_history( $wholeLine . ';' );
 				readline_write_history( $historyFile );
 			}
 			// @phan-suppress-next-line SecurityCheck-SQLInjection
 			$res = $this->sqlDoQuery( $db, $wholeLine, $doDie );
+			if ( $this->getBatchSize() && ++$batchCount >= $this->getBatchSize() ) {
+				$batchCount = 0;
+				$lbFactory->waitForReplication();
+			}
 			$prompt = $newPrompt;
 			$wholeLine = '';
 		}

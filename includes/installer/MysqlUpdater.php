@@ -32,16 +32,6 @@ use Wikimedia\Rdbms\MySQLField;
 class MysqlUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
 		return [
-			// 1.28
-			[ 'addIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
-				'patch-add-rc_name_type_patrolled_timestamp_index.sql' ],
-			[ 'doRevisionPageRevIndexNonUnique' ],
-			[ 'doNonUniquePlTlIl' ],
-			[ 'addField', 'change_tag', 'ct_id', 'patch-change_tag-ct_id.sql' ],
-			[ 'modifyField', 'recentchanges', 'rc_ip', 'patch-rc_ip_modify.sql' ],
-			[ 'ifTableNotExists', 'actor', 'addIndex', 'archive', 'usertext_timestamp',
-				'patch-rename-ar_usertext_timestamp.sql' ],
-
 			// 1.29
 			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
 			[ 'dropIndex', 'user_groups', 'ug_user_group', 'patch-user_groups-primary-key.sql' ],
@@ -255,6 +245,18 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'page', 'name_title', 'page_name_title', false, 'patch-page-rename-name_title-index.sql' ],
 			[ 'renameIndex', 'change_tag', 'change_tag_rc_tag_id', 'ct_rc_tag_id', false,
 				'patch-change_tag-rename-indexes.sql' ],
+
+			// 1.38
+			[ 'doConvertDjvuMetadata' ],
+			[ 'dropField', 'page_restrictions', 'pr_user', 'patch-drop-page_restrictions-pr_user.sql' ],
+			[ 'modifyField', 'filearchive', 'fa_id', 'patch-filearchive-fa_id.sql' ],
+			[ 'modifyField', 'image', 'img_major_mime', 'patch-image-img_major_mime-default.sql' ],
+			[ 'addTable', 'linktarget', 'patch-linktarget.sql' ],
+			[ 'dropIndex', 'revision', 'rev_page_id', 'patch-drop-rev_page_id.sql' ],
+			[ 'modifyField', 'page_restrictions', 'pr_page', 'patch-page_restrictions-pr_page.sql' ],
+			[ 'modifyField', 'page_props', 'pp_page', 'patch-page_props-pp_page.sql' ],
+			[ 'modifyField', 'ipblocks_restrictions', 'ir_value', 'patch-ipblocks_restrictions-ir_value.sql' ],
+			[ 'addField', 'templatelinks', 'tl_target_id', 'patch-templatelinks-target_id.sql' ],
 		];
 	}
 
@@ -304,27 +306,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		return false;
 	}
 
-	protected function doNonUniquePlTlIl() {
-		$info = $this->db->indexInfo( 'pagelinks', 'pl_namespace', __METHOD__ );
-		if ( is_array( $info ) && $info[0]->Non_unique ) {
-			$this->output( "...pl_namespace, tl_namespace, il_to indices are already non-UNIQUE.\n" );
-
-			return true;
-		}
-		if ( $this->skipSchema ) {
-			$this->output( "...skipping schema change (making pl_namespace, tl_namespace " .
-				"and il_to indices non-UNIQUE).\n" );
-
-			return false;
-		}
-
-		return $this->applyPatch(
-			'patch-pl-tl-il-nonunique.sql',
-			false,
-			'Making pl_namespace, tl_namespace and il_to indices non-UNIQUE'
-		);
-	}
-
 	protected function doLanguageLinksLengthSync() {
 		$sync = [
 			[ 'table' => 'l10n_cache', 'field' => 'lc_lang', 'file' => 'patch-l10n_cache-lc_lang-35.sql' ],
@@ -336,7 +317,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			$table = $this->db->tableName( $s['table'] );
 			$field = $s['field'];
 			$res = $this->db->query( "SHOW COLUMNS FROM $table LIKE '$field'", __METHOD__ );
-			$row = $this->db->fetchObject( $res );
+			$row = $res->fetchObject();
 
 			if ( $row && $row->Type !== "varbinary(35)" ) {
 				$this->applyPatch(
@@ -372,8 +353,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'table' => 'bot_passwords', 'field' => 'bp_user', 'file' => 'patch-bot_passwords-bp_user-unsigned.sql' ],
 			[ 'table' => 'change_tag', 'field' => 'ct_log_id', 'file' => 'patch-change_tag-ct_log_id-unsigned.sql' ],
 			[ 'table' => 'change_tag', 'field' => 'ct_rev_id', 'file' => 'patch-change_tag-ct_rev_id-unsigned.sql' ],
-			[ 'table' => 'page_restrictions', 'field' => 'pr_user',
-				'file' => 'patch-page_restrictions-pr_user-unsigned.sql' ],
 			[ 'table' => 'user_newtalk', 'field' => 'user_id', 'file' => 'patch-user_newtalk-user_id-unsigned.sql' ],
 			[ 'table' => 'user_properties', 'field' => 'up_user',
 				'file' => 'patch-user_properties-up_user-unsigned.sql' ],
@@ -404,26 +383,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 
 		return true;
-	}
-
-	protected function doRevisionPageRevIndexNonUnique() {
-		if ( !$this->doTable( 'revision' ) ) {
-			return true;
-		} elseif ( !$this->db->indexExists( 'revision', 'rev_page_id', __METHOD__ ) ) {
-			$this->output( "...rev_page_id index not found on revision.\n" );
-			return true;
-		}
-
-		if ( !$this->db->indexUnique( 'revision', 'rev_page_id', __METHOD__ ) ) {
-			$this->output( "...rev_page_id index already non-unique.\n" );
-			return true;
-		}
-
-		return $this->applyPatch(
-			'patch-revision-page-rev-index-nonunique.sql',
-			false,
-			'Making rev_page_id index non-unique'
-		);
 	}
 
 	public function getSchemaVars() {

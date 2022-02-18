@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Old Church Slavonic (Ѩзыкъ словѣньскъ) specific code.
  *
@@ -21,6 +22,8 @@
  * @ingroup Language
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Old Church Slavonic (Ѩзыкъ словѣньскъ)
  *
@@ -36,10 +39,10 @@ class LanguageCu extends Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		global $wgGrammarForms;
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
 
-		if ( isset( $wgGrammarForms['сu'][$case][$word] ) ) {
-			return $wgGrammarForms['сu'][$case][$word];
+		if ( isset( $grammarForms['сu'][$case][$word] ) ) {
+			return $grammarForms['сu'][$case][$word];
 		}
 
 		# These rules are not perfect, but they are currently only used for

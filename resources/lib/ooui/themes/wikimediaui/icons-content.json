@@ -73,6 +73,9 @@
 				"rtl": "images/icons/articleRedirect-rtl.svg"
 			}
 		},
+		"database": {
+			"file": "../wikimediaui/images/icons/database.svg"
+		},
 		"die": {
 			"file": "images/icons/die.svg"
 		},

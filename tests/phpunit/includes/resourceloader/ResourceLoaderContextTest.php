@@ -35,6 +35,7 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( 'qqx|fallback|0|||||||', $ctx->getHash() );
 		$this->assertSame( [], $ctx->getReqBase() );
 		$this->assertInstanceOf( User::class, $ctx->getUserObj() );
+		$this->assertNull( $ctx->getUserIdentity() );
 	}
 
 	public function testDummy() {
@@ -133,13 +134,15 @@ class ResourceLoaderContextTest extends PHPUnit\Framework\TestCase {
 	public function testGetUser() {
 		$ctx = new ResourceLoaderContext( $this->getResourceLoader(), new FauxRequest( [] ) );
 		$this->assertSame( null, $ctx->getUser() );
-		$this->assertTrue( $ctx->getUserObj()->isAnon() );
+		$this->assertFalse( $ctx->getUserObj()->isRegistered() );
+		$this->assertNull( $ctx->getUserIdentity() );
 
 		$ctx = new ResourceLoaderContext( $this->getResourceLoader(), new FauxRequest( [
 			'user' => 'Example'
 		] ) );
 		$this->assertSame( 'Example', $ctx->getUser() );
 		$this->assertEquals( 'Example', $ctx->getUserObj()->getName() );
+		$this->assertEquals( 'Example', $ctx->getUserIdentity()->getName() );
 	}
 
 	public function testMsg() {

@@ -66,7 +66,7 @@ class LegacyLogger extends AbstractLogger {
 	private const LEVEL_INFINITY = 999;
 
 	/**
-	 * Convert \Psr\Log\LogLevel constants into int for sane comparisons
+	 * Convert \Psr\Log\LogLevel constants into int for sensible comparisons
 	 * These are the same values that Monolog uses
 	 *
 	 * @var array
@@ -224,7 +224,7 @@ class LegacyLogger extends AbstractLogger {
 
 		if ( $channel === 'wfLogDBError' ) {
 			// wfLogDBError messages are emitted if a database log location is
-			// specfied.
+			// specified.
 			$shouldEmit = (bool)$wgDBerrorLog;
 
 		} elseif ( $channel === 'wfDebug' ) {
@@ -248,7 +248,7 @@ class LegacyLogger extends AbstractLogger {
 					$shouldEmit = $level >= self::$levelMapping[$logConfig['level']];
 				}
 			} else {
-				// Emit unless the config value is explictly false.
+				// Emit unless the config value is explicitly false.
 				$shouldEmit = $logConfig !== false;
 			}
 
@@ -453,6 +453,7 @@ class LegacyLogger extends AbstractLogger {
 			return '[Object ' . get_class( $item ) . ']';
 		}
 
+		// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.is_resource
 		if ( is_resource( $item ) ) {
 			return '[Resource ' . get_resource_type( $item ) . ']';
 		}

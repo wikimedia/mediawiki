@@ -32,11 +32,6 @@ class SqliteUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return [
-			// 1.28
-			[ 'addIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
-				'patch-add-rc_name_type_patrolled_timestamp_index.sql' ],
-			[ 'addField', 'change_tag', 'ct_id', 'patch-change_tag-ct_id.sql' ],
-
 			// 1.29
 			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
 			[ 'addField', 'user_groups', 'ug_expiry', 'patch-user_groups-ug_expiry.sql' ],
@@ -222,6 +217,16 @@ class SqliteUpdater extends DatabaseUpdater {
 				'patch-page-rename-name_title-index.sql' ],
 			[ 'renameIndex', 'change_tag', 'change_tag_rc_tag_id', 'ct_rc_tag_id', false,
 				'patch-change_tag-rename-indexes.sql' ],
+
+			// 1.38
+			[ 'doConvertDjvuMetadata' ],
+			[ 'dropField', 'page_restrictions', 'pr_user', 'patch-drop-page_restrictions-pr_user.sql' ],
+			[ 'addTable', 'linktarget', 'patch-linktarget.sql' ],
+			[ 'dropIndex', 'revision', 'rev_page_id', 'patch-drop-rev_page_id.sql' ],
+			[ 'modifyField', 'page_restrictions', 'pr_page', 'patch-page_restrictions-pr_page.sql' ],
+			[ 'modifyField', 'page_props', 'pp_page', 'patch-page_props-pp_page.sql' ],
+			[ 'modifyField', 'ipblocks_restrictions', 'ir_value', 'patch-ipblocks_restrictions-ir_value.sql' ],
+			[ 'addField', 'templatelinks', 'tl_target_id', 'patch-templatelinks-target_id.sql' ],
 		];
 	}
 

@@ -69,7 +69,7 @@ class UserCache {
 	/**
 	 * Get a property of a user based on their user ID
 	 *
-	 * @param int $userId User ID
+	 * @param int $userId
 	 * @param string $prop User property
 	 * @return mixed|bool The property or false if the user does not exist
 	 */
@@ -126,7 +126,7 @@ class UserCache {
 
 		// Lookup basic info for users not yet loaded...
 		if ( count( $usersToQuery ) ) {
-			$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 			$tables = [ 'user', 'actor' ];
 			$conds = [ 'user_id' => $usersToQuery ];
 			$fields = [ 'user_name', 'user_real_name', 'user_registration', 'user_id', 'actor_id' ];

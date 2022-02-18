@@ -76,7 +76,7 @@ interface IDatabase {
 	/** @var string Estimate time to apply (scanning, applying) */
 	public const ESTIMATE_DB_APPLY = 'apply';
 
-	/** @var int Combine list with comma delimeters */
+	/** @var int Combine list with comma delimiters */
 	public const LIST_COMMA = 0;
 	/** @var int Combine list with AND clauses */
 	public const LIST_AND = 1;
@@ -123,16 +123,18 @@ interface IDatabase {
 	public const QUERY_IGNORE_DBO_TRX = 8;
 	/** @var int Do not try to retry the query if the connection was lost */
 	public const QUERY_NO_RETRY = 16;
-	/** @var int Query is known to be a read-only Data Query Language query */
+	/** @var int Query is a read-only Data Query Language query */
 	public const QUERY_CHANGE_NONE = 32;
-	/** @var int Query is known to be a Transaction Control Language command */
+	/** @var int Query is a Transaction Control Language command (BEGIN, USE, SET, ...) */
 	public const QUERY_CHANGE_TRX = 64 | self::QUERY_IGNORE_DBO_TRX;
-	/** @var int Query is known to be a Data Manipulation Language command */
+	/** @var int Query is a Data Manipulation Language command (INSERT, DELETE, LOCK, ...) */
 	public const QUERY_CHANGE_ROWS = 128;
-	/** @var int Query is known to be a Data Definition Language command */
+	/** @var int Query is a Data Definition Language command */
 	public const QUERY_CHANGE_SCHEMA = 256 | self::QUERY_IGNORE_DBO_TRX;
+	/** @var int Query is a command for advisory locks */
+	public const QUERY_CHANGE_LOCKS = 512 | self::QUERY_IGNORE_DBO_TRX;
 
-	/** Flag to return the lock acquision timestamp (null if not acquired) */
+	/** Flag to return the lock acquisition timestamp (null if not acquired) */
 	public const LOCK_TIMESTAMP = 1;
 
 	/** @var bool Parameter to unionQueries() for UNION ALL */
@@ -206,14 +208,6 @@ interface IDatabase {
 	public function getTopologyRootPrimary();
 
 	/**
-	 * @deprecated since 1.37; use getTopologyRootPrimary() instead.
-	 * @return string|null Readable server name; null if unknown or if co-primaries are defined
-	 * @throws DBQueryError
-	 * @since 1.34
-	 */
-	public function getTopologyRootMaster();
-
-	/**
 	 * Gets the current transaction level.
 	 *
 	 * Historically, transactions were allowed to be "nested". This is no
@@ -237,18 +231,15 @@ interface IDatabase {
 	public function trxTimestamp();
 
 	/**
-	 * @return bool Whether an explicit transaction or atomic sections are still open
+	 * Check whether there is a transaction open at the specific request of a caller
+	 *
+	 * Explicit transactions are spawned by begin(), startAtomic(), and doAtomicSection().
+	 * Note that explicit transactions should not be confused with explicit transaction rounds.
+	 *
+	 * @return bool
 	 * @since 1.28
 	 */
 	public function explicitTrxActive();
-
-	/**
-	 * Assert that all explicit transactions or atomic sections have been closed
-	 *
-	 * @throws DBTransactionError
-	 * @since 1.32
-	 */
-	public function assertNoOpenTransactions();
 
 	/**
 	 * Get/set the table prefix
@@ -314,12 +305,6 @@ interface IDatabase {
 	public function writesPending();
 
 	/**
-	 * @return bool Whether there is a transaction open with pre-commit callbacks pending
-	 * @since 1.32
-	 */
-	public function preCommitCallbacksPending();
-
-	/**
 	 * Whether there is a transaction open with either possible write queries
 	 * or unresolved pre-commit/commit/resolution callbacks pending
 	 *
@@ -347,14 +332,6 @@ interface IDatabase {
 	 * @since 1.27
 	 */
 	public function pendingWriteCallers();
-
-	/**
-	 * Get the number of affected rows from pending write queries
-	 *
-	 * @return int
-	 * @since 1.30
-	 */
-	public function pendingWriteRowsAffected();
 
 	/**
 	 * @return bool Whether a connection to the database open
@@ -451,29 +428,6 @@ interface IDatabase {
 	public function numRows( $res );
 
 	/**
-	 * Get the number of fields in a result object
-	 * @see https://www.php.net/mysql_num_fields
-	 *
-	 * @deprecated since 1.37
-	 *
-	 * @param IResultWrapper $res A SQL result
-	 * @return int
-	 */
-	public function numFields( IResultWrapper $res );
-
-	/**
-	 * Get a field name in a result object
-	 * @see https://www.php.net/mysql_field_name
-	 *
-	 * @deprecated since 1.37
-	 *
-	 * @param IResultWrapper $res A SQL result
-	 * @param int $n
-	 * @return string
-	 */
-	public function fieldName( IResultWrapper $res, $n );
-
-	/**
 	 * Free a result object returned by query() or select()
 	 *
 	 * It's usually not necessary to call this, just use unset() or let the variable
@@ -484,17 +438,6 @@ interface IDatabase {
 	 * @param IResultWrapper $res A SQL result
 	 */
 	public function freeResult( IResultWrapper $res );
-
-	/**
-	 * Change the position of the cursor in a result object
-	 * @see https://www.php.net/mysql_data_seek
-	 *
-	 * @deprecated since 1.37 use IResultWrapper::seek()
-	 *
-	 * @param IResultWrapper $res A SQL result
-	 * @param int $row
-	 */
-	public function dataSeek( IResultWrapper $res, $row );
 
 	// endregion -- Deprecated IResultWrapper accessors
 	/***************************************************************************/
@@ -601,7 +544,7 @@ interface IDatabase {
 	 *
 	 * @return SelectQueryBuilder
 	 */
-	public function newSelectQueryBuilder();
+	public function newSelectQueryBuilder(): SelectQueryBuilder;
 
 	/**
 	 * A SELECT wrapper which returns a single field from a single result row
@@ -795,6 +738,9 @@ interface IDatabase {
 	 *   - EXPLAIN: In MySQL, this causes an EXPLAIN SELECT query to be run,
 	 *     instead of SELECT.
 	 *
+	 *   - MAX_EXECUTION_TIME: (only in MySQL/MariaDB) maximum allowed time to
+	 *     run the query in milliseconds (if database supports it).
+	 *
 	 * And also the following boolean MySQL extensions, see the MySQL manual
 	 * for documentation:
 	 *
@@ -949,9 +895,9 @@ interface IDatabase {
 	 * Determines whether a field exists in a table
 	 *
 	 * @param string $table Table name
-	 * @param string $field Filed to check on that table
+	 * @param string $field Field to check on that table
 	 * @param string $fname Calling function name (optional)
-	 * @return bool Whether $table has filed $field
+	 * @return bool Whether $table has field $field
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function fieldExists( $table, $field, $fname = __METHOD__ );
@@ -1034,10 +980,10 @@ interface IDatabase {
 	 * @code
 	 *     $sql = $db->makeList( [
 	 *         'rev_page' => $id,
-	 *         $db->makeList( [ 'rev_minor' => 1, 'rev_len' < 500 ], $db::LIST_OR ] )
+	 *         $db->makeList( [ 'rev_minor' => 1, 'rev_len < 500' ], $db::LIST_OR )
 	 *     ], $db::LIST_AND );
 	 * @endcode
-	 * This would set $sql to "rev_page = '$id' AND (rev_minor = '1' OR rev_len < '500')"
+	 * This would set $sql to "rev_page = '$id' AND (rev_minor = 1 OR rev_len < 500)"
 	 *
 	 * @param array $a Containing the data
 	 * @param int $mode IDatabase class constant:
@@ -1070,15 +1016,35 @@ interface IDatabase {
 	public function makeWhereFrom2d( $data, $baseKey, $subKey );
 
 	/**
-	 * Return aggregated value alias
+	 * Given an array of condition arrays representing an OR list of AND lists,
+	 * for example:
 	 *
-	 * @param array $valuedata
-	 * @param string $valuename
+	 *   (A=1 AND B=2) OR (A=1 AND B=3)
 	 *
-	 * @return array|string
-	 * @deprecated Since 1.33
+	 * produce an SQL expression in which the conditions are factored:
+	 *
+	 *  (A=1 AND (B=2 OR B=3))
+	 *
+	 * We also use IN() to simplify further:
+	 *
+	 *  (A=1 AND (B IN (2,3))
+	 *
+	 * More compactly, in boolean algebra notation, a sum of products, e.g.
+	 * AB + AC is factored to produce A(B+C). Factoring proceeds recursively
+	 * to reduce expressions with any number of variables, for example
+	 *   AEP + AEQ + AFP + AFQ = A(E(P+Q) + F(P+Q))
+	 *
+	 * The algorithm is simple and will not necessarily find the shortest
+	 * possible expression. For the best results, fields should be given in a
+	 * consistent order, and the fields with values likely to be shared should
+	 * be leftmost in the associative arrays.
+	 *
+	 * @param array $condsArray An array of associative arrays. The associative
+	 *   array keys represent field names, and the values represent the field
+	 *   values to compare against.
+	 * @return string SQL expression fragment
 	 */
-	public function aggregateValue( $valuedata, $valuename = 'value' );
+	public function factorConds( $condsArray );
 
 	/**
 	 * @param string|int $field
@@ -1467,7 +1433,7 @@ interface IDatabase {
 	 * @param string|array $conds Array of conditions. See $conds in IDatabase::select()
 	 *   In order to prevent possible performance or replication issues or damaging a data
 	 *   accidentally, an empty condition for 'delete' queries isn't allowed.
-	 *   IDatabase::ALL_ROWS should be passed explicitely in order to delete all rows.
+	 *   IDatabase::ALL_ROWS should be passed explicitly in order to delete all rows.
 	 * @param string $fname Name of the calling function
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError If an error occurs, {@see query}
@@ -1592,14 +1558,6 @@ interface IDatabase {
 	public function strreplace( $orig, $old, $new );
 
 	/**
-	 * Determines how long the server has been up
-	 *
-	 * @return int
-	 * @throws DBError
-	 */
-	public function getServerUptime();
-
-	/**
 	 * Determines if the last failure was due to a deadlock
 	 *
 	 * Note that during a deadlock, the prior transaction will have been lost
@@ -1661,17 +1619,6 @@ interface IDatabase {
 	public function primaryPosWait( DBPrimaryPos $pos, $timeout );
 
 	/**
-	 * @deprecated since 1.37; use primaryPosWait() instead.
-	 * @param DBPrimaryPos $pos
-	 * @param int $timeout The maximum number of seconds to wait for synchronisation
-	 * @return int|null Zero if the replica DB was past that position already,
-	 *   greater than zero if we waited for some period of time, less than
-	 *   zero if it timed out, and null on error
-	 * @throws DBError If an error occurs, {@see query}
-	 */
-	public function masterPosWait( DBPrimaryPos $pos, $timeout );
-
-	/**
 	 * Get the replication position of this replica DB
 	 *
 	 * @return DBPrimaryPos|bool False if this is not a replica DB
@@ -1687,13 +1634,6 @@ interface IDatabase {
 	 * @since 1.37
 	 */
 	public function getPrimaryPos();
-
-	/**
-	 * @deprecated since 1.37; use getPrimaryPos() instead.
-	 * @return DBPrimaryPos|bool False if this is not a primary DB
-	 * @throws DBError If an error occurs, {@see query}
-	 */
-	public function getMasterPos();
 
 	/**
 	 * @return bool Whether the DB is marked as read-only server-side
@@ -1717,7 +1657,7 @@ interface IDatabase {
 	 *
 	 * Use this method only for the following purposes:
 	 *   - (a) Release of cooperative locks on resources
-	 *   - (b) Cancellation of in-proccess deferred tasks
+	 *   - (b) Cancellation of in-process deferred tasks
 	 *
 	 * The callback takes the following arguments:
 	 *   - How the current atomic section (if any) or overall transaction (otherwise) ended
@@ -1771,16 +1711,6 @@ interface IDatabase {
 	 * @since 1.32
 	 */
 	public function onTransactionCommitOrIdle( callable $callback, $fname = __METHOD__ );
-
-	/**
-	 * Alias for onTransactionCommitOrIdle() for backwards-compatibility
-	 *
-	 * @param callable $callback
-	 * @param string $fname
-	 * @since 1.20
-	 * @deprecated Since 1.32
-	 */
-	public function onTransactionIdle( callable $callback, $fname = __METHOD__ );
 
 	/**
 	 * Run a callback before the current transaction commits or now if there is none
@@ -1974,7 +1904,7 @@ interface IDatabase {
 	public function cancelAtomic( $fname = __METHOD__, AtomicSectionIdentifier $sectionId = null );
 
 	/**
-	 * Perform an atomic section of reversable SQL statements from a callback
+	 * Perform an atomic section of reversible SQL statements from a callback
 	 *
 	 * The $callback takes the following arguments:
 	 *   - This database object
@@ -2003,7 +1933,7 @@ interface IDatabase {
 	 *         // Figure out where to store the data based on the new row's ID
 	 *         $path = $this->recordDirectory . '/' . $dbw->insertId();
 	 *         // Write the record data to the storage system;
-	 *         // blob store throughs StoreFailureException on failure
+	 *         // blob store throws StoreFailureException on failure
 	 *         $this->blobStore->create( $path, $record->getJSON() );
 	 *         // Try to cleanup files orphaned by transaction rollback
 	 *         $dbw->onTransactionResolution(
@@ -2196,13 +2126,6 @@ interface IDatabase {
 	public function getSessionLagStatus();
 
 	/**
-	 * Return the maximum number of items allowed in a list, or 0 for unlimited
-	 *
-	 * @return int
-	 */
-	public function maxListLen();
-
-	/**
 	 * Some DBMSs have a special format for inserting into blob fields, they
 	 * don't allow simple quoted strings to be inserted. To insert into such
 	 * a field, pass the data through this function before passing it to
@@ -2263,7 +2186,7 @@ interface IDatabase {
 	 *
 	 * Named locks are not related to transactions
 	 *
-	 * @param string $lockName Name of lock to aquire
+	 * @param string $lockName Name of lock to acquire
 	 * @param string $method Name of the calling method
 	 * @param int $timeout Acquisition timeout in seconds (0 means non-blocking)
 	 * @param int $flags Bit field of IDatabase::LOCK_* constants

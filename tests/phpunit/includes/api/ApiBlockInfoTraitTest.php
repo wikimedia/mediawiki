@@ -12,8 +12,9 @@ class ApiBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetBlockDetails
 	 */
 	public function testGetBlockDetails( $block, $expectedInfo ) {
+		$language = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$mock = $this->getMockForTrait( ApiBlockInfoTrait::class );
-		$mock->method( 'getLanguage' )->willReturn( 'en' );
+		$mock->method( 'getLanguage' )->willReturn( $language );
 		$info = TestingAccessWrapper::newFromObject( $mock )->getBlockDetails( $block );
 		$subset = array_merge( [
 			'blockid' => null,

@@ -1,4 +1,150 @@
 # OOUI Release History
+## v0.43.1 / 2022-02-09
+### Styles
+* icons: Update 'zoomIn' and 'zoomOut' (Volker E.)
+* icons: Further optimize 'bold*' and 'italic*' icons and update 'bold-f' (Volker E.)
+* icons: Update 'recentChanges', 'watchlist' and 'userContributions' (Volker E.)
+
+### Code
+* Add PHPUnit tests for variadic Tag methods (Thiemo Kreuz)
+* Avoid calling `.addItems()` with undefined (Thiemo Kreuz)
+* BookletLayout: Clear currentPageName when removing that page (Ed Sanders)
+* BookletLayout: Don't use currentPageName if it is null (Ed Sanders)
+* BookletLayout: In setPage, select the outline if no item is currently selected (Ed Sanders)
+* Changed order icons in template menu (Svantje Lilienthal)
+* Document inconsistent Tag methods with PHPUnit tests (Thiemo Kreuz)
+* DraggableElement: Only fallback to `move` cursor (Volker E.)
+* Fix and remove small pieces of unused PHP code (Thiemo Kreuz)
+* Fix missing cursor when DraggableElement handle is seperate (Thiemo Kreuz)
+* Make Tag fail consistently on item arrays with keys (Bartosz Dziewoński)
+* Streamline code paths related to Element.updateThemeClasses (Thiemo Kreuz)
+* Test coverage for GroupElement failing on arrays with keys (Thiemo Kreuz (WMDE))
+* build: Replace 'grunt-svgmin' with 'svgo' and npm scripts (Volker E.)
+* build: Updating npm dependencies (libraryupgrader)
+* build: Updating npm dependencies (libraryupgrader)
+* demos: Document Demo.static.imageLists (Ed Sanders)
+* demos: Generate image lists automatically (Ed Sanders)
+* demos: Show language variant icons (Ed Sanders)
+* demos: Show when icons are deprecated (Ed Sanders)
+* demos: Tweak icon page layout to four columns not five (Ed Sanders)
+* docs: Document default arguments in JS code where possible (Thiemo Kreuz)
+* icons: Fix 'bold-cyrl-be' SVG title (Volker E.)
+* icons: Re-crush with SVGO (Volker E.)
+
+
+## v0.43.0 / 2022-01-11
+### Breaking changes
+* [BREAKING CHANGE] icons: Remove `destructive` variant from 'close' icon (Volker E.)
+
+### Deprecating changes
+* [DEPRECATING CHANGE] icons: Add 'hand' icon and deprecate 'stopHand' (Volker E.)
+
+### Features
+* MessageWidget: Add '`showClose`' option (Ed Sanders)
+* MenuSelectWidget: Highlight the first selectable menu option instead of the visible one (Func)
+
+### Styles
+* Don't use CSS `hyphens`, just `word-wrap: break-word;` (Ed Sanders)
+* icons: Add 'watchlist' (Volker E.)
+* icons: Align specific language 'bold*' and 'italic*' icons to guidelines (Volker E.)
+* icons: Amend 'hand' icon with better Figma definition (Volker E.)
+* icons: Amend 'watchlist' icon to fit in with other list icons (Volker E.)
+* icons: Manually optimize some recently added SVG icons (Thiemo Kreuz)
+* icons: Optimize by reducing path precisions (Volker E.)
+
+### Code
+* PHP: Remove unnecessary `empty()` calls (Thiemo Kreuz)
+* ButtonWidget: Avoid setting empty `rel="…"` (Thiemo Kreuz)
+* ButtonWidget: Fix `.setRel()` sometimes not working (Thiemo Kreuz)
+* ButtonWidget: Fix incomplete types for `rel` config (Thiemo Kreuz)
+* ButtonWidget: Fix inconsistency with `rel=''` (Bartosz Dziewoński)
+* Element.php: Replace `call_user_func…` with modern syntax (Thiemo Kreuz)
+* Element: Work around jQuery bug with empty strings in `addClass()` (Bartosz Dziewoński)
+* GroupElement and subclasses: Harden generic `.addItems()` methods (Thiemo Kreuz)
+* IconElement: Dramatically simplify `.setIcon()` (Thiemo Kreuz)
+* IndexLayout.php: Remove unused machinery (Thiemo Kreuz)
+* LabelElement: Optimize hot code paths (Thiemo Kreuz)
+* ListToolGroup: Simplify complex boolean sequence (Thiemo Kreuz)
+* MenuLayout: Simplify consecutive `addClasses()` calls (Thiemo Kreuz)
+* MenuSelectWidget: Make `filterFromInput` mode easier to use (Thiemo Kreuz)
+* MenuSelectWidget: Move variable declarations down in code (Thiemo Kreuz)
+* MenuSelectWidget: Reduce code indentation in `.updateItemVisibility()` (Thiemo Kreuz)
+* MenuSelectWidget: Remove unused code  (Thiemo Kreuz)
+* MessageWidget: Replace expensive usage of `Object.keys()` with fast alternative (Thiemo Kreuz)
+* MultilineTextInputWidget autosize: Exclude scrollbars when calculating new size (Ed Sanders)
+* OutlineOptionWidget: Follow-up I39c2c88d: Always return 'this' in `setLevel` (Ed Sanders)
+* OutlineOptionWidget: Optimize `.setLevel()` for performance (Thiemo Kreuz)
+* RadioOptionWidget: Don't always scroll when selected (Ed Sanders)
+* Remove empty super calls from OutlineOptionWidget (Thiemo Kreuz)
+* RequiredElement mixin: Avoid more code duplication (Thiemo Kreuz)
+* RequiredElement: Improve performance of the constructor (Thiemo Kreuz)
+* RequiredElement: Remove redundant `aria-required` attribute (Volker E.)
+* SelectWidget: Fix `selectable`/`highlightable`/`pressable` being ignored (Thiemo Kreuz)
+* SelectWidget: Leave possible expensive loops early (Thiemo Kreuz)
+* SelectWidget: Move variable declarations down in code (Thiemo Kreuz)
+* Streamline `.setNoFollow()` methods in both JS/PHP (Thiemo Kreuz)
+* Tag.php: Change `::appendContent()` signature to match other methods (Thiemo Kreuz)
+* Tag.php: Fix variadic argument methods failing when empty (Thiemo Kreuz)
+* Tag.php::toString: Don't pass null to `htmlspecialchars()`, PHP 8.1 emits a warning (James D. Forrester)
+* TagMultiselectWidget: Fix `.setValue()` behaving oddly in edge cases (Thiemo Kreuz)
+* TagMultiselectWidget: Fix margin & padding when empty (Ed Sanders)
+* TextInputWidget: Move variable declarations down in code (Thiemo Kreuz)
+* TextInputWidget: Optimize `.installParentChangeDetector()` a bit (Thiemo Kreuz)
+* TextInputWidget: Skip meaningless default validation (Thiemo Kreuz)
+* Widget: Minimize DOM by not adding default `aria-disabled="false"` (Thiemo Kreuz)
+* Widget: Move line in `.setDisabled()` up to where it belongs (Thiemo Kreuz)
+* Widget: Remove unused config initialization (Thiemo Kreuz)
+* build: Add `.nvmrc` file (Volker E.)
+* build: Fix 'watch' task (Ed Sanders)
+* build: Fix stylelint comments wasting space in compiled .css files (Thiemo Kreuz)
+* build: Follow-up I5badb6564: Ensure CSS omnibus file is created when watching (Ed Sanders)
+* build: Improve 'grunt watch' tasks (Ed Sanders)
+* build: Rollback javascript-stringify to version that works in browser (Ed Sanders)
+* build: Update eslint-config-wikimedia to 0.21.0 (Ed Sanders)
+* build: Updating mediawiki/mediawiki-phan-config to 0.11.1 (Umherirrender)
+* eslint: Use correct values for eslint globals (Ed Sanders)
+* code: Chain jQuery calls where possible (Thiemo Kreuz)
+* demos: Add `noscript` message (Volker E.)
+* demos: Fix method binding in the tutorial toolbar (Ed Sanders)
+* demos: Move var declarations inline (Ed Sanders)
+* docs: An Element's "data" value can be anything (Thiemo Kreuz)
+* docs: Bump license to current year (Volker E.)
+* docs: Fix JSDoc @return tags missing null as a possibility (Thiemo Kreuz)
+* docs: Fix and update some potentially misleading JSDoc comments (Thiemo Kreuz)
+* docs: Remove or replace usages of "sanity" (James D. Forrester)
+* docs: Remove or replace usages of "sanity" (Sam Reed)
+* docs: Update incomplete config documentation in various places (Thiemo Kreuz)
+* eslint: Move around configs so that root files use server settings (Ed Sanders)
+
+
+## v0.42.1 / 2021-11-03
+### Deprecating changes
+* [DEPRECATING CHANGE] icons: Mark 'destructive' variant of close icon as deprecated (Kosta Harlan)
+
+### Styles
+* Center and size action buttons to match bar height (Ed Sanders)
+* WikimediaUI theme: Add missing styles for disabled list tools (Ed Sanders)
+* icons: Add 'database' icon (Luca Mauri)
+* icons: Provide 'sandbox' in 'editing-advanced' pack (James D. Forrester)
+
+### Code
+* BookletLayout: Fix `BookletLayout.setPage()` emitting events twice (Thiemo Kreuz)
+* BookletLayout: Reduce deep nesting in `BookletLayout.setPage()` (Thiemo Kreuz)
+* BookletLayout: Remove bogus auto-scroll behavior from BookletLayout (Thiemo Kreuz)
+* BookletLayout: Remove misplaced `.selectFirstSelectablePage()` calls (Thiemo Kreuz)
+* IndexLayout: Fix documentation for class property (Umherirrender)
+* PageLayout: Remove unused return from OO.ui.PageLayout.setupOutlineItem (Thiemo Kreuz)
+* StackLayout: Fix StackLayout scrolling to the very top when removing items (Thiemo Kreuz)
+* LabelElement: Remove non-existent parameter from 'labelChange' event doc (Bartosz Dziewoński)
+* SelectWidget: Mark multiselect SelectWidget with `aria-multiselectable="true"` (Thiemo Kreuz)
+* PHP Tag: Remove unreachable statement after trigger_error (Umherirrender)
+* build: Updating composer dependencies (libraryupgrader)
+* build: Updating mediawiki/mediawiki-codesniffer to 38.0.0 (libraryupgrader)
+* build: Updating npm dependencies (libraryupgrader)
+* icons: Remove unnecessary `fill-rule="…"` attributes from 2 icons (Thiemo Kreuz)
+* tests: Allow ES6 syntax (Bartosz Dziewoński)
+
+
 ## v0.42.0 / 2021-08-18
 ### Breaking changes
 * [BREAKING CHANGE] Remove obsolete browsers' vendor prefixes (Volker E.)
@@ -2796,7 +2942,7 @@
 
 ### Styles
 * ButtonElement: Fix 'active' state icon variants in MediaWiki theme (Bartosz Dziewoński)
-* FieldLayout: Use saner line-height for errors/notices (Bartosz Dziewoński)
+* FieldLayout: Use more sensible line-height for errors/notices (Bartosz Dziewoński)
 * SelectFileWidget: Improve thumbnail appearance (Volker E)
 * styles: Inherit specific `font` properties, not all (Volker E)
 * MediaWiki theme: Clear border on selected framed buttons (Volker E)
@@ -3154,7 +3300,7 @@
 
 ### Styles
 * CapsuleItemWidget: Tweak styles for the "remove" button (Bartosz Dziewoński)
-* MenuSelectWidget: Bring some sanity styling when inside different widgets (Bartosz Dziewoński)
+* MenuSelectWidget: Bring some sense to styling when inside different widgets (Bartosz Dziewoński)
 * NumberInputWidget: Apex: Round the correct corners in the disabled state (Prateek Saxena)
 * styles: Use block rather than inline-block to avoid line height issues (Bartosz Dziewoński)
 * MediaWiki theme: Restore non-broken version of eye.svg (Bartosz Dziewoński)

@@ -333,8 +333,8 @@ abstract class DatabaseUpdater {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string $tableName The table name
-	 * @param string $indexName The index name
+	 * @param string $tableName
+	 * @param string $indexName
 	 * @param string $sqlPath The path to the SQL change path
 	 */
 	public function dropExtensionIndex( $tableName, $indexName, $sqlPath ) {
@@ -360,9 +360,9 @@ abstract class DatabaseUpdater {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string $tableName The table name
-	 * @param string $oldIndexName The old index name
-	 * @param string $newIndexName The new index name
+	 * @param string $tableName
+	 * @param string $oldIndexName
+	 * @param string $newIndexName
 	 * @param string $sqlPath The path to the SQL change path
 	 * @param bool $skipBothIndexExistWarning Whether to warn if both the old
 	 * and the new indexes exist. [facultative; by default, false]
@@ -387,7 +387,7 @@ abstract class DatabaseUpdater {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string $tableName The table name
+	 * @param string $tableName
 	 * @param string $fieldName The field to be modified
 	 * @param string $sqlPath The path to the SQL patch
 	 */
@@ -401,7 +401,7 @@ abstract class DatabaseUpdater {
 	 *
 	 * @since 1.31
 	 *
-	 * @param string $tableName The table name
+	 * @param string $tableName
 	 * @param string $sqlPath The path to the SQL patch
 	 */
 	public function modifyExtensionTable( $tableName, $sqlPath ) {
@@ -693,7 +693,7 @@ abstract class DatabaseUpdater {
 			return false;
 		}
 
-		$this->output( "$msg ..." );
+		$this->output( "{$msg}..." );
 
 		if ( !$isFullPath ) {
 			$path = $this->patchPath( $this->db, $path );
@@ -1090,7 +1090,7 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Set any .htaccess files or equivilent for storage repos
+	 * Set any .htaccess files or equivalent for storage repos
 	 *
 	 * Some zones (e.g. "temp") used to be public and may have been initialized as such
 	 */
@@ -1186,6 +1186,27 @@ abstract class DatabaseUpdater {
 		$this->output( "...done.\n" );
 	}
 
+	protected function doConvertDjvuMetadata() {
+		if ( $this->updateRowExists( 'ConvertDjvuMetadata' ) ) {
+			return;
+		}
+		$this->output( "Converting djvu metadata..." );
+		$task = $this->maintenance->runChild( RefreshImageMetadata::class );
+		'@phan-var RefreshImageMetadata $task';
+		$task->loadParamsAndArgs( RefreshImageMetadata::class, [
+			'force' => true,
+			'mediatype' => 'OFFICE',
+			'mime' => 'image/*',
+			'batch-size' => 1,
+			'sleep' => 1
+		] );
+		$ok = $task->execute();
+		if ( $ok !== false ) {
+			$this->output( "...done.\n" );
+			$this->insertUpdateRow( 'ConvertDjvuMetadata' );
+		}
+	}
+
 	/**
 	 * Rebuilds the localisation cache
 	 */
@@ -1251,7 +1272,7 @@ abstract class DatabaseUpdater {
 				"databases, you may want to hit Ctrl-C and do this manually with\n" .
 				"maintenance/migrateActors.php.\n"
 			);
-			$task = $this->maintenance->runChild( 'MigrateActors', 'migrateActors.php' );
+			$task = $this->maintenance->runChild( MigrateActors::class, 'migrateActors.php' );
 			$ok = $task->execute();
 			$this->output( $ok ? "done.\n" : "errors were encountered.\n" );
 		}
@@ -1285,7 +1306,7 @@ abstract class DatabaseUpdater {
 		}
 		if ( $info->isNullable() ) {
 			$this->output( "Populating ar_rev_id.\n" );
-			$task = $this->maintenance->runChild( 'PopulateArchiveRevId', 'populateArchiveRevId.php' );
+			$task = $this->maintenance->runChild( PopulateArchiveRevId::class, 'populateArchiveRevId.php' );
 			if ( $task->execute() ) {
 				$this->applyPatch( 'patch-ar_rev_id-not-null.sql', false,
 					'Making ar_rev_id not nullable' );
@@ -1304,7 +1325,7 @@ abstract class DatabaseUpdater {
 				"databases, you may want to hit Ctrl-C and do this manually with\n" .
 				"maintenance/populateExternallinksIndex60.php.\n"
 			);
-			$task = $this->maintenance->runChild( 'PopulateExternallinksIndex60',
+			$task = $this->maintenance->runChild( PopulateExternallinksIndex60::class,
 				'populateExternallinksIndex60.php' );
 			$task->execute();
 			$this->output( "done.\n" );

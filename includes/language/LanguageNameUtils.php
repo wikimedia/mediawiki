@@ -24,6 +24,7 @@
 
 namespace MediaWiki\Languages;
 
+use BagOStuff;
 use HashBagOStuff;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
@@ -191,12 +192,13 @@ class LanguageNameUtils {
 			$this->languageNameCache = new HashBagOStuff( [ 'maxKeys' => 20 ] );
 		}
 
-		$ret = $this->languageNameCache->get( $cacheKey );
-		if ( !$ret ) {
-			$ret = $this->getLanguageNamesUncached( $inLanguage, $include );
-			$this->languageNameCache->set( $cacheKey, $ret );
-		}
-		return $ret;
+		return $this->languageNameCache->getWithSetCallback(
+			$cacheKey,
+			BagOStuff::TTL_INDEFINITE,
+			function () use ( $inLanguage, $include ) {
+				return $this->getLanguageNamesUncached( $inLanguage, $include );
+			}
+		);
 	}
 
 	/**

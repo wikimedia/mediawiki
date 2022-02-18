@@ -8,7 +8,6 @@ use ApiMessage;
 use ApiTestCase;
 use ApiUsageException;
 use FauxRequest;
-use MediaWiki\MediaWikiServices;
 use Message;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Message\MessageValue;
@@ -28,7 +27,7 @@ class ApiParamValidatorTest extends ApiTestCase {
 		$context = $this->apiContext->newTestContext( $request, $this->getTestUser()->getUser() );
 		$main = new ApiMain( $context );
 		return [
-			new ApiParamValidator( $main, MediaWikiServices::getInstance()->getObjectFactory() ),
+			new ApiParamValidator( $main, $this->getServiceContainer()->getObjectFactory() ),
 			$main
 		];
 	}
@@ -257,18 +256,6 @@ class ApiParamValidatorTest extends ApiTestCase {
 						ApiBase::PARAM_HELP_MSG_INFO => 'PARAM_HELP_MSG_INFO must be an array, got string',
 						ApiBase::PARAM_HELP_MSG_PER_VALUE => 'PARAM_HELP_MSG_PER_VALUE must be an array, got boolean',
 						ApiBase::PARAM_TEMPLATE_VARS => 'PARAM_TEMPLATE_VARS must be an array, got boolean',
-					],
-					'allowedKeys' => $keys,
-					'messages' => [],
-				]
-			],
-			'PARAM_VALUE_LINKS is deprecated' => [
-				[ 'test' => [ ApiBase::PARAM_VALUE_LINKS => null ] ],
-				'test',
-				[
-					'issues' => [
-						'X',
-						ApiBase::PARAM_VALUE_LINKS => 'PARAM_VALUE_LINKS was deprecated in MediaWiki 1.35',
 					],
 					'allowedKeys' => $keys,
 					'messages' => [],

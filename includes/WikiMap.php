@@ -241,7 +241,7 @@ class WikiMap {
 		foreach ( self::getCanonicalServerInfoForAllWikis() as $wikiId => $info ) {
 			$urlParts = $info['parts'];
 			if ( $urlParts === false ) {
-				continue; // sanity
+				continue;
 			}
 
 			$urlParts = array_intersect_key( $urlParts, $relevantKeys );

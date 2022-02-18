@@ -365,8 +365,7 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	private function redirectOnExactMatch() {
-		global $wgSearchMatchRedirectPreference;
-		if ( !$wgSearchMatchRedirectPreference ) {
+		if ( !$this->getConfig()->get( 'SearchMatchRedirectPreference' ) ) {
 			// If the preference for whether to redirect is disabled, use the default setting
 			$defaultOptions = $this->userOptionsManager->getDefaultOptions();
 			return $defaultOptions['search-match-redirect'];
@@ -632,7 +631,7 @@ class SpecialSearch extends SpecialPage {
 		$this->outputHeader();
 		// TODO: Is this true? The namespace remember uses a user token
 		// on save.
-		$out->allowClickjacking();
+		$out->setPreventClickjacking( false );
 		$this->addHelpLink( 'Help:Searching' );
 
 		if ( strval( $term ) !== '' ) {

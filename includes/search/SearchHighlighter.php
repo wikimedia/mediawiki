@@ -63,13 +63,14 @@ class SearchHighlighter {
 		$contextlines = self::DEFAULT_CONTEXT_LINES,
 		$contextchars = self::DEFAULT_CONTEXT_CHARS
 	) {
-		global $wgSearchHighlightBoundaries;
+		$searchHighlightBoundaries = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'SearchHighlightBoundaries' );
 
 		if ( $text == '' ) {
 			return '';
 		}
 
-		// spli text into text + templates/links/tables
+		// split text into text + templates/links/tables
 		$spat = "/(\\{\\{)|(\\[\\[[^\\]:]+:)|(\n\\{\\|)";
 		// first capture group is for detecting nested templates/links/tables/references
 		$endPatterns = [
@@ -168,7 +169,7 @@ class SearchHighlighter {
 			}
 		}
 		$anyterm = implode( '|', $terms );
-		$phrase = implode( "$wgSearchHighlightBoundaries+", $terms );
+		$phrase = implode( "{$searchHighlightBoundaries}+", $terms );
 		// @todo FIXME: A hack to scale contextchars, a correct solution
 		// would be to have contextchars actually be char and not byte
 		// length, and do proper utf-8 substrings and lengths everywhere,
@@ -176,8 +177,8 @@ class SearchHighlighter {
 		$scale = strlen( $anyterm ) / mb_strlen( $anyterm );
 		$contextchars = intval( $contextchars * $scale );
 
-		$patPre = "(^|$wgSearchHighlightBoundaries)";
-		$patPost = "($wgSearchHighlightBoundaries|$)";
+		$patPre = "(^|{$searchHighlightBoundaries})";
+		$patPost = "({$searchHighlightBoundaries}|$)";
 
 		$pat1 = "/(" . $phrase . ")/ui";
 		$pat2 = "/$patPre(" . $anyterm . ")$patPost/ui";
@@ -283,7 +284,7 @@ class SearchHighlighter {
 			} elseif ( $last + 1 == $index
 				&& $offsets[$last] + strlen( $snippets[$last] ) >= strlen( $all[$last] )
 			) {
-				$extract .= " " . $line; // continous lines
+				$extract .= " " . $line; // continuous lines
 			} else {
 				$extract .= '<b> ... </b>' . $line;
 			}
@@ -555,7 +556,6 @@ class SearchHighlighter {
 
 			$found = $m[2];
 
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped Triggered by Language::truncateForVisual
 			$line = htmlspecialchars( $pre . $found . $post );
 			$pat2 = '/(' . $terms . ")/i";
 			$line = preg_replace( $pat2, "<span class='searchmatch'>\\1</span>", $line );

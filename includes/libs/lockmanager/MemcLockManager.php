@@ -54,8 +54,9 @@ class MemcLockManager extends QuorumLockManager {
 	 *
 	 * @param array $config Parameters include:
 	 *   - lockServers  : Associative array of server names to "<IP>:<port>" strings.
-	 *   - srvsByBucket : Array of 1-16 consecutive integer keys, starting from 0,
-	 *                    each having an odd-numbered list of server names (peers) as values.
+	 *   - srvsByBucket : An array of up to 16 arrays, each containing the server names
+	 *                    in a bucket. Each bucket should have an odd number of servers.
+	 *                    If omitted, all servers will be in one bucket. [optional].
 	 *   - memcConfig   : Configuration array for MemcachedBagOStuff::construct() with an
 	 *                    additional 'class' parameter specifying which MemcachedBagOStuff
 	 *                    subclass to use. The server names will be injected. [optional]
@@ -64,9 +65,13 @@ class MemcLockManager extends QuorumLockManager {
 	public function __construct( array $config ) {
 		parent::__construct( $config );
 
-		// Sanitize srvsByBucket config to prevent PHP errors
-		$this->srvsByBucket = array_filter( $config['srvsByBucket'], 'is_array' );
-		$this->srvsByBucket = array_values( $this->srvsByBucket ); // consecutive
+		if ( isset( $config['srvsByBucket'] ) ) {
+			// Sanitize srvsByBucket config to prevent PHP errors
+			$this->srvsByBucket = array_filter( $config['srvsByBucket'], 'is_array' );
+			$this->srvsByBucket = array_values( $this->srvsByBucket ); // consecutive
+		} else {
+			$this->srvsByBucket = [ array_keys( $config['lockServers'] ) ];
+		}
 
 		$memcConfig = $config['memcConfig'] ?? [];
 		$memcConfig += [ 'class' => MemcachedPhpBagOStuff::class ]; // default
@@ -96,10 +101,7 @@ class MemcLockManager extends QuorumLockManager {
 
 		// Lock all of the active lock record keys...
 		if ( !$this->acquireMutexes( $memc, $keys ) ) {
-			foreach ( $paths as $path ) {
-				$status->fatal( 'lockmanager-fail-acquirelock', $path );
-			}
-
+			$status->fatal( 'lockmanager-fail-conflict' );
 			return $status;
 		}
 
@@ -118,7 +120,7 @@ class MemcLockManager extends QuorumLockManager {
 					if ( $expiry < $now ) { // stale?
 						unset( $locksHeld[self::LOCK_EX][$session] );
 					} elseif ( $session !== $this->session ) {
-						$status->fatal( 'lockmanager-fail-acquirelock', $path );
+						$status->fatal( 'lockmanager-fail-conflict' );
 					}
 				}
 				if ( $type === self::LOCK_EX ) {
@@ -126,7 +128,7 @@ class MemcLockManager extends QuorumLockManager {
 						if ( $expiry < $now ) { // stale?
 							unset( $locksHeld[self::LOCK_SH][$session] );
 						} elseif ( $session !== $this->session ) {
-							$status->fatal( 'lockmanager-fail-acquirelock', $path );
+							$status->fatal( 'lockmanager-fail-conflict' );
 						}
 					}
 				}
@@ -343,7 +345,7 @@ class MemcLockManager extends QuorumLockManager {
 	}
 
 	/**
-	 * Make sure remaining locks get cleared for sanity
+	 * Make sure remaining locks get cleared
 	 */
 	public function __destruct() {
 		while ( count( $this->locksHeld ) ) {

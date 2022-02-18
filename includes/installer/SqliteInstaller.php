@@ -224,11 +224,10 @@ class SqliteInstaller extends DatabaseInstaller {
 	public function setupDatabase() {
 		$dir = $this->getVar( 'wgSQLiteDataDir' );
 
-		# Sanity check (Only available in web installation). We checked this before but maybe someone
+		# Double check (Only available in web installation). We checked this before but maybe someone
 		# deleted the data dir between then and now
 		$dir_status = self::checkDataDir( $dir );
 		if ( $dir_status->isGood() ) {
-			// @phan-suppress-next-line SecurityCheck-PathTraversal
 			$res = self::createDataDir( $dir );
 			if ( !$res->isGood() ) {
 				return $res;

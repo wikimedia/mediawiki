@@ -144,6 +144,7 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 				'CommentStore',
 				'UserCache',
+				'RowCommentFormatter',
 			]
 		],
 		'Protectedtitles' => [
@@ -284,6 +285,7 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'DBLoadBalancer',
 				'WikiPageFactory',
+				'RedirectLookup'
 			]
 		],
 		'PagesWithProp' => [
@@ -296,6 +298,7 @@ class SpecialPageFactory {
 			'class' => \SpecialTrackingCategories::class,
 			'services' => [
 				'LinkBatchFactory',
+				'TrackingCategories',
 			]
 		],
 
@@ -380,6 +383,7 @@ class SpecialPageFactory {
 				'CommentStore',
 				'BlockUtils',
 				'BlockActionInfo',
+				'RowCommentFormatter',
 			],
 		],
 		'AutoblockList' => [
@@ -391,6 +395,7 @@ class SpecialPageFactory {
 				'CommentStore',
 				'BlockUtils',
 				'BlockActionInfo',
+				'RowCommentFormatter',
 			],
 		],
 		'ChangePassword' => [
@@ -418,6 +423,7 @@ class SpecialPageFactory {
 				'CommentStore',
 				'RevisionFactory',
 				'NamespaceInfo',
+				'UserFactory',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
 			]
@@ -444,6 +450,8 @@ class SpecialPageFactory {
 				'UserNameUtils',
 				'UserNamePrefixSearch',
 				'UserOptionsLookup',
+				'CommentFormatter',
+				'UserFactory',
 			]
 		],
 		'Listgrouprights' => [
@@ -452,6 +460,7 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 				'UserGroupManager',
 				'LanguageConverterFactory',
+				'GroupPermissionsLookup',
 			]
 		],
 		'Listgrants' => [
@@ -477,6 +486,7 @@ class SpecialPageFactory {
 				'UserGroupManagerFactory',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
+				'UserFactory',
 			]
 		],
 		'EditWatchlist' => [
@@ -511,6 +521,7 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'DBLoadBalancer',
 				'ActorNormalization',
+				'UserIdentityLookup',
 			]
 		],
 		'Watchlist' => [
@@ -756,6 +767,8 @@ class SpecialPageFactory {
 			'class' => \SpecialExport::class,
 			'services' => [
 				'DBLoadBalancer',
+				'WikiExporterFactory',
+				'TitleFormatter',
 			]
 		],
 		'Import' => [
@@ -779,6 +792,8 @@ class SpecialPageFactory {
 				'UserOptionsLookup',
 				'WikiPageFactory',
 				'SearchEngineFactory',
+				'UndeletePageFactory',
+				'ArchivedRevisionLookup',
 			],
 		],
 		'Whatlinkshere' => [
@@ -835,6 +850,9 @@ class SpecialPageFactory {
 		'Blankpage' => [
 			'class' => \SpecialBlankpage::class,
 		],
+		'DeletePage' => [
+			'class' => \SpecialDeletePage::class,
+		],
 		'Diff' => [
 			'class' => \SpecialDiff::class,
 		],
@@ -878,7 +896,7 @@ class SpecialPageFactory {
 			'class' => \SpecialMyLanguage::class,
 			'services' => [
 				'LanguageNameUtils',
-				'WikiPageFactory',
+				'RedirectLookup'
 			]
 		],
 		'Mypage' => [
@@ -892,6 +910,9 @@ class SpecialPageFactory {
 		],
 		'PageInfo' => [
 			'class' => \SpecialPageInfo::class,
+		],
+		'ProtectPage' => [
+			'class' => \SpecialProtectPage::class,
 		],
 		'Purge' => [
 			'class' => \SpecialPurge::class,
@@ -1202,16 +1223,7 @@ class SpecialPageFactory {
 		if ( isset( $specialPageList[$realName] ) ) {
 			$rec = $specialPageList[$realName];
 
-			if ( $rec instanceof SpecialPage ) {
-				wfDeprecatedMsg(
-					"A SpecialPage instance for $realName was found in " .
-					'$wgSpecialPages or came from a SpecialPage_initList hook handler, ' .
-					'this was deprecated in MediaWiki 1.34',
-					'1.34'
-				);
-
-				$page = $rec; // XXX: we should deep clone here
-			} elseif ( is_array( $rec ) || is_string( $rec ) || is_callable( $rec ) ) {
+			if ( is_array( $rec ) || is_string( $rec ) || is_callable( $rec ) ) {
 				$page = $this->objectFactory->createObject(
 					$rec,
 					[

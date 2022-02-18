@@ -115,6 +115,9 @@
 				"rtl": "images/icons/quotes-rtl.svg"
 			}
 		},
+		"sandbox": {
+			"file": "images/icons/sandbox.svg"
+		},
 		"searchCaseSensitive": {
 			"file": "images/icons/searchCaseSensitive.svg"
 		},

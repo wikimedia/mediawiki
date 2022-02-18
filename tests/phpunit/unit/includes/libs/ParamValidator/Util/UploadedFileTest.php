@@ -85,15 +85,15 @@ class UploadedFileTest extends UploadedFileTestBase {
 	public function testMoveTo() {
 		// Successful move
 		$filename = $this->makeTemp( __FUNCTION__ );
-		$this->assertFileExists( $filename, 'sanity check' );
-		$this->assertFileNotExists( "$filename.xxx", 'sanity check' );
+		$this->assertFileExists( $filename, 'existence check' );
+		$this->assertFileNotExists( "$filename.xxx", 'Non existence check' );
 		$file = new UploadedFile( [ 'error' => UPLOAD_ERR_OK, 'tmp_name' => $filename ], false );
 		$file->moveTo( $filename . '.xxx' );
 		$this->assertFileNotExists( $filename );
 		$this->assertFileExists( "$filename.xxx" );
 
 		// Fails on a second move attempt
-		$this->assertFileNotExists( "$filename.yyy", 'sanity check' );
+		$this->assertFileNotExists( "$filename.yyy", 'Non existence check' );
 		try {
 			$file->moveTo( $filename . '.yyy' );
 			$this->fail( 'Expected exception not thrown' );
@@ -108,8 +108,8 @@ class UploadedFileTest extends UploadedFileTestBase {
 
 		// Fails if the file is missing
 		$file = new UploadedFile( [ 'error' => UPLOAD_ERR_OK, 'tmp_name' => "$filename.aaa" ], false );
-		$this->assertFileNotExists( "$filename.aaa", 'sanity check' );
-		$this->assertFileNotExists( "$filename.bbb", 'sanity check' );
+		$this->assertFileNotExists( "$filename.aaa", 'Non existence check' );
+		$this->assertFileNotExists( "$filename.bbb", 'Non existence check' );
 		try {
 			$file->moveTo( $filename . '.bbb' );
 			$this->fail( 'Expected exception not thrown' );
@@ -123,8 +123,8 @@ class UploadedFileTest extends UploadedFileTestBase {
 
 		// Fails for non-upload file (when not flagged to ignore that)
 		$filename = $this->makeTemp( __FUNCTION__ );
-		$this->assertFileExists( $filename, 'sanity check' );
-		$this->assertFileNotExists( "$filename.xxx", 'sanity check' );
+		$this->assertFileExists( $filename, 'existence check' );
+		$this->assertFileNotExists( "$filename.xxx", 'Non existence check' );
 		$file = new UploadedFile( [ 'error' => UPLOAD_ERR_OK, 'tmp_name' => $filename ] );
 		try {
 			$file->moveTo( $filename . '.xxx' );
@@ -139,8 +139,8 @@ class UploadedFileTest extends UploadedFileTestBase {
 
 		// Fails for error uploads
 		$filename = $this->makeTemp( __FUNCTION__ );
-		$this->assertFileExists( $filename, 'sanity check' );
-		$this->assertFileNotExists( "$filename.xxx", 'sanity check' );
+		$this->assertFileExists( $filename, 'existence check' );
+		$this->assertFileNotExists( "$filename.xxx", 'Non existence check' );
 		foreach ( [
 			UPLOAD_ERR_INI_SIZE,
 			UPLOAD_ERR_FORM_SIZE,
@@ -166,7 +166,7 @@ class UploadedFileTest extends UploadedFileTestBase {
 		// Move failure triggers exception
 		$filename = $this->makeTemp( __FUNCTION__, 'file1' );
 		$filename2 = $this->makeTemp( __FUNCTION__, 'file2' );
-		$this->assertFileExists( $filename, 'sanity check' );
+		$this->assertFileExists( $filename, 'existence check' );
 		$file = new UploadedFile( [ 'error' => UPLOAD_ERR_OK, 'tmp_name' => $filename ], false );
 		try {
 			$file->moveTo( $filename2 . DIRECTORY_SEPARATOR . 'foobar' );

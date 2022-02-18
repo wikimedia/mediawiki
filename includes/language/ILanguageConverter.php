@@ -49,7 +49,7 @@ interface ILanguageConverter {
 
 	/**
 	 * Get the title produced by the conversion rule.
-	 * @return string The converted title text
+	 * @return string|false The converted title text
 	 */
 	public function getConvRuleTitle();
 

@@ -159,7 +159,7 @@ trait MediaWikiTestCaseTrait {
 		$msg = ''
 	) {
 		if ( $createIfMissing ) {
-			if ( !file_exists( $fileName ) ) {
+			if ( !is_file( $fileName ) ) {
 				file_put_contents( $fileName, $actualData );
 				$this->markTestSkipped( "Data file $fileName does not exist" );
 			}
@@ -227,17 +227,17 @@ trait MediaWikiTestCaseTrait {
 	 * @before
 	 */
 	protected function phpErrorFilterSetUp() {
-		$this->originalPhpErrorFilter = intval( ini_get( 'error_reporting' ) );
+		$this->originalPhpErrorFilter = error_reporting();
 	}
 
 	/**
 	 * @after
 	 */
 	protected function phpErrorFilterTearDown() {
-		$phpErrorFilter = intval( ini_get( 'error_reporting' ) );
+		$phpErrorFilter = error_reporting();
 
 		if ( $phpErrorFilter !== $this->originalPhpErrorFilter ) {
-			ini_set( 'error_reporting', $this->originalPhpErrorFilter );
+			error_reporting( $this->originalPhpErrorFilter );
 			$message = "PHP error_reporting setting found dirty."
 				. " Did you forget AtEase::restoreWarnings?";
 			$this->fail( $message );
@@ -296,7 +296,6 @@ trait MediaWikiTestCaseTrait {
 		$msg->method( 'useDatabase' )->willReturn( $msg );
 		$msg->method( 'setContext' )->willReturn( $msg );
 		$msg->method( 'exists' )->willReturn( true );
-		$msg->method( 'content' )->willReturn( new MessageContent( $msg ) );
 		return $msg;
 	}
 }

@@ -61,6 +61,7 @@ class UserGroupManager implements IDBAccessObject {
 		'AutopromoteOnceLogInRC',
 		'EmailAuthentication',
 		'ImplicitGroups',
+		'GroupInheritsPermissions',
 		'GroupPermissions',
 		'GroupsAddToSelf',
 		'GroupsRemoveFromSelf',
@@ -192,7 +193,8 @@ class UserGroupManager implements IDBAccessObject {
 		return array_values( array_diff(
 			array_merge(
 				array_keys( $this->options->get( 'GroupPermissions' ) ),
-				array_keys( $this->options->get( 'RevokePermissions' ) )
+				array_keys( $this->options->get( 'RevokePermissions' ) ),
+				array_keys( $this->options->get( 'GroupInheritsPermissions' ) )
 			),
 			$this->listAllImplicitGroups()
 		) );

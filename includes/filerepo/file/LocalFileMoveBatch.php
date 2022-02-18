@@ -25,6 +25,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\ScopedCallback;
 
 /**
  * Helper class for file movement
@@ -69,6 +70,15 @@ class LocalFileMoveBatch {
 	/** @var LoggerInterface */
 	private $logger;
 
+	/** @var bool */
+	private $haveSourceLock = false;
+
+	/** @var bool */
+	private $haveTargetLock = false;
+
+	/** @var LocalFile|null */
+	private $targetFile;
+
 	/**
 	 * @param LocalFile $file
 	 * @param Title $target
@@ -89,9 +99,15 @@ class LocalFileMoveBatch {
 
 	/**
 	 * Add the current image to the batch
+	 *
+	 * @return Status
 	 */
 	public function addCurrent() {
-		$this->cur = [ $this->oldRel, $this->newRel ];
+		$status = $this->acquireSourceLock();
+		if ( $status->isOK() ) {
+			$this->cur = [ $this->oldRel, $this->newRel ];
+		}
+		return $status;
 	}
 
 	/**
@@ -108,7 +124,7 @@ class LocalFileMoveBatch {
 			[ 'oi_archive_name', 'oi_deleted' ],
 			[ 'oi_name' => $this->oldName ],
 			__METHOD__,
-			[ 'LOCK IN SHARE MODE' ] // ignore snapshot
+			[ 'FOR UPDATE' ] // ignore snapshot
 		);
 
 		foreach ( $result as $row ) {
@@ -151,23 +167,88 @@ class LocalFileMoveBatch {
 	}
 
 	/**
+	 * Acquire the source file lock, if it has not been acquired already
+	 *
+	 * @return Status
+	 */
+	protected function acquireSourceLock() {
+		if ( $this->haveSourceLock ) {
+			return Status::newGood();
+		}
+		$status = $this->file->acquireFileLock();
+		if ( $status->isOK() ) {
+			$this->haveSourceLock = true;
+		}
+		return $status;
+	}
+
+	/**
+	 * Acquire the target file lock, if it has not been acquired already
+	 *
+	 * @return Status
+	 */
+	protected function acquireTargetLock() {
+		if ( $this->haveTargetLock ) {
+			return Status::newGood();
+		}
+		$status = $this->getTargetFile()->acquireFileLock();
+		if ( $status->isOK() ) {
+			$this->haveTargetLock = true;
+		}
+		return $status;
+	}
+
+	/**
+	 * Release both file locks
+	 */
+	protected function releaseLocks() {
+		if ( $this->haveSourceLock ) {
+			$this->file->releaseFileLock();
+			$this->haveSourceLock = false;
+		}
+		if ( $this->haveTargetLock ) {
+			$this->getTargetFile()->releaseFileLock();
+			$this->haveTargetLock = false;
+		}
+	}
+
+	/**
+	 * Get the target file
+	 *
+	 * @return LocalFile
+	 */
+	protected function getTargetFile() {
+		if ( $this->targetFile === null ) {
+			$this->targetFile = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
+				->newFile( $this->target );
+		}
+		return $this->targetFile;
+	}
+
+	/**
 	 * Perform the move.
 	 * @return Status
 	 */
 	public function execute() {
 		$repo = $this->file->repo;
 		$status = $repo->newGood();
-		$destFile = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
-			->newFile( $this->target );
 
-		$this->file->lock();
-		$destFile->lock(); // quickly fail if destination is not available
+		$status->merge( $this->acquireSourceLock() );
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+		$status->merge( $this->acquireTargetLock() );
+		if ( !$status->isOK() ) {
+			$this->releaseLocks();
+			return $status;
+		}
+		$unlockScope = new ScopedCallback( function () {
+			$this->releaseLocks();
+		} );
 
 		$triplets = $this->getMoveTriplets();
 		$checkStatus = $this->removeNonexistentFiles( $triplets );
 		if ( !$checkStatus->isGood() ) {
-			$destFile->unlock();
-			$this->file->unlock();
 			$status->merge( $checkStatus ); // couldn't talk to file backend
 			return $status;
 		}
@@ -176,8 +257,6 @@ class LocalFileMoveBatch {
 		// Verify the file versions metadata in the DB.
 		$statusDb = $this->verifyDBUpdates();
 		if ( !$statusDb->isGood() ) {
-			$destFile->unlock();
-			$this->file->unlock();
 			$statusDb->setOK( false );
 
 			return $statusDb;
@@ -201,8 +280,6 @@ class LocalFileMoveBatch {
 			if ( !$statusMove->isGood() ) {
 				// Delete any files copied over (while the destination is still locked)
 				$this->cleanupTarget( $triplets );
-				$destFile->unlock();
-				$this->file->unlock();
 
 				$this->logger->debug(
 					'Error in moving files: {error}',
@@ -228,11 +305,18 @@ class LocalFileMoveBatch {
 			]
 		);
 
-		$destFile->unlock();
-		$this->file->unlock();
-
 		// Everything went ok, remove the source files
 		$this->cleanupSource( $triplets );
+
+		// Defer lock release until the transaction is committed.
+		if ( $this->db->trxLevel() ) {
+			$unlockScope->cancel();
+			$this->db->onTransactionResolution( function () {
+				$this->releaseLocks();
+			} );
+		} else {
+			ScopedCallback::consume( $unlockScope );
+		}
 
 		$status->merge( $statusDb );
 

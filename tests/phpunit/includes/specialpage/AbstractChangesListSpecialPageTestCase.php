@@ -118,7 +118,11 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiIntegrati
 
 		// Give users patrol permissions so we can test that.
 		$user = $this->getTestSysop()->getUser();
-		$user->setOption( 'rcenhancedfilters-disable', $rcfilters ? 0 : 1 );
+		$this->getServiceContainer()->getUserOptionsManager()->setOption(
+			$user,
+			'rcenhancedfilters-disable',
+			$rcfilters ? 0 : 1
+		);
 		$ctx = new RequestContext();
 		$ctx->setUser( $user );
 

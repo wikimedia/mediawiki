@@ -25,7 +25,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\ObjectFactory;
 
 /**
@@ -74,26 +73,6 @@ class FileBackendGroup {
 	];
 
 	/**
-	 * @deprecated since 1.35, hard deprecated since 1.37
-	 * inject the service instead
-	 *
-	 * @return FileBackendGroup
-	 */
-	public static function singleton(): FileBackendGroup {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()->getFileBackendGroup();
-	}
-
-	/**
-	 * @deprecated since 1.35, hard deprecated since 1.37
-	 * test framework should reset services between tests instead
-	 */
-	public static function destroySingleton() {
-		wfDeprecated( __METHOD__, '1.35' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'FileBackendGroup' );
-	}
-
-	/**
 	 * @param ServiceOptions $options
 	 * @param ConfiguredReadOnlyMode $configuredReadOnlyMode
 	 * @param BagOStuff $srvCache
@@ -139,11 +118,12 @@ class FileBackendGroup {
 			$deletedDir = $info['deletedDir'] ?? false; // deletion disabled
 			$thumbDir = $info['thumbDir'] ?? "{$directory}/thumb";
 			$transcodedDir = $info['transcodedDir'] ?? "{$directory}/transcoded";
+			$lockManager = $info['lockManager'] ?? 'fsLockManager';
 			// Get the FS backend configuration
 			$autoBackends[] = [
 				'name' => $backendName,
 				'class' => FSFileBackend::class,
-				'lockManager' => 'fsLockManager',
+				'lockManager' => $lockManager,
 				'containerPaths' => [
 					"{$repoName}-public" => "{$directory}",
 					"{$repoName}-thumb" => $thumbDir,
@@ -260,11 +240,6 @@ class FileBackendGroup {
 				'lockManager' =>
 					$this->lmgFactory->getLockManagerGroup( $config['domainId'] )
 						->get( $config['lockManager'] ),
-				'fileJournal' => isset( $config['fileJournal'] )
-					? $this->objectFactory->createObject(
-						$config['fileJournal'] + [ 'backend' => $name ],
-						[ 'specIsArg' => true, 'assertClass' => FileJournal::class ] )
-					: new NullFileJournal
 			]
 		);
 	}

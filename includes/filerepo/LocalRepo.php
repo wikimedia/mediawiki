@@ -585,20 +585,6 @@ class LocalRepo extends FileRepo {
 		}
 	}
 
-	/**
-	 * Return information about the repository.
-	 *
-	 * @return array
-	 * @since 1.22
-	 */
-	public function getInfo() {
-		global $wgFavicon;
-
-		return array_merge( parent::getInfo(), [
-			'favicon' => wfExpandUrl( $wgFavicon ),
-		] );
-	}
-
 	public function store( $srcPath, $dstZone, $dstRel, $flags = 0 ) {
 		return $this->skipWriteOperationIfSha1( __FUNCTION__, func_get_args() );
 	}

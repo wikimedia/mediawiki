@@ -211,7 +211,7 @@ class UserNameUtils implements UserRigorOptions {
 	 * already been created.
 	 *
 	 * Additional preventions may be added here rather than in
-	 * isValidUserName() to avoid disrupting existing accounts.
+	 * isValid() to avoid disrupting existing accounts.
 	 *
 	 * @param string $name String to match
 	 * @return bool
@@ -329,7 +329,7 @@ class UserNameUtils implements UserRigorOptions {
 	 * addresses like this, if we allowed accounts like this to be created
 	 * new users could get the old edits of these anonymous users.
 	 *
-	 * Unlike User::isIP, this does //not// match IPv6 ranges (T239527)
+	 * This does //not// match IPv6 ranges (T239527)
 	 *
 	 * @param string $name Name to check
 	 * @return bool

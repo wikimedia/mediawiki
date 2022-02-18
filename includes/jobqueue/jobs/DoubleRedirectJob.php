@@ -34,6 +34,12 @@ use MediaWiki\Revision\SlotRecord;
  * @ingroup JobQueue
  */
 class DoubleRedirectJob extends Job {
+	/**
+	 * @var int Max number of double redirect jobs counter.
+	 *   This is meant to avoid excessive memory usage. This is
+	 *   also used in fixDoubleRedirects.php script.
+	 */
+	public const MAX_DR_JOBS_COUNTER = 10000;
 
 	/** @var Title The title which has changed, redirects pointing to this
 	 *    title are fixed
@@ -79,6 +85,7 @@ class DoubleRedirectJob extends Job {
 			return;
 		}
 		$jobs = [];
+		$jobQueueGroup = MediaWikiServices::getInstance()->getJobQueueGroup();
 		foreach ( $res as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			if ( !$title ) {
@@ -92,12 +99,12 @@ class DoubleRedirectJob extends Job {
 					->getPrefixedDBkey( $redirTitle ),
 			] );
 			# Avoid excessive memory usage
-			if ( count( $jobs ) > 10000 ) {
-				JobQueueGroup::singleton()->push( $jobs );
+			if ( count( $jobs ) > self::MAX_DR_JOBS_COUNTER ) {
+				$jobQueueGroup->push( $jobs );
 				$jobs = [];
 			}
 		}
-		JobQueueGroup::singleton()->push( $jobs );
+		$jobQueueGroup->push( $jobs );
 	}
 
 	/**
@@ -234,7 +241,7 @@ class DoubleRedirectJob extends Job {
 					$row->rd_namespace,
 					$row->rd_title,
 					'',
-					$row->rd_interwiki
+					$row->rd_interwiki ?? ''
 				);
 			}
 		}

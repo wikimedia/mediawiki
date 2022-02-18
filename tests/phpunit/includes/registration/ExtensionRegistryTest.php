@@ -437,7 +437,7 @@ class ExtensionRegistryTest extends MediaWikiIntegrationTestCase {
 		$registry = new ExtensionRegistry();
 		$registry->queue( "{$this->dataDir}/good.json" );
 		$registry->loadFromQueue();
-		// Sanity check that it worked
+		// Check that it worked
 		$this->assertSame( [ 'test' ], $registry->getAttribute( 'FooBarAttr' ) );
 		$reset = $registry->setAttributeForTest( 'FooBarAttr', [ 'override' ] );
 		// overridden properly
@@ -462,11 +462,8 @@ class ExtensionRegistryTest extends MediaWikiIntegrationTestCase {
 		// Verify the registry is absolutely empty
 		$this->assertSame( [], $registry->getLazyLoadedAttribute( 'FooBarBaz' ) );
 		// Indicate what paths should be checked for the lazy attributes
-		$registry->loaded = [
-			'FooBar' => [
-				'path' => "{$this->dataDir}/attribute.json",
-			]
-		];
+		$registry->queue( "{$this->dataDir}/attribute.json" );
+		$registry->loadFromQueue();
 		// Set in attribute.json
 		$this->assertEquals(
 			[ 'buzz' => true ],

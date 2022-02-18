@@ -296,13 +296,13 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 				return false;
 			} ],
 		] );
-		$this->assertNull( $manager->getSessionById( $id, true ), 'sanity check' );
+		$this->assertNull( $manager->getSessionById( $id, true ) );
 		session_write_close();
 
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
 			'SessionCheckInfo' => [],
 		] );
-		$this->assertNotNull( $manager->getSessionById( $id, true ), 'sanity check' );
+		$this->assertNotNull( $manager->getSessionById( $id, true ) );
 	}
 
 	public static function provideHandlers() {

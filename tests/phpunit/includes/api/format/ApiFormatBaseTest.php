@@ -246,7 +246,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 			$printer->printText( 'Foo' );
 		} );
 		$printer->method( 'getMimeType' )->willReturn( null );
-		$this->assertNull( $printer->getMimeType(), 'sanity check' );
+		$this->assertNull( $printer->getMimeType() );
 
 		$printer->initPrinter();
 		$printer->execute();
@@ -263,8 +263,8 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 			$printer->printText( 'Foo' );
 		} );
 		$printer->method( 'getMimeType' )->willReturn( null );
-		$this->assertNull( $printer->getMimeType(), 'sanity check' );
-		$this->assertTrue( $printer->getIsHtml(), 'sanity check' );
+		$this->assertNull( $printer->getMimeType() );
+		$this->assertTrue( $printer->getIsHtml() );
 
 		$printer->initPrinter();
 		$printer->execute();
@@ -320,8 +320,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		$printer->method( 'getAllowedParams' )->willReturn( $allowedParams );
 		$this->assertEquals(
 			[ 'foo' => '1', 'bar' => '2', 'baz' => '3' ],
-			$printer->extractRequestParams(),
-			'sanity check'
+			$printer->extractRequestParams()
 		);
 
 		$printer = $this->getMockFormatter( $main, 'mock', [ 'getAllowedParams' ] );

@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Auth;
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
@@ -30,7 +29,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	 * @return LocalPasswordPrimaryAuthenticationProvider
 	 */
 	protected function getProvider( $loginOnly = false ) {
-		$mwServices = MediaWikiServices::getInstance();
+		$mwServices = $this->getServiceContainer();
 		if ( !$this->config ) {
 			$this->config = new \HashConfig();
 		}
@@ -475,7 +474,6 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		$provider = $this->getProvider( $loginOnly );
 
-		// Sanity check
 		$loginReq = new PasswordAuthenticationRequest();
 		$loginReq->action = AuthManager::ACTION_LOGIN;
 		$loginReq->username = $user;
@@ -483,8 +481,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$loginReqs = [ PasswordAuthenticationRequest::class => $loginReq ];
 		$this->assertEquals(
 			AuthenticationResponse::newPass( $cuser ),
-			$provider->beginPrimaryAuthentication( $loginReqs ),
-			'Sanity check'
+			$provider->beginPrimaryAuthentication( $loginReqs )
 		);
 
 		if ( $type === PasswordAuthenticationRequest::class ) {
@@ -687,10 +684,10 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$expect->createRequest = $req;
 
 		$res2 = $provider->beginPrimaryAccountCreation( $user, $user, $reqs );
-		$this->assertEquals( $expect, $res2, 'Sanity check' );
+		$this->assertEquals( $expect, $res2 );
 
 		$ret = $provider->beginPrimaryAuthentication( $reqs );
-		$this->assertEquals( AuthenticationResponse::FAIL, $ret->status, 'sanity check' );
+		$this->assertEquals( AuthenticationResponse::FAIL, $ret->status );
 
 		$this->assertNull( $provider->finishAccountCreation( $user, $user, $res2 ) );
 		$ret = $provider->beginPrimaryAuthentication( $reqs );

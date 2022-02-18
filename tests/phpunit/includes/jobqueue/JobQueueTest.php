@@ -17,7 +17,7 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 
 		$this->tablesUsed[] = 'job';
 
-		$services = MediaWikiServices::getInstance();
+		$services = $this->getServiceContainer();
 		if ( $this->getCliArg( 'use-jobqueue' ) ) {
 			$name = $this->getCliArg( 'use-jobqueue' );
 			if ( !isset( $wgJobTypeConf[$name] ) ) {
@@ -75,7 +75,7 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 		if ( !$queue ) {
 			$this->markTestSkipped( $desc );
 		}
-		$this->assertEquals( wfWikiID(), $queue->getWiki(), "Proper wiki ID ($desc)" );
+		$this->assertEquals( WikiMap::getCurrentWikiId(), $queue->getWiki(), "Proper wiki ID ($desc)" );
 		$this->assertEquals(
 			WikiMap::getCurrentWikiDbDomain()->getId(),
 			$queue->getDomain(),

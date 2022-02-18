@@ -14,7 +14,7 @@
 
 		mw.errorLogger.installGlobalHandler( w );
 
-		assert.ok( w.onerror, 'Global handler has been installed' );
+		assert.strictEqual( typeof w.onerror, 'function', 'Global handler has been installed' );
 		assert.strictEqual(
 			w.onerror(
 				errorMessage,

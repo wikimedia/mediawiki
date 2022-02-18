@@ -36,9 +36,10 @@ abstract class Collation {
 	 * @return Collation
 	 */
 	public static function singleton() {
+		wfDeprecated( __METHOD__, '1.37' );
 		if ( !self::$instance ) {
-			global $wgCategoryCollation;
-			self::$instance = self::factory( $wgCategoryCollation );
+			$categoryCollation = MediaWikiServices::getInstance()->getMainConfig()->get( 'CategoryCollation' );
+			self::$instance = self::factory( $categoryCollation );
 		}
 		return self::$instance;
 	}
@@ -51,6 +52,7 @@ abstract class Collation {
 	 * @return Collation
 	 */
 	public static function factory( $collationName ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		return MediaWikiServices::getInstance()->getCollationFactory()->makeCollation( $collationName );
 	}
 
@@ -68,6 +70,20 @@ abstract class Collation {
 	 * @return string Binary sortkey
 	 */
 	abstract public function getSortKey( $string );
+
+	/**
+	 * Get multiple sort keys
+	 *
+	 * @param string[] $strings
+	 * @return string[]
+	 */
+	public function getSortKeys( $strings ) {
+		$ret = [];
+		foreach ( $strings as $key => $s ) {
+			$ret[$key] = $this->getSortKey( $s );
+		}
+		return $ret;
+	}
 
 	/**
 	 * Given a string, return the logical "first letter" to be used for
