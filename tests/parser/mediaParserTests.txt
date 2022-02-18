@@ -547,7 +547,7 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[File:Foobar.jpg|thumbnail=Thumb.png|Title]]
 !! html/php
-<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="/wiki/File:Foobar.jpg"><img alt="" resource="/wiki/File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" /></a><figcaption>Title</figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><img alt="" resource="/wiki/File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" /></a><figcaption>Title</figcaption></figure>
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" about="#mwt1" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135"/></a><figcaption>Title</figcaption></figure>
 !! end
@@ -562,7 +562,7 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[File:Foobar.jpg|thumbnail=Thumb.png|Title]]
 !! html/php
-<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="/wiki/File:Foobar.jpg"><img alt="" resource="/wiki/File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" /></a><figcaption>Title</figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><img alt="" resource="/wiki/File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" /></a><figcaption>Title</figcaption></figure>
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" data-mw='{"thumb":"Thumb.png"}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135"/></a><figcaption>Title</figcaption></figure>
 !! end
@@ -3190,6 +3190,20 @@ wgParserEnableLegacyMediaDOM=false
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:Image"><a href="./File:LoremIpsum.djvu"><img resource="./File:LoremIpsum.djvu" src="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page1-2480px-LoremIpsum.djvu.jpg" decoding="async" data-file-width="2480" data-file-height="3508" data-file-type="office" height="3508" width="2480" srcset="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page1-3720px-LoremIpsum.djvu.jpg 1.5x, http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page1-4960px-LoremIpsum.djvu.jpg 2x"/></a></span></p>
 <p><span class="mw-default-size" typeof="mw:Image" data-mw='{"attribs":[["page",{"txt":"2"}]]}'><a href="./File:LoremIpsum.djvu?page=2"><img resource="./File:LoremIpsum.djvu" src="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-2480px-LoremIpsum.djvu.jpg" decoding="async" data-file-width="2480" data-file-height="3508" data-file-type="office" height="3508" width="2480" srcset="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-3720px-LoremIpsum.djvu.jpg 1.5x, http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-4960px-LoremIpsum.djvu.jpg 2x"/></a></span></p>
+!! end
+
+!! test
+Image with page parameter and manualthumb
+!! options
+djvu
+!! config
+wgParserEnableLegacyMediaDOM=false
+!! wikitext
+[[File:LoremIpsum.djvu|page=2|thumbnail=Thumb.png]]
+!! html/php
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="/index.php?title=File:LoremIpsum.djvu&amp;page=2" title="File:LoremIpsum.djvu"><img alt="LoremIpsum.djvu" resource="/wiki/File:LoremIpsum.djvu?page=2" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" /></a><figcaption></figcaption></figure>
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:Image/Thumb" data-mw='{"attribs":[["page",{"txt":"2"}],["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:LoremIpsum.djvu?page=2"><img resource="./File:LoremIpsum.djvu" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135"/></a><figcaption></figcaption></figure>
 !! end
 
 !! test

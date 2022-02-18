@@ -57,9 +57,13 @@ class SkinComponentTableOfContentsTest extends MediaWikiUnitTestCase {
 				[
 					$SECTION_1 + [
 						'array-sections' => [],
+						'is-top-level-section' => true,
+						'is-parent-section' => false,
 						],
 					$SECTION_2 + [
 						'array-sections' => [],
+						'is-top-level-section' => true,
+						'is-parent-section' => false,
 						]
 				]
 			],
@@ -74,11 +78,17 @@ class SkinComponentTableOfContentsTest extends MediaWikiUnitTestCase {
 						'array-sections' => [
 							$SECTION_1_1 + [
 								'array-sections' => [],
+								'is-top-level-section' => false,
+								'is-parent-section' => false,
 							]
-						]
+						],
+						'is-top-level-section' => true,
+						'is-parent-section' => true,
 					],
 					$SECTION_2 + [
 						'array-sections' => [],
+						'is-top-level-section' => true,
+						'is-parent-section' => false,
 					]
 				]
 			],
@@ -96,21 +106,33 @@ class SkinComponentTableOfContentsTest extends MediaWikiUnitTestCase {
 						'array-sections' => [
 							$SECTION_1_1 + [
 								'array-sections' => [],
+								'is-top-level-section' => false,
+								'is-parent-section' => false,
 							],
 							$SECTION_1_2 + [
 								'array-sections' => [
 									$SECTION_1_2_1 + [
 										'array-sections' => [],
-									]
-								]
+										'is-top-level-section' => false,
+										'is-parent-section' => false,
+									],
+								],
+								'is-top-level-section' => false,
+								'is-parent-section' => true,
 							],
 							$SECTION_1_3 + [
 								'array-sections' => [],
+								'is-top-level-section' => false,
+								'is-parent-section' => false,
 							]
-						]
+						],
+						'is-top-level-section' => true,
+						'is-parent-section' => true,
 					],
 					$SECTION_2 + [
 						'array-sections' => [],
+						'is-top-level-section' => true,
+						'is-parent-section' => false,
 					]
 				]
 			]
