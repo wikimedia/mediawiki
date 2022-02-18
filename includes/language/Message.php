@@ -171,7 +171,7 @@ class Message implements MessageSpecifier, Serializable {
 	/**
 	 * In which language to get this message. Overrides the $interface setting.
 	 *
-	 * @var Language|bool Explicit language object, or false for user language
+	 * @var Language|false Explicit language object, or false for user language
 	 */
 	protected $language = false;
 
@@ -207,7 +207,7 @@ class Message implements MessageSpecifier, Serializable {
 	protected $content = null;
 
 	/**
-	 * @var string|null
+	 * @var string|null|false
 	 */
 	protected $message;
 
@@ -1468,7 +1468,7 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @since 1.17
 	 *
-	 * @return string
+	 * @return string|false
 	 * @throws MWException If message key array is empty.
 	 */
 	protected function fetchMessage() {
