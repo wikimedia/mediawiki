@@ -837,6 +837,29 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers Message::format
+	 * @covers LanguageQqx
+	 */
+	public function testQqxPlaceholders() {
+		$this->assertSame(
+			wfMessage( 'test' )->inLanguage( 'qqx' )->text(),
+			'(test)'
+		);
+		$this->assertSame(
+			wfMessage( 'test' )->params( 'a', 'b' )->inLanguage( 'qqx' )->text(),
+			'(test: a, b)'
+		);
+		$this->assertSame(
+			wfMessageFallback( 'test', 'other-test' )->inLanguage( 'qqx' )->text(),
+			'(test / other-test)'
+		);
+		$this->assertSame(
+			wfMessageFallback( 'test', 'other-test' )->params( 'a', 'b' )->inLanguage( 'qqx' )->text(),
+			'(test / other-test: a, b)'
+		);
+	}
+
+	/**
 	 * @covers Message::inContentLanguage
 	 */
 	public function testInContentLanguage() {

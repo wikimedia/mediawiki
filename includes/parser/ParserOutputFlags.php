@@ -146,4 +146,24 @@ class ParserOutputFlags {
 	 * similar (T230652).
 	 */
 	public const USER_SIGNATURE = 'user-signature';
+
+	public static function cases(): array {
+		return [
+			self::NO_GALLERY,
+			self::ENABLE_OOUI,
+			self::INDEX_POLICY,
+			self::NO_INDEX_POLICY,
+			self::NEW_SECTION,
+			self::HIDE_NEW_SECTION,
+			self::PREVENT_CLICKJACKING,
+			self::VARY_REVISION,
+			self::VARY_REVISION_ID,
+			self::VARY_REVISION_TIMESTAMP,
+			self::VARY_REVISION_SHA1,
+			self::VARY_REVISION_EXISTS,
+			self::VARY_PAGE_ID,
+			self::VARY_USER,
+			self::USER_SIGNATURE,
+		];
+	}
 }

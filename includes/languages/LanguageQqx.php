@@ -22,7 +22,8 @@
  */
 
 /**
- * For all translated messages, this returns the name of the message bracketed.
+ * For all translated messages, this returns a special value handled in Message::format()
+ * to display the message key (and fallback keys) and the parameters passed to the message.
  * This does not affect untranslated messages.
  *
  * NOTE: It returns a valid title, because there are some poorly written
@@ -36,6 +37,7 @@ class LanguageQqx extends Language {
 	 * @return string
 	 */
 	public function getMessage( $key ) {
-		return "($key$*)";
+		// Special values replaced in Message::format()
+		return '($/$*)';
 	}
 }
