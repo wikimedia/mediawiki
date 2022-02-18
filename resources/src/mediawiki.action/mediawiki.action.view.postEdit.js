@@ -15,6 +15,14 @@
 	 * @param {string|mw.user} [data.user=mw.user] User that made the edit.
 	 */
 
+	/**
+	 * After the listener for #postEdit removes the notification.
+	 *
+	 * @deprecated
+	 * @event postEdit_afterRemoval
+	 * @member mw.hook
+	 */
+
 	var postEdit = mw.config.get( 'wgPostEdit' );
 
 	function showConfirmation( data ) {
