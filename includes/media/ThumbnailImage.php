@@ -106,7 +106,6 @@ class ThumbnailImage extends MediaTransformOutput {
 	 *     parser-extlink-*   Attributes added by parser for external links:
 	 *          parser-extlink-rel: add rel="nofollow"
 	 *          parser-extlink-target: link target, but overridden by custom-target-link
-	 *     resource           Override the resource derived from the description link
 	 *
 	 * For images, desc-link and file-link are implemented as a click-through. For
 	 * sounds and videos, they may be displayed in other ways.
@@ -120,7 +119,6 @@ class ThumbnailImage extends MediaTransformOutput {
 		$priorityHintsRatio = $mainConfig->get( 'PriorityHintsRatio' );
 		$elementTiming = $mainConfig->get( 'ElementTiming' );
 		$nativeImageLazyLoading = $mainConfig->get( 'NativeImageLazyLoading' );
-		$parserEnableLegacyMediaDOM = $mainConfig->get( 'ParserEnableLegacyMediaDOM' );
 
 		if ( func_num_args() == 2 ) {
 			throw new MWException( __METHOD__ . ' called in the old style' );
@@ -128,20 +126,9 @@ class ThumbnailImage extends MediaTransformOutput {
 
 		$alt = $options['alt'] ?? '';
 		$query = $options['desc-query'] ?? '';
-		$descLinkAttribs = $this->getDescLinkAttribs(
-			empty( $options['title'] ) ? null : $options['title'],
-			$query
-		);
 
 		$attribs = [
-			'alt' => $alt
-		];
-
-		if ( !$parserEnableLegacyMediaDOM ) {
-			$attribs['resource'] = $options['resource'] ?? $descLinkAttribs['href'];
-		}
-
-		$attribs += [
+			'alt' => $alt,
 			'src' => $this->url,
 			'decoding' => 'async',
 		];
@@ -194,7 +181,10 @@ class ThumbnailImage extends MediaTransformOutput {
 				'title' => empty( $options['title'] ) ? $title->getFullText() : $options['title']
 			];
 		} elseif ( !empty( $options['desc-link'] ) ) {
-			$linkAttribs = $descLinkAttribs;
+			$linkAttribs = $this->getDescLinkAttribs(
+				empty( $options['title'] ) ? null : $options['title'],
+				$query
+			);
 		} elseif ( !empty( $options['file-link'] ) ) {
 			$linkAttribs = [ 'href' => $this->file->getUrl() ];
 		} else {
