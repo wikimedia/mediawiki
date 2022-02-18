@@ -101,6 +101,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	 *                        set in CSS)
 	 *     custom-url-link    Custom URL to link to
 	 *     custom-title-link  Custom Title object to link to
+	 *     custom-title-link-query Querystring parameters array, for custom-title-link
 	 *     custom-target-link Value of the target attribute, for custom-url-link
 	 *     parser-extlink-*   Attributes added by parser for external links:
 	 *          parser-extlink-rel: add rel="nofollow"
@@ -189,7 +190,7 @@ class ThumbnailImage extends MediaTransformOutput {
 			/** @var Title $title */
 			$title = $options['custom-title-link'];
 			$linkAttribs = [
-				'href' => $title->getLinkURL(),
+				'href' => $title->getLinkURL( $options['custom-title-link-query'] ?? null ),
 				'title' => empty( $options['title'] ) ? $title->getFullText() : $options['title']
 			];
 		} elseif ( !empty( $options['desc-link'] ) ) {

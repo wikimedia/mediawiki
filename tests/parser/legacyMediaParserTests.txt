@@ -483,7 +483,7 @@ thumbsize=220
 !! wikitext
 [[File:Foobar.jpg|thumbnail=Thumb.png|Title]]
 !! html/php
-<div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/File:Foobar.jpg"><img alt="" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Title</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><img alt="" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Title</div></div></div>
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" about="#mwt1" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135"/></a><figcaption>Title</figcaption></figure>
 !! end
@@ -496,7 +496,7 @@ parsoid=html2wt
 !! wikitext
 [[File:Foobar.jpg|thumbnail=Thumb.png|Title]]
 !! html/php
-<div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/File:Foobar.jpg"><img alt="" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Title</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><img alt="" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Title</div></div></div>
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" data-mw='{"thumb":"Thumb.png"}'><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135"/></a><figcaption>Title</figcaption></figure>
 !! end
