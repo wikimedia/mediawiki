@@ -79,6 +79,7 @@ extensions/RatePage
 skins/Flatbox
 skins/WMAU
 extensions/TemplateStylesExtender
+extensions/SemanticMediaWiki
 
 # main
 extensions/LinkTitles
@@ -89,6 +90,3 @@ skins/Evelution
 # stable
 extensions/SnapProjectEmbed
 skins/snapwikiskin
-
-# 8.0.0
-extensions/Maps
