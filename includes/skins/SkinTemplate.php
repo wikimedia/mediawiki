@@ -1098,6 +1098,54 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
+	 * Get a message label that skins can override.
+	 *
+	 * @param string $labelMessageKey
+	 * @param mixed $param for the message
+	 * @return string
+	 */
+	private function getSkinNavOverrideableLabel( $labelMessageKey, $param = null ) {
+		// For historic reasons certain messages had different message keys associated.
+		// The plan is to remove these in future when it is safe to do so (T301203)
+		$legacyFallbacks = [
+			'view-history' => 'history_short',
+			'action-delete' => 'delete',
+			'action-move' => 'move',
+			'action-undelete' => 'undelete_short',
+			'action-viewdeleted' => 'viewdeleted',
+			'action-protect' => 'protect',
+			'action-unprotect' => 'unprotect',
+			'action-viewsource' => 'viewsource',
+			'action-addsection' => 'addsection',
+			'view-view-foreign' => 'view-foreign',
+			'view-view' => 'view',
+			'view-create' => 'create',
+			'view-create-local' => 'create-local',
+			'view-edit' => 'edit',
+			'view-edit-local' => 'edit-local',
+		];
+		$skname = $this->skinname;
+		$msg = wfMessageFallback(
+				"$skname-$labelMessageKey",
+
+				$labelMessageKey,
+				// @todo: This line can be removed when all the new message keys have been added and translated.
+				// When not defined, since this code is temporary, simply give it the same message as before,
+				// as Message key must always be a string (see T302051)
+				$legacyFallbacks[ $labelMessageKey ] ?? $labelMessageKey
+			)->setContext( $this->getContext() );
+
+		if ( $param ) {
+			if ( is_numeric( $param ) ) {
+				$msg->numParams( $param );
+			} else {
+				$msg->params( $param );
+			}
+		}
+		return $msg->text();
+	}
+
+	/**
 	 * @param string $name
 	 * @param string|array $urlaction
 	 * @return array
@@ -1266,15 +1314,21 @@ class SkinTemplate extends Skin {
 				$subjectMsg = [ "nstab-$subjectId" ];
 			}
 			if ( $subjectPage->isMainPage() ) {
+				// mainpage-nstab is a nonstandard key. All namespaces should be prefixed with 'nstab-'
 				array_unshift( $subjectMsg, 'mainpage-nstab' );
+				array_unshift( $subjectMsg, 'nstab-mainpage' );
 			}
 
 			$content_navigation['namespaces'][$subjectId] = $this->tabAction(
 				$subjectPage, $subjectMsg, !$isTalk, '', $userCanRead
 			);
 			$content_navigation['namespaces'][$subjectId]['context'] = 'subject';
+			// Use the following messages if defined or talk if not:
+			// nstab-user_talk, nstab-media_talk, nstab-project_talk
+			// nstab-image_talk, nstab-mediawiki_talk, nstab-template_talk
+			// nstab-help_talk, nstab-category_talk
 			$content_navigation['namespaces'][$talkId] = $this->tabAction(
-				$talkPage, [ "nstab-$talkId", 'talk' ], $isTalk, '', $userCanRead
+				$talkPage, [ "nstab-$talkId", "talk" ], $isTalk, '', $userCanRead
 			);
 			$content_navigation['namespaces'][$talkId]['context'] = 'talk';
 
@@ -1283,7 +1337,7 @@ class SkinTemplate extends Skin {
 				if ( $title->isKnown() ) {
 					$content_navigation['views']['view'] = $this->tabAction(
 						$isTalk ? $talkPage : $subjectPage,
-						[ "$skname-view-view", 'view' ],
+						[ "view-view", "view" ],
 						( $onPage && ( $action == 'view' || $action == 'purge' ) ), '', true
 					);
 					// signal to hide this from simple content_actions
@@ -1298,9 +1352,9 @@ class SkinTemplate extends Skin {
 				if ( $isRemoteContent ) {
 					$content_navigation['views']['view-foreign'] = [
 						'class' => '',
-						'text' => wfMessageFallback( "$skname-view-foreign", 'view-foreign' )->
-							setContext( $this->getContext() )->
-							params( $page->getWikiDisplayName() )->text(),
+						'text' => $this->getSkinNavOverrideableLabel(
+							'view-foreign', $page->getWikiDisplayName()
+						),
 						'href' => $page->getSourceURL(),
 						'primary' => false,
 					];
@@ -1332,8 +1386,9 @@ class SkinTemplate extends Skin {
 							? 'selected'
 							: ''
 						) . $isTalkClass,
-						'text' => wfMessageFallback( "$skname-view-$msgKey", $msgKey )
-							->setContext( $this->getContext() )->text(),
+						'text' => $this->getSkinNavOverrideableLabel(
+							"view-$msgKey"
+						),
 						'href' => $title->getLocalURL( $this->editUrlOptions() ),
 						'primary' => !$isRemoteContent, // don't collapse this in vector
 					];
@@ -1344,8 +1399,9 @@ class SkinTemplate extends Skin {
 						// $content_navigation['actions']['addsection']
 						$content_navigation['views']['addsection'] = [
 							'class' => ( $isEditing && $section == 'new' ) ? 'selected' : false,
-							'text' => wfMessageFallback( "$skname-action-addsection", 'addsection' )
-								->setContext( $this->getContext() )->text(),
+							'text' => $this->getSkinNavOverrideableLabel(
+								"action-addsection"
+							),
 							'href' => $title->getLocalURL( 'action=edit&section=new' )
 						];
 					}
@@ -1354,8 +1410,9 @@ class SkinTemplate extends Skin {
 					// Adds view source view link
 					$content_navigation['views']['viewsource'] = [
 						'class' => ( $onPage && $action == 'edit' ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-action-viewsource", 'viewsource' )
-							->setContext( $this->getContext() )->text(),
+						'text' => $this->getSkinNavOverrideableLabel(
+							"action-viewsource"
+						),
 						'href' => $title->getLocalURL( $this->editUrlOptions() ),
 						'primary' => true, // don't collapse this in vector
 					];
@@ -1366,16 +1423,18 @@ class SkinTemplate extends Skin {
 					// Adds history view link
 					$content_navigation['views']['history'] = [
 						'class' => ( $onPage && $action == 'history' ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-view-history", 'history_short' )
-							->setContext( $this->getContext() )->text(),
+						'text' => $this->getSkinNavOverrideableLabel(
+							'view-history'
+						),
 						'href' => $title->getLocalURL( 'action=history' ),
 					];
 
 					if ( $this->getAuthority()->probablyCan( 'delete', $title ) ) {
 						$content_navigation['actions']['delete'] = [
 							'class' => ( $onPage && $action == 'delete' ) ? 'selected' : false,
-							'text' => wfMessageFallback( "$skname-action-delete", 'delete' )
-								->setContext( $this->getContext() )->text(),
+							'text' => $this->getSkinNavOverrideableLabel(
+								'action-delete'
+							),
 							'href' => $title->getLocalURL( 'action=delete' )
 						];
 					}
@@ -1384,8 +1443,9 @@ class SkinTemplate extends Skin {
 						$moveTitle = SpecialPage::getTitleFor( 'Movepage', $title->getPrefixedDBkey() );
 						$content_navigation['actions']['move'] = [
 							'class' => $this->getTitle()->isSpecial( 'Movepage' ) ? 'selected' : false,
-							'text' => wfMessageFallback( "$skname-action-move", 'move' )
-								->setContext( $this->getContext() )->text(),
+							'text' => $this->getSkinNavOverrideableLabel(
+								'action-move'
+							),
 							'href' => $moveTitle->getLocalURL()
 						];
 					}
@@ -1401,8 +1461,9 @@ class SkinTemplate extends Skin {
 								'undelete' : 'viewdeleted';
 							$content_navigation['actions']['undelete'] = [
 								'class' => $this->getTitle()->isSpecial( 'Undelete' ) ? 'selected' : false,
-								'text' => wfMessageFallback( "$skname-action-$msgKey", "{$msgKey}_short" )
-									->setContext( $this->getContext() )->numParams( $n )->text(),
+								'text' => $this->getSkinNavOverrideableLabel(
+									"action-$msgKey", $n
+								),
 								'href' => $undelTitle->getLocalURL()
 							];
 						}
@@ -1419,8 +1480,9 @@ class SkinTemplate extends Skin {
 					$mode = $title->isProtected() ? 'unprotect' : 'protect';
 					$content_navigation['actions'][$mode] = [
 						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-action-$mode", $mode )
-							->setContext( $this->getContext() )->text(),
+						'text' => $this->getSkinNavOverrideableLabel(
+							"action-$mode"
+						),
 						'href' => $title->getLocalURL( "action=$mode" )
 					];
 				}
