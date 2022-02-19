@@ -186,7 +186,7 @@ class ApiFeedWatchlist extends ApiBase {
 
 	/**
 	 * @param array $info
-	 * @return FeedItem
+	 * @return FeedItem|null
 	 */
 	private function createFeedItem( $info ) {
 		if ( !isset( $info['title'] ) ) {

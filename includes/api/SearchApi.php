@@ -167,7 +167,7 @@ trait SearchApi {
 	 *  - offset: optional
 	 *  - namespace: mandatory
 	 *  - search engine profiles defined by SearchApi::getSearchProfileParams()
-	 * @param string[]|null $params API request params (must be sanitized by
+	 * @param array|null $params API request params (must be sanitized by
 	 * ApiBase::extractRequestParams() before)
 	 * @return SearchEngine
 	 */
@@ -184,7 +184,7 @@ trait SearchApi {
 		}
 		$searchEngine = $this->searchEngineFactory->create( $type );
 		$searchEngine->setNamespaces( $params['namespace'] );
-		$searchEngine->setLimitOffset( $params['limit'], $params['offset'] ?? null );
+		$searchEngine->setLimitOffset( $params['limit'], $params['offset'] ?? 0 );
 
 		// Initialize requested search profiles.
 		$configs = $this->getSearchProfileParams();

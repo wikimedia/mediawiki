@@ -302,9 +302,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * We do this later than getScale, since we need the image
 	 * to know which handler, since handlers can make their own parameters.
 	 * @param File $image Image that params are for.
-	 * @param array $thumbParams Thumbnail parameters from getScale
+	 * @param array|null $thumbParams Thumbnail parameters from getScale
 	 * @param string $otherParams String of otherParams (iiurlparam).
-	 * @return array Array of parameters for transform.
+	 * @return array|null Array of parameters for transform.
 	 */
 	protected function mergeThumbParams( $image, $thumbParams, $otherParams ) {
 		if ( $thumbParams === null ) {
