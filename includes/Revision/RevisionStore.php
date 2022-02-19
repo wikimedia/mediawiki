@@ -325,10 +325,8 @@ class RevisionStore
 			$queryFlags = self::READ_NORMAL;
 		}
 
-		$canUsePageId = ( $pageId !== null && $pageId > 0 );
-
 		// Loading by ID is best
-		if ( $canUsePageId ) {
+		if ( $pageId !== null && $pageId > 0 ) {
 			$page = $this->pageStore->getPageById( $pageId, $queryFlags );
 			if ( $page ) {
 				return $this->wrapPage( $page );
@@ -336,9 +334,7 @@ class RevisionStore
 		}
 
 		// rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
-		$canUseRevId = ( $revId !== null && $revId > 0 );
-
-		if ( $canUseRevId ) {
+		if ( $revId !== null && $revId > 0 ) {
 			$pageQuery = $this->pageStore->newSelectQueryBuilder( $queryFlags )
 				->join( 'revision', null, 'page_id=rev_page' )
 				->conds( [ 'rev_id' => $revId ] )
