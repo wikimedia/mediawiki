@@ -5366,9 +5366,6 @@ class Parser {
 									if ( $paramName === 'no-link' ) {
 										$value = true;
 									}
-									if ( ( $paramName === 'link-url' ) && $this->mOptions->getExternalLinkTarget() ) {
-										$params[$type]['link-target'] = $this->mOptions->getExternalLinkTarget();
-									}
 								}
 								break;
 							case 'frameless':
@@ -5395,19 +5392,23 @@ class Parser {
 		}
 
 		# Process alignment parameters
-		if ( $params['horizAlign'] ) {
+		if ( $params['horizAlign'] !== [] ) {
 			$params['frame']['align'] = key( $params['horizAlign'] );
 		}
-		if ( $params['vertAlign'] ) {
+		if ( $params['vertAlign'] !== [] ) {
 			$params['frame']['valign'] = key( $params['vertAlign'] );
 		}
 
 		$params['frame']['caption'] = $caption;
 
 		# Will the image be presented in a frame, with the caption below?
+		// @phan-suppress-next-line PhanImpossibleCondition
 		$imageIsFramed = isset( $params['frame']['frame'] )
+			// @phan-suppress-next-line PhanImpossibleCondition
 			|| isset( $params['frame']['framed'] )
+			// @phan-suppress-next-line PhanImpossibleCondition
 			|| isset( $params['frame']['thumbnail'] )
+			// @phan-suppress-next-line PhanImpossibleCondition
 			|| isset( $params['frame']['manualthumb'] );
 
 		# In the old days, [[Image:Foo|text...]] would set alt text.  Later it
@@ -5425,6 +5426,7 @@ class Parser {
 		# plicit caption= parameter and preserving the old magic unnamed para-
 		# meter for BC; ...
 		if ( $imageIsFramed ) { # Framed image
+			// @phan-suppress-next-line PhanImpossibleCondition
 			if ( $caption === '' && !isset( $params['frame']['alt'] ) ) {
 				# No caption or alt text, add the filename as the alt text so
 				# that screen readers at least get some description of the image
@@ -5433,6 +5435,7 @@ class Parser {
 			# Do not set $params['frame']['title'] because tooltips don't make sense
 			# for framed images
 		} else { # Inline image
+			// @phan-suppress-next-line PhanImpossibleCondition
 			if ( !isset( $params['frame']['alt'] ) ) {
 				# No alt text, use the "caption" for the alt text
 				if ( $caption !== '' ) {

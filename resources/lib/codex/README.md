@@ -27,11 +27,11 @@ then pass it into the `components` option of your Vue component:
 		</cdx-button>
 	</div>
 </template>
- 
+
 <script>
 import { defineComponent } from 'vue';
 import { CdxButton } from '@wikimedia/codex';
- 
+
 export default defineComponent( {
 	components: {
 		CdxButton

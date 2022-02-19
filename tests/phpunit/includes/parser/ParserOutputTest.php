@@ -179,7 +179,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		$po->unsetPageProperty( 'foo' );
 
 		$properties = $po->getPageProperties();
-		$this->assertSame( false, $po->getPageProperty( 'foo' ) );
+		$this->assertSame( null, $po->getPageProperty( 'foo' ) );
 		$this->assertArrayNotHasKey( 'foo', $properties );
 	}
 

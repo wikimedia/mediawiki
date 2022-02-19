@@ -471,7 +471,7 @@ parsoid=wt2html,wt2wt,html2html
 !! wikitext
 [[File:Foobar.jpg|thumb|link=http://example.com/|Title]]
 !! html/php
-<div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="http://example.com/"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" width="220" height="25" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Title</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:222px;"><a href="http://example.com/" rel="nofollow"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" width="220" height="25" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Title</div></div></div>
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="http://example.com/"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x"/></a><figcaption>Title</figcaption></figure>
 !! end
@@ -522,7 +522,7 @@ parsoid=wt2html,wt2wt,html2html
 !! wikitext
 [[File:Foobar.jpg|thumb=Thumb.png|link=http://example.com|Title]]
 !! html/php
-<div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="http://example.com"><img alt="" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Title</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="http://example.com" rel="nofollow"><img alt="" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Title</div></div></div>
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb" data-mw='{"attribs":[["manualthumb",{"txt":"Thumb.png"}]]}'><a href="http://example.com"><img resource="./File:Foobar.jpg" src="http://example.com/images/e/ea/Thumb.png" decoding="async" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135"/></a><figcaption>Title</figcaption></figure>
 !! end
