@@ -501,10 +501,10 @@ class CoreParserFunctions {
 			&& $title->equals( $parser->getTitle() ) )
 		) {
 			$old = $parser->getOutput()->getPageProperty( 'displaytitle' );
-			if ( $old === false || $arg !== 'displaytitle_noreplace' ) {
+			if ( $old === null || $arg !== 'displaytitle_noreplace' ) {
 				$parser->getOutput()->setDisplayTitle( $text );
 			}
-			if ( $old !== false && $old !== $text && !$arg ) {
+			if ( $old !== null && $old !== $text && !$arg ) {
 
 				$converter = self::getTargetLanguageConverter( $parser );
 				return '<span class="error">' .

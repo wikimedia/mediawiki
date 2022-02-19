@@ -239,7 +239,7 @@ class TrackingCategories {
 		}
 		$parserOutput->addCategory(
 			$categoryPage->getDBkey(),
-			$parserOutput->getPageProperty( 'defaultsort' ) ?: ''
+			$parserOutput->getPageProperty( 'defaultsort' ) ?? ''
 		);
 		return true;
 	}
