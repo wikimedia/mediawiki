@@ -684,7 +684,6 @@ class Linker {
 			# ThumbnailImage::toHtml() already adds page= onto the end of DjVu URLs
 			# So we don't need to pass it here in $query. However, the URL for the
 			# zoom icon still needs it, so we make a unique query for it. See T16771
-			# Also needed for the "resource" when manualthumb is set
 			# FIXME: What about "lang" and other querystring parameters
 			$url = wfAppendQuery( $url, $linkTitleQuery );
 		}
@@ -747,9 +746,6 @@ class Linker {
 						? $frameParams['class'] . ' '
 						: '' ) . 'thumbimage'
 				];
-			}
-			if ( $manualthumb ) {
-				$params['resource'] = $url;
 			}
 			$params = self::getImageLinkMTOParams( $frameParams, $query, $parser ) + $params;
 			$s .= $thumb->toHtml( $params );
