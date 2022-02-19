@@ -405,7 +405,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	/**
 	 * Fetch all interwiki prefixes from DB
 	 *
-	 * @param string|null $local If not null, limits output to local/non-local interwikis
+	 * @param bool|null $local If not null, limits output to local/non-local interwikis
 	 * @return array[] Interwiki rows
 	 */
 	private function getAllPrefixesDB( $local ) {
@@ -414,11 +414,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 		$where = [];
 
 		if ( $local !== null ) {
-			if ( $local == 1 ) {
-				$where['iw_local'] = 1;
-			} elseif ( $local == 0 ) {
-				$where['iw_local'] = 0;
-			}
+			$where['iw_local'] = (int)$local;
 		}
 
 		$res = $db->select( 'interwiki',
