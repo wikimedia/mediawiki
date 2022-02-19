@@ -2333,7 +2333,7 @@ hi
 <p>hi</p>
 
 <p><br />
-<br about="#mwt1" typeof="mw:Transclusion" data-parsoid='{}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;br/>\n"}},"i":0}}]}'/><span about="#mwt1">
+<br about="#mwt1" typeof="mw:Transclusion" data-parsoid="{}" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;br/>\n"}},"i":0}}]}'/><span about="#mwt1">
 </span></p>
 
 <link rel="mw:PageProp/Category" href="./Category:Ho" />
@@ -3143,17 +3143,18 @@ parsoid=wt2html
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1&lt;!--X-->x&lt;!--X-->  \n   &lt;!--X-->   &lt;!--X-->\n\n ","href":"./Template:1x"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</span></p>
 !! end
 
-## NOTE: Parsoid is punting on this edge case for now and just returning
-## something that will roundtrip.
+## wt2html only, since the bare {{ will get escaped when serializing
 !! test
 Templates: Target with an extension tag
+!! options
+parsoid=wt2html
 !! wikitext
 {{{{1x|1x}}<nowiki>hi</nowiki>|ho}}
 !! html/php
 <p>{{1xhi|ho}}
 </p>
 !! html/parsoid
-<p><span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"{{1x|1x}}&lt;nowiki>hi&lt;/nowiki>"},"params":{"1":{"wt":"ho"}},"i":0}}]}'>{{{{1x|1x}}&lt;nowiki>hi&lt;/nowiki>|ho}}</span></p>
+<p>{{<span about="#mwt5" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"1x"}},"i":0}}]}'>1x</span><span typeof="mw:Nowiki">hi</span>|ho}}</p>
 !! end
 
 !! test
@@ -4475,7 +4476,6 @@ This is a discussion thread.
 </tbody></table></dd></dl></dd></dl>
 !! end
 
-
 # The trailing whitespace in this test is to catch a regression in
 # Parsoid after T54473.
 !! test
@@ -4486,6 +4486,30 @@ Definition Lists: Hacky use to indent tables (WS-insensitive)
 |} 
 !! html/php
 <dl><dd><table>
+<tbody><tr>
+<td>a
+</td></tr></tbody></table></dd></dl>
+!! html/parsoid
+<dl><dd><table>
+<tbody><tr><td>a</td></tr>
+</tbody></table></dd></dl>
+!! end
+
+# wt2wt / html2wt will normalize newlines - so disabled those test modes
+!! test
+Definition Lists: Hacky use to indent tables (nl-insensitive)
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+:{|
+
+
+|a
+|}
+!! html/php
+<dl><dd><table>
+
+
 <tbody><tr>
 <td>a
 </td></tr></tbody></table></dd></dl>
@@ -8673,6 +8697,19 @@ Piped link to URL: [[http://www.example.com|an example URL]]
 !! end
 
 !! test
+Nested wikilink syntax in wikilink syntax that parses as wikilink in extlink
+!! options
+parsoid=wt2html
+!! wikitext
+[[http://example.com|[[Example]]]]
+!! html/php
+<p>[<a rel="nofollow" class="external text" href="http://example.com%7C"></a><a href="/index.php?title=Example&amp;action=edit&amp;redlink=1" class="new" title="Example (page does not exist)">Example</a>]
+</p>
+!! html/parsoid
+<p>[<a rel="mw:ExtLink" href="http://example.com%7C" class="external autonumber"></a><a rel="mw:WikiLink" href="./Example" title="Example" class="new">Example</a>]</p>
+!! end
+
+!! test
 Plain link in template argument
 !! options
 parsoid=wt2html
@@ -8695,7 +8732,7 @@ parsoid=wt2html
 
 <p><span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[http://www.example.com |123]]"}},"i":0}}]}'>[</span><a about="#mwt2" rel="mw:ExtLink" href="http://www.example.com" class="external text">|123</a><span about="#mwt2">]</span></p>
 
-<p>{{1x|[<a rel="mw:ExtLink" href="http://www.example.com" class="external text" data-parsoid='{"targetOff":114,"contentOffsets":[114,118]}'>|123</a>}}</p>
+<p>{{1x|[<a rel="mw:ExtLink" href="http://www.example.com" class="external text">|123</a>}}</p>
 
 <p><span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[http://www.example.com "},"2":{"wt":"123]]"}},"i":0}}]}'>[</span><a about="#mwt3" rel="mw:ExtLink" href="http://www.example.com" class="external free">http://www.example.com</a><span about="#mwt3"> </span></p>
 !! end
@@ -10419,7 +10456,7 @@ Nested lists 9 (extension interaction)
 !! html/php-DISABLED
 <ul><li class="mw-empty-elt"></li></ul>
 !! html/parsoid
-<ul><li data-parsoid='{}'><ol class="mw-references references" typeof="mw:Extension/references" about="#mwt2" data-parsoid='{}' data-mw='{"name":"references","attrs":{}}'></ol></li></ul>
+<ul><li data-parsoid='{}'><ol class="mw-references references" typeof="mw:Extension/references" about="#mwt2" data-mw='{"name":"references","attrs":{}}'></ol></li></ul>
 !! end
 
 !! test
@@ -12352,18 +12389,26 @@ Templates with templated name
 !! end
 
 ## Regression test; the output here isn't really that interesting.
+## wt2html only, since the bare {{ will get escaped when serializing
+## needs investigation!
 !! test
 Templates with templated name and top level template args
+!! options
+parsoid=wt2html
 !! wikitext
 {{1{{2{{{3}}}|4=5}}}}
+!! html/php
+<p>{{1{{2{{{3}}}|4=5}}}}
+</p>
 !! html/parsoid
-<p><span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1{{2{{{3}}}|4=5}}"},"params":{},"i":0}}]}'>{{1{{2{{{3}}}|4=5}}}}</span></p>
+<p>{{1{{2<span about="#mwt5" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"3"},"params":{},"i":0}}]}'>{{{3}}}</span>|4=5}}}}</p>
 !! end
 
-# Parsoid markup is deliberate "broken". This is an edge case.
-# See long comment in TemplateHandler.js:convertAttribsToString.
+## wt2html only, since the bare {{ will get escaped when serializing
 !! test
 Templates with invalid templated targets
+!! options
+parsoid=wt2html
 !! wikitext
 {{1x
 {{1x|foo}}
@@ -12374,8 +12419,9 @@ foo
 }}
 </p>
 !! html/parsoid
-<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x\n{{1x|foo}}\n"},"params":{},"i":0}}]}'>{{1x
-foo }}</span></p>
+<p>{{1x
+<span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</span>
+}}</p>
 !! end
 
 !! article
@@ -12659,24 +12705,24 @@ foo {{''}} baz
 !! test
 Templates with intersecting and overlapping ranges
 !! wikitext
-{|{{1x|
+{|{{1x|1=class="foo"
 <p>ha</p>}}
-{|{{1x|
+{|{{1x|1=class="bar"
 <p>ho</p>}}
 {{1x|{{!}}hi}}
 |}
 !! html/php
-<p>ha</p><table>
+<p>ha</p><table class="foo">
 
-</table><p>ho</p><table>
+</table><p>ho</p><table class="bar">
 
 <tbody><tr>
 <td>hi
 </td></tr></tbody></table>
 !! html/parsoid
-<p about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","autoInsertedEnd":true,"pi":[[{"k":"1"}],[{"k":"1"}],[{"k":"1"}]],"firstWikitextNode":"TABLE"}' data-mw='{"parts":["{|",{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"\n&lt;p>ha&lt;/p>"}},"i":0}},"\n","{|",{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"\n&lt;p>ho&lt;/p>"}},"i":1}},"\n",{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"{{!}}hi"}},"i":2}},"\n|}"]}'>ha</p><table about="#mwt1" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"","html":""},{"html":""}]]}'>
+<p about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","pi":[[{"k":"1","named":true}],[{"k":"1","named":true}],[{"k":"1"}]],"firstWikitextNode":"TABLE"}' data-mw='{"parts":["{|",{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"class=\"foo\"\n&lt;p>ha&lt;/p>"}},"i":0}},"\n","{|",{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"class=\"bar\"\n&lt;p>ho&lt;/p>"}},"i":1}},"\n",{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"{{!}}hi"}},"i":2}},"\n|}"]}'>ha</p><table class="foo" about="#mwt1" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"class","html":"class=\"foo\"","uneditable":true},{"html":""}]]}'>
 
-</table><p about="#mwt1">ho</p><table about="#mwt1" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"","html":""},{"html":""}]]}'>
+</table><p about="#mwt1">ho</p><table class="bar" about="#mwt1" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"class","html":"class=\"bar\"","uneditable":true},{"html":""}]]}'>
 
 <tbody><tr><td>hi</td></tr>
 </tbody></table>
@@ -13649,7 +13695,7 @@ Language converter over extlink
 <pre>[-{oh no]}-]
 </pre>
 !! html/parsoid
-<pre about="#mwt1" typeof="mw:Transclusion" data-parsoid='{}' data-mw='{"parts":[{"template":{"target":{"wt":"1x\n","href":"./Template:1x"},"params":{"1":{"wt":" [-{oh no]}-]\n"}},"i":0}}]}'>[-{oh no]}-]</pre><span about="#mwt1">
+<pre about="#mwt1" typeof="mw:Transclusion" data-parsoid="{}" data-mw='{"parts":[{"template":{"target":{"wt":"1x\n","href":"./Template:1x"},"params":{"1":{"wt":" [-{oh no]}-]\n"}},"i":0}}]}'>[-{oh no]}-]</pre><span about="#mwt1">
 </span>
 !! end
 
@@ -13737,6 +13783,28 @@ y
 y</p>
 !! end
 
+!! test
+P-wrapping should not break after <td>s separated by newlines are converted back to pipes
+!! wikitext
+a
+|b
+
+|c
+d
+!! html/php
+<p>a
+|b
+</p><p>|c
+d
+</p>
+!! html/parsoid
+<p>a
+|b</p>
+
+<p>|c
+d</p>
+!! end
+
 ###
 ### Testing parsing of templates where a template arg
 ### has the same name as the template itself.
@@ -13748,7 +13816,7 @@ Template:quote
 {{{quote|{{{1}}}}}}
 !! endarticle
 
-!!test
+!! test
 Templates: Template Name/Arg clash: 1. Use of positional param
 !! wikitext
 {{quote|foo}}
@@ -13757,9 +13825,9 @@ Templates: Template Name/Arg clash: 1. Use of positional param
 </p>
 !! html/parsoid
 <p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"quote","href":"./Template:Quote"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</span></p>
-!!end
+!! end
 
-!!test
+!! test
 Templates: Template Name/Arg clash: 2. Use of named param
 !! wikitext
 {{quote|quote=foo}}
@@ -13768,7 +13836,7 @@ Templates: Template Name/Arg clash: 2. Use of named param
 </p>
 !! html/parsoid
 <p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"quote","href":"./Template:Quote"},"params":{"quote":{"wt":"foo"}},"i":0}}]}'>foo</span></p>
-!!end
+!! end
 
 ###
 ### Parsoid-centric tests to stress Parsoid's ability to RT them unchanged
@@ -14609,6 +14677,22 @@ Templates: Param with empty arg in the final position
 {{{hi|}}}
 !! html/parsoid
 <span about="#mwt1" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"hi"},"params":{"1":{"wt":""}},"i":0}}]}'></span>
+!! end
+
+!! test
+Compound transclusion with template and top level templatearg
+!! wikitext
+{{1x|<table>}}
+{{{top|<td>123</td>}}}
+</table>
+!! html/php
+<table>
+<tbody><tr><td>123</td>
+</tr></tbody></table>
+!! html/parsoid
+<table about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;table>"}},"i":0}},"\n",{"templatearg":{"target":{"wt":"top"},"params":{"1":{"wt":"&lt;td>123&lt;/td>"}},"i":1}},"\n&lt;/table>"]}'>
+<tbody><tr><td>123</td></tr>
+</tbody></table>
 !! end
 
 !!test
@@ -19948,6 +20032,23 @@ Special:Search page linking.
 !! end
 
 !! test
+Single {{!}} in table cell
+!! wikitext
+{|
+| colspan="1" |foo {{!}} bar
+|}
+!! html/php
+<table>
+<tbody><tr>
+<td colspan="1">foo | bar
+</td></tr></tbody></table>
+!! html/parsoid
+<table>
+<tbody><tr><td colspan="1">foo <span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"!","function":"!"},"params":{},"i":0}}]}'>|</span> bar</td></tr>
+</tbody></table>
+!! end
+
+!! test
 Say the magic word
 !! options
 title=[[Parser test]]
@@ -22020,13 +22121,18 @@ T7678: Double-parsed template argument
 </p>
 !! end
 
+## wt2html only, since the bare {{ will get escaped when serializing
 !! test
 T7678: Double-parsed template invocation
+!! options
+parsoid=wt2html
 !! wikitext
 {{lc:{{paramtest {{!}} param = hello }} }}
-!! html
+!! html/php
 <p>{{paramtest | param = hello }}
 </p>
+!! html/parsoid
+<p><span about="#mwt4" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"lc:{{paramtest {{!}} param = hello }} ","function":"lc"},"params":{},"i":0}}]}'>{{paramtest  param = hello }}</span></p>
 !! end
 
 !! test
@@ -26952,7 +27058,7 @@ parsoid={
   "modes": ["html2wt"]
 }
 !! html/parsoid
-<h2><span about="#mwt1" typeof="mw:Transclusion" data-parsoid="{}" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo [[Category:Foo]]"}},"i":0}}]}'>foo </span><link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1" data-parsoid="{}" /></h2>
+<h2><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo [[Category:Foo]]"}},"i":0}}]}'>foo </span><link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1" /></h2>
 !! wikitext
 == {{1x|foo [[Category:Foo]]}} ==
 !! end
@@ -28136,7 +28242,7 @@ Strip span tags added to mark misnested links
 !! options
 parsoid=html2wt
 !! html/parsoid
-<p data-parsoid='{}'><a rel="mw:ExtLink" href="http://test.com" data-parsoid='{"targetOff":17,"contentOffsets":[17,34]}'></a><a rel="mw:WikiLink" href="./One" title="One" data-parsoid='{"stx":"simple","a":{"href":"./One"},"sa":{"href":"one"},"misnested":true}'>one</a><span data-parsoid='{"misnested":true}'> two three</span></p>
+<p data-parsoid='{}'><a rel="mw:ExtLink" href="http://test.com"></a><a rel="mw:WikiLink" href="./One" title="One" data-parsoid='{"stx":"simple","a":{"href":"./One"},"sa":{"href":"one"},"misnested":true}'>one</a><span data-parsoid='{"misnested":true}'> two three</span></p>
 !! wikitext
 [http://test.com][[one]] two three
 !! end
