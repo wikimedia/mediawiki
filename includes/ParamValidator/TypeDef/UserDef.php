@@ -193,7 +193,7 @@ class UserDef extends TypeDef {
 			// that its intentional even though the username is for a different wiki)
 			// NOTE: We deliberately use the raw $value instead of the canonical $name
 			// to avoid convering the first character of the interwiki prefic to uppercase
-			$user = is_string( $name ) ? new UserIdentityValue( 0, $value, UserIdentityValue::LOCAL ) : null;
+			$user = $name !== false ? new UserIdentityValue( 0, $value, UserIdentityValue::LOCAL ) : null;
 			return [ 'interwiki', $user ];
 		}
 
@@ -204,7 +204,7 @@ class UserDef extends TypeDef {
 		// that either, so if this is a valid user name then we check the database for
 		// the id, and if there is no user with this name the id is 0
 		$canonicalName = $this->userNameUtils->getCanonical( $value, UserNameUtils::RIGOR_VALID );
-		if ( $canonicalName ) {
+		if ( $canonicalName !== false ) {
 			$userIdentity = $this->userIdentityLookup->getUserIdentityByName( $canonicalName );
 			if ( $userIdentity ) {
 				return [ 'name', $userIdentity ];

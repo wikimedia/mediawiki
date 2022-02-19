@@ -253,7 +253,7 @@ class UserNameUtils implements UserRigorOptions {
 	 *   - RIGOR_CREATABLE   Valid for batch processes, login and account creation
 	 *
 	 * @throws InvalidArgumentException
-	 * @return bool|string
+	 * @return string|false
 	 */
 	public function getCanonical( string $name, string $validate = self::RIGOR_VALID ) {
 		// Force usernames to capital
