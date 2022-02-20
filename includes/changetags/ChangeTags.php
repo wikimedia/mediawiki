@@ -1057,6 +1057,12 @@ class ChangeTags {
 			return [];
 		}
 
+		$tags = self::getChangeTagList( $context, $context->getLanguage() );
+		$autocomplete = [];
+		foreach ( $tags as $tagInfo ) {
+			$autocomplete[ $tagInfo['label'] ] = $tagInfo['name'];
+		}
+
 		$data = [
 			Html::rawElement(
 				'label',
@@ -1066,19 +1072,30 @@ class ChangeTags {
 		];
 
 		if ( $ooui ) {
-			$data[] = new OOUI\TextInputWidget( [
+			$options = Xml::listDropDownOptionsOoui( $autocomplete );
+
+			$data[] = new OOUI\ComboBoxInputWidget( [
 				'id' => 'tagfilter',
 				'name' => 'tagfilter',
 				'value' => $selected,
 				'classes' => 'mw-tagfilter-input',
+				'options' => $options,
 			] );
 		} else {
+			$datalist = new XmlSelect( false, 'tagfilter-datalist' );
+			$datalist->setTagName( 'datalist' );
+			$datalist->addOptions( $autocomplete );
+
 			$data[] = Xml::input(
 				'tagfilter',
 				20,
 				$selected,
-				[ 'class' => 'mw-tagfilter-input mw-ui-input mw-ui-input-inline', 'id' => 'tagfilter' ]
-			);
+				[
+					'class' => 'mw-tagfilter-input mw-ui-input mw-ui-input-inline',
+					'id' => 'tagfilter',
+					'list' => 'tagfilter-datalist',
+				]
+			) . $datalist->getHTML();
 		}
 
 		return $data;

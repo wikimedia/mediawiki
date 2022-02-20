@@ -48,6 +48,15 @@ abstract class ParserCacheSerializationTestCases {
 		'map' => [ 'key' => 'value' ]
 	];
 
+	private const MOCK_FALSY_PROPERTIES = [
+		'boolean' => false,
+		'null' => null,
+		'number' => 0,
+		'string' => '',
+		'numstring' => '0',
+		'array' => [],
+	];
+
 	private const MOCK_BINARY_PROPERTIES = [
 		'empty' => '',
 		'\x00' => "\x00",
@@ -153,6 +162,11 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithProperties = new ParserOutput();
 		foreach ( self::MOCK_EXT_DATA as $key => $value ) {
 			$parserOutputWithProperties->setPageProperty( $key, $value );
+		}
+
+		$parserOutputWithFalsyProperties = new ParserOutput();
+		foreach ( self::MOCK_FALSY_PROPERTIES as $key => $value ) {
+			$parserOutputWithFalsyProperties->setPageProperty( $key, $value );
 		}
 
 		$parserOutputWithBinaryProperties = new ParserOutput();
@@ -264,7 +278,7 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertFalse( $object->getDisplayTitle() );
 					$testCase->assertFalse( $object->getFlag( 'test' ) );
 					$testCase->assertArrayEquals( [], $object->getAllFlags() );
-					$testCase->assertFalse( $object->getPageProperty( 'test_prop' ) );
+					$testCase->assertNull( $object->getPageProperty( 'test_prop' ) );
 					$testCase->assertArrayEquals( [], $object->getPageProperties() );
 					$testCase->assertArrayEquals( [], $object->getUsedOptions() );
 					$testCase->assertNull( $object->getExtensionData( 'test_ext_data' ) );
@@ -308,8 +322,7 @@ abstract class ParserCacheSerializationTestCases {
 				'instance' => $parserOutputWithProperties,
 				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertSame( self::MOCK_EXT_DATA['boolean'], $object->getPageProperty( 'boolean' ) );
-					// Falsy properties return false even though null was given.
-					$testCase->assertFalse( $object->getPageProperty( 'null' ) );
+					$testCase->assertSame( self::MOCK_EXT_DATA['null'], $object->getPageProperty( 'null' ) );
 					$testCase->assertSame( self::MOCK_EXT_DATA['number'], $object->getPageProperty( 'number' ) );
 					$testCase->assertSame( self::MOCK_EXT_DATA['string'], $object->getPageProperty( 'string' ) );
 					$testCase->assertArrayEquals( self::MOCK_EXT_DATA['array'], $object->getPageProperty( 'array' ) );
@@ -403,7 +416,36 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertArrayEquals( [ 'style1' ], $object->getExtraCSPStyleSrcs() );
 					$testCase->assertArrayEquals( [ 'Link3' => 1 ], $object->getLinksSpecial() );
 				}
-			]
+			],
+			'withFalsyProperties' => [
+				'instance' => $parserOutputWithFalsyProperties,
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+					$testCase->assertSame(
+						self::MOCK_FALSY_PROPERTIES['boolean'],
+						$object->getPageProperty( 'boolean' )
+					);
+					$testCase->assertSame(
+						self::MOCK_FALSY_PROPERTIES['null'],
+						$object->getPageProperty( 'null' )
+					);
+					$testCase->assertSame(
+						self::MOCK_FALSY_PROPERTIES['number'],
+						$object->getPageProperty( 'number' )
+					);
+					$testCase->assertSame(
+						self::MOCK_FALSY_PROPERTIES['string'],
+						$object->getPageProperty( 'string' )
+					);
+					$testCase->assertSame(
+						self::MOCK_FALSY_PROPERTIES['numstring'],
+						$object->getPageProperty( 'numstring' )
+					);
+					$testCase->assertArrayEquals(
+						self::MOCK_FALSY_PROPERTIES['array'],
+						$object->getPageProperty( 'array' )
+					);
+				}
+			],
 		];
 	}
 

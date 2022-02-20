@@ -408,9 +408,10 @@ class Linker {
 					$frameParams['align'] = $parser->getTargetLanguage()->alignEnd();
 				}
 			}
-			return $prefix .
-				self::makeThumbLink2( $title, $file, $frameParams, $handlerParams, $time, $query, $classes ) .
-				$postfix;
+			return $prefix . self::makeThumbLink2(
+				$title, $file, $frameParams, $handlerParams, $time, $query,
+				$classes, $parser
+			) . $postfix;
 		}
 
 		switch ( $file ? $file->getMediaType() : '' ) {
@@ -598,11 +599,12 @@ class Linker {
 	 * @param bool $time
 	 * @param string $query
 	 * @param string[] $classes @since 1.36
+	 * @param Parser|null $parser @since 1.38
 	 * @return string
 	 */
 	public static function makeThumbLink2(
 		LinkTarget $title, $file, $frameParams = [], $handlerParams = [],
-		$time = false, $query = "", array $classes = []
+		$time = false, $query = "", array $classes = [], ?Parser $parser = null
 	) {
 		$exists = $file && $file->exists();
 
@@ -682,7 +684,6 @@ class Linker {
 			# ThumbnailImage::toHtml() already adds page= onto the end of DjVu URLs
 			# So we don't need to pass it here in $query. However, the URL for the
 			# zoom icon still needs it, so we make a unique query for it. See T16771
-			# Also needed for the "resource" when manualthumb is set
 			# FIXME: What about "lang" and other querystring parameters
 			$url = wfAppendQuery( $url, $linkTitleQuery );
 		}
@@ -746,10 +747,7 @@ class Linker {
 						: '' ) . 'thumbimage'
 				];
 			}
-			if ( $manualthumb ) {
-				$params['resource'] = $url;
-			}
-			$params = self::getImageLinkMTOParams( $frameParams, $query ) + $params;
+			$params = self::getImageLinkMTOParams( $frameParams, $query, $parser ) + $params;
 			$s .= $thumb->toHtml( $params );
 			if ( isset( $frameParams['framed'] ) ) {
 				$zoomIcon = "";

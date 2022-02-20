@@ -1361,11 +1361,12 @@ class ParserOutput extends CacheTime {
 	 * was set for the given property name.
 	 *
 	 * @note You need to use getPageProperties() to check for boolean and null properties.
-	 * @deprecated since 1.38, renamed to ::getPageProperty()
+	 * @deprecated since 1.38, renamed to ::getPageProperty() and returns `null`
+	 *  if no value was set.
 	 */
 	public function getProperty( $name ) {
 		wfDeprecated( __METHOD__, '1.38' );
-		return $this->getPageProperty( $name );
+		return $this->getPageProperty( $name ) ?? false;
 	}
 
 	/**
@@ -1459,14 +1460,14 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Look up a page property.
 	 * @param string $name The page property name to look up.
-	 * @return int|float|string|bool The value previously set using setPageProperty(). False if null or no value
-	 * was set for the given property name.
+	 * @return int|float|string|bool|null The value previously set using setPageProperty().
+	 * Returns null if no value was set for the given property name.
 	 *
-	 * @note You need to use getPageProperties() to check for boolean and null properties.
+	 * @note You need to use getPageProperties() to an explicitly-set null value.
 	 * @since 1.38
 	 */
 	public function getPageProperty( string $name ) {
-		return $this->mProperties[$name] ?? false;
+		return $this->mProperties[$name] ?? null;
 	}
 
 	/**

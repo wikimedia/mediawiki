@@ -98,7 +98,7 @@ For notes on 1.37.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 * symfony/yaml was promoted from development-only.
-* Added Codex v0.1.0-alpha.2
+* Added Codex v0.1.0-alpha.3
 * …
 
 ===== New development-only external libraries =====
@@ -460,7 +460,7 @@ because of Phabricator reports.
   warnings:
    - ::hideNewSection()      - use ::setHideNewSection()
    - ::preventClickjacking() - use ::{get,set}PreventClickjacking()
-   - ::getProperty()         - use ::getPageProperty()
+   - ::getProperty()         - use ::getPageProperty() (return value changed)
    - ::setProperty()         - use ::setPageProperty()
    - ::unsetProperty()       - use ::unsetPageProperties()
    - ::getProperties()       - use ::getPageProperties()
