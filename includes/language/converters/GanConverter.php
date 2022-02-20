@@ -104,8 +104,11 @@ class GanConverter extends LanguageConverter {
 		return array_merge( parent::getVariantNames(), $names );
 	}
 
-	protected function loadDefaultTables() {
-		$this->mTables = [
+	/**
+	 * @inheritDoc
+	 */
+	protected function loadDefaultTables(): array {
+		return [
 			'gan-hans' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hans ),
 			'gan-hant' => new ReplacementArray( MediaWiki\Languages\Data\ZhConversion::$zh2Hant ),
 			'gan' => new ReplacementArray

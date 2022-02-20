@@ -134,8 +134,11 @@ class TgConverter extends LanguageConverter {
 		return [];
 	}
 
-	protected function loadDefaultTables() {
-		$this->mTables = [
+	/**
+	 * @inheritDoc
+	 */
+	protected function loadDefaultTables(): array {
+		return [
 			'tg-latn' => new ReplacementArray( $this->table ),
 			'tg' => new ReplacementArray()
 		];

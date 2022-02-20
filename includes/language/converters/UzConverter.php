@@ -135,8 +135,11 @@ class UzConverter extends LanguageConverter {
 		];
 	}
 
-	protected function loadDefaultTables() {
-		$this->mTables = [
+	/**
+	 * @inheritDoc
+	 */
+	protected function loadDefaultTables(): array {
+		return [
 			'uz-cyrl' => new ReplacementArray( $this->toCyrillic ),
 			'uz-latn' => new ReplacementArray( $this->toLatin ),
 			'uz' => new ReplacementArray()

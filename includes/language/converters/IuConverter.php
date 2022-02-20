@@ -118,8 +118,11 @@ class IuConverter extends LanguageConverterSpecific {
 		];
 	}
 
-	protected function loadDefaultTables() {
-		$this->mTables = [
+	/**
+	 * @inheritDoc
+	 */
+	protected function loadDefaultTables(): array {
+		return [
 			'lowercase' => new ReplacementArray( $this->mUpperToLowerCaseLatin ),
 			'ike-cans' => new ReplacementArray( $this->mToSyllabics ),
 			'ike-latn' => new ReplacementArray( $this->mToLatin ),

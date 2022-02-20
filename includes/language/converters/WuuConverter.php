@@ -99,8 +99,11 @@ class WuuConverter extends LanguageConverter {
 		return array_merge( parent::getVariantNames(), $names );
 	}
 
-	protected function loadDefaultTables() {
-		$this->mTables = [
+	/**
+	 * @inheritDoc
+	 */
+	protected function loadDefaultTables(): array {
+		return [
 			'wuu-hans' => new ReplacementArray( ZhConversion::$zh2Hans ),
 			'wuu-hant' => new ReplacementArray( ZhConversion::$zh2Hant ),
 			'wuu' => new ReplacementArray,

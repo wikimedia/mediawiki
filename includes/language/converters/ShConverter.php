@@ -113,8 +113,9 @@ class ShConverter extends LanguageConverter {
 		];
 	}
 
-	protected function loadDefaultTables() {
-		$this->mTables = [
+	/** @inheritDoc */
+	protected function loadDefaultTables(): array {
+		return [
 			'sh-cyrl' => new ReplacementArray( $this->mToCyrillic ),
 			'sh-latn' => new ReplacementArray(),
 		];

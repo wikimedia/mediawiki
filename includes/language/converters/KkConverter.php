@@ -79,7 +79,10 @@ class KkConverter extends LanguageConverterSpecific {
 		];
 	}
 
-	protected function loadDefaultTables() {
+	/**
+	 * @inheritDoc
+	 */
+	protected function loadDefaultTables(): array {
 		// require __DIR__."/../../includes/KkConversion.php";
 		// Placeholder for future implementing. Remove variables declarations
 		// after generating KkConversion.php
@@ -90,7 +93,7 @@ class KkConverter extends LanguageConverterSpecific {
 		$kk2TR = [];
 		$kk2CN = [];
 
-		$this->mTables = [
+		return [
 			'kk-cyrl' => new ReplacementArray( $kk2Cyrl ),
 			'kk-latn' => new ReplacementArray( $kk2Latn ),
 			'kk-arab' => new ReplacementArray( $kk2Arab ),
@@ -101,10 +104,13 @@ class KkConverter extends LanguageConverterSpecific {
 		];
 	}
 
-	protected function postLoadTables() {
-		$this->mTables['kk-kz']->merge( $this->mTables['kk-cyrl'] );
-		$this->mTables['kk-tr']->merge( $this->mTables['kk-latn'] );
-		$this->mTables['kk-cn']->merge( $this->mTables['kk-arab'] );
+	/**
+	 * @inheritDoc
+	 */
+	protected function postLoadTables( &$tables ) {
+		$tables['kk-kz']->merge( $tables['kk-cyrl'] );
+		$tables['kk-tr']->merge( $tables['kk-latn'] );
+		$tables['kk-cn']->merge( $tables['kk-arab'] );
 	}
 
 	/**

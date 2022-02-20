@@ -184,8 +184,11 @@ class CrhConverter extends LanguageConverterSpecific {
 
 	public $mExceptionsLoaded = false;
 
-	protected function loadDefaultTables() {
-		$this->mTables = [
+	/**
+	 * @inheritDoc
+	 */
+	protected function loadDefaultTables(): array {
+		return [
 			'crh-latn' => new ReplacementArray( $this->mCyrillicToLatin ),
 			'crh-cyrl' => new ReplacementArray( $this->mLatinToCyrillic ),
 			'crh' => new ReplacementArray()

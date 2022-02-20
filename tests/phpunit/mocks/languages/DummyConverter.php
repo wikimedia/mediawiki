@@ -41,8 +41,8 @@ class DummyConverter extends LanguageConverter {
 		return [];
 	}
 
-	public function loadDefaultTables() {
-		$this->mTables = [
+	public function loadDefaultTables(): array {
+		return [
 			'sgs' => new ReplacementArray(),
 			'simple' => new ReplacementArray(),
 			'tg-latn' => new ReplacementArray( $this->table ),

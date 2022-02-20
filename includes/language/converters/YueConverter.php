@@ -100,8 +100,11 @@ class YueConverter extends LanguageConverter {
 		return array_merge( parent::getVariantNames(), $names );
 	}
 
-	protected function loadDefaultTables() {
-		$this->mTables = [
+	/**
+	 * @inheritDoc
+	 */
+	protected function loadDefaultTables(): array {
+		return [
 			'yue-hans' => new ReplacementArray( ZhConversion::$zh2Hans ),
 			'yue-hant' => new ReplacementArray,
 		];

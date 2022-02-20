@@ -105,10 +105,13 @@ class TlyConverter extends LanguageConverter {
 		];
 	}
 
-	protected function loadDefaultTables() {
+	/**
+	 * @inheritDoc
+	 */
+	protected function loadDefaultTables(): array {
 		$this->toCyrillic = array_flip( $this->toLatin );
 
-		$this->mTables = [
+		return [
 			'tly-cyrl' => new ReplacementArray( $this->toCyrillic ),
 			'tly' => new ReplacementArray( $this->toLatin ),
 		];

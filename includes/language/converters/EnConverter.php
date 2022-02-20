@@ -55,8 +55,11 @@ class EnConverter extends LanguageConverter {
 		return [];
 	}
 
-	protected function loadDefaultTables() {
-		$this->mTables = [
+	/**
+	 * @inheritDoc
+	 */
+	protected function loadDefaultTables(): array {
+		return [
 			'en' => new ReplacementArray(),
 			'en-x-piglatin' => new ReplacementArray(),
 		];

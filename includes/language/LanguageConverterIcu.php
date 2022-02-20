@@ -33,12 +33,15 @@ abstract class LanguageConverterIcu extends LanguageConverterSpecific {
 
 	/**
 	 * Creates empty tables. mTransliterators will be used instead.
+	 *
+	 * @return array
 	 */
-	protected function loadDefaultTables() {
-		$this->mTables = [];
+	protected function loadDefaultTables(): array {
+		$tables = [];
 		foreach ( $this->getVariants() as $variant ) {
-			$this->mTables[$variant] = new ReplacementArray();
+			$tables[$variant] = new ReplacementArray();
 		}
+		return $tables;
 	}
 
 	public function translate( $text, $variant ) {

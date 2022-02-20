@@ -126,8 +126,11 @@ class SrConverter extends LanguageConverterSpecific {
 		];
 	}
 
-	protected function loadDefaultTables() {
-		$this->mTables = [
+	/**
+	 * @inheritDoc
+	 */
+	protected function loadDefaultTables(): array {
+		return [
 			'sr-ec' => new ReplacementArray( $this->mToCyrillics ),
 			'sr-el' => new ReplacementArray( $this->mToLatin ),
 			'sr' => new ReplacementArray()

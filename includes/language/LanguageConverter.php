@@ -93,7 +93,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 
 	/** @var bool */
 	private $mTablesLoaded = false;
-	/** @var ReplacementArray[]|bool[] */
+	/** @var ReplacementArray[] */
 	protected $mTables = [];
 	/** @var Language|StubUserLang */
 	private $mLangObj;
@@ -1140,19 +1140,15 @@ abstract class LanguageConverter implements ILanguageConverter {
 
 	/**
 	 * Load default conversion tables.
-	 * This method must be implemented in derived class.
 	 *
-	 * @throws MWException
+	 * @return array
 	 */
-	protected function loadDefaultTables() {
-		$class = static::class;
-		throw new MWException( "Must implement loadDefaultTables() method in class $class" );
-	}
+	abstract protected function loadDefaultTables(): array;
 
 	/**
 	 * Load conversion tables either from the cache or the disk.
 	 * @private
-	 * @param bool $fromCache Load from memcached? Defaults to true.
+	 * @param bool $fromCache Whether to load from cache. Defaults to true.
 	 */
 	protected function loadTables( $fromCache = true ) {
 		$languageConverterCacheType = MediaWikiServices::getInstance()
@@ -1164,31 +1160,30 @@ abstract class LanguageConverter implements ILanguageConverter {
 
 		$this->mTablesLoaded = true;
 		$cache = ObjectCache::getInstance( $languageConverterCacheType );
-		$cacheKey = $cache->makeKey( 'conversiontables', $this->getMainCode() );
-		if ( $fromCache ) {
-			$this->mTables = $cache->get( $cacheKey );
+		$cacheKey = $cache->makeKey( 'conversiontables', $this->getMainCode(), self::CACHE_VERSION_KEY );
+		if ( !$fromCache ) {
+			$cache->delete( $cacheKey );
 		}
-		if ( !$this->mTables || !array_key_exists( self::CACHE_VERSION_KEY, $this->mTables ) ) {
-			// not in cache, or we need a fresh reload.
+		$this->mTables = $cache->getWithSetCallback( $cacheKey, 43200, function () {
 			// We will first load the default tables
 			// then update them using things in MediaWiki:Conversiontable/*
-			$this->loadDefaultTables();
+			$tables = $this->loadDefaultTables();
 			foreach ( $this->getVariants() as $var ) {
 				$cached = $this->parseCachedTable( $var );
-				$this->mTables[$var]->mergeArray( $cached );
+				$tables[$var]->mergeArray( $cached );
 			}
 
-			$this->postLoadTables();
-			$this->mTables[self::CACHE_VERSION_KEY] = true;
-
-			$cache->set( $cacheKey, $this->mTables, 43200 );
-		}
+			$this->postLoadTables( $tables );
+			return $tables;
+		} );
 	}
 
 	/**
 	 * Hook for post processing after conversion tables are loaded.
+	 *
+	 * @param ReplacementArray[] &$tables
 	 */
-	protected function postLoadTables() {
+	protected function postLoadTables( &$tables ) {
 	}
 
 	/**

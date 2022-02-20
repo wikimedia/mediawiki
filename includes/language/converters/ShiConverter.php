@@ -184,8 +184,11 @@ class ShiConverter extends LanguageConverterSpecific {
 		];
 	}
 
-	protected function loadDefaultTables() {
-		$this->mTables = [
+	/**
+	 * @inheritDoc
+	 */
+	protected function loadDefaultTables(): array {
+		return [
 			'lowercase' => new ReplacementArray( $this->mUpperToLowerCaseLatin ),
 			'shi-tfng' => new ReplacementArray( $this->mToTifinagh ),
 			'shi-latn' => new ReplacementArray( $this->mToLatin ),
