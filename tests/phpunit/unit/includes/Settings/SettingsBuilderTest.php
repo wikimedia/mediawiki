@@ -234,6 +234,22 @@ class SettingsBuilderTest extends TestCase {
 				'MySetting' => [ 'a' => [ 'b' => [ 'c', 'd' ], ], ],
 			],
 		];
+		yield 'merge strategy is ignored when using config-overrides' => [
+			'settingsBatches' => [
+				[
+					'config-schema' => [ 'MySetting' => [
+						'mergeStrategy' => MergeStrategy::ARRAY_MERGE_RECURSIVE
+					], ],
+					'config-overrides' => [ 'MySetting' => [ 'a' => [ 'b' => 'c' ], ], ],
+				],
+				[
+					'config-overrides' => [ 'MySetting' => [ 'a' => [ 'b' => 'd' ], ], ],
+				]
+			],
+			'expectedGlobals' => [
+				'MySetting' => [ 'a' => [ 'b' => 'd' ], ],
+			],
+		];
 		yield 'merge strategy is applied backwards setting schema default' => [
 			'settingsBatches' => [
 				[
@@ -283,23 +299,63 @@ class SettingsBuilderTest extends TestCase {
 	public function testSetConfig() {
 		$setting = $this->newSettingsBuilder();
 
-		$setting->setConfigValues( [ 'a' => 1, 'b' => 2 ] );
+		$setting->loadArray( [
+			'config-schema' => [
+				'a' => [ 'mergeStrategy' => MergeStrategy::ARRAY_MERGE ]
+			]
+		] );
+
+		$setting->putConfigValues( [ 'a' => [ 1 ], 'b' => 2 ] );
 
 		$config = $setting->getConfig();
-		$this->assertSame( 1, $config->get( 'a' ) );
+		$this->assertSame( [ 1 ], $config->get( 'a' ) );
 		$this->assertSame( 2, $config->get( 'b' ) );
 
-		$setting->setConfigValue( 'b', 22 );
+		$setting->putConfigValues( [ 'a' => [ 11 ], 'b' => 22 ] );
 
 		$config = $setting->getConfig();
-		$this->assertSame( 1, $config->get( 'a' ) );
+		$this->assertSame( [ 1, 11 ], $config->get( 'a' ) );
+		$this->assertSame( 22, $config->get( 'b' ) );
+
+		$setting->putConfigValue( 'a', [ 111 ] );
+
+		$config = $setting->getConfig();
+		$this->assertSame( [ 1, 11, 111 ], $config->get( 'a' ) );
+		$this->assertSame( 22, $config->get( 'b' ) );
+	}
+
+	public function testOverrideConfig() {
+		$setting = $this->newSettingsBuilder();
+
+		$setting->loadArray( [
+			'config-schema' => [
+				'a' => [ 'mergeStrategy' => MergeStrategy::ARRAY_MERGE ]
+			]
+		] );
+
+		$setting->overrideConfigValues( [ 'a' => [ 1 ], 'b' => 2 ] );
+
+		$config = $setting->getConfig();
+		$this->assertSame( [ 1 ], $config->get( 'a' ) );
+		$this->assertSame( 2, $config->get( 'b' ) );
+
+		$setting->overrideConfigValues( [ 'a' => [ 11 ], 'b' => 22 ] );
+
+		$config = $setting->getConfig();
+		$this->assertSame( [ 11 ], $config->get( 'a' ) );
+		$this->assertSame( 22, $config->get( 'b' ) );
+
+		$setting->overrideConfigValue( 'a', [ 111 ] );
+
+		$config = $setting->getConfig();
+		$this->assertSame( [ 111 ], $config->get( 'a' ) );
 		$this->assertSame( 22, $config->get( 'b' ) );
 	}
 
 	public function testApplyPurgesState() {
 		$configBuilder = new ArrayConfigBuilder();
 		$setting = $this->newSettingsBuilder( [ 'configBuilder' => $configBuilder ] );
-		$setting->setConfigValue( 'MySetting', 'MyValue' )
+		$setting->putConfigValue( 'MySetting', 'MyValue' )
 			->apply();
 		$this->assertSame( 'MyValue', $configBuilder->build()->get( 'MySetting' ) );
 		$configBuilder->set( 'MySetting', 'MyOtherValue' );
