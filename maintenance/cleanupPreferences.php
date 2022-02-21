@@ -26,6 +26,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Maintenance script that removes unused preferences from the database.
  *
@@ -51,7 +53,7 @@ class CleanupPreferences extends Maintenance {
 	 *      of a bug. We don't want them.
 	 */
 	public function execute() {
-		$dbw = $this->getDB( DB_PRIMARY );
+		$dbr = $this->getDB( DB_REPLICA );
 		$hidden = $this->hasOption( 'hidden' );
 		$unknown = $this->hasOption( 'unknown' );
 
@@ -68,7 +70,7 @@ class CleanupPreferences extends Maintenance {
 			}
 			foreach ( $hiddenPrefs as $hiddenPref ) {
 				$this->deleteByWhere(
-					$dbw,
+					$dbr,
 					'Dropping hidden preferences',
 					[ 'up_property' => $hiddenPref ]
 				);
@@ -77,42 +79,48 @@ class CleanupPreferences extends Maintenance {
 
 		// Remove unknown preferences. Special-case 'userjs-' as we can't control those names.
 		if ( $unknown ) {
-			$defaultUserOptions = $this->getConfig()->get( 'DefaultUserOptions' );
+			$defaultUserOptions = MediaWikiServices::getInstance()->getUserOptionsLookup()->getDefaultOptions();
 			$where = [
-				'up_property NOT' . $dbw->buildLike( 'userjs-', $dbw->anyString() ),
-				'up_property NOT IN (' . $dbw->makeList( array_keys( $defaultUserOptions ) ) . ')',
+				'up_property NOT' . $dbr->buildLike( 'userjs-', $dbr->anyString() ),
+				'up_property NOT IN (' . $dbr->makeList( array_keys( $defaultUserOptions ) ) . ')',
 			];
 			// Allow extensions to add to the where clause to prevent deletion of their own prefs.
-			$this->getHookRunner()->onDeleteUnknownPreferences( $where, $dbw );
-			$this->deleteByWhere( $dbw, 'Dropping unknown preferences', $where );
+			$this->getHookRunner()->onDeleteUnknownPreferences( $where, $dbr );
+			$this->deleteByWhere( $dbr, 'Dropping unknown preferences', $where );
 		}
 	}
 
-	private function deleteByWhere( $dbw, $startMessage, $where ) {
+	private function deleteByWhere( $dbr, $startMessage, $where ) {
 		$this->output( $startMessage . "...\n" );
+		$dryRun = $this->hasOption( 'dry-run' );
+
+		$iterator = new BatchRowIterator(
+			$dbr,
+			'user_properties',
+			[ 'up_user', 'up_property' ],
+			$this->getBatchSize()
+		);
+		if ( $dryRun ) {
+			$iterator->setFetchColumns( [ 'up_user', 'up_property', 'up_value' ] );
+		} else {
+			$iterator->setFetchColumns( [ 'up_user', 'up_property' ] );
+		}
+		$iterator->addConditions( $where );
+		$iterator->setCaller( __METHOD__ );
+
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$dbw = $this->getDB( DB_PRIMARY );
 		$total = 0;
-		while ( true ) {
-			$res = $dbw->select(
-				'user_properties',
-				'*', // The table lacks a primary key, so select the whole row
-				$where,
-				__METHOD__,
-				[ 'LIMIT' => $this->mBatchSize ]
-			);
-
-			$numRows = $res->numRows();
+		foreach ( $iterator as $batch ) {
+			$numRows = count( $batch );
 			$total += $numRows;
-			if ( $res->numRows() <= 0 ) {
-				$this->output( "DONE! (handled $total entries)\n" );
-				break;
-			}
-
 			// Progress or something
 			$this->output( "..doing $numRows entries\n" );
 
 			// Delete our batch, then wait
-			foreach ( $res as $row ) {
-				if ( $this->hasOption( 'dry-run' ) ) {
+			$deleteWhere = [];
+			foreach ( $batch as $row ) {
+				if ( $dryRun ) {
 					$this->output(
 						"    DRY RUN, would drop: " .
 						"[up_user] => '{$row->up_user}' " .
@@ -121,19 +129,19 @@ class CleanupPreferences extends Maintenance {
 					);
 					continue;
 				}
-				$this->beginTransaction( $dbw, __METHOD__ );
+				$deleteWhere[$row->up_user][$row->up_property] = true;
+			}
+			if ( $deleteWhere && !$dryRun ) {
 				$dbw->delete(
 					'user_properties',
-					[
-						'up_user'     => $row->up_user,
-						'up_property' => $row->up_property,
-						'up_value'    => $row->up_value,
-					],
+					$dbw->makeWhereFrom2d( $deleteWhere, 'up_user', 'up_property' ),
 					__METHOD__
 				);
-				$this->commitTransaction( $dbw, __METHOD__ );
+
+				$lbFactory->waitForReplication();
 			}
 		}
+		$this->output( "DONE! (handled $total entries)\n" );
 	}
 }
 

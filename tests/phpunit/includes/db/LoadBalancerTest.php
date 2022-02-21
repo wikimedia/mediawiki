@@ -443,7 +443,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection()
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::openConnection()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getAnyOpenConnection()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getWriterIndex()
 	 */
@@ -492,7 +491,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::openConnection()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getWriterIndex()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::forEachOpenPrimaryConnection()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::setTransactionListener()
@@ -525,8 +523,8 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() )
 		] );
 
-		$conn1 = $lb->openConnection( $lb->getWriterIndex(), false );
-		$conn2 = $lb->openConnection( $lb->getWriterIndex(), '' );
+		$conn1 = $lb->getConnection( $lb->getWriterIndex(), [], false );
+		$conn2 = $lb->getConnection( $lb->getWriterIndex(), [], '' );
 
 		$count = 0;
 		$lb->forEachOpenPrimaryConnection( static function () use ( &$count ) {
