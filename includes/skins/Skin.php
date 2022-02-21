@@ -414,7 +414,7 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Preload the existence of three commonly-requested pages in a single query
 	 */
-	protected function preloadExistence() {
+	private function preloadExistence() {
 		$titles = [];
 
 		// User/talk link
