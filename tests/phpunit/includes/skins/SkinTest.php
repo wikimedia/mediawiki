@@ -3,6 +3,7 @@
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
@@ -10,6 +11,9 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 
+/**
+ * @covers Skin
+ */
 class SkinTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
 
@@ -484,5 +488,45 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertTrue( $existingUser->equals( $skin->getRelevantUser() ) );
 		$this->assertSame( $existingUser->getId(), $skin->getRelevantUser()->getId() );
+	}
+
+	public function testBuildSidebarCache() {
+		// T303007: Skin subclasses and Skin hooks may vary their sidebar contents.
+		$this->overrideConfigValues( [
+			MainConfigNames::UseDatabaseMessages => true,
+			MainConfigNames::EnableSidebarCache => true,
+			MainConfigNames::SidebarCacheExpiry => 3600,
+		] );
+		$id = 0;
+		$this->setTemporaryHook( 'SkinBuildSidebar',
+			static function ( Skin $skin, array &$bar ) use ( &$id ) {
+				$id++;
+				if ( $skin->getSkinName() === 'foo' ) {
+					$bar['myhook'] = "foo $id";
+				}
+				if ( $skin->getSkinName() === 'bar' ) {
+					$bar['myhook'] = "bar $id";
+				}
+			}
+		);
+		$context = RequestContext::newExtraneousContext( Title::makeTitle( NS_SPECIAL, 'Blankpage' ) );
+		$foo1 = new class( 'foo' ) extends Skin {
+			public function outputPage() {
+			}
+		};
+		$foo2 = new class( 'foo' ) extends Skin {
+			public function outputPage() {
+			}
+		};
+		$bar = new class( 'bar' ) extends Skin {
+			public function outputPage() {
+			}
+		};
+		$foo1->setContext( $context );
+		$foo2->setContext( $context );
+		$bar->setContext( $context );
+		$this->assertArrayContains( [ 'myhook' => 'foo 1' ], $foo1->buildSidebar(), 'fresh' );
+		$this->assertArrayContains( [ 'myhook' => 'foo 1' ], $foo2->buildSidebar(), 'cache hit' );
+		$this->assertArrayContains( [ 'myhook' => 'bar 2' ], $bar->buildSidebar(), 'cache miss' );
 	}
 }

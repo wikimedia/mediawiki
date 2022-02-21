@@ -1,7 +1,5 @@
 <?php
 /**
- * Base class for all skins.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -48,7 +46,7 @@ use Wikimedia\WrappedStringList;
  */
 
 /**
- * The main skin class which provides methods and properties for all other skins.
+ * The base class for all skins.
  *
  * See docs/Skin.md for more information.
  *
@@ -1493,7 +1491,7 @@ abstract class Skin extends ContextSource {
 
 			$sidebar = $config->get( MainConfigNames::EnableSidebarCache )
 				? $wanCache->getWithSetCallback(
-					$wanCache->makeKey( 'sidebar', $languageCode ),
+					$wanCache->makeKey( 'sidebar', $languageCode, $this->getSkinName() ?? '' ),
 					$config->get( MainConfigNames::SidebarCacheExpiry ),
 					$callback,
 					[
