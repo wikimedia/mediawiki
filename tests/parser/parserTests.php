@@ -28,6 +28,8 @@ require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
+use MediaWiki\Tests\AnsiTermColorer;
+use MediaWiki\Tests\DummyTermColorer;
 
 class ParserTestsMaintenance extends Maintenance {
 	public function __construct() {

@@ -94,7 +94,6 @@
 		<exclude-pattern>*/maintenance/renderDump\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/shell\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/sql\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/term/MWTerm\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/update\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/userOptions\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/view\.php</exclude-pattern>
@@ -165,7 +164,6 @@
 		<exclude-pattern>*/maintenance/preprocessorFuzzTest\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/StatOutputs\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/generateCollationData\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/term/MWTerm\.php</exclude-pattern>
 		<!-- Language converters use the pattern of 2 classes in one file -->
 		<exclude-pattern>*/languages/*</exclude-pattern>
 		<!-- We don't care that much about violations in tests -->

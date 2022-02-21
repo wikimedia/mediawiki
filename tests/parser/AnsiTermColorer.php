@@ -1,8 +1,5 @@
 <?php
 /**
- * Set of classes to help with test output and such. Right now pretty specific
- * to the parser tests but could be more useful one day :)
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,27 +16,16 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Maintenance Testing
  */
 
-/**
- * @defgroup TermColorer TermColorer
- * @ingroup Maintenance Testing
- * @todo Fixme: Make this more generic
- *
- * Set of classes to help with test output and such. Right now pretty specific
- * to the parser tests but could be more useful one day :)
- */
+namespace MediaWiki\Tests;
 
 /**
  * Terminal that supports ANSI escape sequences.
  *
- * @ingroup TermColorer
+ * @ingroup Testing
  */
 class AnsiTermColorer {
-	public function __construct() {
-	}
-
 	/**
 	 * Return ANSI terminal escape code for changing text attribs/color
 	 *
@@ -61,20 +47,5 @@ class AnsiTermColorer {
 	 */
 	public function reset() {
 		return $this->color( '0' );
-	}
-}
-
-/**
- * A colour-less terminal
- *
- * @ingroup TermColorer
- */
-class DummyTermColorer {
-	public function color( $color ) {
-		return '';
-	}
-
-	public function reset() {
-		return '';
 	}
 }
