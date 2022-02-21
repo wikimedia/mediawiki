@@ -77,6 +77,9 @@ class TransactionManager {
 	/** @var bool Whether the current transaction was started implicitly by startAtomic() */
 	private $trxAutomaticAtomic = false;
 
+	/** @var string|null Name of the function that start the last transaction */
+	private $trxFname = null;
+
 	/** @var LoggerInterface */
 	private $logger;
 
@@ -99,8 +102,9 @@ class TransactionManager {
 	/**
 	 * TODO: This should be removed once all usages have been migrated here
 	 * @param string $mode One of IDatabase::TRANSACTION_* values
+	 * @param string $fname method name
 	 */
-	public function newTrxId( $mode ) {
+	public function newTrxId( $mode, $fname ) {
 		static $nextTrxId;
 		$nextTrxId = ( $nextTrxId !== null ? $nextTrxId++ : mt_rand() ) % 0xffff;
 		$this->trxId = sprintf( '%06x', mt_rand( 0, 0xffffff ) ) . sprintf( '%04x', $nextTrxId );
@@ -119,6 +123,7 @@ class TransactionManager {
 		// tracking fields (e.g. trxAtomicLevels).
 		$this->trxAutomatic = ( $mode === IDatabase::TRANSACTION_INTERNAL );
 		$this->trxAutomaticAtomic = false;
+		$this->trxFname = $fname;
 	}
 
 	/**
@@ -293,7 +298,7 @@ class TransactionManager {
 		return $this->trxLevel() && ( $this->trxAtomicLevels || !$this->trxAutomatic );
 	}
 
-	public function trxCheckBeforeClose( IDatabase $db, $fname, $trxFname ) {
+	public function trxCheckBeforeClose( IDatabase $db, $fname ) {
 		$error = null;
 		if ( $this->trxAtomicLevels ) {
 			// Cannot let incomplete atomic sections be committed
@@ -309,7 +314,7 @@ class TransactionManager {
 		} else {
 			// Manual transactions should have been committed or rolled
 			// back, even if empty.
-			$error = "$fname: transaction is still open (from {$trxFname})";
+			$error = "$fname: transaction is still open (from {$this->trxFname})";
 		}
 
 		return $error;
@@ -340,17 +345,17 @@ class TransactionManager {
 			( count( $this->trxAtomicLevels ) - 1 ) . " ($fname)", [ 'db_log_category' => 'trx' ] );
 	}
 
-	public function onBeginTransaction( IDatabase $db, $fname, $trxFname ): void {
+	public function onBeginTransaction( IDatabase $db, $fname ): void {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		if ( $this->trxAtomicLevels ) {
 			$levels = $this->flatAtomicSectionList();
 			$msg = "$fname: got explicit BEGIN while atomic section(s) $levels are open";
 			throw new DBUnexpectedError( $db, $msg );
 		} elseif ( !$this->trxAutomatic ) {
-			$msg = "$fname: explicit transaction already active (from {$trxFname})";
+			$msg = "$fname: explicit transaction already active (from {$this->trxFname})";
 			throw new DBUnexpectedError( $db, $msg );
 		} else {
-			$msg = "$fname: implicit transaction already active (from {$trxFname})";
+			$msg = "$fname: implicit transaction already active (from {$this->trxFname})";
 			throw new DBUnexpectedError( $db, $msg );
 		}
 	}
@@ -478,5 +483,21 @@ class TransactionManager {
 
 	public function turnOnAutomatic() {
 		$this->trxAutomatic = true;
+	}
+
+	public function onNextSavePointId( IDatabase $db, $fname, $savepointId ) {
+		if ( strlen( $savepointId ) > 30 ) {
+			// 30 == Oracle's identifier length limit (pre 12c)
+			// With a 22 character prefix, that puts the highest number at 99999999.
+			throw new DBUnexpectedError(
+				$db,
+				'There have been an excessively large number of atomic sections in a transaction'
+				. " started by $this->trxFname (at $fname)"
+			);
+		}
+	}
+
+	public function getTrxFname() {
+		return $this->trxFname;
 	}
 }
