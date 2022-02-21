@@ -1512,7 +1512,7 @@ abstract class Skin extends ContextSource {
 
 			$sidebar = $config->get( MainConfigNames::EnableSidebarCache )
 				? $wanCache->getWithSetCallback(
-					$wanCache->makeKey( 'sidebar', $languageCode ),
+					$wanCache->makeKey( 'sidebar', $languageCode, $this->getSkinName() ?? '' ),
 					$config->get( MainConfigNames::SidebarCacheExpiry ),
 					$callback,
 					[
