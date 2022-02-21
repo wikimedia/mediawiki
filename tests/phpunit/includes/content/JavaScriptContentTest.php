@@ -223,7 +223,6 @@ class JavaScriptContentTest extends TextContentTest {
 	}
 
 	public static function provideUpdateRedirect() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				'#REDIRECT [[Someplace]]',
@@ -284,7 +283,6 @@ class JavaScriptContentTest extends TextContentTest {
 	 * Keep this in sync with JavaScriptContentHandlerTest::provideMakeRedirectContent()
 	 */
 	public static function provideGetRedirectTarget() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				'MediaWiki:MonoBook.js',

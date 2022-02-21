@@ -59,7 +59,6 @@ class BooleanDefTest extends TypeDefTestCase {
 				[],
 				[],
 				[
-					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-boolean"><text>1</text></message>',
 				],
 			],
@@ -67,7 +66,6 @@ class BooleanDefTest extends TypeDefTestCase {
 				[ ParamValidator::PARAM_ISMULTI => true ],
 				[],
 				[
-					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-boolean"><text>2</text></message>',
 				],
 			],

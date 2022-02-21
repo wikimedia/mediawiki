@@ -163,7 +163,6 @@ class ResourceLoaderSkinModuleTest extends ResourceLoaderTestCase {
 	}
 
 	public static function provideGetStyles() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				'parent' => [],

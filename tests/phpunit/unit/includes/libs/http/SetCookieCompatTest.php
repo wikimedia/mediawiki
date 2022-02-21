@@ -11,7 +11,6 @@ class SetCookieCompatTest extends TestCase {
 
 	public static function provideSetCookieEmulated() {
 		// Expected values are all copied from PHP 7.4
-		// phpcs:disable Generic.Files.LineLength.TooLong
 		return [
 			'unrecognised key' => [
 				true, 'a', '',

@@ -80,7 +80,6 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	public function provideIsFileMetadataValid() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			[ '0', GIFHandler::METADATA_GOOD ],
 			[ '', GIFHandler::METADATA_BAD ],
@@ -107,7 +106,6 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	}
 
 	public static function provideGetSizeAndMetadata() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				'nonanimated.gif',

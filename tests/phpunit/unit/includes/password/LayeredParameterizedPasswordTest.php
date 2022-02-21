@@ -35,7 +35,6 @@ class LayeredParameterizedPasswordTest extends PasswordTestCase {
 	}
 
 	public static function providePasswordTests() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				true,

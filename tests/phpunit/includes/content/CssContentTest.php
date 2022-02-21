@@ -109,7 +109,6 @@ class CssContentTest extends TextContentTest {
 	 * Keep this in sync with CssContentHandlerTest::provideMakeRedirectContent()
 	 */
 	public static function provideGetRedirectTarget() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			[ 'MediaWiki:MonoBook.css', "/* #REDIRECT */@import url(//example.org/w/index.php?title=MediaWiki:MonoBook.css&action=raw&ctype=text/css);" ],
 			[ 'User:FooBar/common.css', "/* #REDIRECT */@import url(//example.org/w/index.php?title=User:FooBar/common.css&action=raw&ctype=text/css);" ],

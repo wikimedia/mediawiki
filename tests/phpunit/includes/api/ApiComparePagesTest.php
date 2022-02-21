@@ -186,7 +186,6 @@ class ApiComparePagesTest extends ApiTestCase {
 	}
 
 	public static function provideDiff() {
-		// phpcs:disable Generic.Files.LineLength.TooLong
 		return [
 			'Basic diff, titles' => [
 				[
