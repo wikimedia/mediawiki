@@ -156,7 +156,13 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 				'Trailing space ',
 				[ UserNameUtils::RIGOR_CREATABLE => 'Trailing space' ]
 			],
-			'Namespace prefix' => [
+			'Subject namespace prefix' => [
+				'User:Username',
+				[
+					UserNameUtils::RIGOR_NONE => 'Username'
+				]
+			],
+			'Talk namespace prefix' => [
 				'Talk:Username',
 				[
 					UserNameUtils::RIGOR_CREATABLE => false,
