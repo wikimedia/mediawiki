@@ -90,7 +90,7 @@ class FileDeleteForm {
 				$deletePage->setDeleteAssociatedTalk( true );
 			}
 			$dbw = wfGetDB( DB_PRIMARY );
-			$dbw->startAtomic( __METHOD__ );
+			$dbw->startAtomic( __METHOD__, $dbw::ATOMIC_CANCELABLE );
 			// delete the associated article first
 			$deleteStatus = $deletePage
 				->setSuppress( $suppress )
@@ -129,8 +129,7 @@ class FileDeleteForm {
 					$dbw->endAtomic( __METHOD__ );
 				} else {
 					// Page deleted but file still there? rollback page delete
-					$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-					$lbFactory->rollbackPrimaryChanges( __METHOD__ );
+					$dbw->cancelAtomic( __METHOD__ );
 				}
 			} else {
 				$dbw->endAtomic( __METHOD__ );
