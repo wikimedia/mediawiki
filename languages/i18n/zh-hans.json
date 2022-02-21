@@ -175,7 +175,8 @@
 			"Ericliu1912",
 			"孟天皓",
 			"小美粉粉",
-			"魔琴"
+			"魔琴",
+			"ShuyanW"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -635,7 +636,7 @@
 	"loginsuccesstitle": "已登录",
 	"loginsuccess": "<strong>您现在已经以\"$1\"的身份登录了{{SITENAME}}。</strong>",
 	"nosuchuser": "没有名为“$1”的用户。用户名区分大小写。请检查您的拼写或[[Special:CreateAccount|创建新账户]]。",
-	"nosuchusershort": "没有名为“$1”的用户。\n请检查您的拼写。",
+	"nosuchusershort": "没有名为“$1”的用户。请检查您的拼写。",
 	"nouserspecified": "您必须指定一个用户名。",
 	"login-userblocked": "此用户已被封禁，禁止登录。",
 	"wrongpassword": "您输入的用户名或密码错误。\n请重试。",

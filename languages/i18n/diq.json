@@ -301,7 +301,7 @@
 	"viewdeleted": "$1 bıvêne?",
 	"restorelink": "{{PLURAL:$1|yew vurnayışo esteriyaye|$1 vurnayışê esteriyayeyi}}",
 	"feedlinks": "Weyiyekerdış:",
-	"feed-invalid": "Qeydey cıresnayışê  beğşi nêvêreno.",
+	"feed-invalid": "Qeydeyê cıresnayışê beğşi nêvêreno.",
 	"feed-unavailable": "Cıresnayışê şebekey çıniyê",
 	"site-rss-feed": "$1 Cıresnayışê RSSi",
 	"site-atom-feed": "$1 Cıresnayışê atomi",

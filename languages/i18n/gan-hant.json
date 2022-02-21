@@ -16,7 +16,8 @@
 			"Xiaomingyan",
 			"아라",
 			"Hello903hello",
-			"星海"
+			"星海",
+			"Ericliu1912"
 		]
 	},
 	"tog-underline": "下劃連結",
@@ -1121,7 +1122,7 @@
 	"cantmove-titleprotected": "倷移伓正一隻頁面到箇隻位置，箇隻新題目已經拕保護起來嘞，新建伓正。",
 	"movetalk": "移動相關嗰討論頁",
 	"movelogpage": "移動日誌",
-	"movelogpagetext": "下底係移動哩嗰頁面列表:",
+	"movelogpagetext": "下底係移動哩嗰頁面列表：",
 	"movereason": "原因:",
 	"revertmove": "舞還原",
 	"delete_and_move_text": "==需要刪除==\n\n目標文章\"[[:$1]]\"存在嘞。為到移動佢，倷要刪卟舊頁面？",
