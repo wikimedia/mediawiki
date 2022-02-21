@@ -131,8 +131,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var array|null Replication lag estimate at the time of BEGIN for the last transaction */
 	private $trxReplicaLagStatus = null;
-	/** @var string|null Name of the function that start the last transaction */
-	private $trxFname = null;
 	/** @var bool Whether possible write queries were done in the last transaction started */
 	private $trxDoneWrites = false;
 	/** @var int Counter for atomic savepoint identifiers (reset with each transaction) */
@@ -911,7 +909,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->conn ) {
 			// Roll back any dangling transaction first
 			if ( $this->trxLevel() ) {
-				$error = $this->transactionManager->trxCheckBeforeClose( $this, $fname, $this->trxFname );
+				$error = $this->transactionManager->trxCheckBeforeClose( $this, $fname );
 
 				if ( $this->trxEndCallbacksSuppressed && $error === null ) {
 					$error = "$fname: callbacks are suppressed; cannot properly commit";
@@ -4496,15 +4494,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	private function nextSavepointId( $fname ) {
 		$savepointId = self::SAVEPOINT_PREFIX . ++$this->trxAtomicCounter;
-		if ( strlen( $savepointId ) > 30 ) {
-			// 30 == Oracle's identifier length limit (pre 12c)
-			// With a 22 character prefix, that puts the highest number at 99999999.
-			throw new DBUnexpectedError(
-				$this,
-				'There have been an excessively large number of atomic sections in a transaction'
-				. " started by $this->trxFname (at $fname)"
-			);
-		}
+		$this->transactionManager->onNextSavePointId( $this, $fname, $savepointId );
 
 		return $savepointId;
 	}
@@ -4697,7 +4687,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		// Protect against mismatched atomic section, transaction nesting, and snapshot loss
 		if ( $this->trxLevel() ) {
-			$this->transactionManager->onBeginTransaction( $this, $fname, $this->trxFname );
+			$this->transactionManager->onBeginTransaction( $this, $fname );
 		} elseif ( $this->getFlag( self::DBO_TRX ) && $mode !== self::TRANSACTION_INTERNAL ) {
 			$msg = "$fname: implicit transaction expected (DBO_TRX set)";
 			throw new DBUnexpectedError( $this, $msg );
@@ -4712,10 +4702,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->completeCriticalSection( __METHOD__, $cs );
 			throw $e;
 		}
-		$this->transactionManager->newTrxId( $mode );
+		$this->transactionManager->newTrxId( $mode, $fname );
 		$this->trxAtomicCounter = 0;
 		$this->transactionManager->setTrxTimestamp( microtime( true ) );
-		$this->trxFname = $fname;
 		$this->trxDoneWrites = false;
 		// With REPEATABLE-READ isolation, the first SELECT establishes the read snapshot,
 		// so get the replication lag estimate before any transaction SELECT queries come in.
@@ -4872,12 +4861,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function flushSnapshot( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
+		$trxFname = $this->transactionManager->getTrxFname();
 		if ( $this->transactionManager->explicitTrxActive() ) {
 			// Committing this transaction would break callers that assume it is still open
 			throw new DBUnexpectedError(
 				$this,
 				"$fname: Cannot flush snapshot; " .
-				"explicit transaction '{$this->trxFname}' is still open"
+				"explicit transaction '{$trxFname}' is still open"
 			);
 		} elseif ( $this->writesOrCallbacksPending() ) {
 			// This only flushes transactions to clear snapshots, not to write data
@@ -4885,7 +4875,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new DBUnexpectedError(
 				$this,
 				"$fname: Cannot flush snapshot; " .
-				"writes from transaction {$this->trxFname} are still pending ($fnames)"
+				"writes from transaction {$trxFname} are still pending ($fnames)"
 			);
 		} elseif (
 			$this->trxLevel() &&
@@ -5486,12 +5476,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ) {
 		if ( $this->writesOrCallbacksPending() ) {
+			$trxFname = $this->transactionManager->getTrxFname();
 			// This only flushes transactions to clear snapshots, not to write data
 			$fnames = implode( ', ', $this->pendingWriteAndCallbackCallers() );
 			throw new DBUnexpectedError(
 				$this,
 				"$fname: Cannot flush pre-lock snapshot; " .
-				"writes from transaction {$this->trxFname} are still pending ($fnames)"
+				"writes from transaction {$trxFname} are still pending ($fnames)"
 			);
 		}
 
@@ -5907,7 +5898,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	public function __destruct() {
 		if ( $this->trxLevel() && $this->trxDoneWrites ) {
-			trigger_error( "Uncommitted DB writes (transaction from {$this->trxFname})" );
+			$trxFname = $this->transactionManager->getTrxFname();
+			trigger_error( "Uncommitted DB writes (transaction from {$trxFname})" );
 		}
 
 		$danglingWriters = $this->pendingWriteAndCallbackCallers();
