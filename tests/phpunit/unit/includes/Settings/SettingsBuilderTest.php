@@ -547,11 +547,26 @@ class SettingsBuilderTest extends TestCase {
 
 	public function testGetDefaultConfig() {
 		$defaultConfig = $this->newSettingsBuilder()
-			->loadArray( [ 'config-schema' => [ 'MySetting' => [ 'default' => 'bla' ], ], ] )
+			->loadArray( [ 'config-schema' => [
+				'MySetting' => [ 'default' => 'bla' ],
+				'OtherSetting' => [ 'type' => 'number' ], // no default
+				] ] )
 			->apply()
 			->getDefaultConfig();
+
 		$this->assertTrue( $defaultConfig->has( 'MySetting' ) );
 		$this->assertSame( 'bla', $defaultConfig->get( 'MySetting' ) );
+
+		$this->assertTrue( $defaultConfig->has( 'OtherSetting' ) );
+		$this->assertNull( $defaultConfig->get( 'OtherSetting' ) );
 	}
 
+	public function testGetConfigSchema() {
+		$configSchema = $this->newSettingsBuilder()
+			->loadArray( [ 'config-schema' => [ 'MySetting' => [ 'default' => 'bla' ], ], ] )
+			->apply()
+			->getConfigSchema();
+		$this->assertTrue( $configSchema->hasSchemaFor( 'MySetting' ) );
+		$this->assertSame( 'bla', $configSchema->getDefaultFor( 'MySetting' ) );
+	}
 }

@@ -11,6 +11,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Cache\CachedSource;
 use MediaWiki\Settings\Config\ConfigBuilder;
+use MediaWiki\Settings\Config\ConfigSchema;
 use MediaWiki\Settings\Config\ConfigSchemaAggregator;
 use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\Source\ArraySource;
@@ -195,7 +196,8 @@ class SettingsBuilder {
 	}
 
 	/**
-	 * Return a Config object with all the default settings loaded so far.
+	 * Return a Config object with default for all settings from all schemas loaded so far.
+	 * If the schema for a setting doesn't specify a default, null is assumed.
 	 *
 	 * @note This will implicitly call apply()
 	 *
@@ -203,7 +205,22 @@ class SettingsBuilder {
 	 */
 	public function getDefaultConfig(): IterableConfig {
 		$this->apply();
-		return new HashConfig( $this->configSchema->getDefaults() );
+		$defaults = $this->configSchema->getDefaults();
+		$nulls = array_fill_keys( $this->configSchema->getDefinedKeys(), null );
+
+		return new HashConfig( array_merge( $nulls, $defaults ) );
+	}
+
+	/**
+	 * Return the configuration schema.
+	 *
+	 * @note This will implicitly call apply()
+	 *
+	 * @return ConfigSchema
+	 */
+	public function getConfigSchema(): ConfigSchema {
+		$this->apply();
+		return $this->configSchema;
 	}
 
 	/**

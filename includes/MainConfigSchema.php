@@ -33,9 +33,11 @@ use EnotifNotifyJob;
 use EnqueueJob;
 use EventRelayerNull;
 use FallbackContentHandler;
+use Generator;
 use HashBagOStuff;
 use HTMLCacheUpdateJob;
 use ImportLogFormatter;
+use InvalidArgumentException;
 use JavaScriptContentHandler;
 use JobQueueDB;
 use JsonContentHandler;
@@ -58,6 +60,7 @@ use ProtectLogFormatter;
 use PublishStashedFileJob;
 use RecentChangesUpdateJob;
 use RedisPubSubFeedEngine;
+use ReflectionClass;
 use RefreshLinksJob;
 use ReplicatedBagOStuff;
 use RevertedTagUpdateJob;
@@ -100,6 +103,74 @@ use WinCacheBagOStuff;
  */
 class MainConfigSchema {
 
+	/**
+	 * Returns a generator for iterating over all config settings and their default values.
+	 * The primary use of this method is to import default values into local scope.
+	 * @code
+	 *   foreach ( MainConfigSchema::listDefaultValues( 'wg' ) as $var => $value ) {
+	 *       $$var = $value;
+	 *   }
+	 * @endcode
+	 *
+	 * There should be no reason for application logic to do this.
+	 *
+	 * @note This method is relatively slow, it should not be used by
+	 *       performance critical code. Application logic should generally
+	 *       use ConfigSchema instead
+	 *
+	 * @param string $prefix A prefix to prepend to each setting name.
+	 *        Typically, this will be "wg" when constructing global
+	 *        variable names.
+	 *
+	 * @return Generator<string,mixed> $settingName => $defaultValue
+	 */
+	public static function listDefaultValues( string $prefix = '' ): Generator {
+		$class = new ReflectionClass( self::class );
+		foreach ( $class->getReflectionConstants() as $const ) {
+			if ( !$const->isPublic() ) {
+				continue;
+			}
+
+			$value = $const->getValue();
+
+			if ( !is_array( $value ) ) {
+				// Just in case we end up having some other kind of constant on this class.
+				continue;
+			}
+
+			$name = $const->getName();
+			yield "$prefix$name" => $value['default'] ?? null;
+		}
+	}
+
+	/**
+	 * Returns the default value of the given config setting.
+	 *
+	 * @note This method is relatively slow, it should not be used by
+	 *       performance critical code. Application logic should generally
+	 *       use ConfigSchema instead
+	 *
+	 * @param string $name The config setting name.
+	 *
+	 * @return mixed The given config setting's default value, or null
+	 *         if no default value is specified in the schema.
+	 */
+	public static function getDefaultValue( string $name ) {
+		$class = new ReflectionClass( self::class );
+		if ( !$class->hasConstant( $name ) ) {
+			throw new InvalidArgumentException( "Unknown setting: $name" );
+		}
+		$value = $class->getConstant( $name );
+
+		if ( !is_array( $value ) ) {
+			// Might happen if we end up having other kinds of constants on this class.
+			throw new InvalidArgumentException( "Unknown setting: $name" );
+		}
+
+		return $value['default'] ?? null;
+	}
+
+	/***************************************************************************/
 	/**
 	 * Registry of factory functions to create config objects:
 	 * The 'main' key must be set, and the value should be a valid
