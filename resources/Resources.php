@@ -1456,7 +1456,7 @@ return [
 	],
 	'mediawiki.action.styles' => [
 		'targets' => [ 'desktop', 'mobile' ],
-		'styles' => 'resources/src/mediawiki.action/styles.less',
+		'styles' => 'resources/src/mediawiki.action.styles/styles.less',
 	],
 
 	/* MediaWiki Language */
