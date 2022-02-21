@@ -86,7 +86,7 @@ return [
 		'Logos' => [
 			'default' => false,
 			'type' => [
-				0 => 'array',
+				0 => 'object',
 				1 => 'boolean',
 			],
 		],

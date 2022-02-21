@@ -212,7 +212,7 @@ config-schema:
             Ignored if $wgLogos is set.
     Logos:
         default: false
-        type: [ array, boolean ]
+        type: [ object, boolean ]
         description: |-
             Specification for different versions of the wiki logo.
 
