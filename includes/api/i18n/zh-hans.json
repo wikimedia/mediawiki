@@ -427,7 +427,7 @@
 	"apihelp-parse-param-preview": "在预览模式下解析。",
 	"apihelp-parse-param-sectionpreview": "在段落预览模式下解析（同时要启用预览模式）。",
 	"apihelp-parse-param-disabletoc": "在输出中省略目录。",
-	"apihelp-parse-param-useskin": "为解析器输出应用选择的皮肤。会影响以下属性：<kbd>langlinks</kbd>、<kbd>headitems</kbd>、<kbd>modules</kbd>、<kbd>jsconfigvars</kbd>和<kbd>indicators</kbd>。",
+	"apihelp-parse-param-useskin": "为解析器输出应用选择的皮肤。会影响以下属性：<kbd>text</kbd>、<kbd>langlinks</kbd>、<kbd>headitems</kbd>、<kbd>modules</kbd>、<kbd>jsconfigvars</kbd>和<kbd>indicators</kbd>。",
 	"apihelp-parse-param-contentformat": "用于输入文本的内容序列化格式。只当与$1text一起使用时有效。",
 	"apihelp-parse-param-contentmodel": "输入文本的内容模型。如果省略，$1title必须指定，并且默认将为指定标题的模型。只当与$1text一起使用时有效。",
 	"apihelp-parse-example-page": "解析一个页面。",

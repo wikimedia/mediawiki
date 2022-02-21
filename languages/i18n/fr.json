@@ -1110,7 +1110,7 @@
 	"revertmerge": "Séparer",
 	"mergelogpagetext": "Voici la liste des fusions les plus récentes de l’historique d’une page dans celui d’une autre.",
 	"history-title": "« $1 » : historique des versions",
-	"difference-title": "« $1 » : différence entre les révisions",
+	"difference-title": "« $1 » : différence entre les versions",
 	"difference-title-multipage": "« $1 » et « $2 » : différence entre les pages",
 	"difference-multipage": "(Différence entre les pages)",
 	"lineno": "Ligne $1 :",

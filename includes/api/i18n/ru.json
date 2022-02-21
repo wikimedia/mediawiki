@@ -409,7 +409,7 @@
 	"apihelp-parse-param-preview": "Проанализировать в режиме препросмотра.",
 	"apihelp-parse-param-sectionpreview": "Распарсить в режиме предпросмотра раздела (также активирует режим предпросмотра).",
 	"apihelp-parse-param-disabletoc": "Не включать в вывод содержание.",
-	"apihelp-parse-param-useskin": "Применить выбранную тему оформления к результату работы парсера. Может затронуть следующие свойства: <kbd>langlinks</kbd>, <kbd>headitems</kbd>, <kbd>modules</kbd>, <kbd>jsconfigvars</kbd>, <kbd>indicators</kbd>.",
+	"apihelp-parse-param-useskin": "Применить выбранную тему оформления к результату работы парсера. Может затронуть следующие свойства: <kbd>text</kbd>, <kbd>langlinks</kbd>, <kbd>headitems</kbd>, <kbd>modules</kbd>, <kbd>jsconfigvars</kbd>, <kbd>indicators</kbd>.",
 	"apihelp-parse-param-contentformat": "Формат сериализации содержимого, использующийся во входном тексте. Доступен только при использовании с $1text.",
 	"apihelp-parse-param-contentmodel": "Модель содержимого входного текста. Если пропущена, должен быть задан $1title, и значение по умолчанию будет взято в зависимости от указанного названия. Доступно только при использовании с $1text.",
 	"apihelp-parse-example-page": "Парсинг страницы.",
