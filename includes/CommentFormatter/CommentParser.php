@@ -471,8 +471,8 @@ class CommentParser {
 				$text,
 				/* escape = */ false // Already escaped
 			);
-		} elseif ( Title::newFromLinkTarget( $target )->isAlwaysKnown() ||
-			$this->linkCache->getGoodLinkID( $target )
+		} elseif ( $this->linkCache->getGoodLinkID( $target ) ||
+			Title::newFromLinkTarget( $target )->isAlwaysKnown()
 		) {
 			// Already known
 			return $this->linkRenderer->makeKnownLink( $target, new HtmlArmor( $text ) );
