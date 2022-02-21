@@ -45,54 +45,74 @@ class SkinComponentTableOfContentsTest extends MediaWikiUnitTestCase {
 
 		return [
 			[
+				// isTocEnabled
+				false,
 				// sections data
 				[],
+				// expected
 				[]
 			],
 			[
+				// isTocEnabled
+				true,
+				// sections data
 				[
 					$SECTION_1,
 					$SECTION_2
 				],
+				// expected
 				[
-					$SECTION_1 + [
-						'array-sections' => [],
-						'is-top-level-section' => true,
-						'is-parent-section' => false,
-						],
-					$SECTION_2 + [
-						'array-sections' => [],
-						'is-top-level-section' => true,
-						'is-parent-section' => false,
-						]
+					'number-section-count' => 2,
+					'array-sections' => [
+						$SECTION_1 + [
+							'array-sections' => [],
+							'is-top-level-section' => true,
+							'is-parent-section' => false,
+							],
+						$SECTION_2 + [
+							'array-sections' => [],
+							'is-top-level-section' => true,
+							'is-parent-section' => false,
+							]
+					]
 				]
 			],
 			[
+				// isTocEnabled
+				true,
+				// sections data
 				[
 					$SECTION_1,
 					$SECTION_1_1,
 					$SECTION_2,
 				],
+				// expected
 				[
-					$SECTION_1 + [
-						'array-sections' => [
-							$SECTION_1_1 + [
-								'array-sections' => [],
-								'is-top-level-section' => false,
-								'is-parent-section' => false,
-							]
+					'number-section-count' => 3,
+					'array-sections' => [
+						$SECTION_1 + [
+							'array-sections' => [
+								$SECTION_1_1 + [
+									'array-sections' => [],
+									'is-top-level-section' => false,
+									'is-parent-section' => false,
+								]
+							],
+							'is-top-level-section' => true,
+							'is-parent-section' => true,
 						],
-						'is-top-level-section' => true,
-						'is-parent-section' => true,
-					],
-					$SECTION_2 + [
-						'array-sections' => [],
-						'is-top-level-section' => true,
-						'is-parent-section' => false,
+						$SECTION_2 + [
+							'array-sections' => [],
+							'is-top-level-section' => true,
+							'is-parent-section' => false,
+						]
 					]
 				]
 			],
 			[
+				// isTocEnabled
+				true,
+				// sections data
 				[
 					$SECTION_1,
 					$SECTION_1_1,
@@ -101,38 +121,42 @@ class SkinComponentTableOfContentsTest extends MediaWikiUnitTestCase {
 					$SECTION_1_3,
 					$SECTION_2,
 				],
+				// expected
 				[
-					$SECTION_1 + [
-						'array-sections' => [
-							$SECTION_1_1 + [
-								'array-sections' => [],
-								'is-top-level-section' => false,
-								'is-parent-section' => false,
-							],
-							$SECTION_1_2 + [
-								'array-sections' => [
-									$SECTION_1_2_1 + [
-										'array-sections' => [],
-										'is-top-level-section' => false,
-										'is-parent-section' => false,
-									],
+					'number-section-count' => 6,
+					'array-sections' => [
+						$SECTION_1 + [
+							'array-sections' => [
+								$SECTION_1_1 + [
+									'array-sections' => [],
+									'is-top-level-section' => false,
+									'is-parent-section' => false,
 								],
-								'is-top-level-section' => false,
-								'is-parent-section' => true,
+								$SECTION_1_2 + [
+									'array-sections' => [
+										$SECTION_1_2_1 + [
+											'array-sections' => [],
+											'is-top-level-section' => false,
+											'is-parent-section' => false,
+										],
+									],
+									'is-top-level-section' => false,
+									'is-parent-section' => true,
+								],
+								$SECTION_1_3 + [
+									'array-sections' => [],
+									'is-top-level-section' => false,
+									'is-parent-section' => false,
+								]
 							],
-							$SECTION_1_3 + [
-								'array-sections' => [],
-								'is-top-level-section' => false,
-								'is-parent-section' => false,
-							]
+							'is-top-level-section' => true,
+							'is-parent-section' => true,
 						],
-						'is-top-level-section' => true,
-						'is-parent-section' => true,
-					],
-					$SECTION_2 + [
-						'array-sections' => [],
-						'is-top-level-section' => true,
-						'is-parent-section' => false,
+						$SECTION_2 + [
+							'array-sections' => [],
+							'is-top-level-section' => true,
+							'is-parent-section' => false,
+						]
 					]
 				]
 			]
@@ -140,49 +164,21 @@ class SkinComponentTableOfContentsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Skin\SkinComponentTableOfContents::getSectionsData
+	 * @covers \MediaWiki\Skin\SkinComponentTableOfContents::getTemplateData
 	 * @dataProvider provideGetSectionsData
 	 *
+	 * @param bool $isTocEnabled
 	 * @param array $sectionsData
 	 * @param array $expected
 	 */
-	public function testGetSectionsData( $sectionsData, $expected ) {
+	public function testGetTemplateData( $isTocEnabled, $sectionsData, $expected ) {
 		$mockOutput = $this->createMock( OutputPage::class );
+		$mockOutput->method( 'isTOCEnabled' )->willReturn( $isTocEnabled );
 		$mockOutput->method( 'getSections' )->willReturn( $sectionsData );
 		$skinComponent = new SkinComponentTableOfContents( $mockOutput );
 
-		$data = TestingAccessWrapper::newFromObject( $skinComponent )->getSectionsData();
+		$data = TestingAccessWrapper::newFromObject( $skinComponent )->getTemplateData();
+
 		$this->assertEquals( $expected, $data );
 	}
-
-	public function provideGetTOCData() {
-		return [
-			[
-				false,
-				[],
-				'Data not provided when TOC is disabled'
-			],
-			[
-				true,
-				[
-					'array-sections' => []
-				],
-				'Data not provided when TOC is enabled'
-			],
-		];
-	}
-
-	/**
-	 * @covers \MediaWiki\Skin\SkinComponentTableOfContents::getTOCData
-	 * @dataProvider provideGetTOCData
-	 */
-	public function testGetTOCData( $isTOCEnabled, $expected ) {
-		$mockOutput = $this->createMock( OutputPage::class );
-		$mockOutput->method( 'isTOCEnabled' )->willReturn( $isTOCEnabled );
-		$skinComponent = new SkinComponentTableOfContents( $mockOutput );
-
-		$data = TestingAccessWrapper::newFromObject( $skinComponent )->getTOCData();
-		$this->assertEquals( $expected, $data );
-	}
-
 }

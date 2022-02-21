@@ -36,26 +36,6 @@ class SkinComponentTableOfContents implements SkinComponent {
 	}
 
 	/**
-	 * Enriches section data by nesting child elements within parent elements
-	 * such that the table of contents can be rendered in Mustache.
-	 *
-	 * Example Mustache template code:
-	 * <ul>
-	 * {{#array-sections}}
-	 *   <li>{{number}} {{line}}</li>
-	 *   {{#array-subsections}}
-	 *     {{>TableOfContents__subsection}}
-	 *   {{/array-subsections}}
-	 * {{/array-sections}}
-	 * </ul>
-	 *
-	 * @return array
-	 */
-	private function getSectionsData(): array {
-		return $this->getSectionsDataInternal( $this->output->getSections(), 1 );
-	}
-
-	/**
 	 * Nests child sections within their parent sections.
 	 *
 	 * @param array $sections
@@ -88,6 +68,12 @@ class SkinComponentTableOfContents implements SkinComponent {
 	/**
 	 * Get table of contents template data
 	 *
+	 * Enriches section data by nesting child elements within parent elements
+	 * such that the table of contents can be rendered in Mustache.
+	 *
+	 * For an example of how to render the data, see TableOfContents.mustache in
+	 * the Vector skin.
+	 *
 	 * @return array
 	 */
 	private function getTOCData(): array {
@@ -95,8 +81,12 @@ class SkinComponentTableOfContents implements SkinComponent {
 		if ( !$this->output->isTOCEnabled() ) {
 			return [];
 		}
+
+		$outputSections = $this->output->getSections();
+
 		return [
-			'array-sections' => $this->getSectionsData(),
+			'number-section-count' => count( $outputSections ),
+			'array-sections' => $this->getSectionsDataInternal( $outputSections, 1 ),
 		];
 	}
 
