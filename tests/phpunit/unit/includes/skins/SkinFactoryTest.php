@@ -119,9 +119,7 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 		);
 		$this->assertEquals( [ 'foo'  => 'Skin 2' ], $factory->getSkinNames() );
 		$this->assertSame( $s2, $factory->makeSkin( 'foo' ) );
-
-		// FIXME: register() fails to replace the skippable state
-		// $this->assertSame( [ 'foo'  => 'Skin 2' ], $factory->getAllowedSkins(), 'not skipped' );
+		$this->assertSame( [ 'foo'  => 'Skin 2' ], $factory->getAllowedSkins(), 'not skipped' );
 	}
 
 	public function testGetSkinNames() {
