@@ -1317,7 +1317,7 @@
 	"right-editmyprivateinfo": "Sửa đổi dữ liệu cá nhân của bạn (thí dụ địa chỉ thư điện tử hoặc tên thật)",
 	"right-editmyoptions": "Sửa đổi tùy chọn của bạn",
 	"right-rollback": "Nhanh chóng lùi tất cả sửa đổi của người dùng cuối cùng sửa đổi trang nào đó",
-	"right-markbotedits": "Đánh dấu sửa đổi phục hồi là sửa đổi bot",
+	"right-markbotedits": "Đánh dấu sửa đổi bị lùi lại là sửa đổi bot",
 	"right-noratelimit": "Không bị ảnh hưởng bởi mức giới hạn tần suất sử dụng",
 	"right-import": "Nhập trang từ wiki khác",
 	"right-importupload": "Nhập trang bằng tải tập tin",

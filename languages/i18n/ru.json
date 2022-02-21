@@ -166,7 +166,8 @@
 			"Wolterhon",
 			"Annablazeprobable",
 			"Base",
-			"Malikxan"
+			"Malikxan",
+			"Tanzun"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -2661,7 +2662,7 @@
 	"year": "С года (и ранее):",
 	"date": "С даты (и ранее):",
 	"sp-contributions-blocklog": "блокировки",
-	"sp-contributions-suppresslog": "удалённый вклад {{GENDER:$1|участника|участницы}}",
+	"sp-contributions-suppresslog": "скрытый вклад {{GENDER:$1|участника|участницы}}",
 	"sp-contributions-deleted": "удалённые правки {{GENDER:$1|участника|участницы}}",
 	"sp-contributions-uploads": "загрузки",
 	"sp-contributions-logs": "журналы",
@@ -3467,7 +3468,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|обсуждение]])",
 	"timezone-utc": "UTC",
 	"timezone-local": "Местное",
-	"duplicate-defaultsort": "Внимание. Ключ сортировки по умолчанию «$2» переопределяет прежний ключ сортировки по умолчанию «$1».",
+	"duplicate-defaultsort": "<strong>Внимание:</strong> Ключ сортировки по умолчанию «$2» переопределяет прежний ключ сортировки по умолчанию «$1».",
 	"duplicate-displaytitle": "<strong>Внимание:</strong> Отображаемое название «$2» переопределяет ранее заданное отображаемое название «$1».",
 	"restricted-displaytitle": "<strong>Внимание:</strong> Отображаемое название «$1» было проигнорировано, поскольку оно не соответствует актуальному названию страницы.",
 	"invalid-indicator-name": "<strong>Ошибка:</strong> Атрибут <code>name</code> индикаторов состояния страницы не должен быть пустым.",

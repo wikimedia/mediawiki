@@ -25,13 +25,15 @@
 			"לערי ריינהארט",
 			"아라",
 			"Edwingudfriend",
-			"McDutchie"
+			"McDutchie",
+			"Wangombe"
 		]
 	},
 	"tog-underline": "Wekea mstari viungo:",
 	"tog-hideminor": "Ficha maharirio madogo katika mabadiliko ya hivi karibuni",
 	"tog-hidepatrolled": "Ficha kurasa zilizofanyiwa doria kwenye mabadiliko ya karibuni",
 	"tog-newpageshidepatrolled": "Ficha kurasa zilizofanyiwa doria kwenye orodha ya kurasa mpya",
+	"tog-hidecategorization": "Ficha jamii za kuraza",
 	"tog-extendwatchlist": "Tanua orodha ya maangalizi ili kuonyesha mabadiliko yote yaliyofanyika, si hilo la mwisho tu.",
 	"tog-usenewrc": "Mabadiliko ya kundi kwa kurasa kwenye mabadiliko ya karibuni na orodha ya maangalizi",
 	"tog-numberheadings": "Vichwa vya habari vijipange namba-vyenyewe",
@@ -60,6 +62,7 @@
 	"tog-watchlisthideliu": "Ficha mabadiliko yaliyofanywa na watumiaji kwenye maangalilizi",
 	"tog-watchlisthideanons": "Ficha mabadiliko yaliyofanywa na watumiaji wasiojisajili kwenye maangalilizi",
 	"tog-watchlisthidepatrolled": "Ficha maharirio yaliyodoliwa katika maangalizi",
+	"tog-watchlisthidecategorization": "Ficha jamii za kurasa",
 	"tog-ccmeonemails": "Nitumie nakala ya barua pepe nitakazo tuma kwa watumiaji wengine",
 	"tog-diffonly": "Usionyeshe yaliyomo kwenye ukurasa chini ya faili za diff",
 	"tog-showhiddencats": "Onyesha jamii zilizofichwa",

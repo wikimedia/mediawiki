@@ -995,6 +995,7 @@
 	"prefs-user-downloaddata-label": "Hesab məlumatı:",
 	"prefs-user-downloaddata-info": "Bu layihədəki hesab məlumatlarım",
 	"savedprefs": "Seçimləriniz qeyd edildi.",
+	"savedrights": "{{GENDER:$1|$1}} üçün istifadəçi hüquqları yadda saxlanıldı.",
 	"timezonelegend": "Vaxt zonası:",
 	"localtime": "Yerli vaxt:",
 	"timezoneuseserverdefault": "Susmaya görə serverdən istifadə ($1)",
