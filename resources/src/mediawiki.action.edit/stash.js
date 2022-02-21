@@ -46,7 +46,6 @@ $( function () {
 		if ( stashReq ) {
 			if ( lastPriority > priority ) {
 				// Stash request for summary change should wait on pending text change stash
-				// eslint-disable-next-line no-use-before-define
 				stashReq.then( checkStash );
 				return;
 			}

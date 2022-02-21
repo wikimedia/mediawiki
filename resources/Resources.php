@@ -1456,7 +1456,7 @@ return [
 	],
 	'mediawiki.action.styles' => [
 		'targets' => [ 'desktop', 'mobile' ],
-		'styles' => 'resources/src/mediawiki.action/styles.less',
+		'styles' => 'resources/src/mediawiki.action.styles/styles.less',
 	],
 
 	/* MediaWiki Language */
@@ -2024,7 +2024,9 @@ return [
 			'paramvalidator-help-type-number-max',
 			'paramvalidator-help-type-number-minmax',
 			'api-help-param-deprecated',
+			'api-help-param-deprecated-label',
 			'api-help-param-internal',
+			'api-help-param-internal-label',
 			'api-help-param-multi-separate',
 			'paramvalidator-help-multi-max',
 			'paramvalidator-help-type-string-maxbytes',

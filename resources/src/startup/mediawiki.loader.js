@@ -439,7 +439,6 @@
 					// (waiting for execution) and no longer have unsatisfied dependencies.
 					// Base modules may have dependencies amongst eachother to ensure correct
 					// execution order. Regular modules wait for all base modules.
-					// eslint-disable-next-line no-use-before-define
 					execute( module );
 					didPropagate = true;
 				}

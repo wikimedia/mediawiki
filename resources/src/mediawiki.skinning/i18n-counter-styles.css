@@ -1,4 +1,3 @@
-/* stylelint-disable property-no-unknown -- https://github.com/wikimedia/stylelint-config-wikimedia/issues/145 */
 /* Taken from https://www.w3.org/TR/predefined-counter-styles/#meetei-styles */
 @counter-style meetei {
 	system: numeric;
@@ -18,4 +17,3 @@
 	symbols: '\1040' '\1041' '\1042' '\1043' '\1044' '\1045' '\1046' '\1047' '\1048' '\1049';
 	suffix: '\104B\0020';
 }
-/* stylelint-enable */
