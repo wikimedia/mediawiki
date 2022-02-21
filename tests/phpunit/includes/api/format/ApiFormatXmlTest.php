@@ -13,7 +13,6 @@ class ApiFormatXmlTest extends ApiFormatTestBase {
 		parent::setUpBeforeClass();
 		$page = WikiPage::factory( Title::newFromText( 'MediaWiki:ApiFormatXmlTest.xsl' ) );
 		$user = self::getTestSysop()->getUser();
-		// phpcs:disable Generic.Files.LineLength
 		$page->doUserEditContent( new WikitextContent(
 			'<?xml version="1.0"?><xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" />'
 		), $user, 'Summary' );
@@ -25,7 +24,6 @@ class ApiFormatXmlTest extends ApiFormatTestBase {
 	}
 
 	public static function provideGeneralEncoding() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			// Basic types
 			[ [ null, 'a' => null ], '<?xml version="1.0"?><api><_v _idx="0" /></api>' ],

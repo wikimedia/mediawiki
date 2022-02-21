@@ -1,7 +1,5 @@
 <?php
 // These modules are only registered when $wgEnableJavaScriptTest is true
-// phpcs:disable Generic.Files.LineLength
-
 return [
 
 	'sinonjs' => [

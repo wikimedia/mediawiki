@@ -24,7 +24,6 @@
 global $wgAutoloadClasses;
 $testDir = __DIR__ . "/..";
 
-// phpcs:disable Generic.Files.LineLength
 $wgAutoloadClasses += [
 
 	# tests/common

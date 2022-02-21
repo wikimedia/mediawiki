@@ -43,7 +43,6 @@ class EncryptedPasswordTest extends PasswordTestCase {
 	}
 
 	public static function providePasswordTests() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			// Encrypted with secret1
 			[ true, ':both:aes-256-cbc:0:izBpxujqC1YbzpCB3qAzgg==:ZqHnitT1pL4YJqKqFES2KEevZYSy2LtlibW5+IMi4XKOGKGy6sE638BXyBbLQQsBtTSrt+JyzwOayKtwIfRbaQsBridx/O1JwBSai1TkGkOsYMBXnlu2Bu/EquCBj5QpjYh7p3Uq4rpiop1KQlin1BJMwnAa1PovhxjpxnYhlhkM4X5ALoGi3XM0bapN48vt', 'password' ],
@@ -61,7 +60,6 @@ class EncryptedPasswordTest extends PasswordTestCase {
 	 * Wrong encryption key selected
 	 */
 	public function testDecryptionError() {
-		// phpcs:ignore Generic.Files.LineLength
 		$hash = ':secret1:aes-256-cbc:0:m1LCnQVIakfYBNlr9KEgQg==:5yPTctqrzsybdgaMEag18AZYbnL37pAtXVBqmWxkjXbnNmiDH+1bHoL8lsEVTH/sJntC82kNVgE7zeiD8xUVLYF2VUnvB5+sU+aysE45/zwsCu7a22TaischMAOWrsHZ/tIgS/TnZY2d+HNyxgsEeeYf/QoL+FhmqHquK02+4SRbA5lLuj9niYy1r5CoM9cQ';
 		$password = $this->passwordFactory->newFromCiphertext( $hash );
 		$this->expectException( PasswordError::class );
@@ -69,7 +67,6 @@ class EncryptedPasswordTest extends PasswordTestCase {
 	}
 
 	public function testUpdate() {
-		// phpcs:ignore Generic.Files.LineLength
 		$hash = ':both:aes-256-cbc:0:izBpxujqC1YbzpCB3qAzgg==:ZqHnitT1pL4YJqKqFES2KEevZYSy2LtlibW5+IMi4XKOGKGy6sE638BXyBbLQQsBtTSrt+JyzwOayKtwIfRbaQsBridx/O1JwBSai1TkGkOsYMBXnlu2Bu/EquCBj5QpjYh7p3Uq4rpiop1KQlin1BJMwnAa1PovhxjpxnYhlhkM4X5ALoGi3XM0bapN48vt';
 		$fromHash = $this->passwordFactory->newFromCiphertext( $hash );
 		$this->assertTrue( $fromHash->update() );

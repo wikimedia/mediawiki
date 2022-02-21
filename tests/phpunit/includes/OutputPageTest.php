@@ -23,8 +23,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	private const SCREEN_MEDIA_QUERY = 'screen and (min-width: 982px)';
 	private const SCREEN_ONLY_MEDIA_QUERY = 'only screen and (min-width: 982px)';
-
-	// phpcs:disable Generic.Files.LineLength
 	private const RSS_RC_LINK = '<link rel="alternate" type="application/rss+xml" title=" RSS feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=rss"/>';
 	private const ATOM_RC_LINK = '<link rel="alternate" type="application/atom+xml" title=" Atom feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=atom"/>';
 
@@ -2634,7 +2632,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideMakeResourceLoaderLink() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			// Single only=scripts load
 			[
@@ -2734,7 +2731,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideBuildExemptModules() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			'empty' => [
 				'exemptStyleModules' => [],

@@ -40,7 +40,6 @@ class MWCryptHKDFTest extends MediaWikiIntegrationTestCase {
 	 * Test vectors from Appendix A on https://tools.ietf.org/html/rfc5869
 	 */
 	public static function providerRfc5869() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			// A.1
 			[

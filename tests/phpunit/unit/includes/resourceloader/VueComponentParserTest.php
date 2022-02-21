@@ -18,7 +18,6 @@ class VueComponentParserTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public static function provideTestParse() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				'<template><p>{{foo}}</p></template><script>bar</script><style>baz</style>',

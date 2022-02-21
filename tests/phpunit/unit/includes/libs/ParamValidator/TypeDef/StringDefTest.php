@@ -153,9 +153,7 @@ class StringDefTest extends TypeDefTestCase {
 				[
 					'issues' => [
 						'X',
-						// phpcs:ignore Generic.Files.LineLength
 						'PARAM_REQUIRED is set, allowEmptyWhenRequired is not set, and PARAM_MAX_BYTES is 0. That\'s impossible to satisfy.',
-						// phpcs:ignore Generic.Files.LineLength
 						'PARAM_REQUIRED is set, allowEmptyWhenRequired is not set, and PARAM_MAX_CHARS is 0. That\'s impossible to satisfy.',
 					],
 					'allowedKeys' => $keys,
@@ -208,9 +206,7 @@ class StringDefTest extends TypeDefTestCase {
 				],
 				[ 'maxbytes' => 4, 'maxchars' => 2 ],
 				[
-					// phpcs:ignore Generic.Files.LineLength.TooLong
 					StringDef::PARAM_MAX_BYTES => '<message key="paramvalidator-help-type-string-maxbytes"><num>4</num></message>',
-					// phpcs:ignore Generic.Files.LineLength.TooLong
 					StringDef::PARAM_MAX_CHARS => '<message key="paramvalidator-help-type-string-maxchars"><num>2</num></message>',
 				],
 			],

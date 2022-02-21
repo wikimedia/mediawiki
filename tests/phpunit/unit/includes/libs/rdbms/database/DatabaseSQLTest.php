@@ -1273,7 +1273,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public static function provideUnionConditionPermutations() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				[
@@ -1724,21 +1723,18 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->endAtomic( __METHOD__ );
 		$this->database->commit( __METHOD__ );
-		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; RELEASE SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
 
 		$this->database->begin( __METHOD__ );
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->cancelAtomic( __METHOD__ );
 		$this->database->commit( __METHOD__ );
-		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
 
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->cancelAtomic( __METHOD__ );
 		$this->database->endAtomic( __METHOD__ );
-		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
 
 		$noOpCallack = static function () {
@@ -1753,7 +1749,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->begin( __METHOD__ );
 		$this->database->doAtomicSection( __METHOD__, $noOpCallack, IDatabase::ATOMIC_CANCELABLE );
 		$this->database->rollback( __METHOD__ );
-		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; RELEASE SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK' );
 
 		$fname = __METHOD__;
@@ -1954,7 +1949,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			$this->assertSame( 'Test exception', $ex->getMessage() );
 		}
 		$this->database->commit( __METHOD__ );
-		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
 
 		$this->database->begin( __METHOD__ );
@@ -2033,7 +2027,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertNull( $callback2Called );
 		$this->assertEquals( IDatabase::TRIGGER_ROLLBACK, $callback3Called );
 		$this->assertSame( 1, $callback4Called );
-		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; SELECT 4; COMMIT; SELECT 3' );
 
 		$callback1Called = null;
@@ -2054,7 +2047,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertNull( $callback2Called );
 		$this->assertEquals( IDatabase::TRIGGER_ROLLBACK, $callback3Called );
 		$this->assertSame( 1, $callback4Called );
-		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; SAVEPOINT wikimedia_rdbms_atomic2; RELEASE SAVEPOINT wikimedia_rdbms_atomic2; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; SELECT 4; COMMIT; SELECT 3' );
 
 		$callback1Called = null;
@@ -2113,7 +2105,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->cancelAtomic( __METHOD__ . '_inner' );
 		$this->database->cancelAtomic( __METHOD__ );
 		$this->database->endAtomic( __METHOD__ . '_outer' );
-		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; SAVEPOINT wikimedia_rdbms_atomic2; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic2; SELECT 4; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; SELECT 5; COMMIT' );
 		$this->assertSame( 1, $callback4Called );
 		$this->assertSame( 1, $callback5Called );
@@ -2128,7 +2119,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->endAtomic( __METHOD__ . '_inner' );
 		$this->database->cancelAtomic( __METHOD__ );
 		$this->database->endAtomic( __METHOD__ . '_outer' );
-		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; SAVEPOINT wikimedia_rdbms_atomic2; RELEASE SAVEPOINT wikimedia_rdbms_atomic2; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; SELECT 5; SELECT 4; COMMIT' );
 		$this->assertSame( 1, $callback4Called );
 		$this->assertSame( 1, $callback5Called );
@@ -2142,7 +2132,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->onAtomicSectionCancel( $callback4, __METHOD__ );
 		$this->database->cancelAtomic( __METHOD__, $sectionId );
 		$this->database->endAtomic( __METHOD__ . '_outer' );
-		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; SAVEPOINT wikimedia_rdbms_atomic2; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; SELECT 5; SELECT 4; COMMIT' );
 		$this->assertSame( 1, $callback4Called );
 		$this->assertSame( 1, $callback5Called );
@@ -2184,7 +2173,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->query( 'SELECT 1', __METHOD__ );
 		$this->database->endAtomic( __METHOD__ );
 		$this->database->commit( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
-		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; SELECT 1; RELEASE SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
 	}
 
@@ -2308,7 +2296,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->delete( 'y', [ 'field' => 1 ], __METHOD__ );
 		$this->database->endAtomic( __METHOD__ );
 		$this->database->commit( __METHOD__ );
-		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; UPDATE y SET a = 1 WHERE field = 1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; DELETE FROM y WHERE field = 1; COMMIT' );
 		$this->assertSame( 0, $this->database->trxLevel(), 'Use after rollback()' );
 

@@ -177,7 +177,6 @@ class VersionCheckerTest extends MediaWikiUnitTestCase {
 					[
 						'incompatible' => 'FakeExtension',
 						'type' => 'incompatible-extensions',
-						// phpcs:ignore Generic.Files.LineLength.TooLong
 						'msg' => 'FakeExtension is not compatible with the current installed version of FakeDependency (1.0.0), it requires: 2.0.0.',
 					],
 				],
@@ -214,7 +213,6 @@ class VersionCheckerTest extends MediaWikiUnitTestCase {
 					[
 						'missing' => 'phpMissingExtension',
 						'type' => 'missing-phpExtension',
-						// phpcs:ignore Generic.Files.LineLength.TooLong
 						'msg' => 'FakeExtension requires phpMissingExtension PHP extension to be installed.',
 					],
 				],
@@ -275,7 +273,6 @@ class VersionCheckerTest extends MediaWikiUnitTestCase {
 					[
 						'missing' => 'missingAbilityWithMessage',
 						'type' => 'missing-ability',
-						// phpcs:ignore Generic.Files.LineLength.TooLong
 						'msg' => 'FakeExtension requires "missingAbilityWithMessage" ability: Missing.',
 					],
 				],

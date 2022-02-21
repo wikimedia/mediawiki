@@ -146,7 +146,6 @@ class SVGReaderTest extends \MediaWikiIntegrationTestCase {
 
 	public static function provideSvgFilesWithXMLMetadata() {
 		$base = __DIR__ . '/../../data/media';
-		// phpcs:disable Generic.Files.LineLength
 		$metadata = '<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
       <ns4:Work xmlns:ns4="http://creativecommons.org/ns#" rdf:about="">
         <ns5:format xmlns:ns5="http://purl.org/dc/elements/1.1/">image/svg+xml</ns5:format>
