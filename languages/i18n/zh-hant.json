@@ -3241,8 +3241,6 @@
 	"variantname-zh-sg": "新加坡簡體",
 	"variantname-zh-my": "馬來西亞簡體",
 	"variantname-zh": "不轉換",
-	"variantname-gan-hans": "{{Delete|This message won't appear on zh pages and variant names will only use the main language code translation, which is \"gan\" instead of \"zh-hant\"}}",
-	"variantname-gan-hant": "{{Delete|This message won't appear on zh pages and variant names will only use the main language code translation, which is \"gan\" instead of \"zh-hant\"}}",
 	"metadata": "詮釋資料",
 	"metadata-help": "此檔案中包含其他資訊，這些資訊可能是由數位相機或掃描器在建立或數位化過程中所新增的。若檔案自原始狀態已被修改，一些詳細資料可能無法完整反映出已修改的檔案。",
 	"metadata-expand": "顯示詳細資料",
