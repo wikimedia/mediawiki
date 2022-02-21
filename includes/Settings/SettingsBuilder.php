@@ -8,6 +8,7 @@ use ExtensionRegistry;
 use HashConfig;
 use JsonSchema\Constraints\Constraint;
 use JsonSchema\Validator;
+use MediaWiki\Config\IterableConfig;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Cache\CachedSource;
 use MediaWiki\Settings\Config\ConfigBuilder;
@@ -202,9 +203,9 @@ class SettingsBuilder {
 	 *
 	 * @note This will implicitly call apply()
 	 *
-	 * @return Config
+	 * @return IterableConfig
 	 */
-	public function getDefaultConfig(): Config {
+	public function getDefaultConfig(): IterableConfig {
 		$this->apply();
 		return new HashConfig( $this->configSchema->getDefaults() );
 	}

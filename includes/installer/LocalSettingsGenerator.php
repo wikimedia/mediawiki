@@ -309,7 +309,7 @@ class LocalSettingsGenerator {
 # installer. If you make manual changes, please keep track in case you
 # need to recreate them later.
 #
-# See includes/DefaultSettings.php for all configurable settings
+# See docs/Configuration.md for all configurable settings
 # and their default values, but don't forget to make changes in _this_
 # file, not there.
 #
