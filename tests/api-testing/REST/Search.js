@@ -163,6 +163,7 @@ describe( 'Search', () => {
 				summary: 'testing',
 				token: await mindy.token( 'csrf' )
 			}, 'POST' );
+			await wiki.runAllJobs();
 			const { body } = await client.get( `/search/title?q=${deleteTerm}` );
 			assert.lengthOf( body.pages, 0 );
 		} );
@@ -175,6 +176,7 @@ describe( 'Search', () => {
 			);
 
 			const { title: redirectTargetTitle } = await alice.edit( redirectTarget, { text: 'foo' } );
+			await wiki.runAllJobs();
 
 			const { body } = await client.get( `/search/title?q=${redirectSourceTitle}` );
 			assert.lengthOf( body.pages, 1 );
