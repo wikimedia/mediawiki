@@ -2362,7 +2362,7 @@
 	"emailmessage": "Mesaj:",
 	"emailsend": "Gönder",
 	"emailccme": "Mesajımın bir kopyasını bana e-posta ile gönder.",
-	"emailccsubject": "$1 kullanıcıya gönderdiğiniz mesajın kopyası: $2",
+	"emailccsubject": "$1 isimli kullanıcıya gönderdiğiniz mesajın kopyası: $2",
 	"emailsent": "E-posta gönderildi",
 	"emailsenttext": "E-posta iletiniz gönderildi.",
 	"emailuserfooter": "Bu e-posta, {{SITENAME}} sitesindeki \"{{int:emailuser}}\" işlevi tarafından {{GENDER:$2|$2}} adlı kullanıcıya {{GENDER:$1|gönderildi}}. Bu e-postayı yanıtlarsanız, e-postanız doğrudan orijinal gönderene gönderilecektir ve e-posta adresiniz orijinal gönderen tarafından görülebilir olacaktır.",
