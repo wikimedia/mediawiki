@@ -4,7 +4,8 @@
 			"Bill Pirkle",
 			"Matma Rex",
 			"Raymond",
-			"Tim Starling"
+			"Tim Starling",
+			"Amire80"
 		]
 	},
 	"rest-prefix-mismatch": "Error message for REST API debugging, shown if $wgRestPath is incorrect or otherwise not matched. Parameters:\n* $1: The requested path.\n* $2: The configured root path ($wgRestPath).",
@@ -13,8 +14,8 @@
 	"rest-nonexistent-title": "Error message for REST API debugging, shown if the specified title does not exist. Parameters:\n* $1 The page title.",
 	"rest-nonexistent-title-revision": "Error message for REST API debugging, shown if the specified revision of the specified title does not exist. Parameters:\n* $1 The revision ID.\n* $2 The page title.",
 	"rest-nonexistent-revision": "Error message for REST API debugging, shown when the specified revision does not exist. Parameters:\n* $1 The revision id.",
-	"rest-nonexistent-user": "Error message for REST API debugging, shown when the specified user does not exist. Parameters:\n* $1 The user name.",
-	"rest-invalid-user": "Error message for REST API debugging, shown when the specified user name is invalid. Parameters:\n* $1 The user name.",
+	"rest-nonexistent-user": "Error message for REST API debugging, shown when the specified user does not exist. Parameters:\n* $1 The username.",
+	"rest-invalid-user": "Error message for REST API debugging, shown when the specified username is invalid. Parameters:\n* $1 The username.",
 	"rest-permission-denied-anon": "Error message for REST API debugging, shown when the user is anonymous and therefore is denied permission to a resource",
 	"rest-permission-denied-title": "Error message for REST API debugging, shown if the user doesn't have read access to the specified title. Parameters:\n* $1 The page title",
 	"rest-permission-denied-revision": "Error message for REST API debugging, shown when the user doesn't have access to the specified revision. Parameters:\n* $1: the specified revision.",
