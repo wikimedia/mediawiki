@@ -86,6 +86,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 
 	/** @var WebRequest */
 	public $mRequest;
+	/** @var bool Whether to group items by date */
+	public $mGroupByDate = false;
 	/** @var int[] List of default entry limit options to be presented to clients */
 	public $mLimitsShown = [ 20, 50, 100, 250, 500 ];
 	/** @var int The default entry limit choosen for clients */
@@ -597,12 +599,15 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 */
 	protected function getRow( $row ): string {
 		$s = '';
-		$timestamp = $row->rev_timestamp ?? null;
+
+		$timestampField = is_array( $this->mIndexField ) ? $this->mIndexField[0] : $this->mIndexField;
+		$timestamp = $row->$timestampField ?? null;
 		$date = $timestamp ? $this->getDateFromTimestamp( $timestamp ) : null;
 		if ( $date && $this->isHeaderRowNeeded( $date ) ) {
 			$s .= $this->getHeaderRow( $timestamp );
 			$this->lastHeaderDate = $date;
 		}
+
 		$s .= $this->formatRow( $row );
 		return $s;
 	}
@@ -694,6 +699,10 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @return bool
 	 */
 	protected function isHeaderRowNeeded( array $date ): bool {
+		if ( !$this->mGroupByDate ) {
+			return false;
+		}
+
 		$showHeading = false;
 		$lastDay = $this->lastHeaderDate['mday'] ?? null;
 		$lastMonth = $this->lastHeaderDate['month'] ?? null;

@@ -50,7 +50,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			'mw-index-pager-list-header-first mw-index-pager-list-header' :
 			'mw-index-pager-list-header';
 
-		$s = $this->getEndGroup();
+		$s = $this->isFirstHeaderRow() ? '' : $this->getEndGroup();
 		$s .= Html::element( 'h4', [
 				'class' => $headingClass,
 			],

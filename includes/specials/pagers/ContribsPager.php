@@ -41,6 +41,8 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class ContribsPager extends RangeChronologicalPager {
 
+	public $mGroupByDate = true;
+
 	/**
 	 * @var string[] Local cache for escaped messages
 	 */
