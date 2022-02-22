@@ -131,10 +131,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var array|null Replication lag estimate at the time of BEGIN for the last transaction */
 	private $trxReplicaLagStatus = null;
-	/** @var bool Whether possible write queries were done in the last transaction started */
-	private $trxDoneWrites = false;
-	/** @var int Counter for atomic savepoint identifiers (reset with each transaction) */
-	private $trxAtomicCounter = 0;
 
 	/** @var array[] List of (callable, method name, atomic section id) */
 	private $trxPostCommitOrIdleCallbacks = [];
@@ -190,8 +186,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var string Idiom used when a cancelable atomic section started the transaction */
 	private const NOT_APPLICABLE = 'n/a';
-	/** @var string Prefix to the atomic section counter used to make savepoint IDs */
-	private const SAVEPOINT_PREFIX = 'wikimedia_rdbms_atomic';
 
 	/** @var int Writes to this temporary table do not affect lastDoneWrites() */
 	private const TEMP_NORMAL = 1;
@@ -670,12 +664,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function writesPending() {
-		return $this->trxLevel() && $this->trxDoneWrites;
+		return $this->transactionManager->writesPending();
 	}
 
 	public function writesOrCallbacksPending() {
 		return $this->trxLevel() && (
-			$this->trxDoneWrites ||
+			$this->transactionManager->isTrxDoneWrites() ||
 			$this->trxPostCommitOrIdleCallbacks ||
 			$this->trxPreCommitOrIdleCallbacks ||
 			$this->trxEndCallbacks ||
@@ -699,20 +693,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL ) {
-		if ( !$this->trxLevel() ) {
-			return false;
-		} elseif ( !$this->trxDoneWrites ) {
-			return 0.0;
-		}
-		$rtt = null;
-		if ( $type == self::ESTIMATE_DB_APPLY ) {
-			// passed by reference
-			$this->ping( $rtt );
-		}
-		return $this->transactionManager->pendingWriteQueryDuration( $type, $rtt );
+		return $this->transactionManager->pendingWriteQueryDuration( $this, $type );
 	}
 
 	public function pendingWriteCallers() {
+		if ( !$this->transactionManager ) {
+			return [];
+		}
 		return $this->transactionManager->pendingWriteCallers();
 	}
 
@@ -1362,8 +1349,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Keep track of whether the transaction has write queries pending
 		if ( $isPermWrite ) {
 			$this->lastWriteTime = microtime( true );
-			if ( $this->trxLevel() && !$this->trxDoneWrites ) {
-				$this->trxDoneWrites = true;
+			if ( $this->trxLevel() && !$this->transactionManager->isTrxDoneWrites() ) {
+				$this->transactionManager->setTrxDoneWritesToTrue();
 				$this->trxProfiler->transactionWritingIn(
 					$this->getServerName(),
 					$this->getDomainID(),
@@ -1567,13 +1554,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->sessionNamedLocks = [];
 		// Session loss implies transaction loss
 		$oldTrxId = $this->transactionManager->consumeTrxId();
-		$this->trxAtomicCounter = 0;
 		$this->trxPostCommitOrIdleCallbacks = []; // T67263; transaction already lost
 		$this->trxPreCommitOrIdleCallbacks = []; // T67263; transaction already lost
 		// Clear additional subclass fields
 		$this->doHandleSessionLossPreconnect();
 		// @note: leave trxRecurringCallbacks in place
-		if ( $this->trxDoneWrites ) {
+		if ( $this->transactionManager->isTrxDoneWrites() ) {
 			$this->trxProfiler->transactionWritingOut(
 				$this->getServerName(),
 				$this->getDomainID(),
@@ -4493,10 +4479,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return string
 	 */
 	private function nextSavepointId( $fname ) {
-		$savepointId = self::SAVEPOINT_PREFIX . ++$this->trxAtomicCounter;
-		$this->transactionManager->onNextSavePointId( $this, $fname, $savepointId );
-
-		return $savepointId;
+		return $this->transactionManager->nextSavePointId( $this, $fname );
 	}
 
 	final public function startAtomic(
@@ -4703,9 +4686,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw $e;
 		}
 		$this->transactionManager->newTrxId( $mode, $fname );
-		$this->trxAtomicCounter = 0;
-		$this->transactionManager->setTrxTimestamp( microtime( true ) );
-		$this->trxDoneWrites = false;
 		// With REPEATABLE-READ isolation, the first SELECT establishes the read snapshot,
 		// so get the replication lag estimate before any transaction SELECT queries come in.
 		// This way, the lag estimate reflects what will actually be read. Also, if heartbeat
@@ -4753,7 +4733,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 		$oldTrxId = $this->transactionManager->consumeTrxId();
 		$this->transactionManager->setTrxStatusToNone();
-		if ( $this->trxDoneWrites ) {
+		if ( $this->transactionManager->isTrxDoneWrites() ) {
 			$this->lastWriteTime = microtime( true );
 			$this->trxProfiler->transactionWritingOut(
 				$this->getServerName(),
@@ -4816,15 +4796,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Clear callbacks that depend on transaction or transaction round commit
 		$this->trxPostCommitOrIdleCallbacks = [];
 		$this->trxPreCommitOrIdleCallbacks = [];
-		// Estimate the RTT via a query now that trxStatus is OK
-		$rtt = null;
-		$this->ping( $rtt );
-		if ( $this->trxDoneWrites ) {
+		if ( $this->transactionManager->isTrxDoneWrites() ) {
 			$this->trxProfiler->transactionWritingOut(
 				$this->getServerName(),
 				$this->getDomainID(),
 				$oldTrxId,
-				$this->transactionManager->pendingWriteQueryDuration( self::ESTIMATE_DB_APPLY, $rtt ),
+				$this->transactionManager->pendingWriteQueryDuration( $this ),
 				$this->transactionManager->getTrxWriteAffectedRows()
 			);
 		}
@@ -5897,9 +5874,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Run a few simple checks and close dangling connections
 	 */
 	public function __destruct() {
-		if ( $this->trxLevel() && $this->trxDoneWrites ) {
-			$trxFname = $this->transactionManager->getTrxFname();
-			trigger_error( "Uncommitted DB writes (transaction from {$trxFname})" );
+		if ( $this->transactionManager ) {
+			// Tests mock this class and disable constructor.
+			$this->transactionManager->onDestruct();
 		}
 
 		$danglingWriters = $this->pendingWriteAndCallbackCallers();
