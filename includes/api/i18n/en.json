@@ -134,6 +134,7 @@
 	"apihelp-delete-param-pageid": "Page ID of the page to delete. Cannot be used together with <var>$1title</var>.",
 	"apihelp-delete-param-reason": "Reason for the deletion. If not set, an automatically generated reason will be used.",
 	"apihelp-delete-param-tags": "Change tags to apply to the entry in the deletion log.",
+	"apihelp-delete-param-deletetalk": "Delete the talk page, if it exists.",
 	"apihelp-delete-param-watch": "Add the page to the current user's watchlist.",
 	"apihelp-delete-param-watchlist": "Unconditionally add or remove the page from the current user's watchlist, use preferences (ignored for bot users) or do not change watch.",
 	"apihelp-delete-param-watchlistexpiry": "Watchlist expiry timestamp. Omit this parameter entirely to leave the current expiry unchanged.",

@@ -140,6 +140,7 @@
 	"apihelp-delete-param-pageid": "{{doc-apihelp-param|delete|pageid}}",
 	"apihelp-delete-param-reason": "{{doc-apihelp-param|delete|reason}}",
 	"apihelp-delete-param-tags": "{{doc-apihelp-param|delete|tags}}",
+	"apihelp-delete-param-deletetalk": "{{doc-apihelp-param|delete|deletetalk}}",
 	"apihelp-delete-param-watch": "{{doc-apihelp-param|delete|watch}}",
 	"apihelp-delete-param-watchlist": "{{doc-apihelp-param|delete|watchlist}}",
 	"apihelp-delete-param-watchlistexpiry": "{{doc-apihelp-param|delete|watchlistexpiry}}",
