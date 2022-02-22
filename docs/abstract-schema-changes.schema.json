@@ -1,0 +1,22 @@
+{
+	"$schema": "https://json-schema.org/schema#",
+	"description": "MediaWiki abstract database schema schema",
+	"type": "object",
+	"additionalProperties": false,
+	"properties": {
+		"comment": {
+			"type": "string",
+			"description": "Comment describing the schema change"
+		},
+		"before": {
+			"type": "object",
+			"description": "Schema before the change",
+			"$ref": "abstract-schema-table.json"
+		},
+		"after": {
+			"type": "object",
+			"description": "Schema after the change",
+			"$ref": "abstract-schema-table.json"
+		}
+	}
+}

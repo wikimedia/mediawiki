@@ -1,0 +1,208 @@
+{
+	"$schema": "https://json-schema.org/schema#",
+	"description": "Abstract description of a mediawiki database table",
+	"type": "object",
+	"additionalProperties": false,
+	"properties": {
+		"name": {
+			"type": "string",
+			"description": "Name of the table"
+		},
+		"comment": {
+			"type": "string",
+			"description": "Comment describing the table"
+		},
+		"columns": {
+			"type": "array",
+			"additionalItems": false,
+			"description": "Columns",
+			"minItems": 1,
+			"items": {
+				"type": "object",
+				"additionalProperties": false,
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "Name of the column"
+					},
+					"comment": {
+						"type": "string",
+						"description": "Comment describing the column"
+					},
+					"type": {
+						"type": "string",
+						"description": "Data type of the column",
+						"enum": [
+							"bigint",
+							"binary",
+							"blob",
+							"datetimetz",
+							"float",
+							"integer",
+							"mwenum",
+							"mwtimestamp",
+							"mwtinyint",
+							"smallint",
+							"string",
+							"text"
+						]
+					},
+					"options": {
+						"type": "object",
+						"description": "Additional options",
+						"additionalProperties": false,
+						"properties": {
+							"autoincrement": {
+								"type": "boolean",
+								"description": "Indicates if the field should use an autoincremented value if no value was provided",
+								"default": false
+							},
+							"default": {
+								"type": [
+									"number",
+									"string",
+									"null"
+								],
+								"description": "The default value of the column if no value was specified",
+								"default": null
+							},
+							"fixed": {
+								"type": "boolean",
+								"description": "Indicates if the column should have a fixed length",
+								"default": false
+							},
+							"length": {
+								"type": "number",
+								"description": "Length of the field.",
+								"default": null,
+								"minimum": 0
+							},
+							"notnull": {
+								"type": "boolean",
+								"description": "Indicates whether the column is nullable or not",
+								"default": true
+							},
+							"unsigned": {
+								"type": "boolean",
+								"description": "If the column should be an unsigned integer",
+								"default": false
+							},
+							"PlatformOptions": {
+								"type": "object",
+								"additionalProperties": false,
+								"properties": {
+									"version": {
+										"type": "boolean"
+									}
+								}
+							},
+							"CustomSchemaOptions": {
+								"type": "object",
+								"description": "Custom schema options",
+								"additionalProperties": false,
+								"properties": {
+									"allowInfinite": {
+										"type": "boolean"
+									},
+									"doublePrecision": {
+										"type": "boolean"
+									},
+									"enum_values": {
+										"type": "array",
+										"description": "Values to use with type 'mwenum'",
+										"additionalItems": false,
+										"items": {
+											"type": "string"
+										},
+										"uniqueItems": true
+									}
+								}
+							}
+						}
+					}
+				},
+				"required": [
+					"name",
+					"type"
+				]
+			}
+		},
+		"indexes": {
+			"type": "array",
+			"additionalItems": false,
+			"description": "Indexes",
+			"items": {
+				"type": "object",
+				"additionalProperties": false,
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "Index name"
+					},
+					"comment": {
+						"type": "string",
+						"description": "Comment describing the index"
+					},
+					"columns": {
+						"type": "array",
+						"additionalItems": false,
+						"description": "Columns used by the index",
+						"items": {
+							"type": "string"
+						},
+						"uniqueItems": true
+					},
+					"unique": {
+						"type": "boolean",
+						"description": "If the index is unique"
+					},
+					"flags": {
+						"type": "array",
+						"items": {
+							"type": "string"
+						}
+					},
+					"options": {
+						"type": "object",
+						"properties": {
+							"lengths": {
+								"type": "array",
+								"items": {
+									"type": [
+										"number",
+										"null"
+									]
+								},
+								"minItems": 1
+							}
+						}
+					}
+				},
+				"required": [
+					"name",
+					"columns"
+				]
+			}
+		},
+		"pk": {
+			"type": "array",
+			"additionalItems": false,
+			"description": "Array of column names used in the primary key",
+			"items": {
+				"type": "string"
+			},
+			"uniqueItems": true
+		},
+		"table_options": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		}
+	},
+	"required": [
+		"name",
+		"columns",
+		"indexes"
+	]
+}
