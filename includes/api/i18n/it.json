@@ -647,6 +647,7 @@
 	"api-help-license-unknown": "Licenza: <span class=\"apihelp-unknown\">sconosciuta</span>",
 	"api-help-parameters": "{{PLURAL:$1|Parametro|Parametri}}:",
 	"api-help-param-deprecated": "Deprecato.",
+	"api-help-param-deprecated-label": "deprecato",
 	"api-help-param-templated-var": "<var>&#x7B;$1&#x7D;</var> con valori di <var>$2</var>",
 	"api-help-datatypes-header": "Tipi di dato",
 	"api-help-templatedparams-header": "Parametri template",
