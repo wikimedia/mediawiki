@@ -522,19 +522,19 @@ mw.example();
 mw.loader.implement( "test.multifile", {
     "main": "five.js",
     "files": {
-    "one.js": function ( require, module ) {
+    "one.js": function ( require, module, exports ) {
 mw.example( 1 );
 },
     "two.json": {
     "n": 2
 },
-    "three.js": function ( require, module ) {
+    "three.js": function ( require, module, exports ) {
 mw.example( 3 ); // Comment
 },
-    "four.js": function ( require, module ) {
+    "four.js": function ( require, module, exports ) {
 mw.example( 4 );
 },
-    "five.js": function ( require, module ) {
+    "five.js": function ( require, module, exports ) {
 mw.example( 5 );
 }
 }

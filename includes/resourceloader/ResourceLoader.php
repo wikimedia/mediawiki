@@ -1331,8 +1331,10 @@ MESSAGE;
 					// Ensure that the script has a newline at the end to close any comment in the
 					// last line.
 					$content = self::ensureNewline( $file['content'] );
-					// Multi-file modules only get two parameters ($ and jQuery are being phased out)
-					$file = new XmlJsCode( "function ( require, module ) {\n$content}" );
+					// Provide CJS `exports` (in addition to CJS2 `module.exports`) to package modules (T284511).
+					// $/jQuery are simply used as globals instead.
+					// TODO: Remove $/jQuery param from traditional module closure too (and bump caching)
+					$file = new XmlJsCode( "function ( require, module, exports ) {\n$content}" );
 				} else {
 					$file = $file['content'];
 				}
