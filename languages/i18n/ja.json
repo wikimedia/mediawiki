@@ -1740,7 +1740,7 @@
 	"upload_directory_read_only": "アップロード先ディレクトリ ($1) には、ウェブサーバーが書き込めません。",
 	"uploaderror": "アップロードのエラー",
 	"upload-recreate-warning": "<strong>警告: その名前のファイルは、以前に削除または移動されています。</strong>\n\n参考のため、このページの削除と移動の記録を以下に示します:",
-	"uploadtext": "ファイルをアップロードするには、以下のフォームを使用してください。\n\n以前にアップロードされたファイルの表示と検索には[[Special:FileList|{{int:listfiles}}]]を使用してください。(再) アップロードは[[Special:Log/upload|アップロード記録]]に、削除は[[Special:Log/delete|削除記録]]にも記録されます。\n\nページにファイルを入れるには、以下の書式のリンクを使用してください:\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.jpg]]</nowiki></code></strong> とすると、ファイルが完全なままで使用されます。\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.png|200px|thumb|left|代替文]]</nowiki></code></strong> とすると、200ピクセルの幅に修正された状態で、左寄せの枠内に、「代替文」が説明として使用されます。\n* <strong><code><nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki></code></strong> とすると、ファイルを表示せずにそのファイルに直接リンクします。",
+	"uploadtext": "ファイルをアップロードするには、以下のフォームを使用してください。\n\n以前にアップロードされたファイルの表示と検索には[[Special:FileList|{{int:listfiles}}]]を使用してください。アップロードまたは再アップロードは[[Special:Log/upload|アップロード記録]]に、削除は[[Special:Log/delete|削除記録]]にも記録されます。\n\nページにファイルを入れるには、以下の書式のリンクを使用してください:\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.jpg]]</nowiki></code></strong> とすると、ファイルが完全なままで使用されます。\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.png|200px|thumb|left|表題]]</nowiki></code></strong> とすると、200ピクセルの幅に修正された状態で、左寄せの枠内に、「表題」の下で使用されます。\n* <strong><code><nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki></code></strong> とすると、ファイルを表示せずにそのファイルに直接リンクします。",
 	"upload-permitted": "許可されているファイル{{PLURAL:$2|形式}}: $1。",
 	"upload-preferred": "推奨されているファイル{{PLURAL:$2|形式}}: $1。",
 	"upload-prohibited": "禁止されているファイル{{PLURAL:$2|形式}}: $1。",

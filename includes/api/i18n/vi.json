@@ -6,6 +6,7 @@
 			"Macofe",
 			"Max20091",
 			"Minh Nguyen",
+			"NguoiDungKhongDinhDanh",
 			"Vinhtantran"
 		]
 	},
@@ -194,7 +195,7 @@
 	"api-format-title": "Kết quả API MediaWiki",
 	"api-help-title": "Trợ giúp về API MediaWiki",
 	"api-help-main-header": "Mô đun chính",
-	"api-help-flag-deprecated": "Mô đun này đã bị phản đối.",
+	"api-help-flag-deprecated": "Mô đun này đã lỗi thời.",
 	"api-help-flag-readrights": "Mô đun này cần quyền đọc.",
 	"api-help-flag-writerights": "Mô đun này cần quyền ghi.",
 	"api-help-flag-mustbeposted": "Mô đun này chỉ có nhận các yêu cầu POST.",
