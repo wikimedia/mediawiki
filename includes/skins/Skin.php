@@ -2371,12 +2371,12 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @since 1.38
+	 * @internal
 	 * @param array $attrs (optional) will be passed to tooltipAndAccesskeyAttribs
 	 *  and decorate the resulting input
 	 * @return array attributes of HTML input
 	 */
-	protected function getSearchInputAttributes( $attrs = [] ) {
+	final protected function getSearchInputAttributes( $attrs = [] ) {
 		$autoCapHint = $this->getConfig()->get( 'CapitalLinks' );
 		$realAttrs = [
 			'type' => 'search',
