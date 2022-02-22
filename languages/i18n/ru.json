@@ -166,7 +166,8 @@
 			"Rivka Silinsky",
 			"Annablazeprobable",
 			"Base",
-			"Malikxan"
+			"Malikxan",
+			"Tanzun"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -2676,7 +2677,7 @@
 	"year": "С года (и ранее):",
 	"date": "С даты (и ранее):",
 	"sp-contributions-blocklog": "блокировки",
-	"sp-contributions-suppresslog": "удалённый вклад {{GENDER:$1|участника|участницы}}",
+	"sp-contributions-suppresslog": "скрытый вклад {{GENDER:$1|участника|участницы}}",
 	"sp-contributions-deleted": "удалённые правки {{GENDER:$1|участника|участницы}}",
 	"sp-contributions-uploads": "загрузки",
 	"sp-contributions-logs": "журналы",

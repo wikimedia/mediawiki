@@ -807,6 +807,7 @@
 	"apihelp-query+info-paramvalue-prop-watchers": "Die Anzahl der Beobachter, falls erlaubt.",
 	"apihelp-query+info-paramvalue-prop-notificationtimestamp": "Der Beobachtungslisten-Benachrichtigungs-Zeitstempel jeder Seite.",
 	"apihelp-query+info-paramvalue-prop-subjectid": "Die Seitenkennung der Elternseite jeder Diskussionsseite.",
+	"apihelp-query+info-paramvalue-prop-url": "Gibt eine vollständige URL, eine bearbeitete URL und die kanonische URL für jede Seite an.",
 	"apihelp-query+info-paramvalue-prop-readable": "Ob der Benutzer diese Seite lesen kann. Stattdessen <kbd>intestactions=read</kbd> verwenden.",
 	"apihelp-query+info-paramvalue-prop-preload": "Gibt den Text aus, der von EditFormPreloadText zurückgegeben wurde.",
 	"apihelp-query+info-paramvalue-prop-displaytitle": "Gibt die Art und Weise an, in der der Seitentitel tatsächlich angezeigt wird.",
