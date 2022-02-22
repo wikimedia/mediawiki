@@ -1,0 +1,10 @@
+{
+	"$schema": "https://json-schema.org/schema#",
+	"description": "MediaWiki abstract database schema schema",
+	"type": "array",
+	"additionalItems": false,
+	"items": {
+		"$ref": "abstract-schema-table.json"
+	},
+	"minItems": 1
+}

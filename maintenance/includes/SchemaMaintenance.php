@@ -22,6 +22,9 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\DB\AbstractSchemaValidationError;
+use MediaWiki\DB\AbstractSchemaValidator;
+
 require_once __DIR__ . '/../Maintenance.php';
 
 abstract class SchemaMaintenance extends Maintenance {
@@ -64,6 +67,10 @@ abstract class SchemaMaintenance extends Maintenance {
 			false,
 			true
 		);
+		$this->addOption(
+			'validate',
+			'Validate the schema instead of generating sql files.'
+		);
 	}
 
 	public function execute() {
@@ -78,6 +85,12 @@ abstract class SchemaMaintenance extends Maintenance {
 		if ( DIRECTORY_SEPARATOR === '\\' ) {
 			$installPath = strtr( $installPath, '\\', '/' );
 			$jsonPath = strtr( $jsonPath, '\\', '/' );
+		}
+
+		if ( $this->hasOption( 'validate' ) ) {
+			$this->getSchema( $jsonPath );
+
+			return;
 		}
 
 		// Allow to specify a folder and use a default name
@@ -203,6 +216,15 @@ abstract class SchemaMaintenance extends Maintenance {
 			$this->fatalError(
 				"'$jsonPath' seems to be invalid json. Check the syntax and try again!\n" . json_last_error_msg()
 			);
+		}
+
+		$validator = new AbstractSchemaValidator( function ( string $msg ): void {
+			$this->fatalError( $msg );
+		} );
+		try {
+			$validator->validate( $jsonPath );
+		} catch ( AbstractSchemaValidationError $e ) {
+			$this->fatalError( $e->getMessage() );
 		}
 
 		return $abstractSchema;
