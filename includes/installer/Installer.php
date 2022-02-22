@@ -28,6 +28,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Interwiki\NullInterwikiLookup;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Settings\SettingsBuilder;
 
 /**
  * The Installer helps admins create or upgrade their wiki.
@@ -1858,8 +1859,10 @@ abstract class Installer {
 
 	/**
 	 * Override the necessary bits of the config to run an installation.
+	 *
+	 * @param SettingsBuilder $settings
 	 */
-	public static function overrideConfig() {
+	public static function overrideConfig( SettingsBuilder $settings ) {
 		// Use PHP's built-in session handling, since MediaWiki's
 		// SessionHandler can't work before we have an object cache set up.
 		if ( !defined( 'MW_NO_SESSION_HANDLER' ) ) {

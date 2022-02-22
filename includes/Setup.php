@@ -163,7 +163,7 @@ $wgSettings->setConfigValues( [
 $wgSettings->apply();
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
-	call_user_func( MW_CONFIG_CALLBACK );
+	call_user_func( MW_CONFIG_CALLBACK, $wgSettings );
 } else {
 	wfDetectLocalSettingsFile( $IP );
 
