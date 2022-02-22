@@ -52,7 +52,7 @@ class FetchText extends Maintenance {
 		// To account for parts of MediaWiki that get their own db connection outside of
 		// Maintenance::getDB(), we set this global variable so that they will attempt
 		// to use this group.
-		$settingsBuilder->setConfigValue( 'DBDefaultGroup', 'dump' );
+		$settingsBuilder->putConfigValue( 'DBDefaultGroup', 'dump' );
 		// do this last so that options can override
 
 		parent::finalSetup( $settingsBuilder );

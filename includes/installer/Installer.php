@@ -1869,47 +1869,54 @@ abstract class Installer {
 			define( 'MW_NO_SESSION_HANDLER', 1 );
 		}
 
-		// Don't access the database
-		$GLOBALS['wgUseDatabaseMessages'] = false;
-		// Don't cache langconv tables
-		$GLOBALS['wgLanguageConverterCacheType'] = CACHE_NONE;
-		// Don't try to cache ResourceLoader dependencies in the database
-		$GLOBALS['wgResourceLoaderUseObjectCacheForDeps'] = true;
-		// Debug-friendly
-		$GLOBALS['wgShowExceptionDetails'] = true;
-		$GLOBALS['wgShowHostnames'] = true;
-		// Don't break forms
-		$GLOBALS['wgExternalLinkTarget'] = '_blank';
+		$settings->overrideConfigValues( [
 
-		// Allow multiple ob_flush() calls
-		$GLOBALS['wgDisableOutputCompression'] = true;
+			// Don't access the database
+			'UseDatabaseMessages' => false,
 
-		// Use a sensible cookie prefix (not my_wiki)
-		$GLOBALS['wgCookiePrefix'] = 'mw_installer';
+			// Don't cache langconv tables
+			'LanguageConverterCacheType' => CACHE_NONE,
 
-		// Some of the environment checks make shell requests, remove limits
-		$GLOBALS['wgMaxShellMemory'] = 0;
+			// Don't try to cache ResourceLoader dependencies in the database
+			'ResourceLoaderUseObjectCacheForDeps' => true,
 
-		// Override the default CookieSessionProvider with a dummy
-		// implementation that won't stomp on PHP's cookies.
-		$GLOBALS['wgSessionProviders'] = [
-			[
-				'class' => InstallerSessionProvider::class,
-				'args' => [ [
-					'priority' => 1,
-				] ]
-			]
-		];
+			// Debug-friendly
+			'ShowExceptionDetails' => true,
+			'ShowHostnames' => true,
 
-		// Don't use the DB as the main stash
-		$GLOBALS['wgMainStash'] = CACHE_NONE;
+			// Don't break forms
+			'ExternalLinkTarget' => '_blank',
 
-		// Don't try to use any object cache for SessionManager either.
-		$GLOBALS['wgSessionCacheType'] = CACHE_NONE;
+			// Allow multiple ob_flush() calls
+			'DisableOutputCompression' => true,
 
-		// Set a dummy $wgServer to bypass the check in Setup.php, the
-		// web installer will automatically detect it and not use this value.
-		$GLOBALS['wgServer'] = 'https://🌻.invalid';
+			// Use a sensible cookie prefix (not my_wiki)
+			'CookiePrefix' => 'mw_installer',
+
+			// Some of the environment checks make shell requests, remove limits
+			'MaxShellMemory' => 0,
+
+			// Override the default CookieSessionProvider with a dummy
+			// implementation that won't stomp on PHP's cookies.
+			'SessionProviders' => [
+				[
+					'class' => InstallerSessionProvider::class,
+					'args' => [ [
+						'priority' => 1,
+					] ]
+				]
+			],
+
+			// Don't use the DB as the main stash
+			'MainStash' => CACHE_NONE,
+
+			// Don't try to use any object cache for SessionManager either.
+			'SessionCacheType' => CACHE_NONE,
+
+			// Set a dummy $wgServer to bypass the check in Setup.php, the
+			// web installer will automatically detect it and not use this value.
+			'Server' => 'https://🌻.invalid',
+		] );
 	}
 
 	/**

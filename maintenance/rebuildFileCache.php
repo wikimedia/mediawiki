@@ -47,7 +47,7 @@ class RebuildFileCache extends Maintenance {
 	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
 		$this->enabled = $settingsBuilder->getConfig()->get( 'UseFileCache' );
 		// Script will handle capturing output and saving it itself
-		$settingsBuilder->setConfigValue( 'UseFileCache', false );
+		$settingsBuilder->putConfigValue( 'UseFileCache', false );
 
 		// Avoid DB writes (like enotif/counters)
 		MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()

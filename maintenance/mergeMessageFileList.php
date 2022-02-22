@@ -126,7 +126,7 @@ class MergeMessageFileList extends Maintenance {
 		# This script commonly needs to be run before the l10n cache. But if
 		# LanguageCode is not 'en', it won't be able to run because there is
 		# no l10n cache. Break the cycle by forcing the LanguageCode setting to 'en'.
-		$settingsBuilder->setConfigValue( 'LanguageCode', 'en' );
+		$settingsBuilder->putConfigValue( 'LanguageCode', 'en' );
 		parent::finalSetup( $settingsBuilder );
 	}
 

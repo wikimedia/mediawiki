@@ -155,7 +155,7 @@ mb_internal_encoding( 'UTF-8' );
 
 // Initialize some config settings with dynamic defaults, and
 // make default settings available in globals for use in LocalSettings.php.
-$wgSettings->setConfigValues( [
+$wgSettings->putConfigValues( [
 	'ExtensionDirectory' => "{$IP}/extensions",
 	'StyleDirectory' => "{$IP}/skins",
 	'ServiceWiringFiles' => [ "{$IP}/includes/ServiceWiring.php" ],

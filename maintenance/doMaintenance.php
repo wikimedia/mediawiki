@@ -83,7 +83,7 @@ if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
 						&& !$config->get( 'CacheDirectory' ) ) )
 			) {
 				$cacheConf['storeClass'] = LCStoreNull::class;
-				$settingsBuilder->setConfigValue( 'LocalisationCacheConf', $cacheConf );
+				$settingsBuilder->putConfigValue( 'LocalisationCacheConf', $cacheConf );
 			}
 		}
 
