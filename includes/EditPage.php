@@ -1553,6 +1553,19 @@ class EditPage implements IEditObject {
 
 		$title = Title::newFromText( $preload );
 
+		// Use SpecialMyLanguage redirect so that nonexistent translated pages can
+		// fall back to the corresponding page in a suitable language
+		if ( $title && $title->isSpecialPage() ) {
+			$specialPageFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
+			[ $spName, $spParam ] = $specialPageFactory->resolveAlias( $title->getText() );
+			if ( $spName ) {
+				$specialPage = $specialPageFactory->getPage( $spName );
+				if ( $specialPage instanceof SpecialMyLanguage ) {
+					$title = $specialPage->getRedirect( $spParam );
+				}
+			}
+		}
+
 		# Check for existence to avoid getting MediaWiki:Noarticletext
 		if ( !$this->isPageExistingAndViewable( $title, $this->getContext()->getAuthority() ) ) {
 			// TODO: somehow show a warning to the user!
