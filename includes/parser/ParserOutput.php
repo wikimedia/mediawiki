@@ -9,6 +9,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutputFlags;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
+use Wikimedia\Parsoid\Core\ContentMetadataCollectorCompat;
 use Wikimedia\Reflection\GhostFieldAccessTrait;
 
 /**
@@ -33,9 +34,13 @@ use Wikimedia\Reflection\GhostFieldAccessTrait;
  * @ingroup Parser
  */
 
-class ParserOutput extends CacheTime {
+class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	use GhostFieldAccessTrait;
 	use JsonUnserializableTrait;
+	// This is used to break cyclic dependencies and allow a measure
+	// of compatibility when new methods are added to ContentMetadataCollector
+	// by Parsoid.
+	use ContentMetadataCollectorCompat;
 
 	/**
 	 * Feature flags to indicate to extensions that MediaWiki core supports and
@@ -881,7 +886,7 @@ class ParserOutput extends CacheTime {
 	 * @param string $c The category name
 	 * @param string $sort The sort key
 	 */
-	public function addCategory( $c, $sort ): void {
+	public function addCategory( $c, $sort = '' ): void {
 		$this->mCategories[$c] = $sort;
 	}
 
