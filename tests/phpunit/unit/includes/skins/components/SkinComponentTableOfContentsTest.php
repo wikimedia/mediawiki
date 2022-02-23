@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Skin\SkinComponentTableOfContents;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Skin\SkinComponentTableOfContents
@@ -177,7 +176,7 @@ class SkinComponentTableOfContentsTest extends MediaWikiUnitTestCase {
 		$mockOutput->method( 'getSections' )->willReturn( $sectionsData );
 		$skinComponent = new SkinComponentTableOfContents( $mockOutput );
 
-		$data = TestingAccessWrapper::newFromObject( $skinComponent )->getTemplateData();
+		$data = $skinComponent->getTemplateData();
 
 		$this->assertEquals( $expected, $data );
 	}
