@@ -216,7 +216,8 @@ class MigrateActors extends LoggedUpdateMaintenance {
 						'actor_name' => $v,
 					];
 				}, array_keys( $needActors ) ),
-				__METHOD__
+				__METHOD__,
+				[ 'IGNORE' ]
 			);
 			$countActors += $dbw->affectedRows();
 
