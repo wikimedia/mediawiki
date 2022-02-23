@@ -81,6 +81,34 @@ class ApiDeleteTest extends ApiTestCase {
 		] );
 	}
 
+	public function testDeleteAssociatedTalkPage() {
+		$title = 'Help:' . ucfirst( __FUNCTION__ );
+		$talkPage = 'Help_talk:' . ucfirst( __FUNCTION__ );
+		$this->editPage( $title, 'Some text' );
+		$this->editPage( $talkPage, 'Some text' );
+		$apiResult = $this->doApiRequestWithToken( [
+			'action' => 'delete',
+			'title' => $title,
+			'deletetalk' => true,
+		] )[0];
+
+		$this->assertSame( $title, $apiResult['delete']['title'] );
+		$this->assertFalse( Title::newFromText( $talkPage )->exists( Title::READ_LATEST ) );
+	}
+
+	public function testDeleteAssociatedTalkPageNonexistent() {
+		$title = 'Help:' . ucfirst( __FUNCTION__ );
+		$this->editPage( $title, 'Some text' );
+		$apiResult = $this->doApiRequestWithToken( [
+			'action' => 'delete',
+			'title' => $title,
+			'deletetalk' => true,
+		] )[0];
+
+		$this->assertSame( $title, $apiResult['delete']['title'] );
+		$this->assertArrayHasKey( 'warnings', $apiResult );
+	}
+
 	public function testDeletionWithoutPermission() {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage(
