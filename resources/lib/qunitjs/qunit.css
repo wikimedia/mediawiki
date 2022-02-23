@@ -1,5 +1,5 @@
 /*!
- * QUnit 2.16.0
+ * QUnit 2.18.0
  * https://qunitjs.com/
  *
  * Copyright OpenJS Foundation and other contributors
@@ -449,6 +449,9 @@
 	background-color: #E2F0F7;
 
 	border-bottom: 1px solid #FFF;
+}
+#qunit-testresult a {
+	color: #2F68DA;
 }
 #qunit-testresult .clearfix {
 	height: 0;
