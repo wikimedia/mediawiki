@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Unit\Settings\Config;
 
 use MediaWiki\Settings\Config\ConfigBuilder;
 use MediaWiki\Settings\Config\MergeStrategy;
-use MediaWiki\Settings\SettingsBuilderException;
 
 trait ConfigSinkTestTrait {
 
@@ -13,98 +12,95 @@ trait ConfigSinkTestTrait {
 	abstract protected function assertKeyHasValue( string $key, $value );
 
 	public function testSet() {
-		$this->getConfigSink()->set( __METHOD__, 'bar' );
-		$this->assertKeyHasValue( __METHOD__, 'bar' );
-	}
-
-	public function testSetOverrides() {
 		$this->getConfigSink()
-			->set( __METHOD__, 'bar' )
-			->set( __METHOD__, 'baz' );
-		$this->assertKeyHasValue( __METHOD__, 'baz' );
+			->set( 'TestKey1', 'foo' )
+			->set( 'TestKey2', 'bar' );
+		$this->assertKeyHasValue( 'TestKey1', 'foo' );
+		$this->assertKeyHasValue( 'TestKey2', 'bar' );
 	}
 
 	public function testSetDefault() {
 		$this->getConfigSink()
-			->set( __METHOD__, null )
-			->setDefault( 'other' . __METHOD__, 'quux' )
-			->setDefault( __METHOD__, 'baz' );
-
-		$this->assertKeyHasValue( 'other' . __METHOD__, 'quux' );
-		$this->assertKeyHasValue( __METHOD__, null );
+			->setDefault( 'TestKey1', 'foo' )
+			->setDefault( 'TestKey2', 'bar' );
+		$this->assertKeyHasValue( 'TestKey1', 'foo' );
+		$this->assertKeyHasValue( 'TestKey2', 'bar' );
 	}
 
-	public function testMerge() {
+	public function provideSetNewValue() {
+		yield 'replace 1 with 2' => [ 1, 2, null, 2 ];
+		yield 'replace 1 with 0' => [ 1, 0, null, 0 ];
+		yield 'replace 1 with null' => [ 1, null, null, null ];
+
+		yield 'merge two arrays' => [
+			[ 'a' ], [ 'b' ], MergeStrategy::ARRAY_MERGE, [ 'a', 'b' ]
+		];
+		yield 'merge two maps' => [
+			[ 'a' => 1 ], [ 'a' => 2 ], MergeStrategy::ARRAY_MERGE, [ 'a' => 2 ]
+		];
+
+		yield 'empty array replaces 1' => [ 1, [], MergeStrategy::ARRAY_MERGE, [] ];
+		yield '1 replaces non-empty array' => [ [ 'x' ], 1, MergeStrategy::ARRAY_MERGE, 1 ];
+		yield 'null replaces non-empty array' => [ [ 'x' ], null, MergeStrategy::ARRAY_MERGE, null ];
+
+		yield 'empty array replaces non-empty array' => [ [ 'x' ], [], MergeStrategy::REPLACE, [] ];
+	}
+
+	/**
+	 * @dataProvider provideSetNewValue
+	 *
+	 * @param mixed $first
+	 * @param mixed $second
+	 * @param string $strategy
+	 * @param mixed $expected
+	 */
+	public function testSetNewValue( $first, $second, $strategy, $expected ) {
 		$this->getConfigSink()
-			->set( __METHOD__, [ 'bar' ] )
+			->set( 'TestKey', $first )
 			->set(
-				__METHOD__,
-				[ 'baz' ],
-				MergeStrategy::newFromName( MergeStrategy::ARRAY_MERGE )
+				'TestKey',
+				$second, $strategy ? MergeStrategy::newFromName( $strategy ) : null
 			);
-		$this->assertKeyHasValue( __METHOD__, [ 'bar', 'baz' ] );
+		$this->assertKeyHasValue( 'TestKey', $expected );
 	}
 
-	public function testMergeDefault() {
+	public function provideSetDefaultValue() {
+		yield 'do not replace 1 with 2' => [ 1, 2, null, 1 ];
+		yield 'do not replace 0 with 2' => [ 0, 2, null, 0 ];
+		yield 'do not replace null with 2' => [ false, 2, null, null ];
+		yield 'do not replace false with 2' => [ null, 2, null, false ];
+		yield 'do not replace an empty array with 2' => [ [], 2, null, [] ];
+		yield 'do not replace an empty array with a non-empty one' => [ [], [ 2 ], null, [] ];
+
+		yield 'merge two arrays' => [
+			[ 'a' ], [ 'b' ], MergeStrategy::ARRAY_MERGE, [ 'b', 'a' ]
+		];
+		yield 'merge two maps' => [
+			[ 'a' => 1 ], [ 'a' => 2 ], MergeStrategy::ARRAY_MERGE, [ 'a' => 1 ]
+		];
+
+		yield 'non-empty array does not replace 1' => [ 1, [ 'x' ], MergeStrategy::ARRAY_MERGE, 1 ];
+		yield '1 does not replace empty array' => [ [], 1, MergeStrategy::ARRAY_MERGE, [] ];
+		yield '1 does not replace non-empty array' => [ [ 'x' ], 1, MergeStrategy::ARRAY_MERGE, [ 'x' ] ];
+	}
+
+	/**
+	 * @dataProvider provideSetDefaultValue
+	 *
+	 * @param mixed $first
+	 * @param mixed $second
+	 * @param string $strategy
+	 * @param mixed $expected
+	 */
+	public function testSetDefaultValue( $first, $second, $strategy, $expected ) {
 		$this->getConfigSink()
-			->set( __METHOD__, [ 'bar' ] )
+			->set( 'TestKey', $first )
 			->setDefault(
-				__METHOD__,
-				[ 'baz' ],
-				MergeStrategy::newFromName( MergeStrategy::ARRAY_MERGE )
+				'TestKey',
+				$second,
+				$strategy ? MergeStrategy::newFromName( $strategy ) : null
 			);
-		$this->assertKeyHasValue( __METHOD__, [ 'baz', 'bar' ] );
+		$this->assertKeyHasValue( 'TestKey', $expected );
 	}
 
-	public function testMergeOverrideEmpty() {
-		$this->getConfigSink()
-			->set( __METHOD__, [] )
-			->set(
-				__METHOD__,
-				[ 'baz' ],
-				MergeStrategy::newFromName( MergeStrategy::ARRAY_MERGE )
-			);
-		$this->assertKeyHasValue( __METHOD__, [ 'baz' ] );
-	}
-
-	public function testMergeOverrideNonExisting() {
-		$this->getConfigSink()
-			->set(
-				__METHOD__,
-				[ 'baz' ],
-				MergeStrategy::newFromName( MergeStrategy::ARRAY_MERGE )
-			);
-		$this->assertKeyHasValue( __METHOD__, [ 'baz' ] );
-	}
-
-	public function testMergeDefaultOverrideEmpty() {
-		$this->getConfigSink()
-			->set( __METHOD__, [] )
-			->setDefault(
-				__METHOD__,
-				[ 'baz' ],
-				MergeStrategy::newFromName( MergeStrategy::ARRAY_MERGE )
-			);
-		$this->assertKeyHasValue( __METHOD__, [ 'baz' ] );
-	}
-
-	public function testMergeDefaultOverrideNonExisting() {
-		$this->getConfigSink()
-			->setDefault(
-				__METHOD__,
-				[ 'baz' ],
-				MergeStrategy::newFromName( MergeStrategy::ARRAY_MERGE )
-			);
-		$this->assertKeyHasValue( __METHOD__, [ 'baz' ] );
-	}
-
-	public function testCannotMergeNonArray() {
-		$this->expectException( SettingsBuilderException::class );
-		$this->getConfigSink()
-			->set(
-				__METHOD__,
-				'baz',
-				MergeStrategy::newFromName( MergeStrategy::ARRAY_MERGE )
-			);
-	}
 }

@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Unit\Settings\Config;
 
 use MediaWiki\Settings\Config\ConfigSchemaAggregator;
-use MediaWiki\Settings\Config\MergeStrategy;
 use MediaWiki\Settings\SettingsBuilderException;
 use PHPUnit\Framework\TestCase;
 
@@ -55,17 +54,52 @@ class ConfigSchemaAggregatorTest extends TestCase {
 		$this->assertSame( 'bla', $aggregator->getDefaultFor( 'with_default' ) );
 	}
 
-	public function testGetMergeStrategyFor() {
+	public function provideGetMergeStrategiesFor() {
+		yield 'no schema' => [ null, null ];
+		yield 'no strategy' => [ [ 'default' => '' ], null ];
+		yield 'with strategy' => [ [ 'mergeStrategy' => 'array_merge' ], 'array_merge' ];
+
+		yield 'with strategy and type=array' => [
+			[
+				'type' => 'array',
+				'mergeStrategy' => 'replace'
+			],
+			'replace'
+		];
+
+		yield 'without strategy and type=array' => [
+			[ 'type' => 'array' ],
+			'array_merge'
+		];
+
+		yield 'with strategy and type=object' => [
+			[
+				'type' => 'object',
+				'mergeStrategy' => 'array_plus_2d'
+			],
+			'array_plus_2d'
+		];
+
+		yield 'without strategy and type=object' => [
+			[ 'type' => 'object' ],
+			'array_plus'
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetMergeStrategiesFor
+	 */
+	public function testGetMergeStrategyFor( $schema, $expected ) {
 		$aggregator = new ConfigSchemaAggregator();
-		$aggregator->addSchemas( [
-			'no_strategy' => [ 'type' => 'string', ],
-			'has_strategy' => [ 'type' => 'string', 'mergeStrategy' => MergeStrategy::ARRAY_MERGE, ],
-		] );
-		$this->assertNull( $aggregator->getMergeStrategyFor( 'not_exist' ) );
-		$this->assertNull( $aggregator->getMergeStrategyFor( 'no_strategy' ) );
+
+		if ( $schema ) {
+			$aggregator->addSchemas( [ 'test' => $schema, ] );
+		}
+
+		$strategy = $aggregator->getMergeStrategyFor( 'test' );
 		$this->assertSame(
-			MergeStrategy::ARRAY_MERGE,
-			$aggregator->getMergeStrategyFor( 'has_strategy' )->getName()
+			$expected,
+			$strategy ? $strategy->getName() : null
 		);
 	}
 }

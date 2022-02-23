@@ -5,8 +5,7 @@ namespace MediaWiki\Settings\Config;
 use Config;
 use GlobalVarConfig;
 
-class GlobalConfigBuilder implements ConfigBuilder {
-	use ConfigBuilderTrait;
+class GlobalConfigBuilder extends ConfigBuilderBase {
 
 	/** @var string */
 	public const DEFAULT_PREFIX = 'wg';
@@ -21,23 +20,19 @@ class GlobalConfigBuilder implements ConfigBuilder {
 		$this->prefix = $prefix;
 	}
 
-	public function set( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigBuilder {
+	protected function has( string $key ): bool {
 		$var = $this->getVarName( $key );
-
-		$GLOBALS[ $var ] =
-			$this->getNewValue( $key, $GLOBALS[ $var ] ?? null, $value, $mergeStrategy );
-		return $this;
+		return array_key_exists( $var, $GLOBALS );
 	}
 
-	public function setDefault( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigBuilder {
+	protected function get( string $key ) {
 		$var = $this->getVarName( $key );
+		return $GLOBALS[ $var ] ?? null;
+	}
 
-		if ( $mergeStrategy ) {
-			$this->set( $key, $value, $mergeStrategy->reverse() );
-		} elseif ( !array_key_exists( $var, $GLOBALS ) ) {
-			$GLOBALS[ $var ] = $value;
-		}
-		return $this;
+	protected function update( string $key, $value ) {
+		$var = $this->getVarName( $key );
+		$GLOBALS[ $var ] = $value;
 	}
 
 	private function getVarName( string $key ): string {

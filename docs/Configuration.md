@@ -1009,6 +1009,7 @@ Force thumbnailing of animated GIFs above this size to a single
 frame instead of an animated thumbnail.  As of MW 1.17 this limit
 is checked against the total size of all frames in the animation.
 
+
 It probably makes sense to keep this equal to $wgMaxImageArea.
 
 # TiffThumbnailType {#TiffThumbnailType}
@@ -1602,7 +1603,7 @@ The installer will add 'actor' to this list for all new wikis.
 
 # DBservers {#DBservers}
 Database load balancer
-This is a two-dimensional array, an array of server info structures
+This is a two-dimensional array, a list of server info structures
 Fields are:
   - host:        Host name
   - dbname:      Default database name
@@ -1611,7 +1612,7 @@ Fields are:
   - type:        DB type
   - driver:      DB driver (when there are multiple drivers)
 
-- load:        Ratio of DB_REPLICA load, must be >=0, the sum of all loads must be >0.
+  - load:        Ratio of DB_REPLICA load, must be >=0, the sum of all loads must be >0.
                  If this is zero for any given server, no normal query traffic will be
                  sent to it. It will be excluded from lag checks in maintenance scripts.
                  The only way it can receive traffic is if groupLoads is used.
@@ -2701,7 +2702,7 @@ overridable in user preferences. It is *not* used for signature timestamps.
 By default, this will be set to match $wgLocaltimezone.
 
 # OverrideUcfirstCharacters {#OverrideUcfirstCharacters}
-List of Unicode characters for which capitalization is overridden in
+Map of Unicode characters for which capitalization is overridden in
 Language::ucfirst. The characters should be
 represented as char_to_convert => conversion_override. See T219279 for details
 on why this is useful during php version transitions.
@@ -4629,7 +4630,7 @@ May be an array of regexes or a single string for backwards compatibility.
 @note Each regex needs a beginning/end delimiter, eg: # or /
 
 # SummarySpamRegex {#SummarySpamRegex}
-Same as the above except for edit summaries
+Same as SpamRegex except for edit summaries
 
 # EnableDnsBlacklist {#EnableDnsBlacklist}
 Whether to use DNS blacklists in $wgDnsBlacklistUrls to check for open
@@ -4660,7 +4661,7 @@ eventual domain search suffixes.
 @since 1.16
 
 # ProxyList {#ProxyList}
-Big list of banned IP addresses.
+List of banned IP addresses.
 
 This can have the following formats:
 - An array of addresses
