@@ -268,7 +268,7 @@
 	"config-install-database": "Message indicates the database is being set up\n\nSee also:\n*{{msg-mw|Config-install-database}}\n*{{msg-mw|Config-install-tables}}\n*{{msg-mw|Config-install-interwiki}}\n*{{msg-mw|Config-install-stats}}\n*{{msg-mw|Config-install-keys}}\n*{{msg-mw|Config-install-updates}}\n*{{msg-mw|Config-install-schema}}\n*{{msg-mw|Config-install-user}}\n*{{msg-mw|Config-install-sysop}}\n*{{msg-mw|Config-install-mainpage}}",
 	"config-install-schema": "*{{msg-mw|Config-install-database}}\n*{{msg-mw|Config-install-tables}}\n*{{msg-mw|Config-install-schema}}\n*{{msg-mw|Config-install-user}}\n*{{msg-mw|Config-install-interwiki}}\n*{{msg-mw|Config-install-stats}}\n*{{msg-mw|Config-install-keys}}\n*{{msg-mw|Config-install-sysop}}\n*{{msg-mw|Config-install-mainpage}}",
 	"config-install-pg-schema-not-exist": "Error message shown to users picking PostgreSQL.",
-	"config-install-pg-schema-failed": "Parameters:\n* $1 = database user name (usernames in the database are unrelated to wiki user names)\n* $2 =",
+	"config-install-pg-schema-failed": "Parameters:\n* $1 = database username (usernames in the database are unrelated to wiki usernames)\n* $2 =",
 	"config-install-pg-commit": "Notice shown to the user during the install about progress with PostgreSQL.",
 	"config-install-pg-plpgsql": "Notice shown to users using PL/pgSQL installation.",
 	"config-pg-no-plpgsql": "Used as error message. Parameters:\n* $1 - database name",

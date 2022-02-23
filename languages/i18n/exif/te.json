@@ -7,7 +7,8 @@
 			"Ravichandra",
 			"Veeven",
 			"రహ్మానుద్దీన్",
-			"వైజాసత్య"
+			"వైజాసత్య",
+			"Arjunaraoc"
 		]
 	},
 	"exif-imagewidth": "వెడల్పు",
@@ -97,7 +98,7 @@
 	"exif-gpslongituderef": "తూర్పు లేదా పశ్చిమ రేఖాంశం",
 	"exif-gpslongitude": "రేఖాంశం",
 	"exif-gpsaltituderef": "ఎత్తుకు మూలం",
-	"exif-gpsaltitude": "సముద్ర మట్టం",
+	"exif-gpsaltitude": "ఎత్తు (సముద్రమట్టం నుండి)",
 	"exif-gpstimestamp": "GPS సమయం (అణు గడియారం)",
 	"exif-gpssatellites": "కొలిచేందుకు వాడిన ఉపగ్రహాలు",
 	"exif-gpsstatus": "రిసీవర్ స్థితి",
