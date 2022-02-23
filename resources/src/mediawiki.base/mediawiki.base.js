@@ -59,16 +59,10 @@ require( './legacy.wikibits.js' );
  * @param {Array} [parameters]
  */
 function Message( map, key, parameters ) {
-	this.format = 'text';
 	this.map = map;
 	this.key = key;
 	this.parameters = parameters || [];
 }
-
-var statefulDeprecated = mw.log.makeDeprecated(
-	'mw_Message_toString_stateful',
-	'Use of stateful mw.Message#toString is deprecated. https://phabricator.wikimedia.org/T292489'
-);
 
 Message.prototype = {
 	/**
@@ -142,11 +136,7 @@ Message.prototype = {
 		}
 
 		if ( !format ) {
-			format = this.format;
-			if ( format !== 'text' ) {
-				// Stateful default is deprecated since MW 1.38
-				statefulDeprecated();
-			}
+			format = 'text';
 		}
 
 		if ( format === 'plain' || format === 'text' || format === 'parse' ) {
@@ -166,8 +156,7 @@ Message.prototype = {
 	 * @return {string} String form of parsed message
 	 */
 	parse: function () {
-		this.format = 'parse';
-		return this.toString( this.format );
+		return this.toString( 'parse' );
 	},
 
 	/**
@@ -179,8 +168,7 @@ Message.prototype = {
 	 * @return {string} String form of plain message
 	 */
 	plain: function () {
-		this.format = 'plain';
-		return this.toString( this.format );
+		return this.toString( 'plain' );
 	},
 
 	/**
@@ -193,8 +181,7 @@ Message.prototype = {
 	 * @return {string} String form of text message
 	 */
 	text: function () {
-		this.format = 'text';
-		return this.toString( this.format );
+		return this.toString( 'text' );
 	},
 
 	/**
@@ -205,8 +192,7 @@ Message.prototype = {
 	 * @return {string} String form of html escaped message
 	 */
 	escaped: function () {
-		this.format = 'escaped';
-		return this.toString( this.format );
+		return this.toString( 'escaped' );
 	},
 
 	/**
