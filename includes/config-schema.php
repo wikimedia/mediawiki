@@ -7,7 +7,7 @@ return [
 			'default' => [
 				'main' => 'GlobalVarConfig::newInstance',
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'Sitename' => [
 			'default' => 'MediaWiki',
@@ -58,9 +58,17 @@ return [
 		],
 		'ExtensionDirectory' => [
 			'default' => null,
+			'type' => [
+				0 => 'null',
+				1 => 'string',
+			],
 		],
 		'StyleDirectory' => [
 			'default' => null,
+			'type' => [
+				0 => 'null',
+				1 => 'string',
+			],
 		],
 		'ArticlePath' => [
 			'default' => false,
@@ -86,14 +94,14 @@ return [
 		'Logos' => [
 			'default' => false,
 			'type' => [
-				0 => 'array',
+				0 => 'object',
 				1 => 'boolean',
 			],
 		],
 		'LogoHD' => [
 			'default' => false,
 			'type' => [
-				0 => 'array',
+				0 => 'object',
 				1 => 'boolean',
 			],
 		],
@@ -123,6 +131,7 @@ return [
 		'ActionPaths' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'MainPageIsDomainRoot' => [
 			'default' => false,
@@ -152,13 +161,19 @@ return [
 		'ImgAuthUrlPathMap' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'LocalFileRepo' => [
 			'default' => false,
+			'type' => [
+				0 => 'object',
+				1 => 'boolean',
+			],
 		],
 		'ForeignFileRepos' => [
 			'default' => [
 			],
+			'type' => 'array',
 		],
 		'UseInstantCommons' => [
 			'default' => false,
@@ -211,6 +226,7 @@ return [
 			'default' => [
 				0 => 'local',
 			],
+			'type' => 'array',
 		],
 		'UploadDialog' => [
 			'default' => [
@@ -235,14 +251,17 @@ return [
 					'uncategorized' => '',
 				],
 			],
+			'type' => 'object',
 		],
 		'FileBackends' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'LockManagers' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'ShowEXIF' => [
 			'default' => true,
@@ -256,6 +275,7 @@ return [
 		'CopyUploadsDomains' => [
 			'default' => [
 			],
+			'type' => 'array',
 		],
 		'CopyUploadsFromSpecialUpload' => [
 			'default' => false,
@@ -304,7 +324,7 @@ return [
 				3 => 'jpeg',
 				4 => 'webp',
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'array',
 		],
 		'ProhibitedFileExtensions' => [
 			'default' => [
@@ -340,6 +360,7 @@ return [
 				29 => 'vxd',
 				30 => 'cpl',
 			],
+			'type' => 'array',
 		],
 		'MimeTypeExclusions' => [
 			'default' => [
@@ -359,6 +380,7 @@ return [
 				13 => 'application/x-msdownload',
 				14 => 'application/x-msmetafile',
 			],
+			'type' => 'array',
 		],
 		'AllowJavaUploads' => [
 			'default' => false,
@@ -383,18 +405,16 @@ return [
 				3 => 'image/svg+xml',
 				4 => 'application/pdf',
 			],
+			'type' => 'array',
 		],
 		'MediaHandlers' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'NativeImageLazyLoading' => [
 			'default' => false,
-			'type' => [
-				0 => 'array',
-				1 => 'boolean',
-			],
+			'type' => 'boolean',
 		],
 		'ParserTestMediaHandlers' => [
 			'default' => [
@@ -409,6 +429,7 @@ return [
 				'image/svg+xml' => 'MockSvgHandler',
 				'image/vnd.djvu' => 'MockDjVuHandler',
 			],
+			'type' => 'object',
 		],
 		'UseImageResize' => [
 			'default' => true,
@@ -422,6 +443,7 @@ return [
 		'MaxInterlacingAreas' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'SharpenParameter' => [
 			'default' => '0x0.4',
@@ -462,6 +484,7 @@ return [
 					0 => 'SvgHandler::rasterizeImagickExt',
 				],
 			],
+			'type' => 'object',
 		],
 		'SVGConverter' => [
 			'default' => 'ImageMagick',
@@ -492,6 +515,8 @@ return [
 		'TiffThumbnailType' => [
 			'default' => [
 			],
+			'type' => 'array',
+			'mergeStrategy' => 'replace',
 		],
 		'ThumbnailEpoch' => [
 			'default' => '20030516000000',
@@ -511,9 +536,17 @@ return [
 		],
 		'EnableAutoRotation' => [
 			'default' => null,
+			'type' => [
+				0 => 'null',
+				1 => 'boolean',
+			],
 		],
 		'Antivirus' => [
 			'default' => null,
+			'type' => [
+				0 => 'null',
+				1 => 'string',
+			],
 		],
 		'AntivirusSetup' => [
 			'default' => [
@@ -528,6 +561,7 @@ return [
 					'messagepattern' => '/.*?:(.*)/sim',
 				],
 			],
+			'type' => 'object',
 		],
 		'AntivirusRequired' => [
 			'default' => true,
@@ -546,6 +580,10 @@ return [
 		],
 		'MimeDetectorCommand' => [
 			'default' => null,
+			'type' => [
+				0 => 'null',
+				1 => 'string',
+			],
 		],
 		'TrivialMimeDetection' => [
 			'default' => false,
@@ -558,6 +596,7 @@ return [
 				'http://www.w3.org/1999/xhtml:html' => 'text/html',
 				'html' => 'text/html',
 			],
+			'type' => 'object',
 		],
 		'ImageLimits' => [
 			'default' => [
@@ -586,6 +625,7 @@ return [
 					1 => 2048,
 				],
 			],
+			'type' => 'array',
 		],
 		'ThumbLimits' => [
 			'default' => [
@@ -596,9 +636,14 @@ return [
 				4 => 250,
 				5 => 300,
 			],
+			'type' => 'array',
 		],
 		'ThumbnailBuckets' => [
 			'default' => null,
+			'type' => [
+				0 => 'null',
+				1 => 'array',
+			],
 		],
 		'ThumbnailMinimumBucketDistance' => [
 			'default' => 50,
@@ -606,6 +651,7 @@ return [
 		'UploadThumbnailRenderMap' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'UploadThumbnailRenderMethod' => [
 			'default' => 'jobqueue',
@@ -622,6 +668,7 @@ return [
 		'GalleryOptions' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'ThumbUpright' => [
 			'default' => 0.75,
@@ -637,15 +684,31 @@ return [
 		],
 		'DjvuDump' => [
 			'default' => null,
+			'type' => [
+				0 => 'null',
+				1 => 'string',
+			],
 		],
 		'DjvuRenderer' => [
 			'default' => null,
+			'type' => [
+				0 => 'null',
+				1 => 'string',
+			],
 		],
 		'DjvuTxt' => [
 			'default' => null,
+			'type' => [
+				0 => 'null',
+				1 => 'string',
+			],
 		],
 		'DjvuPostProcessor' => [
 			'default' => 'pnmtojpeg',
+			'type' => [
+				0 => 'null',
+				1 => 'string',
+			],
 		],
 		'DjvuOutputExtension' => [
 			'default' => 'jpg',
@@ -691,6 +754,10 @@ return [
 		],
 		'SMTP' => [
 			'default' => false,
+			'type' => [
+				0 => 'boolean',
+				1 => 'object',
+			],
 		],
 		'AdditionalMailParams' => [
 			'default' => null,
@@ -730,12 +797,17 @@ return [
 		'UsersNotifiedOnAllChanges' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'DBname' => [
 			'default' => 'my_wiki',
 		],
 		'DBmwschema' => [
 			'default' => null,
+			'type' => [
+				0 => 'null',
+				1 => 'string',
+			],
 		],
 		'DBprefix' => [
 			'default' => '',
@@ -796,17 +868,24 @@ return [
 				0 => 'user',
 				1 => 'user_properties',
 			],
+			'type' => 'array',
 		],
 		'SharedSchema' => [
 			'default' => false,
 		],
 		'DBservers' => [
 			'default' => false,
+			'type' => [
+				0 => 'boolean',
+				1 => 'array',
+			],
 		],
 		'LBFactoryConf' => [
 			'default' => [
 				'class' => 'Wikimedia\\Rdbms\\LBFactorySimple',
 			],
+			'type' => 'object',
+			'mergeStrategy' => 'replace',
 		],
 		'DataCenterUpdateStickTTL' => [
 			'default' => 10,
@@ -851,12 +930,12 @@ return [
 				'text' => 'TextContentHandler',
 				'unknown' => 'FallbackContentHandler',
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'NamespaceContentModels' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_plus',
+			'type' => 'object',
 		],
 		'ContentHandlerTextFallback' => [
 			'default' => 'ignore',
@@ -867,6 +946,7 @@ return [
 				1 => 'javascript',
 				2 => 'css',
 			],
+			'type' => 'array',
 		],
 		'CompressRevisions' => [
 			'default' => false,
@@ -879,6 +959,7 @@ return [
 		'ExternalServers' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'DefaultExternalStore' => [
 			'default' => false,
@@ -949,6 +1030,10 @@ return [
 		],
 		'PoolCounterConf' => [
 			'default' => null,
+			'type' => [
+				0 => 'null',
+				1 => 'object',
+			],
 		],
 		'MaxUserDBWriteDuration' => [
 			'default' => false,
@@ -1055,9 +1140,15 @@ return [
 					'reportDupes' => false,
 				],
 			],
+			'mergeStrategy' => 'array_plus',
 		],
 		'MainWANCache' => [
 			'default' => false,
+			'type' => [
+				0 => 'integer',
+				1 => 'string',
+				2 => 'boolean',
+			],
 		],
 		'WANObjectCaches' => [
 			'default' => [
@@ -1066,6 +1157,7 @@ return [
 					'cacheId' => 0,
 				],
 			],
+			'mergeStrategy' => 'array_plus',
 		],
 		'EnableWANCacheReaper' => [
 			'default' => false,
@@ -1108,6 +1200,7 @@ return [
 			'default' => [
 				0 => '127.0.0.1:11211',
 			],
+			'type' => 'array',
 		],
 		'MemCachedPersistent' => [
 			'default' => false,
@@ -1132,6 +1225,7 @@ return [
 				'forceRecache' => false,
 				'manualRecache' => false,
 			],
+			'type' => 'object',
 		],
 		'CachePages' => [
 			'default' => true,
@@ -1209,10 +1303,12 @@ return [
 		'CdnServers' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'CdnServersNoPurge' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'SquidPurgeUseHostHeader' => [
 			'default' => true,
@@ -1220,6 +1316,7 @@ return [
 		'HTCPRouting' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'HTCPMulticastTTL' => [
 			'default' => 1,
@@ -1233,6 +1330,7 @@ return [
 		'GrammarForms' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'InterwikiMagic' => [
 			'default' => true,
@@ -1243,14 +1341,17 @@ return [
 		'ExtraInterlanguageLinkPrefixes' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'InterlanguageLinkCodeMap' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'ExtraLanguageNames' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'ExtraLanguageCodes' => [
 			'default' => [
@@ -1258,10 +1359,12 @@ return [
 				'no' => 'nb',
 				'simple' => 'en',
 			],
+			'type' => 'object',
 		],
 		'DummyLanguageCodes' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'AllUnicodeFixes' => [
 			'default' => false,
@@ -1299,6 +1402,7 @@ return [
 		'DisabledVariants' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'VariantArticlePath' => [
 			'default' => false,
@@ -1309,6 +1413,7 @@ return [
 		'ForceUIMsgAsContentMsg' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'RawHtmlMessages' => [
 			'default' => [
@@ -1318,7 +1423,6 @@ return [
 				3 => 'feedback-terms',
 				4 => 'feedback-termsofuse',
 			],
-			'mergeStrategy' => 'array_merge',
 			'type' => 'array',
 			'items' => [
 				'type' => 'string',
@@ -1333,7 +1437,7 @@ return [
 		'OverrideUcfirstCharacters' => [
 			'default' => [
 			],
-			'type' => 'array',
+			'type' => 'object',
 		],
 		'MimeType' => [
 			'default' => 'text/html',
@@ -1353,6 +1457,7 @@ return [
 		'XhtmlNamespaces' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'SiteNotice' => [
 			'default' => '',
@@ -1364,6 +1469,7 @@ return [
 		'SkinMetaTags' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'DefaultSkin' => [
 			'default' => 'vector',
@@ -1374,6 +1480,7 @@ return [
 		'SkipSkins' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'DisableOutputCompression' => [
 			'default' => false,
@@ -1383,6 +1490,7 @@ return [
 				0 => 'html5',
 				1 => 'legacy',
 			],
+			'type' => 'array',
 		],
 		'ExternalInterwikiFragmentMode' => [
 			'default' => 'legacy',
@@ -1401,6 +1509,7 @@ return [
 					],
 				],
 			],
+			'type' => 'object',
 		],
 		'UseCombinedLoginLink' => [
 			'default' => false,
@@ -1423,15 +1532,17 @@ return [
 		'ResourceModules' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'ResourceModuleSkinStyles' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'ResourceLoaderSources' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'ResourceBasePath' => [
 			'default' => null,
@@ -1441,6 +1552,7 @@ return [
 				'versioned' => 2592000,
 				'unversioned' => 300,
 			],
+			'type' => 'object',
 		],
 		'ResourceLoaderUseObjectCacheForDeps' => [
 			'default' => false,
@@ -1503,19 +1615,22 @@ return [
 				14 => 'Category',
 				15 => 'Category_talk',
 			],
+			'type' => 'object',
 		],
 		'ExtraNamespaces' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'ExtraGenderNamespaces' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_plus',
+			'type' => 'object',
 		],
 		'NamespaceAliases' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'LegalTitleChars' => [
 			'default' => ' %!"$&\'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF+',
@@ -1526,7 +1641,7 @@ return [
 		'CapitalLinkOverrides' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_plus',
+			'type' => 'object',
 		],
 		'NamespacesWithSubpages' => [
 			'default' => [
@@ -1544,21 +1659,23 @@ return [
 				13 => true,
 				15 => true,
 			],
-			'mergeStrategy' => 'array_plus',
+			'type' => 'object',
 		],
 		'ContentNamespaces' => [
 			'default' => [
 				0 => 0,
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'array',
 		],
 		'ShortPagesNamespaceExclusions' => [
 			'default' => [
 			],
+			'type' => 'array',
 		],
 		'ExtraSignatureNamespaces' => [
 			'default' => [
 			],
+			'type' => 'array',
 		],
 		'MaxRedirects' => [
 			'default' => 1,
@@ -1570,6 +1687,7 @@ return [
 				2 => 'Mytalk',
 				3 => 'Redirect',
 			],
+			'type' => 'array',
 		],
 		'DisableHardRedirects' => [
 			'default' => false,
@@ -1580,10 +1698,12 @@ return [
 		'InterwikiPrefixDisplayTypes' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'LocalInterwikis' => [
 			'default' => [
 			],
+			'type' => 'array',
 		],
 		'InterwikiExpiry' => [
 			'default' => 10800,
@@ -1592,9 +1712,10 @@ return [
 			'default' => false,
 			'type' => [
 				0 => 'boolean',
-				1 => 'array',
+				1 => 'object',
 				2 => 'string',
 			],
+			'mergeStrategy' => 'replace',
 		],
 		'InterwikiScopes' => [
 			'default' => 3,
@@ -1609,6 +1730,7 @@ return [
 			'default' => [
 				'mediawiki' => 'MediaWikiSite',
 			],
+			'type' => 'object',
 		],
 		'MaxTocLevel' => [
 			'default' => 999,
@@ -1653,6 +1775,7 @@ return [
 				26 => 'xmpp:',
 				27 => '//',
 			],
+			'type' => 'array',
 		],
 		'CleanSignatures' => [
 			'default' => true,
@@ -1672,6 +1795,7 @@ return [
 		'TidyConfig' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'ParserEnableLegacyMediaDOM' => [
 			'default' => true,
@@ -1691,11 +1815,13 @@ return [
 		'NoFollowNsExceptions' => [
 			'default' => [
 			],
+			'type' => 'array',
 		],
 		'NoFollowDomainExceptions' => [
 			'default' => [
 				0 => 'mediawiki.org',
 			],
+			'type' => 'array',
 		],
 		'RegisterInternalExternals' => [
 			'default' => false,
@@ -1724,6 +1850,7 @@ return [
 				'PMID' => false,
 				'RFC' => false,
 			],
+			'type' => 'object',
 		],
 		'ArticleCountMethod' => [
 			'default' => 'link',
@@ -1761,7 +1888,7 @@ return [
 					],
 				],
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'CentralIdLookupProvider' => [
 			'default' => 'local',
@@ -1818,10 +1945,15 @@ return [
 					'PasswordNotInCommonList' => 'PasswordPolicyChecks::checkPasswordNotInCommonList',
 				],
 			],
-			'mergeStrategy' => 'array_merge_recursive',
+			'type' => 'object',
+			'mergeStrategy' => 'array_replace_recursive',
 		],
 		'AuthManagerConfig' => [
 			'default' => null,
+			'type' => [
+				0 => 'object',
+				1 => 'null',
+			],
 		],
 		'AuthManagerAutoConfig' => [
 			'default' => [
@@ -1875,6 +2007,7 @@ return [
 					],
 				],
 			],
+			'type' => 'object',
 			'mergeStrategy' => 'array_plus_2d',
 		],
 		'RememberMe' => [
@@ -1885,7 +2018,6 @@ return [
 			'default' => [
 				'default' => 300,
 			],
-			'mergeStrategy' => 'array_merge',
 			'type' => 'object',
 			'additionalProperties' => [
 				'type' => 'integer',
@@ -1904,7 +2036,6 @@ return [
 			'default' => [
 				0 => 'MediaWiki\\Auth\\TemporaryPasswordAuthenticationRequest',
 			],
-			'mergeStrategy' => 'array_merge',
 			'type' => 'array',
 			'items' => [
 				'type' => 'string',
@@ -1914,7 +2045,6 @@ return [
 			'default' => [
 				0 => 'MediaWiki\\Auth\\PasswordAuthenticationRequest',
 			],
-			'mergeStrategy' => 'array_merge',
 			'type' => 'array',
 			'items' => [
 				'type' => 'string',
@@ -1969,12 +2099,14 @@ return [
 					'algo' => 'auto',
 				],
 			],
+			'type' => 'object',
 		],
 		'PasswordResetRoutes' => [
 			'default' => [
 				'username' => true,
 				'email' => true,
 			],
+			'type' => 'object',
 		],
 		'MaxSigChars' => [
 			'default' => 255,
@@ -1986,6 +2118,7 @@ return [
 			'default' => [
 				0 => 'obsolete-tag',
 			],
+			'type' => 'array',
 		],
 		'MaxNameChars' => [
 			'default' => 255,
@@ -2005,6 +2138,7 @@ return [
 				10 => 'msg:spambot_username',
 				11 => 'msg:autochange-username',
 			],
+			'type' => 'array',
 		],
 		'DefaultUserOptions' => [
 			'default' => [
@@ -2071,12 +2205,12 @@ return [
 				'requireemail' => 0,
 				'skin-responsive' => 1,
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'HiddenPrefs' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'array',
 		],
 		'InvalidUsernameCharacters' => [
 			'default' => '@:',
@@ -2114,7 +2248,7 @@ return [
 					],
 				],
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'AllowRequiringEmailForResets' => [
 			'default' => false,
@@ -2130,6 +2264,7 @@ return [
 				'IPv4' => 16,
 				'IPv6' => 19,
 			],
+			'type' => 'object',
 		],
 		'BlockDisablesLogin' => [
 			'default' => false,
@@ -2279,6 +2414,7 @@ return [
 		'RevokePermissions' => [
 			'default' => [
 			],
+			'type' => 'object',
 			'mergeStrategy' => 'array_plus_2d',
 		],
 		'GroupInheritsPermissions' => [
@@ -2295,17 +2431,17 @@ return [
 				1 => 'user',
 				2 => 'autoconfirmed',
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'array',
 		],
 		'GroupsAddToSelf' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'GroupsRemoveFromSelf' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'RestrictionTypes' => [
 			'default' => [
@@ -2314,6 +2450,7 @@ return [
 				2 => 'move',
 				3 => 'upload',
 			],
+			'type' => 'array',
 		],
 		'RestrictionLevels' => [
 			'default' => [
@@ -2321,26 +2458,29 @@ return [
 				1 => 'autoconfirmed',
 				2 => 'sysop',
 			],
+			'type' => 'array',
 		],
 		'CascadingRestrictionLevels' => [
 			'default' => [
 				0 => 'sysop',
 			],
+			'type' => 'array',
 		],
 		'SemiprotectedRestrictionLevels' => [
 			'default' => [
 				0 => 'autoconfirmed',
 			],
+			'type' => 'array',
 		],
 		'NamespaceProtection' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_plus',
+			'type' => 'object',
 		],
 		'NonincludableNamespaces' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'AutoConfirmAge' => [
 			'default' => 0,
@@ -2362,12 +2502,14 @@ return [
 					],
 				],
 			],
+			'type' => 'object',
 		],
 		'AutopromoteOnce' => [
 			'default' => [
 				'onEdit' => [
 				],
 			],
+			'type' => 'object',
 		],
 		'AutopromoteOnceLogInRC' => [
 			'default' => true,
@@ -2375,17 +2517,17 @@ return [
 		'AddGroups' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'RemoveGroups' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'AvailableRights' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'array',
 		],
 		'DeleteRevisionsLimit' => [
 			'default' => 0,
@@ -2403,14 +2545,17 @@ return [
 					'seconds' => 86400,
 				],
 			],
+			'type' => 'array',
 		],
 		'SpamRegex' => [
 			'default' => [
 			],
+			'type' => 'array',
 		],
 		'SummarySpamRegex' => [
 			'default' => [
 			],
+			'type' => 'array',
 		],
 		'EnableDnsBlacklist' => [
 			'default' => false,
@@ -2419,14 +2564,20 @@ return [
 			'default' => [
 				0 => 'http.dnsbl.sorbs.net.',
 			],
+			'type' => 'array',
 		],
 		'ProxyList' => [
 			'default' => [
+			],
+			'type' => [
+				0 => 'string',
+				1 => 'array',
 			],
 		],
 		'ProxyWhitelist' => [
 			'default' => [
 			],
+			'type' => 'array',
 		],
 		'SoftBlockRanges' => [
 			'default' => [
@@ -2596,11 +2747,13 @@ return [
 					],
 				],
 			],
+			'type' => 'object',
 			'mergeStrategy' => 'array_plus_2d',
 		],
 		'RateLimitsExcludedIPs' => [
 			'default' => [
 			],
+			'type' => 'array',
 		],
 		'PutIPinRC' => [
 			'default' => true,
@@ -2619,6 +2772,7 @@ return [
 					'seconds' => 172800,
 				],
 			],
+			'type' => 'array',
 		],
 		'GrantPermissions' => [
 			'default' => [
@@ -2830,7 +2984,6 @@ return [
 				'privateinfo' => 'private-information',
 			],
 			'type' => 'object',
-			'mergeStrategy' => 'array_merge',
 			'additionalProperties' => [
 				'type' => 'string',
 			],
@@ -2912,6 +3065,7 @@ return [
 				'https://t.lkqd.net/t' => true,
 				'chrome-extension' => true,
 			],
+			'type' => 'object',
 		],
 		'AllowCrossOrigin' => [
 			'default' => false,
@@ -2971,6 +3125,7 @@ return [
 		'CacheVaryCookies' => [
 			'default' => [
 			],
+			'type' => 'array',
 		],
 		'SessionName' => [
 			'default' => false,
@@ -3043,15 +3198,18 @@ return [
 					'maxAffected' => 1000,
 				],
 			],
+			'type' => 'object',
 		],
 		'DebugLogGroups' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'MWLoggerDefaultSpi' => [
 			'default' => [
 				'class' => 'MediaWiki\\Logger\\LegacySpi',
 			],
+			'mergeStrategy' => 'replace',
 			'type' => 'object',
 		],
 		'ShowDebug' => [
@@ -3084,6 +3242,8 @@ return [
 		'Profiler' => [
 			'default' => [
 			],
+			'type' => 'object',
+			'mergeStrategy' => 'replace',
 		],
 		'StatsdServer' => [
 			'default' => false,
@@ -3094,6 +3254,7 @@ return [
 		'StatsdSamplingRates' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'MetricsTarget' => [
 			'default' => null,
@@ -3119,7 +3280,7 @@ return [
 		'ParserTestFiles' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'EnableJavaScriptTest' => [
 			'default' => false,
@@ -3147,6 +3308,7 @@ return [
 				'application/x-suggestions+json' => false,
 				'application/x-suggestions+xml' => false,
 			],
+			'type' => 'object',
 		],
 		'EnableOpenSearchSuggest' => [
 			'default' => true,
@@ -3167,6 +3329,7 @@ return [
 			'default' => [
 				0 => true,
 			],
+			'type' => 'array',
 		],
 		'DisableInternalSearch' => [
 			'default' => false,
@@ -3176,9 +3339,17 @@ return [
 		],
 		'SitemapNamespaces' => [
 			'default' => false,
+			'type' => [
+				0 => 'boolean',
+				1 => 'array',
+			],
 		],
 		'SitemapNamespacesPriorities' => [
 			'default' => false,
+			'type' => [
+				0 => 'boolean',
+				1 => 'object',
+			],
 		],
 		'EnableSearchContributorsByIP' => [
 			'default' => true,
@@ -3186,7 +3357,7 @@ return [
 		'SpecialSearchFormOptions' => [
 			'default' => [
 			],
-			'type' => 'array',
+			'type' => 'object',
 		],
 		'SearchMatchRedirectPreference' => [
 			'default' => false,
@@ -3206,6 +3377,7 @@ return [
 			'default' => [
 				14 => true,
 			],
+			'type' => 'object',
 		],
 		'UniversalEditButton' => [
 			'default' => true,
@@ -3240,6 +3412,7 @@ return [
 				'https://(?:[a-z0-9_]+@)?gerrit.wikimedia.org/r/(?:p/)?(.*)' => 'https://gerrit.wikimedia.org/g/%R/+/%H',
 				'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)' => 'https://gerrit.wikimedia.org/g/%R/+/%H',
 			],
+			'type' => 'object',
 		],
 		'RCMaxAge' => [
 			'default' => 7776000,
@@ -3260,6 +3433,7 @@ return [
 				2 => 250,
 				3 => 500,
 			],
+			'type' => 'array',
 		],
 		'RCLinkDays' => [
 			'default' => [
@@ -3269,16 +3443,19 @@ return [
 				3 => 14,
 				4 => 30,
 			],
+			'type' => 'array',
 		],
 		'RCFeeds' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'RCEngines' => [
 			'default' => [
 				'redis' => 'RedisPubSubFeedEngine',
 				'udp' => 'UDPRCFeedEngine',
 			],
+			'type' => 'object',
 		],
 		'RCWatchCategoryMembership' => [
 			'default' => false,
@@ -3310,18 +3487,20 @@ return [
 		'OverrideSiteFeed' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'FeedClasses' => [
 			'default' => [
 				'rss' => 'RSSFeed',
 				'atom' => 'AtomFeed',
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'AdvertisedFeedTypes' => [
 			'default' => [
 				0 => 'atom',
 			],
+			'type' => 'array',
 		],
 		'RCShowWatchingUsers' => [
 			'default' => false,
@@ -3394,7 +3573,7 @@ return [
 					'grouping' => 'any',
 				],
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'WatchlistExpiry' => [
 			'default' => false,
@@ -3435,6 +3614,7 @@ return [
 		'ImportSources' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'ImportTargetNamespace' => [
 			'default' => null,
@@ -3466,26 +3646,27 @@ return [
 		'ExtensionFunctions' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'array',
 		],
 		'ExtensionMessagesFiles' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'MessagesDirs' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'ExtensionEntryPointListFiles' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'ParserOutputHooks' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'EnableParserLimitReporting' => [
 			'default' => true,
@@ -3493,12 +3674,12 @@ return [
 		'ValidSkinNames' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'SpecialPages' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'AutoloadAttemptLowercase' => [
 			'default' => false,
@@ -3506,16 +3687,18 @@ return [
 		'ExtensionCredits' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'Hooks' => [
 			'default' => [
 			],
+			'type' => 'object',
 			'mergeStrategy' => 'array_merge_recursive',
 		],
 		'ServiceWiringFiles' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'array',
 		],
 		'JobClasses' => [
 			'default' => [
@@ -3545,13 +3728,14 @@ return [
 				'null' => 'NullJob',
 				'userEditCountInit' => 'UserEditCountInitJob',
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'JobTypesExcludedFromDefaultQueue' => [
 			'default' => [
 				0 => 'AssembleUploadChunks',
 				1 => 'PublishStashedFile',
 			],
+			'type' => 'array',
 		],
 		'JobBackoffThrottling' => [
 			'default' => [
@@ -3576,6 +3760,7 @@ return [
 					'claimTTL' => 3600,
 				],
 			],
+			'type' => 'object',
 		],
 		'JobQueueIncludeInMaxLagFactor' => [
 			'default' => false,
@@ -3587,11 +3772,13 @@ return [
 					1 => 'cacheUpdate',
 				],
 			],
+			'type' => 'object',
 		],
 		'PagePropLinkInvalidations' => [
 			'default' => [
 				'hiddencat' => 'categorylinks',
 			],
+			'type' => 'object',
 		],
 		'CategoryMagicGallery' => [
 			'default' => true,
@@ -3605,10 +3792,12 @@ return [
 		'TempCategoryCollations' => [
 			'default' => [
 			],
+			'type' => 'array',
 		],
 		'TrackingCategories' => [
 			'default' => [
 			],
+			'type' => 'array',
 		],
 		'LogTypes' => [
 			'default' => [
@@ -3627,13 +3816,13 @@ return [
 				12 => 'managetags',
 				13 => 'contentmodel',
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'array',
 		],
 		'LogRestrictions' => [
 			'default' => [
 				'suppress' => 'suppressionlog',
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'FilterLogTypes' => [
 			'default' => [
@@ -3641,7 +3830,7 @@ return [
 				'tag' => true,
 				'newusers' => false,
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'LogNames' => [
 			'default' => [
@@ -3657,7 +3846,7 @@ return [
 				'merge' => 'mergelog',
 				'suppress' => 'suppressionlog',
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'LogHeaders' => [
 			'default' => [
@@ -3673,12 +3862,12 @@ return [
 				'suppress' => 'suppressionlogtext',
 				'upload' => 'uploadlogpagetext',
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'LogActions' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'array',
 		],
 		'LogActionsHandlers' => [
 			'default' => [
@@ -3720,7 +3909,7 @@ return [
 				'upload/revert' => 'UploadLogFormatter',
 				'upload/upload' => 'UploadLogFormatter',
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'ActionFilteredLogs' => [
 			'default' => [
@@ -3857,7 +4046,7 @@ return [
 					],
 				],
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'NewUserLog' => [
 			'default' => true,
@@ -3890,7 +4079,7 @@ return [
 		'Actions' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'array',
 		],
 		'DefaultRobotPolicy' => [
 			'default' => 'index,follow',
@@ -3898,13 +4087,19 @@ return [
 		'NamespaceRobotPolicies' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'ArticleRobotPolicies' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'ExemptFromUserRobotsControl' => [
 			'default' => null,
+			'type' => [
+				0 => 'null',
+				1 => 'array',
+			],
 		],
 		'DebugAPI' => [
 			'default' => false,
@@ -3912,27 +4107,27 @@ return [
 		'APIModules' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'APIFormatModules' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'APIMetaModules' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'APIPropModules' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'APIListModules' => [
 			'default' => [
 			],
-			'mergeStrategy' => 'array_merge',
+			'type' => 'object',
 		],
 		'APIMaxDBRows' => [
 			'default' => 5000,
@@ -3957,6 +4152,7 @@ return [
 				0 => 'MIMEsearch',
 				1 => 'LinkSearch',
 			],
+			'type' => 'array',
 		],
 		'AjaxUploadDestCheck' => [
 			'default' => true,
@@ -3967,10 +4163,12 @@ return [
 		'CrossSiteAJAXdomains' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'CrossSiteAJAXdomainExceptions' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'AllowedCorsHeaders' => [
 			'default' => [
@@ -3985,10 +4183,12 @@ return [
 				8 => 'Api-User-Agent',
 				9 => 'Access-Control-Max-Age',
 			],
+			'type' => 'array',
 		],
 		'RestAPIAdditionalRouteFiles' => [
 			'default' => [
 			],
+			'type' => 'array',
 		],
 		'MaxShellMemory' => [
 			'default' => 307200,
@@ -4066,6 +4266,7 @@ return [
 		'LocalVirtualHosts' => [
 			'default' => [
 			],
+			'type' => 'object',
 		],
 		'LocalHTTPProxy' => [
 			'default' => false,
@@ -4104,6 +4305,7 @@ return [
 					'HTTPProxy' => null,
 				],
 			],
+			'mergeStrategy' => 'array_plus_2d',
 			'type' => 'object',
 		],
 		'EventRelayerConfig' => [
@@ -4112,6 +4314,7 @@ return [
 					'class' => 'EventRelayerNull',
 				],
 			],
+			'type' => 'object',
 		],
 		'Pingback' => [
 			'default' => false,

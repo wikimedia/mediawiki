@@ -6,26 +6,21 @@ use Config;
 use HashConfig;
 use MediaWiki\Config\IterableConfig;
 
-class ArrayConfigBuilder implements ConfigBuilder {
-
-	use ConfigBuilderTrait;
+class ArrayConfigBuilder extends ConfigBuilderBase {
 
 	/** @var array */
 	protected $config = [];
 
-	public function set( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigBuilder {
-		$this->config[ $key ] =
-			$this->getNewValue( $key, $this->config[ $key ] ?? null, $value, $mergeStrategy );
-		return $this;
+	protected function has( string $key ): bool {
+		return array_key_exists( $key, $this->config );
 	}
 
-	public function setDefault( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigBuilder {
-		if ( $mergeStrategy ) {
-			$this->set( $key, $value, $mergeStrategy->reverse() );
-		} elseif ( !array_key_exists( $key, $this->config ) ) {
-			$this->config[$key] = $value;
-		}
-		return $this;
+	protected function get( string $key ) {
+		return $this->config[$key] ?? null;
+	}
+
+	protected function update( string $key, $value ) {
+		$this->config[$key] = $value;
 	}
 
 	/**

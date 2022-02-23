@@ -2,7 +2,7 @@ config-schema:
     ConfigRegistry:
         default:
             main: GlobalVarConfig::newInstance
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Registry of factory functions to create config objects:
             The 'main' key must be set, and the value should be a valid
@@ -148,6 +148,7 @@ config-schema:
             @since 1.16
     ExtensionDirectory:
         default: null
+        type: [ "null", string ]
         description: |-
           Extensions directory.
           @note Set to "{$IP}/extensions" by Setup.php before loading local settings.
@@ -155,6 +156,7 @@ config-schema:
           @since 1.25
     StyleDirectory:
       default: null
+      type: [ "null", string ]
       description: |-
           Skins directory.
           @note Set to "{$IP}/skins" by Setup.php before loading local settings.
@@ -212,7 +214,7 @@ config-schema:
             Ignored if $wgLogos is set.
     Logos:
         default: false
-        type: [ array, boolean ]
+        type: [ object, boolean ]
         description: |-
             Specification for different versions of the wiki logo.
 
@@ -262,7 +264,7 @@ config-schema:
             @since 1.35
     LogoHD:
         default: false
-        type: [array, boolean]
+        type: [object, boolean]
         description: |-
             Array with URL paths to HD versions of the wiki logo. The scaled logo size
             should be under 135x155 pixels.
@@ -365,6 +367,7 @@ config-schema:
             @since 1.17
     ActionPaths:
         default: {  }
+        type: object
         description: |-
             To set 'pretty' URL paths for actions other than
             plain page views, add to this array.
@@ -427,6 +430,7 @@ config-schema:
         description: 'Set this to true if you use img_auth and want the user to see details on why access failed.'
     ImgAuthUrlPathMap:
         default: {  }
+        type: object
         description: |-
             Map of relative URL directories to match to internal mwstore:// base storage paths.
 
@@ -442,6 +446,7 @@ config-schema:
             @see $wgFileBackends
     LocalFileRepo:
         default: false
+        type: [ object, boolean ]
         description: |-
             File repository structures
 
@@ -573,7 +578,8 @@ config-schema:
             @see \FileRepo::__construct for the default options.
             @see Setup.php for an example usage and default initialization.
     ForeignFileRepos:
-        default: {  }
+        default: []
+        type: array
         description: |-
             Enable the use of files from one or more other wikis.
 
@@ -688,6 +694,7 @@ config-schema:
             @since 1.5
     ForeignUploadTargets:
         default: [local]
+        type: array
         description: |-
             Array of foreign file repo names (set in $wgForeignFileRepos above) that
             are allowable upload targets. These wikis must have some method of
@@ -699,6 +706,7 @@ config-schema:
             $wgForeignUploadTargets = [ 'shared' ];
     UploadDialog:
         default: { fields: { description: true, date: false, categories: false }, licensemessages: { local: generic-local, foreign: generic-foreign }, comment: { local: '', foreign: '' }, format: { filepage: $DESCRIPTION, description: $TEXT, ownwork: '', license: '', uncategorized: '' } }
+        type: object
         description: |-
             Configuration for file uploads using the embeddable upload dialog
             (https://www.mediawiki.org/wiki/Upload_dialog).
@@ -709,6 +717,7 @@ config-schema:
             See below for documentation of each property. None of the properties may be omitted.
     FileBackends:
         default: {  }
+        type: object
         description: |-
             File backend structure configuration.
 
@@ -746,6 +755,7 @@ config-schema:
             would need a fully qualified backend that is defined on all wikis in the wiki farm.
     LockManagers:
         default: {  }
+        type: object
         description: |-
             Array of configuration arrays for each lock manager.
 
@@ -781,7 +791,8 @@ config-schema:
             The timeout for copy uploads is set by $wgCopyUploadTimeout.
             You have to assign the user right 'upload_by_url' to a user group, to use this.
     CopyUploadsDomains:
-        default: {  }
+        default: []
+        type: array
         description: |-
             A list of domains copy uploads can come from
             @since 1.20
@@ -888,7 +899,7 @@ config-schema:
             @note Only used if $wgLocalFileRepo is not set.
     FileExtensions:
         default: [png, gif, jpg, jpeg, webp]
-        mergeStrategy: array_merge
+        type: array
         description: |-
             This is the list of preferred extensions for uploading files. Uploading files
             with extensions not in this list will trigger a warning.
@@ -897,6 +908,7 @@ config-schema:
             your wiki will be vulnerable to cross-site request forgery (CSRF).
     ProhibitedFileExtensions:
         default: [html, htm, js, jsb, mhtml, mht, xhtml, xht, php, phtml, php3, php4, php5, phps, phar, shtml, jhtml, pl, py, cgi, exe, scr, dll, msi, vbs, bat, com, pif, cmd, vxd, cpl]
+        type: array
         description: |-
             Files with these extensions will never be allowed as uploads.
 
@@ -905,6 +917,7 @@ config-schema:
             @since 1.37; previously $wgFileBlacklist
     MimeTypeExclusions:
         default: [text/html, application/javascript, text/javascript, text/x-javascript, application/x-shellscript, application/x-php, text/x-php, text/x-python, text/x-perl, text/x-bash, text/x-sh, text/x-csh, text/scriptlet, application/x-msdownload, application/x-msmetafile]
+        type: array
         description: |-
             Files with these MIME types will never be allowed as uploads
             if $wgVerifyMimeType is enabled.
@@ -938,6 +951,7 @@ config-schema:
         description: 'Warn if uploaded files are larger than this (in bytes), or false to disable'
     TrustedMediaFormats:
         default: [BITMAP, AUDIO, VIDEO, image/svg+xml, application/pdf]
+        type: array
         description: |-
             list of trusted media-types and MIME types.
 
@@ -950,7 +964,7 @@ config-schema:
             [[media:...]] links for non-trusted formats.
     MediaHandlers:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Plugins for media file type handling.
 
@@ -960,13 +974,14 @@ config-schema:
             and extensions should use extension.json.
     NativeImageLazyLoading:
         default: false
-        type: [ array, boolean ]
+        type: boolean
         description: |-
             Toggles native image lazy loading, via the "loading" attribute.
             @warning EXPERIMENTAL!
             @since 1.34
     ParserTestMediaHandlers:
         default: { image/jpeg: MockBitmapHandler, image/png: MockBitmapHandler, image/gif: MockBitmapHandler, image/tiff: MockBitmapHandler, image/webp: MockBitmapHandler, image/x-ms-bmp: MockBitmapHandler, image/x-bmp: MockBitmapHandler, image/x-xcf: MockBitmapHandler, image/svg+xml: MockSvgHandler, image/vnd.djvu: MockDjVuHandler }
+        type: object
         description: |-
             Media handler overrides for parser tests (they don't need to generate actual
             thumbnails, so a mock will do)
@@ -991,6 +1006,7 @@ config-schema:
         description: 'The convert command shipped with ImageMagick'
     MaxInterlacingAreas:
         default: {  }
+        type: object
         description: |-
             Array of max pixel areas for interlacing per MIME type
             @since 1.27
@@ -1061,6 +1077,7 @@ config-schema:
             @since 1.26
     SVGConverters:
         default: { ImageMagick: '$path/convert -background "#ffffff00" -thumbnail $widthx$height\! $input PNG:$output', sodipodi: '$path/sodipodi -z -w $width -f $input -e $output', inkscape: '$path/inkscape -z -w $width -f $input -e $output', batik: 'java -Djava.awt.headless=true -jar $path/batik-rasterizer.jar -w $width -d $output $input', rsvg: '$path/rsvg-convert -w $width -h $height -o $output $input', imgserv: '$path/imgserv-wrapper -i svg -o png -w$width $input $output', ImagickExt: ['SvgHandler::rasterizeImagickExt'] }
+        type: object
         description: |-
             Scalable Vector Graphics (SVG) may be uploaded as images.
 
@@ -1120,9 +1137,12 @@ config-schema:
             frame instead of an animated thumbnail.  As of MW 1.17 this limit
             is checked against the total size of all frames in the animation.
 
+
             It probably makes sense to keep this equal to $wgMaxImageArea.
     TiffThumbnailType:
-        default: {  }
+        default: []
+        type: array
+        mergeStrategy: replace
         description: |-
             Browsers don't support TIFF inline generally...
             For inline display, we need to convert to PNG or JPEG.
@@ -1191,18 +1211,21 @@ config-schema:
         description: 'Show thumbnails for old images on the image description page'
     EnableAutoRotation:
         default: null
+        type: [ "null", boolean ]
         description: |-
             If set to true, images that contain certain the exif orientation tag will
             be rotated accordingly. If set to null, try to auto-detect whether a scaler
             is available that can rotate.
     Antivirus:
         default: null
+        type: [ "null", string ]
         description: |-
             Internal name of virus scanner. This serves as a key to the
             $wgAntivirusSetup array. Set this to NULL to disable virus scanning. If not
             null, every file uploaded will be scanned for viruses.
     AntivirusSetup:
         default: { clamav: { command: 'clamscan --no-summary ', codemap: { 0: 0, 1: 1, 52: -1, '*': false }, messagepattern: '/.*?:(.*)/sim' } }
+        type: object
         description: |-
             Configuration for different virus scanners. This an associative array of
             associative arrays. It contains one setup array per known scanner type.
@@ -1271,6 +1294,7 @@ config-schema:
             Set to null to use the minimum set of built-in defaults only.
     MimeDetectorCommand:
         default: null
+        type: [ "null", string ]
         description: |-
             Sets an external MIME detector program. The command must print only
             the MIME type to standard output.
@@ -1291,12 +1315,14 @@ config-schema:
             can be trusted.
     XMLMimeTypes:
         default: { 'http://www.w3.org/2000/svg:svg': image/svg+xml, svg: image/svg+xml, 'http://www.lysator.liu.se/~alla/dia/:diagram': application/x-dia-diagram, 'http://www.w3.org/1999/xhtml:html': text/html, html: text/html }
+        type: object
         description: |-
             Additional XML types we can allow via MIME-detection.
 
             array = [ 'rootElement' => 'associatedMimeType' ]
     ImageLimits:
         default: [[320, 240], [640, 480], [800, 600], [1024, 768], [1280, 1024], [2560, 2048]]
+        type: array
         description: |-
             Limit images on image description pages to a user-selectable limit.
 
@@ -1308,12 +1334,14 @@ config-schema:
             This list is also used by ImagePage for alternate size links.
     ThumbLimits:
         default: [120, 150, 180, 200, 250, 300]
+        type: array
         description: |-
             Adjust thumbnails on image pages according to a user setting. In order to
             reduce disk usage, the values can only be selected from a list. This is the
             list of settings the user can choose from:
     ThumbnailBuckets:
         default: null
+        type: [ "null", array ]
         description: |-
             When defined, is an array of image widths used as buckets for thumbnail generation.
 
@@ -1341,6 +1369,7 @@ config-schema:
             because 220 + 50 = 270 and the closest bucket bigger than 270px is 512.
     UploadThumbnailRenderMap:
         default: {  }
+        type: object
         description: |-
             When defined, is an array of thumbnail widths to be rendered at upload time. The idea is to
             prerender common thumbnail sizes, in order to avoid the necessity to render them on demand, which
@@ -1378,6 +1407,7 @@ config-schema:
             @since 1.26
     GalleryOptions:
         default: {  }
+        type: object
         description: |-
             Parameters for the "<gallery>" tag.
 
@@ -1418,24 +1448,28 @@ config-schema:
             @warning EXPERIMENTAL!
     DjvuDump:
         default: null
+        type: [ "null", string ]
         description: |-
             Path of the djvudump executable
             Enable this and $wgDjvuRenderer to enable djvu rendering
             example: $wgDjvuDump = 'djvudump';
     DjvuRenderer:
         default: null
+        type: [ "null", string ]
         description: |-
             Path of the ddjvu DJVU renderer
             Enable this and $wgDjvuDump to enable djvu rendering
             example: $wgDjvuRenderer = 'ddjvu';
     DjvuTxt:
         default: null
+        type: [ "null", string ]
         description: |-
             Path of the djvutxt DJVU text extraction utility
             Enable this and $wgDjvuDump to enable text layer extraction from djvu files
             example: $wgDjvuTxt = 'djvutxt';
     DjvuPostProcessor:
         default: pnmtojpeg
+        type: [ "null", string ]
         description: |-
             Shell command for the DJVU post processor
             Default: pnmtojpeg, since ddjvu generates ppm output
@@ -1522,6 +1556,7 @@ config-schema:
             and cancel their password change, but are sent to the password change form on each login.
     SMTP:
         default: false
+        type: [ boolean, object ]
         description: |-
             SMTP Mode.
 
@@ -1621,6 +1656,7 @@ config-schema:
         description: 'Use real name instead of username in e-mail "from" field.'
     UsersNotifiedOnAllChanges:
         default: {  }
+        type: object
         description: |-
             Array of usernames who will be sent a notification email for every change
             which occurs on a wiki. Users will not be notified of their own changes.
@@ -1635,6 +1671,7 @@ config-schema:
             This should still be set even if $wgLBFactoryConf is configured.
     DBmwschema:
         default: null
+        type: [ "null", string ]
         description: |-
             Current wiki database schema name
 
@@ -1768,6 +1805,7 @@ config-schema:
             @see $wgSharedDB
     SharedTables:
         default: [user, user_properties]
+        type: array
         description: |-
 
             @see $wgSharedDB
@@ -1780,9 +1818,10 @@ config-schema:
             @since 1.23
     DBservers:
         default: false
+        type: [ boolean, array ]
         description: |-
             Database load balancer
-            This is a two-dimensional array, an array of server info structures
+            This is a two-dimensional array, a list of server info structures
             Fields are:
               - host:        Host name
               - dbname:      Default database name
@@ -1791,7 +1830,7 @@ config-schema:
               - type:        DB type
               - driver:      DB driver (when there are multiple drivers)
 
-            - load:        Ratio of DB_REPLICA load, must be >=0, the sum of all loads must be >0.
+              - load:        Ratio of DB_REPLICA load, must be >=0, the sum of all loads must be >0.
                              If this is zero for any given server, no normal query traffic will be
                              sent to it. It will be excluded from lag checks in maintenance scripts.
                              The only way it can receive traffic is if groupLoads is used.
@@ -1834,6 +1873,8 @@ config-schema:
             our primaries, and then set read_only=0 on primaries at runtime.
     LBFactoryConf:
         default: { class: Wikimedia\Rdbms\LBFactorySimple }
+        type: object
+        mergeStrategy: replace
         description: |-
             Load balancer factory configuration
             To set up a multi-primary wiki farm, set the class here to something that
@@ -1879,7 +1920,7 @@ config-schema:
             ```
             @since 1.20
     LocalDatabases:
-        default: {}
+        default: []
         type: array
         items:
             type: 'string'
@@ -1946,7 +1987,7 @@ config-schema:
                 a new migration which removes temporary tables.
     ContentHandlers:
         default: { wikitext: WikitextContentHandler, javascript: JavaScriptContentHandler, json: JsonContentHandler, css: CssContentHandler, text: TextContentHandler, unknown: FallbackContentHandler }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Plugins for page content model handling.
 
@@ -1955,7 +1996,7 @@ config-schema:
             @since 1.21
     NamespaceContentModels:
         default: {  }
-        mergeStrategy: array_plus
+        type: object
         description: |-
             Associative array mapping namespace IDs to the name of the content model pages in that namespace
             should have by default (use the CONTENT_MODEL_XXX constants). If no special content type is
@@ -1977,6 +2018,7 @@ config-schema:
             @deprecated since 1.37
     TextModelsToParse:
         default: [wikitext, javascript, css]
+        type: array
         description: |-
             Determines which types of text are parsed as wikitext. This does not imply that these kinds
             of texts are also rendered as wikitext, it only means that links, magic words, etc will have
@@ -2004,6 +2046,7 @@ config-schema:
             ```
     ExternalServers:
         default: {}
+        type: object
         description: |-
             Shortcut for setting `$wgLBFactoryConf["externalClusters"]`.
 
@@ -2130,6 +2173,7 @@ config-schema:
             raise PHP's memory limit if it's below this amount.
     PoolCounterConf:
         default: null
+        type: [ "null", object ]
         description: |-
             Configuration for processing pool control, for use in high-traffic wikis.
 
@@ -2258,6 +2302,10 @@ config-schema:
             @since 1.20
     ObjectCaches:
         default: { 0: { class: EmptyBagOStuff, reportDupes: false }, 1: { class: SqlBagOStuff, loggroup: SQLBagOStuff }, -1: { factory: 'ObjectCache::newAnything' }, 3: { factory: 'ObjectCache::getLocalServerInstance' }, db-replicated: { class: ReplicatedBagOStuff, readFactory: { factory: 'ObjectCache::newFromParams', args: [{ class: SqlBagOStuff, replicaOnly: true }] }, writeFactory: { factory: 'ObjectCache::newFromParams', args: [{ class: SqlBagOStuff, replicaOnly: false }] }, loggroup: SQLBagOStuff, reportDupes: false }, memcached-php: { class: MemcachedPhpBagOStuff, loggroup: memcached }, memcached-pecl: { class: MemcachedPeclBagOStuff, loggroup: memcached }, hash: { class: HashBagOStuff, reportDupes: false }, apc: { class: APCUBagOStuff, reportDupes: false }, apcu: { class: APCUBagOStuff, reportDupes: false }, wincache: { class: WinCacheBagOStuff, reportDupes: false } }
+        # NOTE: this should have type object, but the JSON schema validator doesn't like 0 as a
+        #       field name. It assumes that if the 0 key is set, it's a list (JSON array) rather
+        #       than a JSON object, and complains.
+        mergeStrategy: array_plus
         description: |-
             Advanced object cache configuration.
 
@@ -2272,6 +2320,7 @@ config-schema:
             given, giving a callable function which will generate a suitable cache object.
     MainWANCache:
         default: false
+        type: [ integer, string, boolean ]
         description: |-
             Main Wide-Area-Network cache type.
 
@@ -2293,7 +2342,11 @@ config-schema:
                                   configuration in $wgWANObjectCaches
             @since 1.26
     WANObjectCaches:
-        default: [{ class: WANObjectCache, cacheId: 0 }]
+        default: { 0: { class: WANObjectCache, cacheId: 0 } }
+        # NOTE: this should have type object, but the JSON schema validator doesn't like 0 as a
+        #       field name. It assumes that if the 0 key is set, it's a list (JSON array) rather
+        #       than a JSON object, and complains.
+        mergeStrategy: array_plus
         description: |-
             Advanced WAN object cache configuration.
 
@@ -2414,6 +2467,7 @@ config-schema:
             @since 1.28
     MemCachedServers:
         default: ['127.0.0.1:11211']
+        type: array
         description: 'The list of MemCached servers and port numbers'
     MemCachedPersistent:
         default: false
@@ -2445,6 +2499,7 @@ config-schema:
             This option is probably only useful for translatewiki.net.
     LocalisationCacheConf:
         default: { class: LocalisationCache, store: detect, storeClass: false, storeDirectory: false, storeServer: {  }, forceRecache: false, manualRecache: false }
+        type: object
         description: |-
             Localisation cache configuration.
 
@@ -2658,6 +2713,7 @@ config-schema:
             300 seconds = 5 minutes.
     CdnServers:
         default: {  }
+        type: object
         description: |-
             List of proxy servers to purge on changes; default port is 80. Use IP addresses.
 
@@ -2668,6 +2724,7 @@ config-schema:
             @since 1.34 Renamed from $wgSquidServers.
     CdnServersNoPurge:
         default: {  }
+        type: object
         description: |-
             As with $wgCdnServers, except these servers aren't purged on page changes;
             use to set a list of trusted proxies, etc. Supports both individual IP
@@ -2696,6 +2753,7 @@ config-schema:
             @deprecated since 1.33, will always be true in a future release.
     HTCPRouting:
         default: {  }
+        type: object
         description: |-
             Routing configuration for HTCP multicast purging. Add elements here to
             enable HTCP and determine which purges are sent where. If set to an empty
@@ -2769,6 +2827,7 @@ config-schema:
             via hooks, see Title::getPageLanguage.
     GrammarForms:
         default: {  }
+        type: object
         description: |-
             Some languages need different word forms, usually for different cases.
 
@@ -2787,6 +2846,7 @@ config-schema:
         description: 'Hide interlanguage links from the sidebar'
     ExtraInterlanguageLinkPrefixes:
         default: {  }
+        type: object
         description: |-
             List of additional interwiki prefixes that should be treated as
             interlanguage links (i.e. placed in the sidebar).
@@ -2802,6 +2862,7 @@ config-schema:
               the prefix in this array.
     InterlanguageLinkCodeMap:
         default: {  }
+        type: object
         description: |-
             Map of interlanguage link codes to language codes. This is useful to override
             what is shown as the language name when the interwiki code does not match it
@@ -2809,9 +2870,11 @@ config-schema:
             @since 1.35
     ExtraLanguageNames:
         default: {  }
+        type: object
         description: 'List of language names or overrides for default names in Names.php'
     ExtraLanguageCodes:
         default: { bh: bho, 'no': nb, simple: en }
+        type: object
         description: |-
             List of mappings from one language code to another.
 
@@ -2826,6 +2889,7 @@ config-schema:
             @since 1.29
     DummyLanguageCodes:
         default: {  }
+        type: object
         description: |-
             Functionally the same as $wgExtraLanguageCodes, but deprecated. Instead of
             appending values to this array, append them to $wgExtraLanguageCodes.
@@ -2895,6 +2959,7 @@ config-schema:
             used to ease variant development work.
     DisabledVariants:
         default: {  }
+        type: object
         description: |-
             Disabled variants array of language variant conversion.
 
@@ -2931,6 +2996,7 @@ config-schema:
             customise these.
     ForceUIMsgAsContentMsg:
         default: {  }
+        type: object
         description: |-
             When translating messages with wfMessage(), it is not always clear what
             should be considered UI messages and what should be content messages.
@@ -2952,7 +3018,6 @@ config-schema:
             ```
     RawHtmlMessages:
         default: [copyright, history_copyright, googlesearch, feedback-terms, feedback-termsofuse]
-        mergeStrategy: array_merge
         type: array
         items:
             type: 'string'
@@ -3001,10 +3066,10 @@ config-schema:
 
             By default, this will be set to match $wgLocaltimezone.
     OverrideUcfirstCharacters:
-        default: {  }
-        type: array
+        default: {}
+        type: object
         description: |-
-            List of Unicode characters for which capitalization is overridden in
+            Map of Unicode characters for which capitalization is overridden in
             Language::ucfirst. The characters should be
             represented as char_to_convert => conversion_override. See T219279 for details
             on why this is useful during php version transitions.
@@ -3048,6 +3113,7 @@ config-schema:
             @since 1.28
     XhtmlNamespaces:
         default: {  }
+        type: object
         description: |-
             Permit other namespaces in addition to the w3.org default.
 
@@ -3085,6 +3151,7 @@ config-schema:
             @see https://developer.apple.com/ library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
     SkinMetaTags:
         default: {  }
+        type: object
         description: |-
             An array of open graph tags which should be added by all skins.
 
@@ -3103,6 +3170,7 @@ config-schema:
             @since 1.24
     SkipSkins:
         default: {  }
+        type: object
         description: |-
             Specify the names of skins that should not be presented in the list of
             available skins in user preferences.
@@ -3116,6 +3184,7 @@ config-schema:
         description: 'Disable output compression (enabled by default if zlib is available)'
     FragmentMode:
         default: [html5, legacy]
+        type: array
         description: |-
             How should section IDs be encoded?
             This array can contain 1 or 2 elements, each of them can be one of:
@@ -3153,6 +3222,7 @@ config-schema:
             @since 1.30
     FooterIcons:
         default: { copyright: { copyright: {  } }, poweredby: { mediawiki: { src: null, url: 'https://www.mediawiki.org/', alt: 'Powered by MediaWiki' } } }
+        type: object
         description: |-
             Abstract list of footer icons for skins in place of old copyrightico and poweredbyico code
             You can add new icons to the built in copyright or poweredby, or you can create
@@ -3232,6 +3302,7 @@ config-schema:
             @since 1.25
     ResourceModules:
         default: {  }
+        type: object
         description: |-
             Define extra client-side modules to be registered with ResourceLoader.
             @note It is recommended to define modules using the `ResourceModule` attribute
@@ -3550,6 +3621,7 @@ config-schema:
             @since 1.17
     ResourceModuleSkinStyles:
         default: {  }
+        type: object
         description: |-
             Add extra skin-specific styles to a resource module.
 
@@ -3645,7 +3717,7 @@ config-schema:
             ```
     ResourceLoaderSources:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Extensions should register foreign module sources here. 'local' is a
             built-in source that is not in this array, but defined by
@@ -3664,6 +3736,7 @@ config-schema:
             Defaults to $wgScriptPath.
     ResourceLoaderMaxage:
         default: { versioned: 2592000, unversioned: 300 }
+        type: object
         description: |-
             How long a CDN or browser may cache a ResourceLoader HTTP response.
 
@@ -3773,12 +3846,14 @@ config-schema:
             manually for grammatical reasons.
     CanonicalNamespaceNames:
         default: { -2: Media, -1: Special, 0: '', 1: Talk, 2: User, 3: User_talk, 4: Project, 5: Project_talk, 6: File, 7: File_talk, 8: MediaWiki, 9: MediaWiki_talk, 10: Template, 11: Template_talk, 12: Help, 13: Help_talk, 14: Category, 15: Category_talk }
+        type: object
         description: |-
             Canonical namespace names.
 
             Must not be changed directly in configuration or by extensions, use $wgExtraNamespaces instead.
     ExtraNamespaces:
         default: {  }
+        type: object
         description: |-
             Additional namespaces. If the namespaces defined in Language.php and
             Namespace.php are insufficient, you can create new ones here, for example,
@@ -3805,7 +3880,7 @@ config-schema:
             @todo Add a note about maintenance/namespaceDupes.php
     ExtraGenderNamespaces:
         default: {  }
-        mergeStrategy: array_plus
+        type: object
         description: |-
             Same as above, but for namespaces with gender distinction.
 
@@ -3814,6 +3889,7 @@ config-schema:
             @since 1.18
     NamespaceAliases:
         default: {  }
+        type: object
         description: |-
             Define extra namespace aliases.
 
@@ -3868,7 +3944,7 @@ config-schema:
             same place as links in the middle of a sentence using a lowercase initial.
     CapitalLinkOverrides:
         default: {  }
-        mergeStrategy: array_plus
+        type: object
         description: |-
 
             @since 1.16 - This can now be set per-namespace. Some special namespaces (such as Special, see
@@ -3885,20 +3961,21 @@ config-schema:
             ```
     NamespacesWithSubpages:
         default: { 1: true, 2: true, 3: true, 4: true, 5: true, 7: true, 8: true, 9: true, 10: true, 11: true, 12: true, 13: true, 15: true }
-        mergeStrategy: array_plus
+        type: object
         description: |-
             Which namespaces should support subpages?
             See Language.php for a list of namespaces.
     ContentNamespaces:
         default: [0]
-        mergeStrategy: array_merge
+        type: array
         description: |-
             Array of namespaces which can be deemed to contain valid "content", as far
             as the site statistics are concerned. Useful if additional namespaces also
             contain "content" which should be considered when generating a count of the
             number of articles in the wiki.
     ShortPagesNamespaceExclusions:
-        default: {  }
+        default: []
+        type: array
         description: |-
             Optional array of namespaces which should be excluded from Special:ShortPages.
 
@@ -3906,7 +3983,8 @@ config-schema:
             be shown on that page.
             @since 1.37; previously $wgShortPagesNamespaceBlacklist
     ExtraSignatureNamespaces:
-        default: {  }
+        default: []
+        type: array
         description: |-
             Array of namespaces, in addition to the talk namespaces, where signatures
             (~~~~) are likely to be used. This determines whether to display the
@@ -3923,6 +4001,7 @@ config-schema:
             0 or less means no redirects are followed.
     InvalidRedirectTargets:
         default: [Filepath, Mypage, Mytalk, Redirect]
+        type: array
         description: |-
             Array of invalid page redirect targets.
 
@@ -3949,6 +4028,7 @@ config-schema:
             Tends to conflict with page move vandalism, use only on a private wiki.
     InterwikiPrefixDisplayTypes:
         default: {  }
+        type: object
         description: |-
             Mapping of interwiki index prefixes to descriptors that
             can be used to change the display of interwiki search results.
@@ -3967,7 +4047,8 @@ config-schema:
             ];
             ```
     LocalInterwikis:
-        default: {  }
+        default: []
+        type: array
         description: |-
             Array for local interwiki values, for each of the interwiki prefixes that point to
             the current wiki.
@@ -3978,7 +4059,8 @@ config-schema:
         description: 'Expiry time for cache of interwiki table'
     InterwikiCache:
         default: false
-        type: [boolean, array, string]
+        type: [boolean, object, string]
+        mergeStrategy: replace
         description: |-
             Interwiki cache, either as an associative array or a path to a constant
             database (.cdb) file.
@@ -4024,6 +4106,7 @@ config-schema:
             the URL.
     SiteTypes:
         default: { mediawiki: MediaWikiSite }
+        type: object
         description: |-
             Register handlers for specific types of sites.
             @since 1.21
@@ -4049,7 +4132,8 @@ config-schema:
 
             @see $wgMaxTemplateDepth
     UrlProtocols:
-        default: ['bitcoin:', 'ftp://', 'ftps://', 'geo:', 'git://', 'gopher://', 'http://', 'https://', 'irc://', 'ircs://', 'magnet:', 'mailto:', 'mms://', 'news:', 'nntp://', 'redis://', 'sftp://', 'sip:', 'sips:', 'sms:', 'ssh://', 'svn://', 'tel:', 'telnet://', 'urn:', 'worldwind://', 'xmpp:', //]
+        default: ['bitcoin:', 'ftp://', 'ftps://', 'geo:', 'git://', 'gopher://', 'http://', 'https://', 'irc://', 'ircs://', 'magnet:', 'mailto:', 'mms://', 'news:', 'nntp://', 'redis://', 'sftp://', 'sip:', 'sips:', 'sms:', 'ssh://', 'svn://', 'tel:', 'telnet://', 'urn:', 'worldwind://', 'xmpp:', '//']
+        type: array
         description: |-
             URL schemes that should be recognized as valid by wfParseUrl().
 
@@ -4103,6 +4187,7 @@ config-schema:
             @deprecated since 1.35; register an extension tag named <img> instead.
     TidyConfig:
         default: {  }
+        type: object
         description: |-
             Configuration for HTML postprocessing tool. Set this to a configuration
             array to enable an external tool. By default, we now use the RemexHtml
@@ -4160,13 +4245,15 @@ config-schema:
             they should not be followed for ranking purposes as they
             are user-supplied and thus subject to spamming.
     NoFollowNsExceptions:
-        default: {  }
+        default: []
+        type: array
         description: |-
             Namespaces in which $wgNoFollowLinks doesn't apply.
 
             See Language.php for a list of namespaces.
     NoFollowDomainExceptions:
         default: [mediawiki.org]
+        type: array
         description: |-
             If this is set to an array of domains, external links to these domain names
             (or any subdomains) will not be set to rel="nofollow" regardless of the
@@ -4214,6 +4301,7 @@ config-schema:
             Only used $wgEnableInterwikiTranscluding is set to true.
     EnableMagicLinks:
         default: { ISBN: false, PMID: false, RFC: false }
+        type: object
         description: |-
             Enable the magic links feature of automatically turning ISBN xxx,
             PMID xxx, RFC xxx into links
@@ -4306,7 +4394,7 @@ config-schema:
             @since 1.36
     CentralIdLookupProviders:
         default: { local: { class: LocalIdLookup, services: [MainConfig, DBLoadBalancer] } }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Central ID lookup providers
             Key is the provider ID, value is a specification for ObjectFactory
@@ -4317,7 +4405,8 @@ config-schema:
         description: 'Central ID lookup provider to use by default'
     PasswordPolicy:
         default: { policies: { bureaucrat: { MinimalPasswordLength: 10, MinimumPasswordLengthToLogin: 1 }, sysop: { MinimalPasswordLength: 10, MinimumPasswordLengthToLogin: 1 }, interface-admin: { MinimalPasswordLength: 10, MinimumPasswordLengthToLogin: 1 }, bot: { MinimalPasswordLength: 10, MinimumPasswordLengthToLogin: 1 }, default: { MinimalPasswordLength: { value: 1, suggestChangeOnLogin: true }, PasswordCannotBeSubstringInUsername: { value: true, suggestChangeOnLogin: true }, PasswordCannotMatchDefaults: { value: true, suggestChangeOnLogin: true }, MaximalPasswordLength: { value: 4096, suggestChangeOnLogin: true }, PasswordNotInCommonList: { value: true, suggestChangeOnLogin: true } } }, checks: { MinimalPasswordLength: 'PasswordPolicyChecks::checkMinimalPasswordLength', MinimumPasswordLengthToLogin: 'PasswordPolicyChecks::checkMinimumPasswordLengthToLogin', PasswordCannotBeSubstringInUsername: 'PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername', PasswordCannotMatchDefaults: 'PasswordPolicyChecks::checkPasswordCannotMatchDefaults', MaximalPasswordLength: 'PasswordPolicyChecks::checkMaximalPasswordLength', PasswordNotInCommonList: 'PasswordPolicyChecks::checkPasswordNotInCommonList' } }
-        mergeStrategy: array_merge_recursive
+        type: object
+        mergeStrategy: array_replace_recursive
         description: |-
             Password policy for the wiki.
 
@@ -4381,6 +4470,7 @@ config-schema:
             @see \User::checkPasswordValidity()
     AuthManagerConfig:
         default: null
+        type: [object, 'null']
         description: |-
             Configure AuthManager
 
@@ -4400,6 +4490,7 @@ config-schema:
             auto-configure themselves should use $wgAuthManagerAutoConfig instead.
     AuthManagerAutoConfig:
         default: { preauth: { MediaWiki\Auth\ThrottlePreAuthenticationProvider: { class: MediaWiki\Auth\ThrottlePreAuthenticationProvider, sort: 0 } }, primaryauth: { MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider: { class: MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider, services: [DBLoadBalancer], args: [{ authoritative: false }], sort: 0 }, MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider: { class: MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider, services: [DBLoadBalancer], args: [{ authoritative: true }], sort: 100 } }, secondaryauth: { MediaWiki\Auth\CheckBlocksSecondaryAuthenticationProvider: { class: MediaWiki\Auth\CheckBlocksSecondaryAuthenticationProvider, sort: 0 }, MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider: { class: MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider, sort: 100 }, MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider: { class: MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider, services: [DBLoadBalancer], sort: 200 } } }
+        type: object
         mergeStrategy: array_plus_2d
         description: |-
             @see $wgAuthManagerConfig
@@ -4416,7 +4507,6 @@ config-schema:
             @since 1.36
     ReauthenticateTime:
         default: { default: 300 }
-        mergeStrategy: array_merge
         type: object
         additionalProperties:
             type: 'integer'
@@ -4474,7 +4564,6 @@ config-schema:
             @see $wgReauthenticateTime
     ChangeCredentialsBlacklist:
         default: [MediaWiki\Auth\TemporaryPasswordAuthenticationRequest]
-        mergeStrategy: array_merge
         type: array
         items:
             type: 'string'
@@ -4488,7 +4577,6 @@ config-schema:
             @since 1.27
     RemoveCredentialsBlacklist:
         default: [MediaWiki\Auth\PasswordAuthenticationRequest]
-        mergeStrategy: array_merge
         type: array
         items:
             type: 'string'
@@ -4533,6 +4621,7 @@ config-schema:
             @since 1.24
     PasswordConfig:
         default: { A: { class: MWOldPassword }, B: { class: MWSaltedPassword }, pbkdf2-legacyA: { class: LayeredParameterizedPassword, types: [A, pbkdf2] }, pbkdf2-legacyB: { class: LayeredParameterizedPassword, types: [B, pbkdf2] }, bcrypt: { class: BcryptPassword, cost: 9 }, pbkdf2: { class: Pbkdf2Password, algo: sha512, cost: '30000', length: '64' }, argon2: { class: Argon2Password, algo: auto } }
+        type: object
         description: |-
             Configuration for built-in password types. Maps the password type
             to an array of options. The 'class' option is the Password class to
@@ -4553,6 +4642,7 @@ config-schema:
             @since 1.24
     PasswordResetRoutes:
         default: { username: true, email: true }
+        type: object
         description: |-
             Whether to allow password resets ("enter some identifying data, and we'll send an email
             with a temporary password you can use to get back into the account") identified by
@@ -4573,6 +4663,7 @@ config-schema:
             @since 1.35
     SignatureAllowedLintErrors:
         default: [obsolete-tag]
+        type: array
         description: |-
             List of lint error codes which don't cause signature validation to fail.
             @see https://www.mediawiki.org/wiki/Help:Lint_errors
@@ -4584,6 +4675,7 @@ config-schema:
             script ./maintenance/checkUsernames.php once you have changed this value.
     ReservedUsernames:
         default: ['MediaWiki default', 'Conversion script', 'Maintenance script', 'Template namespace initialisation script', ScriptImporter, 'Unknown user', 'msg:double-redirect-fixer', 'msg:usermessage-editor', 'msg:proxyblocker', 'msg:sorbs', 'msg:spambot_username', 'msg:autochange-username']
+        type: array
         description: |-
             Array of usernames which may not be registered or logged in from
             Maintenance scripts can still use these
@@ -4652,7 +4744,7 @@ config-schema:
             prefershttps: 1
             requireemail: 0
             skin-responsive: 1
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Settings added to this array will override the default globals for the user
             preferences used by anonymous visitors and newly created accounts.
@@ -4660,8 +4752,8 @@ config-schema:
             For instance, to disable editing on double clicks:
             $wgDefaultUserOptions ['editondblclick'] = 0;
     HiddenPrefs:
-        default: {  }
-        mergeStrategy: array_merge
+        default: []
+        type: array
         description: 'An array of preferences to not show for the user'
     InvalidUsernameCharacters:
         default: '@:'
@@ -4700,7 +4792,7 @@ config-schema:
             @since 1.27
     SessionProviders:
         default: { MediaWiki\Session\CookieSessionProvider: { class: MediaWiki\Session\CookieSessionProvider, args: [{ priority: 30, callUserSetCookiesHook: true }] }, MediaWiki\Session\BotPasswordSessionProvider: { class: MediaWiki\Session\BotPasswordSessionProvider, args: [{ priority: 75 }] } }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             MediaWiki\Session\SessionProvider configuration.
 
@@ -4727,6 +4819,7 @@ config-schema:
             restrictions.
     BlockCIDRLimit:
         default: { IPv4: 16, IPv6: 19 }
+        type: object
         description: |-
             Limits on the possible sizes of range blocks.
 
@@ -4966,6 +5059,7 @@ config-schema:
             This replaces $wgWhitelistAccount and $wgWhitelistEdit
     RevokePermissions:
         default: {  }
+        type: object
         mergeStrategy: array_plus_2d
         description: |-
             Permission keys revoked from users in each group.
@@ -4999,11 +5093,11 @@ config-schema:
             @since 1.38
     ImplicitGroups:
         default: ['*', user, autoconfirmed]
-        mergeStrategy: array_merge
+        type: array
         description: 'Implicit groups, aren''t shown on Special:Listusers or somewhere else'
     GroupsAddToSelf:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             A map of group names that the user is in, to group names that those users
             are allowed to add or revoke.
@@ -5029,12 +5123,13 @@ config-schema:
             any group that they happen to be in.
     GroupsRemoveFromSelf:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
 
             @see $wgGroupsAddToSelf
     RestrictionTypes:
         default: [create, edit, move, upload]
+        type: array
         description: |-
             Set of available actions that can be restricted via action=protect
             You probably shouldn't change this.
@@ -5044,6 +5139,7 @@ config-schema:
             applicable to a specific title (create and upload)
     RestrictionLevels:
         default: ['', autoconfirmed, sysop]
+        type: array
         description: |-
             Rights which can be required for each protection level (via action=protect)
 
@@ -5056,6 +5152,7 @@ config-schema:
               - 'sysop' is quietly rewritten to 'editprotected' for backwards compatibility
     CascadingRestrictionLevels:
         default: [sysop]
+        type: array
         description: |-
             Restriction levels that can be used with cascading protection
 
@@ -5066,6 +5163,7 @@ config-schema:
             'sysop' is quietly rewritten to 'editprotected' for backwards compatibility.
     SemiprotectedRestrictionLevels:
         default: [autoconfirmed]
+        type: array
         description: |-
             Restriction levels that should be considered "semiprotected"
 
@@ -5079,7 +5177,7 @@ config-schema:
             'sysop' is not changed, since it really shouldn't be here.
     NamespaceProtection:
         default: {  }
-        mergeStrategy: array_plus
+        type: object
         description: |-
             Set the minimum permissions required to edit pages in each
             namespace.  If you list more than one permission, a user must
@@ -5087,7 +5185,7 @@ config-schema:
             @note NS_MEDIAWIKI is implicitly restricted to 'editinterface'.
     NonincludableNamespaces:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Pages in namespaces in this array can not be used as templates.
 
@@ -5134,6 +5232,7 @@ config-schema:
             ```
     Autopromote:
         default: { autoconfirmed: ['&', [1, null], [2, null]] }
+        type: object
         description: |-
             Array containing the conditions of automatic promotion of a user to specific groups.
 
@@ -5192,6 +5291,7 @@ config-schema:
             user who has provided an e-mail address.
     AutopromoteOnce:
         default: { onEdit: {  } }
+        type: object
         description: |-
             Automatically add a usergroup to any user who matches certain conditions.
 
@@ -5217,7 +5317,7 @@ config-schema:
             @since 1.18
     AddGroups:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             $wgAddGroups and $wgRemoveGroups can be used to give finer control over who
             can assign which groups at Special:Userrights.
@@ -5248,13 +5348,13 @@ config-schema:
             ```
     RemoveGroups:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
 
             @see $wgAddGroups
     AvailableRights:
-        default: {  }
-        mergeStrategy: array_merge
+        default: []
+        type: array
         description: |-
             A list of available rights, in addition to the ones defined by the core.
 
@@ -5281,6 +5381,7 @@ config-schema:
             @since 1.23
     AccountCreationThrottle:
         default: [{ count: 0, seconds: 86400 }]
+        type: array
         description: |-
             Number of accounts each IP address may create per specified period(s).
 
@@ -5302,7 +5403,8 @@ config-schema:
             ```
             @warning Requires $wgMainCacheType to be enabled
     SpamRegex:
-        default: {  }
+        default: []
+        type: array
         description: |-
             Edits matching these regular expressions in body text
             will be recognised as spam and rejected automatically.
@@ -5312,8 +5414,9 @@ config-schema:
             @see https://en.wikipedia.org/wiki/Regular_expression
             @note Each regex needs a beginning/end delimiter, eg: # or /
     SummarySpamRegex:
-        default: {  }
-        description: 'Same as the above except for edit summaries'
+        default: []
+        type: array
+        description: 'Same as SpamRegex except for edit summaries'
     EnableDnsBlacklist:
         default: false
         description: |-
@@ -5322,6 +5425,7 @@ config-schema:
             @since 1.16
     DnsBlacklistUrls:
         default: [http.dnsbl.sorbs.net.]
+        type: array
         description: |-
             List of DNS blacklists to use, if $wgEnableDnsBlacklist is true.
 
@@ -5345,16 +5449,18 @@ config-schema:
             eventual domain search suffixes.
             @since 1.16
     ProxyList:
-        default: {  }
+        default: []
+        type: [string, array]
         description: |-
-            Big list of banned IP addresses.
+            List of banned IP addresses.
 
             This can have the following formats:
             - An array of addresses
             - A string, in which case this is the path to a file
               containing the list of IP addresses, one per line
     ProxyWhitelist:
-        default: {  }
+        default: []
+        type: array
         description: |-
             Proxy whitelist, list of addresses that are assumed to be non-proxy despite
             what the other methods might say.
@@ -5376,6 +5482,7 @@ config-schema:
             (transparent) proxies without needing to block the proxies themselves.
     RateLimits:
         default: { edit: { ip: [8, 60], newbie: [8, 60], user: [90, 60] }, move: { newbie: [2, 120], user: [8, 60] }, upload: { ip: [8, 60], newbie: [8, 60] }, rollback: { user: [10, 60], newbie: [5, 120] }, mailpassword: { ip: [5, 3600] }, emailuser: { ip: [5, 86400], newbie: [5, 86400], user: [20, 86400] }, changeemail: { ip-all: [10, 3600], user: [4, 86400] }, confirmemail: { ip-all: [10, 3600], user: [4, 86400] }, purge: { ip: [30, 60], user: [30, 60] }, linkpurge: { ip: [30, 60], user: [30, 60] }, renderfile: { ip: [700, 30], user: [700, 30] }, renderfile-nonstandard: { ip: [70, 30], user: [70, 30] }, stashedit: { ip: [30, 60], newbie: [30, 60] }, changetag: { ip: [8, 60], newbie: [8, 60] }, editcontentmodel: { newbie: [2, 120], user: [8, 60] } }
+        type: object
         mergeStrategy: array_plus_2d
         description: |-
             Simple rate limiter options to brake edit floods.
@@ -5416,7 +5523,8 @@ config-schema:
             ```
             @warning Requires that $wgMainCacheType is set to something persistent
     RateLimitsExcludedIPs:
-        default: {  }
+        default: []
+        type: array
         description: |-
             Array of IPs / CIDR ranges which should be excluded from rate limits.
 
@@ -5434,6 +5542,7 @@ config-schema:
             special pages which are query-pages such as Special:Whatlinkshere.
     PasswordAttemptThrottle:
         default: [{ count: 5, seconds: 300 }, { count: 150, seconds: 172800 }]
+        type: array
         description: |-
             Limit password attempts to X attempts per Y seconds per IP per account.
 
@@ -5632,7 +5741,6 @@ config-schema:
             highvolume: high-volume
             privateinfo: private-information
         type: object
-        mergeStrategy: array_merge
         additionalProperties:
             type: string
         description: |-
@@ -5740,6 +5848,7 @@ config-schema:
             @since 1.32
     CSPFalsePositiveUrls:
         default: { 'https://3hub.co': true, 'https://morepro.info': true, 'https://p.ato.mx': true, 'https://s.ato.mx': true, 'https://adserver.adtech.de': true, 'https://ums.adtechus.com': true, 'https://cas.criteo.com': true, 'https://cat.nl.eu.criteo.com': true, 'https://atpixel.alephd.com': true, 'https://rtb.metrigo.com': true, 'https://d5p.de17a.com': true, 'https://ad.lkqd.net/vpaid/vpaid.js': true, 'https://ad.lkqd.net/vpaid/vpaid.js?fusion=1.0': true, 'https://t.lkqd.net/t': true, chrome-extension: true }
+        type: object
         description: |-
             List of urls which appear often to be triggering CSP reports
             but do not appear to be caused by actual content, but by client
@@ -5871,7 +5980,8 @@ config-schema:
             is a workaround for broken behaviour in Chrome 51-66 and similar browsers.
             @since 1.35
     CacheVaryCookies:
-        default: {  }
+        default: []
+        type: array
         description: 'A list of cookies that vary the cache (for use by extensions)'
     SessionName:
         default: false
@@ -5933,11 +6043,13 @@ config-schema:
             the 'flags' option of the database connection to achieve the same functionality.
     TrxProfilerLimits:
         default: { GET: { masterConns: 0, writes: 0, readQueryTime: 5, readQueryRows: 10000 }, POST: { readQueryTime: 5, writeQueryTime: 1, readQueryRows: 100000, maxAffected: 1000 }, POST-nonwrite: { writes: 0, readQueryTime: 5, readQueryRows: 10000 }, PostSend-GET: { readQueryTime: 5, writeQueryTime: 1, readQueryRows: 10000, maxAffected: 1000, masterConns: 0, writes: 0 }, PostSend-POST: { readQueryTime: 5, writeQueryTime: 1, readQueryRows: 100000, maxAffected: 1000 }, JobRunner: { readQueryTime: 30, writeQueryTime: 5, readQueryRows: 100000, maxAffected: 500 }, Maintenance: { writeQueryTime: 5, maxAffected: 1000 } }
+        type: object
         description: |-
             Performance expectations for DB usage
             @since 1.26
     DebugLogGroups:
         default: {  }
+        type: object
         description: |-
             Map of string log group names to log destinations.
 
@@ -5971,6 +6083,7 @@ config-schema:
             ```
     MWLoggerDefaultSpi:
         default: { class: MediaWiki\Logger\LegacySpi }
+        mergeStrategy: replace
         type: object
         description: |-
             Default service provider for creating Psr\Log\LoggerInterface instances.
@@ -6038,6 +6151,8 @@ config-schema:
             after the limit.
     Profiler:
         default: {  }
+        type: object
+        mergeStrategy: replace
         description: |-
             Profiler configuration.
 
@@ -6121,6 +6236,7 @@ config-schema:
             @since 1.25
     StatsdSamplingRates:
         default: {  }
+        type: object
         description: |-
             Sampling rate for statsd metrics as an associative array of patterns and rates.
 
@@ -6165,7 +6281,7 @@ config-schema:
             templates.
     ParserTestFiles:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Parser test suite files to be run by parserTests.php when no specific
             filename is passed to it.
@@ -6218,6 +6334,7 @@ config-schema:
             @deprecated since 1.25 Use $wgOpenSearchTemplates['application/x-suggestions+json'] instead
     OpenSearchTemplates:
         default: { application/x-suggestions+json: false, application/x-suggestions+xml: false }
+        type: object
         description: |-
             Templates for OpenSearch suggestions, defaults to API action=opensearch
 
@@ -6249,6 +6366,7 @@ config-schema:
             table. If you ever re-enable, be sure to rebuild the search table.
     NamespacesToBeSearchedDefault:
         default: [true]
+        type: array
         description: |-
             List of namespaces which are searched by default.
 
@@ -6283,12 +6401,14 @@ config-schema:
             ```
     SitemapNamespaces:
         default: false
+        type: [ boolean, array ]
         description: |-
             Array of namespaces to generate a Google sitemap for when the
             maintenance/generateSitemap.php script is run, or false if one is to be
             generated for all namespaces.
     SitemapNamespacesPriorities:
         default: false
+        type: [ boolean, object ]
         description: |-
             Custom namespace priorities for sitemaps. Setting this will allow you to
             set custom priorities to namespaces when sitemaps are generated using the
@@ -6312,7 +6432,7 @@ config-schema:
             [[Special:Contributions/1.2.3.4]]
     SpecialSearchFormOptions:
         default: {  }
-        type: array
+        type: object
         description: |-
             Options for Special:Search completion widget form created by SearchFormWidget class.
 
@@ -6347,6 +6467,7 @@ config-schema:
         description: 'Path to the GNU diff utility.'
     PreviewOnOpenNamespaces:
         default: { 14: true }
+        type: object
         description: |-
             Which namespaces have special treatment where they should be preview-on-open
             Internally only Category: pages apply, but using this extensions (e.g. Semantic MediaWiki)
@@ -6407,6 +6528,7 @@ config-schema:
         description: 'Fully specified path to git binary'
     GitRepositoryViewers:
         default: { 'https://(?:[a-z0-9_]+@)?gerrit.wikimedia.org/r/(?:p/)?(.*)': 'https://gerrit.wikimedia.org/g/%R/+/%H', 'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)': 'https://gerrit.wikimedia.org/g/%R/+/%H' }
+        type: object
         description: |-
             Map GIT repository URLs to viewer URLs to provide links in Special:Version
 
@@ -6450,17 +6572,20 @@ config-schema:
             is still there.
     RCLinkLimits:
         default: [50, 100, 250, 500]
+        type: array
         description: |-
             List of Limits options to list in the Special:Recentchanges and
             Special:Recentchangeslinked pages.
     RCLinkDays:
         default: [1, 3, 7, 14, 30]
+        type: array
         description: |-
             List of Days options to list in the Special:Recentchanges and
             Special:Recentchangeslinked pages.
             @see \ChangesListSpecialPage::getLinkDays
     RCFeeds:
         default: {  }
+        type: object
         description: |-
             Configuration for feeds to which notifications about recent changes will be sent.
 
@@ -6524,6 +6649,7 @@ config-schema:
             @since 1.22
     RCEngines:
         default: { redis: RedisPubSubFeedEngine, udp: UDPRCFeedEngine }
+        type: object
         description: |-
             Used by RecentChange::getEngine to find the correct engine for a given URI scheme.
 
@@ -6596,6 +6722,7 @@ config-schema:
             pages larger than this size.
     OverrideSiteFeed:
         default: {  }
+        type: object
         description: |-
             Override the site's default RSS/ATOM feed for recentchanges that appears on
             every page. Some sites might have a different feed they'd like to promote
@@ -6612,7 +6739,7 @@ config-schema:
             ```
     FeedClasses:
         default: { rss: RSSFeed, atom: AtomFeed }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Available feeds objects.
 
@@ -6620,6 +6747,7 @@ config-schema:
             $wgOut->isSyndicated() is true.
     AdvertisedFeedTypes:
         default: [atom]
+        type: array
         description: |-
             Which feed types should we provide by default?  This can include 'rss',
             'atom', neither, or both.
@@ -6694,7 +6822,7 @@ config-schema:
             @since 1.21
     RecentChangesFlags:
         default: { newpage: { letter: newpageletter, title: recentchanges-label-newpage, legend: recentchanges-legend-newpage, grouping: any }, minor: { letter: minoreditletter, title: recentchanges-label-minor, legend: recentchanges-legend-minor, class: minoredit, grouping: all }, bot: { letter: boteditletter, title: recentchanges-label-bot, legend: recentchanges-legend-bot, class: botedit, grouping: all }, unpatrolled: { letter: unpatrolledletter, title: recentchanges-label-unpatrolled, legend: recentchanges-legend-unpatrolled, grouping: any } }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Flags (letter symbols) shown in recent changes and watchlist to indicate
             certain types of edits.
@@ -6795,6 +6923,7 @@ config-schema:
             Otherwise, link to a separate credits page.
     ImportSources:
         default: {  }
+        type: object
         description: |-
             List of interwiki prefixes for wikis we'll accept as sources for
             Special:Import and API action=import. Since complete page history can be
@@ -6871,14 +7000,14 @@ config-schema:
             The schema to use per default when generating XML dumps. This allows sites to control
             explicitly when to make breaking changes to their export and dump format.
     ExtensionFunctions:
-        default: {  }
-        mergeStrategy: array_merge
+        default: []
+        type: array
         description: |-
             A list of callback functions which are called once MediaWiki is fully
             initialised
     ExtensionMessagesFiles:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Extension messages files.
 
@@ -6907,7 +7036,7 @@ config-schema:
             ```
     MessagesDirs:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Extension messages directories.
 
@@ -6936,13 +7065,14 @@ config-schema:
             @since 1.23
     ExtensionEntryPointListFiles:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Array of files with list(s) of extension entry points to be used in
             maintenance/mergeMessageFileList.php
             @since 1.22
     ParserOutputHooks:
         default: {  }
+        type: object
         description: |-
             Parser output hooks.
 
@@ -6963,7 +7093,7 @@ config-schema:
         description: 'Whether to include the NewPP limit report as a HTML comment'
     ValidSkinNames:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             List of valid skin names
 
@@ -6990,7 +7120,7 @@ config-schema:
             full list.
     SpecialPages:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Special page list. This is an associative array mapping the (canonical) names of
             special pages to either a class name to be instantiated, or a callback to use for
@@ -7006,6 +7136,7 @@ config-schema:
             @deprecated since 1.35
     ExtensionCredits:
         default: {  }
+        type: object
         description: |-
             Add information about an installed extension, keyed by its type.
 
@@ -7064,6 +7195,7 @@ config-schema:
             @see \SpecialVersion::getCredits
     Hooks:
         default: {  }
+        type: object
         mergeStrategy: array_merge_recursive
         description: |-
             Global list of hooks.
@@ -7095,7 +7227,7 @@ config-schema:
             handlers after file scope can lead to unexpected results due to caching.
     ServiceWiringFiles:
       default: []
-      mergeStrategy: array_merge
+      type: array
       description:
         List of service wiring files to be loaded by the default instance of MediaWikiServices.
         Each file listed here is expected to return an associative array mapping service names
@@ -7135,7 +7267,7 @@ config-schema:
             enqueue: EnqueueJob
             'null': NullJob
             userEditCountInit: UserEditCountInitJob
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Maps jobs to their handlers; extensions
             can add to this to provide custom jobs.
@@ -7145,6 +7277,7 @@ config-schema:
             The callback takes (Title, array map of parameters) as arguments.
     JobTypesExcludedFromDefaultQueue:
         default: [AssembleUploadChunks, PublishStashedFile]
+        type: array
         description: |-
             Jobs that must be explicitly requested, i.e. aren't run by job runners unless
             special flags are set. The values here are keys of $wgJobClasses.
@@ -7184,6 +7317,7 @@ config-schema:
             @since 1.26
     JobTypeConf:
         default: { default: { class: JobQueueDB, order: random, claimTTL: 3600 } }
+        type: object
         description: |-
             Map of job types to configuration arrays.
 
@@ -7204,12 +7338,14 @@ config-schema:
             @since 1.29
     SpecialPageCacheUpdates:
         default: { Statistics: [SiteStatsUpdate, cacheUpdate] }
+        type: object
         description: |-
             Additional functions to be performed with updateSpecialPages.
 
             Expensive Querypages are already updated.
     PagePropLinkInvalidations:
         default: { hiddencat: categorylinks }
+        type: object
         description: |-
             Page property link table invalidation lists. When a page property
             changes, this may require other link tables to be updated (eg
@@ -7254,6 +7390,7 @@ config-schema:
             and using the Collation::factory hook.
     TempCategoryCollations:
         default: []
+        type: array
         description: |-
             Additional category collations to store during LinksUpdate. This can be used
             to perform online migration of categories from one collation to another. An
@@ -7265,7 +7402,8 @@ config-schema:
 
             @since 1.38
     TrackingCategories:
-        default: {  }
+        default: []
+        type: array
         description: |-
             Array holding default tracking category names.
 
@@ -7280,7 +7418,7 @@ config-schema:
             @since 1.23
     LogTypes:
         default: ['', block, protect, rights, delete, upload, move, import, patrol, merge, suppress, tag, managetags, contentmodel]
-        mergeStrategy: array_merge
+        type: array
         description: |-
             The logging system has two levels: an event type, which describes the
             general category and can be viewed as a named subset of all logs; and
@@ -7291,7 +7429,7 @@ config-schema:
             log types instead of checking the global variable.
     LogRestrictions:
         default: { suppress: suppressionlog }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             This restricts log access to those who have a certain right
             Users without this will not see it in the option menu and can not view it
@@ -7300,7 +7438,7 @@ config-schema:
             Format: logtype => permissiontype
     FilterLogTypes:
         default: { patrol: true, tag: true, newusers: false }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Show/hide links on Special:Log will be shown for these log types.
 
@@ -7320,7 +7458,7 @@ config-schema:
             used for the link text.
     LogNames:
         default: { '': all-logs-page, block: blocklogpage, protect: protectlogpage, rights: rightslog, delete: dellogpage, upload: uploadlogpage, move: movelogpage, import: importlogpage, patrol: patrol-log-page, merge: mergelog, suppress: suppressionlog }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Lists the message key string for each log type. The localized messages
             will be listed in the user interface.
@@ -7330,7 +7468,7 @@ config-schema:
             where TYPE is your log type, you don't need to use this array.
     LogHeaders:
         default: { '': alllogstext, block: blocklogtext, delete: dellogpagetext, import: importlogpagetext, merge: mergelogpagetext, move: movelogpagetext, patrol: patrol-log-header, protect: protectlogtext, rights: rightslogtext, suppress: suppressionlogtext, upload: uploadlogpagetext }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             Lists the message key string for descriptive text to be shown at the
             top of each log type.
@@ -7339,8 +7477,8 @@ config-schema:
             @since 1.19, if you follow the naming convention log-description-TYPE,
             where TYPE is your log type, yoy don't need to use this array.
     LogActions:
-        default: {  }
-        mergeStrategy: array_merge
+        default: []
+        type: array
         description: |-
             Lists the message key string for formatting individual events of each
             type and action when listed in the logs.
@@ -7348,7 +7486,7 @@ config-schema:
             Extensions with custom log types may add to this array.
     LogActionsHandlers:
         default: { block/block: BlockLogFormatter, block/reblock: BlockLogFormatter, block/unblock: BlockLogFormatter, contentmodel/change: ContentModelLogFormatter, contentmodel/new: ContentModelLogFormatter, delete/delete: DeleteLogFormatter, delete/delete_redir: DeleteLogFormatter, delete/delete_redir2: DeleteLogFormatter, delete/event: DeleteLogFormatter, delete/restore: DeleteLogFormatter, delete/revision: DeleteLogFormatter, import/interwiki: ImportLogFormatter, import/upload: ImportLogFormatter, managetags/activate: LogFormatter, managetags/create: LogFormatter, managetags/deactivate: LogFormatter, managetags/delete: LogFormatter, merge/merge: MergeLogFormatter, move/move: MoveLogFormatter, move/move_redir: MoveLogFormatter, patrol/patrol: PatrolLogFormatter, patrol/autopatrol: PatrolLogFormatter, protect/modify: ProtectLogFormatter, protect/move_prot: ProtectLogFormatter, protect/protect: ProtectLogFormatter, protect/unprotect: ProtectLogFormatter, rights/autopromote: RightsLogFormatter, rights/rights: RightsLogFormatter, suppress/block: BlockLogFormatter, suppress/delete: DeleteLogFormatter, suppress/event: DeleteLogFormatter, suppress/reblock: BlockLogFormatter, suppress/revision: DeleteLogFormatter, tag/update: TagLogFormatter, upload/overwrite: UploadLogFormatter, upload/revert: UploadLogFormatter, upload/upload: UploadLogFormatter }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             The same as above, but here values are names of classes,
             not messages.
@@ -7356,7 +7494,7 @@ config-schema:
             @see \LogFormatter
     ActionFilteredLogs:
         default: { block: { block: [block], reblock: [reblock], unblock: [unblock] }, contentmodel: { change: [change], new: [new] }, delete: { delete: [delete], delete_redir: [delete_redir, delete_redir2], restore: [restore], event: [event], revision: [revision] }, import: { interwiki: [interwiki], upload: [upload] }, managetags: { create: [create], delete: [delete], activate: [activate], deactivate: [deactivate] }, move: { move: [move], move_redir: [move_redir] }, newusers: { create: [create, newusers], create2: [create2], autocreate: [autocreate], byemail: [byemail] }, protect: { protect: [protect], modify: [modify], unprotect: [unprotect], move_prot: [move_prot] }, rights: { rights: [rights], autopromote: [autopromote] }, suppress: { event: [event], revision: [revision], delete: [delete], block: [block], reblock: [reblock] }, upload: { upload: [upload], overwrite: [overwrite], revert: [revert] } }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             List of log types that can be filtered by action types
 
@@ -7402,8 +7540,8 @@ config-schema:
             at Special:Contributions.
             @since 1.30
     Actions:
-        default: {  }
-        mergeStrategy: array_merge
+        default: []
+        type: array
         description: |-
             Array of allowed values for the "title=foo&action=<action>" parameter. See
             ActionFactory for the syntax. Core defaults are in ActionFactory::CORE_ACTIONS,
@@ -7416,6 +7554,7 @@ config-schema:
             basis.
     NamespaceRobotPolicies:
         default: {  }
+        type: object
         description: |-
             Robot policies per namespaces. The default policy is given above, the array
             is made of namespace constants as defined in includes/Defines.php.  You can-
@@ -7432,6 +7571,7 @@ config-schema:
             ```
     ArticleRobotPolicies:
         default: {  }
+        type: object
         description: |-
             Robot policies per article. These override the per-namespace robot policies.
 
@@ -7462,6 +7602,7 @@ config-schema:
             ```
     ExemptFromUserRobotsControl:
         default: null
+        type: ["null", array]
         description: |-
             An array of namespace keys in which the __INDEX__/__NOINDEX__ magic words
             will not function, so users can't decide whether pages in that namespace are
@@ -7487,7 +7628,7 @@ config-schema:
             @since 1.21
     APIModules:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             API module extensions.
 
@@ -7524,7 +7665,7 @@ config-schema:
             See ApiMain::MODULES for a list of the core modules.
     APIFormatModules:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             API format module extensions.
 
@@ -7534,7 +7675,7 @@ config-schema:
             See ApiMain::FORMATS for a list of the core format modules.
     APIMetaModules:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             API Query meta module extensions.
 
@@ -7544,7 +7685,7 @@ config-schema:
             See ApiQuery::QUERY_META_MODULES for a list of the core meta modules.
     APIPropModules:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             API Query prop module extensions.
 
@@ -7554,7 +7695,7 @@ config-schema:
             See ApiQuery::QUERY_PROP_MODULES for a list of the core prop modules.
     APIListModules:
         default: {  }
-        mergeStrategy: array_merge
+        type: object
         description: |-
             API Query list module extensions.
 
@@ -7594,6 +7735,7 @@ config-schema:
         description: 'Set the timeout for the API help text cache. If set to 0, caching disabled'
     APIUselessQueryPages:
         default: [MIMEsearch, LinkSearch]
+        type: array
         description: |-
             The ApiQueryQueryPages module should skip pages that are redundant to true
             API queries.
@@ -7605,6 +7747,7 @@ config-schema:
         description: 'Enable previewing licences via AJAX.'
     CrossSiteAJAXdomains:
         default: {  }
+        type: object
         description: |-
             Settings for incoming cross-site AJAX requests:
             Newer browsers support cross-site AJAX when the target resource allows requests
@@ -7628,15 +7771,18 @@ config-schema:
             ```
     CrossSiteAJAXdomainExceptions:
         default: {  }
+        type: object
         description: |-
             Domains that should not be allowed to make AJAX requests,
             even if they match one of the domains allowed by $wgCrossSiteAJAXdomains
             Uses the same syntax as $wgCrossSiteAJAXdomains
     AllowedCorsHeaders:
         default: [Accept, Accept-Language, Content-Language, Content-Type, Accept-Encoding, DNT, Origin, User-Agent, Api-User-Agent, Access-Control-Max-Age]
+        type: array
         description: 'List of allowed headers for cross-origin API requests.'
     RestAPIAdditionalRouteFiles:
-        default: {  }
+        default: []
+        type: array
         description: |-
             Additional REST API Route files.
 
@@ -7767,6 +7913,7 @@ config-schema:
         description: 'Proxy to use for CURL requests.'
     LocalVirtualHosts:
         default: {  }
+        type: object
         description: |-
             Local virtual hosts.
 
@@ -7829,6 +7976,7 @@ config-schema:
             paths: {}
             modules: {}
             global: { timeout: 360, forwardCookies: false, HTTPProxy: null }
+        mergeStrategy: array_plus_2d
         type: object
         description: |-
             Global configuration variable for Virtual REST Services.
@@ -7866,6 +8014,7 @@ config-schema:
             @since 1.25
     EventRelayerConfig:
         default: { default: { class: EventRelayerNull } }
+        type: object
         description: |-
             Mapping of event channels (or channel categories) to EventRelayer configuration.
 
@@ -7901,7 +8050,7 @@ config-schema:
             Aggregate pingback data is available at: https://pingback.wmflabs.org/
             @since 1.28
     OriginTrials:
-        default: {  }
+        default: []
         type: array
         description: |-
             Origin Trials tokens.
@@ -7935,14 +8084,14 @@ config-schema:
             @warning EXPERIMENTAL!
             @since 1.34
     ReportToEndpoints:
-        default: {  }
+        default: []
         type: array
         description: |-
             List of endpoints for the Reporting API.
             @warning EXPERIMENTAL!
             @since 1.34
     FeaturePolicyReportOnly:
-        default: {  }
+        default: []
         type: array
         description: |-
             List of Feature Policy Reporting types to enable.
