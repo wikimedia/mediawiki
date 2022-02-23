@@ -97,7 +97,8 @@ class SkinTemplate extends Skin {
 		$title = $this->getTitle();
 		$this->thispage = $title->getPrefixedDBkey();
 		$this->titletxt = $title->getPrefixedText();
-		$this->userpage = $user->getUserPage()->getPrefixedText();
+		$userpageTitle = $user->getUserPage();
+		$this->userpage = $userpageTitle->getPrefixedText();
 		$query = [];
 		if ( !$request->wasPosted() ) {
 			$query = $request->getValues();
@@ -110,11 +111,11 @@ class SkinTemplate extends Skin {
 		$this->username = $user->getName();
 
 		if ( $this->loggedin ) {
-			$this->userpageUrlDetails = self::makeUrlDetails( $this->userpage );
+			$this->userpageUrlDetails = self::makeUrlDetails( $userpageTitle );
 		} else {
 			# This won't be used in the standard skins, but we define it to preserve the interface
 			# To save time, we check for existence
-			$this->userpageUrlDetails = self::makeKnownUrlDetails( $this->userpage );
+			$this->userpageUrlDetails = self::makeKnownUrlDetails( $userpageTitle );
 		}
 
 		$this->templateContextSet = true;
