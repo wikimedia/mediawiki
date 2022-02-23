@@ -13,22 +13,22 @@ class BenchmarkTruncate extends Benchmarker {
 		$dbw = $this->getDB( DB_PRIMARY );
 
 		$dbw->dropTable( 'benchmark_perm_test' );
+		$permTable = $dbw->tableName( 'benchmark_perm_test', 'unquoted' );
 		$dbw->duplicateTableStructure(
-			'page',
-			'benchmark_perm_test',
+			$dbw->tableName( 'page', 'unquoted' ),
+			$permTable,
 			false,
 			$fname
 		);
+
 		$dbw->dropTable( 'benchmark_temp_test' );
+		$tempTable = $dbw->tableName( 'benchmark_temp_test', 'unquoted' );
 		$dbw->duplicateTableStructure(
-			'page',
-			'benchmark_temp_test',
+			$dbw->tableName( 'page', 'unquoted' ),
+			$tempTable,
 			true,
 			$fname
 		);
-
-		$tempTable = $dbw->tableName( 'benchmark_temp_test' );
-		$permTable = $dbw->tableName( 'benchmark_perm_test' );
 
 		$this->bench( [
 			'perm truncate' => static function () use ( $dbw, $fname, $permTable ) {
