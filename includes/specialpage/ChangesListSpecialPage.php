@@ -753,8 +753,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * @see $wgRCLinkDays in DefaultSettings.php.
-	 * @see $wgRCFilterByAge in DefaultSettings.php.
+	 * @see docs/Configuration.md for information on the RCLinkDays and RCFilterByAge settings.
 	 * @return int[]
 	 */
 	protected function getLinkDays() {

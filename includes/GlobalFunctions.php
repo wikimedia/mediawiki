@@ -778,7 +778,7 @@ function wfUrlProtocolsWithoutProtRel() {
  *   - fragment: the part after #, can be missing.
  */
 function wfParseUrl( $url ) {
-	global $wgUrlProtocols; // Allow all protocols defined in DefaultSettings/LocalSettings.php
+	global $wgUrlProtocols; // Allow all protocols defined by the UrlProtocols setting.
 
 	// Protocol-relative URLs are handled really badly by parse_url(). It's so
 	// bad that the easiest way to handle them is to just prepend 'http:' and

@@ -41,8 +41,7 @@ use WikiMap;
  * - `$wgDBerrorLog`
  * - `$wgDBerrorLogTZ`
  *
- * See documentation in DefaultSettings.php for detailed explanations of each
- * variable.
+ * See docs/Configuration.ms for detailed explanations of these settings.
  *
  * @see \MediaWiki\Logger\LoggerFactory
  * @since 1.25

@@ -198,7 +198,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	/**
 	 * Fetch interwiki prefix data from local cache in constant database.
 	 *
-	 * @note More logic is explained in DefaultSettings.
+	 * @note More logic is explained in docs/Configuration.md.
 	 *
 	 * @param string $prefix Interwiki prefix
 	 * @return Interwiki|false
@@ -218,7 +218,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	/**
 	 * Get entry from pregenerated data
 	 *
-	 * @note More logic is explained in DefaultSettings.
+	 * @note More logic is explained in docs/Configuration.md.
 	 *
 	 * @param string $prefix Database key
 	 * @return bool|string The interwiki entry or false if not found

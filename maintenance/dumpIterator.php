@@ -119,7 +119,7 @@ abstract class DumpIterator extends Maintenance {
 			global $wgHooks;
 			$wgHooks['InterwikiLoadPrefix'][] = 'DumpIterator::disableInterwikis';
 
-			$settingsBuilder->setConfigValues( [
+			$settingsBuilder->putConfigValues( [
 				'UseDatabaseMessages' => false,
 				'LocalisationCacheConf' => [ 'storeClass' => LCStoreNull::class ],
 			] );
