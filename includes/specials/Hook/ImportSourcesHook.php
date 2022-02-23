@@ -17,8 +17,8 @@ interface ImportSourcesHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array &$importSources The value of $wgImportSources. Modify as necessary. See the
-	 *   comment in DefaultSettings.php for the detail of how to structure this array.
+	 * @param array &$importSources The value of $wgImportSources. Modify as necessary. See
+	 *   docs/Configuration.md for details about the structure of the ImportSources setting.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onImportSources( &$importSources );

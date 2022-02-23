@@ -1937,8 +1937,9 @@ class Linker {
 		IContextSource $context = null,
 		$editCount = false
 	) {
-		$showRollbackEditCount = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowRollbackEditCount' );
-		$miserMode = MediaWikiServices::getInstance()->getMainConfig()->get( 'MiserMode' );
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$showRollbackEditCount = $config->get( 'ShowRollbackEditCount' );
+		$miserMode = $config->get( 'MiserMode' );
 		// To config which pages are affected by miser mode
 		$disableRollbackEditCountSpecialPage = [ 'Recentchanges', 'Watchlist' ];
 
@@ -1969,38 +1970,30 @@ class Linker {
 			$query['bot'] = '1';
 		}
 
-		$disableRollbackEditCount = false;
 		if ( $miserMode ) {
 			foreach ( $disableRollbackEditCountSpecialPage as $specialPage ) {
 				if ( $context->getTitle()->isSpecial( $specialPage ) ) {
-					$disableRollbackEditCount = true;
+					$showRollbackEditCount = false;
 					break;
 				}
 			}
 		}
 
-		if ( !$disableRollbackEditCount
-			&& is_int( $showRollbackEditCount )
-			&& $showRollbackEditCount > 0
-		) {
+		// The edit count can be 0 on replica lag, fall back to the generic rollbacklink message
+		$msg = [ 'rollbacklink' ];
+		if ( is_int( $showRollbackEditCount ) && $showRollbackEditCount > 0 ) {
 			if ( !is_numeric( $editCount ) ) {
 				$editCount = self::getRollbackEditCount( $revRecord, false );
 			}
 
-			// The edit count can be 0 on replica lag, fall back to the generic rollbacklink message
-			if ( $editCount > 0 ) {
-				if ( $editCount > $showRollbackEditCount ) {
-					$html = $context->msg( 'rollbacklinkcount-morethan' )
-						->numParams( $showRollbackEditCount )->parse();
-				} else {
-					$html = $context->msg( 'rollbacklinkcount' )->numParams( $editCount )->parse();
-				}
-
-				return self::link( $title, $html, $attrs, $query, $options );
+			if ( $editCount > $showRollbackEditCount ) {
+				$msg = [ 'rollbacklinkcount-morethan', Message::numParam( $showRollbackEditCount ) ];
+			} elseif ( $editCount ) {
+				$msg = [ 'rollbacklinkcount', Message::numParam( $editCount ) ];
 			}
 		}
 
-		$html = $context->msg( 'rollbacklink' )->escaped();
+		$html = $context->msg( ...$msg )->parse();
 		return self::link( $title, $html, $attrs, $query, $options );
 	}
 

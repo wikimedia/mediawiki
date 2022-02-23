@@ -522,31 +522,26 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	public function provideLoadFromDBAndCache() {
 		return [
 			'legacy' => [
-				// phpcs:ignore Generic.Files.LineLength
 				'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:16;s:9:"colorType";s:10:"truecolour";s:8:"metadata";a:2:{s:8:"DateTime";s:19:"2019:07:30 13:52:32";s:15:"_MW_PNG_VERSION";i:1;}}',
 				[],
 				false,
 			],
 			'json' => [
-				// phpcs:ignore Generic.Files.LineLength
 				'{"data":{"frameCount":0,"loopCount":1,"duration":0,"bitDepth":16,"colorType":"truecolour","metadata":{"DateTime":"2019:07:30 13:52:32","_MW_PNG_VERSION":1}}}',
 				[],
 				false,
 			],
 			'json with blobs' => [
-				// phpcs:ignore Generic.Files.LineLength
 				'{"blobs":{"colorType":"__BLOB0__"},"data":{"frameCount":0,"loopCount":1,"duration":0,"bitDepth":16,"metadata":{"DateTime":"2019:07:30 13:52:32","_MW_PNG_VERSION":1}}}',
 				[ '"truecolour"' ],
 				false,
 			],
 			'large (>100KB triggers uncached case)' => [
-				// phpcs:ignore Generic.Files.LineLength
 				'{"data":{"large":"' . str_repeat( 'x', 102401 ) . '","frameCount":0,"loopCount":1,"duration":0,"bitDepth":16,"colorType":"truecolour","metadata":{"DateTime":"2019:07:30 13:52:32","_MW_PNG_VERSION":1}}}',
 				[],
 				102401,
 			],
 			'large json blob' => [
-				// phpcs:ignore Generic.Files.LineLength
 				'{"blobs":{"large":"__BLOB0__"},"data":{"frameCount":0,"loopCount":1,"duration":0,"bitDepth":16,"colorType":"truecolour","metadata":{"DateTime":"2019:07:30 13:52:32","_MW_PNG_VERSION":1}}}',
 				[ '"' . str_repeat( 'x', 102401 ) . '"' ],
 				102401,

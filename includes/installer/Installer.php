@@ -28,6 +28,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Interwiki\NullInterwikiLookup;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Settings\SettingsBuilder;
 
 /**
  * The Installer helps admins create or upgrade their wiki.
@@ -162,7 +163,7 @@ abstract class Installer {
 	/**
 	 * MediaWiki configuration globals that will eventually be passed through
 	 * to LocalSettings.php. The names only are given here, the defaults
-	 * typically come from DefaultSettings.php.
+	 * typically come from config-schema.yaml.
 	 *
 	 * @var array
 	 */
@@ -400,7 +401,7 @@ abstract class Installer {
 	 * Constructor, always call this from child classes.
 	 */
 	public function __construct() {
-		$defaultConfig = new GlobalVarConfig(); // all the stuff from DefaultSettings.php
+		$defaultConfig = new GlobalVarConfig(); // all the defaults from config-schema.yaml.
 		$installerConfig = self::getInstallerConfig( $defaultConfig );
 
 		$this->resetMediaWikiServices( $installerConfig );
@@ -1429,9 +1430,9 @@ abstract class Installer {
 	}
 
 	/**
-	 * Returns a default value to be used for $wgDefaultSkin: normally the one set in DefaultSettings,
-	 * but will fall back to another if the default skin is missing and some other one is present
-	 * instead.
+	 * Returns a default value to be used for $wgDefaultSkin: normally the DefaultSkin from
+	 * config-schema.yaml, but will fall back to another if the default skin is missing
+	 * and some other one is present instead.
 	 *
 	 * @param string[] $skinNames Names of installed skins.
 	 * @return string
@@ -1511,7 +1512,7 @@ abstract class Installer {
 		$IP = $this->getVar( 'IP' );
 
 		/**
-		 * We need to include DefaultSettings before including extensions to avoid
+		 * We need to define the $wgXyz variables before including extensions to avoid
 		 * warnings about unset variables. However, the only thing we really
 		 * want here is $wgHooks['LoadExtensionSchemaUpdates']. This won't work
 		 * if the extension has hidden hook registration in $wgExtensionFunctions,
@@ -1858,55 +1859,64 @@ abstract class Installer {
 
 	/**
 	 * Override the necessary bits of the config to run an installation.
+	 *
+	 * @param SettingsBuilder $settings
 	 */
-	public static function overrideConfig() {
+	public static function overrideConfig( SettingsBuilder $settings ) {
 		// Use PHP's built-in session handling, since MediaWiki's
 		// SessionHandler can't work before we have an object cache set up.
 		if ( !defined( 'MW_NO_SESSION_HANDLER' ) ) {
 			define( 'MW_NO_SESSION_HANDLER', 1 );
 		}
 
-		// Don't access the database
-		$GLOBALS['wgUseDatabaseMessages'] = false;
-		// Don't cache langconv tables
-		$GLOBALS['wgLanguageConverterCacheType'] = CACHE_NONE;
-		// Don't try to cache ResourceLoader dependencies in the database
-		$GLOBALS['wgResourceLoaderUseObjectCacheForDeps'] = true;
-		// Debug-friendly
-		$GLOBALS['wgShowExceptionDetails'] = true;
-		$GLOBALS['wgShowHostnames'] = true;
-		// Don't break forms
-		$GLOBALS['wgExternalLinkTarget'] = '_blank';
+		$settings->overrideConfigValues( [
 
-		// Allow multiple ob_flush() calls
-		$GLOBALS['wgDisableOutputCompression'] = true;
+			// Don't access the database
+			'UseDatabaseMessages' => false,
 
-		// Use a sensible cookie prefix (not my_wiki)
-		$GLOBALS['wgCookiePrefix'] = 'mw_installer';
+			// Don't cache langconv tables
+			'LanguageConverterCacheType' => CACHE_NONE,
 
-		// Some of the environment checks make shell requests, remove limits
-		$GLOBALS['wgMaxShellMemory'] = 0;
+			// Don't try to cache ResourceLoader dependencies in the database
+			'ResourceLoaderUseObjectCacheForDeps' => true,
 
-		// Override the default CookieSessionProvider with a dummy
-		// implementation that won't stomp on PHP's cookies.
-		$GLOBALS['wgSessionProviders'] = [
-			[
-				'class' => InstallerSessionProvider::class,
-				'args' => [ [
-					'priority' => 1,
-				] ]
-			]
-		];
+			// Debug-friendly
+			'ShowExceptionDetails' => true,
+			'ShowHostnames' => true,
 
-		// Don't use the DB as the main stash
-		$GLOBALS['wgMainStash'] = CACHE_NONE;
+			// Don't break forms
+			'ExternalLinkTarget' => '_blank',
 
-		// Don't try to use any object cache for SessionManager either.
-		$GLOBALS['wgSessionCacheType'] = CACHE_NONE;
+			// Allow multiple ob_flush() calls
+			'DisableOutputCompression' => true,
 
-		// Set a dummy $wgServer to bypass the check in Setup.php, the
-		// web installer will automatically detect it and not use this value.
-		$GLOBALS['wgServer'] = 'https://🌻.invalid';
+			// Use a sensible cookie prefix (not my_wiki)
+			'CookiePrefix' => 'mw_installer',
+
+			// Some of the environment checks make shell requests, remove limits
+			'MaxShellMemory' => 0,
+
+			// Override the default CookieSessionProvider with a dummy
+			// implementation that won't stomp on PHP's cookies.
+			'SessionProviders' => [
+				[
+					'class' => InstallerSessionProvider::class,
+					'args' => [ [
+						'priority' => 1,
+					] ]
+				]
+			],
+
+			// Don't use the DB as the main stash
+			'MainStash' => CACHE_NONE,
+
+			// Don't try to use any object cache for SessionManager either.
+			'SessionCacheType' => CACHE_NONE,
+
+			// Set a dummy $wgServer to bypass the check in Setup.php, the
+			// web installer will automatically detect it and not use this value.
+			'Server' => 'https://🌻.invalid',
+		] );
 	}
 
 	/**

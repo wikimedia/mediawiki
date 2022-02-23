@@ -1118,7 +1118,6 @@ class ApiMainTest extends ApiTestCase {
 						[ 'code' => 'sv-error2', 'text' => 'Another error', 'module' => 'foo+bar' ],
 					],
 					'docref' => "See $doclink for API usage. Subscribe to the mediawiki-api-announce mailing " .
-						// phpcs:ignore Generic.Files.LineLength.TooLong
 						"list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; " .
 						"for notice of API deprecations and breaking changes.",
 					'servedby' => wfHostname(),
@@ -1136,7 +1135,6 @@ class ApiMainTest extends ApiTestCase {
 						[ 'code' => "bad\nvalue", 'text' => 'An error' ],
 					],
 					'docref' => "See $doclink for API usage. Subscribe to the mediawiki-api-announce mailing " .
-						// phpcs:ignore Generic.Files.LineLength.TooLong
 						"list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; " .
 						"for notice of API deprecations and breaking changes.",
 					'servedby' => wfHostname(),

@@ -19,9 +19,14 @@
 	 * @return {jQuery|OO.ui.Widget|null}
 	 */
 	function conditionGetField( $root, name ) {
-		var $found = $root.find( '[name]' ).filter( function () {
+		var nameFilter = function () {
 			return this.name === name;
-		} );
+		};
+		var $found = $root.find( '[name]' ).filter( nameFilter );
+		if ( !$found.length ) {
+			// Field cloner can load from template dynamically and fire event on sub element
+			$found = $root.closest( 'form' ).find( '[name]' ).filter( nameFilter );
+		}
 		if ( $found.length ) {
 			var $widget = $found.closest( '.oo-ui-widget[data-ooui]' );
 			if ( $widget.length ) {

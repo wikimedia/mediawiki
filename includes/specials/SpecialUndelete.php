@@ -1331,8 +1331,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @return string HTML fragment
 	 */
 	private function getFileComment( $file ) {
-		$comment = $file->getDescription( File::FOR_THIS_USER, $this->getAuthority() );
-		if ( ( $comment ?? '' ) === '' ) {
+		if ( !$file->userCan( File::DELETED_COMMENT, $this->getAuthority() ) ) {
 			return Html::rawElement(
 				'span',
 				[ 'class' => 'history-deleted' ],
@@ -1344,6 +1343,7 @@ class SpecialUndelete extends SpecialPage {
 			);
 		}
 
+		$comment = $file->getDescription( File::FOR_THIS_USER, $this->getAuthority() );
 		$link = Linker::commentBlock( $comment );
 
 		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {

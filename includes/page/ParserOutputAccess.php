@@ -213,7 +213,10 @@ class ParserOutputAccess {
 		$classCacheKey = $this->primaryCache->makeParserOutputKey( $page, $parserOptions );
 
 		if ( $useCache === self::CACHE_PRIMARY ) {
-			if ( isset( $this->localCache[$classCacheKey] ) && !$revision ) {
+			if (
+				isset( $this->localCache[$classCacheKey] ) &&
+				( !$revision || $revision->getId() === $page->getLatest( PageRecord::LOCAL ) )
+			) {
 				return $this->localCache[$classCacheKey];
 			}
 			$output = $this->primaryCache->get( $page, $parserOptions );
@@ -291,7 +294,7 @@ class ParserOutputAccess {
 					$page->getLatest()
 				);
 			}
-		} elseif ( $revision->getId() === $page->getLatest() ) {
+		} elseif ( $revision->getId() === $page->getLatest( PageRecord::LOCAL ) ) {
 			$shouldSaveInClassCache = true;
 		}
 

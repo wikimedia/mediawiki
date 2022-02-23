@@ -308,8 +308,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 
 	public function provideCasesForFormatComment() {
 		$wikiId = 'enwiki'; // $wgConf has a fake entry for this
-
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			// Linker::formatComment
 			[
@@ -585,7 +583,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideCasesForFormatLinksInComment() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				'foo bar <a href="/wiki/Special:BlankPage" title="Special:BlankPage">Special:BlankPage</a>',
@@ -693,7 +690,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideCommentBlock() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				' <span class="comment">(Test)</span>',
@@ -770,7 +766,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideRevComment() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			'Should be visible' => [
 				' <span class="comment">(Some comment!)</span>'

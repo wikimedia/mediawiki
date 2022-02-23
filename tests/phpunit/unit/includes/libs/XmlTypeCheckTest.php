@@ -11,7 +11,6 @@ class XmlTypeCheckTest extends PHPUnit\Framework\TestCase {
 
 	private const WELL_FORMED_XML = "<root><child /></root>";
 	private const MAL_FORMED_XML = "<root><child /></error>";
-	// phpcs:ignore Generic.Files.LineLength
 	private const XML_WITH_PIH = '<?xml version="1.0"?><?xml-stylesheet type="text/xsl" href="/w/index.php"?><svg><child /></svg>';
 
 	/**

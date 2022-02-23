@@ -25,9 +25,9 @@ use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Page\ProperPageIdentity;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
@@ -47,7 +47,7 @@ class LinkBatch {
 	public $data = [];
 
 	/**
-	 * @var PageIdentity[]|null PageIdentity objects corresponding to the links in the batch
+	 * @var ProperPageIdentity[]|null page identity objects corresponding to the links in the batch
 	 */
 	private $pageIdentities = null;
 
@@ -214,10 +214,10 @@ class LinkBatch {
 
 	/**
 	 * Do the query, add the results to the LinkCache object,
-	 * and return PageIdentity instances corresponding to the pages in the batch.
+	 * and return ProperPageIdentity instances corresponding to the pages in the batch.
 	 *
 	 * @since 1.37
-	 * @return PageIdentity[] A list of PageIdentities
+	 * @return ProperPageIdentity[] A list of ProperPageIdentities
 	 */
 	public function getPageIdentities(): array {
 		if ( $this->pageIdentities === null ) {
@@ -275,7 +275,7 @@ class LinkBatch {
 					(int)$row->page_id,
 					(int)$row->page_namespace,
 					$row->page_title,
-					PageIdentity::LOCAL
+					ProperPageIdentity::LOCAL
 				);
 
 				$key = CacheKeyHelper::getKeyForPage( $pageIdentity );
@@ -300,7 +300,7 @@ class LinkBatch {
 					$pdbk = $this->titleFormatter->getPrefixedDBkey( $title );
 					$ids[$pdbk] = 0;
 
-					$pageIdentity = new PageIdentityValue( 0, (int)$ns, $dbkey, PageIdentity::LOCAL );
+					$pageIdentity = new PageIdentityValue( 0, (int)$ns, $dbkey, ProperPageIdentity::LOCAL );
 					$key = CacheKeyHelper::getKeyForPage( $pageIdentity );
 					$this->pageIdentities[$key] = $pageIdentity;
 				} catch ( InvalidArgumentException $ex ) {

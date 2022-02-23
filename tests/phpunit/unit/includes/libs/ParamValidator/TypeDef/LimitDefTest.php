@@ -175,9 +175,7 @@ class LimitDefTest extends TypeDefTestCase {
 				[],
 				[ 'min' => 0, 'max' => null ],
 				[
-					// phpcs:ignore Generic.Files.LineLength.TooLong
 					LimitDef::PARAM_MIN => '<message key="paramvalidator-help-type-number-min"><text>1</text><num>0</num><text>∞</text></message>',
-					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-limit"><text>1</text></message>',
 				],
 			],

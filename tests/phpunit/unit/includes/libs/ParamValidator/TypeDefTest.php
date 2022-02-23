@@ -74,17 +74,14 @@ class TypeDefTest extends \PHPUnit\Framework\TestCase {
 	public static function provideFailureMessage() {
 		return [
 			'Basic' => [
-				// phpcs:ignore Generic.Files.LineLength.TooLong
 				'<datamessage key="paramvalidator-foobar" code="foobar"></datamessage>',
 				'foobar',
 			],
 			'With data' => [
-				// phpcs:ignore Generic.Files.LineLength.TooLong
 				'<datamessage key="paramvalidator-foobar" code="foobar"><data>{"x":123}</data></datamessage>',
 				'foobar', [ 'x' => 123 ]
 			],
 			'With suffix' => [
-				// phpcs:ignore Generic.Files.LineLength.TooLong
 				'<datamessage key="paramvalidator-foobar-baz" code="foobar"><data>[]</data></datamessage>',
 				'foobar', [], 'baz'
 			],
@@ -139,12 +136,10 @@ class TypeDefTest extends \PHPUnit\Framework\TestCase {
 	public static function provideFailure() {
 		return [
 			'Basic' => [
-				// phpcs:ignore Generic.Files.LineLength.TooLong
 				'<datamessage key="paramvalidator-foobar" code="foobar"><params><plaintext>test</plaintext><plaintext>1234</plaintext></params></datamessage>',
 				'foobar', 'test', 1234, [], []
 			],
 			'DataMessageValue' => [
-				// phpcs:ignore Generic.Files.LineLength.TooLong
 				'<datamessage key="XXX-msg" code="foobar"><params><plaintext>test</plaintext><plaintext>XXX</plaintext><text>a</text><text>b</text><plaintext>pt</plaintext></params><data>{"data":"!!!"}</data></datamessage>',
 				DataMessageValue::new( 'XXX-msg', [ 'a', 'b' ], 'foobar', [ 'data' => '!!!' ] )
 					->plaintextParams( 'pt' ),

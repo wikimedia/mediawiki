@@ -1960,7 +1960,7 @@ class JSTokenizer
 				break;
 
 				case "'":
-					if (preg_match('/^\'(?:[^\\\\\'\r\n]++|\\\\(?:.|\r?\n))*\'/', $input, $match))
+					if (preg_match('/^\'(?:[^\\\\\'\r\n]++|\\\\(?:.|\r?\n))*+\'/', $input, $match))
 					{
 						$tt = TOKEN_STRING;
 					}
@@ -1974,7 +1974,7 @@ class JSTokenizer
 				break;
 
 				case '"':
-					if (preg_match('/^"(?:[^\\\\"\r\n]++|\\\\(?:.|\r?\n))*"/', $input, $match))
+					if (preg_match('/^"(?:[^\\\\"\r\n]++|\\\\(?:.|\r?\n))*+"/', $input, $match))
 					{
 						$tt = TOKEN_STRING;
 					}
@@ -1988,7 +1988,7 @@ class JSTokenizer
 				break;
 
 				case '/':
-					if ($this->scanOperand && preg_match('/^\/((?:\\\\.|\[(?:\\\\.|[^\]])*\]|[^\/])+)\/([gimy]*)/', $input, $match))
+					if ($this->scanOperand && preg_match('/^\/((?:\\\\.|\[(?:\\\\.|[^\]])*\]|[^\/])++)\/([gimy]*)/', $input, $match))
 					{
 						$tt = TOKEN_REGEXP;
 						break;

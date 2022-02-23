@@ -1,6 +1,6 @@
 'use strict';
 
-const { action, assert, utils } = require( 'api-testing' );
+const { action, assert, utils, wiki } = require( 'api-testing' );
 
 describe( 'The rollback action', function testEditRollback() {
 	let alice, bob, mindy;
@@ -169,8 +169,7 @@ describe( 'The rollback action', function testEditRollback() {
 		assert.equal( error.code, 'mustpostparams' );
 	} );
 
-	// Skipped due a concurrency issue when using Apache - T298514
-	it.skip( 'should mark the revert as a bot edit', async () => {
+	it( 'should mark the revert as a bot edit', async () => {
 		const title = utils.title( 'Rollback_' );
 
 		const firstEdit = await alice.edit( title, { text: 'One', summary: 'first' } );
@@ -183,6 +182,8 @@ describe( 'The rollback action', function testEditRollback() {
 			markbot: true,
 			token: await mindy.token( 'rollback' )
 		}, 'POST' );
+
+		await wiki.runAllJobs();
 
 		const recentChanges = await mindy.getChangeEntry( { rctitle: title } );
 

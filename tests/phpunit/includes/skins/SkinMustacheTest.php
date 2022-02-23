@@ -82,6 +82,11 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 				strpos( $key, 'is-' ) === 0 || strpos( $key, 'has-' ) === 0,
 				"Template data containing booleans must be prefixed with `is-` or `has-` ($key)"
 			);
+		} elseif ( is_numeric( $value ) ) {
+			$this->assertTrue(
+				strpos( $key, 'number-' ) === 0,
+				"Template data containing numbers must be prefixed with `number-` ($key)"
+			);
 		} else {
 			$this->fail(
 				"Keys must be primitives e.g. arrays OR strings OR bools OR null ($key)."

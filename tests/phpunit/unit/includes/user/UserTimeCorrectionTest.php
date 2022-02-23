@@ -106,7 +106,6 @@ class UserTimeCorrectionTest extends MediaWikiUnitTestCase {
 	public function provideDSTVariations() {
 		// Amsterdam observes DST. Johannesburg does not
 		return [
-			// phpcs:disable Generic.Files.LineLength.TooLong
 			[ new DateTime( '2020-12-01' ), 'ZoneInfo|60|Europe/Amsterdam', 'ZoneInfo|60|Europe/Amsterdam', true ],
 			[ new DateTime( '2020-12-01' ), 'ZoneInfo|120|Europe/Amsterdam', 'ZoneInfo|60|Europe/Amsterdam', true ],
 			[ new DateTime( '2020-12-01' ), 'ZoneInfo|120|Africa/Johannesburg', 'ZoneInfo|120|Africa/Johannesburg', true ],

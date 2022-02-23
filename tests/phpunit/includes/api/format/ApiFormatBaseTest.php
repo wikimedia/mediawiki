@@ -124,7 +124,6 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 			],
 			'wrapped HTML format' => [
 				[],
-				// phpcs:ignore Generic.Files.LineLength.TooLong
 				'{"status":200,"statustext":"OK","html":"<pre class=\"api-pretty-content\">Format MOCK: &lt;b>ok&lt;/b></pre>","modules":["mediawiki.apipretty"],"continue":null,"time":1234}',
 				[ 'wrappedhtml' => 1 ],
 				[ 'name' => 'mockfm' ]
@@ -143,14 +142,12 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 			],
 			'wrapped HTML format, with set status' => [
 				[],
-				// phpcs:ignore Generic.Files.LineLength.TooLong
 				'{"status":400,"statustext":"Bad Request","html":"<pre class=\"api-pretty-content\">Format MOCK: &lt;b>ok&lt;/b></pre>","modules":["mediawiki.apipretty"],"continue":null,"time":1234}',
 				[ 'wrappedhtml' => 1 ],
 				[ 'name' => 'mockfm', 'status' => 400 ]
 			],
 			'wrapped HTML format, cross-domain-policy' => [
 				[ 'continue' => '< CrOsS-DoMaIn-PoLiCy >' ],
-				// phpcs:ignore Generic.Files.LineLength.TooLong
 				'{"status":200,"statustext":"OK","html":"<pre class=\"api-pretty-content\">Format MOCK: &lt;b>ok&lt;/b></pre>","modules":["mediawiki.apipretty"],"continue":"\u003C CrOsS-DoMaIn-PoLiCy \u003E","time":1234}',
 				[ 'wrappedhtml' => 1 ],
 				[ 'name' => 'mockfm' ]
@@ -399,7 +396,6 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		return [
 			[ false, false, '(api-format-prettyprint-header-only-html: MOCK)' ],
 			[ true, false, '(api-format-prettyprint-header-only-html: MOCK)' ],
-			// phpcs:ignore Generic.Files.LineLength.TooLong
 			[ false, true, '(api-format-prettyprint-header-hyperlinked: MOCK, mock, <a rel="nofollow" class="external free" href="http://example.org/wx/api.php?a=1&amp;b=2&amp;format=mock">http://example.org/wx/api.php?a=1&amp;b=2&amp;format=mock</a>)' ],
 			[ true, true, '(api-format-prettyprint-header: MOCK, mock)' ],
 		];

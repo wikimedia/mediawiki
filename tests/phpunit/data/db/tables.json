@@ -7,19 +7,19 @@
 				"name": "actor_id",
 				"comment": "Unique ID to identify each actor",
 				"type": "bigint",
-				"options": { "Unsigned": true, "Notnull": true }
+				"options": { "unsigned": true, "notnull": true }
 			},
 			{
 				"name": "actor_user",
 				"comment": "Key to user.user_id, or NULL for anonymous edits",
 				"type": "integer",
-				"options": { "Unsigned": true }
+				"options": { "unsigned": true }
 			},
 			{
 				"name": "actor_name",
 				"comment": "Text username or IP address",
 				"type": "string",
-				"options": { "Length": 255, "Notnull": true }
+				"options": { "length": 255, "notnull": true }
 			}
 		],
 		"indexes": [

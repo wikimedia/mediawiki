@@ -80,4 +80,55 @@ class HTMLFormTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'message with <a href="raw">params</a>', $result );
 	}
 
+	/**
+	 * @dataProvider provideCsrf
+	 * @param string|null $formTokenSalt Salt to pass to HTMLForm::setTokenSalt()
+	 * @param array $requestData HTTP request data
+	 * @param array|null $tokens User's CSRF tokens in a salt => value format, or null for anon
+	 * @param bool $shouldBeAuthorized
+	 * @throws MWException
+	 */
+	public function testCsrf(
+		?string $formTokenSalt,
+		array $requestData,
+		?array $tokens,
+		bool $shouldBeAuthorized
+	) {
+		$user = $this->createNoOpMock( User::class, [ 'isRegistered', 'matchEditToken' ] );
+		$user->method( 'isRegistered' )->willReturn( $tokens !== null );
+		$user->method( 'matchEditToken' )->willReturnCallback(
+			static function ( $token, $salt ) use ( $tokens ) {
+				return $tokens && isset( $tokens[$salt] ) && $tokens[$salt] === $token;
+			} );
+		$context = $this->createConfiguredMock( RequestContext::class, [
+			'getConfig' => new HashConfig( [ 'HTMLFormAllowTableFormat' => true ] ),
+			'getRequest' => new FauxRequest( $requestData, true ),
+			'getUser' => $user,
+		] );
+		$form = new HTMLForm( [], $context );
+		if ( $formTokenSalt !== null ) {
+			$form->setTokenSalt( $formTokenSalt );
+		}
+		$form->setSubmitCallback( static function () {
+			return true;
+		} );
+
+		$this->assertSame( $shouldBeAuthorized, $form->tryAuthorizedSubmit() );
+	}
+
+	public function provideCsrf() {
+		return [
+			// form token salt, request data, tokens, should be authorized?
+			'Anon user, CSRF token ignored' => [ null, [], null, true ],
+			'No CSRF token sent' => [ null, [], [ '' => '123' ], false ],
+			'Wrong CSRF token sent' => [ null, [ 'wpEditToken' => 'xyz' ], [ '' => '123' ], false ],
+			// this isn't possible but helps catch errors in the test itself
+			'User has no CSRF token' => [ null, [ 'wpEditToken' => 'xyz' ], [], false ],
+			'Correct CSRF token' => [ null, [ 'wpEditToken' => '123' ], [ '' => '123' ], true ],
+			'Wrong CSRF token type' => [ 'delete', [ 'wpEditToken' => '123' ], [ '' => '123' ], false ],
+			'Correct non-default CSRF token' => [ 'delete', [ 'wpEditToken' => 'xyz' ],
+				[ '' => 123, 'delete' => 'xyz' ], true ],
+		];
+	}
+
 }

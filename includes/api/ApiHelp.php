@@ -378,6 +378,12 @@ class ApiHelp extends ApiBase {
 			$help['flags'] .= Html::openElement( 'ul' );
 			foreach ( $flags as $flag ) {
 				$help['flags'] .= Html::rawElement( 'li', [],
+					// The follow classes are used here:
+					// * apihelp-flag-generator
+					// * apihelp-flag-internal
+					// * apihelp-flag-mustbeposted
+					// * apihelp-flag-readrights
+					// * apihelp-flag-writerights
 					self::wrap( $context->msg( "api-help-flag-$flag" ), "apihelp-flag-$flag" )
 				);
 			}

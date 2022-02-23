@@ -364,7 +364,6 @@ class UserDefTest extends TypeDefTestCase {
 					'subtypes' => [ 'name', 'ip', 'cidr', 'interwiki' ],
 				],
 				[
-					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-user"><text>1</text><list listType="text"><text><message key="paramvalidator-help-type-user-subtype-name"></message></text><text><message key="paramvalidator-help-type-user-subtype-ip"></message></text><text><message key="paramvalidator-help-type-user-subtype-cidr"></message></text><text><message key="paramvalidator-help-type-user-subtype-interwiki"></message></text></list><num>4</num></message>',
 				],
 			],
@@ -378,7 +377,6 @@ class UserDefTest extends TypeDefTestCase {
 					'subtypes' => [ 'name', 'id' ],
 				],
 				[
-					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-user"><text>2</text><list listType="text"><text><message key="paramvalidator-help-type-user-subtype-name"></message></text><text><message key="paramvalidator-help-type-user-subtype-id"></message></text></list><num>2</num></message>',
 				],
 			],

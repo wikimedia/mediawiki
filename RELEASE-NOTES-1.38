@@ -409,6 +409,8 @@ because of Phabricator reports.
   intended for use in Parser's constructor, and are not used by any known
   extension.
 * LoadBalancer::openConnection(), deprecated since 1.34, has been removed.
+* Skin::preloadExistence has been made private. There is no known usages outside
+  of MediaWiki core.
 * …
 
 === Deprecations in 1.38 ===

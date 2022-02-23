@@ -137,7 +137,6 @@ class ExpiryDefTest extends TypeDefTestCase {
 				[],
 				[],
 				[
-					// phpcs:ignore Generic.Files.LineLength.TooLong
 					'param-type' => '<message key="paramvalidator-help-type-expiry"><text>1</text><list listType="text"><text>&quot;infinite&quot;</text><text>&quot;indefinite&quot;</text><text>&quot;infinity&quot;</text><text>&quot;never&quot;</text></list></message>'
 				]
 			]

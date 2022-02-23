@@ -395,7 +395,7 @@ abstract class HTMLFormField {
 	 *   false to fail validation without displaying an error.
 	 */
 	public function validate( $value, $alldata ) {
-		if ( $this->isHidden( $alldata ) ) {
+		if ( $this->isDisabled( $alldata ) ) {
 			return true;
 		}
 

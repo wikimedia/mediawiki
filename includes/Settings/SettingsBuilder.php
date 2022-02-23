@@ -8,6 +8,7 @@ use ExtensionRegistry;
 use HashConfig;
 use JsonSchema\Constraints\Constraint;
 use JsonSchema\Validator;
+use MediaWiki\Config\IterableConfig;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Cache\CachedSource;
 use MediaWiki\Settings\Config\ConfigBuilder;
@@ -202,9 +203,9 @@ class SettingsBuilder {
 	 *
 	 * @note This will implicitly call apply()
 	 *
-	 * @return Config
+	 * @return IterableConfig
 	 */
-	public function getDefaultConfig(): Config {
+	public function getDefaultConfig(): IterableConfig {
 		$this->apply();
 		return new HashConfig( $this->configSchema->getDefaults() );
 	}
@@ -287,6 +288,22 @@ class SettingsBuilder {
 	}
 
 	/**
+	 * Updates config settings relevant to the behavior if SettingsBuilder itself.
+	 *
+	 * @param array $config
+	 *
+	 * @return string
+	 */
+	private function updateSettingsConfig( $config ): string {
+		foreach ( $this->settingsConfig as $key => $dummy ) {
+			if ( array_key_exists( $key, $config ) ) {
+				$this->settingsConfig[ $key ] = $config[ $key ];
+			}
+		}
+		return $key;
+	}
+
+	/**
 	 * Apply the settings array.
 	 *
 	 * @param array $settings
@@ -295,11 +312,10 @@ class SettingsBuilder {
 		// First extract config variables that change the behavior of SettingsBuilder.
 		// No merge strategies are applied, defaults are set in the constructor.
 		if ( isset( $settings['config'] ) ) {
-			foreach ( $this->settingsConfig as $key => $dummy ) {
-				if ( array_key_exists( $key, $settings['config'] ) ) {
-					$this->settingsConfig[$key] = $settings['config'][$key];
-				}
-			}
+			$this->updateSettingsConfig( $settings['config'] );
+		}
+		if ( isset( $settings['config-overrides'] ) ) {
+			$this->updateSettingsConfig( $settings['config-overrides'] );
 		}
 
 		foreach ( $settings['config'] ?? [] as $key => $value ) {
@@ -318,6 +334,11 @@ class SettingsBuilder {
 					$this->configSchema->getMergeStrategyFor( $key )
 				);
 			}
+		}
+
+		foreach ( $settings['config-overrides'] ?? [] as $key => $value ) {
+			// no merge strategy, just override
+			$this->configSink->set( $key, $value );
 		}
 
 		foreach ( $settings['php-ini'] ?? [] as $option => $value ) {
@@ -351,32 +372,67 @@ class SettingsBuilder {
 	}
 
 	/**
-	 * Sets the value of a config variable.
-	 * This is a shorthand for loadArray().
+	 * Puts a value into a config variable.
+	 * Depending on the variable's specification, the new value may
+	 * be merged with the previous value, or may replace it.
+	 * This is a shorthand for putConfigValues( [ $key => $value ] ).
 	 * @unstable
+	 * @see overrideConfigValue
 	 *
 	 * @param string $key the name of the config setting
 	 * @param mixed $value The value to set
 	 *
 	 * @return $this
 	 */
-	public function setConfigValue( string $key, $value ): self {
-		$this->loadArray( [ 'config' => [ $key => $value ] ] );
-		return $this;
+	public function putConfigValue( string $key, $value ): self {
+		return $this->putConfigValues( [ $key => $value ] );
 	}
 
 	/**
 	 * Sets the value of multiple config variables.
-	 * This is a shorthand for loadArray().
+	 * Depending on the variables' specification, the new values may
+	 * be merged with the previous values, or they may replace them.
+	 * This is a shorthand for loadArray( [ 'config' => $values ] ).
 	 * @unstable
+	 * @see overrideConfigValues
 	 *
 	 * @param array $values An associative array mapping names to values.
 	 *
 	 * @return $this
 	 */
-	public function setConfigValues( array $values ): self {
-		$this->loadArray( [ 'config' => $values ] );
-		return $this;
+	public function putConfigValues( array $values ): self {
+		return $this->loadArray( [ 'config' => $values ] );
+	}
+
+	/**
+	 * Override the value of a config variable.
+	 * This ignores any merge strategies and discards any previous value.
+	 * This is a shorthand for overrideConfigValues( [ $key => $value ] ).
+	 * @unstable
+	 * @see putConfigValue
+	 *
+	 * @param string $key the name of the config setting
+	 * @param mixed $value The value to set
+	 *
+	 * @return $this
+	 */
+	public function overrideConfigValue( string $key, $value ): self {
+		return $this->overrideConfigValues( [ $key => $value ] );
+	}
+
+	/**
+	 * Override the value of multiple config variables.
+	 * This ignores any merge strategies and discards any previous value.
+	 * This is a shorthand for loadArray( [ 'config-overrides' => $values ] ).
+	 * @unstable
+	 * @see putConfigValues
+	 *
+	 * @param array $values An associative array mapping names to values.
+	 *
+	 * @return $this
+	 */
+	public function overrideConfigValues( array $values ): self {
+		return $this->loadArray( [ 'config-overrides' => $values ] );
 	}
 
 	/**

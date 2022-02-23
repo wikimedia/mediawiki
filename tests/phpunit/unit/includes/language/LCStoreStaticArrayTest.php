@@ -1,5 +1,4 @@
 <?php
-// phpcs:disable Generic.Files.LineLength.TooLong
 
 /**
  * @covers LCStoreStaticArray

@@ -29,6 +29,8 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class MergeHistoryPager extends ReverseChronologicalPager {
 
+	public $mGroupByDate = true;
+
 	/** @var SpecialMergeHistory */
 	public $mForm;
 

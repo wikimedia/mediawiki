@@ -241,8 +241,8 @@ class LocalisationCache {
 	];
 
 	/**
-	 * For constructor parameters, see the documentation in DefaultSettings.php
-	 * for $wgLocalisationCacheConf.
+	 * For constructor parameters, see the documentation for the LocalisationCacheConf
+	 * setting in docs/Configuration.md.
 	 *
 	 * Do not construct this directly. Use MediaWikiServices.
 	 *

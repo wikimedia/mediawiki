@@ -267,8 +267,14 @@ class UserNameUtils implements UserRigorOptions {
 		}
 
 		// No need to proceed if no validation is requested, just
-		// clean up underscores and return
+		// clean up underscores and user namespace prefix (see T283915).
 		if ( $validate === self::RIGOR_NONE ) {
+			// This is only needed here because if validation is
+			// not self::RIGOR_NONE, it would be done at title parsing stage.
+			$nsPrefix = $this->contentLang->getNsText( NS_USER ) . ':';
+			if ( str_starts_with( $name, $nsPrefix ) ) {
+				$name = str_replace( $nsPrefix, '', $name );
+			}
 			$name = strtr( $name, '_', ' ' );
 			return $name;
 		}

@@ -193,7 +193,6 @@ class TimestampDefTest extends TypeDefTestCase {
 				[],
 				[],
 				[
-					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-timestamp"><text>1</text></message>',
 				],
 			],
@@ -201,7 +200,6 @@ class TimestampDefTest extends TypeDefTestCase {
 				[ ParamValidator::PARAM_ISMULTI => true ],
 				[],
 				[
-					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-timestamp"><text>2</text></message>',
 				],
 			],

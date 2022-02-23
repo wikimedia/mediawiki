@@ -253,7 +253,6 @@ class UploadDefTest extends TypeDefTestCase {
 				[],
 				[],
 				[
-					// phpcs:ignore Generic.Files.LineLength.TooLong
 					ParamValidator::PARAM_TYPE => '<message key="paramvalidator-help-type-upload"></message>',
 				],
 			],

@@ -84,7 +84,6 @@
 			// Replace table contents
 			$multipageimage.empty().append( $contents.clone() );
 
-			// eslint-disable-next-line no-use-before-define
 			bindPageNavigation( $multipageimage );
 
 			// Fire hook because the page's content has changed
