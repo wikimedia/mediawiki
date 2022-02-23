@@ -1,4 +1,5 @@
 {
+	"name": "core",
 	"private": true,
 	"scripts": {
 		"api-testing": "mocha --timeout 0 --recursive tests/api-testing",
