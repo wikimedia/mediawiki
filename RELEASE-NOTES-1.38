@@ -102,6 +102,7 @@ For notes on 1.37.x and older releases, see HISTORY.
 * …
 
 ===== New development-only external libraries =====
+* Updated QUnit from 2.16.0 to 2.18.0.
 * …
 
 ==== Changed external libraries ====
