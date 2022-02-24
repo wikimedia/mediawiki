@@ -35,6 +35,7 @@ use MediaWiki\Shell\Shell;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\SqlBlobStore;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
@@ -749,13 +750,13 @@ TEXT
 	 * @return bool|string
 	 */
 	private function getTextSpawned( $address ) {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		if ( !$this->spawnProc ) {
 			// First time?
 			$this->openSpawn();
 		}
 		$text = $this->getTextSpawnedOnce( $address );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		return $text;
 	}
