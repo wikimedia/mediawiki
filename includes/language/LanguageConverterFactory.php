@@ -35,6 +35,7 @@ use TgConverter;
 use TlyConverter;
 use TrivialLanguageConverter;
 use UzConverter;
+use Wikimedia\ObjectFactory;
 use ZhConverter;
 
 /**
@@ -49,22 +50,58 @@ class LanguageConverterFactory {
 	/**
 	 * @var array
 	 */
-	private $converterClasses = [
-		'ban' => BanConverter::class,
-		'crh' => CrhConverter::class,
-		'gan' => GanConverter::class,
-		'iu' => IuConverter::class,
-		'kk' => KkConverter::class,
-		'ku' => KuConverter::class,
-		'shi' => ShiConverter::class,
-		'sr' => SrConverter::class,
-		'tg' => TgConverter::class,
-		'tly' => TlyConverter::class,
-		'uz' => UzConverter::class,
-		'zh' => ZhConverter::class,
+	private $converterList = [
+		'ban' => [
+			'class' => BanConverter::class,
+		],
+		'crh' => [
+			'class' => CrhConverter::class,
+		],
+		'gan' => [
+			'class' => GanConverter::class,
+		],
+		'iu' => [
+			'class' => IuConverter::class,
+		],
+		'kk' => [
+			'class' => KkConverter::class,
+		],
+		'ku' => [
+			'class' => KuConverter::class,
+		],
+		'shi' => [
+			'class' => ShiConverter::class,
+		],
+		'sr' => [
+			'class' => SrConverter::class,
+		],
+		'tg' => [
+			'class' => TgConverter::class,
+		],
+		'tly' => [
+			'class' => TlyConverter::class,
+		],
+		'uz' => [
+			'class' => UzConverter::class,
+		],
+		'zh' => [
+			'class' => ZhConverter::class,
+		],
 	];
 
-	private $defaultConverterClass = TrivialLanguageConverter::class;
+	private const DEFAULT_CONVERTER = [
+		'class' => TrivialLanguageConverter::class,
+		'services' => [
+			'TitleFormatter',
+		]
+	];
+
+	private const EN_CONVERTER = [
+		'class' => EnConverter::class,
+	];
+
+	/** @var ObjectFactory */
+	private $objectFactory;
 
 	/**
 	 * @var bool Whether to disable language variant conversion.
@@ -82,6 +119,7 @@ class LanguageConverterFactory {
 	private $defaultLanguage;
 
 	/**
+	 * @param ObjectFactory $objectFactory
 	 * @param bool $usePigLatinVariant should pig variant of English be used
 	 * @param bool $isConversionDisabled Whether to disable language variant conversion
 	 * @param bool $isTitleConversionDisabled Whether to disable language variant conversion for links
@@ -91,11 +129,13 @@ class LanguageConverterFactory {
 	 * @internal Should be called from MediaWikiServices only.
 	 */
 	public function __construct(
+		ObjectFactory $objectFactory,
 		$usePigLatinVariant, $isConversionDisabled, $isTitleConversionDisabled,
 		callable $defaultLanguage
 	) {
+		$this->objectFactory = $objectFactory;
 		if ( $usePigLatinVariant ) {
-			$this->converterClasses['en'] = EnConverter::class;
+			$this->converterList['en'] = self::EN_CONVERTER;
 		}
 		$this->isConversionDisabled = $isConversionDisabled;
 		$this->isTitleConversionDisabled = $isTitleConversionDisabled;
@@ -103,14 +143,23 @@ class LanguageConverterFactory {
 	}
 
 	/**
-	 * Returns Converter's class name for given language code
+	 * Returns Converter instance for given language object
 	 *
-	 * @param string $code code for which class name should be provided
-	 * @return string
+	 * @param Language $lang
+	 * @return ILanguageConverter
 	 */
-	private function classFromCode( string $code ): string {
-		$code = mb_strtolower( $code );
-		return $this->converterClasses[$code] ?? $this->defaultConverterClass;
+	private function instantiateConverter( Language $lang ): ILanguageConverter {
+		$code = mb_strtolower( $lang->getCode() );
+		$spec = $this->converterList[$code] ?? self::DEFAULT_CONVERTER;
+		// ObjectFactory::createObject accepts an array, not just a callable (phan bug)
+		// @phan-suppress-next-line PhanTypeInvalidCallableArrayKey,PhanTypeInvalidCallableArraySize
+		return $this->objectFactory->createObject(
+			$spec,
+			[
+				'assertClass' => ILanguageConverter::class,
+				'extraArgs' => [ $lang ],
+			]
+		);
 	}
 
 	/**
@@ -127,9 +176,7 @@ class LanguageConverterFactory {
 		if ( isset( $this->cache[$lang->getCode()] ) ) {
 			return $this->cache[$lang->getCode()];
 		}
-		$class = $this->classFromCode( $lang->getCode() );
-
-		$converter = new $class( $lang );
+		$converter = $this->instantiateConverter( $lang );
 		$this->cache[$lang->getCode()] = $converter;
 		return $converter;
 	}
