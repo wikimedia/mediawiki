@@ -3,6 +3,7 @@
 namespace MediaWiki\FileBackend\FSFile;
 
 use TempFSFile;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * @ingroup FileBackend
@@ -38,9 +39,9 @@ class TempFSFileFactory {
 		while ( $attempts-- ) {
 			$hex = sprintf( '%06x%06x', mt_rand( 0, 0xffffff ), mt_rand( 0, 0xffffff ) );
 			$path = "$tmpDirectory/$prefix$hex$ext";
-			\Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$newFileHandle = fopen( $path, 'x' );
-			\Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 			if ( $newFileHandle ) {
 				fclose( $newFileHandle );
 				$tmpFile = new TempFSFile( $path );

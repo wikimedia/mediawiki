@@ -31,6 +31,7 @@ use MediaWiki\Storage\EditResult;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Assert\Assert;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
 
 /**
@@ -1289,9 +1290,9 @@ class RecentChange implements Taggable {
 	public function parseParams() {
 		$rcParams = $this->getAttribute( 'rc_params' );
 
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$unserializedParams = unserialize( $rcParams );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		return $unserializedParams;
 	}

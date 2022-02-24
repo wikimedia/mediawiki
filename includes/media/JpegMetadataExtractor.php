@@ -21,6 +21,7 @@
  * @ingroup Media
  */
 
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\XMPReader\Reader as XMPReader;
 
 /**
@@ -103,9 +104,9 @@ class JpegMetadataExtractor {
 				// turns $com to valid utf-8.
 				// thus if no change, its utf-8, otherwise its something else.
 				if ( $com !== $oldCom ) {
-					Wikimedia\suppressWarnings();
+					AtEase::suppressWarnings();
 					$com = $oldCom = iconv( 'windows-1252', 'UTF-8//IGNORE', $oldCom );
-					Wikimedia\restoreWarnings();
+					AtEase::restoreWarnings();
 				}
 				// Try it again, if its still not a valid string, then probably
 				// binary junk or some really weird encoding, so don't extract.

@@ -26,6 +26,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * Support for detecting/validating DjVu image files and getting
@@ -123,9 +124,9 @@ class DjVuImage {
 	}
 
 	private function getInfo() {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$file = fopen( $this->mFilename, 'rb' );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		if ( $file === false ) {
 			wfDebug( __METHOD__ . ": missing or failed file read" );
 

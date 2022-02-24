@@ -25,6 +25,8 @@
  * @file
  */
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * Class to extract and validate Exif data from jpeg (and possibly tiff) files.
  * @ingroup Media
@@ -292,9 +294,9 @@ class Exif {
 
 		$this->debugFile( __FUNCTION__, true );
 		if ( function_exists( 'exif_read_data' ) ) {
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$data = exif_read_data( $this->file, 0, true );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		} else {
 			throw new MWException( "Internal error: exif_read_data not present. " .
 				"\$wgShowEXIF may be incorrectly set or not checked by an extension." );
@@ -474,17 +476,17 @@ class Exif {
 					break;
 			}
 			if ( $charset ) {
-				Wikimedia\suppressWarnings();
+				AtEase::suppressWarnings();
 				$val = iconv( $charset, 'UTF-8//IGNORE', $val );
-				Wikimedia\restoreWarnings();
+				AtEase::restoreWarnings();
 			} else {
 				// if valid utf-8, assume that, otherwise assume windows-1252
 				$valCopy = $val;
 				UtfNormal\Validator::quickIsNFCVerify( $valCopy ); // validates $valCopy.
 				if ( $valCopy !== $val ) {
-					Wikimedia\suppressWarnings();
+					AtEase::suppressWarnings();
 					$val = iconv( 'Windows-1252', 'UTF-8//IGNORE', $val );
-					Wikimedia\restoreWarnings();
+					AtEase::restoreWarnings();
 				}
 			}
 
