@@ -23,7 +23,6 @@
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
-use MediaWiki\User\UserNameUtils;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -43,30 +42,24 @@ class ApiQueryBlocks extends ApiQueryBase {
 	/** @var CommentStore */
 	private $commentStore;
 
-	/** @var UserNameUtils */
-	private $userNameUtils;
-
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param BlockActionInfo $blockActionInfo
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param CommentStore $commentStore
-	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		BlockActionInfo $blockActionInfo,
 		BlockRestrictionStore $blockRestrictionStore,
-		CommentStore $commentStore,
-		UserNameUtils $userNameUtils
+		CommentStore $commentStore
 	) {
 		parent::__construct( $query, $moduleName, 'bk' );
 		$this->blockActionInfo = $blockActionInfo;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->commentStore = $commentStore;
-		$this->userNameUtils = $userNameUtils;
 	}
 
 	public function execute() {
@@ -135,18 +128,14 @@ class ApiQueryBlocks extends ApiQueryBase {
 			);
 		}
 
-		if ( isset( $params['ids'] ) ) {
+		if ( $params['ids'] ) {
 			$this->addWhereIDsFld( 'ipblocks', 'ipb_id', $params['ids'] );
 		}
-		if ( isset( $params['users'] ) ) {
-			$usernames = [];
-			foreach ( (array)$params['users'] as $u ) {
-				$usernames[] = $this->prepareUsername( $u );
-			}
-			$this->addWhereFld( 'ipb_address', $usernames );
+		if ( $params['users'] ) {
+			$this->addWhereFld( 'ipb_address', $params['users'] );
 			$this->addWhereFld( 'ipb_auto', 0 );
 		}
-		if ( isset( $params['ip'] ) ) {
+		if ( $params['ip'] !== null ) {
 			$blockCIDRLimit = $this->getConfig()->get( 'BlockCIDRLimit' );
 			if ( IPUtils::isIPv4( $params['ip'] ) ) {
 				$type = 'IPv4';
@@ -287,25 +276,6 @@ class ApiQueryBlocks extends ApiQueryBase {
 			}
 		}
 		$result->addIndexedTagName( [ 'query', $this->getModuleName() ], 'block' );
-	}
-
-	protected function prepareUsername( $user ) {
-		if ( !$user ) {
-			$encParamName = $this->encodeParamName( 'users' );
-			$this->dieWithError( [ 'apierror-baduser', $encParamName, wfEscapeWikiText( $user ) ],
-				"baduser_{$encParamName}"
-			);
-		}
-		$name = $this->userNameUtils->isIP( $user ) || IPUtils::isIPv6( $user )
-			? $user
-			: $this->userNameUtils->getCanonical( $user );
-		if ( $name === false ) {
-			$encParamName = $this->encodeParamName( 'users' );
-			$this->dieWithError( [ 'apierror-baduser', $encParamName, wfEscapeWikiText( $user ) ],
-				"baduser_{$encParamName}"
-			);
-		}
-		return $name;
 	}
 
 	/**
