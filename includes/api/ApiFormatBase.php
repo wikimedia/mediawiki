@@ -58,7 +58,7 @@ abstract class ApiFormatBase extends ApiBase {
 	 * When getIsHtml() returns true, the return value here is used for syntax
 	 * highlighting but the client sees text/html.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
 	abstract public function getMimeType();
 

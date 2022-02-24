@@ -991,7 +991,7 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Iterate through the result of the query on 'page' table,
 	 * and for each row create and store title object and save any extra fields requested.
-	 * @param IResultWrapper $res DB Query result
+	 * @param IResultWrapper|null $res DB Query result
 	 * @param array|null &$remaining Array of either pageID or ns/title elements (optional).
 	 *        If given, any missing items will go to $mMissingPageIDs and $mMissingTitles
 	 * @param bool|null $processTitles Must be provided together with $remaining.

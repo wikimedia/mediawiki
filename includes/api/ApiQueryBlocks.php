@@ -159,7 +159,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			list( $lower, $upper ) = IPUtils::parseRange( $params['ip'] );
 
 			# Extract the common prefix to any rangeblock affecting this IP/CIDR
-			$prefix = substr( $lower, 0, $prefixLen + floor( $cidrLimit / 4 ) );
+			$prefix = substr( $lower, 0, $prefixLen + (int)floor( $cidrLimit / 4 ) );
 
 			# Fairly hard to make a malicious SQL statement out of hex characters,
 			# but it is good practice to add quotes
