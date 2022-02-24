@@ -978,18 +978,20 @@ class Message implements MessageSpecifier, Serializable {
 			return '⧼' . htmlspecialchars( $this->key ) . '⧽';
 		}
 
-		# Insert a list of alternative message keys for &uselang=qqx.
-		if ( $string === '($*)' ) {
-			$keylist = implode( ' / ', $this->keysToTry );
-			$string = "($keylist$*)";
-		}
-		# Replace $* with a list of parameters for &uselang=qqx.
-		if ( strpos( $string, '$*' ) !== false ) {
-			$paramlist = '';
-			if ( $this->parameters !== [] ) {
-				$paramlist = ': $' . implode( ', $', range( 1, count( $this->parameters ) ) );
+		if ( $this->getLanguage()->getCode() === 'qqx' ) {
+			# Insert a list of alternative message keys for &uselang=qqx.
+			if ( $string === '($*)' ) {
+				$keylist = implode( ' / ', $this->keysToTry );
+				$string = "($keylist$*)";
 			}
-			$string = str_replace( '$*', $paramlist, $string );
+			# Replace $* with a list of parameters for &uselang=qqx.
+			if ( strpos( $string, '$*' ) !== false ) {
+				$paramlist = '';
+				if ( $this->parameters !== [] ) {
+					$paramlist = ': $' . implode( ', $', range( 1, count( $this->parameters ) ) );
+				}
+				$string = str_replace( '$*', $paramlist, $string );
+			}
 		}
 
 		# Replace parameters before text parsing

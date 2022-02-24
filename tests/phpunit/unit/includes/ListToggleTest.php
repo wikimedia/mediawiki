@@ -38,6 +38,17 @@ class ListToggleTest extends MediaWikiUnitTestCase {
 						return "($this->key$*)";
 					}
 
+					public function getLanguage() {
+						return new class() extends LanguageQqx {
+							public function __construct() {
+							}
+
+							public function getCode() {
+								return 'qqx';
+							}
+						};
+					}
+
 					protected function transformText( $string ) {
 						return $string;
 					}

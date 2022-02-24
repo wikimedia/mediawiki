@@ -430,13 +430,6 @@ class MessageTest extends MediaWikiLangTestCase {
 			$msg->params( $params )->plain(),
 			'Params > 9 are replaced correctly'
 		);
-
-		$msg = new RawMessage( 'Params$*' );
-		$params = [ 'ab', 'bc', 'cd' ];
-		$this->assertSame(
-			'Params: ab, bc, cd',
-			$msg->params( $params )->text()
-		);
 	}
 
 	/**
