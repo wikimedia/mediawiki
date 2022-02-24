@@ -973,6 +973,11 @@ class Message implements MessageSpecifier, Serializable {
 			return '⧼' . htmlspecialchars( $this->key ) . '⧽';
 		}
 
+		# Insert a list of alternative message keys for &uselang=qqx.
+		if ( $string === '($*)' ) {
+			$keylist = implode( ' / ', $this->keysToTry );
+			$string = "($keylist$*)";
+		}
 		# Replace $* with a list of parameters for &uselang=qqx.
 		if ( strpos( $string, '$*' ) !== false ) {
 			$paramlist = '';
