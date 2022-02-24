@@ -318,9 +318,9 @@ class GitInfo {
 			$config = "{$this->basedir}/config";
 			$url = false;
 			if ( is_readable( $config ) ) {
-				Wikimedia\suppressWarnings();
+				AtEase::suppressWarnings();
 				$configArray = parse_ini_file( $config, true );
-				Wikimedia\restoreWarnings();
+				AtEase::restoreWarnings();
 				$remote = false;
 
 				// Use the "origin" remote repo if available or any other repo if not.

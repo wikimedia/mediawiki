@@ -16,6 +16,8 @@
  *
  */
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * Server-side helper for client-side compressed content.
  *
@@ -60,9 +62,9 @@ class Deflate {
 		if ( $deflated === false ) {
 			return StatusValue::newFatal( 'deflate-invaliddeflate' );
 		}
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$inflated = gzinflate( $deflated );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		if ( $inflated === false ) {
 			return StatusValue::newFatal( 'deflate-invaliddeflate' );
 		}

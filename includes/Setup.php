@@ -58,6 +58,7 @@ use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\Source\PhpSettingsSource;
 use Psr\Log\LoggerInterface;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\RequestTimeout\RequestTimeout;
 
 /**
@@ -606,9 +607,9 @@ if ( isset( $wgSlaveLagCritical ) ) {
 }
 
 if ( $wgInvalidateCacheOnLocalSettingsChange && defined( 'MW_CONFIG_FILE' ) ) {
-	Wikimedia\suppressWarnings();
+	AtEase::suppressWarnings();
 	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', filemtime( MW_CONFIG_FILE ) ) );
-	Wikimedia\restoreWarnings();
+	AtEase::restoreWarnings();
 }
 
 if ( $wgNewUserLog ) {

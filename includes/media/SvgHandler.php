@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\ScopedCallback;
 
@@ -277,10 +278,10 @@ class SvgHandler extends ImageHandler {
 		$ok = symlink( $srcPath, $lnPath );
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$cleaner = new ScopedCallback( static function () use ( $tmpDir, $lnPath ) {
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			unlink( $lnPath );
 			rmdir( $tmpDir );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		} );
 		if ( !$ok ) {
 			wfDebugLog( 'thumbnail',

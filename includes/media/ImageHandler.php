@@ -21,6 +21,8 @@
  * @ingroup Media
  */
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * Media handler abstract base class for images
  *
@@ -221,9 +223,9 @@ abstract class ImageHandler extends MediaHandler {
 	}
 
 	public function getImageSize( $image, $path ) {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$gis = getimagesize( $path );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		return $gis;
 	}

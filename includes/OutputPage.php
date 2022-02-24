@@ -29,6 +29,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Tidy\RemexDriver;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\RelPath;
 use Wikimedia\WrappedString;
@@ -802,9 +803,10 @@ class OutputPage extends ContextSource {
 		# this breaks strtotime().
 		$clientHeader = preg_replace( '/;.*$/', '', $clientHeader );
 
-		Wikimedia\suppressWarnings(); // E_STRICT system time warnings
+		// E_STRICT system time warnings
+		AtEase::suppressWarnings();
 		$clientHeaderTime = strtotime( $clientHeader );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		if ( !$clientHeaderTime ) {
 			wfDebug( __METHOD__
 				. ": unable to parse the client's If-Modified-Since header: $clientHeader" );

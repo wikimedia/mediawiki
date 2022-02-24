@@ -26,6 +26,7 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -181,9 +182,9 @@ class DatabaseLogEntry extends LogEntryBase {
 	public function getParameters() {
 		if ( !isset( $this->params ) ) {
 			$blob = $this->getRawParameters();
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$params = LogEntryBase::extractParams( $blob );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 			if ( $params !== false ) {
 				$this->params = $params;
 				$this->legacy = false;

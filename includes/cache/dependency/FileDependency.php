@@ -21,6 +21,8 @@
  * @ingroup Cache
  */
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * @newable
  * @ingroup Cache
@@ -59,11 +61,11 @@ class FileDependency extends CacheDependency {
 
 	public function loadDependencyValues() {
 		if ( $this->timestamp === null ) {
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			# Dependency on a non-existent file stores "false"
 			# This is a valid concept!
 			$this->timestamp = filemtime( $this->filename );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		}
 	}
 
@@ -71,9 +73,9 @@ class FileDependency extends CacheDependency {
 	 * @return bool
 	 */
 	public function isExpired() {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$lastmod = filemtime( $this->filename );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		if ( $lastmod === false ) {
 			if ( $this->timestamp === false ) {
 				# Still nonexistent
