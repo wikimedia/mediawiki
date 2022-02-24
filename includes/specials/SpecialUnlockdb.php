@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * Implements Special:Unlockdb
  *
@@ -69,9 +71,9 @@ class SpecialUnlockdb extends FormSpecialPage {
 		}
 
 		$readOnlyFile = $this->getConfig()->get( 'ReadOnlyFile' );
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$res = unlink( $readOnlyFile );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		if ( $res ) {
 			return Status::newGood();

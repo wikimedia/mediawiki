@@ -32,6 +32,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
@@ -2116,7 +2117,8 @@ class Language {
 			return $ts;
 		}
 
-		Wikimedia\suppressWarnings(); // E_STRICT system time bitching
+		// E_STRICT system time bitching
+		AtEase::suppressWarnings();
 		# Generate an adjusted date; take advantage of the fact that mktime
 		# will normalize out-of-range values so we don't have to split $minDiff
 		# into hours and minutes.
@@ -2129,7 +2131,7 @@ class Language {
 			(int)substr( $ts, 0, 4 ) ); # Year
 
 		$date = date( 'YmdHis', $t );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		return $date;
 	}
@@ -2623,9 +2625,9 @@ class Language {
 		# *input* string. We just ignore those too.
 		# REF: https://bugs.php.net/bug.php?id=37166
 		# REF: https://phabricator.wikimedia.org/T18885
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$text = iconv( $in, $out . '//IGNORE', $string );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		return $text;
 	}
 

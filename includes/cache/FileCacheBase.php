@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
 
 /**
@@ -182,9 +183,9 @@ abstract class FileCacheBase {
 	 * @return void
 	 */
 	public function clearCache() {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		unlink( $this->cachePath() );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		$this->mCached = false;
 	}
 

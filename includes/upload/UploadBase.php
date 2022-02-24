@@ -27,6 +27,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Shell\Shell;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * @defgroup Upload Upload related
@@ -1466,9 +1467,9 @@ abstract class UploadBase {
 		// detect the encoding in case is specifies an encoding not whitelisted in self::$safeXmlEncodings
 		$attemptEncodings = [ 'UTF-16', 'UTF-16BE', 'UTF-32', 'UTF-32BE' ];
 		foreach ( $attemptEncodings as $encoding ) {
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$str = iconv( $encoding, 'UTF-8', $contents );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 			if ( $str != '' && preg_match( "!<\?xml\b(.*?)\?>!si", $str, $matches ) ) {
 				if ( preg_match( $encodingRegex, $matches[1], $encMatch )
 					&& !in_array( strtoupper( $encMatch[1] ), self::$safeXmlEncodings )

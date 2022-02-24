@@ -808,7 +808,7 @@ TEXT
 	}
 
 	private function closeSpawn() {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		if ( $this->spawnRead ) {
 			fclose( $this->spawnRead );
 		}
@@ -825,7 +825,7 @@ TEXT
 			pclose( $this->spawnProc );
 		}
 		$this->spawnProc = false;
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 	}
 
 	/**

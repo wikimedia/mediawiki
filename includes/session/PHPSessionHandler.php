@@ -26,6 +26,7 @@ namespace MediaWiki\Session;
 use BagOStuff;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * Adapter for PHP's session handling
@@ -126,7 +127,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 		session_write_close();
 
 		try {
-			\Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 
 			// Tell PHP not to mess with cookies itself
 			ini_set( 'session.use_cookies', 0 );
@@ -145,7 +146,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 			// shutdown function.
 			session_set_save_handler( self::$instance, true );
 		} finally {
-			\Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		}
 	}
 

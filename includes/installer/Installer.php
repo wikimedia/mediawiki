@@ -29,6 +29,7 @@ use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Interwiki\NullInterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * The Installer helps admins create or upgrade their wiki.
@@ -652,10 +653,10 @@ abstract class Installer {
 		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables
 		global $wgExtensionDirectory, $wgStyleDirectory;
 
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		wfDetectLocalSettingsFile( $IP ); // defines MW_CONFIG_FILE
 		$_lsExists = file_exists( MW_CONFIG_FILE );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		if ( !$_lsExists ) {
 			return false;
@@ -867,14 +868,14 @@ abstract class Installer {
 	 * @return bool
 	 */
 	protected function envCheckPCRE() {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$regexd = preg_replace( '/[\x{0430}-\x{04FF}]/iu', '', '-АБВГД-' );
 		// Need to check for \p support too, as PCRE can be compiled
 		// with utf8 support, but not unicode property support.
 		// check that \p{Zs} (space separators) matches
 		// U+3000 (Ideographic space)
 		$regexprop = preg_replace( '/\p{Zs}/u', '', "-\u{3000}-" );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		if ( $regexd != '--' || $regexprop != '--' ) {
 			$this->showError( 'config-pcre-no-utf8' );
 
@@ -1154,7 +1155,7 @@ abstract class Installer {
 
 		$httpRequestFactory = MediaWikiServices::getInstance()->getHttpRequestFactory();
 
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 
 		foreach ( $scriptTypes as $ext => $contents ) {
 			foreach ( $contents as $source ) {
@@ -1178,14 +1179,14 @@ abstract class Installer {
 				unlink( $dir . $file );
 
 				if ( $text == 'exec' ) {
-					Wikimedia\restoreWarnings();
+					AtEase::restoreWarnings();
 
 					return $ext;
 				}
 			}
 		}
 
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		return false;
 	}
@@ -1935,8 +1936,8 @@ abstract class Installer {
 	 * Some long-running pages (Install, Upgrade) will want to do this
 	 */
 	protected function disableTimeLimit() {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		set_time_limit( 0 );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 	}
 }

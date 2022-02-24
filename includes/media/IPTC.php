@@ -21,6 +21,8 @@
  * @ingroup Media
  */
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * Class for some IPTC functions.
  *
@@ -429,9 +431,9 @@ class IPTC {
 	 */
 	private static function convIPTCHelper( $data, $charset ) {
 		if ( $charset ) {
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$data = iconv( $charset, "UTF-8//IGNORE", $data );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 			if ( $data === false ) {
 				$data = "";
 				wfDebugLog( 'iptc', __METHOD__ . " Error converting iptc data charset $charset to utf-8" );
