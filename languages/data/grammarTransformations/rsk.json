@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Keresturec",
+			"Amir E. Aharoni"
+		],
+		"comment": "These rules don't cover the whole grammar of the language, and are intended only for names of Wikimedia projects."
+	},
+	"genitive": [
+		[ "(.+)ия$", "$1иї" ],
+		[ "(.+)нїк$", "$1нїка" ],
+		[ "(.+)тки$", "$1ткох" ]
+	],
+	"locative": [
+		[ "(.+)ия$", "$1иї" ],
+		[ "(.+)нїк$", "$1нїку" ],
+		[ "(.+)ки$", "$1кох" ]
+	]
+}
