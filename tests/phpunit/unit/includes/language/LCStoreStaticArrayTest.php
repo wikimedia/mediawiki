@@ -15,13 +15,13 @@ class LCStoreStaticArrayTest extends MediaWikiUnitTestCase {
 	}
 
 	protected function tearDown(): void {
-		Wikimedia\AtEase\AtEase::quietCall( 'unlink', $this->file );
-		Wikimedia\AtEase\AtEase::quietCall( 'rmdir', $this->dir );
+		@unlink( $this->file );
+		@rmdir( $this->dir );
 		parent::tearDown();
 	}
 
 	private function prepareDir() {
-		Wikimedia\AtEase\AtEase::quietCall( 'mkdir', $this->dir );
+		@mkdir( $this->dir );
 		return $this->dir;
 	}
 

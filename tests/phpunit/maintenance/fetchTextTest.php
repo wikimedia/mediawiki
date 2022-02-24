@@ -9,7 +9,6 @@ use MediaWikiIntegrationTestCase;
 use MWException;
 use PHPUnit\Framework\ExpectationFailedException;
 use Title;
-use Wikimedia\AtEase\AtEase;
 use WikiPage;
 
 /**
@@ -240,15 +239,11 @@ class FetchTextTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNonExisting() {
-		AtEase::suppressWarnings();
-		$this->assertFilter( 'tt:77889911', 'tt:77889911' . "\n-1\n" );
-		AtEase::suppressWarnings( true );
+		@$this->assertFilter( 'tt:77889911', 'tt:77889911' . "\n-1\n" );
 	}
 
 	public function testNonExistingInteger() {
-		AtEase::suppressWarnings();
-		$this->assertFilter( '77889911', 'tt:77889911' . "\n-1\n" );
-		AtEase::suppressWarnings( true );
+		@$this->assertFilter( '77889911', 'tt:77889911' . "\n-1\n" );
 	}
 
 	public function testBadBlobAddressWithColon() {
@@ -267,10 +262,8 @@ class FetchTextTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testFloatingPointNumberNonExisting() {
-		AtEase::suppressWarnings();
 		$id = intval( preg_replace( '/^tt:/', '', self::$textId5 ) ) + 3.14159;
-		$this->assertFilter( $id, 'tt:' . intval( $id ) . "\n-1\n" );
-		AtEase::suppressWarnings( true );
+		@$this->assertFilter( $id, 'tt:' . intval( $id ) . "\n-1\n" );
 	}
 
 	public function testCharacters() {

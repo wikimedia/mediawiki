@@ -8,7 +8,6 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * @group Database
@@ -178,10 +177,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			'rc_comment' => 'comment',
 			'rc_user_text' => $user->getName(), // lookup by name
 		];
-
-		AtEase::suppressWarnings();
-		$rc = RecentChange::newFromRow( $row );
-		AtEase::restoreWarnings();
+		$rc = @RecentChange::newFromRow( $row );
 
 		$expected = [
 			'rc_foo' => 'AAA',

@@ -6,7 +6,6 @@ require_once __DIR__ . '/UploadedFileTestBase.php';
 
 use RuntimeException;
 use TypeError;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -45,7 +44,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		unset( $stream );
 		try {
 			// PHP 7 raises warnings
-			$this->assertFalse( AtEase::quietCall( 'fread', $fp, 1 ) );
+			$this->assertFalse( @fread( $fp, 1 ) );
 		} catch ( TypeError $ex ) {
 			// PHP 8 throws
 		}

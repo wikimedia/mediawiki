@@ -1,8 +1,6 @@
 <?php
 
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
-use Wikimedia\ScopedCallback;
 
 /**
  * @group Database
@@ -716,13 +714,11 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGetCommentErrors() {
-		AtEase::suppressWarnings();
-		$reset = new ScopedCallback( [ AtEase::class, 'restoreWarnings' ] );
-
 		$store = $this->makeStore( MIGRATION_OLD );
-		$res = $store->getComment( 'dummy', [ 'dummy' => 'comment' ] );
+		// Ignore: Missing dummy_text and dummy_data fields
+		$res = @$store->getComment( 'dummy', [ 'dummy' => 'comment' ] );
 		$this->assertSame( '', $res->text );
-		$res = $store->getComment( 'dummy', [ 'dummy' => 'comment' ], true );
+		$res = @$store->getComment( 'dummy', [ 'dummy' => 'comment' ], true );
 		$this->assertSame( 'comment', $res->text );
 
 		$store = $this->makeStore( MIGRATION_NEW );
@@ -732,7 +728,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame( '$row does not contain fields needed for comment dummy', $ex->getMessage() );
 		}
-		$res = $store->getComment( 'dummy', [ 'dummy' => 'comment' ], true );
+		// Ignore: Using deprecated fallback handling for comment dummy
+		$res = @$store->getComment( 'dummy', [ 'dummy' => 'comment' ], true );
 		$this->assertSame( 'comment', $res->text );
 		try {
 			$store->getComment( 'dummy', [ 'dummy_id' => 1 ] );
@@ -754,7 +751,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 				'$row does not contain fields needed for comment rev_comment', $ex->getMessage()
 			);
 		}
-		$res = $store->getComment( 'rev_comment', [ 'rev_comment' => 'comment' ], true );
+		$res = @$store->getComment( 'rev_comment', [ 'rev_comment' => 'comment' ], true );
 		$this->assertSame( 'comment', $res->text );
 		try {
 			$store->getComment( 'rev_comment', [ 'rev_comment_pk' => 1 ] );

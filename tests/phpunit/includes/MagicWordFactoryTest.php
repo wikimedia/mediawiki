@@ -1,7 +1,5 @@
 <?php
 
-use Wikimedia\AtEase\AtEase;
-
 /**
  * @covers \MagicWordFactory
  *
@@ -39,12 +37,7 @@ class MagicWordFactoryTest extends MediaWikiIntegrationTestCase {
 		$magicWordFactory = $this->makeMagicWordFactory();
 
 		$this->expectException( MWException::class );
-		AtEase::suppressWarnings();
-		try {
-			$magicWordFactory->get( 'invalid magic word' );
-		} finally {
-			AtEase::restoreWarnings();
-		}
+		@$magicWordFactory->get( 'invalid magic word' );
 	}
 
 	public function testGetVariableIDs() {

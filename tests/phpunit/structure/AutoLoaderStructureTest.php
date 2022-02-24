@@ -4,7 +4,6 @@ use PhpParser\Node;
 use PhpParser\Node\Expr;
 use PhpParser\Node\Stmt;
 use PhpParser\ParserFactory;
-use Wikimedia\AtEase\AtEase;
 
 class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 	/**
@@ -107,10 +106,7 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 				continue;
 			}
 
-			AtEase::suppressWarnings();
-			$contents = file_get_contents( $filePath );
-			AtEase::restoreWarnings();
-
+			$contents = @file_get_contents( $filePath );
 			if ( $contents === false ) {
 				$actual[$class] = "[couldn't read file '$filePath']";
 				continue;
