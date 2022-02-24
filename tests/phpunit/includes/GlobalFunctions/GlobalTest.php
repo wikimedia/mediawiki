@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Logger\LegacyLogger;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * @group Database
@@ -562,9 +563,9 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	public function testWfMkdirParents() {
 		// Should not return true if file exists instead of directory
 		$fname = $this->getNewTempFile();
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$ok = wfMkdirParents( $fname );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		$this->assertFalse( $ok );
 	}
 

@@ -5,6 +5,7 @@ namespace MediaWiki\Session;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 use User;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -97,9 +98,9 @@ class SessionTest extends MediaWikiIntegrationTestCase {
 		$hmac = hash_hmac( 'sha256', $sealed, $hmacKey, true );
 		$encrypted = base64_encode( $hmac ) . '.' . $sealed;
 		$session->set( 'test', $encrypted );
-		\Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$this->assertEquals( 'defaulted', $session->getSecret( 'test', 'defaulted' ) );
-		\Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 	}
 
 	/**

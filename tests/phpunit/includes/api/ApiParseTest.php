@@ -22,6 +22,7 @@
 
 use MediaWiki\Revision\RevisionRecord;
 use Psr\Container\ContainerInterface;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\ObjectFactory;
 
 /**
@@ -304,7 +305,7 @@ class ApiParseTest extends ApiTestCase {
 		$this->db->delete( 'revision', [ 'rev_id' => $status->value['revision-record']->getId() ] );
 
 		// Suppress warning in WikiPage::getContentModel
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		try {
 			$this->doApiRequest( [
 				'action' => 'parse',
@@ -312,7 +313,7 @@ class ApiParseTest extends ApiTestCase {
 				'section' => 1,
 			] );
 		} finally {
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		}
 	}
 
