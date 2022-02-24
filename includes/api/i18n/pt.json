@@ -132,6 +132,7 @@
 	"apihelp-delete-param-pageid": "Identificador da página a eliminar. Não pode ser usado em conjunto com <var>$1title</var>.",
 	"apihelp-delete-param-reason": "Motivo para a eliminação. Se não for definido, será usado um motivo gerado automaticamente.",
 	"apihelp-delete-param-tags": "Etiquetas de modificação a aplicar à entrada no registo de eliminações.",
+	"apihelp-delete-param-deletetalk": "Eliminar a página de discussão, se esta existir.",
 	"apihelp-delete-param-watch": "Adicionar a página às páginas vigiadas do utilizador atual.",
 	"apihelp-delete-param-watchlist": "Adicionar ou remover incondicionalmente a página da lista de páginas vigiadas do utilizador atual, usar as preferências (ignorado para robôs) ou não alterar o estado de vigilância.",
 	"apihelp-delete-param-watchlistexpiry": "Data e hora de expiração da lista de páginas vigiadas. Omitir este parâmetro para manter a expiração atual inalterada.",
