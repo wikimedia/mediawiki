@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\ScopedCallback;
 
@@ -715,8 +716,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGetCommentErrors() {
-		Wikimedia\suppressWarnings();
-		$reset = new ScopedCallback( 'Wikimedia\restoreWarnings' );
+		AtEase::suppressWarnings();
+		$reset = new ScopedCallback( [ AtEase::class, 'restoreWarnings' ] );
 
 		$store = $this->makeStore( MIGRATION_OLD );
 		$res = $store->getComment( 'dummy', [ 'dummy' => 'comment' ] );

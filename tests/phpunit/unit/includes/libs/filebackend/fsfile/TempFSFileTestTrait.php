@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * Code shared between the unit and integration tests
  */
@@ -47,8 +49,8 @@ trait TempFSFileTestTrait {
 		$file->preserve();
 		unset( $file );
 		$this->assertTrue( is_file( $path ) );
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		unlink( $path );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 	}
 }

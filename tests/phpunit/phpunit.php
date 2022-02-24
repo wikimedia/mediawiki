@@ -7,6 +7,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\AtEase\AtEase;
 
 class PHPUnitMaintClass {
 	public function setup() {
@@ -104,9 +105,9 @@ class PHPUnitMaintClass {
 		$wgShowExceptionDetails = true;
 		$wgShowHostnames = true;
 
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		set_time_limit( 0 );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		ini_set( 'memory_limit', -1 );
 

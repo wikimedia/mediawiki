@@ -1,4 +1,7 @@
 <?php
+
+use Wikimedia\AtEase\AtEase;
+
 /**
  * @file
  * @ingroup Testing
@@ -25,11 +28,11 @@ class ParserTestResultNormalizer {
 		// guaranteed to give accurate results. For example, it may introduce
 		// differences in the number of line breaks in <pre> tags.
 
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		if ( !$this->doc->loadXML( '<html><body>' . $text . '</body></html>' ) ) {
 			$this->invalid = true;
 		}
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		$this->xpath = new DOMXPath( $this->doc );
 		$this->body = $this->xpath->query( '//body' )->item( 0 );
 	}

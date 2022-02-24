@@ -8,6 +8,7 @@ use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\TestingAccessWrapper;
 
@@ -491,11 +492,11 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		}
 
 		// Avoid a complaint about not being able to disable compression
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		try {
 			$this->assertEquals( $expected, $op->checkLastModified( $timestamp ) );
 		} finally {
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		}
 	}
 
@@ -2789,9 +2790,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		// Some of these paths don't exist and will cause warnings
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$actual = OutputPage::transformResourcePath( $conf, $path );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		$this->assertEquals( $expected ?: $path, $actual );
 	}

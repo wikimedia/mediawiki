@@ -51,12 +51,16 @@ class TrivialLanguageConverter implements ILanguageConverter {
 	 * and should be called for LanguageConverterFactory only
 	 *
 	 * @param Language $langobj
+	 * @param TitleFormatter|null $titleFormatter
 	 *
 	 * @internal
 	 */
-	public function __construct( $langobj ) {
+	public function __construct(
+		Language $langobj,
+		TitleFormatter $titleFormatter = null
+	) {
 		$this->language = $langobj;
-		$this->titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
+		$this->titleFormatter = $titleFormatter ?? MediaWikiServices::getInstance()->getTitleFormatter();
 	}
 
 	public function autoConvert( $text, $variant = false ) {

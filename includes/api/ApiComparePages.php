@@ -40,7 +40,7 @@ class ApiComparePages extends ApiBase {
 	/** @var SlotRoleRegistry */
 	private $slotRoleRegistry;
 
-	/** @var Title|false */
+	/** @var Title|null|false */
 	private $guessedTitle = false;
 	private $props;
 
