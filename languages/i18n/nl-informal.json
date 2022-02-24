@@ -120,7 +120,7 @@
 	"rev-deleted-text-view": "Deze paginaversie is <strong>verwijderd</strong>.\nJe kan deze bekijken; details zijn te vinden in het [{{fullurl:{{#Special:Log}}/delete|page=$1}} verwijderingslogboek].",
 	"rev-suppressed-text-view": "Deze paginaversie is <strong>onderdrukt</strong>.\nJe kan deze bekijken; details zijn te vinden in het [{{fullurl:{{#Special:Log}}/suppress|page=$1}} logboek onderdrukte versies].",
 	"rev-deleted-no-diff": "Je kunt de verschillen niet bekijken, omdat een van de versies is '''verwijderd'''.\nAchtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
-	"rev-suppressed-no-diff": "Je kunt de verschillen niet bekijken, omdat een van de versies is '''verwijderd'''.",
+	"rev-suppressed-no-diff": "Je kunt de verschillen niet bekijken, want een van de versies is <strong>onderdrukt</strong>.",
 	"rev-deleted-unhide-diff": "Een van de bewerkingen voor de verschillen die je hebt opgevraagd is '''verwijderd'''.\nEr kunnen details te vinden zijn in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].\nAls je wilt kan je [$1 de verschillen bekijken].",
 	"rev-suppressed-unhide-diff": "Een van de versies in deze verschillen is '''onderdrukt'''.\nEr kunnen details te vinden zijn in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek].\nAls je wilt kan je [$1 deze versie bekijken].",
 	"rev-deleted-diff-view": "Een van de versies van de verschillen die je hebt opgevraagd is verwijderd, \nJe kunt deze verschillen bekijken. Mogelijk zijn details zichtbaar in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",

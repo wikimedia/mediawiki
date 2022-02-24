@@ -141,6 +141,7 @@
 	"apihelp-delete-param-pageid": "Seitennummer der Seite, die gelöscht werden soll. Kann nicht zusammen mit <var>$1title</var> verwendet werden.",
 	"apihelp-delete-param-reason": "Löschbegründung. Falls nicht festgelegt, wird eine automatisch generierte Begründung verwendet.",
 	"apihelp-delete-param-tags": "Ändert die Markierungen, die auf den Eintrag im Lösch-Logbuch anzuwenden sind.",
+	"apihelp-delete-param-deletetalk": "Löschen der Diskussionsseite, falls vorhanden.",
 	"apihelp-delete-param-watch": "Seite auf die Beobachtungsliste des aktuellen Benutzers setzen.",
 	"apihelp-delete-param-watchlist": "Bedingungslos die Seite aus der Beobachtungsliste des aktuellen Benutzers hinzufügen oder entfernen, Benutzereinstellungen verwenden (für Bot-Benutzer ignoriert) oder Beobachtung nicht ändern.",
 	"apihelp-delete-param-unwatch": "Seite von der Beobachtungsliste entfernen.",
