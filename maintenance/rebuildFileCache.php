@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
+use Wikimedia\AtEase\AtEase;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -149,7 +150,7 @@ class RebuildFileCache extends Maintenance {
 						}
 					}
 
-					Wikimedia\suppressWarnings(); // header notices
+					AtEase::suppressWarnings(); // header notices
 
 					// 1. Cache ?action=view
 					// Be sure to reset the mocked request time (T24852)
@@ -171,7 +172,7 @@ class RebuildFileCache extends Maintenance {
 					$historyHtml = ob_get_clean();
 					$historyCache->saveToFileCache( $historyHtml );
 
-					Wikimedia\restoreWarnings();
+					AtEase::restoreWarnings();
 
 					if ( $rebuilt ) {
 						$this->output( "Re-cached page '$title' (id {$row->page_id})..." );

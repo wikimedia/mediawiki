@@ -23,6 +23,8 @@
 
 // NO_AUTOLOAD -- file-scope define() used to modify behaviour
 
+use Wikimedia\AtEase\AtEase;
+
 require_once __DIR__ . '/Maintenance.php';
 
 define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
@@ -162,9 +164,9 @@ class CommandLineInstaller extends Maintenance {
 				$this->error( 'WARNING: You have provided the options "dbpass" and "dbpassfile". '
 					. 'The content of "dbpassfile" overrides "dbpass".' );
 			}
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$dbpass = file_get_contents( $dbpassfile ); // returns false on failure
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 			if ( $dbpass === false ) {
 				$this->fatalError( "Couldn't open $dbpassfile" );
 			}
@@ -179,9 +181,9 @@ class CommandLineInstaller extends Maintenance {
 				$this->error( 'WARNING: You have provided the options "pass" and "passfile". '
 					. 'The content of "passfile" overrides "pass".' );
 			}
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$pass = file_get_contents( $passfile ); // returns false on failure
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 			if ( $pass === false ) {
 				$this->fatalError( "Couldn't open $passfile" );
 			}

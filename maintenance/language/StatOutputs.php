@@ -24,15 +24,16 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * A general output object. Need to be overridden
  */
 class StatsOutput {
 	public function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$return = sprintf( '%.' . $accuracy . 'f%%', 100 * $subset / $total );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		return $return;
 	}
@@ -94,9 +95,9 @@ class WikiStatsOutput extends StatsOutput {
 	}
 
 	public function formatPercent( $subset, $total, $revert = false, $accuracy = 2 ) {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$v = round( 255 * $subset / $total );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		if ( $revert ) {
 			# Weigh reverse with factor 20 so coloring takes effect more quickly as

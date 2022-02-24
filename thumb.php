@@ -28,6 +28,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\AtEase\AtEase;
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 // T241340: thumb.php is included by thumb_handler.php which already defined
@@ -252,9 +253,9 @@ function wfStreamThumb( array $params ) {
 		// Fix IE brokenness
 		$imsString = preg_replace( '/;.*$/', '', $_SERVER["HTTP_IF_MODIFIED_SINCE"] );
 		// Calculate time
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$imsUnix = strtotime( $imsString );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		if ( wfTimestamp( TS_UNIX, $img->getTimestamp() ) <= $imsUnix ) {
 			HttpStatus::header( 304 );
 			return;
