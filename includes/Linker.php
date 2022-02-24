@@ -2025,6 +2025,15 @@ class Linker {
 	}
 
 	/**
+	 * @return ContextSource
+	 */
+	private static function getContextFromMain() {
+		$context = RequestContext::getMain();
+		$context = new DerivativeContext( $context );
+		return $context;
+	}
+
+	/**
 	 * Given the id of an interface element, constructs the appropriate title
 	 * attribute from the system messages.  (Note, this is usually the id but
 	 * isn't always, because sometimes the accesskey needs to go on a different
@@ -2036,12 +2045,16 @@ class Linker {
 	 *   - 'withaccess' to add an access-key hint
 	 *   - 'nonexisting' to add an accessibility hint that page does not exist
 	 * @param array $msgParams Parameters to pass to the message
+	 * @param MessageLocalizer|null $localizer
 	 *
 	 * @return string|false Contents of the title attribute (which you must HTML-
 	 *   escape), or false for no title attribute
 	 */
-	public static function titleAttrib( $name, $options = null, array $msgParams = [] ) {
-		$message = wfMessage( "tooltip-$name", $msgParams );
+	public static function titleAttrib( $name, $options = null, array $msgParams = [], $localizer = null ) {
+		if ( !$localizer ) {
+			$localizer = self::getContextFromMain();
+		}
+		$message = $localizer->msg( "tooltip-$name", $msgParams );
 		if ( $message->isDisabled() ) {
 			$tooltip = false;
 		} else {
@@ -2053,17 +2066,17 @@ class Linker {
 		$options = (array)$options;
 
 		if ( in_array( 'nonexisting', $options ) ) {
-			$tooltip = wfMessage( 'red-link-title', $tooltip ?: '' )->text();
+			$tooltip = $localizer->msg( 'red-link-title', $tooltip ?: '' )->text();
 		}
 		if ( in_array( 'withaccess', $options ) ) {
-			$accesskey = self::accesskey( $name );
+			$accesskey = self::accesskey( $name, $localizer );
 			if ( $accesskey !== false ) {
 				// Should be build the same as in jquery.accessKeyLabel.js
 				if ( $tooltip === false || $tooltip === '' ) {
-					$tooltip = wfMessage( 'brackets', $accesskey )->text();
+					$tooltip = $localizer->msg( 'brackets', $accesskey )->text();
 				} else {
-					$tooltip .= wfMessage( 'word-separator' )->text();
-					$tooltip .= wfMessage( 'brackets', $accesskey )->text();
+					$tooltip .= $localizer->msg( 'word-separator' )->text();
+					$tooltip .= $localizer->msg( 'brackets', $accesskey )->text();
 				}
 			}
 		}
@@ -2081,15 +2094,19 @@ class Linker {
 	 *
 	 * @since 1.16.3
 	 * @param string $name Id of the element, minus prefixes.
+	 * @param MessageLocalizer|null $localizer
 	 * @return string|false Contents of the accesskey attribute (which you must HTML-
 	 *   escape), or false for no accesskey attribute
 	 */
-	public static function accesskey( $name ) {
+	public static function accesskey( $name, $localizer = null ) {
 		if ( isset( self::$accesskeycache[$name] ) ) {
 			return self::$accesskeycache[$name];
 		}
 
-		$message = wfMessage( "accesskey-$name" );
+		if ( !$localizer ) {
+			$localizer = self::getContextFromMain();
+		}
+		$message = $localizer->msg( "accesskey-$name" );
 
 		if ( $message->isDisabled() ) {
 			$accesskey = false;
@@ -2199,12 +2216,62 @@ class Linker {
 	}
 
 	/**
+	 * Updates the tooltip message and its parameters if watchlist expiry is enabled.
+	 *
+	 * @param string &$tooltip the default tooltip
+	 * @param array &$msgParams the tooltip message parameters.
+	 * @param Config|null $config Only needed for generating tooltip for watchlist expiry.
+	 * @param User|null $user Only needed for generating tooltip for watchlist expiry.
+	 * @param Title|null $relevantTitle Only needed for generating tooltip for watchlist expiry.
+	 *
+	 * @return void
+	 */
+	private static function updateWatchstarTooltipMessage(
+		string &$tooltip, array &$msgParams, $config, $user, $relevantTitle
+	): void {
+		if ( !$config || !$user || !$relevantTitle ) {
+			$mainContext = self::getContextFromMain();
+			if ( !$config ) {
+				$config = $mainContext->getConfig();
+			}
+			if ( !$user ) {
+				$user = $mainContext->getUser();
+			}
+			if ( !$relevantTitle ) {
+				$relevantTitle = $mainContext->getSkin()->getRelevantTitle();
+			}
+		}
+
+		$isWatchlistExpiryEnabled = $config->get( 'WatchlistExpiry' );
+		if ( !$isWatchlistExpiryEnabled ) {
+			return;
+		}
+		$watchStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+		$watchedItem = $watchStore->getWatchedItem( $user, $relevantTitle );
+		if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() !== null ) {
+			$diffInDays = $watchedItem->getExpiryInDays();
+
+			if ( $diffInDays ) {
+				$msgParams = [ $diffInDays ];
+				// Resolves to tooltip-ca-unwatch-expiring message
+				$tooltip = 'ca-unwatch-expiring';
+			} else { // Resolves to tooltip-ca-unwatch-expiring-hours message
+				$tooltip = 'ca-unwatch-expiring-hours';
+			}
+		}
+	}
+
+	/**
 	 * Returns the attributes for the tooltip and access key.
 	 *
 	 * @since 1.16.3. $msgParams introduced in 1.27
 	 * @param string $name
 	 * @param array $msgParams Params for constructing the message
 	 * @param string|array|null $options Options to be passed to titleAttrib.
+	 * @param MessageLocalizer|null $localizer
+	 * @param User|null $user Only needed for generating tooltip for watchlist expiry.
+	 * @param Config|null $config Only needed for generating tooltip for watchlist expiry.
+	 * @param Title|null $relevantTitle Only needed for generating tooltip for watchlist expiry.
 	 *
 	 * @see Linker::titleAttrib for what options could be passed to $options.
 	 *
@@ -2213,36 +2280,29 @@ class Linker {
 	public static function tooltipAndAccesskeyAttribs(
 		$name,
 		array $msgParams = [],
-		$options = null
+		$options = null,
+		$localizer = null,
+		$user = null,
+		$config = null,
+		$relevantTitle = null
 	) {
 		$options = (array)$options;
 		$options[] = 'withaccess';
 		$tooltipTitle = $name;
 
+		// Get optional parameters from global context if any missing.
+		if ( !$localizer ) {
+			$localizer = self::getContextFromMain();
+		}
+
 		// @since 1.35 - add a WatchlistExpiry feature flag to show new watchstar tooltip message
-		$skin = RequestContext::getMain()->getSkin();
-		$isWatchlistExpiryEnabled = $skin->getConfig()->get( 'WatchlistExpiry' );
-		if ( $name === 'ca-unwatch' && $isWatchlistExpiryEnabled ) {
-			$watchStore = MediaWikiServices::getInstance()->getWatchedItemStore();
-			$watchedItem = $watchStore->getWatchedItem( $skin->getUser(),
-				$skin->getRelevantTitle() );
-			if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() !== null ) {
-				$diffInDays = $watchedItem->getExpiryInDays();
-
-				if ( $diffInDays ) {
-					$msgParams = [ $diffInDays ];
-					// Resolves to tooltip-ca-unwatch-expiring message
-					$tooltipTitle = 'ca-unwatch-expiring';
-				} else { // Resolves to tooltip-ca-unwatch-expiring-hours message
-					$tooltipTitle = 'ca-unwatch-expiring-hours';
-				}
-
-			}
+		if ( $name === 'ca-unwatch' ) {
+			self::updateWatchstarTooltipMessage( $tooltipTitle, $msgParams, $config, $user, $relevantTitle );
 		}
 
 		$attribs = [
-			'title' => self::titleAttrib( $tooltipTitle, $options, $msgParams ),
-			'accesskey' => self::accesskey( $name )
+			'title' => self::titleAttrib( $tooltipTitle, $options, $msgParams, $localizer ),
+			'accesskey' => self::accesskey( $name, $localizer )
 		];
 		if ( $attribs['title'] === false ) {
 			unset( $attribs['title'] );
