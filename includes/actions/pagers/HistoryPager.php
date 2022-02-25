@@ -304,7 +304,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s .= $this->buttons;
 		}
 
-		$s .= '<div id="pagehistory">';
+		$s .= '<section id="pagehistory" class="mw-pager-body">';
 
 		return $s;
 	}
@@ -355,7 +355,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		if ( $this->getNumRows() > 2 ) {
 			$s .= $this->buttons;
 		}
-		$s .= '</div>'; // closes div#pagehistory
+		$s .= '</section>'; // closes section#pagehistory
 		$s .= '</form>';
 		return $s;
 	}

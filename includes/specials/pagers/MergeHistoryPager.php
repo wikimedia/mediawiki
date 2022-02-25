@@ -87,7 +87,7 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$this->revisionStore = $revisionStore;
 	}
 
-	protected function getStartBody() {
+	protected function doBatchLookups() {
 		# Do a link batch query
 		$this->mResult->seek( 0 );
 		$batch = $this->linkBatchFactory->newLinkBatch();
@@ -111,8 +111,20 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 
 		$batch->execute();
 		$this->mResult->seek( 0 );
+	}
 
-		return '';
+	/**
+	 * @inheritDoc
+	 */
+	protected function getStartBody() {
+		return "<section class='mw-pager-body'>\n";
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	protected function getEndBody() {
+		return "</section>\n";
 	}
 
 	public function formatRow( $row ) {
