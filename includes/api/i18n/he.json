@@ -137,6 +137,7 @@
 	"apihelp-delete-param-pageid": "מס׳ הזיהוי של הדף למחיקה. לא ניתן להשתמש בשילוב עם <var>$1title</var>.",
 	"apihelp-delete-param-reason": "סיבת המחיקה. אם לא הוגדרה, תתווסף סיבה שנוצרה אוטומטית.",
 	"apihelp-delete-param-tags": "תגי שינוי שיחולו על הרשומה ביומן המחיקה.",
+	"apihelp-delete-param-deletetalk": "מחיקת דף השיחה, אם הוא קיים.",
 	"apihelp-delete-param-watch": "הוספת הדף לרשימת המעקב של המשתמש הנוכחי.",
 	"apihelp-delete-param-watchlist": "הוספה או הסרה של הדף ללא תנאי מרשימת המעקב של המשתמש הנוכחי, להשתמש בהעדפות (לא חל על משתמשי בוט), או לא לשנות את המעקב.",
 	"apihelp-delete-param-watchlistexpiry": "חותם־זמן לתפוגת רשימת המעקב. יש להשמיט את הפרמטר הזה לגמרי כדי להותיר את התפוגה הנוכחית ללא שינוי.",

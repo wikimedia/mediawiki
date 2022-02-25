@@ -926,7 +926,7 @@
 	"rev-deleted-text-view": "Ta wersja strony została <strong>usunięta</strong>.\nJeśli chcesz, możesz ją obejrzeć. Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page=$1}} rejestrze usunięć].",
 	"rev-suppressed-text-view": "Ta wersja strony została <strong>ukryta</strong>.\nJeśli chcesz, możesz ją obejrzeć. Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page=$1}} rejestrze ukryć].",
 	"rev-deleted-no-diff": "Nie możesz zobaczyć porównania wersji, ponieważ jedna z nich została '''usunięta'''.\nSzczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
-	"rev-suppressed-no-diff": "Nie można wyświetlić różnic, ponieważ jedna z wersji została '''usunięta'''.",
+	"rev-suppressed-no-diff": "Nie można zobaczyć porównania wersji, ponieważ jedna z nich została <strong>ukryta</strong>.",
 	"rev-deleted-unhide-diff": "Jedna z porównywanych wersji została '''usunięta'''.\nSzczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].\nJeśli chcesz, możesz [$1 obejrzeć porównanie wersji].",
 	"rev-suppressed-unhide-diff": "Jedna z porównywanych wersji została <strong>ukryta</strong>.\nSzczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze ukrywania].\nJeśli chcesz, możesz [$1 obejrzeć porównanie wersji].",
 	"rev-deleted-diff-view": "Jedna z wersji użytych w porównaniu została '''usunięta'''.\nJeśli chcesz, możesz zobaczyć porównanie. Szczegóły można znaleźć w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",

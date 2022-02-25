@@ -159,6 +159,7 @@
 	"apihelp-delete-param-pageid": "ID de la page que vous voulez supprimer. Impossible à utiliser avec <var>$1title</var>.",
 	"apihelp-delete-param-reason": "Motif de suppression. Si non défini, un motif généré automatiquement sera utilisé.",
 	"apihelp-delete-param-tags": "Modifier les balises à appliquer à l’entrée dans le journal des suppressions.",
+	"apihelp-delete-param-deletetalk": "Supprimer la page de discussion, si elle existe.",
 	"apihelp-delete-param-watch": "Ajouter la page à la liste de suivi de l’utilisateur actuel.",
 	"apihelp-delete-param-watchlist": "Ajouter ou supprimer sans distinction la page votre liste de suivi, utiliser les préférences (ignorées pour les robots) ou ne rien changer au suivi.",
 	"apihelp-delete-param-watchlistexpiry": "Délai d’expiration de la liste de suivi. Omettez complètement ce paramètre pour laisser inchangé le délai actuel d’expiration.",

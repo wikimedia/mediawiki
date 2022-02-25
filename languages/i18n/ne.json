@@ -3216,5 +3216,6 @@
 	"passwordpolicies-policies": "नीतिहरू",
 	"userlogout-continue": "के तपाई निर्गमन गर्न चहानुहुन्छ?",
 	"paramvalidator-help-type-user-subtype-name": "प्रयोगकर्ता नाम",
-	"paramvalidator-help-type-user-subtype-ip": "आइपी"
+	"paramvalidator-help-type-user-subtype-ip": "आइपी",
+	"changeslist-nocomment": "कुनै सम्पादन सारांश छैन"
 }
