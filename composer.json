@@ -23,6 +23,7 @@
 	"require": {
 		"composer/semver": "1.7.2",
 		"cssjanus/cssjanus": "1.3.0",
+		"ext-calendar": "*",
 		"ext-ctype": "*",
 		"ext-dom": "*",
 		"ext-fileinfo": "*",
