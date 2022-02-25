@@ -46,6 +46,9 @@ class TransactionManager {
 	/** @var int Assume an insert of this many rows or less should be fast to replicate */
 	private const SMALL_WRITE_ROWS = 100;
 
+	/** @var string Prefix to the atomic section counter used to make savepoint IDs */
+	private const SAVEPOINT_PREFIX = 'wikimedia_rdbms_atomic';
+
 	/** @var string Application-side ID of the active transaction or an empty string otherwise */
 	private $trxId = '';
 	/** @var float|null UNIX timestamp at the time of BEGIN for the last transaction */
@@ -79,6 +82,10 @@ class TransactionManager {
 
 	/** @var string|null Name of the function that start the last transaction */
 	private $trxFname = null;
+	/** @var bool Whether possible write queries were done in the last transaction started */
+	private $trxDoneWrites = false;
+	/** @var int Counter for atomic savepoint identifiers (reset with each transaction) */
+	private $trxAtomicCounter = 0;
 
 	/** @var LoggerInterface */
 	private $logger;
@@ -124,6 +131,9 @@ class TransactionManager {
 		$this->trxAutomatic = ( $mode === IDatabase::TRANSACTION_INTERNAL );
 		$this->trxAutomaticAtomic = false;
 		$this->trxFname = $fname;
+		$this->trxDoneWrites = false;
+		$this->trxAtomicCounter = 0;
+		$this->trxTimestamp = microtime( true );
 	}
 
 	/**
@@ -134,6 +144,7 @@ class TransactionManager {
 	public function consumeTrxId() {
 		$old = $this->trxId;
 		$this->trxId = '';
+		$this->trxAtomicCounter = 0;
 
 		return $old;
 	}
@@ -200,14 +211,6 @@ class TransactionManager {
 	}
 
 	/**
-	 * @param float|null $trxTimestamp
-	 * @unstable This will be removed once usages are migrated here
-	 */
-	public function setTrxTimestamp( ?float $trxTimestamp ) {
-		$this->trxTimestamp = $trxTimestamp;
-	}
-
-	/**
 	 * @param array|null $trxStatusIgnoredCause
 	 */
 	public function setTrxStatusIgnoredCause( ?array $trxStatusIgnoredCause ): void {
@@ -268,7 +271,17 @@ class TransactionManager {
 		$this->trxWriteCallers[] = $fname;
 	}
 
-	public function pendingWriteQueryDuration( $type = IDatabase::ESTIMATE_TOTAL, $rtt = null ) {
+	public function pendingWriteQueryDuration( IDatabase $db, $type = IDatabase::ESTIMATE_TOTAL ) {
+		if ( !$this->trxLevel() ) {
+			return false;
+		} elseif ( !$this->trxDoneWrites ) {
+			return 0.0;
+		}
+		$rtt = null;
+		if ( $type == IDatabase::ESTIMATE_DB_APPLY ) {
+			// passed by reference
+			$db->ping( $rtt );
+		}
 		switch ( $type ) {
 			case IDatabase::ESTIMATE_DB_APPLY:
 				return $this->calculateLastTrxApplyTime( $rtt );
@@ -485,7 +498,8 @@ class TransactionManager {
 		$this->trxAutomatic = true;
 	}
 
-	public function onNextSavePointId( IDatabase $db, $fname, $savepointId ) {
+	public function nextSavePointId( IDatabase $db, $fname ) {
+		$savepointId = self::SAVEPOINT_PREFIX . ++$this->trxAtomicCounter;
 		if ( strlen( $savepointId ) > 30 ) {
 			// 30 == Oracle's identifier length limit (pre 12c)
 			// With a 22 character prefix, that puts the highest number at 99999999.
@@ -495,9 +509,30 @@ class TransactionManager {
 				. " started by $this->trxFname (at $fname)"
 			);
 		}
+
+		return $savepointId;
 	}
 
 	public function getTrxFname() {
 		return $this->trxFname;
+	}
+
+	public function writesPending() {
+		return $this->trxLevel() && $this->trxDoneWrites;
+	}
+
+	public function isTrxDoneWrites() {
+		return $this->trxDoneWrites;
+	}
+
+	public function setTrxDoneWritesToTrue() {
+		$this->trxDoneWrites = true;
+	}
+
+	public function onDestruct() {
+		if ( $this->trxLevel() && $this->trxDoneWrites ) {
+			$trxFname = $this->getTrxFname();
+			trigger_error( "Uncommitted DB writes (transaction from {$trxFname})" );
+		}
 	}
 }
