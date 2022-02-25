@@ -333,6 +333,7 @@ because of Phabricator reports.
   - ::getMasterPos() since 1.37
 * DatabaseMysqlBase::fieldType() and DatabasePostgres::fieldType(), deprecated
   since 1.37, have been removed.
+* Database::assertIsWritableMaster(), deprecated since 1.37, has been removed.
 * ResultWrapper::getInternalResult(), soft-deprecated since 1.37 and
   ResultWrapper::unwrap(), deprecated since 1.37, have been removed.
 * Language::AS_AUTONYMS, deprecated since 1.34, has been removed. You can use
