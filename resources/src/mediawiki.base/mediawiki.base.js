@@ -15,52 +15,41 @@ require( './legacy.wikibits.js' );
  *
  * Similar to the Message class in MediaWiki PHP.
  *
- * Format defaults to 'text'.
- *
  *     @example
  *
  *     var obj, str;
  *     mw.messages.set( {
  *         'hello': 'Hello world',
  *         'hello-user': 'Hello, $1!',
- *         'welcome-user': 'Welcome back to $2, $1! Last visit by $1: $3'
+ *         'welcome-user': 'Welcome back to $2, $1! Last visit by $1: $3',
+ *         'so-unusual': 'You will find: $1'
  *     } );
  *
- *     obj = new mw.Message( mw.messages, 'hello' );
+ *     obj = mw.message( 'hello' );
  *     mw.log( obj.text() );
  *     // Hello world
  *
- *     obj = new mw.Message( mw.messages, 'hello-user', [ 'John Doe' ] );
- *     mw.log( obj.text() );
- *     // Hello, John Doe!
- *
- *     obj = new mw.Message( mw.messages, 'welcome-user', [ 'John Doe', 'Wikipedia', '2 hours ago' ] );
- *     mw.log( obj.text() );
- *     // Welcome back to Wikipedia, John Doe! Last visit by John Doe: 2 hours ago
- *
- *     // Using mw.message shortcut
  *     obj = mw.message( 'hello-user', 'John Doe' );
  *     mw.log( obj.text() );
  *     // Hello, John Doe!
  *
- *     // Using mw.msg shortcut
+ *     obj = mw.message( 'welcome-user', 'John Doe', 'Wikipedia', '2 hours ago' );
+ *     mw.log( obj.text() );
+ *     // Welcome back to Wikipedia, John Doe! Last visit by John Doe: 2 hours ago
+ *
+ *     // Using mw.msg shortcut, always in "text' format.
  *     str = mw.msg( 'hello-user', 'John Doe' );
  *     mw.log( str );
  *     // Hello, John Doe!
  *
  *     // Different formats
- *     obj = new mw.Message( mw.messages, 'hello-user', [ 'John "Wiki" <3 Doe' ] );
+ *     obj = mw.message( 'so-unusual', 'Time "after" <time>' );
  *
- *     obj.format = 'text';
- *     str = obj.toString();
- *     // Same as:
- *     str = obj.text();
- *
- *     mw.log( str );
- *     // Hello, John "Wiki" <3 Doe!
+ *     mw.log( obj.text() );
+ *     // You will find: Time "after" <time>
  *
  *     mw.log( obj.escaped() );
- *     // Hello, John &quot;Wiki&quot; &lt;3 Doe!
+ *     // You will find: Time &quot;after&quot; &lt;time&gt;
  *
  * @class mw.Message
  *
@@ -70,16 +59,10 @@ require( './legacy.wikibits.js' );
  * @param {Array} [parameters]
  */
 function Message( map, key, parameters ) {
-	this.format = 'text';
 	this.map = map;
 	this.key = key;
 	this.parameters = parameters || [];
 }
-
-var statefulDeprecated = mw.log.makeDeprecated(
-	'mw_Message_toString_stateful',
-	'Use of stateful mw.Message#toString is deprecated. https://phabricator.wikimedia.org/T292489'
-);
 
 Message.prototype = {
 	/**
@@ -153,11 +136,7 @@ Message.prototype = {
 		}
 
 		if ( !format ) {
-			format = this.format;
-			if ( format !== 'text' ) {
-				// Stateful default is deprecated since MW 1.38
-				statefulDeprecated();
-			}
+			format = 'text';
 		}
 
 		if ( format === 'plain' || format === 'text' || format === 'parse' ) {
@@ -169,59 +148,51 @@ Message.prototype = {
 	},
 
 	/**
-	 * Change format to 'parse' and convert message to string
+	 * Parse message as wikitext and return HTML.
 	 *
-	 * If jqueryMsg is loaded, this parses the message text from wikitext
-	 * (where supported) to HTML
-	 *
-	 * Otherwise, it is equivalent to plain.
+	 * If jqueryMsg is loaded, this transforms text and parses a subset of supported wikitext
+	 * into HTML. Without jqueryMsg, it is equivalent to #escaped.
 	 *
 	 * @return {string} String form of parsed message
 	 */
 	parse: function () {
-		this.format = 'parse';
-		return this.toString( this.format );
+		return this.toString( 'parse' );
 	},
 
 	/**
-	 * Change format to 'plain' and convert message to string
+	 * Return message plainly.
 	 *
-	 * This substitutes parameters, but otherwise does not change the
-	 * message text.
+	 * This substitutes parameters, but otherwise does not transform the
+	 * message content.
 	 *
 	 * @return {string} String form of plain message
 	 */
 	plain: function () {
-		this.format = 'plain';
-		return this.toString( this.format );
+		return this.toString( 'plain' );
 	},
 
 	/**
-	 * Change format to 'text' and convert message to string
+	 * Format message with text transformations applied.
 	 *
-	 * If jqueryMsg is loaded, {{-transformation is done where supported
-	 * (such as {{plural:}}, {{gender:}}, {{int:}}).
-	 *
-	 * Otherwise, it is equivalent to plain
+	 * If jqueryMsg is loaded, `{{`-transformation is done for supported
+	 * magic words such as `{{plural:}}`, `{{gender:}}`, and `{{int:}}`.
+	 * Without jqueryMsg, it is equivalent to #plain.
 	 *
 	 * @return {string} String form of text message
 	 */
 	text: function () {
-		this.format = 'text';
-		return this.toString( this.format );
+		return this.toString( 'text' );
 	},
 
 	/**
-	 * Change the format to 'escaped' and convert message to string
+	 * Format message and return as escaped text in HTML.
 	 *
-	 * This is equivalent to using the 'text' format (see #text), then
-	 * HTML-escaping the output.
+	 * This is equivalent to the #text format, which is then HTML-escaped.
 	 *
 	 * @return {string} String form of html escaped message
 	 */
 	escaped: function () {
-		this.format = 'escaped';
-		return this.toString( this.format );
+		return this.toString( 'escaped' );
 	},
 
 	/**
