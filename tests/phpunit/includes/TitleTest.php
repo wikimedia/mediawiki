@@ -1524,16 +1524,12 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers Title::getTalkPageIfDefined
 	 */
 	public function testGetTalkPage_broken( Title $title, Title $expected, $valid ) {
-		$errorLevel = error_reporting( E_ERROR );
-
 		// NOTE: Eventually we want to throw in this case. But while there is still code that
 		// calls this method without checking, we want to avoid fatal errors.
 		// See discussion on T227817.
-		$result = $title->getTalkPage();
+		$result = @$title->getTalkPage();
 		$this->assertTrue( $expected->equals( $result ) );
 		$this->assertSame( $valid, $result->isValid() );
-
-		error_reporting( $errorLevel );
 	}
 
 	/**

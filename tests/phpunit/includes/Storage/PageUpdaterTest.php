@@ -22,7 +22,6 @@ use Status;
 use TextContent;
 use Title;
 use User;
-use Wikimedia\AtEase\AtEase;
 use WikiPage;
 use WikitextContent;
 
@@ -709,9 +708,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		// to emulate confusion due to a page move.
 		$title->resetArticleID( 886655 );
 
-		AtEase::suppressWarnings();
-		$updater->saveRevision( $summary, EDIT_UPDATE );
-		AtEase::restoreWarnings();
+		@$updater->saveRevision( $summary, EDIT_UPDATE );
 
 		$this->assertTrue( $updater->wasSuccessful(), 'wasSuccessful()' );
 	}

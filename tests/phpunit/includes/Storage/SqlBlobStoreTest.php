@@ -11,7 +11,6 @@ use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiIntegrationTestCase;
 use TitleValue;
 use WANObjectCache;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\LoadBalancer;
 
 /**
@@ -537,11 +536,9 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		$this->checkPHPExtension( 'zlib' );
 		$blobStore = $this->getBlobStore();
 
-		AtEase::suppressWarnings();
 		$this->assertFalse(
-			$blobStore->expandBlob( $raw, explode( ',', $flags ) )
+			@$blobStore->expandBlob( $raw, explode( ',', $flags ) )
 		);
-		AtEase::restoreWarnings();
 	}
 
 	public function provideExpandBlobWithLegacyEncoding() {
