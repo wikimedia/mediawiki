@@ -50,7 +50,7 @@ class TrivialLanguageConverter implements ILanguageConverter {
 	 * Creates a converter for languages that don't have variants. This method is internal
 	 * and should be called for LanguageConverterFactory only
 	 *
-	 * @param Language $langobj
+	 * @param Language|StubUserLang $langobj
 	 * @param TitleFormatter|null $titleFormatter
 	 *
 	 * @internal
