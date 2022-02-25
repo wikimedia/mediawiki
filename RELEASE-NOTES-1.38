@@ -567,6 +567,7 @@ because of Phabricator reports.
   and addFooterHtml respectively.
 * The FormSpecialPage methods preText and postText have been renamed to
   preHtml and postHtml respectively.
+* Article::doDelete, deprecated in 1.37, now emits deprecation notices.
 * The following Less mediawiki.mixins have been deprecated:
   - .background-image()
   - .list-style-image()
