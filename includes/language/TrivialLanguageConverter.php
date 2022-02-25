@@ -56,7 +56,7 @@ class TrivialLanguageConverter implements ILanguageConverter {
 	 * @internal
 	 */
 	public function __construct(
-		Language $langobj,
+		$langobj,
 		TitleFormatter $titleFormatter = null
 	) {
 		$this->language = $langobj;
