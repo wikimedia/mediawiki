@@ -70,6 +70,7 @@
 		"zordius/lightncandy": "1.2.5"
 	},
 	"require-dev": {
+		"ext-simplexml": "*",
 		"composer/spdx-licenses": "1.5.3",
 		"doctrine/dbal": "3.1.5",
 		"doctrine/sql-formatter": "1.1.0",
