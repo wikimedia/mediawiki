@@ -6,7 +6,6 @@ use Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWikiIntegrationTestCase;
 use User;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -913,7 +912,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$manager->globalSessionRequest = $request;
 
 		session_id( self::SESSIONID );
-		AtEase::quietCall( 'session_start' );
+		@session_start();
 		$_SESSION['foo'] = __METHOD__;
 		$backend->resetId();
 		$this->assertNotEquals( self::SESSIONID, $backend->getId() );
@@ -951,7 +950,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$manager->globalSessionRequest = $request;
 
 		session_id( self::SESSIONID . 'x' );
-		AtEase::quietCall( 'session_start' );
+		@session_start();
 		$backend->unpersist();
 		$this->assertSame( self::SESSIONID . 'x', session_id() );
 		session_write_close();

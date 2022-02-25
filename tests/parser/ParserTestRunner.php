@@ -32,7 +32,6 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use Psr\Log\NullLogger;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Parsoid\ParserTests\ParserHook as ParsoidParserHook;
 use Wikimedia\Parsoid\ParserTests\RawHTML as ParsoidRawHTML;
 use Wikimedia\Parsoid\ParserTests\StyleTag as ParsoidStyleTag;
@@ -1356,9 +1355,7 @@ class ParserTestRunner {
 				MediaWikiServices::getInstance()->getLanguageConverterFactory()
 					->getLanguageConverter( $context->getLanguage() )
 			);
-			AtEase::suppressWarnings();
-			$wrapper->reloadTables();
-			AtEase::restoreWarnings();
+			@$wrapper->reloadTables();
 
 			// Reset context to the restored globals
 			$context->setUser( StubGlobalUser::getRealUser( $GLOBALS['wgUser'] ) );

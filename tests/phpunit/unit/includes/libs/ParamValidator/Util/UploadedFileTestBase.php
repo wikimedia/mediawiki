@@ -4,7 +4,6 @@ namespace Wikimedia\ParamValidator\Util;
 
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
-use Wikimedia\AtEase\AtEase;
 
 abstract class UploadedFileTestBase extends \PHPUnit\Framework\TestCase {
 
@@ -20,7 +19,7 @@ abstract class UploadedFileTestBase extends \PHPUnit\Framework\TestCase {
 			'phpunit-ParamValidator-UploadedFileTest-' . time() . '-' . getmypid() . '-';
 		for ( $i = 0; $i < 10000; $i++ ) {
 			$dir = $base . sprintf( '%04d', $i );
-			if ( AtEase::quietCall( 'mkdir', $dir, 0700, false ) === true ) {
+			if ( @mkdir( $dir, 0700, false ) === true ) {
 				self::$tmpdir = $dir;
 				break;
 			}

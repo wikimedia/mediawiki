@@ -15,7 +15,6 @@ use PHPUnit\Framework\TestResult;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use SebastianBergmann\Comparator\ComparisonFailure;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -2285,12 +2284,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected function markTestSkippedIfNoDiff3() {
 		global $wgDiff3;
 
-		# This check may also protect against code injection in
-		# case of broken installations.
-		AtEase::suppressWarnings();
-		$haveDiff3 = $wgDiff3 && is_file( $wgDiff3 );
-		AtEase::restoreWarnings();
-
+		// This check may also protect against code injection in
+		// case of broken installations.
+		$haveDiff3 = $wgDiff3 && @is_file( $wgDiff3 );
 		if ( !$haveDiff3 ) {
 			$this->markTestSkipped( "Skip test, since diff3 is not configured" );
 		}

@@ -2,7 +2,6 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -2621,10 +2620,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			]
 		];
 
-		AtEase::suppressWarnings();
-		$actual = $be->sanitizeOpHeaders( $input );
-		AtEase::restoreWarnings();
-
+		$actual = @$be->sanitizeOpHeaders( $input );
 		$this->assertEquals( $expected, $actual, "Header sanitized properly" );
 	}
 

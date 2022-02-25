@@ -8,7 +8,6 @@ use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\MockObject\MockObject;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\TestingAccessWrapper;
 
@@ -491,13 +490,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			$callback( $op, $this );
 		}
 
-		// Avoid a complaint about not being able to disable compression
-		AtEase::suppressWarnings();
-		try {
-			$this->assertEquals( $expected, $op->checkLastModified( $timestamp ) );
-		} finally {
-			AtEase::restoreWarnings();
-		}
+		// Ignore complaint about not being able to disable compression
+		$this->assertEquals( $expected, @$op->checkLastModified( $timestamp ) );
 	}
 
 	public function provideCheckLastModified() {
@@ -2790,9 +2784,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		// Some of these paths don't exist and will cause warnings
-		AtEase::suppressWarnings();
-		$actual = OutputPage::transformResourcePath( $conf, $path );
-		AtEase::restoreWarnings();
+		$actual = @OutputPage::transformResourcePath( $conf, $path );
 
 		$this->assertEquals( $expected ?: $path, $actual );
 	}
