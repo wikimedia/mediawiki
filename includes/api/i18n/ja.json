@@ -108,6 +108,7 @@
 	"apihelp-delete-param-pageid": "削除するページIDです。<var>$1title</var> とは同時に使用できません。",
 	"apihelp-delete-param-reason": "削除の理由です。入力しない場合、自動的に生成された理由が使用されます。",
 	"apihelp-delete-param-tags": "タグを変更し、削除記録の項目に適用します。",
+	"apihelp-delete-param-deletetalk": "存在する場合、トークページも削除してください。",
 	"apihelp-delete-param-watch": "そのページを現在の利用者のウォッチリストに追加します。",
 	"apihelp-delete-param-unwatch": "そのページを現在の利用者のウォッチリストから除去します。",
 	"apihelp-delete-param-oldimage": "削除する古い画像の[[Special:ApiHelp/query+imageinfo|action=query&prop=imageinfo&iiprop=archivename]] で取得できるような名前。",
