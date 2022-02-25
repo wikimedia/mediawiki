@@ -23,6 +23,7 @@
 	"require": {
 		"composer/semver": "3.2.6",
 		"cssjanus/cssjanus": "2.1.0",
+		"ext-calendar": "*",
 		"ext-ctype": "*",
 		"ext-dom": "*",
 		"ext-fileinfo": "*",
@@ -79,6 +80,7 @@
 		"zordius/lightncandy": "1.2.6"
 	},
 	"require-dev": {
+		"ext-simplexml": "*",
 		"composer/spdx-licenses": "1.5.5",
 		"doctrine/dbal": "2.13.6||3.1.5",
 		"doctrine/sql-formatter": "1.1.1",
