@@ -102,8 +102,12 @@
 		"ext-apcu": "Local data cache for greatly improved performance",
 		"ext-curl": "Improved http communication abilities",
 		"ext-intl": "ICU integration",
+		"ext-mysqli": "Allows MediaWiki to use MySQL/MariaDB as a database",
 		"ext-openssl": "Cryptographical functions",
+		"ext-pdo": "Allows MediaWiki to use SQLite as a database",
+		"ext-pgsql": "Allows MediaWiki to use PostgreSQL as a database",
 		"ext-wikidiff2": "Diff accelerator",
+		"ext-yaml": "Improved YAML parsing performance",
 		"monolog/monolog": "Flexible debug logging system",
 		"nmred/kafka-php": "Send debug log events to kafka",
 		"wikimedia/avro": "Binary serialization format used with kafka"
