@@ -2099,22 +2099,13 @@ class Linker {
 	 *   escape), or false for no accesskey attribute
 	 */
 	public static function accesskey( $name, $localizer = null ) {
-		if ( isset( self::$accesskeycache[$name] ) ) {
-			return self::$accesskeycache[$name];
+		if ( !isset( self::$accesskeycache[$name] ) ) {
+			if ( !$localizer ) {
+				$localizer = self::getContextFromMain();
+			}
+			$msg = $localizer->msg( "accesskey-$name" );
+			self::$accesskeycache[$name] = $msg->isDisabled() ? false : $msg->plain();
 		}
-
-		if ( !$localizer ) {
-			$localizer = self::getContextFromMain();
-		}
-		$message = $localizer->msg( "accesskey-$name" );
-
-		if ( $message->isDisabled() ) {
-			$accesskey = false;
-		} else {
-			$accesskey = $message->plain();
-		}
-
-		self::$accesskeycache[$name] = $accesskey;
 		return self::$accesskeycache[$name];
 	}
 

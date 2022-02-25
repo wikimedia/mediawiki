@@ -71,7 +71,7 @@ class Licenses extends HTMLFormField {
 		// in the default site language (= get the translation from MediaWiki:Licenses)
 		// Also see https://phabricator.wikimedia.org/T3495
 		$defaultMsg = wfMessage( 'licenses' )->inContentLanguage();
-		if ( !$defaultMsg->exists() || $defaultMsg->plain() === '-' ) {
+		if ( $defaultMsg->isDisabled() ) {
 			$defaultMsg = wfMessage( 'licenses' )->inLanguage(
 				MediaWikiServices::getInstance()->getContentLanguage() );
 		}
