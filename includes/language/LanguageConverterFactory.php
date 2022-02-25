@@ -148,7 +148,7 @@ class LanguageConverterFactory {
 	 * @param Language $lang
 	 * @return ILanguageConverter
 	 */
-	private function instantiateConverter( Language $lang ): ILanguageConverter {
+	private function instantiateConverter( $lang ): ILanguageConverter {
 		$code = mb_strtolower( $lang->getCode() );
 		$spec = $this->converterList[$code] ?? self::DEFAULT_CONVERTER;
 		// ObjectFactory::createObject accepts an array, not just a callable (phan bug)
