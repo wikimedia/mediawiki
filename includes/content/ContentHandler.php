@@ -1421,30 +1421,15 @@ abstract class ContentHandler {
 	 * @stable to override
 	 *
 	 * @param WikiPage $page
-	 * @param ParserCache|null $cache
+	 * @param ParserCache|null $cache deprecated since 1.38 and won't have any effect
 	 * @return ParserOutput
 	 */
 	public function getParserOutputForIndexing( WikiPage $page, ParserCache $cache = null ) {
 		// TODO: MCR: ContentHandler should be called per slot, not for the whole page.
 		// See T190066.
 		$parserOptions = $page->makeParserOptions( 'canonical' );
-		if ( $cache ) {
-			$parserOutput = $cache->get( $page, $parserOptions );
-		}
-
-		if ( empty( $parserOutput ) ) {
-			$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
-			$revisionRecord = $this->latestRevision( $page );
-			$parserOutput =
-				$renderer->getRenderedRevision(
-					$revisionRecord,
-					$parserOptions
-				)->getRevisionParserOutput( [
-					// subclasses may want to add the following here:
-					// 'generate-html' => false,
-				] );
-		}
-		return $parserOutput;
+		$parserOutputAccess = MediaWikiServices::getInstance()->getParserOutputAccess();
+		return $parserOutputAccess->getParserOutput( $page, $parserOptions )->getValue();
 	}
 
 	/**
