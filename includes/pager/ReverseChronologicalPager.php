@@ -37,15 +37,14 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	public $mMonth;
 	/** @var int */
 	public $mDay;
-	/** @var array|null same format as getdate */
+	/** @var string */
 	private $lastHeaderDate;
 
 	/**
-	 * @param string $timestamp
+	 * @param string $date
 	 * @return string
 	 */
-	protected function getHeaderRow( string $timestamp ): string {
-		$user = $this->getUser();
+	protected function getHeaderRow( string $date ): string {
 		$headingClass = $this->isFirstHeaderRow() ?
 			// We use mw-index-pager- prefix here on the anticipation that this method will
 			// eventually be upstreamed to apply to other pagers. For now we constrain the
@@ -58,9 +57,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		$s .= Html::element( 'h4', [
 				'class' => $headingClass,
 			],
-			$this->getLanguage()->userDate(
-				$timestamp, $user
-			)
+			$date
 		);
 		$s .= $this->getStartGroup();
 		return $s;
@@ -70,29 +67,14 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	 * Determines if a header row is needed based on the current state of the IndexPager.
 	 *
 	 * @since 1.38
-	 * @param array $date of current row in format returned by getdate.
+	 * @param string $date Formatted date header
 	 * @return bool
 	 */
-	protected function isHeaderRowNeeded( array $date ): bool {
+	protected function isHeaderRowNeeded( string $date ): bool {
 		if ( !$this->mGroupByDate ) {
 			return false;
 		}
-
-		$showHeading = false;
-		$lastDay = $this->lastHeaderDate['mday'] ?? null;
-		$lastMonth = $this->lastHeaderDate['month'] ?? null;
-		$lastYear = $this->lastHeaderDate['year'] ?? null;
-
-		$showHeading = $lastDay === null || (
-			$date &&
-			$lastMonth && $lastYear &&
-			(
-				$lastDay !== $date['mday'] ||
-				$lastMonth !== $date['month'] ||
-				$lastYear !== $date['year']
-			)
-		);
-		return $date && $showHeading;
+		return $date && $this->lastHeaderDate !== $date;
 	}
 
 	/**
@@ -102,8 +84,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	 * @return bool
 	 */
 	final protected function isFirstHeaderRow(): bool {
-		$lastDay = $this->lastHeaderDate['mday'] ?? null;
-		return $lastDay === null;
+		return $this->lastHeaderDate === null;
 	}
 
 	/**
@@ -111,11 +92,10 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	 *
 	 * @since 1.38
 	 * @param string $timestamp
-	 * @return array|null associative array that matches the return value of getdate
+	 * @return string Formatted date header
 	 */
 	final protected function getDateFromTimestamp( string $timestamp ) {
-		$time = $timestamp ? wfTimestamp( TS_UNIX, $timestamp ) : null;
-		return $time ? getdate( $time ) : null;
+		return $this->getLanguage()->userDate( $timestamp, $this->getUser() );
 	}
 
 	/**
@@ -128,7 +108,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		$timestamp = $row->$timestampField ?? null;
 		$date = $timestamp ? $this->getDateFromTimestamp( $timestamp ) : null;
 		if ( $date && $this->isHeaderRowNeeded( $date ) ) {
-			$s .= $this->getHeaderRow( $timestamp );
+			$s .= $this->getHeaderRow( $date );
 			$this->lastHeaderDate = $date;
 		}
 
