@@ -65,7 +65,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	protected $mTables;
 
 	/**
-	 * @var Language
+	 * @var Language|StubUserLang
 	 */
 	private $mLangObj;
 
@@ -80,7 +80,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	private const CACHE_VERSION_KEY = 'VERSION 7';
 
 	/**
-	 * @param Language $langobj
+	 * @param Language|StubUserLang $langobj
 	 */
 	public function __construct( $langobj ) {
 		$this->deprecatePublicProperty( 'mUcfirst', '1.35', __CLASS__ );

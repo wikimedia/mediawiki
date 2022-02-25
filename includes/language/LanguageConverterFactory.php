@@ -31,6 +31,7 @@ use KuConverter;
 use Language;
 use ShiConverter;
 use SrConverter;
+use StubUserLang;
 use TgConverter;
 use TlyConverter;
 use TrivialLanguageConverter;
@@ -145,7 +146,7 @@ class LanguageConverterFactory {
 	/**
 	 * Returns Converter instance for given language object
 	 *
-	 * @param Language $lang
+	 * @param Language|StubUserLang $lang
 	 * @return ILanguageConverter
 	 */
 	private function instantiateConverter( $lang ): ILanguageConverter {
@@ -165,7 +166,7 @@ class LanguageConverterFactory {
 	/**
 	 * Provide a LanguageConverter for given language
 	 *
-	 * @param Language|null $language for which a LanguageConverter should be provided.
+	 * @param Language|StubUserLang|null $language for which a LanguageConverter should be provided.
 	 * If null then LanguageConverter provided for current content language as returned
 	 * by the callback provided to the constructor.
 	 *
