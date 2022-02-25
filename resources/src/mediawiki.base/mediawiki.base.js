@@ -15,52 +15,41 @@ require( './legacy.wikibits.js' );
  *
  * Similar to the Message class in MediaWiki PHP.
  *
- * Format defaults to 'text'.
- *
  *     @example
  *
  *     var obj, str;
  *     mw.messages.set( {
  *         'hello': 'Hello world',
  *         'hello-user': 'Hello, $1!',
- *         'welcome-user': 'Welcome back to $2, $1! Last visit by $1: $3'
+ *         'welcome-user': 'Welcome back to $2, $1! Last visit by $1: $3',
+ *         'so-unusual': 'You will find: $1'
  *     } );
  *
- *     obj = new mw.Message( mw.messages, 'hello' );
+ *     obj = mw.message( 'hello' );
  *     mw.log( obj.text() );
  *     // Hello world
  *
- *     obj = new mw.Message( mw.messages, 'hello-user', [ 'John Doe' ] );
- *     mw.log( obj.text() );
- *     // Hello, John Doe!
- *
- *     obj = new mw.Message( mw.messages, 'welcome-user', [ 'John Doe', 'Wikipedia', '2 hours ago' ] );
- *     mw.log( obj.text() );
- *     // Welcome back to Wikipedia, John Doe! Last visit by John Doe: 2 hours ago
- *
- *     // Using mw.message shortcut
  *     obj = mw.message( 'hello-user', 'John Doe' );
  *     mw.log( obj.text() );
  *     // Hello, John Doe!
  *
- *     // Using mw.msg shortcut
+ *     obj = mw.message( 'welcome-user', 'John Doe', 'Wikipedia', '2 hours ago' );
+ *     mw.log( obj.text() );
+ *     // Welcome back to Wikipedia, John Doe! Last visit by John Doe: 2 hours ago
+ *
+ *     // Using mw.msg shortcut, always in "text' format.
  *     str = mw.msg( 'hello-user', 'John Doe' );
  *     mw.log( str );
  *     // Hello, John Doe!
  *
  *     // Different formats
- *     obj = new mw.Message( mw.messages, 'hello-user', [ 'John "Wiki" <3 Doe' ] );
+ *     obj = mw.message( 'so-unusual', 'Time "after" <time>' );
  *
- *     obj.format = 'text';
- *     str = obj.toString();
- *     // Same as:
- *     str = obj.text();
- *
- *     mw.log( str );
- *     // Hello, John "Wiki" <3 Doe!
+ *     mw.log( obj.text() );
+ *     // You will find: Time "after" <time>
  *
  *     mw.log( obj.escaped() );
- *     // Hello, John &quot;Wiki&quot; &lt;3 Doe!
+ *     // You will find: Time &quot;after&quot; &lt;time&gt;
  *
  * @class mw.Message
  *
@@ -169,12 +158,10 @@ Message.prototype = {
 	},
 
 	/**
-	 * Change format to 'parse' and convert message to string
+	 * Parse message as wikitext and return HTML.
 	 *
-	 * If jqueryMsg is loaded, this parses the message text from wikitext
-	 * (where supported) to HTML
-	 *
-	 * Otherwise, it is equivalent to plain.
+	 * If jqueryMsg is loaded, this transforms text and parses a subset of supported wikitext
+	 * into HTML. Without jqueryMsg, it is equivalent to #escaped.
 	 *
 	 * @return {string} String form of parsed message
 	 */
@@ -184,10 +171,10 @@ Message.prototype = {
 	},
 
 	/**
-	 * Change format to 'plain' and convert message to string
+	 * Return message plainly.
 	 *
-	 * This substitutes parameters, but otherwise does not change the
-	 * message text.
+	 * This substitutes parameters, but otherwise does not transform the
+	 * message content.
 	 *
 	 * @return {string} String form of plain message
 	 */
@@ -197,12 +184,11 @@ Message.prototype = {
 	},
 
 	/**
-	 * Change format to 'text' and convert message to string
+	 * Format message with text transformations applied.
 	 *
-	 * If jqueryMsg is loaded, {{-transformation is done where supported
-	 * (such as {{plural:}}, {{gender:}}, {{int:}}).
-	 *
-	 * Otherwise, it is equivalent to plain
+	 * If jqueryMsg is loaded, `{{`-transformation is done for supported
+	 * magic words such as `{{plural:}}`, `{{gender:}}`, and `{{int:}}`.
+	 * Without jqueryMsg, it is equivalent to #plain.
 	 *
 	 * @return {string} String form of text message
 	 */
@@ -212,10 +198,9 @@ Message.prototype = {
 	},
 
 	/**
-	 * Change the format to 'escaped' and convert message to string
+	 * Format message and return as escaped text in HTML.
 	 *
-	 * This is equivalent to using the 'text' format (see #text), then
-	 * HTML-escaping the output.
+	 * This is equivalent to the #text format, which is then HTML-escaped.
 	 *
 	 * @return {string} String form of html escaped message
 	 */
