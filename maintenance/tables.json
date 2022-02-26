@@ -2199,11 +2199,11 @@
 	},
 	{
 		"name": "text",
-		"comment": "Holds text of individual page revisions. Field names are a holdover from the 'old' revisions table in MediaWiki 1.4 and earlier: an upgrade will transform that table into the 'text' table to minimize unnecessary churning and downtime. If upgrading, the other fields will be left unused.",
+		"comment": "Holds text of individual page revisions. Field names are a holdover from the 'old' revisions table in MediaWiki 1.4 and earlier: an upgrade will transform that table into the 'text' table to minimize unnecessary churning and downtime. If upgrading, the other fields will be left unused. This table can also hold metadata of files if the metadata is too big to store in img_metadata, oi_metadata or fa_metadata.",
 		"columns": [
 			{
 				"name": "old_id",
-				"comment": "Unique text storage key number. Note that the 'oldid' parameter used in URLs does *not* refer to this number anymore, but to rev_id. content.content_address refers to this column",
+				"comment": "Unique text storage key number. Note that the 'oldid' parameter used in URLs does *not* refer to this number anymore, but to rev_id. content.content_address refers to this column. Also img_metadata, oi_metadata or fa_metadata can refer to this column when being used to store file metadata.",
 				"type": "integer",
 				"options": {
 					"autoincrement": true,
@@ -2733,7 +2733,7 @@
 			},
 			{
 				"name": "img_metadata",
-				"comment": "Extracted Exif metadata stored as a serialized PHP array.",
+				"comment": "Extracted Exif metadata stored as a json array (new system) or serialized PHP array (old system). The json array can contain an address in the text table or external storage.",
 				"type": "blob",
 				"options": {
 					"notnull": true,
