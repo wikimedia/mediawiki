@@ -42,7 +42,7 @@ class MediaWiki {
 	/** @var Config */
 	private $config;
 
-	/** @var string Cache what action this request is */
+	/** @var string|null Cache what action this request is */
 	private $action;
 	/** @var int Class DEFER_* constant; how non-blocking post-response tasks should run */
 	private $postSendStrategy;

@@ -297,7 +297,7 @@ class EditPage implements IEditObject {
 	/** @var string */
 	public $sectiontitle = '';
 
-	/** @var string
+	/** @var string|null
 	 * Timestamp from the first time the edit form was rendered.
 	 */
 	public $starttime = '';

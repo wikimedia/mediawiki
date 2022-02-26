@@ -28,7 +28,7 @@ use Wikimedia\ScopedCallback;
  * This will work on any MediaWiki installation.
  */
 class LCStoreDB implements LCStore {
-	/** @var string Language code */
+	/** @var string|null Language code */
 	private $code;
 	/** @var array Server configuration map */
 	private $server;

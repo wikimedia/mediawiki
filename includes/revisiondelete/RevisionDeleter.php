@@ -205,7 +205,7 @@ class RevisionDeleter {
 	 * Future code for other things may also track
 	 * other types of revision-specific changes.
 	 * @param string $typeName
-	 * @return string One of log_id/rev_id/fa_id/ar_timestamp/oi_archive_name
+	 * @return string|null One of log_id/rev_id/fa_id/ar_timestamp/oi_archive_name
 	 */
 	public static function getRelationType( $typeName ) {
 		$typeName = self::getCanonicalTypeName( $typeName );
@@ -219,7 +219,7 @@ class RevisionDeleter {
 	 * Get the user right required for the RevDel type
 	 * @since 1.22
 	 * @param string $typeName
-	 * @return string User right
+	 * @return string|null User right
 	 */
 	public static function getRestriction( $typeName ) {
 		$typeName = self::getCanonicalTypeName( $typeName );
@@ -233,7 +233,7 @@ class RevisionDeleter {
 	 * Get the revision deletion constant for the RevDel type
 	 * @since 1.22
 	 * @param string $typeName
-	 * @return int RevDel constant
+	 * @return int|null RevDel constant
 	 */
 	public static function getRevdelConstant( $typeName ) {
 		$typeName = self::getCanonicalTypeName( $typeName );

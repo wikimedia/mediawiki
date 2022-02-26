@@ -37,7 +37,7 @@ class MWExceptionHandler {
 	/** @var string Error reported by direct logException() call */
 	public const CAUGHT_BY_OTHER = 'other';
 
-	/** @var string */
+	/** @var string|null */
 	protected static $reservedMemory;
 
 	/**

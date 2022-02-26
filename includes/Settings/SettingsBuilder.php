@@ -38,7 +38,7 @@ class SettingsBuilder {
 	/** @var ConfigBuilder */
 	private $configSink;
 
-	/** @var Config */
+	/** @var Config|null */
 	private $config;
 
 	/** @var SettingsSource[] */

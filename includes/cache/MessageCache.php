@@ -1392,7 +1392,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * for which MediaWiki:msgkey exists. If $code is another language code, this
 	 * will ONLY return message keys for which MediaWiki:msgkey/$code exists.
 	 * @param string $code Language code
-	 * @return string[] Array of message keys
+	 * @return string[]|null Array of message keys
 	 */
 	public function getAllMessageKeys( $code ) {
 		$this->load( $code );

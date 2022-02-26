@@ -385,14 +385,15 @@ class BlockUser {
 		$block->isUsertalkEditAllowed( !$this->isUserTalkEditBlocked );
 		$block->setHideName( $this->isHideUser );
 
-		if ( $block->getId() === null ) {
+		$blockId = $block->getId();
+		if ( $blockId === null ) {
 			// Block wasn't inserted into the DB yet
 			$block->setRestrictions( $this->blockRestrictions );
 		} else {
 			// Block is in the DB, we need to set restrictions through a service
 			$block->setRestrictions(
 				$this->blockRestrictionStore->setBlockId(
-					$block->getId(),
+					$blockId,
 					$this->blockRestrictions
 				)
 			);

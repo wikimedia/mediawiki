@@ -75,7 +75,7 @@ class SwiftFileBackend extends FileBackendStore {
 	protected $authCreds;
 	/** @var int UNIX timestamp */
 	protected $authSessionTimestamp = 0;
-	/** @var int UNIX timestamp */
+	/** @var int|null UNIX timestamp */
 	protected $authErrorTimestamp = null;
 
 	/** @var bool Whether the server is an Ceph RGW */

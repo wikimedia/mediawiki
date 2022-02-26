@@ -32,7 +32,7 @@ class LCStoreStaticArray implements LCStore {
 	/** @var array Localisation data. */
 	private $data = [];
 
-	/** @var string File name. */
+	/** @var string|null File name. */
 	private $fname = null;
 
 	/** @var string Directory for cache files. */
