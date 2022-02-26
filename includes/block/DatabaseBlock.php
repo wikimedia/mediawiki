@@ -604,12 +604,16 @@ class DatabaseBlock extends AbstractBlock {
 			}
 			return false;
 		}
+		$blocker = $this->getBlocker();
+		if ( !$blocker ) {
+			throw new \RuntimeException( __METHOD__ . ': this block does not have a blocker' );
+		}
 
 		# Make a new block object with the desired properties.
 		$autoblock = new DatabaseBlock;
 		wfDebug( "Autoblocking {$this->getTargetName()}@" . $autoblockIP );
 		$autoblock->setTarget( $autoblockIP );
-		$autoblock->setBlocker( $this->getBlocker() );
+		$autoblock->setBlocker( $blocker );
 		$autoblock->setReason(
 			wfMessage(
 				'autoblocker',
