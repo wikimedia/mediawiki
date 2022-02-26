@@ -648,11 +648,11 @@ class WebInstaller extends Installer {
 	 * Get HTML for an information message box with an icon.
 	 *
 	 * @param string|HtmlArmor $text Wikitext to be parsed (from Message::plain) or raw HTML.
-	 * @param string|bool $icon Icon name, file in mw-config/images. Default: false
-	 * @param string|bool $class Additional class name to add to the wrapper div. Default: false.
+	 * @param string|false $icon Icon name, file in mw-config/images. Default: false
+	 * @param string $class Additional class name to add to the wrapper div. Default: Empty string.
 	 * @return string HTML
 	 */
-	public function getInfoBox( $text, $icon = false, $class = false ) {
+	public function getInfoBox( $text, $icon = false, $class = '' ) {
 		$html = ( $text instanceof HtmlArmor ) ?
 			HtmlArmor::getHtml( $text ) :
 			$this->parse( $text, true );
@@ -727,7 +727,7 @@ class WebInstaller extends Installer {
 	 * label before it.
 	 *
 	 * @param string $msg
-	 * @param string $forId
+	 * @param string|false $forId
 	 * @param string $contents HTML
 	 * @param string $helpData
 	 * @return string HTML
