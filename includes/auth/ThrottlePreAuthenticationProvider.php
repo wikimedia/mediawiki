@@ -138,7 +138,7 @@ class ThrottlePreAuthenticationProvider extends AbstractPreAuthenticationProvide
 		}
 		$result = false;
 		foreach ( $usernames as $name ) {
-			$r = $this->passwordAttemptThrottle->increase( $name, $ip, __METHOD__ );
+			$r = $this->passwordAttemptThrottle->increase( 'allusers', $ip, __METHOD__ );
 			if ( $r && ( !$result || $result['wait'] < $r['wait'] ) ) {
 				$result = $r;
 			}
