@@ -2356,7 +2356,7 @@ function wfMemoryLimit( $newLimit ) {
 	$oldLimit = wfShorthandToInteger( ini_get( 'memory_limit' ) );
 	// If the INI config is already unlimited, there is nothing larger
 	if ( $oldLimit != -1 ) {
-		$newLimit = wfShorthandToInteger( $newLimit );
+		$newLimit = wfShorthandToInteger( (string)$newLimit );
 		if ( $newLimit == -1 ) {
 			wfDebug( "Removing PHP's memory limit" );
 			AtEase::suppressWarnings();

@@ -149,7 +149,7 @@ class JpegHandler extends ExifBitmapHandler {
 		if ( $jpegTran && is_executable( $jpegTran ) ) {
 			$command = Shell::command( $jpegTran,
 				'-rotate',
-				$rotation,
+				(string)$rotation,
 				'-outfile',
 				$params['dstPath'],
 				$params['srcPath']

@@ -105,7 +105,7 @@ class SpecialExport extends SpecialPage {
 				/**
 				 * Same implementation as above, so same @todo
 				 */
-				$nspages = $this->getPagesFromNamespace( $nsindex );
+				$nspages = $this->getPagesFromNamespace( (int)$nsindex );
 				if ( $nspages ) {
 					$page .= "\n" . implode( "\n", $nspages );
 				}

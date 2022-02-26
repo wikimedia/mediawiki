@@ -499,7 +499,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 */
 	private function getTableNameByShard( $index ) {
 		if ( $index !== null && $this->numTableShards > 1 ) {
-			$decimals = strlen( $this->numTableShards - 1 );
+			$decimals = strlen( (string)( $this->numTableShards - 1 ) );
 
 			return $this->tableName . sprintf( "%0{$decimals}d", $index );
 		}
@@ -1103,7 +1103,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			// 67 bit integral portion of UNIX timestamp, qualified
 			\Wikimedia\base_convert(
 				// 35 bit integral seconds portion of UNIX timestamp
-				str_pad( base_convert( $seconds, 10, 2 ), 35, '0', STR_PAD_LEFT ) .
+				str_pad( base_convert( (string)$seconds, 10, 2 ), 35, '0', STR_PAD_LEFT ) .
 				// 32 bit ID of the primary database server handling the write
 				str_pad( base_convert( $id, 10, 2 ), 32, '0', STR_PAD_LEFT ),
 				2,
@@ -1484,7 +1484,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				if ( $res->numRows() ) {
 					$row = $res->current();
 					if ( $minExpUnix === null ) {
-						$minExpUnix = ConvertibleTimestamp::convert( TS_UNIX, $row->exptime );
+						$minExpUnix = (int)ConvertibleTimestamp::convert( TS_UNIX, $row->exptime );
 						$totalSeconds = max( $cutoffUnix - $minExpUnix, 1 );
 					}
 
@@ -1507,7 +1507,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 				if ( $progress && is_callable( $progress['fn'] ) ) {
 					if ( $totalSeconds ) {
-						$maxExpUnix = ConvertibleTimestamp::convert( TS_UNIX, $maxExp );
+						$maxExpUnix = (int)ConvertibleTimestamp::convert( TS_UNIX, $maxExp );
 						$remainingSeconds = $cutoffUnix - $maxExpUnix;
 						$processedSeconds = max( $totalSeconds - $remainingSeconds, 0 );
 						// For example, if we've done 1.5 table shard, and are thus half-way on the

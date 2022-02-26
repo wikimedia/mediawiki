@@ -176,7 +176,7 @@ class SpecialComparePages extends SpecialPage {
 		if ( $value === '' || $value === null ) {
 			return true;
 		}
-		$revisionRecord = $this->revisionLookup->getRevisionById( $value );
+		$revisionRecord = $this->revisionLookup->getRevisionById( (int)$value );
 		if ( $revisionRecord === null ) {
 			return $this->msg( 'compare-revision-not-exists' )->parseAsBlock();
 		}

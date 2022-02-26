@@ -1738,7 +1738,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $digits > 0 ) {
 			$numShards = $base ** $digits;
 			for ( $index = 0; $index < $numShards; $index++ ) {
-				$shards[] = '.' . Wikimedia\base_convert( $index, 10, $base, $digits );
+				$shards[] = '.' . Wikimedia\base_convert( (string)$index, 10, $base, $digits );
 			}
 		}
 

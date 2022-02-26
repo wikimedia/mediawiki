@@ -117,8 +117,8 @@ class HistoryAction extends FormlessAction {
 			$day = cal_days_in_month( CAL_GREGORIAN, $month, $year );
 
 			// Left pad the months and days
-			$month = str_pad( $month, 2, "0", STR_PAD_LEFT );
-			$day = str_pad( $day, 2, "0", STR_PAD_LEFT );
+			$month = str_pad( (string)$month, 2, "0", STR_PAD_LEFT );
+			$day = str_pad( (string)$day, 2, "0", STR_PAD_LEFT );
 		}
 
 		$before = $request->getVal( 'date-range-to' );

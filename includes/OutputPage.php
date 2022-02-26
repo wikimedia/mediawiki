@@ -2637,7 +2637,7 @@ class OutputPage extends ContextSource {
 			if ( $this->getHookRunner()->onBeforePageRedirect( $this, $redirect, $code ) ) {
 				if ( $code == '301' || $code == '303' ) {
 					if ( !$config->get( 'DebugRedirects' ) ) {
-						$response->statusHeader( $code );
+						$response->statusHeader( (int)$code );
 					}
 					$this->mLastModified = wfTimestamp( TS_RFC2822 );
 				}

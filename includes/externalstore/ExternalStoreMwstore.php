@@ -91,7 +91,7 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 	public function store( $backend, $data ) {
 		$be = $this->fbGroup->get( $backend );
 		// Get three random base 36 characters to act as shard directories
-		$rand = Wikimedia\base_convert( mt_rand( 0, 46655 ), 10, 36, 3 );
+		$rand = Wikimedia\base_convert( (string)mt_rand( 0, 46655 ), 10, 36, 3 );
 		// Make sure ID is roughly lexicographically increasing for performance
 		$id = str_pad( UIDGenerator::newTimestampedUID128( 32 ), 26, '0', STR_PAD_LEFT );
 		// Segregate items by DB domain ID for the sake of bookkeeping

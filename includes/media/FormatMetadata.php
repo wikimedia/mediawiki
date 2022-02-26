@@ -160,9 +160,9 @@ class FormatMetadata extends ContextSource {
 				) {
 					continue;
 				}
-				$vals = str_pad( intval( $h[0] / $h[1] ), 2, '0', STR_PAD_LEFT )
-					. ':' . str_pad( intval( $m[0] / $m[1] ), 2, '0', STR_PAD_LEFT )
-					. ':' . str_pad( intval( $s[0] / $s[1] ), 2, '0', STR_PAD_LEFT );
+				$vals = str_pad( (string)( (int)$h[0] / (int)$h[1] ), 2, '0', STR_PAD_LEFT )
+					. ':' . str_pad( (string)( (int)$m[0] / (int)$m[1] ), 2, '0', STR_PAD_LEFT )
+					. ':' . str_pad( (string)( (int)$s[0] / (int)$s[1] ), 2, '0', STR_PAD_LEFT );
 
 				try {
 					$time = wfTimestamp( TS_MW, '1971:01:01 ' . $vals );
@@ -861,7 +861,7 @@ class FormatMetadata extends ContextSource {
 							// need to expand this earlier to calculate fNumber
 							list( $n, $d ) = explode( '/', $val );
 							if ( is_numeric( $n ) && is_numeric( $d ) ) {
-								$val = $n / $d;
+								$val = (int)$n / (int)$d;
 							}
 						}
 						if ( is_numeric( $val ) ) {
@@ -1372,7 +1372,7 @@ class FormatMetadata extends ContextSource {
 		}
 		if ( preg_match( '/^(-?\d+)\/(\d+)$/', $num, $m ) ) {
 			if ( $m[2] != 0 ) {
-				$newNum = $m[1] / $m[2];
+				$newNum = (int)$m[1] / (int)$m[2];
 				if ( $round !== false ) {
 					$newNum = round( $newNum, $round );
 				}

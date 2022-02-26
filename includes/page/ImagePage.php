@@ -533,7 +533,7 @@ class ImagePage extends Article {
 					];
 					$options = [];
 					for ( $i = 1; $i <= $count; $i++ ) {
-						$options[] = Xml::option( $lang->formatNum( $i ), $i, $i == $page );
+						$options[] = Xml::option( $lang->formatNum( $i ), (string)$i, $i == $page );
 					}
 					$select = Xml::tags( 'select',
 						[ 'id' => 'pageselector', 'name' => 'page' ],

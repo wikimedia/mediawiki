@@ -95,7 +95,7 @@ class PoolCounterRedis extends PoolCounter {
 
 		$this->keySha1 = sha1( $this->key );
 		$met = ini_get( 'max_execution_time' ); // usually 0 in CLI mode
-		$this->lockTTL = $met ? 2 * $met : 3600;
+		$this->lockTTL = $met ? 2 * (int)$met : 3600;
 
 		if ( self::$active === null ) {
 			self::$active = [];
@@ -282,7 +282,7 @@ LUA;
 
 		if ( $slot !== 'w' ) {
 			$this->slot = $slot;
-			$this->slotTime = $slotTime;
+			$this->slotTime = (int)$slotTime;
 			$this->onRelease = $doWakeup;
 			self::$active[$this->session] = $this;
 		}

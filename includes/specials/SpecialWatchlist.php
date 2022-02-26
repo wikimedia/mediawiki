@@ -905,7 +905,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			'span',
 			$attribs,
 			// not using Html::checkLabel because that would escape the contents
-			Html::check( $name, (int)$value, [ 'id' => $name ] ) . "\n" . Html::rawElement(
+			Html::check( $name, (bool)$value, [ 'id' => $name ] ) . "\n" . Html::rawElement(
 				'label',
 				$attribs + [ 'for' => $name ],
 				// <nowiki/> at beginning to avoid messages with "$1 ..." being parsed as pre tags
@@ -923,7 +923,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 */
 	protected function countItems() {
 		$count = $this->watchedItemStore->countWatchedItems( $this->getUser() );
-		return floor( $count / 2 );
+		return (int)floor( $count / 2 );
 	}
 
 	/**

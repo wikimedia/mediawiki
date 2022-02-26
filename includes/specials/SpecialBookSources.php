@@ -87,9 +87,9 @@ class SpecialBookSources extends SpecialPage {
 				if ( $isbn[$i] === 'X' ) {
 					return false;
 				} elseif ( $i % 2 == 0 ) {
-					$sum += $isbn[$i];
+					$sum += (int)$isbn[$i];
 				} else {
-					$sum += 3 * $isbn[$i];
+					$sum += 3 * (int)$isbn[$i];
 				}
 			}
 
@@ -102,7 +102,7 @@ class SpecialBookSources extends SpecialPage {
 				if ( $isbn[$i] === 'X' ) {
 					return false;
 				}
-				$sum += $isbn[$i] * ( $i + 1 );
+				$sum += (int)$isbn[$i] * ( $i + 1 );
 			}
 
 			$check = $sum % 11;

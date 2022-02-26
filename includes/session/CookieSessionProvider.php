@@ -303,7 +303,7 @@ class CookieSessionProvider extends SessionProvider {
 		if ( $loggedOut + 86400 > time() &&
 			$loggedOut !== (int)$this->getCookie( $request, 'LoggedOut', $this->cookieOptions['prefix'] )
 		) {
-			$request->response()->setCookie( 'LoggedOut', $loggedOut, $loggedOut + 86400,
+			$request->response()->setCookie( 'LoggedOut', (string)$loggedOut, $loggedOut + 86400,
 				$this->cookieOptions );
 		}
 	}
