@@ -276,6 +276,12 @@ class DatabaseBlockStore {
 			'$block->getWikiId()',
 			'must belong to the local wiki.'
 		);
+		$blockId = $block->getId();
+		if ( !$blockId ) {
+			throw new MWException(
+				__METHOD__ . " requires that a block id be set\n"
+			);
+		}
 
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$row = $this->getArrayForDatabaseBlock( $block, $dbw );
@@ -284,7 +290,7 @@ class DatabaseBlockStore {
 		$result = $dbw->update(
 			'ipblocks',
 			$row,
-			[ 'ipb_id' => $block->getId() ],
+			[ 'ipb_id' => $blockId ],
 			__METHOD__
 		);
 
@@ -293,7 +299,7 @@ class DatabaseBlockStore {
 		if ( $restrictions !== null ) {
 			// An empty array should remove all of the restrictions.
 			if ( empty( $restrictions ) ) {
-				$success = $this->blockRestrictionStore->deleteByBlockId( $block->getId() );
+				$success = $this->blockRestrictionStore->deleteByBlockId( $blockId );
 			} else {
 				$success = $this->blockRestrictionStore->update( $restrictions );
 			}
@@ -306,23 +312,23 @@ class DatabaseBlockStore {
 			$dbw->update(
 				'ipblocks',
 				$this->getArrayForAutoblockUpdate( $block ),
-				[ 'ipb_parent_block_id' => $block->getId() ],
+				[ 'ipb_parent_block_id' => $blockId ],
 				__METHOD__
 			);
 
 			// Only update the restrictions if they have been modified.
 			if ( $restrictions !== null ) {
 				$this->blockRestrictionStore->updateByParentBlockId(
-					$block->getId(),
+					$blockId,
 					$restrictions
 				);
 			}
 		} else {
 			// autoblock no longer required, delete corresponding autoblock(s)
-			$this->blockRestrictionStore->deleteByParentBlockId( $block->getId() );
+			$this->blockRestrictionStore->deleteByParentBlockId( $blockId );
 			$dbw->delete(
 				'ipblocks',
-				[ 'ipb_parent_block_id' => $block->getId() ],
+				[ 'ipb_parent_block_id' => $blockId ],
 				__METHOD__
 			);
 		}
@@ -331,7 +337,7 @@ class DatabaseBlockStore {
 
 		if ( $result ) {
 			$autoBlockIds = $this->doRetroactiveAutoblock( $block );
-			return [ 'id' => $block->getId(), 'autoIds' => $autoBlockIds ];
+			return [ 'id' => $blockId, 'autoIds' => $autoBlockIds ];
 		}
 
 		return false;
