@@ -61,7 +61,7 @@ abstract class Action implements MessageLocalizer {
 	/**
 	 * IContextSource if specified; otherwise we'll use the Context from the Page
 	 * @since 1.17
-	 * @var IContextSource
+	 * @var IContextSource|null
 	 */
 	protected $context;
 

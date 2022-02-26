@@ -30,11 +30,11 @@ class SwiftVirtualRESTService extends VirtualRESTService {
 	protected $authCreds;
 	/** @var int UNIX timestamp */
 	protected $authSessionTimestamp = 0;
-	/** @var int UNIX timestamp */
+	/** @var int|null UNIX timestamp */
 	protected $authErrorTimestamp = null;
-	/** @var int */
+	/** @var int|null */
 	protected $authCachedStatus = null;
-	/** @var string */
+	/** @var string|null */
 	protected $authCachedReason = null;
 
 	/**

@@ -39,7 +39,7 @@ class LCStoreCDB implements LCStore {
 	/** @var Writer|null */
 	private $writer;
 
-	/** @var string Current language code */
+	/** @var string|null Current language code */
 	private $currentLang;
 
 	/** @var string Cache directory */

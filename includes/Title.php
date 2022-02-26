@@ -121,7 +121,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	private $mForcedContentModel = false;
 
-	/** @var int Estimated number of revisions; null of not loaded */
+	/** @var int|null Estimated number of revisions; null of not loaded */
 	private $mEstimateRevisions;
 
 	/**

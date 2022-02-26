@@ -278,7 +278,7 @@ class MagicWord {
 	 *
 	 * @param string $text
 	 *
-	 * @return string
+	 * @return string|null
 	 */
 	public function matchVariableStartToEnd( $text ) {
 		$matches = [];

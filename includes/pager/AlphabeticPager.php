@@ -102,7 +102,7 @@ abstract class AlphabeticPager extends IndexPager {
 	 *
 	 * @stable to override
 	 *
-	 * @return array
+	 * @return array|null
 	 */
 	protected function getOrderTypeMessages() {
 		return null;

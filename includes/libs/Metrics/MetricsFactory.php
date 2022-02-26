@@ -218,7 +218,7 @@ class MetricsFactory {
 	 *
 	 * @param string $name
 	 * @param string $requested_type
-	 * @return CounterMetric|GaugeMetric|TimingMetric
+	 * @return CounterMetric|GaugeMetric|TimingMetric|null
 	 * @throws TypeError
 	 */
 	private function getCachedMetric( string $name, string $requested_type ) {

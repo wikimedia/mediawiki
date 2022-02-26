@@ -58,7 +58,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	/** @var string One of the ENGINE_* constants. */
 	private $engine = self::ENGINE_PHP;
 
-	/** @var string Path to an executable to be used as the diff engine. */
+	/** @var string|null Path to an executable to be used as the diff engine. */
 	private $externalEngine;
 
 	/** @inheritDoc */

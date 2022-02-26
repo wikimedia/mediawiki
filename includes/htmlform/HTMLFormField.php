@@ -1225,7 +1225,7 @@ abstract class HTMLFormField {
 	/**
 	 * Get options and make them into arrays suitable for OOUI.
 	 * @stable to override
-	 * @return array Options for inclusion in a select or whatever.
+	 * @return array|null Options for inclusion in a select or whatever.
 	 */
 	public function getOptionsOOUI() {
 		$oldoptions = $this->getOptions();
