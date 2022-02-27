@@ -62,7 +62,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	/**
 	 * @var ReplacementArray[]|bool[]
 	 */
-	protected $mTables;
+	protected $mTables = [];
 
 	/**
 	 * @var Language|StubUserLang
@@ -87,7 +87,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$this->deprecatePublicProperty( 'mConvRuleTitle', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mUserVariant', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mHeaderVariant', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mMaxDepth = 10', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mMaxDepth', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mVarSeparatorPattern', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mLangObj', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mTablesLoaded', '1.35', __CLASS__ );
@@ -1099,8 +1099,6 @@ abstract class LanguageConverter implements ILanguageConverter {
 		}
 
 		$this->mTablesLoaded = true;
-		// Do not use null as starting value, as that would confuse phan a lot.
-		$this->mTables = [];
 		$cache = ObjectCache::getInstance( $languageConverterCacheType );
 		$cacheKey = $cache->makeKey( 'conversiontables', $this->getMainCode() );
 		if ( $fromCache ) {
@@ -1113,8 +1111,6 @@ abstract class LanguageConverter implements ILanguageConverter {
 			$this->loadDefaultTables();
 			foreach ( $this->getVariants() as $var ) {
 				$cached = $this->parseCachedTable( $var );
-				// @phan-suppress-next-next-line PhanTypeArraySuspiciousNullable
-				// FIXME: $this->mTables could theoretically be null here
 				$this->mTables[$var]->mergeArray( $cached );
 			}
 
@@ -1140,8 +1136,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 */
 	private function reloadTables() {
 		if ( $this->mTables ) {
-			// @phan-suppress-next-line PhanTypeObjectUnsetDeclaredProperty
-			unset( $this->mTables );
+			$this->mTables = [];
 		}
 
 		$this->mTablesLoaded = false;
