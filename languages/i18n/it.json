@@ -142,7 +142,8 @@
 			"ZioNicco",
 			"לערי ריינהארט",
 			"아라",
-			"Mannivu"
+			"Mannivu",
+			"GpieroMW"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -172,13 +173,13 @@
 	"tog-oldsig": "La tua firma attuale:",
 	"tog-fancysig": "Gestisci la firma come wikitesto (senza collegamento automatico)",
 	"tog-uselivepreview": "Mostra anteprime senza ricaricare la pagina",
-	"tog-forceeditsummary": "Chiedi conferma se il campo oggetto è vuoto (o l'oggetto predefinito per l'annullamento)",
+	"tog-forceeditsummary": "Chiedi conferma se il campo oggetto è vuoto (o contiene l'oggetto predefinito per l'annullamento)",
 	"tog-watchlisthideown": "Nascondi le mie modifiche negli osservati speciali",
 	"tog-watchlisthidebots": "Nascondi le modifiche dei bot negli osservati speciali",
 	"tog-watchlisthideminor": "Nascondi le modifiche minori negli osservati speciali",
 	"tog-watchlisthideliu": "Nascondi le modifiche degli utenti registrati negli osservati speciali",
 	"tog-watchlistreloadautomatically": "Ricarica automaticamente l'elenco degli osservati speciali ogni volta che si modifica un filtro (richiede JavaScript)",
-	"tog-watchlistunwatchlinks": "Aggiungi marcatori diretti ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) per seguire/non seguire le modifiche alle pagine (richiede JavaScript per utilizzare questa funzionalità)",
+	"tog-watchlistunwatchlinks": "Aggiungi marcatori diretti ({{int:Watchlist-unwatch-undo}}/{{int:Watchlist-unwatch}}) per seguire/non seguire le modifiche alle pagine (richiede JavaScript per utilizzare questa funzionalità)",
 	"tog-watchlisthideanons": "Nascondi le modifiche degli utenti anonimi negli osservati speciali",
 	"tog-watchlisthidepatrolled": "Nascondi le modifiche verificate negli osservati speciali",
 	"tog-watchlisthidecategorization": "Nascondi la categorizzazione delle pagine",
@@ -972,6 +973,7 @@
 	"rev-deleted-event": "(dettagli del registro rimossi)",
 	"rev-deleted-user-contribs": "[nome utente o indirizzo IP rimosso - edit nascosto dalla cronologia]",
 	"rev-deleted-text-permission": "Questa versione della pagina è stata <strong>cancellata</strong>.\nConsulta il [{{fullurl:{{#Special:Log}}/delete|page=$1}} registro delle cancellazioni] per ulteriori dettagli.",
+	"rev-suppressed-text": "Questa versione di pagina è stata <strong>soppressa</strong>.",
 	"rev-suppressed-text-permission": "Questa versione della pagina è stata <strong>soppressa</strong>.\nConsulta il [{{fullurl:{{#Special:Log}}/suppress|page=$1}} registro delle soppressioni] per ulteriori dettagli.",
 	"rev-deleted-text-unhide": "Questa versione della pagina è stata <strong>cancellata</strong>.\nConsulta il [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro delle cancellazioni] per ulteriori dettagli.\nAgli amministratori è ancora consentito [$1 visualizzare questa versione] se necessario.",
 	"rev-suppressed-text-unhide": "Questa versione della pagina è stata <strong>soppressa</strong>.\nConsulta il [{{fullurl:{{#Special:Log}}/suppress|page=$1}} registro delle soppressioni] per ulteriori dettagli.\nPuoi ancora [$1 visualizzare questa versione] se necessario.",
