@@ -3,7 +3,7 @@
 	"private": true,
 	"scripts": {
 		"api-testing": "mocha --timeout 0 --recursive tests/api-testing",
-		"minify-svg": "svgo --config=.svgo.config.js -q -r -f resources/src",
+		"minify-svg": "svgo --config=.svgo.config.js --quiet --recursive --folder resources/src",
 		"lint": "grunt lint",
 		"test": "grunt lint && npm run doc",
 		"qunit": "grunt qunit",
@@ -35,7 +35,7 @@
 		"karma-qunit": "4.1.2",
 		"qunit": "2.18.0",
 		"stylelint-config-wikimedia": "0.12.1",
-		"svgo": "2.3.1",
+		"svgo": "2.8.0",
 		"wdio-mediawiki": "file:tests/selenium/wdio-mediawiki",
 		"webdriverio": "7.16.13"
 	}
