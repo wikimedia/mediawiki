@@ -5668,8 +5668,6 @@ List of core tags to enable.
 @see \ChangeTags::TAG_MANUAL_REVERT
 @see \ChangeTags::TAG_REVERTED
 @see \ChangeTags::TAG_SERVER_SIDE_UPLOAD
-@see \ChangeTags::TAG_ADD_MEDIA
-@see \ChangeTags::TAG_REMOVE_MEDIA
 
 # UnwatchedPageThreshold {#UnwatchedPageThreshold}
 If set to an integer, pages that are watched by this many users or more
