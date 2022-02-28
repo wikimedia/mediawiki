@@ -73,7 +73,7 @@ class HTMLRestrictionsField extends HTMLTextAreaField {
 	 *   false to fail validation without displaying an error.
 	 */
 	public function validate( $value, $alldata ) {
-		if ( $this->isDisabled( $alldata ) ) {
+		if ( $this->isHidden( $alldata ) ) {
 			return true;
 		}
 
