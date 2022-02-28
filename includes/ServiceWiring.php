@@ -988,7 +988,7 @@ return [
 			$clusterCache,
 			$srvCache,
 			$services->getContentLanguage(),
-			$services->getLanguageConverterFactory()->getLanguageConverter(),
+			$services->getLanguageConverterFactory(),
 			$logger,
 			[ 'useDB' => $mainConfig->get( 'UseDatabaseMessages' ) ],
 			$services->getLanguageFactory(),
