@@ -162,7 +162,7 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 
 		$this->assertStringContainsString( $firstHeader, $html );
 		$this->assertStringContainsString( $secondHeader, $html );
-		$this->assertStringContainsString( '<div id="pagehistory"', $html );
+		$this->assertStringContainsString( '<section id="pagehistory"', $html );
 	}
 
 	/**

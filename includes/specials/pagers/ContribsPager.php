@@ -622,6 +622,20 @@ class ContribsPager extends RangeChronologicalPager {
 	}
 
 	/**
+	 * @inheritDoc
+	 */
+	protected function getStartBody() {
+		return "<section class='mw-pager-body'>\n";
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	protected function getEndBody() {
+		return "</section>\n";
+	}
+
+	/**
 	 * If the object looks like a revision row, or corresponds to a previously
 	 * cached revision, return the RevisionRecord. Otherwise, return null.
 	 *
