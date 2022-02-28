@@ -389,6 +389,7 @@ class Names {
 		'ro' => 'română', # Romanian
 		'roa-rup' => 'armãneashti', # Aromanian (deprecated code, 'rup' exists in ISO 639-3)
 		'roa-tara' => 'tarandíne', # Tarantino ('nap-x-tara')
+		'rsk' => 'руски', # Pannonian Rusyn
 		'ru' => 'русский', # Russian
 		'rue' => 'русиньскый', # Rusyn
 		'rup' => 'armãneashti', # Aromanian
