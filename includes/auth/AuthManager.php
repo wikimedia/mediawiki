@@ -32,6 +32,7 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\User\BotPasswordStore;
+use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
@@ -138,6 +139,9 @@ class AuthManager implements LoggerAwareInterface {
 
 	/** Auto-creation is due to a Maintenance script */
 	public const AUTOCREATE_SOURCE_MAINT = '::Maintenance::';
+
+	/** Auto-creation is due to temporary account creation on page save */
+	public const AUTOCREATE_SOURCE_TEMP = TempUserCreator::class;
 
 	/** @var WebRequest */
 	private $request;
@@ -1630,16 +1634,19 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param User $user User to auto-create
 	 * @param string $source What caused the auto-creation? This must be one of:
 	 *  - the ID of a PrimaryAuthenticationProvider,
-	 *  - the constant self::AUTOCREATE_SOURCE_SESSION, or
-	 *  - the constant AUTOCREATE_SOURCE_MAINT.
+	 *  - one of the self::AUTOCREATE_SOURCE_* constants
 	 * @param bool $login Whether to also log the user in
 	 * @param bool $log Whether to generate a user creation log entry (since 1.36)
 	 * @return Status Good if user was created, Ok if user already existed, otherwise Fatal
 	 */
 	public function autoCreateUser( User $user, $source, $login = true, $log = true ) {
-		if ( $source !== self::AUTOCREATE_SOURCE_SESSION &&
-			$source !== self::AUTOCREATE_SOURCE_MAINT &&
-			!$this->getAuthenticationProvider( $source ) instanceof PrimaryAuthenticationProvider
+		$validSources = [
+			self::AUTOCREATE_SOURCE_SESSION,
+			self::AUTOCREATE_SOURCE_MAINT,
+			self::AUTOCREATE_SOURCE_TEMP
+		];
+		if ( !in_array( $source, $validSources, true )
+			&& !$this->getAuthenticationProvider( $source ) instanceof PrimaryAuthenticationProvider
 		) {
 			throw new \InvalidArgumentException( "Unknown auto-creation source: $source" );
 		}
@@ -1714,7 +1721,9 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		// Is the username creatable?
-		if ( !$this->userNameUtils->isCreatable( $username ) ) {
+		if ( $source !== self::AUTOCREATE_SOURCE_TEMP
+			&& !$this->userNameUtils->isCreatable( $username )
+		) {
 			$this->logger->debug( __METHOD__ . ': name "{username}" is not creatable', [
 				'username' => $username,
 			] );
@@ -1858,7 +1867,8 @@ class AuthManager implements LoggerAwareInterface {
 		ScopedCallback::consume( $trxProfilerSilencedScope );
 
 		if ( $login ) {
-			$this->setSessionDataForUser( $user );
+			$remember = $source === self::AUTOCREATE_SOURCE_TEMP;
+			$this->setSessionDataForUser( $user, $remember );
 		}
 
 		return Status::newGood();

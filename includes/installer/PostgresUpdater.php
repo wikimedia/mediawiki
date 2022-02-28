@@ -598,6 +598,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addTable', 'linktarget', 'patch-linktarget.sql' ],
 			[ 'dropIndex', 'revision', 'rev_page_id', 'patch-drop-rev_page_id.sql' ],
 			[ 'addField', 'templatelinks', 'tl_target_id', 'patch-templatelinks-target_id.sql' ],
+
+			// 1.39
+			[ 'addTable', 'user_autocreate_serial', 'patch-user_autocreate_serial.sql' ],
 		];
 	}
 

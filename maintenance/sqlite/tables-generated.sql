@@ -874,6 +874,13 @@ CREATE INDEX user_email_token ON /*_*/user (user_email_token);
 CREATE INDEX user_email ON /*_*/user (user_email);
 
 
+CREATE TABLE /*_*/user_autocreate_serial (
+  uas_shard INTEGER UNSIGNED NOT NULL,
+  uas_value INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(uas_shard)
+);
+
+
 CREATE TABLE /*_*/revision (
   rev_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   rev_page INTEGER UNSIGNED NOT NULL,

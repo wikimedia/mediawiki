@@ -2743,6 +2743,7 @@ class MainConfigSchema {
 		'default' => [
 			'user',
 			'user_properties',
+			'user_autocreate_serial',
 		],
 		'type' => 'list',
 	];
@@ -7070,6 +7071,62 @@ class MainConfigSchema {
 	 */
 	public const AllowRequiringEmailForResets = [
 		'default' => false,
+	];
+
+	/**
+	 * Configuration for automatic creation of temporary accounts on page save.
+	 * This can be enabled to avoid exposing the IP addresses of casual editors who
+	 * do not explicitly create an account.
+	 *
+	 * EXPERIMENTAL -- enabling may break extensions.
+	 *
+	 * An associative array with the following keys:
+	 *
+	 *   - enabled: (bool) Whether auto-creation is enabled.
+	 *   - actions: (array) A list of actions for which the feature is enabled.
+	 *     Currently only "edit" is supported.
+	 *   - genPattern: (string) The pattern used when generating new usernames.
+	 *     This should have "$1" indicating the place where the serial string will
+	 *     be substituted.
+	 *   - matchPattern: (string) The pattern used when determining whether a
+	 *     username is a temporary user. This affects the rights of the user
+	 *     and also prevents explicit creation of users with matching names.
+	 *   - serialProvider: (array) Configuration for generation of unique integer
+	 *     indexes which are used to make temporary usernames.
+	 *       - type: (string) May be "local" to allocate indexes using the local
+	 *         database. If the CentralAuth extension is enabled, it may be
+	 *         "centralauth". Extensions may plug in additional types using the
+	 *         TempUserSerialProviders attribute.
+	 *       - numShards (int, default 1): A small integer. This can be set to a
+	 *         value greater than 1 to avoid acquiring a global lock when
+	 *         allocating IDs, at the expense of making the IDs be non-monotonic.
+	 *   - serialMapping: (array) Configuration for mapping integer indexes to strings
+	 *     to substitute into genPattern.
+	 *       - type: (string) May be "plain-numeric" to use ASCII decimal numbers,
+	 *         "localized-numeric" to use numbers localized using a specific
+	 *         language, or "filtered-radix" to use numbers in an arbitrary base
+	 *         between 2 and 36, with an optional list of "bad" IDs to skip over.
+	 *       - language: (string) With "localized-numeric", the language code
+	 *       - radix: (int) With "filtered-radix", the base
+	 *       - badIndexes: (array) With "filtered-radix", an array with the bad unmapped
+	 *         indexes in the values. The integers must be sorted and the list
+	 *         must never change after the indexes have been allocated. The keys must
+	 *         be zero-based array indexes.
+	 *       - uppercase: (bool) With "filtered-radix", whether to use uppercase
+	 *         letters, default false.
+	 *
+	 * @since 1.39
+	 */
+	public const AutoCreateTempUser = [
+		'default' => [
+			'enabled' => false,
+			'actions' => [ 'edit' ],
+			'genPattern' => '*Unregistered $1',
+			'matchPattern' => '*$1',
+			'serialProvider' => [ 'type' => 'local' ],
+			'serialMapping' => [ 'type' => 'plain-numeric' ]
+		],
+		'type' => 'object',
 	];
 
 	// endregion -- end user accounts

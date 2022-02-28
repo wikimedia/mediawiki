@@ -39,6 +39,9 @@ class SimpleAuthority implements Authority {
 	/** @var UserIdentity */
 	private $actor;
 
+	/** @var bool */
+	private $isTemp;
+
 	/** @var true[] permissions (stored in the keys, values are ignored) */
 	private $permissions;
 
@@ -46,9 +49,15 @@ class SimpleAuthority implements Authority {
 	 * @stable to call
 	 * @param UserIdentity $actor
 	 * @param string[] $permissions A list of permissions to grant to the actor
+	 * @param bool $isTemp Whether the user is auto-created (since 1.39)
 	 */
-	public function __construct( UserIdentity $actor, array $permissions ) {
+	public function __construct(
+		UserIdentity $actor,
+		array $permissions,
+		bool $isTemp = false
+	) {
 		$this->actor = $actor;
+		$this->isTemp = $isTemp;
 		$this->permissions = array_fill_keys( $permissions, true );
 	}
 
@@ -203,4 +212,15 @@ class SimpleAuthority implements Authority {
 		return $this->checkPermission( $action, $status );
 	}
 
+	public function isRegistered(): bool {
+		return $this->actor->isRegistered();
+	}
+
+	public function isTemp(): bool {
+		return $this->isTemp;
+	}
+
+	public function isNamed(): bool {
+		return $this->isRegistered() && !$this->isTemp();
+	}
 }

@@ -873,6 +873,7 @@ return [
 			'default' => [
 				0 => 'user',
 				1 => 'user_properties',
+				2 => 'user_autocreate_serial',
 			],
 			'type' => 'array',
 		],
@@ -2273,6 +2274,23 @@ return [
 		],
 		'AllowRequiringEmailForResets' => [
 			'default' => false,
+		],
+		'AutoCreateTempUser' => [
+			'default' => [
+				'enabled' => false,
+				'actions' => [
+					0 => 'edit',
+				],
+				'genPattern' => '*Unregistered $1',
+				'matchPattern' => '*$1',
+				'serialProvider' => [
+					'type' => 'local',
+				],
+				'serialMapping' => [
+					'type' => 'plain-numeric',
+				],
+			],
+			'type' => 'object',
 		],
 		'AutoblockExpiry' => [
 			'default' => 86400,

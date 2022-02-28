@@ -2080,4 +2080,55 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $user->getId(), $unserializedUser->getId() );
 		$this->assertSame( $isAllowed, $unserializedUser->isAllowed( 'read' ) );
 	}
+
+	private function enableAutoCreateTempUser() {
+		$this->setMwGlobals( [
+			'wgAutoCreateTempUser' => [
+				'enabled' => true,
+				'actions' => [ 'edit' ],
+				'genPattern' => '*Unregistered $1',
+				'matchPattern' => '*$1',
+				'serialProvider' => [ 'type' => 'local' ],
+				'serialMapping' => [ 'type' => 'plain-numeric' ],
+			]
+		] );
+	}
+
+	public static function provideIsTemp() {
+		return [
+			[ '*Unregistered 1', true ],
+			[ 'Some user', false ]
+		];
+	}
+
+	/**
+	 * @covers User::isTemp
+	 * @dataProvider provideIsTemp
+	 */
+	public function testIsTemp( $name, $expected ) {
+		$this->enableAutoCreateTempUser();
+		$user = new User;
+		$user->setName( $name );
+		$this->assertSame( $expected, $user->isTemp() );
+	}
+
+	/**
+	 * @covers User::isNamed
+	 */
+	public function testIsNamed() {
+		$this->enableAutoCreateTempUser();
+
+		// Temp user is not named
+		$user = new User;
+		$user->setName( '*Unregistered 1' );
+		$this->assertFalse( $user->isNamed() );
+
+		// Registered user is named
+		$user = $this->getMutableTestUser()->getUser();
+		$this->assertTrue( $user->isNamed() );
+
+		// Anon is not named
+		$user = new User;
+		$this->assertFalse( $user->isNamed() );
+	}
 }

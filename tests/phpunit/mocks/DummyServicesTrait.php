@@ -33,6 +33,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
+use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWikiTitleCodec;
@@ -429,7 +430,15 @@ trait DummyServicesTrait {
 			$logger,
 			$titleParser,
 			$textFormatter,
-			$options['hookContainer'] ?? $this->createHookContainer()
+			$options['hookContainer'] ?? $this->createHookContainer(),
+			new RealTempUserConfig( [
+				'enabled' => true,
+				'actions' => [ 'edit' ],
+				'serialProvider' => [ 'type' => 'local' ],
+				'serialMapping' => [ 'type' => 'plain-numeric' ],
+				'matchPattern' => '*$1',
+				'genPattern' => '*Unregistered $1'
+			] )
 		);
 	}
 
