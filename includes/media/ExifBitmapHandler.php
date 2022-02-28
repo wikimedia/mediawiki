@@ -70,6 +70,11 @@ class ExifBitmapHandler extends BitmapHandler {
 			);
 		}
 
+		// Ignore Location shown if it is not a simple string
+		if ( isset( $metadata['LocationShown'] ) && !is_string( $metadata['LocationShown'] ) ) {
+			unset( $metadata['LocationShown'] );
+		}
+
 		foreach ( $metadata as &$val ) {
 			if ( is_array( $val ) ) {
 				// @phan-suppress-next-line SecurityCheck-DoubleEscaped Ambiguous with the true for nohtml
