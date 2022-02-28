@@ -854,6 +854,7 @@
 	"rcfilters-tag-remove": "'$1'ni oʻchirish",
 	"rcfilters-legend-heading": "<strong>Qisqartmalar roʻyxati:</strong>",
 	"rcfilters-other-review-tools": "Tekshiruv oʻtkazishning qoʻshimcha usullari",
+	"rcfilters-group-results-by-page": "Natijalarni sahifaga koʻra guruhlash",
 	"rcfilters-activefilters": "Tanlangan filtrlar",
 	"rcfilters-activefilters-hide": "Yashirish",
 	"rcfilters-activefilters-show": "Koʻrsatish",

@@ -808,7 +808,7 @@
 	"edit-slots-missing": "{{PLURAL:$1|الفتحة|الفتحات}} التالية مفقودة: $2.",
 	"postedit-confirmation-created": "أنشئت الصفحة.",
 	"postedit-confirmation-restored": "تم استعادة الصفحة.",
-	"postedit-confirmation-saved": "تعديلك حفظ.",
+	"postedit-confirmation-saved": "حُفِظ تعديلك.",
 	"postedit-confirmation-published": "نُشِر تعديلك.",
 	"edit-already-exists": "لم يمكن إنشاء صفحة جديدة.\nهي موجودة بالفعل.",
 	"defaultmessagetext": "نص الرسالة الافتراضي",

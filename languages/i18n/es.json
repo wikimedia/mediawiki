@@ -1371,7 +1371,7 @@
 	"userrights-user-editname": "Escribe un nombre de usuario:",
 	"editusergroup": "Cargar grupos de usuarios",
 	"editinguser": "Cambio de los permisos {{GENDER:$1|del usuario|de la usuaria}} <strong>[[User:$1|$1]]</strong> $2",
-	"viewinguserrights": "Visualización de los derechos {{GENDER:$1|del usuario|de la usuaria}} <strong>[[User:$1|$1]]</strong> $2",
+	"viewinguserrights": "Visualizar los grupos {{GENDER:$1|del usuario|de la usuaria}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Modificar grupos {{GENDER:$1|del usuario|de la usuaria}}",
 	"userrights-viewusergroup": "Ver grupos {{GENDER:$1|del usuario|de la usuaria}}",
 	"saveusergroups": "Guardar grupos {{GENDER:$1|del usuario|de la usuaria}}",
