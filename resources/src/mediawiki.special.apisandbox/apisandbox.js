@@ -151,12 +151,12 @@
 				if ( this.paramInfo.deprecatedvalues &&
 					this.paramInfo.deprecatedvalues.indexOf( data ) >= 0
 				) {
-					item.$element.addClass( 'apihelp-deprecated-value' );
+					item.$element.addClass( 'mw-apisandbox-deprecated-value' );
 				}
 				if ( this.paramInfo.internalvalues &&
 					this.paramInfo.internalvalues.indexOf( data ) >= 0
 				) {
-					item.$element.addClass( 'apihelp-internal-value' );
+					item.$element.addClass( 'mw-apisandbox-internal-value' );
 				}
 				return item;
 			}
@@ -451,38 +451,25 @@
 					}
 
 					items = pi.type.map( function ( v ) {
-						var $label = $( [] );
-						var classes = [];
+						var optionWidget = new OO.ui.MenuOptionWidget( {
+							data: String( v ),
+							label: String( v )
+						} );
 						if ( pi.deprecatedvalues && pi.deprecatedvalues.indexOf( v ) >= 0 ) {
-							classes.push( 'mw-apisandbox-deprecated-value' );
-							$label = $label.add(
-								new OO.ui.LabelWidget( {
-									label: mw.msg( 'api-help-param-deprecated-label' ),
-									classes: [ 'mw-apisandbox-flag-label mw-apisandbox-deprecated-label' ]
-								} ).$element
+							optionWidget.$element.addClass( 'mw-apisandbox-deprecated-value' );
+							optionWidget.$label.before(
+								$( '<span>' ).addClass( 'mw-apisandbox-flag' ).text( mw.msg( 'api-help-param-deprecated-label' ) )
 							);
 						}
 						if ( pi.internalvalues && pi.internalvalues.indexOf( v ) >= 0 ) {
-							classes.push( 'mw-apisandbox-internal-value' );
-							$label = $label.add(
-								new OO.ui.LabelWidget( {
-									label: mw.msg( 'api-help-param-internal-label' ),
-									classes: [ 'mw-apisandbox-flag-label mw-apisandbox-internal-label' ]
-								} ).$element
+							optionWidget.$element.addClass( 'mw-apisandbox-internal-value' );
+							optionWidget.$label.before(
+								$( '<span>' ).addClass( 'mw-apisandbox-flag' ).text( mw.msg( 'api-help-param-internal-label' ) )
 							);
 						}
-						$label = $label.add(
-							// Classes documented above
-							// eslint-disable-next-line mediawiki/class-doc
-							new OO.ui.LabelWidget( { label: String( v ), classes: classes } ).$element
-						);
-						var optionWidget = new OO.ui.MenuOptionWidget( {
-							data: String( v ),
-							label: $label
-						} );
 						return optionWidget;
 					} ).sort( function ( a, b ) {
-						return a.data < b.data ? -1 : ( a.data > b.data ? 1 : 0 );
+						return a.label < b.label ? -1 : ( a.label > b.label ? 1 : 0 );
 					} );
 					if ( Util.apiBool( pi.multi ) ) {
 						if ( pi.allspecifier !== undefined ) {
@@ -516,7 +503,7 @@
 						if ( pi.deprecatedvalues ) {
 							widget.getMenu().on( 'select', function ( item ) {
 								this.$element.toggleClass(
-									'apihelp-deprecated-value',
+									'mw-apisandbox-deprecated-value',
 									pi.deprecatedvalues.indexOf( item.data ) >= 0
 								);
 							}, [], widget );
@@ -524,7 +511,7 @@
 						if ( pi.internalvalues ) {
 							widget.getMenu().on( 'select', function ( item ) {
 								this.$element.toggleClass(
-									'apihelp-internal-value',
+									'mw-apisandbox-internal-value',
 									pi.internalvalues.indexOf( item.data ) >= 0
 								);
 							}, [], widget );
