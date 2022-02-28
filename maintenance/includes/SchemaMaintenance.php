@@ -105,15 +105,15 @@ abstract class SchemaMaintenance extends Maintenance {
 		);
 
 		if ( in_array( $platform, self::SUPPORTED_PLATFORMS, true ) ) {
-			$sqlPath = $this->getOption( 'sql', dirname( __DIR__ ) );
-			$this->writeSchema( $platform, $jsonPath, $relativeJsonPath, $sqlPath );
-
-			return;
-		} elseif ( $platform !== 'all' ) {
+			$platforms = [ $platform ];
+		} elseif ( $platform === 'all' ) {
+			$platforms = self::SUPPORTED_PLATFORMS;
+		} else {
+			$platforms = [];
 			$this->fatalError( "'$platform' is not a supported platform!" );
 		}
 
-		foreach ( self::SUPPORTED_PLATFORMS as $platform ) {
+		foreach ( $platforms as $platform ) {
 			$sqlPath = $this->getOption( 'sql', dirname( __DIR__ ) );
 
 			// MediaWiki, and some extensions place mysql .sql files in the directory root, instead of a dedicated
@@ -128,15 +128,18 @@ abstract class SchemaMaintenance extends Maintenance {
 				if ( is_dir( $sqlPath ) ) {
 					$sqlPath .= '/' . $platform;
 					$directory = $sqlPath;
-
 					$sqlPath = $this->getSqlPathWithFileName( $relativeJsonPath, $sqlPath );
-				} else {
+				} elseif ( count( $platforms ) > 1 ) {
 					$directory = dirname( $sqlPath ) . '/' . $platform;
 					$sqlPath = $directory . '/' . pathinfo( $sqlPath, PATHINFO_FILENAME ) . '.sql';
+				} else {
+					$directory = false;
 				}
 
 				// The directory for the platform might not exist.
-				if ( !is_dir( $directory ) && !mkdir( $directory ) && !is_dir( $directory ) ) {
+				if ( $directory !== false && !is_dir( $directory )
+					&& !mkdir( $directory ) && !is_dir( $directory )
+				) {
 					$this->error( "Cannot create $directory for $platform" );
 
 					continue;
