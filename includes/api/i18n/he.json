@@ -76,7 +76,7 @@
 	"apihelp-clearhasmsg-example-1": "לנקות את דגל <code>hasmsg</code> עבור המשתמש הנוכחי.",
 	"apihelp-clientlogin-summary": "כניסה לוויקי באמצעות זרימה הידודית.",
 	"apihelp-clientlogin-example-login": "תחילת תהליך כניסה לוויקי בתור משתמש <kbd>Example</kbd> עם הסיסמה <kbd>ExamplePassword</kbd>.",
-	"apihelp-clientlogin-example-login2": "המשך כניסה אחרי תשובת <samp>UI</samp> לאימות דו־גורמי, עם <var>OATHToken</var> של <kbd>987654</kbd>.",
+	"apihelp-clientlogin-example-login2": "המשך כניסה אחרי תשובת <samp>UI</samp> לאימות דו־שלבי, עם <var>OATHToken</var> של <kbd>987654</kbd>.",
 	"apihelp-compare-summary": "קבלת ההבדל בין שני דפים.",
 	"apihelp-compare-extended-description": "יש להעביר מספר גרסה, כותרת דף או מזהה דף גם ל־\"from\" וגם ל־\"to\".",
 	"apihelp-compare-param-fromtitle": "כותרת ראשונה להשוואה.",

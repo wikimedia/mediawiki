@@ -1931,7 +1931,7 @@
 	"apisandbox-dynamic-parameters-add-label": "Parameter derbäisetzen:",
 	"apisandbox-dynamic-parameters-add-placeholder": "Numm vum Parameter",
 	"apisandbox-dynamic-error-exists": "Et gëtt schonn e Parameter mam Numm \"$1\".",
-	"apisandbox-deprecated-parameters": "Vereelst Parameter",
+	"apisandbox-deprecated-parameters": "Vereelzt Parameter",
 	"apisandbox-add-multi": "Derbäisetzen",
 	"apisandbox-submit-invalid-fields-title": "E puer Felder sinn net valabel.",
 	"apisandbox-submit-invalid-fields-message": "Verbessert wgl. déi markéiert Felder a probéiert nach eng Kéier.",
