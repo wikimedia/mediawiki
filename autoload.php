@@ -543,6 +543,7 @@ $wgAutoloadLocalClasses = [
 	'GenderCache' => __DIR__ . '/includes/cache/GenderCache.php',
 	'GenerateCollationData' => __DIR__ . '/maintenance/language/generateCollationData.php',
 	'GenerateConfigDefaultSettings' => __DIR__ . '/maintenance/generateConfigDefaultSettings.php',
+	'GenerateConfigNames' => __DIR__ . '/maintenance/generateConfigNames.php',
 	'GenerateConfigSchemaArray' => __DIR__ . '/maintenance/generateConfigSchemaArray.php',
 	'GenerateConfigSchemaYaml' => __DIR__ . '/maintenance/generateConfigSchemaYaml.php',
 	'GenerateJsonI18n' => __DIR__ . '/maintenance/generateJsonI18n.php',

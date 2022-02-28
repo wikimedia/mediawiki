@@ -96,6 +96,10 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 			'script' => MW_INSTALL_PATH . '/maintenance/generateConfigSchemaYaml.php',
 			'expectedFile' => MW_INSTALL_PATH . '/docs/config-schema.yaml',
 		];
+		yield 'includes/MainConfigNames.php' => [
+			'script' => MW_INSTALL_PATH . '/maintenance/generateConfigNames.php',
+			'expectedFile' => MW_INSTALL_PATH . '/includes/MainConfigNames.php',
+		];
 	}
 
 	/**
