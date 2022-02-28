@@ -977,15 +977,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @deprecated since 1.37; please use assertIsWritablePrimary() instead.
-	 * @throws DBReadOnlyError
-	 */
-	protected function assertIsWritableMaster() {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->assertIsWritablePrimary();
-	}
-
-	/**
 	 * Closes underlying database connection
 	 * @return bool Whether connection was closed successfully
 	 * @since 1.20
