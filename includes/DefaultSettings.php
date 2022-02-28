@@ -2358,6 +2358,13 @@ $wgDatabaseReplicaLagWarning = 10;
 $wgDatabaseReplicaLagCritical = 30;
 
 /**
+ * Max execution time for queries of several expensive special pages such as RecentChanges
+ * in milliseconds.
+ * @since 1.37.2
+ */
+$wgMaxExecutionTimeForExpensiveQueries = 0;
+
+/**
  * RevisionStore table schema migration stage (content, slots, content_models & slot_roles tables).
  * Use the SCHEMA_COMPAT_XXX flags. Supported values:
  *

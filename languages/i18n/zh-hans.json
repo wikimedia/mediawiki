@@ -175,7 +175,8 @@
 			"孟天皓",
 			"小美粉粉",
 			"Ericliu1912",
-			"魔琴"
+			"魔琴",
+			"ShuyanW"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -637,7 +638,7 @@
 	"loginsuccesstitle": "已登录",
 	"loginsuccess": "<strong>您现在已经以\"$1\"的身份登录了{{SITENAME}}。</strong>",
 	"nosuchuser": "没有名为“$1”的用户。\n用户名区分大小写。\n请检查您的拼写或[[Special:CreateAccount|创建新账户]]。",
-	"nosuchusershort": "没有名为“$1”的用户。\n请检查您的拼写。",
+	"nosuchusershort": "没有名为“$1”的用户。请检查您的拼写。",
 	"nouserspecified": "您必须指定一个用户名。",
 	"login-userblocked": "此用户已被封禁，禁止登录。",
 	"wrongpassword": "您输入的用户名或密码错误。\n请重试。",
@@ -908,8 +909,8 @@
 	"edit-slots-missing": "缺少以下{{PLURAL:$1|栏位|栏位}}：$2。",
 	"postedit-confirmation-created": "页面已创建。",
 	"postedit-confirmation-restored": "页面已恢复。",
-	"postedit-confirmation-saved": "您的编辑已保存。",
-	"postedit-confirmation-published": "您的编辑已发布。",
+	"postedit-confirmation-saved": "已保存您的编辑。",
+	"postedit-confirmation-published": "已发布您的编辑。",
 	"edit-already-exists": "不可以建立一个新页面。\n它已经存在。",
 	"defaultmessagetext": "默认消息文本",
 	"content-failed-to-parse": "无法解析$1模型的$2内容：$3",
@@ -1222,7 +1223,7 @@
 	"prefs-help-tokenmanagement": "您可以查看并重置您账户的密钥，它用来访问您监视列表的Web订阅源。\n任何知道密钥的人都将可以阅读您的监视列表，所以不要分享它。",
 	"prefs-user-downloaddata-label": "账号数据：",
 	"prefs-user-downloaddata-info": "来自该项目的我的帐户数据",
-	"savedprefs": "您的参数设置已保存。",
+	"savedprefs": "已保存您的参数设置。",
 	"savedrights": "{{GENDER:$1|$1}}的用户组已保存。",
 	"timezonelegend": "时区：",
 	"localtime": "当地时间：",

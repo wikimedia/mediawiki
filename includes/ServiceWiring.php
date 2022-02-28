@@ -1759,7 +1759,8 @@ return [
 			$services->getCommentStore(),
 			$services->getWatchedItemStore(),
 			$services->getHookContainer(),
-			$services->getMainConfig()->get( 'WatchlistExpiry' )
+			$services->getMainConfig()->get( 'WatchlistExpiry' ),
+			$services->getMainConfig()->get( 'MaxExecutionTimeForExpensiveQueries' )
 		);
 	},
 
