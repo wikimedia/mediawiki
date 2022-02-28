@@ -136,7 +136,8 @@ class DatabaseBlockStore {
 					'ipblocks',
 					'ipb_id',
 					[ 'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ],
-					$fname
+					$fname,
+					[ 'LIMIT' => 500 ] // Have a limit to avoid creating read-only
 				);
 				if ( $ids ) {
 					$blockRestrictionStore->deleteByBlockId( $ids );
