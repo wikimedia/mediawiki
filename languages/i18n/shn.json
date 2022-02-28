@@ -702,7 +702,7 @@
 	"edit-slots-cannot-add": "{{PLURAL:$1|ႁူးၼႆႉ|ႁူးၸိူဝ်းၼႆႉ}} ဢမ်ႇၵမ်ႉထႅမ်ဝႆႉပၼ် တီႈၼႆႈ: $2.",
 	"edit-slots-cannot-remove": "{{PLURAL:$1|ႁူးၼႆႉ|ႁူးၸိူဝ်းၼႆႉ}} ပဵၼ်ဢၼ်လူဝ်ႇဝႆႉ လႄႈ တေဢမ်ႇၸၢင်ႈ မွတ်ႇပႅတ်ႈ: $2.",
 	"edit-slots-missing": "{{PLURAL:$1|ႁူးၼႆႉ|ႁူးၸိူဝ်းၼႆႉ}} ႁူင်ႈႁၢႆဝႆႉ: $2.",
-	"postedit-confirmation-created": "ၼႃႈလိၵ်ႈၼႆႉ ထုၵ်ႇၵေႃႇသၢင်ႈယဝ်ႉယဝ်ႈ။",
+	"postedit-confirmation-created": "ၼႃႈလိၵ်ႈၼႆႉ ထုၵ်ႇသၢင်ႈယဝ်ႉယဝ်ႈ။",
 	"postedit-confirmation-restored": "ၼႃႈလိၵ်ႈၼႆႉ ထုၵ်ႇဝႆႉၶိုၼ်းယဝ်ႉယဝ်ႈ။",
 	"postedit-confirmation-saved": "လွင်ႈမႄးထတ်းၸဝ်ႈၵဝ်ႇ သိမ်းပၼ်ယဝ်ႉယဝ်ႈ။",
 	"postedit-confirmation-published": "လွင်ႈမႄးထတ်းၸဝ်ႈၵဝ်ႇၼၼ်ႉ ထုၵ်ႇပိုၼ်ဢွၵ်ႇၵႂႃႇယဝ်ႉ။",

@@ -797,7 +797,7 @@
 	"viewpagelogs-lowercase": "vidi evidencije za ovu stranicu",
 	"nohistory": "Ne postoji povijest izmjena za ovu stranicu.",
 	"currentrev": "Trenutačna inačica",
-	"currentrev-asof": "Trenutačna izmjena od $1",
+	"currentrev-asof": "Posljednja izmjena, načinjena $3 u $2",
 	"revisionasof": "Inačica od $1",
 	"revision-info": "Inačica $3 od $4 u $5 koju je {{GENDER:$6|unio|unijela}} {{GENDER:$6|$2}}$7",
 	"previousrevision": "←Starija inačica",
