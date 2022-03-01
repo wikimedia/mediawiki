@@ -23342,7 +23342,7 @@ __TOC__
 !! end
 
 !! test
-T35845: v
+T35845: Headings become cursive in TOC when they contain an image
 !! options
 title=[[Main Page]]
 !! config
