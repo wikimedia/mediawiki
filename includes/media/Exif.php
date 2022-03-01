@@ -370,7 +370,7 @@ class Exif {
 			// functions ran earlier. But multiplying such a string by -1
 			// doesn't work well, so convert.
 			list( $num, $denom ) = explode( '/', $this->mFilteredExifData['GPSAltitude'] );
-			$this->mFilteredExifData['GPSAltitude'] = $num / $denom;
+			$this->mFilteredExifData['GPSAltitude'] = (int)$num / (int)$denom;
 
 			if ( isset( $this->mFilteredExifData['GPSAltitudeRef'] ) ) {
 				switch ( $this->mFilteredExifData['GPSAltitudeRef'] ) {
@@ -531,11 +531,11 @@ class Exif {
 			&& ( $dir === 'N' || $dir === 'S' || $dir === 'E' || $dir === 'W' )
 		) {
 			list( $num, $denom ) = explode( '/', $loc[0] );
-			$res = $num / $denom;
+			$res = (int)$num / (int)$denom;
 			list( $num, $denom ) = explode( '/', $loc[1] );
-			$res += ( $num / $denom ) * ( 1 / 60 );
+			$res += ( (int)$num / (int)$denom ) * ( 1 / 60 );
 			list( $num, $denom ) = explode( '/', $loc[2] );
-			$res += ( $num / $denom ) * ( 1 / 3600 );
+			$res += ( (int)$num / (int)$denom ) * ( 1 / 3600 );
 
 			if ( $dir === 'S' || $dir === 'W' ) {
 				$res *= -1; // make negative

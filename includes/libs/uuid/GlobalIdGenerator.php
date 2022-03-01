@@ -396,7 +396,7 @@ class GlobalIdGenerator {
 		ftruncate( $handle, 0 );
 		rewind( $handle );
 		// Use fmod() to avoid "division by zero" on 32 bit machines
-		fwrite( $handle, fmod( $counter, 2 ** 48 ) ); // warp-around as needed
+		fwrite( $handle, (string)fmod( $counter, 2 ** 48 ) ); // warp-around as needed
 		fflush( $handle );
 		// Release the UID lock file
 		flock( $handle, LOCK_UN );
@@ -589,7 +589,7 @@ class GlobalIdGenerator {
 				': sorry, this function doesn\'t work after the year 144680' );
 		}
 
-		return substr( \Wikimedia\base_convert( $ts, 10, 2, 46 ), -46 );
+		return substr( \Wikimedia\base_convert( (string)$ts, 10, 2, 46 ), -46 );
 	}
 
 	/**
@@ -613,7 +613,7 @@ class GlobalIdGenerator {
 		} elseif ( extension_loaded( 'bcmath' ) ) {
 			$ts = bcadd( bcmul( $sec, 1000 ), $msec ); // ms
 			$ts = bcadd( bcmul( $ts, 10000 ), $offset ); // 100ns intervals
-			$ts = bcadd( $ts, $delta );
+			$ts = bcadd( $ts, (string)$delta );
 			$ts = bcmod( $ts, bcpow( 2, 60 ) ); // wrap around
 			$id_bin = \Wikimedia\base_convert( $ts, 10, 2, 60 );
 		} else {

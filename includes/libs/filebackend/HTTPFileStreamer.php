@@ -231,11 +231,11 @@ class HTTPFileStreamer {
 			if ( $start === '' && $end === '' ) {
 				$absRange = [ 0, $size - 1 ];
 			} elseif ( $start === '' ) {
-				$absRange = [ $size - $end, $size - 1 ];
+				$absRange = [ $size - (int)$end, $size - 1 ];
 			} elseif ( $end === '' ) {
-				$absRange = [ $start, $size - 1 ];
+				$absRange = [ (int)$start, $size - 1 ];
 			} else {
-				$absRange = [ $start, $end ];
+				$absRange = [ (int)$start, (int)$end ];
 			}
 			if ( $absRange[0] >= 0 && $absRange[1] >= $absRange[0] ) {
 				if ( $absRange[0] < $size ) {

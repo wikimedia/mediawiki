@@ -1019,7 +1019,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			}
 		}
 		if ( count( $tz ) > 1 && $tz[0] == 'Offset' ) {
-			$minDiff = $tz[1];
+			$minDiff = (int)$tz[1];
 			$tzSetting = sprintf( '%+03d:%02d', floor( $minDiff / 60 ), abs( $minDiff ) % 60 );
 		}
 
@@ -1808,7 +1808,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$timestamp = MWTimestamp::getLocalInstance();
 		// Check that the LocalTZoffset is the same as the local time zone offset
-		if ( $localTZoffset === $timestamp->format( 'Z' ) / 60 ) {
+		if ( $localTZoffset === (int)$timestamp->format( 'Z' ) / 60 ) {
 			$timezoneName = $timestamp->getTimezone()->getName();
 			// Localize timezone
 			if ( isset( $timeZoneList[$timezoneName] ) ) {

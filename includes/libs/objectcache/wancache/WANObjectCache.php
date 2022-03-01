@@ -1523,7 +1523,7 @@ class WANObjectCache implements
 			// so that purges to the main key propagate to the variant value.
 			$this->logger->debug( "getWithSetCallback($key): using variant key" );
 			list( $value ) = $this->fetchOrRegenerate(
-				$this->makeGlobalKey( 'WANCache-key-variant', md5( $key ), $version ),
+				$this->makeGlobalKey( 'WANCache-key-variant', md5( $key ), (string)$version ),
 				$ttl,
 				$callback,
 				[ 'version' => null, 'minAsOf' => $curAsOf ] + $opts,
@@ -1755,7 +1755,7 @@ class WANObjectCache implements
 	private function yieldStampedeLock( $key, $hasLock ) {
 		if ( $hasLock ) {
 			$checkSisterKey = $this->makeSisterKey( $key, self::TYPE_MUTEX );
-			$this->cache->changeTTL( $checkSisterKey, $this->getCurrentTime() - 60 );
+			$this->cache->changeTTL( $checkSisterKey, (int)$this->getCurrentTime() - 60 );
 		}
 	}
 

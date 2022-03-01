@@ -881,7 +881,7 @@ class PageUpdater {
 			// Deprecated since 1.35.
 			$allowedByHook = $this->hookRunner->onPageContentSave(
 				$this->getWikiPage(), $legacyUser, $mainContent, $summary,
-				$this->flags & EDIT_MINOR, null, null, $this->flags, $hookStatus
+				(bool)( $this->flags & EDIT_MINOR ), null, null, $this->flags, $hookStatus
 			);
 		}
 

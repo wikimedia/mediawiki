@@ -677,7 +677,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 			foreach ( $fields as $data ) {
 				# strip out the 'ns' prefix from the section name:
-				$ns = substr( $data['section'], 2 );
+				$ns = (int)substr( $data['section'], 2 );
 
 				$nsText = ( $ns == NS_MAIN )
 					? $this->msg( 'blanknamespace' )->escaped()

@@ -315,7 +315,7 @@ class ContribsPager extends RangeChronologicalPager {
 				// If the query results are in descending order, the indexes must also be in descending order
 				$index = $order === self::QUERY_ASCENDING ? $i : $limit - 1 - $i;
 				// Left-pad with zeroes, because these values will be sorted as strings
-				$index = str_pad( $index, strlen( $limit ), '0', STR_PAD_LEFT );
+				$index = str_pad( (string)$index, strlen( (string)$limit ), '0', STR_PAD_LEFT );
 				// use index column as key, allowing us to easily sort in PHP
 				$result[$row->{$this->getIndexField()} . "-$index"] = $row;
 			}

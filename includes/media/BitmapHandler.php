@@ -306,7 +306,7 @@ class BitmapHandler extends TransformationalImageHandler {
 				) {
 					// Hack, since $wgSharpenParameter is written specifically for the command line convert
 					list( $radius, $sigma ) = explode( 'x', $sharpenParameter );
-					$im->sharpenImage( $radius, $sigma );
+					$im->sharpenImage( (float)$radius, (float)$sigma );
 				}
 				$qualityVal = isset( $params['quality'] ) ? (string)$params['quality'] : null;
 				$im->setCompressionQuality( $qualityVal ?: $jpegQuality );

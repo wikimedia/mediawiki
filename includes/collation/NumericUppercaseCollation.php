@@ -71,7 +71,7 @@ class NumericUppercaseCollation extends UppercaseCollation {
 			$len = strlen( $number );
 			// This allows sequences of up to 65536 numeric characters to be handled correctly. One byte
 			// would allow only for 256, which doesn't feel future-proof.
-			$prefix = chr( floor( $len / 256 ) ) . chr( $len % 256 );
+			$prefix = chr( (int)floor( $len / 256 ) ) . chr( $len % 256 );
 			return '0' . $prefix . $number;
 		}, $sortkey );
 

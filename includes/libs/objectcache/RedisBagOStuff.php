@@ -488,7 +488,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 				$conn->multi( Redis::PIPELINE );
 				$conn->set(
 					$key,
-					$init - $step,
+					(string)( $init - $step ),
 					$ttl ? [ 'nx', 'ex' => $ttl ] : [ 'nx' ]
 				);
 				$conn->incrBy( $key, $step );

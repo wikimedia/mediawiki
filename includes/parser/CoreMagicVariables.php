@@ -226,7 +226,7 @@ class CoreMagicVariables {
 			case 'namespacee':
 				return wfUrlencode( $parser->getContentLanguage()->getNsText( $title->getNamespace() ) );
 			case 'namespacenumber':
-				return $title->getNamespace();
+				return (string)$title->getNamespace();
 			case 'talkspace':
 				return $title->canHaveTalkPage()
 					? str_replace( '_', ' ', $title->getTalkNsText() )

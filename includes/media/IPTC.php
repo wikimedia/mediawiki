@@ -389,9 +389,9 @@ class IPTC {
 			$tz = -$tz;
 		}
 
-		$finalTimestamp = wfTimestamp( TS_EXIF, $unixTS + $tz );
+		$finalTimestamp = wfTimestamp( TS_EXIF, (int)$unixTS + $tz );
 		if ( $finalTimestamp === false ) {
-			wfDebugLog( 'iptc', "IPTC: can't make final timestamp. Date: " . ( $unixTS + $tz ) );
+			wfDebugLog( 'iptc', "IPTC: can't make final timestamp. Date: " . ( (int)$unixTS + $tz ) );
 
 			return null;
 		}

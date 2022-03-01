@@ -4195,7 +4195,7 @@ class Parser {
 			$numbering = '';
 			$markerMatches = [];
 			if ( preg_match( "/^$markerRegex/", $headline, $markerMatches ) ) {
-				$serial = $markerMatches[1];
+				$serial = (int)$markerMatches[1];
 				list( $titleText, $sectionIndex ) = $this->mHeadings[$serial];
 				$isTemplate = ( $titleText != $baseTitleText );
 				$headline = preg_replace( "/^$markerRegex\\s*/", "", $headline );

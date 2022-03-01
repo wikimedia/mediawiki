@@ -863,7 +863,7 @@ abstract class MediaHandler {
 		$idealWidth = $boxWidth * $maxHeight / $boxHeight;
 		$roundedUp = ceil( $idealWidth );
 		if ( round( $roundedUp * $boxHeight / $boxWidth ) > $maxHeight ) {
-			return floor( $idealWidth );
+			return (int)floor( $idealWidth );
 		} else {
 			return $roundedUp;
 		}
