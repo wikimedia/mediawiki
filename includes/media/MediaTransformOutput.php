@@ -285,6 +285,8 @@ abstract class MediaTransformOutput {
 			->getMainConfig()->get( 'ParserEnableLegacyMediaDOM' );
 		if ( $parserEnableLegacyMediaDOM ) {
 			$attribs['class'] = 'image';
+		} else {
+			$attribs['class'] = 'mw-file-description';
 		}
 
 		if ( $title ) {
