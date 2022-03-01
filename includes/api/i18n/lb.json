@@ -197,7 +197,7 @@
 	"api-help-license": "Lizenz: [[$1|$2]]",
 	"api-help-license-noname": "LiZenz: [[$1|Kuckt de Link]]",
 	"api-help-license-unknown": "Lizenz: <span class=\"apihelp-unknown\">onbekannt</span>",
-	"api-help-param-deprecated": "Vereelst.",
+	"api-help-param-deprecated": "Vereelzt.",
 	"api-help-param-internal": "Intern",
 	"api-help-datatypes-header": "Datentypen",
 	"api-help-examples": "{{PLURAL:$1|Beispill|Beispiler}}:",

@@ -2122,6 +2122,7 @@
 	"sp-contributions-hideminor": "Paslēpt maznozīmīgos labojumus",
 	"sp-contributions-submit": "Meklēt",
 	"whatlinkshere": "Norādes uz šo rakstu",
+	"whatlinkshere-count": "{{PLURAL:$1|Attēlots|Attēloti}} $1 {{PLURAL:$1|ieraksts|ieraksti}}.",
 	"whatlinkshere-title": "Lapas, kurās ir saites uz lapu \"$1\"",
 	"whatlinkshere-page": "Lapa:",
 	"linkshere": "Šajās lapās ir norādes uz lapu '''$2''':",

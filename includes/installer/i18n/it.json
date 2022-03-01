@@ -131,7 +131,7 @@
 	"config-header-mysql": "Impostazioni MySQL",
 	"config-header-postgres": "Impostazioni PostgreSQL",
 	"config-header-sqlite": "Impostazioni SQLite",
-	"config-invalid-db-type": "Tipo di database non valido",
+	"config-invalid-db-type": "Tipo di database non valido.",
 	"config-missing-db-name": "È necessario immettere un valore per \"{{int:config-db-name}}\".",
 	"config-missing-db-host": "È necessario immettere un valore per \"{{int:config-db-host}}\".",
 	"config-invalid-db-name": "Nome di database \"$1\" non valido.\nUtilizza soltanto caratteri ASCII come lettere (a-z, A-Z), numeri (0-9), sottolineatura (_) e trattini (-).",
