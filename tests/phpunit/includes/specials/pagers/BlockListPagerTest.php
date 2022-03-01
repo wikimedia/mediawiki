@@ -96,9 +96,6 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 
 		$formatted = $pager->formatValue( $name, $value );
 		$this->assertStringMatchesFormat( $expected, $formatted );
-
-		// Reset the time.
-		MWTimestamp::setFakeTime( false );
 	}
 
 	/**
