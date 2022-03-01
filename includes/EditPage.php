@@ -3793,14 +3793,12 @@ class EditPage implements IEditObject {
 	/**
 	 * Get the copyright warning
 	 *
-	 * @deprecated since 1.38
-	 *
-	 * Renamed to getCopyrightWarning(), old name kept around for backwards compatibility
+	 * @deprecated since 1.38 Use getCopyrightWarning() instead.
 	 * @return string
 	 */
 	protected function getCopywarn() {
 		wfDeprecated( __METHOD__, '1.38' );
-		return self::getCopyrightWarning( $this->mTitle );
+		return self::getCopyrightWarning( $this->mTitle, 'plain', $this->getContext() );
 	}
 
 	/**
@@ -3810,11 +3808,12 @@ class EditPage implements IEditObject {
 	 * @param string $format Output format, valid values are any function of a Message object
 	 * @param MessageLocalizer|Language|string|null $localizer Context for localisation messages.
 	 *   For backwards-compatibility, a Language object, or a string language code, or omitting the
-	 *   parameter is also allowed, but is deprecated.
+	 *   parameter is also allowed, but emits deprecation warnings.
 	 * @return string
 	 */
 	public static function getCopyrightWarning( $title, $format = 'plain', $localizer = null ) {
 		if ( !$localizer instanceof MessageLocalizer ) {
+			wfDeprecated( __METHOD__ . ' without MessageLocalizer', '1.38' );
 			$context = RequestContext::getMain();
 			if ( $localizer !== null ) {
 				$context = new DerivativeContext( $context );
