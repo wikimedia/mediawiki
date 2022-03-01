@@ -1634,10 +1634,10 @@ return [
 			if ( is_array( $skin ) ) {
 				$spec = $skin;
 				$displayName = $skin['displayname'] ?? $name;
-				$skippable = $skin['skippable'] ?? false;
+				$skippable = $skin['skippable'] ?? null;
 			} else {
 				$displayName = $skin;
-				$skippable = false;
+				$skippable = null;
 				$spec = [
 					'name' => $name,
 					'class' => "Skin$skin"

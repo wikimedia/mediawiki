@@ -13,6 +13,16 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
 
 	/**
+	 * @covers Skin
+	 */
+	public function testGetSkinName() {
+		$skin = new SkinFallback();
+		$this->assertEquals( 'fallback', $skin->getSkinName(), 'Default' );
+		$skin = new SkinFallback( 'testname' );
+		$this->assertEquals( 'testname', $skin->getSkinName(), 'Constructor argument' );
+	}
+
+	/**
 	 * @covers Skin::getDefaultModules
 	 */
 	public function testGetDefaultModules() {
