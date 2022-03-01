@@ -440,7 +440,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $dbType A possible DB type (sqlite, mysql, postgres,...)
 	 * @param string|null $driver Optional name of a specific DB client driver
 	 * @return array Map of (Database::ATTR_* constant => value) for all such constants
-	 * @throws InvalidArgumentException
+	 * @throws DBUnexpectedError
 	 * @since 1.31
 	 */
 	final public static function attributesFromType( $dbType, $driver = null ) {
@@ -451,8 +451,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		];
 
 		$class = self::getClass( $dbType, $driver );
-
-		return call_user_func( [ $class, 'getAttributes' ] ) + $defaults;
+		if ( class_exists( $class ) ) {
+			return call_user_func( [ $class, 'getAttributes' ] ) + $defaults;
+		} else {
+			throw new DBUnexpectedError( null, "$dbType is not a supported database type." );
+		}
 	}
 
 	/**
