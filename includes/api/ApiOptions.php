@@ -22,7 +22,6 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\User\UserOptionsManager;
 
@@ -115,7 +114,7 @@ class ApiOptions extends ApiBase {
 		$prefs = $this->getPreferences();
 		$prefsKinds = $this->userOptionsManager->getOptionKinds( $user, $this->getContext(), $changes );
 
-		$htmlForm = new HTMLForm( DefaultPreferencesFactory::simplifyFormDescriptor( $prefs ), $this );
+		$htmlForm = new HTMLForm( $prefs, $this );
 		foreach ( $changes as $key => $value ) {
 			switch ( $prefsKinds[$key] ) {
 				case 'registered':
