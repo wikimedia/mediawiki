@@ -192,7 +192,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Lazy-initialized variables, invalidated with clearInstanceCache
 	 */
-	/** @var string */
+	/** @var string|null */
 	protected $mDatePreference;
 	/**
 	 * @deprecated since 1.35. Instead, use User::getBlock to get the block,
@@ -3194,7 +3194,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * site.
 	 *
 	 * @deprecated since 1.37. Use CsrfTokenSet::matchToken instead
-	 * @param string $val Input value to compare
+	 * @param string|null $val Input value to compare
 	 * @param string|array $salt Optional function-specific data for hashing
 	 * @param WebRequest|null $request Object to use, or null to use the global request
 	 * @param int|null $maxage Fail tokens older than this, in seconds

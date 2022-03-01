@@ -404,7 +404,7 @@ abstract class FileOp {
 	 * precheckDestExistence() helper function to get the source file size.
 	 * Subclasses should overwrite this if the source is not in storage.
 	 *
-	 * @return string|bool Returns false on failure
+	 * @return int|false|null Returns false on failure
 	 */
 	protected function getSourceSize() {
 		return null; // N/A
@@ -414,7 +414,7 @@ abstract class FileOp {
 	 * precheckDestExistence() helper function to get the source file SHA-1.
 	 * Subclasses should overwrite this if the source is not in storage.
 	 *
-	 * @return string|bool Returns false on failure
+	 * @return string|false|null Returns false on failure
 	 */
 	protected function getSourceSha1Base36() {
 		return null; // N/A

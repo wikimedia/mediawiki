@@ -296,7 +296,7 @@ class BacklinkCache {
 	 * on the page table.
 	 * @param string $table
 	 * @throws MWException
-	 * @return array|null
+	 * @return array
 	 */
 	protected function getConditions( $table ) {
 		$prefix = $this->getPrefix( $table );

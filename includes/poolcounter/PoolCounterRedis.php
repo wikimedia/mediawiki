@@ -66,13 +66,13 @@ class PoolCounterRedis extends PoolCounter {
 
 	/** @var RedisConnRef */
 	protected $conn;
-	/** @var string Pool slot value */
+	/** @var string|null Pool slot value */
 	protected $slot;
-	/** @var int AWAKE_* constant */
+	/** @var int|null AWAKE_* constant */
 	protected $onRelease;
 	/** @var string Unique string to identify this process */
 	protected $session;
-	/** @var int UNIX timestamp */
+	/** @var int|null UNIX timestamp */
 	protected $slotTime;
 
 	private const AWAKE_ONE = 1; // wake-up if when a slot can be taken from an existing process

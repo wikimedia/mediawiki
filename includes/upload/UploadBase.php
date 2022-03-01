@@ -60,7 +60,7 @@ abstract class UploadBase {
 	protected $mRemoveTempFile;
 	/** @var string|null */
 	protected $mSourceType;
-	/** @var Title|bool */
+	/** @var Title|bool|null */
 	protected $mTitle = false;
 	/** @var int */
 	protected $mTitleError = 0;
@@ -245,7 +245,7 @@ abstract class UploadBase {
 	 *
 	 * @since 1.18
 	 * @stable to override
-	 * @return string
+	 * @return string|null
 	 */
 	public function getSourceType() {
 		return null;
