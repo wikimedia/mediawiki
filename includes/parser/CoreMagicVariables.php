@@ -68,11 +68,11 @@ class CoreMagicVariables {
 			case 'currentmonth1':
 				return $pageLang->formatNumNoSeparators( $ts->format( 'n' ) );
 			case 'currentmonthname':
-				return $pageLang->getMonthName( $ts->format( 'n' ) );
+				return $pageLang->getMonthName( (int)$ts->format( 'n' ) );
 			case 'currentmonthnamegen':
-				return $pageLang->getMonthNameGen( $ts->format( 'n' ) );
+				return $pageLang->getMonthNameGen( (int)$ts->format( 'n' ) );
 			case 'currentmonthabbrev':
-				return $pageLang->getMonthAbbreviation( $ts->format( 'n' ) );
+				return $pageLang->getMonthAbbreviation( (int)$ts->format( 'n' ) );
 			case 'currentday':
 				return $pageLang->formatNumNoSeparators( $ts->format( 'j' ) );
 			case 'currentday2':
@@ -82,11 +82,11 @@ class CoreMagicVariables {
 			case 'localmonth1':
 				return $pageLang->formatNumNoSeparators( self::makeTsLocal( $svcOptions, $ts )->format( 'n' ) );
 			case 'localmonthname':
-				return $pageLang->getMonthName( self::makeTsLocal( $svcOptions, $ts )->format( 'n' ) );
+				return $pageLang->getMonthName( (int)self::makeTsLocal( $svcOptions, $ts )->format( 'n' ) );
 			case 'localmonthnamegen':
-				return $pageLang->getMonthNameGen( self::makeTsLocal( $svcOptions, $ts )->format( 'n' ) );
+				return $pageLang->getMonthNameGen( (int)self::makeTsLocal( $svcOptions, $ts )->format( 'n' ) );
 			case 'localmonthabbrev':
-				return $pageLang->getMonthAbbreviation( self::makeTsLocal( $svcOptions, $ts )->format( 'n' ) );
+				return $pageLang->getMonthAbbreviation( (int)self::makeTsLocal( $svcOptions, $ts )->format( 'n' ) );
 			case 'localday':
 				return $pageLang->formatNumNoSeparators( self::makeTsLocal( $svcOptions, $ts )->format( 'j' ) );
 			case 'localday2':
