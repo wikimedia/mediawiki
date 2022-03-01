@@ -3487,8 +3487,6 @@
 	"tag-mw-reverted-description": "Edycje, które później zostały wycofane przez inną edycję",
 	"tag-mw-server-side-upload": "Przesłane przez serwer",
 	"tag-mw-server-side-upload-description": "Pliki multimedialne przesłane za pośrednictwem skryptu konserwacyjnego",
-	"tag-mw-add-media-description": "Edycje dodające media",
-	"tag-mw-remove-media-description": "Edycje usuwające media",
 	"tags-title": "Znaczniki",
 	"tags-intro": "Na tej stronie znajduje się lista znaczników, którymi oprogramowanie może oznaczyć edycje, oraz ich opisy.",
 	"tags-tag": "Nazwa znacznika",

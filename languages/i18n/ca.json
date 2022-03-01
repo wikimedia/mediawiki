@@ -3432,8 +3432,6 @@
 	"tag-mw-reverted-description": "Modificacions revertides més endavant amb una modificació diferent",
 	"tag-mw-server-side-upload": "Càrrega del costat del servidor",
 	"tag-mw-server-side-upload-description": "Fitxers multimèdia carregats amb un script de manteniment",
-	"tag-mw-add-media-description": "Modificacions que afegeixen elements multimèdia",
-	"tag-mw-remove-media-description": "Modificacions que suprimeixen elements multimèdia",
 	"tags-title": "Etiquetes",
 	"tags-intro": "Aquesta pàgina llista les etiquetes amb què el programari pot marcar una modificació, i el seu significat.",
 	"tags-tag": "Nom de l'etiqueta",

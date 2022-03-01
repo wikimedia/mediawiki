@@ -3352,8 +3352,6 @@
 	"tag-mw-reverted-description": "Urejanja, ki so bila pozneje vrnjena z drugim urejanjem",
 	"tag-mw-server-side-upload": "Nalaganje na strani strežnika",
 	"tag-mw-server-side-upload-description": "Predstavnostne datoteke, ki jih je naložil skript za vzdrževanje",
-	"tag-mw-add-media-description": "Urejanja, ki dodajo predstavnost",
-	"tag-mw-remove-media-description": "Urejanja, ki odstranijo predstavnost",
 	"tags-title": "Oznake",
 	"tags-intro": "Ta stran navaja oznake, s katerimi lahko programje označi urejanja, in njihov pomen.",
 	"tags-tag": "Ime oznake",

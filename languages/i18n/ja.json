@@ -3618,8 +3618,6 @@
 	"tag-mw-reverted-description": "後で別の編集により差し戻された編集",
 	"tag-mw-server-side-upload": "サーバー側のアップロード",
 	"tag-mw-server-side-upload-description": "メンテナンススクリプト経由でアップロードされたメディアファイル",
-	"tag-mw-add-media-description": "メディアを追加する編集",
-	"tag-mw-remove-media-description": "メディアを除去する編集",
 	"tags-title": "タグ",
 	"tags-intro": "このページは、ソフトウェアが編集に対して付けるタグとその意味の一覧です。",
 	"tags-tag": "タグ名",

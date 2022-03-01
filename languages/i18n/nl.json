@@ -3464,8 +3464,6 @@
 	"tag-mw-reverted-description": "Bewerkingen die later ongedaan gemaakt zijn door een andere bewerking",
 	"tag-mw-server-side-upload": "Geüpload via server",
 	"tag-mw-server-side-upload-description": "Mediabestanden die zijn geüpload via een onderhoudsscript",
-	"tag-mw-add-media-description": "Bewerkingen die media toevoegen",
-	"tag-mw-remove-media-description": "Bewerkingen die media verwijderen",
 	"tags-title": "Labels",
 	"tags-intro": "Op deze pagina staan de labels waarmee de software iedere bewerking kan markeren, en hun betekenis.",
 	"tags-tag": "Labelnaam",

@@ -3528,8 +3528,6 @@
 	"tag-mw-reverted-description": "Các sửa đổi sau đó bị một sửa đổi khác lùi sửa",
 	"tag-mw-server-side-upload": "Tải từ phía máy chủ",
 	"tag-mw-server-side-upload-description": "Tập tin phương tiện được tải lên bằng mã bảo trì",
-	"tag-mw-add-media-description": "Sửa đổi thêm phương tiện",
-	"tag-mw-remove-media-description": "Sửa đổi xóa phương tiện",
 	"tags-title": "Thẻ đánh dấu",
 	"tags-intro": "Trang này liệt kê các thẻ đánh dấu mà phần mềm dùng nó để đánh dấu một sửa đổi, và ý nghĩa của nó.",
 	"tags-tag": "Tên thẻ",

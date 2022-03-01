@@ -3701,8 +3701,6 @@
 	"tag-mw-reverted-description": "Modifications qui ont été révoquées en dernier par une autre modification",
 	"tag-mw-server-side-upload": "Téléversement via le serveur",
 	"tag-mw-server-side-upload-description": "Fichiers de média qui ont été téléversés via un script de maintenance",
-	"tag-mw-add-media-description": "Modifications qui ajoutent un média",
-	"tag-mw-remove-media-description": "Modifications qui suppriment un média",
 	"tags-title": "Balises",
 	"tags-intro": "Cette page liste les balises que le logiciel peut utiliser pour marquer une modification et la signification de chacune d’elles.",
 	"tags-tag": "Nom de la balise",

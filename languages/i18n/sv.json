@@ -3435,8 +3435,6 @@
 	"tag-mw-reverted-description": "Redigeringar som senare återställdes av en annan redigering",
 	"tag-mw-server-side-upload": "Uppladdning på serversidan",
 	"tag-mw-server-side-upload-description": "Mediafiler som laddades upp via ett underhållsskript",
-	"tag-mw-add-media-description": "Redigeringar som lägger till media",
-	"tag-mw-remove-media-description": "Redigeringar som tar bort media",
 	"tags-title": "Märken",
 	"tags-intro": "Denna sida listar de märken som programvaran kan markera en redigering med, samt deras betydelse.",
 	"tags-tag": "Märkesnamn",

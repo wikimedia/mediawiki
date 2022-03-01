@@ -3506,8 +3506,6 @@
 	"tag-mw-reverted-description": "Suntingan yang kemudian dikembalikan oleh suntingan lainnya",
 	"tag-mw-server-side-upload": "Unggah dari sisi peladen",
 	"tag-mw-server-side-upload-description": "Berkas media yang diunggah melalui skrip pemeliharaan",
-	"tag-mw-add-media-description": "Suntingan yang menambah media",
-	"tag-mw-remove-media-description": "Suntingan yang menghapus media",
 	"tags-title": "Tanda",
 	"tags-intro": "Halaman ini berisi daftar tag yang dapat ditandai oleh perangkat lunak terhadap suatu suntingan berikut artinya.",
 	"tags-tag": "Nama tag",

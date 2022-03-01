@@ -3435,8 +3435,6 @@
 	"tag-mw-reverted-description": "나중에 다른 편집으로 되돌린 편집",
 	"tag-mw-server-side-upload": "서버측 업로드",
 	"tag-mw-server-side-upload-description": "정비 스크립트를 통해 업로드된 미디어 파일",
-	"tag-mw-add-media-description": "미디어를 추가하는 편집",
-	"tag-mw-remove-media-description": "미디어를 제거하는 편집",
 	"tags-title": "태그",
 	"tags-intro": "이 문서는 소프트웨어에서 편집에 대해 표시하는 태그와 그 의미를 설명하는 목록입니다.",
 	"tags-tag": "태그 이름",
