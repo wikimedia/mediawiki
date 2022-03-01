@@ -561,6 +561,8 @@ because of Phabricator reports.
   TextboxBuilder::addNewLineAtEnd instead.
 * EditPage::getCopywarn() was deprecated; use
   EditPage::getCopyrightWarning instead.
+* EditPage::getCopyrightWarning() without passing a MessageLocalizer
+  parameter has been deprecated.
 * The HTMLForm methods getPreText, setPreText, addPreText, getPostText,
   setPostText, addPostText, getHeaderText, setHeaderText, addHeaderText,
   getFooterText, setFooterText and addFooterText have been renamed to
