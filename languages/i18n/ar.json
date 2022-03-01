@@ -3491,8 +3491,6 @@
 	"tag-mw-reverted": "مسترجع",
 	"tag-mw-reverted-description": "التعديلات التي جرى التراجع عنها في تعديل لاحق",
 	"tag-mw-server-side-upload": "رفع من طرف المُخدِّم",
-	"tag-mw-add-media-description": "التعديلات التي تضيف الوسائط",
-	"tag-mw-remove-media-description": "التعديلات التي تزيل الوسائط",
 	"tags-title": "وسوم",
 	"tags-intro": "هذه الصفحة تعرض الوسوم التي من الممكن للبرنامج أن يوسم أحد التعديلات بها، بالإضافة لمعانيها.",
 	"tags-tag": "اسم الوسم",

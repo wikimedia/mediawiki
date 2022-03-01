@@ -3382,8 +3382,6 @@
 	"tag-mw-reverted-description": "Muudatused, mis tühistati hilisema muudatusega",
 	"tag-mw-server-side-upload": "Serveripoolne üleslaadimine",
 	"tag-mw-server-side-upload-description": "Meediumifailid, mis laaditi üles hooldusskripti abil",
-	"tag-mw-add-media-description": "Muudatused, millega lisatakse meediumifail",
-	"tag-mw-remove-media-description": "Muudatused, millega eemaldatakse meediumifail",
 	"tags-title": "Märgised",
 	"tags-intro": "See lehekülg loetleb märgised, millega tarkvara võib muudatused märgistada, ja nende kirjeldused.",
 	"tags-tag": "Märgise nimi",

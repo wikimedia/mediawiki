@@ -3387,8 +3387,6 @@
 	"tag-mw-reverted-description": "Editări care au fost mai târziu anulate de o editare diferită",
 	"tag-mw-server-side-upload": "Încărcare de pe server",
 	"tag-mw-server-side-upload-description": "Fișiere media care au fost încărcate printr-un script de întreținere",
-	"tag-mw-add-media-description": "Modificări care adaugă conținut media",
-	"tag-mw-remove-media-description": "Modificări care elimină conținut media",
 	"tags-title": "Etichete",
 	"tags-intro": "Această pagină afișează etichetele, inclusiv semnificația lor, pe care software-ul le poate folosi la marcarea modificărilor.",
 	"tags-tag": "Numele etichetei",

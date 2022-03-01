@@ -3517,8 +3517,6 @@
 	"tag-mw-reverted-description": "Daha sonra farklı bir düzenlemeyle geri alınan düzenlemeler",
 	"tag-mw-server-side-upload": "Sunucu-tarafı yükleme",
 	"tag-mw-server-side-upload-description": "Bir bakım betiği ile yüklenmiş ortam dosyaları",
-	"tag-mw-add-media-description": "Ortam ekleyen değişiklikler",
-	"tag-mw-remove-media-description": "Ortam çıkaran değişiklikler",
 	"tags-title": "Etiketler",
 	"tags-intro": "Bu sayfa, yazılımın bir değişikliği işaretleyebileceği etiketleri ve bunların anlamlarını listeler.",
 	"tags-tag": "Etiket adı",

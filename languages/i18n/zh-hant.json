@@ -3483,8 +3483,6 @@
 	"tag-mw-reverted-description": "被之後另一個編輯回退的編輯",
 	"tag-mw-server-side-upload": "服務器端上傳",
 	"tag-mw-server-side-upload-description": "通過維護指令碼上傳的媒體檔案",
-	"tag-mw-add-media-description": "添加媒體的編輯",
-	"tag-mw-remove-media-description": "移除媒體的編輯",
 	"tags-title": "標籤",
 	"tags-intro": "此頁面列出所有可用來標示編輯內容的標籤以及這些標籤所代表的意思。",
 	"tags-tag": "標籤名稱",

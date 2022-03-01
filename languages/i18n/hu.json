@@ -3363,8 +3363,6 @@
 	"tag-mw-reverted": "Visszaállítva",
 	"tag-mw-reverted-description": "Olyan szerkesztések, amiket egy későbbi szerkesztés visszavont",
 	"tag-mw-server-side-upload": "Szerveroldali feltöltés",
-	"tag-mw-add-media-description": "Médiát beszúró szerkesztések",
-	"tag-mw-remove-media-description": "Médiát eltávolító szerkesztések",
 	"tags-title": "Címkék",
 	"tags-intro": "Ez a lap azokat a címkéket és jelentéseiket tartalmazza, amikkel a szoftver megjelölhet egy szerkesztést.",
 	"tags-tag": "Címke neve",

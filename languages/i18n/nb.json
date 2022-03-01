@@ -3429,8 +3429,6 @@
 	"tag-mw-reverted-description": "Redigeringer som senere ble tilbakestilt av en annen redigering",
 	"tag-mw-server-side-upload": "Opplasting på serversiden",
 	"tag-mw-server-side-upload-description": "Mediefiler som ble lastet opp via et vedlikeholdsskript",
-	"tag-mw-add-media-description": "Redigeringer som legger til medier",
-	"tag-mw-remove-media-description": "Redigeringer som fjerner medier",
 	"tags-title": "Tagger",
 	"tags-intro": "Denne siden lister opp taggene programvaren kan merke en endring med, og hva de betyr.",
 	"tags-tag": "Taggnavn",

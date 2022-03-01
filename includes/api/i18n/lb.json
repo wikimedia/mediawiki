@@ -23,6 +23,7 @@
 	"apihelp-compare-param-torev": "Zweet Versioun fir ze vergläichen.",
 	"apihelp-createaccount-summary": "En neie Benotzerkont uleeën.",
 	"apihelp-delete-summary": "Eng Säit läschen.",
+	"apihelp-delete-param-deletetalk": "D'Diskussiounssäit läsche wann et se gëtt.",
 	"apihelp-delete-param-watch": "D'Säit op dem aktuelle Benotzer seng Iwwerwaachungslëscht derbäisetzen.",
 	"apihelp-delete-param-unwatch": "D'Säit vun der Iwwerwaachungslëscht vum aktuelle Benotzer erofhuelen.",
 	"apihelp-delete-example-simple": "D'<kbd>Main Page</kbd> läschen.",

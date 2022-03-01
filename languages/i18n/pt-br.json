@@ -3546,8 +3546,6 @@
 	"tag-mw-reverted-description": "Edições que foram posteriormente revertidas por uma edição diferente",
 	"tag-mw-server-side-upload": "Carregamento via servidor",
 	"tag-mw-server-side-upload-description": "Arquivos multimídia que foram carregados por um arquivo de comandos de manutenção",
-	"tag-mw-add-media-description": "edições que adicionam mídia",
-	"tag-mw-remove-media-description": "edições que removem mídia",
 	"tags-title": "Etiquetas",
 	"tags-intro": "Esta página lista as etiquetas com que o software poderá marcar uma edição, e o seu significado.",
 	"tags-tag": "Nome da etiqueta",

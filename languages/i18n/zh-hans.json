@@ -3588,8 +3588,6 @@
 	"tag-mw-reverted-description": "过后被另一编辑回退了的编辑",
 	"tag-mw-server-side-upload": "服务器端上传",
 	"tag-mw-server-side-upload-description": "通过维护脚本上传的媒体文件",
-	"tag-mw-add-media-description": "添加媒体的编辑",
-	"tag-mw-remove-media-description": "移除媒体的编辑",
 	"tags-title": "标签",
 	"tags-intro": "本页面列出了软件可能用于标记编辑的标签和它们的含义。",
 	"tags-tag": "标签名称",
