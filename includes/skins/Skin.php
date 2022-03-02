@@ -27,6 +27,7 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Skin\SkinComponent;
 use MediaWiki\Skin\SkinComponentRegistry;
+use MediaWiki\Skin\SkinComponentRegistryContext;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\WrappedStringList;
@@ -266,7 +267,7 @@ abstract class Skin extends ContextSource {
 			$this->skinname = $name;
 		}
 		$this->componentRegistry = new SkinComponentRegistry(
-			$this
+			new SkinComponentRegistryContext( $this )
 		);
 	}
 
