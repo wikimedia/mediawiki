@@ -43,7 +43,9 @@
 			label: label
 		} ).$element[ 0 ];
 
-		mw.notify( data.message );
+		mw.notify( data.message, {
+			classes: [ 'postedit' ]
+		} );
 
 		// Deprecated - use the 'postEdit' hook, and an additional pause if required
 		mw.hook( 'postEdit.afterRemoval' ).fire();
