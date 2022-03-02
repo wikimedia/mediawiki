@@ -190,6 +190,7 @@ class XmlTypeCheck {
 	private function readNext( XMLReader $reader ) {
 		set_error_handler( function ( $line, $file ) {
 			$this->wellFormed = false;
+			return true;
 		} );
 		$ret = $reader->read();
 		restore_error_handler();
