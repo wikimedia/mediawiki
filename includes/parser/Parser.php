@@ -2703,7 +2703,8 @@ class Parser {
 				$options = [];
 				$descQuery = false;
 				$this->hookRunner->onBeforeParserFetchFileAndTitle(
-					$this, $nt, $options, $descQuery );
+					$this, $nt, $options, $descQuery
+				);
 				# Fetch and register the file (file title may be different via hooks)
 				list( $file, $nt ) = $this->fetchFileAndTitle( $nt, $options );
 				# Cloak with NOPARSE to avoid replacement in handleExternalLinks
@@ -2814,22 +2815,25 @@ class Parser {
 			// Not a defined core magic word
 			$ret = null;
 			$originalIndex = $index;
-			$this->hookRunner->onParserGetVariableValueSwitch( $this,
-				$this->mVarCache, $index, $ret, $frame );
-				if ( $index !== $originalIndex ) {
-					wfDeprecatedMsg(
-						'A ParserGetVariableValueSwitch hook handler modified $index, ' .
-						'this is deprecated since MediaWiki 1.35',
-						'1.35', false, false
-					);
-				}
-				if ( !isset( $this->mVarCache[$originalIndex] ) ||
-					$this->mVarCache[$originalIndex] !== $ret ) {
-					wfDeprecatedMsg(
-						'A ParserGetVariableValueSwitch hook handler bypassed the cache, ' .
-						'this is deprecated since MediaWiki 1.35', '1.35', false, false
-					);
-				}// FIXME: in the future, don't give this hook unrestricted
+			$this->hookRunner->onParserGetVariableValueSwitch(
+				$this, $this->mVarCache, $index, $ret, $frame
+			);
+			if ( $index !== $originalIndex ) {
+				wfDeprecatedMsg(
+					'A ParserGetVariableValueSwitch hook handler modified $index, ' .
+					'this is deprecated since MediaWiki 1.35',
+					'1.35', false, false
+				);
+			}
+			if ( !isset( $this->mVarCache[$originalIndex] ) ||
+				$this->mVarCache[$originalIndex] !== $ret
+			) {
+				wfDeprecatedMsg(
+					'A ParserGetVariableValueSwitch hook handler bypassed the cache, ' .
+					'this is deprecated since MediaWiki 1.35', '1.35', false, false
+				);
+			}
+			// FIXME: in the future, don't give this hook unrestricted
 			// access to mVarCache; we can cache it ourselves by falling
 			// through here.
 			return $ret;
@@ -5103,7 +5107,8 @@ class Parser {
 			$options = [];
 			$descQuery = false;
 			$this->hookRunner->onBeforeParserFetchFileAndTitle(
-				$this, $title, $options, $descQuery );
+				$this, $title, $options, $descQuery
+			);
 			# Don't register it now, as TraditionalImageGallery does that later.
 			$file = $this->fetchFileNoRegister( $title, $options );
 			$handler = $file ? $file->getHandler() : false;
@@ -5290,7 +5295,8 @@ class Parser {
 		$descQuery = false;
 		$title = Title::castFromLinkTarget( $link ); // hook signature compat
 		$this->hookRunner->onBeforeParserFetchFileAndTitle(
-			$this, $title, $options, $descQuery );
+			$this, $title, $options, $descQuery
+		);
 		# Fetch and register the file (file title may be different via hooks)
 		list( $file, $link ) = $this->fetchFileAndTitle( $link, $options );
 
