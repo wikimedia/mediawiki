@@ -11,7 +11,7 @@ class BadTitleErrorTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 		$mockOut->expects( $this->once() )
 			->method( 'setStatusCode' )
-			->with( 400 );
+			->with( 404 );
 		$this->setMwGlobals( 'wgOut', $mockOut );
 
 		try {

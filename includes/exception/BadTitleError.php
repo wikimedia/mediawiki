@@ -21,14 +21,17 @@
 /**
  * Show an error page on a badtitle.
  *
- * Uses BadRequestError to emit a 400 HTTP error code to ensure caching proxies and
- * mobile browsers know not to cache it as valid content. (T35646)
+ * We always emit a HTTP 404 error code since pages with an invalid title will
+ * never have any content. In the past this emitted a 400 error code to ensure
+ * caching proxies and mobile browsers don't cache it as valid content (T35646),
+ * but that had the disadvantage of telling caches in front of MediaWiki
+ * (Varnish, etc.), not to cache it either.
  *
  * @newable
  * @since 1.19
  * @ingroup Exception
  */
-class BadTitleError extends BadRequestError {
+class BadTitleError extends ErrorPageError {
 	/**
 	 * @stable to call
 	 *
@@ -48,5 +51,14 @@ class BadTitleError extends BadRequestError {
 		} else {
 			parent::__construct( 'badtitle', $msg, $params );
 		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function report( $action = self::SEND_OUTPUT ) {
+		global $wgOut;
+		$wgOut->setStatusCode( 404 );
+		parent::report( $action );
 	}
 }
