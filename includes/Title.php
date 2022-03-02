@@ -3740,7 +3740,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		}
 
 		$touched = $this->getFieldFromPageStore( 'page_touched', $flags );
-		return MWTimestamp::convert( TS_MW, $touched );
+		return $touched ? MWTimestamp::convert( TS_MW, $touched ) : false;
 	}
 
 	/**
@@ -4124,7 +4124,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		if ( $page instanceof PageStoreRecord ) {
 			return $page->getField( $field );
 		} else {
-			// page does not exist
+			// The page record failed to load, remember the page as non-existing.
+			// Note that this can happen even if a page ID was known before under some
+			// rare circumstances, if this method is called with the READ_LATEST bit set
+			// and the page has been deleted since the ID had initially been determined.
+			$this->mArticleID = 0;
 			return false;
 		}
 	}
