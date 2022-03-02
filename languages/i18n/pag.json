@@ -582,5 +582,16 @@
 	"authmanager-realname-label": "Tuwan ngaran",
 	"edit-error-short": "Lingo: $1",
 	"edit-error-long": "Saray lingo:\n\n$1",
-	"passwordpolicies-group": "Grupo"
+	"passwordpolicies-group": "Grupo",
+	"action-viewdeleted": "Nengnengen so $1?",
+	"action-protect": "Iyagel",
+	"view-edit": "Dumaen",
+	"view-create": "Palsaen",
+	"action-unprotect": "salatan so iyagel",
+	"view-history": "Nengnengen so awaran",
+	"action-delete": "Buralen",
+	"action-move": "Iyales",
+	"view-view": "Basaen",
+	"view-view-foreign": "Nengnengen diad $1",
+	"nstab-mainpage": "Arapan ya bolong"
 }

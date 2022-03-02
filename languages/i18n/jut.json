@@ -878,5 +878,18 @@
 	"expand_templates_ok": "Utfolj",
 	"expand_templates_remove_comments": "Slett kommentare",
 	"expand_templates_generate_xml": "Wis analysträj som XML",
-	"expand_templates_preview": "Forhånjswisneng"
+	"expand_templates_preview": "Forhånjswisneng",
+	"action-viewdeleted": "Wis $1?",
+	"action-protect": "Beskøtt",
+	"view-edit": "Redigiir",
+	"view-create": "Oprett",
+	"action-unprotect": "Ønda beskøttels",
+	"view-history": "Sie historik",
+	"action-move": "Flytt",
+	"view-view": "Läs",
+	"action-addsection": "Ny emn",
+	"view-view-foreign": "Wis på $1",
+	"view-create-local": "Tilfye lokal beskriiwels",
+	"nstab-mainpage": "Forsiid",
+	"view-edit-local": "Redigiir lokal beskriiwels"
 }

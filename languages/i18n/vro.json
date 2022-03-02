@@ -1579,5 +1579,20 @@
 	"rightsnone": "(olõ-i õiguisi)",
 	"searchsuggest-search": "Otsminõ {{GRAMMAR:elative|{{SITENAME}}}}",
 	"duration-days": "$1 {{PLURAL:$1|päiv|päivä}}",
-	"randomrootpage": "Johuslinõ juurlehekülg"
+	"randomrootpage": "Johuslinõ juurlehekülg",
+	"action-viewdeleted": "Näüdädäq $1?",
+	"action-protect": "Kaidsaq",
+	"view-edit": "Toimõndaq",
+	"view-create": "Luuq leht",
+	"action-unprotect": "Muudaq kaidsõt",
+	"view-history": "Näütäq aoluku",
+	"action-delete": "Kistudaq ärq",
+	"action-undelete": "Tiiq tagasi",
+	"action-move": "Nõstaq ümbre",
+	"view-view": "Loeq",
+	"action-addsection": "Vahtsõ teema ülespandminõ",
+	"view-view-foreign": "Kaeq $1 pääl",
+	"view-create-local": "Luuq paigapääline seletüs",
+	"nstab-mainpage": "Pääleht",
+	"view-edit-local": "Toimõndaq paigapäälist seletüst"
 }

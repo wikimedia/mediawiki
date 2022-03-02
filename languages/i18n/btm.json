@@ -664,5 +664,16 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|iunggah}} versi nabaru tingon $3",
 	"searchsuggest-search": "Jalaki {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|day|ari}}",
-	"randomrootpage": "Gaor alaman urat"
+	"randomrootpage": "Gaor alaman urat",
+	"view-edit": "Pature",
+	"view-create": "Baen",
+	"view-history": "Sise sejarah",
+	"action-delete": "Apus",
+	"action-move": "Pindah",
+	"view-view": "Baca",
+	"action-addsection": "Baen tema",
+	"view-view-foreign": "Sise i $1",
+	"view-create-local": "Baen deskripsi lokal",
+	"nstab-mainpage": "Alaman utamo",
+	"view-edit-local": "Baen deskeipsi lokal"
 }

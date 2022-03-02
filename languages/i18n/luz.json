@@ -802,5 +802,19 @@
 	"randomrootpage": "بونبٱرگاٛی شانسٱکی",
 	"specialmute": "بی‌صدا",
 	"specialmute-label-mute-email": "ایمیل وه ای کاربر مخفی او ووی {{GENDER:$1|user}}",
-	"userlogout-continue": "ایخیت برِیِتو وَدَر"
+	"userlogout-continue": "ایخیت برِیِتو وَدَر",
+	"action-viewdeleted": "دیئن$1؟",
+	"action-protect": "مهافزٱت",
+	"view-edit": "چۊشخٱ",
+	"view-create": "ساختٱن",
+	"action-unprotect": "تغییر دائن حالت حفاظت",
+	"view-history": "دیڌٱن تاریخچٱ",
+	"action-delete": "هٱسف",
+	"action-move": "جاڤٱجا کاٛردٱن",
+	"view-view": "خوندٱن",
+	"action-addsection": "اْزاف کاٛردٱن مۉزۊ",
+	"view-view-foreign": "نیما مئن  $1",
+	"view-create-local": "ڤأندن توٙضیحأتل مأحألی",
+	"nstab-mainpage": "بٱرگاٛی بونبنین",
+	"view-edit-local": "اصلاح توضیحتل محلی"
 }

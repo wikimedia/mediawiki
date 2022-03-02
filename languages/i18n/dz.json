@@ -447,5 +447,9 @@
 	"watchlisttools-raw": "རགས་ཙམ་གྱི་བལྟ་ཞིབ་ཐོ་ཡིག་ ཞུན་དག་འབད་",
 	"version": "ཐོན་རིམ།",
 	"specialpages": "དམིགས་བསལ་ཤོག་ལེབ།",
-	"deletepage": "ཤོག་ལེབ་བཏོན་གཏང་།"
+	"deletepage": "ཤོག་ལེབ་བཏོན་གཏང་།",
+	"action-protect": "ཉེན་སྐྱོབ།",
+	"view-edit": "ཞུན་དག།",
+	"view-view": "ལྷག",
+	"nstab-mainpage": "མ་ཤོག"
 }

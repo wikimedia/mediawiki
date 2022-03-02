@@ -842,5 +842,17 @@
 	"fileduplicatesearch-submit": "Noonya",
 	"specialpages": "Empapula enjawule",
 	"tags-edit": "kyusa",
-	"deletepage": "Gyawo olupapula"
+	"deletepage": "Gyawo olupapula",
+	"action-viewdeleted": "Oyagala okulaba $1?",
+	"action-protect": "Ssiba",
+	"view-edit": "Kyusa",
+	"view-create": "Kolawo",
+	"action-unprotect": "Kyusa ebikugizo",
+	"view-history": "Ennanda ya fayiro eno",
+	"action-delete": "Gyawo olupapula luno",
+	"action-undelete": "Zawo",
+	"action-move": "Simbuliza",
+	"view-view": "Soma",
+	"action-addsection": "Tandikawo emboozi endala",
+	"nstab-mainpage": "Olupapula Olusinga Omugaso"
 }

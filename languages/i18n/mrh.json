@@ -798,5 +798,18 @@
 	"duration-days": "$1 {{PLURAL:$1|noh|nohzy}}",
 	"mw-widgets-mediasearch-recent-uploads": "{{GENDER:$1|Nâma}} na khâpa theihpazy",
 	"mw-widgets-mediasearch-results-aria-label": "Media tluapa theilâpazy",
-	"randomrootpage": "Random thari châhmia"
+	"randomrootpage": "Random thari châhmia",
+	"action-viewdeleted": "$1 he na moh awma?",
+	"action-protect": "Vaih",
+	"view-edit": "Taopathi",
+	"view-create": "Tao",
+	"view-history": "Chhichânazy palâ teih",
+	"action-delete": "ParaoHip",
+	"action-move": "Paly",
+	"view-view": "Reih teih",
+	"action-addsection": "Chôtlâhpi khô",
+	"view-view-foreign": "$1 liata palâ",
+	"view-create-local": "Vâtlâh palâsana khô teih",
+	"nstab-mainpage": "Châhmia tôhpipa",
+	"view-edit-local": "Vâtlâh palâsana taopathi"
 }

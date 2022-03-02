@@ -507,5 +507,15 @@
 	"searchsuggest-search": "ᨪᩰᩬᩡᩉᩣ {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|ᩅᩢ᩠ᨶ}}",
 	"pagelang-name": "ᩉ᩠ᨶ᩶ᩣ",
-	"pagelang-language": "ᨽᩣᩈᩣ"
+	"pagelang-language": "ᨽᩣᩈᩣ",
+	"view-edit": "ᨠᩯ᩶",
+	"view-create": "ᨸᩖᩯᨦ",
+	"view-history": "ᨹᩬᩴ᩵ᨷᩅᩢᨲ᩠ᨲᩥ᩺",
+	"action-delete": "ᩃᩫ᩠ᨷ",
+	"action-move": "ᨸᩖ᩠᩵ᨿᩁᨩᩨ᩵",
+	"view-view": "ᩋ᩵ᩣ᩠ᨶ",
+	"action-addsection": "ᨲᩮᩬᩥ᩵ᨾᩉ᩠ᩅᩫᨡᩬᩴ᩶",
+	"view-view-foreign": "ᨹᩬᩴ᩵ᨷᩫ᩠ᨶ $1",
+	"view-create-local": "ᨲᩮᩬᩥ᩵ᨾᨣᩤᩴᨧᩣᨡᩱᨩᩪᨴᩦ᩵",
+	"nstab-mainpage": "ᩉ᩠ᨶ᩶ᩣᨣᩮᩢ᩶ᩣ"
 }

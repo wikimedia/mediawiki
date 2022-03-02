@@ -125,5 +125,13 @@
 	"uctop": "latste veranderienge",
 	"contribslink": "bydroagn",
 	"tooltip-n-mainpage": "Noar 't voorblad goane",
-	"newimages": "Nieuwe ofbeeldiengn"
+	"newimages": "Nieuwe ofbeeldiengn",
+	"action-protect": "Beveilign",
+	"view-edit": "Bewerk'n",
+	"view-create": "Anmoakn",
+	"action-unprotect": "beveiliginge wegdoen",
+	"view-history": "Geschiedenisse bekykn",
+	"action-delete": "Wegdoen",
+	"action-move": "Ernoemn",
+	"view-view": "Leezn"
 }

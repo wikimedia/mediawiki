@@ -670,5 +670,18 @@
 	"searchsuggest-search": "Circà in {{SITENAME}}",
 	"api-clientside-error-noconnect": "Could not connect to the server. Make sure you have a working internet connection and try again.",
 	"expand_templates_output": "Risultatu",
-	"mw-widgets-mediasearch-input-placeholder": "Ricerca di media"
+	"mw-widgets-mediasearch-input-placeholder": "Ricerca di media",
+	"action-viewdeleted": "Mustrà $1?",
+	"action-protect": "Pruteghje",
+	"view-edit": "Mudificà",
+	"view-create": "Creà",
+	"action-unprotect": "Cambià a prutezzione",
+	"view-history": "Vede a cronolugia",
+	"action-delete": "Supprimà",
+	"action-move": "Cullucà",
+	"view-view": "Leghje",
+	"action-addsection": "Aghjunghje discussione",
+	"view-view-foreign": "Vede nantu à $1",
+	"view-create-local": "Aghjunghje descrizzione lucale",
+	"nstab-mainpage": "Pàgina maestra"
 }

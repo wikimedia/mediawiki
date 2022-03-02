@@ -588,5 +588,20 @@
 	"logentry-rights-rights": "$1已将{{GENDER:$6|$3}}的用户组从$4{{GENDER:$2|改}}噶$5",
 	"searchsuggest-search": "去寻{{SITENAME}}",
 	"duration-days": "$1{{PLURAL:$1|天}}",
-	"randomrootpage": "随机亇页面"
+	"randomrootpage": "随机亇页面",
+	"action-viewdeleted": "看$1",
+	"action-protect": "免修",
+	"view-edit": "增改",
+	"view-create": "创建",
+	"action-unprotect": "更改保护",
+	"view-history": "履歷",
+	"action-delete": "消嘎",
+	"action-undelete": "还原",
+	"action-move": "移走",
+	"view-view": "讀",
+	"action-addsection": "搞杂话题",
+	"view-view-foreign": "到$1克看",
+	"view-create-local": "加一个本地说明",
+	"nstab-mainpage": "頭面",
+	"view-edit-local": "写本地说明"
 }

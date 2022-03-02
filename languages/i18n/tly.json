@@ -930,5 +930,20 @@
 	"mediastatistics-header-total": "Həmə faylon",
 	"randomrootpage": "Ком гыләјә ришәјнә сәһифә",
 	"log-action-filter-all": "Həmə",
-	"authmanager-email-label": "Elektron nomə"
+	"authmanager-email-label": "Elektron nomə",
+	"action-viewdeleted": "Diyə kardedəş $1?",
+	"action-protect": "Mıdofiə karde",
+	"view-edit": "Овахте",
+	"view-create": "Сохтеј",
+	"action-unprotect": "Mıdofiyə dəqiş karde",
+	"view-history": "Tarixi diyəkə",
+	"action-delete": "Bısü",
+	"action-undelete": "Бәрпо кардеј",
+	"action-move": "Овахте",
+	"view-view": "Баһанд",
+	"action-addsection": "Мывзу әловә карде",
+	"view-view-foreign": "Дијәкә сајтәдә $1",
+	"view-create-local": "Буминә вырә бынвыштән",
+	"nstab-mainpage": "Əsosə səhifə",
+	"view-edit-local": "Буминә ном-нышони сәрост карде"
 }

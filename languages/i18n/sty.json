@@ -596,5 +596,15 @@
 	"logentry-upload-overwrite": "$1 йаңа аңыш{{GENDER:$2||тейәте}} $3",
 	"searchsuggest-search": "{{SITENAME}}та эстәгәле‎",
 	"duration-days": "$1 {{PLURAL:$1|көн}}",
-	"randomrootpage": "Көтөлмәгән тамыр пит"
+	"randomrootpage": "Көтөлмәгән тамыр пит",
+	"view-edit": "Төсәткәле",
+	"view-create": "Пултырғалы",
+	"view-history": "Тариҡны ҡарағалы",
+	"action-delete": "Йуҡ иткәле",
+	"action-move": "Исемне алмаштырғалы",
+	"view-view": "Уғығалы",
+	"action-addsection": "Тема өстәгәле",
+	"view-view-foreign": "$1 сайтта ҡарағалы",
+	"view-create-local": "Локаль сүрәтләмәне өстәгәле",
+	"nstab-mainpage": "Паш пит"
 }

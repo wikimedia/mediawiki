@@ -1401,5 +1401,19 @@
 	"searchsuggest-search": "Iruzzi {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|ass|ussan}}",
 	"randomrootpage": "Asebter aẓaṛ agacuran",
-	"authmanager-realname-label": "Isem n ṣṣeḥ:"
+	"authmanager-realname-label": "Isem n ṣṣeḥ:",
+	"action-viewdeleted": "Ẓer $1?",
+	"action-protect": "Ḥrez",
+	"view-edit": "Glef",
+	"view-create": "Snulfu",
+	"action-unprotect": "Beddel amesten",
+	"view-history": "Wali amazray",
+	"action-delete": "Mḥu",
+	"action-move": "Snifel isem",
+	"view-view": "Ɣer",
+	"action-addsection": "Rnud ameggay",
+	"view-view-foreign": "Sken di $1",
+	"view-create-local": "Rnu aglam n adigan",
+	"nstab-mainpage": "Asebter agejdan",
+	"view-edit-local": "Rnu aglam adigan"
 }

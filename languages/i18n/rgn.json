@@ -487,5 +487,12 @@
 	"watchlisttools-edit": "Guèrda e mudèfica la lèsta d'pàgin da tnì d'öcc",
 	"watchlisttools-raw": "Mudèfiga la lèsta - scrètta - dal pàgin da tnì d'öcc",
 	"specialpages": "Pàgin particulèri",
-	"deletepage": "Scanzela la pàgina"
+	"deletepage": "Scanzela la pàgina",
+	"action-protect": "Metti-j una pruteziòn",
+	"view-edit": "Mudèfica",
+	"view-create": "Fa nov/a",
+	"action-delete": "Scanzèla",
+	"action-undelete": "Armett a post",
+	"action-move": "Chèmbia nòm",
+	"action-addsection": "Zonta una cjacarèda"
 }

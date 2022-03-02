@@ -95,5 +95,8 @@
 	"tooltip-save": "Sâover v's amendements",
 	"autoredircomment": "Èrdirect sus [[$1]]",
 	"specialpages": "Page espéciâle",
-	"deletepage": "Dénichi la page"
+	"deletepage": "Dénichi la page",
+	"view-edit": "Amendaer",
+	"view-create": "Criyaer",
+	"view-view": "Luure"
 }

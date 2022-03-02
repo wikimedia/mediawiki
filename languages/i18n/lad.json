@@ -603,7 +603,7 @@
 	"action-createtalk": "Krear pajinas de diskusyon",
 	"action-createaccount": "Krear este kuento de usuario",
 	"action-minoredit": "sinyalar este kambio komo chiko",
-	"action-delete": "efassar esta hoja",
+	"action-delete": "Efassar",
 	"action-sendemail": "embiar korreo elektronikos",
 	"nchanges": "$1 {{PLURAL:$1|trocamiento|trocamientos}}",
 	"enhancedrc-history": "istoria",
@@ -1139,5 +1139,18 @@
 	"limitreport-cputime-value": "$1{{PLURAL:$1|segundo|segundos}}",
 	"limitreport-walltime-value": "$1{{PLURAL:$1|segundo|segundos}}",
 	"expand_templates_ok": "D'akodro",
-	"randomrootpage": "Página aleatoria ''root''"
+	"randomrootpage": "Página aleatoria ''root''",
+	"action-viewdeleted": "Desea ver $1?",
+	"action-protect": "Guadrar",
+	"view-edit": "Trocar",
+	"view-create": "Criar",
+	"action-unprotect": "Trocar guardadijo",
+	"view-history": "Ver la istoria",
+	"action-undelete": "Traer atrás",
+	"action-move": "Taşirear",
+	"view-view": "Meldar",
+	"action-addsection": "Ajustar sujeto",
+	"view-view-foreign": "Mirar en $1",
+	"view-create-local": "Agregar deskripsión local",
+	"nstab-mainpage": "La Primera Hoja"
 }

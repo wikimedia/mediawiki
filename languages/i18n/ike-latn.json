@@ -229,5 +229,9 @@
 	"autoredircomment": "qaningani kamagijaq aasit nakit [[$1]]",
 	"autosumm-new": "pigivuq mappitaq: $1",
 	"specialpages": "piji mappitaq",
-	"tags-edit": "suqusiqpaa"
+	"tags-edit": "suqusiqpaa",
+	"action-protect": "sapummivaa",
+	"view-edit": "Suqusiqpaa",
+	"action-unprotect": "iq sapummivaa",
+	"nstab-mainpage": "amiq"
 }

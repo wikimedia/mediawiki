@@ -789,5 +789,17 @@
 	"feedback-message": "Мактуп:",
 	"searchsuggest-search": "{{SITENAME}} ичинде излемек",
 	"duration-days": "$1 {{PLURAL:$1|гюн}}",
-	"randomrootpage": "Хапарсыз тамур сагьифасы"
+	"randomrootpage": "Хапарсыз тамур сагьифасы",
+	"action-viewdeleted": "Къарамакъмы $1?",
+	"action-protect": "Къорумакъ",
+	"view-edit": "Тюзлемек",
+	"view-create": "Яратмакъ",
+	"view-history": "Тарихине къарамакъ",
+	"action-delete": "Тайдырмакъ",
+	"action-move": "Атын алышдырмакъ",
+	"view-view": "Охумакъ",
+	"action-addsection": "Мавзу къошмакъ",
+	"view-view-foreign": "$1 сайтында къарамакъ",
+	"view-create-local": "Ерли сыпатлавун тюзлемек",
+	"nstab-mainpage": "Баш сагьифа"
 }

@@ -1230,5 +1230,20 @@
 	"mw-widgets-dateinput-no-date": "Ji̍t-kî iáu-bōe soán",
 	"mw-widgets-mediasearch-input-placeholder": "搜揣媒體",
 	"date-range-from": "Khai-sí ji̍t-chí:",
-	"date-range-to": "Kiat-sok ji̍t-chí:"
+	"date-range-to": "Kiat-sok ji̍t-chí:",
+	"action-viewdeleted": "Beh khoàⁿ $1？",
+	"action-protect": "Pó-hō͘",
+	"view-edit": "Siu-kái",
+	"view-create": "Khai-sí siá",
+	"action-unprotect": "Kái-piàn pó-hō͘",
+	"view-history": "khoàⁿ le̍k-sú",
+	"action-delete": "Thâi",
+	"action-undelete": "chhú-siau thâi tiàu",
+	"action-move": "Sóa khì",
+	"view-view": "Tha̍k",
+	"action-addsection": "Ke chi̍t-ê toān-lo̍h",
+	"view-view-foreign": "tī $1 hiah khoàⁿ",
+	"view-create-local": "ka chhit-tah--ê soat-bêng",
+	"nstab-mainpage": "Thâu-ia̍h",
+	"view-edit-local": "改這位的說明"
 }

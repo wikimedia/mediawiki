@@ -364,5 +364,13 @@
 	"table_pager_prev": "Mukânda ya kutwala",
 	"table_pager_first": "Mukânda ya ntete",
 	"table_pager_last": "Mukânda ya nsuka",
-	"deletepage": "Kufwa mukânda"
+	"deletepage": "Kufwa mukânda",
+	"action-viewdeleted": "Tala $1?",
+	"action-protect": "Keba",
+	"view-edit": "Soba",
+	"view-create": "Tunga",
+	"view-history": "Tala bansoba",
+	"action-delete": "Kufwa",
+	"action-move": "Nata",
+	"view-view": "Tânga"
 }

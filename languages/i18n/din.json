@@ -479,5 +479,14 @@
 	"logentry-newusers-create": "Cinakuën ë dukui $1 acï {{GENDER:$2|cak}}",
 	"logentry-upload-upload": "$1 {{GENDER:$2|cï jatnhial}} $3",
 	"feedback-cancel": "Tɛmkɔ̈u",
-	"searchsuggest-search": "Yiɔ̈ɔ̈p {{SITENAME}}"
+	"searchsuggest-search": "Yiɔ̈ɔ̈p {{SITENAME}}",
+	"view-edit": "Cokic",
+	"view-create": "Cak",
+	"view-history": "Ɣoië käthɛɛr",
+	"action-move": "Laar",
+	"view-view": "Kuën",
+	"action-addsection": "Mätë wɛ̈tnhom",
+	"view-view-foreign": "Ɣoi në $1ic",
+	"view-create-local": "Matë tɛ̈ɛ̈tëyic ë  ɣänthiök thïn",
+	"nstab-mainpage": "Apam këdït"
 }

@@ -1029,5 +1029,16 @@
 	"mediastatistics-header-audio": "Аудио",
 	"mediastatistics-header-video": "Видеосем",
 	"special-characters-group-symbols": "Символсем",
-	"authmanager-userdoesnotexist": "\"$1\" аккаунтне туман."
+	"authmanager-userdoesnotexist": "\"$1\" аккаунтне туман.",
+	"action-viewdeleted": "$1 пăхар-и?",
+	"action-protect": "хӳтĕле",
+	"view-edit": "Тӳрлет",
+	"view-create": "Çĕннине ту",
+	"action-unprotect": "Хӳтĕлеве пăрахăçла",
+	"view-history": "Истори",
+	"action-delete": "Кăларса пăрах",
+	"action-move": "Ятне улăштар",
+	"view-view": "Вула",
+	"action-addsection": "Тема хуш",
+	"nstab-mainpage": "Тӗпел"
 }

@@ -571,5 +571,14 @@
 	"mw-widgets-dateinput-no-date": "မုၢ်နံၤမုၢ်သီတဃုထၢဒံးဘၣ်",
 	"mw-widgets-categoryselector-add-category-placeholder": "မၤအါထီၣ် အကရူၢ်...",
 	"date-range-to": "မုၢ်နံၤမုၢ်သီတုၤ:",
-	"log-action-filter-all": "ခဲလၢာ်"
+	"log-action-filter-all": "ခဲလၢာ်",
+	"view-edit": "အဲးဒံၣ်",
+	"view-create": "တ့ထီၣ်",
+	"view-history": "ကွၢ်တၢ်စံၣ်စိၤတဲစိၤ",
+	"action-delete": "ထူးသံကွံာ်",
+	"action-move": "သုး",
+	"view-view": "ဖး",
+	"action-addsection": "မၤအါထီၣ်တၢ်ဂ့ၢ်ခိၣ်တီ",
+	"view-view-foreign": "ကွၢ်လၢ $1",
+	"nstab-mainpage": "ကဘျံးပၤဒိၣ်"
 }

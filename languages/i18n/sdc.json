@@ -722,7 +722,7 @@
 	"rightslogtext": "Chisthu è lu rigisthru di lu mudìfigghi a li diritti assignaddi a l'utenti.",
 	"action-edit": "mudìfiggà chistha pàgina",
 	"action-createaccount": "crià kistha registhrazioni",
-	"action-delete": "canzillà chistha pàgina",
+	"action-delete": "Canzella",
 	"nchanges": "$1 {{PLURAL:$1|mudìfigga|mudìfigghi}}",
 	"enhancedrc-history": "cronologia",
 	"recentchanges": "Ùlthimi mudìfigghi",
@@ -1541,5 +1541,18 @@
 	"rightsnone": "(nisciunu)",
 	"searchsuggest-search": "Zercha di dentru a {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|dì}}",
-	"userlogout-continue": "Bói iscí?"
+	"userlogout-continue": "Bói iscí?",
+	"action-viewdeleted": "Vedi $1?",
+	"action-protect": "Brocca",
+	"view-edit": "Mudificà",
+	"view-create": "Cria",
+	"action-unprotect": "Ibbrucca",
+	"view-history": "Vèdi isthòria",
+	"action-move": "Ippustha",
+	"view-view": "Leggi",
+	"action-addsection": "Aggiungì oggettu",
+	"view-view-foreign": "Vedi innantu $1",
+	"view-create-local": "Aggiugnì deschrizioni lucari",
+	"nstab-mainpage": "Pàgina prinzipari",
+	"view-edit-local": "Mudificà deschrizioni lucari"
 }

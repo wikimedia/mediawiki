@@ -1445,5 +1445,16 @@
 	"expand_templates_remove_comments": "Hazfi tavzehot",
 	"expand_templates_generate_xml": "Namoişi daraxti taçzehi XML",
 	"expand_templates_preview": "Peşnamoiş",
-	"randomrootpage": "Sahifai reşaviji tasodufī"
+	"randomrootpage": "Sahifai reşaviji tasodufī",
+	"action-viewdeleted": "Namoişi $1?",
+	"action-protect": "Hifz kardan",
+	"view-edit": "Viroiş",
+	"view-create": "Eçod",
+	"action-unprotect": "Taƣjiri sathi muhofizat",
+	"view-history": "Namoişi ta'rix",
+	"action-delete": "Hazf",
+	"action-undelete": "Ehjo",
+	"action-move": "Kūconidan",
+	"view-view": "Xondan",
+	"action-addsection": "Ilovai unvon"
 }

@@ -811,5 +811,16 @@
 	"version": "ສະບັບ",
 	"specialpages": "ໜ້າພິເສດ",
 	"searchsuggest-search": "ຄົ້ນຫາ {{SITENAME}}",
-	"expandtemplates": "ຂະຫຍາຍແມ່ແບບ"
+	"expandtemplates": "ຂະຫຍາຍແມ່ແບບ",
+	"action-viewdeleted": "ຕ້ອງການເບິ່ງ $1 ບໍ່?",
+	"action-protect": "ປົກປ້ອງ",
+	"view-edit": "ແກ້ໄຂ",
+	"view-create": "ສ້າງ",
+	"action-unprotect": "ປ່ຽນແປງການປົກປ້ອງ",
+	"view-history": "ເບິ່ງປະຫວັດ",
+	"view-view": "ອ່ານ",
+	"view-view-foreign": "ເບິ່ງໃນ $1",
+	"view-create-local": "ເພີ່ມຄຳອະທິບາຍທ້ອງຖິ່ນ",
+	"nstab-mainpage": "ໜ້າຫຼັກ",
+	"view-edit-local": "ແກ້ໄຂຄຳອະທິບາຍທ້ອງຖິ່ນ"
 }

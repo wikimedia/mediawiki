@@ -595,5 +595,18 @@
 	"logentry-newusers-autocreate": "Konte kuutoro $1 {{GENDER:$2|sosaama}} e jaajol",
 	"logentry-upload-upload": "$1 {{GENDER:$2|yollii}} $3",
 	"searchsuggest-search": "Yiylo e {{SITENAME}}",
-	"duration-days": "$1 {{PLURAL:$1|ñalngu|balɗe}}"
+	"duration-days": "$1 {{PLURAL:$1|ñalngu|balɗe}}",
+	"action-viewdeleted": "Yiyto $1?",
+	"action-protect": "Hisnu",
+	"view-edit": "Wallifaade",
+	"view-create": "Sos",
+	"action-unprotect": "Waylu kisnugol",
+	"view-history": "Yiyto aslol",
+	"action-delete": "Momtu",
+	"action-move": "Dirtin",
+	"view-view": "Tar",
+	"action-addsection": "Ɓeydi toɓɓere",
+	"view-view-foreign": "Yiy e $1",
+	"view-create-local": "Ɓeydu siforde nokkuure",
+	"nstab-mainpage": "Hello rowrowo"
 }

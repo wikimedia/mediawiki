@@ -865,5 +865,16 @@
 	"specialpages": "СпецнапэкӀуэцӀхэр",
 	"deletepage": "НапэкӀуэцӀыр ихын",
 	"revdelete-restricted": "теубыдыгъуэхэр тхьэмадэхэм ятохуэ",
-	"revdelete-unrestricted": "теубыдыгъуэхэр тхьэмадэхэм ятеха"
+	"revdelete-unrestricted": "теубыдыгъуэхэр тхьэмадэхэм ятеха",
+	"action-viewdeleted": "Еплъын $1?",
+	"action-protect": "Хъумэн",
+	"view-edit": "Гъэтэрэзын",
+	"view-create": "ЩӀын",
+	"action-unprotect": "Хъумэныр техыжын",
+	"view-history": "Тхыдэм еплъын",
+	"action-delete": "Ихын",
+	"action-undelete": "ЗыфӀэгъэувэжын",
+	"action-move": "ЦӀэр хъуэжын",
+	"view-view": "Еджэн",
+	"action-addsection": "Теухугъуэ щӀэуэ щӀэдзэн"
 }

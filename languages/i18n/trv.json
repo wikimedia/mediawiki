@@ -344,7 +344,7 @@
 	"rightslog": "Seejiq mduuy biyax kklawa jiyax rnisuh patas",
 	"action-edit": "Smmalu patas ruwahan patas nii",
 	"action-createaccount": "phiyug seejiq mduuy patas sspgan nii",
-	"action-move": "hdlun ruwahan patas nii",
+	"action-move": "Hdlun",
 	"enhancedrc-history": "endaan",
 	"recentchanges": "Kmpriyux snii",
 	"recentchanges-legend": "Kmpriyux snii ka gneegan",
@@ -822,5 +822,16 @@
 	"authmanager-userdoesnotexist": "seejiq mduuy patas sspgan \"$1\" ini ppatas na.",
 	"gotointerwiki": "tealax {{SITENAME}}",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
-	"paramvalidator-help-type-user-subtype-id": "empduuy ID (e.g. \"#12345\")"
+	"paramvalidator-help-type-user-subtype-id": "empduuy ID (e.g. \"#12345\")",
+	"action-viewdeleted": "pqita $1?",
+	"action-protect": "pnklawa",
+	"view-edit": "Smmalu patas",
+	"view-create": "Phiyug",
+	"view-history": "Patas endaan qmita",
+	"action-delete": "wada srsan",
+	"view-view": "Smpug patas",
+	"action-addsection": "kari mnrana",
+	"view-view-foreign": "Ga $1 qmita",
+	"view-create-local": "Pgkla tnpusu mnrana",
+	"nstab-mainpage": "Ruwahan patas"
 }

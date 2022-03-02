@@ -518,5 +518,15 @@
 	"logentry-newusers-create": "{{GENDER:$2|Гьуртту хьума дунну дур}} цува заллусса чӀапӀи ляхъан дан $1",
 	"searchsuggest-search": "Луглан {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|кьини|кьинилул|кьинирдал}}",
-	"randomrootpage": "Хавар бакъа хӀасул хьусса мархлул лажин"
+	"randomrootpage": "Хавар бакъа хӀасул хьусса мархлул лажин",
+	"view-edit": "Дакьин дуван",
+	"view-create": "Ляхъан бан",
+	"view-history": "Суратту дихьан дан",
+	"action-delete": "Леххан дуван",
+	"action-move": "ЦӀа даххана даву",
+	"view-view": "Ккалан",
+	"action-addsection": "Мяъна ххи бан",
+	"view-view-foreign": "Сайтрай $1 ккаккан дан",
+	"view-create-local": "Дусса кӀанттай ляхъан дан",
+	"nstab-mainpage": "Байбихьулийсса лажин"
 }

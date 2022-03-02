@@ -706,7 +706,7 @@
 	"rightslog": "ꯁꯤꯖꯤꯟꯅꯔꯤꯕ ꯆꯪꯕ ꯍꯛꯁꯤꯡ",
 	"action-edit": "ꯃꯁꯤꯒꯤ ꯂꯃꯥꯏꯁꯤ ꯁꯦꯝꯒꯠꯂꯨ",
 	"action-createaccount": "ꯃꯁꯤ ꯁꯤꯖꯤꯟꯅꯔꯤꯕ ꯑꯦꯀꯥꯎꯟ ꯁꯤ ꯁꯦꯝꯃꯨ",
-	"action-delete": "ꯃꯁꯤꯒꯤ ꯂꯃꯥꯏꯁꯤ ꯀꯛꯊꯠꯂꯨ",
+	"action-delete": "ꯀꯛꯊꯠꯄꯥ",
 	"enhancedrc-history": "ꯄꯨꯋꯥꯔꯤ",
 	"recentchanges": "ꯍꯧꯖꯤꯛꯀꯤ ꯑꯣꯏꯕ ꯑꯍꯣꯡꯕꯁꯤꯡ",
 	"recentchanges-legend": "ꯍꯧꯖꯤꯛꯀꯤ ꯑꯣꯏꯕꯥ ꯑꯍꯣꯡꯕꯥ ꯈꯟꯐꯝꯁꯤꯡ",
@@ -1075,5 +1075,18 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|ꯊꯥꯒꯠꯂꯦ}} $3 ꯒꯤ ꯑꯅꯧꯕ ꯕꯔꯖꯟ",
 	"searchsuggest-search": "ꯊꯤꯔꯣ",
 	"duration-days": "$1 {{PLURAL:$1|ꯅꯨꯃꯤꯌ|ꯅꯨꯃꯤꯠꯁꯤꯡ}}",
-	"randomrootpage": "ꯆꯥꯡ ꯅꯥꯏꯗꯕ ꯂꯥꯃꯥꯏꯒꯤ ꯃꯔꯥ"
+	"randomrootpage": "ꯆꯥꯡ ꯅꯥꯏꯗꯕ ꯂꯥꯃꯥꯏꯒꯤ ꯃꯔꯥ",
+	"action-viewdeleted": "$1 ꯌꯦꯡꯍꯟꯂꯨ?",
+	"action-protect": "ꯉꯥꯛꯊꯣꯛꯎ",
+	"view-edit": "ꯁꯦꯝꯒꯠ ꯁꯥꯒꯠꯂꯨ",
+	"view-create": "ꯁꯦꯝꯃꯨ",
+	"action-unprotect": "ꯉꯥꯛꯊꯣꯛꯂꯕꯥ ꯗꯨ ꯍꯣꯡꯎ",
+	"view-history": "ꯄꯨꯋꯥꯔꯤ ꯎꯠꯂꯨ",
+	"action-move": "ꯂꯦꯡꯍꯟꯕꯥ",
+	"view-view": "ꯄꯥꯑꯣ",
+	"action-addsection": "ꯅꯩꯅꯕ ꯍꯤꯔꯝ ꯍꯥꯞꯆꯤꯟꯂꯨ",
+	"view-view-foreign": "$1 ꯗꯥ ꯌꯦꯡꯉꯨ",
+	"view-create-local": "ꯁꯨꯋꯥꯏꯒꯤ ꯁꯟꯗꯣꯛꯅꯥ ꯇꯥꯛꯄꯗꯨ ꯍꯥꯞꯆꯤꯟꯂꯨ",
+	"nstab-mainpage": "ꯃꯔꯨꯑꯣꯏꯕ ꯂꯃꯥꯏ",
+	"view-edit-local": "ꯑꯀꯨꯞꯄ ꯋꯥꯔꯣꯜ ꯁꯦꯃꯒꯠ ꯁꯥꯒꯠꯂꯨ"
 }

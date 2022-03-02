@@ -325,10 +325,10 @@
 	"rightslog": "Ripot long ol pawa bilong ol yusa",
 	"action-read": "ridim dispela pes",
 	"action-edit": "senisim dispela pes",
-	"action-move": "surikim dispela pes",
+	"action-move": "Surikim",
 	"action-move-subpages": "surikim dispela pes, na ol pes ananit long en",
 	"action-movefile": "surikim dispela fail",
-	"action-delete": "rausim dispela pes",
+	"action-delete": "Rausim",
 	"nchanges": "$1 senis",
 	"recentchanges": "Nupela senis",
 	"recentchanges-label-minor": "Dispela emi liklik senis",
@@ -593,5 +593,11 @@
 	"htmlform-selectorother-other": "Narapela",
 	"rightsnone": "i nogat wanpela",
 	"searchsuggest-search": "Painim long {{SITENAME}}",
-	"expand_templates_ok": "OK"
+	"expand_templates_ok": "OK",
+	"action-viewdeleted": "Lukim $1?",
+	"action-protect": "Tambuim",
+	"view-edit": "Senisim",
+	"view-create": "Kirapim",
+	"view-history": "Ol senis",
+	"view-view": "Rit"
 }

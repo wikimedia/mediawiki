@@ -800,5 +800,16 @@
 	"searchsuggest-search": "кычалаш",
 	"expand_templates_ok": "Йӧра",
 	"expand_templates_preview": "Ончылгоч ончымаш",
-	"pagelang-name": "Лаштык"
+	"pagelang-name": "Лаштык",
+	"action-viewdeleted": "Ончалаш $1?",
+	"action-protect": "Аралаш",
+	"view-edit": "Тӧрлаташ",
+	"view-create": "Ышташ",
+	"view-history": "Эртымгорным ончалаш",
+	"action-delete": "Шӧраш",
+	"action-undelete": "Шӧрымым пӧртылаш",
+	"action-move": "Лӱмым вашталташ",
+	"view-view": "Лудаш",
+	"action-addsection": "У ӱжашым тӱҥалаш",
+	"nstab-mainpage": "Тӱҥ лаштык"
 }

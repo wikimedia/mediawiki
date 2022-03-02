@@ -403,7 +403,7 @@
 	"action-edit": "လိက်မေံယိုဝ် မ်ုအင်းတါင်",
 	"action-createpage": "မ်ုပ္တံင် လိက်မေံၜၠါ်ယိုဝ်",
 	"action-createaccount": "ဆ်ုအင်းသုံ့က်ုဆာဆ်ုမာ မ်ုအင်းတင်",
-	"action-delete": "လိက်‌မေံၜၠါ်ယိုဝ် မ်ုထုဂ်ဆိင့်",
+	"action-delete": "ထုဂ်ဆိင့်",
 	"enhancedrc-history": "မေင်ႋစိင်",
 	"recentchanges": "အ်ုခါ့ယိုဝ် ဆ်ုအင်းလယ်လ်ုဖး",
 	"recentchanges-legend": "အ်ုခါ့ ဆ်ုအင်းလယ်ၯင်း လုဲႋသယ်လ်ုဖး",
@@ -800,5 +800,18 @@
 	"randomrootpage": "လ်ုၜးမိင် အ်ုခံင့် လိက်မေံၜၠါ်",
 	"log-action-filter-all": "လုက်ဆိင့်",
 	"log-action-filter-contentmodel-change": "ပ်ုယုံ့ခေါဟ်တင်မဝ်ဍယ်ခဝ့် ဆ်ုအင်းလယ်",
-	"authmanager-realname-label": "အ်ုမိင်ယင်ႋ"
+	"authmanager-realname-label": "အ်ုမိင်ယင်ႋ",
+	"action-viewdeleted": "မ်ုယောဝ်ႋ $1 ဝး",
+	"action-protect": "ခ်ုဝုင်ႋလာႋ",
+	"view-edit": "သံင့်ၜးၯဴ",
+	"view-create": "ပ္တုံထံင်း",
+	"action-unprotect": "ဝီးၜါ်ထ မ်ုအင်းလယ်",
+	"view-history": "မ်ုယောဝ်ႋ မေင်ႋစိင်",
+	"action-move": "အ်ုၰာႋၰံင်",
+	"view-view": "ပဝ်ႋ",
+	"action-addsection": "အ်ုၯာင်ႋအ်ုကျံင်းသင့် မ်ုဆူ့ဍုဂ်ထါင်ဖှ်ေ",
+	"view-view-foreign": "မ်ုယောဝ်ႋ $1 ဝယ်",
+	"view-create-local": "အှ်လင်ကၠယ် ဆ်ုတုဂ်ကၠယ် မ်ုဆူ့ဍုဂ်လင်",
+	"nstab-mainpage": "လိက်မေံခၠီ့",
+	"view-edit-local": "အှ်လင်ကၠယ် ဆ်ုတုဂ်ကၠယ် မ်ုအင်းတင်လင်"
 }

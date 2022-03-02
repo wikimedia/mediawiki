@@ -604,5 +604,15 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|bil-lang}} yyinang dum-bart-ang $3",
 	"searchsuggest-search": "genuniny {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|biryt}}",
-	"randomrootpage": "Alia bibol birnup"
+	"randomrootpage": "Alia bibol birnup",
+	"view-edit": "wallak",
+	"view-create": "Yeye-quadga",
+	"view-history": "genuny kura",
+	"action-delete": "Barranginy",
+	"action-move": "Ngatta",
+	"view-view": "miall wongie",
+	"action-addsection": "Wer katitjiny",
+	"view-view-foreign": "djinang il $1",
+	"view-create-local": "ngatti nidja waagnkin birnup",
+	"nstab-mainpage": "Keny mia"
 }

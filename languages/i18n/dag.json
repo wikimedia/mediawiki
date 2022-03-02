@@ -887,5 +887,19 @@
 	"searchsuggest-search": "Vihimi {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|dabisili|dabisa}}",
 	"mw-widgets-tagmultiselect-placeholder": "Pahami pam...",
-	"randomrootpage": "Nyabili yaɣili din yamgili"
+	"randomrootpage": "Nyabili yaɣili din yamgili",
+	"action-viewdeleted": "Yulim $1?",
+	"action-protect": "Gubu",
+	"view-edit": "Mali niŋ",
+	"view-create": "Namma",
+	"action-unprotect": "Taɣimi gubu",
+	"view-history": "Lihimi tarihi",
+	"action-delete": "Nyahima",
+	"action-move": "Tirisibu",
+	"view-view": "Karimma",
+	"action-addsection": "Pahimi yaɣili",
+	"view-view-foreign": "Lihimi li ni $1",
+	"view-create-local": "Pahimi dundɔŋni buɣisibu",
+	"nstab-mainpage": "Solɔɣu",
+	"view-edit-local": "Mali niŋ dundɔŋ buɣisibu"
 }

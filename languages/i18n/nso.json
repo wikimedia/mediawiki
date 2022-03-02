@@ -849,5 +849,16 @@
 	"tag-filter": "[[Special:Tags|Tag]] \"filter\":",
 	"deletepage": "Phumula letlakala",
 	"searchsuggest-search": "Fetleka  {{SITENAME}}",
-	"expand_templates_output": "Phetho"
+	"expand_templates_output": "Phetho",
+	"action-viewdeleted": "Nyakorela $1?",
+	"action-protect": "Lota",
+	"view-edit": "Fetola",
+	"view-create": "Tlhoma",
+	"action-unprotect": "Fetola go lota",
+	"view-history": "Laetša histori",
+	"action-delete": "Phumula",
+	"action-move": "Huduša",
+	"view-view": "Bala",
+	"action-addsection": "Lokela sererwa",
+	"view-view-foreign": "Leba go $1"
 }

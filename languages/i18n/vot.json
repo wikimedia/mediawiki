@@ -622,5 +622,13 @@
 	"rightsnone": "(eb õõ)",
 	"feedback-cancel": "Otmeńoit",
 	"feedback-close": "On tehtü",
-	"feedback-message": "Ilmottamin:"
+	"feedback-message": "Ilmottamin:",
+	"action-protect": "Varjaa",
+	"view-edit": "Muuttaa",
+	"view-create": "Loo cülci",
+	"view-history": "Istori",
+	"action-delete": "Pühi",
+	"action-move": "Liikut",
+	"view-view": "Lukõa",
+	"action-addsection": "Vassõn teema"
 }

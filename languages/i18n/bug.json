@@ -306,5 +306,12 @@
 	"specialpages-group-pagetools": "Tool leppaë",
 	"specialpages-group-wiki": "Data sibawa tool wiki",
 	"specialpages-group-spam": "Tool spam",
-	"blankpage": "Leppa kosoŋë"
+	"blankpage": "Leppa kosoŋë",
+	"action-protect": "Accalinruŋi",
+	"view-edit": "ᨄᨉᨙᨌᨙᨂᨗ",
+	"view-create": "ᨆᨙᨅᨘ",
+	"action-unprotect": "Téccalinruŋi",
+	"action-move": "Paléccé'",
+	"view-view": "ᨅᨌ",
+	"nstab-mainpage": "ᨒᨙᨁᨚ-ᨒᨙᨁᨚ"
 }

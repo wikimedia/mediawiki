@@ -652,5 +652,15 @@
 	"log-action-filter-all": "Savoro",
 	"edit-error-short": "Chiba: $1",
 	"edit-error-long": "Chibi:\n\n$1",
-	"paramvalidator-help-type-user-subtype-ip": "IP"
+	"paramvalidator-help-type-user-subtype-ip": "IP",
+	"view-edit": "Te pikerel",
+	"view-create": "Ker",
+	"view-history": "Te dikhel čirlatuňipen",
+	"action-delete": "Tele te khosel",
+	"action-move": "Avrete te thovel",
+	"view-view": "Te genel",
+	"action-addsection": "Te prithovel dumakero koter",
+	"view-view-foreign": "Te predikhel $1",
+	"view-create-local": "Te prithovel thaneskeri deskripcija",
+	"nstab-mainpage": "Šerutni sera"
 }

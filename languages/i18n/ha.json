@@ -771,5 +771,19 @@
 	"logentry-newusers-create": "Anyi kirkiri sabon account $1",
 	"logentry-upload-upload": "$1 {{GENDER:$2|ya loda|ta loda}} $3",
 	"searchsuggest-search": "Binciko {{SITENAME}}",
-	"duration-days": "$1 {{PLURAL:$1|rana|ranaku}}"
+	"duration-days": "$1 {{PLURAL:$1|rana|ranaku}}",
+	"action-viewdeleted": "duba $1?",
+	"action-protect": "Karewa",
+	"view-edit": "Gyarawa",
+	"view-create": "Ƙirƙira",
+	"action-unprotect": "Canza kariya",
+	"view-history": "Nuna tarihin",
+	"action-delete": "Soke",
+	"action-move": "Gusarwa",
+	"view-view": "Karanta",
+	"action-addsection": "Sabon sashe",
+	"view-view-foreign": "Duba wannan hoto a $1",
+	"view-create-local": "Ƙara bayanin gida",
+	"nstab-mainpage": "Babban shafi",
+	"view-edit-local": "Gyara bayanin gida"
 }

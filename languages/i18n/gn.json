@@ -378,5 +378,10 @@
 	"watchlistedit-raw-removed": "$1 páginas han sido borradas:",
 	"version": "Mba'ereko",
 	"specialpages": "Kuatiarogue hekochĩchĩva",
-	"searchsuggest-search": "Tojeheka {{SITENAME}} rupi"
+	"searchsuggest-search": "Tojeheka {{SITENAME}} rupi",
+	"view-edit": "Jehaijey",
+	"view-create": "Moñepyrũ",
+	"view-history": "Tembiasakue",
+	"view-view": "Moñe'ẽ",
+	"nstab-mainpage": "Ape"
 }

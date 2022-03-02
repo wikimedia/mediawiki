@@ -940,5 +940,18 @@
 	"log-action-filter-all": "Panhẽ",
 	"authmanager-email-label": "Emayu",
 	"authmanager-realname-label": "Rera çupiwara",
-	"authmanager-realname-help": "Puruçara rera çupiwara"
+	"authmanager-realname-help": "Puruçara rera çupiwara",
+	"action-viewdeleted": "Umaã $1?",
+	"action-protect": "Uçupirũ",
+	"view-edit": "Umurupiawa",
+	"view-create": "Umunhã",
+	"action-unprotect": "Usinimuka çupirũgawa",
+	"view-history": "E-maã marãduwapawa",
+	"action-delete": "Muçaká",
+	"action-move": "Yatimana",
+	"view-view": "Mugitá",
+	"action-addsection": "Add topic",
+	"view-view-foreign": "Umaã $1 upé",
+	"view-create-local": "E-mburipíri e-nheẽ reçé retãma",
+	"nstab-mainpage": "Yupirũgawawara sowa"
 }

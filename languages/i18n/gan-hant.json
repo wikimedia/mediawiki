@@ -1373,5 +1373,16 @@
 	"tag-filter": "[[Special:Tags|標籤]]過濾器：",
 	"deletepage": "刪卟頁面",
 	"rightsnone": "（冇）",
-	"searchsuggest-search": "尋吖"
+	"searchsuggest-search": "尋吖",
+	"action-viewdeleted": "眵吖$1?",
+	"action-protect": "保護",
+	"view-edit": "編寫",
+	"view-create": "創建",
+	"action-unprotect": "改變保護",
+	"view-history": "望下歷史",
+	"action-delete": "刪吥",
+	"action-undelete": "望下刪吥嗰頁面",
+	"action-move": "移吥",
+	"view-view": "讀",
+	"action-addsection": "添主題"
 }
