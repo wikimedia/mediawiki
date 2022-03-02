@@ -31,8 +31,10 @@
 	"article": "Artikal",
 	"mypage": "Paij",
 	"help": "Hiiwp",
+	"view-history": "View histrei",
 	"history_short": "Histrei",
 	"edit": "Edet",
+	"view-edit": "Edet",
 	"talk": "diskushun",
 	"otherlanguages": "Otha laenghwij",
 	"currentevents": "Dem Kurent Iwent",
@@ -65,7 +67,5 @@
 	"tooltip-ca-edit": "Edet this paij",
 	"pageinfo-article-id": "Paij ID",
 	"redirect-page": "Paij ID",
-	"view-edit": "Edet",
-	"view-history": "View histrei",
 	"nstab-mainpage": "Mien paij"
 }

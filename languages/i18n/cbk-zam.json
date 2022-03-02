@@ -59,7 +59,9 @@
 	"searcharticle": "Anda",
 	"history_short": "Historia",
 	"printableversion": "El version que puede imprenta",
+	"view-view": "Lee",
 	"edit": "Revisa",
+	"view-edit": "Revisa",
 	"delete": "Bora",
 	"talkpagelinktext": "cuento",
 	"personaltools": "Maga herramientas personal",
@@ -122,7 +124,5 @@
 	"pageinfo-contentpage-yes": "Si",
 	"tags-active-yes": "Si",
 	"searchsuggest-search": "Busca na {{SITENAME}}",
-	"view-edit": "Revisa",
-	"view-view": "Lee",
 	"nstab-mainpage": "El primero pagina"
 }

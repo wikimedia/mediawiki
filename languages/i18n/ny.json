@@ -54,6 +54,7 @@
 	"searcharticle": "Pitani",
 	"printableversion": "Zosindikizidwa",
 	"edit": "Sintha",
+	"view-edit": "Sintha",
 	"talkpagelinktext": "Nkhani",
 	"personaltools": "Zida zawekha",
 	"talk": "Kukambirana",
@@ -104,6 +105,5 @@
 	"pageinfo-toolboxlink": "Zambiri za tsamba",
 	"specialpages": "Masamba apadera",
 	"searchsuggest-search": "Sakani {{SITENAME}}",
-	"view-edit": "Sintha",
 	"nstab-mainpage": "Tsamba lalikulu"
 }

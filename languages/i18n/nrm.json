@@ -27,8 +27,11 @@
 	"searchbutton": "Trachi",
 	"history_short": "Historique",
 	"printableversion": "Versioun imprimablle",
+	"view-view": "Luure",
 	"edit": "Amendaer",
+	"view-edit": "Amendaer",
 	"create": "Criyaer",
+	"view-create": "Criyaer",
 	"specialpage": "Page espéciâle",
 	"toolbox": "Boête à ôtis",
 	"otherlanguages": "En d'aut's langues",
@@ -95,8 +98,5 @@
 	"tooltip-save": "Sâover v's amendements",
 	"autoredircomment": "Èrdirect sus [[$1]]",
 	"specialpages": "Page espéciâle",
-	"deletepage": "Dénichi la page",
-	"view-edit": "Amendaer",
-	"view-create": "Criyaer",
-	"view-view": "Luure"
+	"deletepage": "Dénichi la page"
 }
