@@ -425,5 +425,14 @@
 	"special-characters-group-latin": "Алаҭын",
 	"special-characters-group-greek": "Аберзентә",
 	"special-characters-group-cyrillic": "Акирилица",
-	"special-characters-group-arabic": "Араԥтә"
+	"special-characters-group-arabic": "Араԥтә",
+	"view-edit": "Аредакциазура",
+	"view-create": "Арҿиара",
+	"view-history": "Аҭоурых",
+	"action-delete": "Ианыхтәуп",
+	"action-move": "Ахьӡ аԥсахра",
+	"view-view": "Аԥхьара",
+	"action-addsection": "Атема ацҵатәуп",
+	"view-view-foreign": "Асаит $1 аҟны ахәаԥштәуп",
+	"nstab-mainpage": "Ихадоу адаҟьа"
 }

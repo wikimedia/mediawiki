@@ -580,5 +580,14 @@
 	"fileduplicatesearch-filename": "Faila pasauka:",
 	"specialpages": "Specialuos puslopys",
 	"deletepage": "Iztreit puslopu",
-	"rightsnone": "(navā)"
+	"rightsnone": "(navā)",
+	"action-protect": "Apsorguot",
+	"view-edit": "Pataiseit",
+	"view-create": "Sataiseit",
+	"action-unprotect": "Puormeit apsardzeibu",
+	"view-history": "Viesture",
+	"action-delete": "Iztreit",
+	"action-move": "Puorceļt",
+	"view-view": "Vērtīs",
+	"action-addsection": "Dalikt padaļu"
 }

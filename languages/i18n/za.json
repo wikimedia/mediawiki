@@ -232,5 +232,13 @@
 	"watchlisttools-view": "Cazyawj gaij mizgven",
 	"specialpages": "Doenghmae daegxsei",
 	"tags-edit": "gaij",
-	"searchsuggest-search": "Ra {{SITENAME}}"
+	"searchsuggest-search": "Ra {{SITENAME}}",
+	"action-protect": "Hahdiuz",
+	"view-edit": "gaij",
+	"view-create": "Laeb",
+	"view-history": "Cazyawj lizsij",
+	"action-delete": "Ca",
+	"action-move": "Daen",
+	"view-view": "Doeg",
+	"nstab-mainpage": "Yiebdaeuz"
 }

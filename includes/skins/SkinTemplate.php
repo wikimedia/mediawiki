@@ -1314,8 +1314,6 @@ class SkinTemplate extends Skin {
 				$subjectMsg = [ "nstab-$subjectId" ];
 			}
 			if ( $subjectPage->isMainPage() ) {
-				// mainpage-nstab is a nonstandard key. All namespaces should be prefixed with 'nstab-'
-				array_unshift( $subjectMsg, 'mainpage-nstab' );
 				array_unshift( $subjectMsg, 'nstab-mainpage' );
 			}
 

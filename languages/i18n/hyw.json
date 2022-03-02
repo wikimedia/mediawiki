@@ -1050,5 +1050,19 @@
 	"special-characters-group-thai": "Թայերէն",
 	"special-characters-group-lao": "Լաուերէն",
 	"special-characters-group-canadianaboriginal": "Քանատական վանկագիր",
-	"randomrootpage": "Պատահական արմատ էջ"
+	"randomrootpage": "Պատահական արմատ էջ",
+	"action-viewdeleted": "Դիտե՞լ $1։",
+	"action-protect": "Առաջարկ",
+	"view-edit": "Խմբագրել",
+	"view-create": "Ստեղծել",
+	"action-unprotect": "Փոխել պաշտպանութիւնը",
+	"view-history": "Տեսնել պատմութիւնը",
+	"action-delete": "Ջնջել",
+	"action-move": "Տեղափոխել այս էջը",
+	"view-view": "Կարդալ",
+	"action-addsection": "Աւելցնել քննարկում",
+	"view-view-foreign": "Դիտել $1ին վրայ",
+	"view-create-local": "Աւելցնել տեղական նկարագրութիւն",
+	"nstab-mainpage": "Գլխաւոր Էջ",
+	"view-edit-local": "Խմբագրել տեղային նկարագրութիւնը"
 }

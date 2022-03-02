@@ -581,5 +581,17 @@
 	"revdelete-content-hid": "Gunguregɔ lɔgerɔ",
 	"feedback-cancel": "Saabasɛ",
 	"searchsuggest-search": "Ɛ {{SITENAME}}",
-	"duration-days": "{{PLURAL:$1|$1 dabeserɛ|dabesa $1}}"
+	"duration-days": "{{PLURAL:$1|$1 dabeserɛ|dabesa $1}}",
+	"action-protect": "Gu-a",
+	"view-edit": "Demese",
+	"view-create": " Maale",
+	"action-unprotect": "Tɛɛ gu- a",
+	"view-history": "Bisɛ nabara la",
+	"action-delete": "Saalum",
+	"action-move": "Lɛgum",
+	"view-view": "Kãalɛ",
+	"action-addsection": "Pa’asɛ sɔsezure",
+	"view-view-foreign": "Behɛ $1",
+	"view-create-local": "Pa’asɛ yireduma pa’alegɔ la",
+	"nstab-mainpage": "Sadoo-zuo"
 }

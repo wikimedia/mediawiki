@@ -1010,5 +1010,19 @@
 	"tag-filter": "[[Special:Tags|Pananda]] gagan:",
 	"deletepage": "Pugaso bolikon",
 	"revdelete-restricted": "pinokogos pogoduhan montok momuruan",
-	"revdelete-unrestricted": "pinoidu pogoduhan montok momuruan"
+	"revdelete-unrestricted": "pinoidu pogoduhan montok momuruan",
+	"action-viewdeleted": "Intaai $1?",
+	"action-protect": "Tingoligai",
+	"view-edit": "Idito",
+	"view-create": "Pomonsoi",
+	"action-unprotect": "Alanai tingolig",
+	"view-history": "Intaai susuyan",
+	"action-delete": "Pugaso",
+	"action-undelete": "Kada pugaso",
+	"action-move": "Poundoliho",
+	"view-view": "Basao",
+	"action-addsection": "Ruhangai piboboroson",
+	"view-view-foreign": "Pongitanan id $1",
+	"view-create-local": "Ruhangai katarangan",
+	"view-edit-local": "Idito katarangan"
 }

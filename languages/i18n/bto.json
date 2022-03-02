@@ -416,7 +416,7 @@
 	"action-edit": "balyowan ading pahina",
 	"action-createpage": "gumibo sa mga pahina",
 	"action-createaccount": "gibuhan adi sa account",
-	"action-delete": "puraon ading pahina",
+	"action-delete": "Puraon",
 	"action-browsearchive": "anapon a mga pinurang pahina",
 	"action-userrights": "balyowan ngamin na katanusan ka user",
 	"enhancedrc-history": "kasaysayan",
@@ -648,5 +648,18 @@
 	"rightsnone": "(uda)",
 	"feedback-message": "Mensahe:",
 	"searchsuggest-search": "Pag-anapon a {{SITENAME}}",
-	"expand_templates_remove_nowiki": "Itago a <nowiki> tags sa resulta"
+	"expand_templates_remove_nowiki": "Itago a <nowiki> tags sa resulta",
+	"action-viewdeleted": "Baydon a $1?",
+	"action-protect": "Protektaran",
+	"view-edit": "Balyowan",
+	"view-create": "Gumibo",
+	"action-unprotect": "Ribayan a proteksyon",
+	"view-history": "Baydon a kasaysayan",
+	"action-undelete": "Ibalik",
+	"action-move": "Ilipat",
+	"view-view": "Basahon",
+	"action-addsection": "Magrugang sa paksa",
+	"view-view-foreign": "Silung sa $1",
+	"view-create-local": "Dugangan sa lokal na deskripsyon",
+	"nstab-mainpage": "Unang pahina"
 }

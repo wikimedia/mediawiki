@@ -650,5 +650,16 @@
 	"special-characters-group-devanagari": "دێڤاناگاری",
 	"special-characters-group-thai": "تایلەندی",
 	"special-characters-group-lao": "لائۆ",
-	"special-characters-group-khmer": "کمێر"
+	"special-characters-group-khmer": "کمێر",
+	"action-protect": "بپیەرێزەێ",
+	"view-edit": "وێراشتە",
+	"view-create": "درسکردن",
+	"view-history": "دیرۆکەگەی بۊن",
+	"action-delete": "بسڕەوە",
+	"action-move": "جیوەجی بکە",
+	"view-view": "بخوەنە",
+	"action-addsection": "بابەت تازە بدە سەری",
+	"view-view-foreign": "لە $1 بۊنەی",
+	"view-create-local": "وەسف ناوچەیی ئزافە بکە",
+	"nstab-mainpage": "دەسپێک"
 }

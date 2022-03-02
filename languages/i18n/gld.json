@@ -579,5 +579,16 @@
 	"logentry-move-move": "$1 {{GENDER:$2гэрбусигохани}} страницава $3, $4 - сикун гэрбуни",
 	"logentry-newusers-create": "{{GENDER:$2|Най аӈгохани}} учётнэй записивэ $1",
 	"searchsuggest-search": "Гэлэури {{grammar:prepositional|{{SITENAME}}}}ду",
-	"duration-days": "$1 {{PLURAL:$1ини}}"
+	"duration-days": "$1 {{PLURAL:$1ини}}",
+	"action-protect": "Кандёри",
+	"view-edit": "Калаори",
+	"view-create": "Анговори",
+	"view-history": "Дюлэ дурун",
+	"action-delete": "Нангалаори",
+	"action-move": "Энэвэмбури",
+	"view-view": "Холаори",
+	"action-addsection": "Темава аӈгойни",
+	"view-view-foreign": "$1 сайтаду ичэури",
+	"view-create-local": "Эй бэунду нируйни",
+	"nstab-mainpage": "Дэрӯвури страница"
 }

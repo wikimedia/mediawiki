@@ -657,5 +657,13 @@
 	"deletepage": "Halakon pájina",
 	"rightsnone": "(mamuk)",
 	"searchsuggest-search": "Buka iha {{SITENAME}}",
-	"expand_templates_ok": "OK"
+	"expand_templates_ok": "OK",
+	"action-viewdeleted": "Haree $1?",
+	"action-protect": "Proteje",
+	"view-edit": "Edita",
+	"view-create": "Kria",
+	"action-unprotect": "Muda protesaun",
+	"view-history": "Haree istória",
+	"view-view": "Lee",
+	"nstab-mainpage": "Pájina Mahuluk"
 }

@@ -1194,5 +1194,20 @@
 	"mw-widgets-mediasearch-noresults": "無尋討結果。",
 	"date-range-from": "Kăi-sṳ̄ nĭk-gĭ:",
 	"date-range-to": "Giék-sók nĭk-gĭ:",
-	"randomrootpage": "Sùi-gĭ gṳ̆ng-hiĕk-miêng"
+	"randomrootpage": "Sùi-gĭ gṳ̆ng-hiĕk-miêng",
+	"action-viewdeleted": "看$1？",
+	"action-protect": "保護",
+	"view-edit": "Siŭ-gāi",
+	"view-create": "創建",
+	"action-unprotect": "改變保護其狀態",
+	"view-history": "Káng lĭk-sṳ̄",
+	"action-delete": "刪掉咯",
+	"action-undelete": "取消刪除",
+	"action-move": "移動",
+	"view-view": "Tĕ̤k",
+	"action-addsection": "Gă uâ-dà̤",
+	"view-view-foreign": "敆$1𡅏看",
+	"view-create-local": "添加當地描述",
+	"nstab-mainpage": "Tàu Hiĕk",
+	"view-edit-local": "編輯當地描述"
 }

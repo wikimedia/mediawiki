@@ -450,7 +450,7 @@
 	"action-read": "δεάβασον αβούτεν την σελίδαν",
 	"action-edit": "άλλαγμαν τη σελίδας",
 	"action-createpage": "ποίσον σελίδας",
-	"action-move": "κότζεμαν τη σελίδας σ' άλλον τίτλον",
+	"action-move": "Ετεροχλάεμαν",
 	"action-movefile": "ετεροχλάεμαν αβούτου τη αρχείου",
 	"action-upload": "φόρτωσον αβούτο το αρχείον",
 	"action-upload_by_url": "φόρτωσον αβούτο το αρχείον ασ' έναν URL",
@@ -907,5 +907,14 @@
 	"rightsnone": "(τιδέν)",
 	"searchsuggest-search": "Αράεμαν",
 	"special-characters-group-ipa": "ΔΦΑ",
-	"special-characters-group-telugu": "Τελούγκου"
+	"special-characters-group-telugu": "Τελούγκου",
+	"action-viewdeleted": "Τερέστεν το $1;",
+	"action-protect": "Ασπάλιγμαν",
+	"view-edit": "Άλλαξον",
+	"view-create": "Ποίσον",
+	"action-unprotect": "Άνοιγμαν",
+	"view-history": "Τερέστεν ιστορίαν",
+	"action-delete": "Σβήσον",
+	"action-undelete": "Κλώσιμον",
+	"view-view": "Δεάβασον"
 }

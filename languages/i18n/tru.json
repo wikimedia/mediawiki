@@ -570,5 +570,13 @@
 	"duration-weeks": "$1 {{PLURAL:$1|Şabṭo|Şabe}}",
 	"duration-years": "$1 {{PLURAL:$1|Şato|Şnaye}}",
 	"duration-decades": "$1 {{PLURAL:$1|decade|decades}}",
-	"duration-centuries": "$1 {{PLURAL:$1|Doro|Dore}}"
+	"duration-centuries": "$1 {{PLURAL:$1|Doro|Dore}}",
+	"action-protect": "Mastar",
+	"view-edit": "Mşaḥlaf",
+	"view-create": "Xlaq",
+	"view-history": "Maktabzabno",
+	"action-delete": "Slag",
+	"action-move": "Mtaxar",
+	"view-view": "Qray",
+	"action-addsection": "Maḥat Fusoqo ḥaṭo"
 }

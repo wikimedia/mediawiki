@@ -326,5 +326,11 @@
 	"pagelang-reason": "ᎤᏰᎸᏗ",
 	"mediastatistics-header-audio": "ᎤᏃᏴᎬ",
 	"mediastatistics-header-video": "ᏗᏓᏴᎳᏛᏍᎩ",
-	"authmanager-email-label": "ᎠᎾᎦᎵᏍᎩ ᎪᏪᎵ"
+	"authmanager-email-label": "ᎠᎾᎦᎵᏍᎩ ᎪᏪᎵ",
+	"view-edit": "ᎦᏁᏟᏴᏓ ᎰᏪᎸᎦ",
+	"view-create": "ᎪᏢᏗ",
+	"action-delete": "ᎧᎵ ᎠᏍᎪᎸᏛᎯ",
+	"action-move": "ᎯᎲᎾ",
+	"view-view": "ᎠᎪᎵᏰᏗᏊ",
+	"nstab-mainpage": "ᎤᎵᎮᎵᏍᏗ"
 }

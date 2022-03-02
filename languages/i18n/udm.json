@@ -863,5 +863,18 @@
 	"expand_templates_preview": "Эскерон",
 	"mw-widgets-abandonedit-keep": "Тупатъянэз азьланьтоно",
 	"randomrootpage": "Олокыӵе выжы бам",
-	"log-action-filter-all": "Ваньзэ"
+	"log-action-filter-all": "Ваньзэ",
+	"action-viewdeleted": "Учкыны $1",
+	"action-protect": "Утьыны",
+	"view-edit": "тупатыны",
+	"view-create": "Кылдытоно",
+	"action-unprotect": "Утемез воштыны",
+	"view-history": "Историзэ учконо",
+	"action-delete": "Быдтоно",
+	"action-move": "Нимзэ воштыны",
+	"view-view": "Лыдӟоно",
+	"action-addsection": "Выль тема ватсано",
+	"view-view-foreign": "$1 сайтысь учконо",
+	"view-create-local": "Интыысь описаниез ватсаны",
+	"nstab-mainpage": "Кутскон бам"
 }

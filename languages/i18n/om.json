@@ -633,5 +633,20 @@
 	"mw-widgets-titleinput-description-new-page": "Fuulli kun amma yoonaa hin jiru.",
 	"mw-widgets-titleinput-description-redirect": "Gara $1 ergi",
 	"mw-widgets-tagmultiselect-placeholder": "Edaasa dabali...",
-	"randomrootpage": "Fuulbarruu hundee dagaggamaan"
+	"randomrootpage": "Fuulbarruu hundee dagaggamaan",
+	"action-viewdeleted": "$1 ilaali?",
+	"action-protect": "Eegi",
+	"view-edit": "Gulaali",
+	"view-create": "Uumi",
+	"action-unprotect": "Eegumsa jijjiiri",
+	"view-history": "Seenaa laali",
+	"action-delete": "Balleessi",
+	"action-undelete": "Hin balleessin",
+	"action-move": "Oofi",
+	"view-view": "Dubbisi",
+	"action-addsection": "Mata duree ida'i",
+	"view-view-foreign": "$1 irratti laali",
+	"view-create-local": "Ibsa biyya keessaa dabali",
+	"nstab-mainpage": "Fuula duraa",
+	"view-edit-local": "Ibsa biyya keessaa gulaali"
 }

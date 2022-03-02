@@ -331,7 +331,7 @@
 	"rightslog": "Оаннӭй вуэйймушшэ журналл",
 	"action-edit": "вуайхэ тэнн лыст",
 	"action-createpage": "тэнн лыст лыһкэ",
-	"action-delete": "тэнн лыст вэ̄цксэ",
+	"action-delete": "Вэ̄цксэ",
 	"enhancedrc-history": "история",
 	"recentchanges": "О̄дт вуайхэз",
 	"recentchanges-label-newpage": "Тэдта оаннӭй лыгкэ о̄дт лыст",
@@ -559,5 +559,15 @@
 	"authmanager-email-label": "Электроннэ почта",
 	"authmanager-email-help": "Электроннэ почта адресс",
 	"authmanager-provider-temporarypassword": "Пя̄ҋҋтса̄ннҍ а̄ййк пайя",
-	"paramvalidator-help-type-user-subtype-ip": "IP"
+	"paramvalidator-help-type-user-subtype-ip": "IP",
+	"action-viewdeleted": "Выльшхэ $1?",
+	"action-protect": "Пынне",
+	"view-edit": "Вуайхэ",
+	"view-create": "Лыһкэ",
+	"action-unprotect": "Вуайхэ пынньмуж",
+	"view-history": "История",
+	"action-move": "Вуайхэ нэ̄м",
+	"view-view": "Ло̄гкэ",
+	"action-addsection": "Лажьхэ тема",
+	"nstab-mainpage": "Э̄ввт лысст"
 }

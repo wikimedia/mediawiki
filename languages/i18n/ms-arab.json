@@ -788,5 +788,18 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|موات ناءيق}} ۏرسي بارو $3",
 	"searchsuggest-search": "چاري {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|هاري}}",
-	"randomrootpage": "لامن اکر راوق"
+	"randomrootpage": "لامن اکر راوق",
+	"action-protect": "ليندوڠ",
+	"view-edit": "سونتيڠ",
+	"view-create": "چيڤتا",
+	"action-unprotect": "اوبه ڤرليندوڠن",
+	"view-history": "ليهت سجاره",
+	"action-delete": "هاڤوس",
+	"action-move": "ڤينده",
+	"view-view": "باچ",
+	"action-addsection": "بوک توڤيک",
+	"view-view-foreign": "ليهت د$1",
+	"view-create-local": "تمبه هوراين تمڤتن",
+	"nstab-mainpage": "لامن اوتام",
+	"view-edit-local": "سونتيڠ هوراين تمڤتن"
 }

@@ -1175,5 +1175,20 @@
 	"randomrootpage": "Khoincheim mull pan",
 	"log-action-filter-block-unblock": "Addavnni kadd",
 	"authmanager-email-label": "Email",
-	"cannotauth-not-allowed-title": "Porvangi nakarl'lea"
+	"cannotauth-not-allowed-title": "Porvangi nakarl'lea",
+	"action-viewdeleted": "$1 polloi?",
+	"action-protect": "Rakh",
+	"view-edit": "Bodol",
+	"view-create": "Roch",
+	"action-unprotect": "Surokxechem sthor bodol",
+	"view-history": "Itihas polloi",
+	"action-delete": "Kadd",
+	"action-undelete": "Portun hadd",
+	"action-move": "Zago bodol",
+	"view-view": "Vach",
+	"action-addsection": "Vixoi zodd",
+	"view-view-foreign": "$1-hacher polloi",
+	"view-create-local": "Thollavem vornon zod",
+	"nstab-mainpage": "Mukhel pan",
+	"view-edit-local": "Thollavem vornon bodol"
 }

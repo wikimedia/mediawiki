@@ -646,5 +646,15 @@
 	"logentry-newusers-create": "Ezazãŋkɔ $1 la {{GENDER:$2|wɔ vɔ}}",
 	"logentry-upload-upload": "Nedze",
 	"searchsuggest-search": "Di {{SITENAME}}",
-	"expand_templates_preview": "Kpɔe do ŋgɔ"
+	"expand_templates_preview": "Kpɔe do ŋgɔ",
+	"action-viewdeleted": "Kpɔ $1?",
+	"action-protect": "Kpɔ eta",
+	"view-edit": "Trɔ asi le eŋu",
+	"view-create": "Dze egɔme",
+	"view-history": "Kpɔ xoxoawo",
+	"action-delete": "Tutui",
+	"action-move": "Ɖɔli eƒe nɔƒe",
+	"view-view": "Xlẽ",
+	"view-view-foreign": "Kpɔe le $1",
+	"nstab-mainpage": "Axa vevitɔ"
 }

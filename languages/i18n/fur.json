@@ -1309,5 +1309,20 @@
 	"mw-widgets-abandonedit-keep": "Continue a fâ i cambiaments",
 	"mw-widgets-abandonedit-title": "Sêstu sigûr?",
 	"mw-widgets-mediasearch-input-placeholder": "Cîr files multimediâi",
-	"mw-widgets-mediasearch-noresults": "Nissun risultât."
+	"mw-widgets-mediasearch-noresults": "Nissun risultât.",
+	"action-viewdeleted": "Vuelistu viodi $1?",
+	"action-protect": "Protêç",
+	"view-edit": "Cambie",
+	"view-create": "Cree",
+	"action-unprotect": "Gambie la protezion",
+	"view-history": "Cjale il storic",
+	"action-delete": "Elimine",
+	"action-undelete": "Recupere",
+	"action-move": "Môf",
+	"view-view": "Lei",
+	"action-addsection": "Gnove sezion",
+	"view-view-foreign": "Vjôt su $1",
+	"view-create-local": "Zonte une descrizion locâl",
+	"nstab-mainpage": "Pagjine principâl",
+	"view-edit-local": "Zonte une descrizion locâl"
 }

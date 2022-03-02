@@ -1097,5 +1097,20 @@
 	"special-characters-group-cyrillic": "Cyrillisc",
 	"special-characters-group-arabic": "Arabisc",
 	"special-characters-group-persian": "Perseanisc",
-	"log-action-filter-delete-delete_redir2": "Oferwrit edlædunge"
+	"log-action-filter-delete-delete_redir2": "Oferwrit edlædunge",
+	"action-viewdeleted": "Wilt þu $1 seon?",
+	"action-protect": "Beorg",
+	"view-edit": "Adiht",
+	"view-create": "Scippan",
+	"action-unprotect": "Wend beorgunge",
+	"view-history": "Seoh stær",
+	"action-delete": "Forleos",
+	"action-undelete": "Scieppan tramet eft",
+	"action-move": "Wegan",
+	"view-view": "Ræd",
+	"action-addsection": "Besettan mearcunge",
+	"view-view-foreign": "Sihþ on $1",
+	"view-create-local": "Besete stowlice gemearcunge",
+	"nstab-mainpage": "Heafodtramet",
+	"view-edit-local": "Adiht þa stowlican gemearcunge"
 }

@@ -277,7 +277,7 @@
 	"rightslog": "Aghmis n talghut n izrfan n usqdac",
 	"action-read": "ⵖⵔ ⵜⴰⵙⵏⴰ ⴰ",
 	"action-edit": "ⵙⵏⴼⵍ ⵜⴰⵙⵏⴰ ⴰ",
-	"action-delete": "ⴽⴽⵙ ⵜⴰⵙⵏⴰ ⴰ",
+	"action-delete": "ⴽⴽⵙ",
 	"nchanges": "$1 {{PLURAL:$1|ⵓⵙⵏⴼⵍ|ⵉⵙⵏⴼⵉⵍⵏ}}",
 	"enhancedrc-history": "ⴰⵎⵣⵔⵓⵢ",
 	"recentchanges": "ⵉⵙⵏⴼⵉⵍⵏ ⵉⵏⴳⴳⵓⵔⴰ",
@@ -669,5 +669,13 @@
 	"pagelanguage": "ⵙⵏⴼⵍ ⵜⵓⵜⵍⴰⵢⵜ ⵏ ⵜⴰⵙⵏⴰ",
 	"pagelang-name": "ⵜⴰⵙⵏⴰ",
 	"pagelang-language": "ⵜⵓⵜⵍⴰⵢⵜ",
-	"pagelang-reason": "ⵜⴰⵎⵏⵜⵉⵍⵜ"
+	"pagelang-reason": "ⵜⴰⵎⵏⵜⵉⵍⵜ",
+	"action-protect": "Mstn",
+	"view-edit": "Snfi",
+	"view-create": "ⵙⵏⵓⵍⴼⵓ",
+	"view-history": "ⴰⵎⵣⵔⵓⵢ",
+	"action-move": "ⵙⵎⵓⵜⵜⵉ",
+	"view-view": "ⵖⵔ",
+	"action-addsection": "ⵔⵏⵓ ⴰⵙⵏⵜⵍ",
+	"nstab-mainpage": "Tasna tamezwarut"
 }

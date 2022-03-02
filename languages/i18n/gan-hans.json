@@ -1380,5 +1380,17 @@
 	"tag-filter": "[[Special:Tags|标签]]过滤器：",
 	"deletepage": "删卟页面",
 	"rightsnone": "（冇）",
-	"searchsuggest-search": "寻吖{{SITENAME}}"
+	"searchsuggest-search": "寻吖{{SITENAME}}",
+	"action-viewdeleted": "眵吖$1?",
+	"action-protect": "保护",
+	"view-edit": "编写",
+	"view-create": "创建",
+	"action-unprotect": "改变保护",
+	"view-history": "望下历史",
+	"action-delete": "删吥",
+	"action-undelete": "望下删吥𠮶页面",
+	"action-move": "移吥",
+	"view-view": "读",
+	"action-addsection": "添主题",
+	"nstab-mainpage": "封面"
 }

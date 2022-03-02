@@ -1421,5 +1421,19 @@
 	"logentry-newusers-create": "Yí-kîn {{GENDER:$2|khôi}} yung-fu fu-thèu $1",
 	"logentry-upload-upload": "$1 {{GENDER:$2|yí-kîn sông-chhòn}} $3",
 	"rightsnone": "（無）",
-	"searchsuggest-search": "Chhìm"
+	"searchsuggest-search": "Chhìm",
+	"action-viewdeleted": "Chhà-khon $1?",
+	"action-protect": "Pó-fu",
+	"view-edit": "Phiên-siá",
+	"view-create": "Kien-li̍p",
+	"action-unprotect": "更改保護",
+	"view-history": "Khon li̍t-sṳ́",
+	"action-delete": "San-chhù",
+	"action-undelete": "恢復",
+	"action-move": "Yì-thûng",
+	"view-view": "Thu̍k",
+	"action-addsection": "Kâ-ngi̍p fa-thì",
+	"view-view-foreign": "Chhai $1 kiám-sṳ",
+	"view-create-local": "Sîn-chen pún-thi sot-mìn",
+	"nstab-mainpage": "Thèu-ya̍p"
 }

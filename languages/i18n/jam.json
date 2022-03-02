@@ -785,5 +785,19 @@
 	"logentry-move-move": "$1 {{GENDER:$2|muuv}} piej $3 tu $4‎",
 	"logentry-newusers-create": "One account {{GENDER:$2|mek}} fi $1",
 	"logentry-upload-upload": "$1 {{GENDER:$2|uploaded}} $3",
-	"searchsuggest-search": "Search {{SITENAME}}"
+	"searchsuggest-search": "Search {{SITENAME}}",
+	"action-viewdeleted": "Vyuu $1?",
+	"action-protect": "Protek",
+	"view-edit": "Change up",
+	"view-create": "Kriet",
+	"action-unprotect": "Neu protektian",
+	"view-history": "Pree di change dem",
+	"action-delete": "Diliit",
+	"action-undelete": "Andiliit",
+	"action-move": "Muuv",
+	"view-view": "Read",
+	"action-addsection": "Add on one nex' topic",
+	"view-view-foreign": "Vyuu pah $1",
+	"view-create-local": "Ad luokal diskripshan‎",
+	"nstab-mainpage": "Start"
 }

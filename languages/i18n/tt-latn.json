@@ -740,7 +740,7 @@
 	"action-edit": "bu bitne üzgärtergä",
 	"action-createpage": "bitlärne yazırğa",
 	"action-createtalk": "bäxäs biten yasarğa",
-	"action-move": "bu bitne küçererge",
+	"action-move": "Küçerü",
 	"nchanges": "$1 {{PLURAL:$1|üzgärtü|üzgärtü}}",
 	"enhancedrc-history": "tarixı",
 	"recentchanges": "Soñğı üzgärtülär",
@@ -1445,5 +1445,17 @@
 	"special-characters-group-latin": "Latinça",
 	"special-characters-group-latinextended": "Kiñäytelgän latinça",
 	"special-characters-group-cyrillic": "Kirilça",
-	"special-characters-group-arabic": "Ğäräbçä"
+	"special-characters-group-arabic": "Ğäräbçä",
+	"action-viewdeleted": "$1 qararğa telisezme?",
+	"action-protect": "Yaqlaw",
+	"view-edit": "Üzgärtü",
+	"view-create": "Tözü",
+	"action-unprotect": "Yaqlawnı üzgärtü",
+	"view-history": "Tarixın qaraw",
+	"action-delete": "Beterü",
+	"action-undelete": "Qaytaru",
+	"view-view": "Uqu",
+	"action-addsection": "Yaña tema östäw",
+	"view-view-foreign": "$1'ta qaraw",
+	"nstab-mainpage": "Baş bit"
 }

@@ -638,7 +638,7 @@
 	"newuserlogpage": "Uuzien käyttäjien luvettelo",
 	"action-read": "luve tämä sivu",
 	"action-edit": "kohendele tädä sivuu",
-	"action-move": "siirrä tämä sivu",
+	"action-move": "Siirrä",
 	"action-move-subpages": "siirrä tämä sivu, da sen alisivut",
 	"action-movefile": "siirrä tämä failu",
 	"enhancedrc-history": "histourii",
@@ -903,5 +903,18 @@
 	"mw-widgets-abandonedit-title": "Oletgo varmu?",
 	"mw-widgets-mediasearch-input-placeholder": "Eči syväindyö",
 	"mw-widgets-mediasearch-noresults": "Ei löydynyh tuloksii",
-	"mw-widgets-titleinput-description-new-page": "sivuu ei vie ole"
+	"mw-widgets-titleinput-description-new-page": "sivuu ei vie ole",
+	"action-viewdeleted": "Ozuta $1?",
+	"action-protect": "Suojua",
+	"view-edit": "Kohendele",
+	"view-create": "Luaji",
+	"action-unprotect": "Vaihta suojavustu",
+	"view-history": "Kačo histourii",
+	"action-delete": "Ota iäre",
+	"view-view": "Luve",
+	"action-addsection": "Ližiä aihe",
+	"view-view-foreign": "Kačo saital $1",
+	"view-create-local": "Ližiä paikalline kuvavus",
+	"nstab-mainpage": "Piäsivu",
+	"view-edit-local": "Kohendele paikallistu kuvavustu"
 }

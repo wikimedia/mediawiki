@@ -1420,5 +1420,17 @@
 	"logentry-move-move_redir-noredirect": "$1 адлы къулланыджы $3 саифесининъ адыны ёнетме узеринден янъы бир ёнетме къалдырмайып $4 деп {{GENDER:$2|денъиштирди}}",
 	"searchsuggest-search": "Къыдыр",
 	"searchsuggest-containing": "ичинде бу олгъан...",
-	"pagelang-language": "Тиль"
+	"pagelang-language": "Тиль",
+	"action-viewdeleted": "$1 корь?",
+	"action-protect": "Къорчала",
+	"view-edit": "Денъиштир",
+	"view-create": "Ярат",
+	"action-unprotect": "Къорчалавны денъиштир",
+	"view-history": "Кечмишини косьтер",
+	"action-delete": "Ёкъ эт",
+	"action-undelete": "Янъыдан ярат",
+	"action-move": "Адыны денъиштир",
+	"view-view": "Окъу",
+	"action-addsection": "Мевзу къош",
+	"nstab-mainpage": "Баш саифе"
 }

@@ -1418,5 +1418,17 @@
 	"log-action-filter-block": "Cineál an bhloic:",
 	"log-action-filter-delete": "Cineál an scriosta:",
 	"log-action-filter-protect": "Cineál na cosanta:",
-	"log-action-filter-suppress": "Cineál an tsochta:"
+	"log-action-filter-suppress": "Cineál an tsochta:",
+	"action-viewdeleted": "Féach ar $1?",
+	"action-protect": "Glasáil",
+	"view-edit": "Cuir in eagar",
+	"view-create": "Cruthaigh",
+	"action-unprotect": "Athraigh an chosaint",
+	"view-history": "Féach ar stair",
+	"action-delete": "Scrios",
+	"action-undelete": "Díscrios",
+	"action-move": "Athainmnigh",
+	"view-view": "Léigh",
+	"action-addsection": "Cuir topaic leis",
+	"nstab-mainpage": "Príomhleathanach"
 }

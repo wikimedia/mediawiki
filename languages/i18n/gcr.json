@@ -1029,5 +1029,19 @@
 	"pagelang-name": "Paj",
 	"date-range-from": "Dipi :",
 	"randomrootpage": "Paj rakaba aléyatwar",
-	"authmanager-provider-temporarypassword": "Modipas ki tanporèr :"
+	"authmanager-provider-temporarypassword": "Modipas ki tanporèr :",
+	"action-viewdeleted": "Wè $1 ?",
+	"action-protect": "Protéjé",
+	"view-edit": "Modifyé",
+	"view-create": "Kréyé",
+	"action-unprotect": "Chanjé protègsyon-an",
+	"view-history": "Afiché listorik",
+	"action-delete": "Siprimen",
+	"action-move": "Rounonmen",
+	"view-view": "Li",
+	"action-addsection": "Ajouté roun sijè",
+	"view-view-foreign": "Wè asou $1",
+	"view-create-local": "Ajouté roun dèskripsyon lokal",
+	"nstab-mainpage": "Paj prensipal",
+	"view-edit-local": "Modifyé dèskripsyon lokal-a"
 }

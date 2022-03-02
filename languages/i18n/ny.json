@@ -103,5 +103,7 @@
 	"tooltip-t-print": "Zosindikizidwa patsamba lino",
 	"pageinfo-toolboxlink": "Zambiri za tsamba",
 	"specialpages": "Masamba apadera",
-	"searchsuggest-search": "Sakani {{SITENAME}}"
+	"searchsuggest-search": "Sakani {{SITENAME}}",
+	"view-edit": "Sintha",
+	"nstab-mainpage": "Tsamba lalikulu"
 }

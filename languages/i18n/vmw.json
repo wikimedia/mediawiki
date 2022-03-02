@@ -515,5 +515,16 @@
 	"tags-delete": "ocipiha",
 	"tags-hitcount": "$1 {{PLURAL:$1|nvirikanyiho wookiserya|mivirikanyiho sookiserya}}",
 	"searchsuggest-search": "Ophavelasa opuro wa nsina",
-	"duration-days": "$1 {{PLURAL:$1|nihiku|mahiku}}"
+	"duration-days": "$1 {{PLURAL:$1|nihiku|mahiku}}",
+	"action-protect": "Okhapelela",
+	"view-edit": "Oleeliherya",
+	"view-create": "Opaka",
+	"view-history": "Moonelo wa ethale",
+	"action-delete": "Ocipiha",
+	"action-move": "Okumiha",
+	"view-view": "Osoma",
+	"action-addsection": "Ophitaanya yoolempwa",
+	"view-view-foreign": "Oweha variyari wa $1",
+	"view-create-local": "Ophitaanya mwaalikelo wa opuro yoole",
+	"nstab-mainpage": "Nipuro nuulupale"
 }

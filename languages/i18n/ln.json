@@ -499,5 +499,16 @@
 	"deletepage": "Kolímwisa lonkásá loye",
 	"htmlform-submit": "Kotínda",
 	"htmlform-selectorother-other": "Mosúsu",
-	"searchsuggest-search": "Boluki {{SITENAME}}"
+	"searchsuggest-search": "Boluki {{SITENAME}}",
+	"action-protect": "Kobátela",
+	"view-edit": "kobɔngisa",
+	"view-create": "Kokela",
+	"action-unprotect": "Kobátela tɛ̂",
+	"view-history": "Komɔ́nisa mokóló",
+	"action-delete": "Kolímwisa",
+	"action-undelete": "Kolímwisa tɛ̂",
+	"action-move": "Kobóngola nkómbó",
+	"view-view": "Kotánga",
+	"action-addsection": "Kobakisa mpɔ̂",
+	"nstab-mainpage": "Lokásá ya libosó"
 }

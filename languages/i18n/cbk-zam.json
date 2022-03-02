@@ -121,5 +121,8 @@
 	"tooltip-n-mainpage-description": "Visita na primero pagina",
 	"pageinfo-contentpage-yes": "Si",
 	"tags-active-yes": "Si",
-	"searchsuggest-search": "Busca na {{SITENAME}}"
+	"searchsuggest-search": "Busca na {{SITENAME}}",
+	"view-edit": "Revisa",
+	"view-view": "Lee",
+	"nstab-mainpage": "El primero pagina"
 }

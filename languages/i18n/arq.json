@@ -1071,5 +1071,20 @@
 	"mw-widgets-abandonedit-keep": "إكمال التعديل",
 	"mw-widgets-abandonedit-title": "راك متأكد ؟",
 	"mw-widgets-mediasearch-noresults": "ما كانش نتائج",
-	"randomrootpage": "باجة جدريّة على الزهر"
+	"randomrootpage": "باجة جدريّة على الزهر",
+	"action-viewdeleted": "شوف $1؟",
+	"action-protect": "حمايه",
+	"view-edit": "بدّل",
+	"view-create": "أصنع",
+	"action-unprotect": "بدّل الحضية",
+	"view-history": "شوف التاريخ",
+	"action-delete": "امحي",
+	"action-undelete": "ردّ كيما كان",
+	"action-move": "حول",
+	"view-view": "اقرى",
+	"action-addsection": "زيد موضوع",
+	"view-view-foreign": "شوف على $1",
+	"view-create-local": "زيد توصاف مبلّد",
+	"nstab-mainpage": "الپاجة الاولانيّة",
+	"view-edit-local": "عدّل التوصاف المبلّد"
 }

@@ -216,5 +216,13 @@
 	"tooltip-ca-nstab-main": "Bâa lêmbëtï tî münä nî",
 	"others": "mbênî",
 	"bad_image_list": "Funda nî ayeke töngasô:\nGï âkâmba tî molongö (sô atö ndâ nî na *) laâ a yeke bâa lêgë nî. Kôzo gbê tî yâ tî kâmba ôko ôko adu tî gbùe na mbênî kpäkë kuru. Âtanga tî âgbê sô na yâ tî ôko kâmba nî sô, a bâa nî töngana yê ndê, sô ^tî tene, töngana âlêmbëtï sô kuru nî alîngbi tî tua daä na gbegbê nî.",
-	"specialpages": "Âlêmbëtï sô ayeke ndê"
+	"specialpages": "Âlêmbëtï sô ayeke ndê",
+	"view-edit": "Sepe",
+	"view-create": "Seka",
+	"view-history": "Tanda mbai nî",
+	"action-delete": "Lungûla",
+	"action-undelete": "Kîri na nî",
+	"action-move": "Sanzêe ïrï",
+	"view-view": "Dîko",
+	"action-addsection": "Zîa mbênî lilö daä"
 }

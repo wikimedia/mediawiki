@@ -239,5 +239,15 @@
 	"mw-widgets-abandonedit-title": "Biztos benne?",
 	"mw-widgets-mediasearch-input-placeholder": "Média keresése",
 	"mw-widgets-mediasearch-noresults": "Nincs találat.",
-	"sessionprovider-nocookies": "A sütik le lehetnek tiltva. Engedélyezze a sütiket, és próbálja meg újra!"
+	"sessionprovider-nocookies": "A sütik le lehetnek tiltva. Engedélyezze a sütiket, és próbálja meg újra!",
+	"action-protect": "Lapvédelem",
+	"view-edit": "Szerkesztés",
+	"view-create": "Létrehozás",
+	"action-unprotect": "Védelem módosítása",
+	"view-history": "Laptörténet",
+	"action-delete": "Törlés",
+	"action-undelete": "Visszaállítás",
+	"action-move": "Átnevezés",
+	"view-view": "Olvasás",
+	"action-addsection": "Új téma nyitása"
 }

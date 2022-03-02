@@ -251,5 +251,8 @@
 	"logentry-managetags-activate": "$1{{GENDER:$2|已啟用}}標籤「$4」供使用者與機械人使用",
 	"searchsuggest-search": "搜尋{{SITENAME}}",
 	"api-error-publishfailed": "內部錯誤：伺服器發佈暫存檔案失敗。",
-	"duration-days": "$1日"
+	"duration-days": "$1日",
+	"view-edit": "編輯",
+	"view-view": "閱讀",
+	"nstab-mainpage": "首頁"
 }

@@ -413,5 +413,15 @@
 	"ilsubmit": "Caftâ",
 	"imgmultigo": "Du-ti!",
 	"table_pager_limit_submit": "Du-ti",
-	"specialpages": "Frândzâ speciali"
+	"specialpages": "Frândzâ speciali",
+	"action-viewdeleted": "Vedz $1?",
+	"action-protect": "Apârâ",
+	"view-edit": "Alâxire",
+	"view-create": "Prindiri",
+	"action-unprotect": "Alâxeaști protecția",
+	"view-history": "Vedz isturia",
+	"action-addsection": "Dimândari noao",
+	"view-view-foreign": "Vedz la $1",
+	"view-create-local": "Adavgâ descrierea localâ",
+	"view-edit-local": "Alâxeaști descrierea localâ"
 }

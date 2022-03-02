@@ -792,5 +792,19 @@
 	"changecredentials": "Müda i dac d'azes",
 	"removecredentials": "Straiha i dac d'azes",
 	"passwordpolicies": "Politiches sön la parora tle",
-	"passwordpolicies-policy-passwordcannotbesubstringinusername": "La password ne pó nia ester na secuënza tl inom dl utënt"
+	"passwordpolicies-policy-passwordcannotbesubstringinusername": "La password ne pó nia ester na secuënza tl inom dl utënt",
+	"action-viewdeleted": "Ciaré $1?",
+	"action-protect": "Straverda",
+	"view-edit": "Mudé",
+	"view-create": "Cheriëia",
+	"action-unprotect": "Müda la proteziun",
+	"view-history": "Storia dl documënt",
+	"action-delete": "Straihëia",
+	"action-move": "Spostëia",
+	"view-view": "Liej",
+	"action-addsection": "Mët leprò n tema de descuscion",
+	"view-view-foreign": "Ciara sön $1",
+	"view-create-local": "Jonta na descrzion lochela",
+	"nstab-mainpage": "Plata prinzipala",
+	"view-edit-local": "Müda la descriziun locala"
 }

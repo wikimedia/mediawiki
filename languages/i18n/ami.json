@@ -310,7 +310,7 @@
 	"rightslog": "O king-li no nikilokan no micokaymasay",
 	"action-edit": "misinanot to inian a felih",
 	"action-createaccount": " misanga’ tona cang-haw no micokaymasay",
-	"action-move": "linahen kona felih",
+	"action-move": "malinah",
 	"enhancedrc-history": " likisi",
 	"recentchanges": "I ngataay nipifalic",
 	"recentchanges-legend": "I ngataay nipifalic a kamok.",
@@ -718,5 +718,14 @@
 	"log-action-filter-all": "　Maemin/po:long",
 	"log-action-filter-block-block": " ciker/maciker/cikeren",
 	"authmanager-userdoesnotexist": "Caay ho ka hayda ko pipangangan a cang-haw no micokaymasay \"$1\".",
-	"paramvalidator-help-type-user-subtype-ip": "IP"
+	"paramvalidator-help-type-user-subtype-ip": "IP",
+	"view-edit": "misinanot",
+	"view-create": " misanga’",
+	"view-history": " misongila’ a minengneng to likisi",
+	"action-delete": "masopitay to",
+	"view-view": " miasip",
+	"action-addsection": "micomod hasasowalen",
+	"view-view-foreign": "misongila’ a minengneng i $1",
+	"view-create-local": " mitongal to sowal to itiniay",
+	"nstab-mainpage": "‎ sa’ayayaw pising no tyin-naw"
 }

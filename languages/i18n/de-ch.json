@@ -375,5 +375,9 @@
 	"searchsuggest-search": "{{SITENAME}} durchsuchen",
 	"api-error-unknown-warning": "Unbekannte Warnung: «$1»",
 	"api-error-unknownerror": "Unbekannter Fehler: «$1»",
-	"specialmute-email-footer": "Um Deine E-Mail Einstellungen für {{BIDI:$2}} zu verwalten, besuche bitte <$1>."
+	"specialmute-email-footer": "Um Deine E-Mail Einstellungen für {{BIDI:$2}} zu verwalten, besuche bitte <$1>.",
+	"view-edit": "Bearbeiten",
+	"view-history": "Versionsgeschichte",
+	"view-view": "Lesen",
+	"nstab-mainpage": "Hauptseite"
 }

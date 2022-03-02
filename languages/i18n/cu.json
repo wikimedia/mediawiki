@@ -791,5 +791,16 @@
 	"special-characters-group-khmer": "къмєрьска аꙁъбоукꙑ",
 	"special-characters-group-runes": "​Рꙋны​",
 	"mw-widgets-titleinput-description-new-page": "страницѧ ю нѣстъ",
-	"mw-widgets-titleinput-description-redirect": "прѣнаправлѥниѥ къ ⁖ $1 ⁖"
+	"mw-widgets-titleinput-description-redirect": "прѣнаправлѥниѥ къ ⁖ $1 ⁖",
+	"action-viewdeleted": "$1 видєти хощєши ;",
+	"action-protect": "ꙁабранѥниѥ",
+	"view-edit": "исправлѥниѥ",
+	"view-create": "сътворѥниѥ",
+	"action-unprotect": "ꙁабранѥниꙗ обраꙁа иꙁмѣнѥниѥ",
+	"view-history": "їсторїꙗ",
+	"action-delete": "поничьжєниѥ",
+	"action-move": "прѣимєнованиѥ",
+	"view-view": "чьтѥниѥ",
+	"action-addsection": "новꙑ бєсѣдꙑ чѧсти сътворѥниѥ",
+	"nstab-mainpage": "главьна страница"
 }

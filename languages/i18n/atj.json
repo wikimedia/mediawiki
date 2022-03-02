@@ -312,7 +312,7 @@
 	"grant-createaccount": "Masinahotiso",
 	"newuserlogpage": "E ici masinasotcik ka pitakesinahotisotcik",
 	"action-edit": "mecikotona owe",
-	"action-move": "orinkata owe masinhikan",
+	"action-move": "Erikam",
 	"enhancedrc-history": "isparik",
 	"recentchanges": "Ka ki meckotcitakaniwoki",
 	"recentchanges-legend": " Ka meckotcitain matcenikana",
@@ -626,5 +626,15 @@
 	"pagelang-name": "Masinhikan",
 	"log-action-filter-all": "Kaskina",
 	"log-action-filter-block-block": "Nokipita",
-	"authmanager-email-label": "Matcetcicihikan"
+	"authmanager-email-label": "Matcetcicihikan",
+	"action-protect": "Tacikatek",
+	"view-edit": "Meckotcita",
+	"view-create": "Ocita",
+	"view-history": "E pe isparik",
+	"action-delete": "Wepina",
+	"view-view": "Tapwatcike",
+	"action-addsection": "Acotcicta",
+	"view-view-foreign": "Nta ici ntowapata $1",
+	"view-create-local": "Arimota ke acotcictek",
+	"nstab-mainpage": "Otitikowin"
 }
