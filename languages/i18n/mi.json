@@ -40,7 +40,9 @@
 	"history_short": "Tuhinga/kaituhi",
 	"printableversion": "Tāia",
 	"permalink": "Hononga toitū",
+	"view-view": "Tirohia",
 	"edit": "Whakatika",
+	"view-edit": "Whakatika",
 	"delete": "tangohia",
 	"protect": "Whakangungua",
 	"talkpagelinktext": "kōrero",
@@ -67,6 +69,7 @@
 	"savearticle": "Tiaki",
 	"showdiff": "Tiro rerekētanga",
 	"preferences": "Kōwhiringa",
+	"action-protect": "Whakangungua",
 	"recentchanges": "Huringa hou",
 	"recentchanges-summary": "Ka whakaaturia i raro iho nei ngā '''huringa hou''' o tēnei Wiki.",
 	"hide": "Hunaia",
@@ -87,8 +90,5 @@
 	"mycontris": "āku mahi",
 	"whatlinkshere": "Ngā hononga mai",
 	"allmessages": "Pānui pūnaha",
-	"specialpages": "Whārangi motuhake",
-	"action-protect": "Whakangungua",
-	"view-edit": "Whakatika",
-	"view-view": "Tirohia"
+	"specialpages": "Whārangi motuhake"
 }

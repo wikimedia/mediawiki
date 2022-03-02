@@ -6,6 +6,8 @@
 		]
 	},
 	"mytalk": "Ibiganiro byanjye",
+	"view-history": "Reba amateka",
+	"view-view": "Soma",
 	"toolbox": "Ibikoresho",
 	"currentevents": "Ibigezweho",
 	"mainpage": "Intangiriro",
@@ -16,6 +18,7 @@
 	"nstab-user": "Inyandiko ya nyir'ugukoresha",
 	"userlogout": "Sohoka",
 	"mypreferences": "Ibyo mpitamo",
+	"action-move": "Imura",
 	"recentchanges": "Ibiherutse guhindurwa",
 	"upload": "Bika idosiye hano",
 	"randompage": "Njyana aho ariho hose",
@@ -23,8 +26,5 @@
 	"mycontris": "Umusanzu wanjye",
 	"whatlinkshere": "Icyo kiherekeza hano",
 	"specialpages": "Inyandiko zidasanzwe",
-	"searchsuggest-search": "Shakisha",
-	"view-history": "Reba amateka",
-	"action-move": "Imura",
-	"view-view": "Soma"
+	"searchsuggest-search": "Shakisha"
 }

@@ -136,6 +136,7 @@
 	"view": "Lesen",
 	"view-foreign": "Auf $1 ansehen",
 	"edit": "Bearbeiten",
+	"view-edit": "Bearbeiten",
 	"talkpagelinktext": "Diskussion",
 	"talk": "Diskussion",
 	"otherlanguages": "In anderen Sprachen",
@@ -362,6 +363,7 @@
 	"userrights-no-interwiki": "Sie haben nicht die erforderliche Berechtigung, um Benutzerrechte in anderen Wikis ändern zu können.",
 	"userrights-changeable-col": "Gruppenzugehörigkeit, die Sie ändern dürfen",
 	"userrights-unchangeable-col": "Gruppenzugehörigkeit, die Sie nicht ändern dürfen",
+	"action-addsection": "Abschnitt hinzufügen",
 	"recentchanges": "Letzte Änderungen",
 	"recentchanges-summary": "Auf dieser Seite können Sie die letzten Änderungen in diesem Wiki nachverfolgen.",
 	"recentchanges-feed-description": "Verfolgen Sie mit diesem Feed die letzten Änderungen in {{SITENAME}}.",
@@ -528,8 +530,6 @@
 	"credentialsform-provider": "Typ der Anmeldeinformationen:",
 	"credentialsform-account": "Benutzername:",
 	"specialmute-error-no-options": "Stummschaltungs-Funktionen sind nicht verfügbar. Gründe dafür könnten sein: Sie haben Ihre E-Mail-Adresse nicht bestätigt, ein Administrator hat die E-Mail-Funktionen deaktiviert oder eine E-Mail-Negativliste in diesem Wiki eingerichtet.",
-	"view-edit": "Bearbeiten",
-	"action-addsection": "Abschnitt hinzufügen",
 	"view-view-foreign": "Auf $1 ansehen",
 	"nstab-mainpage": "Hauptseite"
 }

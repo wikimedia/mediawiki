@@ -85,7 +85,9 @@
 	"printableversion": "Printindi versione",
 	"permalink": "Permananti linke",
 	"print": "Printa",
+	"view-view": "Lekte",
 	"edit": "Immodifika",
+	"view-edit": "Immodifika",
 	"delete": "Ekarta",
 	"protect": "Protekte",
 	"newpage": "Novi pagine",
@@ -174,6 +176,8 @@
 	"prefs-rc": "Resenti chanjos",
 	"searchresultshead": "Sercha",
 	"timezoneregion-africa": "Afrika",
+	"action-delete": "Ekarta",
+	"action-protect": "Protekte",
 	"nchanges": "$1 {{PLURAL:$1|chanjo|chanjos}}",
 	"recentchanges": "Resenti chanjos",
 	"rcshowhideminor": "$1 minori modifikos",
@@ -286,9 +290,5 @@
 	"version": "Versione",
 	"version-specialpages": "Spesial pagines",
 	"version-software-version": "Versione",
-	"specialpages": "Spesial pagines",
-	"action-protect": "Protekte",
-	"view-edit": "Immodifika",
-	"action-delete": "Ekarta",
-	"view-view": "Lekte"
+	"specialpages": "Spesial pagines"
 }

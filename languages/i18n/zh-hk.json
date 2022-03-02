@@ -83,7 +83,9 @@
 	"printableversion": "可列印版",
 	"permalink": "靜態連結",
 	"print": "打印",
+	"view-view": "閱讀",
 	"edit": "編輯",
+	"view-edit": "編輯",
 	"newpage": "新頁面",
 	"talkpagelinktext": "對話",
 	"specialpage": "特殊頁面",
@@ -252,7 +254,5 @@
 	"searchsuggest-search": "搜尋{{SITENAME}}",
 	"api-error-publishfailed": "內部錯誤：伺服器發佈暫存檔案失敗。",
 	"duration-days": "$1日",
-	"view-edit": "編輯",
-	"view-view": "閱讀",
 	"nstab-mainpage": "首頁"
 }

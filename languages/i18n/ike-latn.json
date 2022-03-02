@@ -53,8 +53,10 @@
 	"searcharticle": "aivuk",
 	"history_short": "mappitaq kingunittinni",
 	"edit": "Suqusiqpaa",
+	"view-edit": "Suqusiqpaa",
 	"delete": "nipaqtipaa",
 	"protect": "sapummivaa",
+	"action-unprotect": "iq sapummivaa",
 	"unprotect": "iq sapummivaa",
 	"newpage": "pigivuk mappitaq",
 	"specialpage": "piji mappitaq",
@@ -141,6 +143,7 @@
 	"email": "kigutiup sitiniqpaanga",
 	"prefs-help-email": "kigutiup sitiniqpaanga (pikkallavuq) — qakugu nalunanngilaq ilissi pijungnaqtuq pigivaa kanngunaqtuq aajiiqatiginggiq",
 	"editinguser": "suqusiqpaa qatannguti '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+	"action-protect": "sapummivaa",
 	"recentchanges": "pigivuq asianngutuq",
 	"recentchangeslinked": "asiaNngutuq mitsaasijuq",
 	"recentchangeslinked-feed": "asiaNngutuq mitsaasijuq",
@@ -230,8 +233,5 @@
 	"autosumm-new": "pigivuq mappitaq: $1",
 	"specialpages": "piji mappitaq",
 	"tags-edit": "suqusiqpaa",
-	"action-protect": "sapummivaa",
-	"view-edit": "Suqusiqpaa",
-	"action-unprotect": "iq sapummivaa",
 	"nstab-mainpage": "amiq"
 }
