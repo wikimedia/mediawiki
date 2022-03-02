@@ -68,6 +68,11 @@
 			$notification.attr( 'id', options.id );
 		}
 
+		if ( options.classes ) {
+			// eslint-disable-next-line mediawiki/class-doc
+			$notification.addClass( options.classes );
+		}
+
 		$notificationContent = $( '<div>' ).addClass( 'mw-notification-content' );
 
 		if ( typeof message === 'object' ) {
@@ -430,7 +435,7 @@
 		 * The defaults for #notify options parameter.
 		 *
 		 * - autoHide:
-		 *   A boolean indicating whether the notifification should automatically
+		 *   A boolean indicating whether the notification should automatically
 		 *   be hidden after shown. Or if it should persist.
 		 *
 		 * - autoHideSeconds:
@@ -458,6 +463,10 @@
 		 *
 		 * - id:
 		 *   HTML ID to set on the notification element.
+		 *
+		 * - classes:
+		 *   CSS class names in the form of a single string or
+		 *   array of strings, to be set on the notification element.
 		 */
 		defaults: {
 			autoHide: true,
@@ -466,7 +475,8 @@
 			title: null,
 			type: null,
 			visibleTimeout: true,
-			id: false
+			id: false,
+			classes: false
 		},
 
 		/**
