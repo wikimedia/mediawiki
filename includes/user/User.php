@@ -201,7 +201,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @var string|int -1 when the block is unset
 	 */
 	public $mBlockedby;
-	/** @var string */
+	/** @var string|false */
 	protected $mHash;
 	/**
 	 * TODO: This should be removed when User::BlockedFor
