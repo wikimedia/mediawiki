@@ -89,9 +89,12 @@ class TransactionManager {
 
 	/** @var LoggerInterface */
 	private $logger;
+	/** @var TransactionProfiler */
+	private $profiler;
 
-	public function __construct( LoggerInterface $logger = null ) {
+	public function __construct( LoggerInterface $logger = null, $profiler = null ) {
 		$this->logger = $logger ?? new NullLogger();
+		$this->profiler = $profiler ?? new TransactionProfiler();
 	}
 
 	public function trxLevel() {
@@ -534,5 +537,39 @@ class TransactionManager {
 			$trxFname = $this->getTrxFname();
 			trigger_error( "Uncommitted DB writes (transaction from {$trxFname})" );
 		}
+	}
+
+	public function transactionWritingIn( $serverName, $domainId ) {
+		if ( $this->trxLevel() && !$this->isTrxDoneWrites() ) {
+			$this->setTrxDoneWritesToTrue();
+			$this->profiler->transactionWritingIn(
+				$serverName,
+				$domainId,
+				$this->getTrxId()
+			);
+		}
+	}
+
+	public function transactionWritingOut( IDatabase $db, $oldId ) {
+		if ( $this->isTrxDoneWrites() ) {
+			$this->profiler->transactionWritingOut(
+				$db->getServerName(),
+				$db->getDomainID(),
+				$oldId,
+				$this->pendingWriteQueryDuration( $db, IDatabase::ESTIMATE_TOTAL ),
+				$this->getTrxWriteAffectedRows()
+			);
+		}
+	}
+
+	public function recordQueryCompletion( $sql, $startTime, $isPermWrite, $rowCount, $serverName ) {
+		$this->profiler->recordQueryCompletion(
+			$sql,
+			$startTime,
+			$isPermWrite,
+			$rowCount,
+			$this->getTrxId(),
+			$serverName
+		);
 	}
 }
