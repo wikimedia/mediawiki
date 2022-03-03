@@ -66,8 +66,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $deprecationLogger;
 	/** @var callable|null */
 	protected $profiler;
-	/** @var TransactionProfiler */
-	protected $trxProfiler;
 	/** @var TransactionManager */
 	private $transactionManager;
 
@@ -235,7 +233,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param array $params Parameters passed from Database::factory()
 	 */
 	public function __construct( array $params ) {
-		$this->transactionManager = new TransactionManager( $params['queryLogger'] );
+		$this->transactionManager = new TransactionManager(
+			$params['queryLogger'],
+			$params['trxProfiler']
+		);
 		$this->connectionParams = [
 			self::CONN_HOST => ( isset( $params['host'] ) && $params['host'] !== '' )
 				? $params['host']
@@ -267,7 +268,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$this->srvCache = $params['srvCache'];
 		$this->profiler = is_callable( $params['profiler'] ) ? $params['profiler'] : null;
-		$this->trxProfiler = $params['trxProfiler'];
 		$this->connLogger = $params['connLogger'];
 		$this->queryLogger = $params['queryLogger'];
 		$this->replLogger = $params['replLogger'];
@@ -1343,14 +1343,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Keep track of whether the transaction has write queries pending
 		if ( $isPermWrite ) {
 			$this->lastWriteTime = microtime( true );
-			if ( $this->trxLevel() && !$this->transactionManager->isTrxDoneWrites() ) {
-				$this->transactionManager->setTrxDoneWritesToTrue();
-				$this->trxProfiler->transactionWritingIn(
-					$this->getServerName(),
-					$this->getDomainID(),
-					$this->transactionManager->getTrxId()
-				);
-			}
+			$this->transactionManager->transactionWritingIn(
+				$this->getServerName(),
+				$this->getDomainID()
+			);
 		}
 
 		$prefix = $this->topologyRole === IDatabase::ROLE_STREAMING_MASTER ? 'query-m: ' : 'query: ';
@@ -1403,12 +1399,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$numRows = $ret->numRows();
 		}
 
-		$this->trxProfiler->recordQueryCompletion(
+		$this->transactionManager->recordQueryCompletion(
 			$generalizedSql,
 			$startTime,
 			$isPermWrite,
 			$isPermWrite ? $this->affectedRows() : $numRows,
-			$this->transactionManager->getTrxId(),
 			$this->getServerName()
 		);
 
@@ -1547,21 +1542,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// https://www.postgresql.org/docs/9.4/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$this->sessionNamedLocks = [];
 		// Session loss implies transaction loss
-		$oldTrxId = $this->transactionManager->consumeTrxId();
 		$this->trxPostCommitOrIdleCallbacks = []; // T67263; transaction already lost
 		$this->trxPreCommitOrIdleCallbacks = []; // T67263; transaction already lost
 		// Clear additional subclass fields
+		$oldTrxId = $this->transactionManager->consumeTrxId();
 		$this->doHandleSessionLossPreconnect();
-		// @note: leave trxRecurringCallbacks in place
-		if ( $this->transactionManager->isTrxDoneWrites() ) {
-			$this->trxProfiler->transactionWritingOut(
-				$this->getServerName(),
-				$this->getDomainID(),
-				$oldTrxId,
-				$this->pendingWriteQueryDuration( self::ESTIMATE_TOTAL ),
-				$this->transactionManager->getTrxWriteAffectedRows()
-			);
-		}
+		$this->transactionManager->transactionWritingOut( $this, $oldTrxId );
 	}
 
 	/**
@@ -4729,13 +4715,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->transactionManager->setTrxStatusToNone();
 		if ( $this->transactionManager->isTrxDoneWrites() ) {
 			$this->lastWriteTime = microtime( true );
-			$this->trxProfiler->transactionWritingOut(
-				$this->getServerName(),
-				$this->getDomainID(),
-				$oldTrxId,
-				$writeTime,
-				$this->transactionManager->getTrxWriteAffectedRows()
-			);
+			$this->transactionManager->transactionWritingOut( $this, $oldTrxId );
 		}
 		// With FLUSHING_ALL_PEERS, callbacks will run when requested by a dedicated phase
 		// within LoadBalancer. With FLUSHING_INTERNAL, callbacks will run when requested by
@@ -4790,15 +4770,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Clear callbacks that depend on transaction or transaction round commit
 		$this->trxPostCommitOrIdleCallbacks = [];
 		$this->trxPreCommitOrIdleCallbacks = [];
-		if ( $this->transactionManager->isTrxDoneWrites() ) {
-			$this->trxProfiler->transactionWritingOut(
-				$this->getServerName(),
-				$this->getDomainID(),
-				$oldTrxId,
-				$this->transactionManager->pendingWriteQueryDuration( $this ),
-				$this->transactionManager->getTrxWriteAffectedRows()
-			);
-		}
+		$this->transactionManager->transactionWritingOut( $this, $oldTrxId );
 		// With FLUSHING_ALL_PEERS, callbacks will run when requested by a dedicated phase
 		// within LoadBalancer. With FLUSHING_INTERNAL, callbacks will run when requested by
 		// the Database caller during a safe point. This avoids isolation and recursion issues.
