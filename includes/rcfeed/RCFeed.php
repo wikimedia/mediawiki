@@ -51,6 +51,9 @@ abstract class RCFeed {
 			return RecentChange::getEngine( $params['uri'], $params );
 		}
 		$class = $params['class'];
+		if ( defined( 'MW_PHPUNIT_TEST' ) && is_object( $class ) ) {
+			return $class;
+		}
 		if ( !class_exists( $class ) ) {
 			throw new Exception( "Unknown class '$class'." );
 		}
