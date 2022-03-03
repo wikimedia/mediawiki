@@ -393,6 +393,7 @@ interface ILoadBalancer {
 	 * @return DBConnRef Live connection handle
 	 * @throws DBError If no live handle could be obtained
 	 * @throws DBAccessError If disable() was previously called
+	 * @deprecated since 1.38 use getConnectionRef instead
 	 */
 	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): DBConnRef;
 
