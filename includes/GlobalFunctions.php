@@ -183,11 +183,12 @@ function wfMergeErrorArrays( ...$args ) {
 }
 
 /**
- * Insert array into another array after the specified *KEY*
+ * Insert an array into another array after the specified key. If the key is
+ * not present in the input array, it is returned without modification.
  *
  * @param array $array
  * @param array $insert The array to insert.
- * @param mixed $after The key to insert after. Callers need to make sure the key is set.
+ * @param mixed $after The key to insert after.
  * @return array
  */
 function wfArrayInsertAfter( array $array, array $insert, $after ) {
@@ -195,6 +196,9 @@ function wfArrayInsertAfter( array $array, array $insert, $after ) {
 	$keys = array_keys( $array );
 	$offsetByKey = array_flip( $keys );
 
+	if ( !\array_key_exists( $after, $offsetByKey ) ) {
+		return $array;
+	}
 	$offset = $offsetByKey[$after];
 
 	// Insert at the specified offset
