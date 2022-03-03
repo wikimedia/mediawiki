@@ -44,7 +44,7 @@ class WebInstallerLanguage extends WebInstallerPage {
 		if ( $r->wasPosted() ) {
 			# Do session test
 			if ( $this->parent->getSession( 'test' ) === null ) {
-				$requestTime = $r->getVal( 'LanguageRequestTime' );
+				$requestTime = $r->getIntOrNull( 'LanguageRequestTime' );
 				if ( !$requestTime ) {
 					// The most likely explanation is that the user was knocked back
 					// from another page on POST due to session expiry
