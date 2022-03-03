@@ -439,7 +439,7 @@ interface ILoadBalancer {
 	 * This counts both servers using streaming replication from the primary server and
 	 * servers that just have a clone of the static dataset found on the primary server
 	 *
-	 * @return int
+	 * @return bool
 	 * @since 1.34
 	 */
 	public function hasReplicaServers();
@@ -457,10 +457,10 @@ interface ILoadBalancer {
 	 * It is possible for some replicas to be configured with "is static" but not
 	 * others, though it generally should either be set for all or none of the replicas.
 	 *
-	 * If this returns zero, this means that there is generally no reason to execute
+	 * If this returns false, this means that there is generally no reason to execute
 	 * replication wait logic for session consistency and lag reduction.
 	 *
-	 * @return int
+	 * @return bool
 	 * @since 1.34
 	 */
 	public function hasStreamingReplicaServers();
