@@ -622,16 +622,16 @@ class GlobalIdGenerator {
 			$ts = gmp_add( gmp_mul( $ts, '10000' ), $offset );
 			$ts = gmp_add( $ts, (string)$delta );
 			// wrap around
-			$ts = gmp_mod( $ts, gmp_pow( '2', '60' ) );
+			$ts = gmp_mod( $ts, gmp_pow( '2', 60 ) );
 			$id_bin = str_pad( gmp_strval( $ts, 2 ), 60, '0', STR_PAD_LEFT );
 		} elseif ( extension_loaded( 'bcmath' ) ) {
 			// ms
-			$ts = bcadd( bcmul( $sec, 1000 ), $msec );
+			$ts = bcadd( bcmul( $sec, '1000' ), $msec );
 			// 100ns intervals
-			$ts = bcadd( bcmul( $ts, 10000 ), $offset );
+			$ts = bcadd( bcmul( $ts, '10000' ), $offset );
 			$ts = bcadd( $ts, (string)$delta );
 			// wrap around
-			$ts = bcmod( $ts, bcpow( 2, 60 ) );
+			$ts = bcmod( $ts, bcpow( '2', '60' ) );
 			$id_bin = \Wikimedia\base_convert( $ts, 10, 2, 60 );
 		} else {
 			throw new RuntimeException( 'bcmath or gmp extension required for 32 bit machines.' );

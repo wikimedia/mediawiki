@@ -295,7 +295,7 @@ class Exif {
 		$this->debugFile( __FUNCTION__, true );
 		if ( function_exists( 'exif_read_data' ) ) {
 			AtEase::suppressWarnings();
-			$data = exif_read_data( $this->file, 0, true );
+			$data = exif_read_data( $this->file, '', true );
 			AtEase::restoreWarnings();
 		} else {
 			throw new MWException( "Internal error: exif_read_data not present. " .

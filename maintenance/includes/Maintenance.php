@@ -1490,7 +1490,7 @@ abstract class Maintenance {
 		}
 		for ( $i = $seconds; $i >= 0; $i-- ) {
 			if ( $i != $seconds ) {
-				$this->output( str_repeat( "\x08", strlen( $i + 1 ) ) );
+				$this->output( str_repeat( "\x08", strlen( (string)( $i + 1 ) ) ) );
 			}
 			$this->output( $i );
 			if ( $i ) {

@@ -3306,11 +3306,11 @@ class Language {
 				if ( preg_match( '/^-?(\d*)(\.(\d*))?$/', $number, $m ) ) {
 					$fmt->setAttribute( NumberFormatter::MIN_INTEGER_DIGITS, strlen( $m[1] ) );
 					if ( isset( $m[2] ) ) {
-						$fmt->setAttribute( NumberFormatter::DECIMAL_ALWAYS_SHOWN, true );
+						$fmt->setAttribute( NumberFormatter::DECIMAL_ALWAYS_SHOWN, 1 );
 					}
 					$fmt->setAttribute( NumberFormatter::FRACTION_DIGITS, strlen( $m[3] ?? '' ) );
 				}
-				$number = $fmt->format( $number );
+				$number = $fmt->format( (float)$number );
 			}
 		}
 

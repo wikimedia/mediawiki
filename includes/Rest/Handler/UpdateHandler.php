@@ -257,6 +257,6 @@ class UpdateHandler extends EditHandler {
 		}
 
 		$json = ( $this->jsonDiffFunction )( $from->getText(), $to->getText(), 2 );
-		return FormatJson::decode( $json, FormatJson::FORCE_ASSOC );
+		return FormatJson::decode( $json, true );
 	}
 }

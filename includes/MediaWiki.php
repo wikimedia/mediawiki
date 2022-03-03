@@ -1049,7 +1049,7 @@ class MediaWiki {
 		// by MW_SETUP_CALLBACK and can also cause the client to wait on deferred updates
 		if ( function_exists( 'apache_setenv' ) ) {
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-			@apache_setenv( 'no-gzip', 1 );
+			@apache_setenv( 'no-gzip', '1' );
 		}
 
 		if (
