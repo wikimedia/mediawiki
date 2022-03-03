@@ -61,7 +61,7 @@ class BackupDumperPageTest extends DumpTestCase {
 			$this->streamingLoadBalancer = $lbFactory->newMainLB();
 		}
 
-		$db = $this->streamingLoadBalancer->getConnection( DB_REPLICA );
+		$db = $this->streamingLoadBalancer->getConnection( DB_PRIMARY );
 
 		// Make sure the DB connection has the fake table clones and the fake table prefix
 		$this->dbClone = MediaWikiIntegrationTestCase::setupDatabaseWithTestPrefix( $db );

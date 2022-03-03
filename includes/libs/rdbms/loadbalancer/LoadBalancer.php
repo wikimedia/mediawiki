@@ -670,7 +670,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			// Decrement reference counter, we are finished with this connection.
 			// It will be incremented for the caller later.
 			if ( !$this->localDomain->equals( $domain ) ) {
-				$this->reuseConnection( $conn );
+				$this->reuseConnectionInternal( $conn );
 			}
 
 			// Return this server
@@ -907,6 +907,18 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 ) {
+		return $this->getConnectionRef( $i, $groups, $domain, $flags );
+	}
+
+	/**
+	 * @internal
+	 * @param int $i Specific (overrides $groups) or virtual (DB_PRIMARY/DB_REPLICA) server index
+	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
+	 * @param string|bool $domain DB domain ID or false for the local domain
+	 * @param int $flags Bitfield of CONN_* class constants
+	 * @return IDatabase
+	 */
+	public function getConnectionInternal( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase {
 		$domain = $this->resolveDomainID( $domain );
 		$groups = $this->resolveGroups( $groups, $i );
 		$flags = $this->sanitizeConnectionFlags( $flags, $i, $domain );
@@ -930,7 +942,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				: 'The database is read-only until replica database servers becomes reachable.';
 			$conn->setLBInfo( $conn::LB_READ_ONLY_REASON, $reason );
 		}
-
 		return $conn;
 	}
 
@@ -991,6 +1002,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	public function reuseConnection( IDatabase $conn ) {
+		// no-op
+	}
+
+	public function reuseConnectionInternal( IDatabase $conn ) {
 		$serverIndex = $conn->getLBInfo( self::INFO_SERVER_INDEX );
 		$refCount = $conn->getLBInfo( self::INFO_FOREIGN_REF_COUNT );
 		if ( $serverIndex === null || $refCount === null ) {
@@ -1074,7 +1089,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		$domain = $this->resolveDomainID( $domain );
 		$role = $this->getRoleFromIndex( $i );
-		$conn = $this->getConnection( $i, $groups, $domain, $flags );
+		$conn = $this->getConnectionInternal( $i, $groups, $domain, $flags );
 
 		return new DBConnRef( $this, $conn, $role );
 	}
@@ -2133,7 +2148,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 					} catch ( DBError $e ) {
 						$readOnly = 0;
 					}
-					$this->reuseConnection( $conn );
+					$this->reuseConnectionInternal( $conn );
 				} else {
 					$readOnly = 0;
 				}
