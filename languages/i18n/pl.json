@@ -441,6 +441,7 @@
 	"querypage-no-updates": "Uaktualnienia dla tej strony są obecnie wyłączone. Znajdujące się tutaj dane nie zostaną odświeżone.",
 	"querypage-updates-periodical": "Aktualizacje tej strony wykonywane są cyklicznie.",
 	"viewsource": "Tekst źródłowy",
+	"action-viewsource": "Kod źródłowy",
 	"viewsource-title": "Tekst źródłowy strony $1",
 	"actionthrottled": "Akcja wstrzymana",
 	"actionthrottledtext": "Mechanizm obrony przed spamem ogranicza liczbę wykonań tej czynności w jednostce czasu. Usiłowałeś przekroczyć to ograniczenie. Spróbuj jeszcze raz za kilka minut.",
