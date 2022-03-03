@@ -355,10 +355,18 @@ class ApiParse extends ApiBase {
 			if ( $textProvided && !$titleProvided && $model === null ) {
 				$model = CONTENT_MODEL_WIKITEXT;
 				$this->addWarning( [ 'apiwarn-parse-nocontentmodel', $model ] );
+			} elseif ( $model === null ) {
+				$model = $titleObj->getContentModel();
+			}
+
+			$contentHandler = $this->contentHandlerFactory->getContentHandler( $model );
+			// Not in the default format, check supported or not
+			if ( $format && !$contentHandler->isSupportedFormat( $format ) ) {
+				$this->dieWithError( [ 'apierror-badformat-generic', $format, $model ] );
 			}
 
 			try {
-				$this->content = ContentHandler::makeContent( $text, $titleObj, $model, $format );
+				$this->content = $contentHandler->unserializeContent( $text, $format );
 			} catch ( MWContentSerializationException $ex ) {
 				$this->dieWithException( $ex, [
 					'wrap' => ApiMessage::create( 'apierror-contentserializationexception', 'parseerror' )
