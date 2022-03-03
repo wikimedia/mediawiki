@@ -99,11 +99,12 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '', $result->getStderr(), 'Config generation must not have errors' );
 
 		$oldGeneratedSchema = file_get_contents( $expectedFile );
+		$relativePath = wfRelativePath( $script, __DIR__ . '/../../..' );
 
 		$this->assertEquals(
 			$oldGeneratedSchema,
 			$result->getStdout(),
-			'Configuration schema was changed. Rerun maintenance/generateConfigSchema.php script!'
+			"Configuration schema was changed. Rerun $relativePath script!"
 		);
 	}
 
