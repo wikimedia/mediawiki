@@ -759,11 +759,11 @@ EOT
 
 		if ( $descUrl &&
 			$descText &&
-			$this->getContext()->msg( 'sharedupload-desc-here' )->plain() !== '-'
+			!$this->getContext()->msg( 'sharedupload-desc-here' )->isDisabled()
 		) {
 			$out->wrapWikiMsg( $wrap, [ 'sharedupload-desc-here', $repo, $descUrl ] );
 		} elseif ( $descUrl &&
-			$this->getContext()->msg( 'sharedupload-desc-there' )->plain() !== '-'
+			!$this->getContext()->msg( 'sharedupload-desc-there' )->isDisabled()
 		) {
 			$out->wrapWikiMsg( $wrap, [ 'sharedupload-desc-there', $repo, $descUrl ] );
 		} else {
