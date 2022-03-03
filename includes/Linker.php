@@ -593,7 +593,7 @@ class Linker {
 
 	/**
 	 * @param LinkTarget $title
-	 * @param File $file
+	 * @param File|false $file
 	 * @param array $frameParams
 	 * @param array $handlerParams
 	 * @param bool $time

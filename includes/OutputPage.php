@@ -1235,7 +1235,7 @@ class OutputPage extends ContextSource {
 	 * for the new version
 	 * @see addFeedLink()
 	 *
-	 * @param string $val Query to append to feed links or false to output
+	 * @param string|false $val Query to append to feed links or false to output
 	 *        default links
 	 */
 	public function setFeedAppendQuery( $val ) {
@@ -4265,7 +4265,7 @@ class OutputPage extends ContextSource {
 	 * This value needs to be included in any <script> tags on the
 	 * page.
 	 *
-	 * @return string|bool Nonce or false to mean don't output nonce
+	 * @return string|false Nonce or false to mean don't output nonce
 	 * @since 1.32
 	 * @deprecated Since 1.35 use getCSP()->getNonce() instead
 	 */

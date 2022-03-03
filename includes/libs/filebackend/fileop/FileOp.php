@@ -449,7 +449,7 @@ abstract class FileOp {
 	 *
 	 * @param string $source Storage path
 	 * @param array $predicates
-	 * @return int False on failure
+	 * @return int|false False on failure
 	 */
 	final protected function fileSize( $source, array $predicates ) {
 		if ( isset( $predicates[self::ASSUMED_SIZE][$source] ) ) {

@@ -80,7 +80,7 @@ abstract class UploadBase {
 	protected $mBlackListedExtensions;
 	/** @var bool|null */
 	protected $mJavaDetected;
-	/** @var string|null */
+	/** @var string|false */
 	protected $mSVGNSError;
 
 	protected static $safeXmlEncodings = [

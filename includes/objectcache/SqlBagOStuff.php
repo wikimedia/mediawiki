@@ -54,7 +54,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	protected $localKeyLb;
 	/** @var ILoadBalancer|null */
 	protected $globalKeyLb;
-	/** @var string|null DB name used for keys using the "global key" LoadBalancer */
+	/** @var string|false|null DB name used for keys using the "global key" LoadBalancer */
 	protected $globalKeyLbDomain;
 
 	/** @var array[] (server index => server config) */
