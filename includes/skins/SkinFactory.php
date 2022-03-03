@@ -29,6 +29,8 @@ use Wikimedia\ObjectFactory;
  * @since 1.24
  */
 class SkinFactory {
+	private const SKIP_BY_SITECONFIG = 1;
+	private const SKIP_BY_REGISTER = 2;
 
 	/**
 	 * Map of skin name to object factory spec or factory function.
@@ -52,7 +54,7 @@ class SkinFactory {
 	 * Array of skins that should not be presented in the list of
 	 * available skins in user preferences, while they're still installed.
 	 *
-	 * @var string[]
+	 * @var array<string,int>
 	 */
 	private $skipSkins;
 
@@ -64,7 +66,7 @@ class SkinFactory {
 	 */
 	public function __construct( ObjectFactory $objectFactory, array $skipSkins ) {
 		$this->objectFactory = $objectFactory;
-		$this->skipSkins = $skipSkins;
+		$this->skipSkins = array_fill_keys( $skipSkins, self::SKIP_BY_SITECONFIG );
 	}
 
 	/**
@@ -97,9 +99,15 @@ class SkinFactory {
 		}
 		$this->factoryFunctions[$name] = $spec;
 		$this->displayNames[$name] = $displayName;
-		// Register as hidden if necessary.
-		if ( $skippable ) {
-			$this->skipSkins[] = $name;
+
+		// If skipped by site config, leave as-is.
+		if ( ( $this->skipSkins[$name] ?? null ) !== self::SKIP_BY_SITECONFIG ) {
+			if ( $skippable === true ) {
+				$this->skipSkins[$name] = self::SKIP_BY_REGISTER;
+			} else {
+				// Make sure the register() call is unaffected by previous calls.
+				unset( $this->skipSkins[$name] );
+			}
 		}
 	}
 
@@ -147,8 +155,8 @@ class SkinFactory {
 	public function getAllowedSkins() {
 		$skins = $this->getInstalledSkins();
 
-		foreach ( $this->skipSkins as $skip ) {
-			unset( $skins[$skip] );
+		foreach ( $this->skipSkins as $name => $_ ) {
+			unset( $skins[$name] );
 		}
 
 		return $skins;
