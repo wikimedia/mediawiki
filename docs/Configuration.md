@@ -682,7 +682,7 @@ a foreign wiki's directory in order to render a page on given wiki. The extensio
 would need a fully qualified backend that is defined on all wikis in the wiki farm.
 
 # LockManagers {#LockManagers}
-Array of configuration arrays for each lock manager.
+List of lock manager backend configurations.
 
 Each backend configuration has the following parameters:
  - name  : A unique name for the lock manager
@@ -2079,7 +2079,7 @@ unconditionally set by MediaWiki core's ServiceWiring.
 **Example:**
 
 ```
-$wgWANObjectCaches'memcached-php' => [
+$wgWANObjectCaches['memcached-php'] => [
   'class' => WANObjectCache::class,
   'cacheId' => 'memcached-php',
 ];
@@ -4195,7 +4195,7 @@ active sessions (i.e. it will log everyone out).
 # SessionProviders {#SessionProviders}
 MediaWiki\Session\SessionProvider configuration.
 
-Value is an array of ObjectFactory specifications for the SessionProviders
+Values are ObjectFactory specifications for the SessionProviders
 to be used. Keys in the array are ignored. Order is not significant.
 @since 1.27
 
@@ -6272,8 +6272,9 @@ at Special:Contributions.
 @since 1.30
 
 # Actions {#Actions}
-Array of allowed values for the "title=foo&action=<action>" parameter. See
-ActionFactory for the syntax. Core defaults are in ActionFactory::CORE_ACTIONS,
+Map of allowed values for the "title=foo&action=<action>" parameter.
+to the corrspeonding handler code.
+See ActionFactory for the syntax. Core defaults are in ActionFactory::CORE_ACTIONS,
 anything here overrides that.
 
 # DefaultRobotPolicy {#DefaultRobotPolicy}
