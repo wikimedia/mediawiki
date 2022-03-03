@@ -328,11 +328,9 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	public function testEntireSchema() {
 		global $IP;
 
-		$result = Sqlite::checkSqlSyntax( "$IP/maintenance/tables.sql" );
-		if ( $result !== true ) {
-			$this->fail( $result );
-		}
-		$this->assertTrue( true ); // avoid test being marked as incomplete due to lack of assertions
+		$result = Sqlite::checkSqlSyntax( "$IP/maintenance/sqlite/tables-generated.sql" );
+
+		$this->assertTrue( $result, $result );
 	}
 
 	/**
