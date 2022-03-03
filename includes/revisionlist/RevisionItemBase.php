@@ -90,7 +90,7 @@ abstract class RevisionItemBase {
 
 	/**
 	 * Get the ID, as it would appear in the ids URL parameter
-	 * @return int
+	 * @return int|string
 	 */
 	public function getId() {
 		$field = $this->getIdField();
