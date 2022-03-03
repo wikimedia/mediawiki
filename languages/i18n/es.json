@@ -563,6 +563,7 @@
 	"querypage-no-updates": "Actualmente las actualizaciones de esta página están desactivadas. Estos datos no serán actualizados a corto plazo.",
 	"querypage-updates-periodical": "Esta página se actualiza periódicamente.",
 	"viewsource": "Ver código",
+	"action-viewsource": "Ver código fuente",
 	"viewsource-title": "Ver el código de «$1»",
 	"actionthrottled": "Acción limitada",
 	"actionthrottledtext": "Como medida contra los abusos, la acción que estás realizando está limitada a un número determinado de veces en un periodo corto de tiempo, y has excedido ese límite.\nInténtalo de nuevo en unos minutos.",

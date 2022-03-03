@@ -351,6 +351,7 @@
 	"querypage-no-updates": "Le actualisationes pro iste pagina es disactivate. Pro le momento, le datos hic non se cambiara.",
 	"querypage-updates-periodical": "Iste pagina se actualisa periodicamente.",
 	"viewsource": "Vider codice-fonte",
+	"action-viewsource": "Vider codice-fonte",
 	"viewsource-title": "Le texto fonte de $1",
 	"actionthrottled": "Action limitate",
 	"actionthrottledtext": "Como mesura anti-abuso, le uso de iste action ha essite limitate a un certe numero de vices durante un curte periodo de tempore, e tu ha excedite iste limite.\nTenta lo de novo in alcun minutas.",

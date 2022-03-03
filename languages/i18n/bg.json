@@ -2624,6 +2624,7 @@
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Друго автоматично блокиране|Други автоматични блокирания}}",
 	"ipblocklist": "Блокирани потребители",
 	"ipblocklist-legend": "Търсене на блокиран потребител",
+	"blocklist-autoblocks": "Скриване на автоматичните блокирания",
 	"blocklist-userblocks": "Скриване блокирането на потребителски сметки",
 	"blocklist-tempblocks": "Скриване на временни блокирания",
 	"blocklist-indefblocks": "Скриване на безсрочните блокирания",
