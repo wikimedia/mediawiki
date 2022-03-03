@@ -127,7 +127,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$join_conds['page'] = [ 'LEFT JOIN', 'rc_cur_id=page_id' ];
 		$select[] = 'page_latest';
 
-		$tagFilter = $opts['tagfilter'] ? explode( '|', $opts['tagfilter'] ) : [];
+		$tagFilter = $opts['tagfilter'] !== '' ? explode( '|', $opts['tagfilter'] ) : [];
 		ChangeTags::modifyDisplayQuery(
 			$tables,
 			$select,
