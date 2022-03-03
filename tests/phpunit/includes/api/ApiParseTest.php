@@ -960,4 +960,14 @@ class ApiParseTest extends ApiTestCase {
 		] );
 	}
 
+	public function testIgnoreFormatUsingPage() {
+		$res = $this->doApiRequest( [
+			'action' => 'parse',
+			'page' => __CLASS__,
+			'prop' => 'wikitext',
+			'contentformat' => 'text/plain',
+		] );
+		$this->assertArrayHasKey( 'wikitext', $res[0]['parse'] );
+	}
+
 }
