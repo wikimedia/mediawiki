@@ -801,7 +801,7 @@ class FileRepo {
 	/**
 	 * Make an url to this repo
 	 *
-	 * @param string|string[] $query Query string to append
+	 * @param string|array $query Query string to append
 	 * @param string $entry Entry point; defaults to index
 	 * @return string|false False on failure
 	 */

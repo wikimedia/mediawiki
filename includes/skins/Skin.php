@@ -1222,12 +1222,11 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * these return an array with the 'href' and boolean 'exists'
-	 * @param string $name
+	 * @param string|Title $name
 	 * @param string|array $urlaction
 	 * @return array
 	 */
 	protected static function makeUrlDetails( $name, $urlaction = '' ) {
-		$title = Title::newFromText( $name );
 		self::checkTitle( $title, $name );
 
 		return [
@@ -1238,12 +1237,11 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Make URL details where the article exists (or at least it's convenient to think so)
-	 * @param string $name Article name
+	 * @param string|Title $name Article name
 	 * @param string|array $urlaction
 	 * @return array
 	 */
 	protected static function makeKnownUrlDetails( $name, $urlaction = '' ) {
-		$title = Title::newFromText( $name );
 		self::checkTitle( $title, $name );
 
 		return [
@@ -1256,11 +1254,11 @@ abstract class Skin extends ContextSource {
 	 * make sure we have some title to operate on
 	 *
 	 * @param Title &$title
-	 * @param string $name
+	 * @param string|Title $name
 	 */
 	public static function checkTitle( &$title, $name ) {
 		if ( !is_object( $title ) ) {
-			$title = Title::newFromText( $name );
+			$title = is_string( $name ) ? Title::newFromText( $name ) : $name;
 			if ( !is_object( $title ) ) {
 				$title = Title::newFromText( '--error: link target missing--' );
 			}

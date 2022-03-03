@@ -83,7 +83,7 @@ class UserRightsProxy implements UserIdentity {
 	 * @param string $dbDomain Database name
 	 * @param int $id User ID
 	 * @param bool $ignoreInvalidDB If true, don't check if $dbDomain is in $wgLocalDatabases
-	 * @return string User name or false if the user doesn't exist
+	 * @return string|false User name or false if the user doesn't exist
 	 */
 	public static function whoIs( $dbDomain, $id, $ignoreInvalidDB = false ) {
 		$user = self::newFromId( $dbDomain, $id, $ignoreInvalidDB );

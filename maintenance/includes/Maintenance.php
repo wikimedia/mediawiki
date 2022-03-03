@@ -509,7 +509,7 @@ abstract class Maintenance {
 	 * Message outputter with channeled message support. Messages on the
 	 * same channel are concatenated, but any intervening messages in another
 	 * channel start a new line.
-	 * @param string $msg The message without trailing newline
+	 * @param string|false $msg The message without trailing newline
 	 * @param string|null $channel Channel identifier or null for no
 	 *     channel. Channel comparison uses ===.
 	 */
@@ -1548,7 +1548,7 @@ abstract class Maintenance {
 	/**
 	 * Emulate readline()
 	 * @param string $prompt What to begin the line with, like '> '
-	 * @return string
+	 * @return string|false
 	 */
 	private static function readlineEmulation( $prompt ) {
 		$bash = ExecutableFinder::findInDefaultPaths( 'bash' );

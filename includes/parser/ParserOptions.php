@@ -519,7 +519,7 @@ class ParserOptions {
 
 	/**
 	 * Target attribute for external links
-	 * @return string
+	 * @return string|false
 	 */
 	public function getExternalLinkTarget() {
 		return $this->getOption( 'externalLinkTarget' );
@@ -527,7 +527,7 @@ class ParserOptions {
 
 	/**
 	 * Target attribute for external links
-	 * @param string|null $x New value (null is no change)
+	 * @param string|false|null $x New value (null is no change)
 	 * @return string Old value
 	 */
 	public function setExternalLinkTarget( $x ) {

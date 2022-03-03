@@ -42,7 +42,7 @@ class ArchivedFile {
 	/** @var int Filearchive row ID */
 	private $id;
 
-	/** @var string File name */
+	/** @var string|false File name */
 	private $name;
 
 	/** @var string FileStore storage group */

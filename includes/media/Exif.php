@@ -89,7 +89,7 @@ class Exif {
 	/** @var string The basename of the file being processed */
 	private $basename;
 
-	/** @var string The private log to log to, e.g. 'exif' */
+	/** @var string|false The private log to log to, e.g. 'exif' */
 	private $log = false;
 
 	/** @var string The byte order of the file. Needed because php's extension
