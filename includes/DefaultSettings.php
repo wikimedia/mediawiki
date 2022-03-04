@@ -224,7 +224,6 @@ $wgRestPath = false;
  * @since 1.3
  */
 $wgStylePath = false;
-$wgStyleSheetPath = &$wgStylePath;
 
 /**
  * The URL path of the skins directory. Should not point to an external domain.

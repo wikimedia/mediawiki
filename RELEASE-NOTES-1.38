@@ -66,6 +66,7 @@ For notes on 1.37.x and older releases, see HISTORY.
 * $wgIncludejQueryMigrate - Deprecated in 1.36. We only support jQuery v3.
 * $wgUseCategoryBrowser - This experimental feature has been removed. If you
   still need to use this feature, please see [[mw:Extension:CategoryExplorer]].
+* $wgStyleSheetPath - alias for $wgStylePath, deprecated since 1.3 (2004).
 * …
 
 === New user-facing features in 1.38 ===
