@@ -178,6 +178,8 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 	 * @covers SpecialSearch::setupPage
 	 */
 	public function testSearchTermIsNotExpanded() {
+		// T303046
+		$this->markTestSkippedIfDbType( 'sqlite' );
 		$this->setMwGlobals( [
 			'wgSearchType' => null,
 		] );

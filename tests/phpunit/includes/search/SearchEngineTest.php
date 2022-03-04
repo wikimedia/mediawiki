@@ -114,6 +114,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	}
 
 	public function testFullWidth() {
+		// T303046
+		$this->markTestSkippedIfDbType( 'sqlite' );
 		$this->assertEquals(
 			[ 'FullOneUp', 'FullTwoLow', 'HalfOneUp', 'HalfTwoLow' ],
 			$this->fetchIds( $this->search->searchText( 'AZ' ) ),
@@ -133,6 +135,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	}
 
 	public function testTextSearch() {
+		// T303046
+		$this->markTestSkippedIfDbType( 'sqlite' );
 		$this->assertEquals(
 			[ 'Smithee' ],
 			$this->fetchIds( $this->search->searchText( 'smithee' ) ),
@@ -140,6 +144,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	}
 
 	public function testWildcardSearch() {
+		// T303046
+		$this->markTestSkippedIfDbType( 'sqlite' );
 		$res = $this->search->searchText( 'smith*' );
 		$this->assertEquals(
 			[ 'Smithee' ],
@@ -166,6 +172,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	}
 
 	public function testPhraseSearch() {
+		// T303046
+		$this->markTestSkippedIfDbType( 'sqlite' );
 		$res = $this->search->searchText( '"smithee is one who smiths"' );
 		$this->assertEquals(
 			[ 'Smithee' ],
@@ -186,6 +194,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	}
 
 	public function testPhraseSearchHighlight() {
+		// T303046
+		$this->markTestSkippedIfDbType( 'sqlite' );
 		$phrase = "smithee is one who smiths";
 		$res = $this->search->searchText( "\"$phrase\"" );
 		$match = $res->getIterator()->current();
@@ -196,6 +206,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	}
 
 	public function testTextPowerSearch() {
+		// T303046
+		$this->markTestSkippedIfDbType( 'sqlite' );
 		$this->search->setNamespaces( [ 0, 1, 4 ] );
 		$this->assertEquals(
 			[
@@ -207,6 +219,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	}
 
 	public function testTitleSearch() {
+		// T303046
+		$this->markTestSkippedIfDbType( 'sqlite' );
 		$this->assertEquals(
 			[
 				'Alan Smithee',
@@ -217,6 +231,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	}
 
 	public function testTextTitlePowerSearch() {
+		// T303046
+		$this->markTestSkippedIfDbType( 'sqlite' );
 		$this->search->setNamespaces( [ 0, 1, 4 ] );
 		$this->assertEquals(
 			[
@@ -333,6 +349,8 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	}
 
 	public function testAugmentorSearch() {
+		// T303046
+		$this->markTestSkippedIfDbType( 'sqlite' );
 		$this->search->setNamespaces( [ 0, 1, 4 ] );
 		$resultSet = $this->search->searchText( 'smithee' );
 		// Not using mock since PHPUnit mocks do not work properly with references in params
