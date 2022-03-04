@@ -47,7 +47,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		ChangeTags::$avoidReopeningTablesForTesting = $avoidReopeningTables;
 
 		$rcId = 123;
-		ChangeTags::updateTags( [ 'foo', 'bar' ], [], $rcId );
+		ChangeTags::updateTags( [ 'foo', 'bar', '0' ], [], $rcId );
 		// HACK resolve deferred group concats (see comment in provideModifyDisplayQuery)
 		if ( isset( $modifiedQuery['fields']['ts_tags'] ) ) {
 			$modifiedQuery['fields']['ts_tags'] = wfGetDB( DB_REPLICA )
@@ -106,7 +106,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 					'options' => [ 'ORDER BY' => 'rc_timestamp DESC' ],
 				]
 			],
-			'simple query with strings' => [
+			"simple query with strings, tagfilter=''" => [
 				[
 					'tables' => 'recentchanges',
 					'fields' => 'rc_id',
@@ -115,6 +115,44 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 					'options' => 'ORDER BY rc_timestamp DESC',
 				],
 				'', // no tag filter
+				true, // tag filtering enabled
+				false, // not avoiding reopening tables
+				[
+					'tables' => [ 'recentchanges' ],
+					'fields' => [ 'rc_id', 'ts_tags' => $groupConcats['recentchanges'] ],
+					'conds' => [ "rc_timestamp > '20170714183203'" ],
+					'join_conds' => [],
+					'options' => [ 'ORDER BY rc_timestamp DESC' ],
+				]
+			],
+			'simple query with strings, tagfilter=false' => [
+				[
+					'tables' => 'recentchanges',
+					'fields' => 'rc_id',
+					'conds' => "rc_timestamp > '20170714183203'",
+					'join_conds' => [],
+					'options' => 'ORDER BY rc_timestamp DESC',
+				],
+				false, // no tag filter
+				true, // tag filtering enabled
+				false, // not avoiding reopening tables
+				[
+					'tables' => [ 'recentchanges' ],
+					'fields' => [ 'rc_id', 'ts_tags' => $groupConcats['recentchanges'] ],
+					'conds' => [ "rc_timestamp > '20170714183203'" ],
+					'join_conds' => [],
+					'options' => [ 'ORDER BY rc_timestamp DESC' ],
+				]
+			],
+			'simple query with strings, tagfilter=null' => [
+				[
+					'tables' => 'recentchanges',
+					'fields' => 'rc_id',
+					'conds' => "rc_timestamp > '20170714183203'",
+					'join_conds' => [],
+					'options' => 'ORDER BY rc_timestamp DESC',
+				],
+				null, // no tag filter
 				true, // tag filtering enabled
 				false, // not avoiding reopening tables
 				[
@@ -140,6 +178,25 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 					'tables' => [ 'recentchanges', 'change_tag' ],
 					'fields' => [ 'rc_id', 'rc_timestamp', 'ts_tags' => $groupConcats['recentchanges'] ],
 					'conds' => [ "rc_timestamp > '20170714183203'", 'ct_tag_id' => [ 1 ] ],
+					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_rc_id=rc_id' ] ],
+					'options' => [ 'ORDER BY' => 'rc_timestamp DESC' ],
+				]
+			],
+			'recentchanges query with "0" tag filter' => [
+				[
+					'tables' => [ 'recentchanges' ],
+					'fields' => [ 'rc_id', 'rc_timestamp' ],
+					'conds' => [ "rc_timestamp > '20170714183203'" ],
+					'join_conds' => [],
+					'options' => [ 'ORDER BY' => 'rc_timestamp DESC' ],
+				],
+				'0',
+				true, // tag filtering enabled
+				false, // not avoiding reopening tables
+				[
+					'tables' => [ 'recentchanges', 'change_tag' ],
+					'fields' => [ 'rc_id', 'rc_timestamp', 'ts_tags' => $groupConcats['recentchanges'] ],
+					'conds' => [ "rc_timestamp > '20170714183203'", 'ct_tag_id' => [ 3 ] ],
 					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_rc_id=rc_id' ] ],
 					'options' => [ 'ORDER BY' => 'rc_timestamp DESC' ],
 				]

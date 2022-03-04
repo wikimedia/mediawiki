@@ -798,7 +798,7 @@ class ChangeTags {
 	 * @param string|array &$conds Conditions used in query, see Database::select
 	 * @param array &$join_conds Join conditions, see Database::select
 	 * @param string|array &$options Options, see Database::select
-	 * @param false|string|array $filter_tag Tag(s) to select on (OR)
+	 * @param string|array|false|null $filter_tag Tag(s) to select on (OR)
 	 *
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
 	 */
@@ -832,7 +832,12 @@ class ChangeTags {
 			return;
 		}
 
-		if ( $filter_tag !== '' && $filter_tag !== false && $filter_tag !== [] ) {
+		if ( !is_array( $filter_tag ) ) {
+			// some callers provide false or null
+			$filter_tag = (string)$filter_tag;
+		}
+
+		if ( $filter_tag !== [] && $filter_tag !== '' ) {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
 
