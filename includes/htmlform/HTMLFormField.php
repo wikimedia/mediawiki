@@ -1293,7 +1293,7 @@ abstract class HTMLFormField {
 			}
 		}
 
-		return Html::rawElement( 'div', [ 'class' => 'errorbox' ], $errors );
+		return Html::errorBox( $errors );
 	}
 
 	/**

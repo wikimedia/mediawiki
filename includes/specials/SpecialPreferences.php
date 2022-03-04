@@ -89,7 +89,7 @@ class SpecialPreferences extends SpecialPage {
 				Html::rawElement(
 					'div',
 					[
-						'class' => 'mw-preferences-messagebox mw-notify-success successbox',
+						'class' => 'mw-preferences-messagebox mw-notify-success mw-message-box-success mw-message-box',
 						'id' => 'mw-preferences-success',
 						'data-mw-autohide' => 'false',
 					],

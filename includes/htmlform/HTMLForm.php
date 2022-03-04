@@ -1515,9 +1515,13 @@ class HTMLForm extends ContextSource {
 			}
 		}
 
-		return $elementstr
-			? Html::rawElement( 'div', [ 'class' => $elementsType . 'box' ], $elementstr )
-			: '';
+		if ( !$elementstr ) {
+			return '';
+		} elseif ( $elementsType === 'error' ) {
+			return Html::errorBox( $elementstr );
+		} else { // $elementsType can only be 'warning'
+			return Html::warningBox( $elementstr );
+		}
 	}
 
 	/**

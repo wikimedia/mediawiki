@@ -609,7 +609,7 @@ class SpecialUndelete extends SpecialPage {
 				'div',
 				[
 					'id' => 'mw-undelete-revision',
-					'class' => $this->mPreview || $isText ? 'warningbox' : '',
+					'class' => $this->mPreview || $isText ? 'mw-message-box-warning mw-message-box' : '',
 				]
 			)
 		);

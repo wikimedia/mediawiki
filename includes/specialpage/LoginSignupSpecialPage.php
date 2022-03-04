@@ -962,10 +962,15 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		];
 
 		if ( $this->mEntryError ) {
+			$defaultHtml = '';
+			if ( $this->mEntryErrorType === 'error' ) {
+				$defaultHtml = Html::errorBox( $this->mEntryError );
+			} elseif ( $this->mEntryErrorType === 'warning' ) {
+				$defaultHtml = Html::warningBox( $this->mEntryError );
+			}
 			$fieldDefinitions['entryError'] = [
 				'type' => 'info',
-				'default' => Html::rawElement( 'div', [ 'class' => $this->mEntryErrorType . 'box', ],
-					$this->mEntryError ),
+				'default' => $defaultHtml,
 				'raw' => true,
 				'rawrow' => true,
 				'weight' => -100,

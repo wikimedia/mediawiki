@@ -1182,8 +1182,7 @@ class EditPage implements IEditObject {
 
 		if ( !$content ) {
 			$out = $this->context->getOutput();
-			$this->editFormPageTop .= Html::rawElement(
-				'div', [ 'class' => 'errorbox' ],
+			$this->editFormPageTop .= Html::errorBox(
 				$out->parseAsInterface( $this->context->msg( 'missing-revision-content',
 					$this->oldid,
 					Message::plaintextParam( $this->mTitle->getPrefixedText() )
@@ -3319,8 +3318,11 @@ class EditPage implements IEditObject {
 				} elseif ( $this->mTitle->exists() ) {
 					// Something went wrong
 
-					$out->wrapWikiMsg( "<div class='errorbox'>\n$1\n</div>\n",
-						[ 'missing-revision', $this->oldid ] );
+					$out->addHTML(
+						Html::errorBox(
+							$out->msg( 'missing-revision', $this->oldid )->parse()
+						)
+					);
 				}
 			}
 		}
@@ -3337,7 +3339,7 @@ class EditPage implements IEditObject {
 					[ 'title' => true, 'returnto' => true, 'returntoquery' => true ]
 				);
 				$out->wrapWikiMsg(
-					"<div id='mw-anon-edit-warning' class='warningbox'>\n$1\n</div>",
+					"<div id='mw-anon-edit-warning' class='mw-message-box-warning mw-message-box'>\n$1\n</div>",
 					[ 'anoneditwarning',
 						// Log-in link
 						SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
@@ -4205,7 +4207,7 @@ class EditPage implements IEditObject {
 				'h2', [ 'id' => 'mw-previewheader' ],
 				$this->context->msg( 'preview' )->escaped()
 			) .
-			Html::rawElement( 'div', [ 'class' => 'warningbox' ],
+			Html::warningBox(
 				$out->parseAsInterface( $note )
 			) . $conflict
 		);
@@ -4704,15 +4706,18 @@ class EditPage implements IEditObject {
 			$cascadeSources = $restrictionStore->getCascadeProtectionSources( $this->mTitle )[0];
 			/** @var Title[] $cascadeSources */
 			$cascadeSources = array_map( 'Title::castFromPageIdentity', $cascadeSources );
-			$notice = "<div class='warningbox mw-cascadeprotectedwarning'>\n$1\n";
+			$noticeContent = "\n$1\n";
 			$cascadeSourcesCount = count( $cascadeSources );
 			if ( $cascadeSourcesCount > 0 ) {
 				# Explain, and list the titles responsible
 				foreach ( $cascadeSources as $page ) {
-					$notice .= '* [[:' . $page->getPrefixedText() . "]]\n";
+					$noticeContent .= '* [[:' . $page->getPrefixedText() . "]]\n";
 				}
 			}
-			$notice .= '</div>';
+			$notice = Html::warningBox(
+				$noticeContent,
+				'mw-cascadeprotectedwarning'
+			);
 			$out->wrapWikiMsg( $notice, [ 'cascadeprotectedwarning', $cascadeSourcesCount ] );
 		}
 		if ( !$this->mTitle->exists() && $this->mTitle->getRestrictions( 'create' ) ) {

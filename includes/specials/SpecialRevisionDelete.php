@@ -678,10 +678,12 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 */
 	protected function success() {
 		// Messages: revdelete-success, logdelete-success
-		$this->getOutput()->setPageTitle( $this->msg( 'actioncomplete' ) );
-		$this->getOutput()->wrapWikiMsg(
-			"<div class=\"successbox\">\n$1\n</div>",
-			$this->typeLabels['success']
+		$out = $this->getOutput();
+		$out->setPageTitle( $this->msg( 'actioncomplete' ) );
+		$out->addHTML(
+			Html::successBox(
+				$out->msg( $this->typeLabels['success'] )->parse()
+			)
 		);
 		$this->wasSaved = true;
 		$this->revDelList->reloadFromPrimary();
@@ -694,10 +696,14 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 */
 	protected function failure( $status ) {
 		// Messages: revdelete-failure, logdelete-failure
-		$this->getOutput()->setPageTitle( $this->msg( 'actionfailed' ) );
-		$this->getOutput()->wrapWikiTextAsInterface(
-			'errorbox',
-			$status->getWikiText( $this->typeLabels['failure'], false, $this->getLanguage() )
+		$out = $this->getOutput();
+		$out->setPageTitle( $this->msg( 'actionfailed' ) );
+		$out->addHTML(
+			Html::errorBox(
+				$out->parseAsContent(
+					$status->getWikiText( $this->typeLabels['failure'], false, $this->getLanguage() )
+				)
+			)
 		);
 		$this->showForm();
 	}

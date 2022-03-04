@@ -260,8 +260,11 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 			$out->redirect( $returnUrl );
 		} else {
 			// messages used: changecredentials-success removecredentials-success
-			$out->wrapWikiMsg( "<div class=\"successbox\">\n$1\n</div>", static::$messagePrefix
-				. '-success' );
+			$out->addHtml(
+				Html::successBox(
+					$out->msg( static::$messagePrefix . '-success' )->parse()
+				)
+			 );
 			$out->returnToMain();
 		}
 	}

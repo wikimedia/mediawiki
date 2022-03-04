@@ -244,14 +244,18 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		if ( $this->oldTitle->getNamespace() === NS_USER && !$this->oldTitle->isSubpage() ) {
-			$out->wrapWikiMsg(
-				"<div class=\"warningbox mw-moveuserpage-warning\">\n$1\n</div>",
-				'moveuserpage-warning'
+			$out->addHTML(
+				Html::warningBox(
+					$out->msg( 'moveuserpage-warning' )->parse(),
+					'mw-moveuserpage-warning'
+				)
 			);
 		} elseif ( $this->oldTitle->getNamespace() === NS_CATEGORY ) {
-			$out->wrapWikiMsg(
-				"<div class=\"warningbox mw-movecategorypage-warning\">\n$1\n</div>",
-				'movecategorypage-warning'
+			$out->addHTML(
+				Html::warningBox(
+					$out->msg( 'movecategorypage-warning' )->parse(),
+					'mw-movecategorypage-warning'
+				)
 			);
 		}
 
@@ -282,9 +286,10 @@ class MovePageForm extends UnlistedSpecialPage {
 			if ( $err[0][0] == 'articleexists'
 				&& $this->permManager->quickUserCan( 'delete', $user, $newTitle )
 			) {
-				$out->wrapWikiMsg(
-					"<div class='warningbox'>\n$1\n</div>\n",
-					[ 'delete_and_move_text', $newTitle->getPrefixedText() ]
+				$out->addHTML(
+					Html::warningBox(
+						$out->msg( 'delete_and_move_text', $newTitle->getPrefixedText() )->parse()
+					)
 				);
 				$deleteAndMove = true;
 				$err = [];
@@ -293,18 +298,20 @@ class MovePageForm extends UnlistedSpecialPage {
 				$this->permManager->quickUserCan( 'delete-redirect', $user, $newTitle ) ||
 				$this->permManager->quickUserCan( 'delete', $user, $newTitle ) )
 			) {
-				$out->wrapWikiMsg(
-					"<div class='warningbox'>\n$1\n</div>\n",
-					[ 'delete_redirect_and_move_text', $newTitle->getPrefixedText() ]
+				$out->addHTML(
+					Html::warningBox(
+						$out->msg( 'delete_redirect_and_move_text', $newTitle->getPrefixedText() )->parse()
+					)
 				);
 				$deleteAndMove = true;
 				$err = [];
 			} elseif ( $err[0][0] == 'file-exists-sharedrepo'
 				&& $this->permManager->userHasRight( $user, 'reupload-shared' )
 			) {
-				$out->wrapWikiMsg(
-					"<div class='warningbox'>\n$1\n</div>\n",
-					[ 'move-over-sharedrepo', $newTitle->getPrefixedText() ]
+				$out->addHTML(
+					Html::warningBox(
+						$out->msg( 'move-over-sharedrepo', $newTitle->getPrefixedText() )->parse()
+					)
 				);
 				$moveOverShared = true;
 				$err = [];
