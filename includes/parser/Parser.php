@@ -1582,7 +1582,7 @@ class Parser {
 		}
 
 		$this->hookRunner->onInternalParseBeforeSanitize( $this, $text, $this->mStripState );
-		$text = Sanitizer::removeHTMLtags(
+		$text = Sanitizer::internalRemoveHtmlTags(
 			$text,
 			// Callback from the Sanitizer for expanding items found in
 			// HTML attribute values, so they can be safely tested and escaped.
@@ -1841,7 +1841,7 @@ class Parser {
 		$trail = '';
 
 		# The characters '<' and '>' (which were escaped by
-		# removeHTMLtags()) should not be included in
+		# internalRemoveHtmlTags()) should not be included in
 		# URLs, per RFC 2396.
 		# Make &nbsp; terminate a URL as well (bug T84937)
 		$m2 = [];
@@ -2151,7 +2151,7 @@ class Parser {
 			$trail = $bits[$i++];
 
 			# The characters '<' and '>' (which were escaped by
-			# removeHTMLtags()) should not be included in
+			# internalRemoveHtmlTags()) should not be included in
 			# URLs, per RFC 2396.
 			$m2 = [];
 			if ( preg_match( '/&(lt|gt);/', $url, $m2, PREG_OFFSET_CAPTURE ) ) {
@@ -6207,7 +6207,7 @@ class Parser {
 
 		$text = $this->replaceVariables( $text );
 		$text = $this->mStripState->unstripBoth( $text );
-		$text = Sanitizer::removeHTMLtags( $text );
+		$text = Sanitizer::internalRemoveHtmlTags( $text );
 		return $text;
 	}
 
