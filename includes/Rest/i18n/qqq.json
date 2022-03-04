@@ -5,7 +5,8 @@
 			"Bill Pirkle",
 			"Matma Rex",
 			"Raymond",
-			"Tim Starling"
+			"Tim Starling",
+			"Amire80"
 		]
 	},
 	"rest-prefix-mismatch": "Error message for REST API debugging, shown if $wgRestPath is incorrect or otherwise not matched. Parameters:\n* $1: The requested path.\n* $2: The configured root path ($wgRestPath).",
