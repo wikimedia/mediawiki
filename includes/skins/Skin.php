@@ -1060,9 +1060,7 @@ abstract class Skin extends ContextSource {
 		// Otherwise, we display the link for the user, described in their
 		// language (which may or may not be the same as the default language),
 		// but we make the link target be the one site-wide page.
-		$title = Title::newFromText( $this->msg( $page )->inContentLanguage()->text() );
-
-		return $title ?: null;
+		return Title::newFromText( $this->msg( $page )->inContentLanguage()->text() );
 	}
 
 	/**
@@ -1214,9 +1212,8 @@ abstract class Skin extends ContextSource {
 		if ( preg_match( '/^(?i:' . wfUrlProtocols() . ')/', $name ) ) {
 			return $name;
 		} else {
-			$title = Title::newFromText( $name );
-			self::checkTitle( $title, $name );
-			return $title->getLocalURL();
+			$title = $name instanceof Title ? $name : Title::newFromText( $name );
+			return $title ? $title->getLocalURL() : '';
 		}
 	}
 
@@ -1227,11 +1224,10 @@ abstract class Skin extends ContextSource {
 	 * @return array
 	 */
 	protected static function makeUrlDetails( $name, $urlaction = '' ) {
-		self::checkTitle( $title, $name );
-
+		$title = $name instanceof Title ? $name : Title::newFromText( $name );
 		return [
-			'href' => $title->getLocalURL( $urlaction ),
-			'exists' => $title->isKnown(),
+			'href' => $title ? $title->getLocalURL( $urlaction ) : '',
+			'exists' => $title && $title->isKnown(),
 		];
 	}
 
@@ -1242,27 +1238,11 @@ abstract class Skin extends ContextSource {
 	 * @return array
 	 */
 	protected static function makeKnownUrlDetails( $name, $urlaction = '' ) {
-		self::checkTitle( $title, $name );
-
+		$title = $name instanceof Title ? $name : Title::newFromText( $name );
 		return [
-			'href' => $title->getLocalURL( $urlaction ),
-			'exists' => true
+			'href' => $title ? $title->getLocalURL( $urlaction ) : '',
+			'exists' => (bool)$title,
 		];
-	}
-
-	/**
-	 * make sure we have some title to operate on
-	 *
-	 * @param Title &$title
-	 * @param string|Title $name
-	 */
-	public static function checkTitle( &$title, $name ) {
-		if ( !is_object( $title ) ) {
-			$title = is_string( $name ) ? Title::newFromText( $name ) : $name;
-			if ( !is_object( $title ) ) {
-				$title = Title::newFromText( '--error: link target missing--' );
-			}
-		}
 	}
 
 	/**
@@ -1692,13 +1672,7 @@ abstract class Skin extends ContextSource {
 						}
 					} else {
 						$title = Title::newFromText( $link );
-
-						if ( $title ) {
-							$title = $title->fixSpecialName();
-							$href = $title->getLinkURL();
-						} else {
-							$href = 'INVALID-TITLE';
-						}
+						$href = $title ? $title->fixSpecialName()->getLinkURL() : '';
 					}
 
 					$id = strtr( $line[1], ' ', '-' );

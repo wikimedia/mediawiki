@@ -1157,7 +1157,6 @@ class SkinTemplate extends Skin {
 			throw new MWException( __METHOD__ . " given invalid pagename $name" );
 		}
 		$title = $title->getTalkPage();
-		self::checkTitle( $title, $name );
 		return [
 			'href' => $title->getLocalURL( $urlaction ),
 			'exists' => $title->isKnown(),
