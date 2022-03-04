@@ -1,5 +1,5 @@
 {
-  "default": "REL1_37",
+  "default": "REL1_38",
   "master": [
     "extensions/Translate",
     "extensions/UniversalLanguageSelector",
@@ -65,7 +65,6 @@
     "extensions/ShortDescription",
     "extensions/Video",
     "extensions/mw-ScratchBlocks4",
-    "extensions/RemovePII",
     "skins/Monaco",
     "extensions/WikibaseLocalMedia",
     "skins/chameleon",
@@ -94,5 +93,8 @@
     "skins/Citizen",
     "extensions/TabberNeue",
     "skins/Evelution"
+  ],
+  "1_38-support": [
+    "extensions/RemovePII"
   ]
 }
