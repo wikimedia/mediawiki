@@ -1966,7 +1966,7 @@ class Language implements Bcp47Code {
 		if ( $tzObj ) {
 			$date = new DateTime( $ts, new DateTimeZone( 'UTC' ) );
 			$date->setTimezone( $tzObj );
-			return $date->format( 'YmdHis' );
+			return self::makeMediawikiTimestamp( $ts, $date );
 		}
 		$minDiff = $timeCorrection->getTimeOffset();
 
@@ -1977,7 +1977,21 @@ class Language implements Bcp47Code {
 
 		$date = new DateTime( $ts );
 		$date->modify( "{$minDiff} minutes" );
-		return $date->format( 'YmdHis' );
+		return self::makeMediawikiTimestamp( $ts, $date );
+	}
+
+	/**
+	 * Convenience function to convert a PHP DateTime object to a 14-character MediaWiki timestamp,
+	 * falling back to the specified timestamp if the DateTime object holds a too large date (T32148, T277809).
+	 * This is a private utility method as it is only really useful for {@link userAdjust}.
+	 *
+	 * @param string $fallback 14-character MW timestamp to fall back to if the DateTime object holds a too large date
+	 * @param DateTime $date The DateTime object to convert
+	 * @return string 14-character MW timestamp
+	 */
+	private static function makeMediawikiTimestamp( $fallback, $date ) {
+		$ts = $date->format( 'YmdHis' );
+		return strlen( $ts ) === 14 ? $ts : $fallback;
 	}
 
 	/**
