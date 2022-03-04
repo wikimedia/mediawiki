@@ -145,7 +145,6 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 				'Version', // deprecated alias to MW_VERSION
 				'Conf', // instance of SiteConfiguration
 				'AutoloadClasses', // conditionally initialized
-				'StyleSheetPath', // Alias to another global
 			] ) ) {
 				continue;
 			}

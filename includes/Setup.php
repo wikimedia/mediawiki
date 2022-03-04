@@ -189,13 +189,6 @@ if ( !isset( $GLOBALS['wgScopeTest'] ) || $GLOBALS['wgScopeTest'] !== $wgScopeTe
 }
 unset( $wgScopeTest );
 
-/**
- * @var $wgStyleSheetPath
- * @deprecated since 1.3, use $wgStylePath instead.
- */
-global $wgStyleSheetPath;
-$wgStyleSheetPath = &$wgStylePath;
-
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	call_user_func( MW_CONFIG_CALLBACK, $wgSettings );
 } else {
