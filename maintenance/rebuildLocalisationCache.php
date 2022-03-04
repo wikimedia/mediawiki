@@ -103,8 +103,8 @@ class RebuildLocalisationCache extends Maintenance {
 			$this->output( "Threaded rebuild is not supported on Windows; running single-threaded.\n" );
 			$threads = 1;
 		}
-		if ( $threads > 1 && !function_exists( 'pcntl_fork' ) ) {
-			$this->output( "PHP pcntl extension is not present; running single-threaded.\n" );
+		if ( $threads > 1 && ( !extension_loaded( 'sockets' ) || !function_exists( 'pcntl_fork' ) ) ) {
+			$this->output( "Threaded rebuild requires ext-pcntl and ext-sockets; running single-threaded.\n" );
 			$threads = 1;
 		}
 
