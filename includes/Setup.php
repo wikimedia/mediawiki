@@ -50,6 +50,7 @@
  * @file
  */
 
+// phpcs:disable MediaWiki.Usage.DeprecatedGlobalVariables
 use MediaWiki\HeaderCallback;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -72,14 +73,6 @@ use Wikimedia\RequestTimeout\RequestTimeout;
 if ( !defined( 'MEDIAWIKI' ) ) {
 	exit( 1 );
 }
-
-// This file must have global scope.
-$wgScopeTest = 'MediaWiki Setup.php scope test';
-if ( !isset( $GLOBALS['wgScopeTest'] ) || $GLOBALS['wgScopeTest'] !== $wgScopeTest ) {
-	echo "Error, Setup.php must be included from the file scope.\n";
-	die( 1 );
-}
-unset( $wgScopeTest );
 
 // PHP must not be configured to overload mbstring functions. (T5782, T122807)
 // This was deprecated by upstream in PHP 7.2, likely to be removed in PHP 8.0.
@@ -129,8 +122,21 @@ if ( !interface_exists( LoggerInterface::class ) ) {
 	trigger_error( $message, E_USER_ERROR );
 }
 
-// Define $wgSettings for use in DefaultSettings.php and in LocalSettings.php
-global $wgSettings; // explicitly global, so it works with wfRequireOnceInGlobalScope()
+// explicitly global, so it works with wfRequireOnceInGlobalScope()
+global $wgSettings, $wgConf, $wgAutoloadClasses, $wgCommandLineMode;
+
+// Set $wgCommandLineMode to false if it wasn't set to true.
+$wgCommandLineMode = $wgCommandLineMode ?: false;
+
+/**
+ * $wgConf hold the site configuration.
+ * Not used for much in a default install.
+ * @since 1.5
+ */
+$wgConf = new SiteConfiguration;
+
+$wgAutoloadClasses = $wgAutoloadClasses ?? [];
+
 $wgSettings = new SettingsBuilder(
 	$IP,
 	ExtensionRegistry::getInstance(),
@@ -138,11 +144,17 @@ $wgSettings = new SettingsBuilder(
 	new PhpIniSink()
 );
 
-require_once "$IP/includes/DefaultSettings.php";
-require_once "$IP/includes/GlobalFunctions.php";
+// If MW_USE_CONFIG_SCHEMA, use the experimental setup based on config-schema.yaml. See T300129.
+if ( getenv( 'MW_USE_CONFIG_SCHEMA' ) ) {
+	$wgSettings->load( new PhpSettingsSource( "$IP/includes/config-schema.php" ) );
+} else {
+	require_once "$IP/includes/DefaultSettings.php";
 
-// This is temporary until we transition to config-schema.yaml
-$wgSettings->load( new PhpSettingsSource( "$IP/includes/config-merge-strategies.php" ) );
+	// This is temporary until we transition to config-schema.yaml
+	$wgSettings->load( new PhpSettingsSource( "$IP/includes/config-merge-strategies.php" ) );
+}
+
+require_once "$IP/includes/GlobalFunctions.php";
 
 HeaderCallback::register();
 
@@ -160,8 +172,29 @@ $wgSettings->putConfigValues( [
 	'ExtensionDirectory' => "{$IP}/extensions",
 	'StyleDirectory' => "{$IP}/skins",
 	'ServiceWiringFiles' => [ "{$IP}/includes/ServiceWiring.php" ],
+	'Version' => MW_VERSION,
 ] );
 $wgSettings->apply();
+
+// $wgSettings->apply() puts all configuration into global variables.
+// If we are not in global scope, make all relevant globals available
+// in this file's scope as well.
+$wgScopeTest = 'MediaWiki Setup.php scope test';
+if ( !isset( $GLOBALS['wgScopeTest'] ) || $GLOBALS['wgScopeTest'] !== $wgScopeTest ) {
+	foreach ( $wgSettings->getDefaultConfig() as $key => $unused ) {
+		$var = "wg$key";
+		// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
+		global $var;
+	}
+}
+unset( $wgScopeTest );
+
+/**
+ * @var $wgStyleSheetPath
+ * @deprecated since 1.3, use $wgStylePath instead.
+ */
+global $wgStyleSheetPath;
+$wgStyleSheetPath = &$wgStylePath;
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	call_user_func( MW_CONFIG_CALLBACK, $wgSettings );
@@ -379,7 +412,7 @@ $wgLockManagers[] = [
 
 /**
  * Default parameters for the "<gallery>" tag.
- * @see DefaultSettings.php for description of the fields.
+ * @see docs/Configuration.md for description of the fields.
  */
 $wgGalleryOptions += [
 	'imagesPerRow' => 0,
@@ -742,6 +775,9 @@ if ( $wgSharedDB && $wgSharedTables ) {
 // NOTE: This use wfDebug, and must remain after the MWDebug::setup() call.
 wfMemoryLimit( $wgMemoryLimit );
 
+// Explicit globals, so this works with bootstrap.php
+global $wgRequest, $wgInitialSessionId;
+
 // Initialize the request object in $wgRequest
 $wgRequest = RequestContext::getMain()->getRequest(); // BackCompat
 
@@ -859,6 +895,9 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	}
 }
 
+// Explicit globals, so this works with bootstrap.php
+global $wgUser, $wgLang, $wgOut, $wgParser, $wgTitle;
+
 /**
  * @var User $wgUser
  * @deprecated since 1.35, use an available context source when possible, or, as a backup,
@@ -891,6 +930,9 @@ $wgParser = new DeprecatedGlobal( 'wgParser', static function () {
  * @var Title|null $wgTitle
  */
 $wgTitle = null;
+
+// Explicit globals, so this works with bootstrap.php
+global $wgFullyInitialised, $wgExtensionFunctions;
 
 // Extension setup functions
 // Entries should be added to this variable during the inclusion
