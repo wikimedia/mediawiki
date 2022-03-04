@@ -583,7 +583,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$status = $watchlistManager->setWatch( true, $authority, $title, '1 week' );
 
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 		$this->assertTrue( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
 	}
 
@@ -607,7 +607,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$status = $watchlistManager->setWatch( true, $performer, $title );
 
 		// returns immediately with no error if not logged in
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 	}
 
 	/**
@@ -637,7 +637,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		// Same expiry
 		$status = $watchlistManager->setWatch( true, $authority, $title, $expiry );
 
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 	}
 
 	/**
@@ -663,7 +663,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$status = $watchlistManager->setWatch( false, $authority, $title );
 
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 	}
 
 	/**
@@ -688,7 +688,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$status = $watchlistManager->setWatch( true, $authority, $title );
 
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 		$this->assertTrue( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
 	}
 
@@ -712,7 +712,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$status = $watchlistManager->setWatch( false, $authority, $title );
 
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 		$this->assertFalse( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
 	}
 
@@ -736,7 +736,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$actual = $watchlistManager->addWatchIgnoringRights( $userIdentity, $title );
 
-		$this->assertTrue( $actual->isGood() );
+		$this->assertStatusGood( $actual );
 		$this->assertTrue( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
 	}
 
@@ -760,7 +760,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$actual = $watchlistManager->addWatch( $authority, $title );
 
-		$this->assertTrue( $actual->isGood() );
+		$this->assertStatusGood( $actual );
 		$this->assertTrue( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
 	}
 
@@ -792,7 +792,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$status = $watchlistManager->removeWatch( $authority, $title );
 
-		$this->assertFalse( $status->isGood() );
+		$this->assertStatusNotGood( $status );
 		$errors = $status->getErrors();
 		$this->assertCount( 1, $errors );
 		$this->assertEquals( 'hookaborted', $errors[0]['message'] );
@@ -821,7 +821,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$status = $watchlistManager->removeWatch( $authority, $title );
 
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 		$this->assertFalse( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
 	}
 }

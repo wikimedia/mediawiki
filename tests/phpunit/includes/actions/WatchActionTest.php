@@ -94,7 +94,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		/** @var Status $actual */
 		$actual = $this->watchAction->onSubmit( [] );
 
-		$this->assertTrue( $actual->isGood() );
+		$this->assertStatusGood( $actual );
 	}
 
 	/**
@@ -134,7 +134,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$actual = $this->watchAction->onSubmit( [] );
 
 		$this->assertInstanceOf( Status::class, $actual );
-		$this->assertTrue( $actual->hasMessage( 'hookaborted' ) );
+		$this->assertStatusError( 'hookaborted', $actual );
 	}
 
 	/**

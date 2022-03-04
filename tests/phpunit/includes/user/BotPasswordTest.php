@@ -330,7 +330,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		);
 		$status = BotPassword::login( "{$this->testUserName}@BotPassword", 'foobaz', $request );
 		$this->assertInstanceOf( Status::class, $status );
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 		$session = $status->getValue();
 		$this->assertInstanceOf( MediaWiki\Session\Session::class, $session );
 		$this->assertInstanceOf(
@@ -450,7 +450,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 
 		$status = $bp->save( 'insert' );
 
-		$this->assertFalse( $status->isGood() );
+		$this->assertStatusNotGood( $status );
 		$this->assertNotEmpty( $status->getErrors() );
 
 		$this->assertSame(

@@ -876,8 +876,8 @@ hello
 			'format' => CONTENT_FORMAT_WIKITEXT,
 		] );
 
-		$this->assertFalse( $status->isOK() );
-		$this->assertEquals( EditPage::AS_NO_CHANGE_CONTENT_MODEL, $status->getValue() );
+		$this->assertStatusNotOK( $status );
+		$this->assertStatusValue( EditPage::AS_NO_CHANGE_CONTENT_MODEL, $status );
 	}
 
 	/** @covers EditPage */
@@ -903,8 +903,8 @@ hello
 			'format' => CONTENT_FORMAT_WIKITEXT,
 		] );
 
-		$this->assertFalse( $status->isOK() );
-		$this->assertEquals( EditPage::AS_NO_CHANGE_CONTENT_MODEL, $status->getValue() );
+		$this->assertStatusNotOK( $status );
+		$this->assertStatusValue( EditPage::AS_NO_CHANGE_CONTENT_MODEL, $status );
 	}
 
 	private function doEditDummyNonTextPage( array $edit ): Status {

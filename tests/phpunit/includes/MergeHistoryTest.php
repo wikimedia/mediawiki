@@ -48,9 +48,9 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		);
 		$status = $mh->isValidMerge();
 		if ( $error === true ) {
-			$this->assertTrue( $status->isGood() );
+			$this->assertStatusGood( $status );
 		} else {
-			$this->assertTrue( $status->hasMessage( $error ) );
+			$this->assertStatusError( $error, $status );
 		}
 	}
 
@@ -100,7 +100,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $limit + 1 );
 
 		$status = $mh->isValidMerge();
-		$this->assertTrue( $status->hasMessage( 'mergehistory-fail-toobig' ) );
+		$this->assertStatusError( 'mergehistory-fail-toobig', $status );
 		$errors = $status->getErrorsByType( 'error' );
 		$params = $errors[0]['params'];
 		$this->assertEquals( $params[0], Message::numParam( $limit ) );
@@ -124,13 +124,13 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 				$this->mockRegisteredUltimateAuthority(),
 				''
 			);
-			$this->assertTrue( $status->isOK() );
+			$this->assertStatusOK( $status );
 
 			$status = $mh->$method(
 				$this->mockRegisteredAuthorityWithoutPermissions( [ 'mergehistory' ] ),
 				''
 			);
-			$this->assertTrue( $status->hasMessage( 'mergehistory-fail-permission' ) );
+			$this->assertStatusError( 'mergehistory-fail-permission', $status );
 		}
 	}
 

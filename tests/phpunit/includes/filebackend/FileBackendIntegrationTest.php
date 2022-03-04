@@ -160,9 +160,9 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$status = $this->backend->doOperation( $op );
 
-		$this->assertGoodStatus( $status,
+		$this->assertStatusGood( $status,
 			"Store from $source to $dest succeeded without warnings ($backendName)." );
-		$this->assertTrue( $status->isOK(),
+		$this->assertStatusOK( $status,
 			"Store from $source to $dest succeeded ($backendName)." );
 		$this->assertEquals( [ 0 => true ], $status->success,
 			"Store from $source to $dest has proper 'success' field in Status ($backendName)." );
@@ -227,20 +227,20 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		if ( is_string( $srcContent ) ) {
 			$status = $this->backend->create( [ 'content' => $srcContent, 'dst' => $source ] );
-			$this->assertGoodStatus( $status, "Creation of $source succeeded ($backendName)." );
+			$this->assertStatusGood( $status, "Creation of $source succeeded ($backendName)." );
 		}
 		if ( is_string( $dstContent ) ) {
 			$status = $this->backend->create( [ 'content' => $dstContent, 'dst' => $dest ] );
-			$this->assertGoodStatus( $status, "Creation of $dest succeeded ($backendName)." );
+			$this->assertStatusGood( $status, "Creation of $dest succeeded ($backendName)." );
 		}
 
 		$status = $this->backend->doOperation( $op );
 
 		if ( $okStatus ) {
-			$this->assertGoodStatus(
+			$this->assertStatusGood(
 				$status,
 				"Copy from $source to $dest succeeded without warnings ($backendName)." );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Copy from $source to $dest succeeded ($backendName)." );
 			$this->assertEquals( [ 0 => true ], $status->success,
 				"Copy from $source to $dest has proper 'success' field in Status ($backendName)." );
@@ -266,7 +266,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 					"Source and destination have the same props ($backendName)." );
 			}
 		} else {
-			$this->assertBadStatus(
+			$this->assertStatusNotGood(
 				$status,
 				"Copy from $source to $dest fails ($backendName)." );
 			$this->assertSame(
@@ -376,11 +376,11 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		if ( is_string( $srcContent ) ) {
 			$status = $this->backend->create( [ 'content' => $srcContent, 'dst' => $source ] );
-			$this->assertGoodStatus( $status, "Creation of $source succeeded ($backendName)." );
+			$this->assertStatusGood( $status, "Creation of $source succeeded ($backendName)." );
 		}
 		if ( is_string( $dstContent ) ) {
 			$status = $this->backend->create( [ 'content' => $dstContent, 'dst' => $dest ] );
-			$this->assertGoodStatus( $status, "Creation of $dest succeeded ($backendName)." );
+			$this->assertStatusGood( $status, "Creation of $dest succeeded ($backendName)." );
 		}
 
 		$oldSrcProps = $this->backend->getFileProps( [ 'src' => $source ] );
@@ -388,10 +388,10 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		$status = $this->backend->doOperation( $op );
 
 		if ( $okStatus ) {
-			$this->assertGoodStatus(
+			$this->assertStatusGood(
 				$status,
 				"Move from $source to $dest succeeded without warnings ($backendName)." );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Move from $source to $dest succeeded ($backendName)." );
 			$this->assertEquals( [ 0 => true ], $status->success,
 				"Move from $source to $dest has proper 'success' field in Status ($backendName)." );
@@ -415,7 +415,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 					"Source and destination have the same props ($backendName)." );
 			}
 		} else {
-			$this->assertBadStatus(
+			$this->assertStatusNotGood(
 				$status,
 				"Move from $source to $dest fails ($backendName)." );
 			$this->assertSame(
@@ -524,20 +524,20 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		if ( is_string( $srcContent ) ) {
 			$status = $this->backend->doOperation(
 				[ 'op' => 'create', 'content' => $srcContent, 'dst' => $source ] );
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Creation of file at $source succeeded ($backendName)." );
 		}
 
 		$status = $this->backend->doOperation( $op );
 		if ( $okStatus ) {
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Deletion of file at $source succeeded without warnings ($backendName)." );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Deletion of file at $source succeeded ($backendName)." );
 			$this->assertEquals( [ 0 => true ], $status->success,
 				"Deletion of file at $source has proper 'success' field in Status ($backendName)." );
 		} else {
-			$this->assertFalse( $status->isOK(),
+			$this->assertStatusNotOK( $status,
 				"Deletion of file at $source failed ($backendName)." );
 		}
 
@@ -613,7 +613,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			$status = $this->backend->doOperation(
 				[ 'op' => 'create', 'content' => 'blahblah', 'dst' => $source,
 					'headers' => [ 'Content-Disposition' => 'xxx' ] ] );
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Creation of file at $source succeeded ($backendName)." );
 			if ( $this->backend->hasFeatures( FileBackend::ATTR_HEADERS ) ) {
 				$attr = $this->backend->getFileXAttributes( [ 'src' => $source ] );
@@ -622,7 +622,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 			$status = $this->backend->describe( [ 'src' => $source,
 				'headers' => [ 'Content-Disposition' => '' ] ] ); // remove
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Removal of header for $source succeeded ($backendName)." );
 
 			if ( $this->backend->hasFeatures( FileBackend::ATTR_HEADERS ) ) {
@@ -634,9 +634,9 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$status = $this->backend->doOperation( $op );
 		if ( $okStatus ) {
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Describe of file at $source succeeded without warnings ($backendName)." );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Describe of file at $source succeeded ($backendName)." );
 			$this->assertEquals( [ 0 => true ], $status->success,
 				"Describe of file at $source has proper 'success' field in Status ($backendName)." );
@@ -645,7 +645,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 				$this->assertHasHeaders( $op['headers'], $attr );
 			}
 		} else {
-			$this->assertFalse( $status->isOK(),
+			$this->assertStatusNotOK( $status,
 				"Describe of file at $source failed ($backendName)." );
 		}
 
@@ -713,20 +713,20 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		if ( $alreadyExists ) {
 			$status = $this->backend->doOperation(
 				[ 'op' => 'create', 'content' => $oldText, 'dst' => $dest ] );
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Creation of file at $dest succeeded ($backendName)." );
 		}
 
 		$status = $this->backend->doOperation( $op );
 		if ( $okStatus ) {
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Creation of file at $dest succeeded without warnings ($backendName)." );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Creation of file at $dest succeeded ($backendName)." );
 			$this->assertEquals( [ 0 => true ], $status->success,
 				"Creation of file at $dest has proper 'success' field in Status ($backendName)." );
 		} else {
-			$this->assertFalse( $status->isOK(),
+			$this->assertStatusNotOK( $status,
 				"Creation of file at $dest failed ($backendName)." );
 		}
 
@@ -836,12 +836,12 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		foreach ( $files as $path ) {
 			$status = $this->prepare( [ 'dir' => dirname( $path ) ] );
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Preparing $path succeeded without warnings ($backendName)." );
 		}
 
 		foreach ( array_chunk( $createOps, $batchSize ) as $batchOps ) {
-			$this->assertGoodStatus(
+			$this->assertStatusGood(
 				$this->backend->doQuickOperations( $batchOps ),
 				"Creation of source files succeeded ($backendName)."
 			);
@@ -854,7 +854,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		}
 
 		foreach ( array_chunk( $copyOps, $batchSize ) as $batchOps ) {
-			$this->assertGoodStatus(
+			$this->assertStatusGood(
 				$this->backend->doQuickOperations( $batchOps ),
 				"Quick copy of source files succeeded ($backendName)."
 			);
@@ -867,7 +867,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		}
 
 		foreach ( array_chunk( $moveOps, $batchSize ) as $batchOps ) {
-			$this->assertGoodStatus(
+			$this->assertStatusGood(
 				$this->backend->doQuickOperations( $batchOps ),
 				"Quick move of source files succeeded ($backendName)."
 			);
@@ -884,7 +884,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		}
 
 		foreach ( array_chunk( $overSelfOps, $batchSize ) as $batchOps ) {
-			$this->assertGoodStatus(
+			$this->assertStatusGood(
 				$this->backend->doQuickOperations( $batchOps ),
 				"Quick copy/move of source files over themselves succeeded ($backendName)."
 			);
@@ -897,7 +897,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		}
 
 		foreach ( array_chunk( $deleteOps, $batchSize ) as $batchOps ) {
-			$this->assertGoodStatus(
+			$this->assertStatusGood(
 				$this->backend->doQuickOperations( $batchOps ),
 				"Quick deletion of source files succeeded ($backendName)."
 			);
@@ -994,7 +994,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		}
 		$status = $this->backend->doOperations( $ops );
 
-		$this->assertGoodStatus( $status,
+		$this->assertStatusGood( $status,
 			"Creation of source files succeeded ($backendName)." );
 
 		$dest = $params['dst'] = $this->getNewTempFile();
@@ -1011,12 +1011,12 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		// Combine the files into one
 		$status = $this->backend->concatenate( $params );
 		if ( $okStatus ) {
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Creation of concat file at $dest succeeded without warnings ($backendName)." );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Creation of concat file at $dest succeeded ($backendName)." );
 		} else {
-			$this->assertFalse( $status->isOK(),
+			$this->assertStatusNotOK( $status,
 				"Creation of concat file at $dest failed ($backendName)." );
 		}
 
@@ -1109,7 +1109,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		if ( $alreadyExists ) {
 			$this->prepare( [ 'dir' => dirname( $path ) ] );
 			$status = $this->create( [ 'dst' => $path, 'content' => $content ] );
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Creation of file at $path succeeded ($backendName)." );
 
 			$size = $this->backend->getFileSize( [ 'src' => $path ] );
@@ -1184,7 +1184,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		if ( $content !== null ) {
 			$this->prepare( [ 'dir' => dirname( $path ) ] );
 			$status = $this->create( [ 'dst' => $path, 'content' => $content ] );
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Creation of file at $path succeeded ($backendName)." );
 
 			ob_start();
@@ -1235,7 +1235,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$this->prepare( [ 'dir' => dirname( $path ) ] );
 		$status = $this->create( [ 'dst' => $path, 'content' => $content ] );
-		$this->assertGoodStatus( $status,
+		$this->assertStatusGood( $status,
 			"Creation of file at $path succeeded ($backendName)." );
 
 		static $ranges = [
@@ -1285,7 +1285,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			$this->prepare( [ 'dir' => dirname( $src ) ] );
 			$status = $this->backend->doOperation(
 				[ 'op' => 'create', 'content' => $content[$i], 'dst' => $src ] );
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Creation of file at $src succeeded ($backendName)." );
 		}
 
@@ -1356,7 +1356,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			$this->prepare( [ 'dir' => dirname( $src ) ] );
 			$status = $this->backend->doOperation(
 				[ 'op' => 'create', 'content' => $content[$i], 'dst' => $src ] );
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Creation of file at $src succeeded ($backendName)." );
 		}
 
@@ -1441,7 +1441,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			$this->prepare( [ 'dir' => dirname( $src ) ] );
 			$status = $this->backend->doOperation(
 				[ 'op' => 'create', 'content' => $content[$i], 'dst' => $src ] );
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Creation of file at $src succeeded ($backendName)." );
 		}
 
@@ -1542,7 +1542,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->prepare( [ 'dir' => dirname( $source ) ] );
 		$status = $this->backend->doOperation(
 			[ 'op' => 'create', 'content' => $content, 'dst' => $source ] );
-		$this->assertGoodStatus( $status,
+		$this->assertStatusGood( $status,
 			"Creation of file at $source succeeded ($backendName)." );
 
 		$url = $this->backend->getFileHttpUrl( [ 'src' => $source ] );
@@ -1595,45 +1595,45 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$status = $this->prepare( [ 'dir' => dirname( $path ) ] );
 		if ( $isOK ) {
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Preparing dir $path succeeded without warnings ($backendName)." );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Preparing dir $path succeeded ($backendName)." );
 		} else {
-			$this->assertFalse( $status->isOK(),
+			$this->assertStatusNotOK( $status,
 				"Preparing dir $path failed ($backendName)." );
 		}
 
 		$status = $this->backend->secure( [ 'dir' => dirname( $path ) ] );
 		if ( $isOK ) {
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Securing dir $path succeeded without warnings ($backendName)." );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Securing dir $path succeeded ($backendName)." );
 		} else {
-			$this->assertFalse( $status->isOK(),
+			$this->assertStatusNotOK( $status,
 				"Securing dir $path failed ($backendName)." );
 		}
 
 		$status = $this->backend->publish( [ 'dir' => dirname( $path ) ] );
 		if ( $isOK ) {
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Publishing dir $path succeeded without warnings ($backendName)." );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Publishing dir $path succeeded ($backendName)." );
 		} else {
-			$this->assertFalse( $status->isOK(),
+			$this->assertStatusNotOK( $status,
 				"Publishing dir $path failed ($backendName)." );
 		}
 
 		$status = $this->backend->clean( [ 'dir' => dirname( $path ) ] );
 		if ( $isOK ) {
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Cleaning dir $path succeeded without warnings ($backendName)." );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Cleaning dir $path succeeded ($backendName)." );
 		} else {
-			$this->assertFalse( $status->isOK(),
+			$this->assertStatusNotOK( $status,
 				"Cleaning dir $path failed ($backendName)." );
 		}
 	}
@@ -1670,7 +1670,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		];
 		foreach ( $dirs as $dir ) {
 			$status = $this->prepare( [ 'dir' => $dir ] );
-			$this->assertGoodStatus( $status,
+			$this->assertStatusGood( $status,
 				"Preparing dir $dir succeeded without warnings ($backendName)." );
 		}
 
@@ -1683,7 +1683,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$status = $this->backend->clean(
 			[ 'dir' => "$base/unittest-cont1", 'recursive' => 1 ] );
-		$this->assertGoodStatus( $status,
+		$this->assertStatusGood( $status,
 			"Recursive cleaning of dir $dir succeeded without warnings ($backendName)." );
 
 		foreach ( $dirs as $dir ) {
@@ -1754,8 +1754,8 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			// Does nothing
 		] );
 
-		$this->assertGoodStatus( $status, "Operation batch succeeded" );
-		$this->assertTrue( $status->isOK(), "Operation batch succeeded" );
+		$this->assertStatusGood( $status, "Operation batch succeeded" );
+		$this->assertStatusOK( $status, "Operation batch succeeded" );
 		$this->assertCount( 14, $status->success,
 			"Operation batch has correct success array" );
 
@@ -1850,8 +1850,8 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			// Does nothing
 		] );
 
-		$this->assertGoodStatus( $status, "Operation batch succeeded" );
-		$this->assertTrue( $status->isOK(), "Operation batch succeeded" );
+		$this->assertStatusGood( $status, "Operation batch succeeded" );
+		$this->assertStatusOK( $status, "Operation batch succeeded" );
 		$this->assertCount( 16, $status->success,
 			"Operation batch has correct success array" );
 
@@ -1924,8 +1924,8 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			// Does nothing
 		], [ 'force' => 1 ] );
 
-		$this->assertNotEquals( [], $status->getErrors(), "Operation had warnings" );
-		$this->assertTrue( $status->isOK(), "Operation batch succeeded" );
+		$this->assertStatusNotGood( $status, "Operation had warnings" );
+		$this->assertStatusOK( $status, "Operation batch succeeded" );
 		$this->assertCount( 8, $status->success,
 			"Operation batch has correct success array" );
 
@@ -1993,9 +1993,9 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			$ops[] = [ 'op' => 'create', 'content' => 'xxy', 'dst' => $file ];
 		}
 		$status = $this->backend->doQuickOperations( $ops );
-		$this->assertGoodStatus( $status,
+		$this->assertStatusGood( $status,
 			"Creation of files succeeded ($backendName)." );
-		$this->assertTrue( $status->isOK(),
+		$this->assertStatusOK( $status,
 			"Creation of files succeeded with OK status ($backendName)." );
 
 		// Expected listing at root
@@ -2175,9 +2175,9 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			$ops[] = [ 'op' => 'create', 'content' => 'xxy', 'dst' => $file ];
 		}
 		$status = $this->backend->doQuickOperations( $ops );
-		$this->assertGoodStatus( $status,
+		$this->assertStatusGood( $status,
 			"Creation of files succeeded ($backendName)." );
-		$this->assertTrue( $status->isOK(),
+		$this->assertStatusOK( $status,
 			"Creation of files succeeded with OK status ($backendName)." );
 
 		$this->assertTrue(
@@ -2395,53 +2395,53 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		for ( $i = 0; $i < 2; $i++ ) {
 			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_EX );
-			$this->assertEquals( print_r( [], true ), print_r( $status->getErrors(), true ),
+			$this->assertStatusGood( $status,
 				"Locking of files succeeded ($backendName) ($i)." );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Locking of files succeeded with OK status ($backendName) ($i)." );
 
 			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_SH );
-			$this->assertEquals( print_r( [], true ), print_r( $status->getErrors(), true ),
+			$this->assertStatusGood( $status,
 				"Locking of files succeeded ($backendName) ($i)." );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Locking of files succeeded with OK status ($backendName) ($i)." );
 
 			$status = $this->backend->unlockFiles( $paths, LockManager::LOCK_SH );
-			$this->assertEquals( print_r( [], true ), print_r( $status->getErrors(), true ),
+			$this->assertStatusGood( $status,
 				"Locking of files succeeded ($backendName) ($i)." );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Locking of files succeeded with OK status ($backendName) ($i)." );
 
 			$status = $this->backend->unlockFiles( $paths, LockManager::LOCK_EX );
-			$this->assertEquals( print_r( [], true ), print_r( $status->getErrors(), true ),
+			$this->assertStatusGood( $status,
 				"Locking of files succeeded ($backendName). ($i)" );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Locking of files succeeded with OK status ($backendName) ($i)." );
 
 			# # Flip the acquire/release ordering around ##
 
 			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_SH );
-			$this->assertEquals( print_r( [], true ), print_r( $status->getErrors(), true ),
+			$this->assertStatusGood( $status,
 				"Locking of files succeeded ($backendName) ($i)." );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Locking of files succeeded with OK status ($backendName) ($i)." );
 
 			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_EX );
-			$this->assertEquals( print_r( [], true ), print_r( $status->getErrors(), true ),
+			$this->assertStatusGood( $status,
 				"Locking of files succeeded ($backendName) ($i)." );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Locking of files succeeded with OK status ($backendName) ($i)." );
 
 			$status = $this->backend->unlockFiles( $paths, LockManager::LOCK_EX );
-			$this->assertEquals( print_r( [], true ), print_r( $status->getErrors(), true ),
+			$this->assertStatusGood( $status,
 				"Locking of files succeeded ($backendName). ($i)" );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Locking of files succeeded with OK status ($backendName) ($i)." );
 
 			$status = $this->backend->unlockFiles( $paths, LockManager::LOCK_SH );
-			$this->assertEquals( print_r( [], true ), print_r( $status->getErrors(), true ),
+			$this->assertStatusGood( $status,
 				"Locking of files succeeded ($backendName) ($i)." );
-			$this->assertTrue( $status->isOK(),
+			$this->assertStatusOK( $status,
 				"Locking of files succeeded with OK status ($backendName) ($i)." );
 		}
 
@@ -2449,18 +2449,14 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 		$sl = $this->backend->getScopedFileLocks( $paths, LockManager::LOCK_EX, $status );
 		$this->assertInstanceOf( ScopedLock::class, $sl,
 			"Scoped locking of files succeeded ($backendName)." );
-		$this->assertEquals( [], $status->getErrors(),
+		$this->assertStatusGood( $status,
 			"Scoped locking of files succeeded ($backendName)." );
-		$this->assertTrue( $status->isOK(),
-			"Scoped locking of files succeeded with OK status ($backendName)." );
 
 		ScopedLock::release( $sl );
 		$this->assertNull( $sl,
 			"Scoped unlocking of files succeeded ($backendName)." );
-		$this->assertEquals( [], $status->getErrors(),
+		$this->assertStatusGood( $status,
 			"Scoped unlocking of files succeeded ($backendName)." );
-		$this->assertTrue( $status->isOK(),
-			"Scoped unlocking of files succeeded with OK status ($backendName)." );
 	}
 
 	/**
@@ -2668,17 +2664,10 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$status = $this->backend->consistencyCheck( $paths );
 		if ( $okSyncStatus ) {
-			$this->assertGoodStatus( $status, "Files synced: " . implode( ',', $paths ) );
+			$this->assertStatusGood( $status, "Files synced: " . implode( ',', $paths ) );
 		} else {
-			$this->assertBadStatus( $status, "Files not synced: " . implode( ',', $paths ) );
+			$this->assertStatusNotGood( $status, "Files not synced: " . implode( ',', $paths ) );
 		}
 	}
 
-	private function assertGoodStatus( StatusValue $status, $msg ) {
-		$this->assertEquals( print_r( [], 1 ), print_r( $status->getErrors(), 1 ), $msg );
-	}
-
-	private function assertBadStatus( StatusValue $status, $msg ) {
-		$this->assertNotEquals( print_r( [], 1 ), print_r( $status->getErrors(), 1 ), $msg );
-	}
 }

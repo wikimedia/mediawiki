@@ -144,7 +144,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$status = PermissionStatus::newEmpty();
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
 		$this->assertTrue( $authority->authorizeRead( 'read', $target, $status ) );
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
 	}
 
 	public function testBlockedUserCanNotWrite() {
@@ -156,7 +156,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$status = PermissionStatus::newEmpty();
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
 		$this->assertFalse( $authority->authorizeRead( 'edit', $target, $status ) );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 		$this->assertSame( $block, $status->getBlock() );
 	}
 
@@ -184,10 +184,10 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 		$status = new PermissionStatus();
 		$authority->probablyCan( 'foo', $target, $status );
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
 
 		$authority->probablyCan( 'quux', $target, $status );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 	}
 
 	public function testDefinitlyCan() {
@@ -200,10 +200,10 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 		$status = new PermissionStatus();
 		$authority->definitelyCan( 'foo', $target, $status );
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
 
 		$authority->definitelyCan( 'quux', $target, $status );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 	}
 
 	public function testAuthorizeRead() {
@@ -216,10 +216,10 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 		$status = new PermissionStatus();
 		$authority->authorizeRead( 'foo', $target, $status );
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
 
 		$authority->authorizeRead( 'quux', $target, $status );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 	}
 
 	public function testAuthorizeWrite() {
@@ -232,10 +232,10 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 		$status = new PermissionStatus();
 		$authority->authorizeWrite( 'foo', $target, $status );
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
 
 		$authority->authorizeWrite( 'quux', $target, $status );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 	}
 
 	public function testIsAllowedAnyThrowsOnEmptySet() {

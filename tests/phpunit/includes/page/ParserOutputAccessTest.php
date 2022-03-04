@@ -37,7 +37,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $actual );
 
 		if ( $actual instanceof StatusValue ) {
-			$this->assertTrue( $actual->isOK(), 'isOK' );
+			$this->assertStatusOK( $actual, 'isOK' );
 		}
 
 		$this->assertStringContainsString( $needle, $this->getHtml( $actual ), $msg );
@@ -47,7 +47,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $actual );
 
 		if ( $actual instanceof StatusValue ) {
-			$this->assertTrue( $actual->isOK(), 'isOK' );
+			$this->assertStatusOK( $actual, 'isOK' );
 		}
 
 		$this->assertSame( $this->getHtml( $expected ), $this->getHtml( $actual ), $msg );
@@ -57,7 +57,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $actual );
 
 		if ( $actual instanceof StatusValue ) {
-			$this->assertTrue( $actual->isOK(), 'isOK' );
+			$this->assertStatusOK( $actual, 'isOK' );
 		}
 
 		$this->assertNotSame( $this->getHtml( $expected ), $this->getHtml( $actual ), $msg );
@@ -268,7 +268,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$parserOptions = $this->getParserOptions();
 		$status = $access->getParserOutput( $page, $parserOptions );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 	}
 
 	/**
@@ -431,7 +431,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		// output is for the first revision denied
 		$parserOptions = $this->getParserOptions();
 		$status = $access->getParserOutput( $page, $parserOptions, $firstRev );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 		// TODO: Once PoolWorkArticleView properly reports errors, check that the correct error
 		//       is propagated.
 	}
@@ -622,7 +622,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$parserOptions = $this->getParserOptions();
 		$status = $access->getParserOutput( $page, $parserOptions );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 	}
 
 	/**
@@ -684,8 +684,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$cachedResult = $access->getParserOutput( $page, $parserOptions );
 		$this->assertContainsHtml( 'World', $cachedResult );
 
-		$this->assertTrue( $cachedResult->hasMessage( $expectedMessage ) );
-		$this->assertTrue( $cachedResult->hasMessage( 'view-pool-dirty-output' ) );
+		$this->assertStatusWarning( $expectedMessage, $cachedResult );
+		$this->assertStatusWarning( 'view-pool-dirty-output', $cachedResult );
 	}
 
 	/**
@@ -706,7 +706,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$parserOptions = $this->getParserOptions();
 		$result = $access->getParserOutput( $page, $parserOptions );
-		$this->assertFalse( $result->isOK() );
+		$this->assertStatusNotOK( $result );
 	}
 
 	/**

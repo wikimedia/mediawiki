@@ -216,7 +216,7 @@ class StatusTest extends MediaWikiLangTestCase {
 			$expectedArray = array_merge( [ $message->getKey() ], $message->getParams() );
 			$this->assertEquals( $expectedArray, $errors[$key] );
 		}
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 	}
 
 	/**
@@ -991,12 +991,23 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @covers Status::__toString
 	 */
 	public function testToString() {
+		$loremIpsum = 'Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor' .
+			' incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud ' .
+			'exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure ' .
+			'reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
+		$abc = [
+			'x' => [ 'a', 'b', 'c' ],
+			'z' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ ABCDEFGHIJKLMNOPQRSTUVWXYZ ' .
+				'ABCDEFGHIJKLMNOPQRSTUVWXYZ ABCDEFGHIJKLMNOPQRSTUVWXYZ '
+		];
+
 		// This is a debug method, we don't care about the exact output. But it shouldn't cause
-		// an error as it's called in various logging codee.
+		// an error as it's called in various logging code.
 		$this->expectNotToPerformAssertions();
 		(string)Status::newGood();
 		(string)Status::newGood( new MessageValue( 'foo' ) );
 		(string)Status::newFatal( 'foo' );
+		(string)Status::newFatal( 'foo', $loremIpsum, $abc );
 		(string)Status::newFatal( wfMessage( 'foo' ) );
 		(string)( Status::newFatal( 'foo' )->fatal( 'bar' ) );
 	}

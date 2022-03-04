@@ -134,7 +134,7 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		$status = $dp->deleteIfAllowed( 'foobar' );
 		$this->assertSame( $expectedGood, $status->isGood() );
 		if ( $expectedMessage !== null ) {
-			$this->assertTrue( $status->hasMessage( $expectedMessage ) );
+			$this->assertStatusError( $expectedMessage, $status );
 		}
 	}
 
@@ -257,10 +257,9 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 
 		$res = $delPage->canProbablyDeleteAssociatedTalk();
 		if ( $expectedMsg === null ) {
-			$this->assertTrue( $res->isGood() );
+			$this->assertStatusGood( $res );
 		} else {
-			$this->assertFalse( $res->isOK() );
-			$this->assertTrue( $res->hasMessage( $expectedMsg ) );
+			$this->assertStatusError( $expectedMsg, $res );
 		}
 	}
 
