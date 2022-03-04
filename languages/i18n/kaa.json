@@ -1254,5 +1254,6 @@
 	"logentry-delete-delete": "$1 $3 degen betti {{GENDER:$2|óshirdi}}",
 	"revdelete-restricted": "administratorlarg'a qollanılg'an sheklewler",
 	"revdelete-unrestricted": "administratorlardan alıp taslang'an sheklewler",
-	"rightsnone": "(hesh qanday)"
+	"rightsnone": "(hesh qanday)",
+	"nstab-mainpage": "Bas bet"
 }
