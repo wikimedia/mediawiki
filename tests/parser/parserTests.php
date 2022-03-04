@@ -79,6 +79,7 @@ class ParserTestsMaintenance extends Maintenance {
 		define( 'MW_PARSER_TEST', true );
 
 		parent::finalSetup( $settingsBuilder );
+		ExtensionRegistry::getInstance()->setLoadTestClassesAndNamespaces( true );
 		self::requireTestsAutoloader();
 		TestSetup::applyInitialConfig();
 	}

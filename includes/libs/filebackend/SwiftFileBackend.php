@@ -75,7 +75,7 @@ class SwiftFileBackend extends FileBackendStore {
 	protected $authCreds;
 	/** @var int UNIX timestamp */
 	protected $authSessionTimestamp = 0;
-	/** @var int UNIX timestamp */
+	/** @var int|null UNIX timestamp */
 	protected $authErrorTimestamp = null;
 
 	/** @var bool Whether the server is an Ceph RGW */
@@ -1768,7 +1768,7 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( isset( $creds['auth_token'] ) && isset( $creds['storage_url'] ) ) {
 				$this->authCreds = $creds;
 				// Skew the timestamp for worst case to avoid using stale credentials
-				$this->authSessionTimestamp = time() - ceil( $this->authTTL / 2 );
+				$this->authSessionTimestamp = time() - (int)ceil( $this->authTTL / 2 );
 			} else { // cache miss
 				list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->http->run( [
 					'method' => 'GET',

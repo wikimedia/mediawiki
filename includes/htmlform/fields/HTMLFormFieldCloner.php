@@ -351,7 +351,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 				if ( !array_key_exists( $fieldname, $value ) ) {
 					continue;
 				}
-				if ( $field->isDisabled( $alldata ) ) {
+				if ( $field->isHidden( $alldata ) ) {
 					continue;
 				}
 				$ok = $field->validate( $value[$fieldname], $alldata );

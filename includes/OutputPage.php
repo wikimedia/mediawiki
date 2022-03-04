@@ -29,6 +29,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Tidy\RemexDriver;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\RelPath;
 use Wikimedia\WrappedString;
@@ -802,9 +803,10 @@ class OutputPage extends ContextSource {
 		# this breaks strtotime().
 		$clientHeader = preg_replace( '/;.*$/', '', $clientHeader );
 
-		Wikimedia\suppressWarnings(); // E_STRICT system time warnings
+		// E_STRICT system time warnings
+		AtEase::suppressWarnings();
 		$clientHeaderTime = strtotime( $clientHeader );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		if ( !$clientHeaderTime ) {
 			wfDebug( __METHOD__
 				. ": unable to parse the client's If-Modified-Since header: $clientHeader" );
@@ -1233,7 +1235,7 @@ class OutputPage extends ContextSource {
 	 * for the new version
 	 * @see addFeedLink()
 	 *
-	 * @param string $val Query to append to feed links or false to output
+	 * @param string|false $val Query to append to feed links or false to output
 	 *        default links
 	 */
 	public function setFeedAppendQuery( $val ) {
@@ -2635,7 +2637,7 @@ class OutputPage extends ContextSource {
 			if ( $this->getHookRunner()->onBeforePageRedirect( $this, $redirect, $code ) ) {
 				if ( $code == '301' || $code == '303' ) {
 					if ( !$config->get( 'DebugRedirects' ) ) {
-						$response->statusHeader( $code );
+						$response->statusHeader( (int)$code );
 					}
 					$this->mLastModified = wfTimestamp( TS_RFC2822 );
 				}
@@ -4263,7 +4265,7 @@ class OutputPage extends ContextSource {
 	 * This value needs to be included in any <script> tags on the
 	 * page.
 	 *
-	 * @return string|bool Nonce or false to mean don't output nonce
+	 * @return string|false Nonce or false to mean don't output nonce
 	 * @since 1.32
 	 * @deprecated Since 1.35 use getCSP()->getNonce() instead
 	 */

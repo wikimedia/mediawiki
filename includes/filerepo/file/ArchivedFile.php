@@ -42,7 +42,7 @@ class ArchivedFile {
 	/** @var int Filearchive row ID */
 	private $id;
 
-	/** @var string File name */
+	/** @var string|false File name */
 	private $name;
 
 	/** @var string FileStore storage group */
@@ -78,7 +78,7 @@ class ArchivedFile {
 	/** @var UserIdentity|null Uploader */
 	private $user;
 
-	/** @var string Time of upload */
+	/** @var string|null Time of upload */
 	private $timestamp;
 
 	/** @var bool Whether or not all this has been loaded from the database (loadFromXxx) */

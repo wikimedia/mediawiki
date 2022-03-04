@@ -26,6 +26,8 @@
  * @ingroup Media
  */
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * GIF frame counter.
  *
@@ -172,9 +174,9 @@ class GIFMetadataExtractor {
 					UtfNormal\Validator::quickIsNFCVerify( $dataCopy );
 
 					if ( $dataCopy !== $data ) {
-						Wikimedia\suppressWarnings();
+						AtEase::suppressWarnings();
 						$data = iconv( 'windows-1252', 'UTF-8', $data );
-						Wikimedia\restoreWarnings();
+						AtEase::restoreWarnings();
 					}
 
 					$commentCount = count( $comment );

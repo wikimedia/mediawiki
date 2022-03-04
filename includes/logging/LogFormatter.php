@@ -541,7 +541,7 @@ class LogFormatter {
 			}
 			list( $index, $type, ) = explode( ':', $key, 3 );
 			if ( ctype_digit( $index ) ) {
-				$params[$index - 1] = $this->formatParameterValue( $type, $value );
+				$params[(int)$index - 1] = $this->formatParameterValue( $type, $value );
 			}
 		}
 

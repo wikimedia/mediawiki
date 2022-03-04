@@ -29,19 +29,22 @@ use Wikimedia\Timestamp\TimestampException;
 abstract class ReverseChronologicalPager extends IndexPager {
 	/** @var bool */
 	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
+	/** @var bool Whether to group items by date */
+	public $mGroupByDate = false;
 	/** @var int */
 	public $mYear;
 	/** @var int */
 	public $mMonth;
 	/** @var int */
 	public $mDay;
+	/** @var string */
+	private $lastHeaderDate;
 
 	/**
-	 * @param string $timestamp
+	 * @param string $date
 	 * @return string
 	 */
-	protected function getHeaderRow( string $timestamp ): string {
-		$user = $this->getUser();
+	protected function getHeaderRow( string $date ): string {
 		$headingClass = $this->isFirstHeaderRow() ?
 			// We use mw-index-pager- prefix here on the anticipation that this method will
 			// eventually be upstreamed to apply to other pagers. For now we constrain the
@@ -54,26 +57,92 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		$s .= Html::element( 'h4', [
 				'class' => $headingClass,
 			],
-			$this->getLanguage()->userDate(
-				$timestamp, $user
-			)
+			$date
 		);
 		$s .= $this->getStartGroup();
 		return $s;
 	}
 
 	/**
+	 * Determines if a header row is needed based on the current state of the IndexPager.
+	 *
+	 * @since 1.38
+	 * @param string $date Formatted date header
+	 * @return bool
+	 */
+	protected function isHeaderRowNeeded( string $date ): bool {
+		if ( !$this->mGroupByDate ) {
+			return false;
+		}
+		return $date && $this->lastHeaderDate !== $date;
+	}
+
+	/**
+	 * Determines whether the header row is the first that will be outputted to the page.
+	 *
+	 * @since 1.38
+	 * @return bool
+	 */
+	final protected function isFirstHeaderRow(): bool {
+		return $this->lastHeaderDate === null;
+	}
+
+	/**
+	 * Get date from the timestamp
+	 *
+	 * @since 1.38
+	 * @param string $timestamp
+	 * @return string Formatted date header
+	 */
+	final protected function getDateFromTimestamp( string $timestamp ) {
+		return $this->getLanguage()->userDate( $timestamp, $this->getUser() );
+	}
+
+	/**
 	 * @inheritDoc
+	 */
+	protected function getRow( $row ): string {
+		$s = '';
+
+		$timestampField = is_array( $this->mIndexField ) ? $this->mIndexField[0] : $this->mIndexField;
+		$timestamp = $row->$timestampField ?? null;
+		$date = $timestamp ? $this->getDateFromTimestamp( $timestamp ) : null;
+		if ( $date && $this->isHeaderRowNeeded( $date ) ) {
+			$s .= $this->getHeaderRow( $date );
+			$this->lastHeaderDate = $date;
+		}
+
+		$s .= $this->formatRow( $row );
+		return $s;
+	}
+
+	/**
+	 * Start a new group of page rows.
+	 *
+	 * @stable to override
+	 * @since 1.38
+	 * @return string
 	 */
 	protected function getStartGroup(): string {
 		return "<ul class=\"mw-contributions-list\">\n";
 	}
 
 	/**
-	 * @inheritDoc
+	 * End an existing group of page rows.
+	 *
+	 * @stable to override
+	 * @since 1.38
+	 * @return string
 	 */
 	protected function getEndGroup(): string {
 		return '</ul>';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	protected function getFooter(): string {
+		return $this->getEndGroup();
 	}
 
 	/**

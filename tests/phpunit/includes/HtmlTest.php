@@ -1,7 +1,6 @@
 <?php
 
 class HtmlTest extends MediaWikiIntegrationTestCase {
-	private $restoreWarnings;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -62,17 +61,6 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 			101 => "Personalizado discusión",
 		] );
 		$this->setUserLang( $userLangObj );
-
-		$this->restoreWarnings = false;
-	}
-
-	protected function tearDown(): void {
-		if ( $this->restoreWarnings ) {
-			$this->restoreWarnings = false;
-			Wikimedia\restoreWarnings();
-		}
-
-		parent::tearDown();
 	}
 
 	/**
@@ -868,10 +856,11 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testInlineScript( $code, $expected, $error = false ) {
 		if ( $error ) {
-			Wikimedia\suppressWarnings();
-			$this->restoreWarnings = true;
+			$html = @Html::inlineScript( $code );
+		} else {
+			$html = Html::inlineScript( $code );
 		}
-		$this->assertSame( $expected, Html::inlineScript( $code ) );
+		$this->assertSame( $expected, $html );
 	}
 }
 

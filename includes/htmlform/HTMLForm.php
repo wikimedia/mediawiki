@@ -123,7 +123,7 @@ use MediaWiki\Page\PageReference;
  *                             The 'hide-if' logic would also disable fields, you don't need
  *                             to set this attribute with the same condition manually.
  *                             You can pass both 'disabled' and this attribute to omit extra
- *                             ckeck, but this would function only for not 'disabled' fields.
+ *                             check, but this would function only for not 'disabled' fields.
  *    'section'             -- A string name for the section of the form to which the field
  *                             belongs. Subsections may be added using the separator '/', e.g.:
  *                               'section' => 'section1/subsection1'

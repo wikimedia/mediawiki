@@ -1533,9 +1533,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			'ar_actor' => null,
 		];
 
-		\Wikimedia\suppressWarnings();
-		$record = $store->newRevisionFromArchiveRow( $row );
-		\Wikimedia\suppressWarnings( true );
+		$record = @$store->newRevisionFromArchiveRow( $row );
 
 		$this->assertInstanceOf( RevisionRecord::class, $record );
 		$this->assertInstanceOf( UserIdentityValue::class, $record->getUser() );
@@ -1582,9 +1580,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		$row->ar_actor = $this->db->insertId();
 
-		\Wikimedia\suppressWarnings();
-		$record = $store->newRevisionFromArchiveRow( $row );
-		\Wikimedia\suppressWarnings( true );
+		$record = @$store->newRevisionFromArchiveRow( $row );
 
 		$this->assertInstanceOf( RevisionRecord::class, $record );
 		$this->assertInstanceOf( UserIdentityValue::class, $record->getUser() );
@@ -1621,10 +1617,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			'rev_content_model' => null,
 		];
 
-		\Wikimedia\suppressWarnings();
-		$record = $store->newRevisionFromRow( $row, 0, $title );
-		\Wikimedia\suppressWarnings( true );
-
+		$record = @$store->newRevisionFromRow( $row, 0, $title );
 		$this->assertNotNull( $record );
 		$this->assertNotNull( $record->getUser() );
 		$this->assertNotEmpty( $record->getUser()->getName() );

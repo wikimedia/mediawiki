@@ -29,6 +29,7 @@ use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Interwiki\NullInterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * The Installer helps admins create or upgrade their wiki.
@@ -652,21 +653,26 @@ abstract class Installer {
 		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables
 		global $wgExtensionDirectory, $wgStyleDirectory;
 
-		Wikimedia\suppressWarnings();
-		wfDetectLocalSettingsFile( $IP ); // defines MW_CONFIG_FILE
-		$_lsExists = file_exists( MW_CONFIG_FILE );
-		Wikimedia\restoreWarnings();
+		// This will also define MW_CONFIG_FILE
+		$lsFile = wfDetectLocalSettingsFile( $IP );
+		// phpcs:ignore Generic.PHP.NoSilencedErrors
+		$lsExists = @file_exists( $lsFile );
 
-		if ( !$_lsExists ) {
+		if ( !$lsExists ) {
 			return false;
 		}
 
-		if ( !str_ends_with( MW_CONFIG_FILE, '.php' ) ) {
+		if ( !str_ends_with( $lsFile, '.php' ) ) {
 			throw new Exception(
-				'The installer cannot yet handle non-php settings files: ' . MW_CONFIG_FILE . '. ' .
+				'The installer cannot yet handle non-php settings files: ' . $lsFile . '. ' .
 				'Use maintenance/update.php to update an existing installation.'
 			);
 		}
+		unset( $lsExists );
+
+		require "$IP/includes/DefaultSettings.php";
+		$wgExtensionDirectory = "$IP/extensions";
+		$wgStyleDirectory = "$IP/skins";
 
 		// NOTE: To support YAML settings files, this needs to start using SettingsBuilder.
 		//       However, as of 1.38, YAML settings files are still experimental and
@@ -674,14 +680,12 @@ abstract class Installer {
 		//       the existing settings file is not PHP. The updater should still work though.
 		// NOTE: When adding support for YAML settings file, all references to LocalSettings.php
 		//       in localisation messages need to be replaced.
-
-		unset( $_lsExists );
-
-		require "$IP/includes/DefaultSettings.php";
-		$wgExtensionDirectory = "$IP/extensions";
-		$wgStyleDirectory = "$IP/skins";
-
-		require MW_CONFIG_FILE;
+		// NOTE: This assumes simple variable assignments. More complex setups may involve
+		//       settings coming from sub-required and/or functions that assign globals
+		//       directly. This is fine here because this isn't used as the "real" include.
+		//       It is only used for reading out a small set of variables that the installer
+		//       validates and/or displays.
+		require $lsFile;
 
 		return get_defined_vars();
 	}
@@ -867,14 +871,14 @@ abstract class Installer {
 	 * @return bool
 	 */
 	protected function envCheckPCRE() {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$regexd = preg_replace( '/[\x{0430}-\x{04FF}]/iu', '', '-АБВГД-' );
 		// Need to check for \p support too, as PCRE can be compiled
 		// with utf8 support, but not unicode property support.
 		// check that \p{Zs} (space separators) matches
 		// U+3000 (Ideographic space)
 		$regexprop = preg_replace( '/\p{Zs}/u', '', "-\u{3000}-" );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		if ( $regexd != '--' || $regexprop != '--' ) {
 			$this->showError( 'config-pcre-no-utf8' );
 
@@ -1154,7 +1158,7 @@ abstract class Installer {
 
 		$httpRequestFactory = MediaWikiServices::getInstance()->getHttpRequestFactory();
 
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 
 		foreach ( $scriptTypes as $ext => $contents ) {
 			foreach ( $contents as $source ) {
@@ -1178,14 +1182,14 @@ abstract class Installer {
 				unlink( $dir . $file );
 
 				if ( $text == 'exec' ) {
-					Wikimedia\restoreWarnings();
+					AtEase::restoreWarnings();
 
 					return $ext;
 				}
 			}
 		}
 
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		return false;
 	}
@@ -1935,8 +1939,8 @@ abstract class Installer {
 	 * Some long-running pages (Install, Upgrade) will want to do this
 	 */
 	protected function disableTimeLimit() {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		set_time_limit( 0 );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 	}
 }

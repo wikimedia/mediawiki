@@ -577,7 +577,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					$this->msg( $message )->text(),
 					$name,
 					$name,
-					$bitfield & $field
+					(bool)( $bitfield & $field )
 				);
 
 				if ( $field == RevisionRecord::DELETED_RESTRICTED ) {

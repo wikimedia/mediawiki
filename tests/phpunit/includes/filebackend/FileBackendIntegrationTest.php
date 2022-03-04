@@ -2620,10 +2620,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			]
 		];
 
-		Wikimedia\suppressWarnings();
-		$actual = $be->sanitizeOpHeaders( $input );
-		Wikimedia\restoreWarnings();
-
+		$actual = @$be->sanitizeOpHeaders( $input );
 		$this->assertEquals( $expected, $actual, "Header sanitized properly" );
 	}
 

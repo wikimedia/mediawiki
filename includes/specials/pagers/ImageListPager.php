@@ -502,7 +502,7 @@ class ImageListPager extends TablePager {
 
 				return $link;
 			case 'img_size':
-				return htmlspecialchars( $this->getLanguage()->formatSize( $value ) );
+				return htmlspecialchars( $this->getLanguage()->formatSize( (int)$value ) );
 			case 'img_description':
 				$field = $this->mCurrentRow->description_field;
 				$value = $this->commentStore->getComment( $field, $this->mCurrentRow )->text;

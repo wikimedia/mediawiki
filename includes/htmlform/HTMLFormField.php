@@ -395,7 +395,7 @@ abstract class HTMLFormField {
 	 *   false to fail validation without displaying an error.
 	 */
 	public function validate( $value, $alldata ) {
-		if ( $this->isDisabled( $alldata ) ) {
+		if ( $this->isHidden( $alldata ) ) {
 			return true;
 		}
 
@@ -1225,7 +1225,7 @@ abstract class HTMLFormField {
 	/**
 	 * Get options and make them into arrays suitable for OOUI.
 	 * @stable to override
-	 * @return array Options for inclusion in a select or whatever.
+	 * @return array|null Options for inclusion in a select or whatever.
 	 */
 	public function getOptionsOOUI() {
 		$oldoptions = $this->getOptions();

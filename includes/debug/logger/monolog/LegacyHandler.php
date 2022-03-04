@@ -67,7 +67,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 	protected $sink;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	protected $error;
 

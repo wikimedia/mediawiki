@@ -19,11 +19,9 @@ class LinkerTest extends MediaWikiLangTestCase {
 
 		// We'd also test the warning, but injecting a mock logger into a static method is tricky.
 		if ( !$userName ) {
-			Wikimedia\suppressWarnings();
-		}
-		$actual = Linker::userLink( $userId, $userName, $altUserName );
-		if ( !$userName ) {
-			Wikimedia\restoreWarnings();
+			$actual = @Linker::userLink( $userId, $userName, $altUserName );
+		} else {
+			$actual = Linker::userLink( $userId, $userName, $altUserName );
 		}
 
 		$this->assertEquals( $expected, $actual, $msg );
@@ -161,11 +159,9 @@ class LinkerTest extends MediaWikiLangTestCase {
 	public function testUserToolLinks( $expected, $userId, $userText ) {
 		// We'd also test the warning, but injecting a mock logger into a static method is tricky.
 		if ( $userText === '' ) {
-			Wikimedia\suppressWarnings();
-		}
-		$actual = Linker::userToolLinks( $userId, $userText );
-		if ( $userText === '' ) {
-			Wikimedia\restoreWarnings();
+			$actual = @Linker::userToolLinks( $userId, $userText );
+		} else {
+			$actual = Linker::userToolLinks( $userId, $userText );
 		}
 
 		$this->assertSame( $expected, $actual );
@@ -189,11 +185,9 @@ class LinkerTest extends MediaWikiLangTestCase {
 	public function testUserTalkLink( $expected, $userId, $userText ) {
 		// We'd also test the warning, but injecting a mock logger into a static method is tricky.
 		if ( $userText === '' ) {
-			Wikimedia\suppressWarnings();
-		}
-		$actual = Linker::userTalkLink( $userId, $userText );
-		if ( $userText === '' ) {
-			Wikimedia\restoreWarnings();
+			$actual = @Linker::userTalkLink( $userId, $userText );
+		} else {
+			$actual = Linker::userTalkLink( $userId, $userText );
 		}
 
 		$this->assertSame( $expected, $actual );
@@ -217,11 +211,9 @@ class LinkerTest extends MediaWikiLangTestCase {
 	public function testBlockLink( $expected, $userId, $userText ) {
 		// We'd also test the warning, but injecting a mock logger into a static method is tricky.
 		if ( $userText === '' ) {
-			Wikimedia\suppressWarnings();
-		}
-		$actual = Linker::blockLink( $userId, $userText );
-		if ( $userText === '' ) {
-			Wikimedia\restoreWarnings();
+			$actual = @Linker::blockLink( $userId, $userText );
+		} else {
+			$actual = Linker::blockLink( $userId, $userText );
 		}
 
 		$this->assertSame( $expected, $actual );
@@ -245,11 +237,9 @@ class LinkerTest extends MediaWikiLangTestCase {
 	public function testEmailLink( $expected, $userId, $userText ) {
 		// We'd also test the warning, but injecting a mock logger into a static method is tricky.
 		if ( $userText === '' ) {
-			Wikimedia\suppressWarnings();
-		}
-		$actual = Linker::emailLink( $userId, $userText );
-		if ( $userText === '' ) {
-			Wikimedia\restoreWarnings();
+			$actual = @Linker::emailLink( $userId, $userText );
+		} else {
+			$actual = Linker::emailLink( $userId, $userText );
 		}
 
 		$this->assertSame( $expected, $actual );

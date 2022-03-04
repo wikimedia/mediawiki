@@ -52,10 +52,12 @@
 	"search": "Fuputsa",
 	"searchbutton": "Batla",
 	"searcharticle": "Tsamaea",
+	"view-history": "sheba histori",
 	"history": "Nalane",
 	"history_short": "Nalane",
 	"printableversion": "phetolelo e hatisitsoeng",
 	"edit": "Fetola",
+	"view-edit": "Fetola",
 	"newpage": "Leqephe le letjha",
 	"talkpagelinktext": "bua",
 	"specialpage": "Leqephe le khethehileng",
@@ -154,5 +156,6 @@
 	"tooltip-ca-nstab-main": "Sheba leqephe la litaba",
 	"pageinfo-toolboxlink": "Boitsebiso ba Leqephe",
 	"specialpages": "Maqephe a khethehileng",
-	"searchsuggest-search": "Batla {{SITENAME}}"
+	"searchsuggest-search": "Batla {{SITENAME}}",
+	"nstab-mainpage": "leqephe la lehae"
 }

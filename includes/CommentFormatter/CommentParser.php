@@ -440,7 +440,7 @@ class CommentParser {
 	 */
 	private function addLinkMarker( $callback ) {
 		$nextId = count( $this->links );
-		if ( strlen( $nextId ) > self::MAX_ID_SIZE ) {
+		if ( strlen( (string)$nextId ) > self::MAX_ID_SIZE ) {
 			throw new \RuntimeException( 'Too many links in comment batch' );
 		}
 		$this->links[] = $callback;

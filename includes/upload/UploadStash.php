@@ -229,7 +229,7 @@ class UploadStash {
 		list( $usec, $sec ) = explode( ' ', microtime() );
 		$usec = substr( $usec, 2 );
 		$key = Wikimedia\base_convert( $sec . $usec, 10, 36 ) . '.' .
-			Wikimedia\base_convert( mt_rand(), 10, 36 ) . '.' .
+			Wikimedia\base_convert( (string)mt_rand(), 10, 36 ) . '.' .
 			$this->user->getId() . '.' .
 			$extension;
 

@@ -106,10 +106,7 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 				continue;
 			}
 
-			Wikimedia\suppressWarnings();
-			$contents = file_get_contents( $filePath );
-			Wikimedia\restoreWarnings();
-
+			$contents = @file_get_contents( $filePath );
 			if ( $contents === false ) {
 				$actual[$class] = "[couldn't read file '$filePath']";
 				continue;

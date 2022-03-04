@@ -24,9 +24,15 @@ trait LanguageConverterTestTrait {
 		$language = MediaWikiServices::getInstance()->getLanguageFactory()
 			->getLanguage( $code );
 
-		$factory = new LanguageConverterFactory( false, false, false, static function () use ( $language ) {
-			return $language;
-		} );
+		$factory = new LanguageConverterFactory(
+			MediaWikiServices::getInstance()->getObjectFactory(),
+			false,
+			false,
+			false,
+			static function () use ( $language ) {
+				return $language;
+			}
+		);
 
 		return $factory->getLanguageConverter( $language );
 	}

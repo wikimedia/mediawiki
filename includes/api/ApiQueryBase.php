@@ -328,9 +328,9 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param string $field Field name
 	 * @param string $dir If 'newer', sort in ascending order, otherwise
 	 *  sort in descending order
-	 * @param string|null $start Value to start the list at. If $dir == 'newer'
+	 * @param string|int|null $start Value to start the list at. If $dir == 'newer'
 	 *  this is the lower boundary, otherwise it's the upper boundary
-	 * @param string|null $end Value to end the list at. If $dir == 'newer' this
+	 * @param string|int|null $end Value to end the list at. If $dir == 'newer' this
 	 *  is the upper boundary, otherwise it's the lower boundary
 	 * @param bool $sort If false, don't add an ORDER BY clause
 	 */

@@ -27,6 +27,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * @ingroup Media
@@ -99,7 +100,7 @@ class SVGReader {
 		// Because we cut off the end of the svg making an invalid one. Complicated
 		// try catch thing to make sure warnings get restored. Seems like there should
 		// be a better way.
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		try {
 			$this->read();
 		} catch ( Exception $e ) {
@@ -108,7 +109,7 @@ class SVGReader {
 			throw $e;
 		} finally {
 			libxml_disable_entity_loader( $oldDisable );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		}
 	}
 

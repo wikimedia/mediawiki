@@ -25,6 +25,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * Search engine hook for MySQL
@@ -58,9 +59,9 @@ class SearchMySQL extends SearchDatabase {
 			$contLang = $services->getContentLanguage();
 			$langConverter = $services->getLanguageConverterFactory()->getLanguageConverter( $contLang );
 			foreach ( $m as $bits ) {
-				Wikimedia\suppressWarnings();
+				AtEase::suppressWarnings();
 				list( /* all */, $modifier, $term, $nonQuoted, $wildcard ) = $bits;
-				Wikimedia\restoreWarnings();
+				AtEase::restoreWarnings();
 
 				if ( $nonQuoted != '' ) {
 					$term = $nonQuoted;

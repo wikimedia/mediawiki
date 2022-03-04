@@ -676,7 +676,7 @@ abstract class JobQueue {
 	 * Do not use this function outside of JobQueue/JobQueueGroup
 	 *
 	 * @stable to override
-	 * @return string
+	 * @return string|null
 	 * @since 1.22
 	 */
 	public function getCoalesceLocationInternal() {

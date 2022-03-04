@@ -25,6 +25,8 @@
  * @ingroup Media
  */
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * PNG frame counter.
  *
@@ -201,9 +203,9 @@ class PNGMetadataExtractor {
 					// if compressed
 					if ( $items[2] == "\x01" ) {
 						if ( function_exists( 'gzuncompress' ) && $items[4] === "\x00" ) {
-							Wikimedia\suppressWarnings();
+							AtEase::suppressWarnings();
 							$items[5] = gzuncompress( $items[5] );
-							Wikimedia\restoreWarnings();
+							AtEase::restoreWarnings();
 
 							if ( $items[5] === false ) {
 								// decompression failed
@@ -242,9 +244,9 @@ class PNGMetadataExtractor {
 					// Don't recognize chunk, so skip.
 					continue;
 				}
-				Wikimedia\suppressWarnings();
+				AtEase::suppressWarnings();
 				$content = iconv( 'ISO-8859-1', 'UTF-8', $content );
-				Wikimedia\restoreWarnings();
+				AtEase::restoreWarnings();
 
 				if ( $content === false ) {
 					wfDebug( __METHOD__ . ": Read error (error with iconv)" );
@@ -281,9 +283,9 @@ class PNGMetadataExtractor {
 						continue;
 					}
 
-					Wikimedia\suppressWarnings();
+					AtEase::suppressWarnings();
 					$content = gzuncompress( $content );
-					Wikimedia\restoreWarnings();
+					AtEase::restoreWarnings();
 
 					if ( $content === false ) {
 						// decompression failed
@@ -291,9 +293,9 @@ class PNGMetadataExtractor {
 						continue;
 					}
 
-					Wikimedia\suppressWarnings();
+					AtEase::suppressWarnings();
 					$content = iconv( 'ISO-8859-1', 'UTF-8', $content );
-					Wikimedia\restoreWarnings();
+					AtEase::restoreWarnings();
 
 					if ( $content === false ) {
 						wfDebug( __METHOD__ . ": iconv error in zTXt chunk" );

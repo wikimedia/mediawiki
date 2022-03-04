@@ -104,9 +104,7 @@ class PHPUnitMaintClass {
 		$wgShowExceptionDetails = true;
 		$wgShowHostnames = true;
 
-		Wikimedia\suppressWarnings();
-		set_time_limit( 0 );
-		Wikimedia\restoreWarnings();
+		@set_time_limit( 0 );
 
 		ini_set( 'memory_limit', -1 );
 

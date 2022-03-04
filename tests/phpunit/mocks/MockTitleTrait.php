@@ -49,6 +49,9 @@ trait MockTitleTrait {
 		$title->method( 'getArticleID' )->willReturn( $id );
 		$title->method( 'getId' )->willReturn( $id );
 		$title->method( 'getNamespace' )->willReturn( $ns );
+		$title->method( 'inNamespace' )->willReturnCallback( static function ( $namespace ) use ( $ns ) {
+			return $namespace === $ns;
+		} );
 		$title->method( 'getFragment' )->willReturn( $props['fragment'] ?? '' );
 		$title->method( 'hasFragment' )->willReturn( !empty( $props['fragment'] ) );
 		$title->method( 'getInterwiki' )->willReturn( $props['interwiki'] ?? '' );

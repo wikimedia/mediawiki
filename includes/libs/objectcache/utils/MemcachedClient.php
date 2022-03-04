@@ -68,6 +68,7 @@
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
 
 // {{{ class MemcachedClient
@@ -800,13 +801,13 @@ class MemcachedClient {
 		$timeout = $this->_connect_timeout;
 		$errno = $errstr = null;
 		for ( $i = 0; !$sock && $i < $this->_connect_attempts; $i++ ) {
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			if ( $this->_persistent == 1 ) {
 				$sock = pfsockopen( $ip, $port, $errno, $errstr, $timeout );
 			} else {
 				$sock = fsockopen( $ip, $port, $errno, $errstr, $timeout );
 			}
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		}
 		if ( !$sock ) {
 			$this->_error_log( "Error connecting to $host: $errstr" );

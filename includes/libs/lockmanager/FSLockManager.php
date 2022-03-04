@@ -21,6 +21,8 @@
  * @ingroup LockManager
  */
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * Simple version of LockManager based on using FS lock files.
  * All locks are non-blocking, which avoids deadlocks.
@@ -122,7 +124,7 @@ class FSLockManager extends LockManager {
 			if ( isset( $this->handles[$path] ) ) {
 				$handle = $this->handles[$path];
 			} else {
-				Wikimedia\suppressWarnings();
+				AtEase::suppressWarnings();
 				$handle = fopen( $this->getLockPath( $path ), 'a+' );
 				if ( !$handle && !is_dir( $this->lockDir ) ) {
 					// Create the lock directory in case it is missing
@@ -132,7 +134,7 @@ class FSLockManager extends LockManager {
 						$this->logger->error( "Cannot create directory '{$this->lockDir}'." );
 					}
 				}
-				Wikimedia\restoreWarnings();
+				AtEase::restoreWarnings();
 			}
 			if ( $handle ) {
 				// Either a shared or exclusive lock

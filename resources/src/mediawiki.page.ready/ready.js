@@ -64,23 +64,28 @@ $( function () {
 		mw.hook( 'wikipage.indicators' ).fire( $( node.children ) );
 	}
 
-	/**
-	 * Fired when wiki content is being added to the DOM
-	 *
-	 * It is encouraged to fire it before the main DOM is changed (when $content
-	 * is still detached).  However, this order is not defined either way, so you
-	 * should only rely on $content itself.
-	 *
-	 * This includes the ready event on a page load (including post-edit loads)
-	 * and when content has been previewed with LivePreview.
-	 *
-	 * @event wikipage_content
-	 * @member mw.hook
-	 * @param {jQuery} $content The most appropriate element containing the content,
-	 *   such as #mw-content-text (regular content root) or #wikiPreview (live preview
-	 *   root)
-	 */
-	mw.hook( 'wikipage.content' ).fire( $( '#mw-content-text' ) );
+	var $content = $( '#mw-content-text' );
+	// Avoid unusable events, and the errors they cause, for custom skins that
+	// do not display any content (T259577).
+	if ( $content.length ) {
+		/**
+		 * Fired when wiki content is being added to the DOM
+		 *
+		 * It is encouraged to fire it before the main DOM is changed (when $content
+		 * is still detached).  However, this order is not defined either way, so you
+		 * should only rely on $content itself.
+		 *
+		 * This includes the ready event on a page load (including post-edit loads)
+		 * and when content has been previewed with LivePreview.
+		 *
+		 * @event wikipage_content
+		 * @member mw.hook
+		 * @param {jQuery} $content The most appropriate element containing the content,
+		 *   such as #mw-content-text (regular content root) or #wikiPreview (live preview
+		 *   root)
+		 */
+		mw.hook( 'wikipage.content' ).fire( $content );
+	}
 
 	$nodes = $( '.catlinks[data-mw="interface"]' );
 	if ( $nodes.length ) {

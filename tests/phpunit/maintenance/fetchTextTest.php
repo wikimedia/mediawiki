@@ -239,15 +239,11 @@ class FetchTextTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNonExisting() {
-		\Wikimedia\suppressWarnings();
-		$this->assertFilter( 'tt:77889911', 'tt:77889911' . "\n-1\n" );
-		\Wikimedia\suppressWarnings( true );
+		@$this->assertFilter( 'tt:77889911', 'tt:77889911' . "\n-1\n" );
 	}
 
 	public function testNonExistingInteger() {
-		\Wikimedia\suppressWarnings();
-		$this->assertFilter( '77889911', 'tt:77889911' . "\n-1\n" );
-		\Wikimedia\suppressWarnings( true );
+		@$this->assertFilter( '77889911', 'tt:77889911' . "\n-1\n" );
 	}
 
 	public function testBadBlobAddressWithColon() {
@@ -266,10 +262,8 @@ class FetchTextTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testFloatingPointNumberNonExisting() {
-		\Wikimedia\suppressWarnings();
 		$id = intval( preg_replace( '/^tt:/', '', self::$textId5 ) ) + 3.14159;
-		$this->assertFilter( $id, 'tt:' . intval( $id ) . "\n-1\n" );
-		\Wikimedia\suppressWarnings( true );
+		@$this->assertFilter( $id, 'tt:' . intval( $id ) . "\n-1\n" );
 	}
 
 	public function testCharacters() {

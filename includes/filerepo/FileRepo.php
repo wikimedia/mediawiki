@@ -12,6 +12,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * Base code for file repositories.
@@ -800,7 +801,7 @@ class FileRepo {
 	/**
 	 * Make an url to this repo
 	 *
-	 * @param string|string[] $query Query string to append
+	 * @param string|array $query Query string to append
 	 * @param string $entry Entry point; defaults to index
 	 * @return string|false False on failure
 	 */
@@ -1376,9 +1377,9 @@ class FileRepo {
 		}
 		// Cleanup for disk source files...
 		foreach ( $sourceFSFilesToDelete as $file ) {
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			unlink( $file ); // FS cleanup
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		}
 
 		return $status;

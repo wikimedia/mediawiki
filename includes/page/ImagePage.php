@@ -533,7 +533,7 @@ class ImagePage extends Article {
 					];
 					$options = [];
 					for ( $i = 1; $i <= $count; $i++ ) {
-						$options[] = Xml::option( $lang->formatNum( $i ), $i, $i == $page );
+						$options[] = Xml::option( $lang->formatNum( $i ), (string)$i, $i == $page );
 					}
 					$select = Xml::tags( 'select',
 						[ 'id' => 'pageselector', 'name' => 'page' ],
@@ -759,11 +759,11 @@ EOT
 
 		if ( $descUrl &&
 			$descText &&
-			$this->getContext()->msg( 'sharedupload-desc-here' )->plain() !== '-'
+			!$this->getContext()->msg( 'sharedupload-desc-here' )->isDisabled()
 		) {
 			$out->wrapWikiMsg( $wrap, [ 'sharedupload-desc-here', $repo, $descUrl ] );
 		} elseif ( $descUrl &&
-			$this->getContext()->msg( 'sharedupload-desc-there' )->plain() !== '-'
+			!$this->getContext()->msg( 'sharedupload-desc-there' )->isDisabled()
 		) {
 			$out->wrapWikiMsg( $wrap, [ 'sharedupload-desc-there', $repo, $descUrl ] );
 		} else {

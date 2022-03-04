@@ -26,6 +26,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
 use Psr\Log\LoggerInterface;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\ScopedCallback;
@@ -41,7 +42,7 @@ class MediaWiki {
 	/** @var Config */
 	private $config;
 
-	/** @var string Cache what action this request is */
+	/** @var string|null Cache what action this request is */
 	private $action;
 	/** @var int Class DEFER_* constant; how non-blocking post-response tasks should run */
 	private $postSendStrategy;
@@ -1226,7 +1227,7 @@ class MediaWiki {
 			$port = $info['port'];
 		}
 
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$sock = $host ? fsockopen(
 			$host,
 			$port,
@@ -1235,7 +1236,7 @@ class MediaWiki {
 			// If it takes more than 100ms to connect to ourselves there is a problem...
 			0.100
 		) : false;
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		$invokedWithSuccess = true;
 		if ( $sock ) {

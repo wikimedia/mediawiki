@@ -890,7 +890,7 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @param stdClass $row
-	 * @return RunnableJob|null
+	 * @return RunnableJob
 	 */
 	protected function jobFromRow( $row ) {
 		$params = ( (string)$row->job_params !== '' ) ? unserialize( $row->job_params ) : [];

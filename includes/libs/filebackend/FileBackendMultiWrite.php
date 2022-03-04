@@ -288,8 +288,8 @@ class FileBackendMultiWrite extends FileBackend {
 					} elseif (
 						( $this->syncChecks & self::CHECK_TIME ) &&
 						abs(
-							ConvertibleTimestamp::convert( TS_UNIX, $masterStat['mtime'] ) -
-							ConvertibleTimestamp::convert( TS_UNIX, $cloneStat['mtime'] )
+							(int)ConvertibleTimestamp::convert( TS_UNIX, $masterStat['mtime'] ) -
+							(int)ConvertibleTimestamp::convert( TS_UNIX, $cloneStat['mtime'] )
 						) > 30
 					) {
 						// File in the clone backend is significantly newer or older

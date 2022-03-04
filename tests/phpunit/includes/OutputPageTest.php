@@ -490,13 +490,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			$callback( $op, $this );
 		}
 
-		// Avoid a complaint about not being able to disable compression
-		Wikimedia\suppressWarnings();
-		try {
-			$this->assertEquals( $expected, $op->checkLastModified( $timestamp ) );
-		} finally {
-			Wikimedia\restoreWarnings();
-		}
+		// Ignore complaint about not being able to disable compression
+		$this->assertEquals( $expected, @$op->checkLastModified( $timestamp ) );
 	}
 
 	public function provideCheckLastModified() {
@@ -2071,19 +2066,14 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 *  initialMaxage => Maxage to set before calling adaptCdnTTL() (default 86400)
 	 */
 	public function testAdaptCdnTTL( array $args, $expected, array $options = [] ) {
-		try {
-			MWTimestamp::setFakeTime( self::$fakeTime );
+		MWTimestamp::setFakeTime( self::$fakeTime );
 
-			$op = $this->newInstance();
-			// Set a high maxage so that it will get reduced by adaptCdnTTL().  The default maxage
-			// is 0, so adaptCdnTTL() won't mutate the object at all.
-			$initial = $options['initialMaxage'] ?? 86400;
-			$op->setCdnMaxage( $initial );
-
-			$op->adaptCdnTTL( ...$args );
-		} finally {
-			MWTimestamp::setFakeTime( false );
-		}
+		$op = $this->newInstance();
+		// Set a high maxage so that it will get reduced by adaptCdnTTL().  The default maxage
+		// is 0, so adaptCdnTTL() won't mutate the object at all.
+		$initial = $options['initialMaxage'] ?? 86400;
+		$op->setCdnMaxage( $initial );
+		$op->adaptCdnTTL( ...$args );
 
 		$wrapper = TestingAccessWrapper::newFromObject( $op );
 
@@ -2789,9 +2779,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		// Some of these paths don't exist and will cause warnings
-		Wikimedia\suppressWarnings();
-		$actual = OutputPage::transformResourcePath( $conf, $path );
-		Wikimedia\restoreWarnings();
+		$actual = @OutputPage::transformResourcePath( $conf, $path );
 
 		$this->assertEquals( $expected ?: $path, $actual );
 	}

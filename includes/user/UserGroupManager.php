@@ -190,13 +190,15 @@ class UserGroupManager implements IDBAccessObject {
 	 * @return string[] internal group names
 	 */
 	public function listAllGroups(): array {
-		return array_values( array_diff(
-			array_merge(
-				array_keys( $this->options->get( 'GroupPermissions' ) ),
-				array_keys( $this->options->get( 'RevokePermissions' ) ),
-				array_keys( $this->options->get( 'GroupInheritsPermissions' ) )
-			),
-			$this->listAllImplicitGroups()
+		return array_values( array_unique(
+			array_diff(
+				array_merge(
+					array_keys( $this->options->get( 'GroupPermissions' ) ),
+					array_keys( $this->options->get( 'RevokePermissions' ) ),
+					array_keys( $this->options->get( 'GroupInheritsPermissions' ) )
+				),
+				$this->listAllImplicitGroups()
+			)
 		) );
 	}
 

@@ -68,12 +68,15 @@
 	"searchbutton": "Khangela",
 	"go": "Hamba",
 	"searcharticle": "Hamba",
+	"view-history": "Khawujonge imbali yeli phepha",
 	"history": "imbali yeli phepha",
 	"history_short": "Imbali",
 	"printableversion": "linga printwa eli phepha",
 	"permalink": "Uxhumano olusisigxina",
 	"view": "Khawubone",
+	"view-view": "Funda",
 	"edit": "Tshintsha",
+	"view-edit": "Tshintsha",
 	"delete": "Cima",
 	"protect": "Khusela",
 	"talkpagelinktext": "Inthetho",
@@ -143,6 +146,9 @@
 	"mypreferences": "Ukhetha ukubizwa kanjani? Ukhetha ukuba kuxhunyanwe njani nawe?",
 	"searchresultshead": "Khangela",
 	"username": "Igama lelungu:",
+	"action-addsection": "Faka isihloko",
+	"action-move": "Susa",
+	"action-protect": "Khusela",
 	"recentchanges": "Utshitsho olusandokwenziwa",
 	"recentchanges-label-minor": "Ezi zizilungiso ezingephi",
 	"rclistfrom": "Bonisa utshintsho olusanda kwenziwa ukusuka ku-$2, $3",
@@ -235,5 +241,6 @@
 	"namespacesall": "Zonke",
 	"signature": "Iqonga lakho othetha kulo",
 	"specialpages": "Amaphepha Abalulekileyo",
-	"searchsuggest-search": "Khangela i-{{SITENAME}}"
+	"searchsuggest-search": "Khangela i-{{SITENAME}}",
+	"nstab-mainpage": "Iphepha lokuqala"
 }

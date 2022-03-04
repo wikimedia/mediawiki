@@ -133,11 +133,8 @@ class SlotRoleRegistryTest extends MediaWikiUnitTestCase {
 			$this->makeNameTableStore( [ 1 => 'foo' ] )
 		);
 
-		\Wikimedia\suppressWarnings();
-		$handler = $registry->getRoleHandler( 'foo' );
+		$handler = @$registry->getRoleHandler( 'foo' );
 		$this->assertSame( 'foo', $handler->getRole() );
-
-		\Wikimedia\restoreWarnings();
 	}
 
 	/**

@@ -32,7 +32,7 @@ class ConditionalHeaderUtil {
 		if ( $lastModified === null ) {
 			$this->lastModified = null;
 		} else {
-			$this->lastModified = ConvertibleTimestamp::convert( TS_UNIX, $lastModified );
+			$this->lastModified = (int)ConvertibleTimestamp::convert( TS_UNIX, $lastModified );
 		}
 		if ( $hasRepresentation === null ) {
 			$hasRepresentation = $eTag !== null;

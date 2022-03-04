@@ -721,9 +721,9 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function appendShutdownCPIndexAsQuery( $url, $index ) {
-		$usedCluster = 0;
+		$usedCluster = false;
 		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( &$usedCluster ) {
-			$usedCluster |= $lb->hasStreamingReplicaServers();
+			$usedCluster = $usedCluster || $lb->hasStreamingReplicaServers();
 		} );
 
 		if ( !$usedCluster ) {

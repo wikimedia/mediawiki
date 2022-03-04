@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\AtEase\AtEase;
+
 /**
  * Diff-based history compression
  * Requires xdiff 1.5+ and zlib
@@ -195,9 +197,9 @@ class DiffHistoryBlob implements HistoryBlob {
 	private function diff( $t1, $t2 ) {
 		# Need to do a null concatenation with warnings off, due to bugs in the current version of xdiff
 		# "String is not zero-terminated"
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$diff = xdiff_string_rabdiff( $t1, $t2 ) . '';
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		return $diff;
 	}
 
@@ -208,9 +210,9 @@ class DiffHistoryBlob implements HistoryBlob {
 	 */
 	private function patch( $base, $diff ) {
 		if ( function_exists( 'xdiff_string_bpatch' ) ) {
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$text = xdiff_string_bpatch( $base, $diff ) . '';
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 			return $text;
 		}
 

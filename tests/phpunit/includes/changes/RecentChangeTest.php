@@ -177,10 +177,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			'rc_comment' => 'comment',
 			'rc_user_text' => $user->getName(), // lookup by name
 		];
-
-		Wikimedia\suppressWarnings();
-		$rc = RecentChange::newFromRow( $row );
-		Wikimedia\restoreWarnings();
+		$rc = @RecentChange::newFromRow( $row );
 
 		$expected = [
 			'rc_foo' => 'AAA',

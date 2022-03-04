@@ -21,6 +21,7 @@
  * @ingroup Installer
  */
 
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\DBConnectionError;
@@ -173,9 +174,9 @@ class SqliteInstaller extends DatabaseInstaller {
 	 */
 	private static function createDataDir( $dir ): Status {
 		if ( !is_dir( $dir ) ) {
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$ok = wfMkdirParents( $dir, 0700, __METHOD__ );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 			if ( !$ok ) {
 				return Status::newFatal( 'config-sqlite-mkdir-error', $dir );
 			}

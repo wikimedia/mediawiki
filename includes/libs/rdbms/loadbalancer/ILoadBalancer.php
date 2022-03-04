@@ -393,6 +393,7 @@ interface ILoadBalancer {
 	 * @return DBConnRef Live connection handle
 	 * @throws DBError If no live handle could be obtained
 	 * @throws DBAccessError If disable() was previously called
+	 * @deprecated since 1.38 use getConnectionRef instead
 	 */
 	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): DBConnRef;
 
@@ -439,7 +440,7 @@ interface ILoadBalancer {
 	 * This counts both servers using streaming replication from the primary server and
 	 * servers that just have a clone of the static dataset found on the primary server
 	 *
-	 * @return int
+	 * @return bool
 	 * @since 1.34
 	 */
 	public function hasReplicaServers();
@@ -457,10 +458,10 @@ interface ILoadBalancer {
 	 * It is possible for some replicas to be configured with "is static" but not
 	 * others, though it generally should either be set for all or none of the replicas.
 	 *
-	 * If this returns zero, this means that there is generally no reason to execute
+	 * If this returns false, this means that there is generally no reason to execute
 	 * replication wait logic for session consistency and lag reduction.
 	 *
-	 * @return int
+	 * @return bool
 	 * @since 1.34
 	 */
 	public function hasStreamingReplicaServers();

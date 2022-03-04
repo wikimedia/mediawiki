@@ -97,12 +97,16 @@
 	"searchbutton": "Heka",
 	"go": "Ha",
 	"searcharticle": "Ha",
+	"view-history": "Tembiasakue",
 	"history": "Tembiasakue",
 	"history_short": "Tembiasakue",
 	"printableversion": "Osẽma haguãicha",
 	"view": "Hecha",
+	"view-view": "Moñe'ẽ",
 	"edit": "Jehaijey",
+	"view-edit": "Jehaijey",
 	"create": "Moñepyrũ",
+	"view-create": "Moñepyrũ",
 	"delete": "Mboje'o",
 	"undelete_short": "Tojehechauka jey {{PLURAL:$1|peteĩ jehai|$1 jehai}}",
 	"viewdeleted_short": "Rehecharã {{PLURAL:$1|peteĩ jehai ndaiporivéima|$1 jehai ndaiporivéima}}",
@@ -378,5 +382,6 @@
 	"watchlistedit-raw-removed": "$1 páginas han sido borradas:",
 	"version": "Mba'ereko",
 	"specialpages": "Kuatiarogue hekochĩchĩva",
-	"searchsuggest-search": "Tojeheka {{SITENAME}} rupi"
+	"searchsuggest-search": "Tojeheka {{SITENAME}} rupi",
+	"nstab-mainpage": "Ape"
 }

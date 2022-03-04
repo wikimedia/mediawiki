@@ -66,8 +66,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $deprecationLogger;
 	/** @var callable|null */
 	protected $profiler;
-	/** @var TransactionProfiler */
-	protected $trxProfiler;
 	/** @var TransactionManager */
 	private $transactionManager;
 
@@ -131,10 +129,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var array|null Replication lag estimate at the time of BEGIN for the last transaction */
 	private $trxReplicaLagStatus = null;
-	/** @var bool Whether possible write queries were done in the last transaction started */
-	private $trxDoneWrites = false;
-	/** @var int Counter for atomic savepoint identifiers (reset with each transaction) */
-	private $trxAtomicCounter = 0;
 
 	/** @var array[] List of (callable, method name, atomic section id) */
 	private $trxPostCommitOrIdleCallbacks = [];
@@ -190,8 +184,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var string Idiom used when a cancelable atomic section started the transaction */
 	private const NOT_APPLICABLE = 'n/a';
-	/** @var string Prefix to the atomic section counter used to make savepoint IDs */
-	private const SAVEPOINT_PREFIX = 'wikimedia_rdbms_atomic';
 
 	/** @var int Writes to this temporary table do not affect lastDoneWrites() */
 	private const TEMP_NORMAL = 1;
@@ -241,7 +233,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param array $params Parameters passed from Database::factory()
 	 */
 	public function __construct( array $params ) {
-		$this->transactionManager = new TransactionManager( $params['queryLogger'] );
+		$this->transactionManager = new TransactionManager(
+			$params['queryLogger'],
+			$params['trxProfiler']
+		);
 		$this->connectionParams = [
 			self::CONN_HOST => ( isset( $params['host'] ) && $params['host'] !== '' )
 				? $params['host']
@@ -273,7 +268,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$this->srvCache = $params['srvCache'];
 		$this->profiler = is_callable( $params['profiler'] ) ? $params['profiler'] : null;
-		$this->trxProfiler = $params['trxProfiler'];
 		$this->connLogger = $params['connLogger'];
 		$this->queryLogger = $params['queryLogger'];
 		$this->replLogger = $params['replLogger'];
@@ -446,7 +440,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $dbType A possible DB type (sqlite, mysql, postgres,...)
 	 * @param string|null $driver Optional name of a specific DB client driver
 	 * @return array Map of (Database::ATTR_* constant => value) for all such constants
-	 * @throws InvalidArgumentException
+	 * @throws DBUnexpectedError
 	 * @since 1.31
 	 */
 	final public static function attributesFromType( $dbType, $driver = null ) {
@@ -457,8 +451,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		];
 
 		$class = self::getClass( $dbType, $driver );
-
-		return call_user_func( [ $class, 'getAttributes' ] ) + $defaults;
+		if ( class_exists( $class ) ) {
+			return call_user_func( [ $class, 'getAttributes' ] ) + $defaults;
+		} else {
+			throw new DBUnexpectedError( null, "$dbType is not a supported database type." );
+		}
 	}
 
 	/**
@@ -670,12 +667,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function writesPending() {
-		return $this->trxLevel() && $this->trxDoneWrites;
+		return $this->transactionManager->writesPending();
 	}
 
 	public function writesOrCallbacksPending() {
 		return $this->trxLevel() && (
-			$this->trxDoneWrites ||
+			$this->transactionManager->isTrxDoneWrites() ||
 			$this->trxPostCommitOrIdleCallbacks ||
 			$this->trxPreCommitOrIdleCallbacks ||
 			$this->trxEndCallbacks ||
@@ -699,20 +696,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL ) {
-		if ( !$this->trxLevel() ) {
-			return false;
-		} elseif ( !$this->trxDoneWrites ) {
-			return 0.0;
-		}
-		$rtt = null;
-		if ( $type == self::ESTIMATE_DB_APPLY ) {
-			// passed by reference
-			$this->ping( $rtt );
-		}
-		return $this->transactionManager->pendingWriteQueryDuration( $type, $rtt );
+		return $this->transactionManager->pendingWriteQueryDuration( $this, $type );
 	}
 
 	public function pendingWriteCallers() {
+		if ( !$this->transactionManager ) {
+			return [];
+		}
 		return $this->transactionManager->pendingWriteCallers();
 	}
 
@@ -987,15 +977,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				throw new DBReadOnlyError( $this, "Database is read-only: $reason" );
 			}
 		}
-	}
-
-	/**
-	 * @deprecated since 1.37; please use assertIsWritablePrimary() instead.
-	 * @throws DBReadOnlyError
-	 */
-	protected function assertIsWritableMaster() {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->assertIsWritablePrimary();
 	}
 
 	/**
@@ -1362,14 +1343,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Keep track of whether the transaction has write queries pending
 		if ( $isPermWrite ) {
 			$this->lastWriteTime = microtime( true );
-			if ( $this->trxLevel() && !$this->trxDoneWrites ) {
-				$this->trxDoneWrites = true;
-				$this->trxProfiler->transactionWritingIn(
-					$this->getServerName(),
-					$this->getDomainID(),
-					$this->transactionManager->getTrxId()
-				);
-			}
+			$this->transactionManager->transactionWritingIn(
+				$this->getServerName(),
+				$this->getDomainID()
+			);
 		}
 
 		$prefix = $this->topologyRole === IDatabase::ROLE_STREAMING_MASTER ? 'query-m: ' : 'query: ';
@@ -1422,12 +1399,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$numRows = $ret->numRows();
 		}
 
-		$this->trxProfiler->recordQueryCompletion(
+		$this->transactionManager->recordQueryCompletion(
 			$generalizedSql,
 			$startTime,
 			$isPermWrite,
 			$isPermWrite ? $this->affectedRows() : $numRows,
-			$this->transactionManager->getTrxId(),
 			$this->getServerName()
 		);
 
@@ -1566,22 +1542,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// https://www.postgresql.org/docs/9.4/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$this->sessionNamedLocks = [];
 		// Session loss implies transaction loss
-		$oldTrxId = $this->transactionManager->consumeTrxId();
-		$this->trxAtomicCounter = 0;
 		$this->trxPostCommitOrIdleCallbacks = []; // T67263; transaction already lost
 		$this->trxPreCommitOrIdleCallbacks = []; // T67263; transaction already lost
 		// Clear additional subclass fields
+		$oldTrxId = $this->transactionManager->consumeTrxId();
 		$this->doHandleSessionLossPreconnect();
-		// @note: leave trxRecurringCallbacks in place
-		if ( $this->trxDoneWrites ) {
-			$this->trxProfiler->transactionWritingOut(
-				$this->getServerName(),
-				$this->getDomainID(),
-				$oldTrxId,
-				$this->pendingWriteQueryDuration( self::ESTIMATE_TOTAL ),
-				$this->transactionManager->getTrxWriteAffectedRows()
-			);
-		}
+		$this->transactionManager->transactionWritingOut( $this, $oldTrxId );
 	}
 
 	/**
@@ -4493,10 +4459,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return string
 	 */
 	private function nextSavepointId( $fname ) {
-		$savepointId = self::SAVEPOINT_PREFIX . ++$this->trxAtomicCounter;
-		$this->transactionManager->onNextSavePointId( $this, $fname, $savepointId );
-
-		return $savepointId;
+		return $this->transactionManager->nextSavePointId( $this, $fname );
 	}
 
 	final public function startAtomic(
@@ -4703,9 +4666,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw $e;
 		}
 		$this->transactionManager->newTrxId( $mode, $fname );
-		$this->trxAtomicCounter = 0;
-		$this->transactionManager->setTrxTimestamp( microtime( true ) );
-		$this->trxDoneWrites = false;
 		// With REPEATABLE-READ isolation, the first SELECT establishes the read snapshot,
 		// so get the replication lag estimate before any transaction SELECT queries come in.
 		// This way, the lag estimate reflects what will actually be read. Also, if heartbeat
@@ -4753,15 +4713,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 		$oldTrxId = $this->transactionManager->consumeTrxId();
 		$this->transactionManager->setTrxStatusToNone();
-		if ( $this->trxDoneWrites ) {
+		if ( $this->transactionManager->isTrxDoneWrites() ) {
 			$this->lastWriteTime = microtime( true );
-			$this->trxProfiler->transactionWritingOut(
-				$this->getServerName(),
-				$this->getDomainID(),
-				$oldTrxId,
-				$writeTime,
-				$this->transactionManager->getTrxWriteAffectedRows()
-			);
+			$this->transactionManager->transactionWritingOut( $this, $oldTrxId );
 		}
 		// With FLUSHING_ALL_PEERS, callbacks will run when requested by a dedicated phase
 		// within LoadBalancer. With FLUSHING_INTERNAL, callbacks will run when requested by
@@ -4816,18 +4770,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Clear callbacks that depend on transaction or transaction round commit
 		$this->trxPostCommitOrIdleCallbacks = [];
 		$this->trxPreCommitOrIdleCallbacks = [];
-		// Estimate the RTT via a query now that trxStatus is OK
-		$rtt = null;
-		$this->ping( $rtt );
-		if ( $this->trxDoneWrites ) {
-			$this->trxProfiler->transactionWritingOut(
-				$this->getServerName(),
-				$this->getDomainID(),
-				$oldTrxId,
-				$this->transactionManager->pendingWriteQueryDuration( self::ESTIMATE_DB_APPLY, $rtt ),
-				$this->transactionManager->getTrxWriteAffectedRows()
-			);
-		}
+		$this->transactionManager->transactionWritingOut( $this, $oldTrxId );
 		// With FLUSHING_ALL_PEERS, callbacks will run when requested by a dedicated phase
 		// within LoadBalancer. With FLUSHING_INTERNAL, callbacks will run when requested by
 		// the Database caller during a safe point. This avoids isolation and recursion issues.
@@ -5897,9 +5840,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Run a few simple checks and close dangling connections
 	 */
 	public function __destruct() {
-		if ( $this->trxLevel() && $this->trxDoneWrites ) {
-			$trxFname = $this->transactionManager->getTrxFname();
-			trigger_error( "Uncommitted DB writes (transaction from {$trxFname})" );
+		if ( $this->transactionManager ) {
+			// Tests mock this class and disable constructor.
+			$this->transactionManager->onDestruct();
 		}
 
 		$danglingWriters = $this->pendingWriteAndCallbackCallers();

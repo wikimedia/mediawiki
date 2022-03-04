@@ -30,6 +30,7 @@ use RuntimeException;
 use Throwable;
 use UDPTransport;
 use WikiMap;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * PSR-3 logger that mimics the historic implementation of MediaWiki's former
@@ -514,7 +515,7 @@ class LegacyLogger extends AbstractLogger {
 			$transport = UDPTransport::newFromString( $file );
 			$transport->emit( $text );
 		} else {
-			\Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$exists = file_exists( $file );
 			$size = $exists ? filesize( $file ) : false;
 			if ( !$exists ||
@@ -522,7 +523,7 @@ class LegacyLogger extends AbstractLogger {
 			) {
 				file_put_contents( $file, $text, FILE_APPEND );
 			}
-			\Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		}
 	}
 

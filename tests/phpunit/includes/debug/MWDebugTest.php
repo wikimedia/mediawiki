@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\AtEase\AtEase;
+
 class MWDebugTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
@@ -11,12 +13,12 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 	public static function setUpBeforeClass(): void {
 		parent::setUpBeforeClass();
 		MWDebug::init();
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 	}
 
 	public static function tearDownAfterClass(): void {
 		MWDebug::deinit();
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		parent::tearDownAfterClass();
 	}
 

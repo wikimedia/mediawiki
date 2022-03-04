@@ -565,7 +565,7 @@ class CoreParserFunctions {
 		if (
 			$raw !== null && self::matchAgainstMagicword( $magicWordFactory, 'rawsuffix', $raw )
 		) {
-			return $num;
+			return (string)$num;
 		} else {
 			return $language->formatNum( $num );
 		}

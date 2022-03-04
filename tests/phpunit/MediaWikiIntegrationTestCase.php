@@ -2284,12 +2284,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected function markTestSkippedIfNoDiff3() {
 		global $wgDiff3;
 
-		# This check may also protect against code injection in
-		# case of broken installations.
-		Wikimedia\suppressWarnings();
-		$haveDiff3 = $wgDiff3 && is_file( $wgDiff3 );
-		Wikimedia\restoreWarnings();
-
+		// This check may also protect against code injection in
+		// case of broken installations.
+		$haveDiff3 = $wgDiff3 && @is_file( $wgDiff3 );
 		if ( !$haveDiff3 ) {
 			$this->markTestSkipped( "Skip test, since diff3 is not configured" );
 		}

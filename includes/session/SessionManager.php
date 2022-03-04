@@ -1060,7 +1060,7 @@ class SessionManager implements SessionManagerInterface {
 			return;
 		}
 		$mwuser = $session->getRequest()->getCookie( 'mwuser-sessionId' );
-		$now = \MWTimestamp::now( TS_UNIX );
+		$now = (int)\MWTimestamp::now( TS_UNIX );
 
 		// Record (and possibly log) that the IP is using the current session.
 		// Don't touch the stored data unless we are changing the IP or re-adding an expired one.

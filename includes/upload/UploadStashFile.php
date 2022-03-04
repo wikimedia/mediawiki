@@ -90,7 +90,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * The actual argument is the result of thumbName although we seem to have
 	 * buggy code elsewhere that expects a boolean 'suffix'
 	 *
-	 * @param string $thumbName Name of thumbnail (e.g. "120px-123456.jpg" ),
+	 * @param string|false $thumbName Name of thumbnail (e.g. "120px-123456.jpg" ),
 	 *   or false to just get the path
 	 * @return string Path thumbnail should take on filesystem, or containing
 	 *   directory if thumbname is false
@@ -133,7 +133,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * the thumbnail urls be predictable. However, in our model the URL is
 	 * not based on the filename (that's hidden in the db)
 	 *
-	 * @param string $thumbName Basename of thumbnail file -- however, we don't
+	 * @param string|false $thumbName Basename of thumbnail file -- however, we don't
 	 *   want to use the file exactly
 	 * @return string URL to access thumbnail, or URL with partial path
 	 */

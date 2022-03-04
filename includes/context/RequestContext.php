@@ -52,7 +52,7 @@ class RequestContext implements IContextSource, MutableContext {
 	private $title;
 
 	/**
-	 * @var WikiPage
+	 * @var WikiPage|null
 	 */
 	private $wikipage;
 

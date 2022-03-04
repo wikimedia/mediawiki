@@ -103,7 +103,7 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 			[
 				[
 					'rev_page' => 'title',
-					'ts_tags' => [],
+					'ts_tags' => '',
 					'rev_deleted' => false,
 					'rev_minor_edit' => false,
 					'rev_parent_id' => 1,
@@ -128,7 +128,7 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 			'rev_page' => 'title',
 			'rev_deleted' => false,
 			'rev_minor_edit' => false,
-			'ts_tags' => [],
+			'ts_tags' => '',
 			'rev_parent_id' => 1,
 			'user_name' => 'Jdlrobson',
 			'rev_comment_data' => '{}',
@@ -162,7 +162,7 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 
 		$this->assertStringContainsString( $firstHeader, $html );
 		$this->assertStringContainsString( $secondHeader, $html );
-		$this->assertStringContainsString( '<div id="pagehistory"', $html );
+		$this->assertStringContainsString( '<section id="pagehistory"', $html );
 	}
 
 	/**
@@ -173,7 +173,7 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 			'rev_page' => 'title',
 			'rev_deleted' => false,
 			'rev_minor_edit' => false,
-			'ts_tags' => [],
+			'ts_tags' => '',
 			'rev_parent_id' => 1,
 			'user_name' => 'Jdlrobson',
 			'rev_comment_data' => '{}',

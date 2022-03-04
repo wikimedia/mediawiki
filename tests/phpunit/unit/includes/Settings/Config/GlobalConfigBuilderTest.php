@@ -14,11 +14,11 @@ class GlobalConfigBuilderTest extends TestCase {
 	use ConfigSinkTestTrait;
 
 	protected function getConfigSink(): ConfigBuilder {
-		return new GlobalConfigBuilder( 'prefix_' );
+		return new GlobalConfigBuilder( 'GlobalConfigBuilderTestPrefix_' );
 	}
 
 	protected function assertKeyHasValue( string $key, $value ) {
-		$this->assertEquals( $value, $GLOBALS['prefix_' . $key] );
+		$this->assertEquals( $value, $GLOBALS['GlobalConfigBuilderTestPrefix_' . $key] );
 	}
 
 	public function testBuild() {
@@ -42,7 +42,7 @@ class GlobalConfigBuilderTest extends TestCase {
 	}
 
 	public function testMergeWithGlobal() {
-		$GLOBALS['prefix_foo'] = [ 'a' => 1, 'b' => 2 ];
+		$GLOBALS['GlobalConfigBuilderTestPrefix_foo'] = [ 'a' => 1, 'b' => 2 ];
 
 		$this->getConfigSink()
 			->set(
@@ -51,6 +51,9 @@ class GlobalConfigBuilderTest extends TestCase {
 				MergeStrategy::newFromName( MergeStrategy::ARRAY_MERGE )
 			);
 		$this->assertKeyHasValue( 'foo', [ 'a' => 11, 'b' => 2, 'c' => 33 ] );
-		$this->assertSame( [ 'a' => 11, 'b' => 2, 'c' => 33 ], $GLOBALS['prefix_foo'] );
+		$this->assertSame(
+			[ 'a' => 11, 'b' => 2, 'c' => 33 ],
+			$GLOBALS['GlobalConfigBuilderTestPrefix_foo']
+		);
 	}
 }

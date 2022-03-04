@@ -25,6 +25,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\AtEase\AtEase;
 
 /**
  * Imports a XML dump from a file (either from file upload, files on disk, or HTTP)
@@ -60,9 +61,9 @@ class ImportStreamSource implements ImportSource {
 	 * @return Status
 	 */
 	public static function newFromFile( $filename ) {
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$file = fopen( $filename, 'rt' );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		if ( !$file ) {
 			return Status::newFatal( "importcantopen" );
 		}

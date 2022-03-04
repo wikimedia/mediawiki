@@ -156,17 +156,17 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	public $mEmail;
 	/** @var string TS_MW timestamp from the DB */
 	public $mTouched;
-	/** @var string TS_MW timestamp from cache */
+	/** @var string|null TS_MW timestamp from cache */
 	protected $mQuickTouched;
-	/** @var string */
+	/** @var string|null */
 	protected $mToken;
-	/** @var string */
+	/** @var string|null */
 	public $mEmailAuthenticated;
-	/** @var string */
+	/** @var string|null */
 	protected $mEmailToken;
-	/** @var string */
+	/** @var string|null */
 	protected $mEmailTokenExpires;
-	/** @var string */
+	/** @var string|null */
 	protected $mRegistration;
 	// @}
 
@@ -201,7 +201,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @var string|int -1 when the block is unset
 	 */
 	public $mBlockedby;
-	/** @var string */
+	/** @var string|false */
 	protected $mHash;
 	/**
 	 * TODO: This should be removed when User::BlockedFor

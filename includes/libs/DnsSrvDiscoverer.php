@@ -35,7 +35,7 @@ class DnsSrvDiscoverer {
 	private $protocol;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	private $domain;
 

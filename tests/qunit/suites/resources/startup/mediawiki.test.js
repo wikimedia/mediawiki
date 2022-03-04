@@ -56,7 +56,6 @@
 		QUnit.test( 'Construct', function ( assert ) {
 			var hello = mw.message( 'hello' );
 
-			assert.strictEqual( hello.format, 'text', 'internal "format" property' );
 			assert.strictEqual( hello.map, mw.messages, 'internal "map" property' );
 			assert.strictEqual( hello.key, 'hello', 'internal "key" property' );
 			assert.deepEqual( hello.parameters, [], 'internal "parameters" property' );
@@ -108,29 +107,6 @@
 			assert.strictEqual( mw.message( 'test-qqx' ).plain(), '(test-qqx)', 'qqx message (defined)' );
 			assert.strictEqual( mw.message( 'test-qqx', 'bar', 'baz' ).plain(), '(test-qqx: bar, baz)', 'qqx message (defined) with parameters' );
 			assert.strictEqual( mw.message( 'test-nonqqx' ).plain(), 'hello world', 'non-qqx message in qqx mode' );
-		} );
-
-		QUnit.test( 'toString() state', function ( assert ) {
-			mw.messages.set( 'hello', 'Hello <b>awesome</b> world' );
-			var hello = mw.message( 'hello' );
-
-			// Silence deprecation warning
-			this.sandbox.stub( mw.log, 'warn' );
-
-			hello.format = 'plain';
-			assert.strictEqual( hello.toString(), 'Hello <b>awesome</b> world', 'use stored format' );
-
-			assert.strictEqual( hello.escaped(), 'Hello &lt;b&gt;awesome&lt;/b&gt; world', 'escaped output' );
-			assert.strictEqual( hello.format, 'escaped', 'escaped() updates format' );
-
-			hello.parse();
-			assert.strictEqual( hello.format, 'parse', 'parse() updates format' );
-
-			hello.plain();
-			assert.strictEqual( hello.format, 'plain', 'plain() updates format' );
-
-			hello.text();
-			assert.strictEqual( hello.format, 'text', 'text() updates format' );
 		} );
 
 		// Basic integration test for magic words

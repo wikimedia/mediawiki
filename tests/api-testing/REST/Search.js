@@ -112,7 +112,6 @@ describe( 'Search', () => {
 			const { body } = await client.get( `/search/page?q=${uniquePageText}` );
 			assert.lengthOf( body.pages, 1 );
 			assert.nestedPropertyVal( body.pages[ 0 ], 'title', redirectTargetTitle );
-			assert.nestedPropertyVal( body.pages[ 0 ], 'matched_title', null );
 		} );
 	} );
 

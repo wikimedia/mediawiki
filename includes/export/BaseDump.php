@@ -155,7 +155,7 @@ class BaseDump {
 	}
 
 	/**
-	 * @return string
+	 * @return string|null
 	 */
 	private function nextText() {
 		if ( !$this->skipTo( 'text', 'revision' ) ) {
@@ -197,7 +197,7 @@ class BaseDump {
 	 * Fetches text contents of the current element, assuming
 	 * no sub-elements or such scary things.
 	 *
-	 * @return string
+	 * @return string|null
 	 */
 	private function nodeContents() {
 		if ( $this->atEnd ) {

@@ -1,5 +1,5 @@
 /*!
- * QUnit 2.16.0
+ * QUnit 2.18.0
  * https://qunitjs.com/
  *
  * Copyright OpenJS Foundation and other contributors
@@ -9,19 +9,40 @@
 (function () {
   'use strict';
 
-  // Support IE 9-10, PhantomJS: Fallback for fuzzysort.js used by ./html.js
+  // Support IE 9-10, Safari 7, PhantomJS: Partial Map fallback.
+  // Used by html.js (via fuzzysort.js), and test.js.
+  //
+  // FIXME: This check is broken. This file is embedded in the qunit.js closure,
+  // thus the Map var is hoisted in that scope, and starts undefined (not a function).
   var Map = typeof Map === "function" ? Map : function StringMap() {
   	var store = Object.create( null );
+  	var hasOwn = Object.prototype.hasOwnProperty;
   	this.get = function( strKey ) {
   		return store[ strKey ];
   	};
   	this.set = function( strKey, val ) {
+  		if ( !hasOwn.call( store, strKey ) ) {
+  			this.size++;
+  		}
   		store[ strKey ] = val;
   		return this;
   	};
+  	this.delete = function( strKey ) {
+  		if ( hasOwn.call( store, strKey ) ) {
+  			delete store[ strKey ];
+  			this.size--;
+  		}
+  	};
+  	this.forEach = function( callback ) {
+  		for ( var strKey in store ) {
+  			callback( store[ strKey ], strKey );
+  		}
+  	};
   	this.clear = function() {
   		store = Object.create( null );
+  		this.size = 0;
   	};
+  	this.size = 0;
   };
 
   function _typeof(obj) {
@@ -62,6 +83,10 @@
     return Constructor;
   }
 
+  function _slicedToArray(arr, i) {
+    return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+  }
+
   function _toConsumableArray(arr) {
     return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
   }
@@ -70,8 +95,42 @@
     if (Array.isArray(arr)) return _arrayLikeToArray(arr);
   }
 
+  function _arrayWithHoles(arr) {
+    if (Array.isArray(arr)) return arr;
+  }
+
   function _iterableToArray(iter) {
     if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+  }
+
+  function _iterableToArrayLimit(arr, i) {
+    var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+
+    if (_i == null) return;
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+
+    var _s, _e;
+
+    try {
+      for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) {
+        _arr.push(_s.value);
+
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"] != null) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+
+    return _arr;
   }
 
   function _unsupportedIterableToArray(o, minLen) {
@@ -93,6 +152,10 @@
 
   function _nonIterableSpread() {
     throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+
+  function _nonIterableRest() {
+    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
 
   function _createForOfIteratorHelper(o, allowArrayLike) {
@@ -277,7 +340,7 @@
    * Determines whether an element exists in a given array or not.
    *
    * @method inArray
-   * @param {Any} elem
+   * @param {any} elem
    * @param {Array} array
    * @return {boolean}
    */
@@ -286,24 +349,56 @@
     return array.indexOf(elem) !== -1;
   }
   /**
-   * Makes a clone of an object using only Array or Object as base,
-   * and copies over the own enumerable properties.
+   * Recursively clone an object into a plain array or object, taking only the
+   * own enumerable properties.
    *
-   * @param {Object} obj
-   * @return {Object} New object with only the own properties (recursively).
+   * @param {any} obj
+   * @param {bool} [allowArray=true]
+   * @return {Object|Array}
    */
 
   function objectValues(obj) {
-    var vals = is("array", obj) ? [] : {};
+    var allowArray = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+    var vals = allowArray && is("array", obj) ? [] : {};
 
     for (var key in obj) {
       if (hasOwn$1.call(obj, key)) {
         var val = obj[key];
-        vals[key] = val === Object(val) ? objectValues(val) : val;
+        vals[key] = val === Object(val) ? objectValues(val, allowArray) : val;
       }
     }
 
     return vals;
+  }
+  /**
+   * Recursively clone an object into a plain object, taking only the
+   * subset of own enumerable properties that exist a given model.
+   *
+   * @param {any} obj
+   * @param {any} model
+   * @return {Object}
+   */
+
+  function objectValuesSubset(obj, model) {
+    // Return primitive values unchanged to avoid false positives or confusing
+    // results from assert.propContains().
+    // E.g. an actual null or false wrongly equaling an empty object,
+    // or an actual string being reported as object not matching a partial object.
+    if (obj !== Object(obj)) {
+      return obj;
+    } // Unlike objectValues(), subset arrays to a plain objects as well.
+    // This enables subsetting [20, 30] with {1: 30}.
+
+
+    var subset = {};
+
+    for (var key in model) {
+      if (hasOwn$1.call(model, key) && hasOwn$1.call(obj, key)) {
+        subset[key] = objectValuesSubset(obj[key], model[key]);
+      }
+    }
+
+    return subset;
   }
   function extend(a, b, undefOnly) {
     for (var prop in b) {
@@ -378,6 +473,25 @@
     }
 
     return hex.slice(-8);
+  }
+  /**
+   * Converts an error into a simple string for comparisons.
+   *
+   * @param {Error|any} error
+   * @return {string}
+   */
+
+  function errorString(error) {
+    // Use String() instead of toString() to handle non-object values like undefined or null.
+    var resultErrorString = String(error); // If the error wasn't a subclass of Error but something like
+    // an object literal with name and message properties...
+
+    if (resultErrorString.slice(0, 7) === "[object") {
+      // Based on https://es5.github.io/#x15.11.4.4
+      return (error.name || "Error") + (error.message ? ": ".concat(error.message) : "");
+    } else {
+      return resultErrorString;
+    }
   }
 
   // Authors: Philippe Rathé <prathe@gmail.com>, David Chan <david@troi.org>
@@ -697,6 +811,11 @@
   var config = {
     // The queue of tests to run
     queue: [],
+    stats: {
+      all: 0,
+      bad: 0,
+      testCount: 0
+    },
     // Block until document ready
     blocking: true,
     // whether or not to fail when there are zero tests
@@ -721,6 +840,38 @@
     // Set of all modules.
     modules: [],
     // The first unnamed module
+    //
+    // By being defined as the intial value for currentModule, it is the
+    // receptacle and implied parent for any global tests. It is as if we
+    // called `QUnit.module( "" );` before any other tests were defined.
+    //
+    // If we reach begin() and no tests were put in it, we dequeue it as if it
+    // never existed, and in that case never expose it to the events and
+    // callbacks API.
+    //
+    // When global tests are defined, then this unnamed module will execute
+    // as any other module, including moduleStart/moduleDone events etc.
+    //
+    // Since this module isn't explicitly created by the user, they have no
+    // access to add hooks for it. The hooks object is defined to comply
+    // with internal expectations of test.js, but they will be empty.
+    // To apply hooks, place tests explicitly in a QUnit.module(), and use
+    // its hooks accordingly.
+    //
+    // For global hooks that apply to all tests and all modules, use QUnit.hooks.
+    //
+    // NOTE: This is *not* a "global module". It is not an ancestor of all modules
+    // and tests. It is merely the parent for any tests defined globally,
+    // before the first QUnit.module(). As such, the events for this unnamed
+    // module will fire as normal, right after its last test, and *not* at
+    // the end of the test run.
+    //
+    // NOTE: This also should probably also not become a global module, unless
+    // we keep it out of the public API. For example, it would likely not
+    // improve the user interface and plugin behaviour if all modules became
+    // wrapped between the start and end events of this module, and thus
+    // needlessly add indentation, indirection, or other visible noise.
+    // Unit tests for the callbacks API would detect that as a regression.
     currentModule: {
       name: "",
       tests: [],
@@ -734,6 +885,9 @@
         after: []
       }
     },
+    // Exposed to make resets easier
+    // Ref https://github.com/qunitjs/qunit/pull/1598
+    globalHooks: {},
     callbacks: {},
     // The storage module to use for reordering tests
     storage: localSessionStorage
@@ -1031,7 +1185,11 @@
       _classCallCheck(this, SuiteReport);
 
       this.name = name;
-      this.fullName = parentSuite ? parentSuite.fullName.concat(name) : [];
+      this.fullName = parentSuite ? parentSuite.fullName.concat(name) : []; // When an "error" event is emitted from onUncaughtException(), the
+      // "runEnd" event should report the status as failed. The "runEnd" event data
+      // is tracked through this property (via the "runSuite" instance).
+
+      this.globalFailureCount = 0;
       this.tests = [];
       this.childSuites = [];
 
@@ -1113,6 +1271,8 @@
           todo: 0,
           total: 0
         };
+        counts.failed += this.globalFailureCount;
+        counts.total += this.globalFailureCount;
         counts = this.tests.reduce(function (counts, test) {
           if (test.valid) {
             counts[test.getStatus()]++;
@@ -1152,6 +1312,7 @@
   }();
 
   var moduleStack = [];
+  var runSuite = new SuiteReport();
 
   function isParentModuleInQueue() {
     var modulesInQueue = config.modules.filter(function (module) {
@@ -1167,18 +1328,35 @@
   function createModule(name, testEnvironment, modifiers) {
     var parentModule = moduleStack.length ? moduleStack.slice(-1)[0] : null;
     var moduleName = parentModule !== null ? [parentModule.name, name].join(" > ") : name;
-    var parentSuite = parentModule ? parentModule.suiteReport : globalSuite;
+    var parentSuite = parentModule ? parentModule.suiteReport : runSuite;
     var skip = parentModule !== null && parentModule.skip || modifiers.skip;
     var todo = parentModule !== null && parentModule.todo || modifiers.todo;
+    var env = {};
+
+    if (parentModule) {
+      extend(env, parentModule.testEnvironment);
+    }
+
+    extend(env, testEnvironment);
     var module = {
       name: moduleName,
       parentModule: parentModule,
+      hooks: {
+        before: [],
+        beforeEach: [],
+        afterEach: [],
+        after: []
+      },
+      testEnvironment: env,
       tests: [],
       moduleId: generateHash(moduleName),
       testsRun: 0,
       testsIgnored: 0,
       childModules: [],
       suiteReport: new SuiteReport(name, parentSuite),
+      // Initialised by test.js when the module start executing,
+      // i.e. before the first test in this module (or a child).
+      stats: null,
       // Pass along `skip` and `todo` properties from parent module, in case
       // there is one, to childs. And use own otherwise.
       // This property will be used to mark own tests and tests of child suites
@@ -1187,17 +1365,33 @@
       todo: skip ? false : todo,
       ignored: modifiers.ignored || false
     };
-    var env = {};
 
     if (parentModule) {
       parentModule.childModules.push(module);
-      extend(env, parentModule.testEnvironment);
     }
 
-    extend(env, testEnvironment);
-    module.testEnvironment = env;
     config.modules.push(module);
     return module;
+  }
+
+  function setHookFromEnvironment(hooks, environment, name) {
+    var potentialHook = environment[name];
+
+    if (typeof potentialHook === "function") {
+      hooks[name].push(potentialHook);
+    }
+
+    delete environment[name];
+  }
+
+  function makeSetHook(module, hookName) {
+    return function setHook(callback) {
+      if (config.currentModule !== module) {
+        Logger.warn("The `" + hookName + "` hook was called inside the wrong module (`" + config.currentModule.name + "`). " + "Instead, use hooks provided by the callback to the containing module (`" + module.name + "`). " + "This will become an error in QUnit 3.0.");
+      }
+
+      module.hooks[hookName].push(callback);
+    };
   }
 
   function processModule(name, options, executeNow) {
@@ -1208,51 +1402,40 @@
       options = undefined;
     }
 
-    var module = createModule(name, options, modifiers); // Move any hooks to a 'hooks' object
+    var module = createModule(name, options, modifiers); // Transfer any initial hooks from the options object to the 'hooks' object
 
     var testEnvironment = module.testEnvironment;
-    var hooks = module.hooks = {};
+    var hooks = module.hooks;
     setHookFromEnvironment(hooks, testEnvironment, "before");
     setHookFromEnvironment(hooks, testEnvironment, "beforeEach");
     setHookFromEnvironment(hooks, testEnvironment, "afterEach");
     setHookFromEnvironment(hooks, testEnvironment, "after");
     var moduleFns = {
-      before: setHookFunction(module, "before"),
-      beforeEach: setHookFunction(module, "beforeEach"),
-      afterEach: setHookFunction(module, "afterEach"),
-      after: setHookFunction(module, "after")
+      before: makeSetHook(module, "before"),
+      beforeEach: makeSetHook(module, "beforeEach"),
+      afterEach: makeSetHook(module, "afterEach"),
+      after: makeSetHook(module, "after")
     };
-    var currentModule = config.currentModule;
+    var prevModule = config.currentModule;
+    config.currentModule = module;
 
     if (objectType(executeNow) === "function") {
       moduleStack.push(module);
-      config.currentModule = module;
-      var cbReturnValue = executeNow.call(module.testEnvironment, moduleFns);
 
-      if (cbReturnValue != null && objectType(cbReturnValue.then) === "function") {
-        Logger.warn("Returning a promise from a module callback is not supported. " + "Instead, use hooks for async behavior. " + "This will become an error in QUnit 3.0.");
-      }
+      try {
+        var cbReturnValue = executeNow.call(module.testEnvironment, moduleFns);
 
-      moduleStack.pop();
-      module = module.parentModule || currentModule;
-    }
-
-    config.currentModule = module;
-
-    function setHookFromEnvironment(hooks, environment, name) {
-      var potentialHook = environment[name];
-      hooks[name] = typeof potentialHook === "function" ? [potentialHook] : [];
-      delete environment[name];
-    }
-
-    function setHookFunction(module, hookName) {
-      return function setHook(callback) {
-        if (config.currentModule !== module) {
-          Logger.warn("The `" + hookName + "` hook was called inside the wrong module. " + "Instead, use hooks provided by the callback to the containing module. " + "This will become an error in QUnit 3.0.");
+        if (cbReturnValue != null && objectType(cbReturnValue.then) === "function") {
+          Logger.warn("Returning a promise from a module callback is not supported. " + "Instead, use hooks for async behavior. " + "This will become an error in QUnit 3.0.");
         }
-
-        module.hooks[hookName].push(callback);
-      };
+      } finally {
+        // If the module closure threw an uncaught error during the load phase,
+        // we let this bubble up to global error handlers. But, not until after
+        // we teardown internal state to ensure correct module nesting.
+        // Ref https://github.com/qunitjs/qunit/issues/1478.
+        moduleStack.pop();
+        config.currentModule = module.parentModule || prevModule;
+      }
     }
   }
 
@@ -1267,12 +1450,17 @@
 
   module$1.only = function () {
     if (!focused$1) {
+      // Upon the first module.only() call,
+      // delete any and all previously registered modules and tests.
       config.modules.length = 0;
-      config.queue.length = 0;
+      config.queue.length = 0; // Ignore any tests declared after this block within the same
+      // module parent. https://github.com/qunitjs/qunit/issues/1645
+
+      config.currentModule.ignored = true;
     }
 
-    processModule.apply(void 0, arguments);
     focused$1 = true;
+    processModule.apply(void 0, arguments);
   };
 
   module$1.skip = function (name, options, executeNow) {
@@ -1296,7 +1484,7 @@
   };
 
   var LISTENERS = Object.create(null);
-  var SUPPORTED_EVENTS = ["runStart", "suiteStart", "testStart", "assertion", "testEnd", "suiteEnd", "runEnd"];
+  var SUPPORTED_EVENTS = ["error", "runStart", "suiteStart", "testStart", "assertion", "testEnd", "suiteEnd", "runEnd"];
   /**
    * Emits an event with the specified data to all currently registered listeners.
    * Callbacks will fire in the order in which they are registered (FIFO). This
@@ -1961,32 +2149,45 @@
 
 
   function done() {
-    var storage = config.storage;
-    ProcessingQueue.finished = true;
-    var runtime = now() - config.started;
-    var passed = config.stats.all - config.stats.bad;
-
+    // We have reached the end of the processing queue and are about to emit the
+    // "runEnd" event after which reporters typically stop listening and exit
+    // the process. First, check if we need to emit one final test.
     if (config.stats.testCount === 0 && config.failOnZeroTests === true) {
+      var error;
+
       if (config.filter && config.filter.length) {
-        throw new Error("No tests matched the filter \"".concat(config.filter, "\"."));
+        error = new Error("No tests matched the filter \"".concat(config.filter, "\"."));
+      } else if (config.module && config.module.length) {
+        error = new Error("No tests matched the module \"".concat(config.module, "\"."));
+      } else if (config.moduleId && config.moduleId.length) {
+        error = new Error("No tests matched the moduleId \"".concat(config.moduleId, "\"."));
+      } else if (config.testId && config.testId.length) {
+        error = new Error("No tests matched the testId \"".concat(config.testId, "\"."));
+      } else {
+        error = new Error("No tests were run.");
       }
 
-      if (config.module && config.module.length) {
-        throw new Error("No tests matched the module \"".concat(config.module, "\"."));
-      }
+      test("global failure", extend(function (assert) {
+        assert.pushResult({
+          result: false,
+          message: error.message,
+          source: error.stack
+        });
+      }, {
+        validTest: true
+      })); // We do need to call `advance()` in order to resume the processing queue.
+      // Once this new test is finished processing, we'll reach `done` again, and
+      // that time the above condition will evaluate to false.
 
-      if (config.moduleId && config.moduleId.length) {
-        throw new Error("No tests matched the moduleId \"".concat(config.moduleId, "\"."));
-      }
-
-      if (config.testId && config.testId.length) {
-        throw new Error("No tests matched the testId \"".concat(config.testId, "\"."));
-      }
-
-      throw new Error("No tests were run.");
+      advance();
+      return;
     }
 
-    emit("runEnd", globalSuite.end(true));
+    var storage = config.storage;
+    var runtime = now() - config.started;
+    var passed = config.stats.all - config.stats.bad;
+    ProcessingQueue.finished = true;
+    emit("runEnd", runSuite.end(true));
     runLoggingCallbacks("done", {
       passed: passed,
       failed: config.stats.bad,
@@ -2122,12 +2323,13 @@
   function Test(settings) {
     this.expected = null;
     this.assertions = [];
-    this.semaphore = 0;
     this.module = config.currentModule;
     this.steps = [];
     this.timeout = undefined;
     this.data = undefined;
     this.withData = false;
+    this.pauses = new Map();
+    this.nextPauseId = 1;
     extend(this, settings); // If a module is skipped, all its tests and the tests of the child suites
     // should be treated as skipped even if they are defined as `only` or `todo`.
     // As for `todo` module, all its tests will be treated as `todo` except for
@@ -2141,6 +2343,20 @@
       this.todo = false; // Skipped tests should be left intact
     } else if (this.module.todo && !this.skip) {
       this.todo = true;
+    } // Queuing a late test after the run has ended is not allowed.
+    // This was once supported for internal use by QUnit.onError().
+    // Ref https://github.com/qunitjs/qunit/issues/1377
+
+
+    if (ProcessingQueue.finished) {
+      // Using this for anything other than onError(), such as testing in QUnit.done(),
+      // is unstable and will likely result in the added tests being ignored by CI.
+      // (Meaning the CI passes irregardless of the added tests).
+      //
+      // TODO: Make this an error in QUnit 3.0
+      // throw new Error( "Unexpected new test after the run already ended" );
+      Logger.warn("Unexpected test after runEnd. This is unstable and will fail in QUnit 3.0.");
+      return;
     }
 
     if (!this.skip && typeof this.callback !== "function") {
@@ -2154,6 +2370,14 @@
 
     ++Test.count;
     this.errorForStack = new Error();
+
+    if (this.callback && this.callback.validTest) {
+      // Omit the test-level trace for the internal "No tests" test failure,
+      // There is already an assertion-level trace, and that's noisy enough
+      // as it is.
+      this.errorForStack.stack = undefined;
+    }
+
     this.testReport = new TestReport(this.testName, this.module.suiteReport, {
       todo: this.todo,
       skip: this.skip,
@@ -2272,10 +2496,10 @@
           promise = test.callback.call(test.testEnvironment, test.assert);
         }
 
-        test.resolvePromise(promise); // If the test has a "lock" on it, but the timeout is 0, then we push a
+        test.resolvePromise(promise); // If the test has an async "pause" on it, but the timeout is 0, then we push a
         // failure as the test should be synchronous.
 
-        if (test.timeout === 0 && test.semaphore !== 0) {
+        if (test.timeout === 0 && test.pauses.size > 0) {
           pushFailure("Test did not finish synchronously even though assert.timeout( 0 ) was used.", sourceFromStacktrace(2));
         }
       }
@@ -2283,13 +2507,37 @@
     after: function after() {
       checkPollution();
     },
-    queueHook: function queueHook(hook, hookName, hookOwner) {
+    queueGlobalHook: function queueGlobalHook(hook, hookName) {
       var _this2 = this;
 
-      var callHook = function callHook() {
-        var promise = hook.call(_this2.testEnvironment, _this2.assert);
+      var runHook = function runHook() {
+        config.current = _this2;
+        var promise;
+
+        if (config.notrycatch) {
+          promise = hook.call(_this2.testEnvironment, _this2.assert);
+        } else {
+          try {
+            promise = hook.call(_this2.testEnvironment, _this2.assert);
+          } catch (error) {
+            _this2.pushFailure("Global " + hookName + " failed on " + _this2.testName + ": " + errorString(error), extractStacktrace(error, 0));
+
+            return;
+          }
+        }
 
         _this2.resolvePromise(promise, hookName);
+      };
+
+      return runHook;
+    },
+    queueHook: function queueHook(hook, hookName, hookOwner) {
+      var _this3 = this;
+
+      var callHook = function callHook() {
+        var promise = hook.call(_this3.testEnvironment, _this3.assert);
+
+        _this3.resolvePromise(promise, hookName);
       };
 
       var runHook = function runHook() {
@@ -2298,7 +2546,7 @@
             return;
           }
 
-          _this2.preserveEnvironment = true;
+          _this3.preserveEnvironment = true;
         } // The 'after' hook should only execute when there are not tests left and
         // when the 'after' and 'finish' tasks are the only tasks left to process
 
@@ -2307,7 +2555,7 @@
           return;
         }
 
-        config.current = _this2;
+        config.current = _this3;
 
         if (config.notrycatch) {
           callHook();
@@ -2315,9 +2563,16 @@
         }
 
         try {
+          // This try-block includes the indirect call to resolvePromise, which shouldn't
+          // have to be inside try-catch. But, since we support any user-provided thenable
+          // object, the thenable might throw in some unexpected way.
+          // This subtle behaviour is undocumented. To avoid new failures in minor releases
+          // we will not change this until QUnit 3.
+          // TODO: In QUnit 3, reduce this try-block to just hook.call(), matching
+          // the simplicity of queueGlobalHook.
           callHook();
         } catch (error) {
-          _this2.pushFailure(hookName + " failed on " + _this2.testName + ": " + (error.message || error), extractStacktrace(error, 0));
+          _this3.pushFailure(hookName + " failed on " + _this3.testName + ": " + (error.message || error), extractStacktrace(error, 0));
         }
       };
 
@@ -2326,6 +2581,14 @@
     // Currently only used for module level hooks, can be used to add global level ones
     hooks: function hooks(handler) {
       var hooks = [];
+
+      function processGlobalhooks(test) {
+        if ((handler === "beforeEach" || handler === "afterEach") && config.globalHooks[handler]) {
+          for (var i = 0; i < config.globalHooks[handler].length; i++) {
+            hooks.push(test.queueGlobalHook(config.globalHooks[handler][i], handler));
+          }
+        }
+      }
 
       function processHooks(test, module) {
         if (module.parentModule) {
@@ -2341,6 +2604,7 @@
 
 
       if (!this.skip) {
+        processGlobalhooks(this);
         processHooks(this, this.module);
       }
 
@@ -2456,8 +2720,22 @@
 
       function logSuiteEnd(module) {
         // Reset `module.hooks` to ensure that anything referenced in these hooks
-        // has been released to be garbage collected.
-        module.hooks = {};
+        // has been released to be garbage collected. Descendant modules that were
+        // entirely skipped, e.g. due to filtering, will never have this method
+        // called for them, but might have hooks with references pinning data in
+        // memory (even if the hooks weren't actually executed), so we reset the
+        // hooks on all descendant modules here as well. This is safe because we
+        // will never call this as long as any descendant modules still have tests
+        // to run. This also means that in multi-tiered nesting scenarios we might
+        // reset the hooks multiple times on some modules, but that's harmless.
+        var modules = [module];
+
+        while (modules.length) {
+          var nextModule = modules.shift();
+          nextModule.hooks = {};
+          modules.push.apply(modules, _toConsumableArray(nextModule.childModules));
+        }
+
         emit("suiteEnd", module.suiteReport.end(true));
         return runLoggingCallbacks("moduleDone", {
           name: module.name,
@@ -2501,11 +2779,7 @@
 
       var prioritize = config.reorder && !!previousFailCount;
       this.previousFailure = !!previousFailCount;
-      ProcessingQueue.add(runTest, prioritize, config.seed); // If the queue has already finished, we manually process the new test
-
-      if (ProcessingQueue.finished) {
-        ProcessingQueue.advance();
-      }
+      ProcessingQueue.add(runTest, prioritize, config.seed);
     },
     pushResult: function pushResult(resultInfo) {
       if (this !== config.current) {
@@ -2839,12 +3113,99 @@
   function resetTestTimeout(timeoutDuration) {
     clearTimeout(config.timeout);
     config.timeout = setTimeout$1(config.timeoutHandler(timeoutDuration), timeoutDuration);
-  } // Put a hold on processing and return a function that will release it.
+  } // Create a new async pause and return a new function that can release the pause.
+  //
+  // This mechanism is internally used by:
+  //
+  // * explicit async pauses, created by calling `assert.async()`,
+  // * implicit async pauses, created when `QUnit.test()` or module hook callbacks
+  //   use async-await or otherwise return a Promise.
+  //
+  // Happy scenario:
+  //
+  // * Pause is created by calling internalStop().
+  //
+  //   Pause is released normally by invoking release() during the same test.
+  //
+  //   The release() callback lets internal processing resume.
+  //
+  // Failure scenarios:
+  //
+  // * The test fails due to an uncaught exception.
+  //
+  //   In this case, Test.run() will call internalRecover() which empties the clears all
+  //   async pauses and sets the cancelled flag, which means we silently ignore any
+  //   late calls to the resume() callback, as we will have moved on to a different
+  //   test by then, and we don't want to cause an extra "release during a different test"
+  //   errors that the developer isn't really responsible for. This can happen when a test
+  //   correctly schedules a call to release(), but also causes an uncaught error. The
+  //   uncaught error means we will no longer wait for the release (as it might not arrive).
+  //
+  // * Pause is never released, or called an insufficient number of times.
+  //
+  //   Our timeout handler will kill the pause and resume test processing, basically
+  //   like internalRecover(), but for one pause instead of any/all.
+  //
+  //   Here, too, any late calls to resume() will be silently ignored to avoid
+  //   extra errors. We tolerate this since the original test will have already been
+  //   marked as failure.
+  //
+  //   TODO: QUnit 3 will enable timeouts by default <https://github.com/qunitjs/qunit/issues/1483>,
+  //   but right now a test will hang indefinitely if async pauses are not released,
+  //   unless QUnit.config.testTimeout or assert.timeout() is used.
+  //
+  // * Pause is spontaneously released during a different test,
+  //   or when no test is currently running.
+  //
+  //   This is close to impossible because this error only happens if the original test
+  //   succesfully finished first (since other failure scenarios kill pauses and ignore
+  //   late calls). It can happen if a test ended exactly as expected, but has some
+  //   external or shared state continuing to hold a reference to the release callback,
+  //   and either the same test scheduled another call to it in the future, or a later test
+  //   causes it to be called through some shared state.
+  //
+  // * Pause release() is called too often, during the same test.
+  //
+  //   This simply throws an error, after which uncaught error handling picks it up
+  //   and processing resumes.
 
   function internalStop(test) {
-    var released = false;
-    test.semaphore += 1;
-    config.blocking = true; // Set a recovery timeout, if so configured.
+    var requiredCalls = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+    config.blocking = true;
+    var pauseId = test.nextPauseId++;
+    var pause = {
+      cancelled: false,
+      remaining: requiredCalls
+    };
+    test.pauses.set(pauseId, pause);
+
+    function release() {
+      if (pause.cancelled) {
+        return;
+      }
+
+      if (config.current === undefined) {
+        throw new Error("Unexpected release of async pause after tests finished.\n" + "> Test: ".concat(test.testName, " [async #").concat(pauseId, "]"));
+      }
+
+      if (config.current !== test) {
+        throw new Error("Unexpected release of async pause during a different test.\n" + "> Test: ".concat(test.testName, " [async #").concat(pauseId, "]"));
+      }
+
+      if (pause.remaining <= 0) {
+        throw new Error("Tried to release async pause that was already released.\n" + "> Test: ".concat(test.testName, " [async #").concat(pauseId, "]"));
+      } // The `requiredCalls` parameter exists to support `assert.async(count)`
+
+
+      pause.remaining--;
+
+      if (pause.remaining === 0) {
+        test.pauses.delete(pauseId);
+      }
+
+      internalStart(test);
+    } // Set a recovery timeout, if so configured.
+
 
     if (setTimeout$1) {
       var timeoutDuration;
@@ -2859,9 +3220,10 @@
         config.timeoutHandler = function (timeout) {
           return function () {
             config.timeout = null;
-            pushFailure("Test took longer than ".concat(timeout, "ms; test timed out."), sourceFromStacktrace(2));
-            released = true;
-            internalRecover(test);
+            pause.cancelled = true;
+            test.pauses.delete(pauseId);
+            test.pushFailure("Test took longer than ".concat(timeout, "ms; test timed out."), sourceFromStacktrace(2));
+            internalStart(test);
           };
         };
 
@@ -2870,46 +3232,29 @@
       }
     }
 
-    return function resume() {
-      if (released) {
-        return;
-      }
-
-      released = true;
-      test.semaphore -= 1;
-      internalStart(test);
-    };
+    return release;
   } // Forcefully release all processing holds.
 
   function internalRecover(test) {
-    test.semaphore = 0;
+    test.pauses.forEach(function (pause) {
+      pause.cancelled = true;
+    });
+    test.pauses.clear();
     internalStart(test);
   } // Release a processing hold, scheduling a resumption attempt if no holds remain.
 
 
   function internalStart(test) {
-    // If semaphore is non-numeric, throw error
-    if (isNaN(test.semaphore)) {
-      test.semaphore = 0;
-      pushFailure("Invalid value on test.semaphore", sourceFromStacktrace(2));
-    } // Don't start until equal number of stop-calls
-
-
-    if (test.semaphore > 0) {
+    // Ignore if other async pauses still exist.
+    if (test.pauses.size > 0) {
       return;
-    } // Throw an Error if start is called more often than stop
-
-
-    if (test.semaphore < 0) {
-      test.semaphore = 0;
-      pushFailure("Tried to restart test while already started (test's semaphore was 0 already)", sourceFromStacktrace(2));
     } // Add a slight delay to allow more assertions etc.
 
 
     if (setTimeout$1) {
       clearTimeout(config.timeout);
       config.timeout = setTimeout$1(function () {
-        if (test.semaphore > 0) {
+        if (test.pauses.size > 0) {
           return;
         }
 
@@ -3036,44 +3381,13 @@
         } else {
           return this.test.expected;
         }
-      } // Put a hold on processing and return a function that will release it a maximum of once.
+      } // Create a new async pause and return a new function that can release the pause.
 
     }, {
       key: "async",
       value: function async(count) {
-        var test = this.test;
-        var popped = false,
-            acceptCallCount = count;
-
-        if (typeof acceptCallCount === "undefined") {
-          acceptCallCount = 1;
-        }
-
-        var resume = internalStop(test);
-        return function done() {
-          if (config.current === undefined) {
-            throw new Error("`assert.async` callback from test \"" + test.testName + "\" called after tests finished.");
-          }
-
-          if (config.current !== test) {
-            config.current.pushFailure("`assert.async` callback from test \"" + test.testName + "\" was called during this test.");
-            return;
-          }
-
-          if (popped) {
-            test.pushFailure("Too many calls to the `assert.async` callback", sourceFromStacktrace(2));
-            return;
-          }
-
-          acceptCallCount -= 1;
-
-          if (acceptCallCount > 0) {
-            return;
-          }
-
-          popped = true;
-          resume();
-        };
+        var requiredCalls = count === undefined ? 1 : count;
+        return internalStop(this.test, requiredCalls);
       } // Exports test.push() to the user API
       // Alias of pushResult.
 
@@ -3210,6 +3524,35 @@
         });
       }
     }, {
+      key: "propContains",
+      value: function propContains(actual, expected, message) {
+        actual = objectValuesSubset(actual, expected); // The expected parameter is usually a plain object, but clone it for
+        // consistency with propEqual(), and to make it easy to explain that
+        // inheritence is not considered (on either side), and to support
+        // recursively checking subsets of nested objects.
+
+        expected = objectValues(expected, false);
+        this.pushResult({
+          result: equiv(actual, expected),
+          actual: actual,
+          expected: expected,
+          message: message
+        });
+      }
+    }, {
+      key: "notPropContains",
+      value: function notPropContains(actual, expected, message) {
+        actual = objectValuesSubset(actual, expected);
+        expected = objectValues(expected);
+        this.pushResult({
+          result: !equiv(actual, expected),
+          actual: actual,
+          expected: expected,
+          message: message,
+          negative: true
+        });
+      }
+    }, {
       key: "deepEqual",
       value: function deepEqual(actual, expected, message) {
         this.pushResult({
@@ -3254,19 +3597,27 @@
     }, {
       key: "throws",
       value: function throws(block, expected, message) {
-        var actual,
-            result = false;
-        var currentTest = this instanceof Assert && this.test || config.current; // 'expected' is optional unless doing string comparison
+        var _validateExpectedExce = validateExpectedExceptionArgs(expected, message, "throws");
 
-        if (objectType(expected) === "string") {
-          if (message == null) {
-            message = expected;
-            expected = null;
-          } else {
-            throw new Error("throws/raises does not accept a string value for the expected argument.\n" + "Use a non-string object value (e.g. regExp) instead if it's necessary.");
-          }
+        var _validateExpectedExce2 = _slicedToArray(_validateExpectedExce, 2);
+
+        expected = _validateExpectedExce2[0];
+        message = _validateExpectedExce2[1];
+        var currentTest = this instanceof Assert && this.test || config.current;
+
+        if (objectType(block) !== "function") {
+          var _message = "The value provided to `assert.throws` in " + "\"" + currentTest.testName + "\" was not a function.";
+
+          currentTest.assert.pushResult({
+            result: false,
+            actual: block,
+            message: _message
+          });
+          return;
         }
 
+        var actual;
+        var result = false;
         currentTest.ignoreGlobalErrors = true;
 
         try {
@@ -3278,32 +3629,13 @@
         currentTest.ignoreGlobalErrors = false;
 
         if (actual) {
-          var expectedType = objectType(expected); // We don't want to validate thrown error
+          var _validateException = validateException(actual, expected, message);
 
-          if (!expected) {
-            result = true; // Expected is a regexp
-          } else if (expectedType === "regexp") {
-            result = expected.test(errorString(actual)); // Log the string form of the regexp
+          var _validateException2 = _slicedToArray(_validateException, 3);
 
-            expected = String(expected); // Expected is a constructor, maybe an Error constructor.
-            // Note the extra check on its prototype - this is an implicit
-            // requirement of "instanceof", else it will throw a TypeError.
-          } else if (expectedType === "function" && expected.prototype !== undefined && actual instanceof expected) {
-            result = true; // Expected is an Error object
-          } else if (expectedType === "object") {
-            result = actual instanceof expected.constructor && actual.name === expected.name && actual.message === expected.message; // Log the string form of the Error object
-
-            expected = errorString(expected); // Expected is a validation function which returns true if validation passed
-          } else if (expectedType === "function") {
-            // protect against accidental semantics which could hard error in the test
-            try {
-              result = expected.call({}, actual) === true;
-              expected = null;
-            } catch (e) {
-              // assign the "expected" to a nice error string to communicate the local failure to the user
-              expected = errorString(e);
-            }
-          }
+          result = _validateException2[0];
+          expected = _validateException2[1];
+          message = _validateException2[2];
         }
 
         currentTest.assert.pushResult({
@@ -3317,31 +3649,21 @@
     }, {
       key: "rejects",
       value: function rejects(promise, expected, message) {
-        var result = false;
-        var currentTest = this instanceof Assert && this.test || config.current; // 'expected' is optional unless doing string comparison
+        var _validateExpectedExce3 = validateExpectedExceptionArgs(expected, message, "rejects");
 
-        if (objectType(expected) === "string") {
-          if (message === undefined) {
-            message = expected;
-            expected = undefined;
-          } else {
-            message = "assert.rejects does not accept a string value for the expected " + "argument.\nUse a non-string object value (e.g. validator function) instead " + "if necessary.";
-            currentTest.assert.pushResult({
-              result: false,
-              message: message
-            });
-            return;
-          }
-        }
+        var _validateExpectedExce4 = _slicedToArray(_validateExpectedExce3, 2);
 
+        expected = _validateExpectedExce4[0];
+        message = _validateExpectedExce4[1];
+        var currentTest = this instanceof Assert && this.test || config.current;
         var then = promise && promise.then;
 
         if (objectType(then) !== "function") {
-          var _message = "The value provided to `assert.rejects` in " + "\"" + currentTest.testName + "\" was not a promise.";
+          var _message2 = "The value provided to `assert.rejects` in " + "\"" + currentTest.testName + "\" was not a promise.";
 
           currentTest.assert.pushResult({
             result: false,
-            message: _message,
+            message: _message2,
             actual: promise
           });
           return;
@@ -3357,30 +3679,15 @@
           });
           done();
         }, function handleRejection(actual) {
-          var expectedType = objectType(expected); // We don't want to validate
+          var result;
 
-          if (expected === undefined) {
-            result = true; // Expected is a regexp
-          } else if (expectedType === "regexp") {
-            result = expected.test(errorString(actual)); // Log the string form of the regexp
+          var _validateException3 = validateException(actual, expected, message);
 
-            expected = String(expected); // Expected is a constructor, maybe an Error constructor
-          } else if (expectedType === "function" && actual instanceof expected) {
-            result = true; // Expected is an Error object
-          } else if (expectedType === "object") {
-            result = actual instanceof expected.constructor && actual.name === expected.name && actual.message === expected.message; // Log the string form of the Error object
+          var _validateException4 = _slicedToArray(_validateException3, 3);
 
-            expected = errorString(expected); // Expected is a validation function which returns true if validation passed
-          } else {
-            if (expectedType === "function") {
-              result = expected.call({}, actual) === true;
-              expected = null; // Expected is some other invalid type
-            } else {
-              result = false;
-              message = "invalid expected value provided to `assert.rejects` " + "callback in \"" + currentTest.testName + "\": " + expectedType + ".";
-            }
-          }
-
+          result = _validateException4[0];
+          expected = _validateException4[1];
+          message = _validateException4[2];
           currentTest.assert.pushResult({
             result: result,
             // leave rejection value of undefined as-is
@@ -3394,31 +3701,70 @@
     }]);
 
     return Assert;
-  }(); // Provide an alternative to assert.throws(), for environments that consider throws a reserved word
+  }();
+
+  function validateExpectedExceptionArgs(expected, message, assertionMethod) {
+    var expectedType = objectType(expected); // 'expected' is optional unless doing string comparison
+
+    if (expectedType === "string") {
+      if (message === undefined) {
+        message = expected;
+        expected = undefined;
+        return [expected, message];
+      } else {
+        throw new Error("assert." + assertionMethod + " does not accept a string value for the expected argument.\n" + "Use a non-string object value (e.g. RegExp or validator function) " + "instead if necessary.");
+      }
+    }
+
+    var valid = !expected || // TODO: be more explicit here
+    expectedType === "regexp" || expectedType === "function" || expectedType === "object";
+
+    if (!valid) {
+      var _message3 = "Invalid expected value type (" + expectedType + ") " + "provided to assert." + assertionMethod + ".";
+
+      throw new Error(_message3);
+    }
+
+    return [expected, message];
+  }
+
+  function validateException(actual, expected, message) {
+    var result = false;
+    var expectedType = objectType(expected); // These branches should be exhaustive, based on validation done in validateExpectedException
+    // We don't want to validate
+
+    if (!expected) {
+      result = true; // Expected is a regexp
+    } else if (expectedType === "regexp") {
+      result = expected.test(errorString(actual)); // Log the string form of the regexp
+
+      expected = String(expected); // Expected is a constructor, maybe an Error constructor.
+      // Note the extra check on its prototype - this is an implicit
+      // requirement of "instanceof", else it will throw a TypeError.
+    } else if (expectedType === "function" && expected.prototype !== undefined && actual instanceof expected) {
+      result = true; // Expected is an Error object
+    } else if (expectedType === "object") {
+      result = actual instanceof expected.constructor && actual.name === expected.name && actual.message === expected.message; // Log the string form of the Error object
+
+      expected = errorString(expected); // Expected is a validation function which returns true if validation passed
+    } else if (expectedType === "function") {
+      // protect against accidental semantics which could hard error in the test
+      try {
+        result = expected.call({}, actual) === true;
+        expected = null;
+      } catch (e) {
+        // assign the "expected" to a nice error string to communicate the local failure to the user
+        expected = errorString(e);
+      }
+    }
+
+    return [result, expected, message];
+  } // Provide an alternative to assert.throws(), for environments that consider throws a reserved word
   // Known to us are: Closure Compiler, Narwhal
   // eslint-disable-next-line dot-notation
 
 
   Assert.prototype.raises = Assert.prototype["throws"];
-  /**
-   * Converts an error into a simple string for comparisons.
-   *
-   * @param {Error|Object} error
-   * @return {string}
-   */
-
-  function errorString(error) {
-    var resultErrorString = error.toString(); // If the error wasn't a subclass of Error but something like
-    // an object literal with name and message properties...
-
-    if (resultErrorString.slice(0, 7) === "[object") {
-      // Based on https://es5.github.com/#x15.11.4.4
-      var name = error.name ? String(error.name) : "Error";
-      return error.message ? "".concat(name, ": ").concat(error.message) : name;
-    } else {
-      return resultErrorString;
-    }
-  }
 
   /* global module, exports, define */
   function exportQUnit(QUnit) {
@@ -3481,6 +3827,7 @@
       // https://github.com/qunitjs/qunit/issues/1340
       // Support IE 9: Function#bind is supported, but no console.log.bind().
       this.log = options.log || Function.prototype.bind.call(console$1.log, console$1);
+      runner.on("error", this.onError.bind(this));
       runner.on("runStart", this.onRunStart.bind(this));
       runner.on("testStart", this.onTestStart.bind(this));
       runner.on("testEnd", this.onTestEnd.bind(this));
@@ -3488,6 +3835,11 @@
     }
 
     _createClass(ConsoleReporter, [{
+      key: "onError",
+      value: function onError(error) {
+        this.log("error", error);
+      }
+    }, {
       key: "onRunStart",
       value: function onRunStart(runStart) {
         this.log("runStart", runStart);
@@ -3801,6 +4153,9 @@
       // Support IE 9: Function#bind is supported, but no console.log.bind().
       this.log = options.log || Function.prototype.bind.call(console$1.log, console$1);
       this.testCount = 0;
+      this.ended = false;
+      this.bailed = false;
+      runner.on("error", this.onError.bind(this));
       runner.on("runStart", this.onRunStart.bind(this));
       runner.on("testEnd", this.onTestEnd.bind(this));
       runner.on("runEnd", this.onRunEnd.bind(this));
@@ -3808,8 +4163,30 @@
 
     _createClass(TapReporter, [{
       key: "onRunStart",
-      value: function onRunStart(_globalSuite) {
+      value: function onRunStart(_runSuite) {
         this.log("TAP version 13");
+      }
+    }, {
+      key: "onError",
+      value: function onError(error) {
+        if (this.bailed) {
+          return;
+        }
+
+        this.bailed = true; // Imitate onTestEnd
+        // Skip this if we're past "runEnd" as it would look odd
+
+        if (!this.ended) {
+          this.testCount = this.testCount + 1;
+          this.log($.red("not ok ".concat(this.testCount, " global failure")));
+          this.logError(error);
+        }
+
+        this.log("Bail out! " + errorString(error).split("\n")[0]);
+
+        if (this.ended) {
+          this.logError(error);
+        }
       }
     }, {
       key: "onTestEnd",
@@ -3825,27 +4202,28 @@
         } else if (test.status === "todo") {
           this.log($.cyan("not ok ".concat(this.testCount, " # TODO ").concat(test.fullName.join(" > "))));
           test.errors.forEach(function (error) {
-            return _this.logError(error, "todo");
+            return _this.logAssertion(error, "todo");
           });
         } else {
           this.log($.red("not ok ".concat(this.testCount, " ").concat(test.fullName.join(" > "))));
           test.errors.forEach(function (error) {
-            return _this.logError(error);
+            return _this.logAssertion(error);
           });
         }
       }
     }, {
       key: "onRunEnd",
-      value: function onRunEnd(globalSuite) {
-        this.log("1..".concat(globalSuite.testCounts.total));
-        this.log("# pass ".concat(globalSuite.testCounts.passed));
-        this.log($.yellow("# skip ".concat(globalSuite.testCounts.skipped)));
-        this.log($.cyan("# todo ".concat(globalSuite.testCounts.todo)));
-        this.log($.red("# fail ".concat(globalSuite.testCounts.failed)));
+      value: function onRunEnd(runSuite) {
+        this.ended = true;
+        this.log("1..".concat(runSuite.testCounts.total));
+        this.log("# pass ".concat(runSuite.testCounts.passed));
+        this.log($.yellow("# skip ".concat(runSuite.testCounts.skipped)));
+        this.log($.cyan("# todo ".concat(runSuite.testCounts.todo)));
+        this.log($.red("# fail ".concat(runSuite.testCounts.failed)));
       }
     }, {
-      key: "logError",
-      value: function logError(error, severity) {
+      key: "logAssertion",
+      value: function logAssertion(error, severity) {
         var out = "  ---";
         out += "\n  message: ".concat(prettyYamlValue(error.message || "failed"));
         out += "\n  severity: ".concat(prettyYamlValue(severity || "failed"));
@@ -3867,6 +4245,20 @@
         out += "\n  ...";
         this.log(out);
       }
+    }, {
+      key: "logError",
+      value: function logError(error) {
+        var out = "  ---";
+        out += "\n  message: ".concat(prettyYamlValue(errorString(error)));
+        out += "\n  severity: ".concat(prettyYamlValue("failed"));
+
+        if (error && error.stack) {
+          out += "\n  stack: ".concat(prettyYamlValue(error.stack + "\n"));
+        }
+
+        out += "\n  ...";
+        this.log(out);
+      }
     }], [{
       key: "init",
       value: function init(runner, options) {
@@ -3882,75 +4274,126 @@
     tap: TapReporter
   };
 
-  // error handling should be suppressed and false otherwise.
-  // In this case, we will only suppress further error handling if the
-  // "ignoreGlobalErrors" configuration option is enabled.
-
-  function onError(error) {
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    if (config.current) {
-      if (config.current.ignoreGlobalErrors) {
-        return true;
+  function makeAddGlobalHook(hookName) {
+    return function addGlobalHook(callback) {
+      if (!config.globalHooks[hookName]) {
+        config.globalHooks[hookName] = [];
       }
 
-      pushFailure.apply(void 0, [error.message, error.stacktrace || error.fileName + ":" + error.lineNumber].concat(args));
+      config.globalHooks[hookName].push(callback);
+    };
+  }
+
+  var hooks = {
+    beforeEach: makeAddGlobalHook("beforeEach"),
+    afterEach: makeAddGlobalHook("afterEach")
+  };
+
+  /**
+   * Handle a global error that should result in a failed test run.
+   *
+   * Summary:
+   *
+   * - If we're strictly inside a test (or one if its module hooks), the exception
+   *   becomes a failed assertion.
+   *
+   *   This has the important side-effect that uncaught exceptions (such as
+   *   calling an undefined function) during a "todo" test do NOT result in
+   *   a failed test run.
+   *
+   * - If we're anywhere outside a test (be it in early event callbacks, or
+   *   internally between tests, or somewhere after "runEnd" if the process is
+   *   still alive for some reason), then send an "error" event to the reporters.
+   *
+   * @since 2.17.0
+   * @param {Error|any} error
+   */
+
+  function onUncaughtException(error) {
+    if (config.current) {
+      config.current.assert.pushResult({
+        result: false,
+        message: "global failure: ".concat(errorString(error)),
+        // We could let callers specify an offset to subtract a number of frames via
+        // sourceFromStacktrace, in case they are a wrapper further away from the error
+        // handler, and thus reduce some noise in the stack trace. However, we're not
+        // doing this right now because it would almost never be used in practice given
+        // the vast majority of error values will be Error objects, and thus have their
+        // own stack trace already.
+        source: error && error.stack || sourceFromStacktrace(2)
+      });
     } else {
-      test("global failure", extend(function () {
-        pushFailure.apply(void 0, [error.message, error.stacktrace || error.fileName + ":" + error.lineNumber].concat(args));
-      }, {
-        validTest: true
-      }));
+      // The "error" event was added in QUnit 2.17.
+      // Increase "bad assertion" stats despite no longer pushing an assertion in this case.
+      // This ensures "runEnd" and "QUnit.done()" handlers behave as expected, since the "bad"
+      // count is typically how reporters decide on the boolean outcome of the test run.
+      runSuite.globalFailureCount++;
+      config.stats.bad++;
+      config.stats.all++;
+      emit("error", error);
+    }
+  }
+
+  /**
+   * Handle a window.onerror error.
+   *
+   * If there is a current test that sets the internal `ignoreGlobalErrors` field
+   * (such as during `assert.throws()`), then the error is ignored and native
+   * error reporting is suppressed as well. This is because in browsers, an error
+   * can sometimes end up in `window.onerror` instead of in the local try/catch.
+   * This ignoring of errors does not apply to our general onUncaughtException
+   * method, nor to our `unhandledRejection` handlers, as those are not meant
+   * to receive an "expected" error during `assert.throws()`.
+   *
+   * @see <https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror>
+   * @deprecated since 2.17.0 Use QUnit.onUncaughtException instead.
+   * @param {Object} details
+   * @param {string} details.message
+   * @param {string} details.fileName
+   * @param {number} details.lineNumber
+   * @param {string|undefined} [details.stacktrace]
+   * @return {bool} True if native error reporting should be suppressed.
+   */
+
+  function onWindowError(details) {
+    Logger.warn("QUnit.onError is deprecated and will be removed in QUnit 3.0." + " Please use QUnit.onUncaughtException instead.");
+
+    if (config.current && config.current.ignoreGlobalErrors) {
+      return true;
     }
 
+    var err = new Error(details.message);
+    err.stack = details.stacktrace || details.fileName + ":" + details.lineNumber;
+    onUncaughtException(err);
     return false;
   }
 
-  function onUnhandledRejection(reason) {
-    var resultInfo = {
-      result: false,
-      message: reason.message || "error",
-      actual: reason,
-      source: reason.stack || sourceFromStacktrace(3)
-    };
-    var currentTest = config.current;
+  var QUnit = {}; // The "currentModule" object would ideally be defined using the createModule()
+  // function. Since it isn't, add the missing suiteReport property to it now that
+  // we have loaded all source code required to do so.
+  //
+  // TODO: Consider defining currentModule in core.js or module.js in its entirely
+  // rather than partly in config.js and partly here.
 
-    if (currentTest) {
-      currentTest.assert.pushResult(resultInfo);
-    } else {
-      test("global failure", extend(function (assert) {
-        assert.pushResult(resultInfo);
-      }, {
-        validTest: true
-      }));
-    }
-  }
-
-  var QUnit = {};
-  var globalSuite = new SuiteReport(); // The initial "currentModule" represents the global (or top-level) module that
-  // is not explicitly defined by the user, therefore we add the "globalSuite" to
-  // it since each module has a suiteReport associated with it.
-
-  config.currentModule.suiteReport = globalSuite;
+  config.currentModule.suiteReport = runSuite;
   var globalStartCalled = false;
   var runStarted = false; // Figure out if we're running the tests from a server or not
 
   QUnit.isLocal = window$1 && window$1.location && window$1.location.protocol === "file:"; // Expose the current QUnit version
 
-  QUnit.version = "2.16.0";
+  QUnit.version = "2.18.0";
 
   extend(QUnit, {
     config: config,
     dump: dump,
     equiv: equiv,
     reporters: reporters,
+    hooks: hooks,
     is: is,
     objectType: objectType,
     on: on,
-    onError: onError,
-    onUnhandledRejection: onUnhandledRejection,
+    onError: onWindowError,
+    onUncaughtException: onUncaughtException,
     pushFailure: pushFailure,
     assert: Assert.prototype,
     module: module$1,
@@ -3994,6 +4437,10 @@
 
       scheduleBegin();
     },
+    onUnhandledRejection: function onUnhandledRejection(reason) {
+      Logger.warn("QUnit.onUnhandledRejection is deprecated and will be removed in QUnit 3.0." + " Please use QUnit.onUncaughtException instead.");
+      onUncaughtException(reason);
+    },
     extend: function extend$1() {
       Logger.warn("QUnit.extend is deprecated and will be removed in QUnit 3.0." + " Please use Object.assign instead."); // delegate to utility implementation, which does not warn and can be used elsewhere internally
 
@@ -4007,11 +4454,6 @@
       config.pageLoaded = true; // Initialize the configuration options
 
       extend(config, {
-        stats: {
-          all: 0,
-          bad: 0,
-          testCount: 0
-        },
         started: 0,
         updateRate: 1000,
         autostart: true,
@@ -4077,7 +4519,7 @@
     } // The test run is officially beginning now
 
 
-    emit("runStart", globalSuite.start(true));
+    emit("runStart", runSuite.start(true));
     runLoggingCallbacks("begin", {
       totalTests: Test.count,
       modules: modulesLog
@@ -4414,9 +4856,9 @@
                       if (Date.now() - startMs >= 10
                       /*asyncInterval*/
                       ) {
-                          isNode ? setImmediate(step) : setTimeout(step);
-                          return;
-                        }
+                        isNode ? setImmediate(step) : setTimeout(step);
+                        return;
+                      }
                     }
                   } // options.key
 
@@ -4455,9 +4897,9 @@
                       if (Date.now() - startMs >= 10
                       /*asyncInterval*/
                       ) {
-                          isNode ? setImmediate(step) : setTimeout(step);
-                          return;
-                        }
+                        isNode ? setImmediate(step) : setTimeout(step);
+                        return;
+                      }
                     }
                   } // no keys
 
@@ -4484,9 +4926,9 @@
                       if (Date.now() - startMs >= 10
                       /*asyncInterval*/
                       ) {
-                          isNode ? setImmediate(step) : setTimeout(step);
-                          return;
-                        }
+                        isNode ? setImmediate(step) : setTimeout(step);
+                        return;
+                      }
                     }
                   }
                 }
@@ -4999,10 +5441,9 @@
   var fuzzysort = fuzzysort$1.exports;
 
   var stats = {
-    passedTests: 0,
-    failedTests: 0,
-    skippedTests: 0,
-    todoTests: 0
+    failedTests: [],
+    defined: 0,
+    completed: 0
   }; // Escape text for attribute or text content.
 
   function escapeText(s) {
@@ -5160,7 +5601,7 @@
         } else {
           urlConfigHtml += "<label for='qunit-urlconfig-" + escaped + "' title='" + escapedTooltip + "'>" + val.label + ": </label><select id='qunit-urlconfig-" + escaped + "' name='" + escaped + "' title='" + escapedTooltip + "'><option></option>";
 
-          if (QUnit.is("array", val.value)) {
+          if (Array.isArray(val.value)) {
             for (j = 0; j < val.value.length; j++) {
               escaped = escapeText(val.value[j]);
               urlConfigHtml += "<option value='" + escaped + "'" + (config[val.id] === val.value[j] ? (selection = true) && " selected='selected'" : "") + ">" + escaped + "</option>";
@@ -5623,38 +6064,64 @@
 
       title = document.createElement("strong");
       title.innerHTML = getNameHtml(name, moduleName);
-      rerunTrigger = document.createElement("a");
-      rerunTrigger.innerHTML = "Rerun";
-      rerunTrigger.href = setUrl({
-        testId: testId
-      });
       testBlock = document.createElement("li");
-      testBlock.appendChild(title);
-      testBlock.appendChild(rerunTrigger);
-      testBlock.id = "qunit-test-output-" + testId;
+      testBlock.appendChild(title); // No ID or rerun link for "global failure" blocks
+
+      if (testId !== undefined) {
+        rerunTrigger = document.createElement("a");
+        rerunTrigger.innerHTML = "Rerun";
+        rerunTrigger.href = setUrl({
+          testId: testId
+        });
+        testBlock.id = "qunit-test-output-" + testId;
+        testBlock.appendChild(rerunTrigger);
+      }
+
       assertList = document.createElement("ol");
       assertList.className = "qunit-assert-list";
       testBlock.appendChild(assertList);
       tests.appendChild(testBlock);
+      return testBlock;
     } // HTML Reporter initialization and load
 
 
+    QUnit.on("runStart", function (runStart) {
+      stats.defined = runStart.testCounts.total;
+    });
     QUnit.begin(function () {
       // Initialize QUnit elements
+      // This is done from begin() instead of runStart, because
+      // urlparams.js uses begin(), which we need to wait for.
+      // urlparams.js in turn uses begin() to allow plugins to
+      // add entries to QUnit.config.urlConfig, which may be done
+      // asynchronously.
+      // <https://github.com/qunitjs/qunit/issues/1657>
       appendInterface();
     });
-    QUnit.done(function (details) {
+
+    function getRerunFailedHtml(failedTests) {
+      if (failedTests.length === 0) {
+        return "";
+      }
+
+      var href = setUrl({
+        testId: failedTests
+      });
+      return ["<br /><a href='" + escapeText(href) + "'>", failedTests.length === 1 ? "Rerun 1 failed test" : "Rerun " + failedTests.length + " failed tests", "</a>"].join("");
+    }
+
+    QUnit.on("runEnd", function (runEnd) {
       var banner = id("qunit-banner"),
           tests = id("qunit-tests"),
           abortButton = id("qunit-abort-tests-button"),
-          totalTests = stats.passedTests + stats.skippedTests + stats.todoTests + stats.failedTests,
-          html = [totalTests, " tests completed in ", details.runtime, " milliseconds, with ", stats.failedTests, " failed, ", stats.skippedTests, " skipped, and ", stats.todoTests, " todo.<br />", "<span class='passed'>", details.passed, "</span> assertions of <span class='total'>", details.total, "</span> passed, <span class='failed'>", details.failed, "</span> failed."].join(""),
+          assertPassed = config.stats.all - config.stats.bad,
+          html = [runEnd.testCounts.total, " tests completed in ", runEnd.runtime, " milliseconds, with ", runEnd.testCounts.failed, " failed, ", runEnd.testCounts.skipped, " skipped, and ", runEnd.testCounts.todo, " todo.<br />", "<span class='passed'>", assertPassed, "</span> assertions of <span class='total'>", config.stats.all, "</span> passed, <span class='failed'>", config.stats.bad, "</span> failed.", getRerunFailedHtml(stats.failedTests)].join(""),
           test,
           assertLi,
           assertList; // Update remaining tests to aborted
 
       if (abortButton && abortButton.disabled) {
-        html = "Tests aborted after " + details.runtime + " milliseconds.";
+        html = "Tests aborted after " + runEnd.runtime + " milliseconds.";
 
         for (var i = 0; i < tests.children.length; i++) {
           test = tests.children[i];
@@ -5671,7 +6138,7 @@
       }
 
       if (banner && (!abortButton || abortButton.disabled === false)) {
-        banner.className = stats.failedTests ? "qunit-fail" : "qunit-pass";
+        banner.className = runEnd.status === "failed" ? "qunit-fail" : "qunit-pass";
       }
 
       if (abortButton) {
@@ -5686,7 +6153,7 @@
         // Show ✖ for good, ✔ for bad suite result in title
         // use escape sequences in case file gets loaded with non-utf-8
         // charset
-        document.title = [stats.failedTests ? "\u2716" : "\u2714", document.title.replace(/^[\u2714\u2716] /i, "")].join(" ");
+        document.title = [runEnd.status === "failed" ? "\u2716" : "\u2714", document.title.replace(/^[\u2714\u2716] /i, "")].join(" ");
       } // Scroll back to top to show results
 
 
@@ -5706,9 +6173,8 @@
       return nameHtml;
     }
 
-    function getProgressHtml(runtime, stats, total) {
-      var completed = stats.passedTests + stats.skippedTests + stats.todoTests + stats.failedTests;
-      return ["<br />", completed, " / ", total, " tests completed in ", runtime, " milliseconds, with ", stats.failedTests, " failed, ", stats.skippedTests, " skipped, and ", stats.todoTests, " todo."].join("");
+    function getProgressHtml(stats) {
+      return [stats.completed, " / ", stats.defined, " tests completed.<br />"].join("");
     }
 
     QUnit.testStart(function (details) {
@@ -5719,7 +6185,7 @@
       if (running) {
         addClass(running, "running");
         bad = QUnit.config.reorder && details.previousFailure;
-        running.innerHTML = [bad ? "Rerunning previously failed test: <br />" : "Running: <br />", getNameHtml(details.name, details.module), getProgressHtml(now() - config.started, stats, Test.count)].join("");
+        running.innerHTML = [getProgressHtml(stats), bad ? "Rerunning previously failed test: <br />" : "Running: ", getNameHtml(details.name, details.module), getRerunFailedHtml(stats.failedTests)].join("");
       }
     });
 
@@ -5835,13 +6301,17 @@
       if (testPassed) {
         // Collapse the passing tests
         addClass(assertList, "qunit-collapsed");
-      } else if (config.collapse) {
-        if (!collapseNext) {
-          // Skip collapsing the first failing test
-          collapseNext = true;
-        } else {
-          // Collapse remaining tests
-          addClass(assertList, "qunit-collapsed");
+      } else {
+        stats.failedTests.push(details.testId);
+
+        if (config.collapse) {
+          if (!collapseNext) {
+            // Skip collapsing the first failing test
+            collapseNext = true;
+          } else {
+            // Collapse remaining tests
+            addClass(assertList, "qunit-collapsed");
+          }
         }
       } // The testItem.firstChild is the test name
 
@@ -5849,9 +6319,9 @@
       testTitle = testItem.firstChild;
       testCounts = bad ? "<b class='failed'>" + bad + "</b>, " + "<b class='passed'>" + good + "</b>, " : "";
       testTitle.innerHTML += " <b class='counts'>(" + testCounts + details.assertions.length + ")</b>";
+      stats.completed++;
 
       if (details.skipped) {
-        stats.skippedTests++;
         testItem.className = "skipped";
         skipped = document.createElement("em");
         skipped.className = "qunit-skipped-label";
@@ -5875,14 +6345,6 @@
         time.className = "runtime";
         time.innerHTML = details.runtime + " ms";
         testItem.insertBefore(time, assertList);
-
-        if (!testPassed) {
-          stats.failedTests++;
-        } else if (details.todo) {
-          stats.todoTests++;
-        } else {
-          stats.passedTests++;
-        }
       } // Show the source of the test when showing assertions
 
 
@@ -5906,6 +6368,30 @@
         hiddenTests.push(testItem);
         tests.removeChild(testItem);
       }
+    });
+    QUnit.on("error", function (error) {
+      var testItem = appendTest("global failure");
+
+      if (!testItem) {
+        // HTML Reporter is probably disabled or not yet initialized.
+        return;
+      } // Render similar to a failed assertion (see above QUnit.log callback)
+
+
+      var message = escapeText(errorString(error));
+      message = "<span class='test-message'>" + message + "</span>";
+
+      if (error && error.stack) {
+        message += "<table>" + "<tr class='test-source'><th>Source: </th><td><pre>" + escapeText(error.stack) + "</pre></td></tr>" + "</table>";
+      }
+
+      var assertList = testItem.getElementsByTagName("ol")[0];
+      var assertLi = document.createElement("li");
+      assertLi.className = "fail";
+      assertLi.innerHTML = message;
+      assertList.appendChild(assertLi); // Make it visible
+
+      testItem.className = "fail";
     }); // Avoid readyState issue with phantomjs
     // Ref: #818
 
@@ -5944,28 +6430,35 @@
 
 
       if (ret !== true) {
-        var error = {
-          message: message,
-          fileName: fileName,
-          lineNumber: lineNumber
-        }; // According to
+        // If there is a current test that sets the internal `ignoreGlobalErrors` field
+        // (such as during `assert.throws()`), then the error is ignored and native
+        // error reporting is suppressed as well. This is because in browsers, an error
+        // can sometimes end up in `window.onerror` instead of in the local try/catch.
+        // This ignoring of errors does not apply to our general onUncaughtException
+        // method, nor to our `unhandledRejection` handlers, as those are not meant
+        // to receive an "expected" error during `assert.throws()`.
+        if (config.current && config.current.ignoreGlobalErrors) {
+          return true;
+        } // According to
         // https://blog.sentry.io/2016/01/04/client-javascript-reporting-window-onerror,
         // most modern browsers support an errorObj argument; use that to
         // get a full stack trace if it's available.
 
-        if (errorObj && errorObj.stack) {
-          error.stacktrace = extractStacktrace(errorObj, 0);
+
+        var error = errorObj || new Error(message);
+
+        if (!error.stack && fileName && lineNumber) {
+          error.stack = "".concat(fileName, ":").concat(lineNumber);
         }
 
-        ret = QUnit.onError(error);
+        QUnit.onUncaughtException(error);
       }
 
       return ret;
-    }; // Listen for unhandled rejections, and call QUnit.onUnhandledRejection
-
+    };
 
     window$1.addEventListener("unhandledrejection", function (event) {
-      QUnit.onUnhandledRejection(event.reason);
+      QUnit.onUncaughtException(event.reason);
     });
   })();
 

@@ -47,8 +47,6 @@ trait TempFSFileTestTrait {
 		$file->preserve();
 		unset( $file );
 		$this->assertTrue( is_file( $path ) );
-		Wikimedia\suppressWarnings();
-		unlink( $path );
-		Wikimedia\restoreWarnings();
+		@unlink( $path );
 	}
 }

@@ -113,6 +113,19 @@ codex-icons:
     package/dist/codex-icons.json:
     package/README.md:
 
+url:
+  type: multi-file
+  files:
+    URL.js:
+      src: https://raw.githubusercontent.com/Financial-Times/polyfill-library/v3.110.1/polyfills/URL/polyfill.js
+      integrity: sha384-FGZAGLMIhuw5UeqLV+dzLac78DWCT1DxE4exY+YEboP1OmQD9kuvWaHZxiDFzrWC
+    URL-toJSON.js:
+      src: https://raw.githubusercontent.com/Financial-Times/polyfill-library/v3.110.1/polyfills/URL/prototype/toJSON/polyfill.js
+      integrity: sha384-Fy884Llzghu/2ag7WG9GtW4BhSprpT9ZdbSKfetBSoD7V6VW1AE5hx1PA0LXVqlC
+    LICENSE.md:
+      src: https://raw.githubusercontent.com/Financial-Times/polyfill-library/v3.110.1/LICENSE.md
+      integrity: sha384-kXXDJ+mVdRawUrEAkIAPr1Lz40TzWjVxllGDCxB9+fHcLXtNsSYrKIvzNgTBF+En
+
 fetch-polyfill:
   type: tar
   src: https://registry.npmjs.com/whatwg-fetch/-/whatwg-fetch-3.6.2.tgz
@@ -323,11 +336,11 @@ qunitjs:
   # Integrity from link modals at https://code.jquery.com/qunit/
   files:
     qunit.js:
-      src: https://code.jquery.com/qunit/qunit-2.16.0.js
-      integrity: sha256-lICrUxRopy6OGP/GNqW+v7FTK14pcJXy5ytnZ2g8cKA=
+      src: https://code.jquery.com/qunit/qunit-2.18.0.js
+      integrity: sha256-TLK2e33vMxDueQWBbROhSVGcIzqtLAjQPfrIPmfq9R4=
     qunit.css:
-      src: https://code.jquery.com/qunit/qunit-2.16.0.css
-      integrity: sha256-NiFdVPdwYxHNq6bJlYDGZn5uAu7Aaz/a8NPa6X1fMS4=
+      src: https://code.jquery.com/qunit/qunit-2.18.0.css
+      integrity: sha256-POO1U+Az2IC7NO8KxF7RhmdYRBHsI9ApZh841xT5CBY=
 
 sinonjs:
   type: file

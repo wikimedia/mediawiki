@@ -303,17 +303,12 @@ class ApiParseTest extends ApiTestCase {
 
 		$this->db->delete( 'revision', [ 'rev_id' => $status->value['revision-record']->getId() ] );
 
-		// Suppress warning in WikiPage::getContentModel
-		Wikimedia\suppressWarnings();
-		try {
-			$this->doApiRequest( [
-				'action' => 'parse',
-				'page' => $name,
-				'section' => 1,
-			] );
-		} finally {
-			Wikimedia\restoreWarnings();
-		}
+		// Ignore warning from WikiPage::getContentModel
+		@$this->doApiRequest( [
+			'action' => 'parse',
+			'page' => $name,
+			'section' => 1,
+		] );
 	}
 
 	public function testNewSectionWithPage() {

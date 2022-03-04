@@ -2356,17 +2356,17 @@ function wfMemoryLimit( $newLimit ) {
 	$oldLimit = wfShorthandToInteger( ini_get( 'memory_limit' ) );
 	// If the INI config is already unlimited, there is nothing larger
 	if ( $oldLimit != -1 ) {
-		$newLimit = wfShorthandToInteger( $newLimit );
+		$newLimit = wfShorthandToInteger( (string)$newLimit );
 		if ( $newLimit == -1 ) {
 			wfDebug( "Removing PHP's memory limit" );
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			ini_set( 'memory_limit', $newLimit );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		} elseif ( $newLimit > $oldLimit ) {
 			wfDebug( "Raising PHP's memory limit to $newLimit bytes" );
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			ini_set( 'memory_limit', $newLimit );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 		}
 	}
 }
@@ -2483,9 +2483,9 @@ function wfUnpack( $format, $data, $length = false ) {
 		}
 	}
 
-	Wikimedia\suppressWarnings();
+	AtEase::suppressWarnings();
 	$result = unpack( $format, $data );
-	Wikimedia\restoreWarnings();
+	AtEase::restoreWarnings();
 
 	if ( $result === false ) {
 		// If it cannot extract the packed data.

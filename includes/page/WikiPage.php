@@ -99,7 +99,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	/**
 	 * The cache of the redirect target
 	 *
-	 * @var Title
+	 * @var Title|null
 	 */
 	protected $mRedirectTarget = null;
 
@@ -128,7 +128,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	public $mPreparedEdit = false;
 
 	/**
-	 * @var int
+	 * @var int|null
 	 */
 	protected $mId = null;
 

@@ -12,7 +12,6 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Rdbms\TransactionManager;
-use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\RequestTimeout\CriticalSectionScope;
 use Wikimedia\TestingAccessWrapper;
 
@@ -470,7 +469,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			) ) ) )
 			->getMock();
 		$wdb = TestingAccessWrapper::newFromObject( $db );
-		$wdb->trxProfiler = new TransactionProfiler();
 		$wdb->connLogger = new \Psr\Log\NullLogger();
 		$wdb->queryLogger = new \Psr\Log\NullLogger();
 		$wdb->replLogger = new \Psr\Log\NullLogger();

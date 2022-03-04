@@ -65,7 +65,7 @@ class FSFileBackend extends FileBackendStore {
 	/** @var MapCacheLRU Cache for known prepared/usable directories */
 	protected $usableDirCache;
 
-	/** @var string Directory holding the container directories */
+	/** @var string|null Directory holding the container directories */
 	protected $basePath;
 
 	/** @var array Map of container names to root paths for custom container paths */

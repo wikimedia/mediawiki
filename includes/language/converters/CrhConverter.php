@@ -109,7 +109,7 @@ class CrhConverter extends LanguageConverterSpecific {
 	}
 
 	/**
-	 * @param Language $langobj
+	 * @param Language|StubUserLang $langobj
 	 */
 	public function __construct( $langobj ) {
 		parent::__construct( $langobj );

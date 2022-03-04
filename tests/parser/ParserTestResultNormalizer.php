@@ -1,9 +1,8 @@
 <?php
+
 /**
- * @file
  * @ingroup Testing
  */
-
 class ParserTestResultNormalizer {
 	protected $doc, $xpath, $invalid;
 
@@ -21,15 +20,13 @@ class ParserTestResultNormalizer {
 	protected function __construct( $text ) {
 		$this->doc = new DOMDocument( '1.0', 'utf-8' );
 
-		// Note: parsing a supposedly XHTML document with an XML parser is not
+		// Parsing a supposedly-XHTML document with an XML parser is not
 		// guaranteed to give accurate results. For example, it may introduce
 		// differences in the number of line breaks in <pre> tags.
-
-		Wikimedia\suppressWarnings();
-		if ( !$this->doc->loadXML( '<html><body>' . $text . '</body></html>' ) ) {
+		if ( !@$this->doc->loadXML( '<html><body>' . $text . '</body></html>' ) ) {
 			$this->invalid = true;
 		}
-		Wikimedia\restoreWarnings();
+
 		$this->xpath = new DOMXPath( $this->doc );
 		$this->body = $this->xpath->query( '//body' )->item( 0 );
 	}

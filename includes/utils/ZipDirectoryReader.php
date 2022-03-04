@@ -532,8 +532,8 @@ class ZipDirectoryReader {
 			$this->error( 'zip-bad', "getBlock() requested end position $end, " .
 				"file length is $fileLength" );
 		}
-		$startSeg = floor( $start / self::SEGSIZE );
-		$endSeg = ceil( $end / self::SEGSIZE );
+		$startSeg = (int)floor( $start / self::SEGSIZE );
+		$endSeg = (int)ceil( $end / self::SEGSIZE );
 
 		$block = '';
 		for ( $segIndex = $startSeg; $segIndex <= $endSeg; $segIndex++ ) {

@@ -396,7 +396,7 @@ class SpecialVersion extends SpecialPage {
 
 		$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
 		if ( $gitHeadCommitDate ) {
-			$shortSHA1 .= Html::element( 'br' ) . $wgLang->timeanddate( $gitHeadCommitDate, true );
+			$shortSHA1 .= Html::element( 'br' ) . $wgLang->timeanddate( (string)$gitHeadCommitDate, true );
 		}
 
 		return self::getMWVersionLinked() . " $shortSHA1";

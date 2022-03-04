@@ -45,7 +45,7 @@ abstract class MediaTransformOutput {
 	/** @var int Image height */
 	protected $height;
 
-	/** @var string URL path to the thumb */
+	/** @var string|false URL path to the thumb */
 	protected $url;
 
 	/** @var bool|string */
@@ -285,6 +285,8 @@ abstract class MediaTransformOutput {
 			->getMainConfig()->get( 'ParserEnableLegacyMediaDOM' );
 		if ( $parserEnableLegacyMediaDOM ) {
 			$attribs['class'] = 'image';
+		} else {
+			$attribs['class'] = 'mw-file-description';
 		}
 
 		if ( $title ) {

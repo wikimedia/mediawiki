@@ -29,6 +29,8 @@ use Wikimedia\ObjectFactory;
  * @since 1.24
  */
 class SkinFactory {
+	private const SKIP_BY_SITECONFIG = 1;
+	private const SKIP_BY_REGISTER = 2;
 
 	/**
 	 * Map of skin name to object factory spec or factory function.
@@ -52,7 +54,7 @@ class SkinFactory {
 	 * Array of skins that should not be presented in the list of
 	 * available skins in user preferences, while they're still installed.
 	 *
-	 * @var string[]
+	 * @var array<string,int>
 	 */
 	private $skipSkins;
 
@@ -64,26 +66,25 @@ class SkinFactory {
 	 */
 	public function __construct( ObjectFactory $objectFactory, array $skipSkins ) {
 		$this->objectFactory = $objectFactory;
-		$this->skipSkins = $skipSkins;
+		$this->skipSkins = array_fill_keys( $skipSkins, self::SKIP_BY_SITECONFIG );
 	}
 
 	/**
-	 * Register a new Skin factory function.
+	 * Register a new skin.
 	 *
-	 * Will override if it's already registered.
+	 * This will replace any previously registered skin by the same name.
 	 *
-	 * @param string $name Internal skin name. Should be all-lowercase (technically doesn't have
-	 *     to be, but doing so would change the case of i18n message keys).
+	 * @param string $name Internal skin name. See also Skin::__construct.
 	 * @param string $displayName For backwards-compatibility with old skin loading system. This is
-	 *     the text used as skin's human-readable name when the 'skinname-<skin>' message is not
-	 *     available.
-	 * @param array|callable $spec Callback that takes the skin name as an argument, or
-	 *     object factory spec specifying how to create the skin
-	 * @param bool $skippable whether the skin is skippable and should be hidden
-	 *   in preferences.
-	 * @throws InvalidArgumentException If an invalid callback is provided
+	 *   the text used as skin's human-readable name when the 'skinname-<skin>' message is not
+	 *   available.
+	 * @param array|callable $spec ObjectFactory spec to construct a Skin object,
+	 *   or callback that takes a skin name and returns a Skin object.
+	 *   See Skin::__construct for the constructor arguments.
+	 * @param true|null $skippable Whether the skin is skippable and should be hidden
+	 *   from user preferences. By default, this is determined based by $wgSkipSkins.
 	 */
-	public function register( $name, $displayName, $spec, $skippable = false ) {
+	public function register( $name, $displayName, $spec, bool $skippable = null ) {
 		if ( !is_callable( $spec ) ) {
 			if ( is_array( $spec ) ) {
 				if ( !isset( $spec['args'] ) ) {
@@ -98,16 +99,22 @@ class SkinFactory {
 		}
 		$this->factoryFunctions[$name] = $spec;
 		$this->displayNames[$name] = $displayName;
-		// Register as hidden if necessary.
-		if ( $skippable ) {
-			$this->skipSkins[] = $name;
+
+		// If skipped by site config, leave as-is.
+		if ( ( $this->skipSkins[$name] ?? null ) !== self::SKIP_BY_SITECONFIG ) {
+			if ( $skippable === true ) {
+				$this->skipSkins[$name] = self::SKIP_BY_REGISTER;
+			} else {
+				// Make sure the register() call is unaffected by previous calls.
+				unset( $this->skipSkins[$name] );
+			}
 		}
 	}
 
 	/**
-	 * Returns an associative array of:
-	 *  skin name => human readable name
-	 * @deprecated since 1.37 use getInstalledSkins instead
+	 * Return an associative array of `skin name => human readable name`.
+	 *
+	 * @deprecated since 1.37 Use getInstalledSkins instead
 	 * @return array
 	 */
 	public function getSkinNames() {
@@ -116,6 +123,7 @@ class SkinFactory {
 
 	/**
 	 * Create a given Skin using the registered callback for $name.
+	 *
 	 * @param string $name Name of the skin you want
 	 * @throws SkinException If a factory function isn't registered for $name
 	 * @return Skin
@@ -135,9 +143,11 @@ class SkinFactory {
 	}
 
 	/**
-	 * Fetch the list of user-selectable skins in regards to $wgSkipSkins.
+	 * Get the list of user-selectable skins.
+	 *
 	 * Useful for Special:Preferences and other places where you
-	 * only want to show skins users _can_ select from preferences page.
+	 * only want to show skins users _can_ select from preferences page,
+	 * thus excluding those as configured by $wgSkipSkins.
 	 *
 	 * @return string[]
 	 * @since 1.36
@@ -145,15 +155,15 @@ class SkinFactory {
 	public function getAllowedSkins() {
 		$skins = $this->getInstalledSkins();
 
-		foreach ( $this->skipSkins as $skip ) {
-			unset( $skins[$skip] );
+		foreach ( $this->skipSkins as $name => $_ ) {
+			unset( $skins[$name] );
 		}
 
 		return $skins;
 	}
 
 	/**
-	 * Fetch the list of all installed skins.
+	 * Get the list of installed skins.
 	 *
 	 * Returns an associative array of skin name => human readable name
 	 *

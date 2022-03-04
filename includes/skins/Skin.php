@@ -230,20 +230,20 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * @since 1.31
-	 * @param string|array|null $options Options for the skin can be an array since 1.35.
+	 * @param string|array|null $options Options for the skin can be an array (since 1.35).
 	 *  When a string is passed, it's the skinname.
-	 *  When an array is passed;
-	 *  `name` key represents the skinname, defaults to $wgDefaultSkin if not provided
-	 *  `scripts` represents an array of ResourceLoader script modules and
-	 *  `styles` represents an array of ResourceLoader style modules to load on all pages.
-	 *  `responsive` indicates if a skin supports responsive behaviour and a viewport meta
-	 *     tag can be set on the skin. Note, users can disable this feature via  user
+	 *  When an array is passed:
+	 *  - `name`: Internal skin name, generally in lowercase to comply with conventions
+	 *     for interface message keys and CSS class names which embed this value.
+	 *  - `scripts`: An array of ResourceLoader script modules.
+	 *  - `styles`: An array of ResourceLoader style modules to load on all pages.
+	 *  - `responsive`: Whether the skin supports responsive behaviour and wants a viewport meta
+	 *     tag to be added to the HTML head. Note, users can disable this feature via a user
 	 *     preference.
-	 *  `link` an array of link options that will be used in makeLink calls. See Skin::makeLink
-	 *  `toc` Whether a table of contents is included in the main article
-	 *     content area.  It defaults to `true`, but if your skins wants to
-	 *     place a table of contents elsewhere (for example, in a sidebar),
-	 *     set `toc` to `false`.
+	 *  - `link`: An array of link options that will be used in Skin::makeLink calls.
+	 *  - `toc`: Whether a table of contents is included in the main article content
+	 *     area.  It defaults to `true`, but if your skins wants to place a table of
+	 *     contents elsewhere (for example, in a sidebar), set `toc` to `false`.
 	 */
 	public function __construct( $options = null ) {
 		if ( is_string( $options ) ) {
@@ -1060,9 +1060,7 @@ abstract class Skin extends ContextSource {
 		// Otherwise, we display the link for the user, described in their
 		// language (which may or may not be the same as the default language),
 		// but we make the link target be the one site-wide page.
-		$title = Title::newFromText( $this->msg( $page )->inContentLanguage()->text() );
-
-		return $title ?: null;
+		return Title::newFromText( $this->msg( $page )->inContentLanguage()->text() );
 	}
 
 	/**
@@ -1214,57 +1212,37 @@ abstract class Skin extends ContextSource {
 		if ( preg_match( '/^(?i:' . wfUrlProtocols() . ')/', $name ) ) {
 			return $name;
 		} else {
-			$title = Title::newFromText( $name );
-			self::checkTitle( $title, $name );
-			return $title->getLocalURL();
+			$title = $name instanceof Title ? $name : Title::newFromText( $name );
+			return $title ? $title->getLocalURL() : '';
 		}
 	}
 
 	/**
 	 * these return an array with the 'href' and boolean 'exists'
-	 * @param string $name
+	 * @param string|Title $name
 	 * @param string|array $urlaction
 	 * @return array
 	 */
 	protected static function makeUrlDetails( $name, $urlaction = '' ) {
-		$title = Title::newFromText( $name );
-		self::checkTitle( $title, $name );
-
+		$title = $name instanceof Title ? $name : Title::newFromText( $name );
 		return [
-			'href' => $title->getLocalURL( $urlaction ),
-			'exists' => $title->isKnown(),
+			'href' => $title ? $title->getLocalURL( $urlaction ) : '',
+			'exists' => $title && $title->isKnown(),
 		];
 	}
 
 	/**
 	 * Make URL details where the article exists (or at least it's convenient to think so)
-	 * @param string $name Article name
+	 * @param string|Title $name Article name
 	 * @param string|array $urlaction
 	 * @return array
 	 */
 	protected static function makeKnownUrlDetails( $name, $urlaction = '' ) {
-		$title = Title::newFromText( $name );
-		self::checkTitle( $title, $name );
-
+		$title = $name instanceof Title ? $name : Title::newFromText( $name );
 		return [
-			'href' => $title->getLocalURL( $urlaction ),
-			'exists' => true
+			'href' => $title ? $title->getLocalURL( $urlaction ) : '',
+			'exists' => (bool)$title,
 		];
-	}
-
-	/**
-	 * make sure we have some title to operate on
-	 *
-	 * @param Title &$title
-	 * @param string $name
-	 */
-	public static function checkTitle( &$title, $name ) {
-		if ( !is_object( $title ) ) {
-			$title = Title::newFromText( $name );
-			if ( !is_object( $title ) ) {
-				$title = Title::newFromText( '--error: link target missing--' );
-			}
-		}
 	}
 
 	/**
@@ -1563,10 +1541,13 @@ abstract class Skin extends ContextSource {
 			$callback = function ( $old = null, &$ttl = null ) {
 				$bar = [];
 				$this->addToSidebar( $bar, 'sidebar' );
+
+				// This hook may vary its behaviour by skin.
 				$this->getHookRunner()->onSkinBuildSidebar( $this, $bar );
 				$msgCache = MediaWikiServices::getInstance()->getMessageCache();
 				if ( $msgCache->isDisabled() ) {
-					$ttl = WANObjectCache::TTL_UNCACHEABLE; // bug T133069
+					// Don't cache the fallback if DB query failed. T133069
+					$ttl = WANObjectCache::TTL_UNCACHEABLE;
 				}
 
 				return $bar;
@@ -1691,13 +1672,7 @@ abstract class Skin extends ContextSource {
 						}
 					} else {
 						$title = Title::newFromText( $link );
-
-						if ( $title ) {
-							$title = $title->fixSpecialName();
-							$href = $title->getLinkURL();
-						} else {
-							$href = 'INVALID-TITLE';
-						}
+						$href = $title ? $title->fixSpecialName()->getLinkURL() : '';
 					}
 
 					$id = strtr( $line[1], ' ', '-' );

@@ -466,13 +466,15 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @return bool
 	 */
 	public function isKnownEmpty( ResourceLoaderContext $context ) {
-		$revisions = $this->getTitleInfo( $context );
-
 		// If a module has dependencies it cannot be empty. An empty array will be cast to false
 		if ( $this->getDependencies() ) {
 			return false;
 		}
-		// For user modules, don't needlessly load if there are no non-empty pages
+
+		// Optimisation: For user modules, don't needlessly load if there are no non-empty pages
+		// This is worthwhile because unlike most modules, user modules require their own
+		// separate embedded request (managed by ResourceLoaderClientHtml).
+		$revisions = $this->getTitleInfo( $context );
 		if ( $this->getGroup() === self::GROUP_USER ) {
 			foreach ( $revisions as $revision ) {
 				if ( $revision['page_len'] > 0 ) {
@@ -483,9 +485,9 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			return true;
 		}
 
-		// T70488: For other modules (i.e. ones that are called in cached html output) only check
+		// T70488: For non-user modules (i.e. ones that are called in cached HTML output) only check
 		// page existence. This ensures that, if some pages in a module are temporarily blanked,
-		// we don't end omit the module's script or link tag on some pages.
+		// we don't stop embedding the module's script or link tag on newly cached pages.
 		return count( $revisions ) === 0;
 	}
 

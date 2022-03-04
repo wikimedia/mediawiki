@@ -28,6 +28,7 @@ use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Rest\HeaderParser\Origin;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\UserFactory;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -1678,9 +1679,9 @@ class ApiMain extends ApiBase {
 			$this->getRequest()->response()->statusHeader( 304 );
 
 			// Avoid outputting the compressed representation of a zero-length body
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			ini_set( 'zlib.output_compression', 0 );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 			wfResetOutputBuffers( false );
 
 			return false;

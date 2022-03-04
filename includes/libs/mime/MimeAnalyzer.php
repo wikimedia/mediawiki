@@ -22,6 +22,7 @@
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Mime\MimeMap;
 use Wikimedia\Mime\MimeMapMinimal;
 
@@ -545,9 +546,9 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 */
 	private function doGuessMimeType( string $file, $ext ) {
 		// Read a chunk of the file
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$f = fopen( $file, 'rb' );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		if ( !$f ) {
 			return 'unknown/unknown';
@@ -681,9 +682,9 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		/**
 		 * look for XML formats (XHTML and SVG)
 		 */
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$xml = new XmlTypeCheck( $file );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		if ( $xml->wellFormed ) {
 			$xmlTypes = $this->xmlTypes;
 			return $xmlTypes[$xml->getRootElement()] ?? 'application/xml';
@@ -759,9 +760,9 @@ class MimeAnalyzer implements LoggerAwareInterface {
 			}
 		}
 
-		Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$gis = getimagesize( $file );
-		Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 
 		if ( $gis && isset( $gis['mime'] ) ) {
 			$mime = $gis['mime'];

@@ -92,6 +92,8 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Linker\LinkTargetLookup;
+use MediaWiki\Linker\LinkTargetStore;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Mail\Emailer;
 use MediaWiki\Mail\IEmailer;
@@ -758,6 +760,7 @@ return [
 		$isConversionDisabled = $services->getMainConfig()->get( 'DisableLangConversion' );
 		$isTitleConversionDisabled = $services->getMainConfig()->get( 'DisableTitleConversion' );
 		return new LanguageConverterFactory(
+			$services->getObjectFactory(),
 			$usePigLatinVariant,
 			$isConversionDisabled,
 			$isTitleConversionDisabled,
@@ -832,6 +835,14 @@ return [
 			$services->getLinkCache(),
 			$services->getSpecialPageFactory(),
 			$services->getHookContainer()
+		);
+	},
+
+	'LinkTargetLookup' => static function ( MediaWikiServices $services ): LinkTargetLookup {
+		return new LinkTargetStore(
+			$services->getDBLoadBalancer(),
+			$services->getLocalServerObjectCache(),
+			$services->getMainWANObjectCache()
 		);
 	},
 
@@ -987,7 +998,7 @@ return [
 			$clusterCache,
 			$srvCache,
 			$services->getContentLanguage(),
-			$services->getLanguageConverterFactory()->getLanguageConverter(),
+			$services->getLanguageConverterFactory(),
 			$logger,
 			[ 'useDB' => $mainConfig->get( 'UseDatabaseMessages' ) ],
 			$services->getLanguageFactory(),
@@ -1633,10 +1644,10 @@ return [
 			if ( is_array( $skin ) ) {
 				$spec = $skin;
 				$displayName = $skin['displayname'] ?? $name;
-				$skippable = $skin['skippable'] ?? false;
+				$skippable = $skin['skippable'] ?? null;
 			} else {
 				$displayName = $skin;
-				$skippable = false;
+				$skippable = null;
 				$spec = [
 					'name' => $name,
 					'class' => "Skin$skin"

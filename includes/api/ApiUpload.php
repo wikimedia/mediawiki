@@ -893,7 +893,7 @@ class ApiUpload extends ApiBase {
 					'filename' => $this->mParams['filename'],
 					'filekey' => $this->mParams['filekey'],
 					'comment' => $this->mParams['comment'],
-					'tags' => $this->mParams['tags'],
+					'tags' => $this->mParams['tags'] ?? [],
 					'text' => $this->mParams['text'],
 					'watch' => $watch,
 					'watchlistexpiry' => $watchlistExpiry,
@@ -909,7 +909,7 @@ class ApiUpload extends ApiBase {
 				$this->mParams['text'],
 				$watch,
 				$this->getUser(),
-				$this->mParams['tags'],
+				$this->mParams['tags'] ?? [],
 				$watchlistExpiry
 			);
 
