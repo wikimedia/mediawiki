@@ -256,7 +256,7 @@ class RollbackAction extends FormAction {
 				$this->getContext(),
 				$current->getId(),
 				$newId,
-				false,
+				0,
 				true
 			);
 			$de->showDiff( '', '' );
