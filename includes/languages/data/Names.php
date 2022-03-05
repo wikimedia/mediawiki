@@ -385,7 +385,7 @@ class Names {
 		'rm' => 'rumantsch', # Raeto-Romance
 		'rmc' => 'romaňi čhib', # Carpathian Romany
 		'rmy' => 'romani čhib', # Vlax Romany
-		'rn' => 'Kirundi', # Rundi/Kirundi/Urundi
+		'rn' => 'ikirundi', # Kirundi
 		'ro' => 'română', # Romanian
 		'roa-rup' => 'armãneashti', # Aromanian (deprecated code, 'rup' exists in ISO 639-3)
 		'roa-tara' => 'tarandíne', # Tarantino ('nap-x-tara')
