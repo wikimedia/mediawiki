@@ -54,6 +54,7 @@ class DatabaseBlockStore {
 	public const CONSTRUCTOR_OPTIONS = [
 		'PutIPinRC',
 		'BlockDisablesLogin',
+		'UpdateRowsPerQuery',
 	];
 
 	/** @var LoggerInterface */
@@ -126,21 +127,23 @@ class DatabaseBlockStore {
 		}
 
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
-		$blockRestrictionStore = $this->blockRestrictionStore;
+		$store = $this->blockRestrictionStore;
+		$limit = $this->options->get( 'UpdateRowsPerQuery' );
 
 		DeferredUpdates::addUpdate( new AutoCommitUpdate(
 			$dbw,
 			__METHOD__,
-			static function ( IDatabase $dbw, $fname ) use ( $blockRestrictionStore ) {
+			static function ( IDatabase $dbw, $fname ) use ( $store, $limit ) {
 				$ids = $dbw->selectFieldValues(
 					'ipblocks',
 					'ipb_id',
 					[ 'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ],
 					$fname,
-					[ 'LIMIT' => 500 ] // Have a limit to avoid creating read-only
+					// Set a limit to avoid causing read-only mode (T301742)
+					[ 'LIMIT' => $limit ]
 				);
 				if ( $ids ) {
-					$blockRestrictionStore->deleteByBlockId( $ids );
+					$store->deleteByBlockId( $ids );
 					$dbw->delete( 'ipblocks', [ 'ipb_id' => $ids ], $fname );
 				}
 			}

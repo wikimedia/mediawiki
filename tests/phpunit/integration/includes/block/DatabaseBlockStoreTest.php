@@ -44,6 +44,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$defaultConfig = [
 			'PutIPinRC' => true,
 			'BlockDisablesLogin' => false,
+			'UpdateRowsPerQuery' => 10,
 		];
 		$config = array_merge( $defaultConfig, $overrideConfig );
 
