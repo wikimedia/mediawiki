@@ -79,7 +79,7 @@ class ActorStoreFactory {
 	}
 
 	/**
-	 * @param bool $wikiId
+	 * @param string|false $wikiId
 	 * @return ActorNormalization
 	 */
 	public function getActorNormalization( $wikiId = WikiAwareEntity::LOCAL ): ActorNormalization {
