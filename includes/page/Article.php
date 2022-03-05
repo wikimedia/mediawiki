@@ -845,7 +845,7 @@ class Article implements Page {
 		$request = $this->getContext()->getRequest();
 		$user = $this->getContext()->getUser();
 		$diff = $request->getVal( 'diff' );
-		$rcid = $request->getVal( 'rcid' );
+		$rcid = $request->getInt( 'rcid' );
 		$diffOnly = $request->getBool( 'diffonly', $user->getOption( 'diffonly' ) );
 		$purge = $request->getRawVal( 'action' ) === 'purge';
 		$unhide = $request->getInt( 'unhide' ) == 1;

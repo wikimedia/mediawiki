@@ -144,7 +144,7 @@ class SpecialComparePages extends SpecialPage {
 				$de = $contentHandler->createDifferenceEngine( $form->getContext(),
 					$rev1,
 					$rev2,
-					null, // rcid
+					0, // rcid
 					( $data['Action'] == 'purge' ),
 					( $data['Unhide'] == '1' )
 				);
