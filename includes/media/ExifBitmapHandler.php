@@ -40,7 +40,7 @@ class ExifBitmapHandler extends BitmapHandler {
 
 	public function convertMetadataVersion( $metadata, $version = 1 ) {
 		// basically flattens arrays.
-		$version = intval( explode( ';', $version, 2 )[0] );
+		$version = is_int( $version ) ? $version : intval( explode( ';', $version, 2 )[0] );
 		if ( $version < 1 || $version >= 2 ) {
 			return $metadata;
 		}
