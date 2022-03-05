@@ -55,7 +55,7 @@ class Version extends Maintenance {
 		// Get build date and append if available
 		$gitInfo = new GitInfo( $IP );
 		$gitHeadCommitDate = $gitInfo->getHeadCommitDate();
-		$buildDate = $contentLang->timeanddate( $gitHeadCommitDate, true );
+		$buildDate = $contentLang->timeanddate( (string)$gitHeadCommitDate, true );
 
 		$text = "MediaWiki version: " . $version;
 		if ( $isLTS ) {

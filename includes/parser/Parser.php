@@ -4208,7 +4208,7 @@ class Parser {
 			if ( $toclevel ) {
 				$prevlevel = $level;
 			}
-			$level = $matches[1][$headlineCount];
+			$level = (int)$matches[1][$headlineCount];
 
 			if ( $level > $prevlevel ) {
 				# Increase TOC level

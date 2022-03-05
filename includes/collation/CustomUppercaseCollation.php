@@ -75,7 +75,7 @@ class CustomUppercaseCollation extends NumericUppercaseCollation {
 		$this->puaSubset = [];
 		$len = count( $alphabet );
 		for ( $i = 0; $i < $len; $i++ ) {
-			$this->puaSubset[] = "\xF3\xB3" . chr( floor( $i / 64 ) + 128 ) . chr( ( $i % 64 ) + 128 );
+			$this->puaSubset[] = "\xF3\xB3" . chr( (int)floor( $i / 64 ) + 128 ) . chr( ( $i % 64 ) + 128 );
 		}
 
 		// Sort these arrays so that any trigraphs, digraphs etc. are first

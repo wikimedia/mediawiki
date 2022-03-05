@@ -44,7 +44,7 @@ class ResetUserEmail extends Maintenance {
 	public function execute() {
 		$userName = $this->getArg( 0 );
 		if ( preg_match( '/^#\d+$/', $userName ) ) {
-			$user = User::newFromId( substr( $userName, 1 ) );
+			$user = User::newFromId( (int)substr( $userName, 1 ) );
 		} else {
 			$user = User::newFromName( $userName );
 		}

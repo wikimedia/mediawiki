@@ -303,9 +303,9 @@ class KkConverter extends LanguageConverterSpecific {
 		$ret = '';
 
 		foreach ( $matches as $m ) {
-			$ret .= substr( $text, $mstart, $m[1] - $mstart );
+			$ret .= substr( $text, $mstart, (int)$m[1] - $mstart );
 			$ret .= $this->regsConverter( $m[0], $toVariant );
-			$mstart = $m[1] + strlen( $m[0] );
+			$mstart = (int)$m[1] + strlen( $m[0] );
 		}
 
 		return $ret;
@@ -332,7 +332,7 @@ class KkConverter extends LanguageConverterSpecific {
 				$mstart = 0;
 				$ret = '';
 				foreach ( $matches as $m ) {
-					$ret .= substr( $text, $mstart, $m[1] - $mstart );
+					$ret .= substr( $text, $mstart, (int)$m[1] - $mstart );
 					// is matched the word to front vowels?
 					// exclude a words matched to е, э, г, к, к, қ,
 					// them should be without hamza
@@ -343,7 +343,7 @@ class KkConverter extends LanguageConverterSpecific {
 					} else {
 						$ret .= $m[0];
 					}
-					$mstart = $m[1] + strlen( $m[0] );
+					$mstart = (int)$m[1] + strlen( $m[0] );
 				}
 				$text =& $ret;
 				$mCyLa2Arab = $this->getMCyLa2Arab();

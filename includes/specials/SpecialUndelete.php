@@ -1065,7 +1065,7 @@ class SpecialUndelete extends SpecialPage {
 			$history .= $misc;
 
 			$form->appendContent( new OOUI\HtmlSnippet( $history ) );
-			$out->addHTML( $form );
+			$out->addHTML( (string)$form );
 		} else {
 			$out->addHTML( $history );
 		}
