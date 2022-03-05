@@ -66,7 +66,9 @@ class DatabaseSqlite extends Database {
 		// Optimizations or requirements regarding fsync() usage
 		'synchronous' => [ 'EXTRA', 'FULL', 'NORMAL', 'OFF' ],
 		// Optimizations for TEMPORARY tables
-		'temp_store' => [ 'FILE', 'MEMORY' ]
+		'temp_store' => [ 'FILE', 'MEMORY' ],
+		// Optimizations for disk use and page cache
+		'mmap_size' => 'integer'
 	];
 
 	/** @var ISQLPlatform */
@@ -187,7 +189,10 @@ class DatabaseSqlite extends Database {
 			$pragmas += $this->getDefaultPragmas();
 			foreach ( $pragmas as $name => $value ) {
 				$allowed = self::VALID_PRAGMAS[$name];
-				if ( in_array( $value, $allowed, true ) ) {
+				if (
+					( is_array( $allowed ) && in_array( $value, $allowed, true ) ) ||
+					( is_string( $allowed ) && gettype( $value ) === $allowed )
+				) {
 					$this->query( "PRAGMA $name = $value", __METHOD__, $flags );
 				}
 			}
