@@ -424,25 +424,26 @@ class DatabaseSqlite extends Database {
 	 * @return string
 	 */
 	public function lastError() {
-		if ( !is_object( $this->conn ) ) {
-			return "Cannot return last error, no db connection";
-		}
-		$e = $this->conn->errorInfo();
+		if ( is_object( $this->conn ) ) {
+			$e = $this->conn->errorInfo();
 
-		return $e[2] ?? '';
+			return $e[2] ?? '';
+		}
+		return 'No database connection';
 	}
 
 	/**
-	 * @return string
+	 * @return int
 	 */
 	public function lastErrno() {
-		if ( !is_object( $this->conn ) ) {
-			return "Cannot return last error, no db connection";
-		} else {
+		if ( is_object( $this->conn ) ) {
 			$info = $this->conn->errorInfo();
 
-			return $info[1];
+			if ( isset( $info[1] ) ) {
+				return $info[1];
+			}
 		}
+		return 0;
 	}
 
 	/**
