@@ -34,7 +34,6 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
 use Throwable;
-use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
@@ -129,22 +128,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var array|null Replication lag estimate at the time of BEGIN for the last transaction */
 	private $trxReplicaLagStatus = null;
-
-	/** @var array[] List of (callable, method name, atomic section id) */
-	private $trxPostCommitOrIdleCallbacks = [];
-	/** @var array[] List of (callable, method name, atomic section id) */
-	private $trxPreCommitOrIdleCallbacks = [];
-	/**
-	 * @var array[] List of (callable, method name, atomic section id)
-	 * @phan-var array<array{0:callable,1:string,2:AtomicSectionIdentifier|null}>
-	 */
-	private $trxEndCallbacks = [];
-	/** @var array[] List of (callable, method name, atomic section id) */
-	private $trxSectionCancelCallbacks = [];
-	/** @var callable[] Map of (name => callable) */
-	private $trxRecurringCallbacks = [];
-	/** @var bool Whether to suppress triggering of transaction end callbacks */
-	private $trxEndCallbacksSuppressed = false;
 
 	/** @var int|null Rows affected by the last query to query() or its CRUD wrappers */
 	protected $affectedRowCount;
@@ -671,13 +654,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function writesOrCallbacksPending() {
-		return $this->trxLevel() && (
-			$this->transactionManager->isTrxDoneWrites() ||
-			$this->trxPostCommitOrIdleCallbacks ||
-			$this->trxPreCommitOrIdleCallbacks ||
-			$this->trxEndCallbacks ||
-			$this->trxSectionCancelCallbacks
-		);
+		return $this->transactionManager->writesOrCallbacksPending();
 	}
 
 	/**
@@ -715,19 +692,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @since 1.32
 	 */
 	public function pendingWriteAndCallbackCallers() {
-		$fnames = $this->pendingWriteCallers();
-		foreach ( [
-			$this->trxPostCommitOrIdleCallbacks,
-			$this->trxPreCommitOrIdleCallbacks,
-			$this->trxEndCallbacks,
-			$this->trxSectionCancelCallbacks
-		] as $callbacks ) {
-			foreach ( $callbacks as $callback ) {
-				$fnames[] = $callback[1];
-			}
+		if ( !$this->transactionManager ) {
+			return [];
 		}
-
-		return $fnames;
+		return $this->transactionManager->pendingWriteAndCallbackCallers();
 	}
 
 	public function isOpen() {
@@ -900,11 +868,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// Roll back any dangling transaction first
 			if ( $this->trxLevel() ) {
 				$error = $this->transactionManager->trxCheckBeforeClose( $this, $fname );
-
-				if ( $this->trxEndCallbacksSuppressed && $error === null ) {
-					$error = "$fname: callbacks are suppressed; cannot properly commit";
-				}
-
 				// Rollback the changes and run any callbacks as needed
 				$this->rollback( __METHOD__, self::FLUSHING_INTERNAL );
 				$this->runTransactionPostRollbackCallbacks();
@@ -1541,9 +1504,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// https://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_get-lock
 		// https://www.postgresql.org/docs/9.4/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$this->sessionNamedLocks = [];
-		// Session loss implies transaction loss
-		$this->trxPostCommitOrIdleCallbacks = []; // T67263; transaction already lost
-		$this->trxPreCommitOrIdleCallbacks = []; // T67263; transaction already lost
+		// Session loss implies transaction loss (T67263)
+		$this->transactionManager->clearPreEndCallbacks();
 		// Clear additional subclass fields
 		$oldTrxId = $this->transactionManager->consumeTrxId();
 		$this->doHandleSessionLossPreconnect();
@@ -4047,10 +4009,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function onTransactionResolution( callable $callback, $fname = __METHOD__ ) {
-		if ( !$this->trxLevel() ) {
-			throw new DBUnexpectedError( $this, "No transaction is active" );
-		}
-		$this->trxEndCallbacks[] = [ $callback, $fname, $this->transactionManager->currentAtomicSectionId() ];
+		$this->transactionManager->onTransactionResolution( $this, $callback, $fname );
 	}
 
 	final public function onTransactionCommitOrIdle( callable $callback, $fname = __METHOD__ ) {
@@ -4061,12 +4020,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->begin( __METHOD__, self::TRANSACTION_INTERNAL );
 		}
 
-		$this->trxPostCommitOrIdleCallbacks[] = [
-			$callback,
-			$fname,
-			$this->transactionManager->currentAtomicSectionId()
-		];
-
+		$this->transactionManager->addPostCommitOrIdleCallback( $callback, $fname );
 		if ( !$this->trxLevel() ) {
 			$dbErrors = [];
 			$this->runOnTransactionIdleCallbacks( self::TRIGGER_IDLE, $dbErrors );
@@ -4085,11 +4039,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $this->trxLevel() ) {
-			$this->trxPreCommitOrIdleCallbacks[] = [
+			$this->transactionManager->addPreCommitOrIdleCallback(
 				$callback,
-				$fname,
-				$this->transactionManager->currentAtomicSectionId()
-			];
+				$fname
+			);
 		} else {
 			// No transaction is active nor will start implicitly, so make one for this callback
 			$this->startAtomic( __METHOD__, self::ATOMIC_CANCELABLE );
@@ -4107,103 +4060,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function onAtomicSectionCancel( callable $callback, $fname = __METHOD__ ) {
-		$this->transactionManager->onAtomicSectionCancel( $this, $fname );
-		$this->trxSectionCancelCallbacks[] = [ $callback, $fname, $this->transactionManager->currentAtomicSectionId() ];
-	}
-
-	/**
-	 * Hoist callback ownership for callbacks in a section to a parent section.
-	 * All callbacks should have an owner that is present in trxAtomicLevels.
-	 * @param AtomicSectionIdentifier $old
-	 * @param AtomicSectionIdentifier $new
-	 */
-	private function reassignCallbacksForSection(
-		AtomicSectionIdentifier $old,
-		AtomicSectionIdentifier $new
-	) {
-		foreach ( $this->trxPreCommitOrIdleCallbacks as $key => $info ) {
-			if ( $info[2] === $old ) {
-				$this->trxPreCommitOrIdleCallbacks[$key][2] = $new;
-			}
-		}
-		foreach ( $this->trxPostCommitOrIdleCallbacks as $key => $info ) {
-			if ( $info[2] === $old ) {
-				$this->trxPostCommitOrIdleCallbacks[$key][2] = $new;
-			}
-		}
-		foreach ( $this->trxEndCallbacks as $key => $info ) {
-			if ( $info[2] === $old ) {
-				$this->trxEndCallbacks[$key][2] = $new;
-			}
-		}
-		foreach ( $this->trxSectionCancelCallbacks as $key => $info ) {
-			if ( $info[2] === $old ) {
-				$this->trxSectionCancelCallbacks[$key][2] = $new;
-			}
-		}
-	}
-
-	/**
-	 * Update callbacks that were owned by cancelled atomic sections.
-	 *
-	 * Callbacks for "on commit" should never be run if they're owned by a
-	 * section that won't be committed.
-	 *
-	 * Callbacks for "on resolution" need to reflect that the section was
-	 * rolled back, even if the transaction as a whole commits successfully.
-	 *
-	 * Callbacks for "on section cancel" should already have been consumed,
-	 * but errors during the cancellation itself can prevent that while still
-	 * destroying the section. Hoist any such callbacks to the new top section,
-	 * which we assume will itself have to be cancelled or rolled back to
-	 * resolve the error.
-	 *
-	 * @param AtomicSectionIdentifier[] $sectionIds ID of an actual savepoint
-	 * @param AtomicSectionIdentifier|null $newSectionId New top section ID.
-	 * @throws UnexpectedValueException
-	 */
-	private function modifyCallbacksForCancel(
-		array $sectionIds,
-		AtomicSectionIdentifier $newSectionId = null
-	) {
-		// Cancel the "on commit" callbacks owned by this savepoint
-		$this->trxPostCommitOrIdleCallbacks = array_filter(
-			$this->trxPostCommitOrIdleCallbacks,
-			static function ( $entry ) use ( $sectionIds ) {
-				return !in_array( $entry[2], $sectionIds, true );
-			}
-		);
-		$this->trxPreCommitOrIdleCallbacks = array_filter(
-			$this->trxPreCommitOrIdleCallbacks,
-			static function ( $entry ) use ( $sectionIds ) {
-				return !in_array( $entry[2], $sectionIds, true );
-			}
-		);
-		// Make "on resolution" callbacks owned by this savepoint to perceive a rollback
-		foreach ( $this->trxEndCallbacks as $key => $entry ) {
-			if ( in_array( $entry[2], $sectionIds, true ) ) {
-				$callback = $entry[0];
-				$this->trxEndCallbacks[$key][0] = function () use ( $callback ) {
-					return $callback( self::TRIGGER_ROLLBACK, $this );
-				};
-				// This "on resolution" callback no longer belongs to a section.
-				$this->trxEndCallbacks[$key][2] = null;
-			}
-		}
-		// Hoist callback ownership for section cancel callbacks to the new top section
-		foreach ( $this->trxSectionCancelCallbacks as $key => $entry ) {
-			if ( in_array( $entry[2], $sectionIds, true ) ) {
-				$this->trxSectionCancelCallbacks[$key][2] = $newSectionId;
-			}
-		}
+		$this->transactionManager->onAtomicSectionCancel( $this, $callback, $fname );
 	}
 
 	final public function setTransactionListener( $name, callable $callback = null ) {
-		if ( $callback ) {
-			$this->trxRecurringCallbacks[$name] = $callback;
-		} else {
-			unset( $this->trxRecurringCallbacks[$name] );
-		}
+		$this->transactionManager->setTransactionListener( $name, $callback );
 	}
 
 	/**
@@ -4215,7 +4076,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param bool $suppress
 	 */
 	final public function setTrxEndCallbackSuppression( $suppress ) {
-		$this->trxEndCallbacksSuppressed = $suppress;
+		$this->transactionManager->setTrxEndCallbackSuppression( $suppress );
 	}
 
 	/**
@@ -4235,7 +4096,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new DBUnexpectedError( $this, __METHOD__ . ': a transaction is still open' );
 		}
 
-		if ( $this->trxEndCallbacksSuppressed ) {
+		if ( $this->transactionManager->isEndCallbacksSuppressed() ) {
 			// Execution deferred by LoadBalancer for explicit execution later
 			return 0;
 		}
@@ -4246,17 +4107,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$autoTrx = $this->getFlag( self::DBO_TRX ); // automatic begin() enabled?
 		// Drain the queues of transaction "idle" and "end" callbacks until they are empty
 		do {
-			$callbackEntries = array_merge(
-				$this->trxPostCommitOrIdleCallbacks,
-				$this->trxEndCallbacks,
-				( $trigger === self::TRIGGER_ROLLBACK )
-					? $this->trxSectionCancelCallbacks
-					: [] // just consume them
-			);
-			$this->trxPostCommitOrIdleCallbacks = []; // consumed (and recursion guard)
-			$this->trxEndCallbacks = []; // consumed (recursion guard)
-			$this->trxSectionCancelCallbacks = []; // consumed (recursion guard)
-
+			$callbackEntries = $this->transactionManager->consumeEndCallbacks( $trigger );
 			$count += count( $callbackEntries );
 			foreach ( $callbackEntries as $entry ) {
 				$this->clearFlag( self::DBO_TRX ); // make each query its own transaction
@@ -4278,8 +4129,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					}
 				}
 			}
-			// @phan-suppress-next-line PhanImpossibleConditionInLoop
-		} while ( count( $this->trxPostCommitOrIdleCallbacks ) );
+		} while ( $this->transactionManager->countPostCommitOrIdleCallbacks() );
 
 		$this->completeCriticalSection( __METHOD__, $cs );
 
@@ -4296,58 +4146,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @throws Throwable Any exception thrown by a callback
 	 */
 	public function runOnTransactionPreCommitCallbacks() {
-		$count = 0;
-
-		// Drain the queues of transaction "precommit" callbacks until it is empty
-		do {
-			$callbackEntries = $this->trxPreCommitOrIdleCallbacks;
-			$this->trxPreCommitOrIdleCallbacks = []; // consumed (and recursion guard)
-			$count += count( $callbackEntries );
-			foreach ( $callbackEntries as $entry ) {
-				try {
-					// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
-					$entry[0]( $this );
-				} catch ( Throwable $trxError ) {
-					$this->transactionManager->setTransactionError( $trxError );
-					throw $trxError;
-				}
-			}
-			// @phan-suppress-next-line PhanImpossibleConditionInLoop
-		} while ( $this->trxPreCommitOrIdleCallbacks );
-
-		return $count;
-	}
-
-	/**
-	 * Consume and run any relevant "on atomic section cancel" callbacks for the active transaction
-	 *
-	 * @param int $trigger IDatabase::TRIGGER_* constant
-	 * @param AtomicSectionIdentifier[] $sectionIds IDs of the sections that where just cancelled
-	 * @throws Throwable Any exception thrown by a callback
-	 */
-	private function runOnAtomicSectionCancelCallbacks( $trigger, array $sectionIds ) {
-		// Drain the queue of matching "atomic section cancel" callbacks until there are none
-		$unrelatedCallbackEntries = [];
-		do {
-			$callbackEntries = $this->trxSectionCancelCallbacks;
-			$this->trxSectionCancelCallbacks = []; // consumed (recursion guard)
-			foreach ( $callbackEntries as $entry ) {
-				if ( in_array( $entry[2], $sectionIds, true ) ) {
-					try {
-						// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
-						$entry[0]( $trigger, $this );
-					} catch ( Throwable $trxError ) {
-						$this->transactionManager->setTransactionError( $trxError );
-						throw $trxError;
-					}
-				} else {
-					$unrelatedCallbackEntries[] = $entry;
-				}
-			}
-			// @phan-suppress-next-line PhanImpossibleConditionInLoop
-		} while ( $this->trxSectionCancelCallbacks );
-
-		$this->trxSectionCancelCallbacks = $unrelatedCallbackEntries;
+		return $this->transactionManager->runOnTransactionPreCommitCallbacks( $this );
 	}
 
 	/**
@@ -4361,13 +4160,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @throws Throwable Any non-DBError exception thrown by a callback
 	 */
 	public function runTransactionListenerCallbacks( $trigger, array &$errors = [] ) {
-		if ( $this->trxEndCallbacksSuppressed ) {
+		if ( $this->transactionManager->isEndCallbacksSuppressed() ) {
 			// Execution deferred by LoadBalancer for explicit execution later
 			return;
 		}
 
 		// These callbacks should only be registered in setup, thus no iteration is needed
-		foreach ( $this->trxRecurringCallbacks as $callback ) {
+		foreach ( $this->transactionManager->getRecurringCallbacks() as $callback ) {
 			try {
 				$callback( $trigger, $this );
 			} catch ( DBError $ex ) {
@@ -4523,7 +4322,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function endAtomic( $fname = __METHOD__ ) {
-		$this->transactionManager->onAtomicSectionCancel( $this, $fname );
+		$this->transactionManager->onAtomicEnd( $this, $fname );
 		list( $savepointId, $sectionId ) = $this->transactionManager->onEndAtomic( $this, $fname );
 
 		$runPostCommitCallbacks = false;
@@ -4549,7 +4348,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// all callbacks should have an owner that is present in trxAtomicLevels.
 		$currentSectionId = $this->transactionManager->currentAtomicSectionId();
 		if ( $currentSectionId ) {
-			$this->reassignCallbacksForSection( $sectionId, $currentSectionId );
+			$this->transactionManager->reassignCallbacksForSection( $sectionId, $currentSectionId );
 		}
 
 		$this->completeCriticalSection( __METHOD__, $cs );
@@ -4563,7 +4362,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$fname = __METHOD__,
 		AtomicSectionIdentifier $sectionId = null
 	) {
-		$this->transactionManager->onAtomicSectionCancel( $this, $fname );
+		$this->transactionManager->onAtomicEnd( $this, $fname );
 		$pos = $this->transactionManager->getPositionFromSectionId( $sectionId );
 		if ( $pos < 0 ) {
 			throw new DBUnexpectedError( $this, "Atomic section not found (for $fname)" );
@@ -4601,7 +4400,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					// to the state prior to this section and trigger its cancellation callbacks
 					$this->doRollbackToSavepoint( $savepointId, $fname );
 					$this->transactionManager->setTrxStatusToOk(); // no exception; recovered
-					$this->runOnAtomicSectionCancelCallbacks( self::TRIGGER_CANCEL, $excisedIds );
+					$this->transactionManager->runOnAtomicSectionCancelCallbacks(
+						$this,
+						self::TRIGGER_CANCEL,
+						$excisedIds
+					);
 				}
 			} else {
 				$this->transactionManager->setTransactionErrorFromStatus( $this, $fname );
@@ -4609,7 +4412,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} finally {
 			// Fix up callbacks owned by the sections that were just cancelled.
 			// All callbacks should have an owner that is present in trxAtomicLevels.
-			$this->modifyCallbacksForCancel( $excisedIds, $newTopSection );
+			$this->transactionManager->modifyCallbacksForCancel( $this, $excisedIds, $newTopSection );
 		}
 
 		$this->affectedRowCount = 0; // for the sake of consistency
@@ -4753,10 +4556,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( !$this->trxLevel() ) {
-			// Clear any commit-dependant callbacks left over from transaction rounds
-			$this->trxPostCommitOrIdleCallbacks = [];
-			$this->trxPreCommitOrIdleCallbacks = [];
-
+			$this->transactionManager->clearPreEndCallbacks();
 			return;
 		}
 
@@ -4767,9 +4567,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$oldTrxId = $this->transactionManager->consumeTrxId();
 		$this->transactionManager->setTrxStatusToNone();
 		$this->transactionManager->resetTrxAtomicLevels();
-		// Clear callbacks that depend on transaction or transaction round commit
-		$this->trxPostCommitOrIdleCallbacks = [];
-		$this->trxPreCommitOrIdleCallbacks = [];
+		$this->transactionManager->clearPreEndCallbacks();
 		$this->transactionManager->transactionWritingOut( $this, $oldTrxId );
 		// With FLUSHING_ALL_PEERS, callbacks will run when requested by a dedicated phase
 		// within LoadBalancer. With FLUSHING_INTERNAL, callbacks will run when requested by
@@ -5810,8 +5608,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->isOpen() ) {
 			// Open a new connection resource without messing with the old one
 			$this->conn = null;
-			$this->trxEndCallbacks = []; // don't copy
-			$this->trxSectionCancelCallbacks = []; // don't copy
+			$this->transactionManager->clearEndCallbacks();
 			$this->handleSessionLossPreconnect(); // no trx or locks anymore
 			$this->open(
 				$this->connectionParams[self::CONN_HOST],
