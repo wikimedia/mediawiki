@@ -508,6 +508,19 @@ class SpecialUndelete extends SpecialPage {
 		if ( !preg_match( '/[0-9]{14}/', $timestamp ) ) {
 			return;
 		}
+		$out = $this->getOutput();
+
+		// When viewing a specific revision, add a subtitle link back to the overall
+		// history, see T284114
+		$listLink = $this->getLinkRenderer()->makeKnownLink(
+			$this->getPageTitle(),
+			$this->msg( 'undelete-back-to-list' )->text(),
+			[],
+			[ 'target' => $this->mTargetObj->getPrefixedText() ]
+		);
+		// same < arrow as with subpages
+		$subtitle = "&lt; $listLink";
+		$out->setSubtitle( $subtitle );
 
 		$archive = new PageArchive( $this->mTargetObj );
 		// FIXME: This hook must be deprecated, passing PageArchive by ref is awful.
@@ -518,7 +531,6 @@ class SpecialUndelete extends SpecialPage {
 		}
 		$revRecord = $this->archivedRevisionLookup->getRevisionRecordByTimestamp( $this->mTargetObj, $timestamp );
 
-		$out = $this->getOutput();
 		$user = $this->getUser();
 
 		if ( !$revRecord ) {
