@@ -116,7 +116,6 @@
 		"ext-readline": "Enable CLI history and autocomplete, e.g. for eval.php and other REPLs.",
 		"ext-sockets": "Enable CLI concurrent processing, e.g. for rebuildLocalisationCache.php.",
 		"ext-wikidiff2": "Faster text difference engine.",
-		"ext-yaml": "Enable YAML type for EtcdConfig backend.",
 		"ext-zlib": "Enable use of GZIP compression, e.g. for SqlBagOStuff (ParserCache), $wgCompressRevisions, or $wgUseFileCache.",
 		"monolog/monolog": "Enable use of MonologSpi ($wgMWLoggerDefaultSpi).",
 		"nmred/kafka-php": "Enable use of KafkaHandler (MonologSpi), or EventRelayerKafka ($wgEventRelayerConfig)."
