@@ -1,9 +1,12 @@
 <?php
 
+namespace MediaWiki\Parser;
+
 use Wikimedia\RemexHtml\Tokenizer\Attributes;
 use Wikimedia\RemexHtml\Tokenizer\NullTokenHandler;
 
 /**
+ * Helper class for Sanitizer::stripAllTags().
  * @internal
  */
 class RemexStripTagHandler extends NullTokenHandler {
