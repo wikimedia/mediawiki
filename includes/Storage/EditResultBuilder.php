@@ -302,12 +302,13 @@ class EditResultBuilder {
 			return false;
 		}
 
-		if ( !$this->getOriginalRevision() ) {
+		$originalRevision = $this->getOriginalRevision();
+		if ( !$originalRevision ) {
 			// we can't find the original revision for some reason, better return false
 			return false;
 		}
 
-		return $this->revisionRecord->hasSameContent( $this->getOriginalRevision() );
+		return $this->revisionRecord->hasSameContent( $originalRevision );
 	}
 
 	/**

@@ -215,7 +215,8 @@ class SpecialMute extends FormSpecialPage {
 			];
 		}
 
-		$legacyUser = $this->getTarget() ? User::newFromIdentity( $this->getTarget() ) : null;
+		$target = $this->getTarget();
+		$legacyUser = $target ? User::newFromIdentity( $target ) : null;
 		$this->getHookRunner()->onSpecialMuteModifyFormFields( $legacyUser, $this->getUser(), $fields );
 
 		if ( count( $fields ) == 0 ) {
