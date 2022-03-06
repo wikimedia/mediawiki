@@ -728,16 +728,12 @@ class MovePage {
 			}
 
 			// reread inserted pr_ids for log relation
-			$insertedPrIds = $dbw->select(
+			$logRelationsValues = $dbw->selectFieldValues(
 				'page_restrictions',
 				'pr_id',
 				[ 'pr_page' => $redirid ],
 				__METHOD__
 			);
-			$logRelationsValues = [];
-			foreach ( $insertedPrIds as $prid ) {
-				$logRelationsValues[] = $prid->pr_id;
-			}
 
 			// Update the protection log
 			$logEntry = new ManualLogEntry( 'protect', 'move_prot' );
