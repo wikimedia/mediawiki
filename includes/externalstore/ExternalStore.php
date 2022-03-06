@@ -22,7 +22,7 @@ use MediaWiki\MediaWikiServices;
 
 /**
  * @ingroup ExternalStorage
- * @deprecated 1.34 Use the ExternalStoreAccess service instead.
+ * @deprecated since 1.34 Use the ExternalStoreAccess service instead.
  */
 class ExternalStore {
 	/**
@@ -31,7 +31,7 @@ class ExternalStore {
 	 * @param string $proto Type of external storage, should be a value in $wgExternalStores
 	 * @param array $params Associative array of ExternalStoreMedium parameters
 	 * @return ExternalStoreMedium|bool The store class or false on error
-	 * @deprecated 1.34
+	 * @deprecated since 1.34
 	 */
 	public static function getStoreObject( $proto, array $params = [] ) {
 		try {
@@ -50,7 +50,7 @@ class ExternalStore {
 	 * @param array $params Associative array of ExternalStoreMedium parameters
 	 * @return string|bool The text stored or false on error
 	 * @throws MWException
-	 * @deprecated 1.34
+	 * @deprecated since 1.34
 	 */
 	public static function fetchFromURL( $url, array $params = [] ) {
 		try {
@@ -72,7 +72,7 @@ class ExternalStore {
 	 * @param array $params Associative array of ExternalStoreMedium parameters
 	 * @return string|bool The URL of the stored data item, or false on error
 	 * @throws MWException
-	 * @deprecated 1.34
+	 * @deprecated since 1.34
 	 */
 	public static function insert( $url, $data, array $params = [] ) {
 		try {
@@ -92,7 +92,7 @@ class ExternalStore {
 	 * @return array Map from url to its data.  Data is either string when found
 	 *     or false on failure.
 	 * @throws MWException
-	 * @deprecated 1.34
+	 * @deprecated since 1.34
 	 */
 	public static function batchFetchFromURLs( array $urls ) {
 		return MediaWikiServices::getInstance()->getExternalStoreAccess()->fetchFromURLs( $urls );
@@ -108,7 +108,7 @@ class ExternalStore {
 	 * @param array $params Map of ExternalStoreMedium::__construct context parameters
 	 * @return string The URL of the stored data item
 	 * @throws MWException
-	 * @deprecated 1.34
+	 * @deprecated since 1.34
 	 */
 	public static function insertToDefault( $data, array $params = [] ) {
 		return MediaWikiServices::getInstance()->getExternalStoreAccess()->insert( $data, $params );
@@ -125,7 +125,7 @@ class ExternalStore {
 	 * @param array $params Map of ExternalStoreMedium::__construct context parameters
 	 * @return string The URL of the stored data item
 	 * @throws MWException
-	 * @deprecated 1.34
+	 * @deprecated since 1.34
 	 */
 	public static function insertWithFallback( array $tryStores, $data, array $params = [] ) {
 		return MediaWikiServices::getInstance()
@@ -138,7 +138,7 @@ class ExternalStore {
 	 * @param string $wiki
 	 * @return string The URL of the stored data item
 	 * @throws MWException
-	 * @deprecated 1.34 Use insertToDefault() with 'wiki' set
+	 * @deprecated since 1.34 Use insertToDefault() with 'wiki' set
 	 */
 	public static function insertToForeignDefault( $data, $wiki ) {
 		return MediaWikiServices::getInstance()

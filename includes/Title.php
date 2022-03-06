@@ -3213,7 +3213,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Get a list of URLs to purge from the CDN cache when this page changes.
 	 *
-	 * @deprecated 1.35 Use HtmlCacheUpdater
+	 * @deprecated since 1.35 Use HtmlCacheUpdater
 	 * @return string[]
 	 */
 	public function getCdnUrls() {
@@ -3223,7 +3223,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 	/**
 	 * Purge all applicable CDN URLs
-	 * @deprecated 1.35 Use HtmlCacheUpdater
+	 * @deprecated since 1.35 Use HtmlCacheUpdater
 	 */
 	public function purgeSquid() {
 		$htmlCache = MediaWikiServices::getInstance()->getHtmlCacheUpdater();

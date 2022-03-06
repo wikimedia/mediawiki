@@ -911,7 +911,7 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @deprecated 1.37
+	 * @deprecated since 1.37
 	 * @return null|string
 	 */
 	protected function getCopyrightIcon() {
@@ -921,7 +921,7 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Gets the powered by MediaWiki icon.
-	 * @deprecated 1.37
+	 * @deprecated since 1.37
 	 * @return string
 	 */
 	protected function getPoweredBy() {
@@ -2608,7 +2608,7 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @deprecated 1.38 Use SpecialPage::newSearchPage instead.
+	 * @deprecated since 1.38 Use SpecialPage::newSearchPage instead.
 	 */
 	public function getSearchPageTitle(): Title {
 		wfDeprecated( __METHOD__, '1.38 Use SpecialPage::newSearchPage' );
@@ -2616,7 +2616,7 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @deprecated 1.38 to change the search page title change the value of the
+	 * @deprecated since 1.38 to change the search page title change the value of the
 	 *  preference 'search-special-page' instead.
 	 */
 	public function setSearchPageTitle( Title $title ) {

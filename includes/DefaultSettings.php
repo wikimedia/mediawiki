@@ -1874,7 +1874,7 @@ $wgEnableUserEmail = true;
  * to from emails originating from Special:Email.
  *
  * @since 1.34
- * @deprecated 1.34
+ * @deprecated since 1.34
  */
 $wgEnableSpecialMute = false;
 

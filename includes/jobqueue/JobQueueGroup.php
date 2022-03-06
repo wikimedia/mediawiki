@@ -32,7 +32,7 @@ use Wikimedia\UUID\GlobalIdGenerator;
 class JobQueueGroup {
 	/**
 	 * @var JobQueueGroup[]
-	 * @deprecated 1.37
+	 * @deprecated since 1.37
 	 */
 	protected static $instances = [];
 
@@ -107,7 +107,7 @@ class JobQueueGroup {
 	}
 
 	/**
-	 * @deprecated 1.37 Use JobQueueGroupFactory::makeJobQueueGroup
+	 * @deprecated since 1.37 Use JobQueueGroupFactory::makeJobQueueGroup
 	 * @param bool|string $domain Wiki domain ID
 	 * @return JobQueueGroup
 	 */
@@ -118,7 +118,7 @@ class JobQueueGroup {
 	/**
 	 * Destroy the singleton instances
 	 *
-	 * @deprecated 1.37
+	 * @deprecated since 1.37
 	 * @return void
 	 */
 	public static function destroySingletons() {

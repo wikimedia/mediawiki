@@ -1335,7 +1335,7 @@ Set to true to enable the Special Mute page. This allows users
 to mute unwanted communications from other users, and is linked
 to from emails originating from Special:Email.
 @since 1.34
-@deprecated 1.34
+@deprecated since 1.34
 
 # EnableUserEmailMuteList {#EnableUserEmailMuteList}
 Set to true to enable user-to-user e-mail mutelist.

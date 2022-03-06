@@ -1611,7 +1611,7 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * Wrapper for private buildContentNavigationUrlsInternal
-	 * @deprecated 1.38 skins can use runOnSkinTemplateNavigationHooks instead.
+	 * @deprecated since 1.38 skins can use runOnSkinTemplateNavigationHooks instead.
 	 * @return array
 	 */
 	protected function buildContentNavigationUrls() {
