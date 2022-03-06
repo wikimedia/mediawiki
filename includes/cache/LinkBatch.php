@@ -92,7 +92,7 @@ class LinkBatch {
 	 * @param GenderCache|null $genderCache
 	 * @param ILoadBalancer|null $loadBalancer
 	 * @param LoggerInterface|null $logger
-	 * @deprecated 1.35 Use makeLinkBatch of the LinkBatchFactory service instead
+	 * @deprecated since 1.35 Use makeLinkBatch of the LinkBatchFactory service instead
 	 */
 	public function __construct(
 		iterable $arr = [],

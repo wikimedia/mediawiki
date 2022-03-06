@@ -884,7 +884,7 @@ class SpecialPage implements MessageLocalizer {
 	/**
 	 * Shortcut to get language's converter
 	 *
-	 * @deprecated 1.36 Inject LanguageConverterFactory and store a ILanguageConverter instance
+	 * @deprecated since 1.36 Inject LanguageConverterFactory and store a ILanguageConverter instance
 	 * @return ILanguageConverter
 	 * @since 1.35
 	 */
