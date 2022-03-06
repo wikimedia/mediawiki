@@ -31,7 +31,7 @@ abstract class Collation {
 	private static $instance;
 
 	/**
-	 * @deprecated 1.37 Use MediaWikiServices::getCollationFactory()->getCategoryCollation()
+	 * @deprecated since 1.37 Use MediaWikiServices::getCollationFactory()->getCategoryCollation()
 	 * @since 1.16.3
 	 * @return Collation
 	 */
@@ -46,7 +46,7 @@ abstract class Collation {
 
 	/**
 	 * @since 1.16.3
-	 * @deprecated 1.37 Use MediaWikiServices::getCollationFactory()->makeCollation()
+	 * @deprecated since 1.37 Use MediaWikiServices::getCollationFactory()->makeCollation()
 	 * @throws MWException
 	 * @param string $collationName
 	 * @return Collation

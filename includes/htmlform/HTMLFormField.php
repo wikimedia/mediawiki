@@ -177,7 +177,7 @@ abstract class HTMLFormField {
 	 * Fetch a field value from $alldata for the closest field matching a given
 	 * name.
 	 *
-	 * @deprecated 1.38 Use getNearestFieldValue() instead.
+	 * @deprecated since 1.38 Use getNearestFieldValue() instead.
 	 * @param array $alldata
 	 * @param string $name
 	 * @param bool $asDisplay
