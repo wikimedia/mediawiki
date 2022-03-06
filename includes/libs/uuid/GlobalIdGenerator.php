@@ -54,7 +54,7 @@ class GlobalIdGenerator {
 	protected $lockFileUUID;
 
 	/** @var array Cached file handles */
-	protected $fileHandles = []; // cached file handles
+	protected $fileHandles = [];
 
 	/** @var int B/C constant (deprecated since 1.36) */
 	public const QUICK_VOLATILE = 1;
@@ -77,7 +77,7 @@ class GlobalIdGenerator {
 	private const CLOCK_OFFSET_COUNTER = 'offsetCounter';
 
 	/**
-	 * @param string $tempDirectory A writable temporary directory
+	 * @param string|bool $tempDirectory A writable temporary directory
 	 * @param callback $shellCallback A callback that takes a shell command and returns the output
 	 */
 	public function __construct( $tempDirectory, $shellCallback ) {
@@ -367,7 +367,7 @@ class GlobalIdGenerator {
 	 */
 	protected function getSequentialPerNodeIDs( $bucket, $bits, $count, $flags ) {
 		if ( $count <= 0 ) {
-			return []; // nothing to do
+			return [];
 		}
 		if ( $bits < 16 || $bits > 48 ) {
 			throw new RuntimeException( "Requested bit size ($bits) is out of range." );
@@ -379,7 +379,7 @@ class GlobalIdGenerator {
 			$handle = $this->fileHandles[$path];
 		} else {
 			$handle = fopen( $path, 'cb+' );
-			$this->fileHandles[$path] = $handle ?: null; // cache
+			$this->fileHandles[$path] = $handle ?: null;
 		}
 		// Acquire the UID lock file
 		if ( $handle === false ) {
@@ -391,19 +391,27 @@ class GlobalIdGenerator {
 		}
 		// Fetch the counter value and increment it...
 		rewind( $handle );
-		$counter = floor( (float)trim( fgets( $handle ) ) ) + $count; // fetch as float
+
+		// fetch as float
+		$counter = floor( (float)trim( fgets( $handle ) ) ) + $count;
+
 		// Write back the new counter value
 		ftruncate( $handle, 0 );
 		rewind( $handle );
+
 		// Use fmod() to avoid "division by zero" on 32 bit machines
-		fwrite( $handle, (string)fmod( $counter, 2 ** 48 ) ); // warp-around as needed
+		// warp-around as needed
+		fwrite( $handle, (string)fmod( $counter, 2 ** 48 ) );
 		fflush( $handle );
+
 		// Release the UID lock file
 		flock( $handle, LOCK_UN );
 
 		$ids = [];
 		$divisor = 2 ** $bits;
-		$currentId = floor( $counter - $count ); // pre-increment counter value
+
+		// pre-increment counter value
+		$currentId = floor( $counter - $count );
 		for ( $i = 0; $i < $count; ++$i ) {
 			// Use fmod() to avoid "division by zero" on 32 bit machines
 			$ids[] = fmod( ++$currentId, $divisor );
@@ -435,7 +443,7 @@ class GlobalIdGenerator {
 			$handle = $this->fileHandles[$this->$lockFile];
 		} else {
 			$handle = fopen( $this->$lockFile, 'cb+' );
-			$this->fileHandles[$this->$lockFile] = $handle ?: null; // cache
+			$this->fileHandles[$this->$lockFile] = $handle ?: null;
 		}
 		// Acquire the UID lock file
 		if ( $handle === false ) {
@@ -571,7 +579,8 @@ class GlobalIdGenerator {
 				// current time is higher than or equal to than $time
 				return $ct;
 			}
-		} while ( ( microtime( true ) - $start ) <= 0.010 ); // up to 10ms
+			// up to 10ms
+		} while ( ( microtime( true ) - $start ) <= 0.010 );
 
 		return false;
 	}
@@ -601,20 +610,28 @@ class GlobalIdGenerator {
 	protected function intervalsSinceGregorianBinary( array $time, $delta = 0 ) {
 		list( $sec, $msec ) = $time;
 		$offset = '122192928000000000';
-		if ( PHP_INT_SIZE >= 8 ) { // 64 bit integers
+
+		// 64 bit integers
+		if ( PHP_INT_SIZE >= 8 ) {
 			$ts = ( 1000 * $sec + $msec ) * 10000 + (int)$offset + $delta;
 			$id_bin = str_pad( decbin( $ts % ( 2 ** 60 ) ), 60, '0', STR_PAD_LEFT );
 		} elseif ( extension_loaded( 'gmp' ) ) {
-			$ts = gmp_add( gmp_mul( (string)$sec, '1000' ), (string)$msec ); // ms
-			$ts = gmp_add( gmp_mul( $ts, '10000' ), $offset ); // 100ns intervals
+			// ms
+			$ts = gmp_add( gmp_mul( (string)$sec, '1000' ), (string)$msec );
+			// 100ns intervals
+			$ts = gmp_add( gmp_mul( $ts, '10000' ), $offset );
 			$ts = gmp_add( $ts, (string)$delta );
-			$ts = gmp_mod( $ts, gmp_pow( '2', '60' ) ); // wrap around
+			// wrap around
+			$ts = gmp_mod( $ts, gmp_pow( '2', '60' ) );
 			$id_bin = str_pad( gmp_strval( $ts, 2 ), 60, '0', STR_PAD_LEFT );
 		} elseif ( extension_loaded( 'bcmath' ) ) {
-			$ts = bcadd( bcmul( $sec, 1000 ), $msec ); // ms
-			$ts = bcadd( bcmul( $ts, 10000 ), $offset ); // 100ns intervals
+			// ms
+			$ts = bcadd( bcmul( $sec, 1000 ), $msec );
+			// 100ns intervals
+			$ts = bcadd( bcmul( $ts, 10000 ), $offset );
 			$ts = bcadd( $ts, (string)$delta );
-			$ts = bcmod( $ts, bcpow( 2, 60 ) ); // wrap around
+			// wrap around
+			$ts = bcmod( $ts, bcpow( 2, 60 ) );
 			$id_bin = \Wikimedia\base_convert( $ts, 10, 2, 60 );
 		} else {
 			throw new RuntimeException( 'bcmath or gmp extension required for 32 bit machines.' );
@@ -627,7 +644,7 @@ class GlobalIdGenerator {
 	 */
 	private function load() {
 		if ( $this->loaded ) {
-			return; // already called
+			return;
 		}
 
 		$this->loaded = true;
@@ -645,7 +662,8 @@ class GlobalIdGenerator {
 				$line = substr( $csv, 0, strcspn( $csv, "\n" ) );
 				$info = str_getcsv( $line );
 				$nodeId = isset( $info[0] ) ? str_replace( '-', '', $info[0] ) : '';
-			} elseif ( is_executable( '/sbin/ifconfig' ) ) { // Linux/BSD/Solaris/OS X
+			} elseif ( is_executable( '/sbin/ifconfig' ) ) {
+				// Linux/BSD/Solaris/OS X
 				// See https://linux.die.net/man/8/ifconfig
 				$m = [];
 				preg_match( '/\s([0-9a-f]{2}(?::[0-9a-f]{2}){5})\s/',
@@ -655,9 +673,10 @@ class GlobalIdGenerator {
 			AtEase::restoreWarnings();
 			if ( !preg_match( '/^[0-9a-f]{12}$/i', $nodeId ) ) {
 				$nodeId = bin2hex( random_bytes( 12 / 2 ) );
-				$nodeId[1] = dechex( hexdec( $nodeId[1] ) | 0x1 ); // set multicast bit
+				// set multicast bit
+				$nodeId[1] = dechex( hexdec( $nodeId[1] ) | 0x1 );
 			}
-			file_put_contents( $this->nodeIdFile, $nodeId ); // cache
+			file_put_contents( $this->nodeIdFile, $nodeId );
 		}
 		$this->nodeId32 = \Wikimedia\base_convert( substr( sha1( $nodeId ), 0, 8 ), 16, 2, 32 );
 		$this->nodeId48 = \Wikimedia\base_convert( $nodeId, 16, 2, 48 );
