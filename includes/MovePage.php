@@ -685,12 +685,13 @@ class MovePage {
 		$moveAttemptResult = $this->moveToInternal( $user, $this->newTitle, $reason, $createRedirect,
 			$changeTags );
 
-		if ( $moveAttemptResult instanceof Status ) {
+		if ( !$moveAttemptResult->isGood() ) {
 			// T265779: Attempt to delete target page failed
 			$dbw->cancelAtomic( __METHOD__ );
 			return $moveAttemptResult;
 		} else {
-			$nullRevision = $moveAttemptResult;
+			$nullRevision = $moveAttemptResult->getValue()['nullRevision'];
+			'@phan-var RevisionRecord $nullRevision';
 		}
 
 		$redirid = $this->oldTitle->getArticleID();
@@ -836,11 +837,14 @@ class MovePage {
 	 * @param bool $createRedirect Whether to leave a redirect at the old title. Does not check
 	 *   if the user has the suppressredirect right
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
-	 * @return RevisionRecord|Status The revision created by the move or Status object on failure
+	 * @return Status Status object with the following value on success:
+	 *   [
+	 *     'nullRevision' => The ("null") revision created by the move (RevisionRecord)
+	 *   ]
 	 */
 	private function moveToInternal( UserIdentity $user, &$nt, $reason = '', $createRedirect = true,
 		array $changeTags = []
-	) {
+	): Status {
 		if ( $nt->getArticleId( Title::READ_LATEST ) ) {
 			$moveOverRedirect = true;
 			$logType = 'move_redir';
@@ -1011,6 +1015,8 @@ class MovePage {
 		$logEntry->addTags( $changeTags );
 		$logEntry->publish( $logid );
 
-		return $nullRevision;
+		return Status::newGood( [
+			'nullRevision' => $nullRevision,
+		] );
 	}
 }
