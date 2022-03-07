@@ -476,16 +476,6 @@ class Language {
 	}
 
 	/**
-	 * Reduce memory usage
-	 * @suppress PhanTypeSuspiciousNonTraversableForeach
-	 */
-	public function __destruct() {
-		foreach ( $this as $name => $value ) {
-			unset( $this->$name );
-		}
-	}
-
-	/**
 	 * @return array
 	 * @since 1.19
 	 */
