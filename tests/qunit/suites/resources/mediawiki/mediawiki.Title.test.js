@@ -407,8 +407,6 @@
 		extTest( 'Foo..', null, 'Trailing dots are not an extension' );
 		extTest( 'Foo.a.', null, 'Page name with dots and ending in a dot does not have an extension' );
 
-		// @broken: Throws an exception
-		// extTest( '.NET', null, 'Leading dot is (or is not?) an extension' );
 	} );
 
 	QUnit.test( 'exists', function ( assert ) {
