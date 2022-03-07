@@ -2391,7 +2391,7 @@
 	"exbeforeblank": "nội dung trước khi tẩy trống: “$1”",
 	"delete-confirm": "Xóa “$1”",
 	"delete-legend": "Xóa",
-	"delete-talk-summary-prefix": "Đã xóa cùng với trang tương ứng với lý do: $1",
+	"delete-talk-summary-prefix": "Xoá cùng trang liên kết với lý do: $1",
 	"historywarning": "'''Cảnh báo:''' Trang bạn sắp xóa đã có lịch sử $1 {{PLURAL:}}phiên bản:",
 	"historyaction-submit": "Xem các phiên bản",
 	"confirmdeletetext": "Bạn đang chuẩn bị xóa một trang cùng với tất cả lịch sử của nó.\nXin xác nhận việc bạn định làm, và hiểu rõ những hệ lụy của nó, và bạn thực hiện nó theo đúng đúng [[{{MediaWiki:Policy-url}}|quy định]].",

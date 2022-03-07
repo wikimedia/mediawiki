@@ -513,6 +513,7 @@
 	"querypage-no-updates": "此页的更新当前已被禁用。\n此处的数据当前不会刷新。",
 	"querypage-updates-periodical": "本页定期更新。",
 	"viewsource": "查看源代码",
+	"action-viewsource": "查看源代码",
 	"viewsource-title": "查看“$1”的源代码",
 	"actionthrottled": "操作受限",
 	"actionthrottledtext": "作为反滥用措施，您在短时间段内执行该操作的次数有一个限制，并且您已超过此限制。\n请在数分钟后重试。",

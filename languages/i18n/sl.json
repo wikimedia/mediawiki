@@ -353,6 +353,7 @@
 	"querypage-no-updates": "Posodobitve za to stran so trenutno onemogočene. Tukajšnji podatki se v kratkem ne bodo osvežili.",
 	"querypage-updates-periodical": "Posodobitve za to stran se poganjajo periodično.",
 	"viewsource": "Izvorno besedilo",
+	"action-viewsource": "Izvorno besedilo",
 	"viewsource-title": "Ogled vira $1",
 	"actionthrottled": "Dejanje zaustavljeno",
 	"actionthrottledtext": "Kot ukrep proti zlorabam je število izvajanj tega dejanja v časovnem obdobju omejeno, in vi ste ta limit presegli.\nProsimo, poskusite znova čez nekaj minut.",

@@ -2623,6 +2623,7 @@
 	"undelete-show-file-confirm": "ファイル「<nowiki>$1</nowiki>」の削除された$2$3の版を本当に閲覧しますか?",
 	"undelete-show-file-submit": "はい",
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",
+	"undelete-back-to-list": "削除された版をすべて見る",
 	"namespace": "名前空間:",
 	"invert": "選択したものを除く",
 	"tooltip-invert": "選択した名前空間 (チェックを入れている場合は、関連付けられた名前空間も含む) のページの変更を非表示にするには、このボックスにチェックを入れる",

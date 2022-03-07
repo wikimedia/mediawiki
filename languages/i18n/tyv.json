@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Agilight",
+			"Amire80",
 			"Andrijko Z.",
 			"DannyS712",
 			"Kaganer",
@@ -294,7 +295,7 @@
 	"actionthrottled": "Шеглээн дүрген",
 	"viewsourcetext": "Бо арынның дөзүн көргеш копиялап ап болур силер.",
 	"exception-nologin": "Кирбес",
-	"welcomeuser": "Кирип моорлаңар, %s!",
+	"welcomeuser": "Кирип моорлаңар, $1!",
 	"yourname": "Aжыглакчының ады",
 	"userlogin-yourname": "Бүрүткел ат",
 	"userlogin-yourname-ph": "Бүрүткедир адыңар киириңер",
