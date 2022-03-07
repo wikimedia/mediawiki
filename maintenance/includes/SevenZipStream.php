@@ -34,6 +34,7 @@ use MediaWiki\Shell\Shell;
  * @ingroup Maintenance
  */
 class SevenZipStream {
+	/** @var resource|false */
 	protected $stream;
 
 	public static function register() {
