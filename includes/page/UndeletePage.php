@@ -346,7 +346,7 @@ class UndeletePage {
 			$this->logger->debug( __METHOD__ . ": no revisions to restore" );
 
 			$status = Status::newGood( 0 );
-			$status->warning( "undelete-no-results" );
+			$status->error( "undelete-no-results" );
 			$dbw->endAtomic( __METHOD__ );
 
 			return $status;
@@ -461,7 +461,7 @@ class UndeletePage {
 					$this->logger->debug( __METHOD__ . ": existing page refers to a page_latest that does not exist" );
 
 					$status = Status::newGood( 0 );
-					$status->warning( 'undeleterevision-missing' );
+					$status->error( 'undeleterevision-missing' );
 					$dbw->cancelAtomic( __METHOD__ );
 
 					return $status;
