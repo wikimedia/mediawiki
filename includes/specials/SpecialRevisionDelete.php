@@ -612,9 +612,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				} else {
 					$selected = -1; // use existing field
 				}
-				$line = '<td class="mw-revdel-checkbox">' . Xml::radio( $name, -1, $selected == -1 ) . '</td>';
-				$line .= '<td class="mw-revdel-checkbox">' . Xml::radio( $name, 0, $selected == 0 ) . '</td>';
-				$line .= '<td class="mw-revdel-checkbox">' . Xml::radio( $name, 1, $selected == 1 ) . '</td>';
+				$line = '<td class="mw-revdel-checkbox">' . Xml::radio( $name, '-1', $selected == -1 ) . '</td>';
+				$line .= '<td class="mw-revdel-checkbox">' . Xml::radio( $name, '0', $selected == 0 ) . '</td>';
+				$line .= '<td class="mw-revdel-checkbox">' . Xml::radio( $name, '1', $selected == 1 ) . '</td>';
 				$label = $this->msg( $message )->escaped();
 				if ( $field == RevisionRecord::DELETED_RESTRICTED ) {
 					$label = "<b>$label</b>";

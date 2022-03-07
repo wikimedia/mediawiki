@@ -1356,7 +1356,7 @@ class SpecialPageFactory {
 			if ( $name != $page->getLocalName() && !$context->getRequest()->wasPosted() ) {
 				$query = $context->getRequest()->getQueryValues();
 				unset( $query['title'] );
-				$title = $page->getPageTitle( $par );
+				$title = $page->getPageTitle( $par ?? false );
 				$url = $title->getFullURL( $query );
 				$context->getOutput()->redirect( $url );
 
@@ -1364,7 +1364,7 @@ class SpecialPageFactory {
 			}
 
 			// @phan-suppress-next-line PhanUndeclaredMethod
-			$context->setTitle( $page->getPageTitle( $par ) );
+			$context->setTitle( $page->getPageTitle( $par ?? false ) );
 		} elseif ( !$page->isIncludable() ) {
 			return false;
 		}

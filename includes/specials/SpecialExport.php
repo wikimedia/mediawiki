@@ -171,7 +171,7 @@ class SpecialExport extends SpecialPage {
 			}
 		} else {
 			// Default to current-only for GET requests.
-			$page = $request->getText( 'pages', $par );
+			$page = $request->getText( 'pages', $par ?? '' );
 			$historyCheck = $request->getCheck( 'history' );
 
 			if ( $historyCheck ) {
