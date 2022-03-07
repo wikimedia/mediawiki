@@ -120,14 +120,6 @@ class TransactionManager {
 
 	/**
 	 * TODO: This should be removed once all usages have been migrated here
-	 * @return string
-	 */
-	public function getTrxId(): string {
-		return $this->trxId;
-	}
-
-	/**
-	 * TODO: This should be removed once all usages have been migrated here
 	 * @param string $mode One of IDatabase::TRANSACTION_* values
 	 * @param string $fname method name
 	 */
@@ -310,14 +302,10 @@ class TransactionManager {
 		}
 	}
 
-	public function getTrxWriteAffectedRows(): int {
-		return $this->trxWriteAffectedRows;
-	}
-
 	/**
 	 * @return string
 	 */
-	public function flatAtomicSectionList() {
+	private function flatAtomicSectionList() {
 		return array_reduce( $this->trxAtomicLevels, static function ( $accum, $v ) {
 			return $accum === null ? $v[0] : "$accum, " . $v[0];
 		} );
@@ -364,7 +352,7 @@ class TransactionManager {
 		$this->trxSectionCancelCallbacks[] = [ $callback, $fname, $this->currentAtomicSectionId() ];
 	}
 
-	public function onAtomicEnd( IDatabase $db, $fname ): void {
+	public function onCancelAtomicBeforeCriticalSection( IDatabase $db, $fname ): void {
 		if ( !$this->trxLevel() || !$this->trxAtomicLevels ) {
 			throw new DBUnexpectedError( $db, "No atomic section is open (got $fname)" );
 		}
@@ -449,6 +437,9 @@ class TransactionManager {
 	}
 
 	public function onEndAtomic( IDatabase $db, $fname ): array {
+		if ( !$this->trxLevel() || !$this->trxAtomicLevels ) {
+			throw new DBUnexpectedError( $db, "No atomic section is open (got $fname)" );
+		}
 		// Check if the current section matches $fname
 		$pos = count( $this->trxAtomicLevels ) - 1;
 		list( $savedFname, $sectionId, $savepointId ) = $this->trxAtomicLevels[$pos];
@@ -544,48 +535,35 @@ class TransactionManager {
 		return $savepointId;
 	}
 
-	public function getTrxFname() {
-		return $this->trxFname;
-	}
-
 	public function writesPending() {
 		return $this->trxLevel() && $this->trxDoneWrites;
 	}
 
-	public function isTrxDoneWrites() {
-		return $this->trxDoneWrites;
-	}
-
-	public function setTrxDoneWritesToTrue() {
-		$this->trxDoneWrites = true;
-	}
-
 	public function onDestruct() {
 		if ( $this->trxLevel() && $this->trxDoneWrites ) {
-			$trxFname = $this->getTrxFname();
-			trigger_error( "Uncommitted DB writes (transaction from {$trxFname})" );
+			trigger_error( "Uncommitted DB writes (transaction from {$this->trxFname})" );
 		}
 	}
 
 	public function transactionWritingIn( $serverName, $domainId ) {
-		if ( $this->trxLevel() && !$this->isTrxDoneWrites() ) {
-			$this->setTrxDoneWritesToTrue();
+		if ( $this->trxLevel() && !$this->trxDoneWrites ) {
+			$this->trxDoneWrites = true;
 			$this->profiler->transactionWritingIn(
 				$serverName,
 				$domainId,
-				$this->getTrxId()
+				$this->trxId
 			);
 		}
 	}
 
 	public function transactionWritingOut( IDatabase $db, $oldId ) {
-		if ( $this->isTrxDoneWrites() ) {
+		if ( $this->trxDoneWrites ) {
 			$this->profiler->transactionWritingOut(
 				$db->getServerName(),
 				$db->getDomainID(),
 				$oldId,
 				$this->pendingWriteQueryDuration( $db, IDatabase::ESTIMATE_TOTAL ),
-				$this->getTrxWriteAffectedRows()
+				$this->trxWriteAffectedRows
 			);
 		}
 	}
@@ -596,7 +574,7 @@ class TransactionManager {
 			$startTime,
 			$isPermWrite,
 			$rowCount,
-			$this->getTrxId(),
+			$this->trxId,
 			$serverName
 		);
 	}
@@ -819,7 +797,7 @@ class TransactionManager {
 
 	public function writesOrCallbacksPending(): bool {
 		return $this->trxLevel() && (
-				$this->isTrxDoneWrites() ||
+				$this->trxDoneWrites ||
 				$this->trxPostCommitOrIdleCallbacks ||
 				$this->trxPreCommitOrIdleCallbacks ||
 				$this->trxEndCallbacks ||
@@ -858,5 +836,78 @@ class TransactionManager {
 
 	public function countPostCommitOrIdleCallbacks() {
 		return count( $this->trxPostCommitOrIdleCallbacks );
+	}
+
+	public function onRollback( IDatabase $db ) {
+		$oldTrxId = $this->consumeTrxId();
+		$this->setTrxStatusToNone();
+		$this->resetTrxAtomicLevels();
+		$this->clearPreEndCallbacks();
+		$this->transactionWritingOut( $db, $oldTrxId );
+	}
+
+	public function onCommitInCriticalSection( IDatabase $db ) {
+		$lastWriteTime = null;
+		$oldTrxId = $this->consumeTrxId();
+		$this->setTrxStatusToNone();
+		if ( $this->trxDoneWrites ) {
+			$lastWriteTime = microtime( true );
+			$this->transactionWritingOut( $db, $oldTrxId );
+		}
+		return $lastWriteTime;
+	}
+
+	public function onEndAtomicInCriticalSection( $sectionId ) {
+		// Hoist callback ownership for callbacks in the section that just ended;
+		// all callbacks should have an owner that is present in trxAtomicLevels.
+		$currentSectionId = $this->currentAtomicSectionId();
+		if ( $currentSectionId ) {
+			$this->reassignCallbacksForSection( $sectionId, $currentSectionId );
+		}
+	}
+
+	public function onFlushSnapshot( IDatabase $db, $fname, $flush, $trxRoundId ) {
+		if ( $this->explicitTrxActive() ) {
+			// Committing this transaction would break callers that assume it is still open
+			throw new DBUnexpectedError(
+				$db,
+				"$fname: Cannot flush snapshot; " .
+				"explicit transaction '{$this->trxFname}' is still open"
+			);
+		} elseif ( $this->writesOrCallbacksPending() ) {
+			// This only flushes transactions to clear snapshots, not to write data
+			$fnames = implode( ', ', $this->pendingWriteAndCallbackCallers() );
+			throw new DBUnexpectedError(
+				$db,
+				"$fname: Cannot flush snapshot; " .
+				"writes from transaction {$this->trxFname} are still pending ($fnames)"
+			);
+		} elseif (
+			$this->trxLevel() &&
+			$trxRoundId &&
+			$flush !== IDatabase::FLUSHING_INTERNAL &&
+			$flush !== IDatabase::FLUSHING_ALL_PEERS
+		) {
+			$this->logger->warning(
+				"$fname: Expected mass snapshot flush of all peer transactions " .
+				"in the explicit transactions round '{$trxRoundId}'",
+				[
+					'exception' => new RuntimeException(),
+					'db_log_category' => 'trx'
+				]
+			);
+		}
+	}
+
+	public function onGetScopedLockAndFlush( IDatabase $db, $fname ) {
+		if ( $this->writesOrCallbacksPending() ) {
+			// This only flushes transactions to clear snapshots, not to write data
+			$fnames = implode( ', ', $this->pendingWriteAndCallbackCallers() );
+			throw new DBUnexpectedError(
+				$db,
+				"$fname: Cannot flush pre-lock snapshot; " .
+				"writes from transaction {$this->trxFname} are still pending ($fnames)"
+			);
+		}
 	}
 }

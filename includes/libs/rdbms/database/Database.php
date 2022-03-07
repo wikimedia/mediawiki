@@ -4322,7 +4322,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function endAtomic( $fname = __METHOD__ ) {
-		$this->transactionManager->onAtomicEnd( $this, $fname );
 		list( $savepointId, $sectionId ) = $this->transactionManager->onEndAtomic( $this, $fname );
 
 		$runPostCommitCallbacks = false;
@@ -4344,12 +4343,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw $e;
 		}
 
-		// Hoist callback ownership for callbacks in the section that just ended;
-		// all callbacks should have an owner that is present in trxAtomicLevels.
-		$currentSectionId = $this->transactionManager->currentAtomicSectionId();
-		if ( $currentSectionId ) {
-			$this->transactionManager->reassignCallbacksForSection( $sectionId, $currentSectionId );
-		}
+		$this->transactionManager->onEndAtomicInCriticalSection( $sectionId );
 
 		$this->completeCriticalSection( __METHOD__, $cs );
 
@@ -4362,7 +4356,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$fname = __METHOD__,
 		AtomicSectionIdentifier $sectionId = null
 	) {
-		$this->transactionManager->onAtomicEnd( $this, $fname );
+		$this->transactionManager->onCancelAtomicBeforeCriticalSection( $this, $fname );
 		$pos = $this->transactionManager->getPositionFromSectionId( $sectionId );
 		if ( $pos < 0 ) {
 			throw new DBUnexpectedError( $this, "Atomic section not found (for $fname)" );
@@ -4497,7 +4491,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new DBUnexpectedError( $this, "$fname: invalid flush parameter '$flush'" );
 		}
 
-		// TODO: Move the rest to transaction manager
 		if ( !$this->transactionManager->onCommit( $this, $fname, $flush ) ) {
 			return;
 		}
@@ -4505,7 +4498,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->assertHasConnectionHandle();
 
 		$this->runOnTransactionPreCommitCallbacks();
-		$writeTime = $this->pendingWriteQueryDuration( self::ESTIMATE_DB_APPLY );
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 		try {
@@ -4514,11 +4506,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->completeCriticalSection( __METHOD__, $cs );
 			throw $e;
 		}
-		$oldTrxId = $this->transactionManager->consumeTrxId();
-		$this->transactionManager->setTrxStatusToNone();
-		if ( $this->transactionManager->isTrxDoneWrites() ) {
-			$this->lastWriteTime = microtime( true );
-			$this->transactionManager->transactionWritingOut( $this, $oldTrxId );
+		$lastWriteTime = $this->transactionManager->onCommitInCriticalSection( $this );
+		if ( $lastWriteTime ) {
+			$this->lastWriteTime = $lastWriteTime;
 		}
 		// With FLUSHING_ALL_PEERS, callbacks will run when requested by a dedicated phase
 		// within LoadBalancer. With FLUSHING_INTERNAL, callbacks will run when requested by
@@ -4564,11 +4554,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 		$this->doRollback( $fname );
-		$oldTrxId = $this->transactionManager->consumeTrxId();
-		$this->transactionManager->setTrxStatusToNone();
-		$this->transactionManager->resetTrxAtomicLevels();
-		$this->transactionManager->clearPreEndCallbacks();
-		$this->transactionManager->transactionWritingOut( $this, $oldTrxId );
+		$this->transactionManager->onRollback( $this );
 		// With FLUSHING_ALL_PEERS, callbacks will run when requested by a dedicated phase
 		// within LoadBalancer. With FLUSHING_INTERNAL, callbacks will run when requested by
 		// the Database caller during a safe point. This avoids isolation and recursion issues.
@@ -4602,38 +4588,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function flushSnapshot( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
-		$trxFname = $this->transactionManager->getTrxFname();
-		if ( $this->transactionManager->explicitTrxActive() ) {
-			// Committing this transaction would break callers that assume it is still open
-			throw new DBUnexpectedError(
-				$this,
-				"$fname: Cannot flush snapshot; " .
-				"explicit transaction '{$trxFname}' is still open"
-			);
-		} elseif ( $this->writesOrCallbacksPending() ) {
-			// This only flushes transactions to clear snapshots, not to write data
-			$fnames = implode( ', ', $this->pendingWriteAndCallbackCallers() );
-			throw new DBUnexpectedError(
-				$this,
-				"$fname: Cannot flush snapshot; " .
-				"writes from transaction {$trxFname} are still pending ($fnames)"
-			);
-		} elseif (
-			$this->trxLevel() &&
-			$this->getTransactionRoundId() &&
-			$flush !== self::FLUSHING_INTERNAL &&
-			$flush !== self::FLUSHING_ALL_PEERS
-		) {
-			$this->queryLogger->warning(
-				"$fname: Expected mass snapshot flush of all peer transactions " .
-				"in the explicit transactions round '{$this->getTransactionRoundId()}'",
-				[
-					'exception' => new RuntimeException(),
-					'db_log_category' => 'trx'
-				]
-			);
-		}
-
+		$this->transactionManager->onFlushSnapshot( $this, $fname, $flush, $this->getTransactionRoundId() );
 		$this->commit( $fname, self::FLUSHING_INTERNAL );
 	}
 
@@ -5216,16 +5171,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ) {
-		if ( $this->writesOrCallbacksPending() ) {
-			$trxFname = $this->transactionManager->getTrxFname();
-			// This only flushes transactions to clear snapshots, not to write data
-			$fnames = implode( ', ', $this->pendingWriteAndCallbackCallers() );
-			throw new DBUnexpectedError(
-				$this,
-				"$fname: Cannot flush pre-lock snapshot; " .
-				"writes from transaction {$trxFname} are still pending ($fnames)"
-			);
-		}
+		$this->transactionManager->onGetScopedLockAndFlush( $this, $fname );
 
 		if ( !$this->lock( $lockKey, $fname, $timeout ) ) {
 			return null;
