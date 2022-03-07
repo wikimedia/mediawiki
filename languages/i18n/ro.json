@@ -3759,7 +3759,7 @@
 	"mw-widgets-abandonedit": "Sunteți sigur(ă) că doriți să părăsiți modul editare fără ca mai întâi să salvați?",
 	"mw-widgets-abandonedit-discard": "Renunță la modificări",
 	"mw-widgets-abandonedit-keep": "Continuă editarea",
-	"mw-widgets-abandonedit-title": "Sunteți sigur(ă)?",
+	"mw-widgets-abandonedit-title": "Sunteți {{GENDER:|sigur|sigură}}?",
 	"mw-widgets-copytextlayout-copy": "Copiază",
 	"mw-widgets-copytextlayout-copy-fail": "Nu am putut copia în clipboard.",
 	"mw-widgets-copytextlayout-copy-success": "Copiat în clipboard.",

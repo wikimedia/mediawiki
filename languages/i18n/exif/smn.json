@@ -8,9 +8,15 @@
 	},
 	"exif-imagewidth": "Kobdodâh",
 	"exif-imagelength": "Alodâh",
+	"exif-bitspersample": "Biteh komponentist",
+	"exif-compression": "Pakkamvyehi",
+	"exif-photometricinterpretation": "Piksel čuággánmâš",
 	"exif-orientation": "Sunde",
+	"exif-samplesperpixel": "Komponenttij lohomeeri",
+	"exif-planarconfiguration": "Tiäđu ornim",
 	"exif-xresolution": "Kove resoluutio kobdodâhsundeest",
 	"exif-yresolution": "Kove resoluutio alodâhsundeest",
+	"exif-stripoffsets": "Kovetiäđu sajadâh",
 	"exif-datetime": "Majemustáá hämmejum",
 	"exif-imagedescription": "Kove nommâ",
 	"exif-make": "Kamera valmâsteijjee",
@@ -62,6 +68,7 @@
 	"exif-objectcycle-a": "Tuše iđedist",
 	"exif-objectcycle-p": "Tuše ehidist",
 	"exif-objectcycle-b": "Sehe iđedist já ehidist",
+	"exif-dc-rights": "Vuoigâdvuođah",
 	"exif-iimcategory-spo": "Valastâllâm",
 	"exif-iimcategory-wea": "Šoŋŋâ"
 }

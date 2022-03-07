@@ -2602,7 +2602,7 @@
 	"blocklogtext": "De sotta gh'è 'n registro di açioin de blocco e sblocco utenti.\nI adreççi IP bloccæ aotomaticamente no son elencæ.\nConsurta l'[[Special:BlockList|elenco di blocchi]] pe l'elenco di bandi ò blocchi attoalmente opiativi.",
 	"unblocklogentry": "o l'ha sbloccou $1",
 	"block-log-flags-anononly": "solo utenti anonnimi",
-	"block-log-flags-nocreate": "Nêuve registraçioìn no són permìsse",
+	"block-log-flags-nocreate": "nêuve registraçioìn no són permìsse",
 	"block-log-flags-noautoblock": "O blocco automatego o non l'è attïvo",
 	"block-log-flags-noemail": "A posta elettronega a non l'è attïva",
 	"block-log-flags-nousertalk": "o no poeu modificâ a proppia pagina de discuscion",

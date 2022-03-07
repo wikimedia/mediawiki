@@ -2164,7 +2164,7 @@
 	"contributions-title": "Uzero-kontributadi di $1",
 	"mycontris": "Kontributadi",
 	"anoncontribs": "Kontributadi",
-	"contribsub2": "De {{GENDER:$3|$1}} ($2)",
+	"contribsub2": "Por {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Por {{GENDER:$3|$1}}",
 	"contributions-userdoesnotexist": "L'uzeronomo \"$1\" ne enrejistresis.",
 	"negative-namespace-not-supported": "''Namespace''-i kun valori infra zero ne aceptesas.",

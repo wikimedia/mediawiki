@@ -20,7 +20,8 @@
 			"Ideophagous",
 			"Meno25",
 			"Tifratin",
-			"Amire80"
+			"Amire80",
+			"Hubaishan"
 		]
 	},
 	"tog-underline": "صطر ليانات:",
@@ -236,7 +237,7 @@
 	"edithelp": "معاونة ف لكتابة",
 	"helppage-top-gethelp": "معاونة",
 	"mainpage": "صفحة لولا",
-	"mainpage-description": "الصفحة اللّولا",
+	"mainpage-description": "الصفحة اللولا",
 	"policy-url": "Project:سياسة",
 	"portal": "بوابة المجتمع",
 	"portal-url": "Project:بوابة المجتمع",
@@ -295,7 +296,7 @@
 	"nstab-template": "موضيل",
 	"nstab-help": "صفحة ديال معاونة",
 	"nstab-category": "تصنيف",
-	"mainpage-nstab": "الصفحة اللّولا",
+	"mainpage-nstab": "الصفحة اللولا",
 	"nosuchaction": "لا يوجد فعل بحال هادا",
 	"nosuchactiontext": "الفعل المحدد بواسطة المسار غير صحيح.\nيمكن را كتبتي المسار بشي طريقة ماشي صحيحة، ولا تبعتي شي لينك غالط.\nولا يقدر بكون هادشي مشكل ف {{SITENAME}}.",
 	"nosuchspecialpage": "ما كاينا حتى شي صفحة خاصة بهاد الاسم",
@@ -1313,7 +1314,7 @@
 	"notargettext": "mahdditch sfha lhadaf ola lmostkhdim bach tdir had lkhassiya",
 	"nopagetitle": "makaynach sfha hadaf bhal hadi",
 	"nopagetext": "sfha lhadaf li hdditiha makaynach",
-	"pager-newer-n": "{{PLURAL:$1|أجدد 1|أجدد $1}}",
+	"pager-newer-n": "{{PLURAL:$1|أحدث 1|أحدث $1}}",
 	"pager-older-n": "{{PLURAL:$1|أقدم 1|أقدم $1}}",
 	"suppress": "أوفرسايت",
 	"apihelp": "معاونة API",

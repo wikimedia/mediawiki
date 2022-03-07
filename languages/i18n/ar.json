@@ -91,7 +91,8 @@
 			"Mohanad Kh",
 			"MuratTheTurkish",
 			"MusikAnimal",
-			"SaldırganSincap"
+			"SaldırganSincap",
+			"Hubaishan"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -821,7 +822,7 @@
 	"edit-slots-missing": "{{PLURAL:$1|الفتحة|الفتحات}} التالية مفقودة: $2.",
 	"postedit-confirmation-created": "أنشئت الصفحة.",
 	"postedit-confirmation-restored": "تم استعادة الصفحة.",
-	"postedit-confirmation-saved": "تعديلك حفظ.",
+	"postedit-confirmation-saved": "حُفِظ تعديلك.",
 	"postedit-confirmation-published": "نُشِر تعديلك.",
 	"edit-already-exists": "لم يمكن إنشاء صفحة جديدة.\nهي موجودة بالفعل.",
 	"defaultmessagetext": "نص الرسالة الافتراضي",
@@ -2144,7 +2145,7 @@
 	"notargettext": "لم تحدد الصفحة أو المستخدم المستهدف لعمل هذه الخاصية.",
 	"nopagetitle": "لا توجد صفحة هدف كهذه",
 	"nopagetext": "صفحة الهدف التي حددتها غير موجودة.",
-	"pager-newer-n": "{{PLURAL:$1|أجدد 1|أجدد $1}}",
+	"pager-newer-n": "{{PLURAL:$1|أحدث 1|أحدث $1}}",
 	"pager-older-n": "{{PLURAL:$1|أقدم 1|أقدم $1}}",
 	"suppress": "أوفرسايت",
 	"querypage-disabled": "تم تعطيل هذه الصفحة الخاصة لأسباب تتعلق بالأداء.",
