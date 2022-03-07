@@ -822,5 +822,6 @@
 	"view-view-foreign": "ເບິ່ງໃນ $1",
 	"view-create-local": "ເພີ່ມຄຳອະທິບາຍທ້ອງຖິ່ນ",
 	"nstab-mainpage": "ໜ້າຫຼັກ",
-	"view-edit-local": "ແກ້ໄຂຄຳອະທິບາຍທ້ອງຖິ່ນ"
+	"view-edit-local": "ແກ້ໄຂຄຳອະທິບາຍທ້ອງຖິ່ນ",
+	"skin-action-protect": "ປົກປ້ອງ"
 }

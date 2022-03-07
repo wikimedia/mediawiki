@@ -1324,5 +1324,9 @@
 	"view-view-foreign": "Vjôt su $1",
 	"view-create-local": "Zonte une descrizion locâl",
 	"nstab-mainpage": "Pagjine principâl",
-	"view-edit-local": "Zonte une descrizion locâl"
+	"view-edit-local": "Zonte une descrizion locâl",
+	"skin-action-protect": "Protêç",
+	"skin-action-undelete": "Recupere",
+	"skin-action-delete": "Elimine",
+	"skin-action-move": "Môf"
 }

@@ -346,14 +346,14 @@
 	"action-createtalk": "raajjâd tän saǥstõõllâmseeid",
 	"action-createaccount": "raajjâd tän tobdldõõǥǥ",
 	"action-history": "čuäʹjet tän seeid historia",
-	"action-move": "Seeʹrd",
+	"action-move": "seʹrdded tän seeid",
 	"action-move-categorypages": "kategoriaseeidaid seʹrdded",
 	"action-movefile": "seʹrdded tän teâttõõzz",
 	"action-delete": "jaukkeed tän seeid",
 	"action-deleterevision": "jaukkeed versio",
 	"action-deletedhistory": "ǩiiččeed seeid jaukkuum historia",
 	"action-browsearchive": "ooccâd jaukkuum seeidaid",
-	"action-protect": "Suõjjâd",
+	"action-protect": "muʹtted tän seeid suejjeemasetõõzzid",
 	"action-sendemail": "vuõlttâd e-pååʹšt",
 	"action-editmyoptions": "muʹtted jiiʹjjes asettõõzzid",
 	"action-editmywatchlist": "muʹtted valvvâmliist",
@@ -728,5 +728,8 @@
 	"edit-error-short": "Vââʹǩǩ: $1",
 	"userlogout-continue": "Haaʹlääk-a ǩeeʹrjtõõttâd åålǥas?",
 	"view-view-foreign": "Čuäʹjet $1",
-	"nstab-mainpage": "Ouddseidd"
+	"nstab-mainpage": "Ouddseidd",
+	"skin-action-protect": "Suõjjâd",
+	"skin-action-delete": "jaukkeed tän seeid",
+	"skin-action-move": "Seeʹrd"
 }

@@ -1021,7 +1021,7 @@
 	"action-createaccount": "khwuk a̱la̱n a̱tyuta̱m wuni",
 	"action-history": "di nkhang gbangbang peji huni",
 	"action-minoredit": "cak jhyuk huni nang a̱da̱dei wa",
-	"action-move": "Shyei",
+	"action-move": "shyei peji huni",
 	"action-move-subpages": "shyei peji huni, ma̱ng a̱bapejí nhu na",
 	"action-move-rootuserpages": "shyei pejí a̱tyuta̱m neet da̱ a̱vwuoneet",
 	"action-move-categorypages": "shyei pejí sa",
@@ -1030,7 +1030,7 @@
 	"action-reupload": "lyuut tazwa fail hu ku shyia̱ a̱ni ni",
 	"action-upload_by_url": "kpa̱t fail huni neet URL a̱ghyang",
 	"action-writeapi": "nyia̱ ta̱m ma̱ng API lyuut wu",
-	"action-delete": "Ti̱n",
+	"action-delete": "ti̱n peji huni",
 	"action-deleterevision": "ti̱n a̱yaakhwifeang",
 	"action-deletelogentry": "ti̱n nwuai mi̱ nwuai ri̱jista",
 	"action-deletedhistory": "di nkhang gbangbang peji nang á̱ ku ti̱n a̱ni",
@@ -1040,7 +1040,7 @@
 	"action-suppressrevision": "bu li a si̱ mbwuok ma̱ng nkhwifeang na̱ nshyia̱ di̱ ta̱kup a̱ni",
 	"action-suppressionlog": "di ri̱jista a̱bala̱lang wuni",
 	"action-block": "fwun a̱tyuta̱m wuni neet jhyuk",
-	"action-protect": "Cam",
+	"action-protect": "shai a̱yaaseti cok mat peji huni",
 	"action-import": "nwuo ma̱ng peji neet wiki ghyang",
 	"action-importupload": "nwuo ma̱ng peji neet fail nang á̱ kpa̱t a̱ni",
 	"action-patrol": "cak njhyuk á̱ghyang á̱niet nang si̱ nang á̱ ku jang",
@@ -1644,5 +1644,9 @@
 	"view-view-foreign": "Nwuan mami $1",
 	"view-create-local": "Mbeang wa̱i a̱mali",
 	"nstab-mainpage": "A̱tsak peji wu",
-	"view-edit-local": "Jhyuk a̱lyiat wa̱i a̱mali"
+	"view-edit-local": "Jhyuk a̱lyiat wa̱i a̱mali",
+	"skin-action-protect": "Cam",
+	"skin-action-undelete": "bwuok ma̱ng pejí nang á̱ ku ti̱n a̱ni",
+	"skin-action-delete": "Ti̱n",
+	"skin-action-move": "Shyei"
 }

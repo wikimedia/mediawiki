@@ -901,5 +901,8 @@
 	"view-view-foreign": "Lihimi li ni $1",
 	"view-create-local": "Pahimi dundɔŋni buɣisibu",
 	"nstab-mainpage": "Solɔɣu",
-	"view-edit-local": "Mali niŋ dundɔŋ buɣisibu"
+	"view-edit-local": "Mali niŋ dundɔŋ buɣisibu",
+	"skin-action-protect": "Gubu",
+	"skin-action-delete": "Nyahima",
+	"skin-action-move": "Tirisibu"
 }

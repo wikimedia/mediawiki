@@ -240,5 +240,8 @@
 	"specialpages": "Doenghmae daegxsei",
 	"tags-edit": "gaij",
 	"searchsuggest-search": "Ra {{SITENAME}}",
-	"nstab-mainpage": "Feanzcieng"
+	"nstab-mainpage": "Feanzcieng",
+	"skin-action-protect": "Hahdiuz",
+	"skin-action-delete": "Ca",
+	"skin-action-move": "Daen"
 }

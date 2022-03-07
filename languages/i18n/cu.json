@@ -802,5 +802,8 @@
 	"special-characters-group-runes": "​Рꙋны​",
 	"mw-widgets-titleinput-description-new-page": "страницѧ ю нѣстъ",
 	"mw-widgets-titleinput-description-redirect": "прѣнаправлѥниѥ къ ⁖ $1 ⁖",
-	"nstab-mainpage": "главьна страница"
+	"nstab-mainpage": "главьна страница",
+	"skin-action-protect": "ꙁабранѥниѥ",
+	"skin-action-delete": "поничьжєниѥ",
+	"skin-action-move": "прѣимєнованиѥ"
 }

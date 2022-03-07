@@ -487,9 +487,9 @@
 	"action-edit": "یہٕ صَفہٕ کٔریو تَبدیل",
 	"action-createpage": "یِہ صَفہٕ کٔرِو تَخلیٖق",
 	"action-createaccount": "یِہ رُکُن کھاتہٕ بَنٲیو",
-	"action-move": "پکناوُن",
+	"action-move": "یِہ صَفہٕ پکنٲیو",
 	"action-movefile": "یِہ فَیِل پکنٲیو",
-	"action-delete": "مِٹٲیو",
+	"action-delete": "یِہ صَفہٕ مِٹٲیو",
 	"action-protect": "رٲچھؠ",
 	"enhancedrc-history": "توٲریٖخ",
 	"recentchanges": "نَوِ تبدیلی",
@@ -964,5 +964,8 @@
 	"view-view-foreign": "$1 پؠٹھ وُچھو",
 	"view-create-local": "مُقٲمی وَضاحَت لؠکھو",
 	"nstab-mainpage": "اَہَم صَفہٕ",
-	"view-edit-local": "مُقٲمی وَضاحَت کٔریو تَبدیل"
+	"view-edit-local": "مُقٲمی وَضاحَت کٔریو تَبدیل",
+	"skin-action-protect": "رٲچھؠ",
+	"skin-action-delete": "مِٹٲیو",
+	"skin-action-move": "پکناوُن"
 }

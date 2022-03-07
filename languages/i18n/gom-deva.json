@@ -1168,5 +1168,8 @@
 	"view-view-foreign": " $1 चेर पळयात",
 	"view-create-local": "थळावे वर्णन जोडात",
 	"nstab-mainpage": "मुखेल पान",
-	"view-edit-local": "थळाव्या संपादनाचें वर्णन"
+	"view-edit-local": "थळाव्या संपादनाचें वर्णन",
+	"skin-action-protect": "संरक्षीत करात",
+	"skin-action-delete": "काडून उडयात",
+	"skin-action-move": "दुसरेकडे व्हरात"
 }

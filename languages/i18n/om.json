@@ -648,5 +648,9 @@
 	"view-view-foreign": "$1 irratti laali",
 	"view-create-local": "Ibsa biyya keessaa dabali",
 	"nstab-mainpage": "Fuula duraa",
-	"view-edit-local": "Ibsa biyya keessaa gulaali"
+	"view-edit-local": "Ibsa biyya keessaa gulaali",
+	"skin-action-protect": "Eegi",
+	"skin-action-undelete": "Hin balleessin",
+	"skin-action-delete": "Balleessi",
+	"skin-action-move": "Oofi"
 }

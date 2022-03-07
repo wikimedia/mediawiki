@@ -608,5 +608,8 @@
 	"duration-days": "$1 {{PLURAL:$1|ñalngu|balɗe}}",
 	"view-view-foreign": "Yiy e $1",
 	"view-create-local": "Ɓeydu siforde nokkuure",
-	"nstab-mainpage": "Hello rowrowo"
+	"nstab-mainpage": "Hello rowrowo",
+	"skin-action-protect": "Hisnu",
+	"skin-action-delete": "Momtu",
+	"skin-action-move": "Dirtin"
 }

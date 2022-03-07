@@ -315,7 +315,7 @@
 	"action-addsection": "micomod hasasowalen",
 	"action-edit": "misinanot to inian a felih",
 	"action-createaccount": " misanga’ tona cang-haw no micokaymasay",
-	"action-move": "malinah",
+	"action-move": "linahen kona felih",
 	"action-delete": "masopitay to",
 	"enhancedrc-history": " likisi",
 	"recentchanges": "I ngataay nipifalic",
@@ -727,5 +727,7 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"view-view-foreign": "misongila’ a minengneng i $1",
 	"view-create-local": " mitongal to sowal to itiniay",
-	"nstab-mainpage": "‎ sa’ayayaw pising no tyin-naw"
+	"nstab-mainpage": "‎ sa’ayayaw pising no tyin-naw",
+	"skin-action-delete": "masopitay to",
+	"skin-action-move": "malinah"
 }

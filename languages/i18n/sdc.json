@@ -729,7 +729,7 @@
 	"action-edit": "mudìfiggà chistha pàgina",
 	"action-createaccount": "crià kistha registhrazioni",
 	"action-move": "Ippustha",
-	"action-delete": "Canzella",
+	"action-delete": "canzillà chistha pàgina",
 	"action-protect": "Brocca",
 	"nchanges": "$1 {{PLURAL:$1|mudìfigga|mudìfigghi}}",
 	"enhancedrc-history": "cronologia",
@@ -1554,5 +1554,8 @@
 	"view-view-foreign": "Vedi innantu $1",
 	"view-create-local": "Aggiugnì deschrizioni lucari",
 	"nstab-mainpage": "Pàgina prinzipari",
-	"view-edit-local": "Mudificà deschrizioni lucari"
+	"view-edit-local": "Mudificà deschrizioni lucari",
+	"skin-action-protect": "Brocca",
+	"skin-action-delete": "Canzella",
+	"skin-action-move": "Ippustha"
 }

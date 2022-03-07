@@ -1005,7 +1005,7 @@
 	"action-createaccount": "бу кулланучы хисап язмасын төзү",
 	"action-history": "бу битнең үзгәртү тарихын карау",
 	"action-minoredit": "бу төзәтмәне кече дип билгеләү",
-	"action-move": "Күчерү",
+	"action-move": "бу битне күчерү",
 	"action-move-subpages": "бу битне һәм аның асбитләрне күчерү",
 	"action-move-rootuserpages": "кулланучыдагы төп битләрне күчерү",
 	"action-move-categorypages": "төркемдәге битләрне күчерү",
@@ -2417,5 +2417,9 @@
 	"view-view-foreign": "$1 сәхифәсендә карау",
 	"view-create-local": "Локаль тасвирлама өстәү",
 	"nstab-mainpage": "Баш бит",
-	"view-edit-local": "Локаль тасвирламаны үзгәртү"
+	"view-edit-local": "Локаль тасвирламаны үзгәртү",
+	"skin-action-protect": "Яклау",
+	"skin-action-undelete": "Кайтару",
+	"skin-action-delete": "Бетерү",
+	"skin-action-move": "Күчерү"
 }

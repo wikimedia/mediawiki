@@ -917,5 +917,8 @@
 	"view-view-foreign": "$1 प॑ देखऽ",
 	"view-create-local": "स्थानीय विवरण जोड़ऽ",
 	"nstab-mainpage": "मुखपृष्ठ",
-	"view-edit-local": "स्थानीय विवरण सम्पादित करऽ"
+	"view-edit-local": "स्थानीय विवरण सम्पादित करऽ",
+	"skin-action-protect": "सुरक्षित करौ",
+	"skin-action-delete": "मेटाबऽ",
+	"skin-action-move": "चलऽ"
 }

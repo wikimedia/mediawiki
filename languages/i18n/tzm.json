@@ -324,7 +324,7 @@
 	"action-addsection": "ⵔⵏⵓ ⴰⵙⵏⵜⵍ",
 	"action-edit": "ⴱⴷⴷⵍ ⵜⴰⵙⵏⴰ ⴰⴷ",
 	"action-move": "ⵙⵎⵓⵜⵜⵉ",
-	"action-delete": "Kkes",
+	"action-delete": "ⴽⴽⵉⵙ ⵜⴰⵙⵏⴰ ⴰⴷ",
 	"action-undelete": "ⵙⵙⵓⵖⴰⵍ ⵓⴽⵓⵙ",
 	"action-protect": "ⵜⴰⵙⵜⴰⵏⵜ",
 	"action-sendemail": "ⴰⵣⵏ ⵜⵉⴱⵔⴰⵜⵉⵏ ⵏ e-mail",
@@ -569,5 +569,9 @@
 	"special-characters-group-lao": "ⵜⵍⴰⵡⵉⵜ",
 	"special-characters-group-khmer": "ⵅⴰⵎⵉⵔ",
 	"view-view-foreign": "Sken g $1",
-	"nstab-mainpage": "Tasna n usnubeg"
+	"nstab-mainpage": "Tasna n usnubeg",
+	"skin-action-protect": "ⵜⴰⵙⵜⴰⵏⵜ",
+	"skin-action-undelete": "ⵙⵙⵓⵖⴰⵍ ⵓⴽⵓⵙ",
+	"skin-action-delete": "Kkes",
+	"skin-action-move": "ⵙⵎⵓⵜⵜⵉ"
 }

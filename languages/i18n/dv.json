@@ -560,5 +560,9 @@
 	"specialpages": "ހާއްސަ ޞަފްޙާތައް",
 	"deletepage": "ޞަފްޙާ ފޮހެލައްވާ",
 	"searchsuggest-search": "{{SITENAME}} އިން ހޯއްދަވާ",
-	"nstab-mainpage": "މައި ޞަފްޙާ"
+	"nstab-mainpage": "މައި ޞަފްޙާ",
+	"skin-action-protect": "ދިފާއުކުރައްވާ",
+	"skin-action-undelete": "އިޔާދަކުރައްވާ",
+	"skin-action-delete": "ފޮހެލައްވާ",
+	"skin-action-move": "ތަން ބަދަލުކުރައްވާ"
 }

@@ -1484,5 +1484,9 @@
 	"mw-widgets-titleinput-description-new-page": "Ala yu pa ing bulung (page)",
 	"mw-widgets-titleinput-description-redirect": "I-redirekta king/kang $1",
 	"view-view-foreign": "Lawen king $1",
-	"nstab-mainpage": "Pun Bulung"
+	"nstab-mainpage": "Pun Bulung",
+	"skin-action-protect": "Protektan/kambilan",
+	"skin-action-undelete": "Isubli/iurung ya pangabura",
+	"skin-action-delete": "Buran",
+	"skin-action-move": "Iyalis"
 }

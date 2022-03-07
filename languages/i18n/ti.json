@@ -382,10 +382,10 @@
 	"action-addsection": "ክፋል ወስኽ",
 	"action-edit": "ነዚ ገጽ እዚ ከተመዓራርይ",
 	"action-createpage": "ነዚ ገጽ ክትፈጥሮ",
-	"action-move": "ኣንቀሳቕስ",
+	"action-move": "ነዚ ገጽ ከተንቀሳቕሶ",
 	"action-movefile": "ነዚ ፋይል ከተንቀሳቕሶ",
 	"action-upload": "ነዚ ፋይል ክትጽዕኖ",
-	"action-delete": "ሰርዝ",
+	"action-delete": "ነዚ ገጽ ክትሰርዞ",
 	"action-protect": "ሓልው",
 	"nchanges": "$1 {{PLURAL:$1|ለውጢ|ለውጥታት}}",
 	"enhancedrc-history": "ታሪኽ",
@@ -905,5 +905,8 @@
 	"passwordpolicies-policies": "ፖሊሲታት",
 	"paramvalidator-help-type-user-subtype-name": "ስም ተጠቃሚ",
 	"view-view-foreign": "ኣብ $1 ርኣይ",
-	"nstab-mainpage": "መበገሲ ገጽ"
+	"nstab-mainpage": "መበገሲ ገጽ",
+	"skin-action-protect": "ሓልው",
+	"skin-action-delete": "ሰርዝ",
+	"skin-action-move": "ኣንቀሳቕስ"
 }

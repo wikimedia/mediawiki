@@ -658,5 +658,9 @@
 	"watchlisttools-raw": "Liwaton ang hilaw nga listahan sang mga ginabantayan",
 	"specialpages": "Pinasahi nga mga pahina",
 	"tag-filter": "[[Special:Tags|Tatakan]] ang pansala:",
-	"deletepage": "Panason ang pahina"
+	"deletepage": "Panason ang pahina",
+	"skin-action-protect": "Protektahan",
+	"skin-action-undelete": "Indi pag panason",
+	"skin-action-delete": "Panason",
+	"skin-action-move": "Isdogon"
 }

@@ -586,5 +586,7 @@
 	"log-action-filter-upload-revert": "Garuza oku kyabire kiri",
 	"view-view-foreign": "Reebera omu $1",
 	"view-create-local": "Tekamu ebirikugikwataho",
-	"nstab-mainpage": "Omuka"
+	"nstab-mainpage": "Omuka",
+	"skin-action-delete": "Sangura",
+	"skin-action-move": "Tambuza"
 }

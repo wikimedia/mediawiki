@@ -1152,7 +1152,7 @@
 	"action-autocreateaccount": "yi gouassoulô conti nga i kpêkoungba",
 	"action-history": "nian floua boué nga i si'n sa moun",
 	"action-minoredit": "sié liké katchilè nga i nzôliè kè ôti kaansa",
-	"action-move": "Katchi floua boué nga i douman",
+	"action-move": "katchi floua boué nga i douman",
 	"action-move-subpages": "katchi floua boué nga, ôni i sama sou floua boué moun bé douman",
 	"action-move-rootuserpages": "katchi conti léfouè moun bé akwaba floua boué moun bé douman",
 	"action-move-categorypages": "katchi apkassoua floua boué moun bé douman",
@@ -1162,7 +1162,7 @@
 	"action-reupload-shared": "si'n floua nga sou nzra noun dossier koun sou, ô timan tchinndji",
 	"action-upload_by_url": "fa floua nga i URL koun sou fa bla",
 	"action-writeapi": "fa liké klèlè API",
-	"action-delete": "Nounnoun",
+	"action-delete": "nounnoun floua boué nga",
 	"action-delete-redirect": "klè ati'n katchilè nga bé lé version koungba tchè moun bé sou",
 	"action-deleterevision": "nounnoun versions moun",
 	"action-deletelogentry": "nounnoun journali noun ndè moun",
@@ -1173,7 +1173,7 @@
 	"action-suppressrevision": "niannian versions nga bé fa fiali moun kôkoun fa bé fa sié bé wossounoun",
 	"action-suppressionlog": "nian nvialiè noun journali nga",
 	"action-block": "djran conti léfouè nga i liké katchilè",
-	"action-protect": "Sassawa",
+	"action-protect": "katchi floua boué nga i sassalè sou liké siéssiélè moun",
 	"action-rollback": "conti léfouè nga ô katchili kounglo floua boué koun i kassiein noun, yiyi i liké katchilè moun bé ndèdè",
 	"action-import": "floua boué nga bé fi'n wiki ouflè koun sou, fa bé fa bla",
 	"action-importupload": "floua boué nga bé wo floua koun mô bé fa bali noun, fa bé fa bla",
@@ -1691,5 +1691,9 @@
 	"view-view-foreign": "Nian $1 sou",
 	"view-create-local": "Kan liké nga floua boué nga ô yé, amoun klô aniein noun",
 	"nstab-mainpage": "Akwaba floua boué",
-	"view-edit-local": "Katchi liké nga floua boué nga ô yé, amoun klô aniein noun"
+	"view-edit-local": "Katchi liké nga floua boué nga ô yé, amoun klô aniein noun",
+	"skin-action-protect": "Sassawa",
+	"skin-action-undelete": "sié floua boué vié moun bé wossounoun",
+	"skin-action-delete": "Nounnoun",
+	"skin-action-move": "Katchi floua boué nga i douman"
 }

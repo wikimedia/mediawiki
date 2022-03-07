@@ -654,11 +654,11 @@
 	"action-edit": "mèzi ihu â",
 	"action-createpage": "ké ihü",
 	"action-createaccount": "mepụta akaụntụ onye ọrụ a",
-	"action-move": "Papụ̀",
+	"action-move": "papụ̀ ihuâ",
 	"action-movefile": "puzié usòrò",
 	"action-upload": "tinyé njikota èdèa",
 	"action-reupload": "tinyé ihe ozor élu njikota èdèa",
-	"action-delete": "Kàcha",
+	"action-delete": "kàcha ihü nka",
 	"action-undelete": "Á gbàkashikwà",
 	"action-protect": "Chekwaa",
 	"nchanges": "$1 {{PLURAL:$1|gbanwere|gbanwere}}",
@@ -1301,5 +1301,9 @@
 	"view-view-foreign": "Zi nà $1",
 	"view-create-local": "Tinye nkọwa ebe osi",
 	"nstab-mainpage": "Isi Peejii",
-	"view-edit-local": "hazie nkọwa njirimara"
+	"view-edit-local": "hazie nkọwa njirimara",
+	"skin-action-protect": "Chekwaa",
+	"skin-action-undelete": "Á gbàkashikwà",
+	"skin-action-delete": "Kàcha",
+	"skin-action-move": "Papụ̀"
 }

@@ -801,5 +801,8 @@
 	"randomrootpage": "Хапарсыз тамур сагьифасы",
 	"view-view-foreign": "$1 сайтында къарамакъ",
 	"view-create-local": "Ерли сыпатлавун тюзлемек",
-	"nstab-mainpage": "Баш сагьифа"
+	"nstab-mainpage": "Баш сагьифа",
+	"skin-action-protect": "Къорумакъ",
+	"skin-action-delete": "Тайдырмакъ",
+	"skin-action-move": "Атын алышдырмакъ"
 }

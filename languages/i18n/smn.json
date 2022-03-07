@@ -798,7 +798,7 @@
 	"action-autocreateaccount": "rähtiđ automaatlávt taam ulguupiälásii kevtteetubdâlduv",
 	"action-history": "keččâđ taam siijđo historjá",
 	"action-minoredit": "merkkiđ taam nubástus smavâsin",
-	"action-move": "Sirde",
+	"action-move": "sirdeđ taam siijđo",
 	"action-move-subpages": "sirdeđ taam siijđo teikâ taan vyelisiijđoid",
 	"action-move-rootuserpages": "sirdeđ kevtteesijđoid",
 	"action-move-categorypages": "sirdeđ luokkasijđoid",
@@ -807,7 +807,7 @@
 	"action-reupload": "vuorkkiđ taan tiätuvuárhá sajan uđđâ tiätuvuárhá",
 	"action-upload_by_url": "vuorkkiđ taam tiätuvuárhá URL-čuojttâsâst",
 	"action-writeapi": "kevttiđ čäällim-API",
-	"action-delete": "Siho",
+	"action-delete": "sikkođ taam siijđo",
 	"action-delete-redirect": "sikkođ stivrijmijd, main lii ohtâ versio",
 	"action-deleterevision": "sikkođ versioid",
 	"action-undelete": "Maaccât",
@@ -1584,5 +1584,9 @@
 	"view-view-foreign": "Čääiti $1",
 	"view-create-local": "Räähti páihálii kuvvim",
 	"nstab-mainpage": "Ovdâsijđo",
-	"view-edit-local": "Mute páihálii kuvvim"
+	"view-edit-local": "Mute páihálii kuvvim",
+	"skin-action-protect": "Suoijii",
+	"skin-action-undelete": "Maaccât",
+	"skin-action-delete": "Siho",
+	"skin-action-move": "Sirde"
 }

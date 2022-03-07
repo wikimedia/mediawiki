@@ -329,10 +329,10 @@
 	"rightslog": "Ripot long ol pawa bilong ol yusa",
 	"action-read": "ridim dispela pes",
 	"action-edit": "senisim dispela pes",
-	"action-move": "Surikim",
+	"action-move": "surikim dispela pes",
 	"action-move-subpages": "surikim dispela pes, na ol pes ananit long en",
 	"action-movefile": "surikim dispela fail",
-	"action-delete": "Rausim",
+	"action-delete": "rausim dispela pes",
 	"action-protect": "Tambuim",
 	"nchanges": "$1 senis",
 	"recentchanges": "Nupela senis",
@@ -599,5 +599,8 @@
 	"htmlform-selectorother-other": "Narapela",
 	"rightsnone": "i nogat wanpela",
 	"searchsuggest-search": "Painim long {{SITENAME}}",
-	"expand_templates_ok": "OK"
+	"expand_templates_ok": "OK",
+	"skin-action-protect": "Tambuim",
+	"skin-action-delete": "Rausim",
+	"skin-action-move": "Surikim"
 }

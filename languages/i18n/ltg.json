@@ -589,5 +589,8 @@
 	"fileduplicatesearch-filename": "Faila pasauka:",
 	"specialpages": "Specialuos puslopys",
 	"deletepage": "Iztreit puslopu",
-	"rightsnone": "(navā)"
+	"rightsnone": "(navā)",
+	"skin-action-protect": "Apsorguot",
+	"skin-action-delete": "Iztreit",
+	"skin-action-move": "Puorceļt"
 }

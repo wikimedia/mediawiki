@@ -665,5 +665,9 @@
 	"rightsnone": "(mamuk)",
 	"searchsuggest-search": "Buka iha {{SITENAME}}",
 	"expand_templates_ok": "OK",
-	"nstab-mainpage": "Pájina Mahuluk"
+	"nstab-mainpage": "Pájina Mahuluk",
+	"skin-action-protect": "Proteje",
+	"skin-action-undelete": "restaurar pájina ne'e",
+	"skin-action-delete": "halakon pájina ne'e",
+	"skin-action-move": "book pájina ne'e"
 }

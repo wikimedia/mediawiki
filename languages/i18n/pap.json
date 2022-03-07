@@ -661,5 +661,7 @@
 	"view-view-foreign": "Bista di $1",
 	"view-create-local": "Añadí deskripshon lokal",
 	"nstab-mainpage": "Página prinsipal",
-	"view-edit-local": "Editá deskripshon lokal"
+	"view-edit-local": "Editá deskripshon lokal",
+	"skin-action-protect": "Protehá",
+	"skin-action-move": "Move"
 }

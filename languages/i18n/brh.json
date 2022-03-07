@@ -456,5 +456,8 @@
 	"specialpages": "Xás á panna ģák",
 	"deletepage": "Panna e mesa",
 	"searchsuggest-search": "Paŧŧopol",
-	"nstab-mainpage": "Monpanna"
+	"nstab-mainpage": "Monpanna",
+	"skin-action-protect": "Rakk",
+	"skin-action-delete": "Mesa",
+	"skin-action-move": "Surif"
 }

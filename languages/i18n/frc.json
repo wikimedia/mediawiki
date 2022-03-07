@@ -622,12 +622,12 @@
 	"action-createtalk": "créer des pages de discussion",
 	"action-createaccount": "créer ce compte useur",
 	"action-minoredit": "marquer cette changement comme mineure",
-	"action-move": "Renommer",
+	"action-move": "renommer cette page",
 	"action-move-subpages": "renommer cette page et ses sous-pages",
 	"action-move-rootuserpages": "renommer la page principale d'un useur",
 	"action-move-categorypages": "renommer des pages de classe",
 	"action-movefile": "renommer ce fichier",
-	"action-delete": "Supprimer",
+	"action-delete": "effacer cette page",
 	"action-deleterevision": "effacer cette version",
 	"action-browsearchive": "charcher des pages effacées",
 	"action-undelete": "restaurer cette page",
@@ -843,5 +843,9 @@
 	"view-view-foreign": "Regarde sur $1",
 	"view-create-local": "Ajouter une description locale",
 	"nstab-mainpage": "Page Principale",
-	"view-edit-local": "Modifier la description locale"
+	"view-edit-local": "Modifier la description locale",
+	"skin-action-protect": "Protéger",
+	"skin-action-undelete": "restaurer cette page",
+	"skin-action-delete": "Supprimer",
+	"skin-action-move": "Renommer"
 }
