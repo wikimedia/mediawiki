@@ -463,7 +463,7 @@ TEXT
 		$this->thisRevFormat = null;
 
 		$parser = xml_parser_create( "UTF-8" );
-		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, false );
+		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, 0 );
 
 		xml_set_element_handler(
 			$parser,
@@ -506,8 +506,8 @@ TEXT
 				# for deciding what to do with a file containing only the
 				# siteinfo information and the mw tags.
 				if ( !$this->firstPageWritten ) {
-					$firstPageID = str_pad( 0, 9, "0", STR_PAD_LEFT );
-					$lastPageID = str_pad( 0, 9, "0", STR_PAD_LEFT );
+					$firstPageID = str_pad( '0', 9, "0", STR_PAD_LEFT );
+					$lastPageID = str_pad( '0', 9, "0", STR_PAD_LEFT );
 				} else {
 					$firstPageID = str_pad( $this->firstPageWritten, 9, "0", STR_PAD_LEFT );
 					$lastPageID = str_pad( $this->lastPageWritten, 9, "0", STR_PAD_LEFT );

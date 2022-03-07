@@ -88,7 +88,7 @@ class McTest extends Maintenance {
 
 		$valueByKey = [];
 		for ( $i = 1; $i <= $iterations; $i++ ) {
-			$valueByKey["test$i"] = 'S' . str_pad( $i, 2048 );
+			$valueByKey["test$i"] = 'S' . str_pad( (string)$i, 2048 );
 		}
 
 		foreach ( $cacheByServer as $server => $mcc ) {

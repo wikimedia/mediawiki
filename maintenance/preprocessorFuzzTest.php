@@ -93,13 +93,13 @@ class PPFuzzTester {
 
 			$reportMetric = ( microtime( true ) - $overallStart ) / $i * $reportInterval;
 			if ( $reportMetric > 25 ) {
-				if ( substr( $reportInterval, 0, 1 ) === '1' ) {
+				if ( substr( (string)$reportInterval, 0, 1 ) === '1' ) {
 					$reportInterval /= 2;
 				} else {
 					$reportInterval /= 5;
 				}
 			} elseif ( $reportMetric < 4 ) {
-				if ( substr( $reportInterval, 0, 1 ) === '1' ) {
+				if ( substr( (string)$reportInterval, 0, 1 ) === '1' ) {
 					$reportInterval *= 5;
 				} else {
 					$reportInterval *= 2;

@@ -174,7 +174,7 @@ do {
 		case 'set':
 			$key = array_shift( $args );
 			if ( $args[0] == "#" && is_numeric( $args[1] ) ) {
-				$value = str_repeat( '*', $args[1] );
+				$value = str_repeat( '*', (int)$args[1] );
 			} else {
 				$value = implode( ' ', $args );
 			}

@@ -1452,7 +1452,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		// Assertion to try to catch T92046
 		if ( (int)$revision->getId() === 0 ) {
 			throw new InvalidArgumentException(
-				__METHOD__ . ': revision has ID ' . var_export( $revision->getId(), 1 )
+				__METHOD__ . ': revision has ID ' . var_export( $revision->getId(), true )
 			);
 		}
 
