@@ -353,6 +353,7 @@
 	"querypage-no-updates": "Ica pagino ne povas aktualigesar.\nLa datumi en ol ne rinovigesos.",
 	"querypage-updates-periodical": "Ica pagino ofte aktualigesas pos kelka dii.",
 	"viewsource": "Vidar font-kodexo",
+	"action-viewsource": "Vidar font-kodexo",
 	"viewsource-title": "Videz la fonto/fonti por $1",
 	"actionthrottled": "Agado limitizita",
 	"actionthrottledtext": "Por preventar trouzo kun vandala skopo, tu ne povas facar ica agado plurafoye dum kurta periodo di tempo, e tu superiris ica limito.\nVoluntez probar ol itere, pos kelka minuti.",
