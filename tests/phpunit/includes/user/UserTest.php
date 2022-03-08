@@ -503,7 +503,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$otherUser = User::newFromId( $id );
 		$this->assertSame(
 			$realName,
-			$user->getRealName(),
+			$otherUser->getRealName(),
 			'Real name retrieved from database'
 		);
 	}
