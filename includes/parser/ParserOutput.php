@@ -784,6 +784,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $result;
 	}
 
+	/**
+	 * @return array
+	 * @deprecated since 1.38; should be done in the OutputPageParserOutput
+	 * hook (T292321).
+	 */
 	public function getOutputHooks(): array {
 		return (array)$this->mOutputHooks;
 	}
@@ -949,6 +954,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mWarnings[$s] = 1;
 	}
 
+	/**
+	 * @param callable $hook
+	 * @param mixed $data
+	 * @deprecated since 1.38; should be done in the OutputPageParserOutput
+	 * hook (T292321).
+	 */
 	public function addOutputHook( $hook, $data = false ): void {
 		$this->mOutputHooks[] = [ $hook, $data ];
 	}
