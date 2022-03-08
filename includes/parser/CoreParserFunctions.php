@@ -1065,12 +1065,12 @@ class CoreParserFunctions {
 		if ( strlen( $text ) == 0 ) {
 			return '';
 		}
-		$old = $parser->getCustomDefaultSort();
-		if ( $old === false || $arg !== 'defaultsort_noreplace' ) {
-			$parser->setDefaultSort( $text );
+		$old = $parser->getOutput()->getPageProperty( 'defaultsort' );
+		if ( $old === null || $arg !== 'defaultsort_noreplace' ) {
+			$parser->getOutput()->setPageProperty( 'defaultsort', $text );
 		}
 
-		if ( $old === false || $old == $text || $arg ) {
+		if ( $old === null || $old == $text || $arg ) {
 			return '';
 		} else {
 			$converter = $parser->getTargetLanguageConverter();

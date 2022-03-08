@@ -466,6 +466,9 @@ because of Phabricator reports.
   with OutputPage, you may want to check the hooks in DeleteAction instead.
 * Instantiating the MessageContent class now emits deprecation notices.
 * Message::content() now triggers deprecation warnings.
+* Parser::setDefaultSort(), Parser::getDefaultSort(), and
+  Parser::getCustomDefaultSort() have been deprecated.  Use
+  ParserOutput::{get,set}PageProperty('defaultsort') instead.
 * The following methods from the ParserOutput class now emit deprecation
   warnings:
    - ::hideNewSection()      - use ::setHideNewSection()
