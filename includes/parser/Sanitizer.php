@@ -258,14 +258,20 @@ class Sanitizer {
 	 * be cleaned up in a subsequent tidy pass, this method is a
 	 * fast alternative.
 	 *
-	 * @param string $text
+	 * @param string $text Original string; see T268353 for why untainted.
+	 * @param-taint $text none
 	 * @param callable|null $processCallback Callback to do any variable or
 	 *   parameter replacements in HTML attribute values.
 	 *   This argument should be considered @internal.
+	 * @param-taint $processCallback exec_shell
 	 * @param array|bool $args Arguments for the processing callback
+	 * @param-taint $args none
 	 * @param array $extratags For any extra tags to include
+	 * @param-taint $extratags tainted
 	 * @param array $removetags For any tags (default or extra) to exclude
+	 * @param-taint $removetags none
 	 * @return string
+	 * @return-taint escaped
 	 */
 	public static function removeHTMLtags( $text, $processCallback = null,
 		$args = [], $extratags = [], $removetags = []
@@ -325,9 +331,11 @@ class Sanitizer {
 	 * Cleans up HTML, removes dangerous tags and attributes, and
 	 * removes HTML comments; the result will always be balanced and
 	 * tidy HTML.
-	 * @param string $text
+	 * @param string $text Source string; see T268353 for why untainted
+	 * @param-taint  $text none
 	 * @param array $options Options controlling the cleanup:
 	 *    string[] $options['extraTags'] Any extra tags to allow
+	 *      (This property taints the whole array.)
 	 *    string[] $options['removeTags'] Any tags (default or extra) to exclude
 	 *    callable(Attributes,...):Attributes $options['attrCallback'] Callback
 	 *      to do any variable or parameter replacements in HTML attribute
@@ -335,7 +343,9 @@ class Sanitizer {
 	 *      and not for external use.
 	 *    array $options['attrCallbackArgs'] Additional arguments for the
 	 *      attribute callback
+	 * @param-taint $options tainted
 	 * @return string The cleaned up HTML
+	 * @return-taint escaped
 	 * @since 1.38
 	 */
 	public static function removeSomeTags(
