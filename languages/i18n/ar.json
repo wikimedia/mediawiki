@@ -91,7 +91,9 @@
 			"Dr. Mohammed",
 			"Haajer",
 			"Ideophagous",
-			"SaldırganSincap"
+			"SaldırganSincap",
+			"FiberAhmed",
+			"Hubaishan"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -2152,7 +2154,7 @@
 	"notargettext": "لم تحدد الصفحة أو المستخدم المستهدف لعمل هذه الخاصية.",
 	"nopagetitle": "لا توجد صفحة هدف كهذه",
 	"nopagetext": "صفحة الهدف التي حددتها غير موجودة.",
-	"pager-newer-n": "{{PLURAL:$1|أجدد 1|أجدد $1}}",
+	"pager-newer-n": "{{PLURAL:$1|أحدث 1|أحدث $1}}",
 	"pager-older-n": "{{PLURAL:$1|أقدم 1|أقدم $1}}",
 	"suppress": "أوفرسايت",
 	"querypage-disabled": "تم تعطيل هذه الصفحة الخاصة لأسباب تتعلق بالأداء.",

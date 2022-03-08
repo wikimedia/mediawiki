@@ -201,7 +201,7 @@
 	"printableversion-deprecated-warning": "Verzija za štampanje više nije podržana i može davati greške. Ažurirajte oznake i koristite ugrađenu mogućnost štampanja preglednika.",
 	"permalink": "Trajni link",
 	"print": "Štampaj",
-	"view": "Pogledaj",
+	"view": "Čitaj",
 	"view-foreign": "Prikaži na {{GRAMMAR:dativ|$1}}",
 	"edit": "Uredi",
 	"edit-local": "Uredi lokalni opis",

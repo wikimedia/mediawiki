@@ -16,7 +16,8 @@
 			"Ouda",
 			"Ramsis II",
 			"아라",
-			"McDutchie"
+			"McDutchie",
+			"Hubaishan"
 		]
 	},
 	"tog-underline": "حط خط تحت اللينكات:",
@@ -1325,7 +1326,7 @@
 	"notargettext": "انت ما حددتش الصفحة أو اليوزر المستهدف لعمل العملية دي.",
 	"nopagetitle": "مافيش صفحة هدف بالاسم ده",
 	"nopagetext": "صفحة الهدف اللى انت طالبها مش موجودة.",
-	"pager-newer-n": "{{PLURAL:$1|أجدد 1|أجدد $1}}",
+	"pager-newer-n": "{{PLURAL:$1|أحدث 1|أحدث $1}}",
 	"pager-older-n": "{{PLURAL:$1|أقدم 1|أقدم $1}}",
 	"suppress": "أوفرسايت",
 	"booksources": "مصادر من كتب",
