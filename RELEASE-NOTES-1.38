@@ -21,6 +21,8 @@ For notes on 1.37.x and older releases, see HISTORY.
 === Configuration changes for system administrators in 1.38 ===
 * Deprecate $wgAjaxUploadDestCheck, act as always-true
 * $wgInterwikiCache no longer supports the string value for CDB files.
+* Deprecate $wgParserOutputHooks; These should be done with
+  OutputPageParserOutputHook instead. (T292321)
 * …
 
 ==== New configuration ====
@@ -488,6 +490,8 @@ because of Phabricator reports.
    - ::setFlag() - use ::setOutputFlag()
    - ::getAllFlags() - this method is now marked @internal
    - ::addJsConfigVars() - use ::setJsConfigVar() or ::appendJsConfigVar()
+   - ::addOutputHook() / ::getOutputHooks() - these hooks should be migrated
+     to use the OutputPageParserOutput hook instead
 * The use of ParserOutput::setExtensionData() to overwrite previous values
   stored under a given key has been deprecated; use the new
   ::appendExtensionData() to collect multiple values in the ParserOutput
