@@ -1508,7 +1508,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return string Content-Disposition header value
 	 */
 	public function getThumbDisposition( $thumbName, $dispositionType = 'inline' ) {
-		$fileName = $this->name; // file name to suggest
+		$fileName = $this->getName(); // file name to suggest
 		$thumbExt = FileBackend::extensionFromPath( $thumbName );
 		if ( $thumbExt != '' && $thumbExt !== $this->getExtension() ) {
 			$fileName .= ".$thumbExt";
