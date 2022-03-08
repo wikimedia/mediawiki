@@ -6,8 +6,6 @@ use BagOStuff;
 use Config;
 use ExtensionRegistry;
 use HashConfig;
-use JsonSchema\Constraints\Constraint;
-use JsonSchema\Validator;
 use MediaWiki\Config\IterableConfig;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Cache\CachedSource;
@@ -172,30 +170,7 @@ class SettingsBuilder {
 	 */
 	public function validate(): StatusValue {
 		$config = $this->getConfig();
-		$validator = new Validator();
-		$result = StatusValue::newGood();
-
-		foreach ( $this->configSchema->getSchemas() as $key => $schema ) {
-			// All config keys present in the schema must be set.
-			if ( !$config->has( $key ) ) {
-				$result->fatal( 'config-missing-key', $key );
-				continue;
-			}
-
-			$value = $config->get( $key );
-			$validator->validate(
-				$value,
-				$schema,
-				Constraint::CHECK_MODE_TYPE_CAST
-			);
-			if ( !$validator->isValid() ) {
-				foreach ( $validator->getErrors() as $error ) {
-					$result->fatal( 'config-invalid-key', $key, $error['message'] );
-				}
-			}
-			$validator->reset();
-		}
-		return $result;
+		return $this->configSchema->validateConfig( $config );
 	}
 
 	/**
