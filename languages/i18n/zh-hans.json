@@ -3089,7 +3089,7 @@
 	"tooltip-ca-unwatch": "从您的监视列表移除本页面",
 	"tooltip-ca-unwatch-expiring": "在您的监视列表中还剩{{PLURAL:$1|1天|$1天}}。点击以移除。",
 	"tooltip-ca-unwatch-expiring-hours": "几小时后将自动移出您的监视列表。单击可立即移除。",
-	"tooltip-search": "搜索{{SITENAME}}",
+	"tooltip-search": "在{{SITENAME}}搜索",
 	"tooltip-search-go": "若相同标题存在，则直接前往该页面",
 	"tooltip-search-fulltext": "搜索含这些文字的页面",
 	"tooltip-p-cactions": "更多选项",

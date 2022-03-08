@@ -2538,6 +2538,7 @@
 	"undelete-error": "Chyba při obnovování stránky",
 	"undelete-show-file-confirm": "Určitě si chcete prohlédnout smazanou revizi souboru „<nowiki>$1</nowiki>“ z $2, $3?",
 	"undelete-show-file-submit": "Ano",
+	"undelete-back-to-list": "Zobrazit všechny smazané revize",
 	"namespace": "Jmenný prostor:",
 	"invert": "Obrátit výběr",
 	"tooltip-invert": "Zaškrtnutím tohoto políčka skryjete změny stránek ve zvoleném jmenném prostoru (a souvisejícím jmenném prostoru, pokud je zaškrtnuto)",
