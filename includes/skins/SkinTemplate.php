@@ -1106,35 +1106,12 @@ class SkinTemplate extends Skin {
 	 * @return string
 	 */
 	private function getSkinNavOverrideableLabel( $labelMessageKey, $param = null ) {
-		// For historic reasons certain messages had different message keys associated.
-		// The plan is to remove these in future when it is safe to do so (T301203)
-		$legacyFallbacks = [
-			'view-history' => 'history_short',
-			'action-delete' => 'delete',
-			'action-move' => 'move',
-			'action-undelete' => 'undelete_short',
-			'action-viewdeleted' => 'viewdeleted',
-			'action-protect' => 'protect',
-			'action-unprotect' => 'unprotect',
-			'action-viewsource' => 'viewsource',
-			'action-addsection' => 'addsection',
-			'view-view-foreign' => 'view-foreign',
-			'view-view' => 'view',
-			'view-create' => 'create',
-			'view-create-local' => 'create-local',
-			'view-edit' => 'edit',
-			'view-edit-local' => 'edit-local',
-		];
 		$skname = $this->skinname;
 		$msg = wfMessageFallback(
 				"$skname-$labelMessageKey",
 				"skin-$labelMessageKey",
 				// @todo: Can be removed when every $labelMessageKey has a `skin-` prefixed message alternative.
-				$labelMessageKey,
-				// @todo: This line can be removed when all the new message keys have been added and translated.
-				// When not defined, since this code is temporary, simply give it the same message as before,
-				// as Message key must always be a string (see T302051)
-				$legacyFallbacks[ $labelMessageKey ] ?? $labelMessageKey
+				$labelMessageKey
 			)->setContext( $this->getContext() );
 
 		if ( $param ) {
