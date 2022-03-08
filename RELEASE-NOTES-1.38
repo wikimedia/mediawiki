@@ -519,6 +519,11 @@ because of Phabricator reports.
    - ContribsPager::preventClickjacking()
 * OutputPage::enableClientCache() was deprecated, because it is universally
   used to do the opposite -- use OutputPage::disableClientCache() instead.
+* Sanitizer::removeHTMLtags() has been deprecated. Its output can
+  include unbalanced or ill-formed HTML and thus external callers may
+  be misled about how to safely incorporate its output into a page. It
+  is recommended to use the new Sanitizer::removeSomeTags() method
+  instead, which will always return balanced HTML.
 * Collation::singleton() and ::factory() now trigger deprecation warnings.
 * The following methods in MWNamespace, all deprecated since 1.34, now emit
   deprecation warnings:

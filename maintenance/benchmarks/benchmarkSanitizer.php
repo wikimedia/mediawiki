@@ -31,7 +31,7 @@ class BenchmarkSanitizer extends Benchmarker {
 		parent::__construct();
 		$this->addDescription( 'Benchmark for Sanitizer methods.' );
 		$this->addOption( 'method', 'One of "validateEmail", "encodeAttribute", '
-			. '"safeEncodeAttribute", "removeHTMLtags", "removeSomeTags", "tidy", or "stripAllTags". '
+			. '"safeEncodeAttribute", "internalRemoveHtmlTags", "removeSomeTags", "tidy", or "stripAllTags". '
 			. 'Default: (All)', false, true );
 	}
 
@@ -72,18 +72,18 @@ class BenchmarkSanitizer extends Benchmarker {
 				Sanitizer::safeEncodeAttribute( ":'\"\n https://example" );
 			};
 		}
-		if ( !$method || $method === 'removeHTMLtags' ) {
+		if ( !$method || $method === 'internalRemoveHtmlTags' ) {
 			$tiny = strlen( $textWithNoHtml );
 			$sm = strlen( $textWithHtmlSm );
 			$lg = round( strlen( $textWithHtmlLg ) / 1000 ) . 'K';
-			$benches["Sanitizer::removeHTMLtags (input: $tiny)"] = static function () use ( $textWithNoHtml ) {
-				Sanitizer::removeHTMLtags( $textWithNoHtml );
+			$benches["Sanitizer::internalRemoveHtmlTags (input: $tiny)"] = static function () use ( $textWithNoHtml ) {
+				Sanitizer::internalRemoveHtmlTags( $textWithNoHtml );
 			};
-			$benches["Sanitizer::removeHTMLtags (input: $sm)"] = static function () use ( $textWithHtmlSm ) {
-				Sanitizer::removeHTMLtags( $textWithHtmlSm );
+			$benches["Sanitizer::internalRemoveHtmlTags (input: $sm)"] = static function () use ( $textWithHtmlSm ) {
+				Sanitizer::internalRemoveHtmlTags( $textWithHtmlSm );
 			};
-			$benches["Sanitizer::removeHTMLtags (input: $lg)"] = static function () use ( $textWithHtmlLg ) {
-				Sanitizer::removeHTMLtags( $textWithHtmlLg );
+			$benches["Sanitizer::internalRemoveHtmlTags (input: $lg)"] = static function () use ( $textWithHtmlLg ) {
+				Sanitizer::internalRemoveHtmlTags( $textWithHtmlLg );
 			};
 		}
 		if ( !$method || $method === 'tidy' ) {
@@ -98,7 +98,9 @@ class BenchmarkSanitizer extends Benchmarker {
 						'TidyConfig' => [ 'pwrap' => false ],
 					] ) );
 					$textWithTags = $tidy->tidy( $text, [ Sanitizer::class, 'armorFrenchSpaces' ] );
-					$textWithTags = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $textWithTags ) );
+					$textWithTags = Sanitizer::normalizeCharReferences(
+						Sanitizer::internalRemoveHtmlTags( $textWithTags )
+					);
 				};
 			};
 			$benches["DISPLAYTITLE tidy (input: $tiny)"] = $doit( $textWithNoHtml );
