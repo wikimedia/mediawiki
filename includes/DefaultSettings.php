@@ -2425,6 +2425,20 @@ $wgMultiContentRevisionSchemaMigrationStage = SCHEMA_COMPAT_NEW;
  */
 $wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_TEMP;
 
+/**
+ * Templatelinks table schema migration stage, for normalizing tl_namespace and tl_title fields.
+ * Use the SCHEMA_COMPAT_XXX flags. Supported values:
+ *   - SCHEMA_COMPAT_OLD
+ *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
+ *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
+ *   - SCHEMA_COMPAT_NEW
+ *
+ * History:
+ *   - 1.38: Added
+ * @var int An appropriate combination of SCHEMA_COMPAT_XXX flags.
+ */
+$wgTemplateLinksSchemaMigrationStage = SCHEMA_COMPAT_OLD;
+
 // endregion -- End of DB settings
 
 /***************************************************************************/

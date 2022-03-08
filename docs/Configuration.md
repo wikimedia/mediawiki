@@ -1753,6 +1753,19 @@ History:
   - 1.37: Re-added with SCHEMA_COMPAT_NEW renamed to SCHEMA_COMPAT_TEMP for
     a new migration which removes temporary tables.
 
+# TemplateLinksSchemaMigrationStage {#TemplateLinksSchemaMigrationStage}
+Templatelinks table schema migration stage, for normalizing tl_namespace and tl_title fields.
+
+Use the SCHEMA_COMPAT_XXX flags. Supported values:
+
+  - SCHEMA_COMPAT_OLD
+  - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
+  - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
+  - SCHEMA_COMPAT_NEW
+
+History:
+  - 1.38: Added
+
 # ContentHandlers {#ContentHandlers}
 Plugins for page content model handling.
 
