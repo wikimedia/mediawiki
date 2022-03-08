@@ -149,7 +149,7 @@ class FindDeprecated extends Maintenance {
 		global $IP;
 
 		$files = $this->getFiles();
-		$chunkSize = ceil( count( $files ) / 72 );
+		$chunkSize = (int)ceil( count( $files ) / 72 );
 
 		$parser = ( new PhpParser\ParserFactory )->create( PhpParser\ParserFactory::PREFER_PHP7 );
 		$traverser = new PhpParser\NodeTraverser;

@@ -134,7 +134,7 @@ class MWDocGen extends Maintenance {
 			}
 		}
 
-		$this->doDot = shell_exec( 'which dot' );
+		$this->doDot = (bool)shell_exec( 'which dot' );
 	}
 
 	public function execute() {
