@@ -953,6 +953,7 @@
 	"apihelp-query+languageinfo-paramvalue-prop-dir": "{{doc-apihelp-paramvalue|query+languageinfo|prop|dir}}",
 	"apihelp-query+languageinfo-paramvalue-prop-autonym": "{{doc-apihelp-paramvalue|query+languageinfo|prop|autonym}}",
 	"apihelp-query+languageinfo-paramvalue-prop-name": "{{doc-apihelp-paramvalue|query+languageinfo|prop|name}}",
+	"apihelp-query+languageinfo-paramvalue-prop-variantnames": "{{doc-apihelp-paramvalue|query+languageinfo|prop|variantnames}}",
 	"apihelp-query+languageinfo-paramvalue-prop-fallbacks": "{{doc-apihelp-paramvalue|query+languageinfo|prop|fallbacks}}",
 	"apihelp-query+languageinfo-paramvalue-prop-variants": "{{doc-apihelp-paramvalue|query+languageinfo|prop|variants}}",
 	"apihelp-query+languageinfo-param-code": "{{doc-apihelp-param|query+languageinfo|code}}",

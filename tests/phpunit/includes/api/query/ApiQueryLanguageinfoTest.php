@@ -43,14 +43,10 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 		return [ $res[0]['query']['languageinfo'], $res[0]['continue'] ?? null ];
 	}
 
-	public function testAllPropsForSingleLanguage() {
-		list( $response, $continue ) = $this->doQuery( [
-			'liprop' => 'code|bcp47|dir|autonym|name|fallbacks|variants',
-			'licode' => 'sh',
-		] );
-
-		$this->assertArrayEquals( [
-			'sh' => [
+	public function provideTestAllPropsForSingleLanguage() {
+		yield [
+			'sh',
+			[
 				'code' => 'sh',
 				'bcp47' => 'sh',
 				'autonym' => 'srpskohrvatski / српскохрватски',
@@ -58,18 +54,31 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 				'fallbacks' => [ 'bs', 'sr-el', 'sr-latn', 'hr' ],
 				'dir' => 'ltr',
 				'variants' => [ 'sh' ],
-			],
-		], $response );
-	}
+				'variantnames' => [ 'sh' => 'srpskohrvatski / српскохрватски' ],
+			]
+		];
 
-	public function testAllPropsForSingleCustomLanguage() {
-		list( $response, $continue ) = $this->doQuery( [
-			'liprop' => 'code|bcp47|dir|autonym|name|fallbacks|variants',
-			'licode' => 'qtp', // reserved for local use by ISO 639; registered in setUp()
-		] );
+		yield [
+			'sr',
+			[
+				'code' => 'sr',
+				'bcp47' => 'sr',
+				'autonym' => 'српски / srpski',
+				'name' => 'српски / srpski',
+				'fallbacks' => [ 'sr-ec', 'sr-cyrl' ],
+				'dir' => 'ltr',
+				'variants' => [ 'sr', 'sr-ec', 'sr-el' ],
+				'variantnames' => [
+					'sr' => 'Ћир./lat.',
+					'sr-ec' => 'Ћирилица',
+					'sr-el' => 'Latinica',
+				],
+			]
+		];
 
-		$this->assertArrayEquals( [
-			'qtp' => [
+		yield [
+			'qtp', // reserved for local use by ISO 639; registered in setUp()
+			[
 				'code' => 'qtp',
 				'bcp47' => 'qtp',
 				'autonym' => '',
@@ -77,8 +86,21 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 				'fallbacks' => [],
 				'dir' => 'ltr',
 				'variants' => [ 'qtp' ],
-			],
-		], $response );
+				'variantnames' => [ 'qtp' => 'qtp' ],
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideTestAllPropsForSingleLanguage
+	 */
+	public function testAllPropsForSingleLanguage( string $langCode, array $expected ) {
+		list( $response, $continue ) = $this->doQuery( [
+			'liprop' => 'code|bcp47|dir|autonym|name|fallbacks|variants|variantnames',
+			'licode' => $langCode,
+		] );
+
+		$this->assertArrayEquals( [ $langCode => $expected ], $response );
 	}
 
 	public function testNameInOtherLanguageForSingleLanguage() {
