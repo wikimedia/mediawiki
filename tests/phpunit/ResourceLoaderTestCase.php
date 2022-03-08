@@ -72,6 +72,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 			// For ResourceLoaderSkinModule
 			'Logos' => false,
 			'Logo' => '/logo.png',
+			'BaseDirectory' => MW_INSTALL_PATH,
 			'ResourceBasePath' => '/w',
 			'ParserEnableLegacyMediaDOM' => true,
 

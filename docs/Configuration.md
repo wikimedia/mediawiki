@@ -134,16 +134,25 @@ Defaults to "{$wgResourceBasePath}/extensions".
 @since 1.16
 
 # ExtensionDirectory {#ExtensionDirectory}
-Extensions directory.
+Extensions directory in the file system.
 @note Set to "{$IP}/extensions" by Setup.php before loading local settings.
 @note this configuration variable is used to locate extensions while loading settings.
 @since 1.25
 
 # StyleDirectory {#StyleDirectory}
-Skins directory.
+Skins directory in the file system.
 @note Set to "{$IP}/skins" by Setup.php before loading local settings.
 @note this configuration variable is used to locate skins while loading settings.
 @since 1.3
+
+# BaseDirectory {#BaseDirectory}
+Absolute filesystem path of the root directory of the MediaWiki installation.
+The MW_INSTALL_PATH environment variable can be used to set this.
+
+@note Automatically set in Setup.php before loading local settings.
+@note Do not modify in settings files! Must remain equal to the MW_INSTALL_PATH constant
+defined in Setup.php.
+@since 1.38
 
 # ArticlePath {#ArticlePath}
 The URL path for primary article page views. This path should contain $1,

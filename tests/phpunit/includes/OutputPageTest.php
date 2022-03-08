@@ -2776,6 +2776,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'ResourceBasePath' => $basePath,
 			'UploadDirectory' => $uploadDir,
 			'UploadPath' => $uploadPath,
+			'BaseDirectory' => $baseDir
 		] );
 
 		// Some of these paths don't exist and will cause warnings
@@ -2970,10 +2971,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @covers ResourceLoaderSkinModule::getPreloadLinks
 	 * @covers ResourceLoaderSkinModule::getLogoPreloadlinks
 	 */
-	public function testPreloadLinkHeaders( $config, $result, $installPath = null ) {
-		if ( $installPath ) {
-			$this->setMwGlobals( [ 'IP' => $installPath ] );
-		}
+	public function testPreloadLinkHeaders( $config, $result ) {
 		$ctx = $this->createMock( ResourceLoaderContext::class );
 		$module = new ResourceLoaderSkinModule();
 		$module->setConfig( new HashConfig( $config + ResourceLoaderTestCase::getSettings() ) );
@@ -3037,9 +3035,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 						'1x' => '/w/test.jpg',
 					],
 					'UploadPath' => '/w/images',
+					'BaseDirectory' => dirname( __DIR__ ) . '/data/media'
 				],
 				'Link: </w/test.jpg?edcf2>;rel=preload;as=image',
-				dirname( __DIR__ ) . '/data/media',
 			],
 		];
 	}

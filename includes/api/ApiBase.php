@@ -1976,8 +1976,6 @@ abstract class ApiBase extends ContextSource {
 	 * @return array|null
 	 */
 	protected function getModuleSourceInfo() {
-		global $IP;
-
 		if ( $this->mModuleSource !== false ) {
 			return $this->mModuleSource;
 		}
@@ -1995,13 +1993,14 @@ abstract class ApiBase extends ContextSource {
 		// Build map of extension directories to extension info
 		if ( self::$extensionInfo === null ) {
 			$extDir = $this->getConfig()->get( 'ExtensionDirectory' );
+			$baseDir = $this->getConfig()->get( 'BaseDirectory' );
 			self::$extensionInfo = [
 				realpath( __DIR__ ) ?: __DIR__ => [
-					'path' => $IP,
+					'path' => $baseDir,
 					'name' => 'MediaWiki',
 					'license-name' => 'GPL-2.0-or-later',
 				],
-				realpath( "$IP/extensions" ) ?: "$IP/extensions" => null,
+				realpath( "$baseDir/extensions" ) ?: "$baseDir/extensions" => null,
 				realpath( $extDir ) ?: $extDir => null,
 			];
 			$keep = [

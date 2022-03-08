@@ -70,6 +70,9 @@ return [
 				1 => 'string',
 			],
 		],
+		'BaseDirectory' => [
+			'default' => null,
+		],
 		'ArticlePath' => [
 			'default' => false,
 		],
