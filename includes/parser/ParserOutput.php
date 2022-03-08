@@ -465,17 +465,16 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				// XXX Use DI to inject this once ::getText() is moved out
 				// of ParserOutput
 				$services = MediaWikiServices::getInstance();
-				$languageConverterFactory = $services->getLanguageConverterFactory();
-				$title = RequestContext::getMain()->getTitle();
+				$languageConverterFactory =
+					$services->getLanguageConverterFactory();
 				$toc = $languageConverterFactory->getLanguageConverter(
 					// XXX This was Parser::getTargetLanguage()
-					// Fallback to content language for messages or someting
-					$title ? $title->getPageLanguage() : $services->getContentLanguage()
+					$services->getContentLanguage()
 				)->convert( $toc );
 
 				// XXX Use DI to inject this once ::getText() is moved out
 				// of ParserOutput.
-				$tidy = $services->getTidy();
+				$tidy = MediaWikiServices::getInstance()->getTidy();
 				$toc = $tidy->tidy(
 					$toc,
 					[ Sanitizer::class, 'armorFrenchSpaces' ]
