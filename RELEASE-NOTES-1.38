@@ -495,6 +495,21 @@ because of Phabricator reports.
      the string as the only element.
    - ::addModuleStyles() - if you formerly passed a string, pass an array
      with the string as the only element.
+* Access to the following public or protected properties of OutputPage was
+  deprecated; they will be made private or removed in a future release.
+  Use accessor functions instead.
+  - ::$mCategoryLinks
+  - ::$mCategories
+  - ::$mIndicators
+  - ::$mHeadItems
+  - ::$mModules
+  - ::$mModuleStyles
+  - ::$mJsConfigVars
+  - ::$mTemplateIds
+  - ::$mEnableClientCache
+  - ::$mNewSectionLink
+  - ::$mHideNewSectionLink
+  - ::$mNoGallery
 * The following methods were deprecated; use ::setPreventClickjacking(..)
   instead:
    - OutputPage::preventClickjacking()
