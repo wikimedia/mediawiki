@@ -390,7 +390,7 @@ trait DummyServicesTrait {
 		// avoid needing to create a mock in each test.
 		// Note that the actual Language::ucfirst is a bit more complicated than this
 		// but since the tests are all in English the plain php `ucfirst` should be enough.
-		$contentLang = $this->createMock( Language::class, [ 'ucfirst' ] );
+		$contentLang = $this->createMock( Language::class );
 		$contentLang->method( 'ucfirst' )
 			->willReturnCallback( 'ucfirst' );
 		$contentLang->method( 'getNsText' )->with( NS_USER )
