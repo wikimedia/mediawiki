@@ -114,7 +114,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 
 		$this->logRequest( 'get', $key, $conn->getServer(), $e );
 
-		$this->updateOpStats( self::METRIC_OP_GET, [ $key => [ null, $valueSize ] ] );
+		$this->updateOpStats( self::METRIC_OP_GET, [ $key => [ 0, $valueSize ] ] );
 
 		return $result;
 	}
@@ -143,7 +143,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 
 		$this->logRequest( 'set', $key, $conn->getServer(), $e );
 
-		$this->updateOpStats( self::METRIC_OP_SET, [ $key => [ $valueSize, null ] ] );
+		$this->updateOpStats( self::METRIC_OP_SET, [ $key => [ $valueSize, 0 ] ] );
 
 		return $result;
 	}
@@ -226,7 +226,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 			} else {
 				$valueSize = false;
 			}
-			$valueSizesByKey[$key] = [ null, $valueSize ];
+			$valueSizesByKey[$key] = [ 0, $valueSize ];
 		}
 
 		$this->updateOpStats( self::METRIC_OP_GET, $valueSizesByKey );
@@ -269,7 +269,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 					} else {
 						$conn->set( $key, $serialized );
 					}
-					$valueSizesByKey[$key] = [ strlen( $serialized ), null ];
+					$valueSizesByKey[$key] = [ strlen( $serialized ), 0 ];
 				}
 				$batchResult = $conn->exec();
 				if ( $batchResult === false ) {
@@ -420,7 +420,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 
 		$this->logRequest( 'add', $key, $conn->getServer(), $result );
 
-		$this->updateOpStats( self::METRIC_OP_ADD, [ $key => [ $valueSize, null ] ] );
+		$this->updateOpStats( self::METRIC_OP_ADD, [ $key => [ $valueSize, 0 ] ] );
 
 		return $result;
 	}
@@ -610,7 +610,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 	 * @param string $op
 	 * @param string $keys
 	 * @param string $server
-	 * @param Exception|true|null $e
+	 * @param Exception|bool|null $e
 	 */
 	public function logRequest( $op, $keys, $server, $e = null ) {
 		$this->debug( "$op($keys) on $server: " . ( $e ? "failure" : "success" ) );

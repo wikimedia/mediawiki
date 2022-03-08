@@ -131,8 +131,8 @@ class Throttler implements LoggerAwareInterface {
 				'throttler',
 				$this->type,
 				$index,
-				$ipKey,
-				$userKey
+				$ipKey ?? '',
+				$userKey ?? ''
 			);
 			$throttleCount = $this->cache->get( $throttleKey );
 			if ( $throttleCount && $throttleCount >= $count ) {

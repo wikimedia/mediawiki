@@ -159,7 +159,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 			$this->handleError( "Failed to fetch $key", $rcode, $rerr, $rhdrs, $rbody );
 		}
 
-		$this->updateOpStats( self::METRIC_OP_GET, [ $key => [ null, $valueSize ] ] );
+		$this->updateOpStats( self::METRIC_OP_GET, [ $key => [ 0, $valueSize ] ] );
 
 		return $value;
 	}
@@ -180,7 +180,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 			$this->handleError( "Failed to store $key", $rcode, $rerr, $rhdrs, $rbody );
 		}
 
-		$this->updateOpStats( self::METRIC_OP_SET, [ $key => [ strlen( $rbody ), null ] ] );
+		$this->updateOpStats( self::METRIC_OP_SET, [ $key => [ strlen( $rbody ), 0 ] ] );
 
 		return $res;
 	}
