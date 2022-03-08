@@ -50,6 +50,11 @@ class ParserOutputFlags {
 	public const NO_GALLERY = 'mw-NoGallery';
 
 	/**
+	 * @var string Used to suppress language conversion in ToC contents.
+	 */
+	public const NO_TOC_CONVERSION = 'no-toc-conversion';
+
+	/**
 	 * @var string Whether OOUI should be enabled.
 	 * @see \ParserOutput::getEnableOOUI()
 	 * @see \ParserOutput::setEnableOOUI()
@@ -150,6 +155,7 @@ class ParserOutputFlags {
 	public static function cases(): array {
 		return [
 			self::NO_GALLERY,
+			self::NO_TOC_CONVERSION,
 			self::ENABLE_OOUI,
 			self::INDEX_POLICY,
 			self::NO_INDEX_POLICY,

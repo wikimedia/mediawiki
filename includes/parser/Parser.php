@@ -1698,6 +1698,19 @@ class Parser {
 			# assumes that the links are all replaced and the only thing left
 			# is the <nowiki> mark.
 			$text = $this->getTargetLanguageConverter()->convert( $text );
+			// Record information necessary for language conversion of TOC.
+			$this->mOutput->setExtensionData(
+				// T303329: this should migrate out of extension data
+				'core:target-lang',
+				$this->getTargetLanguage()->getCode()
+			);
+			$this->mOutput->setExtensionData(
+				// T303329: this should migrate out of extension data
+				'core:target-lang-variant',
+				$this->getTargetLanguageConverter()->getPreferredVariant()
+			);
+		} else {
+			$this->mOutput->setOutputFlag( ParserOutputFlags::NO_TOC_CONVERSION );
 		}
 
 		$text = $this->mStripState->unstripNoWiki( $text );
