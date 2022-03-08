@@ -60,7 +60,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * for concatenated storage if ConcatenatedGzipHistoryBlob was used.
 	 *
 	 * @param string $url
-	 * @return string|bool False if missing
+	 * @return string|false False if missing
 	 * @see ExternalStoreMedium::fetchFromURL()
 	 */
 	public function fetchFromURL( $url ) {
@@ -214,7 +214,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 
 	/**
 	 * @param array $server Primary DB server configuration array for LoadBalancer
-	 * @return string|bool Database domain ID or false
+	 * @return string|false Database domain ID or false
 	 */
 	private function getDomainId( array $server ) {
 		if ( $this->isDbDomainExplicit ) {
@@ -301,7 +301,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @param string $cluster
 	 * @param string $id
 	 * @param string $itemID
-	 * @return HistoryBlob|bool Returns false if missing
+	 * @return HistoryBlob|false Returns false if missing
 	 */
 	private function fetchBlob( $cluster, $id, $itemID ) {
 		/**

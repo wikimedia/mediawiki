@@ -61,7 +61,7 @@ interface HistoryBlob {
 	/**
 	 * Get default text.
 	 *
-	 * @return string
+	 * @return string|false
 	 */
 	public function getText();
 }
