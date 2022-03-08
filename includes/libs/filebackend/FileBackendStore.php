@@ -1938,7 +1938,10 @@ abstract class FileBackendStore extends FileBackend {
 		// Get all the paths/containers from the items...
 		foreach ( $items as $item ) {
 			if ( self::isStoragePath( $item ) ) {
-				$paths[] = FileBackend::normalizeStoragePath( $item );
+				$path = FileBackend::normalizeStoragePath( $item );
+				if ( $path !== null ) {
+					$paths[] = $path;
+				}
 			}
 		}
 		// Get rid of any paths that failed normalization
