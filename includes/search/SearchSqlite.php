@@ -214,7 +214,7 @@ class SearchSqlite extends SearchDatabase {
 			return '';  # search all
 		}
 		if ( $this->namespaces === [] ) {
-			$namespaces = '0';
+			$namespaces = NS_MAIN;
 		} else {
 			$dbr = $this->lb->getConnectionRef( DB_REPLICA );
 			$namespaces = $dbr->makeList( $this->namespaces );

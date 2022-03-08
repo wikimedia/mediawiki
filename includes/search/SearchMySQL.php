@@ -244,7 +244,7 @@ class SearchMySQL extends SearchDatabase {
 	private function queryNamespaces( &$query ) {
 		if ( is_array( $this->namespaces ) ) {
 			if ( count( $this->namespaces ) === 0 ) {
-				$this->namespaces[] = '0';
+				$this->namespaces[] = NS_MAIN;
 			}
 			$query['conds']['page_namespace'] = $this->namespaces;
 		}
