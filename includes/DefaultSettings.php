@@ -7997,52 +7997,34 @@ $wgRCLinkDays = [ 1, 3, 7, 14, 30 ];
 /**
  * Configuration for feeds to which notifications about recent changes will be sent.
  *
- * The following feed classes are available by default:
- * - 'UDPRCFeedEngine' - sends recent changes over UDP to the specified server.
- * - 'RedisPubSubFeedEngine' - send recent changes to Redis.
+ * Backend options:
+ * - `class`: (Required) The backend class for this feed. This must extend RCFeed.
+ *   The following feed backends are provided with %MediaWiki core:
+ *   - UDPRCFeedEngine: Send messages to an address over UDP.
+ *   - RedisPubSubFeedEngine: Publish messages to a to Redis channel.
+ * - `formatter`: For UDPRCFeedEngine, RedisPubSubFeedEngine and other FormattedRCFeed
+ *   classes, this must be set to an RCFeedFormatter subclass. The following feed
+ *   formatters are provided with %MediaWiki core and each support additional backend
+ *   options to be passed.
+ *   - JSONRCFeedFormatter
+ *   - XMLRCFeedFormatter
+ *   - IRCColourfulRCFeedFormatter
+ * - `uri`: (Required for UDPRCFeedEngine and RedisPubSubFeedEngine).
  *
- * Only 'class' or 'uri' is required. If 'uri' is set instead of 'class', then
- * RecentChange::getEngine() is used to determine the class. All options are
- * passed to the constructor.
- *
- * Common options:
- * - 'class' -- The class to use for this feed (must implement RCFeed).
- * - 'omit_bots' -- Exclude bot edits from the feed. (default: false)
- * - 'omit_anon' -- Exclude anonymous edits from the feed. (default: false)
- * - 'omit_user' -- Exclude edits by registered users from the feed. (default: false)
- * - 'omit_minor' -- Exclude minor edits from the feed. (default: false)
- * - 'omit_patrolled' -- Exclude patrolled edits from the feed. (default: false)
- *
- * FormattedRCFeed-specific options:
- * - 'uri' -- [required] The address to which the messages are sent.
- *   The uri scheme of this string will be looked up in $wgRCEngines
- *   to determine which FormattedRCFeed class to use.
- * - 'formatter' -- [required] The class (implementing RCFeedFormatter) which will
- *   produce the text to send. This can also be an object of the class.
- *   Formatters available by default: JSONRCFeedFormatter, XMLRCFeedFormatter,
- *   IRCColourfulRCFeedFormatter.
- *
- * IRCColourfulRCFeedFormatter-specific options:
- * - 'add_interwiki_prefix' -- whether the titles should be prefixed with
- *   the first entry in the $wgLocalInterwikis array
- *
- * JSONRCFeedFormatter-specific options:
- * - 'channel' -- if set, the 'channel' parameter is also set in JSON values.
+ * Feed options (these are evaluated before deciding whether to notify
+ * the RCFeed implementation):
+ * - `omit_bots`: Exclude bot edits from the feed. Default: false.
+ * - `omit_anon`: Exclude anonymous edits from the feed. Default: false.
+ * - `omit_user`: Exclude edits by registered users from the feed. Default: false.
+ * - `omit_minor`: Exclude minor edits from the feed. Default: false.
+ * - `omit_patrolled`: Exclude patrolled edits from the feed. Default: false.
  *
  * @par Examples:
  * @code
  *  $wgRCFeeds['example'] = [
+ *      'class' => UDPRCFeedEngine::class,
  *      'uri' => 'udp://localhost:1336',
- *      'formatter' => 'JSONRCFeedFormatter',
- *      'add_interwiki_prefix' => false,
- *      'omit_bots' => true,
- *  ];
- * @endcode
- * @code
- *  $wgRCFeeds['example'] = [
- *      'uri' => 'udp://localhost:1338',
- *      'formatter' => 'IRCColourfulRCFeedFormatter',
- *      'add_interwiki_prefix' => false,
+ *      'formatter' => JSONRCFeedFormatter::class,
  *      'omit_bots' => true,
  *  ];
  * @endcode
@@ -8057,8 +8039,12 @@ $wgRCLinkDays = [ 1, 3, 7, 14, 30 ];
 $wgRCFeeds = [];
 
 /**
- * Used by RecentChange::getEngine to find the correct engine for a given URI scheme.
- * Keys are scheme names, values are names of FormattedRCFeed sub classes.
+ * Legacy mapping from URI schemes to RCFeed subclasses.
+ *
+ * Used for $wgRCFeeds (in RecentChange::factory) to determine which class
+ * to use if `class` is not set, but `uri` is.
+ *
+ * @deprecated since 1.38 Set 'class' directly in $wgRCFeeds.
  * @since 1.22
  */
 $wgRCEngines = [

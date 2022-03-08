@@ -19,10 +19,26 @@
  */
 
 /**
- * Send recent change notifications in a UDP packet.
+ * Send recent change notifications to a destination address over UDP.
+ *
+ * Parameters:
+ * - `formatter`: (Required) Which RCFeedFormatter class to use.
+ * - `uri`: (Required) Where to send the messages.
+ *
+ * @par Example:
+ * @code
+ * $wgRCFeeds['rc-to-udp'] = [
+ *      'class' => 'UDPRCFeedEngine',
+ *      'formatter' => 'JSONRCFeedFormatter',
+ *      'uri' => 'udp://localhost:1336',
+ * ];
+ * @endcode
+ *
+ * @see $wgRCFeeds
  * @since 1.22
  */
-class UDPRCFeedEngine extends RCFeedEngine {
+class UDPRCFeedEngine extends FormattedRCFeed {
+
 	/**
 	 * @see FormattedRCFeed::send
 	 * @param array $feed

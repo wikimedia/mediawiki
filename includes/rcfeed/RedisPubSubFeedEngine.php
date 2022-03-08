@@ -19,7 +19,7 @@
  */
 
 /**
- * Send recent change notifications via Redis Pub/Sub
+ * Send recent change to a Redis Pub/Sub channel.
  *
  * If the feed URI contains a path component, it will be used to generate a
  * channel name by stripping the leading slash and replacing any remaining
@@ -27,14 +27,20 @@
  * 'rc'. If the URI contains a query string, its parameters will be parsed
  * as RedisConnectionPool options.
  *
+ * Parameters:
+ * - `formatter`: (Required) Which RCFeedFormatter class to use.
+ * - `uri`: (Required) Where to send the messages.
+ *
  * @par Example:
  * @code
- * $wgRCFeeds['redis'] = [
+ * $wgRCFeeds['rc-to-redis'] = [
+ *      'class' => 'RedisPubSubFeedEngine',
  *      'formatter' => 'JSONRCFeedFormatter',
- *      'uri'       => "redis://127.0.0.1:6379/rc.$wgDBname",
+ *      'uri' => "redis://127.0.0.1:6379/rc.$wgDBname",
  * ];
  * @endcode
  *
+ * @see $wgRCFeeds
  * @since 1.22
  */
 class RedisPubSubFeedEngine extends FormattedRCFeed {

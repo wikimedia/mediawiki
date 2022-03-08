@@ -22,8 +22,15 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * Generates a colourful notification intended for humans on IRC.
+ * Format a notification as a human-readable string using IRC colour codes.
  *
+ * Parameters:
+ * - `add_interwiki_prefix`: Whether the titles should be prefixed with
+ *   the first entry in the $wgLocalInterwikis array (or the value of
+ *   $wgLocalInterwiki, if set).
+ *   Default: false.
+ *
+ * @see $wgRCFeeds
  * @since 1.22
  */
 
