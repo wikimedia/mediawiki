@@ -122,7 +122,7 @@ class InterwikiSearchResultSetWidget implements SearchResultSetWidget {
 	 * @return string HTML
 	 */
 	protected function footerHtml( $term, $iwPrefix ) {
-		$href = Title::makeTitle( NS_SPECIAL, 'Search', null, $iwPrefix )->getLocalURL(
+		$href = Title::makeTitle( NS_SPECIAL, 'Search', '', $iwPrefix )->getLocalURL(
 			[ 'search' => $term, 'fulltext' => 1 ]
 		);
 

@@ -131,7 +131,7 @@ class SearchSuggestionSet {
 
 	/**
 	 * Move the suggestion at index $key to the first position
-	 * @param string $key
+	 * @param int $key
 	 */
 	public function rescore( $key ) {
 		$removed = array_splice( $this->suggestions, $key, 1 );
