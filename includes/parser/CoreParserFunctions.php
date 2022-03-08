@@ -496,6 +496,8 @@ class CoreParserFunctions {
 			'removeTags' => $bad,
 		] );
 		$title = Title::newFromText( Sanitizer::stripAllTags( $text ) );
+		// Decode entities in $text the same way that Title::newFromText does
+		$filteredText = Sanitizer::decodeCharReferencesAndNormalize( $text );
 
 		if ( !$restrictDisplayTitle ||
 			( $title instanceof Title
@@ -513,7 +515,8 @@ class CoreParserFunctions {
 					wfMessage( 'duplicate-displaytitle',
 						// Message should be parsed, but these params should only be escaped.
 						$converter->markNoConversion( wfEscapeWikiText( $old ) ),
-						$converter->markNoConversion( wfEscapeWikiText( $text ) )
+						// @phan-suppress-next-line SecurityCheck-DoubleEscaped we removed escaping above
+						$converter->markNoConversion( wfEscapeWikiText( $filteredText ) )
 					)->inContentLanguage()->text() .
 					'</span>';
 			} else {
@@ -523,7 +526,7 @@ class CoreParserFunctions {
 			$parser->getOutput()->addWarningMsg(
 				'restricted-displaytitle',
 				// Message should be parsed, but this param should only be escaped.
-				Message::plaintextParam( $text )
+				Message::plaintextParam( $filteredText )
 			);
 			$parser->addTrackingCategory( 'restricted-displaytitle-ignored' );
 		}
