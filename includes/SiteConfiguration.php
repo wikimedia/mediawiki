@@ -526,8 +526,6 @@ class SiteConfiguration {
 	 * @since 1.21
 	 */
 	public function getConfig( $wiki, $settings ) {
-		global $IP;
-
 		$multi = is_array( $settings );
 		$settings = (array)$settings;
 		if ( WikiMap::isCurrentWikiId( $wiki ) ) { // $wiki is this wiki
@@ -553,7 +551,7 @@ class SiteConfiguration {
 				$this->cfgCache[$wiki] = [];
 			}
 			$result = Shell::makeScriptCommand(
-				"$IP/maintenance/getConfiguration.php",
+				MW_INSTALL_PATH . '/maintenance/getConfiguration.php',
 				[
 					'--wiki', $wiki,
 					'--settings', implode( ' ', $settings ),

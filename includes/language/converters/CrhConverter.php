@@ -250,14 +250,14 @@ class CrhConverter extends LanguageConverterSpecific {
 				$ret = '';
 				foreach ( $matches as $m ) {
 					// copy over Roman numerals
-					$ret .= substr( $text, $mstart, $m[1] - $mstart );
+					$ret .= substr( $text, $mstart, (int)$m[1] - $mstart );
 
 					// process everything else
 					if ( $m[0] !== '' ) {
 						$ret .= $this->regsConverter( $m[0], $toVariant );
 					}
 
-					$mstart = $m[1] + strlen( $m[0] );
+					$mstart = (int)$m[1] + strlen( $m[0] );
 				}
 
 				return $ret;

@@ -4081,9 +4081,7 @@ class OutputPage extends ContextSource {
 	 * @return string URL
 	 */
 	public static function transformResourcePath( Config $config, $path ) {
-		global $IP;
-
-		$localDir = $IP;
+		$localDir = $config->get( 'BaseDirectory' );
 		$remotePathPrefix = $config->get( 'ResourceBasePath' );
 		if ( $remotePathPrefix === '' ) {
 			// The configured base path is required to be empty string for

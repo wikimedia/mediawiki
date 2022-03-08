@@ -420,9 +420,9 @@ class DatabaseBlock extends AbstractBlock {
 	protected static function getIpFragment( $hex ) {
 		$blockCIDRLimit = MediaWikiServices::getInstance()->getMainConfig()->get( 'BlockCIDRLimit' );
 		if ( substr( $hex, 0, 3 ) == 'v6-' ) {
-			return 'v6-' . substr( substr( $hex, 3 ), 0, floor( $blockCIDRLimit['IPv6'] / 4 ) );
+			return 'v6-' . substr( substr( $hex, 3 ), 0, (int)floor( $blockCIDRLimit['IPv6'] / 4 ) );
 		} else {
-			return substr( $hex, 0, floor( $blockCIDRLimit['IPv4'] / 4 ) );
+			return substr( $hex, 0, (int)floor( $blockCIDRLimit['IPv4'] / 4 ) );
 		}
 	}
 

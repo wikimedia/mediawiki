@@ -116,12 +116,13 @@ class GitInfo {
 	 * @since 1.24
 	 */
 	protected static function getCacheFilePath( $repoDir ) {
-		global $IP;
-		$gitInfoCacheDirectory = MediaWikiServices::getInstance()->getMainConfig()->get( 'GitInfoCacheDirectory' );
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$gitInfoCacheDirectory = $config->get( 'GitInfoCacheDirectory' );
+		$baseDir = $config->get( 'BaseDirectory' );
 		if ( $gitInfoCacheDirectory ) {
 			// Convert both $IP and $repoDir to canonical paths to protect against
 			// $IP having changed between the settings files and runtime.
-			$realIP = realpath( $IP );
+			$realIP = realpath( $baseDir );
 			$repoName = realpath( $repoDir );
 			if ( $repoName === false ) {
 				// Unit tests use fake path names
@@ -145,14 +146,13 @@ class GitInfo {
 	}
 
 	/**
-	 * Get the singleton for the repo at $IP
+	 * Get the singleton for the repo at MW_INSTALL_PATH
 	 *
 	 * @return GitInfo
 	 */
 	public static function repo() {
 		if ( self::$repo === null ) {
-			global $IP;
-			self::$repo = new self( $IP );
+			self::$repo = new self( MW_INSTALL_PATH );
 		}
 		return self::$repo;
 	}

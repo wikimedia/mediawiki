@@ -65,7 +65,13 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	public function testConfigSchemaDefaultsValidate() {
 		$settingsBuilder = $this->getSettingsBuilderWithSchema();
 		$validationResult = $settingsBuilder->apply()->validate();
-		$this->assertArrayEquals( [], $validationResult->getErrors() );
+		$this->assertArrayEquals(
+			[],
+			$validationResult->getErrorsByType( 'errors' ),
+			false,
+			false,
+			"$validationResult"
+		);
 	}
 
 	/**
@@ -73,8 +79,14 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testCurrentSettingsValidate() {
 		global $wgSettings;
-		$result = $wgSettings->validate();
-		$this->assertTrue( $result->isGood(), $result->__toString() );
+		$validationResult = $wgSettings->validate();
+		$this->assertArrayEquals(
+			[],
+			$validationResult->getErrorsByType( 'error' ),
+			false,
+			false,
+			"$validationResult"
+		);
 	}
 
 	public function provideConfigGeneration() {
@@ -178,28 +190,23 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		// If the default is an array, the type must be declared, so we know whether
 		// it's a list (JS "array") or a map (JS "object").
 		if ( is_array( $schema['default'] ) ) {
-			if ( $type ) {
-				$this->assertTrue(
-					in_array( 'array', $type ) || in_array( 'object', $type ),
-					'must be of type "array" or "object", since the default is an array'
-				);
-			} else {
-				$this->assertArrayHasKey(
-					'mergeStrategy',
-					$schema,
-					'must specify a type or merge strategy, since the default is an array'
-				);
-			}
+			$this->assertTrue(
+				in_array( 'array', $type ) || in_array( 'object', $type ),
+				'must be of type "array" or "object", since the default is an array'
+			);
 		}
 
 		// If the default value of a list is not empty, check that it is an indexed array,
 		// not an associative array.
 		if ( in_array( 'array', $type ) && !empty( $schema['default'] ) ) {
-			$this->assertArrayHasKey(
-				0,
-				$schema['default'],
-				'should have a default value starting with index 0, since its type is "array"'
-			);
+			if ( empty( $schema['ignoreKeys'] ) ) {
+				$this->assertArrayHasKey(
+					0,
+					$schema['default'],
+					'should have a default value starting with index 0, since its type is "array", '
+						. 'and ignoreKeys is not set.'
+				);
+			}
 		}
 
 		$mergeStrategy = $schema['mergeStrategy'] ?? null;
@@ -236,7 +243,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 				$this->assertNotSame(
 					'array_merge',
 					$mergeStrategy,
-					'should not specify mergeStrategy "array_merge" since its type is not "array"'
+					'should not specify mergeStrategy "array_merge" since its type is "object"'
 				);
 			}
 		}

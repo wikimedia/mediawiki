@@ -47,7 +47,7 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 		foreach ( $namespaces as $namespace ) {
 			if (
 				$namespace < 0 ||
-				!MediaWikiServices::getInstance()->getNamespaceInfo()->exists( $namespace )
+				!MediaWikiServices::getInstance()->getNamespaceInfo()->exists( (int)$namespace )
 			) {
 				return $this->msg( 'htmlform-select-badoption' );
 			}

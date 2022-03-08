@@ -91,7 +91,7 @@ class BenchmarkParse extends Maintenance {
 				$this->fatalError( "The page did not exist at that time" );
 			}
 
-			$revision = $revLookup->getRevisionById( $id );
+			$revision = $revLookup->getRevisionById( (int)$id );
 		} else {
 			$revision = $revLookup->getRevisionByTitle( $title );
 		}

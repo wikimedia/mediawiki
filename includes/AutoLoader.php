@@ -98,8 +98,7 @@ class AutoLoader {
 		// Make an absolute path, this improves performance by avoiding some stat calls
 		// Optimisation: use string offset access instead of substr
 		if ( $filename[0] !== '/' && $filename[1] !== ':' ) {
-			global $IP;
-			$filename = "$IP/$filename";
+			$filename = __DIR__ . '/../' . $filename;
 		}
 
 		return $filename;

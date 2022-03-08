@@ -70,6 +70,9 @@ return [
 				1 => 'string',
 			],
 		],
+		'BaseDirectory' => [
+			'default' => null,
+		],
 		'ArticlePath' => [
 			'default' => false,
 		],
@@ -261,7 +264,7 @@ return [
 		'LockManagers' => [
 			'default' => [
 			],
-			'type' => 'object',
+			'type' => 'array',
 		],
 		'ShowEXIF' => [
 			'default' => true,
@@ -1144,7 +1147,7 @@ return [
 					'reportDupes' => false,
 				],
 			],
-			'mergeStrategy' => 'array_plus',
+			'type' => 'object',
 		],
 		'MainWANCache' => [
 			'default' => false,
@@ -1161,7 +1164,7 @@ return [
 					'cacheId' => 0,
 				],
 			],
-			'mergeStrategy' => 'array_plus',
+			'type' => 'object',
 		],
 		'EnableWANCacheReaper' => [
 			'default' => false,
@@ -2233,6 +2236,8 @@ return [
 			],
 		],
 		'SessionProviders' => [
+			'type' => 'array',
+			'ignoreKeys' => true,
 			'default' => [
 				'MediaWiki\\Session\\CookieSessionProvider' => [
 					'class' => 'MediaWiki\\Session\\CookieSessionProvider',
@@ -2252,7 +2257,6 @@ return [
 					],
 				],
 			],
-			'type' => 'object',
 		],
 		'AllowRequiringEmailForResets' => [
 			'default' => false,
@@ -3333,7 +3337,7 @@ return [
 			'default' => [
 				0 => true,
 			],
-			'type' => 'array',
+			'type' => 'object',
 		],
 		'DisableInternalSearch' => [
 			'default' => false,
@@ -4081,7 +4085,7 @@ return [
 		'Actions' => [
 			'default' => [
 			],
-			'type' => 'array',
+			'type' => 'object',
 		],
 		'DefaultRobotPolicy' => [
 			'default' => 'index,follow',
