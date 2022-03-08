@@ -20,7 +20,6 @@
  * @file
  */
 
-use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
@@ -271,13 +270,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	}
 
 	/**
-	 * @return IContentHandlerFactory
-	 */
-	private function getContentHandlerFactory(): IContentHandlerFactory {
-		return MediaWikiServices::getInstance()->getContentHandlerFactory();
-	}
-
-	/**
 	 * @return ILoadBalancer
 	 */
 	private function getDBLoadBalancer() {
@@ -304,8 +296,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @since 1.21
 	 */
 	public function getContentHandler() {
-		return $this->getContentHandlerFactory()
-			->getContentHandler( $this->getContentModel() );
+		$factory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+		return $factory->getContentHandler( $this->getContentModel() );
 	}
 
 	/**
