@@ -907,5 +907,8 @@
 	"view-view-foreign": "Bilohi to $1",
 	"view-create-local": "Duhengi deskripsi lokal",
 	"nstab-mainpage": "Halaman bungaliyo",
-	"view-edit-local": "Boli'a deskripsi lokal."
+	"view-edit-local": "Boli'a deskripsi lokal.",
+	"skin-action-protect": "Dahawa",
+	"skin-action-delete": "Luluta",
+	"skin-action-move": "Heyiya"
 }

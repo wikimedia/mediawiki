@@ -478,5 +478,8 @@
 	"watchlisttools-edit": "Анжалаш/списокым тӧрлӓш",
 	"watchlisttools-raw": "Текст семӹнь тӧрлӓш",
 	"specialpages": "Спецӹлӹштӓшвлӓ",
-	"deletepage": "Ӹлӹштӓшӹм карангдаш"
+	"deletepage": "Ӹлӹштӓшӹм карангдаш",
+	"skin-action-protect": "Ӹшӹклӓш",
+	"skin-action-delete": "Карангдаш",
+	"skin-action-move": "Лӹмӹм вашталташ"
 }

@@ -645,5 +645,8 @@
 	"randomrootpage": "malaing tu anema a mapiliq ta sapitj na kapaz",
 	"view-view-foreign": "sileqeleqan a ljemizav taza $1",
 	"view-create-local": "padjulju(pazulju ta kaimazan a paljaluai)",
-	"nstab-mainpage": "sitjumaq na sapitj"
+	"nstab-mainpage": "sitjumaq na sapitj",
+	"skin-action-protect": "pinaljakevan",
+	"skin-action-delete": "qemulip",
+	"skin-action-move": "patjaliyav"
 }

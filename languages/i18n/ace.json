@@ -742,7 +742,7 @@
 	"action-edit": "peusaneut laman nyoë",
 	"action-createpage": "peugöt laman",
 	"action-createaccount": "peugöt akun ureueng nyoe",
-	"action-move": "Pupinah",
+	"action-move": "Peupinah laman nyoë",
 	"action-delete": "Sampôh",
 	"action-undelete": "Bateuë sampôh",
 	"action-protect": "Peulindông",
@@ -1346,5 +1346,9 @@
 	"view-view-foreign": "Eu bak $1",
 	"view-create-local": "Tamah deskripsi lokal",
 	"nstab-mainpage": "Ôn keue",
-	"view-edit-local": "Peusaneut keutrangan lokal"
+	"view-edit-local": "Peusaneut keutrangan lokal",
+	"skin-action-protect": "Peulindông",
+	"skin-action-undelete": "Bateuë sampôh",
+	"skin-action-delete": "Sampôh",
+	"skin-action-move": "Pupinah"
 }

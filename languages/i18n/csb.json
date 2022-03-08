@@ -1242,5 +1242,9 @@
 	"view-view-foreign": "Òbôczë w {{grammar:MS.lp|$1}}",
 	"view-create-local": "Dodôj lokalny òpisënk",
 	"nstab-mainpage": "Przédnô starna",
-	"view-edit-local": "Editëjë lokalny òpisënk"
+	"view-edit-local": "Editëjë lokalny òpisënk",
+	"skin-action-protect": "Zazychrëjë",
+	"skin-action-undelete": "Doprowadzë nazôd",
+	"skin-action-delete": "Rëmôj",
+	"skin-action-move": "Przeniesë"
 }

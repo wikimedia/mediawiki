@@ -945,5 +945,9 @@
 	"view-view-foreign": "Дијәкә сајтәдә $1",
 	"view-create-local": "Буминә вырә бынвыштән",
 	"nstab-mainpage": "Əsosə səhifə",
-	"view-edit-local": "Буминә ном-нышони сәрост карде"
+	"view-edit-local": "Буминә ном-нышони сәрост карде",
+	"skin-action-protect": "Mıdofiə karde",
+	"skin-action-undelete": "Бәрпо кардеј",
+	"skin-action-delete": "Bısü",
+	"skin-action-move": "Овахте"
 }

@@ -358,5 +358,7 @@
 	"monthsall": "tamarmik",
 	"autosumm-new": "Qupperneq pilersippaa '$1'",
 	"specialpages": "Quppernerit immikkut ittut",
-	"searchsuggest-search": "Ujarlerit"
+	"searchsuggest-search": "Ujarlerit",
+	"skin-action-protect": "Illersoruk",
+	"skin-action-move": "Nuuguk"
 }

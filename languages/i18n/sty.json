@@ -606,5 +606,7 @@
 	"randomrootpage": "Көтөлмәгән тамыр пит",
 	"view-view-foreign": "$1 сайтта ҡарағалы",
 	"view-create-local": "Локаль сүрәтләмәне өстәгәле",
-	"nstab-mainpage": "Паш пит"
+	"nstab-mainpage": "Паш пит",
+	"skin-action-delete": "Йуҡ иткәле",
+	"skin-action-move": "Исемне алмаштырғалы"
 }

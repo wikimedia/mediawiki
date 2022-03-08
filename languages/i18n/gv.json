@@ -509,14 +509,14 @@
 	"action-createtalk": "duillagyn resoonaght y chroo",
 	"action-createaccount": "y coontys ymmydeyr shoh y chroo",
 	"action-minoredit": "yn caghlaa shoh y chowraghey myr myn-arraghey",
-	"action-move": "Scugh",
+	"action-move": "yn duillag shoh y scughey",
 	"action-move-subpages": "yn duillag shoh as ny fo-ghuillagyn echey y scughey",
 	"action-movefile": "y coadan shoh y scughey",
 	"action-upload": "y coadan shoh y laadey neese",
 	"action-reupload": "dy screeu harrish y choadan shoh t'ayn hannah",
-	"action-delete": "Scryss",
+	"action-delete": "yn duillag shoh y scryssey",
 	"action-browsearchive": "duillagyn scrysst y ronsaghey",
-	"action-undelete": "Jee-scryss",
+	"action-undelete": "yn duillag shoh y yee-scryssey",
 	"action-protect": "Coadee",
 	"nchanges": "$1 {{PLURAL:$1|caghlaa|chaghlaa|chaghlaa|caghlaaghyn}}",
 	"enhancedrc-history": "skeeal",
@@ -984,5 +984,9 @@
 	"special-characters-group-thai": "Thaish",
 	"special-characters-group-lao": "Laosish",
 	"special-characters-group-khmer": "Khmerish",
-	"nstab-mainpage": "Ard-ghuillag"
+	"nstab-mainpage": "Ard-ghuillag",
+	"skin-action-protect": "Coadee",
+	"skin-action-undelete": "Jee-scryss",
+	"skin-action-delete": "Scryss",
+	"skin-action-move": "Scugh"
 }

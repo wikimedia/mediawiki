@@ -949,14 +949,14 @@
 	"action-createaccount": "ڤاکل ای هساو مؽنتوری",
 	"action-history": "دیڌن ڤیرگار ای بٱلگاْ",
 	"action-minoredit": "ای آلشدکاری ناْ چی یٱ هیرداْ ڤیرایشت نشوݩ دیار کو",
-	"action-move": "جابجا کردن",
+	"action-move": "جابجا کردن ای بٱلگاْ",
 	"action-move-subpages": "ای بٱلگاْ و زیربٱلگاْیٱلساْ جا ب جا کو",
 	"action-move-rootuserpages": "جا ب جا کردن ریشاْ بٱلگاْیٱل کاریار",
 	"action-move-categorypages": "جا ب جا کردن دٱسداْ بٱلگاْیٱل",
 	"action-movefile": "جا ب جا کردن ای جانیا",
 	"action-upload": "ای جانیا ناْ سوڤار کونین",
 	"action-writeapi": "سي نڤشدن اْی پی آی ڤٱنين ڤاکار",
-	"action-delete": "پاکسا کردن",
+	"action-delete": "ای بٱلگاْ ناْ پاکسا کو",
 	"action-deleterevision": "پاکسا کردن ڤانیاریٱل",
 	"action-browsearchive": "پاٛی جۊری میٛن بٱلگاْیٱل پاکسا ڤابیڌاْ.",
 	"action-undelete": "پاکسا نٱکردن بٱلگاْیٱل",
@@ -1840,5 +1840,9 @@
 	"view-view-foreign": "میٛن $1 ناْ باْنیٱر",
 	"view-create-local": "یٱ تۉزی ڤولات نشینی اْزاف کونین",
 	"nstab-mainpage": "سرتال",
-	"view-edit-local": "آلشڌکاری اشکافنیڌیٱل بۊمی"
+	"view-edit-local": "آلشڌکاری اشکافنیڌیٱل بۊمی",
+	"skin-action-protect": "هناڌاری ۉ پٱلڌاری",
+	"skin-action-undelete": "پاکسا نٱکردن بٱلگاْیٱل",
+	"skin-action-delete": "پاکسا کردن",
+	"skin-action-move": "جابجا کردن"
 }

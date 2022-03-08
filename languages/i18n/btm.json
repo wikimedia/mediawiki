@@ -675,5 +675,7 @@
 	"view-view-foreign": "Sise i $1",
 	"view-create-local": "Baen deskripsi lokal",
 	"nstab-mainpage": "Alaman utamo",
-	"view-edit-local": "Baen deskeipsi lokal"
+	"view-edit-local": "Baen deskeipsi lokal",
+	"skin-action-delete": "Apus",
+	"skin-action-move": "Pindah"
 }

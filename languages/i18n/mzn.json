@@ -468,7 +468,7 @@
 	"action-createtalk": "دِرِس هاکردن اتا صفحه که ونه دله بنشنه گپ بزوئن",
 	"action-createaccount": "درِس هکردن این حساب کاروری",
 	"action-minoredit": "علامت بزوئن اینتا دچی‌ین به عونوان جوزئی",
-	"action-move": "دکش هاکردن",
+	"action-move": "دکشی‌ین اینتا صفحه",
 	"action-move-subpages": "دکشی‌ین اینتا صفحه و ونه زیر رج‌ئون",
 	"action-move-rootuserpages": "دکشی‌ین صفحه‌ئون کاروری سرچله",
 	"action-delete": "پاک هاکردن",
@@ -798,5 +798,9 @@
 	"json-error-invalid-property-name": "این دی‌کدِ نوم بی‌اعتباره",
 	"view-view-foreign": "هارشی‌ین $1 دله",
 	"view-create-local": "مَله‌یی توضیحات ره بی‌یشتن",
-	"nstab-mainpage": "گت صفحه"
+	"nstab-mainpage": "گت صفحه",
+	"skin-action-protect": "زلفن بزوئن",
+	"skin-action-undelete": "دباره بنویشته بیّن",
+	"skin-action-delete": "پاک هاکردن",
+	"skin-action-move": "دکش هاکردن"
 }

@@ -816,5 +816,8 @@
 	"view-view-foreign": "نیما مئن  $1",
 	"view-create-local": "ڤأندن توٙضیحأتل مأحألی",
 	"nstab-mainpage": "بٱرگاٛی بونبنین",
-	"view-edit-local": "اصلاح توضیحتل محلی"
+	"view-edit-local": "اصلاح توضیحتل محلی",
+	"skin-action-protect": "مهافزٱت",
+	"skin-action-delete": "هٱسف",
+	"skin-action-move": "جاڤٱجا کاٛردٱن"
 }

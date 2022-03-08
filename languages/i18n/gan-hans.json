@@ -1392,5 +1392,9 @@
 	"deletepage": "删卟页面",
 	"rightsnone": "（冇）",
 	"searchsuggest-search": "寻吖{{SITENAME}}",
-	"nstab-mainpage": "封面"
+	"nstab-mainpage": "封面",
+	"skin-action-protect": "保护",
+	"skin-action-undelete": "望下删吥𠮶页面",
+	"skin-action-delete": "删吥",
+	"skin-action-move": "移吥"
 }

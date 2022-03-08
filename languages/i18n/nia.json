@@ -747,5 +747,9 @@
 	"view-view-foreign": "Tefaigi ba $1",
 	"view-create-local": "Nönö deskripsi lokal",
 	"nstab-mainpage": "Olayama",
-	"view-edit-local": "Bulö'ö deskripsi lokal"
+	"view-edit-local": "Bulö'ö deskripsi lokal",
+	"skin-action-protect": "Kusi",
+	"skin-action-undelete": "Fangawuli furi zi no tetibo'ö",
+	"skin-action-delete": "Tibo'ö",
+	"skin-action-move": "Fawu'a"
 }

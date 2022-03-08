@@ -610,7 +610,7 @@
 	"action-createaccount": "Krear este kuento de usuario",
 	"action-minoredit": "sinyalar este kambio komo chiko",
 	"action-move": "Taşirear",
-	"action-delete": "Efassar",
+	"action-delete": "efassar esta hoja",
 	"action-undelete": "Traer atrás",
 	"action-protect": "Guadrar",
 	"action-sendemail": "embiar korreo elektronikos",
@@ -1152,5 +1152,9 @@
 	"randomrootpage": "Página aleatoria ''root''",
 	"view-view-foreign": "Mirar en $1",
 	"view-create-local": "Agregar deskripsión local",
-	"nstab-mainpage": "La Primera Hoja"
+	"nstab-mainpage": "La Primera Hoja",
+	"skin-action-protect": "Guadrar",
+	"skin-action-undelete": "Traer atrás",
+	"skin-action-delete": "Efassar",
+	"skin-action-move": "Taşirear"
 }

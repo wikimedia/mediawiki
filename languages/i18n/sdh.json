@@ -661,5 +661,8 @@
 	"special-characters-group-khmer": "کمێر",
 	"view-view-foreign": "لە $1 بۊنەی",
 	"view-create-local": "وەسف ناوچەیی ئزافە بکە",
-	"nstab-mainpage": "دەسپێک"
+	"nstab-mainpage": "دەسپێک",
+	"skin-action-protect": "بپیەرێزەێ",
+	"skin-action-delete": "بسڕەوە",
+	"skin-action-move": "جیوەجی بکە"
 }

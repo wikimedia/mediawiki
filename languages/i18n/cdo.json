@@ -1209,5 +1209,9 @@
 	"view-view-foreign": "敆$1𡅏看",
 	"view-create-local": "添加當地描述",
 	"nstab-mainpage": "Tàu Hiĕk",
-	"view-edit-local": "編輯當地描述"
+	"view-edit-local": "編輯當地描述",
+	"skin-action-protect": "保護",
+	"skin-action-undelete": "取消刪除",
+	"skin-action-delete": "刪掉咯",
+	"skin-action-move": "移動"
 }

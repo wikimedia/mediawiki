@@ -550,5 +550,8 @@
 	"tag-filter": "[[Special:Tags|Tag]] sõggõl:",
 	"deletepage": "Kištāntõgid se lēḑ jarā",
 	"view-view-foreign": "Vaņțõl pāikas $1",
-	"nstab-mainpage": "Eḑḑilēḑ"
+	"nstab-mainpage": "Eḑḑilēḑ",
+	"skin-action-protect": "Kaitsõmi",
+	"skin-action-delete": "Kištāntõgid jarā",
+	"skin-action-move": "Vīž jarā"
 }

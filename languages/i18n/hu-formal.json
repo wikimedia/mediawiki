@@ -249,5 +249,9 @@
 	"mw-widgets-abandonedit-title": "Biztos benne?",
 	"mw-widgets-mediasearch-input-placeholder": "Média keresése",
 	"mw-widgets-mediasearch-noresults": "Nincs találat.",
-	"sessionprovider-nocookies": "A sütik le lehetnek tiltva. Engedélyezze a sütiket, és próbálja meg újra!"
+	"sessionprovider-nocookies": "A sütik le lehetnek tiltva. Engedélyezze a sütiket, és próbálja meg újra!",
+	"skin-action-protect": "Lapvédelem",
+	"skin-action-undelete": "Visszaállítás",
+	"skin-action-delete": "Törlés",
+	"skin-action-move": "Átnevezés"
 }

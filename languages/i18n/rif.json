@@ -283,7 +283,7 @@
 	"action-addsection": "ⵔⵏⵓ ⴰⵙⵏⵜⵍ",
 	"action-edit": "ⵙⵏⴼⵍ ⵜⴰⵙⵏⴰ ⴰ",
 	"action-move": "ⵙⵎⵓⵜⵜⵉ",
-	"action-delete": "ⴽⴽⵙ",
+	"action-delete": "ⴽⴽⵙ ⵜⴰⵙⵏⴰ ⴰ",
 	"action-protect": "Mstn",
 	"nchanges": "$1 {{PLURAL:$1|ⵓⵙⵏⴼⵍ|ⵉⵙⵏⴼⵉⵍⵏ}}",
 	"enhancedrc-history": "ⴰⵎⵣⵔⵓⵢ",
@@ -677,5 +677,8 @@
 	"pagelang-name": "ⵜⴰⵙⵏⴰ",
 	"pagelang-language": "ⵜⵓⵜⵍⴰⵢⵜ",
 	"pagelang-reason": "ⵜⴰⵎⵏⵜⵉⵍⵜ",
-	"nstab-mainpage": "Tasna tamezwarut"
+	"nstab-mainpage": "Tasna tamezwarut",
+	"skin-action-protect": "Mstn",
+	"skin-action-delete": "ⴽⴽⵙ",
+	"skin-action-move": "ⵙⵎⵓⵜⵜⵉ"
 }

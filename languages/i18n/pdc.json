@@ -344,10 +344,10 @@
 	"newuserlogpage": "Logbuch vun neie Yuuser",
 	"action-read": "es Blatt zu lese",
 	"action-edit": "des Blatt zu ennere",
-	"action-move": "Ziehe",
+	"action-move": "des Blatt zu ziehe",
 	"action-movefile": "Des Feil ziehe",
 	"action-upload": "Des Feil ufflaade",
-	"action-delete": "Verwische",
+	"action-delete": "des Blatt zu verwische",
 	"action-protect": "Schitze",
 	"nchanges": "$1 {{PLURAL:$1|Ennering|Enneringe}}",
 	"recentchanges": "Was mer letscht geduh henn",
@@ -684,5 +684,8 @@
 	"expand_templates_ok": "OK",
 	"expand_templates_remove_comments": "Anmaerrickinge lösche",
 	"expand_templates_preview": "Aagucke",
-	"special-characters-group-ipa": "IPA"
+	"special-characters-group-ipa": "IPA",
+	"skin-action-protect": "Schitze",
+	"skin-action-delete": "Verwische",
+	"skin-action-move": "Ziehe"
 }

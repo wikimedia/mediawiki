@@ -1384,5 +1384,9 @@
 	"tag-filter": "[[Special:Tags|標籤]]過濾器：",
 	"deletepage": "刪卟頁面",
 	"rightsnone": "（冇）",
-	"searchsuggest-search": "尋吖"
+	"searchsuggest-search": "尋吖",
+	"skin-action-protect": "保護",
+	"skin-action-undelete": "望下刪吥嗰頁面",
+	"skin-action-delete": "刪吥",
+	"skin-action-move": "移吥"
 }

@@ -1456,5 +1456,9 @@
 	"expand_templates_remove_comments": "Hazfi tavzehot",
 	"expand_templates_generate_xml": "Namoişi daraxti taçzehi XML",
 	"expand_templates_preview": "Peşnamoiş",
-	"randomrootpage": "Sahifai reşaviji tasodufī"
+	"randomrootpage": "Sahifai reşaviji tasodufī",
+	"skin-action-protect": "Hifz kardan",
+	"skin-action-undelete": "Ehjo",
+	"skin-action-delete": "Hazf",
+	"skin-action-move": "Kūconidan"
 }

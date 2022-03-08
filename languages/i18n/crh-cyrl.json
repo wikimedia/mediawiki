@@ -1432,5 +1432,9 @@
 	"searchsuggest-search": "Къыдыр",
 	"searchsuggest-containing": "ичинде бу олгъан...",
 	"pagelang-language": "Тиль",
-	"nstab-mainpage": "Баш саифе"
+	"nstab-mainpage": "Баш саифе",
+	"skin-action-protect": "Къорчала",
+	"skin-action-undelete": "Янъыдан ярат",
+	"skin-action-delete": "Ёкъ эт",
+	"skin-action-move": "Адыны денъиштир"
 }

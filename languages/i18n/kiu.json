@@ -611,11 +611,11 @@
 	"action-createpage": "pelu bıaferne",
 	"action-createtalk": "pelunê hurênaişi bıaferne",
 	"action-createaccount": "na hesabê karberi bıaferne",
-	"action-move": "Bere",
+	"action-move": "na pele bere",
 	"action-movefile": "na dosya bere",
 	"action-upload": "na dosya bar ke",
-	"action-delete": "Bestere",
-	"action-undelete": "Esterıtene peyser bıcê",
+	"action-delete": "na pele bestere",
+	"action-undelete": "na pele meestere",
 	"action-protect": "Bısevekne",
 	"nchanges": "$1 {{PLURAL:$1|tedil|tedili}}",
 	"recentchanges": "Vurnaisê peyêni",
@@ -1102,5 +1102,9 @@
 	"searchsuggest-search": "Zerrê {{SITENAME}} de cı feteliye",
 	"api-error-unknownerror": "Xetaya nêzanıtiye: \"$1\".",
 	"pagelang-name": "Pele",
-	"nstab-mainpage": "Pela seri"
+	"nstab-mainpage": "Pela seri",
+	"skin-action-protect": "Bısevekne",
+	"skin-action-undelete": "Esterıtene peyser bıcê",
+	"skin-action-delete": "Bestere",
+	"skin-action-move": "Bere"
 }

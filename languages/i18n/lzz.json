@@ -373,7 +373,7 @@
 	"action-edit": "am butʼkʼa oktiruşa",
 	"action-createaccount": "bu kullanıcı hesabını oluşturmaya",
 	"action-move": "Tori",
-	"action-delete": "Jili",
+	"action-delete": "am sayfa dokosi",
 	"action-protect": "İçvi",
 	"nchanges": "$1 {{PLURAL:$1|oktiroba|oktiroba}}",
 	"enhancedrc-history": "Tarixi",
@@ -770,5 +770,8 @@
 	"randomrootpage": "Rasgele kök sayfa",
 	"view-view-foreign": "$1 üzerinde gör",
 	"view-create-local": "Yerel açıklama ekle",
-	"nstab-mainpage": "Dudi But'k'a"
+	"nstab-mainpage": "Dudi But'k'a",
+	"skin-action-protect": "İçvi",
+	"skin-action-delete": "Jili",
+	"skin-action-move": "Tori"
 }

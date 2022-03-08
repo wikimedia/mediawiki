@@ -388,7 +388,7 @@
 	"action-createtalk": "tumbuluxa matluka ya mbulavulo",
 	"action-createaccount": "tumbuluxa akhawunti ya mutirhisi loyi",
 	"action-minoredit": "funga ndzulamiso lowu wulri lowintsanana",
-	"action-move": "Yi sa kunwana",
+	"action-move": "Yisa tluka leri ndhzawini yinwana",
 	"action-move-subpages": "Yisa tlukaleri na matluka-nstongo ya rona, endzawini yinw'ana",
 	"action-delete": "Sula",
 	"action-undelete": "Cinca kusula",
@@ -619,5 +619,9 @@
 	"external_image_whitelist": " #Tshika ntila lowu wunga cinciwanga<pre>\n#Hoxa hlamuselo lowu tolovelekeke (xiphemu lexi nga exikarhi ka //) laha hansi\n#Swita hlanganisiwa na  tiURL to swifaniso swa le handle (leswi khwekerisiweke)\n#Leswi yelanaka swi ta kombiwa swiri swifaniso, lokoswingaritano kuta kombiwa ntsena swikhwekerisi swa xifaniso \n#Mintila leyi sungulaka # yivona kuri ma vonele/nlhamulo\n#Xi lava marito lama xaxametiweke hi marito-nkulu na lama tsongo\n\n#hoxa swiphemu hinkwaswo swa regex ehenhla ka ntilalowu. Tshika ntila lowu wuri leswi wunga xiswona</pre>",
 	"tag-filter": "Xihluti xa [[Special:Tags|Xi angi]]:",
 	"expand_templates_ok": "Hiswona",
-	"expand_templates_preview": "Ringanisa"
+	"expand_templates_preview": "Ringanisa",
+	"skin-action-protect": "Sirhelela",
+	"skin-action-undelete": "Cinca kusula",
+	"skin-action-delete": "Sula",
+	"skin-action-move": "Yi sa kunwana"
 }

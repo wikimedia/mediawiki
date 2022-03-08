@@ -967,5 +967,9 @@
 	"view-view-foreign": "Gade sou $1",
 	"view-create-local": "Ajoute on deskription lokal",
 	"nstab-mainpage": "paj prensipal",
-	"view-edit-local": "Chanje on deskripsyon lokal"
+	"view-edit-local": "Chanje on deskripsyon lokal",
+	"skin-action-protect": "Pwoteje",
+	"skin-action-undelete": "Retabli",
+	"skin-action-delete": "Efase",
+	"skin-action-move": "Chanje non"
 }

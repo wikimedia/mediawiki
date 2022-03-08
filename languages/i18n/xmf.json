@@ -1335,7 +1335,7 @@
 	"action-autocreateaccount": "გალენური მახვარებუშ ანგარიშიშ ავტომატურო გოჭყაფა",
 	"action-history": "თე ხასჷლაშ ისტორიაშ ძირაფა",
 	"action-minoredit": "მოღანკუა, მუჭოთ ციქა რედაქტირაფა",
-	"action-move": "გინოღალა",
+	"action-move": "თე ხასჷლაშ გინოღალა",
 	"action-move-subpages": "ხასჷლეფიშ დო თიში გიმენხასჷლეფიშ გინოღალა",
 	"action-move-rootuserpages": "მახვარებუეფიშ ჯინჯიერი ხასჷლეფიშ გინოღალა",
 	"action-move-categorypages": "კატეგორიაშ ხასჷლეფიშ გინოღალა",
@@ -1345,7 +1345,7 @@
 	"action-reupload-shared": "ართამ ოჩუაშეშე ფაილიშ გინოკილუა",
 	"action-upload_by_url": "გეხარგეთ ფაილი URL-შე",
 	"action-writeapi": "API-შ გჷმორინაფა რედაქტირაფაშო",
-	"action-delete": "ლასუა",
+	"action-delete": "თე ხასჷლაშ ლასუა",
 	"action-delete-redirect": "ართ ვერსიაშე გინოწურაფეფიშ გინოჭარუა",
 	"action-deleterevision": "ხასჷლაშ თე ვერსიაშ ლასუა",
 	"action-deletelogentry": "დინნაჭარეფიშ ჟურნალიშ ლასუა",
@@ -1356,7 +1356,7 @@
 	"action-suppressrevision": "ხასჷლაშ ტე ტყობინაფილი ვერსიეფიშ ძირაფა დო კჷნ ენწყუალა",
 	"action-suppressionlog": "თე კერზო ჟურნალიშ ძირაფა",
 	"action-block": "თე მახვარებუშო რედაქტირაფაშ ბლოკუა",
-	"action-protect": "დოთხილე",
+	"action-protect": "თე ხასჷლაშ თხილუაშ პარამეტრიშ თირუა",
 	"action-rollback": "გარკვიულ ხასჷლას ბოლო მახვარებუშ რედაქტირაფაშ ბიწორი გოუქვაფა",
 	"action-import": "ხასჷლეფიშ იმპორტი შხვა ვიკიშე",
 	"action-importupload": "ხასჷელფიშ იმპორტი ეხარგილი ფაილიშ",
@@ -3469,5 +3469,9 @@
 	"view-view-foreign": "ქოძირით $1-ის",
 	"view-create-local": "ლოკალური ეჭარუაშ გეძინა",
 	"nstab-mainpage": "დუდხასჷლა",
-	"view-edit-local": "ლოკალური ეჭარუაშ რედაქტირაფა"
+	"view-edit-local": "ლოკალური ეჭარუაშ რედაქტირაფა",
+	"skin-action-protect": "დოთხილე",
+	"skin-action-undelete": "თე ხასჷლაშ აკოდგინუა",
+	"skin-action-delete": "ლასუა",
+	"skin-action-move": "გინოღალა"
 }

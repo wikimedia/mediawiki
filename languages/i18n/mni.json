@@ -713,7 +713,7 @@
 	"action-edit": "ꯃꯁꯤꯒꯤ ꯂꯃꯥꯏꯁꯤ ꯁꯦꯝꯒꯠꯂꯨ",
 	"action-createaccount": "ꯃꯁꯤ ꯁꯤꯖꯤꯟꯅꯔꯤꯕ ꯑꯦꯀꯥꯎꯟ ꯁꯤ ꯁꯦꯝꯃꯨ",
 	"action-move": "ꯂꯦꯡꯍꯟꯕꯥ",
-	"action-delete": "ꯀꯛꯊꯠꯄꯥ",
+	"action-delete": "ꯃꯁꯤꯒꯤ ꯂꯃꯥꯏꯁꯤ ꯀꯛꯊꯠꯂꯨ",
 	"action-protect": "ꯉꯥꯛꯊꯣꯛꯎ",
 	"enhancedrc-history": "ꯄꯨꯋꯥꯔꯤ",
 	"recentchanges": "ꯍꯧꯖꯤꯛꯀꯤ ꯑꯣꯏꯕ ꯑꯍꯣꯡꯕꯁꯤꯡ",
@@ -1088,5 +1088,8 @@
 	"view-view-foreign": "$1 ꯗꯥ ꯌꯦꯡꯉꯨ",
 	"view-create-local": "ꯁꯨꯋꯥꯏꯒꯤ ꯁꯟꯗꯣꯛꯅꯥ ꯇꯥꯛꯄꯗꯨ ꯍꯥꯞꯆꯤꯟꯂꯨ",
 	"nstab-mainpage": "ꯃꯔꯨꯑꯣꯏꯕ ꯂꯃꯥꯏ",
-	"view-edit-local": "ꯑꯀꯨꯞꯄ ꯋꯥꯔꯣꯜ ꯁꯦꯃꯒꯠ ꯁꯥꯒꯠꯂꯨ"
+	"view-edit-local": "ꯑꯀꯨꯞꯄ ꯋꯥꯔꯣꯜ ꯁꯦꯃꯒꯠ ꯁꯥꯒꯠꯂꯨ",
+	"skin-action-protect": "ꯉꯥꯛꯊꯣꯛꯎ",
+	"skin-action-delete": "ꯀꯛꯊꯠꯄꯥ",
+	"skin-action-move": "ꯂꯦꯡꯍꯟꯕꯥ"
 }

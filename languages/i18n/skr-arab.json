@@ -925,7 +925,7 @@
 	"action-autocreateaccount": "ایں ٻاہرلے ورتݨ کھاتے کوں خود کار خلقو",
 	"action-history": "ایں ورقے دی تبدیلی دی تاریخ ݙیکھو۔",
 	"action-minoredit": "ایں تبدیلی تے نکا ہووݨ دا نشان لاؤ",
-	"action-move": "ٹورو",
+	"action-move": "ایہ ورقہ ٹورو",
 	"action-move-subpages": "ایہ ورقہ تے ایندے ذیلی ورقے ٹورو",
 	"action-move-rootuserpages": "منڈھلے ورتݨ آلے ورقیاں کوں ٹورو",
 	"action-move-categorypages": "ونکی ورقے ٹورو",
@@ -934,7 +934,7 @@
 	"action-reupload": "ایں موجودہ فائل تے آپݨی لکھو",
 	"action-upload_by_url": "ایہ فائل یوآرایل توں اپ لوڈ کرو",
 	"action-writeapi": "اے پی آئی تحریر دا استعمال کرو",
-	"action-delete": "مٹاؤ",
+	"action-delete": "ایہ ورقہ مٹاؤ",
 	"action-deleterevision": "نظرثانیاں مٹاؤ",
 	"action-deletelogentry": "لاگ اندراج مٹاؤ",
 	"action-deletedhistory": "ورقے دی مٹائی ہوئی تاریخ ݙیکھو",
@@ -944,7 +944,7 @@
 	"action-suppressrevision": "لکیاں دہرائیاں تے نظرثانی کرو تے بحال کرو",
 	"action-suppressionlog": "ایہ نجی لاگ ݙیکھو",
 	"action-block": "ایں ورتݨ آلے تے تبدیلی کرݨ تے پابندی لاؤ",
-	"action-protect": "حفاظت کرو",
+	"action-protect": "ایں ورقے کیتے حفاظت دا درجہ وٹاؤ",
 	"action-import": "ٻئی وکی کنوں ورقے درآمد کرو",
 	"action-importupload": "فائل اپ لوڈ نال ورقے درآمد کرو",
 	"action-patrol": "ٻنھاں دیاں تبدیلیاں کوں گشت تھیاں ہوئیاں دا نشان لاؤ",
@@ -2712,5 +2712,9 @@
 	"view-view-foreign": "$1 تے ݙیکھو",
 	"view-create-local": "آپݨی لکھت رَلاؤ",
 	"nstab-mainpage": "پہلا پرت",
-	"view-edit-local": "مقامی تفصیل درج کرو"
+	"view-edit-local": "مقامی تفصیل درج کرو",
+	"skin-action-protect": "حفاظت کرو",
+	"skin-action-undelete": "ورقے ان مٹائے کرو",
+	"skin-action-delete": "مٹاؤ",
+	"skin-action-move": "ٹورو"
 }
