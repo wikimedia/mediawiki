@@ -408,6 +408,11 @@ class Message implements MessageSpecifier, Serializable {
 	 * but is an easy error to make due to how StatusValue stores messages internally.
 	 * Further array elements are ignored in that case.
 	 *
+	 * When the MessageSpecifier object is an instance of Message, a clone of the object is returned.
+	 * This is unlike the `new Message( … )` constructor, which returns a new object constructed from
+	 * scratch with the same key. This difference is mostly relevant when the passed object is an
+	 * instance of a subclass like RawMessage or ApiMessage.
+	 *
 	 * @param string|array|MessageSpecifier $value
 	 * @param-taint $value tainted
 	 * @return Message

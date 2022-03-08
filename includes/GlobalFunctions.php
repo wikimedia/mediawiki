@@ -1160,6 +1160,11 @@ function wfGetLangObj( $langcode = false ) {
  *
  * This function replaces all old wfMsg* functions.
  *
+ * When the MessageSpecifier object is an instance of Message, a clone of the object is returned.
+ * This is unlike the `new Message( … )` constructor, which returns a new object constructed from
+ * scratch with the same key. This difference is mostly relevant when the passed object is an
+ * instance of a subclass like RawMessage or ApiMessage.
+ *
  * @param string|string[]|MessageSpecifier $key Message key, or array of keys, or a MessageSpecifier
  * @param mixed ...$params Normal message parameters
  * @return Message
@@ -1169,7 +1174,12 @@ function wfGetLangObj( $langcode = false ) {
  * @see Message::__construct
  */
 function wfMessage( $key, ...$params ) {
-	$message = new Message( $key );
+	if ( is_array( $key ) ) {
+		// Fallback keys are not allowed in message specifiers
+		$message = wfMessageFallback( ...$key );
+	} else {
+		$message = Message::newFromSpecifier( $key );
+	}
 
 	// We call Message::params() to reduce code duplication
 	if ( $params ) {
