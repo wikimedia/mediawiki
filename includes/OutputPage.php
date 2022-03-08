@@ -127,19 +127,30 @@ class OutputPage extends ContextSource {
 	 */
 	protected $mLastModified = '';
 
-	/** @var string[][] */
+	/**
+	 * @var string[][]
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mCategoryLinks = [];
 
-	/** @var string[][] */
+	/**
+	 * @var string[][]
+	 * @deprecated since 1.38, will be made private (T301020)
+	 */
 	protected $mCategories = [
 		'hidden' => [],
 		'normal' => [],
 	];
 
-	/** @var string[] */
+	/**
+	 * @var string[]
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mIndicators = [];
 
-	/** @var array Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page') */
+	/**
+	 * @var array Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page')
+	 */
 	private $mLanguageLinks = [];
 
 	/**
@@ -165,16 +176,25 @@ class OutputPage extends ContextSource {
 	 */
 	protected $mAdditionalHtmlClasses = [];
 
-	/** @var array Array of elements in "<head>". Parser might add its own headers! */
+	/**
+	 * @var array Array of elements in "<head>". Parser might add its own headers!
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mHeadItems = [];
 
 	/** @var array Additional <body> classes; there are also <body> classes from other sources */
 	protected $mAdditionalBodyClasses = [];
 
-	/** @var array */
+	/**
+	 * @var array
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mModules = [];
 
-	/** @var array */
+	/**
+	 * @var array
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mModuleStyles = [];
 
 	/** @var ResourceLoader */
@@ -189,10 +209,16 @@ class OutputPage extends ContextSource {
 	/** @var array */
 	private $rlExemptStyleModules;
 
-	/** @var array */
+	/**
+	 * @var array
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mJsConfigVars = [];
 
-	/** @var array */
+	/**
+	 * @var array
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mTemplateIds = [];
 
 	/** @var array */
@@ -234,22 +260,30 @@ class OutputPage extends ContextSource {
 	 * @var bool Set to false to send no-cache headers, disabling
 	 * client-side caching. (This variable should really be named
 	 * in the opposite sense; see ::disableClientCache().)
+	 * @deprecated since 1.38; will be made private (T301020)
 	 */
 	protected $mEnableClientCache = true;
 
 	/** @var bool Flag if output should only contain the body of the article. */
 	private $mArticleBodyOnly = false;
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mNewSectionLink = false;
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mHideNewSectionLink = false;
 
 	/**
 	 * @var bool Comes from the parser. This was probably made to load CSS/JS
 	 * only if we had "<gallery>". Used directly in CategoryPage.php.
 	 * Looks like ResourceLoader can replace this.
+	 * @deprecated since 1.38; will be made private (T301020)
 	 */
 	public $mNoGallery = false;
 
@@ -1925,6 +1959,8 @@ class OutputPage extends ContextSource {
 	 * @param ParserOutput $parserOutput
 	 */
 	public function addParserOutputMetadata( ParserOutput $parserOutput ) {
+		// T301020 This should eventually use the standard "merge ParserOutput"
+		// function between $parserOutput and $this->metadata.
 		$this->mLanguageLinks =
 			array_merge( $this->mLanguageLinks, $parserOutput->getLanguageLinks() );
 		$this->addCategoryLinks( $parserOutput->getCategories() );
@@ -1933,7 +1969,7 @@ class OutputPage extends ContextSource {
 		// FIXME: Best practice is for OutputPage to be an accumulator, as
 		// addParserOutputMetadata() may be called multiple times, but the
 		// following lines overwrite any previous data.  These should
-		// be migrated to an injection pattern.
+		// be migrated to an injection pattern. (T301020, T300979)
 		$this->mNewSectionLink = $parserOutput->getNewSection();
 		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();
 		$this->mNoGallery = $parserOutput->getNoGallery();
