@@ -91,16 +91,6 @@ class ConnectionManager {
 	}
 
 	/**
-	 * @param int $i
-	 * @param string[]|null $groups
-	 * @return DBConnRef
-	 */
-	private function getLazyConnectionRef( $i, array $groups = null ) {
-		$groups = $groups ?? $this->groups;
-		return $this->loadBalancer->getLazyConnectionRef( $i, $groups, $this->domain );
-	}
-
-	/**
 	 * Returns a connection to the primary DB, for updating. The connection should later be released
 	 * by calling releaseConnection().
 	 *
@@ -169,7 +159,7 @@ class ConnectionManager {
 	 * @return DBConnRef
 	 */
 	public function getLazyWriteConnectionRef(): DBConnRef {
-		return $this->getLazyConnectionRef( DB_PRIMARY );
+		return $this->getConnectionRef( DB_PRIMARY );
 	}
 
 	/**
@@ -181,7 +171,7 @@ class ConnectionManager {
 	 */
 	public function getLazyReadConnectionRef( array $groups = null ) {
 		$groups = $groups ?? $this->groups;
-		return $this->getLazyConnectionRef( DB_REPLICA, $groups );
+		return $this->getConnectionRef( DB_REPLICA, $groups );
 	}
 
 }

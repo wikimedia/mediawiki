@@ -1052,10 +1052,6 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase {
-		return $this->getLazyConnectionRef( $i, $groups, $domain, $flags );
-	}
-
-	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): DBConnRef {
 		if ( self::fieldHasBit( $flags, self::CONN_SILENCE_ERRORS ) ) {
 			throw new UnexpectedValueException(
 				__METHOD__ . ' got CONN_SILENCE_ERRORS; connection is already deferred'
@@ -1066,6 +1062,11 @@ class LoadBalancer implements ILoadBalancer {
 		$role = $this->getRoleFromIndex( $i );
 
 		return new DBConnRef( $this, [ $i, $groups, $domain, $flags ], $role );
+	}
+
+	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase {
+		wfDeprecated( __METHOD__, '1.38 Use ::getConnectionRef' );
+		return $this->getConnectionRef( $i, $groups, $domain, $flags );
 	}
 
 	public function getMaintenanceConnectionRef(
@@ -1329,7 +1330,7 @@ class LoadBalancer implements ILoadBalancer {
 				'agent' => $this->agent,
 				'ownerId' => $this->id,
 				// Inject object and callback dependencies
-				'lazyMasterHandle' => $this->getLazyConnectionRef(
+				'lazyMasterHandle' => $this->getConnectionRef(
 					self::DB_PRIMARY,
 					[],
 					$domain->getId()
