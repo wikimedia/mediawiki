@@ -3108,7 +3108,7 @@
 	"pageinfo-title": "Informationen zu „$1“",
 	"pageinfo-not-current": "Diese Information kann leider nicht für alte Versionen zur Verfügung gestellt werden.",
 	"pageinfo-header-basic": "Basisinformationen",
-	"pageinfo-header-edits": "Bearbeitungsgeschichte",
+	"pageinfo-header-edits": "Versionsgeschichte",
 	"pageinfo-header-restrictions": "Seitenschutz",
 	"pageinfo-header-properties": "Seiteneigenschaften",
 	"pageinfo-display-title": "Anzeigetitel",

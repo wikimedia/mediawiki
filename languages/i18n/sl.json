@@ -2496,6 +2496,7 @@
 	"undelete-error": "Napaka pri obnovi strani",
 	"undelete-show-file-confirm": "Ali si resnično želite ogledati izbrisano redakcijo datoteke »<nowiki>$1</nowiki>« z dne $2 ob $3?",
 	"undelete-show-file-submit": "Da",
+	"undelete-back-to-list": "Ogled vseh izbrisanih redakcij",
 	"namespace": "Imenski prostor:",
 	"invert": "obrni izbor",
 	"tooltip-invert": "Označite to polje, da skrijete spremembe v izbranem imenskem prostoru (in povezanih imenskih prostorih, če je označeno)",
