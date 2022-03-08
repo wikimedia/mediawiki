@@ -3850,6 +3850,10 @@ $wgBrowserFormatDetection = 'telephone=no';
  * Since some of these fields can be provided by extensions it defaults to an empty array.
  *
  * @since 1.36
+ * @par Example:
+ * @code
+ * $wgSkinMetaTags[] = "og:title";
+ * @endcode
  */
 $wgSkinMetaTags = [];
 
