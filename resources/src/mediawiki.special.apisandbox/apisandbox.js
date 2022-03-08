@@ -1358,7 +1358,7 @@
 				helpLabel.addInfo(
 					Util.parseMsg(
 						'paramvalidator-help-type-number-minmax', 1,
-						ppi.min, ppi.highmax !== undefined ? ppi.highmax : ppi.max
+						widget.paramInfo.min, widget.paramInfo.apiSandboxMax
 					),
 					' ',
 					Util.parseMsg( 'apisandbox-param-limit' )
