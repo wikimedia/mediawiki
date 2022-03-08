@@ -1431,5 +1431,9 @@
 	"searchsuggest-search": "Qıdır",
 	"searchsuggest-containing": "içinde bu olğan...",
 	"pagelang-language": "Til",
-	"nstab-mainpage": "Baş saife"
+	"nstab-mainpage": "Baş saife",
+	"skin-action-protect": "Qorçala",
+	"skin-action-undelete": "Yañıdan yarat",
+	"skin-action-delete": "Yoq et",
+	"skin-action-move": "Adını deñiştir"
 }

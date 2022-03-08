@@ -1086,5 +1086,9 @@
 	"view-view-foreign": "شوف على $1",
 	"view-create-local": "زيد توصاف مبلّد",
 	"nstab-mainpage": "الپاجة الاولانيّة",
-	"view-edit-local": "عدّل التوصاف المبلّد"
+	"view-edit-local": "عدّل التوصاف المبلّد",
+	"skin-action-protect": "حمايه",
+	"skin-action-undelete": "ردّ كيما كان",
+	"skin-action-delete": "امحي",
+	"skin-action-move": "حول"
 }

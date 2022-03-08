@@ -846,12 +846,12 @@
 	"action-createpage": "Buredura",
 	"action-createtalk": "Keyaksexoredura",
 	"action-createaccount": "Redura va bata favesikpata",
-	"action-move": "Arrundara",
+	"action-move": "Arrundara va batu bu",
 	"action-move-subpages": "Arrundara va batu bu is inaf volveybueem",
 	"action-move-rootuserpages": "Arrundara va zaefu favesikbu",
 	"action-movefile": "arrundara va bat iyeltak",
 	"action-upload": "kalvajara va bat iyeltak",
-	"action-delete": "Sulara",
+	"action-delete": "sulara va batu bu",
 	"action-deleterevision": "sulara va bat betaks",
 	"action-browsearchive": "aneyara va sulayanu bu",
 	"action-protect": "Nendara",
@@ -1739,5 +1739,8 @@
 	"view-view-foreign": "Va $1 nedil",
 	"view-create-local": "Va lizukafa pimtara loplekul",
 	"nstab-mainpage": "Emudexo",
-	"view-edit-local": "Va lizukafa pimtara betal"
+	"view-edit-local": "Va lizukafa pimtara betal",
+	"skin-action-protect": "Nendara",
+	"skin-action-delete": "Sulara",
+	"skin-action-move": "Arrundara"
 }

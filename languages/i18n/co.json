@@ -684,5 +684,8 @@
 	"mw-widgets-mediasearch-input-placeholder": "Ricerca di media",
 	"view-view-foreign": "Vede nantu à $1",
 	"view-create-local": "Aghjunghje descrizzione lucale",
-	"nstab-mainpage": "Pàgina maestra"
+	"nstab-mainpage": "Pàgina maestra",
+	"skin-action-protect": "Pruteghje",
+	"skin-action-delete": "Supprimà",
+	"skin-action-move": "Cullucà"
 }

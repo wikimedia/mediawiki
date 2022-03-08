@@ -891,5 +891,7 @@
 	"view-view-foreign": "Wis på $1",
 	"view-create-local": "Tilfye lokal beskriiwels",
 	"nstab-mainpage": "Forsiid",
-	"view-edit-local": "Redigiir lokal beskriiwels"
+	"view-edit-local": "Redigiir lokal beskriiwels",
+	"skin-action-protect": "Beskøtt",
+	"skin-action-move": "Flytt"
 }

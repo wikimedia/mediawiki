@@ -332,5 +332,7 @@
 	"mediastatistics-header-audio": "ᎤᏃᏴᎬ",
 	"mediastatistics-header-video": "ᏗᏓᏴᎳᏛᏍᎩ",
 	"authmanager-email-label": "ᎠᎾᎦᎵᏍᎩ ᎪᏪᎵ",
-	"nstab-mainpage": "ᎤᎵᎮᎵᏍᏗ"
+	"nstab-mainpage": "ᎤᎵᎮᎵᏍᏗ",
+	"skin-action-delete": "ᎧᎵ ᎠᏍᎪᎸᏛᎯ",
+	"skin-action-move": "ᎯᎲᎾ"
 }

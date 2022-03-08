@@ -603,7 +603,7 @@
 	"action-createpage": "арыннарны чогаадыры",
 	"action-createtalk": "чугаалажырга арыннарны чогаадыры",
 	"action-createaccount": "бо бүрүткел бижиктерин бүдүрери",
-	"action-move": "Өскээр адаар",
+	"action-move": "бо арынны көжүрер",
 	"action-movefile": "бо файлды көжүрер",
 	"action-delete": "Казыыр",
 	"action-undelete": "Эгидер",
@@ -1126,5 +1126,9 @@
 	"view-view-foreign": "$1 сайттан көөр",
 	"view-create-local": "Бир дылга тайылбыр немээр",
 	"nstab-mainpage": "Кол арын",
-	"view-edit-local": "Бир дылга тайылбыр немээр"
+	"view-edit-local": "Бир дылга тайылбыр немээр",
+	"skin-action-protect": "Камгалаар",
+	"skin-action-undelete": "Эгидер",
+	"skin-action-delete": "Казыыр",
+	"skin-action-move": "Өскээр адаар"
 }

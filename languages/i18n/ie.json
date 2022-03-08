@@ -773,7 +773,7 @@
 	"action-edit": "redacter ti págine",
 	"action-createpage": "crear li págine",
 	"action-createaccount": "crear ti conto de usator",
-	"action-move": "Mover",
+	"action-move": "mover li págine",
 	"action-delete": "Deleter",
 	"action-undelete": "Restituer",
 	"action-protect": "Protecter",
@@ -1660,5 +1660,9 @@
 	"view-view-foreign": "Vider sur $1",
 	"view-create-local": "Addir descrition local",
 	"nstab-mainpage": "Principal págine",
-	"view-edit-local": "Redacter local descrition"
+	"view-edit-local": "Redacter local descrition",
+	"skin-action-protect": "Protecter",
+	"skin-action-undelete": "Restituer",
+	"skin-action-delete": "Deleter",
+	"skin-action-move": "Mover"
 }

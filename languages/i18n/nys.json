@@ -614,5 +614,7 @@
 	"randomrootpage": "Alia bibol birnup",
 	"view-view-foreign": "djinang il $1",
 	"view-create-local": "ngatti nidja waagnkin birnup",
-	"nstab-mainpage": "Keny mia"
+	"nstab-mainpage": "Keny mia",
+	"skin-action-delete": "Barranginy",
+	"skin-action-move": "Ngatta"
 }

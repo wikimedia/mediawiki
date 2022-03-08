@@ -799,5 +799,9 @@
 	"searchsuggest-search": "Search {{SITENAME}}",
 	"view-view-foreign": "Vyuu pah $1",
 	"view-create-local": "Ad luokal diskripshan‎",
-	"nstab-mainpage": "Start"
+	"nstab-mainpage": "Start",
+	"skin-action-protect": "Protek",
+	"skin-action-undelete": "Andiliit",
+	"skin-action-delete": "Diliit",
+	"skin-action-move": "Muuv"
 }

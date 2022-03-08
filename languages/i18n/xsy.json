@@ -306,7 +306,7 @@
 	"rightslog": "noka kamamatawaw ka’letan kina:at",
 	"action-edit": " bienji ka hini ye:myen",
 	"action-createaccount": "paskayzaeh ka hini kamamatawaw zhanghaw",
-	"action-move": " tilkoraeh",
+	"action-move": " tilkoraeh ka hini kina:at",
 	"action-delete": "boloe’",
 	"enhancedrc-history": "kakhayza’an kin’i’iyaeh",
 	"recentchanges": "haysani’ sinapih",
@@ -680,5 +680,7 @@
 	"authmanager-userdoesnotexist": "kamamatawaw zhanghaw \"$1\" ’i’ini’ ka:at ka raro:o’",
 	"view-view-foreign": "ray $1 komita’",
 	"view-create-local": "baba:aw rinpa: hini ray ’asang kapakSekla’an",
-	"nstab-mainpage": "So:ye’"
+	"nstab-mainpage": "So:ye’",
+	"skin-action-delete": "boloe’",
+	"skin-action-move": " tilkoraeh"
 }

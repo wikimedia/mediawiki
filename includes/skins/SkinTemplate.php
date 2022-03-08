@@ -1128,7 +1128,8 @@ class SkinTemplate extends Skin {
 		$skname = $this->skinname;
 		$msg = wfMessageFallback(
 				"$skname-$labelMessageKey",
-
+				"skin-$labelMessageKey",
+				// @todo: Can be removed when every $labelMessageKey has a `skin-` prefixed message alternative.
 				$labelMessageKey,
 				// @todo: This line can be removed when all the new message keys have been added and translated.
 				// When not defined, since this code is temporary, simply give it the same message as before,

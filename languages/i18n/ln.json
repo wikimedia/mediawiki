@@ -510,5 +510,9 @@
 	"htmlform-submit": "Kotínda",
 	"htmlform-selectorother-other": "Mosúsu",
 	"searchsuggest-search": "Boluki {{SITENAME}}",
-	"nstab-mainpage": "Lokásá ya libosó"
+	"nstab-mainpage": "Lokásá ya libosó",
+	"skin-action-protect": "Kobátela",
+	"skin-action-undelete": "Kolímwisa tɛ̂",
+	"skin-action-delete": "Kolímwisa",
+	"skin-action-move": "Kobóngola nkómbó"
 }

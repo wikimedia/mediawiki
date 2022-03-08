@@ -1040,5 +1040,8 @@
 	"mediastatistics-header-video": "Видеосем",
 	"special-characters-group-symbols": "Символсем",
 	"authmanager-userdoesnotexist": "\"$1\" аккаунтне туман.",
-	"nstab-mainpage": "Тӗпел"
+	"nstab-mainpage": "Тӗпел",
+	"skin-action-protect": "хӳтĕле",
+	"skin-action-delete": "Кăларса пăрах",
+	"skin-action-move": "Ятне улăштар"
 }

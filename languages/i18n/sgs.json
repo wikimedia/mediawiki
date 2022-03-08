@@ -806,13 +806,13 @@
 	"action-edit": "redagoutė ta poslapi",
 	"action-createpage": "dėrbtė poslapius",
 	"action-createaccount": "sokortė nauduotuojė poslapė",
-	"action-move": "Parvadintė",
+	"action-move": "parvadintė šėton poslapi",
 	"action-move-subpages": "parvadintė šėta poslapi ėr anuo dalės",
 	"action-move-categorypages": "parvadintė kateguorėjes",
 	"action-movefile": "parvadintė šėta faila",
 	"action-upload": "ikeltė šėta faila",
-	"action-delete": "Trintė",
-	"action-undelete": "Atkortė",
+	"action-delete": "trintė ton poslapi",
+	"action-undelete": "atkortė ta poslapi",
 	"action-protect": "Apsergietė",
 	"action-patrol": "pažīmietė kėtū keitėmus kāp patikrėntus",
 	"action-userrights": "keistė vėsū nauduotuoju teises",
@@ -1861,5 +1861,9 @@
 	"view-view-foreign": "Parveiziet $1",
 	"view-create-local": "Prėkergtė vėitėni aprašīma",
 	"nstab-mainpage": "Pėrms poslapis",
-	"view-edit-local": "Taisītė vėitėni aprašīma"
+	"view-edit-local": "Taisītė vėitėni aprašīma",
+	"skin-action-protect": "Apsergietė",
+	"skin-action-undelete": "Atkortė",
+	"skin-action-delete": "Trintė",
+	"skin-action-move": "Parvadintė"
 }

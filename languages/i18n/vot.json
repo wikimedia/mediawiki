@@ -630,5 +630,8 @@
 	"rightsnone": "(eb õõ)",
 	"feedback-cancel": "Otmeńoit",
 	"feedback-close": "On tehtü",
-	"feedback-message": "Ilmottamin:"
+	"feedback-message": "Ilmottamin:",
+	"skin-action-protect": "Varjaa",
+	"skin-action-delete": "Pühi",
+	"skin-action-move": "Liikut"
 }

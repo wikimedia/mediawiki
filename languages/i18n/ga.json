@@ -1430,5 +1430,9 @@
 	"log-action-filter-delete": "Cineál an scriosta:",
 	"log-action-filter-protect": "Cineál na cosanta:",
 	"log-action-filter-suppress": "Cineál an tsochta:",
-	"nstab-mainpage": "Príomhleathanach"
+	"nstab-mainpage": "Príomhleathanach",
+	"skin-action-protect": "Glasáil",
+	"skin-action-undelete": "Díscrios",
+	"skin-action-delete": "Scrios",
+	"skin-action-move": "Athainmnigh"
 }

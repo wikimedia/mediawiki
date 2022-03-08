@@ -571,5 +571,7 @@
 	"view-view-foreign": "Odja na $1",
 	"view-create-local": "Adisiona deskrison lokal",
 	"nstab-mainpage": "Pájina prinsipal",
-	"view-edit-local": "Edita deskrison lokal"
+	"view-edit-local": "Edita deskrison lokal",
+	"skin-action-protect": "Proteji",
+	"skin-action-delete": "Paga"
 }

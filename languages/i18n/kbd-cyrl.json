@@ -876,5 +876,9 @@
 	"specialpages": "СпецнапэкӀуэцӀхэр",
 	"deletepage": "НапэкӀуэцӀыр ихын",
 	"revdelete-restricted": "теубыдыгъуэхэр тхьэмадэхэм ятохуэ",
-	"revdelete-unrestricted": "теубыдыгъуэхэр тхьэмадэхэм ятеха"
+	"revdelete-unrestricted": "теубыдыгъуэхэр тхьэмадэхэм ятеха",
+	"skin-action-protect": "Хъумэн",
+	"skin-action-undelete": "ЗыфӀэгъэувэжын",
+	"skin-action-delete": "Ихын",
+	"skin-action-move": "ЦӀэр хъуэжын"
 }

@@ -896,5 +896,9 @@
 	"revdelete-restricted": "ei beperkiengen an beheêrders opeleid",
 	"revdelete-unrestricted": "ei beperkiengen voe beheêrders opeheven",
 	"rightsnone": "(hin)",
-	"searchsuggest-search": "Zoek"
+	"searchsuggest-search": "Zoek",
+	"skin-action-protect": "Bescherm",
+	"skin-action-undelete": "Plaets truhhe",
+	"skin-action-delete": "Wissen",
+	"skin-action-move": "Verschuuf"
 }

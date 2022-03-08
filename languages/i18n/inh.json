@@ -1397,5 +1397,9 @@
 	"view-view-foreign": "Укх $1 сайта чу хьажа",
 	"view-create-local": "ТIатоха локальни йоазонца сурт оттадар",
 	"nstab-mainpage": "Керттера",
-	"view-edit-local": "Хувца локальни йоазонца сурт оттадар"
+	"view-edit-local": "Хувца локальни йоазонца сурт оттадар",
+	"skin-action-protect": "Лораде",
+	"skin-action-undelete": "Хьаметтаоттаде",
+	"skin-action-delete": "ДӀаяккха",
+	"skin-action-move": "ЦӀи хувца"
 }

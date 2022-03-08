@@ -119,5 +119,7 @@
 	"tooltip-ca-talk": "Гижӧдлӧн сёрнитӧм лист бокӧй али Википедиялӧн дӧнъялӧм лист бокӧй",
 	"tooltip-ca-move": "Лист боклӧн ним вежны",
 	"specialpages": "Торъя лист бокъяс",
-	"deletepage": "Лист бокӧс бырӧдны"
+	"deletepage": "Лист бокӧс бырӧдны",
+	"skin-action-protect": "Дорйыны",
+	"skin-action-move": "Ним вежны"
 }

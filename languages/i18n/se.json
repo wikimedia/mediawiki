@@ -1071,5 +1071,9 @@
 	"mw-widgets-mediasearch-input-placeholder": "Oza miediaid",
 	"mw-widgets-mediasearch-recent-uploads": "{{GENDER:$1|Don}} leat gieskat lásten",
 	"log-action-filter-all": "Buot",
-	"nstab-mainpage": "Váldosiidu"
+	"nstab-mainpage": "Váldosiidu",
+	"skin-action-protect": "Suodjal",
+	"skin-action-undelete": "Máhcat",
+	"skin-action-delete": "Sihko",
+	"skin-action-move": "Sirdde"
 }

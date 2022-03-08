@@ -920,7 +920,7 @@
 	"action-createtalk": "gawé kaca dhiskusiné",
 	"action-createaccount": "nggawé akun panganggo kiye",
 	"action-minoredit": "nandani suntingan minangka suntingan cilik",
-	"action-move": "Pindah",
+	"action-move": "mindahna kaca kiye",
 	"action-move-subpages": "mindahna kaca kiye, sisan karo anak-kacane kabeh",
 	"action-move-rootuserpages": "Mindahna kaca utama panganggo",
 	"action-movefile": "pindahna berkas kiye",
@@ -928,11 +928,11 @@
 	"action-reupload": "nindih berkas sing uwis ana",
 	"action-upload_by_url": "unggahna berkas kiye sekang alamat URL",
 	"action-writeapi": "ngunakna API panulisan",
-	"action-delete": "Busek",
+	"action-delete": "busak kaca kiye",
 	"action-deleterevision": "busak revisi kiye",
 	"action-deletedhistory": "deleng sajarahe kaca kiye sing wis dibusak",
 	"action-browsearchive": "nggoleti kaca sing wis dibusak",
-	"action-undelete": "Batalna pambusakan",
+	"action-undelete": "mbatalna pambusakan kaca kiye",
 	"action-suppressrevision": "ndeleng lan mbalekna revisi sing diumpetna kiye",
 	"action-suppressionlog": "deleng log privat kiye",
 	"action-block": "mblokir panganggo kiye ben ora teyeng nyunting",
@@ -1372,5 +1372,9 @@
 	"view-view-foreign": "Deleng nang $1",
 	"view-create-local": "Tambahna pawedharan lokal",
 	"nstab-mainpage": "Kaca Utama",
-	"view-edit-local": "Sunting deskripsi lokal"
+	"view-edit-local": "Sunting deskripsi lokal",
+	"skin-action-protect": "Direksa",
+	"skin-action-undelete": "Batalna pambusakan",
+	"skin-action-delete": "Busek",
+	"skin-action-move": "Pindah"
 }

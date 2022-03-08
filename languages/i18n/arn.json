@@ -417,10 +417,10 @@
 	"action-createpage": "zewman tüfachi tapülh",
 	"action-createtalk": "zewman fachi nütramkawe tapülh",
 	"action-createaccount": "zewman fachi pünefe ñi kuenta",
-	"action-move": "Nengümün",
-	"action-delete": "Liftun",
+	"action-move": "Nengümün tüfachi pakina",
+	"action-delete": "Ñamümün tüfachi pakina",
 	"action-browsearchive": "Kintun ñamün pakina",
-	"action-undelete": "Wüñoñamümün",
+	"action-undelete": "wüñoeltun tapülh",
 	"action-protect": "Nürüfkünun",
 	"nchanges": "{{PLURAL:$1|kalekünuy|kalekünuy}} $1",
 	"enhancedrc-history": "tukulpan",
@@ -788,5 +788,9 @@
 	"duration-days": "$1 {{PLURAL:$1|antü}}",
 	"view-view-foreign": "Pen $1 mew",
 	"view-create-local": "Püñamtun ñi faw chumngen",
-	"nstab-mainpage": "Ñizol Wvbgiñ"
+	"nstab-mainpage": "Ñizol Wvbgiñ",
+	"skin-action-protect": "Nürüfkünun",
+	"skin-action-undelete": "Wüñoñamümün",
+	"skin-action-delete": "Liftun",
+	"skin-action-move": "Nengümün"
 }

@@ -536,11 +536,11 @@
 	"action-autocreateaccount": "dáv ulguldis adnejkåntåv ietjastis állget",
 	"action-history": "dán biele histurjav vuäjdnet",
 	"action-minoredit": "dáv dävvdadimev degu unne merrkit",
-	"action-move": "Sirde",
+	"action-move": "dáv bielev sirrdet",
 	"action-movefile": "dáv fijlav sirrdet",
 	"action-upload": "dáv fijlav bajás lässtit",
 	"action-upload_by_url": "dáv fijlav bajás lässtit URLa rájest",
-	"action-delete": "Gádodä",
+	"action-delete": "dáv bielev gádodit",
 	"action-deleterevision": "versjuvnajt gádodit",
 	"action-browsearchive": "gádodam belijda åhtsåt",
 	"action-protect": "Várrjala",
@@ -936,5 +936,8 @@
 	"authform-wrongtoken": "Båjto tjåvdå",
 	"userlogout-continue": "Sida dån luggit ulgus?",
 	"view-view-foreign": "Vuosedä $1 sinne",
-	"nstab-mainpage": "Åjjvebielle"
+	"nstab-mainpage": "Åjjvebielle",
+	"skin-action-protect": "Várrjala",
+	"skin-action-delete": "Gádodä",
+	"skin-action-move": "Sirde"
 }

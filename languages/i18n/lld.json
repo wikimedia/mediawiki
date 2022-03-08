@@ -806,5 +806,8 @@
 	"view-view-foreign": "Ciara sön $1",
 	"view-create-local": "Jonta na descrzion lochela",
 	"nstab-mainpage": "Plata prinzipala",
-	"view-edit-local": "Müda la descriziun locala"
+	"view-edit-local": "Müda la descriziun locala",
+	"skin-action-protect": "Straverda",
+	"skin-action-delete": "Straihëia",
+	"skin-action-move": "Spostëia"
 }

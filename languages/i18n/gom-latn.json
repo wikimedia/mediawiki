@@ -1190,5 +1190,9 @@
 	"view-view-foreign": "$1-hacher polloi",
 	"view-create-local": "Thollavem vornon zod",
 	"nstab-mainpage": "Mukhel pan",
-	"view-edit-local": "Thollavem vornon bodol"
+	"view-edit-local": "Thollavem vornon bodol",
+	"skin-action-protect": "Rakh",
+	"skin-action-undelete": "Portun hadd",
+	"skin-action-delete": "Kadd",
+	"skin-action-move": "Zago bodol"
 }

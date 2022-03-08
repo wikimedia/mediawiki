@@ -1225,5 +1225,9 @@
 	"view-view-foreign": "Af $1 ooschaung",
 	"view-create-local": "Lokale Beschreibung hinzuafing",
 	"nstab-mainpage": "Hoamseitn",
-	"view-edit-local": "Lokale Beschreibung beoabatn"
+	"view-edit-local": "Lokale Beschreibung beoabatn",
+	"skin-action-protect": "Schitzn",
+	"skin-action-undelete": "Wiederherstön",
+	"skin-action-delete": "Leschn",
+	"skin-action-move": "Vaschiabm"
 }

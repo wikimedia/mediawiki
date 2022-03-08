@@ -410,7 +410,7 @@
 	"action-createpage": "မ်ုပ္တံင် လိက်မေံၜၠါ်ယိုဝ်",
 	"action-createaccount": "ဆ်ုအင်းသုံ့က်ုဆာဆ်ုမာ မ်ုအင်းတင်",
 	"action-move": "အ်ုၰာႋၰံင်",
-	"action-delete": "ထုဂ်ဆိင့်",
+	"action-delete": "လိက်‌မေံၜၠါ်ယိုဝ် မ်ုထုဂ်ဆိင့်",
 	"action-protect": "ခ်ုဝုင်ႋလာႋ",
 	"enhancedrc-history": "မေင်ႋစိင်",
 	"recentchanges": "အ်ုခါ့ယိုဝ် ဆ်ုအင်းလယ်လ်ုဖး",
@@ -813,5 +813,8 @@
 	"view-view-foreign": "မ်ုယောဝ်ႋ $1 ဝယ်",
 	"view-create-local": "အှ်လင်ကၠယ် ဆ်ုတုဂ်ကၠယ် မ်ုဆူ့ဍုဂ်လင်",
 	"nstab-mainpage": "လိက်မေံခၠီ့",
-	"view-edit-local": "အှ်လင်ကၠယ် ဆ်ုတုဂ်ကၠယ် မ်ုအင်းတင်လင်"
+	"view-edit-local": "အှ်လင်ကၠယ် ဆ်ုတုဂ်ကၠယ် မ်ုအင်းတင်လင်",
+	"skin-action-protect": "ခ်ုဝုင်ႋလာႋ",
+	"skin-action-delete": "ထုဂ်ဆိင့်",
+	"skin-action-move": "အ်ုၰာႋၰံင်"
 }

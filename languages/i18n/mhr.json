@@ -811,5 +811,9 @@
 	"expand_templates_ok": "Йӧра",
 	"expand_templates_preview": "Ончылгоч ончымаш",
 	"pagelang-name": "Лаштык",
-	"nstab-mainpage": "Тӱҥ лаштык"
+	"nstab-mainpage": "Тӱҥ лаштык",
+	"skin-action-protect": "Аралаш",
+	"skin-action-undelete": "Шӧрымым пӧртылаш",
+	"skin-action-delete": "Шӧраш",
+	"skin-action-move": "Лӱмым вашталташ"
 }

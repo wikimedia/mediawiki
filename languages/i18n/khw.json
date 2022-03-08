@@ -1181,5 +1181,9 @@
 	"view-view-foreign": "$1 لوڑے",
 	"view-create-local": "مقامی وضاحتو داخل کورے",
 	"nstab-mainpage": "آویلو صفحہ",
-	"view-edit-local": "ترمیم مقامی وضاحت"
+	"view-edit-local": "ترمیم مقامی وضاحت",
+	"skin-action-protect": "محفوظ",
+	"skin-action-undelete": "اچی انگیے",
+	"skin-action-delete": "بوغاوے",
+	"skin-action-move": "منتقل کورے"
 }

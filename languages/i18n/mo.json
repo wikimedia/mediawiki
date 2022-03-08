@@ -495,5 +495,8 @@
 	"logentry-newusers-create": "{{GENDER:$2|Утилизаторул|Утилизатоаря}} шь-а креат ун конт $1",
 	"searchsuggest-search": "Кэутаре ын {{SITENAME}}",
 	"view-view-foreign": "Ведець ла $1",
-	"nstab-mainpage": "Паӂина принчипалэ"
+	"nstab-mainpage": "Паӂина принчипалэ",
+	"skin-action-protect": "Протежязэ",
+	"skin-action-delete": "Штерӂере",
+	"skin-action-move": "Реденумире"
 }

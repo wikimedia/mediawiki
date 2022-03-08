@@ -242,5 +242,7 @@
 	"signature": "Iqonga lakho othetha kulo",
 	"specialpages": "Amaphepha Abalulekileyo",
 	"searchsuggest-search": "Khangela i-{{SITENAME}}",
-	"nstab-mainpage": "Iphepha lokuqala"
+	"nstab-mainpage": "Iphepha lokuqala",
+	"skin-action-protect": "Khusela",
+	"skin-action-move": "Susa"
 }

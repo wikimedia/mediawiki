@@ -652,7 +652,7 @@
 	"action-createtalk": "te nkitahodeɛ kratafa yi",
 	"action-createaccount": "Te saa edin wei",
 	"action-history": "Hwɛ kratafa yi abakɔsɛm",
-	"action-move": "Yi kɔ bɛbi foforo",
+	"action-move": "yi kratafa yi kɔ bɛbi foforɔ",
 	"action-move-subpages": "Yi kratafa yi ne nkratafa a ɛkaho nyinaa kɔ bɛbi foforɔ",
 	"action-delete": "Pepa",
 	"action-undelete": "Ɛmpepa biom",
@@ -917,5 +917,9 @@
 	"view-view-foreign": "Hwɛ wɔ $1",
 	"view-create-local": "Fa ɛfitiasɛm ka hɔ",
 	"nstab-mainpage": "Kratafa Titiriw",
-	"view-edit-local": "Fa ɛfitiasɛm ka hɔ"
+	"view-edit-local": "Fa ɛfitiasɛm ka hɔ",
+	"skin-action-protect": "Bɔ ho ban",
+	"skin-action-undelete": "Ɛmpepa biom",
+	"skin-action-delete": "Pepa",
+	"skin-action-move": "Yi kɔ bɛbi foforo"
 }

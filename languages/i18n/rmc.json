@@ -662,5 +662,7 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"view-view-foreign": "Te predikhel $1",
 	"view-create-local": "Te prithovel thaneskeri deskripcija",
-	"nstab-mainpage": "Šerutni sera"
+	"nstab-mainpage": "Šerutni sera",
+	"skin-action-delete": "Tele te khosel",
+	"skin-action-move": "Avrete te thovel"
 }

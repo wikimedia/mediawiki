@@ -652,5 +652,8 @@
 	"view-view-foreign": "baicambi bade $1",
 	"view-create-local": "ba i giyanara be nonggimbi",
 	"nstab-mainpage": "ujui afaha",
-	"view-edit-local": "ba i giyanara be halambi"
+	"view-edit-local": "ba i giyanara be halambi",
+	"skin-action-protect": "Karmara",
+	"skin-action-delete": "Dabgire",
+	"skin-action-move": "Guribure"
 }
