@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Deferred\LinksUpdate;
 
+use Config;
 use ParserOutput;
 
 /**
@@ -10,6 +11,13 @@ use ParserOutput;
  * @since 1.38
  */
 class TemplateLinksTable extends GenericPageLinksTable {
+	/** @var int */
+	private $migrationStage;
+
+	public function __construct( Config $config ) {
+		$this->migrationStage = $config->get( 'TemplateLinksSchemaMigrationStage' );
+	}
+
 	public function setParserOutput( ParserOutput $parserOutput ) {
 		$this->newLinks = $parserOutput->getTemplates();
 	}
@@ -32,5 +40,17 @@ class TemplateLinksTable extends GenericPageLinksTable {
 
 	protected function getFromNamespaceField() {
 		return 'tl_from_namespace';
+	}
+
+	protected function getTargetIdField() {
+		return 'tl_target_id';
+	}
+
+	/**
+	 * Normalization stage of the links table (see T222224)
+	 * @return int
+	 */
+	protected function linksTargetNormalizationStage(): int {
+		return $this->migrationStage;
 	}
 }

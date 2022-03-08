@@ -176,6 +176,7 @@ class LinksUpdate extends DataUpdate {
 			$services->getDBLoadBalancerFactory(),
 			$services->getCollationFactory(),
 			$page,
+			$services->getLinkTargetLookup(),
 			$config->get( 'UpdateRowsPerQuery' ),
 			function ( $table, $rows ) {
 				$this->getHookRunner()->onLinksUpdateAfterInsert( $this, $table, $rows );

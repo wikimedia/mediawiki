@@ -48,6 +48,13 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 	abstract protected function getTitleField();
 
 	/**
+	 * Get the link target id (DB key) field name
+	 *
+	 * @return string
+	 */
+	abstract protected function getTargetIdField();
+
+	/**
 	 * @return mixed
 	 */
 	abstract protected function getFromNamespaceField();
@@ -102,11 +109,18 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 	}
 
 	protected function insertLink( $linkId ) {
-		$this->insertRow( [
+		$row = [
 			$this->getFromNamespaceField() => $this->getSourcePage()->getNamespace(),
 			$this->getNamespaceField() => $linkId[0],
 			$this->getTitleField() => $linkId[1]
-		] );
+		];
+		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_NEW ) {
+			$row[$this->getTargetIdField()] = $this->linkTargetLookup->acquireLinkTargetId(
+				$this->makeTitle( $linkId ),
+				$this->getDB()
+			);
+		}
+		$this->insertRow( $row );
 	}
 
 	protected function deleteLink( $linkId ) {

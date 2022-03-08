@@ -921,6 +921,10 @@ return [
 			'default' => 48,
 			'type' => 'integer',
 		],
+		'TemplateLinksSchemaMigrationStage' => [
+			'default' => 3,
+			'type' => 'integer',
+		],
 		'ContentHandlers' => [
 			'default' => [
 				'wikitext' => 'WikitextContentHandler',
