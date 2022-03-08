@@ -31,7 +31,7 @@ class RSSFeed extends ChannelFeed {
 	/**
 	 * Format a date given a timestamp. If a timestamp is not given, nothing is returned
 	 *
-	 * @param int|null $ts Timestamp
+	 * @param string|int|null $ts Timestamp
 	 * @return string|null Date string
 	 */
 	private function formatTime( $ts ) {

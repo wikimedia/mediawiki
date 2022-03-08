@@ -70,7 +70,7 @@ SPARQLD;
 	/**
 	 * List of processed page IDs,
 	 * so we don't try to process same thing twice
-	 * @var int[]
+	 * @var true[]
 	 */
 	protected $processed = [];
 

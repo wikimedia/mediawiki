@@ -45,7 +45,7 @@ class Sqlite {
 	 * Will throw exceptions on SQL errors
 	 * @param array|string $files
 	 * @throws MWException
-	 * @return bool True if no error or error string in case of errors
+	 * @return true|string True if no error or error string in case of errors
 	 */
 	public static function checkSqlSyntax( $files ) {
 		if ( !self::isPresent() ) {

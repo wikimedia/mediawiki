@@ -1441,7 +1441,7 @@ class FileRepo {
 	 * Checks existence of an array of files.
 	 *
 	 * @param string[] $files Virtual URLs (or storage paths) of files to check
-	 * @return array<string,bool|null> Map of files and either bool indicating whether the files exist,
+	 * @return array<string|int,bool|null> Map of files and either bool indicating whether the files exist,
 	 *   or null in case of I/O errors
 	 */
 	public function fileExistsBatch( array $files ) {

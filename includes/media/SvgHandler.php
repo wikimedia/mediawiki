@@ -306,8 +306,8 @@ class SvgHandler extends ImageHandler {
 	 * This function can be called outside of thumbnail contexts
 	 * @param string $srcPath
 	 * @param string $dstPath
-	 * @param string $width
-	 * @param string $height
+	 * @param int $width
+	 * @param int $height
 	 * @param string|false $lang Language code of the language to render the SVG in
 	 * @throws MWException
 	 * @return bool|MediaTransformError

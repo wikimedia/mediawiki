@@ -61,7 +61,7 @@ class ImageBuilder extends Maintenance {
 	/** @var int */
 	private $count;
 
-	/** @var int */
+	/** @var float */
 	private $startTime;
 
 	/** @var string */

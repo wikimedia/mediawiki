@@ -436,7 +436,7 @@ class LoadBalancer implements ILoadBalancer {
 	/**
 	 * @param array $loads
 	 * @param string $domain Resolved DB domain
-	 * @param int $maxLag Restrict the maximum allowed lag to this many seconds
+	 * @param int|float $maxLag Restrict the maximum allowed lag to this many seconds, or INF for no max
 	 * @return bool|int|string
 	 */
 	private function getRandomNonLagged( array $loads, string $domain, $maxLag = INF ) {
