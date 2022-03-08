@@ -72,7 +72,7 @@ class ResetUserEmail extends Maintenance {
 			] );
 			if ( !$status->isGood() ) {
 				$this->error( "Password couldn't be reset because:\n"
-					. $status->getMessage( null, null, 'en' )->text() );
+					. $status->getMessage( false, false, 'en' )->text() );
 			}
 		}
 		$this->output( "Done!\n" );
