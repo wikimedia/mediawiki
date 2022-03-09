@@ -409,10 +409,9 @@ class SpecialVersion extends SpecialPage {
 	 * TODO: ideally this would return all extension types.
 	 *
 	 * @since 1.17
-	 *
 	 * @return string[]
 	 */
-	public static function getExtensionTypes() {
+	public static function getExtensionTypes(): array {
 		if ( self::$extensionTypes === false ) {
 			self::$extensionTypes = [
 				'specialpage' => wfMessage( 'version-specialpages' )->text(),
@@ -485,10 +484,10 @@ class SpecialVersion extends SpecialPage {
 
 		$this->firstExtOpened = false;
 		// Loop through the extension categories to display their extensions in the list.
-		foreach ( $extensionTypes as $type => $message ) {
+		foreach ( $extensionTypes as $type => $text ) {
 			// Skins have a separate section
 			if ( $type !== 'other' && $type !== 'skin' ) {
-				$out .= $this->getExtensionCategory( $type, $message, $credits[$type] ?? [] );
+				$out .= $this->getExtensionCategory( $type, $text, $credits[$type] ?? [] );
 			}
 		}
 
@@ -709,18 +708,18 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @since 1.17
 	 * @param string $type
-	 * @param string|null $message
+	 * @param string|null $text
 	 * @param array $creditsGroup
 	 * @return string
 	 */
-	protected function getExtensionCategory( $type, $message, array $creditsGroup ) {
+	protected function getExtensionCategory( $type, ?string $text, array $creditsGroup ) {
 		$config = $this->getConfig();
 		$credits = $config->get( 'ExtensionCredits' );
 
 		$out = '';
 
 		if ( $creditsGroup ) {
-			$out .= $this->openExtType( $message, 'credits-' . $type );
+			$out .= $this->openExtType( $text, 'credits-' . $type );
 
 			usort( $creditsGroup, [ $this, 'compare' ] );
 
@@ -966,7 +965,7 @@ class SpecialVersion extends SpecialPage {
 		return '';
 	}
 
-	private function openExtType( $text = null, $name = null ) {
+	private function openExtType( string $text = null, string $name = null ) {
 		$out = '';
 
 		$opt = [ 'colspan' => 5 ];
