@@ -98,7 +98,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 
 		// Determine which messages should we print
 		if ( in_array( '*', $params['messages'] ) ) {
-			$message_names = $this->localisationCache->getSubitemList( $langObj->getCode(), 'messages' );
+			$message_names = $this->localisationCache->getSubitemList( $langObj->getCode(), 'messages' ) ?? [];
 			if ( $params['includelocal'] ) {
 				$message_names = array_unique( array_merge(
 					$message_names,

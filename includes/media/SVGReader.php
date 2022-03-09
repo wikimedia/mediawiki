@@ -313,7 +313,7 @@ class SVGReader {
 
 		if ( $this->reader->getAttribute( 'viewBox' ) ) {
 			// min-x min-y width height
-			$viewBox = preg_split( '/\s*[\s,]\s*/', trim( $this->reader->getAttribute( 'viewBox' ) ) );
+			$viewBox = preg_split( '/\s*[\s,]\s*/', trim( $this->reader->getAttribute( 'viewBox' ) ?? '' ) );
 			if ( count( $viewBox ) == 4 ) {
 				$viewWidth = $this->scaleSVGUnit( $viewBox[2] );
 				$viewHeight = $this->scaleSVGUnit( $viewBox[3] );
@@ -324,11 +324,11 @@ class SVGReader {
 			}
 		}
 		if ( $this->reader->getAttribute( 'width' ) ) {
-			$width = $this->scaleSVGUnit( $this->reader->getAttribute( 'width' ), $defaultWidth );
+			$width = $this->scaleSVGUnit( $this->reader->getAttribute( 'width' ) ?? '', $defaultWidth );
 			$this->metadata['originalWidth'] = $this->reader->getAttribute( 'width' );
 		}
 		if ( $this->reader->getAttribute( 'height' ) ) {
-			$height = $this->scaleSVGUnit( $this->reader->getAttribute( 'height' ), $defaultHeight );
+			$height = $this->scaleSVGUnit( $this->reader->getAttribute( 'height' ) ?? '', $defaultHeight );
 			$this->metadata['originalHeight'] = $this->reader->getAttribute( 'height' );
 		}
 
