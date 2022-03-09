@@ -143,11 +143,11 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		}
 
 		$uiLang = $this->getLanguage();
-		$contLang = $this->getContentLanguage();
+		$baseLang = $base->getPageLanguage();
 
-		if ( $uiLang->equals( $contLang ) && !$forTransclusion ) {
+		if ( $uiLang->equals( $baseLang ) && !$forTransclusion ) {
 			// Short circuit when the current UI language is the
-			// wiki's default language to avoid unnecessary page lookups.
+			// page's content language to avoid unnecessary page lookups.
 			return $base;
 		}
 
@@ -165,7 +165,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		// Check for fallback languages specified by the UI language
 		$possibilities = $uiLang->getFallbackLanguages();
 		foreach ( $possibilities as $lang ) {
-			if ( $forTransclusion || $lang !== $contLang->getCode() ) {
+			if ( $forTransclusion || $lang !== $baseLang->getCode() ) {
 				$proposed = $base->getSubpage( $lang );
 				if ( $proposed && $proposed->exists() ) {
 					return $proposed;
