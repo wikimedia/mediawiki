@@ -351,7 +351,7 @@ class SearchFormWidget {
 			$this->createNamespaceToggleBoxHtml();
 	}
 
-	private function createNamespaceCheckbox( string $namespace, array $activeNamespaces ): string {
+	private function createNamespaceCheckbox( int $namespace, array $activeNamespaces ): string {
 		$namespaceDisplayName = $this->getNamespaceDisplayName( $namespace );
 
 		return new \OOUI\FieldLayout(
@@ -368,7 +368,7 @@ class SearchFormWidget {
 		);
 	}
 
-	private function getNamespaceDisplayName( string $namespace ): string {
+	private function getNamespaceDisplayName( int $namespace ): string {
 		$name = $this->languageConverter->convertNamespace( $namespace );
 		if ( $name === '' ) {
 			$name = $this->specialSearch->msg( 'blanknamespace' )->text();
