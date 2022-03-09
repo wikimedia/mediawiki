@@ -3747,6 +3747,7 @@ class OutputPage extends ContextSource {
 			'wgUserName' => $user->isAnon() ? null : $user->getName(),
 			'wgUserGroups' => $services->getUserGroupManager()->getUserEffectiveGroups( $user ),
 			'wgCategories' => $this->getCategories(),
+			'wgPageViewLanguage' => $lang->getCode(),
 			'wgPageContentLanguage' => $lang->getCode(),
 			'wgPageContentModel' => $title->getContentModel(),
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
