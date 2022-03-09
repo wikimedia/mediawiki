@@ -87,7 +87,7 @@ class InterwikiLookupAdapter implements InterwikiLookup {
 	/**
 	 * See InterwikiLookup::getAllPrefixes
 	 *
-	 * @param string|null $local If set, limits output to local/non-local interwikis
+	 * @param bool|null $local If set, limits output to local/non-local interwikis
 	 * @return array[] interwiki rows
 	 */
 	public function getAllPrefixes( $local = null ) {

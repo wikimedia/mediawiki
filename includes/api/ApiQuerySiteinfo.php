@@ -484,9 +484,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendInterwikiMap( $property, $filter ) {
 		if ( $filter === 'local' ) {
-			$local = 1;
+			$local = true;
 		} elseif ( $filter === '!local' ) {
-			$local = 0;
+			$local = false;
 		} else {
 			// $filter === null
 			$local = null;
