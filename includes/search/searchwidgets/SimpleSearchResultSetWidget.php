@@ -102,7 +102,7 @@ class SimpleSearchResultSetWidget implements SearchResultSetWidget {
 			$caption = $this->specialSearch->msg( 'search-interwiki-default', $parsed['host'] )->escaped();
 		}
 
-		$href = Title::makeTitle( NS_SPECIAL, 'Search', null, $iwPrefix )->getLocalURL(
+		$href = Title::makeTitle( NS_SPECIAL, 'Search', '', $iwPrefix )->getLocalURL(
 			[ 'search' => $term, 'fulltext' => 1 ]
 		);
 		$searchLink = Html::rawElement(
