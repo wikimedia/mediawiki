@@ -33,6 +33,12 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$this->conn = $this->newConnection();
 	}
 
+	protected function tearDown(): void {
+		$this->conn->close( __METHOD__ );
+
+		parent::tearDown();
+	}
+
 	/**
 	 * @covers Database::query()
 	 */
@@ -230,11 +236,5 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		);
 
 		return $conn;
-	}
-
-	public function tearDown(): void {
-		$this->conn->close( __METHOD__ );
-
-		parent::tearDown();
 	}
 }
