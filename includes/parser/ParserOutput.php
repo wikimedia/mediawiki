@@ -777,14 +777,17 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
+	 * @param bool $showStrategyKeys Defaults to false; if set to true will
+	 *  expose the internal `MW_MERGE_STRATEGY_KEY` in the result.  This
+	 *  should only be used internally to allow safe merge of config vars.
 	 * @return array
 	 * @since 1.23
 	 */
-	public function getJsConfigVars() {
+	public function getJsConfigVars( bool $showStrategyKeys = false ) {
 		$result = $this->mJsConfigVars;
 		// Don't expose the internal strategy key
 		foreach ( $result as $key => &$value ) {
-			if ( is_array( $value ) ) {
+			if ( is_array( $value ) && !$showStrategyKeys ) {
 				unset( $value[self::MW_MERGE_STRATEGY_KEY] );
 			}
 		}
