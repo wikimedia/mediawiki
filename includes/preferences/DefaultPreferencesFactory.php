@@ -1416,6 +1416,16 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				'type' => 'api',
 			];
 		}
+
+		$defaultPreferences['searchlimit'] = [
+			'type' => 'int',
+			'min' => 1,
+			'max' => 500,
+			'section' => 'searchoptions/searchmisc',
+			'label-message' => 'searchlimit-label',
+			'help-message' => 'searchlimit-help',
+			'filter' => IntvalFilter::class,
+		];
 	}
 
 	/*

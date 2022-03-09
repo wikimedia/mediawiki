@@ -301,6 +301,67 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	public function provideLimitPreference() {
+		return [
+			[ 20, 20 ],
+			[ 101, null ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideLimitPreference
+	 * @covers SpecialSearch::showResults
+	 */
+	public function testLimitPreference(
+		$optionValue,
+		$expectedLimit
+	) {
+		$results = array_fill( 0, 100, SearchResult::newFromTitle( Title::newMainPage() ) );
+
+		$searchResults = new SpecialSearchTestMockResultSet(
+			'?',
+			'!',
+			$results
+		);
+
+		$userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
+
+		$user = User::newFromName( 'UTSysop' );
+		$userOptionsManager->setOption( $user, 'searchlimit', $optionValue );
+		$user->saveSettings();
+
+		$mockSearchEngine = $this->mockSearchEngine( $searchResults );
+		$services = $this->getServiceContainer();
+		$search = $this->getMockBuilder( SpecialSearch::class )
+			->setConstructorArgs( [
+				$services->getSearchEngineConfig(),
+				$services->getSearchEngineFactory(),
+				$services->getNamespaceInfo(),
+				$services->getContentHandlerFactory(),
+				$services->getInterwikiLookup(),
+				$services->getReadOnlyMode(),
+				$userOptionsManager,
+				$services->getLanguageConverterFactory()
+			] )
+			->onlyMethods( [ 'getSearchEngine' ] )
+			->getMock();
+		$search->method( 'getSearchEngine' )
+			->willReturn( $mockSearchEngine );
+
+		$search->getContext()->setTitle( Title::makeTitle( NS_SPECIAL, 'Search' ) );
+		$search->getContext()->setUser( $user );
+		$search->getContext()->setLanguage( 'en' );
+		$search->load();
+		$search->showResults( 'this is a fake search' );
+
+		$html = $search->getContext()->getOutput()->getHTML();
+		if ( $expectedLimit === null ) {
+			$this->assertNotRegExp( "/ title=\"Next \\d+ results\"/", $html );
+		} else {
+			$this->assertRegExp( "/ title=\"Next $expectedLimit results\"/", $html );
+		}
+	}
+
 	protected function mockSearchEngine( SpecialSearchTestMockResultSet $results ) {
 		$mock = $this->getMockBuilder( SearchEngine::class )
 			->onlyMethods( [ 'searchText', 'searchTitle', 'getNearMatcher' ] )
