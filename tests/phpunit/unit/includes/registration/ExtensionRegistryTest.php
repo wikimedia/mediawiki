@@ -1,21 +1,51 @@
 <?php
 
+namespace MediaWiki\Tests\Registration;
+
+use Exception;
+use ExtensionRegistry;
+use LogicException;
+use MediaWikiUnitTestCase;
+use MWException;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers ExtensionRegistry
  */
-class ExtensionRegistryTest extends MediaWikiIntegrationTestCase {
+class ExtensionRegistryTest extends MediaWikiUnitTestCase {
 
-	private $dataDir;
+	private $dataDir = __DIR__ . '/../../../data/registration';
 
-	protected function setUp(): void {
-		parent::setUp();
-		$this->dataDir = __DIR__ . '/../../data/registration';
+	private $restoreGlobals = [];
+
+	private $unsetGlobals = [];
+
+	protected function tearDown(): void {
+		foreach ( $this->restoreGlobals as $key => $value ) {
+			$GLOBALS[$key] = $value;
+		}
+
+		foreach ( $this->unsetGlobals as $var ) {
+			unset( $GLOBALS[$var] );
+		}
+
+		parent::tearDown();
+	}
+
+	private function setGlobal( $key, $value ) {
+		if ( isset( $GLOBALS[$key] ) ) {
+			$this->restoreGlobals[$key] = $GLOBALS[$key];
+		} else {
+			$this->unsetGlobals[] = $key;
+		}
+
+		$GLOBALS[$key] = $value;
 	}
 
 	public function testQueue_invalid() {
+		$this->setGlobal( 'wgExtensionInfoMTime', false );
+
 		$registry = new ExtensionRegistry();
 		$path = __DIR__ . '/doesnotexist.json';
 		$this->expectException( Exception::class );
@@ -119,7 +149,7 @@ class ExtensionRegistryTest extends MediaWikiIntegrationTestCase {
 				if ( substr( $key, 0, 2 ) == 'mw' ) {
 					$GLOBALS[$key] = $value;
 				} else {
-					$this->setMwGlobals( $key, $value );
+					$this->setGlobal( $key, $value );
 				}
 			}
 		}
@@ -483,4 +513,5 @@ class ExtensionRegistryTest extends MediaWikiIntegrationTestCase {
 			$registry->getLazyLoadedAttribute( 'FooBarBaz' )
 		);
 	}
+
 }

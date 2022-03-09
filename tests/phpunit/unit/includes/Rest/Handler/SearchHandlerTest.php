@@ -510,7 +510,6 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 
 		$query = 'foo';
 		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
-
 		$config = [];
 		$handler = $this->newHandler(
 			$query, null, $textResults, null, null,

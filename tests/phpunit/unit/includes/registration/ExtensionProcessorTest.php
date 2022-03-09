@@ -1,11 +1,21 @@
 <?php
 
+namespace MediaWiki\Tests\Registration;
+
+use Exception;
+use ExtensionProcessor;
+use ExtensionRegistry;
+use FormatJson;
+use InvalidArgumentException;
+use MediaWikiUnitTestCase;
+use RuntimeException;
+use UnexpectedValueException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers ExtensionProcessor
  */
-class ExtensionProcessorTest extends MediaWikiIntegrationTestCase {
+class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 
 	private $dir, $dirname;
 
