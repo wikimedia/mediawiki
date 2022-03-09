@@ -105,7 +105,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $flags;
 	/** @var array Current LoadBalancer tracking information */
 	protected $lbInfo = [];
-	/** @var string Current SQL query delimiter */
+	/** @var string|false Current SQL query delimiter */
 	protected $delimiter = ';';
 	/** @var array[] Current map of (table => (dbname, schema, prefix) map) */
 	protected $tableAliases = [];
@@ -2313,7 +2313,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$indexInfo = $this->indexInfo( $table, $index, $fname );
 
 		if ( !$indexInfo ) {
-			return null;
+			return false;
 		}
 
 		return !$indexInfo[0]->Non_unique;
@@ -2687,7 +2687,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	) {
 		$fld = "GROUP_CONCAT($field SEPARATOR " . $this->addQuotes( $delim ) . ')';
 
-		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
+		return '(' . $this->selectSQLText( $table, $fld, $conds, __METHOD__, [], $join_conds ) . ')';
 	}
 
 	/**
@@ -2893,7 +2893,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function getServerName() {
-		return $this->serverName ?? $this->getServer();
+		return $this->serverName ?? $this->getServer() ?? 'unknown';
 	}
 
 	/**
@@ -4885,7 +4885,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		try {
-			$error = $this->sourceStream(
+			return $this->sourceStream(
 				$fp,
 				$lineCallback,
 				$resultCallback,
@@ -4895,8 +4895,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} finally {
 			fclose( $fp );
 		}
-
-		return $error;
 	}
 
 	public function setSchemaVars( $vars ) {
