@@ -154,7 +154,7 @@ class FindMissingActors extends Maintenance {
 		$user = $this->userFactory->newFromName( $name );
 
 		if ( !$user ) {
-			$this->fatalError( "Not a valid user name: '$user'" );
+			$this->fatalError( "Not a valid user name: '$name'" );
 		}
 
 		$name = $this->userNameUtils->getCanonical( $name, UserNameUtils::RIGOR_NONE );
