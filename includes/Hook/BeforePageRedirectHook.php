@@ -21,7 +21,7 @@ interface BeforePageRedirectHook {
 	 *
 	 * @param OutputPage $out
 	 * @param string &$redirect URL, modifiable
-	 * @param int &$code HTTP code (eg '301' or '302'), modifiable
+	 * @param string &$code HTTP code (eg '301' or '302'), modifiable
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onBeforePageRedirect( $out, &$redirect, &$code );

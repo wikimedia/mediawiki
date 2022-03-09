@@ -5667,7 +5667,7 @@ class Parser {
 	 * returned.
 	 *
 	 * @param string $mode One of "get" or "replace"
-	 * @param string $newText Replacement text for section data.
+	 * @param string|false $newText Replacement text for section data.
 	 * @return string For "get", the extracted section text.
 	 *   for "replace", the whole page with the section replaced.
 	 */
@@ -5795,7 +5795,7 @@ class Parser {
 	 * @param string $text Text to look in
 	 * @param string|int $sectionId Section identifier as a number or string
 	 * (e.g. 0, 1 or 'T-1').
-	 * @param string $defaultText Default to return if section is not found
+	 * @param string|false $defaultText Default to return if section is not found
 	 *
 	 * @return string Text of the requested section
 	 * @since 1.7
@@ -5812,7 +5812,7 @@ class Parser {
 	 * @param string $oldText Former text of the article
 	 * @param string|int $sectionId Section identifier as a number or string
 	 * (e.g. 0, 1 or 'T-1').
-	 * @param string $newText Replacing text
+	 * @param string|false $newText Replacing text
 	 *
 	 * @return string Modified text
 	 * @since 1.7

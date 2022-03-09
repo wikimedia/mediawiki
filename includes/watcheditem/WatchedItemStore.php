@@ -1548,8 +1548,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	/**
 	 * @param UserIdentity $user
 	 * @param LinkTarget|PageIdentity $title deprecated passing LinkTarget since 1.36
-	 * @param WatchedItem $item
-	 * @param bool $force
+	 * @param WatchedItem|null $item
+	 * @param string $force
 	 * @param int|bool $oldid The ID of the last revision that the user viewed
 	 * @return bool|string|null
 	 */
