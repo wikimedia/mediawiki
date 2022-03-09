@@ -459,18 +459,26 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				$toc = $this->getTOCHTML();
 				// language conversion needs to be done on the TOC fetched
 				// from parser cache
-				// XXX doesn't check ParserOptions::getDisableContentConversion()
-				// XXX doesn't check Parser::$mDoubleUnderscores['nocontentconvert']
-				// XXX doesn't check ParserOptions::getInterfaceMessage()
-				// XXX Use DI to inject this once ::getText() is moved out
-				// of ParserOutput
-				$services = MediaWikiServices::getInstance();
-				$languageConverterFactory =
-					$services->getLanguageConverterFactory();
-				$toc = $languageConverterFactory->getLanguageConverter(
-					// XXX This was Parser::getTargetLanguage()
-					$services->getContentLanguage()
-				)->convert( $toc );
+				if ( !$this->getOutputFlag( ParserOutputFlags::NO_TOC_CONVERSION ) ) {
+					// XXX Use DI to inject this once ::getText() is moved out
+					// of ParserOutput
+					$services = MediaWikiServices::getInstance();
+					$languageFactory =
+						$services->getLanguageFactory();
+					$languageConverterFactory =
+						$services->getLanguageConverterFactory();
+					// T303329: this should migrate out of extension data
+					$langCode = $this->getExtensionData( 'core:target-lang' )
+						// This is a temporary fallback while the ParserCache fills
+						?? $services->getContentLanguage()->getCode();
+					$langConv = $languageConverterFactory->getLanguageConverter(
+						$languageFactory->getLanguage( $langCode )
+					);
+					$variant = $this->getExtensionData( 'core:target-lang-variant' )
+						// This is a temporary fallback while the ParserCache fills
+						?? $langConv->getPreferredVariant();
+					$toc = $langConv->convertTo( $toc, $variant );
+				}
 
 				// XXX Use DI to inject this once ::getText() is moved out
 				// of ParserOutput.
