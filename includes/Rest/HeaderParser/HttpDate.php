@@ -56,12 +56,19 @@ class HttpDate extends HeaderParserBase {
 		'Sunday',
 	];
 
+	/** @var string */
 	private $dayName;
+	/** @var string */
 	private $day;
+	/** @var int */
 	private $month;
+	/** @var int */
 	private $year;
+	/** @var string */
 	private $hour;
+	/** @var string */
 	private $minute;
+	/** @var string */
 	private $second;
 
 	/**
@@ -201,7 +208,7 @@ class HttpDate extends HeaderParserBase {
 	 * @throws HeaderParserError
 	 */
 	private function consumeYear() {
-		$this->year = $this->consumeFixedDigits( 4 );
+		$this->year = (int)$this->consumeFixedDigits( 4 );
 	}
 
 	/**
@@ -242,8 +249,8 @@ class HttpDate extends HeaderParserBase {
 		$this->consumeString( '-' );
 		$year = $this->consumeFixedDigits( 2 );
 		// RFC 2626 section 11.2
-		$currentYear = gmdate( 'Y' );
-		$startOfCentury = round( $currentYear, -2 );
+		$currentYear = (int)gmdate( 'Y' );
+		$startOfCentury = (int)round( $currentYear, -2 );
 		$this->year = $startOfCentury + intval( $year );
 		$pivot = $currentYear + 50;
 		if ( $this->year > $pivot ) {
@@ -305,7 +312,7 @@ class HttpDate extends HeaderParserBase {
 	 * @return int
 	 */
 	private function getUnixTime() {
-		return gmmktime( $this->hour, $this->minute, $this->second,
-			$this->month, $this->day, $this->year );
+		return gmmktime( (int)$this->hour, (int)$this->minute, (int)$this->second,
+			$this->month, (int)$this->day, $this->year );
 	}
 }
