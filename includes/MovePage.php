@@ -503,7 +503,7 @@ class MovePage {
 	 *
 	 * @param Authority $performer
 	 * @param string|null $reason
-	 * @param bool|null $createRedirect Ignored if user doesn't have suppressredirect permission
+	 * @param bool $createRedirect Ignored if user doesn't have suppressredirect permission
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
 	 * @return Status
 	 */

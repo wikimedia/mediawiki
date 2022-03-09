@@ -321,7 +321,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * If there is a problem with the output path, it returns "client"
 	 * to do client side scaling.
 	 *
-	 * @param string $dstPath
+	 * @param string|null $dstPath
 	 * @param bool $checkDstPath Check that $dstPath is valid
 	 * @return string|callable One of client, im, custom, gd, imext, or a callable
 	 */

@@ -89,9 +89,9 @@ class RevisionSourceHandler extends SimpleHandler {
 	}
 
 	/**
-	 * @return string
+	 * @return string|null
 	 */
-	protected function getETag(): string {
+	protected function getETag(): ?string {
 		return $this->contentHelper->getETag();
 	}
 

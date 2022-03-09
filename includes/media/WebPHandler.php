@@ -283,7 +283,7 @@ class WebPHandler extends BitmapHandler {
 	/**
 	 * Must use "im" for XCF
 	 *
-	 * @param string $dstPath
+	 * @param string|null $dstPath
 	 * @param bool $checkDstPath
 	 * @return string
 	 */

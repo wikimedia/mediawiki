@@ -82,9 +82,9 @@ class EntryPoint {
 	}
 
 	/**
-	 * @return ?RequestInterface The RequestInterface object used by this entry point.
+	 * @return RequestInterface The RequestInterface object used by this entry point.
 	 */
-	public static function getMainRequest(): ?RequestInterface {
+	public static function getMainRequest(): RequestInterface {
 		if ( self::$mainRequest === null ) {
 			$conf = MediaWikiServices::getInstance()->getMainConfig();
 			self::$mainRequest = new RequestFromGlobals( [

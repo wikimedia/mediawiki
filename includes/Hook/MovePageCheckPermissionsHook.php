@@ -22,7 +22,7 @@ interface MovePageCheckPermissionsHook {
 	 * @param Title $oldTitle Current (old) location
 	 * @param Title $newTitle New location
 	 * @param User $user User making the move
-	 * @param string $reason Reason provided by the user
+	 * @param string|null $reason Reason provided by the user
 	 * @param Status $status Status object to pass error messages to
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

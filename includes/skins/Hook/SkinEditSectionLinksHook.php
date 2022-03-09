@@ -24,7 +24,7 @@ interface SkinEditSectionLinksHook {
 	 *   if the section is included from a template)
 	 * @param string $section Designation of the section being pointed to, to be included in
 	 *   the link, like "&section=$section"
-	 * @param string $tooltip Default tooltip. Escape before using.
+	 * @param string|null $tooltip Default tooltip. Escape before using.
 	 *   By default, this is wrapped in the 'editsectionhint' message.
 	 * @param array &$result Array containing all link detail arrays. Each link detail array should
 	 *   contain the following keys:

@@ -1432,7 +1432,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @param string|int $timestamp
 	 * @param int $limit Maximum number of rows to delete in total
 	 * @param int &$keysDeletedCount
-	 * @param null|array{fn:callback,serversDone:int,serversTotal:int} $progress
+	 * @param null|array{fn:?callback,serversDone:int,serversTotal:int} $progress
 	 * @throws DBError
 	 */
 	private function deleteServerObjectsExpiringBefore(

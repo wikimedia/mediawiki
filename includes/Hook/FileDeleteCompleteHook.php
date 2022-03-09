@@ -20,8 +20,8 @@ interface FileDeleteCompleteHook {
 	 * @since 1.35
 	 *
 	 * @param LocalFile $file Reference to the deleted file
-	 * @param string $oldimage In case of the deletion of an old image, the name of the old file
-	 * @param WikiFilePage $article In case all revisions of the file are deleted, a reference to
+	 * @param string|null $oldimage In case of the deletion of an old image, the name of the old file
+	 * @param WikiFilePage|null $article In case all revisions of the file are deleted, a reference to
 	 *   the WikiFilePage associated with the file
 	 * @param User $user User who performed the deletion
 	 * @param string $reason

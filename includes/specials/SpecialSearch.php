@@ -565,7 +565,7 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param Title|null $title
 	 * @param int $num The number of search results found
 	 * @param null|ISearchResultSet $titleMatches Results from title search
 	 * @param null|ISearchResultSet $textMatches Results from text search
