@@ -38,37 +38,61 @@ use Wikimedia\Rdbms\LoadBalancer;
  * @ingroup Maintenance
  */
 abstract class BackupDumper extends Maintenance {
+	/** @var bool */
 	public $reporting = true;
-	public $pages = null; // all pages
-	public $skipHeader = false; // don't output <mediawiki> and <siteinfo>
-	public $skipFooter = false; // don't output </mediawiki>
+	/** @var string[]|null null means all pages */
+	public $pages = null;
+	/** @var bool don't output <mediawiki> and <siteinfo> */
+	public $skipHeader = false;
+	/** @var bool don't output </mediawiki> */
+	public $skipFooter = false;
+	/** @var int */
 	public $startId = 0;
+	/** @var int */
 	public $endId = 0;
+	/** @var int */
 	public $revStartId = 0;
+	/** @var int */
 	public $revEndId = 0;
+	/** @var bool */
 	public $dumpUploads = false;
+	/** @var bool */
 	public $dumpUploadFileContents = false;
+	/** @var bool */
 	public $orderRevs = false;
+	/** @var array|null */
 	public $limitNamespaces = [];
-	/** @var bool|resource */
+	/** @var resource|false */
 	public $stderr;
 
+	/** @var int */
 	protected $reportingInterval = 100;
+	/** @var int */
 	protected $pageCount = 0;
+	/** @var int */
 	protected $revCount = 0;
-	protected $schemaVersion = null; // use default
-	protected $server = null; // use default
-	protected $sink = null; // Output filters
+	/** @var string|null null means use default */
+	protected $schemaVersion = null;
+	/** @var string|null null means use default */
+	protected $server = null;
+	/** @var DumpMultiWriter|DumpOutput|null Output filters */
+	protected $sink = null;
+	/** @var float */
 	protected $lastTime = 0;
+	/** @var int */
 	protected $pageCountLast = 0;
+	/** @var int */
 	protected $revCountLast = 0;
 
+	/** @var string[] */
 	protected $outputTypes = [];
+	/** @var string[] */
 	protected $filterTypes = [];
 
+	/** @var int */
 	protected $ID = 0;
 
-	/** @var int */
+	/** @var float */
 	protected $startTime;
 	/** @var int */
 	protected $pageCountPart;
@@ -76,7 +100,7 @@ abstract class BackupDumper extends Maintenance {
 	protected $revCountPart;
 	/** @var int */
 	protected $maxCount;
-	/** @var int */
+	/** @var float */
 	protected $timeOfCheckpoint;
 	/** @var ExportProgressFilter */
 	protected $egress;
