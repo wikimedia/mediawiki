@@ -525,6 +525,7 @@
 	"action-delete": "yn duillag shoh y scryssey",
 	"action-browsearchive": "duillagyn scrysst y ronsaghey",
 	"action-undelete": "yn duillag shoh y yee-scryssey",
+	"action-protect": "Coadee",
 	"nchanges": "$1 {{PLURAL:$1|caghlaa|chaghlaa|chaghlaa|caghlaaghyn}}",
 	"enhancedrc-history": "skeeal",
 	"recentchanges": "Caghlaaghyn s'noa",

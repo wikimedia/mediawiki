@@ -523,6 +523,7 @@
 	"action-delete": "и ччин алудун",
 	"action-deleterevision": "ччинин и жуьре алудун",
 	"action-undelete": "и ччин туькIуьр хъувун",
+	"action-protect": "Xуьн",
 	"nchanges": "$1 {{PLURAL:$1|1=масакIавал|масакIавилер}}",
 	"enhancedrc-history": "тарих",
 	"recentchanges": "Mукьвара хьайи масакӀавилер",

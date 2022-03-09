@@ -91,7 +91,10 @@
 			"وهراني",
 			"아라",
 			"Haajer",
-			"SaldırganSincap"
+			"SaldırganSincap",
+			"FiberAhmed",
+			"Hubaishan",
+			"NancyMilad"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -2150,7 +2153,7 @@
 	"notargettext": "لم تحدد الصفحة أو المستخدم المستهدف لعمل هذه الخاصية.",
 	"nopagetitle": "لا توجد صفحة هدف كهذه",
 	"nopagetext": "صفحة الهدف التي حددتها غير موجودة.",
-	"pager-newer-n": "{{PLURAL:$1|أجدد 1|أجدد $1}}",
+	"pager-newer-n": "{{PLURAL:$1|أحدث 1|أحدث $1}}",
 	"pager-older-n": "{{PLURAL:$1|أقدم 1|أقدم $1}}",
 	"suppress": "أوفرسايت",
 	"querypage-disabled": "تم تعطيل هذه الصفحة الخاصة لأسباب تتعلق بالأداء.",
@@ -3526,6 +3529,7 @@
 	"tags-source-extension": "معرف بواسطة البرنامج",
 	"tags-source-manual": "تم تطبيقه يدويا بواسطة المستخدمين والبوتات",
 	"tags-source-none": "لم يعد قيد الاستخدام",
+	"tags-hidden": "(مخفي)",
 	"tags-edit": "عدل",
 	"tags-delete": "احذف",
 	"tags-activate": "تنشيط",

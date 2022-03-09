@@ -354,6 +354,7 @@
 	"action-movefile": "Des Feil ziehe",
 	"action-upload": "Des Feil ufflaade",
 	"action-delete": "des Blatt zu verwische",
+	"action-protect": "Schitze",
 	"nchanges": "$1 {{PLURAL:$1|Ennering|Enneringe}}",
 	"recentchanges": "Was mer letscht geduh henn",
 	"recentchanges-label-minor": "Gleene Ennering",

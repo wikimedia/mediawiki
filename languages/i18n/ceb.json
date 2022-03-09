@@ -583,6 +583,7 @@
 	"action-browsearchive": "pangitaa ang napapas nga mga panid",
 	"action-undelete": "ayaaw papasa ang kining panid",
 	"action-suppressrevision": "i-rebyu ug ibalik ang kining nakatagong rebisyon",
+	"action-protect": "Protektahi",
 	"nchanges": "$1 {{PLURAL:$1|ka pag-usab|ka mga pag-usab}}",
 	"enhancedrc-history": "kaagi",
 	"recentchanges": "Mga bag-ong giusab",

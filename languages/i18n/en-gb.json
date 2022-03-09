@@ -42,7 +42,13 @@
 			"The Evil IP address",
 			"Usandaru555",
 			"Vogone",
-			"Xð"
+			"Xð",
+			"Akobire Amiyine",
+			"Kwame Ohenaku Darko",
+			"Nikki",
+			"Ohvet",
+			"TheSkull28870",
+			"Valentine Badu"
 		]
 	},
 	"tog-underline": "Link underlining:",
@@ -342,6 +348,9 @@
 	"search-unknown-profile": "Search profile of $1 is unrecognised, default search profile will be applied.",
 	"linter-pager-tidy-font-bug-details": "Font tag tries to change link colour",
 	"grant-group-customization": "Customisation and preferences",
+	"action-delete": "Twa mu",
+	"action-undelete": "Mpopa",
+	"action-protect": "Bɔ ho ban",
 	"recentchanges": "Recent changes",
 	"rcfilters-highlightmenu-title": "Select a colour",
 	"rcfilters-highlightmenu-help": "Select a colour to highlight this property",

@@ -716,7 +716,7 @@
 	"clearyourcache": "<strong>Merk:</strong> Etter publisering vil det kanskje være nødvendig å slette mellomlageret i nettleseren din for å se endringene.\n* <strong>Firefox / Safari:</strong> Hold <em>Shift</em> mens du klikker på <em>Oppdater</em>, eller trykk enten <em>Ctrl+F5</em> eller <em>Ctrl+R</em> (<em>⌘+R</em> på Mac)\n* <strong>Google Chrome:</strong> Trykk <em>Ctrl+Shift+R</em> (<em>⌘+Shift+R</em> på Mac)\n* <strong>Internet Explorer / Edge:</strong> Hold <em>Ctrl</em> mens du trykker på <em>Oppdater</em> eller trykk <em>Ctrl+F5</em>\n* <strong>Opera:</strong> Ttrykk <em>Ctrl+F5</em>.",
 	"usercssyoucanpreview": "<strong>Tips:</strong> Bruk «{{int:showpreview}}»-knappen for å teste din nye CSS før du publiserer.",
 	"userjsonyoucanpreview": "<strong>Hint:</strong> Bruk «{{int:showpreview}}»-knappen for å  teste din nye JSON før du publiserer.",
-	"userjsyoucanpreview": "<strong>Tips:</strong> Bruk «{{int:showpreview}}»-knappen for å teste ditt nye JS før du publiseres.",
+	"userjsyoucanpreview": "<strong>Tips:</strong> Bruk «{{int:showpreview}}»-knappen for å teste ditt nye JS før du publiserer.",
 	"usercsspreview": "<strong>Husk at dette bare er en forhåndsvisning av din bruker-CSS og at den ikke er lagret!</strong>",
 	"userjsonpreview": "<strong>Husk at du bare tester/forhåndsviser din bruker-JSON-konfigurering.\nDen har enda ikke blitt lagret!</strong>",
 	"userjspreview": "<strong>Husk at dette bare er en test eller forhåndsvisning av ditt bruker-JavaScript, og det ikke er lagret!</strong>",

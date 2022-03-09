@@ -616,6 +616,7 @@
 	"action-upload": "cargar este fexeiro",
 	"action-delete": "apagar esta páigina",
 	"action-deleterevision": "botar fuora rebisones",
+	"action-protect": "Porteger",
 	"action-purge": "recargar esta páigina",
 	"nchanges": "$1 {{PLURAL:$1|altaraçon|altaraçones}}",
 	"enhancedrc-history": "stórico",

@@ -415,6 +415,7 @@
 	"action-delete": "Ñamümün tüfachi pakina",
 	"action-browsearchive": "Kintun ñamün pakina",
 	"action-undelete": "wüñoeltun tapülh",
+	"action-protect": "Nürüfkünun",
 	"nchanges": "{{PLURAL:$1|kalekünuy|kalekünuy}} $1",
 	"enhancedrc-history": "tukulpan",
 	"recentchanges": "We kakünukan",

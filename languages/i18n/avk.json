@@ -861,6 +861,7 @@
 	"action-delete": "sulara va batu bu",
 	"action-deleterevision": "sulara va bat betaks",
 	"action-browsearchive": "aneyara va sulayanu bu",
+	"action-protect": "Nendara",
 	"action-siteadmin": "Elekara ok grielekara va origak",
 	"nchanges": "$1 {{PLURAL:$1|betaks|betaks}}",
 	"enhancedrc-history": "izvot",

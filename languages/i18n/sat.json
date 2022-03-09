@@ -781,6 +781,7 @@
 	"action-browsearchive": "ᱥᱮᱸᱫᱽᱨᱟᱭ ᱢᱮ ᱜᱮᱫ ᱟᱠᱟᱱᱟ ᱥᱟᱦᱴᱟᱠᱚ",
 	"action-undelete": "ᱵᱟᱝ ᱜᱮᱫᱟᱜ ᱥᱟᱦᱴᱟᱠᱚ",
 	"action-suppressrevision": "ᱧᱮᱞᱟᱹᱨᱩ ᱟᱨ ᱛᱷᱟᱯᱚᱱᱟᱹᱨᱩ ᱫᱟᱱᱟᱝ ᱧᱮᱞᱟᱹᱨᱩᱠᱚ",
+	"action-protect": "ᱨᱩᱠᱷᱤᱭᱟᱹᱭ ᱢᱮ",
 	"action-purge": "ᱥᱟᱦᱴᱟ ᱯᱷᱟᱸᱰᱜᱟᱨ ᱢᱮ",
 	"nchanges": "$1 {{PLURAL:$1|ᱟᱹᱨᱩ|ᱟᱹᱨᱩᱠᱚ}}",
 	"enhancedrc-history": "ᱱᱟᱜᱟᱢ",

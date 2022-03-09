@@ -499,6 +499,7 @@
 	"action-suppressrevision": "vir pi érfoaire chol version muchée",
 	"action-suppressionlog": "vir ech jornal privé",
 	"action-block": "blotcher l'écrivure éd chol uzeu-lo",
+	"action-protect": "Garantir",
 	"action-import": "téléquértcher chol pache à partir d’un eute wiki",
 	"action-importupload": "téléquértcher chol pache à partir d'un fichié",
 	"nchanges": "$1 {{PLURAL:$1|cange|canges}}",

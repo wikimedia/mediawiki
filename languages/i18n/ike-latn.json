@@ -141,6 +141,7 @@
 	"email": "kigutiup sitiniqpaanga",
 	"prefs-help-email": "kigutiup sitiniqpaanga (pikkallavuq) — qakugu nalunanngilaq ilissi pijungnaqtuq pigivaa kanngunaqtuq aajiiqatiginggiq",
 	"editinguser": "suqusiqpaa qatannguti '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+	"action-protect": "sapummivaa",
 	"recentchanges": "pigivuq asianngutuq",
 	"recentchangeslinked": "asiaNngutuq mitsaasijuq",
 	"recentchangeslinked-feed": "asiaNngutuq mitsaasijuq",

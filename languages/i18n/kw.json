@@ -591,6 +591,8 @@
 	"action-movefile": "gwaya an restren ma",
 	"action-upload": "ughkarga an restren ma",
 	"action-delete": "dilea an folen ma",
+	"action-undelete": "Disdhilea",
+	"action-protect": "Difres",
 	"nchanges": "$1 {{PLURAL:$1|chanj|chanj}}",
 	"enhancedrc-history": "istori",
 	"recentchanges": "Chanjyow a-dhiwedhes",

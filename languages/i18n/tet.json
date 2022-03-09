@@ -356,6 +356,7 @@
 	"action-move-subpages": "book pájina ne'e ho sub-pájina",
 	"action-delete": "halakon pájina ne'e",
 	"action-undelete": "restaurar pájina ne'e",
+	"action-protect": "Proteje",
 	"action-userrights": "edita priviléjiu uza-na'in hotu",
 	"action-userrights-interwiki": "edita priviléjiu uza-na'in iha wiki seluk sira",
 	"nchanges": "$1 {{PLURAL:$1|diferensa|diferensa}}",

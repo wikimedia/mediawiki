@@ -670,6 +670,8 @@
 	"action-upload": "tinyé njikota èdèa",
 	"action-reupload": "tinyé ihe ozor élu njikota èdèa",
 	"action-delete": "kàcha ihü nka",
+	"action-undelete": "Á gbàkashikwà",
+	"action-protect": "Chekwaa",
 	"nchanges": "$1 {{PLURAL:$1|gbanwere|gbanwere}}",
 	"enhancedrc-history": "ị̀ta",
 	"recentchanges": "Mgbanwe ọhụrụ",

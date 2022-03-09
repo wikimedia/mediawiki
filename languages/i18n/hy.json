@@ -981,6 +981,7 @@
 	"action-deletedhistory": "դիտել էջի ջնջված պատմությունը",
 	"action-browsearchive": "որոնել ջնջված էջեր",
 	"action-undelete": "վերականգնել էջեր",
+	"action-protect": "Պաշտպանել",
 	"action-rollback": "արագ հետ գլորել էջը վերջին անգամ խմբագրած մասնակցի կատարած փոփոխությունները",
 	"action-sendemail": "ուղարկել էլ. նամակ",
 	"action-editmyoptions": "խմբագրել ձեր նախասիրությունները",

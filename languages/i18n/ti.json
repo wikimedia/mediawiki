@@ -392,6 +392,7 @@
 	"action-movefile": "ነዚ ፋይል ከተንቀሳቕሶ",
 	"action-upload": "ነዚ ፋይል ክትጽዕኖ",
 	"action-delete": "ነዚ ገጽ ክትሰርዞ",
+	"action-protect": "ሓልው",
 	"nchanges": "$1 {{PLURAL:$1|ለውጢ|ለውጥታት}}",
 	"enhancedrc-history": "ታሪኽ",
 	"recentchanges": "ናይ ቀረባ ግዜ ለውጥታት",

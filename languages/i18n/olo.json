@@ -654,6 +654,8 @@
 	"action-move": "siirrä tämä sivu",
 	"action-move-subpages": "siirrä tämä sivu, da sen alisivut",
 	"action-movefile": "siirrä tämä failu",
+	"action-delete": "Ota iäre",
+	"action-protect": "Suojua",
 	"enhancedrc-history": "histourii",
 	"recentchanges": "Uvvet kohendukset",
 	"recentchanges-legend": "Tuorehien muutoksien azetukset",

@@ -639,6 +639,7 @@
 	"action-deleterevision": "effacer cette version",
 	"action-browsearchive": "charcher des pages effacées",
 	"action-undelete": "restaurer cette page",
+	"action-protect": "Protéger",
 	"action-sendemail": "envoyer des emails",
 	"nchanges": "$1 changement{{PLURAL:$1||s}}",
 	"enhancedrc-history": "changements",

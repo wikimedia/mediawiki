@@ -218,6 +218,8 @@
 	"saveprefs": "Toqqukkit",
 	"yourlanguage": "Oqaatsit:",
 	"group-sysop": "Administratorit",
+	"action-move": "Nuuguk",
+	"action-protect": "Illersoruk",
 	"recentchanges": "Allannguutit kingulliit",
 	"recentchanges-legend": "Inissisimaffiit allannguutini kingullerni",
 	"recentchanges-summary": "Uani quppernermi '''{{SITENAME}}'''-mi allannguutit kingulliit malinnaavigisinnaavatit.",

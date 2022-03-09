@@ -596,6 +596,7 @@
 	"action-undelete": "ܠܐ ܫܘܦ ܦܐܬܐ ܗܕܐ",
 	"action-suppressionlog": "ܚܙܝܬܐ ܕܗܢܐ ܣܓܠܐ ܦܪܨܘܦܝܐ",
 	"action-block": "ܚܪܡܬܐ ܕܡܦܠܚܢܐ ܗܢܐ ܡܢ ܫܚܠܦܬܐ",
+	"action-protect": "ܛܪ",
 	"action-mergehistory": "ܚܒܛܬܐ ܕܬܫܥܝܬܐ ܕܦܐܬܐ ܗܕܐ",
 	"action-userrights": "ܫܚܠܦܬܐ ܕܟܠ ܙܕ̈ܩܐ ܕܡܦܠܚܢܐ",
 	"nchanges": "$1 {{PLURAL:$1|ܫܘܚܠܦܐ|ܫܘܚܠܦ̈ܐ}}",

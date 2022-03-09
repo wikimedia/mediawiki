@@ -694,6 +694,7 @@
 	"action-deleterevision": "esborral esta revisión",
 	"action-browsearchive": "landeal páginas esborrás",
 	"action-undelete": "arrecuperal esta página",
+	"action-protect": "Protegel",
 	"nchanges": "$1 {{PLURAL:$1|cambiu|cambius}}",
 	"enhancedrc-history": "Estorial",
 	"recentchanges": "Últimus cambius",
