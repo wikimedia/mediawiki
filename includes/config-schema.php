@@ -2181,6 +2181,7 @@ return [
 				'rclimit' => 50,
 				'search-match-redirect' => true,
 				'search-special-page' => 'Search',
+				'searchlimit' => 20,
 				'showhiddencats' => 0,
 				'shownumberswatching' => 1,
 				'showrollbackconfirmation' => 0,
