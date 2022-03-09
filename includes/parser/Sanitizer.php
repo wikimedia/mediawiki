@@ -153,7 +153,7 @@ class Sanitizer {
 		global $wgAllowImageTag;
 		static $commonCase, $staticInitialised;
 		$isCommonCase = ( $extratags === [] && $removetags === [] );
-		if ( $staticInitialised === $wgAllowImageTag && $isCommonCase ) {
+		if ( $staticInitialised === $wgAllowImageTag && $isCommonCase && $commonCase ) {
 			return $commonCase;
 		}
 
