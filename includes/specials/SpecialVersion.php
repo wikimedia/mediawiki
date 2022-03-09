@@ -872,7 +872,7 @@ class SpecialVersion extends SpecialPage {
 			$licenseName = null;
 			if ( isset( $extension['license-name'] ) ) {
 				$licenseName = new HtmlArmor( $out->parseInlineAsInterface( $extension['license-name'] ) );
-			} elseif ( ExtensionInfo::getLicenseFileNames( $extensionPath ) ) {
+			} elseif ( $extensionPath !== null && ExtensionInfo::getLicenseFileNames( $extensionPath ) ) {
 				$licenseName = $this->msg( 'version-ext-license' )->text();
 			}
 			if ( $licenseName !== null ) {

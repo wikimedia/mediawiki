@@ -3157,7 +3157,7 @@ class OutputPage extends ContextSource {
 					$module = $rl->getModule( $name );
 					if ( $module ) {
 						$group = $module->getGroup();
-						if ( isset( $exemptGroups[$group] ) ) {
+						if ( $group !== null && isset( $exemptGroups[$group] ) ) {
 							// The `noscript` module is excluded from the client
 							// side registry, no need to set its state either.
 							// But we still output it. See T291735
