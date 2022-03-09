@@ -2575,4 +2575,30 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	/**
+	 * @covers Title::getArticleID
+	 * @covers Title::getId
+	 * @covers Title::getLength
+	 * @covers Title::getLatestRevID
+	 * @covers Title::exists
+	 * @covers Title::isNewPage
+	 * @covers Title::isRedirect
+	 * @covers Title::getTouched
+	 * @covers Title::getContentModel
+	 * @covers Title::getFieldFromPageStore
+	 */
+	public function testGetFieldsOfNonExistingPage() {
+		$title = Title::makeTitle( NS_MAIN, 'ThisDoesNotExist-92347852349' );
+
+		$this->assertSame( 0, $title->getArticleID() );
+		$this->assertSame( 0, $title->getId() );
+		$this->assertSame( 0, $title->getLength() );
+		$this->assertSame( 0, $title->getLatestRevID() );
+		$this->assertFalse( $title->exists() );
+		$this->assertFalse( $title->isNewPage() );
+		$this->assertFalse( $title->isRedirect() );
+		$this->assertFalse( $title->getTouched() );
+		$this->assertNotEmpty( $title->getContentModel() );
+	}
+
 }
