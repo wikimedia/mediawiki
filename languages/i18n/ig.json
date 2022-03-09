@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
+			"Chikapatience",
 			"DannyS712",
 			"Dolphyb",
 			"Oby Ezeilo",
+			"Pasjoesscc",
 			"Reedy",
 			"Saragold",
 			"Tochiprecious",
@@ -654,13 +656,13 @@
 	"action-edit": "mèzi ihu â",
 	"action-createpage": "ké ihü",
 	"action-createaccount": "mepụta akaụntụ onye ọrụ a",
-	"action-move": "papụ̀ ihuâ",
+	"action-move": "Wepụ ihu a",
 	"action-movefile": "puzié usòrò",
 	"action-upload": "tinyé njikota èdèa",
 	"action-reupload": "tinyé ihe ozor élu njikota èdèa",
-	"action-delete": "kàcha ihü nka",
-	"action-undelete": "Á gbàkashikwà",
-	"action-protect": "Chekwaa",
+	"action-delete": "hichaa ihu nke a",
+	"action-undelete": "Ehichala ihuga",
+	"action-protect": "Gbanwee nhazi nchekwaa ihu a",
 	"nchanges": "$1 {{PLURAL:$1|gbanwere|gbanwere}}",
 	"enhancedrc-history": "ị̀ta",
 	"recentchanges": "Mgbanwe ọhụrụ",
@@ -957,6 +959,7 @@
 	"undeletecomment": "Mgbághapụtà:",
 	"undelete-search-submit": "Tùwe",
 	"undelete-show-file-submit": "Eeh",
+	"undelete-back-to-list": "Hụ mmegharị niile e hichara ehicha",
 	"namespace": "Ahàm̀bara:",
 	"invert": "Tụgha ǹke ǹhọ̀rọ",
 	"tooltip-invert": "Kachie igbe a izocha mgbanwe Ihu-akwụkwọ ndị nnọ na aha-ebe ahọpụtara(yana aha-ebe jikọtara ya m'obụrụ na akachiri ya)",
@@ -1304,6 +1307,6 @@
 	"view-edit-local": "hazie nkọwa njirimara",
 	"skin-action-protect": "Chekwaa",
 	"skin-action-undelete": "Á gbàkashikwà",
-	"skin-action-delete": "Kàcha",
-	"skin-action-move": "Papụ̀"
+	"skin-action-delete": "Hichaa",
+	"skin-action-move": "Wepụ"
 }
