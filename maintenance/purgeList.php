@@ -37,7 +37,7 @@ class PurgeList extends Maintenance {
 	private $allNamespaces;
 	/** @var bool */
 	private $doDbTouch;
-	/** @var float */
+	/** @var int */
 	private $delay;
 
 	public function __construct() {
@@ -58,7 +58,7 @@ class PurgeList extends Maintenance {
 		$this->namespaceId = $this->getOption( 'namespace' );
 		$this->allNamespaces = $this->hasOption( 'all-namespaces' );
 		$this->doDbTouch = $this->hasOption( 'db-touch' );
-		$this->delay = floatval( $this->getOption( 'delay', '0' ) );
+		$this->delay = intval( $this->getOption( 'delay', '0' ) );
 
 		$conf = $this->getConfig();
 		if ( ( $this->namespaceId !== null || $this->allNamespaces )
@@ -163,7 +163,7 @@ class PurgeList extends Maintenance {
 					$this->output( $url . "\n" );
 				}
 				$hcu->purgeUrls( $url, $hcu::PURGE_NAIVE );
-				usleep( $this->delay * 1e6 );
+				sleep( $this->delay );
 			}
 		} else {
 			if ( $this->hasOption( 'verbose' ) ) {
