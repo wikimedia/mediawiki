@@ -47,7 +47,7 @@ use Status;
 use StatusValue;
 use User;
 use WebRequest;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\ScopedCallback;
 

@@ -22,7 +22,7 @@
 use MediaWiki\Logger\LoggerFactory;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\TestCase;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * Base class for unit tests.

@@ -21,7 +21,7 @@
  * @file
  */
 
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * When you have many workers (threads/servers) giving service, and a

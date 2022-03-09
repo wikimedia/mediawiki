@@ -5,7 +5,7 @@ namespace MediaWiki\HookContainer {
 	use MediaWikiUnitTestCase;
 	use Psr\Container\ContainerInterface;
 	use UnexpectedValueException;
-	use Wikimedia\ObjectFactory;
+	use Wikimedia\ObjectFactory\ObjectFactory;
 	use Wikimedia\ScopedCallback;
 
 	class HookContainerTest extends MediaWikiUnitTestCase {

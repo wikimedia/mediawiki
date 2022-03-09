@@ -36,7 +36,7 @@ use RollbackAction;
 use SpecialPageAction;
 use UnwatchAction;
 use WatchAction;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @since 1.37

@@ -3,7 +3,7 @@
 use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
 use Psr\Log\LogLevel;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @group ContentHandlerFactory
