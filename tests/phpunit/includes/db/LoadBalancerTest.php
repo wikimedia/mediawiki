@@ -660,18 +660,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
 	 */
-	public function testLazyDBConnRefWritesReplicaRoleIndex() {
-		$lb = $this->newMultiServerLocalLoadBalancer();
-
-		$rConn = $lb->getLazyConnectionRef( 1 );
-
-		$this->expectException( DBReadOnlyRoleError::class );
-		$rConn->query( 'DELETE FROM sometesttable WHERE 1=0' );
-	}
-
-	/**
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionRef()
-	 */
 	public function testDBConnRefWritesReplicaRoleInsert() {
 		$lb = $this->newMultiServerLocalLoadBalancer();
 
@@ -765,32 +753,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		// Make sure that no infinite loop occurs (T226678)
 		$rGeneric = $lb->getConnectionRef( DB_REPLICA );
 		$this->assertEquals( $lb->getWriterIndex(), $rGeneric->getLBInfo( 'serverIndex' ) );
-	}
-
-	/**
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::getLazyConnectionRef
-	 */
-	public function testGetLazyConnectionRef() {
-		$lb = $this->newMultiServerLocalLoadBalancer();
-
-		$rPrimary = $lb->getLazyConnectionRef( DB_PRIMARY );
-		$rReplica = $lb->getLazyConnectionRef( 1 );
-		$this->assertFalse( $lb->getAnyOpenConnection( 0 ) );
-		$this->assertFalse( $lb->getAnyOpenConnection( 1 ) );
-
-		$rPrimary->getType();
-		$rReplica->getType();
-		$rPrimary->getDomainID();
-		$rReplica->getDomainID();
-		$this->assertFalse( $lb->getAnyOpenConnection( 0 ) );
-		$this->assertFalse( $lb->getAnyOpenConnection( 1 ) );
-
-		$rPrimary->query( "SELECT 1", __METHOD__ );
-		$this->assertNotFalse( $lb->getAnyOpenConnection( 0 ) );
-
-		$rReplica->query( "SELECT 1", __METHOD__ );
-		$this->assertNotFalse( $lb->getAnyOpenConnection( 0 ) );
-		$this->assertNotFalse( $lb->getAnyOpenConnection( 1 ) );
 	}
 
 	/**
