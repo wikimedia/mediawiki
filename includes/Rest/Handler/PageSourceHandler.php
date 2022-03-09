@@ -94,9 +94,9 @@ class PageSourceHandler extends SimpleHandler {
 	 * Returns an ETag representing a page's source. The ETag assumes a page's source has changed
 	 * if the latest revision of a page has been made private, un-readable for another reason,
 	 * or a newer revision exists.
-	 * @return string
+	 * @return string|null
 	 */
-	protected function getETag(): string {
+	protected function getETag(): ?string {
 		return $this->contentHelper->getETag();
 	}
 

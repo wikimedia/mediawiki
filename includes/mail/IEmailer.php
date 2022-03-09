@@ -48,7 +48,7 @@ interface IEmailer {
 	 *     'contentType' string default 'text/plain; charset=UTF-8'
 	 *     'headers' array Extra headers to set
 	 *
-	 * @phan-param array{replyTo?:MailAddress,contentType?:string,headers?:array<string,string>} $options
+	 * @phan-param array{replyTo?:?MailAddress,contentType?:string,headers?:array<string,string>} $options
 	 *
 	 * @throws MWException
 	 * @throws Exception

@@ -272,7 +272,7 @@ class Parser {
 	private $mTplDomCache;
 
 	/**
-	 * @var UserIdentity
+	 * @var UserIdentity|null
 	 */
 	private $mUser;
 
@@ -4954,7 +4954,7 @@ class Parser {
 	 *     about the methods available in PPFrame and PPNode.
 	 *
 	 * @throws MWException
-	 * @return string|callable The old callback function for this name, if any
+	 * @return string|callable|null The old callback function for this name, if any
 	 * @since 1.6
 	 */
 	public function setFunctionHook( $id, callable $callback, $flags = 0 ) {

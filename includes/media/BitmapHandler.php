@@ -37,7 +37,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * for $dstPath and returns 'client' on error
 	 * @stable to override
 	 *
-	 * @param string $dstPath
+	 * @param string|null $dstPath
 	 * @param bool $checkDstPath
 	 * @return string|callable One of client, im, custom, gd, imext or an array( object, method )
 	 */

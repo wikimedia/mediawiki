@@ -484,7 +484,7 @@ class UploadStash {
 			// If not, assume that it should be related to the MIME type of the original file.
 			$magic = MediaWikiServices::getInstance()->getMimeAnalyzer();
 			$mimeType = $magic->guessMimeType( $path );
-			$extension = $magic->getExtensionFromMimeTypeOrNull( $mimeType );
+			$extension = $magic->getExtensionFromMimeTypeOrNull( $mimeType ) ?? '';
 		}
 
 		$extension = File::normalizeExtension( $extension );

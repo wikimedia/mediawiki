@@ -226,7 +226,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @throws MWException
 	 * @param User $user
 	 * @param IContextSource $context
-	 * @return array|null
+	 * @return array
 	 */
 	public function getFormDescriptor( User $user, IContextSource $context ) {
 		$preferences = [];

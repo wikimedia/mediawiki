@@ -122,7 +122,7 @@ class DumpFilter {
 	 * @return array
 	 */
 	public function getFilenames() {
-		return $this->sink->getFilenames();
+		return $this->sink->getFilenames() ?? [];
 	}
 
 	/**
