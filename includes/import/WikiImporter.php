@@ -663,7 +663,7 @@ class WikiImporter {
 	 * element.
 	 */
 	public function nodeAttribute( $attr ) {
-		return $this->reader->getAttribute( $attr );
+		return $this->reader->getAttribute( $attr ) ?? '';
 	}
 
 	/**

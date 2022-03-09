@@ -1924,7 +1924,7 @@ class Article implements Page {
 				&& !$this->mRedirectedFrom && !$this->getTitle()->isRedirect();
 			// Extension may have reason to disable file caching on some pages.
 			if ( $cacheable ) {
-				$cacheable = $this->getHookRunner()->onIsFileCacheable( $this );
+				$cacheable = $this->getHookRunner()->onIsFileCacheable( $this ) ?? false;
 			}
 		}
 
