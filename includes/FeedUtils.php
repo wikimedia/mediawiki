@@ -102,7 +102,7 @@ class FeedUtils {
 	 * @param Title $title
 	 * @param int $oldid Old revision's id
 	 * @param int $newid New revision's id
-	 * @param int $timestamp New revision's timestamp
+	 * @param string $timestamp New revision's timestamp
 	 * @param string $comment New revision's comment
 	 * @param string $actiontext Text of the action; in case of log event
 	 * @return string
@@ -123,7 +123,7 @@ class FeedUtils {
 	 * @param Title $title
 	 * @param int $oldid Old revision's id
 	 * @param int $newid New revision's id
-	 * @param int $timestamp New revision's timestamp
+	 * @param string $timestamp New revision's timestamp
 	 * @param string $formattedComment New revision's comment in HTML format
 	 * @param string $actiontext Text of the action; in case of log event
 	 * @return string

@@ -2209,7 +2209,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *
 	 * @param array $limit Set of restriction keys
 	 * @param array $expiry Per restriction type expiration
-	 * @param int &$cascade Set to false if cascading protection isn't allowed.
+	 * @param bool &$cascade Set to false if cascading protection isn't allowed.
 	 * @param string $reason
 	 * @param UserIdentity $user The user updating the restrictions
 	 * @param string|string[]|null $tags Change tags to add to the pages and protection log entries

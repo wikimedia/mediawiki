@@ -51,7 +51,7 @@ abstract class MediaTransformOutput {
 	/** @var bool|string */
 	protected $page;
 
-	/** @var bool|string Filesystem path to the thumb */
+	/** @var string|null|false Filesystem path to the thumb */
 	protected $path;
 
 	/** @var bool|string Language code, false if not set */

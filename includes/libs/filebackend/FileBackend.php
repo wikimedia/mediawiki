@@ -1671,7 +1671,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 *   - StatusValue::newGood() if this method is called without parameters
 	 *   - StatusValue::newFatal() with all parameters to this method if passed in
 	 *
-	 * @param string ...$args
+	 * @param mixed ...$args
 	 * @return StatusValue
 	 */
 	final protected function newStatus( ...$args ) {

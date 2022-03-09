@@ -126,7 +126,7 @@ class SessionManager implements SessionManagerInterface {
 	/** @var SessionId[] */
 	private $allSessionIds = [];
 
-	/** @var string[] */
+	/** @var true[] */
 	private $preventUsers = [];
 
 	/**

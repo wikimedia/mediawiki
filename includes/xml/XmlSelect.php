@@ -59,7 +59,7 @@ class XmlSelect {
 
 	/**
 	 * @param string $name
-	 * @param string $value
+	 * @param string|int $value
 	 */
 	public function setAttribute( $name, $value ) {
 		$this->attributes[$name] = $value;
@@ -67,7 +67,7 @@ class XmlSelect {
 
 	/**
 	 * @param string $name
-	 * @return string|null
+	 * @return string|int|null
 	 */
 	public function getAttribute( $name ) {
 		return $this->attributes[$name] ?? null;
@@ -75,7 +75,7 @@ class XmlSelect {
 
 	/**
 	 * @param string $label
-	 * @param string|false $value If not given, assumed equal to $label
+	 * @param string|int|false $value If not given, assumed equal to $label
 	 */
 	public function addOption( $label, $value = false ) {
 		$value = $value !== false ? $value : $label;
