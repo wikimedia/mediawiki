@@ -38,9 +38,11 @@ require_once __DIR__ . '/Maintenance.php';
  * @ingroup Maintenance
  */
 abstract class DumpIterator extends Maintenance {
+	/** @var int */
 	private $count = 0;
+	/** @var float */
 	private $startTime;
-	/** @var string|bool|null */
+	/** @var string|null|false */
 	private $from;
 
 	public function __construct() {

@@ -128,7 +128,7 @@ abstract class FileCacheBase {
 		$cachetime = $this->cacheTimestamp();
 		$good = ( $timestamp <= $cachetime && $cacheEpoch <= $cachetime );
 		wfDebug( __METHOD__ .
-			": cachetime $cachetime, touched '{$timestamp}' epoch {$cacheEpoch}, good $good" );
+			": cachetime $cachetime, touched '{$timestamp}' epoch {$cacheEpoch}, good " . wfBoolToStr( $good ) );
 
 		return $good;
 	}
