@@ -207,8 +207,10 @@ class DatabaseTestHelper extends Database {
 		return $this->lastError ? $this->lastError['error'] : 'test';
 	}
 
-	protected function wasKnownStatementRollbackError() {
-		return $this->lastError['wasKnownStatementRollbackError'] ?? false;
+	protected function isKnownStatementRollbackError( $errno ) {
+		return ( $this->lastError['errno'] ?? 0 ) === $errno
+			? ( $this->lastError['wasKnownStatementRollbackError'] ?? false )
+			: false;
 	}
 
 	public function fieldInfo( $table, $field ) {

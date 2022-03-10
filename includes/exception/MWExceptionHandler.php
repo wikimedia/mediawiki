@@ -133,7 +133,9 @@ class MWExceptionHandler {
 			// to rollback some databases due to connection issues or exceptions.
 			// However, any sensible DB driver will rollback implicitly anyway.
 			try {
-				$services->getDBLoadBalancerFactory()->rollbackPrimaryChanges( __METHOD__ );
+				$lbFactory = $services->getDBLoadBalancerFactory();
+				$lbFactory->rollbackPrimaryChanges( __METHOD__ );
+				$lbFactory->flushPrimarySessions( __METHOD__ );
 			} catch ( DBError $e2 ) {
 				// If the DB is unreachable, rollback() will throw an error
 				// and the error report() method might need messages from the DB,
