@@ -31,36 +31,43 @@ class FirejailCommandTest extends MediaWikiUnitTestCase {
 		$env = "'MW_INCLUDE_STDERR=;MW_CPU_LIMIT=180; MW_CGROUP='\'''\''; MW_MEM_LIMIT=307200; MW_FILE_SIZE_LIMIT=102400; MW_WALL_CLOCK_LIMIT=180; MW_USE_LOG_PIPE=yes'";
 		$limit = "/bin/bash '$IP/includes/shell/limit.sh'";
 		$profile = "--profile=$IP/includes/shell/firejail.profile";
-		$blacklist = '--blacklist=' . realpath( MW_CONFIG_FILE );
+		$blacklist = '--blacklist=LOCALSETTINGS';
 		$default = "$blacklist --noroot --seccomp --private-dev";
 		return [
 			[
 				'No restrictions',
-				'ls', 0, "$limit ''\''ls'\''' $env"
+				'ls',
+				0,
+				"$limit ''\''ls'\''' $env"
 			],
 			[
 				'default restriction',
-				'ls', Shell::RESTRICT_DEFAULT,
+				'ls',
+				Shell::RESTRICT_DEFAULT,
 				"$limit 'firejail --quiet $profile $default -- '\''ls'\''' $env"
 			],
 			[
 				'no network',
-				'ls', Shell::NO_NETWORK,
+				'ls',
+				Shell::NO_NETWORK,
 				"$limit 'firejail --quiet $profile --net=none -- '\''ls'\''' $env"
 			],
 			[
 				'default restriction & no network',
-				'ls', Shell::RESTRICT_DEFAULT | Shell::NO_NETWORK,
+				'ls',
+				Shell::RESTRICT_DEFAULT | Shell::NO_NETWORK,
 				"$limit 'firejail --quiet $profile $default --net=none -- '\''ls'\''' $env"
 			],
 			[
 				'seccomp',
-				'ls', Shell::SECCOMP,
+				'ls',
+				Shell::SECCOMP,
 				"$limit 'firejail --quiet $profile --seccomp -- '\''ls'\''' $env"
 			],
 			[
 				'seccomp & no execve',
-				'ls', Shell::SECCOMP | Shell::NO_EXECVE,
+				'ls',
+				Shell::SECCOMP | Shell::NO_EXECVE,
 				"$limit 'firejail --quiet $profile --shell=none --seccomp=execve -- '\''ls'\''' $env"
 			],
 		];
@@ -78,7 +85,11 @@ class FirejailCommandTest extends MediaWikiUnitTestCase {
 			->restrict( $flags );
 		$wrapper = TestingAccessWrapper::newFromObject( $command );
 		$output = $wrapper->buildFinalCommand( $wrapper->command );
-		$this->assertEquals( $expected, $output[0], $desc );
+		$this->assertEquals(
+			str_replace( 'LOCALSETTINGS', realpath( MW_CONFIG_FILE ), $expected ),
+			$output[0],
+			$desc
+		);
 	}
 
 	/**
