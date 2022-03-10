@@ -1754,8 +1754,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 *
 	 */
 	public function isBlockedFrom( $title, $fromReplica = false ) {
-		// TODO: remove the cast when PermissionManager accepts PageIdentity
-		$title = TitleValue::castPageToLinkTarget( $title );
 		return MediaWikiServices::getInstance()->getPermissionManager()
 			->isBlockedFrom( $this, $title, $fromReplica );
 	}
