@@ -3,7 +3,8 @@
  */
 ( function () {
 
-	var parsedMessages = require( './mediawiki.action.edit.preview.parsedMessages.json' );
+	var parsedMessages = require( './mediawiki.action.edit.preview.parsedMessages.json' ),
+		api = new mw.Api();
 
 	/**
 	 * Parse preview response
@@ -11,107 +12,11 @@
 	 * @ignore
 	 * @param {Object} response Response data
 	 */
-	function parsePreviewRequest( response ) {
-		var indicators, newList, $content, $parent, $list, arrow, $previewHeader, $wikiPreview, $editform;
+	function showPreviewNotes( response ) {
+		var arrow, $previewHeader, $editform;
 
 		$editform = $( '#editform' );
-		$wikiPreview = $( '#wikiPreview' );
 
-		if ( response.parse.jsconfigvars ) {
-			mw.config.set( response.parse.jsconfigvars );
-		}
-		if ( response.parse.modules ) {
-			mw.loader.load( response.parse.modules.concat(
-				response.parse.modulestyles
-			) );
-		}
-
-		// eslint-disable-next-line no-jquery/no-map-util
-		indicators = $.map( response.parse.indicators, function ( indicator, name ) {
-			return $( '<div>' )
-				.addClass( 'mw-indicator' )
-				.attr( 'id', mw.util.escapeIdForAttribute( 'mw-indicator-' + name ) )
-				.html( indicator )
-				.get( 0 );
-		} );
-		if ( indicators.length ) {
-			mw.hook( 'wikipage.indicators' ).fire( $( indicators ) );
-		}
-
-		// Add whitespace between the <div>s because
-		// they get displayed with display: inline-block
-		newList = [];
-		indicators.forEach( function ( indicator ) {
-			newList.push( indicator, document.createTextNode( '\n' ) );
-		} );
-
-		$( '.mw-indicators' ).empty().append( newList );
-
-		if ( response.parse.displaytitle ) {
-			$( '#firstHeadingTitle' ).html( response.parse.displaytitle );
-		}
-		if ( response.parse.categorieshtml ) {
-			$content = $( $.parseHTML( response.parse.categorieshtml ) );
-			mw.hook( 'wikipage.categories' ).fire( $content );
-			$( '.catlinks[data-mw="interface"]' ).replaceWith( $content );
-		}
-		if ( response.parse.templates ) {
-			newList = response.parse.templates.map( function ( template ) {
-				return $( '<li>' ).append(
-					$( '<a>' )
-						.addClass( template.exists ? '' : 'new' )
-						.attr( 'href', mw.util.getUrl( template.title ) )
-						.text( template.title )
-				);
-			} );
-
-			$parent = $( '.templatesUsed' );
-			if ( newList.length ) {
-				$list = $parent.find( 'ul' );
-				if ( $list.length ) {
-					$list.detach().empty();
-				} else {
-					$( '<div>' )
-						.addClass( 'mw-templatesUsedExplanation' )
-						.append( '<p>' )
-						.appendTo( $parent );
-					$list = $( '<ul>' );
-				}
-
-				// Add "Templates used in this preview" or replace
-				// "Templates used on this page" with it
-				$( '.mw-templatesUsedExplanation > p' )
-					.msg( 'templatesusedpreview', newList.length );
-
-				$list.append( newList ).appendTo( $parent );
-			} else {
-				$parent.empty();
-			}
-		}
-		if ( response.parse.limitreporthtml ) {
-			$( '.limitreport' ).html( response.parse.limitreporthtml )
-				.find( '.mw-collapsible' ).makeCollapsible();
-		}
-		if ( response.parse.langlinks && mw.config.get( 'skin' ) === 'vector' ) {
-			newList = response.parse.langlinks.map( function ( langlink ) {
-				var bcp47 = mw.language.bcp47( langlink.lang );
-				// eslint-disable-next-line mediawiki/class-doc
-				return $( '<li>' )
-					.addClass( 'interlanguage-link interwiki-' + langlink.lang )
-					.append( $( '<a>' )
-						.attr( {
-							href: langlink.url,
-							title: langlink.title + ' - ' + langlink.langname,
-							lang: bcp47,
-							hreflang: bcp47
-						} )
-						.text( langlink.autonym )
-					);
-			} );
-			$list = $( '#p-lang ul' );
-			$parent = $list.parent();
-			$list.detach().empty().append( newList ).prependTo( $parent );
-		}
 		arrow = $( document.body ).css( 'direction' ) === 'rtl' ? '←' : '→';
 		$previewHeader = $( '<div>' )
 			.addClass( 'previewnote' )
@@ -135,20 +40,7 @@
 			$previewHeader.find( '.warningbox' ).append( $( '<p>' ).append( warning ) );
 		} );
 
-		if ( response.parse.text ) {
-			$wikiPreview.find( '.previewnote' ).remove();
-			$content = $wikiPreview.children( '.mw-content-ltr,.mw-content-rtl' );
-			$content
-				.detach()
-				.html( response.parse.text );
-
-			mw.hook( 'wikipage.content' ).fire( $content );
-
-			// Reattach
-			$wikiPreview.append( $previewHeader ).append( $content );
-
-			$wikiPreview.show();
-		}
+		$( '#wikiPreview' ).prepend( $previewHeader );
 	}
 
 	/**
@@ -156,23 +48,14 @@
 	 * @param {jQuery.Event} e
 	 */
 	function doLivePreview( e ) {
-		var isDiff, api, parseRequest, diffRequest, postData, copySelectors, section, summary,
-			$wikiPreview, $wikiDiff, $editform, $textbox, $summaryWidget, $copyElements,
-			$spinner, $errorBox;
+		var isDiff, section, $editform, $textbox, preview, $wikiPreview;
 
+		preview = require( 'mediawiki.page.preview' );
 		isDiff = ( e.target.name === 'wpDiff' );
 		$wikiPreview = $( '#wikiPreview' );
-		$wikiDiff = $( '#wikiDiff' );
 		$editform = $( '#editform' );
 		$textbox = $editform.find( '#wpTextbox1' );
 
-		$summaryWidget = $( '#wpSummaryWidget' );
-		if ( $summaryWidget.length ) {
-			summary = OO.ui.infuse( $summaryWidget ).getValue();
-		}
-
-		$spinner = $( '.mw-spinner-preview' );
-		$errorBox = $( '.errorbox' );
 		section = $editform.find( '[name="wpSection"]' ).val();
 
 		if ( $textbox.length === 0 ) {
@@ -182,35 +65,20 @@
 		if ( isDiff && section === 'new' ) {
 			return;
 		}
+
 		e.preventDefault();
 
-		// Remove any previously displayed errors
-		$errorBox.remove();
-		// Show #wikiPreview if it's hidden to be able to scroll to it
-		// (if it is hidden, it's also empty, so nothing changes in the rendering)
+		// Not shown during normal preview, to be removed if present
+		$( '.mw-newarticletext, .errorbox' ).remove();
+
+		// Show #wikiPreview if it's hidden to be able to scroll to it.
+		// (If it is hidden, it's also empty, so nothing changes in the rendering.)
 		$wikiPreview.show();
 
 		// Jump to where the preview will appear
 		$wikiPreview[ 0 ].scrollIntoView();
 
-		copySelectors = [
-			// Main
-			'.mw-indicators',
-			'#firstHeading',
-			'#wikiPreview',
-			'#wikiDiff',
-			'#catlinks',
-			'#p-lang',
-			// Editing-related
-			'.templatesUsed',
-			'.limitreport',
-			'.mw-summary-preview'
-		];
-		$copyElements = $( copySelectors.join( ',' ) );
-
-		// Not shown during normal preview, to be removed if present
-		$( '.mw-newarticletext' ).remove();
-
+		var $spinner = $( '.mw-spinner-preview' );
 		if ( $spinner.length === 0 ) {
 			$spinner = $.createSpinner( {
 				size: 'large',
@@ -219,137 +87,22 @@
 				.addClass( 'mw-spinner-preview' )
 				.css( 'margin-top', '1em' );
 			$wikiPreview.before( $spinner );
-		} else {
-			$spinner.show();
 		}
 
-		$copyElements.addClass( [ 'mw-preview-copyelements', 'mw-preview-copyelements-loading' ] );
-
-		api = new mw.Api();
-		postData = {
-			formatversion: 2,
-			action: 'parse',
-			title: mw.config.get( 'wgPageName' ),
-			summary: summary,
-			prop: ''
-		};
-
-		if ( isDiff ) {
-			$wikiPreview.hide();
-
-			if ( postData.summary ) {
-				parseRequest = api.post( postData );
+		preview.doPreview( {
+			showDiff: isDiff,
+			spinnerNode: $spinner
+		} ).done( function ( response ) {
+			if ( !isDiff ) {
+				showPreviewNotes( response[ 0 ] );
 			}
-
-			var diffPar = {
-				action: 'compare',
-				fromtitle: mw.config.get( 'wgPageName' ),
-				totitle: mw.config.get( 'wgPageName' ),
-				toslots: 'main',
-				// Remove trailing whitespace for consistency with EditPage diffs.
-				// TODO trimEnd() when we can use that.
-				'totext-main': $textbox.textSelection( 'getContents' ).replace( /\s\s*$/, '' ),
-				'tocontentmodel-main': mw.config.get( 'wgPageContentModel' ),
-				topst: true,
-				slots: 'main',
-				uselang: mw.config.get( 'wgUserLanguage' )
-			};
-			if ( mw.config.get( 'wgUserVariant' ) ) {
-				diffPar.variant = mw.config.get( 'wgUserVariant' );
-			}
-			if ( section ) {
-				diffPar[ 'tosection-main' ] = section;
-			}
-			if ( mw.config.get( 'wgArticleId' ) === 0 ) {
-				diffPar.fromslots = 'main';
-				diffPar[ 'fromcontentmodel-main' ] = mw.config.get( 'wgPageContentModel' );
-				diffPar[ 'fromtext-main' ] = '';
-			}
-			diffRequest = api.post( diffPar );
-
-			// Wait for the summary before showing the diff so the page doesn't jump twice
-			$.when( diffRequest, parseRequest ).done( function ( response ) {
-				var diff = response[ 0 ].compare.bodies;
-
-				if ( diff.main ) {
-					$wikiDiff.find( 'table.diff tbody' ).html( diff.main );
-					mw.hook( 'wikipage.diff' ).fire( $wikiDiff.find( 'table.diff' ) );
-				} else {
-					// The diff is empty.
-					$wikiDiff.find( 'table.diff tbody' )
-						.empty()
-						.append(
-							$( '<tr>' ).append(
-								$( '<td>' )
-									.attr( 'colspan', 4 )
-									.addClass( 'diff-notice' )
-									.append(
-										$( '<div>' )
-											.addClass( 'mw-diff-empty' )
-											.text( mw.msg( 'diff-empty' ) )
-									)
-							)
-						);
-				}
-				$wikiDiff.show();
-			} );
-		} else {
-			$wikiDiff.hide();
-
-			$.extend( postData, {
-				prop: 'text|indicators|displaytitle|modules|jsconfigvars|categorieshtml|templates|langlinks|limitreporthtml|parsewarningshtml',
-				text: $textbox.textSelection( 'getContents' ),
-				pst: true,
-				preview: true,
-				sectionpreview: section !== '',
-				disableeditsection: true,
-				useskin: mw.config.get( 'skin' ),
-				uselang: mw.config.get( 'wgUserLanguage' )
-			} );
-			if ( mw.config.get( 'wgUserVariant' ) ) {
-				postData.variant = mw.config.get( 'wgUserVariant' );
-			}
-			if ( section === 'new' ) {
-				postData.section = 'new';
-				postData.sectiontitle = postData.summary;
-			}
-
-			parseRequest = api.post( postData );
-			parseRequest.done( function ( response ) {
-				parsePreviewRequest( response );
-			} );
-		}
-		$.when( parseRequest, diffRequest ).done( function ( parseResp ) {
-			var parse = parseResp && parseResp[ 0 ].parse,
-				isSubject = ( section === 'new' ),
-				$summaryPreview = $editform.find( '.mw-summary-preview' ).empty();
-			if ( parse && parse.parsedsummary ) {
-				$summaryPreview.append(
-					mw.message( isSubject ? 'subject-preview' : 'summary-preview' ).parse(),
-					' ',
-					$( '<span>' ).addClass( 'comment' ).html(
-						// There is no equivalent to rawParams
-						mw.message( 'parentheses' ).escaped()
-							// .replace() use $ as start of a pattern.
-							// $$ is the pattern for '$'.
-							// The inner .replace() duplicates any $ and
-							// the outer .replace() simplifies the $$.
-							.replace( '$1', parse.parsedsummary.replace( /\$/g, '$$$$' ) )
-					)
-				);
-			}
-			mw.hook( 'wikipage.editform' ).fire( $editform );
-		} ).always( function () {
-			$spinner.hide();
-			$copyElements.removeClass( 'mw-preview-copyelements-loading' );
 		} ).fail( function ( code, result ) {
 			// This just shows the error for whatever request failed first
-			var $errorMsg = api.getErrorMessage( result );
-			$errorBox = $( '<div>' )
-				.addClass( 'errorbox' )
-				.append( $( '<strong>' ).text( mw.msg( 'previewerrortext' ) ) )
-				.append( $errorMsg );
-			$wikiDiff.hide();
+			var $errorMsg = api.getErrorMessage( result ),
+				$errorBox = $( '<div>' )
+					.addClass( 'errorbox' )
+					.append( $( '<strong>' ).text( mw.msg( 'previewerrortext' ) ) )
+					.append( $errorMsg );
 			$wikiPreview.hide().before( $errorBox );
 		} );
 	}
