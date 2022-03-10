@@ -252,11 +252,13 @@ class ActionFactory {
 		$actionName = strtolower( $actionName );
 
 		$spec = $this->getActionSpec( $actionName );
-		if ( $spec === null || $spec === false ) {
-			// Either no such action exists (null) or the action is disabled (false)
+		if ( $spec === false ) {
+			// The action is disabled
 			return $spec;
 		}
 
+		// Check action overrides even for nonexistent actions, so that actions
+		// can exist just for a single content type. For Flow's convenience.
 		$overrides = $article->getActionOverrides();
 		if ( isset( $overrides[ $actionName ] ) ) {
 			// The Article class wants to override the action
@@ -265,6 +267,12 @@ class ActionFactory {
 				'Overriding normal handler for {actionName}',
 				[ 'actionName' => $actionName ]
 			);
+		}
+
+		if ( !$spec ) {
+			// Either no such action exists (null) or the action is disabled
+			// based on the article overrides (false)
+			return $spec;
 		}
 
 		if ( $spec === true ) {
@@ -367,10 +375,12 @@ class ActionFactory {
 	}
 
 	/**
+	 * @deprecated since 1.38
 	 * @param string $actionName
 	 * @return bool
 	 */
 	public function actionExists( string $actionName ): bool {
+		wfDeprecated( __METHOD__, '1.38' );
 		// Normalize to lowercase
 		$actionName = strtolower( $actionName );
 

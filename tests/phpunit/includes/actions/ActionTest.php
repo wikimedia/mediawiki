@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Permissions\PermissionManager;
@@ -134,12 +135,16 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 	 * @param string|null $expected
 	 */
 	public function testActionExists( string $requestedAction, $expected ) {
+		$this->hideDeprecated( ActionFactory::class . '::actionExists' );
+		$this->hideDeprecated( Action::class . '::exists' );
 		$exists = Action::exists( $requestedAction );
 
 		$this->assertSame( $expected !== null, $exists );
 	}
 
 	public function testActionExists_doesNotRequireInstantiation() {
+		$this->hideDeprecated( ActionFactory::class . '::actionExists' );
+		$this->hideDeprecated( Action::class . '::exists' );
 		// The method is not supposed to check if the action can be instantiated.
 		$exists = Action::exists( 'declared' );
 
@@ -234,6 +239,8 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testDisabledAction_exists() {
+		$this->hideDeprecated( ActionFactory::class . '::actionExists' );
+		$this->hideDeprecated( Action::class . '::exists' );
 		$exists = Action::exists( 'disabled' );
 
 		$this->assertTrue( $exists );

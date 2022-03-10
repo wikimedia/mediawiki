@@ -113,12 +113,15 @@ abstract class Action implements MessageLocalizer {
 
 	/**
 	 * Check if a given action is recognised, even if it's disabled
+	 *
 	 * @since 1.17
+	 * @deprecated since 1.38 use (bool)ActionFactory::getAction()
 	 *
 	 * @param string $name Name of an action
 	 * @return bool
 	 */
 	final public static function exists( string $name ): bool {
+		wfDeprecated( __METHOD__, '1.38' );
 		return MediaWikiServices::getInstance()
 			->getActionFactory()
 			->actionExists( $name );

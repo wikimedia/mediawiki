@@ -108,6 +108,23 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 	/**
 	 * @covers ::getAction
 	 */
+	public function testGetAction_overrideNonexistent() {
+		$context = $this->createMock( IContextSource::class );
+		$factory = $this->getFactory( [] );
+		$theOverrideAction = $this->createMock( Action::class );
+		$article = $this->getArticle( [
+			'the-override' => $theOverrideAction,
+		] );
+		$this->assertSame(
+			$theOverrideAction,
+			$factory->getAction( 'the-override', $article, $context ),
+			'Article::getActionOverrides can override non-existent actions'
+		);
+	}
+
+	/**
+	 * @covers ::getAction
+	 */
 	public function testGetAction_missingClass() {
 		// Make sure nothing explodes from a class missing, instead its treated as
 		// disabled, both for actions set to true and where the class comes from the
@@ -312,6 +329,7 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 	 * @covers ::actionExists
 	 */
 	public function testActionExists() {
+		$this->hideDeprecated( ActionFactory::class . '::actionExists' );
 		$factory = $this->getFactory( [
 			'actions' => [
 				'extra' => true
