@@ -157,5 +157,126 @@
 				}
 			} );
 		} );
+
+		var base = window.location.pathname.split( '/mw-config' )[ 0 ];
+		function getLogoPath( src ) {
+			return src.replace( '$wgResourceBasePath', base );
+		}
+
+		var nodes = {
+			sidebar: 'config__Logo1x',
+			icon: 'config__LogoIcon',
+			wordmark: 'config__LogoWordmark',
+			tagline: 'config__LogoTagline'
+		};
+
+		// setup live preview of logos
+		function getLogoData() {
+			var data = {};
+			Object.keys( nodes ).forEach( function ( key ) {
+				var input = document.getElementById( nodes[ key ] );
+				if ( input ) {
+					data[ key ] = getLogoPath( input.value );
+				}
+			} );
+			return data;
+		}
+
+		/**
+		 * Render the logo based on the current input field values.
+		 *
+		 * @param {jQuery} $preview
+		 */
+		function renderLogo( $preview ) {
+			var data = getLogoData();
+			var $sidebar = $( '<div>' );
+			$sidebar.addClass( 'sidebar' );
+			var sidebarLogo = data.sidebar || data.icon;
+			if ( sidebarLogo ) {
+				$( '<img>' ).attr( 'src', sidebarLogo )
+					.addClass( 'logo-sidebar' ).appendTo( $sidebar );
+
+				var $menu = $( '<ul>' ).append(
+					$( '<li>' ).append(
+						$( '<a>' ).attr( 'href', '#' )
+							.text( $preview.data( 'main-page' ) )
+					)
+				);
+				var $nav = $( '<nav>' );
+				$nav.append( $menu );
+				$nav.appendTo( $sidebar );
+			}
+			var $main = $( '<div>' ).addClass( 'logo-main' );
+			if ( data.icon ) {
+				$( '<img>' ).attr( 'src', data.icon )
+					.addClass( 'logo-icon' ).appendTo( $main );
+			}
+			var $container = $( '<div>' ).appendTo( $main );
+
+			var fallback = {
+				wordmark: $( '[name=config_LogoSiteName]' ).val()
+			};
+			[ 'wordmark', 'tagline' ].forEach( function ( key ) {
+				var src = data[ key ];
+				var $el = src ?
+					$( '<img>' ).attr( 'src', src ) :
+					$( '<div>' ).text( fallback[ key ] );
+
+				// The following classes are used here:
+				// * logo-wordmark
+				// * logo-tagline
+				$el.addClass( 'logo-' + key ).appendTo( $container );
+			} );
+			$preview.empty();
+			$preview.append( $sidebar );
+			$preview.append( $main );
+		}
+
+		/**
+		 * Adds file droppers
+		 *
+		 * @param {jQuery} $preview
+		 * @param {string} tooltip
+		 */
+		function addDroppers( $preview, tooltip ) {
+			Object.keys( nodes ).forEach( function ( key ) {
+				var dropper = document.createElement( 'div' );
+				var input = document.getElementById( nodes[ key ] );
+				dropper.textContent = tooltip;
+				input.parentNode.insertBefore( dropper, input.nextSibling );
+				dropper.classList.add( 'logo-dropper' );
+				dropper.addEventListener( 'dragover', function ( ev ) {
+					ev.preventDefault();
+				} );
+				dropper.addEventListener( 'drop', function ( ev ) {
+					// Prevent default behavior (Prevent file from being opened)
+					ev.preventDefault();
+					var d = this;
+					var item = ev.dataTransfer.items[ 0 ];
+					// Only allow images.
+					if ( item && item.type.indexOf( 'image/' ) === 0 ) {
+						var blob = item.getAsFile();
+						var reader = new FileReader();
+						reader.readAsDataURL( blob );
+						reader.onloadend = function () {
+							var base64data = reader.result;
+							d.previousSibling.value = base64data;
+							renderLogo( $preview );
+						};
+					}
+				} );
+			} );
+		}
+
+		// setup preview area to respond to changes.
+		var $pOptions = $( '.config-personalization-options' );
+		if ( $pOptions.length ) {
+			var $previewArea = $pOptions.find( '.logo-preview-area' );
+			$pOptions.find( ' input' ).on( 'input', function () {
+				renderLogo( $previewArea );
+			} );
+			addDroppers( $previewArea, $previewArea.data( 'filedrop' ) );
+			renderLogo( $previewArea );
+		}
 	} );
 }() );

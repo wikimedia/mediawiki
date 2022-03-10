@@ -261,12 +261,12 @@ CSS
 	 * @covers ResourceLoaderSkinModule::getAvailableLogos
 	 */
 	public function testGetAvailableLogosRuntimeException() {
-		$this->expectException( \RuntimeException::class );
-		ResourceLoaderSkinModule::getAvailableLogos( new HashConfig( [
+		$logos = ResourceLoaderSkinModule::getAvailableLogos( new HashConfig( [
 			'Logo' => false,
 			'Logos' => false,
 			'LogoHD' => false,
 		] ) );
+		$this->assertSame( [], $logos );
 	}
 
 	/**

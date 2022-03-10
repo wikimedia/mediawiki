@@ -230,8 +230,15 @@ abstract class Installer {
 		'_MemCachedServers' => '',
 		'_UpgradeKeySupplied' => false,
 		'_ExistingDBSettings' => false,
+		'_LogoWordmark' => '',
+		'_LogoWordmarkWidth' => 119,
+		'_LogoWordmarkHeight' => 18,
 		// Single quotes are intentional, LocalSettingsGenerator must output this unescaped.
-		'_Logo' => '$wgResourceBasePath/resources/assets/wiki.png',
+		'_Logo1x' => '$wgResourceBasePath/resources/assets/wiki.png',
+		'_LogoIcon' => '$wgResourceBasePath/resources/assets/wiki.png',
+		'_LogoTagline' => '',
+		'_LogoTaglineWidth' => 117,
+		'_LogoTaglineHeight' => 13,
 
 		'wgAuthenticationTokenVersion' => 1,
 	];

@@ -41,10 +41,58 @@ class WebInstallerOptions extends WebInstallerPage {
 		$this->addSkinOptions();
 		$this->addExtensionOptions();
 		$this->addFileOptions();
+		$this->addPersonalizationOptions();
 		$this->addAdvancedOptions();
 		$this->endForm();
 
 		return null;
+	}
+
+	private function addPersonalizationOptions() {
+		$parent = $this->parent;
+		$this->addHTML(
+			$this->getFieldsetStart( 'config-personalization-settings' ) .
+			Html::rawElement( 'div', [
+				'class' => 'config-drag-drop'
+			], wfMessage( 'config-logo-summary' )->parse() ) .
+			Html::openElement( 'div', [
+				'class' => 'config-personalization-options'
+			] ) .
+			Html::hidden( 'config_LogoSiteName', $this->getVar( 'wgSitename' ) ) .
+			$parent->getTextBox( [
+				'var' => '_LogoIcon',
+				// Single quotes are intentional, LocalSettingsGenerator must output this unescaped.
+				'value' => '$wgResourceBasePath/resources/assets/wiki.png',
+				'label' => 'config-logo-icon',
+				'attribs' => [ 'dir' => 'ltr' ],
+				'help' => $parent->getHelpBox( 'config-logo-icon-help' )
+			] ) .
+			$parent->getTextBox( [
+				'var' => '_LogoWordmark',
+				'label' => 'config-logo-wordmark',
+				'attribs' => [ 'dir' => 'ltr' ],
+				'help' => $parent->getHelpBox( 'config-logo-wordmark-help' )
+			] ) .
+			$parent->getTextBox( [
+				'var' => '_LogoTagline',
+				'label' => 'config-logo-tagline',
+				'attribs' => [ 'dir' => 'ltr' ],
+				'help' => $parent->getHelpBox( 'config-logo-tagline-help' )
+			] ) .
+			$parent->getTextBox( [
+				'var' => '_Logo1x',
+				'label' => 'config-logo-sidebar',
+				'attribs' => [ 'dir' => 'ltr' ],
+				'help' => $parent->getHelpBox( 'config-logo-sidebar-help' )
+			] ) .
+			Html::openElement( 'div', [
+				'class' => 'logo-preview-area',
+				'data-main-page' => wfMessage( 'config-logo-preview-main' ),
+				'data-filedrop' => wfMessage( 'config-logo-filedrop' )
+			] ) .
+			Html::closeElement( 'div' ) .
+			Html::closeElement( 'div' )
+		);
 	}
 
 	/**
@@ -308,13 +356,7 @@ class WebInstallerOptions extends WebInstallerPage {
 				'attribs' => [ 'dir' => 'ltr' ],
 				'help' => $this->parent->getHelpBox( 'config-upload-deleted-help' )
 			] ) .
-			'</div>' .
-			$this->parent->getTextBox( [
-				'var' => '_Logo',
-				'label' => 'config-logo',
-				'attribs' => [ 'dir' => 'ltr' ],
-				'help' => $this->parent->getHelpBox( 'config-logo-help' )
-			] )
+			'</div>'
 		);
 		$this->addHTML(
 			$this->parent->getCheckBox( [
@@ -522,7 +564,8 @@ class WebInstallerOptions extends WebInstallerPage {
 	 */
 	public function submit() {
 		$this->parent->setVarsFromRequest( [ '_RightsProfile', '_LicenseCode',
-			'wgEnableEmail', 'wgPasswordSender', 'wgEnableUploads', '_Logo',
+			'wgEnableEmail', 'wgPasswordSender', 'wgEnableUploads',
+			'_Logo1x', '_LogoWordmark', '_LogoTagline', '_LogoIcon',
 			'wgEnableUserEmail', 'wgEnotifUserTalk', 'wgEnotifWatchlist',
 			'wgEmailAuthentication', '_MainCacheType', '_MemCachedServers',
 			'wgUseInstantCommons', 'wgDefaultSkin' ] );
@@ -532,13 +575,6 @@ class WebInstallerOptions extends WebInstallerPage {
 		if ( !array_key_exists( $this->getVar( '_RightsProfile' ), $this->parent->rightsProfiles ) ) {
 			reset( $this->parent->rightsProfiles );
 			$this->setVar( '_RightsProfile', key( $this->parent->rightsProfiles ) );
-		}
-
-		// If this is empty, either the default got lost internally
-		// or the user blanked it
-		if ( strval( $this->getVar( '_Logo' ) ) === '' ) {
-			$this->parent->showError( 'config-install-logo-blank' );
-			$retVal = false;
 		}
 
 		$code = $this->getVar( '_LicenseCode' );
