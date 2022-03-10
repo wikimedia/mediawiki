@@ -1440,7 +1440,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			$this->mBlock = null;
 			$this->mBlockedby = '';
 			$this->mBlockreason = '';
-			$this->mHideName = 0;
+			$this->mHideName = false;
 		}
 	}
 

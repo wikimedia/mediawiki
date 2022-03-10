@@ -224,7 +224,7 @@ class WatchAction extends FormAction {
 
 			// If the expiry label isn't one of the predefined ones in the dropdown, calculate 'x days'.
 			$expiryDays = WatchedItem::calculateExpiryInDays( $expiry );
-			$defaultLabels = static::getExpiryOptions( $this->getContext(), null )['options'];
+			$defaultLabels = static::getExpiryOptions( $this->getContext(), false )['options'];
 			$localizedExpiry = array_search( $submittedExpiry, $defaultLabels );
 			$expiryLabel = $expiryDays && $localizedExpiry === false
 				? $this->getContext()->msg( 'days', $expiryDays )->text()

@@ -555,7 +555,7 @@ class CategoryViewer extends ContextSource {
 			} else {
 				// If the nextPage variable is null, it means that we have reached the first page
 				// and therefore the previous link should be disabled.
-				return $this->pagingLinks( null, $this->until[$type], $type );
+				return $this->pagingLinks( '', $this->until[$type], $type );
 			}
 		} elseif ( $this->nextPage[$type] !== null || isset( $this->from[$type] ) ) {
 			return $this->pagingLinks( $this->from[$type], $this->nextPage[$type], $type );

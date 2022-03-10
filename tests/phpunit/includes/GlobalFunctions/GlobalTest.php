@@ -32,7 +32,7 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testWfArrayDiff2( $a, $b, $expected ) {
 		$this->assertEquals(
-			wfArrayDiff2( $a, $b ), $expected
+			$expected, wfArrayDiff2( $a, $b )
 		);
 	}
 

@@ -193,7 +193,7 @@ class Xml {
 		return self::label( wfMessage( 'year' )->text(), 'year' ) . ' ' .
 			Html::input( 'year', $encYear, 'number', $inputAttribs ) . ' ' .
 			self::label( wfMessage( 'month' )->text(), 'month' ) . ' ' .
-			self::monthSelector( $encMonth, -1 );
+			self::monthSelector( $encMonth, '-1' );
 	}
 
 	/**

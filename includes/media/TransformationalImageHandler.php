@@ -639,7 +639,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 
 		if ( $srcWidth * $srcHeight > $maxImageArea
 			&& !( $file->getMimeType() == 'image/jpeg'
-				&& $this->getScalerType( false, false ) == 'im' )
+				&& $this->getScalerType( null, false ) == 'im' )
 		) {
 			# Only ImageMagick can efficiently downsize jpg images without loading
 			# the entire file in memory

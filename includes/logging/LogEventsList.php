@@ -643,7 +643,7 @@ class LogEventsList extends ContextSource {
 			$types,
 			$user,
 			$page,
-			'',
+			false,
 			$conds,
 			false,
 			false,
