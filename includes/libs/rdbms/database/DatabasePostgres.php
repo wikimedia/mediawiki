@@ -265,10 +265,12 @@ class DatabasePostgres extends Database {
 
 	public function lastErrno() {
 		if ( $this->lastResultHandle ) {
-			return pg_result_error_field( $this->lastResultHandle, PGSQL_DIAG_SQLSTATE );
-		} else {
-			return false;
+			$lastErrno = pg_result_error_field( $this->lastResultHandle, PGSQL_DIAG_SQLSTATE );
+			if ( $lastErrno !== false ) {
+				return (int)$lastErrno;
+			}
 		}
+		return 0;
 	}
 
 	protected function fetchAffectedRowCount() {
@@ -407,7 +409,7 @@ __INDEXATTR__;
 			")'";
 		$res = $this->query( $sql, $fname, $flags );
 		if ( !$res ) {
-			return null;
+			return false;
 		}
 
 		return $res->numRows() > 0;
