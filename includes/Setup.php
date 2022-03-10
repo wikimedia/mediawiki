@@ -298,7 +298,7 @@ if ( $wgLogos !== false && isset( $wgLogos['1x'] ) ) {
 	$wgLogo = $wgLogos['1x'];
 }
 if ( $wgLogo === false ) {
-	$wgLogo = "$wgResourceBasePath/resources/assets/wiki.png";
+	$wgLogo = "$wgResourceBasePath/resources/assets/change-your-logo.svg";
 }
 
 if ( $wgUploadPath === false ) {

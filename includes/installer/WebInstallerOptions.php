@@ -62,7 +62,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			$parent->getTextBox( [
 				'var' => '_LogoIcon',
 				// Single quotes are intentional, LocalSettingsGenerator must output this unescaped.
-				'value' => '$wgResourceBasePath/resources/assets/wiki.png',
+				'value' => '$wgResourceBasePath/resources/assets/change-your-logo.svg',
 				'label' => 'config-logo-icon',
 				'attribs' => [ 'dir' => 'ltr' ],
 				'help' => $parent->getHelpBox( 'config-logo-icon-help' )

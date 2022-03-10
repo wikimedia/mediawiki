@@ -234,8 +234,8 @@ abstract class Installer {
 		'_LogoWordmarkWidth' => 119,
 		'_LogoWordmarkHeight' => 18,
 		// Single quotes are intentional, LocalSettingsGenerator must output this unescaped.
-		'_Logo1x' => '$wgResourceBasePath/resources/assets/wiki.png',
-		'_LogoIcon' => '$wgResourceBasePath/resources/assets/wiki.png',
+		'_Logo1x' => '$wgResourceBasePath/resources/assets/change-your-logo-icon.svg',
+		'_LogoIcon' => '$wgResourceBasePath/resources/assets/change-your-logo.svg',
 		'_LogoTagline' => '',
 		'_LogoTaglineWidth' => 117,
 		'_LogoTaglineHeight' => 13,

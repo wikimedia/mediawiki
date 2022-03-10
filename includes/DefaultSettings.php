@@ -316,7 +316,7 @@ $wgFileCacheDirectory = false;
 
 /**
  * The URL path of the wiki logo. The logo size should be 135x135 pixels.
- * Defaults to "$wgResourceBasePath/resources/assets/wiki.png".
+ * Defaults to "$wgResourceBasePath/resources/assets/change-your-logo.svg".
  * Developers should retrieve this logo (and other variants) using
  *   the static function ResourceLoaderSkinModule::getAvailableLogos
  * Ignored if $wgLogos is set.
@@ -369,7 +369,7 @@ $wgLogo = false;
  * @endcode
  *
  * Defaults to [ "1x" => $wgLogo ],
- *   or [ "1x" => "$wgResourceBasePath/resources/assets/wiki.png" ] if $wgLogo is not set.
+ *   or [ "1x" => "$wgResourceBasePath/resources/assets/change-your-logo.svg" ] if $wgLogo is not set.
  * @since 1.35
  * @var array|false
  */
