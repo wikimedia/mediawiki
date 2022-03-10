@@ -88,24 +88,26 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 	/**
 	 * @param string $key
 	 * @param float|int $value
-	 * @return void
+	 * @return array
 	 */
 	public function set( $key, $value ) {
 		if ( !$this->enabled ) {
-			return;
+			return [];
 		}
 		$this->buffer[] = [ $key, $value, StatsdDataInterface::STATSD_METRIC_SET ];
+		return [];
 	}
 
 	/**
 	 * @param string $key
-	 * @return void
+	 * @return array
 	 */
 	public function increment( $key ) {
 		if ( !$this->enabled ) {
-			return;
+			return [];
 		}
 		$this->buffer[] = [ $key, 1, StatsdDataInterface::STATSD_METRIC_COUNT ];
+		return [];
 	}
 
 	/**
