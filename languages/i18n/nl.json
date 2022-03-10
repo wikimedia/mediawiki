@@ -445,6 +445,7 @@
 	"querypage-no-updates": "Deze pagina wordt niet bijgewerkt.\nGegevens op deze pagina worden niet ververst.",
 	"querypage-updates-periodical": "Gegevens op deze pagina worden periodiek bijgewerkt.",
 	"viewsource": "Brontekst bekijken",
+	"action-viewsource": "Brontekst bekijken",
 	"viewsource-title": "Brontekst bekijken van $1",
 	"actionthrottled": "Handeling tegengehouden",
 	"actionthrottledtext": "Als maatregel tegen misbruik is het aantal keren dat u in korte tijd deze handeling kunt verrichten beperkt.\nProbeer het over enkele minuten opnieuw.",
