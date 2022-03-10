@@ -99,7 +99,7 @@
 	"tog-watchdeletion": "Lisää poistamani sivut ja tiedostot tarkkailulistalleni",
 	"tog-watchuploads": "Lisää lataamani uudet tiedostot tarkkailulistalleni",
 	"tog-watchrollback": "Lisää tarkkailulistalleni ne sivut, joissa olen käyttänyt palautus-toimintoa.",
-	"tog-minordefault": "Merkitse kaikki muutokset oletuksena pieniksi muutoksiksi",
+	"tog-minordefault": "Merkitse kaikki muutokset oletuksena pieniksi",
 	"tog-previewontop": "Näytä esikatselu ennen muokkauskenttää",
 	"tog-previewonfirst": "Näytä esikatselu heti, kun muokkaus aloitetaan",
 	"tog-enotifwatchlistpages": "Lähetä sähköpostiviesti tarkkailulistallani olevien sivujen muokkauksista",

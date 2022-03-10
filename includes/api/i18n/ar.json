@@ -133,6 +133,7 @@
 	"apihelp-delete-param-pageid": "معرف الصفحة للحذف. لا يمكن أن يُستخدَم جنبا إلى جنب مع <var>$1pageid</var",
 	"apihelp-delete-param-reason": "سبب الحذف. إذا لم يُحدَّد، سوف تُستخدَم أحد الأسباب التي تنشأ تلقائيا.",
 	"apihelp-delete-param-tags": "تغيير وسوم لتطبيق الإدخال في سجل الحذف.",
+	"apihelp-delete-param-deletetalk": "احذف صفحة النقاش، إذا وُجدت.",
 	"apihelp-delete-param-watch": "أضف الصفحة إلى لائحة مراقبة المستعمل الحالي",
 	"apihelp-delete-param-watchlist": "إضافة أو إزالة الصفحة من قائمة مراقبة المستخدم الحالي أو استخدام التفضيلات أو عدم تغيير المراقبة بدون شروط.",
 	"apihelp-delete-param-unwatch": "إزالة الصفحة من قائمة المراقبة للمستخدم الحالي.",
