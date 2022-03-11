@@ -68,6 +68,8 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 				$configOverrides,
 				[
 					'AddGroups' => [],
+					'AutoConfirmAge' => 0,
+					'AutoConfirmCount' => 0,
 					'Autopromote' => [
 						'autoconfirmed' => [ APCOND_EDITCOUNT, 0 ]
 					],
@@ -608,16 +610,22 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 
 	public function provideGetUserAutopromoteEditCount() {
 		yield 'Successfull promote' => [
-			5, true, 10, [ 'test_autoconfirmed' ]
+			[ APCOND_EDITCOUNT, 5 ], true, 10, [ 'test_autoconfirmed' ]
 		];
 		yield 'Required edit count negative' => [
-			-1, false, 10, [ 'test_autoconfirmed' ]
+			[ APCOND_EDITCOUNT, -1 ], true, 10, [ 'test_autoconfirmed' ]
+		];
+		yield 'No edit count, use AutoConfirmCount = 11' => [
+			[ APCOND_EDITCOUNT ], true, 10, []
+		];
+		yield 'Null edit count, use AutoConfirmCount = 11' => [
+			[ APCOND_EDITCOUNT, null ], true, 13, [ 'test_autoconfirmed' ]
 		];
 		yield 'Anon' => [
-			5, false, 100, []
+			[ APCOND_EDITCOUNT, 5 ], false, 100, []
 		];
 		yield 'Not enough edits' => [
-			100, true, 10, []
+			[ APCOND_EDITCOUNT, 100 ], true, 10, []
 		];
 	}
 
@@ -627,7 +635,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\User\UserGroupManager::checkCondition
 	 */
 	public function testGetUserAutopromoteEditCount(
-		int $requiredCount,
+		array $requiredCond,
 		bool $userRegistered,
 		int $userEditCount,
 		array $expected
@@ -638,8 +646,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		);
 		if ( $userRegistered ) {
 			$user = $this->getTestUser()->getUser();
-			$userEditTrackerMock->expects( $this->once() )
-				->method( 'getUserEditCount' )
+			$userEditTrackerMock->method( 'getUserEditCount' )
 				->with( $user )
 				->willReturn( $userEditCount );
 		} else {
@@ -649,7 +656,8 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		}
 		$manager = $this->getManager(
 			[
-				'Autopromote' => [ 'test_autoconfirmed' => [ APCOND_EDITCOUNT, $requiredCount ] ]
+				'AutoConfirmCount' => 11,
+				'Autopromote' => [ 'test_autoconfirmed' => $requiredCond ]
 			],
 			$userEditTrackerMock
 		);
@@ -658,10 +666,18 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 
 	public function provideGetUserAutopromoteAge() {
 		yield 'Successfull promote' => [
-			1000, MWTimestamp::convert( TS_MW, time() - 1000000 ), [ 'test_autoconfirmed' ]
+			[ APCOND_AGE, 1000 ],
+			MWTimestamp::convert( TS_MW, time() - 1000000 ),
+			[ 'test_autoconfirmed' ]
 		];
 		yield 'Not old enough' => [
-			10000000, MWTimestamp::now(), []
+			[ APCOND_AGE, 10000000 ], MWTimestamp::now(), []
+		];
+		yield 'Not old enough, using AutoConfirmAge via unset' => [
+			[ APCOND_AGE ], MWTimestamp::now(), []
+		];
+		yield 'Not old enough, using AutoConfirmAge via null' => [
+			[ APCOND_AGE, null ], MWTimestamp::now(), []
 		];
 	}
 
@@ -669,35 +685,46 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetUserAutopromoteAge
 	 * @covers \MediaWiki\User\UserGroupManager::getUserAutopromoteGroups
 	 * @covers \MediaWiki\User\UserGroupManager::checkCondition
-	 * @param int $requiredAge
+	 * @param array $requiredCondition
 	 * @param string $registrationTs
 	 * @param array $expected
 	 */
 	public function testGetUserAutopromoteAge(
-		int $requiredAge,
+		array $requiredCondition,
 		string $registrationTs,
 		array $expected
 	) {
 		$manager = $this->getManager( [
-			'Autopromote' => [ 'test_autoconfirmed' => [ APCOND_AGE, $requiredAge ] ]
+			'AutoConfirmAge' => 10000000,
+			'Autopromote' => [ 'test_autoconfirmed' => $requiredCondition ]
 		] );
 		$user = $this->createNoOpMock( User::class, [ 'getRegistration' ] );
-		$user->expects( $this->once() )
-			->method( 'getRegistration' )
+		$user->method( 'getRegistration' )
 			->willReturn( $registrationTs );
 		$this->assertArrayEquals( $expected, $manager->getUserAutopromoteGroups( $user ) );
 	}
 
+	public function provideGetUserAutopromoteEditAge() {
+		yield 'Successfull promote' => [
+			[ APCOND_AGE_FROM_EDIT, 1000 ],
+			MWTimestamp::convert( TS_MW, time() - 1000000 ),
+			[ 'test_autoconfirmed' ]
+		];
+		yield 'Not old enough' => [
+			[ APCOND_AGE_FROM_EDIT, 10000000 ], MWTimestamp::now(), []
+		];
+	}
+
 	/**
-	 * @dataProvider provideGetUserAutopromoteAge
+	 * @dataProvider provideGetUserAutopromoteEditAge
 	 * @covers \MediaWiki\User\UserGroupManager::getUserAutopromoteGroups
 	 * @covers \MediaWiki\User\UserGroupManager::checkCondition
-	 * @param int $requiredAge
+	 * @param array $requiredCondition
 	 * @param string $firstEditTs
 	 * @param array $expected
 	 */
 	public function testGetUserAutopromoteEditAge(
-		int $requiredAge,
+		array $requiredCondition,
 		string $firstEditTs,
 		array $expected
 	) {
@@ -708,7 +735,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			->with( $user )
 			->willReturn( $firstEditTs );
 		$manager = $this->getManager( [
-			'Autopromote' => [ 'test_autoconfirmed' => [ APCOND_AGE_FROM_EDIT, $requiredAge ] ]
+			'Autopromote' => [ 'test_autoconfirmed' => $requiredCondition ]
 		], $mockUserEditTracker );
 		$this->assertArrayEquals( $expected, $manager->getUserAutopromoteGroups( $user ) );
 	}
