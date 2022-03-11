@@ -165,7 +165,7 @@ class ImportReporter extends ContextSource {
 
 			// Create the import log entry
 			$logEntry = new ManualLogEntry( 'import', $action );
-			$logEntry->setTarget( TitleValue::castPageToLinkTarget( $pageIdentity ) );
+			$logEntry->setTarget( $pageIdentity );
 			$logEntry->setComment( $this->reason );
 			$logEntry->setPerformer( $this->getUser() );
 			$logEntry->setParameters( $logParams );
