@@ -59,7 +59,7 @@ class RevisionOutputCache {
 	/**
 	 * Expiry time for cache entries.
 	 *
-	 * @var string
+	 * @var int
 	 */
 	private $cacheExpiry;
 
