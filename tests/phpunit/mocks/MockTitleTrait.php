@@ -25,8 +25,12 @@ trait MockTitleTrait {
 	 * @return Title|MockObject
 	 */
 	private function makeMockTitle( $text, array $props = [] ) {
-		$id = $props['id'] ?? ++$this->pageIdCounter;
 		$ns = $props['namespace'] ?? 0;
+		if ( $ns < 0 ) {
+			$id = 0;
+		} else {
+			$id = $props['id'] ?? ++$this->pageIdCounter;
+		}
 		$nsName = $ns ? "ns$ns:" : '';
 
 		$preText = $text;
