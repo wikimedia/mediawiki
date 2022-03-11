@@ -1142,10 +1142,9 @@ class OutputPage extends ContextSource {
 			$query['redirect'] = 'no';
 		}
 
-		$target = TitleValue::castPageToLinkTarget( $page );
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		return wfMessage( 'backlinksubtitle' )
-			->rawParams( $linkRenderer->makeLink( $target, null, [], $query ) );
+			->rawParams( $linkRenderer->makeLink( $page, null, [], $query ) );
 	}
 
 	/**
