@@ -4437,7 +4437,6 @@
 	"config-missing-key": "Missing MediaWiki configuration parameter \"$1\"",
 	"config-invalid-key": "Invalid MediaWiki configuration parameter \"$1\": $2",
 	"changeslist-nocomment": "No edit summary",
-	"view-view-foreign": "View on $1",
 	"view-create-local": "Add local description",
 	"nstab-mainpage": "Main Page",
 	"view-edit-local": "Edit local description",
