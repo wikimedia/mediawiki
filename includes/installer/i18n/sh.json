@@ -185,7 +185,6 @@
 	"config-upload-enable": "Omogući postavljanje datoteka",
 	"config-upload-deleted": "Folder za obrisane datoteke:",
 	"config-upload-deleted-help": "Odaberite u kojem folderu će se arhivirati izbrisane datoteke.\nNajbolje bi bilo ako taj nije dostupan putem svemrežja.",
-	"config-logo": "URL za logotipa:",
 	"config-instantcommons": "Omogući Instant Commons",
 	"config-cc-again": "Odaberite ponovo...",
 	"config-cc-not-chosen": "Odaberite željenu licencu Creative Commons i kliknite na „proceed”.",

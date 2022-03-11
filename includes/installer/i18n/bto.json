@@ -43,7 +43,6 @@
 	"config-profile-private": "Pribadong wiki",
 	"config-license-pd": "Pampublikong Domain",
 	"config-email-sender": "Pabalik na email adres:",
-	"config-logo": "URL ko logo:",
 	"config-cc-again": "Pumili dayday...",
 	"config-install-step-done": "tapus na",
 	"config-install-user-alreadyexists": "Agko na ka user na \"$1\"",

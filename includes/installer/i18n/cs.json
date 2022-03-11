@@ -223,8 +223,6 @@
 	"config-upload-help": "Načítání souborů potenciálně vystavuje váš server bezpečnostním rizikům.\nVíce informací naleznete v [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security části o bezpečnosti] v příručce.\n\nPro umožnění načítání souborů změňte práva na podadresáři <code>images</code> pod kořenovým adresářem MediaWiki, aby do něj mohl webový server zapisovat.\nPoté zapněte tuto volbu.",
 	"config-upload-deleted": "Adresář pro smazané soubory:",
 	"config-upload-deleted-help": "Zvolte adresář, do kterého se mají archivovat smazané soubory.\nTento adresář by ideálně neměl být dostupný z webu.",
-	"config-logo": "URL loga:",
-	"config-logo-help": "Základní vzhled MediaWiki zahrnuje místo pro logo o velikosti 135×160 pixelů nad bočním menu.\nNačtěte obrázek odpovídající velikosti a zadejte sem jeho URL.\n\nPokud je vaše logo umístěno relativně vůči <code>$wgStylePath</code> nebo <code>$wgScriptPath</code>, můžete zde tyto proměnné použít.\n\nPokud logo nechcete, ponechte toto pole prázdné.",
 	"config-instantcommons": "Zapnout Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] je funkce, která umožňuje wiki používat obrázky, zvuky a další mediální soubory ze serveru [https://commons.wikimedia.org/wiki/Hlavn%C3%AD_strana Wikimedia Commons].\nAby to bylo možné, potřebuje mít MediaWiki přístup k internetu.\n\nVíce informací o této funkci, včetně instrukcí, jak ji nastavit pro jiné wiki než Wikimedia Commons, najdete v [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos příručce].",
 	"config-cc-error": "Volič licence Creative Commons nevrátil žádný výsledek.\nZadejte název licence ručně.",

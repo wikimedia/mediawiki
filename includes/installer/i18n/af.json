@@ -101,7 +101,6 @@
 	"config-upload-settings": "Oplaai van beelde en lêer",
 	"config-upload-enable": "Aktiveer die oplaai van lêers",
 	"config-upload-deleted": "Gids vir verwyderde lêers:",
-	"config-logo": "URL vir logo:",
 	"config-cc-again": "Kies weer...",
 	"config-advanced-settings": "Gevorderde konfigurasie",
 	"config-memcached-servers": "Memcached-bedieners:",

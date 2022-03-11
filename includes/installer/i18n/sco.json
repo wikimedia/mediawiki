@@ -203,8 +203,6 @@
 	"config-upload-help": "File uplaids potentiallie expose yer server til securitie risks.\nFer mair information, read the [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security securitie section] in the manual.\n\nTae enable file uplaids, chynge the mode oan the <code>eemages</code> subdirecterie unner MediaWiki's ruit directerie sae that the wab server can write til it.\nThan enable this optie.",
 	"config-upload-deleted": "Directerie fer delytit files:",
 	"config-upload-deleted-help": "Chuise ae directerie tae archive delytit files in.\nIdeally, this shidna be accessible fae the wab.",
-	"config-logo": "Logo URL:",
-	"config-logo-help": "MediaWiki's defaut skin inclædes space fer ae 135x160 pixel logo abuin the sidebaur menu.\nUplaid aen eemage o the appropriate size, n enter the URL here.\n\nYe can uise <code>$wgStylePath</code> or <code>$wgScriptPath</code> gif yer logo is relative til thae paths.\n\nGif ye dinna want ae logo, lea this kist blank.",
 	"config-instantcommons": "Enable Instant Commyns",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/InstantCommons Instant Commons] is a featur that allaes wikis tae uise images, soonds an ither media foond on the [https://commons.wikimedia.org/ Wikimedia Commons] steid.\nIn order tae dae this, MediaWiki requires access tae the Internet.\n\nFor mair information on this featur, includin instructions on hou tae set it up for wikis ither nir the Wikimedia Commons, consult [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos the manual].",
 	"config-cc-error": "The Creative Commyns license chuiser gae naw result.\nEnter the license name manually.",

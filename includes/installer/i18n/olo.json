@@ -45,7 +45,6 @@
 	"config-optional-continue": "Kyzy minuspäi ližiä kyzymyksii.",
 	"config-optional-skip": "Olen jo terstavunnuh, vaiku azenda wiki.",
 	"config-email-settings": "Sähköpoštuazetukset",
-	"config-logo": "Logon URL:",
 	"config-skins": "Sivun ulgonävöt",
 	"config-install-step-done": "ruattu",
 	"config-install-user-alreadyexists": "Käyttäi \"$1\" on jo olemas",

@@ -210,8 +210,6 @@
 	"config-upload-help": "Файлды тейәргә рөхсәт итеү серверҙың хәүефһеҙлегенә янай. Өҫтәмә мәғлүмәт алыу өсөн Ҡулланманың [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security хәүефһеҙлек бүлеген] уҡығыҙ.",
 	"config-upload-deleted": "Юйылған файлдарға директория",
 	"config-upload-deleted-help": "Юйылған файлдар архивы һаҡланасаҡ  каталогты һайлағыҙ.\nИң шәп осраҡта, интернет селтәренән был каталогҡа инеү рөхсәте булырға тейеш түгел.",
-	"config-logo": "Логотип URL-ы :",
-	"config-logo-help": "MediaWiki стантарт биҙәү темаһының ситтәге панелендә 135x160 пикселдән торған логотип урынлаштырыла. Шул ҙурлыҡтағы рәсемде тейәгеҙ, һәм  URL адресын яҙығыҙ.\nЛогитип сағыштырмаса ошо юлдарҙа ятһа, <code>$wgStylePath</code> йәки <code>$wgScriptPath</code> кодын файҙалана алаһығыҙ.\nӘгәр логотип кәрәк булмаһа, был урында буш ҡалдырығыҙ.",
 	"config-instantcommons": "Instant Commons-ты тоҡандырырға",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] — Викимилектәге рәсем, тауыш һәм башҡа медиафайлдарҙы файҙаланыу функцияһы  ([https://commons.wikimedia.org/ Wikimedia Commons]).\nMediaWiki функцияһы менән эшләү өсөн интернетҡа инеү мөмкинлеге кәрәк.\n\nInstant Commons тураһында өҫтәмә мәғлүмәтте, һәм башҡа көйләүҙәрҙе [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos Ҡулланмала] табырға була.",
 	"config-cc-error": "Creative Commons лицензияһын һайлау механизмы нәтижә бирмәне.\nЛицензия исемен ҡулдан яҙығыҙ.",

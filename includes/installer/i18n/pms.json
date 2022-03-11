@@ -202,8 +202,6 @@
 	"config-upload-help": "Carié d'archivi potensialment a espon sò servent a d'arzigh ëd sicurëssa.\nPer pi d'anformassion, ch'a lesa la [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security session ëd sicurëssa] d'ës manual.\n\nPër abilité ël cariament d'archivi, ch'a modìfica la manera dël sot-dossié dle <code>figure</code> sota al dossié rèis ëd MediaWiki an manera che ël servent dl'aragnà a peussa scrivlo.\nPeui ch'a abìlita costa opsion.",
 	"config-upload-deleted": "Dossié për j'archivi scancelà:",
 	"config-upload-deleted-help": "ch'a serna un dossié andova goerné j'archivi scancelà.\nIdealment, sòn a dovrìa pa esse acessìbil an sl'aragnà.",
-	"config-logo": "Anliura dla marca:",
-	"config-logo-help": "La pel dë stàndard ëd MediaWiki a comprend lë spassi për na marca ëd 135x160 pontin dzora la lista dla bara lateral.\nCh'a dëscaria na figura ëd la dimension aproprià, e ch'a anserissa l'anliura ambelessì.\n\nS'a veul gnun-e marche, ch'a lassa ës camp bianch.",
 	"config-instantcommons": "Abìlita Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/InstantCommons Instant Commons] a l'é na funsion ch'a përmët a le wiki ëd dovré dle figure, dij son e d'àutri mojen trovà an sël sit [https://commons.wikimedia.org/ Wikimedia Commons].\nPër dovré sossì, MediaWiki a l'ha da manca dl'acess a la ragnà.\n\nPër pi d'anformassion su sta funsion, comprèise j'istrussion ëd com ampostela për wiki diferente da Wikimedia Commons, ch'a consulta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos ël manual].",
 	"config-cc-error": "La selession ëd la licensa Creative Commons a l'ha dàit gnun arzultà.\nCh'a anserissa ël nòm dla licensa a man.",

@@ -211,7 +211,6 @@
 	"config-upload-help": "La carga de ficheros potencialmente espón el sirvidor a riesgos de seguridá.\nPa más información, consulta la [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security sección de seguridá] del manual.\n\nP'activar la carga de ficheros, cambia'l mou del subdireutoriu <code>images</code> baxo'l direutoriu raiz de MediaWiki pa que'l sirvidor web pueda escribir nél.\nDarréu, activa esta opción.",
 	"config-upload-deleted": "Direutoriu pa los ficheros desaniciaos:",
 	"config-upload-deleted-help": "Escueyi un direutoriu nel que archivar los ficheros desaniciaos.\nLo ideal ye que nun tenga accesu dende la web.",
-	"config-logo": "URL del logo:",
 	"config-instantcommons": "Activar Instant Commons",
 	"config-advanced-settings": "Configuración avanzada",
 	"config-extensions": "Estensiones",

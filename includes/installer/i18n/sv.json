@@ -217,8 +217,6 @@
 	"config-upload-help": "Filuppladdning utsätter potentiellt din server för säkerhetsrisker.\nFör mer information, Läs  [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security säkerhetsavsnittet] i manualen.\n\nFör att aktivera filuppladdning, ändra läget för <code>images</code>-underkatalogen under rotkatalogen för MediaWiki så att webbservern kan skriva till den.\nAktivera sedan detta alternativ.",
 	"config-upload-deleted": "Katalog för raderade filer:",
 	"config-upload-deleted-help": "Välja en katalog i vilken raderade filer arkiveras.\nHelst bör denna inte vara tillgängliga från webben.",
-	"config-logo": "Logotyp-URL:",
-	"config-logo-help": "MediaWikis standardutseende innehåller ett mellanrum för en 135x160 bildpunkter stor logotyp ovanför sidofältsmenyn.\nLadda upp en bild med lämplig storlek och ange webbadressen här.\n\nDu kan använda <code>$wgStylePath</code> eller <code>$wgScriptPath</code> om din logotyp är relativ till dessa sökvägar.\n\nOm du inte vill ha en logotyp kan du lämna detta fält tomt.",
 	"config-instantcommons": "Aktivera Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] är en funktion som gör det möjligt för wikier att använda bilder, ljud och andra media som finns på [https://commons.wikimedia.org/ Wikimedia Commons]-webbplatsen.\nFör att göra detta, kräver MediaWiki tillgång till Internet.\n\nFör mer information om denna funktion, inklusive instruktioner om hur man ställer in den för andra wikier än Wikimedia Commons, se [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manualen].",
 	"config-cc-error": "Creative Commons-licens-väljaren gav inget resultat.\nAnge licensnamnet manuellt.",

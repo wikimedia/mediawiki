@@ -155,7 +155,6 @@
 	"config-upload-enable": "Omogoči nalaganje datotek",
 	"config-upload-deleted": "Mapa za izbrisane datoteke:",
 	"config-upload-deleted-help": "Izberite mapo za arhiviranje izbrisanih datotek.\nNajboljše je, da mapa ni dostopna na spletu.",
-	"config-logo": "URL logotipa:",
 	"config-cc-error": "Izbirnik dovoljenja Creative Commons ni vrnil nobenih rezultatov.\nVnesite ime dovoljenja ročno.",
 	"config-cc-again": "Izberite znova ...",
 	"config-cc-not-chosen": "Izberite licenco Creative Commons, ki jo želite uporabiti, in kliknite »proceed«.",

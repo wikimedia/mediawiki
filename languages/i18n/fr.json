@@ -3979,6 +3979,8 @@
 	"searchsuggest-containing": "Rechercher les pages contenant",
 	"search-match-redirect-label": "Rediriger vers les correspondances exactes lors des recherches",
 	"search-match-redirect-help": "Sélectionner afin d’être redirigé vers une page lorsque le titre de la page trouvé correspond exactement à ce que vous cherchez.",
+	"searchlimit-label": "Nombre de résultats de recherche à afficher sur chaque page :",
+	"searchlimit-help": "Nombre maximal : 500",
 	"api-clientside-error-noconnect": "Impossible de se connecter au serveur. Assurez-vous d’avoir une connexion internet opérationnelle et essayez à nouveau.",
 	"api-clientside-error-http": "Le serveur a renvoyé l’erreur : HTTP $1.",
 	"api-clientside-error-timeout": "Le serveur n’a pas répondu dans le délai imparti.",

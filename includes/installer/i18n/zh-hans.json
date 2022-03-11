@@ -246,8 +246,6 @@
 	"config-upload-help": "文件上传可能会将您的服务器暴露在安全风险下。\n有关更多的信息，请参阅手册的[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security 安全部分]。\n\n要启用文件上传，请先将MediaWiki根目录下的<code>images</code>子目录更改为对web服务器可写，然后再启用此选项。",
 	"config-upload-deleted": "已删除文件的目录：",
 	"config-upload-deleted-help": "指定用于存放被删除文件的目录。\n理想情况下，该目录不应能通过web访问。",
-	"config-logo": "标志URL：",
-	"config-logo-help": "在MediaWiki的默认外观中，左侧栏菜单之上有一块135x160像素的标志区。请上传一幅相应大小的图像，并在此输入URL。\n\n您可以用<code>$wgStylePath</code>或<code>$wgScriptPath</code>来表示相对于这些位置的路径。\n\n如果您不希望使用标志，请将本处留空。",
 	"config-instantcommons": "启用即时共享资源",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons 即时共享资源]可以让wiki使用来自[https://commons.wikimedia.org/ 维基共享资源]网站的图像、音频和其他媒体文件。\n要启用该功能，MediaWiki必须能够访问互联网。\n\n有关此功能的详细信息，包括如何将资源来源设为非维基共享资源的wiki，请参考[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos 手册]。",
 	"config-cc-error": "知识共享许可证选择器无法找到结果。\n请手动输入许可证的名称。",

@@ -3707,6 +3707,8 @@
 	"searchsuggest-containing": "Søk etter sider som inneholder",
 	"search-match-redirect-label": "Omdiriger til nøyaktig treff når man søker",
 	"search-match-redirect-help": "Velg denne for å bli omdirigert til siden når sidetittelen er nøyaktig det samme som det du søkte etter",
+	"searchlimit-label": "Antall søkeresultater som skal vises på hver side:",
+	"searchlimit-help": "Maksimalt antall: 500",
 	"api-clientside-error-noconnect": "Kunne ikke koble til tjeneren. Sjekk at internettforbindelsen din virker og prøv igjen.",
 	"api-clientside-error-http": "Tjeneren returnerte en feil: HTTP $1.",
 	"api-clientside-error-timeout": "Tjeneren svarte ikke innenfor forventet tid.",
