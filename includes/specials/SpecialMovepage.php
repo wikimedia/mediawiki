@@ -746,12 +746,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$oldText = $ot->getPrefixedText();
 		$newText = $nt->getPrefixedText();
 
-		if ( $ot->exists() ) {
-			// NOTE: we assume that if the old title exists, it's because it was re-created as
-			// a redirect to the new title. This is not safe, but what we did before was
-			// even worse: we just determined whether a redirect should have been created,
-			// and reported that it was created if it should have, without any checks.
-			// Also note that isRedirect() is unreliable because of T39209.
+		if ( $status->getValue()['redirectRevision'] !== null ) {
 			$msgName = 'movepage-moved-redirect';
 		} else {
 			$msgName = 'movepage-moved-noredirect';
