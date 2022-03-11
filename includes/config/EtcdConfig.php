@@ -51,8 +51,6 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	private $protocol;
 	/** @var string */
 	private $directory;
-	/** @var string */
-	private $encoding;
 	/** @var int */
 	private $baseCacheTTL;
 	/** @var int */
@@ -67,7 +65,6 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	 *   - service: service name used in SRV discovery. Defaults to 'etcd'. [optional]
 	 *   - port: custom host port [optional]
 	 *   - protocol: one of ("http", "https"). Defaults to http. [optional]
-	 *   - encoding: one of ("JSON", "YAML"). Defaults to JSON. [optional]
 	 *   - cache: BagOStuff instance or ObjectFactory spec thereof for a server cache.
 	 *            The cache will also be used as a fallback if etcd is down. [optional]
 	 *   - cacheTTL: logical cache TTL in seconds [optional]
@@ -79,7 +76,6 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 			'service' => 'etcd',
 			'port' => null,
 			'protocol' => 'http',
-			'encoding' => 'JSON',
 			'cacheTTL' => 10,
 			'skewTTL' => 1,
 			'timeout' => 2
@@ -90,7 +86,6 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		$this->port = $params['port'];
 		$this->protocol = $params['protocol'];
 		$this->directory = trim( $params['directory'], '/' );
-		$this->encoding = $params['encoding'];
 		$this->skewCacheTTL = $params['skewTTL'];
 		$this->baseCacheTTL = max( $params['cacheTTL'] - $this->skewCacheTTL, 0 );
 		$this->timeout = $params['timeout'];
@@ -274,7 +269,9 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		list( $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ) = $this->http->run( [
 			'method' => 'GET',
 			'url' => "{$this->protocol}://{$host}/v2/keys/{$this->directory}/?recursive=true",
-			'headers' => [ 'content-type' => 'application/json' ]
+			'headers' => [
+				'content-type' => 'application/json',
+			]
 		] );
 
 		$response = [ 'config' => null, 'error' => null, 'retry' => false, 'modifiedIndex' => 0 ];
@@ -359,10 +356,6 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	 * @return mixed
 	 */
 	private function unserialize( $string ) {
-		if ( $this->encoding === 'YAML' ) {
-			return yaml_parse( $string );
-		} else {
-			return json_decode( $string, true );
-		}
+		return json_decode( $string, true );
 	}
 }

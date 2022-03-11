@@ -266,6 +266,8 @@ because of Phabricator reports.
     User::removeWatch()
 * ParserOptions::setTidy() that had no effect and was deprecated since 1.35
   has been removed.
+* The "YAML" encoding option of EtcdConfig, has been removed without
+  deprecation.
 * The constant ApiBase::PARAM_VALUE_LINKS, deprecated since 1.35 has been
   removed.
 * UserLoadOptions, UserSaveOptions and UserResetAllOptions hooks, deprecated
