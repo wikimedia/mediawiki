@@ -2233,6 +2233,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 						$metadata->appendJsConfigVar( $key, $item, $strategy );
 					}
 				}
+			} elseif ( array_key_exists( $key, $this->mJsConfigVars ) ) {
+				// This behavior is deprecated, will likely result in
+				// incorrect output, and we'll eventually emit a
+				// warning here---but at the moment this is usually
+				// caused by limitations in Parsoid and/or use of
+				// the ParserAfterParse hook: T303015#7770480
+				$this->mJsConfigVars[$key] = $value;
 			} else {
 				$metadata->setJsConfigVar( $key, $value );
 			}
@@ -2245,6 +2252,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 						$metadata->appendExtensionData( $key, $item, $strategy );
 					}
 				}
+			} elseif ( array_key_exists( $key, $this->mExtensionData ) ) {
+				// This behavior is deprecated, will likely result in
+				// incorrect output, and we'll eventually emit a
+				// warning here---but at the moment this is usually
+				// caused by limitations in Parsoid and/or use of
+				// the ParserAfterParse hook: T303015#7770480
+				$this->mExtensionData[$key] = $value;
 			} else {
 				$metadata->setExtensionData( $key, $value );
 			}
