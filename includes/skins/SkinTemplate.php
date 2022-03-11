@@ -1102,11 +1102,25 @@ class SkinTemplate extends Skin {
 	 */
 	private function getSkinNavOverrideableLabel( $labelMessageKey, $param = null ) {
 		$skname = $this->skinname;
+		// The following messages can be used here:
+		// * skin-action-addsection
+		// * skin-action-delete
+		// * skin-action-move
+		// * skin-action-protect
+		// * skin-action-undelete
+		// * skin-action-unprotect
+		// * skin-action-viewdeleted
+		// * skin-action-viewsource
+		// * skin-view-create
+		// * skin-view-create-local
+		// * skin-view-edit
+		// * skin-view-edit-local
+		// * skin-view-foreign
+		// * skin-view-history
+		// * skin-view-view
 		$msg = wfMessageFallback(
 				"$skname-$labelMessageKey",
-				"skin-$labelMessageKey",
-				// @todo: Can be removed when every $labelMessageKey has a `skin-` prefixed message alternative.
-				$labelMessageKey
+				"skin-$labelMessageKey"
 			)->setContext( $this->getContext() );
 
 		if ( $param ) {
