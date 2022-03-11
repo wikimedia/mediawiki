@@ -285,7 +285,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mSpeculativeRevId;
 	/** @var int|null Assumed page ID for {{PAGEID}} if no revision is set */
 	private $speculativePageIdUsed;
-	/** @var int|null Assumed rev timestamp for {{REVISIONTIMESTAMP}} if no revision is set */
+	/** @var string|null Assumed rev timestamp for {{REVISIONTIMESTAMP}} if no revision is set */
 	private $revisionTimestampUsed;
 
 	/** @var string|null SHA-1 base 36 hash of any self-transclusion */
