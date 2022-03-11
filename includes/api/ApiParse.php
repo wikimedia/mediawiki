@@ -604,7 +604,8 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['jsconfigvars'] ) ) {
-			$jsconfigvars = $skin ? $outputPage->getJsConfigVars() : $p_result->getJsConfigVars();
+			$showStrategyKeys = (bool)( $params['showstrategykeys'] );
+			$jsconfigvars = $skin ? $outputPage->getJsConfigVars() : $p_result->getJsConfigVars( $showStrategyKeys );
 			$result_array['jsconfigvars'] = ApiResult::addMetadataToResultVars( $jsconfigvars );
 		}
 
@@ -1059,6 +1060,7 @@ class ApiParse extends ApiBase {
 			'disablelimitreport' => false,
 			'disableeditsection' => false,
 			'disablestylededuplication' => false,
+			'showstrategykeys' => false,
 			'generatexml' => [
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => [
