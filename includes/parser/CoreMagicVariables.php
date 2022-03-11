@@ -23,6 +23,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Parser\ParserOutputFlags;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Expansions of core magic variables, used by the parser.
@@ -39,7 +40,7 @@ class CoreMagicVariables {
 	 * @param Parser $parser
 	 * @param string $id The name of the variable, and equivalently, the magic
 	 *   word ID which was used to match the variable
-	 * @param int $ts Timestamp to use when expanding magic variable
+	 * @param ConvertibleTimestamp $ts Timestamp to use when expanding magic variable
 	 * @param NamespaceInfo $nsInfo The NamespaceInfo to use when expanding
 	 * @param ServiceOptions $svcOptions Service options for the parser
 	 * @param LoggerInterface $logger
@@ -51,7 +52,7 @@ class CoreMagicVariables {
 		Parser $parser,
 		string $id,
 		// Context passed over from the parser
-		int $ts,
+		ConvertibleTimestamp $ts,
 		NamespaceInfo $nsInfo,
 		ServiceOptions $svcOptions,
 		LoggerInterface $logger
@@ -63,33 +64,33 @@ class CoreMagicVariables {
 			case '!':
 				return '|';
 			case 'currentmonth':
-				return $pageLang->formatNumNoSeparators( MWTimestamp::getInstance( $ts )->format( 'm' ) );
+				return $pageLang->formatNumNoSeparators( $ts->format( 'm' ) );
 			case 'currentmonth1':
-				return $pageLang->formatNumNoSeparators( MWTimestamp::getInstance( $ts )->format( 'n' ) );
+				return $pageLang->formatNumNoSeparators( $ts->format( 'n' ) );
 			case 'currentmonthname':
-				return $pageLang->getMonthName( MWTimestamp::getInstance( $ts )->format( 'n' ) );
+				return $pageLang->getMonthName( $ts->format( 'n' ) );
 			case 'currentmonthnamegen':
-				return $pageLang->getMonthNameGen( MWTimestamp::getInstance( $ts )->format( 'n' ) );
+				return $pageLang->getMonthNameGen( $ts->format( 'n' ) );
 			case 'currentmonthabbrev':
-				return $pageLang->getMonthAbbreviation( MWTimestamp::getInstance( $ts )->format( 'n' ) );
+				return $pageLang->getMonthAbbreviation( $ts->format( 'n' ) );
 			case 'currentday':
-				return $pageLang->formatNumNoSeparators( MWTimestamp::getInstance( $ts )->format( 'j' ) );
+				return $pageLang->formatNumNoSeparators( $ts->format( 'j' ) );
 			case 'currentday2':
-				return $pageLang->formatNumNoSeparators( MWTimestamp::getInstance( $ts )->format( 'd' ) );
+				return $pageLang->formatNumNoSeparators( $ts->format( 'd' ) );
 			case 'localmonth':
-				return $pageLang->formatNumNoSeparators( MWTimestamp::getLocalInstance( $ts )->format( 'm' ) );
+				return $pageLang->formatNumNoSeparators( self::makeTsLocal( $svcOptions, $ts )->format( 'm' ) );
 			case 'localmonth1':
-				return $pageLang->formatNumNoSeparators( MWTimestamp::getLocalInstance( $ts )->format( 'n' ) );
+				return $pageLang->formatNumNoSeparators( self::makeTsLocal( $svcOptions, $ts )->format( 'n' ) );
 			case 'localmonthname':
-				return $pageLang->getMonthName( MWTimestamp::getLocalInstance( $ts )->format( 'n' ) );
+				return $pageLang->getMonthName( self::makeTsLocal( $svcOptions, $ts )->format( 'n' ) );
 			case 'localmonthnamegen':
-				return $pageLang->getMonthNameGen( MWTimestamp::getLocalInstance( $ts )->format( 'n' ) );
+				return $pageLang->getMonthNameGen( self::makeTsLocal( $svcOptions, $ts )->format( 'n' ) );
 			case 'localmonthabbrev':
-				return $pageLang->getMonthAbbreviation( MWTimestamp::getLocalInstance( $ts )->format( 'n' ) );
+				return $pageLang->getMonthAbbreviation( self::makeTsLocal( $svcOptions, $ts )->format( 'n' ) );
 			case 'localday':
-				return $pageLang->formatNumNoSeparators( MWTimestamp::getLocalInstance( $ts )->format( 'j' ) );
+				return $pageLang->formatNumNoSeparators( self::makeTsLocal( $svcOptions, $ts )->format( 'j' ) );
 			case 'localday2':
-				return $pageLang->formatNumNoSeparators( MWTimestamp::getLocalInstance( $ts )->format( 'd' ) );
+				return $pageLang->formatNumNoSeparators( self::makeTsLocal( $svcOptions, $ts )->format( 'd' ) );
 			case 'pagename':
 				return wfEscapeWikiText( $title->getText() );
 			case 'pagenamee':
@@ -240,39 +241,39 @@ class CoreMagicVariables {
 			case 'subjectspacee':
 				return ( wfUrlencode( $title->getSubjectNsText() ) );
 			case 'currentdayname':
-				return $pageLang->getWeekdayName( (int)MWTimestamp::getInstance( $ts )->format( 'w' ) + 1 );
+				return $pageLang->getWeekdayName( (int)$ts->format( 'w' ) + 1 );
 			case 'currentyear':
-				return $pageLang->formatNumNoSeparators( MWTimestamp::getInstance( $ts )->format( 'Y' ) );
+				return $pageLang->formatNumNoSeparators( $ts->format( 'Y' ) );
 			case 'currenttime':
-				return $pageLang->time( wfTimestamp( TS_MW, $ts ), false, false );
+				return $pageLang->time( $ts->getTimestamp( TS_MW ), false, false );
 			case 'currenthour':
-				return $pageLang->formatNumNoSeparators( MWTimestamp::getInstance( $ts )->format( 'H' ) );
+				return $pageLang->formatNumNoSeparators( $ts->format( 'H' ) );
 			case 'currentweek':
 				// @bug T6594 PHP5 has it zero padded, PHP4 does not, cast to
 				// int to remove the padding
-				return $pageLang->formatNum( (int)MWTimestamp::getInstance( $ts )->format( 'W' ) );
+				return $pageLang->formatNum( (int)$ts->format( 'W' ) );
 			case 'currentdow':
-				return $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'w' ) );
+				return $pageLang->formatNum( $ts->format( 'w' ) );
 			case 'localdayname':
 				return $pageLang->getWeekdayName(
-					(int)MWTimestamp::getLocalInstance( $ts )->format( 'w' ) + 1
+					(int)self::makeTsLocal( $svcOptions, $ts )->format( 'w' ) + 1
 				);
 			case 'localyear':
-				return $pageLang->formatNumNoSeparators( MWTimestamp::getLocalInstance( $ts )->format( 'Y' ) );
+				return $pageLang->formatNumNoSeparators( self::makeTsLocal( $svcOptions, $ts )->format( 'Y' ) );
 			case 'localtime':
 				return $pageLang->time(
-					MWTimestamp::getLocalInstance( $ts )->format( 'YmdHis' ),
+					self::makeTsLocal( $svcOptions, $ts )->format( 'YmdHis' ),
 					false,
 					false
 				);
 			case 'localhour':
-				return $pageLang->formatNumNoSeparators( MWTimestamp::getLocalInstance( $ts )->format( 'H' ) );
+				return $pageLang->formatNumNoSeparators( self::makeTsLocal( $svcOptions, $ts )->format( 'H' ) );
 			case 'localweek':
 				// @bug T6594 PHP5 has it zero padded, PHP4 does not, cast to
 				// int to remove the padding
-				return $pageLang->formatNum( (int)MWTimestamp::getLocalInstance( $ts )->format( 'W' ) );
+				return $pageLang->formatNum( (int)self::makeTsLocal( $svcOptions, $ts )->format( 'W' ) );
 			case 'localdow':
-				return $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'w' ) );
+				return $pageLang->formatNum( self::makeTsLocal( $svcOptions, $ts )->format( 'w' ) );
 			case 'numberofarticles':
 				return $pageLang->formatNum( SiteStats::articles() );
 			case 'numberoffiles':
@@ -288,9 +289,9 @@ class CoreMagicVariables {
 			case 'numberofedits':
 				return $pageLang->formatNum( SiteStats::edits() );
 			case 'currenttimestamp':
-				return wfTimestamp( TS_MW, $ts );
+				return $ts->getTimestamp( TS_MW );
 			case 'localtimestamp':
-				return MWTimestamp::getLocalInstance( $ts )->format( 'YmdHis' );
+				return self::makeTsLocal( $svcOptions, $ts )->format( 'YmdHis' );
 			case 'currentversion':
 				return SpecialVersion::getVersion();
 			case 'articlepath':
@@ -317,6 +318,19 @@ class CoreMagicVariables {
 				// This is not one of the core magic variables
 				return null;
 		}
+	}
+
+	/**
+	 * Helper to convert a timestamp instance to local time
+	 * @see MWTimestamp::getLocalInstance()
+	 * @param ServiceOptions $svcOptions Service options for the parser
+	 * @param ConvertibleTimestamp $ts Timestamp to convert
+	 * @return ConvertibleTimestamp
+	 */
+	private static function makeTsLocal( $svcOptions, $ts ) {
+		$localtimezone = $svcOptions->get( 'Localtimezone' );
+		$ts->setTimezone( $localtimezone );
+		return $ts;
 	}
 
 	/**
