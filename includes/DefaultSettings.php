@@ -7869,15 +7869,6 @@ $wgUseAutomaticEditSummaries = true;
 // See also $wgSiteNotice
 
 /**
- * @cond file_level_code
- * Set $wgCommandLineMode if it's not set already, to avoid notices
- */
-if ( !isset( $wgCommandLineMode ) ) {
-	$wgCommandLineMode = false;
-}
-/** @endcond */
-
-/**
  * For colorized maintenance script output, is your terminal background dark ?
  */
 $wgCommandLineDarkBg = false;
