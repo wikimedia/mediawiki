@@ -89,6 +89,9 @@ class Language {
 	 */
 	private $transformData = [];
 
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
 	/** @var LocalisationCache */
 	private $localisationCache;
 
@@ -415,6 +418,7 @@ class Language {
 	 * @internal Calling this directly is deprecated. Use LanguageFactory instead.
 	 *
 	 * @param string|null $code Which code to use. Passing null is deprecated in 1.35.
+	 * @param NamespaceInfo|null $namespaceInfo
 	 * @param LocalisationCache|null $localisationCache
 	 * @param LanguageNameUtils|null $langNameUtils
 	 * @param LanguageFallback|null $langFallback
@@ -424,6 +428,7 @@ class Language {
 	 */
 	public function __construct(
 		$code = null,
+		NamespaceInfo $namespaceInfo = null,
 		LocalisationCache $localisationCache = null,
 		LanguageNameUtils $langNameUtils = null,
 		LanguageFallback $langFallback = null,
@@ -440,6 +445,7 @@ class Language {
 			}
 
 			$services = MediaWikiServices::getInstance();
+			$this->namespaceInfo = $services->getNamespaceInfo();
 			$this->localisationCache = $services->getLocalisationCache();
 			$this->langNameUtils = $services->getLanguageNameUtils();
 			$this->langFallback = $services->getLanguageFallback();
@@ -451,6 +457,8 @@ class Language {
 		}
 
 		Assert::parameter( $code !== null, '$code',
+			'Parameters cannot be null unless all are omitted' );
+		Assert::parameter( $namespaceInfo !== null, '$namespaceInfo',
 			'Parameters cannot be null unless all are omitted' );
 		Assert::parameter( $localisationCache !== null, '$localisationCache',
 			'Parameters cannot be null unless all are omitted' );
@@ -466,6 +474,7 @@ class Language {
 			'Parameters cannot be null unless all are omitted' );
 
 		$this->mCode = $code;
+		$this->namespaceInfo = $namespaceInfo;
 		$this->localisationCache = $localisationCache;
 		$this->langNameUtils = $langNameUtils;
 		$this->langFallback = $langFallback;
@@ -502,8 +511,7 @@ class Language {
 			$metaNamespace = $this->config->get( MainConfigNames::MetaNamespace );
 			$metaNamespaceTalk = $this->config->get( MainConfigNames::MetaNamespaceTalk );
 			$extraNamespaces = $this->config->get( MainConfigNames::ExtraNamespaces );
-			$validNamespaces = MediaWikiServices::getInstance()->getNamespaceInfo()->
-				getCanonicalNamespaces();
+			$validNamespaces = $this->namespaceInfo->getCanonicalNamespaces();
 
 			// @phan-suppress-next-line PhanTypeMismatchProperty
 			$this->namespaceNames = $extraNamespaces +
@@ -548,6 +556,7 @@ class Language {
 
 	/**
 	 * Resets all of the namespace caches. Mainly used for testing
+	 * @deprecated since 1.39 Use MediaWikiServices::resetServiceForTesting() instead.
 	 */
 	public function resetNamespaces() {
 		$this->namespaceNames = null;
@@ -744,8 +753,7 @@ class Language {
 	 */
 	public function getNsIndex( $text ) {
 		$lctext = $this->lc( $text );
-		$ns = MediaWikiServices::getInstance()->getNamespaceInfo()->
-			getCanonicalIndex( $lctext );
+		$ns = $this->namespaceInfo->getCanonicalIndex( $lctext );
 		if ( $ns !== null ) {
 			return $ns;
 		}

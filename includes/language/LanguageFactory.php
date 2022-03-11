@@ -33,6 +33,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MWException;
+use NamespaceInfo;
 
 /**
  * Internationalisation code
@@ -44,6 +45,9 @@ use MWException;
 class LanguageFactory {
 	/** @var ServiceOptions */
 	private $options;
+
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
 
 	/** @var LocalisationCache */
 	private $localisationCache;
@@ -81,6 +85,7 @@ class LanguageFactory {
 
 	/**
 	 * @param ServiceOptions $options
+	 * @param NamespaceInfo $namespaceInfo
 	 * @param LocalisationCache $localisationCache
 	 * @param LanguageNameUtils $langNameUtils
 	 * @param LanguageFallback $langFallback
@@ -90,6 +95,7 @@ class LanguageFactory {
 	 */
 	public function __construct(
 		ServiceOptions $options,
+		NamespaceInfo $namespaceInfo,
 		LocalisationCache $localisationCache,
 		LanguageNameUtils $langNameUtils,
 		LanguageFallback $langFallback,
@@ -103,6 +109,7 @@ class LanguageFactory {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
 		$this->options = $options;
+		$this->namespaceInfo = $namespaceInfo;
 		$this->localisationCache = $localisationCache;
 		$this->langNameUtils = $langNameUtils;
 		$this->langFallback = $langFallback;
@@ -143,6 +150,7 @@ class LanguageFactory {
 
 		$constructorArgs = [
 			$code,
+			$this->namespaceInfo,
 			$this->localisationCache,
 			$this->langNameUtils,
 			$this->langFallback,
