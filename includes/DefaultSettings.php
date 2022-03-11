@@ -6357,9 +6357,9 @@ $wgAutoConfirmCount = 0;
  *      promote if user matces **NO** condition
  *  - [ APCOND_EMAILCONFIRMED ]:
  *      true if user has a confirmed e-mail
- *  - [ APCOND_EDITCOUNT, number of edits ]:
+ *  - [ APCOND_EDITCOUNT, number of edits (if null or missing $wgAutoConfirmCount will be used) ]:
  *      true if user has the at least the number of edits as the passed parameter
- *  - [ APCOND_AGE, seconds since registration ]:
+ *  - [ APCOND_AGE, seconds since registration (if null or missing $wgAutoConfirmAge will be used) ]:
  *      true if the length of time since the user created his/her account
  *      is at least the same length of time as the passed parameter
  *  - [ APCOND_AGE_FROM_EDIT, seconds since first edit ]:
@@ -6385,8 +6385,8 @@ $wgAutoConfirmCount = 0;
  */
 $wgAutopromote = [
 	'autoconfirmed' => [ '&',
-		[ APCOND_EDITCOUNT, &$wgAutoConfirmCount ],
-		[ APCOND_AGE, &$wgAutoConfirmAge ],
+		[ APCOND_EDITCOUNT, null ],
+		[ APCOND_AGE, null ],
 	],
 ];
 
