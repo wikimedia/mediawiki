@@ -234,8 +234,6 @@
 	"config-upload-help": "Dosya yüklemeleri, sunucunuzu güvenlik risklerine maruz bırakabilir.\nDaha fazla bilgi için, kılavuzdaki [https://www.mediawiki.org/wiki/Manual:Security/tr güvenlik bölümünü] okuyun.\n\nDosya yüklemelerini etkinleştirmek için, MediaWiki'nin kök dizini altındaki <code>images</code> alt dizinindeki modu, web sunucusunun yazabilmesi için değiştirin.\nArdından bu seçeneği etkinleştirin.",
 	"config-upload-deleted": "Silinen dosyalar için dizin:",
 	"config-upload-deleted-help": "Silinmiş dosyaların arşivleneceği bir dizin seçin.\nİdeal olarak, bu webden erişilebilir olmamalıdır.",
-	"config-logo": "Logo URL'si:",
-	"config-logo-help": "MediaWiki'nin varsayılan dış yüzeyi, kenar çubuğu menüsünün üstündeki 135x160 piksel logo için alan içerir.\nUygun boyutta bir resim yükleyin ve URL'yi buraya girin.\n\nLogonuz bu yollara göre ise <code>$wgStylePath</code> veya <code>$wgScriptPath</code> kullanabilirsiniz.\n\nLogo istemiyorsanız, bu kutuyu boş bırakın.",
 	"config-instantcommons": "Instant Commons'ı etkinleştir",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons], vikilerin [https://commons.wikimedia.org/Anasayfa Wikimedia Commons] sitesinde bulunan görüntüleri, sesleri ve diğer ortamları kullanmasına izin veren bir özelliktir.\nBunu yapmak için, MediaWiki İnternete erişim gerektirir.\n\nBu özellik hakkında, Wikimedia Commons dışında vikiler için nasıl ayarlanacağına ilişkin talimatlar dahil olmak üzere daha fazla bilgi için, [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos el kitabına] bakın.",
 	"config-cc-error": "Creative Commons lisansı seçicisi sonuç vermedi.\nLisans adını manüel olarak girin.",

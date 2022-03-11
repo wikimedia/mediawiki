@@ -198,7 +198,6 @@
 	"config-upload-enable": "Омогући отпремање датотека",
 	"config-upload-deleted": "Директоријум за избрисане датотеке:",
 	"config-upload-deleted-help": "Одаберите директоријум у којем ће се архивирати избрисане датотеке.\nУ идеалном случају, ово не би требало да буде доступно преко веба.",
-	"config-logo": "URL адреса логотипа:",
 	"config-instantcommons": "Омогући Instant Commons",
 	"config-cc-error": "Creative Commons бирач лиценце није давао резултате.\nУнесите име лиценце ручно.",
 	"config-cc-again": "Изаберите поново…",

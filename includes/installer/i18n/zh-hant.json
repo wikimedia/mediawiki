@@ -232,8 +232,6 @@
 	"config-upload-help": "檔案上傳功能會讓您的伺服器暴露在潛藏的安全性風險之下。\n要取得更多相關的資訊，請參考 [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security 安全性章節]。\n\n要開啟檔案上傳需要將 MediaWiki 根目錄底下的 <code>images</code> 目錄開啟網頁伺服器的寫入權，\n然後再啟動選項。",
 	"config-upload-deleted": "已刪除檔案的目錄：",
 	"config-upload-deleted-help": "請選擇用來存放已刪除檔案的目錄。\n理想情況下，此目錄不可被網頁直接存取。",
-	"config-logo": "logo 網址：",
-	"config-logo-help": "在 MediaWiki 的預設介面，側欄選單上方有一塊 135x160 像素用來放置標誌的區域。\n請上傳合適大小的圖片並在此輸入 URL 網址。\n\n您可以透過 <code>$wgStylePath</code> 或者 <code>$wgScriptPath</code> 來表示您的圖片與這些路徑的相對位置。\n\n如果您不想使用標誌，可略過此欄位。",
 	"config-instantcommons": "開啟即時共享資源",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons 即時共享資源] 是允許 Wiki 使用來自 [https://commons.wikimedia.org/ Wikimedia Commons] 網站上的圖片、聲音以及其他媒體的一項功能。\n若要開啟此功能，您的 MediaWiki 必須能夠連線網際網路。\n更多有關此功能的訊息，包含如何存除了 Wikimedia Commons 之外其他網站的說明，請參考 \n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos 操作手冊]。",
 	"config-cc-error": "查無該創作共用授權條款，\n請手動輸入您的授權條款名稱。",

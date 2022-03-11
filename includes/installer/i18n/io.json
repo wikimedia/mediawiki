@@ -211,8 +211,6 @@
 	"config-upload-help": "File uploads potentially expose your server to security risks.\nFor more information, read the [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security security section] in the manual.\n\nTo enable file uploads, change the mode on the <code>images</code> subdirectory under MediaWiki's root directory so that the web server can write to it.\nThen enable this option.",
 	"config-upload-deleted": "Receveyo por efacita arkivi:",
 	"config-upload-deleted-help": "Selektez receveyo por efacita artikli. Prefereble, ol mustus acesesar per interreto.",
-	"config-logo": "URL dil logotipo*:",
-	"config-logo-help": "MediaWiki's default skin includes space for a 135x160 pixel logo above the sidebar menu.\nUpload an image of the appropriate size, and enter the URL here.\n\nYou can use <code>$wgStylePath</code> or <code>$wgScriptPath</code> if your logo is relative to those paths.\n\nIf you do not want a logo, leave this box blank.",
 	"config-instantcommons": "Permisez Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] is a feature that allows wikis to use images, sounds and other media found on the [https://commons.wikimedia.org/ Wikimedia Commons] site.\nIn order to do this, MediaWiki requires access to the Internet.\n\nFor more information on this feature, including instructions on how to set it up for wikis other than the Wikimedia Commons, consult [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos the manual].",
 	"config-cc-error": "L'automatala selekto di la licenco \"Creative Commons\" ne efikeskis. Voluntez informar ol manuale.",

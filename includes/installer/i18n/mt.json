@@ -75,7 +75,6 @@
 	"config-license-cc-choose": "Agħżel waħda mil-liċenzji tal-Creative Commons",
 	"config-upload-deleted": "Direttorju għall-fajls imħassra:",
 	"config-upload-deleted-help": "Agħżel direttorju fejn iżżomm fajls imħassra.\nIdealment, dan m'għandux ikun aċċessibbli mill-web.",
-	"config-logo": "URL tal-logo:",
 	"config-download-localsettings": "Niżżel <code>LocalSettings.php</code>",
 	"config-help": "għajnuna",
 	"config-nofile": "Il-fajl \"$1\" ma setax jinstab. Dan ġie mħassar?",

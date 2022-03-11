@@ -219,8 +219,6 @@
 	"config-upload-help": "Filopplastinger kan potensielt utsette tjeneren din for sikkerhetsrisikoer.\nFor mer informasjon, les [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security sikkerhetsseksjonen] i manualen.\n\nFor å aktivere filopplastinger, endre modusen i <code>images</code>-undermappen i MediaWikis rotmappe slik at nettjeneren kan skrive til den.\nAktiver så dette alternativet.",
 	"config-upload-deleted": "Mappe for slettede filer:",
 	"config-upload-deleted-help": "Velg en mappe for å arkivere slettede filer.\nIdeelt burde ikke denne være tilgjengelig for nettet.",
-	"config-logo": "Logo-URL:",
-	"config-logo-help": "MediaWikis standarddrakt har satt av plass til en 135x160 pikslers logo i øvre venstre hjørne av sidepanelet.\nLast opp et bilde i passende størrelse og skriv inn nettadressen her.\n\nDu kan bruke code>$wgStylePath</code> eller <code>$wgScriptPath</code> hvis logoen er relativ til disse stiene.\n\nHvis du ikke ønsker noen logo, la boksen være tom.",
 	"config-instantcommons": "Aktiver Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] er en funksjon som gjør det mulig for wikier å bruke bilder, lyder og andre media funnet på nettstedet [https://commons.wikimedia.org/ Wikimedia Commons].\nFor å gjøre dette krever MediaWiki tilgang til internett.\n\nFor mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man setter opp dette for andre wikier enn Wikimedia Commons, konsulter [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manualen].",
 	"config-cc-error": "Lisensvelgeren for Creative Commons ga ikke noe resultat.\nLegg inn lisensnavnet manuelt.",

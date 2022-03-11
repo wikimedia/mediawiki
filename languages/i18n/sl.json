@@ -3630,6 +3630,8 @@
 	"searchsuggest-containing": "Išči strani, ki vsebujejo",
 	"search-match-redirect-label": "Med iskanjem preusmeri na točne zadetke",
 	"search-match-redirect-help": "Označite, če želite biti preusmerjeni na stran, ko se naslov strani ujema s tem, kar ste iskali",
+	"searchlimit-label": "Število rezultatov iskanja, ki jih bomo prikazali na vsaki strani:",
+	"searchlimit-help": "Največje število: 500",
 	"api-clientside-error-noconnect": "Ne moremo se povezati s strežnikom. Prepričajte se, da imate delujočo internetno povezavo in poskusite znova.",
 	"api-clientside-error-http": "Strežnik je vrnil napako: HTTP $1.",
 	"api-clientside-error-timeout": "Strežnik se ni odzval v pričakovanem času.",

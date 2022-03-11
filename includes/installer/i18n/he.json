@@ -220,8 +220,6 @@
 	"config-upload-help": "העלאת קבצים חושפת את השרת שלך לסיכוני אבטחה.\nלמידע נוסף, אפשר לקרוא את [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security המדריך הזה].\n\nכדי לאפשר העלאות של קבצים, יש לשנות את ההרשאות של התיקייה <code>images</code> תחת תיקיית השורש של מדיה־ויקי כדי ששרת ה־web יוכל לכתוב אליה.\nלאחר מכן יש להפעיל את האפשרות הזאת.",
 	"config-upload-deleted": "תיקיית לקבצים שנמחקו:",
 	"config-upload-deleted-help": "בחרו את התיקייה לארכוב קבצים מחוקים.\nכדאי שזה לא יהיה נגיש לכל העולם דרך הרשת.",
-	"config-logo": "כתובת הסמל:",
-	"config-logo-help": "המראה ההתחלתי של מדיה־ויקי מכיל מקום לסמל של 135 על 160 פיקסלים בפינה העליונה מעל תפריט הצד.\nיש להעלות תמונה בגודל מתאים ולהכניס את הכתובת כאן.\n\nבאפשרותך להשתמש ב־<code dir=\"ltr\">$wgStylePath</code> או ב־<code dir=\"ltr\">$wgScriptPath</code> אם הסמל שלך נמצא במקום יחסי לנתיבים האלה.\n\nאם אינכם רוצים סמל, השאירו את התיבה הזאת ריקה.",
 	"config-instantcommons": "להפעיל את Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] היא תכונה שמאפשרת לאתרי ויקי להשתמש בתמונות, בצלילים ובמדיה אחרת שנמצאת באתר [https://commons.wikimedia.org/ ויקישיתוף] (Wikimedia Commons).\nכדי לעשות את זה, מדיה־ויקי צריך לגשת לאינטרנט.\n\nלמידע נוסף על התכונה הזאת, כולל הוראות איך להפעיל את זה לאתרי ויקי שאינם ויקישיתוף, ר׳ [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos את ספר ההדרכה].",
 	"config-cc-error": "בורר רישיונות קריאייטיב קומונז לא החזיר שום תוצאה.\nהקלידו את שם הרישיון ידנית.",

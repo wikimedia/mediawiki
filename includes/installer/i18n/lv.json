@@ -49,7 +49,6 @@
 	"config-admin-name-blank": "Ievadiet administratora lietotājvārdu.",
 	"config-admin-email": "E-pasta adrese:",
 	"config-email-settings": "E-pasta iestatījumi",
-	"config-logo": "Logo URL:",
 	"config-cc-again": "Izvēlies vēlreiz...",
 	"config-memcached-servers": "Memcached serveri:",
 	"config-extensions": "Paplašinājumi",
