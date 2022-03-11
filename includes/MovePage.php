@@ -495,7 +495,7 @@ class MovePage {
 			return $status;
 		}
 
-		return $this->moveUnsafe( $user, $reason, $createRedirect, $changeTags );
+		return $this->moveUnsafe( $user, $reason ?? '', $createRedirect, $changeTags );
 	}
 
 	/**
@@ -529,7 +529,7 @@ class MovePage {
 			$createRedirect = true;
 		}
 
-		return $this->moveUnsafe( $performer->getUser(), $reason, $createRedirect, $changeTags );
+		return $this->moveUnsafe( $performer->getUser(), $reason ?? '', $createRedirect, $changeTags );
 	}
 
 	/**
@@ -794,7 +794,7 @@ class MovePage {
 			)
 		);
 
-		return Status::newGood();
+		return $moveAttemptResult;
 	}
 
 	/**
@@ -836,6 +836,7 @@ class MovePage {
 	 * @return Status Status object with the following value on success:
 	 *   [
 	 *     'nullRevision' => The ("null") revision created by the move (RevisionRecord)
+	 *     'redirectRevision' => The initial revision of the redirect if it was created (RevisionRecord|null)
 	 *   ]
 	 */
 	private function moveToInternal( UserIdentity $user, &$nt, $reason = '', $createRedirect = true,
@@ -993,10 +994,11 @@ class MovePage {
 		WikiPage::onArticleCreate( $nt );
 
 		# Recreate the redirect, this time in the other direction.
+		$redirectRevision = null;
 		if ( $redirectContent ) {
 			$redirectArticle = $this->wikiPageFactory->newFromTitle( $this->oldTitle );
 			$redirectArticle->loadFromRow( false, WikiPage::READ_LOCKING ); // T48397
-			$redirectArticle->newPageUpdater( $user )
+			$redirectRevision = $redirectArticle->newPageUpdater( $user )
 				->setContent( SlotRecord::MAIN, $redirectContent )
 				->addTags( $changeTags )
 				->addSoftwareTag( 'mw-new-redirect' )
@@ -1013,6 +1015,7 @@ class MovePage {
 
 		return Status::newGood( [
 			'nullRevision' => $nullRevision,
+			'redirectRevision' => $redirectRevision,
 		] );
 	}
 }
