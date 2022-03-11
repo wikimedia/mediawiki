@@ -564,16 +564,15 @@ class CoreParserFunctions {
 	public static function formatRaw(
 		$num, $raw, $language, MagicWordFactory $magicWordFactory = null
 	) {
-		if ( $raw !== null && !$magicWordFactory ) {
-			$magicWordFactory = MediaWikiServices::getInstance()->getMagicWordFactory();
+		if ( $raw !== null ) {
+			if ( !$magicWordFactory ) {
+				$magicWordFactory = MediaWikiServices::getInstance()->getMagicWordFactory();
+			}
+			if ( self::matchAgainstMagicword( $magicWordFactory, 'rawsuffix', $raw ) ) {
+				return (string)$num;
+			}
 		}
-		if (
-			$raw !== null && self::matchAgainstMagicword( $magicWordFactory, 'rawsuffix', $raw )
-		) {
-			return (string)$num;
-		} else {
-			return $language->formatNum( $num );
-		}
+		return $language->formatNum( $num );
 	}
 
 	public static function numberofpages( $parser, $raw = null ) {
