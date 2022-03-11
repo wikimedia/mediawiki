@@ -69,7 +69,11 @@ abstract class Benchmarker extends Maintenance {
 				$name = $key;
 			} else {
 				if ( is_array( $bench['function'] ) ) {
-					$name = get_class( $bench['function'][0] ) . '::' . $bench['function'][1];
+					$class = $bench['function'][0];
+					if ( is_object( $class ) ) {
+						$class = get_class( $class );
+					}
+					$name = $class . '::' . $bench['function'][1];
 				} else {
 					$name = strval( $bench['function'] );
 				}
