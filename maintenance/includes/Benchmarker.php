@@ -79,7 +79,15 @@ abstract class Benchmarker extends Maintenance {
 				}
 				$name = sprintf( "%s(%s)",
 					$name,
-					implode( ', ', $bench['args'] )
+					implode(
+						', ',
+						array_map(
+							static function ( $a ) {
+								return var_export( $a, true );
+							},
+							$bench['args']
+						)
+					)
 				);
 			}
 
