@@ -97,6 +97,7 @@ For notes on 1.37.x and older releases, see HISTORY.
   with `grunt qunit --qunit-component={componentName}`, where
   {componentName} is "MediaWiki" to run core's QUnit tests or the skin
   or extension name.
+* Added Less `.user-select()` mixin to 'mediawiki.mixins'.
 * …
 
 === External library changes in 1.38 ===

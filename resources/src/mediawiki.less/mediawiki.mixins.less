@@ -69,6 +69,15 @@
 	}
 }
 
+// Enable (`text` or `element`) or prevent (`none`) text/element selection.
+// Since MW 1.38
+.user-select( @value ) {
+	-webkit-user-select: @value; // Chrome 4-53, Safari 3.1-, Opera 15-40, Android 2.1-4.4.4
+	-moz-user-select: @value; // Firefox 2-68
+	-ms-user-select: @value; // IE 10-11, Edge 12-18
+	user-select: @value;
+}
+
 // Deprecated in MW v1.37.0, use unprefixed `transform:` now.
 .transform( @value ) {
 	-webkit-transform: @value; // Safari 3.1-8.0, iOS 3.2-8.4, Android 2.1-4.4.4
