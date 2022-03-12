@@ -23,7 +23,7 @@
  *
  * @file
  */
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * Class to implement stub globals, which are globals that delay loading the

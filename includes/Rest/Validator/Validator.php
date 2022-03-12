@@ -9,7 +9,7 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestInterface;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\BooleanDef;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;

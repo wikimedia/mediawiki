@@ -22,7 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * This class holds a list of modules and handles instantiation

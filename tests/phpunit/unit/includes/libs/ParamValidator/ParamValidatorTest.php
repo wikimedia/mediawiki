@@ -8,7 +8,7 @@ use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @covers Wikimedia\ParamValidator\ParamValidator

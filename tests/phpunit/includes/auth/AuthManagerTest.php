@@ -30,7 +30,7 @@ use ReadOnlyMode;
 use Status;
 use StatusValue;
 use WebRequest;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 

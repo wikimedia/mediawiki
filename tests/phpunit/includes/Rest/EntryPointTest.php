@@ -20,7 +20,7 @@ use MediaWiki\User\UserIdentityValue;
 use Psr\Container\ContainerInterface;
 use RequestContext;
 use WebResponse;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @covers \MediaWiki\Rest\EntryPoint

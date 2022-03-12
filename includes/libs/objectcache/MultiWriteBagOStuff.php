@@ -20,7 +20,7 @@
  * @file
  * @ingroup Cache
  */
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * A cache class that replicates all writes to multiple child caches. Reads

@@ -33,7 +33,7 @@ use MWException;
 use MWUnknownContentModelException;
 use Psr\Log\LoggerInterface;
 use UnexpectedValueException;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * Class ContentHandlerFactory

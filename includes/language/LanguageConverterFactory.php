@@ -36,7 +36,7 @@ use TgConverter;
 use TlyConverter;
 use TrivialLanguageConverter;
 use UzConverter;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 use ZhConverter;
 
 /**

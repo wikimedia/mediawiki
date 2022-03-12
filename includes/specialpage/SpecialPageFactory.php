@@ -37,7 +37,7 @@ use SpecialPage;
 use Title;
 use TitleFactory;
 use User;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * Factory for handling the special page list and generating SpecialPage objects.
