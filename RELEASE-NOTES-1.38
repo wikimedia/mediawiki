@@ -471,7 +471,7 @@ because of Phabricator reports.
 * Instantiating the MessageContent class now emits deprecation notices.
 * Message::content() now triggers deprecation warnings.
 * Parser::setDefaultSort(), Parser::getDefaultSort(), and
-  Parser::getCustomDefaultSort() have been deprecated.  Use
+  Parser::getCustomDefaultSort() now trigger deprecation warnings.  Use
   ParserOutput::{get,set}PageProperty('defaultsort') instead.
 * The following methods from the ParserOutput class now emit deprecation
   warnings:

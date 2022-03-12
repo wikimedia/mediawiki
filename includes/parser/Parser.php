@@ -6044,6 +6044,7 @@ class Parser {
 	 * $parser->getOutput()->setPageProperty('defaultsort', $sort)
 	 */
 	public function setDefaultSort( $sort ) {
+		wfDeprecated( __METHOD__, '1.38' );
 		$this->mOutput->setPageProperty( 'defaultsort', $sort );
 	}
 
@@ -6061,6 +6062,7 @@ class Parser {
 	 * $parser->getOutput()->getPageProperty('defaultsort') ?? ''
 	 */
 	public function getDefaultSort() {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->mOutput->getPageProperty( 'defaultsort' ) ?? '';
 	}
 
@@ -6074,6 +6076,7 @@ class Parser {
 	 * $parser->getOutput()->getPageProperty('defaultsort') ?? false
 	 */
 	public function getCustomDefaultSort() {
+		wfDeprecated( __METHOD__, '1.38' );
 		return $this->mOutput->getPageProperty( 'defaultsort' ) ?? false;
 	}
 

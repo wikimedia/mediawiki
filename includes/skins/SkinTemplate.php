@@ -1063,15 +1063,10 @@ class SkinTemplate extends Skin {
 
 		if ( $message instanceof MessageSpecifier ) {
 			$msg = new Message( $message );
-			$message = $message->getKey();
 		} else {
 			// wfMessageFallback will nicely accept $message as an array of fallbacks
 			// or just a single key
 			$msg = wfMessageFallback( $message );
-			if ( is_array( $message ) ) {
-				// for hook compatibility just keep the last message name
-				$message = end( $message );
-			}
 		}
 		$msg->setContext( $this->getContext() );
 		if ( !$msg->isDisabled() ) {
