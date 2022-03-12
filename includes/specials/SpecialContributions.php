@@ -818,7 +818,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			$htmlForm->addFooterText( "<p id='mw-sp-contributions-explain'>{$explain->parse()}</p>" );
 		}
 
-		$htmlForm->loadData();
+		$htmlForm->prepareForm();
 
 		return $htmlForm->getHTML( false );
 	}
