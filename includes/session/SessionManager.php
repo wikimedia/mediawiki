@@ -36,7 +36,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use User;
 use WebRequest;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * This serves as the entry point to the MediaWiki session handling system.

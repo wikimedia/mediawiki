@@ -4,7 +4,7 @@ use MediaWiki\HookContainer\HookContainer;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Services\NoSuchServiceException;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 

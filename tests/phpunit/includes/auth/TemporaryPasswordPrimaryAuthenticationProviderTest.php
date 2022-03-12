@@ -46,7 +46,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 
 		if ( !$this->manager ) {
 			$services = $this->createNoOpAbstractMock( ContainerInterface::class );
-			$objectFactory = new \Wikimedia\ObjectFactory( $services );
+			$objectFactory = new \Wikimedia\ObjectFactory\ObjectFactory( $services );
 			$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
 
 			$this->manager = new AuthManager(

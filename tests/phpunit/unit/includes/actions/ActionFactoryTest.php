@@ -6,7 +6,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @coversDefaultClass \MediaWiki\Actions\ActionFactory

@@ -157,7 +157,7 @@ use WikiImporterFactory;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\Metrics\MetricsFactory;
 use Wikimedia\NonSerializable\NonSerializableTrait;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;

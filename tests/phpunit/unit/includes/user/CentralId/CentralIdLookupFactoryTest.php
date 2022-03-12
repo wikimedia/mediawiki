@@ -10,7 +10,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWikiUnitTestCase;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Services\ServiceContainer;
 

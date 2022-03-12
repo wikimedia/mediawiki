@@ -2,7 +2,7 @@
 
 use MediaWiki\User\UserFactory;
 use Psr\Container\ContainerInterface;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @covers ApiModuleManager

@@ -14,7 +14,7 @@ use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use Psr\Container\ContainerInterface;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @covers \MediaWiki\Rest\BasicAccess\BasicAuthorizerBase

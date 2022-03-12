@@ -31,7 +31,7 @@ use MWException;
 use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\NonSerializable\NonSerializableTrait;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Services\SalvageableService;
 

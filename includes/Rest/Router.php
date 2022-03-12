@@ -12,7 +12,7 @@ use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
 use Throwable;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * The REST router is responsible for gathering handler configuration, matching
