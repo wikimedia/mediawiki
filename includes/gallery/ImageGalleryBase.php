@@ -60,7 +60,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	protected $mMode;
 
 	/**
-	 * @var bool|string Gallery caption. Default: false
+	 * @var string|false Gallery caption. Default: false
 	 */
 	protected $mCaption = false;
 
@@ -108,7 +108,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * Get a new image gallery. This is the method other callers
 	 * should use to get a gallery.
 	 *
-	 * @param string|bool $mode Mode to use. False to use the default
+	 * @param string|false $mode Mode to use. False to use the default
 	 * @param IContextSource|null $context
 	 * @return ImageGalleryBase
 	 * @throws ImageGalleryClassNotFoundException

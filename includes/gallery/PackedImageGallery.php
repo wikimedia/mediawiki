@@ -76,7 +76,7 @@ class PackedImageGallery extends TraditionalImageGallery {
 	}
 
 	/**
-	 * @param MediaTransformOutput|bool $thumb The thumbnail, or false if no
+	 * @param MediaTransformOutput|false $thumb The thumbnail, or false if no
 	 *   thumb (which can happen)
 	 * @return float
 	 */
