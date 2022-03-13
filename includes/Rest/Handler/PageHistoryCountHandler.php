@@ -68,7 +68,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	/** @var RevisionRecord|false|null */
 	private $revision = false;
 
-	/** @var array */
+	/** @var array|null */
 	private $lastModifiedTimes;
 
 	/** @var ExistingPageRecord|false|null */
@@ -318,7 +318,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * Returns array with 2 timestamps:
 	 * 1. Current revision
 	 * 2. OR entry from the DB logging table for the given page
-	 * @return array
+	 * @return array|null
 	 */
 	protected function getLastModifiedTimes() {
 		$currentRev = $this->getCurrentRevision();
@@ -382,6 +382,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 				if ( $oldValue ) {
 					// Last modified timestamp was NOT a dependency change (e.g. revdel)
 					$doIncrementalUpdate = (
+						// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 						$this->getLastModified() != $this->getLastModifiedTimes()['dependencyModTS']
 					);
 					if ( $doIncrementalUpdate ) {
@@ -391,6 +392,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 							return [
 								'revision' => $currentRev->getId(),
 								'count' => $oldValue['count'] + $additionalCount,
+								// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 								'dependencyModTS' => $this->getLastModifiedTimes()['dependencyModTS']
 							];
 						}
@@ -401,6 +403,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 				return [
 					'revision' => $currentRev->getId(),
 					'count' => $fetchCount(),
+					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 					'dependencyModTS' => $this->getLastModifiedTimes()['dependencyModTS']
 				];
 			},
