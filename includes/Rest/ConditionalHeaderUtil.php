@@ -132,11 +132,14 @@ class ConditionalHeaderUtil {
 	/**
 	 * The weak comparison function
 	 *
-	 * @param array $tag1 Parsed tag info array
-	 * @param array $tag2 Parsed tag info array
+	 * @param array|null $tag1 Parsed tag info array
+	 * @param array|null $tag2 Parsed tag info array
 	 * @return bool
 	 */
 	private function weakCompare( $tag1, $tag2 ) {
+		if ( $tag1 === null || $tag2 === null ) {
+			return false;
+		}
 		return $tag1['contents'] === $tag2['contents'];
 	}
 

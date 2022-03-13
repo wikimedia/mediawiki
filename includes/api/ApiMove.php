@@ -170,7 +170,7 @@ class ApiMove extends ApiBase {
 			);
 			ApiResult::setIndexedTagName( $r['subpages'], 'subpage' );
 
-			if ( $params['movetalk'] ) {
+			if ( $params['movetalk'] && $toTalk ) {
 				$r['subpages-talk'] = $this->moveSubpages(
 					$fromTalk,
 					$toTalk,
