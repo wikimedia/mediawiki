@@ -27,7 +27,7 @@ use Wikimedia\AtEase\AtEase;
  * Requires xdiff 1.5+ and zlib
  */
 class DiffHistoryBlob implements HistoryBlob {
-	/** @var array Uncompressed item cache */
+	/** @var string[] Uncompressed item cache */
 	public $mItems = [];
 
 	/** @var int Total uncompressed size */
@@ -46,11 +46,11 @@ class DiffHistoryBlob implements HistoryBlob {
 	/** @var array The diff map, see above */
 	public $mDiffMap;
 
-	/** @var int The key for getText()
+	/** @var string The key for getText()
 	 */
 	public $mDefaultKey;
 
-	/** @var string Compressed storage */
+	/** @var string|null Compressed storage */
 	public $mCompressed;
 
 	/** @var bool True if the object is locked against further writes */
@@ -79,7 +79,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	/**
 	 * @throws MWException
 	 * @param string $text
-	 * @return int
+	 * @return string
 	 */
 	public function addItem( $text ) {
 		if ( $this->mFrozen ) {
@@ -89,7 +89,7 @@ class DiffHistoryBlob implements HistoryBlob {
 		$this->mItems[] = $text;
 		$this->mSize += strlen( $text );
 		$this->mDiffs = null; // later
-		return count( $this->mItems ) - 1;
+		return (string)( count( $this->mItems ) - 1 );
 	}
 
 	/**
@@ -97,7 +97,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	 * @return string
 	 */
 	public function getItem( $key ) {
-		return $this->mItems[$key];
+		return $this->mItems[(int)$key];
 	}
 
 	/**
