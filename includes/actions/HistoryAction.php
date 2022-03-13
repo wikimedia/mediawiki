@@ -296,13 +296,13 @@ class HistoryAction extends FormlessAction {
 		// Create and output the list.
 		$dateComponents = explode( '-', $ts );
 		if ( count( $dateComponents ) > 1 ) {
-			$y = $dateComponents[0];
-			$m = $dateComponents[1];
-			$d = $dateComponents[2];
+			$y = (int)$dateComponents[0];
+			$m = (int)$dateComponents[1];
+			$d = (int)$dateComponents[2];
 		} else {
-			$y = '';
-			$m = '';
-			$d = '';
+			$y = 0;
+			$m = 0;
+			$d = 0;
 		}
 		$pager = new HistoryPager(
 			$this,
