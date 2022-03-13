@@ -25,16 +25,19 @@
  * Improves compression ratio by concatenating like objects before gzipping
  */
 class ConcatenatedGzipHistoryBlob implements HistoryBlob {
+	/** @var int */
 	public $mVersion = 0;
+	/** @var bool */
 	public $mCompressed = false;
-	/**
-	 * @var array|string
-	 * @fixme Why are some methods treating it as an array, and others as a string, unconditionally?
-	 */
+	/** @var string[]|string Array if uncompressed, string if compressed */
 	public $mItems = [];
+	/** @var string */
 	public $mDefaultHash = '';
+	/** @var int */
 	public $mSize = 0;
+	/** @var int */
 	public $mMaxSize = 10000000;
+	/** @var int */
 	public $mMaxCount = 100;
 
 	public function __construct() {
@@ -60,7 +63,7 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob {
 
 	/**
 	 * @param string $hash
-	 * @return array|bool
+	 * @return string|false
 	 */
 	public function getItem( $hash ) {
 		$this->uncompress();
@@ -81,7 +84,7 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob {
 	}
 
 	/**
-	 * @return array|bool
+	 * @return string|false
 	 */
 	public function getText() {
 		$this->uncompress();

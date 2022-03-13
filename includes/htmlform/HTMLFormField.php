@@ -60,7 +60,7 @@ abstract class HTMLFormField {
 	 * @stable to override
 	 *
 	 * @param string $value
-	 * @return OOUI\Widget|false
+	 * @return OOUI\Widget|string|false
 	 */
 	public function getInputOOUI( $value ) {
 		return false;
