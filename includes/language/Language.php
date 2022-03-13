@@ -3780,7 +3780,7 @@ class Language {
 			}
 		}
 		// Close the last tag if left unclosed by bad HTML
-		$this->truncate_endBracket( $tag, $text[$textLen - 1], $tagType, $openTags );
+		$this->truncate_endBracket( $tag, $tagType, $text[$textLen - 1], $openTags );
 		while ( count( $openTags ) > 0 ) {
 			$ret .= '</' . array_pop( $openTags ) . '>'; // close open tags
 		}

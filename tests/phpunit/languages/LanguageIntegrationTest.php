@@ -428,6 +428,10 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 				'<p><font style="font-weight:bold;">123456789</font></p>',
 				'<p><font style="font-weight:bold;">123456789</font></p>',
 			],
+			[ 10, '***',
+				'<p><font style="font-weight:bold;">123456789</font',
+				'<p><font style="font-weight:bold;">123456789</font</p>',
+			],
 		];
 	}
 
