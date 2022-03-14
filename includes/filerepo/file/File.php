@@ -792,7 +792,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * get versioned metadata
 	 *
 	 * @param array $metadata Array of unserialized metadata
-	 * @param int $version Version number.
+	 * @param int|string $version Version number.
 	 * @return array Array containing metadata, or what was passed to it on fail
 	 */
 	public function convertMetadataVersion( $metadata, $version ) {
