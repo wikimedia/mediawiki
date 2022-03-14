@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\TestSuite;
+use Wikimedia\Parsoid\ParserTests\Test as ParsoidTest;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -42,19 +43,32 @@ class ParsoidTestFileSuite extends TestSuite {
 		}
 
 		foreach ( $this->ptFileInfo->testCases as $t ) {
-			$test = [
-				'test' => $t->testName,
-				'desc' => ( $t->comment ?? '' ) . $t->testName,
-				'input' => $t->wikitext,
-				'result' => $t->legacyHtml,
-				'options' => $t->options,
-				'config' => $t->config ?? '',
-				'line' => $t->lineNumStart,
-				'file' => $t->filename,
-				'parsoid' => $t,
-			];
-			$this->addTest( new ParserIntegrationTest( $runner, $fileName, $test, $skipMessage ),
-				[ 'Database', 'Parser', 'ParserTests' ] );
+			// For starters, just assume wt2html test runner modes.
+			$validModes = [ 'wt2html', 'wt2html+integrated' ];
+			$testModes = $t->computeTestModes( $validModes );
+
+			$runnerOpts = [ 'numchanges' => 20 ]; // the default in Parsoid
+			$suite = $this;
+			$t->testAllModes( $testModes, $runnerOpts,
+				static function ( ParsoidTest $newTest, string $mode, array $options ) use ( $suite, $runner, $fileName, $t, $skipMessage ) {
+					// $options is being ignored but it is identical to $runnerOpts
+					$test = [
+						'test' => $t->testName,
+						'desc' => ( $t->comment ?? '' ) . $t->testName,
+						'input' => $t->wikitext,
+						'result' => $t->legacyHtml,
+						'options' => $t->options,
+						'config' => $t->config ?? '',
+						'line' => $t->lineNumStart,
+						'file' => $t->filename,
+						'parsoid' => $newTest,
+						'parsoidMode' => $mode
+					];
+					$pit = new ParserIntegrationTest( $runner, $fileName, $test, $skipMessage );
+					$suite->addTest( $pit, [ 'Database', 'Parser', 'ParserTests' ] );
+				}
+			);
+
 		}
 	}
 

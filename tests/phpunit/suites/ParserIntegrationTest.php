@@ -53,7 +53,7 @@ class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 		}
 		$this->ptRunner->getRecorder()->setTestCase( $this );
 		if ( $this->ptTest['parsoid'] ?? false ) {
-			$result = $this->ptRunner->runParsoidTest( $this->ptTest['parsoid'] );
+			$result = $this->ptRunner->runParsoidTest( $this->ptTest['parsoid'], $this->ptTest['parsoidMode'] );
 		} else {
 			$result = $this->ptRunner->runTest( $this->ptTest );
 		}
