@@ -33,6 +33,7 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
 		$listOfIps = [];
 		foreach ( $usersArray as $user ) {
+			$canonicalUser = false;
 			if ( IPUtils::isIPAddress( $user ) ) {
 				$parsedIPRange = IPUtils::parseRange( $user );
 				if ( !in_array( $parsedIPRange, $listOfIps ) ) {
@@ -42,7 +43,9 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 			} else {
 				$canonicalUser = $userNameUtils->getCanonical( $user, UserNameUtils::RIGOR_NONE );
 			}
-			$normalizedUsers[] = $canonicalUser;
+			if ( $canonicalUser !== false ) {
+				$normalizedUsers[] = $canonicalUser;
+			}
 		}
 		// Remove any duplicate usernames
 		$uniqueUsers = array_unique( $normalizedUsers );

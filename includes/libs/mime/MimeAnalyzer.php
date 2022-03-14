@@ -490,7 +490,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 			$callback( $this, $ext, $mime /* by reference */ );
 		}
 
-		if ( isset( $this->mimeTypeAliases[$mime] ) ) {
+		if ( $mime !== null && isset( $this->mimeTypeAliases[$mime] ) ) {
 			$mime = $this->mimeTypeAliases[$mime];
 		}
 

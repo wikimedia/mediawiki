@@ -171,15 +171,15 @@ class SpecialAllPages extends IncludableSpecialPage {
 
 	/**
 	 * @param int $namespace (default NS_MAIN)
-	 * @param string $from List all pages from this name
-	 * @param string $to List all pages to this name
+	 * @param string|null $from List all pages from this name
+	 * @param string|null $to List all pages to this name
 	 * @param bool $hideredirects Don't show redirects (default false)
 	 */
 	private function showToplevel(
-		$namespace = NS_MAIN, $from = '', $to = '', $hideredirects = false
+		$namespace = NS_MAIN, $from = null, $to = null, $hideredirects = false
 	) {
-		$from = Title::makeTitleSafe( $namespace, $from );
-		$to = Title::makeTitleSafe( $namespace, $to );
+		$from = $from ? Title::makeTitleSafe( $namespace, $from ) : null;
+		$to = $to ? Title::makeTitleSafe( $namespace, $to ) : null;
 		$from = ( $from && $from->isLocal() ) ? $from->getDBkey() : null;
 		$to = ( $to && $to->isLocal() ) ? $to->getDBkey() : null;
 
