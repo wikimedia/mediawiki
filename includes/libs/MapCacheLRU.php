@@ -283,7 +283,7 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 	/**
 	 * Clear one or several cache entries, or all cache entries
 	 *
-	 * @param string|array|null $keys
+	 * @param string|int|array|null $keys
 	 * @return void
 	 */
 	public function clear( $keys = null ) {

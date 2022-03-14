@@ -39,7 +39,7 @@ use Psr\Log\NullLogger;
  * @since 1.21
  */
 class RedisConnectionPool implements LoggerAwareInterface {
-	/** @var string Connection timeout in seconds */
+	/** @var int Connection timeout in seconds */
 	protected $connectTimeout;
 	/** @var string Read timeout in seconds */
 	protected $readTimeout;

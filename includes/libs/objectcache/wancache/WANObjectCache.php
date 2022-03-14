@@ -2225,7 +2225,7 @@ class WANObjectCache implements
 	 * broadcasting in mcrouter setups and also avoids races with new tombstones.
 	 *
 	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
-	 * @param int $purgeTimestamp UNIX timestamp of purge
+	 * @param int|float $purgeTimestamp UNIX timestamp of purge
 	 * @param bool &$isStale Whether the key is stale
 	 * @return bool Success
 	 * @since 1.28

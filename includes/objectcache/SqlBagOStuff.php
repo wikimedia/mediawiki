@@ -61,7 +61,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	protected $serverInfos = [];
 	/** @var string[] (server index => tag/host name) */
 	protected $serverTags = [];
-	/** @var int UNIX timestamp */
+	/** @var float UNIX timestamp */
 	protected $lastGarbageCollect = 0;
 	/** @var int Average number of writes required to trigger garbage collection */
 	protected $purgePeriod = 10;
@@ -238,7 +238,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$valueSize = false;
 		}
 
-		$this->updateOpStats( self::METRIC_OP_GET, [ $key => [ null, $valueSize ] ] );
+		$this->updateOpStats( self::METRIC_OP_GET, [ $key => [ 0, $valueSize ] ] );
 
 		return $result;
 	}
@@ -378,7 +378,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			} else {
 				$valueSize = false;
 			}
-			$valueSizeByKey[$key] = [ null, $valueSize ];
+			$valueSizeByKey[$key] = [ 0, $valueSize ];
 		}
 
 		$this->updateOpStats( self::METRIC_OP_GET, $valueSizeByKey );
@@ -682,7 +682,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				);
 				$resByKey[$key] = true;
 
-				$valueSizesByKey[$key] = [ strlen( $serialValue ), null ];
+				$valueSizesByKey[$key] = [ strlen( $serialValue ), 0 ];
 			}
 		} else {
 			// T288998: use REPLACE, if possible, to avoid cluttering the binlogs
@@ -692,7 +692,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$serialValue = $this->getSerialized( $value, $key );
 				$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt );
 
-				$valueSizesByKey[$key] = [ strlen( $serialValue ), null ];
+				$valueSizesByKey[$key] = [ strlen( $serialValue ), 0 ];
 			}
 			$db->replace( $ptable, 'keyname', $rows, __METHOD__ );
 			foreach ( $argsByKey as $key => $unused ) {
@@ -811,7 +811,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			);
 			$resByKey[$key] = true;
 
-			$valueSizesByKey[$key] = [ strlen( $serialValue ), null ];
+			$valueSizesByKey[$key] = [ strlen( $serialValue ), 0 ];
 		}
 
 		$this->updateOpStats( self::METRIC_OP_ADD, $valueSizesByKey );
@@ -885,7 +885,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			);
 			$resByKey[$key] = true;
 
-			$valueSizesByKey[$key] = [ strlen( $serialValue ), null ];
+			$valueSizesByKey[$key] = [ strlen( $serialValue ), 0 ];
 		}
 
 		$this->updateOpStats( self::METRIC_OP_CAS, $valueSizesByKey );
@@ -1065,7 +1065,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *
 	 * @param string $key
 	 * @param ?ScopedCallback &$scope Unlocker callback; null on failure [returned]
-	 * @return string|null UNIX timestamp with 6 decimal places; null on failure
+	 * @return float|null UNIX timestamp with 6 decimal places; null on failure
 	 */
 	private function newLockingWriteSectionModificationTimestamp( $key, &$scope ) {
 		if ( !$this->lock( $key, 0 ) ) {
@@ -1076,7 +1076,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$this->unlock( $key );
 		} );
 
-		return sprintf( '%.6f', $this->locks[$key][self::LOCK_TIME] );
+		// sprintf is used to adjust precision
+		return (float)sprintf( '%.6f', $this->locks[$key][self::LOCK_TIME] );
 	}
 
 	/**
@@ -1126,14 +1127,14 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *
 	 * @param IDatabase $db
 	 * @param string[]|string $keys
-	 * @param string $time UNIX modification timestamp with 6 decimal places
+	 * @param int $time UNIX modification timestamp
 	 * @return array
 	 */
-	private function buildExistenceConditions( IDatabase $db, $keys, string $time ) {
+	private function buildExistenceConditions( IDatabase $db, $keys, int $time ) {
 		// Note that tombstones always have past expiration dates
 		return [
 			'keyname' => $keys,
-			'exptime >= ' . $db->addQuotes( $db->timestamp( (int)$time ) )
+			'exptime >= ' . $db->addQuotes( $db->timestamp( $time ) )
 		];
 	}
 
@@ -1430,7 +1431,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	/**
 	 * @param IDatabase $db
 	 * @param string|int $timestamp
-	 * @param int $limit Maximum number of rows to delete in total
+	 * @param int|float $limit Maximum number of rows to delete in total or INF for no limit
 	 * @param int &$keysDeletedCount
 	 * @param null|array{fn:?callback,serversDone:int,serversTotal:int} $progress
 	 * @throws DBError
