@@ -230,7 +230,7 @@ class ParserEditTests extends Maintenance {
 		}
 
 		do {
-			$response = $this->readconsole();
+			$response = self::readconsole();
 			$cmdResult = false;
 			if ( $response === false ) {
 				exit( 0 );

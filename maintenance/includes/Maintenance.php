@@ -1519,7 +1519,7 @@ abstract class Maintenance {
 	/**
 	 * Prompt the console for input
 	 * @param string $prompt What to begin the line with, like '> '
-	 * @return string Response
+	 * @return string|false Response
 	 */
 	public static function readconsole( $prompt = '> ' ) {
 		static $isatty = null;

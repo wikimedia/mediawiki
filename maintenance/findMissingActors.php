@@ -198,7 +198,7 @@ class FindMissingActors extends Maintenance {
 			$this->output( "Do you want to OVERWRITE the listed actor IDs?\n" );
 			$this->output( "Information about the invalid IDs will be lost!\n" );
 			$this->output( "\n" );
-			$confirm = $this->readconsole( 'Type "yes" to continue: ' );
+			$confirm = self::readconsole( 'Type "yes" to continue: ' );
 
 			if ( $confirm === 'yes' ) {
 				$this->overwriteActorIDs( $field, array_keys( $bad ), $overwrite );
