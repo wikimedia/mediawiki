@@ -303,7 +303,7 @@ abstract class MediaHandler {
 	 * @stable to override
 	 *
 	 * @param array $metadata Metadata array
-	 * @param int $version Target version
+	 * @param int|string $version Target version
 	 * @return array Serialized metadata in specified version, or $metadata on fail.
 	 */
 	public function convertMetadataVersion( $metadata, $version = 1 ) {
