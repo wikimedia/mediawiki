@@ -844,6 +844,7 @@
 	"action-delete": "ushbu faylni o‘chirish",
 	"action-deletedhistory": "ushbu sahifaning oʻchirilgan tarixini koʻrish",
 	"action-browsearchive": "oʻchirilgan sahifalarni qidirish",
+	"action-undelete": "Tiklash",
 	"action-block": "bu foydalanuvchining tahrirlash imkoniyatlarini cheklash",
 	"action-userrights": "barcha foydalanuvchi huquqlarini tahrirlash",
 	"action-sendemail": "elektron xatlar jo'natish",

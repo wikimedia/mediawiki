@@ -617,6 +617,7 @@
 	"action-move-categorypages": "smatti tasniwin n usmil",
 	"action-movefile": "smatti afaylu ad",
 	"action-delete": "kks tasna ad",
+	"action-undelete": "Rard may mayḥiydn",
 	"nchanges": "$1 {{PLURAL:$1|usnfl|isnfiln}}",
 	"enhancedrc-history": "amzruy",
 	"recentchanges": "Isnfal imggura",

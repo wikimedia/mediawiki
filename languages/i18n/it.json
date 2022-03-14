@@ -1002,7 +1002,7 @@
 	"revdelete-hide-name": "Nascondi obiettivo e parametri",
 	"revdelete-hide-comment": "Oggetto della modifica o motivazione dell'azione",
 	"revdelete-hide-user": "Nome o indirizzo IP dell'autore",
-	"revdelete-hide-restricted": "Nascondi le informazioni indicate anche agli amministratori",
+	"revdelete-hide-restricted": "Nascondi le informazioni anche agli amministratori",
 	"revdelete-radio-same": "(non cambiare)",
 	"revdelete-radio-set": "Nascondi",
 	"revdelete-radio-unset": "Mostra",

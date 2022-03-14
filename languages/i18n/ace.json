@@ -18,7 +18,8 @@
 			"아라",
 			"DDPAT",
 			"MinecraftAustralia",
-			"MuratTheTurkish"
+			"MuratTheTurkish",
+			"Ice bulldog"
 		]
 	},
 	"tog-underline": "Bôh garéh yup peunawôt:",
@@ -751,6 +752,8 @@
 	"action-createpage": "peugöt laman",
 	"action-createaccount": "peugöt akun ureueng nyoe",
 	"action-move": "Peupinah laman nyoë",
+	"action-delete": "Sampôh",
+	"action-undelete": "Bateuë sampôh",
 	"action-sendemail": "Peuét surat-e",
 	"nchanges": "$1 {{PLURAL:$1|neuubah}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|yôh seunaweuë seuneulheuëh kön}}",

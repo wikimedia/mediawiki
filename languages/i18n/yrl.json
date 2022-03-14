@@ -606,6 +606,8 @@
 	"action-createpage": "Umunhã kuá sowa",
 	"action-createtalk": "Umunhã kuá murũgitá sowa",
 	"action-createaccount": "E-munhã kuá puruçara mainãgawa",
+	"action-move": "Yatimana",
+	"action-delete": "Muçaká",
 	"action-deleterevision": "Umuçaká amũmaãgawa'etá",
 	"action-sendemail": "umeẽ emayu'etá",
 	"nchanges": "$1 {{PLURAL:$1|sinimuka|sinimuka'etá}}",

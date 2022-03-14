@@ -13,7 +13,8 @@
 			"Монгуш Салим",
 			"לערי ריינהארט",
 			"아라",
-			"Riverman"
+			"Riverman",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Шөлүгнү ылгап шыяр:",
@@ -302,7 +303,7 @@
 	"actionthrottled": "Шеглээн дүрген",
 	"viewsourcetext": "Бо арынның дөзүн көргеш копиялап ап болур силер.",
 	"exception-nologin": "Кирбес",
-	"welcomeuser": "Кирип моорлаңар, %s!",
+	"welcomeuser": "Кирип моорлаңар, $1!",
 	"yourname": "Aжыглакчының ады",
 	"userlogin-yourname": "Бүрүткел ат",
 	"userlogin-yourname-ph": "Бүрүткедир адыңар киириңер",
@@ -609,6 +610,8 @@
 	"action-createaccount": "бо бүрүткел бижиктерин бүдүрери",
 	"action-move": "бо арынны көжүрер",
 	"action-movefile": "бо файлды көжүрер",
+	"action-delete": "Казыыр",
+	"action-undelete": "Эгидер",
 	"action-sendemail": "э-чагаалар чорудары",
 	"nchanges": "$1 {{PLURAL:$1|өскерлиишкин}}",
 	"enhancedrc-history": "төөгү",

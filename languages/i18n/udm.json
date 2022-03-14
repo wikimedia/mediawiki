@@ -470,6 +470,8 @@
 	"action-read": "та бам лыдӟыны",
 	"action-edit": "та бамез тупатыны",
 	"action-createaccount": "та бамлыдэз кылдытон",
+	"action-move": "Нимзэ воштыны",
+	"action-delete": "Быдтоно",
 	"action-block": "та викиавтор блокировать карыны",
 	"enhancedrc-history": "история",
 	"recentchanges": "Выль тупатонъёс",

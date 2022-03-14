@@ -83,7 +83,8 @@
 			"RXerself",
 			"Syman51",
 			"WillsonEP09",
-			"Hanif Al Husaini"
+			"Hanif Al Husaini",
+			"Nohirara"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -954,7 +955,7 @@
 	"logdelete-failure": "Aturan keterlihatan tidak dapat diterapkan:\n$1",
 	"revdel-restore": "ubah keterlihatan",
 	"pagehist": "Riwayat halaman",
-	"deletedhist": "Sejarah yang dihapus",
+	"deletedhist": "Riwayat yang dihapus",
 	"revdelete-hide-current": "Gagal menyembunyikan revisi tertanggal $2, $1: Ini adalah revisi terkini.\nRevisi ini tidak dapat disembunyikan.",
 	"revdelete-show-no-access": "Gagal menampilkan revisi tertanggal $2, $1: Revisi ini telah ditandai \"terbatas\".\nAnda tidak memiliki akses ke revisi ini.",
 	"revdelete-modify-no-access": "Gagal mengubah revisi tertanggal $2, $1: Revisi ini telah ditandai \"terbatas\".\nAnda tidak memiliki akses ke revisi ini.",

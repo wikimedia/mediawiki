@@ -545,6 +545,8 @@
 	"rightslog": "वापरप्याच्या हकांचो सत्र",
 	"action-edit": "हें पान संपादीत कर",
 	"action-createaccount": "हें वापरप्याचें खातें रच",
+	"action-move": "दुसरेकडे व्हरात",
+	"action-delete": "काडून उडयात",
 	"action-purge": "पानाचें कॅशे नितळ कर",
 	"action-editinterface": "वापरप्याचें इंटरफेसचें संपादन कर",
 	"nchanges": "$1 {{PLURAL:$1|बदल}}",

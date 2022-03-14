@@ -468,6 +468,8 @@
 	"action-move": "دکشی‌ین اینتا صفحه",
 	"action-move-subpages": "دکشی‌ین اینتا صفحه و ونه زیر رج‌ئون",
 	"action-move-rootuserpages": "دکشی‌ین صفحه‌ئون کاروری سرچله",
+	"action-delete": "پاک هاکردن",
+	"action-undelete": "دباره بنویشته بیّن",
 	"enhancedrc-history": "تاریخچه",
 	"recentchanges": "تازه دگاردنی‌ئون",
 	"recentchanges-legend": "تازه دگاردنی‌ئون ِگزینه‌ئون",

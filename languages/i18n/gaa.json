@@ -260,6 +260,8 @@
 	"group-user-member": "{{GENDER:$1|tsulɔ}}",
 	"rightslog": "Nitsulɔ mliyaa hegbɛ",
 	"action-edit": "tsakemɔ baafa nɛɛ",
+	"action-move": "Tsi",
+	"action-delete": "Jiemɔ",
 	"enhancedrc-history": "Nɔ ni eho",
 	"recentchanges": "Tsakemɔi hee",
 	"recentchanges-legend": "Sɛɛkpee tsakemɔi",

@@ -48,7 +48,8 @@
 			"Cezar",
 			"McDutchie",
 			"NGC 54",
-			"Popetedenis"
+			"Popetedenis",
+			"Dan Mihai Pitea"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -2026,10 +2027,10 @@
 	"specialpage-empty": "Această pagină este goală.",
 	"lonelypages": "Pagini orfane",
 	"lonelypagestext": "La următoarele pagini nu se leagă nici o altă pagină din {{SITENAME}}.",
-	"uncategorizedpages": "Pagini necategorizate",
-	"uncategorizedcategories": "Categorii necategorizate",
-	"uncategorizedimages": "Fișiere necategorizate",
-	"uncategorizedtemplates": "Formate necategorizate",
+	"uncategorizedpages": "Pagini necategorisite",
+	"uncategorizedcategories": "Categorii necategorisite",
+	"uncategorizedimages": "Fișiere necategorisite",
+	"uncategorizedtemplates": "Formate necategorisite",
 	"uncategorized-categories-exceptionlist": "# Conține o listă de categorii, care nu ar trebui menționate în Special:uncategorizedCategories. Una pe linie, începând cu \"*\". Liniile ce încep cu un alt caracter (inclusiv spațiu) sunt ignorate. Folosiți \"#\" pentru comentarii.",
 	"unusedcategories": "Categorii neutilizate",
 	"unusedimages": "Fișiere neutilizate",

@@ -738,6 +738,7 @@
 	"rightslogtext": "Chisthu è lu rigisthru di lu mudìfigghi a li diritti assignaddi a l'utenti.",
 	"action-edit": "mudìfiggà chistha pàgina",
 	"action-createaccount": "crià kistha registhrazioni",
+	"action-move": "Ippustha",
 	"action-delete": "canzillà chistha pàgina",
 	"nchanges": "$1 {{PLURAL:$1|mudìfigga|mudìfigghi}}",
 	"enhancedrc-history": "cronologia",

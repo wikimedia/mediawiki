@@ -20,7 +20,8 @@
 			"Kambai Akau",
 			"Lamma64",
 			"Nura A Sani",
-			"Omar Ali"
+			"Omar Ali",
+			"Bello Na'im"
 		]
 	},
 	"tog-underline": "Zana layin link",
@@ -469,6 +470,8 @@
 	"newuserlogpage": "Rajistan sabbin akwantoci",
 	"rightslog": "Rajistan bayar da izini ga ma'aikata",
 	"action-edit": "gyara wannan shafi",
+	"action-move": "Gusarwa",
+	"action-delete": "Soke",
 	"nchanges": "{{PLURAL:$1|sauyi|sauye-sauye}} $1",
 	"enhancedrc-history": "Tarihi",
 	"recentchanges": "Sauye-sauyen baya-bayan nan",
