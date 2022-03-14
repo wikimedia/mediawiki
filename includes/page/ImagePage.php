@@ -607,7 +607,7 @@ EOT
 			}
 
 			$renderLangOptions = $this->displayImg->getAvailableLanguages();
-			if ( count( $renderLangOptions ) >= 1 ) {
+			if ( $renderLang !== null && count( $renderLangOptions ) >= 1 ) {
 				$out->addHTML( $this->doRenderLangOpt( $renderLangOptions, $renderLang ) );
 			}
 

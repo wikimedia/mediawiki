@@ -203,9 +203,17 @@ class CategoryViewer extends ContextSource {
 	 * @param int $pageLength
 	 */
 	public function addSubcategoryObject( Category $cat, $sortkey, $pageLength ) {
+		$page = $cat->getPage();
+		if ( !$page ) {
+			return;
+		}
+
 		// Subcategory; strip the 'Category' namespace from the link text.
 		$pageRecord = MediaWikiServices::getInstance()->getPageStore()
-			->getPageByReference( $cat->getPage() );
+			->getPageByReference( $page );
+		if ( !$pageRecord ) {
+			return;
+		}
 
 		$this->children[] = $this->generateLink(
 			'subcat',
@@ -215,7 +223,7 @@ class CategoryViewer extends ContextSource {
 		);
 
 		$this->children_start_char[] =
-			$this->getSubcategorySortChar( $cat->getPage(), $sortkey );
+			$this->getSubcategorySortChar( $page, $sortkey );
 	}
 
 	/**
