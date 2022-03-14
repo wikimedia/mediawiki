@@ -202,7 +202,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	}
 
 	/**
-	 * @param float $rand Random number between 0 and 1
+	 * @param float|false $rand Random number between 0 and 1
 	 * @param int $offset Extra offset to fudge randomness
 	 * @param bool $up True to get the result above the random number, false for below
 	 * @return array Query information.
@@ -245,9 +245,9 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	}
 
 	/**
-	 * @param float $rand Random number between 0 and 1
+	 * @param float|false $rand Random number between 0 and 1
 	 *
-	 * @return int|bool A random (unix) timestamp from the range of the category or false on failure
+	 * @return int|false A random (unix) timestamp from the range of the category or false on failure
 	 */
 	protected function getTimestampOffset( $rand ) {
 		if ( $rand === false ) {
@@ -297,7 +297,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	}
 
 	/**
-	 * @param float $rand A random number that is converted to a random timestamp
+	 * @param float|false $rand A random number that is converted to a random timestamp
 	 * @param int $offset A small offset to make the result seem more "random"
 	 * @param bool $up Get the result above the random value
 	 * @param string $fname The name of the calling method

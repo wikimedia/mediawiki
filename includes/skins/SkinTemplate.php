@@ -1308,8 +1308,11 @@ class SkinTemplate extends Skin {
 				if ( $title->isKnown() ) {
 					$content_navigation['views']['view'] = $this->tabAction(
 						$isTalk ? $talkPage : $subjectPage,
-						[ "view-view", "view" ],
+						'view-view',
 						( $onPage && ( $action == 'view' || $action == 'purge' ) ), '', true
+					);
+					$content_navigation['views']['view']['text'] = $this->getSkinNavOverrideableLabel(
+						'view-view'
 					);
 					// signal to hide this from simple content_actions
 					$content_navigation['views']['view']['redundant'] = true;

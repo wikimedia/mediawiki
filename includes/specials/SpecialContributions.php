@@ -142,7 +142,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->opts = [];
 		$request = $this->getRequest();
 
-		$target = $par ?? $request->getVal( 'target' );
+		$target = $par ?? $request->getVal( 'target', '' );
 
 		$this->opts['deletedOnly'] = $request->getBool( 'deletedOnly' );
 
