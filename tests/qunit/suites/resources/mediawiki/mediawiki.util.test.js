@@ -783,4 +783,65 @@
 		assert.strictEqual( mw.util.$content[ 0 ], document.body, 'node' );
 		assert.strictEqual( mw.util.$content.length, 1, 'length' );
 	} );
+
+	QUnit.test( 'sanitizeIP', function ( assert ) {
+		var IPaddress = [
+			[ 'FC:0:0:0:0:0:0:100', 'fc::100', 'IPv6 with "::" and 2 words' ],
+			[ 'FC:0:0:0:0:0:100:A', 'fc::100:a', 'IPv6 with "::" and 3 words' ],
+			[ 'FC:0:0:0:0:100:A:D', 'fc::100:a:d', 'IPv6 with "::" and 4 words' ],
+			[ 'FC:0:0:0:100:A:D:1', 'fc::100:a:d:1', 'IPv6 with "::" and 5 words' ],
+			[ 'FC:0:0:100:A:D:1:E', 'fc::100:a:d:1:e', 'IPv6 with "::" and 6 words' ],
+			[ 'FC:0:100:A:D:1:E:AC', 'fc::100:a:d:1:e:ac', 'IPv6 with "::" and 7 words' ],
+			[ '2001:0:0:0:0:0:0:DF', '2001::df', 'IPv6 with "::" and 2 words' ],
+			[ '2001:5C0:1400:A:0:0:0:DF', '2001:5c0:1400:a::df', 'IPv6 with "::" and 5 words' ],
+			[ '2001:5C0:1400:A:0:0:DF:2', '2001:5c0:1400:a::df:2', 'IPv6 with "::" and 6 words' ],
+			[ '2001:DB8:A:0:0:0:0:123/64', '2001:db8:a::123/64', 'IPv6 with "::" and 6 words' ],
+			[ '1.24.52.13', '1.24.52.13', 'IPv4 no change' ],
+			[ '1.24.52.13', '01.024.052.013', 'IPv4 strip leading 0s' ],
+			[ '1.2.5.1', '001.002.005.001', 'IPv4 strip multiple leading 0s' ],
+			[ '100.240.52.130', '100.240.52.130', 'IPv4 don\'t strip meaningful trailing 0s' ],
+			[ '0.0.52.0', '00.000.52.00', 'IPv4 strip meaningless multiple 0s' ],
+			[ '0.0.52.0/32', '00.000.52.00/32', 'IPv4 range strip meaningless multiple 0s' ],
+			[ 'not an IP', 'not an IP', 'Not an IP' ],
+			[ null, ' ', 'Empty string' ],
+			[ '1.24.52.13', ' 1.24.52.13 ', 'IPv4 trim whitespace from start and end of the string' ],
+			[ '0:0:0:0:0:0:0:1', '::1', 'IPv6 starts with ::' ],
+			[ '2001:DB8:0:0:0:FF00:42:8329', '2001:0db8:0000:0000:0000:ff00:0042:8329', 'IPv6 remove leading zeros from each block.' ],
+			[ 'FE80:0:0:0:0:0:0:0/10', 'fe80::/10', 'IPv6 :: at the end' ]
+		];
+		IPaddress.forEach( function ( ipCase ) {
+			assert.strictEqual( util.sanitizeIP( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
+		} );
+	} );
+
+	QUnit.test( 'prettifyIP', function ( assert ) {
+		var IPaddress = [
+			[ 'fc::100', 'FC::100', 'IPv6 change to lowercase' ],
+			[ '1.24.52.13', '1.24.52.13', 'IPv4 no change' ],
+			[ '0.0.52.0/32', '00.000.52.00/32', 'IPv4 range strip meaningless multiple 0s' ],
+			[ null, ' ', 'Empty string' ],
+			[ '2001:db8:a::123/64', '2001:db8:a:0000:0000:0000:0000:123/64', 'IPv6 range Replace consecutive zeros with :: ' ],
+			[ '2001:db8::ff00:42:8329', '2001:DB8:0:0:0:FF00:42:8329', 'IPv6 Replace consecutive zeros with ::' ],
+			[ '2001::15:0:0:1a2b', '2001:0000:0000:0000:0015:0000:0000:1a2b', 'IPv6 only replace longest consecutive zeros with ::' ],
+			[ '2001:0:0:15::1a2b', '2001:0000:0000:0015:0000:0000:0000:1a2b', 'IPv6 only replace longest consecutive zeros with ::' ],
+			[ '2001::15:0:0:3:1a2b', '2001:0000:0000:0015:0000:0000:0003:1a2b', 'IPv6 replace first match of longest consecutive zeros with ::' ]
+		];
+		IPaddress.forEach( function ( ipCase ) {
+			assert.strictEqual( util.prettifyIP( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
+		} );
+
+	} );
+
+	QUnit.test( 'repeatString', function ( assert ) {
+		var strings = [
+			[ '::', ':', 2, 'Return string count(2) times' ],
+			[ ' :  : ', ' : ', 2, 'String with spaces' ],
+			[ ':', ':', -1, 'No change if count is out of range' ],
+			[ ':', ':', Infinity, 'No change if count is out of range' ],
+			[ '', '', 2, 'No change if empty string is passed' ]
+		];
+		strings.forEach( function ( stringCase ) {
+			assert.strictEqual( util.repeatString( stringCase[ 1 ], stringCase[ 2 ] ), stringCase[ 0 ], stringCase[ 3 ] );
+		} );
+	} );
 }() );
