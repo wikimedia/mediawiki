@@ -1083,13 +1083,13 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	/**
 	 * Make a `modtoken` column value with the original time and source database server of a write
 	 *
-	 * @param int|float $mtime UNIX modification timestamp
+	 * @param float $mtime UNIX modification timestamp
 	 * @param IDatabase $db Handle to the primary database server sourcing the write
 	 * @return string String of the form "<SECONDS_SOURCE><MICROSECONDS>", where SECONDS_SOURCE
 	 *  is "<35 bit seconds portion of UNIX time><32 bit database server ID>" as 13 base 36 chars,
 	 *  and MICROSECONDS is "<20 bit microseconds portion of UNIX time>" as 4 base 36 chars
 	 */
-	private function makeTimestampedModificationToken( $mtime, IDatabase $db ) {
+	private function makeTimestampedModificationToken( float $mtime, IDatabase $db ) {
 		// We have reserved space for upto 6 digits in the microsecond portion of the token.
 		// This is for future use only (maybe CAS tokens) and not currently used.
 		// It is currently populated by the microsecond portion returned by microtime,
