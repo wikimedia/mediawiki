@@ -46,11 +46,13 @@ class PageProps {
 	private $cache;
 
 	/**
-	 * @deprecated since 1.38, use MediaWikiServices::getPageProps() instead
+	 * @deprecated since 1.38, hard deprecated since 1.39
+	 * Use MediaWikiServices::getPageProps() instead
 	 *
 	 * @return PageProps
 	 */
 	public static function getInstance() {
+		wfDeprecated( __METHOD__, '1.38' );
 		return MediaWikiServices::getInstance()->getPageProps();
 	}
 
