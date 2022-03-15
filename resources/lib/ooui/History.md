@@ -1,4 +1,22 @@
 # OOUI Release History
+## v0.43.2 / 2022-03-11
+### Styles
+* WikimediaUI theme: Remove duplicated `border-width` property (Volker E.)
+* WikimediaUI theme: Set `outline` just once (Volker E.)
+* icons: Skew 'italic-arab-keheh-jeem' and bolden 'bold-arab-dad' icons (Volker E.)
+
+### Code
+* Fix `#scrollIntoView` promise never resolving when called repeatedly (Bartosz Dziewoński)
+* PopupButtonWidget: Add ARIA properties to JavaScript version of PopupButtonWidget (STran)
+* RadioSelectWidget: Remove `aria-multiselectable` attribute (Volker E.)
+* build: Clean up .gitattributes (Timo Tijhof)
+* build: Make use of root stylelint config in demos and adapt (Volker E.)
+* build: Update QUnit from 2.17.2 to 2.18.0 (James D. Forrester)
+* build: Update dependencies and make stylelint/eslint pass (Volker E.)
+* Follow-up 1204966: Drop imagesCommon grunt job, this directory is now empty (James D. Forrester)
+* Follow-up 1cf3179a8, 7afccfd06: Don't export .nvmrc or .svgo.config.js (James D. Forrester)
+
+
 ## v0.43.1 / 2022-02-09
 ### Styles
 * icons: Update 'zoomIn' and 'zoomOut' (Volker E.)
