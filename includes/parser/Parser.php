@@ -406,12 +406,14 @@ class Parser {
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		// See documentation for the corresponding config options
+		// Many of these are only used in (eg) CoreMagicVariables
 		'AllowDisplayTitle',
 		'AllowSlowParserFunctions',
 		'ArticlePath',
 		'EnableScaryTranscluding',
 		'ExtraInterlanguageLinkPrefixes',
 		'FragmentMode',
+		'Localtimezone',
 		'MaxSigChars',
 		'MaxTocLevel',
 		'MiserMode',
@@ -2815,8 +2817,12 @@ class Parser {
 			return $this->mVarCache[$index];
 		}
 
-		$ts = wfTimestamp( TS_UNIX, $this->mOptions->getTimestamp() );
-		$this->hookRunner->onParserGetVariableValueTs( $this, $ts );
+		$ts = new MWTimestamp( $this->mOptions->getTimestamp() /* TS_MW */ );
+		if ( $this->hookContainer->isRegistered( 'ParserGetVariableValueTs' ) ) {
+			$s = $ts->getTimestamp( TS_UNIX );
+			$this->hookRunner->onParserGetVariableValueTs( $this, $s );
+			$ts = new MWTimestamp( $s );
+		}
 
 		$value = CoreMagicVariables::expand(
 			$this, $index, $ts, $this->nsInfo, $this->svcOptions, $this->logger
