@@ -1,11 +1,14 @@
 <?php
 
+/**
+ * @phan-file-suppress PhanCommentAbstractOnInheritedMethod T298571
+ */
+
 namespace Wikimedia\Rdbms;
 
-/**
- * @suppress PhanRedefinedExtendedClass
- */
-class MWMySQLPlatform extends MWMySQLPlatformCompat {
+use Doctrine\DBAL\Platforms\MySQLPlatform;
+
+class MWMySQLPlatform extends MySQLPlatform {
 
 	/**
 	 * @inheritDoc
