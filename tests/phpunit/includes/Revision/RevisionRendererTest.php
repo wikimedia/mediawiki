@@ -85,9 +85,6 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$lb->method( 'getConnectionRef' )
 			->with( $dbIndex )
 			->willReturn( $this->mockDatabaseConnection( $this->createMock( DBConnRef::class ), $maxRev ) );
-		$lb->method( 'getLazyConnectionRef' )
-			->with( $dbIndex )
-			->willReturn( $this->mockDatabaseConnection( $this->createMock( DBConnRef::class ), $maxRev ) );
 
 		/** @var NameTableStore|MockObject $slotRoles */
 		$slotRoles = $this->getMockBuilder( NameTableStore::class )
