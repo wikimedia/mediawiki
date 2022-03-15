@@ -509,7 +509,6 @@
 	"logentry-upload-upload": "$1 {{GENDER:$2|kas maso di internet}} $3",
 	"searchsuggest-search": "Cari {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|hari}}",
-	"view-view-foreign": "Lia di $1",
 	"view-create-local": "Kas tamba deskripsi lokal",
 	"nstab-mainpage": "Kintal muka",
 	"skin-action-move": "Kas pindah"

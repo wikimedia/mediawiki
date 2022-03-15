@@ -401,7 +401,6 @@
 	"json-error-syntax": "Error sintáctico",
 	"json-error-utf8": "Los caracteres UTF-8 tienen errores de formato, puede ser que la codificación es incorrecta.",
 	"specialmute-login-required": "Acceda a su cuenta para cambiar sus preferencias de silenciamiento.",
-	"view-view-foreign": "Ver en $1",
 	"view-create-local": "Añadir descripción local",
 	"nstab-mainpage": "Página principal",
 	"view-edit-local": "Editar descripción local"

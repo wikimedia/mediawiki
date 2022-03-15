@@ -3616,7 +3616,6 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP-vistfang",
 	"paramvalidator-help-type-user-subtype-cidr": "IP-vistfangasvið",
 	"paramvalidator-help-type-user-subtype-id": "notandanúmer (t.d. \"#12345\")",
-	"view-view-foreign": "Skoða á $1",
 	"view-create-local": "Bæta við staðbundinni lýsingu",
 	"nstab-mainpage": "Forsíða",
 	"view-edit-local": "Breyta staðbundinni lýsingu",

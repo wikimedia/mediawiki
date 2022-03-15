@@ -2989,7 +2989,6 @@
 	"deflate-invaliddeflate": "Annettua sisältöä ei ole tyhjennetty kunnola",
 	"unprotected-js": "Turvallisuussyistä JavaScriptiä ei voi laajata suojaamattomilta sivuilta. Luo JavaScript-sivuja vain MediaWiki-nimiavaruuteen tai käyttäjän alasivulle.",
 	"userlogout-continue": "Halvakko lokata ulos?",
-	"view-view-foreign": "Näytä $1",
 	"view-create-local": "Luo paikallinen kuvvaus",
 	"nstab-mainpage": "Alkusivu",
 	"view-edit-local": "Mookkaa paikallista kuvvausta",

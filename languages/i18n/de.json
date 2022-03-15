@@ -4107,7 +4107,6 @@
 	"config-missing-key": "Fehlender MediaWiki-Konfigurationsparameter „$1“",
 	"config-invalid-key": "Ungültiger MediaWiki-Konfigurationsparameter „$1“: $2",
 	"changeslist-nocomment": "Keine Bearbeitungszusammenfassung",
-	"view-view-foreign": "Auf $1 ansehen",
 	"view-create-local": "Lokale Beschreibung hinzufügen",
 	"nstab-mainpage": "Hauptseite",
 	"view-edit-local": "Lokale Beschreibung bearbeiten",

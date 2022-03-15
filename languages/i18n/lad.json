@@ -1150,7 +1150,6 @@
 	"limitreport-walltime-value": "$1{{PLURAL:$1|segundo|segundos}}",
 	"expand_templates_ok": "D'akodro",
 	"randomrootpage": "Página aleatoria ''root''",
-	"view-view-foreign": "Mirar en $1",
 	"view-create-local": "Agregar deskripsión local",
 	"nstab-mainpage": "La Primera Hoja",
 	"skin-action-protect": "Guadrar",

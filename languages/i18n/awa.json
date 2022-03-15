@@ -3873,7 +3873,6 @@
 	"paramvalidator-help-type-user-subtype-cidr": "आईपी रेंज",
 	"paramvalidator-help-type-user-subtype-interwiki": "इंटरविकी नांव (जइसे \"prefix>कउनो नांव)",
 	"paramvalidator-help-type-user-subtype-id": "यूजर आईडी (जइसे \"#12345\" )",
-	"view-view-foreign": "$1 पय देखा जाय",
 	"view-create-local": "स्थानीय विवरण जोडो",
 	"nstab-mainpage": "प्रधान पन्ना",
 	"view-edit-local": "स्थानीय विवरण सम्पादन",

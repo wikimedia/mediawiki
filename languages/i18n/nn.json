@@ -3098,7 +3098,6 @@
 	"revid": "versjon $1",
 	"userlogout-continue": "Ynskjer du å logga ut?",
 	"nonmain-slot-differences-therefore-readonly": "Du kan ikkje endra wikiteksten til denne versjonen av sida av di det er gjort endringar av data på sida som ikkje er wikitekst-baserte. [$1 For å attoppretta denne versjonen, trykk her]",
-	"view-view-foreign": "Vis på $1",
 	"view-create-local": "Legg til lokal skildring",
 	"nstab-mainpage": "Hovudside",
 	"view-edit-local": "Endre lokal skildring",

@@ -3963,7 +3963,6 @@
 	"config-missing-key": "Le parametro de configuration MediaWiki \"$1\" es mancante.",
 	"config-invalid-key": "Parametro de configuration MediaWiki \"$1\" non valide: $2",
 	"changeslist-nocomment": "Nulle summario de modification",
-	"view-view-foreign": "Vider sur $1",
 	"view-create-local": "Adder description local",
 	"nstab-mainpage": "Pagina principal",
 	"view-edit-local": "Modificar description local",

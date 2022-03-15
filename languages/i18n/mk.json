@@ -4119,7 +4119,6 @@
 	"config-missing-key": "Недостасува параметарот „$1“ за поставување на МедијаВики",
 	"config-invalid-key": "Неважечки параметар за поставување на МедијаВики „$1“: $2",
 	"changeslist-nocomment": "Нема опис на уредувањето",
-	"view-view-foreign": "Погледај на $1",
 	"view-create-local": "Додај месен опис",
 	"nstab-mainpage": "Главна страница",
 	"view-edit-local": "Уреди месен опис",

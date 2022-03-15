@@ -1591,7 +1591,6 @@
 	"searchsuggest-search": "Otsminõ {{GRAMMAR:elative|{{SITENAME}}}}",
 	"duration-days": "$1 {{PLURAL:$1|päiv|päivä}}",
 	"randomrootpage": "Johuslinõ juurlehekülg",
-	"view-view-foreign": "Kaeq $1 pääl",
 	"view-create-local": "Luuq paigapääline seletüs",
 	"nstab-mainpage": "Pääleht",
 	"view-edit-local": "Toimõndaq paigapäälist seletüst",

@@ -4164,7 +4164,6 @@
 	"config-missing-key": "Parâmetro de configuração do MediaWiki ausente \"$1\"",
 	"config-invalid-key": "Parâmetro de configuração do MediaWiki inválido \"$1\": $2",
 	"changeslist-nocomment": "Sem resumo de edição",
-	"view-view-foreign": "Ver em $1",
 	"view-create-local": "Adicionar descrição local",
 	"nstab-mainpage": "Página principal",
 	"view-edit-local": "Editar descrição local",

@@ -3850,7 +3850,6 @@
 	"paramvalidator-help-type-title": "ชนิด: ชื่อหน้า",
 	"paramvalidator-help-type-title-must-exist": "รับเฉพาะหน้าที่มีอยู่จริง",
 	"paramvalidator-help-type-title-no-must-exist": "รับทั้งหน้ายังไม่ถูกสร้างและสร้างแล้ว",
-	"view-view-foreign": "ดูบน $1",
 	"view-create-local": "เพิ่มคำอธิบายท้องถิ่น",
 	"nstab-mainpage": "หน้าหลัก",
 	"view-edit-local": "แก้ไขคำอธิบายท้องถิ่น",

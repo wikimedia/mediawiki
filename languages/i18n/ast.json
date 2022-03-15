@@ -3859,7 +3859,6 @@
 	"paramvalidator-help-type-user-subtype-cidr": "Rangu d'IP",
 	"paramvalidator-help-type-user-subtype-interwiki": "nome d'interwiki (p.ex. \"prefixu>ExampleName\")",
 	"paramvalidator-help-type-user-subtype-id": "ID d'usuariu (p.ex. «#12345»)",
-	"view-view-foreign": "Ver en $1",
 	"view-create-local": "Amestar descripción llocal",
 	"nstab-mainpage": "Portada",
 	"view-edit-local": "Editar la descripción llocal",

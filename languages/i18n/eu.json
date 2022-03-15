@@ -3826,7 +3826,6 @@
 	"paramvalidator-help-type-user-subtype-cidr": "IP tartea",
 	"paramvalidator-help-type-user-subtype-interwiki": "interwiki izena (adib. \"prefix>ExampleName\")",
 	"paramvalidator-help-type-user-subtype-id": "lankide IDa (adb. \"#12345\")",
-	"view-view-foreign": "$1(e)n ikusi",
 	"view-create-local": "Gehitu deskribapen lokala",
 	"nstab-mainpage": "Azala",
 	"view-edit-local": "Aldatu deskribapen lokala",

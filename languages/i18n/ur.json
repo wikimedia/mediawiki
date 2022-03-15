@@ -3668,7 +3668,6 @@
 	"paramvalidator-help-type-user-subtype-interwiki": "بین الویکی نام (مثلاً \"سابقہ>کوئی نام\")",
 	"paramvalidator-help-type-user-subtype-id": "صارف کا شناختی نمبر (مثلاً \"#12345\")",
 	"changeslist-nocomment": "کوئی خلاصۂ ترمیم نہیں",
-	"view-view-foreign": "$1 پر دیکھیں",
 	"view-create-local": "مقامی وضاحت کا اندراج",
 	"nstab-mainpage": "صفحۂ اول",
 	"view-edit-local": "مقامی وضاحت کی ترمیم",

@@ -567,7 +567,6 @@
 	"duration-days": "$1 {{PLURAL:$1|gizhiig}}",
 	"randomrootpage": "Maanaaji' ojiibik mazina'igan",
 	"specialmute-label-mute-email": "Bangitoo mazinaabikiwebinigan-naadazina'igane  ondaabate  {{GENDER:$1|wiin-aabaji'}}",
-	"view-view-foreign": "Waabam biindig $1",
 	"view-create-local": "bagidin biindig-danakamigad idan-aaniin-ayaan",
 	"nstab-mainpage": "Mazina'igan Niigaan",
 	"skin-action-delete": "Gaasiibii'an",

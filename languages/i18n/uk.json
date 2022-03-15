@@ -4226,7 +4226,6 @@
 	"config-missing-key": "Відсутній параметр конфігурації Медіавікі «$1»",
 	"config-invalid-key": "Неправильний параметр конфігурації Медіавікі «$1»: $2",
 	"changeslist-nocomment": "Немає опису редагування",
-	"view-view-foreign": "Переглянути сторінку {{grammar:locative|$1}}",
 	"view-create-local": "Додати локальний опис",
 	"nstab-mainpage": "Головна",
 	"view-edit-local": "Редагувати локальний опис",

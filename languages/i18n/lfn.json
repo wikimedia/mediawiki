@@ -3543,7 +3543,6 @@
 	"pagedata-text": "Esta paje furni un interfas a datos de pajes. Per favore, furni la titulo de paje en la URL, usante la sintatica de supajes.\n* Negosia de contenida segue la xapo Accept de tua surfador. Esta vole dise ce la datos de paje va es furnida en la formato prefereda par tua surfador.",
 	"pagedata-not-acceptable": "No formato conveninte ia es trovada. Tipos MIME suportada: $1",
 	"pagedata-bad-title": "Titulo nonvalida: $1.",
-	"view-view-foreign": "Mostra en $1",
 	"view-create-local": "Ajunta un descrive local",
 	"nstab-mainpage": "Paje xef",
 	"view-edit-local": "Edita la descrive local",

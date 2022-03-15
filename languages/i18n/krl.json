@@ -536,7 +536,6 @@
 	"logentry-upload-upload": "$1 {{GENDER:$2|päivitetty}} $3",
 	"searchsuggest-search": "Eči {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|päivä|päivyä}}",
-	"view-view-foreign": "Näytä $1",
 	"view-create-local": "Lisyä paikallini kuvauš",
 	"nstab-mainpage": "Piäšivu",
 	"skin-action-move": "Šiirrä"

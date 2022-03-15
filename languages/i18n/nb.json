@@ -4051,7 +4051,6 @@
 	"config-missing-key": "Mangler MediaWiki-konfigurasjonsparameteren «$1»",
 	"config-invalid-key": "Ugyldig MediaWiki-konfigurasjonsparameter «$1»: $2",
 	"changeslist-nocomment": "Ingen redigeringsforklaring",
-	"view-view-foreign": "Vis på $1",
 	"view-create-local": "Opprett lokal beskrivelse",
 	"nstab-mainpage": "Hovedside",
 	"view-edit-local": "Rediger lokal beskrivelse",

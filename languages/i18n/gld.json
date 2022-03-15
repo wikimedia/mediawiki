@@ -588,7 +588,6 @@
 	"logentry-newusers-create": "{{GENDER:$2|Най аӈгохани}} учётнэй записивэ $1",
 	"searchsuggest-search": "Гэлэури {{grammar:prepositional|{{SITENAME}}}}ду",
 	"duration-days": "$1 {{PLURAL:$1ини}}",
-	"view-view-foreign": "$1 сайтаду ичэури",
 	"view-create-local": "Эй бэунду нируйни",
 	"nstab-mainpage": "Дэрӯвури страница",
 	"skin-action-protect": "Кандёри",

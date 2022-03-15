@@ -3892,7 +3892,6 @@
 	"paramvalidator-help-type-user-subtype-interwiki": "interwiki meno (napr. „predpona>PríkladMena“)",
 	"paramvalidator-help-type-user-subtype-id": "ID používateľa (napr. „#12345“)",
 	"paramvalidator-help-type-title": "Typ: názov stránky",
-	"view-view-foreign": "Prehliadnuť na {{GRAMMAR:lokál|$1}}",
 	"view-create-local": "Pridať miestny popis",
 	"nstab-mainpage": "Hlavná stránka",
 	"view-edit-local": "Upraviť miestny popis",

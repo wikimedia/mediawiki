@@ -658,7 +658,6 @@
 	"logentry-newusers-create": "Kuenta di usuario $1 ta {{GENDER:$2|kreá}}",
 	"logentry-upload-upload": "$1 a {{GENDER:$2|añadí}}$3",
 	"searchsuggest-search": "Búskeda di {{SITENAME}}",
-	"view-view-foreign": "Bista di $1",
 	"view-create-local": "Añadí deskripshon lokal",
 	"nstab-mainpage": "Página prinsipal",
 	"view-edit-local": "Editá deskripshon lokal",

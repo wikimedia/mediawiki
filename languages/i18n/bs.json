@@ -3729,7 +3729,6 @@
 	"paramvalidator-help-type-user-subtype-name": "korisničko ime",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP-opseg",
-	"view-view-foreign": "Prikaži na {{GRAMMAR:dativ|$1}}",
 	"view-create-local": "Dodaj lokalni opis",
 	"nstab-mainpage": "Početna strana",
 	"view-edit-local": "Uredi lokalni opis",

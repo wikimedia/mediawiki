@@ -3580,7 +3580,6 @@
 	"paramvalidator-help-type-title": "Type: sidetitel",
 	"paramvalidator-help-type-title-must-exist": "Accepterer kun sider der findes.",
 	"paramvalidator-help-type-title-no-must-exist": "Accepterer ikkeeksisterende sider.",
-	"view-view-foreign": "Se på $1",
 	"view-create-local": "Tilføj lokal beskrivelse",
 	"nstab-mainpage": "Forside",
 	"view-edit-local": "Redigér lokal beskrivelse",

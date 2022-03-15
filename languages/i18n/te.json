@@ -4128,7 +4128,6 @@
 	"config-missing-key": "మీడియావికీ కాన్ఫిగరేషను పరామితి \"$1\" లేదు",
 	"config-invalid-key": "మీడియావికీ కాన్ఫిగరేషను పరామితి \"$1\" చెల్లనిది: $2",
 	"changeslist-nocomment": "దిద్దుబాటు సారాంశం లేదు",
-	"view-view-foreign": "$1 లో చూడండి",
 	"view-create-local": "స్థానిక వివరణను చేర్చు",
 	"nstab-mainpage": "మొదటి పేజీ",
 	"view-edit-local": "స్థానిక వివరణని మార్చు",
