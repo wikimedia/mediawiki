@@ -115,6 +115,9 @@ class Language {
 	 */
 	private $hookRunner;
 
+	/** @var Config */
+	private $config;
+
 	/**
 	 * Return a fallback chain for messages in getFallbacksFor
 	 * @since 1.32
@@ -416,6 +419,7 @@ class Language {
 	 * @param LanguageFallback|null $langFallback
 	 * @param LanguageConverterFactory|null $converterFactory
 	 * @param HookContainer|null $hookContainer
+	 * @param Config|null $config
 	 */
 	public function __construct(
 		$code = null,
@@ -423,7 +427,8 @@ class Language {
 		LanguageNameUtils $langNameUtils = null,
 		LanguageFallback $langFallback = null,
 		LanguageConverterFactory $converterFactory = null,
-		HookContainer $hookContainer = null
+		HookContainer $hookContainer = null,
+		Config $config = null
 	) {
 		if ( !func_num_args() ) {
 			// Old calling convention, deprecated
@@ -440,6 +445,7 @@ class Language {
 			$this->converterFactory = $services->getLanguageConverterFactory();
 			$this->hookContainer = $services->getHookContainer();
 			$this->hookRunner = new HookRunner( $this->hookContainer );
+			$this->config = $services->getMainConfig();
 			return;
 		}
 
@@ -455,6 +461,8 @@ class Language {
 			'Parameters cannot be null unless all are omitted' );
 		Assert::parameter( $hookContainer !== null, '$hookContainer',
 			'Parameters cannot be null unless all are omitted' );
+		Assert::parameter( $config !== null, '$config',
+			'Parameters cannot be null unless all are omitted' );
 
 		$this->mCode = $code;
 		$this->localisationCache = $localisationCache;
@@ -463,6 +471,7 @@ class Language {
 		$this->converterFactory = $converterFactory;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->config = $config;
 	}
 
 	/**
@@ -499,10 +508,9 @@ class Language {
 	 */
 	public function getNamespaces() {
 		if ( $this->namespaceNames === null ) {
-			$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-			$metaNamespace = $mainConfig->get( 'MetaNamespace' );
-			$metaNamespaceTalk = $mainConfig->get( 'MetaNamespaceTalk' );
-			$extraNamespaces = $mainConfig->get( 'ExtraNamespaces' );
+			$metaNamespace = $this->config->get( 'MetaNamespace' );
+			$metaNamespaceTalk = $this->config->get( 'MetaNamespaceTalk' );
+			$extraNamespaces = $this->config->get( 'ExtraNamespaces' );
 			$validNamespaces = MediaWikiServices::getInstance()->getNamespaceInfo()->
 				getCanonicalNamespaces();
 
@@ -612,7 +620,7 @@ class Language {
 	 * @since 1.18
 	 */
 	public function getGenderNsText( $index, $gender ) {
-		$extraGenderNamespaces = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExtraGenderNamespaces' );
+		$extraGenderNamespaces = $this->config->get( 'ExtraGenderNamespaces' );
 
 		$ns = $extraGenderNamespaces +
 			(array)$this->localisationCache->getItem( $this->mCode, 'namespaceGenderAliases' );
@@ -627,8 +635,8 @@ class Language {
 	 * @since 1.18
 	 */
 	public function needsGenderDistinction() {
-		$extraGenderNamespaces = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExtraGenderNamespaces' );
-		$extraNamespaces = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExtraNamespaces' );
+		$extraGenderNamespaces = $this->config->get( 'ExtraGenderNamespaces' );
+		$extraNamespaces = $this->config->get( 'ExtraNamespaces' );
 		if ( count( $extraGenderNamespaces ) > 0 ) {
 			// $wgExtraGenderNamespaces overrides everything
 			return true;
@@ -676,7 +684,7 @@ class Language {
 				}
 			}
 
-			$extraGenderNamespaces = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExtraGenderNamespaces' );
+			$extraGenderNamespaces = $this->config->get( 'ExtraGenderNamespaces' );
 			$genders = $extraGenderNamespaces + (array)$this->localisationCache
 				->getItem( $this->mCode, 'namespaceGenderAliases' );
 			foreach ( $genders as $index => $forms ) {
@@ -700,8 +708,7 @@ class Language {
 
 			// In the case of conflicts between $wgNamespaceAliases and other sources
 			// of aliasing, $wgNamespaceAliases wins.
-			$namespaceAliases = MediaWikiServices::getInstance()->getMainConfig()->get( 'NamespaceAliases' );
-			$this->namespaceAliases = $namespaceAliases + $this->namespaceAliases;
+			$this->namespaceAliases = $this->config->get( 'NamespaceAliases' ) + $this->namespaceAliases;
 
 			# Filter out aliases to namespaces that don't exist, e.g. from extensions
 			# that aren't loaded here but are included in the l10n cache.
@@ -794,8 +801,7 @@ class Language {
 	public function getDefaultDateFormat() {
 		$df = $this->localisationCache->getItem( $this->mCode, 'defaultDateFormat' );
 		if ( $df === 'dmy or mdy' ) {
-			$americanDates = MediaWikiServices::getInstance()->getMainConfig()->get( 'AmericanDates' );
-			return $americanDates ? 'mdy' : 'dmy';
+			return $this->config->get( 'AmericanDates' ) ? 'mdy' : 'dmy';
 		} else {
 			return $df;
 		}
@@ -2067,8 +2073,7 @@ class Language {
 	 * @return string
 	 */
 	public function userAdjust( $ts, $tz = false ) {
-		$localTZoffset = MediaWikiServices::getInstance()->getMainConfig()->get( 'LocalTZoffset' );
-
+		$localTZoffset = $this->config->get( 'LocalTZoffset' );
 		if ( $tz === false ) {
 			$optionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 			$tz = $optionsLookup->getOption(
@@ -2681,9 +2686,7 @@ class Language {
 	 * @return string
 	 */
 	protected function mbUpperChar( $char ) {
-		$overrideUcfirstCharacters = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'OverrideUcfirstCharacters' );
-
+		$overrideUcfirstCharacters = $this->config->get( 'OverrideUcfirstCharacters' );
 		return $overrideUcfirstCharacters[$char] ?? mb_strtoupper( $char );
 	}
 
@@ -2967,7 +2970,7 @@ class Language {
 	 * @return string
 	 */
 	public function normalize( $s ) {
-		$allUnicodeFixes = MediaWikiServices::getInstance()->getMainConfig()->get( 'AllUnicodeFixes' );
+		$allUnicodeFixes = $this->config->get( 'AllUnicodeFixes' );
 
 		$s = UtfNormal\Validator::cleanUp( $s );
 		// Optimization: This is disabled by default to avoid negative performance impact.
@@ -3204,7 +3207,7 @@ class Language {
 	private function formatNumInternal(
 		string $number, bool $noTranslate, bool $noSeparators
 	): string {
-		$translateNumerals = MediaWikiServices::getInstance()->getMainConfig()->get( 'TranslateNumerals' );
+		$translateNumerals = $this->config->get( 'TranslateNumerals' );
 
 		if ( $number === '' ) {
 			return $number;
@@ -3845,7 +3848,7 @@ class Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		$grammarForms = $this->config->get( 'GrammarForms' );
 		if ( isset( $grammarForms[$this->getCode()][$case][$word] ) ) {
 			return $grammarForms[$this->getCode()][$case][$word];
 		}
@@ -3896,7 +3899,7 @@ class Language {
 	 * @since 1.20
 	 */
 	public function getGrammarForms() {
-		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		$grammarForms = $this->config->get( 'GrammarForms' );
 		if ( isset( $grammarForms[$this->getCode()] )
 			&& is_array( $grammarForms[$this->getCode()] )
 		) {
@@ -4528,8 +4531,7 @@ class Language {
 			return $talk;
 		}
 
-		$metaNamespace = MediaWikiServices::getInstance()->getMainConfig()->get( 'MetaNamespace' );
-		$talk = str_replace( '$1', $metaNamespace, $talk );
+		$talk = str_replace( '$1', $this->config->get( 'MetaNamespace' ), $talk );
 
 		# Allow grammar transformations
 		# Allowing full message-style parsing would make simple requests

@@ -777,7 +777,8 @@ return [
 			$services->getLanguageNameUtils(),
 			$services->getLanguageFallback(),
 			$services->getLanguageConverterFactory(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getMainConfig()
 		);
 	},
 

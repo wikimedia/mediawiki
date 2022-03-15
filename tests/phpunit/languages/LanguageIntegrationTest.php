@@ -19,13 +19,18 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	private $origHooks;
 
 	private function newLanguage( $class = Language::class, $code = 'en' ) {
+		// Needed to support the setMwGlobals calls for the various tests, but this should
+		// probably be changed to have the configuration injected into this method instead
+		// at some point
+		$config = $this->getServiceContainer()->getMainConfig();
 		return new $class(
 			$code,
 			$this->createNoOpMock( LocalisationCache::class ),
 			$this->createNoOpMock( LanguageNameUtils::class ),
 			$this->createNoOpMock( LanguageFallback::class ),
 			$this->createNoOpMock( LanguageConverterFactory::class ),
-			$this->createHookContainer()
+			$this->createHookContainer(),
+			$config
 		);
 	}
 
@@ -2077,6 +2082,12 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		if ( !class_exists( $langClass ) ) {
 			$langClass = Language::class;
 		}
+		$config += [
+			'wgMetaNamespace' => 'Project',
+			'wgMetaNamespaceTalk' => false,
+			'wgExtraNamespaces' => [],
+		];
+		$this->setMwGlobals( $config );
 		/** @var Language $lang */
 		$lang = new $langClass(
 			$langCode,
@@ -2084,14 +2095,9 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			$this->createNoOpMock( LanguageNameUtils::class ),
 			$this->createNoOpMock( LanguageFallback::class ),
 			$this->createNoOpMock( LanguageConverterFactory::class ),
-			$this->createMock( HookContainer::class )
+			$this->createMock( HookContainer::class ),
+			$this->getServiceContainer()->getMainConfig()
 		);
-		$config += [
-			'wgMetaNamespace' => 'Project',
-			'wgMetaNamespaceTalk' => false,
-			'wgExtraNamespaces' => [],
-		];
-		$this->setMwGlobals( $config );
 		$namespaces = $lang->getNamespaces();
 		$this->assertArraySubmapSame( $expected, $namespaces );
 	}
