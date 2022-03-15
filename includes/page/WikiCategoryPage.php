@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Special handling for category pages
  */
@@ -57,7 +59,9 @@ class WikiCategoryPage extends WikiPage {
 	 */
 	public function isHidden() {
 		$pageId = $this->getTitle()->getArticleID();
-		$pageProps = PageProps::getInstance()->getProperties( $this->getTitle(), 'hiddencat' );
+		$pageProps = MediaWikiServices::getInstance()
+			->getPageProps()
+			->getProperties( $this->getTitle(), 'hiddencat' );
 
 		return isset( $pageProps[$pageId] );
 	}
@@ -71,7 +75,9 @@ class WikiCategoryPage extends WikiPage {
 	 */
 	public function isExpectedUnusedCategory() {
 		$pageId = $this->getTitle()->getArticleID();
-		$pageProps = PageProps::getInstance()->getProperties( $this->getTitle(), 'expectunusedcategory' );
+		$pageProps = MediaWikiServices::getInstance()
+			->getPageProps()
+			->getProperties( $this->getTitle(), 'expectunusedcategory' );
 
 		return isset( $pageProps[$pageId] );
 	}
