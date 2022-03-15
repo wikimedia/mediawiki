@@ -253,7 +253,7 @@ This is no longer encouraged, and the option has been removed.
 * Added wikimedia/request-timeout 1.1.0.
 * Added wikimedia/shellbox 1.0.4.
 * Added WVUI 0.1.0.
-* Added symfony/symfony/polyfill-php80 1.23.1.
+* Added symfony/symfony/polyfill-php80 1.25.0.
 
 ==== Changed external libraries ====
 * Updated composer/semver from 1.5.1 to 3.2.4.
