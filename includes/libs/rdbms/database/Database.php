@@ -784,26 +784,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->currentDomain->getId();
 	}
 
-	public function fetchObject( IResultWrapper $res ) {
-		return $res->fetchObject();
-	}
-
-	public function fetchRow( IResultWrapper $res ) {
-		return $res->fetchRow();
-	}
-
-	public function numRows( $res ) {
-		if ( is_bool( $res ) ) {
-			return 0;
-		} else {
-			return $res->numRows();
-		}
-	}
-
-	public function freeResult( IResultWrapper $res ) {
-		$res->free();
-	}
-
 	/**
 	 * Get information about an index into an object
 	 *

@@ -3,7 +3,6 @@
 namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
-use stdClass;
 
 /**
  * Helper class used for automatically marking an IDatabase connection as reusable (once it no
@@ -220,36 +219,6 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	/**
-	 * @deprecated since 1.37 use IResultWrapper::fetchObject()
-	 * @param IResultWrapper $res
-	 * @return stdClass|bool
-	 */
-	public function fetchObject( $res ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	/**
-	 * @deprecated since 1.37 use IResultWrapper::fetchRow()
-	 * @param IResultWrapper $res
-	 * @return array|bool
-	 */
-	public function fetchRow( $res ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	/**
-	 * @deprecated since 1.37 use IResultWrapper::numRows()
-	 * @param IResultWrapper|bool $res A SQL result
-	 * @return int
-	 */
-	public function numRows( $res ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function insertId() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
@@ -285,15 +254,6 @@ class DBConnRef implements IDatabase {
 		}
 
 		return $this->__call( __FUNCTION__, [ $sql, $fname, $flags ] );
-	}
-
-	/**
-	 * @deprecated since 1.37 Use IResultWrapper::free()
-	 * @param IResultWrapper $res A SQL result
-	 */
-	public function freeResult( $res ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
 	public function newSelectQueryBuilder(): SelectQueryBuilder {

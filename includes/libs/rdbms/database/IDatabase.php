@@ -386,62 +386,6 @@ interface IDatabase {
 	 */
 	public function getType();
 
-	/***************************************************************************/
-	// region  Deprecated IResultWrapper accessors
-
-	/**
-	 * Fetch the next row from the given result object, in object form
-	 *
-	 * Fields can be retrieved with $row->fieldname, with fields acting like
-	 * member variables. If no more rows are available, false is returned.
-	 *
-	 * @deprecated since 1.37 use IResultWrapper::fetchObject()
-	 *
-	 * @param IResultWrapper $res Object as returned from IDatabase::query(), etc.
-	 * @return stdClass|bool
-	 */
-	public function fetchObject( IResultWrapper $res );
-
-	/**
-	 * Fetch the next row from the given result object, in associative array form
-	 *
-	 * Fields are retrieved with $row['fieldname'].
-	 * If no more rows are available, false is returned.
-	 *
-	 * @deprecated since 1.37 use IResultWrapper::fetchRow()
-	 *
-	 * @param IResultWrapper $res Result object as returned from IDatabase::query(), etc.
-	 * @return array|bool
-	 */
-	public function fetchRow( IResultWrapper $res );
-
-	/**
-	 * Get the number of rows in a query result
-	 *
-	 * Returns zero if the query did not return any rows or was a write query.
-	 *
-	 * @deprecated since 1.37 use IResultWrapper::numRows()
-	 *
-	 * @param IResultWrapper|bool $res A SQL result
-	 * @return int
-	 */
-	public function numRows( $res );
-
-	/**
-	 * Free a result object returned by query() or select()
-	 *
-	 * It's usually not necessary to call this, just use unset() or let the variable
-	 * holding the result object go out of scope.
-	 *
-	 * @deprecated since 1.37 Use IResultWrapper::free()
-	 *
-	 * @param IResultWrapper $res A SQL result
-	 */
-	public function freeResult( IResultWrapper $res );
-
-	// endregion -- Deprecated IResultWrapper accessors
-	/***************************************************************************/
-
 	/**
 	 * Get the inserted value of an auto-increment row
 	 *
