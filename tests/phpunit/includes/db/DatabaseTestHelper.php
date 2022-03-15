@@ -183,18 +183,6 @@ class DatabaseTestHelper extends Database {
 		return true;
 	}
 
-	public function fetchObject( $res ) {
-		return false;
-	}
-
-	public function fetchRow( $res ) {
-		return false;
-	}
-
-	public function numRows( $res ) {
-		return -1;
-	}
-
 	public function insertId() {
 		return -1;
 	}

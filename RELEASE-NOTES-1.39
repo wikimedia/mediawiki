@@ -71,6 +71,11 @@ because of Phabricator reports.
 * …
 
 === Breaking changes in 1.39 ===
+* The following methods, deprecated since 1.37, have been removed from IDatabase
+  - ::fetchObject()
+  - ::fetchRow()
+  - ::numRows()
+  - ::freeResult()
 * …
 
 === Deprecations in 1.39 ===
