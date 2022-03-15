@@ -291,6 +291,8 @@
 	"grouppage-sysop": "{{ns:project}}:Saray administrador",
 	"action-edit": "dumaen sayan bolong",
 	"action-createpage": "palsaen say bolong",
+	"action-move": "Iyales",
+	"action-delete": "Buralen",
 	"enhancedrc-history": "awaran",
 	"recentchanges": "Sampot ran dinuma",
 	"recentchanges-summary": "Tontonen so sankasampotan ran binalo ed ayan wiki diad panamegley to yan bolong.",

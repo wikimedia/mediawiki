@@ -287,6 +287,7 @@
 	"rightslog": "Aghmis n talghut n izrfan n usqdac",
 	"action-read": "ⵖⵔ ⵜⴰⵙⵏⴰ ⴰ",
 	"action-edit": "ⵙⵏⴼⵍ ⵜⴰⵙⵏⴰ ⴰ",
+	"action-move": "ⵙⵎⵓⵜⵜⵉ",
 	"action-delete": "ⴽⴽⵙ ⵜⴰⵙⵏⴰ ⴰ",
 	"nchanges": "$1 {{PLURAL:$1|ⵓⵙⵏⴼⵍ|ⵉⵙⵏⴼⵉⵍⵏ}}",
 	"enhancedrc-history": "ⴰⵎⵣⵔⵓⵢ",

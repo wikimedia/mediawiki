@@ -1155,6 +1155,7 @@
 	"action-delete": "ए पन्ना के मिटाईं",
 	"action-deleterevision": "रिवीजन मेटाईं",
 	"action-deletelogentry": "लॉग के एंट्री मेटाईं",
+	"action-undelete": "मत मिटाईं",
 	"action-unwatchedpages": "ध्यानसूची में जवन पन्ना नइखे ओकर सूची देखीं",
 	"enhancedrc-history": "इतिहास",
 	"recentchanges": "हाल के बदलाव",

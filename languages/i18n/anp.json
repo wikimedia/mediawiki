@@ -505,6 +505,8 @@
 	"rightslog": "सदस्य अधिकार सूची",
 	"action-edit": " ई पन्ना के सम्पादन करॊ",
 	"action-createaccount": "ई सदस्य के खाता खोलऽ",
+	"action-move": "चलऽ",
+	"action-delete": "मेटाबऽ",
 	"nchanges": "$1 {{PLURAL:$1|बदलाव|बदलाव}}",
 	"enhancedrc-history": "इतिहास",
 	"recentchanges": "हाल मं॑ होलऽ बदलाव",

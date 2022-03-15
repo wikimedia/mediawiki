@@ -469,6 +469,8 @@
 	"newuserlogpage": "𐌱𐍂𐌿𐌺𐌾𐌰𐌽𐌳𐌹𐍃 𐌲𐌰𐍃𐌺𐌰𐍆𐍄𐌰𐌹𐍃 𐌻𐌰𐌿𐌲",
 	"rightslog": "𐌱𐍂𐌿𐌺𐌾𐌰𐌽𐌳𐌹𐍃 𐍂𐌰𐌹𐌷𐍄𐌴 𐌻𐌰𐌿𐌲",
 	"action-edit": "𐌹𐌽𐌼𐌰𐌹𐌳𐌴𐌹 𐌸𐌰𐌽𐌰 𐌻𐌰𐌿𐍆",
+	"action-move": "𐌼𐌹𐌸𐍃𐌰𐍄𐌴𐌹",
+	"action-delete": "𐍆𐍂𐌰𐌵𐌹𐍃𐍄𐌴𐌹",
 	"nchanges": "$1 {{PLURAL:$1|𐌹𐌽𐌼𐌰𐌹𐌳𐌴𐌹𐌽𐍃|𐌹𐌽𐌼𐌰𐌹𐌳𐌴𐌹𐌽𐍉𐍃}}",
 	"enhancedrc-history": "𐍃𐍀𐌹𐌻𐌻",
 	"recentchanges": "𐌰𐍆𐍄𐌿𐌼𐌹𐍃𐍄𐍉𐍃 𐌹𐌽𐌼𐌰𐌹𐌳𐌴𐌹𐌽𐍉𐍃",

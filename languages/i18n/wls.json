@@ -264,6 +264,8 @@
 	"rightslog": "Tohi alikisia'aga",
 	"action-edit": "fetogi te pāsina aeni",
 	"action-createaccount": "fa'u te nūmelo gaue 'aeni",
+	"action-move": "Fetogi higoa",
+	"action-delete": "Molehi",
 	"enhancedrc-history": "hisitolia",
 	"recentchanges": "Fetogi fo'ou",
 	"recentchanges-summary": "Muli'i te 'u fetogi fo'ou ki te wiki o te pāsina aeni.",

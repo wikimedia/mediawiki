@@ -709,6 +709,8 @@
 	"action-edit": "modifyé sa paj",
 	"action-createaccount": "kréyé sa kont itilizatò",
 	"action-history": "Afiché listorik di sa paj",
+	"action-move": "Rounonmen",
+	"action-delete": "Siprimen",
 	"enhancedrc-history": "listorik",
 	"recentchanges": "Modifikasyon résan",
 	"recentchanges-legend": "Lòpsyon dé modifikasyon résan",

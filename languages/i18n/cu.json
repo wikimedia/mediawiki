@@ -400,6 +400,8 @@
 	"newuserlogpage": "новъ мѣстъ сътворѥниꙗ їсторїꙗ",
 	"rightslog": "чинодатєльства їсторїꙗ",
 	"action-edit": "сѥѩ страницѧ исправлѥниѥ",
+	"action-move": "прѣимєнованиѥ",
+	"action-delete": "поничьжєниѥ",
 	"nchanges": "$1 {{PLURAL:$1|мѣна|мѣнꙑ|мѣнъ}}",
 	"enhancedrc-history": "їсторїꙗ",
 	"recentchanges": "послѣдьнѩ мѣнꙑ",

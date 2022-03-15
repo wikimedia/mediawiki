@@ -454,6 +454,8 @@
 	"action-movefile": "ετεροχλάεμαν αβούτου τη αρχείου",
 	"action-upload": "φόρτωσον αβούτο το αρχείον",
 	"action-upload_by_url": "φόρτωσον αβούτο το αρχείον ασ' έναν URL",
+	"action-delete": "Σβήσον",
+	"action-undelete": "Κλώσιμον",
 	"nchanges": "$1 {{PLURAL:$1|αλλαγή|αλλαγάς}}",
 	"recentchanges": "Υστερνά αλλαγάς",
 	"recentchanges-legend": "Επιλογάς υστερνιδίων αλλαγίων",

@@ -277,6 +277,8 @@
 	"rightslog": "Гьуртту хъанахъиманал ихтиярдал жуж",
 	"action-edit": "ва чӀапӀул цӀудаву",
 	"action-createaccount": "дуваву ва хӀисаврал чичру",
+	"action-move": "ЦӀа даххана даву",
+	"action-delete": "Леххан дуван",
 	"enhancedrc-history": "тарих",
 	"recentchanges": "ЦӀусса баххана баву",
 	"recentchanges-summary": "Лув бур цала хъирив нанисса дахханашивуртув {{grammar:genitive|{{SITENAME}}}}.",

@@ -691,6 +691,7 @@
 	"action-movefile": "hoʻoneʻe i kēia waihona",
 	"action-upload": "hoʻouka i kēia waihona",
 	"action-delete": "holoi i kēia ʻaoʻao",
+	"action-undelete": "Holoiʻole",
 	"action-sendemail": "lekauila",
 	"nchanges": "$1 {{PLURAL:$1|loli|mau loli}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|mai kāu kipana aku nei}}",

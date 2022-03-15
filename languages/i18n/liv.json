@@ -265,6 +265,8 @@
 	"newuserlogpage": "Kȭlbatijizt lūomiz log",
 	"rightslog": "Kȭlbatijiz õigõmt log",
 	"action-edit": "siedā līedtõ mõitiņtõ",
+	"action-move": "Vīž jarā",
+	"action-delete": "Kištāntõgid jarā",
 	"nchanges": "$1 {{PLURAL:$1|mõitõks|mõitõkst}}",
 	"enhancedrc-history": "Istōrij",
 	"recentchanges": "Perrizt mȭitõkst",

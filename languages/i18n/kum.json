@@ -419,6 +419,8 @@
 	"action-edit": "бу сагьифаны тюзлемек",
 	"action-createpage": "бу сагьифаны яратмакъ",
 	"action-createaccount": "бу гьисапны яратыву",
+	"action-move": "Атын алышдырмакъ",
+	"action-delete": "Тайдырмакъ",
 	"enhancedrc-history": "тарих",
 	"recentchanges": "Яп-янгы тюзлевлер",
 	"recentchanges-legend": "Бираз алдагъы тюзлевлерин кюйлемлери",

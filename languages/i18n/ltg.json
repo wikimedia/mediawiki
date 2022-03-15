@@ -295,6 +295,8 @@
 	"action-read": "skaiteit itū puslopu",
 	"action-edit": "pataiseit itū puslopu",
 	"action-createpage": "sataiseit puslopys",
+	"action-move": "Puorceļt",
+	"action-delete": "Iztreit",
 	"nchanges": "$1 {{PLURAL:$1|puormeja|puormejis}}",
 	"recentchanges": "Nasenejis puormejis",
 	"recentchanges-legend": "Pādejūs izmaiņu īspiejis",

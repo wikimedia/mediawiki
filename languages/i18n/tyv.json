@@ -609,6 +609,8 @@
 	"action-createaccount": "бо бүрүткел бижиктерин бүдүрери",
 	"action-move": "бо арынны көжүрер",
 	"action-movefile": "бо файлды көжүрер",
+	"action-delete": "Казыыр",
+	"action-undelete": "Эгидер",
 	"action-sendemail": "э-чагаалар чорудары",
 	"nchanges": "$1 {{PLURAL:$1|өскерлиишкин}}",
 	"enhancedrc-history": "төөгү",

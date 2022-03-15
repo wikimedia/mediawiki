@@ -385,6 +385,8 @@
 	"action-minoredit": "funga ndzulamiso lowu wulri lowintsanana",
 	"action-move": "Yisa tluka leri ndhzawini yinwana",
 	"action-move-subpages": "Yisa tlukaleri na matluka-nstongo ya rona, endzawini yinw'ana",
+	"action-delete": "Sula",
+	"action-undelete": "Cinca kusula",
 	"nchanges": "$1 {{PLURAL:$1|wa ndzulamiso|wa mindzulamiso}}",
 	"recentchanges": "Ku cinca ka sweswi-nyana",
 	"recentchanges-legend": "Tindlela to langutisa ku cinca ka sweswinyana",

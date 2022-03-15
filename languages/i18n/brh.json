@@ -229,6 +229,8 @@
 	"newuserlogpage": "Kárband joŕ kanning ná hisáb",
 	"rightslog": "Kárband hakk hisáb",
 	"action-edit": "dá panna ŧí radbadal kar",
+	"action-move": "Surif",
+	"action-delete": "Mesa",
 	"nchanges": "$1 {{PLURAL:$1|radbadal|radbadal}}",
 	"enhancedrc-history": "lekav",
 	"recentchanges": "Zút áteaŧ maroká radbadal ák",

@@ -1029,6 +1029,8 @@
 	"action-movefile": "бу файлны күчерү",
 	"action-upload": "бу файлны төяү",
 	"action-reupload": "булган файл өстеннән язу",
+	"action-delete": "Бетерү",
+	"action-undelete": "Кайтару",
 	"action-sendemail": "электрон хат җибәрү",
 	"action-editmyoptions": "көйләнмәләрегезне үзгәртү",
 	"action-editmywatchlist": "күзәтү исемлегегезне үзгәртү",

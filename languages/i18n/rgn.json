@@ -4,7 +4,8 @@
 			"Fitoschido",
 			"Reedy",
 			"Sentruper",
-			"아라"
+			"아라",
+			"Salvemm el lombard"
 		]
 	},
 	"tog-underline": "Link cun la sotliniadura",
@@ -262,6 +263,9 @@
 	"newuserlogpage": "Regèstar d'j nov",
 	"rightslog": "Dirètt d'j navigador",
 	"action-edit": "Mudèfica sta pàgina",
+	"action-move": "Chèmbia nòm",
+	"action-delete": "Scanzèla",
+	"action-undelete": "Armett a post",
 	"nchanges": "$1 {{PLURAL:$1|mudèfica|mudèfich}}",
 	"recentchanges": "I ultum cambiamént",
 	"recentchanges-legend": "Upziòn d'j ultum cambiamént",

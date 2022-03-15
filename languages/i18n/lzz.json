@@ -379,6 +379,7 @@
 	"action-read": "am sayfa ik'itxi",
 	"action-edit": "am butʼkʼa oktiruşa",
 	"action-createaccount": "bu kullanıcı hesabını oluşturmaya",
+	"action-move": "Tori",
 	"action-delete": "am sayfa dokosi",
 	"nchanges": "$1 {{PLURAL:$1|oktiroba|oktiroba}}",
 	"enhancedrc-history": "Tarixi",

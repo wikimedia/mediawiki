@@ -3,7 +3,8 @@
 		"authors": [
 			"DasRakel",
 			"Tbc",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"MinecraftAustralia"
 		]
 	},
 	"tog-underline": "Links ounderstreepn:",
@@ -103,6 +104,8 @@
 	"logout": "Ofmeldn",
 	"search-result-size": "$1 ({{PLURAL:$2|1 woord|$2 woordn}})",
 	"newuserlogpage": "Logboek nieuwe gebrukers",
+	"action-move": "Ernoemn",
+	"action-delete": "Wegdoen",
 	"recentchanges": "Juste veranderd",
 	"upload": "Bestand toevoegn",
 	"uploadbtn": "Bestand toevoegn",

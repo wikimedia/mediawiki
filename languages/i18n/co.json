@@ -356,6 +356,8 @@
 	"grouppage-bureaucrat": "{{ns:project}}:Burocrati",
 	"newuserlogpage": "Novi cuntributori",
 	"action-edit": "mudificà 'ssa pagina",
+	"action-move": "Cullucà",
+	"action-delete": "Supprimà",
 	"nchanges": "$1 {{PLURAL:$1|mudifica|mudifiche}}",
 	"enhancedrc-history": "cronolugia",
 	"recentchanges": "Ultime mudifiche",

@@ -745,6 +745,8 @@
 	"action-createpage": "bitlärne yazırğa",
 	"action-createtalk": "bäxäs biten yasarğa",
 	"action-move": "bu bitne küçererge",
+	"action-delete": "Beterü",
+	"action-undelete": "Qaytaru",
 	"nchanges": "$1 {{PLURAL:$1|üzgärtü|üzgärtü}}",
 	"enhancedrc-history": "tarixı",
 	"recentchanges": "Soñğı üzgärtülär",

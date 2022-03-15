@@ -444,6 +444,8 @@
 	"newuserlogpage": "\"Log\" yago hlola mošumiši",
 	"rightslog": "''log'' ya ditumello tša mošomiši",
 	"action-edit": "Fetola letlakala  le",
+	"action-move": "Huduša",
+	"action-delete": "Phumula",
 	"nchanges": "$1 {{PLURAL:$1|phetogo|diphetogo}}",
 	"enhancedrc-history": "histori",
 	"recentchanges": "Diphetogo tša bjale",

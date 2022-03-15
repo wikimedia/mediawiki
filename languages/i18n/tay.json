@@ -550,6 +550,7 @@
 	"action-delete": "’zyuciy quw zngazyan qaniy",
 	"action-deleterevision": "pzyuciy sinbah",
 	"action-deletelogentry": "pzyuciy quw bniru’ sa binkgan lmlamu’",
+	"action-undelete": "Laxiy pzyuciy",
 	"action-sendemail": "Stwaniy e-meyo’",
 	"action-purge": "kwagiy quw zngazyan qaniy",
 	"nchanges": "min$1 {{PLURAL:$1|smbah}}",

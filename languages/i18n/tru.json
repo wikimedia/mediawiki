@@ -319,6 +319,8 @@
 	"group-all": "(kulle)",
 	"newuserlogpage": "User creation log",
 	"action-edit": "Mşaḥlaf iFaṭaṭe",
+	"action-move": "Mtaxar",
+	"action-delete": "Slag",
 	"nchanges": "$1 {{PLURAL:$1|Şuḥlofo|Şuḥlofe}}",
 	"recentchanges": "Şuḥlofe ḥaroye",
 	"recentchanges-legend": "3ayar daŞuḥlofe",
