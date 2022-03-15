@@ -60,7 +60,7 @@ For notes on 1.38.x and older releases, see HISTORY.
 === Action API changes in 1.39 ===
 * …
 
-=== Action API internal changes in 1.398 ===
+=== Action API internal changes in 1.39 ===
 * …
 
 === Languages updated in 1.39 ===
@@ -76,7 +76,7 @@ because of Phabricator reports.
 === Deprecations in 1.39 ===
 * …
 
-=== Other changes in 1.398 ===
+=== Other changes in 1.39 ===
 * …
 
 == Compatibility ==
