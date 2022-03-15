@@ -321,6 +321,9 @@ class OutputPage extends ContextSource {
 	private $mIndexPolicy = 'index';
 	private $mFollowPolicy = 'follow';
 
+	/** @var array */
+	private $mRobotsOptions = [];
+
 	/**
 	 * @var array Headers that cause the cache to vary.  Key is header name,
 	 * value should always be null.  (Value was an array of options for
@@ -929,6 +932,58 @@ class OutputPage extends ContextSource {
 	 */
 	public function getRobotPolicy() {
 		return "{$this->mIndexPolicy},{$this->mFollowPolicy}";
+	}
+
+	/**
+	 * Format an array of robots options as a string of directives.
+	 *
+	 * @return string The robots policy options.
+	 */
+	private function formatRobotsOptions(): string {
+		$options = $this->mRobotsOptions;
+		// Check if options array has any non-integer keys.
+		if ( count( array_filter( array_keys( $options ), 'is_string' ) ) > 0 ) {
+			// Robots meta tags can have directives that are single strings or
+			// have parameters that should be formatted like <directive>:<setting>.
+			// If the options keys are strings, format them accordingly.
+			// https://developers.google.com/search/docs/advanced/robots/robots_meta_tag
+			array_walk( $options, static function ( &$value, $key ) {
+				$value = is_string( $key ) ? "{$key}:{$value}" : "{$value}";
+			} );
+		}
+		return implode( ',', $options );
+	}
+
+	/**
+	 * Set the robots policy with options for the page.
+	 *
+	 * @since 1.38
+	 * @param array $options An array of key-value pairs or a string
+	 *   to populate the robots meta tag content attribute as a string.
+	 */
+	public function setRobotsOptions( array $options = [] ): void {
+		$this->mRobotsOptions = array_merge( $this->mRobotsOptions, $options );
+	}
+
+	/**
+	 * Get the robots policy content attribute for the page
+	 * as a string in the form <index policy>,<follow policy>,<options>.
+	 *
+	 * @return string
+	 */
+	private function getRobotsContent(): string {
+		$robotOptionString = $this->formatRobotsOptions();
+		$robotArgs = ( $this->mIndexPolicy === 'index' &&
+			$this->mFollowPolicy === 'follow' ) ?
+			[] :
+			[
+				$this->mIndexPolicy,
+				$this->mFollowPolicy,
+			];
+		if ( $robotOptionString ) {
+			$robotArgs[] = $robotOptionString;
+		}
+		return implode( ',', $robotArgs );
 	}
 
 	/**
@@ -3641,8 +3696,8 @@ class OutputPage extends ContextSource {
 			}
 		}
 
-		$p = "{$this->mIndexPolicy},{$this->mFollowPolicy}";
-		if ( $p !== 'index,follow' ) {
+		$p = $this->getRobotsContent();
+		if ( $p ) {
 			// http://www.robotstxt.org/wc/meta-user.html
 			// Only show if it's different from the default robots policy
 			$tags['meta-robots'] = Html::element( 'meta', [

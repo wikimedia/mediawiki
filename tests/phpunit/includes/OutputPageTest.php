@@ -608,6 +608,30 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers OutputPage::setRobotPolicy
+	 * @covers OutputPage::setRobotsOptions
+	 * @covers OutputPage::setIndexPolicy
+	 * @covers OutputPage::getHeadLinksArray
+	 */
+	public function testSetRobotsOptions() {
+		$op = $this->newInstance();
+		$op->setRobotPolicy( 'noindex, nofollow' );
+		$op->setRobotsOptions( [ 'max-snippet' => '500' ] );
+		$op->setIndexPolicy( 'index' );
+
+		$links = $op->getHeadLinksArray();
+		$this->assertContains( '<meta name="robots" content="index,nofollow,max-snippet:500"/>', $links );
+
+		$op->setFollowPolicy( 'follow' );
+		$links = $op->getHeadLinksArray();
+		$this->assertContains(
+			'<meta name="robots" content="max-snippet:500"/>',
+			$links,
+			'When index,follow (browser default) omit'
+		);
+	}
+
+	/**
+	 * @covers OutputPage::setRobotPolicy
 	 * @covers OutputPage::getRobotPolicy
 	 */
 	public function testGetRobotPolicy() {
