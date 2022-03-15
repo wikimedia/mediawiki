@@ -78,7 +78,7 @@ class FSFileBackend extends FileBackendStore {
 	/** @var string Required OS username to own files */
 	protected $fileOwner;
 
-	/** @var bool Simpler version of PHP_OS_FAMILY */
+	/** @var string Simpler version of PHP_OS_FAMILY */
 	protected $os;
 	/** @var string OS username running this script */
 	protected $currentUser;

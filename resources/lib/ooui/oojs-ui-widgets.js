@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.43.1
+ * OOUI v0.43.2-pre (630d30f69c)
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-02-10T15:03:45Z
+ * Date: 2022-03-11T22:31:30Z
  */
 ( function ( OO ) {
 
@@ -243,8 +243,8 @@ OO.ui.mixin.DraggableElement.prototype.getIndex = function () {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {OO.ui.mixin.DraggableElement[]} items
- * @cfg {string} [orientation='vertical'] Item orientation: 'horizontal' or 'vertical'. The orientation
- *  should match the layout of the items. Items displayed in a single row
+ * @cfg {string} [orientation='vertical'] Item orientation: 'horizontal' or 'vertical'.
+ *  The orientation should match the layout of the items. Items displayed in a single row
  *  or in several rows should use horizontal orientation. The vertical orientation should only be
  *  used when the items are displayed in a single column.
  * @cfg {boolean} [draggable=true] The items are draggable. This can change with #toggleDraggable

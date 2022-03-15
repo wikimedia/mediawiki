@@ -210,7 +210,7 @@ class WebInstaller extends Installer {
 		}
 
 		# Get the page name.
-		$pageName = $this->request->getVal( 'page' );
+		$pageName = $this->request->getVal( 'page', '' );
 
 		if ( in_array( $pageName, $this->otherPages ) ) {
 			# Out of sequence

@@ -747,7 +747,7 @@
 	"action-edit": "bu bitne üzgärtergä",
 	"action-createpage": "bitlärne yazırğa",
 	"action-createtalk": "bäxäs biten yasarğa",
-	"action-move": "Küçerü",
+	"action-move": "bu bitne küçererge",
 	"action-delete": "Beterü",
 	"action-undelete": "Qaytaru",
 	"action-protect": "Yaqlaw",
@@ -1458,5 +1458,9 @@
 	"special-characters-group-cyrillic": "Kirilça",
 	"special-characters-group-arabic": "Ğäräbçä",
 	"view-view-foreign": "$1'ta qaraw",
-	"nstab-mainpage": "Baş bit"
+	"nstab-mainpage": "Baş bit",
+	"skin-action-protect": "Yaqlaw",
+	"skin-action-undelete": "Qaytaru",
+	"skin-action-delete": "Beterü",
+	"skin-action-move": "Küçerü"
 }

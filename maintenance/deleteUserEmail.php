@@ -44,8 +44,7 @@ class DeleteUserEmail extends Maintenance {
 		$userFactory = MediaWikiServices::getInstance()->getUserFactory();
 		$userName = $this->getArg( 0 );
 		if ( preg_match( '/^#\d+$/', $userName ) ) {
-			$userName = substr( $userName, 1 );
-			$user = $userFactory->newFromId( $userName );
+			$user = $userFactory->newFromId( (int)substr( $userName, 1 ) );
 		} else {
 			$user = $userFactory->newFromName( $userName );
 		}

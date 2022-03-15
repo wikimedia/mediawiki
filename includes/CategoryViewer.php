@@ -203,9 +203,17 @@ class CategoryViewer extends ContextSource {
 	 * @param int $pageLength
 	 */
 	public function addSubcategoryObject( Category $cat, $sortkey, $pageLength ) {
+		$page = $cat->getPage();
+		if ( !$page ) {
+			return;
+		}
+
 		// Subcategory; strip the 'Category' namespace from the link text.
 		$pageRecord = MediaWikiServices::getInstance()->getPageStore()
-			->getPageByReference( $cat->getPage() );
+			->getPageByReference( $page );
+		if ( !$pageRecord ) {
+			return;
+		}
 
 		$this->children[] = $this->generateLink(
 			'subcat',
@@ -215,7 +223,7 @@ class CategoryViewer extends ContextSource {
 		);
 
 		$this->children_start_char[] =
-			$this->getSubcategorySortChar( $cat->getPage(), $sortkey );
+			$this->getSubcategorySortChar( $page, $sortkey );
 	}
 
 	/**
@@ -555,7 +563,7 @@ class CategoryViewer extends ContextSource {
 			} else {
 				// If the nextPage variable is null, it means that we have reached the first page
 				// and therefore the previous link should be disabled.
-				return $this->pagingLinks( null, $this->until[$type], $type );
+				return $this->pagingLinks( '', $this->until[$type], $type );
 			}
 		} elseif ( $this->nextPage[$type] !== null || isset( $this->from[$type] ) ) {
 			return $this->pagingLinks( $this->from[$type], $this->nextPage[$type], $type );

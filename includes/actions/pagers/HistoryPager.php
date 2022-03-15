@@ -86,22 +86,22 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	/**
 	 * @param HistoryAction $historyPage
-	 * @param string $year
-	 * @param string $month
+	 * @param int $year
+	 * @param int $month
 	 * @param string $tagFilter
 	 * @param array $conds
-	 * @param string $day
+	 * @param int $day
 	 * @param LinkBatchFactory|null $linkBatchFactory
 	 * @param WatchlistManager|null $watchlistManager
 	 * @param CommentFormatter|null $commentFormatter
 	 */
 	public function __construct(
 		HistoryAction $historyPage,
-		$year = '',
-		$month = '',
+		$year = 0,
+		$month = 0,
 		$tagFilter = '',
 		array $conds = [],
-		$day = '',
+		$day = 0,
 		LinkBatchFactory $linkBatchFactory = null,
 		WatchlistManager $watchlistManager = null,
 		CommentFormatter $commentFormatter = null

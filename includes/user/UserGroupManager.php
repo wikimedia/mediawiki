@@ -56,6 +56,8 @@ class UserGroupManager implements IDBAccessObject {
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'AddGroups',
+		'AutoConfirmAge',
+		'AutoConfirmCount',
 		'Autopromote',
 		'AutopromoteOnce',
 		'AutopromoteOnceLogInRC',
@@ -539,7 +541,7 @@ class UserGroupManager implements IDBAccessObject {
 				}
 				return false;
 			case APCOND_EDITCOUNT:
-				$reqEditCount = $cond[1];
+				$reqEditCount = $cond[1] ?? $this->options->get( 'AutoConfirmCount' );
 
 				// T157718: Avoid edit count lookup if specified edit count is 0 or invalid
 				if ( $reqEditCount <= 0 ) {
@@ -547,8 +549,9 @@ class UserGroupManager implements IDBAccessObject {
 				}
 				return $user->isRegistered() && $this->userEditTracker->getUserEditCount( $user ) >= $reqEditCount;
 			case APCOND_AGE:
+				$reqAge = $cond[1] ?? $this->options->get( 'AutoConfirmAge' );
 				$age = time() - (int)wfTimestampOrNull( TS_UNIX, $user->getRegistration() );
-				return $age >= $cond[1];
+				return $age >= $reqAge;
 			case APCOND_AGE_FROM_EDIT:
 				$age = time() - (int)wfTimestampOrNull(
 					TS_UNIX, $this->userEditTracker->getFirstEditTimestamp( $user ) );

@@ -42,41 +42,52 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
  * @ingroup Maintenance
  */
 class TextPassDumper extends BackupDumper {
-	/** @var BaseDump */
+	/** @var BaseDump|null */
 	public $prefetch = null;
-	/** @var string|bool */
+	/** @var string */
 	private $thisPage;
-	/** @var string|bool */
+	/** @var string */
 	private $thisRev;
-	/** @var string|bool */
+	/** @var string|null */
 	private $thisRole = null;
 
 	/**
 	 * @var int when we spend more than maxTimeAllowed seconds on this run, we continue
 	 * processing until we write out the next complete page, then save output file(s),
-	 * rename it/them and open new one(s)
+	 * rename it/them and open new one(s); 0 = no limit
 	 */
-	public $maxTimeAllowed = 0; // 0 = no limit
+	public $maxTimeAllowed = 0;
 
+	/** @var string */
 	protected $input = "php://stdin";
+	/** @var int */
 	protected $history = WikiExporter::FULL;
+	/** @var int */
 	protected $fetchCount = 0;
+	/** @var int */
 	protected $prefetchCount = 0;
+	/** @var int */
 	protected $prefetchCountLast = 0;
+	/** @var int */
 	protected $fetchCountLast = 0;
 
+	/** @var int */
 	protected $maxFailures = 5;
+	/** @var int */
 	protected $maxConsecutiveFailedTextRetrievals = 200;
-	protected $failureTimeout = 5; // Seconds to sleep after db failure
+	/** @var int Seconds to sleep after db failure */
+	protected $failureTimeout = 5;
 
-	protected $bufferSize = 524288; // In bytes. Maximum size to read from the stub in on go.
+	/** @var int In bytes. Maximum size to read from the stub in on go. */
+	protected $bufferSize = 524288;
 
 	/** @var array */
 	protected $php = [ PHP_BINARY ];
+	/** @var bool */
 	protected $spawn = false;
 
 	/**
-	 * @var bool|resource
+	 * @var resource|false
 	 */
 	protected $spawnProc = false;
 
@@ -91,18 +102,22 @@ class TextPassDumper extends BackupDumper {
 	protected $spawnRead;
 
 	/**
-	 * @var bool|resource
+	 * @var resource|false
 	 */
 	protected $spawnErr = false;
 
 	/**
-	 * @var bool|XmlDumpWriter
+	 * @var XmlDumpWriter|false
 	 */
 	protected $xmlwriterobj = false;
 
+	/** @var bool */
 	protected $timeExceeded = false;
+	/** @var string|false */
 	protected $firstPageWritten = false;
+	/** @var string|false */
 	protected $lastPageWritten = false;
+	/** @var bool */
 	protected $checkpointJustWritten = false;
 	/** @var string[] */
 	protected $checkpointFiles = [];
@@ -456,14 +471,14 @@ TEXT
 		$this->atStart = true;
 		$this->state = "";
 		$this->lastName = "";
-		$this->thisPage = 0;
-		$this->thisRev = 0;
+		$this->thisPage = "";
+		$this->thisRev = "";
 		$this->thisRole = null;
 		$this->thisRevModel = null;
 		$this->thisRevFormat = null;
 
 		$parser = xml_parser_create( "UTF-8" );
-		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, false );
+		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, 0 );
 
 		xml_set_element_handler(
 			$parser,
@@ -506,8 +521,8 @@ TEXT
 				# for deciding what to do with a file containing only the
 				# siteinfo information and the mw tags.
 				if ( !$this->firstPageWritten ) {
-					$firstPageID = str_pad( 0, 9, "0", STR_PAD_LEFT );
-					$lastPageID = str_pad( 0, 9, "0", STR_PAD_LEFT );
+					$firstPageID = str_pad( '0', 9, "0", STR_PAD_LEFT );
+					$lastPageID = str_pad( '0', 9, "0", STR_PAD_LEFT );
 				} else {
 					$firstPageID = str_pad( $this->firstPageWritten, 9, "0", STR_PAD_LEFT );
 					$lastPageID = str_pad( $this->lastPageWritten, 9, "0", STR_PAD_LEFT );
@@ -723,7 +738,7 @@ TEXT
 	 * Loads the serialized content from storage.
 	 *
 	 * @param int|string $id Content address, or text row ID.
-	 * @return bool|string
+	 * @return string|false
 	 */
 	private function getTextDb( $id ) {
 		$store = $this->getBlobStore();
@@ -747,7 +762,7 @@ TEXT
 
 	/**
 	 * @param int|string $address Content address, or text row ID.
-	 * @return bool|string
+	 * @return string|false
 	 */
 	private function getTextSpawned( $address ) {
 		AtEase::suppressWarnings();
@@ -830,7 +845,7 @@ TEXT
 
 	/**
 	 * @param int|string $address Content address, or text row ID.
-	 * @return bool|string
+	 * @return string|false
 	 */
 	private function getTextSpawnedOnce( $address ) {
 		if ( is_int( $address ) || intval( $address ) ) {

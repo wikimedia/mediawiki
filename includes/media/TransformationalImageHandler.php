@@ -321,7 +321,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * If there is a problem with the output path, it returns "client"
 	 * to do client side scaling.
 	 *
-	 * @param string $dstPath
+	 * @param string|null $dstPath
 	 * @param bool $checkDstPath Check that $dstPath is valid
 	 * @return string|callable One of client, im, custom, gd, imext, or a callable
 	 */
@@ -639,7 +639,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 
 		if ( $srcWidth * $srcHeight > $maxImageArea
 			&& !( $file->getMimeType() == 'image/jpeg'
-				&& $this->getScalerType( false, false ) == 'im' )
+				&& $this->getScalerType( null, false ) == 'im' )
 		) {
 			# Only ImageMagick can efficiently downsize jpg images without loading
 			# the entire file in memory

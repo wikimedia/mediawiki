@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Deferred\LinksUpdate;
 
+use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Revision\RevisionRecord;
@@ -79,6 +80,9 @@ abstract class LinksTable {
 	/** @var LBFactory */
 	private $lbFactory;
 
+	/** @var LinkTargetLookup */
+	protected $linkTargetLookup;
+
 	/** @var IDatabase */
 	private $db;
 
@@ -109,12 +113,14 @@ abstract class LinksTable {
 	 * the injected parameters without breaking the subclass constructors.
 	 *
 	 * @param LBFactory $lbFactory
+	 * @param LinkTargetLookup $linkTargetLookup
 	 * @param PageIdentity $sourcePage
 	 * @param int $batchSize
 	 * @param callable|null $afterUpdateHook
 	 */
 	final public function injectBaseDependencies(
 		LBFactory $lbFactory,
+		LinkTargetLookup $linkTargetLookup,
 		PageIdentity $sourcePage,
 		$batchSize,
 		$afterUpdateHook
@@ -123,6 +129,7 @@ abstract class LinksTable {
 		$this->db = $this->lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
 		$this->sourcePage = $sourcePage;
 		$this->batchSize = $batchSize;
+		$this->linkTargetLookup = $linkTargetLookup;
 		$this->afterUpdateHook = $afterUpdateHook;
 	}
 
@@ -532,5 +539,13 @@ abstract class LinksTable {
 			default:
 				throw new \InvalidArgumentException( __METHOD__ . ": Unknown link type" );
 		}
+	}
+
+	/**
+	 * Normalization stage of the links table (see T222224)
+	 * @return int
+	 */
+	protected function linksTargetNormalizationStage(): int {
+		return SCHEMA_COMPAT_OLD;
 	}
 }

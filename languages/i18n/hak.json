@@ -1435,5 +1435,9 @@
 	"searchsuggest-search": "Chhìm",
 	"view-view-foreign": "Chhai $1 kiám-sṳ",
 	"view-create-local": "Sîn-chen pún-thi sot-mìn",
-	"nstab-mainpage": "頭頁/Thèu-Ya̍p"
+	"nstab-mainpage": "頭頁/Thèu-Ya̍p",
+	"skin-action-protect": "Pó-fu",
+	"skin-action-undelete": "恢復",
+	"skin-action-delete": "San-chhù",
+	"skin-action-move": "Yì-thûng"
 }

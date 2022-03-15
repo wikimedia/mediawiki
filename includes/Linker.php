@@ -1929,7 +1929,7 @@ class Linker {
 	 * @param RevisionRecord $revRecord (Switched from the old Revision class to RevisionRecord
 	 *    since 1.35)
 	 * @param IContextSource|null $context Context to use or null for the main context.
-	 * @param int|false $editCount Number of edits that would be reverted
+	 * @param int|false|null $editCount Number of edits that would be reverted
 	 * @return string HTML fragment
 	 */
 	public static function buildRollbackLink(

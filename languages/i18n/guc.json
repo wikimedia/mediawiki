@@ -650,5 +650,8 @@
 	"randomrootpage": "Suurala ee'iyalayaa leeyataka",
 	"view-view-foreign": "E'raa sulu'u $1",
 	"view-create-local": "Akoo'omüinja süchiki sukuwa'ipa eejetüle'e shia",
-	"nstab-mainpage": "Ee'iyalaaya a'laülaasü"
+	"nstab-mainpage": "Ee'iyalaaya a'laülaasü",
+	"skin-action-protect": "Eisalajaa",
+	"skin-action-delete": "Ojuichajaa",
+	"skin-action-move": "Ansülaa"
 }

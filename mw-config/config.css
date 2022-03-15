@@ -69,6 +69,7 @@ body {
 }
 
 .config-block-elements {
+	display: flex;
 	margin-left: 2em;
 }
 
@@ -134,6 +135,7 @@ body {
 .config-input-text {
 	width: 20em;
 	margin-right: 1em;
+	height: 30px;
 }
 
 .config-input-check {
@@ -244,7 +246,6 @@ body {
 .config-help-field-data {
 	display: block;
 	overflow: hidden;
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	min-width: min-content;
 	background-color: #d6f3ff;
 	padding: 5px 8px 4px 8px;
@@ -287,3 +288,72 @@ body {
 	margin: 0.5em 0.5em 0.5em 49px;
 }
 /** END WARNING BOX STYLES */
+
+/* Logo preview  */
+.logo-preview-area {
+	display: flex;
+	background: #f6f6f6;
+	padding: 20px;
+	margin: 20px 20px 0;
+}
+
+/* Logo preview (main) */
+.logo-main {
+	display: flex;
+	align-items: center;
+	margin-left: 20px;
+}
+
+.logo-icon {
+	width: 50px;
+	height: 50px;
+	margin-right: 10px;
+}
+
+.logo-tagline,
+.logo-wordmark {
+	display: block;
+	max-width: 130px;
+	max-height: 50px;
+}
+
+.logo-tagline {
+	font-size: 0.75em;
+	text-align: center;
+}
+
+/* Logo preview (sidebar) */
+.logo-sidebar {
+	width: auto;
+	height: 160px;
+	margin-bottom: 1em;
+	max-width: 160px;
+}
+
+.logo-preview-area .sidebar {
+	width: 10em;
+	border-right: solid 1px #fe421e;
+	text-align: center;
+	padding: 0 0.5em;
+}
+
+.logo-preview-area nav {
+	text-align: left;
+}
+
+.logo-preview-area nav ul {
+	margin: 0;
+	list-style: none;
+}
+
+.logo-dropper {
+	border: solid 1px #333;
+	height: 100px;
+	width: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+}

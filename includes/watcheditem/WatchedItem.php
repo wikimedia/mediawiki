@@ -45,7 +45,7 @@ class WatchedItem {
 	private $user;
 
 	/**
-	 * @var null|string the value of the wl_notificationtimestamp field
+	 * @var bool|null|string the value of the wl_notificationtimestamp field
 	 */
 	private $notificationTimestamp;
 
@@ -67,7 +67,7 @@ class WatchedItem {
 	/**
 	 * @param UserIdentity $user
 	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
-	 * @param null|string $notificationTimestamp the value of the wl_notificationtimestamp field
+	 * @param bool|null|string $notificationTimestamp the value of the wl_notificationtimestamp field
 	 * @param null|string $expiry Optional expiry timestamp in any format acceptable to wfTimestamp()
 	 */
 	public function __construct(

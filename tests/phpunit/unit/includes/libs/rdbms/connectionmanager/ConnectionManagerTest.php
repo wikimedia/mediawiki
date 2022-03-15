@@ -145,7 +145,7 @@ class ConnectionManagerTest extends TestCase {
 		$lb = $this->getLoadBalancerMock();
 
 		$lb->expects( $this->once() )
-			->method( 'getLazyConnectionRef' )
+			->method( 'getConnectionRef' )
 			->with( DB_PRIMARY, [ 'group1' ], 'someDbName' )
 			->willReturn( $database );
 
@@ -160,7 +160,7 @@ class ConnectionManagerTest extends TestCase {
 		$lb = $this->getLoadBalancerMock();
 
 		$lb->expects( $this->once() )
-			->method( 'getLazyConnectionRef' )
+			->method( 'getConnectionRef' )
 			->with( DB_REPLICA, [ 'group1' ], 'someDbName' )
 			->willReturn( $database );
 
@@ -175,7 +175,7 @@ class ConnectionManagerTest extends TestCase {
 		$lb = $this->getLoadBalancerMock();
 
 		$lb->expects( $this->once() )
-			->method( 'getLazyConnectionRef' )
+			->method( 'getConnectionRef' )
 			->with( DB_REPLICA, [ 'group2' ], 'someDbName' )
 			->willReturn( $database );
 

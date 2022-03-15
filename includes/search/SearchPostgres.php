@@ -172,10 +172,10 @@ class SearchPostgres extends SearchDatabase {
 				"AND pc.old_id = substring( c.content_address from '^tt:([0-9]+)$' )::int " .
 				"AND $fulltext @@ to_tsquery($searchstring)";
 		}
-		// Namespaces - defaults to 0
+		// Namespaces - defaults to main
 		if ( $this->namespaces !== null ) { // null -> search all
 			if ( count( $this->namespaces ) < 1 ) {
-				$query .= ' AND page_namespace = 0';
+				$query .= ' AND page_namespace = ' . NS_MAIN;
 			} else {
 				$namespaces = $dbr->makeList( $this->namespaces );
 				$query .= " AND page_namespace IN ($namespaces)";

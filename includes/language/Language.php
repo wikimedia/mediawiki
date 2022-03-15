@@ -1128,7 +1128,7 @@ class Language {
 					break;
 				case 'xg':
 					$usedMonth = true;
-					$s .= $this->getMonthNameGen( substr( $ts, 4, 2 ) );
+					$s .= $this->getMonthNameGen( (int)substr( $ts, 4, 2 ) );
 					break;
 				case 'xjx':
 					$usedHebrewMonth = true;
@@ -1144,7 +1144,7 @@ class Language {
 				case 'D':
 					$usedDay = true;
 					$s .= $this->getWeekdayAbbreviation(
-						self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'w' ) + 1
+						(int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'w' ) + 1
 					);
 					break;
 				case 'j':
@@ -1175,12 +1175,12 @@ class Language {
 				case 'l':
 					$usedDay = true;
 					$s .= $this->getWeekdayName(
-						self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'w' ) + 1
+						(int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'w' ) + 1
 					);
 					break;
 				case 'F':
 					$usedMonth = true;
-					$s .= $this->getMonthName( substr( $ts, 4, 2 ) );
+					$s .= $this->getMonthName( (int)substr( $ts, 4, 2 ) );
 					break;
 				case 'xiF':
 					$usedIranianMonth = true;
@@ -1209,7 +1209,7 @@ class Language {
 					break;
 				case 'M':
 					$usedMonth = true;
-					$s .= $this->getMonthAbbreviation( substr( $ts, 4, 2 ) );
+					$s .= $this->getMonthAbbreviation( (int)substr( $ts, 4, 2 ) );
 					break;
 				case 'n':
 					$usedMonth = true;
@@ -1298,7 +1298,7 @@ class Language {
 					if ( !$iranian ) {
 						$iranian = self::tsToIranian( $ts );
 					}
-					$num = substr( $iranian[0], -2 );
+					$num = substr( (string)$iranian[0], -2 );
 					break;
 				case 'xit':
 					$usedIranianYear = true;
@@ -1324,7 +1324,7 @@ class Language {
 					break;
 				case 'g':
 					$usedHour = true;
-					$h = substr( $ts, 8, 2 );
+					$h = (int)substr( $ts, 8, 2 );
 					$num = $h % 12 ?: 12;
 					break;
 				case 'G':
@@ -1333,7 +1333,7 @@ class Language {
 					break;
 				case 'h':
 					$usedHour = true;
-					$h = substr( $ts, 8, 2 );
+					$h = (int)substr( $ts, 8, 2 );
 					$num = sprintf( '%02d', $h % 12 ?: 12 );
 					break;
 				case 'H':
@@ -1437,12 +1437,12 @@ class Language {
 		} elseif ( $usedSecond ) {
 			$ttl = 1;
 		} elseif ( $usedMinute ) {
-			$ttl = 60 - substr( $ts, 12, 2 );
+			$ttl = 60 - (int)substr( $ts, 12, 2 );
 		} elseif ( $usedHour ) {
-			$ttl = 3600 - substr( $ts, 10, 2 ) * 60 - substr( $ts, 12, 2 );
+			$ttl = 3600 - (int)substr( $ts, 10, 2 ) * 60 - (int)substr( $ts, 12, 2 );
 		} elseif ( $usedAMPM ) {
-			$ttl = 43200 - ( substr( $ts, 8, 2 ) % 12 ) * 3600 -
-				substr( $ts, 10, 2 ) * 60 - substr( $ts, 12, 2 );
+			$ttl = 43200 - ( (int)substr( $ts, 8, 2 ) % 12 ) * 3600 -
+				(int)substr( $ts, 10, 2 ) * 60 - (int)substr( $ts, 12, 2 );
 		} elseif (
 			$usedDay ||
 			$usedHebrewMonth ||
@@ -1455,47 +1455,47 @@ class Language {
 		) {
 			// @todo Someone who understands the non-Gregorian calendars
 			// should write proper logic for them so that they don't need purged every day.
-			$ttl = 86400 - substr( $ts, 8, 2 ) * 3600 -
-				substr( $ts, 10, 2 ) * 60 - substr( $ts, 12, 2 );
+			$ttl = 86400 - (int)substr( $ts, 8, 2 ) * 3600 -
+				(int)substr( $ts, 10, 2 ) * 60 - (int)substr( $ts, 12, 2 );
 		} else {
 			$possibleTtls = [];
-			$timeRemainingInDay = 86400 - substr( $ts, 8, 2 ) * 3600 -
-				substr( $ts, 10, 2 ) * 60 - substr( $ts, 12, 2 );
+			$timeRemainingInDay = 86400 - (int)substr( $ts, 8, 2 ) * 3600 -
+				(int)substr( $ts, 10, 2 ) * 60 - (int)substr( $ts, 12, 2 );
 			if ( $usedWeek ) {
 				$possibleTtls[] =
-					( 7 - self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'N' ) ) * 86400 +
+					( 7 - (int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'N' ) ) * 86400 +
 					$timeRemainingInDay;
 			} elseif ( $usedISOYear ) {
 				// December 28th falls on the last ISO week of the year, every year.
 				// The last ISO week of a year can be 52 or 53.
-				$lastWeekOfISOYear = DateTime::createFromFormat(
+				$lastWeekOfISOYear = (int)DateTime::createFromFormat(
 					'Ymd',
-					substr( $ts, 0, 4 ) . '1228',
+					(int)substr( $ts, 0, 4 ) . '1228',
 					$zone ?: new DateTimeZone( 'UTC' )
 				)->format( 'W' );
-				$currentISOWeek = self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'W' );
+				$currentISOWeek = (int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'W' );
 				$weeksRemaining = $lastWeekOfISOYear - $currentISOWeek;
 				$timeRemainingInWeek =
-					( 7 - self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'N' ) ) * 86400
+					( 7 - (int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'N' ) ) * 86400
 					+ $timeRemainingInDay;
 				$possibleTtls[] = $weeksRemaining * 604800 + $timeRemainingInWeek;
 			}
 
 			if ( $usedMonth ) {
 				$possibleTtls[] =
-					( self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 't' ) -
-						substr( $ts, 6, 2 ) ) * 86400
+					( (int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 't' ) -
+						(int)substr( $ts, 6, 2 ) ) * 86400
 					+ $timeRemainingInDay;
 			} elseif ( $usedYear ) {
 				$possibleTtls[] =
-					( self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'L' ) + 364 -
-						self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'z' ) ) * 86400
+					( (int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'L' ) + 364 -
+						(int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'z' ) ) * 86400
 					+ $timeRemainingInDay;
 			} elseif ( $usedIsLeapYear ) {
-				$year = substr( $ts, 0, 4 );
+				$year = (int)substr( $ts, 0, 4 );
 				$timeRemainingInYear =
-					( self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'L' ) + 364 -
-						self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'z' ) ) * 86400
+					( (int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'L' ) + 364 -
+						(int)self::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'z' ) ) * 86400
 					+ $timeRemainingInDay;
 				$mod = $year % 4;
 				if ( $mod || ( !( $year % 100 ) && $year % 400 ) ) {
@@ -1538,9 +1538,9 @@ class Language {
 	 * @return int[]
 	 */
 	private static function tsToIranian( $ts ) {
-		$gy = substr( $ts, 0, 4 ) - 1600;
-		$gm = substr( $ts, 4, 2 ) - 1;
-		$gd = substr( $ts, 6, 2 ) - 1;
+		$gy = (int)substr( $ts, 0, 4 ) - 1600;
+		$gm = (int)substr( $ts, 4, 2 ) - 1;
+		$gd = (int)substr( $ts, 6, 2 ) - 1;
 
 		# Days passed from the beginning (including leap years)
 		$gDayNo = 365 * $gy
@@ -1559,19 +1559,19 @@ class Language {
 		}
 
 		// Days passed in current month
-		$gDayNo += (int)$gd;
+		$gDayNo += $gd;
 
 		$jDayNo = $gDayNo - 79;
 
-		$jNp = floor( $jDayNo / 12053 );
+		$jNp = (int)floor( $jDayNo / 12053 );
 		$jDayNo %= 12053;
 
-		$jy = 979 + 33 * $jNp + 4 * floor( $jDayNo / 1461 );
+		$jy = 979 + 33 * $jNp + 4 * (int)floor( $jDayNo / 1461 );
 		$jDayNo %= 1461;
 
 		if ( $jDayNo >= 366 ) {
-			$jy += floor( ( $jDayNo - 1 ) / 365 );
-			$jDayNo = floor( ( $jDayNo - 1 ) % 365 );
+			$jy += (int)floor( ( $jDayNo - 1 ) / 365 );
+			$jDayNo = (int)floor( ( $jDayNo - 1 ) % 365 );
 		}
 
 		$jz = $jDayNo;
@@ -1598,9 +1598,9 @@ class Language {
 	 * @return int[]
 	 */
 	private static function tsToHijri( $ts ) {
-		$year = substr( $ts, 0, 4 );
-		$month = substr( $ts, 4, 2 );
-		$day = substr( $ts, 6, 2 );
+		$year = (int)substr( $ts, 0, 4 );
+		$month = (int)substr( $ts, 4, 2 );
+		$day = (int)substr( $ts, 6, 2 );
 
 		$zyr = $year;
 		$zd = $day;
@@ -1651,9 +1651,9 @@ class Language {
 	 */
 	private static function tsToHebrew( $ts ) {
 		# Parse date
-		$year = substr( $ts, 0, 4 );
-		$month = substr( $ts, 4, 2 );
-		$day = substr( $ts, 6, 2 );
+		$year = (int)substr( $ts, 0, 4 );
+		$month = (int)substr( $ts, 4, 2 );
+		$day = (int)substr( $ts, 6, 2 );
 
 		# Calculate Hebrew year
 		$hebrewYear = $year + 3760;
@@ -1826,9 +1826,9 @@ class Language {
 	 * @return array Converted year, month, day
 	 */
 	private static function tsToYear( $ts, $cName ) {
-		$gy = substr( $ts, 0, 4 );
-		$gm = substr( $ts, 4, 2 );
-		$gd = substr( $ts, 6, 2 );
+		$gy = (int)substr( $ts, 0, 4 );
+		$gm = (int)substr( $ts, 4, 2 );
+		$gd = (int)substr( $ts, 6, 2 );
 
 		if ( !strcmp( $cName, 'thai' ) ) {
 			# Thai solar dates
@@ -1959,7 +1959,7 @@ class Language {
 
 		$num = intval( $num );
 		if ( $num > 10000 || $num <= 0 ) {
-			return $num;
+			return (string)$num;
 		}
 
 		$s = '';
@@ -2000,7 +2000,7 @@ class Language {
 
 		$num = intval( $num );
 		if ( $num > 9999 || $num <= 0 ) {
-			return $num;
+			return (string)$num;
 		}
 
 		// Round thousands have special notations
@@ -2530,7 +2530,7 @@ class Language {
 		} elseif ( $days > 1 ) {
 			// Timestamp within the past week: show the day of the week and time
 			$format = $this->getDateFormatString( 'time', $user->getDatePreference() ?: 'default' );
-			$weekday = self::WEEKDAY_MESSAGES[$ts->timestamp->format( 'w' )];
+			$weekday = self::WEEKDAY_MESSAGES[(int)$ts->timestamp->format( 'w' )];
 			// Messages:
 			// sunday-at, monday-at, tuesday-at, wednesday-at, thursday-at, friday-at, saturday-at
 			$ts = wfMessage( "$weekday-at" )
@@ -3306,11 +3306,11 @@ class Language {
 				if ( preg_match( '/^-?(\d*)(\.(\d*))?$/', $number, $m ) ) {
 					$fmt->setAttribute( NumberFormatter::MIN_INTEGER_DIGITS, strlen( $m[1] ) );
 					if ( isset( $m[2] ) ) {
-						$fmt->setAttribute( NumberFormatter::DECIMAL_ALWAYS_SHOWN, true );
+						$fmt->setAttribute( NumberFormatter::DECIMAL_ALWAYS_SHOWN, 1 );
 					}
 					$fmt->setAttribute( NumberFormatter::FRACTION_DIGITS, strlen( $m[3] ?? '' ) );
 				}
-				$number = $fmt->format( $number );
+				$number = $fmt->format( (float)$number );
 			}
 		}
 
@@ -3780,7 +3780,7 @@ class Language {
 			}
 		}
 		// Close the last tag if left unclosed by bad HTML
-		$this->truncate_endBracket( $tag, $text[$textLen - 1], $tagType, $openTags );
+		$this->truncate_endBracket( $tag, $tagType, $text[$textLen - 1], $openTags );
 		while ( count( $openTags ) > 0 ) {
 			$ret .= '</' . array_pop( $openTags ) . '>'; // close open tags
 		}

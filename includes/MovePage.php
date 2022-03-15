@@ -495,7 +495,7 @@ class MovePage {
 			return $status;
 		}
 
-		return $this->moveUnsafe( $user, $reason, $createRedirect, $changeTags );
+		return $this->moveUnsafe( $user, $reason ?? '', $createRedirect, $changeTags );
 	}
 
 	/**
@@ -503,7 +503,7 @@ class MovePage {
 	 *
 	 * @param Authority $performer
 	 * @param string|null $reason
-	 * @param bool|null $createRedirect Ignored if user doesn't have suppressredirect permission
+	 * @param bool $createRedirect Ignored if user doesn't have suppressredirect permission
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
 	 * @return Status
 	 */
@@ -529,7 +529,7 @@ class MovePage {
 			$createRedirect = true;
 		}
 
-		return $this->moveUnsafe( $performer->getUser(), $reason, $createRedirect, $changeTags );
+		return $this->moveUnsafe( $performer->getUser(), $reason ?? '', $createRedirect, $changeTags );
 	}
 
 	/**
@@ -685,12 +685,13 @@ class MovePage {
 		$moveAttemptResult = $this->moveToInternal( $user, $this->newTitle, $reason, $createRedirect,
 			$changeTags );
 
-		if ( $moveAttemptResult instanceof Status ) {
+		if ( !$moveAttemptResult->isGood() ) {
 			// T265779: Attempt to delete target page failed
 			$dbw->cancelAtomic( __METHOD__ );
 			return $moveAttemptResult;
 		} else {
-			$nullRevision = $moveAttemptResult;
+			$nullRevision = $moveAttemptResult->getValue()['nullRevision'];
+			'@phan-var RevisionRecord $nullRevision';
 		}
 
 		$redirid = $this->oldTitle->getArticleID();
@@ -727,16 +728,12 @@ class MovePage {
 			}
 
 			// reread inserted pr_ids for log relation
-			$insertedPrIds = $dbw->select(
+			$logRelationsValues = $dbw->selectFieldValues(
 				'page_restrictions',
 				'pr_id',
 				[ 'pr_page' => $redirid ],
 				__METHOD__
 			);
-			$logRelationsValues = [];
-			foreach ( $insertedPrIds as $prid ) {
-				$logRelationsValues[] = $prid->pr_id;
-			}
 
 			// Update the protection log
 			$logEntry = new ManualLogEntry( 'protect', 'move_prot' );
@@ -797,7 +794,7 @@ class MovePage {
 			)
 		);
 
-		return Status::newGood();
+		return $moveAttemptResult;
 	}
 
 	/**
@@ -836,11 +833,15 @@ class MovePage {
 	 * @param bool $createRedirect Whether to leave a redirect at the old title. Does not check
 	 *   if the user has the suppressredirect right
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
-	 * @return RevisionRecord|Status The revision created by the move or Status object on failure
+	 * @return Status Status object with the following value on success:
+	 *   [
+	 *     'nullRevision' => The ("null") revision created by the move (RevisionRecord)
+	 *     'redirectRevision' => The initial revision of the redirect if it was created (RevisionRecord|null)
+	 *   ]
 	 */
 	private function moveToInternal( UserIdentity $user, &$nt, $reason = '', $createRedirect = true,
 		array $changeTags = []
-	) {
+	): Status {
 		if ( $nt->getArticleId( Title::READ_LATEST ) ) {
 			$moveOverRedirect = true;
 			$logType = 'move_redir';
@@ -993,10 +994,11 @@ class MovePage {
 		WikiPage::onArticleCreate( $nt );
 
 		# Recreate the redirect, this time in the other direction.
+		$redirectRevision = null;
 		if ( $redirectContent ) {
 			$redirectArticle = $this->wikiPageFactory->newFromTitle( $this->oldTitle );
 			$redirectArticle->loadFromRow( false, WikiPage::READ_LOCKING ); // T48397
-			$redirectArticle->newPageUpdater( $user )
+			$redirectRevision = $redirectArticle->newPageUpdater( $user )
 				->setContent( SlotRecord::MAIN, $redirectContent )
 				->addTags( $changeTags )
 				->addSoftwareTag( 'mw-new-redirect' )
@@ -1011,6 +1013,9 @@ class MovePage {
 		$logEntry->addTags( $changeTags );
 		$logEntry->publish( $logid );
 
-		return $nullRevision;
+		return Status::newGood( [
+			'nullRevision' => $nullRevision,
+			'redirectRevision' => $redirectRevision,
+		] );
 	}
 }

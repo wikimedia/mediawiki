@@ -312,10 +312,10 @@ class UploadFromUrl extends UploadBase {
 			return Status::newFatal( 'tmp-write-error' );
 		}
 
-		wfDebugLog( 'fileupload', $status );
 		if ( $status->isOK() ) {
 			wfDebugLog( 'fileupload', 'Download by URL completed successfully.' );
 		} else {
+			wfDebugLog( 'fileupload', $status->getWikitext( false, false, 'en' ) );
 			wfDebugLog(
 				'fileupload',
 				'Download by URL completed with HTTP status ' . $req->getStatus()

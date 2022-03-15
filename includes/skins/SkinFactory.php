@@ -21,7 +21,7 @@
  * @file
  */
 
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * Factory class to create Skin objects

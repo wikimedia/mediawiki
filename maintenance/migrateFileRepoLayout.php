@@ -106,7 +106,7 @@ class MigrateFileRepoLayout extends Maintenance {
 					}
 
 					$status = $be->prepare( [
-						'dir' => dirname( $dpath ), 'bypassReadOnly' => 1 ] );
+						'dir' => dirname( $dpath ), 'bypassReadOnly' => true ] );
 					if ( !$status->isOK() ) {
 						$this->error( print_r( $status->getErrors(), true ) );
 					}
@@ -139,7 +139,7 @@ class MigrateFileRepoLayout extends Maintenance {
 					}
 
 					$status = $be->prepare( [
-						'dir' => dirname( $dpath ), 'bypassReadOnly' => 1 ] );
+						'dir' => dirname( $dpath ), 'bypassReadOnly' => true ] );
 					if ( !$status->isOK() ) {
 						$this->error( print_r( $status->getErrors(), true ) );
 					}
@@ -197,7 +197,7 @@ class MigrateFileRepoLayout extends Maintenance {
 				}
 
 				$status = $be->prepare( [
-					'dir' => dirname( $dpath ), 'bypassReadOnly' => 1 ] );
+					'dir' => dirname( $dpath ), 'bypassReadOnly' => true ] );
 				if ( !$status->isOK() ) {
 					$this->error( print_r( $status->getErrors(), true ) );
 				}
@@ -233,7 +233,7 @@ class MigrateFileRepoLayout extends Maintenance {
 			$this->output( "\"{$op['img']}\" (dest: {$op['dst']})\n" );
 		}
 
-		$status = $be->doOperations( $ops, [ 'bypassReadOnly' => 1 ] );
+		$status = $be->doOperations( $ops, [ 'bypassReadOnly' => true ] );
 		if ( !$status->isOK() ) {
 			$this->output( print_r( $status->getErrors(), true ) );
 		}

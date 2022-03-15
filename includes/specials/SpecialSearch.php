@@ -267,7 +267,7 @@ class SpecialSearch extends SpecialPage {
 		list( $this->limit, $this->offset ) = $request->getLimitOffsetForUser(
 			$this->getUser(),
 			20,
-			''
+			'searchlimit'
 		);
 		$this->mPrefix = $request->getVal( 'prefix', '' );
 		if ( $this->mPrefix !== '' ) {
@@ -321,7 +321,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$this->fulltext = $request->getVal( 'fulltext' );
-		$this->runSuggestion = (bool)$request->getVal( 'runsuggestion', true );
+		$this->runSuggestion = (bool)$request->getVal( 'runsuggestion', '1' );
 		$this->profile = $profile;
 	}
 
@@ -565,7 +565,7 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param Title|null $title
 	 * @param int $num The number of search results found
 	 * @param null|ISearchResultSet $titleMatches Results from title search
 	 * @param null|ISearchResultSet $textMatches Results from text search

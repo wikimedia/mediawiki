@@ -121,7 +121,7 @@ class StreamFile {
 			) {
 				return 'unknown/unknown';
 			}
-			if ( $verifyMimeType && in_array( strtolower( $type ), $mimeTypeExclusions ) ) {
+			if ( $verifyMimeType && $type !== null && in_array( strtolower( $type ), $mimeTypeExclusions ) ) {
 				return 'unknown/unknown';
 			}
 		}

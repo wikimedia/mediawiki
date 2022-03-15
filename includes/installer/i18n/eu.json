@@ -211,8 +211,6 @@
 	"config-upload-help": "Fitxategiak kargatzeak zure zerbitzaria segurtasun arriskuei eragin diezaioke.\nInformazio gehiagorako, irakurri [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security security section] eskuliburuan.\n\nFitxategiak igotzea aktibatzeko, aldatu <code> images </ code> subdirektorio modua MediaWiki-ren erroko direktorioaren azpian, web zerbitzariak honela idatz dezake.\nOndoren, gaitu aukera hau.",
 	"config-upload-deleted": "Ezabatutako artxiboentzako direktorioa:",
 	"config-upload-deleted-help": "Aukeratu fitxategi bat ezabatutako artxiboak gordetzeko.\nGomendagarria da hau webgunetik ez egotea eskuragarri.",
-	"config-logo": "Logo URL:",
-	"config-logo-help": "MediaWiki-ren lehenetsitako azala alboko barrako menuaren gainetik 135x160 pixeleko logotipo batentzako espazioa dauka.\nKargatu tamaina egokia duen irudia, eta sartu URLa hemen.\n\n<code>$wgStylePath</code> edo <code>$wgScriptPath</code> erabil dezakezu zure logotipoa bide horiei egokitzekotan.\n\nLogotipo bat nahi ez baduzu, utzi lauki hau hutsik.",
 	"config-instantcommons": "Instant Commons gaitu",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/InstantCommons Instant Commons] aukerak [https://commons.wikimedia.org/ Wikimedia Commons] gunean wikietan aurkitutako irudiak, soinuak eta beste multimedia batzuk erabiltzeko aukera ematen du.\nHorretarako, MediaWiki-k Interneteko sarbidea behar du.\n\nEginbide honi buruzko informazio gehiago lortzeko, wikientzako konfiguratzeko argibideak barne eta Wikimedia Commons-tik at, kontsultatu [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos eskuliburua].",
 	"config-cc-error": "Creative Commons lizentziaren aukeratzaileak ez du emaitzarik eman.\nEskuz sartu lizentzia.",

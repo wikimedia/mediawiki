@@ -494,5 +494,9 @@
 	"watchlisttools-edit": "Guèrda e mudèfica la lèsta d'pàgin da tnì d'öcc",
 	"watchlisttools-raw": "Mudèfiga la lèsta - scrètta - dal pàgin da tnì d'öcc",
 	"specialpages": "Pàgin particulèri",
-	"deletepage": "Scanzela la pàgina"
+	"deletepage": "Scanzela la pàgina",
+	"skin-action-protect": "Metti-j una pruteziòn",
+	"skin-action-undelete": "Armett a post",
+	"skin-action-delete": "Scanzèla",
+	"skin-action-move": "Chèmbia nòm"
 }

@@ -408,7 +408,11 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 
 		$isLogoFeatureEnabled = in_array( 'logo', $this->features );
 		if ( $isLogoFeatureEnabled ) {
-			$default = !is_array( $logo ) ? $logo : $logo['1x'];
+			$default = !is_array( $logo ) ? $logo : ( $logo['1x'] ?? null );
+			// Can't add logo CSS if no logo defined.
+			if ( !$default ) {
+				return $styles;
+			}
 			$styles['all'][] = '.mw-wiki-logo { background-image: ' .
 				CSSMin::buildUrlValue( $default ) .
 				'; }';
@@ -607,11 +611,6 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			}
 		} catch ( ConfigException $e ) {
 			// no backwards compatibility changes needed.
-		}
-
-		// check the configuration is valid
-		if ( !isset( $logos['1x'] ) ) {
-			throw new RuntimeException( "The key `1x` is required for wgLogos or wgLogo must be defined." );
 		}
 
 		// @todo: Note the beta cluster and other wikis may be using

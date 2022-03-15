@@ -290,5 +290,7 @@
 	"version": "Versione",
 	"version-specialpages": "Spesial pagines",
 	"version-software-version": "Versione",
-	"specialpages": "Spesial pagines"
+	"specialpages": "Spesial pagines",
+	"skin-action-protect": "Protekte",
+	"skin-action-delete": "Ekarta"
 }

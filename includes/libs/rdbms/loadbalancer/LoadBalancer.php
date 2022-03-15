@@ -436,7 +436,7 @@ class LoadBalancer implements ILoadBalancer {
 	/**
 	 * @param array $loads
 	 * @param string $domain Resolved DB domain
-	 * @param int $maxLag Restrict the maximum allowed lag to this many seconds
+	 * @param int|float $maxLag Restrict the maximum allowed lag to this many seconds, or INF for no max
 	 * @return bool|int|string
 	 */
 	private function getRandomNonLagged( array $loads, string $domain, $maxLag = INF ) {
@@ -1052,10 +1052,6 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase {
-		return $this->getLazyConnectionRef( $i, $groups, $domain, $flags );
-	}
-
-	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): DBConnRef {
 		if ( self::fieldHasBit( $flags, self::CONN_SILENCE_ERRORS ) ) {
 			throw new UnexpectedValueException(
 				__METHOD__ . ' got CONN_SILENCE_ERRORS; connection is already deferred'
@@ -1066,6 +1062,11 @@ class LoadBalancer implements ILoadBalancer {
 		$role = $this->getRoleFromIndex( $i );
 
 		return new DBConnRef( $this, [ $i, $groups, $domain, $flags ], $role );
+	}
+
+	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase {
+		wfDeprecated( __METHOD__, '1.38 Use ::getConnectionRef' );
+		return $this->getConnectionRef( $i, $groups, $domain, $flags );
 	}
 
 	public function getMaintenanceConnectionRef(
@@ -1329,7 +1330,7 @@ class LoadBalancer implements ILoadBalancer {
 				'agent' => $this->agent,
 				'ownerId' => $this->id,
 				// Inject object and callback dependencies
-				'lazyMasterHandle' => $this->getLazyConnectionRef(
+				'lazyMasterHandle' => $this->getConnectionRef(
 					self::DB_PRIMARY,
 					[],
 					$domain->getId()
@@ -1909,9 +1910,11 @@ class LoadBalancer implements ILoadBalancer {
 		$restore = ( $this->trxRoundId !== false );
 		$this->trxRoundId = false;
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
-		$this->forEachOpenPrimaryConnection( static function ( IDatabase $conn ) use ( $fname ) {
-			$conn->rollback( $fname, $conn::FLUSHING_ALL_PEERS );
-		} );
+		$this->forEachOpenPrimaryConnection(
+			static function ( IDatabase $conn ) use ( $fname ) {
+				$conn->rollback( $fname, $conn::FLUSHING_ALL_PEERS );
+			}
+		);
 		if ( $restore ) {
 			// Unmark handles as participating in this explicit transaction round
 			$this->forEachOpenPrimaryConnection( function ( Database $conn ) {
@@ -1919,6 +1922,20 @@ class LoadBalancer implements ILoadBalancer {
 			} );
 		}
 		$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;
+	}
+
+	public function flushPrimarySessions( $fname = __METHOD__, $owner = null ) {
+		$this->assertTransactionRoundStage( [ self::ROUND_CURSORY ] );
+		if ( $this->hasPrimaryChanges() ) {
+			// Any transaction should have been rolled back beforehand
+			throw new DBTransactionError( null, "Cannot reset session while writes are pending" );
+		}
+
+		$this->forEachOpenPrimaryConnection(
+			static function ( IDatabase $conn ) use ( $fname ) {
+				$conn->flushSession( $fname );
+			}
+		);
 	}
 
 	/**

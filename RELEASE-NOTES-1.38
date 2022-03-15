@@ -21,6 +21,8 @@ For notes on 1.37.x and older releases, see HISTORY.
 === Configuration changes for system administrators in 1.38 ===
 * Deprecate $wgAjaxUploadDestCheck, act as always-true
 * $wgInterwikiCache no longer supports the string value for CDB files.
+* Deprecate $wgParserOutputHooks; These should be done with
+  OutputPageParserOutputHook instead. (T292321)
 * …
 
 ==== New configuration ====
@@ -48,6 +50,8 @@ For notes on 1.37.x and older releases, see HISTORY.
   immediately after the first one. Note however that this does not ensure
   that database replication is complete, nor does it execute any jobs
   enqueued for later.
+* $wgTemplateLinksSchemaMigrationStage – Templatelinks table schema migration
+  stage, for normalizing tl_namespace and tl_title fields.
 * …
 
 ==== Changed configuration ====
@@ -66,6 +70,7 @@ For notes on 1.37.x and older releases, see HISTORY.
 * $wgIncludejQueryMigrate - Deprecated in 1.36. We only support jQuery v3.
 * $wgUseCategoryBrowser - This experimental feature has been removed. If you
   still need to use this feature, please see [[mw:Extension:CategoryExplorer]].
+* $wgStyleSheetPath - alias for $wgStylePath, deprecated since 1.3 (2004).
 * …
 
 === New user-facing features in 1.38 ===
@@ -92,6 +97,7 @@ For notes on 1.37.x and older releases, see HISTORY.
   with `grunt qunit --qunit-component={componentName}`, where
   {componentName} is "MediaWiki" to run core's QUnit tests or the skin
   or extension name.
+* Added Less `.user-select()` mixin to 'mediawiki.mixins'.
 * …
 
 === External library changes in 1.38 ===
@@ -106,7 +112,7 @@ For notes on 1.37.x and older releases, see HISTORY.
 * …
 
 ==== Changed external libraries ====
-* Updated OOUI from v0.42.0 to v0.43.1.
+* Updated OOUI from v0.42.0 to v0.43.2.
 * Updated WVUI from v0.3.0 to v0.3.5
 * Upgraded Vue from 2.6.11 to 3.2.23
 * Updated composer/semver from 3.2.5 to 3.2.6.
@@ -125,6 +131,7 @@ For notes on 1.37.x and older releases, see HISTORY.
 * Updated symfony/polyfill-php80 from 1.23.1 to 1.24.0.
 * Updated wikimedia/ip-utils from 3.0.2 to 4.0.0.
 * Updated wikimedia/request-timeout from 1.1.0 to 1.2.0.
+* Updated wikimedia/object-factory from 3.0.2 to 4.0.0.
 * …
 
 ===== Changed development-only external libraries =====
@@ -157,6 +164,7 @@ because of Phabricator reports.
 * (T292166) Updated namespace names for the Lombard language.
 * (T299201) Changed the autonym of the Angika language to अंगिका
 * (T298309) Changed the autonym of the Abkhaz language to аԥсшәа
+* (T302972) Changed the autonym of the Kirundi language to ikirundi
 * (T220303) Show numbered lists with Burmese numerals in relevant languages
 * (T291899) Added language support for Xiang Chinese (hsn).
 * (T292612) Added language support for S'gaw Karen (ksw).
@@ -260,6 +268,8 @@ because of Phabricator reports.
     User::removeWatch()
 * ParserOptions::setTidy() that had no effect and was deprecated since 1.35
   has been removed.
+* The "YAML" encoding option of EtcdConfig, has been removed without
+  deprecation.
 * The constant ApiBase::PARAM_VALUE_LINKS, deprecated since 1.35 has been
   removed.
 * UserLoadOptions, UserSaveOptions and UserResetAllOptions hooks, deprecated
@@ -462,6 +472,9 @@ because of Phabricator reports.
   with OutputPage, you may want to check the hooks in DeleteAction instead.
 * Instantiating the MessageContent class now emits deprecation notices.
 * Message::content() now triggers deprecation warnings.
+* Parser::setDefaultSort(), Parser::getDefaultSort(), and
+  Parser::getCustomDefaultSort() now trigger deprecation warnings.  Use
+  ParserOutput::{get,set}PageProperty('defaultsort') instead.
 * The following methods from the ParserOutput class now emit deprecation
   warnings:
    - ::hideNewSection()      - use ::setHideNewSection()
@@ -481,6 +494,8 @@ because of Phabricator reports.
    - ::setFlag() - use ::setOutputFlag()
    - ::getAllFlags() - this method is now marked @internal
    - ::addJsConfigVars() - use ::setJsConfigVar() or ::appendJsConfigVar()
+   - ::addOutputHook() / ::getOutputHooks() - these hooks should be migrated
+     to use the OutputPageParserOutput hook instead
 * The use of ParserOutput::setExtensionData() to overwrite previous values
   stored under a given key has been deprecated; use the new
   ::appendExtensionData() to collect multiple values in the ParserOutput
@@ -491,6 +506,21 @@ because of Phabricator reports.
      the string as the only element.
    - ::addModuleStyles() - if you formerly passed a string, pass an array
      with the string as the only element.
+* Access to the following public or protected properties of OutputPage was
+  deprecated; they will be made private or removed in a future release.
+  Use accessor functions instead.
+  - ::$mCategoryLinks
+  - ::$mCategories
+  - ::$mIndicators
+  - ::$mHeadItems
+  - ::$mModules
+  - ::$mModuleStyles
+  - ::$mJsConfigVars
+  - ::$mTemplateIds
+  - ::$mEnableClientCache
+  - ::$mNewSectionLink
+  - ::$mHideNewSectionLink
+  - ::$mNoGallery
 * The following methods were deprecated; use ::setPreventClickjacking(..)
   instead:
    - OutputPage::preventClickjacking()
@@ -500,6 +530,11 @@ because of Phabricator reports.
    - ContribsPager::preventClickjacking()
 * OutputPage::enableClientCache() was deprecated, because it is universally
   used to do the opposite -- use OutputPage::disableClientCache() instead.
+* Sanitizer::removeHTMLtags() has been deprecated. Its output can
+  include unbalanced or ill-formed HTML and thus external callers may
+  be misled about how to safely incorporate its output into a page. It
+  is recommended to use the new Sanitizer::removeSomeTags() method
+  instead, which will always return balanced HTML.
 * Collation::singleton() and ::factory() now trigger deprecation warnings.
 * The following methods in MWNamespace, all deprecated since 1.34, now emit
   deprecation warnings:
@@ -546,6 +581,12 @@ because of Phabricator reports.
   Use ContentHandler::validateSave instead.
 * The hooks LinksUpdateAfterInsert and LinksUpdateConstructed were deprecated.
 * Access to all public properties in LinksUpdate was deprecated.
+* The global variable $IP has been deprecated for use in application logic.
+  It will remain available for use in LocalSettings.php for now, though
+  $wgBaseDirectory is preferred.
+  Application logic should use the BaseDirectory setting from the main config.
+  Tests and framework code that need to function without MediaWiki being
+  fully initialized should use the MW_INSTALL_PATH constant.
 * The global function wfWikiID(), deprecated since 1.35, now emits
   deprecation warnings.
 * AbstractBlock::getBy() now takes a wikiId as a parameter and emits
@@ -581,6 +622,8 @@ because of Phabricator reports.
 * Using `new HTMLForm( … )` or `HTMLForm::factory( … )` without the $context
   parameter is now deprecated.
 * BagOStuff::incr() and BagOStuff::decr() are now deprecated.
+* Action::exists() and ActionFactory::actionExists() are deprecated, use
+  (bool)ActionFactory::getAction().
 * …
 
 === Other changes in 1.38 ===

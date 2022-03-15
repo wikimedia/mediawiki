@@ -853,7 +853,7 @@ class DeletePage {
 		if ( !$this->isDeletePageUnitTest ) {
 			// TODO Remove conditional once DeferredUpdates is servicified (T265749)
 			DeferredUpdates::addUpdate( SiteStatsUpdate::factory(
-				[ 'edits' => 1, 'articles' => -$countable, 'pages' => -1 ]
+				[ 'edits' => 1, 'articles' => $countable ? -1 : 0, 'pages' => -1 ]
 			) );
 
 			// Delete pagelinks, update secondary indexes, etc

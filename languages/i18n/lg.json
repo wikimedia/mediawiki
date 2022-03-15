@@ -855,5 +855,9 @@
 	"specialpages": "Empapula enjawule",
 	"tags-edit": "kyusa",
 	"deletepage": "Gyawo olupapula",
-	"nstab-mainpage": "Olupapula Olusinga Omugaso"
+	"nstab-mainpage": "Olupapula Olusinga Omugaso",
+	"skin-action-protect": "Ssiba",
+	"skin-action-undelete": "Zawo",
+	"skin-action-delete": "Gyawo olupapula luno",
+	"skin-action-move": "Simbuliza"
 }

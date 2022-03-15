@@ -25,7 +25,7 @@ use InvalidArgumentException;
 use LocalIdLookup;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\User\UserIdentityLookup;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @since 1.37

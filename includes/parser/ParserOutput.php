@@ -285,7 +285,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mSpeculativeRevId;
 	/** @var int|null Assumed page ID for {{PAGEID}} if no revision is set */
 	private $speculativePageIdUsed;
-	/** @var int|null Assumed rev timestamp for {{REVISIONTIMESTAMP}} if no revision is set */
+	/** @var string|null Assumed rev timestamp for {{REVISIONTIMESTAMP}} if no revision is set */
 	private $revisionTimestampUsed;
 
 	/** @var string|null SHA-1 base 36 hash of any self-transclusion */
@@ -459,23 +459,30 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				$toc = $this->getTOCHTML();
 				// language conversion needs to be done on the TOC fetched
 				// from parser cache
-				// XXX doesn't check ParserOptions::getDisableContentConversion()
-				// XXX doesn't check Parser::$mDoubleUnderscores['nocontentconvert']
-				// XXX doesn't check ParserOptions::getInterfaceMessage()
-				// XXX Use DI to inject this once ::getText() is moved out
-				// of ParserOutput
-				$services = MediaWikiServices::getInstance();
-				$languageConverterFactory = $services->getLanguageConverterFactory();
-				$title = RequestContext::getMain()->getTitle();
-				$toc = $languageConverterFactory->getLanguageConverter(
-					// XXX This was Parser::getTargetLanguage()
-					// Fallback to content language for messages or someting
-					$title ? $title->getPageLanguage() : $services->getContentLanguage()
-				)->convert( $toc );
+				if ( !$this->getOutputFlag( ParserOutputFlags::NO_TOC_CONVERSION ) ) {
+					// XXX Use DI to inject this once ::getText() is moved out
+					// of ParserOutput
+					$services = MediaWikiServices::getInstance();
+					$languageFactory =
+						$services->getLanguageFactory();
+					$languageConverterFactory =
+						$services->getLanguageConverterFactory();
+					// T303329: this should migrate out of extension data
+					$langCode = $this->getExtensionData( 'core:target-lang' )
+						// This is a temporary fallback while the ParserCache fills
+						?? $services->getContentLanguage()->getCode();
+					$langConv = $languageConverterFactory->getLanguageConverter(
+						$languageFactory->getLanguage( $langCode )
+					);
+					$variant = $this->getExtensionData( 'core:target-lang-variant' )
+						// This is a temporary fallback while the ParserCache fills
+						?? $langConv->getPreferredVariant();
+					$toc = $langConv->convertTo( $toc, $variant );
+				}
 
 				// XXX Use DI to inject this once ::getText() is moved out
 				// of ParserOutput.
-				$tidy = $services->getTidy();
+				$tidy = MediaWikiServices::getInstance()->getTidy();
 				$toc = $tidy->tidy(
 					$toc,
 					[ Sanitizer::class, 'armorFrenchSpaces' ]
@@ -770,20 +777,28 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
+	 * @param bool $showStrategyKeys Defaults to false; if set to true will
+	 *  expose the internal `MW_MERGE_STRATEGY_KEY` in the result.  This
+	 *  should only be used internally to allow safe merge of config vars.
 	 * @return array
 	 * @since 1.23
 	 */
-	public function getJsConfigVars() {
+	public function getJsConfigVars( bool $showStrategyKeys = false ) {
 		$result = $this->mJsConfigVars;
 		// Don't expose the internal strategy key
 		foreach ( $result as $key => &$value ) {
-			if ( is_array( $value ) ) {
+			if ( is_array( $value ) && !$showStrategyKeys ) {
 				unset( $value[self::MW_MERGE_STRATEGY_KEY] );
 			}
 		}
 		return $result;
 	}
 
+	/**
+	 * @return array
+	 * @deprecated since 1.38; should be done in the OutputPageParserOutput
+	 * hook (T292321).
+	 */
 	public function getOutputHooks(): array {
 		return (array)$this->mOutputHooks;
 	}
@@ -949,6 +964,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mWarnings[$s] = 1;
 	}
 
+	/**
+	 * @param callable $hook
+	 * @param mixed $data
+	 * @deprecated since 1.38; should be done in the OutputPageParserOutput
+	 * hook (T292321).
+	 */
 	public function addOutputHook( $hook, $data = false ): void {
 		$this->mOutputHooks[] = [ $hook, $data ];
 	}
@@ -2212,6 +2233,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 						$metadata->appendJsConfigVar( $key, $item, $strategy );
 					}
 				}
+			} elseif ( array_key_exists( $key, $this->mJsConfigVars ) ) {
+				// This behavior is deprecated, will likely result in
+				// incorrect output, and we'll eventually emit a
+				// warning here---but at the moment this is usually
+				// caused by limitations in Parsoid and/or use of
+				// the ParserAfterParse hook: T303015#7770480
+				$this->mJsConfigVars[$key] = $value;
 			} else {
 				$metadata->setJsConfigVar( $key, $value );
 			}
@@ -2224,6 +2252,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 						$metadata->appendExtensionData( $key, $item, $strategy );
 					}
 				}
+			} elseif ( array_key_exists( $key, $this->mExtensionData ) ) {
+				// This behavior is deprecated, will likely result in
+				// incorrect output, and we'll eventually emit a
+				// warning here---but at the moment this is usually
+				// caused by limitations in Parsoid and/or use of
+				// the ParserAfterParse hook: T303015#7770480
+				$this->mExtensionData[$key] = $value;
 			} else {
 				$metadata->setExtensionData( $key, $value );
 			}

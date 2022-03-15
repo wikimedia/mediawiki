@@ -39,7 +39,7 @@ class ChangeTagsConstraint implements IEditConstraint {
 	/** @var array */
 	private $tags;
 
-	/** @var StatusValue|string|null */
+	/** @var StatusValue|string */
 	private $result;
 
 	/**

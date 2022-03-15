@@ -284,12 +284,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['fixarabicunicode'] = true; // Config removed in 1.35, always true
 		$data['fixmalayalamunicode'] = true; // Config removed in 1.35, always true
 
-		global $IP;
-		$git = SpecialVersion::getGitHeadSha1( $IP );
+		$baseDir = $this->getConfig()->get( 'BaseDirectory' );
+		$git = SpecialVersion::getGitHeadSha1( $baseDir );
 		if ( $git ) {
 			$data['git-hash'] = $git;
 			$data['git-branch'] =
-				SpecialVersion::getGitCurrentBranch( $GLOBALS['IP'] );
+				SpecialVersion::getGitCurrentBranch( $baseDir );
 		}
 
 		// 'case-insensitive' option is reserved for future
@@ -484,9 +484,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendInterwikiMap( $property, $filter ) {
 		if ( $filter === 'local' ) {
-			$local = 1;
+			$local = true;
 		} elseif ( $filter === '!local' ) {
-			$local = 0;
+			$local = false;
 		} else {
 			// $filter === null
 			$local = null;
@@ -664,8 +664,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	protected function appendInstalledLibraries( $property ) {
-		global $IP;
-		$path = "$IP/vendor/composer/installed.json";
+		$baseDir = $this->getConfig()->get( 'BaseDirectory' );
+		$path = "$baseDir/vendor/composer/installed.json";
 		if ( !file_exists( $path ) ) {
 			return true;
 		}

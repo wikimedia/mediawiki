@@ -23,7 +23,7 @@ interface ChangeTagCanDeleteHook {
 	 * @since 1.35
 	 *
 	 * @param string $tag Name of the tag
-	 * @param User $user User initiating the action
+	 * @param User|null $user User initiating the action
 	 * @param Status &$status To allow deletion of the tag, set `$status = Status::newGood()`,
 	 *   and then return false from the hook function.
 	 * @return bool|void True or no return value to continue or false to allow deletion of the tag

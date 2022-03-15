@@ -36,7 +36,7 @@ use TgConverter;
 use TlyConverter;
 use TrivialLanguageConverter;
 use UzConverter;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 use ZhConverter;
 
 /**
@@ -193,7 +193,7 @@ class LanguageConverterFactory {
 	/**
 	 * Whether to disable language variant conversion for titles.
 	 * @return bool
-	 * @deprecated 1.36 Should use ::isLinkConversionDisabled() instead
+	 * @deprecated since 1.36 Should use ::isLinkConversionDisabled() instead
 	 */
 	public function isTitleConversionDisabled() {
 		return $this->isTitleConversionDisabled;

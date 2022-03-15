@@ -538,5 +538,6 @@
 	"duration-days": "$1 {{PLURAL:$1|päivä|päivyä}}",
 	"view-view-foreign": "Näytä $1",
 	"view-create-local": "Lisyä paikallini kuvauš",
-	"nstab-mainpage": "Piäšivu"
+	"nstab-mainpage": "Piäšivu",
+	"skin-action-move": "Šiirrä"
 }

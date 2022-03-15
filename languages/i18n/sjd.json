@@ -338,7 +338,7 @@
 	"action-edit": "вуайхэ тэнн лыст",
 	"action-createpage": "тэнн лыст лыһкэ",
 	"action-move": "Вуайхэ нэ̄м",
-	"action-delete": "Вэ̄цксэ",
+	"action-delete": "тэнн лыст вэ̄цксэ",
 	"action-protect": "Пынне",
 	"enhancedrc-history": "история",
 	"recentchanges": "О̄дт вуайхэз",
@@ -569,5 +569,8 @@
 	"authmanager-email-help": "Электроннэ почта адресс",
 	"authmanager-provider-temporarypassword": "Пя̄ҋҋтса̄ннҍ а̄ййк пайя",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
-	"nstab-mainpage": "Э̄ввт лысст"
+	"nstab-mainpage": "Э̄ввт лысст",
+	"skin-action-protect": "Пынне",
+	"skin-action-delete": "Вэ̄цксэ",
+	"skin-action-move": "Вуайхэ нэ̄м"
 }

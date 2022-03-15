@@ -44,7 +44,7 @@ class ResetUserEmail extends Maintenance {
 	public function execute() {
 		$userName = $this->getArg( 0 );
 		if ( preg_match( '/^#\d+$/', $userName ) ) {
-			$user = User::newFromId( substr( $userName, 1 ) );
+			$user = User::newFromId( (int)substr( $userName, 1 ) );
 		} else {
 			$user = User::newFromName( $userName );
 		}
@@ -72,7 +72,7 @@ class ResetUserEmail extends Maintenance {
 			] );
 			if ( !$status->isGood() ) {
 				$this->error( "Password couldn't be reset because:\n"
-					. $status->getMessage( null, null, 'en' )->text() );
+					. $status->getMessage( false, false, 'en' )->text() );
 			}
 		}
 		$this->output( "Done!\n" );

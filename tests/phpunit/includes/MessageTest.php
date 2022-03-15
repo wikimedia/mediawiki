@@ -430,13 +430,6 @@ class MessageTest extends MediaWikiLangTestCase {
 			$msg->params( $params )->plain(),
 			'Params > 9 are replaced correctly'
 		);
-
-		$msg = new RawMessage( 'Params$*' );
-		$params = [ 'ab', 'bc', 'cd' ];
-		$this->assertSame(
-			'Params: ab, bc, cd',
-			$msg->params( $params )->text()
-		);
 	}
 
 	/**
@@ -833,6 +826,29 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertSame(
 			$expect,
 			$msg->inLanguage( 'en' )->$format()
+		);
+	}
+
+	/**
+	 * @covers Message::format
+	 * @covers LanguageQqx
+	 */
+	public function testQqxPlaceholders() {
+		$this->assertSame(
+			wfMessage( 'test' )->inLanguage( 'qqx' )->text(),
+			'(test)'
+		);
+		$this->assertSame(
+			wfMessage( 'test' )->params( 'a', 'b' )->inLanguage( 'qqx' )->text(),
+			'(test: a, b)'
+		);
+		$this->assertSame(
+			wfMessageFallback( 'test', 'other-test' )->inLanguage( 'qqx' )->text(),
+			'(test / other-test)'
+		);
+		$this->assertSame(
+			wfMessageFallback( 'test', 'other-test' )->params( 'a', 'b' )->inLanguage( 'qqx' )->text(),
+			'(test / other-test: a, b)'
 		);
 	}
 

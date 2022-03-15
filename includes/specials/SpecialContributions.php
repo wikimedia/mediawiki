@@ -142,7 +142,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->opts = [];
 		$request = $this->getRequest();
 
-		$target = $par ?? $request->getVal( 'target' );
+		$target = $par ?? $request->getVal( 'target', '' );
 
 		$this->opts['deletedOnly'] = $request->getBool( 'deletedOnly' );
 
@@ -770,7 +770,7 @@ class SpecialContributions extends IncludableSpecialPage {
 					'raw' => true,
 					'section' => 'contribs-top',
 				];
-				wfDeprecated(
+				wfDeprecatedMsg(
 					'A SpecialContributions::getForm::filters hook handler returned ' .
 					'an array of strings, this is deprecated since MediaWiki 1.33',
 					'1.33', false, false

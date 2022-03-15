@@ -679,11 +679,11 @@
 	"action-createpage": "haku ʻaoʻao",
 	"action-createtalk": "haku ʻaoʻao kūkākūkā",
 	"action-createaccount": "kāinoa i kēia moʻokāki mea hoʻohana",
-	"action-move": "E hoʻoneʻe",
+	"action-move": "hoʻoneʻe i kēia ʻaoʻao",
 	"action-move-subpages": "hoʻoneʻe i kēia ʻaoʻao a me nā ʻaoʻao kūloko hoʻi.",
 	"action-movefile": "hoʻoneʻe i kēia waihona",
 	"action-upload": "hoʻouka i kēia waihona",
-	"action-delete": "Holoi",
+	"action-delete": "holoi i kēia ʻaoʻao",
 	"action-undelete": "Holoiʻole",
 	"action-protect": "Hoʻomalu",
 	"action-sendemail": "lekauila",
@@ -1192,5 +1192,9 @@
 	"expand_templates_preview": "Nāmua",
 	"view-view-foreign": "Nānā ma $1",
 	"view-create-local": "Hoʻohui i ka hōʻike ʻano neʻi",
-	"view-edit-local": "Hoʻololi i ka hōʻike ʻano neʻi"
+	"view-edit-local": "Hoʻololi i ka hōʻike ʻano neʻi",
+	"skin-action-protect": "Hoʻomalu",
+	"skin-action-undelete": "Holoiʻole",
+	"skin-action-delete": "Holoi",
+	"skin-action-move": "E hoʻoneʻe"
 }

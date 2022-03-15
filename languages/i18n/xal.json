@@ -834,5 +834,9 @@
 	"logentry-newusers-create": "$1 демнәчин бичгдлһн бүтәгдв",
 	"rightsnone": "(уга)",
 	"searchsuggest-search": "Хәәвр",
-	"nstab-mainpage": "Нүр халх"
+	"nstab-mainpage": "Нүр халх",
+	"skin-action-protect": "Харсх",
+	"skin-action-undelete": "Һарһх биш",
+	"skin-action-delete": "Һарһх",
+	"skin-action-move": "Көндәх"
 }

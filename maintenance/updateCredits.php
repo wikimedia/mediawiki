@@ -59,7 +59,7 @@ foreach ( $lines as $line ) {
 }
 unset( $lines );
 
-$lines = explode( "\n", shell_exec( 'git log --format="%aN"' ) );
+$lines = explode( "\n", (string)shell_exec( 'git log --format="%aN"' ) );
 foreach ( $lines as $line ) {
 	if ( empty( $line ) ) {
 		continue;

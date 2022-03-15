@@ -792,7 +792,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * get versioned metadata
 	 *
 	 * @param array $metadata Array of unserialized metadata
-	 * @param int $version Version number.
+	 * @param int|string $version Version number.
 	 * @return array Array containing metadata, or what was passed to it on fail
 	 */
 	public function convertMetadataVersion( $metadata, $version ) {
@@ -1508,7 +1508,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return string Content-Disposition header value
 	 */
 	public function getThumbDisposition( $thumbName, $dispositionType = 'inline' ) {
-		$fileName = $this->name; // file name to suggest
+		$fileName = $this->getName(); // file name to suggest
 		$thumbExt = FileBackend::extensionFromPath( $thumbName );
 		if ( $thumbExt != '' && $thumbExt !== $this->getExtension() ) {
 			$fileName .= ".$thumbExt";

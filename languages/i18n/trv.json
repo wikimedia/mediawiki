@@ -349,7 +349,7 @@
 	"action-addsection": "kari mnrana",
 	"action-edit": "Smmalu patas ruwahan patas nii",
 	"action-createaccount": "phiyug seejiq mduuy patas sspgan nii",
-	"action-move": "Hdlun",
+	"action-move": "hdlun ruwahan patas nii",
 	"action-delete": "wada srsan",
 	"action-protect": "pnklawa",
 	"enhancedrc-history": "endaan",
@@ -833,5 +833,8 @@
 	"paramvalidator-help-type-user-subtype-id": "empduuy ID (e.g. \"#12345\")",
 	"view-view-foreign": "Ga $1 qmita",
 	"view-create-local": "Pgkla tnpusu mnrana",
-	"nstab-mainpage": "Ruwahan patas"
+	"nstab-mainpage": "Ruwahan patas",
+	"skin-action-protect": "pnklawa",
+	"skin-action-delete": "wada srsan",
+	"skin-action-move": "Hdlun"
 }

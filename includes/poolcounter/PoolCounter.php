@@ -21,7 +21,7 @@
  * @file
  */
 
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * When you have many workers (threads/servers) giving service, and a
@@ -77,7 +77,7 @@ abstract class PoolCounter {
 	 */
 	private $isMightWaitKey;
 	/**
-	 * @var bool Whether this process holds a "might wait" lock key
+	 * @var int Whether this process holds a "might wait" lock key
 	 */
 	private static $acquiredMightWaitKey = 0;
 

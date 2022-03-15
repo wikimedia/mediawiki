@@ -943,7 +943,7 @@
 	"newuserlogpage": "प्रयोगकर्ता श्रृजना लग",
 	"action-addsection": "विषय थपिदिय",
 	"action-edit": "येइ पन्ना सम्पादन अरऽ",
-	"action-move": "साद्दे",
+	"action-move": "ये पानालाई अर्खिठौर सार",
 	"action-move-subpages": "यै पानाको रे यैका उपपानाको नाम बदल्न्या",
 	"action-move-rootuserpages": "मूल प्रयोगकर्ता पृष्ठहरू सार्ने",
 	"action-move-categorypages": "श्रेणी पृष्ठ सार",
@@ -1399,5 +1399,9 @@
 	"view-view-foreign": " $1 हेर",
 	"view-create-local": "स्थानिय वर्णन सम्पादन गर",
 	"nstab-mainpage": "मुख्य पन्ना",
-	"view-edit-local": "स्थानिय वर्णन सम्पादन गर"
+	"view-edit-local": "स्थानिय वर्णन सम्पादन गर",
+	"skin-action-protect": "सुरक्षित राख",
+	"skin-action-undelete": "मेट्याको रद्द अरऽ",
+	"skin-action-delete": "मेटऽ",
+	"skin-action-move": "साद्दे"
 }

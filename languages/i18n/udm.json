@@ -876,5 +876,8 @@
 	"log-action-filter-all": "Ваньзэ",
 	"view-view-foreign": "$1 сайтысь учконо",
 	"view-create-local": "Интыысь описаниез ватсаны",
-	"nstab-mainpage": "Кутскон бам"
+	"nstab-mainpage": "Кутскон бам",
+	"skin-action-protect": "Утьыны",
+	"skin-action-delete": "Быдтоно",
+	"skin-action-move": "Нимзэ воштыны"
 }

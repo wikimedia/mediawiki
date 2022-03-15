@@ -8,7 +8,7 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
  *
  * @ingroup Cache
  * @since 1.27
- * @deprecated 1.35
+ * @deprecated since 1.35
  */
 interface IExpiringStore extends StorageAwareness, ExpirationAwareness {
 

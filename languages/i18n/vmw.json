@@ -526,5 +526,8 @@
 	"duration-days": "$1 {{PLURAL:$1|nihiku|mahiku}}",
 	"view-view-foreign": "Oweha variyari wa $1",
 	"view-create-local": "Ophitaanya mwaalikelo wa opuro yoole",
-	"nstab-mainpage": "Nipuro nuulupale"
+	"nstab-mainpage": "Nipuro nuulupale",
+	"skin-action-protect": "Okhapelela",
+	"skin-action-delete": "Ocipiha",
+	"skin-action-move": "Okumiha"
 }

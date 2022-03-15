@@ -818,7 +818,7 @@
 	"action-createtalk": "теик-шкик те кортнема лопанть",
 	"action-createaccount": "Шкамс совицянь те тарканть",
 	"action-minoredit": "Тешкстамс те витнеманть-петнеманть а покшкынекс",
-	"action-move": "Печтевтемс",
+	"action-move": "печтевтемс те лопанть",
 	"action-move-subpages": "печтевтемс те лопанть, ды алонзо весе лопатнень",
 	"action-move-rootuserpages": "печтевтемс теицянь юрт лопатнень",
 	"action-movefile": "печтевтемс те файланть",
@@ -826,10 +826,10 @@
 	"action-reupload": "уликс файланть полавтомс одонть марто",
 	"action-upload_by_url": "тонгомс те файланть URL адресстэ",
 	"action-writeapi": "нолдамс тевс сёрмадома API-нть",
-	"action-delete": "Нардамс",
+	"action-delete": "нардамс те лопанть",
 	"action-deleterevision": "нардамс лиякстомтомат",
 	"action-browsearchive": "вешнемс нардазь лопатнестэ",
-	"action-undelete": "Вельмевтемс нардазенть",
+	"action-undelete": "вельмевтемс лопат мекев",
 	"action-suppressionlog": "ваномс те теицянть тевнеде сёрмадовкс",
 	"action-block": "кардамс те совицянть витнемадо-петнемадо",
 	"action-protect": "Аравтомс ванстомас",
@@ -1751,5 +1751,9 @@
 	"view-view-foreign": "Ваномс «$1» сайтасонть",
 	"view-create-local": "Поладомс тескень ёвтнеманзо",
 	"nstab-mainpage": "Прявтлопа",
-	"view-edit-local": "Витнемс-петнемс тескень ёвтнеманзо"
+	"view-edit-local": "Витнемс-петнемс тескень ёвтнеманзо",
+	"skin-action-protect": "Аравтомс ванстомас",
+	"skin-action-undelete": "Вельмевтемс нардазенть",
+	"skin-action-delete": "Нардамс",
+	"skin-action-move": "Печтевтемс"
 }

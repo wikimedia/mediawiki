@@ -953,5 +953,8 @@
 	"authmanager-realname-help": "Puruçara rera çupiwara",
 	"view-view-foreign": "Umaã $1 upé",
 	"view-create-local": "E-mburipíri e-nheẽ reçé retãma",
-	"nstab-mainpage": "Yupirũgawawara sowa"
+	"nstab-mainpage": "Yupirũgawawara sowa",
+	"skin-action-protect": "Uçupirũ",
+	"skin-action-delete": "Muçaká",
+	"skin-action-move": "Yatimana"
 }

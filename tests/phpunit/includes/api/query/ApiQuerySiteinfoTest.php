@@ -470,7 +470,11 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	/**
 	 * @dataProvider rightsInfoProvider
 	 */
-	public function testRightsInfo( $page, $url, $text, $expectedUrl, $expectedText ) {
+	public function testRightsInfo( $page, $url, $text, $expectedUrlOrTitle, $expectedText ) {
+		$expectedUrl = ( $expectedUrlOrTitle instanceof Title )
+			? wfExpandUrl( $expectedUrlOrTitle->getLinkURL(), PROTO_CURRENT )
+			: $expectedUrlOrTitle;
+
 		$this->setMwGlobals( [
 			'wgRightsPage' => $page,
 			'wgRightsUrl' => $url,
@@ -496,21 +500,20 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function rightsInfoProvider() {
-		$textUrl = wfExpandUrl( Title::newFromText( 'License' )->getLinkURL(), PROTO_CURRENT );
-		$url = 'http://license.example/';
+		$licenseTitle = Title::makeTitle( 0, 'License' );
+		$licenseUrl = 'http://license.example/';
 
 		return [
 			'No rights info' => [ null, null, null, '', '' ],
-			'Only page' => [ 'License', null, null, $textUrl, 'License' ],
-			'Only URL' => [ null, $url, null, $url, '' ],
+			'Only page' => [ 'License', null, null, $licenseTitle, 'License' ],
+			'Only URL' => [ null, $licenseUrl, null, $licenseUrl, '' ],
 			'Only text' => [ null, null, '!!!', '', '!!!' ],
 			// URL is ignored if page is specified
-			'Page and URL' => [ 'License', $url, null, $textUrl, 'License' ],
-			'URL and text' => [ null, $url, '!!!', $url, '!!!' ],
-			'Page and text' => [ 'License', null, '!!!', $textUrl, '!!!' ],
-			'Page and URL and text' => [ 'License', $url, '!!!', $textUrl, '!!!' ],
-			'Pagename "0"' => [ '0', null, null,
-				wfExpandUrl( Title::newFromText( '0' )->getLinkURL(), PROTO_CURRENT ), '0' ],
+			'Page and URL' => [ 'License', $licenseUrl, null, $licenseTitle, 'License' ],
+			'URL and text' => [ null, $licenseUrl, '!!!', $licenseUrl, '!!!' ],
+			'Page and text' => [ 'License', null, '!!!', $licenseTitle, '!!!' ],
+			'Page and URL and text' => [ 'License', $licenseUrl, '!!!', $licenseTitle, '!!!' ],
+			'Pagename "0"' => [ '0', null, null, Title::makeTitle( 0, '0' ), '0' ],
 			'URL "0"' => [ null, '0', null, '0', '' ],
 			'Text "0"' => [ null, null, '0', '', '0' ],
 		];

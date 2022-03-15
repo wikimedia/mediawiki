@@ -178,7 +178,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$prefFactory = $this->getPreferencesFactory();
 		$form = $prefFactory->getForm( $testUser->getUser(), $this->context );
 		$this->assertInstanceOf( PreferencesFormOOUI::class, $form );
-		$this->assertCount( 5, $form->getPreferenceSections() );
+		$this->assertCount( 6, $form->getPreferenceSections() );
 	}
 
 	/**

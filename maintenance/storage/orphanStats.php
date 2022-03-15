@@ -38,11 +38,11 @@ class OrphanStats extends Maintenance {
 			"Show some statistics on the blob_orphans table, created with trackBlobs.php" );
 	}
 
-	protected function getDB( $cluster, $groups = [], $wiki = false ) {
+	protected function getExternalDB( $db, $cluster ) {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lb = $lbFactory->getExternalLB( $cluster );
 
-		return $lb->getMaintenanceConnectionRef( DB_REPLICA );
+		return $lb->getMaintenanceConnectionRef( $db );
 	}
 
 	public function execute() {
@@ -58,7 +58,7 @@ class OrphanStats extends Maintenance {
 		$maxSize = 0;
 
 		foreach ( $res as $row ) {
-			$extDB = $this->getDB( $row->bo_cluster );
+			$extDB = $this->getExternalDB( DB_REPLICA, $row->bo_cluster );
 			$blobRow = $extDB->selectRow(
 				'blobs',
 				'*',

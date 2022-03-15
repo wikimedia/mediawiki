@@ -188,7 +188,6 @@
 	"config-upload-enable": "Omogući otpremanje datoteka",
 	"config-upload-deleted": "Direktorijum za izbrisane datoteke:",
 	"config-upload-deleted-help": "Odaberite direktorijum u kojem će se arhivirati izbrisane datoteke.\nU idealnom slučaju, ovo ne bi trebalo da bude dostupno preko veba.",
-	"config-logo": "URL adresa logotipa:",
 	"config-instantcommons": "Omogući Instant Commons",
 	"config-cc-error": "Creative Commons birač licence nije davao rezultate.\nUnesite ime licence ručno.",
 	"config-cc-again": "Izaberite ponovo…",

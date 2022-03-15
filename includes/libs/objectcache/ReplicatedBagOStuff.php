@@ -18,7 +18,7 @@
  * @file
  * @ingroup Cache
  */
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * A cache class that directs writes to one set of servers and reads to

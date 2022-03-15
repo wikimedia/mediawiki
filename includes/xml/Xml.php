@@ -193,7 +193,7 @@ class Xml {
 		return self::label( wfMessage( 'year' )->text(), 'year' ) . ' ' .
 			Html::input( 'year', $encYear, 'number', $inputAttribs ) . ' ' .
 			self::label( wfMessage( 'month' )->text(), 'month' ) . ' ' .
-			self::monthSelector( $encMonth, -1 );
+			self::monthSelector( $encMonth, '-1' );
 	}
 
 	/**
@@ -718,7 +718,7 @@ class Xml {
 		$parser = xml_parser_create( "UTF-8" );
 
 		# case folding violates XML standard, turn it off
-		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, false );
+		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, 0 );
 
 		if ( !xml_parse( $parser, $text, true ) ) {
 			// $err = xml_error_string( xml_get_error_code( $parser ) );

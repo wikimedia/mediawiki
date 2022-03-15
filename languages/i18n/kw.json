@@ -578,10 +578,10 @@
 	"action-addsection": "Keworra testen",
 	"action-edit": "golegi an folen ma",
 	"action-createaccount": "formya an akont usyer ma",
-	"action-move": "Gwaya",
+	"action-move": "gwaya an folen ma",
 	"action-movefile": "gwaya an restren ma",
 	"action-upload": "ughkarga an restren ma",
-	"action-delete": "Dilea",
+	"action-delete": "dilea an folen ma",
 	"action-undelete": "Disdhilea",
 	"action-protect": "Difres",
 	"nchanges": "$1 {{PLURAL:$1|chanj|chanj}}",
@@ -1057,5 +1057,9 @@
 	"special-characters-group-khmer": "Khmer",
 	"view-view-foreign": "Gweles war $1",
 	"view-create-local": "Keworra deskrifans leel",
-	"nstab-mainpage": "Folen dre"
+	"nstab-mainpage": "Folen dre",
+	"skin-action-protect": "Difres",
+	"skin-action-undelete": "Disdhilea",
+	"skin-action-delete": "Dilea",
+	"skin-action-move": "Gwaya"
 }

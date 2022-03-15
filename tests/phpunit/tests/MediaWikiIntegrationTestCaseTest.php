@@ -226,7 +226,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame( $this->db, $db );
 
 		// Make sure the DB connection has the fake table clones and the fake table prefix
-		MediaWikiIntegrationTestCase::setupDatabaseWithTestPrefix( $db, $this->dbPrefix(), false );
+		MediaWikiIntegrationTestCase::setupDatabaseWithTestPrefix( $db, $this->dbPrefix() );
 
 		$this->assertSame( $this->db->tablePrefix(), $db->tablePrefix(), 'tablePrefix' );
 

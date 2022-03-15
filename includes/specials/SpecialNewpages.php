@@ -347,7 +347,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			'size' => [
 				'type' => 'sizefilter',
 				'name' => 'size',
-				'default' => -$max * $size,
+				'default' => ( $max ? -1 : 1 ) * $size,
 			],
 		];
 

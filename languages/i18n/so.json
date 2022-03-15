@@ -662,9 +662,9 @@
 	"action-move": "Wareeji",
 	"action-move-categorypages": "wareeji qaybaha boggaga",
 	"action-upload": "soo geli file'kaan",
-	"action-delete": "Tirtir",
+	"action-delete": "tirtir boggaan",
 	"action-browsearchive": "Raadi maqaalada la tirtiray",
-	"action-undelete": "Ha tirtirin",
+	"action-undelete": "ha tirtirin boggaan",
 	"action-block": "ka mamnuuc isticmaalahaan in oo wax badalo",
 	"action-protect": "Difaac",
 	"nchanges": "$1 {{PLURAL:$1|bedelka|bedelada}}",
@@ -1158,5 +1158,9 @@
 	"limitreport-expensivefunctioncount": "Tirada isle'egta gutinada xilgudashada",
 	"view-view-foreign": "Ka fiiri $1",
 	"view-create-local": "Kudar faahfaahinta deegaanka",
-	"nstab-mainpage": "Bogga hore"
+	"nstab-mainpage": "Bogga hore",
+	"skin-action-protect": "Difaac",
+	"skin-action-undelete": "Ha tirtirin",
+	"skin-action-delete": "Tirtir",
+	"skin-action-move": "Wareeji"
 }

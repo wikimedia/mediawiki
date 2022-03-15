@@ -657,5 +657,8 @@
 	"searchsuggest-search": "Di {{SITENAME}}",
 	"expand_templates_preview": "Kpɔe do ŋgɔ",
 	"view-view-foreign": "Kpɔe le $1",
-	"nstab-mainpage": "Axa vevitɔ"
+	"nstab-mainpage": "Axa vevitɔ",
+	"skin-action-protect": "Kpɔ eta",
+	"skin-action-delete": "Tutui",
+	"skin-action-move": "Ɖɔli eƒe nɔƒe"
 }

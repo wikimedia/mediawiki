@@ -110,8 +110,7 @@ class WikiExporter {
 	 *   - limit: maximum number of rows to return
 	 *   - dir: "asc" or "desc" timestamp order
 	 * @param int $text One of WikiExporter::TEXT or WikiExporter::STUB
-	 * @param null|array $limitNamespaces Comma-separated list of namespace numbers
-	 *   to limit results
+	 * @param null|array $limitNamespaces List of namespace numbers to limit results
 	 */
 	public function __construct(
 		$db,

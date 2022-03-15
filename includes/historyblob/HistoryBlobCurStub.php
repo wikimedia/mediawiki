@@ -50,7 +50,7 @@ class HistoryBlobCurStub {
 	}
 
 	/**
-	 * @return string|bool
+	 * @return string|false
 	 */
 	public function getText() {
 		$dbr = wfGetDB( DB_REPLICA );

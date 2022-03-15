@@ -739,7 +739,7 @@ class MessageCache implements LoggerAwareInterface {
 			$page->loadPageData( $page::READ_LATEST );
 			$text = $this->getMessageTextFromContent( $page->getContent() );
 			// Remember the text for the blob store update later on
-			$newTextByTitle[$title] = $text;
+			$newTextByTitle[$title] = $text ?? '';
 			// Note that if $text is false, then $cache should have a !NONEXISTANT entry
 			if ( !is_string( $text ) ) {
 				$cache[$title] = '!NONEXISTENT';

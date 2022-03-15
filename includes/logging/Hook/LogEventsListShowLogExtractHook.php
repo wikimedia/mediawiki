@@ -2,8 +2,6 @@
 
 namespace MediaWiki\Hook;
 
-use Title;
-
 /**
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "LogEventsListShowLogExtract" to register handlers implementing this interface.
@@ -19,7 +17,7 @@ interface LogEventsListShowLogExtractHook {
 	 *
 	 * @param string &$s HTML to show for the log extract
 	 * @param string|array $types Log types to show
-	 * @param string|Title $page Page title to show log entries for
+	 * @param string|null $page Page title to show log entries for
 	 * @param string $user User who made the log entries
 	 * @param array $param Associative array with the following additional options:
 	 *   - `lim` (integer): Limit of items to show, default is 50

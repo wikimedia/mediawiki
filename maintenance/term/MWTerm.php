@@ -60,7 +60,7 @@ class AnsiTermColorer {
 	 * @return string
 	 */
 	public function reset() {
-		return $this->color( 0 );
+		return $this->color( '0' );
 	}
 }
 

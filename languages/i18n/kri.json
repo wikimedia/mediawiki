@@ -494,5 +494,8 @@
 	"specialpages": "Spèshal pejdèm",
 	"deletepage": "Delet dhis pej hyar",
 	"searchsuggest-search": "Sarch",
-	"nstab-mainpage": "Men Pej"
+	"nstab-mainpage": "Men Pej",
+	"skin-action-protect": "Protèkt",
+	"skin-action-delete": "Delet",
+	"skin-action-move": "Muf"
 }

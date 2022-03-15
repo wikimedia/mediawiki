@@ -1043,5 +1043,8 @@
 	"view-view-foreign": "Wè asou $1",
 	"view-create-local": "Ajouté roun dèskripsyon lokal",
 	"nstab-mainpage": "Paj prensipal",
-	"view-edit-local": "Modifyé dèskripsyon lokal-a"
+	"view-edit-local": "Modifyé dèskripsyon lokal-a",
+	"skin-action-protect": "Protéjé",
+	"skin-action-delete": "Siprimen",
+	"skin-action-move": "Rounonmen"
 }

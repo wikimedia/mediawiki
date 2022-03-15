@@ -334,7 +334,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * display the text from footericons instead of the images and don't want a
 	 * duplicate copyright statement because footerlinks already rendered one.
 	 * @param string|null $option
-	 * @deprecated 1.35 read footer icons from template data requested via
+	 * @deprecated since 1.35 read footer icons from template data requested via
 	 *     $this->get('footericons')
 	 * @return array
 	 */

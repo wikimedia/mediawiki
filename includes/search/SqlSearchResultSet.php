@@ -39,7 +39,7 @@ class SqlSearchResultSet extends SearchResultSet {
 
 	public function numRows() {
 		if ( $this->resultSet === false ) {
-			return false;
+			return 0;
 		}
 
 		return $this->resultSet->numRows();

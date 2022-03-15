@@ -829,7 +829,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				&& $options['sortByExpiry']
 			) {
 				// Add `wl_has_expiry` column to allow sorting by watched titles that have an expiration date first.
-				$vars['wl_has_expiry'] = $db->conditional( 'we_expiry IS NULL', 0, 1 );
+				$vars['wl_has_expiry'] = $db->conditional( 'we_expiry IS NULL', '0', '1' );
 				// Display temporarily watched titles first.
 				// Order by expiration date, with the titles that will expire soonest at the top.
 				$dbOptions['ORDER BY'][] = "wl_has_expiry DESC";
@@ -1548,8 +1548,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	/**
 	 * @param UserIdentity $user
 	 * @param LinkTarget|PageIdentity $title deprecated passing LinkTarget since 1.36
-	 * @param WatchedItem $item
-	 * @param bool $force
+	 * @param WatchedItem|null $item
+	 * @param string $force
 	 * @param int|bool $oldid The ID of the last revision that the user viewed
 	 * @return bool|string|null
 	 */

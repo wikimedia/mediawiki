@@ -60,7 +60,7 @@ abstract class HTMLFormField {
 	 * @stable to override
 	 *
 	 * @param string $value
-	 * @return OOUI\Widget|false
+	 * @return OOUI\Widget|string|false
 	 */
 	public function getInputOOUI( $value ) {
 		return false;
@@ -177,7 +177,7 @@ abstract class HTMLFormField {
 	 * Fetch a field value from $alldata for the closest field matching a given
 	 * name.
 	 *
-	 * @deprecated 1.38 Use getNearestFieldValue() instead.
+	 * @deprecated since 1.38 Use getNearestFieldValue() instead.
 	 * @param array $alldata
 	 * @param string $name
 	 * @param bool $asDisplay

@@ -16,12 +16,14 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @ingroup Database
  */
 
+namespace Wikimedia\Rdbms;
+
 /**
- * Backward-compatibility alias.
- * @since 1.22
- * @deprecated since 1.29 Use FormattedRCFeed instead
+ * @newable
+ * @ingroup Database
  */
-abstract class RCFeedEngine extends FormattedRCFeed {
+class DBSessionStateError extends DBTransactionError {
 }

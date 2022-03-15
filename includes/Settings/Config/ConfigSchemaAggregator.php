@@ -2,7 +2,11 @@
 
 namespace MediaWiki\Settings\Config;
 
+use Config;
+use JsonSchema\Constraints\Constraint;
+use JsonSchema\Validator;
 use MediaWiki\Settings\SettingsBuilderException;
+use StatusValue;
 
 /**
  * Aggregates multiple config schema arrays into a single config schema.
@@ -11,6 +15,9 @@ class ConfigSchemaAggregator {
 
 	/** @var array */
 	private $schema = [];
+
+	/** @var Validator */
+	private $validator;
 
 	/**
 	 * Add a config schema to the aggregator.
@@ -131,4 +138,109 @@ class ConfigSchemaAggregator {
 
 		return 'replace';
 	}
+
+	/**
+	 * Check if the given config conforms to the schema.
+	 * Note that all keys for which a schema was defined are required to be present in $config.
+	 *
+	 * @param Config $config
+	 *
+	 * @return StatusValue
+	 */
+	public function validateConfig( Config $config ): StatusValue {
+		$result = StatusValue::newGood();
+
+		foreach ( $this->getSchemas() as $key => $schema ) {
+			// All config keys present in the schema must be set.
+			if ( !$config->has( $key ) ) {
+				$result->fatal( 'config-missing-key', $key );
+				continue;
+			}
+
+			$value = $config->get( $key );
+			$result->merge( $this->validateValue( $key, $value ) );
+		}
+		return $result;
+	}
+
+	/**
+	 * Check if the given value conforms to the relevant schema.
+	 *
+	 * @param string $key
+	 * @param mixed $value
+	 *
+	 * @return StatusValue
+	 */
+	public function validateValue( string $key, $value ): StatusValue {
+		$status = StatusValue::newGood();
+		$schema = $this->schema[$key] ?? null;
+
+		if ( !$schema ) {
+			return $status;
+		}
+
+		if ( !$this->validator ) {
+			$this->validator = new Validator();
+		}
+
+		$types = isset( $schema['type'] ) ? (array)$schema['type'] : [];
+
+		if ( in_array( 'object', $types ) && is_array( $value ) ) {
+			if ( $this->hasNumericKeys( $value ) ) {
+				// JSON Schema validation doesn't like numeric keys in objects,
+				// but we need this quite a bit. Skip type validation in this case.
+				$status->warning(
+					'config-invalid-key',
+					$key,
+					'Skipping validation of object with integer keys'
+				);
+				unset( $schema['type'] );
+			}
+		}
+
+		if ( in_array( 'integer', $types ) && is_float( $value ) ) {
+			// The validator complains about float values when an integer is expected,
+			// even when the fractional part is 0. So cast to integer to avoid spurious errors.
+			$intval = intval( $value );
+			if ( $intval == $value ) {
+				$value = $intval;
+			}
+		}
+
+		if ( isset( $schema['ignoreKeys'] ) && $schema['ignoreKeys'] ) {
+			if ( is_array( $value ) ) {
+				// This array acts as a set, any array keys should be ignored.
+				$value = array_values( $value );
+			}
+		}
+
+		$this->validator->validate(
+			$value,
+			$schema,
+			Constraint::CHECK_MODE_TYPE_CAST
+		);
+		if ( !$this->validator->isValid() ) {
+			foreach ( $this->validator->getErrors() as $error ) {
+				$status->fatal( 'config-invalid-key', $key, $error['message'], var_export( $value, true ) );
+			}
+		}
+		$this->validator->reset();
+		return $status;
+	}
+
+	/**
+	 * @param array $value
+	 *
+	 * @return bool
+	 */
+	private function hasNumericKeys( array $value ) {
+		foreach ( $value as $key => $dummy ) {
+			if ( is_int( $key ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 }

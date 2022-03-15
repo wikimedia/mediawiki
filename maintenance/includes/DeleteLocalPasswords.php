@@ -63,8 +63,8 @@ class DeleteLocalPasswords extends Maintenance {
 
 	protected function initialize() {
 		if (
-			$this->hasOption( 'delete' ) + $this->hasOption( 'prefix' )
-			+ $this->hasOption( 'unprefix' ) !== 1
+			(int)$this->hasOption( 'delete' ) + (int)$this->hasOption( 'prefix' )
+			+ (int)$this->hasOption( 'unprefix' ) !== 1
 		) {
 			$this->fatalError( "Exactly one of the 'delete', 'prefix', 'unprefix' options must be used\n" );
 		}

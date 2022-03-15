@@ -590,5 +590,8 @@
 	"duration-days": "$1 {{PLURAL:$1ини}}",
 	"view-view-foreign": "$1 сайтаду ичэури",
 	"view-create-local": "Эй бэунду нируйни",
-	"nstab-mainpage": "Дэрӯвури страница"
+	"nstab-mainpage": "Дэрӯвури страница",
+	"skin-action-protect": "Кандёри",
+	"skin-action-delete": "Нангалаори",
+	"skin-action-move": "Энэвэмбури"
 }

@@ -224,7 +224,6 @@ $wgRestPath = false;
  * @since 1.3
  */
 $wgStylePath = false;
-$wgStyleSheetPath = &$wgStylePath;
 
 /**
  * The URL path of the skins directory. Should not point to an external domain.
@@ -253,6 +252,17 @@ $wgExtensionDirectory = "{$IP}/extensions";
  * @since 1.3
  */
 $wgStyleDirectory = "{$IP}/skins";
+
+/**
+ * Absolute filesystem path of the root directory of the MediaWiki installation.
+ * The MW_INSTALL_PATH environment variable can be used to set this.
+ *
+ * @note Automatically set in Setup.php before loading local settings.
+ * @note Do not modify in settings files! Must remain equal to the MW_INSTALL_PATH constant
+ *       defined in Setup.php.
+ * @since 1.38
+ */
+$wgBaseDirectory = null;
 
 /**
  * The URL path for primary article page views. This path should contain $1,
@@ -304,7 +314,7 @@ $wgFileCacheDirectory = false;
 
 /**
  * The URL path of the wiki logo. The logo size should be 135x135 pixels.
- * Defaults to "$wgResourceBasePath/resources/assets/wiki.png".
+ * Defaults to "$wgResourceBasePath/resources/assets/change-your-logo.svg".
  * Developers should retrieve this logo (and other variants) using
  *   the static function ResourceLoaderSkinModule::getAvailableLogos
  * Ignored if $wgLogos is set.
@@ -357,7 +367,7 @@ $wgLogo = false;
  * @endcode
  *
  * Defaults to [ "1x" => $wgLogo ],
- *   or [ "1x" => "$wgResourceBasePath/resources/assets/wiki.png" ] if $wgLogo is not set.
+ *   or [ "1x" => "$wgResourceBasePath/resources/assets/change-your-logo.svg" ] if $wgLogo is not set.
  * @since 1.35
  * @var array|false
  */
@@ -1858,7 +1868,7 @@ $wgEnableUserEmail = true;
  * to from emails originating from Special:Email.
  *
  * @since 1.34
- * @deprecated 1.34
+ * @deprecated since 1.34
  */
 $wgEnableSpecialMute = false;
 
@@ -2408,6 +2418,20 @@ $wgMultiContentRevisionSchemaMigrationStage = SCHEMA_COMPAT_NEW;
  * @var int An appropriate combination of SCHEMA_COMPAT_XXX flags.
  */
 $wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_TEMP;
+
+/**
+ * Templatelinks table schema migration stage, for normalizing tl_namespace and tl_title fields.
+ * Use the SCHEMA_COMPAT_XXX flags. Supported values:
+ *   - SCHEMA_COMPAT_OLD
+ *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
+ *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
+ *   - SCHEMA_COMPAT_NEW
+ *
+ * History:
+ *   - 1.38: Added
+ * @var int An appropriate combination of SCHEMA_COMPAT_XXX flags.
+ */
+$wgTemplateLinksSchemaMigrationStage = SCHEMA_COMPAT_OLD;
 
 // endregion -- End of DB settings
 
@@ -3817,6 +3841,10 @@ $wgBrowserFormatDetection = 'telephone=no';
  * Since some of these fields can be provided by extensions it defaults to an empty array.
  *
  * @since 1.36
+ * @par Example:
+ * @code
+ * $wgSkinMetaTags[] = "og:title";
+ * @endcode
  */
 $wgSkinMetaTags = [];
 
@@ -5705,6 +5733,8 @@ $wgDefaultUserOptions = [
 	'rcenhancedfilters-disable' => 0,
 	'rclimit' => 50,
 	'search-match-redirect' => true,
+	'search-special-page' => 'Search',
+	'searchlimit' => 20,
 	'showhiddencats' => 0,
 	'shownumberswatching' => 1,
 	'showrollbackconfirmation' => 0,
@@ -6273,9 +6303,9 @@ $wgAutoConfirmCount = 0;
  *      promote if user matces **NO** condition
  *  - [ APCOND_EMAILCONFIRMED ]:
  *      true if user has a confirmed e-mail
- *  - [ APCOND_EDITCOUNT, number of edits ]:
+ *  - [ APCOND_EDITCOUNT, number of edits (if null or missing $wgAutoConfirmCount will be used) ]:
  *      true if user has the at least the number of edits as the passed parameter
- *  - [ APCOND_AGE, seconds since registration ]:
+ *  - [ APCOND_AGE, seconds since registration (if null or missing $wgAutoConfirmAge will be used) ]:
  *      true if the length of time since the user created his/her account
  *      is at least the same length of time as the passed parameter
  *  - [ APCOND_AGE_FROM_EDIT, seconds since first edit ]:
@@ -6301,8 +6331,8 @@ $wgAutoConfirmCount = 0;
  */
 $wgAutopromote = [
 	'autoconfirmed' => [ '&',
-		[ APCOND_EDITCOUNT, &$wgAutoConfirmCount ],
-		[ APCOND_AGE, &$wgAutoConfirmAge ],
+		[ APCOND_EDITCOUNT, null ],
+		[ APCOND_AGE, null ],
 	],
 ];
 
@@ -7746,15 +7776,6 @@ $wgUseAutomaticEditSummaries = true;
 // See also $wgSiteNotice
 
 /**
- * @cond file_level_code
- * Set $wgCommandLineMode if it's not set already, to avoid notices
- */
-if ( !isset( $wgCommandLineMode ) ) {
-	$wgCommandLineMode = false;
-}
-/** @endcond */
-
-/**
  * For colorized maintenance script output, is your terminal background dark ?
  */
 $wgCommandLineDarkBg = false;
@@ -7875,52 +7896,34 @@ $wgRCLinkDays = [ 1, 3, 7, 14, 30 ];
 /**
  * Configuration for feeds to which notifications about recent changes will be sent.
  *
- * The following feed classes are available by default:
- * - 'UDPRCFeedEngine' - sends recent changes over UDP to the specified server.
- * - 'RedisPubSubFeedEngine' - send recent changes to Redis.
+ * Backend options:
+ * - `class`: (Required) The backend class for this feed. This must extend RCFeed.
+ *   The following feed backends are provided with %MediaWiki core:
+ *   - UDPRCFeedEngine: Send messages to an address over UDP.
+ *   - RedisPubSubFeedEngine: Publish messages to a to Redis channel.
+ * - `formatter`: For UDPRCFeedEngine, RedisPubSubFeedEngine and other FormattedRCFeed
+ *   classes, this must be set to an RCFeedFormatter subclass. The following feed
+ *   formatters are provided with %MediaWiki core and each support additional backend
+ *   options to be passed.
+ *   - JSONRCFeedFormatter
+ *   - XMLRCFeedFormatter
+ *   - IRCColourfulRCFeedFormatter
+ * - `uri`: (Required for UDPRCFeedEngine and RedisPubSubFeedEngine).
  *
- * Only 'class' or 'uri' is required. If 'uri' is set instead of 'class', then
- * RecentChange::getEngine() is used to determine the class. All options are
- * passed to the constructor.
- *
- * Common options:
- * - 'class' -- The class to use for this feed (must implement RCFeed).
- * - 'omit_bots' -- Exclude bot edits from the feed. (default: false)
- * - 'omit_anon' -- Exclude anonymous edits from the feed. (default: false)
- * - 'omit_user' -- Exclude edits by registered users from the feed. (default: false)
- * - 'omit_minor' -- Exclude minor edits from the feed. (default: false)
- * - 'omit_patrolled' -- Exclude patrolled edits from the feed. (default: false)
- *
- * FormattedRCFeed-specific options:
- * - 'uri' -- [required] The address to which the messages are sent.
- *   The uri scheme of this string will be looked up in $wgRCEngines
- *   to determine which FormattedRCFeed class to use.
- * - 'formatter' -- [required] The class (implementing RCFeedFormatter) which will
- *   produce the text to send. This can also be an object of the class.
- *   Formatters available by default: JSONRCFeedFormatter, XMLRCFeedFormatter,
- *   IRCColourfulRCFeedFormatter.
- *
- * IRCColourfulRCFeedFormatter-specific options:
- * - 'add_interwiki_prefix' -- whether the titles should be prefixed with
- *   the first entry in the $wgLocalInterwikis array
- *
- * JSONRCFeedFormatter-specific options:
- * - 'channel' -- if set, the 'channel' parameter is also set in JSON values.
+ * Feed options (these are evaluated before deciding whether to notify
+ * the RCFeed implementation):
+ * - `omit_bots`: Exclude bot edits from the feed. Default: false.
+ * - `omit_anon`: Exclude anonymous edits from the feed. Default: false.
+ * - `omit_user`: Exclude edits by registered users from the feed. Default: false.
+ * - `omit_minor`: Exclude minor edits from the feed. Default: false.
+ * - `omit_patrolled`: Exclude patrolled edits from the feed. Default: false.
  *
  * @par Examples:
  * @code
  *  $wgRCFeeds['example'] = [
+ *      'class' => UDPRCFeedEngine::class,
  *      'uri' => 'udp://localhost:1336',
- *      'formatter' => 'JSONRCFeedFormatter',
- *      'add_interwiki_prefix' => false,
- *      'omit_bots' => true,
- *  ];
- * @endcode
- * @code
- *  $wgRCFeeds['example'] = [
- *      'uri' => 'udp://localhost:1338',
- *      'formatter' => 'IRCColourfulRCFeedFormatter',
- *      'add_interwiki_prefix' => false,
+ *      'formatter' => JSONRCFeedFormatter::class,
  *      'omit_bots' => true,
  *  ];
  * @endcode
@@ -7935,8 +7938,12 @@ $wgRCLinkDays = [ 1, 3, 7, 14, 30 ];
 $wgRCFeeds = [];
 
 /**
- * Used by RecentChange::getEngine to find the correct engine for a given URI scheme.
- * Keys are scheme names, values are names of FormattedRCFeed sub classes.
+ * Legacy mapping from URI schemes to RCFeed subclasses.
+ *
+ * Used for $wgRCFeeds (in RecentChange::factory) to determine which class
+ * to use if `class` is not set, but `uri` is.
+ *
+ * @deprecated since 1.38 Set 'class' directly in $wgRCFeeds.
  * @since 1.22
  */
 $wgRCEngines = [
@@ -8453,6 +8460,8 @@ $wgExtensionEntryPointListFiles = [];
  * @code
  *    function outputHook( $outputPage, $parserOutput, $data ) { ... }
  * @endcode
+ * @deprecated since 1.38; should be done with extensionData and the
+ *  OutputPageParserOutputHook (T292321).
  */
 $wgParserOutputHooks = [];
 

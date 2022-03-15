@@ -27,7 +27,7 @@ class PackedOverlayImageGallery extends PackedImageGallery {
 	 * Add the wrapper html around the thumb's caption
 	 *
 	 * @param string $galleryText The caption
-	 * @param MediaTransformOutput|bool $thumb The thumb this caption is for
+	 * @param MediaTransformOutput|false $thumb The thumb this caption is for
 	 *   or false for bad image.
 	 * @return string
 	 */

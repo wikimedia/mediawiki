@@ -58,8 +58,8 @@ class LockManagerGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$mockLB = $this->createMock( ILoadBalancer::class );
 		$mockLB->expects( $this->never() )
-			->method( $this->anythingBut( '__destruct', 'getLazyConnectionRef' ) );
-		$mockLB->expects( $this->once() )->method( 'getLazyConnectionRef' )
+			->method( $this->anythingBut( '__destruct', 'getConnectionRef' ) );
+		$mockLB->expects( $this->once() )->method( 'getConnectionRef' )
 			->with( DB_PRIMARY, [], 'domain', $mockLB::CONN_TRX_AUTOCOMMIT )
 			->willReturn( 'bogus value' );
 

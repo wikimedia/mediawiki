@@ -20,7 +20,6 @@
  * @file
  */
 
-use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
@@ -271,13 +270,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	}
 
 	/**
-	 * @return IContentHandlerFactory
-	 */
-	private function getContentHandlerFactory(): IContentHandlerFactory {
-		return MediaWikiServices::getInstance()->getContentHandlerFactory();
-	}
-
-	/**
 	 * @return ILoadBalancer
 	 */
 	private function getDBLoadBalancer() {
@@ -304,8 +296,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @since 1.21
 	 */
 	public function getContentHandler() {
-		return $this->getContentHandlerFactory()
-			->getContentHandler( $this->getContentModel() );
+		$factory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+		return $factory->getContentHandler( $this->getContentModel() );
 	}
 
 	/**
@@ -1452,7 +1444,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		// Assertion to try to catch T92046
 		if ( (int)$revision->getId() === 0 ) {
 			throw new InvalidArgumentException(
-				__METHOD__ . ': revision has ID ' . var_export( $revision->getId(), 1 )
+				__METHOD__ . ': revision has ID ' . var_export( $revision->getId(), true )
 			);
 		}
 
@@ -2217,7 +2209,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *
 	 * @param array $limit Set of restriction keys
 	 * @param array $expiry Per restriction type expiration
-	 * @param int &$cascade Set to false if cascading protection isn't allowed.
+	 * @param bool &$cascade Set to false if cascading protection isn't allowed.
 	 * @param string $reason
 	 * @param UserIdentity $user The user updating the restrictions
 	 * @param string|string[]|null $tags Change tags to add to the pages and protection log entries

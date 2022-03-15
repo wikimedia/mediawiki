@@ -1112,5 +1112,9 @@
 	"view-view-foreign": "Sihþ on $1",
 	"view-create-local": "Besete stowlice gemearcunge",
 	"nstab-mainpage": "Heafodtramet",
-	"view-edit-local": "Adiht þa stowlican gemearcunge"
+	"view-edit-local": "Adiht þa stowlican gemearcunge",
+	"skin-action-protect": "Beorg",
+	"skin-action-undelete": "Scieppan tramet eft",
+	"skin-action-delete": "Forleos",
+	"skin-action-move": "Wegan"
 }

@@ -168,7 +168,7 @@ use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\DependencyStore\SqlModuleDependencyStore;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\Metrics\MetricsFactory;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\RequestTimeout;
 use Wikimedia\Services\RecursiveServiceDependencyException;
@@ -1385,7 +1385,6 @@ return [
 	'ResourceLoader' => static function ( MediaWikiServices $services ): ResourceLoader {
 		// @todo This should not take a Config object, but it's not so easy to remove because it
 		// exposes it in a getter, which is actually used.
-		global $IP;
 		$config = $services->getMainConfig();
 
 		$rl = new ResourceLoader(
@@ -1407,14 +1406,15 @@ return [
 		$rl->addSource( $config->get( 'ResourceLoaderSources' ) );
 
 		// Core modules, then extension/skin modules
-		$rl->register( include "$IP/resources/Resources.php" );
+		$baseDir = $config->get( 'BaseDirectory' );
+		$rl->register( include "$baseDir/resources/Resources.php" );
 		$rl->register( $modules );
 		$hookRunner = new \MediaWiki\ResourceLoader\HookRunner( $services->getHookContainer() );
 		$hookRunner->onResourceLoaderRegisterModules( $rl );
 
 		$msgPosterAttrib = $extRegistry->getAttribute( 'MessagePosterModule' );
 		$rl->register( 'mediawiki.messagePoster', [
-			'localBasePath' => $IP,
+			'localBasePath' => $baseDir,
 			'debugRaw' => false,
 			'scripts' => array_merge(
 				[

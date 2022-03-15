@@ -425,7 +425,7 @@ class ParserOutputAccess {
 					$this->wikiPageFactory
 				);
 
-			case $useCache == self::CACHE_SECONDARY:
+			case self::CACHE_SECONDARY:
 				$this->statsDataFactory->increment( 'ParserOutputAccess.PoolWork.Old' );
 				$workKey = $this->secondaryCache->makeParserOutputKey( $revision, $parserOptions );
 				return new PoolWorkArticleViewOld(

@@ -1063,15 +1063,10 @@ class SkinTemplate extends Skin {
 
 		if ( $message instanceof MessageSpecifier ) {
 			$msg = new Message( $message );
-			$message = $message->getKey();
 		} else {
 			// wfMessageFallback will nicely accept $message as an array of fallbacks
 			// or just a single key
 			$msg = wfMessageFallback( $message );
-			if ( is_array( $message ) ) {
-				// for hook compatibility just keep the last message name
-				$message = end( $message );
-			}
 		}
 		$msg->setContext( $this->getContext() );
 		if ( !$msg->isDisabled() ) {
@@ -1106,34 +1101,12 @@ class SkinTemplate extends Skin {
 	 * @return string
 	 */
 	private function getSkinNavOverrideableLabel( $labelMessageKey, $param = null ) {
-		// For historic reasons certain messages had different message keys associated.
-		// The plan is to remove these in future when it is safe to do so (T301203)
-		$legacyFallbacks = [
-			'view-history' => 'history_short',
-			'action-delete' => 'delete',
-			'action-move' => 'move',
-			'action-undelete' => 'undelete_short',
-			'action-viewdeleted' => 'viewdeleted',
-			'action-protect' => 'protect',
-			'action-unprotect' => 'unprotect',
-			'action-viewsource' => 'viewsource',
-			'action-addsection' => 'addsection',
-			'view-view-foreign' => 'view-foreign',
-			'view-view' => 'view',
-			'view-create' => 'create',
-			'view-create-local' => 'create-local',
-			'view-edit' => 'edit',
-			'view-edit-local' => 'edit-local',
-		];
 		$skname = $this->skinname;
 		$msg = wfMessageFallback(
 				"$skname-$labelMessageKey",
-
-				$labelMessageKey,
-				// @todo: This line can be removed when all the new message keys have been added and translated.
-				// When not defined, since this code is temporary, simply give it the same message as before,
-				// as Message key must always be a string (see T302051)
-				$legacyFallbacks[ $labelMessageKey ] ?? $labelMessageKey
+				"skin-$labelMessageKey",
+				// @todo: Can be removed when every $labelMessageKey has a `skin-` prefixed message alternative.
+				$labelMessageKey
 			)->setContext( $this->getContext() );
 
 		if ( $param ) {
@@ -1335,8 +1308,11 @@ class SkinTemplate extends Skin {
 				if ( $title->isKnown() ) {
 					$content_navigation['views']['view'] = $this->tabAction(
 						$isTalk ? $talkPage : $subjectPage,
-						[ "view-view", "view" ],
+						'view-view',
 						( $onPage && ( $action == 'view' || $action == 'purge' ) ), '', true
+					);
+					$content_navigation['views']['view']['text'] = $this->getSkinNavOverrideableLabel(
+						'view-view'
 					);
 					// signal to hide this from simple content_actions
 					$content_navigation['views']['view']['redundant'] = true;
@@ -1611,7 +1587,7 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * Wrapper for private buildContentNavigationUrlsInternal
-	 * @deprecated 1.38 skins can use runOnSkinTemplateNavigationHooks instead.
+	 * @deprecated since 1.38 skins can use runOnSkinTemplateNavigationHooks instead.
 	 * @return array
 	 */
 	protected function buildContentNavigationUrls() {

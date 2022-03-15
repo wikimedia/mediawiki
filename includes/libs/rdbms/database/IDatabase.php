@@ -271,7 +271,7 @@ interface IDatabase {
 	 * Keys matching the IDatabase::LB_* constants are also used internally by subclasses
 	 *
 	 * @param array|string $nameOrArray The new array or the name of a key to set
-	 * @param array|null $value If $nameOrArray is a string, the new key value (null to unset)
+	 * @param array|mixed|null $value If $nameOrArray is a string, the new key value (null to unset)
 	 */
 	public function setLBInfo( $nameOrArray, $value = null );
 
@@ -293,7 +293,7 @@ interface IDatabase {
 	/**
 	 * Get the last time the connection may have been used for a write query
 	 *
-	 * @return int|float UNIX timestamp or false
+	 * @return int|float|false UNIX timestamp or false
 	 * @since 1.24
 	 */
 	public function lastDoneWrites();
@@ -2033,13 +2033,29 @@ interface IDatabase {
 	 *
 	 * @param string $fname Calling function name
 	 * @param string $flush Flush flag, set to a situationally valid IDatabase::FLUSHING_*
-	 *   constant to disable warnings about calling rollback when no transaction is in
-	 *   progress. This will silently break any ongoing explicit transaction. Only set the
-	 *   flush flag if you are sure that it is safe to ignore these warnings in your context.
+	 *   constant to disable warnings about explicitly rolling back implicit transactions.
+	 *   This will silently break any ongoing explicit transaction. Only set the flush flag
+	 *   if you are sure that it is safe to ignore these warnings in your context.
 	 * @throws DBError If an error occurs, {@see query}
 	 * @since 1.23 Added $flush parameter
 	 */
 	public function rollback( $fname = __METHOD__, $flush = self::FLUSHING_ONE );
+
+	/**
+	 * Release important session-level state (named lock, table locks) as post-rollback cleanup
+	 *
+	 * This should only be called by a load balancer or if the handle is not attached to one.
+	 * Also, there must be no chance that a future caller will still be expecting some of the
+	 * lost session state.
+	 *
+	 * Connection and query errors will be suppressed and logged
+	 *
+	 * @param string $fname Calling function name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
+	 * @throws DBError If an error occurs, {@see query}
+	 * @since 1.38
+	 */
+	public function flushSession( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Commit any transaction but error out if writes or callbacks are pending
@@ -2190,7 +2206,7 @@ interface IDatabase {
 	 * @param string $method Name of the calling method
 	 * @param int $timeout Acquisition timeout in seconds (0 means non-blocking)
 	 * @param int $flags Bit field of IDatabase::LOCK_* constants
-	 * @return bool Success
+	 * @return bool|float Success
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function lock( $lockName, $method, $timeout = 5, $flags = 0 );

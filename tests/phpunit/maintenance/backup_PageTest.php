@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Maintenance;
 
+use CloneDatabase;
 use DumpBackup;
 use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
@@ -21,6 +22,9 @@ class BackupDumperPageTest extends DumpTestCase {
 
 	use PageDumpTestDataTrait;
 
+	/** @var CloneDatabase */
+	private $dbClone;
+
 	/**
 	 * @var ILoadBalancer
 	 */
@@ -33,6 +37,9 @@ class BackupDumperPageTest extends DumpTestCase {
 	}
 
 	protected function tearDown(): void {
+		if ( $this->dbClone ) {
+			$this->dbClone->destroy();
+		}
 		if ( $this->streamingLoadBalancer ) {
 			$this->streamingLoadBalancer->closeAll();
 		}
@@ -57,7 +64,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		$db = $this->streamingLoadBalancer->getConnection( DB_REPLICA );
 
 		// Make sure the DB connection has the fake table clones and the fake table prefix
-		MediaWikiIntegrationTestCase::setupDatabaseWithTestPrefix( $db );
+		$this->dbClone = MediaWikiIntegrationTestCase::setupDatabaseWithTestPrefix( $db );
 
 		// Make sure the DB connection has all the test data
 		$this->copyTestData( $this->db, $db );

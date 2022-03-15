@@ -74,11 +74,11 @@ class FileOpPerfTest extends Maintenance {
 				$this->output( "Using '$dirname/$file' in operations.\n" );
 				$dst = $baseDir . '/' . wfBaseName( $file );
 				$ops1[] = [ 'op' => 'store',
-					'src' => "$dirname/$file", 'dst' => $dst, 'overwrite' => 1 ];
+					'src' => "$dirname/$file", 'dst' => $dst, 'overwrite' => true ];
 				$ops2[] = [ 'op' => 'copy',
-					'src' => "$dst", 'dst' => "$dst-1", 'overwrite' => 1 ];
+					'src' => "$dst", 'dst' => "$dst-1", 'overwrite' => true ];
 				$ops3[] = [ 'op' => 'move',
-					'src' => $dst, 'dst' => "$dst-2", 'overwrite' => 1 ];
+					'src' => $dst, 'dst' => "$dst-2", 'overwrite' => true ];
 				$ops4[] = [ 'op' => 'delete', 'src' => "$dst-1" ];
 				$ops5[] = [ 'op' => 'delete', 'src' => "$dst-2" ];
 			}

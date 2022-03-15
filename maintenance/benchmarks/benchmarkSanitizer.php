@@ -31,11 +31,13 @@ class BenchmarkSanitizer extends Benchmarker {
 		parent::__construct();
 		$this->addDescription( 'Benchmark for Sanitizer methods.' );
 		$this->addOption( 'method', 'One of "validateEmail", "encodeAttribute", '
-			. '"safeEncodeAttribute", "removeHTMLtags", or "stripAllTags". '
+			. '"safeEncodeAttribute", "internalRemoveHtmlTags", "removeSomeTags", "tidy", or "stripAllTags". '
 			. 'Default: (All)', false, true );
 	}
 
 	public function execute() {
+		# text with no html simulates an interface message string or a title
+		$textWithNoHtml = 'This could be an article title';
 		$textWithHtmlSm = 'Before <wrap><in>and</in> another <unclose> <in>word</in></wrap>.';
 		$textWithHtmlLg = str_repeat(
 				// 28K (28 chars * 1000)
@@ -70,14 +72,53 @@ class BenchmarkSanitizer extends Benchmarker {
 				Sanitizer::safeEncodeAttribute( ":'\"\n https://example" );
 			};
 		}
-		if ( !$method || $method === 'removeHTMLtags' ) {
+		if ( !$method || $method === 'internalRemoveHtmlTags' ) {
+			$tiny = strlen( $textWithNoHtml );
 			$sm = strlen( $textWithHtmlSm );
 			$lg = round( strlen( $textWithHtmlLg ) / 1000 ) . 'K';
-			$benches["Sanitizer::removeHTMLtags (input: $sm)"] = static function () use ( $textWithHtmlSm ) {
-				Sanitizer::removeHTMLtags( $textWithHtmlSm );
+			$benches["Sanitizer::internalRemoveHtmlTags (input: $tiny)"] = static function () use ( $textWithNoHtml ) {
+				Sanitizer::internalRemoveHtmlTags( $textWithNoHtml );
 			};
-			$benches["Sanitizer::removeHTMLtags (input: $lg)"] = static function () use ( $textWithHtmlLg ) {
-				Sanitizer::removeHTMLtags( $textWithHtmlLg );
+			$benches["Sanitizer::internalRemoveHtmlTags (input: $sm)"] = static function () use ( $textWithHtmlSm ) {
+				Sanitizer::internalRemoveHtmlTags( $textWithHtmlSm );
+			};
+			$benches["Sanitizer::internalRemoveHtmlTags (input: $lg)"] = static function () use ( $textWithHtmlLg ) {
+				Sanitizer::internalRemoveHtmlTags( $textWithHtmlLg );
+			};
+		}
+		if ( !$method || $method === 'tidy' ) {
+			# This matches what DISPLAYTITLE was previously doing to sanitize
+			# title strings
+			$tiny = strlen( $textWithNoHtml );
+			$sm = strlen( $textWithHtmlSm );
+			$lg = round( strlen( $textWithHtmlLg ) / 1000 ) . 'K';
+			$doit = static function ( $text ) {
+				return static function () use ( $text ) {
+					$tidy = new \MediaWiki\Tidy\RemexDriver( new \MediaWiki\Config\ServiceOptions( [ 'TidyConfig' ], [
+						'TidyConfig' => [ 'pwrap' => false ],
+					] ) );
+					$textWithTags = $tidy->tidy( $text, [ Sanitizer::class, 'armorFrenchSpaces' ] );
+					$textWithTags = Sanitizer::normalizeCharReferences(
+						Sanitizer::internalRemoveHtmlTags( $textWithTags )
+					);
+				};
+			};
+			$benches["DISPLAYTITLE tidy (input: $tiny)"] = $doit( $textWithNoHtml );
+			$benches["DISPLAYTITLE tidy (input: $sm)"] = $doit( $textWithHtmlSm );
+			$benches["DISPLAYTITLE tidy (input: $lg)"] = $doit( $textWithHtmlLg );
+		}
+		if ( !$method || $method === 'removeSomeTags' ) {
+			$tiny = strlen( $textWithNoHtml );
+			$sm = strlen( $textWithHtmlSm );
+			$lg = round( strlen( $textWithHtmlLg ) / 1000 ) . 'K';
+			$benches["Sanitizer::removeSomeTags (input: $tiny)"] = static function () use ( $textWithNoHtml ) {
+				Sanitizer::removeSomeTags( $textWithNoHtml );
+			};
+			$benches["Sanitizer::removeSomeTags (input: $sm)"] = static function () use ( $textWithHtmlSm ) {
+				Sanitizer::removeSomeTags( $textWithHtmlSm );
+			};
+			$benches["Sanitizer::removeSomeTags (input: $lg)"] = static function () use ( $textWithHtmlLg ) {
+				Sanitizer::removeSomeTags( $textWithHtmlLg );
 			};
 		}
 		if ( !$method || $method === 'stripAllTags' ) {

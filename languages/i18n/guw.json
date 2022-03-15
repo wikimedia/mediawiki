@@ -853,9 +853,9 @@
 	"action-createtalk": "wleawuna weda hodọdopọ tọn ehe",
 	"action-createaccount": "hùn adà zinzantọ tọn ehe",
 	"action-history": "pọn kandai weda ehe tọn",
-	"action-move": "Sẹtẹn",
+	"action-move": "Sẹtẹn na weda ehe",
 	"action-movefile": "Sẹtẹn na wepo ehe",
-	"action-delete": "Sunsunsẹ",
+	"action-delete": "sunsun weda ehe",
 	"action-protect": "Hihọ́",
 	"nchanges": "$1 {{PLURAL:$1|diọdo|diọdo lẹ}}",
 	"enhancedrc-history": "kandai",
@@ -1344,5 +1344,8 @@
 	"view-view-foreign": "Pọ́n to $1",
 	"view-create-local": "Yi nujlẹdonugo paa dogọ",
 	"nstab-mainpage": "Weda tangan",
-	"view-edit-local": "Yi nujlẹdonugo tata lẹ dogọ"
+	"view-edit-local": "Yi nujlẹdonugo tata lẹ dogọ",
+	"skin-action-protect": "Hihọ́",
+	"skin-action-delete": "Sunsunsẹ",
+	"skin-action-move": "Sẹtẹn"
 }

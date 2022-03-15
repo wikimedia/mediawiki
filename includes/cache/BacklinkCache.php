@@ -191,7 +191,7 @@ class BacklinkCache {
 	 * @param string $table
 	 * @param int|bool $startId
 	 * @param int|bool $endId
-	 * @param int $max
+	 * @param int|float $max Integer, or INF for no max
 	 * @return TitleArrayFromResult
 	 */
 	public function getLinks( $table, $startId = false, $endId = false, $max = INF ) {
@@ -296,7 +296,7 @@ class BacklinkCache {
 	 * on the page table.
 	 * @param string $table
 	 * @throws MWException
-	 * @return array|null
+	 * @return array
 	 */
 	protected function getConditions( $table ) {
 		$prefix = $this->getPrefix( $table );
@@ -352,7 +352,7 @@ class BacklinkCache {
 	/**
 	 * Get the approximate number of backlinks
 	 * @param string $table
-	 * @param int $max Only count up to this many backlinks
+	 * @param int|float $max Only count up to this many backlinks, or INF for no max
 	 * @return int
 	 */
 	public function getNumLinks( $table, $max = INF ) {

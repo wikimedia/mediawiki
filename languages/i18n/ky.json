@@ -733,7 +733,7 @@
 	"action-move": "Аталышын өзгөртүү",
 	"action-upload": "бул файлды жүктөө",
 	"action-writeapi": "пайдалануу API үчүн жазуу",
-	"action-delete": "Өчүрүү",
+	"action-delete": "бул баракты өчүрүү",
 	"action-undelete": "Калыбына келтирүү",
 	"action-suppressionlog": "бул жеке журналды көрүү",
 	"action-protect": "Коргоо",
@@ -1349,5 +1349,9 @@
 	"view-view-foreign": "Көрүлдү $1",
 	"view-create-local": "Локалдык баяндоо кошуу",
 	"nstab-mainpage": "Башкы барак",
-	"view-edit-local": "Локалдык баяндоону оңдоо"
+	"view-edit-local": "Локалдык баяндоону оңдоо",
+	"skin-action-protect": "Коргоо",
+	"skin-action-undelete": "Калыбына келтирүү",
+	"skin-action-delete": "Өчүрүү",
+	"skin-action-move": "Аталышын өзгөртүү"
 }

@@ -121,7 +121,7 @@ class UserRightsProxy implements UserIdentity {
 	/**
 	 * @param string $dbDomain
 	 * @param string $field
-	 * @param string $value
+	 * @param string|int $value
 	 * @param bool $ignoreInvalidDB
 	 * @return null|UserRightsProxy
 	 */

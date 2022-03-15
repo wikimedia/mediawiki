@@ -1064,5 +1064,8 @@
 	"view-view-foreign": "Դիտել $1ին վրայ",
 	"view-create-local": "Աւելցնել տեղական նկարագրութիւն",
 	"nstab-mainpage": "Գլխաւոր Էջ",
-	"view-edit-local": "Խմբագրել տեղային նկարագրութիւնը"
+	"view-edit-local": "Խմբագրել տեղային նկարագրութիւնը",
+	"skin-action-protect": "Առաջարկ",
+	"skin-action-delete": "Ջնջել",
+	"skin-action-move": "Տեղափոխել այս էջը"
 }

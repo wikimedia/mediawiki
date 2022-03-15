@@ -604,10 +604,10 @@
 	"action-createpage": "snulfu tasna ad",
 	"action-createtalk": "snulfu tasna ad n umsawal",
 	"action-createaccount": "snulf amiḍan ad",
-	"action-move": "Smatti",
+	"action-move": "smatti tasna ad",
 	"action-move-categorypages": "smatti tasniwin n usmil",
 	"action-movefile": "smatti afaylu ad",
-	"action-delete": "Kks",
+	"action-delete": "kks tasna ad",
 	"action-undelete": "Rard may mayḥiydn",
 	"action-protect": "Ḥbu",
 	"nchanges": "$1 {{PLURAL:$1|usnfl|isnfiln}}",
@@ -1196,5 +1196,9 @@
 	"credentialsform-account": "ism n umiḍan:",
 	"view-view-foreign": "Ẓr-t ɣ $1",
 	"view-create-local": "Rnu aglam adɣṛan",
-	"nstab-mainpage": "Tasna n usnubg"
+	"nstab-mainpage": "Tasna n usnubg",
+	"skin-action-protect": "Ḥbu",
+	"skin-action-undelete": "Rard may mayḥiydn",
+	"skin-action-delete": "Kks",
+	"skin-action-move": "Smatti"
 }

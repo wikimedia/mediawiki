@@ -542,5 +542,9 @@
 	"view-view-foreign": "viska le mupli pe la'o zoi. $1 .zoi",
 	"view-create-local": "jmina pa diklo ve skicu",
 	"nstab-mainpage": "ralju papri",
-	"view-edit-local": "basti fi le ka diklo ve skicu"
+	"view-edit-local": "basti fi le ka diklo ve skicu",
+	"skin-action-protect": "bandu",
+	"skin-action-undelete": "ca'o nai vimcu",
+	"skin-action-delete": "vimcu",
+	"skin-action-move": "stika lo cmene"
 }

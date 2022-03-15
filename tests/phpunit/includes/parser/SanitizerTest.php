@@ -15,6 +15,7 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $escaped Whether sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
 	 */
 	public function testRemovehtmltagsOnHtml5Tags( $tag, $escaped ) {
+		$this->hideDeprecated( Sanitizer::class . '::removeHTMLtags' );
 		if ( $escaped ) {
 			$this->assertEquals( "&lt;$tag&gt;",
 				Sanitizer::removeHTMLtags( "<$tag>" )
@@ -22,6 +23,47 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 		} else {
 			$this->assertEquals( "<$tag></$tag>\n",
 				Sanitizer::removeHTMLtags( "<$tag></$tag>\n" )
+			);
+		}
+	}
+
+	/**
+	 * @covers Sanitizer::internalRemoveHTMLtags
+	 * @dataProvider provideHtml5Tags
+	 *
+	 * @param string $tag Name of an HTML5 element (ie: 'video')
+	 * @param bool $escaped Whether sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
+	 */
+	public function testInternalRemoveHtmlTagsOnHtml5Tags( $tag, $escaped ) {
+		if ( $escaped ) {
+			$this->assertEquals( "&lt;$tag&gt;",
+				Sanitizer::internalRemoveHtmlTags( "<$tag>" )
+			);
+		} else {
+			$this->assertEquals( "<$tag></$tag>\n",
+				Sanitizer::internalRemoveHtmlTags( "<$tag></$tag>\n" )
+			);
+		}
+	}
+
+	/**
+	 * @covers Sanitizer::removeSomeTags
+	 * @dataProvider provideHtml5Tags
+	 *
+	 * @param string $tag Name of an HTML5 element (ie: 'video')
+	 * @param bool $escaped Whether sanitizer let the tag in or escape it (ie: '&lt;video&gt;')
+	 */
+	public function testRemoveSomeTagsOnHtml5Tags( $tag, $escaped ) {
+		if ( $escaped ) {
+			$this->assertEquals( "&lt;$tag&gt;",
+				Sanitizer::removeSomeTags( "<$tag>" )
+			);
+		} else {
+			$this->assertEquals( "<$tag></$tag>\n",
+				Sanitizer::removeSomeTags( "<$tag></$tag>\n" )
+			);
+			$this->assertEquals( "<$tag></$tag>",
+				Sanitizer::removeSomeTags( "<$tag>" )
 			);
 		}
 	}
@@ -72,7 +114,24 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 	 * @covers Sanitizer::removeHTMLtags
 	 */
 	public function testRemoveHTMLtags( $input, $output, $msg = null ) {
+		$this->hideDeprecated( Sanitizer::class . '::removeHTMLtags' );
 		$this->assertEquals( $output, Sanitizer::removeHTMLtags( $input ), $msg );
+	}
+
+	/**
+	 * @dataProvider dataRemoveHTMLtags
+	 * @covers Sanitizer::internalRemoveHtmlTags
+	 */
+	public function testInternalRemoveHTMLtags( $input, $output, $msg = null ) {
+		$this->assertEquals( $output, Sanitizer::internalRemoveHtmlTags( $input ), $msg );
+	}
+
+	/**
+	 * @dataProvider dataRemoveHTMLtags
+	 * @covers Sanitizer::removeSomeTags
+	 */
+	public function testRemoveSomeTags( $input, $output, $msg = null ) {
+		$this->assertEquals( $output, Sanitizer::removeSomeTags( $input ), $msg );
 	}
 
 	/**

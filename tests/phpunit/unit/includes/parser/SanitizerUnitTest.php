@@ -224,7 +224,7 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideStripAllTags
 	 *
 	 * @covers Sanitizer::stripAllTags()
-	 * @covers RemexStripTagHandler
+	 * @covers \MediaWiki\Parser\RemexStripTagHandler
 	 *
 	 * @param string $input
 	 * @param string $expected

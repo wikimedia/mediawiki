@@ -794,6 +794,114 @@ util = {
 	escapeRegExp: function ( str ) {
 		// eslint-disable-next-line no-useless-escape
 		return str.replace( /([\\{}()|.?*+\-^$\[\]])/g, '\\$1' );
+	},
+
+	/**
+	 * Takes a string (str) and returns string repeated count times
+	 *
+	 * @param {string} str string to be repeated
+	 * @param {number} count number of times to repeat string
+	 * @return {string} String repeated count times
+	 */
+	repeatString: function ( str, count ) {
+		if ( count <= 0 || count === Infinity || str === '' ) {
+			return str;
+		}
+		var repeatedString = '';
+		for ( var i = 0; i < count; i++ ) {
+			repeatedString += str;
+		}
+		return repeatedString;
+	},
+
+	/**
+	 * This functionality has been adapted from \Wikimedia\IPUtils::sanitizeIP()
+	 *
+	 * Convert an IP into a verbose, uppercase, normalized form.
+	 * Both IPv4 and IPv6 addresses are trimmed. Additionally,
+	 * IPv6 addresses in octet notation are expanded to 8 words;
+	 * IPv4 addresses have leading zeros, in each octet, removed.
+	 *
+	 * @param {string} ip IP address in quad or octet form (CIDR or not).
+	 * @return {string|null|*}
+	 */
+	sanitizeIP: function ( ip ) {
+		ip = ip.replace( /(^\s+|\s+$)/g, '' );
+		if ( ip === '' ) {
+			return null;
+		}
+		if ( !this.isIPAddress( ip, true ) ) {
+			return ip;
+		}
+		if ( this.isIPv4Address( ip, true ) ) {
+			return ip.replace( /(^|\.)0+(\d)/g, '$1$2' );
+		}
+		ip = ip.toUpperCase();
+		var abbrevPos, CIDRStart, addressEnd, repeatStr, extra, pad;
+		abbrevPos = ip.search( /::/ );
+		if ( abbrevPos !== -1 ) {
+			CIDRStart = ip.search( /\// );
+			addressEnd = ( CIDRStart !== -1 ) ? CIDRStart - 1 : ip.length - 1;
+			if ( abbrevPos === 0 ) {
+				repeatStr = '0:';
+				extra = ip === '::' ? '0' : '';
+				pad = 9;
+			} else if ( abbrevPos === addressEnd - 1 ) {
+				repeatStr = ':0';
+				extra = '';
+				pad = 9;
+			} else {
+				repeatStr = ':0';
+				extra = ':';
+				pad = 8;
+			}
+			ip = ip.replace( '::',
+				this.repeatString( repeatStr, pad - ( ip.split( ':' ).length - 1 ) ) + extra
+			);
+		}
+		return ip.replace( /(^|:)0+(([0-9A-Fa-f]{1,4}))/g, '$1$2' );
+	},
+
+	/**
+	 * This functionality has been adapted from \Wikimedia\IPUtils::prettifyIP()
+	 *
+	 * Prettify an IP for display to end users.
+	 * This will make it more compact and lower-case.
+	 *
+	 * @param {string} ip IP address in quad or octet form (CIDR or not).
+	 * @return {null|*}
+	 */
+	prettifyIP: function ( ip ) {
+		ip = this.sanitizeIP( ip );
+		if ( ip === null ) {
+			return null;
+		}
+		if ( this.isIPv6Address( ip, true ) ) {
+			var cidr, matches, ipCidrSplit, i, replaceZeros;
+			if ( ip.search( /\// ) !== -1 ) {
+				ipCidrSplit = ip.split( '/', 2 );
+				ip = ipCidrSplit[ 0 ];
+				cidr = ipCidrSplit[ 1 ];
+			} else {
+				cidr = '';
+			}
+			matches = ip.match( /(?:^|:)0(?::0)+(?:$|:)/g );
+			if ( matches ) {
+				replaceZeros = matches[ 0 ];
+				for ( i = 1; i < matches.length; i++ ) {
+					if ( matches[ i ].length > replaceZeros.length ) {
+						replaceZeros = matches[ i ];
+					}
+				}
+			}
+			ip = ip.replace( replaceZeros, '::' );
+
+			if ( cidr !== '' ) {
+				ip = ip.concat( '/', cidr );
+			}
+			ip = ip.toLowerCase();
+		}
+		return ip;
 	}
 };
 

@@ -41,7 +41,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	 *
 	 * @param File $file
 	 * @param string $url URL path to the thumb
-	 * @param string|bool $path Filesystem path to the thumb
+	 * @param string|null|false $path Filesystem path to the thumb
 	 * @param array $parameters Associative array of parameters
 	 */
 	public function __construct( $file, $url, $path = false, $parameters = [] ) {

@@ -342,7 +342,7 @@ class MergeHistory {
 				[
 					'revactor_page' => $this->source->getId(),
 					// Slightly hacky, but should work given the values assigned in this class
-					str_replace( 'rev_timestamp', 'revactor_timestamp', $this->getTimeWhere() )
+					str_replace( 'rev_timestamp', 'revactor_timestamp', $this->getTimeWhere() ?? '' )
 				],
 				__METHOD__
 			);

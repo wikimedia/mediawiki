@@ -177,6 +177,7 @@
 	"talk": "Paginat",
 	"views": "Kaččokerrat",
 	"toolbox": "Instrumentat",
+	"cactions": "Enämbi",
 	"imagepage": "Ozuta failusivu",
 	"mediawikipage": "Ozuta viestisivu",
 	"templatepage": "Ozuta šablonsivu",
@@ -419,6 +420,7 @@
 	"watchthis": "Tarkaile tädä sivuu",
 	"savearticle": "Tallenda sivu",
 	"savechanges": "Tallenda muutokset",
+	"publishpage": "Julgua sivu",
 	"preview": "Ezikačo",
 	"showpreview": "Ezikačo",
 	"showdiff": "Luajitut kohendukset",
@@ -644,7 +646,7 @@
 	"action-read": "luve tämä sivu",
 	"action-addsection": "Ližiä aihe",
 	"action-edit": "kohendele tädä sivuu",
-	"action-move": "Siirrä",
+	"action-move": "siirrä tämä sivu",
 	"action-move-subpages": "siirrä tämä sivu, da sen alisivut",
 	"action-movefile": "siirrä tämä failu",
 	"action-delete": "Ota iäre",
@@ -916,5 +918,8 @@
 	"view-view-foreign": "Kačo saital $1",
 	"view-create-local": "Ližiä paikalline kuvavus",
 	"nstab-mainpage": "Piäsivu",
-	"view-edit-local": "Kohendele paikallistu kuvavustu"
+	"view-edit-local": "Kohendele paikallistu kuvavustu",
+	"skin-action-protect": "Suojua",
+	"skin-action-delete": "Ota iäre",
+	"skin-action-move": "Siirrä"
 }

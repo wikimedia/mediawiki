@@ -226,7 +226,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @throws MWException
 	 * @param User $user
 	 * @param IContextSource $context
-	 * @return array|null
+	 * @return array
 	 */
 	public function getFormDescriptor( User $user, IContextSource $context ) {
 		$preferences = [];
@@ -254,6 +254,45 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	}
 
 	/**
+	 * Simplify form descriptor for vaidation or something similar.
+	 *
+	 * @param array $descriptor HTML form descriptor.
+	 * @return array
+	 */
+	public static function simplifyFormDescriptor( array $descriptor ) {
+		foreach ( $descriptor as $name => &$params ) {
+			// Info fields are useless and can use complicated closure to provide
+			// text, skip all of them.
+			if ( ( isset( $params['type'] ) && $params['type'] === 'info' ) ||
+				( isset( $params['class'] ) && $params['class'] === \HTMLInfoField::class )
+			) {
+				unset( $descriptor[$name] );
+				continue;
+			}
+			// Message parsing is the heaviest load when constructing the field,
+			// but we just want to validate data.
+			foreach ( $params as $key => $value ) {
+				switch ( $key ) {
+					// Special case, should be kept.
+					case 'options-message':
+						break;
+					// Special case, should be transfered.
+					case 'options-messages':
+						unset( $params[$key] );
+						$params['options'] = $value;
+						break;
+					default:
+						if ( preg_match( '/-messages?$/', $key ) ) {
+							// Unwanted.
+							unset( $params[$key] );
+						}
+				}
+			}
+		}
+		return $descriptor;
+	}
+
+	/**
 	 * Loads existing values for a given array of preferences
 	 * @throws MWException
 	 * @param User $user
@@ -268,7 +307,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		// For validation.
-		$form = new HTMLForm( $defaultPreferences, $context );
+		$simplified = self::simplifyFormDescriptor( $defaultPreferences );
+		$form = new HTMLForm( $simplified, $context );
 
 		$disable = !$user->isAllowed( 'editmyoptions' );
 
@@ -276,7 +316,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$userOptions = $this->userOptionsManager->getOptions( $user );
 		$this->applyFilters( $userOptions, $defaultPreferences, 'filterForForm' );
 		// Add in defaults from the user
-		foreach ( $defaultPreferences as $name => &$info ) {
+		foreach ( $simplified as $name => $_ ) {
+			$info = &$defaultPreferences[$name];
 			if ( $disable && !in_array( $name, $this->getSaveBlacklist() ) ) {
 				$info['disabled'] = 'disabled';
 			}
@@ -1416,6 +1457,16 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				'type' => 'api',
 			];
 		}
+
+		$defaultPreferences['searchlimit'] = [
+			'type' => 'int',
+			'min' => 1,
+			'max' => 500,
+			'section' => 'searchoptions/searchmisc',
+			'label-message' => 'searchlimit-label',
+			'help-message' => 'searchlimit-help',
+			'filter' => IntvalFilter::class,
+		];
 	}
 
 	/*

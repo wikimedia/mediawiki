@@ -1477,8 +1477,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * @param IMaintainableDatabase $db Database to use
 	 * @param string|null $prefix Prefix to use for test tables. If not given, the prefix is determined
-	 *        automatically for $db.
-	 * @return bool True if tables were cloned, false if only the prefix was changed
+	 *   automatically for $db.
+	 * @return CloneDatabase|null A CloneDatabase object if tables were cloned,
+	 *   or null if the connection has already had its tables cloned.
 	 */
 	protected static function setupDatabaseWithTestPrefix(
 		IMaintainableDatabase $db,
@@ -1488,27 +1489,28 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$prefix = self::getTestPrefixFor( $db );
 		}
 
-		if ( !isset( $db->_originalTablePrefix ) ) {
-			$oldPrefix = $db->tablePrefix();
-			if ( $oldPrefix === $prefix ) {
-				// table already has the correct prefix, but presumably no cloned tables
-				$oldPrefix = self::$oldTablePrefix;
-			}
-
-			$db->tablePrefix( $oldPrefix );
-			$tablesCloned = self::listTables( $db );
-			self::$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix, $oldPrefix );
-			self::$dbClone->useTemporaryTables( self::$useTemporaryTables );
-			self::$dbClone->cloneTableStructure();
-
-			$db->tablePrefix( $prefix );
-			$db->_originalTablePrefix = $oldPrefix;
-
-			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-			$lb->setTempTablesOnlyMode( self::$useTemporaryTables, $db->getDomainID() );
+		if ( isset( $db->_originalTablePrefix ) ) {
+			return null;
 		}
 
-		return true;
+		$oldPrefix = $db->tablePrefix();
+		if ( $oldPrefix === $prefix ) {
+			// table already has the correct prefix, but presumably no cloned tables
+			$oldPrefix = self::$oldTablePrefix;
+		}
+
+		$db->tablePrefix( $oldPrefix );
+		$tablesCloned = self::listTables( $db );
+		$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix, $oldPrefix );
+		$dbClone->useTemporaryTables( self::$useTemporaryTables );
+		$dbClone->cloneTableStructure();
+
+		$db->tablePrefix( $prefix );
+		$db->_originalTablePrefix = $oldPrefix;
+
+		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$lb->setTempTablesOnlyMode( self::$useTemporaryTables, $db->getDomainID() );
+		return $dbClone;
 	}
 
 	public static function setupAllTestDBs( $db, ?string $testPrefix = null, ?bool $useTemporaryTables = null ) {
@@ -1567,8 +1569,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		self::$dbSetup = true;
 
-		if ( !self::setupDatabaseWithTestPrefix( $db, $prefix ) ) {
-			return;
+		$dbClone = self::setupDatabaseWithTestPrefix( $db, $prefix );
+		if ( $dbClone ) {
+			self::$dbClone = $dbClone;
 		}
 
 		Hooks::runner()->onUnitTestsAfterDatabaseSetup( $db, $prefix );

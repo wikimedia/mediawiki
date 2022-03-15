@@ -280,7 +280,7 @@ class SpecialUpload extends SpecialPage {
 	 * Get an UploadForm instance with title and text properly set.
 	 *
 	 * @param string $message HTML string to add to the form
-	 * @param string $sessionKey Session key in case this is a stashed upload
+	 * @param string|null $sessionKey Session key in case this is a stashed upload
 	 * @param bool $hideIgnoreWarning Whether to hide "ignore warning" check box
 	 * @return UploadForm
 	 */

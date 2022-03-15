@@ -134,16 +134,25 @@ Defaults to "{$wgResourceBasePath}/extensions".
 @since 1.16
 
 # ExtensionDirectory {#ExtensionDirectory}
-Extensions directory.
+Extensions directory in the file system.
 @note Set to "{$IP}/extensions" by Setup.php before loading local settings.
 @note this configuration variable is used to locate extensions while loading settings.
 @since 1.25
 
 # StyleDirectory {#StyleDirectory}
-Skins directory.
+Skins directory in the file system.
 @note Set to "{$IP}/skins" by Setup.php before loading local settings.
 @note this configuration variable is used to locate skins while loading settings.
 @since 1.3
+
+# BaseDirectory {#BaseDirectory}
+Absolute filesystem path of the root directory of the MediaWiki installation.
+The MW_INSTALL_PATH environment variable can be used to set this.
+
+@note Automatically set in Setup.php before loading local settings.
+@note Do not modify in settings files! Must remain equal to the MW_INSTALL_PATH constant
+defined in Setup.php.
+@since 1.38
 
 # ArticlePath {#ArticlePath}
 The URL path for primary article page views. This path should contain $1,
@@ -184,7 +193,7 @@ Defaults to "{$wgUploadDirectory}/cache".
 # Logo {#Logo}
 The URL path of the wiki logo. The logo size should be 135x135 pixels.
 
-Defaults to "$wgResourceBasePath/resources/assets/wiki.png".
+Defaults to "$wgResourceBasePath/resources/assets/change-your-logo.svg".
 Developers should retrieve this logo (and other variants) using
   the static function ResourceLoaderSkinModule::getAvailableLogos
 Ignored if $wgLogos is set.
@@ -233,7 +242,7 @@ $wgLogos = [
    ]
 ];
 ```
-Defaults to [ "1x" => $wgLogo ], or [ "1x" => "$wgResourceBasePath/resources/assets/wiki.png" ]
+Defaults to [ "1x" => $wgLogo ], or [ "1x" => "$wgResourceBasePath/resources/assets/change-your-logo.svg" ]
 if $wgLogo is not set.
 @since 1.35
 
@@ -682,7 +691,7 @@ a foreign wiki's directory in order to render a page on given wiki. The extensio
 would need a fully qualified backend that is defined on all wikis in the wiki farm.
 
 # LockManagers {#LockManagers}
-Array of configuration arrays for each lock manager.
+List of lock manager backend configurations.
 
 Each backend configuration has the following parameters:
  - name  : A unique name for the lock manager
@@ -1335,7 +1344,7 @@ Set to true to enable the Special Mute page. This allows users
 to mute unwanted communications from other users, and is linked
 to from emails originating from Special:Email.
 @since 1.34
-@deprecated 1.34
+@deprecated since 1.34
 
 # EnableUserEmailMuteList {#EnableUserEmailMuteList}
 Set to true to enable user-to-user e-mail mutelist.
@@ -1753,6 +1762,19 @@ History:
   - 1.37: Re-added with SCHEMA_COMPAT_NEW renamed to SCHEMA_COMPAT_TEMP for
     a new migration which removes temporary tables.
 
+# TemplateLinksSchemaMigrationStage {#TemplateLinksSchemaMigrationStage}
+Templatelinks table schema migration stage, for normalizing tl_namespace and tl_title fields.
+
+Use the SCHEMA_COMPAT_XXX flags. Supported values:
+
+  - SCHEMA_COMPAT_OLD
+  - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
+  - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
+  - SCHEMA_COMPAT_NEW
+
+History:
+  - 1.38: Added
+
 # ContentHandlers {#ContentHandlers}
 Plugins for page content model handling.
 
@@ -2079,7 +2101,7 @@ unconditionally set by MediaWiki core's ServiceWiring.
 **Example:**
 
 ```
-$wgWANObjectCaches'memcached-php' => [
+$wgWANObjectCaches['memcached-php'] => [
   'class' => WANObjectCache::class,
   'cacheId' => 'memcached-php',
 ];
@@ -4195,7 +4217,7 @@ active sessions (i.e. it will log everyone out).
 # SessionProviders {#SessionProviders}
 MediaWiki\Session\SessionProvider configuration.
 
-Value is an array of ObjectFactory specifications for the SessionProviders
+Values are ObjectFactory specifications for the SessionProviders
 to be used. Keys in the array are ignored. Order is not significant.
 @since 1.27
 
@@ -6272,8 +6294,9 @@ at Special:Contributions.
 @since 1.30
 
 # Actions {#Actions}
-Array of allowed values for the "title=foo&action=<action>" parameter. See
-ActionFactory for the syntax. Core defaults are in ActionFactory::CORE_ACTIONS,
+Map of allowed values for the "title=foo&action=<action>" parameter.
+to the corrspeonding handler code.
+See ActionFactory for the syntax. Core defaults are in ActionFactory::CORE_ACTIONS,
 anything here overrides that.
 
 # DefaultRobotPolicy {#DefaultRobotPolicy}

@@ -20,8 +20,13 @@
  */
 
 /**
- * Formats a notification into the JSON format (http://www.json.org)
+ * Format a recent change notification using JSON (https://www.json.org).
  *
+ * Parameters:
+ * - `channel`: If set, a 'channel' property with the same value will
+ *   also be added to the JSON-formatted message.
+ *
+ * @see $wgRCFeeds
  * @since 1.22
  */
 class JSONRCFeedFormatter extends MachineReadableRCFeedFormatter {

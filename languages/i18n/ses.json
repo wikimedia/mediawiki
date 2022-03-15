@@ -1065,7 +1065,7 @@
 	"action-createaccount": "goykaw kontoo woo tee",
 	"action-history": "moɲoo woo taarikoo guna",
 	"action-minoredit": "woo šilbay sanda barmay kaccu",
-	"action-move": "Ganandi",
+	"action-move": "moɲoo woo ganandi \\",
 	"action-move-subpages": "moɲoo woo ganandi, nga moɲiizey da",
 	"action-move-rootuserpages": "linji goykaw moɲey ganandi",
 	"action-move-categorypages": "dumi moɲey ganandi",
@@ -1075,7 +1075,7 @@
 	"action-reupload-shared": "hantum tukoo woo boŋ jišidoo žemnante ga \\",
 	"action-upload_by_url": "tukoo woo zijandi ka hun URL foo ga",
 	"action-writeapi": "goy nda hantum API",
-	"action-delete": "Tuusu",
+	"action-delete": "moɲoo woo tuusu",
 	"action-deleterevision": "fillaa woo tuusu",
 	"action-deletedhistory": "moɲoo woo taariki tuusantaa guna",
 	"action-browsearchive": "moo tuusantey ceeci",
@@ -1083,7 +1083,7 @@
 	"action-suppressrevision": "filla tugantaa woo filla nd'a yeeti",
 	"action-suppressionlog": "suturu cebandu tiira guna",
 	"action-block": "goykaa woo ganji a m'a barmay",
-	"action-protect": "Jejebu",
+	"action-protect": "jejebu alkadarey barmay moɲoo woo se \\",
 	"action-rollback": "cahã ka barmawey yeeri goykaw kokorantaa kaŋ na moo naadirantaa barmay se",
 	"action-import": "moɲey zaa wiki tana foo ga",
 	"action-importupload": "moɲey zaa tuku zijante foo ga",
@@ -2826,5 +2826,9 @@
 	"view-view-foreign": "Guna $1 ga",
 	"view-create-local": "Gorodoo šilbay tonton",
 	"nstab-mainpage": "Sintin moo",
-	"view-edit-local": "Gorodoo šilbay fasal"
+	"view-edit-local": "Gorodoo šilbay fasal",
+	"skin-action-protect": "Jejebu",
+	"skin-action-undelete": "moɲoo woo yeeri",
+	"skin-action-delete": "Tuusu",
+	"skin-action-move": "Ganandi"
 }

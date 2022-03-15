@@ -605,10 +605,10 @@
 	"action-edit": "eiditar esta páigina",
 	"action-createpage": "criar esta páigina",
 	"action-createaccount": "criar esta cunta de outelizador",
-	"action-move": "Arrastrar",
+	"action-move": "arrastrar esta páigina",
 	"action-movefile": "arrastrar este fexeiro",
 	"action-upload": "cargar este fexeiro",
-	"action-delete": "Botar fuora",
+	"action-delete": "apagar esta páigina",
 	"action-deleterevision": "botar fuora rebisones",
 	"action-protect": "Porteger",
 	"action-purge": "recargar esta páigina",
@@ -1230,5 +1230,8 @@
 	"gotointerwiki": "Salindo de {{SITENAME}}",
 	"view-view-foreign": "Ber an $1",
 	"view-create-local": "Poner çcriçon lhocal",
-	"nstab-mainpage": "Páigina percipal"
+	"nstab-mainpage": "Páigina percipal",
+	"skin-action-protect": "Porteger",
+	"skin-action-delete": "Botar fuora",
+	"skin-action-move": "Arrastrar"
 }

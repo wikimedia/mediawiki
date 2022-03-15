@@ -826,11 +826,11 @@
 	"action-createpage": "bu sahifani yaratish",
 	"action-createtalk": "bu munozara sahifani yaratish",
 	"action-createaccount": "bu foydalanuvchi hisobini yaratish",
-	"action-move": "Koʻchirish",
+	"action-move": "bu sahifani koʻchirish",
 	"action-move-subpages": "Bu sahifani va uning ostsahifalarini koʻchirish",
 	"action-movefile": "ushbu faylni ko‘chirish",
 	"action-upload": "ushbu faylni yuklash",
-	"action-delete": "Oʻchirish",
+	"action-delete": "ushbu faylni o‘chirish",
 	"action-deletedhistory": "ushbu sahifaning oʻchirilgan tarixini koʻrish",
 	"action-browsearchive": "oʻchirilgan sahifalarni qidirish",
 	"action-undelete": "Tiklash",
@@ -1992,5 +1992,9 @@
 	"view-view-foreign": "$1da koʻrish",
 	"view-create-local": "Mahalliy tavsifini qoʻshish",
 	"nstab-mainpage": "Bosh Sahifa",
-	"view-edit-local": "Mahalliy izohni tahrirlash"
+	"view-edit-local": "Mahalliy izohni tahrirlash",
+	"skin-action-protect": "Himoyalash",
+	"skin-action-undelete": "Tiklash",
+	"skin-action-delete": "Oʻchirish",
+	"skin-action-move": "Koʻchirish"
 }

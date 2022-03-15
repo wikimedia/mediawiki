@@ -41,7 +41,7 @@ class SearchMySQL extends SearchDatabase {
 	 * a WHERE condition and an ORDER BY expression
 	 *
 	 * @param string $filteredText
-	 * @param string $fulltext
+	 * @param bool $fulltext
 	 *
 	 * @return array
 	 */
@@ -244,7 +244,7 @@ class SearchMySQL extends SearchDatabase {
 	private function queryNamespaces( &$query ) {
 		if ( is_array( $this->namespaces ) ) {
 			if ( count( $this->namespaces ) === 0 ) {
-				$this->namespaces[] = '0';
+				$this->namespaces[] = NS_MAIN;
 			}
 			$query['conds']['page_namespace'] = $this->namespaces;
 		}

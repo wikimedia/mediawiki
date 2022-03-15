@@ -379,7 +379,7 @@ class SpecialUndelete extends SpecialPage {
 	private function showSearchForm() {
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'undelete-search-title' ) );
-		$fuzzySearch = $this->getRequest()->getVal( 'fuzzy', true );
+		$fuzzySearch = $this->getRequest()->getVal( 'fuzzy', '1' );
 
 		$out->enableOOUI();
 
@@ -508,6 +508,19 @@ class SpecialUndelete extends SpecialPage {
 		if ( !preg_match( '/[0-9]{14}/', $timestamp ) ) {
 			return;
 		}
+		$out = $this->getOutput();
+
+		// When viewing a specific revision, add a subtitle link back to the overall
+		// history, see T284114
+		$listLink = $this->getLinkRenderer()->makeKnownLink(
+			$this->getPageTitle(),
+			$this->msg( 'undelete-back-to-list' )->text(),
+			[],
+			[ 'target' => $this->mTargetObj->getPrefixedText() ]
+		);
+		// same < arrow as with subpages
+		$subtitle = "&lt; $listLink";
+		$out->setSubtitle( $subtitle );
 
 		$archive = new PageArchive( $this->mTargetObj );
 		// FIXME: This hook must be deprecated, passing PageArchive by ref is awful.
@@ -518,7 +531,6 @@ class SpecialUndelete extends SpecialPage {
 		}
 		$revRecord = $this->archivedRevisionLookup->getRevisionRecordByTimestamp( $this->mTargetObj, $timestamp );
 
-		$out = $this->getOutput();
 		$user = $this->getUser();
 
 		if ( !$revRecord ) {
@@ -1065,7 +1077,7 @@ class SpecialUndelete extends SpecialPage {
 			$history .= $misc;
 
 			$form->appendContent( new OOUI\HtmlSnippet( $history ) );
-			$out->addHTML( $form );
+			$out->addHTML( (string)$form );
 		} else {
 			$out->addHTML( $history );
 		}

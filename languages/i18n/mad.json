@@ -668,5 +668,8 @@
 	"view-view-foreign": "Tèngghu è $1",
 	"view-create-local": "Tambâ jhâjhârbâ'ân lokal",
 	"nstab-mainpage": "Tanèyan",
-	"view-edit-local": "Beccè' ḍèskripsi lokal"
+	"view-edit-local": "Beccè' ḍèskripsi lokal",
+	"skin-action-protect": "Lènḍhungè",
+	"skin-action-delete": "Kosot",
+	"skin-action-move": "Allè"
 }

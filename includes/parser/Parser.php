@@ -258,7 +258,6 @@ class Parser {
 	public $mGeneratedPPNodeCount;
 	/** @deprecated since 1.35 */
 	public $mHighestExpansionDepth;
-	private $mDefaultSort;
 	private $mTplRedirCache;
 	/** @internal */
 	public $mHeadings;
@@ -273,7 +272,7 @@ class Parser {
 	private $mTplDomCache;
 
 	/**
-	 * @var UserIdentity
+	 * @var UserIdentity|null
 	 */
 	private $mUser;
 
@@ -627,7 +626,6 @@ class Parser {
 		$this->mPPNodeCount = 0;
 		$this->mGeneratedPPNodeCount = 0;
 		$this->mHighestExpansionDepth = 0;
-		$this->mDefaultSort = false;
 		$this->mHeadings = [];
 		$this->mDoubleUnderscores = [];
 		$this->mExpensiveFunctionCount = 0;
@@ -1582,7 +1580,7 @@ class Parser {
 		}
 
 		$this->hookRunner->onInternalParseBeforeSanitize( $this, $text, $this->mStripState );
-		$text = Sanitizer::removeHTMLtags(
+		$text = Sanitizer::internalRemoveHtmlTags(
 			$text,
 			// Callback from the Sanitizer for expanding items found in
 			// HTML attribute values, so they can be safely tested and escaped.
@@ -1698,6 +1696,19 @@ class Parser {
 			# assumes that the links are all replaced and the only thing left
 			# is the <nowiki> mark.
 			$text = $this->getTargetLanguageConverter()->convert( $text );
+			// Record information necessary for language conversion of TOC.
+			$this->mOutput->setExtensionData(
+				// T303329: this should migrate out of extension data
+				'core:target-lang',
+				$this->getTargetLanguage()->getCode()
+			);
+			$this->mOutput->setExtensionData(
+				// T303329: this should migrate out of extension data
+				'core:target-lang-variant',
+				$this->getTargetLanguageConverter()->getPreferredVariant()
+			);
+		} else {
+			$this->mOutput->setOutputFlag( ParserOutputFlags::NO_TOC_CONVERSION );
 		}
 
 		$text = $this->mStripState->unstripNoWiki( $text );
@@ -1841,7 +1852,7 @@ class Parser {
 		$trail = '';
 
 		# The characters '<' and '>' (which were escaped by
-		# removeHTMLtags()) should not be included in
+		# internalRemoveHtmlTags()) should not be included in
 		# URLs, per RFC 2396.
 		# Make &nbsp; terminate a URL as well (bug T84937)
 		$m2 = [];
@@ -2151,7 +2162,7 @@ class Parser {
 			$trail = $bits[$i++];
 
 			# The characters '<' and '>' (which were escaped by
-			# removeHTMLtags()) should not be included in
+			# internalRemoveHtmlTags()) should not be included in
 			# URLs, per RFC 2396.
 			$m2 = [];
 			if ( preg_match( '/&(lt|gt);/', $url, $m2, PREG_OFFSET_CAPTURE ) ) {
@@ -2675,7 +2686,7 @@ class Parser {
 					$s = rtrim( $s . $prefix ) . $trail; # T2087, T87753
 
 					if ( $wasblank ) {
-						$sortkey = $this->getDefaultSort();
+						$sortkey = $this->mOutput->getPageProperty( 'defaultsort' ) ?? '';
 					} else {
 						$sortkey = $text;
 					}
@@ -4208,7 +4219,7 @@ class Parser {
 			if ( $toclevel ) {
 				$prevlevel = $level;
 			}
-			$level = $matches[1][$headlineCount];
+			$level = (int)$matches[1][$headlineCount];
 
 			if ( $level > $prevlevel ) {
 				# Increase TOC level
@@ -4943,7 +4954,7 @@ class Parser {
 	 *     about the methods available in PPFrame and PPNode.
 	 *
 	 * @throws MWException
-	 * @return string|callable The old callback function for this name, if any
+	 * @return string|callable|null The old callback function for this name, if any
 	 * @since 1.6
 	 */
 	public function setFunctionHook( $id, callable $callback, $flags = 0 ) {
@@ -5656,7 +5667,7 @@ class Parser {
 	 * returned.
 	 *
 	 * @param string $mode One of "get" or "replace"
-	 * @param string $newText Replacement text for section data.
+	 * @param string|false $newText Replacement text for section data.
 	 * @return string For "get", the extracted section text.
 	 *   for "replace", the whole page with the section replaced.
 	 */
@@ -5784,7 +5795,7 @@ class Parser {
 	 * @param string $text Text to look in
 	 * @param string|int $sectionId Section identifier as a number or string
 	 * (e.g. 0, 1 or 'T-1').
-	 * @param string $defaultText Default to return if section is not found
+	 * @param string|false $defaultText Default to return if section is not found
 	 *
 	 * @return string Text of the requested section
 	 * @since 1.7
@@ -5801,7 +5812,7 @@ class Parser {
 	 * @param string $oldText Former text of the article
 	 * @param string|int $sectionId Section identifier as a number or string
 	 * (e.g. 0, 1 or 'T-1').
-	 * @param string $newText Replacing text
+	 * @param string|false $newText Replacing text
 	 *
 	 * @return string Modified text
 	 * @since 1.7
@@ -6025,18 +6036,20 @@ class Parser {
 	}
 
 	/**
-	 * Mutator for $mDefaultSort
+	 * Mutator for the 'defaultsort' page property.
 	 *
 	 * @param string $sort New value
 	 * @since 1.0
+	 * @deprecated since 1.38, use
+	 * $parser->getOutput()->setPageProperty('defaultsort', $sort)
 	 */
 	public function setDefaultSort( $sort ) {
-		$this->mDefaultSort = $sort;
+		wfDeprecated( __METHOD__, '1.38' );
 		$this->mOutput->setPageProperty( 'defaultsort', $sort );
 	}
 
 	/**
-	 * Accessor for $mDefaultSort
+	 * Accessor for the 'defaultsort' page property.
 	 * Will use the empty string if none is set.
 	 *
 	 * This value is treated as a prefix, so the
@@ -6045,24 +6058,26 @@ class Parser {
 	 *
 	 * @return string
 	 * @since 1.9
+	 * @deprecated since 1.38, use
+	 * $parser->getOutput()->getPageProperty('defaultsort') ?? ''
 	 */
 	public function getDefaultSort() {
-		if ( $this->mDefaultSort !== false ) {
-			return $this->mDefaultSort;
-		} else {
-			return '';
-		}
+		wfDeprecated( __METHOD__, '1.38' );
+		return $this->mOutput->getPageProperty( 'defaultsort' ) ?? '';
 	}
 
 	/**
-	 * Accessor for $mDefaultSort
+	 * Accessor for the 'defaultsort' page property.
 	 * Unlike getDefaultSort(), will return false if none is set
 	 *
 	 * @return string|bool
 	 * @since 1.14
+	 * @deprecated since 1.38, use
+	 * $parser->getOutput()->getPageProperty('defaultsort') ?? false
 	 */
 	public function getCustomDefaultSort() {
-		return $this->mDefaultSort;
+		wfDeprecated( __METHOD__, '1.38' );
+		return $this->mOutput->getPageProperty( 'defaultsort' ) ?? false;
 	}
 
 	private static function getSectionNameFromStrippedText( $text ) {
@@ -6207,7 +6222,7 @@ class Parser {
 
 		$text = $this->replaceVariables( $text );
 		$text = $this->mStripState->unstripBoth( $text );
-		$text = Sanitizer::removeHTMLtags( $text );
+		$text = Sanitizer::internalRemoveHtmlTags( $text );
 		return $text;
 	}
 

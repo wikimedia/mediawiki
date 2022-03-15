@@ -41,7 +41,6 @@
 	"config-admin-password-blank": "Nzirisci na password pû cuntu di l'amministraturi.",
 	"config-admin-email": "Nnirizzu email:",
 	"config-email-settings": "Mpustazzioni email",
-	"config-logo": "URL dû logu:",
 	"config-skins": "Peddi",
 	"config-install-step-done": "fattu",
 	"config-install-user-alreadyexists": "L'utenti \"$1\" già esisti.",

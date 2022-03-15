@@ -359,7 +359,7 @@ abstract class BagOStuff implements
 	 * @param callable|null $progress Optional, a function which will be called
 	 *     regularly during long-running operations with the percentage progress
 	 *     as the first parameter. [optional]
-	 * @param int $limit Maximum number of keys to delete [default: INF]
+	 * @param int|float $limit Maximum number of keys to delete [default: INF]
 	 * @param string|null $tag Tag to purge a single shard only.
 	 *  This is only supported when server tags are used in configuration.
 	 * @return bool Success; false if unimplemented

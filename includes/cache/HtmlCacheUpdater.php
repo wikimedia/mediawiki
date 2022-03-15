@@ -32,7 +32,7 @@ use MediaWiki\Page\PageReference;
 class HtmlCacheUpdater {
 	/** @var int Seconds between initial and rebound purges; 0 if disabled */
 	private $reboundDelay;
-	/** @var int Whether filesystem-based HTML output caching is enabled */
+	/** @var bool Whether filesystem-based HTML output caching is enabled */
 	private $useFileCache;
 	/** @var int Max seconds for CDN to served cached objects without revalidation */
 	private $cdnMaxAge;

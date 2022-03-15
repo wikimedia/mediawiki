@@ -385,7 +385,7 @@ class ConverterRule {
 		}
 
 		if ( !isset( $flags['R'] ) && !isset( $flags['N'] ) ) {
-			// decode => HTML entities modified by Sanitizer::removeHTMLtags
+			// decode => HTML entities modified by Sanitizer::internalRemoveHtmlTags
 			$this->mRules = str_replace( '=&gt;', '=>', $this->mRules );
 			$this->parseRules();
 		}

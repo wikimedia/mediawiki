@@ -1594,5 +1594,9 @@
 	"view-view-foreign": "Kaeq $1 pääl",
 	"view-create-local": "Luuq paigapääline seletüs",
 	"nstab-mainpage": "Pääleht",
-	"view-edit-local": "Toimõndaq paigapäälist seletüst"
+	"view-edit-local": "Toimõndaq paigapäälist seletüst",
+	"skin-action-protect": "Kaidsaq",
+	"skin-action-undelete": "Tiiq tagasi",
+	"skin-action-delete": "Kistudaq ärq",
+	"skin-action-move": "Nõstaq ümbre"
 }

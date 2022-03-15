@@ -528,5 +528,7 @@
 	"randomrootpage": "Хавар бакъа хӀасул хьусса мархлул лажин",
 	"view-view-foreign": "Сайтрай $1 ккаккан дан",
 	"view-create-local": "Дусса кӀанттай ляхъан дан",
-	"nstab-mainpage": "Байбихьулийсса лажин"
+	"nstab-mainpage": "Байбихьулийсса лажин",
+	"skin-action-delete": "Леххан дуван",
+	"skin-action-move": "ЦӀа даххана даву"
 }

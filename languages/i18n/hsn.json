@@ -603,5 +603,9 @@
 	"view-view-foreign": "到$1克看",
 	"view-create-local": "加一个本地说明",
 	"nstab-mainpage": "頭面",
-	"view-edit-local": "写本地说明"
+	"view-edit-local": "写本地说明",
+	"skin-action-protect": "免修",
+	"skin-action-undelete": "还原",
+	"skin-action-delete": "消嘎",
+	"skin-action-move": "移走"
 }

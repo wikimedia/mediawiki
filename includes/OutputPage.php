@@ -20,7 +20,6 @@
  * @file
  */
 
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
@@ -28,7 +27,6 @@ use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Session\SessionManager;
-use MediaWiki\Tidy\RemexDriver;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\RelPath;
@@ -129,19 +127,30 @@ class OutputPage extends ContextSource {
 	 */
 	protected $mLastModified = '';
 
-	/** @var string[][] */
+	/**
+	 * @var string[][]
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mCategoryLinks = [];
 
-	/** @var string[][] */
+	/**
+	 * @var string[][]
+	 * @deprecated since 1.38, will be made private (T301020)
+	 */
 	protected $mCategories = [
 		'hidden' => [],
 		'normal' => [],
 	];
 
-	/** @var string[] */
+	/**
+	 * @var string[]
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mIndicators = [];
 
-	/** @var array Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page') */
+	/**
+	 * @var array Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page')
+	 */
 	private $mLanguageLinks = [];
 
 	/**
@@ -167,16 +176,25 @@ class OutputPage extends ContextSource {
 	 */
 	protected $mAdditionalHtmlClasses = [];
 
-	/** @var array Array of elements in "<head>". Parser might add its own headers! */
+	/**
+	 * @var array Array of elements in "<head>". Parser might add its own headers!
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mHeadItems = [];
 
 	/** @var array Additional <body> classes; there are also <body> classes from other sources */
 	protected $mAdditionalBodyClasses = [];
 
-	/** @var array */
+	/**
+	 * @var array
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mModules = [];
 
-	/** @var array */
+	/**
+	 * @var array
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mModuleStyles = [];
 
 	/** @var ResourceLoader */
@@ -191,10 +209,16 @@ class OutputPage extends ContextSource {
 	/** @var array */
 	private $rlExemptStyleModules;
 
-	/** @var array */
+	/**
+	 * @var array
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mJsConfigVars = [];
 
-	/** @var array */
+	/**
+	 * @var array
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mTemplateIds = [];
 
 	/** @var array */
@@ -236,22 +260,30 @@ class OutputPage extends ContextSource {
 	 * @var bool Set to false to send no-cache headers, disabling
 	 * client-side caching. (This variable should really be named
 	 * in the opposite sense; see ::disableClientCache().)
+	 * @deprecated since 1.38; will be made private (T301020)
 	 */
 	protected $mEnableClientCache = true;
 
 	/** @var bool Flag if output should only contain the body of the article. */
 	private $mArticleBodyOnly = false;
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mNewSectionLink = false;
 
-	/** @var bool */
+	/**
+	 * @var bool
+	 * @deprecated since 1.38; will be made private (T301020)
+	 */
 	protected $mHideNewSectionLink = false;
 
 	/**
 	 * @var bool Comes from the parser. This was probably made to load CSS/JS
 	 * only if we had "<gallery>". Used directly in CategoryPage.php.
 	 * Looks like ResourceLoader can replace this.
+	 * @deprecated since 1.38; will be made private (T301020)
 	 */
 	public $mNoGallery = false;
 
@@ -288,6 +320,9 @@ class OutputPage extends ContextSource {
 
 	private $mIndexPolicy = 'index';
 	private $mFollowPolicy = 'follow';
+
+	/** @var array */
+	private $mRobotsOptions = [];
 
 	/**
 	 * @var array Headers that cause the cache to vary.  Key is header name,
@@ -900,6 +935,58 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Format an array of robots options as a string of directives.
+	 *
+	 * @return string The robots policy options.
+	 */
+	private function formatRobotsOptions(): string {
+		$options = $this->mRobotsOptions;
+		// Check if options array has any non-integer keys.
+		if ( count( array_filter( array_keys( $options ), 'is_string' ) ) > 0 ) {
+			// Robots meta tags can have directives that are single strings or
+			// have parameters that should be formatted like <directive>:<setting>.
+			// If the options keys are strings, format them accordingly.
+			// https://developers.google.com/search/docs/advanced/robots/robots_meta_tag
+			array_walk( $options, static function ( &$value, $key ) {
+				$value = is_string( $key ) ? "{$key}:{$value}" : "{$value}";
+			} );
+		}
+		return implode( ',', $options );
+	}
+
+	/**
+	 * Set the robots policy with options for the page.
+	 *
+	 * @since 1.38
+	 * @param array $options An array of key-value pairs or a string
+	 *   to populate the robots meta tag content attribute as a string.
+	 */
+	public function setRobotsOptions( array $options = [] ): void {
+		$this->mRobotsOptions = array_merge( $this->mRobotsOptions, $options );
+	}
+
+	/**
+	 * Get the robots policy content attribute for the page
+	 * as a string in the form <index policy>,<follow policy>,<options>.
+	 *
+	 * @return string
+	 */
+	private function getRobotsContent(): string {
+		$robotOptionString = $this->formatRobotsOptions();
+		$robotArgs = ( $this->mIndexPolicy === 'index' &&
+			$this->mFollowPolicy === 'follow' ) ?
+			[] :
+			[
+				$this->mIndexPolicy,
+				$this->mFollowPolicy,
+			];
+		if ( $robotOptionString ) {
+			$robotArgs[] = $robotOptionString;
+		}
+		return implode( ',', $robotArgs );
+	}
+
+	/**
 	 * Set the index policy for the page, but leave the follow policy un-
 	 * touched.
 	 *
@@ -994,15 +1081,7 @@ class OutputPage extends ContextSource {
 
 		# change "<script>foo&bar</script>" to "&lt;script&gt;foo&amp;bar&lt;/script&gt;"
 		# but leave "<i>foobar</i>" alone
-		# == start explicit tidy ==
-		# T299722/T298401: The explicit tidy here can be removed once
-		# Sanitizer::removeHTMLtags() is made more robust.
-		$tidy = new RemexDriver( new ServiceOptions( [ 'TidyConfig' ], [
-			'TidyConfig' => [ 'pwrap' => false ],
-		] ) );
-		$nameWithTags = $tidy->tidy( $name, [ Sanitizer::class, 'armorFrenchSpaces' ] );
-		# == end explicit tidy ==
-		$nameWithTags = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $nameWithTags ) );
+		$nameWithTags = Sanitizer::removeSomeTags( $name );
 		$this->mPageTitle = $nameWithTags;
 
 		# change "<i>foo&amp;bar</i>" to "foo&bar"
@@ -1046,7 +1125,7 @@ class OutputPage extends ContextSource {
 			return htmlspecialchars( $this->getTitle()->getPrefixedText(), ENT_NOQUOTES );
 		}
 
-		return Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $html ) );
+		return Sanitizer::removeSomeTags( $html );
 	}
 
 	/**
@@ -1118,10 +1197,9 @@ class OutputPage extends ContextSource {
 			$query['redirect'] = 'no';
 		}
 
-		$target = TitleValue::castPageToLinkTarget( $page );
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		return wfMessage( 'backlinksubtitle' )
-			->rawParams( $linkRenderer->makeLink( $target, null, [], $query ) );
+			->rawParams( $linkRenderer->makeLink( $page, null, [], $query ) );
 	}
 
 	/**
@@ -1935,6 +2013,8 @@ class OutputPage extends ContextSource {
 	 * @param ParserOutput $parserOutput
 	 */
 	public function addParserOutputMetadata( ParserOutput $parserOutput ) {
+		// T301020 This should eventually use the standard "merge ParserOutput"
+		// function between $parserOutput and $this->metadata.
 		$this->mLanguageLinks =
 			array_merge( $this->mLanguageLinks, $parserOutput->getLanguageLinks() );
 		$this->addCategoryLinks( $parserOutput->getCategories() );
@@ -1943,7 +2023,7 @@ class OutputPage extends ContextSource {
 		// FIXME: Best practice is for OutputPage to be an accumulator, as
 		// addParserOutputMetadata() may be called multiple times, but the
 		// following lines overwrite any previous data.  These should
-		// be migrated to an injection pattern.
+		// be migrated to an injection pattern. (T301020, T300979)
 		$this->mNewSectionLink = $parserOutput->getNewSection();
 		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();
 		$this->mNoGallery = $parserOutput->getNoGallery();
@@ -2006,6 +2086,8 @@ class OutputPage extends ContextSource {
 		}
 
 		// Hooks registered in the object
+		// Deprecated! See T292321; should be done in the OutputPageParserOutput
+		// hook instead.
 		$parserOutputHooks = $this->getConfig()->get( 'ParserOutputHooks' );
 		foreach ( $parserOutput->getOutputHooks() as $hookInfo ) {
 			list( $hookName, $data ) = $hookInfo;
@@ -3129,7 +3211,7 @@ class OutputPage extends ContextSource {
 					$module = $rl->getModule( $name );
 					if ( $module ) {
 						$group = $module->getGroup();
-						if ( isset( $exemptGroups[$group] ) ) {
+						if ( $group !== null && isset( $exemptGroups[$group] ) ) {
 							// The `noscript` module is excluded from the client
 							// side registry, no need to set its state either.
 							// But we still output it. See T291735
@@ -3614,8 +3696,8 @@ class OutputPage extends ContextSource {
 			}
 		}
 
-		$p = "{$this->mIndexPolicy},{$this->mFollowPolicy}";
-		if ( $p !== 'index,follow' ) {
+		$p = $this->getRobotsContent();
+		if ( $p ) {
 			// http://www.robotstxt.org/wc/meta-user.html
 			// Only show if it's different from the default robots policy
 			$tags['meta-robots'] = Html::element( 'meta', [
@@ -4055,9 +4137,7 @@ class OutputPage extends ContextSource {
 	 * @return string URL
 	 */
 	public static function transformResourcePath( Config $config, $path ) {
-		global $IP;
-
-		$localDir = $IP;
+		$localDir = $config->get( 'BaseDirectory' );
 		$remotePathPrefix = $config->get( 'ResourceBasePath' );
 		if ( $remotePathPrefix === '' ) {
 			// The configured base path is required to be empty string for

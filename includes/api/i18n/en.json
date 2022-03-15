@@ -202,6 +202,7 @@
 	"apihelp-expandtemplates-paramvalue-prop-parsetree": "The XML parse tree of the input.",
 	"apihelp-expandtemplates-param-includecomments": "Whether to include HTML comments in the output.",
 	"apihelp-expandtemplates-param-generatexml": "Generate XML parse tree (replaced by $1prop=parsetree).",
+	"apihelp-expandtemplates-param-showstrategykeys": "Whether to include internal merge strategy information in jsconfigvars.",
 	"apihelp-expandtemplates-example-simple": "Expand the wikitext <kbd><nowiki>{{Project:Sandbox}}</nowiki></kbd>.",
 
 	"apihelp-feedcontributions-summary": "Returns a user's contributions feed.",
@@ -416,6 +417,7 @@
 	"apihelp-parse-param-disablepp": "Use <var>$1disablelimitreport</var> instead.",
 	"apihelp-parse-param-disableeditsection": "Omit edit section links from the parser output.",
 	"apihelp-parse-param-disablestylededuplication": "Do not deduplicate inline stylesheets in the parser output.",
+	"apihelp-parse-param-showstrategykeys": "Whether to include internal merge strategy information in jsconfigvars.",
 	"apihelp-parse-param-generatexml": "Generate XML parse tree (requires content model <code>$1</code>; replaced by <kbd>$2prop=parsetree</kbd>).",
 	"apihelp-parse-param-preview": "Parse in preview mode.",
 	"apihelp-parse-param-sectionpreview": "Parse in section preview mode (enables preview mode too).",

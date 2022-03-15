@@ -150,16 +150,14 @@ trait DummyServicesTrait {
 			}
 
 			public function getAllPrefixes( $local = null ) {
-				// $local is a string or null, the use of loose equality is intentional
-				// See ClassicInterwikiLookup::getAllPrefixesDB
-				if ( $local === null || ( $local != 0 && $local != 1 ) ) {
+				if ( $local === null ) {
 					return array_values( $this->allInterwikiRows );
 				}
 				return array_values(
 					array_filter(
 						$this->allInterwikiRows,
 						static function ( $row ) use ( $local ) {
-							return $row['iw_local'] == $local;
+							return $row['iw_local'] == (int)$local;
 						}
 					)
 				);
@@ -390,7 +388,7 @@ trait DummyServicesTrait {
 		// avoid needing to create a mock in each test.
 		// Note that the actual Language::ucfirst is a bit more complicated than this
 		// but since the tests are all in English the plain php `ucfirst` should be enough.
-		$contentLang = $this->createMock( Language::class, [ 'ucfirst' ] );
+		$contentLang = $this->createMock( Language::class );
 		$contentLang->method( 'ucfirst' )
 			->willReturnCallback( 'ucfirst' );
 		$contentLang->method( 'getNsText' )->with( NS_USER )

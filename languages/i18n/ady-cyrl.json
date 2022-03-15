@@ -698,7 +698,7 @@
 	"action-createaccount": "мы нэбгырэм и аккаунт ублэн",
 	"action-history": "мы нэкIубгъом и тарихъым еплъын",
 	"action-minoredit": "мы еIэзэныгъэр цIыкIоу гъэнаф",
-	"action-move": "Хьы",
+	"action-move": "мы нэкIубгъом ыцIэ хъожь",
 	"action-move-subpages": "хьы мы нэкIубгъори, кIэтнэкIубгъохэри",
 	"action-move-categorypages": "хьы категорием и нэкIубгъохэр",
 	"action-movefile": "хьы мы файлыр",
@@ -706,11 +706,11 @@
 	"action-reupload": "мы файлыр икIэу къэтхыжь",
 	"action-upload_by_url": "илъхь мы файлыр мы URL-кIэ",
 	"action-writeapi": "еIэзэныгъэмэ апае API гъэфедэн",
-	"action-delete": "ТегъэкӀ",
+	"action-delete": "мы нэкIубгъор тегъэкI",
 	"action-deleterevision": "мы версиер тегъэкI",
 	"action-deletedhistory": "мы нэкIубгъом и тегъэкIыгъэ тарихъым еплъын",
 	"action-browsearchive": "тегъэкIыжьыгъэ нэкIубгъомэ алъыхъу",
-	"action-undelete": "УмылъэкӀ",
+	"action-undelete": "мы нэкIубгъор теМыгъэкI",
 	"action-suppressrevision": "еплъи зэтегъэуцожь мы гъэбылъыгъэ версиер",
 	"action-protect": "Ухъум",
 	"action-import": "нэмыкI виким нэкIубгъохэр къих",
@@ -1234,5 +1234,9 @@
 	"view-view-foreign": "Сайтэу $1-м къыщыгъэлъагъу",
 	"view-create-local": "Хьанэгъунэ гурыӀоныгъэ пыдзэжь",
 	"nstab-mainpage": "НэкӀубгъо шъхьаӀ",
-	"view-edit-local": "Хьанэгъунэ гурыӀоныгъэм еIэзэн"
+	"view-edit-local": "Хьанэгъунэ гурыӀоныгъэм еIэзэн",
+	"skin-action-protect": "Ухъум",
+	"skin-action-undelete": "УмылъэкӀ",
+	"skin-action-delete": "ТегъэкӀ",
+	"skin-action-move": "Хьы"
 }

@@ -574,7 +574,7 @@
 	"action-createtalk": "paghimo'g mga panid sa hisgot",
 	"action-createaccount": "paghimo'g akawnt niining gumagamit",
 	"action-minoredit": "markahan ang pag-usab isip menor",
-	"action-move": "Ibalhin",
+	"action-move": "ibalhin kining panid",
 	"action-move-subpages": "ibalhin kining panid, ug ang iyang mga subpanid",
 	"action-move-rootuserpages": "ibalhin ang ugat nga mga panid sa gumagamit",
 	"action-movefile": "ibalhin ang kining payl",
@@ -583,11 +583,11 @@
 	"action-reupload-shared": "i-override ang kining payl sa shared repository",
 	"action-upload_by_url": "i-upload ang kining payl gikan sa URL",
 	"action-writeapi": "gamita ang write API",
-	"action-delete": "Papasa",
+	"action-delete": "papasa kining panid",
 	"action-deleterevision": "papasa kining rebisyon",
 	"action-deletedhistory": "tan-awa ang napapas nga kaagi niining panid",
 	"action-browsearchive": "pangitaa ang napapas nga mga panid",
-	"action-undelete": "Ayaw papasa",
+	"action-undelete": "ayaaw papasa ang kining panid",
 	"action-suppressrevision": "i-rebyu ug ibalik ang kining nakatagong rebisyon",
 	"action-protect": "Protektahi",
 	"nchanges": "$1 {{PLURAL:$1|ka pag-usab|ka mga pag-usab}}",
@@ -870,5 +870,9 @@
 	"searchsuggest-search": "Pangitaa {{SITENAME}}",
 	"view-view-foreign": "Tan-awa sa $1",
 	"view-create-local": "Pagpuno og lokal nga deskripsyon",
-	"nstab-mainpage": "Unang Panid"
+	"nstab-mainpage": "Unang Panid",
+	"skin-action-protect": "Protektahi",
+	"skin-action-undelete": "Ayaw papasa",
+	"skin-action-delete": "Papasa",
+	"skin-action-move": "Ibalhin"
 }

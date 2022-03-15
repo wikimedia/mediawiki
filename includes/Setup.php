@@ -92,6 +92,13 @@ if ( !defined( 'MW_ENTRY_POINT' ) ) {
 	define( 'MW_ENTRY_POINT', 'unknown' );
 }
 
+if ( !defined( 'MW_INSTALL_PATH' ) ) {
+	define( 'MW_INSTALL_PATH', $IP );
+} else {
+	// enforce consistency
+	$IP = MW_INSTALL_PATH;
+}
+
 /**
  * Pre-config setup: Before loading LocalSettings.php
  *
@@ -169,6 +176,7 @@ mb_internal_encoding( 'UTF-8' );
 // Initialize some config settings with dynamic defaults, and
 // make default settings available in globals for use in LocalSettings.php.
 $wgSettings->putConfigValues( [
+	'BaseDirectory' => $IP,
 	'ExtensionDirectory' => "{$IP}/extensions",
 	'StyleDirectory' => "{$IP}/skins",
 	'ServiceWiringFiles' => [ "{$IP}/includes/ServiceWiring.php" ],
@@ -188,13 +196,6 @@ if ( !isset( $GLOBALS['wgScopeTest'] ) || $GLOBALS['wgScopeTest'] !== $wgScopeTe
 	}
 }
 unset( $wgScopeTest );
-
-/**
- * @var $wgStyleSheetPath
- * @deprecated since 1.3, use $wgStylePath instead.
- */
-global $wgStyleSheetPath;
-$wgStyleSheetPath = &$wgStylePath;
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	call_user_func( MW_CONFIG_CALLBACK, $wgSettings );
@@ -228,6 +229,12 @@ if ( defined( 'MW_SETUP_CALLBACK' ) ) {
 
 // All settings should be loaded now.
 $wgSettings->finalize();
+if ( $wgBaseDirectory !== MW_INSTALL_PATH ) {
+	throw new FatalError(
+		'$wgBaseDirectory must not be modified in settings files! ' .
+		'Use the MW_INSTALL_PATH environment variable to override the installation root directory.'
+	);
+}
 
 // Start time limit
 if ( $wgRequestTimeLimit && !$wgCommandLineMode ) {
@@ -291,7 +298,7 @@ if ( $wgLogos !== false && isset( $wgLogos['1x'] ) ) {
 	$wgLogo = $wgLogos['1x'];
 }
 if ( $wgLogo === false ) {
-	$wgLogo = "$wgResourceBasePath/resources/assets/wiki.png";
+	$wgLogo = "$wgResourceBasePath/resources/assets/change-your-logo.svg";
 }
 
 if ( $wgUploadPath === false ) {

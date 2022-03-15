@@ -1133,14 +1133,14 @@
 	"action-createaccount": "ई सदस्यखाता बनाईं",
 	"action-history": "ए पन्ना के इतिहास देखीं",
 	"action-minoredit": "ए संपादन के छोट चिह्नित करीं",
-	"action-move": "स्थानांतरण",
+	"action-move": "एह पन्ना के स्थानांतरण करीं",
 	"action-move-subpages": "ई पन्ना, आ एकर उपपन्ना स्थानांतरित करीं",
 	"action-move-rootuserpages": "मूल सदस्यपन्ना स्थानांतरित करीं",
 	"action-move-categorypages": "श्रेणी पन्ना स्थानांतरित करीं",
 	"action-movefile": "ई फाइल स्थानांतरित करीं",
 	"action-upload": "इ फाइल अपलोड करीं",
 	"action-reupload": "पहिले से मौजूद ए फाइल पर दूसर लादीं",
-	"action-delete": "मिटाईं",
+	"action-delete": "ए पन्ना के मिटाईं",
 	"action-deleterevision": "रिवीजन मेटाईं",
 	"action-deletelogentry": "लॉग के एंट्री मेटाईं",
 	"action-undelete": "मत मिटाईं",
@@ -1845,5 +1845,9 @@
 	"view-view-foreign": "$1 पर देखीं",
 	"view-create-local": "लोकल बिबरन जोड़ीं",
 	"nstab-mainpage": "पहिलका पन्ना",
-	"view-edit-local": "लोकल बिबरन संपादित करीं"
+	"view-edit-local": "लोकल बिबरन संपादित करीं",
+	"skin-action-protect": "सुरक्षित करीं",
+	"skin-action-undelete": "मत मिटाईं",
+	"skin-action-delete": "मिटाईं",
+	"skin-action-move": "स्थानांतरण"
 }

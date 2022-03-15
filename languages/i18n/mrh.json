@@ -811,5 +811,8 @@
 	"view-view-foreign": "$1 liata palâ",
 	"view-create-local": "Vâtlâh palâsana khô teih",
 	"nstab-mainpage": "Châhmia tôhpipa",
-	"view-edit-local": "Vâtlâh palâsana taopathi"
+	"view-edit-local": "Vâtlâh palâsana taopathi",
+	"skin-action-protect": "Vaih",
+	"skin-action-delete": "ParaoHip",
+	"skin-action-move": "Paly"
 }

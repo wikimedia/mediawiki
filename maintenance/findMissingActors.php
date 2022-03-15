@@ -154,7 +154,7 @@ class FindMissingActors extends Maintenance {
 		$user = $this->userFactory->newFromName( $name );
 
 		if ( !$user ) {
-			$this->fatalError( "Not a valid user name: '$user'" );
+			$this->fatalError( "Not a valid user name: '$name'" );
 		}
 
 		$name = $this->userNameUtils->getCanonical( $name, UserNameUtils::RIGOR_NONE );
@@ -198,7 +198,7 @@ class FindMissingActors extends Maintenance {
 			$this->output( "Do you want to OVERWRITE the listed actor IDs?\n" );
 			$this->output( "Information about the invalid IDs will be lost!\n" );
 			$this->output( "\n" );
-			$confirm = $this->readconsole( 'Type "yes" to continue: ' );
+			$confirm = self::readconsole( 'Type "yes" to continue: ' );
 
 			if ( $confirm === 'yes' ) {
 				$this->overwriteActorIDs( $field, array_keys( $bad ), $overwrite );

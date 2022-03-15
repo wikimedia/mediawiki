@@ -246,7 +246,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		] );
 		$request = new \FauxRequest();
 		$services = $this->createNoOpMock( ContainerInterface::class );
-		$objectFactory = new \Wikimedia\ObjectFactory( $services );
+		$objectFactory = new \Wikimedia\ObjectFactory\ObjectFactory( $services );
 		$mwServices = $this->getServiceContainer();
 		$hookContainer = $mwServices->getHookContainer();
 		$readOnlyMode = $mwServices->getReadOnlyMode();

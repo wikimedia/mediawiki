@@ -717,13 +717,13 @@ abstract class DatabaseUpdater {
 	 * @return string Full path to patch file
 	 */
 	public function patchPath( IDatabase $db, $patch ) {
-		global $IP;
+		$baseDir = MediaWikiServices::getInstance()->getMainConfig()->get( 'BaseDirectory' );
 
 		$dbType = $db->getType();
-		if ( file_exists( "$IP/maintenance/$dbType/archives/$patch" ) ) {
-			return "$IP/maintenance/$dbType/archives/$patch";
+		if ( file_exists( "$baseDir/maintenance/$dbType/archives/$patch" ) ) {
+			return "$baseDir/maintenance/$dbType/archives/$patch";
 		} else {
-			return "$IP/maintenance/archives/$patch";
+			return "$baseDir/maintenance/archives/$patch";
 		}
 	}
 

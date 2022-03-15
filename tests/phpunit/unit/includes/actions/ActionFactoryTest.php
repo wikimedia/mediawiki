@@ -6,7 +6,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
-use Wikimedia\ObjectFactory;
+use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @coversDefaultClass \MediaWiki\Actions\ActionFactory
@@ -102,6 +102,23 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 			$theOverrideAction,
 			$factory->getAction( 'the-override', $article, $context ),
 			'Article::getActionOverrides can override configured actions'
+		);
+	}
+
+	/**
+	 * @covers ::getAction
+	 */
+	public function testGetAction_overrideNonexistent() {
+		$context = $this->createMock( IContextSource::class );
+		$factory = $this->getFactory( [] );
+		$theOverrideAction = $this->createMock( Action::class );
+		$article = $this->getArticle( [
+			'the-override' => $theOverrideAction,
+		] );
+		$this->assertSame(
+			$theOverrideAction,
+			$factory->getAction( 'the-override', $article, $context ),
+			'Article::getActionOverrides can override non-existent actions'
 		);
 	}
 
@@ -312,6 +329,7 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 	 * @covers ::actionExists
 	 */
 	public function testActionExists() {
+		$this->hideDeprecated( ActionFactory::class . '::actionExists' );
 		$factory = $this->getFactory( [
 			'actions' => [
 				'extra' => true

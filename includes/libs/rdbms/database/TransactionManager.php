@@ -26,6 +26,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
 use Throwable;
+use UnexpectedValueException;
 
 /**
  * @ingroup Database
@@ -38,6 +39,11 @@ class TransactionManager {
 	public const STATUS_TRX_OK = 2;
 	/** @var int No transaction is active */
 	public const STATUS_TRX_NONE = 3;
+
+	/** Session is in a error state requiring a reset */
+	public const STATUS_SESS_ERROR = 1;
+	/** Session is in a normal state */
+	public const STATUS_SESS_OK = 2;
 
 	/** @var float Guess of how many seconds it takes to replicate a small insert */
 	private const TINY_WRITE_SEC = 0.010;
@@ -55,10 +61,13 @@ class TransactionManager {
 	private $trxTimestamp = null;
 	/** @var int Transaction status */
 	private $trxStatus = self::STATUS_TRX_NONE;
-	/** @var Throwable|null The last error that caused the status to become STATUS_TRX_ERROR */
+	/** @var Throwable|null The cause of any unresolved transaction state error, or, null */
 	private $trxStatusCause;
-	/** @var array|null Error details of the last statement-only rollback */
+	/** @var array|null Details of the last statement-rollback error for the last transaction */
 	private $trxStatusIgnoredCause;
+
+	/** @var Throwable|null The cause of any unresolved session state loss error, or, null */
+	private $sessionError;
 
 	/** @var string[] Write query callers of the current transaction */
 	private $trxWriteCallers = [];
@@ -87,6 +96,22 @@ class TransactionManager {
 	/** @var int Counter for atomic savepoint identifiers (reset with each transaction) */
 	private $trxAtomicCounter = 0;
 
+	/** @var array[] List of (callable, method name, atomic section id) */
+	private $trxPostCommitOrIdleCallbacks = [];
+	/** @var array[] List of (callable, method name, atomic section id) */
+	private $trxPreCommitOrIdleCallbacks = [];
+	/**
+	 * @var array[] List of (callable, method name, atomic section id)
+	 * @phan-var array<array{0:callable,1:string,2:AtomicSectionIdentifier|null}>
+	 */
+	private $trxEndCallbacks = [];
+	/** @var array[] List of (callable, method name, atomic section id) */
+	private $trxSectionCancelCallbacks = [];
+	/** @var callable[] Map of (name => callable) */
+	private $trxRecurringCallbacks = [];
+	/** @var bool Whether to suppress triggering of transaction end callbacks */
+	private $trxEndCallbacksSuppressed = false;
+
 	/** @var LoggerInterface */
 	private $logger;
 	/** @var TransactionProfiler */
@@ -102,7 +127,6 @@ class TransactionManager {
 	}
 
 	/**
-	 * TODO: This should be removed once all usages have been migrated here
 	 * @return string
 	 */
 	public function getTrxId(): string {
@@ -119,6 +143,7 @@ class TransactionManager {
 		$nextTrxId = ( $nextTrxId !== null ? $nextTrxId++ : mt_rand() ) % 0xffff;
 		$this->trxId = sprintf( '%06x', mt_rand( 0, 0xffffff ) ) . sprintf( '%04x', $nextTrxId );
 		$this->trxStatus = self::STATUS_TRX_OK;
+		$this->trxStatusCause = null;
 		$this->trxStatusIgnoredCause = null;
 		$this->trxWriteDuration = 0.0;
 		$this->trxWriteQueryCount = 0;
@@ -165,11 +190,14 @@ class TransactionManager {
 
 	public function setTrxStatusToOk() {
 		$this->trxStatus = self::STATUS_TRX_OK;
+		$this->trxStatusCause = null;
 		$this->trxStatusIgnoredCause = null;
 	}
 
 	public function setTrxStatusToNone() {
 		$this->trxStatus = self::STATUS_TRX_NONE;
+		$this->trxStatusCause = null;
+		$this->trxStatusIgnoredCause = null;
 	}
 
 	public function assertTransactionStatus( IDatabase $db, $deprecationLogger, $fname ) {
@@ -190,14 +218,14 @@ class TransactionManager {
 		}
 	}
 
-	public function setTransactionErrorFromStatus( $db, $fname ) {
-		if ( $this->trxStatus > self::STATUS_TRX_ERROR ) {
-			// Put the transaction into an error state if it's not already in one
-			$trxError = new DBUnexpectedError(
+	public function assertSessionStatus( IDatabase $db, $fname ) {
+		if ( $this->sessionError ) {
+			throw new DBSessionStateError(
 				$db,
-				"Uncancelable atomic section canceled (got $fname)"
+				"Cannot execute query from $fname while session status is ERROR",
+				[],
+				$this->sessionError
 			);
-			$this->setTransactionError( $trxError );
 		}
 	}
 
@@ -218,6 +246,32 @@ class TransactionManager {
 	 */
 	public function setTrxStatusIgnoredCause( ?array $trxStatusIgnoredCause ): void {
 		$this->trxStatusIgnoredCause = $trxStatusIgnoredCause;
+	}
+
+	/**
+	 * Get the status of the current session (ephemeral server-side state tied to the connection)
+	 *
+	 * @return int One of the STATUS_SESSION_* class constants
+	 */
+	public function sessionStatus() {
+		// Check if an unresolved error still exists
+		return ( $this->sessionError ) ? self::STATUS_SESS_ERROR : self::STATUS_SESS_OK;
+	}
+
+	/**
+	 * Flag the session as needing a reset due to an error, if not already flagged
+	 *
+	 * @param Throwable $sessionError
+	 */
+	public function setSessionError( Throwable $sessionError ) {
+		$this->sessionError = $this->sessionError ?? $sessionError;
+	}
+
+	/**
+	 * Unflag the session as needing a reset due to an error
+	 */
+	public function clearSessionError() {
+		$this->sessionError = null;
 	}
 
 	/**
@@ -293,14 +347,10 @@ class TransactionManager {
 		}
 	}
 
-	public function getTrxWriteAffectedRows(): int {
-		return $this->trxWriteAffectedRows;
-	}
-
 	/**
 	 * @return string
 	 */
-	public function flatAtomicSectionList() {
+	private function flatAtomicSectionList() {
 		return array_reduce( $this->trxAtomicLevels, static function ( $accum, $v ) {
 			return $accum === null ? $v[0] : "$accum, " . $v[0];
 		} );
@@ -333,10 +383,21 @@ class TransactionManager {
 			$error = "$fname: transaction is still open (from {$this->trxFname})";
 		}
 
+		if ( $this->trxEndCallbacksSuppressed && $error === null ) {
+			$error = "$fname: callbacks are suppressed; cannot properly commit";
+		}
+
 		return $error;
 	}
 
-	public function onAtomicSectionCancel( IDatabase $db, $fname ): void {
+	public function onAtomicSectionCancel( IDatabase $db, $callback, $fname ): void {
+		if ( !$this->trxLevel() || !$this->trxAtomicLevels ) {
+			throw new DBUnexpectedError( $db, "No atomic section is open (got $fname)" );
+		}
+		$this->trxSectionCancelCallbacks[] = [ $callback, $fname, $this->currentAtomicSectionId() ];
+	}
+
+	public function onCancelAtomicBeforeCriticalSection( IDatabase $db, $fname ): void {
 		if ( !$this->trxLevel() || !$this->trxAtomicLevels ) {
 			throw new DBUnexpectedError( $db, "No atomic section is open (got $fname)" );
 		}
@@ -421,6 +482,9 @@ class TransactionManager {
 	}
 
 	public function onEndAtomic( IDatabase $db, $fname ): array {
+		if ( !$this->trxLevel() || !$this->trxAtomicLevels ) {
+			throw new DBUnexpectedError( $db, "No atomic section is open (got $fname)" );
+		}
 		// Check if the current section matches $fname
 		$pos = count( $this->trxAtomicLevels ) - 1;
 		list( $savedFname, $sectionId, $savepointId ) = $this->trxAtomicLevels[$pos];
@@ -516,48 +580,35 @@ class TransactionManager {
 		return $savepointId;
 	}
 
-	public function getTrxFname() {
-		return $this->trxFname;
-	}
-
 	public function writesPending() {
 		return $this->trxLevel() && $this->trxDoneWrites;
 	}
 
-	public function isTrxDoneWrites() {
-		return $this->trxDoneWrites;
-	}
-
-	public function setTrxDoneWritesToTrue() {
-		$this->trxDoneWrites = true;
-	}
-
 	public function onDestruct() {
 		if ( $this->trxLevel() && $this->trxDoneWrites ) {
-			$trxFname = $this->getTrxFname();
-			trigger_error( "Uncommitted DB writes (transaction from {$trxFname})" );
+			trigger_error( "Uncommitted DB writes (transaction from {$this->trxFname})" );
 		}
 	}
 
 	public function transactionWritingIn( $serverName, $domainId ) {
-		if ( $this->trxLevel() && !$this->isTrxDoneWrites() ) {
-			$this->setTrxDoneWritesToTrue();
+		if ( $this->trxLevel() && !$this->trxDoneWrites ) {
+			$this->trxDoneWrites = true;
 			$this->profiler->transactionWritingIn(
 				$serverName,
 				$domainId,
-				$this->getTrxId()
+				$this->trxId
 			);
 		}
 	}
 
 	public function transactionWritingOut( IDatabase $db, $oldId ) {
-		if ( $this->isTrxDoneWrites() ) {
+		if ( $this->trxDoneWrites ) {
 			$this->profiler->transactionWritingOut(
 				$db->getServerName(),
 				$db->getDomainID(),
 				$oldId,
 				$this->pendingWriteQueryDuration( $db, IDatabase::ESTIMATE_TOTAL ),
-				$this->getTrxWriteAffectedRows()
+				$this->trxWriteAffectedRows
 			);
 		}
 	}
@@ -568,8 +619,354 @@ class TransactionManager {
 			$startTime,
 			$isPermWrite,
 			$rowCount,
-			$this->getTrxId(),
+			$this->trxId,
 			$serverName
 		);
+	}
+
+	public function onTransactionResolution( IDatabase $db, callable $callback, $fname ) {
+		if ( !$this->trxLevel() ) {
+			throw new DBUnexpectedError( $db, "No transaction is active" );
+		}
+		$this->trxEndCallbacks[] = [ $callback, $fname, $this->currentAtomicSectionId() ];
+	}
+
+	public function addPostCommitOrIdleCallback( callable $callback, $fname = __METHOD__ ) {
+		$this->trxPostCommitOrIdleCallbacks[] = [
+			$callback,
+			$fname,
+			$this->currentAtomicSectionId()
+		];
+	}
+
+	final public function addPreCommitOrIdleCallback( callable $callback, $fname = __METHOD__ ) {
+		$this->trxPreCommitOrIdleCallbacks[] = [
+			$callback,
+			$fname,
+			$this->currentAtomicSectionId()
+		];
+	}
+
+	public function setTransactionListener( $name, callable $callback = null ) {
+		if ( $callback ) {
+			$this->trxRecurringCallbacks[$name] = $callback;
+		} else {
+			unset( $this->trxRecurringCallbacks[$name] );
+		}
+	}
+
+	/**
+	 * Whether to disable running of post-COMMIT/ROLLBACK callbacks
+	 * @param bool $suppress
+	 */
+	public function setTrxEndCallbackSuppression( bool $suppress ) {
+		$this->trxEndCallbacksSuppressed = $suppress;
+	}
+
+	/**
+	 * Hoist callback ownership for callbacks in a section to a parent section.
+	 * All callbacks should have an owner that is present in trxAtomicLevels.
+	 * @param AtomicSectionIdentifier $old
+	 * @param AtomicSectionIdentifier $new
+	 */
+	public function reassignCallbacksForSection(
+		AtomicSectionIdentifier $old,
+		AtomicSectionIdentifier $new
+	) {
+		foreach ( $this->trxPreCommitOrIdleCallbacks as $key => $info ) {
+			if ( $info[2] === $old ) {
+				$this->trxPreCommitOrIdleCallbacks[$key][2] = $new;
+			}
+		}
+		foreach ( $this->trxPostCommitOrIdleCallbacks as $key => $info ) {
+			if ( $info[2] === $old ) {
+				$this->trxPostCommitOrIdleCallbacks[$key][2] = $new;
+			}
+		}
+		foreach ( $this->trxEndCallbacks as $key => $info ) {
+			if ( $info[2] === $old ) {
+				$this->trxEndCallbacks[$key][2] = $new;
+			}
+		}
+		foreach ( $this->trxSectionCancelCallbacks as $key => $info ) {
+			if ( $info[2] === $old ) {
+				$this->trxSectionCancelCallbacks[$key][2] = $new;
+			}
+		}
+	}
+
+	/**
+	 * Update callbacks that were owned by cancelled atomic sections.
+	 *
+	 * Callbacks for "on commit" should never be run if they're owned by a
+	 * section that won't be committed.
+	 *
+	 * Callbacks for "on resolution" need to reflect that the section was
+	 * rolled back, even if the transaction as a whole commits successfully.
+	 *
+	 * Callbacks for "on section cancel" should already have been consumed,
+	 * but errors during the cancellation itself can prevent that while still
+	 * destroying the section. Hoist any such callbacks to the new top section,
+	 * which we assume will itself have to be cancelled or rolled back to
+	 * resolve the error.
+	 *
+	 * @param IDatabase $db
+	 * @param AtomicSectionIdentifier[] $sectionIds ID of an actual savepoint
+	 * @param AtomicSectionIdentifier|null $newSectionId New top section ID.
+	 * @throws UnexpectedValueException
+	 */
+	public function modifyCallbacksForCancel(
+		IDatabase $db,
+		array $sectionIds,
+		AtomicSectionIdentifier $newSectionId = null
+	) {
+		// Cancel the "on commit" callbacks owned by this savepoint
+		$this->trxPostCommitOrIdleCallbacks = array_filter(
+			$this->trxPostCommitOrIdleCallbacks,
+			static function ( $entry ) use ( $sectionIds ) {
+				return !in_array( $entry[2], $sectionIds, true );
+			}
+		);
+		$this->trxPreCommitOrIdleCallbacks = array_filter(
+			$this->trxPreCommitOrIdleCallbacks,
+			static function ( $entry ) use ( $sectionIds ) {
+				return !in_array( $entry[2], $sectionIds, true );
+			}
+		);
+		// Make "on resolution" callbacks owned by this savepoint to perceive a rollback
+		foreach ( $this->trxEndCallbacks as $key => $entry ) {
+			if ( in_array( $entry[2], $sectionIds, true ) ) {
+				$callback = $entry[0];
+				$this->trxEndCallbacks[$key][0] = static function () use ( $callback, $db ) {
+					return $callback( IDatabase::TRIGGER_ROLLBACK, $db );
+				};
+				// This "on resolution" callback no longer belongs to a section.
+				$this->trxEndCallbacks[$key][2] = null;
+			}
+		}
+		// Hoist callback ownership for section cancel callbacks to the new top section
+		foreach ( $this->trxSectionCancelCallbacks as $key => $entry ) {
+			if ( in_array( $entry[2], $sectionIds, true ) ) {
+				$this->trxSectionCancelCallbacks[$key][2] = $newSectionId;
+			}
+		}
+	}
+
+	public function consumeEndCallbacks( $trigger ): array {
+		$callbackEntries = array_merge(
+			$this->trxPostCommitOrIdleCallbacks,
+			$this->trxEndCallbacks,
+			( $trigger === IDatabase::TRIGGER_ROLLBACK )
+				? $this->trxSectionCancelCallbacks
+				: [] // just consume them
+		);
+		$this->trxPostCommitOrIdleCallbacks = []; // consumed (and recursion guard)
+		$this->trxEndCallbacks = []; // consumed (recursion guard)
+		$this->trxSectionCancelCallbacks = []; // consumed (recursion guard)
+
+		return $callbackEntries;
+	}
+
+	/**
+	 * Consume and run any relevant "on atomic section cancel" callbacks for the active transaction
+	 *
+	 * @param IDatabase $db
+	 * @param int $trigger IDatabase::TRIGGER_* constant
+	 * @param AtomicSectionIdentifier[] $sectionIds IDs of the sections that where just cancelled
+	 * @throws Throwable Any exception thrown by a callback
+	 */
+	public function runOnAtomicSectionCancelCallbacks( IDatabase $db, int $trigger, array $sectionIds ) {
+		// Drain the queue of matching "atomic section cancel" callbacks until there are none
+		$unrelatedCallbackEntries = [];
+		do {
+			$callbackEntries = $this->trxSectionCancelCallbacks;
+			$this->trxSectionCancelCallbacks = []; // consumed (recursion guard)
+			foreach ( $callbackEntries as $entry ) {
+				if ( in_array( $entry[2], $sectionIds, true ) ) {
+					try {
+						// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
+						$entry[0]( $trigger, $db );
+					} catch ( Throwable $trxError ) {
+						$this->setTransactionError( $trxError );
+						throw $trxError;
+					}
+				} else {
+					$unrelatedCallbackEntries[] = $entry;
+				}
+			}
+			// @phan-suppress-next-line PhanImpossibleConditionInLoop
+		} while ( $this->trxSectionCancelCallbacks );
+
+		$this->trxSectionCancelCallbacks = $unrelatedCallbackEntries;
+	}
+
+	/**
+	 * Consume and run any "on transaction pre-commit" callbacks
+	 *
+	 * @param IDatabase $db
+	 * @return int Number of callbacks attempted
+	 * @throws Throwable Any exception thrown by a callback
+	 */
+	public function runOnTransactionPreCommitCallbacks( IDatabase $db ): int {
+		$count = 0;
+
+		// Drain the queues of transaction "precommit" callbacks until it is empty
+		do {
+			$callbackEntries = $this->trxPreCommitOrIdleCallbacks;
+			$this->trxPreCommitOrIdleCallbacks = []; // consumed (and recursion guard)
+			$count += count( $callbackEntries );
+			foreach ( $callbackEntries as $entry ) {
+				try {
+					// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
+					$entry[0]( $db );
+				} catch ( Throwable $trxError ) {
+					$this->setTransactionError( $trxError );
+					throw $trxError;
+				}
+			}
+			// @phan-suppress-next-line PhanImpossibleConditionInLoop
+		} while ( $this->trxPreCommitOrIdleCallbacks );
+
+		return $count;
+	}
+
+	public function clearPreEndCallbacks() {
+		$this->trxPostCommitOrIdleCallbacks = [];
+		$this->trxPreCommitOrIdleCallbacks = [];
+	}
+
+	public function clearEndCallbacks() {
+		$this->trxEndCallbacks = []; // don't copy
+		$this->trxSectionCancelCallbacks = []; // don't copy
+	}
+
+	public function writesOrCallbacksPending(): bool {
+		return $this->trxLevel() && (
+				$this->trxDoneWrites ||
+				$this->trxPostCommitOrIdleCallbacks ||
+				$this->trxPreCommitOrIdleCallbacks ||
+				$this->trxEndCallbacks ||
+				$this->trxSectionCancelCallbacks
+			);
+	}
+
+	/**
+	 * List the methods that have write queries or callbacks for the current transaction
+	 *
+	 * @return string[]
+	 */
+	public function pendingWriteAndCallbackCallers(): array {
+		$fnames = $this->pendingWriteCallers();
+		foreach ( [
+			$this->trxPostCommitOrIdleCallbacks,
+			$this->trxPreCommitOrIdleCallbacks,
+			$this->trxEndCallbacks,
+			$this->trxSectionCancelCallbacks
+		] as $callbacks ) {
+			foreach ( $callbacks as $callback ) {
+				$fnames[] = $callback[1];
+			}
+		}
+
+		return $fnames;
+	}
+
+	/**
+	 * List the methods that have precommit callbacks for the current transaction
+	 *
+	 * @return string[]
+	 */
+	public function pendingPreCommitCallbackCallers(): array {
+		$fnames = $this->pendingWriteCallers();
+		foreach ( $this->trxPreCommitOrIdleCallbacks as $callback ) {
+			$fnames[] = $callback[1];
+		}
+
+		return $fnames;
+	}
+
+	public function isEndCallbacksSuppressed(): bool {
+		return $this->trxEndCallbacksSuppressed;
+	}
+
+	public function getRecurringCallbacks() {
+		return $this->trxRecurringCallbacks;
+	}
+
+	public function countPostCommitOrIdleCallbacks() {
+		return count( $this->trxPostCommitOrIdleCallbacks );
+	}
+
+	public function onRollback( IDatabase $db ) {
+		$oldTrxId = $this->consumeTrxId();
+		$this->setTrxStatusToNone();
+		$this->resetTrxAtomicLevels();
+		$this->clearPreEndCallbacks();
+		$this->transactionWritingOut( $db, $oldTrxId );
+	}
+
+	public function onCommitInCriticalSection( IDatabase $db ) {
+		$lastWriteTime = null;
+		$oldTrxId = $this->consumeTrxId();
+		$this->setTrxStatusToNone();
+		if ( $this->trxDoneWrites ) {
+			$lastWriteTime = microtime( true );
+			$this->transactionWritingOut( $db, $oldTrxId );
+		}
+		return $lastWriteTime;
+	}
+
+	public function onEndAtomicInCriticalSection( $sectionId ) {
+		// Hoist callback ownership for callbacks in the section that just ended;
+		// all callbacks should have an owner that is present in trxAtomicLevels.
+		$currentSectionId = $this->currentAtomicSectionId();
+		if ( $currentSectionId ) {
+			$this->reassignCallbacksForSection( $sectionId, $currentSectionId );
+		}
+	}
+
+	public function onFlushSnapshot( IDatabase $db, $fname, $flush, $trxRoundId ) {
+		if ( $this->explicitTrxActive() ) {
+			// Committing this transaction would break callers that assume it is still open
+			throw new DBUnexpectedError(
+				$db,
+				"$fname: Cannot flush snapshot; " .
+				"explicit transaction '{$this->trxFname}' is still open"
+			);
+		} elseif ( $this->writesOrCallbacksPending() ) {
+			// This only flushes transactions to clear snapshots, not to write data
+			$fnames = implode( ', ', $this->pendingWriteAndCallbackCallers() );
+			throw new DBUnexpectedError(
+				$db,
+				"$fname: Cannot flush snapshot; " .
+				"writes from transaction {$this->trxFname} are still pending ($fnames)"
+			);
+		} elseif (
+			$this->trxLevel() &&
+			$trxRoundId &&
+			$flush !== IDatabase::FLUSHING_INTERNAL &&
+			$flush !== IDatabase::FLUSHING_ALL_PEERS
+		) {
+			$this->logger->warning(
+				"$fname: Expected mass snapshot flush of all peer transactions " .
+				"in the explicit transactions round '{$trxRoundId}'",
+				[
+					'exception' => new RuntimeException(),
+					'db_log_category' => 'trx'
+				]
+			);
+		}
+	}
+
+	public function onGetScopedLockAndFlush( IDatabase $db, $fname ) {
+		if ( $this->writesOrCallbacksPending() ) {
+			// This only flushes transactions to clear snapshots, not to write data
+			$fnames = implode( ', ', $this->pendingWriteAndCallbackCallers() );
+			throw new DBUnexpectedError(
+				$db,
+				"$fname: Cannot flush pre-lock snapshot; " .
+				"writes from transaction {$this->trxFname} are still pending ($fnames)"
+			);
+		}
 	}
 }

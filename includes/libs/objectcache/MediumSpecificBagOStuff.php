@@ -1123,7 +1123,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @param string $op Operation name as a MediumSpecificBagOStuff::METRIC_OP_* constant
 	 * @param array<int,string>|array<string,int[]> $keyInfo Key list, if payload sizes are not
 	 *  applicable, otherwise, map of (key => (send payload size, receive payload size)); send
-	 *  and receive sizes are null where not applicable and receive sizes are "false" for keys
+	 *  and receive sizes are 0 where not applicable and receive sizes are "false" for keys
 	 *  that were not found during read operations
 	 */
 	protected function updateOpStats( string $op, array $keyInfo ) {
@@ -1135,8 +1135,8 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 				list( $sPayloadSize, $rPayloadSize ) = $keyOrSizes;
 			} else {
 				$key = $keyOrSizes;
-				$sPayloadSize = null;
-				$rPayloadSize = null;
+				$sPayloadSize = 0;
+				$rPayloadSize = 0;
 			}
 
 			// Metric prefix for the cache wrapper and key collection name

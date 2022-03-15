@@ -1490,9 +1490,9 @@ abstract class Maintenance {
 		}
 		for ( $i = $seconds; $i >= 0; $i-- ) {
 			if ( $i != $seconds ) {
-				$this->output( str_repeat( "\x08", strlen( $i + 1 ) ) );
+				$this->output( str_repeat( "\x08", strlen( (string)( $i + 1 ) ) ) );
 			}
-			$this->output( $i );
+			$this->output( (string)$i );
 			if ( $i ) {
 				sleep( 1 );
 			}
@@ -1519,7 +1519,7 @@ abstract class Maintenance {
 	/**
 	 * Prompt the console for input
 	 * @param string $prompt What to begin the line with, like '> '
-	 * @return string Response
+	 * @return string|false Response
 	 */
 	public static function readconsole( $prompt = '> ' ) {
 		static $isatty = null;

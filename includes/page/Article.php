@@ -845,7 +845,7 @@ class Article implements Page {
 		$request = $this->getContext()->getRequest();
 		$user = $this->getContext()->getUser();
 		$diff = $request->getVal( 'diff' );
-		$rcid = $request->getVal( 'rcid' );
+		$rcid = $request->getInt( 'rcid' );
 		$diffOnly = $request->getBool( 'diffonly', $user->getOption( 'diffonly' ) );
 		$purge = $request->getRawVal( 'action' ) === 'purge';
 		$unhide = $request->getInt( 'unhide' ) == 1;
@@ -1924,7 +1924,7 @@ class Article implements Page {
 				&& !$this->mRedirectedFrom && !$this->getTitle()->isRedirect();
 			// Extension may have reason to disable file caching on some pages.
 			if ( $cacheable ) {
-				$cacheable = $this->getHookRunner()->onIsFileCacheable( $this );
+				$cacheable = $this->getHookRunner()->onIsFileCacheable( $this ) ?? false;
 			}
 		}
 

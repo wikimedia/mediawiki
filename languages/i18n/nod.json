@@ -517,5 +517,7 @@
 	"pagelang-language": "ᨽᩣᩈᩣ",
 	"view-view-foreign": "ᨹᩬᩴ᩵ᨷᩫ᩠ᨶ $1",
 	"view-create-local": "ᨲᩮᩬᩥ᩵ᨾᨣᩤᩴᨧᩣᨡᩱᨩᩪᨴᩦ᩵",
-	"nstab-mainpage": "ᩉ᩠ᨶ᩶ᩣᨣᩮᩢ᩶ᩣ"
+	"nstab-mainpage": "ᩉ᩠ᨶ᩶ᩣᨣᩮᩢ᩶ᩣ",
+	"skin-action-delete": "ᩃᩫ᩠ᨷ",
+	"skin-action-move": "ᨸᩖ᩠᩵ᨿᩁᨩᩨ᩵"
 }
