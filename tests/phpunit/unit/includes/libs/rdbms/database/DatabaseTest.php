@@ -284,6 +284,9 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		} catch ( RuntimeException $e ) {
 			$this->assertTrue( $db->getFlag( DBO_TRX ) );
 		}
+
+		$lbFactory->rollbackPrimaryChanges( __METHOD__ );
+		$lbFactory->flushPrimarySessions( __METHOD__ );
 	}
 
 	/**
@@ -366,6 +369,8 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 		$lbFactory->commitPrimaryChanges( __METHOD__ );
 		$this->assertFalse( $called, 'Not called in next round commit' );
+
+		$lbFactory->flushPrimarySessions( __METHOD__ );
 	}
 
 	/**
