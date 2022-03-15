@@ -27,7 +27,8 @@ use MediaWiki\Settings\Source\FileSource;
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script to generate doc/configuration.md from settings-schema.yaml
+ * Maintenance script to generate doc/configuration.md from
+ * includes/config-schema.yaml
  *
  * @ingroup Maintenance
  */
