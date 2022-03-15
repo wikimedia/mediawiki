@@ -39,6 +39,7 @@ use Wikimedia\Parsoid\ParserTests\StyleTag as ParsoidStyleTag;
 use Wikimedia\Parsoid\ParserTests\Test as ParsoidTest;
 use Wikimedia\Parsoid\ParserTests\TestUtils as ParsoidTestUtils;
 use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -1110,21 +1111,6 @@ class ParserTestRunner {
 	 */
 	private function wt2html( Parsoid $parsoid, PageConfig $pageConfig, ParsoidTest $test ) {
 		$opts = $test->options;
-		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
-			return false; // Skip test.
-		}
-
-		// Skip tests targetting features Parsoid doesn't (yet) support
-		// @todo T270312
-		if ( isset( $opts['styletag'] ) || isset( $opts['pst'] ) ||
-			isset( $opts['msg'] ) || isset( $opts['section'] ) ||
-			isset( $opts['replace'] ) || isset( $opts['comment'] ) ||
-			isset( $opts['preload'] ) || isset( $opts['showtitle'] ) ||
-			isset( $opts['showindicators'] ) || isset( $opts['ill'] ) ||
-			isset( $opts['cat'] ) || isset( $opts['showflags'] )
-		) {
-			return false; // skip test
-		}
 
 		$parsoidHtml = $test->sections['html/parsoid+integrated'] ?? $test->parsoidHtml;
 		if ( $test->wikitext === null || $parsoidHtml === null ) {
@@ -1150,6 +1136,7 @@ class ParserTestRunner {
 			'parsoidOnly' => $parsoidOnly,
 			'preserveIEW' => isset( $opts['parsoid']['preserveIEW'] ),
 		];
+
 		$out = ParsoidTestUtils::normalizeOut( $origOut, $normOpts );
 
 		// If we know this to be a known failure, compare against recorded result.
@@ -1166,6 +1153,9 @@ class ParserTestRunner {
 			$test->cachedNormalizedHTML = $expected;
 		}
 
+		$test->cachedBODYstr = $origOut;
+		$test->cachedNormalizedHTML = $expected;
+
 		return new ParserTestResult( [
 				'test' => $test->testName,
 				'desc' => ( $test->comment ?? '' ) . $test->testName,
@@ -1176,6 +1166,58 @@ class ParserTestRunner {
 				'line' => $test->lineNumStart,
 				'file' => $test->filename,
 			], $expected, $out );
+	}
+
+	/**
+	 * @param Parsoid $parsoid
+	 * @param PageConfig $pageConfig
+	 * @param ParsoidTest $test
+	 * @return ParserTestResult|false false if skipped
+	 */
+	private function wt2wt( Parsoid $parsoid, PageConfig $pageConfig, ParsoidTest $test ) {
+		$opts = $test->options;
+		if ( $test->wikitext === null ) {
+			return false; // FIXME: Is this an error in the test setup?
+		}
+
+		if ( $test->cachedBODYstr === null ) {
+			$test->cachedBODYstr = $parsoid->wikitext2html( $pageConfig, [
+				'body_only' => true,
+				'wrapSections' => $opts['parsoid']['wrapSections'] ?? false,
+			] );
+		}
+
+		// Handle a 'changes' option if present.
+		$testManualChanges = $testOpts['parsoid']['changes'] ?? null;
+		$doc = DOMUtils::parseHTML( $test->cachedBODYstr, true );
+		if ( $testManualChanges ) {
+			$test->applyManualChanges( $doc );
+		}
+
+		$wt = $parsoid->dom2wikitext( $pageConfig, $doc );
+
+		// If we know this to be a known failure, compare against recorded result.
+		// If a previously failing test now succeeds, we report PHPUnit failure.
+		// Known failures are handled / updated in a non-phpunit test run.
+		$expected = $test->knownFailures['wt2wt'] ?? null;
+		if ( !$expected ) {
+			if ( isset( $test->options['parsoid']['changes'] ) ) {
+				$expected = $test->sections['wikitext/edited'];
+			} else {
+				$expected = $test->wikitext;
+			}
+		}
+
+		return new ParserTestResult( [
+				'test' => $test->testName,
+				'desc' => ( $test->comment ?? '' ) . $test->testName,
+				'input' => $test->wikitext,
+				'result' => $test->legacyHtml,
+				'options' => $test->options,
+				'config' => $test->config,
+				'line' => $test->lineNumStart,
+				'file' => $test->filename,
+			], $expected, $wt );
 	}
 
 	/**
@@ -1195,12 +1237,28 @@ class ParserTestRunner {
 	 *  - options: Array of test options
 	 *  - config: Overrides for global variables, one per line
 	 * @param string $mode What test mode are will running this under?
-	 *    Valid modes are "wt2html", "wt2html+integrated" right now.
+	 *    Valid modes are defined in ParsoidTestFileSuite
 	 *
 	 * @return ParserTestResult|false false if skipped
 	 */
 	public function runParsoidTest( ParsoidTest $test, string $mode ) {
 		wfDebug( __METHOD__ . ": running {$test->testName} (parsoid:$mode)" );
+
+		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
+			return false; // Skip test.
+		}
+		// Skip tests targetting features Parsoid doesn't (yet) support
+		// @todo T270312
+		if ( isset( $opts['styletag'] ) || isset( $opts['pst'] ) ||
+			isset( $opts['msg'] ) || isset( $opts['section'] ) ||
+			isset( $opts['replace'] ) || isset( $opts['comment'] ) ||
+			isset( $opts['preload'] ) || isset( $opts['showtitle'] ) ||
+			isset( $opts['showindicators'] ) || isset( $opts['ill'] ) ||
+			isset( $opts['cat'] ) || isset( $opts['showflags'] )
+		) {
+			return false; // skip test
+		}
+
 		$services = MediaWikiServices::getInstance();
 		$pageConfigFactory = $services->get( 'ParsoidPageConfigFactory' );
 		$pageConfig = null;
@@ -1229,9 +1287,15 @@ class ParserTestRunner {
 				return $pageConfig->getParserOptions();
 			} );
 
-		$parsoid = $this->createParsoid( $test->options );
+		$parsoid = $test->parsoid ?? null;
+		if ( !$parsoid ) {
+			// Cache the Parsoid object
+			$parsoid = $test->parsoid = $this->createParsoid( $test->options );
+		}
 		if ( $mode === 'wt2html' || $mode === 'wt2html+integrated' ) {
 			return $this->wt2html( $parsoid, $pageConfig, $test );
+		} elseif ( $mode === 'wt2wt' ) {
+			return $this->wt2wt( $parsoid, $pageConfig, $test );
 		} else {
 			// Unsupported Mode
 			return false;

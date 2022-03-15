@@ -14,6 +14,8 @@ use Wikimedia\ScopedCallback;
 class ParsoidTestFileSuite extends TestSuite {
 	use SuiteEventsTrait;
 
+	public const VALID_TEST_MODES = [ 'wt2html', 'wt2html+integrated', 'wt2wt' ];
+
 	private $ptRunner;
 	private $ptFileName;
 	private $ptFileInfo;
@@ -43,10 +45,7 @@ class ParsoidTestFileSuite extends TestSuite {
 		}
 
 		foreach ( $this->ptFileInfo->testCases as $t ) {
-			// For starters, just assume wt2html test runner modes.
-			$validModes = [ 'wt2html', 'wt2html+integrated' ];
-			$testModes = $t->computeTestModes( $validModes );
-
+			$testModes = $t->computeTestModes( self::VALID_TEST_MODES );
 			$runnerOpts = [ 'numchanges' => 20 ]; // the default in Parsoid
 			$suite = $this;
 			$t->testAllModes( $testModes, $runnerOpts,
