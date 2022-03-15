@@ -255,7 +255,6 @@ class LogPage {
 				$titleLink = self::getTitleLink( $title, $langObjOrNull );
 
 				if ( count( $params ) == 0 ) {
-					// @phan-suppress-next-line SecurityCheck-XSS
 					$rv = wfMessage( $logActions[$key] )->rawParams( $titleLink )
 						->inLanguage( $langObj )->escaped();
 				} else {
