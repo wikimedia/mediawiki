@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.43.1
+ * OOUI v0.43.2-pre (630d30f69c)
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-02-10T15:03:45Z
+ * Date: 2022-03-11T22:31:30Z
  */
 ( function ( OO ) {
 
@@ -1419,10 +1419,9 @@ OO.ui.Element.static.scrollIntoView = function ( elOrPosition, config ) {
 	if ( !$.isEmptyObject( animations ) ) {
 		if ( animate ) {
 			// eslint-disable-next-line no-jquery/no-animate
-			$container.stop( true ).animate( animations, config.duration === undefined ? 'fast' : config.duration );
-			$container.queue( function ( next ) {
-				deferred.resolve();
-				next();
+			$container.stop( true ).animate( animations, {
+				duration: config.duration === undefined ? 'fast' : config.duration,
+				always: deferred.resolve
 			} );
 		} else {
 			$container.stop( true );
@@ -6525,10 +6524,31 @@ OO.ui.PopupButtonWidget = function OoUiPopupButtonWidget( config ) {
 		click: 'onAction'
 	} );
 
+	// Set up id for use in aria-describedby and aria-owns
+	var buttonId = this.$element.attr( 'id' );
+	if ( buttonId === undefined ) {
+		buttonId = OO.ui.generateElementId();
+		this.$element.attr( 'id', buttonId );
+	}
+	var popupId = this.popup.$element.attr( 'id' );
+	if ( popupId === undefined ) {
+		popupId = OO.ui.generateElementId();
+		this.popup.$element.attr( 'id', popupId );
+	}
+
 	// Initialization
-	this.$element.addClass( 'oo-ui-popupButtonWidget' );
+	this.$element
+		.addClass( 'oo-ui-popupButtonWidget' )
+		.attr( {
+			'aria-haspopup': 'dialog',
+			'aria-owns': popupId
+		} );
 	this.popup.$element
 		.addClass( 'oo-ui-popupButtonWidget-popup' )
+		.attr( {
+			role: 'dialog',
+			'aria-describedby': buttonId
+		} )
 		.toggleClass( 'oo-ui-popupButtonWidget-framed-popup', this.isFramed() )
 		.toggleClass( 'oo-ui-popupButtonWidget-frameless-popup', !this.isFramed() );
 	this.$overlay.append( this.popup.$element );
@@ -8962,7 +8982,9 @@ OO.ui.RadioSelectWidget = function OoUiRadioSelectWidget( config ) {
 	// Initialization
 	this.$element
 		.addClass( 'oo-ui-radioSelectWidget' )
-		.attr( 'role', 'radiogroup' );
+		.attr( 'role', 'radiogroup' )
+		// Not applicable to 'radiogroup', and it would always be 'false' anyway
+		.removeAttr( 'aria-multiselectable' );
 };
 
 /* Setup */
