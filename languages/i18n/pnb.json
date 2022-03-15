@@ -2729,7 +2729,6 @@
 	"specialmute-header": "Please select your mute preferences for user <b>{{BIDI:[[User:$1|$1]]}}</b>.\nبراہ کرم ورتنوالے <b>{{BIDI:[[User:$1|$1]]}}</b> دے لئي اپنی میوٹ ترجیحاں منتخب کرو۔",
 	"mute-preferences": "خاموشی ترجیحاں",
 	"paramvalidator-help-type-title": "قسم:صفحہ عنوان",
-	"view-view-foreign": "$1 تے ویکھو",
 	"view-create-local": "آپنی لکھت رلاؤ",
 	"nstab-mainpage": "پہلا صفحہ",
 	"view-edit-local": "مقامی تفصیل درج کرو",

@@ -22,6 +22,7 @@
 			"Xiplus",
 			"Zhxy 519",
 			"列维劳德",
+			"星海",
 			"烈羽"
 		]
 	},
@@ -1549,6 +1550,7 @@
 	"api-help-parameters": "{{PLURAL:$1|參數}}：",
 	"api-help-param-deprecated": "已棄用。",
 	"api-help-param-internal": "內部。",
+	"api-help-param-internal-label": "內部",
 	"api-help-param-templated": "此為[[Special:ApiHelp/main#main/templatedparams|模板參數]]。當做出請求時，$2。",
 	"api-help-param-templated-var-first": "在參數名稱裡的 <var>&#x7B;$1&#x7D;</var> 應替換成 <var>$2</var> 的值",
 	"api-help-param-templated-var": "<var>&#x7B;$1&#x7D;</var> 與 <var>$2</var> 的值",
@@ -1591,7 +1593,7 @@
 	"apierror-allimages-redirect": "當使用 <kbd>allimages</kbd> 作為產生器時，請改用 <kbd>gaifilterredir=nonredirects</kbd> 而不是 <var>redirects</var>。",
 	"apierror-allpages-generator-redirects": "當使用 <kbd>allpages</kbd> 作為產生器時，請改用 <kbd>gapfilterredir=nonredirects</kbd> 而不是 <var>redirects</var>。",
 	"apierror-appendnotsupported": "無法附加到使用內容模組 $1 的頁面。",
-	"apierror-articleexists": "您所嘗試建立的條目剛剛已被創建。",
+	"apierror-articleexists": "您所嘗試建立的條目已被創建。",
 	"apierror-assertanonfailed": "您已不再登出，所以操作無法完成。",
 	"apierror-assertbotfailed": "您沒有 <code>bot</code> 權限，所以操作無法完成。",
 	"apierror-assertnameduserfailed": "您已不再以「$1」身份登入，所以操作無法完成。",

@@ -600,7 +600,6 @@
 	"searchsuggest-search": "去寻{{SITENAME}}",
 	"duration-days": "$1{{PLURAL:$1|天}}",
 	"randomrootpage": "随机亇页面",
-	"view-view-foreign": "到$1克看",
 	"view-create-local": "加一个本地说明",
 	"nstab-mainpage": "頭面",
 	"view-edit-local": "写本地说明",

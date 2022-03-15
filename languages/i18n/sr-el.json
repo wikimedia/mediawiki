@@ -4007,7 +4007,6 @@
 	"paramvalidator-help-type-user-subtype-cidr": "IP opseg",
 	"paramvalidator-help-type-user-subtype-interwiki": "međuviki ime (npr. „prefiks>Primer”)",
 	"paramvalidator-help-type-user-subtype-id": "ID korisnika (npr. „#12345”)",
-	"view-view-foreign": "Prikaži na projektu $1",
 	"view-create-local": "Dodaj lokalni opis",
 	"nstab-mainpage": "Glavna strana",
 	"view-edit-local": "Uredi lokalni opis",

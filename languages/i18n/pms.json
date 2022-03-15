@@ -3933,7 +3933,6 @@
 	"paramvalidator-help-type-title-must-exist": "A aceta mach dle pàgine ch'a esisto.",
 	"paramvalidator-help-type-title-no-must-exist": "A aceta dle pàgine nen esistente.",
 	"nonmain-slot-differences-therefore-readonly": "A peul pa modifiché 'l test wiki su sta revision dla pàgina, përchè a-i son ëstaje dij cangiament ai dat ëd la pàgina sucessiv a la revision ch'a son nen basà an sël test wiki. [$1 Për ripristiné sta revision ch'a sgnaca sì.]",
-	"view-view-foreign": "Vëdde su $1",
 	"view-create-local": "Gionté na descrission local",
 	"nstab-mainpage": "Pàgina prinsipal",
 	"view-edit-local": "Modifiché la descrission local",

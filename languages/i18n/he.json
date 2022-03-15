@@ -4089,7 +4089,6 @@
 	"config-missing-key": "חסר פרמטר הגדרות מדיה־ויקי \"$1\"",
 	"config-invalid-key": "פרמטר הגדרות מדיה־ויקי בלתי־תקין \"$1\", שגיאה: $2",
 	"changeslist-nocomment": "אין תקציר עריכה",
-	"view-view-foreign": "הצגה ב{{GRAMMAR:תחילית|$1}}",
 	"view-create-local": "הוספת תיאור מקומי",
 	"nstab-mainpage": "עמוד ראשי",
 	"view-edit-local": "עריכת התיאור המקומי",

@@ -1808,7 +1808,6 @@
 	"duration-days": "$1 {{PLURAL:$1|deinā|dēinas}}",
 	"mediastatistics-bytespertype": "Empīrintan debban stēisan zūrbrukin per šan sekciōnin {{PLURAL:$4|stesse $4 |$4 stēisan}} zūrbrukin ($5%): {{PLURAL:$1|$1 bāitan|$1 bāitai}} ($2; $3%).",
 	"mediastatistics-allbytes": "Empīrintan debban stēisan zurbrūkin per wissans {{PLURAL:$3|$3 zūrbrukin|$3 zūrbrukins}}: {{PLURAL:$1|$1 bāitan|$1 bāitai}} ($2).",
-	"view-view-foreign": "Wīdais en $1",
 	"view-create-local": "Preidāis lōkalin enpeisāsenin",
 	"nstab-mainpage": "Galwas pāusan",
 	"skin-action-protect": "Pakūnteis",

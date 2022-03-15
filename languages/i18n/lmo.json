@@ -3952,7 +3952,6 @@
 	"nonmain-slot-differences-therefore-readonly": "A se po minga modifegà el wikitest in questa version chì de la pagina, desgià che in la pagina gh'è stad di cambiament ai dati dopo de la version medesima ch'a inn fondad minga sora 'l wikitest . [$1 Per tornà a 'me che l'era clica chichinscì.]",
 	"config-missing-key": "A ghe cala on parameter de la configurazzion MediaWiki \"$1\"",
 	"config-invalid-key": "Parameter de la configurazzion MediaWiki minga valid \"$1\": $2",
-	"view-view-foreign": "Varda su $1",
 	"view-create-local": "Sgiontegh 'na descrizzion local",
 	"nstab-mainpage": "Pagina principal",
 	"view-edit-local": "Cambia la descrizzion local",

@@ -4055,7 +4055,6 @@
 	"config-missing-key": "미디어위키 설정 변수 \"$1\"이 없습니다",
 	"config-invalid-key": "미디어위키 설정 변수 \"$1\"이 잘못되었습니다: $2",
 	"changeslist-nocomment": "편집 요약 없음",
-	"view-view-foreign": "$1에서 보기",
 	"view-create-local": "로컬 설명 추가",
 	"nstab-mainpage": "대문",
 	"view-edit-local": "로컬 설명 편집",

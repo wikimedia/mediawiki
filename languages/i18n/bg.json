@@ -3925,7 +3925,6 @@
 	"paramvalidator-help-type-user-subtype-cidr": "IP-диапазон",
 	"paramvalidator-help-type-user-subtype-interwiki": "име на междууикито (напр. „представка>ПримерноИме“)",
 	"paramvalidator-help-type-user-subtype-id": "Идентификатор на потребителя (напр. „#12345“)",
-	"view-view-foreign": "Преглед в $1",
 	"view-create-local": "Добавяне на локално описание",
 	"nstab-mainpage": "Начална страница",
 	"view-edit-local": "Редактиране на локалното описание",

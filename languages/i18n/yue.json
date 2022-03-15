@@ -3265,7 +3265,6 @@
 	"paramvalidator-help-type-user-subtype-name": "用戶名",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP範圍",
-	"view-view-foreign": "用 $1 睇",
 	"view-create-local": "加本地說明",
 	"nstab-mainpage": "頭版",
 	"view-edit-local": "改本地說明",

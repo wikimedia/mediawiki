@@ -4065,7 +4065,6 @@
 	"paramvalidator-help-type-title": "Тип: наслов странице",
 	"paramvalidator-help-type-title-must-exist": "Прихвата само странице које постоје.",
 	"paramvalidator-help-type-title-no-must-exist": "Прихвата непостојеће странице.",
-	"view-view-foreign": "Прикажи на пројекту $1",
 	"view-create-local": "Додај локални опис",
 	"nstab-mainpage": "Главна страна",
 	"view-edit-local": "Уреди локални опис",

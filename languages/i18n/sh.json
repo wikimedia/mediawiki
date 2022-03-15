@@ -3761,7 +3761,6 @@
 	"deflate-invaliddeflate": "Sadržaj nije ispravno pročišćen",
 	"unprotected-js": "JavaScript ne može da se učita sa nezaštićenih stranica iz bezbednosnih razloga. Samo napravite JavaScript u imenskom prostoru MediaWiki: ili kao korisničku podstranicu",
 	"userlogout-continue": "Želite se odjaviti?",
-	"view-view-foreign": "Vidi na $1",
 	"view-create-local": "Dodaj lokalni opis",
 	"nstab-mainpage": "Glavna stranica",
 	"view-edit-local": "Uredi lokalni opis",

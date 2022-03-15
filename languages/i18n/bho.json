@@ -1842,7 +1842,6 @@
 	"pagedata-title": "पन्ना डेटा",
 	"pagedata-not-acceptable": "कौनों मैच करत फारमेट ना मिलल। सपोर्ट होखे वाला माइम (MIME) प्रकार: $1",
 	"pagedata-bad-title": "अबैध टाइटिल: $1।",
-	"view-view-foreign": "$1 पर देखीं",
 	"view-create-local": "लोकल बिबरन जोड़ीं",
 	"nstab-mainpage": "पहिलका पन्ना",
 	"view-edit-local": "लोकल बिबरन संपादित करीं",

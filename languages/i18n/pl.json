@@ -4107,7 +4107,6 @@
 	"config-missing-key": "Brakujący parametr konfiguracyjny MediaWiki \"$1\".",
 	"config-invalid-key": "Nieprawidłowy parametr konfiguracyjny MediaWiki \"$1\": $2.",
 	"changeslist-nocomment": "Nie podano opisu zmian",
-	"view-view-foreign": "Zobacz w {{grammar:MS.lp|$1}}",
 	"view-create-local": "Dodaj lokalny opis",
 	"nstab-mainpage": "Strona główna",
 	"view-edit-local": "Edytuj lokalny opis",

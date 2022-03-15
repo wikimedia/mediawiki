@@ -4095,7 +4095,6 @@
 	"paramvalidator-help-type-user-subtype-id": "معرف المستخدم (مثال \"#12345\")",
 	"paramvalidator-help-type-title": "النوع: عنوان صفحة",
 	"changeslist-nocomment": "لا ملخص تعديل",
-	"view-view-foreign": "اعرض في $1",
 	"view-create-local": "أضف وصفًا محليًا",
 	"nstab-mainpage": "الصفحة الرئيسية",
 	"view-edit-local": "عدل الوصف المحلي",

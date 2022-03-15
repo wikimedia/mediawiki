@@ -3206,7 +3206,6 @@
 	"passwordpolicies-group": "समूह",
 	"passwordpolicies-policies": "राजनीति",
 	"passwordpolicies-policy-minimalpasswordlength": "कूटशब्द कमसँ कम {{PLURAL:$1|1 वर्ण|$1 वर्णक}} हुअए।",
-	"view-view-foreign": "$1 पर देखी",
 	"view-create-local": "स्थानीय विवरण निर्माण",
 	"nstab-mainpage": "सम्मुख पन्ना",
 	"view-edit-local": "स्थानीय विवरण सम्पादन",

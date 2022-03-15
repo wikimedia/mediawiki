@@ -3825,7 +3825,6 @@
 	"paramvalidator-help-type-user-subtype-cidr": "Intervallo IP",
 	"paramvalidator-help-type-user-subtype-interwiki": "nomme interwiki (prez. \"prefisso>NommePerExempio\")",
 	"paramvalidator-help-type-user-subtype-id": "ID utente (prez. \"#12345\")",
-	"view-view-foreign": "Véddi in sce $1",
 	"view-create-local": "Azónzi descriçión locâle",
 	"nstab-mainpage": "Pàgina prinçipâ",
 	"view-edit-local": "Modifica descrission locale",

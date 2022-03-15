@@ -2735,7 +2735,6 @@
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "ពាក្យសម្ងាត់ត្រូវ​តែវែងជាង$1 {{PLURAL:$1|តួអក្សរ|តួអក្សរ}}ទើបអាចកត់ឈ្មោះចូលបាន",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "ពាក្យសម្ងាត់មិនអាចត្រូវគ្នានឹងបញ្ជីជាក់លាក់មួយដែលចុះនូវពាក្យសម្ងាត់លំនាំដើមទេ",
 	"passwordpolicies-policy-maximalpasswordlength": "ពាក្យសម្ងាត់ត្រូវតែខ្លីជាង $1 {{PLURAL:$1|តួអក្សរ|តួអក្សរ}}",
-	"view-view-foreign": "មើលលើ $1",
 	"view-create-local": "បន្ថែមចំណារពន្យល់ដើម",
 	"nstab-mainpage": "ទំព័រដើម",
 	"view-edit-local": "កែប្រែចំណារពន្យល់ដើម",

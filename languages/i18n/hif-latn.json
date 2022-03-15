@@ -2989,7 +2989,6 @@
 	"undelete-cantcreate": "Aap ii panna ke undelete nai kare saktaa hai, kaaheki aap ke ii naam ke koi panna nai hai aur aap ke ii panna ke banae ke adhikaar nai hai.",
 	"pagedata-title": "Panna ke data",
 	"pagedata-text": "Ii panna aur panna ke data interface provide kare hai. Meharbaani kar ke, URL me panna ke title, subpage syntax ke kaam me laae ke, likho\n* Content negotiation applies based on you client's Accept header. This means that the page data will be provided in the format preferred by your client.",
-	"view-view-foreign": "$1 pe dekho",
 	"view-create-local": "Local description ke jorro",
 	"nstab-mainpage": "Pahila panna",
 	"view-edit-local": "Local description ke badlo",

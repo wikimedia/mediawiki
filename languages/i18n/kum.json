@@ -799,7 +799,6 @@
 	"searchsuggest-search": "{{SITENAME}} ичинде излемек",
 	"duration-days": "$1 {{PLURAL:$1|гюн}}",
 	"randomrootpage": "Хапарсыз тамур сагьифасы",
-	"view-view-foreign": "$1 сайтында къарамакъ",
 	"view-create-local": "Ерли сыпатлавун тюзлемек",
 	"nstab-mainpage": "Баш сагьифа",
 	"skin-action-protect": "Къорумакъ",

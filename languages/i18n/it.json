@@ -4086,7 +4086,6 @@
 	"paramvalidator-help-type-title-must-exist": "Accetta solamente pagine esistenti.",
 	"paramvalidator-help-type-title-no-must-exist": "Accetta pagine non esistenti.",
 	"changeslist-nocomment": "Nessun oggetto della modifica",
-	"view-view-foreign": "Vedi su $1",
 	"view-create-local": "Aggiungi descrizione locale",
 	"nstab-mainpage": "Pagina principale",
 	"view-edit-local": "Modifica descrizione locale",

@@ -4249,7 +4249,6 @@
 	"config-missing-key": "MediaWiki設定引数「$1」が不足しています",
 	"config-invalid-key": "不正なMediaWiki設定引数「$1」：$2",
 	"changeslist-nocomment": "編集の要約なし",
-	"view-view-foreign": "$1で閲覧",
 	"view-create-local": "ローカルの解説を作成",
 	"nstab-mainpage": "メインページ",
 	"view-edit-local": "ローカルの解説を編集",

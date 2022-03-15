@@ -3973,7 +3973,6 @@
 	"config-missing-key": "Manjka konfiguracijski parameter MediaWiki »$1«",
 	"config-invalid-key": "Neveljaven konfiguracijski parameter MediaWiki »$1«: $2",
 	"changeslist-nocomment": "Brez povzetka urejanja",
-	"view-view-foreign": "Ogled na: $1",
 	"view-create-local": "Dodaj lokalni opis",
 	"nstab-mainpage": "Glavna stran",
 	"view-edit-local": "Uredi lokalni opis",

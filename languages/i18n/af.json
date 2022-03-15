@@ -2884,7 +2884,6 @@
 	"passwordpolicies-policy-minimalpasswordlength": "Wagwoord moet ten minste $1 {{PLURAL:$1|karakter|karakters}} lank wees",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Wagwoord moet ten minste $1 {{PLURAL:$1|karakter|karakters}} lank wees om te kan aanmeld",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "Wagwoord kan nie 'n substring binne die gebruikersnaam wees nie",
-	"view-view-foreign": "Wys op $1",
 	"view-create-local": "Voeg 'n plaaslike beskrywing by",
 	"nstab-mainpage": "Tuisblad",
 	"view-edit-local": "Wysig plaaslike beskrywing",

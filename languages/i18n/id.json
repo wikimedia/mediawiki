@@ -4125,7 +4125,6 @@
 	"config-missing-key": "Parameter konfigurasi MediaWiki \"$1\" tidak ada",
 	"config-invalid-key": "Parameter konfigurasi MediaWiki \"$1\" tidak valid: $2",
 	"changeslist-nocomment": "Tidak ada ringkasan suntingan",
-	"view-view-foreign": "Lihat di $1",
 	"view-create-local": "Tambah deskripsi lokal",
 	"nstab-mainpage": "Utama",
 	"view-edit-local": "Sunting deskripsi lokal",
