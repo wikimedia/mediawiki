@@ -125,17 +125,32 @@
 		// can change where they are output).
 		// FIXME: This is prone to breaking any time Vector's HTML for portals change.
 
-		if ( !document.getElementById( 'p-lang' ) && document.getElementById( 'p-tb' ) && mw.config.get( 'skin' ) === 'vector' ) {
+		if ( !document.getElementById( 'p-lang' ) && document.getElementById( 'p-tb' ) && ( mw.config.get( 'skin' ) === 'vector' || mw.config.get( 'skin' ) === 'vector-2022' ) ) {
 			$( '.portal' ).last().after(
-				$( '<div>' ).attr( {
-					class: 'vector-menu vector-menu-portal portal',
-					id: 'p-lang',
-					role: 'navigation',
-					'aria-labelledby': 'p-lang-label'
-				} )
-					.append( $( '<h3>' ).attr( 'id', 'p-lang-label' ).text( mw.msg( 'otherlanguages' ) ) )
-					.append( $( '<div>' ).addClass( 'body vector-menu-content' ) )
-					.append( $( '<ul>' ).addClass( 'vector-menu-content-list' ) )
+				$( '<nav>' )
+					.attr( {
+						class: 'mw-portlet mw-portlet-lang vector-menu vector-menu-portal portal',
+						id: 'p-lang',
+						role: 'navigation',
+						'aria-labelledby': 'p-lang-label'
+					} )
+					.append(
+						$( '<label>' )
+							.attr( {
+								id: 'p-lang-label',
+								class: 'vector-menu-heading'
+							} )
+							.append(
+								$( '<span>' )
+									.addClass( 'vector-menu-heading-label' )
+									.text( mw.msg( 'otherlanguages' ) )
+							)
+					)
+					.append(
+						$( '<div>' )
+							.addClass( 'body vector-menu-content' )
+							.append( $( '<ul>' ).addClass( 'vector-menu-content-list' ) )
+					)
 			);
 		}
 
