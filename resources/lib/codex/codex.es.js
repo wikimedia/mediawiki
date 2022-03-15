@@ -29,7 +29,7 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-import { defineComponent, computed, openBlock, createElementBlock, normalizeClass, renderSlot, ref, toRef, createElementVNode, withKeys, withModifiers, withDirectives, vModelCheckbox, onMounted, toDisplayString, createCommentVNode, inject, createTextVNode, resolveComponent, normalizeStyle, mergeProps, vModelDynamic, createBlock, getCurrentInstance, provide, watch, createVNode, withCtx, Fragment, renderList, vShow, vModelRadio, toRefs } from "vue";
+import { defineComponent, computed, openBlock, createElementBlock, normalizeClass, renderSlot, ref, toRef, createElementVNode, withKeys, withModifiers, withDirectives, vModelCheckbox, onMounted, toDisplayString, createCommentVNode, createTextVNode, resolveComponent, createBlock, resolveDynamicComponent, withCtx, normalizeStyle, createVNode, getCurrentInstance, watch, Fragment, renderList, mergeProps, vShow, vModelDynamic, createSlots, vModelRadio, toRefs } from "vue";
 const LibraryPrefix = "cdx";
 const ButtonActions = [
   "default",
@@ -51,10 +51,8 @@ const TextInputTypes = [
   "text",
   "search"
 ];
-const MenuStateKey = Symbol("CdxMenuState");
-const MenuOptionsKey = Symbol("CdxMenuOptions");
 const DebounceInterval = 120;
-const MenuFooterValue = "cdx-menu-footer-option";
+const MenuFooterValue = "cdx-menu-footer-item";
 function makeStringTypeValidator(allowedValues) {
   return (s) => typeof s === "string" && allowedValues.indexOf(s) !== -1;
 }
@@ -68,7 +66,7 @@ var _export_sfc = (sfc, props) => {
 };
 const buttonTypeValidator = makeStringTypeValidator(ButtonTypes);
 const buttonActionValidator = makeStringTypeValidator(ButtonActions);
-const _sfc_main$d = defineComponent({
+const _sfc_main$f = defineComponent({
   name: "CdxButton",
   props: {
     action: {
@@ -102,7 +100,7 @@ const _sfc_main$d = defineComponent({
     };
   }
 });
-function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$f(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("button", {
     class: normalizeClass(["cdx-button", _ctx.rootClasses]),
     onClick: _cache[0] || (_cache[0] = (...args) => _ctx.onClick && _ctx.onClick(...args))
@@ -110,7 +108,7 @@ function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
     renderSlot(_ctx.$slots, "default")
   ], 2);
 }
-var CdxButton = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$d]]);
+var CdxButton = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["render", _sfc_render$f]]);
 function useModelWrapper(modelValueRef, emit, eventName) {
   return computed({
     get: () => modelValueRef.value,
@@ -118,7 +116,7 @@ function useModelWrapper(modelValueRef, emit, eventName) {
   });
 }
 var Checkbox_vue_vue_type_style_index_0_lang = "";
-const _sfc_main$c = defineComponent({
+const _sfc_main$e = defineComponent({
   name: "CdxCheckbox",
   props: {
     modelValue: {
@@ -170,18 +168,16 @@ const _sfc_main$c = defineComponent({
     };
   }
 });
-const _hoisted_1$c = ["aria-disabled"];
-const _hoisted_2$a = ["value", "disabled", ".indeterminate"];
-const _hoisted_3$7 = /* @__PURE__ */ createElementVNode("span", { class: "cdx-checkbox__icon" }, null, -1);
-const _hoisted_4$4 = { class: "cdx-checkbox__label-content" };
-function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$d = ["value", "disabled", ".indeterminate"];
+const _hoisted_2$9 = /* @__PURE__ */ createElementVNode("span", { class: "cdx-checkbox__icon" }, null, -1);
+const _hoisted_3$5 = { class: "cdx-checkbox__label-content" };
+function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", {
     class: normalizeClass(["cdx-checkbox", _ctx.rootClasses])
   }, [
     createElementVNode("label", {
       ref: "label",
       class: "cdx-checkbox__label",
-      "aria-disabled": _ctx.disabled,
       onClick: _cache[1] || (_cache[1] = (...args) => _ctx.focusInput && _ctx.focusInput(...args)),
       onKeydown: _cache[2] || (_cache[2] = withKeys(withModifiers((...args) => _ctx.clickLabel && _ctx.clickLabel(...args), ["prevent"]), ["enter"]))
     }, [
@@ -193,17 +189,17 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
         value: _ctx.inputValue,
         disabled: _ctx.disabled,
         ".indeterminate": _ctx.indeterminate
-      }, null, 8, _hoisted_2$a), [
+      }, null, 8, _hoisted_1$d), [
         [vModelCheckbox, _ctx.wrappedModel]
       ]),
-      _hoisted_3$7,
-      createElementVNode("span", _hoisted_4$4, [
+      _hoisted_2$9,
+      createElementVNode("span", _hoisted_3$5, [
         renderSlot(_ctx.$slots, "default")
       ])
-    ], 40, _hoisted_1$c)
+    ], 544)
   ], 2);
 }
-var Checkbox = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$c]]);
+var Checkbox = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["render", _sfc_render$e]]);
 var svgAlert = '<path d="M11.53 2.3A1.85 1.85 0 0010 1.21 1.85 1.85 0 008.48 2.3L.36 16.36C-.48 17.81.21 19 1.88 19h16.24c1.67 0 2.36-1.19 1.52-2.64zM11 16H9v-2h2zm0-4H9V6h2z"/>';
 var svgArticleSearch = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>';
 var svgCheck = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>';
@@ -283,7 +279,7 @@ function useComputedLanguage(root) {
   return computedLang;
 }
 var Icon_vue_vue_type_style_index_0_lang = "";
-const _sfc_main$b = defineComponent({
+const _sfc_main$d = defineComponent({
   name: "CdxIcon",
   props: {
     icon: {
@@ -328,11 +324,11 @@ const _sfc_main$b = defineComponent({
     };
   }
 });
-const _hoisted_1$b = ["aria-hidden"];
-const _hoisted_2$9 = { key: 0 };
-const _hoisted_3$6 = ["innerHTML"];
+const _hoisted_1$c = ["aria-hidden"];
+const _hoisted_2$8 = { key: 0 };
+const _hoisted_3$4 = ["innerHTML"];
 const _hoisted_4$3 = ["d"];
-function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$d(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", {
     ref: "rootElement",
     class: normalizeClass(["cdx-icon", _ctx.rootClasses]),
@@ -345,23 +341,81 @@ function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
       viewBox: "0 0 20 20",
       "aria-hidden": !_ctx.iconLabel
     }, [
-      _ctx.iconLabel ? (openBlock(), createElementBlock("title", _hoisted_2$9, toDisplayString(_ctx.iconLabel), 1)) : createCommentVNode("", true),
+      _ctx.iconLabel ? (openBlock(), createElementBlock("title", _hoisted_2$8, toDisplayString(_ctx.iconLabel), 1)) : createCommentVNode("", true),
       _ctx.iconSvg ? (openBlock(), createElementBlock("g", {
         key: 1,
         fill: "currentColor",
         innerHTML: _ctx.iconSvg
-      }, null, 8, _hoisted_3$6)) : (openBlock(), createElementBlock("path", {
+      }, null, 8, _hoisted_3$4)) : (openBlock(), createElementBlock("path", {
         key: 2,
         d: _ctx.iconPath,
         fill: "currentColor"
       }, null, 8, _hoisted_4$3))
-    ], 8, _hoisted_1$b))
+    ], 8, _hoisted_1$c))
   ], 2);
 }
-var CdxIcon = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$b]]);
-var Option_vue_vue_type_style_index_0_lang = "";
-const _sfc_main$a = defineComponent({
-  name: "CdxOption",
+var CdxIcon = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["render", _sfc_render$d]]);
+function useStringHelpers() {
+  function regExpEscape(value) {
+    return value.replace(/([\\{}()|.?*+\-^$[\]])/g, "\\$1");
+  }
+  const COMBINING_MARK = "[\u0300-\u036F\u0483-\u0489\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u07FD\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08D3-\u08E1\u08E3-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962\u0963\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u09FE\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2\u0AE3\u0AFA-\u0AFF\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B62\u0B63\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C00-\u0C04\u0C3E-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0C81-\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2\u0CE3\u0D00-\u0D03\u0D3B\u0D3C\u0D3E-\u0D44\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D62\u0D63\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F3E\u0F3F\u0F71-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102B-\u103E\u1056-\u1059\u105E-\u1060\u1062-\u1064\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F\u109A-\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4-\u17D3\u17DD\u180B-\u180D\u1885\u1886\u18A9\u1920-\u192B\u1930-\u193B\u1A17-\u1A1B\u1A55-\u1A5E\u1A60-\u1A7C\u1A7F\u1AB0-\u1ABE\u1B00-\u1B04\u1B34-\u1B44\u1B6B-\u1B73\u1B80-\u1B82\u1BA1-\u1BAD\u1BE6-\u1BF3\u1C24-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE8\u1CED\u1CF2-\u1CF4\u1CF7-\u1CF9\u1DC0-\u1DF9\u1DFB-\u1DFF\u20D0-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302F\u3099\u309A\uA66F-\uA672\uA674-\uA67D\uA69E\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA823-\uA827\uA880\uA881\uA8B4-\uA8C5\uA8E0-\uA8F1\uA8FF\uA926-\uA92D\uA947-\uA953\uA980-\uA983\uA9B3-\uA9C0\uA9E5\uAA29-\uAA36\uAA43\uAA4C\uAA4D\uAA7B-\uAA7D\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEB-\uAAEF\uAAF5\uAAF6\uABE3-\uABEA\uABEC\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE2F]";
+  function splitStringAtMatch(query, title) {
+    if (!query) {
+      return [title, "", ""];
+    }
+    const sanitizedQuery = regExpEscape(query);
+    const match = title.match(new RegExp(sanitizedQuery + COMBINING_MARK + "*", "i"));
+    if (!match || match.index === void 0) {
+      return [title, "", ""];
+    }
+    const matchStartIndex = match.index;
+    const matchEndIndex = matchStartIndex + match[0].length;
+    const highlightedTitle = title.slice(matchStartIndex, matchEndIndex);
+    const beforeHighlight = title.slice(0, matchStartIndex);
+    const afterHighlight = title.slice(matchEndIndex, title.length);
+    return [beforeHighlight, highlightedTitle, afterHighlight];
+  }
+  return {
+    regExpEscape,
+    splitStringAtMatch
+  };
+}
+var SearchResultTitle_vue_vue_type_style_index_0_lang = "";
+const _sfc_main$c = defineComponent({
+  name: "CdxSearchResultTitle",
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    searchQuery: {
+      type: String,
+      default: ""
+    }
+  },
+  setup: (props) => {
+    const { splitStringAtMatch } = useStringHelpers();
+    const titleChunks = computed(() => splitStringAtMatch(props.searchQuery, String(props.title)));
+    return {
+      titleChunks
+    };
+  }
+});
+const _hoisted_1$b = { class: "cdx-search-result-title" };
+const _hoisted_2$7 = { class: "cdx-search-result-title__match" };
+function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("span", _hoisted_1$b, [
+    createTextVNode(toDisplayString(_ctx.titleChunks[0]), 1),
+    createElementVNode("span", _hoisted_2$7, toDisplayString(_ctx.titleChunks[1]), 1),
+    createTextVNode(toDisplayString(_ctx.titleChunks[2]), 1)
+  ]);
+}
+var CdxSearchResultTitle = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["render", _sfc_render$c]]);
+var MenuItem_vue_vue_type_style_index_0_lang = "";
+const _sfc_main$b = defineComponent({
+  name: "CdxMenuItem",
+  components: { CdxIcon, CdxSearchResultTitle },
   props: {
     id: {
       type: String,
@@ -375,78 +429,421 @@ const _sfc_main$a = defineComponent({
       type: Boolean,
       default: false
     },
+    selected: {
+      type: Boolean,
+      default: false
+    },
+    active: {
+      type: Boolean,
+      default: false
+    },
+    highlighted: {
+      type: Boolean,
+      default: false
+    },
     label: {
       type: String,
       default: ""
+    },
+    url: {
+      type: String,
+      default: ""
+    },
+    icon: {
+      type: [String, Object],
+      default: ""
+    },
+    showThumbnail: {
+      type: Boolean,
+      default: false
+    },
+    thumbnail: {
+      type: [Object, null],
+      default: null
+    },
+    description: {
+      type: [String, null],
+      default: ""
+    },
+    searchQuery: {
+      type: String,
+      default: ""
+    },
+    boldLabel: {
+      type: Boolean,
+      default: false
+    },
+    hideDescriptionOverflow: {
+      type: Boolean,
+      default: false
     }
   },
   emits: [
     "change"
   ],
   setup: (props, { emit }) => {
-    const computedOptions = inject(MenuOptionsKey);
-    const state = inject(MenuStateKey);
-    const thisOption = computed(() => computedOptions == null ? void 0 : computedOptions.value.find((i) => i.id === props.id));
-    if (!state || !thisOption.value) {
-      throw new Error("Option component must be used with a Menu component");
-    }
-    const onMousedown = () => {
-      emit("change", "active", thisOption.value);
+    const onMouseEnter = () => {
+      emit("change", "highlighted");
+    };
+    const onMouseDown = () => {
+      emit("change", "active");
     };
     const onClick = () => {
-      emit("change", "selected", thisOption.value);
+      emit("change", "selected");
     };
-    const onHover = () => {
-      emit("change", "highlighted", thisOption.value);
-    };
-    const isSelected = computed(() => {
-      var _a;
-      return props.id === ((_a = state.selected.value) == null ? void 0 : _a.id);
-    });
-    const isHighlighted = computed(() => {
-      var _a;
-      return props.id === ((_a = state.highlighted.value) == null ? void 0 : _a.id);
-    });
-    const isActive = computed(() => {
-      var _a;
-      return props.id === ((_a = state.active.value) == null ? void 0 : _a.id);
-    });
+    const highlightQuery = computed(() => props.searchQuery.length > 0);
     const rootClasses = computed(() => {
       return {
-        "cdx-option--selected": !!isSelected.value,
-        "cdx-option--active": !!isActive.value,
-        "cdx-option--highlighted": !!isHighlighted.value,
-        "cdx-option--enabled": !props.disabled,
-        "cdx-option--disabled": !!props.disabled
+        "cdx-menu-item--selected": props.selected,
+        "cdx-menu-item--active": props.active,
+        "cdx-menu-item--highlighted": props.highlighted,
+        "cdx-menu-item--enabled": !props.disabled,
+        "cdx-menu-item--disabled": props.disabled,
+        "cdx-menu-item--highlight-query": highlightQuery.value,
+        "cdx-menu-item--bold-label": props.boldLabel,
+        "cdx-menu-item--hide-description-overflow": props.hideDescriptionOverflow
       };
     });
+    const contentTag = computed(() => props.url ? "a" : "span");
+    const title = computed(() => props.label || String(props.value));
+    const thumbnailBackgroundImage = computed(() => {
+      if (props.thumbnail) {
+        const escapedUrl = props.thumbnail.url.replace(/([\\"\n])/g, "\\$1");
+        return `url("${escapedUrl}")`;
+      }
+      return "";
+    });
     return {
-      onMousedown,
+      onMouseEnter,
+      onMouseDown,
       onClick,
-      onHover,
+      highlightQuery,
       rootClasses,
-      isSelected
+      contentTag,
+      title,
+      thumbnailBackgroundImage,
+      defaultThumbnailIcon: cdxIconImageLayoutFrameless
     };
   }
 });
 const _hoisted_1$a = ["id", "aria-disabled", "aria-selected"];
-function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_2$6 = {
+  key: 1,
+  class: "cdx-menu-item__thumbnail-placeholder"
+};
+const _hoisted_3$3 = {
+  key: 2,
+  class: "cdx-menu-item__icon"
+};
+const _hoisted_4$2 = { class: "cdx-menu-item__text" };
+const _hoisted_5 = {
+  key: 1,
+  class: "cdx-menu-item__text__label"
+};
+const _hoisted_6 = {
+  key: 2,
+  class: "cdx-menu-item__text__description"
+};
+function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_cdx_icon = resolveComponent("cdx-icon");
+  const _component_cdx_search_result_title = resolveComponent("cdx-search-result-title");
   return openBlock(), createElementBlock("li", {
     id: _ctx.id,
     role: "option",
-    class: normalizeClass(["cdx-option", _ctx.rootClasses]),
+    class: normalizeClass(["cdx-menu-item", _ctx.rootClasses]),
     "aria-disabled": _ctx.disabled,
-    "aria-selected": _ctx.isSelected,
-    onMouseenter: _cache[0] || (_cache[0] = (...args) => _ctx.onHover && _ctx.onHover(...args)),
-    onMousedown: _cache[1] || (_cache[1] = withModifiers((...args) => _ctx.onMousedown && _ctx.onMousedown(...args), ["prevent"])),
+    "aria-selected": _ctx.selected,
+    onMouseenter: _cache[0] || (_cache[0] = (...args) => _ctx.onMouseEnter && _ctx.onMouseEnter(...args)),
+    onMousedown: _cache[1] || (_cache[1] = withModifiers((...args) => _ctx.onMouseDown && _ctx.onMouseDown(...args), ["prevent"])),
     onClick: _cache[2] || (_cache[2] = (...args) => _ctx.onClick && _ctx.onClick(...args))
   }, [
     renderSlot(_ctx.$slots, "default", {}, () => [
-      createTextVNode(toDisplayString(_ctx.label || _ctx.value), 1)
+      (openBlock(), createBlock(resolveDynamicComponent(_ctx.contentTag), {
+        href: _ctx.url ? _ctx.url : void 0,
+        class: "cdx-menu-item__content"
+      }, {
+        default: withCtx(() => [
+          _ctx.showThumbnail && _ctx.thumbnail ? (openBlock(), createElementBlock("span", {
+            key: 0,
+            style: normalizeStyle({ backgroundImage: _ctx.thumbnailBackgroundImage }),
+            class: "cdx-menu-item__thumbnail"
+          }, null, 4)) : _ctx.showThumbnail ? (openBlock(), createElementBlock("span", _hoisted_2$6, [
+            createVNode(_component_cdx_icon, {
+              icon: _ctx.defaultThumbnailIcon,
+              class: "cdx-menu-item__thumbnail-placeholder__icon"
+            }, null, 8, ["icon"])
+          ])) : _ctx.icon ? (openBlock(), createElementBlock("span", _hoisted_3$3, [
+            createVNode(_component_cdx_icon, { icon: _ctx.icon }, null, 8, ["icon"])
+          ])) : createCommentVNode("", true),
+          createElementVNode("span", _hoisted_4$2, [
+            _ctx.highlightQuery ? (openBlock(), createBlock(_component_cdx_search_result_title, {
+              key: 0,
+              title: _ctx.title,
+              "search-query": _ctx.searchQuery
+            }, null, 8, ["title", "search-query"])) : (openBlock(), createElementBlock("span", _hoisted_5, toDisplayString(_ctx.title), 1)),
+            _ctx.description ? (openBlock(), createElementBlock("span", _hoisted_6, toDisplayString(_ctx.description), 1)) : createCommentVNode("", true)
+          ])
+        ]),
+        _: 1
+      }, 8, ["href"]))
     ])
   ], 42, _hoisted_1$a);
 }
-var CdxOption = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$a]]);
+var CdxMenuItem = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["render", _sfc_render$b]]);
+let counter = 0;
+function useGeneratedId(identifier) {
+  const vm = getCurrentInstance();
+  const externalId = (vm == null ? void 0 : vm.props.id) || (vm == null ? void 0 : vm.attrs.id);
+  let generatedId;
+  if (identifier) {
+    generatedId = `${LibraryPrefix}-${identifier}-${counter++}`;
+  } else if (externalId) {
+    generatedId = `${LibraryPrefix}-${externalId}-${counter++}`;
+  } else {
+    generatedId = `${LibraryPrefix}-${counter++}`;
+  }
+  return ref(generatedId);
+}
+var Menu_vue_vue_type_style_index_0_lang = "";
+const _sfc_main$a = defineComponent({
+  name: "CdxMenu",
+  components: {
+    CdxMenuItem
+  },
+  props: {
+    menuItems: {
+      type: Array,
+      required: true
+    },
+    selected: {
+      type: [String, Number, null],
+      required: true
+    },
+    expanded: {
+      type: Boolean,
+      required: true
+    },
+    showThumbnail: {
+      type: Boolean,
+      default: false
+    },
+    boldLabel: {
+      type: Boolean,
+      default: false
+    },
+    hideDescriptionOverflow: {
+      type: Boolean,
+      default: false
+    },
+    selectHighlighted: {
+      type: Boolean,
+      default: false
+    },
+    searchQuery: {
+      type: String,
+      default: ""
+    }
+  },
+  emits: [
+    "update:selected",
+    "update:expanded",
+    "menu-item-click"
+  ],
+  expose: [
+    "clearActive",
+    "getHighlightedMenuItem",
+    "delegateKeyNavigation"
+  ],
+  setup(props, { emit }) {
+    const computedMenuItems = computed(() => {
+      const generateMenuItemId = () => useGeneratedId("menu-item").value;
+      return props.menuItems.map((menuItem) => __spreadProps(__spreadValues({}, menuItem), {
+        id: generateMenuItemId()
+      }));
+    });
+    const highlightedMenuItem = ref(null);
+    const activeMenuItem = ref(null);
+    function findSelectedMenuItem() {
+      return computedMenuItems.value.find((menuItem) => menuItem.value === props.selected);
+    }
+    function handleMenuItemChange(menuState, menuItem) {
+      if (menuItem && menuItem.disabled) {
+        return;
+      }
+      switch (menuState) {
+        case "selected":
+          emit("update:selected", (menuItem == null ? void 0 : menuItem.value) || null);
+          emit("update:expanded", false);
+          activeMenuItem.value = null;
+          break;
+        case "highlighted":
+          highlightedMenuItem.value = menuItem || null;
+          break;
+        case "active":
+          activeMenuItem.value = menuItem || null;
+          break;
+      }
+    }
+    const highlightedMenuItemIndex = computed(() => {
+      if (highlightedMenuItem.value === null) {
+        return;
+      }
+      return computedMenuItems.value.findIndex((menuItem) => menuItem.value === highlightedMenuItem.value.value);
+    });
+    function handleHighlight(newHighlightedMenuItem) {
+      if (!newHighlightedMenuItem) {
+        return;
+      }
+      handleMenuItemChange("highlighted", newHighlightedMenuItem);
+      if (props.selectHighlighted) {
+        emit("update:selected", newHighlightedMenuItem.value);
+      }
+    }
+    function highlightPrev() {
+      var _a;
+      const findPrevEnabled = (startIndex) => {
+        let found;
+        for (let index = startIndex - 1; index >= 0; index--) {
+          if (!computedMenuItems.value[index].disabled) {
+            found = computedMenuItems.value[index];
+            break;
+          }
+        }
+        return found;
+      };
+      const highlightedIndex = (_a = highlightedMenuItemIndex.value) != null ? _a : computedMenuItems.value.length;
+      const prev = findPrevEnabled(highlightedIndex) || findPrevEnabled(computedMenuItems.value.length);
+      handleHighlight(prev);
+    }
+    function highlightNext() {
+      var _a;
+      const findNextEnabled = (startIndex) => computedMenuItems.value.find((item, index) => !item.disabled && index > startIndex);
+      const highlightedIndex = (_a = highlightedMenuItemIndex.value) != null ? _a : -1;
+      const next = findNextEnabled(highlightedIndex) || findNextEnabled(-1);
+      handleHighlight(next);
+    }
+    function handleKeyNavigation(e, prevent = true) {
+      function handleExpandMenu() {
+        emit("update:expanded", true);
+        handleMenuItemChange("highlighted", findSelectedMenuItem());
+      }
+      function maybePrevent() {
+        if (prevent) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }
+      switch (e.key) {
+        case "Enter":
+        case " ":
+          maybePrevent();
+          if (props.expanded) {
+            if (highlightedMenuItem.value) {
+              emit("update:selected", highlightedMenuItem.value.value);
+            }
+            emit("update:expanded", false);
+          } else {
+            handleExpandMenu();
+          }
+          return true;
+        case "Tab":
+          if (props.expanded) {
+            if (highlightedMenuItem.value) {
+              emit("update:selected", highlightedMenuItem.value.value);
+            }
+            emit("update:expanded", false);
+          }
+          return true;
+        case "ArrowUp":
+          maybePrevent();
+          if (props.expanded) {
+            highlightPrev();
+          } else {
+            handleExpandMenu();
+          }
+          return true;
+        case "ArrowDown":
+          maybePrevent();
+          if (props.expanded) {
+            highlightNext();
+          } else {
+            handleExpandMenu();
+          }
+          return true;
+        case "Escape":
+          maybePrevent();
+          emit("update:expanded", false);
+          return true;
+        default:
+          return false;
+      }
+    }
+    watch(toRef(props, "expanded"), (newVal) => {
+      if (!newVal && highlightedMenuItem.value) {
+        highlightedMenuItem.value = null;
+      }
+    });
+    return {
+      computedMenuItems,
+      highlightedMenuItem,
+      activeMenuItem,
+      handleMenuItemChange,
+      handleKeyNavigation
+    };
+  },
+  methods: {
+    getHighlightedMenuItem() {
+      return this.highlightedMenuItem;
+    },
+    clearActive() {
+      this.handleMenuItemChange("active");
+    },
+    delegateKeyNavigation(event, prevent = true) {
+      return this.handleKeyNavigation(event, prevent);
+    }
+  }
+});
+const _hoisted_1$9 = {
+  class: "cdx-menu",
+  role: "listbox",
+  "aria-multiselectable": "false"
+};
+const _hoisted_2$5 = {
+  key: 0,
+  class: "cdx-menu-item"
+};
+function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_cdx_menu_item = resolveComponent("cdx-menu-item");
+  return withDirectives((openBlock(), createElementBlock("ul", _hoisted_1$9, [
+    (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.computedMenuItems, (menuItem) => {
+      var _a, _b;
+      return openBlock(), createBlock(_component_cdx_menu_item, mergeProps({
+        key: menuItem.value
+      }, menuItem, {
+        selected: menuItem.value === _ctx.selected,
+        active: menuItem.value === ((_a = _ctx.activeMenuItem) == null ? void 0 : _a.value),
+        highlighted: menuItem.value === ((_b = _ctx.highlightedMenuItem) == null ? void 0 : _b.value),
+        "show-thumbnail": _ctx.showThumbnail,
+        "bold-label": _ctx.boldLabel,
+        "hide-description-overflow": _ctx.hideDescriptionOverflow,
+        "search-query": _ctx.searchQuery,
+        onChange: ($event) => _ctx.handleMenuItemChange($event, menuItem),
+        onClick: ($event) => _ctx.$emit("menu-item-click", menuItem)
+      }), {
+        default: withCtx(() => [
+          renderSlot(_ctx.$slots, "default", { menuItem })
+        ]),
+        _: 2
+      }, 1040, ["selected", "active", "highlighted", "show-thumbnail", "bold-label", "hide-description-overflow", "search-query", "onChange", "onClick"]);
+    }), 128)),
+    _ctx.$slots.footer ? (openBlock(), createElementBlock("li", _hoisted_2$5, [
+      renderSlot(_ctx.$slots, "footer")
+    ])) : createCommentVNode("", true)
+  ], 512)), [
+    [vShow, _ctx.expanded]
+  ]);
+}
+var CdxMenu = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$a]]);
 function useSplitAttributes(attrs, internalClasses = computed(() => {
   return {};
 })) {
@@ -575,7 +972,7 @@ const _sfc_main$9 = defineComponent({
     }
   }
 });
-const _hoisted_1$9 = ["type", "disabled"];
+const _hoisted_1$8 = ["type", "disabled"];
 function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   return openBlock(), createElementBlock("div", {
@@ -593,7 +990,7 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
       onChange: _cache[2] || (_cache[2] = (...args) => _ctx.onChange && _ctx.onChange(...args)),
       onFocus: _cache[3] || (_cache[3] = (...args) => _ctx.onFocus && _ctx.onFocus(...args)),
       onBlur: _cache[4] || (_cache[4] = (...args) => _ctx.onBlur && _ctx.onBlur(...args))
-    }), null, 16, _hoisted_1$9), [
+    }), null, 16, _hoisted_1$8), [
       [vModelDynamic, _ctx.wrappedModel]
     ]),
     _ctx.startIcon ? (openBlock(), createBlock(_component_cdx_icon, {
@@ -612,180 +1009,18 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
   ], 6);
 }
 var CdxTextInput = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$9]]);
-let counter = 0;
-function useGeneratedId(identifier) {
-  const vm = getCurrentInstance();
-  const externalId = (vm == null ? void 0 : vm.props.id) || (vm == null ? void 0 : vm.attrs.id);
-  let generatedId;
-  if (identifier) {
-    generatedId = `${LibraryPrefix}-${identifier}-${counter++}`;
-  } else if (externalId) {
-    generatedId = `${LibraryPrefix}-${externalId}-${counter++}`;
-  } else {
-    generatedId = `${LibraryPrefix}-${counter++}`;
-  }
-  return ref(generatedId);
-}
-function useMenu(options, modelWrapper, config) {
-  const computedOptions = computed(() => {
-    const generateOptionId = () => useGeneratedId("option").value;
-    return options.value.map((option) => __spreadProps(__spreadValues({}, option), {
-      id: generateOptionId()
-    }));
-  });
-  const state = {
-    selected: computed(() => computedOptions.value.find((option) => option.value === modelWrapper.value) || null),
-    highlighted: ref(null),
-    active: ref(null)
-  };
-  const expanded = ref(false);
-  function onBlur() {
-    expanded.value = false;
-  }
-  function handleOptionChange(menuState, option) {
-    if (option && option.disabled) {
-      return;
-    }
-    switch (menuState) {
-      case "selected":
-        modelWrapper.value = (option == null ? void 0 : option.value) || null;
-        expanded.value = false;
-        state.active.value = null;
-        break;
-      case "highlighted":
-        state.highlighted.value = option || null;
-        break;
-      case "active":
-        state.active.value = option || null;
-        break;
-    }
-  }
-  provide(MenuStateKey, state);
-  provide(MenuOptionsKey, computedOptions);
-  const highlightedOptionIndex = computed(() => {
-    const highlightedOption = state.highlighted.value;
-    if (highlightedOption === null) {
-      return;
-    }
-    return computedOptions.value.findIndex((option) => highlightedOption.id === option.id);
-  });
-  function handleHighlight(highlightedOption) {
-    if (!highlightedOption) {
-      return;
-    }
-    handleOptionChange("highlighted", highlightedOption);
-    if ((config == null ? void 0 : config.footerCallback) && highlightedOption.value === MenuFooterValue) {
-      config.footerCallback();
-      return;
-    }
-    if (config == null ? void 0 : config.inputValue) {
-      config.inputValue.value = highlightedOption.label || highlightedOption.value;
-      modelWrapper.value = highlightedOption.value;
-    }
-  }
-  function highlightPrev() {
-    var _a;
-    const findPrevEnabled = (startIndex) => {
-      let found;
-      for (let index = startIndex - 1; index >= 0; index--) {
-        if (!computedOptions.value[index].disabled) {
-          found = computedOptions.value[index];
-          break;
-        }
-      }
-      return found;
-    };
-    const highlightedIndex = (_a = highlightedOptionIndex.value) != null ? _a : computedOptions.value.length;
-    const prev = findPrevEnabled(highlightedIndex) || findPrevEnabled(computedOptions.value.length);
-    handleHighlight(prev);
-  }
-  function highlightNext() {
-    var _a;
-    const findNextEnabled = (startIndex) => computedOptions.value.find((item, index) => !item.disabled && index > startIndex);
-    const highlightedIndex = (_a = highlightedOptionIndex.value) != null ? _a : -1;
-    const next = findNextEnabled(highlightedIndex) || findNextEnabled(-1);
-    handleHighlight(next);
-  }
-  function handleKeyNavigation(e) {
-    function handleExpandMenu() {
-      expanded.value = true;
-      if (state.selected.value) {
-        handleOptionChange("highlighted", state.selected.value);
-      }
-    }
-    switch (e.key) {
-      case "Enter":
-      case " ":
-        e.preventDefault();
-        e.stopPropagation();
-        if (expanded.value) {
-          if (state.highlighted.value) {
-            modelWrapper.value = state.highlighted.value.value;
-          }
-          expanded.value = false;
-        } else {
-          handleExpandMenu();
-        }
-        break;
-      case "Tab":
-        if (expanded.value) {
-          if (state.highlighted.value) {
-            modelWrapper.value = state.highlighted.value.value;
-          }
-          expanded.value = false;
-        }
-        break;
-      case "ArrowUp":
-        e.preventDefault();
-        e.stopPropagation();
-        if (expanded.value) {
-          highlightPrev();
-        } else {
-          handleExpandMenu();
-        }
-        break;
-      case "ArrowDown":
-        e.preventDefault();
-        e.stopPropagation();
-        if (expanded.value) {
-          highlightNext();
-        } else {
-          handleExpandMenu();
-        }
-        break;
-      case "Escape":
-        e.preventDefault();
-        e.stopPropagation();
-        expanded.value = false;
-        break;
-    }
-  }
-  watch(expanded, (newVal) => {
-    if (!newVal && state.highlighted.value) {
-      state.highlighted.value = null;
-    }
-  });
-  return {
-    computedOptions,
-    state,
-    expanded,
-    onBlur,
-    handleOptionChange,
-    handleKeyNavigation
-  };
-}
 var Combobox_vue_vue_type_style_index_0_lang = "";
 const _sfc_main$8 = defineComponent({
   name: "CdxCombobox",
   components: {
     CdxButton,
     CdxIcon,
-    CdxOption,
+    CdxMenu,
     CdxTextInput
   },
   inheritAttrs: false,
   props: {
-    options: {
+    menuItems: {
       type: Array,
       required: true
     },
@@ -796,6 +1031,12 @@ const _sfc_main$8 = defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    menuConfig: {
+      type: Object,
+      default: () => {
+        return {};
+      }
     }
   },
   emits: [
@@ -803,16 +1044,15 @@ const _sfc_main$8 = defineComponent({
   ],
   setup(props, context) {
     const input = ref();
+    const menu = ref();
     const menuId = useGeneratedId("combobox");
     const modelWrapper = useModelWrapper(toRef(props, "modelValue"), context.emit);
+    const expanded = ref(false);
     const expanderClicked = ref(false);
-    const {
-      computedOptions,
-      state,
-      expanded,
-      handleOptionChange,
-      handleKeyNavigation
-    } = useMenu(toRef(props, "options"), modelWrapper);
+    const highlightedId = computed(() => {
+      var _a, _b;
+      return (_b = (_a = menu.value) == null ? void 0 : _a.getHighlightedMenuItem()) == null ? void 0 : _b.id;
+    });
     const internalClasses = computed(() => {
       return {
         "cdx-combobox--disabled": props.disabled
@@ -826,7 +1066,7 @@ const _sfc_main$8 = defineComponent({
     function onInputFocus() {
       if (expanderClicked.value && expanded.value) {
         expanded.value = false;
-      } else if (computedOptions.value.length > 0 || context.slots.footer) {
+      } else if (props.menuItems.length > 0 || context.slots.footer) {
         expanded.value = true;
       }
     }
@@ -850,26 +1090,25 @@ const _sfc_main$8 = defineComponent({
       }
       (_a = input.value) == null ? void 0 : _a.focus();
     }
-    function onKeyNavigation(e) {
-      if (props.disabled || computedOptions.value.length === 0 || e.key === " " && expanded.value) {
+    function onKeydown(e) {
+      if (!menu.value || props.disabled || props.menuItems.length === 0 || e.key === " " && expanded.value) {
         return;
       }
-      handleKeyNavigation(e);
+      menu.value.delegateKeyNavigation(e);
     }
     watch(expanded, () => {
       expanderClicked.value = false;
     });
     return {
       input,
+      menu,
       menuId,
       modelWrapper,
-      computedOptions,
-      state,
       expanded,
+      highlightedId,
       onInputFocus,
       onInputBlur,
-      handleOptionChange,
-      onKeyNavigation,
+      onKeydown,
       onButtonClick,
       onButtonMousedown,
       cdxIconExpand,
@@ -879,31 +1118,24 @@ const _sfc_main$8 = defineComponent({
     };
   }
 });
-const _hoisted_1$8 = { class: "cdx-combobox__input-wrapper" };
-const _hoisted_2$8 = ["id"];
-const _hoisted_3$5 = {
-  key: 0,
-  class: "cdx-option"
-};
+const _hoisted_1$7 = { class: "cdx-combobox__input-wrapper" };
 function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
-  var _a;
   const _component_cdx_text_input = resolveComponent("cdx-text-input");
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
-  const _component_cdx_option = resolveComponent("cdx-option");
+  const _component_cdx_menu = resolveComponent("cdx-menu");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass(["cdx-combobox", _ctx.rootClasses]),
     style: normalizeStyle(_ctx.rootStyle)
   }, [
-    createElementVNode("div", _hoisted_1$8, [
+    createElementVNode("div", _hoisted_1$7, [
       createVNode(_component_cdx_text_input, mergeProps({
         ref: "input",
         modelValue: _ctx.modelWrapper,
         "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.modelWrapper = $event)
       }, _ctx.otherAttrs, {
         class: "cdx-combobox__input",
-        "aria-activedescendant": (_a = _ctx.state.highlighted.value) == null ? void 0 : _a.id,
-        "aria-disabled": _ctx.disabled,
+        "aria-activedescendant": _ctx.highlightedId,
         "aria-expanded": _ctx.expanded,
         "aria-owns": _ctx.menuId,
         disabled: _ctx.disabled,
@@ -911,10 +1143,10 @@ function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
         autocomplete: "off",
         role: "combobox",
         tabindex: "0",
-        onKeydown: withKeys(_ctx.onKeyNavigation, ["space", "enter", "up", "down", "tab", "esc"]),
+        onKeydown: _ctx.onKeydown,
         onFocus: _ctx.onInputFocus,
         onBlur: _ctx.onInputBlur
-      }), null, 16, ["modelValue", "aria-activedescendant", "aria-disabled", "aria-expanded", "aria-owns", "disabled", "onKeydown", "onFocus", "onBlur"]),
+      }), null, 16, ["modelValue", "aria-activedescendant", "aria-expanded", "aria-owns", "disabled", "onKeydown", "onFocus", "onBlur"]),
       createVNode(_component_cdx_button, {
         class: "cdx-combobox__expand-button",
         disabled: _ctx.disabled,
@@ -931,181 +1163,36 @@ function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
         _: 1
       }, 8, ["disabled", "onMousedown", "onClick"])
     ]),
-    withDirectives(createElementVNode("ul", {
+    createVNode(_component_cdx_menu, mergeProps({
       id: _ctx.menuId,
-      class: "cdx-combobox__menu",
-      role: "listbox",
-      "aria-multiselectable": "false"
+      ref: "menu",
+      selected: _ctx.modelWrapper,
+      "onUpdate:selected": _cache[1] || (_cache[1] = ($event) => _ctx.modelWrapper = $event),
+      expanded: _ctx.expanded,
+      "onUpdate:expanded": _cache[2] || (_cache[2] = ($event) => _ctx.expanded = $event),
+      "menu-items": _ctx.menuItems
+    }, _ctx.menuConfig), createSlots({
+      default: withCtx(({ menuItem }) => [
+        renderSlot(_ctx.$slots, "menu-item", { menuItem })
+      ]),
+      _: 2
     }, [
-      (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.computedOptions, (option, index) => {
-        return openBlock(), createBlock(_component_cdx_option, mergeProps(option, {
-          key: index,
-          onChange: _ctx.handleOptionChange
-        }), {
-          default: withCtx(() => [
-            renderSlot(_ctx.$slots, "menu-option", { option })
-          ]),
-          _: 2
-        }, 1040, ["onChange"]);
-      }), 128)),
-      _ctx.$slots.footer ? (openBlock(), createElementBlock("li", _hoisted_3$5, [
-        renderSlot(_ctx.$slots, "footer")
-      ])) : createCommentVNode("", true)
-    ], 8, _hoisted_2$8), [
-      [vShow, _ctx.expanded]
-    ])
+      _ctx.$slots.footer ? {
+        name: "footer",
+        fn: withCtx(() => [
+          renderSlot(_ctx.$slots, "footer")
+        ])
+      } : void 0
+    ]), 1040, ["id", "selected", "expanded", "menu-items"])
   ], 6);
 }
 var Combobox = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$8]]);
-function useStringHelpers() {
-  function regExpEscape(value) {
-    return value.replace(/([\\{}()|.?*+\-^$[\]])/g, "\\$1");
-  }
-  const COMBINING_MARK = "[\u0300-\u036F\u0483-\u0489\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u07FD\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08D3-\u08E1\u08E3-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962\u0963\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u09FE\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2\u0AE3\u0AFA-\u0AFF\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B62\u0B63\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C00-\u0C04\u0C3E-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0C81-\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2\u0CE3\u0D00-\u0D03\u0D3B\u0D3C\u0D3E-\u0D44\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D62\u0D63\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F3E\u0F3F\u0F71-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102B-\u103E\u1056-\u1059\u105E-\u1060\u1062-\u1064\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F\u109A-\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4-\u17D3\u17DD\u180B-\u180D\u1885\u1886\u18A9\u1920-\u192B\u1930-\u193B\u1A17-\u1A1B\u1A55-\u1A5E\u1A60-\u1A7C\u1A7F\u1AB0-\u1ABE\u1B00-\u1B04\u1B34-\u1B44\u1B6B-\u1B73\u1B80-\u1B82\u1BA1-\u1BAD\u1BE6-\u1BF3\u1C24-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE8\u1CED\u1CF2-\u1CF4\u1CF7-\u1CF9\u1DC0-\u1DF9\u1DFB-\u1DFF\u20D0-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302F\u3099\u309A\uA66F-\uA672\uA674-\uA67D\uA69E\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA823-\uA827\uA880\uA881\uA8B4-\uA8C5\uA8E0-\uA8F1\uA8FF\uA926-\uA92D\uA947-\uA953\uA980-\uA983\uA9B3-\uA9C0\uA9E5\uAA29-\uAA36\uAA43\uAA4C\uAA4D\uAA7B-\uAA7D\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEB-\uAAEF\uAAF5\uAAF6\uABE3-\uABEA\uABEC\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE2F]";
-  function splitStringAtMatch(query, title) {
-    if (!query) {
-      return [title, "", ""];
-    }
-    const sanitizedQuery = regExpEscape(query);
-    const match = title.match(new RegExp(sanitizedQuery + COMBINING_MARK + "*", "i"));
-    if (!match || match.index === void 0) {
-      return [title, "", ""];
-    }
-    const matchStartIndex = match.index;
-    const matchEndIndex = matchStartIndex + match[0].length;
-    const highlightedTitle = title.slice(matchStartIndex, matchEndIndex);
-    const beforeHighlight = title.slice(0, matchStartIndex);
-    const afterHighlight = title.slice(matchEndIndex, title.length);
-    return [beforeHighlight, highlightedTitle, afterHighlight];
-  }
-  return {
-    regExpEscape,
-    splitStringAtMatch
-  };
-}
-var ListTileLabel_vue_vue_type_style_index_0_lang = "";
-const _sfc_main$7 = defineComponent({
-  name: "CdxListTileLabel",
-  props: {
-    label: {
-      type: [String, Number],
-      required: true
-    },
-    searchQuery: {
-      type: String,
-      default: ""
-    },
-    highlightQuery: {
-      type: Boolean,
-      default: false
-    }
-  },
-  setup: (props) => {
-    const { splitStringAtMatch } = useStringHelpers();
-    const labelChunks = computed(() => {
-      if (props.highlightQuery) {
-        return splitStringAtMatch(props.searchQuery, String(props.label));
-      }
-      return ["", String(props.label), ""];
-    });
-    return {
-      labelChunks
-    };
-  }
-});
-const _hoisted_1$7 = { class: "cdx-list-tile-label" };
-const _hoisted_2$7 = { class: "cdx-list-tile-label__match" };
-function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
-  return openBlock(), createElementBlock("span", _hoisted_1$7, [
-    createTextVNode(toDisplayString(_ctx.labelChunks[0]), 1),
-    createElementVNode("span", _hoisted_2$7, toDisplayString(_ctx.labelChunks[1]), 1),
-    createTextVNode(toDisplayString(_ctx.labelChunks[2]), 1)
-  ]);
-}
-var CdxListTileLabel = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$7]]);
-var ListTile_vue_vue_type_style_index_0_lang = "";
-const _sfc_main$6 = defineComponent({
-  name: "CdxListTile",
-  components: {
-    CdxIcon,
-    CdxListTileLabel
-  },
-  props: {
-    item: {
-      type: Object,
-      required: true
-    },
-    searchQuery: {
-      type: String,
-      default: ""
-    },
-    highlightQuery: {
-      type: Boolean,
-      default: false
-    },
-    hideThumbnail: {
-      type: Boolean,
-      default: false
-    },
-    hideDescription: {
-      type: Boolean,
-      default: false
-    }
-  },
-  setup: (props) => {
-    const itemText = computed(() => props.item.label || props.item.value);
-    const thumbnailBackgroundImage = computed(() => props.item.thumbnail ? `url(${props.item.thumbnail.url})` : "");
-    return {
-      itemText,
-      thumbnailBackgroundImage,
-      defaultThumbnailIcon: cdxIconImageLayoutFrameless
-    };
-  }
-});
-const _hoisted_1$6 = ["href"];
-const _hoisted_2$6 = {
-  key: 1,
-  class: "cdx-list-tile__thumbnail-placeholder"
-};
-const _hoisted_3$4 = { class: "cdx-list-tile__text" };
-const _hoisted_4$2 = {
-  key: 0,
-  class: "cdx-list-tile__description"
-};
-function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_cdx_icon = resolveComponent("cdx-icon");
-  const _component_cdx_list_tile_label = resolveComponent("cdx-list-tile-label");
-  return openBlock(), createElementBlock("a", {
-    href: _ctx.item.url,
-    class: "cdx-list-tile"
-  }, [
-    !_ctx.hideThumbnail && _ctx.item.thumbnail ? (openBlock(), createElementBlock("span", {
-      key: 0,
-      style: normalizeStyle({ backgroundImage: _ctx.thumbnailBackgroundImage }),
-      class: "cdx-list-tile__thumbnail"
-    }, null, 4)) : !_ctx.hideThumbnail ? (openBlock(), createElementBlock("span", _hoisted_2$6, [
-      createVNode(_component_cdx_icon, {
-        icon: _ctx.defaultThumbnailIcon,
-        class: "cdx-list-tile__thumbnail-icon"
-      }, null, 8, ["icon"])
-    ])) : createCommentVNode("", true),
-    createElementVNode("span", _hoisted_3$4, [
-      createVNode(_component_cdx_list_tile_label, {
-        label: _ctx.itemText,
-        "search-query": _ctx.searchQuery,
-        "highlight-query": _ctx.highlightQuery
-      }, null, 8, ["label", "search-query", "highlight-query"]),
-      !_ctx.hideDescription && _ctx.item.description ? (openBlock(), createElementBlock("span", _hoisted_4$2, toDisplayString(_ctx.item.description), 1)) : createCommentVNode("", true)
-    ])
-  ], 8, _hoisted_1$6);
-}
-var CdxListTile = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$6]]);
 var Lookup_vue_vue_type_style_index_0_lang = "";
-const _sfc_main$5 = defineComponent({
+const _sfc_main$7 = defineComponent({
   name: "CdxLookup",
   components: {
-    CdxTextInput,
-    CdxOption
+    CdxMenu,
+    CdxTextInput
   },
   inheritAttrs: false,
   props: {
@@ -1113,7 +1200,7 @@ const _sfc_main$5 = defineComponent({
       type: [String, Number, null],
       required: true
     },
-    options: {
+    menuItems: {
       type: Array,
       default: () => []
     },
@@ -1124,6 +1211,12 @@ const _sfc_main$5 = defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    menuConfig: {
+      type: Object,
+      default: () => {
+        return {};
+      }
     }
   },
   emits: [
@@ -1131,19 +1224,18 @@ const _sfc_main$5 = defineComponent({
     "new-input"
   ],
   setup: (props, context) => {
+    const menu = ref();
     const menuId = useGeneratedId("lookup-menu");
     const pending = ref(false);
+    const expanded = ref(false);
     const modelValueProp = toRef(props, "modelValue");
-    const selectionModelWrapper = useModelWrapper(modelValueProp, context.emit);
+    const modelWrapper = useModelWrapper(modelValueProp, context.emit);
+    const selectedMenuItem = computed(() => props.menuItems.find((item) => item.value === props.modelValue));
+    const highlightedId = computed(() => {
+      var _a, _b;
+      return (_b = (_a = menu.value) == null ? void 0 : _a.getHighlightedMenuItem()) == null ? void 0 : _b.id;
+    });
     const inputValue = ref(props.initialInputValue);
-    const {
-      computedOptions,
-      state,
-      expanded,
-      onBlur,
-      handleOptionChange,
-      handleKeyNavigation
-    } = useMenu(toRef(props, "options"), selectionModelWrapper);
     const internalClasses = computed(() => {
       return {
         "cdx-lookup--disabled": props.disabled,
@@ -1155,75 +1247,66 @@ const _sfc_main$5 = defineComponent({
       rootStyle,
       otherAttrs
     } = useSplitAttributes(context.attrs, internalClasses);
-    function onUpdateInput(value) {
-      if (value || value === 0) {
+    function onUpdateInput(newVal) {
+      if (selectedMenuItem.value && selectedMenuItem.value.label !== newVal && selectedMenuItem.value.value !== newVal) {
+        modelWrapper.value = null;
+      }
+      if (newVal === "") {
+        expanded.value = false;
+      } else {
         pending.value = true;
       }
-      context.emit("new-input", value);
+      context.emit("new-input", newVal);
     }
     function onFocus() {
-      if (computedOptions.value.length > 0 || context.slots.footer) {
+      if (props.menuItems.length > 0 || context.slots.footer) {
         expanded.value = true;
       }
     }
-    function onKeyNavigation(e) {
-      if (props.disabled || computedOptions.value.length === 0 && !context.slots.footer || e.key === " " && expanded.value) {
+    function onBlur() {
+      expanded.value = false;
+    }
+    function onKeydown(e) {
+      if (!menu.value || props.disabled || props.menuItems.length === 0 && !context.slots.footer || e.key === " " && expanded.value) {
         return;
       }
-      handleKeyNavigation(e);
+      menu.value.delegateKeyNavigation(e);
     }
-    watch(computedOptions, (newVal) => {
-      pending.value = false;
-      function inputValueIsSelection() {
-        var _a, _b;
-        return ((_a = state.selected.value) == null ? void 0 : _a.label) === inputValue.value || ((_b = state.selected.value) == null ? void 0 : _b.value) === inputValue.value;
+    watch(modelValueProp, (newVal) => {
+      if (newVal !== null) {
+        inputValue.value = selectedMenuItem.value ? selectedMenuItem.value.label || selectedMenuItem.value.value : "";
       }
-      if (newVal.length > 0 && !inputValueIsSelection() || newVal.length === 0 && context.slots.footer) {
+    });
+    watch(toRef(props, "menuItems"), (newVal) => {
+      pending.value = false;
+      const inputValueIsSelection = !!selectedMenuItem.value && (selectedMenuItem.value.label === inputValue.value || selectedMenuItem.value.value === inputValue.value);
+      if (newVal.length > 0 && !inputValueIsSelection || newVal.length === 0 && context.slots.footer) {
         expanded.value = true;
       }
       if (newVal.length === 0 && !context.slots.footer) {
         expanded.value = false;
       }
     });
-    watch(modelValueProp, (newVal) => {
-      if (newVal !== null) {
-        inputValue.value = state.selected.value ? state.selected.value.label || state.selected.value.value : "";
-      }
-    });
-    watch(inputValue, (newVal) => {
-      if (state.selected.value && state.selected.value.label !== newVal && state.selected.value.value !== newVal) {
-        selectionModelWrapper.value = null;
-      }
-      if (newVal === "") {
-        expanded.value = false;
-      }
-    });
     return {
+      menu,
       menuId,
+      highlightedId,
       inputValue,
-      computedOptions,
-      state,
+      modelWrapper,
       expanded,
       onBlur,
-      handleOptionChange,
       rootClasses,
       rootStyle,
       otherAttrs,
       onUpdateInput,
       onFocus,
-      onKeyNavigation
+      onKeydown
     };
   }
 });
-const _hoisted_1$5 = ["id"];
-const _hoisted_2$5 = {
-  key: 0,
-  class: "cdx-option"
-};
-function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
-  var _a;
+function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_text_input = resolveComponent("cdx-text-input");
-  const _component_cdx_option = resolveComponent("cdx-option");
+  const _component_cdx_menu = resolveComponent("cdx-menu");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass(["cdx-lookup", _ctx.rootClasses]),
     style: normalizeStyle(_ctx.rootStyle)
@@ -1237,39 +1320,37 @@ function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
       "aria-autocomplete": "list",
       "aria-owns": _ctx.menuId,
       "aria-expanded": _ctx.expanded,
-      "aria-activedescendant": (_a = _ctx.state.highlighted.value) == null ? void 0 : _a.id,
+      "aria-activedescendant": _ctx.highlightedId,
       disabled: _ctx.disabled,
       "onUpdate:modelValue": _ctx.onUpdateInput,
       onFocus: _ctx.onFocus,
       onBlur: _ctx.onBlur,
-      onKeydown: withKeys(_ctx.onKeyNavigation, ["space", "enter", "up", "down", "tab", "esc"])
+      onKeydown: _ctx.onKeydown
     }), null, 16, ["modelValue", "aria-owns", "aria-expanded", "aria-activedescendant", "disabled", "onUpdate:modelValue", "onFocus", "onBlur", "onKeydown"]),
-    withDirectives(createElementVNode("ul", {
+    createVNode(_component_cdx_menu, mergeProps({
       id: _ctx.menuId,
-      class: "cdx-lookup__menu",
-      role: "listbox",
-      "aria-multiselectable": "false"
+      ref: "menu",
+      selected: _ctx.modelWrapper,
+      "onUpdate:selected": _cache[1] || (_cache[1] = ($event) => _ctx.modelWrapper = $event),
+      expanded: _ctx.expanded,
+      "onUpdate:expanded": _cache[2] || (_cache[2] = ($event) => _ctx.expanded = $event),
+      "menu-items": _ctx.menuItems
+    }, _ctx.menuConfig), createSlots({
+      default: withCtx(({ menuItem }) => [
+        renderSlot(_ctx.$slots, "menu-item", { menuItem })
+      ]),
+      _: 2
     }, [
-      (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.computedOptions, (option, index) => {
-        return openBlock(), createBlock(_component_cdx_option, mergeProps(option, {
-          key: index,
-          onChange: _ctx.handleOptionChange
-        }), {
-          default: withCtx(() => [
-            renderSlot(_ctx.$slots, "menu-option", { option })
-          ]),
-          _: 2
-        }, 1040, ["onChange"]);
-      }), 128)),
-      _ctx.$slots.footer ? (openBlock(), createElementBlock("li", _hoisted_2$5, [
-        renderSlot(_ctx.$slots, "footer")
-      ])) : createCommentVNode("", true)
-    ], 8, _hoisted_1$5), [
-      [vShow, _ctx.expanded]
-    ])
+      _ctx.$slots.footer ? {
+        name: "footer",
+        fn: withCtx(() => [
+          renderSlot(_ctx.$slots, "footer")
+        ])
+      } : void 0
+    ]), 1040, ["id", "selected", "expanded", "menu-items"])
   ], 6);
 }
-var Lookup = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$5]]);
+var Lookup = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$7]]);
 var Message_vue_vue_type_style_index_0_lang = "";
 const messageTypeValidator = makeStringTypeValidator(MessageTypes);
 const iconMap = {
@@ -1278,7 +1359,7 @@ const iconMap = {
   warning: cdxIconAlert,
   success: cdxIconCheck
 };
-const _sfc_main$4 = defineComponent({
+const _sfc_main$6 = defineComponent({
   name: "CdxMessage",
   components: { CdxButton, CdxIcon },
   props: {
@@ -1329,9 +1410,9 @@ const _sfc_main$4 = defineComponent({
     };
   }
 });
-const _hoisted_1$4 = ["aria-live", "role"];
+const _hoisted_1$6 = ["aria-live", "role"];
 const _hoisted_2$4 = { class: "cdx-message__content" };
-function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_button = resolveComponent("cdx-button");
   return !_ctx.dismissed ? (openBlock(), createElementBlock("div", {
@@ -1362,11 +1443,11 @@ function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
       ]),
       _: 1
     }, 8, ["aria-label", "onClick"])) : createCommentVNode("", true)
-  ], 10, _hoisted_1$4)) : createCommentVNode("", true);
+  ], 10, _hoisted_1$6)) : createCommentVNode("", true);
 }
-var Message = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$4]]);
+var Message = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$6]]);
 var Radio_vue_vue_type_style_index_0_lang = "";
-const _sfc_main$3 = defineComponent({
+const _sfc_main$5 = defineComponent({
   name: "CdxRadio",
   props: {
     modelValue: {
@@ -1412,17 +1493,15 @@ const _sfc_main$3 = defineComponent({
     };
   }
 });
-const _hoisted_1$3 = ["aria-disabled"];
-const _hoisted_2$3 = ["name", "value", "disabled"];
-const _hoisted_3$3 = /* @__PURE__ */ createElementVNode("span", { class: "cdx-radio__icon" }, null, -1);
-const _hoisted_4$1 = { class: "cdx-radio__label-content" };
-function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
+const _hoisted_1$5 = ["name", "value", "disabled"];
+const _hoisted_2$3 = /* @__PURE__ */ createElementVNode("span", { class: "cdx-radio__icon" }, null, -1);
+const _hoisted_3$2 = { class: "cdx-radio__label-content" };
+function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", {
     class: normalizeClass(["cdx-radio", _ctx.rootClasses])
   }, [
     createElementVNode("label", {
       class: "cdx-radio__label",
-      "aria-disabled": _ctx.disabled,
       onClick: _cache[1] || (_cache[1] = (...args) => _ctx.focusInput && _ctx.focusInput(...args))
     }, [
       withDirectives(createElementVNode("input", {
@@ -1433,26 +1512,113 @@ function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
         name: _ctx.name,
         value: _ctx.inputValue,
         disabled: _ctx.disabled
-      }, null, 8, _hoisted_2$3), [
+      }, null, 8, _hoisted_1$5), [
         [vModelRadio, _ctx.wrappedModel]
       ]),
-      _hoisted_3$3,
-      createElementVNode("span", _hoisted_4$1, [
+      _hoisted_2$3,
+      createElementVNode("span", _hoisted_3$2, [
         renderSlot(_ctx.$slots, "default")
       ])
-    ], 8, _hoisted_1$3)
+    ])
   ], 2);
 }
-var Radio = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$3]]);
+var Radio = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$5]]);
+var SearchInput_vue_vue_type_style_index_0_lang = "";
+const _sfc_main$4 = defineComponent({
+  name: "CdxSearchInput",
+  components: {
+    CdxButton,
+    CdxTextInput
+  },
+  inheritAttrs: false,
+  props: {
+    modelValue: {
+      type: [String, Number],
+      default: ""
+    },
+    buttonLabel: {
+      type: String,
+      default: ""
+    }
+  },
+  emits: [
+    "update:modelValue",
+    "submit-click"
+  ],
+  setup(props, { emit, attrs }) {
+    const wrappedModel = useModelWrapper(toRef(props, "modelValue"), emit);
+    const internalClasses = computed(() => {
+      return {
+        "cdx-search-input--has-end-button": !!props.buttonLabel
+      };
+    });
+    const {
+      rootClasses,
+      rootStyle,
+      otherAttrs
+    } = useSplitAttributes(attrs, internalClasses);
+    const handleSubmit = () => {
+      emit("submit-click", wrappedModel.value);
+    };
+    return {
+      wrappedModel,
+      rootClasses,
+      rootStyle,
+      otherAttrs,
+      handleSubmit,
+      searchIcon: cdxIconSearch
+    };
+  },
+  methods: {
+    focus() {
+      const textInput = this.$refs.textInput;
+      textInput.focus();
+    }
+  }
+});
+const _hoisted_1$4 = { class: "cdx-search-input__input-wrapper" };
+function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_cdx_text_input = resolveComponent("cdx-text-input");
+  const _component_cdx_button = resolveComponent("cdx-button");
+  return openBlock(), createElementBlock("div", {
+    class: normalizeClass(["cdx-search-input", _ctx.rootClasses]),
+    style: normalizeStyle(_ctx.rootStyle)
+  }, [
+    createElementVNode("div", _hoisted_1$4, [
+      createVNode(_component_cdx_text_input, mergeProps({
+        ref: "textInput",
+        modelValue: _ctx.wrappedModel,
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.wrappedModel = $event),
+        class: "cdx-search-input__text-input",
+        "input-type": "search",
+        "start-icon": _ctx.searchIcon
+      }, _ctx.otherAttrs, {
+        onKeydown: withKeys(_ctx.handleSubmit, ["enter"])
+      }), null, 16, ["modelValue", "start-icon", "onKeydown"]),
+      renderSlot(_ctx.$slots, "default")
+    ]),
+    _ctx.buttonLabel ? (openBlock(), createBlock(_component_cdx_button, {
+      key: 0,
+      class: "cdx-search-input__end-button",
+      onClick: _ctx.handleSubmit
+    }, {
+      default: withCtx(() => [
+        createTextVNode(toDisplayString(_ctx.buttonLabel), 1)
+      ]),
+      _: 1
+    }, 8, ["onClick"])) : createCommentVNode("", true)
+  ], 6);
+}
+var CdxSearchInput = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$4]]);
 var Select_vue_vue_type_style_index_0_lang = "";
-const _sfc_main$2 = defineComponent({
+const _sfc_main$3 = defineComponent({
   name: "CdxSelect",
   components: {
     CdxIcon,
-    CdxOption
+    CdxMenu
   },
   props: {
-    options: {
+    menuItems: {
       type: Array,
       required: true
     },
@@ -1467,6 +1633,12 @@ const _sfc_main$2 = defineComponent({
     disabled: {
       type: Boolean,
       default: false
+    },
+    menuConfig: {
+      type: Object,
+      default: () => {
+        return {};
+      }
     }
   },
   emits: [
@@ -1474,29 +1646,31 @@ const _sfc_main$2 = defineComponent({
   ],
   setup(props, context) {
     const handle = ref();
+    const menu = ref();
     const handleId = useGeneratedId("select-handle");
     const menuId = useGeneratedId("select-menu");
+    const expanded = ref(false);
     const modelWrapper = useModelWrapper(toRef(props, "modelValue"), context.emit);
-    const {
-      computedOptions,
-      state,
-      expanded,
-      onBlur,
-      handleOptionChange,
-      handleKeyNavigation
-    } = useMenu(toRef(props, "options"), modelWrapper);
+    const selectedMenuItem = computed(() => props.menuItems.find((menuItem) => menuItem.value === props.modelValue));
     const currentLabel = computed(() => {
-      return state.selected.value ? state.selected.value.label || state.selected.value.value : props.defaultLabel;
+      return selectedMenuItem.value ? selectedMenuItem.value.label || selectedMenuItem.value.value : props.defaultLabel;
     });
     const rootClasses = computed(() => {
       return {
         "cdx-select--disabled": props.disabled,
         "cdx-select--expanded": expanded.value,
-        "cdx-select--value-selected": !!state.selected.value,
-        "cdx-select--no-selections": !state.selected.value
+        "cdx-select--value-selected": modelWrapper.value !== null,
+        "cdx-select--no-selections": modelWrapper.value === null
       };
     });
-    function onHandleClick() {
+    const highlightedId = computed(() => {
+      var _a, _b;
+      return (_b = (_a = menu.value) == null ? void 0 : _a.getHighlightedMenuItem()) == null ? void 0 : _b.id;
+    });
+    function onBlur() {
+      expanded.value = false;
+    }
+    function onClick() {
       var _a;
       if (props.disabled) {
         return;
@@ -1504,36 +1678,36 @@ const _sfc_main$2 = defineComponent({
       expanded.value = !expanded.value;
       (_a = handle.value) == null ? void 0 : _a.focus();
     }
-    function onKeyNavigation(e) {
+    function onKeydown(e) {
+      var _a;
       if (props.disabled) {
         return;
       }
-      handleKeyNavigation(e);
+      (_a = menu.value) == null ? void 0 : _a.delegateKeyNavigation(e);
     }
     return {
       handle,
       handleId,
+      menu,
       menuId,
-      computedOptions,
-      state,
+      modelWrapper,
+      selectedMenuItem,
+      highlightedId,
       expanded,
       onBlur,
-      handleOptionChange,
       currentLabel,
       rootClasses,
-      onHandleClick,
+      onClick,
       cdxIconExpand,
-      onKeyNavigation
+      onKeydown
     };
   }
 });
-const _hoisted_1$2 = ["aria-owns", "aria-labelledby", "aria-activedescendant", "aria-expanded", "aria-disabled"];
+const _hoisted_1$3 = ["aria-owns", "aria-labelledby", "aria-activedescendant", "aria-expanded", "aria-disabled"];
 const _hoisted_2$2 = ["id"];
-const _hoisted_3$2 = ["id"];
-function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
-  var _a;
+function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
-  const _component_cdx_option = resolveComponent("cdx-option");
+  const _component_cdx_menu = resolveComponent("cdx-menu");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass(["cdx-select", _ctx.rootClasses])
   }, [
@@ -1545,13 +1719,13 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
       "aria-autocomplete": "list",
       "aria-owns": _ctx.menuId,
       "aria-labelledby": _ctx.handleId,
-      "aria-activedescendant": (_a = _ctx.state.highlighted.value) == null ? void 0 : _a.id,
+      "aria-activedescendant": _ctx.highlightedId,
       "aria-haspopup": "listbox",
       "aria-expanded": _ctx.expanded,
       "aria-disabled": _ctx.disabled,
-      onClick: _cache[0] || (_cache[0] = (...args) => _ctx.onHandleClick && _ctx.onHandleClick(...args)),
+      onClick: _cache[0] || (_cache[0] = (...args) => _ctx.onClick && _ctx.onClick(...args)),
       onBlur: _cache[1] || (_cache[1] = (...args) => _ctx.onBlur && _ctx.onBlur(...args)),
-      onKeydown: _cache[2] || (_cache[2] = withKeys((...args) => _ctx.onKeyNavigation && _ctx.onKeyNavigation(...args), ["space", "enter", "up", "down", "tab", "esc"]))
+      onKeydown: _cache[2] || (_cache[2] = (...args) => _ctx.onKeydown && _ctx.onKeydown(...args))
     }, [
       createElementVNode("span", {
         id: _ctx.handleId,
@@ -1559,7 +1733,7 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
         "aria-readonly": "true"
       }, [
         renderSlot(_ctx.$slots, "label", {
-          selectedOption: _ctx.state.selected.value,
+          selectedMenuItem: _ctx.selectedMenuItem,
           defaultLabel: _ctx.defaultLabel
         }, () => [
           createTextVNode(toDisplayString(_ctx.currentLabel), 1)
@@ -1569,29 +1743,68 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
         icon: _ctx.cdxIconExpand,
         class: "cdx-select__indicator"
       }, null, 8, ["icon"])
-    ], 40, _hoisted_1$2),
-    withDirectives(createElementVNode("ul", {
+    ], 40, _hoisted_1$3),
+    createVNode(_component_cdx_menu, mergeProps({
       id: _ctx.menuId,
-      class: "cdx-select__menu",
-      role: "listbox"
-    }, [
-      (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.computedOptions, (option, index) => {
-        return openBlock(), createBlock(_component_cdx_option, mergeProps(option, {
-          key: index,
-          onChange: _ctx.handleOptionChange
-        }), {
-          default: withCtx(() => [
-            renderSlot(_ctx.$slots, "menu-option", { option })
-          ]),
-          _: 2
-        }, 1040, ["onChange"]);
-      }), 128))
-    ], 8, _hoisted_3$2), [
-      [vShow, _ctx.expanded]
-    ])
+      ref: "menu",
+      selected: _ctx.modelWrapper,
+      "onUpdate:selected": _cache[3] || (_cache[3] = ($event) => _ctx.modelWrapper = $event),
+      expanded: _ctx.expanded,
+      "onUpdate:expanded": _cache[4] || (_cache[4] = ($event) => _ctx.expanded = $event),
+      "menu-items": _ctx.menuItems
+    }, _ctx.menuConfig), {
+      default: withCtx(({ menuItem }) => [
+        renderSlot(_ctx.$slots, "menu-item", { menuItem })
+      ]),
+      _: 3
+    }, 16, ["id", "selected", "expanded", "menu-items"])
   ], 2);
 }
-var Select = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$2]]);
+var Select = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$3]]);
+var ToggleButton_vue_vue_type_style_index_0_lang = "";
+const _sfc_main$2 = defineComponent({
+  name: "CdxToggleButton",
+  props: {
+    modelValue: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
+  },
+  emits: [
+    "update:modelValue"
+  ],
+  setup(props, { emit }) {
+    const rootClasses = computed(() => ({
+      "cdx-toggle-button--toggled-on": props.modelValue,
+      "cdx-toggle-button--toggled-off": !props.modelValue
+    }));
+    const onClick = () => {
+      emit("update:modelValue", !props.modelValue);
+    };
+    return {
+      rootClasses,
+      onClick
+    };
+  }
+});
+const _hoisted_1$2 = ["aria-pressed", "disabled"];
+function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
+  return openBlock(), createElementBlock("button", {
+    class: normalizeClass(["cdx-toggle-button", _ctx.rootClasses]),
+    "aria-pressed": _ctx.modelValue,
+    disabled: _ctx.disabled,
+    onMousedown: _cache[0] || (_cache[0] = withModifiers(() => {
+    }, ["prevent"])),
+    onClick: _cache[1] || (_cache[1] = (...args) => _ctx.onClick && _ctx.onClick(...args))
+  }, [
+    renderSlot(_ctx.$slots, "default")
+  ], 42, _hoisted_1$2);
+}
+var ToggleButton = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$2]]);
 var ToggleSwitch_vue_vue_type_style_index_0_lang = "";
 const _sfc_main$1 = defineComponent({
   name: "CdxToggleSwitch",
@@ -1632,9 +1845,13 @@ const _sfc_main$1 = defineComponent({
     };
   }
 });
-const _hoisted_1$1 = ["for", "aria-disabled"];
+const _hoisted_1$1 = ["for"];
 const _hoisted_2$1 = ["id", "disabled"];
-const _hoisted_3$1 = /* @__PURE__ */ createElementVNode("span", { class: "cdx-toggle-switch__switch" }, [
+const _hoisted_3$1 = {
+  key: 0,
+  class: "cdx-toggle-switch__label-content"
+};
+const _hoisted_4$1 = /* @__PURE__ */ createElementVNode("span", { class: "cdx-toggle-switch__switch" }, [
   /* @__PURE__ */ createElementVNode("span", { class: "cdx-toggle-switch__switch__grip" })
 ], -1);
 function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
@@ -1642,27 +1859,27 @@ function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
     class: normalizeClass(["cdx-toggle-switch", _ctx.rootClasses]),
     style: normalizeStyle(_ctx.rootStyle)
   }, [
-    _ctx.$slots.default ? (openBlock(), createElementBlock("label", {
-      key: 0,
+    createElementVNode("label", {
       for: _ctx.inputId,
-      class: "cdx-toggle-switch__label",
-      "aria-disabled": _ctx.disabled
+      class: "cdx-toggle-switch__label"
     }, [
-      renderSlot(_ctx.$slots, "default")
-    ], 8, _hoisted_1$1)) : createCommentVNode("", true),
-    withDirectives(createElementVNode("input", mergeProps({
-      id: _ctx.inputId,
-      ref: "input",
-      "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.wrappedModel = $event),
-      class: "cdx-toggle-switch__input",
-      type: "checkbox",
-      disabled: _ctx.disabled
-    }, _ctx.otherAttrs, {
-      onKeydown: _cache[1] || (_cache[1] = withKeys(withModifiers((...args) => _ctx.clickInput && _ctx.clickInput(...args), ["prevent"]), ["enter"]))
-    }), null, 16, _hoisted_2$1), [
-      [vModelCheckbox, _ctx.wrappedModel]
-    ]),
-    _hoisted_3$1
+      withDirectives(createElementVNode("input", mergeProps({
+        id: _ctx.inputId,
+        ref: "input",
+        "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.wrappedModel = $event),
+        class: "cdx-toggle-switch__input",
+        type: "checkbox",
+        disabled: _ctx.disabled
+      }, _ctx.otherAttrs, {
+        onKeydown: _cache[1] || (_cache[1] = withKeys(withModifiers((...args) => _ctx.clickInput && _ctx.clickInput(...args), ["prevent"]), ["enter"]))
+      }), null, 16, _hoisted_2$1), [
+        [vModelCheckbox, _ctx.wrappedModel]
+      ]),
+      _ctx.$slots.default ? (openBlock(), createElementBlock("span", _hoisted_3$1, [
+        renderSlot(_ctx.$slots, "default")
+      ])) : createCommentVNode("", true),
+      _hoisted_4$1
+    ], 8, _hoisted_1$1)
   ], 6);
 }
 var ToggleSwitch = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render$1]]);
@@ -1670,11 +1887,9 @@ var TypeaheadSearch_vue_vue_type_style_index_0_lang = "";
 const _sfc_main = defineComponent({
   name: "CdxTypeaheadSearch",
   components: {
-    CdxButton,
     CdxIcon,
-    CdxListTile,
-    CdxOption,
-    CdxTextInput
+    CdxMenu,
+    CdxSearchInput
   },
   inheritAttrs: false,
   props: {
@@ -1714,11 +1929,7 @@ const _sfc_main = defineComponent({
       type: Boolean,
       default: false
     },
-    hideThumbnail: {
-      type: Boolean,
-      default: false
-    },
-    hideDescription: {
+    showThumbnail: {
       type: Boolean,
       default: false
     },
@@ -1734,45 +1945,28 @@ const _sfc_main = defineComponent({
   ],
   setup(props, context) {
     const { searchResults, searchFooterUrl, debounceInterval } = toRefs(props);
+    const form = ref();
+    const menu = ref();
     const menuId = useGeneratedId("typeahead-search-menu");
+    const expanded = ref(false);
     const isActive = ref(false);
     const inputValue = ref(props.initialInputValue);
     const searchQuery = ref("");
-    const internalSelection = ref(null);
-    let menuData = null;
-    const selection = computed({
-      get: () => internalSelection.value,
-      set: (value) => {
-        internalSelection.value = value;
-        if (value !== null && menuData !== null) {
-          const selectedOption = menuData.state.selected.value;
-          inputValue.value = selectedOption ? selectedOption.label || String(selectedOption.value) : "";
-        }
-      }
+    const highlightedId = computed(() => {
+      var _a, _b;
+      return (_b = (_a = menu.value) == null ? void 0 : _a.getHighlightedMenuItem()) == null ? void 0 : _b.id;
     });
+    const selection = ref(null);
+    const selectedResult = computed(() => props.searchResults.find((searchResult) => searchResult.value === selection.value));
     const searchResultsWithFooter = computed(() => searchFooterUrl.value ? searchResults.value.concat([
       { value: MenuFooterValue, url: searchFooterUrl.value }
     ]) : searchResults.value);
-    const {
-      computedOptions,
-      state,
-      expanded,
-      handleOptionChange,
-      handleKeyNavigation
-    } = menuData = useMenu(searchResultsWithFooter, selection, {
-      inputValue,
-      footerCallback: () => {
-        inputValue.value = searchQuery.value;
-        selection.value = null;
-      }
-    });
-    const computedSearchResults = computedOptions;
     const internalClasses = computed(() => {
       return {
         "cdx-typeahead-search--active": isActive.value,
-        "cdx-typeahead-search--show-thumbnail": !props.hideThumbnail,
+        "cdx-typeahead-search--show-thumbnail": props.showThumbnail,
         "cdx-typeahead-search--expanded": expanded.value,
-        "cdx-typeahead-search--auto-expand-width": !props.hideThumbnail && props.autoExpandWidth
+        "cdx-typeahead-search--auto-expand-width": props.showThumbnail && props.autoExpandWidth
       };
     });
     const {
@@ -1780,21 +1974,48 @@ const _sfc_main = defineComponent({
       rootStyle,
       otherAttrs
     } = useSplitAttributes(context.attrs, internalClasses);
-    const debounceId = ref();
-    function onUpdateInputValue(value, immediate = false) {
-      inputValue.value = value;
-      const handleUpdateInputValue = () => {
-        context.emit("new-input", inputValue.value);
+    function asSearchResult(menuItem) {
+      return menuItem;
+    }
+    const menuConfig = computed(() => {
+      return {
+        showThumbnail: props.showThumbnail,
+        boldLabel: true,
+        hideDescriptionOverflow: true,
+        selectHighlighted: true
       };
+    });
+    const debounceId = ref();
+    function onUpdateInputValue(newVal, immediate = false) {
+      if (selectedResult.value && selectedResult.value.label !== newVal && selectedResult.value.value !== newVal) {
+        selection.value = null;
+      }
+      if (newVal === "") {
+        expanded.value = false;
+      }
       if (debounceId.value) {
         clearTimeout(debounceId.value);
       }
+      const handleUpdateInputValue = () => {
+        context.emit("new-input", newVal);
+      };
       if (immediate) {
         handleUpdateInputValue();
       } else {
         debounceId.value = setTimeout(() => {
           handleUpdateInputValue();
         }, debounceInterval.value);
+      }
+    }
+    function onUpdateMenuSelection(newVal) {
+      if (newVal === MenuFooterValue) {
+        selection.value = null;
+        inputValue.value = searchQuery.value;
+        return;
+      }
+      selection.value = newVal;
+      if (newVal !== null) {
+        inputValue.value = selectedResult.value ? selectedResult.value.label || String(selectedResult.value.value) : "";
       }
     }
     function onFocus() {
@@ -1812,23 +2033,23 @@ const _sfc_main = defineComponent({
       const emittedResult = resultWithoutId.value !== MenuFooterValue ? resultWithoutId : null;
       const searchResultClickEvent = {
         searchResult: emittedResult,
-        index: computedOptions.value.indexOf(searchResult),
+        index: searchResultsWithFooter.value.findIndex((r) => r.value === searchResult.value),
         numberOfResults: searchResults.value.length
       };
       context.emit("search-result-click", searchResultClickEvent);
     }
-    function onSearchFooterClick(footerOption) {
+    function onSearchFooterClick(footerMenuItem) {
+      var _a;
       expanded.value = false;
-      handleOptionChange("active");
-      onSearchResultClick(footerOption);
+      (_a = menu.value) == null ? void 0 : _a.clearActive();
+      onSearchResultClick(footerMenuItem);
     }
     function onSubmit() {
       let emittedResult = null;
       let selectedResultIndex = -1;
-      if (state.selected.value) {
-        const _a = state.selected.value, { id } = _a, resultWithoutId = __objRest(_a, ["id"]);
-        emittedResult = resultWithoutId;
-        selectedResultIndex = computedOptions.value.indexOf(state.selected.value);
+      if (selectedResult.value) {
+        emittedResult = selectedResult.value;
+        selectedResultIndex = props.searchResults.indexOf(selectedResult.value);
       }
       const submitEvent = {
         searchResult: emittedResult,
@@ -1837,17 +2058,18 @@ const _sfc_main = defineComponent({
       };
       context.emit("submit", submitEvent);
     }
-    function onKeyNavigation(e) {
-      if (!searchQuery.value || e.key === " " && expanded.value) {
+    function onKeydown(e) {
+      if (!menu.value || !searchQuery.value || e.key === " " && expanded.value) {
         return;
       }
+      const highlightedResult = menu.value.getHighlightedMenuItem();
       switch (e.key) {
         case "Enter":
-          if (state.highlighted.value) {
-            if (state.highlighted.value.value === MenuFooterValue) {
+          if (highlightedResult) {
+            if (highlightedResult.value === MenuFooterValue) {
               window.location.assign(searchFooterUrl.value);
             } else {
-              handleOptionChange("selected", state.highlighted.value);
+              menu.value.delegateKeyNavigation(e, false);
             }
           }
           expanded.value = false;
@@ -1856,7 +2078,7 @@ const _sfc_main = defineComponent({
           expanded.value = false;
           break;
         default:
-          handleKeyNavigation(e);
+          menu.value.delegateKeyNavigation(e);
           break;
       }
     }
@@ -1865,153 +2087,126 @@ const _sfc_main = defineComponent({
         onUpdateInputValue(props.initialInputValue, true);
       }
     });
-    watch(computedOptions, (newVal) => {
+    watch(toRef(props, "searchResults"), (newVal) => {
+      var _a, _b;
       searchQuery.value = inputValue.value.trim();
-      function inputValueIsSelection() {
-        var _a, _b;
-        return ((_a = state.selected.value) == null ? void 0 : _a.label) === inputValue.value || String((_b = state.selected.value) == null ? void 0 : _b.value) === inputValue.value;
-      }
-      if (newVal.length > 0 && isActive.value && !inputValueIsSelection()) {
+      const inputValueIsSelection = ((_a = selectedResult.value) == null ? void 0 : _a.label) === inputValue.value || String((_b = selectedResult.value) == null ? void 0 : _b.value) === inputValue.value;
+      if (newVal.length > 0 && isActive.value && !inputValueIsSelection) {
         expanded.value = true;
       }
     });
-    watch(inputValue, (newVal) => {
-      if (state.selected.value && state.selected.value.label !== newVal && state.selected.value.value !== newVal) {
-        selection.value = null;
-      }
-      if (newVal === "") {
-        expanded.value = false;
-      }
-    });
     return {
+      form,
+      menu,
       menuId,
+      highlightedId,
+      selection,
+      searchResultsWithFooter,
+      asSearchResult,
       inputValue,
       searchQuery,
-      computedSearchResults,
-      state,
       expanded,
-      handleOptionChange,
       rootClasses,
       rootStyle,
       otherAttrs,
+      menuConfig,
       onUpdateInputValue,
+      onUpdateMenuSelection,
       onFocus,
       onBlur,
       onSearchResultClick,
       onSearchFooterClick,
       onSubmit,
-      onKeyNavigation,
+      onKeydown,
       MenuFooterValue,
-      searchIcon: cdxIconSearch,
       articleIcon: cdxIconArticleSearch
     };
   },
   methods: {
     focus() {
-      const textInput = this.$refs.textInput;
-      textInput.focus();
+      const searchInput = this.$refs.searchInput;
+      searchInput.focus();
     }
   }
 });
 const _hoisted_1 = ["id", "action"];
-const _hoisted_2 = { class: "cdx-typeahead-search__wrapper" };
-const _hoisted_3 = ["id", "aria-label"];
-const _hoisted_4 = ["href", "onClickCapture"];
-const _hoisted_5 = { class: "cdx-typeahead-search__search-footer__text" };
-const _hoisted_6 = { class: "cdx-typeahead-search__search-footer__query" };
+const _hoisted_2 = ["href", "onClickCapture"];
+const _hoisted_3 = { class: "cdx-typeahead-search__search-footer__text" };
+const _hoisted_4 = { class: "cdx-typeahead-search__search-footer__query" };
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _a;
-  const _component_cdx_text_input = resolveComponent("cdx-text-input");
-  const _component_cdx_list_tile = resolveComponent("cdx-list-tile");
   const _component_cdx_icon = resolveComponent("cdx-icon");
-  const _component_cdx_option = resolveComponent("cdx-option");
-  const _component_cdx_button = resolveComponent("cdx-button");
+  const _component_cdx_menu = resolveComponent("cdx-menu");
+  const _component_cdx_search_input = resolveComponent("cdx-search-input");
   return openBlock(), createElementBlock("div", {
     class: normalizeClass(["cdx-typeahead-search", _ctx.rootClasses]),
     style: normalizeStyle(_ctx.rootStyle)
   }, [
     createElementVNode("form", {
       id: _ctx.id,
+      ref: "form",
       class: "cdx-typeahead-search__form",
       action: _ctx.formAction,
-      onSubmit: _cache[1] || (_cache[1] = (...args) => _ctx.onSubmit && _ctx.onSubmit(...args))
+      onSubmit: _cache[3] || (_cache[3] = (...args) => _ctx.onSubmit && _ctx.onSubmit(...args))
     }, [
-      createElementVNode("div", _hoisted_2, [
-        createVNode(_component_cdx_text_input, mergeProps({
-          ref: "textInput",
-          modelValue: _ctx.inputValue,
-          "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.inputValue = $event)
-        }, _ctx.otherAttrs, {
-          "start-icon": _ctx.searchIcon,
-          "input-type": "search",
-          name: "search",
-          role: "combobox",
-          autocomplete: "off",
-          "aria-autocomplete": "list",
-          "aria-owns": _ctx.menuId,
-          "aria-expanded": _ctx.expanded,
-          "aria-activedescendant": (_a = _ctx.state.highlighted.value) == null ? void 0 : _a.id,
-          autocapitalize: "off",
-          "onUpdate:modelValue": _ctx.onUpdateInputValue,
-          onFocus: _ctx.onFocus,
-          onBlur: _ctx.onBlur,
-          onKeydown: withKeys(_ctx.onKeyNavigation, ["space", "enter", "up", "down", "tab", "esc"])
-        }), null, 16, ["modelValue", "start-icon", "aria-owns", "aria-expanded", "aria-activedescendant", "onUpdate:modelValue", "onFocus", "onBlur", "onKeydown"]),
-        withDirectives(createElementVNode("ol", {
-          id: _ctx.menuId,
-          class: "cdx-typeahead-search__menu",
-          role: "listbox",
-          "aria-label": _ctx.searchResultsLabel,
-          "aria-multiselectable": "false"
-        }, [
-          (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.computedSearchResults, (searchResult) => {
-            return openBlock(), createBlock(_component_cdx_option, mergeProps({
-              key: searchResult.value,
-              class: "cdx-typeahead-search__menu__option"
-            }, searchResult, { onChange: _ctx.handleOptionChange }), {
-              default: withCtx(() => [
-                searchResult.value !== _ctx.MenuFooterValue ? (openBlock(), createBlock(_component_cdx_list_tile, {
-                  key: 0,
-                  "search-query": _ctx.searchQuery,
-                  item: searchResult,
-                  "highlight-query": _ctx.highlightQuery,
-                  "hide-thumbnail": _ctx.hideThumbnail,
-                  "hide-description": _ctx.hideDescription,
-                  onClick: ($event) => _ctx.onSearchResultClick(searchResult)
-                }, null, 8, ["search-query", "item", "highlight-query", "hide-thumbnail", "hide-description", "onClick"])) : (openBlock(), createElementBlock("a", {
-                  key: 1,
-                  class: "cdx-typeahead-search__search-footer",
-                  href: searchResult.url,
-                  onClickCapture: withModifiers(($event) => _ctx.onSearchFooterClick(searchResult), ["stop"])
-                }, [
-                  !_ctx.hideThumbnail ? (openBlock(), createBlock(_component_cdx_icon, {
-                    key: 0,
-                    class: "cdx-typeahead-search__search-footer__icon",
-                    icon: _ctx.articleIcon
-                  }, null, 8, ["icon"])) : createCommentVNode("", true),
-                  createElementVNode("span", _hoisted_5, [
-                    renderSlot(_ctx.$slots, "search-footer-text", { searchQuery: _ctx.searchQuery }, () => [
-                      createElementVNode("strong", _hoisted_6, toDisplayString(_ctx.searchQuery), 1)
-                    ])
-                  ])
-                ], 40, _hoisted_4))
-              ]),
-              _: 2
-            }, 1040, ["onChange"]);
-          }), 128))
-        ], 8, _hoisted_3), [
-          [vShow, _ctx.expanded]
-        ]),
-        renderSlot(_ctx.$slots, "default")
-      ]),
-      createVNode(_component_cdx_button, { class: "cdx-typeahead-search__submit" }, {
+      createVNode(_component_cdx_search_input, mergeProps({
+        ref: "searchInput",
+        modelValue: _ctx.inputValue,
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => _ctx.inputValue = $event),
+        "button-label": _ctx.buttonLabel
+      }, _ctx.otherAttrs, {
+        name: "search",
+        role: "combobox",
+        autocomplete: "off",
+        "aria-autocomplete": "list",
+        "aria-owns": _ctx.menuId,
+        "aria-expanded": _ctx.expanded,
+        "aria-activedescendant": _ctx.highlightedId,
+        autocapitalize: "off",
+        "onUpdate:modelValue": _ctx.onUpdateInputValue,
+        onFocus: _ctx.onFocus,
+        onBlur: _ctx.onBlur,
+        onKeydown: _ctx.onKeydown
+      }), {
         default: withCtx(() => [
-          createTextVNode(toDisplayString(_ctx.buttonLabel), 1)
+          createVNode(_component_cdx_menu, mergeProps({
+            id: _ctx.menuId,
+            ref: "menu",
+            expanded: _ctx.expanded,
+            "onUpdate:expanded": _cache[0] || (_cache[0] = ($event) => _ctx.expanded = $event),
+            selected: _ctx.selection,
+            "menu-items": _ctx.searchResultsWithFooter,
+            "search-query": _ctx.highlightQuery ? _ctx.searchQuery : ""
+          }, _ctx.menuConfig, {
+            "aria-label": _ctx.searchResultsLabel,
+            "onUpdate:selected": _ctx.onUpdateMenuSelection,
+            onMenuItemClick: _cache[1] || (_cache[1] = (menuItem) => _ctx.onSearchResultClick(_ctx.asSearchResult(menuItem)))
+          }), {
+            default: withCtx(({ menuItem }) => [
+              menuItem.value === _ctx.MenuFooterValue ? (openBlock(), createElementBlock("a", {
+                key: 0,
+                class: "cdx-typeahead-search__search-footer",
+                href: _ctx.asSearchResult(menuItem).url,
+                onClickCapture: withModifiers(($event) => _ctx.onSearchFooterClick(_ctx.asSearchResult(menuItem)), ["stop"])
+              }, [
+                createVNode(_component_cdx_icon, {
+                  class: "cdx-typeahead-search__search-footer__icon",
+                  icon: _ctx.articleIcon
+                }, null, 8, ["icon"]),
+                createElementVNode("span", _hoisted_3, [
+                  renderSlot(_ctx.$slots, "search-footer-text", { searchQuery: _ctx.searchQuery }, () => [
+                    createElementVNode("strong", _hoisted_4, toDisplayString(_ctx.searchQuery), 1)
+                  ])
+                ])
+              ], 40, _hoisted_2)) : createCommentVNode("", true)
+            ]),
+            _: 3
+          }, 16, ["id", "expanded", "selected", "menu-items", "search-query", "aria-label", "onUpdate:selected"])
         ]),
-        _: 1
-      })
+        _: 3
+      }, 16, ["modelValue", "button-label", "aria-owns", "aria-expanded", "aria-activedescendant", "onUpdate:modelValue", "onFocus", "onBlur", "onKeydown"]),
+      renderSlot(_ctx.$slots, "default")
     ], 40, _hoisted_1)
   ], 6);
 }
 var TypeaheadSearch = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render]]);
-export { CdxButton, Checkbox as CdxCheckbox, Combobox as CdxCombobox, CdxIcon, CdxListTile, CdxListTileLabel, Lookup as CdxLookup, Message as CdxMessage, CdxOption, Radio as CdxRadio, Select as CdxSelect, CdxTextInput, ToggleSwitch as CdxToggleSwitch, TypeaheadSearch as CdxTypeaheadSearch, useComputedDirection, useComputedLanguage, useGeneratedId, useModelWrapper };
+export { CdxButton, Checkbox as CdxCheckbox, Combobox as CdxCombobox, CdxIcon, Lookup as CdxLookup, CdxMenu, CdxMenuItem, Message as CdxMessage, Radio as CdxRadio, CdxSearchInput, CdxSearchResultTitle, Select as CdxSelect, CdxTextInput, ToggleButton as CdxToggleButton, ToggleSwitch as CdxToggleSwitch, TypeaheadSearch as CdxTypeaheadSearch, useComputedDirection, useComputedLanguage, useGeneratedId, useModelWrapper };

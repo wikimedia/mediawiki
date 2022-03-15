@@ -14,7 +14,7 @@ import { cdxIconAlert } from '@wikimedia/codex-icons';
 const { cdxIconAlert } = require( '@wikimedia/codex-icons' );
 ```
 and pass it to the `CdxIcon` component from the `@wikimedia/codex` package:
-`<CdxIcon :icon="cdxIconAlert">`.
+`<cdx-icon :icon="cdxIconAlert">`.
 
 For more detailed usage information, see the
 [section about icons on the documentation website](https://doc.wikimedia.org/codex/main/icons/overview.html).
