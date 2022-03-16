@@ -700,7 +700,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function redefineLocalDomain( $domain ) {
-		$this->closeAll();
+		$this->closeAll( __METHOD__ );
 
 		$this->localDomain = DatabaseDomain::newFromId( $domain );
 
@@ -709,11 +709,11 @@ abstract class LBFactory implements ILBFactory {
 		} );
 	}
 
-	public function closeAll() {
+	public function closeAll( $fname = __METHOD__ ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
-		$this->forEachLBCallMethod( 'closeAll', [ __METHOD__, $this->id ] );
+		$this->forEachLBCallMethod( 'closeAll', [ $fname, $this->id ] );
 	}
 
 	public function setAgentName( $agent ) {

@@ -127,7 +127,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			$this->assertEquals( $dbwAuto2, $dbwAuto, "CONN_TRX_AUTOCOMMIT reuses connections" );
 		}
 
-		$lb->closeAll();
+		$lb->closeAll( __METHOD__ );
 	}
 
 	/**
@@ -207,7 +207,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			$this->assertEquals( $dbwAuto2, $dbwAuto, "CONN_TRX_AUTOCOMMIT reuses connections" );
 		}
 
-		$lb->closeAll();
+		$lb->closeAll( __METHOD__ );
 	}
 
 	private function newSingleServerLocalLoadBalancer() {
@@ -487,7 +487,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			$conn2->endAtomic( __METHOD__ );
 		}
 
-		$lb->closeAll();
+		$lb->closeAll( __METHOD__ );
 	}
 
 	/**
@@ -602,7 +602,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$dbr->delete( 'some_table', [ 'id' => 57634126 ], __METHOD__ );
 
 		// FIXME: not needed?
-		$lb->closeAll();
+		$lb->closeAll( __METHOD__ );
 	}
 
 	/**
