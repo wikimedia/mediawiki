@@ -193,7 +193,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		$this->moveTalk = $request->getBool( 'wpMovetalk', $def );
 		$this->fixRedirects = $request->getBool( 'wpFixRedirects', $def );
 		$this->leaveRedirect = $request->getBool( 'wpLeaveRedirect', $def );
-		$this->moveSubpages = $request->getBool( 'wpMovesubpages' );
+		// T222953: Tick the "move subpages" box by default
+		$this->moveSubpages = $request->getBool( 'wpMovesubpages', $def );
 		$this->deleteAndMove = $request->getBool( 'wpDeleteAndMove' );
 		$this->moveOverShared = $request->getBool( 'wpMoveOverSharedFile' );
 		$this->watch = $request->getCheck( 'wpWatch' ) && $user->isRegistered();
@@ -508,7 +509,7 @@ class MovePageForm extends UnlistedSpecialPage {
 					'name' => 'wpMovesubpages',
 					'id' => 'wpMovesubpages',
 					'value' => '1',
-					'selected' => true, // T222953 Always check the box
+					'selected' => $this->moveSubpages,
 				] ),
 				[
 					'label' => new OOUI\HtmlSnippet(
