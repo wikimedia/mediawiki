@@ -7,9 +7,6 @@
  *
  *     require "$IP/includes/DevelopmentSettings.php";
  *
- * Alternatively, if running phpunit.php (or another Maintenance script),
- * you can use the --mwdebug option to automatically load these settings.
- *
  * @file
  */
 
