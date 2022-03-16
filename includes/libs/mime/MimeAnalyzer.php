@@ -598,6 +598,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 			if ( strncmp( $head, $magic, strlen( $magic ) ) == 0 ) {
 				$this->logger->info( __METHOD__ .
 					": magic header in $file recognized as $candidate" );
+				// @phan-suppress-next-line PhanTypeMismatchReturn False positive
 				return $candidate;
 			}
 		}
@@ -687,6 +688,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		AtEase::restoreWarnings();
 		if ( $xml->wellFormed ) {
 			$xmlTypes = $this->xmlTypes;
+			// @phan-suppress-next-line PhanTypeMismatchDimFetch False positive
 			return $xmlTypes[$xml->getRootElement()] ?? 'application/xml';
 		}
 

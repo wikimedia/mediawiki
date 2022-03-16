@@ -288,6 +288,7 @@ TEXT
 				$prefix = $equality;
 				$first = false;
 			} else {
+				// @phan-suppress-next-line PhanTypeSuspiciousStringExpression False positive
 				$cond .= " OR ($prefix AND $inequality)";
 				$prefix .= " AND $equality";
 			}

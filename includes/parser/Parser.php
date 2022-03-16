@@ -2716,6 +2716,7 @@ class Parser {
 				$options = [];
 				$descQuery = false;
 				$this->hookRunner->onBeforeParserFetchFileAndTitle(
+					// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 					$this, $nt, $options, $descQuery
 				);
 				# Fetch and register the file (file title may be different via hooks)
@@ -3651,6 +3652,7 @@ class Parser {
 			if ( !$skip && !$revRecord ) {
 				# Deprecated legacy hook
 				Hooks::runner()->onBeforeParserFetchTemplateAndtitle(
+					// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 					$parser, $title, $skip, $id
 				);
 			}
@@ -5124,6 +5126,7 @@ class Parser {
 			$options = [];
 			$descQuery = false;
 			$this->hookRunner->onBeforeParserFetchFileAndTitle(
+				// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 				$this, $title, $options, $descQuery
 			);
 			# Don't register it now, as TraditionalImageGallery does that later.
@@ -5312,6 +5315,7 @@ class Parser {
 		$descQuery = false;
 		$title = Title::castFromLinkTarget( $link ); // hook signature compat
 		$this->hookRunner->onBeforeParserFetchFileAndTitle(
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			$this, $title, $options, $descQuery
 		);
 		# Fetch and register the file (file title may be different via hooks)

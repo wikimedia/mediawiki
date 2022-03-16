@@ -628,7 +628,7 @@ class NamespaceDupes extends Maintenance {
 	 *
 	 * @param int $id The page_id
 	 * @param LinkTarget $linkTarget The new link target
-	 * @param string &$logStatus This is set to the log status message on failure
+	 * @param string &$logStatus This is set to the log status message on failure @phan-output-reference
 	 * @return bool
 	 */
 	private function canMerge( $id, LinkTarget $linkTarget, &$logStatus ) {

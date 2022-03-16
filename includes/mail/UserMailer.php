@@ -258,6 +258,7 @@ class UserMailer {
 
 		// Allow transformation of content, such as encrypting/signing
 		$error = false;
+		// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 		if ( !Hooks::runner()->onUserMailerTransformContent( $to, $from, $body, $error ) ) {
 			if ( $error ) {
 				return Status::newFatal( 'php-mail-error', $error );

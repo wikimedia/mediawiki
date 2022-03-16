@@ -1680,6 +1680,7 @@ class ApiMain extends ApiBase {
 
 			// Avoid outputting the compressed representation of a zero-length body
 			AtEase::suppressWarnings();
+			// @phan-suppress-next-line PhanTypeMismatchArgumentInternal Scalar okay with php8.1
 			ini_set( 'zlib.output_compression', 0 );
 			AtEase::restoreWarnings();
 			wfResetOutputBuffers( false );

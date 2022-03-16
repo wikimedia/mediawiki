@@ -233,6 +233,7 @@ class RecompressTracked {
 				continue;
 			}
 			if ( in_array( $cmdOption, self::$optionsWithArgs ) && isset( $this->$classOption ) ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgument False positive
 				$cmd .= " --$cmdOption " . Shell::escape( $this->$classOption );
 			} elseif ( $this->$classOption ) {
 				$cmd .= " --$cmdOption";

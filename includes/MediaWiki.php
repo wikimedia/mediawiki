@@ -456,6 +456,7 @@ class MediaWiki {
 			$ignoreRedirect = $target = false;
 
 			$this->getHookRunner()->onInitializeArticleMaybeRedirect( $title, $request,
+				// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 				$ignoreRedirect, $target, $article );
 			$page = $article->getPage(); // reflect any hook changes
 

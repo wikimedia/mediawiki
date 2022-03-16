@@ -607,6 +607,7 @@ class WebRequest {
 	 * @return int
 	 */
 	public function getInt( $name, $default = 0 ) {
+		// @phan-suppress-next-line PhanTypeMismatchArgument getRawVal does not return null here
 		return intval( $this->getRawVal( $name, $default ) );
 	}
 
@@ -636,6 +637,7 @@ class WebRequest {
 	 * @return float
 	 */
 	public function getFloat( $name, $default = 0.0 ) {
+		// @phan-suppress-next-line PhanTypeMismatchArgument getRawVal does not return null here
 		return floatval( $this->getRawVal( $name, $default ) );
 	}
 
@@ -649,6 +651,7 @@ class WebRequest {
 	 * @return bool
 	 */
 	public function getBool( $name, $default = false ) {
+		// @phan-suppress-next-line PhanTypeMismatchArgument getRawVal does not return null here
 		return (bool)$this->getRawVal( $name, $default );
 	}
 

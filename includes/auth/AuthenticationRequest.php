@@ -277,6 +277,7 @@ abstract class AuthenticationRequest {
 				return get_class( $req ) === $class;
 			}
 		} );
+		// @phan-suppress-next-line PhanTypeMismatchReturn False positive
 		return count( $requests ) === 1 ? reset( $requests ) : null;
 	}
 

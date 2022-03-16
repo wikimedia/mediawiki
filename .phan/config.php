@@ -94,7 +94,6 @@ $cfg['exclude_analysis_directory_list'] = [
 
 // These are too spammy for now. TODO enable
 $cfg['null_casts_as_any_type'] = true;
-$cfg['scalar_implicit_cast'] = true;
 $cfg['suppress_issue_types'][] = 'PhanTypePossiblyInvalidDimOffset';
 $cfg['suppress_issue_types'][] = 'PhanPossiblyUndeclaredVariable';
 $cfg['suppress_issue_types'][] = 'PhanCompatibleAccessMethodOnTraitDefinition'; // T289813
@@ -110,7 +109,7 @@ $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'IP' => 'string',
 	'wgGalleryOptions' => 'array',
 	'wgDummyLanguageCodes' => 'string[]',
-	'wgNamespaceProtection' => 'array<string,string|string[]>',
+	'wgNamespaceProtection' => 'array<int,string|string[]>',
 	'wgNamespaceAliases' => 'array<string,int>',
 	'wgLockManagers' => 'array[]',
 	'wgForeignFileRepos' => 'array[]',

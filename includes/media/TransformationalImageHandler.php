@@ -265,6 +265,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		}
 
 		# Remove the file if a zero-byte thumbnail was created, or if there was an error
+		// @phan-suppress-next-line PhanTypeMismatchArgument Relaying on bool/int conversion to cast objects correct
 		$removed = $this->removeBadFile( $dstPath, (bool)$err );
 		if ( $err ) {
 			# transform returned MediaTransforError
