@@ -2176,12 +2176,13 @@ class WANObjectCache implements
 		$newTTLsById = array_fill_keys( $idsRegen, $ttl );
 		$newValsById = $idsRegen ? $callback( $idsRegen, $newTTLsById, $newSetOpts ) : [];
 
+		$method = __METHOD__;
 		// The required callback signature includes $id as the first argument for convenience
 		// to distinguish different items. To reuse the code in getWithSetCallback(), wrap the
 		// callback with a proxy callback that has the standard getWithSetCallback() signature.
 		// This is defined only once per batch to avoid closure creation overhead.
-		$proxyCb = static function ( $oldValue, &$ttl, &$setOpts, $oldAsOf, $params )
-			use ( $callback, $newValsById, $newTTLsById, $newSetOpts )
+		$proxyCb = function ( $oldValue, &$ttl, &$setOpts, $oldAsOf, $params )
+			use ( $callback, $newValsById, $newTTLsById, $newSetOpts, $method )
 		{
 			$id = $params['id'];
 
@@ -2194,7 +2195,16 @@ class WANObjectCache implements
 				// Pre-emptive/popularity refresh and version mismatch cases are not detected
 				// above and thus $newValsById has no entry. Run $callback on this single entity.
 				$ttls = [ $id => $ttl ];
-				$newValue = $callback( [ $id ], $ttls, $setOpts )[$id];
+				$result = $callback( [ $id ], $ttls, $setOpts );
+				if ( !isset( $result[$id] ) ) {
+					// T303092
+					$this->logger->warning(
+						$method . ' failed due to {id} not set in result {result}', [
+						'id' => $id,
+						'result' => json_encode( $result )
+					] );
+				}
+				$newValue = $result[$id];
 				$ttl = $ttls[$id];
 			}
 
