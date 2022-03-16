@@ -32,57 +32,10 @@ use Wikimedia\Rdbms\MySQLField;
 class MysqlUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
 		return [
-			// 1.29
-			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
-			[ 'dropIndex', 'user_groups', 'ug_user_group', 'patch-user_groups-primary-key.sql' ],
-			[ 'addField', 'user_groups', 'ug_expiry', 'patch-user_groups-ug_expiry.sql' ],
-			[ 'ifTableNotExists', 'actor',
-				'addIndex', 'image', 'img_user_timestamp', 'patch-image-user-index-2.sql' ],
-
-			// 1.30
-			[ 'modifyField', 'image', 'img_media_type', 'patch-add-3d.sql' ],
-			[ 'addTable', 'ip_changes', 'patch-ip_changes.sql' ],
-			[ 'renameIndex', 'categorylinks', 'cl_from', 'PRIMARY', false,
-				'patch-categorylinks-fix-pk.sql' ],
-			[ 'renameIndex', 'templatelinks', 'tl_from', 'PRIMARY', false,
-				'patch-templatelinks-fix-pk.sql' ],
-			[ 'renameIndex', 'pagelinks', 'pl_from', 'PRIMARY', false, 'patch-pagelinks-fix-pk.sql' ],
-			[ 'renameIndex', 'text', 'old_id', 'PRIMARY', false, 'patch-text-fix-pk.sql' ],
-			[ 'renameIndex', 'imagelinks', 'il_from', 'PRIMARY', false, 'patch-imagelinks-fix-pk.sql' ],
-			[ 'renameIndex', 'iwlinks', 'iwl_from', 'PRIMARY', false, 'patch-iwlinks-fix-pk.sql' ],
-			[ 'renameIndex', 'langlinks', 'll_from', 'PRIMARY', false, 'patch-langlinks-fix-pk.sql' ],
-			[ 'renameIndex', 'log_search', 'ls_field_val', 'PRIMARY', false, 'patch-log_search-fix-pk.sql' ],
-			[ 'renameIndex', 'module_deps', 'md_module_skin', 'PRIMARY', false,
-				'patch-module_deps-fix-pk.sql' ],
-			[ 'renameIndex', 'objectcache', 'keyname', 'PRIMARY', false, 'patch-objectcache-fix-pk.sql' ],
-			[ 'renameIndex', 'querycache_info', 'qci_type', 'PRIMARY', false,
-				'patch-querycache_info-fix-pk.sql' ],
-			[ 'renameIndex', 'site_stats', 'ss_row_id', 'PRIMARY', false, 'patch-site_stats-fix-pk.sql' ],
-			[ 'renameIndex', 'user_former_groups', 'ufg_user_group', 'PRIMARY', false,
-				'patch-user_former_groups-fix-pk.sql' ],
-			[ 'renameIndex', 'user_properties', 'user_properties_user_property', 'PRIMARY', false,
-				'patch-user_properties-fix-pk.sql' ],
-			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
-			[ 'addTable', 'revision_comment_temp', 'patch-revision_comment_temp-table.sql' ],
-			[ 'addField', 'archive', 'ar_comment_id', 'patch-archive-ar_comment_id.sql' ],
-			[ 'addField', 'filearchive', 'fa_description_id', 'patch-filearchive-fa_description_id.sql' ],
-			[ 'modifyField', 'image', 'img_description', 'patch-image-img_description-default.sql' ],
-			[ 'addField', 'ipblocks', 'ipb_reason_id', 'patch-ipblocks-ipb_reason_id.sql' ],
-			[ 'addField', 'logging', 'log_comment_id', 'patch-logging-log_comment_id.sql' ],
-			[ 'addField', 'oldimage', 'oi_description_id', 'patch-oldimage-oi_description_id.sql' ],
-			[ 'addField', 'protected_titles', 'pt_reason_id', 'patch-protected_titles-pt_reason_id.sql' ],
-			[ 'addField', 'recentchanges', 'rc_comment_id', 'patch-recentchanges-rc_comment_id.sql' ],
-			[ 'setDefault', 'revision', 'rev_comment', '' ],
-
-			// This field was added in 1.31, but is put here so it can be used by 'migrateComments'
-			[ 'addField', 'image', 'img_description_id', 'patch-image-img_description_id.sql' ],
-
-			[ 'migrateComments' ],
-			[ 'renameIndex', 'l10n_cache', 'lc_lang_key', 'PRIMARY', false,
-				'patch-l10n_cache-primary-key.sql' ],
-			[ 'doUnsignedSyncronisation' ],
-
 			// 1.31
+			[ 'addField', 'image', 'img_description_id', 'patch-image-img_description_id.sql' ],
+			[ 'migrateComments' ],
+
 			[ 'addTable', 'slots', 'patch-slots.sql' ],
 			[ 'addField', 'slots', 'slot_origin', 'patch-slot-origin.sql' ],
 			[ 'addTable', 'content', 'patch-content.sql' ],
@@ -346,43 +299,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			false,
 			'Removing ipb_anon_only column from ipb_address_unique index'
 		);
-	}
-
-	protected function doUnsignedSyncronisation() {
-		$sync = [
-			[ 'table' => 'bot_passwords', 'field' => 'bp_user', 'file' => 'patch-bot_passwords-bp_user-unsigned.sql' ],
-			[ 'table' => 'change_tag', 'field' => 'ct_log_id', 'file' => 'patch-change_tag-ct_log_id-unsigned.sql' ],
-			[ 'table' => 'change_tag', 'field' => 'ct_rev_id', 'file' => 'patch-change_tag-ct_rev_id-unsigned.sql' ],
-			[ 'table' => 'user_newtalk', 'field' => 'user_id', 'file' => 'patch-user_newtalk-user_id-unsigned.sql' ],
-			[ 'table' => 'user_properties', 'field' => 'up_user',
-				'file' => 'patch-user_properties-up_user-unsigned.sql' ],
-			[ 'table' => 'change_tag', 'field' => 'ct_rc_id', 'file' => 'patch-change_tag-ct_rc_id-unsigned.sql' ]
-		];
-
-		foreach ( $sync as $s ) {
-			if ( !$this->doTable( $s['table'] ) ) {
-				continue;
-			}
-
-			$info = $this->db->fieldInfo( $s['table'], $s['field'] );
-			if ( $info === false ) {
-				continue;
-			}
-			$fullName = "{$s['table']}.{$s['field']}";
-			if ( $info->isUnsigned() ) {
-				$this->output( "...$fullName is already unsigned int.\n" );
-
-				continue;
-			}
-
-			$this->applyPatch(
-				$s['file'],
-				false,
-				"Making $fullName into an unsigned int"
-			);
-		}
-
-		return true;
 	}
 
 	public function getSchemaVars() {

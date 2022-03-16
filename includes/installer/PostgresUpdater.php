@@ -47,51 +47,10 @@ class PostgresUpdater extends DatabaseUpdater {
 			// Introduced in 1.37.
 			[ 'renameTable', 'mwuser', 'user' ],
 
-			// 1.29
-			[ 'addPgField', 'externallinks', 'el_index_60', "BYTEA NOT NULL DEFAULT ''" ],
-			[ 'addPgIndex', 'externallinks', 'el_index_60', '( el_index_60, el_id )' ],
-			[ 'addPgIndex', 'externallinks', 'el_from_index_60', '( el_from, el_index_60, el_id )' ],
-			[ 'addPgField', 'user_groups', 'ug_expiry', "TIMESTAMPTZ NULL" ],
-			[ 'addPgIndex', 'user_groups', 'user_groups_expiry', '( ug_expiry )' ],
-
-			// 1.30
-			[ 'addPgEnumValue', 'media_type', '3D' ],
-			[ 'setDefault', 'revision', 'rev_comment', '' ],
-			[ 'changeNullableField', 'revision', 'rev_comment', 'NOT NULL', true ],
-			[ 'setDefault', 'archive', 'ar_comment', '' ],
-			[ 'changeNullableField', 'archive', 'ar_comment', 'NOT NULL', true ],
-			[ 'addPgField', 'archive', 'ar_comment_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'setDefault', 'ipblocks', 'ipb_reason', '' ],
-			[ 'addPgField', 'ipblocks', 'ipb_reason_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'setDefault', 'image', 'img_description', '' ],
-			[ 'setDefault', 'oldimage', 'oi_description', '' ],
-			[ 'changeNullableField', 'oldimage', 'oi_description', 'NOT NULL', true ],
-			[ 'addPgField', 'oldimage', 'oi_description_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'setDefault', 'filearchive', 'fa_deleted_reason', '' ],
-			[ 'changeNullableField', 'filearchive', 'fa_deleted_reason', 'NOT NULL', true ],
-			[ 'addPgField', 'filearchive', 'fa_deleted_reason_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'setDefault', 'filearchive', 'fa_description', '' ],
-			[ 'addPgField', 'filearchive', 'fa_description_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'setDefault', 'recentchanges', 'rc_comment', '' ],
-			[ 'changeNullableField', 'recentchanges', 'rc_comment', 'NOT NULL', true ],
-			[ 'addPgField', 'recentchanges', 'rc_comment_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'setDefault', 'logging', 'log_comment', '' ],
-			[ 'changeNullableField', 'logging', 'log_comment', 'NOT NULL', true ],
-			[ 'addPgField', 'logging', 'log_comment_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'setDefault', 'protected_titles', 'pt_reason', '' ],
-			[ 'changeNullableField', 'protected_titles', 'pt_reason', 'NOT NULL', true ],
-			[ 'addPgField', 'protected_titles', 'pt_reason_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
-			[ 'addTable', 'revision_comment_temp', 'patch-revision_comment_temp-table.sql' ],
-
-			// This field was added in 1.31, but is put here so it can be used by 'migrateComments'
-			[ 'addPgField', 'image', 'img_description_id', 'INTEGER NOT NULL DEFAULT 0' ],
-
-			[ 'migrateComments' ],
-			[ 'addIndex', 'site_stats', 'site_stats_pkey', 'patch-site_stats-pk.sql' ],
-			[ 'addTable', 'ip_changes', 'patch-ip_changes.sql' ],
-
 			// 1.31
+			[ 'addPgField', 'image', 'img_description_id', 'INTEGER NOT NULL DEFAULT 0' ],
+			[ 'migrateComments' ],
+
 			[ 'addTable', 'slots', 'patch-slots-table.sql' ],
 			[ 'dropPgIndex', 'slots', 'slot_role_inherited' ],
 			[ 'dropPgField', 'slots', 'slot_inherited' ],
