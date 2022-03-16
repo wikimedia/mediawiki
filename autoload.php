@@ -1802,6 +1802,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\Blob' => __DIR__ . '/includes/libs/rdbms/encasing/Blob.php',
 	'Wikimedia\\Rdbms\\ChronologyProtector' => __DIR__ . '/includes/libs/rdbms/ChronologyProtector.php',
 	'Wikimedia\\Rdbms\\ConnectionManager' => __DIR__ . '/includes/libs/rdbms/connectionmanager/ConnectionManager.php',
+	'Wikimedia\\Rdbms\\CriticalSessionInfo' => __DIR__ . '/includes/libs/rdbms/database/utils/CriticalSessionInfo.php',
 	'Wikimedia\\Rdbms\\DBAccessError' => __DIR__ . '/includes/libs/rdbms/exception/DBAccessError.php',
 	'Wikimedia\\Rdbms\\DBConnRef' => __DIR__ . '/includes/libs/rdbms/database/DBConnRef.php',
 	'Wikimedia\\Rdbms\\DBConnectionError' => __DIR__ . '/includes/libs/rdbms/exception/DBConnectionError.php',
