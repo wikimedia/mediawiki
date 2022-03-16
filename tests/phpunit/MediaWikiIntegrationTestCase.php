@@ -775,7 +775,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$pairs = [ $pairs => $value ];
 		}
 
-		$this->doStashMwGlobals( array_keys( $pairs ) );
+		$this->stashMwGlobals( array_keys( $pairs ) );
 
 		foreach ( $pairs as $key => $value ) {
 			$GLOBALS[$key] = $value;
@@ -832,7 +832,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		return false;
 	}
 
-	private function doStashMwGlobals( $globalKeys ) {
+	/**
+	 * Stash the values of globals which the test is going to modify.
+	 * Stashed values will be restored on tear down.
+	 *
+	 * @since 1.38
+	 * @param string[] $globalKeys
+	 */
+	protected function stashMwGlobals( $globalKeys ) {
 		if ( is_string( $globalKeys ) ) {
 			$globalKeys = [ $globalKeys ];
 		}
