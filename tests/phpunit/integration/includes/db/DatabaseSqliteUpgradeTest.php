@@ -166,8 +166,6 @@ class DatabaseSqliteUpgradeTest extends \MediaWikiIntegrationTestCase {
 
 	public function provideSupportedVersions() {
 		return [
-			[ '1.29' ],
-			[ '1.30' ],
 			[ '1.31' ],
 			[ '1.32' ],
 			[ '1.33' ],
