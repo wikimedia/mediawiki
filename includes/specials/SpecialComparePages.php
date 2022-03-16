@@ -41,6 +41,9 @@ class SpecialComparePages extends SpecialPage {
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
+	/** @var DifferenceEngine */
+	private $differenceEngine;
+
 	/**
 	 * @param RevisionLookup $revisionLookup
 	 * @param IContentHandlerFactory $contentHandlerFactory
@@ -113,14 +116,15 @@ class SpecialComparePages extends SpecialPage {
 				'name' => 'unhide',
 			],
 		], $this->getContext(), 'compare' );
-		$form->setSubmitTextMsg( 'compare-submit' );
-		$form->suppressReset();
-		$form->setMethod( 'get' );
-		$form->setSubmitCallback( [ $this, 'showDiff' ] );
 
-		$form->loadData();
-		$form->displayForm( '' );
-		$form->trySubmit();
+		$form->setMethod( 'get' )
+			->setSubmitTextMsg( 'compare-submit' )
+			->setSubmitCallback( [ $this, 'showDiff' ] )
+			->show();
+
+		if ( $this->differenceEngine ) {
+			$this->differenceEngine->showDiffPage( true );
+		}
 	}
 
 	/**
@@ -141,14 +145,13 @@ class SpecialComparePages extends SpecialPage {
 					RevisionRecord::RAW
 				)->getModel();
 				$contentHandler = $this->contentHandlerFactory->getContentHandler( $contentModel );
-				$de = $contentHandler->createDifferenceEngine( $form->getContext(),
+				$this->differenceEngine = $contentHandler->createDifferenceEngine( $form->getContext(),
 					$rev1,
 					$rev2,
 					0, // rcid
 					( $data['Action'] == 'purge' ),
 					( $data['Unhide'] == '1' )
 				);
-				$de->showDiffPage( true );
 			}
 		}
 	}
