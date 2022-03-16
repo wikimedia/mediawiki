@@ -32,6 +32,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\UserRigorOptions;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -206,7 +207,7 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$id = 0;
 		if ( ExternalUserNames::isExternal( $target ) ) {
-			$userObj = $this->userFactory->newFromName( $target, UserFactory::RIGOR_NONE );
+			$userObj = $this->userFactory->newFromName( $target, UserRigorOptions::RIGOR_NONE );
 			if ( !$userObj ) {
 				$out->addHTML( $this->getForm( $this->opts ) );
 				return;
@@ -220,7 +221,8 @@ class SpecialContributions extends IncludableSpecialPage {
 				$out->addHTML( $this->getForm( $this->opts ) );
 				return;
 			}
-			$userObj = $this->userFactory->newFromName( $nt->getText(), UserFactory::RIGOR_NONE );
+			$userObj = $this->userFactory->newFromName(
+				$nt->getText(), UserRigorOptions::RIGOR_NONE );
 			if ( !$userObj ) {
 				$out->addHTML( $this->getForm( $this->opts ) );
 				return;

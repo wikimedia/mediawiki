@@ -37,6 +37,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsManager;
+use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Watchlist\WatchlistManager;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -687,7 +688,7 @@ class AuthManager implements LoggerAwareInterface {
 
 			$user = $this->userFactory->newFromName(
 				(string)$res->username,
-				UserFactory::RIGOR_USABLE
+				UserRigorOptions::RIGOR_USABLE
 			);
 			if ( !$user ) {
 				$provider = $this->getAuthenticationProvider( $state['primary'] );
@@ -1050,7 +1051,7 @@ class AuthManager implements LoggerAwareInterface {
 			return Status::newFatal( 'userexists' );
 		}
 
-		$user = $this->userFactory->newFromName( (string)$username, UserFactory::RIGOR_CREATABLE );
+		$user = $this->userFactory->newFromName( (string)$username, UserRigorOptions::RIGOR_CREATABLE );
 		if ( !is_object( $user ) ) {
 			return Status::newFatal( 'noname' );
 		} else {
@@ -1162,7 +1163,7 @@ class AuthManager implements LoggerAwareInterface {
 			return AuthenticationResponse::newFail( $status->getMessage() );
 		}
 
-		$user = $this->userFactory->newFromName( (string)$username, UserFactory::RIGOR_CREATABLE );
+		$user = $this->userFactory->newFromName( (string)$username, UserRigorOptions::RIGOR_CREATABLE );
 		foreach ( $reqs as $req ) {
 			$req->username = $username;
 			$req->returnToUrl = $returnToUrl;
@@ -1244,7 +1245,7 @@ class AuthManager implements LoggerAwareInterface {
 
 			$user = $this->userFactory->newFromName(
 				(string)$state['username'],
-				UserFactory::RIGOR_CREATABLE
+				UserRigorOptions::RIGOR_CREATABLE
 			);
 			if ( !is_object( $user ) ) {
 				$session->remove( 'AuthManager::accountCreationState' );
@@ -2015,7 +2016,7 @@ class AuthManager implements LoggerAwareInterface {
 
 			$user = $this->userFactory->newFromName(
 				(string)$state['username'],
-				UserFactory::RIGOR_USABLE
+				UserRigorOptions::RIGOR_USABLE
 			);
 			if ( !is_object( $user ) ) {
 				$session->remove( 'AuthManager::accountLinkState' );

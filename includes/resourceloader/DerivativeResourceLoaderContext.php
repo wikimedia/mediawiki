@@ -20,8 +20,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserRigorOptions;
 
 /**
  * A mutable version of ResourceLoaderContext.
@@ -146,7 +146,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 				// Use provided username if valid
 				$this->userIdentity = MediaWikiServices::getInstance()
 					->getUserFactory()
-					->newFromName( $username, UserFactory::RIGOR_VALID );
+					->newFromName( $username, UserRigorOptions::RIGOR_VALID );
 			}
 		}
 		return $this->userIdentity;

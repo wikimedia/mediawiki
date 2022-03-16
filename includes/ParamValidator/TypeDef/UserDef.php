@@ -8,6 +8,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserRigorOptions;
 use TitleParser;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
@@ -186,7 +187,7 @@ class UserDef extends TypeDef {
 
 		// An interwiki username?
 		if ( ExternalUserNames::isExternal( $value ) ) {
-			$name = $this->userNameUtils->getCanonical( $value, UserNameUtils::RIGOR_NONE );
+			$name = $this->userNameUtils->getCanonical( $value, UserRigorOptions::RIGOR_NONE );
 			// UserIdentityValue has the username which includes the > separating the external
 			// wiki database and the actual name, but is created for the *local* wiki, like
 			// for User objects (local is the default, but we specify it anyway to show
@@ -203,7 +204,7 @@ class UserDef extends TypeDef {
 		// look like an IP, and since we checked for external user names above it isn't
 		// that either, so if this is a valid user name then we check the database for
 		// the id, and if there is no user with this name the id is 0
-		$canonicalName = $this->userNameUtils->getCanonical( $value, UserNameUtils::RIGOR_VALID );
+		$canonicalName = $this->userNameUtils->getCanonical( $value, UserRigorOptions::RIGOR_VALID );
 		if ( $canonicalName !== false ) {
 			$userIdentity = $this->userIdentityLookup->getUserIdentityByName( $canonicalName );
 			if ( $userIdentity ) {
@@ -255,7 +256,7 @@ class UserDef extends TypeDef {
 			// a valid IP or matches the regex) and the only normalization is making the first
 			// character uppercase (doesn't matter for numbers) and replacing underscores with
 			// spaces (doesn't apply to IPs). But, better safe than sorry?
-			$name = $this->userNameUtils->getCanonical( $name, UserNameUtils::RIGOR_NONE );
+			$name = $this->userNameUtils->getCanonical( $name, UserRigorOptions::RIGOR_NONE );
 			return [ 'ip', UserIdentityValue::newAnonymous( $name ) ];
 		}
 
@@ -263,7 +264,7 @@ class UserDef extends TypeDef {
 		if ( IPUtils::isValidRange( $value ) ) {
 			$name = IPUtils::sanitizeIP( $value );
 			// Per above, the UserNameUtils call isn't strictly needed, but doesn't hurt
-			$name = $this->userNameUtils->getCanonical( $name, UserNameUtils::RIGOR_NONE );
+			$name = $this->userNameUtils->getCanonical( $name, UserRigorOptions::RIGOR_NONE );
 			return [ 'cidr', UserIdentityValue::newAnonymous( $name ) ];
 		}
 

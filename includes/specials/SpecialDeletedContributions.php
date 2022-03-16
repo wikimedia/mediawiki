@@ -27,6 +27,7 @@ use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserRigorOptions;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -118,7 +119,7 @@ class SpecialDeletedContributions extends SpecialPage {
 
 		if ( $par !== null ) {
 			// Beautify the username
-			$par = $this->userNameUtils->getCanonical( $par, UserNameUtils::RIGOR_NONE );
+			$par = $this->userNameUtils->getCanonical( $par, UserRigorOptions::RIGOR_NONE );
 			$opts->setValue( 'target', (string)$par );
 		}
 
@@ -136,7 +137,7 @@ class SpecialDeletedContributions extends SpecialPage {
 			return;
 		}
 
-		$userObj = $this->userFactory->newFromName( $target, UserFactory::RIGOR_NONE );
+		$userObj = $this->userFactory->newFromName( $target, UserRigorOptions::RIGOR_NONE );
 		if ( !$userObj ) {
 			$this->getForm();
 

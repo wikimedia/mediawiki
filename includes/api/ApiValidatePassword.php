@@ -3,6 +3,7 @@
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserRigorOptions;
 
 /**
  * @ingroup API
@@ -40,7 +41,7 @@ class ApiValidatePassword extends ApiBase {
 		if ( $params['user'] !== null ) {
 			$user = $this->userFactory->newFromName(
 				$params['user'],
-				UserFactory::RIGOR_CREATABLE
+				UserRigorOptions::RIGOR_CREATABLE
 			);
 			if ( !$user ) {
 				$encParamName = $this->encodeParamName( 'user' );
