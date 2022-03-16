@@ -110,6 +110,8 @@
 	"config-sqlite-dir": "SQLite data-katalog:",
 	"config-sqlite-dir-help": "SQLite lagrar all data i en enda fil.\n\nDen katalog du anger måste vara skrivbar av webbservern under installationen.\n\nDet bör <strong>inte</strong> vara tillgänglig via webben; Det är därför vi inte lägger den där dina PHP-filer är.\n\nInstallationsprogrammet kommer att skriva en <code>.htaccess</code>-fil tillsammans med den, men om det misslyckas kan någon få tillgång till den råa databasen.\nVlken innehåller rå användardata (e-postadresser, hashade lösenord) samt borttagna revideringar och annan begränsad data på wikiт.\n\nÖverväg att lägga databasen någon helt annanstans, till exempel i <code>/var/lib/mediawiki/yourwiki</code>.",
 	"config-type-mysql": "MariaDB, MySQL eller kompatibelt",
+	"config-type-postgres": "PostgreSQL",
+	"config-type-sqlite": "SQLite",
 	"config-support-info": "MediaWiki stöder följande databassystem:\n\n$1\n\nOm du inte ser det databassystem som du försöker använda nedanstående, följ då instruktionerna länkade ovan för aktivera stöd för det.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mariadb-url}} MariaDB] är det primära målet för MediaWiki och stöds bäst. MediaWiki fungerar även med [{{int:version-db-mysql-url}} MySQL] och [{{int:version-db-percona-url}} Percona Server], som är kompatibla med MariaDB. ([https://www.php.net/manual/en/mysqli.installation.php Hur man kompilerar PHP med stöd för MySQL])",
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] är ett populärt databassystem med öppen källkod som ett alternativ till MySQL. ([https://www.php.net/manual/en/pgsql.installation.php Hur man kompilerar PHP med PostgreSQL-stöd])",

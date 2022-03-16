@@ -534,7 +534,7 @@
 	"userlogout": "Abmelden",
 	"notloggedin": "Nicht angemeldet",
 	"userlogin-noaccount": "Du hast noch kein Benutzerkonto?",
-	"userlogin-joinproject": "Bei {{SITENAME}} anmelden",
+	"userlogin-joinproject": "Bei {{SITENAME}} registrieren",
 	"createaccount": "Benutzerkonto anlegen",
 	"userlogin-resetpassword-link": "Passwort vergessen?",
 	"userlogin-helplink2": "Hilfe beim Anmelden",
