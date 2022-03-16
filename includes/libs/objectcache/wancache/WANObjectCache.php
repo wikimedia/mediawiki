@@ -1982,7 +1982,8 @@ class WANObjectCache implements
 	 *
 	 * This works the same as getWithSetCallback() except:
 	 *   - a) The $keys argument must be the result of WANObjectCache::makeMultiKeys()
-	 *   - b) The $callback argument must be a callback that takes the following arguments:
+	 *   - b) The $callback argument expects a function that returns an entity value, using
+	 *        boolean "false" if it does not exist. The callback takes the following arguments:
 	 *         - $id: ID of the entity to query
 	 *         - $oldValue: prior cache value or false if none was present
 	 *         - &$ttl: reference to the TTL to be assigned to the new value (alterable)
@@ -2061,8 +2062,9 @@ class WANObjectCache implements
 			return $callback( $params['id'], $oldValue, $ttl, $setOpts, $oldAsOf );
 		};
 
+		// Get the order-preserved result map using the warm-up cache
 		$values = [];
-		foreach ( $keyedIds as $key => $id ) { // preserve order
+		foreach ( $keyedIds as $key => $id ) {
 			$values[$key] = $this->getWithSetCallback(
 				$key,
 				$ttl,
@@ -2082,8 +2084,9 @@ class WANObjectCache implements
 	 *
 	 * This works the same as getWithSetCallback() except:
 	 *   - a) The $keys argument expects the result of WANObjectCache::makeMultiKeys()
-	 *   - b) The $callback argument expects a callback returning a map of (ID => new value)
-	 *        for all entity IDs in $ids and it takes the following arguments:
+	 *   - b) The $callback argument expects a function that returns a map of (ID => new value),
+	 *        using boolean "false" for entities that could not be found, for all entity IDs in
+	 *        $ids. The callback takes the following arguments:
 	 *          - $ids: list of entity IDs that require value generation
 	 *          - &$ttls: reference to the (entity ID => new TTL) map (alterable)
 	 *          - &$setOpts: reference to the new value set() options (alterable)
@@ -2112,7 +2115,7 @@ class WANObjectCache implements
 	 *             $setOpts += Database::getCacheSetOptions( $dbr );
 	 *
 	 *             // Load the rows for these files
-	 *             $rows = [];
+	 *             $rows = array_fill_keys( $ids, false );
 	 *             $queryInfo = File::getQueryInfo();
 	 *             $res = $dbr->select(
 	 *                 $queryInfo['tables'],
@@ -2201,9 +2204,9 @@ class WANObjectCache implements
 			return $newValue;
 		};
 
-		// Run the cache-aside logic using warmupCache instead of persistent cache queries
+		// Get the order-preserved result map using the warm-up cache
 		$values = [];
-		foreach ( $keyedIds as $key => $id ) { // preserve order
+		foreach ( $keyedIds as $key => $id ) {
 			$values[$key] = $this->getWithSetCallback(
 				$key,
 				$ttl,
