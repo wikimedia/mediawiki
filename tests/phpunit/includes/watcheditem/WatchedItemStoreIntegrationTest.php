@@ -19,7 +19,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$this->setMwGlobals( [
 			'wgWatchlistExpiry' => true,
-			'$wgWatchlistExpiryMaxDuration' => '6 months',
+			'wgWatchlistExpiryMaxDuration' => '6 months',
 		] );
 	}
 
