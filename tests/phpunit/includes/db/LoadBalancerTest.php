@@ -498,6 +498,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::finalizePrimaryChanges()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::approvePrimaryChanges()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::commitPrimaryChanges()
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::flushPrimarySessions()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::runPrimaryTransactionIdleCallbacks()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::runPrimaryTransactionListenerCallbacks()
 	 */
@@ -583,6 +584,11 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals( array_fill_keys( [ 'a', 'b', 'c', 'd' ], 1 ), $ac );
 		$this->assertEquals( 2, $tlCalls );
+
+		$conn1->lock( 'test_lock_' . mt_rand(), __METHOD__, 0 );
+		$lb->flushPrimarySessions( __METHOD__ );
+		$this->assertSame( TransactionManager::STATUS_TRX_NONE, $conn1->trxStatus() );
+		$this->assertSame( TransactionManager::STATUS_TRX_NONE, $conn2->trxStatus() );
 
 		$conn1->close();
 		$conn2->close();

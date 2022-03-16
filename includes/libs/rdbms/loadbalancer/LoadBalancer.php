@@ -1925,6 +1925,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function flushPrimarySessions( $fname = __METHOD__, $owner = null ) {
+		$this->assertOwnership( $fname, $owner );
 		$this->assertTransactionRoundStage( [ self::ROUND_CURSORY ] );
 		if ( $this->hasPrimaryChanges() ) {
 			// Any transaction should have been rolled back beforehand
@@ -1932,8 +1933,8 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		$this->forEachOpenPrimaryConnection(
-			static function ( IDatabase $conn ) use ( $fname, $owner ) {
-				$conn->flushSession( $fname, $owner );
+			function ( IDatabase $conn ) use ( $fname ) {
+				$conn->flushSession( $fname, $this->id );
 			}
 		);
 	}
