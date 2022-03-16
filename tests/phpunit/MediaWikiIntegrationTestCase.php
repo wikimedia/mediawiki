@@ -572,12 +572,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			while ( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback( __METHOD__, 'flush' );
 			}
-			// Check for unsafe queries
-			if ( $this->db->getType() === 'mysql' ) {
-				$this->db->query(
-					"SET sql_mode = 'STRICT_ALL_TABLES,ONLY_FULL_GROUP_BY'",
-					__METHOD__ );
-			}
 		}
 
 		// Reset all caches between tests.
@@ -601,7 +595,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @after
 	 */
 	final protected function mediaWikiTearDown(): void {
-		global $wgRequest, $wgSQLMode;
+		global $wgRequest;
 
 		$status = ob_get_status();
 		if ( isset( $status['name'] ) &&
@@ -614,10 +608,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			// Clean up open transactions
 			while ( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback( __METHOD__, 'flush' );
-			}
-			if ( $this->db->getType() === 'mysql' ) {
-				$this->db->query( "SET sql_mode = " . $this->db->addQuotes( $wgSQLMode ),
-					__METHOD__ );
 			}
 		}
 
