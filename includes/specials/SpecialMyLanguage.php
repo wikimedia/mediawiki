@@ -138,8 +138,11 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 			return null;
 		}
 
+		$fragment = '';
 		if ( $base->isRedirect() ) {
 			$base = $this->redirectLookup->getRedirectTarget( $base );
+			// Preserve the fragment from the redirect target
+			$fragment = $base->getFragment();
 		}
 
 		$uiLang = $this->getLanguage();
@@ -154,11 +157,15 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		// Check for a subpage in current UI language
 		$proposed = $base->getSubpage( $uiLang->getCode() );
 		if ( $proposed && $proposed->exists() ) {
+			if ( $fragment !== '' ) {
+				$proposed->setFragment( $fragment );
+			}
 			return $proposed;
 		}
 
+		// Explicit language code given and the page exists
 		if ( $provided !== $base && $provided->exists() ) {
-			// Explicit language code given and the page exists
+			// Not based on the redirect target, don't need the fragment
 			return $provided;
 		}
 
@@ -168,6 +175,9 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 			if ( $forTransclusion || $lang !== $baseLang->getCode() ) {
 				$proposed = $base->getSubpage( $lang );
 				if ( $proposed && $proposed->exists() ) {
+					if ( $fragment !== '' ) {
+						$proposed->setFragment( $fragment );
+					}
 					return $proposed;
 				}
 			}

@@ -14,17 +14,21 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 			'Page/Another/zh',
 			'Page/Foreign',
 			'Page/Foreign/en',
+			'Page/Redirect',
 		];
 		// In the real-world, they are in respective languages,
 		// but we don't need to set all of them for tests.
 		$pageLang = [
 			'Page/Foreign' => 'sq',
 		];
+		$pageContent = [
+			'Page/Redirect' => '#REDIRECT [[Page/Another#Section]]',
+		];
 		$user = $this->getTestSysop()->getAuthority();
 		foreach ( $titles as $title ) {
 			$this->editPage(
 				$title,
-				new WikitextContent( 'UTContent' ),
+				new WikitextContent( $pageContent[$title] ?? 'UTContent' ),
 				'UTPageSummary',
 				NS_MAIN,
 				$user
@@ -65,10 +69,12 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 	 * @param Title|null $title
 	 */
 	private function assertTitle( $expected, $title ) {
-		if ( $title ) {
-			$title = $title->getPrefixedText();
+		if ( $expected === null ) {
+			$this->assertNull( $title );
+		} else {
+			$expected = Title::newFromText( $expected );
+			$this->assertTrue( $expected->isSameLinkAs( $title ) );
 		}
-		$this->assertEquals( $expected, $title );
 	}
 
 	public static function provideFindTitle() {
@@ -94,6 +100,7 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 			[ null, 'Special:Blankpage', 'en', 'ar' ],
 			[ null, 'Media:Fail', 'en', 'ar' ],
 			[ 'Page/Foreign/en', 'Page/Foreign', 'en', 'en' ],
+			[ 'Page/Another/ar#Section', 'Page/Redirect', 'en', 'ar' ],
 		];
 	}
 
