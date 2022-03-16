@@ -37,6 +37,29 @@ use MediaWiki\Settings\Source\ReflectionSchemaSource;
 trait ConfigSchemaDerivativeTrait {
 
 	/**
+	 * Loads a template and injects the generated content.
+	 *
+	 * @param string $templatePath
+	 * @param string $generatedContent
+	 *
+	 * @return string The template's content with the generated content injected.
+	 */
+	private function processTemplate( $templatePath, $generatedContent ): string {
+		$oldContent = file_get_contents( $templatePath );
+
+		// avoid extra line breaks, indentation, etc.
+		$generatedContent = trim( $generatedContent );
+
+		return preg_replace_callback(
+			'/\{\{[-\w]+\}\}/',
+			static function ( $match ) use ( $generatedContent ) {
+				return $generatedContent;
+			},
+			$oldContent
+		);
+	}
+
+	/**
 	 * Loads the config schema from the MainConfigSchema class.
 	 *
 	 * @return array An associative array with a single key, 'config-schema',
