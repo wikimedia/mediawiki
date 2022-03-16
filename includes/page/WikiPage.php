@@ -2212,13 +2212,13 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param bool &$cascade Set to false if cascading protection isn't allowed.
 	 * @param string $reason
 	 * @param UserIdentity $user The user updating the restrictions
-	 * @param string|string[]|null $tags Change tags to add to the pages and protection log entries
+	 * @param string[] $tags Change tags to add to the pages and protection log entries
 	 *   ($user should be able to add the specified tags before this is called)
 	 * @return Status Status object; if action is taken, $status->value is the log_id of the
 	 *   protection log entry.
 	 */
 	public function doUpdateRestrictions( array $limit, array $expiry,
-		&$cascade, $reason, UserIdentity $user, $tags = null
+		&$cascade, $reason, UserIdentity $user, $tags = []
 	) {
 		global $wgCascadingRestrictionLevels;
 

@@ -143,7 +143,7 @@ class ApiProtect extends ApiBase {
 			$cascade,
 			$params['reason'],
 			$user,
-			$tags
+			$tags ?? []
 		);
 
 		if ( !$status->isOK() ) {
