@@ -97,9 +97,9 @@
 	"printableversion": "Versiòun ch'la 's pōl stampêr",
 	"permalink": "Colegamèint fés",
 	"print": "Stampèr",
-	"view-view": "Lēś",
+	"skin-view-view": "Lēś",
 	"edit": "Mudéfica",
-	"view-edit": "Mudéfica",
+	"skin-view-edit": "Mudéfica",
 	"create-local": "Śòunta na descrisiòun lochèla",
 	"delete": "Scanşèla",
 	"protect": "Prutēz",
@@ -197,6 +197,6 @@
 	"mw-widgets-abandonedit-keep": "Cuntinuèr l'editasiòun",
 	"mw-widgets-mediasearch-input-placeholder": "Serchèr un média",
 	"mw-widgets-mediasearch-noresults": "Mìa catê nisùn risultê.",
-	"view-create-local": "Śòunta na descrisiòun lochèla",
+	"skin-view-create-local": "Śòunta na descrisiòun lochèla",
 	"skin-action-protect": "Prutēz"
 }
