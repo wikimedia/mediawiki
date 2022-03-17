@@ -342,7 +342,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				->getMovePageFactory()
 				->newMovePage( $old, $new )
 				->move( $this->getTestUser()->getUser(), 'move reason', $createRedirect );
-			$this->assertTrue( $status->isOK() );
+			$this->assertStatusOK( $status );
 			$this->assertMoved( $old, $new, $oldPageId, $createRedirect );
 
 			[
@@ -382,7 +382,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$mp = $this->newMovePageWithMocks( $oldTitle, $newTitle );
 		$user = User::newFromName( 'TitleMove tester' );
 		$status = $mp->move( $user, 'Reason', true );
-		$this->assertTrue( $status->hasMessage( $error ) );
+		$this->assertStatusError( $error, $status );
 	}
 
 	/**
@@ -411,7 +411,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			->newMovePage( $oldTitle, $newTitle )
 			->moveSubpages( $this->getTestUser()->getUser(), 'Reason', true );
 
-		$this->assertTrue( $status->isGood(),
+		$this->assertStatusGood( $status,
 			"Moving subpages from Talk:{$name} to Talk:{$name} 2 was not completely successful." );
 		foreach ( $subPages as $page ) {
 			$this->assertMoved( $page, str_replace( $name, "$name 2", $page ), $ids[$page] );
@@ -444,7 +444,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			->newMovePage( $oldTitle, $newTitle )
 			->moveSubpagesIfAllowed( $this->getTestUser()->getUser(), 'Reason', true );
 
-		$this->assertTrue( $status->isGood(),
+		$this->assertStatusGood( $status,
 			"Moving subpages from Talk:{$name} to Talk:{$name} 2 was not completely successful." );
 		foreach ( $subPages as $page ) {
 			$this->assertMoved( $page, str_replace( $name, "$name 2", $page ), $ids[$page] );
@@ -553,7 +553,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$status = $obj->move( $this->getTestUser()->getUser() );
 
 		// sanity checks
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
 		$this->assertSame( $pageId, $new->getId() );
 		$this->assertNotSame( $pageId, $old->getId() );
 

@@ -35,9 +35,9 @@ class ApiQueryUserInfoTest extends ApiTestCase {
 		$this->assertArrayNotHasKey( 'latestcontrib', $apiResult[0]['query']['userinfo'] );
 
 		$status = $this->editPage( $page, 'one' );
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
 		$status = $this->editPage( $page, 'two' );
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
 
 		$revisionTimestamp = MWTimestamp::convert( TS_ISO_8601, $page->getTimestamp() );
 

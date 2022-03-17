@@ -849,7 +849,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			$this->getTestSysop()->getUser(),
 			$props
 		);
-		$this->assertSame( [], $status->getErrors() );
+		$this->assertStatusGood( $status );
 		// Check properties of the same object immediately after upload
 		$this->assertFileProperties( $props, $file );
 		// Check round-trip through the DB
@@ -881,7 +881,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			'page text',
 			0
 		);
-		$this->assertSame( [], $status->getErrors() );
+		$this->assertStatusGood( $status );
 
 		// Test reupload
 		$file = new LocalFile( $title, $repo );
@@ -892,7 +892,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			'page text',
 			0
 		);
-		$this->assertSame( [], $status->getErrors() );
+		$this->assertStatusGood( $status );
 	}
 
 	public function provideReserializeMetadata() {

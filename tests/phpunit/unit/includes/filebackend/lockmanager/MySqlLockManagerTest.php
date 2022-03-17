@@ -332,6 +332,6 @@ class MySqlLockManagerTest extends MediaWikiUnitTestCase {
 			'message' => 'lockmanager-fail-db-release',
 			'params' => [ 'main' ],
 		] ], $status->getErrors() );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 	}
 }

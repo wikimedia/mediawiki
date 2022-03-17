@@ -284,7 +284,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			->setLogSubtype( $logSubtype )
 			->deleteUnsafe( $reason );
 
-		$this->assertTrue( $status->isGood(), 'Deletion should succeed' );
+		$this->assertStatusGood( $status, 'Deletion should succeed' );
 
 		DeferredUpdates::doUpdates();
 

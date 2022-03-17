@@ -369,8 +369,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			return false;
 		} );
 		$status = $this->user->checkPasswordValidity( 'Password1234' );
-		$this->assertTrue( $status->isOK() );
-		$this->assertFalse( $status->isGood() );
+		$this->assertStatusOK( $status );
+		$this->assertStatusNotGood( $status );
 		$this->assertSame( 'isValidPassword returned false', $status->getErrors()[0]['message'] );
 
 		$this->removeTemporaryHook( 'isValidPassword' );
@@ -380,9 +380,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			return true;
 		} );
 		$status = $this->user->checkPasswordValidity( 'Password1234' );
-		$this->assertTrue( $status->isOK() );
-		$this->assertTrue( $status->isGood() );
-		$this->assertSame( [], $status->getErrors() );
+		$this->assertStatusGood( $status );
 
 		$this->removeTemporaryHook( 'isValidPassword' );
 
@@ -391,8 +389,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			return true;
 		} );
 		$status = $this->user->checkPasswordValidity( 'Password1234' );
-		$this->assertTrue( $status->isOK() );
-		$this->assertFalse( $status->isGood() );
+		$this->assertStatusOK( $status );
+		$this->assertStatusNotGood( $status );
 		$this->assertSame( 'isValidPassword returned true', $status->getErrors()[0]['message'] );
 
 		$this->removeTemporaryHook( 'isValidPassword' );
@@ -955,7 +953,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $user->getTitleKey(), $titleKey );
 
 		$status = $user->addToDatabase();
-		$this->assertTrue( $status->isOK(), 'User can be added to the database' );
+		$this->assertStatusOK( $status, 'User can be added to the database' );
 		$this->assertSame( $name, User::whoIs( $user->getId() ) );
 	}
 

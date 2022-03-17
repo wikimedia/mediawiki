@@ -217,7 +217,7 @@ class ThrottlePreAuthenticationProviderTest extends MediaWikiIntegrationTestCase
 		$provider->testForAuthentication( [ $req ] );
 		$req->username = 'some user';
 		$status = $provider->testForAuthentication( [ $req ] );
-		$this->assertFalse( $status->isGood(), 'denormalized usernames are normalized' );
+		$this->assertStatusNotGood( $status, 'denormalized usernames are normalized' );
 	}
 
 	public function testPostAuthentication() {

@@ -65,13 +65,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	public function testConfigSchemaDefaultsValidate() {
 		$settingsBuilder = $this->getSettingsBuilderWithSchema();
 		$validationResult = $settingsBuilder->apply()->validate();
-		$this->assertArrayEquals(
-			[],
-			$validationResult->getErrorsByType( 'errors' ),
-			false,
-			false,
-			"$validationResult"
-		);
+		$this->assertStatusOK( $validationResult );
 	}
 
 	/**
@@ -80,13 +74,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	public function testCurrentSettingsValidate() {
 		global $wgSettings;
 		$validationResult = $wgSettings->validate();
-		$this->assertArrayEquals(
-			[],
-			$validationResult->getErrorsByType( 'error' ),
-			false,
-			false,
-			"$validationResult"
-		);
+		$this->assertStatusOK( $validationResult );
 	}
 
 	public function provideConfigGeneration() {

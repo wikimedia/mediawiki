@@ -295,7 +295,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		$status = $page->doEditContent( $content, "[[testing]] 1", EDIT_NEW );
 
-		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertStatusOK( $status, 'OK' );
 		$this->assertTrue( $status->value['new'], 'new' );
 		$this->assertNotNull( $status->value['revision-record'], 'revision-record' );
 
@@ -319,7 +319,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		);
 
 		$status = $page->doEditContent( $content, "testing 2", EDIT_UPDATE );
-		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertStatusOK( $status, 'OK' );
 		$this->assertFalse( $status->value['new'], 'new' );
 		$this->assertNotNull( $status->value['revision-record'], 'revision-record' );
 
@@ -378,7 +378,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		$status = $page->doUserEditContent( $content, $user1, "[[testing]] 1", EDIT_NEW );
 
-		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertStatusOK( $status, 'OK' );
 		$this->assertTrue( $status->value['new'], 'new' );
 		$this->assertNotNull( $status->value['revision-record'], 'revision-record' );
 
@@ -436,7 +436,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		// try null edit, with a different user
 		$status = $page->doUserEditContent( $content, $user2, 'This changes nothing', EDIT_UPDATE, false );
-		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertStatusOK( $status, 'OK' );
 		$this->assertFalse( $status->value['new'], 'new' );
 		$this->assertNull( $status->value['revision-record'], 'revision-record' );
 		$this->assertNotNull( $page->getRevisionRecord() );
@@ -454,7 +454,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		);
 
 		$status = $page->doUserEditContent( $content, $user1, "testing 2", EDIT_UPDATE );
-		$this->assertTrue( $status->isOK(), 'OK' );
+		$this->assertStatusOK( $status, 'OK' );
 		$this->assertFalse( $status->value['new'], 'new' );
 		$this->assertNotNull( $status->value['revision-record'], 'revision-record' );
 		$statusRevRecord = $status->value['revision-record'];
@@ -547,8 +547,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$status1 = $page->doUserEditContent( $content, $user, __METHOD__ );
 		$status2 = $page->doUserEditContent( $content, $user, __METHOD__ );
 
-		$this->assertTrue( $status1->isOK(), 'OK' );
-		$this->assertTrue( $status2->isOK(), 'OK' );
+		$this->assertStatusOK( $status1, 'OK' );
+		$this->assertStatusOK( $status2, 'OK' );
 
 		$this->assertTrue( isset( $status1->value['revision-record'] ), 'OK' );
 		$this->assertFalse( isset( $status2->value['revision-record'] ), 'OK' );
@@ -1897,7 +1897,7 @@ more stuff
 		$logId = $status->getValue();
 		$allRestrictions = $page->getTitle()->getAllRestrictions();
 
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 		$this->assertIsInt( $logId );
 		$this->assertSame( $expectedRestrictions, $allRestrictions );
 		foreach ( $expectedRestrictionExpiries as $key => $value ) {
@@ -1940,7 +1940,7 @@ more stuff
 		$this->setService( 'ReadOnlyMode', $readOnly );
 
 		$status = $page->doUpdateRestrictions( [], [], $cascade, 'aReason', $user, [] );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 		$this->assertSame( 'readonlytext', $status->getMessage()->getKey() );
 	}
 
@@ -1963,7 +1963,7 @@ more stuff
 		);
 
 		// The first entry should have a logId as it did something
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 		$this->assertIsInt( $status->getValue() );
 
 		$status = $page->doUpdateRestrictions(
@@ -1976,7 +1976,7 @@ more stuff
 		);
 
 		// The second entry should not have a logId as nothing changed
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 		$this->assertNull( $status->getValue() );
 	}
 
@@ -1997,7 +1997,7 @@ more stuff
 			$user,
 			[]
 		);
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 		$this->assertIsInt( $status->getValue() );
 		$this->assertSelect(
 			'logging',
@@ -2015,7 +2015,7 @@ more stuff
 			$user,
 			[]
 		);
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 		$this->assertIsInt( $status->getValue() );
 		$this->assertSelect(
 			'logging',
@@ -2033,7 +2033,7 @@ more stuff
 			$user,
 			[]
 		);
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 		$this->assertIsInt( $status->getValue() );
 		$this->assertSelect(
 			'logging',

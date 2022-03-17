@@ -1551,8 +1551,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->setGroupPermissions( '*', 'createaccount', false );
 		$this->initializeManager( true );
 		$status = $this->manager->checkAccountCreatePermissions( new \User );
-		$this->assertFalse( $status->isOK() );
-		$this->assertTrue( $status->hasMessage( 'badaccess-groups' ) );
+		$this->assertStatusError( 'badaccess-groups', $status );
 	}
 
 	/**
@@ -1596,8 +1595,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->resetServices();
 		$this->initializeManager( true );
 		$status = $this->manager->checkAccountCreatePermissions( $user );
-		$this->assertFalse( $status->isOK() );
-		$this->assertTrue( $status->hasMessage( 'blockedtext' ) );
+		$this->assertStatusError( 'blockedtext', $status );
 	}
 
 	/**
@@ -1619,8 +1617,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$block = new DatabaseBlock( $blockOptions );
 		$blockStore->insertBlock( $block );
 		$status = $this->manager->checkAccountCreatePermissions( new \User );
-		$this->assertFalse( $status->isOK() );
-		$this->assertTrue( $status->hasMessage( 'blockedtext-partial' ) );
+		$this->assertStatusError( 'blockedtext-partial', $status );
 	}
 
 	/**
@@ -1636,12 +1633,11 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		] );
 		$this->initializeManager( true );
 		$status = $this->manager->checkAccountCreatePermissions( new \User );
-		$this->assertFalse( $status->isOK() );
-		$this->assertTrue( $status->hasMessage( 'sorbs_create_account_reason' ) );
+		$this->assertStatusError( 'sorbs_create_account_reason', $status );
 		$this->setMwGlobals( 'wgProxyWhitelist', [ '127.0.0.1' ] );
 		$this->initializeManager( true );
 		$status = $this->manager->checkAccountCreatePermissions( new \User );
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 	}
 
 	/**
@@ -1683,8 +1679,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->resetServices();
 		$this->initializeManager( true );
 		$status = $this->manager->checkAccountCreatePermissions( $user );
-		$this->assertFalse( $status->isOK() );
-		$this->assertTrue( $status->hasMessage( 'blockedtext-partial' ) );
+		$this->assertStatusError( 'blockedtext-partial', $status );
 	}
 
 	/**
@@ -2950,7 +2945,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			->will( $this->returnCallback( function () use ( $username, &$user ) {
 				$oldUser = \User::newFromName( $username );
 				$status = $oldUser->addToDatabase();
-				$this->assertTrue( $status->isOK() );
+				$this->assertStatusOK( $status );
 				$user->setId( $oldUser->getId() );
 				return Status::newFatal( 'userexists' );
 			} ) );

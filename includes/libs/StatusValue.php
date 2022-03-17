@@ -358,6 +358,9 @@ class StatusValue {
 	}
 
 	/**
+	 * Returns a string representation of the status for debugging.
+	 * This is fairly verbose and may change without notice.
+	 *
 	 * @return string
 	 */
 	public function __toString() {
@@ -398,7 +401,8 @@ class StatusValue {
 				}
 
 				$keyChunks = str_split( $key, 25 );
-				$paramsChunks = str_split( substr( $this->flattenParams( $params ), 0, 100 ), 25 );
+				$paramsChunks = str_split( $this->flattenParams( $params, " | " ), 40 );
+
 				// array_map(null,...) is like Python's zip()
 				foreach ( array_map( null, [ $i ], $keyChunks, $paramsChunks )
 					as [ $iChunk, $keyChunk, $paramsChunk ]
@@ -420,20 +424,24 @@ class StatusValue {
 
 	/**
 	 * @param array $params Message parameters
+	 * @param string $joiner
+	 *
 	 * @return string String representation
 	 */
-	private function flattenParams( array $params ): string {
+	private function flattenParams( array $params, string $joiner = ', ' ): string {
 		$ret = [];
 		foreach ( $params as $p ) {
 			if ( is_array( $p ) ) {
-				$ret[] = '[ ' . self::flattenParams( $p ) . ' ]';
+				$r = '[ ' . self::flattenParams( $p ) . ' ]';
 			} elseif ( $p instanceof MessageSpecifier ) {
-				$ret[] = '{ ' . $p->getKey() . ': ' . self::flattenParams( $p->getParams() ) . ' }';
+				$r = '{ ' . $p->getKey() . ': ' . self::flattenParams( $p->getParams() ) . ' }';
 			} else {
-				$ret[] = (string)$p;
+				$r = (string)$p;
 			}
+
+			$ret[] = strlen( $r ) > 100 ? substr( $r, 0, 99 ) . "..." : $r;
 		}
-		return implode( ' ', $ret );
+		return implode( $joiner, $ret );
 	}
 
 	/**

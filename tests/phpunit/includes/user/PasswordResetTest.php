@@ -522,7 +522,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 				'Expected status to be good, result was: ' . $status->__toString()
 			);
 		} else {
-			$this->assertFalse( $status->isGood(), 'Expected status to not be good' );
+			$this->assertStatusNotGood( $status, 'Expected status to not be good' );
 			if ( is_string( $error ) ) {
 				$this->assertNotEmpty( $status->getErrors() );
 				$message = $status->getErrors()[0]['message'];

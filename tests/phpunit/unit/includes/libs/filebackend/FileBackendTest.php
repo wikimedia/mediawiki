@@ -417,7 +417,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 			'message' => 'backend-fail-readonly',
 			'params' => [ 'test_name', '.' ],
 		] ], $status->getErrors() );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 	}
 
 	public static function provideReadOnly(): array {
@@ -462,9 +462,8 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 
 		$status = $backend->$method( ...array_merge( $args, [ [ 'bypassReadOnly' => true ] ] ) );
 
-		$this->assertTrue( $status->isOK() );
-		$this->assertSame( [], $status->getErrors() );
-		$this->assertSame( 'myvalue', $status->getValue() );
+		$this->assertStatusGood( $status );
+		$this->assertStatusValue( 'myvalue', $status );
 	}
 
 	/**
@@ -480,8 +479,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		$backend->expects( $this->never() )->method( 'doQuickOperationsInternal' );
 
 		$status = $backend->$method( [] );
-		$this->assertTrue( $status->isOK() );
-		$this->assertSame( [], $status->getErrors() );
+		$this->assertStatusGood( $status );
 	}
 
 	public static function provideDoMultipleOperations(): array {
@@ -560,8 +558,8 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		$method = $prefix ? $prefix . ucfirst( $action ) : $action;
 		$status = $backend->$method( [ 'op' => 'ignored', 'foo' => 'bar' ], [ 'baz' => 'quuz' ] );
 
-		$this->assertTrue( $status->isOK() );
-		$this->assertSame( 'myvalue', $status->getValue() );
+		$this->assertStatusOK( $status );
+		$this->assertStatusValue( 'myvalue', $status );
 	}
 
 	public static function provideAction(): array {
@@ -590,9 +588,8 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 
 		$status = $backend->$method( [ 'foo' => 'bar' ] );
 
-		$this->assertTrue( $status->isOK() );
-		$this->assertSame( [], $status->getErrors() );
-		$this->assertSame( 'myvalue', $status->getValue() );
+		$this->assertStatusGood( $status );
+		$this->assertStatusValue( 'myvalue', $status );
 	}
 
 	public static function provideForwardToDo(): array {
@@ -682,9 +679,8 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 
 		$status = $backend->$backendMethod( ...array_merge( $args, (array)$timeout ) );
 
-		$this->assertTrue( $status->isOK() );
-		$this->assertSame( [], $status->getErrors() );
-		$this->assertSame( 'myvalue', $status->getValue() );
+		$this->assertStatusGood( $status );
+		$this->assertStatusValue( 'myvalue', $status );
 	}
 
 	public static function provideLockUnlockFiles(): array {
@@ -724,7 +720,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		$status = StatusValue::newGood( 'myvalue' );
 		$scopedLock = $backend->getScopedFileLocks( $paths, $type, $status );
 
-		$this->assertSame( 'myvalue', $status->getValue() );
+		$this->assertStatusValue( 'myvalue', $status );
 		$this->assertSame( $lockStatus->isOK(), $status->isOK() );
 		$this->assertSame( $lockStatus->getErrors(), $status->getErrors() );
 
@@ -736,7 +732,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		$this->assertInstanceOf( ScopedLock::class, $scopedLock );
 		unset( $scopedLock );
 
-		$this->assertSame( 'myvalue', $status->getValue() );
+		$this->assertStatusValue( 'myvalue', $status );
 		$this->assertSame( $lockStatus->isOK(), $status->isOK() );
 		$this->assertSame( array_merge( $lockStatus->getErrors(), $unlockStatus->getErrors() ),
 			$status->getErrors() );
@@ -1090,8 +1086,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		}
 		$status = $backend->$method( $op );
 
-		$this->assertTrue( $status->isOK() );
-		$this->assertSame( [], $status->getErrors() );
+		$this->assertStatusGood( $status );
 	}
 
 	/**
