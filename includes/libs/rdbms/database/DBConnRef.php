@@ -657,10 +657,6 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function flushSession( $fname = __METHOD__, $owner = null ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function flushSnapshot( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

@@ -636,25 +636,12 @@ interface ILoadBalancer {
 
 	/**
 	 * Issue ROLLBACK only on primary, only if queries were done on connection
-	 *
 	 * @param string $fname Caller name
 	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @throws DBExpectedError
 	 * @since 1.37
 	 */
 	public function rollbackPrimaryChanges( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Release/destroy session-level named locks, table locks, and temp tables
-	 *
-	 * Only call this function right after calling rollbackPrimaryChanges()
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @throws DBExpectedError
-	 * @since 1.38
-	 */
-	public function flushPrimarySessions( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshots

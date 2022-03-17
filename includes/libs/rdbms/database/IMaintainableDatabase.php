@@ -225,11 +225,12 @@ interface IMaintainableDatabase extends IDatabase {
 	);
 
 	/**
-	 * Check if lockTables() locks are transaction-level locks instead of session-level
+	 * Checks if table locks acquired by lockTables() are transaction-bound in their scope
 	 *
-	 * Transaction-level table locks can only be acquired within a transaction and get released
-	 * when that transaction terminates. Session-level table locks are acquired outside of any
-	 * transaction and are incompatible with transactions.
+	 * Transaction-bound table locks will be released when the current transaction terminates.
+	 * Table locks that are not bound to a transaction are not effected by BEGIN/COMMIT/ROLLBACK
+	 * and will last until either lockTables()/unlockTables() is called or the TCP connection to
+	 * the database is closed.
 	 *
 	 * @return bool
 	 * @since 1.29
