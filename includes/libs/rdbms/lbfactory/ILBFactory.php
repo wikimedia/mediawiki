@@ -283,19 +283,6 @@ interface ILBFactory {
 	public function rollbackPrimaryChanges( $fname = __METHOD__ );
 
 	/**
-	 * Release important session-level state (named lock, table locks) as post-rollback cleanup
-	 *
-	 * This only applies to the instantiated tracked load balancer instances.
-	 *
-	 * This should only be called by application entry point functions, since there must be
-	 * no chance that a future caller will still be expecting some of the lost session state.
-	 *
-	 * @param string $fname Caller name
-	 * @since 1.37
-	 */
-	public function flushPrimarySessions( $fname = __METHOD__ );
-
-	/**
 	 * Check if an explicit transaction round is active
 	 *
 	 * @return bool

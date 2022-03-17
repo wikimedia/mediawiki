@@ -661,12 +661,7 @@ __INDEXATTR__;
 		return in_array( $errno, $codes, true );
 	}
 
-	protected function isQueryTimeoutError( $errno ) {
-		// https://www.postgresql.org/docs/9.2/static/errcodes-appendix.html
-		return ( $errno === '57014' );
-	}
-
-	protected function isKnownStatementRollbackError( $errno ) {
+	protected function wasKnownStatementRollbackError() {
 		return false; // transaction has to be rolled-back from error state
 	}
 
@@ -1332,20 +1327,6 @@ SQL;
 		$row = $result->fetchObject();
 
 		return ( $row->released === 't' );
-	}
-
-	protected function doFlushSession( $fname ) {
-		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS | self::QUERY_NO_RETRY;
-
-		// In Postgres, ROLLBACK already releases table locks;
-		// https://www.postgresql.org/docs/9.4/sql-lock.html
-
-		// https://www.postgresql.org/docs/9.1/functions-admin.html
-		$sql = "pg_advisory_unlock_all()";
-		list( $res, $err, $errno ) = $this->executeQuery( $sql, __METHOD__, $flags );
-		if ( $res === false ) {
-			$this->reportQueryError( $err, $errno, $sql, $fname, true );
-		}
 	}
 
 	public function serverIsReadOnly() {
