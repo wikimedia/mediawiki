@@ -1080,14 +1080,14 @@ class DatabaseSqlite extends Database {
 
 	protected function doHandleSessionLossPreconnect() {
 		$this->sessionAttachedDbs = [];
-		// Release all locks, via FSLockManager::__destruct, as the base class expects
+		// Release all locks, via FSLockManager::__destruct, as the baset class expects
 		$this->lockMgr = null;
 		// Create a new lock manager instance
 		$this->initLockManager();
 	}
 
 	protected function doFlushSession( $fname ) {
-		// Release all locks, via FSLockManager::__destruct, as the base class expects
+		// Release all locks, via FSLockManager::__destruct, as the baset class expects
 		$this->lockMgr = null;
 		// Create a new lock manager instance
 		$this->initLockManager();
