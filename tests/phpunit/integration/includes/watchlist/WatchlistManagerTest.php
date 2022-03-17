@@ -194,7 +194,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 
 		$actual = $watchlistManager->addWatch( $performer, $title );
 
-		$this->assertFalse( $actual->isGood() );
+		$this->assertStatusNotGood( $actual );
 		$this->assertFalse( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
 	}
 
@@ -217,7 +217,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 
 		$actual = $watchlistManager->removeWatch( $performer, $title );
 
-		$this->assertFalse( $actual->isGood() );
+		$this->assertStatusNotGood( $actual );
 		$this->assertTrue( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
 	}
 

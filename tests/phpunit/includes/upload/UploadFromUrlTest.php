@@ -221,7 +221,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		$upload->initialize( 'Test.png', 'http://www.example.com/test.png' );
 		$status = $upload->fetchFile();
 
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
 		$this->assertUploadOk( $upload );
 	}
 
@@ -244,7 +244,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		$upload->initialize( 'Test.png', 'http://www.example.com/test.png' );
 		$status = $upload->fetchFile();
 
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
 		$this->assertUploadOk( $upload );
 	}
 

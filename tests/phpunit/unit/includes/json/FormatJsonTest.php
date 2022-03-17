@@ -172,13 +172,13 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 
 		$st = FormatJson::parse( $json );
 		$this->assertInstanceOf( Status::class, $st );
-		$this->assertTrue( $st->isGood() );
-		$this->assertEquals( $expected, $st->getValue() );
+		$this->assertStatusGood( $st );
+		$this->assertStatusValue( $expected, $st );
 
 		$st = FormatJson::parse( $json, FormatJson::FORCE_ASSOC );
 		$this->assertInstanceOf( Status::class, $st );
-		$this->assertTrue( $st->isGood() );
-		$this->assertEquals( $value, $st->getValue() );
+		$this->assertStatusGood( $st );
+		$this->assertStatusValue( $value, $st );
 	}
 
 	public static function provideParseErrors() {
@@ -197,7 +197,7 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 	public function testParseErrors( $value, $error ) {
 		$st = FormatJson::parse( $value );
 		$this->assertInstanceOf( Status::class, $st );
-		$this->assertFalse( $st->isOK() );
+		$this->assertStatusNotOK( $st );
 		$this->assertTrue(
 			$st->hasMessage( $error ),
 			"Does not have $error message"
@@ -256,8 +256,8 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 	public function testParseStripComments( $json, $expect ) {
 		$st = FormatJson::parse( $json, FormatJson::STRIP_COMMENTS );
 		$this->assertInstanceOf( Status::class, $st );
-		$this->assertTrue( $st->isGood() );
-		$this->assertEquals( $expect, $st->getValue() );
+		$this->assertStatusGood( $st );
+		$this->assertStatusValue( $expect, $st );
 	}
 
 	/**
@@ -425,12 +425,12 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 		$st = FormatJson::parse( $value, FormatJson::TRY_FIXING );
 		$this->assertInstanceOf( Status::class, $st );
 		if ( $expected === false ) {
-			$this->assertFalse( $st->isOK(), 'Expected isOK() == false' );
+			$this->assertStatusNotOK( $st, 'Expected isOK() == false' );
 		} else {
 			$this->assertSame( $expectedGoodStatus, $st->isGood(),
 				'Expected isGood() == ' . ( $expectedGoodStatus ? 'true' : 'false' )
 			);
-			$this->assertTrue( $st->isOK(), 'Expected isOK == true' );
+			$this->assertStatusOK( $st, 'Expected isOK == true' );
 			$val = FormatJson::encode( $st->getValue(), false, FormatJson::ALL_OK );
 			$this->assertEquals( $expected, $val );
 		}

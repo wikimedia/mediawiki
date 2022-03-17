@@ -298,4 +298,64 @@ trait MediaWikiTestCaseTrait {
 		$msg->method( 'exists' )->willReturn( true );
 		return $msg;
 	}
+
+	private function failStatus( StatusValue $status, $reason, $message = '' ) {
+		$reason = $message === '' ? $reason : "$message\n$reason";
+		$this->fail( "$reason\n$status" );
+	}
+
+	protected function assertStatusOK( StatusValue $status, $message = '' ) {
+		if ( !$status->isOK() ) {
+			$this->failStatus( $status, 'Status should be OK', $message );
+		} else {
+			$this->addToAssertionCount( 1 );
+		}
+	}
+
+	protected function assertStatusGood( StatusValue $status, $message = '' ) {
+		if ( !$status->isGood() ) {
+			$this->failStatus( $status, 'Status should be Good', $message );
+		} else {
+			$this->addToAssertionCount( 1 );
+		}
+	}
+
+	protected function assertStatusNotOK( StatusValue $status, $message = '' ) {
+		if ( $status->isOK() ) {
+			$this->failStatus( $status, 'Status should not be OK', $message );
+		} else {
+			$this->addToAssertionCount( 1 );
+		}
+	}
+
+	protected function assertStatusNotGood( StatusValue $status, $message = '' ) {
+		if ( $status->isGood() ) {
+			$this->failStatus( $status, 'Status should not be Good', $message );
+		} else {
+			$this->addToAssertionCount( 1 );
+		}
+	}
+
+	protected function assertStatusMessage( $messageKey, StatusValue $status, $message = '' ) {
+		if ( !$status->hasMessage( $messageKey ) ) {
+			$this->failStatus( $status, "Status should have message $messageKey", $message );
+		} else {
+			$this->addToAssertionCount( 1 );
+		}
+	}
+
+	protected function assertStatusValue( $expected, StatusValue $status, $message = 'Status value' ) {
+		$this->assertEquals( $expected, $status->getValue(), $message );
+	}
+
+	protected function assertStatusError( $messageKey, StatusValue $status, $message = '' ) {
+		$this->assertStatusNotOK( $status, $message );
+		$this->assertStatusMessage( $messageKey, $status, $message );
+	}
+
+	protected function assertStatusWarning( $messageKey, StatusValue $status, $message = '' ) {
+		$this->assertStatusNotGood( $status, $message );
+		$this->assertStatusOK( $status, $message );
+		$this->assertStatusMessage( $messageKey, $status, $message );
+	}
 }

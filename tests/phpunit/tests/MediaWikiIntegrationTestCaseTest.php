@@ -430,7 +430,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 	public function assertEditPage( $expected, $page, $content ) {
 		$status = $this->editPage( $page, $content );
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
 		$this->assertNotNull( $status->getValue()['revision-record'] );
 
 		/** @var RevisionRecord $rev */

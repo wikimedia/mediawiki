@@ -142,13 +142,11 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		$status = $provider->testUserForCreation( $blockedUser, AuthManager::AUTOCREATE_SOURCE_SESSION );
 		$this->assertInstanceOf( \StatusValue::class, $status );
-		$this->assertFalse( $status->isOK() );
-		$this->assertTrue( $status->hasMessage( 'blockedtext' ) );
+		$this->assertStatusError( 'blockedtext', $status );
 
 		$status = $provider->testUserForCreation( $blockedUser, false );
 		$this->assertInstanceOf( \StatusValue::class, $status );
-		$this->assertFalse( $status->isOK() );
-		$this->assertTrue( $status->hasMessage( 'blockedtext' ) );
+		$this->assertStatusError( 'blockedtext', $status );
 	}
 
 	public function testPartialBlock() {
@@ -182,12 +180,10 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		$status = $provider->testUserForCreation( $newuser, AuthManager::AUTOCREATE_SOURCE_SESSION );
 		$this->assertInstanceOf( \StatusValue::class, $status );
-		$this->assertFalse( $status->isOK() );
-		$this->assertTrue( $status->hasMessage( 'blockedtext-partial' ) );
+		$this->assertStatusError( 'blockedtext-partial', $status );
 
 		$status = $provider->testUserForCreation( $newuser, false );
 		$this->assertInstanceOf( \StatusValue::class, $status );
-		$this->assertFalse( $status->isOK() );
-		$this->assertTrue( $status->hasMessage( 'blockedtext-partial' ) );
+		$this->assertStatusError( 'blockedtext-partial', $status );
 	}
 }
