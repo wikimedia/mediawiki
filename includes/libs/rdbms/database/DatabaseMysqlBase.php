@@ -170,12 +170,11 @@ abstract class DatabaseMysqlBase extends Database {
 			// @phan-suppress-next-next-line PhanRedundantCondition
 			// If kept for safety and to avoid broken query
 			if ( $set ) {
-				$sql = 'SET ' . implode( ', ', $set );
-				$flags = self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX;
-				list( $ret, $err, $errno ) = $this->executeQuery( $sql, __METHOD__, $flags );
-				if ( $ret === false ) {
-					$this->reportQueryError( $err, $errno, $sql, __METHOD__ );
-				}
+				$this->query(
+					'SET ' . implode( ', ', $set ),
+					__METHOD__,
+					self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX
+				);
 			}
 		} catch ( RuntimeException $e ) {
 			throw $this->newExceptionAfterConnectError( $e->getMessage() );
@@ -260,6 +259,12 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return string
 	 */
 	abstract protected function mysqlError( $conn = null );
+
+	protected function wasQueryTimeout( $error, $errno ) {
+		// https://dev.mysql.com/doc/refman/8.0/en/client-error-reference.html
+		// https://phabricator.wikimedia.org/T170638
+		return in_array( $errno, [ 2062, 3024 ] );
+	}
 
 	protected function isInsertSelectSafe( array $insertOptions, array $selectOptions ) {
 		$row = $this->getReplicationSafetyInfo();
@@ -1114,24 +1119,6 @@ abstract class DatabaseMysqlBase extends Database {
 		return true;
 	}
 
-	protected function doFlushSession( $fname ) {
-		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS | self::QUERY_NO_RETRY;
-
-		// In MySQL, ROLLBACK does not automatically release table locks;
-		// https://dev.mysql.com/doc/refman/8.0/en/lock-tables.html
-		$sql = "UNLOCK TABLES";
-		list( $res, $err, $errno ) = $this->executeQuery( $sql, $fname, $flags );
-		if ( $res === false ) {
-			$this->reportQueryError( $err, $errno, $sql, $fname, true );
-		}
-
-		$sql = "RELEASE_ALL_LOCKS()";
-		list( $res, $err, $errno ) = $this->executeQuery( $sql, __METHOD__, $flags );
-		if ( $res === false ) {
-			$this->reportQueryError( $err, $errno, $sql, $fname, true );
-		}
-	}
-
 	/**
 	 * @param bool $value
 	 */
@@ -1239,20 +1226,12 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	protected function isConnectionError( $errno ) {
-		// https://mariadb.com/kb/en/mariadb-error-codes/
-		// https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html
-		return in_array( $errno, [ 2013, 2006, 2003, 1927, 1053 ], true );
+		return $errno == 2013 || $errno == 2006;
 	}
 
-	protected function isQueryTimeoutError( $errno ) {
-		// https://mariadb.com/kb/en/mariadb-error-codes/
-		// https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html
-		return in_array( $errno, [ 3024, 1969 ], true );
-	}
+	protected function wasKnownStatementRollbackError() {
+		$errno = $this->lastErrno();
 
-	protected function isKnownStatementRollbackError( $errno ) {
-		// https://mariadb.com/kb/en/mariadb-error-codes/
-		// https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html
 		if ( $errno === 1205 ) { // lock wait timeout
 			// Note that this is uncached to avoid stale values of SET is used
 			$res = $this->query(
@@ -1265,7 +1244,9 @@ abstract class DatabaseMysqlBase extends Database {
 			// https://dev.mysql.com/doc/refman/5.5/en/innodb-parameters.html
 			return ( $row && !$row->Value );
 		}
-		return in_array( $errno, [ 3024, 1969, 1022, 1062, 1216, 1217, 1137, 1146, 1051, 1054 ], true );
+
+		// See https://dev.mysql.com/doc/refman/5.5/en/error-messages-server.html
+		return in_array( $errno, [ 1022, 1062, 1216, 1217, 1137, 1146, 1051, 1054 ], true );
 	}
 
 	/**
