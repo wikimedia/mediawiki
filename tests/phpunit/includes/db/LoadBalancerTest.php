@@ -396,7 +396,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$servers = [
 			[ // master
 				'dbname' => 'my_unittest_wiki',
-				'tablePrefix' => 'unittest_',
+				'tablePrefix' => self::DB_PREFIX,
 				'type' => 'sqlite',
 				'dbDirectory' => "some_directory",
 				'load' => 0
@@ -405,7 +405,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		$lb = new LoadBalancer( [
 			'servers' => $servers,
-			'localDomain' => new DatabaseDomain( 'my_unittest_wiki', null, 'unittest_' ),
+			'localDomain' => new DatabaseDomain( 'my_unittest_wiki', null, self::DB_PREFIX ),
 			'loadMonitor' => [ 'class' => LoadMonitorNull::class ]
 		] );
 
@@ -417,7 +417,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 				'user' => 'wikiuser',
 				'password' => 'none',
 				'dbname' => 'my_unittest_wiki',
-				'tablePrefix' => 'unittest_',
+				'tablePrefix' => self::DB_PREFIX,
 				'type' => 'mysql',
 				'load' => 100
 			],
@@ -426,7 +426,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 				'user' => 'wikiuser',
 				'password' => 'none',
 				'dbname' => 'my_unittest_wiki',
-				'tablePrefix' => 'unittest_',
+				'tablePrefix' => self::DB_PREFIX,
 				'type' => 'mysql',
 				'load' => 100
 			]
@@ -434,7 +434,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		$lb = new LoadBalancer( [
 			'servers' => $servers,
-			'localDomain' => new DatabaseDomain( 'my_unittest_wiki', null, 'unittest_' ),
+			'localDomain' => new DatabaseDomain( 'my_unittest_wiki', null, self::DB_PREFIX ),
 			'loadMonitor' => [ 'class' => LoadMonitorNull::class ]
 		] );
 
