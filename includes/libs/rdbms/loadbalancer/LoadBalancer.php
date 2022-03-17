@@ -1932,8 +1932,8 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		$this->forEachOpenPrimaryConnection(
-			static function ( IDatabase $conn ) use ( $fname, $owner ) {
-				$conn->flushSession( $fname, $owner );
+			static function ( IDatabase $conn ) use ( $fname ) {
+				$conn->flushSession( $fname );
 			}
 		);
 	}
