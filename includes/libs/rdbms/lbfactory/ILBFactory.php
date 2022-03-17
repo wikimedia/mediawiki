@@ -291,7 +291,7 @@ interface ILBFactory {
 	 * no chance that a future caller will still be expecting some of the lost session state.
 	 *
 	 * @param string $fname Caller name
-	 * @since 1.38
+	 * @since 1.37
 	 */
 	public function flushPrimarySessions( $fname = __METHOD__ );
 

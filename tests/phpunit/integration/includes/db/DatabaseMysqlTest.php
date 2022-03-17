@@ -33,12 +33,6 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$this->conn = $this->newConnection();
 	}
 
-	protected function tearDown(): void {
-		$this->conn->close( __METHOD__ );
-
-		parent::tearDown();
-	}
-
 	/**
 	 * @covers Database::query()
 	 */
@@ -121,7 +115,7 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 			$this->assertSame( 'x', $row->v, "Recovered" );
 		}
 
-		$this->conn->lock( 'session_lock_' . mt_rand(), __METHOD__, 0 );
+		$this->conn->lock( 'session_lock', __METHOD__, 0 );
 		$row = $this->conn->query( 'SELECT connection_id() AS id', __METHOD__ )->fetchObject();
 		$encId = intval( $row->id );
 		$adminConn->query( "KILL $encId", __METHOD__ );
@@ -165,7 +159,7 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		$encId = intval( $row->id );
 
 		try {
-			$this->conn->lock( 'trx_lock_' . mt_rand(), __METHOD__, 0 );
+			$this->conn->lock( 'trx_lock', __METHOD__, 0 );
 			$this->assertSame( TransactionManager::STATUS_TRX_OK, $this->conn->trxStatus() );
 			$this->conn->query( "SELECT invalid query()", __METHOD__ );
 			$this->fail( "No DBQueryError caught" );
@@ -236,5 +230,11 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 		);
 
 		return $conn;
+	}
+
+	public function tearDown(): void {
+		$this->conn->close( __METHOD__ );
+
+		parent::tearDown();
 	}
 }

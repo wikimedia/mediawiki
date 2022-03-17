@@ -1125,17 +1125,10 @@ abstract class DatabaseMysqlBase extends Database {
 			$this->reportQueryError( $err, $errno, $sql, $fname, true );
 		}
 
-		$releaseLockFields = [];
-		foreach ( $this->sessionNamedLocks as $name => $info ) {
-			$encName = $this->addQuotes( $this->makeLockName( $name ) );
-			$releaseLockFields[] = "RELEASE_LOCK($encName)";
-		}
-		if ( $releaseLockFields ) {
-			$sql = 'SELECT ' . implode( ',', $releaseLockFields ) . ')';
-			list( $res, $err, $errno ) = $this->executeQuery( $sql, __METHOD__, $flags );
-			if ( $res === false ) {
-				$this->reportQueryError( $err, $errno, $sql, $fname, true );
-			}
+		$sql = "RELEASE_ALL_LOCKS()";
+		list( $res, $err, $errno ) = $this->executeQuery( $sql, __METHOD__, $flags );
+		if ( $res === false ) {
+			$this->reportQueryError( $err, $errno, $sql, $fname, true );
 		}
 	}
 
@@ -1261,7 +1254,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// https://mariadb.com/kb/en/mariadb-error-codes/
 		// https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html
 		if ( $errno === 1205 ) { // lock wait timeout
-			// Note that this is uncached to avoid stale values if SET is used
+			// Note that this is uncached to avoid stale values of SET is used
 			$res = $this->query(
 				"SELECT @@innodb_rollback_on_timeout AS Value",
 				__METHOD__,
