@@ -107,10 +107,6 @@ class SpecialComparePages extends SpecialPage {
 				'type' => 'hidden',
 				'name' => 'action',
 			],
-			'Diffonly' => [
-				'type' => 'hidden',
-				'name' => 'diffonly',
-			],
 			'Unhide' => [
 				'type' => 'hidden',
 				'name' => 'unhide',
@@ -137,22 +133,20 @@ class SpecialComparePages extends SpecialPage {
 		$rev2 = $this->revOrTitle( $data['Revision2'], $data['Page2'] );
 
 		if ( $rev1 && $rev2 ) {
+			// Revision IDs either passed the existence check or were fetched from existing titles.
 			$revisionRecord = $this->revisionLookup->getRevisionById( $rev1 );
-
-			if ( $revisionRecord ) { // NOTE: $rev1 was already checked, should exist.
-				$contentModel = $revisionRecord->getSlot(
-					SlotRecord::MAIN,
-					RevisionRecord::RAW
-				)->getModel();
-				$contentHandler = $this->contentHandlerFactory->getContentHandler( $contentModel );
-				$this->differenceEngine = $contentHandler->createDifferenceEngine( $form->getContext(),
-					$rev1,
-					$rev2,
-					0, // rcid
-					( $data['Action'] == 'purge' ),
-					( $data['Unhide'] == '1' )
-				);
-			}
+			$contentModel = $revisionRecord->getSlot(
+				SlotRecord::MAIN,
+				RevisionRecord::RAW
+			)->getModel();
+			$contentHandler = $this->contentHandlerFactory->getContentHandler( $contentModel );
+			$this->differenceEngine = $contentHandler->createDifferenceEngine( $form->getContext(),
+				$rev1,
+				$rev2,
+				0, // rcid
+				( $data['Action'] == 'purge' ),
+				( $data['Unhide'] == '1' )
+			);
 		}
 	}
 
@@ -160,10 +154,7 @@ class SpecialComparePages extends SpecialPage {
 		if ( $revision ) {
 			return $revision;
 		} elseif ( $title ) {
-			$title = Title::newFromText( $title );
-			if ( $title instanceof Title ) {
-				return $title->getLatestRevID();
-			}
+			return Title::newFromText( $title )->getLatestRevID();
 		}
 
 		return null;

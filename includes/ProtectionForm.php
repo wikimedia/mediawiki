@@ -595,7 +595,7 @@ class ProtectionForm {
 			->setTokenSalt( [ 'protect', $this->mTitle->getPrefixedDBkey() ] )
 			->suppressDefaultSubmit( $this->disabled )
 			->setWrapperLegendMsg( 'protect-legend' )
-			->loadData();
+			->prepareForm();
 
 		return $htmlForm->getHTML( false ) . $out;
 	}
