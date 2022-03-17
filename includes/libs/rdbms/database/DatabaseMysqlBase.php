@@ -1254,7 +1254,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// https://mariadb.com/kb/en/mariadb-error-codes/
 		// https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html
 		if ( $errno === 1205 ) { // lock wait timeout
-			// Note that this is uncached to avoid stale values if SET is used
+			// Note that this is uncached to avoid stale values of SET is used
 			$res = $this->query(
 				"SELECT @@innodb_rollback_on_timeout AS Value",
 				__METHOD__,
