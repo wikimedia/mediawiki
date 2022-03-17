@@ -3,12 +3,9 @@
 /**
  * @group Database
  */
-class TemplateCategoriesTest extends MediaWikiLangTestCase {
+class TemplateCategoriesTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * Broken per T165099.
-	 *
-	 * @group Broken
 	 * @covers Title::getParentCategories
 	 */
 	public function testTemplateCategories() {
@@ -37,8 +34,8 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 			'Add a category through a template'
 		);
 
-		// Run the job queue
 		$this->runJobs();
+		DeferredUpdates::doUpdates();
 
 		// Make sure page is in the category
 		$this->assertEquals(
@@ -54,8 +51,8 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 			'Change the category added by the template'
 		);
 
-		// Run the job queue
 		$this->runJobs();
+		DeferredUpdates::doUpdates();
 
 		// Make sure page is in the right category
 		$this->assertEquals(
@@ -67,8 +64,8 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 		// Now delete the template
 		$this->deletePage( $template, 'Delete the template', $user );
 
-		// Run the job queue
 		$this->runJobs();
+		DeferredUpdates::doUpdates();
 
 		// Make sure the page is no longer in the category
 		$this->assertEquals(
