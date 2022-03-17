@@ -1125,17 +1125,10 @@ abstract class DatabaseMysqlBase extends Database {
 			$this->reportQueryError( $err, $errno, $sql, $fname, true );
 		}
 
-		$releaseLockFields = [];
-		foreach ( $this->sessionNamedLocks as $name => $info ) {
-			$encName = $this->addQuotes( $this->makeLockName( $name ) );
-			$releaseLockFields[] = "RELEASE_LOCK($encName)";
-		}
-		if ( $releaseLockFields ) {
-			$sql = 'SELECT ' . implode( ',', $releaseLockFields ) . ')';
-			list( $res, $err, $errno ) = $this->executeQuery( $sql, __METHOD__, $flags );
-			if ( $res === false ) {
-				$this->reportQueryError( $err, $errno, $sql, $fname, true );
-			}
+		$sql = "RELEASE_ALL_LOCKS()";
+		list( $res, $err, $errno ) = $this->executeQuery( $sql, __METHOD__, $flags );
+		if ( $res === false ) {
+			$this->reportQueryError( $err, $errno, $sql, $fname, true );
 		}
 	}
 
