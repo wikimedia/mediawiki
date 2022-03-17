@@ -77,12 +77,6 @@ class ParserTestRunner {
 	private $db;
 
 	/**
-	 * Database clone helper
-	 * @var CloneDatabase
-	 */
-	private $dbClone;
-
-	/**
 	 * @var TestRecorder
 	 */
 	private $recorder;
@@ -95,8 +89,8 @@ class ParserTestRunner {
 	private $uploadDir = null;
 
 	/**
-	 * The name of the file backend to use, or null to use MockFileBackend.
-	 * @var string|null
+	 * The name of the file backend to use, or false to use MockFileBackend.
+	 * @var string|false
 	 */
 	private $fileBackendName;
 
