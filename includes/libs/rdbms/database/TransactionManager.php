@@ -30,7 +30,7 @@ use UnexpectedValueException;
 
 /**
  * @ingroup Database
- * @internal This class should not be used outside of Database
+ * @internal
  */
 class TransactionManager {
 	/** @var int Transaction is in a error state requiring a full or savepoint rollback */
