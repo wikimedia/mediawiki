@@ -21,6 +21,12 @@ trait SuiteEventsTrait {
 		if ( $result === null ) {
 			$result = $this->createResult();
 		}
+
+		// Don't run events if there are no tests (T292239)
+		if ( count( $this ) === 0 ) {
+			return $result;
+		}
+
 		$calls = 0;
 		if ( is_callable( [ $this, 'setUp' ] ) ) {
 			$calls++;
