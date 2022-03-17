@@ -575,7 +575,7 @@ class HTMLForm extends ContextSource {
 			$this->mFormIdentifier === null ||
 			$this->getRequest()->getVal( 'wpFormIdentifier' ) === $this->mFormIdentifier
 		) {
-			$this->loadData();
+			$this->loadFieldData();
 		} else {
 			$this->mFieldData = [];
 		}
@@ -2009,9 +2009,16 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Construct the form fields from the Descriptor array
+	 * @deprecated since 1.39, Use prepareForm() instead.
 	 */
 	public function loadData() {
+		$this->prepareForm();
+	}
+
+	/**
+	 * Load data of form fields from the request
+	 */
+	protected function loadFieldData() {
 		$fieldData = [];
 		$request = $this->getRequest();
 

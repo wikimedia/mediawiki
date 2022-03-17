@@ -361,7 +361,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			->setSubmitCallback( [ __CLASS__, 'submit' ] )
 			->setFormIdentifier( 'sendEmailForm' )
 			->setWrapperLegendMsg( 'email-legend' )
-			->loadData();
+			->prepareForm();
 
 		if ( !$this->getHookRunner()->onEmailUserForm( $htmlForm ) ) {
 			return false;
