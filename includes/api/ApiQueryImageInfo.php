@@ -205,6 +205,13 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				// Check if we can make the requested thumbnail, and get transform parameters.
 				$finalThumbParams = $this->mergeThumbParams( $img, $scale, $params['urlparam'] );
 
+				// Parser::makeImage always sets a targetlang, usually based on the language
+				// the content is in.  To support Parsoid's standalone mode, overload the badfilecontexttitle
+				// to also set the targetlang based on the page language.
+				if ( $badFileContextTitle ) {
+					$finalThumbParams['targetlang'] = $badFileContextTitle->getPageLanguage()->getCode();
+				}
+
 				// Get information about the current version first
 				// Check that the current version is within the start-end boundaries
 				$gotOne = false;
