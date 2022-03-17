@@ -325,14 +325,19 @@ class ApiLoginTest extends ApiTestCase {
 	}
 
 	public function testBotPasswordThrottled() {
-		global $wgPasswordAttemptThrottle;
+		// Undo high count from DevelopmentSettings.php
+		$throttle = [
+			[ 'count' => 5, 'seconds' => 30 ],
+			[ 'count' => 100, 'seconds' => 60 * 60 * 48 ],
+		];
 
 		$this->setGroupPermissions( 'sysop', 'noratelimit', false );
 		$this->setMwGlobals( 'wgMainCacheType', 'hash' );
+		$this->setMwGlobals( 'wgPasswordAttemptThrottle', $throttle );
 
 		list( $name, $password ) = $this->setUpForBotPassword();
 
-		for ( $i = 0; $i < $wgPasswordAttemptThrottle[0]['count']; $i++ ) {
+		for ( $i = 0; $i < $throttle[0]['count']; $i++ ) {
 			$this->doUserLogin( $name, 'incorrectpasswordincorrectpassword' );
 		}
 
@@ -341,7 +346,7 @@ class ApiLoginTest extends ApiTestCase {
 		$this->assertSame( [
 			'result' => 'Failed',
 			'reason' => ApiErrorFormatter::stripMarkup( wfMessage( 'login-throttled' )->
-				durationParams( $wgPasswordAttemptThrottle[0]['seconds'] )->text() ),
+				durationParams( $throttle[0]['seconds'] )->text() ),
 		], $ret[0]['login'] );
 	}
 
