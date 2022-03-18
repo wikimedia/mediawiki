@@ -1334,15 +1334,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			DeferredUpdates::PRESEND
 		);
 
-		DeferredUpdates::addCallableUpdate(
-			function () use ( $performer, $oldid ) {
-				// Update newtalk and watchlist notification status
-				MediaWikiServices::getInstance()
-					->getWatchlistManager()
-					->clearTitleUserNotifications( $performer, $this, $oldid );
-			},
-			DeferredUpdates::POSTSEND
-		);
+		// Update newtalk and watchlist notification status
+		MediaWikiServices::getInstance()
+			->getWatchlistManager()
+			->clearTitleUserNotifications( $performer, $this, $oldid );
 	}
 
 	/**

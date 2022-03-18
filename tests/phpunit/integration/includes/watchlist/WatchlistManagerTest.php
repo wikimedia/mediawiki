@@ -19,31 +19,6 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Can't move to unit tests because we need to test DeferredUpdates handling
-	 *
-	 * @covers \MediaWiki\Watchlist\WatchlistManager::clearTitleUserNotifications
-	 */
-	public function testClearTitleUserNotifications() {
-		$username = 'User Name';
-		$userIdentity = new UserIdentityValue( 100, $username );
-		$performer = $this->mockUserAuthorityWithPermissions( $userIdentity, [ 'editmywatchlist' ] );
-		$title = new PageIdentityValue( 100, NS_USER_TALK, $username, PageIdentityValue::LOCAL );
-
-		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
-
-		$this->db->startAtomic( __METHOD__ ); // let deferred updates queue up
-
-		$updateCountBefore = DeferredUpdates::pendingUpdatesCount();
-		$watchlistManager->clearTitleUserNotifications( $performer, $title );
-		$updateCountAfter = DeferredUpdates::pendingUpdatesCount();
-		$this->assertGreaterThan( $updateCountBefore, $updateCountAfter, 'An update should have been queued' );
-
-		$this->db->endAtomic( __METHOD__ ); // run deferred updates
-
-		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'No pending updates' );
-	}
-
-	/**
 	 * While this *could* be moved to a unit test, it is specifically kept
 	 * here as an integration test to double check that the actual integration
 	 * between this service and others, and getting this service from the
