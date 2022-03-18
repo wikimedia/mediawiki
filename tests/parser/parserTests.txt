@@ -8619,7 +8619,7 @@ wgParserEnableLegacyMediaDOM=false
 </p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="&#39;&#39;Pentecoste&#39;&#39; (page does not exist)"><i>Pentecoste</i></a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Denys_Savchenko_''Pentecoste''.jpg"><span resource="./File:Denys_Savchenko_''Pentecoste''.jpg" data-parsoid='{"a":{"resource":"./File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"},"sa":{"resource":"File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"}}'>File:Denys Savchenko ''Pentecoste''.jpg</span></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Denys_Savchenko_''Pentecoste''.jpg"><span class="mw-broken-media" resource="./File:Denys_Savchenko_''Pentecoste''.jpg" data-parsoid='{"a":{"resource":"./File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"},"sa":{"resource":"File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"}}'>File:Denys Savchenko ''Pentecoste''.jpg</span></a></span></p>
 <p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''" class="new">''Pentecoste''</a></p>
 <p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''" class="new">Pentecoste</a></p>
 <p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''" class="new"><i>Pentecoste</i></a></p>
@@ -12953,6 +12953,26 @@ Unbalanced includeonly and noinclude tags
 </td></tr></tbody></table>
 !!end
 
+# We're more interested in the generation of <h2> when reading than in round-tripping these - the RT without the newline
+# wouldn't be acceptable if "real" text were in the include tags, for instance.
+!! test
+includeonly / noinclude / onlyinclude and headers
+!! options
+parsoid = wt2html
+!! wikitext
+<includeonly><!--hello1 --></includeonly>== test 1 == <includeonly><!--hello2 --></includeonly>
+<noinclude><!--hello3 --></noinclude>== test 2 == <noinclude><!--hello4 --></noinclude>
+<onlyinclude><!--hello5 --></onlyinclude>== test 3 == <onlyinclude><!--hello6 --></onlyinclude>
+!! html/parsoid
+<meta typeof="mw:Includes/IncludeOnly" data-mw='{"src":"&lt;includeonly>&lt;!--hello1 -->&lt;/includeonly>"}'/><meta typeof="mw:Includes/IncludeOnly/End" data-parsoid='{"src":""}'/><h2 id="test_1">test 1</h2> <meta typeof="mw:Includes/IncludeOnly" data-mw='{"src":"&lt;includeonly>&lt;!--hello2 -->&lt;/includeonly>"}'/><meta typeof="mw:Includes/IncludeOnly/End" data-parsoid='{"src":""}'/>
+<meta typeof="mw:Includes/NoInclude" data-parsoid='{"src":"&lt;noinclude>"}'/><!--hello3 --><meta typeof="mw:Includes/NoInclude/End" data-parsoid='{"src":"&lt;/noinclude>"}'/><h2 id="test_2">test 2</h2> <meta typeof="mw:Includes/NoInclude" data-parsoid='{"src":"&lt;noinclude>"}'/><!--hello4 --><meta typeof="mw:Includes/NoInclude/End" data-parsoid='{"src":"&lt;/noinclude>"}'/>
+<meta typeof="mw:Includes/OnlyInclude" data-parsoid='{"src":"&lt;onlyinclude>"}'/><!--hello5 --><meta typeof="mw:Includes/OnlyInclude/End" data-parsoid='{"src":"&lt;/onlyinclude>"}'/><h2 id="test_3">test 3</h2> <meta typeof="mw:Includes/OnlyInclude" data-parsoid='{"src":"&lt;onlyinclude>"}'/><!--hello6 --><meta typeof="mw:Includes/OnlyInclude/End" data-parsoid='{"src":"&lt;/onlyinclude>"}'/>
+!! html/php
+<h2><span class="mw-headline" id="test_1">test 1</span></h2>
+<h2><span class="mw-headline" id="test_2">test 2</span></h2>
+<h2><span class="mw-headline" id="test_3">test 3</span></h2>
+!! end
+
 !! article
 Template:Includeonly section
 !! text
@@ -13815,6 +13835,29 @@ d
 
 <p>|c
 d</p>
+!! end
+
+!! test
+Orphaned table row wikitext with templated table for an attribute should not duplicate table
+!! wikitext
+|-{{1x|
+{{{!}}
+{{!}}foo
+{{!}}}
+}}
+!! html/php
+<p>|-
+</p>
+<table>
+<tbody><tr>
+<td>foo
+</td></tr></tbody></table>
+!! html/parsoid
+<p about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]],"firstWikitextNode":"TR"}' data-mw='{"parts":["|-",{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"\n{{{!}}\n{{!}}foo\n{{!}}}\n"}},"i":0}}]}'>|-</p><span about="#mwt1">
+</span><table about="#mwt1">
+<tbody><tr><td>foo</td></tr>
+</tbody></table><span about="#mwt1">
+</span>
 !! end
 
 ###
@@ -22831,7 +22874,7 @@ Bad images - basic functionality
 [[File:Bad.jpg]]
 !! html/php+disabled
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Bad.jpg"><span resource="./File:Bad.jpg">File:Bad.jpg</span></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Bad.jpg"><span class="mw-broken-media" resource="./File:Bad.jpg">File:Bad.jpg</span></a></span></p>
 !! end
 
 !! test
@@ -22846,7 +22889,7 @@ Bar foo
 </p>
 !! html/parsoid
 <p>Foo bar
-<span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Bad.jpg"><span resource="./File:Bad.jpg">File:Bad.jpg</span></a></span>
+<span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Bad.jpg"><span class="mw-broken-media" resource="./File:Bad.jpg">File:Bad.jpg</span></a></span>
 Bar foo</p>
 !! end
 
@@ -23244,7 +23287,7 @@ wgParserEnableLegacyMediaDOM=false
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./User:+%25" title="User:+%" data-parsoid='{"stx":"simple","a":{"href":"./User:+%25"},"sa":{"href":"User:+%"}}' class="new">User:+%</a> <a rel="mw:WikiLink" href="./Page+title%25" title="Page+title%" data-parsoid='{"stx":"simple","a":{"href":"./Page+title%25"},"sa":{"href":"Page+title%"}}' class="new">Page+title%</a>
 <a rel="mw:WikiLink" href="./%25+" title="%+" data-parsoid='{"stx":"simple","a":{"href":"./%25+"},"sa":{"href":"%+"}}' class="new">%+</a> <a rel="mw:WikiLink" href="./%25+" title="%+" data-parsoid='{"stx":"piped","a":{"href":"./%25+"},"sa":{"href":"%+"}}' class="new">%20</a> <a rel="mw:WikiLink" href="./%25+" title="%+" data-parsoid='{"stx":"simple","a":{"href":"./%25+"},"sa":{"href":"%+ "}}' class="new">%+ </a> <a rel="mw:WikiLink" href="./%25+r" title="%+r" data-parsoid='{"stx":"simple","a":{"href":"./%25+r"},"sa":{"href":"%+r"}}' class="new">%+r</a>
-<a rel="mw:WikiLink" href="./%25" title="%" data-parsoid='{"stx":"simple","a":{"href":"./%25"},"sa":{"href":"%"}}' class="new">%</a> <a rel="mw:WikiLink" href="./+" title="+" data-parsoid='{"stx":"simple","a":{"href":"./+"},"sa":{"href":"+"}}' class="new">+</a> <span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"bogus","ak":"foo"},{"ck":"caption","ak":"[[bar]]"}]}' data-mw='{"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./Bar\" title=\"Bar\" data-parsoid=&apos;{\"stx\":\"simple\",\"a\":{\"href\":\"./Bar\"},\"sa\":{\"href\":\"bar\"},\"dsr\":[94,101,2,2]}&apos;>bar&lt;/a>","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/%25+abc9"><span resource="./File:%25+abc9" data-parsoid='{"a":{"resource":"./File:%25+abc9"},"sa":{"resource":"File:%+abc%39"}}'>File:%+abc9</span></a></span>
+<a rel="mw:WikiLink" href="./%25" title="%" data-parsoid='{"stx":"simple","a":{"href":"./%25"},"sa":{"href":"%"}}' class="new">%</a> <a rel="mw:WikiLink" href="./+" title="+" data-parsoid='{"stx":"simple","a":{"href":"./+"},"sa":{"href":"+"}}' class="new">+</a> <span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"bogus","ak":"foo"},{"ck":"caption","ak":"[[bar]]"}]}' data-mw='{"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./Bar\" title=\"Bar\" data-parsoid=&apos;{\"stx\":\"simple\",\"a\":{\"href\":\"./Bar\"},\"sa\":{\"href\":\"bar\"},\"dsr\":[94,101,2,2]}&apos;>bar&lt;/a>","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/%25+abc9"><span class="mw-broken-media" resource="./File:%25+abc9" data-parsoid='{"a":{"resource":"./File:%25+abc9"},"sa":{"resource":"File:%+abc%39"}}'>File:%+abc9</span></a></span>
 <a rel="mw:WikiLink" href="./3E" title="3E" data-parsoid='{"stx":"simple","a":{"href":"./3E"},"sa":{"href":"%33%45"}}' class="new">3E</a> <a rel="mw:WikiLink" href="./3E+" title="3E+" data-parsoid='{"stx":"simple","a":{"href":"./3E+"},"sa":{"href":"%33%45+"}}' class="new">3E+</a></p>
 !! end
 
