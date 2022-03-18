@@ -1308,7 +1308,7 @@ class Sanitizer {
 	}
 
 	/**
-	 * @param int $codepoint
+	 * @param int|string $codepoint
 	 * @return null|string
 	 */
 	private static function decCharReference( $codepoint ) {
@@ -1321,7 +1321,7 @@ class Sanitizer {
 	}
 
 	/**
-	 * @param int $codepoint
+	 * @param string $codepoint
 	 * @return null|string
 	 */
 	private static function hexCharReference( $codepoint ) {
