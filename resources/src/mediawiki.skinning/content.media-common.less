@@ -141,8 +141,14 @@ figure[ typeof~='mw:Audio/Frame' ] {
 		> video {
 			margin: 3px;
 		}
-		/* Broken media get a span instead */
-		> span:first-child {
+		/**
+		 * Broken media get a span instead.
+		 *
+		 * FIXME: The `> span:first-child` can be removed once the class
+		 * is rolled out in Parsoid as well and content in RESTBase regenerated.
+		 */
+		> span:first-child,
+		> span.mw-broken-media {
 			display: inline-block;
 			/* The extra horizontal margin here is to make up for the lack of a border */
 			margin: 3px 4px;

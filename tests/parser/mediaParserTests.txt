@@ -1697,7 +1697,7 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[File:7%25 solution.gif|manualthumb=7%25 solution.gif|link=7%25 solution|[[7%25 solution]]]]
 !! html/php
-<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=7%25_solution.gif" class="new" title="File:7% solution.gif"><span>File:7% solution.gif</span></a></span>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=7%25_solution.gif" class="new" title="File:7% solution.gif"><span class="mw-broken-media">File:7% solution.gif</span></a></span>
 </p>
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"bogus","ak":"manualthumb=7%25 solution.gif"},{"ck":"link","ak":"link=7%25 solution"},{"ck":"caption","ak":"[[7%25 solution]]"}]}' data-mw='{"attribs":[["link",{"txt":"7%25 solution"}]],"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./7%25_solution\" title=\"7% solution\" data-parsoid=&apos;{\"stx\":\"simple\",\"a\":{\"href\":\"./7%25_solution\"},\"sa\":{\"href\":\"7%25 solution\"},\"dsr\":[74,91,2,2]}&apos;>7% solution&lt;/a>","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/7%25_solution.gif"><span resource="./File:7%25_solution.gif" data-parsoid='{"a":{"resource":"./File:7%25_solution.gif"},"sa":{"resource":"File:7%25 solution.gif"}}'>File:7% solution.gif</span></a></span></p>
@@ -1922,7 +1922,7 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[Image:Barfoo.jpg]]
 !! html/php
-<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/wiki/File:Barfoo.jpg" class="mw-redirect" title="File:Barfoo.jpg"><span>File:Barfoo.jpg</span></a></span>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/wiki/File:Barfoo.jpg" class="mw-redirect" title="File:Barfoo.jpg"><span class="mw-broken-media">File:Barfoo.jpg</span></a></span>
 </p>
 !! end
 
@@ -1936,7 +1936,7 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[File:Foobaz.jpg]]
 !! html/php
-<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/wiki/File:Foobaz.jpg" title="File:Foobaz.jpg"><span>File:Foobaz.jpg</span></a></span>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/wiki/File:Foobaz.jpg" title="File:Foobaz.jpg"><span class="mw-broken-media">File:Foobaz.jpg</span></a></span>
 </p>
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Foobaz.jpg"><span resource="./File:Foobaz.jpg">File:Foobaz.jpg</span></a></span></p>
@@ -2162,7 +2162,7 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[File:Cool "Gator".png]]
 !! html/php
-<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Cool_%22Gator%22.png" class="new" title="File:Cool &quot;Gator&quot;.png"><span>File:Cool "Gator".png</span></a></span>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Cool_%22Gator%22.png" class="new" title="File:Cool &quot;Gator&quot;.png"><span class="mw-broken-media">File:Cool "Gator".png</span></a></span>
 </p>
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Cool_%22Gator%22.png"><span resource='./File:Cool_"Gator".png' data-parsoid='{"a":{"resource":"./File:Cool_\"Gator\".png"},"sa":{"resource":"File:Cool \"Gator\".png"}}'>File:Cool "Gator".png</span></a></span></p>
@@ -2176,8 +2176,8 @@ wgParserEnableLegacyMediaDOM=false
 [[File:Foo's ''italic'' bar.jpg]]
 [[File:Foo's ''italic'' bar.jpg|Foo's ''italic'' bar]]
 !! html/php
-<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Foo%27s_%27%27italic%27%27_bar.jpg" class="new" title="File:Foo&#39;s &#39;&#39;italic&#39;&#39; bar.jpg"><span>File:Foo's <i>italic</i> bar.jpg</span></a></span>
-<span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Foo%27s_%27%27italic%27%27_bar.jpg" class="new" title="File:Foo&#39;s &#39;&#39;italic&#39;&#39; bar.jpg"><span>File:Foo's <i>italic</i> bar.jpg</span></a></span>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Foo%27s_%27%27italic%27%27_bar.jpg" class="new" title="File:Foo&#39;s &#39;&#39;italic&#39;&#39; bar.jpg"><span class="mw-broken-media">File:Foo's <i>italic</i> bar.jpg</span></a></span>
+<span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Foo%27s_%27%27italic%27%27_bar.jpg" class="new" title="File:Foo&#39;s &#39;&#39;italic&#39;&#39; bar.jpg"><span class="mw-broken-media">File:Foo's <i>italic</i> bar.jpg</span></a></span>
 </p>
 !! end
 
@@ -2191,10 +2191,10 @@ wgParserEnableLegacyMediaDOM=false
 [[File:Nonexistent|&lt;]]
 [[File:Nonexistent|a<i>b</i>c]]
 !! html/php
-<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent"><span>File:Nonexistent</span></a></span>
-<span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent"><span data-width="100" data-height="100">File:Nonexistent</span></a></span>
-<span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent"><span>File:Nonexistent</span></a></span>
-<span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent"><span>File:Nonexistent</span></a></span>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent"><span class="mw-broken-media">File:Nonexistent</span></a></span>
+<span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent"><span class="mw-broken-media" data-width="100" data-height="100">File:Nonexistent</span></a></span>
+<span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent"><span class="mw-broken-media">File:Nonexistent</span></a></span>
+<span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent"><span class="mw-broken-media">File:Nonexistent</span></a></span>
 </p>
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"caption","ak":"&lt;script>&lt;/script>"}]}' data-mw='{"caption":"&amp;lt;script>&amp;lt;/script>","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Nonexistent"><span resource="./File:Nonexistent" data-parsoid='{"a":{"resource":"./File:Nonexistent"},"sa":{"resource":"File:Nonexistent"}}'>File:Nonexistent</span></a></span>
@@ -2223,7 +2223,7 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 {{paramtest|param=[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]}}
 !! html/php
-<p>This is a test template with parameter </p><figure class="mw-default-size" typeof="mw:Error mw:Image/Thumb"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Noimage.png" class="new" title="File:Noimage.png"><span data-width="180">File:Noimage.png</span></a><figcaption><a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">link</a> <a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">caption</a></figcaption></figure>
+<p>This is a test template with parameter </p><figure class="mw-default-size" typeof="mw:Error mw:Image/Thumb"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Noimage.png" class="new" title="File:Noimage.png"><span class="mw-broken-media" data-width="180">File:Noimage.png</span></a><figcaption><a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">link</a> <a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">caption</a></figcaption></figure>
 !! html/parsoid
 <p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"paramtest","href":"./Template:Paramtest"},"params":{"param":{"wt":"[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]"}},"i":0}}]}'>This is a test template with parameter </p><figure class="mw-default-size" typeof="mw:Error mw:Image/Thumb" about="#mwt1" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Noimage.png"><span resource="./File:Noimage.png" data-width="180">File:Noimage.png</span></a><figcaption><a rel="mw:WikiLink" href="./No_link" title="No link" class="new">link</a> <a rel="mw:WikiLink" href="./No_link" title="No link" class="new">caption</a></figcaption></figure>
 !! end
@@ -2261,7 +2261,7 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[File:No_such.jpg]]
 !! html/php
-<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=No_such.jpg" class="new" title="File:No such.jpg"><span>File:No such.jpg</span></a></span>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=No_such.jpg" class="new" title="File:No such.jpg"><span class="mw-broken-media">File:No such.jpg</span></a></span>
 </p>
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/No_such.jpg"><span resource="./File:No_such.jpg">File:No such.jpg</span></a></span></p>
@@ -2285,7 +2285,7 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[Image:foobar.jpg|thumbnail= ]]
 !! html/php
-<figure class="mw-default-size" typeof="mw:Error mw:Image/Thumb"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Foobar.jpg" class="new" title="File:Foobar.jpg"><span data-width="180">File:Foobar.jpg</span></a><figcaption></figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Error mw:Image/Thumb"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Foobar.jpg" class="new" title="File:Foobar.jpg"><span class="mw-broken-media" data-width="180">File:Foobar.jpg</span></a><figcaption></figcaption></figure>
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Error mw:Image/Thumb" data-parsoid='{"optList":[{"ck":"manualthumb","ak":"thumbnail= "}]}' data-mw='{"attribs":[["manualthumb",{"txt":""}]],"errors":[{"key":"apierror-invalidtitle","message":"Invalid thumbnail title.","params":{"name":""}}]}'><a href="./Special:FilePath/Foobar.jpg"><span resource="./File:Foobar.jpg" data-parsoid='{"a":{"resource":"./File:Foobar.jpg"},"sa":{"resource":"Image:foobar.jpg"}}'>File:Foobar.jpg</span></a><figcaption></figcaption></figure>
 !! end
@@ -3379,8 +3379,8 @@ wgParserEnableLegacyMediaDOM=false
 [[File:Contains & ampersand.jpg]]
 [[File:Does not exist.jpg|Title with & ampersand]]
 !! html/php
-<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Contains_%26_ampersand.jpg" class="new" title="File:Contains &amp; ampersand.jpg"><span>File:Contains &amp; ampersand.jpg</span></a></span>
-<span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Does_not_exist.jpg" class="new" title="File:Does not exist.jpg"><span>File:Does not exist.jpg</span></a></span>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Contains_%26_ampersand.jpg" class="new" title="File:Contains &amp; ampersand.jpg"><span class="mw-broken-media">File:Contains &amp; ampersand.jpg</span></a></span>
+<span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Does_not_exist.jpg" class="new" title="File:Does not exist.jpg"><span class="mw-broken-media">File:Does not exist.jpg</span></a></span>
 </p>
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Contains_&amp;_ampersand.jpg"><span resource="./File:Contains_&amp;_ampersand.jpg" data-parsoid='{"a":{"resource":"./File:Contains_&amp;_ampersand.jpg"},"sa":{"resource":"File:Contains &amp; ampersand.jpg"}}'>File:Contains &amp; ampersand.jpg</span></a></span>

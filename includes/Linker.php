@@ -861,6 +861,7 @@ class Linker {
 		}
 
 		$html = Html::element( 'span', [
+			'class' => 'mw-broken-media',
 			// These data attributes are used to dynamically size the span, see T273013
 			'data-width' => $handlerParams['width'] ?? null,
 			'data-height' => $handlerParams['height'] ?? null,
