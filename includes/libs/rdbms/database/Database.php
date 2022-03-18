@@ -1330,7 +1330,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$reconnected = $this->replaceLostConnection( $lastErrno, __METHOD__ );
 		} else {
 			# Check if only the last query was rolled back
-			$recoverableSR = $this->wasKnownStatementRollbackError();
+			$recoverableSR = $this->isKnownStatementRollbackError( $lastErrno );
 		}
 
 		if ( $sql === self::PING_QUERY ) {
@@ -3904,12 +3904,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @stable to override
+	 * @param int|string $errno
 	 * @return bool Whether it is known that the last query error only caused statement rollback
 	 * @note This is for backwards compatibility for callers catching DBError exceptions in
 	 *   order to ignore problems like duplicate key errors or foreign key violations
-	 * @since 1.31
+	 * @since 1.39
 	 */
-	protected function wasKnownStatementRollbackError() {
+	protected function isKnownStatementRollbackError( $errno ) {
 		return false; // don't know; it could have caused a transaction rollback
 	}
 

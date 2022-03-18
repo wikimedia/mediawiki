@@ -2375,7 +2375,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 		$doError = function () {
 			$this->database->forceNextQueryError( 666, 'Evilness', [
-				'wasKnownStatementRollbackError' => true,
+				'isKnownStatementRollbackError' => true,
 			] );
 			try {
 				$this->database->delete( 'error', '1', __CLASS__ . '::SomeCaller' );
