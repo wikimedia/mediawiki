@@ -1075,7 +1075,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 1, $wasSet, "Value process cached while deleted" );
 
 		$calls = 0;
-		$ids = [ 1, 2, 3, 4, 5, 6 ];
+		$ids = [ 1, 2, 3, 4, 5, 6, 7 ];
 		$keyFunc = static function ( $id, WANObjectCache $wanCache ) {
 			return $wanCache->makeKey( 'test', $id );
 		};
@@ -1084,7 +1084,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			$newValues = [];
 			foreach ( $ids as $id ) {
 				++$calls;
-				$newValues[$id] = "val-{$id}";
+				$newValues[$id] = ( $id <= 6 ) ? "val-{$id}" : false;
 			}
 
 			return $newValues;
@@ -1092,7 +1092,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$values = $cache->getMultiWithUnionSetCallback( $keyedIds, 10, $genFunc );
 
 		$this->assertSame(
-			[ "val-1", "val-2", "val-3", "val-4", "val-5", "val-6" ],
+			[ "val-1", "val-2", "val-3", "val-4", "val-5", "val-6", false ],
 			array_values( $values ),
 			"Correct values in correct order"
 		);
@@ -1104,7 +1104,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( count( $ids ), $calls );
 
 		$cache->getMultiWithUnionSetCallback( $keyedIds, 10, $genFunc );
-		$this->assertSame( count( $ids ), $calls, "Values cached" );
+		$this->assertSame( count( $ids ) + 1, $calls, "Values cached, except for missing entity" );
 	}
 
 	public static function getMultiWithUnionSetCallback_provider() {
