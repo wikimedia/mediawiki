@@ -175,7 +175,7 @@ class StripState {
 	 * Get warning HTML and register a limitation warning with the parser
 	 *
 	 * @param string $type
-	 * @param int $max
+	 * @param int|string $max
 	 * @return string
 	 */
 	private function getLimitationWarning( $type, $max = '' ) {
@@ -189,7 +189,7 @@ class StripState {
 	 * Get warning HTML
 	 *
 	 * @param string $message
-	 * @param int $max
+	 * @param int|string $max
 	 * @return string
 	 */
 	private function getWarning( $message, $max = '' ) {

@@ -49,7 +49,7 @@ class PPFrame_Hash implements PPFrame {
 	/**
 	 * Hashtable listing templates which are disallowed for expansion in this frame,
 	 * having been encountered previously in parent frames.
-	 * @var string[]
+	 * @var true[]
 	 */
 	public $loopCheckHash;
 

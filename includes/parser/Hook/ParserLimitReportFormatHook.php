@@ -21,7 +21,7 @@ interface ParserLimitReportFormatHook {
 	 * @param string $key Key for the limit report item
 	 * @param string &$value Value of the limit report item
 	 * @param string &$report String onto which to append the data
-	 * @param string $isHTML If true, $report is an HTML table with two columns; if false, it's
+	 * @param bool $isHTML If true, $report is an HTML table with two columns; if false, it's
 	 *   text intended for display in a monospaced font
 	 * @param bool $localize If false, $report should be output in English
 	 * @return bool|void True or no return value to continue or false to abort
