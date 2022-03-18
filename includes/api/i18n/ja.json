@@ -686,7 +686,7 @@
 	"apihelp-query+iwbacklinks-example-generator": "[[wikibooks:Test]] へリンクしているページの情報を取得する。",
 	"apihelp-query+iwlinks-summary": "ページからのすべてのウィキ間リンクを返します。",
 	"apihelp-query+iwlinks-param-url": "完全なURLを取得するかどうか (<var>$1prop</var>とは同時に使用できません).",
-	"apihelp-query+iwlinks-param-prop": "各言語間リンクについて取得する追加のプロパティ:",
+	"apihelp-query+iwlinks-param-prop": "各ウィキ間リンクについて取得する追加のプロパティ:",
 	"apihelp-query+iwlinks-paramvalue-prop-url": "完全なURLを追加します。",
 	"apihelp-query+iwlinks-param-limit": "返すウィキ間リンクの数。",
 	"apihelp-query+iwlinks-param-prefix": "この接頭辞のウィキ間リンクのみを返す。",
