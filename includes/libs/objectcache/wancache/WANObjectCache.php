@@ -2347,7 +2347,7 @@ class WANObjectCache implements
 	 *     $keyedIds = $cache->makeMultiKeys(
 	 *         $filters,
 	 *         function ( $filter ) use ( $cache ) {
-	 *             return ( strpos( $filter, 'central:' ) === 0 )
+	 *             return self::isCentral( $filter )
 	 *                 ? $cache->makeGlobalKey( 'regex-filter', $filter )
 	 *                 : $cache->makeKey( 'regex-filter', $filter )
 	 *         }
@@ -2371,7 +2371,6 @@ class WANObjectCache implements
 	 * @param string[]|int[] $ids List of entity IDs
 	 * @param callable $keyCallback Function returning makeKey()/makeGlobalKey() on the input ID
 	 * @return ArrayIterator Iterator of (cache key => ID); order of $ids is preserved
-	 * @throws UnexpectedValueException
 	 * @since 1.28
 	 */
 	final public function makeMultiKeys( array $ids, $keyCallback ) {
@@ -2609,10 +2608,12 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * @return int Number of warmup key cache misses last round
+	 * @internal For use by unit tests only
+	 * @return int
 	 * @since 1.30
 	 */
 	final public function getWarmupKeyMisses() {
+		// Number of misses in $this->warmupCache during the last call to certain methods
 		return $this->warmupKeyMisses;
 	}
 
