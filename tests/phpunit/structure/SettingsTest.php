@@ -76,9 +76,17 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 			'script' => MW_INSTALL_PATH . '/maintenance/generateConfigSchemaArray.php',
 			'expectedFile' => MW_INSTALL_PATH . '/includes/config-schema.php',
 		];
+		yield 'includes/DefaultSettings.php' => [
+			'script' => MW_INSTALL_PATH . '/maintenance/generateConfigDefaultSettings.php',
+			'expectedFile' => MW_INSTALL_PATH . '/includes/DefaultSettings.php',
+		];
 		yield 'docs/config-schema.yaml' => [
 			'script' => MW_INSTALL_PATH . '/maintenance/generateConfigSchemaYaml.php',
 			'expectedFile' => MW_INSTALL_PATH . '/docs/config-schema.yaml',
+		];
+		yield 'includes/MainConfigNames.php' => [
+			'script' => MW_INSTALL_PATH . '/maintenance/generateConfigNames.php',
+			'expectedFile' => MW_INSTALL_PATH . '/includes/MainConfigNames.php',
 		];
 	}
 
@@ -86,21 +94,27 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideConfigGeneration
 	 */
 	public function testConfigGeneration( string $script, string $expectedFile ) {
-		$schemaGenerator = Shell::makeScriptCommand( $script, [ '--output', 'php://stdout' ] );
+		$tmp = 'cache/testConfigGeneration.tmp';
+		$this->addTmpFiles( $tmp );
 
+		// Copy expected data into target file, since some scripts may do an in-place update.
+		file_put_contents( $tmp, file_get_contents( $expectedFile ) );
+
+		$schemaGenerator = Shell::makeScriptCommand( $script, [ '--output', $tmp ] );
 		$result = $schemaGenerator->execute();
-		$this->assertSame( 0, $result->getExitCode(), 'Config generation must finish successfully' );
 
 		$errors = $result->getStderr();
 		$errors = preg_replace( '/^Xdebug:.*\n/m', '', $errors );
 		$this->assertSame( '', $errors, 'Config generation must not have errors' );
+		$this->assertSame( 0, $result->getExitCode(), 'Config generation must finish successfully' );
 
-		$oldGeneratedSchema = file_get_contents( $expectedFile );
+		$oldGeneratedData = file_get_contents( $expectedFile );
+		$newGeneratedData = file_get_contents( $tmp );
 		$relativePath = wfRelativePath( $script, MW_INSTALL_PATH );
 
 		$this->assertEquals(
-			$oldGeneratedSchema,
-			$result->getStdout(),
+			$oldGeneratedData,
+			$newGeneratedData,
 			"Configuration schema was changed. Rerun $relativePath script!"
 		);
 	}
