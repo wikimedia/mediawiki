@@ -8613,7 +8613,7 @@ wgParserEnableLegacyMediaDOM=false
 
 [[''Pentecoste''|''Pentecoste'']]
 !! html/php
-<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Denys_Savchenko_%27%27Pentecoste%27%27.jpg" class="new" title="File:Denys Savchenko &#39;&#39;Pentecoste&#39;&#39;.jpg"><span>File:Denys Savchenko <i>Pentecoste</i>.jpg</span></a></span>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Denys_Savchenko_%27%27Pentecoste%27%27.jpg" class="new" title="File:Denys Savchenko &#39;&#39;Pentecoste&#39;&#39;.jpg"><span class="mw-broken-media">File:Denys Savchenko <i>Pentecoste</i>.jpg</span></a></span>
 </p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="&#39;&#39;Pentecoste&#39;&#39; (page does not exist)">''Pentecoste''</a>
 </p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="&#39;&#39;Pentecoste&#39;&#39; (page does not exist)">Pentecoste</a>
 </p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="&#39;&#39;Pentecoste&#39;&#39; (page does not exist)"><i>Pentecoste</i></a>
@@ -23238,7 +23238,7 @@ wgParserEnableLegacyMediaDOM=false
 !! html/php
 <p><a href="/index.php?title=User:%2B%25&amp;action=edit&amp;redlink=1" class="new" title="User:+% (page does not exist)">User:+%</a> <a href="/index.php?title=Page%2Btitle%25&amp;action=edit&amp;redlink=1" class="new" title="Page+title% (page does not exist)">Page+title%</a>
 <a href="/index.php?title=%25%2B&amp;action=edit&amp;redlink=1" class="new" title="%+ (page does not exist)">%+</a> <a href="/index.php?title=%25%2B&amp;action=edit&amp;redlink=1" class="new" title="%+ (page does not exist)">%20</a> <a href="/index.php?title=%25%2B&amp;action=edit&amp;redlink=1" class="new" title="%+ (page does not exist)">%+ </a> <a href="/index.php?title=%25%2Br&amp;action=edit&amp;redlink=1" class="new" title="%+r (page does not exist)">%+r</a>
-<a href="/index.php?title=%25&amp;action=edit&amp;redlink=1" class="new" title="% (page does not exist)">%</a> <a href="/index.php?title=%2B&amp;action=edit&amp;redlink=1" class="new" title="+ (page does not exist)">+</a> <span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=%25%2Babc9" class="new" title="File:%+abc9"><span>File:%+abc9</span></a></span>
+<a href="/index.php?title=%25&amp;action=edit&amp;redlink=1" class="new" title="% (page does not exist)">%</a> <a href="/index.php?title=%2B&amp;action=edit&amp;redlink=1" class="new" title="+ (page does not exist)">+</a> <span class="mw-default-size" typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=%25%2Babc9" class="new" title="File:%+abc9"><span class="mw-broken-media">File:%+abc9</span></a></span>
 <a href="/index.php?title=3E&amp;action=edit&amp;redlink=1" class="new" title="3E (page does not exist)">3E</a> <a href="/index.php?title=3E%2B&amp;action=edit&amp;redlink=1" class="new" title="3E+ (page does not exist)">3E+</a>
 </p>
 !! html/parsoid
