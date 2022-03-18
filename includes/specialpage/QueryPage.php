@@ -80,13 +80,13 @@ abstract class QueryPage extends SpecialPage {
 	 * DO NOT CHANGE THIS LIST without testing that
 	 * maintenance/updateSpecialPages.php still works.
 	 *
-	 * @return string[][]
+	 * @return array[] List of [ string $class, string $specialPageName, ?int $limit (optional) ].
+	 *  Limit defaults to $wgQueryCacheLimit if not given.
 	 */
 	public static function getPages() {
 		static $qp = null;
 
 		if ( $qp === null ) {
-			// QueryPage subclass, Special page name
 			$qp = [
 				[ SpecialAncientPages::class, 'Ancientpages' ],
 				[ SpecialBrokenRedirects::class, 'BrokenRedirects' ],
@@ -97,7 +97,7 @@ abstract class QueryPage extends SpecialPage {
 				[ SpecialListRedirects::class, 'Listredirects' ],
 				[ SpecialLonelyPages::class, 'Lonelypages' ],
 				[ SpecialLongPages::class, 'Longpages' ],
-				[ SpecialMediaStatistics::class, 'MediaStatistics' ],
+				[ SpecialMediaStatistics::class, 'MediaStatistics', SpecialMediaStatistics::MAX_LIMIT ],
 				[ SpecialMIMESearch::class, 'MIMEsearch' ],
 				[ SpecialMostCategories::class, 'Mostcategories' ],
 				[ MostimagesPage::class, 'Mostimages' ],
@@ -357,7 +357,7 @@ abstract class QueryPage extends SpecialPage {
 	 *
 	 * @stable to override
 	 *
-	 * @param int|bool $limit Limit for SQL statement
+	 * @param int|false $limit Limit for SQL statement or false for no limit
 	 * @param bool $ignoreErrors Whether to ignore database errors
 	 * @throws DBError|Exception
 	 * @return bool|int
@@ -484,8 +484,8 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Run the query and return the result
 	 * @stable to override
-	 * @param int|bool $limit Numerical limit or false for no limit
-	 * @param int|bool $offset Numerical offset or false for no offset
+	 * @param int|false $limit Numerical limit or false for no limit
+	 * @param int|false $offset Numerical offset or false for no offset
 	 * @return IResultWrapper
 	 * @since 1.18
 	 */
@@ -536,8 +536,8 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Somewhat deprecated, you probably want to be using execute()
-	 * @param int|bool $offset
-	 * @param int|bool $limit
+	 * @param int|false $offset
+	 * @param int|false $limit
 	 * @return IResultWrapper
 	 */
 	public function doQuery( $offset = false, $limit = false ) {
@@ -552,8 +552,8 @@ abstract class QueryPage extends SpecialPage {
 	 * Fetch the query results from the query cache
 	 * @stable to override
 	 *
-	 * @param int|bool $limit Numerical limit or false for no limit
-	 * @param int|bool $offset Numerical offset or false for no offset
+	 * @param int|false $limit Numerical limit or false for no limit
+	 * @param int|false $offset Numerical offset or false for no offset
 	 * @return IResultWrapper
 	 * @since 1.18
 	 */
