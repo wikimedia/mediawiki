@@ -670,7 +670,7 @@ class BlockManager {
 	 * @return string The block ID, probably concatenated with "!" and the HMAC.
 	 */
 	public function getCookieValue( DatabaseBlock $block ) {
-		$id = $block->getId();
+		$id = (string)$block->getId();
 		if ( !$this->options->get( 'SecretKey' ) ) {
 			// If there's no secret key, don't append a HMAC.
 			return $id;
