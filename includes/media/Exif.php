@@ -369,7 +369,7 @@ class Exif {
 			// We know altitude data is a <num>/<denom> from the validation
 			// functions ran earlier. But multiplying such a string by -1
 			// doesn't work well, so convert.
-			list( $num, $denom ) = explode( '/', $this->mFilteredExifData['GPSAltitude'] );
+			list( $num, $denom ) = explode( '/', $this->mFilteredExifData['GPSAltitude'], 2 );
 			$this->mFilteredExifData['GPSAltitude'] = (int)$num / (int)$denom;
 
 			if ( isset( $this->mFilteredExifData['GPSAltitudeRef'] ) ) {
@@ -530,11 +530,11 @@ class Exif {
 		if ( isset( $loc ) && isset( $dir )
 			&& ( $dir === 'N' || $dir === 'S' || $dir === 'E' || $dir === 'W' )
 		) {
-			list( $num, $denom ) = explode( '/', $loc[0] );
+			list( $num, $denom ) = explode( '/', $loc[0], 2 );
 			$res = (int)$num / (int)$denom;
-			list( $num, $denom ) = explode( '/', $loc[1] );
+			list( $num, $denom ) = explode( '/', $loc[1], 2 );
 			$res += ( (int)$num / (int)$denom ) * ( 1 / 60 );
-			list( $num, $denom ) = explode( '/', $loc[2] );
+			list( $num, $denom ) = explode( '/', $loc[2], 2 );
 			$res += ( (int)$num / (int)$denom ) * ( 1 / 3600 );
 
 			if ( $dir === 'S' || $dir === 'W' ) {

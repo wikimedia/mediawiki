@@ -264,7 +264,7 @@ class JpegHandler extends ExifBitmapHandler {
 			->execute();
 
 		// Explode EXIF data into an array with [0 => Color Space, 1 => Device Model Desc]
-		$data = explode( "\t", trim( $result->getStdout() ) );
+		$data = explode( "\t", trim( $result->getStdout() ), 3 );
 
 		if ( $result->getExitCode() !== 0 ) {
 			return false;

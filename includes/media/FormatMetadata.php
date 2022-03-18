@@ -143,9 +143,9 @@ class FormatMetadata extends ContextSource {
 			if ( $tag == 'GPSTimeStamp' && count( $vals ) === 3 ) {
 				// hour min sec array
 
-				$h = explode( '/', $vals[0] );
-				$m = explode( '/', $vals[1] );
-				$s = explode( '/', $vals[2] );
+				$h = explode( '/', $vals[0], 2 );
+				$m = explode( '/', $vals[1], 2 );
+				$s = explode( '/', $vals[2], 2 );
 
 				// this should already be validated
 				// when loaded from file, but it could
@@ -859,7 +859,7 @@ class FormatMetadata extends ContextSource {
 					case 'MaxApertureValue':
 						if ( strpos( $val, '/' ) !== false ) {
 							// need to expand this earlier to calculate fNumber
-							list( $n, $d ) = explode( '/', $val );
+							list( $n, $d ) = explode( '/', $val, 2 );
 							if ( is_numeric( $n ) && is_numeric( $d ) ) {
 								$val = (int)$n / (int)$d;
 							}
