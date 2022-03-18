@@ -230,10 +230,10 @@ class TransactionManager {
 	}
 
 	/**
-	 * @param int $rtt
+	 * @param float $rtt
 	 * @return float Time to apply writes to replicas based on trxWrite* fields
 	 */
-	private function calculateLastTrxApplyTime( int $rtt ) {
+	private function calculateLastTrxApplyTime( float $rtt ) {
 		$rttAdjTotal = $this->trxWriteAdjQueryCount * $rtt;
 		$applyTime = max( $this->trxWriteAdjDuration - $rttAdjTotal, 0 );
 		// For omitted queries, make them count as something at least
@@ -289,17 +289,13 @@ class TransactionManager {
 		} elseif ( !$this->trxDoneWrites ) {
 			return 0.0;
 		}
-		$rtt = null;
 		if ( $type == IDatabase::ESTIMATE_DB_APPLY ) {
+			$rtt = null;
 			// passed by reference
 			$db->ping( $rtt );
+			return $this->calculateLastTrxApplyTime( $rtt );
 		}
-		switch ( $type ) {
-			case IDatabase::ESTIMATE_DB_APPLY:
-				return $this->calculateLastTrxApplyTime( $rtt );
-			default: // everything
-				return $this->trxWriteDuration;
-		}
+		return $this->trxWriteDuration;
 	}
 
 	/**
