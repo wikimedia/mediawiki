@@ -3,12 +3,13 @@
 namespace MediaWiki\Tests\Structure;
 
 use ExtensionRegistry;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\Source\FileSource;
-use MediaWiki\Settings\Source\Format\YamlFormat;
 use MediaWiki\Settings\Source\PhpSettingsSource;
+use MediaWiki\Settings\Source\ReflectionSchemaSource;
 use MediaWiki\Settings\Source\SettingsSource;
 use MediaWiki\Shell\Shell;
 use MediaWikiIntegrationTestCase;
@@ -19,21 +20,14 @@ use MediaWikiIntegrationTestCase;
 class SettingsTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * Returns the contents of config-schema.yaml as an array.
+	 * Returns the main configuration schema as a settings array.
 	 *
 	 * @return array
 	 */
-	private static function getSchemaData(): array {
-		static $data = null;
-
-		if ( !$data ) {
-			$file = __DIR__ . '/../../../includes/config-schema.yaml';
-			$data = file_get_contents( $file );
-			$yaml = new YamlFormat();
-			$data = $yaml->decode( $data );
-		}
-
-		return $data;
+	private function getSchemaData(): array {
+		$source = new ReflectionSchemaSource( MainConfigSchema::class, true );
+		$settings = $source->load();
+		return $settings;
 	}
 
 	/**
@@ -78,13 +72,13 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideConfigGeneration() {
-		yield 'docs/Configuration.md' => [
-			'script' => __DIR__ . '/../../../maintenance/generateConfigDoc.php',
-			'expectedFile' => __DIR__ . '/../../../docs/Configuration.md',
+		yield 'includes/config-schema.php' => [
+			'script' => MW_INSTALL_PATH . '/maintenance/generateConfigSchemaArray.php',
+			'expectedFile' => MW_INSTALL_PATH . '/includes/config-schema.php',
 		];
-		yield 'incl/Configuration.md' => [
-			'script' => __DIR__ . '/../../../maintenance/generateConfigSchema.php',
-			'expectedFile' => __DIR__ . '/../../../includes/config-schema.php',
+		yield 'docs/config-schema.yaml' => [
+			'script' => MW_INSTALL_PATH . '/maintenance/generateConfigSchemaYaml.php',
+			'expectedFile' => MW_INSTALL_PATH . '/docs/config-schema.yaml',
 		];
 	}
 
@@ -96,10 +90,13 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 
 		$result = $schemaGenerator->execute();
 		$this->assertSame( 0, $result->getExitCode(), 'Config generation must finish successfully' );
-		$this->assertSame( '', $result->getStderr(), 'Config generation must not have errors' );
+
+		$errors = $result->getStderr();
+		$errors = preg_replace( '/^Xdebug:.*\n/m', '', $errors );
+		$this->assertSame( '', $errors, 'Config generation must not have errors' );
 
 		$oldGeneratedSchema = file_get_contents( $expectedFile );
-		$relativePath = wfRelativePath( $script, __DIR__ . '/../../..' );
+		$relativePath = wfRelativePath( $script, MW_INSTALL_PATH );
 
 		$this->assertEquals(
 			$oldGeneratedSchema,
@@ -109,8 +106,8 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideDefaultSettingsConsistency() {
-		yield 'YAML' => [ new FileSource( 'includes/config-schema.yaml' ) ];
-		yield 'PHP' => [ new PhpSettingsSource( 'includes/config-schema.php' ) ];
+		yield 'YAML' => [ new FileSource( MW_INSTALL_PATH . '/docs/config-schema.yaml' ) ];
+		yield 'PHP' => [ new PhpSettingsSource( MW_INSTALL_PATH . '/includes/config-schema.php' ) ];
 	}
 
 	/**
@@ -120,7 +117,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testDefaultSettingsConsistency( SettingsSource $source ) {
 		$defaultSettingsProps = ( static function () {
-			require __DIR__ . '/../../../includes/DefaultSettings.php';
+			require MW_INSTALL_PATH . '/includes/DefaultSettings.php';
 			$vars = get_defined_vars();
 			unset( $vars['input'] );
 			$result = [];
@@ -138,7 +135,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 			$this->createNoOpMock( PhpIniSink::class )
 		);
 		$settingsBuilder->load( $source );
-		$settingsBuilder->apply();
+		$defaults = iterator_to_array( $settingsBuilder->getDefaultConfig() );
 
 		foreach ( $defaultSettingsProps as $key => $value ) {
 			if ( in_array( $key, [
@@ -148,9 +145,12 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 			] ) ) {
 				continue;
 			}
-			$this->assertTrue( $configBuilder->build()->has( $key ), "Missing $key" );
-			$this->assertEquals( $value, $configBuilder->build()->get( $key ), "Wrong value for $key\n" );
+			$this->assertArrayHasKey( $key, $defaults, "Missing $key from $source" );
+			$this->assertEquals( $value, $defaults[ $key ], "Wrong value for $key\n" );
 		}
+
+		$missingKeys = array_diff_key( $defaults, $defaultSettingsProps );
+		$this->assertSame( [], $missingKeys, 'Keys missing from DefaultSettings.php' );
 	}
 
 	public function provideArraysHaveMergeStrategy() {

@@ -289,8 +289,8 @@ return [
 		'CopyUploadTimeout' => [
 			'default' => false,
 			'type' => [
-				0 => 'integer',
-				1 => 'boolean',
+				0 => 'boolean',
+				1 => 'integer',
 			],
 		],
 		'MaxUploadSize' => [
@@ -3394,9 +3394,6 @@ return [
 		'UseAutomaticEditSummaries' => [
 			'default' => true,
 		],
-		'CommandLineMode' => [
-			'default' => false,
-		],
 		'CommandLineDarkBg' => [
 			'default' => false,
 		],
@@ -4234,7 +4231,7 @@ return [
 				'type' => [
 					0 => 'string',
 					1 => 'boolean',
-					2 => null,
+					2 => 'null',
 				],
 			],
 		],
