@@ -1245,7 +1245,11 @@ abstract class DatabaseMysqlBase extends Database {
 			return ( $row && !$row->Value );
 		}
 
-		return in_array( $errno, [ 1022, 1062, 1216, 1217, 1137, 1146, 1051, 1054 ], true );
+		return in_array(
+			$errno,
+			[ 3024, 1969, 1022, 1062, 1216, 1217, 1137, 1146, 1051, 1054 ],
+			true
+		);
 	}
 
 	/**
