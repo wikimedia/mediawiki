@@ -23,6 +23,7 @@
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Permissions\Authority;
@@ -425,7 +426,8 @@ class Article implements Page {
 	 * page of the given title.
 	 */
 	public function view() {
-		$useFileCache = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseFileCache' );
+		$useFileCache = MediaWikiServices::getInstance()
+			->getMainConfig()->get( MainConfigNames::UseFileCache );
 
 		# Get variables from query string
 		# As side effect this will load the revision and update the title
@@ -777,7 +779,8 @@ class Article implements Page {
 		OutputPage $outputPage,
 		array $textOptions
 	) {
-		$cdnMaxageStale = MediaWikiServices::getInstance()->getMainConfig()->get( 'CdnMaxageStale' );
+		$cdnMaxageStale = MediaWikiServices::getInstance()
+			->getMainConfig()->get( MainConfigNames::CdnMaxageStale );
 		$ok = $renderStatus->isOK();
 
 		$pOutput = $ok ? $renderStatus->getValue() : null;
@@ -907,9 +910,9 @@ class Article implements Page {
 	 */
 	public function getRobotPolicy( $action, ParserOutput $pOutput = null ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$articleRobotPolicies = $mainConfig->get( 'ArticleRobotPolicies' );
-		$namespaceRobotPolicies = $mainConfig->get( 'NamespaceRobotPolicies' );
-		$defaultRobotPolicy = $mainConfig->get( 'DefaultRobotPolicy' );
+		$articleRobotPolicies = $mainConfig->get( MainConfigNames::ArticleRobotPolicies );
+		$namespaceRobotPolicies = $mainConfig->get( MainConfigNames::NamespaceRobotPolicies );
+		$defaultRobotPolicy = $mainConfig->get( MainConfigNames::DefaultRobotPolicy );
 		$ns = $this->getTitle()->getNamespace();
 
 		# Don't index user and user talk pages for blocked users (T13443)
@@ -1017,7 +1020,8 @@ class Article implements Page {
 	 * @return bool
 	 */
 	public function showRedirectedFromHeader() {
-		$redirectSources = MediaWikiServices::getInstance()->getMainConfig()->get( 'RedirectSources' );
+		$redirectSources = MediaWikiServices::getInstance()
+			->getMainConfig()->get( MainConfigNames::RedirectSources );
 
 		$context = $this->getContext();
 		$outputPage = $context->getOutput();
@@ -1128,9 +1132,9 @@ class Article implements Page {
 	 */
 	public function showPatrolFooter() {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$useNPPatrol = $mainConfig->get( 'UseNPPatrol' );
-		$useRCPatrol = $mainConfig->get( 'UseRCPatrol' );
-		$useFilePatrol = $mainConfig->get( 'UseFilePatrol' );
+		$useNPPatrol = $mainConfig->get( MainConfigNames::UseNPPatrol );
+		$useRCPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
+		$useFilePatrol = $mainConfig->get( MainConfigNames::UseFilePatrol );
 		// Allow hooks to decide whether to not output this at all
 		if ( !$this->getHookRunner()->onArticleShowPatrolFooter( $this ) ) {
 			return false;
@@ -1308,7 +1312,8 @@ class Article implements Page {
 	 * namespace, show the default message text. To be called from Article::view().
 	 */
 	public function showMissingArticle() {
-		$send404Code = MediaWikiServices::getInstance()->getMainConfig()->get( 'Send404Code' );
+		$send404Code = MediaWikiServices::getInstance()
+			->getMainConfig()->get( MainConfigNames::Send404Code );
 
 		$outputPage = $this->getContext()->getOutput();
 		// Whether the page is a root user page of an existing user (but not a subpage)

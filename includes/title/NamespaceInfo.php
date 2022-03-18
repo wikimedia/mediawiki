@@ -24,6 +24,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -86,15 +87,15 @@ class NamespaceInfo {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'CanonicalNamespaceNames',
-		'CapitalLinkOverrides',
-		'CapitalLinks',
-		'ContentNamespaces',
-		'ExtraNamespaces',
-		'ExtraSignatureNamespaces',
-		'NamespaceContentModels',
-		'NamespacesWithSubpages',
-		'NonincludableNamespaces',
+		MainConfigNames::CanonicalNamespaceNames,
+		MainConfigNames::CapitalLinkOverrides,
+		MainConfigNames::CapitalLinks,
+		MainConfigNames::ContentNamespaces,
+		MainConfigNames::ExtraNamespaces,
+		MainConfigNames::ExtraSignatureNamespaces,
+		MainConfigNames::NamespaceContentModels,
+		MainConfigNames::NamespacesWithSubpages,
+		MainConfigNames::NonincludableNamespaces,
 	];
 
 	/**
