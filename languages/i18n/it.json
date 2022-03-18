@@ -2615,6 +2615,7 @@
 	"undelete-error": "Errore nel ripristino della pagina",
 	"undelete-show-file-confirm": "Si desidera visualizzare la versione cancellata del file \"<nowiki>$1</nowiki>\" del $2 alle $3?",
 	"undelete-show-file-submit": "Sì",
+	"undelete-back-to-list": "Visualizza tutte le versioni cancellate",
 	"namespace": "Namespace:",
 	"invert": "Inverti selezione",
 	"tooltip-invert": "Seleziona questa casella per nascondere le modifiche alle pagine all'interno del namespace selezionato (ed il namespace associato, se selezionato)",
