@@ -527,7 +527,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		$dbw->upsert(
 			'actor',
 			[ 'actor_name' => $userName, 'actor_user' => $userId ],
-			[ 'actor_name' ],
+			[ [ 'actor_name' ] ],
 			[ 'actor_user' => $userId ],
 			__METHOD__
 		);

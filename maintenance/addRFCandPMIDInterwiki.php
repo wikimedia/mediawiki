@@ -60,7 +60,7 @@ class AddRFCandPMIDInterwiki extends LoggedUpdateMaintenance {
 		if ( $rfc === false || $rfc === 'http://www.rfc-editor.org/rfc/rfc$1.txt' ) {
 			$dbw->replace(
 				'interwiki',
-				[ 'iw_prefix' ],
+				[ [ 'iw_prefix' ] ],
 				[
 					'iw_prefix' => 'rfc',
 					'iw_url' => 'https://tools.ietf.org/html/rfc$1',
