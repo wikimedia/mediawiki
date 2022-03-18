@@ -47,7 +47,7 @@ class DatabaseSqlite extends Database {
 	/** @var PDO|null */
 	protected $conn;
 
-	/** @var LockManager (hopefully on the same server as the DB) */
+	/** @var LockManager|null (hopefully on the same server as the DB) */
 	protected $lockMgr;
 
 	/** @var string|null */
@@ -250,7 +250,6 @@ class DatabaseSqlite extends Database {
 	protected function closeConnection() {
 		$this->conn = null;
 		// Release all locks, via FSLockManager::__destruct, as the base class expects
-		// @phan-suppress-next-line PhanTypeMismatchPropertyProbablyReal Expected null
 		$this->lockMgr = null;
 
 		return true;
@@ -1086,6 +1085,14 @@ class DatabaseSqlite extends Database {
 	protected function doHandleSessionLossPreconnect() {
 		$this->sessionAttachedDbs = [];
 		// Release all locks, via FSLockManager::__destruct, as the base class expects;
+		$this->lockMgr = null;
+		// Create a new lock manager instance
+		$this->lockMgr = $this->makeLockManager();
+	}
+
+	protected function doFlushSession( $fname ) {
+		// Release all locks, via FSLockManager::__destruct, as the base class expects
+		$this->lockMgr = null;
 		// Create a new lock manager instance
 		$this->lockMgr = $this->makeLockManager();
 	}

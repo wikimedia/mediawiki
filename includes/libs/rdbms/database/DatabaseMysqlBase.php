@@ -263,12 +263,6 @@ abstract class DatabaseMysqlBase extends Database {
 	 */
 	abstract protected function mysqlError( $conn = null );
 
-	protected function isQueryTimeoutError( $errno ) {
-		// https://dev.mysql.com/doc/refman/8.0/en/client-error-reference.html
-		// https://phabricator.wikimedia.org/T170638
-		return in_array( $errno, [ 1028, 1969, 2062, 3024 ] );
-	}
-
 	protected function isInsertSelectSafe( array $insertOptions, array $selectOptions ) {
 		$row = $this->getReplicationSafetyInfo();
 		// For row-based-replication, the resulting changes will be relayed, not the query
@@ -1122,6 +1116,31 @@ abstract class DatabaseMysqlBase extends Database {
 		return true;
 	}
 
+	protected function doFlushSession( $fname ) {
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS | self::QUERY_NO_RETRY;
+
+		// In MySQL, ROLLBACK does not automatically release table locks;
+		// https://dev.mysql.com/doc/refman/8.0/en/lock-tables.html
+		$sql = "UNLOCK TABLES";
+		list( $res, $err, $errno ) = $this->executeQuery( $sql, $fname, $flags );
+		if ( $res === false ) {
+			$this->reportQueryError( $err, $errno, $sql, $fname, true );
+		}
+
+		$releaseLockFields = [];
+		foreach ( $this->sessionNamedLocks as $name => $info ) {
+			$encName = $this->addQuotes( $this->makeLockName( $name ) );
+			$releaseLockFields[] = "RELEASE_LOCK($encName)";
+		}
+		if ( $releaseLockFields ) {
+			$sql = 'SELECT ' . implode( ',', $releaseLockFields ) . ')';
+			list( $res, $err, $errno ) = $this->executeQuery( $sql, __METHOD__, $flags );
+			if ( $res === false ) {
+				$this->reportQueryError( $err, $errno, $sql, $fname, true );
+			}
+		}
+	}
+
 	/**
 	 * @param bool $value
 	 */
@@ -1233,6 +1252,13 @@ abstract class DatabaseMysqlBase extends Database {
 		// https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html
 		// https://dev.mysql.com/doc/mysql-errors/8.0/en/client-error-reference.html
 		return in_array( $errno, [ 2013, 2006, 2003, 1927, 1053 ], true );
+	}
+
+	protected function isQueryTimeoutError( $errno ) {
+		// https://mariadb.com/kb/en/mariadb-error-codes/
+		// https://dev.mysql.com/doc/refman/8.0/en/client-error-reference.html
+		// https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html
+		return in_array( $errno, [ 3024, 2062, 1969, 1028 ], true );
 	}
 
 	protected function isKnownStatementRollbackError( $errno ) {
