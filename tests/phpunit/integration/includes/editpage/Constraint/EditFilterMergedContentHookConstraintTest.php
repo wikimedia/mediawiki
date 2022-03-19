@@ -29,17 +29,12 @@ use Wikimedia\TestingAccessWrapper;
  * @author DannyS712
  *
  * @covers \MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint
+ * @todo Make this a unit test when Message will no longer use the global state.
  */
-class EditFilterMergedContentHookConstraintTest extends MediaWikiUnitTestCase {
+class EditFilterMergedContentHookConstraintTest extends MediaWikiIntegrationTestCase {
 	use EditConstraintTestTrait;
 
 	private function getConstraint( $hookResult ) {
-		$context = new RequestContext();
-		$user = $this->createMock( User::class );
-		$language = $this->createMock( Language::class );
-		$context->setUser( $user );
-		$context->setLanguage( $language );
-
 		$hookContainer = $this->createMock( HookContainer::class );
 		$hookContainer->expects( $this->once() )
 			->method( 'run' )
@@ -51,9 +46,11 @@ class EditFilterMergedContentHookConstraintTest extends MediaWikiUnitTestCase {
 		$constraint = new EditFilterMergedContentHookConstraint(
 			$hookContainer,
 			$this->getMockForAbstractClass( Content::class ),
-			$context,
+			$this->createMock( RequestContext::class ),
 			'EditSummaryGoesHere',
-			true // Minor edit
+			true, // Minor edit
+			$this->createMock( Language::class ),
+			$this->createMock( User::class )
 		);
 		return $constraint;
 	}
@@ -92,16 +89,10 @@ class EditFilterMergedContentHookConstraintTest extends MediaWikiUnitTestCase {
 
 	public function testFailure_notOKStatus() {
 		// Code path 3: Hook returns true, but status is not okay
-		// To avoid using the real Status::getWikiText, which can use global state, etc.,
-		// replace the status object with a mock
 		$constraint = $this->getConstraint( true );
-		$mockStatus = $this->getMockBuilder( Status::class )
-			->onlyMethods( [ 'isOK', 'getErrors', 'getWikiText' ] )
-			->getMock();
-		$mockStatus->method( 'isOK' )->willReturn( false );
-		$mockStatus->method( 'getErrors' )->willReturn( [] );
-		$mockStatus->method( 'getWikiText' )->willReturn( 'WIKITEXT' );
-		TestingAccessWrapper::newFromObject( $constraint )->status = $mockStatus;
+		$status = Status::newGood();
+		$status->setOK( false );
+		TestingAccessWrapper::newFromObject( $constraint )->status = $status;
 
 		$this->assertConstraintFailed(
 			$constraint,
