@@ -127,7 +127,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$this->assertSame( [
 			[
 				'toclevel' => 1,
-				'level' => 2,
+				'level' => '2',
 				'line' => 'foo',
 				'number' => '1',
 				'index' => '1',
@@ -137,7 +137,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 			],
 			[
 				'toclevel' => 1,
-				'level' => 2,
+				'level' => '2',
 				'line' => 'bar',
 				'number' => '2',
 				'index' => '',
@@ -147,7 +147,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 			],
 			[
 				'toclevel' => 1,
-				'level' => 2,
+				'level' => '2',
 				'line' => 'baz',
 				'number' => '3',
 				'index' => '2',
