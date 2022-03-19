@@ -947,4 +947,17 @@ class ApiParseTest extends ApiTestCase {
 		);
 	}
 
+	public function testIncompatFormat() {
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'The requested format application/json is not supported for content model wikitext' );
+
+		$this->doApiRequest( [
+			'action' => 'parse',
+			'prop' => 'categories',
+			'title' => __CLASS__,
+			'text' => '',
+			'contentformat' => 'application/json',
+		] );
+	}
+
 }
