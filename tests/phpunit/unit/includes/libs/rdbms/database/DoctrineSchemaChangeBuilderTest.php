@@ -1,7 +1,7 @@
 <?php
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Platforms\MySqlPlatform;
+use Doctrine\DBAL\Platforms\MySQLPlatform;
 use Doctrine\DBAL\Platforms\SqlitePlatform;
 use Wikimedia\Rdbms\DoctrineSchemaChangeBuilder;
 use Wikimedia\Rdbms\MWPostgreSqlPlatform;
@@ -30,8 +30,8 @@ class DoctrineSchemaChangeBuilderTest extends MediaWikiUnitTestCase {
 
 	public function provideTestGetResultAllTables() {
 		yield 'MySQL schema tables' => [
-			new MySqlPlatform,
-			'/data/db/mysql/patch-drop-ct_tag.sql',
+			new MySQLPlatform,
+			'/data/db/mysql/patch-drop-ct_tag.sql'
 		];
 
 		yield 'PostgreSQL schema tables' => [
