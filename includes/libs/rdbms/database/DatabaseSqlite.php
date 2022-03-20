@@ -47,7 +47,7 @@ class DatabaseSqlite extends Database {
 	/** @var PDO|null */
 	protected $conn;
 
-	/** @var FSLockManager (hopefully on the same server as the DB) */
+	/** @var LockManager (hopefully on the same server as the DB) */
 	protected $lockMgr;
 
 	/** @var string|null */
@@ -88,15 +88,7 @@ class DatabaseSqlite extends Database {
 
 		$this->trxMode = strtoupper( $params['trxMode'] ?? '' );
 
-		$lockDirectory = $this->getLockFileDirectory();
-		if ( $lockDirectory !== null ) {
-			$this->lockMgr = new FSLockManager( [
-				'domain' => $this->getDomainID(),
-				'lockDirectory' => $lockDirectory
-			] );
-		} else {
-			$this->lockMgr = new NullLockManager( [ 'domain' => $this->getDomainID() ] );
-		}
+		$this->lockMgr = $this->makeLockManager();
 	}
 
 	protected static function getAttributes() {
@@ -234,11 +226,30 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
+	 * Initialize/reset the LockManager instance
+	 *
+	 * @return LockManager
+	 */
+	private function makeLockManager(): LockManager {
+		$lockDirectory = $this->getLockFileDirectory();
+		if ( $lockDirectory !== null ) {
+			return new FSLockManager( [
+				'domain' => $this->getDomainID(),
+				'lockDirectory' => $lockDirectory,
+			] );
+		} else {
+			return new NullLockManager( [ 'domain' => $this->getDomainID() ] );
+		}
+	}
+
+	/**
 	 * Does not actually close the connection, just destroys the reference for GC to do its work
 	 * @return bool
 	 */
 	protected function closeConnection() {
 		$this->conn = null;
+		// Release all locks, via FSLockManager::__destruct, as the base class expects
+		$this->lockMgr = null;
 
 		return true;
 	}
@@ -1072,6 +1083,9 @@ class DatabaseSqlite extends Database {
 
 	protected function doHandleSessionLossPreconnect() {
 		$this->sessionAttachedDbs = [];
+		// Release all locks, via FSLockManager::__destruct, as the base class expects;
+		// Create a new lock manager instance
+		$this->lockMgr = $this->makeLockManager();
 	}
 
 	/**

@@ -549,8 +549,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				? null
 				: MWTimestamp::convert( TS_MW, $data->page_links_updated );
 			$this->mPageIsRedirectField = (bool)$data->page_is_redirect;
-			$this->mIsNew = intval( $data->page_is_new ?? 0 );
-			$this->mIsRedirect = intval( $data->page_is_redirect ?? 0 );
+			$this->mIsNew = (bool)( $data->page_is_new ?? 0 );
+			$this->mIsRedirect = (bool)( $data->page_is_redirect ?? 0 );
 			$this->mLatest = intval( $data->page_latest );
 			// T39225: $latest may no longer match the cached latest RevisionRecord object.
 			// Double-check the ID of any cached latest RevisionRecord object for consistency.
@@ -619,7 +619,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$this->loadPageData();
 		}
 
-		return (bool)$this->mIsRedirect;
+		return $this->mIsRedirect;
 	}
 
 	/**
@@ -651,7 +651,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$this->loadPageData();
 		}
 
-		return (bool)$this->mIsNew;
+		return $this->mIsNew;
 	}
 
 	/**
@@ -1451,8 +1451,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$content = $revision->getContent( SlotRecord::MAIN );
 		$len = $content ? $content->getSize() : 0;
 		$rt = $content ? $content->getRedirectTarget() : null;
-		$isNew = ( $lastRevision === 0 ) ? 1 : 0;
-		$isRedirect = $rt !== null ? 1 : 0;
+		$isNew = $lastRevision === 0;
+		$isRedirect = $rt !== null;
 
 		$conditions = [ 'page_id' => $this->getId() ];
 
@@ -1469,8 +1469,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$row = [ /* SET */
 			'page_latest'        => $revId,
 			'page_touched'       => $dbw->timestamp( $revision->getTimestamp() ),
-			'page_is_new'        => $isNew,
-			'page_is_redirect'   => $isRedirect,
+			'page_is_new'        => $isNew ? 1 : 0,
+			'page_is_redirect'   => $isRedirect ? 1 : 0,
 			'page_len'           => $len,
 			'page_content_model' => $model,
 		];
@@ -1494,8 +1494,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$this->mRedirectTarget = null;
 			$this->mHasRedirectTarget = null;
 			$this->mPageIsRedirectField = (bool)$rt;
-			$this->mIsNew = (bool)$isNew;
-			$this->mIsRedirect = (bool)$isRedirect;
+			$this->mIsNew = $isNew;
+			$this->mIsRedirect = $isRedirect;
 
 			// Update the LinkCache.
 			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
@@ -3447,8 +3447,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				'page_namespace' => $this->mTitle->getNamespace(),
 				'page_title' => $this->mTitle->getDBkey(),
 				'page_latest' => $this->mLatest,
-				'page_is_new' => $this->mIsNew,
-				'page_is_redirect' => $this->mIsRedirect,
+				'page_is_new' => $this->mIsNew ? 1 : 0,
+				'page_is_redirect' => $this->mIsRedirect ? 1 : 0,
 				'page_touched' => $this->getTouched(),
 				'page_lang' => $this->getLanguage()
 			],

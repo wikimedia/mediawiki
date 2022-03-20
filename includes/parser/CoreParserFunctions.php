@@ -412,6 +412,7 @@ class CoreParserFunctions {
 	public static function plural( $parser, $text = '', ...$forms ) {
 		$text = $parser->getFunctionLang()->parseFormattedNumber( $text );
 		settype( $text, ctype_digit( $text ) ? 'int' : 'float' );
+		// @phan-suppress-next-line PhanTypeMismatchArgument Phan does not handle settype
 		return $parser->getFunctionLang()->convertPlural( $text, $forms );
 	}
 

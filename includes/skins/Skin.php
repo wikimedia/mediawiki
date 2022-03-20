@@ -216,6 +216,7 @@ abstract class Skin extends ContextSource {
 		];
 
 		if ( isset( $fallback[$key] ) ) {
+			// @phan-suppress-next-line PhanTypeMismatchDimFetch False positive
 			$key = $fallback[$key];
 		}
 

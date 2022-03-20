@@ -93,6 +93,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					# Give extensions a chance to select the file revision for us
 					$options = [];
 					Hooks::runner()->onBeforeParserFetchFileAndTitle(
+						// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 						$this->mParser, $nt, $options, $descQuery );
 					# Fetch and register the file (file title may be different via hooks)
 					list( $img, $nt ) = $this->mParser->fetchFileAndTitle( $nt, $options );
@@ -297,7 +298,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 * How much padding the thumb has between the image and the inner div
 	 * that contains the border. This is for both vertical and horizontal
 	 * padding. (However, it is cut in half in the vertical direction).
-	 * @return float
+	 * @return int
 	 */
 	protected function getThumbPadding() {
 		return 30;

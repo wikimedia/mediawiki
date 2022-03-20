@@ -1570,6 +1570,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			foreach ( $userGroups as $group ) {
 				if ( isset( $limits[$group] ) ) {
 					if ( $userLimit === false
+						// @phan-suppress-next-line PhanTypeArraySuspicious False positive
 						|| $limits[$group][0] / $limits[$group][1] > $userLimit[0] / $userLimit[1]
 					) {
 						$userLimit = $limits[$group];
@@ -1593,6 +1594,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			$ip = $this->getRequest()->getIP();
 			// ignore if user limit is more permissive
 			if ( $isNewbie || $userLimit === false
+				// @phan-suppress-next-line PhanTypeArraySuspicious False positive
 				|| $limits['ip-all'][0] / $limits['ip-all'][1] > $userLimit[0] / $userLimit[1] ) {
 				$keys[$cache->makeGlobalKey( 'limiter', $action, 'ip-all', $ip )] = $limits['ip-all'];
 			}
@@ -1605,7 +1607,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			if ( $subnet !== false ) {
 				// ignore if user limit is more permissive
 				if ( $isNewbie || $userLimit === false
+					// @phan-suppress-next-line PhanTypeArraySuspicious False positive
 					|| $limits['ip-all'][0] / $limits['ip-all'][1]
+					// @phan-suppress-next-line PhanTypeArraySuspicious False positive
 					> $userLimit[0] / $userLimit[1] ) {
 					$keys[$cache->makeGlobalKey( 'limiter', $action, 'subnet-all', $subnet )] = $limits['subnet-all'];
 				}

@@ -1144,6 +1144,7 @@ class MessageCache implements LoggerAwareInterface {
 			if ( $entry === null || substr( $entry, 0, 1 ) !== ' ' ) {
 				// Message does not have a MediaWiki page definition; try hook handlers
 				$message = false;
+				// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 				$this->hookRunner->onMessagesPreLoad( $title, $message, $code );
 				if ( $message !== false ) {
 					$this->cache->setField( $code, $title, ' ' . $message );
