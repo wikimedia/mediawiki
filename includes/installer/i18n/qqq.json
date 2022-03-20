@@ -79,6 +79,7 @@
 	"config-no-fts3": "A \"[[:wikipedia:Front and back ends|backend]]\" is a system or component that ordinary users don't interact with directly and don't need to know about, and that is responsible for a distinct task or service - for example, a storage back-end is a generic system for storing data which other applications can use. Possible alternatives for back-end are \"system\" or \"service\", or (depending on context and language) even leave it untranslated.",
 	"config-pcre-old": "Parameters:\n* $1 - minimum PCRE version number\n* $2 - the installed version of [[wikipedia:PCRE|PCRE]]\n{{Related|Config-fatal}}",
 	"config-pcre-no-utf8": "PCRE is a name of a programmers' library for supporting regular expressions. It can probably be translated without change.\n{{Related|Config-fatal}}",
+	"config-pcre-invalid-newline": "PCRE is a programmers' library name for regular expressions, it can probably be used without translation. PCRE_CONFIG_NEWLINE is a configuration parameter that can be defined for the mentioned library. -1 and ANY are values used for the mentioned parameter, ANY is used in english in most user manuals of the library, it could be left untranslated.\n{{Related|Config-fatal}}",
 	"config-memory-raised": "Parameters:\n* $1 is the configured <code>memory_limit</code>.\n* $2 is the value to which <code>memory_limit</code> was raised.",
 	"config-memory-bad": "Parameters:\n* $1 is the configured <code>memory_limit</code>.",
 	"config-apc": "Message indicates if this program is available",
