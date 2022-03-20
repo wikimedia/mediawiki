@@ -8,6 +8,7 @@ use ResourceLoaderContext;
 
 /**
  * @internal
+ * @codeCoverageIgnore
  * @ingroup ResourceLoader
  */
 class HookRunner implements
