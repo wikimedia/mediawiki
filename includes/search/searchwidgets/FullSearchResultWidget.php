@@ -156,6 +156,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 		$attributes = [ 'data-serp-pos' => $position ];
 		$this->hookRunner->onShowSearchHitTitle( $title, $snippet, $result,
 			$result instanceof \SqlSearchResult ? $result->getTermMatches() : [],
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			$this->specialPage, $query, $attributes );
 
 		$link = $this->linkRenderer->makeLink(

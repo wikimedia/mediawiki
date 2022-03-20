@@ -75,7 +75,7 @@ class XmlSelect {
 
 	/**
 	 * @param string $label
-	 * @param string|int|false $value If not given, assumed equal to $label
+	 * @param string|int|float|false $value If not given, assumed equal to $label
 	 */
 	public function addOption( $label, $value = false ) {
 		$value = $value !== false ? $value : $label;

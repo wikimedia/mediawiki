@@ -514,6 +514,7 @@ class Language {
 			$validNamespaces = MediaWikiServices::getInstance()->getNamespaceInfo()->
 				getCanonicalNamespaces();
 
+			// @phan-suppress-next-line PhanTypeMismatchProperty
 			$this->namespaceNames = $extraNamespaces +
 				$this->localisationCache->getItem( $this->mCode, 'namespaceNames' );
 			// @phan-suppress-next-line PhanTypeInvalidLeftOperand
@@ -1058,6 +1059,7 @@ class Language {
 	 * @return-taint tainted
 	 */
 	public function sprintfDate( $format, $ts, DateTimeZone $zone = null, &$ttl = 'unused' ) {
+		// @phan-suppress-previous-line PhanTypeMismatchDefault Type mismatch on pass-by-ref args
 		$s = '';
 		$raw = false;
 		$roman = false;

@@ -98,7 +98,9 @@ class CategoriesRdf {
 		}
 		$titletext = $title->getText();
 		$this->rdfWriter->say( 'rdfs', 'label' )->value( $titletext );
+		// @phan-suppress-next-line PhanTypeMismatchArgument T302667
 		$this->rdfWriter->say( self::ONTOLOGY_PREFIX, 'pages' )->value( $pages );
+		// @phan-suppress-next-line PhanTypeMismatchArgument T302667
 		$this->rdfWriter->say( self::ONTOLOGY_PREFIX, 'subcategories' )->value( $subcategories );
 		// TODO: do we want files too here? Easy to add, but don't have use case so far.
 	}

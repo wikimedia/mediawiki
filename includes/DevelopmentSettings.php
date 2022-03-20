@@ -16,6 +16,7 @@
 
 // Enable showing of errors
 error_reporting( -1 );
+// @phan-suppress-next-line PhanTypeMismatchArgumentInternal Scalar okay with php8.1
 ini_set( 'display_errors', 1 );
 
 /**

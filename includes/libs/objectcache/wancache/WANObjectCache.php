@@ -1722,6 +1722,7 @@ class WANObjectCache implements
 					'creating' => ( $curValue === false ), // optimization
 					'walltime' => $walltime
 				] + $setOpts;
+				// @phan-suppress-next-line PhanTypeMismatchArgument False positive
 				$this->set( $key, $value, $ttl, $finalSetOpts );
 			}
 		}

@@ -67,6 +67,7 @@ class YamlFormat implements SettingsFormat {
 	}
 
 	private function parseWithPhp( string $data ): array {
+		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal Scalar okay with php8.1
 		$previousValue = ini_set( 'yaml.decode_php', false );
 		try {
 			$ndocs = 0;
