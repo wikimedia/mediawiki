@@ -1357,11 +1357,10 @@ class HTMLForm extends ContextSource {
 				$this->getUser()->getEditToken( $this->mTokenSalt ),
 				[ 'id' => 'wpEditToken' ]
 			) . "\n";
-			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
-
-		$articlePath = $this->getConfig()->get( 'ArticlePath' );
-		if ( strpos( $articlePath, '?' ) !== false && $this->getMethod() === 'get' ) {
+		if ( $this->getMethod() === 'post' ||
+			$this->getAction() === $this->getConfig()->get( 'Script' )
+		) {
 			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
 
@@ -2128,10 +2127,10 @@ class HTMLForm extends ContextSource {
 		// Check whether we are in GET mode and the ArticlePath contains a "?"
 		// meaning that getLocalURL() would return something like "index.php?title=...".
 		// As browser remove the query string before submitting GET forms,
-		// it means that the title would be lost. In such case use wfScript() instead
+		// it means that the title would be lost. In such case use script path instead
 		// and put title in an hidden field (see getHiddenFields()).
 		if ( strpos( $articlePath, '?' ) !== false && $this->getMethod() === 'get' ) {
-			return wfScript();
+			return $this->getConfig()->get( 'Script' );
 		}
 
 		return $this->getTitle()->getLocalURL();
