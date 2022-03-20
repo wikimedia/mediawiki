@@ -857,6 +857,15 @@ abstract class Installer {
 			return false;
 		}
 
+		// PCRE must be compiled using PCRE_CONFIG_NEWLINE other than -1 (any)
+		// otherwise it will misidentify some unicode characters containing 0x85
+		// code with break lines
+		if ( preg_match( '/^b.*c$/', 'bąc' ) === 0 ) {
+			$this->showError( 'config-pcre-invalid-newline' );
+
+			return false;
+		}
+
 		return true;
 	}
 
