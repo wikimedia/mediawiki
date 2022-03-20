@@ -546,8 +546,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @return int One of the STATUS_TRX_* class constants
+	 * Get the status of the current transaction
+	 *
+	 * @return int One of the TransactionManager::STATUS_TRX_* class constants
 	 * @since 1.31
+	 * @internal This method should not be used outside of Database/LoadBalancer
 	 */
 	public function trxStatus() {
 		return $this->transactionManager->trxStatus();
