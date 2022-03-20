@@ -14,6 +14,36 @@ PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.35.5 ===
+* (T298261) Fix support for Composer 2.2.
+* (T298283) composer.json: Add wikimedia/composer-merge-plugin to allow-plugins.
+* Update doctrine/dbal (3.0.0 => 3.1.5).
+* (T298564) MemcachedClient: Add support for IPv6.
+* (T297543) SECURITY: properly escape output used within galleries and
+  Special:RevisionDelete.
+* (T268847) Suppress deprecation warnings from libxml_disable_entity_loader().
+* (T283275) Fix PHP 8.0 failure of WikiExporterFactoryTest.
+* (T274966) Upgrading wikimedia/html-formatter (1.0.2 => 2.0.1).
+* Fix the json schema and the extension processor for Parsoid extension modules.
+* (T299696) update.php: Avoid passing null to substr.
+* In PHP 8.1 don't throw exceptions from mysqli.
+* (T289926) SiteConfiguration: Don't pass null to str_replace().
+* (T264735) Fix deprecation warning from CURLPIPE_HTTP1.
+* (T260735) Stop using is_resource() where possible.
+* (T289879) Apply ReturnTypeWillChange to various implementations of built in
+  interfaces.
+* (T299312) Implement __serialize/__unserialize for PHP 8.1 support.
+* ExtensionRegistry: Add process cache for lazy attributes.
+* (T301041) ApiPageSet: Add "missing": true to missing revisions.
+* Allow ParsoidModules extension schema to register services.
+* (T297708) Allow setting max execution time to several special pages.
+* Upgrading wikimedia/object-factory (v2.1.0 => v2.2.0).
+* (T302540) composer.json: Add ext-calendar to require.
+* (T302540) composer.json: Add ext-simplexml to require-dev.
+* (T302540) composer.json: Add various PHP extensions to suggests.
+* Upgrading symfony/polyfill-php80 (v1.23.1 => v1.25.0).
+* (T303871) Add Title::getId() as an alias for ::getArticleId().
+* (T304008) Don't re-check "Move subpages" on Special:MovePage after a warning.
+* (T293576) listFiles: Display file name instead of version.
 
 == MediaWiki 1.35.5 ==
 
