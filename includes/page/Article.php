@@ -1483,7 +1483,7 @@ class Article implements Page {
 		$outputPage->disableClientCache();
 		$outputPage->setRobotPolicy( 'noindex,nofollow' );
 		$outputPage->clearHTML();
-		$outputPage->wrapWikiTextAsInterface( 'errorbox', $errortext );
+		$outputPage->addHTML( Html::errorBox( $outputPage->parseAsContent( $errortext ) ) );
 	}
 
 	/**
@@ -1693,11 +1693,16 @@ class Article implements Page {
 		}
 
 		// the outer div is need for styling the revision info and nav in MobileFrontend
-		$outputPage->addSubtitle( "<div class=\"mw-revision warningbox\">" . $revisionInfo .
-			"<div id=\"mw-revision-nav\">" . $cdel .
-			$context->msg( 'revision-nav' )->rawParams(
-				$prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff
-			)->escaped() . "</div></div>" );
+		$outputPage->addSubtitle(
+			Html::warningBox(
+				$revisionInfo .
+				"<div id=\"mw-revision-nav\">" . $cdel .
+				$context->msg( 'revision-nav' )->rawParams(
+					$prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff
+				)->escaped() . "</div>",
+				'mw-revision'
+			)
+		);
 	}
 
 	/**

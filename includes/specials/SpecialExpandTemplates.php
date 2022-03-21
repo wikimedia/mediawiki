@@ -300,7 +300,13 @@ class SpecialExpandTemplates extends SpecialPage {
 			}
 
 			if ( $error ) {
-				$out->wrapWikiMsg( "<div class='previewnote errorbox'>\n$1\n</div>", $error );
+				$out->addHTML(
+					Html::errorBox(
+						$out->msg( $error )->parse(),
+						'',
+						'previewnote'
+					)
+				);
 				return;
 			}
 		}

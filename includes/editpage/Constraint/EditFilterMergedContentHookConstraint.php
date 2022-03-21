@@ -21,6 +21,7 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use Content;
+use Html;
 use IContextSource;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -152,12 +153,7 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 			'edit-error-long',
 			$this->context->getLanguage()
 		);
-		return <<<ERROR
-<div class="errorbox">
-{$errmsg}
-</div>
-<br clear="all" />
-ERROR;
+		return Html::errorBox( "\n$errmsg\n" ) . '<br clear="all" />';
 	}
 
 }
