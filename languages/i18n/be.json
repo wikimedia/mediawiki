@@ -851,7 +851,7 @@
 	"rev-deleted-comment": "(выдаленае кароткае апісанне змен)",
 	"rev-deleted-user": "(удзельнік выдалены)",
 	"rev-deleted-event": "(падрабязнасці з журнала сцёртыя)",
-	"rev-deleted-user-contribs": "[імя ўдзельніка альбо IP-адрас выдалены — рэдагаванне скрытыя ад узносаў]",
+	"rev-deleted-user-contribs": "[імя ўдзельніка або IP-адрас выдалены — праўка схавана з ўклада]",
 	"rev-deleted-text-permission": "Гэтая версія старонкі была '''выдалена'''.\nПадрабязнасці гл. у [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журнале выдаленняў].",
 	"rev-suppressed-text-permission": "Гэта версія старонкі <strong>схаваная</strong>.\nПадрабязнасці можна пабачыць у [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале ўтойвання].",
 	"rev-deleted-text-unhide": "Гэтая версія старонкі была '''выдаленая'''.\nМагчыма, падрабязнасці могуць быць знойдзеныя ў [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журнале выдаленняў].\nПры жаданні, Вы можаце [$1 праглядзець гэтую версію].",

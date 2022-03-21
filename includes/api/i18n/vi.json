@@ -45,7 +45,7 @@
 	"apihelp-edit-param-section": "Số phần trang. <kbd>0</kbd> là phần đầu; <kbd>new</kbd> là phần mới.",
 	"apihelp-edit-param-sectiontitle": "Tên của phần mới.",
 	"apihelp-edit-param-text": "Nội dung trang.",
-	"apihelp-edit-param-summary": "Tóm lược sửa đổi. Cũng là tên phần khi $1section=new và $1sectiontitle không được đặt.",
+	"apihelp-edit-param-summary": "Tóm lược sửa đổi. Cũng là đề mục khi $1section=new và $1sectiontitle không được đặt.",
 	"apihelp-edit-param-minor": "Đánh dấu đây là sửa đổi nhỏ.",
 	"apihelp-edit-param-notminor": "Không đánh dấu đây là sửa đổi nhỏ thậm chí nếu người dùng bật tùy chọn \"{{int:tog-minordefault}}\".",
 	"apihelp-edit-param-bot": "Đánh dấu sửa đổi này là sửa đổi bot.",

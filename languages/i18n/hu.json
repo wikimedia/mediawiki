@@ -56,7 +56,8 @@
 			"Emmanuel Fernandess",
 			"Hanna Tardos",
 			"Luckylukee81",
-			"McDutchie"
+			"McDutchie",
+			"Balint36"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -306,7 +307,7 @@
 	"editold": "szerkesztés",
 	"viewsourceold": "lapforrás",
 	"editlink": "szerkesztés",
-	"viewsourcelink": "forráskód megtekintése",
+	"viewsourcelink": "lapforrás",
 	"editsectionhint": "Szakasz szerkesztése: $1",
 	"toc": "Tartalomjegyzék",
 	"showtoc": "megjelenítés",

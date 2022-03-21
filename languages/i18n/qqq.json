@@ -231,7 +231,8 @@
 			"Zabe",
 			"ZlyiLev",
 			"আফতাবুজ্জামান",
-			"Eihel"
+			"Eihel",
+			"Sandipan"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -3685,8 +3686,8 @@
 	"mcrundo-changed": "Message displayed when the page has been edited between the loading and submission of an editless undo.",
 	"mcrundo-parse-failed": "Error message indicating that the page's content can not be parsed because it is syntactically invalid. This may occurr for content types using serialization or a strict markup syntax.\n\nParameters:\n* $1 – specific error message",
 	"semicolon-separator": "{{Optional}}\n\nWarning: languages have different usages of punctuation, and sometimes they are swapped (e.g. openining and closing quotation marks, or full stop and colon in Armenian), or change their form (the full stop in Chinese and Japanese, the \"colon\" in Armenian used in fact as a regular full stop, the \"comma\" reversed in Arabic, or changed in Armenian, and Chinese, the \"semicolon\" in Greek used in fact as a regular question mark...)\n\nTheir spacing (before or after) may also vary across languages (for example French requires a non-breaking space, preferably narrow if the browser supports NNBSP, on the inner side of some punctuations like quotation/question/exclamation marks, colon, and semicolons; and Chinese and Japanese don't follow their fullwidth punctuations by a regular space).",
-	"comma-separator": "{{optional}}\n\nWarning: languages have different usages of punctuation, and sometimes they are swapped (e.g. openining and closing quotation marks, or full stop and colon in Armenian), or change their form (the full stop in Chinese and Japanese, the prefered \"colon\" in Armenian used in fact as the regular full stop, the comma in Arabic, Armenian, and Chinese...)\n\nTheir spacing (before or after) may also vary across languages (for example French requires a non-breaking space, preferably narrow if the browser supports NNBSP, on the inner side of some punctuations like quotation/question/exclamation marks, colon, and semicolons).",
-	"colon-separator": "{{optional}}\nChange it only if your language uses another character for ':' or it needs an extra space before the colon.",
+	"comma-separator": "{{optional}}\n\nWarning: languages have different usages of punctuation, and sometimes they are swapped (e.g. openining and closing quotation marks, or full stop and colon in Armenian), or change their form (the full stop in Chinese and Japanese, the prefered \"colon\" in Armenian used in fact as the regular full stop, the comma in Arabic, Armenian, and Chinese...)\n\nTheir spacing (before or after) may also vary across languages (for example French requires a non-breaking space, preferably narrow if the browser supports NNBSP, on the inner side of some punctuations like quotation/question/exclamation marks, colon, and semicolons; for better line break handling in traditional & simplified Chinese, a zero-width space is added after the fullwidth \"comma\" as a soft line break without producing visual whitespaces).\n\n{{Format|plain}}",
+	"colon-separator": "{{optional}}\nChange it only if your language uses another character for ':' or it needs an extra space before the colon.\n\n{{Format|plain}}",
 	"autocomment-prefix": "{{notranslate}}",
 	"pipe-separator": "{{optional}}",
 	"word-separator": "{{optional}}\nThis is a string which is (usually) put between words of the language. It is used, e.g. when messages are concatenated (appended to each other). Note that you must express a space as html entity &amp;#32; because the editing and updating process strips leading and trailing spaces from messages.\n\nMost languages use a space, but some Asian languages, such as Thai and Chinese, do not.\n{{Format|plain}}",

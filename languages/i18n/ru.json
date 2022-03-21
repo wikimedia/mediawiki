@@ -167,7 +167,8 @@
 			"Annablazeprobable",
 			"Base",
 			"Malikxan",
-			"Tanzun"
+			"Tanzun",
+			"Ice bulldog"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -780,7 +781,7 @@
 	"publishchanges": "Опубликовать изменения",
 	"savearticle-start": "Сохранить страницу…",
 	"savechanges-start": "Сохранить изменения…",
-	"publishpage-start": "Создать страницу…",
+	"publishpage-start": "Опубликовать страницу…",
 	"publishchanges-start": "Опубликовать изменения…",
 	"preview": "Предпросмотр",
 	"showpreview": "Предварительный просмотр",
@@ -3849,7 +3850,7 @@
 	"api-clientside-error-invalidresponse": "Неверный ответ от сервера.",
 	"api-error-badtoken": "Внутренняя ошибка:  некорректный токен.",
 	"api-error-emptypage": "Не допускается создание новых пустых страниц.",
-	"api-error-publishfailed": "Внутренняя ошибка: сервер не смог сохранить временный файл.",
+	"api-error-publishfailed": "Внутренняя ошибка: сервер не смог опубликовать временный файл.",
 	"api-error-stashfailed": "Внутренняя ошибка: сервер не смог сохранить временный файл.",
 	"api-error-unknown-warning": "Неизвестное предупреждение: «$1».",
 	"api-error-unknownerror": "Неизвестная ошибка: «$1».",

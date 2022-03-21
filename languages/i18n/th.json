@@ -2330,7 +2330,7 @@
 	"delete-warning-toobig": "หน้านี้มีประวัติการแก้ไขขนาดใหญ่ กว่า $1 รุ่น การลบหน้านี้อาจรบกวนการทำงานของฐานข้อมูลของ {{SITENAME}} โปรดดำเนินการด้วยความระมัดระวัง",
 	"deleteprotected": "คุณไม่สามารถลบหน้านี้เพราะถูกล็อก",
 	"deleting-backlinks-warning": "<strong>คำเตือน:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|หน้าอื่น]]เชื่อมโยงมายังหรือดึงข้อมูลจากหน้าที่คุณกำลังจะลบ",
-	"deleting-subpages-warning": "<strong>คำเตือน:</strong> หน้าที่คุณกำลังจะลบมี[[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|หน้าย่อย $ หน้า|51=มากกว่า 50 หน้า}}]]",
+	"deleting-subpages-warning": "<strong>คำเตือน:</strong> หน้าที่คุณกำลังจะลบมี[[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|หน้าย่อย $1 หน้า|51=มากกว่า 50 หน้า}}]]",
 	"rollback": "ย้อนการแก้ไขรวดเดียว",
 	"rollback-confirmation-confirm": "กรุณายืนยัน:",
 	"rollback-confirmation-yes": "ย้อนรวดเดียว",

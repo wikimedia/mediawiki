@@ -21,7 +21,8 @@
 			"Foomin10",
 			"LaMagiaaa",
 			"Marine-Blue",
-			"MathXplore"
+			"MathXplore",
+			"Yamagata Yusuke"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|説明文書]]\n* [[mw:Special:MyLanguage/API:FAQ|よくある質問]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api メーリングリスト]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API 告知]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R バグの報告とリクエスト]\n</div>\n<strong>状態:</strong> MediaWiki APIは、積極的にサポートされ、改善された成熟した安定したインターフェースです。避けようとはしていますが、時には壊れた変更が加えられるかもしれません。更新の通知を受け取るには、[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce メーリングリスト]に参加してください。\n\n<strong>誤ったリクエスト:</strong> 誤ったリクエストが API に送られた場合、\"MediaWiki-API-Error\" HTTP ヘッダーが送信され、そのヘッダーの値と送り返されるエラーコードは同じ値にセットされます。より詳しい情報は [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]] を参照してください。\n\n<p class=\"mw-apisandbox-link\"><strong>テスト:</strong> API のリクエストのテストは、[[Special:ApiSandbox]]で簡単に行えます。</p>",
@@ -683,7 +684,7 @@
 	"apihelp-query+iwbacklinks-example-generator": "[[wikibooks:Test]] へリンクしているページの情報を取得する。",
 	"apihelp-query+iwlinks-summary": "ページからのすべてのウィキ間リンクを返します。",
 	"apihelp-query+iwlinks-param-url": "完全なURLを取得するかどうか (<var>$1prop</var>とは同時に使用できません).",
-	"apihelp-query+iwlinks-param-prop": "各言語間リンクについて取得する追加のプロパティ:",
+	"apihelp-query+iwlinks-param-prop": "各ウィキ間リンクについて取得する追加のプロパティ:",
 	"apihelp-query+iwlinks-paramvalue-prop-url": "完全なURLを追加します。",
 	"apihelp-query+iwlinks-param-limit": "返すウィキ間リンクの数。",
 	"apihelp-query+iwlinks-param-prefix": "この接頭辞のウィキ間リンクのみを返す。",

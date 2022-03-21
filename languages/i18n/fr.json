@@ -1027,7 +1027,7 @@
 	"rev-suppressed-diff-view": "Une des révisions de ce diff a été <strong>masquée</strong>.\nVous pouvez voir ce diff ; des détails sont disponibles dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} journal des masquages].",
 	"rev-delundel": "afficher/masquer",
 	"rev-showdeleted": "afficher",
-	"revisiondelete": "Supprimer ou restaurer des événements",
+	"revisiondelete": "Supprimer ou restaurer des versions",
 	"revdelete-nooldid-title": "Version cible non valide",
 	"revdelete-nooldid-text": "Vous n’avez pas précisé de révision(s) cible(s) pour cette fonction, ou la révision spécifiée n’existe pas, ou bien vous tentez de masquer la révision actuelle.",
 	"revdelete-no-file": "Le fichier spécifié n'existe pas.",

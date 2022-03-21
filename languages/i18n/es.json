@@ -225,7 +225,11 @@
 			"Whovian Biologist",
 			"WikiiiTranslator",
 			"ZealousBlaze",
-			"ZhaleyLeitnib"
+			"ZhaleyLeitnib",
+			"AnupamM",
+			"Danniel07",
+			"DiegoAmbrocio",
+			"TehFrog"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -392,7 +396,7 @@
 	"history": "Historial",
 	"history_short": "Historial",
 	"history_small": "historial",
-	"updatedmarker": "actualizada desde tu última visita",
+	"updatedmarker": "actualizada después de tu última visita",
 	"printableversion": "Versión para imprimir",
 	"printableversion-deprecated-warning": "La versión para imprimir ya no se admite y puede contener errores de representación. Actualiza los marcadores del navegador y utiliza en su lugar la función de impresión predeterminada del navegador.",
 	"permalink": "Enlace permanente",
@@ -427,7 +431,7 @@
 	"viewtalkpage": "Ver discusión",
 	"otherlanguages": "En otros idiomas",
 	"redirectedfrom": "(Redirigido desde «$1»)",
-	"redirectpagesub": "Página de redirección",
+	"redirectpagesub": "Redirecciona la página",
 	"redirectto": "Redirige a:",
 	"lastmodifiedat": "Esta página se editó por última vez el $1 a las $2.",
 	"viewcount": "Esta página ha recibido {{PLURAL:$1|una visita|$1 visitas}}.",

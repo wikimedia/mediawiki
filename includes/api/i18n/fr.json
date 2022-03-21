@@ -1413,7 +1413,7 @@
 	"apihelp-setpagelanguage-example-language": "Changer la langue de la <kbd>page principale</kbd> en basque.",
 	"apihelp-setpagelanguage-example-default": "Remplacer la langue de la page ayant l'ID 123 par la langue par défaut du contenu du wiki.",
 	"apihelp-stashedit-summary": "Préparer des modifications dans le cache partagé.",
-	"apihelp-stashedit-extended-description": "Ceci a pour but d’être utilisé via AJAX depuis le formulaire d’édition pour améliorer la performance de la sauvegarde de la page.",
+	"apihelp-stashedit-extended-description": "Ceci est destiné à être utilisé via AJAX depuis le formulaire d’édition pour améliorer la performance de la sauvegarde de la page.",
 	"apihelp-stashedit-param-title": "Titre de la page en cours de modification.",
 	"apihelp-stashedit-param-section": "Numéro de section. <kbd>0</kbd> pour la section du haut, <kbd>new</kbd> pour une nouvelle section.",
 	"apihelp-stashedit-param-sectiontitle": "Le titre pour une nouvelle section.",

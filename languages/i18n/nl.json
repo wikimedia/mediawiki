@@ -1083,7 +1083,7 @@
 	"searchall": "alle",
 	"showingresults": "Hieronder {{PLURAL:$1|staat '''1''' resultaat|staan '''$1''' resultaten}} vanaf #'''$2'''.",
 	"showingresultsinrange": "Hieronder {{PLURAL:$1|wordt|worden}} maximaal {{PLURAL:$1|<strong>1</strong> resultaat|<strong>$1 </strong>resultaten}} weergegeven in het bereik #<strong>$2</strong> tot #<strong>$3</strong>.",
-	"search-showingresults": "{{PLURAL:$4|Resultaat <strong>$1</strong> van <strong>$2</strong>|Resultaten <strong>$1–$2</strong> van <strong>$3</strong>}}",
+	"search-showingresults": "{{PLURAL:$4|Resultaat <strong>$1</strong>|Resultaten <strong>$1–$2</strong>}} van <strong>$3</strong>",
 	"search-nonefound": "Er zijn geen resultaten voor uw zoekopdracht.",
 	"search-nonefound-thiswiki": "Er zijn voor uw zoekopdracht geen resultaten op deze site.",
 	"powersearch-legend": "Uitgebreid zoeken",
