@@ -350,7 +350,11 @@ class SpecialContributions extends IncludableSpecialPage {
 						$msg = $this->getUser()->isAnon()
 							? 'sp-contributions-concurrency-ip'
 							: 'sp-contributions-concurrency-user';
-						$out->wrapWikiMsg( "<div class='errorbox'>\n$1\n</div>", $msg );
+						$out->addHTML(
+							Html::errorBox(
+								$out->msg( $msg )->parse()
+							)
+						);
 					}
 				] );
 				$work->execute();

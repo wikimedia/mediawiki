@@ -146,8 +146,12 @@ class SpecialChangeEmail extends FormSpecialPage {
 			$this->getOutput()->redirect( $titleObj->getFullUrlForRedirect( $query ) );
 		} elseif ( $this->status->value === 'eauth' ) {
 			# Notify user that a confirmation email has been sent...
-			$this->getOutput()->wrapWikiMsg( "<div class='warningbox'>\n$1\n</div>",
-				'eauthentsent', $this->getUser()->getName() );
+			$out = $this->getOutput();
+			$out->addHTML(
+				Html::warningBox(
+					$out->msg( 'eauthentsent', $this->getUser()->getName() )->parse()
+				)
+			);
 			// just show the link to go back
 			$this->getOutput()->addReturnTo( $titleObj, wfCgiToArray( $query ) );
 		}

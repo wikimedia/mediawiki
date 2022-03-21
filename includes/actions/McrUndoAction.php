@@ -111,7 +111,7 @@ class McrUndoAction extends FormAction {
 		} elseif ( $this->context->getUser()->isAnon() ) {
 			if ( !$this->getRequest()->getCheck( 'wpPreview' ) ) {
 				$out->wrapWikiMsg(
-					"<div id='mw-anon-edit-warning' class='warningbox'>\n$1\n</div>",
+					"<div id='mw-anon-edit-warning' class='mw-message-box-warning mw-message-box'>\n$1\n</div>",
 					[ 'anoneditwarning',
 						// Log-in link
 						SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
@@ -332,7 +332,7 @@ class McrUndoAction extends FormAction {
 				'h2', [ 'id' => 'mw-previewheader' ],
 				$this->context->msg( 'preview' )->text()
 			) .
-			Html::rawElement( 'div', [ 'class' => 'warningbox' ],
+			Html::warningBox(
 				$out->parseAsInterface( $note )
 			)
 		);

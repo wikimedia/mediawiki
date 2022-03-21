@@ -25,7 +25,7 @@
 				.text( mw.msg( 'preview' ) )
 			)
 			.append( $( '<div>' )
-				.addClass( 'warningbox' )
+				.addClass( 'mw-message-box-warning mw-message-box' )
 				.html( parsedMessages.previewnote )
 				.append( ' ' )
 				.append( $( '<span>' )
@@ -37,7 +37,7 @@
 				)
 			);
 		response.parse.parsewarningshtml.forEach( function ( warning ) {
-			$previewHeader.find( '.warningbox' ).append( $( '<p>' ).append( warning ) );
+			$previewHeader.find( '.mw-message-box-warning' ).append( $( '<p>' ).append( warning ) );
 		} );
 
 		$( '#wikiPreview' ).prepend( $previewHeader );
@@ -69,7 +69,7 @@
 		e.preventDefault();
 
 		// Not shown during normal preview, to be removed if present
-		$( '.mw-newarticletext, .errorbox' ).remove();
+		$( '.mw-newarticletext, .mw-message-box-error' ).remove();
 
 		// Show #wikiPreview if it's hidden to be able to scroll to it.
 		// (If it is hidden, it's also empty, so nothing changes in the rendering.)
@@ -100,7 +100,7 @@
 			// This just shows the error for whatever request failed first
 			var $errorMsg = api.getErrorMessage( result ),
 				$errorBox = $( '<div>' )
-					.addClass( 'errorbox' )
+					.addClass( 'mw-message-box-error mw-message-box' )
 					.append( $( '<strong>' ).text( mw.msg( 'previewerrortext' ) ) )
 					.append( $errorMsg );
 			$wikiPreview.hide().before( $errorBox );
