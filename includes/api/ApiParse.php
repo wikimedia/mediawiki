@@ -201,9 +201,6 @@ class ApiParse extends ApiBase {
 		$pageid = $params['pageid'];
 		$oldid = $params['oldid'];
 
-		$model = $params['contentmodel'];
-		$format = $params['contentformat'];
-
 		$prop = array_fill_keys( $params['prop'], true );
 
 		if ( isset( $params['section'] ) ) {
@@ -220,6 +217,7 @@ class ApiParse extends ApiBase {
 		// TODO: Does this still need $wgTitle?
 		global $wgTitle;
 
+		$format = null;
 		$redirValues = null;
 
 		$needContent = isset( $prop['wikitext'] ) ||
@@ -302,6 +300,9 @@ class ApiParse extends ApiBase {
 				);
 			}
 		} else { // Not $oldid, $pageid, $page. Hence based on $text
+			$model = $params['contentmodel'];
+			$format = $params['contentformat'];
+
 			$titleObj = Title::newFromText( $title );
 			if ( !$titleObj || $titleObj->isExternal() ) {
 				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $title ) ] );
