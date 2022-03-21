@@ -2646,7 +2646,7 @@
 	"ipb-blocklist-contribs": "Contribuțiile {{GENDER:$1|utilizatorului $1|utilizatoarei $1}}",
 	"ipb-blocklist-duration-left": "$1 a mai rămas",
 	"block-actions": "Tipe de blocare:",
-	"block-details": "Detalii ale blocării",
+	"block-details": "Detaliile blocării",
 	"block-expiry": "Expiră",
 	"block-options": "Opțiuni adiționale:",
 	"block-reason": "Motiv:",

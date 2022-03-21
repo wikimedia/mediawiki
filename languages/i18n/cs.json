@@ -4081,7 +4081,6 @@
 	"nonmain-slot-differences-therefore-readonly": "Wikitext této revize stránky nemůžete editovat, protože se od této revize změnila data této stránky nezaložená na wikitextu. [$1 Kliknutím sem můžete obnovit tuto revizi.]",
 	"config-missing-key": "Chybí parametr konfigurace MediaWiki „$1“",
 	"config-invalid-key": "Neplatný MediaWiki konfigurační parametr \"$1\": $2",
-	"changeslist-nocomment": "Bez shrnutí editace",
 	"skin-view-create-local": "Přidat místní popis",
 	"nstab-mainpage": "Hlavní strana",
 	"skin-view-edit-local": "Editovat místní popis",
