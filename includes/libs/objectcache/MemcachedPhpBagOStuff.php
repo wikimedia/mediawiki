@@ -63,6 +63,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 
 		// T257003: only require "gets" (instead of "get") when a CAS token is needed
 		return $getToken
+			// @phan-suppress-next-line PhanTypeMismatchArgument False positive
 			? $this->client->get( $routeKey, $casToken )
 			: $this->client->get( $routeKey );
 	}

@@ -1496,6 +1496,7 @@ class Message implements MessageSpecifier, Serializable {
 
 			// NOTE: The constructor makes sure keysToTry isn't empty,
 			//       so we know that $key and $message are initialized.
+			// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty False positive
 			$this->key = $key;
 			$this->message = $message;
 		}

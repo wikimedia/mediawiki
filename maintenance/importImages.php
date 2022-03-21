@@ -160,6 +160,7 @@ class ImportImages extends Maintenance {
 		if ( !$user instanceof User ) {
 			$user = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
 		}
+		'@phan-var User $user';
 		StubGlobalUser::setUser( $user );
 
 		# Get block check. If a value is given, this specified how often the check is performed
@@ -351,6 +352,7 @@ class ImportImages extends Maintenance {
 					$summary,
 					$commentText,
 					$user,
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 					$props,
 					$timestamp,
 					$tags

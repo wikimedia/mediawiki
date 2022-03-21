@@ -302,7 +302,9 @@ class Linker {
 		$res = null;
 		$dummy = new DummyLinker;
 		if ( !Hooks::runner()->onImageBeforeProduceHTML( $dummy, $title,
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			$file, $frameParams, $handlerParams, $time, $res,
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			$parser, $query, $widthOption )
 		) {
 			return $res;

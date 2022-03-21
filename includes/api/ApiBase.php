@@ -1042,6 +1042,7 @@ abstract class ApiBase extends ContextSource {
 			if ( !$titleObj->canExist() ) {
 				$this->dieWithError( 'apierror-pagecannotexist' );
 			}
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 			$pageObj = WikiPage::factory( $titleObj );
 			if ( $load !== false ) {
 				$pageObj->loadPageData( $load );
@@ -1056,6 +1057,7 @@ abstract class ApiBase extends ContextSource {
 			}
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable requireOnlyOneParameter guard it is always set
 		return $pageObj;
 	}
 
@@ -1076,6 +1078,7 @@ abstract class ApiBase extends ContextSource {
 			if ( !$titleObj || $titleObj->isExternal() ) {
 				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
 			}
+			// @phan-suppress-next-line PhanTypeMismatchReturnNullable T240141
 			return $titleObj;
 		} elseif ( isset( $params['pageid'] ) ) {
 			$titleObj = Title::newFromID( $params['pageid'] );
@@ -1084,6 +1087,7 @@ abstract class ApiBase extends ContextSource {
 			}
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable requireOnlyOneParameter guard it is always set
 		return $titleObj;
 	}
 
@@ -1186,6 +1190,7 @@ abstract class ApiBase extends ContextSource {
 					[ 'nosuchusershort', wfEscapeWikiText( $params['owner'] ) ], 'bad_wlowner'
 				);
 			}
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 			$token = $services->getUserOptionsLookup()->getOption( $user, 'watchlisttoken' );
 			if ( $token == '' || !hash_equals( $token, $params['token'] ) ) {
 				$this->dieWithError( 'apierror-bad-watchlist-token', 'bad_wltoken' );
@@ -1198,6 +1203,7 @@ abstract class ApiBase extends ContextSource {
 			$this->checkUserRightsAny( 'viewmywatchlist' );
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable T240141
 		return $user;
 	}
 
@@ -1251,6 +1257,7 @@ abstract class ApiBase extends ContextSource {
 			if ( is_string( $error[0] ) && isset( self::$blockMsgMap[$error[0]] ) && $user->getBlock() ) {
 				list( $msg, $code ) = self::$blockMsgMap[$error[0]];
 				$status->fatal( ApiMessage::create( $msg, $code,
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 					[ 'blockinfo' => $this->getBlockDetails( $user->getBlock() ) ]
 				) );
 			} else {
@@ -1581,8 +1588,10 @@ abstract class ApiBase extends ContextSource {
 		$status = new PermissionStatus();
 		foreach ( (array)$actions as $action ) {
 			if ( $this->isWriteMode() ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$this->getAuthority()->authorizeWrite( $action, $pageIdentity, $status );
 			} else {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$this->getAuthority()->authorizeRead( $action, $pageIdentity, $status );
 			}
 		}

@@ -210,6 +210,7 @@ class SpecialExport extends SpecialPage {
 				$request->response()->header( "Content-disposition: attachment;filename={$filename}" );
 			}
 
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable history is set when used
 			$this->doExport( $page, $history, $list_authors, $exportall );
 
 			return;

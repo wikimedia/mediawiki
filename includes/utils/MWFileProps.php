@@ -79,10 +79,12 @@ class MWFileProps {
 			# Unclear if callers of this method expect that.
 			$info['mime'] = $this->magic->improveTypeFromExtension( $info['file-mime'], $ext );
 
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable See XXX above
 			list( $info['major_mime'], $info['minor_mime'] ) = File::splitMime( $info['mime'] );
 			$info['media_type'] = $this->magic->getMediaType( $path, $info['mime'] );
 
 			# Height, width and metadata
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable See XXX above
 			$handler = MediaHandler::getHandler( $info['mime'] );
 			if ( $handler ) {
 				$sizeAndMetadata = $handler->getSizeAndMetadataWithFallback( $fsFile, $path );

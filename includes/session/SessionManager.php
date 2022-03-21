@@ -1118,6 +1118,7 @@ class SessionManager implements SessionManagerInterface {
 				'userAgent' => $session->getRequest()->getHeader( 'user-agent' ),
 			];
 			$logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'session-ip' );
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable message is set when used here
 			$logger->log( $logLevel, $message, $logData );
 		}
 	}

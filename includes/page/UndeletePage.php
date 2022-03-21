@@ -424,6 +424,7 @@ class UndeletePage {
 				// NOTE: article ID may not be known yet. validateSave() should not modify the database.
 				$contentHandler = $this->contentHandlerFactory->getContentHandler( $content->getModel() );
 				$validationParams = new ValidationParams( $wikiPage, 0 );
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable RAW never returns null
 				$status = $contentHandler->validateSave( $content, $validationParams );
 				if ( !$status->isOK() ) {
 					$dbw->endAtomic( __METHOD__ );
@@ -537,6 +538,7 @@ class UndeletePage {
 				// XXX: updateRevisionOn should probably move into a PageStore service.
 				$wasnew = $wikiPage->updateRevisionOn(
 					$dbw,
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revision set when used
 					$revision,
 					$created ? 0 : $wikiPage->getLatest()
 				);
@@ -556,6 +558,7 @@ class UndeletePage {
 				];
 
 				$updater = $this->pageUpdaterFactory->newDerivedPageDataUpdater( $wikiPage );
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revision set when used
 				$updater->prepareUpdate( $revision, $options );
 				$updater->doUpdates();
 			}

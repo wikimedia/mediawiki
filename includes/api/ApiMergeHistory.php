@@ -83,6 +83,7 @@ class ApiMergeHistory extends ApiBase {
 		$timestamp = $params['timestamp'];
 
 		// Merge!
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 		$status = $this->merge( $fromTitle, $toTitle, $timestamp, $reason );
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );

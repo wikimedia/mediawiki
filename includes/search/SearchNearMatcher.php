@@ -165,6 +165,7 @@ class SearchNearMatcher {
 
 			// Give hooks a chance at better match variants
 			$title = null;
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			if ( !$this->hookRunner->onSearchGetNearMatch( $term, $title ) ) {
 				return $title;
 			}

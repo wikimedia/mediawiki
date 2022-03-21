@@ -1265,6 +1265,7 @@ class EditPage implements IEditObject {
 					$params = $request->getArray( 'preloadparams', $params );
 				}
 
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable getVal does not return null here
 				$content = $this->getPreloadedContent( $preload, $params );
 			}
 		// For existing pages, get text based on "undo" or section parameters.
@@ -1454,8 +1455,11 @@ class EditPage implements IEditObject {
 		$undoIsLatest = $this->page->getRevisionRecord()->getId() === $undoRev->getId();
 
 		return $handler->getUndoContent(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Content is for public use
 			$currentContent,
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Content is for public use
 			$undoContent,
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Content is for public use
 			$undoAfterContent,
 			$undoIsLatest
 		);
@@ -1624,6 +1628,7 @@ class EditPage implements IEditObject {
 	 * @param Authority $performer
 	 * @return bool
 	 * @throws Exception
+	 * @phan-assert-true-condition $page
 	 */
 	private function isPageExistingAndViewable( ?PageIdentity $page, Authority $performer ): bool {
 		return $page && $page->exists() && $performer->authorizeRead( 'read', $page );
@@ -1674,7 +1679,7 @@ class EditPage implements IEditObject {
 
 	/**
 	 * Attempt submission
-	 * @param array|bool &$resultDetails See docs for $result in internalAttemptSave
+	 * @param array|bool &$resultDetails See docs for $result in internalAttemptSave @phan-output-reference
 	 * @throws UserBlockedError|ReadOnlyError|ThrottledError|PermissionsError
 	 * @return Status
 	 */
@@ -1810,6 +1815,7 @@ class EditPage implements IEditObject {
 
 			case self::AS_BLOCKED_PAGE_FOR_USER:
 				throw new UserBlockedError(
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 					$this->context->getUser()->getBlock(),
 					$this->context->getUser(),
 					$this->context->getLanguage(),
@@ -2081,6 +2087,7 @@ class EditPage implements IEditObject {
 			}
 
 			$pageUpdater = $this->page->newPageUpdater( $user )
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 				->setContent( SlotRecord::MAIN, $content );
 			$pageUpdater->prepareUpdate( $flags );
 
@@ -2760,6 +2767,7 @@ class EditPage implements IEditObject {
 				(
 					$block->isSitewide() ||
 					$this->permManager->isBlockedFrom(
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 						$user,
 						$this->mTitle,
 						true
@@ -3616,6 +3624,7 @@ class EditPage implements IEditObject {
 		);
 
 		$this->context->getOutput()->addHTML(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive, text is not null
 			Html::textarea( $name, $builder->addNewLineAtEnd( $text ), $attribs )
 		);
 	}
@@ -4164,6 +4173,7 @@ class EditPage implements IEditObject {
 				$content = $content->addSectionHeader( $this->summary );
 			}
 
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			$this->getHookRunner()->onEditPageGetPreviewContent( $this, $content );
 
 			$parserResult = $this->doPreviewParse( $content );

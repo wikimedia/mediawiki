@@ -1065,6 +1065,7 @@ class MessageCache implements LoggerAwareInterface {
 				}
 
 				$message = $this->getMsgFromNamespace(
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable uckey is set when used
 					$this->getMessagePageName( $code, $uckey ), $code );
 
 				if ( $message !== false ) {

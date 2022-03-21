@@ -210,6 +210,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @since 1.18
 	 */
 	public function getQueryInfo() {
+		// @phan-suppress-next-line PhanTypeMismatchReturnProbablyReal null needed for b/c checks
 		return null;
 	}
 

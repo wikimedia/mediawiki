@@ -380,7 +380,9 @@ class SearchHandler extends Handler {
 		$res = $this->buildResultFromPageInfos( $pageInfos );
 		$result = array_map( "array_merge",
 			$this->buildResultFromPageInfos( $pageInfos ),
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 			$this->buildDescriptionsFromPageIdentities( $pageIdentities ),
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 			$this->buildThumbnailsFromPageIdentities( $pageIdentities )
 		);
 		$response = $this->getResponseFactory()->createJson( [ 'pages' => $result ] );

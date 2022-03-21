@@ -895,6 +895,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		} else {
 			$this->logger->info( __METHOD__ . ": unable to identify type of ZIP archive" );
 		}
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable mime should be always set
 		return $mime;
 	}
 
@@ -1009,6 +1010,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 
 		// If MIME type is unknown, guess it
 		if ( !$mime ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 			$mime = $this->guessMimeType( $path, false );
 		}
 

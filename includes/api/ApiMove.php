@@ -116,6 +116,7 @@ class ApiMove extends ApiBase {
 
 		// Move the page
 		$toTitleExists = $toTitle->exists();
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 		$status = $this->movePage( $fromTitle, $toTitle, $params['reason'], !$params['noredirect'],
 			$params['tags'] ?: [] );
 		if ( !$status->isOK() ) {
@@ -162,6 +163,7 @@ class ApiMove extends ApiBase {
 		// Move subpages
 		if ( $params['movesubpages'] ) {
 			$r['subpages'] = $this->moveSubpages(
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 				$fromTitle,
 				$toTitle,
 				$params['reason'],
@@ -189,6 +191,7 @@ class ApiMove extends ApiBase {
 		$watchlistExpiry = $this->getExpiryFromParams( $params );
 
 		// Watch pages
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 		$this->setWatch( $watch, $fromTitle, $user, 'watchmoves', $watchlistExpiry );
 		$this->setWatch( $watch, $toTitle, $user, 'watchmoves', $watchlistExpiry );
 

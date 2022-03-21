@@ -1001,6 +1001,7 @@ class PageUpdater {
 		// XXX: do we need PST?
 
 		$this->flags |= EDIT_INTERNAL;
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revision is checked
 		$this->status = $this->doUpdate( $revision );
 	}
 
@@ -1165,6 +1166,7 @@ class PageUpdater {
 
 			// XXX: We may push this up to the "edit controller" level, see T192777.
 			$contentHandler = $this->contentHandlerFactory->getContentHandler( $content->getModel() );
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable getId is not null here
 			$validationParams = new ValidationParams( $wikiPage, $this->flags, $oldid );
 			$prepStatus = $contentHandler->validateSave( $content, $validationParams );
 
@@ -1564,6 +1566,7 @@ class PageUpdater {
 						$summary,
 						$this->flags,
 						$newRevisionRecord,
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Not null already checked
 						$editResult,
 						$approved
 					);
@@ -1585,6 +1588,7 @@ class PageUpdater {
 					$summary->text,
 					$this->flags,
 					$newRevisionRecord,
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Not null already checked
 					$editResult
 				);
 			}

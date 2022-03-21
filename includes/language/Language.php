@@ -3466,6 +3466,7 @@ class Language {
 			}
 			$text = implode( $comma, $list ) . $and . $space . $text;
 		}
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable False positive
 		return $text;
 	}
 

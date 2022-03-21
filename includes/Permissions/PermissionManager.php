@@ -353,6 +353,7 @@ class PermissionManager {
 			if ( $title->equals( $user->getTalkPage() ) ) {
 				$blocked = $block->appliesToUsertalk( $title );
 			} else {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$blocked = $block->appliesToTitle( $title );
 			}
 		}
@@ -361,6 +362,7 @@ class PermissionManager {
 		$allowUsertalk = $block->isUsertalkEditAllowed();
 
 		// Allow extensions to let a blocked user access a particular page
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 		$this->hookRunner->onUserIsBlockedFrom( $user, $title, $blocked, $allowUsertalk );
 
 		return $blocked;

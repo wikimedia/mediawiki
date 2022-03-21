@@ -225,6 +225,7 @@ class ApiLogin extends ApiBase {
 				break;
 
 			case 'Failed':
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable message set on error
 				$result['reason'] = $this->formatMessage( $message );
 				break;
 

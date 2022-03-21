@@ -579,6 +579,7 @@ class WikiImporter {
 		}
 
 		$title = Title::castFromPageIdentity( $pageIdentity );
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 		return $this->hookRunner->onAfterImportPage( $title, $foreignTitle,
 			$revCount, $sRevCount, $pageInfo );
 	}

@@ -248,6 +248,7 @@ class DatabasePostgres extends Database {
 		);
 		$row = $res->fetchRow();
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnProbablyReal Return type is undefined for no lastval
 		return $row[0] === null ? null : (int)$row[0];
 	}
 

@@ -152,6 +152,7 @@ class HashRing implements Serializable {
 					break; // all nodes visited
 				}
 			}
+			// @phan-suppress-next-line PhanTypeMismatchDimFetchNullable False positive
 			$nodeLocation = $ring[$currentIndex][self::KEY_LOCATION];
 			if ( !in_array( $nodeLocation, $locations, true ) ) {
 				// Ignore other nodes for the same locations already added

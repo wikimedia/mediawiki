@@ -73,6 +73,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		# These should be integers when they get here.
 		# If not, there's a bug somewhere.  But let's at
 		# least produce valid HTML code regardless.
+		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal Confused by old signature
 		$this->width = (int)round( $actualParams['width'] );
 		$this->height = (int)round( $actualParams['height'] );
 

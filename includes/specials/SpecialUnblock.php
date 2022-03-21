@@ -115,16 +115,20 @@ class SpecialUnblock extends SpecialPage {
 		if ( $form->show() ) {
 			switch ( $this->type ) {
 				case DatabaseBlock::TYPE_IP:
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable target is set when type is set
 					$out->addWikiMsg( 'unblocked-ip', wfEscapeWikiText( $this->target ) );
 					break;
 				case DatabaseBlock::TYPE_USER:
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable target is set when type is set
 					$out->addWikiMsg( 'unblocked', wfEscapeWikiText( $this->target ) );
 					break;
 				case DatabaseBlock::TYPE_RANGE:
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable target is set when type is set
 					$out->addWikiMsg( 'unblocked-range', wfEscapeWikiText( $this->target ) );
 					break;
 				case DatabaseBlock::TYPE_ID:
 				case DatabaseBlock::TYPE_AUTO:
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable target is set when type is set
 					$out->addWikiMsg( 'unblocked-id', wfEscapeWikiText( $this->target ) );
 					break;
 			}

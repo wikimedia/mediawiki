@@ -289,6 +289,7 @@ class LogPager extends ReverseChronologicalPager {
 		$this->mConds['log_namespace'] = $ns;
 		if ( $doUserRightsLogLike ) {
 			$params = [ $name . $interwikiDelimiter ];
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal $database is notnull when reached here
 			foreach ( explode( '*', $database ) as $databasepart ) {
 				$params[] = $databasepart;
 				$params[] = $db->anyString();

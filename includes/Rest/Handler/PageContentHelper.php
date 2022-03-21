@@ -215,7 +215,9 @@ class PageContentHelper {
 		$revision = $this->getTargetRevision();
 		return [
 			'id' => $page->getId(),
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 			'key' => $this->titleFormatter->getPrefixedDBkey( $page ),
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 			'title' => $this->titleFormatter->getPrefixedText( $page ),
 			'latest' => [
 				'id' => $revision->getId(),
@@ -274,6 +276,7 @@ class PageContentHelper {
 			);
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Validated by hasContent
 		if ( !$this->authority->authorizeRead( 'read', $this->getPage() ) ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-permission-denied-title' )->plaintextParams( $titleText ),

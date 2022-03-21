@@ -531,6 +531,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 			$dbw->insert( 'log_search', $ins, __METHOD__, [ 'IGNORE' ] );
 			$countInserted += $dbw->affectedRows();
 
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable lastRow is set when used here
 			list( $next, $display ) = $this->makeNextCond( $dbw, $primaryKey, $lastRow );
 			$this->output( "... target_author_id, $display\n" );
 			$lbFactory->waitForReplication();

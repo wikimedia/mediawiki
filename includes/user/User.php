@@ -1794,6 +1794,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	public function getBlockId() {
 		wfDeprecated( __METHOD__, '1.38' );
 		$this->getBlockedStatus();
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable getId does not return null here
 		return ( $this->mBlock ? $this->mBlock->getId() : false );
 	}
 
@@ -3291,7 +3292,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @note Call saveSettings() after calling this function to commit
 	 * this change to the database.
 	 *
-	 * @param string &$expiration Accepts the expiration time
+	 * @param string &$expiration Accepts the expiration time @phan-output-reference
 	 * @return string New token
 	 */
 	protected function confirmationToken( &$expiration ) {

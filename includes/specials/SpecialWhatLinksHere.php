@@ -426,6 +426,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$out->addHTML( $this->listEnd() );
 
 		if ( $level == 0 && !$this->including() ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable prevnext is set when used
 			$out->addHTML( $prevnext );
 		}
 	}

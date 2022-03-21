@@ -219,6 +219,7 @@ class ApiQueryContributors extends ApiQueryBase {
 					'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
 				]
 			] ] );
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable excludeGroups is set when used
 			$this->addWhereIf( 'ug_user IS NULL', $excludeGroups );
 		}
 

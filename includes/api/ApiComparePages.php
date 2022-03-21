@@ -455,6 +455,7 @@ class ApiComparePages extends ApiBase {
 				// Deprecated 'fromsection'/'tosection'
 				if ( isset( $params["{$prefix}section"] ) ) {
 					$section = $params["{$prefix}section"];
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 					$newRev = MutableRevisionRecord::newFromParentRevision( $rev );
 					$content = $rev->getContent( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER,
 						$this->getUser() );
@@ -470,6 +471,7 @@ class ApiComparePages extends ApiBase {
 							"nosuch{$prefix}section"
 						);
 					}
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 					$newRev->setContent( SlotRecord::MAIN, $content );
 				}
 
@@ -543,6 +545,7 @@ class ApiComparePages extends ApiBase {
 				$popts = ParserOptions::newFromContext( $this->getContext() );
 				$content = $this->contentTransformer->preSaveTransform(
 					$content,
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 					$title,
 					$this->getUser(),
 					$popts
@@ -565,6 +568,7 @@ class ApiComparePages extends ApiBase {
 					$this->dieWithError( [ 'apierror-sectionsnotsupported', $content->getModel() ] );
 				}
 				try {
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 					$content = $oldContent->replaceSection( $section, $content, '' );
 				} catch ( TimeoutException $e ) {
 					throw $e;
@@ -589,6 +593,7 @@ class ApiComparePages extends ApiBase {
 				}
 			}
 
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 			$newRev->setContent( $role, $content );
 		}
 		return [ $newRev, $rev, null ];

@@ -69,18 +69,22 @@ class WikiPageFactory {
 		$title = Title::castFromPageIdentity( $pageIdentity );
 
 		$page = null;
+		// @phan-suppress-next-line PhanTypeMismatchArgument castFrom does not return null here
 		if ( !$this->wikiPageFactoryHookRunner->onWikiPageFactory( $title, $page ) ) {
 			return $page;
 		}
 
 		switch ( $ns ) {
 			case NS_FILE:
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$page = new WikiFilePage( $title );
 				break;
 			case NS_CATEGORY:
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$page = new WikiCategoryPage( $title );
 				break;
 			default:
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$page = new WikiPage( $title );
 		}
 

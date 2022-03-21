@@ -1338,6 +1338,7 @@ class WebRequest {
 		}
 
 		# Allow extensions to improve our guess
+		// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 		Hooks::runner()->onGetIP( $ip );
 
 		if ( !$ip ) {

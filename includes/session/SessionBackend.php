@@ -858,6 +858,7 @@ final class SessionBackend {
 		}
 		$this->persistenceChangeData = [ 'id' => $id, 'user' => $user, 'message' => $message ];
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable message always set
 		$this->logger->info( $message, [
 			'id' => $id,
 			'provider' => get_class( $this->getProvider() ),

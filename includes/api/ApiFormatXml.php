@@ -171,6 +171,7 @@ class ApiFormatXml extends ApiFormatBase {
 
 			if ( $content !== null ) {
 				if ( is_scalar( $content ) ) {
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable name is check for null in other code
 					$retval .= $indstr . Xml::element( $name, $attributes, $content );
 				} else {
 					if ( $name !== null ) {
@@ -205,8 +206,10 @@ class ApiFormatXml extends ApiFormatBase {
 			// to make sure null value doesn't produce unclosed element,
 			// which is what Xml::element( $name, null, null ) returns
 			if ( $value === null ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable name is check for null in other code
 				$retval .= $indstr . Xml::element( $name, $attributes );
 			} else {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable name is check for null in other code
 				$retval .= $indstr . Xml::element( $name, $attributes, $value );
 			}
 		}

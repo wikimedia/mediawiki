@@ -58,6 +58,7 @@ class PermissionsError extends ErrorPageError {
 			$groups = [];
 			foreach ( MediaWikiServices::getInstance()
 				->getGroupPermissionsLookup()
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Null on permission is check when used here
 				->getGroupsWithPermission( $this->permission ) as $group
 			) {
 				$groups[] = UserGroupMembership::getLink( $group, RequestContext::getMain(), 'wiki' );

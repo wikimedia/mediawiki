@@ -43,6 +43,7 @@ class UploadFromFile extends UploadBase {
 			$desiredDestName = $upload->getName();
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable getName only null on failure
 		$this->initialize( $desiredDestName, $upload );
 	}
 

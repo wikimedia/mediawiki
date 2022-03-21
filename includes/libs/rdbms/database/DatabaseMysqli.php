@@ -125,6 +125,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		}
 		$mysqli->options( MYSQLI_OPT_CONNECT_TIMEOUT, 3 );
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal socket seems set when used
 		$ok = $mysqli->real_connect( $realServer, $user, $password, $db, $port, $socket, $flags );
 
 		return $ok ? $mysqli : null;

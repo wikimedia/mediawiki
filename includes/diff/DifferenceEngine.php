@@ -1916,6 +1916,7 @@ class DifferenceEngine extends ContextSource {
 			$newid = intval( $new );
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturn getId does not return null here
 		return [ $oldid, $newid ];
 	}
 
@@ -1937,6 +1938,7 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		$this->hookRunner->onNewDifferenceEngine(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 			$this->getTitle(), $this->mOldid, $this->mNewid, $old, $new );
 	}
 

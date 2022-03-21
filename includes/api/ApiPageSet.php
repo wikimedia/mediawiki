@@ -273,6 +273,7 @@ class ApiPageSet extends ApiBase {
 			}
 			// Create a temporary pageset to store generator's output,
 			// add any additional fields generator may need, and execute pageset to populate titles/pageids
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 			$tmpPageSet = new ApiPageSet( $dbSource, self::DISABLE_GENERATORS );
 			$generator->setGeneratorMode( $tmpPageSet );
 			$this->mCacheMode = $generator->getCacheMode( $generator->extractRequestParams() );
@@ -286,6 +287,7 @@ class ApiPageSet extends ApiBase {
 			if ( !$isDryRun ) {
 				$generator->executeGenerator( $this );
 
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 				$this->getHookRunner()->onAPIQueryGeneratorAfterExecute( $generator, $this );
 			} else {
 				// Prevent warnings from being reported on these parameters
@@ -1385,6 +1387,7 @@ class ApiPageSet extends ApiBase {
 					// ILanguageConverter::findVariantLink will modify titleText and
 					// titleObj into the canonical variant if possible
 					$titleText = $title !== false ? $title : $titleObj->getPrefixedText();
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 					$this->languageConverter->findVariantLink( $titleText, $titleObj );
 					$titleWasConverted = $unconvertedTitle !== $titleObj->getPrefixedText();
 				}
@@ -1420,6 +1423,7 @@ class ApiPageSet extends ApiBase {
 					}
 				} else {
 					// Regular page
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 					$linkBatch->addObj( $titleObj );
 				}
 			}

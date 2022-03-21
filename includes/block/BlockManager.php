@@ -332,6 +332,7 @@ class BlockManager {
 					$databaseBlocks[$block->getParentBlockId()] = $block;
 				}
 			} else {
+				// @phan-suppress-next-line PhanTypeMismatchDimAssignment getId is not null here
 				$databaseBlocks[$block->getId()] = $block;
 			}
 		}

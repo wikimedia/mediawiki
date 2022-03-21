@@ -79,6 +79,7 @@ class MWCryptHash {
 			self::$hashLength[$key] = strlen( self::hash( '', $raw ) );
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable False positive
 		return self::$hashLength[$key];
 	}
 

@@ -225,7 +225,9 @@ class Sanitizer {
 		# Populate $htmlpairs and $htmlelements with the $extratags and $removetags arrays
 		$extratags = array_fill_keys( $extratags, true );
 		$removetags = array_fill_keys( $removetags, true );
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal The static var is always set
 		$htmlpairs = array_merge( $extratags, $htmlpairsStatic );
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal The static var is always set
 		$htmlelements = array_diff_key( array_merge( $extratags, $htmlelementsStatic ), $removetags );
 
 		$result = [

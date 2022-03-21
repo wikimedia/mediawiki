@@ -123,6 +123,7 @@ class SpecialRedirect extends FormSpecialPage {
 		} catch ( MalformedTitleException $e ) {
 			return Status::newFatal( $e->getMessageObject() );
 		}
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 		$file = $this->repoGroup->findFile( $title );
 
 		if ( !$file || !$file->exists() ) {
@@ -269,6 +270,7 @@ class SpecialRedirect extends FormSpecialPage {
 		if ( $this->mValue !== null ) {
 			$this->getOutput()->setStatusCode( 404 );
 
+			// @phan-suppress-next-line PhanTypeMismatchReturnNullable Null of $status seems unreachable
 			return $status;
 		}
 

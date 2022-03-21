@@ -265,6 +265,7 @@ class CommentFormatter {
 			} else {
 				$key = $i;
 			}
+			// @phan-suppress-next-line PhanTypeMismatchDimAssignment getId does not return null here
 			$outputs[$key] = $this->preprocessRevComment(
 				$parser, $authority, $rev, $samePage, $isPublic, $useParentheses );
 		}

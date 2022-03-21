@@ -76,6 +76,7 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 
 		$main = new ApiMain( $this->getContext(), false );
 		try {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 			$module = $main->getModuleFromPath( $moduleName );
 		} catch ( ApiUsageException $ex ) {
 			$this->getOutput()->addHTML( Html::rawElement( 'span', [ 'class' => 'error' ],

@@ -275,6 +275,7 @@ class SpecialUndelete extends SpecialPage {
 		// the target, show a block error.
 		if (
 			$this->mTargetObj && $this->permissionManager->isBlockedFrom( $user, $this->mTargetObj ) ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 			throw new UserBlockedError( $user->getBlock() );
 		}
 

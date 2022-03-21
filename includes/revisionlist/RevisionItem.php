@@ -111,6 +111,7 @@ class RevisionItem extends RevisionItemBase {
 		}
 		$linkRenderer = $this->getLinkRenderer();
 		return $linkRenderer->makeKnownLink(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			Title::castFromPageIdentity( $this->list->getPage() ),
 			$date,
 			[],

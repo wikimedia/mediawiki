@@ -301,6 +301,7 @@ class RevisionStore
 		}
 
 		$page = $this->getPage( $pageId, $revId, $queryFlags );
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable castFrom does not return null here
 		return $this->titleFactory->castFromPageIdentity( $page );
 	}
 
@@ -380,6 +381,7 @@ class RevisionStore
 			//       over and over later on.
 			//       When there is less need to convert to Title, this special case can
 			//       be removed.
+			// @phan-suppress-next-line PhanTypeMismatchReturnNullable castFrom does not return null here
 			return $this->titleFactory->castFromPageIdentity( $page );
 		} else {
 			return $page;
@@ -1886,6 +1888,7 @@ class RevisionStore
 			}
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable getPageByName/newFromID should not return null
 		return $page;
 	}
 

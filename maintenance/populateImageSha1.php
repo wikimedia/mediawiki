@@ -144,6 +144,7 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 					$sql = "UPDATE $imageTable SET img_sha1=" . $dbw->addQuotes( $sha1 ) .
 						" WHERE img_name=" . $dbw->addQuotes( $file->getName() );
 					if ( $method == 'pipe' ) {
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal pipe is set when used
 						fwrite( $pipe, "$sql;\n" );
 					} else {
 						$dbw->query( $sql, __METHOD__ );
@@ -165,6 +166,7 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 							" WHERE (oi_name=" . $dbw->addQuotes( $oldFile->getName() ) . " AND" .
 							" oi_archive_name=" . $dbw->addQuotes( $oldFile->getArchiveName() ) . ")";
 						if ( $method == 'pipe' ) {
+							// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal pipe is set when used
 							fwrite( $pipe, "$sql;\n" );
 						} else {
 							$dbw->query( $sql, __METHOD__ );
@@ -175,7 +177,9 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 			$i++;
 		}
 		if ( $method == 'pipe' ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal pipe is set when used
 			fflush( $pipe );
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal pipe is set when used
 			pclose( $pipe );
 		}
 		$t += microtime( true );

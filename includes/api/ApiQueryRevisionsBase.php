@@ -206,6 +206,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				if ( !$difftoRev ) {
 					$this->dieWithError( [ 'apierror-nosuchrevid', $params['diffto'] ] );
 				}
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 				$revDel = $this->checkRevDel( $difftoRev, RevisionRecord::DELETED_TEXT );
 				if ( $revDel & self::CANNOT_VIEW ) {
 					$this->addWarning( [ 'apiwarn-difftohidden', $difftoRev->getId() ] );

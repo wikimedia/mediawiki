@@ -107,6 +107,7 @@ class CachedSource implements SettingsSource, SettingsIncludeLocator {
 			);
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturn WaitConditionLoop throws or value set
 		return $result;
 	}
 

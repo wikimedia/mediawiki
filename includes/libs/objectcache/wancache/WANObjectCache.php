@@ -1655,6 +1655,7 @@ class WANObjectCache implements
 		$hasLock = $useRegenerationLock && $this->claimStampedeLock( $key );
 		if ( $useRegenerationLock && !$hasLock ) {
 			// Determine if there is stale or volatile cached value that is still usable
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 			if ( $this->isValid( $volValue, $volState[self::RES_AS_OF], $minAsOf ) ) {
 				$this->logger->debug( "fetchOrRegenerate($key): returning stale value" );
 				$this->stats->timing(

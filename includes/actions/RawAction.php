@@ -301,6 +301,7 @@ class RawAction extends FormlessAction {
 				break;
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable RevisionRecord::getId does not return null here
 		return $oldid;
 	}
 

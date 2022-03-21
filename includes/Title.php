@@ -723,6 +723,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		if ( !$title ) {
 			$title = self::newFromText( 'Main Page' );
 		}
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable Fallback is always valid
 		return $title;
 	}
 

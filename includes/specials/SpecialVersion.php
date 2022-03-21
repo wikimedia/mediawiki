@@ -911,6 +911,7 @@ class SpecialVersion extends SpecialPage {
 
 		// ... now get the authors for this extension
 		$authors = $extension['author'] ?? [];
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable path is set when there is a name
 		$authors = $this->listAuthors( $authors, $extension['name'], $extensionPath );
 
 		// Finally! Create the table

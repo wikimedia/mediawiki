@@ -49,6 +49,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	 */
 	public function __construct( IContextSource $context, PageIdentity $page ) {
 		$this->setContext( $context );
+		// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty castFrom does not return null here
 		$this->title = Title::castFromPageIdentity( $page );
 
 		$this->deprecatePublicPropertyFallback( 'title', '1.37', function () {

@@ -5101,6 +5101,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $this->fieldHasBit( $flags, self::LOCK_TIMESTAMP ) ) {
+			// @phan-suppress-next-line PhanTypeMismatchReturnNullable Possible null is documented on the constant
 			return $lockTsUnix;
 		} else {
 			return $locked;
