@@ -118,18 +118,15 @@ class SpecialJavaScriptTest extends SpecialPage {
 			// 2. tests explicitly skipping or not loading code that is only meant
 			//    for real page views (e.g. not loading as dependency, or using a QUnit
 			//    conditional).
-			ResourceLoader::makeConfigSetScript( array_intersect_key(
-				$out->getJSVars(),
-				// Keep a select few that are commonly referenced.
-				// See https://phabricator.wikimedia.org/T89434.
-				array_fill_keys(
-					[
-						'wgPageName', // used by mediawiki.util
-						'wgRelevantPageName', // used as input for mw.Title
-					],
-					null
-				)
-			) )
+			//
+			// See https://phabricator.wikimedia.org/T89434.
+			// Keep a select few that are commonly referenced.
+			ResourceLoader::makeConfigSetScript( [
+				// used by mediawiki.util
+				'wgPageName' => 'Special:Badtitle/JavaScriptTest',
+				// used as input for mw.Title
+				'wgRelevantPageName' => 'Special:Badtitle/JavaScriptTest',
+			] )
 			// Embed private modules as they're not allowed to be loaded dynamically
 			. $rl->makeModuleResponse( $embedContext, [
 				'user.options' => $rl->getModule( 'user.options' ),
