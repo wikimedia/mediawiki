@@ -109,9 +109,27 @@ class SpecialJavaScriptTest extends SpecialPage {
 		// The following has to be deferred via RLQ because the startup module is asynchronous.
 		$code .= ResourceLoader::makeLoaderConditionalScript(
 			// Embed page-specific mw.config variables.
-			// The current Special page shouldn't be relevant to tests, but various modules (which
-			// are loaded before the test suites), reference mw.config while initialising.
-			ResourceLoader::makeConfigSetScript( $out->getJSVars() )
+			//
+			// For compatibility with older tests, these will come from the user
+			// action "viewing Special:JavaScripTest".
+			//
+			// This is deprecated since MediaWiki 1.25 and slowly being phased out in favour of:
+			// 1. tests explicitly mocking the configuration they depend on.
+			// 2. tests explicitly skipping or not loading code that is only meant
+			//    for real page views (e.g. not loading as dependency, or using a QUnit
+			//    conditional).
+			ResourceLoader::makeConfigSetScript( array_intersect_key(
+				$out->getJSVars(),
+				// Keep a select few that are commonly referenced.
+				// See https://phabricator.wikimedia.org/T89434.
+				array_fill_keys(
+					[
+						'wgPageName', // used by mediawiki.util
+						'wgRelevantPageName', // used as input for mw.Title
+					],
+					null
+				)
+			) )
 			// Embed private modules as they're not allowed to be loaded dynamically
 			. $rl->makeModuleResponse( $embedContext, [
 				'user.options' => $rl->getModule( 'user.options' ),
