@@ -109,11 +109,35 @@ class TraditionalImageGallery extends ImageGalleryBase {
 
 			$thumb = false;
 
+			switch ( $img ? $img->getMediaType() : '' ) {
+				case 'AUDIO':
+					$rdfaType = 'mw:Audio';
+					break;
+				case 'VIDEO':
+					$rdfaType = 'mw:Video';
+					break;
+				default:
+					$rdfaType = 'mw:Image';
+			}
+
 			if ( !$img ) {
 				# We're dealing with a non-image, spit out the name and be done with it.
+				$rdfaType = 'mw:Error ' . $rdfaType;
+
+				$thumbhtml = Linker::makeBrokenImageLinkObj(
+					$nt, '', '', '', '', false, $transformOptions
+				);
+				$thumbhtml = Html::rawElement(
+					'span', [ 'typeof' => $rdfaType ], $thumbhtml
+				);
+
+				if ( $enableLegacyMediaDOM ) {
+					$thumbhtml = htmlspecialchars( $nt->getText() );
+				}
+
 				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: '
 					. ( $this->getThumbPadding() + $this->mHeights ) . 'px;">'
-					. htmlspecialchars( $nt->getText() ) . '</div>';
+					. $thumbhtml . '</div>';
 
 				if ( $resolveFilesViaParser ) {
 					$this->mParser->addTrackingCategory( 'broken-file-category' );
@@ -157,17 +181,6 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					$this->adjustImageParameters( $thumb, $imageParameters );
 
 					Linker::processResponsiveImages( $img, $thumb, $transformOptions );
-
-					switch ( $img->getMediaType() ) {
-						case 'AUDIO':
-							$rdfaType = 'mw:Audio';
-							break;
-						case 'VIDEO':
-							$rdfaType = 'mw:Video';
-							break;
-						default:
-							$rdfaType = 'mw:Image';
-					}
 
 					$thumbhtml = $thumb->toHtml( $imageParameters );
 
