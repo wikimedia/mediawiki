@@ -107,7 +107,11 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			$params = $this->getThumbParams( $img );
 			$transformOptions = $params + $handlerOpts;
 
-			$thumb = false;
+			if ( $img ) {
+				$thumb = $img->transform( $transformOptions );
+			} else {
+				$thumb = false;
+			}
 
 			switch ( $img ? $img->getMediaType() : '' ) {
 				case 'AUDIO':
@@ -120,8 +124,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					$rdfaType = 'mw:Image';
 			}
 
-			if ( !$img ) {
-				# We're dealing with a non-image, spit out the name and be done with it.
+			if ( !$img || !$thumb ) {
 				$rdfaType = 'mw:Error ' . $rdfaType;
 
 				$thumbhtml = Linker::makeBrokenImageLinkObj(
@@ -132,14 +135,18 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				);
 
 				if ( $enableLegacyMediaDOM ) {
-					$thumbhtml = htmlspecialchars( $nt->getText() );
+					if ( $img ) {
+						$thumbhtml = htmlspecialchars( $img->getLastError() );
+					} else {
+						$thumbhtml = htmlspecialchars( $nt->getText() );
+					}
 				}
 
 				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: '
 					. ( $this->getThumbPadding() + $this->mHeights ) . 'px;">'
 					. $thumbhtml . '</div>';
 
-				if ( $resolveFilesViaParser ) {
+				if ( !$img && $resolveFilesViaParser ) {
 					$this->mParser->addTrackingCategory( 'broken-file-category' );
 				}
 			} elseif ( $this->mHideBadImages &&
@@ -151,76 +158,68 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					$linkRenderer->makeKnownLink( $nt, $nt->getText() ) .
 					'</div>';
 			} else {
-				$thumb = $img->transform( $transformOptions );
-				if ( !$thumb ) {
-					# Error generating thumbnail.
-					$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: '
-						. ( $this->getThumbPadding() + $this->mHeights ) . 'px;">'
-						. htmlspecialchars( $img->getLastError() ) . '</div>';
-				} else {
-					/** @var MediaTransformOutput $thumb */
-					$vpad = $this->getVPad( $this->mHeights, $thumb->getHeight() );
+				/** @var MediaTransformOutput $thumb */
+				$vpad = $this->getVPad( $this->mHeights, $thumb->getHeight() );
 
-					$imageParameters = [
-						'desc-link' => true,
-						'desc-query' => $descQuery,
-						'alt' => $alt,
-						'custom-url-link' => $link
-					];
+				$imageParameters = [
+					'desc-link' => true,
+					'desc-query' => $descQuery,
+					'alt' => $alt,
+					'custom-url-link' => $link
+				];
 
-					// In the absence of both alt text and caption, fall back on
-					// providing screen readers with the filename as alt text
-					if ( $alt == '' && $text == '' ) {
-						$imageParameters['alt'] = $nt->getText();
-					}
+				// In the absence of both alt text and caption, fall back on
+				// providing screen readers with the filename as alt text
+				if ( $alt == '' && $text == '' ) {
+					$imageParameters['alt'] = $nt->getText();
+				}
 
-					if ( $loading === ImageGalleryBase::LOADING_LAZY ) {
-						$imageParameters['loading'] = 'lazy';
-					}
+				if ( $loading === ImageGalleryBase::LOADING_LAZY ) {
+					$imageParameters['loading'] = 'lazy';
+				}
 
-					$this->adjustImageParameters( $thumb, $imageParameters );
+				$this->adjustImageParameters( $thumb, $imageParameters );
 
-					Linker::processResponsiveImages( $img, $thumb, $transformOptions );
+				Linker::processResponsiveImages( $img, $thumb, $transformOptions );
 
-					$thumbhtml = $thumb->toHtml( $imageParameters );
+				$thumbhtml = $thumb->toHtml( $imageParameters );
 
-					if ( !$enableLegacyMediaDOM ) {
-						$thumbhtml = Html::rawElement(
-							'span', [ 'typeof' => $rdfaType ], $thumbhtml
-						);
-					}
+				if ( !$enableLegacyMediaDOM ) {
+					$thumbhtml = Html::rawElement(
+						'span', [ 'typeof' => $rdfaType ], $thumbhtml
+					);
+				}
 
-					if ( $enableLegacyMediaDOM ) {
-						$thumbhtml = Html::rawElement( 'div', [
-							# Auto-margin centering for block-level elements. Needed
-							# now that we have video handlers since they may emit block-
-							# level elements as opposed to simple <img> tags. ref
-							# http://css-discuss.incutio.com/?page=CenteringBlockElement
-							'style' => "margin:{$vpad}px auto;",
-						], $thumbhtml );
-					}
-
-					# Set both fixed width and min-height.
-					$width = $this->getThumbDivWidth( $thumb->getWidth() );
-					$height = $this->getThumbPadding() + $this->mHeights;
-					$thumbhtml = "\n\t\t\t" . Html::rawElement( 'div', [
-						'class' => 'thumb',
-						'style' => "width: {$width}px;" .
-							( !$enableLegacyMediaDOM && $this->mMode === 'traditional' ?
-								" height: {$height}px;" : '' ),
+				if ( $enableLegacyMediaDOM ) {
+					$thumbhtml = Html::rawElement( 'div', [
+						# Auto-margin centering for block-level elements. Needed
+						# now that we have video handlers since they may emit block-
+						# level elements as opposed to simple <img> tags. ref
+						# http://css-discuss.incutio.com/?page=CenteringBlockElement
+						'style' => "margin:{$vpad}px auto;",
 					], $thumbhtml );
+				}
 
-					// Call parser transform hook
-					if ( $resolveFilesViaParser ) {
-						/** @var MediaHandler $handler */
-						$handler = $img->getHandler();
-						if ( $handler ) {
-							$handler->parserTransformHook( $this->mParser, $img );
-						}
-						if ( $img ) {
-							$this->mParser->modifyImageHtml(
-								$img, [ 'handler' => $imageParameters ], $thumbhtml );
-						}
+				# Set both fixed width and min-height.
+				$width = $this->getThumbDivWidth( $thumb->getWidth() );
+				$height = $this->getThumbPadding() + $this->mHeights;
+				$thumbhtml = "\n\t\t\t" . Html::rawElement( 'div', [
+					'class' => 'thumb',
+					'style' => "width: {$width}px;" .
+						( !$enableLegacyMediaDOM && $this->mMode === 'traditional' ?
+							" height: {$height}px;" : '' ),
+				], $thumbhtml );
+
+				// Call parser transform hook
+				if ( $resolveFilesViaParser ) {
+					/** @var MediaHandler $handler */
+					$handler = $img->getHandler();
+					if ( $handler ) {
+						$handler->parserTransformHook( $this->mParser, $img );
+					}
+					if ( $img ) {
+						$this->mParser->modifyImageHtml(
+							$img, [ 'handler' => $imageParameters ], $thumbhtml );
 					}
 				}
 			}
