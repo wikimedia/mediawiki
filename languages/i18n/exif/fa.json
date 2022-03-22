@@ -8,7 +8,8 @@
 			"Meisam",
 			"Reza1615",
 			"ZxxZxxZ",
-			"Jeeputer"
+			"Jeeputer",
+			"Beginneruser"
 		]
 	},
 	"exif-imagewidth": "عرض",
@@ -341,7 +342,7 @@
 	"exif-dc-date": "تاریخ(ها)",
 	"exif-dc-publisher": "ناشر",
 	"exif-dc-relation": "رسانه‌های مرتبط",
-	"exif-dc-rights": "حقوق",
+	"exif-dc-rights": "امتیازات",
 	"exif-dc-source": "رسانه منبع",
 	"exif-dc-type": "نوع رسانه",
 	"exif-rating-rejected": "رد شده",

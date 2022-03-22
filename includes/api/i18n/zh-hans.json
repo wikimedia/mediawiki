@@ -44,7 +44,8 @@
 			"Func",
 			"GuoPC",
 			"Tranve",
-			"落花有意12138"
+			"落花有意12138",
+			"星海"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|文档]]\n* [[mw:Special:MyLanguage/API:FAQ|常见问题]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 邮件列表]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 程序错误与功能请求]\n</div>\n<strong>状态信息：</strong>MediaWiki API是一个成熟稳定的，不断受到支持和改进的界面。尽管我们尽力避免，但偶尔也需要作出重大更新；请订阅[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 邮件列表]以便获得更新通知。\n\n<strong>错误请求：</strong>当API收到错误请求时，HTTP header将会返回一个包含\"MediaWiki-API-Error\"的值，随后header的值与error code将会送回并设置为相同的值。详细信息请参阅[[mw:Special:MyLanguage/API:Errors_and_warnings|API：错误与警告]]。\n\n<p class=\"mw-apisandbox-link\"><strong>测试中：</strong>测试API请求的易用性，请参见[[Special:ApiSandbox]]。</p>",
@@ -1607,7 +1608,7 @@
 	"apierror-allimages-redirect": "当使用<kbd>allimages</kbd>作为发生器时，请使用<kbd>gaifilterredir=nonredirects</kbd>而不是<var>redirects</var>。",
 	"apierror-allpages-generator-redirects": "当使用<kbd>allpages</kbd>作为发生器时，请使用<kbd>gapfilterredir=nonredirects</kbd>而不是<var>redirects</var>。",
 	"apierror-appendnotsupported": "不能使用内容模型$1附加在页面上。",
-	"apierror-articleexists": "您尝试创建的条目已刚刚被创建。",
+	"apierror-articleexists": "您尝试创建的条目已经被创建。",
 	"apierror-assertanonfailed": "您不再是未登录用户，因此该操作无法完成。",
 	"apierror-assertbotfailed": "您没有<code>bot</code>权限，因此无法完成此操作。",
 	"apierror-assertnameduserfailed": "您不再以“$1”身份登录，因此该操作无法完成。",
