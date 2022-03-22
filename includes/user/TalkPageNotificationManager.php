@@ -21,7 +21,10 @@
 
 namespace MediaWiki\User;
 
+use DeferredUpdates;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MWTimestamp;
@@ -56,23 +59,35 @@ class TalkPageNotificationManager {
 	/** @var RevisionLookup */
 	private $revisionLookup;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @param ServiceOptions $serviceOptions
 	 * @param ILoadBalancer $loadBalancer
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param RevisionLookup $revisionLookup
+	 * @param HookContainer $hookContainer
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		ServiceOptions $serviceOptions,
 		ILoadBalancer $loadBalancer,
 		ReadOnlyMode $readOnlyMode,
-		RevisionLookup $revisionLookup
+		RevisionLookup $revisionLookup,
+		HookContainer $hookContainer,
+		UserFactory $userFactory
 	) {
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->disableAnonTalk = $serviceOptions->get( 'DisableAnonTalk' );
 		$this->loadBalancer = $loadBalancer;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->revisionLookup = $revisionLookup;
+		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -97,6 +112,63 @@ class TalkPageNotificationManager {
 	}
 
 	/**
+	 * Clear notifications when the user's own talk page is viewed
+	 *
+	 * @param UserIdentity $user
+	 * @param RevisionRecord|null $oldRev If it is an old revision view, the
+	 *   old revision. If it is a current revision view, this should be null.
+	 */
+	public function clearForPageView(
+		UserIdentity $user,
+		RevisionRecord $oldRev = null
+	) {
+		// Abort if the hook says so. (Echo doesn't abort, it just queues its own update)
+		if ( !$this->hookRunner->onUserClearNewTalkNotification(
+			$user,
+			$oldRev ? $oldRev->getID() : 0
+		) ) {
+			return;
+		}
+
+		if ( $this->isTalkDisabled( $user ) ) {
+			return;
+		}
+
+		// Nothing to do if there are no messages
+		if ( !$this->userHasNewMessages( $user ) ) {
+			return;
+		}
+
+		// If there is a subsequent revision after the one being viewed, use
+		// its timestamp as the new notification timestamp. If there is no
+		// subsequent revision, the notification is cleared.
+		if ( $oldRev ) {
+			$newRev = $this->revisionLookup->getNextRevision( $oldRev );
+			if ( $newRev ) {
+				DeferredUpdates::addCallableUpdate(
+					function () use ( $user, $newRev ) {
+						$this->dbDeleteNewUserMessages( $user );
+						$this->dbUpdateNewUserMessages( $user, $newRev );
+					}
+				);
+				return;
+			}
+		}
+
+		// Update the cache now so that the skin doesn't show a notification
+		$userKey = $this->getCacheKey( $user );
+		$this->userMessagesCache[$userKey] = false;
+
+		// Defer the DB delete
+		DeferredUpdates::addCallableUpdate(
+			function () use ( $user ) {
+				$this->touchUser( $user );
+				$this->dbDeleteNewUserMessages( $user );
+			}
+		);
+	}
+
+	/**
 	 * Update the talk page messages status.
 	 *
 	 * @param UserIdentity $user
@@ -114,6 +186,7 @@ class TalkPageNotificationManager {
 
 		$userKey = $this->getCacheKey( $user );
 		$this->userMessagesCache[$userKey] = true;
+		$this->touchUser( $user );
 		$this->dbUpdateNewUserMessages( $user, $curRev );
 	}
 
@@ -282,5 +355,15 @@ class TalkPageNotificationManager {
 	 */
 	private function getCacheKey( UserIdentity $user ): string {
 		return $user->isRegistered() ? "u:{$user->getId()}" : "anon:{$user->getName()}";
+	}
+
+	/**
+	 * Update the user touched timestamp
+	 * @param UserIdentity $user
+	 */
+	private function touchUser( UserIdentity $user ) {
+		// Ideally this would not be in User, it would be in its own service
+		// or something
+		$this->userFactory->newFromUserIdentity( $user )->touch();
 	}
 }

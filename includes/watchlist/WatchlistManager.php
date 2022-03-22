@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Watchlist;
 
-use DeferredUpdates;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -219,51 +218,8 @@ class WatchlistManager {
 		);
 
 		if ( $userTalkPage ) {
-			// If we're working on user's talk page, we should update the talk page message indicator
-			if ( !$this->hookRunner->onUserClearNewTalkNotification(
-				$userIdentity,
-				$oldid
-			) ) {
-				return;
-			}
-
-			// Try to update the DB post-send and only if needed...
-			$talkPageNotificationManager = $this->talkPageNotificationManager;
-			$revisionLookup = $this->revisionLookup;
-			DeferredUpdates::addCallableUpdate( static function () use (
-				$userIdentity,
-				$oldid,
-				$talkPageNotificationManager,
-				$revisionLookup
-			) {
-				if ( !$talkPageNotificationManager->userHasNewMessages( $userIdentity ) ) {
-					// no notifications to clear
-					return;
-				}
-				// Delete the last notifications (they stack up)
-				$talkPageNotificationManager->removeUserHasNewMessages( $userIdentity );
-
-				// If there is a new, unseen, revision, use its timestamp
-				if ( !$oldid ) {
-					return;
-				}
-
-				$oldRev = $revisionLookup->getRevisionById(
-					$oldid,
-					RevisionLookup::READ_LATEST
-				);
-				if ( !$oldRev ) {
-					return;
-				}
-
-				$newRev = $revisionLookup->getNextRevision( $oldRev );
-				if ( $newRev ) {
-					$talkPageNotificationManager->setUserHasNewMessages(
-						$userIdentity,
-						$newRev
-					);
-				}
-			} );
+			$oldRev = $oldid ? $this->revisionLookup->getRevisionById( $oldid ) : null;
+			$this->talkPageNotificationManager->clearForPageView( $userIdentity, $oldRev );
 		}
 
 		if ( !$this->options->get( 'UseEnotif' ) &&

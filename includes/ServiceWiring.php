@@ -1744,7 +1744,9 @@ return [
 			),
 			$services->getDBLoadBalancer(),
 			$services->getReadOnlyMode(),
-			$services->getRevisionLookup()
+			$services->getRevisionLookup(),
+			$services->getHookContainer(),
+			$services->getUserFactory()
 		);
 	},
 
