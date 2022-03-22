@@ -539,7 +539,7 @@ class Article implements Page {
 		$outputPage->adaptCdnTTL( $this->mPage->getTimestamp(), IExpiringStore::TTL_DAY );
 
 		$this->showViewFooter();
-		$this->mPage->doViewUpdates( $user, $oldid ); // FIXME: test this
+		$this->mPage->doViewUpdates( $user, $oldid, $this->fetchRevisionRecord() );
 
 		# Load the postEdit module if the user just saved this revision
 		# See also EditPage::setPostEditCookie

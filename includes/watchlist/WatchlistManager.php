@@ -31,6 +31,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
@@ -191,11 +192,14 @@ class WatchlistManager {
 	 * @param Authority|UserIdentity $performer deprecated passing UserIdentity since 1.37
 	 * @param LinkTarget|PageIdentity $title deprecated passing LinkTarget since 1.37
 	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
+	 * @param RevisionRecord|null $oldRev The revision record associated with $oldid, or null if
+	 *   the latest revision is used
 	 */
 	public function clearTitleUserNotifications(
 		$performer,
 		$title,
-		int $oldid = 0
+		int $oldid = 0,
+		RevisionRecord $oldRev = null
 	) {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			// Cannot change anything in read only
@@ -218,7 +222,11 @@ class WatchlistManager {
 		);
 
 		if ( $userTalkPage ) {
-			$oldRev = $oldid ? $this->revisionLookup->getRevisionById( $oldid ) : null;
+			if ( !$oldid ) {
+				$oldRev = null;
+			} elseif ( !$oldRev ) {
+				$oldRev = $this->revisionLookup->getRevisionById( $oldid );
+			}
 			$this->talkPageNotificationManager->clearForPageView( $userIdentity, $oldRev );
 		}
 
