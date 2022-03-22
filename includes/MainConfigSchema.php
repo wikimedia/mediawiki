@@ -234,13 +234,9 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Whether to support URLs like index.php/Page_title These often break when PHP
-	 * is set up in CGI mode. PATH_INFO *may* be correct if cgi.fix_pathinfo is set,
-	 * but then again it may not; lighttpd converts incoming path data to lowercase
-	 * on systems with case-insensitive filesystems, and there have been reports of
-	 * problems on Apache as well.
-	 *
-	 * To be safe we'll continue to keep it off by default.
+	 * Whether to support URLs like index.php/Page_title.
+	 * The effective default value is determined at runtime:
+	 * it will be enabled in environments where it is expected to be safe.
 	 *
 	 * Override this to false if $_SERVER['PATH_INFO'] contains unexpectedly
 	 * incorrect garbage, or to true if it is really correct.
@@ -252,7 +248,7 @@ class MainConfigSchema {
 	 * @since 1.2.1
 	 */
 	public const UsePathInfo = [
-		'default' => true,
+		'default' => null,
 	];
 
 	/**
@@ -1145,7 +1141,9 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Show Exif data, on by default if available.
+	 * Whether to show Exif data.
+	 * The effective default value is determined at runtime:
+	 * enabled if PHP's EXIF extension module is loaded.
 	 *
 	 * Requires PHP's Exif extension: https://www.php.net/manual/en/ref.exif.php
 	 *
@@ -1158,7 +1156,7 @@ class MainConfigSchema {
 	 * ```
 	 */
 	public const ShowEXIF = [
-		'default' => true,
+		'default' => null,
 	];
 
 	/**
@@ -2154,7 +2152,7 @@ class MainConfigSchema {
 	 * Default value for chmoding of new directories.
 	 */
 	public const DirectoryMode = [
-		'default' => 511,
+		'default' => 0777, // octal!
 	];
 
 	/**
@@ -3225,8 +3223,8 @@ class MainConfigSchema {
 	 * @since 1.36
 	 */
 	public const CriticalSectionTimeLimit = [
-		'default' => 180,
-		'type' => 'integer',
+		'default' => 180.0,
+		'type' => 'number',
 	];
 
 	/**
@@ -10191,7 +10189,7 @@ class MainConfigSchema {
 	 * explicitly when to make breaking changes to their export and dump format.
 	 */
 	public const XmlDumpSchemaVersion = [
-		'default' => '0.11',
+		'default' => XML_DUMP_SCHEMA_VERSION_11,
 	];
 
 	// endregion -- end of import/export
@@ -11555,7 +11553,7 @@ class MainConfigSchema {
 	 * @since 1.22
 	 */
 	public const HTTPConnectTimeout = [
-		'default' => 5,
+		'default' => 5.0,
 		'type' => 'number',
 	];
 
