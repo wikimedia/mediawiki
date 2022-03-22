@@ -1229,11 +1229,11 @@ abstract class DatabaseMysqlBase extends Database {
 		return $errno == 2013 || $errno == 2006;
 	}
 
-	protected function wasKnownStatementRollbackError() {
-		$errno = $this->lastErrno();
-
+	protected function isKnownStatementRollbackError( $errno ) {
+		// https://mariadb.com/kb/en/mariadb-error-codes/
+		// https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html
 		if ( $errno === 1205 ) { // lock wait timeout
-			// Note that this is uncached to avoid stale values of SET is used
+			// Note that this is uncached to avoid stale values if SET is used
 			$res = $this->query(
 				"SELECT @@innodb_rollback_on_timeout AS Value",
 				__METHOD__,
@@ -1245,7 +1245,6 @@ abstract class DatabaseMysqlBase extends Database {
 			return ( $row && !$row->Value );
 		}
 
-		// See https://dev.mysql.com/doc/refman/5.5/en/error-messages-server.html
 		return in_array( $errno, [ 1022, 1062, 1216, 1217, 1137, 1146, 1051, 1054 ], true );
 	}
 

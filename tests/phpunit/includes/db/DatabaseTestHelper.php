@@ -110,7 +110,7 @@ class DatabaseTestHelper extends Database {
 	 * @param int $errno Error number
 	 * @param string $error Error text
 	 * @param array $options
-	 *  - wasKnownStatementRollbackError: Return value for wasKnownStatementRollbackError()
+	 *  - isKnownStatementRollbackError: Return value for isKnownStatementRollbackError()
 	 */
 	public function forceNextQueryError( $errno, $error, $options = [] ) {
 		$this->nextError = [ 'errno' => $errno, 'error' => $error ] + $options;
@@ -195,8 +195,10 @@ class DatabaseTestHelper extends Database {
 		return $this->lastError ? $this->lastError['error'] : 'test';
 	}
 
-	protected function wasKnownStatementRollbackError() {
-		return $this->lastError['wasKnownStatementRollbackError'] ?? false;
+	protected function isKnownStatementRollbackError( $errno ) {
+		return ( $this->lastError['errno'] ?? 0 ) === $errno
+			? ( $this->lastError['isKnownStatementRollbackError'] ?? false )
+			: false;
 	}
 
 	public function fieldInfo( $table, $field ) {

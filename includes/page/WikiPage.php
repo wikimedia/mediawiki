@@ -1304,8 +1304,13 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * Do standard deferred updates after page view (existing or missing page)
 	 * @param Authority $performer The viewing user
 	 * @param int $oldid Revision id being viewed; if not given or 0, latest revision is assumed
+	 * @param RevisionRecord|null $oldRev The RevisionRecord associated with $oldid.
 	 */
-	public function doViewUpdates( Authority $performer, $oldid = 0 ) {
+	public function doViewUpdates(
+		Authority $performer,
+		$oldid = 0,
+		RevisionRecord $oldRev = null
+	) {
 		if ( wfReadOnly() ) {
 			return;
 		}
@@ -1335,15 +1340,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			DeferredUpdates::PRESEND
 		);
 
-		DeferredUpdates::addCallableUpdate(
-			function () use ( $performer, $oldid ) {
-				// Update newtalk and watchlist notification status
-				MediaWikiServices::getInstance()
-					->getWatchlistManager()
-					->clearTitleUserNotifications( $performer, $this, $oldid );
-			},
-			DeferredUpdates::POSTSEND
-		);
+		// Update newtalk and watchlist notification status
+		MediaWikiServices::getInstance()
+			->getWatchlistManager()
+			->clearTitleUserNotifications( $performer, $this, $oldid, $oldRev );
 	}
 
 	/**
