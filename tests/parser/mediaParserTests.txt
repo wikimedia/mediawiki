@@ -2307,7 +2307,7 @@ File:File:Foobar.jpg
 !! html/php
 <ul class="gallery mw-gallery-traditional" type="123">
 		<li class="gallerybox" style="width: 155px">
-			<div class="thumb" style="height: 150px;">File:Foobar.jpg</div>
+			<div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=File:Foobar.jpg" class="new" title="File:File:Foobar.jpg"><span class="mw-broken-media" data-width="120" data-height="120">File:File:Foobar.jpg</span></a></span></div>
 			<div class="gallerytext">
 			</div>
 		</li>
@@ -2341,36 +2341,36 @@ image4    |300px| centre
 !! html/php
 <ul class="gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px">
-			<div class="thumb" style="height: 150px;">Image1.png</div>
+			<div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Image1.png" class="new" title="File:Image1.png"><span class="mw-broken-media" data-width="120" data-height="120">File:Image1.png</span></a></span></div>
 			<div class="gallerytext">
 			</div>
 		</li>
 		<li class="gallerybox" style="width: 155px">
-			<div class="thumb" style="height: 150px;">Image2.gif</div>
+			<div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Image2.gif" class="new" title="File:Image2.gif"><span class="mw-broken-media" data-width="120" data-height="120">File:Image2.gif</span></a></span></div>
 			<div class="gallerytext">
 			</div>
 		</li>
 		<li class="gallerybox" style="width: 155px">
-			<div class="thumb" style="height: 150px;">Image3</div>
+			<div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Image3" class="new" title="File:Image3"><span class="mw-broken-media" data-width="120" data-height="120">File:Image3</span></a></span></div>
 			<div class="gallerytext">
 			</div>
 		</li>
 		<li class="gallerybox" style="width: 155px">
-			<div class="thumb" style="height: 150px;">Image4</div>
+			<div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Image4" class="new" title="File:Image4"><span class="mw-broken-media" data-width="120" data-height="120">File:Image4</span></a></span></div>
 			<div class="gallerytext">
 <pre>centre
 </pre>
 			</div>
 		</li>
 		<li class="gallerybox" style="width: 155px">
-			<div class="thumb" style="height: 150px;">Image5.svg</div>
+			<div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Image5.svg" class="new" title="File:Image5.svg"><span class="mw-broken-media" data-width="120" data-height="120">File:Image5.svg</span></a></span></div>
 			<div class="gallerytext">
 <p><a rel="nofollow" class="external free" href="http://///////">http://///////</a>
 </p>
 			</div>
 		</li>
 		<li class="gallerybox" style="width: 155px">
-			<div class="thumb" style="height: 150px;">* image6</div>
+			<div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=*_image6" class="new" title="File:* image6"><span class="mw-broken-media" data-width="120" data-height="120">File:* image6</span></a></span></div>
 			<div class="gallerytext">
 			</div>
 		</li>
@@ -2406,14 +2406,14 @@ image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 <ul class="gallery mw-gallery-traditional" style="max-width: 226px;">
 	<li class="gallerycaption">Foo <a href="/wiki/Main_Page" title="Main Page">Main Page</a></li>
 		<li class="gallerybox" style="width: 105px">
-			<div class="thumb" style="height: 70px;">Nonexistent.jpg</div>
+			<div class="thumb" style="height: 70px;"><span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent.jpg" class="new" title="File:Nonexistent.jpg"><span class="mw-broken-media" data-width="70" data-height="40">File:Nonexistent.jpg</span></a></span></div>
 			<div class="gallerytext">
 <p>caption
 </p>
 			</div>
 		</li>
 		<li class="gallerybox" style="width: 105px">
-			<div class="thumb" style="height: 70px;">Nonexistent.jpg</div>
+			<div class="thumb" style="height: 70px;"><span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent.jpg" class="new" title="File:Nonexistent.jpg"><span class="mw-broken-media" data-width="70" data-height="40">File:Nonexistent.jpg</span></a></span></div>
 			<div class="gallerytext">
 			</div>
 		</li>
@@ -2468,14 +2468,14 @@ image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 <ul class="gallery mw-gallery-traditional" style="max-width: 226px;">
 	<li class="gallerycaption">Foo <a href="/wiki/Main_Page" title="Main Page">Main Page</a></li>
 		<li class="gallerybox" style="width: 105px">
-			<div class="thumb" style="height: 70px;">Nonexistent.jpg</div>
+			<div class="thumb" style="height: 70px;"><span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent.jpg" class="new" title="File:Nonexistent.jpg"><span class="mw-broken-media" data-width="70" data-height="40">File:Nonexistent.jpg</span></a></span></div>
 			<div class="gallerytext">
 <p>caption
 </p>
 			</div>
 		</li>
 		<li class="gallerybox" style="width: 105px">
-			<div class="thumb" style="height: 70px;">Nonexistent.jpg</div>
+			<div class="thumb" style="height: 70px;"><span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent.jpg" class="new" title="File:Nonexistent.jpg"><span class="mw-broken-media" data-width="70" data-height="40">File:Nonexistent.jpg</span></a></span></div>
 			<div class="gallerytext">
 			</div>
 		</li>
@@ -2729,7 +2729,7 @@ File:Foobar.jpg
 !! html/php
 <ul class="gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px">
-			<div class="thumb" style="height: 150px;">Nonexistent.jpg</div>
+			<div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent.jpg" class="new" title="File:Nonexistent.jpg"><span class="mw-broken-media" data-width="120" data-height="120">File:Nonexistent.jpg</span></a></span></div>
 			<div class="gallerytext">
 <p><a href="/wiki/File:Nonexistent.jpg" class="galleryfilename galleryfilename-truncate" title="File:Nonexistent.jpg">Nonexistent.jpg</a>
 caption
@@ -2737,7 +2737,7 @@ caption
 			</div>
 		</li>
 		<li class="gallerybox" style="width: 155px">
-			<div class="thumb" style="height: 150px;">Nonexistent.jpg</div>
+			<div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent.jpg" class="new" title="File:Nonexistent.jpg"><span class="mw-broken-media" data-width="120" data-height="120">File:Nonexistent.jpg</span></a></span></div>
 			<div class="gallerytext">
 <p><a href="/wiki/File:Nonexistent.jpg" class="galleryfilename galleryfilename-truncate" title="File:Nonexistent.jpg">Nonexistent.jpg</a>
 </p>
@@ -2787,12 +2787,12 @@ foobar.jpg
 !! html/php
 <ul class="gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px">
-			<div class="thumb" style="height: 150px;">Nonexistent.jpg</div>
+			<div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent.jpg" class="new" title="File:Nonexistent.jpg"><span class="mw-broken-media" data-width="120" data-height="120">File:Nonexistent.jpg</span></a></span></div>
 			<div class="gallerytext">
 			</div>
 		</li>
 		<li class="gallerybox" style="width: 155px">
-			<div class="thumb" style="height: 150px;">Nonexistent.jpg</div>
+			<div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent.jpg" class="new" title="File:Nonexistent.jpg"><span class="mw-broken-media" data-width="120" data-height="120">File:Nonexistent.jpg</span></a></span></div>
 			<div class="gallerytext">
 			</div>
 		</li>
