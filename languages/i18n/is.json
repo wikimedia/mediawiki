@@ -1937,7 +1937,7 @@
 	"categoriespagetext": "Eftirfarandi {{PLURAL:$1|flokkur er til|flokkar eru til}} á wiki-inu, og geta verið notaðir eða ekki.\nSjá einnig [[Special:WantedCategories|eftirsótta flokka]].",
 	"categoriesfrom": "Sýna flokka frá:",
 	"deletedcontributions": "Eyddar breytingar notanda",
-	"deletedcontributions-title": "Eyddar breytingar notanda í $1",
+	"deletedcontributions-title": "Eyddar breytingar notandans $1",
 	"sp-deletedcontributions-contribs": "Framlög",
 	"linksearch": "Leita að útværum tenglum",
 	"linksearch-pat": "Leitarmynstur:",
