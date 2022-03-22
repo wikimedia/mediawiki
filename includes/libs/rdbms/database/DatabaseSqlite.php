@@ -633,7 +633,7 @@ class DatabaseSqlite extends Database {
 		return $errno == 17; // SQLITE_SCHEMA;
 	}
 
-	protected function wasKnownStatementRollbackError() {
+	protected function isKnownStatementRollbackError( $errno ) {
 		// ON CONFLICT ROLLBACK clauses make it so that SQLITE_CONSTRAINT error is
 		// ambiguous with regard to whether it implies a ROLLBACK or an ABORT happened.
 		// https://sqlite.org/lang_createtable.html#uniqueconst

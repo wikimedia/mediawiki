@@ -77,6 +77,8 @@ because of Phabricator reports.
   - ::fetchRow()
   - ::numRows()
   - ::freeResult()
+* Database::wasKnownStatementRollbackError() was removed. Subclasses should
+  override isKnownStatementRollbackError() instead.
 * …
 
 === Deprecations in 1.39 ===
