@@ -152,7 +152,7 @@ $wgSettings = new SettingsBuilder(
 );
 
 // If MW_USE_CONFIG_SCHEMA, use the experimental setup based on config-schema.yaml. See T300129.
-if ( getenv( 'MW_USE_CONFIG_SCHEMA' ) ) {
+if ( getenv( 'MW_USE_CONFIG_SCHEMA' ) || defined( 'MW_USE_CONFIG_SCHEMA' ) ) {
 	$wgSettings->load( new PhpSettingsSource( "$IP/includes/config-schema.php" ) );
 } else {
 	require_once "$IP/includes/DefaultSettings.php";
