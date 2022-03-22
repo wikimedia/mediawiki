@@ -1,3 +1,5 @@
+@import 'mediawiki.mixins';
+
 /*
  * Styling for Special:Watchlist and Special:RecentChanges
  */
@@ -43,4 +45,8 @@
    This is overridden in mw.ui.rcfilters.ChangesListWrapperWidget.less if RCFilters is enabled. */
 .mw-rcfilters-ui-highlights {
 	display: none;
+}
+
+.mw-index-pager-list-header {
+	.mixin-screen-reader-text();
 }
