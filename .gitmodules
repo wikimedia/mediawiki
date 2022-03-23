@@ -465,7 +465,7 @@
 	ignore = dirty
 [submodule "skins/foreground"]
 	path = skins/foreground
-	url = https://github.com/thingles/foreground
+	url = https://github.com/jthingelstad/foreground
 	branch = master
 	ignore = dirty
 [submodule "extensions/AddHTMLMetaAndTitle"]
