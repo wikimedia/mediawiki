@@ -1212,29 +1212,30 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$tempTableChanges = [];
 		}
 
-		// Add trace comment to the begin of the sql string, right after the operator.
-		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (T44598).
-		// NOTE: Don't add varying ids such as request id or session id to the comment.
-		// It would break aggregation of similar queries in analysis tools (see T193050#7512149)
-		$encName = preg_replace( '/[\x00-\x1F\/]/', '-', "$fname {$this->agent}" );
-		$commentedSql = preg_replace( '/\s|$/', " /* $encName */ ", $sql, 1 );
+		// Add agent and calling method comments to the SQL
+		$commentedSql = $this->makeCommentedSql( $sql, $fname );
+		// Whether a silent retry attempt is left for recoverable connection loss errors
+		$retryLeft = !$this->fieldHasBit( $flags, self::QUERY_NO_RETRY );
 
 		$corruptedTrx = false;
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 
-		// Send the query to the server and fetch any corresponding errors.
-		// This also doubles as a "ping" to see if the connection was dropped.
-		list( $ret, $err, $errno, $recoverableSR, $recoverableCL, $reconnected ) =
-			$this->executeQueryAttempt( $sql, $commentedSql, $isPermWrite, $fname, $flags );
-
-		// Check if the query failed due to a recoverable connection loss
-		$allowRetry = !$this->fieldHasBit( $flags, self::QUERY_NO_RETRY );
-		if ( $ret === false && $recoverableCL && $reconnected && $allowRetry ) {
-			// Silently resend the query to the server since it is safe and possible
-			list( $ret, $err, $errno, $recoverableSR, $recoverableCL ) =
+		do {
+			// Start a DBO_TRX wrapper transaction as needed (throw an error on failure)
+			if ( $this->beginIfImplied( $sql, $fname, $flags ) ) {
+				// Since begin() was called, any connection loss already handled
+				$retryLeft = false;
+			}
+			// Send the query to the server, fetching any results and corresponding errors
+			list( $ret, $err, $errno, $recoverableSR, $recoverableCL, $reconnected ) =
 				$this->executeQueryAttempt( $sql, $commentedSql, $isPermWrite, $fname, $flags );
-		}
+			// Silently retry the query if the error was just a recoverable connection loss
+			if ( !$retryLeft ) {
+				break;
+			}
+			$retryLeft = false;
+		} while ( $ret === false && $recoverableCL && $reconnected );
 
 		// Register creation and dropping of temporary tables
 		$this->registerTempWrites( $ret, $tempTableChanges );
@@ -1281,10 +1282,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	private function executeQueryAttempt( $sql, $commentedSql, $isPermWrite, $fname, $flags ) {
 		$priorWritesPending = $this->writesOrCallbacksPending();
-
-		if ( ( $flags & self::QUERY_IGNORE_DBO_TRX ) == 0 ) {
-			$this->beginIfImplied( $sql, $fname );
-		}
 
 		// Keep track of whether the transaction has write queries pending
 		if ( $isPermWrite ) {
@@ -1376,20 +1373,43 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * @param string $sql
+	 * @param string $fname
+	 * @return string
+	 */
+	private function makeCommentedSql( $sql, $fname ): string {
+		// Add trace comment to the begin of the sql string, right after the operator.
+		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (T44598).
+		// NOTE: Don't add varying ids such as request id or session id to the comment.
+		// It would break aggregation of similar queries in analysis tools (see T193050#7512149)
+		$encName = preg_replace( '/[\x00-\x1F\/]/', '-', "$fname {$this->agent}" );
+
+		return preg_replace( '/\s|$/', " /* $encName */ ", $sql, 1 );
+	}
+
+	/**
 	 * Start an implicit transaction if DBO_TRX is enabled and no transaction is active
 	 *
 	 * @param string $sql
 	 * @param string $fname
+	 * @param int $flags
+	 * @return bool Whether an implicit transaction was started
+	 * @throws DBError
 	 */
-	private function beginIfImplied( $sql, $fname ) {
+	private function beginIfImplied( $sql, $fname, $flags ) {
 		if (
+			!$this->fieldHasBit( $flags, self::QUERY_IGNORE_DBO_TRX ) &&
 			!$this->trxLevel() &&
 			$this->getFlag( self::DBO_TRX ) &&
 			$this->isTransactableQuery( $sql )
 		) {
 			$this->begin( __METHOD__ . " ($fname)", self::TRANSACTION_INTERNAL );
 			$this->transactionManager->turnOnAutomatic();
+
+			return true;
 		}
+
+		return false;
 	}
 
 	/**
