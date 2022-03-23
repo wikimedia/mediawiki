@@ -106,6 +106,7 @@ class SettingsBuilder {
 	public function load( SettingsSource $source ): self {
 		$this->assertNotFinished();
 
+		// XXX: We may want to cache the entire batch instead, see T304493.
 		$this->currentBatch[] = $this->wrapSource( $source );
 
 		return $this;
@@ -204,6 +205,8 @@ class SettingsBuilder {
 		$this->assertNotFinished();
 		$this->config = null;
 
+		// XXX: We may want to cache the entire batch after merging together
+		//      settings from all sources, see T304493.
 		$allSettings = $this->loadRecursive( $this->currentBatch );
 
 		foreach ( $allSettings as $settings ) {
