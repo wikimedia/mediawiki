@@ -85,6 +85,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			$title = Title::newFromText( $titleStr );
 			if ( !$title ) {
 				$title = $this->getPageTitle();
+				$options->setTargetLanguage( $this->getContentLanguage() );
 			}
 
 			if ( $generateXML ) {
