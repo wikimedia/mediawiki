@@ -1162,7 +1162,7 @@
 	"userrights-lookup-user": "Pilih satunggil sang anganggé",
 	"userrights-user-editname": "Dagingin peséngan sang anganggé:",
 	"editusergroup": "Buka sekaa sang anganggé",
-	"editinguser": "Nguahin hak sang anganggé antuk {{GENDER:$1|sang anganggé}} <strong>[[User:$1|$1]]</strong> $2",
+	"editinguser": "Nguahin hak sang anganggé saking {{GENDER:$1|sang anganggé}} <strong>[[User:$1|$1]]</strong> $2",
 	"viewinguserrights": "Nyingakin hak sang anganggé saking {{GENDER:$1|sang anganggé}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Uah pupulan {{GENDER:$1|sang anganggé}}",
 	"userrights-viewusergroup": "Cingak pupulan {{GENDER:$1|sang anganggé}}",

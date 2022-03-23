@@ -221,6 +221,7 @@
 	"config-logo-icon-help": "Tu icone de logo debe esser quadrate e idealmente haber plus de 50px o esser in formato SVG.",
 	"config-logo-wordmark": "Marca de parola (optional)",
 	"config-logo-wordmark-help": "Le nomine de tu sito. Si non definite, isto generalmente recurrera al texto. Idealmente un SVG con altitude minus de o equal a 30px.",
+	"config-logo-tagline": "Slogan (optional)",
 	"config-instantcommons": "Activar \"Instant Commons\"",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] es un function que permitte a wikis de usar imagines, sonos e altere multimedia trovate in le sito [https://commons.wikimedia.org/ Wikimedia Commons].\nPro poter facer isto, MediaWiki require accesso a Internet.\n\nPro saper plus, p.ex. como configurar lo pro wikis altere que Wikimedia Commons, consulta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos le manual].",
 	"config-cc-error": "Le selector de licentia Creative Commons non dava un resultato.\nEntra le nomine del licentia manualmente.",
