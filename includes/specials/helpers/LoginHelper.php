@@ -66,9 +66,11 @@ class LoginHelper extends ContextSource {
 	 * @param array|string $returnToQuery
 	 * @param bool $stickHTTPS Keep redirect link on HTTPS. Ignored (treated as
 	 *   true) if $wgForceHTTPS is true.
+	 * @param string $returnToAnchor A string to append to the URL, presumed to
+	 *   be either a fragment including the leading hash or an empty string.
 	 */
 	public function showReturnToPage(
-		$type, $returnTo = '', $returnToQuery = '', $stickHTTPS = false
+		$type, $returnTo = '', $returnToQuery = '', $stickHTTPS = false, $returnToAnchor = ''
 	) {
 		$config = $this->getConfig();
 		if ( $type !== 'error' && $config->get( MainConfigNames::RedirectOnLogin ) !== null ) {
@@ -97,7 +99,8 @@ class LoginHelper extends ContextSource {
 		}
 
 		if ( $type === 'successredirect' ) {
-			$redirectUrl = $returnToTitle->getFullUrlForRedirect( $returnToQuery, $proto );
+			$redirectUrl = $returnToTitle->getFullUrlForRedirect( $returnToQuery, $proto )
+				. $returnToAnchor;
 			$this->getOutput()->redirect( $redirectUrl );
 		} else {
 			$this->getOutput()->addReturnTo( $returnToTitle, $returnToQuery, null, $options );
