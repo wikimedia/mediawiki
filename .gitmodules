@@ -450,7 +450,7 @@
 	ignore = dirty
 [submodule "extensions/CreateWiki"]
 	path = extensions/CreateWiki
-	url = https://github.com/Miraheze/CreateWiki
+	url = https://github.com/miraheze/CreateWiki
 	branch = master
 	ignore = dirty
 [submodule "extensions/MirahezeMagic"]
@@ -535,7 +535,7 @@
 	ignore = dirty
 [submodule "extensions/Maps"]
 	path = extensions/Maps
-	url = https://github.com/JeroenDeDauw/Maps
+	url = https://github.com/ProfessionalWiki/Maps
 	branch = master
 	ignore = dirty
 [submodule "extensions/MassEditRegex"]
@@ -1075,7 +1075,7 @@
 	ignore = dirty
 [submodule "extensions/FontAwesome"]
 	path = extensions/FontAwesome
-	url = https://github.com/cmln/mw-font-awesome
+	url = https://github.com/ProfessionalWiki/FontAwesome
 	branch = master
 	ignore = dirty
 [submodule "extensions/Preloader"]
@@ -1330,7 +1330,7 @@
 	ignore = dirty
 [submodule "extensions/VariablesLua"]
 	path = extensions/VariablesLua
-	url = https://github.com/Liquipedia/VariablesLua/
+	url = https://github.com/Liquipedia/VariablesLua
 	branch = master
 	ignore = dirty
 [submodule "extensions/MsCatSelect"]
@@ -1375,7 +1375,7 @@
 	ignore = dirty
 [submodule "extensions/SecureLinkFixer"]
 	path = extensions/SecureLinkFixer
-	url = https://github.com/wikimedia/mediawiki-extensions-securelinkfixer
+	url = https://github.com/wikimedia/mediawiki-extensions-SecureLinkFixer
 	branch = REL1_38
 	ignore = dirty
 [submodule "extensions/PageAssessments"]
