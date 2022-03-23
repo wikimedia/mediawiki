@@ -1226,7 +1226,10 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	protected function isConnectionError( $errno ) {
-		return $errno == 2013 || $errno == 2006;
+		// https://mariadb.com/kb/en/mariadb-error-codes/
+		// https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html
+		// https://dev.mysql.com/doc/mysql-errors/8.0/en/client-error-reference.html
+		return in_array( $errno, [ 2013, 2006, 2003, 1927, 1053 ], true );
 	}
 
 	protected function isKnownStatementRollbackError( $errno ) {
