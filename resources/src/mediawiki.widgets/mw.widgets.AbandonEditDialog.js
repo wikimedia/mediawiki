@@ -8,6 +8,8 @@
 /**
  * Confirm dialog shown when the users is leaving an editor without saving
  *
+ * The `useeditwarning` user option should be checked before showing this dialog.
+ *
  * @class
  * @extends OO.ui.MessageDialog
  *
