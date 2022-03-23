@@ -415,57 +415,73 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	public function run( TestResult $result = null ): TestResult {
-		$this->overrideMwServices();
-
-		if ( $this->needsDB() && !$this->isTestInDatabaseGroup() ) {
-			throw new Exception(
-				get_class( $this ) . ' apparently needsDB but is not in the Database group'
-			);
+		if ( $result === null ) {
+			$result = $this->createResult();
 		}
 
-		$needsResetDB = false;
-		if ( !self::$dbSetup || $this->needsDB() ) {
-			// set up a DB connection for this test to use
+		try {
+			$this->overrideMwServices();
 
-			$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
-
-			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-			$this->db = $lb->getConnection( DB_PRIMARY );
-
-			$this->checkDbIsSupported();
-
-			if ( !self::$dbSetup ) {
-				self::setupAllTestDBs(
-					$this->db, $this->dbPrefix(), $useTemporaryTables
+			if ( $this->needsDB() && !$this->isTestInDatabaseGroup() ) {
+				throw new LogicException(
+					get_class( $this ) . ' apparently needsDB but is not in the Database group'
 				);
-				$this->addCoreDBData();
 			}
 
-			// TODO: the DB setup should be done in setUpBeforeClass(), so the test DB
-			// is available in subclass's setUpBeforeClass() and setUp() methods.
-			// This would also remove the need for the HACK that is oncePerClass().
-			if ( $this->oncePerClass() ) {
-				$this->setUpSchema( $this->db );
-				$this->resetDB( $this->db, $this->tablesUsed );
-				$this->addDBDataOnce();
-			}
+			$needsResetDB = false;
+			if ( !self::$dbSetup || $this->needsDB() ) {
+				// Set up a DB connection for this test to use
+				$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
 
-			$this->addDBData();
-			$needsResetDB = true;
+				$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+				$this->db = $lb->getConnection( DB_PRIMARY );
+
+				$this->checkDbIsSupported();
+
+				if ( !self::$dbSetup ) {
+					self::setupAllTestDBs(
+						$this->db, $this->dbPrefix(), $useTemporaryTables
+					);
+					$this->addCoreDBData();
+				}
+
+				// TODO: the DB setup should be done in setUpBeforeClass(), so the test DB
+				// is available in subclass's setUpBeforeClass() and setUp() methods.
+				// This would also remove the need for the HACK that is oncePerClass().
+				if ( $this->oncePerClass() ) {
+					$this->setUpSchema( $this->db );
+					$this->resetDB( $this->db, $this->tablesUsed );
+					$this->addDBDataOnce();
+				}
+
+				$this->addDBData();
+				$needsResetDB = true;
+			}
+		} catch ( Throwable $e ) {
+			$result->stop();
+			$result->addError( $this, $e, 0 );
+
+			return $result;
 		}
 
 		parent::run( $result );
 
-		// We don't mind if we override already-overridden services during cleanup
-		$this->overriddenServices = [];
-		$this->temporaryHookHandlers = [];
+		try {
+			// We don't mind if we override already-overridden services during cleanup
+			$this->overriddenServices = [];
+			$this->temporaryHookHandlers = [];
 
-		if ( $needsResetDB ) {
-			$this->resetDB( $this->db, $this->tablesUsed );
+			if ( $needsResetDB ) {
+				$this->resetDB( $this->db, $this->tablesUsed );
+			}
+
+			self::restoreMwServices();
+			$this->localServices = null;
+		} catch ( Throwable $e ) {
+			$result->stop();
+			$result->addError( $this, $e, 0 );
 		}
 
-		self::restoreMwServices();
-		$this->localServices = null;
 		return $result;
 	}
 
