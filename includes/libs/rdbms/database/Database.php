@@ -119,12 +119,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var int[] Prior flags member variable values */
 	private $priorFlags = [];
 
-	/** @var array<string,float> Map of (name => UNIX timestamp) for locks obtained via lock() */
+	/** @var array<string,array> Map of (name => (UNIX time,trx ID)) for current lock() mutexes */
 	protected $sessionNamedLocks = [];
-	/** @var array Map of (table name => 1) for current TEMPORARY tables */
+	/** @var array<string,array> Map of (name => (type,pristine,trx ID)) for current temp tables */
 	protected $sessionTempTables = [];
-	/** @var array Map of (table name => 1) for current TEMPORARY tables */
-	protected $sessionDirtyTempTables = [];
 
 	/** @var array|null Replication lag estimate at the time of BEGIN for the last transaction */
 	private $trxReplicaLagStatus = null;
@@ -1086,8 +1084,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( $queryVerb === 'CREATE' ) {
 				// Record the type of temporary table being created
 				$tableType = $pseudoPermanent ? self::TEMP_PSEUDO_PERMANENT : self::TEMP_NORMAL;
+			} elseif ( isset( $this->sessionTempTables[$table] ) ) {
+				$tableType = $this->sessionTempTables[$table]['type'];
 			} else {
-				$tableType = $this->sessionTempTables[$table] ?? null;
+				$tableType = null;
 			}
 
 			if ( $tableType !== null ) {
@@ -1110,17 +1110,24 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		foreach ( $changes as list( $tmpTableType, $verb, $table ) ) {
 			switch ( $verb ) {
 				case 'CREATE':
-					$this->sessionTempTables[$table] = $tmpTableType;
+					$this->sessionTempTables[$table] = [
+						'type' => $tmpTableType,
+						'pristine' => true,
+						'trxId' => $this->transactionManager->getTrxId()
+					];
 					break;
 				case 'DROP':
 					unset( $this->sessionTempTables[$table] );
-					unset( $this->sessionDirtyTempTables[$table] );
 					break;
 				case 'TRUNCATE':
-					unset( $this->sessionDirtyTempTables[$table] );
+					if ( isset( $this->sessionTempTables[$table] ) ) {
+						$this->sessionTempTables[$table]['pristine'] = true;
+					}
 					break;
 				default:
-					$this->sessionDirtyTempTables[$table] = 1;
+					if ( isset( $this->sessionTempTables[$table] ) ) {
+						$this->sessionTempTables[$table]['pristine'] = false;
+					}
 					break;
 			}
 		}
@@ -1136,10 +1143,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected function isPristineTemporaryTable( $table ) {
 		$rawTable = $this->tableName( $table, 'raw' );
 
-		return (
-			isset( $this->sessionTempTables[$rawTable] ) &&
-			!isset( $this->sessionDirtyTempTables[$rawTable] )
-		);
+		return isset( $this->sessionTempTables[$rawTable] )
+			? $this->sessionTempTables[$rawTable]['pristine']
+			: false;
 	}
 
 	public function query( $sql, $fname = __METHOD__, $flags = self::QUERY_NORMAL ) {
@@ -1503,7 +1509,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// https://dev.mysql.com/doc/refman/5.7/en/implicit-commit.html
 		// https://www.postgresql.org/docs/9.2/static/sql-createtable.html (ignoring ON COMMIT)
 		$this->sessionTempTables = [];
-		$this->sessionDirtyTempTables = [];
 		// https://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_get-lock
 		// https://www.postgresql.org/docs/9.4/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$this->sessionNamedLocks = [];
@@ -1512,7 +1517,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Clear additional subclass fields
 		$oldTrxId = $this->transactionManager->consumeTrxId();
 		$this->doHandleSessionLossPreconnect();
-		$this->transactionManager->transactionWritingOut( $this, $oldTrxId );
+		$this->transactionManager->transactionWritingOut( $this, (string)$oldTrxId );
 	}
 
 	/**
@@ -5111,22 +5116,22 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$lockTsUnix = $this->doLock( $lockName, $method, $timeout );
 		if ( $lockTsUnix !== null ) {
 			$locked = true;
-			$this->sessionNamedLocks[$lockName] = $lockTsUnix;
+			$this->sessionNamedLocks[$lockName] = [
+				'ts' => $lockTsUnix,
+				'trxId' => $this->transactionManager->getTrxId()
+			];
 		} else {
 			$locked = false;
-			$this->queryLogger->info( __METHOD__ . " failed to acquire lock '{lockname}'",
+			$this->queryLogger->info(
+				__METHOD__ . " failed to acquire lock '{lockname}'",
 				[
 					'lockname' => $lockName,
 					'db_log_category' => 'locking'
-				] );
+				]
+			);
 		}
 
-		if ( $this->fieldHasBit( $flags, self::LOCK_TIMESTAMP ) ) {
-			// @phan-suppress-next-line PhanTypeMismatchReturnNullable Possible null is documented on the constant
-			return $lockTsUnix;
-		} else {
-			return $locked;
-		}
+		return $this->fieldHasBit( $flags, self::LOCK_TIMESTAMP ) ? $lockTsUnix : $locked;
 	}
 
 	/**
