@@ -135,6 +135,11 @@ class ExtensionRegistry {
 	private static $instance;
 
 	/**
+	 * @var ?BagOStuff
+	 */
+	private $cache = null;
+
+	/**
 	 * @codeCoverageIgnore
 	 * @return ExtensionRegistry
 	 */
@@ -144,6 +149,18 @@ class ExtensionRegistry {
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	 * Set the cache to use for extension info.
+	 * Intended for use during testing.
+	 *
+	 * @internal
+	 *
+	 * @param BagOStuff $cache
+	 */
+	public function setCache( BagOStuff $cache ): void {
+		$this->cache = $cache;
 	}
 
 	/**
@@ -188,9 +205,13 @@ class ExtensionRegistry {
 	}
 
 	private function getCache(): BagOStuff {
-		// Can't call MediaWikiServices here, as we must not cause services
-		// to be instantiated before extensions have loaded.
-		return ObjectCache::makeLocalServerCache();
+		if ( !$this->cache ) {
+			// Can't call MediaWikiServices here, as we must not cause services
+			// to be instantiated before extensions have loaded.
+			return ObjectCache::makeLocalServerCache();
+		}
+
+		return $this->cache;
 	}
 
 	private function makeCacheKey( BagOStuff $cache, $component, ...$extra ) {
@@ -433,7 +454,7 @@ class ExtensionRegistry {
 		}
 
 		// FIXME: It was a design mistake to handle autoloading separately (T240535)
-		$data['globals']['wgAutoloadClasses'] = $autoloadClasses;
+		$data['globals']['wgAutoloadClasses'] = $autoloadClasses; // NOTE: used by Installer!
 		$data['autoloaderPaths'] = $autoloaderPaths;
 		$data['autoloaderNS'] = $autoloadNamespaces;
 		return $data;
@@ -452,12 +473,12 @@ class ExtensionRegistry {
 	) {
 		if ( isset( $info['AutoloadClasses'] ) ) {
 			$autoload = self::processAutoLoader( $dir, $info['AutoloadClasses'] );
-			$GLOBALS['wgAutoloadClasses'] += $autoload;
+			AutoLoader::registerClasses( $autoload );
 			$autoloadClasses += $autoload;
 		}
 		if ( isset( $info['AutoloadNamespaces'] ) ) {
 			$autoloadNamespaces += self::processAutoLoader( $dir, $info['AutoloadNamespaces'] );
-			AutoLoader::$psr4Namespaces += $autoloadNamespaces;
+			AutoLoader::registerNamespaces( $autoloadNamespaces );
 		}
 	}
 
@@ -475,12 +496,12 @@ class ExtensionRegistry {
 	) {
 		if ( isset( $info['TestAutoloadClasses'] ) ) {
 			$autoload = self::processAutoLoader( $dir, $info['TestAutoloadClasses'] );
-			$GLOBALS['wgAutoloadClasses'] += $autoload;
+			AutoLoader::registerClasses( $autoload );
 			$autoloadClasses += $autoload;
 		}
 		if ( isset( $info['TestAutoloadNamespaces'] ) ) {
 			$autoloadNamespaces += self::processAutoLoader( $dir, $info['TestAutoloadNamespaces'] );
-			AutoLoader::$psr4Namespaces += $autoloadNamespaces;
+			AutoLoader::registerNamespaces( $autoloadNamespaces );
 		}
 	}
 
@@ -536,7 +557,7 @@ class ExtensionRegistry {
 		}
 
 		if ( isset( $info['autoloaderNS'] ) ) {
-			AutoLoader::$psr4Namespaces += $info['autoloaderNS'];
+			AutoLoader::registerNamespaces( $info['autoloaderNS'] );
 		}
 
 		foreach ( $info['defines'] as $name => $val ) {
