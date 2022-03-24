@@ -106,8 +106,8 @@ exports.config = {
 	},
 	// See also: https://webdriver.io/docs/dot-reporter.html
 	reporters: [
-		// See also: https://webdriver.io/docs/dot-reporter/
-		'dot',
+		// See also: https://webdriver.io/docs/spec-reporter/
+		'spec',
 		// See also: https://webdriver.io/docs/junit-reporter/
 		[ 'junit', {
 			outputDir: logPath,
