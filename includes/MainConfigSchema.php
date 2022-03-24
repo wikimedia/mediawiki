@@ -1218,6 +1218,16 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * If true, the value of $wgCopyUploadsDomains will be merged with the
+	 * contents of MediaWiki:Copyupload-allowed-domains.
+	 *
+	 * @since 1.39
+	 */
+	public const CopyUploadAllowOnWikiDomainConfig = [
+		'default' => false,
+	];
+
+	/**
 	 * Max size for uploads, in bytes.
 	 *
 	 * If not set to an array, applies to all uploads. If set to an array, per upload

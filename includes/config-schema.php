@@ -293,6 +293,9 @@ return [
 				1 => 'integer',
 			],
 		],
+		'CopyUploadAllowOnWikiDomainConfig' => [
+			'default' => false,
+		],
 		'MaxUploadSize' => [
 			'default' => 104857600,
 		],

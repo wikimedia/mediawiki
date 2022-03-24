@@ -75,8 +75,8 @@ class UploadFromUrl extends UploadBase {
 	 * @return bool
 	 */
 	public static function isAllowedHost( $url ) {
-		$copyUploadsDomains = MediaWikiServices::getInstance()->getMainConfig()->get( 'CopyUploadsDomains' );
-		if ( !count( $copyUploadsDomains ) ) {
+		$domains = self::getAllowedHosts();
+		if ( !count( $domains ) ) {
 			return true;
 		}
 		$parsedUrl = wfParseUrl( $url );
@@ -84,7 +84,7 @@ class UploadFromUrl extends UploadBase {
 			return false;
 		}
 		$valid = false;
-		foreach ( $copyUploadsDomains as $domain ) {
+		foreach ( $domains as $domain ) {
 			// See if the domain for the upload matches this allowed domain
 			$domainPieces = explode( '.', $domain );
 			$uploadDomainPieces = explode( '.', $parsedUrl['host'] );
@@ -110,6 +110,31 @@ class UploadFromUrl extends UploadBase {
 		}
 
 		return $valid;
+	}
+
+	/**
+	 * @return string[]
+	 */
+	private static function getAllowedHosts(): array {
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$domains = $config->get( 'CopyUploadsDomains' );
+
+		if ( $config->get( 'CopyUploadAllowOnWikiDomainConfig' ) ) {
+			$page = wfMessage( 'copyupload-allowed-domains' )->inContentLanguage()->plain();
+
+			foreach ( explode( "\n", $page ) as $line ) {
+				// Strip comments
+				$line = preg_replace( "/^\\s*([^#]*)\\s*((.*)?)$/", "\\1", $line );
+				// Trim whitespace
+				$line = trim( $line );
+
+				if ( $line !== '' ) {
+					$domains[] = $line;
+				}
+			}
+		}
+
+		return $domains;
 	}
 
 	/**

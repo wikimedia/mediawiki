@@ -425,6 +425,12 @@ class MainConfigNames {
 	public const CopyUploadTimeout = 'CopyUploadTimeout';
 
 	/**
+	 * Name constant for the CopyUploadAllowOnWikiDomainConfig setting, for use with Config::get()
+	 * @see MainConfigSchema::CopyUploadAllowOnWikiDomainConfig
+	 */
+	public const CopyUploadAllowOnWikiDomainConfig = 'CopyUploadAllowOnWikiDomainConfig';
+
+	/**
 	 * Name constant for the MaxUploadSize setting, for use with Config::get()
 	 * @see MainConfigSchema::MaxUploadSize
 	 */

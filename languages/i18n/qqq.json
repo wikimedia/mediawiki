@@ -4677,5 +4677,6 @@
 	"skin-action-protect": "Name of protect tab displayed for admins. Should be in the infinitive mood.\n\nSee also:\n* {{msg-mw|Protect}}\n* {{msg-mw|Accesskey-ca-protect}}\n* {{msg-mw|Tooltip-ca-protect}}\n{{Identical|Protect}}",
 	"skin-action-undelete": "Tab at top of page, in vector skin.\n{{Identical|Undelete}}",
 	"skin-action-delete": "Used in the Vector skin, as the name of a tab at the top of the page. See for example {{canonicalurl:Translating:MediaWiki|useskin=vector}}\n\n{{Identical|Delete}}",
-	"skin-action-move": "The \"Move\" action renames pages.\n\nUsed in the Vector skin, on the tabs at the top of the page. See for example {{canonicalurl:Talk:Main_Page|useskin=vector}}\n\n{{Identical|Move}}"
+	"skin-action-move": "The \"Move\" action renames pages.\n\nUsed in the Vector skin, on the tabs at the top of the page. See for example {{canonicalurl:Talk:Main_Page|useskin=vector}}\n\n{{Identical|Move}}",
+	"copyupload-allowed-domains": "{{notranslate}}"
 }
