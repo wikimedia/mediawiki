@@ -96,7 +96,7 @@ global $wgSQLMode, $wgLocalisationCacheConf,
 	$wgCacheDirectory, $wgEnableUploads, $wgCiteBookReferencing;
 
 // Enable MariaDB/MySQL strict mode (T108255)
-$wgSQLMode = 'STRICT_ALL_TABLES,ONLY_FULL_GROUP_BY';
+$wgSQLMode = 'TRADITIONAL';
 
 // Localisation Cache to StaticArray (T218207)
 $wgLocalisationCacheConf['store'] = 'array';
