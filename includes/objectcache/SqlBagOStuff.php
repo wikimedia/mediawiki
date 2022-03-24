@@ -187,11 +187,15 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 						"Config requires 'globalKeyLbDomain' if 'globalKeyLB' is set"
 					);
 				}
+				$writerIndex = $this->globalKeyLb->getWriterIndex();
+				$dbType = $this->globalKeyLb->getServerType( $writerIndex );
 			}
 			if ( isset( $params['localKeyLB'] ) ) {
 				$this->localKeyLb = ( $params['localKeyLB'] instanceof ILoadBalancer )
 					? $params['localKeyLB']
 					: ObjectFactory::getObjectFromSpec( $params['localKeyLB'] );
+				$writerIndex = $this->localKeyLb->getWriterIndex();
+				$dbType = $this->localKeyLb->getServerType( $writerIndex );
 			} else {
 				$this->localKeyLb = $this->globalKeyLb;
 			}
@@ -212,7 +216,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		if ( $params['multiPrimaryMode'] ?? false ) {
 			if ( $dbType !== 'mysql' ) {
-				throw new InvalidArgumentException( "Multi-primary mode only supports MySQL" );
+				throw new InvalidArgumentException(
+					"Multi-primary mode only supports MySQL (got '$dbType')"
+				);
 			}
 
 			$this->multiPrimaryModeType = $dbType;
