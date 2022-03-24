@@ -1077,7 +1077,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		} );
 
 		// sprintf is used to adjust precision
-		return (float)sprintf( '%.6f', $this->locks[$key][self::LOCK_TIME] );
+		return (float)sprintf( '%.6F', $this->locks[$key][self::LOCK_TIME] );
 	}
 
 	/**
@@ -1096,7 +1096,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		// which generally has fewer than 6 digits of meaningful precision but can still be useful
 		// in debugging (to see the token continuously change even during rapid testing).
 		$seconds = (int)$mtime;
-		list( , $microseconds ) = explode( '.', sprintf( '%.6f', $mtime ) );
+		list( , $microseconds ) = explode( '.', sprintf( '%.6F', $mtime ) );
 
 		$id = $db->getTopologyBasedServerId() ?? sprintf( '%u', crc32( $db->getServerName() ) );
 
