@@ -22,6 +22,9 @@ For notes on 1.38.x and older releases, see HISTORY.
 * …
 
 ==== New configuration ====
+* $wgCopyUploadAllowOnWikiDomainConfig – Configures if administrators can use
+  the MediaWiki:Copyupload-allowed-domains system message to define which
+  domains can be used with the upload-by-url tool.
 * …
 
 ==== Changed configuration ====

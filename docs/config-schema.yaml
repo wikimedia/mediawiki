@@ -758,6 +758,12 @@ config-schema:
             timeout longer than the default $wgHTTPTimeout. False means fallback
             to default.
             @since 1.22
+    CopyUploadAllowOnWikiDomainConfig:
+        default: false
+        description: |-
+            If true, the value of $wgCopyUploadsDomains will be merged with the
+            contents of MediaWiki:Copyupload-allowed-domains.
+            @since 1.39
     MaxUploadSize:
         default: 104857600
         description: |-
