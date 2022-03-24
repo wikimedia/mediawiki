@@ -94,27 +94,20 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideConfigGeneration
 	 */
 	public function testConfigGeneration( string $script, string $expectedFile ) {
-		$tmp = 'cache/testConfigGeneration.tmp';
-		$this->addTmpFiles( $tmp );
-
-		// Copy expected data into target file, since some scripts may do an in-place update.
-		file_put_contents( $tmp, file_get_contents( $expectedFile ) );
-
-		$schemaGenerator = Shell::makeScriptCommand( $script, [ '--output', $tmp ] );
+		$schemaGenerator = Shell::makeScriptCommand( $script, [ '--output', 'php://stdout' ] );
 		$result = $schemaGenerator->execute();
+		$this->assertSame( 0, $result->getExitCode(), 'Config generation must finish successfully' );
 
 		$errors = $result->getStderr();
 		$errors = preg_replace( '/^Xdebug:.*\n/m', '', $errors );
 		$this->assertSame( '', $errors, 'Config generation must not have errors' );
-		$this->assertSame( 0, $result->getExitCode(), 'Config generation must finish successfully' );
 
-		$oldGeneratedData = file_get_contents( $expectedFile );
-		$newGeneratedData = file_get_contents( $tmp );
+		$oldGeneratedSchema = file_get_contents( $expectedFile );
 		$relativePath = wfRelativePath( $script, MW_INSTALL_PATH );
 
 		$this->assertEquals(
-			$oldGeneratedData,
-			$newGeneratedData,
+			$oldGeneratedSchema,
+			$result->getStdout(),
 			"Configuration schema was changed. Rerun $relativePath script!"
 		);
 	}
