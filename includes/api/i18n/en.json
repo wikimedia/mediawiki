@@ -1977,5 +1977,5 @@
 	"api-usage-mailinglist-ref": "Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; for notice of API deprecations and breaking changes.",
 	"api-exception-trace": "$1 at $2($3)\n$4",
 	"api-credits-header": "Credits",
-	"api-credits": "API developers:\n* Yuri Astrakhan (creator, lead developer Sep 2006–Sep 2007)\n* Roan Kattouw (lead developer Sep 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (lead developer 2013–present)\n\nPlease send your comments, suggestions and questions to mediawiki-api@lists.wikimedia.org\nor file a bug report at https://phabricator.wikimedia.org/."
+	"api-credits": "API developers:\n* Yuri Astrakhan (creator, lead developer Sep 2006–Sep 2007)\n* Roan Kattouw (lead developer Sep 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (lead developer 2013–2020)\n\nPlease send your comments, suggestions and questions to mediawiki-api@lists.wikimedia.org\nor file a bug report at https://phabricator.wikimedia.org/."
 }
