@@ -102,12 +102,6 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 * "i18n-headings":
 	 *     Styles for line-heights of headings across different languages.
 	 *
-	 * "legacy":
-	 *     For backwards compatibility a legacy feature is provided.
-	 *     New skins should not use this if they can avoid doing so.
-	 *     This feature also contains `interface-message-box` and
-	 *     all `i18n-` prefixed features.
-	 *
 	 * "toc"
 	 *     Styling rules for the table of contents.
 	 *
@@ -157,11 +151,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			'screen' => [ 'resources/src/mediawiki.skinning/elements.less' ],
 			'print' => [ 'resources/src/mediawiki.skinning/elements-print.less' ],
 		],
-		'legacy' => [
-			'all' => [ 'resources/src/mediawiki.skinning/messageBoxes.less' ],
-			'print' => [ 'resources/src/mediawiki.skinning/commonPrint.less' ],
-			'screen' => [ 'resources/src/mediawiki.skinning/legacy.less' ],
-		],
+		// The styles of the legacy feature was removed in 1.39. This can be removed when no skins are referencing it
+		// (Dropping this line will trigger InvalidArgumentException: Feature 'legacy' is not recognised)
+		'legacy' => [],
 		'i18n-ordered-lists' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/i18n-ordered-lists.less' ],
 		],
@@ -197,13 +189,12 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 * Default for when the 'features' parameter is absent.
 	 *
 	 * For backward-compatibility, when the parameter is not declared
-	 * only 'logo' and 'legacy' styles are loaded.
+	 * only 'logo' styles are loaded.
 	 *
 	 * @var string[]
 	 */
 	private const DEFAULT_FEATURES_ABSENT = [
 		'logo',
-		'legacy',
 	];
 
 	private const LESS_MESSAGES = [
@@ -308,10 +299,11 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			$features[ 'content-links-external' ] = $features[ 'content-links' ];
 		}
 
-		// The legacy feature is deprecated (T89981).
+		// The legacy feature no longer exists (T89981) but to avoid fatals in skins is retained.
 		if ( isset( $features['legacy'] ) && $features['legacy'] ) {
 			$messages .= '[1.37] The use of the `legacy` feature with ResourceLoaderSkinModule is deprecated'
-				. '(T89981). ';
+				. '(T89981) and is a NOOP since 1.39 (T304325). This should be urgently omited to retain compatibility '
+				. 'with future MediaWiki versions';
 		}
 
 		// The `content-links` feature was split out from `elements`.
