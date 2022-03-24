@@ -95,6 +95,9 @@ because of Phabricator reports.
   override isKnownStatementRollbackError() instead.
 * Database::wasQueryTimeoutError() was removed. Subclasses should
   override isQueryTimeoutError() instead.
+* Changes to ResourceLoader modules:
+  - The mediawiki.viewport module, deprecated in 1.37 has been
+     removed. Use IntersectionObserver instead.
 * Changes to skins:
   - The feature `legacy` used inside ResourceLoaderSkinModule,
     deprecated in 1.37, will no longer ship any styles.

@@ -31,7 +31,6 @@
 					"mw.plugin.*",
 					"mw.cookie",
 					"mw.experiments",
-					"mw.viewport",
 					"mw.visibleTimeout"
 				]
 			},
