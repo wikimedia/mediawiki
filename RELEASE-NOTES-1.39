@@ -82,6 +82,9 @@ because of Phabricator reports.
   - ::freeResult()
 * Database::wasKnownStatementRollbackError() was removed. Subclasses should
   override isKnownStatementRollbackError() instead.
+* Changes to skins:
+  - The feature `legacy` used inside ResourceLoaderSkinModule,
+    deprecated in 1.37, will no longer ship any styles.
 * …
 
 === Deprecations in 1.39 ===
