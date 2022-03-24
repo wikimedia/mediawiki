@@ -880,7 +880,10 @@ class Linker {
 		if ( ( $uploadMissingFileUrl || $uploadNavigationUrl || $enableUploads )
 			&& !$currentExists
 		) {
-			if ( $repoGroup->getLocalRepo()->checkRedirect( $title ) ) {
+			if (
+				$title->inNamespace( NS_FILE ) &&
+				$repoGroup->getLocalRepo()->checkRedirect( $title )
+			) {
 				// We already know it's a redirect, so mark it accordingly
 				return self::link(
 					$title,

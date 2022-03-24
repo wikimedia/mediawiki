@@ -2387,6 +2387,24 @@ image4    |300px| centre
 !! end
 
 !! test
+Gallery with line not in the file namespace
+!! config
+wgParserEnableLegacyMediaDOM=false
+!! wikitext
+<gallery>
+:'''''Albert Willimsky''' ''Geboren am 28.2.1890''
+</gallery>
+!! html/php
+<ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 155px">
+			<div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=%27%27%27%27%27Albert_Willimsky%27%27%27_%27%27Geboren_am_28.2.1890%27%27" class="new" title="&#39;&#39;&#39;&#39;&#39;Albert Willimsky&#39;&#39;&#39; &#39;&#39;Geboren am 28.2.1890&#39;&#39;"><span class="mw-broken-media" data-width="120" data-height="120">'''''Albert Willimsky''' ''Geboren am 28.2.1890''</span></a></span></div>
+			<div class="gallerytext">
+			</div>
+		</li>
+</ul>
+!! end
+
+!! test
 Gallery (with options, html)
 !! options
 parsoid={
