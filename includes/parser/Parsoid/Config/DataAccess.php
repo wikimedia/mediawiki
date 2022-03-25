@@ -28,6 +28,7 @@ use MediaWiki\BadFileLookup;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use Parser;
 use ParserFactory;
 use ReadOnlyMode;
@@ -53,6 +54,9 @@ class DataAccess extends IDataAccess {
 
 	/** @var HookContainer */
 	private $hookContainer;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/** @var ContentTransformer */
 	private $contentTransformer;
@@ -103,6 +107,8 @@ class DataAccess extends IDataAccess {
 		$this->hookContainer = $hookContainer;
 		$this->contentTransformer = $contentTransformer;
 		$this->readOnlyMode = $readOnlyMode;
+
+		$this->hookRunner = new HookRunner( $hookContainer );
 
 		// Use the same legacy parser object for all calls to extension tag
 		// processing, for greater compatibility.
@@ -186,9 +192,9 @@ class DataAccess extends IDataAccess {
 			$classes[$pdbk] = $obj->isRedirect() ? 'mw-redirect' : '';
 		}
 		$context_title = Title::newFromText( $pageConfig->getTitle() );
-		$this->hookContainer->run(
-			'GetLinkColours',
-			[ $pagemap, &$classes, $context_title ]
+		$this->hookRunner->onGetLinkColours(
+			# $classes is passed by reference and mutated
+			$pagemap, $classes, $context_title
 		);
 
 		foreach ( $titleObjs as $name => $obj ) {
@@ -363,9 +369,9 @@ class DataAccess extends IDataAccess {
 		string $wikitext
 	): string {
 		$parser = $this->prepareParser( $pageConfig, Parser::OT_PREPROCESS );
-		$this->hookContainer->run(
-			'ParserBeforePreprocess',
-			[ $parser, &$wikitext, $parser->getStripState() ]
+		$this->hookRunner->onParserBeforePreprocess(
+			# $wikitext is passed by reference and mutated
+			$parser, $wikitext, $parser->getStripState()
 		);
 		$wikitext = $parser->replaceVariables( $wikitext, $this->ppFrame );
 		// FIXME (T289545): StripState markers protect content that need to be protected from further
