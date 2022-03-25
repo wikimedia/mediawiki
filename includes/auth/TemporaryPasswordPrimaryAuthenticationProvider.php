@@ -22,7 +22,7 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserRigorOptions;
 use SpecialPage;
 use User;
 use Wikimedia\IPUtils;
@@ -138,7 +138,8 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return AuthenticationResponse::newAbstain();
 		}
 
-		$username = $this->userNameUtils->getCanonical( $req->username, UserNameUtils::RIGOR_USABLE );
+		$username = $this->userNameUtils->getCanonical(
+			$req->username, UserRigorOptions::RIGOR_USABLE );
 		if ( $username === false ) {
 			return AuthenticationResponse::newAbstain();
 		}
@@ -187,7 +188,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	}
 
 	public function testUserCanAuthenticate( $username ) {
-		$username = $this->userNameUtils->getCanonical( $username, UserNameUtils::RIGOR_USABLE );
+		$username = $this->userNameUtils->getCanonical( $username, UserRigorOptions::RIGOR_USABLE );
 		if ( $username === false ) {
 			return false;
 		}
@@ -215,7 +216,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	}
 
 	public function testUserExists( $username, $flags = User::READ_NORMAL ) {
-		$username = $this->userNameUtils->getCanonical( $username, UserNameUtils::RIGOR_USABLE );
+		$username = $this->userNameUtils->getCanonical( $username, UserRigorOptions::RIGOR_USABLE );
 		if ( $username === false ) {
 			return false;
 		}
@@ -242,7 +243,8 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return \StatusValue::newGood();
 		}
 
-		$username = $this->userNameUtils->getCanonical( $req->username, UserNameUtils::RIGOR_USABLE );
+		$username = $this->userNameUtils->getCanonical(
+			$req->username, UserRigorOptions::RIGOR_USABLE );
 		if ( $username === false ) {
 			return \StatusValue::newGood( 'ignored' );
 		}
@@ -300,7 +302,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 
 	public function providerChangeAuthenticationData( AuthenticationRequest $req ) {
 		$username = $req->username !== null ?
-			$this->userNameUtils->getCanonical( $req->username, UserNameUtils::RIGOR_USABLE ) : false;
+			$this->userNameUtils->getCanonical( $req->username, UserRigorOptions::RIGOR_USABLE ) : false;
 		if ( $username === false ) {
 			return;
 		}

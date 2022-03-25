@@ -26,7 +26,6 @@ namespace MediaWiki\User;
  * Shared interface for rigor levels when dealing with User methods
  *
  * @since 1.36
- * @internal
  */
 interface UserRigorOptions {
 

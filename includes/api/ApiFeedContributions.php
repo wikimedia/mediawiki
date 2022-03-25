@@ -31,6 +31,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserRigorOptions;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -163,7 +164,7 @@ class ApiFeedContributions extends ApiBase {
 		$params['end'] = '';
 		$params = ContribsPager::processDateFilter( $params );
 
-		$targetUser = $this->userFactory->newFromName( $target, UserFactory::RIGOR_NONE );
+		$targetUser = $this->userFactory->newFromName( $target, UserRigorOptions::RIGOR_NONE );
 
 		$pager = new ContribsPager(
 			$this->getContext(), [

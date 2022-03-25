@@ -31,7 +31,7 @@ use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
-use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserRigorOptions;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -1184,7 +1184,7 @@ abstract class ApiBase extends ContextSource {
 	public function getWatchlistUser( $params ) {
 		if ( $params['owner'] !== null && $params['token'] !== null ) {
 			$services = MediaWikiServices::getInstance();
-			$user = $services->getUserFactory()->newFromName( $params['owner'], UserFactory::RIGOR_NONE );
+			$user = $services->getUserFactory()->newFromName( $params['owner'], UserRigorOptions::RIGOR_NONE );
 			if ( !$user || !$user->isRegistered() ) {
 				$this->dieWithError(
 					[ 'nosuchusershort', wfEscapeWikiText( $params['owner'] ) ], 'bad_wlowner'

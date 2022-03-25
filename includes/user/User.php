@@ -39,7 +39,7 @@ use MediaWiki\Session\SessionManager;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserRigorOptions;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\IPUtils;
@@ -595,15 +595,15 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	public static function newFromName( $name, $validate = 'valid' ) {
 		// Backwards compatibility with strings / false
 		$validationLevels = [
-			'valid' => UserFactory::RIGOR_VALID,
-			'usable' => UserFactory::RIGOR_USABLE,
-			'creatable' => UserFactory::RIGOR_CREATABLE
+			'valid' => UserRigorOptions::RIGOR_VALID,
+			'usable' => UserRigorOptions::RIGOR_USABLE,
+			'creatable' => UserRigorOptions::RIGOR_CREATABLE
 		];
 		if ( $validate === true ) {
 			$validate = 'valid';
 		}
 		if ( $validate === false ) {
-			$validation = UserFactory::RIGOR_NONE;
+			$validation = UserRigorOptions::RIGOR_NONE;
 		} elseif ( array_key_exists( $validate, $validationLevels ) ) {
 			$validation = $validationLevels[ $validate ];
 		} else {
@@ -802,7 +802,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 */
 	public static function newSystemUser( $name, $options = [] ) {
 		$options += [
-			'validate' => UserNameUtils::RIGOR_VALID,
+			'validate' => UserRigorOptions::RIGOR_VALID,
 			'create' => true,
 			'steal' => false,
 		];
@@ -810,15 +810,15 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		// Username validation
 		// Backwards compatibility with strings / false
 		$validationLevels = [
-			'valid' => UserNameUtils::RIGOR_VALID,
-			'usable' => UserNameUtils::RIGOR_USABLE,
-			'creatable' => UserNameUtils::RIGOR_CREATABLE
+			'valid' => UserRigorOptions::RIGOR_VALID,
+			'usable' => UserRigorOptions::RIGOR_USABLE,
+			'creatable' => UserRigorOptions::RIGOR_CREATABLE
 		];
 		$validate = $options['validate'];
 
 		// @phan-suppress-next-line PhanSuspiciousValueComparison
 		if ( $validate === false ) {
-			$validation = UserNameUtils::RIGOR_NONE;
+			$validation = UserRigorOptions::RIGOR_NONE;
 		} elseif ( array_key_exists( $validate, $validationLevels ) ) {
 			$validation = $validationLevels[ $validate ];
 		} else {
@@ -827,7 +827,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			$validation = $validate;
 		}
 
-		if ( $validation !== UserNameUtils::RIGOR_VALID ) {
+		if ( $validation !== UserRigorOptions::RIGOR_VALID ) {
 			wfDeprecatedMsg(
 				__METHOD__ . ' options["validation"] parameter must be omitted or set to "valid".',
 				'1.36'

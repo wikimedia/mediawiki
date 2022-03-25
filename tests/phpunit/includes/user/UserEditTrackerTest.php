@@ -2,9 +2,9 @@
 
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\User\UserRigorOptions;
 
 /**
  * @covers \MediaWiki\User\UserEditTracker
@@ -106,7 +106,7 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetEditTimestamp_anon() {
 		$user = $this->getServiceContainer()->getUserFactory()
-			->newFromName( '127.0.0.1', UserFactory::RIGOR_NONE );
+			->newFromName( '127.0.0.1', UserRigorOptions::RIGOR_NONE );
 		$tracker = $this->getServiceContainer()->getUserEditTracker();
 		$this->editTrackerDoEdit( $user, '20200101000000', true );
 		$this->assertFalse( $tracker->getFirstEditTimestamp( $user ) );

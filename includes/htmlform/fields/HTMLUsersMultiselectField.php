@@ -1,7 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Widget\UsersMultiselectWidget;
 use Wikimedia\IPUtils;
 
@@ -41,7 +41,8 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 					$listOfIps[] = $parsedIPRange;
 				}
 			} else {
-				$canonicalUser = $userNameUtils->getCanonical( $user, UserNameUtils::RIGOR_NONE );
+				$canonicalUser = $userNameUtils->getCanonical(
+					$user, UserRigorOptions::RIGOR_NONE );
 			}
 			if ( $canonicalUser !== false ) {
 				$normalizedUsers[] = $canonicalUser;

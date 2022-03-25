@@ -23,8 +23,8 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReferenceValue;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserRigorOptions;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -284,7 +284,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 				// Use provided username if valid
 				$this->userIdentity = MediaWikiServices::getInstance()
 					->getUserFactory()
-					->newFromName( $username, UserFactory::RIGOR_VALID );
+					->newFromName( $username, UserRigorOptions::RIGOR_VALID );
 			}
 		}
 		return $this->userIdentity;

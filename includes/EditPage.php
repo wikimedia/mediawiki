@@ -58,9 +58,9 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Watchlist\WatchlistManager;
 use OOUI\CheckboxInputWidget;
 use OOUI\DropdownInputWidget;
@@ -2741,7 +2741,7 @@ class EditPage implements IEditObject {
 		if ( $namespace === NS_USER || $namespace === NS_USER_TALK ) {
 			$username = explode( '/', $this->mTitle->getText(), 2 )[0];
 			// Allow IP users
-			$validation = UserFactory::RIGOR_NONE;
+			$validation = UserRigorOptions::RIGOR_NONE;
 			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromName( $username, $validation );
 			$ip = $this->userNameUtils->isIP( $username );
 			$block = DatabaseBlock::newFromTarget( $user, $user );

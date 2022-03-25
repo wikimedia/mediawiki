@@ -27,7 +27,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Rest\HeaderParser\Origin;
 use MediaWiki\Session\SessionManager;
-use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserRigorOptions;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\TimestampException;
 
@@ -1810,7 +1810,7 @@ class ApiMain extends ApiBase {
 		if ( isset( $params['assertuser'] ) ) {
 			// TODO inject stuff, see T265644
 			$assertUser = MediaWikiServices::getInstance()->getUserFactory()
-				->newFromName( $params['assertuser'], UserFactory::RIGOR_NONE );
+				->newFromName( $params['assertuser'], UserRigorOptions::RIGOR_NONE );
 			if ( !$assertUser || !$this->getUser()->equals( $assertUser ) ) {
 				$this->dieWithError(
 					[ 'apierror-assertnameduserfailed', wfEscapeWikiText( $params['assertuser'] ) ]

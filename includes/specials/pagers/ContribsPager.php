@@ -27,8 +27,8 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserRigorOptions;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -184,7 +184,7 @@ class ContribsPager extends RangeChronologicalPager {
 			$this->target = $options['target'] ?? '';
 			// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty RIGOR_NONE never returns null
 			$this->targetUser = $services->getUserFactory()->newFromName(
-				$this->target, UserFactory::RIGOR_NONE
+				$this->target, UserRigorOptions::RIGOR_NONE
 			);
 			if ( !$this->targetUser ) {
 				// This can happen if the target contained "#". Callers

@@ -23,6 +23,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserRigorOptions;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\LoadBalancer;
 
@@ -157,7 +158,7 @@ class FindMissingActors extends Maintenance {
 			$this->fatalError( "Not a valid user name: '$name'" );
 		}
 
-		$name = $this->userNameUtils->getCanonical( $name, UserNameUtils::RIGOR_NONE );
+		$name = $this->userNameUtils->getCanonical( $name, UserRigorOptions::RIGOR_NONE );
 
 		if ( $user->isRegistered() ) {
 			$this->output( "Using existing user: '$user'\n" );

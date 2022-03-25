@@ -25,6 +25,7 @@
 
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserRigorOptions;
 
 /**
  * @ingroup Actions
@@ -108,7 +109,7 @@ class CreditsAction extends FormlessAction {
 	 */
 	private function getAuthor() {
 		$page = $this->getWikiPage();
-		$user = $this->userFactory->newFromName( $page->getUserText(), UserFactory::RIGOR_NONE );
+		$user = $this->userFactory->newFromName( $page->getUserText(), UserRigorOptions::RIGOR_NONE );
 
 		$timestamp = $page->getTimestamp();
 		if ( $timestamp ) {
