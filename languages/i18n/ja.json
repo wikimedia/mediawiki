@@ -2972,7 +2972,7 @@
 	"import-interwiki-history": "このページのすべての版を複製する",
 	"import-interwiki-templates": "すべてのテンプレートを含める",
 	"import-interwiki-submit": "取り込み",
-	"import-mapping-default": "既定の場所へインポートする",
+	"import-mapping-default": "既定の名前空間へインポートする",
 	"import-mapping-namespace": "名前空間を指定してインポート:",
 	"import-mapping-subpage": "以下のページのサブページとしてインポートする:",
 	"import-upload-filename": "ファイル名:",
