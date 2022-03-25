@@ -157,6 +157,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// The getVal() method performs slow Language+UTF logic. (f303bb9360)
 		$target = $context->getRequest()->getRawVal( 'target', 'desktop' );
 		$safemode = $context->getRequest()->getRawVal( 'safemode' ) === '1';
+		$skin = $context->getSkin();
 		// Bypass target filter if this request is Special:JavaScriptTest.
 		// To prevent misuse in production, this is only allowed if testing is enabled server-side.
 		$byPassTargetFilter = $this->getConfig()->get( 'EnableJavaScriptTest' ) && $target === 'test';
@@ -185,9 +186,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		foreach ( $moduleNames as $name ) {
 			$module = $resourceLoader->getModule( $name );
 			$moduleTargets = $module->getTargets();
+			$moduleSkins = $module->getSkins();
 			if (
 				( !$byPassTargetFilter && !in_array( $target, $moduleTargets ) )
 				|| ( $safemode && $module->getOrigin() > ResourceLoaderModule::ORIGIN_CORE_INDIVIDUAL )
+				|| ( $moduleSkins !== null && !in_array( $skin, $moduleSkins ) )
 			) {
 				continue;
 			}

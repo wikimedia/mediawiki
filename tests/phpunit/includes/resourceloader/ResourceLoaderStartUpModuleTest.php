@@ -283,6 +283,34 @@ mw.loader.register([
 ]);'
 			] ],
 			[ [
+				'msg' => 'Different skin (irrelevant skin modules should not be registered)',
+				'modules' => [
+					'test.blank' => [ 'class' => ResourceLoaderTestModule::class ],
+					'test.skin.fallback' => [
+						'class' => ResourceLoaderTestModule::class,
+						'skins' => [ 'fallback' ],
+					],
+					'test.skin.foo' => [
+						'class' => ResourceLoaderTestModule::class,
+						'skins' => [ 'foo' ],
+					],
+				],
+				'out' => '
+mw.loader.addSource({
+    "local": "/w/load.php"
+});
+mw.loader.register([
+    [
+        "test.blank",
+        ""
+    ],
+    [
+        "test.skin.fallback",
+        ""
+    ]
+]);'
+			] ],
+			[ [
 				'msg' => 'Safemode disabled (default; register all modules)',
 				'modules' => [
 					// Default origin: ORIGIN_CORE_SITEWIDE
