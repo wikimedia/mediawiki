@@ -30,6 +30,7 @@ use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\HookContainer\HookContainer;
 use Parser;
 use ParserFactory;
+use ReadOnlyMode;
 use RepoGroup;
 use Title;
 use Wikimedia\Parsoid\Config\DataAccess as IDataAccess;
@@ -72,12 +73,17 @@ class DataAccess extends IDataAccess {
 	/** @var ServiceOptions */
 	private $config;
 
+	/** @var ReadOnlyMode */
+	private $readOnlyMode;
+
 	/**
 	 * @param ServiceOptions $config MediaWiki main configuration object
 	 * @param RepoGroup $repoGroup
 	 * @param BadFileLookup $badFileLookup
 	 * @param HookContainer $hookContainer
 	 * @param ContentTransformer $contentTransformer
+	 * @param ReadOnlyMode $readOnlyMode used to disable linting when the
+	 *   database is read-only.
 	 * @param ParserFactory $parserFactory A legacy parser factory,
 	 *   for PST/preprocessing/extension handling
 	 */
@@ -87,6 +93,7 @@ class DataAccess extends IDataAccess {
 		BadFileLookup $badFileLookup,
 		HookContainer $hookContainer,
 		ContentTransformer $contentTransformer,
+		ReadOnlyMode $readOnlyMode,
 		ParserFactory $parserFactory
 	) {
 		$config->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -95,6 +102,7 @@ class DataAccess extends IDataAccess {
 		$this->badFileLookup = $badFileLookup;
 		$this->hookContainer = $hookContainer;
 		$this->contentTransformer = $contentTransformer;
+		$this->readOnlyMode = $readOnlyMode;
 
 		// Use the same legacy parser object for all calls to extension tag
 		// processing, for greater compatibility.
@@ -410,8 +418,7 @@ class DataAccess extends IDataAccess {
 
 	/** @inheritDoc */
 	public function logLinterData( IPageConfig $pageConfig, array $lints ): void {
-		global $wgReadOnly;
-		if ( $wgReadOnly ) {
+		if ( $this->readOnlyMode->isReadOnly() ) {
 			return;
 		}
 
