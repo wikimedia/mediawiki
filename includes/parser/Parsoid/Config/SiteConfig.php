@@ -58,8 +58,7 @@ use Wikimedia\Parsoid\Utils\Utils;
  *
  * This includes both global configuration and wiki-level configuration.
  *
- * @todo This belongs in MediaWiki, not Parsoid. We'll move it there when we
- *  get to the point of integrating the two.
+ * @since 1.39
  */
 class SiteConfig extends ISiteConfig {
 

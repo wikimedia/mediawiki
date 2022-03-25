@@ -36,6 +36,11 @@ use Wikimedia\Parsoid\Config\PageConfig as IPageConfig;
 use Wikimedia\Parsoid\Config\PageContent as IPageContent;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 
+/**
+ * Implement Parsoid's abstract class for data access.
+ *
+ * @since 1.39
+ */
 class DataAccess extends IDataAccess {
 
 	/** @var RepoGroup */

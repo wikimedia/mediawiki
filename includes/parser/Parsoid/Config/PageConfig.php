@@ -32,10 +32,9 @@ use Wikimedia\Parsoid\Config\PageContent as IPageContent;
 /**
  * Page-level configuration interface for Parsoid
  *
- * @todo This belongs in MediaWiki, not Parsoid. We'll move it there when we
- *  get to the point of integrating the two.
  * @todo We should probably deprecate ParserOptions somehow, using a version of
  *  this directly instead.
+ * @since 1.39
  */
 class PageConfig extends IPageConfig {
 
