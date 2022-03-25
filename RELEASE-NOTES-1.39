@@ -80,6 +80,8 @@ because of Phabricator reports.
   - ::fetchRow()
   - ::numRows()
   - ::freeResult()
+* EventRelayerKafka, deprecated in 1.38, was removed.
+* MediaWiki\Logger\Monolog\KafkaHandler, deprecated in 1.38, was removed.
 * Database::wasKnownStatementRollbackError() was removed. Subclasses should
   override isKnownStatementRollbackError() instead.
 * Changes to skins:
