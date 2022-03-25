@@ -375,6 +375,7 @@
 	"querypage-no-updates": "ขณะนี้ปิดใช้งานการปรับหน้านี้ \nข้อมูลในที่นี้จะไม่รีเฟรชเป็นปัจจุบัน",
 	"querypage-updates-periodical": "หน้านี้มีการอัพเดทเป็นระยะ ๆ",
 	"viewsource": "ดูต้นฉบับ",
+	"skin-action-viewsource": "ดูต้นฉบับ",
 	"viewsource-title": "ดูต้นฉบับสำหรับ $1",
 	"actionthrottled": "ปฏิบัติการถูกจำกัด",
 	"actionthrottledtext": "เพื่อเป็นมาตรการป้องกันการละเมิด คุณจึงถูกจำกัดมิให้กระทำสิ่งนี้ติดต่อกันหลายครั้งเกินไปในช่วงระยะเวลาสั้น ๆ ซึ่งขณะนี้คุณเลยขีดจำกัดนี้แล้ว \nกรุณารอสักครู่แล้วลองอีกครั้ง",
@@ -3854,7 +3855,7 @@
 	"nstab-mainpage": "หน้าหลัก",
 	"skin-view-edit-local": "แก้ไขคำอธิบายท้องถิ่น",
 	"skin-action-protect": "ป้องกัน",
-	"skin-action-undelete": "กู้คืน",
+	"skin-action-undelete": "ยกเลิกการลบ",
 	"skin-action-delete": "ลบ",
 	"skin-action-move": "เปลี่ยนชื่อ"
 }

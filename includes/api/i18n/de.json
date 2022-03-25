@@ -1270,5 +1270,5 @@
 	"api-usage-mailinglist-ref": "Abonniere die Mailingliste „mediawiki-api-announce“ auf &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; zum Feststellen von API-Veralterungen und „Breaking Changes“.",
 	"api-exception-trace": "$1 bei $2($3)\n$4",
 	"api-credits-header": "Danksagungen",
-	"api-credits": "API-Entwickler:\n* Roan Kattouw (Hauptentwickler von September 2007 bis 2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (Autor, Hauptentwickler von September 2006 bis September 2007)\n* Brad Jorsch (Hauptentwickler seit 2013)\n\nBitte sende deine Kommentare, Vorschläge und Fragen an mediawiki-api@lists.wikimedia.org\noder reiche einen Fehlerbericht auf https://phabricator.wikimedia.org/ ein."
+	"api-credits": "API-Entwickler:\n* Yuri Astrakhan (Autor, Hauptentwickler von September 2006 bis September 2007)\n* Roan Kattouw (Hauptentwickler von September 2007 bis September 2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (Hauptentwickler 2013-2020)\n\nBitte sende deine Kommentare, Vorschläge und Fragen an mediawiki-api@lists.wikimedia.org\noder reiche einen Fehlerbericht auf https://phabricator.wikimedia.org/ ein."
 }

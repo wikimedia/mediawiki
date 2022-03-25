@@ -97,7 +97,7 @@
 	"apihelp-delete-param-title": "عنوان صفحه‌ای که قصد حذفش را دارید. نمی‌تواند در کنار <var>$1pageid</var> استفاده شود.",
 	"apihelp-delete-param-pageid": "شناسه صفحه‌ای که قصد حذفش را دارید. نمی‌تواند در کنار <var>$1title</var> استفاده شود.",
 	"apihelp-delete-param-reason": "دلیل برای حذف. اگر تنظیم نشود، یک دلیل خودکار ساخته‌شده استفاده می‌شود.",
-	"apihelp-delete-param-watch": "افزودن صفحه به فهرست پی‌گیری کاربر کنونی",
+	"apihelp-delete-param-watch": "افزودن صفحه به فهرست پیگیری کاربر کنونی",
 	"apihelp-delete-param-unwatch": "حذف صفحه از فهرست پیگیری کاربر کنونی.",
 	"apihelp-delete-example-simple": "حذف <kbd>Main Page</kbd>.",
 	"apihelp-delete-example-reason": "حذف <kbd>صفحهٔ اصلی</kbd> همراه دلیل  <kbd>آماده‌سازی برای انتقال</kbd>",
