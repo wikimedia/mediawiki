@@ -1709,9 +1709,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			);
 			// Automatically create the objectcache table for sqlite as needed
 			if ( $conn->getType() === 'sqlite' ) {
-				if ( !$conn->tableExists( 'objectcache', __METHOD__ ) ) {
-					$this->initSqliteDatabase( $conn );
-				}
+				$this->initSqliteDatabase( $conn );
 			}
 			$this->conns[$shardIndex] = $conn;
 		}
@@ -1803,7 +1801,19 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	/**
-	 * Create the shard tables on all databases (e.g. via eval.php/shell.php)
+	 * Create the shard tables on all databases
+	 *
+	 * This is typically called manually by a sysadmin via eval.php, e.g. for ParserCache:
+	 *
+	 * @code
+	 *     ObjectCache::getInstance( 'myparsercache' )->createTables();
+	 * @endcode
+	 *
+	 * This is different from `$services->getParserCache()->getCacheStorage()->createTables()`,
+	 * which would use the backend set via $wgParserCacheType, which shouldn't be
+	 * set yet for the backend you are creating shard tables on. The expectation
+	 * is to first add the new backend to $wgObjectCaches, run the above, and then enable
+	 * it for live ParserCache traffic by setting $wgParserCacheType.
 	 */
 	public function createTables() {
 		foreach ( $this->getShardServerIndexes() as $shardIndex ) {
