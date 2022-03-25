@@ -1286,11 +1286,13 @@ return [
 	},
 
 	'ParsoidDataAccess' => static function ( MediaWikiServices $services ): DataAccess {
-		$parsoidSettings = $services->getMainConfig()->get( 'ParsoidSettings' );
+		$mainConfig = $services->getMainConfig();
+		$parsoidSettings = $mainConfig->get( 'ParsoidSettings' );
 		if ( !empty( $parsoidSettings['debugApi'] ) ) {
 			return ApiDataAccess::fromSettings( $parsoidSettings );
 		}
 		return new MWDataAccess(
+			new ServiceOptions( MWDataAccess::CONSTRUCTOR_OPTIONS, $mainConfig ),
 			$services->getRepoGroup(),
 			$services->getBadFileLookup(),
 			$services->getHookContainer(),
