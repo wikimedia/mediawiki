@@ -56,6 +56,8 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	protected $name = null;
 	/** @var string[] What client platforms the module targets (e.g. desktop, mobile) */
 	protected $targets = [ 'desktop' ];
+	/** @var string[]|null Skin names */
+	protected $skins = null;
 
 	/** @var array Map of (variant => indirect file dependencies) */
 	protected $fileDeps = [];
@@ -457,6 +459,22 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 */
 	public function getTargets() {
 		return $this->targets;
+	}
+
+	/**
+	 * Get list of skins for which this module must be available to load.
+	 *
+	 * By default, modules are available to all skins.
+	 *
+	 * This information may be used by the startup module to optimise registrations
+	 * based on the current skin.
+	 *
+	 * @stable to override
+	 * @since 1.39
+	 * @return string[]|null
+	 */
+	public function getSkins(): ?array {
+		return $this->skins;
 	}
 
 	/**
