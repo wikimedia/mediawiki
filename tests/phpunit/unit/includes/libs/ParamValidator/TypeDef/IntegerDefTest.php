@@ -99,6 +99,7 @@ class IntegerDefTest extends TypeDefTestCase {
 			'Bogus value (2)' => [ '1foo', $badinteger ],
 			'Hex value' => [ '0x123', $badinteger ],
 			'Newline' => [ "1\n", $badinteger ],
+			'Array' => [ [ '1.5' ], $badinteger ],
 
 			'Ok with range' => [ '1', 1, $minmax ],
 			'Below minimum' => [ '-1', $outofrange, $minmax ],
