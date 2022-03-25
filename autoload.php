@@ -442,7 +442,6 @@ $wgAutoloadLocalClasses = [
 	'EtcdConfigParseError' => __DIR__ . '/includes/config/EtcdConfigParseError.php',
 	'EventRelayer' => __DIR__ . '/includes/libs/eventrelayer/EventRelayer.php',
 	'EventRelayerGroup' => __DIR__ . '/includes/EventRelayerGroup.php',
-	'EventRelayerKafka' => __DIR__ . '/includes/libs/eventrelayer/EventRelayerKafka.php',
 	'EventRelayerNull' => __DIR__ . '/includes/libs/eventrelayer/EventRelayerNull.php',
 	'ExecutableFinder' => __DIR__ . '/includes/utils/ExecutableFinder.php',
 	'Exif' => __DIR__ . '/includes/media/Exif.php',
