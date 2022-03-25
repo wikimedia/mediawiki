@@ -257,14 +257,11 @@ class DeletedContribsPager extends IndexPager {
 
 		if ( $this->revisionFactory->isRevisionRow( $row, 'archive' ) ) {
 			$revRecord = $this->revisionFactory->newRevisionFromArchiveRow( $row );
-			$validRevision = (bool)$revRecord->getId();
-		} else {
-			$validRevision = false;
-		}
-
-		if ( $validRevision ) {
-			$attribs['data-mw-revid'] = $revRecord->getId();
-			$ret = $this->formatRevisionRow( $row );
+			$revId = $revRecord->getId();
+			if ( $revId ) {
+				$attribs['data-mw-revid'] = $revId;
+				$ret = $this->formatRevisionRow( $row );
+			}
 		}
 
 		// Let extensions add data
