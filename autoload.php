@@ -1143,6 +1143,7 @@ $wgAutoloadLocalClasses = [
 	'MigrateComments' => __DIR__ . '/maintenance/migrateComments.php',
 	'MigrateFileRepoLayout' => __DIR__ . '/maintenance/migrateFileRepoLayout.php',
 	'MigrateImageCommentTemp' => __DIR__ . '/maintenance/migrateImageCommentTemp.php',
+	'MigrateLinksTable' => __DIR__ . '/maintenance/migrateLinksTable.php',
 	'MigrateRevisionActorTemp' => __DIR__ . '/maintenance/migrateRevisionActorTemp.php',
 	'MigrateUserGroup' => __DIR__ . '/maintenance/migrateUserGroup.php',
 	'MimeAnalyzer' => __DIR__ . '/includes/libs/mime/MimeAnalyzer.php',
