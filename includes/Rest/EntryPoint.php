@@ -106,7 +106,6 @@ class EntryPoint {
 		$context->setTitle( $wgTitle );
 
 		$services = MediaWikiServices::getInstance();
-		$conf = $services->getMainConfig();
 
 		$responseFactory = new ResponseFactory( self::getTextFormatters( $services ) );
 
