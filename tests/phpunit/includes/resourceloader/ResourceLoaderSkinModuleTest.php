@@ -406,7 +406,12 @@ CSS
 		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )
 			->disableOriginalConstructor()->getMock();
 		$module = new ResourceLoaderSkinModule();
-		$module->setConfig( new HashConfig( $config + self::getSettings() ) );
+		$module->setConfig( new HashConfig( $config + [
+			'BaseDirectory' => '/dummy',
+			'ResourceBasePath' => '/w',
+			'Logo' => false,
+			'LogoHD' => false,
+		] + self::getSettings() ) );
 
 		$this->assertEquals( [ $result ], $module->getHeaders( $ctx ) );
 	}
@@ -415,10 +420,6 @@ CSS
 		return [
 			[
 				[
-					'BaseDirectory' => '/dummy',
-					'ResourceBasePath' => '/w',
-					'Logo' => false,
-					'LogoHD' => false,
 					'Logos' => [
 						'1x' => '/img/default.png',
 						'1.5x' => '/img/one-point-five.png',
@@ -433,10 +434,6 @@ CSS
 			],
 			[
 				[
-					'BaseDirectory' => '/dummy',
-					'ResourceBasePath' => '/w',
-					'Logo' => false,
-					'LogoHD' => false,
 					'Logos' => [
 						'1x' => '/img/default.png',
 					],
@@ -445,10 +442,6 @@ CSS
 			],
 			[
 				[
-					'BaseDirectory' => '/dummy',
-					'ResourceBasePath' => '/w',
-					'Logo' => false,
-					'LogoHD' => false,
 					'Logos' => [
 						'1x' => '/img/default.png',
 						'2x' => '/img/two-x.png',
@@ -460,10 +453,6 @@ CSS
 			],
 			[
 				[
-					'BaseDirectory' => '/dummy',
-					'ResourceBasePath' => '/w',
-					'Logo' => false,
-					'LogoHD' => false,
 					'Logos' => [
 						'1x' => '/img/default.png',
 						'svg' => '/img/vector.svg',
@@ -475,9 +464,6 @@ CSS
 			[
 				[
 					'BaseDirectory' => dirname( dirname( __DIR__ ) ) . '/data/media',
-					'ResourceBasePath' => '/w',
-					'Logo' => false,
-					'LogoHD' => false,
 					'Logos' => [
 						'1x' => '/w/test.jpg',
 					],
