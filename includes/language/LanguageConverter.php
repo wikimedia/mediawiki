@@ -1239,15 +1239,14 @@ abstract class LanguageConverter implements ILanguageConverter {
 					$expandedVariants[ $old ] = 1;
 				}
 			}
+			$expandedVariants = implode( '|', array_keys( $expandedVariants ) );
 
 			$pat = '/;\s*(?=';
-			foreach ( $expandedVariants as $variant => $ignore ) {
-				// zh-hans:xxx;zh-hant:yyy
-				$pat .= $variant . '\s*:|';
-				// xxx=>zh-hans:yyy; xxx=>zh-hant:zzz
-				$pat .= '[^;]*?=>\s*' . $variant . '\s*:|';
-			}
-			$pat .= '\s*$)/';
+			// zh-hans:xxx;zh-hant:yyy
+			$pat .= '(?:' . $expandedVariants . ')\s*:';
+			// xxx=>zh-hans:yyy; xxx=>zh-hant:zzz
+			$pat .= '|[^;]*?=>\s*(?:' . $expandedVariants . ')\s*:';
+			$pat .= '|\s*$)/';
 			$this->mVarSeparatorPattern = $pat;
 		}
 		return $this->mVarSeparatorPattern;
