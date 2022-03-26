@@ -270,8 +270,8 @@ class ApiEditPage extends ApiBase {
 
 			if ( $params['undoafter'] > 0 ) {
 				$undoafterRev = $this->revisionLookup->getRevisionById( $params['undoafter'] );
-			}
-			if ( $params['undoafter'] == 0 ) {
+			} else {
+				// undoafter=0 or null
 				$undoafterRev = $this->revisionLookup->getPreviousRevision( $undoRev );
 			}
 			if ( $undoafterRev === null || $undoafterRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
