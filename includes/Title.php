@@ -135,12 +135,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	public $prefixedText = null;
 
 	/**
-	 * @var int Namespace index when there is no namespace. Don't change the
-	 *   following default, NS_MAIN is hardcoded in several places. See T2696.
-	 *   Used primarily for {{transclusion}} tags.
-	 * @see newFromText()
+	 * Namespace to assume when no namespace was passed to factory methods.
+	 * This must be NS_MAIN, as it's hardcoded in several places. See T2696.
+	 * Used primarily for {{transclusion}} tags.
 	 */
-	public $mDefaultNamespace = NS_MAIN;
+	private const DEFAULT_NAMESPACE = NS_MAIN;
 
 	/** @var int The page length, 0 for special pages */
 	protected $mLength = -1;
@@ -2991,7 +2990,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	private function secureAndSplit( $text, $defaultNamespace = null ) {
 		if ( $defaultNamespace === null ) {
-			$defaultNamespace = $this->mDefaultNamespace;
+			$defaultNamespace = self::DEFAULT_NAMESPACE;
 		}
 
 		// @note: splitTitleString() is a temporary hack to allow MediaWikiTitleCodec to share
@@ -3010,7 +3009,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		$this->mInterwiki = $parts['interwiki'];
 		$this->mLocalInterwiki = $parts['local_interwiki'];
 		$this->mNamespace = $parts['namespace'];
-		$this->mDefaultNamespace = $defaultNamespace;
 
 		$this->mDbkeyform = $parts['dbkey'];
 		$this->mUrlform = wfUrlencode( $this->mDbkeyform );
@@ -4124,7 +4122,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			'mFragment',
 			'mInterwiki',
 			'mLocalInterwiki',
-			'mDefaultNamespace',
 		];
 	}
 
