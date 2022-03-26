@@ -109,14 +109,6 @@ interface IEditObject {
 	/** Status: can't parse content */
 	public const AS_PARSE_ERROR = 240;
 
-	/**
-	 * Status: when changing the content model is disallowed due to
-	 * $wgContentHandlerUseDB being false
-	 *
-	 * @deprecated since 1.35, meaningless since $wgContentHandlerUseDB has been removed.
-	 */
-	public const AS_CANNOT_USE_CUSTOM_MODEL = 241;
-
 	/** Status: edit rejected because browser doesn't support Unicode. */
 	public const AS_UNICODE_NOT_SUPPORTED = 242;
 }
