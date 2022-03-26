@@ -80,6 +80,7 @@ because of Phabricator reports.
   - ::fetchRow()
   - ::numRows()
   - ::freeResult()
+* Title::getDefaultNamespace(), deprecated since 1.37, has been removed.
 * EventRelayerKafka, deprecated in 1.38, was removed.
 * MediaWiki\Logger\Monolog\KafkaHandler, deprecated in 1.38, was removed.
 * Database::wasKnownStatementRollbackError() was removed. Subclasses should
