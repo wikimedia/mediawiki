@@ -3347,7 +3347,7 @@ class EditPage implements IEditObject {
 					[ 'title' => true, 'returnto' => true, 'returntoquery' => true ]
 				);
 				$out->wrapWikiMsg(
-					"<div id='mw-anon-edit-warning' class='mw-message-box-warning mw-message-box'>\n$1\n</div>",
+					"<div id='mw-anon-edit-warning' class='mw-message-box mw-message-box-warning'>\n$1\n</div>",
 					[ 'anoneditwarning',
 						// Log-in link
 						SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
@@ -3362,7 +3362,8 @@ class EditPage implements IEditObject {
 					]
 				);
 			} else {
-				$out->wrapWikiMsg( "<div id=\"mw-anon-preview-warning\" class=\"warningbox\">\n$1</div>",
+				$out->wrapWikiMsg(
+					"<div id='mw-anon-preview-warning' class='mw-message-box mw-message-box-warning'>\n$1</div>",
 					'anonpreviewwarning'
 				);
 			}
@@ -3370,7 +3371,7 @@ class EditPage implements IEditObject {
 			# Check the skin exists
 			if ( $this->isWrongCaseUserConfigPage() ) {
 				$out->wrapWikiMsg(
-					"<div class='errorbox' id='mw-userinvalidconfigtitle'>\n$1\n</div>",
+					"<div id='mw-userinvalidconfigtitle' class='mw-message-box mw-message-box-error'>\n$1\n</div>",
 					[ 'userinvalidconfigtitle', $this->mTitle->getSkinFromConfigSubpage() ]
 				);
 			}
@@ -4204,7 +4205,7 @@ class EditPage implements IEditObject {
 
 		if ( $this->isConflict ) {
 			$conflict = Html::rawElement(
-				'div', [ 'id' => 'mw-previewconflict', 'class' => 'warningbox' ],
+				'div', [ 'id' => 'mw-previewconflict', 'class' => 'mw-message-box mw-message-box-warning' ],
 				$this->context->msg( 'previewconflict' )->escaped()
 			);
 		} else {
