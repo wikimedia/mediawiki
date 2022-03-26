@@ -131,7 +131,7 @@ class EditPage implements IEditObject {
 	 * @deprecated for public usage since 1.30 use EditPage::getArticle()
 	 * @var Article
 	 */
-	public $mArticle;
+	private $mArticle;
 
 	/** @var WikiPage */
 	private $page;
@@ -140,12 +140,15 @@ class EditPage implements IEditObject {
 	 * @deprecated for public usage since 1.30 use EditPage::getTitle()
 	 * @var Title
 	 */
-	public $mTitle;
+	private $mTitle;
 
 	/** @var null|Title */
 	private $mContextTitle = null;
 
-	/** @var string */
+	/**
+	 * @deprecated for public usage since 1.38 with no replacement
+	 * @var string
+	 */
 	public $action = 'submit';
 
 	/** @var bool Whether an edit conflict needs to be resolved. Detected based on whether
@@ -155,7 +158,7 @@ class EditPage implements IEditObject {
 	public $isConflict = false;
 
 	/** @var bool New page or new section */
-	public $isNew = false;
+	private $isNew = false;
 
 	/** @var bool */
 	private $deletedSinceEdit;
@@ -197,13 +200,13 @@ class EditPage implements IEditObject {
 	protected $blankArticle = false;
 
 	/** @var bool */
-	protected $allowBlankArticle = false;
+	private $allowBlankArticle = false;
 
 	/** @var bool */
-	protected $selfRedirect = false;
+	private $selfRedirect = false;
 
 	/** @var bool */
-	protected $allowSelfRedirect = false;
+	private $allowSelfRedirect = false;
 
 	/** @var string */
 	private $autoSumm = '';
@@ -238,7 +241,7 @@ class EditPage implements IEditObject {
 	public $preview = false;
 
 	/** @var bool */
-	public $diff = false;
+	private $diff = false;
 
 	/** @var bool */
 	private $minoredit = false;
@@ -264,7 +267,7 @@ class EditPage implements IEditObject {
 	public $textbox1 = '';
 
 	/** @var string */
-	public $textbox2 = '';
+	private $textbox2 = '';
 
 	/** @var string */
 	public $summary = '';
@@ -354,15 +357,15 @@ class EditPage implements IEditObject {
 	/* $didSave should be set to true whenever an article was successfully altered. */
 	public $didSave = false;
 	public $undidRev = 0;
-	public $undoAfter = 0;
+	private $undoAfter = 0;
 
 	public $suppressIntro = false;
 
 	/** @var bool */
-	protected $edit;
+	private $edit;
 
 	/** @var bool|int */
-	protected $contentLength = false;
+	private $contentLength = false;
 
 	/**
 	 * @var bool Set in ApiEditPage, based on ContentHandler::allowsDirectApiEditing
@@ -464,6 +467,18 @@ class EditPage implements IEditObject {
 		$this->watchlistManager = $services->getWatchlistManager();
 		$this->userNameUtils = $services->getUserNameUtils();
 		$this->redirectLookup = $services->getRedirectLookup();
+
+		$this->deprecatePublicProperty( 'mArticle', '1.30', __CLASS__ );
+		$this->deprecatePublicProperty( 'mTitle', '1.30', __CLASS__ );
+		$this->deprecatePublicProperty( 'isNew', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'allowBlankArticle', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'selfRedirect', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'allowSelfRedirect', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'diff', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'textbox2', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'undoAfter', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'edit', '1.38', __CLASS__ );
+		$this->deprecatePublicProperty( 'contentLength', '1.38', __CLASS__ );
 	}
 
 	/**
@@ -515,7 +530,7 @@ class EditPage implements IEditObject {
 	 * @return bool
 	 * @throws MWException If $modelId has no known handler
 	 */
-	public function isSupportedContentModel( $modelId ) {
+	private function isSupportedContentModel( string $modelId ): bool {
 		return $this->enableApiEditOverride === true ||
 			$this->contentHandlerFactory->getContentHandler( $modelId )->supportsDirectEditing();
 	}
@@ -523,6 +538,7 @@ class EditPage implements IEditObject {
 	/**
 	 * Allow editing of content that supports API direct editing, but not general
 	 * direct editing. Set to false by default.
+	 * @internal Must only be used by ApiEditPage
 	 *
 	 * @param bool $enableOverride
 	 */
@@ -717,27 +733,17 @@ class EditPage implements IEditObject {
 	 */
 	private function getEditPermissionErrors( string $rigor = PermissionManager::RIGOR_SECURE ): array {
 		$user = $this->context->getUser();
-		$permErrors = $this->permManager->getPermissionErrors(
+		$ignoredErrors = [];
+		if ( $this->preview || $this->diff ) {
+			$ignoredErrors = [ 'blockedtext', 'autoblockedtext', 'systemblockedtext' ];
+		}
+		return $this->permManager->getPermissionErrors(
 			'edit',
 			$user,
 			$this->mTitle,
-			$rigor
+			$rigor,
+			$ignoredErrors
 		);
-		# Ignore some permissions errors when a user is just previewing/viewing diffs
-		if ( $this->preview || $this->diff ) {
-			$remove = [];
-			foreach ( $permErrors as $error ) {
-				if ( $error[0] === 'blockedtext' ||
-					$error[0] === 'autoblockedtext' ||
-					$error[0] === 'systemblockedtext'
-				) {
-					$remove[] = $error;
-				}
-			}
-			$permErrors = wfArrayDiff2( $permErrors, $remove );
-		}
-
-		return $permErrors;
 	}
 
 	/**
@@ -899,7 +905,7 @@ class EditPage implements IEditObject {
 	 *
 	 * @return bool True if this edit page supports sections, false otherwise.
 	 */
-	protected function isSectionEditSupported() {
+	private function isSectionEditSupported(): bool {
 		$currentRev = $this->page->getRevisionRecord();
 
 		// $currentRev is null for non-existing pages, use the page default content model.
@@ -1503,10 +1509,9 @@ class EditPage implements IEditObject {
 	 * across a recoverable edit conflict, the ID of the newer revision to
 	 * which we have rebased this page.
 	 *
-	 * @since 1.27
 	 * @return int Revision ID
 	 */
-	public function getParentRevId() {
+	private function getParentRevId() {
 		if ( $this->parentRevId ) {
 			return $this->parentRevId;
 		} else {
