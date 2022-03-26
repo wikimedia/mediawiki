@@ -1621,7 +1621,7 @@ class SkinTemplate extends Skin {
 
 		$content_actions = [];
 
-		foreach ( $content_navigation as $navigation => $links ) {
+		foreach ( $content_navigation as $links ) {
 			foreach ( $links as $key => $value ) {
 				if ( isset( $value['redundant'] ) && $value['redundant'] ) {
 					// Redundant tabs are dropped from content_actions
