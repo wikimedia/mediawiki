@@ -61,7 +61,7 @@ class LocalRepo extends FileRepo {
 	protected $blobStore;
 
 	/** @var bool */
-	protected $useJsonMetadata = false;
+	protected $useJsonMetadata = true;
 
 	/** @var bool */
 	protected $useSplitMetadata = false;
