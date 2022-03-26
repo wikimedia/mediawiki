@@ -2114,7 +2114,9 @@ class EditPage implements IEditObject {
 					$content,
 					$this->context,
 					$this->summary,
-					$markAsMinor
+					$markAsMinor,
+					$this->context->getLanguage(),
+					$user
 				)
 			);
 
@@ -2260,7 +2262,9 @@ class EditPage implements IEditObject {
 					$content,
 					$this->context,
 					$this->summary,
-					$markAsMinor
+					$markAsMinor,
+					$this->context->getLanguage(),
+					$user
 				)
 			);
 

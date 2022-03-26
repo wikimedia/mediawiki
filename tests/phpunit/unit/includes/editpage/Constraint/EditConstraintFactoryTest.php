@@ -71,7 +71,9 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 				$newContent,
 				$context,
 				'EditSummary',
-				true // $minorEdit
+				true, // $minorEdit
+				$this->createMock( Language::class ),
+				$this->createMock( User::class )
 			)
 		);
 		$this->assertInstanceOf(

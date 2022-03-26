@@ -22,6 +22,7 @@ namespace MediaWiki\EditPage\Constraint;
 
 use Content;
 use IContextSource;
+use Language;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
@@ -117,20 +118,26 @@ class EditConstraintFactory {
 	 * @param IContextSource $context
 	 * @param string $summary
 	 * @param bool $minorEdit
+	 * @param Language $language
+	 * @param User $user
 	 * @return EditFilterMergedContentHookConstraint
 	 */
 	public function newEditFilterMergedContentHookConstraint(
 		Content $content,
 		IContextSource $context,
 		string $summary,
-		bool $minorEdit
+		bool $minorEdit,
+		Language $language,
+		User $user
 	): EditFilterMergedContentHookConstraint {
 		return new EditFilterMergedContentHookConstraint(
 			$this->hookContainer,
 			$content,
 			$context,
 			$summary,
-			$minorEdit
+			$minorEdit,
+			$language,
+			$user
 		);
 	}
 
