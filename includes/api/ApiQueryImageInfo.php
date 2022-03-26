@@ -207,8 +207,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 				// Parser::makeImage always sets a targetlang, usually based on the language
 				// the content is in.  To support Parsoid's standalone mode, overload the badfilecontexttitle
-				// to also set the targetlang based on the page language.
-				if ( $badFileContextTitle ) {
+				// to also set the targetlang based on the page language.  Don't add this unless we're
+				// already scaling since a set $finalThumbParams usually expects a width.
+				if ( $badFileContextTitle && $finalThumbParams ) {
 					$finalThumbParams['targetlang'] = $badFileContextTitle->getPageLanguage()->getCode();
 				}
 
