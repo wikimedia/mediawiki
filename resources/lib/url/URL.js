@@ -60,7 +60,68 @@
 			return output.replace(/%20/g, '+');
 		}
 
+		// https://url.spec.whatwg.org/#percent-decode
+		var cachedDecodePattern;
+		function percent_decode(bytes) {
+			// This can't simply use decodeURIComponent (part of ECMAScript) as that's limited to
+			// decoding to valid UTF-8 only. It throws URIError for literals that look like percent
+			// encoding (e.g. `x=%`, `x=%a`, and `x=a%2sf`) and for non-UTF8 binary data that was
+			// percent encoded and cannot be turned back into binary within a JavaScript string.
+			//
+			// The spec deals with this as follows:
+			// * Read input as UTF-8 encoded bytes. This needs low-level access or a modern
+			//   Web API, like TextDecoder. Old browsers don't have that, and it'd a large
+			//   dependency to add to this polyfill.
+			// * For each percentage sign followed by two hex, blindly decode the byte in binary
+			//   form. This would require TextEncoder to not corrupt multi-byte chars.
+			// * Replace any bytes that would be invalid under UTF-8 with U+FFFD.
+			//
+			// Instead we:
+			// * Use the fact that UTF-8 is designed to make validation easy in binary.
+			//   You don't have to decode first. There are only a handful of valid prefixes and
+			//   ranges, per RFC 3629. <https://datatracker.ietf.org/doc/html/rfc3629#section-3>
+			// * Safely create multi-byte chars with decodeURIComponent, by only passing it
+			//   valid and full characters (e.g. "%F0" separately from "%F0%9F%92%A9" throws).
+			//   Anything else is kept as literal or replaced with U+FFFD, as per the URL spec.
+
+			if (!cachedDecodePattern) {
+				// In a UTF-8 multibyte sequence, non-initial bytes are always between %80 and %BF
+				var uContinuation = '%[89AB][0-9A-F]';
+
+				// The length of a UTF-8 sequence is specified by the first byte
+				//
+				// One-byte sequences: 0xxxxxxx
+				// So the byte is between %00 and %7F
+				var u1Bytes = '%[0-7][0-9A-F]';
+				// Two-byte sequences: 110xxxxx 10xxxxxx
+				// So the first byte is between %C0 and %DF
+				var u2Bytes = '%[CD][0-9A-F]' + uContinuation;
+				// Three-byte sequences: 1110xxxx 10xxxxxx 10xxxxxx
+				// So the first byte is between %E0 and %EF
+				var u3Bytes = '%E[0-9A-F]' + uContinuation + uContinuation;
+				// Four-byte sequences: 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+				// So the first byte is between %F0 and %F7
+				var u4Bytes = '%F[0-7]' + uContinuation + uContinuation +uContinuation;
+
+				var anyByte = '%[0-9A-F][0-9A-F]';
+
+				// Match some consecutive percent-escaped bytes. More precisely, match
+				// 1-4 bytes that validly encode one character in UTF-8, or 1 byte that
+				// would be invalid in UTF-8 in this location.
+				cachedDecodePattern = new RegExp(
+					'(' + u4Bytes + ')|(' + u3Bytes + ')|(' + u2Bytes + ')|(' + u1Bytes + ')|(' + anyByte + ')',
+					'gi'
+				);
+			}
+
+			return bytes.replace(cachedDecodePattern, function (match, u4, u3, u2, u1, uBad) {
+				return (uBad !== undefined) ? '\uFFFD' : decodeURIComponent(match);
+			});
+		}
+
 		// NOTE: Doesn't do the encoding/decoding dance
+		//
+		// https://url.spec.whatwg.org/#concept-urlencoded-parser
 		function urlencoded_parse(input, isindex) {
 			var sequences = input.split('&');
 			if (isindex && sequences[0].indexOf('=') === -1)
@@ -83,8 +144,8 @@
 			var output = [];
 			pairs.forEach(function (pair) {
 				output.push({
-					name: decodeURIComponent(pair.name),
-					value: decodeURIComponent(pair.value)
+					name: percent_decode(pair.name),
+					value: percent_decode(pair.value)
 				});
 			});
 			return output;
