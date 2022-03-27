@@ -1675,8 +1675,6 @@
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} after change",
 	"newsectionsummary": "/* $1 */ new section",
-	"rc-enhanced-expand": "Show details",
-	"rc-enhanced-hide": "Hide details",
 	"rc-old-title": "originally created as \"$1\"",
 	"recentchangeslinked": "Related changes",
 	"recentchangeslinked-feed": "Related changes",
