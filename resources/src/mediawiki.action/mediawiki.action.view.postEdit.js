@@ -25,13 +25,15 @@
 
 	var postEdit = mw.config.get( 'wgPostEdit' );
 
+	var config = require( './config.json' );
+
 	function showConfirmation( data ) {
 		var label;
 
 		data = data || {};
 
 		label = data.message || new OO.ui.HtmlSnippet( mw.message(
-			mw.config.get( 'wgEditSubmitButtonLabelPublish' ) ?
+			config.EditSubmitButtonLabelPublish ?
 				'postedit-confirmation-published' :
 				'postedit-confirmation-saved',
 			data.user || mw.user
@@ -57,8 +59,12 @@
 	}
 
 	if ( postEdit ) {
+		if ( postEdit === 'saved' ) {
+			postEdit = config.EditSubmitButtonLabelPublish ? 'published' : 'saved';
+		}
 		mw.hook( 'postEdit' ).fire( {
 			// The following messages can be used here:
+			// * postedit-confirmation-published
 			// * postedit-confirmation-saved
 			// * postedit-confirmation-created
 			// * postedit-confirmation-restored

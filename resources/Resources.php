@@ -1411,7 +1411,12 @@ return [
 		'targets' => [ 'desktop', 'mobile' ]
 	],
 	'mediawiki.action.view.postEdit' => [
-		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.postEdit.js',
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.action",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.action",
+		'packageFiles' => [
+			'mediawiki.action.view.postEdit.js',
+			[ 'name' => 'config.json', 'config' => [ 'EditSubmitButtonLabelPublish' ] ],
+		],
 		'dependencies' => [
 			'mediawiki.jqueryMsg',
 			'mediawiki.notification',
