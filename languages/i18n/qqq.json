@@ -1909,8 +1909,6 @@
 	"rc-change-size": "{{optional}}\nDoes not work under $wgMiserMode ([[mwr:48986|r48986]]).\n\nParameters:\n* $1 - size of diff",
 	"rc-change-size-new": "Tooltip when hovering a change list diff size. Parameters:\n* $1 - the resulting new size (in bytes)",
 	"newsectionsummary": "Default summary when adding a new section to a page. Parameters:\n* $1 - section title",
-	"rc-enhanced-expand": "See also:\n* {{msg-mw|Rc-enhanced-hide}}\n{{Identical|Show details}}",
-	"rc-enhanced-hide": "See also:\n* {{msg-mw|Rc-enhanced-expand}}\n{{Identical|Hide details}}",
 	"rc-old-title": "Text that shows the original title of a page, $1 is the original title text",
 	"recentchangeslinked": "{{doc-special|RecentChangesLinked}}\nSee also:\n* {{msg-mw|Recentchangeslinked}}\n* {{msg-mw|Accesskey-t-recentchangeslinked}}\n* {{msg-mw|Tooltip-t-recentchangeslinked}}",
 	"recentchangeslinked-feed": "Used in the [[:w:en:web feed|feed]] object.\n\nThis message follows the message {{msg-mw|Recentchangeslinked-title}}.",
