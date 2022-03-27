@@ -136,10 +136,10 @@ class WrapOldPasswords extends Maintenance {
 		} while ( $res->numRows() );
 
 		if ( $update ) {
-			$this->output( "$count users rows updated." );
+			$this->output( "$count users rows updated.\n" );
 		} else {
 			$this->output( "$count user rows found using old password formats. "
-					. "Run script again with --update to update these rows" );
+					. "Run script again with --update to update these rows.\n" );
 		}
 	}
 }
