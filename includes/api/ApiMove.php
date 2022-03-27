@@ -76,6 +76,8 @@ class ApiMove extends ApiBase {
 			if ( !$fromTitle ) {
 				$this->dieWithError( [ 'apierror-nosuchpageid', $params['fromid'] ] );
 			}
+		} else {
+			throw new LogicException( 'Unreachable due to requireOnlyOneParameter' );
 		}
 
 		if ( !$fromTitle->exists() ) {
@@ -106,21 +108,16 @@ class ApiMove extends ApiBase {
 			$this->dieWithError( 'apierror-ratelimited' );
 		}
 
-		// Check if the user is allowed to add the specified changetags
-		if ( $params['tags'] ) {
-			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $this->getAuthority() );
-			if ( !$ableToTag->isOK() ) {
-				$this->dieStatus( $ableToTag );
-			}
-		}
-
 		// Move the page
 		$toTitleExists = $toTitle->exists();
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
-		$status = $this->movePage( $fromTitle, $toTitle, $params['reason'], !$params['noredirect'],
-			$params['tags'] ?: [] );
+		$mp = $this->movePageFactory->newMovePage( $fromTitle, $toTitle );
+		$status = $mp->moveIfAllowed(
+			$this->getAuthority(),
+			$params['reason'],
+			!$params['noredirect'],
+			$params['tags'] ?: []
+		);
 		if ( !$status->isOK() ) {
-			$user->spreadAnyEditBlock();
 			$this->dieStatus( $status );
 		}
 
@@ -141,9 +138,9 @@ class ApiMove extends ApiBase {
 		// Move the talk page
 		if ( $params['movetalk'] && $toTalk && $fromTalk->exists() && !$fromTitle->isTalkPage() ) {
 			$toTalkExists = $toTalk->exists();
-			$status = $this->movePage(
-				$fromTalk,
-				$toTalk,
+			$mp = $this->movePageFactory->newMovePage( $fromTalk, $toTalk );
+			$status = $mp->moveIfAllowed(
+				$this->getAuthority(),
 				$params['reason'],
 				!$params['noredirect'],
 				$params['tags'] ?: []
@@ -163,7 +160,6 @@ class ApiMove extends ApiBase {
 		// Move subpages
 		if ( $params['movesubpages'] ) {
 			$r['subpages'] = $this->moveSubpages(
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 				$fromTitle,
 				$toTitle,
 				$params['reason'],
@@ -191,39 +187,10 @@ class ApiMove extends ApiBase {
 		$watchlistExpiry = $this->getExpiryFromParams( $params );
 
 		// Watch pages
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 		$this->setWatch( $watch, $fromTitle, $user, 'watchmoves', $watchlistExpiry );
 		$this->setWatch( $watch, $toTitle, $user, 'watchmoves', $watchlistExpiry );
 
 		$result->addValue( null, $this->getModuleName(), $r );
-	}
-
-	/**
-	 * @param Title $from
-	 * @param Title $to
-	 * @param string $reason
-	 * @param bool $createRedirect
-	 * @param string[] $changeTags Applied to the entry in the move log and redirect page revision
-	 * @return Status
-	 */
-	protected function movePage( Title $from, Title $to, $reason, $createRedirect, $changeTags ) {
-		$mp = $this->movePageFactory->newMovePage( $from, $to );
-		$valid = $mp->isValidMove();
-		if ( !$valid->isOK() ) {
-			return $valid;
-		}
-
-		$permStatus = $mp->authorizeMove( $this->getAuthority(), $reason );
-		if ( !$permStatus->isOK() ) {
-			return Status::wrap( $permStatus );
-		}
-
-		// Check suppressredirect permission
-		if ( !$this->getAuthority()->isAllowed( 'suppressredirect' ) ) {
-			$createRedirect = true;
-		}
-
-		return $mp->move( $this->getUser(), $reason, $createRedirect, $changeTags );
 	}
 
 	/**
