@@ -732,8 +732,7 @@ class SpecialPage implements MessageLocalizer {
 	 */
 	protected function outputHeader( $summaryMessageKey = '' ) {
 		if ( $summaryMessageKey == '' ) {
-			$msg = $this->getContentLanguage()->lc( $this->getName() ) .
-				'-summary';
+			$msg = strtolower( $this->getName() ) . '-summary';
 		} else {
 			$msg = $summaryMessageKey;
 		}
@@ -974,7 +973,7 @@ class SpecialPage implements MessageLocalizer {
 			return;
 		}
 
-		$msg = $this->msg( $this->getContentLanguage()->lc( $this->getName() ) . '-helppage' );
+		$msg = $this->msg( strtolower( $this->getName() ) . '-helppage' );
 
 		if ( !$msg->isDisabled() ) {
 			$title = Title::newFromText( $msg->plain() );
