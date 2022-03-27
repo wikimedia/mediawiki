@@ -68,7 +68,9 @@
 				// Namespace prefix without actual title
 				'Talk:',
 				'Category: ',
-				'Category: #bar'
+				'Category: #bar',
+				// Input resulting from invalid Unicode being sanitized somewhere else
+				'Apollo\uFFFDSoyuz'
 			]
 		};
 
