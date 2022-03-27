@@ -81,6 +81,9 @@ because of Phabricator reports.
   - ::numRows()
   - ::freeResult()
 * Title::getDefaultNamespace(), deprecated since 1.37, has been removed.
+* Passing a db to BlockRestrictionStore::loadByBlockId() is no longer supported.
+  BlockRestrictionStoreFactory should be used to fetch a correct
+  BlockRestrictionStore instead. This was deprecated since 1.38.
 * EventRelayerKafka, deprecated in 1.38, was removed.
 * MediaWiki\Logger\Monolog\KafkaHandler, deprecated in 1.38, was removed.
 * Database::wasKnownStatementRollbackError() was removed. Subclasses should
