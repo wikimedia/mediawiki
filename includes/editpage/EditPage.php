@@ -149,6 +149,7 @@ class EditPage implements IEditObject {
 
 	/**
 	 * Used for Unicode support checks
+	 * @deprecated since 1.41 Use UnicodeConstraint::VALID_UNICODE instead.
 	 */
 	public const UNICODE_CHECK = UnicodeConstraint::VALID_UNICODE;
 
@@ -182,7 +183,6 @@ class EditPage implements IEditObject {
 	public const POST_EDIT_COOKIE_DURATION = 1200;
 
 	/**
-	 * @deprecated for public usage since 1.30 use EditPage::getArticle()
 	 * @var Article
 	 */
 	private $mArticle;
@@ -191,7 +191,6 @@ class EditPage implements IEditObject {
 	private $page;
 
 	/**
-	 * @deprecated for public usage since 1.30 use EditPage::getTitle()
 	 * @var Title
 	 */
 	private $mTitle;
@@ -529,18 +528,8 @@ class EditPage implements IEditObject {
 		$this->commentStore = $services->getCommentStore();
 		$this->blockErrorFormatter = $services->getBlockErrorFormatter();
 
-		$this->deprecatePublicProperty( 'mArticle', '1.30', __CLASS__ );
-		$this->deprecatePublicProperty( 'mTitle', '1.30', __CLASS__ );
-		$this->deprecatePublicProperty( 'isNew', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'allowBlankArticle', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'selfRedirect', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'allowSelfRedirect', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'diff', '1.38', __CLASS__ );
 		// XXX: Restore this deprecation as soon as TwoColConflict is fixed (T305028)
 		// $this->deprecatePublicProperty( 'textbox2', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'undoAfter', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'edit', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'contentLength', '1.38', __CLASS__ );
 	}
 
 	/**
@@ -4570,17 +4559,6 @@ class EditPage implements IEditObject {
 		$this->context->getOutput()->addHTML(
 			$this->getEditConflictHelper()->getExplainHeader()
 		);
-	}
-
-	/**
-	 * @param string $wikitext
-	 * @return string
-	 * @since 1.29
-	 * @deprecated since 1.38 Use TextboxBuilder::addNewLineAtEnd instead.
-	 */
-	protected function addNewLineAtEnd( $wikitext ) {
-		wfDeprecated( __METHOD__, '1.38' );
-		return ( new TextboxBuilder() )->addNewLineAtEnd( $wikitext );
 	}
 
 	/**
