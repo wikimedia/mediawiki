@@ -81,9 +81,14 @@ because of Phabricator reports.
   - ::numRows()
   - ::freeResult()
 * Title::getDefaultNamespace(), deprecated since 1.37, has been removed.
+* The DBPrimaryPos class alias 'DBMasterPos' has been removed.
 * Passing a db to BlockRestrictionStore::loadByBlockId() is no longer supported.
   BlockRestrictionStoreFactory should be used to fetch a correct
   BlockRestrictionStore instead. This was deprecated since 1.38.
+* The global function wfGetCache(), deprecated since 1.32, has been removed. You
+  can use ObjectCache::getInstance() instead.
+* The global function wfGetMainCache(), deprecated since 1.32, has been removed.
+  You can use ObjectCache::getLocalClusterInstance() instead.
 * EventRelayerKafka, deprecated in 1.38, was removed.
 * MediaWiki\Logger\Monolog\KafkaHandler, deprecated in 1.38, was removed.
 * Database::wasKnownStatementRollbackError() was removed. Subclasses should
