@@ -642,7 +642,6 @@ class SpecialContributions extends IncludableSpecialPage {
 	 * @return string HTML fragment
 	 */
 	protected function getForm( array $pagerOptions ) {
-		$this->opts['title'] = $this->getPageTitle()->getPrefixedText();
 		// Modules required only for the form
 		$this->getOutput()->addModules( [
 			'mediawiki.special.contributions',
@@ -665,7 +664,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			'newOnly',
 			'hideMinor',
 			'associated',
-			'tagfilter'
+			'tagfilter',
+			'title',
 		];
 
 		foreach ( $this->opts as $name => $value ) {
@@ -808,6 +808,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$htmlForm = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 		$htmlForm
 			->setMethod( 'get' )
+			->setTitle( $this->getPageTitle() )
 			// When offset is defined, the user is paging through results
 			// so we hide the form by default to allow users to focus on browsing
 			// rather than defining search parameters

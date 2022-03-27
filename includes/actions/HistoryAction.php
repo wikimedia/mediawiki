@@ -242,11 +242,6 @@ class HistoryAction extends FormlessAction {
 		// Add the general form.
 		$fields = [
 			[
-				'name' => 'title',
-				'type' => 'hidden',
-				'default' => $this->getTitle()->getPrefixedDBkey(),
-			],
-			[
 				'name' => 'action',
 				'type' => 'hidden',
 				'default' => 'history',

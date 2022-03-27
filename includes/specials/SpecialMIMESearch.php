@@ -146,7 +146,7 @@ class SpecialMIMESearch extends QueryPage {
 
 		HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
 			->setSubmitTextMsg( 'ilsubmit' )
-			->setAction( $this->getPageTitle()->getLocalURL() )
+			->setTitle( $this->getPageTitle() )
 			->setMethod( 'get' )
 			->prepareForm()
 			->displayForm( false );

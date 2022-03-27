@@ -416,7 +416,7 @@ class UsersPager extends AlphabeticPager {
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
 		$htmlForm
 			->setMethod( 'get' )
-			->setAction( Title::newFromText( $self )->getLocalURL() )
+			->setTitle( Title::newFromText( $self ) )
 			->setId( 'mw-listusers-form' )
 			->setFormIdentifier( 'mw-listusers-form' )
 			->suppressDefaultSubmit()
