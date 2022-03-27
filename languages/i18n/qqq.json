@@ -3218,7 +3218,6 @@
 	"thumbnail_error": "Message shown in a thumbnail frame when creation of the thumbnail fails. Parameters:\n* $1 - the reason\nThe reason $1 is one of the following messages:\n* {{msg-mw|Thumbnail-dest-create}}\n* {{msg-mw|Thumbnail dest directory}}\n* {{msg-mw|Thumbnail invalid params}}\n* {{msg-mw|Thumbnail image-missing}}\n* {{msg-mw|Djvu no xml}}\n* {{msg-mw|Djvu page error}}\n* {{msg-mw|Svg-long-error}}\n* other custom string",
 	"thumbnail_error_remote": "Message shown in a thumbnail frame when creation of the thumbnail fails.\n\nParameters:\n* $1 - the name of the shared repository, see {{msg-mw|Sharedupload}}\n* $2 - the reason, see {{msg-mw|Thumbnail error}}",
 	"djvu_page_error": "Used as error message.\n\nSee also:\n* {{msg-mw|Thumbnail error}}\n* {{msg-mw|Djvu no xml}}\n* {{msg-mw|Djvu page error}}",
-	"djvu_no_xml": "Used as error message.\n\nSee also:\n* {{msg-mw|Thumbnail error}}\n* {{msg-mw|Djvu page error}}",
 	"thumbnail-temp-create": "Used as thumbnail error message.\n\nSee also:\n* {{msg-mw|Thumbnail-dest-create}}\n* {{msg-mw|Thumbnail invalid params}}\n* {{msg-mw|Thumbnail dest directory}}",
 	"thumbnail-dest-create": "Used as thumbnail error message.\n\nSee also:\n* {{msg-mw|Thumbnail error}}\n* {{msg-mw|Thumbnail-temp-create}}\n* {{msg-mw|Thumbnail invalid params}}\n* {{msg-mw|Thumbnail dest directory}}",
 	"thumbnail_invalid_params": "Used as thumbnail error message.\n\nSee also:\n* {{msg-mw|Thumbnail-temp-create}}\n* {{msg-mw|Thumbnail-dest-create}}\n* {{msg-mw|Thumbnail dest directory}}",
