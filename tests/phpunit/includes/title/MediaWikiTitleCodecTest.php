@@ -433,8 +433,6 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideParseTitle_invalid() {
-		// TODO: test unicode errors
-
 		return [
 			[ 'User:#' ],
 			[ '::' ],
@@ -489,7 +487,11 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 			// Namespace prefix without actual title
 			[ 'Talk:' ],
 			[ 'Category: ' ],
-			[ 'Category: #bar' ]
+			[ 'Category: #bar' ],
+			// Invalid Unicode
+			[ "Apollo\x96Soyuz" ],
+			// Input resulting from invalid Unicode being sanitized somewhere else
+			[ "Apollo\u{FFFD}Soyuz" ],
 		];
 	}
 
