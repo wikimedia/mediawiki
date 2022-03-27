@@ -1810,7 +1810,6 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\DBConnectionError' => __DIR__ . '/includes/libs/rdbms/exception/DBConnectionError.php',
 	'Wikimedia\\Rdbms\\DBError' => __DIR__ . '/includes/libs/rdbms/exception/DBError.php',
 	'Wikimedia\\Rdbms\\DBExpectedError' => __DIR__ . '/includes/libs/rdbms/exception/DBExpectedError.php',
-	'Wikimedia\\Rdbms\\DBMasterPos' => __DIR__ . '/includes/libs/rdbms/database/position/DBPrimaryPos.php',
 	'Wikimedia\\Rdbms\\DBPrimaryPos' => __DIR__ . '/includes/libs/rdbms/database/position/DBPrimaryPos.php',
 	'Wikimedia\\Rdbms\\DBQueryDisconnectedError' => __DIR__ . '/includes/libs/rdbms/exception/DBQueryDisconnectedError.php',
 	'Wikimedia\\Rdbms\\DBQueryError' => __DIR__ . '/includes/libs/rdbms/exception/DBQueryError.php',

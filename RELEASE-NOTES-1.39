@@ -81,6 +81,7 @@ because of Phabricator reports.
   - ::numRows()
   - ::freeResult()
 * Title::getDefaultNamespace(), deprecated since 1.37, has been removed.
+* The DBPrimaryPos class alias 'DBMasterPos' has been removed.
 * Passing a db to BlockRestrictionStore::loadByBlockId() is no longer supported.
   BlockRestrictionStoreFactory should be used to fetch a correct
   BlockRestrictionStore instead. This was deprecated since 1.38.

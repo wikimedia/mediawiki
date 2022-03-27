@@ -39,10 +39,3 @@ interface DBPrimaryPos extends Serializable {
 	 */
 	public function __toString();
 }
-
-/**
- * Deprecated alias, renamed as of MediaWiki 1.37
- *
- * @deprecated since 1.37
- */
-class_alias( DBPrimaryPos::class, 'Wikimedia\\Rdbms\\DBMasterPos' );
