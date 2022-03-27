@@ -161,7 +161,7 @@ class SpecialActiveUsers extends SpecialPage {
 			->setWrapperLegendMsg( 'activeusers' )
 			->setSubmitTextMsg( 'activeusers-submit' )
 			// prevent setting subpage and 'username' parameter at the same time
-			->setAction( $this->getPageTitle()->getLocalURL() )
+			->setTitle( $this->getPageTitle() )
 			->setMethod( 'get' )
 			->prepareForm()
 			->displayForm( false );

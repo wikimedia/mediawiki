@@ -289,7 +289,7 @@ class SpecialDeletedContributions extends SpecialPage {
 			->setWrapperLegendMsg( 'sp-contributions-search' )
 			->setSubmitTextMsg( 'sp-contributions-submit' )
 			// prevent setting subpage and 'target' parameter at the same time
-			->setAction( $this->getPageTitle()->getLocalURL() )
+			->setTitle( $this->getPageTitle() )
 			->setMethod( 'get' )
 			->prepareForm()
 			->displayForm( false );
