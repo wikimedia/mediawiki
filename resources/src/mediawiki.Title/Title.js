@@ -248,6 +248,14 @@ var toUpperMap,
 			// Trim underscores
 			.replace( rUnderscoreTrim, '' );
 
+		if ( title.indexOf( '\uFFFD' ) !== -1 ) {
+			// Contained illegal UTF-8 sequences or forbidden Unicode chars.
+			// Commonly occurs when the text was obtained using the `URL` API, and the 'title' parameter
+			// was using a legacy 8-bit encoding, for example:
+			// new URL( 'https://en.wikipedia.org/w/index.php?title=Apollo%96Soyuz' ).searchParams.get( 'title' )
+			return false;
+		}
+
 		// Process initial colon
 		if ( title !== '' && title[ 0 ] === ':' ) {
 			// Initial colon means main namespace instead of specified default
