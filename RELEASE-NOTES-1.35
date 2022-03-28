@@ -44,6 +44,8 @@ THIS IS NOT A RELEASE YET
 * (T303871) Add Title::getId() as an alias for ::getArticleId().
 * (T304008) Don't re-check "Move subpages" on Special:MovePage after a warning.
 * (T293576) listFiles: Display file name instead of version.
+* (T303560) Installer: Check correct PCRE_CONFIG_NEWLINE value.
+* wrapOldPasswords: add \n to two output calls.
 
 == MediaWiki 1.35.5 ==
 
