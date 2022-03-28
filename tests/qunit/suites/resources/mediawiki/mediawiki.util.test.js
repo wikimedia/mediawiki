@@ -807,7 +807,9 @@
 			[ '1.24.52.13', ' 1.24.52.13 ', 'IPv4 trim whitespace from start and end of the string' ],
 			[ '0:0:0:0:0:0:0:1', '::1', 'IPv6 starts with ::' ],
 			[ '2001:DB8:0:0:0:FF00:42:8329', '2001:0db8:0000:0000:0000:ff00:0042:8329', 'IPv6 remove leading zeros from each block.' ],
-			[ 'FE80:0:0:0:0:0:0:0/10', 'fe80::/10', 'IPv6 :: at the end' ]
+			[ 'FE80:0:0:0:0:0:0:0/10', 'fe80::/10', 'IPv6 :: at the end' ],
+			[ 'UserName', 'UserName', 'Non-IP string' ],
+			[ null, null, 'Non-string' ]
 		];
 		IPaddress.forEach( function ( ipCase ) {
 			assert.strictEqual( util.sanitizeIP( ipCase[ 1 ] ), ipCase[ 0 ], ipCase[ 2 ] );
