@@ -174,6 +174,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			unset( $revQuery['joins']['temp_rev_user'] );
 		}
 
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		$this->addTables( $revQuery['tables'] );
 		$this->addFields( $revQuery['fields'] );
 		$this->addJoinConds( $revQuery['joins'] );

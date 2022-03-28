@@ -93,7 +93,6 @@ $cfg['exclude_analysis_directory_list'] = [
 ];
 
 // These are too spammy for now. TODO enable
-$cfg['suppress_issue_types'][] = 'PhanTypePossiblyInvalidDimOffset';
 $cfg['suppress_issue_types'][] = 'PhanPossiblyUndeclaredVariable';
 $cfg['suppress_issue_types'][] = 'PhanCompatibleAccessMethodOnTraitDefinition'; // T289813
 

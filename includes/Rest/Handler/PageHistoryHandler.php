@@ -258,6 +258,7 @@ class PageHistoryHandler extends SimpleHandler {
 		$limit = self::REVISIONS_RETURN_LIMIT + 1;
 
 		$res = $dbr->select(
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			$revQuery['tables'],
 			$revQuery['fields'],
 			$cond,

@@ -200,6 +200,7 @@ abstract class AuthenticationRequest {
 
 					case 'multiselect':
 						$data[$field] = (array)$data[$field];
+						// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset required for multiselect
 						$allowed = array_keys( $info['options'] );
 						if ( array_diff( $data[$field], $allowed ) !== [] ) {
 							return false;

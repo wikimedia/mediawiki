@@ -120,6 +120,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			$bl_namespace = "{$p}_namespace";
 			$bl_title = "{$p}_title";
 		} else {
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			$bl_namespace = $settings['to_namespace'];
 			$bl_title = "{$p}_to";
 
@@ -206,6 +207,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		}
 
 		// Populate the rest of the query
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		$this->addTables( [ $settings['linktable'], 'page' ] );
 		$this->addWhere( "$bl_from = page_id" );
 
@@ -273,8 +275,10 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		if ( !empty( $settings['indexes'] ) ) {
 			list( $idxNoFromNS, $idxWithFromNS ) = $settings['indexes'];
 			if ( $params['namespace'] !== null && !empty( $settings['from_namespace'] ) ) {
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				$this->addOption( 'USE INDEX', [ $settings['linktable'] => $idxWithFromNS ] );
 			} else {
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				$this->addOption( 'USE INDEX', [ $settings['linktable'] => $idxNoFromNS ] );
 			}
 		}

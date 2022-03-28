@@ -1414,6 +1414,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			if ( $fileInfo['type'] === 'script-vue' ) {
 				try {
 					$parsedComponent = $this->getVueComponentParser()->parse(
+						// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 						$fileInfo['content'],
 						[ 'minifyTemplate' => !$context->getDebug() ]
 					);

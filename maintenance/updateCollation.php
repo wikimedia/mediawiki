@@ -441,6 +441,7 @@ TEXT
 			}
 			$val = $this->sizeHistogram[$i] ?? 0;
 			for ( $coarseIndex = 0; $coarseIndex < $numBins - 1; $coarseIndex++ ) {
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				if ( $coarseBoundaries[$coarseIndex] > $i ) {
 					$coarseHistogram[$coarseIndex] += $val;
 					break;
@@ -459,6 +460,7 @@ TEXT
 		$prevBoundary = 0;
 		for ( $coarseIndex = 0; $coarseIndex < $numBins; $coarseIndex++ ) {
 			$val = $coarseHistogram[$coarseIndex] ?? 0;
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			$boundary = $coarseBoundaries[$coarseIndex];
 			$this->output( sprintf( "%-10s %-10d |%s\n",
 				$prevBoundary . '-' . ( $boundary - 1 ) . ': ',
