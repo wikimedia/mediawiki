@@ -80,6 +80,7 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 						$this->row->rc_actor
 					);
 				} catch ( InvalidArgumentException $e ) {
+					$this->performer = $actorStore->getUnknownActor();
 					LoggerFactory::getInstance( 'logentry' )->warning(
 						'Failed to instantiate RC log entry performer', [
 							'exception' => $e,
@@ -94,6 +95,7 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 				if ( $user ) {
 					$this->performer = $user->getUser();
 				} else {
+					$this->performer = $actorStore->getUnknownActor();
 					LoggerFactory::getInstance( 'logentry' )->warning(
 						'Failed to instantiate RC log entry performer', [
 							'rc_user_text' => $this->row->rc_user_text,
@@ -103,7 +105,7 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 				}
 			}
 		}
-		return $this->performer ?: $actorStore->getUnknownActor();
+		return $this->performer;
 	}
 
 	public function getTarget() {
