@@ -1541,11 +1541,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * If this returns false, it will be treated as a generic query error.
 	 *
 	 * @stable to override
-	 * @param string $error Error text
 	 * @param int $errno Error number
 	 * @return bool
+	 * @since 1.39
 	 */
-	protected function wasQueryTimeout( $error, $errno ) {
+	protected function isQueryTimeoutError( $errno ) {
 		return false;
 	}
 
@@ -1601,7 +1601,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return DBError
 	 */
 	private function getQueryException( $error, $errno, $sql, $fname ) {
-		if ( $this->wasQueryTimeout( $error, $errno ) ) {
+		if ( $this->isQueryTimeoutError( $errno ) ) {
 			return new DBQueryTimeoutError( $this, $error, $errno, $sql, $fname );
 		} elseif ( $this->isConnectionError( $errno ) ) {
 			return new DBQueryDisconnectedError( $this, $error, $errno, $sql, $fname );
