@@ -823,10 +823,13 @@ util = {
 	 * IPv4 addresses have leading zeros, in each octet, removed.
 	 *
 	 * @param {string} ip IP address in quad or octet form (CIDR or not).
-	 * @return {string|null|*}
+	 * @return {string|null}
 	 */
 	sanitizeIP: function ( ip ) {
-		ip = ip.replace( /(^\s+|\s+$)/g, '' );
+		if ( typeof ip !== 'string' ) {
+			return null;
+		}
+		ip = ip.trim();
 		if ( ip === '' ) {
 			return null;
 		}
@@ -869,7 +872,7 @@ util = {
 	 * This will make it more compact and lower-case.
 	 *
 	 * @param {string} ip IP address in quad or octet form (CIDR or not).
-	 * @return {null|*}
+	 * @return {string|null}
 	 */
 	prettifyIP: function ( ip ) {
 		ip = this.sanitizeIP( ip );
