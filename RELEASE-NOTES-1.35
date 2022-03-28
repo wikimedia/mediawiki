@@ -1,25 +1,26 @@
 = MediaWiki 1.35 =
 
-MediaWiki 1.35 should mostly work on the recently released PHP 8.0, however
+MediaWiki 1.35 should mostly work on PHP 8.0/8.1, however
 it is not currently actively supported. Testing (on a development wiki!) is
-appreciated, and bugs with PHP 8.0 on MediaWiki 1.35 will be accepted.
+appreciated, and bugs with PHP 8.0/8.1 on MediaWiki 1.35 will be accepted.
 
 It is anticipated that in a later MediaWiki 1.35 point release, we can
-declare 1.35 as supporting PHP 8.0.
+declare 1.35 as supporting PHP 8.0/8.1.
 
 PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
+PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 
 == MediaWiki 1.35.6 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.35 branch.
 
 === Changes since MediaWiki 1.35.5 ===
 * (T298261) Fix support for Composer 2.2.
 * (T298283) composer.json: Add wikimedia/composer-merge-plugin to allow-plugins.
 * Update doctrine/dbal (3.0.0 => 3.1.5).
 * (T298564) MemcachedClient: Add support for IPv6.
-* (T297543) SECURITY: properly escape output used within galleries and
-  Special:RevisionDelete.
+* (T297543, CVE-2022-28202) SECURITY: properly escape output used within
+  galleries and Special:RevisionDelete.
 * (T268847) Suppress deprecation warnings from libxml_disable_entity_loader().
 * (T283275) Fix PHP 8.0 failure of WikiExporterFactoryTest.
 * (T274966) Upgrading wikimedia/html-formatter (1.0.2 => 2.0.1).
@@ -46,6 +47,11 @@ THIS IS NOT A RELEASE YET
 * (T293576) listFiles: Display file name instead of version.
 * (T303560) Installer: Check correct PCRE_CONFIG_NEWLINE value.
 * wrapOldPasswords: add \n to two output calls.
+* (T304993) Make editcontentmodel a part of editpage grant.
+* (T297571, CVE-2022-28201) Title::newMainPage() goes into an infinite recursion
+  loop if it points to a local interwiki.
+* (T297731, CVE-2022-28203) Requesting Special:NewFiles on a wiki with many file
+  uploads with actor as a condition can result in a DoS.
 
 == MediaWiki 1.35.5 ==
 
