@@ -775,7 +775,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	/**
 	 * Like getMetadata but returns a handler independent array of common values.
 	 * @see MediaHandler::getCommonMetaArray()
-	 * @return array|bool Array or false if not supported
+	 * @return array|false Array or false if not supported
 	 * @since 1.23
 	 */
 	public function getCommonMetaArray() {

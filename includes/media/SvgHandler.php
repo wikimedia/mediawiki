@@ -220,7 +220,7 @@ class SvgHandler extends ImageHandler {
 	 * @param string $dstUrl
 	 * @param array $params
 	 * @param int $flags
-	 * @return bool|MediaTransformError|ThumbnailImage|TransformParameterError
+	 * @return MediaTransformError|ThumbnailImage|TransformParameterError|false
 	 */
 	public function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		if ( !$this->normaliseParams( $image, $params ) ) {

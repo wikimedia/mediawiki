@@ -75,7 +75,7 @@ class GIFHandler extends BitmapHandler {
 	/**
 	 * Return the standard metadata elements for #filemetadata parser func.
 	 * @param File $image
-	 * @return array|bool
+	 * @return array
 	 */
 	public function getCommonMetaArray( File $image ) {
 		$meta = $image->getMetadataArray();

@@ -410,7 +410,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * @param File $image File associated with this thumbnail
 	 * @param array $params Array with scaler params
 	 *
-	 * @return MediaTransformError|bool Error object if error occurred, false (=no error) otherwise
+	 * @return MediaTransformError|false Error object if error occurred, false (=no error) otherwise
 	 */
 	protected function transformGd( $image, $params ) {
 		# Use PHP's builtin GD library functions.
@@ -574,7 +574,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * @param array $params Rotate parameters.
 	 *   'rotation' clockwise rotation in degrees, allowed are multiples of 90
 	 * @since 1.21
-	 * @return bool|MediaTransformError
+	 * @return MediaTransformError|false
 	 */
 	public function rotate( $file, $params ) {
 		$imageMagickConvertCommand = MediaWikiServices::getInstance()
