@@ -845,8 +845,6 @@
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} ginnaaw coppite gi",
 	"newsectionsummary": "/* $1 */ xaaj bu bees",
-	"rc-enhanced-expand": "Xool faramfacce yi (laaj na JavaScript)",
-	"rc-enhanced-hide": "nëbb faramfacce yi",
 	"recentchangeslinked": "Coppite yi ko ñeel",
 	"recentchangeslinked-feed": "Coppite yi ko ñeel",
 	"recentchangeslinked-toolbox": "Coppite yi ko ñeel",

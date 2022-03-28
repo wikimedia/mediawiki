@@ -780,8 +780,6 @@
 	"newpageletter": "Ж",
 	"boteditletter": "б",
 	"rc-change-size-new": "Өзгөртүүдөн кийин $1 {{PLURAL:$1|байт|байттар}}",
-	"rc-enhanced-expand": "Кошумча маалыматтарды көрсөтүү (JavaScript талап кылынат)",
-	"rc-enhanced-hide": "Кошумча маалыматтарды жашыруу",
 	"recentchangeslinked": "Байланыштуу өзгөрүүлөр",
 	"recentchangeslinked-feed": "Тиешелүү өзгөрүүлөр",
 	"recentchangeslinked-toolbox": "Байланыштуу өзгөрүүлөр",

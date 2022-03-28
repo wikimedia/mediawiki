@@ -702,8 +702,6 @@
 	"newpageletter": "নু",
 	"boteditletter": "ব",
 	"rc-change-size-new": "সিলকরানির পিছে $1 {{PLURAL:$1|বাইট}}",
-	"rc-enhanced-expand": "পুল্লাপ দেহাদে (জাভাস্ক্রিপ্ট দরকার)",
-	"rc-enhanced-hide": "পুল্লাপ গুর",
 	"recentchangeslinked": "সাকেই আসে পতা",
 	"recentchangeslinked-feed": "সাকেই আসে পতা",
 	"recentchangeslinked-toolbox": "সাকেই আসে পতা",

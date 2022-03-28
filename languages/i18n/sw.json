@@ -1174,8 +1174,6 @@
 	"boteditletter": "r",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} baada ya mabadiliko",
 	"newsectionsummary": "/* $1 */ mjadala mpya",
-	"rc-enhanced-expand": "Onyesha maelezo",
-	"rc-enhanced-hide": "Ficha maelezo mengine",
 	"rc-old-title": "ilitengenezwa hapo awali na \"$1\"",
 	"recentchangeslinked": "Mabadiliko husika",
 	"recentchangeslinked-feed": "Mabadiliko husika",

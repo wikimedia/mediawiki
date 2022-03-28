@@ -1,8 +1,27 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kamalaksha"
+			"Kamalaksha",
+			"ಮಲ್ನಾಡಾಚ್ ಕೊಂಕ್ಣೊ"
 		]
 	},
+	"apihelp-block-param-reason": "ನಿರ್ಬಂಧನೆಯ ಕಾರಣ.",
+	"apihelp-block-param-anononly": "ಅನಾಮಧೇಯ ಬಳಕೆದಾರರನ್ನು ಮಾತ್ರ ನಿರ್ಬಂಧಿಸು (ಅಂದರೆ ಈ ಐಪಿ ವಿಳಾಸದ ಅನಾಮಧೇಯ ಸಂಪಾದನೆಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ).",
+	"apihelp-block-param-nocreate": "ಖಾತೆ ರಚನೆ ತಡೆಹಿಡಿಯಿರಿ.",
+	"apihelp-edit-param-sectiontitle": "ಹೊಸ ವಿಭಾಗದ ತಲೆಬರಹ.",
+	"apihelp-edit-param-minor": "ಇದನ್ನು ಚುಟುಕಾದ ಸಂಪಾದನೆಯೆಂದು ಗುರುತಿಸು",
+	"apihelp-feedcontributions-param-hideminor": "ಚುಟುಕು ಸಂಪಾದನೆಗಳನ್ನು ಅಡಗಿಸು.",
+	"apihelp-feedcontributions-param-showsizediff": "ಆವೃತ್ತಿಗಳ ನಡುವಿನ ಗಾತ್ರದ ಅಂತರವನ್ನು ತೋರಿಸು.",
+	"apihelp-feedrecentchanges-param-hideminor": "ಚುಟುಕು ಬದಲಾವಣೆಗಳನ್ನು ಅಡಗಿಸು.",
+	"apihelp-feedrecentchanges-param-hidebots": "ಬಾಟ್‌ಗಳು ಮಾಡಿದ ಬದಲಾವಣೆಗಳನ್ನು ಅಡಗಿಸು.",
+	"apihelp-feedrecentchanges-param-hideanons": "ಅನಾಮಧೇಯ ಬಳಕೆದಾರರು ಮಾಡಿದ ಬದಲಾವಣೆಗಳನ್ನು ಅಡಗಿಸು.",
+	"apihelp-feedrecentchanges-param-hideliu": "ನೊಂದಾಯಿತ ಬಳಕೆದಾರರು ಮಾಡಿದ ಬದಲಾವಣೆಗಳನ್ನು ಅಡಗಿಸು.",
+	"apihelp-feedrecentchanges-param-hidemyself": "ಪ್ರಸಕ್ತ ಬಳಕೆದಾರ ಮಾಡಿದ ಬದಲಾವಣೆಗಳನ್ನು ಅಡಗಿಸು.",
+	"apihelp-feedrecentchanges-example-simple": "ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳನ್ನು ತೋರಿಸು.",
+	"apihelp-feedrecentchanges-example-30days": "ಇತ್ತೀಚೆಗಿನ ೩೦ ದಿನಗಳ ಬದಲಾವಣೆಗಳನ್ನು ತೋರಿಸು.",
+	"apihelp-login-param-name": "ಬಳಕೆದಾರರ ಹೆಸರು.",
+	"apihelp-login-param-password": "ಪ್ರವೇಶಪದ.",
+	"apihelp-login-example-login": "ಲಾಗ್ ಇನ್.",
+	"apihelp-move-param-noredirect": "ಪುನರ್ನಿರ್ದೇಶನವನ್ನು ರಚಿಸಬೇಡ.",
 	"apihelp-query+watchlist-paramvalue-type-external": "ಬಾಹ್ಯ ಬದಲಾವಣೆಗಳು"
 }

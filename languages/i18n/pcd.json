@@ -534,8 +534,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"rc-change-size-new": "$1 {{PLURAL:$1|octet|octets}} apré canjemint",
-	"rc-enhanced-expand": "Montrer chés détals (i feut avoér JavaScript)",
-	"rc-enhanced-hide": "Mucher chés détals",
 	"recentchangeslinked": "Darins canjemints érliés",
 	"recentchangeslinked-toolbox": "Suivi des paches loïées",
 	"recentchangeslinked-title": "Cangemints à pérpos éd \"$1\"",

@@ -622,8 +622,6 @@
 	"newpageletter": "B",
 	"boteditletter": "b",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|mga byte}} human sa pag-usab",
-	"rc-enhanced-expand": "Ipakita ang mga detalye (JavaScript kinahanglan)",
-	"rc-enhanced-hide": "Tagoa ang mga detalye",
 	"recentchangeslinked": "Mga may kalabotang kausaban",
 	"recentchangeslinked-feed": "Mga may kalabotang kausaban",
 	"recentchangeslinked-toolbox": "Mga may kalabotang kausaban",

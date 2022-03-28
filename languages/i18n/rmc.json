@@ -657,8 +657,6 @@
 	"expand_templates_ok": "Va",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 bitos|$1 biti}} ($2; $3%)",
 	"log-action-filter-all": "Savoro",
-	"edit-error-short": "Chiba: $1",
-	"edit-error-long": "Chibi:\n\n$1",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"skin-view-create-local": "Te prithovel thaneskeri deskripcija",
 	"nstab-mainpage": "Šerutni sera",

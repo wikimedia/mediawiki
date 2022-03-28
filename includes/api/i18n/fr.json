@@ -1884,5 +1884,5 @@
 	"api-usage-mailinglist-ref": "S’abonner à la liste de diffusion mediawiki-api-announce sur &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; pour les signalisations d’obsolescence de l’API ou de modifications en rupture.",
 	"api-exception-trace": "$1 à $2($3)\n$4",
 	"api-credits-header": "Remerciements",
-	"api-credits": "Développeurs de l’API :\n* Yuri Astrakhan (créateur, développeur en chef de sept. 2006 à sept. 2007)\n* Roan Kattouw (développeur en chef de sept. 2007 à 2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (développeur en chef depuis 2013)\n\nVeuillez envoyer vos commentaires, suggestions et questions à mediawiki-api@lists.wikimedia.org\nou remplir un rapport de bogue sur https://phabricator.wikimedia.org/."
+	"api-credits": "Développeurs de l’API :\n* Yuri Astrakhan (créateur, développeur en chef de sept. 2006 à sept. 2007)\n* Roan Kattouw (développeur en chef de sept. 2007 à 2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (développeur en chef de 2013 à 2020)\n\nVeuillez envoyer vos commentaires, suggestions et questions à mediawiki-api@lists.wikimedia.org\nou remplir un rapport de bogue sur https://phabricator.wikimedia.org/."
 }

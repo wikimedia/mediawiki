@@ -1108,8 +1108,6 @@
 	"boteditletter": "b",
 	"rc-change-size-new": "$1 {{PLURAL:$1|nga byte|nga mga byte}} kahuman han pagbag-o",
 	"newsectionsummary": "/* $1 */ bag-o nga bahin",
-	"rc-enhanced-expand": "Igpakita an detalye",
-	"rc-enhanced-hide": "Igtago an mga detalye",
 	"rc-old-title": "orihinal nga ginhimo komo \"$1\"",
 	"recentchangeslinked": "Mga may kalabotan nga binag-o",
 	"recentchangeslinked-feed": "Mga may kalabotan nga binag-o",

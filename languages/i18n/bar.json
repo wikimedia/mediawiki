@@ -593,8 +593,6 @@
 	"boteditletter": "B",
 	"rc-change-size-new": "$1 {{PLURAL:$1|Byte|Bytes}} noch da Endarung",
 	"newsectionsummary": "Neicher Obschnit /* $1 */",
-	"rc-enhanced-expand": "Details zoagn (braucht JavaScript)",
-	"rc-enhanced-hide": "Details vastecka",
 	"recentchangeslinked": "Endarunga an Valinkunga",
 	"recentchangeslinked-feed": "Valinkts priaffm",
 	"recentchangeslinked-toolbox": "Endarunga af valinktn Seitn",

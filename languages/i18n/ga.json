@@ -765,8 +765,6 @@
 	"boteditletter": "b",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bheart|beart}} tar éis an athraithe",
 	"newsectionsummary": "/* $1 */ mír nua",
-	"rc-enhanced-expand": "Taispeáin mionsonraithe",
-	"rc-enhanced-hide": "Folaigh shonraí",
 	"recentchangeslinked": "Athruithe gaolmhara",
 	"recentchangeslinked-feed": "Athruithe gaolmhara",
 	"recentchangeslinked-toolbox": "Athruithe gaolmhara",

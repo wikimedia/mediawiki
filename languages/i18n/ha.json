@@ -507,8 +507,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} bayan sauyi",
-	"rc-enhanced-expand": "Nuna ƙananan bayannai (ana buƙatar JavaScript)",
-	"rc-enhanced-hide": "Ɓoye ƙananan bayannai",
 	"recentchangeslinked": "Sauye-sauye masu dangantaka",
 	"recentchangeslinked-toolbox": "Canje-canje masu dangantaka",
 	"recentchangeslinked-title": "Bin sawun shafuna masu dangantaka da \"$1\"",

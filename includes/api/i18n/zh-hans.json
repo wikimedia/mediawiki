@@ -1876,5 +1876,5 @@
 	"api-usage-mailinglist-ref": "在&lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt;订阅mediawiki-api-announce列表以获取API弃用和重大更新的通知。",
 	"api-exception-trace": "$1在$2（$3）\n$4",
 	"api-credits-header": "制作人员",
-	"api-credits": "API 开发人员：\n* Yuri Astrakhan（创建者，2006年9月~2007年9月的开发组领导）\n* Roan Kattouw（2007年9月~2009年的开发组领导）\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch（2013年至今的开发组领导）\n\n请将您的评论、建议和问题发送至mediawiki-api@lists.wikimedia.org，或提交错误请求至https://phabricator.wikimedia.org/。"
+	"api-credits": "API 开发人员：\n* Yuri Astrakhan（创建者，2006年9月~2007年9月的开发组领导）\n* Roan Kattouw（2007年9月~2009年的开发组领导）\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch（2013年~2020年的开发组领导）\n\n请将您的评论、建议和问题发送至mediawiki-api@lists.wikimedia.org，或提交错误请求至https://phabricator.wikimedia.org/。"
 }

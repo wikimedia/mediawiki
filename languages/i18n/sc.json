@@ -859,8 +859,6 @@
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} a pustis de sa modìfica",
 	"newsectionsummary": "/* $1 */ setzione noa",
-	"rc-enhanced-expand": "Ammustra particulares",
-	"rc-enhanced-hide": "Cua particulares",
 	"recentchangeslinked": "Mudàntzias ligadas",
 	"recentchangeslinked-feed": "Mudàntzias ligadas",
 	"recentchangeslinked-toolbox": "Mudàntzias ligadas",

@@ -374,8 +374,6 @@
 	"newpageletter": "ن",
 	"boteditletter": "بۆت",
 	"rc-change-size-new": "$1 {{PLURAL:$1|بایت}} پاش گووڕانکاری",
-	"rc-enhanced-expand": "وردەکاریەگان نیشان بدە",
-	"rc-enhanced-hide": "وردەکاریەگان بشارەو",
 	"recentchangeslinked": "گووڕانکاریە پەیوەندیدارەگان",
 	"recentchangeslinked-toolbox": "گووڕانکاری پەیوەندیدارەگان",
 	"recentchangeslinked-title": "گووڕانکاریە پەیوەندیدارەگان وە \"$1\" ـەو",

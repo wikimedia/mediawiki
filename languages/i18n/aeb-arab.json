@@ -599,8 +599,6 @@
 	"newpageletter": "ج‌",
 	"boteditletter": "ب",
 	"rc-change-size-new": "$1 {{PLURAL:$1|أوكتاي|أوكتاي}} بعد التبديل",
-	"rc-enhanced-expand": "عرض التفاصيل (يتطلب جافاسكريبت)",
-	"rc-enhanced-hide": "أخفِ التفاصيل",
 	"recentchangeslinked": "تغييرات ذات علاقة",
 	"recentchangeslinked-title": "التغييرات المرتبطة ب \"$1\"",
 	"recentchangeslinked-summary": "هذي ليستة بالتبديلات إلّي صاروا ما صارلهمش برشا للپاجات إلّي موجود ليان يدّي ليهم في پاج بذاتها. (ولّا في پاج متاع تصنيف معين، اكتب {{ns:category}}:اسم التصنيف). الپاجات في [[Special:Watchlist|ليستة الپاجات إلّي تّبعها]] <strong>مكتوبين بالغليظ</strong>.",
