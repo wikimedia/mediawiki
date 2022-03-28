@@ -408,9 +408,10 @@ class DataAccess extends IDataAccess {
 	/** @inheritDoc */
 	public function fetchTemplateData( IPageConfig $pageConfig, string $title ): ?array {
 		$ret = [];
-		// @todo: Document this hook in MediaWiki / Extension:TemplateData
-		$this->hookContainer->run(
-			'ParserFetchTemplateData', [ [ $title ], &$ret ]
+		// @todo: This hook needs some clean up: T304899
+		$this->hookRunner->onParserFetchTemplateData(
+			[ $title ],
+			$ret # value returned by reference
 		);
 
 		// Cast value to array since the hook returns this as a stdclass

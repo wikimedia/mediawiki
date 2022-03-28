@@ -282,6 +282,7 @@ class HookRunner implements
 	\MediaWiki\Hook\ParserCacheSaveCompleteHook,
 	\MediaWiki\Hook\ParserClearStateHook,
 	\MediaWiki\Hook\ParserClonedHook,
+	\MediaWiki\Hook\ParserFetchTemplateDataHook,
 	\MediaWiki\Hook\ParserFirstCallInitHook,
 	\MediaWiki\Hook\ParserGetVariableValueSwitchHook,
 	\MediaWiki\Hook\ParserGetVariableValueTsHook,
@@ -2864,6 +2865,13 @@ class HookRunner implements
 		return $this->container->run(
 			'ParserCloned',
 			[ $parser ]
+		);
+	}
+
+	public function onParserFetchTemplateData( array $titles, array &$tplData ): bool {
+		return $this->container->run(
+			'ParserFetchTemplateData',
+			[ $titles, &$tplData ]
 		);
 	}
 
