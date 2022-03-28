@@ -730,8 +730,6 @@
 	"newpageletter": "C",
 	"boteditletter": "b",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} isbedel ka dib",
-	"rc-enhanced-expand": "Itus ka hadalka (waxaa loo baahanyahay JavaScript)",
-	"rc-enhanced-hide": "Qari ka hadalka",
 	"recentchangeslinked": "Isbedelada la'xiriira",
 	"recentchangeslinked-toolbox": "Isbedelada la'xiriira",
 	"recentchangeslinked-title": "Wax bedelka la xiriiro \"$1\"",

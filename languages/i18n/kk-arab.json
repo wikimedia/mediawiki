@@ -1170,7 +1170,6 @@
 	"filemissing": "جوعالعان فايل",
 	"thumbnail_error": "نوباي قۇرۋ قاتەسى: $1",
 	"djvu_page_error": "DjVu بەتى اۋماق سىرتىنددا",
-	"djvu_no_xml": "DjVu فايلى ٴۇشىن XML كەلتىرۋى ىيكەمدى ەمەس",
 	"thumbnail_invalid_params": "نوبايدىڭ باپتالىمدارى جارامسىز",
 	"thumbnail_dest_directory": "نىسانا قالتاسى قۇرۋى ىيكەمدى ەمەس",
 	"import": "بەتتەردى سىرتتان الۋ",

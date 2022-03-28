@@ -761,8 +761,6 @@
 	"boteditletter": "б",
 	"rc-change-size-new": "$1 {{PLURAL:$1|байт}} зэхъокӀым ыуж",
 	"newsectionsummary": "/* $1 */ секциякIэ",
-	"rc-enhanced-expand": "Ӏэмэ-псымэхэр къэгъэлъагъу",
-	"rc-enhanced-hide": "Жъыиэ паркӀэхэр гъэбылъых",
 	"recentchangeslinked": "ЕхьылӀэгъэ зэхъокӀыныгъэхэр",
 	"recentchangeslinked-feed": "ЕхьылӀэгъэ зэхъокӀыныгъэхэр",
 	"recentchangeslinked-toolbox": "ЕхьылӀэгъэ зэблэхъуныгъэхэр",

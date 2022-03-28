@@ -842,8 +842,6 @@
 	"boteditletter": "a",
 	"rc-change-size-new": "$1 {{PLURAL:$1|octetus|octeti}} post recensionem",
 	"newsectionsummary": "/* $1 */ nova pars",
-	"rc-enhanced-expand": "Minima monstrare",
-	"rc-enhanced-hide": "Minima celare",
 	"recentchangeslinked": "Nuper mutata annexorum",
 	"recentchangeslinked-feed": "Nuper mutata annexorum",
 	"recentchangeslinked-toolbox": "Nuper mutata annexorum",

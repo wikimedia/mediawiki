@@ -601,5 +601,5 @@
 	"api-usage-mailinglist-ref": "Abonneer u op de mediawiki-api-announce mailinglijst op <https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/> voor kennisgeving van beëindiging van API's en belangrijke wijzigingen.",
 	"api-exception-trace": "$1 in $2($3)\n$4",
 	"api-credits-header": "Vermeldingen",
-	"api-credits": "API-ontwikkelaars:\n* Yuri Astrakhan (oorspronkelijke ontwikkelaar, hoofdontwikkelaar september 2006 – september 2007)\n* Roan Kattouw (hoofdontwikkelaar september 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (hoofdontwikkelaar 2013–heden)\n\nStuur uw opmerkingen, suggesties en vragen naar mediawiki-api@lists.wikimedia.org\nof maak een bugrapport aan op https://phabricator.wikimedia.org/."
+	"api-credits": "API-ontwikkelaars:\n* Yuri Astrakhan (oorspronkelijke ontwikkelaar, hoofdontwikkelaar september 2006 – september 2007)\n* Roan Kattouw (hoofdontwikkelaar september 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (hoofdontwikkelaar 2013–2020)\n\nStuur uw opmerkingen, suggesties en vragen naar mediawiki-api@lists.wikimedia.org\nof maak een bugrapport aan op https://phabricator.wikimedia.org/."
 }

@@ -910,8 +910,6 @@
 	"authmanager-email-label": "ኢመይል",
 	"authmanager-email-help": "ኣድራሻ ኢመይል",
 	"authprovider-resetpass-skip-label": "ዝለል",
-	"edit-error-short": "ጌጋ፦ $1",
-	"edit-error-long": "ጌጋታት፦\n\n$1",
 	"specialmute-submit": "ኣረጋግጽ",
 	"pageid": "መለለዪ ገጽ $1",
 	"passwordpolicies-group": "ጉጅለ",

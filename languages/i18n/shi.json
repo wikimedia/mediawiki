@@ -664,8 +664,6 @@
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|id byte}} dffir n usenfl",
 	"newsectionsummary": "/* $1 */ tigzmi tamaynut",
-	"rc-enhanced-expand": "sml ifruritn",
-	"rc-enhanced-hide": "Ssntl ifruritn",
 	"rc-old-title": "Asnulfu anṣli \"$1\"",
 	"recentchangeslinked": "Isnfiln zund ɣwid",
 	"recentchangeslinked-feed": "Imbddeln zund ɣwid",

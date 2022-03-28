@@ -668,8 +668,6 @@
 	"boteditletter": "р",
 	"rc-change-size-new": "Өскертилге соонда хемчээли:$1 {{PLURAL:$1|байт}}",
 	"newsectionsummary": "/* $1 */ чаа салбыр",
-	"rc-enhanced-expand": "Тодаларны көргүзери (JavaScript херек)",
-	"rc-enhanced-hide": "Тодаларны чажырары",
 	"rc-old-title": "баштайында \"$1\" кылдыр чаяаттынган",
 	"recentchangeslinked": "Тудуш өскерилгелер",
 	"recentchangeslinked-toolbox": "Тудуш өскерилгелер",

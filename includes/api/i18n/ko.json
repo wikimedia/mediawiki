@@ -921,5 +921,5 @@
 	"api-feed-error-title": "오류 ($1)",
 	"api-usage-docref": "API 사용법을 보려면 $1을(를) 참고하십시오.",
 	"api-credits-header": "크레딧",
-	"api-credits": "API 개발자:\n* Yuri Astrakhan (만든이, 선임 개발자 2006년 9월~2007년 9월)\n* Roan Kattouw (선임 개발자, 2007년 9월–2009년)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (선임 개발자 2013년–현재)\n\n당신의 의견이나 제안, 질문은 mediawiki-api@lists.wikimedia.org 로 보내주시고,\n버그 보고는 https://phabricator.wikimedia.org/ 에 해주시기 바랍니다."
+	"api-credits": "API 개발자:\n* Yuri Astrakhan (만든이, 선임 개발자 2006년 9월~2007년 9월)\n* Roan Kattouw (선임 개발자, 2007년 9월–2009년)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (선임 개발자 2013년–2020년)\n\n당신의 의견이나 제안, 질문은 mediawiki-api@lists.wikimedia.org 로 보내주시고,\n버그 보고는 https://phabricator.wikimedia.org/ 에 해주시기 바랍니다."
 }

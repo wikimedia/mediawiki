@@ -759,8 +759,6 @@
 	"newpageletter": "نوغ",
 	"boteditletter": "خودکار",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} تبدیلیاری آچی",
-	"rc-enhanced-expand": "تفصیلاتن پشاوے (JavaScript ضرورت بوئے)",
-	"rc-enhanced-hide": "تفصیلاتن کھوشتاوے",
 	"rc-old-title": "اصلاً «$1» و عنواناری ساوز بیرو",
 	"recentchangeslinked": "متعلقہ تبدیلی",
 	"recentchangeslinked-feed": "متعلقہ تبدیلی",

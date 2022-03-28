@@ -1112,8 +1112,6 @@
 	"boteditletter": "b",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|byte}} dôp la mudéfica",
 	"newsectionsummary": "/* $1 */ sesiòn nōva",
-	"rc-enhanced-expand": "Fà vèder i particulêr.",
-	"rc-enhanced-hide": "Lōga i particulêr.",
 	"rc-old-title": "in urégin fâta cme \"$1\"",
 	"recentchangeslinked": "Mudéfichi coleghêdi",
 	"recentchangeslinked-feed": "Mudéfichi coleghêdi",

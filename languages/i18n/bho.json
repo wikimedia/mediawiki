@@ -1222,8 +1222,6 @@
 	"boteditletter": "बॉ",
 	"rc-change-size-new": "बदलाव के बाद $1 {{PLURAL:$1|बाइट|बाइट्स}}",
 	"newsectionsummary": "/* $1 */ नया खंड",
-	"rc-enhanced-expand": "डिटेल देखावल जाय",
-	"rc-enhanced-hide": "डिटेल छिपावल जाय",
 	"rc-old-title": "मूल $1 नाँव से बनावल गइल",
 	"recentchangeslinked": "संबंधित बदलाव",
 	"recentchangeslinked-feed": "संबंधित बदलाव",

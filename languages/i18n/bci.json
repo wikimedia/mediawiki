@@ -1377,8 +1377,6 @@
 	"boteditletter": "b",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} kè bé katchi i",
 	"newsectionsummary": "/* $1 */ akpassoua ouflè",
-	"rc-enhanced-expand": "Fa i si'n ndè moun bé klouaa fa klé",
-	"rc-enhanced-hide": "Fa i si'n ndè moun bé klouaa fa fia",
 	"rc-old-title": "i bobolè noun, bé yili kè \"$1\"",
 	"recentchangeslinked": "Katchiwa moun nga bé kô likawlè",
 	"recentchangeslinked-feed": "Liké katchilè nga bé kô likawlè moun",

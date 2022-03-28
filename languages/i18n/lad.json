@@ -655,8 +655,6 @@
 	"newpageletter": "M",
 	"boteditletter": "b",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bayt|baytes}} dospués del trocamiento",
-	"rc-enhanced-expand": "Amostrar los detalios",
-	"rc-enhanced-hide": "Esconder los detalios",
 	"rc-old-title": "orijinalmente criado como \"$1\"",
 	"recentchangeslinked": "Trocamientos atados",
 	"recentchangeslinked-feed": "Trocamientos conectados",

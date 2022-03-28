@@ -645,8 +645,6 @@
 	"newpageletter": "N",
 	"boteditletter": "b",
 	"rc-change-size-new": "$1 {{PLURAL:$1|bayt|bayti}} ra dıme vurnayış",
-	"rc-enhanced-expand": "Tefsilatu bıasne (JavaScript lazımo)",
-	"rc-enhanced-hide": "Tefsilatu bınımne",
 	"recentchangeslinked": "Ney sero vurnayene",
 	"recentchangeslinked-toolbox": "Ney sero vurnayene",
 	"recentchangeslinked-title": "Heqa \"$1\"i de vurnais",

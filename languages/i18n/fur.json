@@ -700,8 +700,6 @@
 	"boteditletter": "b",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} dopo la modifiche",
 	"newsectionsummary": "/* $1 */ gnove sezion",
-	"rc-enhanced-expand": "Cjale i detais (al covente JavaScript)",
-	"rc-enhanced-hide": "Plate detais",
 	"rc-old-title": "creade al inizi come \"$1\"",
 	"recentchangeslinked": "Cambiaments leâts",
 	"recentchangeslinked-feed": "Cambiaments leâts",

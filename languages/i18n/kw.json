@@ -634,8 +634,6 @@
 	"boteditletter": "b",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} wosa chanjya",
 	"newsectionsummary": "/* $1 */ tregh nowyth",
-	"rc-enhanced-expand": "Diskwedhes an manylyon (res yw JavaScript)",
-	"rc-enhanced-hide": "Kudha an manylyon",
 	"rc-old-title": "gwrys yn kensa avel \"$1\"",
 	"recentchangeslinked": "Chanjyow kelmys",
 	"recentchangeslinked-feed": "Chanjyow kelmys",
