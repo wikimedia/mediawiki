@@ -2,7 +2,7 @@
 
 == MediaWiki 1.37.2 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.37 branch.
 
 === Changes since MediaWiki 1.37.1 ===
 * (T298261) Fix support for Composer 2.2.
@@ -10,8 +10,8 @@ THIS IS NOT A RELEASE YET
 * Update doctrine/dbal (3.0.0 => 3.1.5).
 * (T296898) Add entry point name to disabled Session exception if possible.
 * (T298564) MemcachedClient: Add support for IPv6.
-* (T297543) SECURITY: properly escape output used within galleries and
-  Special:RevisionDelete.
+* (T297543, CVE-2022-28202) SECURITY: properly escape output used within
+  galleries and Special:RevisionDelete.
 * (T289956) WatchAction: Fix bug that prevents showing proper success
   message in the noscript fallback mode.
 * (T268847) Suppress deprecation warnings from libxml_disable_entity_loader().
@@ -45,6 +45,12 @@ THIS IS NOT A RELEASE YET
 * (T303871) Fix @since of Title::getId().
 * (T303560) Installer: Check correct PCRE_CONFIG_NEWLINE value.
 * wrapOldPasswords: add \n to two output calls.
+* (T297571, CVE-2022-28201) Title::newMainPage() goes into an infinite recursion
+  loop if it points to a local interwiki.
+* (T297731, CVE-2022-28203) Requesting Special:NewFiles on a wiki with many file
+  uploads with actor as a condition can result in a DoS.
+* (T297754, CVE-2022-28204) Special:WhatLinksHere can result in a DoS when a
+  page is used on a extremely large number of other pages.
 
 == MediaWiki 1.37.1 ==
 
