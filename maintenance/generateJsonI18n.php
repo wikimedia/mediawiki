@@ -187,10 +187,7 @@ class GenerateJsonI18n extends Maintenance {
 	 * @return string[] Array of author names
 	 */
 	protected function getAuthorsFromComment( $comment ) {
-		$matches = null;
-		preg_match_all( '/@author (.*?)$/m', $comment, $matches );
-
-		return $matches && $matches[1] ? $matches[1] : [];
+		return preg_match_all( '/@author (.*?)$/m', $comment, $matches ) ? $matches[1] : [];
 	}
 }
 
