@@ -433,7 +433,7 @@
 	"createacct-submit": "Тіркеліңіз",
 	"createacct-another-submit": "Тіркелгі жасау",
 	"createacct-continue-submit": "Тіркелуді жалғастыру",
-	"createacct-benefit-heading": "{{SITENAME}} сіздермен жасалады.",
+	"createacct-benefit-heading": "{{SITENAME}} жобасын сіз сияқты адамдар жасаған.",
 	"createacct-benefit-body1": "{{PLURAL:$1|өңдеме|өңдеме}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|бет|бет}}",
 	"createacct-benefit-body3": "жуықтағы {{PLURAL:$1|қатысушы|қатысушы}}",

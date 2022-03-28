@@ -3310,7 +3310,7 @@
 	"logentry-suppress-revision": "$1 je tajno promijenio vidljivost {{PLURAL:$5|uređivanja|$5 uređivanja}} na stranici $3: $4",
 	"logentry-suppress-event-legacy": "$1 je tajno {{GENDER:$2|promijenio|promijenila}} vidljivost zapisa u evidenciji na $3",
 	"logentry-suppress-revision-legacy": "$1 je tajno {{GENDER:$2|promijenio|promijenila}} vidljivost uređivanja na stranici $3",
-	"revdelete-content-hid": "sadržaj je sakriven",
+	"revdelete-content-hid": "sadržaj je skriven",
 	"revdelete-summary-hid": "sažetak uređivanja je skriven",
 	"revdelete-uname-hid": "suradničko ime skriveno",
 	"revdelete-content-unhid": "sadržaj uređivanja je otkriven",
