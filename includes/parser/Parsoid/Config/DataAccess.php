@@ -435,9 +435,8 @@ class DataAccess extends IDataAccess {
 
 		// Only send the request if it the latest revision
 		if ( $revId !== null && $revId === $latest ) {
-			// @todo: Document this hook in MediaWiki / Extension:Linter
-			$this->hookContainer->run(
-				'ParserLogLinterData', [ $title, $revId, $lints ]
+			$this->hookRunner->onParserLogLinterData(
+				$title, $revId, $lints
 			);
 		}
 	}
