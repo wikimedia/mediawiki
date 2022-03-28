@@ -56,6 +56,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\Config\GlobalConfigBuilder;
 use MediaWiki\Settings\Config\PhpIniSink;
+use MediaWiki\Settings\LocalSettingsLoader;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\Source\PhpSettingsSource;
 use Psr\Log\LoggerInterface;
@@ -151,15 +152,23 @@ $wgSettings = new SettingsBuilder(
 	new PhpIniSink()
 );
 
+// Collect stats on loading the config schema.
+$setupLoadSchemaStatsKey  = '';
+$setupLoadSchemaStatsTiming = microtime( true );
+
 // If MW_USE_CONFIG_SCHEMA, use the experimental setup based on config-schema.yaml. See T300129.
 if ( getenv( 'MW_USE_CONFIG_SCHEMA' ) || defined( 'MW_USE_CONFIG_SCHEMA' ) ) {
 	$wgSettings->load( new PhpSettingsSource( "$IP/includes/config-schema.php" ) );
+	$setupLoadSchemaStatsKey = 'config_schema_php';
 } else {
 	require_once "$IP/includes/DefaultSettings.php";
 
-	// This is temporary until we transition to config-schema.yaml
+	// This is temporary until we transition to loading config-schema.php, see above.
 	$wgSettings->load( new PhpSettingsSource( "$IP/includes/config-merge-strategies.php" ) );
+	$setupLoadSchemaStatsKey = 'DefaultSettings_php';
 }
+
+$setupLoadSchemaStatsTiming = microtime( true ) - $setupLoadSchemaStatsTiming;
 
 require_once "$IP/includes/GlobalFunctions.php";
 
@@ -202,12 +211,20 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 } else {
 	wfDetectLocalSettingsFile( $IP );
 
-	if ( str_ends_with( MW_CONFIG_FILE, '.php' ) ) {
-		// make defaults available as globals
-		$wgSettings->apply();
-		require_once MW_CONFIG_FILE;
+	if ( getenv( 'MW_USE_LOCAL_SETTINGS_LOADER' ) ) {
+		// NOTE: This will not work for configuration variables that use a prefix
+		//       other than "wg".
+		$localSettingsLoader = new LocalSettingsLoader( $wgSettings, $IP );
+		$localSettingsLoader->loadLocalSettingsFile( MW_CONFIG_FILE );
+		unset( $localSettingsLoader );
 	} else {
-		$wgSettings->loadFile( MW_CONFIG_FILE );
+		if ( str_ends_with( MW_CONFIG_FILE, '.php' ) ) {
+			// make defaults available as globals
+			$wgSettings->apply();
+			require_once MW_CONFIG_FILE;
+		} else {
+			$wgSettings->loadFile( MW_CONFIG_FILE );
+		}
 	}
 }
 
@@ -832,6 +849,25 @@ if ( $wgRequest->getCookie( 'UseDC', '' ) === 'master' ) {
 		$logger->debug( $debug );
 	}
 } )();
+
+// Send setup stats to statsd
+$statsd = MediaWiki\MediaWikiServices::getInstance()->getStatsdDataFactory();
+
+// Record stats on loading the config schema.
+// Differentiate between CLI and web requests, because PHP may be
+// configured differently, e.g. with respect to the opcode cache.
+$setupStatsVary = $wgCommandLineMode ? 'cli' : 'web';
+$statsd->increment(
+	"setup_load_schema_count.{$setupLoadSchemaStatsKey}.{$setupStatsVary}"
+);
+$statsd->timing(
+	"setup_load_schema_timing.{$setupLoadSchemaStatsKey}.{$setupStatsVary}",
+	1000 * max( 0, $setupLoadSchemaStatsTiming )
+);
+
+unset( $setupStatsVary );
+unset( $setupLoadSchemaStatsKey );
+unset( $setupLoadSchemaStatsTiming );
 
 // Most of the config is out, some might want to run hooks here.
 Hooks::runner()->onSetupAfterCache();

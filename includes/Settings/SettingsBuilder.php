@@ -187,6 +187,16 @@ class SettingsBuilder {
 	}
 
 	/**
+	 * Returns the names of all defined configuration variables
+	 *
+	 * @return string[]
+	 */
+	public function getDefinedConfigKeys(): array {
+		$this->apply();
+		return array_keys( $this->configSchema->getSchemas() );
+	}
+
+	/**
 	 * Apply any settings loaded so far to the runtime environment.
 	 *
 	 * @unstable
