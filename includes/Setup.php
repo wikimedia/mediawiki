@@ -56,6 +56,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\Config\GlobalConfigBuilder;
 use MediaWiki\Settings\Config\PhpIniSink;
+use MediaWiki\Settings\LocalSettingsLoader;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\Source\PhpSettingsSource;
 use Psr\Log\LoggerInterface;
@@ -210,12 +211,20 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 } else {
 	wfDetectLocalSettingsFile( $IP );
 
-	if ( str_ends_with( MW_CONFIG_FILE, '.php' ) ) {
-		// make defaults available as globals
-		$wgSettings->apply();
-		require_once MW_CONFIG_FILE;
+	if ( getenv( 'MW_USE_LOCAL_SETTINGS_LOADER' ) ) {
+		// NOTE: This will not work for configuration variables that use a prefix
+		//       other than "wg".
+		$localSettingsLoader = new LocalSettingsLoader( $wgSettings, $IP );
+		$localSettingsLoader->loadLocalSettingsFile( MW_CONFIG_FILE );
+		unset( $localSettingsLoader );
 	} else {
-		$wgSettings->loadFile( MW_CONFIG_FILE );
+		if ( str_ends_with( MW_CONFIG_FILE, '.php' ) ) {
+			// make defaults available as globals
+			$wgSettings->apply();
+			require_once MW_CONFIG_FILE;
+		} else {
+			$wgSettings->loadFile( MW_CONFIG_FILE );
+		}
 	}
 }
 
