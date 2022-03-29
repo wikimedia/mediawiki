@@ -2265,15 +2265,16 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Set the user's e-mail address and a confirmation mail if needed.
+	 * Set the user's e-mail address and send a confirmation mail if needed.
 	 *
 	 * @since 1.20
 	 * @param string $str New e-mail address
 	 * @return Status
 	 */
 	public function setEmailWithConfirmation( string $str ) {
-		$enableEmail = MediaWikiServices::getInstance()->getMainConfig()->get( 'EnableEmail' );
-		$emailAuthentication = MediaWikiServices::getInstance()->getMainConfig()->get( 'EmailAuthentication' );
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$enableEmail = $config->get( 'EnableEmail' );
+
 		if ( !$enableEmail ) {
 			return Status::newFatal( 'emaildisabled' );
 		}
@@ -2285,6 +2286,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 
 		$type = $oldaddr != '' ? 'changed' : 'set';
 		$notificationResult = null;
+
+		$emailAuthentication = $config->get( 'EmailAuthentication' );
 
 		if ( $emailAuthentication && $type === 'changed' ) {
 			// Send the user an email notifying the user of the change in registered
