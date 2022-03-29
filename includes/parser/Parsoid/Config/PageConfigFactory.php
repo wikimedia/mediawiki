@@ -78,8 +78,11 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 	 * @return \Wikimedia\Parsoid\Config\PageConfig
 	 */
 	public function create(
-		LinkTarget $title, ?UserIdentity $user = null, ?int $revisionId = null,
-		?string $wikitextOverride = null, ?string $pagelanguageOverride = null,
+		LinkTarget $title,
+		?UserIdentity $user = null,
+		?int $revisionId = null,
+		?string $wikitextOverride = null,
+		?string $pagelanguageOverride = null,
 		?array $parsoidSettings = null
 	): \Wikimedia\Parsoid\Config\PageConfig {
 		$title = Title::newFromLinkTarget( $title );
