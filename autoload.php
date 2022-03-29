@@ -1870,6 +1870,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\Subquery' => __DIR__ . '/includes/libs/rdbms/encasing/Subquery.php',
 	'Wikimedia\\Rdbms\\TimestampType' => __DIR__ . '/includes/libs/rdbms/dbal/TimestampType.php',
 	'Wikimedia\\Rdbms\\TinyIntType' => __DIR__ . '/includes/libs/rdbms/dbal/TinyIntType.php',
+	'Wikimedia\\Rdbms\\TransactionIdentifier' => __DIR__ . '/includes/libs/rdbms/database/utils/TransactionIdentifier.php',
 	'Wikimedia\\Rdbms\\TransactionManager' => __DIR__ . '/includes/libs/rdbms/database/TransactionManager.php',
 	'Wikimedia\\Rdbms\\TransactionProfiler' => __DIR__ . '/includes/libs/rdbms/TransactionProfiler.php',
 	'Wikimedia\\Reflection\\GhostFieldAccessTrait' => __DIR__ . '/includes/libs/GhostFieldAccessTrait.php',

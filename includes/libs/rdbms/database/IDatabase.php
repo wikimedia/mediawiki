@@ -2134,7 +2134,7 @@ interface IDatabase {
 	 * @param string $method Name of the calling method
 	 * @param int $timeout Acquisition timeout in seconds (0 means non-blocking)
 	 * @param int $flags Bit field of IDatabase::LOCK_* constants
-	 * @return bool|float Success
+	 * @return bool|float|null Success (bool); acquisition time (float/null) if LOCK_TIMESTAMP
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function lock( $lockName, $method, $timeout = 5, $flags = 0 );

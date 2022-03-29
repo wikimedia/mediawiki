@@ -50,8 +50,8 @@ class TransactionManager {
 	/** @var string Prefix to the atomic section counter used to make savepoint IDs */
 	private const SAVEPOINT_PREFIX = 'wikimedia_rdbms_atomic';
 
-	/** @var string Application-side ID of the active transaction or an empty string otherwise */
-	private $trxId = '';
+	/** @var TransactionIdentifier|null Application-side ID of the active transaction; null if none */
+	private $trxId;
 	/** @var float|null UNIX timestamp at the time of BEGIN for the last transaction */
 	private $trxTimestamp = null;
 	/** @var int Transaction status */
@@ -115,7 +115,7 @@ class TransactionManager {
 	}
 
 	public function trxLevel() {
-		return ( $this->trxId != '' ) ? 1 : 0;
+		return $this->trxId ? 1 : 0;
 	}
 
 	/**
@@ -124,9 +124,7 @@ class TransactionManager {
 	 * @param string $fname method name
 	 */
 	public function newTrxId( $mode, $fname ) {
-		static $nextTrxId;
-		$nextTrxId = ( $nextTrxId !== null ? $nextTrxId++ : mt_rand() ) % 0xffff;
-		$this->trxId = sprintf( '%06x', mt_rand( 0, 0xffffff ) ) . sprintf( '%04x', $nextTrxId );
+		$this->trxId = new TransactionIdentifier();
 		$this->trxStatus = self::STATUS_TRX_OK;
 		$this->trxStatusIgnoredCause = null;
 		$this->trxWriteDuration = 0.0;
@@ -149,13 +147,23 @@ class TransactionManager {
 	}
 
 	/**
-	 * Reset the application-side transaction ID and return the old one
+	 * Get the application-side transaction identifier instance
+	 *
+	 * @return TransactionIdentifier Token for the active transaction; null if there isn't one
+	 */
+	public function getTrxId() {
+		return $this->trxId;
+	}
+
+	/**
+	 * Reset the application-side transaction identifier instance and return the old one
+	 *
 	 * This will become private soon.
-	 * @return string The old transaction ID or an empty string if there wasn't one
+	 * @return TransactionIdentifier|null The old transaction token; null if there wasn't one
 	 */
 	public function consumeTrxId() {
 		$old = $this->trxId;
-		$this->trxId = '';
+		$this->trxId = null;
 		$this->trxAtomicCounter = 0;
 
 		return $old;
@@ -547,7 +555,7 @@ class TransactionManager {
 			$this->profiler->transactionWritingIn(
 				$serverName,
 				$domainId,
-				$this->trxId
+				(string)$this->trxId
 			);
 		}
 	}
@@ -570,7 +578,7 @@ class TransactionManager {
 			$startTime,
 			$isPermWrite,
 			$rowCount,
-			$this->trxId,
+			(string)$this->trxId,
 			$serverName
 		);
 	}
@@ -839,7 +847,7 @@ class TransactionManager {
 		$this->setTrxStatusToNone();
 		$this->resetTrxAtomicLevels();
 		$this->clearPreEndCallbacks();
-		$this->transactionWritingOut( $db, $oldTrxId );
+		$this->transactionWritingOut( $db, (string)$oldTrxId );
 	}
 
 	public function onCommitInCriticalSection( IDatabase $db ) {
@@ -848,7 +856,7 @@ class TransactionManager {
 		$this->setTrxStatusToNone();
 		if ( $this->trxDoneWrites ) {
 			$lastWriteTime = microtime( true );
-			$this->transactionWritingOut( $db, $oldTrxId );
+			$this->transactionWritingOut( $db, (string)$oldTrxId );
 		}
 		return $lastWriteTime;
 	}
