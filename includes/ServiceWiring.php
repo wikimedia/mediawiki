@@ -1297,6 +1297,7 @@ return [
 			$services->getBadFileLookup(),
 			$services->getHookContainer(),
 			$services->getContentTransformer(),
+			$services->getReadOnlyMode(),
 			$services->getParserFactory() // *legacy* parser factory
 		);
 	},
