@@ -2475,7 +2475,9 @@ class Parser {
 			} else {
 				$first_prefix = false;
 			}
+			$prefix = false;
 		} else {
+			$first_prefix = false;
 			$prefix = '';
 		}
 
@@ -2737,11 +2739,9 @@ class Parser {
 			# batch file existence checks for NS_FILE and NS_MEDIA
 			if ( $iw == '' && $nt->isAlwaysKnown() ) {
 				$this->mOutput->addLink( $nt );
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable $prefix is set when used here
 				$s .= $this->makeKnownLinkHolder( $nt, $text, $trail, $prefix );
 			} else {
 				# Links will be added to the output link list after checking
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable $prefix is set when used here
 				$s .= $holders->makeHolder( $nt, $text, $trail, $prefix );
 			}
 		}
@@ -3005,6 +3005,7 @@ class Parser {
 
 		// $text has been filled
 		$found = false;
+		$text = '';
 		// wiki markup in $text should be escaped
 		$nowiki = false;
 		// $text is HTML, armour it against wikitext transformation
