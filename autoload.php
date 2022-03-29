@@ -191,6 +191,7 @@ $wgAutoloadLocalClasses = [
 	'BenchmarkParse' => __DIR__ . '/maintenance/benchmarks/benchmarkParse.php',
 	'BenchmarkPurge' => __DIR__ . '/maintenance/benchmarks/benchmarkPurge.php',
 	'BenchmarkSanitizer' => __DIR__ . '/maintenance/benchmarks/benchmarkSanitizer.php',
+	'BenchmarkSettings' => __DIR__ . '/maintenance/benchmarks/benchmarkSettings.php',
 	'BenchmarkTidy' => __DIR__ . '/maintenance/benchmarks/benchmarkTidy.php',
 	'BenchmarkTitleValue' => __DIR__ . '/maintenance/benchmarks/benchmarkTitleValue.php',
 	'BenchmarkTruncate' => __DIR__ . '/maintenance/benchmarks/benchmarkTruncate.php',
