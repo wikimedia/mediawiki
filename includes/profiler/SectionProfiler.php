@@ -411,9 +411,9 @@ class SectionProfiler {
 
 			if ( substr( $fname, 0, 9 ) !== '-overhead' ) {
 				# Adjust for profiling overhead (except special values with elapsed=0)
-				if ( $elapsed ) {
-					$elapsed -= $overheadInternal;
-					$elapsed -= ( $subcalls * $overheadTotal );
+				if ( $elapsedReal ) {
+					$elapsedReal -= $overheadInternal;
+					$elapsedReal -= ( $subcalls * $overheadTotal );
 					$memchange -= ( $subcalls * $overheadMemory );
 				}
 			}
