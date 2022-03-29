@@ -580,30 +580,6 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $actual, $description );
 	}
 
-	/**
-	 * @covers ::wfWikiID
-	 */
-	public function testWfWikiID() {
-		$this->hideDeprecated( 'wfWikiID' );
-		$this->setMwGlobals( [
-			'wgDBname' => 'example',
-			'wgDBprefix' => '',
-		] );
-		$this->assertEquals(
-			wfWikiID(),
-			'example'
-		);
-
-		$this->setMwGlobals( [
-			'wgDBname' => 'example',
-			'wgDBprefix' => 'mw_',
-		] );
-		$this->assertEquals(
-			wfWikiID(),
-			'example-mw_'
-		);
-	}
-
 	public static function provideWfShellWikiCmdList() {
 		global $wgPhpCli;
 
