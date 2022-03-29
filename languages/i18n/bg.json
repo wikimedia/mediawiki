@@ -50,7 +50,8 @@
 			"McDutchie",
 			"MinecraftAustralia",
 			"NikiTricky",
-			"YavBav09"
+			"YavBav09",
+			"QuickQuokka"
 		]
 	},
 	"tog-underline": "Подчертаване на препратките:",
@@ -1376,7 +1377,7 @@
 	"action-reupload-shared": "предефиране на едноименен файл от общото мултимедийно хранилище",
 	"action-upload_by_url": "качване на този файл от URL адрес",
 	"action-writeapi": "използване на API за писане",
-	"action-delete": "изтриване на страницата",
+	"action-delete": "изтриване на тази страницата",
 	"action-deleterevision": "изтриване на версии",
 	"action-deletelogentry": "изтриване на записи от дневника",
 	"action-deletedhistory": "преглед на изтритата история на тази страница",

@@ -39,7 +39,8 @@
 			"לערי ריינהארט",
 			"පසිඳු කාවින්ද",
 			"아라",
-			"McDutchie"
+			"McDutchie",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Azpimarratu loturak:",
@@ -749,7 +750,7 @@
 	"permissionserrorstext-withaction": "Ezin duzu $2, ondorengo {{PLURAL:$1|arrazoi hau dela eta:|arrazoi hauek direla eta:}}",
 	"contentmodelediterror": "Ezin duzu editatu berrikuspena, eduki-eredua delako <code>$1</code>, <code>$2</code> orriaren uneko edukien eredutik desberdina dena.",
 	"recreate-moveddeleted-warn": "'''Oharra: Lehenago ezabatutako orri bat berriz sortzen ari zara.'''\n\nPentsatu ea orri hau editatzen jarraitzeak zentzurik baduen.\nHemen duzu orri honen ezabaketa erregistroa, badaezpada ere:",
-	"moveddeleted-notice": "Orri hau ez dago.\n Orria ezabatzearen erregistroa behean ageri da, erreferentziatzat.",
+	"moveddeleted-notice": "Orri hau ez dago.\nOrria ezabatzearen erregistroa behean ageri da, erreferentziatzat.",
 	"moveddeleted-notice-recent": "Barkatu, orri hau duela gutxi ezabatu da (azken 24 orduetan).\nOrrialdea ezabatzeko, babesteko eta mugitzeko, beheko erreferentzietan aurkituko duzu informazioa.",
 	"log-fulllog": "Erregistro osoa ikusi",
 	"edit-hook-aborted": "Gehigarriak aldaketa ezeztatu du.\nEz du azalpenik eman.",
