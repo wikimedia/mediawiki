@@ -1238,11 +1238,6 @@ return [
 		'messages' => [ 'brackets', 'word-separator' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.viewport' => [
-		'deprecated' => 'Deprecated since MediaWiki 1.37. Use MutationObserver or InterSectionObserver instead.',
-		'scripts' => 'resources/src/mediawiki.viewport.js',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'mediawiki.checkboxtoggle' => [
 		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => 'resources/src/mediawiki.checkboxtoggle.js',
