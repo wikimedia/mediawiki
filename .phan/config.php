@@ -20,6 +20,11 @@
 
 $cfg = require __DIR__ . '/../vendor/mediawiki/mediawiki-phan-config/src/config.php';
 
+// Whilst MediaWiki is still supporting PHP 7.2+, this lets us run phan on higher versions of PHP
+// like 8.0 without phan trying to get us to make PHP 7.2-incompatible changes. This value should
+// match the PHP version specified in composer.json and PHPVersionCheck.php.
+$cfg['minimum_target_php_version'] = '7.2.22';
+
 $cfg['file_list'] = array_merge(
 	$cfg['file_list'],
 	class_exists( PEAR::class ) ? [] : [ '.phan/stubs/mail.php' ],

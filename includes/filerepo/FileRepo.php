@@ -1680,7 +1680,6 @@ class FileRepo {
 
 		// T172851: HHVM does not flush the output properly, causing OOM
 		ob_start( null, 1048576 );
-		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal bool since php8
 		ob_implicit_flush( true );
 
 		$status = $this->newGood()->merge( $this->backend->streamFile( $params ) );
