@@ -2345,6 +2345,12 @@ class MainConfigNames {
 	public const TidyConfig = 'TidyConfig';
 
 	/**
+	 * Name constant for the ParsoidSettings setting, for use with Config::get()
+	 * @see MainConfigSchema::ParsoidSettings
+	 */
+	public const ParsoidSettings = 'ParsoidSettings';
+
+	/**
 	 * Name constant for the ParserEnableLegacyMediaDOM setting, for use with Config::get()
 	 * @see MainConfigSchema::ParserEnableLegacyMediaDOM
 	 */

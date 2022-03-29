@@ -6050,6 +6050,21 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Default Parsoid configuration.
+	 *
+	 * Overriding the default configuration is strongly discouraged in
+	 * production.
+	 *
+	 * @since 1.39
+	 */
+	public const ParsoidSettings = [
+		'default' => [
+			'useSelser' => true,
+		],
+		'type' => 'object',
+	];
+
+	/**
 	 * Enable legacy media HTML structure in the output from the Parser.  The
 	 * alternative modern HTML structure that replaces it is described at
 	 * https://www.mediawiki.org/wiki/Parsing/Media_structure
