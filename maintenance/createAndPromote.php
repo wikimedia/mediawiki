@@ -50,6 +50,12 @@ class CreateAndPromote extends Maintenance {
 		parent::__construct();
 		$this->addDescription( 'Create a new user account and/or grant it additional rights' );
 		$this->addOption(
+			'email',
+			'Sets the users email address',
+			false,
+			true
+		);
+		$this->addOption(
 			'force',
 			'If account exists already, just grant it rights or change password.'
 		);
@@ -191,6 +197,14 @@ class CreateAndPromote extends Maintenance {
 			} catch ( PasswordError $pwe ) {
 				$this->fatalError( 'Setting the password failed: ' . $pwe->getMessage() );
 			}
+		}
+
+		if ( $this->hasOption( 'email' ) ) {
+			$resetEmail = $this->createChild( ResetUserEmail::class );
+			$resetEmail->setArg( 0, $user->getName() );
+			$resetEmail->setArg( 1, $this->getOption( 'email' ) );
+			$resetEmail->setOption( 'no-reset-password', true );
+			$resetEmail->execute();
 		}
 
 		if ( !$exists ) {
