@@ -21,7 +21,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -1059,19 +1058,6 @@ EOT
 	protected function compare( $a, $b ) {
 		return $a->page_namespace <=> $b->page_namespace
 			?: strcmp( $a->page_title, $b->page_title );
-	}
-
-	/**
-	 * Returns the corresponding $wgImageLimits entry for the selected user option
-	 *
-	 * @param UserIdentity $user
-	 * @param string $optionName Name of a option to check, typically imagesize or thumbsize
-	 * @return int[]
-	 * @since 1.21
-	 * @deprecated Since 1.35 Use static function MediaFileTrait::getImageLimitsFromOption
-	 */
-	public function getImageLimitsFromOption( UserIdentity $user, $optionName ) {
-		return MediaFileTrait::getImageLimitsFromOption( $user, $optionName );
 	}
 
 	/**

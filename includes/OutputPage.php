@@ -4314,7 +4314,7 @@ class OutputPage extends ContextSource {
 	 * @param string $dir Language direction
 	 */
 	public static function setupOOUI( $skinName = 'default', $dir = 'ltr' ) {
-		$themes = ResourceLoaderOOUIModule::getSkinThemeMap();
+		$themes = ResourceLoaderOOUIFileModule::getSkinThemeMap();
 		$theme = $themes[$skinName] ?? $themes['default'];
 		// For example, 'OOUI\WikimediaUITheme'.
 		$themeClass = "OOUI\\{$theme}Theme";
