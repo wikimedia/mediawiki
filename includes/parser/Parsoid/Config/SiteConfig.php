@@ -58,8 +58,7 @@ use Wikimedia\Parsoid\Utils\Utils;
  *
  * This includes both global configuration and wiki-level configuration.
  *
- * @todo This belongs in MediaWiki, not Parsoid. We'll move it there when we
- *  get to the point of integrating the two.
+ * @since 1.39
  */
 class SiteConfig extends ISiteConfig {
 
@@ -422,60 +421,61 @@ class SiteConfig extends ISiteConfig {
 
 	public function interwikiMap(): array {
 		// Unfortunate that this mostly duplicates \ApiQuerySiteinfo::appendInterwikiMap()
-		if ( $this->interwikiMap === null ) {
-			$this->interwikiMap = [];
+		if ( $this->interwikiMap !== null ) {
+			return $this->interwikiMap;
+		}
+		$this->interwikiMap = [];
 
-			$getPrefixes = $this->interwikiLookup->getAllPrefixes();
-			$langNames = $this->languageNameUtils->getLanguageNames();
-			$extraLangPrefixes = $this->config->get( 'ExtraInterlanguageLinkPrefixes' );
-			$localInterwikis = $this->config->get( 'LocalInterwikis' );
+		$getPrefixes = $this->interwikiLookup->getAllPrefixes();
+		$langNames = $this->languageNameUtils->getLanguageNames();
+		$extraLangPrefixes = $this->config->get( 'ExtraInterlanguageLinkPrefixes' );
+		$localInterwikis = $this->config->get( 'LocalInterwikis' );
 
-			foreach ( $getPrefixes as $row ) {
-				$prefix = $row['iw_prefix'];
-				$val = [];
-				$val['prefix'] = $prefix;
-				// ApiQuerySiteInfo::appendInterwikiMap uses PROTO_CURRENT here,
-				// but that's the 'current' protocol *of the API request*; use
-				// PROTO_CANONICAL instead.
-				$val['url'] = wfExpandUrl( $row['iw_url'], PROTO_CANONICAL );
+		foreach ( $getPrefixes as $row ) {
+			$prefix = $row['iw_prefix'];
+			$val = [];
+			$val['prefix'] = $prefix;
+			// ApiQuerySiteInfo::appendInterwikiMap uses PROTO_CURRENT here,
+			// but that's the 'current' protocol *of the API request*; use
+			// PROTO_CANONICAL instead.
+			$val['url'] = wfExpandUrl( $row['iw_url'], PROTO_CANONICAL );
 
-				// Fix up broken interwiki hrefs that are missing a $1 placeholder
-				// Just append the placeholder at the end.
-				// This makes sure that the interwikiMatcher adds one match
-				// group per URI, and that interwiki links work as expected.
-				if ( strpos( $val['url'], '$1' ) === false ) {
-					$val['url'] .= '$1';
-				}
-
-				if ( substr( $row['iw_url'], 0, 2 ) == '//' ) {
-					$val['protorel'] = true;
-				}
-				if ( isset( $row['iw_local'] ) && $row['iw_local'] == '1' ) {
-					$val['local'] = true;
-				}
-				if ( isset( $langNames[$prefix] ) ) {
-					$val['language'] = true;
-				}
-				if ( in_array( $prefix, $localInterwikis, true ) ) {
-					$val['localinterwiki'] = true;
-				}
-				if ( in_array( $prefix, $extraLangPrefixes, true ) ) {
-					$val['extralanglink'] = true;
-
-					/**
-					 * ApiQuerySiteinfo adds a 'linktext' field, but Parsoid
-					 * doesn't use this -- and because it uses wfMessage()
-					 * it implicitly uses a MessageCache which would have to
-					 * be injected here.
-					 */
-					// $linktext = wfMessage( "interlanguage-link-$prefix" );
-					// if ( !$linktext->isDisabled() ) {
-					// 	$val['linktext'] = $linktext->text();
-					// }
-				}
-
-				$this->interwikiMap[$prefix] = $val;
+			// Fix up broken interwiki hrefs that are missing a $1 placeholder
+			// Just append the placeholder at the end.
+			// This makes sure that the interwikiMatcher adds one match
+			// group per URI, and that interwiki links work as expected.
+			if ( strpos( $val['url'], '$1' ) === false ) {
+				$val['url'] .= '$1';
 			}
+
+			if ( substr( $row['iw_url'], 0, 2 ) == '//' ) {
+				$val['protorel'] = true;
+			}
+			if ( isset( $row['iw_local'] ) && $row['iw_local'] == '1' ) {
+				$val['local'] = true;
+			}
+			if ( isset( $langNames[$prefix] ) ) {
+				$val['language'] = true;
+			}
+			if ( in_array( $prefix, $localInterwikis, true ) ) {
+				$val['localinterwiki'] = true;
+			}
+			if ( in_array( $prefix, $extraLangPrefixes, true ) ) {
+				$val['extralanglink'] = true;
+
+				/**
+				 * ApiQuerySiteinfo adds a 'linktext' field, but Parsoid
+				 * doesn't use this -- and because it uses wfMessage()
+				 * it implicitly uses a MessageCache which would have to
+				 * be injected here.
+				 */
+				// $linktext = wfMessage( "interlanguage-link-$prefix" );
+				// if ( !$linktext->isDisabled() ) {
+				// 	$val['linktext'] = $linktext->text();
+				// }
+			}
+
+			$this->interwikiMap[$prefix] = $val;
 		}
 		return $this->interwikiMap;
 	}
@@ -581,33 +581,34 @@ class SiteConfig extends ISiteConfig {
 	}
 
 	public function variants(): array {
-		if ( $this->variants === null ) {
-			$this->variants = [];
+		if ( $this->variants !== null ) {
+			return $this->variants;
+		}
+		$this->variants = [];
 
-			$langNames = LanguageConverter::$languagesWithVariants;
-			if ( $this->languageConverterFactory->isConversionDisabled() ) {
-				// Ensure result is empty if language conversion is disabled.
-				$langNames = [];
+		$langNames = LanguageConverter::$languagesWithVariants;
+		if ( $this->languageConverterFactory->isConversionDisabled() ) {
+			// Ensure result is empty if language conversion is disabled.
+			$langNames = [];
+		}
+
+		foreach ( $langNames as $langCode ) {
+			$lang = $this->languageFactory->getLanguage( $langCode );
+			$converter = $this->languageConverterFactory->getLanguageConverter( $lang );
+			if ( !$converter->hasVariants() ) {
+				continue;
 			}
 
-			foreach ( $langNames as $langCode ) {
-				$lang = $this->languageFactory->getLanguage( $langCode );
-				$converter = $this->languageConverterFactory->getLanguageConverter( $lang );
-				if ( !$converter->hasVariants() ) {
-					continue;
+			$variants = $converter->getVariants();
+			foreach ( $variants as $v ) {
+				$fallbacks = $converter->getVariantFallbacks( $v );
+				if ( !is_array( $fallbacks ) ) {
+					$fallbacks = [ $fallbacks ];
 				}
-
-				$variants = $converter->getVariants();
-				foreach ( $variants as $v ) {
-					$fallbacks = $converter->getVariantFallbacks( $v );
-					if ( !is_array( $fallbacks ) ) {
-						$fallbacks = [ $fallbacks ];
-					}
-					$this->variants[$v] = [
-						'base' => $langCode,
-						'fallbacks' => $fallbacks,
-					];
-				}
+				$this->variants[$v] = [
+					'base' => $langCode,
+					'fallbacks' => $fallbacks,
+				];
 			}
 		}
 		return $this->variants;

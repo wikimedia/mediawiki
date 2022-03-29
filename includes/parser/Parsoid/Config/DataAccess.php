@@ -25,10 +25,12 @@ use LinkBatch;
 use Linker;
 use MediaTransformError;
 use MediaWiki\BadFileLookup;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\HookContainer\HookContainer;
 use Parser;
 use ParserFactory;
+use ReadOnlyMode;
 use RepoGroup;
 use Title;
 use Wikimedia\Parsoid\Config\DataAccess as IDataAccess;
@@ -36,6 +38,11 @@ use Wikimedia\Parsoid\Config\PageConfig as IPageConfig;
 use Wikimedia\Parsoid\Config\PageContent as IPageContent;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 
+/**
+ * Implement Parsoid's abstract class for data access.
+ *
+ * @since 1.39
+ */
 class DataAccess extends IDataAccess {
 
 	/** @var RepoGroup */
@@ -59,25 +66,43 @@ class DataAccess extends IDataAccess {
 	/** @var ?PageConfig */
 	private $previousPageConfig;
 
+	public const CONSTRUCTOR_OPTIONS = [
+		'SVGMaxSize',
+	];
+
+	/** @var ServiceOptions */
+	private $config;
+
+	/** @var ReadOnlyMode */
+	private $readOnlyMode;
+
 	/**
+	 * @param ServiceOptions $config MediaWiki main configuration object
 	 * @param RepoGroup $repoGroup
 	 * @param BadFileLookup $badFileLookup
 	 * @param HookContainer $hookContainer
 	 * @param ContentTransformer $contentTransformer
+	 * @param ReadOnlyMode $readOnlyMode used to disable linting when the
+	 *   database is read-only.
 	 * @param ParserFactory $parserFactory A legacy parser factory,
 	 *   for PST/preprocessing/extension handling
 	 */
 	public function __construct(
+		ServiceOptions $config,
 		RepoGroup $repoGroup,
 		BadFileLookup $badFileLookup,
 		HookContainer $hookContainer,
 		ContentTransformer $contentTransformer,
+		ReadOnlyMode $readOnlyMode,
 		ParserFactory $parserFactory
 	) {
+		$config->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->config = $config;
 		$this->repoGroup = $repoGroup;
 		$this->badFileLookup = $badFileLookup;
 		$this->hookContainer = $hookContainer;
 		$this->contentTransformer = $contentTransformer;
+		$this->readOnlyMode = $readOnlyMode;
 
 		// Use the same legacy parser object for all calls to extension tag
 		// processing, for greater compatibility.
@@ -110,8 +135,7 @@ class DataAccess extends IDataAccess {
 			if ( isset( $hp['height'] ) && $file->isVectorized() ) {
 				// If it's a vector image, and user only specifies height
 				// we don't want it to be limited by its "normal" width.
-				global $wgSVGMaxSize;
-				$hp['width'] = $wgSVGMaxSize;
+				$hp['width'] = $this->config->get( 'SVGMaxSize' );
 			} else {
 				$hp['width'] = $file->getWidth( $page );
 			}
@@ -394,8 +418,7 @@ class DataAccess extends IDataAccess {
 
 	/** @inheritDoc */
 	public function logLinterData( IPageConfig $pageConfig, array $lints ): void {
-		global $wgReadOnly;
-		if ( $wgReadOnly ) {
+		if ( $this->readOnlyMode->isReadOnly() ) {
 			return;
 		}
 
