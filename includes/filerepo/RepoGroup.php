@@ -121,6 +121,7 @@ class RepoGroup {
 
 		# Check the cache
 		$dbkey = $title->getDBkey();
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		$timeKey = is_string( $options['time'] ) ? $options['time'] : '';
 		if ( empty( $options['ignoreRedirect'] )
 			&& empty( $options['private'] )

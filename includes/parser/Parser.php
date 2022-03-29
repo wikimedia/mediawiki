@@ -2544,6 +2544,7 @@ class Parser {
 				continue;
 			}
 
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset preg_match success when reached here
 			$origLink = ltrim( $m[1], ' ' );
 
 			# Don't allow internal links to pages containing
@@ -4527,6 +4528,7 @@ class Parser {
 		if ( $enoughToc && $isMain && !$this->mForceTocPosition ) {
 			// append the TOC at the beginning
 			// Top anchor now in skin
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset At least one element when enoughToc is true
 			$sections[0] .= self::TOC_PLACEHOLDER . "\n";
 		}
 

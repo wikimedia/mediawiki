@@ -62,6 +62,9 @@ class UploadSourceAdapter {
 	 */
 	public function stream_open( $path, $mode, $options, &$opened_path ) {
 		$url = parse_url( $path );
+		if ( !isset( $url['host'] ) ) {
+			return false;
+		}
 		$id = $url['host'];
 
 		if ( !isset( self::$sourceRegistrations[$id] ) ) {

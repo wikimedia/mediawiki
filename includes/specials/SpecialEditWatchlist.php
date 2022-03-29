@@ -229,9 +229,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	private function extractTitles( $list ) {
 		$list = explode( "\n", trim( $list ) );
-		if ( !is_array( $list ) ) {
-			return [];
-		}
 
 		$titles = [];
 

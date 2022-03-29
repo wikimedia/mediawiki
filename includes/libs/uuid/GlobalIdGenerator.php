@@ -632,7 +632,6 @@ class GlobalIdGenerator {
 			$ts = bcadd( $ts, (string)$delta );
 			// wrap around
 			$ts = bcmod( $ts, bcpow( '2', '60' ) );
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Only null if second arg is 0
 			$id_bin = \Wikimedia\base_convert( $ts, 10, 2, 60 );
 		} else {
 			throw new RuntimeException( 'bcmath or gmp extension required for 32 bit machines.' );

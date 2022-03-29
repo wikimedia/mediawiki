@@ -450,6 +450,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		$edits = $dbr->selectRowCount(
 			[
 				'revision',
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			] + $revQuery['tables'],
 			'1',
 			$cond,
@@ -503,6 +504,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		$edits = $dbr->selectRowCount(
 			[
 				'revision',
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			] + $revQuery['tables'],
 			'1',
 			$cond,

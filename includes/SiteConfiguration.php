@@ -480,6 +480,7 @@ class SiteConfiguration {
 		// Precompute the replacements to allow re-use over hundreds of processSetting()
 		// calls, as optimisation for getAll() and extractAllGlobals().
 		$ret['replacements'] = [];
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		foreach ( $ret['params'] as $key => $value ) {
 			$ret['replacements'][ '$' . $key ] = $value;
 		}

@@ -150,6 +150,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 				// ensure that MWHttpRequest::method is always
 				// uppercased. T38137
 				if ( $o == 'method' ) {
+					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 					$options[$o] = strtoupper( $options[$o] );
 				}
 				$this->$o = $options[$o];
@@ -615,8 +616,12 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 
 		if ( isset( $this->respHeaders['set-cookie'] ) ) {
 			$url = parse_url( $this->getFinalUrl() );
-			foreach ( $this->respHeaders['set-cookie'] as $cookie ) {
-				$this->cookieJar->parseCookieResponseHeader( $cookie, $url['host'] );
+			if ( !isset( $url['host'] ) ) {
+				$this->status->fatal( 'http-invalid-url', $url );
+			} else {
+				foreach ( $this->respHeaders['set-cookie'] as $cookie ) {
+					$this->cookieJar->parseCookieResponseHeader( $cookie, $url['host'] );
+				}
 			}
 		}
 	}
@@ -650,7 +655,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 			for ( $i = $countLocations - 1; $i >= 0; $i-- ) {
 				$url = parse_url( $locations[$i] );
 
-				if ( isset( $url['host'] ) ) {
+				if ( isset( $url['scheme'] ) && isset( $url['host'] ) ) {
 					$domain = $url['scheme'] . '://' . $url['host'];
 					break; // found correct URI (with host)
 				} else {
@@ -665,7 +670,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 				return $domain . $locations[$countLocations - 1];
 			}
 			$url = parse_url( $this->url );
-			if ( isset( $url['host'] ) ) {
+			if ( isset( $url['scheme'] ) && isset( $url['host'] ) ) {
 				return $url['scheme'] . '://' . $url['host'] .
 					$locations[$countLocations - 1];
 			}

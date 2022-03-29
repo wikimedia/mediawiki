@@ -150,6 +150,7 @@ class CommentStore {
 
 			$tempTableStage = static::TEMP_TABLES[$key]['stage'] ?? MIGRATION_NEW;
 			if ( $tempTableStage & SCHEMA_COMPAT_READ_OLD ) {
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 				$fields["{$key}_pk"] = static::TEMP_TABLES[$key]['joinPK'];
 			}
 			if ( $tempTableStage & SCHEMA_COMPAT_READ_NEW ) {
@@ -193,9 +194,12 @@ class CommentStore {
 				if ( $tempTableStage & SCHEMA_COMPAT_READ_OLD ) {
 					$t = static::TEMP_TABLES[$key];
 					$alias = "temp_$key";
+					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 					$tables[$alias] = $t['table'];
+					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 					$joins[$alias] = [ $join, "{$alias}.{$t['pk']} = {$t['joinPK']}" ];
 					if ( ( $tempTableStage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_OLD ) {
+						// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 						$joinField = "{$alias}.{$t['field']}";
 					} else {
 						// Nothing hits this code path for now, but will in the future when we set
@@ -203,6 +207,7 @@ class CommentStore {
 						// merging revision_comment_temp into revision.
 						// @codeCoverageIgnoreStart
 						$joins[$alias][0] = 'LEFT JOIN';
+						// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 						$joinField = "(CASE WHEN {$key}_id != 0 THEN {$key}_id ELSE {$alias}.{$t['field']} END)";
 						throw new LogicException( 'Nothing should reach this code path at this time' );
 						// @codeCoverageIgnoreEnd
@@ -294,11 +299,14 @@ class CommentStore {
 				$t = static::TEMP_TABLES[$key];
 				$id = $row["{$key}_pk"];
 				$row2 = $db->selectRow(
+					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 					[ $t['table'], 'comment' ],
 					[ 'comment_id', 'comment_text', 'comment_data' ],
+					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 					[ $t['pk'] => $id ],
 					__METHOD__,
 					[],
+					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 					[ 'comment' => [ 'JOIN', [ "comment_id = {$t['field']}" ] ] ]
 				);
 			}
@@ -510,9 +518,12 @@ class CommentStore {
 				$commentId = $comment->id;
 				$callback = static function ( $id ) use ( $dbw, $commentId, $t, $func ) {
 					$dbw->insert(
+						// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 						$t['table'],
 						[
+							// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 							$t['pk'] => $id,
+							// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 							$t['field'] => $commentId,
 						],
 						$func

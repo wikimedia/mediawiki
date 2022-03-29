@@ -2284,7 +2284,9 @@ class ApiMain extends ApiBase {
 
 		// Fill 'datatypes', 'templatedparams', and 'credits', if applicable
 		if ( empty( $options['nolead'] ) ) {
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Must set when nolead is not set
 			$level = $options['headerlevel'];
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Must set when nolead is not set
 			$tocnumber = &$options['tocnumber'];
 
 			$header = $this->msg( 'api-help-datatypes-header' )->parse();
