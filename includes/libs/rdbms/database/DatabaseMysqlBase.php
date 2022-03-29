@@ -168,13 +168,16 @@ abstract class DatabaseMysqlBase extends Database {
 			}
 
 			// @phan-suppress-next-next-line PhanRedundantCondition
-			// If kept for safety and to avoid broken query
+			// Safety check to avoid empty SET query
 			if ( $set ) {
-				$this->query(
-					'SET ' . implode( ', ', $set ),
-					__METHOD__,
-					self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX
-				);
+				$sql = 'SET ' . implode( ', ', $set );
+				$flags = self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX;
+				// Avoid using query() so that replaceLostConnection() does not throw
+				// errors if the transaction status is STATUS_TRX_ERROR
+				list( $ret, $err, $errno ) = $this->executeQuery( $sql, __METHOD__, $flags );
+				if ( $ret === false ) {
+					$this->reportQueryError( $err, $errno, $sql, __METHOD__ );
+				}
 			}
 		} catch ( RuntimeException $e ) {
 			throw $this->newExceptionAfterConnectError( $e->getMessage() );
