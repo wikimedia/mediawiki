@@ -25,6 +25,7 @@ use LinkBatch;
 use Linker;
 use MediaTransformError;
 use MediaWiki\BadFileLookup;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\HookContainer\HookContainer;
 use Parser;
@@ -64,7 +65,15 @@ class DataAccess extends IDataAccess {
 	/** @var ?PageConfig */
 	private $previousPageConfig;
 
+	public const CONSTRUCTOR_OPTIONS = [
+		'SVGMaxSize',
+	];
+
+	/** @var ServiceOptions */
+	private $config;
+
 	/**
+	 * @param ServiceOptions $config MediaWiki main configuration object
 	 * @param RepoGroup $repoGroup
 	 * @param BadFileLookup $badFileLookup
 	 * @param HookContainer $hookContainer
@@ -73,12 +82,15 @@ class DataAccess extends IDataAccess {
 	 *   for PST/preprocessing/extension handling
 	 */
 	public function __construct(
+		ServiceOptions $config,
 		RepoGroup $repoGroup,
 		BadFileLookup $badFileLookup,
 		HookContainer $hookContainer,
 		ContentTransformer $contentTransformer,
 		ParserFactory $parserFactory
 	) {
+		$config->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->config = $config;
 		$this->repoGroup = $repoGroup;
 		$this->badFileLookup = $badFileLookup;
 		$this->hookContainer = $hookContainer;
@@ -115,8 +127,7 @@ class DataAccess extends IDataAccess {
 			if ( isset( $hp['height'] ) && $file->isVectorized() ) {
 				// If it's a vector image, and user only specifies height
 				// we don't want it to be limited by its "normal" width.
-				global $wgSVGMaxSize;
-				$hp['width'] = $wgSVGMaxSize;
+				$hp['width'] = $this->config->get( 'SVGMaxSize' );
 			} else {
 				$hp['width'] = $file->getWidth( $page );
 			}
