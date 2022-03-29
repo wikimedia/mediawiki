@@ -238,6 +238,7 @@ class DateFormatter {
 								$text .= $match['isoMonth'];
 								break;
 							case 'y': // ISO year
+								// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 								$text .= $match['isoYear'];
 								break;
 							case 'j': // ordinary day of month
@@ -257,6 +258,7 @@ class DateFormatter {
 								}
 								break;
 							case 'Y': // ordinary (optional BC) year
+								// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 								$text .= $match['year'];
 								break;
 							default:

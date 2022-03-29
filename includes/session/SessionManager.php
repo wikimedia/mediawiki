@@ -369,6 +369,7 @@ class SessionManager implements SessionManagerInterface {
 			throw new \UnexpectedValueException( 'No provider could provide an empty session!' );
 		}
 
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		return $this->getSessionFromInfo( $infos[0], $request );
 	}
 

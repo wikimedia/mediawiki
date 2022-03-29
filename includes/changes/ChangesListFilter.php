@@ -164,6 +164,7 @@ abstract class ChangesListFilter {
 
 		if ( isset( $filterDefinition['cssClassSuffix'] ) ) {
 			$this->cssClassSuffix = $filterDefinition['cssClassSuffix'];
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Documented as required
 			$this->isRowApplicableCallable = $filterDefinition['isRowApplicableCallable'];
 		}
 

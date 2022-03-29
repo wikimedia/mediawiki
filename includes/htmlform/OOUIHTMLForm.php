@@ -102,7 +102,9 @@ class OOUIHTMLForm extends HTMLForm {
 		foreach ( $this->mButtons as $button ) {
 			$attrs = [];
 
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Always set in HTMLForm::addButton
 			if ( $button['attribs'] ) {
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Always set in HTMLForm::addButton
 				$attrs += $button['attribs'];
 			}
 
@@ -127,7 +129,9 @@ class OOUIHTMLForm extends HTMLForm {
 				'name' => $button['name'],
 				'value' => $button['value'],
 				'label' => $label,
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Always set in HTMLForm::addButton
 				'flags' => $button['flags'],
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Always set in HTMLForm::addButton
 				'framed' => $button['framed'],
 			] + $attrs );
 		}

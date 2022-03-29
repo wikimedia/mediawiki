@@ -1447,7 +1447,9 @@ class HTMLForm extends ContextSource {
 				$label = htmlspecialchars( $button['value'] );
 			}
 
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Always set in self::addButton
 			if ( $button['attribs'] ) {
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Always set in self::addButton
 				$attrs += $button['attribs'];
 			}
 

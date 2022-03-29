@@ -121,6 +121,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			'physicalHeight' => $params['physicalHeight'],
 			'physicalDimensions' => "{$params['physicalWidth']}x{$params['physicalHeight']}",
 			# The size of the image on the page
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Checked by normaliseParams
 			'clientWidth' => $params['width'],
 			'clientHeight' => $params['height'],
 			# Comment as will be added to the Exif of the thumbnail
@@ -635,7 +636,9 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			return true;
 		}
 
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Checked by normaliseParams
 		$srcWidth = $file->getWidth( $params['page'] );
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Checked by normaliseParams
 		$srcHeight = $file->getHeight( $params['page'] );
 
 		if ( $srcWidth * $srcHeight > $maxImageArea

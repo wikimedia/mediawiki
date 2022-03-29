@@ -462,6 +462,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		curl_setopt( $ch, CURLOPT_WRITEFUNCTION,
 			static function ( $ch, $data ) use ( &$req, $hasOutputStream ) {
 				if ( $hasOutputStream ) {
+					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 					return fwrite( $req['stream'], $data );
 				} else {
 					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable

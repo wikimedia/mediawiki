@@ -252,7 +252,9 @@ class InfoAction extends FormlessAction {
 					continue;
 				}
 				$name = ( $infoRow[0] instanceof Message ) ? $infoRow[0]->escaped() : $infoRow[0];
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				$value = ( $infoRow[1] instanceof Message ) ? $infoRow[1]->escaped() : $infoRow[1];
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				$id = ( $infoRow[0] instanceof Message ) ? $infoRow[0]->getKey() : null;
 				$table = $this->addRow( $table, $name, $value, $id ) . "\n";
 			}

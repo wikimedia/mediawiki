@@ -147,6 +147,7 @@ abstract class ImageHandler extends MediaHandler {
 
 		if ( !isset( $params['physicalWidth'] ) ) {
 			# Passed all validations, so set the physicalWidth
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Checked by normaliseParams
 			$params['physicalWidth'] = $params['width'];
 		}
 
@@ -217,6 +218,7 @@ abstract class ImageHandler extends MediaHandler {
 		}
 		$url = wfAppendQuery( $script, $this->getScriptParams( $params ) );
 
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Checked by normaliseParams
 		if ( $image->mustRender() || $params['width'] < $image->getWidth() ) {
 			return new ThumbnailImage( $image, $url, false, $params );
 		}

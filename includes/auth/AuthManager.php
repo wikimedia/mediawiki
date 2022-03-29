@@ -569,6 +569,7 @@ class AuthManager implements LoggerAwareInterface {
 							// @codeCoverageIgnoreEnd
 					}
 				}
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Alwyas set in loop before, if passed
 				if ( $state['primary'] === null ) {
 					$this->logger->debug( 'Login failed in primary authentication because no provider accepted' );
 					$ret = AuthenticationResponse::newFail(
@@ -630,6 +631,7 @@ class AuthManager implements LoggerAwareInterface {
 				}
 			}
 
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Alwyas set in loop before, if passed
 			$res = $state['primaryResponse'];
 			if ( $res->username === null ) {
 				$provider = $this->getAuthenticationProvider( $state['primary'] );
@@ -1041,6 +1043,7 @@ class AuthManager implements LoggerAwareInterface {
 			'flags' => User::READ_NORMAL,
 			'creating' => false,
 		];
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		$flags = $options['flags'];
 
 		if ( !$this->canCreateAccounts() ) {
@@ -1424,6 +1427,7 @@ class AuthManager implements LoggerAwareInterface {
 							// @codeCoverageIgnoreEnd
 					}
 				}
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Alwyas set in loop before, if passed
 				if ( $state['primary'] === null ) {
 					$this->logger->debug( __METHOD__ . ': Primary creation failed because no provider accepted', [
 						'user' => $user->getName(),
@@ -1513,6 +1517,7 @@ class AuthManager implements LoggerAwareInterface {
 				$this->watchlistManager->addWatchIgnoringRights( $user, $user->getUserPage() );
 
 				// Inform the provider
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Alwyas set in loop before, if passed
 				$logSubtype = $provider->finishAccountCreation( $user, $creator, $state['primaryResponse'] );
 
 				// Log the creation
