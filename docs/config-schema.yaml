@@ -4006,6 +4006,15 @@ config-schema:
             See includes/tidy/RemexDriver.php for detail on configuration.
             Overriding the default configuration is strongly discouraged in
             production.
+    ParsoidSettings:
+        default:
+            useSelser: true
+        type: object
+        description: |-
+            Default Parsoid configuration.
+            Overriding the default configuration is strongly discouraged in
+            production.
+            @since 1.39
     ParserEnableLegacyMediaDOM:
         default: true
         description: |-

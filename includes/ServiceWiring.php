@@ -114,6 +114,9 @@ use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\ParserObserver;
+use MediaWiki\Parser\Parsoid\Config\DataAccess as MWDataAccess;
+use MediaWiki\Parser\Parsoid\Config\PageConfigFactory as MWPageConfigFactory;
+use MediaWiki\Parser\Parsoid\Config\SiteConfig as MWSiteConfig;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\GroupPermissionsLookup;
@@ -169,6 +172,10 @@ use Wikimedia\DependencyStore\SqlModuleDependencyStore;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\Metrics\MetricsFactory;
 use Wikimedia\ObjectFactory\ObjectFactory;
+use Wikimedia\Parsoid\Config\Api\DataAccess as ApiDataAccess;
+use Wikimedia\Parsoid\Config\Api\SiteConfig as ApiSiteConfig;
+use Wikimedia\Parsoid\Config\DataAccess;
+use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\RequestTimeout;
 use Wikimedia\Services\RecursiveServiceDependencyException;
@@ -1275,6 +1282,53 @@ return [
 			LoggerFactory::getProvider(),
 			$services->getWikiPageFactory(),
 			$services->getTitleFormatter()
+		);
+	},
+
+	'ParsoidDataAccess' => static function ( MediaWikiServices $services ): DataAccess {
+		$parsoidSettings = $services->getMainConfig()->get( 'ParsoidSettings' );
+		if ( !empty( $parsoidSettings['debugApi'] ) ) {
+			return ApiDataAccess::fromSettings( $parsoidSettings );
+		}
+		return new MWDataAccess(
+			$services->getRepoGroup(),
+			$services->getBadFileLookup(),
+			$services->getHookContainer(),
+			$services->getContentTransformer(),
+			$services->getParserFactory() // *legacy* parser factory
+		);
+	},
+
+	'ParsoidPageConfigFactory' => static function ( MediaWikiServices $services ): MWPageConfigFactory {
+		return new MWPageConfigFactory( $services->getRevisionStore(),
+			$services->getSlotRoleRegistry() );
+	},
+
+	'ParsoidSiteConfig' => static function ( MediaWikiServices $services ): SiteConfig {
+		$mainConfig = $services->getMainConfig();
+		$parsoidSettings = $mainConfig->get( 'ParsoidSettings' );
+		if ( !empty( $parsoidSettings['debugApi'] ) ) {
+			return ApiSiteConfig::fromSettings( $parsoidSettings );
+		}
+		return new MWSiteConfig(
+			new ServiceOptions( MWSiteConfig::CONSTRUCTOR_OPTIONS, $mainConfig ),
+			$parsoidSettings,
+			$services->getObjectFactory(),
+			$services->getContentLanguage(),
+			$services->getStatsdDataFactory(),
+			$services->getMagicWordFactory(),
+			$services->getNamespaceInfo(),
+			$services->getSpecialPageFactory(),
+			$services->getInterwikiLookup(),
+			$services->getUserOptionsLookup(),
+			$services->getLanguageFactory(),
+			$services->getLanguageConverterFactory(),
+			$services->getLanguageNameUtils(),
+			// These arguments are temporary and will be removed once
+			// better solutions are found.
+			$services->getParser(), // T268776
+			$mainConfig, // T268777
+			$services->getHookContainer() // T300546
 		);
 	},
 

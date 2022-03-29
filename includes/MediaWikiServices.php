@@ -79,6 +79,7 @@ use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\GroupPermissionsLookup;
@@ -158,6 +159,8 @@ use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\Metrics\MetricsFactory;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\ObjectFactory\ObjectFactory;
+use Wikimedia\Parsoid\Config\DataAccess;
+use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
@@ -1396,6 +1399,30 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getParserOutputAccess(): ParserOutputAccess {
 		return $this->getService( 'ParserOutputAccess' );
+	}
+
+	/**
+	 * @return DataAccess
+	 * @since 1.39
+	 */
+	public function getParsoidDataAccess(): DataAccess {
+		return $this->getService( 'ParsoidDataAccess' );
+	}
+
+	/**
+	 * @return PageConfigFactory
+	 * @since 1.39
+	 */
+	public function getParsoidPageConfigFactory(): PageConfigFactory {
+		return $this->getService( 'ParsoidPageConfigFactory' );
+	}
+
+	/**
+	 * @return SiteConfig
+	 * @since 1.39
+	 */
+	public function getParsoidSiteConfig(): SiteConfig {
+		return $this->getService( 'ParsoidSiteConfig' );
 	}
 
 	/**

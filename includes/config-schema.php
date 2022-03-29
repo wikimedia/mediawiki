@@ -1807,6 +1807,12 @@ return [
 			],
 			'type' => 'object',
 		],
+		'ParsoidSettings' => [
+			'default' => [
+				'useSelser' => true,
+			],
+			'type' => 'object',
+		],
 		'ParserEnableLegacyMediaDOM' => [
 			'default' => true,
 		],
