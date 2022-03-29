@@ -26,6 +26,7 @@ use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\SiteConfig;
 
 /**
+ * @since 1.39
  * @deprecated since 1.39. This is a marker class indicating that certain
  * code has been moved from Parsoid to core; it will be removed once the
  * transition is complete.  Use MediaWikiServices instead.

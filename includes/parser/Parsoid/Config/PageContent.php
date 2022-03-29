@@ -27,8 +27,7 @@ use Wikimedia\Parsoid\Config\PageContent as IPageContent;
 /**
  * PageContent implementation for MediaWiki
  *
- * @todo This belongs in MediaWiki, not Parsoid. We'll move it there when we
- *  get to the point of integrating the two.
+ * @since 1.39
  */
 class PageContent extends IPageContent {
 

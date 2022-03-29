@@ -33,6 +33,11 @@ use Title;
 use Wikimedia\Parsoid\Config\Api\PageConfig as ApiPageConfig;
 use WikitextContent;
 
+/**
+ * Helper class used by MediaWiki to create Parsoid PageConfig objects.
+ *
+ * @since 1.39
+ */
 class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 
 	/** @var RevisionStore */
