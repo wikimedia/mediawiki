@@ -210,6 +210,7 @@ class SpecialExport extends SpecialPage {
 				$request->response()->header( "Content-disposition: attachment;filename={$filename}" );
 			}
 
+			// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable history is set when used
 			$this->doExport( $page, $history, $list_authors, $exportall );
 
@@ -411,6 +412,7 @@ class SpecialExport extends SpecialPage {
 		if ( $exportall ) {
 			$exporter->allPages();
 		} else {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
 			foreach ( $pages as $page ) {
 				# T10824: Only export pages the user can read
 				$title = Title::newFromText( $page );

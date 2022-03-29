@@ -1279,6 +1279,7 @@ class Article implements Page {
 
 		$link = $this->linkRenderer->makeKnownLink(
 			$title,
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $markPatrolledMsg is always set when $rc is set
 			$markPatrolledMsg->text(),
 			[],
 			[

@@ -681,6 +681,7 @@ TEXT
 				//         plausible
 
 				if ( $expSize === null || strlen( $text ) == $expSize ) {
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable Set when text is not false
 					if ( $tryIsPrefetch ) {
 						$this->prefetchCount++;
 					}

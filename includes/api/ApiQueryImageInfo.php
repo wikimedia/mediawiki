@@ -143,6 +143,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			foreach ( $titles as $title ) {
 				$info = [];
 				$pageId = $pageIds[NS_FILE][$title];
+				// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
+				// $fromTimestamp declared when $fromTitle notnull
 				$start = $title === $fromTitle ? $fromTimestamp : $params['start'];
 
 				if ( !isset( $images[$title] ) ) {

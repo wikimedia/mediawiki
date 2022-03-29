@@ -348,11 +348,12 @@ class ImportImages extends Maintenance {
 				if ( $this->hasOption( 'dry' ) ) {
 					$this->output( "done.\n" );
 				} elseif ( $image->recordUpload3(
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable
 					$archive->value,
 					$summary,
 					$commentText,
 					$user,
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable,PhanPossiblyUndeclaredVariable
 					$props,
 					$timestamp,
 					$tags

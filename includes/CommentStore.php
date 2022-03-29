@@ -330,6 +330,7 @@ class CommentStore {
 				$data = null;
 			} else {
 				// @codeCoverageIgnoreStart
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $id is set when $row2 is okay
 				wfLogWarning( "Missing comment row for $key, id=$id" );
 				$cid = null;
 				$text = '';

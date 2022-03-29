@@ -337,17 +337,20 @@ class UploadFromUrl extends UploadBase {
 			return Status::newFatal( 'tmp-write-error' );
 		}
 
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable Always set after loop
 		if ( $status->isOK() ) {
 			wfDebugLog( 'fileupload', 'Download by URL completed successfully.' );
 		} else {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable Always set after loop
 			wfDebugLog( 'fileupload', $status->getWikitext( false, false, 'en' ) );
 			wfDebugLog(
 				'fileupload',
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable Always set after loop
 				'Download by URL completed with HTTP status ' . $req->getStatus()
 			);
 		}
 
-		// @phan-suppress-next-line PhanTypeMismatchReturnNullable Always set after the loop
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable,PhanPossiblyUndeclaredVariable Always set after loop
 		return $status;
 	}
 }

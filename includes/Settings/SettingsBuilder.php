@@ -288,7 +288,7 @@ class SettingsBuilder {
 				$this->settingsConfig[ $key ] = $config[ $key ];
 			}
 		}
-		// @phan-suppress-next-line PhanTypeMismatchReturnNullable Always set
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable,PhanPossiblyUndeclaredVariable Always set
 		return $key;
 	}
 

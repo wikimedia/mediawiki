@@ -189,7 +189,9 @@ class ApiQueryAllMessages extends ApiQueryBase {
 
 				if ( $customiseFilterEnabled ) {
 					$messageIsCustomised = isset( $customisedMessages['pages'][$langObj->ucfirst( $message )] );
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable customised is set when used
 					if ( $customised === $messageIsCustomised ) {
+						// @phan-suppress-next-line PhanPossiblyUndeclaredVariable customised is set when used
 						if ( $customised ) {
 							$a['customised'] = true;
 						}
@@ -205,6 +207,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 				} else {
 					// Check if the parser is enabled:
 					if ( $params['enableparser'] ) {
+						// @phan-suppress-next-line PhanPossiblyUndeclaredVariable title is set when used
 						$msgString = $msg->page( $title )->text();
 					} else {
 						$msgString = $msg->plain();

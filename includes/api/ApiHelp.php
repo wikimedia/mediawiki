@@ -190,6 +190,7 @@ class ApiHelp extends ApiBase {
 		$out->addHTML( $html );
 
 		if ( $cacheKey !== null ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $cacheHelpTimeout declared when $cacheKey is set
 			$cache->set( $cacheKey, $out->getHTML(), $cacheHelpTimeout );
 		}
 	}

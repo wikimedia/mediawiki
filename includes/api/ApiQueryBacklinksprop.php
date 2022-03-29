@@ -294,6 +294,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$res = $this->select( __METHOD__ );
 
 		if ( $resultPageSet === null ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable set when used
 			if ( $fld_title ) {
 				$this->executeGenderCacheFromResultWrapper( $res, __METHOD__ );
 			}
@@ -316,6 +317,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 				$id = $map[$row->bl_namespace][$row->bl_title];
 
 				$vals = [];
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable set when used
 				if ( $fld_pageid ) {
 					$vals['pageid'] = (int)$row->page_id;
 				}
@@ -324,9 +326,11 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 						Title::makeTitle( $row->page_namespace, $row->page_title )
 					);
 				}
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable set when used
 				if ( $fld_fragment && $row->rd_fragment !== null && $row->rd_fragment !== '' ) {
 					$vals['fragment'] = $row->rd_fragment;
 				}
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable set when used
 				if ( $fld_redirect ) {
 					$vals['redirect'] = (bool)$row->page_is_redirect;
 				}

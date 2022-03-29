@@ -83,14 +83,16 @@ class ApiMergeHistory extends ApiBase {
 		$timestamp = $params['timestamp'];
 
 		// Merge!
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable,PhanPossiblyUndeclaredVariable T240141
 		$status = $this->merge( $fromTitle, $toTitle, $timestamp, $reason );
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
 		}
 
 		$r = [
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable T240141
 			'from' => $fromTitle->getPrefixedText(),
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable T240141
 			'to' => $toTitle->getPrefixedText(),
 			'timestamp' => wfTimestamp( TS_ISO_8601, $params['timestamp'] ),
 			'reason' => $params['reason']

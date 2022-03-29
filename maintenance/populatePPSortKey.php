@@ -93,8 +93,10 @@ class PopulatePPSortKey extends LoggedUpdateMaintenance {
 			$this->commitTransaction( $dbw, __METHOD__ );
 
 			// We need to get the last element's page ID
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
 			$lastPageValue = $row->pp_page;
 			// And the propname...
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
 			$lastProp = $row->pp_propname;
 		}
 

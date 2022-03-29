@@ -971,6 +971,7 @@ class ApiResult implements ApiSerializable {
 						$mergeType = 'n/a';
 					}
 					if ( $mergeType === 'assoc' ) {
+						// @phan-suppress-next-line PhanPossiblyUndeclaredVariable vArr set when used
 						$item = $vArr + [
 							$key => $k,
 						];

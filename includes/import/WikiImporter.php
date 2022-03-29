@@ -956,6 +956,7 @@ class WikiImporter {
 			$title = $pageInfo['_title'];
 			$this->pageOutCallback(
 				$title,
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable Set together with _title key
 				$foreignTitle,
 				$pageInfo['revisionCount'],
 				$pageInfo['successfulRevisionCount'],

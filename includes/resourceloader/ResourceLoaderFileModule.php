@@ -323,6 +323,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 		if ( isset( $options['remoteExtPath'] ) ) {
 			global $wgExtensionAssetsPath;
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 			$remoteBasePath = $wgExtensionAssetsPath . '/' . $options['remoteExtPath'];
 		}
 

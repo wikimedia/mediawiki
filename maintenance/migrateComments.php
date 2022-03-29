@@ -194,7 +194,9 @@ class MigrateComments extends LoggedUpdateMaintenance {
 			$prompt = [];
 			for ( $i = count( $primaryKey ) - 1; $i >= 0; $i-- ) {
 				$field = $primaryKey[$i];
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
 				$prompt[] = $row->$field;
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
 				$value = $dbw->addQuotes( $row->$field );
 				if ( $next === '' ) {
 					$next = "$field > $value";
@@ -283,7 +285,9 @@ class MigrateComments extends LoggedUpdateMaintenance {
 			$this->commitTransaction( $dbw, __METHOD__ );
 
 			// Calculate the "next" condition
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
 			$next = [ $primaryKey . ' > ' . $dbw->addQuotes( $row->$primaryKey ) ];
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
 			$this->output( "... {$row->$primaryKey}\n" );
 		}
 

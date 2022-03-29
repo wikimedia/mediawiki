@@ -1689,6 +1689,8 @@ abstract class Installer {
 				break;
 			}
 		}
+		// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
+		// $steps has at least one element and that defines $status
 		if ( $status->isOK() ) {
 			$this->showMessage(
 				'config-install-db-success'
