@@ -1836,7 +1836,7 @@
 	"lockmanager-fail-openlock": "Không thể mở tập tin khóa cho “$1”. Hãy chắc chắn rằng thư mục tải lên được cấu hình đàng hoàng và máy chủ Web được phép ghi vào thư mục đó. Xem thêm chi tiết tại https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgUploadDirectory.",
 	"lockmanager-fail-releaselock": "Không thể thả khóa cho “$1”.",
 	"lockmanager-fail-db-bucket": "Không thể liên lạc với đủ cơ sở dữ liệu khóa trong nhóm $1.",
-	"lockmanager-fail-db-release": "Không thể thả các chìa khóa trên cơ sở dữ liệu $1.",
+	"lockmanager-fail-db-release": "Không thể gỡ khóa trên cơ sở dữ liệu $1.",
 	"lockmanager-fail-svr-acquire": "Không thể lấy các chìa khóa trên máy chủ $1.",
 	"lockmanager-fail-svr-release": "Không thể thả các chìa khóa trên máy chủ $1.",
 	"lockmanager-fail-conflict": "Không thể lấy khóa. Ai đó đang tác động với tập tin này.",

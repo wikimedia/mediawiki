@@ -275,7 +275,7 @@
 	"config-install-user-create-failed": "ایجاد کاربر \"$1\" انجام نشد:$2",
 	"config-install-user-grant-failed": "اعطای مجوز به کاربر \"$1\" با شکست روبه‌رو شد: $2",
 	"config-install-user-missing": "کاربر تعیین شدهٔ \"$1\" وجود ندارد.",
-	"config-install-user-missing-create": "کاربر تعیین شدهٔ \"$1\" وجود ندارد.\nاگر می‌خواهید حساب ایجاد کنید،لطفاً جعبهٔ بررسی \"ایجاد حساب\" را کلیک کنید.",
+	"config-install-user-missing-create": "کاربر تعیین شدهٔ \"$1\" وجود ندارد.\nاگر می‌خواهید حساب ایجاد کنید لطفاً جعبهٔ بررسی \"ایجاد حساب\" زیر را کلیک کنید.",
 	"config-install-logo-blank": "لوگوی نشانی اینترنتی معتبر را وارد کنید.",
 	"config-install-restore-services": "بازیابی خدمات مدیاویکی",
 	"config-install-tables": "ایجاد جدول‌ها، گام نخست",
