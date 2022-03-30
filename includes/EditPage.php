@@ -3104,18 +3104,16 @@ class EditPage implements IEditObject {
 
 		$out->addHTML( $this->editFormTextBeforeContent );
 		if ( $this->isConflict ) {
-			// In an edit conflict, we turn textbox2 into the user's text,
-			// and textbox1 into the stored version
-			$this->textbox2 = $this->textbox1;
-
-			$content = $this->getCurrentContent();
-			$this->textbox1 = $this->toEditText( $content );
+			$currentText = $this->toEditText( $this->getCurrentContent() );
 
 			$editConflictHelper = $this->getEditConflictHelper();
-			$editConflictHelper->setTextboxes( $this->textbox2, $this->textbox1 );
+			$editConflictHelper->setTextboxes( $this->textbox1, $currentText );
 			$editConflictHelper->setContentModel( $this->contentModel );
 			$editConflictHelper->setContentFormat( $this->contentFormat );
 			$out->addHTML( $editConflictHelper->getEditFormHtmlBeforeContent() );
+
+			$this->textbox2 = $this->textbox1;
+			$this->textbox1 = $currentText;
 		}
 
 		if ( !$this->mTitle->isUserConfigPage() ) {
