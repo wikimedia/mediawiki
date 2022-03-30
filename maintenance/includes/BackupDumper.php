@@ -275,10 +275,10 @@ abstract class BackupDumper extends Maintenance {
 
 					$type = $this->filterTypes[$key];
 
-					if ( count( $split ) === 1 ) {
-						$filter = new $type( $sink );
-					} elseif ( count( $split ) === 2 ) {
+					if ( count( $split ) === 2 ) {
 						$filter = new $type( $sink, $split[1] );
+					} else {
+						$filter = new $type( $sink );
 					}
 
 					// references are lame in php...
