@@ -37,9 +37,13 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 		// Unspecified name defaults to current user's IP address
 		$this->assertSame( $currentIp, $anon->getName() );
 
+		// FIXME: should be a query count performance assertion instead of this hack
+		$this->getServiceContainer()->disableService( 'DBLoadBalancer' );
+
 		$name = '192.0.2.0';
 		$anonIpSpecified = $factory->newAnonymous( $name );
 		$this->assertSame( $name, $anonIpSpecified->getName() );
+		$anonIpSpecified->load(); // no queries expected
 	}
 
 	public function testNewFromId() {
