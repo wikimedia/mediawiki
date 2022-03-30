@@ -224,9 +224,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mEnableOOUI = false;
 
 	/**
-	 * @var string 'index' or 'noindex'?  Any other value will result in no change.
+	 * @var bool Whether the index policy has been set to 'index'.
 	 */
-	private $mIndexPolicy = '';
+	private $mIndexSet = false;
+
+	/**
+	 * @var bool Whether the index policy has been set to 'noindex'.
+	 */
+	private $mNoIndexSet = false;
 
 	/**
 	 * @var array extra data used by extensions.
@@ -808,7 +813,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	public function getIndexPolicy(): string {
-		return $this->mIndexPolicy;
+		// 'noindex' wins if both are set. (T16899)
+		if ( $this->mNoIndexSet ) {
+			return 'noindex';
+		} elseif ( $this->mIndexSet ) {
+			return 'index';
+		}
+		return '';
 	}
 
 	public function getTOCHTML() {
@@ -886,7 +897,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	public function setIndexPolicy( $policy ): string {
-		return wfSetVar( $this->mIndexPolicy, $policy );
+		$old = $this->getIndexPolicy();
+		if ( $policy === 'noindex' ) {
+			$this->mNoIndexSet = true;
+		} elseif ( $policy === 'index' ) {
+			$this->mIndexSet = true;
+		}
+		return $old;
 	}
 
 	public function setTOCHTML( $tochtml ) {
@@ -1525,6 +1542,15 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * should use ::setExtensionData() rather than creating new flags
 	 * with ::setOutputFlag() in order to prevent namespace conflicts.
 	 *
+	 * Flags are always combined with OR.  That is, the flag is set in
+	 * the resulting ParserOutput if the flag is set in *any* of the
+	 * fragments composing the ParserOutput.
+	 *
+	 * @note The combination policy means that a ParserOutput may end
+	 * up with both INDEX_POLICY and NO_INDEX_POLICY set.  It is
+	 * expected that NO_INDEX_POLICY "wins" in that case. (T16899)
+	 * (This resolution is implemented in ::getIndexPolicy().)
+	 *
 	 * @param string $name A flag name
 	 * @param bool $val
 	 * @since 1.38
@@ -1540,14 +1566,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			break;
 
 		case ParserOutputFlags::NO_INDEX_POLICY:
+			$this->mNoIndexSet = $val;
+			break;
+
 		case ParserOutputFlags::INDEX_POLICY:
-			if ( !$val ) {
-				$this->setIndexPolicy( '' );
-			} elseif ( $name === ParserOutputFlags::INDEX_POLICY ) {
-				$this->setIndexPolicy( 'index' );
-			} else {
-				$this->setIndexPolicy( 'noindex' );
-			}
+			$this->mIndexSet = $val;
 			break;
 
 		case ParserOutputFlags::NEW_SECTION:
@@ -1593,10 +1616,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			return $this->getEnableOOUI();
 
 		case ParserOutputFlags::INDEX_POLICY:
-			return $this->getIndexPolicy() === 'index';
+			return $this->mIndexSet;
 
 		case ParserOutputFlags::NO_INDEX_POLICY:
-			return $this->getIndexPolicy() === 'noindex';
+			return $this->mNoIndexSet;
 
 		case ParserOutputFlags::NEW_SECTION:
 			return $this->getNewSection();
@@ -2123,11 +2146,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		);
 
 		// "noindex" always wins!
-		if ( $this->mIndexPolicy === 'noindex' || $source->mIndexPolicy === 'noindex' ) {
-			$this->mIndexPolicy = 'noindex';
-		} elseif ( $this->mIndexPolicy !== 'index' ) {
-			$this->mIndexPolicy = $source->mIndexPolicy;
-		}
+		$this->mIndexSet = $this->mIndexSet || $source->mIndexSet;
+		$this->mNoIndexSet = $this->mNoIndexSet || $source->mNoIndexSet;
 
 		// Skin control
 		$this->mNewSection = $this->mNewSection || $source->getNewSection();
@@ -2412,7 +2432,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'TOCHTML' => $this->mTOCHTML,
 			'Timestamp' => $this->mTimestamp,
 			'EnableOOUI' => $this->mEnableOOUI,
-			'IndexPolicy' => $this->mIndexPolicy,
+			'IndexPolicy' => $this->getIndexPolicy(),
 			// may contain arbitrary structures!
 			'ExtensionData' => $this->mExtensionData,
 			'LimitReportData' => $this->mLimitReportData,
@@ -2485,7 +2505,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mTOCHTML = $jsonData['TOCHTML'];
 		$this->mTimestamp = $jsonData['Timestamp'];
 		$this->mEnableOOUI = $jsonData['EnableOOUI'];
-		$this->mIndexPolicy = $jsonData['IndexPolicy'];
+		$this->setIndexPolicy( $jsonData['IndexPolicy'] );
 		$this->mExtensionData = $unserializer->unserializeArray( $jsonData['ExtensionData'] ?? [] );
 		$this->mLimitReportData = $jsonData['LimitReportData'];
 		$this->mLimitReportJSData = $jsonData['LimitReportJSData'];
@@ -2555,15 +2575,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		if ( $priorAccessedOptions ) {
 			$this->mParseUsedOptions = $priorAccessedOptions;
 		}
-		// Forward-compatibility, ~1.39-wmf.7
-		$futureIndexSet = $this->getGhostFieldValue( 'mIndexSet' );
-		if ( $futureIndexSet ) {
-			$this->setIndexPolicy( 'index' );
-		}
-		$futureNoIndexSet = $this->getGhostFieldValue( 'mNoIndexSet' );
-		if ( $futureNoIndexSet ) {
-			// "noindex" takes precedence over "index" (T16899)
-			$this->setIndexPolicy( 'noindex' );
+		// Backwards compatibility, pre 1.39
+		$priorIndexPolicy = $this->getGhostFieldValue( 'mIndexPolicy' );
+		if ( $priorIndexPolicy ) {
+			$this->setIndexPolicy( $priorIndexPolicy );
 		}
 	}
 
@@ -2577,7 +2592,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			wfDeprecatedMsg( "ParserOutput::{$name} dynamic property read access deprecated", '1.38' );
 			return $this->$name;
 		} else {
-			trigger_error( "Inaccessible property via __set(): $name" );
+			trigger_error( "Inaccessible property via __get(): $name" );
 			return null;
 		}
 	}
