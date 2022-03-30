@@ -2136,7 +2136,8 @@ return [
 			$services->getPageUpdaterFactory(),
 			$services->getMessageFormatterFactory()->getTextFormatter(
 				$services->getContentLanguage()->getCode()
-			)
+			),
+			$services->getArchivedRevisionLookup()
 		);
 	},
 

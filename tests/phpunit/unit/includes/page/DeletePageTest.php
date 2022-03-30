@@ -271,7 +271,7 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 			} );
 			$wpFactory->method( 'newFromLinkTarget' )->willReturnCallback(
 				function ( LinkTarget $t ) use ( $talkExists ) {
-					$existingTalk = $this->createMock( PageIdentity::class );
+					$existingTalk = $this->createMock( WikiPage::class );
 					$existingTalk->expects( $this->atLeastOnce() )->method( 'exists' )->willReturn( $talkExists );
 					return $existingTalk;
 				}
