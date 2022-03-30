@@ -111,11 +111,11 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 			if ( !$this->userNameUtils->isIP( $ip ) ) {
 				throw new InvalidArgumentException( 'Invalid IP address' );
 			}
-			$user = $this->newFromName( $ip, self::RIGOR_NONE );
+			$user = new User();
+			$user->setName( $ip );
 		} else {
 			$user = new User();
 		}
-		// @phan-suppress-next-line PhanTypeMismatchReturnNullable Checked by isIp
 		return $user;
 	}
 
