@@ -57,6 +57,8 @@ class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 			$message = $this->formatv1( $record );
 		} elseif ( $this->version === self::V0 ) {
 			$message = $this->formatV0( $record );
+		} else {
+			$message = __METHOD__ . ' unknown version ' . $this->version;
 		}
 
 		return $this->toJson( $message ) . "\n";
