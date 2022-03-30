@@ -159,7 +159,8 @@ HtmlformChecker.prototype.setErrors = function ( valid, errors, forceReplacement
 					.detach();
 			}
 			$errorBox
-				.attr( 'class', valid ? 'mw-message-box-warning' : 'mw-message-box-error' )
+				.attr( 'class', 'mw-message-box' )
+				.addClass( valid ? 'mw-message-box-warning' : 'mw-message-box-error' )
 				.empty();
 			// Match behavior of HTMLFormField::formatErrors()
 			if ( errors.length === 1 ) {
