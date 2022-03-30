@@ -192,6 +192,7 @@
 	"apihelp-expandtemplates-paramvalue-prop-parsetree": "XML-tolkningstreet til inndataen.",
 	"apihelp-expandtemplates-param-includecomments": "Hvorvidt HTML-kommentarer skal inkluderes i utdataene.",
 	"apihelp-expandtemplates-param-generatexml": "Generer et XML-tolkningstre (erstattet av $1prop=parsetree).",
+	"apihelp-expandtemplates-param-showstrategykeys": "Hvorvidt intern flettingsstrategiinformasjon skal inkluderes i jsconfigvars.",
 	"apihelp-expandtemplates-example-simple": "Utvid wikiteksten <kbd><nowiki>{{Project:Sandbox}}</nowiki></kbd>.",
 	"apihelp-feedcontributions-summary": "Returnerer en mating med brukerbidrag.",
 	"apihelp-feedcontributions-param-feedformat": "Matingens format.",
@@ -389,6 +390,7 @@
 	"apihelp-parse-param-disablepp": "Bruk <var>$1disablelimitreport</var> i stedet.",
 	"apihelp-parse-param-disableeditsection": "Omgå redigeringslenker for seksjoner i det tolkede resultatet.",
 	"apihelp-parse-param-disablestylededuplication": "Ikke dedupliser inline-stilark i tolkingsresultatet.",
+	"apihelp-parse-param-showstrategykeys": "Hvorvidt intern flettestrategiinformasjon skal inkluderes i jsconfigvars.",
 	"apihelp-parse-param-generatexml": "Generer XML-tolkingstre (krever innholdsmodellen <code>$1</code>; erstattet av <kbd>$2prop=parsetree</kbd>).",
 	"apihelp-parse-param-preview": "Tolk i forhåndsvisningsmodus.",
 	"apihelp-parse-param-sectionpreview": "Tolk i seksjonsforhåndsvisningsmodus (slår på forhåndsvisningsmodusen også).",
@@ -1851,5 +1853,5 @@
 	"api-usage-mailinglist-ref": "Abonner på epostlista mediawiki-api-announce på &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; for varser om API-foreldelser og «breaking changes».",
 	"api-exception-trace": "$1 i $2($3)\n$4",
 	"api-credits-header": "Kreditering",
-	"api-credits": "API-utviklere:\n* Yuri Astrakhan (skaper, hovedutvikler sept. 2006–sept. 2007)\n* Roan Kattouw (hovedutvikler sept. 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsh (hovedutvikler 2013–nå)\n\nSend kommentarer, forslag og spørsmål til mediawiki-api@lists.wikimedia.org\neller post en feilrapport på https://phabricator.wikimedia.org/."
+	"api-credits": "API-utviklere:\n* Yuri Astrakhan (skaper, hovedutvikler sept. 2006–sept. 2007)\n* Roan Kattouw (hovedutvikler sept. 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsh (hovedutvikler 2013–2020)\n\nSend kommentarer, forslag og spørsmål til mediawiki-api@lists.wikimedia.org\neller post en feilrapport på https://phabricator.wikimedia.org/."
 }

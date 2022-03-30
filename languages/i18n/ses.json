@@ -1870,7 +1870,6 @@
 	"blockiptext": "Takadda goy ka hantum huruyan hode ka hun IP aderesu wala goykawmaa tabatante ga.\nWoo ga hima ka tee de ka hawandi-hasaraw ganji, woo goo [[{{MediaWiki:Policy-url}}|laada]] bande.\n Dalil tabatante noo ganda (sanda, moo tanayaŋ cee kaŋyaŋ hasaraw tee i ga).",
 	"ipaddressorusername": "IP aderesu wala goykawmaa",
 	"ipbreason": "Dalil:",
-	"ipbreason-dropdown": "*Common block reasons\n** Inserting false information\n** Removing content from pages\n** Spamming links to external sites\n** Inserting nonsense/gibberish into pages\n** Intimidating behavior/harassment\n** Abusing multiple accounts\n** Unacceptable username",
 	"ipb-hardblock": "Goykaw hurantey ganji i ma barmay tee IP aderesoo woo ga",
 	"ipbcreateaccount": "Kontu teeyan ganji",
 	"ipbemailban": "Goykaw ganji a ma bataga sanba",

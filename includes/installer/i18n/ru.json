@@ -85,6 +85,7 @@
 	"config-no-fts3": "'''Внимание''': SQLite собран без модуля [//sqlite.org/fts3.html FTS3] — поиск не будет работать для этой базы данных.",
 	"config-pcre-old": "<strong>Фатальная ошибка:</strong> требуется PCRE версии $1 или более поздняя.\nВаш исполняемый файл PHP связан с PCRE версии $2.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE Подробнее].",
 	"config-pcre-no-utf8": "'''Фатальная ошибка'''. Модуль PCRE для PHP, похоже, собран без поддержки PCRE_UTF8.\nMediaWiki требует поддержки UTF-8 для корректной работы.",
+	"config-pcre-invalid-newline": "<strong>Неустранимая ошибка:</strong> PHP-модуль PCRE, по-видимому, скомпилирован с параметром PCRE_CONFIG_NEWLINE = -1 для ANY.\nMediaWiki не совместим с такой конфигурацией.",
 	"config-memory-raised": "Ограничение на доступную PHP память (<code>memory_limit</code>) поднято с $1 до $2.",
 	"config-memory-bad": "'''Внимание:''' размер PHP <code>memory_limit</code> составляет $1.\nВероятно, этого слишком мало.\nУстановка может потерпеть неудачу!",
 	"config-apc": "[https://www.php.net/apc APC] установлен",
