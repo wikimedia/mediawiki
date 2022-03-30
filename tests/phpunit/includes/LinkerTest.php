@@ -639,8 +639,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$user = $this->createMock( User::class );
 		$user->method( 'isRegistered' )->willReturn( true );
 
-		// This must be a watchable page otherwise Linker will thrown an exception.
-		$title = Title::newFromText( 'TestLinker' );
+		$title = SpecialPage::getTitleFor( 'Blankpage' );
 
 		$context = RequestContext::getMain();
 		$context->setTitle( $title );
