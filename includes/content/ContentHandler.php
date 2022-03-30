@@ -33,6 +33,7 @@ use MediaWiki\Content\ValidationParams;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRenderingProvider;
@@ -1429,7 +1430,12 @@ abstract class ContentHandler {
 		// See T190066.
 		$parserOptions = $page->makeParserOptions( 'canonical' );
 		$parserOutputAccess = MediaWikiServices::getInstance()->getParserOutputAccess();
-		return $parserOutputAccess->getParserOutput( $page, $parserOptions )->getValue();
+		return $parserOutputAccess->getParserOutput(
+			$page,
+			$parserOptions,
+			null,
+			ParserOutputAccess::OPT_NO_UPDATE_CACHE
+		)->getValue();
 	}
 
 	/**

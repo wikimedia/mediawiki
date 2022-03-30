@@ -57,6 +57,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	 * @param ILBFactory $lbFactory
 	 * @param LoggerSpi $loggerSpi
 	 * @param WikiPageFactory $wikiPageFactory
+	 * @param bool $cacheable Whether it should store the result in cache or not
 	 */
 	public function __construct(
 		string $workKey,
@@ -67,7 +68,8 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		ParserCache $parserCache,
 		ILBFactory $lbFactory,
 		LoggerSpi $loggerSpi,
-		WikiPageFactory $wikiPageFactory
+		WikiPageFactory $wikiPageFactory,
+		bool $cacheable = true
 	) {
 		// TODO: Remove support for partially initialized RevisionRecord instances once
 		//       Article no longer uses fake revisions.
@@ -82,7 +84,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		$this->parserCache = $parserCache;
 		$this->lbFactory = $lbFactory;
 		$this->wikiPageFactory = $wikiPageFactory;
-		$this->cacheable = true;
+		$this->cacheable = $cacheable;
 	}
 
 	/**
