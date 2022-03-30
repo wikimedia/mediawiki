@@ -3604,10 +3604,6 @@ class EditPage implements IEditObject {
 		);
 	}
 
-	private function showTextbox2(): void {
-		$this->showTextbox( $this->textbox2, 'wpTextbox2', [ 'tabindex' => 6, 'readonly' ] );
-	}
-
 	protected function showTextbox( $text, $name, $customAttribs = [] ) {
 		$builder = new TextboxBuilder();
 		$attribs = $builder->buildTextboxAttribs(
@@ -4619,7 +4615,7 @@ class EditPage implements IEditObject {
 		$this->showDiff();
 
 		$out->wrapWikiMsg( '<h2>$1</h2>', "yourtext" );
-		$this->showTextbox2();
+		$this->showTextbox( $this->textbox2, 'wpTextbox2', [ 'tabindex' => 6, 'readonly' ] );
 
 		$out->addReturnTo( $this->getContextTitle(), [ 'action' => 'edit' ] );
 	}
