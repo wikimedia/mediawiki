@@ -144,10 +144,6 @@ trait SerializationTestTrait {
 		object $actual,
 		ReflectionClass $class = null
 	) {
-		if ( $actual == $expected ) {
-			return;
-		}
-
 		if ( !$class ) {
 			$class = new ReflectionClass( $expected );
 		}
