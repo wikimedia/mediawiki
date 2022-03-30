@@ -40,6 +40,7 @@ For notes on 1.38.x and older releases, see HISTORY.
 * …
 
 === External library changes in 1.39 ===
+* Vue/compat updated from 3.2.23 to 3.2.31
 * …
 
 ==== New external libraries ====

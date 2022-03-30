@@ -351,9 +351,9 @@ sinonjs:
 
 vue:
   type: tar
-  # This is the migration build of Vue 3.2.23 which provides compatibility for Vue 2 code
-  src: https://registry.npmjs.org/@vue/compat/-/compat-3.2.23.tgz
-  integrity: sha512-ap/aO8V1j3dveHGcELRQZdb3dlnMgCK5N5Ur6Q37RRtMcB1glJldqUP46aAhY7kMberaUVWwYehMothocsF6Dg==
+  # This is the migration build of Vue 3.2.31 which provides compatibility for Vue 2 code
+  src: https://registry.npmjs.org/@vue/compat/-/compat-3.2.31.tgz
+  integrity: sha512-hhwJk/SRwpT2OADctj+t7QZCRIgh04AcelGpe6gdj0OxA75xpHnPrG+fmG37U3Z6WDrNHZpGvu2eXBzWXM4OVA==
   dest:
     package/README.md:
     package/LICENSE:
