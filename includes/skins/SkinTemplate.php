@@ -1020,7 +1020,6 @@ class SkinTemplate extends Skin {
 			'exists' => $this->userpageUrlDetails['exists'],
 			'active' => ( $this->userpageUrlDetails['href'] == $this->getTitle()->getLocalURL() ),
 			'icon' => 'userAvatar',
-			'dir' => 'auto'
 		];
 	}
 
