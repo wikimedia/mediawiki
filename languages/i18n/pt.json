@@ -3294,7 +3294,7 @@
 	"table_pager_limit": "Mostrar $1 por página",
 	"table_pager_limit_label": "Entradas por página:",
 	"table_pager_limit_submit": "Continuar",
-	"table_pager_empty": "Sem resultados",
+	"table_pager_empty": "Não há resultados",
 	"autosumm-blank": "Limpou toda a página",
 	"autosumm-replace": "Página substituída por \"$1\"",
 	"autoredircomment": "Redirecionamento para [[$1]]",

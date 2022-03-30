@@ -19,7 +19,8 @@
 			"Tobi 406",
 			"Umherirrender",
 			"Wikinaut",
-			"아라"
+			"아라",
+			"Brettchenweber"
 		]
 	},
 	"config-desc": "Das MediaWiki-Installationsprogramm",
@@ -73,6 +74,7 @@
 	"config-no-fts3": "'''Warnung:''' SQLite wurde ohne das [//sqlite.org/fts3.html FTS3-Modul] kompiliert, sodass keine Suchfunktionen für dieses Datenbanksystem zur Verfügung stehen werden.",
 	"config-pcre-old": "<strong>Fataler Fehler:</strong> PCRE $1 oder neuer ist erforderlich!\nDie vorhandene PHP-Binärdatei ist mit PCRE $2 verknüpft.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE Weitere Informationen].",
 	"config-pcre-no-utf8": "'''Fataler Fehler:''' Das PHP-Modul PCRE scheint ohne PCRE_UTF8-Unterstützung kompiliert worden zu sein.\nMediaWiki benötigt die UTF-8-Unterstützung, um fehlerfrei lauffähig zu sein.",
+	"config-pcre-invalid-newline": "<strong>Fataler Fehler:</strong> PHPs PCRE-Modul scheint mit PCRE_CONFIG_NEWLINE = -1 für ANY kompiliert zu sein.\nMediaWiki ist mit dieser Konfiguration nicht kompatibel.",
 	"config-memory-raised": "Der PHP-Parameter <code>memory_limit</code> betrug $1 und wurde auf $2 erhöht.",
 	"config-memory-bad": "'''Warnung:''' Der PHP-Parameter <code>memory_limit</code> beträgt $1.\nDieser Wert ist wahrscheinlich zu niedrig.\nDer Installationsvorgang könnte eventuell scheitern!",
 	"config-apc": "[https://www.php.net/apc APC] ist installiert",
