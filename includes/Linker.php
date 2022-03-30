@@ -2243,8 +2243,12 @@ class Linker {
 		if ( !$isWatchlistExpiryEnabled ) {
 			return;
 		}
+		if ( !$relevantTitle ) {
+			return;
+		}
+		$page = $relevantTitle->toPageIdentity();
 		$watchStore = MediaWikiServices::getInstance()->getWatchedItemStore();
-		$watchedItem = $watchStore->getWatchedItem( $user, $relevantTitle );
+		$watchedItem = $watchStore->getWatchedItem( $user, $page );
 		if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() !== null ) {
 			$diffInDays = $watchedItem->getExpiryInDays();
 
