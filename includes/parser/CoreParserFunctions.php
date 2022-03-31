@@ -426,16 +426,6 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * Shorthand for getting a Language Converter for Target language
-	 * @param Parser $parser Parent parser
-	 * @return ILanguageConverter
-	 */
-	private static function getTargetLanguageConverter( Parser $parser ): ILanguageConverter {
-		return MediaWikiServices::getInstance()->getLanguageConverterFactory()
-			->getLanguageConverter( $parser->getTargetLanguage() );
-	}
-
-	/**
 	 * Override the title of the page when viewed, provided we've been given a
 	 * title which will normalise to the canonical title
 	 *
@@ -511,7 +501,7 @@ class CoreParserFunctions {
 			}
 			if ( $old !== null && $old !== $text && !$arg ) {
 
-				$converter = self::getTargetLanguageConverter( $parser );
+				$converter = $parser->getTargetLanguageConverter();
 				return '<span class="error">' .
 					wfMessage( 'duplicate-displaytitle',
 						// Message should be parsed, but these params should only be escaped.
