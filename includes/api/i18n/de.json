@@ -1098,6 +1098,7 @@
 	"apihelp-undelete-param-title": "Titel der wiederherzustellenden Seite.",
 	"apihelp-undelete-param-reason": "Grund für die Wiederherstellung.",
 	"apihelp-undelete-param-tags": "Auf den Lösch-Logbuch-Eintrag anzuwendende Änderungsmarkierungen.",
+	"apihelp-undelete-param-undeletetalk": "Stellt alle Versionen der zugehörigen Diskussionsseite wieder her, falls vorhanden.",
 	"apihelp-upload-param-filename": "Ziel-Dateiname.",
 	"apihelp-upload-param-tags": "Auf den Datei-Logbuch-Eintrag und die Dateiseitenversion anzuwendende Änderungsmarkierungen.",
 	"apihelp-upload-param-text": "Erster Seitentext für neue Dateien.",

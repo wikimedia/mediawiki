@@ -1179,6 +1179,7 @@
 	"group-autoconfirmed-member": "{{GENDER:$1|автоматски потвердзени хаснователь|автоматски потвердзена хаснователька}}",
 	"group-bot-member": "{{GENDER:$1|бот}}",
 	"group-sysop-member": "{{GENDER:$1|администратор|администраторка}}",
+	"group-interface-admin-member": "{{GENDER:$1|администратор интерфейса|администраторка интерфейса}}",
 	"grouppage-bot": "{{ns:project}}:Боти",
 	"grouppage-sysop": "{{ns:project}}:Администраторе",
 	"right-read": "Читай боки",
