@@ -89,6 +89,7 @@ class ArrayUtils {
 			}
 		}
 
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable weight is non-empty and i is always set
 		return $i;
 	}
 

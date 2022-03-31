@@ -106,6 +106,7 @@ class SpecialExpandTemplates extends SpecialPage {
 
 			$out = $this->getOutput();
 			if ( $generateXML && strlen( $output ) > 0 ) {
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable xml is set when used
 				$out->addHTML( $this->makeOutput( $xml, 'expand_templates_xml_output' ) );
 			}
 

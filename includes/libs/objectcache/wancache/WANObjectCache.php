@@ -1704,14 +1704,17 @@ class WANObjectCache implements
 		// Attempt to save the newly generated value if applicable
 		if (
 			// Callback yielded a cacheable value
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 			( $value !== false && $ttl >= 0 ) &&
 			// Current thread was not raced out of a regeneration lock or key is tombstoned
 			( !$useRegenerationLock || $hasLock || $isKeyTombstoned ) &&
 			// Key does not appear to be undergoing a set() stampede
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 			$this->checkAndSetCooloff( $key, $kClass, $value, $elapsed, $hasLock )
 		) {
 			// If the key is write-holed then use the (volatile) interim key as an alternative
 			if ( $isKeyTombstoned ) {
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 				$this->setInterimValue( $key, $value, $lockTSE, $version, $postCallbackTime, $walltime );
 			} else {
 				$finalSetOpts = [
@@ -1723,7 +1726,7 @@ class WANObjectCache implements
 					'creating' => ( $curValue === false ), // optimization
 					'walltime' => $walltime
 				] + $setOpts;
-				// @phan-suppress-next-line PhanTypeMismatchArgument False positive
+				// @phan-suppress-next-line PhanTypeMismatchArgument,PhanPossiblyUndeclaredVariable False positive
 				$this->set( $key, $value, $ttl, $finalSetOpts );
 			}
 		}
@@ -1737,6 +1740,7 @@ class WANObjectCache implements
 			1e3 * ( $this->getCurrentTime() - $startTime )
 		);
 
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 		return [ $value, $version, $curState[self::RES_AS_OF] ];
 	}
 

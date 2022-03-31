@@ -74,7 +74,9 @@ class CrhExceptions {
 			if ( !preg_match( '/\$[1-9]/', $WordA ) ) {
 				$A2B[ $prePat . $WordA . $postPat ] = $WordB;
 				if ( !$exactCase ) {
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable uc vars are set when used
 					$A2B[ $prePat . $ucWordA . $postPat ] = $ucWordB;
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable uc vars are set when used
 					$A2B[ $prePat . $ucA . $postPat ] = $ucB;
 				}
 			}
@@ -82,7 +84,9 @@ class CrhExceptions {
 			if ( !preg_match( '/\$[1-9]/', $WordB ) ) {
 				$B2A[ $prePat . $WordB . $postPat ] = $WordA;
 				if ( !$exactCase ) {
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable uc vars are set when used
 					$B2A[ $prePat . $ucWordB . $postPat ] = $ucWordA;
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable uc vars are set when used
 					$B2A[ $prePat . $ucB . $postPat ] = $ucA;
 				}
 			}

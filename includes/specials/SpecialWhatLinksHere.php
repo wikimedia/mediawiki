@@ -275,9 +275,13 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$ilRes = $queryFunc( $dbr, 'imagelinks', 'il_from' );
 		}
 
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $rdRes is declared when fetching redirs
 		if ( ( !$fetchredirs || !$rdRes->numRows() )
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $plRes is declared when fetching links
 			&& ( $hidelinks || !$plRes->numRows() )
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $tlRes is declared when fetching trans
 			&& ( $hidetrans || !$tlRes->numRows() )
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $ilRes is declared when fetching images
 			&& ( $hideimages || !$ilRes->numRows() )
 		) {
 			if ( $level == 0 && !$this->including() ) {
@@ -311,6 +315,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		// pagelinks/redirect row, so we get (inclusion) rather than nothing
 		$rows = [];
 		if ( $fetchredirs ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $rdRes is declared when fetching redirs
 			foreach ( $rdRes as $row ) {
 				$row->is_template = 0;
 				$row->is_image = 0;
@@ -318,6 +323,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			}
 		}
 		if ( !$hidelinks ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $plRes is declared when fetching links
 			foreach ( $plRes as $row ) {
 				$row->is_template = 0;
 				$row->is_image = 0;
@@ -325,6 +331,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			}
 		}
 		if ( !$hidetrans ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $tlRes is declared when fetching trans
 			foreach ( $tlRes as $row ) {
 				$row->is_template = 1;
 				$row->is_image = 0;
@@ -332,6 +339,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			}
 		}
 		if ( !$hideimages ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $ilRes is declared when fetching images
 			foreach ( $ilRes as $row ) {
 				$row->is_template = 0;
 				$row->is_image = 1;
@@ -426,6 +434,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$out->addHTML( $this->listEnd() );
 
 		if ( $level == 0 && !$this->including() ) {
+			// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable $prevnext is defined with $level is 0
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable prevnext is set when used
 			$out->addHTML( $prevnext );
 		}

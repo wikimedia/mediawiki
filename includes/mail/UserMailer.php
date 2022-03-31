@@ -461,6 +461,7 @@ class UserMailer {
 				wfDebug( "Error sending mail: " . self::$mErrorString );
 				return Status::newFatal( 'php-mail-error', self::$mErrorString );
 			} elseif ( !$sent ) {
+				// @phan-suppress-previous-line PhanPossiblyUndeclaredVariable sent set on success
 				// mail function only tells if there's an error
 				wfDebug( "Unknown error sending mail" );
 				return Status::newFatal( 'php-mail-error-unknown' );

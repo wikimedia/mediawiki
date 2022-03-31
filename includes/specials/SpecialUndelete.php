@@ -1014,6 +1014,7 @@ class SpecialUndelete extends SpecialPage {
 				'items' => $fields,
 			] );
 
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable form is set, when used here
 			$form->appendContent(
 				new OOUI\PanelLayout( [
 					'expanded' => false,
@@ -1077,7 +1078,9 @@ class SpecialUndelete extends SpecialPage {
 			$misc .= Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() );
 			$history .= $misc;
 
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable form is set, when used here
 			$form->appendContent( new OOUI\HtmlSnippet( $history ) );
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable form is set, when used here
 			$out->addHTML( (string)$form );
 		} else {
 			$out->addHTML( $history );

@@ -786,6 +786,7 @@ abstract class QueryPage extends SpecialPage {
 
 		// Repeat the paging links at the bottom
 		if ( $this->shownavigation ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable paging is set when used here
 			$out->addHTML( '<p>' . $paging . '</p>' );
 		}
 

@@ -212,6 +212,7 @@ class ApiQueryContributors extends ApiQueryBase {
 			$limitGroups = array_unique( $limitGroups );
 			$this->addTables( 'user_groups' );
 			$this->addJoinConds( [ 'user_groups' => [
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable excludeGroups declared when limitGroups set
 				$excludeGroups ? 'LEFT JOIN' : 'JOIN',
 				[
 					'ug_user=' . $revQuery['fields']['rev_user'],
@@ -219,7 +220,8 @@ class ApiQueryContributors extends ApiQueryBase {
 					'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
 				]
 			] ] );
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable excludeGroups is set when used
+			// @phan-suppress-next-next-line PhanTypeMismatchArgumentNullable,PhanPossiblyUndeclaredVariable
+			// excludeGroups declared when limitGroups set
 			$this->addWhereIf( 'ug_user IS NULL', $excludeGroups );
 		}
 

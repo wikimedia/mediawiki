@@ -63,6 +63,7 @@ class CheckUsernames extends Maintenance {
 					wfDebugLog( 'checkUsernames', $row->user_name );
 				}
 			}
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $res has at at least one item
 			$maxUserId = $row->user_id;
 		} while ( $res->numRows() );
 	}

@@ -3750,6 +3750,7 @@ class Parser {
 			} else {
 				break;
 			}
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable Only reached when content is set
 			if ( !$content ) {
 				break;
 			}
@@ -5777,6 +5778,7 @@ class Parser {
 			if ( $node->getName() === 'h' ) {
 				$bits = $node->splitHeading();
 				$curLevel = $bits['level'];
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 				if ( $bits['i'] != $sectionIndex && $curLevel <= $targetLevel ) {
 					break;
 				}

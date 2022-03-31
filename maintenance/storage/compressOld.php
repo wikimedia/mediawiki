@@ -405,6 +405,7 @@ class CompressOld extends Maintenance {
 				if ( $usedChunk ) {
 					if ( $extdb != "" ) {
 						# Move blob objects to External Storage
+						// @phan-suppress-next-line PhanPossiblyUndeclaredVariable storeObj is set when used
 						$stored = $storeObj->store( $extdb, serialize( $chunk ) );
 						if ( $stored === false ) {
 							$this->error( "Unable to store object" );

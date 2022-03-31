@@ -367,7 +367,9 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$op = ( $this->params['dir'] == 'older' ? '<' : '>' );
 			if ( $this->multiUserMode ) {
 				$this->addWhere(
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable encUser is set when used
 					"$userField $op $encUser OR " .
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable encUser is set when used
 					"($userField = $encUser AND " .
 					"($tsField $op $encTS OR " .
 					"($tsField = $encTS AND " .

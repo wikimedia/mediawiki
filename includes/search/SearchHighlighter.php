@@ -248,12 +248,16 @@ class SearchHighlighter {
 		foreach ( $snippets as $index => $line ) {
 			$extended[$index] = $line;
 			$len = strlen( $line );
+			// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
+			// $targetchars is set when $snippes contains anything
 			if ( $len < $targetchars - 20 ) {
 				// complete this line
 				if ( $len < strlen( $all[$index] ) ) {
 					$extended[$index] = $this->extract(
 						$all[$index],
 						$offsets[$index],
+						// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
+						// $targetchars is set when $snippes contains anything
 						$offsets[$index] + $targetchars,
 						$offsets[$index]
 					);
@@ -262,10 +266,14 @@ class SearchHighlighter {
 
 				// add more lines
 				$add = $index + 1;
+				// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
+				// $targetchars is set when $snippes contains anything
 				while ( $len < $targetchars - 20
 						&& array_key_exists( $add, $all )
 						&& !array_key_exists( $add, $snippets ) ) {
 					$offsets[$add] = 0;
+					// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
+					// $targetchars is set when $snippes contains anything
 					$tt = "\n" . $this->extract( $all[$add], 0, $targetchars - $len, $offsets[$add] );
 					$extended[$add] = $tt;
 					$len += strlen( $tt );

@@ -440,6 +440,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 				ApiQueryBase::addTitleInfo( $a, $title );
 				if ( $fld_token ) {
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable token is set when used
 					$a['token'] = $token;
 				}
 				$fit = $result->addValue( [ 'query', $this->getModuleName() ], $pageID, $a );

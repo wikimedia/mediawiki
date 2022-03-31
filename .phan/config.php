@@ -98,7 +98,6 @@ $cfg['exclude_analysis_directory_list'] = [
 ];
 
 // These are too spammy for now. TODO enable
-$cfg['suppress_issue_types'][] = 'PhanPossiblyUndeclaredVariable';
 $cfg['suppress_issue_types'][] = 'PhanCompatibleAccessMethodOnTraitDefinition'; // T289813
 
 // Do not use aliases in core.

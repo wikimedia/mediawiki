@@ -96,6 +96,7 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 
 			// print status and let replica DBs catch up
 			$this->output( sprintf(
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $lastId is set for non-empty $res
 				"id %d done (up to %d), %5.3f%%  \r", $lastId, $endId, $lastId / $endId * 100 ) );
 			$lbFactory->waitForReplication();
 		} while ( true );
