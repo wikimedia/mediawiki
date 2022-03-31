@@ -123,6 +123,8 @@
 	"config-upload-settings": "চিত্র এবং ফাইল আপলোড",
 	"config-upload-enable": "ফাইল আপলোড সক্রিয় করুন",
 	"config-upload-deleted": "অপসারণকৃত ফাইলের ডিরেক্টরি:",
+	"config-logo-preview-main": "প্রধান পাতা",
+	"config-logo-icon": "লোগো (আইকন)",
 	"config-instantcommons": "তাত্ক্ষণিক কমন্স সক্রিয় করুন",
 	"config-advanced-settings": "উন্নত কনফিগারেশন",
 	"config-memcached-servers": "মেমক্যাশেকৃত সার্ভারসমূহ:",

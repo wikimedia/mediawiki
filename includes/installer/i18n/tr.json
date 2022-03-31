@@ -27,7 +27,8 @@
 			"Stultiwikia",
 			"Trncmvsr",
 			"Trockya",
-			"Vito Genovese"
+			"Vito Genovese",
+			"Can"
 		]
 	},
 	"config-desc": "MediaWiki yükleyicisi",
@@ -234,6 +235,18 @@
 	"config-upload-help": "Dosya yüklemeleri, sunucunuzu güvenlik risklerine maruz bırakabilir.\nDaha fazla bilgi için, kılavuzdaki [https://www.mediawiki.org/wiki/Manual:Security/tr güvenlik bölümünü] okuyun.\n\nDosya yüklemelerini etkinleştirmek için, MediaWiki'nin kök dizini altındaki <code>images</code> alt dizinindeki modu, web sunucusunun yazabilmesi için değiştirin.\nArdından bu seçeneği etkinleştirin.",
 	"config-upload-deleted": "Silinen dosyalar için dizin:",
 	"config-upload-deleted-help": "Silinmiş dosyaların arşivleneceği bir dizin seçin.\nİdeal olarak, bu webden erişilebilir olmamalıdır.",
+	"config-personalization-settings": "Kişiselleştirme",
+	"config-logo-summary": "Bu alanların her biri için uygun boyutta bir resim yüklemeniz ve URL'yi aşağıdaki kutulara girmeniz gerekecektir. Logonuz bu yollara göreyse, <code>$wgStylePath</code> veya <code>$wgScriptPath</code> kullanabilirsiniz. Bu kutulardan herhangi birini boş bırakabilirsiniz.\n\nDesteklenen tarayıcılarda, resimdosyalarını dosya sisteminizden giriş kutularına veya önizleme alanına da sürükleyebilirsiniz.",
+	"config-logo-preview-main": "Anasayfa",
+	"config-logo-icon": "Logo (ikon)",
+	"config-logo-icon-help": "Logo simgeniz kare olmalı ve ideal olarak 50 pikselden veya bir SVG'den büyük olmalıdır.",
+	"config-logo-wordmark": "Marka (isteğe bağlı)",
+	"config-logo-wordmark-help": "Sitenizin adı. Tanımlanmazsa, bu genellikle metne geri döner. İdeal olarak yüksekliği 30 piksele eşit veya daha az olan bir SVG.",
+	"config-logo-tagline": "Kısa açıklama (isteğe bağlı)",
+	"config-logo-tagline-help": "Sitenizin kısa açıklama. Yalnızca yukarıda bir sözcük işareti tanımladıysanız kullanın. Tanımlanmazsa, bu genellikle metne geri döner. Genel bir kural olarak kısa açıklama ve markanın birleşik yüksekliği 50 pikseli geçmemelidir.",
+	"config-logo-sidebar": "Kenar çubuğu logosu (isteğe bağlı):",
+	"config-logo-filedrop": "Buraya bir resim dosyası bırakın",
+	"config-logo-sidebar-help": "Bazı MediaWiki görünümleri, kenar çubuğu menüsünün bir parçası olarak 160 piksel yüksekliğinde bir logo içerir. Tanımlanmamışsa, bu yukarıda tanımlanan simgeyle aynıdır. Marka ve simgeyi birleştiren özel bir grafiğe sahip olmak isteyebilirsiniz.",
 	"config-instantcommons": "Instant Commons'ı etkinleştir",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons], vikilerin [https://commons.wikimedia.org/Anasayfa Wikimedia Commons] sitesinde bulunan görüntüleri, sesleri ve diğer ortamları kullanmasına izin veren bir özelliktir.\nBunu yapmak için, MediaWiki İnternete erişim gerektirir.\n\nBu özellik hakkında, Wikimedia Commons dışında vikiler için nasıl ayarlanacağına ilişkin talimatlar dahil olmak üzere daha fazla bilgi için, [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos el kitabına] bakın.",
 	"config-cc-error": "Creative Commons lisansı seçicisi sonuç vermedi.\nLisans adını manüel olarak girin.",
