@@ -196,10 +196,8 @@ class SkinTemplate extends Skin {
 	 * @inheritDoc
 	 */
 	public function getTemplateData() {
-		return parent::getTemplateData() + [
-			// Data objects
-			'data-search-box' => $this->buildSearchProps(),
-		] + $this->getPortletsTemplateData() + $this->getFooterTemplateData();
+		return parent::getTemplateData() +
+			$this->getPortletsTemplateData() + $this->getFooterTemplateData();
 	}
 
 	/**
@@ -214,6 +212,7 @@ class SkinTemplate extends Skin {
 		$out = $this->getOutput();
 		$config = $this->getConfig();
 		$tpl = $this->setupTemplateForOutput();
+		$data = $this->getTemplateData();
 
 		$tpl->set( 'title', $out->getPageTitle() );
 		$tpl->set( 'pagetitle', $out->getHTMLTitle() );
@@ -903,61 +902,6 @@ class SkinTemplate extends Skin {
 		return [
 			'data-footer' => $data,
 		];
-	}
-
-	/**
-	 * @return array
-	 */
-	private function buildSearchProps(): array {
-		$config = $this->getConfig();
-		$searchButtonAttributes = [
-			'class' => 'searchButton'
-		];
-		$fallbackButtonAttributes = [
-			'class' => 'searchButton mw-fallbackSearchButton'
-		];
-		$buttonAttributes = [
-			'type' => 'submit',
-		];
-
-		$props = [
-			'form-action' => $config->get( 'Script' ),
-			'html-button-search-fallback' => $this->makeSearchButton(
-				'fulltext',
-				$fallbackButtonAttributes + [
-					'id' => 'mw-searchButton',
-				]
-			),
-			'html-button-search' => $this->makeSearchButton(
-				'go',
-				$searchButtonAttributes + [
-					'id' => 'searchButton',
-				]
-			),
-			'html-input' => $this->makeSearchInput( [ 'id' => 'searchInput' ] ),
-			'msg-search' => $this->msg( 'search' )->text(),
-			'page-title' => SpecialPage::newSearchPage(
-				$this->getUser()
-			)->getPrefixedDBkey(),
-			// @since 1.38
-			'html-button-go-attributes' => Html::expandAttributes(
-				$searchButtonAttributes + $buttonAttributes + [
-					'name' => 'go',
-				] + Linker::tooltipAndAccesskeyAttribs( 'search-go' )
-			),
-			// @since 1.38
-			'html-button-fulltext-attributes' => Html::expandAttributes(
-				$fallbackButtonAttributes + $buttonAttributes + [
-					'name' => 'fulltext'
-				] + Linker::tooltipAndAccesskeyAttribs( 'search-fulltext' )
-			),
-			// @since 1.38
-			'html-input-attributes' => Html::expandAttributes(
-				$this->getSearchInputAttributes( [] )
-			),
-		];
-
-		return $props;
 	}
 
 	/**
@@ -1705,4 +1649,98 @@ class SkinTemplate extends Skin {
 		return [];
 	}
 
+	/**
+	 * @since 1.35
+	 * @param array $attrs (optional) will be passed to tooltipAndAccesskeyAttribs
+	 *  and decorate the resulting input
+	 * @return string of HTML input
+	 */
+	public function makeSearchInput( $attrs = [] ) {
+		// It's possible that getTemplateData might be calling
+		// Skin::makeSearchInput. To avoid infinite recursion create a
+		// new instance of the search component here.
+		$searchBox = $this->getComponent( 'search-box' );
+		$data = $searchBox->getTemplateData();
+
+		return Html::element( 'input',
+			$data[ 'array-input-attributes' ] + $attrs
+		);
+	}
+
+	/**
+	 * @since 1.35
+	 * @param string $mode representing the type of button wanted
+	 *  either `go`, `fulltext` or `image`
+	 * @param array $attrs (optional)
+	 * @throws MWException if bad value of $mode passed in
+	 * @return string of HTML button
+	 */
+	final public function makeSearchButton( $mode, $attrs = [] ) {
+		// It's possible that getTemplateData might be calling
+		// Skin::makeSearchInput. To avoid infinite recursion create a
+		// new instance of the search component here.
+		$searchBox = $this->getComponent( 'search-box' );
+		$data = $searchBox->getTemplateData();
+
+		return self::makeSearchButtonInternal(
+			$mode,
+			$data,
+			$attrs
+		);
+	}
+
+	/**
+	 * @deprecated 1.38 see @internal note.
+	 * @param string $mode representing the type of button wanted
+	 *  either `go`, `fulltext` or `image`
+	 * @param array $searchData Skin data returned by Skin::getTemplateData()['data-search-box']
+	 * @param array $attrs (optional)
+	 * @throws MWException if bad value of $mode passed in
+	 * @internal Please use SkinTemplate::makeSearchButton.
+	 *  For usage only inside Skin class to support deprecated Skin::makeSearchButton method.
+	 *  This should be merged with SkinTemplate::makeSearchButton when
+	 *  Skin::makeSearchButton method is removed.
+	 * @return string of HTML button
+	 */
+	public static function makeSearchButtonInternal( $mode, $searchData, $attrs = [] ) {
+		switch ( $mode ) {
+			case 'go':
+				return Html::element(
+					'input',
+					array_merge(
+						$searchData[ 'array-button-go-attributes' ], $attrs
+					)
+				);
+			case 'fulltext':
+				return Html::element(
+					'input',
+					array_merge(
+						$searchData[ 'array-button-fulltext-attributes' ], $attrs
+					)
+				);
+			case 'image':
+				$buttonAttrs = [
+					'type' => 'submit',
+					'name' => 'button',
+				];
+				$buttonAttrs = array_merge(
+					$buttonAttrs,
+					Linker::tooltipAndAccesskeyAttribs( 'search-fulltext' ),
+					$attrs
+				);
+				unset( $buttonAttrs['src'] );
+				unset( $buttonAttrs['alt'] );
+				unset( $buttonAttrs['width'] );
+				unset( $buttonAttrs['height'] );
+				$imgAttrs = [
+					'src' => $attrs['src'],
+					'alt' => $attrs['alt'] ?? wfMessage( 'searchbutton' )->text(),
+					'width' => $attrs['width'] ?? null,
+					'height' => $attrs['height'] ?? null,
+				];
+				return Html::rawElement( 'button', $buttonAttrs, Html::element( 'img', $imgAttrs ) );
+			default:
+				throw new MWException( 'Unknown mode passed to SkinTemplate::makeSearchButton' );
+		}
+	}
 }
