@@ -4324,11 +4324,12 @@ class Parser {
 			# * <bdi> (T74884)
 			# * <span dir="rtl"> and <span dir="ltr"> (T37167)
 			# * <s> and <strike> (T35715)
+			# * <q> (T251672)
 			# We strip any parameter from accepted tags (second regex), except dir="rtl|ltr" from <span>,
 			# to allow setting directionality in toc items.
 			$tocline = preg_replace(
 				[
-					'#<(?!/?(span|sup|sub|bdi|i|b|s|strike)(?: [^>]*)?>).*?>#',
+					'#<(?!/?(span|sup|sub|bdi|i|b|s|strike|q)(?: [^>]*)?>).*?>#',
 					'#<(/?(?:span(?: dir="(?:rtl|ltr)")?|sup|sub|bdi|i|b|s|strike))(?: .*?)?>#'
 				],
 				[ '', '<$1>' ],
