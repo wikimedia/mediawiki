@@ -2562,6 +2562,16 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		if ( $priorAccessedOptions ) {
 			$this->mParseUsedOptions = $priorAccessedOptions;
 		}
+		// Forward-compatibility, ~1.39-wmf.7
+		$futureIndexSet = $this->getGhostFieldValue( 'mIndexSet' );
+		if ( $futureIndexSet ) {
+			$this->setIndexPolicy( 'index' );
+		}
+		$futureNoIndexSet = $this->getGhostFieldValue( 'mNoIndexSet' );
+		if ( $futureNoIndexSet ) {
+			// "noindex" takes precedence over "index" (T16899)
+			$this->setIndexPolicy( 'noindex' );
+		}
 	}
 
 	public function __get( $name ) {
