@@ -153,14 +153,14 @@ $wgSettings = new SettingsBuilder(
 	new PhpIniSink()
 );
 
-// If MW_USE_CONFIG_SCHEMA, use the experimental setup based on config-schema.yaml. See T300129.
-if ( getenv( 'MW_USE_CONFIG_SCHEMA' ) ) {
-	$wgSettings->load( new PhpSettingsSource( "$IP/includes/config-schema.php" ) );
-} else {
+if ( getenv( 'MW_USE_LEGACY_DEFAULT_SETTINGS' ) || defined( 'MW_USE_LEGACY_DEFAULT_SETTINGS' ) ) {
+	// Load the old DefaultSettings.php file. Should be removed in 1.39. See T300129.
 	require_once "$IP/includes/DefaultSettings.php";
 
-	// This is temporary until we transition to config-schema.yaml
+	// This is temporary until we no longer need this mode.
 	$wgSettings->load( new PhpSettingsSource( "$IP/includes/config-merge-strategies.php" ) );
+} else {
+	$wgSettings->load( new PhpSettingsSource( "$IP/includes/config-schema.php" ) );
 }
 
 require_once "$IP/includes/GlobalFunctions.php";
@@ -185,19 +185,6 @@ $wgSettings->putConfigValues( [
 	'Version' => MW_VERSION,
 ] );
 $wgSettings->apply();
-
-// $wgSettings->apply() puts all configuration into global variables.
-// If we are not in global scope, make all relevant globals available
-// in this file's scope as well.
-$wgScopeTest = 'MediaWiki Setup.php scope test';
-if ( !isset( $GLOBALS['wgScopeTest'] ) || $GLOBALS['wgScopeTest'] !== $wgScopeTest ) {
-	foreach ( $wgSettings->getDefaultConfig() as $key => $unused ) {
-		$var = "wg$key";
-		// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
-		global $var;
-	}
-}
-unset( $wgScopeTest );
 
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	call_user_func( MW_CONFIG_CALLBACK, $wgSettings );

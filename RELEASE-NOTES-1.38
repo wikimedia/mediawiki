@@ -687,6 +687,13 @@ because of Phabricator reports.
   earlier. This means that extensions that are installed via composer and
   execute code upon autoloading can not depend on any MediaWiki classes,
   constants or globals in that code.
+* The source of truth for configuration defaults is now the MainConfigSchema
+  class. DefaultSettings.php still exists for backwards compatibility. A PHP
+  file generated for optimized loading will be used in Setup.php to initialize
+  configuration variables. Setup.php can be made to load DefaultSettings.php
+  as before by setting MW_USE_LEGACY_DEFAULT_SETTINGS as  an environment
+  variable (e.g. via SetEnv in htaccess) or a PHP constant (e.g. via
+  auto_prepend_file in php.ini).
 
 == Compatibility ==
 MediaWiki 1.38 requires PHP 7.3.19 or later and the following PHP extensions:
