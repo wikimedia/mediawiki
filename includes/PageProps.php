@@ -211,8 +211,10 @@ class PageProps {
 				$pageProperties[$row->pp_propname] = $row->pp_value;
 			}
 			if ( $pageProperties != [] ) {
+				// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable pageID set when used
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable pageID set when used
 				$this->cacheProperties( $pageID, $pageProperties );
+				// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable pageID set when used
 				// @phan-suppress-next-line PhanTypeMismatchDimAssignment pageID set when used
 				$values[$pageID] = $pageProperties;
 			}

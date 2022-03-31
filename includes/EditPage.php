@@ -2410,6 +2410,8 @@ class EditPage implements IEditObject {
 		if ( $changingContentModel ) {
 			$this->addContentModelChangeLogEntry(
 				$user,
+				// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
+				// $oldContentModel is set when $changingContentModel is true
 				$new ? false : $oldContentModel,
 				$this->contentModel,
 				$this->summary
@@ -3138,7 +3140,11 @@ class EditPage implements IEditObject {
 				$conflictTextBoxAttribs['class'] = 'mw-textarea-oldrev';
 			}
 
+			// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
+			// $editConflictHelper is declard, when isConflict is true
 			$out->addHTML( $editConflictHelper->getEditConflictMainTextBox( $conflictTextBoxAttribs ) );
+			// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
+			// $editConflictHelper is declard, when isConflict is true
 			$out->addHTML( $editConflictHelper->getEditFormHtmlAfterContent() );
 		} else {
 			$this->showContentForm();

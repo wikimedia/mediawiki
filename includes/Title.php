@@ -2260,6 +2260,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 				$url = false;
 				$matches = [];
 
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 				$articlePaths = PathRouter::getActionPaths( $wgActionPaths, $wgArticlePath );
 
 				if ( $articlePaths
@@ -2298,6 +2299,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 					if ( $query == '-' ) {
 						$query = '';
 					}
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 					$url = "{$wgScript}?title={$dbkey}&{$query}";
 				}
 			}

@@ -175,6 +175,7 @@ class ApiComparePages extends ApiBase {
 
 		// Handle missing from or to revisions (should never happen)
 		// @codeCoverageIgnoreStart
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable T240141
 		if ( !$fromRev || !$toRev ) {
 			$this->dieWithError( 'apierror-baddiff' );
 		}
@@ -192,6 +193,7 @@ class ApiComparePages extends ApiBase {
 		$context = new DerivativeContext( $this->getContext() );
 		if ( $fromRelRev && $fromRelRev->getPageAsLinkTarget() ) {
 			$context->setTitle( Title::newFromLinkTarget( $fromRelRev->getPageAsLinkTarget() ) );
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable T240141
 		} elseif ( $toRelRev && $toRelRev->getPageAsLinkTarget() ) {
 			$context->setTitle( Title::newFromLinkTarget( $toRelRev->getPageAsLinkTarget() ) );
 		} else {
@@ -217,6 +219,7 @@ class ApiComparePages extends ApiBase {
 		// Fill in the response
 		$vals = [];
 		$this->setVals( $vals, 'from', $fromValsRev );
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable T240141
 		$this->setVals( $vals, 'to', $toValsRev );
 
 		if ( isset( $this->props['rel'] ) ) {

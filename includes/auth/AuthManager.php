@@ -1517,6 +1517,7 @@ class AuthManager implements LoggerAwareInterface {
 				$this->watchlistManager->addWatchIgnoringRights( $user, $user->getUserPage() );
 
 				// Inform the provider
+				// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
 				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Alwyas set in loop before, if passed
 				$logSubtype = $provider->finishAccountCreation( $user, $creator, $state['primaryResponse'] );
 

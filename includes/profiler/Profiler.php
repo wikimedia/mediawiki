@@ -70,6 +70,7 @@ abstract class Profiler {
 		if ( self::$instance === null ) {
 			global $wgProfiler;
 
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 			$params = $wgProfiler + [
 				'class'     => ProfilerStub::class,
 				'sampling'  => 1,

@@ -1623,6 +1623,7 @@ class ApiMain extends ApiBase {
 				$etag = $module->getConditionalRequestData( 'etag' );
 			}
 		}
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $etag is declared when $ifNoneMatch is true
 		if ( $ifNoneMatch && $etag !== null ) {
 			$test = substr( $etag, 0, 2 ) === 'W/' ? substr( $etag, 2 ) : $etag;
 			$match = array_map( static function ( $s ) {

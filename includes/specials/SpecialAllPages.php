@@ -323,6 +323,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 		}
 
 		// Generate a "next page" link if needed
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $res is declared when have maxPerPage
 		if ( $n == $this->maxPerPage && $s = $res->fetchObject() ) {
 			# $s is the first link of the next chunk
 			$t = Title::makeTitle( $namespace, $s->page_title );

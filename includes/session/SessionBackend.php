@@ -852,13 +852,15 @@ final class SessionBackend {
 		if ( $this->persistenceChangeData
 			&& $this->persistenceChangeData['id'] === $id
 			&& $this->persistenceChangeData['user'] === $user
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable message always set
 			&& $this->persistenceChangeData['message'] === $message
 		) {
 			return;
 		}
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable message always set
 		$this->persistenceChangeData = [ 'id' => $id, 'user' => $user, 'message' => $message ];
 
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable message always set
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable,PhanPossiblyUndeclaredVariable message always set
 		$this->logger->info( $message, [
 			'id' => $id,
 			'provider' => get_class( $this->getProvider() ),
