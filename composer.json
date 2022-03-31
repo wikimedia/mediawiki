@@ -158,7 +158,7 @@
 		"phpunit:integration": "phpunit --colors=always --testsuite=core:integration,extensions:integration,skins:integration",
 		"phpunit:coverage": "phpunit --testsuite=core:unit --exclude-group Dump,Broken",
 		"phpunit:coverage-edit": "ComposerPhpunitXmlCoverageEdit::onEvent",
-		"phpunit:entrypoint": "php tests/phpunit/phpunit.php"
+		"phpunit:entrypoint": "php tests/phpunit/phpunit.php -c tests/phpunit/suite.xml"
 	},
 	"config": {
 		"optimize-autoloader": true,
