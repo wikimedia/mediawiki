@@ -2153,25 +2153,6 @@ function wfRelativePath( $path, $from ) {
 }
 
 /**
- * Get an ASCII string identifying this wiki
- * This is used as a prefix in memcached keys
- *
- * @deprecated since 1.35, hard deprecated since 1.38
- * Use WikiMap::getCurrentWikiId() instead
- * @return string
- */
-function wfWikiID() {
-	wfDeprecated( __FUNCTION__, '1.35' );
-	global $wgDBprefix, $wgDBname;
-
-	if ( $wgDBprefix ) {
-		return "$wgDBname-$wgDBprefix";
-	} else {
-		return $wgDBname;
-	}
-}
-
-/**
  * Get a Database object.
  *
  * @param int $db Index of the connection to get. May be DB_PRIMARY for the
