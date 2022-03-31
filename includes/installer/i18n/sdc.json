@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Jun Misugi",
-			"Seb35"
+			"Seb35",
+			"F Samaritani"
 		]
 	},
 	"config-title": "Isthallazioni di MediaWiki $1",
@@ -39,6 +40,8 @@
 	"config-admin-name": "L'innommu utenti tóiu:",
 	"config-admin-password": "Paràura d'órdhini:",
 	"config-admin-email": "Indirizzu di postha erettrònica:",
+	"config-logo-preview-main": "Pàgina prinzipari",
+	"config-logo-icon": "Logu",
 	"config-help": "aggiuddu",
 	"mainpagetext": "<strong>Isthallazioni di MediaVichi accabadda currentementi.</strong>",
 	"mainpagedocfooter": "Cunsultha la [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Ghia utenti] pa maggiori infuimmazioni i l'usu di chisthu vichi-software.\n\n== Pa ischuminzà ==\nLi sighenti cullegamenti so in linga ingresa:\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Impusthazioni di cunfigurazioni]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Prigonti friquenti in MediaVichi]\n* \n[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Listhinu di postha erettrònica pa annùnzii MediaVichi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traduzi MediaVichi pa la tóia linga]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Impara cumenti poi cumbattí spam i' lu tóiu vichi]"

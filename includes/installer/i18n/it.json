@@ -24,7 +24,8 @@
 			"Selven",
 			"The Polish",
 			"Tosky",
-			"아라"
+			"아라",
+			"Marty5550"
 		]
 	},
 	"config-desc": "Programma di installazione per MediaWiki",
@@ -230,6 +231,10 @@
 	"config-upload-help": "Il caricamento di file potrebbe esporre il tuo server a rischi di sicurezza.\nPer ulteriori informazioni, leggi la  [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security sezione sulla sicurezza] nel manuale.\n\nPer consentire il caricamento di file, modifica la modalità nella sottodirectory <code>images</code> della directory principale di MediaWiki affinché il server web possa scrivere lì.\nPoi attiva questa opzione.",
 	"config-upload-deleted": "Directory per i file cancellati:",
 	"config-upload-deleted-help": "Scegli una directory in cui archiviare i file cancellati.\nIdealmente, questa non dovrebbe essere accessibile dal web.",
+	"config-personalization-settings": "Personalizzazione",
+	"config-logo-preview-main": "Pagina principale",
+	"config-logo-icon": "Logo (icona)",
+	"config-logo-icon-help": "La tua icona del logo dovrebbe essere quadrata e possibilmente avere o più di 50px di risoluzione, oppure essere un file SVG.",
 	"config-instantcommons": "Abilita Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] è una funzionalità che consente ai wiki di usare immagini, suoni e altri file multimediali che trovate sul sito [https://commons.wikimedia.org/ Wikimedia Commons].\nPer fare questo, MediaWiki richiede l'accesso a Internet.\n\nPer ulteriori informazioni su questa funzionalità, incluse le istruzioni su come configurarlo per wiki diversi da Wikimedia Commons, consultare [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos il manuale].",
 	"config-cc-error": "Il selettore di licenze Creative Commons non ha dato alcun risultato.\nInserisci manualmente il nome della licenza.",
