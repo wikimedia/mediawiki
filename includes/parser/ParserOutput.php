@@ -1347,7 +1347,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * Attach a flag to the output so that it can be checked later to handle special cases
 	 *
 	 * @param string $flag
-	 * @deprecated Use ::setOutputFlag()
+	 * @deprecated since 1.38; use ::setOutputFlag()
 	 */
 	public function setFlag( $flag ): void {
 		$this->mFlags[$flag] = true;
@@ -1356,7 +1356,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @param string $flag
 	 * @return bool Whether the given flag was set to signify a special case
-	 * @deprecated Use ::getOutputFlag()
+	 * @deprecated since 1.38; use ::getOutputFlag()
 	 */
 	public function getFlag( $flag ): bool {
 		return isset( $this->mFlags[$flag] );
