@@ -92,6 +92,7 @@ because of Phabricator reports.
   You can use ObjectCache::getLocalClusterInstance() instead.
 * EventRelayerKafka, deprecated in 1.38, was removed.
 * MediaWiki\Logger\Monolog\KafkaHandler, deprecated in 1.38, was removed.
+* The global function wfWikiID(), deprecated since 1.35, has been removed.
 * Database::wasKnownStatementRollbackError() was removed. Subclasses should
   override isKnownStatementRollbackError() instead.
 * Database::wasQueryTimeoutError() was removed. Subclasses should
