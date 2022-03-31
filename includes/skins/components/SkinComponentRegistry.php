@@ -85,7 +85,7 @@ class SkinComponentRegistry {
 			case 'logos':
 				$component = new SkinComponentLogo(
 					$this->skin->getConfig(),
-					$this->skin->getOutput()->getTitle()
+					$this->skin->getLanguage()->getCode()
 				);
 				break;
 			case 'toc':

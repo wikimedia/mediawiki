@@ -399,12 +399,12 @@ CSS
 	/**
 	 * @dataProvider providePreloadLinks
 	 * @covers ResourceLoaderSkinModule::getPreloadLinks
-	 * @covers ResourceLoaderSkinModule::getLogoPreloadlinks
 	 * @covers ResourceLoaderSkinModule::getLogoData
 	 */
-	public function testPreloadLinkHeaders( $config, $result ) {
+	public function testPreloadLinkHeaders( $config, $lang, $result ) {
 		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )
 			->disableOriginalConstructor()->getMock();
+		$ctx->method( 'getLanguage' )->willReturn( $lang );
 		$module = new ResourceLoaderSkinModule();
 		$module->setConfig( new HashConfig( $config + [
 			'BaseDirectory' => '/dummy',
@@ -426,6 +426,7 @@ CSS
 						'2x' => '/img/two-x.png',
 					],
 				],
+				'en',
 				'Link: </img/default.png>;rel=preload;as=image;media=' .
 				'not all and (min-resolution: 1.5dppx),' .
 				'</img/one-point-five.png>;rel=preload;as=image;media=' .
@@ -438,6 +439,7 @@ CSS
 						'1x' => '/img/default.png',
 					],
 				],
+				'en',
 				'Link: </img/default.png>;rel=preload;as=image'
 			],
 			[
@@ -447,6 +449,7 @@ CSS
 						'2x' => '/img/two-x.png',
 					],
 				],
+				'en',
 				'Link: </img/default.png>;rel=preload;as=image;media=' .
 				'not all and (min-resolution: 2dppx),' .
 				'</img/two-x.png>;rel=preload;as=image;media=(min-resolution: 2dppx)'
@@ -458,6 +461,7 @@ CSS
 						'svg' => '/img/vector.svg',
 					],
 				],
+				'en',
 				'Link: </img/vector.svg>;rel=preload;as=image'
 
 			],
@@ -469,7 +473,29 @@ CSS
 					],
 					'UploadPath' => '/w/images',
 				],
+				'en',
 				'Link: </w/test.jpg?edcf2>;rel=preload;as=image',
+			],
+			[
+				[
+					'Logos' => [
+						'1x' => '/img/default.png',
+						'1.5x' => '/img/one-point-five.png',
+						'2x' => '/img/two-x.png',
+						'variants' => [
+							'zh-hans' => [
+								'1x' => '/img/default-zh-hans.png',
+								'1.5x' => '/img/one-point-five-zh-hans.png',
+							]
+						]
+					],
+				],
+				'zh-hans',
+				'Link: </img/default-zh-hans.png>;rel=preload;as=image;media=' .
+				'not all and (min-resolution: 1.5dppx),' .
+				'</img/one-point-five-zh-hans.png>;rel=preload;as=image;media=' .
+				'(min-resolution: 1.5dppx) and (max-resolution: 1.999999dppx),' .
+				'</img/two-x.png>;rel=preload;as=image;media=(min-resolution: 2dppx)'
 			],
 		];
 	}

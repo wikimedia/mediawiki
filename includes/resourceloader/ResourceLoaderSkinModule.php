@@ -394,7 +394,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 * @return array
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
-		$logo = $this->getLogoData( $this->getConfig() );
+		$logo = $this->getLogoData( $this->getConfig(), $context->getLanguage() );
 		$styles = parent::getStyles( $context );
 		$this->normalizeStyles( $styles );
 
@@ -447,20 +447,12 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
-	public function getPreloadLinks( ResourceLoaderContext $context ) {
-		return $this->getLogoPreloadlinks();
-	}
-
-	/**
-	 * Helper method for getPreloadLinks()
-	 * @return array
-	 */
-	private function getLogoPreloadlinks(): array {
+	public function getPreloadLinks( ResourceLoaderContext $context ): array {
 		if ( !in_array( 'logo', $this->features ) ) {
 			return [];
 		}
 
-		$logo = $this->getLogoData( $this->getConfig() );
+		$logo = $this->getLogoData( $this->getConfig(), $context->getLanguage() );
 
 		if ( !is_array( $logo ) ) {
 			// No media queries required if we only have one variant
@@ -567,6 +559,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 * Return an array of all available logos that a skin may use.
 	 * @since 1.35
 	 * @param Config $conf
+	 * @param string|null $lang Language code for logo variant, since 1.39
 	 * @return array with the following keys:
 	 *  - 1x(string): a square logo composing the `icon` and `wordmark` (required)
 	 *  - 2x (string): a square logo for HD displays (optional)
@@ -577,13 +570,18 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 *      height fields defined in pixels, which are converted to ems based on 16px font-size.
 	 *  - icon (string): a square logo similar to 1x, but without the wordmark. SVG recommended.
 	 */
-	public static function getAvailableLogos( $conf ): array {
+	public static function getAvailableLogos( Config $conf, string $lang = null ): array {
 		$logos = $conf->get( 'Logos' );
 		if ( $logos === false ) {
 			// no logos were defined... this will either
 			// 1. Load from wgLogo and wgLogoHD
 			// 2. Trigger runtime exception if those are not defined.
 			$logos = [];
+		}
+		if ( $lang && isset( $logos['variants'][$lang] ) ) {
+			foreach ( $logos['variants'][$lang] as $type => $value ) {
+				$logos[$type] = $value;
+			}
 		}
 
 		// If logos['1x'] is not defined, see if we can use wgLogo
@@ -626,13 +624,14 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	/**
 	 * @since 1.31
 	 * @param Config $conf
+	 * @param string|null $lang Language code for logo variant, since 1.39
 	 * @return string|array Single url if no variants are defined,
 	 *  or an array of logo urls keyed by dppx in form "<float>x".
 	 *  Key "1x" is always defined. Key "svg" may also be defined,
 	 *  in which case variants other than "1x" are omitted.
 	 */
-	protected function getLogoData( Config $conf ) {
-		$logoHD = self::getAvailableLogos( $conf );
+	protected function getLogoData( Config $conf, string $lang = null ) {
+		$logoHD = self::getAvailableLogos( $conf, $lang );
 		$logo = $logoHD['1x'];
 
 		$logo1Url = OutputPage::transformResourcePath( $conf, $logo );
