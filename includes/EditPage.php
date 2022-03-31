@@ -1851,6 +1851,9 @@ class EditPage implements IEditObject {
 		} elseif ( $this->oldid ) {
 			$val = 'restored';
 		}
+		if ( $this->tempUserCreateDone ) {
+			$val .= '+tempuser';
+		}
 
 		$response = $this->context->getRequest()->response();
 		$response->setCookie( $postEditKey, $val, time() + self::POST_EDIT_COOKIE_DURATION );
@@ -4548,7 +4551,7 @@ class EditPage implements IEditObject {
 			];
 		}
 
-		if ( $user->isRegistered() ) {
+		if ( $user->isNamed() ) {
 			$checkboxes = array_merge(
 				$checkboxes,
 				$this->getCheckboxesDefinitionForWatchlist( $checked['watch'] )

@@ -47,6 +47,13 @@ class SkinTemplate extends Skin {
 	public $loggedin;
 	public $username;
 	public $userpageUrlDetails;
+
+	/** @var bool */
+	private $isTempUser;
+
+	/** @var bool */
+	private $isNamedUser;
+
 	private $templateContextSet = false;
 	/** @var array|null */
 	private $contentNavigationCached;
@@ -110,8 +117,10 @@ class SkinTemplate extends Skin {
 		$this->thisquery = wfArrayToCgi( $query );
 		$this->loggedin = $user->isRegistered();
 		$this->username = $user->getName();
+		$this->isTempUser = $user->isTemp();
+		$this->isNamedUser = $this->loggedin && !$this->isTempUser;
 
-		if ( $this->loggedin ) {
+		if ( $this->isNamedUser ) {
 			$this->userpageUrlDetails = self::makeUrlDetails( $userpageTitle );
 		} else {
 			# This won't be used in the standard skins, but we define it to preserve the interface
@@ -445,6 +454,7 @@ class SkinTemplate extends Skin {
 	protected function buildPersonalUrls( bool $includeNotifications = true ) {
 		$this->setupTemplateContext();
 		$title = $this->getTitle();
+		$authority = $this->getAuthority();
 		$request = $this->getRequest();
 		$pageurl = $title->getLocalURL();
 		$services = MediaWikiServices::getInstance();
@@ -456,7 +466,7 @@ class SkinTemplate extends Skin {
 		$personal_urls = [];
 
 		if ( $this->loggedin ) {
-			$personal_urls['userpage'] = $this->buildPersonalPageItem( 'pt-userpage' );
+			$this->addPersonalPageItem( $personal_urls, '' );
 
 			// Merge notifications into the personal menu for older skins.
 			if ( $includeNotifications ) {
@@ -474,16 +484,18 @@ class SkinTemplate extends Skin {
 				'active' => ( $usertalkUrlDetails['href'] == $pageurl ),
 				'icon' => 'userTalk'
 			];
-			$href = self::makeSpecialUrl( 'Preferences' );
-			$personal_urls['preferences'] = [
-				'text' => $this->msg( 'mypreferences' )->text(),
-				'href' => $href,
-				'active' => ( $href == $pageurl ),
-				'icon' => 'settings'
-			];
+			if ( !$this->isTempUser ) {
+				$href = self::makeSpecialUrl( 'Preferences' );
+				$personal_urls['preferences'] = [
+					'text' => $this->msg( 'mypreferences' )->text(),
+					'href' => $href,
+					'active' => ( $href == $pageurl ),
+					'icon' => 'settings',
+				];
 
-			if ( $this->getAuthority()->isAllowed( 'viewmywatchlist' ) ) {
-				$personal_urls['watchlist'] = self::buildWatchlistData();
+				if ( $authority->isAllowed( 'viewmywatchlist' ) ) {
+					$personal_urls['watchlist'] = self::buildWatchlistData();
+				}
 			}
 
 			# We need to do an explicit check for Special:Contributions, as we
@@ -514,17 +526,15 @@ class SkinTemplate extends Skin {
 			];
 
 			// if we can't set the user, we can't unset it either
-			if ( $request->getSession()->canSetUser() ) {
+			if ( !$this->isTempUser && $request->getSession()->canSetUser() ) {
 				$personal_urls['logout'] = $this->buildLogoutLinkData();
 			}
 		} else {
-			$useCombinedLoginLink = $this->useCombinedLoginLink();
-			$login_url = $this->buildLoginData( $returnto, $useCombinedLoginLink );
-			$createaccount_url = $this->buildCreateAccountData( $returnto );
-
+			$tempUserConfig = $services->getTempUserConfig();
+			$canEdit = $authority->isAllowed( 'edit' );
+			$canEditWithTemp = $tempUserConfig->isAutoCreateAction( 'edit' );
 			// No need to show Talk and Contributions to anons if they can't contribute!
-			// TODO: easy way to get anon authority!
-			if ( $permissionManager->groupHasPermission( '*', 'edit' ) ) {
+			if ( $canEdit || $canEditWithTemp ) {
 				// Non interactive placeholder for anonymous users.
 				// It's unstyled by default (black color). Skin that
 				// needs it, can style it using the 'pt-anonuserpage' id.
@@ -532,7 +542,8 @@ class SkinTemplate extends Skin {
 				$personal_urls['anonuserpage'] = [
 					'text' => $this->msg( 'notloggedin' )->text(),
 				];
-
+			}
+			if ( $canEdit ) {
 				// Because of caching, we can't link directly to the IP talk and
 				// contributions pages. Instead we use the special page shortcuts
 				// (which work correctly regardless of caching). This means we can't
@@ -543,19 +554,24 @@ class SkinTemplate extends Skin {
 					'text' => $this->msg( 'anontalk' )->text(),
 					'href' => self::makeSpecialUrlSubpage( 'Mytalk', false ),
 					'active' => false,
-					'icon' => 'userTalk'
+					'icon' => 'userTalk',
 				];
 				$personal_urls['anoncontribs'] = [
 					'text' => $this->msg( 'anoncontribs' )->text(),
 					'href' => self::makeSpecialUrlSubpage( 'Mycontributions', false ),
 					'active' => false,
-					'icon' => 'userContributions'
+					'icon' => 'userContributions',
 				];
 			}
+		}
+		if ( $this->isTempUser || !$this->loggedin ) {
+			$useCombinedLoginLink = $this->useCombinedLoginLink();
+			$login_url = $this->buildLoginData( $returnto, $useCombinedLoginLink );
+			$createaccount_url = $this->buildCreateAccountData( $returnto );
 
 			if (
 				$authManager->canCreateAccounts()
-				&& $this->getAuthority()->isAllowed( 'createaccount' )
+				&& $authority->isAllowed( 'createaccount' )
 				&& !$useCombinedLoginLink
 			) {
 				$personal_urls['createaccount'] = $createaccount_url;
@@ -950,6 +966,26 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
+	 * Add the userpage/tmpuserpage link to the array
+	 *
+	 * @param array &$links Links array to append to
+	 * @param string $idSuffix Something to add to the IDs to make them unique
+	 */
+	private function addPersonalPageItem( &$links, $idSuffix ) {
+		if ( $this->isTempUser ) {
+			$links['tmpuserpage'] = [
+				'text' => $this->username,
+				'single-id' => 'pt-tmpuserpage',
+				'id' => 'pt-tmpuserpage' . $idSuffix,
+				'icon' => 'userAnonymous',
+				'dir' => 'auto'
+			];
+		} elseif ( $this->loggedin ) {
+			$links['userpage'] = $this->buildPersonalPageItem( 'pt-userpage' . $idSuffix );
+		}
+	}
+
+	/**
 	 * Build a user page link data.
 	 *
 	 * @param string $id of user page item to be output in HTML attribute (optional)
@@ -1220,12 +1256,12 @@ class SkinTemplate extends Skin {
 		$services = MediaWikiServices::getInstance();
 		$permissionManager = $services->getPermissionManager();
 		$categoriesData = $this->getCategoryPortletsData( $this->getOutput()->getCategoryLinks() );
+		$userPageLink = [];
+		$this->addPersonalPageItem( $userPageLink, '-2' );
 		$content_navigation = $categoriesData + [
 			// Modern keys: Please ensure these get unset inside Skin::prepareQuickTemplate
 			'user-interface-preferences' => [],
-			'user-page' => $this->loggedin ? [
-				'userpage' => $this->buildPersonalPageItem( 'pt-userpage-2' )
-			] : [],
+			'user-page' => $userPageLink,
 			'user-menu' => $this->buildPersonalUrls( false ),
 			'notifications' => [],
 			// Legacy keys
@@ -1439,8 +1475,7 @@ class SkinTemplate extends Skin {
 					];
 				}
 
-				// Checks if the user is logged in
-				if ( $this->loggedin && $this->getAuthority()
+				if ( $this->isNamedUser && $this->getAuthority()
 						->isAllowedAll( 'viewmywatchlist', 'editmywatchlist' )
 				) {
 					/**
