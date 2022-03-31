@@ -92,13 +92,13 @@ class XmlDumpWriter {
 		$schemaVersion = XML_DUMP_SCHEMA_VERSION_11
 	) {
 		Assert::parameter(
-			in_array( $contentMode, [ self::WRITE_CONTENT, self::WRITE_STUB ] ),
+			in_array( $contentMode, [ self::WRITE_CONTENT, self::WRITE_STUB ], true ),
 			'$contentMode',
 			'must be one of the following constants: WRITE_CONTENT or WRITE_STUB.'
 		);
 
 		Assert::parameter(
-			in_array( $schemaVersion, self::$supportedSchemas ),
+			in_array( $schemaVersion, self::$supportedSchemas, true ),
 			'$schemaVersion',
 			'must be one of the following schema versions: '
 				. implode( ',', self::$supportedSchemas )

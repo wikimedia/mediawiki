@@ -68,6 +68,7 @@
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\IPUtils;
 
 // {{{ class MemcachedClient
 /**
@@ -347,7 +348,7 @@ class MemcachedClient {
 		}
 
 		$sock = $this->get_sock( $key );
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return false;
 		}
 
@@ -389,7 +390,7 @@ class MemcachedClient {
 		}
 
 		$sock = $this->get_sock( $key );
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return false;
 		}
 
@@ -480,7 +481,7 @@ class MemcachedClient {
 
 		$sock = $this->get_sock( $key );
 
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return false;
 		}
 
@@ -537,7 +538,7 @@ class MemcachedClient {
 		$socks = array();
 		foreach ( $keys as $key ) {
 			$sock = $this->get_sock( $key );
-			if ( !is_resource( $sock ) ) {
+			if ( !$sock ) {
 				continue;
 			}
 			$key = is_array( $key ) ? $key[1] : $key;
@@ -629,7 +630,7 @@ class MemcachedClient {
 	 * @return array Output array
 	 */
 	public function run_command( $sock, $cmd ) {
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return array();
 		}
 
@@ -782,7 +783,16 @@ class MemcachedClient {
 	 * @access private
 	 */
 	function _connect_sock( &$sock, $host ) {
-		list( $ip, $port ) = preg_split( '/:(?=\d)/', $host );
+		$port = null;
+		$hostAndPort = IPUtils::splitHostAndPort( $host );
+		if ( $hostAndPort ) {
+			$ip = $hostAndPort[0];
+			if ( $hostAndPort[1] ) {
+				$port = $hostAndPort[1];
+			}
+		} else {
+			$ip = $host;
+		}
 		$sock = false;
 		$timeout = $this->_connect_timeout;
 		$errno = $errstr = null;
@@ -831,7 +841,12 @@ class MemcachedClient {
 	 * @param string $host
 	 */
 	function _dead_host( $host ) {
-		$ip = explode( ':', $host )[0];
+		$hostAndPort = IPUtils::splitHostAndPort( $host );
+		if ( $hostAndPort ) {
+			$ip = $hostAndPort[0];
+		} else {
+			$ip = $host;
+		}
 		$this->_host_dead[$ip] = time() + 30 + intval( rand( 0, 10 ) );
 		$this->_host_dead[$host] = $this->_host_dead[$ip];
 		unset( $this->_cache_sock[$host] );
@@ -877,7 +892,7 @@ class MemcachedClient {
 		for ( $tries = 0; $tries < 20; $tries++ ) {
 			$host = $this->_buckets[$hv % $this->_bucketcount];
 			$sock = $this->sock_to_host( $host );
-			if ( is_resource( $sock ) ) {
+			if ( $sock ) {
 				return $sock;
 			}
 			$hv = $this->_hashfunc( $hv . $realkey );
@@ -923,7 +938,7 @@ class MemcachedClient {
 		}
 
 		$sock = $this->get_sock( $key );
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return null;
 		}
 
@@ -1058,7 +1073,7 @@ class MemcachedClient {
 		}
 
 		$sock = $this->get_sock( $key );
-		if ( !is_resource( $sock ) ) {
+		if ( !$sock ) {
 			return false;
 		}
 
@@ -1140,7 +1155,12 @@ class MemcachedClient {
 
 		$sock = null;
 		$now = time();
-		list( $ip, /* $port */) = explode( ':', $host );
+		$hostAndPort = IPUtils::splitHostAndPort( $host );
+		if ( $hostAndPort ) {
+			$ip = $hostAndPort[0];
+		} else {
+			$ip = $host;
+		}
 		if ( isset( $this->_host_dead[$host] ) && $this->_host_dead[$host] > $now ||
 			isset( $this->_host_dead[$ip] ) && $this->_host_dead[$ip] > $now
 		) {
@@ -1289,7 +1309,7 @@ class MemcachedClient {
 	 * @param Resource $f
 	 */
 	function _flush_read_buffer( $f ) {
-		if ( !is_resource( $f ) ) {
+		if ( !$f ) {
 			return;
 		}
 		$r = array( $f );

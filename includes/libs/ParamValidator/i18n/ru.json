@@ -2,17 +2,38 @@
 	"@metadata": {
 		"authors": [
 			"Okras",
-			"Stjn"
+			"Stjn",
+			"Facenapalm",
+			"WindEwriX"
 		]
 	},
+	"paramvalidator-badbool": "Некорректное значение «$2» для булевого параметра «$1». Передайте $3 для истинного значения, или $5 для ложного.",
 	"paramvalidator-badexpiry": "Недопустимое значение «$2» для параметра истечения срока «$1».",
+	"paramvalidator-badexpiry-duration": "Заданное значение «$2» для параметра <var>$1</var> превышает максимально допустимое «$3».",
+	"paramvalidator-badexpiry-duration-max": "Заданное значение «$2» для параметра <var>$1</var> превышает максимально допустимое «$3». Поэтому вместо него использовано максимальное значение.",
 	"paramvalidator-badexpiry-past": "Значение «$2» для параметра истечения срока «$1» уже в прошлом.",
+	"paramvalidator-badfloat": "Недопустимое значение «$2» для параметра с плавающей запятой «$1».",
+	"paramvalidator-badfloat-notfinite": "Значение «$2» для параметра с плавающей запятой «$1» слишком велико или не является числом.",
+	"paramvalidator-badinteger": "Недопустимое значение «$2» для целочисленного параметра «$1».",
+	"paramvalidator-badtimestamp": "Некорректное значение «$2» для параметра временной метки «$1».",
+	"paramvalidator-badvalue-enumnotmulti": "Нераспознанное значение параметра «$1»: $2.",
 	"paramvalidator-emptystring": "пустая строка",
+	"paramvalidator-outofrange-max": "Значение «$2» для параметра «$1» должно быть не больше, чем $4.",
+	"paramvalidator-outofrange-minmax": "Значение «$2» для параметра «$1» должно быть между $3 и $4.",
+	"paramvalidator-outofrange-min": "Значение «$2» для параметра «$1» должно быть не меньше, чем $3.",
 	"paramvalidator-param-deprecated": "Параметр «$1» устарел.",
 	"paramvalidator-unrecognizedvalues": "{{PLURAL:$4|Нераспознанное значение|Нераспознанные значения}} параметра «$1»: $3.",
 	"paramvalidator-help-default": "По умолчанию: $1",
 	"paramvalidator-help-default-empty": "По умолчанию: (пусто)",
 	"paramvalidator-help-deprecated": "Этот параметр устарел.",
+	"paramvalidator-help-multi-max-simple": "Максимальное количество значений — {{PLURAL:$1|$1}}.",
 	"paramvalidator-help-required": "Это обязательный параметр.",
-	"paramvalidator-help-type-presenceboolean": "Тип: логическое значение"
+	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=Должен быть пустым|Может быть пустым или $1}}",
+	"paramvalidator-help-type-number-max": "{{PLURAL:$1|1=Значение должно|2=Значения должны}} быть не больше $3.",
+	"paramvalidator-help-type-number-minmax": "{{PLURAL:$1|1=Значение должно|2=Значения должны}} быть между $2 и $3.",
+	"paramvalidator-help-type-number-min": "{{PLURAL:$1|1=Значение должно|2=Значения должны}} быть не меньше $2.",
+	"paramvalidator-help-type-presenceboolean": "Тип: логическое значение",
+	"paramvalidator-help-type-string-maxbytes": "Не может быть длиннее $1 {{PLURAL:$1|байта|байтов}}.",
+	"paramvalidator-help-type-string-maxchars": "Не может быть длиннее $1 {{PLURAL:$1|символа|символов}}.",
+	"paramvalidator-help-type-upload": "Должно быть отправлено как файл с использованием multipart/form-data."
 }

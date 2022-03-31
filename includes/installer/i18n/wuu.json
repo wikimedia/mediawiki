@@ -10,5 +10,5 @@
 	"config-back": "← 转去",
 	"config-page-language": "闲话",
 	"mainpagetext": "<strong>MediaWiki安装好哉。</strong>",
-	"mainpagedocfooter": "请访问[https://meta.wikimedia.org/wiki/Help:Contents 用户手册]以获得使用此维基软件个信息！\n\n== 入门 ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings MediaWiki 配置设置列表]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki 常见问题解答]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 发布邮件列表]"
+	"mainpagedocfooter": "访问[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 用户手册]来获得使用此wiki软件个信息。\n\n== 开始使用 ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings 配置设置列表]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki常见问题]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki发布邮件列表]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources 用侬个闲话本地化MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam 了解哪亨拉侬个wiki上打击垃圾广告]"
 }

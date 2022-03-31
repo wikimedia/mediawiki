@@ -12,7 +12,7 @@
 	"config-localsettings-upgrade": "Dataja <code>LocalSettings.php</code> je so wotkryła.\nZo by tutu instalaciju aktualizował, zapodaj prošu hódnotu za parameter <code>$wgUpgradeKey</code> do slědowaceho pola.\nNamakaš tón parameter w dataji <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "Dataja <code>LocalSettings.php</code> bu wotkryta.\nZo by tutu instalaciju aktualizował, wuwjedźće <code>update.php</code>",
 	"config-localsettings-key": "Aktualizaciski kluč:",
-	"config-localsettings-badkey": "Kluč, kotryž sy podał, je wopak",
+	"config-localsettings-badkey": "Nahrawanski kluč, kotryž sy podał, je wopak",
 	"config-upgrade-key-missing": "Eksistowaca instalacija MediaWiki je so wotkryła.\nZo by tutu instalaciju aktualizował, staj prošu slědowacu linku deleka w dataji <code>LocalSettings.php</code>:\n\n$1",
 	"config-localsettings-incomplete": "Zda so, zo eksistwoaca dataja <code>LocalSettings.php</code> je njedospołna.\nWariabla $1 njeje nastajena.\nProšu změń dataju <code>LocalSettings.php</code>, zo by so tuta wariabla nastajiła a klikń na \"{{int:Config-continue}}\".",
 	"config-localsettings-connection-error": "Při zwjazowanju z datowej banku z pomocu nastajenjow podatych w <code>LocalSettings.php</code> je zmylk wustupił. Prošu skoriguj tute nastajenja a spytaj hišće raz.\n\n$1",
@@ -112,7 +112,7 @@
 	"config-db-web-create": "Załož konto, jeli hišće njeeksistuje.",
 	"config-db-web-no-create-privs": "Konto, kotrež sy za instalaciju podał, nima dosć woprawnjenjow, zo by konto wutworiło.\nKonto, kotrež tu podawaće, dyrbi hižo eksistować.",
 	"config-mysql-engine": "Składowanska mašina:",
-	"config-mysql-innodb": "InnoDB",
+	"config-mysql-innodb": "InnoDB (doporučeny)",
 	"config-site-name": "Mjeno wikija:",
 	"config-site-name-help": "To zjewi so w titulowej lejstwje wobhladaka kaž tež na wšelakich druhich městnach.",
 	"config-site-name-blank": "Zapodaj sydłowe mjeno.",
@@ -137,7 +137,7 @@
 	"config-admin-error-user": "Interny zmylk při wutworjenju administratora z mjenom \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Interny zmylk při nastajenju hesła za administratora \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
 	"config-admin-error-bademail": "Sy njepłaćiwu e-mejlowu adresu zapodał.",
-	"config-subscribe": "[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Rozesyłansku lisćinu wo připowědźenjach nowych wersijow ].abonować",
+	"config-subscribe": "[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Rozesyłansku lisćinu wo připowědźenjach nowych wersijow ].abonować",
 	"config-almost-done": "Sy skoro hotowy!\nMóžeš nětko zbytnu konfiguraciju přeskočić a wiki hnydom instalować.",
 	"config-optional-continue": "Dalše prašenja?",
 	"config-optional-skip": "Instaluj nětko wiki.",
@@ -216,7 +216,7 @@
 	"config-install-stats": "Statistika so inicializuje",
 	"config-install-keys": "Tajne kluče so tworja",
 	"config-install-sysop": "Tworjenje administratoroweho wužiwarskeho konta",
-	"config-install-subscribe-fail": "Abonowanje \"mediawiki-announce\" njemóžno: $1",
+	"config-install-subscribe-fail": "Abonowanje \"mediawiki-announce\" njemóžno[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL njeje instalowany a <code>allow_url_fopen</code> k dispoziciji njesteji.",
 	"config-install-mainpage": "Hłowna strona so ze standardnym wobsahom wutworja",
 	"config-install-extension-tables": "Tabele za zmóžnjene rozšěrjenja so tworja",
@@ -225,5 +225,5 @@
 	"config-help": "pomoc",
 	"config-nofile": "Dataja \"$1\" njeje so namakała. Je so zhašała?",
 	"mainpagetext": "'''MediaWiki bu wuspěšnje instalowany.'''",
-	"mainpagedocfooter": "Prošu hlej [https://meta.wikimedia.org/wiki/Help:Contents dokumentaciju] za informacije wo wužiwanju softwary.\n\n== Za nowačkow ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Wo nastajenjach]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources MediaWiki za twoju rěč lokalizować]"
+	"mainpagedocfooter": "Prošu hlej [https://meta.wikimedia.org/wiki/Help:Contents dokumentaciju] za informacije wo wužiwanju softwary.\n\n== Za nowačkow ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Wo nastajenjach]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailing list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources MediaWiki za twoju rěč lokalizować]"
 }

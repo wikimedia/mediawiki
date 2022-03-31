@@ -514,7 +514,7 @@
 	"deletedhist": "Historiku i grisjeve",
 	"revdelete-edit-reasonlist": "Arsye grisjeje për redaktimet",
 	"suppressionlog": "Regjistri i ndalimeve",
-	"suppressionlogtext": "Më poshtë jepet një listë grisjesh dhe bllokimesh që kanë të bëjnë me përmbatje të fshehur nga administruesit. Shikoni [[Special:IPBlockList|listën e IP bllokimeve]] për një listë të bllokimeve dhe përzënieve në fuqi.",
+	"suppressionlogtext": "Më poshtë jepet një listë grisjesh dhe bllokimesh që kanë të bëjnë me përmbatje të fshehur nga administruesit. Shikoni [[Special:BlockList|listën e bllokimeve]] për një listë të bllokimeve dhe përzënieve në fuqi.",
 	"mergehistory": "Bashko historikët e faqeve",
 	"mergehistory-header": "Kjo faqe ju lejon bashkimin e versionet e historikut të një faqeje \"burim\" në një faqe \"mbledhje\".\nSigurohuni që ky ndryshim do të ruajë rrjedhshmërinë e historikut të faqes.",
 	"mergehistory-box": "Bashkoni versionet e dy faqeve:",

@@ -83,7 +83,7 @@ class ImportExportTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @param string $xmlData
-	 * @param string[] pageTitles
+	 * @param string[] $pageTitles
 	 *
 	 * @return string
 	 */
@@ -125,7 +125,7 @@ class ImportExportTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @param string[] pageTitles
+	 * @param string[] $pageTitles
 	 *
 	 * @return string[]
 	 */

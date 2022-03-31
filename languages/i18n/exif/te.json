@@ -7,7 +7,8 @@
 			"Ravichandra",
 			"Veeven",
 			"రహ్మానుద్దీన్",
-			"వైజాసత్య"
+			"వైజాసత్య",
+			"Arjunaraoc"
 		]
 	},
 	"exif-imagewidth": "వెడల్పు",
@@ -88,7 +89,7 @@
 	"exif-contrast": "కాంట్రాస్టు",
 	"exif-saturation": "సంతృప్తి",
 	"exif-sharpness": "పదును",
-	"exif-devicesettingdescription": "డివైసు సెట్టుంగుల వివరణ",
+	"exif-devicesettingdescription": "పరికరపు అమరికల వివరణ",
 	"exif-subjectdistancerange": "వస్తు దూరపు శ్రేణి",
 	"exif-imageuniqueid": "విలక్షణమైన బొమ్మ ఐడీ",
 	"exif-gpsversionid": "GPS ట్యాగు కూర్పు",
@@ -97,7 +98,7 @@
 	"exif-gpslongituderef": "తూర్పు లేదా పశ్చిమ రేఖాంశం",
 	"exif-gpslongitude": "రేఖాంశం",
 	"exif-gpsaltituderef": "ఎత్తుకు మూలం",
-	"exif-gpsaltitude": "సముద్ర మట్టం",
+	"exif-gpsaltitude": "ఎత్తు (సముద్రమట్టం నుండి)",
 	"exif-gpstimestamp": "GPS సమయం (అణు గడియారం)",
 	"exif-gpssatellites": "కొలిచేందుకు వాడిన ఉపగ్రహాలు",
 	"exif-gpsstatus": "రిసీవర్ స్థితి",

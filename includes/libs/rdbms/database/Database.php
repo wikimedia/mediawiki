@@ -68,6 +68,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var DatabaseDomain */
 	protected $currentDomain;
 
+	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.ObjectTypeHintVar
 	/** @var object|resource|null Database connection */
 	protected $conn;
 
@@ -5474,6 +5475,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			: spl_object_hash( $this );
 
 		$description = $this->getType() . ' object #' . $id;
+		// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.is_resource
 		if ( is_resource( $this->conn ) ) {
 			$description .= ' (' . (string)$this->conn . ')'; // "resource id #<ID>"
 		} elseif ( is_object( $this->conn ) ) {

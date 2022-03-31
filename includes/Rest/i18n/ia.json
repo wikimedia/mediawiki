@@ -10,6 +10,9 @@
 	"rest-nonexistent-title": "Le titulo specificate ($1) non existe",
 	"rest-nonexistent-title-revision": "Le version specificate ($1) non existe pro le pagina specificate ($2)",
 	"rest-nonexistent-revision": "Le version specificate ($1) non existe",
+	"rest-nonexistent-user": "Le usator specificate ($1) non existe",
+	"rest-invalid-user": "Le nomine de usator specificate ($1) non es valide",
+	"rest-permission-denied-anon": "Non accessibile pro usatores anonyme",
 	"rest-permission-denied-title": "Le usator non ha le derecto de leger le titulo ($1)",
 	"rest-permission-denied-revision": "Le usator non ha accesso al version requestate ($1).",
 	"rest-pagehistory-incompatible-params": "Le parametros \"older_than\" e \"newer_than\" non pote esser specificate simultaneemente",
@@ -28,5 +31,12 @@
 	"rest-page-source-type-error": "Le typo de contento del fonte del pagina requestate non es supportate",
 	"rest-no-revision": "Impossibile recuperar le version del titulo $1",
 	"rest-media-too-many-links": "Troppo de ligamines multimedial trovate sur le titulo $1 ($2 permittite)",
-	"rest-html-backend-error": "Impossibile recuperar le HTML de Parsoid"
+	"rest-html-backend-error": "Impossibile recuperar le HTML de Parsoid",
+	"rest-bad-json-body": "Mal corpore de requesta, debe esser un objecto JSON.",
+	"rest-json-body-parse-error": "Le analyse syntactic del corpore del requesta como JSON ha fallite: $1",
+	"rest-missing-body-field": "Le campo obligatori \"$1\" manca in le corpore del requesta.",
+	"rest-bad-content-model": "Mal modello de contento: $1",
+	"rest-update-cannot-create-page": "Le pagina \"$1\" non pote esser create perque illo jam existe. Pro actualisar le pagina existente, forni le ID del version de base in le structura sub le clave \"latest\" in le corpore del requesta.",
+	"rest-extraneous-csrf-token": "Un token CSRF superflue ha essite trovate. Le tokens CSRF non debe esser usate quando se usa mechanismos de authentication como OAuth que es secur contra attaccos CSRF.",
+	"rest-cannot-load-file": "Le file pro le titulo \"$1\" non pote esser cargate."
 }

@@ -52,7 +52,7 @@ class RevisionArchiveRecord extends RevisionRecord {
 	 * @param Title $title The title of the page this Revision is associated with.
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
-	 * @param object $row An archive table row. Use RevisionStore::getArchiveQueryInfo() to build
+	 * @param \stdClass $row An archive table row. Use RevisionStore::getArchiveQueryInfo() to build
 	 *        a query that yields the required fields.
 	 * @param RevisionSlots $slots The slots of this revision.
 	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
@@ -66,7 +66,7 @@ class RevisionArchiveRecord extends RevisionRecord {
 		$dbDomain = false
 	) {
 		parent::__construct( $title, $slots, $dbDomain );
-		Assert::parameterType( 'object', $row, '$row' );
+		Assert::parameterType( \stdClass::class, $row, '$row' );
 
 		$timestamp = MWTimestamp::convert( TS_MW, $row->ar_timestamp );
 		Assert::parameter( is_string( $timestamp ), '$row->rev_timestamp', 'must be a valid timestamp' );

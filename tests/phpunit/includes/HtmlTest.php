@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use PHPUnit\Framework\Error\Notice;
 
 class HtmlTest extends MediaWikiIntegrationTestCase {
 	private $restoreWarnings;
@@ -82,8 +81,8 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 * @covers Html::openElement
 	 */
 	public function testOpenElement() {
-		$this->expectException( Notice::class );
-		$this->expectExceptionMessage( 'given element name with space' );
+		$this->expectNotice();
+		$this->expectNoticeMessage( 'given element name with space' );
 		Html::openElement( 'span id="x"' );
 	}
 

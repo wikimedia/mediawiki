@@ -23,9 +23,9 @@ use Wikimedia\Rdbms\MaintainableDBConnRef;
 class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @param LoadBalancer $loadBalancer
-	 * @param SqlBlobStore $blobStore
-	 * @param WANObjectCache $WANObjectCache
+	 * @param LoadBalancer|null $loadBalancer
+	 * @param SqlBlobStore|null $blobStore
+	 * @param WANObjectCache|null $WANObjectCache
 	 *
 	 * @return RevisionStore
 	 */

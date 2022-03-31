@@ -38,6 +38,7 @@ class SiteExporter {
 	 * @param resource $sink A file handle open for writing
 	 */
 	public function __construct( $sink ) {
+		// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.is_resource
 		if ( !is_resource( $sink ) || get_resource_type( $sink ) !== 'stream' ) {
 			throw new InvalidArgumentException( '$sink must be a file handle' );
 		}

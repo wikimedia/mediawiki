@@ -7,7 +7,8 @@
 			"Macofe",
 			"Matma Rex",
 			"Songhay",
-			"Vlad5250"
+			"Vlad5250",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Dobu ganda-žeeriyan:",
@@ -699,7 +700,7 @@
 	"histlegend": "Zilayyan suubari: Arajo batawey šilbay fillawey se k'i deedandi, de ma dam butoŋ wala ganda butoŋ naagu.<br />\nŠilbayɲaa: <strong>({{int:cur}})</strong> = zilayyan nda filla kokorantaa, <strong>({{int:last}})</strong> = zilayyan nda filla bisantaa, <strong>{{int:minoreditletter}}</strong> = barmay kayna.",
 	"history-fieldset-title": "Barmawey ceeci",
 	"history-show-deleted": "Barmay tuusuyan hinne",
-	"histfirst": "ikul ižeenaa \\",
+	"histfirst": "ikul ižeenaa",
 	"histlast": "ikul itaagaa",
 	"historysize": "({{PLURAL:$1|cebsi $1}})",
 	"historyempty": "koonu",

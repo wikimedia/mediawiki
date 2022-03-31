@@ -1869,8 +1869,8 @@ more stuff
 	}
 
 	public function provideTestNewFromId_returnsNullOnBadPageId() {
-		yield[ 0 ];
-		yield[ -11 ];
+		yield [ 0 ];
+		yield [ -11 ];
 	}
 
 	/**

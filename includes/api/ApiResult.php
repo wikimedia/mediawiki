@@ -365,6 +365,7 @@ class ApiResult implements ApiSerializable {
 			$value = MediaWikiServices::getInstance()->getContentLanguage()->normalize( $value );
 		} elseif ( $value !== null && !is_scalar( $value ) ) {
 			$type = gettype( $value );
+			// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.is_resource
 			if ( is_resource( $value ) ) {
 				$type .= '(' . get_resource_type( $value ) . ')';
 			}

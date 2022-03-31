@@ -204,8 +204,10 @@ class RevDelFileItem extends RevDelItem {
 	public function getHTML() {
 		$data =
 			$this->list->msg( 'widthheight' )->numParams(
-				$this->file->getWidth(), $this->file->getHeight() )->text() .
-			' (' . $this->list->msg( 'nbytes' )->numParams( $this->file->getSize() )->text() . ')';
+				$this->file->getWidth(),
+				$this->file->getHeight() )->escaped() .
+			' (' . $this->list->msg( 'nbytes' )->numParams(
+				$this->file->getSize() )->escaped() . ')';
 
 		return '<li>' . $this->getLink() . ' ' . $this->getUserTools() . ' ' .
 			$data . ' ' . $this->getComment() . '</li>';

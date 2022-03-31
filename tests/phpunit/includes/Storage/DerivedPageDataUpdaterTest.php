@@ -865,7 +865,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @param RevisionRecord|null $forRevision
 	 * @param RevisionSlotsUpdate|null $forUpdate
 	 * @param int|null $forParent
-	 * @param bool $isReusable
+	 * @param bool|null $isReusable
 	 */
 	public function testIsReusableFor(
 		User $prepUser = null,

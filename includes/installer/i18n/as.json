@@ -2,9 +2,41 @@
 	"@metadata": {
 		"authors": [
 			"Chaipau",
-			"Gitartha.bordoloi"
+			"Gitartha.bordoloi",
+			"Mohsin Ali",
+			"Simbu123"
 		]
 	},
-	"mainpagetext": "'''মিডিয়াৱিকি সফলভাবে ইন্সটল কৰা হ'ল ।'''",
-	"mainpagedocfooter": "ৱিকি চ'ফটৱেৰ কেনেকৈ ব্যৱহাৰ কৰিব [https://meta.wikimedia.org/wiki/Help:Contents সদস্যৰ সহায়িকা] চাওঁক ।\n\n== আৰম্ভণি কৰিবলৈ ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]"
+	"config-desc": "মিডিয়াৱিকিৰ ইনষ্টলাৰ",
+	"config-title": "মিডিয়াৱিকি $1 ইনষ্টলেশ্যন",
+	"config-information": "তথ্য",
+	"config-localsettings-upgrade": "এটা <code>LocalSettings.php</code> ফাইল ধৰা পৰিছে।\nএই ইনষ্টলেশ্যন আপগ্ৰেড কৰিবলৈ, অনুগ্ৰহ কৰি তলৰ বাকচটোত <code>$wgUpgradeKey</code>-ৰ মান লিখক।\nআপুনি সেইটো <code>LocalSettings.php</code>-ত বিচাৰি পাব।",
+	"config-localsettings-cli-upgrade": "এটা <code>LocalSettings.php</code> ফাইল ধৰা পৰিছে।\nএই ইনষ্টলেশ্যন আপগ্ৰেড কৰিবলৈ, অনুগ্ৰহ কৰি ইয়াৰ পৰিৱৰ্তে <code>update.php</code> চলাওক",
+	"config-localsettings-key": "আপগ্ৰেডৰ চাবি:",
+	"config-localsettings-badkey": "আপুনি প্ৰদান কৰা আপগ্ৰেডৰ চাবিটো অশুদ্ধ।",
+	"config-session-error": "ছেশ্যন আৰম্ভ কৰোঁতে ত্ৰুটি ঘটিছে: $1",
+	"config-your-language": "আপোনাৰ ভাষা:",
+	"config-your-language-help": "ইনষ্টলেশ্যন প্ৰক্ৰিয়াৰ সময়ত ব্যৱহাৰ কৰিবলৈ এটা ভাষা বাছনি কৰক।",
+	"config-wiki-language": "ৱিকি ভাষা:",
+	"config-back": "← পিছলৈ",
+	"config-continue": "অব্যাহত ৰাখক →",
+	"config-page-language": "ভাষা",
+	"config-page-welcome": "মিডিয়াৱিকিত স্বাগতম!",
+	"config-page-dbconnect": "ডেটাবেছৰ সৈতে সংযোগ কৰক",
+	"config-page-upgrade": "মজুত থকা ইনষ্টলেশ্যন আপগ্ৰেড কৰক",
+	"config-page-dbsettings": "ডেটাবেছ ছেটিংছ",
+	"config-page-name": "নাম",
+	"config-page-options": "বিকল্পসমূহ",
+	"config-page-install": "ইনষ্টল কৰক",
+	"config-page-complete": "সম্পূৰ্ণ!",
+	"config-page-restart": "ইনষ্টলেশ্যন পুনৰাৰম্ভ কৰক",
+	"config-page-releasenotes": "উন্মোচনৰ টোকা",
+	"config-page-copying": "প্ৰতিলেপন",
+	"config-page-upgradedoc": "আপগ্ৰেড কৰা",
+	"config-page-existingwiki": " মজুত থকা ৱিকি",
+	"config-restart": "হয়, পুনৰাৰম্ভ কৰক",
+	"config-db-username": "ডেটাবেছ ব্যৱহাৰকাৰীনাম:",
+	"config-db-password": "ডেটাবেছৰ পাছৱৰ্ড:",
+	"mainpagetext": "<strong>মিডিয়াৱিকি ইনষ্টল কৰা হ'ল।</strong>",
+	"mainpagedocfooter": "ৱিকি চ'ফটৱেৰ কেনেকৈ ব্যৱহাৰ কৰিব [https://meta.wikimedia.org/wiki/Help:Contents সদস্যৰ সহায়িকা] চাওঁক ।\n\n== আৰম্ভণি কৰিবলৈ ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailing list]"
 }

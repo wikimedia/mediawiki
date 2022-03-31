@@ -652,13 +652,22 @@ class Title implements LinkTarget, IDBAccessObject {
 	 * @return Title
 	 */
 	public static function newMainPage( MessageLocalizer $localizer = null ) {
+		static $recursionGuard = false;
+		if ( $recursionGuard ) {
+			// Somehow parsing the message contents has fallen back to the
+			// main page (bare local interwiki), so use the hardcoded
+			// fallback (T297571).
+			return self::newFromText( 'Main Page' );
+		}
 		if ( $localizer ) {
 			$msg = $localizer->msg( 'mainpage' );
 		} else {
 			$msg = wfMessage( 'mainpage' );
 		}
 
+		$recursionGuard = true;
 		$title = self::newFromText( $msg->inContentLanguage()->text() );
+		$recursionGuard = false;
 
 		// Every page renders at least one link to the Main Page (e.g. sidebar).
 		// If the localised value is invalid, don't produce fatal errors that
@@ -4588,6 +4597,15 @@ class Title implements LinkTarget, IDBAccessObject {
 
 		Hooks::runner()->onTitleGetEditNotices( $this, $oldid, $notices );
 		return $notices;
+	}
+
+	/**
+	 * @since 1.35.6
+	 * @param string|false $wikiId
+	 * @return int
+	 */
+	public function getId( $wikiId = false ) {
+		return $this->getArticleId();
 	}
 
 	/**

@@ -172,7 +172,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 			foreach ( $method as $m ) {
 				$key = "{$m} {$spec['path']}";
 
-				$this->assertFalse( array_key_exists( $key, $routes ), "{$key} already exists in routes" );
+				$this->assertArrayNotHasKey( $key, $routes, "{$key} already exists in routes" );
 
 				$routes[$key] = true;
 			}

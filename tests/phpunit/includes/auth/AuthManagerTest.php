@@ -59,6 +59,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	/**
 	 * Sets a mock on a hook
 	 * @param string $hook
+	 * @param object $hookInterface
 	 * @param object $expect From $this->once(), $this->never(), etc.
 	 * @return object $mock->expects( $expect )->method( ... ).
 	 */
@@ -101,8 +102,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	 * because that recursively compares members, which leads to false negatives if e.g. Language
 	 * caches are reset.
 	 *
-	 * @param AuthenticationResponse $response1
-	 * @param AuthenticationResponse $response2
+	 * @param AuthenticationResponse $expected
+	 * @param AuthenticationResponse $actual
 	 * @param string $msg
 	 * @return bool
 	 */

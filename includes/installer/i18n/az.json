@@ -4,7 +4,8 @@
 			"Cekli829",
 			"Vago",
 			"Wertuose",
-			"Khan27"
+			"Khan27",
+			"NMW03"
 		]
 	},
 	"config-desc": "MediaWiki yükləyicisi",
@@ -19,14 +20,12 @@
 	"config-page-options": "Nizamlamalar:",
 	"config-page-install": "Nizamlama",
 	"config-page-complete": "Komplektləşdir!",
-	"config-mysql-myisam": "MyISAM",
-	"config-mysql-utf8": "UTF-8",
 	"config-ns-generic": "Layihə",
 	"config-admin-name": "Sizin istifadəçi adınız:",
 	"config-admin-password": "Parol:",
 	"config-admin-email": "E-poçt ünvanı",
 	"config-license-pd": "İctimai istifadə",
 	"config-help": "kömək",
-	"mainpagetext": "'''MediaWiki müvəffəqiyyətlə quraşdırıldı.'''",
-	"mainpagedocfooter": "Bu vikinin istifadəsi ilə bağlı məlumat almaq üçün [https://meta.wikimedia.org/wiki/Help:Contents İstifadəçi məlumat səhifəsinə] baxın.\n\n== Faydalı keçidlər ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Tənzimləmələrin siyahısı]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki haqqında tez-tez soruşulan suallar]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki e-poçt siyahısı]"
+	"mainpagetext": "<strong>MediaWiki quraşdırıldı.</strong>",
+	"mainpagedocfooter": "Bu vikinin istifadəsi ilə bağlı məlumat almaq üçün [https://meta.wikimedia.org/wiki/Help:Contents İstifadəçi məlumat səhifəsinə] baxın.\n\n== Faydalı keçidlər ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Tənzimləmələrin siyahısı]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki haqqında tez-tez soruşulan suallar]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki e-poçt siyahısı]"
 }

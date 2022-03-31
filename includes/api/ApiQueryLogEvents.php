@@ -249,6 +249,11 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addOption( 'STRAIGHT_JOIN' );
 		}
 
+		$this->addOption(
+			'MAX_EXECUTION_TIME',
+			$this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' )
+		);
+
 		$count = 0;
 		$res = $this->select( __METHOD__ );
 

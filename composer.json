@@ -23,6 +23,7 @@
 	"require": {
 		"composer/semver": "1.7.2",
 		"cssjanus/cssjanus": "1.3.0",
+		"ext-calendar": "*",
 		"ext-ctype": "*",
 		"ext-dom": "*",
 		"ext-fileinfo": "*",
@@ -40,7 +41,7 @@
 		"psr/container": "1.0.0",
 		"psr/log": "1.1.3",
 		"ralouphie/getallheaders": "3.0.3",
-		"symfony/polyfill-php80": "1.23.1",
+		"symfony/polyfill-php80": "1.25.0",
 		"wikimedia/assert": "0.5.0",
 		"wikimedia/at-ease": "2.0.0",
 		"wikimedia/base-convert": "2.0.1",
@@ -48,11 +49,11 @@
 		"wikimedia/cldr-plural-rule-parser": "1.0.0",
 		"wikimedia/common-passwords": "0.2.0",
 		"wikimedia/composer-merge-plugin": "2.0.1",
-		"wikimedia/html-formatter": "1.0.2",
+		"wikimedia/html-formatter": "2.0.1",
 		"wikimedia/ip-set": "2.1.0",
 		"wikimedia/ip-utils": "1.0.0",
 		"wikimedia/less.php": "3.1.0",
-		"wikimedia/object-factory": "2.1.0",
+		"wikimedia/object-factory": "2.2.0",
 		"wikimedia/parsoid": "0.12.2",
 		"wikimedia/php-session-serializer": "1.0.7",
 		"wikimedia/purtle": "1.0.7",
@@ -69,14 +70,15 @@
 		"zordius/lightncandy": "1.2.5"
 	},
 	"require-dev": {
+		"ext-simplexml": "*",
 		"composer/spdx-licenses": "1.5.3",
-		"doctrine/dbal": "3.0.0",
+		"doctrine/dbal": "3.1.5",
 		"doctrine/sql-formatter": "1.1.0",
 		"giorgiosironi/eris": "^0.10.0",
 		"hamcrest/hamcrest-php": "^2.0",
 		"johnkary/phpunit-speedtrap": "^3.1",
 		"justinrainbow/json-schema": "~5.2",
-		"mediawiki/mediawiki-codesniffer": "34.0.0",
+		"mediawiki/mediawiki-codesniffer": "38.0.0",
 		"mediawiki/mediawiki-phan-config": "0.10.6",
 		"monolog/monolog": "~2.2.0",
 		"nikic/php-parser": "4.4.0",
@@ -107,9 +109,20 @@
 	"suggest": {
 		"ext-apcu": "Local data cache for greatly improved performance",
 		"ext-curl": "Improved http communication abilities",
+		"ext-gd": "Support for Graphics Draw",
+		"ext-gmp": "Support for arbitrary-length integers",
 		"ext-intl": "ICU integration",
+		"ext-mysqli": "Allows MediaWiki to use MySQL/MariaDB as a database",
 		"ext-openssl": "Cryptographical functions",
+		"ext-pdo": "Allows MediaWiki to use SQLite as a database",
+		"ext-pgsql": "Allows MediaWiki to use PostgreSQL as a database",
+		"ext-posix": "Process control",
+		"ext-pcntl": "Process control",
+		"ext-readline": "Improved command line support",
+		"ext-sockets": "Socket support",
 		"ext-wikidiff2": "Diff accelerator",
+		"ext-yaml": "Improved YAML parsing performance",
+		"ext-zlib": "gzip compressiion",
 		"monolog/monolog": "Flexible debug logging system",
 		"nmred/kafka-php": "Send debug log events to kafka",
 		"wikimedia/avro": "Binary serialization format used with kafka"
@@ -138,6 +151,7 @@
 		"pre-update-cmd": "ComposerHookHandler::onPreUpdate",
 		"post-install-cmd": "ComposerVendorHtaccessCreator::onEvent",
 		"post-update-cmd": "ComposerVendorHtaccessCreator::onEvent",
+		"releasenotes": "@phpunit:entrypoint --group ReleaseNotes",
 		"test": [
 			"composer lint",
 			"composer phpcs"
@@ -150,7 +164,8 @@
 		"phpunit:unit": "phpunit --colors=always --testsuite=core:unit,extensions:unit,skins:unit",
 		"phpunit:integration": "phpunit --colors=always --testsuite=core:integration,extensions:integration,skins:integration",
 		"phpunit:coverage": "phpunit --testsuite=core:unit --exclude-group Dump,Broken",
-		"phpunit:coverage-edit": "ComposerPhpunitXmlCoverageEdit::onEvent"
+		"phpunit:coverage-edit": "ComposerPhpunitXmlCoverageEdit::onEvent",
+		"phpunit:entrypoint": "php tests/phpunit/phpunit.php"
 	},
 	"config": {
 		"optimize-autoloader": true,

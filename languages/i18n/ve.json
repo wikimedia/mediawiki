@@ -1,22 +1,24 @@
 {
-    "@metadata": {
-        "authors": [
-            "Johannes Rohr (on ve.wikipedia.org)",
-            "Node ue"
-        ]
-    },
-    "search": "Ṱolani",
-    "searchbutton": "Ṱolani",
-    "talk": "Ambani",
-    "mainpage": "Hayani",
-    "mainpage-description": "Hayani",
-    "nstab-mediawiki": "Mulaedza",
-    "error": "Vhukhakhi",
-    "yourname": "Dzina ḽa mushumisi:",
-    "yourpassword": "Phasiwede:",
-    "changepassword": "Shandukisani phasiwede",
-    "username": "Dzina ḽa mushumisi:",
-    "newpages-username": "Dzina ḽa mushumisi:",
-    "exif-meteringmode-255": "Zwiṅwe",
-    "version-other": "Zwiṅwe"
+	"@metadata": {
+		"authors": [
+			"Johannes Rohr (on ve.wikipedia.org)",
+			"Node ue",
+			"Ajeje Brazorf",
+			"Fierodelveneto"
+		]
+	},
+	"search": "Ṱolani",
+	"searchbutton": "Ṱolani",
+	"talk": "Ambani",
+	"mainpage": "Hayani",
+	"mainpage-description": "Hayani",
+	"nstab-mediawiki": "Mulaedza",
+	"error": "Vhukhakhi",
+	"yourname": "Dzina ḽa mushumisi:",
+	"yourpassword": "Phasiwede:",
+	"changepassword": "Shandukisani phasiwede",
+	"username": "Dzina ḽa mushumisi:",
+	"rcfilters-clear-all-filters": "Clear all filters\n\n{{delete|the message is in english}}",
+	"newpages-username": "Dzina ḽa mushumisi:",
+	"version-other": "Zwiṅwe"
 }

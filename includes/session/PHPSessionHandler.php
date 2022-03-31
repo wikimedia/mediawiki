@@ -178,6 +178,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	 * @param string $session_name Session name (ignored)
 	 * @return true
 	 */
+	#[\ReturnTypeWillChange]
 	public function open( $save_path, $session_name ) {
 		if ( self::$instance !== $this ) {
 			throw new \UnexpectedValueException( __METHOD__ . ': Wrong instance called!' );
@@ -193,6 +194,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	 * @internal For internal use only
 	 * @return true
 	 */
+	#[\ReturnTypeWillChange]
 	public function close() {
 		if ( self::$instance !== $this ) {
 			throw new \UnexpectedValueException( __METHOD__ . ': Wrong instance called!' );
@@ -207,6 +209,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	 * @param string $id Session id
 	 * @return string Session data
 	 */
+	#[\ReturnTypeWillChange]
 	public function read( $id ) {
 		if ( self::$instance !== $this ) {
 			throw new \UnexpectedValueException( __METHOD__ . ': Wrong instance called!' );
@@ -235,6 +238,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	 *   via user-controlled data as does PHP's unserialize function.
 	 * @return bool
 	 */
+	#[\ReturnTypeWillChange]
 	public function write( $id, $dataStr ) {
 		if ( self::$instance !== $this ) {
 			throw new \UnexpectedValueException( __METHOD__ . ': Wrong instance called!' );
@@ -341,6 +345,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	 * @param string $id Session id
 	 * @return true
 	 */
+	#[\ReturnTypeWillChange]
 	public function destroy( $id ) {
 		if ( self::$instance !== $this ) {
 			throw new \UnexpectedValueException( __METHOD__ . ': Wrong instance called!' );
@@ -362,6 +367,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 	 * @return true
 	 * @codeCoverageIgnore See T135576
 	 */
+	#[\ReturnTypeWillChange]
 	public function gc( $maxlifetime ) {
 		if ( self::$instance !== $this ) {
 			throw new \UnexpectedValueException( __METHOD__ . ': Wrong instance called!' );

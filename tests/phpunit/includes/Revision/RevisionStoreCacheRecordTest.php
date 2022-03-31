@@ -21,7 +21,7 @@ class RevisionStoreCacheRecordTest extends RevisionStoreRecordTest {
 
 	/**
 	 * @param array $rowOverrides
-	 * @param bool|callable callback function to use, or false for a default no-op callback
+	 * @param bool|callable $callback function to use, or false for a default no-op callback
 	 *
 	 * @return RevisionStoreRecord
 	 */

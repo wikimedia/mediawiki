@@ -3,7 +3,8 @@
 		"authors": [
 			"Seb35",
 			"Robin0van0der0vliet",
-			"Robin van der Vliet"
+			"Robin van der Vliet",
+			"PiefPafPier"
 		]
 	},
 	"config-information": "Ynformaasje",
@@ -11,11 +12,10 @@
 	"config-page-language": "Taal",
 	"config-page-name": "Namme",
 	"config-page-options": "Opsjes",
-	"config-mysql-binary": "Binêr",
 	"config-ns-generic": "Projekt",
 	"config-admin-password": "Wachtwurd:",
 	"config-admin-email": "E-mailadres:",
 	"config-help": "help",
-	"mainpagetext": "'''MediaWiki-program goed ynstallearre.'''",
-	"mainpagedocfooter": "Rieplachtsje de [https://meta.wikimedia.org/wiki/Help:Contents Ynhâldsopjefte hantlieding] foar ynformaasje oer it gebrûk fan 'e wikisoftware.\n\n== Mear help oer Mediawiki ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings List mei ynstellingen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Faak stelde fragen (FAQ)]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailinglist foar oankundigings fan nije ferzjes]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki for your language]"
+	"mainpagetext": "<strong>It ynstallearjen fan MediaWiki is foltôge.</strong>",
+	"mainpagedocfooter": "Rieplachtsje de [https://meta.wikimedia.org/wiki/Help:Contents Ynhâldsopjefte hantlieding] foar ynformaasje oer it gebrûk fan 'e wikisoftware.\n\n== Mear help oer Mediawiki ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings List mei ynstellingen]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Faak stelde fragen (FAQ)]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Mailinglist foar oankundigings fan nije ferzjes]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki for your language]"
 }

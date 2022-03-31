@@ -380,8 +380,8 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	 * @covers ::hasFeatures
 	 * @dataProvider provideHasFeatures
 	 * @param bool $expected
-	 * @param int $testedFeatures
 	 * @param int $actualFeatures
+	 * @param int $testedFeatures
 	 */
 	public function testHasFeatures(
 		bool $expected, int $actualFeatures, int $testedFeatures
@@ -674,7 +674,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	 * @covers ::unlockFiles
 	 * @dataProvider provideLockUnlockFiles
 	 * @param string $method
-	 * @param int $timeout Only relevant for lockFiles
+	 * @param int|null $timeout Only relevant for lockFiles
 	 */
 	public function testLockUnlockFiles( string $method, ?int $timeout = null ) : void {
 		$args = [ [ 'mwstore://a/b/', 'mwstore://c/d//e' ], LockManager::LOCK_SH ];

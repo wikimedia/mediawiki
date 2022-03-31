@@ -17,15 +17,15 @@ For system requirements, installation, and upgrade details, see the files
 RELEASE-NOTES, INSTALL, and UPGRADE.
 
 * Ready to get started?
-** https://www.mediawiki.org/wiki/Special:MyLanguage/Download
+  * https://www.mediawiki.org/wiki/Special:MyLanguage/Download
 * Looking for the technical manual?
-** https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents
+  * https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents
 * Seeking help from a person?
-** https://www.mediawiki.org/wiki/Special:MyLanguage/Communication
+  * https://www.mediawiki.org/wiki/Special:MyLanguage/Communication
 * Looking to file a bug report or a feature request?
-** https://bugs.mediawiki.org/
+  * https://bugs.mediawiki.org/
 * Interested in helping out?
-** https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute
+  * https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute
 
 MediaWiki is the result of global collaboration and cooperation. The CREDITS
 file lists technical contributors to the project. The COPYING file explains

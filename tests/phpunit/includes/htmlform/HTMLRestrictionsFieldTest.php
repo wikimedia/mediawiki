@@ -44,9 +44,9 @@ class HTMLRestrictionsFieldTest extends PHPUnit\Framework\TestCase {
 		if ( $status instanceof StatusValue ) {
 			$this->assertEquals( $value !== false, $status->isGood() );
 		} elseif ( $value === false ) {
-			$this->assertNotSame( true, $status );
+			$this->assertFalse( $status );
 		} else {
-			$this->assertSame( true, $status );
+			$this->assertTrue( $status );
 		}
 
 		if ( $value !== false ) {

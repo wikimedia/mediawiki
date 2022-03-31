@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Tauʻolunga"
+			"Tauʻolunga",
+			"Weather Top Wizard"
 		]
 	},
 	"exif-xresolution": "Auiiki fakalava",
@@ -11,7 +12,7 @@
 	"exif-artist": "Tokotaha faitā",
 	"exif-usercomment": "Fakamatala ʻo e ʻetita",
 	"exif-brightnessvalue": "Ngingila",
-	"exif-lightsource": "Malama",
+	"exif-lightsource": "Malama tupunga",
 	"exif-flash": "Tapa",
 	"exif-focallength": "Lōloa ʻesiafi ʻo e sioʻata ʻesiafi",
 	"exif-focallength-format": "milimita ʻe $1",
@@ -66,7 +67,7 @@
 	"exif-lightsource-18": "Ulo tuʻunga B",
 	"exif-lightsource-19": "Ulo tuʻunga C",
 	"exif-lightsource-24": "Uloʻi afi faitāʻanga ISO",
-	"exif-lightsource-255": "Malama kehe",
+	"exif-lightsource-255": "Meʻa kehe malama tupunga",
 	"exif-customrendered-0": "Faitā angatotonu",
 	"exif-customrendered-1": "Fai ʻi heʻene angafai",
 	"exif-gaincontrol-0": "Hala",

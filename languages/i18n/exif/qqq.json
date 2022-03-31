@@ -202,7 +202,8 @@
 			"פוילישער",
 			"ديفيد",
 			"គីមស៊្រុន",
-			"아라"
+			"아라",
+			"Kareyac"
 		]
 	},
 	"exif-imagewidth": "{{exif-qqq}}\n{{Identical|Width}}",
@@ -415,7 +416,7 @@
 	"exif-photometricinterpretation-10": "See http://www.awaresystems.be/imaging/tiff/tifftags/photometricinterpretation.html",
 	"exif-photometricinterpretation-32803": "Used mostly by DNG images. See http://www.awaresystems.be/imaging/tiff/tifftags/photometricinterpretation.html",
 	"exif-photometricinterpretation-34892": "Used mostly by DNG images. See http://www.awaresystems.be/imaging/tiff/tifftags/photometricinterpretation.html",
-	"exif-unknowndate": "{{exif-qqq}}\n\nUsed if the Exif date and time is \"<code>0000:00:00 00:00:00</code>\".\n\nRelated Exif attributes:\n* {{msg-mw|Exif-datetime}}\n* {{msg-mw|Exif-datetimeoriginal}}\n* {{msg-mw|Exif-datetimedigitized}}\n* {{msg-mw|Exif-datetimereleased}}\n* {{msg-mw|Exif-datetimeexpires}}\n* {{msg-mw|Exif-gpsdatestamp}}\n* {{msg-mw|Exif-dc-date}}\n* {{msg-mw|Exif-datetimemetadata}}",
+	"exif-unknowndate": "{{exif-qqq}}\n\nUsed if the Exif date and time is \"<code>0000:00:00 00:00:00</code>\".\n\nRelated Exif attributes:\n* {{msg-mw|Exif-datetime}}\n* {{msg-mw|Exif-datetimeoriginal}}\n* {{msg-mw|Exif-datetimedigitized}}\n* {{msg-mw|Exif-datetimereleased}}\n* {{msg-mw|Exif-datetimeexpires}}\n* {{msg-mw|Exif-gpsdatestamp}}\n* {{msg-mw|Exif-dc-date}}\n* {{msg-mw|Exif-datetimemetadata}}\n* {{msg-mw|Exif-firstphotodate}}\n* {{msg-mw|Exif-lastphotodate}}",
 	"exif-orientation-1": "0th row: top; 0th column: left\n{{Related|Exif-orientation}}\n{{Identical|Normal}}",
 	"exif-orientation-2": "{{exif-qqq}}\n\n0th row: top; 0th column: right\n\n{{Related|Exif-orientation}}",
 	"exif-orientation-3": "{{exif-qqq}}\n\n0th row: bottom; 0th column: right\n\n{{Related|Exif-orientation}}",
@@ -494,7 +495,7 @@
 	"exif-sensingmethod-5": "''Color sequential'' means, that the three base colors are measured one after another (i.e. the sensor is first measuring red, than green, than blue).\n{{Related|Exif-sensingmethod}}",
 	"exif-sensingmethod-7": "{{exif-qqq}}\n{{Related|Exif-sensingmethod}}",
 	"exif-sensingmethod-8": "''Color sequential'' means, that the three base colors are measured one after another (i.e. the sensor is first measuring red, than green, than blue).\n{{Related|Exif-sensingmethod}}",
-	"exif-filesource-3": "{{optional}}",
+	"exif-filesource-3": "{{exif-qqq}}",
 	"exif-scenetype-1": "See also:\n* {{msg-mw|Exif-scenetype}}\n* {{msg-mw|Exif-scenetype-1}}",
 	"exif-customrendered-0": "{{exif-qqq}}\n\nSee also:\n* {{msg-mw|Exif-customrendered}}\n* {{msg-mw|Exif-customrendered-0}}\n* {{msg-mw|Exif-customrendered-1}}",
 	"exif-customrendered-1": "{{exif-qqq}}\n\nSee also:\n* {{msg-mw|Exif-customrendered}}\n* {{msg-mw|Exif-customrendered-0}}\n* {{msg-mw|Exif-customrendered-1}}",

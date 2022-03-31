@@ -8,7 +8,11 @@
 	"apihelp-block-summary": "Bloķēt lietotāju",
 	"apihelp-block-param-reason": "Bloķēšanas iemesls:",
 	"apihelp-delete-summary": "Dzēst lapas",
+	"apihelp-edit-param-text": "Lapas saturs.",
 	"apihelp-emailuser-summary": "Sūtīt e-pastu lietotājam",
+	"apihelp-emailuser-param-text": "E-pasta saturs.",
+	"apihelp-expandtemplates-param-title": "Lapas nosaukums.",
+	"apihelp-query+allrevisions-example-ns-any": "Saraksts ar pirmajām 50 versijām jebkurā vārdtelpā.",
 	"apihelp-userrights-param-userid": "Lietotāja ID:",
 	"apierror-nosuchuserid": "Nav lietotāja ar ID $1."
 }

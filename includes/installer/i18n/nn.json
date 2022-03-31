@@ -4,7 +4,8 @@
 			"Harald Khan",
 			"Nghtwlkr",
 			"Njardarlogar",
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"Sophie"
 		]
 	},
 	"config-your-language": "Språket ditt:",
@@ -14,9 +15,9 @@
 	"config-page-language": "Språk",
 	"config-memory-raised": "PHPs <code>memory_limit</code> er $1, auka til $2.",
 	"config-memory-bad": "'''Advarsel:''' PHPs <code>memory_limit</code> er $1.\nDette er sannsynlegvis for lågt.\nInstallasjonen kan mislukkast!",
-	"config-xcache": "[http://xcache.lighttpd.net/ XCache] er installert",
-	"config-apc": "[http://www.php.net/apc APC] er installert",
-	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] er installert",
+	"config-apc": "[https://www.php.net/apc APC] er installert",
+	"config-apcu": "[https://www.php.net/apcu APCu] er installert",
+	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] er installert",
 	"config-db-name": "Databasenamn:",
 	"config-db-username": "Databasebrukarnamn:",
 	"config-db-password": "Databasepassord:",
@@ -26,7 +27,6 @@
 	"config-header-mysql": "MySQL-innstillingar",
 	"config-header-postgres": "PostgreSQL-innstillingar",
 	"config-header-sqlite": "SQLite-innstillingar",
-	"config-header-oracle": "Oracle-innstillingar",
 	"config-invalid-db-type": "Ugyldig databasetype",
 	"config-invalid-db-name": "Ugyldig databasenamn «$1».\nBerre bruk ASCII-bokstavar (a-z, A-Z), tal (0-9) og undestrekar (_).",
 	"config-invalid-db-prefix": "Ugyldig databaseprefiks «$1».\nBerre bruk ASCII-bokstavar (a-z, A-Z), tal (0-9) og undestrekar (_).",
@@ -36,5 +36,5 @@
 	"config-logo": "Logo-URL:",
 	"config-help": "hjelp",
 	"mainpagetext": "'''MediaWiki er no installert.'''",
-	"mainpagedocfooter": "Sjå [https://meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og oppsettshjelp for wikiprogramvara.\n\n==Kome i gang==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste over oppsettsinnstillingar]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Spørsmål og svar om MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postliste med informasjon om nye MediaWiki-versjonar]"
+	"mainpagedocfooter": "Sjå [https://meta.wikimedia.org/wiki/Help:Contents brukarhandbok] for informasjon om bruk av wikiprogramvara.\n\n==Kome i gang==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista av oppsettsinnstillingar]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Spørsmål og svar om MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ E-postliste om nye MediaWiki-versjonar]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Omset MediaWiki i språket ditt]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Lær deg korleis du kjempar søppelmeldingar i wikiet ditt]"
 }

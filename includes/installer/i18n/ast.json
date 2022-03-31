@@ -171,7 +171,7 @@
 	"config-admin-error-user": "Error internu al crear un alministrador col nome «<nowiki>$1</nowiki>»",
 	"config-admin-error-password": "Error internu al configurar una contraseña pal alministrador «<nowiki>$1</nowiki>»: <pre>$2</pre>",
 	"config-admin-error-bademail": "Escribisti una dirección de corréu electrónicu inválida.",
-	"config-subscribe": "Suscribise a la [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce llista de corréu d'anuncios de versiones].",
+	"config-subscribe": "Suscribise a la [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ llista de corréu d'anuncios de versiones].",
 	"config-subscribe-help": "Esta ye una llista de corréu de tráficu baxu que s'usa p'anunciar el llanzamientu de versiones nueves, incluyendo anuncios de seguridá importantes.\nEncamentamos suscribite y actualizar la to instalación de MediaWiki cuando apaezan versiones nueves.",
 	"config-subscribe-noemail": "Tentasti suscribite a la llista de corréu d'anuncios de nuevos llanzamientos ensin apurrir una dirección de corréu electrónicu.\nApurre una dirección de corréu electrónicu si quies suscribite a la llista de corréu.",
 	"config-pingback": "Compartir datos sobro esta instalación colos desendolcadores de MediaWiki.",
@@ -262,5 +262,5 @@
 	"config-extension-not-found": "Nun s'alcontró el ficheru de rexistru pa la estensión «$1»",
 	"config-extension-dependency": "Alcontróse un error de dependencies al instalar la estensión «$1»: $2",
 	"mainpagetext": "<strong>Instalóse MediaWiki.</strong>",
-	"mainpagedocfooter": "Consulta la [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Guía del usuariu] pa saber cómo usar el software wiki.\n\n== Primeros pasos ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Llista de les opciones de configuración]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ EMF de MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Llista de corréu de llanzamientos de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Llocaliza MediaWiki na to llingua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Depriende como combatir la puxarra na to wiki]"
+	"mainpagedocfooter": "Consulta la [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Guía del usuariu] pa saber cómo usar el software wiki.\n\n== Primeros pasos ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Llista de les opciones de configuración]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ EMF de MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Llista de corréu de llanzamientos de MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Llocaliza MediaWiki na to llingua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Depriende como combatir la puxarra na to wiki]"
 }

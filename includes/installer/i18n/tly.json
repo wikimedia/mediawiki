@@ -1,8 +1,20 @@
 {
 	"@metadata": {
 		"authors": [
-			"Erdemaslancan"
+			"Erdemaslancan",
+			"Patriot Kur"
 		]
 	},
-	"config-page-options": "Кукон"
+	"config-information": "Məlumot",
+	"config-page-language": "Zıvon",
+	"config-page-welcome": "Xəş oməyon bə MediaWiki!",
+	"config-page-name": "Nüm",
+	"config-page-options": "Tənziməkon",
+	"config-ns-generic": "Naxşə",
+	"config-ns-other-default": "ÇəməWiki",
+	"config-admin-password": "Pərol:",
+	"config-admin-password-confirm": "Təkror pərol:",
+	"config-admin-email": "E-nomə ünvon:",
+	"config-profile-wiki": "Ojə viki",
+	"config-help": "koməq"
 }

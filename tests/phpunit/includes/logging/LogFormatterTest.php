@@ -666,7 +666,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	 * @param string $type Log type (move, delete, suppress, patrol ...)
 	 * @param string $action A log type action
 	 * @param array $params
-	 * @param string $comment (optional) A comment for the log action
+	 * @param string|null $comment (optional) A comment for the log action
 	 * @param string $msg (optional) A message for PHPUnit :-)
 	 */
 	protected function assertIRCComment( $expected, $type, $action, $params,

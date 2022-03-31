@@ -555,7 +555,7 @@
 	"api-help-param-internal": "Внатрешен.",
 	"api-help-datatypes-header": "Типови на податоци",
 	"api-help-param-type-limit": "Тип: цел број или <kbd>max</kbd>",
-	"api-help-param-type-timestamp": "Тип: {{PLURAL:$1|1=време и датум|2=список на времиња и датуми}} ([[Special:ApiHelp/main#main/datatypes|допуштени формати]])",
+	"api-help-param-type-timestamp": "Тип: {{PLURAL:$1|1=време и датум|2=список на времиња и датуми}} ([[Special:ApiHelp/main#main/datatype/timestamp|допуштени формати]])",
 	"api-help-param-type-enum": "{{PLURAL:$1|1=Една од следниве вредности|2=Вредности (одделете ги со <kbd>{{!}}</kbd> или [[Special:ApiHelp/main#main/datatypes|алтернатива]])}}: $2",
 	"api-help-param-multi-separate": "Одделувајте ги вредностите со <kbd>|</kbd> или [[Special:ApiHelp/main#main/datatypes|алтернатива]].",
 	"api-help-param-default-empty": "По основно: <span class=\"apihelp-empty\">(празно)</span>",

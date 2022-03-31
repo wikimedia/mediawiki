@@ -13,7 +13,8 @@
 			"Schery19",
 			"Tisave",
 			"Urhixidur",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Souliyen lyen yo :",
@@ -645,6 +646,9 @@
 	"newuserlogpagetext": "Men jounal, istorik kreyasyon kont itilizatè yo.",
 	"rightslog": "Jounal modifikasyon estati itilizatè yo",
 	"action-edit": "modifye paj sa",
+	"action-move": "Chanje non",
+	"action-delete": "Efase",
+	"action-undelete": "Retabli",
 	"nchanges": "$1 {{PLURAL:$1|modifikasyon|modifikasyon}}",
 	"enhancedrc-history": "Istorik",
 	"recentchanges": "Modifikasyon yo ki fèk fèt",
@@ -830,7 +834,7 @@
 	"contributions-title": "Lis tout kontribisyon itilizatè ki rele $1",
 	"mycontris": "Kontribisyon mwen",
 	"contribsub2": "Lis kontribisyon $1 ($2).",
-	"uctop": "tèt",
+	"uctop": "dènye",
 	"month": "depi mwa (ak mwa anvan yo) :",
 	"year": "Depi lane (ak anvan tou) :",
 	"sp-contributions-blocklog": "jounal blokaj yo",

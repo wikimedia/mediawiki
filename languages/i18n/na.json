@@ -3,7 +3,9 @@
 		"authors": [
 			"Belgian man",
 			"CdaMVvWgS",
-			"Node ue"
+			"Node ue",
+			"MinecraftAustralia",
+			"Tok Pisin"
 		]
 	},
 	"sunday": "Tondak",
@@ -15,7 +17,6 @@
 	"saturday": "Tadurdei",
 	"moredotdotdot": "Iyuw...",
 	"and": "&#32;me",
-	"qbedit": "Kiwiwid",
 	"errorpagetitle": "Dairinaiya",
 	"help": "Ipuok",
 	"search": "Kanani",
@@ -24,7 +25,7 @@
 	"edit": "Kiwiwid",
 	"delete": "Iyababa",
 	"unprotect": "Eab oberei",
-	"toolbox": "Dabadi n bwait makur",
+	"toolbox": "Tools",
 	"currentevents": "Imwin",
 	"currentevents-url": "Project:Imwin",
 	"edithelp": "Oomo/edar Ipuok",
@@ -33,14 +34,15 @@
 	"editsection": "Kiwiwid",
 	"showtoc": "oduwen",
 	"hidetoc": "ewewin",
+	"nstab-main": "Peij",
 	"nstab-help": "Ipuok",
+	"mainpage-nstab": "Bwiema peij",
 	"error": "Dairinaiya",
+	"userlogin-remembermypassword": "Keep me Metu",
 	"login": "Metu",
 	"logout": "Meta",
 	"userlogout": "Meta",
-	"bold_sample": "Eõ mangiyungiy",
-	"bold_tip": "Eõ mangiyungiy",
-	"image_sample": "Ekar.jpg",
+	"pt-login-button": "Metu",
 	"savearticle": "Otsimor",
 	"newarticle": "(Etsimeduw)",
 	"editing": "Oomo/edar $1",
@@ -48,6 +50,8 @@
 	"prefs-skin": "Witsin",
 	"searchresultshead": "Anani ko",
 	"yourlanguage": "Edorer",
+	"group-sysop": "Administrators",
+	"grouppage-sysop": "{{ns:project}}:Administrators",
 	"recentchanges": "Iwiwidit tsimeduw",
 	"hist": "eka",
 	"hide": "witsit imin gogoro",
@@ -62,6 +66,11 @@
 	"watch": "Aea",
 	"unwatch": "Eab krak",
 	"confirm": "Oebwigaga",
+	"blanknamespace": "(Bwiema)",
 	"contributions": "Mana engame totow inne",
-	"ilsubmit": "Anani ko"
+	"whatlinkshere-page": "Peij:",
+	"tooltip-pt-logout": "Meta",
+	"pageinfo-article-id": "Peij ID",
+	"ilsubmit": "Anani ko",
+	"redirect-page": "Peij ID"
 }

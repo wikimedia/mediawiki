@@ -57,7 +57,7 @@ class MultiTitleFilterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $multiTitleFilter->filterForForm( $inputValue ) );
 	}
 
-	public function filterForFormDataProvider() :array {
+	public function filterForFormDataProvider() : array {
 		return [
 			[
 				'',
@@ -94,7 +94,7 @@ class MultiTitleFilterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $multiTitleFilter->filterFromForm( $titles ) );
 	}
 
-	public function filterFromFormDataProvider() :array {
+	public function filterFromFormDataProvider() : array {
 		return [
 			[
 				null,

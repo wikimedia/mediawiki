@@ -47,7 +47,7 @@ class FormatJsonTest extends MediaWikiUnitTestCase {
 	 * @param string $value
 	 * @param string|bool $expected Expected result with strict parser
 	 * @param bool $jsoncParses Will json-c parse this value without TRY_FIXING?
-	 * @param string|bool $expectedJsonc Expected result with lenient parser
+	 * @param string|bool|null $expectedJsonc Expected result with lenient parser
 	 * if different from the strict expectation
 	 */
 	public function testParseTryFixing(

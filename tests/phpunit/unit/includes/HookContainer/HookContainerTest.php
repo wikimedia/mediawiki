@@ -2,11 +2,11 @@
 
 namespace MediaWiki\HookContainer {
 
+	use ExtensionRegistry;
+	use MediaWikiUnitTestCase;
 	use Psr\Container\ContainerInterface;
 	use UnexpectedValueException;
 	use Wikimedia\ObjectFactory;
-	use ExtensionRegistry;
-	use MediaWikiUnitTestCase;
 	use Wikimedia\ScopedCallback;
 	use Wikimedia\TestingAccessWrapper;
 

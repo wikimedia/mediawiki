@@ -165,7 +165,7 @@
 	"config-admin-error-user": "Panloob na kamalian kapag nililikha ang isang tagapangasiwa na may pangalang \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Panloob na kamalian kapag nagtatakda ng isang password na para sa tagapangasiwang \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
 	"config-admin-error-bademail": "Nagpasok ka ng isang hindi katanggap-tanggap na tirahan ng e-liham.",
-	"config-subscribe": "Tumanggap mula sa [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce talaan ng mga pinadadalhan ng mga nilalabas na mga pabatid].",
+	"config-subscribe": "Tumanggap mula sa [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ talaan ng mga pinadadalhan ng mga nilalabas na mga pabatid].",
 	"config-subscribe-help": "Isang itong tala ng pagliliham na mababa ang dami na ginagamit para sa pagpapakawala ng mga pahayag, kabilang na ang mahahalagang mga pahayag na pangkatiwasayan. Dapat kang magpasipi nito at isapanahon ang iyong nakaluklok na MediaWiki kapag lumalabas ang bagong mga bersiyon.",
 	"config-subscribe-noemail": "Sinubukan mong magpasipi sa tala ng nililihaman ng pagpapakawala ng mga pahayag na hindi nagbibigay ng isang tirahan ng -eliham. Paki magbigay ng isang tirahan ng e-liham kung nais mong magpasipi sa listahan ng pagliliham.",
 	"config-almost-done": "Halos tapos ka na!\nMaaari mo ngayong laktawan ang natitira pang pag-aayos at iluklok na ang wiki ngayon.",
@@ -255,7 +255,7 @@
 	"config-install-stats": "Sinisimulan ang estadistika",
 	"config-install-keys": "Ginagawa ang lihim na mga susi",
 	"config-install-sysop": "Nililikha ang account ng tagagamit na tagapangasiwa",
-	"config-install-subscribe-fail": "Hindi nagawang magpasipi mula sa mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Hindi nagawang magpasipi mula sa mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "Hindi nakalagak ang cURL at hindi makukuha ang <code>allow_url_fopen</code>",
 	"config-install-mainpage": "Nililikha ang pangunahing pahina na may likas na nakatakdang nilalaman",
 	"config-install-mainpage-exists": "Ang pangunahing pahina ay nakasaad na, ipagpatuloy ang paglalathala",
@@ -266,5 +266,5 @@
 	"config-help": "saklolo",
 	"config-nofile": "Hindi matagpuan ang talaksang \"$1\". Binura na ba ito?",
 	"mainpagetext": "'''Matagumpay na ininstala ang MediaWiki.'''",
-	"mainpagedocfooter": "Silipin ang [https://meta.wikimedia.org/wiki/Help:Contents Patnubay sa Tagagamit] (''\"User's Guide\"'') para sa kaalaman sa paggamit ng wiking ''software''.\n\n== Pagsisimula ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Tala ng mga nakatakdang kumpigurasyon]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Mga malimit itanong sa MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Tala ng mga pinadadalhan ng liham ng MediaWiki]"
+	"mainpagedocfooter": "Silipin ang [https://meta.wikimedia.org/wiki/Help:Contents Patnubay sa Tagagamit] (''\"User's Guide\"'') para sa kaalaman sa paggamit ng wiking ''software''.\n\n== Pagsisimula ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Tala ng mga nakatakdang kumpigurasyon]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Mga malimit itanong sa MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Tala ng mga pinadadalhan ng liham ng MediaWiki]"
 }

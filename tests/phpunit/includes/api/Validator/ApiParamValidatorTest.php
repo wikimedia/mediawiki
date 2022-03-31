@@ -599,7 +599,6 @@ class ApiParamValidatorTest extends ApiTestCase {
 	 * @dataProvider provideValidateValue
 	 * @param mixed $value Value to validate
 	 * @param mixed $settings Settings
-	 * @param mixed $value Value to validate
 	 * @param mixed $expect Expected value, or an expected ApiUsageException
 	 */
 	public function testValidateValue( $value, $settings, $expect ) : void {

@@ -5,7 +5,8 @@
 			"Emir Mujadzic",
 			"Palapa",
 			"Semso98",
-			"Srdjan m"
+			"Srdjan m",
+			"Srđan"
 		]
 	},
 	"config-desc": "Instalacija za MediaWiki",
@@ -155,7 +156,7 @@
 	"config-install-keys": "Stvaram tajne ključeve",
 	"config-install-updates": "Spriječi pokretanje nepotrebnih ažuriranja",
 	"config-install-sysop": "Pravim administratorski korisnički račun",
-	"config-install-subscribe-fail": "Ne mogu Vas pretplatiti na mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Ne mogu Vas pretplatiti na mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL nije instaliran, a <code>allow_url_fopen</code> nije dostupno.",
 	"config-install-mainpage": "Pravim početnu stranicu sa standardnim sadržajem",
 	"config-install-mainpage-exists": "Početna strana već postoji. Prelazim na sljedeće.",
@@ -165,5 +166,5 @@
 	"config-help-tooltip": "kliknite da proširite",
 	"config-nofile": "Datoteka \"$1\" nije pronađena. Da nije obrisana?",
 	"mainpagetext": "<strong>MediaWiki je instaliran.</strong>",
-	"mainpagedocfooter": "Pogledajte [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents korisnički vodič] za uputstva o upotrebi wiki softvera.\n\n== Prvi koraci ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Spisak postavki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Često postavljana pitanja o MediaWikiju]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Dopisna lista o izdanjima MediaWikija]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokalizirajte MediaWiki za svoj jezik]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Naučite kako se boriti protiv neželjenog sadržaja na svom wikiju]"
+	"mainpagedocfooter": "Pogledajte [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents korisnički vodič] za uputstva o upotrebi wiki softvera.\n\n== Prvi koraci ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Spisak postavki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Često postavljana pitanja o MediaWikiju]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Dopisna lista o izdanjima MediaWikija]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokalizirajte MediaWiki za svoj jezik]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Naučite kako se boriti protiv neželjenog sadržaja na svom wikiju]"
 }

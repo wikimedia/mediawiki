@@ -12,11 +12,13 @@
 			"Qllach",
 			"SMP",
 			"Toniher",
-			"Vriullop"
+			"Vriullop",
+			"Galactic Thrasher",
+			"Mguix"
 		]
 	},
 	"exif-imagewidth": "Amplada",
-	"exif-imagelength": "Alçada",
+	"exif-imagelength": "Alçària",
 	"exif-bitspersample": "Octets per component",
 	"exif-compression": "Esquema de compressió",
 	"exif-photometricinterpretation": "Composició dels píxels",
@@ -49,7 +51,7 @@
 	"exif-componentsconfiguration": "Significat de cada component",
 	"exif-compressedbitsperpixel": "Mode de compressió d'imatge",
 	"exif-pixelxdimension": "Amplada de la imatge",
-	"exif-pixelydimension": "Alçada de la imatge",
+	"exif-pixelydimension": "Alçària de la imatge",
 	"exif-usercomment": "Comentaris de l'usuari",
 	"exif-relatedsoundfile": "Fitxer d'àudio relacionat",
 	"exif-datetimeoriginal": "Dia i hora de generació de les dades",
@@ -191,7 +193,7 @@
 	"exif-event": "Esdeveniment representat",
 	"exif-organisationinimage": "Organització representada",
 	"exif-personinimage": "Persona representada",
-	"exif-originalimageheight": "Alçada de la imatge abans que fos retallada",
+	"exif-originalimageheight": "Alçària de la imatge abans que fos retallada",
 	"exif-originalimagewidth": "Amplada de la imatge abans que fos retallada",
 	"exif-compression-1": "Sense compressió",
 	"exif-compression-2": "Codificació CCITT Grup 3 longitud unidimensional de Huffman modificat",

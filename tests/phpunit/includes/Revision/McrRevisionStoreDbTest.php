@@ -134,8 +134,8 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$queryInfo = $store->getQueryInfo();
 
 		// with the new schema enabled, query info should not join the main slot info
-		$this->assertFalse( array_key_exists( 'a_slot_data', $queryInfo['tables'] ) );
-		$this->assertFalse( array_key_exists( 'a_slot_data', $queryInfo['joins'] ) );
+		$this->assertArrayNotHasKey( 'a_slot_data', $queryInfo['tables'] );
+		$this->assertArrayNotHasKey( 'a_slot_data', $queryInfo['joins'] );
 	}
 
 	/**

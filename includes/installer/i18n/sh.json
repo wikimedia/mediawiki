@@ -229,7 +229,7 @@
 	"config-install-updates": "Spriječi vršenje nepotrebnih podnova",
 	"config-install-updates-failed": "<strong>Greška:</strong> Umetanje podnovnih klučeva u tabele nije uspjelo, zbog sljedeće greške: $1",
 	"config-install-sysop": "Otvaranje korisničkog računa administratora",
-	"config-install-subscribe-fail": "Nije moguće Vas pretplatiti se na izvješćenje mediawiki-announce: $1",
+	"config-install-subscribe-fail": "Nije moguće Vas pretplatiti se na izvješćenje mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL nije instaliran, a <code>allow_url_fopen</code> nije dostupno.",
 	"config-install-mainpage": "Pravim početnu stranicu sa standardnim sadržajem",
 	"config-install-mainpage-exists": "Početna strana već postoji. Prelazim na sljedeće.",
@@ -246,5 +246,5 @@
 	"config-extension-not-found": "Nisam mogao naći datoteku registracije za dodatak „$1”",
 	"config-extension-dependency": "Naišao na grešku sa zavisnošću pri instaliranju dodatka „$1”: $2",
 	"mainpagetext": "<strong>MediaWiki je instaliran.</strong>",
-	"mainpagedocfooter": "Za informacije o korištenju wiki softvera konzultirajte [https://meta.wikimedia.org/wiki/Help:Contents Vodič za korisnike].\n\n== Uvod u rad ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista konfiguracije postavki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista primatelja izdanja MediaWikija]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokalizirajte MediaWiki za svoj jezik]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Saznajte kako se boriti protiv spama na svojem wikiju]"
+	"mainpagedocfooter": "Za informacije o korištenju wiki softvera konzultirajte [https://meta.wikimedia.org/wiki/Help:Contents Vodič za korisnike].\n\n== Uvod u rad ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista konfiguracije postavki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Lista primatelja izdanja MediaWikija]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lokalizirajte MediaWiki za svoj jezik]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Saznajte kako se boriti protiv spama na svojem wikiju]"
 }

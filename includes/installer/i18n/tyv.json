@@ -4,5 +4,7 @@
 			"Agilight"
 		]
 	},
-	"config-page-welcome": "MediaWiki-же кирип моорлаңар!"
+	"config-page-welcome": "MediaWiki-же кирип моорлаңар!",
+	"config-sidebar-license": "Хоолгалаар",
+	"config-help": "Дуза"
 }

@@ -76,7 +76,7 @@ class MultiTitleFilter implements Filter {
 	/**
 	 * @return TitleFactory
 	 */
-	private function getTitleFactory() :TitleFactory {
+	private function getTitleFactory() : TitleFactory {
 		$this->titleFactory = $this->titleFactory ?? new TitleFactory();
 		return $this->titleFactory;
 	}

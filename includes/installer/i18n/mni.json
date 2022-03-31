@@ -4,7 +4,7 @@
 			"Awangba Mangang"
 		]
 	},
-	"config-your-language": "ꯅꯡꯒꯤ ꯂꯣꯟ",
+	"config-your-language": "ꯅꯪꯒꯤ ꯂꯣꯟ:",
 	"config-wiki-language": "ꯃꯤꯇꯩꯂꯣꯟ",
 	"config-wiki-language-help": "ꯃꯤꯇꯩꯂꯣꯟ",
 	"config-back": "ꯍꯟꯂꯨ",
@@ -19,7 +19,6 @@
 	"config-page-install": "ꯈꯤꯟꯀꯠꯂꯨ",
 	"config-page-complete": "ꯂꯣꯏꯁꯤꯟꯂꯦ",
 	"config-page-restart": "ꯑꯃꯨꯛ ꯍꯟꯅꯥ ꯈꯤꯟꯀꯠꯂꯨ",
-	"config-page-readme": "ꯄꯥꯕꯤꯌꯣ ꯑꯩꯕꯨ",
 	"config-page-releasenotes": "ꯑꯌꯤꯕꯥ ꯊꯥꯗꯣꯛ ꯎ",
 	"config-page-copying": "ꯁꯤꯟꯗꯣꯛ ꯏ",
 	"config-page-upgradedoc": "ꯋꯥꯡꯈꯠꯍꯜꯂꯤ",
@@ -27,7 +26,6 @@
 	"config-help-restart": "ꯅꯪ ꯑꯃꯨꯛ ꯍꯟꯅꯥ ꯈꯤꯟꯀꯠ ꯄꯥꯒꯤ ꯊꯧꯑꯣꯡ ꯑꯃꯥꯗꯤ ꯍꯥꯟꯅꯅꯥ ꯌꯣꯛꯁꯤꯟꯗꯨꯅꯥ ꯊꯝꯕꯥ ꯗꯥꯇꯥ ꯁꯤ ꯃꯥꯡꯍꯟꯕꯥ ꯄꯥꯝꯕꯔꯥ?",
 	"config-restart": "ꯍꯣꯏ‌, ꯑꯃꯨꯛꯀꯥ ꯍꯧꯔꯦ ꯃꯥꯁꯤ",
 	"config-welcome": "===ꯑꯀꯣꯏꯕꯒꯤ ꯐꯤꯕꯝ ꯌꯦꯡꯁꯤꯟꯕ===\n\nꯇꯥꯉꯥꯏ ꯐꯥꯗꯅ ꯆꯡꯕꯔꯥ ꯌꯦꯡꯁꯤꯟꯕ ꯫ ꯃꯗꯨꯗꯤ ꯋꯤꯀꯤꯄꯦꯗꯤꯌꯥ ꯈꯤꯟꯀꯠꯄꯥ/ꯂꯤꯡꯈꯠꯄ ꯁꯤ ꯑꯀꯣꯏꯕꯒꯤ ꯒꯥ ꯆꯥꯟꯅꯥꯕꯔꯥ ꯍꯥꯏꯅ ꯫\nꯀꯥꯎꯊꯣꯛꯇꯅ ꯃꯁꯤꯒꯤ ꯋꯥꯔꯣꯜꯁꯤ ꯍꯥꯞꯆꯤꯟꯂꯨ ꯅꯡꯅꯥ ꯀꯃꯥꯏ ꯇꯧꯔꯒ ꯈꯤꯟꯀꯠ ꯂꯣꯏꯁꯤꯟꯅꯕ ꯃꯥꯇꯦꯡ ꯊꯤꯔꯥꯗꯤ ꯫",
-	"config-sidebar-readme": "ꯄꯥꯕꯤꯌꯣ ꯑꯩꯕꯨ",
 	"config-sidebar-relnotes": "ꯑꯌꯤꯕꯥ ꯊꯥꯗꯣꯛ ꯎ",
 	"config-sidebar-license": "ꯁꯤꯟꯗꯣꯛ ꯏ",
 	"config-sidebar-upgrade": "ꯋꯥꯡꯈꯠꯍꯜꯂꯤ",

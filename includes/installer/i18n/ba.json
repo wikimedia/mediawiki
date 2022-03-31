@@ -171,7 +171,7 @@
 	"config-admin-error-user": "«<nowiki>$1</nowiki>» исеме менән администраторҙың иҫәп яҙмаһы төҙөгәндә эске хата.",
 	"config-admin-error-password": "Хакимдың иҫәп яҙмаһы өсөн серһүҙ ҡуйғанда эске хата «<nowiki>$1</nowiki>»: <pre>$2</pre>",
 	"config-admin-error-bademail": "Электрон почта адресы дөрөҫ түгел",
-	"config-subscribe": "[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki яңы версиялары барлыҡҡа килеүен таратыу яңылыҡтарына] яҙылырға.",
+	"config-subscribe": "[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki яңы версиялары барлыҡҡа килеүен таратыу яңылыҡтарына] яҙылырға.",
 	"config-subscribe-help": "Был хәбәрҙәре аҙ булған таратыу исемлеге хәүефһеҙлек проблемалары тураһында хәбәрҙәр һәм яғы сығарылыштар өсөн анонс булараҡ файҙаланыла. \nҺеҙгә уға яҙылырға һәм яңы версиялар сыҡҡан һайын MediaWiki-ҙы яңыртып торорға кәрәк.",
 	"config-subscribe-noemail": "Һеҙ яңы сығарылыштар тураһында хәбәр ебәреү исемлегенә электрон адресығыҙҙы күрһәтмәй генә яҙылырға тырыштығыҙ.   \nӘгәр хәбәр ебәреү теҙмәһенә яҙылырға теләһәгеҙ,электрон адресығыҙҙы күрһәтегеҙ.",
 	"config-almost-done": "Һеҙ маҡсатҡа яҡын!\nҠалған көйләүҙәрҙе төшөрөп ҡалдырып, вики ҡуя алаһығыҙ.",
@@ -269,7 +269,7 @@
 	"config-install-updates": "Кәрәкмәген яңыртыуҙар туҡтатылды",
 	"config-install-updates-failed": "<strong>Хата:</strong> Яңыртыуға асҡыс ҡуйыу түбәндәге хата менән тамамланды: $1",
 	"config-install-sysop": "Администратор иҫәп яҙмаһын булдырыу",
-	"config-install-subscribe-fail": "mediawiki-announce яҙылып булманы: $1",
+	"config-install-subscribe-fail": "mediawiki-announce яҙылып булманы[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL урынлаштырылмаған һәм опция асылмай<code>allow_url_fopen</code>.",
 	"config-install-mainpage": "Килешеү буйынса эстәлекле баш битте эшләү",
 	"config-install-extension-tables": "Ҡушымталар өсөн таблица эшләү",
@@ -281,5 +281,5 @@
 	"config-nofile": "\"$1\" файлын табып булмай, ул юйылған.",
 	"config-extension-link": "Беҙҙең вики-проектта [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions ҡушымта] барлығын беләһегеҙме??\n\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category категориялар буйынса ҡушымта] йәки [https://www.mediawiki.org/wiki/Extension_Matrix матрица ҡсн ҡушымтаның] тулы исемлеген ҡарай алаһығыҙ.",
 	"mainpagetext": "«MediaWiki» уңышлы рәүештә ҡоролдо.",
-	"mainpagedocfooter": "Был вики менән эшләү тураһында мәғлүмәтте [https://meta.wikimedia.org/wiki/Help:Contents ошонда] табып була.\n\n== Файҙалы сығанаҡтар ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Көйләүҙәр исемлеге (инг.)];\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki тураһында йыш бирелгән һорауҙар һәм яуаптар (инг.)];\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki-ның яңы версиялары тураһында хәбәрҙәр алып тороу].\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki for your language]"
+	"mainpagedocfooter": "Был вики менән эшләү тураһында мәғлүмәтте [https://meta.wikimedia.org/wiki/Help:Contents ошонда] табып була.\n\n== Файҙалы сығанаҡтар ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Көйләүҙәр исемлеге (инг.)];\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki тураһында йыш бирелгән һорауҙар һәм яуаптар (инг.)];\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki-ның яңы версиялары тураһында хәбәрҙәр алып тороу].\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki for your language]"
 }

@@ -1,17 +1,61 @@
 = MediaWiki 1.35 =
 
-MediaWiki 1.35 should mostly work on the recently released PHP 8.0, however
+MediaWiki 1.35 should mostly work on PHP 8.0/8.1, however
 it is not currently actively supported. Testing (on a development wiki!) is
-appreciated, and bugs with PHP 8.0 on MediaWiki 1.35 will be accepted.
+appreciated, and bugs with PHP 8.0/8.1 on MediaWiki 1.35 will be accepted.
 
 It is anticipated that in a later MediaWiki 1.35 point release, we can
-declare 1.35 as supporting PHP 8.0.
+declare 1.35 as supporting PHP 8.0/8.1.
 
 PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
+PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
+
+== MediaWiki 1.35.6 ==
+
+This is a security and maintenance release of the MediaWiki 1.35 branch.
+
+=== Changes since MediaWiki 1.35.5 ===
+* (T298261) Fix support for Composer 2.2.
+* (T298283) composer.json: Add wikimedia/composer-merge-plugin to allow-plugins.
+* Update doctrine/dbal (3.0.0 => 3.1.5).
+* (T298564) MemcachedClient: Add support for IPv6.
+* (T297543, CVE-2022-28202) SECURITY: properly escape output used within
+  galleries and Special:RevisionDelete.
+* (T268847) Suppress deprecation warnings from libxml_disable_entity_loader().
+* (T283275) Fix PHP 8.0 failure of WikiExporterFactoryTest.
+* (T274966) Upgrading wikimedia/html-formatter (1.0.2 => 2.0.1).
+* Fix the json schema and the extension processor for Parsoid extension modules.
+* (T299696) update.php: Avoid passing null to substr.
+* In PHP 8.1 don't throw exceptions from mysqli.
+* (T289926) SiteConfiguration: Don't pass null to str_replace().
+* (T264735) Fix deprecation warning from CURLPIPE_HTTP1.
+* (T260735) Stop using is_resource() where possible.
+* (T289879) Apply ReturnTypeWillChange to various implementations of built in
+  interfaces.
+* (T299312) Implement __serialize/__unserialize for PHP 8.1 support.
+* ExtensionRegistry: Add process cache for lazy attributes.
+* (T301041) ApiPageSet: Add "missing": true to missing revisions.
+* Allow ParsoidModules extension schema to register services.
+* (T297708) Allow setting max execution time to several special pages.
+* Upgrading wikimedia/object-factory (v2.1.0 => v2.2.0).
+* (T302540) composer.json: Add ext-calendar to require.
+* (T302540) composer.json: Add ext-simplexml to require-dev.
+* (T302540) composer.json: Add various PHP extensions to suggests.
+* Upgrading symfony/polyfill-php80 (v1.23.1 => v1.25.0).
+* (T303871) Add Title::getId() as an alias for ::getArticleId().
+* (T304008) Don't re-check "Move subpages" on Special:MovePage after a warning.
+* (T293576) listFiles: Display file name instead of version.
+* (T303560) Installer: Check correct PCRE_CONFIG_NEWLINE value.
+* wrapOldPasswords: add \n to two output calls.
+* (T304993) Make editcontentmodel a part of editpage grant.
+* (T297571, CVE-2022-28201) Title::newMainPage() goes into an infinite recursion
+  loop if it points to a local interwiki.
+* (T297731, CVE-2022-28203) Requesting Special:NewFiles on a wiki with many file
+  uploads with actor as a condition can result in a DoS.
 
 == MediaWiki 1.35.5 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.35 branch.
 
 === Changes since MediaWiki 1.35.4 ===
 * (T290697) Add symfony/polyfill-php80.
@@ -24,7 +68,8 @@ THIS IS NOT A RELEASE YET
 * HistoryBlobStub: add getLocation() to get $mOldId.
 * Fix checkStorage.php.
 * checkStorage: pass no parameters to WikiRevision::getContent().
-* (T292763) Do not cache private wiki completion results.
+* (T292763, CVE-2021-44854) SECURITY: Do not cache private wiki completion
+  results.
 * (T294316) Revert "Mark ApiClientLogin/ApiLogin as requiring write mode".
 * (T250068) resources: Upgrade jQuery from 3.4.1 to 3.6.0.
 * (T250068) resources: Upgrade jquery-migrate from 3.1.0 (patched) to 3.3.2
@@ -40,6 +85,12 @@ THIS IS NOT A RELEASE YET
 * (T296112) Allow inserting new sections named '0'.
 * nukeNS: don't run purgeRedundantText() after every change.
 * (T225888) RollbackAction: fix missing pagetitle.
+* (T297322, CVE-2021-44858, CVE-2021-44857) SECURITY: Fix permissions checks in
+  undo actions.
+* (T297574, CVE-2021-45038) SECURITY: Fix permissions check in action=rollback.
+* (T34716, T297416) SECURITY: Require 'read' right for most actions.
+* (T271037, CVE-2021-44856) SECURITY: Fix use of EditFilterMergedContent hook
+  when changing content model.
 
 == MediaWiki 1.35.4 ==
 
@@ -681,10 +732,10 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Added taylorhakes/promise-polyfill v8.1.3.
 * Added vuejs v2.6.11.
 * Added vuex v3.1.3.
-* Added symfony/symfony/polyfill-php80 1.23.1.
+* Added symfony/symfony/polyfill-php80 1.25.0.
 
 ===== New development-only external libraries =====
-* Added doctrine/dbal 3.0.0.
+* Added doctrine/dbal 3.1.5.
 * Added doctrine/sql-formatter 1.1.0.
 * Added pimple/pimple 3.3.1.
 
@@ -709,6 +760,8 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Replaced wikimedia/password-blacklist 0.1.4 with wikimedia/common-passwords
   0.2.0.
 * Updated wikimedia/composer-merge-plugin from 1.4.1 to 2.0.1.
+* Updated wikimedia/html-formatter from 1.0.2 to 2.0.1.
+* Updated wikimedia/object-factory from 2.1.0 to 2.2.0.
 
 ===== Changed development-only external libraries =====
 * Updated symfony/yaml from 3.4.28 to 5.0.5.
@@ -717,7 +770,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Updated php-parallel-lint/php-parallel-lint from v0.9.2 to v1.2.0.
 * Updated psy/psysh from 0.9.9 to 0.10.4.
 * Updated monolog/monolog from 1.24.0 to 2.2.0.
-* Upgrade mediawiki-codesniffer from 28.0.0 to 34.0.0.
+* Upgrade mediawiki-codesniffer from 28.0.0 to 38.0.0.
 * Updated composer/spdx-licenses from 1.5.1 to 1.5.3.
 * Updated monolog/monolog from 1.25.2 to 1.25.3.
 * Updated qunit from 2.9.1 to 2.10.0.

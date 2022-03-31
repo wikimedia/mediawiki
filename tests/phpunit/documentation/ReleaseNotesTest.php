@@ -2,6 +2,7 @@
 
 /**
  * James doesn't like having to manually fix these things.
+ * @group ReleaseNotes
  */
 class ReleaseNotesTest extends MediaWikiIntegrationTestCase {
 	/**
