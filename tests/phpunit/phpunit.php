@@ -7,6 +7,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use PHPUnit\TextUI\Command;
 
 class PHPUnitMaintClass {
 	public function setup() {
@@ -136,8 +137,15 @@ class PHPUnitMaintClass {
 
 		MediaWikiCliOptions::initialize();
 
-		$command = new MediaWikiPHPUnitCommand();
-		$command->run( $_SERVER['argv'], true );
+		$command = new Command();
+		$args = $_SERVER['argv'];
+		$hasConfigOpt = (bool)getopt( 'c:', [ 'configuration:' ] );
+		if ( !$hasConfigOpt ) {
+			// XXX HAX: Use our default file. This is a temporary hack, to be removed when this file goes away
+			// or when T227900 is resolved.
+			$args[] = '--configuration=' . __DIR__ . '/suite.xml';
+		}
+		$command->run( $args, true );
 	}
 
 	/**
@@ -193,9 +201,4 @@ define( 'MW_SETUP_CALLBACK', 'wfPHPUnitSetup' );
 
 require_once "$IP/includes/Setup.php";
 
-if ( in_array( '--help', $argv, true ) ) {
-	$command = new MediaWikiPHPUnitCommand();
-	$command->publicShowHelp();
-	die( 1 );
-}
 $wrapper->execute();

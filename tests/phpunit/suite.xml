@@ -15,7 +15,10 @@
 	failOnRisky="true"
 	beStrictAboutTestsThatDoNotTestAnything="true"
 	beStrictAboutOutputDuringTests="true"
-	verbose="false">
+	verbose="false"
+	printerClass="MediaWikiPHPUnitResultPrinter"
+	stderr="true">
+	<!-- Output only to stderr to avoid "Headers already sent" problems -->
 	<testsuites>
 		<testsuite name="includes">
 			<directory>includes</directory>
