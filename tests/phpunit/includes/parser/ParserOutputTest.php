@@ -991,6 +991,7 @@ EOF
 		// hooks
 		$a = new ParserOutput();
 
+		$this->hideDeprecated( 'ParserOutput::addOutputHook' );
 		$a->addOutputHook( 'foo', 'X' );
 		$a->addOutputHook( 'bar' );
 

@@ -971,6 +971,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * hook (T292321).
 	 */
 	public function addOutputHook( $hook, $data = false ): void {
+		wfDeprecated( __METHOD__, '1.38' );
 		$this->mOutputHooks[] = [ $hook, $data ];
 	}
 
