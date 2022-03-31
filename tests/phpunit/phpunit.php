@@ -17,17 +17,6 @@ class PHPUnitMaintClass {
 		// through this entry point or not.
 		define( 'MW_PHPUNIT_TEST', true );
 
-		# Abort if called from a web server
-		# wfIsCLI() is not available yet
-		if ( PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' ) {
-			$this->fatalError( 'This script must be run from the command line' );
-		}
-
-		# Make sure we can handle script parameters
-		if ( !ini_get( 'register_argc_argv' ) ) {
-			$this->fatalError( 'Cannot get command line arguments, register_argc_argv is set to false' );
-		}
-
 		// Send PHP warnings and errors to stderr instead of stdout.
 		// This aids in diagnosing problems, while keeping messages
 		// out of redirected output.
@@ -36,7 +25,7 @@ class PHPUnitMaintClass {
 		}
 
 		# Disable the memory limit as it's not needed for tests.
-		# Note we need to set it again later in cache LocalSettings changed it
+		# Note we need to set it again later in case LocalSettings changed it
 		ini_set( 'memory_limit', -1 );
 
 		# Set max execution time to 0 (no limit). PHP.net says that
@@ -53,18 +42,6 @@ class PHPUnitMaintClass {
 
 		require_once __DIR__ . '/../common/TestSetup.php';
 		TestSetup::snapshotGlobals();
-	}
-
-	/**
-	 * Output a message and terminate the current script.
-	 *
-	 * @param string $msg Error message
-	 * @param int $exitCode PHP exit status. Should be in range 1-254.
-	 * @return never
-	 */
-	private function fatalError( $msg, $exitCode = 1 ) {
-		echo $msg;
-		exit( $exitCode );
 	}
 
 	public function finalSetup() {
@@ -117,12 +94,6 @@ class PHPUnitMaintClass {
 	}
 
 	public function execute() {
-		// Deregister handler from MWExceptionHandler::installHandle so that PHPUnit's own handler
-		// stays in tact.
-		// Has to in execute() instead of finalSetup(), because finalSetup() runs before
-		// Setup.php is included, which calls MWExceptionHandler::installHandle().
-		restore_error_handler();
-
 		if ( !class_exists( PHPUnit\Framework\TestCase::class ) ) {
 			echo "PHPUnit not found. Please install it and other dev dependencies by
 		running `composer install` in MediaWiki root directory.\n";
@@ -135,8 +106,6 @@ class PHPUnitMaintClass {
 
 		fwrite( STDERR, 'Using PHP ' . PHP_VERSION . "\n" );
 
-		MediaWikiCliOptions::initialize();
-
 		$command = new Command();
 		$args = $_SERVER['argv'];
 		$hasConfigOpt = (bool)getopt( 'c:', [ 'configuration:' ] );
@@ -147,38 +116,30 @@ class PHPUnitMaintClass {
 		}
 		$command->run( $args, true );
 	}
-
-	/**
-	 * Generic setup for most installs. Returns the location of LocalSettings
-	 * @return string
-	 */
-	public function loadSettings() {
-		global $wgCommandLineMode, $IP;
-
-		$settingsFile = wfDetectLocalSettingsFile( $IP );
-		if ( getenv( 'PHPUNIT_WIKI' ) ) {
-			$bits = explode( '-', getenv( 'PHPUNIT_WIKI' ), 2 );
-			define( 'MW_DB', $bits[0] );
-			define( 'MW_PREFIX', $bits[1] ?? '' );
-		}
-
-		if ( !is_readable( $settingsFile ) ) {
-			$this->fatalError( "The file $settingsFile must exist and be readable.\n" );
-		}
-		$wgCommandLineMode = true;
-
-		return $settingsFile;
-	}
 }
 
 if ( defined( 'MEDIAWIKI' ) ) {
 	exit( 'Wrong entry point?' );
 }
 
+if ( PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' ) {
+	exit( 'This script must be run from the command line' );
+}
+
+if ( !ini_get( 'register_argc_argv' ) ) {
+	exit( 'Cannot get command line arguments, register_argc_argv is set to false' );
+}
+
 define( 'MW_ENTRY_POINT', 'cli' );
 
 if ( strval( getenv( 'MW_INSTALL_PATH' ) ) === '' ) {
 	putenv( 'MW_INSTALL_PATH=' . realpath( __DIR__ . '/../..' ) );
+}
+
+if ( getenv( 'PHPUNIT_WIKI' ) ) {
+	$bits = explode( '-', getenv( 'PHPUNIT_WIKI' ), 2 );
+	define( 'MW_DB', $bits[0] );
+	define( 'MW_PREFIX', $bits[1] ?? '' );
 }
 
 // Define the MediaWiki entrypoint
@@ -189,7 +150,9 @@ require_once "$IP/includes/BootstrapHelperFunctions.php";
 
 $wrapper = new PHPUnitMaintClass();
 $wrapper->setup();
-$wrapper->loadSettings();
+
+wfDetectLocalSettingsFile( $IP );
+$wgCommandLineMode = true;
 
 function wfPHPUnitSetup() {
 	// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
@@ -200,5 +163,8 @@ function wfPHPUnitSetup() {
 define( 'MW_SETUP_CALLBACK', 'wfPHPUnitSetup' );
 
 require_once "$IP/includes/Setup.php";
+// Deregister handler from MWExceptionHandler::installHandle so that PHPUnit's own handler
+// stays in tact. Needs to happen after including Setup.php, which calls MWExceptionHandler::installHandle().
+restore_error_handler();
 
 $wrapper->execute();
