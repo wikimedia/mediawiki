@@ -2240,9 +2240,10 @@ class Linker {
 		}
 
 		$isWatchlistExpiryEnabled = $config->get( 'WatchlistExpiry' );
-		if ( !$isWatchlistExpiryEnabled ) {
+		if ( !$isWatchlistExpiryEnabled || !$relevantTitle || !$relevantTitle->canExist() ) {
 			return;
 		}
+
 		$watchStore = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$watchedItem = $watchStore->getWatchedItem( $user, $relevantTitle );
 		if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() !== null ) {

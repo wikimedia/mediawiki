@@ -24,6 +24,7 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Skin\SkinComponent;
 use MediaWiki\Skin\SkinComponentRegistry;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -95,6 +96,15 @@ abstract class Skin extends ContextSource {
 	 */
 	public static function getVersion() {
 		return self::VERSION_MAJOR;
+	}
+
+	/**
+	 * @internal use in Skin.php, SkinTemplate.php or SkinMustache.php
+	 * @param string $name
+	 * @return SkinComponent
+	 */
+	final protected function getComponent( string $name ): SkinComponent {
+		return $this->componentRegistry->getComponent( $name );
 	}
 
 	/**
@@ -471,10 +481,10 @@ abstract class Skin extends ContextSource {
 	 * such as content tabs which belong to that page instead of displaying
 	 * a basic special page tab which has almost no meaning.
 	 *
-	 * @return Title
+	 * @return Title|null the title is null when no relevant title was set, as this
+	 *   falls back to ContextSource::getTitle
 	 */
 	public function getRelevantTitle() {
-		// @phan-suppress-next-line PhanTypeMismatchReturnNullable title is set
 		return $this->mRelevantTitle ?? $this->getTitle();
 	}
 
@@ -2345,34 +2355,26 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @internal
-	 * @param array $attrs (optional) will be passed to tooltipAndAccesskeyAttribs
-	 *  and decorate the resulting input
-	 * @return array attributes of HTML input
-	 */
-	final protected function getSearchInputAttributes( $attrs = [] ) {
-		$autoCapHint = $this->getConfig()->get( 'CapitalLinks' );
-		$realAttrs = [
-			'type' => 'search',
-			'name' => 'search',
-			'placeholder' => $this->msg( 'searchsuggest-search' )->text(),
-			'aria-label' => $this->msg( 'searchsuggest-search' )->text(),
-			// T251664: Disable autocapitalization of input
-			// method when using fully case-sensitive titles.
-			'autocapitalize' => $autoCapHint ? 'sentences' : 'none',
-		];
-
-		return array_merge( $realAttrs, Linker::tooltipAndAccesskeyAttribs( 'search' ), $attrs );
-	}
-
-	/**
 	 * @since 1.35
 	 * @param array $attrs (optional) will be passed to tooltipAndAccesskeyAttribs
 	 *  and decorate the resulting input
+	 * @deprecated 1.38 use $this->getTemplateData()['data-search-box'] instead.
 	 * @return string of HTML input
 	 */
-	final public function makeSearchInput( $attrs = [] ) {
-		return Html::element( 'input', $this->getSearchInputAttributes( $attrs ) );
+	public function makeSearchInput( $attrs = [] ) {
+		wfDeprecated( __METHOD__,
+			'[1.38] use $this->getTemplateData()["data-search-box"] or SkinTemplate::makeSearchInput'
+		);
+
+		// It's possible that getTemplateData might be calling
+		// Skin::makeSearchInput. To avoid infinite recursion create a
+		// new instance of the search component here.
+		$searchBox = $this->getComponent( 'search-box' );
+		$data = $searchBox->getTemplateData();
+
+		return Html::element( 'input',
+			$data[ 'array-input-attributes' ] + $attrs
+		);
 	}
 
 	/**
@@ -2380,47 +2382,25 @@ abstract class Skin extends ContextSource {
 	 *  either `go`, `fulltext` or `image`
 	 * @param array $attrs (optional)
 	 * @throws MWException if bad value of $mode passed in
+	 * @deprecated 1.38 use $this->getTemplateData()['data-search-box'] instead.
+	 *   Note: When removing this function please merge SkinTemplate::makeSearchButtonInternal
+	 *   with SkinTemplate::makeSearchButton.
 	 * @return string of HTML button
 	 */
-	final public function makeSearchButton( $mode, $attrs = [] ) {
-		switch ( $mode ) {
-			case 'go':
-			case 'fulltext':
-				$realAttrs = [
-					'type' => 'submit',
-					'name' => $mode,
-					'value' => $this->msg( $mode == 'go' ? 'searcharticle' : 'searchbutton' )->text(),
-				];
-				$realAttrs = array_merge(
-					$realAttrs,
-					Linker::tooltipAndAccesskeyAttribs( "search-$mode" ),
-					$attrs
-				);
-				return Html::element( 'input', $realAttrs );
-			case 'image':
-				$buttonAttrs = [
-					'type' => 'submit',
-					'name' => 'button',
-				];
-				$buttonAttrs = array_merge(
-					$buttonAttrs,
-					Linker::tooltipAndAccesskeyAttribs( 'search-fulltext' ),
-					$attrs
-				);
-				unset( $buttonAttrs['src'] );
-				unset( $buttonAttrs['alt'] );
-				unset( $buttonAttrs['width'] );
-				unset( $buttonAttrs['height'] );
-				$imgAttrs = [
-					'src' => $attrs['src'],
-					'alt' => $attrs['alt'] ?? $this->msg( 'searchbutton' )->text(),
-					'width' => $attrs['width'] ?? null,
-					'height' => $attrs['height'] ?? null,
-				];
-				return Html::rawElement( 'button', $buttonAttrs, Html::element( 'img', $imgAttrs ) );
-			default:
-				throw new MWException( 'Unknown mode passed to BaseTemplate::makeSearchButton' );
-		}
+	public function makeSearchButton( $mode, $attrs = [] ) {
+		wfDeprecated( __METHOD__,
+			'[1.38] use $this->getTemplateData()["data-search-box"] or SkinTemplate::makeSearchButton'
+		);
+
+		// It's possible that getTemplateData might be calling
+		// Skin::makeSearchInput. To avoid infinite recursion create a
+		// new instance of the search component here.
+		$searchBox = $this->getComponent( 'search-box' );
+		$data = $searchBox->getTemplateData();
+
+		return SkinTemplate::makeSearchButtonInternal(
+			$mode, $data, $attrs
+		);
 	}
 
 	/**

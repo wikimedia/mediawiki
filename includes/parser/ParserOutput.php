@@ -1347,7 +1347,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * Attach a flag to the output so that it can be checked later to handle special cases
 	 *
 	 * @param string $flag
-	 * @deprecated Use ::setOutputFlag()
+	 * @deprecated since 1.38; use ::setOutputFlag()
 	 */
 	public function setFlag( $flag ): void {
 		$this->mFlags[$flag] = true;
@@ -1356,7 +1356,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @param string $flag
 	 * @return bool Whether the given flag was set to signify a special case
-	 * @deprecated Use ::getOutputFlag()
+	 * @deprecated since 1.38; use ::getOutputFlag()
 	 */
 	public function getFlag( $flag ): bool {
 		return isset( $this->mFlags[$flag] );
@@ -1441,6 +1441,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *     Wikimedia Commons.
 	 *     This is not actually implemented, yet but would be pretty cool.
 	 *
+	 * @note It is strongly recommended that only strings be used for $value.
+	 *  Although any JSON-serializable value can be stored/fetched in
+	 *  ParserOutput, when the values are stored to the database
+	 *  (in deferred/LinksUpdate/PagePropsTable.php) they will be stringified:
+	 *  booleans will be converted to '0' and '1', null will become '',
+	 *  and everything else will be cast to string.  Page properties
+	 *  obtained from the PageProps service will always be strings.
+	 *
 	 * @note Do not use setPageProperty() to set a property which is only used
 	 * in a context where the ParserOutput object itself is already available,
 	 * for example a normal page view. There is no need to save such a property
@@ -1450,7 +1458,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * If you are writing an extension where you want to set a property in the
 	 * parser which is used by an OutputPageParserOutput hook, you have to
 	 * associate the extension data directly with the ParserOutput object.
-	 * Since MediaWiki 1.21, you can use setExtensionData() to do this:
+	 * Since MediaWiki 1.21, you should use setExtensionData() to do this:
 	 *
 	 * @par Example:
 	 * @code
@@ -1465,16 +1473,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @endcode
 	 *
 	 * In MediaWiki 1.20 and older, you have to use a custom member variable
-	 * within the ParserOutput object:
+	 * within the ParserOutput object, but this will not work in modern
+	 * MediaWiki with $wgParserCacheUseJson set to true (the default):
 	 *
 	 * @par Example:
 	 * @code
 	 *    $parser->getOutput()->my_ext_foo = '...';
 	 * @endcode
-	 *
-	 * @note Only scalar values like numbers and strings are supported
-	 * as a value. Attempt to use an object or array will
-	 * not work properly with LinksUpdate.
 	 *
 	 * @param string $name
 	 * @param int|float|string|bool|null $value
@@ -1490,7 +1495,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @return int|float|string|bool|null The value previously set using setPageProperty().
 	 * Returns null if no value was set for the given property name.
 	 *
-	 * @note You need to use getPageProperties() to an explicitly-set null value.
+	 * @note You would need to use ::getPageProperties() to test for an
+	 *  explicitly-set null value; but see the note in ::setPageProperty()
+	 *  about avoiding the use of non-string values.
 	 * @since 1.38
 	 */
 	public function getPageProperty( string $name ) {

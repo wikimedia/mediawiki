@@ -20,6 +20,7 @@ namespace MediaWiki\Skin;
 
 use RuntimeException;
 use Skin;
+use SpecialPage;
 
 /**
  * @internal for use inside Skin and SkinTemplate classes only
@@ -81,11 +82,22 @@ class SkinComponentRegistry {
 	 * @throws RuntimeException if given an unknown name
 	 */
 	private function registerComponent( string $name ) {
+		$skin = $this->skin;
+		$user = $skin->getUser();
 		switch ( $name ) {
 			case 'logos':
 				$component = new SkinComponentLogo(
 					$this->skin->getConfig(),
 					$this->skin->getLanguage()->getCode()
+				);
+				break;
+			case 'search-box':
+				$component = new SkinComponentSearch(
+					$skin->getConfig(),
+					$user,
+					$skin->getContext(),
+					SpecialPage::newSearchPage( $user ),
+					$skin->getRelevantTitle()
 				);
 				break;
 			case 'toc':
@@ -105,5 +117,6 @@ class SkinComponentRegistry {
 	private function registerComponents() {
 		$this->registerComponent( 'logos' );
 		$this->registerComponent( 'toc' );
+		$this->registerComponent( 'search-box' );
 	}
 }
