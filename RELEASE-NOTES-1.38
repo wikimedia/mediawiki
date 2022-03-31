@@ -18,6 +18,15 @@ Some specific notes for MediaWiki 1.38 upgrades are below:
   anti-abuse feature that lets privileged users to set specific actions to be
   taken when actions by users, such as edits or file uploads, match certain
   criteria.
+* (T232948) The Math extension is now bundled with MediaWiki. This is a content
+  feature that lets users create mathematical formulæ, written in a sub-set of
+  LaTeX and rendered in MathML with a fallback SVG image. By default, it will
+  use Wikimedia's mathoid service to render each formula, but local rendering
+  can be set up for network isolation or performance.
+* (T191743) The Minerva skin is now bundled with MediaWiki. This is a simple,
+  light-weight, and scalable skin that is particularly optimised for mobile use,
+  and integrates well with the MobileFrontend extension (available separately),
+  but can also be used as a regular desktop skin.
 
 For notes on 1.37.x and older releases, see HISTORY.
 
