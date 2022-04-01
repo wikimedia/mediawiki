@@ -2492,6 +2492,8 @@
 	"undelete-cleanup-error": "Napaka pri brisanju neuporabljene arhivske datoteke »$1«.",
 	"undelete-missing-filearchive": "Ne morem obnoviti datoteke arhiva ID $1, ker ga ni v zbirki podatkov.\nMorda je bil že obnovljen.",
 	"undelete-error": "Napaka pri obnovi strani",
+	"undelete-error-associated-alreadytalk": "Ne morete obnoviti povezane pogovorne strani pogovorne strani.",
+	"undelete-error-associated-notdeleted": "Povezana pogovorna stran nima redakcij, ki bi jih lahko obnovili.",
 	"undelete-show-file-confirm": "Ali si resnično želite ogledati izbrisano redakcijo datoteke »<nowiki>$1</nowiki>« z dne $2 ob $3?",
 	"undelete-show-file-submit": "Da",
 	"undelete-back-to-list": "Ogled vseh izbrisanih redakcij",

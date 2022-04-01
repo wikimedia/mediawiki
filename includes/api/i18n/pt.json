@@ -1436,6 +1436,7 @@
 	"apihelp-undelete-param-fileids": "Os identificadores das revisões a serem restauradas. Se ambos os parâmetros <var>$1timestamps</var> e <var>$1fileids</var> estiverem vazios, serão restauradas todas as revisões.",
 	"apihelp-undelete-param-watchlist": "Adicionar ou remover incondicionalmente a página da lista de páginas vigiadas do utilizador atual, usar as preferências (ignorado para robôs) ou não alterar o estado de vigilância.",
 	"apihelp-undelete-param-watchlistexpiry": "Data e hora de expiração da lista de páginas vigiadas. Omitir este parâmetro para manter a expiração atual inalterada.",
+	"apihelp-undelete-param-undeletetalk": "Restaurar todas as revisões da página de discussão associada, se existir alguma.",
 	"apihelp-undelete-example-page": "Restaurar a página <kbd>Main Page</kbd>.",
 	"apihelp-undelete-example-revisions": "Restaurar duas revisões da página <kbd>Main Page</kbd>.",
 	"apihelp-unlinkaccount-summary": "Remover do utilizador atual uma conta ligada de uma wiki terceira.",
@@ -1857,5 +1858,5 @@
 	"api-usage-mailinglist-ref": "Subscreva a lista de distribuição mediawiki-api-announce em &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; para receber anúncios de descontinuação e de alterações disruptivas da API.",
 	"api-exception-trace": "$1 em $2($3)\n$4",
 	"api-credits-header": "Créditos",
-	"api-credits": "Programadores da API:\n* Yuri Astrakhan (criador, programador principal, set 2006–set 2007)\n* Roan Kattouw (programador principal, set 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (programador principal, 2013–presente)\n\nPode enviar os seus comentários, sugestões e perguntas para o endereço mediawiki-api@lists.wikimedia.org, ou reportar quaisquer defeitos que encontre em https://phabricator.wikimedia.org/."
+	"api-credits": "Programadores da API:\n* Yuri Astrakhan (criador, programador principal, set 2006–set 2007)\n* Roan Kattouw (programador principal, set 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (programador principal, 2013–2020)\n\nPode enviar os seus comentários, sugestões e perguntas para o endereço mediawiki-api@lists.wikimedia.org, ou reportar quaisquer defeitos que encontre em https://phabricator.wikimedia.org/."
 }

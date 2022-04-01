@@ -2568,6 +2568,8 @@
 	"undelete-cleanup-error": "Erro ao eliminar o ficheiro não utilizado \"$1\".",
 	"undelete-missing-filearchive": "Não é possível restaurar o ficheiro de ID $1, uma vez que ele não se encontra na base de dados. Isso pode significar que já tenha sido restaurado.",
 	"undelete-error": "Erro ao restaurar a página",
+	"undelete-error-associated-alreadytalk": "Não é possível restaurar a página de discussão associada de uma página de discussão",
+	"undelete-error-associated-notdeleted": "A página de discussão associada não tem nenhuma revisão que possa ser restaurada.",
 	"undelete-show-file-confirm": "Tem a certeza de que quer ver a revisão eliminada do ficheiro \"<nowiki>$1</nowiki>\" de $2 às $3?",
 	"undelete-show-file-submit": "Sim",
 	"undelete-back-to-list": "Ver todas as revisões eliminadas",

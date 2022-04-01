@@ -1463,6 +1463,7 @@
 	"apihelp-undelete-param-fileids": "IDs des révisions de fichier à restaurer. Si <var>$1timestamps</var> et <var>$1fileids</var> sont vides, toutes seront restaurées.",
 	"apihelp-undelete-param-watchlist": "Ajouter ou supprimer sans condition la page de votre liste de suivi, utiliser les préférences (ignorées pour les robots) ou ne pas modifier le suivi.",
 	"apihelp-undelete-param-watchlistexpiry": "Délai d’expiration de la liste de suivi. Omettez complètement ce paramètre pour laisser inchangé le délai actuel d’expiration.",
+	"apihelp-undelete-param-undeletetalk": "Restaurer toutes les versions de la page de discussion associée, s’il y en a.",
 	"apihelp-undelete-example-page": "Annuler la suppression de la page <kbd>Main Page</kbd>.",
 	"apihelp-undelete-example-revisions": "Annuler la suppression de deux révisions de la page <kbd>Main Page</kbd>.",
 	"apihelp-unlinkaccount-summary": "Supprimer un compte tiers lié de l’utilisateur actuel.",

@@ -2527,6 +2527,8 @@
 	"undelete-cleanup-error": "שגיאת בעת מחיקת קובץ הארכיון \"$1\" שאינו בשימוש.",
 	"undelete-missing-filearchive": "שחזור קובץ הארכיון שמספרו $1 נכשל כיוון שהוא אינו בבסיס הנתונים.\nייתכן שהוא כבר שוחזר.",
 	"undelete-error": "שגיאה בשחזור דף",
+	"undelete-error-associated-alreadytalk": "לא ניתן לשחזר דף שיחה שמשויך לדף שיחה.",
+	"undelete-error-associated-notdeleted": "לדף השיחה המשויך אין גרסאות שאפשר לשחזר.",
 	"undelete-show-file-confirm": "האם ברצונך לצפות בגרסה המחוקה של הקובץ \"<nowiki>$1</nowiki>\" מ־$3, $2?",
 	"undelete-show-file-submit": "כן",
 	"undelete-back-to-list": "הצגת כל הגרסאות המחוקות",
