@@ -149,9 +149,11 @@ class PHPUnitMaintClass {
 
 		$settingsFile = wfDetectLocalSettingsFile( $IP );
 		if ( getenv( 'PHPUNIT_WIKI' ) ) {
-			$bits = explode( '-', getenv( 'PHPUNIT_WIKI' ), 2 );
+			$wikiName = getenv( 'PHPUNIT_WIKI' );
+			$bits = explode( '-', $wikiName, 2 );
 			define( 'MW_DB', $bits[0] );
 			define( 'MW_PREFIX', $bits[1] ?? '' );
+			define( 'MW_WIKI_NAME', $wikiName );
 		}
 
 		if ( !is_readable( $settingsFile ) ) {

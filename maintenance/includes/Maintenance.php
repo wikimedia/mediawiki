@@ -1304,9 +1304,11 @@ abstract class Maintenance {
 		$settingsFile = wfDetectLocalSettingsFile( $IP );
 
 		if ( isset( $this->mOptions['wiki'] ) ) {
-			$bits = explode( '-', $this->mOptions['wiki'], 2 );
+			$wikiName = $this->mOptions['wiki'];
+			$bits = explode( '-', $wikiName, 2 );
 			define( 'MW_DB', $bits[0] );
 			define( 'MW_PREFIX', $bits[1] ?? '' );
+			define( 'MW_WIKI_NAME', $wikiName );
 		} elseif ( isset( $this->mOptions['server'] ) ) {
 			// Provide the option for site admins to detect and configure
 			// multiple wikis based on server names. This offers --server

@@ -252,10 +252,17 @@ class WebRequest {
 	 * Work out an appropriate URL prefix containing scheme and host, based on
 	 * information detected from $_SERVER
 	 *
+	 * @param bool|null $assumeProxiesUseDefaultProtocolPorts When the wiki is running behind a proxy
+	 * and this is set to true, assumes that the proxy exposes the wiki on the standard ports
+	 * (443 for https and 80 for http). Added in 1.38. Calls without this argument are
+	 * supported for backwards compatibility but deprecated.
+	 *
 	 * @return string
 	 */
-	public static function detectServer() {
-		global $wgAssumeProxiesUseDefaultProtocolPorts;
+	public static function detectServer( $assumeProxiesUseDefaultProtocolPorts = null ) {
+		if ( $assumeProxiesUseDefaultProtocolPorts === null ) {
+			$assumeProxiesUseDefaultProtocolPorts = $GLOBALS['wgAssumeProxiesUseDefaultProtocolPorts'];
+		}
 
 		$proto = self::detectProtocol();
 		$stdPort = $proto === 'https' ? 443 : 80;
@@ -275,7 +282,7 @@ class WebRequest {
 			}
 
 			$host = $parts[0];
-			if ( $wgAssumeProxiesUseDefaultProtocolPorts && isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) {
+			if ( $assumeProxiesUseDefaultProtocolPorts && isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) {
 				// T72021: Assume that upstream proxy is running on the default
 				// port based on the protocol. We have no reliable way to determine
 				// the actual port in use upstream.
