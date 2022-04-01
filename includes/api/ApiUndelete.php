@@ -111,7 +111,7 @@ class ApiUndelete extends ApiBase {
 			// in case there are warnings
 			$this->addMessagesFromStatus( $status );
 		} else {
-			$this->dieWithError( $status );
+			$this->dieStatus( $status );
 		}
 
 		$restoredRevs = $status->getValue()[UndeletePage::REVISIONS_RESTORED];
