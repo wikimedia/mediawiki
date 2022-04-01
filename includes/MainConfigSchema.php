@@ -10228,6 +10228,9 @@ class MainConfigSchema {
 	 * configuration files. Setting this will enable multi-tenant ("wiki farm")
 	 * mode, causing site-specific settings to be loaded based on information from
 	 * the web request.
+	 *
+	 * @unstable
+	 * @since 1.38
 	 */
 	public const WikiFarmSettingsDirectory = [
 		'default' => null
@@ -10237,6 +10240,9 @@ class MainConfigSchema {
 	 * EXPERIMENTAL: The file extension to be used when looking up
 	 * site-specific settings files in $wgWikiFarmSettingsDirectory, such as 'json'
 	 * or 'yaml'.
+	 *
+	 * @unstable
+	 * @since 1.38
 	 */
 	public const WikiFarmSettingsExtension = [
 		'default' => 'yaml'
@@ -10253,6 +10259,9 @@ class MainConfigSchema {
 	 * the settings file that holds site specific configuration for the requested site.
 	 *
 	 * Note that the global $wgRequest is not yet available when this callback is called.
+	 *
+	 * @unstable
+	 * @since 1.38
 	 */
 	public const WikiFarmSiteDetector = [
 		'default' => null
