@@ -40,6 +40,7 @@ class ReflectionSchemaSource implements SettingsSource {
 	 */
 	public function load(): array {
 		$schemas = [];
+		$jsonTypeHelper = new JsonTypeHelper();
 
 		try {
 			$class = new ReflectionClass( $this->class );
@@ -49,20 +50,22 @@ class ReflectionSchemaSource implements SettingsSource {
 				}
 
 				$name = $const->getName();
-				$value = $const->getValue();
+				$schema = $const->getValue();
 
-				if ( !is_array( $value ) ) {
+				if ( !is_array( $schema ) ) {
 					continue;
 				}
 
 				if ( $this->includeDoc ) {
 					$doc = $const->getDocComment();
 					if ( $doc ) {
-						$value['description'] = $this->normalizeComment( $doc );
+						$schema['description'] = $this->normalizeComment( $doc );
 					}
 				}
 
-				$schemas[ $name ] = $value;
+				$schema = $jsonTypeHelper->normalizeJsonSchema( $schema );
+
+				$schemas[ $name ] = $schema;
 			}
 		} catch ( ReflectionException $e ) {
 			throw new SettingsBuilderException(

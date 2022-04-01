@@ -11,27 +11,55 @@ use PHPUnit\Framework\TestCase;
  */
 class ReflectionSchemaSourceTest extends TestCase {
 
-	public const TEST_SCHEMA = [
+	private const NOT_PUBLIC = [
 		'type' => 'object'
 	];
 
-	private const TEST_PRIVATE = [
-		'type' => 'object'
+	public const NOT_A_SCHEMA = 'test';
+
+	public const TEST_INTEGER = [
+		'type' => 'integer',
+		'default' => 7
 	];
 
-	public const TEST_STRING = 'test';
+	public const TEST_MAP_TYPE = [
+		'type' => '?dict',
+		'additionalProperties' => [
+			'type' => 'string|list',
+			'items' => [
+				'type' => 'float',
+			]
+		]
+	];
 
 	public function testLoad() {
 		$source = new ReflectionSchemaSource( self::class );
 		$settings = $source->load();
 
 		$this->assertArrayHasKey( 'config-schema', $settings );
-		$this->assertArrayHasKey( 'TEST_SCHEMA', $settings['config-schema'] );
-		$this->assertArrayHasKey( 'type', $settings['config-schema']['TEST_SCHEMA'] );
-		$this->assertSame( 'object', $settings['config-schema']['TEST_SCHEMA']['type'] );
+		$schemas = $settings['config-schema'];
 
-		$this->assertArrayNotHasKey( 'TEST_PRIVATE', $settings['config-schema'] );
-		$this->assertArrayNotHasKey( 'TEST_STRING', $settings['config-schema'] );
+		$this->assertArrayNotHasKey( 'NOT_PUBLIC', $schemas );
+		$this->assertArrayNotHasKey( 'NOT_A_SCHEMA', $schemas );
+
+		$this->assertArrayHasKey( 'TEST_INTEGER', $schemas );
+		$this->assertArrayHasKey( 'type', $schemas['TEST_INTEGER'] );
+		$this->assertSame( 'integer', $schemas['TEST_INTEGER']['type'] );
+
+		$this->assertArrayHasKey( 'TEST_MAP_TYPE', $schemas );
+		$this->assertArrayHasKey( 'additionalProperties', $schemas['TEST_MAP_TYPE'] );
+		$this->assertSame(
+			[ 'object', 'null' ],
+			$schemas['TEST_MAP_TYPE']['type']
+		);
+		$this->assertSame(
+			[ 'string', 'array' ],
+			$schemas['TEST_MAP_TYPE']['additionalProperties']['type']
+		);
+		$this->assertSame(
+			'number',
+			$schemas['TEST_MAP_TYPE']['additionalProperties']['items']['type']
+		);
 	}
 
 	public function testLoadInvalidClass() {

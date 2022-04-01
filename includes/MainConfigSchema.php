@@ -87,8 +87,10 @@ use WinCacheBagOStuff;
  *
  * The following JSON schema keys are used by MediaWiki:
  * - default: the configuration variable's default value.
- * - type: identifies the allowed value type or types. Note that these are JSON types,
- *         not PHP types. Use 'array' for lists and 'object' for associative arrays.
+ * - type: identifies the allowed value type or types. In addition to JSON Schema types,
+ *         PHPDoc style type definitions are supported for convenience.
+ *         Note that 'array' must not be used for associative arrays.
+ *         To avoid confusion, use 'list' for sequential arrays and 'map' for associative arrays.
  *
  * The following additional keys are used by MediaWiki:
  * - mergeStrategy: see the {@link MediaWiki\Settings\Config\MergeStrategy}.
@@ -109,7 +111,7 @@ class MainConfigSchema {
 		'default' => [
 			'main' => 'GlobalVarConfig::newInstance',
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -323,7 +325,7 @@ class MainConfigSchema {
 	 */
 	public const ExtensionDirectory = [
 		'default' => null,
-		'type' => [ 'null', 'string', ],
+		'type' => '?string',
 	];
 
 	/**
@@ -335,7 +337,7 @@ class MainConfigSchema {
 	 */
 	public const StyleDirectory = [
 		'default' => null,
-		'type' => [ 'null', 'string', ],
+		'type' => '?string',
 	];
 
 	/**
@@ -476,7 +478,7 @@ class MainConfigSchema {
 	 */
 	public const Logos = [
 		'default' => false,
-		'type' => [ 'object', 'boolean', ],
+		'type' => 'map|false',
 	];
 
 	/**
@@ -510,7 +512,7 @@ class MainConfigSchema {
 	 */
 	public const LogoHD = [
 		'default' => false,
-		'type' => [ 'object', 'boolean', ],
+		'type' => 'map|false',
 	];
 
 	/**
@@ -553,7 +555,7 @@ class MainConfigSchema {
 	 */
 	public const ReferrerPolicy = [
 		'default' => false,
-		'type' => [ 'array', 'string', 'boolean', ],
+		'type' => 'list|string|false',
 	];
 
 	/**
@@ -623,7 +625,7 @@ class MainConfigSchema {
 	 */
 	public const ActionPaths = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -727,7 +729,7 @@ class MainConfigSchema {
 	 */
 	public const ImgAuthUrlPathMap = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -866,7 +868,7 @@ class MainConfigSchema {
 	 */
 	public const LocalFileRepo = [
 		'default' => false,
-		'type' => [ 'object', 'boolean', ],
+		'type' => 'map|false',
 	];
 
 	/**
@@ -884,7 +886,7 @@ class MainConfigSchema {
 	 */
 	public const ForeignFileRepos = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -941,7 +943,7 @@ class MainConfigSchema {
 	 */
 	public const SharedUploadDirectory = [
 		'default' => null,
-		'type' => [ 'string', 'null', ],
+		'type' => '?string',
 	];
 
 	/**
@@ -953,7 +955,7 @@ class MainConfigSchema {
 	 */
 	public const SharedUploadPath = [
 		'default' => null,
-		'type' => [ 'string', 'null', ],
+		'type' => '?string',
 	];
 
 	/**
@@ -1001,7 +1003,7 @@ class MainConfigSchema {
 	 */
 	public const SharedUploadDBname = [
 		'default' => false,
-		'type' => [ 'boolean', 'string', ],
+		'type' => 'false|string',
 	];
 
 	/**
@@ -1040,7 +1042,7 @@ class MainConfigSchema {
 	 */
 	public const ForeignUploadTargets = [
 		'default' => [ 'local', ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -1080,7 +1082,7 @@ class MainConfigSchema {
 						'uncategorized' => '',
 					],
 			],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -1121,7 +1123,7 @@ class MainConfigSchema {
 	 */
 	public const FileBackends = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -1137,7 +1139,7 @@ class MainConfigSchema {
 	 */
 	public const LockManagers = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -1183,7 +1185,7 @@ class MainConfigSchema {
 	 */
 	public const CopyUploadsDomains = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -1214,7 +1216,7 @@ class MainConfigSchema {
 	 */
 	public const CopyUploadTimeout = [
 		'default' => false,
-		'type' => [ 'boolean', 'integer', ],
+		'type' => 'false|integer',
 	];
 
 	/**
@@ -1319,7 +1321,7 @@ class MainConfigSchema {
 	 */
 	public const SharedThumbnailScriptPath = [
 		'default' => false,
-		'type' => [ 'string', 'boolean', ],
+		'type' => 'string|false',
 	];
 
 	/**
@@ -1342,7 +1344,7 @@ class MainConfigSchema {
 	 */
 	public const FileExtensions = [
 		'default' => [ 'png', 'gif', 'jpg', 'jpeg', 'webp', ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -1364,7 +1366,7 @@ class MainConfigSchema {
 			# May contain harmful executables for Windows victims
 			'exe', 'scr', 'dll', 'msi', 'vbs', 'bat', 'com', 'pif', 'cmd', 'vxd', 'cpl'
 		],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -1388,7 +1390,7 @@ class MainConfigSchema {
 			# Windows metafile, client-side vulnerability on some systems
 			'application/x-msmetafile',
 		],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -1457,7 +1459,7 @@ class MainConfigSchema {
 			"application/pdf", // PDF files
 			# "application/x-shockwave-flash", //flash/shockwave movie
 		],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -1470,7 +1472,7 @@ class MainConfigSchema {
 	 */
 	public const MediaHandlers = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -1501,7 +1503,7 @@ class MainConfigSchema {
 			'image/svg+xml' => 'MockSvgHandler',
 			'image/vnd.djvu' => 'MockDjVuHandler',
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -1540,7 +1542,7 @@ class MainConfigSchema {
 	 */
 	public const MaxInterlacingAreas = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -1661,7 +1663,7 @@ class MainConfigSchema {
 			'imgserv' => '$path/imgserv-wrapper -i svg -o png -w$width $input $output',
 			'ImagickExt' => [ 'SvgHandler::rasterizeImagickExt', ],
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -1726,7 +1728,7 @@ class MainConfigSchema {
 	 */
 	public const MaxImageArea = [
 		'default' => 12500000,
-		'type' => [ 'string', 'integer', 'boolean', ],
+		'type' => 'string|integer|false',
 	];
 
 	/**
@@ -1758,7 +1760,7 @@ class MainConfigSchema {
 	 */
 	public const TiffThumbnailType = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 		'mergeStrategy' => 'replace',
 	];
 
@@ -1838,7 +1840,7 @@ class MainConfigSchema {
 	 */
 	public const EnableAutoRotation = [
 		'default' => null,
-		'type' => [ 'null', 'boolean', ],
+		'type' => '?boolean',
 	];
 
 	/**
@@ -1848,7 +1850,7 @@ class MainConfigSchema {
 	 */
 	public const Antivirus = [
 		'default' => null,
-		'type' => [ 'null', 'string', ],
+		'type' => '?string',
 	];
 
 	/**
@@ -1900,7 +1902,7 @@ class MainConfigSchema {
 				'messagepattern' => '/.*?:(.*)/sim',
 			],
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -1968,7 +1970,7 @@ class MainConfigSchema {
 	 */
 	public const MimeDetectorCommand = [
 		'default' => null,
-		'type' => [ 'null', 'string', ],
+		'type' => '?string',
 	];
 
 	/**
@@ -1993,7 +1995,7 @@ class MainConfigSchema {
 			'http://www.w3.org/1999/xhtml:html' => 'text/html',
 			'html' => 'text/html',
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -2015,7 +2017,7 @@ class MainConfigSchema {
 			[ 1280, 1024 ],
 			[ 2560, 2048 ],
 		],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -2032,7 +2034,7 @@ class MainConfigSchema {
 			250,
 			300
 		],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -2047,7 +2049,7 @@ class MainConfigSchema {
 	 */
 	public const ThumbnailBuckets = [
 		'default' => null,
-		'type' => [ 'null', 'array', ],
+		'type' => '?list',
 	];
 
 	/**
@@ -2080,7 +2082,7 @@ class MainConfigSchema {
 	 */
 	public const UploadThumbnailRenderMap = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -2146,7 +2148,7 @@ class MainConfigSchema {
 	 */
 	public const GalleryOptions = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -2198,7 +2200,7 @@ class MainConfigSchema {
 	 */
 	public const DjvuDump = [
 		'default' => null,
-		'type' => [ 'null', 'string', ],
+		'type' => '?string',
 	];
 
 	/**
@@ -2208,7 +2210,7 @@ class MainConfigSchema {
 	 */
 	public const DjvuRenderer = [
 		'default' => null,
-		'type' => [ 'null', 'string', ],
+		'type' => '?string',
 	];
 
 	/**
@@ -2218,7 +2220,7 @@ class MainConfigSchema {
 	 */
 	public const DjvuTxt = [
 		'default' => null,
-		'type' => [ 'null', 'string', ],
+		'type' => '?string',
 	];
 
 	/**
@@ -2228,7 +2230,7 @@ class MainConfigSchema {
 	 */
 	public const DjvuPostProcessor = [
 		'default' => 'pnmtojpeg',
-		'type' => [ 'null', 'string', ],
+		'type' => '?string',
 	];
 
 	/**
@@ -2385,7 +2387,7 @@ class MainConfigSchema {
 	 */
 	public const SMTP = [
 		'default' => false,
-		'type' => [ 'boolean', 'object' ],
+		'type' => 'false|map',
 	];
 
 	/**
@@ -2511,7 +2513,7 @@ class MainConfigSchema {
 	 */
 	public const UsersNotifiedOnAllChanges = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	// endregion -- end of email settings
@@ -2542,7 +2544,7 @@ class MainConfigSchema {
 	 */
 	public const DBmwschema = [
 		'default' => null,
-		'type' => [ 'null', 'string', ],
+		'type' => '?string',
 	];
 
 	/**
@@ -2742,7 +2744,7 @@ class MainConfigSchema {
 			'user',
 			'user_properties',
 		],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -2808,7 +2810,7 @@ class MainConfigSchema {
 	 */
 	public const DBservers = [
 		'default' => false,
-		'type' => [ 'boolean', 'array', ],
+		'type' => 'false|list',
 	];
 
 	/**
@@ -2826,7 +2828,7 @@ class MainConfigSchema {
 		'default' => [
 			'class' => 'Wikimedia\\Rdbms\\LBFactorySimple',
 		],
-		'type' => 'object',
+		'type' => 'map',
 		'mergeStrategy' => 'replace',
 	];
 
@@ -2891,7 +2893,7 @@ class MainConfigSchema {
 	 */
 	public const LocalDatabases = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 		'items' => [ 'type' => 'string', ],
 	];
 
@@ -3021,7 +3023,7 @@ class MainConfigSchema {
 				// fallback for unknown models, from imports or extensions that were removed
 				CONTENT_MODEL_UNKNOWN => FallbackContentHandler::class,
 			],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -3037,7 +3039,7 @@ class MainConfigSchema {
 	 */
 	public const NamespaceContentModels = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -3070,7 +3072,7 @@ class MainConfigSchema {
 			CONTENT_MODEL_JAVASCRIPT, // Make categories etc work, people put them into comments.
 			CONTENT_MODEL_CSS, // Make categories etc work, people put them into comments.
 		],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -3094,7 +3096,7 @@ class MainConfigSchema {
 	 */
 	public const ExternalStores = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -3118,7 +3120,7 @@ class MainConfigSchema {
 	 */
 	public const ExternalServers = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -3135,7 +3137,7 @@ class MainConfigSchema {
 	 */
 	public const DefaultExternalStore = [
 		'default' => false,
-		'type' => [ 'array', 'boolean', ],
+		'type' => 'list|false',
 	];
 
 	/**
@@ -3174,7 +3176,7 @@ class MainConfigSchema {
 	 */
 	public const DiffEngine = [
 		'default' => null,
-		'type' => [ 'string', 'null', ],
+		'type' => '?string',
 	];
 
 	/**
@@ -3182,7 +3184,7 @@ class MainConfigSchema {
 	 */
 	public const ExternalDiffEngine = [
 		'default' => false,
-		'type' => [ 'string', 'boolean', ],
+		'type' => 'string|false',
 	];
 
 	// endregion -- end of Content handlers and storage
@@ -3202,7 +3204,7 @@ class MainConfigSchema {
 	 */
 	public const RequestTimeLimit = [
 		'default' => null,
-		'type' => [ 'integer', 'null', ],
+		'type' => '?integer',
 	];
 
 	/**
@@ -3234,7 +3236,7 @@ class MainConfigSchema {
 	 */
 	public const CriticalSectionTimeLimit = [
 		'default' => 180.0,
-		'type' => 'number',
+		'type' => 'float',
 	];
 
 	/**
@@ -3331,7 +3333,7 @@ class MainConfigSchema {
 	 */
 	public const PoolCounterConf = [
 		'default' => null,
-		'type' => [ 'null', 'object', ],
+		'type' => '?map',
 	];
 
 	/**
@@ -3343,7 +3345,7 @@ class MainConfigSchema {
 	 */
 	public const MaxUserDBWriteDuration = [
 		'default' => false,
-		'type' => [ 'integer', 'boolean', ],
+		'type' => 'integer|false',
 	];
 
 	/**
@@ -3355,7 +3357,7 @@ class MainConfigSchema {
 	 */
 	public const MaxJobDBWriteDuration = [
 		'default' => false,
-		'type' => [ 'integer', 'boolean', ],
+		'type' => 'integer|false',
 	];
 
 	/**
@@ -3523,7 +3525,7 @@ class MainConfigSchema {
 			'apcu' => [ 'class' => APCUBagOStuff::class, 'reportDupes' => false ],
 			'wincache' => [ 'class' => WinCacheBagOStuff::class, 'reportDupes' => false ],
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -3550,7 +3552,7 @@ class MainConfigSchema {
 	 */
 	public const MainWANCache = [
 		'default' => false,
-		'type' => [ 'integer', 'string', 'boolean', ],
+		'type' => 'integer|string|false',
 	];
 
 	/**
@@ -3586,7 +3588,7 @@ class MainConfigSchema {
 				'cacheId' => CACHE_NONE,
 			]
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -3653,7 +3655,7 @@ class MainConfigSchema {
 	 */
 	public const ChronologyProtectorStash = [
 		'default' => null,
-		'type' => [ 'string', 'null', ],
+		'type' => '?string',
 	];
 
 	/**
@@ -3707,7 +3709,7 @@ class MainConfigSchema {
 	 */
 	public const SuspiciousIpExpiry = [
 		'default' => false,
-		'type' => [ 'integer', 'boolean', ],
+		'type' => 'integer|false',
 	];
 
 	/**
@@ -3724,7 +3726,7 @@ class MainConfigSchema {
 	 */
 	public const MemCachedServers = [
 		'default' => [ '127.0.0.1:11211', ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -3809,7 +3811,7 @@ class MainConfigSchema {
 			'forceRecache' => false,
 			'manualRecache' => false,
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -3935,7 +3937,7 @@ class MainConfigSchema {
 	 */
 	public const ExtensionInfoMTime = [
 		'default' => false,
-		'type' => [ 'integer', 'boolean', ],
+		'type' => 'integer|false',
 	];
 
 	/**
@@ -4101,7 +4103,7 @@ class MainConfigSchema {
 	 */
 	public const CdnServers = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -4114,7 +4116,7 @@ class MainConfigSchema {
 	 */
 	public const CdnServersNoPurge = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -4191,7 +4193,7 @@ class MainConfigSchema {
 	 */
 	public const HTCPRouting = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -4249,7 +4251,7 @@ class MainConfigSchema {
 	 */
 	public const GrammarForms = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -4282,7 +4284,7 @@ class MainConfigSchema {
 	 */
 	public const ExtraInterlanguageLinkPrefixes = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -4294,7 +4296,7 @@ class MainConfigSchema {
 	 */
 	public const InterlanguageLinkCodeMap = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -4302,7 +4304,7 @@ class MainConfigSchema {
 	 */
 	public const ExtraLanguageNames = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -4325,7 +4327,7 @@ class MainConfigSchema {
 			'no' => 'nb',
 			'simple' => 'en',
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -4336,7 +4338,7 @@ class MainConfigSchema {
 	 */
 	public const DummyLanguageCodes = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -4453,7 +4455,7 @@ class MainConfigSchema {
 	 */
 	public const DisabledVariants = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -4509,7 +4511,7 @@ class MainConfigSchema {
 	 */
 	public const ForceUIMsgAsContentMsg = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -4532,7 +4534,7 @@ class MainConfigSchema {
 			'feedback-terms',
 			'feedback-termsofuse',
 		],
-		'type' => 'array',
+		'type' => 'list',
 		'items' => [ 'type' => 'string', ],
 	];
 
@@ -4588,7 +4590,7 @@ class MainConfigSchema {
 	 */
 	public const OverrideUcfirstCharacters = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	// endregion -- End of language/charset settings
@@ -4671,7 +4673,7 @@ class MainConfigSchema {
 	 */
 	public const XhtmlNamespaces = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -4712,7 +4714,7 @@ class MainConfigSchema {
 	 */
 	public const SkinMetaTags = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -4744,7 +4746,7 @@ class MainConfigSchema {
 	 */
 	public const SkipSkins = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -4785,7 +4787,7 @@ class MainConfigSchema {
 	 */
 	public const FragmentMode = [
 		'default' => [ 'html5', 'legacy', ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -4847,7 +4849,7 @@ class MainConfigSchema {
 				]
 			],
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -5247,7 +5249,7 @@ class MainConfigSchema {
 	 */
 	public const ResourceModules = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -5346,7 +5348,7 @@ class MainConfigSchema {
 	 */
 	public const ResourceModuleSkinStyles = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -5362,7 +5364,7 @@ class MainConfigSchema {
 	 */
 	public const ResourceLoaderSources = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -5396,7 +5398,7 @@ class MainConfigSchema {
 			'versioned' => 30 * 24 * 60 * 60, // 30 days
 			'unversioned' => 5 * 60, // 5 minutes
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -5441,7 +5443,7 @@ class MainConfigSchema {
 	 */
 	public const ResourceLoaderMaxQueryLength = [
 		'default' => false,
-		'type' => [ 'integer', 'boolean', ],
+		'type' => 'integer|false',
 	];
 
 	/**
@@ -5547,7 +5549,7 @@ class MainConfigSchema {
 	 */
 	public const CanonicalNamespaceNames = [
 		'default' => NamespaceInfo::CANONICAL_NAMES,
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -5578,7 +5580,7 @@ class MainConfigSchema {
 	 */
 	public const ExtraNamespaces = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -5591,7 +5593,7 @@ class MainConfigSchema {
 	 */
 	public const ExtraGenderNamespaces = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -5618,7 +5620,7 @@ class MainConfigSchema {
 	 */
 	public const NamespaceAliases = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -5676,7 +5678,7 @@ class MainConfigSchema {
 	 */
 	public const CapitalLinkOverrides = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -5699,7 +5701,7 @@ class MainConfigSchema {
 			NS_HELP_TALK => true,
 			NS_CATEGORY_TALK => true
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -5710,7 +5712,7 @@ class MainConfigSchema {
 	 */
 	public const ContentNamespaces = [
 		'default' => [ NS_MAIN ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -5723,7 +5725,7 @@ class MainConfigSchema {
 	 */
 	public const ShortPagesNamespaceExclusions = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -5736,7 +5738,7 @@ class MainConfigSchema {
 	 */
 	public const ExtraSignatureNamespaces = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -5762,7 +5764,7 @@ class MainConfigSchema {
 	 */
 	public const InvalidRedirectTargets = [
 		'default' => [ 'Filepath', 'Mypage', 'Mytalk', 'Redirect' ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -5812,7 +5814,7 @@ class MainConfigSchema {
 	 */
 	public const InterwikiPrefixDisplayTypes = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -5823,7 +5825,7 @@ class MainConfigSchema {
 	 */
 	public const LocalInterwikis = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -5851,7 +5853,7 @@ class MainConfigSchema {
 	 */
 	public const InterwikiCache = [
 		'default' => false,
-		'type' => [ 'boolean', 'object', 'string', ],
+		'type' => 'false|map|string',
 		'mergeStrategy' => 'replace',
 	];
 
@@ -5900,7 +5902,7 @@ class MainConfigSchema {
 	 */
 	public const SiteTypes = [
 		'default' => [ 'mediawiki' => MediaWikiSite::class, ],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	// endregion -- Interwiki links and sites
@@ -5961,7 +5963,7 @@ class MainConfigSchema {
 			'nntp://', 'redis://', 'sftp://', 'sip:', 'sips:', 'sms:', 'ssh://',
 			'svn://', 'tel:', 'telnet://', 'urn:', 'worldwind://', 'xmpp:', '//'
 		],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -6046,7 +6048,7 @@ class MainConfigSchema {
 	 */
 	public const TidyConfig = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -6061,7 +6063,7 @@ class MainConfigSchema {
 		'default' => [
 			'useSelser' => true,
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -6127,7 +6129,7 @@ class MainConfigSchema {
 	 */
 	public const NoFollowNsExceptions = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -6145,7 +6147,7 @@ class MainConfigSchema {
 	 */
 	public const NoFollowDomainExceptions = [
 		'default' => [ 'mediawiki.org', ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -6216,7 +6218,7 @@ class MainConfigSchema {
 			'PMID' => false,
 			'RFC' => false,
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	// endregion -- end of parser settings
@@ -6362,7 +6364,7 @@ class MainConfigSchema {
 				]
 			]
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -6478,7 +6480,7 @@ class MainConfigSchema {
 				'PasswordNotInCommonList' => 'PasswordPolicyChecks::checkPasswordNotInCommonList',
 			],
 		],
-		'type' => 'object',
+		'type' => 'map',
 		'mergeStrategy' => 'array_replace_recursive',
 	];
 
@@ -6503,7 +6505,7 @@ class MainConfigSchema {
 	 */
 	public const AuthManagerConfig = [
 		'default' => null,
-		'type' => [ 'object', 'null', ],
+		'type' => '?map',
 	];
 
 	/**
@@ -6575,7 +6577,7 @@ class MainConfigSchema {
 				],
 			],
 		],
-		'type' => 'object',
+		'type' => 'map',
 		'mergeStrategy' => 'array_plus_2d',
 	];
 
@@ -6633,7 +6635,7 @@ class MainConfigSchema {
 	 */
 	public const ReauthenticateTime = [
 		'default' => [ 'default' => 300, ],
-		'type' => 'object',
+		'type' => 'map',
 		'additionalProperties' => [ 'type' => 'integer', ],
 	];
 
@@ -6653,7 +6655,7 @@ class MainConfigSchema {
 	 */
 	public const AllowSecuritySensitiveOperationIfCannotReauthenticate = [
 		'default' => [ 'default' => true, ],
-		'type' => 'object',
+		'type' => 'map',
 		'additionalProperties' => [ 'type' => 'boolean', ],
 	];
 
@@ -6671,7 +6673,7 @@ class MainConfigSchema {
 		'default' => [
 			\MediaWiki\Auth\TemporaryPasswordAuthenticationRequest::class,
 		],
-		'type' => 'array',
+		'type' => 'list',
 		'items' => [ 'type' => 'string', ],
 	];
 
@@ -6689,7 +6691,7 @@ class MainConfigSchema {
 		'default' => [
 			\MediaWiki\Auth\PasswordAuthenticationRequest::class,
 		],
-		'type' => 'array',
+		'type' => 'list',
 		'items' => [ 'type' => 'string', ],
 	];
 
@@ -6811,7 +6813,7 @@ class MainConfigSchema {
 				// 'threads' => PASSWORD_ARGON2_DEFAULT_THREADS,
 			],
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -6825,7 +6827,7 @@ class MainConfigSchema {
 			'username' => true,
 			'email' => true,
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -6859,7 +6861,7 @@ class MainConfigSchema {
 	 */
 	public const SignatureAllowedLintErrors = [
 		'default' => [ 'obsolete-tag', ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -6891,7 +6893,7 @@ class MainConfigSchema {
 			'msg:spambot_username', // Used by cleanupSpam.php
 			'msg:autochange-username', // Used by anon category RC entries (parser functions, Lua & purges)
 		],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -6968,7 +6970,7 @@ class MainConfigSchema {
 				'requireemail' => 0,
 				'skin-responsive' => 1,
 			],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -6976,7 +6978,7 @@ class MainConfigSchema {
 	 */
 	public const HiddenPrefs = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -7025,7 +7027,7 @@ class MainConfigSchema {
 	 */
 	public const AuthenticationTokenVersion = [
 		'default' => null,
-		'type' => [ 'string', 'null', ],
+		'type' => '?string',
 	];
 
 	/**
@@ -7037,7 +7039,7 @@ class MainConfigSchema {
 	 * @since 1.27
 	 */
 	public const SessionProviders = [
-		'type' => 'array',
+		'type' => 'list',
 		'ignoreKeys' => true,
 		'default' => [
 			\MediaWiki\Session\CookieSessionProvider::class => [
@@ -7110,7 +7112,7 @@ class MainConfigSchema {
 			'IPv4' => 16,
 			'IPv6' => 19,
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -7229,9 +7231,9 @@ class MainConfigSchema {
 	 * This replaces $wgWhitelistAccount and $wgWhitelistEdit
 	 */
 	public const GroupPermissions = [
-		'type' => 'object',
+		'type' => 'map',
 		'additionalProperties' => [
-			'type' => 'object',
+			'type' => 'map',
 			'additionalProperties' => [ 'type' => 'boolean', ],
 		],
 		'mergeStrategy' => 'array_plus_2d',
@@ -7364,7 +7366,7 @@ class MainConfigSchema {
 	 */
 	public const RevokePermissions = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 		'mergeStrategy' => 'array_plus_2d',
 	];
 
@@ -7389,7 +7391,7 @@ class MainConfigSchema {
 	 */
 	public const GroupInheritsPermissions = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 		'items' => [ 'type' => 'string', ],
 	];
 
@@ -7398,7 +7400,7 @@ class MainConfigSchema {
 	 */
 	public const ImplicitGroups = [
 		'default' => [ '*', 'user', 'autoconfirmed' ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -7427,7 +7429,7 @@ class MainConfigSchema {
 	 */
 	public const GroupsAddToSelf = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -7435,7 +7437,7 @@ class MainConfigSchema {
 	 */
 	public const GroupsRemoveFromSelf = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -7448,7 +7450,7 @@ class MainConfigSchema {
 	 */
 	public const RestrictionTypes = [
 		'default' => [ 'create', 'edit', 'move', 'upload' ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -7464,7 +7466,7 @@ class MainConfigSchema {
 	 */
 	public const RestrictionLevels = [
 		'default' => [ '', 'autoconfirmed', 'sysop' ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -7478,7 +7480,7 @@ class MainConfigSchema {
 	 */
 	public const CascadingRestrictionLevels = [
 		'default' => [ 'sysop', ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -7495,7 +7497,7 @@ class MainConfigSchema {
 	 */
 	public const SemiprotectedRestrictionLevels = [
 		'default' => [ 'autoconfirmed', ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -7507,7 +7509,7 @@ class MainConfigSchema {
 	 */
 	public const NamespaceProtection = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -7521,7 +7523,7 @@ class MainConfigSchema {
 	 */
 	public const NonincludableNamespaces = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -7630,7 +7632,7 @@ class MainConfigSchema {
 					[ APCOND_AGE, null ], // NOTE: null means AutoConfirmAge
 				],
 			],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -7655,7 +7657,7 @@ class MainConfigSchema {
 	 */
 	public const AutopromoteOnce = [
 		'default' => [ 'onEdit' => [], ],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -7698,7 +7700,7 @@ class MainConfigSchema {
 	 */
 	public const AddGroups = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -7706,7 +7708,7 @@ class MainConfigSchema {
 	 */
 	public const RemoveGroups = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -7716,7 +7718,7 @@ class MainConfigSchema {
 	 */
 	public const AvailableRights = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -7776,7 +7778,7 @@ class MainConfigSchema {
 			'count' => 0,
 			'seconds' => 86400,
 		] ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -7791,7 +7793,7 @@ class MainConfigSchema {
 	 */
 	public const SpamRegex = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -7799,7 +7801,7 @@ class MainConfigSchema {
 	 */
 	public const SummarySpamRegex = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -7838,7 +7840,7 @@ class MainConfigSchema {
 	 */
 	public const DnsBlacklistUrls = [
 		'default' => [ 'http.dnsbl.sorbs.net.', ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -7851,7 +7853,7 @@ class MainConfigSchema {
 	 */
 	public const ProxyList = [
 		'default' => [],
-		'type' => [ 'string', 'array', ],
+		'type' => 'string|list',
 	];
 
 	/**
@@ -7860,7 +7862,7 @@ class MainConfigSchema {
 	 */
 	public const ProxyWhitelist = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -7872,7 +7874,7 @@ class MainConfigSchema {
 	 */
 	public const SoftBlockRanges = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 		'items' => [ 'type' => 'string', ],
 	];
 
@@ -8004,7 +8006,7 @@ class MainConfigSchema {
 				'user' => [ 8, 60 ],
 			],
 		],
-		'type' => 'object',
+		'type' => 'map',
 		'mergeStrategy' => 'array_plus_2d',
 	];
 
@@ -8015,7 +8017,7 @@ class MainConfigSchema {
 	 */
 	public const RateLimitsExcludedIPs = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -8056,7 +8058,7 @@ class MainConfigSchema {
 			// out of their account, and someone doing a brute force attack.
 			[ 'count' => 150, 'seconds' => 60 * 60 * 48 ],
 		],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -8240,10 +8242,10 @@ class MainConfigSchema {
 					'mergehistory' => true,
 				],
 		],
-		'type' => 'object',
+		'type' => 'map',
 		'mergeStrategy' => 'array_plus_2d',
 		'additionalProperties' => [
-			'type' => 'object',
+			'type' => 'map',
 			'additionalProperties' => [ 'type' => 'boolean', ],
 		],
 	];
@@ -8290,7 +8292,7 @@ class MainConfigSchema {
 
 				'privateinfo'         => 'private-information',
 			],
-		'type' => 'object',
+		'type' => 'map',
 		'additionalProperties' => [ 'type' => 'string', ],
 	];
 
@@ -8309,7 +8311,7 @@ class MainConfigSchema {
 	 */
 	public const BotPasswordsCluster = [
 		'default' => false,
-		'type' => [ 'string', 'boolean', ],
+		'type' => 'string|false',
 	];
 
 	/**
@@ -8322,7 +8324,7 @@ class MainConfigSchema {
 	 */
 	public const BotPasswordsDatabase = [
 		'default' => false,
-		'type' => [ 'string', 'boolean', ],
+		'type' => 'string|false',
 	];
 
 	// endregion -- end of user rights settings
@@ -8435,7 +8437,7 @@ class MainConfigSchema {
 	 */
 	public const CSPHeader = [
 		'default' => false,
-		'type' => [ 'boolean', 'array' ],
+		'type' => 'false|list',
 	];
 
 	/**
@@ -8445,7 +8447,7 @@ class MainConfigSchema {
 	 */
 	public const CSPReportOnlyHeader = [
 		'default' => false,
-		'type' => [ 'boolean', 'array' ],
+		'type' => 'false|list',
 	];
 
 	/**
@@ -8475,7 +8477,7 @@ class MainConfigSchema {
 			'https://t.lkqd.net/t' => true,
 			'chrome-extension' => true,
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -8650,7 +8652,7 @@ class MainConfigSchema {
 	 */
 	public const CookieSameSite = [
 		'default' => null,
-		'type' => [ 'string', 'null', ],
+		'type' => '?string',
 	];
 
 	/**
@@ -8670,7 +8672,7 @@ class MainConfigSchema {
 	 */
 	public const CacheVaryCookies = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -8825,7 +8827,7 @@ class MainConfigSchema {
 				'maxAffected' => 1000
 			]
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -8862,7 +8864,7 @@ class MainConfigSchema {
 	 */
 	public const DebugLogGroups = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -8889,7 +8891,7 @@ class MainConfigSchema {
 	public const MWLoggerDefaultSpi = [
 		'default' => [ 'class' => 'MediaWiki\\Logger\\LegacySpi', ],
 		'mergeStrategy' => 'replace',
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -9036,7 +9038,7 @@ class MainConfigSchema {
 	 */
 	public const Profiler = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 		'mergeStrategy' => 'replace',
 	];
 
@@ -9075,7 +9077,7 @@ class MainConfigSchema {
 	 */
 	public const StatsdSamplingRates = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -9088,7 +9090,7 @@ class MainConfigSchema {
 	 */
 	public const MetricsTarget = [
 		'default' => null,
-		'type' => [ 'string', 'null', ],
+		'type' => '?string',
 	];
 
 	/**
@@ -9102,7 +9104,7 @@ class MainConfigSchema {
 	 */
 	public const MetricsFormat = [
 		'default' => null,
-		'type' => [ 'string', 'null', ],
+		'type' => '?string',
 	];
 
 	/**
@@ -9144,7 +9146,7 @@ class MainConfigSchema {
 	 */
 	public const ParserTestFiles = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -9231,7 +9233,7 @@ class MainConfigSchema {
 			'application/x-suggestions+json' => false,
 			'application/x-suggestions+xml' => false,
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -9287,7 +9289,7 @@ class MainConfigSchema {
 	 */
 	public const NamespacesToBeSearchedDefault = [
 		'default' => [ NS_MAIN => true, ],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -9326,7 +9328,7 @@ class MainConfigSchema {
 	 */
 	public const SitemapNamespaces = [
 		'default' => false,
-		'type' => [ 'boolean', 'array', ],
+		'type' => 'false|list',
 	];
 
 	/**
@@ -9347,7 +9349,7 @@ class MainConfigSchema {
 	 */
 	public const SitemapNamespacesPriorities = [
 		'default' => false,
-		'type' => [ 'boolean', 'object', ],
+		'type' => 'false|map',
 	];
 
 	/**
@@ -9371,7 +9373,7 @@ class MainConfigSchema {
 	 */
 	public const SpecialSearchFormOptions = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -9428,7 +9430,7 @@ class MainConfigSchema {
 		'default' => [
 			NS_CATEGORY => true
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -9535,7 +9537,7 @@ class MainConfigSchema {
 			'https://(?:[a-z0-9_]+@)?gerrit.wikimedia.org/r/(?:p/)?(.*)' => 'https://gerrit.wikimedia.org/g/%R/+/%H',
 			'ssh://(?:[a-z0-9_]+@)?gerrit.wikimedia.org:29418/(.*)' => 'https://gerrit.wikimedia.org/g/%R/+/%H',
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	// endregion -- End of maintenance
@@ -9594,7 +9596,7 @@ class MainConfigSchema {
 	 */
 	public const RCLinkLimits = [
 		'default' => [ 50, 100, 250, 500 ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -9605,7 +9607,7 @@ class MainConfigSchema {
 	 */
 	public const RCLinkDays = [
 		'default' => [ 1, 3, 7, 14, 30 ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -9673,7 +9675,7 @@ class MainConfigSchema {
 	 */
 	public const RCFeeds = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -9688,7 +9690,7 @@ class MainConfigSchema {
 			'redis' => RedisPubSubFeedEngine::class,
 			'udp' => UDPRCFeedEngine::class,
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -9805,7 +9807,7 @@ class MainConfigSchema {
 	 */
 	public const OverrideSiteFeed = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -9819,7 +9821,7 @@ class MainConfigSchema {
 			'rss' => 'RSSFeed',
 			'atom' => 'AtomFeed',
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -9828,7 +9830,7 @@ class MainConfigSchema {
 	 */
 	public const AdvertisedFeedTypes = [
 		'default' => [ 'atom', ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -9909,7 +9911,7 @@ class MainConfigSchema {
 			'mw-reverted' => true,
 			'mw-server-side-upload' => true,
 		],
-		'type' => 'object',
+		'type' => 'map',
 		'additionalProperties' => [ 'type' => 'boolean', ],
 	];
 
@@ -9978,7 +9980,7 @@ class MainConfigSchema {
 				'grouping' => 'any',
 			],
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -10003,7 +10005,7 @@ class MainConfigSchema {
 	 */
 	public const WatchlistPurgeRate = [
 		'default' => 0.1,
-		'type' => 'number',
+		'type' => 'float',
 	];
 
 	/**
@@ -10022,7 +10024,7 @@ class MainConfigSchema {
 	 */
 	public const WatchlistExpiryMaxDuration = [
 		'default' => '6 months',
-		'type' => [ 'string', 'null', ],
+		'type' => '?string',
 	];
 
 	// endregion -- end RC/watchlist
@@ -10129,7 +10131,7 @@ class MainConfigSchema {
 	 */
 	public const ImportSources = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -10270,7 +10272,7 @@ class MainConfigSchema {
 	 */
 	public const ExtensionFunctions = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -10302,7 +10304,7 @@ class MainConfigSchema {
 	 */
 	public const ExtensionMessagesFiles = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -10335,7 +10337,7 @@ class MainConfigSchema {
 	 */
 	public const MessagesDirs = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -10346,7 +10348,7 @@ class MainConfigSchema {
 	 */
 	public const ExtensionEntryPointListFiles = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -10367,7 +10369,7 @@ class MainConfigSchema {
 	 */
 	public const ParserOutputHooks = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -10404,7 +10406,7 @@ class MainConfigSchema {
 	 */
 	public const ValidSkinNames = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -10415,7 +10417,7 @@ class MainConfigSchema {
 	 */
 	public const SpecialPages = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -10490,7 +10492,7 @@ class MainConfigSchema {
 	 */
 	public const ExtensionCredits = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -10524,7 +10526,7 @@ class MainConfigSchema {
 	 */
 	public const Hooks = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 		'mergeStrategy' => 'array_merge_recursive',
 	];
 
@@ -10542,7 +10544,7 @@ class MainConfigSchema {
 	 */
 	public const ServiceWiringFiles = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -10581,7 +10583,7 @@ class MainConfigSchema {
 			'null' => NullJob::class,
 			'userEditCountInit' => UserEditCountInitJob::class,
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -10597,7 +10599,7 @@ class MainConfigSchema {
 	 */
 	public const JobTypesExcludedFromDefaultQueue = [
 		'default' => [ 'AssembleUploadChunks', 'PublishStashedFile' ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -10611,8 +10613,8 @@ class MainConfigSchema {
 	 */
 	public const JobBackoffThrottling = [
 		'default' => [],
-		'type' => 'array',
-		'items' => [ 'type' => 'number', ],
+		'type' => 'list',
+		'items' => [ 'type' => 'float', ],
 	];
 
 	/**
@@ -10630,7 +10632,7 @@ class MainConfigSchema {
 	 */
 	public const JobSerialCommitThreshold = [
 		'default' => false,
-		'type' => [ 'number', 'boolean', ],
+		'type' => 'float|false',
 	];
 
 	/**
@@ -10644,7 +10646,7 @@ class MainConfigSchema {
 		'default' => [
 			'default' => [ 'class' => JobQueueDB::class, 'order' => 'random', 'claimTTL' => 3600 ],
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -10672,7 +10674,7 @@ class MainConfigSchema {
 		'default' => [
 			'Statistics' => [ SiteStatsUpdate::class, 'cacheUpdate' ]
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -10685,7 +10687,7 @@ class MainConfigSchema {
 	 */
 	public const PagePropLinkInvalidations = [
 		'default' => [ 'hiddencat' => 'categorylinks', ],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	// endregion -- End extensions
@@ -10752,7 +10754,7 @@ class MainConfigSchema {
 	 */
 	public const TempCategoryCollations = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -10771,7 +10773,7 @@ class MainConfigSchema {
 	 */
 	public const TrackingCategories = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	// endregion -- End categories
@@ -10806,7 +10808,7 @@ class MainConfigSchema {
 			'managetags',
 			'contentmodel',
 		],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -10818,7 +10820,7 @@ class MainConfigSchema {
 	 */
 	public const LogRestrictions = [
 		'default' => [ 'suppress' => 'suppressionlog', ],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -10845,7 +10847,7 @@ class MainConfigSchema {
 			'tag' => true,
 			'newusers' => false,
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -10871,7 +10873,7 @@ class MainConfigSchema {
 			'merge' => 'mergelog',
 			'suppress' => 'suppressionlog',
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -10897,7 +10899,7 @@ class MainConfigSchema {
 			'suppress' => 'suppressionlogtext',
 			'upload' => 'uploadlogpagetext',
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -10908,7 +10910,7 @@ class MainConfigSchema {
 	 */
 	public const LogActions = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -10958,7 +10960,7 @@ class MainConfigSchema {
 			'upload/revert' => UploadLogFormatter::class,
 			'upload/upload' => UploadLogFormatter::class,
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -11031,7 +11033,7 @@ class MainConfigSchema {
 				'revert' => [ 'revert' ],
 			],
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -11100,7 +11102,7 @@ class MainConfigSchema {
 			'IPv4' => 16,
 			'IPv6' => 32,
 		],
-		'type' => 'object',
+		'type' => 'map',
 		'additionalProperties' => [ 'type' => 'integer', ],
 	];
 
@@ -11118,7 +11120,7 @@ class MainConfigSchema {
 	 */
 	public const Actions = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	// endregion -- end actions
@@ -11154,7 +11156,7 @@ class MainConfigSchema {
 	 */
 	public const NamespaceRobotPolicies = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -11188,7 +11190,7 @@ class MainConfigSchema {
 	 */
 	public const ArticleRobotPolicies = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -11204,7 +11206,7 @@ class MainConfigSchema {
 	 */
 	public const ExemptFromUserRobotsControl = [
 		'default' => null,
-		'type' => [ 'null', 'array', ],
+		'type' => '?list',
 	];
 
 	// endregion End robot policy
@@ -11268,7 +11270,7 @@ class MainConfigSchema {
 	 */
 	public const APIModules = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -11281,7 +11283,7 @@ class MainConfigSchema {
 	 */
 	public const APIFormatModules = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -11294,7 +11296,7 @@ class MainConfigSchema {
 	 */
 	public const APIMetaModules = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -11307,7 +11309,7 @@ class MainConfigSchema {
 	 */
 	public const APIPropModules = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -11320,7 +11322,7 @@ class MainConfigSchema {
 	 */
 	public const APIListModules = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -11382,7 +11384,7 @@ class MainConfigSchema {
 			'MIMEsearch',
 			'LinkSearch',
 		],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -11423,7 +11425,7 @@ class MainConfigSchema {
 	 */
 	public const CrossSiteAJAXdomains = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -11433,7 +11435,7 @@ class MainConfigSchema {
 	 */
 	public const CrossSiteAJAXdomainExceptions = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -11456,7 +11458,7 @@ class MainConfigSchema {
 			/* Allowing caching preflight requests, see T269636 */
 			'Access-Control-Max-Age',
 		],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -11466,7 +11468,7 @@ class MainConfigSchema {
 	 */
 	public const RestAPIAdditionalRouteFiles = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	// endregion -- End AJAX and API
@@ -11553,7 +11555,7 @@ class MainConfigSchema {
 	 */
 	public const ShellRestrictionMethod = [
 		'default' => 'autodetect',
-		'type' => [ 'string', 'boolean', ],
+		'type' => 'string|false',
 	];
 
 	/**
@@ -11578,9 +11580,9 @@ class MainConfigSchema {
 	 */
 	public const ShellboxUrls = [
 		'default' => [ 'default' => null, ],
-		'type' => 'object',
-		'additionalProperies' => [
-			'type' => [ 'string', 'boolean', 'null' ],
+		'type' => 'map',
+		'additionalProperties' => [
+			'type' => 'string|false|null',
 		],
 	];
 
@@ -11592,7 +11594,7 @@ class MainConfigSchema {
 	 */
 	public const ShellboxSecretKey = [
 		'default' => null,
-		'type' => [ 'string', 'null', ],
+		'type' => '?string',
 	];
 
 	// endregion -- end Shell and process control
@@ -11608,7 +11610,7 @@ class MainConfigSchema {
 	 */
 	public const HTTPTimeout = [
 		'default' => 25,
-		'type' => 'number',
+		'type' => 'float',
 	];
 
 	/**
@@ -11620,7 +11622,7 @@ class MainConfigSchema {
 	 */
 	public const HTTPConnectTimeout = [
 		'default' => 5.0,
-		'type' => 'number',
+		'type' => 'float',
 	];
 
 	/**
@@ -11632,7 +11634,7 @@ class MainConfigSchema {
 	 */
 	public const HTTPMaxTimeout = [
 		'default' => 0,
-		'type' => 'number',
+		'type' => 'float',
 	];
 
 	/**
@@ -11644,7 +11646,7 @@ class MainConfigSchema {
 	 */
 	public const HTTPMaxConnectTimeout = [
 		'default' => 0,
-		'type' => 'number',
+		'type' => 'float',
 	];
 
 	/**
@@ -11687,7 +11689,7 @@ class MainConfigSchema {
 	 */
 	public const LocalVirtualHosts = [
 		'default' => [],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -11703,7 +11705,7 @@ class MainConfigSchema {
 	 */
 	public const LocalHTTPProxy = [
 		'default' => false,
-		'type' => [ 'string', 'boolean', ],
+		'type' => 'string|false',
 	];
 
 	/**
@@ -11820,7 +11822,7 @@ class MainConfigSchema {
 			]
 		],
 		'mergeStrategy' => 'array_plus_2d',
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -11849,7 +11851,7 @@ class MainConfigSchema {
 		'default' => [
 			'default' => [ 'class' => EventRelayerNull::class, ],
 		],
-		'type' => 'object',
+		'type' => 'map',
 	];
 
 	/**
@@ -11881,7 +11883,7 @@ class MainConfigSchema {
 	 */
 	public const OriginTrials = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -11903,7 +11905,7 @@ class MainConfigSchema {
 	 */
 	public const PriorityHintsRatio = [
 		'default' => 1.0,
-		'type' => 'number',
+		'type' => 'float',
 	];
 
 	/**
@@ -11936,7 +11938,7 @@ class MainConfigSchema {
 	 */
 	public const ReportToEndpoints = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -11949,7 +11951,7 @@ class MainConfigSchema {
 	 */
 	public const FeaturePolicyReportOnly = [
 		'default' => [],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	/**
@@ -11959,7 +11961,7 @@ class MainConfigSchema {
 	 */
 	public const SkinsPreferred = [
 		'default' => [ 'vector-2022', 'vector' ],
-		'type' => 'array',
+		'type' => 'list',
 	];
 
 	// endregion -- End Miscellaneous
