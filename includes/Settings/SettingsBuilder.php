@@ -138,6 +138,20 @@ class SettingsBuilder {
 	}
 
 	/**
+	 * Checks whether the given file exists relative to the settings builder's
+	 * base directory.
+	 *
+	 * @unstable
+	 *
+	 * @param string $path
+	 * @return bool
+	 */
+	public function fileExists( string $path ): bool {
+		$path = SettingsFileUtils::resolveRelativeLocation( $path, $this->baseDir );
+		return file_exists( $path );
+	}
+
+	/**
 	 * @param SettingsSource $source
 	 *
 	 * @return SettingsSource
@@ -464,6 +478,7 @@ class SettingsBuilder {
 	 * @return void
 	 */
 	public function finalize(): void {
+		$this->apply();
 		$this->finished = true;
 	}
 }

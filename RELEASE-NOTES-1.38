@@ -41,6 +41,17 @@ For notes on 1.37.x and older releases, see HISTORY.
   from 1 hour to 4 hours.
 * $wgSkinsPreferred – This lets you set a list of preferred skins to be listed
   higher in Special:Preferences.
+* $wgWikiFarmSettingsDirectory – A directory that contains site-specific
+  configuration files. Setting this will enable multi-tenant ("wiki farm")
+  mode, causing site-specific settings to be loaded based on information from
+  the web request. EXPERIMENTAL.
+* $wgWikiFarmSettingsExtension – The file extension to be used when looking up
+  site-specific settings files in $wgWikiFarmSettingsDirectory, such as 'json'
+  or 'yaml'. EXPERIMENTAL.
+* $wgWikiFarmSiteDetector – A callback function that returns the name of the
+  wiki for the current request. This is used in multi-tenant ("wiki farm")
+  mode to determine which settings file to load from
+  $wgWikiFarmSettingsDirectory. EXPERIMENTAL.
 * $wgEnableRemoteBagOStuffTests – This replaces the environment variable
   PHPUNIT_USE_BAGOSTUFF.
 * (T230211) $wgForceDeferredUpdatesPreSend – Force deferred updates to be run
@@ -96,6 +107,16 @@ For notes on 1.37.x and older releases, see HISTORY.
   repos provided by an extension as supporting making API queries against the
   foreign file repo so that extensions like TimedMediaHandler that depend on
   this can stop hard-coding looking for specific class names.
+* Added EXPERIMENTAL support for an easy to configure multi-tenant ("wiki
+  farm") mode:
+  Settings for each site can be placed in a directory specified by
+  $wgWikiFarmSettingsDirectory. Site detection is controlled by
+  $wgWikiFarmSiteDetector and defaults to the requested host name.
+  For example, setting $wgWikiFarmSettingsDirectory = "sites" would cause
+  the settings for wiki.example.com to be loaded from
+  "sites/wiki_example_com.yaml".
+  WARNING: YAML files under the web root may be accessible to browsers, please
+  take appropriate measures to protect them from access via HTTP.
 * Running QUnit tests for an individual test suite module is possible with
   `grunt qunit --qunit-component={componentName}`, where {componentName} is
   "MediaWiki" to run core's QUnit tests or the skin or extension name.
