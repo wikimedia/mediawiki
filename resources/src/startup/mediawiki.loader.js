@@ -1785,13 +1785,7 @@
 			// Init only once per page
 			if ( this.enabled === null ) {
 				this.enabled = false;
-				if (
-					$VARS.storeEnabled &&
-					// Disabled because localStorage quotas are tight and (in Firefox's case)
-					// shared by multiple origins.
-					// See T66721, and <https://bugzilla.mozilla.org/show_bug.cgi?id=1064466>.
-					!/Firefox/.test( navigator.userAgent )
-				) {
+				if ( $VARS.storeEnabled ) {
 					this.load();
 				} else {
 					// Clear any previous store to free up space. (T66721)
