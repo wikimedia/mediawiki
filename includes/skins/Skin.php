@@ -2092,7 +2092,8 @@ abstract class Skin extends ContextSource {
 				'dir',
 				'data',
 				'exists',
-				'data-mw'
+				'data-mw',
+				'link-html',
 			];
 			if ( !$applyClassesToListItems ) {
 				$props[] = 'class';
@@ -2178,7 +2179,7 @@ abstract class Skin extends ContextSource {
 
 		$html = htmlspecialchars( $text );
 
-		if ( isset( $options['text-wrapper'] ) ) {
+		if ( $html && isset( $options['text-wrapper'] ) ) {
 			$wrapper = $options['text-wrapper'];
 			if ( isset( $wrapper['tag'] ) ) {
 				$wrapper = [ $wrapper ];
