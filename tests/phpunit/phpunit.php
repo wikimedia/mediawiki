@@ -108,8 +108,8 @@ class PHPUnitMaintClass {
 
 		$command = new Command();
 		$args = $_SERVER['argv'];
-		$hasConfigOpt = (bool)getopt( 'c:', [ 'configuration:' ] );
-		if ( !$hasConfigOpt ) {
+		$knownOpts = getopt( 'c:', [ 'configuration:', 'bootstrap:' ] ) ?: [];
+		if ( !isset( $knownOpts['c'] ) && !isset( $knownOpts['configuration'] ) ) {
 			// XXX HAX: Use our default file. This is a temporary hack, to be removed when this file goes away
 			// or when T227900 is resolved.
 			$args[] = '--configuration=' . __DIR__ . '/suite.xml';
