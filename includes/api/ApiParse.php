@@ -441,7 +441,10 @@ class ApiParse extends ApiBase {
 
 		$outputPage = null;
 		$context = null;
-		if ( $skin || isset( $prop['subtitle'] ) || isset( $prop['headhtml'] ) || isset( $prop['categorieshtml'] ) ) {
+		if (
+			$skin || isset( $prop['subtitle'] ) || isset( $prop['headhtml'] ) || isset( $prop['categorieshtml'] ) ||
+			isset( $params['mobileformat'] )
+		) {
 			// Enabling the skin via 'useskin', 'subtitle', 'headhtml', or 'categorieshtml'
 			// gets OutputPage and Skin involved, which (among others) applies
 			// these hooks:
@@ -451,6 +454,11 @@ class ApiParse extends ApiBase {
 			// - Hook: OutputPageParserOutput
 			// - Hook: OutputPageMakeCategoryLinks
 			// - Hook: OutputPageBeforeHTML
+			// HACK Adding the 'mobileformat' parameter *also* enables the skin, for compatibility with legacy
+			// apps. This behavior should be considered deprecated so new users should not rely on this and
+			// always use the "useskin" parameter to enable "skin mode".
+			// Ideally this would be done with another hook so that MobileFrontend could enable skin mode, but
+			// as this is just for a deprecated feature, we are hard-coding this param into core.
 			$context = new DerivativeContext( $this->getContext() );
 			$context->setTitle( $titleObj );
 
