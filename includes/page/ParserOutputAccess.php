@@ -57,9 +57,8 @@ class ParserOutputAccess {
 
 	/**
 	 * @var int Do not update the cache after parsing.
-	 *      Private because it does not make sense to be called separately.
 	 */
-	private const OPT_NO_UPDATE_CACHE = 2;
+	public const OPT_NO_UPDATE_CACHE = 2;
 
 	/**
 	 * @var int Bypass audience check for deleted/suppressed revisions.
@@ -397,11 +396,7 @@ class ParserOutputAccess {
 		RevisionRecord $revision,
 		int $options
 	): PoolWorkArticleView {
-		if ( $options & self::OPT_NO_UPDATE_CACHE ) {
-			$useCache = self::CACHE_NONE;
-		} else {
-			$useCache = $this->shouldUseCache( $page, $parserOptions, $revision );
-		}
+		$useCache = $this->shouldUseCache( $page, $parserOptions, $revision );
 
 		switch ( $useCache ) {
 			case self::CACHE_PRIMARY:
@@ -422,7 +417,8 @@ class ParserOutputAccess {
 					$this->primaryCache,
 					$this->lbFactory,
 					$this->loggerSpi,
-					$this->wikiPageFactory
+					$this->wikiPageFactory,
+					!( $options & self::OPT_NO_UPDATE_CACHE )
 				);
 
 			case self::CACHE_SECONDARY:
