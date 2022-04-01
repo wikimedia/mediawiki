@@ -2358,12 +2358,12 @@ abstract class Skin extends ContextSource {
 	 * @since 1.35
 	 * @param array $attrs (optional) will be passed to tooltipAndAccesskeyAttribs
 	 *  and decorate the resulting input
-	 * @deprecated 1.38 use $this->getTemplateData()['data-search-box'] instead.
+	 * @deprecated 1.39 use $this->getTemplateData()['data-search-box'] instead.
 	 * @return string of HTML input
 	 */
 	public function makeSearchInput( $attrs = [] ) {
 		wfDeprecated( __METHOD__,
-			'[1.38] use $this->getTemplateData()["data-search-box"] or SkinTemplate::makeSearchInput'
+			'[1.39] use $this->getTemplateData()["data-search-box"] or SkinTemplate::makeSearchInput'
 		);
 
 		// It's possible that getTemplateData might be calling
@@ -2382,14 +2382,14 @@ abstract class Skin extends ContextSource {
 	 *  either `go`, `fulltext` or `image`
 	 * @param array $attrs (optional)
 	 * @throws MWException if bad value of $mode passed in
-	 * @deprecated 1.38 use $this->getTemplateData()['data-search-box'] instead.
+	 * @deprecated 1.39 use $this->getTemplateData()['data-search-box'] instead.
 	 *   Note: When removing this function please merge SkinTemplate::makeSearchButtonInternal
 	 *   with SkinTemplate::makeSearchButton.
 	 * @return string of HTML button
 	 */
 	public function makeSearchButton( $mode, $attrs = [] ) {
 		wfDeprecated( __METHOD__,
-			'[1.38] use $this->getTemplateData()["data-search-box"] or SkinTemplate::makeSearchButton'
+			'[1.39] use $this->getTemplateData()["data-search-box"] or SkinTemplate::makeSearchButton'
 		);
 
 		// It's possible that getTemplateData might be calling
