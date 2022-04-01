@@ -155,8 +155,8 @@ if ( !isCompatible( navigator.userAgent ) ) {
 
 		$CODE.registrations();
 
-		// For the current page
-		mw.config.set( window.RLCONF || {} ); // mw.loader needs wgCSPNonce and wgUserName
+		// First set page-specific config needed by mw.loader (wgCSPNonce, wgUserName)
+		mw.config.set( window.RLCONF || {} );
 		mw.loader.state( window.RLSTATE || {} );
 		mw.loader.load( window.RLPAGEMODULES || [] );
 

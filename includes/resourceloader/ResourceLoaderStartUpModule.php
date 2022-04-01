@@ -36,7 +36,7 @@ use Wikimedia\RequestTimeout\TimeoutException;
  *   See also: OutputPage::setTarget(), ResourceLoaderModule::getTargets().
  *
  * - safemode: Only register modules that have ORIGIN_CORE as their origin.
- *   This effectively disables ORIGIN_USER modules. (T185303)
+ *   This disables ORIGIN_USER modules and mw.loader.store. (T185303, T145498)
  *   See also: OutputPage::disallowUserJs()
  *
  * @ingroup ResourceLoader
@@ -382,10 +382,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 					$this->getMaxQueryLength() :
 					0
 			),
-			// The client-side module cache can be disabled by site configuration.
-			// It is also always disabled in debug mode.
-			'$VARS.storeDisabled' => $context->encodeJson(
-				!$conf->get( 'ResourceLoaderStorageEnabled' ) || $context->getDebug()
+			'$VARS.storeEnabled' => $context->encodeJson(
+				$conf->get( 'ResourceLoaderStorageEnabled' )
+					&& !$context->getDebug()
+					&& $context->getRequest()->getRawVal( 'safemode' ) !== '1'
 			),
 			'$VARS.storeKey' => $context->encodeJson( $this->getStoreKey() ),
 			'$VARS.storeVary' => $context->encodeJson( $this->getStoreVary( $context ) ),
