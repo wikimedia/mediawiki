@@ -449,9 +449,6 @@ because of Phabricator reports.
   - SkinTemplate::buildContentNavigationUrls is now deprecated. Skins can
     use the runOnSkinTemplateNavigationHooks method or the
     SkinTemplateNavigation__Universal hook if they need access to this data.
-  - Skin::makeSearchButton and Skin::makeSearchInput were deprecated in 1.38.
-    Use SkinTemplate methods with the same name or Skin::getTemplateData
-    instead.
 * Usage of several template data keys in QuickTemplate are now deprecated:
   - searchaction, poweredbyico, copyrightico
 * DatabaseBlock::purgeExpired(), deprecated since 1.36, now emits deprecation

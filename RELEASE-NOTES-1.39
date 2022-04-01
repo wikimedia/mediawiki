@@ -101,6 +101,9 @@ because of Phabricator reports.
   - The mediawiki.viewport module, deprecated in 1.37 has been
      removed. Use IntersectionObserver instead.
 * Changes to skins:
+  - Skin::makeSearchButton and Skin::makeSearchInput were deprecated in 1.38.
+    Use SkinTemplate methods with the same name or Skin::getTemplateData
+    instead.
   - The feature `legacy` used inside ResourceLoaderSkinModule,
     deprecated in 1.37, will no longer ship any styles.
 * …
