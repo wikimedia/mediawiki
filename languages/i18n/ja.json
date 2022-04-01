@@ -2618,6 +2618,8 @@
 	"undelete-cleanup-error": "未使用の保存版のファイル「$1」の削除中にエラーが発生しました。",
 	"undelete-missing-filearchive": "データベースに存在しないため、ファイルの保存版 ID $1 を復元できません。\n既に復元されている可能性があります。",
 	"undelete-error": "ページの復元エラー",
+	"undelete-error-associated-alreadytalk": "議論ページに付随する議論ページを削除できません。",
+	"undelete-error-associated-notdeleted": "関連するトークページには復元できる版がありません。",
 	"undelete-show-file-confirm": "ファイル「<nowiki>$1</nowiki>」の削除された$2$3の版を本当に閲覧しますか?",
 	"undelete-show-file-submit": "はい",
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",

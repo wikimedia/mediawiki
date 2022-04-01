@@ -82,5 +82,5 @@
 	"api-help-undocumented-module": "Il non ha documentation pro le modulo $1.",
 	"apierror-maxbytes": "Le parametro <var>$1</var> non pote exceder $2 {{PLURAL:$2|byte|bytes}}",
 	"apierror-maxchars": "Le parametro <var>$1</var> non pote exceder $2 {{PLURAL:$2|character|characteres}}",
-	"api-credits": "Programmatores del API:\n* Roan Kattouw (programmator dirigente Sept. 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (creator, programmator dirigente Sept. 2006–Sept. 2007)\n* Brad Jorsch (programmator dirigente 2013–presente)\n\nInvia tu commentos, suggestiones e questiones a mediawiki-api@lists.wikimedia.org\no insere un reportage de bug a https://phabricator.wikimedia.org/."
+	"api-credits": "Programmatores del API:\n* Yuri Astrakhan (creator, programmator dirigente Sept. 2006–Sept. 2007)\n* Roan Kattouw (programmator dirigente Sept. 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (programmator dirigente 2013–2020)\n\nInvia tu commentos, suggestiones e questiones a mediawiki-api@lists.wikimedia.org\no insere un reportage de bug a https://phabricator.wikimedia.org/."
 }
