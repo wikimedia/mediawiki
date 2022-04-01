@@ -26,7 +26,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Storage\BlobStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\Blob;
@@ -174,6 +173,9 @@ class LocalFile extends File {
 	/** @var bool True if file is not present in file system. Not to be cached in memcached */
 	private $missing;
 
+	/** @var MetadataStorageHelper */
+	private $metadataStorageHelper;
+
 	// @note: higher than IDBAccessObject constants
 	private const LOAD_ALL = 16; // integer; load all the lazy fields too (like metadata)
 
@@ -188,7 +190,7 @@ class LocalFile extends File {
 	 * @stable to override
 	 *
 	 * @param Title $title
-	 * @param FileRepo $repo
+	 * @param LocalRepo $repo
 	 * @param null $unused
 	 *
 	 * @return static
@@ -204,7 +206,7 @@ class LocalFile extends File {
 	 * @stable to override
 	 *
 	 * @param stdClass $row
-	 * @param FileRepo $repo
+	 * @param LocalRepo $repo
 	 *
 	 * @return static
 	 */
@@ -310,10 +312,11 @@ class LocalFile extends File {
 	 * @stable to call
 	 *
 	 * @param Title $title
-	 * @param FileRepo $repo
+	 * @param LocalRepo $repo
 	 */
 	public function __construct( $title, $repo ) {
 		parent::__construct( $title, $repo );
+		$this->metadataStorageHelper = new MetadataStorageHelper( $repo );
 
 		$this->assertRepoDefined();
 		$this->assertTitleDefined();
@@ -1090,67 +1093,19 @@ class LocalFile extends File {
 				$addresses[$itemName] = $this->unloadedMetadataBlobs[$itemName];
 			}
 		}
+
 		if ( $addresses ) {
-			$blobStore = $this->repo->getBlobStore();
-			if ( !$blobStore ) {
-				LoggerFactory::getInstance( 'LocalFile' )->warning(
-					"Unable to load metadata: repo has no blob store" );
-				return $result;
-			}
-			$status = $blobStore->getBlobBatch( $addresses );
-			if ( !$status->isGood() ) {
-				$msg = Status::wrap( $status )->getWikiText(
-					false, false, 'en' );
-				LoggerFactory::getInstance( 'LocalFile' )->warning(
-					"Error loading metadata from BlobStore: $msg" );
-			}
+			$resultFromBlob = $this->metadataStorageHelper->getMetadataFromBlobStore( $addresses );
 			foreach ( $addresses as $itemName => $address ) {
 				unset( $this->unloadedMetadataBlobs[$itemName] );
-				$json = $status->getValue()[$address] ?? null;
-				if ( $json !== null ) {
-					$value = $this->jsonDecode( $json );
+				$value = $resultFromBlob[$itemName] ?? null;
+				if ( $value !== null ) {
 					$result[$itemName] = $value;
 					$this->metadataArray[$itemName] = $value;
 				}
 			}
 		}
 		return $result;
-	}
-
-	/**
-	 * Do JSON encoding with local flags. Throw an exception if the data cannot be
-	 * serialized.
-	 *
-	 * @throws MWException
-	 * @param mixed $data
-	 * @return string
-	 */
-	private function jsonEncode( $data ): string {
-		$s = json_encode( $data,
-			JSON_INVALID_UTF8_IGNORE |
-			JSON_UNESCAPED_SLASHES |
-			JSON_UNESCAPED_UNICODE );
-		if ( $s === false ) {
-			throw new MWException( __METHOD__ . ': metadata is not JSON-serializable ' .
-				'(type = ' . $this->getMimeType() . ')' );
-		}
-		return $s;
-	}
-
-	/**
-	 * Do JSON decoding with local flags.
-	 *
-	 * This doesn't use JsonCodec because JsonCodec can construct objects,
-	 * which we don't want.
-	 *
-	 * Does not throw. Returns false on failure.
-	 *
-	 * @param string $s
-	 * @return mixed The decoded value, or false on failure
-	 */
-	private function jsonDecode( string $s ) {
-		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-		return @json_decode( $s, true, 512, JSON_INVALID_UTF8_IGNORE );
 	}
 
 	/**
@@ -1196,42 +1151,7 @@ class LocalFile extends File {
 			$envelope['blobs'] = $this->metadataBlobs;
 		}
 
-		// Try encoding
-		$s = $this->jsonEncode( $envelope );
-
-		// Decide whether to try splitting the metadata.
-		// Return early if it's not going to happen.
-		if ( !$this->repo->isSplitMetadataEnabled()
-			|| !$this->getHandler()
-			|| !$this->getHandler()->useSplitMetadata()
-		) {
-			return $s;
-		}
-		$threshold = $this->repo->getSplitMetadataThreshold();
-		if ( !$threshold || strlen( $s ) <= $threshold ) {
-			return $s;
-		}
-		$blobStore = $this->repo->getBlobStore();
-		if ( !$blobStore ) {
-			return $s;
-		}
-
-		// The data as a whole is above the item threshold. Look for
-		// large items that can be split out.
-		$blobAddresses = [];
-		foreach ( $envelope['data'] as $name => $value ) {
-			$encoded = $this->jsonEncode( $value );
-			if ( strlen( $encoded ) > $threshold ) {
-				$blobAddresses[$name] = $blobStore->storeBlob(
-					$encoded,
-					[ BlobStore::IMAGE_HINT => $this->getName() ]
-				);
-			}
-		}
-		// Remove any items that were split out
-		$envelope['data'] = array_diff_key( $envelope['data'], $blobAddresses );
-		$envelope['blobs'] = $blobAddresses;
-		$s = $this->jsonEncode( $envelope );
+		list( $s, $blobAddresses ) = $this->metadataStorageHelper->getJsonMetadata( $this, $envelope );
 
 		// Repeated calls to this function should not keep inserting more blobs
 		$this->metadataBlobs += $blobAddresses;
@@ -1252,7 +1172,7 @@ class LocalFile extends File {
 		$threshold = $this->repo->getSplitMetadataThreshold();
 		$directItems = array_diff_key( $this->metadataArray, $this->metadataBlobs );
 		foreach ( $directItems as $value ) {
-			if ( strlen( $this->jsonEncode( $value ) ) > $threshold ) {
+			if ( strlen( $this->metadataStorageHelper->jsonEncode( $value ) ) > $threshold ) {
 				return true;
 			}
 		}
@@ -1289,7 +1209,7 @@ class LocalFile extends File {
 			return;
 		}
 		if ( $metadataString[0] === '{' ) {
-			$envelope = $this->jsonDecode( $metadataString );
+			$envelope = $this->metadataStorageHelper->jsonDecode( $metadataString );
 			if ( !$envelope ) {
 				// Legacy error encoding
 				$this->metadataArray = [ '_error' => $metadataString ];

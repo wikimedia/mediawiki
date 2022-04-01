@@ -44,7 +44,7 @@ class OldLocalFile extends LocalFile {
 	/**
 	 * @stable to override
 	 * @param Title $title
-	 * @param FileRepo $repo
+	 * @param LocalRepo $repo
 	 * @param string|int|null $time
 	 * @return static
 	 * @throws MWException
@@ -62,7 +62,7 @@ class OldLocalFile extends LocalFile {
 	 * @stable to override
 	 *
 	 * @param Title $title
-	 * @param FileRepo $repo
+	 * @param LocalRepo $repo
 	 * @param string $archiveName
 	 * @return static
 	 */
@@ -74,7 +74,7 @@ class OldLocalFile extends LocalFile {
 	 * @stable to override
 	 *
 	 * @param stdClass $row
-	 * @param FileRepo $repo
+	 * @param LocalRepo $repo
 	 * @return static
 	 */
 	public static function newFromRow( $row, $repo ) {
@@ -179,7 +179,7 @@ class OldLocalFile extends LocalFile {
 	 * @stable to call
 	 *
 	 * @param Title $title
-	 * @param FileRepo $repo
+	 * @param LocalRepo $repo
 	 * @param string|int|null $time Timestamp or null to load by archive name
 	 * @param string|null $archiveName Archive name or null to load by timestamp
 	 * @throws MWException
