@@ -32,7 +32,7 @@ use MediaWiki\Settings\Source\ReflectionSchemaSource;
 /**
  * Trait for scripts generating files based on the config schema.
  * @ingroup Config
- * @since 1.38
+ * @since 1.39
  */
 trait ConfigSchemaDerivativeTrait {
 
