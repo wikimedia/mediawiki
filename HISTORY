@@ -2,6 +2,58 @@ Change notes from older releases. For current info, see RELEASE-NOTES-1.39.
 
 = MediaWiki 1.37 =
 
+== MediaWiki 1.37.2 ==
+
+This is a security and maintenance release of the MediaWiki 1.37 branch.
+
+=== Changes since MediaWiki 1.37.1 ===
+* (T298261) Fix support for Composer 2.2.
+* (T298283) composer.json: Add wikimedia/composer-merge-plugin to allow-plugins.
+* Update doctrine/dbal (3.0.0 => 3.1.5).
+* (T296898) Add entry point name to disabled Session exception if possible.
+* (T298564) MemcachedClient: Add support for IPv6.
+* (T297543, CVE-2022-28202) SECURITY: properly escape output used within
+  galleries and Special:RevisionDelete.
+* (T289956) WatchAction: Fix bug that prevents showing proper success
+  message in the noscript fallback mode.
+* (T268847) Suppress deprecation warnings from libxml_disable_entity_loader().
+* (T283275) Fix PHP 8.0 failure of RefreshSecondaryDataUpdateTest.
+* (T283275) Fix PHP 8.0 failure of WikiExporterFactoryTest.
+* (T275673) objectcache: Avoid getCurrentTime() call in MapCacheLRU::has().
+* (T275673) objectcache: split up MapCacheLRU::getAge() to avoid conditional
+  overhead.
+* Fix the json schema and the extension processor for Parsoid extension modules.
+* (T299696) update.php: Avoid passing null to substr.
+* (T195807, T256401) Fix signature of DatabasePostgres::buildGroupConcatField.
+* In PHP 8.1 don't throw exceptions from mysqli.
+* (T289926) SiteConfiguration: Don't pass null to str_replace().
+* (T264735) Fix deprecation warning from CURLPIPE_HTTP1.
+* (T260735) Stop using is_resource() where possible.
+* (T289879) Apply ReturnTypeWillChange to various implementations of built in
+  interfaces.
+* (T299312) Implement __serialize/__unserialize for PHP 8.1 support.
+* ExtensionRegistry: Add process cache for lazy attributes.
+* (T301041) ApiPageSet: Add "missing": true to missing revisions.
+* Allow ParsoidModules extension schema to register services.
+* (T300462) SpecialUndelete: Do not show empty comments as deleted.
+* (T297708) Allow setting max execution time to several special pages.
+* (T205349) LinkCache: Try invalidating cache before throwing.
+* (T302540) composer.json: Add ext-calendar to require.
+* (T302540) composer.json: Add ext-simplexml to require-dev.
+* (T302540) composer.json: Add various PHP extensions to suggests.
+* Upgrading symfony/polyfill-php80 (v1.23.1 => v1.25.0).
+* (T304008) Don't re-check "Move subpages" on Special:MovePage after a warning.
+* (T293576) listFiles: Display file name instead of version.
+* (T303871) Fix @since of Title::getId().
+* (T303560) Installer: Check correct PCRE_CONFIG_NEWLINE value.
+* wrapOldPasswords: add \n to two output calls.
+* (T297571, CVE-2022-28201) Title::newMainPage() goes into an infinite recursion
+  loop if it points to a local interwiki.
+* (T297731, CVE-2022-28203) Requesting Special:NewFiles on a wiki with many file
+  uploads with actor as a condition can result in a DoS.
+* (T297754, CVE-2022-28204) Special:WhatLinksHere can result in a DoS when a
+  page is used on a extremely large number of other pages.
+
 == MediaWiki 1.37.1 ==
 
 This is a security and maintenance release of the MediaWiki 1.37 branch.
@@ -958,6 +1010,47 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 There's usually someone online in #mediawiki on irc.libera.chat.
 
 = MediaWiki 1.36 =
+
+== MediaWiki 1.36.4 ==
+
+This is a security and maintenance release of the MediaWiki 1.36 branch.
+
+=== Changes since MediaWiki 1.36.3 ===
+* (T298261) Fix support for Composer 2.2.
+* (T298283) composer.json: Add wikimedia/composer-merge-plugin to allow-plugins.
+* Update doctrine/dbal (3.0.0 => 3.1.5).
+* (T296898) Add entry point name to disabled Session exception if possible.
+* (T298564) MemcachedClient: Add support for IPv6.
+* (T297543, CVE-2022-28202) SECURITY: properly escape output used within
+  galleries and Special:RevisionDelete.
+* (T268847) Suppress deprecation warnings from libxml_disable_entity_loader().
+* (T283275) Fix PHP 8.0 failure of WikiExporterFactoryTest.
+* Fix the json schema and the extension processor for Parsoid extension modules.
+* (T299696) update.php: Avoid passing null to substr.
+* In PHP 8.1 don't throw exceptions from mysqli.
+* (T289926) SiteConfiguration: Don't pass null to str_replace().
+* (T264735) Fix deprecation warning from CURLPIPE_HTTP1.
+* (T260735) Stop using is_resource() where possible.
+* (T289879) Apply ReturnTypeWillChange to various implementations of built in
+  interfaces.
+* (T299312) Implement __serialize/__unserialize for PHP 8.1 support.
+* ExtensionRegistry: Add process cache for lazy attributes.
+* (T301041) ApiPageSet: Add "missing": true to missing revisions.
+* Allow ParsoidModules extension schema to register services.
+* (T297708) Allow setting max execution time to several special pages.
+* (T302540) composer.json: Add ext-calendar to require.
+* (T302540) composer.json: Add ext-simplexml to require-dev.
+* (T302540) composer.json: Add various PHP extensions to suggests.
+* Upgrading symfony/polyfill-php80 (v1.23.1 => v1.25.0).
+* (T304008) Don't re-check "Move subpages" on Special:MovePage after a warning.
+* (T293576) listFiles: Display file name instead of version.
+* (T303871) Fix @since of Title::getId().
+* (T303560) Installer: Check correct PCRE_CONFIG_NEWLINE value.
+* wrapOldPasswords: add \n to two output calls.
+* (T297571, CVE-2022-28201) Title::newMainPage() goes into an infinite recursion
+  loop if it points to a local interwiki.
+* (T297731, CVE-2022-28203) Requesting Special:NewFiles on a wiki with many file
+  uploads with actor as a condition can result in a DoS.
 
 == MediaWiki 1.36.3 ==
 
@@ -1917,6 +2010,49 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 There's usually someone online in #mediawiki on irc.libera.chat.
 
 = MediaWiki 1.35 =
+
+== MediaWiki 1.35.6 ==
+
+This is a security and maintenance release of the MediaWiki 1.35 branch.
+
+=== Changes since MediaWiki 1.35.5 ===
+* (T298261) Fix support for Composer 2.2.
+* (T298283) composer.json: Add wikimedia/composer-merge-plugin to allow-plugins.
+* Update doctrine/dbal (3.0.0 => 3.1.5).
+* (T298564) MemcachedClient: Add support for IPv6.
+* (T297543, CVE-2022-28202) SECURITY: properly escape output used within
+  galleries and Special:RevisionDelete.
+* (T268847) Suppress deprecation warnings from libxml_disable_entity_loader().
+* (T283275) Fix PHP 8.0 failure of WikiExporterFactoryTest.
+* (T274966) Upgrading wikimedia/html-formatter (1.0.2 => 2.0.1).
+* Fix the json schema and the extension processor for Parsoid extension modules.
+* (T299696) update.php: Avoid passing null to substr.
+* In PHP 8.1 don't throw exceptions from mysqli.
+* (T289926) SiteConfiguration: Don't pass null to str_replace().
+* (T264735) Fix deprecation warning from CURLPIPE_HTTP1.
+* (T260735) Stop using is_resource() where possible.
+* (T289879) Apply ReturnTypeWillChange to various implementations of built in
+  interfaces.
+* (T299312) Implement __serialize/__unserialize for PHP 8.1 support.
+* ExtensionRegistry: Add process cache for lazy attributes.
+* (T301041) ApiPageSet: Add "missing": true to missing revisions.
+* Allow ParsoidModules extension schema to register services.
+* (T297708) Allow setting max execution time to several special pages.
+* Upgrading wikimedia/object-factory (v2.1.0 => v2.2.0).
+* (T302540) composer.json: Add ext-calendar to require.
+* (T302540) composer.json: Add ext-simplexml to require-dev.
+* (T302540) composer.json: Add various PHP extensions to suggests.
+* Upgrading symfony/polyfill-php80 (v1.23.1 => v1.25.0).
+* (T303871) Add Title::getId() as an alias for ::getArticleId().
+* (T304008) Don't re-check "Move subpages" on Special:MovePage after a warning.
+* (T293576) listFiles: Display file name instead of version.
+* (T303560) Installer: Check correct PCRE_CONFIG_NEWLINE value.
+* wrapOldPasswords: add \n to two output calls.
+* (T304993) Make editcontentmodel a part of editpage grant.
+* (T297571, CVE-2022-28201) Title::newMainPage() goes into an infinite recursion
+  loop if it points to a local interwiki.
+* (T297731, CVE-2022-28203) Requesting Special:NewFiles on a wiki with many file
+  uploads with actor as a condition can result in a DoS.
 
 == MediaWiki 1.35.5 ==
 
