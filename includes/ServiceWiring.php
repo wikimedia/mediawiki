@@ -97,6 +97,7 @@ use MediaWiki\Linker\LinkTargetStore;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Mail\Emailer;
 use MediaWiki\Mail\IEmailer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\MessageFormatterFactory;
 use MediaWiki\Page\ContentModelChangeFactory;
@@ -185,7 +186,7 @@ use Wikimedia\UUID\GlobalIdGenerator;
 return [
 	'ActionFactory' => static function ( MediaWikiServices $services ): ActionFactory {
 		return new ActionFactory(
-			$services->getMainConfig()->get( 'Actions' ),
+			$services->getMainConfig()->get( MainConfigNames::Actions ),
 			LoggerFactory::getInstance( 'ActionFactory' ),
 			$services->getObjectFactory(),
 			$services->getHookContainer()
@@ -194,7 +195,7 @@ return [
 
 	'ActorMigration' => static function ( MediaWikiServices $services ): ActorMigration {
 		return new ActorMigration(
-			$services->getMainConfig()->get( 'ActorTableSchemaMigrationStage' ),
+			$services->getMainConfig()->get( MainConfigNames::ActorTableSchemaMigrationStage ),
 			$services->getActorStoreFactory()
 		);
 	},
@@ -396,7 +397,7 @@ return [
 
 	'ConfigFactory' => static function ( MediaWikiServices $services ): ConfigFactory {
 		// Use the bootstrap config to initialize the ConfigFactory.
-		$registry = $services->getBootstrapConfig()->get( 'ConfigRegistry' );
+		$registry = $services->getBootstrapConfig()->get( MainConfigNames::ConfigRegistry );
 		$factory = new ConfigFactory();
 
 		foreach ( $registry as $name => $callback ) {
@@ -412,13 +413,13 @@ return [
 	'ConfiguredReadOnlyMode' => static function ( MediaWikiServices $services ): ConfiguredReadOnlyMode {
 		$config = $services->getMainConfig();
 		return new ConfiguredReadOnlyMode(
-			$config->get( 'ReadOnly' ),
-			$config->get( 'ReadOnlyFile' )
+			$config->get( MainConfigNames::ReadOnly ),
+			$config->get( MainConfigNames::ReadOnlyFile )
 		);
 	},
 
 	'ContentHandlerFactory' => static function ( MediaWikiServices $services ): IContentHandlerFactory {
-		$contentHandlerConfig = $services->getMainConfig()->get( 'ContentHandlers' );
+		$contentHandlerConfig = $services->getMainConfig()->get( MainConfigNames::ContentHandlers );
 
 		return new ContentHandlerFactory(
 			$contentHandlerConfig,
@@ -430,7 +431,7 @@ return [
 
 	'ContentLanguage' => static function ( MediaWikiServices $services ): Language {
 		return $services->getLanguageFactory()->getLanguage(
-			$services->getMainConfig()->get( 'LanguageCode' ) );
+			$services->getMainConfig()->get( MainConfigNames::LanguageCode ) );
 	},
 
 	'ContentModelChangeFactory' => static function ( MediaWikiServices $services ): ContentModelChangeFactory {
@@ -464,14 +465,14 @@ return [
 
 	'CriticalSectionProvider' => static function ( MediaWikiServices $services ): CriticalSectionProvider {
 		$config = $services->getMainConfig();
-		$limit = $config->get( 'CommandLineMode' ) ? INF : $config->get( 'CriticalSectionTimeLimit' );
+		$limit = $GLOBALS[ 'wgCommandLineMode' ] ? INF : $config->get( MainConfigNames::CriticalSectionTimeLimit );
 		return RequestTimeout::singleton()->createCriticalSectionProvider( $limit );
 	},
 
 	'CryptHKDF' => static function ( MediaWikiServices $services ): CryptHKDF {
 		$config = $services->getMainConfig();
 
-		$secret = $config->get( 'HKDFSecret' ) ?: $config->get( 'SecretKey' );
+		$secret = $config->get( MainConfigNames::HKDFSecret ) ?: $config->get( MainConfigNames::SecretKey );
 		if ( !$secret ) {
 			throw new RuntimeException( "Cannot use MWCryptHKDF without a secret." );
 		}
@@ -486,7 +487,7 @@ return [
 			$cache = ObjectCache::getLocalClusterInstance();
 		}
 
-		return new CryptHKDF( $secret, $config->get( 'HKDFAlgorithm' ), $cache, $context );
+		return new CryptHKDF( $secret, $config->get( MainConfigNames::HKDFAlgorithm ), $cache, $context );
 	},
 
 	'DatabaseBlockStore' => static function ( MediaWikiServices $services ): DatabaseBlockStore {
@@ -519,7 +520,7 @@ return [
 	static function ( MediaWikiServices $services ): Wikimedia\Rdbms\LBFactory {
 		$mainConfig = $services->getMainConfig();
 
-		$cpStashType = $mainConfig->get( 'ChronologyProtectorStash' );
+		$cpStashType = $mainConfig->get( MainConfigNames::ChronologyProtectorStash );
 		if ( is_string( $cpStashType ) ) {
 			$cpStash = ObjectCache::getInstance( $cpStashType );
 		} else {
@@ -547,7 +548,7 @@ return [
 		}
 
 		$lbConf = MWLBFactory::applyDefaultConfig(
-			$mainConfig->get( 'LBFactoryConf' ),
+			$mainConfig->get( MainConfigNames::LBFactoryConf ),
 			new ServiceOptions( MWLBFactory::APPLY_DEFAULT_CONFIG_OPTIONS, $mainConfig ),
 			$services->getConfiguredReadOnlyMode(),
 			$cpStash,
@@ -583,7 +584,7 @@ return [
 	},
 
 	'EventRelayerGroup' => static function ( MediaWikiServices $services ): EventRelayerGroup {
-		return new EventRelayerGroup( $services->getMainConfig()->get( 'EventRelayerConfig' ) );
+		return new EventRelayerGroup( $services->getMainConfig()->get( MainConfigNames::EventRelayerConfig ) );
 	},
 
 	'ExternalStoreAccess' => static function ( MediaWikiServices $services ): ExternalStoreAccess {
@@ -595,10 +596,10 @@ return [
 
 	'ExternalStoreFactory' => static function ( MediaWikiServices $services ): ExternalStoreFactory {
 		$config = $services->getMainConfig();
-		$writeStores = $config->get( 'DefaultExternalStore' );
+		$writeStores = $config->get( MainConfigNames::DefaultExternalStore );
 
 		return new ExternalStoreFactory(
-			$config->get( 'ExternalStores' ),
+			$config->get( MainConfigNames::ExternalStores ),
 			( $writeStores !== false ) ? (array)$writeStores : [],
 			$services->getDBLoadBalancer()->getLocalDomainID(),
 			LoggerFactory::getInstance( 'ExternalStore' )
@@ -653,7 +654,7 @@ return [
 		$mainConfig = $services->getMainConfig();
 
 		return new GlobalIdGenerator(
-			$mainConfig->get( 'TmpDirectory' ),
+			$mainConfig->get( MainConfigNames::TmpDirectory ),
 			static function ( $command ) {
 				return wfShellExec( $command );
 			}
@@ -701,9 +702,9 @@ return [
 		return new HtmlCacheUpdater(
 			$services->getHookContainer(),
 			$services->getTitleFactory(),
-			$config->get( 'CdnReboundPurgeDelay' ),
-			$config->get( 'UseFileCache' ),
-			$config->get( 'CdnMaxAge' )
+			$config->get( MainConfigNames::CdnReboundPurgeDelay ),
+			$config->get( MainConfigNames::UseFileCache ),
+			$config->get( MainConfigNames::CdnMaxAge )
 		);
 	},
 
@@ -725,10 +726,10 @@ return [
 			$services->getMainWANObjectCache(),
 			$services->getHookContainer(),
 			$services->getDBLoadBalancer(),
-			$config->get( 'InterwikiExpiry' ),
-			$config->get( 'InterwikiCache' ),
-			$config->get( 'InterwikiScopes' ),
-			$config->get( 'InterwikiFallbackSite' )
+			$config->get( MainConfigNames::InterwikiExpiry ),
+			$config->get( MainConfigNames::InterwikiCache ),
+			$config->get( MainConfigNames::InterwikiScopes ),
+			$config->get( MainConfigNames::InterwikiFallbackSite )
 		);
 	},
 
@@ -763,9 +764,9 @@ return [
 	},
 
 	'LanguageConverterFactory' => static function ( MediaWikiServices $services ): LanguageConverterFactory {
-		$usePigLatinVariant = $services->getMainConfig()->get( 'UsePigLatinVariant' );
-		$isConversionDisabled = $services->getMainConfig()->get( 'DisableLangConversion' );
-		$isTitleConversionDisabled = $services->getMainConfig()->get( 'DisableTitleConversion' );
+		$usePigLatinVariant = $services->getMainConfig()->get( MainConfigNames::UsePigLatinVariant );
+		$isConversionDisabled = $services->getMainConfig()->get( MainConfigNames::DisableLangConversion );
+		$isTitleConversionDisabled = $services->getMainConfig()->get( MainConfigNames::DisableTitleConversion );
 		return new LanguageConverterFactory(
 			$services->getObjectFactory(),
 			$usePigLatinVariant,
@@ -791,7 +792,7 @@ return [
 
 	'LanguageFallback' => static function ( MediaWikiServices $services ): LanguageFallback {
 		return new LanguageFallback(
-			$services->getMainConfig()->get( 'LanguageCode' ),
+			$services->getMainConfig()->get( MainConfigNames::LanguageCode ),
 			$services->getLocalisationCache(),
 			$services->getLanguageNameUtils()
 		);
@@ -855,12 +856,12 @@ return [
 	},
 
 	'LocalisationCache' => static function ( MediaWikiServices $services ): LocalisationCache {
-		$conf = $services->getMainConfig()->get( 'LocalisationCacheConf' );
+		$conf = $services->getMainConfig()->get( MainConfigNames::LocalisationCacheConf );
 
 		$logger = LoggerFactory::getInstance( 'localisation' );
 
 		$store = LocalisationCache::getStoreFromConf(
-			$conf, $services->getMainConfig()->get( 'CacheDirectory' ) );
+			$conf, $services->getMainConfig()->get( MainConfigNames::CacheDirectory ) );
 		$logger->debug( 'LocalisationCache using store ' . get_class( $store ) );
 
 		return new $conf['class'](
@@ -896,7 +897,7 @@ return [
 	'LockManagerGroupFactory' => static function ( MediaWikiServices $services ): LockManagerGroupFactory {
 		return new LockManagerGroupFactory(
 			WikiMap::getCurrentWikiDbDomain()->getId(),
-			$services->getMainConfig()->get( 'LockManagers' ),
+			$services->getMainConfig()->get( MainConfigNames::LockManagers ),
 			$services->getDBLoadBalancerFactory()
 		);
 	},
@@ -916,13 +917,13 @@ return [
 	'MainObjectStash' => static function ( MediaWikiServices $services ): BagOStuff {
 		$mainConfig = $services->getMainConfig();
 
-		$id = $mainConfig->get( 'MainStash' );
-		if ( !isset( $mainConfig->get( 'ObjectCaches' )[$id] ) ) {
+		$id = $mainConfig->get( MainConfigNames::MainStash );
+		if ( !isset( $mainConfig->get( MainConfigNames::ObjectCaches )[$id] ) ) {
 			throw new UnexpectedValueException(
 				"Cache type \"$id\" is not present in \$wgObjectCaches." );
 		}
 
-		$params = $mainConfig->get( 'ObjectCaches' )[$id];
+		$params = $mainConfig->get( MainConfigNames::ObjectCaches )[$id];
 		$params['stats'] = $services->getStatsdDataFactory();
 
 		$store = ObjectCache::newFromParams( $params, $mainConfig );
@@ -936,8 +937,8 @@ return [
 	'MainWANObjectCache' => static function ( MediaWikiServices $services ): WANObjectCache {
 		$mainConfig = $services->getMainConfig();
 
-		$wanId = $mainConfig->get( 'MainWANCache' );
-		$wanParams = $mainConfig->get( 'WANObjectCaches' )[$wanId] ?? null;
+		$wanId = $mainConfig->get( MainConfigNames::MainWANCache );
+		$wanParams = $mainConfig->get( MainConfigNames::WANObjectCaches )[$wanId] ?? null;
 		if ( !$wanParams ) {
 			throw new UnexpectedValueException(
 				"wgWANObjectCaches must have \"$wanId\" set (via wgMainWANCache)"
@@ -949,7 +950,7 @@ return [
 		unset( $wanParams['cacheId'] );
 		unset( $wanParams['class'] );
 
-		$storeParams = $mainConfig->get( 'ObjectCaches' )[$cacheId] ?? null;
+		$storeParams = $mainConfig->get( MainConfigNames::ObjectCaches )[$cacheId] ?? null;
 		if ( !$storeParams ) {
 			throw new UnexpectedValueException(
 				"wgObjectCaches must have \"$cacheId\" set (via wgWANObjectCaches)"
@@ -964,8 +965,8 @@ return [
 
 		$wanParams['cache'] = $store;
 		$wanParams['logger'] = $logger;
-		$wanParams['secret'] = $wanParams['secret'] ?? $mainConfig->get( 'SecretKey' );
-		if ( !$mainConfig->get( 'CommandLineMode' ) ) {
+		$wanParams['secret'] = $wanParams['secret'] ?? $mainConfig->get( MainConfigNames::SecretKey );
+		if ( !$GLOBALS[ 'wgCommandLineMode' ] ) {
 			// Send the statsd data post-send on HTTP requests; avoid in CLI mode (T181385)
 			$wanParams['stats'] = $services->getStatsdDataFactory();
 			// Let pre-emptive refreshes happen post-send on HTTP requests
@@ -981,7 +982,7 @@ return [
 	'MediaHandlerFactory' => static function ( MediaWikiServices $services ): MediaHandlerFactory {
 		return new MediaHandlerFactory(
 			LoggerFactory::getInstance( 'MediaHandlerFactory' ),
-			$services->getMainConfig()->get( 'MediaHandlers' )
+			$services->getMainConfig()->get( MainConfigNames::MediaHandlers )
 		);
 	},
 
@@ -991,8 +992,8 @@ return [
 
 	'MessageCache' => static function ( MediaWikiServices $services ): MessageCache {
 		$mainConfig = $services->getMainConfig();
-		$clusterCache = ObjectCache::getInstance( $mainConfig->get( 'MessageCacheType' ) );
-		$srvCache = $mainConfig->get( 'UseLocalMessageCache' )
+		$clusterCache = ObjectCache::getInstance( $mainConfig->get( MainConfigNames::MessageCacheType ) );
+		$srvCache = $mainConfig->get( MainConfigNames::UseLocalMessageCache )
 			? $services->getLocalServerObjectCache()
 			: new EmptyBagOStuff();
 
@@ -1008,7 +1009,7 @@ return [
 			$services->getContentLanguage(),
 			$services->getLanguageConverterFactory(),
 			$logger,
-			[ 'useDB' => $mainConfig->get( 'UseDatabaseMessages' ) ],
+			[ 'useDB' => $mainConfig->get( MainConfigNames::UseDatabaseMessages ) ],
 			$services->getLanguageFactory(),
 			$services->getLocalisationCache(),
 			$services->getLanguageNameUtils(),
@@ -1025,9 +1026,9 @@ return [
 		$config = $services->getMainConfig();
 		return new MetricsFactory(
 			[
-				'target' => $config->get( 'MetricsTarget' ),
-				'format' => $config->get( 'MetricsFormat' ),
-				'prefix' => $config->get( 'MetricsPrefix' ),
+				'target' => $config->get( MainConfigNames::MetricsTarget ),
+				'format' => $config->get( MainConfigNames::MetricsFormat ),
+				'prefix' => $config->get( MainConfigNames::MetricsPrefix ),
 			],
 			LoggerFactory::getInstance( 'Metrics' )
 		);
@@ -1038,9 +1039,9 @@ return [
 		$mainConfig = $services->getMainConfig();
 		$hookRunner = new HookRunner( $services->getHookContainer() );
 		$params = [
-			'typeFile' => $mainConfig->get( 'MimeTypeFile' ),
-			'infoFile' => $mainConfig->get( 'MimeInfoFile' ),
-			'xmlTypes' => $mainConfig->get( 'XMLMimeTypes' ),
+			'typeFile' => $mainConfig->get( MainConfigNames::MimeTypeFile ),
+			'infoFile' => $mainConfig->get( MainConfigNames::MimeInfoFile ),
+			'xmlTypes' => $mainConfig->get( MainConfigNames::XMLMimeTypes ),
 			'guessCallback' =>
 				static function ( $mimeAnalyzer, &$head, &$tail, $file, &$mime )
 				use ( $logger, $hookRunner ) {
@@ -1075,7 +1076,7 @@ return [
 			$params['typeFile'] = MimeAnalyzer::USE_INTERNAL;
 		}
 
-		$detectorCmd = $mainConfig->get( 'MimeDetectorCommand' );
+		$detectorCmd = $mainConfig->get( MainConfigNames::MimeDetectorCommand );
 		if ( $detectorCmd ) {
 			$factory = $services->getShellCommandFactory();
 			$params['detectCallback'] = static function ( $file ) use ( $detectorCmd, $factory ) {
@@ -1139,7 +1140,7 @@ return [
 			$services->getUserFactory(),
 			$services->getWikiPageFactory(),
 			$services->getHookContainer(),
-			defined( 'MEDIAWIKI_JOB_RUNNER' ) || $config->get( 'CommandLineMode' )
+			defined( 'MEDIAWIKI_JOB_RUNNER' ) || $GLOBALS[ 'wgCommandLineMode' ]
 				? PageEditStash::INITIATOR_JOB_OR_CLI
 				: PageEditStash::INITIATOR_USER
 		);
@@ -1226,7 +1227,7 @@ return [
 
 	'ParserCacheFactory' => static function ( MediaWikiServices $services ): ParserCacheFactory {
 		$config = $services->getMainConfig();
-		$cache = ObjectCache::getInstance( $config->get( 'ParserCacheType' ) );
+		$cache = ObjectCache::getInstance( $config->get( MainConfigNames::ParserCacheType ) );
 		$wanCache = $services->getMainWANObjectCache();
 
 		$options = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, $config );
@@ -1287,7 +1288,7 @@ return [
 
 	'ParsoidDataAccess' => static function ( MediaWikiServices $services ): DataAccess {
 		$mainConfig = $services->getMainConfig();
-		$parsoidSettings = $mainConfig->get( 'ParsoidSettings' );
+		$parsoidSettings = $mainConfig->get( MainConfigNames::ParsoidSettings );
 		if ( !empty( $parsoidSettings['debugApi'] ) ) {
 			return ApiDataAccess::fromSettings( $parsoidSettings );
 		}
@@ -1309,7 +1310,7 @@ return [
 
 	'ParsoidSiteConfig' => static function ( MediaWikiServices $services ): SiteConfig {
 		$mainConfig = $services->getMainConfig();
-		$parsoidSettings = $mainConfig->get( 'ParsoidSettings' );
+		$parsoidSettings = $mainConfig->get( MainConfigNames::ParsoidSettings );
 		if ( !empty( $parsoidSettings['debugApi'] ) ) {
 			return ApiSiteConfig::fromSettings( $parsoidSettings );
 		}
@@ -1338,8 +1339,8 @@ return [
 	'PasswordFactory' => static function ( MediaWikiServices $services ): PasswordFactory {
 		$config = $services->getMainConfig();
 		return new PasswordFactory(
-			$config->get( 'PasswordConfig' ),
-			$config->get( 'PasswordDefault' )
+			$config->get( MainConfigNames::PasswordConfig ),
+			$config->get( MainConfigNames::PasswordDefault )
 		);
 	},
 
@@ -1360,7 +1361,7 @@ return [
 	'PerDbNameStatsdDataFactory' =>
 	static function ( MediaWikiServices $services ): StatsdDataFactoryInterface {
 		$config = $services->getMainConfig();
-		$wiki = $config->get( 'DBname' );
+		$wiki = $config->get( MainConfigNames::DBname );
 		return new PrefixingStatsdDataFactoryProxy(
 			$services->getStatsdDataFactory(),
 			$wiki
@@ -1409,8 +1410,8 @@ return [
 	'ProxyLookup' => static function ( MediaWikiServices $services ): ProxyLookup {
 		$mainConfig = $services->getMainConfig();
 		return new ProxyLookup(
-			$mainConfig->get( 'CdnServers' ),
-			$mainConfig->get( 'CdnServersNoPurge' ),
+			$mainConfig->get( MainConfigNames::CdnServers ),
+			$mainConfig->get( MainConfigNames::CdnServersNoPurge ),
 			$services->getHookContainer()
 		);
 	},
@@ -1433,8 +1434,8 @@ return [
 	'RepoGroup' => static function ( MediaWikiServices $services ): RepoGroup {
 		$config = $services->getMainConfig();
 		return new RepoGroup(
-			$config->get( 'LocalFileRepo' ),
-			$config->get( 'ForeignFileRepos' ),
+			$config->get( MainConfigNames::LocalFileRepo ),
+			$config->get( MainConfigNames::ForeignFileRepos ),
 			$services->getMainWANObjectCache(),
 			$services->getMimeAnalyzer()
 		);
@@ -1448,7 +1449,7 @@ return [
 		$rl = new ResourceLoader(
 			$config,
 			LoggerFactory::getInstance( 'resourceloader' ),
-			$config->get( 'ResourceLoaderUseObjectCacheForDeps' )
+			$config->get( MainConfigNames::ResourceLoaderUseObjectCacheForDeps )
 				? new KeyValueDependencyStore( $services->getMainObjectStash() )
 				: new SqlModuleDependencyStore( $services->getDBLoadBalancer() )
 		);
@@ -1456,15 +1457,15 @@ return [
 		$extRegistry = ExtensionRegistry::getInstance();
 		// Attribute has precedence over config
 		$modules = $extRegistry->getAttribute( 'ResourceModules' )
-			+ $config->get( 'ResourceModules' );
+			+ $config->get( MainConfigNames::ResourceModules );
 		$moduleSkinStyles = $extRegistry->getAttribute( 'ResourceModuleSkinStyles' )
-			+ $config->get( 'ResourceModuleSkinStyles' );
+			+ $config->get( MainConfigNames::ResourceModuleSkinStyles );
 
 		$rl->setModuleSkinStyles( $moduleSkinStyles );
-		$rl->addSource( $config->get( 'ResourceLoaderSources' ) );
+		$rl->addSource( $config->get( MainConfigNames::ResourceLoaderSources ) );
 
 		// Core modules, then extension/skin modules
-		$baseDir = $config->get( 'BaseDirectory' );
+		$baseDir = $config->get( MainConfigNames::BaseDirectory );
 		$rl->register( include "$baseDir/resources/Resources.php" );
 		$rl->register( $modules );
 		$hookRunner = new \MediaWiki\ResourceLoader\HookRunner( $services->getHookContainer() );
@@ -1493,7 +1494,7 @@ return [
 			'targets' => [ 'desktop', 'mobile' ],
 		] );
 
-		if ( $config->get( 'EnableJavaScriptTest' ) === true ) {
+		if ( $config->get( MainConfigNames::EnableJavaScriptTest ) === true ) {
 			$rl->registerTestModules();
 		}
 
@@ -1557,7 +1558,7 @@ return [
 		$config = $services->getMainConfig();
 
 		if ( $config->has( 'MultiContentRevisionSchemaMigrationStage' ) ) {
-			if ( $config->get( 'MultiContentRevisionSchemaMigrationStage' ) !== SCHEMA_COMPAT_NEW ) {
+			if ( $config->get( MainConfigNames::MultiContentRevisionSchemaMigrationStage ) !== SCHEMA_COMPAT_NEW ) {
 				throw new UnexpectedValueException(
 					'The MultiContentRevisionSchemaMigrationStage setting is no longer supported!'
 				);
@@ -1626,16 +1627,16 @@ return [
 	},
 
 	'ShellboxClientFactory' => static function ( MediaWikiServices $services ): ShellboxClientFactory {
-		$urls = $services->getMainConfig()->get( 'ShellboxUrls' );
+		$urls = $services->getMainConfig()->get( MainConfigNames::ShellboxUrls );
 		// TODO: Remove this logic and $wgShellboxUrl configuration in 1.38
-		$url = $services->getMainConfig()->get( 'ShellboxUrl' );
+		$url = $services->getMainConfig()->get( MainConfigNames::ShellboxUrl );
 		if ( $url !== null ) {
 			$urls['default'] = $url;
 		}
 		return new ShellboxClientFactory(
 			$services->getHttpRequestFactory(),
 			$urls,
-			$services->getMainConfig()->get( 'ShellboxSecretKey' )
+			$services->getMainConfig()->get( MainConfigNames::ShellboxSecretKey )
 		);
 	},
 
@@ -1643,13 +1644,13 @@ return [
 		$config = $services->getMainConfig();
 
 		$limits = [
-			'time' => $config->get( 'MaxShellTime' ),
-			'walltime' => $config->get( 'MaxShellWallClockTime' ),
-			'memory' => $config->get( 'MaxShellMemory' ),
-			'filesize' => $config->get( 'MaxShellFileSize' ),
+			'time' => $config->get( MainConfigNames::MaxShellTime ),
+			'walltime' => $config->get( MainConfigNames::MaxShellWallClockTime ),
+			'memory' => $config->get( MainConfigNames::MaxShellMemory ),
+			'filesize' => $config->get( MainConfigNames::MaxShellFileSize ),
 		];
-		$cgroup = $config->get( 'ShellCgroup' );
-		$restrictionMethod = $config->get( 'ShellRestrictionMethod' );
+		$cgroup = $config->get( MainConfigNames::ShellCgroup );
+		$restrictionMethod = $config->get( MainConfigNames::ShellRestrictionMethod );
 
 		$factory = new CommandFactory( $services->getShellboxClientFactory(),
 			$limits, $cgroup, $restrictionMethod );
@@ -1693,10 +1694,10 @@ return [
 	'SkinFactory' => static function ( MediaWikiServices $services ): SkinFactory {
 		$factory = new SkinFactory(
 			$services->getObjectFactory(),
-			(array)$services->getMainConfig()->get( 'SkipSkins' )
+			(array)$services->getMainConfig()->get( MainConfigNames::SkipSkins )
 		);
 
-		$names = $services->getMainConfig()->get( 'ValidSkinNames' );
+		$names = $services->getMainConfig()->get( MainConfigNames::ValidSkinNames );
 
 		foreach ( $names as $name => $skin ) {
 			if ( is_array( $skin ) ) {
@@ -1753,7 +1754,7 @@ return [
 			'main',
 			static function () use ( $config, $contentHandlerFactory, $hookContainer, $titleFactory ) {
 				return new MainSlotRoleHandler(
-					$config->get( 'NamespaceContentModels' ),
+					$config->get( MainConfigNames::NamespaceContentModels ),
 					$contentHandlerFactory,
 					$hookContainer,
 					$titleFactory
@@ -1770,8 +1771,8 @@ return [
 
 	'SpamChecker' => static function ( MediaWikiServices $services ): SpamChecker {
 		return new SpamChecker(
-			(array)$services->getMainConfig()->get( 'SpamRegex' ),
-			(array)$services->getMainConfig()->get( 'SummarySpamRegex' )
+			(array)$services->getMainConfig()->get( MainConfigNames::SpamRegex ),
+			(array)$services->getMainConfig()->get( MainConfigNames::SummarySpamRegex )
 		);
 	},
 
@@ -1788,7 +1789,7 @@ return [
 
 	'StatsdDataFactory' => static function ( MediaWikiServices $services ): IBufferingStatsdDataFactory {
 		return new BufferingStatsdDataFactory(
-			rtrim( $services->getMainConfig()->get( 'StatsdMetricPrefix' ), '.' )
+			rtrim( $services->getMainConfig()->get( MainConfigNames::StatsdMetricPrefix ), '.' )
 		);
 	},
 
@@ -1808,7 +1809,7 @@ return [
 	},
 
 	'TempFSFileFactory' => static function ( MediaWikiServices $services ): TempFSFileFactory {
-		return new TempFSFileFactory( $services->getMainConfig()->get( 'TmpDirectory' ) );
+		return new TempFSFileFactory( $services->getMainConfig()->get( MainConfigNames::TmpDirectory ) );
 	},
 
 	'Tidy' => static function ( MediaWikiServices $services ): TidyDriverBase {
@@ -1853,7 +1854,7 @@ return [
 
 	'UploadRevisionImporter' => static function ( MediaWikiServices $services ): UploadRevisionImporter {
 		return new ImportableUploadRevisionImporter(
-			$services->getMainConfig()->get( 'EnableUploads' ),
+			$services->getMainConfig()->get( MainConfigNames::EnableUploads ),
 			LoggerFactory::getInstance( 'UploadRevisionImporter' )
 		);
 	},
@@ -1949,7 +1950,7 @@ return [
 
 	'VirtualRESTServiceClient' =>
 	static function ( MediaWikiServices $services ): VirtualRESTServiceClient {
-		$config = $services->getMainConfig()->get( 'VirtualRestConfig' );
+		$config = $services->getMainConfig()->get( MainConfigNames::VirtualRestConfig );
 
 		$vrsClient = new VirtualRESTServiceClient(
 			$services->getHttpRequestFactory()->createMultiClient() );
@@ -1972,8 +1973,8 @@ return [
 			$services->getCommentStore(),
 			$services->getWatchedItemStore(),
 			$services->getHookContainer(),
-			$services->getMainConfig()->get( 'WatchlistExpiry' ),
-			$services->getMainConfig()->get( 'MaxExecutionTimeForExpensiveQueries' )
+			$services->getMainConfig()->get( MainConfigNames::WatchlistExpiry ),
+			$services->getMainConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries )
 		);
 	},
 
@@ -1992,7 +1993,7 @@ return [
 		);
 		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
 
-		if ( $services->getMainConfig()->get( 'ReadOnlyWatchedItemStore' ) ) {
+		if ( $services->getMainConfig()->get( MainConfigNames::ReadOnlyWatchedItemStore ) ) {
 			$store = new NoWriteWatchedItemStore( $store );
 		}
 
@@ -2100,7 +2101,7 @@ return [
 		return new MediaWikiTitleCodec(
 			$services->getContentLanguage(),
 			$services->getGenderCache(),
-			$services->getMainConfig()->get( 'LocalInterwikis' ),
+			$services->getMainConfig()->get( MainConfigNames::LocalInterwikis ),
 			$services->getInterwikiLookup(),
 			$services->getNamespaceInfo()
 		);

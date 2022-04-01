@@ -25,6 +25,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
@@ -304,7 +305,7 @@ class MergeHistory {
 	 */
 	public function merge( Authority $performer, $reason = '' ) {
 		$actorTableSchemaMigrationStage = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'ActorTableSchemaMigrationStage' );
+			->getMainConfig()->get( MainConfigNames::ActorTableSchemaMigrationStage );
 
 		$status = new Status();
 

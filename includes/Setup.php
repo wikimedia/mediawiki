@@ -53,6 +53,7 @@
 // phpcs:disable MediaWiki.Usage.DeprecatedGlobalVariables
 use MediaWiki\HeaderCallback;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\Config\GlobalConfigBuilder;
 use MediaWiki\Settings\Config\PhpIniSink;
@@ -246,7 +247,7 @@ if ( defined( 'MW_SETUP_CALLBACK' ) ) {
 }
 
 // If in a wiki-farm, load site-specific settings
-if ( $wgSettings->getConfig()->get( 'WikiFarmSettingsDirectory' ) ) {
+if ( $wgSettings->getConfig()->get( MainConfigNames::WikiFarmSettingsDirectory ) ) {
 	$wikiFarmSettingsLoader = new WikiFarmSettingsLoader( $wgSettings );
 	$wikiFarmSettingsLoader->loadWikiFarmSettings();
 	unset( $wikiFarmSettingsLoader );

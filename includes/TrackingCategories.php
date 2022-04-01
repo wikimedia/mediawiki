@@ -21,6 +21,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
 use Psr\Log\LoggerInterface;
 
@@ -114,11 +115,11 @@ class TrackingCategories {
 		$categories = array_merge(
 			self::CORE_TRACKING_CATEGORIES,
 			$this->extensionRegistry->getAttribute( 'TrackingCategories' ),
-			$this->options->get( 'TrackingCategories' ) // deprecated
+			$this->options->get( MainConfigNames::TrackingCategories ) // deprecated
 		);
 
 		// Only show magic link tracking categories if they are enabled
-		$enableMagicLinks = $this->options->get( 'EnableMagicLinks' );
+		$enableMagicLinks = $this->options->get( MainConfigNames::EnableMagicLinks );
 		if ( $enableMagicLinks['ISBN'] ) {
 			$categories[] = 'magiclink-tracking-isbn';
 		}

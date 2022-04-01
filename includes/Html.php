@@ -23,6 +23,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -111,7 +112,7 @@ class Html {
 	 */
 	public static function buttonAttributes( array $attrs, array $modifiers = [] ) {
 		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'UseMediaWikiUIEverywhere' );
+			->getMainConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
 		if ( $useMediaWikiUIEverywhere ) {
 			if ( isset( $attrs['class'] ) ) {
 				if ( is_array( $attrs['class'] ) ) {
@@ -139,7 +140,7 @@ class Html {
 	 */
 	public static function getTextInputAttributes( array $attrs ) {
 		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'UseMediaWikiUIEverywhere' );
+			->getMainConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
 		if ( $useMediaWikiUIEverywhere ) {
 			if ( isset( $attrs['class'] ) ) {
 				if ( is_array( $attrs['class'] ) ) {
@@ -1031,9 +1032,9 @@ class Html {
 	public static function htmlHeader( array $attribs = [] ) {
 		$ret = '';
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$html5Version = $mainConfig->get( 'Html5Version' );
-		$mimeType = $mainConfig->get( 'MimeType' );
-		$xhtmlNamespaces = $mainConfig->get( 'XhtmlNamespaces' );
+		$html5Version = $mainConfig->get( MainConfigNames::Html5Version );
+		$mimeType = $mainConfig->get( MainConfigNames::MimeType );
+		$xhtmlNamespaces = $mainConfig->get( MainConfigNames::XhtmlNamespaces );
 
 		$isXHTML = self::isXmlMimeType( $mimeType );
 

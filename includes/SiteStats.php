@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -63,7 +64,7 @@ class SiteStats {
 		}
 
 		if ( !self::isRowSensible( $row ) ) {
-			if ( $config->get( 'MiserMode' ) ) {
+			if ( $config->get( MainConfigNames::MiserMode ) ) {
 				// Start off with all zeroes, assuming that this is a new wiki or any
 				// repopulations where done manually via script.
 				SiteStatsInit::doPlaceholderInit();

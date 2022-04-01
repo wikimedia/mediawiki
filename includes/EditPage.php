@@ -48,6 +48,7 @@ use MediaWiki\EditPage\TextConflictHelper;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
@@ -461,7 +462,7 @@ class EditPage implements IEditObject {
 		$this->permManager = $services->getPermissionManager();
 		$this->revisionStore = $services->getRevisionStore();
 		$this->watchlistExpiryEnabled = $this->getContext()->getConfig() instanceof Config
-			&& $this->getContext()->getConfig()->get( 'WatchlistExpiry' );
+			&& $this->getContext()->getConfig()->get( MainConfigNames::WatchlistExpiry );
 		$this->watchedItemStore = $services->getWatchedItemStore();
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 		$this->watchlistManager = $services->getWatchlistManager();
@@ -845,9 +846,9 @@ class EditPage implements IEditObject {
 	 */
 	protected function previewOnOpen() {
 		$config = $this->context->getConfig();
-		$previewOnOpenNamespaces = $config->get( 'PreviewOnOpenNamespaces' );
+		$previewOnOpenNamespaces = $config->get( MainConfigNames::PreviewOnOpenNamespaces );
 		$request = $this->context->getRequest();
-		if ( $config->get( 'RawHtml' ) ) {
+		if ( $config->get( MainConfigNames::RawHtml ) ) {
 			// If raw HTML is enabled, disable preview on open
 			// since it has to be posted with a token for
 			// security reasons
@@ -1247,7 +1248,7 @@ class EditPage implements IEditObject {
 	 * @since 1.21
 	 */
 	protected function getContentObject( $def_content = null ) {
-		$disableAnonTalk = MediaWikiServices::getInstance()->getMainConfig()->get( 'DisableAnonTalk' );
+		$disableAnonTalk = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::DisableAnonTalk );
 
 		$content = false;
 
@@ -1913,8 +1914,8 @@ class EditPage implements IEditObject {
 	 * time.
 	 */
 	public function internalAttemptSave( &$result, $markAsBot = false, $markAsMinor = false ) {
-		$useNPPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseNPPatrol' );
-		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseRCPatrol' );
+		$useNPPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UseNPPatrol );
+		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UseRCPatrol );
 		if ( !$this->getHookRunner()->onEditPage__attemptSave( $this ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving" );
 			$status = Status::newFatal( 'hookaborted' );
@@ -2077,7 +2078,7 @@ class EditPage implements IEditObject {
 					$content = $content->addSectionHeader( $this->summary );
 				}
 
-				list( $newSectionSummary, $anchor ) = $this->newSectionSummary();
+				[ $newSectionSummary, $anchor ] = $this->newSectionSummary();
 				$this->summary = $newSectionSummary;
 				$result['sectionanchor'] = $anchor;
 			}
@@ -2143,7 +2144,7 @@ class EditPage implements IEditObject {
 				|| ( $this->editRevId !== null && $this->editRevId != $latest )
 			) {
 				$this->isConflict = true;
-				list( $newSectionSummary, $newSectionAnchor ) = $this->newSectionSummary();
+				[ $newSectionSummary, $newSectionAnchor ] = $this->newSectionSummary();
 				if ( $this->section === 'new' ) {
 					if ( $this->page->getUserText() === $user->getName() &&
 						$this->page->getComment() === $newSectionSummary
@@ -2297,7 +2298,7 @@ class EditPage implements IEditObject {
 			# All's well
 			$sectionAnchor = '';
 			if ( $this->section === 'new' ) {
-				list( $newSectionSummary, $anchor ) = $this->newSectionSummary();
+				[ $newSectionSummary, $anchor ] = $this->newSectionSummary();
 				$this->summary = $newSectionSummary;
 				$sectionAnchor = $anchor;
 			} elseif ( $this->section !== '' ) {
@@ -2688,7 +2689,7 @@ class EditPage implements IEditObject {
 		// editors, etc.
 		$out->addJsConfigVars(
 			'wgEditSubmitButtonLabelPublish',
-			$config->get( 'EditSubmitButtonLabelPublish' )
+			$config->get( MainConfigNames::EditSubmitButtonLabelPublish )
 		);
 	}
 
@@ -3403,7 +3404,7 @@ class EditPage implements IEditObject {
 
 				if ( $this->formtype !== 'preview' ) {
 					$config = $this->context->getConfig();
-					if ( $isUserCssConfig && $config->get( 'AllowUserCss' ) ) {
+					if ( $isUserCssConfig && $config->get( MainConfigNames::AllowUserCss ) ) {
 						$out->wrapWikiMsg(
 							"<div id='mw-usercssyoucanpreview'>\n$1\n</div>",
 							[ 'usercssyoucanpreview' ]
@@ -3413,7 +3414,7 @@ class EditPage implements IEditObject {
 							"<div id='mw-userjsonyoucanpreview'>\n$1\n</div>",
 							[ 'userjsonyoucanpreview' ]
 						);
-					} elseif ( $isUserJsConfig && $config->get( 'AllowUserJs' ) ) {
+					} elseif ( $isUserJsConfig && $config->get( MainConfigNames::AllowUserJs ) ) {
 						$out->wrapWikiMsg(
 							"<div id='mw-userjsyoucanpreview'>\n$1\n</div>",
 							[ 'userjsyoucanpreview' ]
@@ -3826,7 +3827,7 @@ class EditPage implements IEditObject {
 			}
 			$localizer = $context;
 		}
-		$rightsText = MediaWikiServices::getInstance()->getMainConfig()->get( 'RightsText' );
+		$rightsText = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RightsText );
 		if ( $rightsText ) {
 			$copywarnMsg = [ 'copyrightwarning',
 				'[[' . $localizer->msg( 'copyrightpage' )->inContentLanguage()->text() . ']]',
@@ -4080,7 +4081,7 @@ class EditPage implements IEditObject {
 		$out = $this->context->getOutput();
 		$config = $this->context->getConfig();
 
-		if ( $config->get( 'RawHtml' ) && !$this->mTokenOk ) {
+		if ( $config->get( MainConfigNames::RawHtml ) && !$this->mTokenOk ) {
 			// Could be an offsite preview attempt. This is very unsafe if
 			// HTML is enabled, as it could be an attack.
 			$parsedNote = '';
@@ -4138,7 +4139,7 @@ class EditPage implements IEditObject {
 
 				if ( $content->getModel() === CONTENT_MODEL_CSS ) {
 					$format = 'css';
-					if ( $level === 'user' && !$config->get( 'AllowUserCss' ) ) {
+					if ( $level === 'user' && !$config->get( MainConfigNames::AllowUserCss ) ) {
 						$format = false;
 					}
 				} elseif ( $content->getModel() === CONTENT_MODEL_JSON ) {
@@ -4148,7 +4149,7 @@ class EditPage implements IEditObject {
 					}
 				} elseif ( $content->getModel() === CONTENT_MODEL_JAVASCRIPT ) {
 					$format = 'js';
-					if ( $level === 'user' && !$config->get( 'AllowUserJs' ) ) {
+					if ( $level === 'user' && !$config->get( MainConfigNames::AllowUserJs ) ) {
 						$format = false;
 					}
 				} else {
@@ -4487,7 +4488,7 @@ class EditPage implements IEditObject {
 	 */
 	private function getSubmitButtonLabel(): string {
 		$labelAsPublish =
-			$this->context->getConfig()->get( 'EditSubmitButtonLabelPublish' );
+			$this->context->getConfig()->get( MainConfigNames::EditSubmitButtonLabelPublish );
 
 		// Can't use $this->isNew as that's also true if we're adding a new section to an extant page
 		$newPage = !$this->mTitle->exists();
@@ -4515,7 +4516,7 @@ class EditPage implements IEditObject {
 		$buttons = [];
 
 		$labelAsPublish =
-			$this->context->getConfig()->get( 'EditSubmitButtonLabelPublish' );
+			$this->context->getConfig()->get( MainConfigNames::EditSubmitButtonLabelPublish );
 
 		$buttonLabel = $this->context->msg( $this->getSubmitButtonLabel() )->text();
 		$buttonTooltip = $labelAsPublish ? 'publish' : 'save';
@@ -4655,7 +4656,7 @@ class EditPage implements IEditObject {
 		}
 
 		$out = $this->context->getOutput();
-		$maxArticleSize = $this->context->getConfig()->get( 'MaxArticleSize' );
+		$maxArticleSize = $this->context->getConfig()->get( MainConfigNames::MaxArticleSize );
 		if ( $this->tooBig || $this->contentLength > $maxArticleSize * 1024 ) {
 			$lang = $this->context->getLanguage();
 			$out->wrapWikiMsg( "<div class='error' id='mw-edit-longpageerror'>\n$1\n</div>",
