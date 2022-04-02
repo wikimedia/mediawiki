@@ -23,7 +23,6 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -57,6 +56,9 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
+	/** @var TitleFactory */
+	private $titleFactory;
+
 	protected $limits = [ 20, 50, 100, 250, 500 ];
 
 	/**
@@ -65,13 +67,15 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param SearchEngineFactory $searchEngineFactory
 	 * @param NamespaceInfo $namespaceInfo
+	 * @param TitleFactory $titleFactory
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
 		LinkBatchFactory $linkBatchFactory,
 		IContentHandlerFactory $contentHandlerFactory,
 		SearchEngineFactory $searchEngineFactory,
-		NamespaceInfo $namespaceInfo
+		NamespaceInfo $namespaceInfo,
+		TitleFactory $titleFactory
 	) {
 		parent::__construct( 'Whatlinkshere' );
 		$this->loadBalancer = $loadBalancer;
@@ -79,6 +83,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->searchEngineFactory = $searchEngineFactory;
 		$this->namespaceInfo = $namespaceInfo;
+		$this->titleFactory = $titleFactory;
 	}
 
 	public function execute( $par ) {
@@ -181,10 +186,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		}
 
 		if ( $offsetNamespace === null ) {
-			$offsetTitle = MediaWikiServices::getInstance()
-				->getTitleFactory()
-				->newFromID( $offsetPageID );
-			$offsetNamespace = $offsetTitle ? $offsetTitle->getNamespace() : 0;
+			$offsetTitle = $this->titleFactory->newFromID( $offsetPageID );
+			$offsetNamespace = $offsetTitle ? $offsetTitle->getNamespace() : NS_MAIN;
 		}
 
 		return [ $offsetNamespace, $offsetPageID, $dir ];
