@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Permissions\GrantsLocalization;
+
 /**
  * This special page lists all defined rights grants and the associated rights.
  * See also @ref $wgGrantPermissions and @ref $wgGrantPermissionGroups.
@@ -28,8 +30,12 @@
  * @ingroup SpecialPage
  */
 class SpecialListGrants extends SpecialPage {
-	public function __construct() {
+	/** @var GrantsLocalization */
+	private $grantsLocalization;
+
+	public function __construct( GrantsLocalization $grantsLocalization ) {
 		parent::__construct( 'Listgrants' );
+		$this->grantsLocalization = $grantsLocalization;
 	}
 
 	/**
@@ -51,6 +57,8 @@ class SpecialListGrants extends SpecialPage {
 				\Html::element( 'th', [], $this->msg( 'listgrants-rights' )->text() ) .
 				'</tr>'
 		);
+
+		$lang = $this->getLanguage();
 
 		foreach ( $this->getConfig()->get( 'GrantPermissions' ) as $grant => $rights ) {
 			$descs = [];
@@ -74,7 +82,7 @@ class SpecialListGrants extends SpecialPage {
 				"<td>" .
 				$this->msg(
 					"listgrants-grant-display",
-					MWGrants::grantName( $grant ),
+					$this->grantsLocalization->getGrantDescription( $grant, $lang ),
 					"<span class='mw-listgrants-grant-name'>" . $id . "</span>"
 				)->parse() .
 				"</td>" .
