@@ -465,6 +465,9 @@ class SpecialPageFactory {
 		],
 		'Listgrants' => [
 			'class' => \SpecialListGrants::class,
+			'services' => [
+				'GrantsLocalization',
+			]
 		],
 		'Listusers' => [
 			'class' => \SpecialListUsers::class,
