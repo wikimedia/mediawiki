@@ -804,6 +804,7 @@ class SpecialPageFactory {
 				'ContentHandlerFactory',
 				'SearchEngineFactory',
 				'NamespaceInfo',
+				'TitleFactory',
 			]
 		],
 		'MergeHistory' => [
