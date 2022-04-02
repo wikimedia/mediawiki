@@ -326,17 +326,20 @@ class HTMLForm extends ContextSource {
 	 * @stable to call
 	 *
 	 * @param string $displayFormat
-	 * @param mixed ...$arguments Additional arguments to pass to the constructor.
+	 * @param array $descriptor Array of Field constructs, as described
+	 * 	in the class documentation
+	 * @param IContextSource|null $context Available since 1.18, required since 1.38.
+	 * @param string $messagePrefix A prefix to go in front of default messages
 	 * @return HTMLForm
 	 */
-	public static function factory( $displayFormat, ...$arguments ) {
+	public static function factory( $displayFormat, $descriptor, $context = null, $messagePrefix = '' ) {
 		switch ( $displayFormat ) {
 			case 'vform':
-				return new VFormHTMLForm( ...$arguments );
+				return new VFormHTMLForm( $descriptor, $context, $messagePrefix );
 			case 'ooui':
-				return new OOUIHTMLForm( ...$arguments );
+				return new OOUIHTMLForm( $descriptor, $context, $messagePrefix );
 			default:
-				$form = new self( ...$arguments );
+				$form = new self( $descriptor, $context, $messagePrefix );
 				$form->setDisplayFormat( $displayFormat );
 				return $form;
 		}
