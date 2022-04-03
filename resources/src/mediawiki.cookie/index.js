@@ -124,13 +124,7 @@ mw.cookie = {
 			defaultValue = null;
 		}
 
-		try {
-			result = $.cookie( prefix + key );
-		} catch ( e ) {
-			// T296620: $.cookie appears to sometimes be undefined.
-			// Possibly ISP/browser extension related.
-			result = null;
-		}
+		result = $.cookie( prefix + key );
 
 		return result !== null ? result : defaultValue;
 	},
