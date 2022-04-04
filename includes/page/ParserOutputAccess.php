@@ -177,7 +177,8 @@ class ParserOutputAccess {
 			return self::CACHE_NONE;
 		}
 
-		if ( !$rev || $rev->getId() === $page->getLatest( PageRecord::LOCAL ) ) {
+		$isOld = $rev && $rev->getId() !== $page->getLatest();
+		if ( !$isOld ) {
 			// current revision
 			return self::CACHE_PRIMARY;
 		}
@@ -210,10 +211,8 @@ class ParserOutputAccess {
 		$classCacheKey = $this->primaryCache->makeParserOutputKey( $page, $parserOptions );
 
 		if ( $useCache === self::CACHE_PRIMARY ) {
-			if (
-				isset( $this->localCache[$classCacheKey] ) &&
-				( !$revision || $revision->getId() === $page->getLatest( PageRecord::LOCAL ) )
-			) {
+			$isOld = $revision && $revision->getId() !== $page->getLatest();
+			if ( isset( $this->localCache[$classCacheKey] ) && !$isOld ) {
 				return $this->localCache[$classCacheKey];
 			}
 			$output = $this->primaryCache->get( $page, $parserOptions );
@@ -285,21 +284,14 @@ class ParserOutputAccess {
 			}
 		}
 
-		$shouldSaveInClassCache = false;
 		if ( !$revision ) {
-			$shouldSaveInClassCache = true;
-			$revision = $page->getLatest() ?
-				$this->revisionLookup->getRevisionById( $page->getLatest() ) : null;
+			$revId = $page->getLatest();
+			$revision = $revId ? $this->revisionLookup->getRevisionById( $revId ) : null;
 
 			if ( !$revision ) {
 				$this->statsDataFactory->increment( "ParserOutputAccess.Status.norev" );
-				return Status::newFatal(
-					'missing-revision',
-					$page->getLatest()
-				);
+				return Status::newFatal( 'missing-revision', $revId );
 			}
-		} elseif ( $revision->getId() === $page->getLatest( PageRecord::LOCAL ) ) {
-			$shouldSaveInClassCache = true;
 		}
 
 		$work = $this->newPoolWorkArticleView( $page, $parserOptions, $revision, $options );
@@ -317,7 +309,7 @@ class ParserOutputAccess {
 		}
 
 		if ( $output && $status->isOK() ) {
-			if ( $shouldSaveInClassCache ) {
+			if ( !$isOld ) {
 				$this->localCache[$classCacheKey] = $output;
 			}
 			$status->setResult( true, $output );
