@@ -23,11 +23,7 @@ class ExternalStoreForTesting {
 		$path = explode( '/', $url );
 		$cluster = $path[2];
 		$id = $path[3];
-		if ( isset( $path[4] ) ) {
-			$itemID = $path[4];
-		} else {
-			$itemID = false;
-		}
+		$itemID = $path[4] ?? false;
 
 		if ( !isset( $this->data[$cluster][$id] ) ) {
 			return null;

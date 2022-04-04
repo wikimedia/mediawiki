@@ -204,11 +204,7 @@ class LinkFilter {
 		if ( isset( $bits['port'] ) ) {
 			$index .= ':' . $bits['port'];
 		}
-		if ( isset( $bits['path'] ) ) {
-			$index .= $bits['path'];
-		} else {
-			$index .= '/';
-		}
+		$index .= $bits['path'] ?? '/';
 		if ( isset( $bits['query'] ) ) {
 			$index .= '?' . $bits['query'];
 		}

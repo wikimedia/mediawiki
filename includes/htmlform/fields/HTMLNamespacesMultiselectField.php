@@ -81,11 +81,8 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 			$params['default'] = $this->mParams['default'];
 		}
 
-		if ( isset( $this->mParams['placeholder'] ) ) {
-			$params['placeholder'] = $this->mParams['placeholder'];
-		} else {
-			$params['placeholder'] = $this->msg( 'mw-widgets-titlesmultiselect-placeholder' )->plain();
-		}
+		$params['placeholder'] = $this->mParams['placeholder'] ??
+			$this->msg( 'mw-widgets-titlesmultiselect-placeholder' )->plain();
 
 		if ( isset( $this->mParams['max'] ) ) {
 			$params['tagLimit'] = $this->mParams['max'];

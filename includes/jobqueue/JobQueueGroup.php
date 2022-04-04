@@ -134,11 +134,7 @@ class JobQueueGroup {
 	 */
 	public function get( $type ) {
 		$conf = [ 'domain' => $this->domain, 'type' => $type ];
-		if ( isset( $this->jobTypeConfiguration[$type] ) ) {
-			$conf += $this->jobTypeConfiguration[$type];
-		} else {
-			$conf += $this->jobTypeConfiguration['default'];
-		}
+		$conf += $this->jobTypeConfiguration[$type] ?? $this->jobTypeConfiguration['default'];
 		if ( !isset( $conf['readOnlyReason'] ) ) {
 			$conf['readOnlyReason'] = $this->readOnlyMode->getReason();
 		}

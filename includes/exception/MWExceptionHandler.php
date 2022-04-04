@@ -426,10 +426,8 @@ TXT;
 
 			if ( isset( $frame['class'] ) && isset( $frame['type'] ) && isset( $frame['function'] ) ) {
 				$text .= $frame['class'] . $frame['type'] . $frame['function'];
-			} elseif ( isset( $frame['function'] ) ) {
-				$text .= $frame['function'];
 			} else {
-				$text .= 'NO_FUNCTION_GIVEN';
+				$text .= $frame['function'] ?? 'NO_FUNCTION_GIVEN';
 			}
 
 			if ( isset( $frame['args'] ) ) {
