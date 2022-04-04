@@ -207,11 +207,11 @@ class ParserOutputAccess {
 		?RevisionRecord $revision = null,
 		int $options = 0
 	): ?ParserOutput {
+		$isOld = $revision && $revision->getId() !== $page->getLatest();
 		$useCache = $this->shouldUseCache( $page, $revision );
 		$classCacheKey = $this->primaryCache->makeParserOutputKey( $page, $parserOptions );
 
 		if ( $useCache === self::CACHE_PRIMARY ) {
-			$isOld = $revision && $revision->getId() !== $page->getLatest();
 			if ( isset( $this->localCache[$classCacheKey] ) && !$isOld ) {
 				return $this->localCache[$classCacheKey];
 			}
@@ -222,7 +222,7 @@ class ParserOutputAccess {
 			$output = null;
 		}
 
-		if ( $output && !$revision ) {
+		if ( $output && !$isOld ) {
 			$this->localCache[$classCacheKey] = $output;
 		}
 
