@@ -806,6 +806,7 @@ class Article implements Page {
 
 		if ( $pOutput ) {
 			$outputPage->addParserOutput( $pOutput, $textOptions );
+			$outputPage->setSections( $pOutput->getSections() );
 		}
 
 		if ( $this->getRevisionRedirectTarget( $rev ) ) {
