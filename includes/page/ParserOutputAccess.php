@@ -227,8 +227,11 @@ class ParserOutputAccess {
 			$this->localCache[$classCacheKey] = $output;
 		}
 
-		$hitOrMiss = $output ? 'hit' : 'miss';
-		$this->statsDataFactory->increment( "ParserOutputAccess.Cache.$useCache.$hitOrMiss" );
+		if ( $output ) {
+			$this->statsDataFactory->increment( "ParserOutputAccess.Cache.$useCache.hit" );
+		} else {
+			$this->statsDataFactory->increment( "ParserOutputAccess.Cache.$useCache.miss" );
+		}
 
 		return $output ?: null; // convert false to null
 	}
@@ -267,8 +270,12 @@ class ParserOutputAccess {
 			return $error;
 		}
 
-		$currentOrOld = ( $revision && $revision->getId() !== $page->getLatest() ) ? 'old' : 'current';
-		$this->statsDataFactory->increment( "ParserOutputAccess.Case.$currentOrOld" );
+		$isOld = $revision && $revision->getId() !== $page->getLatest();
+		if ( $isOld ) {
+			$this->statsDataFactory->increment( 'ParserOutputAccess.Case.old' );
+		} else {
+			$this->statsDataFactory->increment( 'ParserOutputAccess.Case.current' );
+		}
 		$classCacheKey = $this->primaryCache->makeParserOutputKey( $page, $parserOptions );
 
 		if ( !( $options & self::OPT_NO_CHECK_CACHE ) ) {
@@ -325,14 +332,13 @@ class ParserOutputAccess {
 		}
 
 		if ( $status->isGood() ) {
-			$statusMsg = 'good';
+			$this->statsDataFactory->increment( 'ParserOutputAccess.Status.good' );
 		} elseif ( $status->isOK() ) {
-			$statusMsg = 'ok';
+			$this->statsDataFactory->increment( 'ParserOutputAccess.Status.ok' );
 		} else {
-			$statusMsg = 'error';
+			$this->statsDataFactory->increment( 'ParserOutputAccess.Status.error' );
 		}
 
-		$this->statsDataFactory->increment( "ParserOutputAccess.Status.$statusMsg" );
 		return $status;
 	}
 
