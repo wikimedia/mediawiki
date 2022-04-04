@@ -325,7 +325,7 @@ class UndeletePage {
 		if ( $this->associatedTalk ) {
 			$talkStatus = $this->canProbablyUndeleteAssociatedTalk();
 			// if undeletion of the page fails we don't want to undelete the talk page
-			if ( $talkStatus->isGood() && $this->revisionStatus->isGood() ) {
+			if ( $talkStatus->isGood() && $resStatus->isGood() ) {
 				$talkStatus = $this->undeleteRevisions( $this->associatedTalk, [], $comment );
 				if ( !$talkStatus->isOK() ) {
 					return $talkStatus;
