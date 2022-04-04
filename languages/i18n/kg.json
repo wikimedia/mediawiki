@@ -136,7 +136,6 @@
 	"youhavenewmessagesfromusers": "Nge kele na $1 na {{PLURAL:$3|kisadi ya nkaka|$3 bisadi}} ($2).",
 	"youhavenewmessagesmanyusers": "Nge kele na $1 na kisadi mîngi ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|nsângu ya yimpa|bansângu ya yimpa}}",
-	"youhavenewmessagesmulti": "Nge kele na bansangu ya yimpa kuna $1",
 	"editsection": "soba",
 	"editold": "soba",
 	"editlink": "soba",

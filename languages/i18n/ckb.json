@@ -259,7 +259,6 @@
 	"youhavenewmessagesmanyusers": "$1ت  لە ژمارەیەک بەکارھێنەر ھەیە ( $2 ).",
 	"newmessageslinkplural": "{{PLURAL:$1|پەیامێکی نوێ|999=پەیامی نوێ}}",
 	"newmessagesdifflinkplural": "دوایین {{PLURAL:$1|گۆڕانکاری|999=گۆڕانکارییەکان}}",
-	"youhavenewmessagesmulti": "لە $1 دا پەیامی نوێت ھەیە",
 	"editsection": "دەستکاری",
 	"editold": "دەستکاری",
 	"viewsourceold": "بینینی سەرچاوە",

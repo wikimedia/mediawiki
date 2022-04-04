@@ -233,7 +233,6 @@
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Tiens}} $1 {{PLURAL:$3|d'atro usuario|de $3 usuarios}} ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|un mensache nuevo|999=mensaches nuevos}}",
 	"newmessagesdifflinkplural": "{{PLURAL:$1|zaguer cambeo|999=zaguers cambeos}}",
-	"youhavenewmessagesmulti": "Tiene nuevos mensaches en $1",
 	"editsection": "editar",
 	"editold": "editar",
 	"viewsourceold": "veyer o codigo fuent",

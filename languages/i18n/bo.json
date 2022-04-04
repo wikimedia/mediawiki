@@ -228,7 +228,6 @@
 	"youhavenewmessagesmanyusers": "ཁྱེད་ལ་ $1 སྤྱོད་མི་མང་པོ་ཞིག་ནས་ ($2)འདུག།",
 	"newmessageslinkplural": "{{PLURAL:$1|འཕྲིན་ཐུང་གསར་པ་ཞིག་|999= འཕྲིན་ཐུང་གསར་པ།}}",
 	"newmessagesdifflinkplural": "མཐའ་མའི་ {{PLURAL:$1|འགྱུར་བཅོས།|999=འགྱུར་བཅོས།}}",
-	"youhavenewmessagesmulti": "ཁྱེད་ལ་ $1 སྟེང་དུ་འཕྲིན་ཡིག་འདུག",
 	"editsection": "རྩོམ་སྒྲིག།",
 	"editold": "རྩོམ་སྒྲིག",
 	"viewsourceold": "ཁོངས་ལ་ལྟ་བ།",

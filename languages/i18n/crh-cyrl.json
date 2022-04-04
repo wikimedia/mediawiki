@@ -220,7 +220,6 @@
 	"youhavenewmessagesmanyusers": "Бир къач къулланыджыдан $1 бар. ($2)",
 	"newmessageslinkplural": "{{PLURAL:$1|1=янъы беянатынъыз|янъы беянатларынъыз}}",
 	"newmessagesdifflinkplural": "музакере саифенъизнинъ сонъки {{PLURAL:$1|1=денъиштирильмеси|денъиштирильмелери}}",
-	"youhavenewmessagesmulti": "$1 саифесинде янъы беянатынъыз бар.",
 	"editsection": "денъиштир",
 	"editold": "денъиштир",
 	"viewsourceold": "менба кодуны косьтер",

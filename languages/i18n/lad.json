@@ -229,7 +229,6 @@
 	"youhavenewmessagesmanyusers": "Tiene $1 de munchos usuarios ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|un muevo mesaje|999=mesajes muevos}}",
 	"newmessagesdifflinkplural": "{{PLURAL:$1|ulitmo kambio|999=ultimos kambios}}",
-	"youhavenewmessagesmulti": "Tienes messajes nuevos en $1",
 	"editsection": "trocar",
 	"editold": "trocar",
 	"viewsourceold": "Ver su manadero",

@@ -238,7 +238,6 @@
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Bo tin}} $1 di {{PLURAL:$3|un otro usuario|$3 otro usuario}} ($2).",
 	"youhavenewmessagesmanyusers": "Bo tin $1 di vários usuario ($2).",
 	"newmessagesdifflinkplural": "lastu {{PLURAL:$1|kambio|999=kambio}}",
-	"youhavenewmessagesmulti": "Bo tin mensahe nobo riba $1",
 	"editsection": "editá",
 	"editold": "editá",
 	"viewsourceold": "wak kódigo fuente",

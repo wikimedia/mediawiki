@@ -211,7 +211,6 @@
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Tu turri}} $1 ezze {{PLURAL:$3|kitsmu tērpautajan|$3 tēpautajamans}} ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|nawā waīstis|999=nawwas waīstis}}",
 	"newmessagesdifflinkplural": "panzdaumas {{PLURAL:$1|kitawīdinsna|999=kitawīdinsnas}}",
-	"youhavenewmessagesmulti": "Tū turri nāunans waīstins ēn $1",
 	"editsection": "redigīs",
 	"editold": "redigīs",
 	"viewsourceold": "Waidinnais appun",

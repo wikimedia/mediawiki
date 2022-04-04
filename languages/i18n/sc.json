@@ -243,7 +243,6 @@
 	"youhavenewmessagesmanyusers": "Tenes $1 dae unos cantos impitadores ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|unu messàggiu nou|999=messàggios noos}}",
 	"newmessagesdifflinkplural": "{{PLURAL:$1|ùrtima muda|999=ùrtimas mudàntzias}}",
-	"youhavenewmessagesmulti": "Tenes messàgios noos in $1",
 	"editsection": "modìfica",
 	"editold": "modìfica",
 	"viewsourceold": "càstia testu codificadu",

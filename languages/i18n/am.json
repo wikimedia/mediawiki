@@ -218,7 +218,6 @@
 	"youhavenewmessagesmanyusers": "ከአሥር አባላት በላይ $1 አሉልዎ! ($2)",
 	"newmessageslinkplural": "{{PLURAL:$1|፩ አዲስ መልዕክት|አዲስ መልእክቶች}}",
 	"newmessagesdifflinkplural": "መጨረሻ {{PLURAL:$1|ለውጥ|ለውጦች}}",
-	"youhavenewmessagesmulti": "በ$1 አዲስ መልእክቶች አሉዎት",
 	"editsection": "አርም",
 	"editold": "አርም",
 	"viewsourceold": "ምንጩን ለማየት",

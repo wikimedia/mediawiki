@@ -153,7 +153,6 @@
 	"youhavenewmessages": "{{PLURAL:$3|Tiene}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Tiene}} $1 de {{PLURAL:$3|otro usuario|$3 usuarios}} ($2).",
 	"youhavenewmessagesmanyusers": "Tiene $1 de muchos usuarios ($2).",
-	"youhavenewmessagesmulti": "Tiene mensajes nuevos en $1",
 	"editsection": "editar",
 	"editold": "editar",
 	"viewsourceold": "ver código",

@@ -207,7 +207,6 @@
 	"youhavenewmessagesfromusers": "तुका {{PLURAL:$3एक वापरपी|$3 वापरपी}} कडल्यान $1 {{PLURAL:$4|आसा|आसात}} ($2).‎",
 	"newmessageslinkplural": "{{PLURAL:$1|नवो संदेश|999=नवे संदेश}}‎",
 	"newmessagesdifflinkplural": "{{PLURAL:$1|निमाणो बदल|999=निमाणे बदल}}",
-	"youhavenewmessagesmulti": "$1 चेर तुका नवो संदेश आसा",
 	"editsection": "बदल",
 	"editold": "बदल",
 	"viewsourceold": "उगम पळेयात",

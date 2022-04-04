@@ -225,7 +225,6 @@
 	"youhavenewmessagesmanyusers": "Тонь $1 лама тиихнень эзда ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|од сёрма|од сёрмат}}",
 	"newmessagesdifflinkplural": "мекольце {{PLURAL:$1|полафнема|полафнемат}}",
-	"youhavenewmessagesmulti": "Тонь улихть од сёрмат $1-са",
 	"editsection": "петнемс",
 	"editold": "петнемс",
 	"viewsourceold": "лисьма ваномс",

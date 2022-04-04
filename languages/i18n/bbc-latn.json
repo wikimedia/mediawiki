@@ -189,7 +189,6 @@
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Dijalo hamu}} do $1 sian {{PLURAL:$3|panghasea na asing}} ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|tona na imbaru|999=tona na imbaru}}",
 	"newmessagesdifflinkplural": "$1 {{PLURAL:$1|parubaan|angka parubaan}} parpudi",
-	"youhavenewmessagesmulti": "Adong tu ho tona na imbaru di $1",
 	"editsection": "patota",
 	"editold": "patota",
 	"viewsourceold": "ida harorona",

@@ -237,7 +237,6 @@
 	"youhavenewmessagesmanyusers": "Көп колдонуучулардан сиз $1 алдыңыз ($2).",
 	"newmessageslinkplural": "жаңы {{PLURAL:$1|билдирүү| билдирүүлөр}}",
 	"newmessagesdifflinkplural": "соңку {{PLURAL:$1|өзгөрүү|999=өзгөрүүлөр}}",
-	"youhavenewmessagesmulti": "Сизге $1 жаңы кат бар",
 	"editsection": "оңдоо",
 	"editold": "оңдоо",
 	"viewsourceold": "кайнарын кароо",

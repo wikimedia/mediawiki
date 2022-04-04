@@ -223,7 +223,6 @@
 	"youhavenewmessagesmanyusers": "شما ات‌سری کارور جه $1 دارنی ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|ترنه پیغوم|ترنه پیغوم}}",
 	"newmessagesdifflinkplural": "{{formatnum:$1}} {{PLURAL:$1|ترنه دچی‌یه|ترنه دچی‌یه‌ئون}}",
-	"youhavenewmessagesmulti": "شِمه وسّه $1 دله، ترنه پیغوم برسی‌یه.",
 	"editsection": "دچی‌ین",
 	"editold": "دچی‌ین",
 	"viewsourceold": "منبع ره هارشائن",

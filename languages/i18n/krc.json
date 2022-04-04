@@ -237,7 +237,6 @@
 	"youhavenewmessagesmanyusers": "Талай къошулуучудан $1 барды. ($2)",
 	"newmessageslinkplural": "{{PLURAL:$1|джангы билдириу|999=джангы билдириуле}}",
 	"newmessagesdifflinkplural": "ахыр {{PLURAL:$1|тюрлениу|999=тюрлениу}}",
-	"youhavenewmessagesmulti": "$1 бетде джангы билдириуле бардыла.",
 	"editsection": "тюрлендир",
 	"editold": "тюрлендир",
 	"viewsourceold": "Башланнган кодха къара",

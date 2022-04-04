@@ -196,7 +196,6 @@
 	"youhavenewmessagesmanyusers": "ܐܝܬ ܠܟ $1 ܡܢ ܡܦܠܚܢ̈ܐ ܣܓܝܐ̈ܐ ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|ܐܓܪܬܐ ܚܕܬܐ|999=ܐܓܪ̈ܬܐ ܚܕ̈ܬܬܐ}}",
 	"newmessagesdifflinkplural": "{{PLURAL:$1|ܫܘܚܠܦܐ ܐܚܪܝܐ|999=ܫܘܚܠܦ̈ܐ ܐܚܪ̈ܝܐ}}",
-	"youhavenewmessagesmulti": "ܐܝܬ ܠܟ ܐܓܪ̈ܬܐ ܚܕ̈ܬܬܐ ܒ $1",
 	"editsection": "ܫܚܠܦ",
 	"editold": "ܫܚܠܦ",
 	"viewsourceold": "ܚܙܝ ܡܒܘܥܐ",

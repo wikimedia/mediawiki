@@ -229,7 +229,6 @@
 	"youhavenewmessagesmanyusers": "Du hår $1 fra mång bruga ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|e ny besked|999=nyj beskede}}",
 	"newmessagesdifflinkplural": "siensti {{PLURAL:$1|øndreng|999=øndrenge}}",
-	"youhavenewmessagesmulti": "Du hår nyj beskede på $1",
 	"editsection": "redigiir",
 	"editold": "redigiir",
 	"viewsourceold": "wis tjeljkode",

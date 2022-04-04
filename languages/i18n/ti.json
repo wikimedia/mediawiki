@@ -142,7 +142,6 @@
 	"youhavenewmessages": "$1 {{PLURAL:$3|ኣሎካ}} ($2)።",
 	"newmessageslinkplural": "{{PLURAL:$1|ሓድሽ መልእኽቲ|999=ሓደሽቲ መልእኽትታት}}",
 	"newmessagesdifflinkplural": "ናይ መወዳእታ {{PLURAL:$1|ለውጢ|999=ለውጥታት}}",
-	"youhavenewmessagesmulti": "ኣብ $1 ሓደሽቲ መልእኽትታት ኣሎካ",
 	"editsection": "ኣመዓራርይ",
 	"editold": "ኣመዓራርይ",
 	"viewsourceold": "ኮድ ርኣይ",

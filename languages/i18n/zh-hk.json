@@ -30,7 +30,7 @@
 			"星海"
 		]
 	},
-	"tog-fancysig": "將簽名視為wikitext（不自動加上至您用戶頁的連結）",
+	"tog-fancysig": "將簽名視為wikitext（不自動將其連結至您的用戶頁）",
 	"tog-watchlisthidebots": "隱藏監視清單中機械人的編輯",
 	"sunday": "星期日",
 	"monday": "星期一",

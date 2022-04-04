@@ -236,6 +236,7 @@
 	"config-upload-help": "Os carregamentos de arquivos potencialmente expõem seu servidor a riscos de segurança.\nPara mais informações, leia a [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security seção de segurança] no manual.\nPara ativar o envio de arquivos, mude o modo no subdiretório <code>images</code> no diretório raiz do MediaWiki para que o servidor web possa escrever nele.\nEntão, habilite esta opção.",
 	"config-upload-deleted": "Diretório para arquivos excluídos:",
 	"config-upload-deleted-help": "Escolha um diretório no qual serão armazenados os arquivos excluídos. \nIdealmente, este não deveria ser acessível pela web.",
+	"config-personalization-settings": "Personalização",
 	"config-logo-preview-main": "Página principal",
 	"config-instantcommons": "Ativar o Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] é um recurso que permite que as wikis usem imagens, sons e outras mídias encontradas no site [https://commons.wikimedia.org/ Wikimedia Commons].\nPara fazer isso, o MediaWiki requer acesso à Internet.\n\nPara obter mais informações sobre esse recurso, incluindo instruções sobre como configurá-lo para wikis diferentes da Wikimedia Commons, consulte [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos o manual].",

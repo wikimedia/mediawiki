@@ -270,7 +270,6 @@
 	"youhavenewmessagesmanyusers": "諸士音信新來。其$1，悉存乎齋（$2）。",
 	"newmessageslinkplural": "{{PLURAL:$1|書簡凡一|999=二三書簡}}",
 	"newmessagesdifflinkplural": "新{{PLURAL:$1|易}}",
-	"youhavenewmessagesmulti": "新訊於$1",
 	"editsection": "纂",
 	"editold": "纂",
 	"viewsourceold": "察源碼",

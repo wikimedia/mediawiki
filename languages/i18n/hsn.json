@@ -196,7 +196,6 @@
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|尔}}有来自{{PLURAL:$3|其他用户|$3个用户}}亇$1（$2）。",
 	"newmessageslinkplural": "{{PLURAL:$1|新信息|999=新消息}}",
 	"newmessagesdifflinkplural": "最后{{PLURAL:$1|更改|999=更改}}",
-	"youhavenewmessagesmulti": "有人在$1应了你一声",
 	"editsection": "增改",
 	"editold": "增改",
 	"viewsourceold": "看代码",

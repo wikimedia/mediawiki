@@ -245,7 +245,6 @@
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Ἔχεις}} $1 ἀπὸ {{PLURAL:$3|τινὸς χρωμένου|$3 χρωμένων}} ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|καινὸν ἄγγελμα|καινὰ ἀγγέλματα}}",
 	"newmessagesdifflinkplural": "$1 {{PLURAL:$1|μεταβολή|μεταβολαί}}",
-	"youhavenewmessagesmulti": "Νέας εἰσί σοι ἀγγελίας ἐν $1",
 	"editsection": "μεταγράφειν",
 	"editold": "μεταγράφειν",
 	"viewsourceold": "ὁρᾶν πηγήν",

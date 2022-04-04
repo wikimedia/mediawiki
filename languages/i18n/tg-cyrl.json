@@ -252,7 +252,6 @@
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Шумо}} аз {{PLURAL:$3|корбари дигар|корбарони дигарон}} $1 доред ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|паёми|паёмҳои}} нав",
 	"newmessagesdifflinkplural": "{{PLURAL:$1|тағйироти|999=тағйироти}} охирин",
-	"youhavenewmessagesmulti": "Шумо номаҳои нав дар $1 доред.",
 	"editsection": "вироиш",
 	"editold": "вироиш",
 	"viewsourceold": "намоиши манбаъ",

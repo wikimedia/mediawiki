@@ -221,7 +221,6 @@
 	"youhavenewmessagesmanyusers": "Tu as $1 de nombreux utilisateurs ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|un nouveau message|des nouveaux messages}}",
 	"newmessagesdifflinkplural": "{{PLURAL:$1|dernière modification|dernières modifications}}",
-	"youhavenewmessagesmulti": "Vous avez des nouveaux messages sus $1.",
 	"editsection": "changer",
 	"editold": "changer",
 	"viewsourceold": "Regarde la source",

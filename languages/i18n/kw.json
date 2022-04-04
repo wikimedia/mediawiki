@@ -204,7 +204,6 @@
 	"youhavenewmessagesmanyusers": "Hwi a'gas beus $1 dhyworth lies devnydhyer ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|messach nowydh|999=messajys nowydh}}",
 	"newmessagesdifflinkplural": "an {{PLURAL:$1|chanj|999=chanjyow}} diwettha",
-	"youhavenewmessagesmulti": "Messajys nowyth a'gas beus war $1",
 	"editsection": "golegi",
 	"editold": "golegi",
 	"viewsourceold": "gweles an bennfenten",

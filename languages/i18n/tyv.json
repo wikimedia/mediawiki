@@ -235,7 +235,6 @@
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|}} {{PLURAL:$3|бир ажыглакчыдан|$3 ажыглакчыдан}} $1($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|1=чаа медеглел|999=чаа медеглелдер}}",
 	"newmessagesdifflinkplural": "{{PLURAL:$1|1=сөөлгү өскертилеге|999=сөөлгү өскертилегелер}}",
-	"youhavenewmessagesmulti": "«$1» деп арында силерге чаа медеглелдер бар.",
 	"editsection": "эдер",
 	"editold": "эдер",
 	"viewsourceold": "дөзү кодун көөрү",
