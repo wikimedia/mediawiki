@@ -158,7 +158,6 @@
 	"youhavenewmessagesfromusers": "{{PLURAL:$3|Başka bir kullanıcıdan|$3 kullanıcıdan}} $1 var ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|yeni mesajınız|yeni mesajlarınız}}",
 	"newmessagesdifflinkplural": "$1 {{PLURAL:$1|oktiroba|oktiroba}}",
-	"youhavenewmessagesmulti": "$1's ağne mesajepe giğun",
 	"editsection": "doktiri",
 	"editold": "Doktiri",
 	"viewsourceold": "odude koz*iri",

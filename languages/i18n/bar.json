@@ -242,7 +242,6 @@
 	"youhavenewmessages": "Du host $1 ($2).",
 	"youhavenewmessagesmanyusers": "Du host $1 vo vuin Nutzan ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|oa neie Nochricht|999=neie Nochrichtn}}",
-	"youhavenewmessagesmulti": "Du host neiche Nochrichtn: $1",
 	"editsection": "Weakln",
 	"editold": "Werkln",
 	"viewsourceold": "Quejtext ozoagn",

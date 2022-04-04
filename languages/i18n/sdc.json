@@ -230,7 +230,6 @@
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Tu hai}} $1 dà {{PLURAL:$3|un artru utènti|$3 utènti}} ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|una noba imbasciàdda|999=nobi imbasciàddi}}",
 	"newmessagesdifflinkplural": "$1 {{PLURAL:$1|mudìfigga|mudìfigghi}}",
-	"youhavenewmessagesmulti": "Ài nobi imbasciaddi i $1",
 	"editsection": "Mudìfigga",
 	"editold": "mudifigga",
 	"viewsourceold": "visuarizza l'orìgini",

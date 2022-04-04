@@ -218,7 +218,6 @@
 	"youhavenewmessagesmanyusers": "Bir qaç qullanıcıdan $1 bar. ($2)",
 	"newmessageslinkplural": "{{PLURAL:$1|yañı beyanatıñız|yañı beyanatlarıñız}}",
 	"newmessagesdifflinkplural": "muzakere saifeñizniñ soñki {{PLURAL:$1|deñiştirilmesi|deñiştirilmeleri}}",
-	"youhavenewmessagesmulti": "$1 saifesinde yañı beyanatıñız bar.",
 	"editsection": "deñiştir",
 	"editold": "deñiştir",
 	"viewsourceold": "menba kodunı köster",

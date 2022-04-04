@@ -211,7 +211,6 @@
 	"filedeleteerror": "نۊبؤ کي \"$1\" فاىله حذفأگۊدن.",
 	"directorycreateerror": "نشأنه \"$1\" مسيره چاگۊدن.",
 	"directoryreadonlyerror": "\"$1\" مسير خالي خؤندني ايسه.",
-	"directorynotreadableerror": "\"$1\" مسير خؤندني نئه.",
 	"filenotfound": "نشأنه \"$1\" فاىله ىاتن.",
 	"cannotdelete-title": "نشأنه \"$1\" ولگه حذفأگۊدن",
 	"badtitle": "بدˇ تيتر",

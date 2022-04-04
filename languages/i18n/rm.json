@@ -225,7 +225,6 @@
 	"youhavenewmessagesmanyusers": "Ti has $1 da divers utilisaders ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|in nov messadi|999=novs messadis}}",
 	"newmessagesdifflinkplural": "ultima{{PLURAL:$1| midada|999=s midadas}}",
-	"youhavenewmessagesmulti": "Ti as novs messadis en $1",
 	"editsection": "modifitgar",
 	"editold": "modifitgar",
 	"viewsourceold": "mussar il code da funtauna",

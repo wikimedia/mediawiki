@@ -198,7 +198,6 @@
 	"youhavenewmessagesfromusers": "Tuka {{PLURAL:$3|ek vaporpi|$3 vaporpi}} koddlean $1 {{PLURAL:$4|asa|asat}} ($2).‎",
 	"newmessageslinkplural": "{{PLURAL:$1|novo sondex|999=nove sondex}}‎",
 	"newmessagesdifflinkplural": "{{PLURAL:$1|nimanno bodol|999=nimanne bodol}}",
-	"youhavenewmessagesmulti": "$1 cher tuka noveo sondex asat",
 	"editsection": "bodol",
 	"editold": "bodol",
 	"viewsourceold": "mull poloi",

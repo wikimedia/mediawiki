@@ -216,7 +216,6 @@
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Du host}} $1 vu {{PLURAL:$3|annem andern Benutzer|$3 Benutzern}} ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|anne neue Nachricht|999=neue Nachrichta}}",
 	"newmessagesdifflinkplural": "letzte {{PLURAL:$1|Änderung|999=Änderunga}}",
-	"youhavenewmessagesmulti": "Du hast neue Nachrichta: $1",
 	"editsection": "Beorbeetn",
 	"editold": "Beorbeetn",
 	"viewsourceold": "Quelltext oazeiga",

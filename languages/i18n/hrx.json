@@ -226,7 +226,6 @@
 	"youhavenewmessagesmanyusers": "Du host $1 von viele Benutzre ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|en neie Nachricht|999=neie Nachrichte}}",
 	"newmessagesdifflinkplural": "letzte {{PLURAL:$1|Ännrung|999=Ännrunge}}",
-	"youhavenewmessagesmulti": "Du host neie Nachrichte: $1",
 	"editsection": "Beaarvete",
 	"editold": "Beoorbeite",
 	"viewsourceold": "Quelltext oonzeiche",

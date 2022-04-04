@@ -181,7 +181,6 @@
 	"youhavenewmessagesmanyusers": "Agko ka $1 galin dakul na users ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|bagong mensahe|999=mga bagong mensahe}}",
 	"newmessagesdifflinkplural": "huring {{PLURAL:$1|pagbago|999=mga pagbago}}",
-	"youhavenewmessagesmulti": "Agko ka mga bagong mensahe sa $1.",
 	"editsection": "balyowan",
 	"editold": "balyowan",
 	"viewsourceold": "baydon a ginikanan",

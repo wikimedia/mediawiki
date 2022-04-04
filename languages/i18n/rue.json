@@ -240,7 +240,6 @@
 	"youhavenewmessagesmanyusers": "Мате $1 од много далшых хоснователїв ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|нове повідомлїня|999=новы повідомлїня}}",
 	"newmessagesdifflinkplural": "{{PLURAL:$1|остатня зміна|999=остатнї зміны}}",
-	"youhavenewmessagesmulti": "Маєте новы повідомлїня на $1",
 	"editsection": "едітовати",
 	"editold": "едітовати",
 	"viewsourceold": "видїти код",

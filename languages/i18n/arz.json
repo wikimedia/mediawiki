@@ -249,7 +249,6 @@
 	"youhavenewmessagesmanyusers": "عندك $1 من يوزرات كتير  ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|رساله جديده|999=رسايل جديده}}",
 	"newmessagesdifflinkplural": "أحدث {{PLURAL:$1|تغيير|999=تغييرات}}",
-	"youhavenewmessagesmulti": "عندك ميسيدج جديدة فى $1",
 	"editsection": "تعديل",
 	"editold": "تعديل",
 	"viewsourceold": "عرض المصدر",

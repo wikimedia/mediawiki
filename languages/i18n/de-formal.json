@@ -164,7 +164,6 @@
 	"youhavenewmessages": "Sie haben $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Sie haben}} $1 von {{PLURAL:$3|einem anderen Benutzer|$3 Benutzern}} ($2).",
 	"youhavenewmessagesmanyusers": "Sie haben $1 von vielen Benutzern ($2).",
-	"youhavenewmessagesmulti": "Sie haben neue Nachrichten: $1",
 	"editsection": "Bearbeiten",
 	"editlink": "bearbeiten",
 	"editsectionhint": "Abschnitt bearbeiten: $1",

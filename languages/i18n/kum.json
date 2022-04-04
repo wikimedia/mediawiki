@@ -156,7 +156,6 @@
 	"youhavenewmessagesfromusers": "{{PLURAL:$3|Башгъа къоллавчудан|$3 къоллавчулардан}} ($2) $1 {{PLURAL:$4|алдынг}}.",
 	"newmessageslinkplural": "{{PLURAL:$1|янгы мактуп|999=янгы мактуплар}}",
 	"newmessagesdifflinkplural": "last {{PLURAL:$1|алышыныв|999=алышынывлар}}",
-	"youhavenewmessagesmulti": "Сен мунда $1 янгы мактуп алдынг",
 	"editsection": "тюзлемек",
 	"editold": "тюзлемек",
 	"viewsourceold": "кюрчю кодуна къарамакъ",

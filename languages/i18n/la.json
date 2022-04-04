@@ -248,7 +248,6 @@
 	"youhavenewmessagesmanyusers": "Habes $1 a multis usoribus ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|nuntium novum|999=nuntia nova}}",
 	"newmessagesdifflinkplural": "{{PLURAL:$1|dissimilitudo|999=dissimilitudines}} post mutationem ultimam",
-	"youhavenewmessagesmulti": "Habes nuntia nova in $1",
 	"editsection": "recensere",
 	"editold": "recensere",
 	"viewsourceold": "fontem inspicere",

@@ -213,7 +213,6 @@
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Тӥ}} {{PLURAL:$3|мукет пыриськисьлэсь|$3 пыриськисьлэсь}} $1 басьтӥллямды ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|выль гожтэт|999=выль гожтэтъёс}}",
 	"newmessagesdifflinkplural": "берло {{PLURAL:$1|воштон|999=воштонъёс}}",
-	"youhavenewmessagesmulti": "Тӥ $1-ын выль гожтэт басьтӥллямды",
 	"editsection": "тупатыны",
 	"editold": "тупатыны",
 	"viewsourceold": "кодзэ учкыны",

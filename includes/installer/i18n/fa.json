@@ -244,7 +244,7 @@
 	"config-cache-memcached": "از ممکچد (که نیازمند تنظیمات اضافی و پیکربندی) استفاده کنید",
 	"config-memcached-servers": "سرورهای دریافت حافظه:",
 	"config-memcached-help": "فهرست آدرس‌های آی‌پی برای استفاده از ممکچد.\nباید هر یک خط را تعیین کند و درگاه مورد استفاده را تعیین کند.برای مثال: \n۱۲۷.۰.۰.۱:۱۱۲۱۱\n۱۹۲.۱۶۸.۱.۲۵:۱۲۳۴",
-	"config-memcache-needservers": "شما ممکچد را به عنوان نوع ذخیرهٔ خود انتخاب کرده‌اید اما هیچ سروری تعیین نشده‌.",
+	"config-memcache-needservers": "شما Memcached را به عنوان نوع حافظۀ نهان خود انتخاب کرده‌اید اما هیچ سروری تعیین نشده‌ است.",
 	"config-memcache-badip": "آدرس آی‌پی نامعتبر برای مِمکَچد وارد کرده‌اید: $1.",
 	"config-memcache-noport": "شما درگاهی برای استفاده از سرور ممکچد تعیین نکرده بودید: $1\nاگر از درگاه مطلع نیستید، پیش‌فرض ۱۱۲۱۱ است.",
 	"config-memcache-badport": "اعداد درگاه ممکچد باید بین $1 و $2 باشد.",
@@ -313,5 +313,5 @@
 	"config-extension-not-found": "پرونده ثبت افزونه «$1» پیدا نشد.",
 	"config-extension-dependency": "خطای وابسته در حین نصب افزونه «$1» رخ داد: $2",
 	"mainpagetext": "'''مدیاویکی با موفقیت نصب شد.'''",
-	"mainpagedocfooter": "از [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents راهنمای کاربری]\nبرای اطلاعات بیشتر در مورد به‌کارگیری نرم‌افزار ویکی استفاده کنید.\n\n== آغاز به کار ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings فهرست تنظیمات پیکربندی]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ پرسش‌های متداول مدیاویکی]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ فهرست ایمیلی نسخه‌های مدیاویکی]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources محلی‌سازی مدیاویکی به زبان شما]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam یادگیری روش‌های مقابله با هرزنگاری در ویکی]"
+	"mainpagedocfooter": "از [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents راهنمای کاربری]\nبرای اطلاعات بیشتر در مورد به‌کارگیری نرم‌افزار ویکی استفاده کنید.\n\n== آغاز به کار ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings فهرست تنظیمات پیکربندی]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ پرسش‌های متداول مدیاویکی]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ فهرست ایمیلی نسخه‌های مدیاویکی]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources بومی‌سازی مدیاویکی به زبان شما]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam یادگیری روش‌های مقابله با هرزنگاری در ویکی]"
 }

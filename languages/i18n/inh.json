@@ -238,7 +238,6 @@
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Хьога кхаьчад}} $1 {{PLURAL:$3|1=$3 доакъашхочунгара|$3 доакъашхоштагара|1=кхыволча доакъашхочунгара}} ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|керда хоам}}",
 	"newmessagesdifflinkplural": "{{PLURAL:$1|тӀехьара хувцам|999=тӀехьара хувцамаш}}",
-	"youhavenewmessagesmulti": "Керда хоамаш дайдат хьога, $1 чу хьажа",
 	"editsection": "тоаде",
 	"editold": "хувца",
 	"viewsourceold": "Хьажа юххьанцарча ко́дага",
