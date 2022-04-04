@@ -224,7 +224,7 @@
 	"apihelp-import-param-fullhistory": "ウィキ間インポートの場合: 現在の版のみではなく全ての履歴をインポートする。",
 	"apihelp-import-param-templates": "ウィキ間インポートの場合: 読み込まれているテンプレートもインポートする。",
 	"apihelp-import-param-namespace": "この名前空間に取り込む。<var>$1rootpage</var>パラメーターとは同時に使用できません。",
-	"apihelp-import-param-rootpage": "このページのサブページとして取り込む。<var>$1namespace</var> パラメーターとは同時に使用できません。",
+	"apihelp-import-param-rootpage": "このページの下位ページとして取り込む。<var>$1namespace</var> パラメーターとは同時に使用できません。",
 	"apihelp-import-example-import": "[[meta:Help:ParserFunctions]] をすべての履歴とともに名前空間100にインポートする。",
 	"apihelp-login-summary": "ログインして認証クッキーを取得します。",
 	"apihelp-login-extended-description": "このアクションは、[[Special:BotPasswords]]と組み合わせて使用する必要があります。メインアカウントのログインに使用することは推奨されなくなり、警告なく失敗する可能性があります。メインアカウントに安全にログインするには、<kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>を使用します。",
