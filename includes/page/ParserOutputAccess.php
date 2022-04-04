@@ -177,7 +177,8 @@ class ParserOutputAccess {
 			return self::CACHE_NONE;
 		}
 
-		if ( !$rev || $rev->getId() === $page->getLatest( PageRecord::LOCAL ) ) {
+		$isOld = $rev && $rev->getId() !== $page->getLatest();
+		if ( !$isOld ) {
 			// current revision
 			return self::CACHE_PRIMARY;
 		}
@@ -210,10 +211,8 @@ class ParserOutputAccess {
 		$classCacheKey = $this->primaryCache->makeParserOutputKey( $page, $parserOptions );
 
 		if ( $useCache === self::CACHE_PRIMARY ) {
-			if (
-				isset( $this->localCache[$classCacheKey] ) &&
-				( !$revision || $revision->getId() === $page->getLatest( PageRecord::LOCAL ) )
-			) {
+			$isOld = $revision && $revision->getId() !== $page->getLatest();
+			if ( isset( $this->localCache[$classCacheKey] ) && !$isOld ) {
 				return $this->localCache[$classCacheKey];
 			}
 			$output = $this->primaryCache->get( $page, $parserOptions );
@@ -227,8 +226,11 @@ class ParserOutputAccess {
 			$this->localCache[$classCacheKey] = $output;
 		}
 
-		$hitOrMiss = $output ? 'hit' : 'miss';
-		$this->statsDataFactory->increment( "ParserOutputAccess.Cache.$useCache.$hitOrMiss" );
+		if ( $output ) {
+			$this->statsDataFactory->increment( "ParserOutputAccess.Cache.$useCache.hit" );
+		} else {
+			$this->statsDataFactory->increment( "ParserOutputAccess.Cache.$useCache.miss" );
+		}
 
 		return $output ?: null; // convert false to null
 	}
@@ -267,8 +269,12 @@ class ParserOutputAccess {
 			return $error;
 		}
 
-		$currentOrOld = ( $revision && $revision->getId() !== $page->getLatest() ) ? 'old' : 'current';
-		$this->statsDataFactory->increment( "ParserOutputAccess.Case.$currentOrOld" );
+		$isOld = $revision && $revision->getId() !== $page->getLatest();
+		if ( $isOld ) {
+			$this->statsDataFactory->increment( 'ParserOutputAccess.Case.old' );
+		} else {
+			$this->statsDataFactory->increment( 'ParserOutputAccess.Case.current' );
+		}
 		$classCacheKey = $this->primaryCache->makeParserOutputKey( $page, $parserOptions );
 
 		if ( !( $options & self::OPT_NO_CHECK_CACHE ) ) {
@@ -278,21 +284,14 @@ class ParserOutputAccess {
 			}
 		}
 
-		$shouldSaveInClassCache = false;
 		if ( !$revision ) {
-			$shouldSaveInClassCache = true;
-			$revision = $page->getLatest() ?
-				$this->revisionLookup->getRevisionById( $page->getLatest() ) : null;
+			$revId = $page->getLatest();
+			$revision = $revId ? $this->revisionLookup->getRevisionById( $revId ) : null;
 
 			if ( !$revision ) {
 				$this->statsDataFactory->increment( "ParserOutputAccess.Status.norev" );
-				return Status::newFatal(
-					'missing-revision',
-					$page->getLatest()
-				);
+				return Status::newFatal( 'missing-revision', $revId );
 			}
-		} elseif ( $revision->getId() === $page->getLatest( PageRecord::LOCAL ) ) {
-			$shouldSaveInClassCache = true;
 		}
 
 		$work = $this->newPoolWorkArticleView( $page, $parserOptions, $revision, $options );
@@ -310,7 +309,7 @@ class ParserOutputAccess {
 		}
 
 		if ( $output && $status->isOK() ) {
-			if ( $shouldSaveInClassCache ) {
+			if ( !$isOld ) {
 				$this->localCache[$classCacheKey] = $output;
 			}
 			$status->setResult( true, $output );
@@ -325,14 +324,13 @@ class ParserOutputAccess {
 		}
 
 		if ( $status->isGood() ) {
-			$statusMsg = 'good';
+			$this->statsDataFactory->increment( 'ParserOutputAccess.Status.good' );
 		} elseif ( $status->isOK() ) {
-			$statusMsg = 'ok';
+			$this->statsDataFactory->increment( 'ParserOutputAccess.Status.ok' );
 		} else {
-			$statusMsg = 'error';
+			$this->statsDataFactory->increment( 'ParserOutputAccess.Status.error' );
 		}
 
-		$this->statsDataFactory->increment( "ParserOutputAccess.Status.$statusMsg" );
 		return $status;
 	}
 
