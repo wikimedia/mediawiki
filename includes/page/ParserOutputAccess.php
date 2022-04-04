@@ -93,7 +93,7 @@ class ParserOutputAccess {
 	/**
 	 * In cases that an extension tries to get the same ParserOutput of
 	 * the page right after it was parsed (T301310).
-	 * @var array
+	 * @var ParserOutput[]
 	 */
 	private $localCache = [];
 
@@ -179,7 +179,6 @@ class ParserOutputAccess {
 
 		$isOld = $rev && $rev->getId() !== $page->getLatest();
 		if ( !$isOld ) {
-			// current revision
 			return self::CACHE_PRIMARY;
 		}
 
@@ -275,7 +274,6 @@ class ParserOutputAccess {
 		} else {
 			$this->statsDataFactory->increment( 'ParserOutputAccess.Case.current' );
 		}
-		$classCacheKey = $this->primaryCache->makeParserOutputKey( $page, $parserOptions );
 
 		if ( !( $options & self::OPT_NO_CHECK_CACHE ) ) {
 			$output = $this->getCachedParserOutput( $page, $parserOptions, $revision );
@@ -298,29 +296,25 @@ class ParserOutputAccess {
 		$work->execute();
 		$output = $work->getParserOutput();
 
-		$status = Status::newGood();
-		if ( $work->getError() ) {
-			$status->merge( $work->getError() );
-		}
-
-		if ( !$output && $status->isOK() ) {
+		$status = $work->getError() ?: Status::newGood();
+		if ( $output ) {
+			$status->setResult( $status->isOK(), $output );
+		} elseif ( $status->isOK() ) {
 			// TODO: PoolWorkArticle should properly report errors (T267610)
 			$status->fatal( 'pool-errorunknown' );
 		}
 
-		if ( $output && $status->isOK() ) {
+		if ( $status->isOK() ) {
 			if ( !$isOld ) {
+				$classCacheKey = $this->primaryCache->makeParserOutputKey( $page, $parserOptions );
 				$this->localCache[$classCacheKey] = $output;
 			}
-			$status->setResult( true, $output );
-		}
-
-		if ( $status->isOK() && $work->getIsDirty() ) {
-			$staleReason = $work->getIsFastStale()
-				? 'view-pool-contention' : 'view-pool-overload';
-
-			$status->warning( 'view-pool-dirty-output' );
-			$status->warning( $staleReason );
+			if ( $work->getIsDirty() ) {
+				$staleReason = $work->getIsFastStale()
+					? 'view-pool-contention' : 'view-pool-overload';
+				$status->warning( 'view-pool-dirty-output' );
+				$status->warning( $staleReason );
+			}
 		}
 
 		if ( $status->isGood() ) {
