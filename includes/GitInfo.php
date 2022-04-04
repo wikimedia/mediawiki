@@ -118,6 +118,9 @@ class GitInfo {
 	protected static function getCacheFilePath( $repoDir ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$gitInfoCacheDirectory = $config->get( 'GitInfoCacheDirectory' );
+		if ( $gitInfoCacheDirectory === false ) {
+			$gitInfoCacheDirectory = $config->get( 'CacheDirectory' ) . '/gitinfo';
+		}
 		$baseDir = $config->get( 'BaseDirectory' );
 		if ( $gitInfoCacheDirectory ) {
 			// Convert both $IP and $repoDir to canonical paths to protect against
