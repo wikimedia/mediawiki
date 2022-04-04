@@ -187,11 +187,14 @@ define( 'APCOND_ISBOT', 9 );
 
 /** @{
  * Protocol constants for wfExpandUrl()
+ * PROTO_FALLBACK is @since 1.39
  */
 define( 'PROTO_HTTP', 'http://' );
 define( 'PROTO_HTTPS', 'https://' );
 define( 'PROTO_RELATIVE', '//' );
-define( 'PROTO_CURRENT', null );
+define( 'PROTO_FALLBACK', null );
+// Legacy alias for PROTO_FALLBACK from when the current request's protocol was always the fallback
+define( 'PROTO_CURRENT', PROTO_FALLBACK );
 define( 'PROTO_CANONICAL', 1 );
 define( 'PROTO_INTERNAL', 2 );
 /** @} */

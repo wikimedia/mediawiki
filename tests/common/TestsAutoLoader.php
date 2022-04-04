@@ -248,6 +248,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/unit/includes/libs/filebackend/fsfile
 	'TempFSFileTestTrait' => "$testDir/phpunit/unit/includes/libs/filebackend/fsfile/TempFSFileTestTrait.php",
 
+	# tests/phpunit/unit/includes/utils
+	'UrlUtilsTest' => "$testDir/phpunit/unit/includes/utils/UrlUtilsTest.php",
+
 	# tests/phpunit/includes/unit/password
 	'PasswordTestCase' => "$testDir/phpunit/unit/includes/password/PasswordTestCase.php",
 

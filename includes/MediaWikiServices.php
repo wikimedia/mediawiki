@@ -121,6 +121,7 @@ use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
+use MediaWiki\Utils\UrlUtils;
 use MediaWiki\Watchlist\WatchlistManager;
 use MessageCache;
 use MimeAnalyzer;
@@ -1776,6 +1777,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUploadRevisionImporter(): UploadRevisionImporter {
 		return $this->getService( 'UploadRevisionImporter' );
+	}
+
+	/**
+	 * @since 1.39
+	 * @return UrlUtils
+	 */
+	public function getUrlUtils(): UrlUtils {
+		return $this->getService( 'UrlUtils' );
 	}
 
 	/**

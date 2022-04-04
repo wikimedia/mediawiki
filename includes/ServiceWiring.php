@@ -166,6 +166,7 @@ use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
+use MediaWiki\Utils\UrlUtils;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\DependencyStore\SqlModuleDependencyStore;
@@ -1856,6 +1857,18 @@ return [
 			$services->getMainConfig()->get( 'EnableUploads' ),
 			LoggerFactory::getInstance( 'UploadRevisionImporter' )
 		);
+	},
+
+	'UrlUtils' => static function ( MediaWikiServices $services ): UrlUtils {
+		$config = $services->getMainConfig();
+		return new UrlUtils( [
+			UrlUtils::SERVER => $config->get( 'Server' ),
+			UrlUtils::CANONICAL_SERVER => $config->get( 'CanonicalServer' ),
+			UrlUtils::INTERNAL_SERVER => $config->get( 'InternalServer' ),
+			UrlUtils::FALLBACK_PROTOCOL => RequestContext::getMain()->getRequest()->getProtocol(),
+			UrlUtils::HTTPS_PORT => $config->get( 'HttpsPort' ),
+			UrlUtils::VALID_PROTOCOLS => $config->get( 'UrlProtocols' ),
+		] );
 	},
 
 	'UserCache' => static function ( MediaWikiServices $services ): UserCache {
