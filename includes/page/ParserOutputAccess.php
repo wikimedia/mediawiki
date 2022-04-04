@@ -155,14 +155,12 @@ class ParserOutputAccess {
 	 * Use a cache?
 	 *
 	 * @param PageRecord $page
-	 * @param ParserOptions $parserOptions ParserOptions to check
 	 * @param RevisionRecord|null $rev
 	 *
 	 * @return string One of the CACHE_XXX constants.
 	 */
 	private function shouldUseCache(
 		PageRecord $page,
-		ParserOptions $parserOptions,
 		?RevisionRecord $rev
 	) {
 		if ( $rev && !$rev->getId() ) {
@@ -208,7 +206,7 @@ class ParserOutputAccess {
 		?RevisionRecord $revision = null,
 		int $options = 0
 	): ?ParserOutput {
-		$useCache = $this->shouldUseCache( $page, $parserOptions, $revision );
+		$useCache = $this->shouldUseCache( $page, $revision );
 		$classCacheKey = $this->primaryCache->makeParserOutputKey( $page, $parserOptions );
 
 		if ( $useCache === self::CACHE_PRIMARY ) {
@@ -396,7 +394,7 @@ class ParserOutputAccess {
 		RevisionRecord $revision,
 		int $options
 	): PoolWorkArticleView {
-		$useCache = $this->shouldUseCache( $page, $parserOptions, $revision );
+		$useCache = $this->shouldUseCache( $page, $revision );
 
 		switch ( $useCache ) {
 			case self::CACHE_PRIMARY:
