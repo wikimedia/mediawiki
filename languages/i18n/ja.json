@@ -124,7 +124,9 @@
 			"UsagiNeko",
 			"Waki285",
 			"カッパ鳥",
-			"ひまり"
+			"ひまり",
+			"MathXplore",
+			"Yamagata Yusuke"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -2953,7 +2955,7 @@
 	"import-interwiki-submit": "取り込み",
 	"import-mapping-default": "既定の場所へインポートする",
 	"import-mapping-namespace": "名前空間を指定してインポート:",
-	"import-mapping-subpage": "以下のページのサブページとしてインポートする:",
+	"import-mapping-subpage": "以下のページの下位ページとしてインポートする:",
 	"import-upload-filename": "ファイル名:",
 	"import-upload-username-prefix": "インターウィキ接頭辞:",
 	"import-assign-known-users": "指定された利用者がこのウィキに存在する場合その利用者に編集を割り当てる",

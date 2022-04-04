@@ -1261,6 +1261,8 @@
 	"activeusers": "Faol foydalanuvchilar roʻyxati",
 	"activeusers-count": "$1 ta {{PLURAL:$1|amal}} oxirgi {{PLURAL:$3|kun|$3 kun}}da",
 	"activeusers-from": "Quyidagidan boshlanuvchi foydalanuvchilarni koʻrsatish:",
+	"activeusers-groups": "Quyidagi guruhlarga mansub foydalanuvchilarni koʻrsatish",
+	"activeusers-excludegroups": "Quyidagi guruhlarga mansub boʻlmagan foydalanuvchilarni koʻrsatish",
 	"activeusers-noresult": "Foydalanuvchilar topilmadi.",
 	"activeusers-submit": "Faol foydalanuvchilarni koʻrsatish",
 	"listgrouprights": "Foydalanuvchilar guruhlari roʻyxati",

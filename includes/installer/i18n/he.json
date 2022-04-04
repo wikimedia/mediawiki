@@ -68,6 +68,7 @@
 	"config-no-fts3": "'''אזהרה''': SQLite מהודר ללא [//sqlite.org/fts3.html מודול FTS]. יכולות חיפוש לא יהיו זמינות בהתקנה הזאת.",
 	"config-pcre-old": "<strong>שגיאה סופנית:</strong> חובה להתקין PCRE מגרסה $1 או גרסה חדשה יותר.\nקובץ הרצת ה־PHP שלך מקושר עם PCRE מגרסה $2.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE מידע נוסף].",
 	"config-pcre-no-utf8": "<strong>שגיאה סופנית</strong>: נראה שמודול PCRE של PHP מהודר ללא תמיכה ב־PCRE_UTF8.\nמדיה־ויקי דורשת תמיכה ב־UTF-8 לפעילות נכונה.",
+	"config-pcre-invalid-newline": "<strong>שגיאה סופנית:</strong> מודול PCRE של PHP הודר עם PCRE_CONFIG_NEWLINE = -1 עבור ANY.\nמדיה־ויקי אינה תואמת לתצורה כזאת.",
 	"config-memory-raised": "ערך האפשרות <code>memory_limit</code> של PHP הוא $1, הועלה ל־$2.",
 	"config-memory-bad": "'''אזהרה:''' ערך האפשרות <code>memory_limit</code> של PHP הוא $1.\nזה כנראה נמוך מדי.\nההתקנה עשויה להיכשל!",
 	"config-apc": "[https://www.php.net/apc APC] מותקן",

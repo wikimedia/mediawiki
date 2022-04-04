@@ -1539,7 +1539,7 @@
 	"rcfilters-tag-remove": "'$1' etiketi kaldır",
 	"rcfilters-legend-heading": "<strong>Kısaltmalar listesi:</strong>",
 	"rcfilters-other-review-tools": "Diğer inceleme araçları",
-	"rcfilters-group-results-by-page": "Sayfalandırılmış grup sonuçları",
+	"rcfilters-group-results-by-page": "Sonuçları sayfalara göre grupla",
 	"rcfilters-activefilters": "Etkin süzgeçler",
 	"rcfilters-activefilters-hide": "Gizle",
 	"rcfilters-activefilters-show": "Göster",

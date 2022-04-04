@@ -232,7 +232,8 @@
 			"ZlyiLev",
 			"আফতাবুজ্জামান",
 			"Eihel",
-			"Sandipan"
+			"Sandipan",
+			"SunAfterRain"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -3182,9 +3183,9 @@
 	"allmessages-filter-translate": "Used on [[Special:Allmessages]]. Label for a link to translatewiki.net for a message to translate.\n{{Identical|Translate}}",
 	"thumbnail-more": "[[Image:Yes check.svg|50px|thumb|right|This&nbsp;⬆️]]\nTooltip shown when hovering over a little sign of a thumb image, to go to the image page (where it is bigger). For example, see the image on the right:",
 	"filemissing": "Used in the ImageGallery feature.",
-	"thumbnail_error": "Message shown in a thumbnail frame when creation of the thumbnail fails. Parameters:\n* $1 - the reason\nThe reason $1 is one of the following messages:\n* {{msg-mw|Thumbnail-dest-create}}\n* {{msg-mw|Thumbnail dest directory}}\n* {{msg-mw|Thumbnail invalid params}}\n* {{msg-mw|Thumbnail image-missing}}\n* {{msg-mw|Djvu no xml}}\n* {{msg-mw|Djvu page error}}\n* {{msg-mw|Svg-long-error}}\n* other custom string",
+	"thumbnail_error": "Message shown in a thumbnail frame when creation of the thumbnail fails. Parameters:\n* $1 - the reason\nThe reason $1 is one of the following messages:\n* {{msg-mw|Thumbnail-dest-create}}\n* {{msg-mw|Thumbnail dest directory}}\n* {{msg-mw|Thumbnail invalid params}}\n* {{msg-mw|Thumbnail image-missing}}\n* {{msg-mw|Djvu page error}}\n* {{msg-mw|Svg-long-error}}\n* other custom string",
 	"thumbnail_error_remote": "Message shown in a thumbnail frame when creation of the thumbnail fails.\n\nParameters:\n* $1 - the name of the shared repository, see {{msg-mw|Sharedupload}}\n* $2 - the reason, see {{msg-mw|Thumbnail error}}",
-	"djvu_page_error": "Used as error message.\n\nSee also:\n* {{msg-mw|Thumbnail error}}\n* {{msg-mw|Djvu no xml}}\n* {{msg-mw|Djvu page error}}",
+	"djvu_page_error": "Used as error message.\n\nSee also:\n* {{msg-mw|Thumbnail error}}\n* {{msg-mw|Djvu page error}}",
 	"djvu_no_xml": "Used as error message.\n\nSee also:\n* {{msg-mw|Thumbnail error}}\n* {{msg-mw|Djvu page error}}",
 	"thumbnail-temp-create": "Used as thumbnail error message.\n\nSee also:\n* {{msg-mw|Thumbnail-dest-create}}\n* {{msg-mw|Thumbnail invalid params}}\n* {{msg-mw|Thumbnail dest directory}}",
 	"thumbnail-dest-create": "Used as thumbnail error message.\n\nSee also:\n* {{msg-mw|Thumbnail error}}\n* {{msg-mw|Thumbnail-temp-create}}\n* {{msg-mw|Thumbnail invalid params}}\n* {{msg-mw|Thumbnail dest directory}}",
@@ -4239,8 +4240,8 @@
 	"feedback-message": "Label for a textarea; signature refers to a Wikitext signature.\n{{Identical|Message}}",
 	"feedback-subject": "Label for a text input\n{{Identical|Subject}}",
 	"feedback-submit": "Button label\n{{Identical|Submit}}",
-	"feedback-terms": "Label for a checkbox asking for permissions to submit browser information.",
-	"feedback-termsofuse": "Label with an agreement about the terms of use.",
+	"feedback-terms": "{{RawHtml|phab=T294760}}\n\nLabel for a checkbox asking for permissions to submit browser information.",
+	"feedback-termsofuse": "{{RawHtml|phab=T294760}}\n\nLabel with an agreement about the terms of use.",
 	"feedback-thanks": "Thanks message, appears if feedback was successful. Parameters:\n* $1 - \"Feedback\"\n* $2 - Feedback page URL",
 	"feedback-thanks-title": "The title of the thank you dialog at the end of the submission process.\n{{Identical|Thank you}}",
 	"feedback-useragent": "A label denoting the user agent in the feedback that is posted to the feedback page.\n{{Identical|User agent}}",

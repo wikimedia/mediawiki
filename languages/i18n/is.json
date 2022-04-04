@@ -30,7 +30,8 @@
 			"Þjarkur",
 			"לערי ריינהארט",
 			"아라",
-			"Danniel07"
+			"Danniel07",
+			"LoveIceLang"
 		]
 	},
 	"tog-underline": "Undirstrika tengla:",
@@ -199,6 +200,7 @@
 	"history_small": "breytingaskrá",
 	"updatedmarker": "uppfært frá síðustu heimsókn þinni",
 	"printableversion": "Prentvæn útgáfa",
+	"printableversion-deprecated-warning": "Prentvæn útgáfa er ekki lengur studd og gæti verið með flutningsvillur. Vinsamlegast uppfærðu bókamerki vafrans þíns og vinsamlegast notaðu sjálfgefna vafraprentunaraðgerð í staðinn.",
 	"permalink": "Varanlegur tengill",
 	"print": "Prenta",
 	"view": "Skoða",
@@ -3554,6 +3556,8 @@
 	"sessionprovider-nocookies": "Vefkökur gætu verið óvirkar. Gakktu úr skugga um að smákökur séu virkar og byrjaðu svo aftur.",
 	"randomrootpage": "Handahófsvalin rótarsíða",
 	"log-action-filter-contentmodel": "Tegund breytinga á efnislíkani:",
+	"log-action-filter-delete": "Tegund eyðingar:",
+	"log-action-filter-import": "Tegund innflutnings:",
 	"log-action-filter-newusers": "Gerð notandaaðgangs sem á að útbúa:",
 	"log-action-filter-all": "Allt",
 	"log-action-filter-block-block": "Bann",

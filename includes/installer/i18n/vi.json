@@ -10,7 +10,8 @@
 			"Vinhtantran",
 			"Withoutaname",
 			"පසිඳු කාවින්ද",
-			"Phjtieudoc"
+			"Phjtieudoc",
+			"NguoiDungKhongDinhDanh"
 		]
 	},
 	"config-desc": "Trình cài đặt MediaWiki",
@@ -277,7 +278,7 @@
 	"config-install-interwiki-list": "Không thể đọc tập tin <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "'''Cảnh báo:''' Hình như đã có mục trong bảng liên wiki.\nĐã bỏ qua danh sách mặc định.",
 	"config-install-stats": "Đang khởi tạo các thống kê",
-	"config-install-keys": "Tạo ra các chìa khóa bí mật",
+	"config-install-keys": "Tạo chìa khóa bí mật",
 	"config-install-updates": "Tránh các cập nhật không cần thiết",
 	"config-install-updates-failed": "<strong>Lỗi:</strong> Chèn phím cập nhật vào các bảng không thành công với các lỗi sau:1$",
 	"config-install-sysop": "Đang mở tài khoản người dùng bảo quản viên",
