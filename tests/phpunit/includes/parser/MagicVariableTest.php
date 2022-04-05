@@ -200,7 +200,7 @@ class MagicVariableTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function setParserTS( $ts ) {
 		$this->testParser->getOptions()->setTimestamp( $ts );
-		$this->testParser->mRevisionTimestamp = $ts;
+		TestingAccessWrapper::newFromObject( $this->testParser )->mRevisionTimestamp = $ts;
 	}
 
 	/**
