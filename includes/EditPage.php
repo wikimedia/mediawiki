@@ -78,7 +78,6 @@ use OOUI\FieldLayout;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
-use Wikimedia\ScopedCallback;
 
 /**
  * The edit page/HTML interface (split from Article)
@@ -4480,15 +4479,13 @@ class EditPage implements IEditObject {
 		// NOTE: preSaveTransform doesn't have a fake revision to operate on.
 		// Parser::getRevisionRecordObject() will return null in preview mode,
 		// causing the context user to be used for {{subst:REVISIONUSER}}.
-		// XXX: Alternatively, we could also call setupFakeRevision() a second time:
-		// once before PST with $content, and then after PST with $pstContent.
+		// XXX: Alternatively, we could also call setupFakeRevision()
+		// before PST with $content.
 		$services = MediaWikiServices::getInstance();
 		$contentTransformer = $services->getContentTransformer();
 		$contentRenderer = $services->getContentRenderer();
 		$pstContent = $contentTransformer->preSaveTransform( $content, $this->mTitle, $user, $parserOptions );
-		$scopedCallback = $parserOptions->setupFakeRevision( $this->mTitle, $pstContent, $user );
 		$parserOutput = $contentRenderer->getParserOutput( $pstContent, $this->mTitle, null, $parserOptions );
-		ScopedCallback::consume( $scopedCallback );
 		$out = $this->context->getOutput();
 		$skin = $out->getSkin();
 		$skinOptions = $skin->getOptions();
