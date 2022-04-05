@@ -165,8 +165,7 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 		$this->assertTrue( $work->fallback( false ) );
 		$this->assertInstanceOf( ParserOutput::class, $work->getParserOutput() );
 		$this->assertTrue( $work->getIsDirty() );
-		// FIXME: No, this was not in fast mode (see the `false` above)
-		$this->assertTrue( $work->getIsFastStale() );
+		$this->assertFalse( $work->getIsFastStale() );
 	}
 
 }

@@ -134,8 +134,12 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 
 		$logger = $this->getLogger( 'dirty' );
 
-		$fastMsg = '';
-		if ( $this->parserOutput && $fast ) {
+		if ( !$this->parserOutput ) {
+			$logger->info( 'dirty missing' );
+			return false;
+		}
+
+		if ( $fast ) {
 			/* Check if the stale response is from before the last write to the
 			 * DB by this user. Declining to return a stale response in this
 			 * case ensures that the user will see their own edit after page
@@ -163,17 +167,11 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 				$this->parserOutput = false;
 				return false;
 			}
-			$this->isFast = true;
-			$fastMsg = 'fast ';
 		}
 
-		if ( $this->parserOutput === false ) {
-			$logger->info( 'dirty missing' );
-			return false;
-		} else {
-			$logger->info( "{$fastMsg}dirty output", [ 'workKey' => $this->workKey ] );
-			$this->isDirty = true;
-			return true;
-		}
+		$logger->info( $fast ? 'fast dirty output' : 'dirty output', [ 'workKey' => $this->workKey ] );
+		$this->isDirty = true;
+		$this->isFast = $fast;
+		return true;
 	}
 }
