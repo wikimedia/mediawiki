@@ -97,9 +97,6 @@ $cfg['exclude_analysis_directory_list'] = [
 	'includes/PHPVersionCheck.php',
 ];
 
-// These are too spammy for now. TODO enable
-$cfg['suppress_issue_types'][] = 'PhanCompatibleAccessMethodOnTraitDefinition'; // T289813
-
 // Do not use aliases in core.
 // Use the correct name, because we don't need backward compatibility
 $cfg['enable_class_alias_support'] = false;
