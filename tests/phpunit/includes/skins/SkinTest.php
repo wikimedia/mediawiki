@@ -191,7 +191,44 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers Skin::makeLink
 	 */
-	public function testMakeLinkLinkClass() {
+	public function provideMakeLink() {
+		return [
+			[
+				[
+					'text' => 'Test',
+					'href' => '',
+					'class' => [
+						'class1',
+						'class2'
+					]
+				],
+				[ 'link-class' => 'link-class' ],
+				'<a href="" class="class1 class2 link-class">Test</a>',
+			],
+			[
+				[
+					'text' => '',
+					'href' => '#go',
+					'link-html' => '<i>label</i>'
+				],
+				[
+					'text-wrapper' => [
+						'tag' => 'span',
+					],
+				],
+				'<a href="#go"><i>label</i> </a>',
+			]
+		];
+	}
+
+	/**
+	 * @covers Skin::makeLink
+	 * @dataProvider provideMakeLink
+	 * @param array $data
+	 * @param array $options
+	 * @param string $expected
+	 */
+	public function testMakeLinkLink( array $data, array $options, string $expected ) {
 		$skin = new class extends Skin {
 			public function outputPage() {
 			}
@@ -199,20 +236,86 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 
 		$link = $skin->makeLink(
 			'test',
-			[
-				'text' => 'Test',
-				'href' => '',
-				'class' => [
-					'class1',
-					'class2'
-				]
-			],
-			[ 'link-class' => 'link-class' ]
+			$data,
+			$options
 		);
 
 		$this->assertHTMLEquals(
-			'<a href="" class="class1 class2 link-class">Test</a>',
+			$expected,
 			$link
+		);
+	}
+
+	public function provideGetPersonalToolsForMakeListItem() {
+		return [
+			[
+				[
+					'foo' => [
+						'class' => 'foo',
+						'link-html' => '<i>text</i>',
+						'text' => 'Hello',
+					],
+				],
+				false,
+				[
+					'foo' => [
+						'links' => [
+							[
+								'single-id' => 'pt-foo',
+								'text' => 'Hello',
+								'link-html' => '<i>text</i>',
+								'class' => 'foo',
+							]
+						],
+						'id' => 'pt-foo',
+					]
+				],
+			],
+			[
+				[
+					'foo' => [
+						'class' => 'foo',
+						'link-html' => '<i>text</i>',
+						'text' => 'Hello',
+					],
+				],
+				true,
+				[
+					'foo' => [
+						'links' => [
+							[
+								'single-id' => 'pt-foo',
+								'text' => 'Hello',
+								'link-html' => '<i>text</i>',
+							]
+						],
+						'id' => 'pt-foo',
+						'class' => 'foo',
+					]
+				],
+			]
+		];
+	}
+
+	/**
+	 * @covers Skin::getPersonalToolsForMakeListItem
+	 * @dataProvider provideGetPersonalToolsForMakeListItem
+	 * @param array $urls
+	 * @param array $applyClassesToListItems
+	 * @param string $expected
+	 */
+	public function testGetPersonalToolsForMakeListItem( array $urls, bool $applyClassesToListItems, array $expected ) {
+		$skin = new class extends Skin {
+			public function outputPage() {
+			}
+		};
+
+		$this->assertSame(
+			$expected,
+			$skin->getPersonalToolsForMakeListItem(
+				$urls,
+				$applyClassesToListItems
+			)
 		);
 	}
 
