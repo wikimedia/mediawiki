@@ -1627,7 +1627,7 @@
 	"statistics-files": "Чуйаьхна файлаш",
 	"statistics-edits": "Нисдаран дукхалла {{grammar:genitive|{{SITENAME}}}} дlа йолайаларца",
 	"statistics-edits-average": "АгӀонан нисдарийн йукъара дукхалла",
-	"statistics-users": "[[ВП:ДӀаязбаллар|ДӀаязбелларш]] берриге декъашхой чохь болу [[Special:ListUsers|(могӀам)]]",
+	"statistics-users": "ДӀайазбелла декъашхой",
 	"statistics-users-active": "Жигара декъашхой",
 	"statistics-users-active-desc": "Декъашхой, муьлха цхьа хӀум дина болу, кху {{PLURAL:$1|1=тӀаьххьара $1 динахь|тӀаьххьара $1 дийнахь}}",
 	"pageswithprop": "АгӀонаш цхьадолу къастамашца",

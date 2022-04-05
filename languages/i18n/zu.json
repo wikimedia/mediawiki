@@ -11,12 +11,14 @@
 			"Mtonihouse",
 			"Nkankane",
 			"Rosinah3",
+			"StarrySky",
 			"Vogone",
 			"Weather Top Wizard",
 			"לערי ריינהארט"
 		]
 	},
 	"underline-always": "Njalo",
+	"underline-never": "neze",
 	"sunday": "iSonto",
 	"monday": "uMsombuluko",
 	"tuesday": "uLwesibili",
@@ -75,6 +77,7 @@
 	"moredotdotdot": "Amanye...",
 	"mypage": "Ikhasi lami",
 	"mytalk": "Ingxoxo yami",
+	"anontalk": "Ingxoxo yami",
 	"navigation": "Ukuqondiswa kwemikhumbi",
 	"and": "&#32;na",
 	"namespaces": "Izikhalamagama",
