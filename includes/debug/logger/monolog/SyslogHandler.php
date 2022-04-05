@@ -82,15 +82,26 @@ class SyslogHandler extends SyslogUdpHandler {
 	}
 
 	protected function makeCommonSyslogHeader( int $severity, DateTimeInterface $datetime ): string {
+		global $wmgSyslogHandler;
+
 		$pri = $severity + $this->facility;
 
-		// BEGIN Miraheze specific code
-		// Syslog-ng refuses to parse logs with the default timestamp format
+		// Miraheze custom code (original code at https://github.com/wikimedia/mediawiki/blob/REL1_37/includes/debug/logger/monolog/SyslogHandler.php#L87)
+		// TODO: Remove customisation once we're fully switched back to rsyslog
+		if ( $wmgSyslogHandler === 'rsyslog' ) {
+			// Goofy date format courtesy of RFC 3164 :(
+			// RFC 3164 actually specifies that the day of month should be space
+			// padded rather than unpadded but this seems to work with rsyslog and
+			// Logstash.
+			$timestamp = date( 'M j H:i:s' );
+
+			return "<{$pri}>{$timestamp} {$this->hostname} {$this->appname}: ";
+		}
+
 		// -- Southparkfan 2020-10-18
+		// Syslog-ng refuses to parse logs with the default timestamp format
 		$timestamp = date( 'Y-m-d\\TH:i:s' );
 
-		// Do not include {$this->hostname} in the log rule, unnecessary
 		return "<{$pri}>{$timestamp} {$this->appname}: ";
-		// END Miraheze specific code
 	}
 }
