@@ -129,13 +129,11 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 
 		$this->assertFalse( $work->fallback( true ) );
 		$this->assertFalse( $work->getParserOutput() );
-		$this->assertFalse( $work->getIsDirty() );
-		$this->assertFalse( $work->getIsFastStale() );
+		$this->assertNull( $work->getDirtyWarning() );
 
 		$this->assertTrue( $work->fallback( false ) );
 		$this->assertInstanceOf( ParserOutput::class, $work->getParserOutput() );
-		$this->assertTrue( $work->getIsDirty() );
-		$this->assertFalse( $work->getIsFastStale() );
+		$this->assertSame( 'view-pool-overload', $work->getDirtyWarning() );
 	}
 
 	public function testFallbackFromMoreRecentParserCache() {
@@ -159,13 +157,11 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 
 		$this->assertTrue( $work->fallback( true ) );
 		$this->assertInstanceOf( ParserOutput::class, $work->getParserOutput() );
-		$this->assertTrue( $work->getIsDirty() );
-		$this->assertTrue( $work->getIsFastStale() );
+		$this->assertSame( 'view-pool-contention', $work->getDirtyWarning() );
 
 		$this->assertTrue( $work->fallback( false ) );
 		$this->assertInstanceOf( ParserOutput::class, $work->getParserOutput() );
-		$this->assertTrue( $work->getIsDirty() );
-		$this->assertFalse( $work->getIsFastStale() );
+		$this->assertSame( 'view-pool-overload', $work->getDirtyWarning() );
 	}
 
 }

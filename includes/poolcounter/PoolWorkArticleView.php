@@ -45,12 +45,6 @@ class PoolWorkArticleView extends PoolCounterWork {
 	/** @var ParserOutput|bool */
 	protected $parserOutput = false;
 
-	/** @var bool */
-	protected $isDirty = false;
-
-	/** @var bool */
-	protected $isFast = false;
-
 	/** @var Status|bool */
 	protected $error = false;
 
@@ -85,24 +79,6 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 */
 	public function getParserOutput() {
 		return $this->parserOutput;
-	}
-
-	/**
-	 * Get whether the ParserOutput is a dirty one (i.e. expired)
-	 *
-	 * @return bool
-	 */
-	public function getIsDirty() {
-		return $this->isDirty;
-	}
-
-	/**
-	 * Get whether the ParserOutput was retrieved in fast stale mode
-	 *
-	 * @return bool
-	 */
-	public function getIsFastStale() {
-		return $this->isFast;
 	}
 
 	/**
