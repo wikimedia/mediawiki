@@ -1229,14 +1229,10 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Execute a callback function at the end of initialisation
+	 * Override to perform any required operation at the end of initialisation
 	 * @stable to override
 	 */
 	protected function afterFinalSetup() {
-		if ( defined( 'MW_CMDLINE_CALLBACK' ) ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal False positive
-			call_user_func( MW_CMDLINE_CALLBACK );
-		}
 	}
 
 	/**
