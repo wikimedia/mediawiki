@@ -1423,7 +1423,8 @@ abstract class ContentHandler {
 	 *
 	 * @param WikiPage $page
 	 * @param ParserCache|null $cache deprecated since 1.38 and won't have any effect
-	 * @return ParserOutput
+	 * @return ParserOutput|null null when the ParserOutput cannot be obtained
+	 * @see ParserOutputAccess::getParserOutput() for failure modes
 	 */
 	public function getParserOutputForIndexing( WikiPage $page, ParserCache $cache = null ) {
 		// TODO: MCR: ContentHandler should be called per slot, not for the whole page.
