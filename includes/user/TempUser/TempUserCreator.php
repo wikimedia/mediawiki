@@ -69,6 +69,9 @@ class TempUserCreator implements TempUserConfig {
 		],
 		'filtered-radix' => [
 			'class' => FilteredRadixSerialMapping::class,
+		],
+		'scramble' => [
+			'class' => ScrambleMapping::class,
 		]
 	];
 
