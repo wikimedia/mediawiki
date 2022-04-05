@@ -351,9 +351,6 @@ if ( $wgFileCacheDirectory === false ) {
 if ( $wgDeletedDirectory === false ) {
 	$wgDeletedDirectory = "{$wgUploadDirectory}/deleted";
 }
-if ( $wgGitInfoCacheDirectory === false && $wgCacheDirectory !== false ) {
-	$wgGitInfoCacheDirectory = "{$wgCacheDirectory}/gitinfo";
-}
 if ( $wgSharedPrefix === false ) {
 	$wgSharedPrefix = $wgDBprefix;
 }
