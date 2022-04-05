@@ -415,8 +415,10 @@ interface ILBFactory {
 
 	/**
 	 * Close all connections on instantiated tracked load balancer instances
+	 *
+	 * @param string $fname Caller name (e.g. __METHOD__)
 	 */
-	public function closeAll();
+	public function closeAll( $fname = __METHOD__ );
 
 	/**
 	 * @param string $agent Agent name for query profiling

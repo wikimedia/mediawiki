@@ -41,7 +41,7 @@ class BackupDumperPageTest extends DumpTestCase {
 			$this->dbClone->destroy();
 		}
 		if ( $this->streamingLoadBalancer ) {
-			$this->streamingLoadBalancer->closeAll();
+			$this->streamingLoadBalancer->closeAll( __METHOD__ );
 		}
 
 		parent::tearDown();
