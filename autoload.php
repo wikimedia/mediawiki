@@ -974,6 +974,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\ParserGetVariableValueVarCacheHook' => __DIR__ . '/includes/parser/Hook/ParserGetVariableValueVarCacheHook.php',
 	'MediaWiki\\Hook\\ParserLimitReportFormatHook' => __DIR__ . '/includes/parser/Hook/ParserLimitReportFormatHook.php',
 	'MediaWiki\\Hook\\ParserLimitReportPrepareHook' => __DIR__ . '/includes/parser/Hook/ParserLimitReportPrepareHook.php',
+	'MediaWiki\\Hook\\ParserLogLinterDataHook' => __DIR__ . '/includes/parser/Hook/ParserLogLinterDataHook.php',
 	'MediaWiki\\Hook\\ParserMakeImageParamsHook' => __DIR__ . '/includes/parser/Hook/ParserMakeImageParamsHook.php',
 	'MediaWiki\\Hook\\ParserModifyImageHTML' => __DIR__ . '/includes/parser/Hook/ParserModifyImageHTML.php',
 	'MediaWiki\\Hook\\ParserOptionsRegisterHook' => __DIR__ . '/includes/parser/Hook/ParserOptionsRegisterHook.php',

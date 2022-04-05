@@ -288,6 +288,7 @@ class HookRunner implements
 	\MediaWiki\Hook\ParserGetVariableValueVarCacheHook,
 	\MediaWiki\Hook\ParserLimitReportFormatHook,
 	\MediaWiki\Hook\ParserLimitReportPrepareHook,
+	\MediaWiki\Hook\ParserLogLinterDataHook,
 	\MediaWiki\Hook\ParserMakeImageParamsHook,
 	\MediaWiki\Hook\ParserModifyImageHTML,
 	\MediaWiki\Hook\ParserOptionsRegisterHook,
@@ -2909,6 +2910,13 @@ class HookRunner implements
 		return $this->container->run(
 			'ParserLimitReportPrepare',
 			[ $parser, $output ]
+		);
+	}
+
+	public function onParserLogLinterData( string $title, int $revId, array $lints ): bool {
+		return $this->container->run(
+			'ParserLogLinterData',
+			[ $title, $revId, $lints ]
 		);
 	}
 
