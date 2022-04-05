@@ -67,12 +67,6 @@ abstract class Skin extends ContextSource {
 	 */
 	private $mRelevantUser = false;
 
-	/**
-	 * @var string Stylesheets set to use. Subdirectory in skins/ where various stylesheets are
-	 *   located. Only needs to be set if you intend to use the getSkinStylePath() method.
-	 */
-	public $stylename = null;
-
 	/** The current major version of the skin specification. */
 	protected const VERSION_MAJOR = 1;
 
@@ -1142,30 +1136,6 @@ abstract class Skin extends ContextSource {
 		# user must accept emails from the sender.
 		return $this->getUser()->canSendEmail()
 			&& SpecialEmailUser::validateTarget( $targetUser, $this->getUser() ) === '';
-	}
-
-	/**
-	 * Return a fully resolved style path URL to images or styles stored in the
-	 * current skin's folder. This method returns a URL resolved using the
-	 * configured skin style path.
-	 *
-	 * Requires $stylename to be set, otherwise throws MWException.
-	 *
-	 * @deprecated since 1.36, Replace usages with direct path of
-	 *  the resource and then remove the $stylename property.
-	 * @param string $name The name or path of a skin resource file
-	 * @return string The fully resolved style path URL
-	 * @throws MWException
-	 */
-	public function getSkinStylePath( $name ) {
-		wfDeprecated( __METHOD__, '1.36' );
-
-		if ( $this->stylename === null ) {
-			$class = static::class;
-			throw new MWException( "$class::\$stylename must be set to use getSkinStylePath()" );
-		}
-
-		return $this->getConfig()->get( 'StylePath' ) . "/{$this->stylename}/$name";
 	}
 
 	/* these are used extensively in SkinTemplate, but also some other places */

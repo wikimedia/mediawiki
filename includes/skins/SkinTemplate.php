@@ -238,7 +238,6 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'skinname', $this->skinname );
 		$tpl->set( 'skinclass', static::class );
 		$tpl->set( 'skin', $this );
-		$tpl->set( 'stylename', $this->stylename );
 		$tpl->set( 'printable', $out->isPrintable() );
 		$tpl->set( 'handheld', $request->getBool( 'handheld' ) );
 		$tpl->set( 'loggedin', $this->loggedin );

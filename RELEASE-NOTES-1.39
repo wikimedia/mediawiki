@@ -106,6 +106,7 @@ because of Phabricator reports.
     instead.
   - The feature `legacy` used inside ResourceLoaderSkinModule,
     deprecated in 1.37, will no longer ship any styles.
+  - Skin::getSkinStylePath, deprecated since 1.36, has been removed.
 * …
 
 === Deprecations in 1.39 ===
