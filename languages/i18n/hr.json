@@ -2270,7 +2270,7 @@
 	"protect-level-autoconfirmed": "Dopušteno samo autopotvrđenim suradnicima",
 	"protect-level-sysop": "Dopušteno samo administratorima",
 	"protect-summary-cascade": "prenosiva zaštita",
-	"protect-expiring": "istječe $1 (UTC)",
+	"protect-expiring": "istječe $2 u $3 (UTC)",
 	"protect-expiring-local": "istječe $2 u $3",
 	"protect-expiry-indefinite": "neograničeno",
 	"protect-cascade": "Prenosiva zaštita - zaštiti sve stranice koje su uključene u ovu.",
