@@ -545,10 +545,6 @@ return [
 				$cpStash = new EmptyBagOStuff(); // T141804: handle cases like CACHE_DB
 			}
 		}
-		LoggerFactory::getInstance( 'DBReplication' )->debug(
-			'ChronologyProtector using store {class}',
-			[ 'class' => get_class( $cpStash ) ]
-		);
 
 		try {
 			$wanCache = $services->getMainWANObjectCache();
@@ -942,12 +938,13 @@ return [
 		$mainConfig = $services->getMainConfig();
 
 		$id = $mainConfig->get( MainConfigNames::MainStash );
-		if ( !isset( $mainConfig->get( MainConfigNames::ObjectCaches )[$id] ) ) {
+		$params = $mainConfig->get( MainConfigNames::ObjectCaches )[$id] ?? null;
+		if ( !$params ) {
 			throw new UnexpectedValueException(
-				"Cache type \"$id\" is not present in \$wgObjectCaches." );
+				"\$wgObjectCaches must have \"$id\" set (via \$wgMainStash)"
+			);
 		}
 
-		$params = $mainConfig->get( MainConfigNames::ObjectCaches )[$id];
 		$params['stats'] = $services->getStatsdDataFactory();
 
 		$store = ObjectCache::newFromParams( $params, $mainConfig );
