@@ -92,6 +92,7 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Linker\LinkTargetStore;
 use MediaWiki\Logger\LoggerFactory;
@@ -843,6 +844,13 @@ return [
 			$services->getLinkCache(),
 			$services->getSpecialPageFactory(),
 			$services->getHookContainer()
+		);
+	},
+
+	'LinksMigration' => static function ( MediaWikiServices $services ): LinksMigration {
+		return new LinksMigration(
+			$services->getMainConfig(),
+			$services->getLinkTargetLookup()
 		);
 	},
 

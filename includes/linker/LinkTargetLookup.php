@@ -65,4 +65,12 @@ interface LinkTargetLookup {
 	 */
 	public function acquireLinkTargetId( LinkTarget $linkTarget, IDatabase $dbw ): int;
 
+	/**
+	 * Return link target id if exists
+	 *
+	 * @param LinkTarget $linkTarget
+	 * @return int|null linktarget ID greater then 0, null if not found
+	 */
+	public function getLinkTargetId( LinkTarget $linkTarget ): ?int;
+
 }
