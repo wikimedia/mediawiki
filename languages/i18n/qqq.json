@@ -544,6 +544,7 @@
 	"databaseerror-function": "Identifies, in the list of technical details, the function that tried to execute the database query.\nParameters:\n* $1 - Name of function\n{{Identical|Function}}",
 	"databaseerror-error": "Identifies, in the list of technical details, the error message the database server returned.\nParameters:\n* $1 - Error message from the database server, probably in English\n{{Identical|Error}}",
 	"transaction-duration-limit-exceeded": "Plain text error shown when DB updates take too long. Parameters:\n* $1 - time spent in database updates\n* $2 - maximum number of seconds allowed in database updates",
+	"transaction-max-statement-time-exceeded": "Plain text error shown when DB queries take too long.",
 	"laggedreplicamode": "Used as warning when getting the timestamp of the latest version, if in LaggedReplicaMode.",
 	"readonly": "Used as title of error message when database is locked.",
 	"enterlockreason": "For developers when locking the database",
