@@ -27,7 +27,8 @@
 			"Winston Sung",
 			"星海",
 			"Tranve",
-			"SunAfterRain"
+			"SunAfterRain",
+			"StarrySky"
 		]
 	},
 	"tog-watchlisthidebots": "隱藏監視清單中機械人的編輯",
@@ -57,6 +58,18 @@
 	"october": "十月",
 	"november": "十一月",
 	"december": "十二月",
+	"january-gen": "一月",
+	"february-gen": "二月",
+	"march-gen": "三月",
+	"april-gen": "四月",
+	"may-gen": "五月",
+	"june-gen": "六月",
+	"july-gen": "七月",
+	"august-gen": "八月",
+	"september-gen": "九月",
+	"october-gen": "十月",
+	"november-gen": "十一月",
+	"december-gen": "十二月",
 	"jan": "1月",
 	"feb": "2月",
 	"mar": "3月",

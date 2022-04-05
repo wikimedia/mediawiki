@@ -77,6 +77,7 @@
 	"config-no-fts3": "<strong>Aviso:</strong> O SQLite foi compilado sem o módulo [//sqlite.org/fts3.html FTS3]; as funcionalidades de pesquisa não estarão disponíveis nesta instalação.",
 	"config-pcre-old": "<strong>Erro fatal:</strong> É necessário o PCRE $1 ou versão posterior.\nO seu binário PHP foi linkado com o PCRE $2.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE Mais informações].",
 	"config-pcre-no-utf8": "'''Erro fatal''': O módulo PCRE do PHP parece ter sido compilado sem suporte PCRE_UTF8.\nO MediaWiki necessita do suporte UTF-8 para funcionar corretamente.",
+	"config-pcre-invalid-newline": "<strong>Fatal:</strong> o módulo PCRE do PHP parece ter sido compilado com PCRE_CONFIG_NEWLINE = -1 para ANY.\nO MediaWiki não é compatível com esta configuração.",
 	"config-memory-raised": "A configuração <code>memory_limit</code> do PHP era $1; foi aumentada para $2.",
 	"config-memory-bad": "<strong>Aviso:</strong> A configuração <code>memory_limit</code> do PHP é $1.\nIsto é provavelmente demasiado baixo.\nA instalação poderá falhar!",
 	"config-apc": "[https://www.php.net/apc APC] instalada",

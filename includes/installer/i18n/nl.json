@@ -78,6 +78,7 @@
 	"config-no-fts3": "<strong>Waarschuwing:</strong> SQLite is gecompileerd zonder de module [//sqlite.org/fts3.html FTS3]; zoekfuncties zijn niet beschikbaar.",
 	"config-pcre-old": "<strong>Onherstelbare fout:</strong> PCRE $1 of een latere versie is vereist.\nUw uitvoerbare versie van PHP is gekoppeld met PCRE $2.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE Meer informatie].",
 	"config-pcre-no-utf8": "<strong>Onherstelbare fout:</strong> de module PRCE van PHP lijkt te zijn gecompileerd zonder ondersteuning voor PCRE_UTF8.\nMediaWiki heeft ondersteuning voor UTF-8 nodig om correct te kunnen werken.",
+	"config-pcre-invalid-newline": "<strong>Onherstelbare fout:</strong> de module PCRE van PHP lijkt te zijn gecompileerd met de optie PCRE_CONFIG_NEWLINE = -1 voor de waarde ANY. MediaWiki ondersteunt deze configuratie niet.",
 	"config-memory-raised": "PHP's <code>memory_limit</code> is $1 en is verhoogd tot $2.",
 	"config-memory-bad": "'''Waarschuwing:''' PHP's <code>memory_limit</code> is $1.\nDit is waarschijnlijk te laag.\nDe installatie kan mislukken!",
 	"config-apc": "[https://www.php.net/apc APC] is geïnstalleerd",
