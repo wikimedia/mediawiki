@@ -397,6 +397,10 @@ EOT;
 		'flags' => 0
 	]
 ];
+\$wgObjectCaches['db-replicated'] = [
+	'factory' => 'Wikimedia\ObjectFactory\ObjectFactory::getObjectFromSpec',
+	'args' => [ [ 'factory' => 'ObjectCache::getInstance', 'args' => [ CACHE_DB ] ] ]
+];
 \$wgLocalisationCacheConf['storeServer'] = [
 	'type' => 'sqlite',
 	'dbname' => \"{\$wgDBname}_l10n_cache\",
@@ -418,6 +422,7 @@ EOT;
 		'trxMode' => 'IMMEDIATE',
 		'flags' => 0
 	]
-];";
+];
+\$wgResourceLoaderUseObjectCacheForDeps = true;";
 	}
 }
