@@ -89,6 +89,7 @@ use Wikimedia\ScopedCallback;
  * @ingroup Parser
  */
 class Parser {
+	use DeprecationHelper;
 
 	# Flags for Parser::setFunctionHook
 	public const SFH_NO_HASH = 1;
@@ -198,11 +199,6 @@ class Parser {
 	private $mImageParamsMagicArray = [];
 	/** @deprecated since 1.35 */
 	public $mMarkerIndex = 0;
-	/**
-	 * @var bool Whether firstCallInit still needs to be called
-	 * @deprecated since 1.35; always false
-	 */
-	public $mFirstCall = false;
 
 	# Initialised by initializeVariables()
 
@@ -244,29 +240,23 @@ class Parser {
 
 	/**
 	 * @var int
-	 * @deprecated since 1.35; use Parser::nextLinkID() / ::setLinkID()
 	 */
-	public $mLinkID;
-	/** @deprecated since 1.35 */
-	public $mIncludeSizes;
+	private $mLinkID;
+	private $mIncludeSizes;
 	/** @deprecated since 1.35 */
 	public $mPPNodeCount;
-	/**
-	 * @deprecated since 1.35, Preprocessor_DOM was removed and this counter
-	 *    is no longer incremented by anything.
-	 */
-	public $mGeneratedPPNodeCount;
 	/** @deprecated since 1.35 */
 	public $mHighestExpansionDepth;
 	private $mTplRedirCache;
 	/** @internal */
 	public $mHeadings;
-	/** @deprecated since 1.35 */
-	public $mDoubleUnderscores;
+	/**
+	 * @var array<string,string>
+	 */
+	private $mDoubleUnderscores;
 	/** @deprecated since 1.35 */
 	public $mExpensiveFunctionCount; # number of expensive parser function calls
-	/** @deprecated since 1.35 */
-	public $mShowToc;
+	private $mShowToc;
 	private $mForceTocPosition;
 	/** @var array */
 	private $mTplDomCache;
@@ -296,16 +286,11 @@ class Parser {
 	private $mOutputType;   # Output type, one of the OT_xxx constants
 	/** @deprecated since 1.35 */
 	public $ot;            # Shortcut alias, see setOutputType()
-	/** @deprecated since 1.35, use Parser::getRevisionId() */
-	public $mRevisionId;   # ID to display in {{REVISIONID}} tags
-	/** @deprecated since 1.35, use Parser::getRevisionTimestamp() */
-	public $mRevisionTimestamp; # The timestamp of the specified revision ID
-	/** @deprecated since 1.35, use Parser::getRevisionUser() */
-	public $mRevisionUser; # User to display in {{REVISIONUSER}} tag
-	/** @deprecated since 1.35, use Parser::getRevisionSize() */
-	public $mRevisionSize; # Size to display in {{REVISIONSIZE}} variable
-	/** @deprecated since 1.35 */
-	public $mInputSize = false; # For {{PAGESIZE}} on current page.
+	private $mRevisionId;   # ID to display in {{REVISIONID}} tags
+	private $mRevisionTimestamp; # The timestamp of the specified revision ID
+	private $mRevisionUser; # User to display in {{REVISIONUSER}} tag
+	private $mRevisionSize; # Size to display in {{REVISIONSIZE}} variable
+	private $mInputSize = false; # For {{PAGESIZE}} on current page.
 
 	/** @var RevisionRecord|null */
 	private $mRevisionRecordObject;
@@ -328,10 +313,8 @@ class Parser {
 	/**
 	 * @var bool|string Recursive call protection.
 	 * @internal
-	 * @deprecated since 1.35; this variable should be treated as if it
-	 *   were private.
 	 */
-	public $mInParse = false;
+	private $mInParse = false;
 
 	/** @var SectionProfiler */
 	private $mProfiler;
@@ -479,6 +462,24 @@ class Parser {
 			// removed in 1.36; use a ParserFactory instead.
 			throw new MWException( 'Direct construction of Parser not allowed' );
 		}
+		$this->deprecatePublicProperty( 'mLinkID', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mIncludeSizes', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mDoubleUnderscores', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mShowToc', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mRevisionId', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mRevisionTimestamp', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mRevisionUser', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mRevisionSize', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mInputSize', '1.35', __CLASS__ );
+		$this->deprecatePublicProperty( 'mInParse', '1.35', __CLASS__ );
+		$this->deprecatePublicPropertyFallback( 'mFirstCall', '1.35', static function () {
+			return false;
+		}, static function ( $value ) { /* ignore */
+		} );
+		$this->deprecatePublicPropertyFallback( 'mGeneratedPPNodeCount', '1.35', static function () {
+			return 0;
+		}, static function ( $value ) { /* ignore */
+		} );
 		$svcOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->svcOptions = $svcOptions;
 
@@ -626,7 +627,6 @@ class Parser {
 			'arg' => 0,
 		];
 		$this->mPPNodeCount = 0;
-		$this->mGeneratedPPNodeCount = 0;
 		$this->mHighestExpansionDepth = 0;
 		$this->mHeadings = [];
 		$this->mDoubleUnderscores = [];
