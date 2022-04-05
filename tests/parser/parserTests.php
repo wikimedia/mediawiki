@@ -188,7 +188,7 @@ class ParserTestsMaintenance extends Maintenance {
 
 		$ok = $tester->runTestsFromFiles( $files );
 		if ( $recorderLB ) {
-			$recorderLB->closeAll();
+			$recorderLB->closeAll( __METHOD__ );
 		}
 		if ( !$ok ) {
 			exit( 1 );

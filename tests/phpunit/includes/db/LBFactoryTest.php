@@ -175,7 +175,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $called );
 		$this->assertEquals( 2, $countLBsFunc( $factory ) );
 		$factory->shutdown();
-		$factory->closeAll();
+		$factory->closeAll( __METHOD__ );
 
 		$called = 0;
 		$factory = $this->newLBFactoryMultiLBs();
@@ -198,7 +198,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $called );
 		$this->assertEquals( 2, $countLBsFunc( $factory ) );
 		$factory->shutdown();
-		$factory->closeAll();
+		$factory->closeAll( __METHOD__ );
 
 		$factory = $this->newLBFactoryMultiLBs();
 		$dbw = $factory->getMainLB()->getConnection( DB_PRIMARY );
@@ -211,7 +211,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $ran );
 
 		$factory->shutdown();
-		$factory->closeAll();
+		$factory->closeAll( __METHOD__ );
 	}
 
 	private function newLBFactoryMultiLBs() {
@@ -499,7 +499,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			"Correct full table name"
 		);
 
-		$factory->closeAll();
+		$factory->closeAll( __METHOD__ );
 		$factory->destroy();
 	}
 
@@ -570,7 +570,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
 		$lb->reuseConnection( $db ); // don't care
 
-		$factory->closeAll();
+		$factory->closeAll( __METHOD__ );
 		$factory->destroy();
 	}
 
@@ -698,7 +698,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		);
 		unset( $conn2 );
 
-		$factory->closeAll();
+		$factory->closeAll( __METHOD__ );
 		$factory->destroy();
 	}
 
