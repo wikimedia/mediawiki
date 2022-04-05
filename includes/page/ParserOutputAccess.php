@@ -244,7 +244,7 @@ class ParserOutputAccess {
 	 * @param RevisionRecord|null $revision
 	 * @param int $options Bitfield using the OPT_XXX constants
 	 *
-	 * @return Status containing a ParserOutput is no error occurred.
+	 * @return Status containing a ParserOutput if no error occurred.
 	 *         Well known errors and warnings include the following messages:
 	 *         - 'view-pool-dirty-output' (warning) The output is dirty (from a stale cache entry).
 	 *         - 'view-pool-contention' (warning) Dirty output was returned immediately instead of
