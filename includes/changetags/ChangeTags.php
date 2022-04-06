@@ -1786,8 +1786,8 @@ class ChangeTags {
 	 *
 	 * Message contents are the raw values (->plain()), because parsing messages is expensive.
 	 * Even though we're not parsing messages, building a data structure with the contents of
-	 * hundreds of i18n messages is still not cheap (see T223260#5370610), so the result of this
-	 * function is cached in WANCache for 24 hours.
+	 * hundreds of i18n messages is still not cheap (see T223260#5370610), so this function
+	 * caches its output in WANCache for up to 24 hours.
 	 *
 	 * Returns an array of associative arrays with information about each tag:
 	 * - name: Tag name (string)
@@ -1797,6 +1797,9 @@ class ChangeTags {
 	 * - description: Long description message (raw message contents)
 	 * - cssClass: CSS class to use for RC entries with this tag
 	 * - hits: Number of RC entries that have this tag
+	 *
+	 * This data is consumed by the `mediawiki.rcfilters.filters.ui` module,
+	 * specifically `mw.rcfilters.dm.FilterGroup` and `mw.rcfilters.dm.FilterItem`.
 	 *
 	 * @param MessageLocalizer $localizer
 	 * @param Language $lang
@@ -1808,17 +1811,17 @@ class ChangeTags {
 			$cache->makeKey( 'tags-list-summary', $lang->getCode() ),
 			WANObjectCache::TTL_DAY,
 			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $localizer ) {
-				$explicitlyDefinedTags = array_fill_keys( self::listExplicitlyDefinedTags(), 0 );
-				$softwareActivatedTags = array_fill_keys( self::listSoftwareActivatedTags(), 0 );
-
 				$tagHitCounts = self::tagUsageStatistics();
-				// Only get tags with more than 0 hits
-				$tagHitCounts = array_filter( $tagHitCounts );
-				// Only get active tags
-				$tagHitCounts = array_intersect_key( $tagHitCounts, $explicitlyDefinedTags + $softwareActivatedTags );
 
 				$result = [];
-				foreach ( $tagHitCounts as $tagName => $hits ) {
+				// Only list tags that are still actively defined
+				foreach ( self::listDefinedTags() as $tagName ) {
+					// Only list tags with more than 0 hits
+					$hits = $tagHitCounts[$tagName] ?? 0;
+					if ( $hits <= 0 ) {
+						continue;
+					}
+
 					$labelMsg = self::tagShortDescriptionMessage( $tagName, $localizer );
 					$descriptionMsg = self::tagLongDescriptionMessage( $tagName, $localizer );
 					// Don't cache the message object, use the correct MessageLocalizer to parse later.
@@ -1829,7 +1832,6 @@ class ChangeTags {
 						'descriptionMsg' => (bool)$descriptionMsg,
 						'description' => $descriptionMsg ? $descriptionMsg->plain() : '',
 						'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
-						'hits' => $hits,
 					];
 				}
 				return $result;
@@ -1844,8 +1846,6 @@ class ChangeTags {
 	 * and (in the case of description) truncated versions of these messages. Message
 	 * parsing is expensive, so to detect whether the tag list has changed, use
 	 * getChangeTagListSummary() instead.
-	 *
-	 * The result of this function is cached in WANCache for 24 hours.
 	 *
 	 * @param MessageLocalizer $localizer
 	 * @param Language $lang
