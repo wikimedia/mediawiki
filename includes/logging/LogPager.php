@@ -426,7 +426,7 @@ class LogPager extends ReverseChronologicalPager {
 	}
 
 	public function getIndexField() {
-		return 'log_timestamp';
+		return [ [ 'log_timestamp', 'log_id' ] ];
 	}
 
 	protected function getStartBody() {

@@ -215,7 +215,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 					'fields' => 'log_id',
 					'conds' => "log_timestamp > '20170714183203'",
 					'join_conds' => [],
-					'options' => 'ORDER BY log_timestamp DESC',
+					'options' => [ 'ORDER BY' => [ 'log_timestamp DESC', 'log_id DESC' ] ],
 				],
 				'foo',
 				true, // tag filtering enabled
@@ -225,7 +225,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 					'fields' => [ 'log_id', 'ts_tags' => $groupConcats['logging'] ],
 					'conds' => [ "log_timestamp > '20170714183203'", 'ct_tag_id' => [ 1 ] ],
 					'join_conds' => [ 'change_tag' => [ 'JOIN', 'ct_log_id=log_id' ] ],
-					'options' => [ 'ORDER BY log_timestamp DESC' ],
+					'options' => [ 'ORDER BY' => [ 'log_timestamp DESC', 'log_id DESC' ] ],
 				]
 			],
 			'revision query with single tag filter' => [

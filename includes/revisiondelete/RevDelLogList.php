@@ -108,7 +108,7 @@ class RevDelLogList extends RevDelList {
 				'log_user_text' => 'actor_name'
 			] + $commentQuery['fields'],
 			'conds' => [ 'log_id' => $ids ],
-			'options' => [ 'ORDER BY' => 'log_id DESC' ],
+			'options' => [ 'ORDER BY' => [ 'log_timestamp DESC', 'log_id DESC' ] ],
 			'join_conds' => [
 				'actor' => [ 'JOIN', 'actor_id=log_actor' ]
 			] + $commentQuery['joins'],
