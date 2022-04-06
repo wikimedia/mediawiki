@@ -3772,6 +3772,69 @@ wgParserEnableLegacyMediaDOM=false
 <p><span class="mw-default-size" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"link","ak":"link=&lt;"},{"ck":"page","ak":"page=2"}]}' data-mw='{"attribs":[["link",{"txt":"&lt;"}],["page",{"txt":"2"}]]}'><a href="./File:LoremIpsum.djvu?page=2" class="mw-file-description"><img resource="./File:LoremIpsum.djvu" src="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-2480px-LoremIpsum.djvu.jpg" decoding="async" data-file-width="2480" data-file-height="3508" data-file-type="office" height="3508" width="2480" srcset="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-3720px-LoremIpsum.djvu.jpg 1.5x, http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-4960px-LoremIpsum.djvu.jpg 2x"/></a></span></p>
 !! end
 
+## Roundtripping the gallery here without normalization needs T252246 / T252246
+!! test
+Percent decode titles in the link option (T216003#7836261)
+!! options
+parsoid=wt2html,html2html
+!! config
+wgParserEnableLegacyMediaDOM=false
+!! wikitext
+[[Test%22123]]
+[[File:Foobar.jpg|link=Test%22123]]
+[[File:Foobar.jpg|link=[[Test%22123]]]]
+
+<gallery>
+File:Foobar.jpg|link=Test%22123
+File:Foobar.jpg|link=[[Test%22123]]
+</gallery>
+!! html/php
+<p><a href="/index.php?title=Test%22123&amp;action=edit&amp;redlink=1" class="new" title="Test&quot;123 (page does not exist)">Test"123</a>
+<span class="mw-default-size" typeof="mw:Image"><a href="/wiki/Test%22123" title="Test&quot;123"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></span>
+<span class="mw-default-size" typeof="mw:Image"><a href="/wiki/Test%22123" title="Test&quot;123"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></span>
+</p>
+<ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 155px">
+			<div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="/wiki/Test%22123"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></span></div>
+			<div class="gallerytext">
+			</div>
+		</li>
+		<li class="gallerybox" style="width: 155px">
+			<div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image"><a href="/wiki/Test%22123"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></span></div>
+			<div class="gallerytext">
+			</div>
+		</li>
+</ul>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href='./Test"123' title='Test"123' class="new" data-parsoid='{"stx":"simple","a":{"href":"./Test\"123"},"sa":{"href":"Test%22123"}}'>Test"123</a>
+<span class="mw-default-size" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"link","ak":"link=Test%22123"}]}'><a href='./Test"123' data-parsoid="{}"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></span>
+<span class="mw-default-size" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"link","ak":"link=[[Test%22123]]"}]}'><a href='./Test"123' data-parsoid="{}"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></span></p>
+
+<ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image" data-parsoid='{"optList":[{"ck":"width","ak":"120x120px"},{"ck":"link","ak":"link=Test%22123"}]}'><a href='./Test"123'><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Image" data-parsoid='{"optList":[{"ck":"width","ak":"120x120px"},{"ck":"link","ak":"link=[[Test%22123]]"}]}'><a href='./Test"123'><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x"/></a></span></div><div class="gallerytext"></div></li>
+</ul>
+!! end
+
+!! test
+Should not double decode the link option
+!! config
+wgParserEnableLegacyMediaDOM=false
+!! wikitext
+[[Test%2522]]
+[[File:Foobar.jpg|link=Test%2522]]
+[[File:Foobar.jpg|link=[[Test%2522]]]]
+!! html/php
+<p>[[Test%2522]]
+<span class="mw-default-size" typeof="mw:Image"><a href="/wiki/File:Foobar.jpg" class="mw-file-description" title="link=Test%2522"><img alt="link=Test%2522" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></span>
+<span class="mw-default-size" typeof="mw:Image"><a href="/wiki/File:Foobar.jpg" class="mw-file-description" title="link=[[Test%2522]]"><img alt="link=[[Test%2522]]" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></span>
+</p>
+!! html/parsoid
+<p>[[Test%2522]]
+<span class="mw-default-size" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"link","ak":"link=Test%2522"}]}' data-mw='{"attribs":[["link",{"txt":"Test%2522"}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></span>
+<span class="mw-default-size" typeof="mw:Image" data-parsoid='{"optList":[{"ck":"link","ak":"link=[[Test%2522]]"}]}' data-mw='{"attribs":[["link",{"txt":"[[Test%2522]]"}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></span></p>
+!! end
+
 !! test
 Various link types in alt and link options
 !! config

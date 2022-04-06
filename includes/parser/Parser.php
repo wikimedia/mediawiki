@@ -5545,6 +5545,34 @@ class Parser {
 				$target = $value;
 			}
 		} else {
+			// Percent-decode link arguments for consistency with wikilink
+			// handling (T216003#7836261).
+			//
+			// There's slight concern here though.  The |link= option supports
+			// two formats, link=Test%22test vs link=[[Test%22test]], both of
+			// which are about to be decoded.
+			//
+			// In the former case, the decoding here is straightforward and
+			// desirable.
+			//
+			// In the latter case, there's a potential for double decoding,
+			// because the wikilink syntax has a higher precedence and has
+			// already been parsed as a link before we get here.  $value
+			// has had stripAltText() called on it, which in turn calls
+			// replaceLinkHoldersText() on the link.  So, the text we're
+			// getting at this point has already been percent decoded.
+			//
+			// The problematic case is if %25 is in the title, since that
+			// decodes to %, which could combine with trailing characters.
+			// However, % is not a valid link title character, so it would
+			// not parse as a link and the string we received here would
+			// still contain the encoded %25.
+			//
+			// Hence, double decoded is not an issue.  See the test,
+			// "Should not double decode the link option"
+			if ( strpos( $value, '%' ) !== false ) {
+				$value = rawurldecode( $value );
+			}
 			$linkTitle = Title::newFromText( $value );
 			if ( $linkTitle ) {
 				$this->mOutput->addLink( $linkTitle );
