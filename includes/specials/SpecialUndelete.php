@@ -69,6 +69,8 @@ class SpecialUndelete extends SpecialPage {
 	private $mUnsuppress;
 	/** @var int[] */
 	private $mFileVersions = [];
+	/** @var bool|null */
+	private $mUndeleteTalk;
 
 	/** @var Title|null */
 	private $mTargetObj;
@@ -201,6 +203,7 @@ class SpecialUndelete extends SpecialPage {
 		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) &&
 			$this->permissionManager->userHasRight( $user, 'suppressrevision' );
 		$this->mToken = $request->getVal( 'token' );
+		$this->mUndeleteTalk = $request->getCheck( 'undeletetalk' );
 
 		if ( $this->isAllowed( 'undelete' ) ) {
 			$this->mAllowed = true; // user can restore
@@ -971,6 +974,38 @@ class SpecialUndelete extends SpecialPage {
 				]
 			);
 
+			if ( $this->permissionManager->userHasRight( $this->getUser(), 'suppressrevision' ) ) {
+				$fields[] = new OOUI\FieldLayout(
+					new OOUI\CheckboxInputWidget( [
+						'name' => 'wpUnsuppress',
+						'inputId' => 'mw-undelete-unsuppress',
+						'value' => '1',
+					] ),
+					[
+						'label' => $this->msg( 'revdelete-unsuppress' )->text(),
+						'align' => 'inline',
+					]
+				);
+			}
+
+			$undelPage = $this->undeletePageFactory->newUndeletePage(
+				$this->wikiPageFactory->newFromTitle( $this->mTargetObj ),
+				$this->getContext()->getAuthority()
+			);
+			if ( $undelPage->canProbablyUndeleteAssociatedTalk()->isGood() ) {
+				$fields[] = new OOUI\FieldLayout(
+					new OOUI\CheckboxInputWidget( [
+						'name' => 'undeletetalk',
+						'inputId' => 'mw-undelete-undeletetalk',
+						'selected' => false,
+					] ),
+					[
+						'label' => $this->msg( 'undelete-undeletetalk' )->text(),
+						'align' => 'inline',
+					]
+				);
+			}
+
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\Widget( [
 					'content' => new OOUI\HorizontalLayout( [
@@ -993,20 +1028,6 @@ class SpecialUndelete extends SpecialPage {
 					] )
 				] )
 			);
-
-			if ( $this->permissionManager->userHasRight( $this->getUser(), 'suppressrevision' ) ) {
-				$fields[] = new OOUI\FieldLayout(
-					new OOUI\CheckboxInputWidget( [
-						'name' => 'wpUnsuppress',
-						'inputId' => 'mw-undelete-unsuppress',
-						'value' => '1',
-					] ),
-					[
-						'label' => $this->msg( 'revdelete-unsuppress' )->text(),
-						'align' => 'inline',
-					]
-				);
-			}
 
 			$fieldset = new OOUI\FieldsetLayout( [
 				'label' => $this->msg( 'undelete-fieldset-title' )->text(),
@@ -1387,6 +1408,9 @@ class SpecialUndelete extends SpecialPage {
 			$this->wikiPageFactory->newFromTitle( $this->mTargetObj ),
 			$this->getAuthority()
 		);
+		if ( $this->mUndeleteTalk && $undeletePage->canProbablyUndeleteAssociatedTalk()->isGood() ) {
+			$undeletePage->setUndeleteAssociatedTalk( true );
+		}
 		$status = $undeletePage
 			->setUndeleteOnlyTimestamps( $this->mTargetTimestamp )
 			->setUndeleteOnlyFileVersions( $this->mFileVersions )
