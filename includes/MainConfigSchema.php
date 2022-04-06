@@ -8710,9 +8710,15 @@ class MainConfigSchema {
 	// See $wgProfiler for how to enable profiling.
 
 	/**
-	 * Filename for debug logging. See https://www.mediawiki.org/wiki/How_to_debug
-	 * The debug log file should be not be publicly accessible if it is used, as it
-	 * may contain private data.
+	 * Enable verbose debug logging for all channels and log levels.
+	 *
+	 * See https://www.mediawiki.org/wiki/How_to_debug
+	 *
+	 * For static requests, this enables all channels and warning-level and
+	 * above only. Use $wgDebugRawPage to make those verbose as well.
+	 *
+	 * The debug log file should be not be web-accessible if it is used in
+	 * a production environment, as may contain private data.
 	 */
 	public const DebugLogFile = [
 		'default' => '',
@@ -8735,10 +8741,18 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * If true, log debugging data from action=raw and load.php.
+	 * If true, debug logging is also enabled for load.php and action=raw requests.
 	 *
-	 * This is normally false to avoid overlapping debug entries due to gen=css
-	 * and gen=js requests.
+	 * By default, $wgDebugLogFile enables all channels and warning-level and
+	 * above for static requests.
+	 *
+	 * This ensures that the debug log is likely a chronological record of
+	 * of specific web request you are debugging, instead of overlapping with
+	 * messages from static requests, which would make it unclear which message
+	 * originated from what request.
+	 *
+	 * Also, during development this can make browsing and JavaScript testing
+	 * considerably slower (T85805).
 	 */
 	public const DebugRawPage = [
 		'default' => false,
