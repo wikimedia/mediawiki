@@ -40,7 +40,8 @@ class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 	private $skipMessage;
 
 	public function __construct( $runner, $fileName, $test, $skipMessage = null ) {
-		parent::__construct( 'testParse', [ ( $test['parsoid'] ?? false ) ? 'parsoid' : 'legacy parser' ],
+		parent::__construct( 'testParse',
+			[ ( $test['parsoid'] ?? false ) ? 'parsoid:' . $test['parsoidMode'] : 'legacy parser' ],
 			basename( $fileName ) . ': ' . $test['desc'] );
 		$this->ptTest = $test;
 		$this->ptRunner = $runner;
@@ -53,7 +54,11 @@ class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 		}
 		$this->ptRunner->getRecorder()->setTestCase( $this );
 		if ( $this->ptTest['parsoid'] ?? false ) {
-			$result = $this->ptRunner->runParsoidTest( $this->ptTest['parsoid'], $this->ptTest['parsoidMode'] );
+			$result = $this->ptRunner->runParsoidTest(
+				$this->ptTest['parsoid'],
+				$this->ptTest['parsoidMode'],
+				$this->ptTest['parsoid-changetree'] ?? null
+			);
 		} else {
 			$result = $this->ptRunner->runTest( $this->ptTest );
 		}
