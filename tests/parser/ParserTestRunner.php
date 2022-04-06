@@ -32,12 +32,14 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use Psr\Log\NullLogger;
+use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\ParserTests\ParserHook as ParsoidParserHook;
 use Wikimedia\Parsoid\ParserTests\RawHTML as ParsoidRawHTML;
 use Wikimedia\Parsoid\ParserTests\StyleTag as ParsoidStyleTag;
 use Wikimedia\Parsoid\ParserTests\Test as ParsoidTest;
 use Wikimedia\Parsoid\ParserTests\TestUtils as ParsoidTestUtils;
 use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -1078,6 +1080,147 @@ class ParserTestRunner {
 	}
 
 	/**
+	 * @param array $opts test options
+	 * @return Parsoid
+	 */
+	private function createParsoid( array $opts ): Parsoid {
+		$services = MediaWikiServices::getInstance();
+		$siteConfig = $services->get( 'ParsoidSiteConfig' );
+		$dataAccess = $services->get( 'ParsoidDataAccess' );
+
+		// Create Parsoid object.
+		// @todo T270307: unregister these after this test
+		$siteConfig->registerExtensionModule( ParsoidParserHook::class );
+		if ( ( $opts['wgrawhtml'] ?? null ) === '1' ) {
+			$siteConfig->registerExtensionModule( ParsoidRawHTML::class );
+		}
+		if ( isset( $opts['styletag'] ) ) {
+			$siteConfig->registerExtensionModule( ParsoidStyleTag::class );
+		}
+
+		return new Parsoid( $siteConfig, $dataAccess );
+	}
+
+	/**
+	 * Run wt2html on the test
+	 *
+	 * @param Parsoid $parsoid
+	 * @param PageConfig $pageConfig
+	 * @param ParsoidTest $test
+	 * @return ParserTestResult|false false if skipped
+	 */
+	private function wt2html( Parsoid $parsoid, PageConfig $pageConfig, ParsoidTest $test ) {
+		$opts = $test->options;
+
+		$parsoidHtml = $test->sections['html/parsoid+integrated'] ?? $test->parsoidHtml;
+		if ( $test->wikitext === null || $parsoidHtml === null ) {
+			return false; // Legacy-only test or non-wt2html
+		}
+
+		$origOut = $parsoid->wikitext2html( $pageConfig, [
+			'body_only' => true,
+			'wrapSections' => $opts['parsoid']['wrapSections'] ?? false,
+		] );
+		$test->cachedBODYstr = $origOut;
+
+		// If we know this to be a known failure, compare against recorded result.
+		// If a previously failing test now succeeds, we report PHPUnit failure.
+		// Known failures are handled / updated in a non-phpunit test run.
+		$expected = $test->knownFailures['wt2html'] ?? $parsoidHtml;
+
+		$parsoidOnly = isset( $test->sections['html/parsoid'] ) ||
+			isset( $test->sections['html/parsoid+integrated'] ) ||
+			( isset( $test->sections['html/parsoid+langconv'] ) ) ||
+			( isset( $opts['parsoid'] ) && !isset( $opts['parsoid']['normalizePhp'] ) );
+		$normOpts = [
+			'parsoidOnly' => $parsoidOnly,
+			'preserveIEW' => isset( $opts['parsoid']['preserveIEW'] ),
+		];
+
+		$out = ParsoidTestUtils::normalizeOut( $origOut, $normOpts );
+
+		// If we know this to be a known failure, compare against recorded result.
+		// If a previously failing test now succeeds, we report PHPUnit failure.
+		// Known failures are handled / updated in a non-phpunit test run.
+		$expected = $test->knownFailures['wt2html'] ?? null;
+
+		if ( !$expected ) {
+			if ( $normOpts['parsoidOnly'] ) {
+				$expected = ParsoidTestUtils::normalizeOut( $parsoidHtml, $normOpts );
+			} else {
+				$expected = ParsoidTestUtils::normalizeHTML( $parsoidHtml );
+			}
+			$test->cachedNormalizedHTML = $expected;
+		}
+
+		$test->cachedBODYstr = $origOut;
+		$test->cachedNormalizedHTML = $expected;
+
+		return new ParserTestResult( [
+				'test' => $test->testName,
+				'desc' => ( $test->comment ?? '' ) . $test->testName,
+				'input' => $test->wikitext,
+				'result' => $test->legacyHtml,
+				'options' => $test->options,
+				'config' => $test->config,
+				'line' => $test->lineNumStart,
+				'file' => $test->filename,
+			], $expected, $out );
+	}
+
+	/**
+	 * @param Parsoid $parsoid
+	 * @param PageConfig $pageConfig
+	 * @param ParsoidTest $test
+	 * @return ParserTestResult|false false if skipped
+	 */
+	private function wt2wt( Parsoid $parsoid, PageConfig $pageConfig, ParsoidTest $test ) {
+		$opts = $test->options;
+		if ( $test->wikitext === null ) {
+			return false; // FIXME: Is this an error in the test setup?
+		}
+
+		if ( $test->cachedBODYstr === null ) {
+			$test->cachedBODYstr = $parsoid->wikitext2html( $pageConfig, [
+				'body_only' => true,
+				'wrapSections' => $opts['parsoid']['wrapSections'] ?? false,
+			] );
+		}
+
+		// Handle a 'changes' option if present.
+		$testManualChanges = $testOpts['parsoid']['changes'] ?? null;
+		$doc = DOMUtils::parseHTML( $test->cachedBODYstr, true );
+		if ( $testManualChanges ) {
+			$test->applyManualChanges( $doc );
+		}
+
+		$wt = $parsoid->dom2wikitext( $pageConfig, $doc );
+
+		// If we know this to be a known failure, compare against recorded result.
+		// If a previously failing test now succeeds, we report PHPUnit failure.
+		// Known failures are handled / updated in a non-phpunit test run.
+		$expected = $test->knownFailures['wt2wt'] ?? null;
+		if ( !$expected ) {
+			if ( isset( $test->options['parsoid']['changes'] ) ) {
+				$expected = $test->sections['wikitext/edited'];
+			} else {
+				$expected = $test->wikitext;
+			}
+		}
+
+		return new ParserTestResult( [
+				'test' => $test->testName,
+				'desc' => ( $test->comment ?? '' ) . $test->testName,
+				'input' => $test->wikitext,
+				'result' => $test->legacyHtml,
+				'options' => $test->options,
+				'config' => $test->config,
+				'line' => $test->lineNumStart,
+				'file' => $test->filename,
+			], $expected, $wt );
+	}
+
+	/**
 	 * Run a given wikitext input through a freshly-constructed Parsoid parser,
 	 * running in 'integrated' mode, and compare the output against the
 	 * expected results.
@@ -1093,28 +1236,13 @@ class ParserTestRunner {
 	 *  - input: Wikitext to try rendering
 	 *  - options: Array of test options
 	 *  - config: Overrides for global variables, one per line
+	 * @param string $mode What test mode are will running this under?
+	 *    Valid modes are defined in ParsoidTestFileSuite
 	 *
 	 * @return ParserTestResult|false false if skipped
 	 */
-	public function runParsoidTest( ParsoidTest $test ) {
-		wfDebug( __METHOD__ . ": running {$test->testName} (parsoid)" );
-		$opts = $test->options;
-		$parsoidOnly = isset( $test->sections['html/parsoid'] ) ||
-			isset( $test->sections['html/parsoid+integrated'] ) ||
-			( isset( $test->sections['html/parsoid+langconv'] ) ) ||
-			( isset( $opts['parsoid'] ) && !isset( $opts['parsoid']['normalizePhp'] ) );
-		$modes = $opts['parsoid']['modes'] ?? null;
-		if (
-			$modes &&
-			array_search( 'wt2html', $modes, true ) === false &&
-			array_search( 'wt2html+integrated', $modes, true ) === false
-		) {
-			return false; // Skip test, it doesn't have a wt2html mode
-		}
-		$normOpts = [
-			'parsoidOnly' => $parsoidOnly,
-			'preserveIEW' => isset( $opts['parsoid']['preserveIEW'] ),
-		];
+	public function runParsoidTest( ParsoidTest $test, string $mode ) {
+		wfDebug( __METHOD__ . ": running {$test->testName} (parsoid:$mode)" );
 
 		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
 			return false; // Skip test.
@@ -1130,22 +1258,8 @@ class ParserTestRunner {
 		) {
 			return false; // skip test
 		}
-		$parsoidHtml = $test->sections['html/parsoid+integrated'] ??
-			$test->parsoidHtml;
-		// @todo T270311 eventually we should support the full set of
-		// test modes: wt2html, wt2wt, html2wt, html2html, and selser
-		if ( $test->wikitext === null || $parsoidHtml === null ) {
-			return false; // Legacy-only test or non-wt2html
-		}
-		if ( ( $test->knownFailures['wt2html'] ?? null ) !== null ) {
-			// @todo: Parsoid's built-in test runner checks the output
-			// even on the known failure list.
-			return false; // on the known failures list
-		}
 
 		$services = MediaWikiServices::getInstance();
-		$siteConfig = $services->get( 'ParsoidSiteConfig' );
-		$dataAccess = $services->get( 'ParsoidDataAccess' );
 		$pageConfigFactory = $services->get( 'ParsoidPageConfigFactory' );
 		$pageConfig = null;
 
@@ -1173,42 +1287,19 @@ class ParserTestRunner {
 				return $pageConfig->getParserOptions();
 			} );
 
-		// Create Parsoid object.
-		// @todo T270307: unregister these after this test
-		$siteConfig->registerExtensionModule( ParsoidParserHook::class );
-		if ( ( $opts['wgrawhtml'] ?? null ) === '1' ) {
-			$siteConfig->registerExtensionModule( ParsoidRawHTML::class );
+		$parsoid = $test->parsoid ?? null;
+		if ( !$parsoid ) {
+			// Cache the Parsoid object
+			$parsoid = $test->parsoid = $this->createParsoid( $test->options );
 		}
-		if ( isset( $opts['styletag'] ) ) {
-			$siteConfig->registerExtensionModule( ParsoidStyleTag::class );
-		}
-
-		$parsoid = new Parsoid( $siteConfig, $dataAccess );
-
-		$out = $parsoid->wikitext2html( $pageConfig, [
-			'body_only' => true,
-			'wrapSections' => $opts['parsoid']['wrapSections'] ?? false,
-		] );
-		$expected = $parsoidHtml;
-
-		$out = ParsoidTestUtils::normalizeOut( $out, $normOpts );
-		if ( $normOpts['parsoidOnly'] ) {
-			$expected = ParsoidTestUtils::normalizeOut( $expected, $normOpts );
+		if ( $mode === 'wt2html' || $mode === 'wt2html+integrated' ) {
+			return $this->wt2html( $parsoid, $pageConfig, $test );
+		} elseif ( $mode === 'wt2wt' ) {
+			return $this->wt2wt( $parsoid, $pageConfig, $test );
 		} else {
-			$expected = ParsoidTestUtils::normalizeHTML( $expected );
+			// Unsupported Mode
+			return false;
 		}
-
-		$testResult = new ParserTestResult( [
-			'test' => $test->testName,
-			'desc' => ( $test->comment ?? '' ) . $test->testName,
-			'input' => $test->wikitext,
-			'result' => $test->legacyHtml,
-			'options' => $test->options,
-			'config' => $test->config,
-			'line' => $test->lineNumStart,
-			'file' => $test->filename,
-		], $expected, $out );
-		return $testResult;
 	}
 
 	/**

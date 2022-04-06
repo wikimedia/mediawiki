@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\TestSuite;
+use Wikimedia\Parsoid\ParserTests\Test as ParsoidTest;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -12,6 +13,8 @@ use Wikimedia\ScopedCallback;
  */
 class ParsoidTestFileSuite extends TestSuite {
 	use SuiteEventsTrait;
+
+	public const VALID_TEST_MODES = [ 'wt2html', 'wt2html+integrated', 'wt2wt' ];
 
 	private $ptRunner;
 	private $ptFileName;
@@ -42,19 +45,29 @@ class ParsoidTestFileSuite extends TestSuite {
 		}
 
 		foreach ( $this->ptFileInfo->testCases as $t ) {
-			$test = [
-				'test' => $t->testName,
-				'desc' => ( $t->comment ?? '' ) . $t->testName,
-				'input' => $t->wikitext,
-				'result' => $t->legacyHtml,
-				'options' => $t->options,
-				'config' => $t->config ?? '',
-				'line' => $t->lineNumStart,
-				'file' => $t->filename,
-				'parsoid' => $t,
-			];
-			$this->addTest( new ParserIntegrationTest( $runner, $fileName, $test, $skipMessage ),
-				[ 'Database', 'Parser', 'ParserTests' ] );
+			$testModes = $t->computeTestModes( self::VALID_TEST_MODES );
+			$runnerOpts = [ 'numchanges' => 20 ]; // the default in Parsoid
+			$suite = $this;
+			$t->testAllModes( $testModes, $runnerOpts,
+				static function ( ParsoidTest $newTest, string $mode, array $options ) use ( $suite, $runner, $fileName, $t, $skipMessage ) {
+					// $options is being ignored but it is identical to $runnerOpts
+					$test = [
+						'test' => $t->testName,
+						'desc' => ( $t->comment ?? '' ) . $t->testName,
+						'input' => $t->wikitext,
+						'result' => $t->legacyHtml,
+						'options' => $t->options,
+						'config' => $t->config ?? '',
+						'line' => $t->lineNumStart,
+						'file' => $t->filename,
+						'parsoid' => $newTest,
+						'parsoidMode' => $mode
+					];
+					$pit = new ParserIntegrationTest( $runner, $fileName, $test, $skipMessage );
+					$suite->addTest( $pit, [ 'Database', 'Parser', 'ParserTests' ] );
+				}
+			);
+
 		}
 	}
 
