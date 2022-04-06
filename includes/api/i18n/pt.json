@@ -906,7 +906,7 @@
 	"apihelp-query+iwbacklinks-example-generator": "Obter informação sobre as páginas que contêm hiperligações para [[wikibooks:Test]].",
 	"apihelp-query+iwlinks-summary": "Devolve todas as hiperligações interwikis das páginas indicadas.",
 	"apihelp-query+iwlinks-param-url": "Indica se deve ser obtido o URL completo (não pode ser usado com $1prop).",
-	"apihelp-query+iwlinks-param-prop": "\nQuais propriedades adicionais obter para cada link interwiki:",
+	"apihelp-query+iwlinks-param-prop": "Que propriedades adicionais obter para cada hiperligação interwikis:",
 	"apihelp-query+iwlinks-paramvalue-prop-url": "Adiciona o URL completo.",
 	"apihelp-query+iwlinks-param-limit": "O número de hiperligações interwikis a serem devolvidas.",
 	"apihelp-query+iwlinks-param-prefix": "Devolver só as hiperligações interwikis com este prefixo.",
