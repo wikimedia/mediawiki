@@ -310,6 +310,7 @@
 	"databaseerror-function": "Function: $1",
 	"databaseerror-error": "Error: $1",
 	"transaction-duration-limit-exceeded": "To avoid creating high replication lag, this transaction was aborted because the write duration ($1) exceeded the $2 second limit.\nIf you are changing many items at once, try doing multiple smaller operations instead.",
+	"transaction-max-statement-time-exceeded": "To avoid creating high database load, this query was aborted because the duration exceeded the limit.\nIf you are reading many items at once, try doing multiple smaller operations instead.",
 	"laggedreplicamode": "<strong>Warning:</strong> Page may not contain recent updates.",
 	"readonly": "Database locked",
 	"enterlockreason": "Enter a reason for the lock, including an estimate of when the lock will be released",

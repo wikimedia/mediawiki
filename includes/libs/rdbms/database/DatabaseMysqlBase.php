@@ -266,7 +266,7 @@ abstract class DatabaseMysqlBase extends Database {
 	protected function isQueryTimeoutError( $errno ) {
 		// https://dev.mysql.com/doc/refman/8.0/en/client-error-reference.html
 		// https://phabricator.wikimedia.org/T170638
-		return in_array( $errno, [ 2062, 3024 ] );
+		return in_array( $errno, [ 1028, 1969, 2062, 3024 ] );
 	}
 
 	protected function isInsertSelectSafe( array $insertOptions, array $selectOptions ) {
