@@ -121,6 +121,9 @@ because of Phabricator reports.
 * Changes to skins:
   - Skin::getCopyrightIcon(), ::getPoweredBy(), deprecated in 1.37 have been
     removed.
+  - Skin::bottomScripts soft deprecated in 1.37, was hard deprecated.
+    Skins using SkinTemplate must set bodyOnly as a skin option and
+    remove lines of code generating html, body and head elements.
   - Skin::makeSearchButton and Skin::makeSearchInput were deprecated in 1.38.
     Use SkinTemplate methods with the same name or Skin::getTemplateData
     instead.
