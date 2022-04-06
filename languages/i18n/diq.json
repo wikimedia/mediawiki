@@ -2344,7 +2344,7 @@
 	"confirm": "Tesdiq ke",
 	"excontent": "zerreko verên: \"$1\"",
 	"excontentauthor": "zerreko kehan: '$1' u teyna yew iştırakwan \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|mesac]]) bi",
-	"exbeforeblank": "behsê verê esteriyayişi: '$1'",
+	"exbeforeblank": "zerrekê verê esteriyayışi: \"$1\"",
 	"delete-confirm": "\"$1\" bestere",
 	"delete-legend": "Bestere",
 	"historywarning": "'''Teme:''' Pela ke şıma esterenê tede yew viyarte be teqriben $1 {{PLURAL:$1|versiyon esto|versiyoni estê}}:",

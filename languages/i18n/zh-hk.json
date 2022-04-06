@@ -207,6 +207,8 @@
 	"grouppage-user": "{{ns:project}}:用戶",
 	"grouppage-bot": "{{ns:project}}:機械人",
 	"grouppage-suppress": "{{ns:project}}:監督",
+	"right-upload": "上載檔案",
+	"right-reupload-own": "覆蓋自己上載的現有檔案",
 	"right-viewmyprivateinfo": "編輯自己的私隱數據（如：電子郵件位址及真實姓名）",
 	"right-editmyprivateinfo": "編輯自己的私隱數據（如：電子郵件位址及真實姓名）",
 	"action-block": "封鎖此用戶的編輯權限",
