@@ -10,7 +10,7 @@ use ReflectionException;
  * Constructs a settings array based on a PHP class by inspecting class
  * members to construct a schema.
  *
- * @since 1.38
+ * @since 1.39
  */
 class ReflectionSchemaSource implements SettingsSource {
 
