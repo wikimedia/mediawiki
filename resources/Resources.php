@@ -2097,12 +2097,15 @@ return [
 		'scripts' => [
 			'patrol.js',
 			'rollback.js',
+			'edittags.js',
 		],
 		'dependencies' => [
+			'jquery.chosen',
+			'jquery.lengthLimit',
+			'jquery.spinner',
 			'mediawiki.api',
 			'mediawiki.util',
 			'mediawiki.Title',
-			'jquery.spinner',
 			'user.options',
 			'jquery.confirmable',
 		],
@@ -2111,6 +2114,8 @@ return [
 			'rollback-confirmation-confirm',
 			'rollback-confirmation-yes',
 			'rollback-confirmation-no',
+			'tags-edit-chosen-placeholder',
+			'tags-edit-chosen-no-results',
 		],
 	],
 	'mediawiki.special.changeslist' => [
@@ -2154,17 +2159,6 @@ return [
 			'oojs-ui',
 			'mediawiki.widgets.DateInputWidget',
 			'mediawiki.jqueryMsg',
-		],
-	],
-	'mediawiki.special.edittags' => [
-		'scripts' => 'resources/src/mediawiki.special.edittags.js',
-		'dependencies' => [
-			'jquery.chosen',
-			'jquery.lengthLimit',
-		],
-		'messages' => [
-			'tags-edit-chosen-placeholder',
-			'tags-edit-chosen-no-results',
 		],
 	],
 	'mediawiki.special.import.styles.ooui' => [

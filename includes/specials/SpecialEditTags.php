@@ -82,7 +82,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$output->addModules( [ 'mediawiki.special.edittags' ] );
+		$output->addModules( [ 'mediawiki.misc-authed-curate' ] );
 		$output->addModuleStyles( [
 			'mediawiki.interface.helpers.styles',
 			'mediawiki.special'
