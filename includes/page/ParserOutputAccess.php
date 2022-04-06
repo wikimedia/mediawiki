@@ -438,11 +438,4 @@ class ParserOutputAccess {
 		// unreachable
 	}
 
-	/**
-	 * @internal only for tests
-	 */
-	public function cleanClassCache() {
-		$this->localCache = [];
-	}
-
 }

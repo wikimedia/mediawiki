@@ -11,6 +11,7 @@ use MediaWiki\Storage\RevisionStore;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Page\ParserOutputAccess
@@ -668,7 +669,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$parserOptions = $this->getParserOptions();
 		$access->getParserOutput( $page, $parserOptions );
-		$access->cleanClassCache();
+		$testingAccess = TestingAccessWrapper::newFromObject( $access );
+		$testingAccess->localCache = [];
 
 		// inject mock PoolCounter status
 		$this->setMwGlobals( [ 'wgParserCacheExpireTime' => 60, 'wgPoolCounterConf' => [
