@@ -28,7 +28,6 @@ use MediaWiki\Skin\SkinComponent;
 use MediaWiki\Skin\SkinComponentRegistry;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
 /**
@@ -718,19 +717,7 @@ abstract class Skin extends ContextSource {
 	 * @return string|WrappedStringList HTML containing scripts to put before `</body>`
 	 */
 	public function bottomScripts() {
-		// TODO and the suckage continues. This function is really just a wrapper around
-		// OutputPage::getBottomScripts() which takes a Skin param. This should be cleaned
-		// up at some point
-		$chunks = [ $this->getOutput()->getBottomScripts() ];
-
-		// Keep the hook appendage separate to preserve WrappedString objects.
-		// This enables BaseTemplate::getTrail() to merge them where possible.
-		$extraHtml = '';
-		$this->getHookRunner()->onSkinAfterBottomScripts( $this, $extraHtml );
-		if ( $extraHtml !== '' ) {
-			$chunks[] = $extraHtml;
-		}
-		return WrappedString::join( "\n", $chunks );
+		return $this->getOutput()->getBottomScripts();
 	}
 
 	/**
@@ -2604,6 +2591,10 @@ abstract class Skin extends ContextSource {
 			'toc' => true,
 			// An array of classes to be added to the skin body tag.
 			'bodyClasses' => [],
+			// For SkinTemplate based skins, whether the skin is in charge of generating
+			// the <html>, <head> and <body> tags. For SkinMustache this is always true and
+			// ignored.
+			'bodyOnly' => false,
 		];
 	}
 

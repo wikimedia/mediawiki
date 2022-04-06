@@ -476,8 +476,11 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @since 1.29
 	 */
 	public function getTrail() {
-		return WrappedString::join( "\n", [
-			MWDebug::getDebugHTML( $this->getSkin()->getContext() ),
+		$skin = $this->getSkin();
+		$options = $skin->getOptions();
+
+		return $options['bodyOnly'] ? '' : WrappedString::join( "\n", [
+			MWDebug::getDebugHTML( $skin->getContext() ),
 			$this->get( 'bottomscripts' ),
 			$this->get( 'reporttime' )
 		] );

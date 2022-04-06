@@ -127,13 +127,23 @@ class SkinTemplate extends Skin {
 	 * render method can rewrite this method, for example to use
 	 * TemplateParser::processTemplate
 	 * @since 1.35
-	 * @return string of complete document HTML to output to the page
-	 *  which includes `<!DOCTYPE>` and opening and closing html tags.
+	 * @return string of complete skin HTML to output to the page. This varies based on
+	 *  the skin option bodyOnly (see Skin::getOptions):
+	 *    - If true, HTML includes `<!DOCTYPE>` and opening and closing html tags
+	 *    - If false, HTML is the contents of the body tag.
 	 */
 	public function generateHTML() {
 		$tpl = $this->prepareQuickTemplate();
+		$options = $this->getOptions();
+		$out = $this->getOutput();
 		// execute template
-		return $tpl->execute();
+		ob_start();
+		$tpl->execute();
+		$html = ob_get_contents();
+		ob_end_clean();
+
+		return $options['bodyOnly'] ?
+			$out->headElement( $this ) . $html . $out->tailElement( $this ) : $html;
 	}
 
 	/**

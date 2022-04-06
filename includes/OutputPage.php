@@ -3417,12 +3417,15 @@ class OutputPage extends ContextSource {
 				$this->CSP->getNonce()
 			);
 		}
-		// This should be added last because the extra html comes from
-		// SkinAfterBottomScripts hook.
-		// TODO: Run the hook here directly and remove the parameter.
-		$chunks[] = $extraHtml;
+		// Keep the hook appendage separate to preserve WrappedString objects.
+		// This enables BaseTemplate::getTrail() to merge them where possible.
+		$this->getHookRunner()->onSkinAfterBottomScripts( $this->getSkin(), $extraHtml );
+		$chunks = [ self::combineWrappedStrings( $chunks ) ];
+		if ( $extraHtml !== '' ) {
+			$chunks[] = $extraHtml;
+		}
 
-		return self::combineWrappedStrings( $chunks );
+		return WrappedString::join( "\n", $chunks );
 	}
 
 	/**
