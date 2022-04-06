@@ -5302,8 +5302,7 @@ class Parser {
 		#  * none       same, but not aligned
 		#  * ___px      scale to ___ pixels width, no aligning. e.g. use in taxobox
 		#  * center     center the image
-		#  * frame      Keep original image size, no magnify-button.
-		#  * framed     Same as "frame"
+		#  * framed     Keep original image size, no magnify-button.
 		#  * frameless  like 'thumb' but without a frame. Keeps user preferences for width
 		#  * upright    reduce width for upright images, rounded to full __0 px
 		#  * border     draw a 1px border around the image
@@ -5445,9 +5444,7 @@ class Parser {
 
 		# Will the image be presented in a frame, with the caption below?
 		// @phan-suppress-next-line PhanImpossibleCondition
-		$imageIsFramed = isset( $params['frame']['frame'] )
-			// @phan-suppress-next-line PhanImpossibleCondition
-			|| isset( $params['frame']['framed'] )
+		$imageIsFramed = isset( $params['frame']['framed'] )
 			// @phan-suppress-next-line PhanImpossibleCondition
 			|| isset( $params['frame']['thumbnail'] )
 			// @phan-suppress-next-line PhanImpossibleCondition
