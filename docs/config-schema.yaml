@@ -126,8 +126,8 @@ config-schema:
     ExtensionDirectory:
         default: null
         type:
-            - 'null'
             - string
+            - 'null'
         description: |-
             Extensions directory in the file system.
             @note Set to "{$IP}/extensions" by Setup.php before loading local settings.
@@ -136,8 +136,8 @@ config-schema:
     StyleDirectory:
         default: null
         type:
-            - 'null'
             - string
+            - 'null'
         description: |-
             Skins directory in the file system.
             @note Set to "{$IP}/skins" by Setup.php before loading local settings.
@@ -1193,8 +1193,8 @@ config-schema:
     EnableAutoRotation:
         default: null
         type:
-            - 'null'
             - boolean
+            - 'null'
         description: |-
             If set to true, images that contain certain the exif orientation tag will
             be rotated accordingly. If set to null, try to auto-detect whether a scaler
@@ -1202,8 +1202,8 @@ config-schema:
     Antivirus:
         default: null
         type:
-            - 'null'
             - string
+            - 'null'
         description: |-
             Internal name of virus scanner. This serves as a key to the
             $wgAntivirusSetup array. Set this to NULL to disable virus scanning. If not
@@ -1273,8 +1273,8 @@ config-schema:
     MimeDetectorCommand:
         default: null
         type:
-            - 'null'
             - string
+            - 'null'
         description: |-
             Sets an external MIME detector program. The command must print only
             the MIME type to standard output.
@@ -1333,8 +1333,8 @@ config-schema:
     ThumbnailBuckets:
         default: null
         type:
-            - 'null'
             - array
+            - 'null'
         description: |-
             When defined, is an array of image widths used as buckets for thumbnail generation.
             The goal is to save resources by generating thumbnails based on reference buckets instead of
@@ -1434,8 +1434,8 @@ config-schema:
     DjvuDump:
         default: null
         type:
-            - 'null'
             - string
+            - 'null'
         description: |-
             Path of the djvudump executable
             Enable this and $wgDjvuRenderer to enable djvu rendering
@@ -1443,8 +1443,8 @@ config-schema:
     DjvuRenderer:
         default: null
         type:
-            - 'null'
             - string
+            - 'null'
         description: |-
             Path of the ddjvu DJVU renderer
             Enable this and $wgDjvuDump to enable djvu rendering
@@ -1452,8 +1452,8 @@ config-schema:
     DjvuTxt:
         default: null
         type:
-            - 'null'
             - string
+            - 'null'
         description: |-
             Path of the djvutxt DJVU text extraction utility
             Enable this and $wgDjvuDump to enable text layer extraction from djvu files
@@ -1461,8 +1461,8 @@ config-schema:
     DjvuPostProcessor:
         default: pnmtojpeg
         type:
-            - 'null'
             - string
+            - 'null'
         description: |-
             Shell command for the DJVU post processor
             Default: pnmtojpeg, since ddjvu generates ppm output
@@ -1646,8 +1646,8 @@ config-schema:
     DBmwschema:
         default: null
         type:
-            - 'null'
             - string
+            - 'null'
         description: |-
             Current wiki database schema name
             Should be alphanumeric, without spaces nor hyphens.
@@ -2134,8 +2134,8 @@ config-schema:
     PoolCounterConf:
         default: null
         type:
-            - 'null'
             - object
+            - 'null'
         description: |-
             Configuration for processing pool control, for use in high-traffic wikis.
             An implementation is provided in the PoolCounter extension.
@@ -7122,8 +7122,8 @@ config-schema:
     ExemptFromUserRobotsControl:
         default: null
         type:
-            - 'null'
             - array
+            - 'null'
         description: |-
             An array of namespace keys in which the __INDEX__/__NOINDEX__ magic words
             will not function, so users can't decide whether pages in that namespace are
@@ -7358,7 +7358,7 @@ config-schema:
         default:
             default: null
         type: object
-        additionalProperies:
+        additionalProperties:
             type: [string, boolean, 'null']
         description: |-
             Shell commands can be run on a remote server using Shellbox. To use this
