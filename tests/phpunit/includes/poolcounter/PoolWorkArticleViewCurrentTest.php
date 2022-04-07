@@ -3,6 +3,8 @@
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Revision\RevisionRecord;
 use Psr\Log\NullLogger;
+use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers PoolWorkArticleViewCurrent
@@ -18,7 +20,7 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 	 * @param RevisionRecord|null $rev
 	 * @param ParserOptions|null $options
 	 *
-	 * @return PoolWorkArticleView
+	 * @return PoolWorkArticleViewCurrent
 	 */
 	protected function newPoolWorkArticleView(
 		WikiPage $page,
@@ -104,6 +106,67 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 		$work1->getCachedWork();
 		$this->assertInstanceOf( ParserOutput::class, $work1->getParserOutput() );
 		$this->assertSame( $work2->getParserOutput()->getText(), $work1->getParserOutput()->getText() );
+	}
+
+	public function testFallbackFromOutdatedParserCache() {
+		// Fake Unix timestamps
+		$lastWrite = 10;
+		$outdated = $lastWrite;
+
+		$lbFactory = $this->createNoOpMock( LBFactory::class, [ 'getChronologyProtectorTouched' ] );
+		$lbFactory->method( 'getChronologyProtectorTouched' )->willReturn( $lastWrite );
+
+		$output = $this->createNoOpMock( ParserOutput::class, [ 'getCacheTime' ] );
+		$output->method( 'getCacheTime' )->willReturn( $outdated );
+		$this->parserCache = $this->createNoOpMock( ParserCache::class, [ 'getDirty' ] );
+		$this->parserCache->method( 'getDirty' )->willReturn( $output );
+
+		$work = $this->newPoolWorkArticleView(
+			$this->createMock( WikiPage::class ),
+			$this->createMock( RevisionRecord::class )
+		);
+		TestingAccessWrapper::newFromObject( $work )->lbFactory = $lbFactory;
+
+		$this->assertFalse( $work->fallback( true ) );
+		$this->assertFalse( $work->getParserOutput() );
+		$this->assertFalse( $work->getIsDirty() );
+		$this->assertFalse( $work->getIsFastStale() );
+
+		$this->assertTrue( $work->fallback( false ) );
+		$this->assertInstanceOf( ParserOutput::class, $work->getParserOutput() );
+		$this->assertTrue( $work->getIsDirty() );
+		$this->assertFalse( $work->getIsFastStale() );
+	}
+
+	public function testFallbackFromMoreRecentParserCache() {
+		// Fake Unix timestamps
+		$lastWrite = 10;
+		$moreRecent = $lastWrite + 1;
+
+		$lbFactory = $this->createNoOpMock( LBFactory::class, [ 'getChronologyProtectorTouched' ] );
+		$lbFactory->method( 'getChronologyProtectorTouched' )->willReturn( $lastWrite );
+
+		$output = $this->createNoOpMock( ParserOutput::class, [ 'getCacheTime' ] );
+		$output->method( 'getCacheTime' )->willReturn( $moreRecent );
+		$this->parserCache = $this->createNoOpMock( ParserCache::class, [ 'getDirty' ] );
+		$this->parserCache->method( 'getDirty' )->willReturn( $output );
+
+		$work = $this->newPoolWorkArticleView(
+			$this->createMock( WikiPage::class ),
+			$this->createMock( RevisionRecord::class )
+		);
+		TestingAccessWrapper::newFromObject( $work )->lbFactory = $lbFactory;
+
+		$this->assertTrue( $work->fallback( true ) );
+		$this->assertInstanceOf( ParserOutput::class, $work->getParserOutput() );
+		$this->assertTrue( $work->getIsDirty() );
+		$this->assertTrue( $work->getIsFastStale() );
+
+		$this->assertTrue( $work->fallback( false ) );
+		$this->assertInstanceOf( ParserOutput::class, $work->getParserOutput() );
+		$this->assertTrue( $work->getIsDirty() );
+		// FIXME: No, this was not in fast mode (see the `false` above)
+		$this->assertTrue( $work->getIsFastStale() );
 	}
 
 }
