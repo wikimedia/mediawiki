@@ -24,7 +24,8 @@ use MediaWiki\User\UserIdentity;
 
 /**
  * Trait for functionality related to media files
- * @since 1.35
+ *
+ * @internal
  * @ingroup FileRepo
  */
 trait MediaFileTrait {
