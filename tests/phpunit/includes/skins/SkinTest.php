@@ -193,7 +193,7 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function provideMakeLink() {
 		return [
-			[
+			'Empty href with link class' => [
 				[
 					'text' => 'Test',
 					'href' => '',
@@ -205,30 +205,102 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 				[ 'link-class' => 'link-class' ],
 				'<a href="" class="class1 class2 link-class">Test</a>',
 			],
-			[
+			'link with link-html' => [
 				[
 					'text' => '',
 					'href' => '#go',
 					'link-html' => '<i>label</i>'
 				],
-				[
-					'text-wrapper' => [
-						'tag' => 'span',
-					],
-				],
+				[ 'text-wrapper' => [ 'tag' => 'span' ] ],
 				'<a href="#go"><i>label</i> </a>',
+			],
+			'Basic text wrapper' => [
+				[
+					'text' => 'Test',
+				],
+				[ 'text-wrapper' => [ 'tag' => 'span' ] ],
+				'<span>Test</span>'
+			],
+			'Text wrapper with tooltip ID in id attribute' => [
+				[
+					'text' => 'Test',
+					'id' => 'ii'
+				],
+				[ 'text-wrapper' => [ 'tag' => 'span' ] ],
+				'<span title="(tooltip-ii)">Test</span>'
+			],
+			'Text wrapper with tooltip ID in single-id' => [
+				[
+					'text' => 'Test',
+					'id' => 'foo',
+					'single-id' => 'ii'
+				],
+				[ 'text-wrapper' => [ 'tag' => 'span' ] ],
+				'<span title="(tooltip-ii)">Test</span>'
+			],
+			'Multi-level text wrapper with tooltip' => [
+				[
+					'text' => 'Test',
+					'id' => 'ii'
+				],
+				[ 'text-wrapper' => [
+					[ 'tag' => 'b' ],
+					[ 'tag' => 'i' ]
+				] ],
+				'<b title="(tooltip-ii)"><i>Test</i></b>'
+			],
+			'Multi-level text wrapper with link' => [
+				[
+					'text' => 'Test',
+					'id' => 'ii',
+					'href' => '#',
+				],
+				[ 'text-wrapper' => [
+					[ 'tag' => 'b' ],
+					[ 'tag' => 'i' ]
+				] ],
+				'<a id="ii" href="#" title="(tooltip-ii)(word-separator)(brackets: (accesskey-ii))" ' .
+				'accesskey="(accesskey-ii)"><b><i>Test</i></b></a>'
+			],
+			'Specified HTML' => [
+				[
+					'html' => '<b>1</b>',
+				],
+				[],
+				'<b>1</b>'
+			],
+			'Data attribute' => [
+				[
+					'text' => 'Test',
+					'href' => '#',
+					'data' => [ 'foo' => 'bar' ]
+				],
+				[],
+				'<a href="#" data-foo="bar">Test</a>'
+			],
+			'tooltip only' => [
+				[
+					'text' => 'Save',
+					'id' => 'save',
+					'href' => '#',
+					'tooltiponly' => true,
+				],
+				[],
+				'<a id="save" href="#" title="(tooltip-save)">Save</a>'
 			]
 		];
 	}
 
 	/**
 	 * @covers Skin::makeLink
+	 * @covers Skin::applyLinkTitleAttribs
 	 * @dataProvider provideMakeLink
 	 * @param array $data
 	 * @param array $options
 	 * @param string $expected
 	 */
 	public function testMakeLinkLink( array $data, array $options, string $expected ) {
+		$this->setUserLang( 'qqx' );
 		$skin = new class extends Skin {
 			public function outputPage() {
 			}
