@@ -25,6 +25,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\UserFactory;
@@ -80,6 +81,9 @@ class ParserFactory {
 	/** @var TrackingCategories */
 	private $trackingCategories;
 
+	/** @var SignatureValidatorFactory */
+	private $signatureValidatorFactory;
+
 	/**
 	 * Track calls to Parser constructor to aid in deprecation of direct
 	 * Parser invocation.  This is temporary: it will be removed once the
@@ -118,6 +122,7 @@ class ParserFactory {
 	 * @param TitleFormatter $titleFormatter
 	 * @param HttpRequestFactory $httpRequestFactory
 	 * @param TrackingCategories $trackingCategories
+	 * @param SignatureValidatorFactory $signatureValidatorFactory
 	 * @since 1.32
 	 * @internal
 	 */
@@ -139,7 +144,8 @@ class ParserFactory {
 		UserFactory $userFactory,
 		TitleFormatter $titleFormatter,
 		HttpRequestFactory $httpRequestFactory,
-		TrackingCategories $trackingCategories
+		TrackingCategories $trackingCategories,
+		SignatureValidatorFactory $signatureValidatorFactory
 	) {
 		$svcOptions->assertRequiredOptions( Parser::CONSTRUCTOR_OPTIONS );
 
@@ -163,6 +169,7 @@ class ParserFactory {
 		$this->titleFormatter = $titleFormatter;
 		$this->httpRequestFactory = $httpRequestFactory;
 		$this->trackingCategories = $trackingCategories;
+		$this->signatureValidatorFactory = $signatureValidatorFactory;
 	}
 
 	/**
@@ -193,7 +200,8 @@ class ParserFactory {
 				$this->userFactory,
 				$this->titleFormatter,
 				$this->httpRequestFactory,
-				$this->trackingCategories
+				$this->trackingCategories,
+				$this->signatureValidatorFactory
 			);
 		} finally {
 			self::$inParserFactory--;

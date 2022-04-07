@@ -4,6 +4,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Preferences\SignatureValidatorFactory;
 
 /**
  * @covers Parser::__construct
@@ -59,7 +60,8 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( MediaWiki\User\UserFactory::class ),
 			$this->createMock( TitleFormatter::class ),
 			$this->createMock( HttpRequestFactory::class ),
-			$this->createMock( TrackingCategories::class )
+			$this->createMock( TrackingCategories::class ),
+			$this->createMock( SignatureValidatorFactory::class )
 		];
 	}
 

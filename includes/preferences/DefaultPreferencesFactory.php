@@ -113,6 +113,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/** @var UserGroupManager */
 	private $userGroupManager;
 
+	/** @var SignatureValidatorFactory */
+	private $signatureValidatorFactory;
+
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -162,6 +165,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param Parser|null $parser
 	 * @param SkinFactory|null $skinFactory
 	 * @param UserGroupManager|null $userGroupManager
+	 * @param SignatureValidatorFactory|null $signatureValidatorFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -177,7 +181,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		LanguageConverterFactory $languageConverterFactory = null,
 		Parser $parser = null,
 		SkinFactory $skinFactory = null,
-		UserGroupManager $userGroupManager = null
+		UserGroupManager $userGroupManager = null,
+		SignatureValidatorFactory $signatureValidatorFactory = null
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -207,9 +212,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			? $userOptionsLookup
 			: $services()->getUserOptionsManager();
 		$this->languageConverterFactory = $languageConverterFactory ?? $services()->getLanguageConverterFactory();
+
 		$this->parser = $parser ?? $services()->getParser();
 		$this->skinFactory = $skinFactory ?? $services()->getSkinFactory();
 		$this->userGroupManager = $userGroupManager ?? $services()->getUserGroupManager();
+		$this->signatureValidatorFactory = $signatureValidatorFactory
+			?? $services()->getSignatureValidatorFactory();
 	}
 
 	/**
@@ -650,7 +658,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$useFancySig = $this->userOptionsManager->getBoolOption( $user, 'fancysig' );
 		if ( $useFancySig && $signature !== '' ) {
 			$parserOpts = ParserOptions::newFromContext( $context );
-			$validator = MediaWikiServices::getInstance()->getSignatureValidatorFactory()
+			$validator = $this->signatureValidatorFactory
 				->newSignatureValidator( $user, $context, $parserOpts );
 			$signatureErrors = $validator->validateSignature( $signature );
 			if ( $signatureErrors ) {
@@ -1712,7 +1720,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		if ( $sigValidation === 'new' || $sigValidation === 'disallow' ) {
 			// Validate everything
 			$parserOpts = ParserOptions::newFromContext( $form->getContext() );
-			$validator = MediaWikiServices::getInstance()->getSignatureValidatorFactory()
+			$validator = $this->signatureValidatorFactory
 				->newSignatureValidator( $user, $form->getContext(), $parserOpts );
 			$errors = $validator->validateSignature( $signature );
 			if ( $errors ) {
