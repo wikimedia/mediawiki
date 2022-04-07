@@ -202,6 +202,9 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadata->addModules( [ 'module1' ] );
 		$parserOutputWithMetadata->addModuleStyles( [ 'module_style1' ] );
 		$parserOutputWithMetadata->setJsConfigVar( 'key1', 'value1' );
+		if ( $test ) {
+			$test->hideDeprecated( 'ParserOutput::addOutputHook' );
+		}
 		$parserOutputWithMetadata->addOutputHook( 'hook1', self::MOCK_EXT_DATA );
 		$parserOutputWithMetadata->addWarning( 'warning1' );
 		$parserOutputWithMetadata->setIndexPolicy( 'noindex' );
