@@ -29,7 +29,6 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MagicWordArray;
 use MagicWordFactory;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
@@ -164,7 +163,6 @@ class SiteConfig extends ISiteConfig {
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param Parser $parser
 	 * @param Config $optionalConfig
-	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		ServiceOptions $config,
@@ -183,8 +181,7 @@ class SiteConfig extends ISiteConfig {
 		// These arguments are temporary and will be removed once
 		// better solutions are found.
 		Parser $parser, // T268776
-		Config $optionalConfig, // T268777
-		HookContainer $hookContainer // T300546
+		Config $optionalConfig // T268777
 	) {
 		parent::__construct();
 
@@ -226,9 +223,6 @@ class SiteConfig extends ISiteConfig {
 		foreach ( $parsoidModules as $configOrSpec ) {
 			$this->registerExtensionModule( $configOrSpec );
 		}
-
-		// This is a temporary hook and will be removed! T300546
-		$hookContainer->run( 'ParsoidSiteConfigInit', [ $this ] );
 	}
 
 	/** @inheritDoc */

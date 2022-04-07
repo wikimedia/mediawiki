@@ -1331,8 +1331,7 @@ return [
 			// These arguments are temporary and will be removed once
 			// better solutions are found.
 			$services->getParser(), // T268776
-			$mainConfig, // T268777
-			$services->getHookContainer() // T300546
+			$mainConfig // T268777
 		);
 	},
 
