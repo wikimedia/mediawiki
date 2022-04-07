@@ -658,7 +658,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 * the stored data fails.
 	 *
 	 * @param string $data
-	 * @param string|null $key Defaults to $this->getConfig()->get( 'SecretKey' )
+	 * @param string|null $key Defaults to $this->getConfig()->get( MainConfigNames::SecretKey )
 	 * @return string
 	 */
 	final protected function hashToSessionId( $data, $key = null ) {

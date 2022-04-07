@@ -59,15 +59,15 @@ return [
 		'ExtensionDirectory' => [
 			'default' => null,
 			'type' => [
-				0 => 'null',
-				1 => 'string',
+				0 => 'string',
+				1 => 'null',
 			],
 		],
 		'StyleDirectory' => [
 			'default' => null,
 			'type' => [
-				0 => 'null',
-				1 => 'string',
+				0 => 'string',
+				1 => 'null',
 			],
 		],
 		'BaseDirectory' => [
@@ -543,15 +543,15 @@ return [
 		'EnableAutoRotation' => [
 			'default' => null,
 			'type' => [
-				0 => 'null',
-				1 => 'boolean',
+				0 => 'boolean',
+				1 => 'null',
 			],
 		],
 		'Antivirus' => [
 			'default' => null,
 			'type' => [
-				0 => 'null',
-				1 => 'string',
+				0 => 'string',
+				1 => 'null',
 			],
 		],
 		'AntivirusSetup' => [
@@ -587,8 +587,8 @@ return [
 		'MimeDetectorCommand' => [
 			'default' => null,
 			'type' => [
-				0 => 'null',
-				1 => 'string',
+				0 => 'string',
+				1 => 'null',
 			],
 		],
 		'TrivialMimeDetection' => [
@@ -647,8 +647,8 @@ return [
 		'ThumbnailBuckets' => [
 			'default' => null,
 			'type' => [
-				0 => 'null',
-				1 => 'array',
+				0 => 'array',
+				1 => 'null',
 			],
 		],
 		'ThumbnailMinimumBucketDistance' => [
@@ -691,29 +691,29 @@ return [
 		'DjvuDump' => [
 			'default' => null,
 			'type' => [
-				0 => 'null',
-				1 => 'string',
+				0 => 'string',
+				1 => 'null',
 			],
 		],
 		'DjvuRenderer' => [
 			'default' => null,
 			'type' => [
-				0 => 'null',
-				1 => 'string',
+				0 => 'string',
+				1 => 'null',
 			],
 		],
 		'DjvuTxt' => [
 			'default' => null,
 			'type' => [
-				0 => 'null',
-				1 => 'string',
+				0 => 'string',
+				1 => 'null',
 			],
 		],
 		'DjvuPostProcessor' => [
 			'default' => 'pnmtojpeg',
 			'type' => [
-				0 => 'null',
-				1 => 'string',
+				0 => 'string',
+				1 => 'null',
 			],
 		],
 		'DjvuOutputExtension' => [
@@ -811,8 +811,8 @@ return [
 		'DBmwschema' => [
 			'default' => null,
 			'type' => [
-				0 => 'null',
-				1 => 'string',
+				0 => 'string',
+				1 => 'null',
 			],
 		],
 		'DBprefix' => [
@@ -1041,8 +1041,8 @@ return [
 		'PoolCounterConf' => [
 			'default' => null,
 			'type' => [
-				0 => 'null',
-				1 => 'object',
+				0 => 'object',
+				1 => 'null',
 			],
 		],
 		'MaxUserDBWriteDuration' => [
@@ -4119,8 +4119,8 @@ return [
 		'ExemptFromUserRobotsControl' => [
 			'default' => null,
 			'type' => [
-				0 => 'null',
-				1 => 'array',
+				0 => 'array',
+				1 => 'null',
 			],
 		],
 		'DebugAPI' => [
@@ -4245,7 +4245,7 @@ return [
 				'default' => null,
 			],
 			'type' => 'object',
-			'additionalProperies' => [
+			'additionalProperties' => [
 				'type' => [
 					0 => 'string',
 					1 => 'boolean',

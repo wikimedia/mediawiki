@@ -21,6 +21,7 @@
  * @ingroup Feed
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -42,8 +43,8 @@ class FeedUtils {
 	 * @return bool
 	 */
 	public static function checkFeedOutput( $type, $output = null ) {
-		$feed = MediaWikiServices::getInstance()->getMainConfig()->get( 'Feed' );
-		$feedClasses = MediaWikiServices::getInstance()->getMainConfig()->get( 'FeedClasses' );
+		$feed = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::Feed );
+		$feedClasses = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::FeedClasses );
 		if ( $output === null ) {
 			// Todo update GoogleNewsSitemap and deprecate
 			global $wgOut;
@@ -131,7 +132,7 @@ class FeedUtils {
 	public static function formatDiffRow2( $title, $oldid, $newid, $timestamp,
 		$formattedComment, $actiontext = ''
 	) {
-		$feedDiffCutoff = MediaWikiServices::getInstance()->getMainConfig()->get( 'FeedDiffCutoff' );
+		$feedDiffCutoff = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::FeedDiffCutoff );
 
 		// log entries
 		$unwrappedText = implode(

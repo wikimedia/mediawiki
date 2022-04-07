@@ -23,6 +23,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Wikimedia\AtEase\AtEase;
@@ -117,11 +118,11 @@ class GitInfo {
 	 */
 	protected static function getCacheFilePath( $repoDir ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$gitInfoCacheDirectory = $config->get( 'GitInfoCacheDirectory' );
+		$gitInfoCacheDirectory = $config->get( MainConfigNames::GitInfoCacheDirectory );
 		if ( $gitInfoCacheDirectory === false ) {
-			$gitInfoCacheDirectory = $config->get( 'CacheDirectory' ) . '/gitinfo';
+			$gitInfoCacheDirectory = $config->get( MainConfigNames::CacheDirectory ) . '/gitinfo';
 		}
-		$baseDir = $config->get( 'BaseDirectory' );
+		$baseDir = $config->get( MainConfigNames::BaseDirectory );
 		if ( $gitInfoCacheDirectory ) {
 			// Convert both $IP and $repoDir to canonical paths to protect against
 			// $IP having changed between the settings files and runtime.
@@ -232,7 +233,7 @@ class GitInfo {
 	 * @return int|bool Commit date (UNIX timestamp) or false
 	 */
 	public function getHeadCommitDate() {
-		$gitBin = MediaWikiServices::getInstance()->getMainConfig()->get( 'GitBin' );
+		$gitBin = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::GitBin );
 
 		if ( !isset( $this->cache['headCommitDate'] ) ) {
 			$date = false;
@@ -428,7 +429,8 @@ class GitInfo {
 	 * @return array
 	 */
 	protected static function getViewers() {
-		$gitRepositoryViewers = MediaWikiServices::getInstance()->getMainConfig()->get( 'GitRepositoryViewers' );
+		$gitRepositoryViewers = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::GitRepositoryViewers );
 
 		if ( self::$viewers === false ) {
 			self::$viewers = $gitRepositoryViewers;

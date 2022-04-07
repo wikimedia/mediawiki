@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Http\SetCookieCompat;
 
@@ -84,7 +85,7 @@ class WebResponse {
 	 */
 	public function getHeader( $key ) {
 		foreach ( headers_list() as $header ) {
-			list( $name, $val ) = explode( ':', $header, 2 );
+			[ $name, $val ] = explode( ':', $header, 2 );
 			if ( !strcasecmp( $name, $key ) ) {
 				return trim( $val );
 			}
@@ -141,13 +142,13 @@ class WebResponse {
 	 */
 	public function setCookie( $name, $value, $expire = 0, $options = [] ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$cookiePath = $mainConfig->get( 'CookiePath' );
-		$cookiePrefix = $mainConfig->get( 'CookiePrefix' );
-		$cookieDomain = $mainConfig->get( 'CookieDomain' );
-		$cookieSecure = $mainConfig->get( 'CookieSecure' );
-		$cookieExpiration = $mainConfig->get( 'CookieExpiration' );
-		$cookieHttpOnly = $mainConfig->get( 'CookieHttpOnly' );
-		$useSameSiteLegacyCookies = $mainConfig->get( 'UseSameSiteLegacyCookies' );
+		$cookiePath = $mainConfig->get( MainConfigNames::CookiePath );
+		$cookiePrefix = $mainConfig->get( MainConfigNames::CookiePrefix );
+		$cookieDomain = $mainConfig->get( MainConfigNames::CookieDomain );
+		$cookieSecure = $mainConfig->get( MainConfigNames::CookieSecure );
+		$cookieExpiration = $mainConfig->get( MainConfigNames::CookieExpiration );
+		$cookieHttpOnly = $mainConfig->get( MainConfigNames::CookieHttpOnly );
+		$useSameSiteLegacyCookies = $mainConfig->get( MainConfigNames::UseSameSiteLegacyCookies );
 		$options = array_filter( $options, static function ( $a ) {
 			return $a !== null;
 		} ) + [

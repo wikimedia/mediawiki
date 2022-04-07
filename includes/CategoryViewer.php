@@ -22,6 +22,7 @@
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
@@ -119,7 +120,7 @@ class CategoryViewer extends ContextSource {
 		] );
 		$this->from = $from;
 		$this->until = $until;
-		$this->limit = $context->getConfig()->get( 'CategoryPagingLimit' );
+		$this->limit = $context->getConfig()->get( MainConfigNames::CategoryPagingLimit );
 		$this->cat = Category::newFromTitle( $page );
 		$this->query = $query;
 		$this->collation = MediaWikiServices::getInstance()->getCollationFactory()->getCategoryCollation();
@@ -134,7 +135,7 @@ class CategoryViewer extends ContextSource {
 	 * @return string HTML output
 	 */
 	public function getHTML() {
-		$this->showGallery = $this->getConfig()->get( 'CategoryMagicGallery' )
+		$this->showGallery = $this->getConfig()->get( MainConfigNames::CategoryMagicGallery )
 			&& !$this->getOutput()->mNoGallery;
 
 		$this->clearCategoryState();

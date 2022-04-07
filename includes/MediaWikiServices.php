@@ -439,7 +439,7 @@ class MediaWikiServices extends ServiceContainer {
 
 		// Load the default wiring from the specified files.
 		if ( $loadWiring === 'load' ) {
-			$wiringFiles = $bootstrapConfig->get( 'ServiceWiringFiles' );
+			$wiringFiles = $bootstrapConfig->get( MainConfigNames::ServiceWiringFiles );
 			$instance->loadWiringFiles( $wiringFiles );
 		}
 

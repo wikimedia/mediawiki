@@ -1,6 +1,7 @@
 <?php
 
 use LightnCandy\LightnCandy;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -113,7 +114,7 @@ class TemplateParser {
 
 		// Fetch a secret key for building a keyed hash of the PHP code
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$secretKey = $config->get( 'SecretKey' );
+		$secretKey = $config->get( MainConfigNames::SecretKey );
 
 		if ( $secretKey ) {
 			// See if the compiled PHP code is stored in the server-local cache.

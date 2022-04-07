@@ -22,6 +22,7 @@
 
 use HtmlFormatter\HtmlFormatter;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
@@ -169,7 +170,7 @@ class Linker {
 		if ( $html == '' ) {
 			$html = htmlspecialchars( $nt->getPrefixedText() );
 		}
-		list( $inside, $trail ) = self::splitTrail( $trail );
+		[ $inside, $trail ] = self::splitTrail( $trail );
 		return "<a class=\"mw-selflink selflink\">{$prefix}{$html}{$inside}</a>{$trail}";
 	}
 
@@ -332,7 +333,7 @@ class Linker {
 
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();
-		$enableLegacyMediaDOM = $config->get( 'ParserEnableLegacyMediaDOM' );
+		$enableLegacyMediaDOM = $config->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 
 		$classes = [];
 		if ( !isset( $handlerParams['width'] ) ) {
@@ -353,7 +354,7 @@ class Linker {
 			if ( isset( $handlerParams['height'] ) && $file->isVectorized() ) {
 				// If its a vector image, and user only specifies height
 				// we don't want it to be limited by its "normal" width.
-				$svgMaxSize = $config->get( 'SVGMaxSize' );
+				$svgMaxSize = $config->get( MainConfigNames::SVGMaxSize );
 				$handlerParams['width'] = $svgMaxSize;
 			} else {
 				$handlerParams['width'] = $file->getWidth( $page );
@@ -365,8 +366,8 @@ class Linker {
 				|| isset( $frameParams['frameless'] )
 				|| !$handlerParams['width']
 			) {
-				$thumbLimits = $config->get( 'ThumbLimits' );
-				$thumbUpright = $config->get( 'ThumbUpright' );
+				$thumbLimits = $config->get( MainConfigNames::ThumbLimits );
+				$thumbUpright = $config->get( MainConfigNames::ThumbUpright );
 				if ( $widthOption === null || !isset( $thumbLimits[$widthOption] ) ) {
 					$userOptionsLookup = $services->getUserOptionsLookup();
 					$widthOption = $userOptionsLookup->getDefaultOption( 'thumbsize' );
@@ -611,7 +612,7 @@ class Linker {
 		$exists = $file && $file->exists();
 
 		$services = MediaWikiServices::getInstance();
-		$enableLegacyMediaDOM = $services->getMainConfig()->get( 'ParserEnableLegacyMediaDOM' );
+		$enableLegacyMediaDOM = $services->getMainConfig()->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 
 		$page = $handlerParams['page'] ?? false;
 		if ( !isset( $frameParams['align'] ) ) {
@@ -808,7 +809,7 @@ class Linker {
 	 * @param array $hp Image parameters
 	 */
 	public static function processResponsiveImages( $file, $thumb, $hp ) {
-		$responsiveImages = MediaWikiServices::getInstance()->getMainConfig()->get( 'ResponsiveImages' );
+		$responsiveImages = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::ResponsiveImages );
 		if ( $responsiveImages && $thumb && !$thumb->isError() ) {
 			$hp15 = $hp;
 			$hp15['width'] = round( $hp['width'] * 1.5 );
@@ -855,9 +856,9 @@ class Linker {
 		$title = Title::castFromLinkTarget( $title );
 		$services = MediaWikiServices::getInstance();
 		$mainConfig = $services->getMainConfig();
-		$enableUploads = $mainConfig->get( 'EnableUploads' );
-		$uploadMissingFileUrl = $mainConfig->get( 'UploadMissingFileUrl' );
-		$uploadNavigationUrl = $mainConfig->get( 'UploadNavigationUrl' );
+		$enableUploads = $mainConfig->get( MainConfigNames::EnableUploads );
+		$uploadMissingFileUrl = $mainConfig->get( MainConfigNames::UploadMissingFileUrl );
+		$uploadNavigationUrl = $mainConfig->get( MainConfigNames::UploadNavigationUrl );
 		if ( $label == '' ) {
 			$label = $title->getPrefixedText();
 		}
@@ -869,7 +870,7 @@ class Linker {
 			'data-height' => $handlerParams['height'] ?? null,
 		], $label );
 
-		if ( $mainConfig->get( 'ParserEnableLegacyMediaDOM' ) ) {
+		if ( $mainConfig->get( MainConfigNames::ParserEnableLegacyMediaDOM ) ) {
 			$html = htmlspecialchars( $label, ENT_COMPAT );
 		}
 
@@ -918,8 +919,8 @@ class Linker {
 	 */
 	protected static function getUploadUrl( $destFile, $query = '' ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$uploadMissingFileUrl = $mainConfig->get( 'UploadMissingFileUrl' );
-		$uploadNavigationUrl = $mainConfig->get( 'UploadNavigationUrl' );
+		$uploadMissingFileUrl = $mainConfig->get( MainConfigNames::UploadMissingFileUrl );
+		$uploadNavigationUrl = $mainConfig->get( MainConfigNames::UploadNavigationUrl );
 		$q = 'wpDestFile=' . Title::castFromLinkTarget( $destFile )->getPartialURL();
 		if ( $query != '' ) {
 			$q .= '&' . $query;
@@ -1142,7 +1143,7 @@ class Linker {
 			return ' ' . wfMessage( 'empty-username' )->parse();
 		}
 		global $wgLang;
-		$disableAnonTalk = MediaWikiServices::getInstance()->getMainConfig()->get( 'DisableAnonTalk' );
+		$disableAnonTalk = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::DisableAnonTalk );
 		$talkable = !( $disableAnonTalk && $userId == 0 );
 		$blockable = !( $flags & self::TOOL_LINKS_NOBLOCK );
 		$addEmailLink = $flags & self::TOOL_LINKS_EMAIL && $userId;
@@ -1771,7 +1772,7 @@ class Linker {
 		$regex = MediaWikiServices::getInstance()->getContentLanguage()->linkTrail();
 		$inside = '';
 		if ( $trail !== '' && preg_match( $regex, $trail, $m ) ) {
-			list( , $inside, $trail ) = $m;
+			[ , $inside, $trail ] = $m;
 		}
 		return [ $inside, $trail ];
 	}
@@ -1865,7 +1866,8 @@ class Linker {
 	 * @return int|false|null
 	 */
 	public static function getRollbackEditCount( RevisionRecord $revRecord, $verify ) {
-		$showRollbackEditCount = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowRollbackEditCount' );
+		$showRollbackEditCount = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::ShowRollbackEditCount );
 
 		if ( !is_int( $showRollbackEditCount ) || !$showRollbackEditCount > 0 ) {
 			// Nothing has happened, indicate this by returning 'null'
@@ -1944,8 +1946,8 @@ class Linker {
 		$editCount = false
 	) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$showRollbackEditCount = $config->get( 'ShowRollbackEditCount' );
-		$miserMode = $config->get( 'MiserMode' );
+		$showRollbackEditCount = $config->get( MainConfigNames::ShowRollbackEditCount );
+		$miserMode = $config->get( MainConfigNames::MiserMode );
 		// To config which pages are affected by miser mode
 		$disableRollbackEditCountSpecialPage = [ 'Recentchanges', 'Watchlist' ];
 
@@ -2239,7 +2241,7 @@ class Linker {
 			}
 		}
 
-		$isWatchlistExpiryEnabled = $config->get( 'WatchlistExpiry' );
+		$isWatchlistExpiryEnabled = $config->get( MainConfigNames::WatchlistExpiry );
 		if ( !$isWatchlistExpiryEnabled || !$relevantTitle || !$relevantTitle->canExist() ) {
 			return;
 		}

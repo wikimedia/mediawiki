@@ -17,6 +17,8 @@
  *
  * @file
  */
+
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -76,7 +78,7 @@ class SiteStatsInit {
 			'page_is_redirect' => 0,
 		];
 
-		if ( $services->getMainConfig()->get( 'ArticleCountMethod' ) == 'link' ) {
+		if ( $services->getMainConfig()->get( MainConfigNames::ArticleCountMethod ) == 'link' ) {
 			$tables[] = 'pagelinks';
 			$conds[] = 'pl_from=page_id';
 		}

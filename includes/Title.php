@@ -25,6 +25,7 @@
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
@@ -511,7 +512,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	public static function newFromID( $id, $flags = 0 ) {
 		$flags |= ( $flags & self::GAID_FOR_UPDATE ) ? self::READ_LATEST : 0; // b/c
-		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
 		$row = wfGetDB( $index )->selectRow(
 			'page',
 			self::getSelectFields(),
@@ -1281,7 +1282,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	public function isSpecial( $name ) {
 		if ( $this->isSpecialPage() ) {
-			list( $thisName, /* $subpage */ ) =
+			[ $thisName, /* $subpage */ ] =
 				MediaWikiServices::getInstance()->getSpecialPageFactory()->
 					resolveAlias( $this->mDbkeyform );
 			if ( $name == $thisName ) {
@@ -1300,7 +1301,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	public function fixSpecialName() {
 		if ( $this->isSpecialPage() ) {
 			$spFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
-			list( $canonicalName, $par ) = $spFactory->resolveAlias( $this->mDbkeyform );
+			[ $canonicalName, $par ] = $spFactory->resolveAlias( $this->mDbkeyform );
 			if ( $canonicalName ) {
 				$localName = $spFactory->getLocalNameFor( $canonicalName, $par );
 				if ( $localName != $this->mDbkeyform ) {
@@ -2699,7 +2700,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 					'pr_id',
 					[ 'pr_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ],
 					$fname,
-					[ 'LIMIT' => $config->get( 'UpdateRowsPerQuery' ) ] // T135470
+					[ 'LIMIT' => $config->get( MainConfigNames::UpdateRowsPerQuery ) ] // T135470
 				);
 				if ( $ids ) {
 					$dbw->delete( 'page_restrictions', [ 'pr_id' => $ids ], $fname );
@@ -3582,7 +3583,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			// Use always content language to avoid loading hundreds of languages
 			// to get the link color.
 			$contLang = $services->getContentLanguage();
-			list( $name, ) = $services->getMessageCache()->figureMessage(
+			[ $name, ] = $services->getMessageCache()->figureMessage(
 				$contLang->lcfirst( $this->getText() )
 			);
 			$message = wfMessage( $name )->inLanguage( $contLang )->useDatabase( false );
@@ -3634,7 +3635,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			return false;
 		}
 
-		list( $name, $lang ) = MediaWikiServices::getInstance()->getMessageCache()->figureMessage(
+		[ $name, $lang ] = MediaWikiServices::getInstance()->getMessageCache()->figureMessage(
 			MediaWikiServices::getInstance()->getContentLanguage()->lcfirst( $this->getText() )
 		);
 		$message = wfMessage( $name )->inLanguage( $lang )->useDatabase( false );

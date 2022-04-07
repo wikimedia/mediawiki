@@ -22,6 +22,7 @@
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\PageReference;
@@ -805,7 +806,7 @@ class OutputPage extends ContextSource {
 			return false;
 		}
 		$config = $this->getConfig();
-		if ( !$config->get( 'CachePages' ) ) {
+		if ( !$config->get( MainConfigNames::CachePages ) ) {
 			wfDebug( __METHOD__ . ": CACHE DISABLED" );
 			return false;
 		}
@@ -814,12 +815,12 @@ class OutputPage extends ContextSource {
 		$modifiedTimes = [
 			'page' => $timestamp,
 			'user' => $this->getUser()->getTouched(),
-			'epoch' => $config->get( 'CacheEpoch' )
+			'epoch' => $config->get( MainConfigNames::CacheEpoch )
 		];
-		if ( $config->get( 'UseCdn' ) ) {
+		if ( $config->get( MainConfigNames::UseCdn ) ) {
 			$modifiedTimes['sepoch'] = wfTimestamp( TS_MW, $this->getCdnCacheEpoch(
 				time(),
-				$config->get( 'CdnMaxAge' )
+				$config->get( MainConfigNames::CdnMaxAge )
 			) );
 		}
 		$this->getHookRunner()->onOutputPageCheckLastModified( $modifiedTimes, $this );
@@ -1301,8 +1302,8 @@ class OutputPage extends ContextSource {
 	 * @return string[] Array of feed type names ( 'rss', 'atom' )
 	 */
 	protected function getAdvertisedFeedTypes() {
-		if ( $this->getConfig()->get( 'Feed' ) ) {
-			return $this->getConfig()->get( 'AdvertisedFeedTypes' );
+		if ( $this->getConfig()->get( MainConfigNames::Feed ) ) {
+			return $this->getConfig()->get( MainConfigNames::AdvertisedFeedTypes );
 		} else {
 			return [];
 		}
@@ -1679,7 +1680,7 @@ class OutputPage extends ContextSource {
 
 		// Site-wide styles are controlled by a config setting, see T73621
 		// for background on why. User styles are never allowed.
-		if ( $this->getConfig()->get( 'AllowSiteCSSOnRestrictedPages' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::AllowSiteCSSOnRestrictedPages ) ) {
 			$styleOrigin = ResourceLoaderModule::ORIGIN_USER_SITEWIDE;
 		} else {
 			$styleOrigin = ResourceLoaderModule::ORIGIN_CORE_INDIVIDUAL;
@@ -2058,7 +2059,7 @@ class OutputPage extends ContextSource {
 		// TODO: We don't have an easy way to know from which remote(s)
 		// the image(s) will be served.  For now, we only hint the first
 		// valid one.
-		if ( $this->getConfig()->get( 'ImagePreconnect' ) && count( $parserOutput->getImages() ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::ImagePreconnect ) && count( $parserOutput->getImages() ) ) {
 			$preconnect = [];
 			$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
 			$repoGroup->forEachForeignRepo( static function ( $repo ) use ( &$preconnect ) {
@@ -2089,9 +2090,9 @@ class OutputPage extends ContextSource {
 		// Hooks registered in the object
 		// Deprecated! See T292321; should be done in the OutputPageParserOutput
 		// hook instead.
-		$parserOutputHooks = $this->getConfig()->get( 'ParserOutputHooks' );
+		$parserOutputHooks = $this->getConfig()->get( MainConfigNames::ParserOutputHooks );
 		foreach ( $parserOutput->getOutputHooks() as $hookInfo ) {
-			list( $hookName, $data ) = $hookInfo;
+			[ $hookName, $data ] = $hookInfo;
 			if ( isset( $parserOutputHooks[$hookName] ) ) {
 				$parserOutputHooks[$hookName]( $this, $parserOutput, $data );
 			}
@@ -2304,7 +2305,7 @@ class OutputPage extends ContextSource {
 	 */
 	public function adaptCdnTTL( $mtime, $minTTL = 0, $maxTTL = 0 ) {
 		$minTTL = $minTTL ?: IExpiringStore::TTL_MINUTE;
-		$maxTTL = $maxTTL ?: $this->getConfig()->get( 'CdnMaxAge' );
+		$maxTTL = $maxTTL ?: $this->getConfig()->get( MainConfigNames::CdnMaxAge );
 
 		if ( $mtime === null || $mtime === false ) {
 			return; // entity does not exist
@@ -2385,7 +2386,7 @@ class OutputPage extends ContextSource {
 				[
 					'forceHTTPS',
 				],
-				$config->get( 'CacheVaryCookies' )
+				$config->get( MainConfigNames::CacheVaryCookies )
 			) ) );
 			$this->getHookRunner()->onGetCacheVaryCookies( $this, self::$cacheVaryCookies );
 		}
@@ -2557,10 +2558,10 @@ class OutputPage extends ContextSource {
 	 */
 	public function getFrameOptions() {
 		$config = $this->getConfig();
-		if ( $config->get( 'BreakFrames' ) ) {
+		if ( $config->get( MainConfigNames::BreakFrames ) ) {
 			return 'DENY';
-		} elseif ( $this->mPreventClickjacking && $config->get( 'EditPageFrameOptions' ) ) {
-			return $config->get( 'EditPageFrameOptions' );
+		} elseif ( $this->mPreventClickjacking && $config->get( MainConfigNames::EditPageFrameOptions ) ) {
+			return $config->get( MainConfigNames::EditPageFrameOptions );
 		}
 		return false;
 	}
@@ -2574,19 +2575,19 @@ class OutputPage extends ContextSource {
 	private function getOriginTrials() {
 		$config = $this->getConfig();
 
-		return $config->get( 'OriginTrials' );
+		return $config->get( MainConfigNames::OriginTrials );
 	}
 
 	private function getReportTo() {
 		$config = $this->getConfig();
 
-		$expiry = $config->get( 'ReportToExpiry' );
+		$expiry = $config->get( MainConfigNames::ReportToExpiry );
 
 		if ( !$expiry ) {
 			return false;
 		}
 
-		$endpoints = $config->get( 'ReportToEndpoints' );
+		$endpoints = $config->get( MainConfigNames::ReportToEndpoints );
 
 		if ( !$endpoints ) {
 			return false;
@@ -2604,7 +2605,7 @@ class OutputPage extends ContextSource {
 	private function getFeaturePolicyReportOnly() {
 		$config = $this->getConfig();
 
-		$features = $config->get( 'FeaturePolicyReportOnly' );
+		$features = $config->get( MainConfigNames::FeaturePolicyReportOnly );
 		return implode( ';', $features );
 	}
 
@@ -2623,7 +2624,7 @@ class OutputPage extends ContextSource {
 		$response->header( $this->getVaryHeader() );
 
 		if ( $this->mEnableClientCache ) {
-			if ( !$config->get( 'UseCdn' ) ) {
+			if ( !$config->get( MainConfigNames::UseCdn ) ) {
 				$privateReason = 'config';
 			} elseif ( $response->hasCookies() ) {
 				$privateReason = 'set-cookies';
@@ -2719,18 +2720,18 @@ class OutputPage extends ContextSource {
 
 			if ( $this->getHookRunner()->onBeforePageRedirect( $this, $redirect, $code ) ) {
 				if ( $code == '301' || $code == '303' ) {
-					if ( !$config->get( 'DebugRedirects' ) ) {
+					if ( !$config->get( MainConfigNames::DebugRedirects ) ) {
 						$response->statusHeader( (int)$code );
 					}
 					$this->mLastModified = wfTimestamp( TS_RFC2822 );
 				}
-				if ( $config->get( 'VaryOnXFP' ) ) {
+				if ( $config->get( MainConfigNames::VaryOnXFP ) ) {
 					$this->addVaryHeader( 'X-Forwarded-Proto' );
 				}
 				$this->sendCacheControl();
 
 				$response->header( 'Content-Type: text/html; charset=UTF-8' );
-				if ( $config->get( 'DebugRedirects' ) ) {
+				if ( $config->get( MainConfigNames::DebugRedirects ) ) {
 					$url = htmlspecialchars( $redirect );
 					$content = "<!DOCTYPE html>\n<html>\n<head>\n"
 						. "<title>Redirect</title>\n</head>\n<body>\n"
@@ -2754,7 +2755,7 @@ class OutputPage extends ContextSource {
 		# Buffer output; final headers may depend on later processing
 		ob_start();
 
-		$response->header( 'Content-type: ' . $config->get( 'MimeType' ) . '; charset=UTF-8' );
+		$response->header( 'Content-type: ' . $config->get( MainConfigNames::MimeType ) . '; charset=UTF-8' );
 		$response->header( 'Content-language: ' .
 			MediaWikiServices::getInstance()->getContentLanguage()->getHtmlCode() );
 
@@ -3045,9 +3046,9 @@ class OutputPage extends ContextSource {
 	 */
 	public function showLagWarning( $lag ) {
 		$config = $this->getConfig();
-		if ( $lag >= $config->get( 'DatabaseReplicaLagWarning' ) ) {
+		if ( $lag >= $config->get( MainConfigNames::DatabaseReplicaLagWarning ) ) {
 			$lag = floor( $lag ); // floor to avoid nano seconds to display
-			$message = $lag < $config->get( 'DatabaseReplicaLagCritical' )
+			$message = $lag < $config->get( MainConfigNames::DatabaseReplicaLagCritical )
 				? 'lag-warn-normal'
 				: 'lag-warn-high';
 			// For grep: mw-lag-warn-normal, mw-lag-warn-high
@@ -3277,7 +3278,7 @@ class OutputPage extends ContextSource {
 			$this->setHTMLTitle( $this->msg( 'pagetitle', $this->getPageTitle() )->inContentLanguage() );
 		}
 
-		if ( !Html::isXmlMimeType( $config->get( 'MimeType' ) ) ) {
+		if ( !Html::isXmlMimeType( $config->get( MainConfigNames::MimeType ) ) ) {
 			// Add <meta charset="UTF-8">
 			// This should be before <title> since it defines the charset used by
 			// text including the text inside <title>.
@@ -3479,7 +3480,7 @@ class OutputPage extends ContextSource {
 		$relevantTitle = $sk->getRelevantTitle();
 
 		if ( $ns === NS_SPECIAL ) {
-			list( $canonicalSpecialPageName, /*...*/ ) =
+			[ $canonicalSpecialPageName, /*...*/ ] =
 				$services->getSpecialPageFactory()->
 					resolveAlias( $title->getDBkey() );
 		} elseif ( $this->canUseWikiPage() ) {
@@ -3686,10 +3687,10 @@ class OutputPage extends ContextSource {
 			'content' => 'MediaWiki ' . MW_VERSION,
 		] );
 
-		if ( $config->get( 'ReferrerPolicy' ) !== false ) {
+		if ( $config->get( MainConfigNames::ReferrerPolicy ) !== false ) {
 			// Per https://w3c.github.io/webappsec-referrer-policy/#unknown-policy-values
 			// fallbacks should come before the primary value so we need to reverse the array.
-			foreach ( array_reverse( (array)$config->get( 'ReferrerPolicy' ) ) as $i => $policy ) {
+			foreach ( array_reverse( (array)$config->get( MainConfigNames::ReferrerPolicy ) ) as $i => $policy ) {
 				$tags["meta-referrer-$i"] = Html::element( 'meta', [
 					'name' => 'referrer',
 					'content' => $policy,
@@ -3708,10 +3709,10 @@ class OutputPage extends ContextSource {
 		}
 
 		# Browser based phonenumber detection
-		if ( $config->get( 'BrowserFormatDetection' ) !== false ) {
+		if ( $config->get( MainConfigNames::BrowserFormatDetection ) !== false ) {
 			$tags['meta-format-detection'] = Html::element( 'meta', [
 				'name' => 'format-detection',
-				'content' => $config->get( 'BrowserFormatDetection' ),
+				'content' => $config->get( MainConfigNames::BrowserFormatDetection ),
 			] );
 		}
 
@@ -3740,7 +3741,7 @@ class OutputPage extends ContextSource {
 			$tags[] = Html::element( 'link', $tag );
 		}
 
-		if ( $config->get( 'UniversalEditButton' ) && $this->isArticleRelated() ) {
+		if ( $config->get( MainConfigNames::UniversalEditButton ) && $this->isArticleRelated() ) {
 			if ( $this->getAuthority()->probablyCan( 'edit', $this->getTitle() ) ) {
 				$msg = $this->msg( 'edit' )->text();
 				// Use mime type per https://phabricator.wikimedia.org/T21165#6946526
@@ -3757,17 +3758,17 @@ class OutputPage extends ContextSource {
 		# should not matter, but Konqueror (3.5.9 at least) incorrectly
 		# uses whichever one appears later in the HTML source. Make sure
 		# apple-touch-icon is specified first to avoid this.
-		if ( $config->get( 'AppleTouchIcon' ) !== false ) {
+		if ( $config->get( MainConfigNames::AppleTouchIcon ) !== false ) {
 			$tags['apple-touch-icon'] = Html::element( 'link', [
 				'rel' => 'apple-touch-icon',
-				'href' => $config->get( 'AppleTouchIcon' )
+				'href' => $config->get( MainConfigNames::AppleTouchIcon )
 			] );
 		}
 
-		if ( $config->get( 'Favicon' ) !== false ) {
+		if ( $config->get( MainConfigNames::Favicon ) !== false ) {
 			$tags['favicon'] = Html::element( 'link', [
 				'rel' => 'shortcut icon',
-				'href' => $config->get( 'Favicon' )
+				'href' => $config->get( MainConfigNames::Favicon )
 			] );
 		}
 
@@ -3827,16 +3828,16 @@ class OutputPage extends ContextSource {
 			$copyright = $this->copyrightUrl;
 		} else {
 			$copyright = '';
-			if ( $config->get( 'RightsPage' ) ) {
-				$copy = Title::newFromText( $config->get( 'RightsPage' ) );
+			if ( $config->get( MainConfigNames::RightsPage ) ) {
+				$copy = Title::newFromText( $config->get( MainConfigNames::RightsPage ) );
 
 				if ( $copy ) {
 					$copyright = $copy->getLocalURL();
 				}
 			}
 
-			if ( !$copyright && $config->get( 'RightsUrl' ) ) {
-				$copyright = $config->get( 'RightsUrl' );
+			if ( !$copyright && $config->get( MainConfigNames::RightsUrl ) ) {
+				$copyright = $config->get( MainConfigNames::RightsUrl );
 			}
 		}
 
@@ -3848,7 +3849,7 @@ class OutputPage extends ContextSource {
 		}
 
 		# Feeds
-		if ( $config->get( 'Feed' ) ) {
+		if ( $config->get( MainConfigNames::Feed ) ) {
 			$feedLinks = [];
 
 			foreach ( $this->getSyndicationLinks() as $format => $link ) {
@@ -3874,8 +3875,8 @@ class OutputPage extends ContextSource {
 			# like to promote instead of the RC feed (maybe like a "Recent New Articles"
 			# or "Breaking news" one). For this, we see if $wgOverrideSiteFeed is defined.
 			# If so, use it instead.
-			$sitename = $config->get( 'Sitename' );
-			$overrideSiteFeed = $config->get( 'OverrideSiteFeed' );
+			$sitename = $config->get( MainConfigNames::Sitename );
+			$overrideSiteFeed = $config->get( MainConfigNames::OverrideSiteFeed );
 			if ( $overrideSiteFeed ) {
 				foreach ( $overrideSiteFeed as $type => $feedUrl ) {
 					// Note, this->feedLink escapes the url.
@@ -3906,7 +3907,7 @@ class OutputPage extends ContextSource {
 		}
 
 		# Canonical URL
-		if ( $config->get( 'EnableCanonicalServerLink' ) ) {
+		if ( $config->get( MainConfigNames::EnableCanonicalServerLink ) ) {
 			if ( $canonicalUrl !== false ) {
 				$canonicalUrl = wfExpandUrl( $canonicalUrl, PROTO_CANONICAL );
 			} elseif ( $this->isArticleRelated() ) {
@@ -4105,7 +4106,7 @@ class OutputPage extends ContextSource {
 			// Append file hash as query parameter
 			$url = self::transformResourcePath(
 				$config,
-				$config->get( 'StylePath' ) . '/' . $style
+				$config->get( MainConfigNames::StylePath ) . '/' . $style
 			);
 		}
 
@@ -4140,8 +4141,8 @@ class OutputPage extends ContextSource {
 	 * @return string URL
 	 */
 	public static function transformResourcePath( Config $config, $path ) {
-		$localDir = $config->get( 'BaseDirectory' );
-		$remotePathPrefix = $config->get( 'ResourceBasePath' );
+		$localDir = $config->get( MainConfigNames::BaseDirectory );
+		$remotePathPrefix = $config->get( MainConfigNames::ResourceBasePath );
 		if ( $remotePathPrefix === '' ) {
 			// The configured base path is required to be empty string for
 			// wikis in the domain root
@@ -4158,9 +4159,9 @@ class OutputPage extends ContextSource {
 		// For other misc files in $IP, we'll fallback to that as well. There is, however, a fourth
 		// supported dir/path pair in the configuration (wgUploadDirectory, wgUploadPath)
 		// which is not expected to be in wgResourceBasePath on CDNs. (T155146)
-		$uploadPath = $config->get( 'UploadPath' );
+		$uploadPath = $config->get( MainConfigNames::UploadPath );
 		if ( strpos( $path, $uploadPath ) === 0 ) {
-			$localDir = $config->get( 'UploadDirectory' );
+			$localDir = $config->get( MainConfigNames::UploadDirectory );
 			$remotePathPrefix = $remotePath = $uploadPath;
 		}
 

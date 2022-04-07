@@ -40,8 +40,8 @@ class OutputHandler {
 	 */
 	public static function handle( $s, $phase ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$disableOutputCompression = $config->get( 'DisableOutputCompression' );
-		$mangleFlashPolicy = $config->get( 'MangleFlashPolicy' );
+		$disableOutputCompression = $config->get( MainConfigNames::DisableOutputCompression );
+		$mangleFlashPolicy = $config->get( MainConfigNames::MangleFlashPolicy );
 		// Don't send headers if output is being discarded (T278579)
 		if ( ( $phase & PHP_OUTPUT_HANDLER_CLEAN ) === PHP_OUTPUT_HANDLER_CLEAN ) {
 			$logger = LoggerFactory::getInstance( 'output' );

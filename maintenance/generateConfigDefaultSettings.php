@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Settings\Source\JsonTypeHelper;
 use Wikimedia\StaticArrayWriter;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -17,15 +18,8 @@ class GenerateConfigDefaultSettings extends Maintenance {
 	/** @var string */
 	private const DEFAULT_OUTPUT_PATH = __DIR__ . '/../includes/DefaultSettings.php';
 
-	/** @var array */
-	private const NORMALIZE_PHP_TYPES = [
-		'object' => 'array',
-		'number' => 'float',
-		'double' => 'float',
-		'boolean' => 'bool',
-		'integer' => 'int',
-		'null' => null,
-	];
+	/** @var JsonTypeHelper */
+	private $jsonTypeHelper;
 
 	public function __construct() {
 		parent::__construct();
@@ -39,6 +33,8 @@ class GenerateConfigDefaultSettings extends Maintenance {
 	}
 
 	public function execute() {
+		$this->jsonTypeHelper = new JsonTypeHelper();
+
 		$input = $this->loadSettingsSource();
 		$code = '';
 		// Details about each config variable
@@ -62,7 +58,7 @@ class GenerateConfigDefaultSettings extends Maintenance {
 		$doc = [];
 		$docType = null;
 		if ( isset( $schema['type'] ) ) {
-			$docType = $this->jsonTypeToDoc( $schema['type'] );
+			$docType = $this->jsonTypeHelper->jsonToPhpDoc( $schema['type'] );
 		}
 
 		$doc[] = "Variable for the $name setting, for use in LocalSettings.php";
@@ -90,15 +86,6 @@ class GenerateConfigDefaultSettings extends Maintenance {
 		return $code;
 	}
 
-	private function jsonTypeToDoc( $type ) {
-		if ( is_array( $type ) ) {
-			$type = array_map( [ $this, 'jsonTypeToDoc' ], $type );
-			return implode( '|', $type );
-		}
-		$type = strtolower( $type );
-		$type = self::NORMALIZE_PHP_TYPES[$type] ?? $type;
-		return $type ?: 'mixed';
-	}
 }
 
 $maintClass = GenerateConfigDefaultSettings::class;

@@ -23,6 +23,7 @@
 use Liuggio\StatsdClient\Sender\SocketSender;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
 use Psr\Log\LoggerInterface;
@@ -61,7 +62,7 @@ class MediaWiki {
 		$this->context = $context ?: RequestContext::getMain();
 		$this->config = $this->context->getConfig();
 
-		if ( $this->config->get( 'CommandLineMode' ) ) {
+		if ( $GLOBALS['wgCommandLineMode'] ) {
 			$this->postSendStrategy = self::DEFER_CLI_MODE;
 		} elseif ( function_exists( 'fastcgi_finish_request' ) ) {
 			$this->postSendStrategy = self::DEFER_FASTCGI_FINISH_REQUEST;
@@ -251,7 +252,7 @@ class MediaWiki {
 				$url = $title->getFullURL( $query );
 			}
 			// Check for a redirect loop
-			if ( !preg_match( '/^' . preg_quote( $this->config->get( 'Server' ), '/' ) . '/', $url )
+			if ( !preg_match( '/^' . preg_quote( $this->config->get( MainConfigNames::Server ), '/' ) . '/', $url )
 				&& $title->isLocal()
 			) {
 				// 301 so google et al report the target as the actual url.
@@ -274,10 +275,10 @@ class MediaWiki {
 				$specialPage = $spFactory->getPage( $title->getDBkey() );
 				if ( $specialPage instanceof RedirectSpecialPage ) {
 					$specialPage->setContext( $this->context );
-					if ( $this->config->get( 'HideIdentifiableRedirects' )
+					if ( $this->config->get( MainConfigNames::HideIdentifiableRedirects )
 						&& $specialPage->personallyIdentifiableTarget()
 					) {
-						list( , $subpage ) = $spFactory->resolveAlias( $title->getDBkey() );
+						[ , $subpage ] = $spFactory->resolveAlias( $title->getDBkey() );
 						$target = $specialPage->getRedirect( $subpage );
 						// Target can also be true. We let that case fall through to normal processing.
 						if ( $target instanceof Title ) {
@@ -366,12 +367,12 @@ class MediaWiki {
 			return false;
 		}
 
-		if ( $this->config->get( 'MainPageIsDomainRoot' ) && $request->getRequestURL() === '/' ) {
+		if ( $this->config->get( MainConfigNames::MainPageIsDomainRoot ) && $request->getRequestURL() === '/' ) {
 			return false;
 		}
 
 		if ( $title->isSpecialPage() ) {
-			list( $name, $subpage ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
+			[ $name, $subpage ] = MediaWikiServices::getInstance()->getSpecialPageFactory()->
 				resolveAlias( $title->getDBkey() );
 			if ( $name ) {
 				$title = SpecialPage::getTitleFor( $name, $subpage );
@@ -385,7 +386,7 @@ class MediaWiki {
 				"requested; this sometimes happens when moving a wiki " .
 				"to a new server or changing the server configuration.\n\n";
 
-			if ( $this->config->get( 'UsePathInfo' ) ) {
+			if ( $this->config->get( MainConfigNames::UsePathInfo ) ) {
 				$message .= "The wiki is trying to interpret the page " .
 					"title from the URL path portion (PATH_INFO), which " .
 					"sometimes fails depending on the web server. Try " .
@@ -465,7 +466,7 @@ class MediaWiki {
 			if ( !$ignoreRedirect && ( $target || $page->isRedirect() ) ) {
 				// Is the target already set by an extension?
 				$target = $target ?: $page->followRedirect();
-				if ( is_string( $target ) && !$this->config->get( 'DisableHardRedirects' ) ) {
+				if ( is_string( $target ) && !$this->config->get( MainConfigNames::DisableHardRedirects ) ) {
 					// we'll need to redirect
 					return $target;
 				}
@@ -522,7 +523,7 @@ class MediaWiki {
 			}
 
 			// Narrow DB query expectations for this HTTP request
-			$trxLimits = $this->config->get( 'TrxProfilerLimits' );
+			$trxLimits = $this->config->get( MainConfigNames::TrxProfilerLimits );
 			$trxProfiler = Profiler::instance()->getTransactionProfiler();
 			if ( $request->wasPosted() && !$action->doesWrites() ) {
 				$trxProfiler->setExpectations( $trxLimits['POST-nonwrite'], __METHOD__ );
@@ -530,7 +531,7 @@ class MediaWiki {
 			}
 
 			# Let CDN cache things if we can purge them.
-			if ( $this->config->get( 'UseCdn' ) ) {
+			if ( $this->config->get( MainConfigNames::UseCdn ) ) {
 				$htmlCacheUpdater = $services->getHtmlCacheUpdater();
 				if ( in_array(
 						// Use PROTO_INTERNAL because that's what HtmlCacheUpdater::getUrls() uses
@@ -538,7 +539,7 @@ class MediaWiki {
 						$htmlCacheUpdater->getUrls( $requestTitle )
 					)
 				) {
-					$output->setCdnMaxage( $this->config->get( 'CdnMaxAge' ) );
+					$output->setCdnMaxage( $this->config->get( MainConfigNames::CdnMaxAge ) );
 				}
 			}
 
@@ -594,7 +595,7 @@ class MediaWiki {
 	 * If enabled, after everything specific to this request is done, occasionally run jobs
 	 */
 	private function schedulePostSendJobs() {
-		$jobRunRate = $this->config->get( 'JobRunRate' );
+		$jobRunRate = $this->config->get( MainConfigNames::JobRunRate );
 		if (
 			// Recursion guard
 			$this->getTitle()->isSpecial( 'RunJobs' ) ||
@@ -626,7 +627,7 @@ class MediaWiki {
 		// Note that DeferredUpdates will catch and log any errors (T88312)
 		DeferredUpdates::addUpdate( new TransactionRoundDefiningUpdate( function () use ( $n ) {
 			$logger = LoggerFactory::getInstance( 'runJobs' );
-			if ( $this->config->get( 'RunJobsAsync' ) ) {
+			if ( $this->config->get( MainConfigNames::RunJobsAsync ) ) {
 				// Send an HTTP request to the job RPC entry point if possible
 				$invokedWithSuccess = $this->triggerAsyncJobs( $n, $logger );
 				if ( !$invokedWithSuccess ) {
@@ -676,14 +677,14 @@ class MediaWiki {
 		$lbFactory->commitPrimaryChanges(
 			__METHOD__,
 			// Abort if any transaction was too big
-			[ 'maxWriteDuration' => $config->get( 'MaxUserDBWriteDuration' ) ]
+			[ 'maxWriteDuration' => $config->get( MainConfigNames::MaxUserDBWriteDuration ) ]
 		);
 		wfDebug( __METHOD__ . ': primary transaction round committed' );
 
 		// Run updates that need to block the client or affect output (this is the last chance)
 		DeferredUpdates::doUpdates(
 			'run',
-			$config->get( 'ForceDeferredUpdatesPreSend' )
+			$config->get( MainConfigNames::ForceDeferredUpdatesPreSend )
 				? DeferredUpdates::ALL
 				: DeferredUpdates::PRESEND
 		);
@@ -749,7 +750,7 @@ class MediaWiki {
 			if ( $request->wasPosted() && $lbFactory->hasOrMadeRecentPrimaryChanges() ) {
 				$expires = $now + max(
 					ChronologyProtector::POSITION_COOKIE_TTL,
-					$config->get( 'DataCenterUpdateStickTTL' )
+					$config->get( MainConfigNames::DataCenterUpdateStickTTL )
 				);
 				$options = [ 'prefix' => '' ];
 				$request->response()->setCookie( 'UseDC', 'master', $expires, $options );
@@ -759,7 +760,7 @@ class MediaWiki {
 			// Avoid letting a few seconds of replica DB lag cause a month of stale data.
 			// This logic is also intimately related to the value of $wgCdnReboundPurgeDelay.
 			if ( $lbFactory->laggedReplicaUsed() ) {
-				$maxAge = $config->get( 'CdnMaxageLagged' );
+				$maxAge = $config->get( MainConfigNames::CdnMaxageLagged );
 				$output->lowerCdnMaxage( $maxAge );
 				$request->response()->header( "X-Database-Lagged: true" );
 				wfDebugLog( 'replication',
@@ -768,7 +769,7 @@ class MediaWiki {
 
 			// Avoid long-term cache pollution due to message cache rebuild timeouts (T133069)
 			if ( $services->getMessageCache()->isDisabled() ) {
-				$maxAge = $config->get( 'CdnMaxageSubstitute' );
+				$maxAge = $config->get( MainConfigNames::CdnMaxageSubstitute );
 				$output->lowerCdnMaxage( $maxAge );
 				$request->response()->header( "X-Response-Substitute: true" );
 			}
@@ -874,7 +875,7 @@ class MediaWiki {
 		$wgTitle = $title;
 
 		// Set DB query expectations for this HTTP request
-		$trxLimits = $this->config->get( 'TrxProfilerLimits' );
+		$trxLimits = $this->config->get( MainConfigNames::TrxProfilerLimits );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
 		if ( $request->hasSafeMethod() ) {
@@ -952,7 +953,7 @@ class MediaWiki {
 			return false;
 		}
 
-		$force = $this->config->get( 'ForceHTTPS' );
+		$force = $this->config->get( MainConfigNames::ForceHTTPS );
 
 		// Don't redirect if $wgServer is explicitly HTTP. We test for this here
 		// by checking whether wfExpandUrl() is able to force HTTPS.
@@ -1113,8 +1114,8 @@ class MediaWiki {
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->redefineExpectations(
 			$this->context->getRequest()->hasSafeMethod()
-				? $this->config->get( 'TrxProfilerLimits' )['PostSend-GET']
-				: $this->config->get( 'TrxProfilerLimits' )['PostSend-POST'],
+				? $this->config->get( MainConfigNames::TrxProfilerLimits )['PostSend-GET']
+				: $this->config->get( MainConfigNames::TrxProfilerLimits )['PostSend-POST'],
 			__METHOD__
 		);
 
@@ -1171,14 +1172,14 @@ class MediaWiki {
 	public static function emitBufferedStatsdData(
 		IBufferingStatsdDataFactory $stats, Config $config
 	) {
-		if ( $config->get( 'StatsdServer' ) && $stats->hasData() ) {
+		if ( $config->get( MainConfigNames::StatsdServer ) && $stats->hasData() ) {
 			try {
-				$statsdServer = explode( ':', $config->get( 'StatsdServer' ), 2 );
+				$statsdServer = explode( ':', $config->get( MainConfigNames::StatsdServer ), 2 );
 				$statsdHost = $statsdServer[0];
 				$statsdPort = $statsdServer[1] ?? 8125;
 				$statsdSender = new SocketSender( $statsdHost, $statsdPort );
 				$statsdClient = new SamplingStatsdClient( $statsdSender, true, false );
-				$statsdClient->setSamplingRates( $config->get( 'StatsdSamplingRates' ) );
+				$statsdClient->setSamplingRates( $config->get( MainConfigNames::StatsdSamplingRates ) );
 				$statsdClient->send( $stats->getData() );
 
 				$stats->clearData(); // empty buffer for the next round
@@ -1214,10 +1215,10 @@ class MediaWiki {
 		$query = [ 'title' => 'Special:RunJobs',
 			'tasks' => 'jobs', 'maxjobs' => $n, 'sigexpiry' => time() + 5 ];
 		$query['signature'] = SpecialRunJobs::getQuerySignature(
-			$query, $this->config->get( 'SecretKey' ) );
+			$query, $this->config->get( MainConfigNames::SecretKey ) );
 
 		$errno = $errstr = null;
-		$info = wfParseUrl( $this->config->get( 'CanonicalServer' ) );
+		$info = wfParseUrl( $this->config->get( MainConfigNames::CanonicalServer ) );
 		$host = $info ? $info['host'] : null;
 		$port = 80;
 		if ( isset( $info['scheme'] ) && $info['scheme'] == 'https' ) {

@@ -22,6 +22,7 @@
 
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\DBError;
@@ -90,7 +91,7 @@ class Pingback {
 	 * @throws DBError If timestamp upsert fails
 	 */
 	public function run(): void {
-		if ( !$this->config->get( 'Pingback' ) ) {
+		if ( !$this->config->get( MainConfigNames::Pingback ) ) {
 			// disabled
 			return;
 		}
@@ -189,7 +190,7 @@ class Pingback {
 	 */
 	public static function getSystemInfo( Config $config ): array {
 		$event = [
-			'database' => $config->get( 'DBtype' ),
+			'database' => $config->get( MainConfigNames::DBtype ),
 			'MediaWiki' => MW_VERSION,
 			'PHP' => PHP_VERSION,
 			'OS' => PHP_OS . ' ' . php_uname( 'r' ),
@@ -289,7 +290,7 @@ class Pingback {
 	 */
 	public static function schedulePingback(): void {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		if ( !$config->get( 'Pingback' ) ) {
+		if ( !$config->get( MainConfigNames::Pingback ) ) {
 			// Fault tolerance:
 			// Pingback is unusual. On a plain install of MediaWiki, it is likely the only
 			// feature making use of DeferredUpdates and DB_PRIMARY on most page views.

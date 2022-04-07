@@ -25,6 +25,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\PageIdentity;
@@ -605,7 +606,7 @@ class MovePage {
 		// Return a status for the overall result. Its value will be an array with per-title
 		// status for each subpage. Merge any errors from the per-title statuses into the
 		// top-level status without resetting the overall result.
-		$maximumMovedPages = $this->options->get( 'MaximumMovedPages' );
+		$maximumMovedPages = $this->options->get( MainConfigNames::MaximumMovedPages );
 		$topStatus = Status::newGood();
 		$perTitleStatus = [];
 		$subpages = $this->oldTitle->getSubpages( $maximumMovedPages + 1 );
