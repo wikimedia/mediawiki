@@ -1563,3 +1563,8 @@
 	url = https://github.com/SemanticMediaWiki/SemanticMediaWiki
 	branch = master
 	ignore = dirty
+[submodule "extensions/HitCounters"]
+	path = extensions/HitCounters
+	url = https://github.com/wikimedia/mediawiki-extensions-HitCounters
+	branch = REL1_38
+	ignore = dirty
