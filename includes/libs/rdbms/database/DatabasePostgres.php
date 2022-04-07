@@ -662,6 +662,11 @@ __INDEXATTR__;
 		return in_array( $errno, $codes, true );
 	}
 
+	protected function isQueryTimeoutError( $errno ) {
+		// https://www.postgresql.org/docs/9.2/static/errcodes-appendix.html
+		return ( $errno === '57014' );
+	}
+
 	protected function isKnownStatementRollbackError( $errno ) {
 		return false; // transaction has to be rolled-back from error state
 	}

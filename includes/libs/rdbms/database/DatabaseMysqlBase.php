@@ -263,12 +263,6 @@ abstract class DatabaseMysqlBase extends Database {
 	 */
 	abstract protected function mysqlError( $conn = null );
 
-	protected function isQueryTimeoutError( $errno ) {
-		// https://dev.mysql.com/doc/refman/8.0/en/client-error-reference.html
-		// https://phabricator.wikimedia.org/T170638
-		return in_array( $errno, [ 1028, 1969, 2062, 3024 ] );
-	}
-
 	protected function isInsertSelectSafe( array $insertOptions, array $selectOptions ) {
 		$row = $this->getReplicationSafetyInfo();
 		// For row-based-replication, the resulting changes will be relayed, not the query
@@ -1233,6 +1227,13 @@ abstract class DatabaseMysqlBase extends Database {
 		// https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html
 		// https://dev.mysql.com/doc/mysql-errors/8.0/en/client-error-reference.html
 		return in_array( $errno, [ 2013, 2006, 2003, 1927, 1053 ], true );
+	}
+
+	protected function isQueryTimeoutError( $errno ) {
+		// https://mariadb.com/kb/en/mariadb-error-codes/
+		// https://dev.mysql.com/doc/refman/8.0/en/client-error-reference.html
+		// https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html
+		return in_array( $errno, [ 3024, 2062, 1969, 1028 ], true );
 	}
 
 	protected function isKnownStatementRollbackError( $errno ) {
