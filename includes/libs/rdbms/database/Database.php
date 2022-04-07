@@ -971,7 +971,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * - Reject write queries to replica DBs, in query().
 	 *
-	 * @param string $sql
+	 * @param string $sql SQL query
 	 * @param int $flags Query flags to query()
 	 * @return bool
 	 */
@@ -1007,11 +1007,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @param string $sql
+	 * @param string $sql SQL query
 	 * @return string|null
 	 */
 	protected function getQueryVerb( $sql ) {
-		return preg_match( '/^\s*([a-z]+)/i', $sql, $m ) ? strtoupper( $m[1] ) : null;
+		// Distinguish ROLLBACK from ROLLBACK TO SAVEPOINT
+		return preg_match(
+			'/^\s*(rollback\s+to\s+savepoint|[a-z]+)/i',
+			$sql,
+			$m
+		) ? strtoupper( $m[1] ) : null;
 	}
 
 	/**
@@ -1031,7 +1036,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected function isTransactableQuery( $sql ) {
 		return !in_array(
 			$this->getQueryVerb( $sql ),
-			[ 'BEGIN', 'ROLLBACK', 'COMMIT', 'SET', 'SHOW', 'CREATE', 'ALTER', 'USE', 'SHOW' ],
+			[
+				'BEGIN',
+				'ROLLBACK',
+				'ROLLBACK TO SAVEPOINT',
+				'COMMIT',
+				'SET',
+				'SHOW',
+				'CREATE',
+				'ALTER',
+				'USE',
+				'SHOW'
+			],
 			true
 		);
 	}
@@ -1428,24 +1444,32 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	private function assertQueryIsCurrentlyAllowed( $sql, $fname ) {
 		$verb = $this->getQueryVerb( $sql );
+
 		if ( $verb === 'USE' ) {
 			throw new DBUnexpectedError( $this, "Got USE query; use selectDomain() instead" );
 		}
 
-		if ( $verb === 'ROLLBACK' ) { // transaction/savepoint
+		if ( $verb === 'ROLLBACK' ) {
+			// Whole transaction rollback is used for recovery
 			return;
 		}
 
 		if ( $this->csmError ) {
 			throw new DBTransactionStateError(
 				$this,
-				"Cannot execute query from $fname while session state is out of sync.\n\n" .
-					$this->csmError->getMessage() . "\n" .
-					$this->csmError->getTraceAsString()
+				"Cannot execute query from $fname while session state is out of sync",
+				[],
+				$this->csmError
 			);
 		}
 
-		$this->transactionManager->assertTransactionStatus( $this, $this->deprecationLogger, $fname );
+		if ( $verb !== 'ROLLBACK TO SAVEPOINT' ) {
+			$this->transactionManager->assertTransactionStatus(
+				$this,
+				$this->deprecationLogger,
+				$fname
+			);
+		}
 	}
 
 	/**
