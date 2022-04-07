@@ -47,7 +47,7 @@ class RefreshExternallinksIndex extends LoggedUpdateMaintenance {
 	}
 
 	protected function updateSkippedMessage() {
-		return 'externallinks table indexes up to date';
+		return 'externallinks table indexes up to date.';
 	}
 
 	protected function doDBUpdates() {
