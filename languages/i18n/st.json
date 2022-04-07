@@ -3,7 +3,8 @@
 		"authors": [
 			"Cbrown1023",
 			"Gustave London",
-			"Zyxoas (on st.wikipedia.org)"
+			"Zyxoas (on st.wikipedia.org)",
+			"Amire80"
 		]
 	},
 	"sunday": "Sontaha",
@@ -106,7 +107,7 @@
 	"accmailtext": "Lepetjo la \"$1\" le se le rometswe ho $2.",
 	"note": "'''Ela hloko:'''",
 	"editundo": "hlakola",
-	"searchresults": "lipatlisiso:",
+	"searchresults": "Lipatlisiso",
 	"searchresultshead": "Phuputso",
 	"allowemail": "Dumella batho ba bang hore ba nthomelle di-email",
 	"recentchanges": "Liphetoho tsa morao-rao",

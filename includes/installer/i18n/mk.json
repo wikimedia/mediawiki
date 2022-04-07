@@ -61,6 +61,7 @@
 	"config-no-fts3": "'''Предупредување''': SQLite iе составен без модулот [//sqlite.org/fts3.html FTS3] - за оваа база нема да има можност за пребарување.",
 	"config-pcre-old": "<strong>Кобно:</strong> Се бара PCRE $1 или понова верзија.\nВашиот PHP-бинарен е сврзан со PCRE $2.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE Повеќе информации].",
 	"config-pcre-no-utf8": "<strong>Кобно</strong>: PCRE-модулот на PHP е срочен без поддршка за PCRE_UTF8.\nМедијаВики бара поддршка за UTF-8 за да може да работи правилно.",
+	"config-pcre-invalid-newline": "<strong>Кобно:</strong> PCRE-модулот на PHP е срочен со PCRE_CONFIG_NEWLINE = -1 за ANY.\nМедијаВики не е потполн без оваа поставка.<strong></strong>",
 	"config-memory-raised": "<code>memory_limit</code> за PHP изнесува $1, зголемен на $2.",
 	"config-memory-bad": "<strong>Предупредување:</strong> <code>memory_limit</code> за PHP изнесува $1.\nОва е веројатно премалку.\nВоспоставката може да не успее!",
 	"config-apc": "[https://www.php.net/apc APC] е воспоставен",
