@@ -2550,6 +2550,7 @@
 	"undeletebtn": "Restaurar",
 	"undeletelink": "ver/restaurar",
 	"undeleteviewlink": "ver",
+	"undelete-undeletetalk": "Restaurar todas as revisões da página de discussão associada",
 	"undeleteinvert": "Inverter seleção",
 	"undeletecomment": "Motivo:",
 	"cannotundelete": "Algumas ou todas as restaurações falharam:\n$1",

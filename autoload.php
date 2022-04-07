@@ -966,6 +966,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\ParserCacheSaveCompleteHook' => __DIR__ . '/includes/parser/Hook/ParserCacheSaveCompleteHook.php',
 	'MediaWiki\\Hook\\ParserClearStateHook' => __DIR__ . '/includes/parser/Hook/ParserClearStateHook.php',
 	'MediaWiki\\Hook\\ParserClonedHook' => __DIR__ . '/includes/parser/Hook/ParserClonedHook.php',
+	'MediaWiki\\Hook\\ParserFetchTemplateDataHook' => __DIR__ . '/includes/parser/Hook/ParserFetchTemplateDataHook.php',
 	'MediaWiki\\Hook\\ParserFirstCallInitHook' => __DIR__ . '/includes/parser/Hook/ParserFirstCallInitHook.php',
 	'MediaWiki\\Hook\\ParserGetVariableValueSwitchHook' => __DIR__ . '/includes/parser/Hook/ParserGetVariableValueSwitchHook.php',
 	'MediaWiki\\Hook\\ParserGetVariableValueTsHook' => __DIR__ . '/includes/parser/Hook/ParserGetVariableValueTsHook.php',
