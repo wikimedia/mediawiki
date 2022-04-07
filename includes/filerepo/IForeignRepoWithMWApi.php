@@ -1,7 +1,5 @@
 <?php
 /**
- * Interface to make a repo as supporting API queries.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -17,13 +15,11 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.38
  * @file
- * @ingroup FileRepo
  */
 
 /**
- * An interface to represent a foreign repo that you can make api queries against.
+ * A foreign repo that implement support for API queries.
  *
  * Extension file repos should implement this if they support making API queries
  * against the foreign repos. Media handler extensions (e.g. TimedMediaHandler)

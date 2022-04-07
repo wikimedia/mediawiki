@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup FileRepo
  */
 
 use MediaWiki\Linker\LinkTarget;
@@ -27,8 +26,8 @@ use MediaWiki\Page\PageIdentity;
 /**
  * A foreign repository for a remote MediaWiki accessible through api.php requests.
  *
- * Example config:
- *
+ * @par Example config:
+ * @code
  * $wgForeignFileRepos[] = [
  *   'class'                  => ForeignAPIRepo::class,
  *   'name'                   => 'shared',
@@ -36,6 +35,7 @@ use MediaWiki\Page\PageIdentity;
  *   'fetchDescription'       => true, // Optional
  *   'descriptionCacheExpiry' => 3600,
  * ];
+ * @endcode
  *
  * @ingroup FileRepo
  */
