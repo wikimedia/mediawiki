@@ -10912,14 +10912,15 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Lists the message key string for formatting individual events of each
-	 * type and action when listed in the logs.
+	 * Maps log actions to message keys, for formatting log entries of each type
+	 * and action when displaying logs to the user.
+	 * The array keys are composed as "$type/$action".
 	 *
 	 * Extensions with custom log types may add to this array.
 	 */
 	public const LogActions = [
 		'default' => [],
-		'type' => 'list',
+		'type' => 'map',
 	];
 
 	/**
