@@ -2529,6 +2529,8 @@
 	"undelete-cleanup-error": "Feil i sletting av ubrukt arkivfil «$1».",
 	"undelete-missing-filearchive": "Klarte ikke å gjenopprette filarkivet med ID $1 fordi det ikke er i databasen. Det kan ha blitt gjenopprettet tidligere.",
 	"undelete-error": "Feil under gjenoppretting av siden",
+	"undelete-error-associated-alreadytalk": "Kan ikke slette den tilhørende diskusjonssiden til ei diskusjonsside.",
+	"undelete-error-associated-notdeleted": "Den tilhørende diskusjonssiden har ingen revisjoner som kan gjenopprettes.",
 	"undelete-show-file-confirm": "Er du sikker på at du vil vise en slettet versjon av filen «<nowiki>$1</nowiki>» fra $2 klokken $3?",
 	"undelete-show-file-submit": "Ja",
 	"undelete-back-to-list": "Vis alle slettede revisjoner",
