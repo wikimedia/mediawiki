@@ -267,7 +267,7 @@ class EditPage implements IEditObject {
 	public $textbox1 = '';
 
 	/** @var string */
-	private $textbox2 = '';
+	public $textbox2 = '';
 
 	/** @var string */
 	public $summary = '';
@@ -475,7 +475,8 @@ class EditPage implements IEditObject {
 		$this->deprecatePublicProperty( 'selfRedirect', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'allowSelfRedirect', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'diff', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'textbox2', '1.38', __CLASS__ );
+		// XXX: Restore this deprecation as soon as TwoColConflict is fixed (T305028)
+		// $this->deprecatePublicProperty( 'textbox2', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'undoAfter', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'edit', '1.38', __CLASS__ );
 		$this->deprecatePublicProperty( 'contentLength', '1.38', __CLASS__ );
