@@ -1568,3 +1568,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-HitCounters
 	branch = REL1_38
 	ignore = dirty
+[submodule "extensions/UploadWizard"]
+	path = extensions/UploadWizard
+	url = https://github.com/wikimedia/mediawiki-extensions-UploadWizard
+	branch = REL1_38
+	ignore = dirty
