@@ -10,7 +10,9 @@
 			"Tuanminh01",
 			"Vinhtantran",
 			"Withoutaname",
-			"පසිඳු කාවින්ද"
+			"පසිඳු කාවින්ද",
+			"Ngoxuannguyenchuong",
+			"NguoiDungKhongDinhDanh"
 		]
 	},
 	"config-desc": "Trình cài đặt MediaWiki",
@@ -217,6 +219,7 @@
 	"config-upload-help": "Tập tin tải lên có khả năng làm lộ các nguy cơ bảo mật của máy chủ của bạn.\nĐể biết thêm thông tin, xin đọc [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security phần bảo mật] trong tài liệu hướng dẫn.\n\nĐể kích hoạt tính năng tải tập tin lên, thay đổi chế độ trên thư mục con <code>hình ảnh</code> trong thư mục gốc (root) của MediaWiki để máy chủ web có thể lưu dữ liệu vào đó.\nSau đó kích hoạt tùy chọn này.",
 	"config-upload-deleted": "Thư mục chứa các tập tin đã xóa:",
 	"config-upload-deleted-help": "Chọn một thư mục trong đó lưu trữ các tập tin đã bị xóa.\nLý tưởng nhất, thư mục này không nên được truy cập từ trang web.",
+	"config-logo-preview-main": "Trang Chính",
 	"config-instantcommons": "Kích hoạt Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] là một tính năng cho phép wiki sử dụng hình ảnh, âm thanh và tập tin đa phương tiện khác được tìm thấy trong trang web [https://commons.wikimedia.org/ Wikimedia Commons].\nĐể làm được điều này, MediaWiki yêu cầu phải truy cập vào Internet.\n\nĐể biết thêm thông tin về tính năng này, trong đó có hướng dẫn về cách thiết lập cho các wiki khác với Wikimedia Commons, tham khảo thêm tại [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos tài liệu hướng dẫn].",
 	"config-cc-error": "Người chọn giấy phép Creative Commons đã không đưa ra kết quả nào.\nNhập tên giấy phép bằng tay.",
@@ -274,7 +277,7 @@
 	"config-install-interwiki-list": "Không thể đọc tập tin <code>interwiki.list</code>.",
 	"config-install-interwiki-exists": "'''Cảnh báo:''' Hình như đã có mục trong bảng liên wiki.\nĐã bỏ qua danh sách mặc định.",
 	"config-install-stats": "Đang khởi tạo các thống kê",
-	"config-install-keys": "Tạo ra các chìa khóa bí mật",
+	"config-install-keys": "Tạo chìa khóa bí mật",
 	"config-install-updates": "Tránh các cập nhật không cần thiết",
 	"config-install-updates-failed": "<strong>Lỗi:</strong> Chèn phím cập nhật vào các bảng không thành công với các lỗi sau:1$",
 	"config-install-sysop": "Đang mở tài khoản người dùng bảo quản viên",

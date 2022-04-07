@@ -783,11 +783,10 @@
 	"logentry-upload-upload": "$1 {{GENDER:$2|ya loda|ta loda}} $3",
 	"searchsuggest-search": "Binciko {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|rana|ranaku}}",
-	"view-view-foreign": "Duba wannan hoto a $1",
 	"view-create-local": "Ƙara bayanin gida",
 	"nstab-mainpage": "Babban shafi",
 	"view-edit-local": "Gyara bayanin gida",
 	"skin-action-protect": "Karewa",
-	"skin-action-delete": "Soke",
+	"skin-action-delete": "Gogewa",
 	"skin-action-move": "Gusarwa"
 }

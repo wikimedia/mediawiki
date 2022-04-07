@@ -1156,7 +1156,7 @@
 	"prefs-signature-invalid-new": "Ваш цяперашні подпіс няслушны. Хоць вы можаце карыстацца ім і надалей, вы не зможаце змяніць яго, пакуль не выправіце.",
 	"prefs-signature-invalid-disallow": "Ваш цяперашні подпіс няслушны. Пакуль вы яго не выправіце, пры падпісанні вашых каментароў будзе выкарыстоўвацца прадвызначаны подпіс.",
 	"prefs-signature-highlight-error": "Паказаць месца памылкі",
-	"prefs-signature-error-details": "Даведацца больш",
+	"prefs-signature-error-details": "Даведацца болей",
 	"prefs-dateformat": "Фармат даты",
 	"prefs-timeoffset": "Часавы пояс",
 	"prefs-advancedediting": "Агульныя настройкі",
