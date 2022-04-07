@@ -2148,23 +2148,35 @@ abstract class Skin extends ContextSource {
 		$text = $item['text'] ?? $this->msg( $item['msg'] ?? $key )->text();
 
 		$html = htmlspecialchars( $text );
+		$isLink = isset( $item['href'] ) || isset( $options['link-fallback'] );
 
-		if ( $html && isset( $options['text-wrapper'] ) ) {
+		if ( $html !== '' && isset( $options['text-wrapper'] ) ) {
 			$wrapper = $options['text-wrapper'];
 			if ( isset( $wrapper['tag'] ) ) {
 				$wrapper = [ $wrapper ];
 			}
 			while ( count( $wrapper ) > 0 ) {
 				$element = array_pop( $wrapper );
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-				$html = Html::rawElement( $element['tag'], $element['attributes'] ?? null, $html );
+				'@phan-var array $element';
+
+				$attrs = $element['attributes'] ?? [];
+				// Apply title attribute to the outermost wrapper if there is
+				// no link wrapper. No need for an accesskey.
+				if ( count( $wrapper ) === 0 && !$isLink ) {
+					$this->applyLinkTitleAttribs(
+						$item,
+						false,
+						$attrs
+					);
+				}
+				$html = Html::rawElement( $element['tag'],  $attrs, $html );
 			}
 		}
 
-		if ( isset( $item['href'] ) || isset( $options['link-fallback'] ) ) {
+		if ( $isLink ) {
 			$attrs = $item;
 			foreach ( [ 'single-id', 'text', 'msg', 'tooltiponly', 'context', 'primary',
-				'tooltip-params', 'exists', 'link-html' ] as $k ) {
+						'tooltip-params', 'exists', 'link-html' ] as $k ) {
 				unset( $attrs[$k] );
 			}
 
@@ -2174,38 +2186,7 @@ abstract class Skin extends ContextSource {
 				}
 				unset( $attrs[ 'data' ] );
 			}
-
-			if ( isset( $item['id'] ) && !isset( $item['single-id'] ) ) {
-				$item['single-id'] = $item['id'];
-			}
-
-			$tooltipParams = [];
-			if ( isset( $item['tooltip-params'] ) ) {
-				$tooltipParams = $item['tooltip-params'];
-			}
-
-			if ( isset( $item['single-id'] ) ) {
-				$tooltipOption = isset( $item['exists'] ) && $item['exists'] === false ? 'nonexisting' : null;
-
-				if ( isset( $item['tooltiponly'] ) && $item['tooltiponly'] ) {
-					$title = Linker::titleAttrib( $item['single-id'], $tooltipOption, $tooltipParams );
-					if ( $title !== false ) {
-						$attrs['title'] = $title;
-					}
-				} else {
-					$tip = Linker::tooltipAndAccesskeyAttribs(
-						$item['single-id'],
-						$tooltipParams,
-						$tooltipOption
-					);
-					if ( isset( $tip['title'] ) && $tip['title'] !== false ) {
-						$attrs['title'] = $tip['title'];
-					}
-					if ( isset( $tip['accesskey'] ) && $tip['accesskey'] !== false ) {
-						$attrs['accesskey'] = $tip['accesskey'];
-					}
-				}
-			}
+			$this->applyLinkTitleAttribs( $item, true, $attrs );
 			if ( isset( $options['link-class'] ) ) {
 				$attrs['class'] = $this->addClassToClassList( $attrs['class'] ?? [], $options['link-class'] );
 			}
@@ -2220,6 +2201,42 @@ abstract class Skin extends ContextSource {
 		}
 
 		return $html;
+	}
+
+	/**
+	 * Helper for makeLink(). Add tooltip and accesskey attributes to $attrs
+	 * according to the input item array.
+	 *
+	 * @param array $item
+	 * @param bool $allowAccessKey
+	 * @param array &$attrs
+	 */
+	private function applyLinkTitleAttribs( $item, $allowAccessKey, &$attrs ) {
+		$tooltipId = $item['single-id'] ?? $item['id'] ?? null;
+		if ( $tooltipId === null ) {
+			return;
+		}
+		$tooltipParams = $item['tooltip-params'] ?? [];
+		$tooltipOption = isset( $item['exists'] ) && $item['exists'] === false ? 'nonexisting' : null;
+
+		if ( !$allowAccessKey || !empty( $item['tooltiponly'] ) ) {
+			$title = Linker::titleAttrib( $tooltipId, $tooltipOption, $tooltipParams );
+			if ( $title !== false ) {
+				$attrs['title'] = $title;
+			}
+		} else {
+			$tip = Linker::tooltipAndAccesskeyAttribs(
+				$tooltipId,
+				$tooltipParams,
+				$tooltipOption
+			);
+			if ( isset( $tip['title'] ) && $tip['title'] !== false ) {
+				$attrs['title'] = $tip['title'];
+			}
+			if ( isset( $tip['accesskey'] ) && $tip['accesskey'] !== false ) {
+				$attrs['accesskey'] = $tip['accesskey'];
+			}
+		}
 	}
 
 	/**
