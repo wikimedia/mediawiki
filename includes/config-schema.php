@@ -3889,7 +3889,7 @@ return [
 		'LogActions' => [
 			'default' => [
 			],
-			'type' => 'array',
+			'type' => 'object',
 		],
 		'LogActionsHandlers' => [
 			'default' => [

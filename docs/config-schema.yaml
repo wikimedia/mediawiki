@@ -6955,11 +6955,12 @@ config-schema:
             @since 1.19, if you follow the naming convention log-description-TYPE,
             where TYPE is your log type, yoy don't need to use this array.
     LogActions:
-        default: []
-        type: array
+        default: {  }
+        type: object
         description: |-
-            Lists the message key string for formatting individual events of each
-            type and action when listed in the logs.
+            Maps log actions to message keys, for formatting log entries of each type
+            and action when displaying logs to the user.
+            The array keys are composed as "$type/$action".
             Extensions with custom log types may add to this array.
     LogActionsHandlers:
         default:
