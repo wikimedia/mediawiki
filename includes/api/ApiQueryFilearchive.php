@@ -233,8 +233,9 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['mediatype'] = $row->fa_media_type;
 			}
 			if ( $fld_metadata && $canViewFile ) {
+				$metadataArray = ArchivedFile::newFromRow( $row )->getMetadataArray();
 				$file['metadata'] = $row->fa_metadata
-					? ApiQueryImageInfo::processMetaData( unserialize( $row->fa_metadata ), $result )
+					? ApiQueryImageInfo::processMetaData( $metadataArray, $result )
 					: null;
 			}
 			if ( $fld_bitdepth && $canViewFile ) {
