@@ -19,7 +19,7 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 	 * @param RevisionRecord|null $rev
 	 * @param ParserOptions|null $options
 	 *
-	 * @return PoolWorkArticleView
+	 * @return PoolWorkArticleViewOld
 	 */
 	protected function newPoolWorkArticleView(
 		WikiPage $page,
@@ -76,11 +76,13 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 		$cache = $this->installRevisionOutputCache();
 
 		$work = $this->newPoolWorkArticleView( $page, null, $options );
-		$this->assertTrue( $work->execute() );
+		/** @var Status $status */
+		$status = $work->execute();
+		$this->assertTrue( $status->isGood() );
 
 		$cachedOutput = $cache->get( $page->getRevisionRecord(), $options );
 		$this->assertNotEmpty( $cachedOutput );
-		$this->assertSame( $work->getParserOutput()->getText(), $cachedOutput->getText() );
+		$this->assertSame( $status->getValue()->getText(), $cachedOutput->getText() );
 	}
 
 	public function testDoesNotCacheNotSafe() {
@@ -92,7 +94,9 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 		$parserOptions->setWrapOutputClass( 'wrapwrap' ); // Not safe to cache!
 
 		$work = $this->newPoolWorkArticleView( $page, null, $parserOptions );
-		$this->assertTrue( $work->execute() );
+		/** @var Status $status */
+		$status = $work->execute();
+		$this->assertTrue( $status->isGood() );
 
 		$this->assertFalse( $cache->get( $page->getRevisionRecord(), $parserOptions ) );
 	}

@@ -17,6 +17,7 @@
  *
  * @file
  */
+
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Revision\RevisionRecord;
@@ -64,12 +65,12 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 	}
 
 	/**
-	 * @return bool
+	 * @return Status|false
 	 */
 	public function getCachedWork() {
-		$this->parserOutput = $this->cache->get( $this->revision, $this->parserOptions );
+		$parserOutput = $this->cache->get( $this->revision, $this->parserOptions );
 
-		return (bool)$this->parserOutput;
+		return $parserOutput ? Status::newGood( $parserOutput ) : false;
 	}
 
 }

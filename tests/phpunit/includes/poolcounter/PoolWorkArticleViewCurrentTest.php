@@ -76,11 +76,13 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 
 		// rendering of a deleted revision should work, audience checks are bypassed
 		$work = $this->newPoolWorkArticleView( $page, null, $options );
-		$this->assertTrue( $work->execute() );
+		/** @var Status $status */
+		$status = $work->execute();
+		$this->assertTrue( $status->isGood() );
 
 		$cachedOutput = $parserCache->get( $page, $options );
 		$this->assertNotEmpty( $cachedOutput );
-		$this->assertSame( $work->getParserOutput()->getText(), $cachedOutput->getText() );
+		$this->assertSame( $status->getValue()->getText(), $cachedOutput->getText() );
 	}
 
 	/**
@@ -100,12 +102,14 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 		// but share the backend store
 		$this->installParserCache( $bag );
 		$work2 = $this->newPoolWorkArticleView( $page, null, $options );
-		$this->assertTrue( $work2->execute() );
+		/** @var Status $status2 */
+		$status2 = $work2->execute();
+		$this->assertTrue( $status2->isGood() );
 
 		// The parser output cached but $work2 should now be also visible to $work1
-		$work1->getCachedWork();
-		$this->assertInstanceOf( ParserOutput::class, $work1->getParserOutput() );
-		$this->assertSame( $work2->getParserOutput()->getText(), $work1->getParserOutput()->getText() );
+		$status1 = $work1->getCachedWork();
+		$this->assertInstanceOf( ParserOutput::class, $status1->getValue() );
+		$this->assertSame( $status2->getValue()->getText(), $status1->getValue()->getText() );
 	}
 
 	public function testFallbackFromOutdatedParserCache() {
@@ -128,12 +132,11 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 		TestingAccessWrapper::newFromObject( $work )->lbFactory = $lbFactory;
 
 		$this->assertFalse( $work->fallback( true ) );
-		$this->assertFalse( $work->getParserOutput() );
-		$this->assertNull( $work->getDirtyWarning() );
 
-		$this->assertTrue( $work->fallback( false ) );
-		$this->assertInstanceOf( ParserOutput::class, $work->getParserOutput() );
-		$this->assertSame( 'view-pool-overload', $work->getDirtyWarning() );
+		$status = $work->fallback( false );
+		$this->assertTrue( $status->isOK() );
+		$this->assertInstanceOf( ParserOutput::class, $status->getValue() );
+		$this->assertTrue( $status->hasMessage( 'view-pool-overload' ) );
 	}
 
 	public function testFallbackFromMoreRecentParserCache() {
@@ -155,13 +158,15 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 		);
 		TestingAccessWrapper::newFromObject( $work )->lbFactory = $lbFactory;
 
-		$this->assertTrue( $work->fallback( true ) );
-		$this->assertInstanceOf( ParserOutput::class, $work->getParserOutput() );
-		$this->assertSame( 'view-pool-contention', $work->getDirtyWarning() );
+		$status = $work->fallback( true );
+		$this->assertTrue( $status->isOK() );
+		$this->assertInstanceOf( ParserOutput::class, $status->getValue() );
+		$this->assertTrue( $status->hasMessage( 'view-pool-contention' ) );
 
-		$this->assertTrue( $work->fallback( false ) );
-		$this->assertInstanceOf( ParserOutput::class, $work->getParserOutput() );
-		$this->assertSame( 'view-pool-overload', $work->getDirtyWarning() );
+		$status = $work->fallback( false );
+		$this->assertTrue( $status->isOK() );
+		$this->assertInstanceOf( ParserOutput::class, $status->getValue() );
+		$this->assertTrue( $status->hasMessage( 'view-pool-overload' ) );
 	}
 
 }

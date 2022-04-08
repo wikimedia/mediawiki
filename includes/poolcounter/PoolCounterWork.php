@@ -46,14 +46,14 @@ abstract class PoolCounterWork {
 	/**
 	 * Actually perform the work, caching it if needed
 	 *
-	 * @return mixed Work result or false
+	 * @return mixed|false Work result or false
 	 */
 	abstract public function doWork();
 
 	/**
 	 * Retrieve the work from cache
 	 *
-	 * @return mixed Work result or false
+	 * @return mixed|false Work result or false
 	 */
 	public function getCachedWork() {
 		return false;
@@ -64,7 +64,7 @@ abstract class PoolCounterWork {
 	 * message.
 	 *
 	 * @param bool $fast True if PoolCounter is requesting a fast stale response (pre-wait)
-	 * @return mixed Work result or false
+	 * @return mixed|false Work result or false
 	 */
 	public function fallback( $fast ) {
 		return false;
@@ -74,7 +74,7 @@ abstract class PoolCounterWork {
 	 * Do something with the error, like showing it to the user.
 	 *
 	 * @param Status $status
-	 * @return bool
+	 * @return mixed|false
 	 */
 	public function error( $status ) {
 		return false;

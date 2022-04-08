@@ -47,9 +47,6 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
-	/** @var string|null */
-	private $dirtyWarning = null;
-
 	/**
 	 * @param string $workKey
 	 * @param PageRecord $page
@@ -109,35 +106,30 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	 */
 	protected function afterWork( ParserOutput $output ) {
 		$this->wikiPageFactory->newFromTitle( $this->page )
-			->triggerOpportunisticLinksUpdate( $this->parserOutput );
+			->triggerOpportunisticLinksUpdate( $output );
 	}
 
 	/**
-	 * @return bool
+	 * @return Status|false
 	 */
 	public function getCachedWork() {
-		$this->parserOutput = $this->parserCache->get( $this->page, $this->parserOptions );
+		$parserOutput = $this->parserCache->get( $this->page, $this->parserOptions );
 
 		$logger = $this->getLogger();
-		if ( $this->parserOutput === false ) {
-			$logger->debug( 'parser cache miss' );
-			return false;
-		} else {
-			$logger->debug( 'parser cache hit' );
-			return true;
-		}
+		$logger->debug( $parserOutput ? 'parser cache hit' : 'parser cache miss' );
+		return $parserOutput ? Status::newGood( $parserOutput ) : false;
 	}
 
 	/**
 	 * @param bool $fast Fast stale request
-	 * @return bool
+	 * @return Status|false
 	 */
 	public function fallback( $fast ) {
-		$this->parserOutput = $this->parserCache->getDirty( $this->page, $this->parserOptions );
+		$parserOutput = $this->parserCache->getDirty( $this->page, $this->parserOptions );
 
 		$logger = $this->getLogger( 'dirty' );
 
-		if ( !$this->parserOutput ) {
+		if ( !$parserOutput ) {
 			$logger->info( 'dirty missing' );
 			return false;
 		}
@@ -153,7 +145,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 			 * responses of potentially several seconds.
 			 */
 			$lastWriteTime = $this->lbFactory->getChronologyProtectorTouched();
-			$cacheTime = MWTimestamp::convert( TS_UNIX, $this->parserOutput->getCacheTime() );
+			$cacheTime = MWTimestamp::convert( TS_UNIX, $parserOutput->getCacheTime() );
 			if ( $lastWriteTime && $cacheTime <= $lastWriteTime ) {
 				$logger->info(
 					'declining to send dirty output since cache time ' .
@@ -167,23 +159,15 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 				// Forget this ParserOutput -- we will request it again if
 				// necessary in slow mode. There might be a newer entry
 				// available by that time.
-				$this->parserOutput = false;
 				return false;
 			}
 		}
 
 		$logger->info( $fast ? 'fast dirty output' : 'dirty output', [ 'workKey' => $this->workKey ] );
-		$this->dirtyWarning = $fast ? 'view-pool-contention' : 'view-pool-overload';
-		return true;
-	}
-
-	/**
-	 * Get whether the ParserOutput is a dirty one (i.e. expired)
-	 *
-	 * @return string|null
-	 */
-	public function getDirtyWarning(): ?string {
-		return $this->dirtyWarning;
+		$status = Status::newGood( $parserOutput );
+		$status->warning( 'view-pool-dirty-output' );
+		$status->warning( $fast ? 'view-pool-contention' : 'view-pool-overload' );
+		return $status;
 	}
 
 }
