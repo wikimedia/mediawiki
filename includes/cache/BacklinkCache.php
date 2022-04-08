@@ -304,12 +304,16 @@ class BacklinkCache {
 
 		switch ( $table ) {
 			case 'pagelinks':
-			case 'templatelinks':
 				$conds = [
 					"{$prefix}_namespace" => $this->page->getNamespace(),
 					"{$prefix}_title" => $this->page->getDBkey(),
 					"page_id={$prefix}_from"
 				];
+				break;
+			case 'templatelinks':
+				$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+				$conds = $linksMigration->getLinksConditions( $table, TitleValue::newFromPage( $this->page ) );
+				$conds[] = "page_id={$prefix}_from";
 				break;
 			case 'redirect':
 				$conds = [
