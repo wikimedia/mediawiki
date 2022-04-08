@@ -1,8 +1,5 @@
 <?php
 /**
- * Special handling for category description pages.
- * Modelled after ImagePage.php.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -22,8 +19,9 @@
  */
 
 /**
- * Special handling for category description pages, showing pages,
- * subcategories and file that belong to the category
+ * Special handling for category description pages.
+ *
+ * This displays category members: subcategories, pages, and files categorised here.
  *
  * @method WikiCategoryPage getPage() Set by overwritten newPage() in this class
  */

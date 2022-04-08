@@ -1,7 +1,5 @@
 <?php
 /**
- * Special handling for file pages.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -25,7 +23,7 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
- * Special handling for file pages
+ * Special handling for representing file pages.
  *
  * @ingroup Media
  */

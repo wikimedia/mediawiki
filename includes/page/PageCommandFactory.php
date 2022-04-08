@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,9 +56,9 @@ use Wikimedia\Rdbms\LBFactory;
 use WikiPage;
 
 /**
- * Common factory to construct page handling classes.
+ * Implementation of various page action services.
  *
- * @since 1.35
+ * @internal
  */
 class PageCommandFactory implements
 	ContentModelChangeFactory,

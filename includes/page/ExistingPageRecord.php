@@ -1,4 +1,5 @@
 <?php
+
 namespace MediaWiki\Page;
 
 /**
@@ -9,7 +10,6 @@ namespace MediaWiki\Page;
  *       to be immutable and to represent existing pages.
  *
  * @stable to type
- *
  * @since 1.36
  */
 interface ExistingPageRecord extends PageRecord {

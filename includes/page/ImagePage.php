@@ -1,7 +1,5 @@
 <?php
 /**
- * Special handling for file description pages.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -25,10 +23,9 @@ use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * Class for viewing MediaWiki file description pages
+ * Rendering of file description pages.
  *
  * @ingroup Media
- *
  * @method WikiFilePage getPage()
  */
 class ImagePage extends Article {

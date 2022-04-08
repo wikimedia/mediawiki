@@ -48,14 +48,14 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
- * Logic for page rollbacks.
+ * Backend logic for performing a page rollback action.
+ *
  * @since 1.37
- * @package MediaWiki\Page
  */
 class RollbackPage {
 
 	/**
-	 * @internal for use in PageCommandFactory only
+	 * @internal For use in PageCommandFactory only
 	 * @var array
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
@@ -112,6 +112,7 @@ class RollbackPage {
 	private $tags = [];
 
 	/**
+	 * @internal Create via the RollbackPageFactory service.
 	 * @param ServiceOptions $options
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserFactory $userFactory
