@@ -2,12 +2,14 @@
 
 namespace MediaWiki\Settings\Config;
 
-use MediaWiki\Settings\SettingsBuilderException;
+use Wikimedia\NormalizedException\NormalizedExceptionTrait;
 
 /**
  * @unstable
  */
 class PhpIniSink {
+	use NormalizedExceptionTrait;
+
 	/**
 	 * @param string $option
 	 * @param string $value
@@ -17,13 +19,14 @@ class PhpIniSink {
 		$result = ini_set( $option, $value );
 
 		if ( $result === false ) {
-			throw new SettingsBuilderException(
+			$msg = $this->getMessageFromNormalizedMessage(
 				'Could not set option: {option} with value: {value} to PHP_INI config.',
 				[
 					'value' => $value,
 					'option' => $option,
 				]
 			);
+			trigger_error( $msg );
 		}
 	}
 
