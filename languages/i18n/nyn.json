@@ -203,6 +203,7 @@
 	"mainpage-nstab": "Omuka",
 	"nosuchspecialpage": "Tihariho orubaju rwamaani nka oru",
 	"nospecialpagetext": "<strong> Orubaju rwamaani oru tariho.</strong>\n\nOrukarara orwa embaju ezamaani nirubasa kushangwa aha [[Special:SpecialPages|{{int:Embaju zamaani}}]].",
+	"transaction-max-statement-time-exceeded": "Kwenda kwerinda oku hangaho database,eki ekikorwa Kya shazibwamu ahabwokuba obwiire bwahwayo.\nWaba wa noshomama ebintu byiingi mukono gumwe, gyezaho kukora obuntu bukye.",
 	"badtitle": "Omutwe mukuru mubi",
 	"badtitletext": "Orubaju oru washaba tiri kwikirizibwa, tiririho, ninga tiri gitsire kurungi aha wiki egyi.\nNiribasa kuba ryiine obubonero obutakwikyirizibwa Omu mitwe ya embaju",
 	"viewsource": "Reeba oburugo",
