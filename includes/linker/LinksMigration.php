@@ -85,9 +85,11 @@ class LinksMigration {
 	 * Return the query to be used when you want to or from a group of pages
 	 *
 	 * @param string $table
+	 * @param string $joinTable table to end the join chain. Most of the time it's linktarget
+	 * @param string $joinType
 	 * @return array
 	 */
-	public function getQueryInfo( string $table ) {
+	public function getQueryInfo( string $table, string $joinTable = 'linktarget', string $joinType = 'JOIN' ) {
 		$this->assertMapping( $table );
 		if ( $this->config->get( self::$mapping[$table]['config'] ) & SCHEMA_COMPAT_READ_NEW ) {
 			$targetId = self::$mapping[$table]['target_id'];
@@ -98,8 +100,8 @@ class LinksMigration {
 					'lt_namespace',
 					'lt_title'
 				],
-				'joins' => [ 'linktarget' => [
-					'JOIN',
+				'joins' => [ $joinTable => [
+					$joinType,
 					[ "$targetId=lt_id" ]
 				] ],
 			];

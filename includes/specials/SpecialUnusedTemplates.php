@@ -24,6 +24,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -58,8 +59,24 @@ class SpecialUnusedTemplates extends QueryPage {
 	}
 
 	public function getQueryInfo() {
+		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+		$queryInfo = $linksMigration->getQueryInfo(
+			'templatelinks',
+			'templatelinks',
+			'LEFT JOIN'
+		);
+		list( $ns, $title ) = $linksMigration->getTitleFields( 'templatelinks' );
+		$joinConds = [];
+		$templatelinksJoin = [
+			'LEFT JOIN', [ "$title = page_title",
+				"$ns = page_namespace" ] ];
+		if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
+			$joinConds['linktarget'] = $templatelinksJoin;
+		} else {
+			$joinConds['templatelinks'] = $templatelinksJoin;
+		}
 		return [
-			'tables' => [ 'page', 'templatelinks' ],
+			'tables' => array_merge( $queryInfo['tables'], [ 'page' ] ),
 			'fields' => [
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
@@ -69,9 +86,7 @@ class SpecialUnusedTemplates extends QueryPage {
 				'tl_from IS NULL',
 				'page_is_redirect' => 0
 			],
-			'join_conds' => [ 'templatelinks' => [
-				'LEFT JOIN', [ 'tl_title = page_title',
-					'tl_namespace = page_namespace' ] ] ]
+			'join_conds' => array_merge( $joinConds, $queryInfo['joins'] )
 		];
 	}
 

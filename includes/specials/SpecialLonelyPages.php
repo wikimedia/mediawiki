@@ -23,6 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -72,12 +73,19 @@ class SpecialLonelyPages extends PageQueryPage {
 	}
 
 	public function getQueryInfo() {
-		$tables = [ 'page', 'pagelinks', 'templatelinks' ];
+		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+		$queryInfo = $linksMigration->getQueryInfo(
+			'templatelinks',
+			'templatelinks',
+			'LEFT JOIN'
+		);
+		list( $ns, $title ) = $linksMigration->getTitleFields( 'templatelinks' );
+		$tables = array_merge( [ 'page', 'pagelinks' ], $queryInfo['tables'] );
 		$conds = [
 			'pl_namespace IS NULL',
 			'page_namespace' => $this->namespaceInfo->getContentNamespaces(),
 			'page_is_redirect' => 0,
-			'tl_namespace IS NULL'
+			'tl_from IS NULL'
 		];
 		$joinConds = [
 			'pagelinks' => [
@@ -86,13 +94,18 @@ class SpecialLonelyPages extends PageQueryPage {
 					'pl_title = page_title'
 				]
 			],
-			'templatelinks' => [
-				'LEFT JOIN', [
-					'tl_namespace = page_namespace',
-					'tl_title = page_title'
-				]
+		];
+		$templatelinksJoin = [
+			'LEFT JOIN', [
+				"$ns = page_namespace",
+				"$title = page_title"
 			]
 		];
+		if ( in_array( 'linktarget', $tables ) ) {
+			$joinConds['linktarget'] = $templatelinksJoin;
+		} else {
+			$joinConds['templatelinks'] = $templatelinksJoin;
+		}
 
 		// Allow extensions to modify the query
 		$this->getHookRunner()->onLonelyPagesQuery( $tables, $conds, $joinConds );
@@ -104,7 +117,7 @@ class SpecialLonelyPages extends PageQueryPage {
 				'title' => 'page_title',
 			],
 			'conds' => $conds,
-			'join_conds' => $joinConds
+			'join_conds' => array_merge( $joinConds, $queryInfo['joins'] )
 		];
 	}
 
