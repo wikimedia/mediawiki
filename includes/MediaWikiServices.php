@@ -64,6 +64,7 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\Page\ContentModelChangeFactory;
@@ -1148,6 +1149,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getLinkRendererFactory(): LinkRendererFactory {
 		return $this->getService( 'LinkRendererFactory' );
+	}
+
+	/**
+	 * @since 1.39
+	 * @return LinksMigration
+	 */
+	public function getLinksMigration(): LinksMigration {
+		return $this->getService( 'LinksMigration' );
 	}
 
 	/**

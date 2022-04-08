@@ -116,6 +116,21 @@ class LinkTargetStore implements LinkTargetLookup {
 	}
 
 	/**
+	 * Return link target id if exists
+	 *
+	 * @param LinkTarget $linkTarget
+	 * @return int|null linktarget ID greater then 0, null if not found
+	 */
+	public function getLinkTargetId( LinkTarget $linkTarget ): ?int {
+		// allow cache to be used, because if it is in the cache, it already has a linktarget id
+		$existingLinktargetId = $this->getLinkTargetIdFromCache( $linkTarget );
+		if ( $existingLinktargetId ) {
+			return $existingLinktargetId;
+		}
+		return null;
+	}
+
+	/**
 	 * Attempt to assign a link target ID to the given $linkTarget. If it is already assigned,
 	 * return the existing ID.
 	 *

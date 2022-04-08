@@ -37,16 +37,7 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
 		$dbw = $this->getDB( DB_PRIMARY );
-		// TODO: This should be taken from LinksTableGroup subclasses but the values are protected
-		// and creating the classes requires passing Page object
-		$mapping = [
-			'templatelinks' => [
-				'target_id' => 'tl_target_id',
-				'ns' => 'tl_namespace',
-				'title' => 'tl_title',
-				'page_id' => 'tl_from'
-			],
-		];
+		$mapping = \MediaWiki\Linker\LinksMigration::$mapping;
 		$table = $this->getOption( 'table', '' );
 		if ( !isset( $mapping[$table] ) ) {
 			$this->output( "Mapping for this table doesn't exist yet.\n" );
