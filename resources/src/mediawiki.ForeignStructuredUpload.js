@@ -152,9 +152,10 @@
 			isLocal = this.target === 'local',
 			comment = typeof this.config.comment === 'string' ?
 				this.config.comment :
-				this.config.comment[ isLocal ? 'local' : 'foreign' ];
+				this.config.comment[ isLocal ? 'local' : 'foreign' ],
+			pagename = mw.config.get( 'wgPageName' );
 		return comment
-			.replace( '$PAGENAME', mw.config.get( 'wgPageName' ) )
+			.replace( '$PAGENAME', pagename.replace( /_/g, ' ' ) )
 			.replace( '$HOST', location.host );
 	};
 
