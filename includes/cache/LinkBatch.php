@@ -370,6 +370,15 @@ class LinkBatch {
 	 * @return string|bool String with SQL where clause fragment, or false if no items.
 	 */
 	public function constructSet( $prefix, $db ) {
-		return $db->makeWhereFrom2d( $this->data, "{$prefix}_namespace", "{$prefix}_title" );
+		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+		if ( isset( $linksMigration::$prefixToTableMapping[$prefix] ) ) {
+			list( $blNamespace, $blTitle ) = $linksMigration->getTitleFields(
+				$linksMigration::$prefixToTableMapping[$prefix]
+			);
+		} else {
+			$blNamespace = "{$prefix}_namespace";
+			$blTitle = "{$prefix}_title";
+		}
+		return $db->makeWhereFrom2d( $this->data, $blNamespace, $blTitle );
 	}
 }
