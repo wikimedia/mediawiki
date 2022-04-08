@@ -47,6 +47,9 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
+	/** @var string|null */
+	private $dirtyWarning = null;
+
 	/**
 	 * @param string $workKey
 	 * @param PageRecord $page
@@ -170,8 +173,17 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		}
 
 		$logger->info( $fast ? 'fast dirty output' : 'dirty output', [ 'workKey' => $this->workKey ] );
-		$this->isDirty = true;
-		$this->isFast = $fast;
+		$this->dirtyWarning = $fast ? 'view-pool-contention' : 'view-pool-overload';
 		return true;
 	}
+
+	/**
+	 * Get whether the ParserOutput is a dirty one (i.e. expired)
+	 *
+	 * @return string|null
+	 */
+	public function getDirtyWarning(): ?string {
+		return $this->dirtyWarning;
+	}
+
 }

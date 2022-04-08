@@ -309,11 +309,10 @@ class ParserOutputAccess {
 				$classCacheKey = $this->primaryCache->makeParserOutputKey( $page, $parserOptions );
 				$this->localCache[$classCacheKey] = $output;
 			}
-			if ( $work->getIsDirty() ) {
-				$staleReason = $work->getIsFastStale()
-					? 'view-pool-contention' : 'view-pool-overload';
+			if ( $work instanceof PoolWorkArticleViewCurrent && $work->getDirtyWarning() ) {
 				$status->warning( 'view-pool-dirty-output' );
-				$status->warning( $staleReason );
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Null check is above
+				$status->warning( $work->getDirtyWarning() );
 			}
 		}
 
