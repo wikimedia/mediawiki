@@ -36,6 +36,7 @@ use PoolWorkArticleViewCurrent;
 use PoolWorkArticleViewOld;
 use Status;
 use TitleFormatter;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\ILBFactory;
 
 /**
@@ -293,27 +294,14 @@ class ParserOutputAccess {
 		}
 
 		$work = $this->newPoolWorkArticleView( $page, $parserOptions, $revision, $options );
-		$work->execute();
-		$output = $work->getParserOutput();
+		/** @var Status $status */
+		$status = $work->execute();
+		$output = $status->getValue();
+		Assert::postcondition( $output || !$status->isOK(), 'Worker returned invalid status' );
 
-		$status = $work->getError() ?: Status::newGood();
-		if ( $output ) {
-			$status->setResult( $status->isOK(), $output );
-		} elseif ( $status->isOK() ) {
-			// TODO: PoolWorkArticle should properly report errors (T267610)
-			$status->fatal( 'pool-errorunknown' );
-		}
-
-		if ( $status->isOK() ) {
-			if ( !$isOld ) {
-				$classCacheKey = $this->primaryCache->makeParserOutputKey( $page, $parserOptions );
-				$this->localCache[$classCacheKey] = $output;
-			}
-			if ( $work instanceof PoolWorkArticleViewCurrent && $work->getDirtyWarning() ) {
-				$status->warning( 'view-pool-dirty-output' );
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Null check is above
-				$status->warning( $work->getDirtyWarning() );
-			}
+		if ( $output && !$isOld ) {
+			$classCacheKey = $this->primaryCache->makeParserOutputKey( $page, $parserOptions );
+			$this->localCache[$classCacheKey] = $output;
 		}
 
 		if ( $status->isGood() ) {

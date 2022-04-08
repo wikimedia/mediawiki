@@ -72,12 +72,14 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 		$rev2 = $this->makeRevision( $page, 'Second!' );
 
 		$work = $this->newPoolWorkArticleView( $page, $rev1, $options );
-		$work->execute();
-		$this->assertStringContainsString( 'First', $work->getParserOutput()->getText() );
+		/** @var Status $status */
+		$status = $work->execute();
+		$this->assertStringContainsString( 'First', $status->getValue()->getText() );
 
 		$work = $this->newPoolWorkArticleView( $page, $rev2, $options );
-		$work->execute();
-		$this->assertStringContainsString( 'Second', $work->getParserOutput()->getText() );
+		/** @var Status $status */
+		$status = $work->execute();
+		$this->assertStringContainsString( 'Second', $status->getValue()->getText() );
 	}
 
 	public function testDoWorkParserCache() {
@@ -107,9 +109,10 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 		$fakeRev->setContent( SlotRecord::MAIN, new WikitextContent( 'YES!' ) );
 
 		$work = $this->newPoolWorkArticleView( $page, $fakeRev, $options );
-		$work->execute();
+		/** @var Status $status */
+		$status = $work->execute();
 
-		$text = $work->getParserOutput()->getText();
+		$text = $status->getValue()->getText();
 		$this->assertStringContainsString( 'YES!', $text );
 		$this->assertStringNotContainsString( 'NOPE', $text );
 	}
@@ -161,10 +164,11 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 			$options,
 			false
 		);
-		$work->execute();
+		/** @var Status $status */
+		$status = $work->execute();
 
 		$expected = strval( $callback( $rev ) );
-		$output = $work->getParserOutput();
+		$output = $status->getValue();
 
 		$this->assertStringContainsString( $expected, $output->getText() );
 	}
@@ -186,7 +190,9 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 
 		// rendering of a deleted revision should work, audience checks are bypassed
 		$work = $this->newPoolWorkArticleView( $page, $fakeRev, $options );
-		$this->assertTrue( $work->execute() );
+		/** @var Status $status */
+		$status = $work->execute();
+		$this->assertTrue( $status->isGood() );
 	}
 
 }

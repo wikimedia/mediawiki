@@ -42,12 +42,6 @@ class PoolWorkArticleView extends PoolCounterWork {
 	/** @var RevisionRenderer */
 	protected $renderer = null;
 
-	/** @var ParserOutput|bool */
-	protected $parserOutput = false;
-
-	/** @var Status|bool */
-	protected $error = false;
-
 	/** @var LoggerSpi */
 	private $loggerSpi;
 
@@ -73,25 +67,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	}
 
 	/**
-	 * Get the ParserOutput from this object, or false in case of failure
-	 *
-	 * @return ParserOutput|bool
-	 */
-	public function getParserOutput() {
-		return $this->parserOutput;
-	}
-
-	/**
-	 * Get a Status object in case of error or false otherwise
-	 *
-	 * @return Status|bool
-	 */
-	public function getError() {
-		return $this->error;
-	}
-
-	/**
-	 * @return bool
+	 * @return Status
 	 */
 	public function doWork() {
 		$renderedRevision = $this->renderer->getRenderedRevision(
@@ -103,14 +79,14 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 		if ( !$renderedRevision ) {
 			// audience check failed
-			return false;
+			return Status::newFatal( 'pool-errorunknown' );
 		}
 
 		// Reduce effects of race conditions for slow parses (T48014)
 		$cacheTime = wfTimestampNow();
 
 		$time = -microtime( true );
-		$this->parserOutput = $renderedRevision->getRevisionParserOutput();
+		$parserOutput = $renderedRevision->getRevisionParserOutput();
 		$time += microtime( true );
 
 		// Timing hack
@@ -124,13 +100,13 @@ class PoolWorkArticleView extends PoolCounterWork {
 			] );
 		}
 
-		if ( $this->cacheable && $this->parserOutput->isCacheable() ) {
-			$this->saveInCache( $this->parserOutput, $cacheTime );
+		if ( $this->cacheable && $parserOutput->isCacheable() ) {
+			$this->saveInCache( $parserOutput, $cacheTime );
 		}
 
-		$this->afterWork( $this->parserOutput );
+		$this->afterWork( $parserOutput );
 
-		return true;
+		return Status::newGood( $parserOutput );
 	}
 
 	/**
@@ -156,11 +132,10 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 	/**
 	 * @param Status $status
-	 * @return bool
+	 * @return Status
 	 */
 	public function error( $status ) {
-		$this->error = $status;
-		return false;
+		return $status;
 	}
 
 	/**
