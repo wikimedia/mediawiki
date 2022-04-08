@@ -111,9 +111,8 @@ $maintenance->validateParamsAndArgs();
 
 // Do the work
 try {
-	$success = $maintenance->execute();
+	$maintenance->execute();
 } catch ( Exception $ex ) {
-	$success = false;
 	$exReportMessage = '';
 	while ( $ex ) {
 		$cls = get_class( $ex );
@@ -128,14 +127,14 @@ try {
 	} else {
 		echo $exReportMessage;
 	}
+
+	// Exit now because process is in an unsafe state.
+	// Also to avoid DBTransactionError (T305730).
+	// Do not commit database writes, do not run deferreds, do not pass Go.
+	exit( 1 );
 }
 
 // Potentially debug globals
 $maintenance->globals();
 
 $maintenance->shutdown();
-
-// Exit with an error status if execute() returned false
-if ( $success === false ) {
-	exit( 1 );
-}
