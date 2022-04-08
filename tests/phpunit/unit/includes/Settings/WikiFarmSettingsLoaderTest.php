@@ -65,7 +65,11 @@ class WikiFarmSettingsLoaderTest extends TestCase {
 
 		self::$site = $detect;
 
-		$loader = new WikiFarmSettingsLoader( $settings );
+		$loader = new class( $settings ) extends WikiFarmSettingsLoader {
+			protected function getWikiNameConstant() {
+				return null;
+			}
+		};
 		$loader->loadWikiFarmSettings();
 
 		$config = $settings->getConfig();
