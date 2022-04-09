@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\ScopedCallback;
 
