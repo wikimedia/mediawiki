@@ -153,7 +153,6 @@ class DjVuHandler extends ImageHandler {
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
 		}
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Checked by normaliseParams
 		$width = $params['width'];
 		$height = $params['height'];
 		$page = $params['page'];
@@ -199,7 +198,6 @@ class DjVuHandler extends ImageHandler {
 					wfHostname(), $image->getName() ) );
 
 			return new MediaTransformError( 'thumbnail_error',
-				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Checked by normaliseParams
 				$params['width'], $params['height'],
 				wfMessage( 'filemissing' )
 			);
