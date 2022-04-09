@@ -28,6 +28,7 @@ use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFormatter;
@@ -445,13 +446,13 @@ class SpecialExport extends SpecialPage {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @return string[]
 	 */
-	protected function getPagesFromCategory( $title ) {
+	protected function getPagesFromCategory( PageIdentity $page ) {
 		$maxPages = $this->getConfig()->get( MainConfigNames::ExportPagelistLimit );
 
-		$name = $title->getDBkey();
+		$name = $page->getDBkey();
 
 		$dbr = $this->dbProvider->getReplicaDatabase();
 		$res = $dbr->newSelectQueryBuilder()

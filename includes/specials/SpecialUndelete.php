@@ -38,6 +38,7 @@ use MediaWiki\Content\TextContent;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\UndeletePage;
@@ -1496,13 +1497,13 @@ class SpecialUndelete extends SpecialPage {
 	 * Fetch image view link if it's available to all users
 	 *
 	 * @param File|ArchivedFile $file
-	 * @param Title $titleObj
+	 * @param LinkTarget $target
 	 * @param string $ts A timestamp
 	 * @param string $key A storage key
 	 *
 	 * @return string HTML fragment
 	 */
-	private function getFileLink( $file, $titleObj, $ts, $key ) {
+	private function getFileLink( $file, LinkTarget $target, $ts, $key ) {
 		$user = $this->getUser();
 		$time = $this->getLanguage()->userTimeAndDate( $ts, $user );
 
@@ -1516,7 +1517,7 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( $file->exists() ) {
 			$link = $this->getLinkRenderer()->makeKnownLink(
-				$titleObj,
+				$target,
 				$time,
 				[],
 				[

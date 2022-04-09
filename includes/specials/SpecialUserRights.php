@@ -897,7 +897,7 @@ class SpecialUserRights extends SpecialPage {
 	 * @return array Array with 2 elements: the XHTML table element with checkxboes, and
 	 * whether any groups are changeable
 	 */
-	private function groupCheckboxes( $usergroups, $user ) {
+	private function groupCheckboxes( $usergroups, UserIdentity $user ) {
 		$allgroups = $this->userGroupManager->listAllGroups();
 		$ret = '';
 

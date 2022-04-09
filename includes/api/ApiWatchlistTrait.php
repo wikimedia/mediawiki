@@ -1,7 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Title\Title;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\Options\UserOptionsLookup;
 use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
@@ -84,7 +84,7 @@ trait ApiWatchlistTrait {
 	/**
 	 * Set a watch (or unwatch) based the based on a watchlist parameter.
 	 * @param string $watch Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
-	 * @param Title $title The article's title to change
+	 * @param PageIdentity $page The page to change
 	 * @param User $user The user to set watch/unwatch for
 	 * @param string|null $userOption The user option to consider when $watch=preferences
 	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
@@ -92,32 +92,32 @@ trait ApiWatchlistTrait {
 	 */
 	protected function setWatch(
 		string $watch,
-		Title $title,
+		PageIdentity $page,
 		User $user,
 		?string $userOption = null,
 		?string $expiry = null
 	): void {
-		$value = $this->getWatchlistValue( $watch, $title, $user, $userOption );
-		$this->watchlistManager->setWatch( $value, $user, $title, $expiry );
+		$value = $this->getWatchlistValue( $watch, $page, $user, $userOption );
+		$this->watchlistManager->setWatch( $value, $user, $page, $expiry );
 	}
 
 	/**
 	 * Return true if we're to watch the page, false if not.
 	 * @param string $watchlist Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
-	 * @param Title $title The page under consideration
+	 * @param PageIdentity $page The page under consideration
 	 * @param User $user The user get the value for.
 	 * @param string|null $userOption The user option to consider when $watchlist=preferences.
-	 *    If not set will use watchdefault always and watchcreations if $title doesn't exist.
+	 *    If not set will use watchdefault always and watchcreations if $page doesn't exist.
 	 * @return bool
 	 */
 	protected function getWatchlistValue(
 		string $watchlist,
-		Title $title,
+		PageIdentity $page,
 		User $user,
 		?string $userOption = null
 	): bool {
 		$this->initServices();
-		$userWatching = $this->watchlistManager->isWatchedIgnoringRights( $user, $title );
+		$userWatching = $this->watchlistManager->isWatchedIgnoringRights( $user, $page );
 
 		switch ( $watchlist ) {
 			case 'watch':
@@ -138,7 +138,7 @@ trait ApiWatchlistTrait {
 				// If no user option was passed, use watchdefault and watchcreations
 				if ( $userOption === null ) {
 					return $this->userOptionsLookup->getBoolOption( $user, 'watchdefault' ) ||
-						( $this->userOptionsLookup->getBoolOption( $user, 'watchcreations' ) && !$title->exists() );
+						( $this->userOptionsLookup->getBoolOption( $user, 'watchcreations' ) && !$page->exists() );
 				}
 
 				// Watch the article based on the user preference
@@ -168,16 +168,16 @@ trait ApiWatchlistTrait {
 	 * Get existing expiry from the database.
 	 *
 	 * @param WatchedItemStoreInterface $store
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param UserIdentity $user The user to get the expiry for.
 	 * @return string|null
 	 */
 	protected function getWatchlistExpiry(
 		WatchedItemStoreInterface $store,
-		Title $title,
+		PageIdentity $page,
 		UserIdentity $user
 	): ?string {
-		$watchedItem = $store->getWatchedItem( $user, $title );
+		$watchedItem = $store->getWatchedItem( $user, $page );
 
 		if ( $watchedItem ) {
 			$expiry = $watchedItem->getExpiry();

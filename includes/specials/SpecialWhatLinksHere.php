@@ -26,15 +26,18 @@ use MediaWiki\Html\FormOptions;
 use MediaWiki\Html\Html;
 use MediaWiki\HTMLForm\HTMLForm;
 use MediaWiki\Linker\LinksMigration;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Message;
 use MediaWiki\Navigation\PagerNavigationBuilder;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\SpecialPage\FormSpecialPage;
 use MediaWiki\Title\NamespaceInfo;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\Xml\Xml;
 use SearchEngineFactory;
+use stdClass;
 use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -196,14 +199,14 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 
 	/**
 	 * @param int $level Recursion level
-	 * @param Title $target Target title
+	 * @param LinkTarget $target Target title
 	 * @param int $limit Number of entries to display
 	 * @param int $offsetNamespace Display from this namespace number (included)
 	 * @param int $offsetPageID Display from this article ID (excluded)
 	 * @param string $dir 'next' or 'prev'
 	 */
 	private function showIndirectLinks(
-		$level, $target, $limit, $offsetNamespace = 0, $offsetPageID = 0, $dir = 'next'
+		$level, LinkTarget $target, $limit, $offsetNamespace = 0, $offsetPageID = 0, $dir = 'next'
 	) {
 		$out = $this->getOutput();
 		$dbr = $this->dbProvider->getReplicaDatabase();
@@ -515,7 +518,8 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 		return Xml::openElement( 'ul', ( $level ? [] : [ 'id' => 'mw-whatlinkshere-list' ] ) );
 	}
 
-	protected function listItem( $row, $nt, $target, $notClose = false ) {
+	private function listItem( stdClass $row, PageIdentity $nt, LinkTarget $target, bool $notClose = false ) {
+		$legacyTitle = $this->titleFactory->newFromPageIdentity( $nt );
 		$dirmark = $this->getLanguage()->getDirMark();
 
 		if ( $row->rd_from ) {
@@ -550,7 +554,8 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 			$props[] = $this->msg( 'isimage' )->escaped();
 		}
 
-		$this->getHookRunner()->onWhatLinksHereProps( $row, $nt, $target, $props );
+		$legacyTarget = $this->titleFactory->newFromLinkTarget( $target );
+		$this->getHookRunner()->onWhatLinksHereProps( $row, $legacyTitle, $legacyTarget, $props );
 
 		if ( count( $props ) ) {
 			$propsText = $this->msg( 'parentheses' )
@@ -559,7 +564,7 @@ class SpecialWhatLinksHere extends FormSpecialPage {
 
 		# Space for utilities links, with a what-links-here link provided
 		$wlhLink = $this->wlhLink(
-			$nt,
+			$legacyTitle,
 			$this->msg( 'whatlinkshere-links' )->text(),
 			$this->msg( 'editlink' )->text()
 		);
