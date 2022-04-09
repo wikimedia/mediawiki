@@ -508,7 +508,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 
 		$this->assertEquals( [ 'this1', 'this2' ], $this->maintenance->getOption( 'multi' ) );
 		$this->assertEquals( [ [ 'multi', 'this1' ], [ 'multi', 'this2' ] ],
-		$this->maintenance->orderedOptions );
+			$this->maintenance->orderedOptions );
 	}
 
 	public function testParseMultiOption() {
