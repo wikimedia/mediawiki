@@ -101,8 +101,9 @@ abstract class ImageHandler extends MediaHandler {
 	 * @inheritDoc
 	 * @stable to override
 	 * @param File $image
-	 * @param array &$params
+	 * @param array &$params @phan-ignore-reference
 	 * @return bool
+	 * @phan-assert array{width:int,physicalWidth:int,height:int,physicalHeight:int,page:int} $params
 	 */
 	public function normaliseParams( $image, &$params ) {
 		$mimeType = $image->getMimeType();
@@ -147,7 +148,7 @@ abstract class ImageHandler extends MediaHandler {
 
 		if ( !isset( $params['physicalWidth'] ) ) {
 			# Passed all validations, so set the physicalWidth
-			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Checked by normaliseParams
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive, checked above
 			$params['physicalWidth'] = $params['width'];
 		}
 
@@ -218,7 +219,6 @@ abstract class ImageHandler extends MediaHandler {
 		}
 		$url = wfAppendQuery( $script, $this->getScriptParams( $params ) );
 
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Checked by normaliseParams
 		if ( $image->mustRender() || $params['width'] < $image->getWidth() ) {
 			return new ThumbnailImage( $image, $url, false, $params );
 		}
