@@ -34,6 +34,7 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserOptionsLookup;
 use MutableConfig;
@@ -257,14 +258,14 @@ class SiteConfig extends ISiteConfig {
 	}
 
 	public function galleryOptions(): array {
-		return $this->config->get( 'GalleryOptions' );
+		return $this->config->get( MainConfigNames::GalleryOptions );
 	}
 
 	public function allowedExternalImagePrefixes(): array {
-		if ( $this->config->get( 'AllowExternalImages' ) ) {
+		if ( $this->config->get( MainConfigNames::AllowExternalImages ) ) {
 			return [ '' ];
 		} else {
-			$allowFrom = $this->config->get( 'AllowExternalImagesFrom' );
+			$allowFrom = $this->config->get( MainConfigNames::AllowExternalImagesFrom );
 			return $allowFrom ? (array)$allowFrom : [];
 		}
 	}
@@ -277,7 +278,8 @@ class SiteConfig extends ISiteConfig {
 	 * path portion.
 	 */
 	private function determineArticlePath(): void {
-		$url = $this->config->get( 'Server' ) . $this->config->get( 'ArticlePath' );
+		$url = $this->config->get( MainConfigNames::Server ) .
+			$this->config->get( MainConfigNames::ArticlePath );
 
 		if ( substr( $url, -2 ) !== '$1' ) {
 			throw new UnexpectedValueException( "Article path '$url' does not have '$1' at the end" );
@@ -410,7 +412,7 @@ class SiteConfig extends ISiteConfig {
 	}
 
 	public function interwikiMagic(): bool {
-		return $this->config->get( 'InterwikiMagic' );
+		return $this->config->get( MainConfigNames::InterwikiMagic );
 	}
 
 	public function interwikiMap(): array {
@@ -422,8 +424,8 @@ class SiteConfig extends ISiteConfig {
 
 		$getPrefixes = $this->interwikiLookup->getAllPrefixes();
 		$langNames = $this->languageNameUtils->getLanguageNames();
-		$extraLangPrefixes = $this->config->get( 'ExtraInterlanguageLinkPrefixes' );
-		$localInterwikis = $this->config->get( 'LocalInterwikis' );
+		$extraLangPrefixes = $this->config->get( MainConfigNames::ExtraInterlanguageLinkPrefixes );
+		$localInterwikis = $this->config->get( MainConfigNames::LocalInterwikis );
 
 		foreach ( $getPrefixes as $row ) {
 			$prefix = $row['iw_prefix'];
@@ -495,7 +497,7 @@ class SiteConfig extends ISiteConfig {
 	}
 
 	public function lang(): string {
-		return $this->config->get( 'LanguageCode' );
+		return $this->config->get( MainConfigNames::LanguageCode );
 	}
 
 	public function mainpage(): string {
@@ -536,15 +538,15 @@ class SiteConfig extends ISiteConfig {
 	}
 
 	public function script(): string {
-		return $this->config->get( 'Script' );
+		return $this->config->get( MainConfigNames::Script );
 	}
 
 	public function scriptpath(): string {
-		return $this->config->get( 'ScriptPath' );
+		return $this->config->get( MainConfigNames::ScriptPath );
 	}
 
 	public function server(): string {
-		return $this->config->get( 'Server' );
+		return $this->config->get( MainConfigNames::Server );
 	}
 
 	/** @inheritDoc */
@@ -561,7 +563,7 @@ class SiteConfig extends ISiteConfig {
 			Utils::escapeHtml( $defaultTitle );
 		$this->exportMetadataHelper(
 			$document,
-			$this->config->get( 'LoadScript' ),
+			$this->config->get( MainConfigNames::LoadScript ),
 			$metadata->getModules(),
 			$metadata->getModuleStyles(),
 			$metadata->getJsConfigVars(),
@@ -571,7 +573,7 @@ class SiteConfig extends ISiteConfig {
 	}
 
 	public function timezoneOffset(): int {
-		return $this->config->get( 'LocalTZoffset' );
+		return $this->config->get( MainConfigNames::LocalTZoffset );
 	}
 
 	public function variants(): array {
@@ -612,7 +614,7 @@ class SiteConfig extends ISiteConfig {
 		// Even though this looks like Parsoid is supporting per-user thumbsize
 		// options, that is not the case, Parsoid doesn't receive user session state
 		$thumbsize = $this->userOptionsLookup->getDefaultOption( 'thumbsize' );
-		return $this->config->get( 'ThumbLimits' )[$thumbsize];
+		return $this->config->get( MainConfigNames::ThumbLimits )[$thumbsize];
 	}
 
 	/** @inheritDoc */
@@ -670,7 +672,7 @@ class SiteConfig extends ISiteConfig {
 
 	/** @inheritDoc */
 	public function getMaxTemplateDepth(): int {
-		return (int)$this->config->get( 'MaxTemplateDepth' );
+		return (int)$this->config->get( MainConfigNames::MaxTemplateDepth );
 	}
 
 	/**
@@ -699,7 +701,8 @@ class SiteConfig extends ISiteConfig {
 			$this->quoteTitleRe( $this->contLang->getNsText( NS_SPECIAL ) )
 		];
 		foreach (
-			$this->contLang->getNamespaceAliases() + $this->config->get( 'NamespaceAliases' )
+			$this->contLang->getNamespaceAliases() +
+			$this->config->get( MainConfigNames::NamespaceAliases )
 			as $name => $ns
 		) {
 			if ( $ns === NS_SPECIAL ) {
@@ -719,6 +722,6 @@ class SiteConfig extends ISiteConfig {
 
 	/** @inheritDoc */
 	protected function getProtocols(): array {
-		return $this->config->get( 'UrlProtocols' );
+		return $this->config->get( MainConfigNames::UrlProtocols );
 	}
 }

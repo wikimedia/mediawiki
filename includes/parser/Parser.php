@@ -32,6 +32,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
@@ -406,7 +407,7 @@ class Parser {
 		'ServerName',
 		'ShowHostnames',
 		'SignatureValidation',
-		'Sitename',
+		MainConfigNames::Sitename,
 		'StylePath',
 		'TranscludeCacheExpiry',
 		'PreprocessorCacheThreshold',
@@ -735,7 +736,8 @@ class Parser {
 		}
 
 		# Information on limits, for the benefit of users who try to skirt them
-		if ( MediaWikiServices::getInstance()->getMainConfig()->get( 'EnableParserLimitReporting' ) ) {
+		if ( MediaWikiServices::getInstance()->getMainConfig()->get(
+		MainConfigNames::EnableParserLimitReporting ) ) {
 			$this->makeLimitReport();
 		}
 
@@ -2232,9 +2234,9 @@ class Parser {
 	 */
 	public static function getExternalLinkRel( $url = false, LinkTarget $title = null ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$noFollowLinks = $mainConfig->get( 'NoFollowLinks' );
-		$noFollowNsExceptions = $mainConfig->get( 'NoFollowNsExceptions' );
-		$noFollowDomainExceptions = $mainConfig->get( 'NoFollowDomainExceptions' );
+		$noFollowLinks = $mainConfig->get( MainConfigNames::NoFollowLinks );
+		$noFollowNsExceptions = $mainConfig->get( MainConfigNames::NoFollowNsExceptions );
+		$noFollowDomainExceptions = $mainConfig->get( MainConfigNames::NoFollowDomainExceptions );
 		$ns = $title ? $title->getNamespace() : false;
 		if ( $noFollowLinks && !in_array( $ns, $noFollowNsExceptions )
 			&& !wfMatchesDomainList( $url, $noFollowDomainExceptions )

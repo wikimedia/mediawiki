@@ -21,6 +21,7 @@
  * @defgroup JobQueue JobQueue
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 
@@ -69,7 +70,8 @@ abstract class Job implements RunnableJob {
 	 * @return Job
 	 */
 	public static function factory( $command, $params = [] ) {
-		$jobClasses = MediaWikiServices::getInstance()->getMainConfig()->get( 'JobClasses' );
+		$jobClasses = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::JobClasses );
 
 		if ( $params instanceof PageReference ) {
 			// Backwards compatibility for old signature ($command, $title, $params)

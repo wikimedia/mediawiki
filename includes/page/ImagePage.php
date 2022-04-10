@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -90,7 +91,7 @@ class ImagePage extends Article {
 	}
 
 	public function view() {
-		$showEXIF = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowEXIF' );
+		$showEXIF = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::ShowEXIF );
 
 		// For action=render, include body text only; none of the image extras
 		if ( $this->viewIsRenderAction ) {
@@ -332,7 +333,8 @@ class ImagePage extends Article {
 		}
 
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$requestLanguage = $request->getVal( 'lang', $config->get( 'LanguageCode' ) );
+		$requestLanguage =
+			$request->getVal( 'lang', $config->get( MainConfigNames::LanguageCode ) );
 		if ( $handler->validateParam( 'lang', $requestLanguage ) ) {
 			return $file->getMatchedLanguage( $requestLanguage );
 		}
@@ -342,9 +344,9 @@ class ImagePage extends Article {
 
 	protected function openShowImage() {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$enableUploads = $mainConfig->get( 'EnableUploads' );
-		$send404Code = $mainConfig->get( 'Send404Code' );
-		$svgMaxSize = $mainConfig->get( 'SVGMaxSize' );
+		$enableUploads = $mainConfig->get( MainConfigNames::EnableUploads );
+		$send404Code = $mainConfig->get( MainConfigNames::Send404Code );
+		$svgMaxSize = $mainConfig->get( MainConfigNames::SVGMaxSize );
 		$this->loadFile();
 		$out = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
@@ -526,7 +528,8 @@ class ImagePage extends Article {
 						$thumb2 = '';
 					}
 
-					$script = MediaWikiServices::getInstance()->getMainConfig()->get( 'Script' );
+					$script = MediaWikiServices::getInstance()->getMainConfig()->get(
+						MainConfigNames::Script );
 
 					$formParams = [
 						'name' => 'pageselector',
@@ -789,7 +792,7 @@ EOT
 	 * Add the re-upload link (or message about not being able to re-upload) to the output.
 	 */
 	protected function uploadLinksBox() {
-		if ( !$this->getContext()->getConfig()->get( 'EnableUploads' ) ) {
+		if ( !$this->getContext()->getConfig()->get( MainConfigNames::EnableUploads ) ) {
 			return;
 		}
 
@@ -1070,7 +1073,8 @@ EOT
 	 * @return string HTML to insert underneath image.
 	 */
 	protected function doRenderLangOpt( array $langChoices, $renderLang ) {
-		$script = MediaWikiServices::getInstance()->getMainConfig()->get( 'Script' );
+		$script =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::Script );
 		$opts = '';
 
 		$matchedRenderLang = $this->displayImg->getMatchedLanguage( $renderLang );
@@ -1142,7 +1146,8 @@ EOT
 	 * @phan-return array<int,array{0:int,1:int}>
 	 */
 	protected function getThumbSizes( $origWidth, $origHeight ) {
-		$imageLimits = MediaWikiServices::getInstance()->getMainConfig()->get( 'ImageLimits' );
+		$imageLimits = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ImageLimits );
 		if ( $this->displayImg->getRepo()->canTransformVia404() ) {
 			$thumbSizes = $imageLimits;
 			// Also include the full sized resolution in the list, so

@@ -26,6 +26,7 @@ use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\ScopedCallback;
@@ -110,7 +111,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$this->mAction = $request->getRawVal( 'action' );
 		$this->mFromHTTP = $request->getBool( 'fromhttp', false )
 			|| $request->getBool( 'wpFromhttp', false );
-		$this->mStickHTTPS = $this->getConfig()->get( 'ForceHTTPS' )
+		$this->mStickHTTPS = $this->getConfig()->get( MainConfigNames::ForceHTTPS )
 			|| ( !$this->mFromHTTP && $request->getProtocol() === 'https' )
 			|| $request->getBool( 'wpForceHttps', false );
 		$this->mLanguage = $request->getText( 'uselang' );
@@ -157,7 +158,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'returnto' => $this->mReturnTo,
 				'returntoquery' => $this->mReturnToQuery,
 				'uselang' => $this->mLanguage ?: null,
-				'fromhttp' => $this->getConfig()->get( 'SecureLogin' ) && $this->mFromHTTP ? '1' : null,
+				'fromhttp' => $this->getConfig()->get( MainConfigNames::SecureLogin ) &&
+					$this->mFromHTTP ? '1' : null,
 			]
 		);
 
@@ -194,7 +196,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			'returnto' => $this->mReturnTo ?: null,
 			'returntoquery' => $this->mReturnToQuery ?: null,
 		];
-		if ( $this->getConfig()->get( 'SecureLogin' ) && !$this->isSignup() ) {
+		if ( $this->getConfig()->get( MainConfigNames::SecureLogin ) && !$this->isSignup() ) {
 			$params['fromhttp'] = $this->mFromHTTP ? '1' : null;
 		}
 		return $params;
@@ -277,7 +279,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 						: 'warning' ) => $this->mEntryError,
 				] + $this->getRequest()->getQueryValues();
 			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
-			if ( $this->getConfig()->get( 'SecureLogin' ) && !$this->mFromHTTP ) {
+			if ( $this->getConfig()->get( MainConfigNames::SecureLogin ) && !$this->mFromHTTP ) {
 				// Avoid infinite redirect
 				$url = wfAppendQuery( $url, 'fromhttp=1' );
 				$this->getOutput()->redirect( $url );
@@ -584,7 +586,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected function getPageHtml( $formHtml ) {
 		$loginPrompt = $this->isSignup() ? '' : Html::rawElement( 'div',
 			[ 'id' => 'userloginprompt' ], $this->msg( 'loginprompt' )->parseAsBlock() );
-		$languageLinks = $this->getConfig()->get( 'LoginLanguageSelector' ) ? $this->makeLanguageSelector() : '';
+		$languageLinks = $this->getConfig()->get( MainConfigNames::LoginLanguageSelector )
+			? $this->makeLanguageSelector() : '';
 		$signupStartMsg = $this->msg( 'signupstart' );
 		$signupStart = ( $this->isSignup() && !$signupStartMsg->isDisabled() )
 			? Html::rawElement( 'div', [ 'id' => 'signupstart' ], $signupStartMsg->parseAsBlock() ) : '';
@@ -677,7 +680,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$form->addHiddenField( 'force', $this->securityLevel );
 		$form->addHiddenField( $this->getTokenName(), $this->getToken()->toString() );
 		$config = $this->getConfig();
-		if ( $config->get( 'SecureLogin' ) && !$config->get( 'ForceHTTPS' ) ) {
+		if ( $config->get( MainConfigNames::SecureLogin ) &&
+		!$config->get( MainConfigNames::ForceHTTPS ) ) {
 			// If using HTTPS coming from HTTP, then the 'fromhttp' parameter must be preserved
 			if ( !$this->isSignup() ) {
 				$form->addHiddenField( 'wpForceHttps', (int)$this->mStickHTTPS );
@@ -797,18 +801,19 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				] + $hideIf,
 				'email' => [
 					'type' => 'email',
-					'label-message' => $config->get( 'EmailConfirmToEdit' ) ? 'createacct-emailrequired'
-						: 'createacct-emailoptional',
+					'label-message' => $config->get( MainConfigNames::EmailConfirmToEdit )
+						? 'createacct-emailrequired' : 'createacct-emailoptional',
 					'id' => 'wpEmail',
 					'cssclass' => 'loginText',
 					'size' => '20',
 					'autocomplete' => 'email',
 					// FIXME will break non-standard providers
-					'required' => $config->get( 'EmailConfirmToEdit' ),
+					'required' => $config->get( MainConfigNames::EmailConfirmToEdit ),
 					'validation-callback' => function ( $value, $alldata ) {
 						// AuthManager will check most of these, but that will make the auth
 						// session fail and this won't, so nicer to do it this way
-						if ( !$value && $this->getConfig()->get( 'EmailConfirmToEdit' ) ) {
+						if ( !$value &&
+						$this->getConfig()->get( MainConfigNames::EmailConfirmToEdit ) ) {
 							// no point in allowing registration without email when email is
 							// required to edit
 							return $this->msg( 'noemailtitle' );
@@ -1063,7 +1068,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 */
 	protected function hasSessionCookie() {
 		$config = $this->getConfig();
-		return $config->get( 'DisableCookieCheck' ) || (
+		return $config->get( MainConfigNames::DisableCookieCheck ) || (
 			$config->get( 'InitialSessionId' ) &&
 			$this->getRequest()->getSession()->getId() === (string)$config->get( 'InitialSessionId' )
 		);

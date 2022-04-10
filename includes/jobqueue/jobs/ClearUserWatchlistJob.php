@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 
@@ -34,7 +35,8 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 	}
 
 	public function run() {
-		$updateRowsPerQuery = MediaWikiServices::getInstance()->getMainConfig()->get( 'UpdateRowsPerQuery' );
+		$updateRowsPerQuery = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::UpdateRowsPerQuery );
 		$userId = $this->params['userId'];
 		$maxWatchlistId = $this->params['maxWatchlistId'];
 		$batchSize = $updateRowsPerQuery;
@@ -83,7 +85,8 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 		}
 
 		$dbw->delete( 'watchlist', [ 'wl_id' => $watchlistIds ], __METHOD__ );
-		if ( MediaWikiServices::getInstance()->getMainConfig()->get( 'WatchlistExpiry' ) ) {
+		if ( MediaWikiServices::getInstance()->getMainConfig()->get(
+		MainConfigNames::WatchlistExpiry ) ) {
 			$dbw->delete( 'watchlist_expiry', [ 'we_item' => $watchlistIds ], __METHOD__ );
 		}
 

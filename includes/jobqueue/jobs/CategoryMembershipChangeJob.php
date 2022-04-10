@@ -19,6 +19,7 @@
  *
  * @file
  */
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionLookup;
@@ -215,7 +216,7 @@ class CategoryMembershipChangeJob extends Job {
 		$catMembChange = new CategoryMembershipChange( $title, $blc, $newRev );
 		$catMembChange->checkTemplateLinks();
 
-		$batchSize = $config->get( 'UpdateRowsPerQuery' );
+		$batchSize = $config->get( MainConfigNames::UpdateRowsPerQuery );
 		$insertCount = 0;
 
 		foreach ( $categoryInserts as $categoryName ) {

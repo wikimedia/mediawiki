@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Minify\CSSMin;
 use Wikimedia\RequestTimeout\TimeoutException;
@@ -389,7 +390,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	public function getScriptURLsForDebug( ResourceLoaderContext $context ) {
 		$rl = $context->getResourceLoader();
 		$config = $this->getConfig();
-		$server = $config->get( 'Server' );
+		$server = $config->get( MainConfigNames::Server );
 
 		$urls = [];
 		foreach ( $this->getScriptFiles( $context ) as $file ) {

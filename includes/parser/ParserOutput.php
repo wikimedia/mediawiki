@@ -5,6 +5,7 @@ use MediaWiki\Json\JsonUnserializableTrait;
 use MediaWiki\Json\JsonUnserializer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutputFlags;
@@ -1042,8 +1043,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public function addExternalLink( $url ): void {
 		# We don't register links pointing to our own server, unless... :-)
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$server = $config->get( 'Server' );
-		$registerInternalExternals = $config->get( 'RegisterInternalExternals' );
+		$server = $config->get( MainConfigNames::Server );
+		$registerInternalExternals = $config->get( MainConfigNames::RegisterInternalExternals );
 		# Replace unnecessary URL escape codes with the referenced character
 		# This prevents spammers from hiding links from the filters
 		$url = Parser::normalizeLinkUrl( $url );
@@ -1952,7 +1953,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @return bool
 	 */
 	public function hasReducedExpiry(): bool {
-		$parserCacheExpireTime = MediaWikiServices::getInstance()->getMainConfig()->get( 'ParserCacheExpireTime' );
+		$parserCacheExpireTime = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ParserCacheExpireTime );
 
 		return $this->getCacheExpiry() < $parserCacheExpireTime;
 	}

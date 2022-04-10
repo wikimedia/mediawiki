@@ -25,6 +25,7 @@
  * @author Luke Welling lwelling@wikimedia.org
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 
@@ -84,8 +85,8 @@ class UserMailer {
 	 * @return string
 	 */
 	private static function makeMsgId() {
-		$smtp = MediaWikiServices::getInstance()->getMainConfig()->get( 'SMTP' );
-		$server = MediaWikiServices::getInstance()->getMainConfig()->get( 'Server' );
+		$smtp = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::SMTP );
+		$server = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::Server );
 		$domainId = WikiMap::getCurrentWikiDbDomain()->getId();
 		$msgid = uniqid( $domainId . ".", true /** for cygwin */ );
 		if ( is_array( $smtp ) && isset( $smtp['IDHost'] ) && $smtp['IDHost'] ) {
@@ -117,7 +118,8 @@ class UserMailer {
 	 * @return Status
 	 */
 	public static function send( $to, $from, $subject, $body, $options = [] ) {
-		$allowHTMLEmail = MediaWikiServices::getInstance()->getMainConfig()->get( 'AllowHTMLEmail' );
+		$allowHTMLEmail = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::AllowHTMLEmail );
 
 		if ( !isset( $options['contentType'] ) ) {
 			$options['contentType'] = 'text/plain; charset=UTF-8';
@@ -247,9 +249,9 @@ class UserMailer {
 		$options = []
 	) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$smtp = $mainConfig->get( 'SMTP' );
-		$enotifMaxRecips = $mainConfig->get( 'EnotifMaxRecips' );
-		$additionalMailParams = $mainConfig->get( 'AdditionalMailParams' );
+		$smtp = $mainConfig->get( MainConfigNames::SMTP );
+		$enotifMaxRecips = $mainConfig->get( MainConfigNames::EnotifMaxRecips );
+		$additionalMailParams = $mainConfig->get( MainConfigNames::AdditionalMailParams );
 		$mime = null;
 
 		$replyto = $options['replyTo'] ?? null;
