@@ -2519,8 +2519,6 @@
 	"allpages-bad-ns": "Used as error message. Parameters:\n* $1 - namespace name, other than \"Main\" namespace",
 	"allpages-hide-redirects": "Label for a checkbox. If the checkbox is checked redirects will not be shown in the list. Used in [[Special:PrefixIndex]] and [[Special:Allpages]].\n{{Identical|Hide redirect}}",
 	"cachedspecial-viewing-cached-ttl": "Message notifying they are watching a cached page. $1 is a duration (ie \"1 hour and 30 minutes\")",
-	"cachedspecial-viewing-cached-ts": "Message notifying they are watching a cached page. This is a message displayed on special pages (contaning lists of pages with certain properties) that are served from the cache, as opposed to having been compiled run-time. This means that the displayed data may differ from the current situation.",
-	"cachedspecial-refresh-now": "Link text pointing to the most recent version of the page.",
 	"categories": "The page name of [[Special:Categories]].\n{{Identical|Category}}",
 	"categories-summary": "{{doc-specialpagesummary|categories}}",
 	"categories-submit": "Submit button on [[Special:Categories]]\n{{Identical|Show}}",
