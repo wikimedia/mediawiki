@@ -4,10 +4,10 @@ namespace MediaWiki\Tests\Storage;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\RevertedTagUpdate;
-use MediaWiki\Storage\RevisionRecord;
 use MediaWikiUnitTestCase;
 use MockTitleTrait;
 use PHPUnit\Framework\MockObject\Builder\InvocationMocker;

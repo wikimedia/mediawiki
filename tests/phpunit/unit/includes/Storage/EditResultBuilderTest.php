@@ -7,10 +7,10 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultBuilder;
 use MediaWiki\Storage\PageUpdateException;
-use MediaWiki\Storage\SlotRecord;
 use MediaWikiUnitTestCase;
 use MockTitleTrait;
 

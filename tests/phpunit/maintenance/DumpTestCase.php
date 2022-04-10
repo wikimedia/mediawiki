@@ -10,7 +10,7 @@ use ExecutableFinder;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWikiLangTestCase;
 use MWException;
 use WikiExporter;
