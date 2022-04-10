@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\Title;
 
 /**
@@ -150,12 +151,12 @@ class SearchExactMatchRescorer {
 
 	/**
 	 * Get a redirect's destination from a title
-	 * @param Title $title A title to redirect. It may not redirect or even exist
+	 * @param PageIdentity $page A page to redirect. It may not redirect or even exist
 	 * @return null|string If title exists and redirects, get the destination's prefixed name
 	 */
-	private function getRedirectTarget( $title ) {
+	private function getRedirectTarget( PageIdentity $page ) {
 		$redirectStore = MediaWikiServices::getInstance()->getRedirectStore();
-		$redir = $redirectStore->getRedirectTarget( $title );
+		$redir = $redirectStore->getRedirectTarget( $page );
 
 		// Needed to get the text needed for display.
 		$redir = Title::castFromLinkTarget( $redir );

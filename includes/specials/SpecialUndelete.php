@@ -1458,11 +1458,11 @@ class SpecialUndelete extends SpecialPage {
 	 * Fetch revision text link if it's available to all users
 	 *
 	 * @param RevisionRecord $revRecord
-	 * @param Title $titleObj
+	 * @param LinkTarget $target
 	 * @param string $ts Timestamp
 	 * @return string
 	 */
-	private function getPageLink( RevisionRecord $revRecord, $titleObj, $ts ) {
+	private function getPageLink( RevisionRecord $revRecord, LinkTarget $target, $ts ) {
 		$user = $this->getUser();
 		$time = $this->getLanguage()->userTimeAndDate( $ts, $user );
 
@@ -1476,7 +1476,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		$link = $this->getLinkRenderer()->makeKnownLink(
-			$titleObj,
+			$target,
 			$time,
 			[],
 			[

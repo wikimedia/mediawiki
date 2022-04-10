@@ -53,7 +53,6 @@ use RepoGroup;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\ReadOnlyMode;
-use WikiPage;
 
 /**
  * Implementation of various page action services.
@@ -169,13 +168,13 @@ class PageCommandFactory implements
 
 	/**
 	 * @param Authority $performer
-	 * @param WikiPage $wikipage
+	 * @param PageIdentity $page
 	 * @param string $newContentModel
 	 * @return ContentModelChange
 	 */
 	public function newContentModelChange(
 		Authority $performer,
-		WikiPage $wikipage,
+		PageIdentity $page,
 		string $newContentModel
 	): ContentModelChange {
 		return new ContentModelChange(
@@ -183,8 +182,9 @@ class PageCommandFactory implements
 			$this->hookContainer,
 			$this->revisionStoreFactory->getRevisionStore(),
 			$this->userFactory,
+			$this->wikiPageFactory,
 			$performer,
-			$wikipage,
+			$page,
 			$newContentModel
 		);
 	}

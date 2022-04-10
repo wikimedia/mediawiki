@@ -8,6 +8,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Message\Message;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionLookup;
@@ -37,6 +38,8 @@ class ContentModelChange {
 	private $performer;
 	/** @var WikiPage */
 	private $page;
+	/** @var PageIdentity */
+	private $pageIdentity;
 	/** @var string */
 	private $newModel;
 	/** @var string[] tags to add */
@@ -56,8 +59,9 @@ class ContentModelChange {
 	 * @param HookContainer $hookContainer
 	 * @param RevisionLookup $revLookup
 	 * @param UserFactory $userFactory
+	 * @param WikiPageFactory $wikiPageFactory
 	 * @param Authority $performer
-	 * @param WikiPage $page
+	 * @param PageIdentity $page
 	 * @param string $newModel
 	 */
 	public function __construct(
@@ -65,8 +69,9 @@ class ContentModelChange {
 		HookContainer $hookContainer,
 		RevisionLookup $revLookup,
 		UserFactory $userFactory,
+		WikiPageFactory $wikiPageFactory,
 		Authority $performer,
-		WikiPage $page,
+		PageIdentity $page,
 		string $newModel
 	) {
 		$this->contentHandlerFactory = $contentHandlerFactory;
@@ -75,7 +80,8 @@ class ContentModelChange {
 		$this->userFactory = $userFactory;
 
 		$this->performer = $performer;
-		$this->page = $page;
+		$this->page = $wikiPageFactory->newFromTitle( $page );
+		$this->pageIdentity = $page;
 		$this->newModel = $newModel;
 
 		// SpecialChangeContentModel doesn't support tags
@@ -107,8 +113,8 @@ class ContentModelChange {
 		$titleWithNewContentModel->setContentModel( $this->newModel );
 
 		$status = PermissionStatus::newEmpty();
-		$authorizer( 'editcontentmodel', $current, $status );
-		$authorizer( 'edit', $current, $status );
+		$authorizer( 'editcontentmodel', $this->pageIdentity, $status );
+		$authorizer( 'edit', $this->pageIdentity, $status );
 		$authorizer( 'editcontentmodel', $titleWithNewContentModel, $status );
 		$authorizer( 'edit', $titleWithNewContentModel, $status );
 		return $status;
@@ -186,7 +192,7 @@ class ContentModelChange {
 		$contentHandlerFactory = $this->contentHandlerFactory;
 
 		$title = $this->page->getTitle();
-		$latestRevRecord = $this->revLookup->getRevisionByTitle( $title );
+		$latestRevRecord = $this->revLookup->getRevisionByTitle( $this->pageIdentity );
 
 		if ( $latestRevRecord ) {
 			$latestContent = $latestRevRecord->getContent( SlotRecord::MAIN );

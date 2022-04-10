@@ -2,6 +2,7 @@
 
 use MediaWiki\Context\RequestContext;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RateLimiter;
@@ -286,12 +287,15 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 			return true;
 		} );
 
+		$wpFactory = $this->createMock( WikiPageFactory::class );
+		$wpFactory->method( 'newFromTitle' )->willReturn( $wikipage );
 		$change = $this->newServiceInstance(
 			ContentModelChange::class,
 			[
 				'performer' => $performer,
 				'page' => $wikipage,
-				'newModel' => $newContentModel
+				'newModel' => $newContentModel,
+				'wikiPageFactory' => $wpFactory,
 			]
 		);
 

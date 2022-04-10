@@ -3169,16 +3169,6 @@ class Title implements Stringable, LinkTarget, PageIdentity {
 		$isKnown = null;
 
 		$services = MediaWikiServices::getInstance();
-		/**
-		 * Allows overriding default behavior for determining if a page exists.
-		 * If $isKnown is kept as null, regular checks happen. If it's
-		 * a boolean, this value is returned by the isKnown method.
-		 *
-		 * @since 1.20
-		 *
-		 * @param Title $title
-		 * @param bool|null $isKnown
-		 */
 		( new HookRunner( $services->getHookContainer() ) )->onTitleIsAlwaysKnown( $this, $isKnown );
 
 		if ( $isKnown !== null ) {

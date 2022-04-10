@@ -29,25 +29,23 @@ use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\Deferred\EnqueueableDataUpdate;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\ParserOutput;
-use WikiPage;
 
 /**
  * Update object handling the cleanup of links tables after a page was deleted.
  */
 class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
-	/** @var WikiPage */
-	protected $page;
 	/** @var string */
 	protected $timestamp;
 
 	/**
-	 * @param WikiPage $page Page we are updating
+	 * @param PageIdentity $page Page we are updating
 	 * @param int|null $pageId ID of the page we are updating [optional]
 	 * @param string|null $timestamp TS_MW timestamp of deletion
 	 */
-	public function __construct( WikiPage $page, $pageId = null, $timestamp = null ) {
-		$this->page = $page;
+	public function __construct( PageIdentity $page, $pageId = null, $timestamp = null ) {
 		if ( $pageId ) {
 			$this->mId = $pageId; // page ID at time of deletion
 		} elseif ( $page->exists() ) {
@@ -60,8 +58,13 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 
 		$fakePO = new ParserOutput();
 		$fakePO->setCacheTime( $timestamp );
-		// Use immutable page identity to keep reference to the page id at time of deletion - T299244
-		$immutablePageIdentity = $page->getTitle()->toPageIdentity();
+		// Use an immutable page identity to keep reference to the page id at time of deletion - T299244
+		$immutablePageIdentity = new PageIdentityValue(
+			$page->getId(),
+			$page->getNamespace(),
+			$page->getDBkey(),
+			$page->getWikiId()
+		);
 		parent::__construct( $immutablePageIdentity, $fakePO, false );
 	}
 

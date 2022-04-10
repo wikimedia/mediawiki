@@ -2,6 +2,7 @@
 
 use MediaWiki\Cache\BacklinkCache;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
@@ -109,31 +110,31 @@ class CategoryMembershipChange {
 	/**
 	 * Create a recentchanges entry for category additions
 	 *
-	 * @param Title $categoryTitle
+	 * @param PageIdentity $categoryPage
 	 */
-	public function triggerCategoryAddedNotification( Title $categoryTitle ) {
-		$this->createRecentChangesEntry( $categoryTitle, self::CATEGORY_ADDITION );
+	public function triggerCategoryAddedNotification( PageIdentity $categoryPage ) {
+		$this->createRecentChangesEntry( $categoryPage, self::CATEGORY_ADDITION );
 	}
 
 	/**
 	 * Create a recentchanges entry for category removals
 	 *
-	 * @param Title $categoryTitle
+	 * @param PageIdentity $categoryPage
 	 */
-	public function triggerCategoryRemovedNotification( Title $categoryTitle ) {
-		$this->createRecentChangesEntry( $categoryTitle, self::CATEGORY_REMOVAL );
+	public function triggerCategoryRemovedNotification( PageIdentity $categoryPage ) {
+		$this->createRecentChangesEntry( $categoryPage, self::CATEGORY_REMOVAL );
 	}
 
 	/**
 	 * Create a recentchanges entry using RecentChange::notifyCategorization()
 	 *
-	 * @param Title $categoryTitle
+	 * @param PageIdentity $categoryPage
 	 * @param int $type
 	 */
-	private function createRecentChangesEntry( Title $categoryTitle, $type ) {
+	private function createRecentChangesEntry( PageIdentity $categoryPage, $type ) {
 		$this->notifyCategorization(
 			$this->timestamp,
-			$categoryTitle,
+			$categoryPage,
 			$this->getUser(),
 			$this->getChangeMessageText(
 				$type,
@@ -149,20 +150,20 @@ class CategoryMembershipChange {
 
 	/**
 	 * @param string $timestamp Timestamp of the recent change to occur in TS_MW format
-	 * @param Title $categoryTitle Title of the category a page is being added to or removed from
+	 * @param PageIdentity $categoryPage Page of the category a page is being added to or removed from
 	 * @param UserIdentity|null $user User object of the user that made the change
 	 * @param string $comment Change summary
-	 * @param Title $pageTitle Title of the page that is being added or removed
+	 * @param PageIdentity $page Page that is being added or removed
 	 * @param string $lastTimestamp Parent revision timestamp of this change in TS_MW format
 	 * @param RevisionRecord|null $revision
 	 * @param bool $added true, if the category was added, false for removed
 	 */
 	private function notifyCategorization(
 		$timestamp,
-		Title $categoryTitle,
+		PageIdentity $categoryPage,
 		?UserIdentity $user,
 		$comment,
-		Title $pageTitle,
+		PageIdentity $page,
 		$lastTimestamp,
 		$revision,
 		$added
@@ -195,10 +196,10 @@ class CategoryMembershipChange {
 		/** @var RecentChange $rc */
 		$rc = ( $this->newForCategorizationCallback )(
 			$timestamp,
-			$categoryTitle,
+			$categoryPage,
 			$user,
 			$comment,
-			$pageTitle,
+			$page,
 			$lastRevId,
 			$newRevId,
 			$lastTimestamp,

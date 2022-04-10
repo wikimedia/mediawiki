@@ -1012,13 +1012,13 @@ class WikiImporter {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param int $revisionId
 	 * @param array $contentInfo
 	 *
 	 * @return Content
 	 */
-	private function makeContent( Title $title, $revisionId, $contentInfo ) {
+	private function makeContent( PageIdentity $page, $revisionId, $contentInfo ) {
 		$maxArticleSize = $this->config->get( MainConfigNames::MaxArticleSize );
 
 		if ( !isset( $contentInfo['text'] ) ) {
@@ -1050,7 +1050,7 @@ class WikiImporter {
 		$role = $contentInfo['role'] ?? SlotRecord::MAIN;
 		$model = $contentInfo['model'] ?? $this->slotRoleRegistry
 			->getRoleHandler( $role )
-			->getDefaultModel( $title );
+			->getDefaultModel( $page );
 		$handler = $this->contentHandlerFactory->getContentHandler( $model );
 
 		$text = $handler->importTransform( $contentInfo['text'] );

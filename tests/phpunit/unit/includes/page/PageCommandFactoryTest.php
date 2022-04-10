@@ -19,7 +19,6 @@ use MediaWiki\Tests\Unit\MockServiceDependenciesTrait;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWikiUnitTestCase;
-use WikiPage;
 
 /**
  * @covers \MediaWiki\Page\PageCommandFactory
@@ -56,7 +55,7 @@ class PageCommandFactoryTest extends MediaWikiUnitTestCase {
 	public function testContentModelChange() {
 		$contentModelChange = $this->getFactory()->newContentModelChange(
 			$this->createMock( Authority::class ),
-			$this->createMock( WikiPage::class ),
+			$this->createMock( PageIdentity::class ),
 			CONTENT_MODEL_TEXT
 		);
 		$this->assertInstanceOf(

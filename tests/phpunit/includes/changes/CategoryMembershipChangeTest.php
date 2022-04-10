@@ -2,7 +2,6 @@
 
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
-use MediaWiki\User\User;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -15,7 +14,7 @@ use MediaWiki\User\UserIdentity;
 class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 
 	/**
-	 * @var array|Title[]|User[]
+	 * @var array
 	 */
 	private static $lastNotifyArgs;
 
