@@ -193,8 +193,9 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 			]
 		);
 		$html = preg_replace( "/\n+/", '', $pager->getBody() );
-		$finalList = '</ul><ul class="mw-contributions-list">';
-		$this->assertStringContainsString( $finalList, $html,
-			'The last item is always in its own list and there is no header if the date is the same.' );
+		$this->assertSame( 1, substr_count( $html, '<h4' ),
+			'There is exactly one header if the date is the same for all edits' );
+		$this->assertSame( 1, substr_count( $html, '<ul' ),
+			'There is exactly one list if the date is the same for all edits' );
 	}
 }
