@@ -86,6 +86,7 @@ class UserDef extends TypeDef {
 		list( $type, $user ) = $this->processUser( $value );
 
 		if ( !$user || !in_array( $type, $settings[self::PARAM_ALLOWED_USER_TYPES], true ) ) {
+			// Message used: paramvalidator-baduser
 			$this->failure( 'baduser', $name, $value, $settings, $options );
 		}
 
