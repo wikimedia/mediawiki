@@ -19,6 +19,9 @@ Some specific notes for MediaWiki 1.39 upgrades are below:
 For notes on 1.38.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.39 ===
+* The default serialization method for file meta-data has been changed to JSON.
+  You can revert it to PHP by setting the 'useJsonMetadata' property to false in
+  $wgLocalFileRepo.
 * …
 
 ==== New configuration ====
