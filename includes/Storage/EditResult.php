@@ -275,6 +275,7 @@ class EditResult implements JsonSerializable {
 	 *
 	 * @since 1.36
 	 */
+	#[\ReturnTypeWillChange]
 	public function jsonSerialize() {
 		return [
 			'isNew' => $this->isNew,
