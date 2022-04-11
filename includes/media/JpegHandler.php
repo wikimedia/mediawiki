@@ -139,7 +139,7 @@ class JpegHandler extends ExifBitmapHandler {
 	 * @param array $params Rotate parameters.
 	 *    'rotation' clockwise rotation in degrees, allowed are multiples of 90
 	 * @since 1.21
-	 * @return bool|MediaTransformError
+	 * @return MediaTransformError|false
 	 */
 	public function rotate( $file, $params ) {
 		$jpegTran = MediaWikiServices::getInstance()->getMainConfig()->get( 'JpegTran' );

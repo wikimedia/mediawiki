@@ -211,7 +211,7 @@ abstract class ImageHandler extends MediaHandler {
 	 * @param File $image
 	 * @param string $script
 	 * @param array $params
-	 * @return bool|MediaTransformOutput
+	 * @return MediaTransformOutput|false
 	 */
 	public function getScriptedTransform( $image, $script, $params ) {
 		if ( !$this->normaliseParams( $image, $params ) ) {

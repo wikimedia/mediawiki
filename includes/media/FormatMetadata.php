@@ -1350,7 +1350,7 @@ class FormatMetadata extends ContextSource {
 	 * numbers, joins arrays of numbers with commas.
 	 *
 	 * @param mixed $num The value to format
-	 * @param float|int|bool $round Digits to round to or false.
+	 * @param float|int|false $round Digits to round to or false.
 	 * @param string|null $tagName (optional) The name of the tag (for debugging)
 	 * @return mixed A floating point number or whatever we were fed
 	 */
