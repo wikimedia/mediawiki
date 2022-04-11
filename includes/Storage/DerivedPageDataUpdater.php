@@ -43,6 +43,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\ResourceLoader as RL;
@@ -319,7 +320,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 
 	/**
 	 * @param ServiceOptions $options
-	 * @param WikiPage $wikiPage
+	 * @param PageIdentity $page
 	 * @param RevisionStore $revisionStore
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param SlotRoleRegistry $slotRoleRegistry
@@ -337,10 +338,11 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * @param TalkPageNotificationManager $talkPageNotificationManager
 	 * @param WANObjectCache $mainWANObjectCache
 	 * @param PermissionManager $permissionManager
+	 * @param WikiPageFactory $wikiPageFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		WikiPage $wikiPage,
+		PageIdentity $page,
 		RevisionStore $revisionStore,
 		RevisionRenderer $revisionRenderer,
 		SlotRoleRegistry $slotRoleRegistry,
@@ -357,9 +359,11 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 		PageEditStash $pageEditStash,
 		TalkPageNotificationManager $talkPageNotificationManager,
 		WANObjectCache $mainWANObjectCache,
-		PermissionManager $permissionManager
+		PermissionManager $permissionManager,
+		WikiPageFactory $wikiPageFactory
 	) {
-		$this->wikiPage = $wikiPage;
+		// TODO: Remove this cast eventually
+		$this->wikiPage = $wikiPageFactory->newFromTitle( $page );
 
 		$this->parserCache = $parserCache;
 		$this->revisionStore = $revisionStore;
@@ -563,7 +567,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * @return Title
 	 */
 	private function getTitle() {
-		// NOTE: eventually, we won't get a WikiPage passed into the constructor any more
+		// NOTE: eventually, this won't use WikiPage any more
 		return $this->wikiPage->getTitle();
 	}
 
@@ -571,7 +575,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * @return WikiPage
 	 */
 	private function getWikiPage() {
-		// NOTE: eventually, we won't get a WikiPage passed into the constructor any more
+		// NOTE: eventually, this won't use WikiPage any more
 		return $this->wikiPage;
 	}
 
@@ -581,7 +585,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * @return PageIdentity
 	 */
 	public function getPage(): PageIdentity {
-		return $this->getTitle();
+		return $this->wikiPage;
 	}
 
 	/**
@@ -655,7 +659,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 
 		$this->assertTransition( 'knows-current' );
 
-		// NOTE: eventually, we won't get a WikiPage passed into the constructor any more
+		// NOTE: eventually, this won't use WikiPage any more
 		$wikiPage = $this->getWikiPage();
 
 		// Do not call WikiPage::clear(), since the caller may already have caused page data
@@ -699,7 +703,7 @@ class DerivedPageDataUpdater implements LoggerAwareInterface, PreparedUpdate {
 	 * @return int
 	 */
 	private function getPageId() {
-		// NOTE: eventually, we won't get a WikiPage passed into the constructor any more
+		// NOTE: eventually, this won't use WikiPage any more
 		return $this->wikiPage->getId();
 	}
 

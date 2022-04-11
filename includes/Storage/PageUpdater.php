@@ -37,6 +37,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
@@ -91,9 +92,15 @@ class PageUpdater {
 	private $author;
 
 	/**
+	 * TODO Remove this eventually.
 	 * @var WikiPage
 	 */
 	private $wikiPage;
+
+	/**
+	 * @var PageIdentity
+	 */
+	private $pageIdentity;
 
 	/**
 	 * @var DerivedPageDataUpdater
@@ -209,7 +216,7 @@ class PageUpdater {
 
 	/**
 	 * @param UserIdentity $author
-	 * @param WikiPage $wikiPage
+	 * @param PageIdentity $page
 	 * @param DerivedPageDataUpdater $derivedDataUpdater
 	 * @param IConnectionProvider $dbProvider
 	 * @param RevisionStore $revisionStore
@@ -223,10 +230,11 @@ class PageUpdater {
 	 * @param string[] $softwareTags Array of currently enabled software change tags. Can be
 	 *        obtained from ChangeTags::getSoftwareTags()
 	 * @param LoggerInterface $logger
+	 * @param WikiPageFactory $wikiPageFactory
 	 */
 	public function __construct(
 		UserIdentity $author,
-		WikiPage $wikiPage,
+		PageIdentity $page,
 		DerivedPageDataUpdater $derivedDataUpdater,
 		IConnectionProvider $dbProvider,
 		RevisionStore $revisionStore,
@@ -238,13 +246,15 @@ class PageUpdater {
 		TitleFormatter $titleFormatter,
 		ServiceOptions $serviceOptions,
 		array $softwareTags,
-		LoggerInterface $logger
+		LoggerInterface $logger,
+		WikiPageFactory $wikiPageFactory
 	) {
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $serviceOptions;
 
 		$this->author = $author;
-		$this->wikiPage = $wikiPage;
+		$this->pageIdentity = $page;
+		$this->wikiPage = $wikiPageFactory->newFromTitle( $page );
 		$this->derivedDataUpdater = $derivedDataUpdater;
 
 		$this->dbProvider = $dbProvider;
@@ -440,14 +450,14 @@ class PageUpdater {
 	 * @return PageIdentity
 	 */
 	public function getPage(): PageIdentity {
-		return $this->wikiPage;
+		return $this->pageIdentity;
 	}
 
 	/**
 	 * @return Title
 	 */
 	private function getTitle() {
-		// NOTE: eventually, we won't get a WikiPage passed into the constructor any more
+		// NOTE: eventually, this won't use WikiPage any more
 		return $this->wikiPage->getTitle();
 	}
 
@@ -455,7 +465,7 @@ class PageUpdater {
 	 * @return WikiPage
 	 */
 	private function getWikiPage() {
-		// NOTE: eventually, we won't get a WikiPage passed into the constructor any more
+		// NOTE: eventually, this won't use WikiPage any more
 		return $this->wikiPage;
 	}
 
@@ -1155,7 +1165,6 @@ class PageUpdater {
 		CommentStoreComment $comment,
 		PageUpdateStatus $status
 	) {
-		$wikiPage = $this->getWikiPage();
 		$title = $this->getTitle();
 		$parent = $this->grabParentRevision();
 
@@ -1207,7 +1216,7 @@ class PageUpdater {
 			// XXX: We may push this up to the "edit controller" level, see T192777.
 			$contentHandler = $this->contentHandlerFactory->getContentHandler( $content->getModel() );
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable getId is not null here
-			$validationParams = new ValidationParams( $wikiPage, $this->flags, $oldid );
+			$validationParams = new ValidationParams( $this->getPage(), $this->flags, $oldid );
 			$prepStatus = $contentHandler->validateSave( $content, $validationParams );
 
 			// TODO: MCR: record which problem arose in which slot.
