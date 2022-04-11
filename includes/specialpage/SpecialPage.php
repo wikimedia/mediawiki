@@ -25,6 +25,7 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Navigation\PrevNextNavigationRenderer;
 use MediaWiki\Permissions\Authority;
@@ -271,7 +272,7 @@ class SpecialPage implements MessageLocalizer {
 	 *  false to use the parent page's cache settings
 	 */
 	public function maxIncludeCacheTime() {
-		return $this->getConfig()->get( 'MiserMode' ) ? $this->getCacheTTL() : 0;
+		return $this->getConfig()->get( MainConfigNames::MiserMode ) ? $this->getCacheTTL() : 0;
 	}
 
 	/**
@@ -644,7 +645,7 @@ class SpecialPage implements MessageLocalizer {
 		$out->setArticleRelated( false );
 		$out->setRobotPolicy( $this->getRobotPolicy() );
 		$out->setPageTitle( $this->getDescription() );
-		if ( $this->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere ) ) {
 			$out->addModuleStyles( [
 				'mediawiki.ui.input',
 				'mediawiki.ui.radio',
@@ -953,7 +954,7 @@ class SpecialPage implements MessageLocalizer {
 	protected function addFeedLinks( $params ) {
 		$feedTemplate = wfScript( 'api' );
 
-		foreach ( $this->getConfig()->get( 'FeedClasses' ) as $format => $class ) {
+		foreach ( $this->getConfig()->get( MainConfigNames::FeedClasses ) as $format => $class ) {
 			$theseParams = $params + [ 'feedformat' => $format ];
 			$url = wfAppendQuery( $feedTemplate, $theseParams );
 			$this->getOutput()->addFeedLink( $format, $url );

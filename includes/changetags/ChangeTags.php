@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Storage\NameTableAccessException;
@@ -143,7 +144,8 @@ class ChangeTags {
 	 * @return array Array of all defined/enabled tags.
 	 */
 	public static function getSoftwareTags( $all = false ) {
-		$coreTags = MediaWikiServices::getInstance()->getMainConfig()->get( 'SoftwareTags' );
+		$coreTags = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::SoftwareTags );
 		$softwareTags = [];
 
 		if ( !is_array( $coreTags ) ) {
@@ -893,7 +895,8 @@ class ChangeTags {
 	public static function modifyDisplayQuery( &$tables, &$fields, &$conds,
 		&$join_conds, &$options, $filter_tag = '', bool $exclude = false
 	) {
-		$useTagFilter = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseTagFilter' );
+		$useTagFilter = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::UseTagFilter );
 
 		// Normalize to arrays
 		$tables = (array)$tables;
@@ -1058,7 +1061,8 @@ class ChangeTags {
 		}
 
 		$config = $context->getConfig();
-		if ( !$config->get( 'UseTagFilter' ) || !count( self::listDefinedTags() ) ) {
+		if ( !$config->get( MainConfigNames::UseTagFilter ) ||
+		!count( self::listDefinedTags() ) ) {
 			return [];
 		}
 

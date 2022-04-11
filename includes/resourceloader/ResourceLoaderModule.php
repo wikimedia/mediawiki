@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader\HookRunner;
 use Psr\Log\LoggerAwareInterface;
@@ -335,7 +336,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		);
 
 		// Expand debug URL in case we are another wiki's module source (T255367)
-		$url = $rl->expandUrl( $this->getConfig()->get( 'Server' ), $url );
+		$url = $rl->expandUrl( $this->getConfig()->get( MainConfigNames::Server ), $url );
 
 		return [ $url ];
 	}
@@ -1042,7 +1043,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	protected function validateScriptFile( $fileName, $contents ) {
 		$error = null;
 
-		if ( $this->getConfig()->get( 'ResourceLoaderValidateJS' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::ResourceLoaderValidateJS ) ) {
 			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 			// Cache potentially slow parsing of JavaScript code during the
 			// critical path. This happens lazily when responding to requests

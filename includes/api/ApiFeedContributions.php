@@ -25,6 +25,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
@@ -128,22 +129,22 @@ class ApiFeedContributions extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		$config = $this->getConfig();
-		if ( !$config->get( 'Feed' ) ) {
+		if ( !$config->get( MainConfigNames::Feed ) ) {
 			$this->dieWithError( 'feed-unavailable' );
 		}
 
-		$feedClasses = $config->get( 'FeedClasses' );
+		$feedClasses = $config->get( MainConfigNames::FeedClasses );
 		if ( !isset( $feedClasses[$params['feedformat']] ) ) {
 			$this->dieWithError( 'feed-invalid' );
 		}
 
-		if ( $params['showsizediff'] && $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $params['showsizediff'] && $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$this->dieWithError( 'apierror-sizediffdisabled' );
 		}
 
 		$msg = wfMessage( 'Contributions' )->inContentLanguage()->text();
-		$feedTitle = $config->get( 'Sitename' ) . ' - ' . $msg .
-			' [' . $config->get( 'LanguageCode' ) . ']';
+		$feedTitle = $config->get( MainConfigNames::Sitename ) . ' - ' . $msg .
+			' [' . $config->get( MainConfigNames::LanguageCode ) . ']';
 
 		$target = $params['user'];
 		if ( ExternalUserNames::isExternal( $target ) ) {
@@ -190,7 +191,7 @@ class ApiFeedContributions extends ApiBase {
 			$this->commentFormatter
 		);
 
-		$feedLimit = $this->getConfig()->get( 'FeedLimit' );
+		$feedLimit = $this->getConfig()->get( MainConfigNames::FeedLimit );
 		if ( $pager->getLimit() > $feedLimit ) {
 			$pager->setLimit( $feedLimit );
 		}
@@ -292,7 +293,7 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		$feedFormatNames = array_keys( $this->getConfig()->get( 'FeedClasses' ) );
+		$feedFormatNames = array_keys( $this->getConfig()->get( MainConfigNames::FeedClasses ) );
 
 		$ret = [
 			'feedformat' => [
@@ -327,7 +328,7 @@ class ApiFeedContributions extends ApiBase {
 			],
 		];
 
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$ret['showsizediff'][ApiBase::PARAM_HELP_MSG] = 'api-help-param-disabled-in-miser-mode';
 		}
 

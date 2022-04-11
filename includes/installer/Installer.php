@@ -27,6 +27,7 @@
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Interwiki\NullInterwikiLookup;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use Wikimedia\AtEase\AtEase;
@@ -382,7 +383,7 @@ abstract class Installer {
 				CACHE_DB => $emptyCache,
 				CACHE_ANYTHING => $emptyCache,
 				CACHE_MEMCACHED => $emptyCache,
-			] + $baseConfig->get( 'ObjectCaches' );
+			] + $baseConfig->get( MainConfigNames::ObjectCaches );
 
 		$configOverrides->set( 'ObjectCaches', $objectCaches );
 
@@ -511,7 +512,7 @@ abstract class Installer {
 
 		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
 		// SqlBagOStuff will then throw since we just disabled wfGetDB)
-		$wgObjectCaches = $mwServices->getMainConfig()->get( 'ObjectCaches' );
+		$wgObjectCaches = $mwServices->getMainConfig()->get( MainConfigNames::ObjectCaches );
 
 		$this->parserOptions = new ParserOptions( $user ); // language will be wrong :(
 		// Don't try to access DB before user language is initialised

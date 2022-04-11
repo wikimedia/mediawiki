@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserRigorOptions;
 use SpecialPage;
@@ -85,16 +86,18 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 
 	protected function postInitSetup() {
 		if ( $this->emailEnabled === null ) {
-			$this->emailEnabled = $this->config->get( 'EnableEmail' );
+			$this->emailEnabled = $this->config->get( MainConfigNames::EnableEmail );
 		}
 		if ( $this->newPasswordExpiry === null ) {
-			$this->newPasswordExpiry = $this->config->get( 'NewPasswordExpiry' );
+			$this->newPasswordExpiry = $this->config->get( MainConfigNames::NewPasswordExpiry );
 		}
 		if ( $this->passwordReminderResendTime === null ) {
-			$this->passwordReminderResendTime = $this->config->get( 'PasswordReminderResendTime' );
+			$this->passwordReminderResendTime =
+				$this->config->get( MainConfigNames::PasswordReminderResendTime );
 		}
 		if ( $this->allowRequiringEmail === null ) {
-			$this->allowRequiringEmail = $this->config->get( 'AllowRequiringEmailForResets' );
+			$this->allowRequiringEmail =
+				$this->config->get( MainConfigNames::AllowRequiringEmailForResets );
 		}
 	}
 

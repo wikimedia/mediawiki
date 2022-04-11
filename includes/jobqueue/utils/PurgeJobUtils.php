@@ -20,6 +20,7 @@
  *
  * @file
  */
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -63,7 +64,8 @@ class PurgeJobUtils {
 					return;
 				}
 
-				$batchSize = $services->getMainConfig()->get( 'UpdateRowsPerQuery' );
+				$batchSize =
+					$services->getMainConfig()->get( MainConfigNames::UpdateRowsPerQuery );
 				$ticket = $lbFactory->getEmptyTransactionTicket( $fname );
 				$idBatches = array_chunk( $ids, $batchSize );
 				foreach ( $idBatches as $idBatch ) {

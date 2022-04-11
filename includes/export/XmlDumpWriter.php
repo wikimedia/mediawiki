@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -163,7 +164,8 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	private function sitename() {
-		$sitename = MediaWikiServices::getInstance()->getMainConfig()->get( 'Sitename' );
+		$sitename = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::Sitename );
 		return Xml::element( 'sitename', [], $sitename );
 	}
 

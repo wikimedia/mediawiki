@@ -24,6 +24,7 @@
  * @ingroup SpecialPage
  */
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\SlotRecord;
@@ -739,7 +740,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 */
 	public function downloadSource() {
 		$importer = new ImportableUploadRevisionImporter(
-			$this->config->get( 'EnableUploads' ),
+			$this->config->get( MainConfigNames::EnableUploads ),
 			LoggerFactory::getInstance( 'UploadRevisionImporter' )
 		);
 		return $importer->downloadSource( $this );

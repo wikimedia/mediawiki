@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 
@@ -159,7 +160,9 @@ class SkinTemplate extends Skin {
 		$config = $this->getConfig();
 
 		$footericons = [];
-		foreach ( $config->get( 'FooterIcons' ) as $footerIconsKey => &$footerIconsBlock ) {
+		foreach (
+			$config->get( MainConfigNames::FooterIcons ) as $footerIconsKey => &$footerIconsBlock
+		) {
 			if ( count( $footerIconsBlock ) > 0 ) {
 				$footericons[$footerIconsKey] = [];
 				foreach ( $footerIconsBlock as &$footerIcon ) {
@@ -232,9 +235,9 @@ class SkinTemplate extends Skin {
 		$feeds = $this->buildFeedUrls();
 		$tpl->set( 'feeds', count( $feeds ) ? $feeds : false );
 
-		$tpl->set( 'mimetype', $config->get( 'MimeType' ) );
+		$tpl->set( 'mimetype', $config->get( MainConfigNames::MimeType ) );
 		$tpl->set( 'charset', 'UTF-8' );
-		$tpl->set( 'wgScript', $config->get( 'Script' ) );
+		$tpl->set( 'wgScript', $config->get( MainConfigNames::Script ) );
 		$tpl->set( 'skinname', $this->skinname );
 		$tpl->set( 'skinclass', static::class );
 		$tpl->set( 'skin', $this );
@@ -250,13 +253,13 @@ class SkinTemplate extends Skin {
 
 		$tpl->set( 'searchtitle', $searchTitle->getPrefixedDBkey() );
 		$tpl->set( 'search', trim( $request->getVal( 'search' ) ) );
-		$tpl->set( 'stylepath', $config->get( 'StylePath' ) );
-		$tpl->set( 'articlepath', $config->get( 'ArticlePath' ) );
-		$tpl->set( 'scriptpath', $config->get( 'ScriptPath' ) );
-		$tpl->set( 'serverurl', $config->get( 'Server' ) );
+		$tpl->set( 'stylepath', $config->get( MainConfigNames::StylePath ) );
+		$tpl->set( 'articlepath', $config->get( MainConfigNames::ArticlePath ) );
+		$tpl->set( 'scriptpath', $config->get( MainConfigNames::ScriptPath ) );
+		$tpl->set( 'serverurl', $config->get( MainConfigNames::Server ) );
 		$logos = ResourceLoaderSkinModule::getAvailableLogos( $config );
 		$tpl->set( 'logopath', $logos['1x'] );
-		$tpl->set( 'sitename', $config->get( 'Sitename' ) );
+		$tpl->set( 'sitename', $config->get( MainConfigNames::Sitename ) );
 
 		$userLang = $this->getLanguage();
 		$userLangCode = $userLang->getHtmlCode();
@@ -614,7 +617,7 @@ class SkinTemplate extends Skin {
 	protected function useCombinedLoginLink() {
 		$services = MediaWikiServices::getInstance();
 		$authManager = $services->getAuthManager();
-		$useCombinedLoginLink = $this->getConfig()->get( 'UseCombinedLoginLink' );
+		$useCombinedLoginLink = $this->getConfig()->get( MainConfigNames::UseCombinedLoginLink );
 		if ( !$authManager->canCreateAccounts() || !$authManager->canAuthenticateNow() ) {
 			// don't show combined login/signup link if one of those is actually not available
 			$useCombinedLoginLink = false;
@@ -1105,7 +1108,7 @@ class SkinTemplate extends Skin {
 			);
 
 		// Add class identifying the page is temporarily watched, if applicable.
-		if ( $this->getConfig()->get( 'WatchlistExpiry' ) &&
+		if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) &&
 			MediaWikiServices::getInstance()->getWatchlistManager()->isTempWatched( $performer, $title )
 		) {
 			$class .= ' mw-watchlink-temp';

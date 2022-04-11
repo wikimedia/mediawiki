@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -115,7 +116,8 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 			// The timeout should always be set by HttpRequestFactory, so this
 			// should only happen if the class was directly constructed
 			wfDeprecated( __METHOD__ . ' without the timeout option', '1.35' );
-			$httpTimeout = MediaWikiServices::getInstance()->getMainConfig()->get( 'HTTPTimeout' );
+			$httpTimeout = MediaWikiServices::getInstance()->getMainConfig()->get(
+				MainConfigNames::HTTPTimeout );
 			$this->timeout = $httpTimeout;
 		}
 		if ( isset( $options['connectTimeout'] ) && $options['connectTimeout'] != 'default' ) {
@@ -124,7 +126,8 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 			// The timeout should always be set by HttpRequestFactory, so this
 			// should only happen if the class was directly constructed
 			wfDeprecated( __METHOD__ . ' without the connectTimeout option', '1.35' );
-			$httpConnectTimeout = MediaWikiServices::getInstance()->getMainConfig()->get( 'HTTPConnectTimeout' );
+			$httpConnectTimeout = MediaWikiServices::getInstance()->getMainConfig()->get(
+				MainConfigNames::HTTPConnectTimeout );
 			$this->connectTimeout = $httpConnectTimeout;
 		}
 		if ( isset( $options['userAgent'] ) ) {
@@ -225,8 +228,10 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @return void
 	 */
 	protected function proxySetup() {
-		$httpProxy = MediaWikiServices::getInstance()->getMainConfig()->get( 'HTTPProxy' );
-		$localHTTPProxy = MediaWikiServices::getInstance()->getMainConfig()->get( 'LocalHTTPProxy' );
+		$httpProxy = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::HTTPProxy );
+		$localHTTPProxy = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::LocalHTTPProxy );
 		// If proxies are disabled, clear any other proxy
 		if ( $this->noProxy ) {
 			$this->proxy = '';
@@ -287,7 +292,8 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 */
 	private static function isLocalURL( $url ) {
 		$commandLineMode = MediaWikiServices::getInstance()->getMainConfig()->get( 'CommandLineMode' );
-		$localVirtualHosts = MediaWikiServices::getInstance()->getMainConfig()->get( 'LocalVirtualHosts' );
+		$localVirtualHosts = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::LocalVirtualHosts );
 		if ( $commandLineMode ) {
 			return false;
 		}
