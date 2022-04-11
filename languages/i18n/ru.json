@@ -2631,6 +2631,7 @@
 	"undeletebtn": "Восстановить",
 	"undeletelink": "просмотреть/восстановить",
 	"undeleteviewlink": "просмотреть",
+	"undelete-undeletetalk": "Восстановить все версии связанной страницы обсуждения",
 	"undeleteinvert": "Обратить выделение",
 	"undeletecomment": "Причина:",
 	"cannotundelete": "Некоторые или все ваши восстановления не удались:\n$1",
