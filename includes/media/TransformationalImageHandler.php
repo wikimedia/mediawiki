@@ -457,7 +457,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * to filter down to users.
 	 *
 	 * @param string $path The file path
-	 * @param bool|string $scene The scene specification, or false if there is none
+	 * @param string|false $scene The scene specification, or false if there is none
 	 * @throws MWException
 	 * @return string
 	 */
@@ -478,7 +478,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * Escape a string for ImageMagick's output filename. See
 	 * InterpretImageFilename() in magick/image.c.
 	 * @param string $path The file path
-	 * @param bool|string $scene The scene specification, or false if there is none
+	 * @param string|false $scene The scene specification, or false if there is none
 	 * @return string
 	 */
 	protected function escapeMagickOutput( $path, $scene = false ) {
@@ -492,7 +492,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * helper function for escapeMagickInput() and escapeMagickOutput().
 	 *
 	 * @param string $path The file path
-	 * @param bool|string $scene The scene specification, or false if there is none
+	 * @param string|false $scene The scene specification, or false if there is none
 	 * @throws MWException
 	 * @return string
 	 */
@@ -525,7 +525,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * Retrieve the version of the installed ImageMagick
 	 * You can use PHPs version_compare() to use this value
 	 * Value is cached for one hour.
-	 * @return string|bool Representing the IM version; false on error
+	 * @return string|false Representing the IM version; false on error
 	 */
 	protected function getMagickVersion() {
 		$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
@@ -587,7 +587,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @param array $params Rotate parameters.
 	 *   'rotation' clockwise rotation in degrees, allowed are multiples of 90
 	 * @since 1.24 Is non-static. From 1.21 it was static
-	 * @return bool|MediaTransformError
+	 * @return MediaTransformError|false
 	 */
 	public function rotate( $file, $params ) {
 		return new MediaTransformError( 'thumbnail_error', 0, 0,
