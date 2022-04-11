@@ -2617,7 +2617,6 @@
 	"undeletebtn": "Restore",
 	"undeletelink": "view/restore",
 	"undeleteviewlink": "view",
-	"undelete-undeletetalk": "Undelete all revisions of the associated talk page",
 	"undeleteinvert": "Invert selection",
 	"undeletecomment": "Reason:",
 	"cannotundelete": "Some or all of the undeletion failed:\n$1",

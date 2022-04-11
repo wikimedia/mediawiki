@@ -126,6 +126,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 		$classInstance = new class() {
 		};
 		$serializableClass = new class() implements JsonSerializable {
+			#[\ReturnTypeWillChange]
 			public function jsonSerialize() {
 				return [];
 			}
@@ -190,6 +191,7 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 
 	public function provideSerializeSuccess() {
 		$serializableInstance = new class() implements JsonSerializable {
+			#[\ReturnTypeWillChange]
 			public function jsonSerialize() {
 				return [ 'c' => 'd' ];
 			}
