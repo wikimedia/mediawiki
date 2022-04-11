@@ -1253,23 +1253,18 @@ class WebRequest {
 	 * Fetch the raw IP from the request
 	 *
 	 * @since 1.19
-	 *
-	 * @throws MWException
 	 * @return string|null
 	 */
 	protected function getRawIP() {
-		if ( !isset( $_SERVER['REMOTE_ADDR'] ) ) {
+		$remoteAddr = $_SERVER['REMOTE_ADDR'] ?? null;
+		if ( !$remoteAddr ) {
 			return null;
 		}
-
-		if ( is_array( $_SERVER['REMOTE_ADDR'] ) || strpos( $_SERVER['REMOTE_ADDR'], ',' ) !== false ) {
-			throw new MWException( __METHOD__
-				. " : Could not determine the remote IP address due to multiple values." );
-		} else {
-			$ipchain = $_SERVER['REMOTE_ADDR'];
+		if ( is_array( $remoteAddr ) || str_contains( $remoteAddr, ',' ) ) {
+			throw new MWException( 'Remote IP must not contain multiple values' );
 		}
 
-		return IPUtils::canonicalize( $ipchain );
+		return IPUtils::canonicalize( $remoteAddr );
 	}
 
 	/**
@@ -1277,8 +1272,6 @@ class WebRequest {
 	 * For trusted proxies, use the XFF client IP (first of the chain)
 	 *
 	 * @since 1.19
-	 *
-	 * @throws MWException
 	 * @return string
 	 */
 	public function getIP() {
@@ -1289,7 +1282,7 @@ class WebRequest {
 			return $this->ip;
 		}
 
-		# collect the originating ips
+		# collect the originating IPs
 		$ip = $this->getRawIP();
 		if ( !$ip ) {
 			throw new MWException( 'Unable to determine IP.' );
@@ -1346,12 +1339,15 @@ class WebRequest {
 			}
 		}
 
-		# Allow extensions to improve our guess
-		// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
-		Hooks::runner()->onGetIP( $ip );
+		// Allow extensions to modify the result
+		// Optimisation: Hot code called on most requests (T85805).
+		if ( Hooks::isRegistered( 'GetIP' ) ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
+			Hooks::runner()->onGetIP( $ip );
+		}
 
 		if ( !$ip ) {
-			throw new MWException( "Unable to determine IP." );
+			throw new MWException( 'Unable to determine IP.' );
 		}
 
 		$this->ip = $ip;
