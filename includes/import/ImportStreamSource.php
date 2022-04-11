@@ -24,6 +24,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 
@@ -114,7 +115,8 @@ class ImportStreamSource implements ImportSource {
 	 * @return Status
 	 */
 	public static function newFromURL( $url, $method = 'GET' ) {
-		$httpImportTimeout = MediaWikiServices::getInstance()->getMainConfig()->get( 'HTTPImportTimeout' );
+		$httpImportTimeout = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::HTTPImportTimeout );
 		wfDebug( __METHOD__ . ": opening $url" );
 		# Use the standard HTTP fetch function; it times out
 		# quicker and sorts out user-agent problems which might

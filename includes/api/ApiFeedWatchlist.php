@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
+
 /**
  * This action allows users to get their watchlist items in RSS/Atom formats.
  * When executed, it performs a nested call to the API to get the needed data,
@@ -64,13 +66,13 @@ class ApiFeedWatchlist extends ApiBase {
 	 */
 	public function execute() {
 		$config = $this->getConfig();
-		$feedClasses = $config->get( 'FeedClasses' );
+		$feedClasses = $config->get( MainConfigNames::FeedClasses );
 		$params = [];
 		$feedItems = [];
 		try {
 			$params = $this->extractRequestParams();
 
-			if ( !$config->get( 'Feed' ) ) {
+			if ( !$config->get( MainConfigNames::Feed ) ) {
 				$this->dieWithError( 'feed-unavailable' );
 			}
 
@@ -90,7 +92,7 @@ class ApiFeedWatchlist extends ApiBase {
 				'wlprop' => 'title|user|comment|timestamp|ids|loginfo',
 				'wldir' => 'older', // reverse order - from newest to oldest
 				'wlend' => $endTime, // stop at this time
-				'wllimit' => min( 50, $this->getConfig()->get( 'FeedLimit' ) )
+				'wllimit' => min( 50, $this->getConfig()->get( MainConfigNames::FeedLimit ) )
 			];
 
 			if ( $params['wlowner'] !== null ) {
@@ -138,8 +140,8 @@ class ApiFeedWatchlist extends ApiBase {
 
 			$msg = wfMessage( 'watchlist' )->inContentLanguage()->text();
 
-			$feedTitle = $this->getConfig()->get( 'Sitename' ) . ' - ' . $msg .
-				' [' . $this->getConfig()->get( 'LanguageCode' ) . ']';
+			$feedTitle = $this->getConfig()->get( MainConfigNames::Sitename ) . ' - ' . $msg .
+				' [' . $this->getConfig()->get( MainConfigNames::LanguageCode ) . ']';
 			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullURL();
 
 			$feed = new $feedClasses[$params['feedformat']] (
@@ -154,9 +156,9 @@ class ApiFeedWatchlist extends ApiBase {
 			$this->getMain()->setCacheMaxAge( 0 );
 
 			// @todo FIXME: Localise  brackets
-			$feedTitle = $this->getConfig()->get( 'Sitename' ) . ' - Error - ' .
+			$feedTitle = $this->getConfig()->get( MainConfigNames::Sitename ) . ' - Error - ' .
 				wfMessage( 'watchlist' )->inContentLanguage()->text() .
-				' [' . $this->getConfig()->get( 'LanguageCode' ) . ']';
+				' [' . $this->getConfig()->get( MainConfigNames::LanguageCode ) . ']';
 			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullURL();
 
 			$feedFormat = $params['feedformat'] ?? 'rss';
@@ -253,7 +255,7 @@ class ApiFeedWatchlist extends ApiBase {
 	}
 
 	public function getAllowedParams( $flags = 0 ) {
-		$feedFormatNames = array_keys( $this->getConfig()->get( 'FeedClasses' ) );
+		$feedFormatNames = array_keys( $this->getConfig()->get( MainConfigNames::FeedClasses ) );
 		$ret = [
 			'feedformat' => [
 				ApiBase::PARAM_DFLT => 'rss',

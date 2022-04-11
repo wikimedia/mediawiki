@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -61,7 +62,7 @@ class ImageHistoryList extends ContextSource {
 		$this->img = $imagePage->getDisplayedFile();
 		$this->title = $imagePage->getTitle();
 		$this->imagePage = $imagePage;
-		$this->showThumb = $context->getConfig()->get( 'ShowArchiveThumbnails' ) &&
+		$this->showThumb = $context->getConfig()->get( MainConfigNames::ShowArchiveThumbnails ) &&
 			$this->img->canRender();
 		$this->setContext( $context );
 	}

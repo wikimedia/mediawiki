@@ -23,6 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
@@ -550,13 +551,13 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @param string $type
 	 */
 	protected function feed( $type ) {
-		if ( !$this->getConfig()->get( 'Feed' ) ) {
+		if ( !$this->getConfig()->get( MainConfigNames::Feed ) ) {
 			$this->getOutput()->addWikiMsg( 'feed-unavailable' );
 
 			return;
 		}
 
-		$feedClasses = $this->getConfig()->get( 'FeedClasses' );
+		$feedClasses = $this->getConfig()->get( MainConfigNames::FeedClasses );
 		if ( !isset( $feedClasses[$type] ) ) {
 			$this->getOutput()->addWikiMsg( 'feed-invalid' );
 
@@ -571,7 +572,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$pager = $this->getNewPagesPager();
 		$limit = $this->opts->getValue( 'limit' );
-		$pager->mLimit = min( $limit, $this->getConfig()->get( 'FeedLimit' ) );
+		$pager->mLimit = min( $limit, $this->getConfig()->get( MainConfigNames::FeedLimit ) );
 
 		$feed->outHeader();
 		if ( $pager->getNumRows() > 0 ) {
@@ -584,8 +585,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 	protected function feedTitle() {
 		$desc = $this->getDescription();
-		$code = $this->getConfig()->get( 'LanguageCode' );
-		$sitename = $this->getConfig()->get( 'Sitename' );
+		$code = $this->getConfig()->get( MainConfigNames::LanguageCode );
+		$sitename = $this->getConfig()->get( MainConfigNames::Sitename );
 
 		return "$sitename - $desc [$code]";
 	}

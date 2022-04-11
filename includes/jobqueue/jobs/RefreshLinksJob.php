@@ -23,6 +23,7 @@
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageAssertionException;
 use MediaWiki\Page\PageIdentity;
@@ -139,7 +140,7 @@ class RefreshLinksJob extends Job {
 			// jobs and possibly a recursive RefreshLinks job for the rest of the backlinks
 			$jobs = BacklinkJobUtils::partitionBacklinkJob(
 				$this,
-				$services->getMainConfig()->get( 'UpdateRowsPerJob' ),
+				$services->getMainConfig()->get( MainConfigNames::UpdateRowsPerJob ),
 				1, // job-per-title
 				[ 'params' => $extraParams ]
 			);

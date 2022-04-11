@@ -30,6 +30,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
 use Profiler;
 use RequestContext;
@@ -1340,7 +1341,7 @@ class SpecialPageFactory {
 
 		if ( !$including ) {
 			// Narrow DB query expectations for this HTTP request
-			$trxLimits = $context->getConfig()->get( 'TrxProfilerLimits' );
+			$trxLimits = $context->getConfig()->get( MainConfigNames::TrxProfilerLimits );
 			$trxProfiler = Profiler::instance()->getTransactionProfiler();
 			if ( $context->getRequest()->wasPosted() && !$page->doesWrites() ) {
 				$trxProfiler->setExpectations( $trxLimits['POST-nonwrite'], __METHOD__ );

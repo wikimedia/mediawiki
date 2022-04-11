@@ -25,6 +25,7 @@ use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\ExistingPageRecord;
@@ -362,7 +363,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
 	 */
 	public static function getQueryInfo() {
-		$pageLanguageUseDB = MediaWikiServices::getInstance()->getMainConfig()->get( 'PageLanguageUseDB' );
+		$pageLanguageUseDB = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::PageLanguageUseDB );
 
 		$ret = [
 			'tables' => [ 'page' ],
@@ -966,7 +968,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @return bool
 	 */
 	public function isCountable( $editInfo = false ) {
-		$articleCountMethod = MediaWikiServices::getInstance()->getMainConfig()->get( 'ArticleCountMethod' );
+		$articleCountMethod = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ArticleCountMethod );
 
 		// NOTE: Keep in sync with DerivedPageDataUpdater::isCountable.
 
@@ -1948,8 +1951,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$tags = [],
 		$undidRevId = 0
 	) {
-		$useNPPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseNPPatrol' );
-		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseRCPatrol' );
+		$useNPPatrol = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::UseNPPatrol );
+		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::UseRCPatrol );
 		if ( !( $summary instanceof CommentStoreComment ) ) {
 			$summary = CommentStoreComment::newUnsavedComment( trim( $summary ) );
 		}
@@ -2670,7 +2675,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 */
 	public function isBatchedDelete( $safetyMargin = 0 ) {
 		$deleteRevisionsBatchSize = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'DeleteRevisionsBatchSize' );
+			->getMainConfig()->get( MainConfigNames::DeleteRevisionsBatchSize );
 
 		$dbr = wfGetDB( DB_REPLICA );
 		$revCount = $this->getRevisionStore()->countRevisionsByPageId( $dbr, $this->getId() );
@@ -2997,7 +3002,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param Title $title
 	 */
 	private static function purgeInterwikiCheckKey( Title $title ) {
-		$enableScaryTranscluding = MediaWikiServices::getInstance()->getMainConfig()->get( 'EnableScaryTranscluding' );
+		$enableScaryTranscluding = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::EnableScaryTranscluding );
 
 		if ( !$enableScaryTranscluding ) {
 			return; // @todo: perhaps this wiki is only used as a *source* for content?
@@ -3224,7 +3230,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			MediaWikiServices::getInstance()->getJobQueueGroup()->lazyPush(
 				RefreshLinksJob::newPrioritized( $this->mTitle, $params )
 			);
-		} elseif ( !$config->get( 'MiserMode' ) && $parserOutput->hasReducedExpiry() ) {
+		} elseif ( !$config->get( MainConfigNames::MiserMode ) &&
+		$parserOutput->hasReducedExpiry() ) {
 			// Assume the output contains "dynamic" time/random based magic words.
 			// Only update pages that expired due to dynamic content and NOT due to edits
 			// to referenced templates/files. When the cache expires due to dynamic content,
@@ -3315,7 +3322,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @return string
 	 */
 	public function getWikiDisplayName() {
-		$sitename = MediaWikiServices::getInstance()->getMainConfig()->get( 'Sitename' );
+		$sitename = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::Sitename );
 		return $sitename;
 	}
 

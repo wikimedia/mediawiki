@@ -22,6 +22,7 @@
 
 use MediaWiki\HeaderCallback;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader\HookRunner;
 use Psr\Log\LoggerAwareInterface;
@@ -254,7 +255,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		$this->hookRunner = new HookRunner( $this->hookContainer );
 
 		// Add 'local' source first
-		$this->addSource( 'local', $config->get( 'LoadScript' ) );
+		$this->addSource( 'local', $config->get( MainConfigNames::LoadScript ) );
 
 		// Special module that always exists
 		$this->register( 'startup', [ 'class' => ResourceLoaderStartUpModule::class ] );
@@ -369,7 +370,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	public function registerTestModules(): void {
 		global $IP;
 
-		if ( $this->config->get( 'EnableJavaScriptTest' ) !== true ) {
+		if ( $this->config->get( MainConfigNames::EnableJavaScriptTest ) !== true ) {
 			throw new MWException( 'Attempt to register JavaScript test modules '
 				. 'but <code>$wgEnableJavaScriptTest</code> is false. '
 				. 'Edit your <code>LocalSettings.php</code> to enable it.' );
@@ -837,7 +838,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 
 			// Use file cache if enabled and available...
-			if ( $this->config->get( 'UseFileCache' ) ) {
+			if ( $this->config->get( MainConfigNames::UseFileCache ) ) {
 				$fileCache = ResourceFileCache::newFromContext( $context );
 				if ( $this->tryRespondFromFileCache( $fileCache, $context, $etag ) ) {
 					return; // output handled
@@ -925,7 +926,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		ResourceLoaderContext $context, $etag, $errors, array $extra = []
 	): void {
 		HeaderCallback::warnIfHeadersSent();
-		$rlMaxage = $this->config->get( 'ResourceLoaderMaxage' );
+		$rlMaxage = $this->config->get( MainConfigNames::ResourceLoaderMaxage );
 		// Use a short cache expiry so that updates propagate to clients quickly, if:
 		// - No version specified (shared resources, e.g. stylesheets)
 		// - There were errors (recover quickly)
@@ -1017,7 +1018,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		ResourceLoaderContext $context,
 		$etag
 	) {
-		$rlMaxage = $this->config->get( 'ResourceLoaderMaxage' );
+		$rlMaxage = $this->config->get( MainConfigNames::ResourceLoaderMaxage );
 		// Buffer output to catch warnings.
 		ob_start();
 		// Get the maximum age the cache can be
@@ -1089,7 +1090,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @return string Sanitized text that can be returned to the user
 	 */
 	protected static function formatExceptionNoComment( Throwable $e ) {
-		$showExceptionDetails = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowExceptionDetails' );
+		$showExceptionDetails = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ShowExceptionDetails );
 
 		if ( !$showExceptionDetails ) {
 			return MWExceptionHandler::getPublicLogMessage( $e );
@@ -1729,7 +1731,8 @@ MESSAGE;
 	public static function inDebugMode() {
 		if ( self::$debugMode === null ) {
 			global $wgRequest;
-			$resourceLoaderDebug = MediaWikiServices::getInstance()->getMainConfig()->get( 'ResourceLoaderDebug' );
+			$resourceLoaderDebug = MediaWikiServices::getInstance()->getMainConfig()->get(
+				MainConfigNames::ResourceLoaderDebug );
 			$str = $wgRequest->getRawVal( 'debug',
 				$wgRequest->getCookie( 'resourceLoaderDebug', '', $resourceLoaderDebug ? 'true' : '' )
 			);
@@ -1968,7 +1971,7 @@ MESSAGE;
 			}
 		}
 
-		$illegalFileChars = $conf->get( 'IllegalFileChars' );
+		$illegalFileChars = $conf->get( MainConfigNames::IllegalFileChars );
 
 		// Build list of variables
 		$skin = $context->getSkin();
@@ -1977,26 +1980,26 @@ MESSAGE;
 		$vars = [
 			'debug' => $context->getDebug(),
 			'skin' => $skin,
-			'stylepath' => $conf->get( 'StylePath' ),
-			'wgArticlePath' => $conf->get( 'ArticlePath' ),
-			'wgScriptPath' => $conf->get( 'ScriptPath' ),
-			'wgScript' => $conf->get( 'Script' ),
-			'wgSearchType' => $conf->get( 'SearchType' ),
-			'wgVariantArticlePath' => $conf->get( 'VariantArticlePath' ),
-			'wgServer' => $conf->get( 'Server' ),
-			'wgServerName' => $conf->get( 'ServerName' ),
+			'stylepath' => $conf->get( MainConfigNames::StylePath ),
+			'wgArticlePath' => $conf->get( MainConfigNames::ArticlePath ),
+			'wgScriptPath' => $conf->get( MainConfigNames::ScriptPath ),
+			'wgScript' => $conf->get( MainConfigNames::Script ),
+			'wgSearchType' => $conf->get( MainConfigNames::SearchType ),
+			'wgVariantArticlePath' => $conf->get( MainConfigNames::VariantArticlePath ),
+			'wgServer' => $conf->get( MainConfigNames::Server ),
+			'wgServerName' => $conf->get( MainConfigNames::ServerName ),
 			'wgUserLanguage' => $context->getLanguage(),
 			'wgContentLanguage' => $contLang->getCode(),
 			'wgVersion' => MW_VERSION,
 			'wgFormattedNamespaces' => $contLang->getFormattedNamespaces(),
 			'wgNamespaceIds' => $namespaceIds,
 			'wgContentNamespaces' => $nsInfo->getContentNamespaces(),
-			'wgSiteName' => $conf->get( 'Sitename' ),
-			'wgDBname' => $conf->get( 'DBname' ),
+			'wgSiteName' => $conf->get( MainConfigNames::Sitename ),
+			'wgDBname' => $conf->get( MainConfigNames::DBname ),
 			'wgWikiID' => WikiMap::getCurrentWikiId(),
 			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
 			'wgCommentCodePointLimit' => CommentStore::COMMENT_CHARACTER_LIMIT,
-			'wgExtensionAssetsPath' => $conf->get( 'ExtensionAssetsPath' ),
+			'wgExtensionAssetsPath' => $conf->get( MainConfigNames::ExtensionAssetsPath ),
 		];
 		// End of stable config vars.
 
@@ -2007,11 +2010,11 @@ MESSAGE;
 			// @internal For mediawiki.page.watch
 			// Force object to avoid "empty" associative array from
 			// becoming [] instead of {} in JS (T36604)
-			'wgActionPaths' => (object)$conf->get( 'ActionPaths' ),
+			'wgActionPaths' => (object)$conf->get( MainConfigNames::ActionPaths ),
 			// @internal For mediawiki.language
-			'wgTranslateNumerals' => $conf->get( 'TranslateNumerals' ),
+			'wgTranslateNumerals' => $conf->get( MainConfigNames::TranslateNumerals ),
 			// @internal For mediawiki.Title
-			'wgExtraSignatureNamespaces' => $conf->get( 'ExtraSignatureNamespaces' ),
+			'wgExtraSignatureNamespaces' => $conf->get( MainConfigNames::ExtraSignatureNamespaces ),
 			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
 			'wgIllegalFileChars' => Title::convertByteClassToUnicodeClass( $illegalFileChars ),
 		];

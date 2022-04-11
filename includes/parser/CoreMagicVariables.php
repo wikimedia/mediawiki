@@ -21,6 +21,7 @@
  * @ingroup Parser
  */
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOutputFlags;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -295,17 +296,17 @@ class CoreMagicVariables {
 			case 'currentversion':
 				return SpecialVersion::getVersion();
 			case 'articlepath':
-				return (string)$svcOptions->get( 'ArticlePath' );
+				return (string)$svcOptions->get( MainConfigNames::ArticlePath );
 			case 'sitename':
-				return (string)$svcOptions->get( 'Sitename' );
+				return (string)$svcOptions->get( MainConfigNames::Sitename );
 			case 'server':
-				return (string)$svcOptions->get( 'Server' );
+				return (string)$svcOptions->get( MainConfigNames::Server );
 			case 'servername':
-				return (string)$svcOptions->get( 'ServerName' );
+				return (string)$svcOptions->get( MainConfigNames::ServerName );
 			case 'scriptpath':
-				return (string)$svcOptions->get( 'ScriptPath' );
+				return (string)$svcOptions->get( MainConfigNames::ScriptPath );
 			case 'stylepath':
-				return (string)$svcOptions->get( 'StylePath' );
+				return (string)$svcOptions->get( MainConfigNames::StylePath );
 			case 'directionmark':
 				return $pageLang->getDirMark();
 			case 'contentlanguage':

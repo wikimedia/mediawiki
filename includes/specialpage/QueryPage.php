@@ -23,6 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\IDatabase;
@@ -155,7 +156,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return string[]
 	 */
 	public static function getDisabledQueryPages( Config $config ) {
-		$disableQueryPageUpdate = $config->get( 'DisableQueryPageUpdate' );
+		$disableQueryPageUpdate = $config->get( MainConfigNames::DisableQueryPageUpdate );
 
 		if ( !is_array( $disableQueryPageUpdate ) ) {
 			return [];
@@ -273,7 +274,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return bool
 	 */
 	public function isExpensive() {
-		return $this->getConfig()->get( 'DisableQueryPages' );
+		return $this->getConfig()->get( MainConfigNames::DisableQueryPages );
 	}
 
 	/**
@@ -296,7 +297,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return bool
 	 */
 	public function isCached() {
-		return $this->isExpensive() && $this->getConfig()->get( 'MiserMode' );
+		return $this->isExpensive() && $this->getConfig()->get( MainConfigNames::MiserMode );
 	}
 
 	/**
@@ -630,7 +631,7 @@ abstract class QueryPage extends SpecialPage {
 	protected function getLimitOffset() {
 		list( $limit, $offset ) = $this->getRequest()
 			->getLimitOffsetForUser( $this->getUser() );
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$maxResults = $this->getMaxResults();
 			// Can't display more than max results on a page
 			$limit = min( $limit, $maxResults );
@@ -650,7 +651,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	protected function getDBLimit( $uiLimit, $uiOffset ) {
 		$maxResults = $this->getMaxResults();
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$limit = min( $uiLimit + 1, $maxResults - $uiOffset );
 			return max( $limit, 0 );
 		} else {
@@ -670,7 +671,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	protected function getMaxResults() {
 		// Max of 10000, unless we store more than 10000 in query cache.
-		return max( $this->getConfig()->get( 'QueryCacheLimit' ), 10000 );
+		return max( $this->getConfig()->get( MainConfigNames::QueryCacheLimit ), 10000 );
 	}
 
 	/**
@@ -709,7 +710,8 @@ abstract class QueryPage extends SpecialPage {
 				// Fetch the timestamp of this update
 				$ts = $this->getCachedTimestamp();
 				$lang = $this->getLanguage();
-				$maxResults = $lang->formatNum( $this->getConfig()->get( 'QueryCacheLimit' ) );
+				$maxResults = $lang->formatNum( $this->getConfig()->get(
+					MainConfigNames::QueryCacheLimit ) );
 
 				if ( $ts ) {
 					$user = $this->getUser();
@@ -759,7 +761,7 @@ abstract class QueryPage extends SpecialPage {
 					min( $this->numRows, $this->limit ), // do not show the one extra row, if exist
 					$this->offset + 1, ( min( $this->numRows, $this->limit ) + $this->offset ) )->parseAsBlock() );
 				// Disable the "next" link when we reach the end
-				$miserMaxResults = $this->getConfig()->get( 'MiserMode' )
+				$miserMaxResults = $this->getConfig()->get( MainConfigNames::MiserMode )
 					&& ( $this->offset + $this->limit >= $this->getMaxResults() );
 				$atEnd = ( $this->numRows <= $this->limit ) || $miserMaxResults;
 				$paging = $this->buildPrevNextNavigation( $this->offset,
