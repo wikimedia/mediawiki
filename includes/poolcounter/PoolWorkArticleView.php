@@ -21,7 +21,6 @@
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
-use Psr\Log\LoggerInterface;
 
 /**
  * PoolCounter protected work wrapping RenderedRevision->getRevisionParserOutput.
@@ -43,7 +42,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	private $renderer = null;
 
 	/** @var LoggerSpi */
-	private $loggerSpi;
+	protected $loggerSpi;
 
 	/**
 	 * @param string $workKey
@@ -89,7 +88,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 		// Timing hack
 		if ( $time > 3 ) {
 			// TODO: Use Parser's logger (once it has one)
-			$logger = $this->getLogger( 'slow-parse' );
+			$logger = $this->loggerSpi->getLogger( 'slow-parse' );
 			$logger->info( 'Parsing {title} was slow, took {time} seconds', [
 				'time' => number_format( $time, 2 ),
 				'title' => (string)$this->revision->getPageAsLinkTarget(),
@@ -108,12 +107,4 @@ class PoolWorkArticleView extends PoolCounterWork {
 		return $status;
 	}
 
-	/**
-	 * @param string $name
-	 *
-	 * @return LoggerInterface
-	 */
-	protected function getLogger( $name = 'PoolWorkArticleView' ): LoggerInterface {
-		return $this->loggerSpi->getLogger( $name );
-	}
 }

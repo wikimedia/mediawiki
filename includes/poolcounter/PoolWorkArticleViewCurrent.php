@@ -120,8 +120,9 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	public function getCachedWork() {
 		$parserOutput = $this->parserCache->get( $this->page, $this->parserOptions );
 
-		$logger = $this->getLogger();
+		$logger = $this->loggerSpi->getLogger( 'PoolWorkArticleView' );
 		$logger->debug( $parserOutput ? 'parser cache hit' : 'parser cache miss' );
+
 		return $parserOutput ? Status::newGood( $parserOutput ) : false;
 	}
 
@@ -132,7 +133,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	public function fallback( $fast ) {
 		$parserOutput = $this->parserCache->getDirty( $this->page, $this->parserOptions );
 
-		$logger = $this->getLogger( 'dirty' );
+		$logger = $this->loggerSpi->getLogger( 'dirty' );
 
 		if ( !$parserOutput ) {
 			$logger->info( 'dirty missing' );
@@ -169,6 +170,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		}
 
 		$logger->info( $fast ? 'fast dirty output' : 'dirty output', [ 'workKey' => $this->workKey ] );
+
 		$status = Status::newGood( $parserOutput );
 		$status->warning( 'view-pool-dirty-output' );
 		$status->warning( $fast ? 'view-pool-contention' : 'view-pool-overload' );
