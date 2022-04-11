@@ -811,7 +811,7 @@ class MainConfigSchema {
 	 *   - isPrivate        Set this if measures should always be taken to keep the files private.
 	 *                      One should not trust this to assure that the files are not web readable;
 	 *                      the server configuration should be done manually depending on the backend.
-	 *   - useJsonMetadata  Whether handler metadata should be stored in JSON format. Default: false.
+	 *   - useJsonMetadata  Whether handler metadata should be stored in JSON format. Default: true.
 	 *   - useSplitMetadata Whether handler metadata should be split up and stored in the text table.
 	 *                      Default: false.
 	 *   - splitMetadataThreshold
