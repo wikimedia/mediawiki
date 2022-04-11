@@ -316,7 +316,7 @@
 	"apihelp-move-param-unwatch": "Remover a página e o redirecionamento das páginas vigiadas do utilizador atual.",
 	"apihelp-move-param-watchlist": "Adicionar ou remover incondicionalmente a página da lista de páginas vigiadas do utilizador atual, usar as preferências (ignorado para robôs) ou não alterar o estado de vigilância.",
 	"apihelp-move-param-watchlistexpiry": "Data e hora de expiração da lista de páginas vigiadas. Omitir este parâmetro para manter a expiração atual inalterada.",
-	"apihelp-move-param-ignorewarnings": "Ignorar quaisquer avisos.",
+	"apihelp-move-param-ignorewarnings": "Ignorar todos os avisos.",
 	"apihelp-move-param-tags": "Etiquetas de modificação a aplicar à entrada no registo de movimentações e à revisão nula na página de destino.",
 	"apihelp-move-example-move": "Mover <kbd>Badtitle</kbd> para <kbd>Goodtitle</kbd> sem deixar um redirecionamento.",
 	"apihelp-opensearch-summary": "Pesquisar a wiki usando o protocolo OpenSearch.",
