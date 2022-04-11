@@ -5724,16 +5724,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Max number of redirects to follow when resolving redirects.
-	 *
-	 * 1 means only the first redirect is followed (default behavior).
-	 * 0 or less means no redirects are followed.
-	 */
-	public const MaxRedirects = [
-		'default' => 1,
-	];
-
-	/**
 	 * Array of invalid page redirect targets.
 	 *
 	 * Attempting to create a redirect to any of the pages in this array

@@ -2209,12 +2209,6 @@ class MainConfigNames {
 	public const ExtraSignatureNamespaces = 'ExtraSignatureNamespaces';
 
 	/**
-	 * Name constant for the MaxRedirects setting, for use with Config::get()
-	 * @see MainConfigSchema::MaxRedirects
-	 */
-	public const MaxRedirects = 'MaxRedirects';
-
-	/**
 	 * Name constant for the InvalidRedirectTargets setting, for use with Config::get()
 	 * @see MainConfigSchema::InvalidRedirectTargets
 	 */

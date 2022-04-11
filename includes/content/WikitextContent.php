@@ -147,15 +147,7 @@ class WikitextContent extends TextContent {
 	 * @return array List of two elements: Title|null and string.
 	 */
 	public function getRedirectTargetAndText() {
-		$maxRedirects = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::MaxRedirects );
-
 		if ( $this->redirectTargetAndText !== null ) {
-			return $this->redirectTargetAndText;
-		}
-
-		if ( $maxRedirects < 1 ) {
-			// redirects are disabled, so quit early
-			$this->redirectTargetAndText = [ null, $this->getText() ];
 			return $this->redirectTargetAndText;
 		}
 

@@ -67,9 +67,6 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 			// For ResourceLoaderModule
 			MainConfigNames::ResourceLoaderValidateJS => false,
 
-			// For ResourceLoaderWikiModule
-			MainConfigNames::MaxRedirects => 1,
-
 			// For ResourceLoaderSkinModule
 			MainConfigNames::Logos => false,
 			MainConfigNames::Logo => '/logo.png',
