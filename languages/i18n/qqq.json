@@ -2851,7 +2851,6 @@
 	"undeletebtn": "Shown on [[Special:Undelete]] as button caption and on [[Special:Log/delete|deletion log]] after each entry (for sysops).\n\n{{Identical|Restore}}",
 	"undeletelink": "Display name of link to undelete a page used on [[Special:Log/delete]]\n\n{{Identical|View}}\n{{Identical|Restore}}",
 	"undeleteviewlink": "First part of {{msg-mw|undeletelink}}.\nDisplay name of link to view a deleted page used on [[Special:Log/delete]].\n{{Identical|View}}",
-	"undelete-undeletetalk": "Checkbox label used on [[Special:Undelete]].",
 	"undeleteinvert": "{{Identical|Invert selection}}",
 	"undeletecomment": "{{Identical|Reason}}",
 	"cannotundelete": "Message shown when undeletion failed for some reason. Parameters:\n* $1 - the combined wikitext of messages for all errors that caused the failure",
