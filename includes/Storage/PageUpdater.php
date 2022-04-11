@@ -166,6 +166,12 @@ class PageUpdater {
 	private $forceEmptyRevision = false;
 
 	/**
+	 * @var bool Whether to prevent new revision creation by throwing if it is
+	 *   attempted.
+	 */
+	private $preventChange = false;
+
+	/**
 	 * @var array
 	 */
 	private $tags = [];
@@ -332,6 +338,22 @@ class PageUpdater {
 	 */
 	private static function toLegacyUser( UserIdentity $user ) {
 		return User::newFromIdentity( $user );
+	}
+
+	/**
+	 * After creation of the user during the save process, update the stored
+	 * UserIdentity.
+	 * @since 1.39
+	 *
+	 * @param UserIdentity $author
+	 */
+	public function updateAuthor( UserIdentity $author ) {
+		if ( $this->author->getName() !== $author->getName() ) {
+			throw new \MWException( 'Cannot replace the author with an author ' .
+				'of a different name, since DerivedPageDataUpdater may have stored the ' .
+				'old name.' );
+		}
+		$this->author = $author;
 	}
 
 	/**
@@ -1074,6 +1096,25 @@ class PageUpdater {
 	}
 
 	/**
+	 * Whether the prepared edit is a change compared to the previous revision.
+	 *
+	 * @return bool
+	 */
+	public function isChange() {
+		return $this->derivedDataUpdater->isChange();
+	}
+
+	/**
+	 * Disable new revision creation, throwing an exception if it is attempted.
+	 *
+	 * @return $this
+	 */
+	public function preventChange() {
+		$this->preventChange = true;
+		return $this;
+	}
+
+	/**
 	 * Whether saveRevision() did create a revision. This is not the same as wasSuccessful():
 	 * when the new content is exactly the same as the old one (DerivedPageDataUpdater::isChange()
 	 * returns false) and setForceEmptyRevision( true ) is not set, no new revision is created, but
@@ -1291,10 +1332,17 @@ class PageUpdater {
 
 		$changed = $this->derivedDataUpdater->isChange();
 
-		if ( $this->forceEmptyRevision && $changed ) {
-			throw new LogicException(
-				'Content was changed even though forceEmptyRevision() was called.'
-			);
+		if ( $changed ) {
+			if ( $this->forceEmptyRevision ) {
+				throw new LogicException(
+					"Content was changed even though forceEmptyRevision() was called."
+				);
+			}
+			if ( $this->preventChange ) {
+				throw new LogicException(
+					"Content was changed even though preventChange() was called."
+				);
+			}
 		}
 
 		// We build the EditResult before the $change if/else branch in order to pass
@@ -1423,6 +1471,11 @@ class PageUpdater {
 	 * @return Status
 	 */
 	private function doCreate( CommentStoreComment $summary ) {
+		if ( $this->preventChange ) {
+			throw new LogicException(
+				"Content was changed even though preventChange() was called."
+			);
+		}
 		$wikiPage = $this->getWikiPage(); // TODO: use for legacy hooks only!
 
 		if ( !$this->derivedDataUpdater->getSlots()->hasSlot( SlotRecord::MAIN ) ) {

@@ -109,6 +109,8 @@ class McrUndoAction extends FormAction {
 				[ 'readonlywarning', $this->readOnlyMode->getReason() ]
 			);
 		} elseif ( $this->context->getUser()->isAnon() ) {
+			// Note: EditPage has a special message for temp user creation intent here.
+			// But McrUndoAction doesn't support user creation.
 			if ( !$this->getRequest()->getCheck( 'wpPreview' ) ) {
 				$out->wrapWikiMsg(
 					"<div id='mw-anon-edit-warning' class='mw-message-box mw-message-box-warning'>\n$1\n</div>",

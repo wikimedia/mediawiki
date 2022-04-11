@@ -9,6 +9,7 @@ use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\TestingAccessWrapper;
 
@@ -66,7 +67,8 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( TitleFormatter::class ),
 			$this->createNoOpMock( HttpRequestFactory::class ),
 			$this->createNoOpMock( TrackingCategories::class ),
-			$this->createNoOpMock( SignatureValidatorFactory::class )
+			$this->createNoOpMock( SignatureValidatorFactory::class ),
+			$this->createNoOpMock( UserNameUtils::class )
 		);
 		return $factory;
 	}

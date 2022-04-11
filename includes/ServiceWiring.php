@@ -1281,7 +1281,8 @@ return [
 			$services->getTitleFormatter(),
 			$services->getHttpRequestFactory(),
 			$services->getTrackingCategories(),
-			$services->getSignatureValidatorFactory()
+			$services->getSignatureValidatorFactory(),
+			$services->getUserNameUtils()
 		);
 	},
 
@@ -1939,6 +1940,7 @@ return [
 			$services->getGroupPermissionsLookup(),
 			$services->getJobQueueGroupFactory(),
 			LoggerFactory::getInstance( 'UserGroupManager' ),
+			$services->getTempUserConfig(),
 			[ static function ( UserIdentity $user ) use ( $services ) {
 				$services->getPermissionManager()->invalidateUsersRightsCache( $user );
 				$services->getUserFactory()->newFromUserIdentity( $user )->invalidateCache();

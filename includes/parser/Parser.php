@@ -45,6 +45,7 @@ use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use Psr\Log\LoggerInterface;
 use Wikimedia\IPUtils;
@@ -389,6 +390,9 @@ class Parser {
 	/** @var SignatureValidatorFactory */
 	private $signatureValidatorFactory;
 
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -441,6 +445,7 @@ class Parser {
 	 * @param HttpRequestFactory $httpRequestFactory
 	 * @param TrackingCategories $trackingCategories
 	 * @param SignatureValidatorFactory $signatureValidatorFactory
+	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		ServiceOptions $svcOptions,
@@ -462,7 +467,8 @@ class Parser {
 		TitleFormatter $titleFormatter,
 		HttpRequestFactory $httpRequestFactory,
 		TrackingCategories $trackingCategories,
-		SignatureValidatorFactory $signatureValidatorFactory
+		SignatureValidatorFactory $signatureValidatorFactory,
+		UserNameUtils $userNameUtils
 	) {
 		if ( ParserFactory::$inParserFactory === 0 ) {
 			// Direct construction of Parser was deprecated in 1.34 and
@@ -528,6 +534,7 @@ class Parser {
 		$this->httpRequestFactory = $httpRequestFactory;
 		$this->trackingCategories = $trackingCategories;
 		$this->signatureValidatorFactory = $signatureValidatorFactory;
+		$this->userNameUtils = $userNameUtils;
 
 		// These steps used to be done in "::firstCallInit()"
 		// (if you're chasing a reference from some old code)
@@ -4733,7 +4740,13 @@ class Parser {
 		# If we're still here, make it a link to the user page
 		$userText = wfEscapeWikiText( $username );
 		$nickText = wfEscapeWikiText( $nickname );
-		$msgName = $user->isRegistered() ? 'signature' : 'signature-anon';
+		if ( $this->userNameUtils->isTemp( $username ) ) {
+			$msgName = 'signature-temp';
+		} elseif ( $user->isRegistered() ) {
+			$msgName = 'signature';
+		} else {
+			$msgName = 'signature-anon';
+		}
 
 		return wfMessage( $msgName, $userText, $nickText )->inContentLanguage()
 			->page( $this->getPage() )->text();

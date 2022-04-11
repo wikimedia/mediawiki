@@ -622,17 +622,22 @@ class ChangeTags {
 	 * @param string[] $tags Tags that you are interested in applying
 	 * @param Authority|null $performer whose permission you wish to check, or null to
 	 * check for a generic non-blocked user with the relevant rights
+	 * @param bool $checkBlock Whether to check the blocked status of $performer
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canAddTagsAccompanyingChange( array $tags, Authority $performer = null ) {
+	public static function canAddTagsAccompanyingChange(
+		array $tags,
+		Authority $performer = null,
+		$checkBlock = true
+	) {
 		$user = null;
 		if ( $performer !== null ) {
 			if ( !$performer->isAllowed( 'applychangetags' ) ) {
 				return Status::newFatal( 'tags-apply-no-permission' );
 			}
 
-			if ( $performer->getBlock() && $performer->getBlock()->isSitewide() ) {
+			if ( $checkBlock && $performer->getBlock() && $performer->getBlock()->isSitewide() ) {
 				return Status::newFatal(
 					'tags-apply-blocked',
 					$performer->getUser()->getName()
