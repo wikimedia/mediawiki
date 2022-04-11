@@ -71,7 +71,7 @@ class SpecialResetTokens extends FormSpecialPage {
 	public function execute( $par ) {
 		// This is a preferences page, so no user JS for y'all.
 		$this->getOutput()->disallowUserJs();
-		$this->requireLogin();
+		$this->requireNamedUser();
 
 		parent::execute( $par );
 

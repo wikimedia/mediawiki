@@ -27,6 +27,8 @@ class SpecialPreferencesTest extends MediaWikiIntegrationTestCase {
 		$user = $this->createMock( User::class );
 		$user->method( 'isAnon' )
 			->willReturn( false );
+		$user->method( 'isNamed' )
+			->willReturn( true );
 
 		# The mocked user has a long nickname
 		$user->method( 'getOption' )

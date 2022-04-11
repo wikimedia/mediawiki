@@ -1395,7 +1395,9 @@ return [
 			$services->getUserCache(),
 			$services->getRedirectLookup(),
 			$services->getRestrictionStore(),
-			$services->getTitleFormatter()
+			$services->getTitleFormatter(),
+			$services->getTempUserConfig(),
+			$services->getUserFactory()
 		);
 	},
 

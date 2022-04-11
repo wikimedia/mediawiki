@@ -259,12 +259,16 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		 * is present). People who often switch between several accounts have grown
 		 * accustomed to this behavior.
 		 *
+		 * For temporary users, the form is always shown, since the UI presents
+		 * temporary users as not logged in and offers to discard their temporary
+		 * account by logging in.
+		 *
 		 * Also make an exception when force=<level> is set in the URL, which means the user must
 		 * reauthenticate for security reasons.
 		 */
 		if ( !$this->isSignup() && !$this->mPosted && !$this->securityLevel &&
 			( $this->mReturnTo !== '' || $this->mReturnToQuery !== '' ) &&
-			$this->getUser()->isRegistered()
+			!$this->getUser()->isTemp() && $this->getUser()->isRegistered()
 		) {
 			$this->successfulAction();
 			return;
@@ -328,7 +332,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		switch ( $response->status ) {
 			case AuthenticationResponse::PASS:
 				$this->logAuthResult( true );
-				$this->proxyAccountCreation = $this->isSignup() && !$this->getUser()->isAnon();
+				$this->proxyAccountCreation = $this->isSignup() && $this->getUser()->isNamed();
 				$this->targetUser = User::newFromName( $response->username );
 
 				if (
@@ -566,6 +570,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		if (
 			!$this->isSignup() &&
 			$this->getUser()->isRegistered() &&
+			!$this->getUser()->isTemp() &&
 			$this->authAction !== AuthManager::ACTION_LOGIN_CONTINUE
 		) {
 			$reauthMessage = $this->securityLevel ? 'userlogin-reauth' : 'userlogin-loggedin';
@@ -728,9 +733,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return array
 	 */
 	protected function getFieldDefinitions( array $fieldInfo ) {
-		$isRegistered = $this->getUser()->isRegistered();
+		$isLoggedIn = $this->getUser()->isRegistered();
 		$continuePart = $this->isContinued() ? 'continue-' : '';
-		$anotherPart = $isRegistered ? 'another-' : '';
+		$anotherPart = $isLoggedIn ? 'another-' : '';
 		// @phan-suppress-next-line PhanUndeclaredMethod
 		$expiration = $this->getRequest()->getSession()->getProvider()->getRememberUserDuration();
 		$expirationDays = ceil( $expiration / ( 3600 * 24 ) );
@@ -763,7 +768,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'username' => [
 					'label-raw' => $this->msg( 'userlogin-yourname' )->escaped() . $usernameHelpLink,
 					'id' => 'wpName2',
-					'placeholder-message' => $isRegistered ? 'createacct-another-username-ph'
+					'placeholder-message' => $isLoggedIn ? 'createacct-another-username-ph'
 						: 'userlogin-yourname-ph',
 				],
 				'mailpassword' => [
@@ -829,7 +834,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				],
 				'realname' => [
 					'type' => 'text',
-					'help-message' => $isRegistered ? 'createacct-another-realname-tip'
+					'help-message' => $isLoggedIn ? 'createacct-another-realname-tip'
 						: 'prefs-help-realname',
 					'label-message' => 'createacct-realname',
 					'cssclass' => 'loginText',
@@ -981,6 +986,17 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'weight' => -100,
 			];
 		}
+		if ( $this->isSignup() && $this->getUser()->isTemp() ) {
+			$fieldDefinitions['tempWarning'] = [
+				'type' => 'info',
+				'default' => Html::warningBox(
+					$this->msg( 'createacct-temp-warning' )->parse()
+				),
+				'raw' => true,
+				'rawrow' => true,
+				'weight' => -90,
+			];
+		}
 		if ( !$this->showExtraInformation() ) {
 			unset( $fieldDefinitions['linkcontainer'], $fieldDefinitions['signupend'] );
 		}
@@ -1025,26 +1041,27 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				if ( $this->mLanguage ) {
 					$linkq .= '&uselang=' . urlencode( $this->mLanguage );
 				}
-				$isRegistered = $this->getUser()->isRegistered();
+				$isLoggedIn = $this->getUser()->isRegistered()
+					&& !$this->getUser()->isTemp();
 
 				$fieldDefinitions['createOrLogin'] = [
 					'type' => 'info',
 					'raw' => true,
 					'linkQuery' => $linkq,
-					'default' => function ( $params ) use ( $isRegistered, $linkTitle ) {
+					'default' => function ( $params ) use ( $isLoggedIn, $linkTitle ) {
 						return Html::rawElement( 'div',
-							[ 'id' => 'mw-createaccount' . ( !$isRegistered ? '-cta' : '' ),
-								'class' => ( $isRegistered ? 'mw-form-related-link-container' : 'mw-ui-vform-field' ) ],
-							( $isRegistered ? '' : $this->msg( 'userlogin-noaccount' )->escaped() )
+							[ 'id' => 'mw-createaccount' . ( !$isLoggedIn ? '-cta' : '' ),
+								'class' => ( $isLoggedIn ? 'mw-form-related-link-container' : 'mw-ui-vform-field' ) ],
+							( $isLoggedIn ? '' : $this->msg( 'userlogin-noaccount' )->escaped() )
 							. Html::element( 'a',
 								[
-									'id' => 'mw-createaccount-join' . ( $isRegistered ? '-loggedin' : '' ),
+									'id' => 'mw-createaccount-join' . ( $isLoggedIn ? '-loggedin' : '' ),
 									'href' => $linkTitle->getLocalURL( $params['linkQuery'] ),
-									'class' => ( $isRegistered ? '' : 'mw-ui-button' ),
+									'class' => ( $isLoggedIn ? '' : 'mw-ui-button' ),
 									'tabindex' => 100,
 								],
 								$this->msg(
-									$isRegistered ? 'userlogin-createanother' : 'userlogin-joinproject'
+									$isLoggedIn ? 'userlogin-createanother' : 'userlogin-joinproject'
 								)->text()
 							)
 						);
@@ -1177,7 +1194,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			!$this->isSignup()
 		) {
 			$user = $this->getUser();
-			if ( $user->isRegistered() ) {
+			if ( $user->isRegistered() && !$user->isTemp() ) {
 				$formDescriptor['username']['default'] = $user->getName();
 			} else {
 				$formDescriptor['username']['default'] =
