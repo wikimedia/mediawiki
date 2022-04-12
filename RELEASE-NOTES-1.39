@@ -103,6 +103,8 @@ because of Phabricator reports.
 * Changes to ResourceLoader modules:
   - The mediawiki.viewport module, deprecated in 1.37 has been
      removed. Use IntersectionObserver instead.
+* Use of the SiteStatsUpdate constructor has been deprecated in favor of
+  the ::factory() method.
 * Changes to skins:
   - Skin::makeSearchButton and Skin::makeSearchInput were deprecated in 1.38.
     Use SkinTemplate methods with the same name or Skin::getTemplateData
