@@ -187,6 +187,7 @@ class TransactionManager {
 
 	public function setTrxStatusToNone() {
 		$this->trxStatus = self::STATUS_TRX_NONE;
+		$this->trxStatusIgnoredCause = null;
 	}
 
 	public function assertTransactionStatus( IDatabase $db, $deprecationLogger, $fname ) {
