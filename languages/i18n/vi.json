@@ -3669,7 +3669,7 @@
 	"htmlform-int-toohigh": "Giá trị không được vượt quá $1",
 	"htmlform-multiselect-toomany": "Số lượng mục vượt quá giá trị tối đa là $1.",
 	"htmlform-required": "Bắt buộc phải có giá trị",
-	"htmlform-submit": "Đăng",
+	"htmlform-submit": "Gửi",
 	"htmlform-reset": "Hủy các thay đổi",
 	"htmlform-selectorother-other": "Khác",
 	"htmlform-no": "Không",

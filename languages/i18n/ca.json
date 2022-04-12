@@ -405,6 +405,7 @@
 	"querypage-no-updates": "S'ha inhabilitat l'actualització d'aquesta pàgina. Les dades que hi contenen podrien no estar al dia.",
 	"querypage-updates-periodical": "Les actualitzacions de la pàgina s'executen periòdicament.",
 	"viewsource": "Mostra el codi",
+	"skin-action-viewsource": "Mostra el codi",
 	"viewsource-title": "Mostra la font per a $1",
 	"actionthrottled": "Acció limitada",
 	"actionthrottledtext": "Com a mesura per prevenir l’abús, no podeu fer aquesta acció tantes vegades en un període de temps tan curt. Torneu-ho a intentar d’ací a uns minuts.",
