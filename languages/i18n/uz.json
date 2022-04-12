@@ -1513,7 +1513,7 @@
 	"block": "Foydalanuvchini chetlashtirish",
 	"unblock": "Foydalanuvchiga yo'l ochish",
 	"blockip": "{{GENDER:$1|Foydalanuvchi}}ni chetlashtirish",
-	"blockiptext": "Aniq IP-manzil yoki foydalanuvchi nomidan tahrirlash imkoniyatini chetlashtirish uchun quyidagi formadan foydalaning.\nBu faqatgina vamdalizmni oldini olish hamda [[{{MediaWiki:Policy-url}}|qoidalarga]] muvofiq holda amalga oshirilishi lozim.\nQuyida aniq sababini koʻrsating (misol uchun, vandalism qurboni boʻlgan sahifalarni keltiring).\nIP manzil diapazonlarini [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]dan foydalanib chetlashtirishingiz mumkin; izn berilgan eng yirik diapazon IPv4 uchun /$1, IPv6 uchun esa /$2dir.",
+	"blockiptext": "Aniq IP-manzil yoki foydalanuvchi nomidan tahrirlash imkoniyatini chetlashtirish uchun quyidagi formadan foydalaning.\nBu faqatgina vamdalizmni oldini olish hamda [[{{MediaWiki:Policy-url}}|qoidalarga]] muvofiq holda amalga oshirilishi lozim.\nQuyida aniq sababini koʻrsating (misol uchun, vandalizm qurboni boʻlgan sahifalarni keltiring).\nIP-manzil diapazonlarini [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]dan foydalanib chetlashtirishingiz mumkin; izn berilgan eng yirik diapazon IPv4 uchun /$1, IPv6 uchun esa /$2dir.",
 	"ipaddressorusername": "IP-manzil yoki foydalanuvchi nomi:",
 	"ipbreason": "Sabab:",
 	"ipbreason-dropdown": "* Chetlashtirishning odatiy sabablari\n** Yolgʻon maʼlumot kiritish\n** Sahifa matnini toʻliq oʻchirish\n** Tashqi saytlarga spam-havolalar\n** Maʼnosiz matn/axlat qoʻshish\n** Foydalanuvchilarga tahdid qilish, ularni taʼqib qilish\n** Bir nechta hisob yozuvlaridan oʻz manfaatlarida foydalanish\n** Nomaqbul foydalanuvchi nomi",
