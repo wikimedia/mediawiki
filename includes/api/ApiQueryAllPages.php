@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Permissions\RestrictionStore;
+
 /**
  * Query module to enumerate all available pages.
  *
@@ -33,21 +35,27 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	/** @var GenderCache */
 	private $genderCache;
 
+	/** @var RestrictionStore */
+	private $restrictionStore;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param GenderCache $genderCache
+	 * @param RestrictionStore $restrictionStore
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		NamespaceInfo $namespaceInfo,
-		GenderCache $genderCache
+		GenderCache $genderCache,
+		RestrictionStore $restrictionStore
 	) {
 		parent::__construct( $query, $moduleName, 'ap' );
 		$this->namespaceInfo = $namespaceInfo;
 		$this->genderCache = $genderCache;
+		$this->restrictionStore = $restrictionStore;
 	}
 
 	public function execute() {
@@ -302,7 +310,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => 'integer',
 			],
 			'prtype' => [
-				ApiBase::PARAM_TYPE => Title::getFilteredRestrictionTypes( true ),
+				ApiBase::PARAM_TYPE => $this->restrictionStore->listAllRestrictionTypes( true ),
 				ApiBase::PARAM_ISMULTI => true
 			],
 			'prlevel' => [

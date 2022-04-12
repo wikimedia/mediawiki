@@ -146,6 +146,7 @@ class SpecialPageFactory {
 				'CommentStore',
 				'UserCache',
 				'RowCommentFormatter',
+				'RestrictionStore',
 			]
 		],
 		'Protectedtitles' => [
