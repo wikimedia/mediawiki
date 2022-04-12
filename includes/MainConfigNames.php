@@ -1229,12 +1229,6 @@ class MainConfigNames {
 	public const MaxExecutionTimeForExpensiveQueries = 'MaxExecutionTimeForExpensiveQueries';
 
 	/**
-	 * Name constant for the MultiContentRevisionSchemaMigrationStage setting, for use with Config::get()
-	 * @see MainConfigSchema::MultiContentRevisionSchemaMigrationStage
-	 */
-	public const MultiContentRevisionSchemaMigrationStage = 'MultiContentRevisionSchemaMigrationStage';
-
-	/**
 	 * Name constant for the ActorTableSchemaMigrationStage setting, for use with Config::get()
 	 * @see MainConfigSchema::ActorTableSchemaMigrationStage
 	 */
