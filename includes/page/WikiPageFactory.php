@@ -14,16 +14,15 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use WikiPage;
 
 /**
+ * Service for creating WikiPage objects.
+ *
  * @since 1.36
  */
 class WikiPageFactory {
-
 	/** @var TitleFactory */
 	private $titleFactory;
-
 	/** @var WikiPageFactoryHook */
 	private $wikiPageFactoryHookRunner;
-
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
@@ -46,7 +45,6 @@ class WikiPageFactory {
 	 * Create a WikiPage object from a title.
 	 *
 	 * @param PageIdentity $pageIdentity
-	 *
 	 * @return WikiPage
 	 */
 	public function newFromTitle( PageIdentity $pageIdentity ): WikiPage {
@@ -95,7 +93,6 @@ class WikiPageFactory {
 	 * Create a WikiPage object from a link target.
 	 *
 	 * @param LinkTarget $title
-	 *
 	 * @return WikiPage
 	 */
 	public function newFromLinkTarget( LinkTarget $title ): WikiPage {

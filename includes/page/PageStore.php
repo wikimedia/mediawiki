@@ -22,7 +22,6 @@ use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @since 1.36
- *
  * @unstable
  */
 class PageStore implements PageLookup {

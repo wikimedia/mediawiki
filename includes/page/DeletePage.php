@@ -44,8 +44,9 @@ use Wikimedia\RequestTimeout\TimeoutException;
 use WikiPage;
 
 /**
+ * Backend logic for perfoming a page delete action.
+ *
  * @since 1.37
- * @package MediaWiki\Page
  */
 class DeletePage {
 	/**
@@ -132,6 +133,7 @@ class DeletePage {
 	private $attemptedDeletion = false;
 
 	/**
+	 * @internal Create via the PageDeleteFactory service.
 	 * @param HookContainer $hookContainer
 	 * @param RevisionStore $revisionStore
 	 * @param LBFactory $lbFactory

@@ -48,8 +48,9 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use WikiPage;
 
 /**
+ * Backend logic for performing a page undelete action.
+ *
  * @since 1.38
- * @package MediaWiki\Page
  */
 class UndeletePage {
 
@@ -81,7 +82,6 @@ class UndeletePage {
 	private $archivedRevisionLookup;
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
-
 	/** @var ProperPageIdentity */
 	private $page;
 	/** @var Authority */
@@ -102,6 +102,7 @@ class UndeletePage {
 	private $associatedTalk;
 
 	/**
+	 * @internal Create via the UndeletePageFactory service.
 	 * @param HookContainer $hookContainer
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param ILoadBalancer $loadBalancer
