@@ -775,7 +775,7 @@ class Linker {
 
 		$rdfaType = $rdfaType ?: '/Thumb';
 
-		switch ( $file ? $file->getMediaType() : '' ) {
+		switch ( $thumb ? $thumb->getFile()->getMediaType() : '' ) {
 			case 'AUDIO':
 				$rdfaType = 'mw:Audio' . $rdfaType;
 				break;
