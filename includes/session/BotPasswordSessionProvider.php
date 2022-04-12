@@ -24,6 +24,7 @@
 namespace MediaWiki\Session;
 
 use BotPassword;
+use MediaWiki\Permissions\GrantsInfo;
 use User;
 use WebRequest;
 
@@ -32,14 +33,17 @@ use WebRequest;
  * @since 1.27
  */
 class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
+	/** @var GrantsInfo */
+	private $grantsInfo;
 
 	/**
+	 * @param GrantsInfo $grantsInfo
 	 * @param array $params Keys include:
 	 *  - priority: (required) Set the priority
 	 *  - sessionCookieName: Session cookie name. Default is '_BPsession'.
 	 *  - sessionCookieOptions: Options to pass to WebResponse::setCookie().
 	 */
-	public function __construct( array $params = [] ) {
+	public function __construct( GrantsInfo $grantsInfo, array $params = [] ) {
 		if ( !isset( $params['sessionCookieName'] ) ) {
 			$params['sessionCookieName'] = '_BPsession';
 		}
@@ -55,6 +59,8 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 		}
 
 		$this->priority = $params['priority'];
+
+		$this->grantsInfo = $grantsInfo;
 	}
 
 	public function provideSessionInfo( WebRequest $request ) {
@@ -104,7 +110,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 				'centralId' => $bp->getUserCentralId(),
 				'appId' => $bp->getAppId(),
 				'token' => $bp->getToken(),
-				'rights' => \MWGrants::getGrantRights( $bp->getGrants() ),
+				'rights' => $this->grantsInfo->getGrantRights( $bp->getGrants() ),
 			],
 		] );
 		$session = $this->getManager()->getSessionFromInfo( $info, $request );
@@ -164,7 +170,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 		}
 
 		// Update saved rights
-		$metadata['rights'] = \MWGrants::getGrantRights( $bp->getGrants() );
+		$metadata['rights'] = $this->grantsInfo->getGrantRights( $bp->getGrants() );
 
 		return true;
 	}
