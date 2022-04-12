@@ -2265,6 +2265,9 @@ return [
 							'priority' => 75,
 						],
 					],
+					'services' => [
+						0 => 'GrantsInfo',
+					],
 				],
 			],
 		],

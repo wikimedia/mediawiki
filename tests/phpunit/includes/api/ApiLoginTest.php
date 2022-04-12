@@ -267,6 +267,7 @@ class ApiLoginTest extends ApiTestCase {
 				[
 					'class' => BotPasswordSessionProvider::class,
 					'args' => [ [ 'priority' => 40 ] ],
+					'services' => [ 'GrantsInfo' ],
 				],
 			] ),
 			'wgEnableBotPasswords' => true,

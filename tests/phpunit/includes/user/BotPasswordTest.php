@@ -283,6 +283,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 				MediaWiki\Session\BotPasswordSessionProvider::class => [
 					'class' => MediaWiki\Session\BotPasswordSessionProvider::class,
 					'args' => [ [ 'priority' => 40 ] ],
+					'services' => [ 'GrantsInfo' ],
 				]
 			],
 		] );

@@ -7054,6 +7054,9 @@ class MainConfigSchema {
 				'args' => [ [
 					'priority' => 75,
 				] ],
+				'services' => [
+					'GrantsInfo'
+				],
 			],
 		],
 	];
