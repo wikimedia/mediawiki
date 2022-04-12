@@ -175,6 +175,7 @@ class AutoLoader {
 			'MediaWiki\\SpecialPage\\' => __DIR__ . '/specialpage/',
 			'MediaWiki\\Tidy\\' => __DIR__ . '/tidy/',
 			'MediaWiki\\User\\' => __DIR__ . '/user/',
+			'MediaWiki\\Utils\\' => __DIR__ . '/utils/',
 			'MediaWiki\\Widget\\' => __DIR__ . '/widget/',
 			'Wikimedia\\' => __DIR__ . '/libs/',
 			'Wikimedia\\Http\\' => __DIR__ . '/libs/http/',

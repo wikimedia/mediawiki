@@ -498,62 +498,14 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideWfMatchesDomainList
 	 * @covers ::wfMatchesDomainList
 	 */
-	public function testWfMatchesDomainList( $url, $domains, $expected, $description ) {
+	public function testWfMatchesDomainList( $url, $domains, $expected ) {
 		$actual = wfMatchesDomainList( $url, $domains );
-		$this->assertEquals( $expected, $actual, $description );
+		$this->assertEquals( $expected, $actual );
 	}
 
 	public static function provideWfMatchesDomainList() {
-		$a = [];
-		$protocols = [ 'HTTP' => 'http:', 'HTTPS' => 'https:', 'protocol-relative' => '' ];
-		foreach ( $protocols as $pDesc => $p ) {
-			$a = array_merge( $a, [
-				[
-					"$p//www.example.com",
-					[],
-					false,
-					"No matches for empty domains array, $pDesc URL"
-				],
-				[
-					"$p//www.example.com",
-					[ 'www.example.com' ],
-					true,
-					"Exact match in domains array, $pDesc URL"
-				],
-				[
-					"$p//www.example.com",
-					[ 'example.com' ],
-					true,
-					"Match without subdomain in domains array, $pDesc URL"
-				],
-				[
-					"$p//www.example2.com",
-					[ 'www.example.com', 'www.example2.com', 'www.example3.com' ],
-					true,
-					"Exact match with other domains in array, $pDesc URL"
-				],
-				[
-					"$p//www.example2.com",
-					[ 'example.com', 'example2.com', 'example3,com' ],
-					true,
-					"Match without subdomain with other domains in array, $pDesc URL"
-				],
-				[
-					"$p//www.example4.com",
-					[ 'example.com', 'example2.com', 'example3,com' ],
-					false,
-					"Domain not in array, $pDesc URL"
-				],
-				[
-					"$p//nds-nl.wikipedia.org",
-					[ 'nl.wikipedia.org' ],
-					false,
-					"Non-matching substring of domain, $pDesc URL"
-				],
-			] );
-		}
-
-		return $a;
+		// Same tests as the UrlUtils method to ensure they don't fall out of sync
+		return UrlUtilsTest::provideMatchesDomainList();
 	}
 
 	/**

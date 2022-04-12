@@ -29,6 +29,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ProcOpenError;
 use MediaWiki\Shell\Shell;
+use MediaWiki\Utils\UrlUtils;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\RequestTimeout\RequestTimeout;
@@ -457,6 +458,36 @@ function wfAppendQuery( $url, $query ) {
 }
 
 /**
+ * @deprecated Get a UrlUtils from services, or construct your own
+ * @internal
+ * @return UrlUtils from services if initialized, otherwise make one from globals
+ */
+function wfGetUrlUtils(): UrlUtils {
+	global $wgServer, $wgCanonicalServer, $wgInternalServer, $wgRequest, $wgHttpsPort,
+		$wgUrlProtocols;
+
+	if ( MediaWikiServices::hasInstance() ) {
+		$services = MediaWikiServices::getInstance();
+		if ( $services->hasService( 'UrlUtils' ) ) {
+			return $services->getUrlUtils();
+		}
+	}
+
+	return new UrlUtils( [
+		// UrlUtils throws if the relevant $wg(|Canonical|Internal) variable is null, but the old
+		// implementations implicitly converted it to an empty string (presumably by mistake).
+		// Preserve the old behavior for compatibility.
+		UrlUtils::SERVER => $wgServer ?? '',
+		UrlUtils::CANONICAL_SERVER => $wgCanonicalServer ?? '',
+		UrlUtils::INTERNAL_SERVER => $wgInternalServer ?? '',
+		UrlUtils::FALLBACK_PROTOCOL => $wgRequest ? $wgRequest->getProtocol()
+			: WebRequest::detectProtocol(),
+		UrlUtils::HTTPS_PORT => $wgHttpsPort,
+		UrlUtils::VALID_PROTOCOLS => $wgUrlProtocols,
+	] );
+}
+
+/**
  * Expand a potentially local URL to a fully-qualified URL. Assumes $wgServer
  * is correct.
  *
@@ -470,9 +501,7 @@ function wfAppendQuery( $url, $query ) {
  *    For protocol-relative URLs, use the protocol of $wgCanonicalServer
  * PROTO_INTERNAL: Like PROTO_CANONICAL, but uses $wgInternalServer instead of $wgCanonicalServer
  *
- * @todo this won't work with current-path-relative URLs
- * like "subdir/foo.html", etc.
- *
+ * @deprecated since 1.39, use UrlUtils::expand()
  * @param string $url Either fully-qualified or a local path + query
  * @param string|int|null $defaultProto One of the PROTO_* constants. Determines the
  *    protocol to use if $url or $wgServer is protocol-relative
@@ -480,86 +509,20 @@ function wfAppendQuery( $url, $query ) {
  *    no valid URL can be constructed
  */
 function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
-	global $wgServer, $wgCanonicalServer, $wgInternalServer, $wgRequest,
-		$wgHttpsPort;
-	if ( $defaultProto === PROTO_CANONICAL ) {
-		$serverUrl = $wgCanonicalServer;
-	} elseif ( $defaultProto === PROTO_INTERNAL && $wgInternalServer !== false ) {
-		// Make $wgInternalServer fall back to $wgServer if not set
-		$serverUrl = $wgInternalServer;
-	} else {
-		$serverUrl = $wgServer;
-		if ( $defaultProto === PROTO_CURRENT ) {
-			$defaultProto = $wgRequest->getProtocol() . '://';
-		}
-	}
-
-	// Analyze $serverUrl to obtain its protocol
-	$bits = wfParseUrl( $serverUrl );
-	$serverHasProto = $bits && $bits['scheme'] != '';
-
-	if ( $defaultProto === PROTO_CANONICAL || $defaultProto === PROTO_INTERNAL ) {
-		if ( $serverHasProto ) {
-			$defaultProto = $bits['scheme'] . '://';
-		} else {
-			// $wgCanonicalServer or $wgInternalServer doesn't have a protocol.
-			// This really isn't supposed to happen. Fall back to HTTP in this
-			// ridiculous case.
-			$defaultProto = PROTO_HTTP;
-		}
-	}
-
-	$defaultProtoWithoutSlashes = $defaultProto !== null ? substr( $defaultProto, 0, -2 ) : '';
-
-	if ( substr( $url, 0, 2 ) == '//' ) {
-		$url = $defaultProtoWithoutSlashes . $url;
-	} elseif ( substr( $url, 0, 1 ) == '/' ) {
-		// If $serverUrl is protocol-relative, prepend $defaultProtoWithoutSlashes,
-		// otherwise leave it alone.
-		if ( $serverHasProto ) {
-			$url = $serverUrl . $url;
-		} else {
-			// If an HTTPS URL is synthesized from a protocol-relative $wgServer, allow the
-			// user to override the port number (T67184)
-			if ( $defaultProto === PROTO_HTTPS && $wgHttpsPort != 443 ) {
-				if ( isset( $bits['port'] ) ) {
-					throw new Exception( 'A protocol-relative $wgServer may not contain a port number' );
-				}
-				$url = $defaultProtoWithoutSlashes . $serverUrl . ':' . $wgHttpsPort . $url;
-			} else {
-				$url = $defaultProtoWithoutSlashes . $serverUrl . $url;
-			}
-		}
-	}
-
-	$bits = wfParseUrl( $url );
-
-	if ( $bits && isset( $bits['path'] ) ) {
-		$bits['path'] = wfRemoveDotSegments( $bits['path'] );
-		return wfAssembleUrl( $bits );
-	} elseif ( $bits ) {
-		# No path to expand
-		return $url;
-	} elseif ( substr( $url, 0, 1 ) != '/' ) {
-		# URL is a relative path
-		return wfRemoveDotSegments( $url );
-	}
-
-	# Expanded URL is not valid.
-	return false;
+	return wfGetUrlUtils()->expand( (string)$url, $defaultProto ) ?? false;
 }
 
 /**
  * Get the wiki's "server", i.e. the protocol and host part of the URL, with a
  * protocol specified using a PROTO_* constant as in wfExpandUrl()
  *
+ * @deprecated since 1.39, use UrlUtils::getServer()
  * @since 1.32
  * @param string|int|null $proto One of the PROTO_* constants.
  * @return string The URL
  */
 function wfGetServerUrl( $proto ) {
-	$url = wfExpandUrl( '/', $proto );
-	return substr( $url, 0, -1 );
+	return wfGetUrlUtils()->getServer( $proto ) ?? '';
 }
 
 /**
@@ -569,52 +532,13 @@ function wfGetServerUrl( $proto ) {
  * This is the basic structure used (brackets contain keys for $urlParts):
  * [scheme][delimiter][user]:[pass]@[host]:[port][path]?[query]#[fragment]
  *
- * @todo Need to integrate this into wfExpandUrl (see T34168)
- *
+ * @deprecated since 1.39, use UrlUtils::assemble()
  * @since 1.19
  * @param array $urlParts URL parts, as output from wfParseUrl
  * @return string URL assembled from its component parts
  */
 function wfAssembleUrl( $urlParts ) {
-	$result = '';
-
-	if ( isset( $urlParts['delimiter'] ) ) {
-		if ( isset( $urlParts['scheme'] ) ) {
-			$result .= $urlParts['scheme'];
-		}
-
-		$result .= $urlParts['delimiter'];
-	}
-
-	if ( isset( $urlParts['host'] ) ) {
-		if ( isset( $urlParts['user'] ) ) {
-			$result .= $urlParts['user'];
-			if ( isset( $urlParts['pass'] ) ) {
-				$result .= ':' . $urlParts['pass'];
-			}
-			$result .= '@';
-		}
-
-		$result .= $urlParts['host'];
-
-		if ( isset( $urlParts['port'] ) ) {
-			$result .= ':' . $urlParts['port'];
-		}
-	}
-
-	if ( isset( $urlParts['path'] ) ) {
-		$result .= $urlParts['path'];
-	}
-
-	if ( isset( $urlParts['query'] ) && $urlParts['query'] !== '' ) {
-		$result .= '?' . $urlParts['query'];
-	}
-
-	if ( isset( $urlParts['fragment'] ) ) {
-		$result .= '#' . $urlParts['fragment'];
-	}
-
-	return $result;
+	return wfGetUrlUtils()->assemble( (array)$urlParts );
 }
 
 /**
@@ -622,138 +546,38 @@ function wfAssembleUrl( $urlParts ) {
  * '/a/./b/../c/' becomes '/a/c/'.  For details on the algorithm, please see
  * RFC3986 section 5.2.4.
  *
- * @todo Need to integrate this into wfExpandUrl (see T34168)
- *
  * @since 1.19
  *
+ * @deprecated since 1.39, use UrlUtils::removeDotSegments()
  * @param string $urlPath URL path, potentially containing dot-segments
  * @return string URL path with all dot-segments removed
  */
 function wfRemoveDotSegments( $urlPath ) {
-	$output = '';
-	$inputOffset = 0;
-	$inputLength = strlen( $urlPath );
-
-	while ( $inputOffset < $inputLength ) {
-		$prefixLengthOne = substr( $urlPath, $inputOffset, 1 );
-		$prefixLengthTwo = substr( $urlPath, $inputOffset, 2 );
-		$prefixLengthThree = substr( $urlPath, $inputOffset, 3 );
-		$prefixLengthFour = substr( $urlPath, $inputOffset, 4 );
-		$trimOutput = false;
-
-		if ( $prefixLengthTwo == './' ) {
-			# Step A, remove leading "./"
-			$inputOffset += 2;
-		} elseif ( $prefixLengthThree == '../' ) {
-			# Step A, remove leading "../"
-			$inputOffset += 3;
-		} elseif ( ( $prefixLengthTwo == '/.' ) && ( $inputOffset + 2 == $inputLength ) ) {
-			# Step B, replace leading "/.$" with "/"
-			$inputOffset += 1;
-			$urlPath[$inputOffset] = '/';
-		} elseif ( $prefixLengthThree == '/./' ) {
-			# Step B, replace leading "/./" with "/"
-			$inputOffset += 2;
-		} elseif ( $prefixLengthThree == '/..' && ( $inputOffset + 3 == $inputLength ) ) {
-			# Step C, replace leading "/..$" with "/" and
-			# remove last path component in output
-			$inputOffset += 2;
-			$urlPath[$inputOffset] = '/';
-			$trimOutput = true;
-		} elseif ( $prefixLengthFour == '/../' ) {
-			# Step C, replace leading "/../" with "/" and
-			# remove last path component in output
-			$inputOffset += 3;
-			$trimOutput = true;
-		} elseif ( ( $prefixLengthOne == '.' ) && ( $inputOffset + 1 == $inputLength ) ) {
-			# Step D, remove "^.$"
-			$inputOffset += 1;
-		} elseif ( ( $prefixLengthTwo == '..' ) && ( $inputOffset + 2 == $inputLength ) ) {
-			# Step D, remove "^..$"
-			$inputOffset += 2;
-		} else {
-			# Step E, move leading path segment to output
-			if ( $prefixLengthOne == '/' ) {
-				$slashPos = strpos( $urlPath, '/', $inputOffset + 1 );
-			} else {
-				$slashPos = strpos( $urlPath, '/', $inputOffset );
-			}
-			if ( $slashPos === false ) {
-				$output .= substr( $urlPath, $inputOffset );
-				$inputOffset = $inputLength;
-			} else {
-				$output .= substr( $urlPath, $inputOffset, $slashPos - $inputOffset );
-				$inputOffset += $slashPos - $inputOffset;
-			}
-		}
-
-		if ( $trimOutput ) {
-			$slashPos = strrpos( $output, '/' );
-			if ( $slashPos === false ) {
-				$output = '';
-			} else {
-				$output = substr( $output, 0, $slashPos );
-			}
-		}
-	}
-
-	return $output;
+	return wfGetUrlUtils()->removeDotSegments( (string)$urlPath );
 }
 
 /**
  * Returns a regular expression of url protocols
  *
+ * @deprecated since 1.39, use UrlUtils::validProtocols()
  * @param bool $includeProtocolRelative If false, remove '//' from the returned protocol list.
  *        DO NOT USE this directly, use wfUrlProtocolsWithoutProtRel() instead
  * @return string
  */
 function wfUrlProtocols( $includeProtocolRelative = true ) {
-	global $wgUrlProtocols;
-
-	// Cache return values separately based on $includeProtocolRelative
-	static $withProtRel = null, $withoutProtRel = null;
-	$cachedValue = $includeProtocolRelative ? $withProtRel : $withoutProtRel;
-	if ( $cachedValue !== null ) {
-		return $cachedValue;
-	}
-
-	// Support old-style $wgUrlProtocols strings, for backwards compatibility
-	// with LocalSettings files from 1.5
-	if ( is_array( $wgUrlProtocols ) ) {
-		$protocols = [];
-		foreach ( $wgUrlProtocols as $protocol ) {
-			// Filter out '//' if !$includeProtocolRelative
-			if ( $includeProtocolRelative || $protocol !== '//' ) {
-				$protocols[] = preg_quote( $protocol, '/' );
-			}
-		}
-
-		$retval = implode( '|', $protocols );
-	} else {
-		// Ignore $includeProtocolRelative in this case
-		// This case exists for pre-1.6 compatibility, and we can safely assume
-		// that '//' won't appear in a pre-1.6 config because protocol-relative
-		// URLs weren't supported until 1.18
-		$retval = $wgUrlProtocols;
-	}
-
-	// Cache return value
-	if ( $includeProtocolRelative ) {
-		$withProtRel = $retval;
-	} else {
-		$withoutProtRel = $retval;
-	}
-	return $retval;
+	$method = $includeProtocolRelative ? 'validProtocols' : 'validAbsoluteProtocols';
+	return wfGetUrlUtils()->$method();
 }
 
 /**
  * Like wfUrlProtocols(), but excludes '//' from the protocol list. Use this if
  * you need a regex that matches all URL protocols but does not match protocol-
  * relative URLs
+ * @deprecated since 1.39, use UrlUtils::validAbsoluteProtocols()
  * @return string
  */
 function wfUrlProtocolsWithoutProtRel() {
-	return wfUrlProtocols( false );
+	return wfGetUrlUtils()->validAbsoluteProtocols();
 }
 
 /**
@@ -766,6 +590,7 @@ function wfUrlProtocolsWithoutProtRel() {
  * 4) Rejects some invalid URLs that parse_url doesn't, e.g. the empty string or URLs starting with
  *    a line feed character.
  *
+ * @deprecated since 1.39, use UrlUtils::parse()
  * @param string $url A URL to parse
  * @return string[]|bool Bits of the URL in an associative array, or false on failure.
  *   Possible fields:
@@ -782,61 +607,7 @@ function wfUrlProtocolsWithoutProtRel() {
  *   - fragment: the part after #, can be missing.
  */
 function wfParseUrl( $url ) {
-	global $wgUrlProtocols; // Allow all protocols defined by the UrlProtocols setting.
-
-	// Protocol-relative URLs are handled really badly by parse_url(). It's so
-	// bad that the easiest way to handle them is to just prepend 'http:' and
-	// strip the protocol out later.
-	$wasRelative = substr( $url, 0, 2 ) == '//';
-	if ( $wasRelative ) {
-		$url = "http:$url";
-	}
-	$bits = parse_url( $url );
-	// parse_url() returns an array without scheme for some invalid URLs, e.g.
-	// parse_url("%0Ahttp://example.com") == [ 'host' => '%0Ahttp', 'path' => 'example.com' ]
-	if ( !$bits || !isset( $bits['scheme'] ) ) {
-		return false;
-	}
-
-	// parse_url() incorrectly handles schemes case-sensitively. Convert it to lowercase.
-	$bits['scheme'] = strtolower( $bits['scheme'] );
-
-	// most of the protocols are followed by ://, but mailto: and sometimes news: not, check for it
-	if ( in_array( $bits['scheme'] . '://', $wgUrlProtocols ) ) {
-		$bits['delimiter'] = '://';
-	} elseif ( in_array( $bits['scheme'] . ':', $wgUrlProtocols ) ) {
-		$bits['delimiter'] = ':';
-		// parse_url detects for news: and mailto: the host part of an url as path
-		// We have to correct this wrong detection
-		if ( isset( $bits['path'] ) ) {
-			$bits['host'] = $bits['path'];
-			$bits['path'] = '';
-		}
-	} else {
-		return false;
-	}
-
-	/* Provide an empty host for eg. file:/// urls (see T30627) */
-	if ( !isset( $bits['host'] ) ) {
-		$bits['host'] = '';
-
-		// See T47069
-		if ( isset( $bits['path'] ) ) {
-			/* parse_url loses the third / for file:///c:/ urls (but not on variants) */
-			if ( substr( $bits['path'], 0, 1 ) !== '/' ) {
-				$bits['path'] = '/' . $bits['path'];
-			}
-		} else {
-			$bits['path'] = '';
-		}
-	}
-
-	// If the URL was protocol-relative, fix scheme and delimiter
-	if ( $wasRelative ) {
-		$bits['scheme'] = '';
-		$bits['delimiter'] = '//';
-	}
-	return $bits;
+	return wfGetUrlUtils()->parse( (string)$url ) ?? false;
 }
 
 /**
@@ -844,39 +615,24 @@ function wfParseUrl( $url ) {
  * encoded non-ASCII Unicode characters with their UTF-8 original forms
  * for more compact display and legibility for local audiences.
  *
- * @todo handle punycode domains too
- *
+ * @deprecated since 1.39, use UrlUtils::expandIRI()
  * @param string $url
  * @return string
  */
 function wfExpandIRI( $url ) {
-	return preg_replace_callback(
-		'/((?:%[89A-F][0-9A-F])+)/i',
-		static function ( array $matches ) {
-			return urldecode( $matches[1] );
-		},
-		wfExpandUrl( $url )
-	);
+	return wfGetUrlUtils()->expandIRI( (string)$url ) ?? '';
 }
 
 /**
  * Check whether a given URL has a domain that occurs in a given set of domains
+ *
+ * @deprecated since 1.39, use UrlUtils::expandIRI()
  * @param string $url
  * @param array $domains Array of domains (strings)
  * @return bool True if the host part of $url ends in one of the strings in $domains
  */
 function wfMatchesDomainList( $url, $domains ) {
-	$bits = wfParseUrl( $url );
-	if ( is_array( $bits ) && isset( $bits['host'] ) ) {
-		$host = '.' . $bits['host'];
-		foreach ( (array)$domains as $domain ) {
-			$domain = '.' . $domain;
-			if ( substr( $host, -strlen( $domain ) ) === $domain ) {
-				return true;
-			}
-		}
-	}
-	return false;
+	return wfGetUrlUtils()->matchesDomainList( (string)$url, (array)$domains );
 }
 
 /**

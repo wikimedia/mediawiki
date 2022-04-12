@@ -15,6 +15,12 @@ trait MediaWikiTestCaseTrait {
 	/** @var int|null */
 	private $originalPhpErrorFilter;
 
+	/** @var array */
+	private $expectedDeprecations = [];
+
+	/** @var array */
+	private $actualDeprecations = [];
+
 	/**
 	 * Returns a PHPUnit constraint that matches (with `===`) anything other than a fixed set of values.
 	 * This can be used to list accepted values, e.g.
@@ -141,6 +147,32 @@ trait MediaWikiTestCaseTrait {
 	 */
 	public function filterDeprecated( $regex ) {
 		MWDebug::filterDeprecationForTest( $regex );
+	}
+
+	/**
+	 * Expect a deprecation notice, but suppress it and continue operation so we can test that the
+	 * deprecated functionality works as intended for compatibility.
+	 *
+	 * @since 1.39
+	 *
+	 * @param string $regex Deprecation message that must be triggered.
+	 */
+	public function expectDeprecationAndContinue( string $regex ): void {
+		$this->expectedDeprecations[] = $regex;
+		MWDebug::filterDeprecationForTest( $regex, function () use ( $regex ): void {
+			$this->actualDeprecations[] = $regex;
+		} );
+	}
+
+	/**
+	 * @after
+	 */
+	public function checkExpectedDeprecationsOnTearDown(): void {
+		if ( $this->expectedDeprecations ) {
+			$this->assertSame( [],
+				array_diff( $this->expectedDeprecations, $this->actualDeprecations ),
+				'Expected deprecation warning(s) were not emitted' );
+		}
 	}
 
 	/**
