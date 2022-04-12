@@ -39,7 +39,7 @@ abstract class BundleSizeTest extends MediaWikiIntegrationTestCase {
 				[
 					'lang' => 'en',
 					'modules' => $moduleName,
-					'skin' => MediaWikiServices::getInstance()->getMainConfig()->get( 'DefaultSkin' )
+					'skin' => $this->getSkinName(),
 				]
 			);
 
@@ -64,5 +64,12 @@ abstract class BundleSizeTest extends MediaWikiIntegrationTestCase {
 	 * @return string Path to bundlesize.config.json
 	 */
 	abstract public function getBundleSizeConfig(): string;
+
+	/**
+	 * @return string Skin name
+	 */
+	public function getSkinName(): string {
+		return MediaWikiServices::getInstance()->getMainConfig()->get( 'DefaultSkin' );
+	}
 
 }
