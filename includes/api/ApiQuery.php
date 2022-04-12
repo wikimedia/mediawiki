@@ -215,6 +215,7 @@ class ApiQuery extends ApiBase {
 			'services' => [
 				'NamespaceInfo',
 				'GenderCache',
+				'RestrictionStore',
 			]
 		],
 		'allredirects' => [
