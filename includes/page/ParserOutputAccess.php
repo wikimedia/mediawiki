@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Page
  */
 namespace MediaWiki\Page;
 
@@ -41,10 +39,12 @@ use Wikimedia\Rdbms\ILBFactory;
 
 /**
  * Service for getting rendered output of a given page.
+ *
  * This is a high level service, encapsulating concerns like caching
  * and stampede protection via PoolCounter.
  *
  * @since 1.36
+ * @ingroup Page
  */
 class ParserOutputAccess {
 

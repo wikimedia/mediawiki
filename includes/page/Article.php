@@ -1,7 +1,5 @@
 <?php
 /**
- * User interface for page actions.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -38,14 +36,13 @@ use Wikimedia\IPUtils;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
- * Class for viewing MediaWiki article and history.
+ * Legacy class representing an editable page and handling UI for some page actions.
  *
- * This maintains WikiPage functions for backwards compatibility.
+ * This has largely been superseded by WikiPage, with Action subclasses for the
+ * user interface of page actions, and service classes for their backend logic.
  *
- * @todo Move and rewrite code to an Action class
- *
- * Note: edit user interface and cache support functions have been
- * moved to separate EditPage and HTMLFileCache classes.
+ * @todo Move and refactor remaining code
+ * @todo Deprecate
  */
 class Article implements Page {
 	use ProtectedHookAccessorTrait;

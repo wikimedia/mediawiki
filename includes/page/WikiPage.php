@@ -1,7 +1,5 @@
 <?php
 /**
- * Base representation for a MediaWiki page.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -56,9 +54,9 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
- * Class representing a MediaWiki article and history.
+ * Base representation for an editable wiki page.
  *
- * Some fields are public only for backwards-compatibility. Use accessors.
+ * Some fields are public only for backwards-compatibility. Use accessor methods.
  * In the past, this class was part of Article.php and everything was public.
  */
 class WikiPage implements Page, IDBAccessObject, PageRecord {

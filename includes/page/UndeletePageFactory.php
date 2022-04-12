@@ -5,6 +5,10 @@ namespace MediaWiki\Page;
 use MediaWiki\Permissions\Authority;
 
 /**
+ * Service for page undelete actions.
+ *
+ * Default implementation is MediaWiki\Page\PageCommandFactory.
+ *
  * @since 1.38
  */
 interface UndeletePageFactory {
