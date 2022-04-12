@@ -30,7 +30,8 @@
 			"飞舞回堂前",
 			"아라",
 			"Crowley666",
-			"Sunny00217"
+			"Sunny00217",
+			"StarrySky"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -820,6 +821,7 @@
 	"undo-summary-import2": "撤销用户$2导入个修订版本$1",
 	"undo-summary-username-hidden": "取消因为一匿名用户所作个版本$1",
 	"viewpagelogs": "望箇页日志",
+	"viewpagelogs-lowercase": "望箇页日志",
 	"nohistory": "该只页面呒不编辑历史。",
 	"currentrev": "最新版本",
 	"currentrev-asof": "$1个最新修订版",
@@ -845,6 +847,7 @@
 	"history-feed-item-nocomment": "$1垃拉$2",
 	"history-feed-empty": "请求个页面弗存在。渠作兴已畀删除或重命名。\n尝试[[Special:Search|搜索本站]]获得相关新建页面。",
 	"history-edit-tags": "编辑选中修订版本个标签",
+	"history-empty": "没有发现匹配个修订。",
 	"rev-deleted-comment": "（编辑摘要删脱哉）",
 	"rev-deleted-user": "（用户名删脱哉）",
 	"rev-deleted-event": "（日志细节删脱哉）",

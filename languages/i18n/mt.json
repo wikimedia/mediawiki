@@ -23,7 +23,7 @@
 			"Weather Top Wizard"
 		]
 	},
-	"tog-underline": "Ħoloq sottolinjati:",
+	"tog-underline": "Sottolinjar tal-ħoloq:",
 	"tog-hideminor": "Aħbi l-modifiki minuri fit-tibdil riċenti",
 	"tog-hidepatrolled": "Aħbi l-modifiki verifikati fit-tibdil riċenti",
 	"tog-newpageshidepatrolled": "Aħbi l-paġni verifikati mil-lista tal-paġni l-ġodda",
@@ -1894,7 +1894,7 @@
 	"cachedspecial-refresh-now": "Uri l-iktar riċenti.",
 	"categories": "Kategoriji",
 	"categories-submit": "Uri",
-	"categoriespagetext": "Il-{{PLURAL:$1|kategorija segwenti għandha|kategoriji segwenti għandhom}} paġni jew fajls multimedjali.<br />\nIl-[[Special:UnusedCategories|kategoriji vojta]] ma jidhrux hawnhekk.\nAra wkoll il-[[Special:WantedCategories|kategoriji rikjesti]].",
+	"categoriespagetext": "Il-{{PLURAL:$1|kategorija segwenti teżisti|kategoriji segwenti jeżistu}} fuq dan il-wiki, irrispettivament mill-użu.<br />\nAra wkoll il-[[Special:WantedCategories|kategoriji rikjesti]].",
 	"categoriesfrom": "Uri kategoriji minn:",
 	"deletedcontributions": "Kontribuzzjonijiet imħassra tal-utent",
 	"deletedcontributions-title": "Kontribuzzjonijiet imħassra tal-utent",
@@ -3195,6 +3195,7 @@
 	"mw-widgets-dateinput-placeholder-day": "SSSS-XX-ĠĠ",
 	"mw-widgets-dateinput-placeholder-month": "SSSS-XX",
 	"mw-widgets-mediasearch-noresults": "L-ebda riżultat ma nstab.",
+	"mw-widgets-categoryselector-add-category-placeholder": "Żid kategorija...",
 	"date-range-from": "Mid-data:",
 	"date-range-to": "Sad-data:",
 	"sessionprovider-mediawiki-session-cookiesessionprovider": "sessjonijiet ibbażati fuq cookie/s",
