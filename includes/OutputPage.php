@@ -1183,10 +1183,10 @@ class OutputPage extends ContextSource {
 	/**
 	 * Build message object for a subtitle containing a backlink to a page
 	 *
+	 * @since 1.25
 	 * @param PageReference $page Title to link to
 	 * @param array $query Array of additional parameters to include in the link
 	 * @return Message
-	 * @since 1.25
 	 */
 	public static function buildBacklinkSubtitle( PageReference $page, $query = [] ) {
 		if ( $page instanceof PageRecord || $page instanceof Title ) {
