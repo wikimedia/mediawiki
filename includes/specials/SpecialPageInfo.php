@@ -22,8 +22,14 @@
  * @author DannyS712
  */
 class SpecialPageInfo extends SpecialRedirectWithAction {
-	public function __construct() {
-		parent::__construct( 'PageInfo', 'info', 'pageinfo' );
+
+	/**
+	 * @param SearchEngineFactory $searchEngineFactory
+	 */
+	public function __construct(
+		SearchEngineFactory $searchEngineFactory
+	) {
+		parent::__construct( 'PageInfo', 'info', 'pageinfo', $searchEngineFactory );
 	}
 
 	// Messages, for grep:

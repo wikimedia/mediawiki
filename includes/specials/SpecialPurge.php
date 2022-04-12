@@ -22,8 +22,14 @@
  * @author DannyS712
  */
 class SpecialPurge extends SpecialRedirectWithAction {
-	public function __construct() {
-		parent::__construct( 'Purge', 'purge', 'purge' );
+
+	/**
+	 * @param SearchEngineFactory $searchEngineFactory
+	 */
+	public function __construct(
+		SearchEngineFactory $searchEngineFactory
+	) {
+		parent::__construct( 'Purge', 'purge', 'purge', $searchEngineFactory );
 	}
 
 	// Messages, for grep:

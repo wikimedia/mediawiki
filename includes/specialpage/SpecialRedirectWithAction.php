@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+
 /**
  * Abstract to simplify creation of redirect special pages
  *
@@ -24,19 +27,39 @@
  * @author DannyS712
  */
 abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
-	protected $action, $msgPrefix;
+	/** @var string */
+	protected $action;
+
+	/** @var string */
+	protected $msgPrefix;
+
+	/** @var SearchEngineFactory */
+	private $searchEngineFactory;
 
 	/**
 	 * @stable to call
+	 * @since 1.39 SearchEngineFactory added
 	 *
 	 * @param string $name
 	 * @param string $action
 	 * @param string $msgPrefix
+	 * @param SearchEngineFactory|null $searchEngineFactory Not providing this param is deprecated since 1.39
 	 */
-	public function __construct( $name, $action, $msgPrefix ) {
+	public function __construct(
+		$name,
+		$action,
+		$msgPrefix,
+		SearchEngineFactory $searchEngineFactory = null
+	) {
 		parent::__construct( $name );
 		$this->action = $action;
 		$this->msgPrefix = $msgPrefix;
+		if ( !$searchEngineFactory ) {
+			// Fallback to global state if the new parameter was not provided
+			wfDeprecated( __METHOD__ . ' without providing SearchEngineFactory', '1.39' );
+			$searchEngineFactory = MediaWikiServices::getInstance()->getSearchEngineFactory();
+		}
+		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
 	/**
@@ -103,6 +126,18 @@ abstract class SpecialRedirectWithAction extends RedirectSpecialPage {
 	 */
 	public function isListed() {
 		return true;
+	}
+
+	/**
+	 * Return an array of subpages beginning with $search that this special page will accept.
+	 *
+	 * @param string $search Prefix to search for
+	 * @param int $limit Maximum number of results to return (usually 10)
+	 * @param int $offset Number of results to skip (usually 0)
+	 * @return string[] Matching subpages
+	 */
+	public function prefixSearchSubpages( $search, $limit, $offset ) {
+		return $this->prefixSearchString( $search, $limit, $offset, $this->searchEngineFactory );
 	}
 
 	/**
