@@ -103,12 +103,6 @@ Template:=
 <nowiki>=</nowiki>
 !! endarticle
 
-!!article
-MediaWiki:bad image list
-!!text
-* [[File:Bad.jpg]] except [[Nasty page]]
-!!endarticle
-
 !! article
 Template:inner list
 !! text
@@ -22863,34 +22857,6 @@ comment
 [[ABC%33D% ++]] [[ABC%33D% ++|+%20]]
 !! html/php
 <a href="/index.php?title=ABC3D%25_%2B%2B&amp;action=edit&amp;redlink=1" class="new" title="ABC3D% ++ (page does not exist)">ABC3D% ++</a> <a href="/index.php?title=ABC3D%25_%2B%2B&amp;action=edit&amp;redlink=1" class="new" title="ABC3D% ++ (page does not exist)">+%20</a>
-!! end
-
-!! test
-Bad images - basic functionality
-!! wikitext
-[[File:Bad.jpg]]
-!! html/php
-<p><a href="/wiki/File:Bad.jpg" title="File:Bad.jpg">File:Bad.jpg</a>
-</p>
-!! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-badfile","message":"This image is on the bad file list."}]}'><a href="./Special:FilePath/Bad.jpg"><span class="mw-broken-media" resource="./File:Bad.jpg">File:Bad.jpg</span></a></span></p>
-!! end
-
-!! test
-Bad images - T18039: text after bad image disappears
-!! wikitext
-Foo bar
-[[File:Bad.jpg]]
-Bar foo
-!! html/php
-<p>Foo bar
-<a href="/wiki/File:Bad.jpg" title="File:Bad.jpg">File:Bad.jpg</a>
-Bar foo
-</p>
-!! html/parsoid
-<p>Foo bar
-<span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-badfile","message":"This image is on the bad file list."}]}'><a href="./Special:FilePath/Bad.jpg"><span class="mw-broken-media" resource="./File:Bad.jpg">File:Bad.jpg</span></a></span>
-Bar foo</p>
 !! end
 
 !! test
