@@ -858,12 +858,18 @@ class SpecialPageFactory {
 		],
 		'DeletePage' => [
 			'class' => \SpecialDeletePage::class,
+			'services' => [
+				'SearchEngineFactory',
+			]
 		],
 		'Diff' => [
 			'class' => \SpecialDiff::class,
 		],
 		'EditPage' => [
 			'class' => \SpecialEditPage::class,
+			'services' => [
+				'SearchEngineFactory',
+			]
 		],
 		'EditTags' => [
 			'class' => \SpecialEditTags::class,
@@ -913,15 +919,27 @@ class SpecialPageFactory {
 		],
 		'PageHistory' => [
 			'class' => \SpecialPageHistory::class,
+			'services' => [
+				'SearchEngineFactory',
+			]
 		],
 		'PageInfo' => [
 			'class' => \SpecialPageInfo::class,
+			'services' => [
+				'SearchEngineFactory',
+			]
 		],
 		'ProtectPage' => [
 			'class' => \SpecialProtectPage::class,
+			'services' => [
+				'SearchEngineFactory',
+			]
 		],
 		'Purge' => [
 			'class' => \SpecialPurge::class,
+			'services' => [
+				'SearchEngineFactory',
+			]
 		],
 		'Myuploads' => [
 			'class' => \SpecialMyuploads::class,
@@ -931,6 +949,9 @@ class SpecialPageFactory {
 		],
 		'NewSection' => [
 			'class' => \SpecialNewSection::class,
+			'services' => [
+				'SearchEngineFactory',
+			]
 		],
 		'PermanentLink' => [
 			'class' => \SpecialPermanentLink::class,

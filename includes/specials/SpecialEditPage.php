@@ -22,8 +22,14 @@
  * @author DannyS712
  */
 class SpecialEditPage extends SpecialRedirectWithAction {
-	public function __construct() {
-		parent::__construct( 'EditPage', 'edit', 'editpage' );
+
+	/**
+	 * @param SearchEngineFactory $searchEngineFactory
+	 */
+	public function __construct(
+		SearchEngineFactory $searchEngineFactory
+	) {
+		parent::__construct( 'EditPage', 'edit', 'editpage', $searchEngineFactory );
 	}
 
 	// Messages, for grep:

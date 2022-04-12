@@ -51,8 +51,8 @@ class BlockLogFormatter extends LogFormatter {
 		$subtype = $this->entry->getSubtype();
 		if ( $subtype === 'block' || $subtype === 'reblock' ) {
 			if ( !isset( $params[4] ) ) {
-				// Very old log entry without duration: means infinite
-				$params[4] = 'infinite';
+				// Very old log entry without duration: means infinity
+				$params[4] = 'infinity';
 			}
 			// Localize the duration, and add a tooltip
 			// in English to help visitors from other wikis.
@@ -264,7 +264,7 @@ class BlockLogFormatter extends LogFormatter {
 		if ( $subtype === 'block' || $subtype === 'reblock' ) {
 			// Defaults for old log entries missing some fields
 			$params += [
-				'5::duration' => 'infinite',
+				'5::duration' => 'infinity',
 				'6:array:flags' => [],
 			];
 
@@ -275,7 +275,10 @@ class BlockLogFormatter extends LogFormatter {
 					: explode( ',', $params['6:array:flags'] );
 			}
 
-			if ( !wfIsInfinity( $params['5::duration'] ) ) {
+			if ( wfIsInfinity( $params['5::duration'] ) ) {
+				// Normalize all possible values to one for pre-T241709 rows
+				$params['5::duration'] = 'infinity';
+			} else {
 				$ts = (int)wfTimestamp( TS_UNIX, $entry->getTimestamp() );
 				$expiry = strtotime( $params['5::duration'], $ts );
 				if ( $expiry !== false && $expiry > 0 ) {
