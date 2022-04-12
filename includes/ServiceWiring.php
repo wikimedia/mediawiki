@@ -1,6 +1,27 @@
 <?php
 /**
- * Default wiring for MediaWiki services.
+ * Service implemenations for %MediaWiki core.
+ *
+ * This file returns the array loaded by the MediaWikiServices class
+ * for use through `MediaWiki\MediaWikiServices::getInstance()`
+ *
+ * @see [Dependency Injection](@ref dependencyinjection) in docs/Injection.md
+ * for the principles of DI and how to use it MediaWiki core.
+ *
+ * Reminder:
+ *
+ * - ServiceWiring is NOT a cache for arbitrary singletons.
+ *
+ * - Services MUST NOT vary their behaviour on global state, especially not
+ *   WebRequest, RequestContext (T218555), or other details of the current
+ *   request or CLI process (e.g. "current" user or title). Doing so may
+ *   cause a chain reaction and cause serious data corruption.
+ *
+ *   Refer to [DI Principles](@ref di-principles) in docs/Injection.md for
+ *   how and why we avoid this, as well as for limited exemptions to these
+ *   principles.
+ *
+ * -------
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,30 +39,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- *
- * This file is loaded by MediaWiki\MediaWikiServices::getInstance() during the
- * bootstrapping of the dependency injection framework.
- *
- * This file returns an array that associates service name with instantiator functions
- * that create the default instances for the services used by MediaWiki core.
- * For every service that MediaWiki core requires, an instantiator must be defined in
- * this file.
- *
- * Note that, ideally, all information used to instantiate service objects should come
- * from configuration. Information derived from the current request is acceptable, but
- * only where there is no feasible alternative. It is preferred that such information
- * (like the client IP, the acting user's identity, requested title, etc) be passed to
- * the service object's methods as parameters. This makes the flow of information more
- * obvious, and makes it easier to understand the behavior of services.
- *
- * @note As of version 1.27, MediaWiki is only beginning to use dependency injection.
- * The services defined here do not yet fully represent all services used by core,
- * much of the code still relies on global state for this accessing services.
- *
- * @since 1.27
- *
- * @see docs/Injection.md for an overview of using dependency injection in the
- *      MediaWiki code base.
  */
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
