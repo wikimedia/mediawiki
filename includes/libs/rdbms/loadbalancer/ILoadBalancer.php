@@ -414,11 +414,11 @@ interface ILoadBalancer {
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
 	 * @param string|bool $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
-	 * @return MaintainableDBConnRef Live connection handle
+	 * @return DBConnRef Live connection handle
 	 * @throws DBError If no live handle could be obtained
 	 * @throws DBAccessError If disable() was previously called
 	 */
-	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): MaintainableDBConnRef;
+	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): DBConnRef;
 
 	/**
 	 * Get the specific server index of the primary server

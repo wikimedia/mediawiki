@@ -1074,7 +1074,7 @@ class LoadBalancer implements ILoadBalancer {
 		$groups = [],
 		$domain = false,
 		$flags = 0
-	): MaintainableDBConnRef {
+	): DBConnRef {
 		if ( self::fieldHasBit( $flags, self::CONN_SILENCE_ERRORS ) ) {
 			throw new UnexpectedValueException(
 				__METHOD__ . ' CONN_SILENCE_ERRORS is not supported'
@@ -1085,7 +1085,7 @@ class LoadBalancer implements ILoadBalancer {
 		$role = $this->getRoleFromIndex( $i );
 		$conn = $this->getConnection( $i, $groups, $domain, $flags );
 
-		return new MaintainableDBConnRef( $this, $conn, $role );
+		return new DBConnRef( $this, $conn, $role );
 	}
 
 	/**

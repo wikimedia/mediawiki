@@ -24,7 +24,6 @@ use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
-use Wikimedia\Rdbms\MaintainableDBConnRef;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -188,7 +187,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * Get a primary database connection for the specified cluster
 	 *
 	 * @param string $cluster Cluster name
-	 * @return MaintainableDBConnRef
+	 * @return DBConnRef
 	 * @since 1.37
 	 */
 	public function getPrimary( $cluster ) {
@@ -205,7 +204,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	/**
 	 * @deprecated since 1.37; please use getPrimary() instead.
 	 * @param string $cluster Cluster name
-	 * @return MaintainableDBConnRef
+	 * @return DBConnRef
 	 */
 	public function getMaster( $cluster ) {
 		wfDeprecated( __METHOD__, '1.37' );

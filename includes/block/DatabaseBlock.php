@@ -288,6 +288,7 @@ class DatabaseBlock extends AbstractBlock {
 		}
 
 		$blockQuery = self::getQueryInfo();
+		// @phan-suppress-next-line SecurityCheck-SQLInjection
 		$res = $db->select(
 			$blockQuery['tables'],
 			$blockQuery['fields'],
