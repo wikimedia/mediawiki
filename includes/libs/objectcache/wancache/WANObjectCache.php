@@ -775,28 +775,71 @@ class WANObjectCache implements
 	 *      Default: null
 	 *   - walltime: How long the value took to generate in seconds. Default: null
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{lag?:int,since?:int,pending?:bool,lockTSE?:int,staleTTL?:int,creating?:bool,version?:int,walltime?:int|float} $opts
+	 * @phan-param array{lag?:float|int,since?:float|int,pending?:bool,lockTSE?:int,staleTTL?:int,creating?:bool,version?:int,walltime?:int|float} $opts
 	 * @note Options added in 1.28: staleTTL
 	 * @note Options added in 1.33: creating
 	 * @note Options added in 1.34: version, walltime
 	 * @return bool Success
 	 */
 	final public function set( $key, $value, $ttl = self::TTL_INDEFINITE, array $opts = [] ) {
-		$now = $this->getCurrentTime();
-		$dataReplicaLag = $opts['lag'] ?? 0;
-		$dataSnapshotLag = isset( $opts['since'] ) ? max( 0, $now - $opts['since'] ) : 0;
-		$dataCombinedLag = $dataReplicaLag + $dataSnapshotLag;
-		$dataPendingCommit = $opts['pending'] ?? null;
-		$lockTSE = $opts['lockTSE'] ?? self::TSE_NONE;
-		$staleTTL = $opts['staleTTL'] ?? self::STALE_TTL_NONE;
-		$creating = $opts['creating'] ?? false;
-		$version = $opts['version'] ?? null;
-		$walltime = $opts['walltime'] ?? $this->timeSinceLoggedMiss( $key, $now );
+		$kClass = $this->determineKeyClassForStats( $key );
 
+		$ok = $this->setMainValue(
+			$key,
+			$value,
+			$ttl,
+			$opts['version'] ?? null,
+			$opts['walltime'] ?? null,
+			$opts['lag'] ?? 0,
+			$opts['since'] ?? null,
+			$opts['pending'] ?? false,
+			$opts['lockTSE'] ?? self::TSE_NONE,
+			$opts['staleTTL'] ?? self::STALE_TTL_NONE,
+			$opts['creating'] ?? false
+		);
+
+		$this->stats->increment( "wanobjectcache.$kClass.set." . ( $ok ? 'ok' : 'error' ) );
+
+		return $ok;
+	}
+
+	/**
+	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
+	 * @param mixed $value
+	 * @param int|float $ttl
+	 * @param int|null $version
+	 * @param float|null $walltime
+	 * @param float|int|bool $dataReplicaLag
+	 * @param float|int|null $dataReadSince
+	 * @param bool $dataPendingCommit
+	 * @param int $lockTSE
+	 * @param int $staleTTL
+	 * @param bool $creating
+	 * @return bool Success
+	 */
+	private function setMainValue(
+		$key,
+		$value,
+		$ttl,
+		?int $version,
+		?float $walltime,
+		$dataReplicaLag,
+		$dataReadSince,
+		bool $dataPendingCommit,
+		int $lockTSE,
+		int $staleTTL,
+		bool $creating
+	) {
 		if ( $ttl < 0 ) {
 			// not cacheable
 			return true;
 		}
+
+		$now = $this->getCurrentTime();
+		$ttl = (int)$ttl;
+		$walltime = $walltime ?? $this->timeSinceLoggedMiss( $key, $now );
+		$dataSnapshotLag = ( $dataReadSince !== null ) ? max( 0, $now - $dataReadSince ) : 0;
+		$dataCombinedLag = $dataReplicaLag + $dataSnapshotLag;
 
 		// Forbid caching data that only exists within an uncommitted transaction. Also, lower
 		// the TTL when the data has a "since" time so far in the past that a delete() tombstone,
@@ -1683,6 +1726,8 @@ class WANObjectCache implements
 		$setOpts = [];
 		$preCallbackTime = $this->getCurrentTime();
 		++$this->callbackDepth;
+		// https://github.com/phan/phan/issues/4419
+		$value = null;
 		try {
 			$value = $callback(
 				( $curState[self::RES_VERSION] === $version ) ? $curValue : false,
@@ -1706,32 +1751,38 @@ class WANObjectCache implements
 		// Attempt to save the newly generated value if applicable
 		if (
 			// Callback yielded a cacheable value
-			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 			( $value !== false && $ttl >= 0 ) &&
 			// Current thread was not raced out of a regeneration lock or key is tombstoned
 			( !$useRegenerationLock || $hasLock || $isKeyTombstoned ) &&
 			// Key does not appear to be undergoing a set() stampede
-			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 			$this->checkAndSetCooloff( $key, $kClass, $value, $elapsed, $hasLock )
 		) {
 			// If the key is write-holed then use the (volatile) interim key as an alternative
 			if ( $isKeyTombstoned ) {
-				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
-				$this->setInterimValue( $key, $value, $lockTSE, $version, $postCallbackTime, $walltime );
+				$this->setInterimValue(
+					$key,
+					$value,
+					$lockTSE,
+					$version,
+					$walltime,
+				);
 			} else {
-				$finalSetOpts = [
-					// @phan-suppress-next-line PhanUselessBinaryAddRight,PhanCoalescingAlwaysNull
-					'since' => $setOpts['since'] ?? $preCallbackTime,
-					'version' => $version,
-					'staleTTL' => $staleTTL,
-					// informs lag vs performance trade-offs
-					'lockTSE' => $lockTSE,
-					// optimization
-					'creating' => ( $curValue === false ),
-					'walltime' => $walltime
-				] + $setOpts;
-				// @phan-suppress-next-line PhanTypeMismatchArgument,PhanPossiblyUndeclaredVariable False positive
-				$this->set( $key, $value, $ttl, $finalSetOpts );
+				$this->setMainValue(
+					$key,
+					$value,
+					$ttl,
+					$version,
+					$walltime,
+					// @phan-suppress-next-line PhanCoalescingAlwaysNull
+					$setOpts['lag'] ?? 0,
+					// @phan-suppress-next-line PhanCoalescingAlwaysNull
+					$setOpts['since'] ?? $preCallbackTime,
+					// @phan-suppress-next-line PhanCoalescingAlwaysNull
+					$setOpts['pending'] ?? false,
+					$lockTSE, // informs lag vs performance trade-offs
+					$staleTTL,
+					( $curValue === false ) // optimization
+				);
 			}
 		}
 
@@ -1744,7 +1795,6 @@ class WANObjectCache implements
 			1e3 * ( $this->getCurrentTime() - $startTime )
 		);
 
-		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 		return [ $value, $version, $curState[self::RES_AS_OF] ];
 	}
 
@@ -1857,7 +1907,7 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * Check whether set() is rate-limited to avoid concurrent I/O spikes
+	 * Check whether to skip set() on account of concurrent I/O spike rate-limiting
 	 *
 	 * This mitigates problems caused by popular keys suddenly becoming unavailable due to
 	 * unexpected evictions or cache server outages. These cases are not handled by the usual
@@ -1871,9 +1921,9 @@ class WANObjectCache implements
 	 * problem is proportionate to value regeneration time.
 	 *
 	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
-	 * @param string $kClass
+	 * @param string $kClass Key collection name
 	 * @param mixed $value The regenerated value
-	 * @param float $elapsed Seconds spent fetching, validating, and regenerating the value
+	 * @param float|null $elapsed Seconds spent fetching, validating, and regenerating the value
 	 * @param bool $hasLock Whether this thread has an exclusive regeneration lock
 	 * @return bool Whether it is OK to proceed with a key set operation
 	 */
@@ -1916,6 +1966,8 @@ class WANObjectCache implements
 					// Don't treat failures due to I/O errors as the key being in cool-off
 					$this->cache->getLastError( $watchPoint ) === self::ERR_NONE
 				) {
+					$this->logger->debug(
+						"checkAndSetCooloff($key): bounced; ${estimatedSize} byte(s), ${elapsed}s" );
 					$this->stats->increment( "wanobjectcache.$kClass.cooloff_bounce" );
 
 					return false;
@@ -1964,16 +2016,24 @@ class WANObjectCache implements
 	/**
 	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
 	 * @param mixed $value
-	 * @param int $ttl
+	 * @param int|float $ttl
 	 * @param int|null $version Value version number
-	 * @param float $now Time after value regen
 	 * @param float $walltime How long it took to generate the value in seconds
+	 * @return bool Success
 	 */
-	private function setInterimValue( $key, $value, $ttl, $version, $now, $walltime ) {
+	private function setInterimValue(
+		$key,
+		$value,
+		$ttl,
+		?int $version,
+		float $walltime
+	) {
+		$now = $this->getCurrentTime();
 		$ttl = max( self::INTERIM_KEY_TTL, (int)$ttl );
 
 		$wrapped = $this->wrap( $value, $ttl, $version, $now, $walltime );
-		$this->cache->set(
+
+		return $this->cache->set(
 			$this->makeSisterKey( $key, self::TYPE_INTERIM ),
 			$wrapped,
 			$ttl
