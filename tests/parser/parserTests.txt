@@ -22864,15 +22864,13 @@ comment
 
 # Parsoid doesn't support this yet: see T75581
 # but it *should* omit the 'src' attribute if the image is bad.
-# PHP side of tests was disabled in
-# mediawiki/core:6bd31e7d95161a6e88fa86df60871051da997c3c
-# because of issues in the PHP parserTests infrastructure
-# (but the output below is indeed what the PHP side emits)
 !! test
 Bad images - basic functionality
 !! wikitext
 [[File:Bad.jpg]]
-!! html/php+disabled
+!! html/php
+<p><a href="/wiki/File:Bad.jpg" title="File:Bad.jpg">File:Bad.jpg</a>
+</p>
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Bad.jpg"><span class="mw-broken-media" resource="./File:Bad.jpg">File:Bad.jpg</span></a></span></p>
 !! end
@@ -22883,9 +22881,10 @@ Bad images - T18039: text after bad image disappears
 Foo bar
 [[File:Bad.jpg]]
 Bar foo
-!! html/php+disabled
+!! html/php
 <p>Foo bar
-</p><p>Bar foo
+<a href="/wiki/File:Bad.jpg" title="File:Bad.jpg">File:Bad.jpg</a>
+Bar foo
 </p>
 !! html/parsoid
 <p>Foo bar
