@@ -149,12 +149,24 @@ class TestSetup {
 	 * @param string $fileName the file to include
 	 */
 	public static function requireOnceInGlobalScope( string $fileName ): void {
-		// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.extract
-		extract( $GLOBALS, EXTR_REFS | EXTR_SKIP );
+		$originalGlobals = $GLOBALS;
+		foreach ( array_keys( $GLOBALS ) as $key ) {
+			if ( $key === 'fileName' || $key === 'originalGlobals' ) {
+				continue;
+			}
+			// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables.UnusedGlobal$key,MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
+			global $$key;
+		}
 
 		require_once $fileName;
 
 		foreach ( get_defined_vars() as $varName => $value ) {
+			if ( $key === 'fileName' || $key === 'originalGlobals' || $key === 'key' ) {
+				continue;
+			}
+			if ( array_key_exists( $varName, $originalGlobals ) ) {
+				continue;
+			}
 			$GLOBALS[$varName] = $value;
 		}
 	}
