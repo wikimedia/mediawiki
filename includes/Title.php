@@ -3114,15 +3114,27 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		}
 
 		$db = wfGetDB( DB_REPLICA );
+		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 
-		$blNamespace = "{$prefix}_namespace";
-		$blTitle = "{$prefix}_title";
+		if ( isset( $linksMigration::$mapping[$table] ) ) {
+			list( $blNamespace, $blTitle ) = $linksMigration->getTitleFields( $table );
+			$linktargetQueryInfo = $linksMigration->getQueryInfo( $table );
+			$fields = $linktargetQueryInfo['fields'];
+			$tables = $linktargetQueryInfo['tables'];
+			$joins = $linktargetQueryInfo['joins'];
+		} else {
+			$blNamespace = "{$prefix}_namespace";
+			$blTitle = "{$prefix}_title";
+			$fields = [ $blNamespace, $blTitle ];
+			$tables = [ $table ];
+			$joins = [];
+		}
 
 		$pageQuery = WikiPage::getQueryInfo();
 		$res = $db->select(
-			[ $table, 'nestpage' => $pageQuery['tables'] ],
+			array_merge( $tables, [ 'nestpage' => $pageQuery['tables'] ] ),
 			array_merge(
-				[ $blNamespace, $blTitle ],
+				$fields,
 				$pageQuery['fields']
 			),
 			[ "{$prefix}_from" => $id ],
@@ -3131,7 +3143,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			[ 'nestpage' => [
 				'LEFT JOIN',
 				[ "page_namespace=$blNamespace", "page_title=$blTitle" ]
-			] ] + $pageQuery['joins']
+			] ] + $pageQuery['joins'] + $joins
 		);
 
 		$retVal = [];
