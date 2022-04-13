@@ -23,6 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\UndeletePage;
 use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
@@ -1374,7 +1375,7 @@ class SpecialUndelete extends SpecialPage {
 	}
 
 	private function undelete() {
-		if ( $this->getConfig()->get( 'UploadMaintenance' )
+		if ( $this->getConfig()->get( MainConfigNames::UploadMaintenance )
 			&& $this->mTargetObj->getNamespace() === NS_FILE
 		) {
 			throw new ErrorPageError( 'undelete-error', 'filedelete-maintenance' );

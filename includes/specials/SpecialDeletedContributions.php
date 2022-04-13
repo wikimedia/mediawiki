@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\User\UserFactory;
@@ -115,7 +116,8 @@ class SpecialDeletedContributions extends SpecialPage {
 		$opts->add( 'limit', 20 );
 
 		$opts->fetchValuesFromRequest( $this->getRequest() );
-		$opts->validateIntBounds( 'limit', 0, $this->getConfig()->get( 'QueryPageDefaultLimit' ) );
+		$opts->validateIntBounds( 'limit', 0,
+			$this->getConfig()->get( MainConfigNames::QueryPageDefaultLimit ) );
 
 		if ( $par !== null ) {
 			// Beautify the username

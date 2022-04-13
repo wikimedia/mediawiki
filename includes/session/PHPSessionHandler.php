@@ -24,6 +24,7 @@
 namespace MediaWiki\Session;
 
 use BagOStuff;
+use MediaWiki\MainConfigNames;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\AtEase\AtEase;
@@ -57,7 +58,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 
 	protected function __construct( SessionManager $manager ) {
 		$this->setEnableFlags(
-			\RequestContext::getMain()->getConfig()->get( 'PHPSessionHandling' )
+			\RequestContext::getMain()->getConfig()->get( MainConfigNames::PHPSessionHandling )
 		);
 		$manager->setupPHPSessionHandler( $this );
 	}

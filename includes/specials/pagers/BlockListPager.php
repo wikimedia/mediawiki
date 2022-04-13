@@ -29,6 +29,7 @@ use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
@@ -363,7 +364,8 @@ class BlockListPager extends TablePager {
 					break;
 				case ActionRestriction::TYPE:
 					$actionName = $this->blockActionInfo->getActionFromId( $restriction->getValue() );
-					$enablePartialActionBlocks = $this->getConfig()->get( 'EnablePartialActionBlocks' );
+					$enablePartialActionBlocks =
+						$this->getConfig()->get( MainConfigNames::EnablePartialActionBlocks );
 					if ( $actionName && $enablePartialActionBlocks ) {
 						$items[$restriction->getType()][] = Html::rawElement(
 							'li',

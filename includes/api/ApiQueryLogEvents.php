@@ -22,6 +22,7 @@
 
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
+use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
@@ -220,7 +221,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$prefix = $params['prefix'];
 
 		if ( $prefix !== null ) {
-			if ( $this->getConfig()->get( 'MiserMode' ) ) {
+			if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 				$this->dieWithError( 'apierror-prefixsearchdisabled' );
 			}
 
@@ -263,7 +264,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		$this->addOption(
 			'MAX_EXECUTION_TIME',
-			$this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' )
+			$this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries )
 		);
 
 		$count = 0;
@@ -405,8 +406,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	private function getAllowedLogActions() {
 		$config = $this->getConfig();
 		return array_keys( array_merge(
-			$config->get( 'LogActions' ),
-			$config->get( 'LogActionsHandlers' )
+			$config->get( MainConfigNames::LogActions ),
+			$config->get( MainConfigNames::LogActionsHandlers )
 		) );
 	}
 
@@ -496,7 +497,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			],
 		];
 
-		if ( $config->get( 'MiserMode' ) ) {
+		if ( $config->get( MainConfigNames::MiserMode ) ) {
 			$ret['prefix'][ApiBase::PARAM_HELP_MSG] = 'api-help-param-disabled-in-miser-mode';
 		}
 

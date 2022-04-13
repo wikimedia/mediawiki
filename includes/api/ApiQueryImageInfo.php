@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\BadFileLookup;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -327,7 +328,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			// don't have a width of their own, so pick something arbitrary so
 			// thumbnailing the default icon works.
 			if ( $image->getWidth() <= 0 ) {
-				$thumbParams['width'] = max( $this->getConfig()->get( 'ThumbLimits' ) );
+				$thumbParams['width'] =
+					max( $this->getConfig()->get( MainConfigNames::ThumbLimits ) );
 			} else {
 				$thumbParams['width'] = $image->getWidth();
 			}

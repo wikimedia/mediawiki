@@ -21,6 +21,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -81,7 +82,7 @@ class ActiveUsersPager extends UsersPager {
 			null
 		);
 
-		$this->RCMaxAge = $this->getConfig()->get( 'ActiveUserDays' );
+		$this->RCMaxAge = $this->getConfig()->get( MainConfigNames::ActiveUserDays );
 		$this->requestedUser = '';
 
 		$un = $opts->getValue( 'username' );
@@ -110,7 +111,7 @@ class ActiveUsersPager extends UsersPager {
 	public function getQueryInfo( $data = null ) {
 		$dbr = $this->getDatabase();
 
-		$activeUserSeconds = $this->getConfig()->get( 'ActiveUserDays' ) * 86400;
+		$activeUserSeconds = $this->getConfig()->get( MainConfigNames::ActiveUserDays ) * 86400;
 		$timestamp = $dbr->timestamp( (int)wfTimestamp( TS_UNIX ) - $activeUserSeconds );
 		$fname = __METHOD__ . ' (' . $this->getSqlComment() . ')';
 

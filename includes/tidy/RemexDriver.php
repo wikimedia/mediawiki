@@ -3,6 +3,7 @@
 namespace MediaWiki\Tidy;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use Wikimedia\RemexHtml\HTMLData;
 use Wikimedia\RemexHtml\Serializer\Serializer;
 use Wikimedia\RemexHtml\Serializer\SerializerWithTracer;
@@ -31,7 +32,7 @@ class RemexDriver extends TidyDriverBase {
 			$config = $options;
 		} else {
 			$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-			$config = $options->get( 'TidyConfig' );
+			$config = $options->get( MainConfigNames::TidyConfig );
 		}
 		$config += [
 			'treeMutationTrace' => false,

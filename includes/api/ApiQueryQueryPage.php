@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 
 /**
@@ -52,7 +53,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		parent::__construct( $query, $moduleName, 'qp' );
 		$this->queryPages = array_values( array_diff(
 			array_column( QueryPage::getPages(), 1 ), // [ class, name ]
-			$this->getConfig()->get( 'APIUselessQueryPages' )
+			$this->getConfig()->get( MainConfigNames::APIUselessQueryPages )
 		) );
 		$this->specialPageFactory = $specialPageFactory;
 	}
@@ -109,7 +110,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 				if ( $ts ) {
 					$r['cachedtimestamp'] = wfTimestamp( TS_ISO_8601, $ts );
 				}
-				$r['maxresults'] = $this->getConfig()->get( 'QueryCacheLimit' );
+				$r['maxresults'] = $this->getConfig()->get( MainConfigNames::QueryCacheLimit );
 			}
 		}
 		$result->addValue( [ 'query' ], $this->getModuleName(), $r );

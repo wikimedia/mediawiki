@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -111,7 +112,8 @@ class ApiOpenSearch extends ApiBase {
 		$search = $params['search'];
 
 		// Open search results may be stored for a very long time
-		$this->getMain()->setCacheMaxAge( $this->getConfig()->get( 'SearchSuggestCacheExpiry' ) );
+		$this->getMain()->setCacheMaxAge(
+			$this->getConfig()->get( MainConfigNames::SearchSuggestCacheExpiry ) );
 		$this->getMain()->setCacheMode( 'public' );
 		$results = $this->search( $search, $params );
 
@@ -119,7 +121,7 @@ class ApiOpenSearch extends ApiBase {
 		$this->getHookRunner()->onApiOpenSearchSuggest( $results );
 
 		// Trim extracts, if necessary
-		$length = $this->getConfig()->get( 'OpenSearchDescriptionLength' );
+		$length = $this->getConfig()->get( MainConfigNames::OpenSearchDescriptionLength );
 		foreach ( $results as &$r ) {
 			if ( is_string( $r['extract'] ) && !$r['extract trimmed'] ) {
 				$r['extract'] = self::trimExtract( $r['extract'], $length );
@@ -384,7 +386,7 @@ class ApiOpenSearch extends ApiBase {
 	 */
 	public static function getOpenSearchTemplate( $type ) {
 		$config = MediaWikiServices::getInstance()->getSearchEngineConfig();
-		$template = $config->getConfig()->get( 'OpenSearchTemplate' );
+		$template = $config->getConfig()->get( MainConfigNames::OpenSearchTemplate );
 
 		if ( $template && $type === 'application/x-suggestions+json' ) {
 			return $template;
@@ -397,12 +399,13 @@ class ApiOpenSearch extends ApiBase {
 
 		switch ( $type ) {
 			case 'application/x-suggestions+json':
-				return $config->getConfig()->get( 'CanonicalServer' ) . wfScript( 'api' )
-					. '?action=opensearch&search={searchTerms}&namespace=' . $ns;
+				return $config->getConfig()->get( MainConfigNames::CanonicalServer ) .
+					wfScript( 'api' ) . '?action=opensearch&search={searchTerms}&namespace=' . $ns;
 
 			case 'application/x-suggestions+xml':
-				return $config->getConfig()->get( 'CanonicalServer' ) . wfScript( 'api' )
-					. '?action=opensearch&format=xml&search={searchTerms}&namespace=' . $ns;
+				return $config->getConfig()->get( MainConfigNames::CanonicalServer ) .
+					wfScript( 'api' ) .
+					'?action=opensearch&format=xml&search={searchTerms}&namespace=' . $ns;
 
 			default:
 				throw new MWException( __METHOD__ . ": Unknown type '$type'" );

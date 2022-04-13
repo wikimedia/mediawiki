@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
@@ -149,7 +150,8 @@ trait MediaFileTrait {
 	 * @since 1.35
 	 */
 	public static function getImageLimitsFromOption( UserIdentity $user, string $optionName ) {
-		$imageLimits = MediaWikiServices::getInstance()->getMainConfig()->get( 'ImageLimits' );
+		$imageLimits = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::ImageLimits );
 		$optionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 		$option = $optionsLookup->getIntOption( $user, $optionName );
 		if ( !isset( $imageLimits[$option] ) ) {

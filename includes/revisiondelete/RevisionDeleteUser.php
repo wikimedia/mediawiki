@@ -21,6 +21,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
@@ -46,7 +47,7 @@ class RevisionDeleteUser {
 	 */
 	private static function setUsernameBitfields( $name, $userId, $op, IDatabase $dbw = null ) {
 		$actorTableSchemaMigrationStage = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'ActorTableSchemaMigrationStage' );
+			->getMainConfig()->get( MainConfigNames::ActorTableSchemaMigrationStage );
 
 		if ( !$userId || ( $op !== '|' && $op !== '&' ) ) {
 			return false;

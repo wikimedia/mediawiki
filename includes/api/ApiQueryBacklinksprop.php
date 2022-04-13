@@ -23,6 +23,8 @@
  * @since 1.24
  */
 
+use MediaWiki\MainConfigNames;
+
 /**
  * This implements prop=redirects, prop=linkshere, prop=catmembers,
  * prop=transcludedin, and prop=fileusage
@@ -160,7 +162,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$miser_ns = null;
 		if ( $params['namespace'] !== null ) {
 			if ( empty( $settings['from_namespace'] ) ) {
-				if ( $this->getConfig()->get( 'MiserMode' ) ) {
+				if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 					$miser_ns = $params['namespace'];
 				} else {
 					$this->addWhereFld( 'page_namespace', $params['namespace'] );
@@ -404,7 +406,8 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			],
 		];
 
-		if ( empty( $settings['from_namespace'] ) && $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( empty( $settings['from_namespace'] ) &&
+		$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$ret['namespace'][ApiBase::PARAM_HELP_MSG_APPEND] = [
 				'api-help-param-limited-in-miser-mode',
 			];

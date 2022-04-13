@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Export\WikiExporterFactory;
+use MediaWiki\MainConfigNames;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -515,11 +516,11 @@ class ApiQuery extends ApiBase {
 		// Allow custom modules to be added in LocalSettings.php
 		$config = $this->getConfig();
 		$this->mModuleMgr->addModules( self::QUERY_PROP_MODULES, 'prop' );
-		$this->mModuleMgr->addModules( $config->get( 'APIPropModules' ), 'prop' );
+		$this->mModuleMgr->addModules( $config->get( MainConfigNames::APIPropModules ), 'prop' );
 		$this->mModuleMgr->addModules( self::QUERY_LIST_MODULES, 'list' );
-		$this->mModuleMgr->addModules( $config->get( 'APIListModules' ), 'list' );
+		$this->mModuleMgr->addModules( $config->get( MainConfigNames::APIListModules ), 'list' );
 		$this->mModuleMgr->addModules( self::QUERY_META_MODULES, 'meta' );
-		$this->mModuleMgr->addModules( $config->get( 'APIMetaModules' ), 'meta' );
+		$this->mModuleMgr->addModules( $config->get( MainConfigNames::APIMetaModules ), 'meta' );
 
 		$this->getHookRunner()->onApiQuery__moduleManager( $this->mModuleMgr );
 

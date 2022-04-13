@@ -22,6 +22,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
@@ -430,7 +431,7 @@ class ApiPageSet extends ApiBase {
 
 		$pageFlds['page_content_model'] = null;
 
-		if ( $this->getConfig()->get( 'PageLanguageUseDB' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::PageLanguageUseDB ) ) {
 			$pageFlds['page_lang'] = null;
 		}
 

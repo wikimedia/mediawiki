@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
+
 /**
  * Special page lists various statistics, including the contents of
  * `site_stats`, plus page view details if enabled
@@ -125,7 +127,7 @@ class SpecialStatistics extends SpecialPage {
 				->parse() ) .
 			Xml::closeElement( 'tr' ) .
 				$this->formatRow(
-					$this->getConfig()->get( 'MiserMode' )
+					$this->getConfig()->get( MainConfigNames::MiserMode )
 						? $this->msg( 'statistics-articles' )->escaped()
 						: $linkRenderer->makeKnownLink(
 							$specialAllPagesTitle,
@@ -141,7 +143,7 @@ class SpecialStatistics extends SpecialPage {
 					'statistics-pages-desc' );
 
 		// Show the image row only, when there are files or upload is possible
-		if ( $this->images !== 0 || $this->getConfig()->get( 'EnableUploads' ) ) {
+		if ( $this->images !== 0 || $this->getConfig()->get( MainConfigNames::EnableUploads ) ) {
 			$pageStatsHtml .= $this->formatRow(
 				$linkRenderer->makeKnownLink( SpecialPage::getTitleFor( 'MediaStatistics' ),
 				$this->msg( 'statistics-files' )->text() ),
@@ -190,16 +192,18 @@ class SpecialStatistics extends SpecialPage {
 				[ 'class' => 'mw-statistics-users-active' ],
 				'statistics-users-active-desc',
 				$this->getLanguage()->formatNum(
-					$this->getConfig()->get( 'ActiveUserDays' ) )
+					$this->getConfig()->get( MainConfigNames::ActiveUserDays ) )
 			);
 	}
 
 	private function getGroupStats() {
 		$linkRenderer = $this->getLinkRenderer();
 		$text = '';
-		foreach ( $this->getConfig()->get( 'GroupPermissions' ) as $group => $permissions ) {
+		foreach (
+			$this->getConfig()->get( MainConfigNames::GroupPermissions ) as $group => $permissions
+		) {
 			# Skip generic * and implicit groups
-			if ( in_array( $group, $this->getConfig()->get( 'ImplicitGroups' ) )
+			if ( in_array( $group, $this->getConfig()->get( MainConfigNames::ImplicitGroups ) )
 				|| $group == '*' ) {
 				continue;
 			}

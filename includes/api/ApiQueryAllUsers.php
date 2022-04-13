@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
@@ -81,7 +82,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
-		$activeUserDays = $this->getConfig()->get( 'ActiveUserDays' );
+		$activeUserDays = $this->getConfig()->get( MainConfigNames::ActiveUserDays );
 
 		$db = $this->getDB();
 
@@ -414,7 +415,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => [
 					'apihelp-query+allusers-param-activeusers',
-					$this->getConfig()->get( 'ActiveUserDays' )
+					$this->getConfig()->get( MainConfigNames::ActiveUserDays )
 				],
 			],
 			'attachedwiki' => null,

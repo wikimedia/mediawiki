@@ -8,6 +8,7 @@
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
@@ -531,9 +532,9 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 */
 	public function getThumbnailBucket( $desiredWidth, $page = 1 ) {
 		$thumbnailBuckets = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'ThumbnailBuckets' );
+			->getMainConfig()->get( MainConfigNames::ThumbnailBuckets );
 		$thumbnailMinimumBucketDistance = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'ThumbnailMinimumBucketDistance' );
+			->getMainConfig()->get( MainConfigNames::ThumbnailMinimumBucketDistance );
 		$imageWidth = $this->getWidth( $page );
 
 		if ( $imageWidth === false ) {
@@ -938,7 +939,8 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return bool
 	 */
 	protected function getIsSafeFileUncached() {
-		$trustedMediaFormats = MediaWikiServices::getInstance()->getMainConfig()->get( 'TrustedMediaFormats' );
+		$trustedMediaFormats = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::TrustedMediaFormats );
 
 		if ( $this->allowInlineDisplay() ) {
 			return true;
@@ -1148,7 +1150,8 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return MediaTransformOutput
 	 */
 	protected function transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags ) {
-		$ignoreImageErrors = MediaWikiServices::getInstance()->getMainConfig()->get( 'IgnoreImageErrors' );
+		$ignoreImageErrors = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::IgnoreImageErrors );
 
 		$handler = $this->getHandler();
 		if ( $handler && $ignoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
@@ -1169,7 +1172,8 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return ThumbnailImage|MediaTransformOutput|bool False on failure
 	 */
 	public function transform( $params, $flags = 0 ) {
-		$thumbnailEpoch = MediaWikiServices::getInstance()->getMainConfig()->get( 'ThumbnailEpoch' );
+		$thumbnailEpoch = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::ThumbnailEpoch );
 
 		do {
 			if ( !$this->canRender() ) {
@@ -1270,7 +1274,8 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return bool|MediaTransformOutput
 	 */
 	public function generateAndSaveThumb( $tmpFile, $transformParams, $flags ) {
-		$ignoreImageErrors = MediaWikiServices::getInstance()->getMainConfig()->get( 'IgnoreImageErrors' );
+		$ignoreImageErrors = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::IgnoreImageErrors );
 
 		if ( !$this->repo->canTransformLocally() ) {
 			return new MediaTransformError(
@@ -1547,7 +1552,8 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 */
 	public function iconThumb() {
 		global $IP;
-		$resourceBasePath = MediaWikiServices::getInstance()->getMainConfig()->get( 'ResourceBasePath' );
+		$resourceBasePath = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::ResourceBasePath );
 		$assetsPath = "{$resourceBasePath}/resources/assets/file-type-icons/";
 		$assetsDirectory = "$IP/resources/assets/file-type-icons/";
 

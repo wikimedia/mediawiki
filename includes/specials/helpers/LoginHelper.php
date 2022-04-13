@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\MainConfigNames;
 
 /**
  * Helper functions for the login form that need to be shared with other special pages
@@ -70,8 +71,8 @@ class LoginHelper extends ContextSource {
 		$type, $returnTo = '', $returnToQuery = '', $stickHTTPS = false
 	) {
 		$config = $this->getConfig();
-		if ( $type !== 'error' && $config->get( 'RedirectOnLogin' ) !== null ) {
-			$returnTo = $config->get( 'RedirectOnLogin' );
+		if ( $type !== 'error' && $config->get( MainConfigNames::RedirectOnLogin ) !== null ) {
+			$returnTo = $config->get( MainConfigNames::RedirectOnLogin );
 			$returnToQuery = [];
 		} elseif ( is_string( $returnToQuery ) ) {
 			$returnToQuery = wfCgiToArray( $returnToQuery );
@@ -82,12 +83,12 @@ class LoginHelper extends ContextSource {
 
 		$returnToTitle = Title::newFromText( $returnTo ) ?: Title::newMainPage();
 
-		if ( $config->get( 'ForceHTTPS' )
-			|| ( $config->get( 'SecureLogin' ) && $stickHTTPS )
+		if ( $config->get( MainConfigNames::ForceHTTPS )
+			|| ( $config->get( MainConfigNames::SecureLogin ) && $stickHTTPS )
 		) {
 			$options = [ 'https' ];
 			$proto = PROTO_HTTPS;
-		} elseif ( $config->get( 'SecureLogin' ) && !$stickHTTPS ) {
+		} elseif ( $config->get( MainConfigNames::SecureLogin ) && !$stickHTTPS ) {
 			$options = [ 'http' ];
 			$proto = PROTO_HTTP;
 		} else {

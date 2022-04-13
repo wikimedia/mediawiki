@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Settings;
 
+use MediaWiki\MainConfigNames;
 use WebRequest;
 
 /**
@@ -45,9 +46,9 @@ class WikiFarmSettingsLoader {
 	public function loadWikiFarmSettings() {
 		$config = $this->settingsBuilder->getConfig();
 
-		$farmDir = $config->get( 'WikiFarmSettingsDirectory' );
-		$farmExt = $config->get( 'WikiFarmSettingsExtension' );
-		$siteDetector = $config->get( 'WikiFarmSiteDetector' );
+		$farmDir = $config->get( MainConfigNames::WikiFarmSettingsDirectory );
+		$farmExt = $config->get( MainConfigNames::WikiFarmSettingsExtension );
+		$siteDetector = $config->get( MainConfigNames::WikiFarmSiteDetector );
 
 		if ( !$farmDir ) {
 			return;
@@ -104,7 +105,7 @@ class WikiFarmSettingsLoader {
 
 		$config = $this->settingsBuilder->getConfig();
 		$assumeProxiesUseDefaultProtocolPorts =
-			$config->get( 'AssumeProxiesUseDefaultProtocolPorts' );
+			$config->get( MainConfigNames::AssumeProxiesUseDefaultProtocolPorts );
 
 		$server = WebRequest::detectServer( $assumeProxiesUseDefaultProtocolPorts );
 

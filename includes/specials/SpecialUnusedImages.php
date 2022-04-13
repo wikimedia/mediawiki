@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -62,7 +63,7 @@ class SpecialUnusedImages extends ImageQueryPage {
 			'join_conds' => [ 'imagelinks' => [ 'LEFT JOIN', 'il_to = img_name' ] ]
 		];
 
-		if ( $this->getConfig()->get( 'CountCategorizedImagesAsUsed' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::CountCategorizedImagesAsUsed ) ) {
 			// Order is significant
 			$retval['tables'] = [ 'image', 'page', 'categorylinks',
 				'imagelinks' ];
@@ -83,7 +84,7 @@ class SpecialUnusedImages extends ImageQueryPage {
 	}
 
 	protected function getPageHeader() {
-		if ( $this->getConfig()->get( 'CountCategorizedImagesAsUsed' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::CountCategorizedImagesAsUsed ) ) {
 			return $this->msg(
 				'unusedimagestext-categorizedimgisused'
 			)->parseAsBlock();

@@ -23,6 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -99,7 +100,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		$opts->add( 'target', '' );
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
-		$opts->add( 'limit', $this->getConfig()->get( 'QueryPageDefaultLimit' ) );
+		$opts->add( 'limit', $this->getConfig()->get( MainConfigNames::QueryPageDefaultLimit ) );
 		$opts->add( 'offset', '' );
 		$opts->add( 'from', 0 );
 		$opts->add( 'dir', 'next' );
@@ -493,7 +494,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				$this->showIndirectLinks(
 					$level + 1,
 					$nt,
-					$this->getConfig()->get( 'MaxRedirectLinksRetrieved' )
+					$this->getConfig()->get( MainConfigNames::MaxRedirectLinksRetrieved )
 				);
 				$out->addHTML( Xml::closeElement( 'li' ) );
 			} else {

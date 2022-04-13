@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Collation\CollationFactory;
+use MediaWiki\MainConfigNames;
 
 /**
  * A query module to enumerate pages that belong to a category.
@@ -107,7 +108,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		// Scanning large datasets for rare categories sucks, and I already told
 		// how to have efficient subcategory access :-) ~~~~ (oh well, domas)
 		$miser_ns = [];
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$miser_ns = $params['namespace'] ?: [];
 		} else {
 			$this->addWhereFld( 'page_namespace', $params['namespace'] );
@@ -389,7 +390,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			],
 		];
 
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$ret['namespace'][ApiBase::PARAM_HELP_MSG_APPEND] = [
 				'api-help-param-limited-in-miser-mode',
 			];

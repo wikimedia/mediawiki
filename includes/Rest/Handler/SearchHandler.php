@@ -6,6 +6,7 @@ use Config;
 use InvalidArgumentException;
 use ISearchResultSet;
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Page\RedirectLookup;
@@ -111,7 +112,7 @@ class SearchHandler extends Handler {
 		$this->titleFormatter = $titleFormatter;
 
 		// @todo Avoid injecting the entire config, see T246377
-		$this->completionCacheExpiry = $config->get( 'SearchSuggestCacheExpiry' );
+		$this->completionCacheExpiry = $config->get( MainConfigNames::SearchSuggestCacheExpiry );
 	}
 
 	protected function postInitSetup() {

@@ -25,6 +25,7 @@
 
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionStatus;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -130,7 +131,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 			'label-message' => 'pagelang-language',
 			'default' => $title ?
 				$title->getPageLanguage()->getCode() :
-				$this->getConfig()->get( 'LanguageCode' ),
+				$this->getConfig()->get( MainConfigNames::LanguageCode ),
 		];
 
 		// Allow user to enter a comment explaining the change
@@ -215,7 +216,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 	public static function changePageLanguage( IContextSource $context, Title $title,
 		$newLanguage, $reason, array $tags = [], IDatabase $dbw = null ) {
 		// Get the default language for the wiki
-		$defLang = $context->getConfig()->get( 'LanguageCode' );
+		$defLang = $context->getConfig()->get( MainConfigNames::LanguageCode );
 
 		$pageId = $title->getArticleID();
 

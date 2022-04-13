@@ -29,6 +29,7 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Watchlist\WatchlistManager;
@@ -449,7 +450,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$titles = [];
 		$options = [ 'sort' => WatchedItemStore::SORT_ASC ];
 
-		if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
 			$options[ 'sortByExpiry'] = true;
 		}
 
@@ -746,7 +747,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		}
 
 		$watchlistExpiringMessage = '';
-		if ( $this->getConfig()->get( 'WatchlistExpiry' ) && $expiryDaysText ) {
+		if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) && $expiryDaysText ) {
 			$watchlistExpiringMessage = Html::element(
 				'span',
 				[ 'class' => 'mw-watchlistexpiry-msg' ],

@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\MainConfigNames;
 
 /**
  * A query module to list all langlinks (links to corresponding foreign language pages).
@@ -130,7 +131,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				break;
 			}
 
-			$languageNameMap = $this->getConfig()->get( 'InterlanguageLinkCodeMap' );
+			$languageNameMap = $this->getConfig()->get( MainConfigNames::InterlanguageLinkCodeMap );
 			$displayLanguageCode = $languageNameMap[ $row->ll_lang ] ?? $row->ll_lang;
 
 			// This is potentially risky and confusing (request `no`, but get `nb` in the result).

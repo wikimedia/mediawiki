@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\MainConfigNames;
 use WebRequest;
 
 /**
@@ -87,7 +88,8 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 			);
 		}
 
-		$prefix = $this->sessionCookieOptions['prefix'] ?? $this->getConfig()->get( 'CookiePrefix' );
+		$prefix = $this->sessionCookieOptions['prefix']
+			?? $this->getConfig()->get( MainConfigNames::CookiePrefix );
 		$id = $request->getCookie( $this->sessionCookieName, $prefix );
 		return SessionManager::validateSessionId( $id ) ? $id : null;
 	}
@@ -127,7 +129,7 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 		$options = $this->sessionCookieOptions;
 		if ( $session->shouldForceHTTPS() || $session->getUser()->requiresHTTPS() ) {
 			// Send a cookie unless $wgForceHTTPS is set (T256095)
-			if ( !$this->getConfig()->get( 'ForceHTTPS' ) ) {
+			if ( !$this->getConfig()->get( MainConfigNames::ForceHTTPS ) ) {
 				$response->setCookie( 'forceHTTPS', 'true', null,
 					[ 'prefix' => '', 'secure' => false ] + $options );
 			}
@@ -165,7 +167,8 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 			return [];
 		}
 
-		$prefix = $this->sessionCookieOptions['prefix'] ?? $this->getConfig()->get( 'CookiePrefix' );
+		$prefix = $this->sessionCookieOptions['prefix'] ??
+			$this->getConfig()->get( MainConfigNames::CookiePrefix );
 		return [ $prefix . $this->sessionCookieName ];
 	}
 

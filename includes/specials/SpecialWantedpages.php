@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -62,7 +63,7 @@ class WantedPagesPage extends WantedQueryPage {
 
 	public function getQueryInfo() {
 		$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
-		$count = $this->getConfig()->get( 'WantedPagesThreshold' ) - 1;
+		$count = $this->getConfig()->get( MainConfigNames::WantedPagesThreshold ) - 1;
 		$query = [
 			'tables' => [
 				'pagelinks',

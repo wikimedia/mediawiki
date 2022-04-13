@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\RestrictionStore;
 
 /**
@@ -98,7 +99,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			$this->addWhere( "page_title $op= $cont_from" );
 		}
 
-		$miserMode = $this->getConfig()->get( 'MiserMode' );
+		$miserMode = $this->getConfig()->get( MainConfigNames::MiserMode );
 		if ( !$miserMode ) {
 			if ( $params['filterredir'] == 'redirects' ) {
 				$this->addWhereFld( 'page_is_redirect', 1 );
@@ -314,7 +315,8 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_ISMULTI => true
 			],
 			'prlevel' => [
-				ApiBase::PARAM_TYPE => $this->getConfig()->get( 'RestrictionLevels' ),
+				ApiBase::PARAM_TYPE =>
+					$this->getConfig()->get( MainConfigNames::RestrictionLevels ),
 				ApiBase::PARAM_ISMULTI => true
 			],
 			'prfiltercascade' => [
@@ -357,7 +359,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			],
 		];
 
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$ret['filterredir'][ApiBase::PARAM_HELP_MSG_APPEND] = [ 'api-help-param-limited-in-miser-mode' ];
 		}
 

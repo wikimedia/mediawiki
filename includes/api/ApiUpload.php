@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 
@@ -56,8 +57,9 @@ class ApiUpload extends ApiBase {
 		$this->jobQueueGroup = $jobQueueGroup;
 
 		// Variables needed in ApiWatchlistTrait trait
-		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
-		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( MainConfigNames::WatchlistExpiry );
+		$this->watchlistMaxDuration =
+			$this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 		$this->watchlistManager = $watchlistManager;
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
@@ -75,7 +77,7 @@ class ApiUpload extends ApiBase {
 		$request = $this->getMain()->getRequest();
 		// Check if async mode is actually supported (jobs done in cli mode)
 		$this->mParams['async'] = ( $this->mParams['async'] &&
-			$this->getConfig()->get( 'EnableAsyncUploads' ) );
+			$this->getConfig()->get( MainConfigNames::EnableAsyncUploads ) );
 		// Add the uploaded file to the params array
 		$this->mParams['file'] = $request->getFileName( 'file' );
 		$this->mParams['chunk'] = $request->getFileName( 'chunk' );
@@ -208,7 +210,7 @@ class ApiUpload extends ApiBase {
 	 * @return int
 	 */
 	public static function getMinUploadChunkSize( Config $config ) {
-		$configured = $config->get( 'MinUploadChunkSize' );
+		$configured = $config->get( MainConfigNames::MinUploadChunkSize );
 
 		// Leave some room for other POST parameters
 		$postMax = (
@@ -683,9 +685,11 @@ class ApiUpload extends ApiBase {
 			case UploadBase::FILETYPE_BADTYPE:
 				$extradata = [
 					'filetype' => $verification['finalExt'],
-					'allowed' => array_values( array_unique( $this->getConfig()->get( 'FileExtensions' ) ) )
+					'allowed' => array_values( array_unique(
+						$this->getConfig()->get( MainConfigNames::FileExtensions ) ) )
 				];
-				$extensions = array_unique( $this->getConfig()->get( 'FileExtensions' ) );
+				$extensions =
+					array_unique( $this->getConfig()->get( MainConfigNames::FileExtensions ) );
 				$msg = [
 					'filetype-banned-type',
 					null, // filled in below
