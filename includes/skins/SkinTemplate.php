@@ -476,13 +476,7 @@ class SkinTemplate extends Skin {
 			];
 
 			if ( $this->getAuthority()->isAllowed( 'viewmywatchlist' ) ) {
-				$href = self::makeSpecialUrl( 'Watchlist' );
-				$personal_urls['watchlist'] = [
-					'text' => $this->msg( 'mywatchlist' )->text(),
-					'href' => $href,
-					'active' => ( $href == $pageurl ),
-					'icon' => 'watchlist'
-				];
+				$personal_urls['watchlist'] = self::buildWatchlistData();
 			}
 
 			# We need to do an explicit check for Special:Contributions, as we
@@ -642,6 +636,7 @@ class SkinTemplate extends Skin {
 			&& $useCombinedLoginLink ? 'nav-login-createaccount' : 'pt-login';
 
 		$login_url = [
+			'single-id' => 'pt-login',
 			'text' => $this->msg( $loginlink )->text(),
 			'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
 			'active' => $title->isSpecial( 'Userlogin' )
@@ -916,6 +911,7 @@ class SkinTemplate extends Skin {
 		$returnto = $this->getReturnToParam();
 
 		return [
+			'single-id' => 'pt-logout',
 			'text' => $this->msg( 'pt-userlogout' )->text(),
 			'data-mw' => 'interface',
 			'href' => self::makeSpecialUrl( 'Userlogout',
@@ -928,7 +924,7 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * Build "Create Account" link
+	 * Build "Create Account" link data.
 	 * @unstable
 	 *
 	 * @param string[] $returnto query params for the page to return to
@@ -937,31 +933,49 @@ class SkinTemplate extends Skin {
 	protected function buildCreateAccountData( $returnto ) {
 		$title = $this->getTitle();
 
-		$createaccount_url = [
+		return [
+			'single-id' => 'pt-createaccount',
 			'text' => $this->msg( 'pt-createaccount' )->text(),
 			'href' => self::makeSpecialUrl( 'CreateAccount', $returnto ),
 			'active' => $title->isSpecial( 'CreateAccount' ),
 			'icon' => 'userAvatar'
 		];
-
-		return $createaccount_url;
 	}
 
 	/**
-	 * Build a personal page link.
+	 * Build a user page link data.
+	 *
 	 * @param string $id of user page item to be output in HTML attribute (optional)
 	 * @return array
 	 */
 	protected function buildPersonalPageItem( $id = 'pt-userpage' ): array {
-		// Build the personal page link array.
 		return [
-			'text' => $this->username,
 			'id' => $id,
+			'single-id' => 'pt-userpage',
+			'text' => $this->username,
 			'href' => &$this->userpageUrlDetails['href'],
 			'link-class' => $this->userpageUrlDetails['exists'] ? [] : [ 'new' ],
 			'exists' => $this->userpageUrlDetails['exists'],
 			'active' => ( $this->userpageUrlDetails['href'] == $this->getTitle()->getLocalURL() ),
 			'icon' => 'userAvatar',
+		];
+	}
+
+	/**
+	 * Build a watchlist link data.
+	 *
+	 * @return array Array of data required to create a watchlist link.
+	 */
+	private function buildWatchlistData() {
+		$href = self::makeSpecialUrl( 'Watchlist' );
+		$pageurl = $this->getTitle()->getLocalURL();
+
+		return [
+			'single-id' => 'pt-watchlist',
+			'text' => $this->msg( 'mywatchlist' )->text(),
+			'href' => $href,
+			'active' => ( $href == $pageurl ),
+			'icon' => 'watchlist'
 		];
 	}
 
