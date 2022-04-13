@@ -1398,7 +1398,6 @@
 	"allpagesbadtitle": "Տվյալ էջի անվանումը անթույլատրելի է։ Այն պարունակում է միջ-լեզվական կամ ինտերվիքի նախածանց, կամ էլ անվանումներում այնթույլատրելի սիմվոլներ։",
 	"allpages-bad-ns": "{{SITENAME}} կայքը չունի «$1» անվանատարածք։",
 	"allpages-hide-redirects": "Թաքցնել վերահղումները",
-	"cachedspecial-refresh-now": "Դիտել վերջին տարբերակը։",
 	"categories": "Կատեգորիաներ",
 	"categories-submit": "Ցուցադրել",
 	"categoriespagetext": "Հետևյալ կատեգորիաները պարունակում են էջեր կամ մեդիա.\n[[Special:UnusedCategories|Unused categories]] are not shown here.\nAlso see [[Special:WantedCategories|wanted categories]].",
