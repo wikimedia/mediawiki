@@ -21,7 +21,7 @@
 	},
 	"prefer-stable": true,
 	"require": {
-		"composer/semver": "3.2.6",
+		"composer/semver": "3.3.2",
 		"cssjanus/cssjanus": "2.1.0",
 		"ext-calendar": "*",
 		"ext-ctype": "*",
@@ -81,7 +81,7 @@
 	},
 	"require-dev": {
 		"ext-simplexml": "*",
-		"composer/spdx-licenses": "1.5.5",
+		"composer/spdx-licenses": "1.5.6",
 		"doctrine/dbal": "2.13.6||3.1.5",
 		"doctrine/sql-formatter": "1.1.1",
 		"giorgiosironi/eris": "^0.10.0",
