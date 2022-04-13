@@ -141,8 +141,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *      the `modtoken` column must exist on the `objectcache` table(s). [optional]
 	 *   - purgePeriod: The average number of object cache writes in between garbage collection
 	 *      operations, where expired entries are removed from the database. Or in other words,
-	 *      the reciprocal of the probability of purging on any given write. If this is set to
-	 *      zero, purging will never be done. [optional]
+	 *      the probability of performing a purge is one in every this number. If set to zero,
+	 *      purging will never be done at runtime (for use with PurgeParserCache). [optional]
 	 *   - purgeLimit: Maximum number of rows to purge at once. [optional]
 	 *   - tableName: The table name to use, default is "objectcache". [optional]
 	 *   - shards: The number of tables to use for data storage on each server. If greater than
