@@ -336,7 +336,7 @@ class RestrictionStore {
 	 * @param PageIdentity $page Must be local
 	 * @param int $flags IDBAccessObject::READ_XXX constants (e.g., READ_LATEST to read from
 	 *   primary DB)
-	 * @internal
+	 * @internal Public for use in WikiPage only
 	 */
 	public function loadRestrictions(
 		PageIdentity $page, int $flags = IDBAccessObject::READ_NORMAL
