@@ -1277,7 +1277,8 @@ return [
 			$services->getUserFactory(),
 			$services->getTitleFormatter(),
 			$services->getHttpRequestFactory(),
-			$services->getTrackingCategories()
+			$services->getTrackingCategories(),
+			$services->getSignatureValidatorFactory()
 		);
 	},
 
@@ -1408,7 +1409,8 @@ return [
 			$services->getLanguageConverterFactory(),
 			$services->getParser(),
 			$services->getSkinFactory(),
-			$services->getUserGroupManager()
+			$services->getUserGroupManager(),
+			$services->getSignatureValidatorFactory()
 		);
 		$factory->setLogger( LoggerFactory::getInstance( 'preferences' ) );
 
@@ -1674,7 +1676,10 @@ return [
 				SignatureValidator::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
 			),
-			$services->getParser(),
+			// Use a closure for Parser to avoid a circular dependency
+			static function () use ( $services ) {
+				return $services->getParser();
+			},
 			$services->getSpecialPageFactory(),
 			$services->getTitleFactory()
 		);

@@ -9,6 +9,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
+use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -96,6 +97,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$params[] = $this->createMock( Parser::class );
 		$params[] = $this->createMock( SkinFactory::class );
 		$params[] = $this->createMock( UserGroupManager::class );
+		$params[] = $this->createMock( SignatureValidatorFactory::class );
 		$oldMwServices = MediaWikiServices::forceGlobalInstance(
 			$this->createNoOpMock( MediaWikiServices::class )
 		);
@@ -163,7 +165,8 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			$services->getLanguageConverterFactory(),
 			$services->getParser(),
 			$services->getSkinFactory(),
-			$userGroupManager
+			$userGroupManager,
+			$services->getSignatureValidatorFactory()
 		);
 	}
 
