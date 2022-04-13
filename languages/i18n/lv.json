@@ -1814,7 +1814,6 @@
 	"allpagesprefix": "Parādīt lapas ar šādu virsraksta sākumu:",
 	"allpages-bad-ns": "{{SITENAME}} nav vārdkopas \"$1\".",
 	"allpages-hide-redirects": "Paslēpt pāradresācijas",
-	"cachedspecial-refresh-now": "Skatīt jaunāko.",
 	"categories": "Kategorijas",
 	"categories-submit": "Rādīt",
 	"categoriespagetext": "{{PLURAL:$1|Šīs kategorijas|Šī kategorija|Šīs kategorijas}} satur lapas vai failus.\nŠeit nav parādītas [[Special:UnusedCategories|neizmantotās kategorijas]].\nSkatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",

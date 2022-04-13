@@ -1063,7 +1063,6 @@
 	"allpagesbadtitle": "Nomen paginae datum fuit invalidum aut praverbium interlinguale vel interviciale habuit. Fortasse insunt una aut plus litterarum quae in titulis non possunt inscribier.",
 	"allpages-bad-ns": "Non est spatium nominale \"$1\" apud {{grammar:accusative|{{SITENAME}}}}.",
 	"allpages-hide-redirects": "Celare redirectiones",
-	"cachedspecial-refresh-now": "Recentissima vide.",
 	"categories": "Categoriae",
 	"categoriespagetext": "{{PLURAL:$1|Categoria subter paginas vel fasciculos continet.|Categoriae subter paginas vel fasciculos continent.}}\n[[Special:UnusedCategories|Categoriae non in usu]] non monstrantur.\nVide etiam [[Special:WantedCategories|categorias desideratas]].",
 	"deletedcontributions": "Conlationes usoris deletae",
