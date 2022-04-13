@@ -37,14 +37,18 @@ class LinksMigration {
 	private $linkTargetLookup;
 
 	public static $mapping = [
-			'templatelinks' => [
-				'config' => 'TemplateLinksSchemaMigrationStage',
-				'page_id' => 'tl_from',
-				'ns' => 'tl_namespace',
-				'title' => 'tl_title',
-				'target_id' => 'tl_target_id',
-			],
-		];
+		'templatelinks' => [
+			'config' => 'TemplateLinksSchemaMigrationStage',
+			'page_id' => 'tl_from',
+			'ns' => 'tl_namespace',
+			'title' => 'tl_title',
+			'target_id' => 'tl_target_id',
+		],
+	];
+
+	public static $prefixToTableMapping = [
+		'tl' => 'templatelinks'
+	];
 
 	/**
 	 * @param Config $config
@@ -55,12 +59,15 @@ class LinksMigration {
 		$this->linkTargetLookup = $linktargetLookup;
 	}
 
+	/**
+	 * Return the conditions to be used in querying backlinks to a page
+	 *
+	 * @param string $table
+	 * @param LinkTarget $linkTarget
+	 * @return array
+	 */
 	public function getLinksConditions( string $table, LinkTarget $linkTarget ): array {
-		if ( !isset( self::$mapping[$table] ) ) {
-			throw new InvalidArgumentException(
-				"LinksMigration doesn't support the $table table yet"
-			);
-		}
+		$this->assertMapping( $table );
 		if ( $this->config->get( self::$mapping[$table]['config'] ) & SCHEMA_COMPAT_READ_NEW ) {
 			$targetId = $this->linkTargetLookup->getLinkTargetId( $linkTarget );
 			return [
@@ -71,6 +78,60 @@ class LinksMigration {
 				self::$mapping[$table]['ns'] => $linkTarget->getNamespace(),
 				self::$mapping[$table]['title'] => $linkTarget->getDBkey(),
 			];
+		}
+	}
+
+	/**
+	 * Return the query to be used when you want to or from a group of pages
+	 *
+	 * @param string $table
+	 * @param string $joinTable table to end the join chain. Most of the time it's linktarget
+	 * @param string $joinType
+	 * @return array
+	 */
+	public function getQueryInfo( string $table, string $joinTable = 'linktarget', string $joinType = 'JOIN' ) {
+		$this->assertMapping( $table );
+		if ( $this->config->get( self::$mapping[$table]['config'] ) & SCHEMA_COMPAT_READ_NEW ) {
+			$targetId = self::$mapping[$table]['target_id'];
+			return [
+				'tables' => [ 'linktarget', $table ],
+				'fields' => [
+					$targetId,
+					'lt_namespace',
+					'lt_title'
+				],
+				'joins' => [ $joinTable => [
+					$joinType,
+					[ "$targetId=lt_id" ]
+				] ],
+			];
+		} else {
+			return [
+				'fields' => [
+					self::$mapping[$table]['ns'],
+					self::$mapping[$table]['title']
+				],
+				'tables' => [ $table ],
+				'joins' => [],
+			];
+		}
+	}
+
+	public function getTitleFields( $table ) {
+		$this->assertMapping( $table );
+
+		if ( $this->config->get( self::$mapping[$table]['config'] ) & SCHEMA_COMPAT_READ_NEW ) {
+			return [ 'lt_namespace', 'lt_title' ];
+		} else {
+			return [ self::$mapping[$table]['ns'], self::$mapping[$table]['title'] ];
+		}
+	}
+
+	private function assertMapping( string $table ) {
+		if ( !isset( self::$mapping[$table] ) ) {
+			throw new InvalidArgumentException(
+				"LinksMigration doesn't support the $table table yet"
+			);
 		}
 	}
 }

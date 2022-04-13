@@ -1041,13 +1041,11 @@ class InfoAction extends FormlessAction {
 				if ( $config->get( 'MiserMode' ) ) {
 					$result['transclusion']['to'] = 0;
 				} else {
+					$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 					$result['transclusion']['to'] = (int)$dbr->selectField(
 						'templatelinks',
 						'COUNT(tl_from)',
-						[
-							'tl_namespace' => $title->getNamespace(),
-							'tl_title' => $title->getDBkey()
-						],
+						$linksMigration->getLinksConditions( 'templatelinks', $title ),
 						$fname
 					);
 				}

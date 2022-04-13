@@ -18,10 +18,11 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @author Addshore
  * @author DannyS712
+ * @todo This test should become unittest again once LinksMigration is done (T300222)
  *
  * @covers WatchedItemStore
  */
-class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
+class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
 	use MockTitleTrait;
 
@@ -3225,7 +3226,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				false
 			],
 			'new array' => [
-				$newMap,
+				$newMap->toArray(),
 				false
 			],
 			'wrong key MapCacheLRU' => [
@@ -3247,7 +3248,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$stash->set(
 			$stash->makeGlobalKey(
 				'watchlist-recent-updates',
-				WikiMap::getCurrentWikiId(),
+				'',
 				$user->getId()
 			),
 			$cacheValue

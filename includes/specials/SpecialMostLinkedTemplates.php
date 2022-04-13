@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -76,14 +77,23 @@ class SpecialMostLinkedTemplates extends QueryPage {
 	}
 
 	public function getQueryInfo() {
+		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+		$queryInfo = $linksMigration->getQueryInfo( 'templatelinks' );
+		list( $ns, $title ) = $linksMigration->getTitleFields( 'templatelinks' );
+		$groupBy = [ $ns, $title ];
+		if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
+			// It's a bit hacky but we will clean it up later
+			$groupBy = 'tl_target_id';
+		}
 		return [
-			'tables' => [ 'templatelinks' ],
+			'tables' => $queryInfo['tables'],
 			'fields' => [
-				'namespace' => 'tl_namespace',
-				'title' => 'tl_title',
+				'namespace' => $ns,
+				'title' => $title,
 				'value' => 'COUNT(*)'
 			],
-			'options' => [ 'GROUP BY' => [ 'tl_namespace', 'tl_title' ] ]
+			'options' => [ 'GROUP BY' => $groupBy ],
+			'join_conds' => $queryInfo['joins']
 		];
 	}
 

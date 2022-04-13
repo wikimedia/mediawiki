@@ -27,6 +27,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -50,21 +51,31 @@ class SpecialWantedTemplates extends WantedQueryPage {
 	}
 
 	public function getQueryInfo() {
+		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+		$queryInfo = $linksMigration->getQueryInfo( 'templatelinks' );
+		list( $ns, $title ) = $linksMigration->getTitleFields( 'templatelinks' );
+		$groupBy = [ $ns, $title ];
+		if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
+			// It's a bit hacky but we will clean it up later
+			$groupBy = 'tl_target_id';
+		}
 		return [
-			'tables' => [ 'templatelinks', 'page' ],
+			'tables' => array_merge( $queryInfo['tables'], [ 'page' ] ),
 			'fields' => [
-				'namespace' => 'tl_namespace',
-				'title' => 'tl_title',
+				'namespace' => $ns,
+				'title' => $title,
 				'value' => 'COUNT(*)'
 			],
 			'conds' => [
 				'page_title IS NULL',
-				'tl_namespace' => NS_TEMPLATE
+				$ns => NS_TEMPLATE
 			],
-			'options' => [ 'GROUP BY' => [ 'tl_namespace', 'tl_title' ] ],
-			'join_conds' => [ 'page' => [ 'LEFT JOIN',
-				[ 'page_namespace = tl_namespace',
-					'page_title = tl_title' ] ] ]
+			'options' => [ 'GROUP BY' => $groupBy ],
+			'join_conds' => array_merge(
+				[ 'page' => [ 'LEFT JOIN',
+					[ "page_namespace = $ns", "page_title = $title" ] ] ],
+				$queryInfo['joins']
+			)
 		];
 	}
 

@@ -22,6 +22,7 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\Permissions\PermissionStatus;
 
@@ -520,6 +521,9 @@ class ApiQueryInfo extends ApiQueryBase {
 				array_values( $title->getRestrictionTypes() );
 		}
 
+		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+		list( $blNamespace, $blTitle ) = $linksMigration->getTitleFields( 'templatelinks' );
+
 		if ( count( $others ) ) {
 			// Non-images: check templatelinks
 			$lb = $this->linkBatchFactory->newLinkBatch( $others );
@@ -527,7 +531,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->addTables( [ 'page_restrictions', 'page', 'templatelinks' ] );
 			$this->addFields( [ 'pr_type', 'pr_level', 'pr_expiry',
 				'page_title', 'page_namespace',
-				'tl_title', 'tl_namespace' ] );
+				$blNamespace, $blTitle ] );
 			$this->addWhere( $lb->constructSet( 'tl', $db ) );
 			$this->addWhere( 'pr_page = page_id' );
 			$this->addWhere( 'pr_page = tl_from' );
@@ -536,7 +540,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$res = $this->select( __METHOD__ );
 			foreach ( $res as $row ) {
 				$source = $this->titleFactory->makeTitle( $row->page_namespace, $row->page_title );
-				$this->protections[$row->tl_namespace][$row->tl_title][] = [
+				$this->protections[$row->$blNamespace][$row->$blTitle][] = [
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
 					'expiry' => ApiResult::formatExpiry( $row->pr_expiry ),
