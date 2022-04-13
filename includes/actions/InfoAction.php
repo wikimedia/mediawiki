@@ -30,6 +30,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\RedirectLookup;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\Database;
@@ -85,6 +86,9 @@ class InfoAction extends FormlessAction {
 	/** @var RedirectLookup */
 	private $redirectLookup;
 
+	/** @var RestrictionStore */
+	private $restrictionStore;
+
 	/** @var int */
 	private $actorTableSchemaMigrationStage;
 
@@ -105,6 +109,7 @@ class InfoAction extends FormlessAction {
 	 * @param WANObjectCache $wanObjectCache
 	 * @param WatchedItemStoreInterface $watchedItemStore
 	 * @param RedirectLookup $redirectLookup
+	 * @param RestrictionStore $restrictionStore
 	 * @param Config $config
 	 */
 	public function __construct(
@@ -124,6 +129,7 @@ class InfoAction extends FormlessAction {
 		WANObjectCache $wanObjectCache,
 		WatchedItemStoreInterface $watchedItemStore,
 		RedirectLookup $redirectLookup,
+		RestrictionStore $restrictionStore,
 		Config $config
 	) {
 		parent::__construct( $page, $context );
@@ -141,6 +147,7 @@ class InfoAction extends FormlessAction {
 		$this->wanObjectCache = $wanObjectCache;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->redirectLookup = $redirectLookup;
+		$this->restrictionStore = $restrictionStore;
 		$this->actorTableSchemaMigrationStage = $config->get( 'ActorTableSchemaMigrationStage' );
 	}
 
@@ -593,15 +600,15 @@ class InfoAction extends FormlessAction {
 		$pageInfo['header-restrictions'] = [];
 
 		// Is this page affected by the cascading protection of something which includes it?
-		if ( $title->isCascadeProtected() ) {
+		if ( $this->restrictionStore->isCascadeProtected( $title ) ) {
 			$cascadingFrom = '';
-			$sources = $title->getCascadeProtectionSources()[0];
+			$sources = $this->restrictionStore->getCascadeProtectionSources( $title )[0];
 
-			foreach ( $sources as $sourceTitle ) {
+			foreach ( $sources as $sourcePageIdentity ) {
 				$cascadingFrom .= Html::rawElement(
 					'li',
 					[],
-					$linkRenderer->makeKnownLink( $sourceTitle )
+					$linkRenderer->makeKnownLink( $sourcePageIdentity )
 				);
 			}
 
@@ -613,7 +620,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Is out protection set to cascade to other pages?
-		if ( $title->areRestrictionsCascading() ) {
+		if ( $this->restrictionStore->areRestrictionsCascading( $title ) ) {
 			$pageInfo['header-restrictions'][] = [
 				$this->msg( 'pageinfo-protect-cascading' ),
 				$this->msg( 'pageinfo-protect-cascading-yes' )
@@ -621,8 +628,8 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Page protection
-		foreach ( $title->getRestrictionTypes() as $restrictionType ) {
-			$protections = $title->getRestrictions( $restrictionType );
+		foreach ( $this->restrictionStore->listApplicableRestrictionTypes( $title ) as $restrictionType ) {
+			$protections = $this->restrictionStore->getRestrictions( $title, $restrictionType );
 
 			switch ( count( $protections ) ) {
 				case 0:
@@ -647,8 +654,8 @@ class InfoAction extends FormlessAction {
 					$message = $this->msg( "protect-fallback", $lang->commaList( $protections ) )->parse();
 					break;
 			}
-			$expiry = $title->getRestrictionExpiry( $restrictionType );
-			$formattedexpiry = $this->msg(
+			$expiry = $this->restrictionStore->getRestrictionExpiry( $title, $restrictionType );
+			$formattedexpiry = $expiry === null ? '' : $this->msg(
 				'parentheses',
 				$lang->formatExpiry( $expiry, true, 'infinity', $user )
 			)->escaped();
