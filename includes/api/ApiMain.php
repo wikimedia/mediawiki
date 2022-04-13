@@ -276,6 +276,7 @@ class ApiMain extends ApiBase {
 			'services' => [
 				'WatchlistManager',
 				'UserOptionsLookup',
+				'RestrictionStore',
 			]
 		],
 		'block' => [

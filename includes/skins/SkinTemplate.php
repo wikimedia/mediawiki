@@ -1196,7 +1196,8 @@ class SkinTemplate extends Skin {
 		$request = $this->getRequest();
 		$performer = $this->getAuthority();
 		$action = $this->getAction();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$services = MediaWikiServices::getInstance();
+		$permissionManager = $services->getPermissionManager();
 		$categoriesData = $this->getCategoryPortletsData( $this->getOutput()->getCategoryLinks() );
 		$content_navigation = $categoriesData + [
 			// Modern keys: Please ensure these get unset inside Skin::prepareQuickTemplate
@@ -1400,7 +1401,7 @@ class SkinTemplate extends Skin {
 				}
 
 				if ( $this->getAuthority()->probablyCan( 'protect', $title ) &&
-					$title->getRestrictionTypes() &&
+					$services->getRestrictionStore()->listApplicableRestrictionTypes( $title ) &&
 					$permissionManager->getNamespaceRestrictionLevels(
 						$title->getNamespace(),
 						$performer->getUser()
