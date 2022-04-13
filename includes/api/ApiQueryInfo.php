@@ -540,12 +540,11 @@ class ApiQueryInfo extends ApiQueryBase {
 
 			$res = $this->select( __METHOD__ );
 			foreach ( $res as $row ) {
-				$source = $this->titleFactory->makeTitle( $row->page_namespace, $row->page_title );
 				$this->protections[$row->$blNamespace][$row->$blTitle][] = [
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
 					'expiry' => ApiResult::formatExpiry( $row->pr_expiry ),
-					'source' => $source->getPrefixedText()
+					'source' => $this->titleFormatter->formatTitle( $row->page_namespace, $row->page_title ),
 				];
 			}
 		}
@@ -563,12 +562,11 @@ class ApiQueryInfo extends ApiQueryBase {
 
 			$res = $this->select( __METHOD__ );
 			foreach ( $res as $row ) {
-				$source = $this->titleFactory->makeTitle( $row->page_namespace, $row->page_title );
 				$this->protections[NS_FILE][$row->il_to][] = [
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
 					'expiry' => ApiResult::formatExpiry( $row->pr_expiry ),
-					'source' => $source->getPrefixedText()
+					'source' => $this->titleFormatter->formatTitle( $row->page_namespace, $row->page_title ),
 				];
 			}
 		}
