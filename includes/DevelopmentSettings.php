@@ -11,6 +11,21 @@
  */
 
 /**
+ * Ad-hoc debugging
+ *
+ * To keep your Git copy clean and easier to work with, it is recommended
+ * to copy this to your LocalSettings.php and enable them as-needed.
+ * This are not enabled by default as they make the wiki considerably
+ * slower and/or significantly alter how things work or look.
+ *
+ * See https://www.mediawiki.org/wiki/How_to_debug
+ */
+
+// $wgDebugDumpSql = true;
+// $wgDebugRawPage = true;
+// $wgDebugToolbar = true;
+
+/**
  * Debugging for PHP
  */
 
@@ -24,7 +39,7 @@ ini_set( 'display_errors', 1 );
  */
 
 global $wgDevelopmentWarnings, $wgShowExceptionDetails, $wgShowHostnames,
-	$wgDebugRawPage, $wgCommandLineMode, $wgDebugLogFile,
+	$wgCommandLineMode, $wgDebugLogFile,
 	$wgDBerrorLog, $wgDebugLogGroups;
 
 // Use of wfWarn() should cause tests to fail
@@ -33,7 +48,6 @@ $wgDevelopmentWarnings = true;
 // Enable showing of errors
 $wgShowExceptionDetails = true;
 $wgShowHostnames = true;
-$wgDebugRawPage = true; // T49960
 
 // Enable log files
 $logDir = getenv( 'MW_LOG_DIR' );
