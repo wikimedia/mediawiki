@@ -256,7 +256,7 @@ abstract class LBFactory implements ILBFactory {
 		if ( $this->trxRoundId !== false && $this->trxRoundId !== $fname ) {
 			$this->queryLogger->warning(
 				"$fname: transaction round '{$this->trxRoundId}' still running",
-				[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
+				[ 'exception' => new RuntimeException() ]
 			);
 		}
 		$this->forEachLBCallMethod( 'flushReplicaSnapshots', [ $fname, $this->id ] );
@@ -496,7 +496,7 @@ abstract class LBFactory implements ILBFactory {
 		if ( $this->hasPrimaryChanges() ) {
 			$this->queryLogger->error(
 				__METHOD__ . ": $fname does not have outer scope",
-				[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
+				[ 'exception' => new RuntimeException() ]
 			);
 
 			return null;
@@ -509,7 +509,7 @@ abstract class LBFactory implements ILBFactory {
 		if ( $ticket !== $this->ticket ) {
 			$this->perfLogger->error(
 				__METHOD__ . ": $fname does not have outer scope",
-				[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
+				[ 'exception' => new RuntimeException() ]
 			);
 
 			return false;
