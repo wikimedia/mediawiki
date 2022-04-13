@@ -20,6 +20,7 @@
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 
@@ -83,7 +84,8 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	 * @param array|null $info
 	 */
 	public function __construct( $info ) {
-		$localFileRepo = MediaWikiServices::getInstance()->getMainConfig()->get( 'LocalFileRepo' );
+		$localFileRepo = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::LocalFileRepo );
 		parent::__construct( $info );
 
 		// https://commons.wikimedia.org/w/api.php
@@ -204,7 +206,8 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	 * @return array|null
 	 */
 	public function fetchImageQuery( $query ) {
-		$languageCode = MediaWikiServices::getInstance()->getMainConfig()->get( 'LanguageCode' );
+		$languageCode = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::LanguageCode );
 
 		$query = array_merge( $query,
 			[

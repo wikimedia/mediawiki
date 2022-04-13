@@ -21,6 +21,7 @@
  * @ingroup Search
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -64,7 +65,7 @@ class SearchHighlighter {
 		$contextchars = self::DEFAULT_CONTEXT_CHARS
 	) {
 		$searchHighlightBoundaries = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'SearchHighlightBoundaries' );
+			->getMainConfig()->get( MainConfigNames::SearchHighlightBoundaries );
 
 		if ( $text == '' ) {
 			return '';

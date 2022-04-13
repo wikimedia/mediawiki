@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\IDatabase;
@@ -119,7 +120,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				sort( $selectedValues );
 				$notwatchedCond = 'wl_user IS NULL';
 				$watchedCond = 'wl_user IS NOT NULL';
-				if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+				if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
 					// Expired watchlist items stay in the DB after their expiry time until they're purged,
 					// so it's not enough to only check for wl_user.
 					$quotedNow = $dbr->addQuotes( $dbr->timestamp() );
@@ -338,7 +339,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		] ];
 
 		// Exclude expired watchlist items.
-		if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
 			$tables[] = 'watchlist_expiry';
 			$fields[] = 'we_expiry';
 			$joinConds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
@@ -419,7 +420,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		// MediaWiki 1.26 this used to use the plus operator instead, which meant
 		// that extensions weren't able to change these conditions
 		$query_options = array_merge( $orderByAndLimit, $query_options );
-		$query_options['MAX_EXECUTION_TIME'] = $this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' );
+		$query_options['MAX_EXECUTION_TIME'] =
+			$this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries );
 		$rows = $dbr->select(
 			$tables,
 			$fields,
@@ -516,7 +518,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			return $value !== '';
 		} );
 		$query['action'] = 'feedrecentchanges';
-		$feedLimit = $this->getConfig()->get( 'FeedLimit' );
+		$feedLimit = $this->getConfig()->get( MainConfigNames::FeedLimit );
 		if ( $query['limit'] > $feedLimit ) {
 			$query['limit'] = $feedLimit;
 		}
@@ -533,7 +535,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	public function outputChangesList( $rows, $opts ) {
 		$limit = $opts['limit'];
 
-		$showWatcherCount = $this->getConfig()->get( 'RCShowWatchingUsers' )
+		$showWatcherCount = $this->getConfig()->get( MainConfigNames::RCShowWatchingUsers )
 			&& $this->userOptionsLookup->getBoolOption( $this->getUser(), 'shownumberswatching' );
 		$watcherCache = [];
 
@@ -564,7 +566,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 			$rc->counter = $counter++;
 			# Check if the page has been updated since the last visit
-			if ( $this->getConfig()->get( 'ShowUpdatedMarker' )
+			if ( $this->getConfig()->get( MainConfigNames::ShowUpdatedMarker )
 				&& !empty( $obj->wl_notificationtimestamp )
 			) {
 				$rc->notificationtimestamp = ( $obj->rc_timestamp >= $obj->wl_notificationtimestamp );
@@ -584,7 +586,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			}
 
 			$watched = !empty( $obj->wl_user );
-			if ( $watched && $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+			if ( $watched && $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
 				$notExpired = $obj->we_expiry === null
 					|| MWTimestamp::convert( TS_UNIX, $obj->we_expiry ) > wfTimestamp();
 				$watched = $watched && $notExpired;
@@ -942,7 +944,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 
 		# Sort data for display and make sure it's unique after we've added user data.
-		$linkLimits = $config->get( 'RCLinkLimits' );
+		$linkLimits = $config->get( MainConfigNames::RCLinkLimits );
 		$linkLimits[] = $options['limit'];
 		sort( $linkLimits );
 		$linkLimits = array_unique( $linkLimits );

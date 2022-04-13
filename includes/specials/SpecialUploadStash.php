@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\MainConfigNames;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
@@ -184,7 +185,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// point here, but fetch the scaled file from somewhere else that
 		// happens to share it over NFS.
 		if ( $file->getRepo()->getThumbProxyUrl()
-			|| $this->getConfig()->get( 'UploadStashScalerBaseUrl' )
+			|| $this->getConfig()->get( MainConfigNames::UploadStashScalerBaseUrl )
 		) {
 			$this->outputRemoteScaledThumb( $file, $params, $flags );
 		} else {
@@ -263,7 +264,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			// This option probably looks something like
 			// '//upload.wikimedia.org/wikipedia/test/thumb/temp'. Do not use
 			// trailing slash.
-			$scalerBaseUrl = $this->getConfig()->get( 'UploadStashScalerBaseUrl' );
+			$scalerBaseUrl = $this->getConfig()->get( MainConfigNames::UploadStashScalerBaseUrl );
 
 			if ( preg_match( '/^\/\//', $scalerBaseUrl ) ) {
 				// this is apparently a protocol-relative URL, which makes no sense in this context,

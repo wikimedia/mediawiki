@@ -2,6 +2,7 @@
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 
 /**
  * Configuration handling class for SearchEngine.
@@ -102,7 +103,8 @@ class SearchEngineConfig {
 	 * @return int[] Namespace IDs
 	 */
 	public function defaultNamespaces() {
-		return array_keys( $this->config->get( 'NamespacesToBeSearchedDefault' ), true );
+		return array_keys( $this->config->get( MainConfigNames::NamespacesToBeSearchedDefault ),
+			true );
 	}
 
 	/**
@@ -112,8 +114,8 @@ class SearchEngineConfig {
 	 * @return array
 	 */
 	public function getSearchTypes() {
-		$alternatives = $this->config->get( 'SearchTypeAlternatives' ) ?: [];
-		array_unshift( $alternatives, $this->config->get( 'SearchType' ) );
+		$alternatives = $this->config->get( MainConfigNames::SearchTypeAlternatives ) ?: [];
+		array_unshift( $alternatives, $this->config->get( MainConfigNames::SearchType ) );
 
 		return $alternatives;
 	}
@@ -124,7 +126,7 @@ class SearchEngineConfig {
 	 * @return string|null
 	 */
 	public function getSearchType() {
-		return $this->config->get( 'SearchType' );
+		return $this->config->get( MainConfigNames::SearchType );
 	}
 
 	/**

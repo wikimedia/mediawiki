@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
+
 /**
  * Special page designed for running background tasks (internal use only)
  *
@@ -81,7 +83,8 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 		// Validate request signature
 		$squery = $params;
 		unset( $squery['signature'] );
-		$correctSignature = self::getQuerySignature( $squery, $this->getConfig()->get( 'SecretKey' ) );
+		$correctSignature = self::getQuerySignature( $squery,
+			$this->getConfig()->get( MainConfigNames::SecretKey ) );
 		$providedSignature = $params['signature'];
 		$verified = is_string( $providedSignature )
 			&& hash_equals( $correctSignature, $providedSignature );

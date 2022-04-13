@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 
 /**
@@ -56,7 +57,7 @@ class ApiResetPassword extends ApiBase {
 	 */
 	private function hasAnyRoutes() {
 		if ( $this->hasAnyRoutes === null ) {
-			$resetRoutes = $this->getConfig()->get( 'PasswordResetRoutes' );
+			$resetRoutes = $this->getConfig()->get( MainConfigNames::PasswordResetRoutes );
 			$this->hasAnyRoutes = !empty( $resetRoutes['username'] ) || !empty( $resetRoutes['email'] );
 		}
 		return $this->hasAnyRoutes;
@@ -125,7 +126,7 @@ class ApiResetPassword extends ApiBase {
 			],
 		];
 
-		$resetRoutes = $this->getConfig()->get( 'PasswordResetRoutes' );
+		$resetRoutes = $this->getConfig()->get( MainConfigNames::PasswordResetRoutes );
 		if ( empty( $resetRoutes['username'] ) ) {
 			unset( $ret['user'] );
 		}
@@ -138,7 +139,7 @@ class ApiResetPassword extends ApiBase {
 
 	protected function getExamplesMessages() {
 		$ret = [];
-		$resetRoutes = $this->getConfig()->get( 'PasswordResetRoutes' );
+		$resetRoutes = $this->getConfig()->get( MainConfigNames::PasswordResetRoutes );
 
 		if ( !empty( $resetRoutes['username'] ) ) {
 			$ret['action=resetpassword&user=Example&token=123ABC'] = 'apihelp-resetpassword-example-user';

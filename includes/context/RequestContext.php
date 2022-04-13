@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Session\CsrfTokenSet;
@@ -465,7 +466,7 @@ class RequestContext implements IContextSource, MutableContext {
 
 				Hooks::runner()->onUserGetLanguageObject( $user, $code, $this );
 
-				if ( $code === $this->getConfig()->get( 'LanguageCode' ) ) {
+				if ( $code === $this->getConfig()->get( MainConfigNames::LanguageCode ) ) {
 					$this->lang = MediaWikiServices::getInstance()->getContentLanguage();
 				} else {
 					$obj = MediaWikiServices::getInstance()->getLanguageFactory()
@@ -507,12 +508,13 @@ class RequestContext implements IContextSource, MutableContext {
 				$this->skin = $factory->makeSkin( $normalized );
 			} else {
 				// No hook override, go through normal processing
-				if ( !in_array( 'skin', $this->getConfig()->get( 'HiddenPrefs' ) ) ) {
+				if ( !in_array( 'skin',
+				$this->getConfig()->get( MainConfigNames::HiddenPrefs ) ) ) {
 					$userSkin = $this->getUser()->getOption( 'skin' );
 					// Optimisation: Avoid slow getVal(), this isn't user-generated content.
 					$userSkin = $this->getRequest()->getRawVal( 'useskin', $userSkin );
 				} else {
-					$userSkin = $this->getConfig()->get( 'DefaultSkin' );
+					$userSkin = $this->getConfig()->get( MainConfigNames::DefaultSkin );
 				}
 
 				// Normalize the key in case the user is passing gibberish query params

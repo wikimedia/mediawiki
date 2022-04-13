@@ -2,6 +2,7 @@
 
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Session\SessionManager;
 
 class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
@@ -36,7 +37,7 @@ class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 	}
 
 	protected function getRequestBlacklist() {
-		return $this->getConfig()->get( 'RemoveCredentialsBlacklist' );
+		return $this->getConfig()->get( MainConfigNames::RemoveCredentialsBlacklist );
 	}
 
 	public function execute( $subPage ) {

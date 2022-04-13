@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -76,7 +77,7 @@ class SpecialLinkSearch extends QueryPage {
 		$namespace = $request->getIntOrNull( 'namespace' );
 
 		$protocols_list = [];
-		foreach ( $this->getConfig()->get( 'UrlProtocols' ) as $prot ) {
+		foreach ( $this->getConfig()->get( MainConfigNames::UrlProtocols ) as $prot ) {
 			if ( $prot !== '//' ) {
 				$protocols_list[] = $prot;
 			}
@@ -114,7 +115,7 @@ class SpecialLinkSearch extends QueryPage {
 				'dir' => 'ltr',
 			]
 		];
-		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
+		if ( !$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$fields += [
 				'namespace' => [
 					'type' => 'namespaceselect',
@@ -162,7 +163,7 @@ class SpecialLinkSearch extends QueryPage {
 	protected function linkParameters() {
 		$params = [];
 		$params['target'] = $this->mProt . $this->mQuery;
-		if ( $this->mNs !== null && !$this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->mNs !== null && !$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$params['namespace'] = $this->mNs;
 		}
 
@@ -209,7 +210,7 @@ class SpecialLinkSearch extends QueryPage {
 			'options' => [ 'ORDER BY' => $orderBy ]
 		];
 
-		if ( $this->mNs !== null && !$this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->mNs !== null && !$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$retval['conds']['page_namespace'] = $this->mNs;
 		}
 

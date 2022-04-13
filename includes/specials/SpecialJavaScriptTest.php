@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @ingroup SpecialPage
  */
@@ -156,7 +158,7 @@ JAVASCRIPT
 	}
 
 	private function renderPage() {
-		$basePath = $this->getConfig()->get( 'ResourceBasePath' );
+		$basePath = $this->getConfig()->get( MainConfigNames::ResourceBasePath );
 		$headHtml = implode( "\n", [
 			Html::linkedScript( "$basePath/resources/lib/qunitjs/qunit.js" ),
 			Html::linkedStyle( "$basePath/resources/lib/qunitjs/qunit.css" ),

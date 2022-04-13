@@ -25,6 +25,7 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 
 /**
  * Unit to authenticate log-in attempts to the current wiki.
@@ -51,7 +52,7 @@ class ApiLogin extends ApiBase {
 	}
 
 	protected function getExtendedDescription() {
-		if ( $this->getConfig()->get( 'EnableBotPasswords' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::EnableBotPasswords ) ) {
 			return 'apihelp-login-extended-description';
 		} else {
 			return 'apihelp-login-extended-description-nobotpasswords';
@@ -135,7 +136,7 @@ class ApiLogin extends ApiBase {
 
 		// Try bot passwords
 		if (
-			$authRes === false && $this->getConfig()->get( 'EnableBotPasswords' ) &&
+			$authRes === false && $this->getConfig()->get( MainConfigNames::EnableBotPasswords ) &&
 			( $botLoginData = BotPassword::canonicalizeLoginData( $params['name'], $params['password'] ) )
 		) {
 			$status = BotPassword::login(
@@ -176,7 +177,7 @@ class ApiLogin extends ApiBase {
 			$res = $this->authManager->beginAuthentication( $reqs, 'null:' );
 			switch ( $res->status ) {
 				case AuthenticationResponse::PASS:
-					if ( $this->getConfig()->get( 'EnableBotPasswords' ) ) {
+					if ( $this->getConfig()->get( MainConfigNames::EnableBotPasswords ) ) {
 						$this->addDeprecation( 'apiwarn-deprecation-login-botpw', 'main-account-login' );
 					} else {
 						$this->addDeprecation( 'apiwarn-deprecation-login-nobotpw', 'main-account-login' );
@@ -232,7 +233,7 @@ class ApiLogin extends ApiBase {
 
 			case 'Aborted':
 				$result['reason'] = $this->formatMessage(
-					$this->getConfig()->get( 'EnableBotPasswords' )
+					$this->getConfig()->get( MainConfigNames::EnableBotPasswords )
 						? 'api-login-fail-aborted'
 						: 'api-login-fail-aborted-nobotpw'
 				);
@@ -256,7 +257,7 @@ class ApiLogin extends ApiBase {
 	}
 
 	public function isDeprecated() {
-		return !$this->getConfig()->get( 'EnableBotPasswords' );
+		return !$this->getConfig()->get( MainConfigNames::EnableBotPasswords );
 	}
 
 	public function mustBePosted() {

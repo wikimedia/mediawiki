@@ -24,6 +24,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 
 /**
@@ -74,7 +75,7 @@ class SpecialImport extends SpecialPage {
 		$this->getOutput()->addModules( 'mediawiki.special.import' );
 		$this->getOutput()->addModuleStyles( 'mediawiki.special.import.styles.ooui' );
 
-		$this->importSources = $this->getConfig()->get( 'ImportSources' );
+		$this->importSources = $this->getConfig()->get( MainConfigNames::ImportSources );
 		// Avoid phan error by checking the type
 		if ( !is_array( $this->importSources ) ) {
 			throw new UnexpectedValueException( '$wgImportSources must be an array' );
@@ -123,13 +124,13 @@ class SpecialImport extends SpecialPage {
 		$assignKnownUsers = $request->getCheck( 'assignKnownUsers' );
 
 		$logcomment = $request->getText( 'log-comment' );
-		$pageLinkDepth = $this->getConfig()->get( 'ExportMaxLinkDepth' ) == 0
+		$pageLinkDepth = $this->getConfig()->get( MainConfigNames::ExportMaxLinkDepth ) == 0
 			? 0
 			: $request->getIntOrNull( 'pagelink-depth' );
 
 		$rootpage = '';
 		$mapping = $request->getVal( 'mapping' );
-		$namespace = $this->getConfig()->get( 'ImportTargetNamespace' );
+		$namespace = $this->getConfig()->get( MainConfigNames::ImportTargetNamespace );
 		if ( $mapping === 'namespace' ) {
 			$namespace = $request->getIntOrNull( 'namespace' );
 		} elseif ( $mapping === 'subpage' ) {
@@ -262,7 +263,7 @@ class SpecialImport extends SpecialPage {
 	}
 
 	private function getMappingFormPart( $sourceName ) {
-		$defaultNamespace = $this->getConfig()->get( 'ImportTargetNamespace' );
+		$defaultNamespace = $this->getConfig()->get( MainConfigNames::ImportTargetNamespace );
 		return [
 			'mapping' => [
 				'type' => 'radio',
@@ -426,7 +427,7 @@ class SpecialImport extends SpecialPage {
 				],
 			];
 
-			if ( $this->getConfig()->get( 'ExportMaxLinkDepth' ) > 0 ) {
+			if ( $this->getConfig()->get( MainConfigNames::ExportMaxLinkDepth ) > 0 ) {
 				$interwikiFormDescriptor += [
 					'pagelink-depth' => [
 						'type' => 'int',

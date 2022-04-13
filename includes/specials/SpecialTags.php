@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
+
 /**
  * A special page that lists tags for edits
  *
@@ -237,7 +239,7 @@ class SpecialTags extends SpecialPage {
 		$newRow .= Xml::tags( 'td', null, $this->msg( $activeMsg )->escaped() );
 
 		$hitcountLabelMsg = $this->msg( 'tags-hitcount' )->numParams( $hitcount );
-		if ( $this->getConfig()->get( 'UseTagFilter' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::UseTagFilter ) ) {
 			$hitcountLabel = $linkRenderer->makeLink(
 				SpecialPage::getTitleFor( 'Recentchanges' ),
 				$hitcountLabelMsg->text(),

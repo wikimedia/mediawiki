@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\CommentFormatter\RowCommentFormatter;
+use MediaWiki\MainConfigNames;
 
 /**
  * Query module to enumerate all create-protected pages.
@@ -217,7 +218,8 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 			],
 			'level' => [
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array_diff( $this->getConfig()->get( 'RestrictionLevels' ), [ '' ] )
+				ApiBase::PARAM_TYPE => array_diff(
+					$this->getConfig()->get( MainConfigNames::RestrictionLevels ), [ '' ] )
 			],
 			'limit' => [
 				ApiBase::PARAM_DFLT => 10,

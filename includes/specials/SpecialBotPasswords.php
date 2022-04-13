@@ -23,6 +23,7 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 
 /**
  * Let users manage bot passwords
@@ -73,7 +74,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 	 * @return bool
 	 */
 	public function isListed() {
-		return $this->getConfig()->get( 'EnableBotPasswords' );
+		return $this->getConfig()->get( MainConfigNames::EnableBotPasswords );
 	}
 
 	protected function getLoginSecurityLevel() {
@@ -103,7 +104,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 	protected function checkExecutePermissions( User $user ) {
 		parent::checkExecutePermissions( $user );
 
-		if ( !$this->getConfig()->get( 'EnableBotPasswords' ) ) {
+		if ( !$this->getConfig()->get( MainConfigNames::EnableBotPasswords ) ) {
 			throw new ErrorPageError( 'botpasswords', 'botpasswords-disabled' );
 		}
 

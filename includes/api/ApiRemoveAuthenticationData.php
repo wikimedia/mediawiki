@@ -22,6 +22,7 @@
 
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\MainConfigNames;
 
 /**
  * Remove authentication data from AuthManager
@@ -72,7 +73,8 @@ class ApiRemoveAuthenticationData extends ApiBase {
 		// Fetch the request. No need to load from the request, so don't use
 		// ApiAuthManagerHelper's method.
 		$remove = $this->authAction === AuthManager::ACTION_REMOVE
-			? array_fill_keys( $this->getConfig()->get( 'RemoveCredentialsBlacklist' ), true )
+			? array_fill_keys( $this->getConfig()->get(
+				MainConfigNames::RemoveCredentialsBlacklist ), true )
 			: [];
 		$reqs = array_filter(
 			$this->authManager->getAuthenticationRequests( $this->authAction, $this->getUser() ),

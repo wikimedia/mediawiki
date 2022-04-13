@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -204,7 +205,7 @@ abstract class ApiFormatBase extends ApiBase {
 		$this->getMain()->getRequest()->response()->header( "Content-Type: $mime; charset=utf-8" );
 
 		// Set X-Frame-Options API results (T41180)
-		$apiFrameOptions = $this->getConfig()->get( 'ApiFrameOptions' );
+		$apiFrameOptions = $this->getConfig()->get( MainConfigNames::ApiFrameOptions );
 		if ( $apiFrameOptions ) {
 			$this->getMain()->getRequest()->response()->header( "X-Frame-Options: $apiFrameOptions" );
 		}

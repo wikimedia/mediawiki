@@ -5,6 +5,7 @@ namespace MediaWiki\Rest\Handler;
 use Config;
 use IApiMessage;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
@@ -109,8 +110,8 @@ abstract class EditHandler extends ActionModuleBasedHandler {
 				'timestamp' => $data['edit']['newtimestamp'],
 			],
 			'license' => [
-				'url' => $this->config->get( 'RightsUrl' ),
-				'title' => $this->config->get( 'RightsText' )
+				'url' => $this->config->get( MainConfigNames::RightsUrl ),
+				'title' => $this->config->get( MainConfigNames::RightsText )
 			],
 			'content_model' => $data['edit']['contentmodel'],
 			'source' => $content->serialize(),

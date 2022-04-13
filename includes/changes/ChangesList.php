@@ -25,6 +25,7 @@
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -190,7 +191,9 @@ class ChangesList extends ContextSource {
 	 */
 	public function recentChangesFlags( $flags, $nothing = "\u{00A0}" ) {
 		$f = '';
-		foreach ( array_keys( $this->getConfig()->get( 'RecentChangesFlags' ) ) as $flag ) {
+		foreach (
+			array_keys( $this->getConfig()->get( MainConfigNames::RecentChangesFlags ) ) as $flag
+		) {
 			$f .= isset( $flags[$flag] ) && $flags[$flag]
 				? self::flag( $flag, $this->getContext() )
 				: $nothing;
@@ -275,7 +278,8 @@ class ChangesList extends ContextSource {
 		static $flagInfos = null;
 
 		if ( $flagInfos === null ) {
-			$recentChangesFlags = MediaWikiServices::getInstance()->getMainConfig()->get( 'RecentChangesFlags' );
+			$recentChangesFlags = MediaWikiServices::getInstance()->getMainConfig()
+				->get( MainConfigNames::RecentChangesFlags );
 			$flagInfos = [];
 			foreach ( $recentChangesFlags as $key => $value ) {
 				$flagInfos[$key]['letter'] = $value['letter'];
@@ -358,7 +362,7 @@ class ChangesList extends ContextSource {
 		$code = $lang->getCode();
 		static $fastCharDiff = [];
 		if ( !isset( $fastCharDiff[$code] ) ) {
-			$fastCharDiff[$code] = $config->get( 'MiserMode' )
+			$fastCharDiff[$code] = $config->get( MainConfigNames::MiserMode )
 				|| $context->msg( 'rc-change-size' )->plain() === '$1';
 		}
 
@@ -368,7 +372,7 @@ class ChangesList extends ContextSource {
 			$formattedSize = $context->msg( 'rc-change-size', $formattedSize )->text();
 		}
 
-		if ( abs( $szdiff ) > abs( $config->get( 'RCChangedSizeThreshold' ) ) ) {
+		if ( abs( $szdiff ) > abs( $config->get( MainConfigNames::RCChangedSizeThreshold ) ) ) {
 			$tag = 'strong';
 		} else {
 			$tag = 'span';

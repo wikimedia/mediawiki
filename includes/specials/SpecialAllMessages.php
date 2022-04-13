@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -58,7 +59,7 @@ class SpecialAllMessages extends SpecialPage {
 
 		$this->setHeaders();
 
-		if ( !$this->getConfig()->get( 'UseDatabaseMessages' ) ) {
+		if ( !$this->getConfig()->get( MainConfigNames::UseDatabaseMessages ) ) {
 			$out->addWikiMsg( 'allmessages-not-supported-database' );
 
 			return;

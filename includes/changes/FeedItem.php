@@ -21,6 +21,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -164,7 +165,8 @@ class FeedItem {
 	 * @return string
 	 */
 	public function getLanguage() {
-		$languageCode = MediaWikiServices::getInstance()->getMainConfig()->get( 'LanguageCode' );
+		$languageCode = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::LanguageCode );
 		return LanguageCode::bcp47( $languageCode );
 	}
 

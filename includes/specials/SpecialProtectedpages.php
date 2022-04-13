@@ -23,6 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\RestrictionStore;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -220,7 +221,7 @@ class SpecialProtectedpages extends SpecialPage {
 		$options = [];
 
 		// First pass to load the log names
-		foreach ( $this->getConfig()->get( 'RestrictionLevels' ) as $type ) {
+		foreach ( $this->getConfig()->get( MainConfigNames::RestrictionLevels ) as $type ) {
 			// Messages used can be 'restriction-level-sysop' and 'restriction-level-autoconfirmed'
 			if ( $type != '' && $type != '*' ) {
 				$text = $this->msg( "restriction-level-$type" )->text();

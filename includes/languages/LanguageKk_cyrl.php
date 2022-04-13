@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -42,7 +43,8 @@ class LanguageKk_cyrl extends Language {
 	 * @return string
 	 */
 	protected function convertGrammarKk_cyrl( $word, $case ) {
-		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		$grammarForms =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::GrammarForms );
 		if ( isset( $grammarForms['kk-kz'][$case][$word] ) ) {
 			return $grammarForms['kk-kz'][$case][$word];
 		}
@@ -274,7 +276,8 @@ class LanguageKk_cyrl extends Language {
 	 * @return string
 	 */
 	protected function convertGrammarKk_latn( $word, $case ) {
-		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		$grammarForms =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::GrammarForms );
 		if ( isset( $grammarForms['kk-tr'][$case][$word] ) ) {
 			return $grammarForms['kk-tr'][$case][$word];
 		}
@@ -506,7 +509,8 @@ class LanguageKk_cyrl extends Language {
 	 * @return string
 	 */
 	protected function convertGrammarKk_arab( $word, $case ) {
-		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		$grammarForms =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::GrammarForms );
 		if ( isset( $grammarForms['kk-cn'][$case][$word] ) ) {
 			return $grammarForms['kk-cn'][$case][$word];
 		}

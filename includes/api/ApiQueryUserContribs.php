@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -315,7 +316,8 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		$revQuery = $this->revisionStore->getQueryInfo( [ 'page' ] );
 		$revWhere = $this->actorMigration->getWhere( $db, 'rev_user', $users );
 
-		if ( $this->getConfig()->get( 'ActorTableSchemaMigrationStage' ) & SCHEMA_COMPAT_READ_TEMP ) {
+		if ( $this->getConfig()->get( MainConfigNames::ActorTableSchemaMigrationStage ) &
+		SCHEMA_COMPAT_READ_TEMP ) {
 			$orderUserField = 'rev_actor';
 			$userField = $this->orderBy === 'actor' ? 'revactor_actor' : 'actor_name';
 			$tsField = 'revactor_timestamp';
@@ -490,7 +492,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		}
 		$this->addOption(
 			'MAX_EXECUTION_TIME',
-			$this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' )
+			$this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries )
 		);
 	}
 
@@ -692,7 +694,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				],
 				ApiBase::PARAM_HELP_MSG => [
 					'apihelp-query+usercontribs-param-show',
-					$this->getConfig()->get( 'RCMaxAge' )
+					$this->getConfig()->get( MainConfigNames::RCMaxAge )
 				],
 			],
 			'tag' => null,

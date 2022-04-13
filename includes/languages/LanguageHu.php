@@ -22,6 +22,7 @@
  * @ingroup Language
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -37,7 +38,8 @@ class LanguageHu extends Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::GrammarForms );
 		if ( isset( $grammarForms[$this->getCode()][$case][$word] ) ) {
 			return $grammarForms[$this->getCode()][$case][$word];
 		}

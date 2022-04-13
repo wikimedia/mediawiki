@@ -24,6 +24,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use Wikimedia\Rdbms\IDatabase;
@@ -256,7 +257,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		}
 
 		if ( $params['mime'] !== null ) {
-			if ( $this->getConfig()->get( 'MiserMode' ) ) {
+			if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 				$this->dieWithError( 'apierror-mimesearchdisabled' );
 			}
 
@@ -409,7 +410,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			],
 		];
 
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$ret['mime'][ApiBase::PARAM_HELP_MSG] = 'api-help-param-disabled-in-miser-mode';
 		}
 

@@ -23,6 +23,7 @@
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -101,7 +102,8 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		$idField = 'rev_id';
 		$pageField = 'rev_page';
 		if ( $params['user'] !== null &&
-			( $this->getConfig()->get( 'ActorTableSchemaMigrationStage' ) & SCHEMA_COMPAT_READ_TEMP )
+			( $this->getConfig()->get( MainConfigNames::ActorTableSchemaMigrationStage ) &
+				SCHEMA_COMPAT_READ_TEMP )
 		) {
 			// The query is probably best done using the actor_timestamp index on
 			// revision_actor_temp. Use the denormalized fields from that table.
@@ -119,7 +121,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			sort( $params['namespace'] );
 			if ( $params['namespace'] != $this->namespaceInfo->getValidNamespaces() ) {
 				$needPageTable = true;
-				if ( $this->getConfig()->get( 'MiserMode' ) ) {
+				if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 					$miser_ns = $params['namespace'];
 				} else {
 					$this->addWhere( [ 'page_namespace' => $params['namespace'] ] );
@@ -348,7 +350,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			],
 		];
 
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$ret['namespace'][ApiBase::PARAM_HELP_MSG_APPEND] = [
 				'api-help-param-limited-in-miser-mode',
 			];

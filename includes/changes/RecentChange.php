@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\ChangeTags\Taggable;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
@@ -406,9 +407,9 @@ class RecentChange implements Taggable {
 	 */
 	public function save( $send = self::SEND_FEED ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$putIPinRC = $mainConfig->get( 'PutIPinRC' );
+		$putIPinRC = $mainConfig->get( MainConfigNames::PutIPinRC );
 		$useEnotif = $mainConfig->get( 'UseEnotif' );
-		$showUpdatedMarker = $mainConfig->get( 'ShowUpdatedMarker' );
+		$showUpdatedMarker = $mainConfig->get( MainConfigNames::ShowUpdatedMarker );
 		$dbw = wfGetDB( DB_PRIMARY );
 		if ( !is_array( $this->mExtra ) ) {
 			$this->mExtra = [];
@@ -552,7 +553,8 @@ class RecentChange implements Taggable {
 	 * @param array|null $feeds Optional feeds to send to, defaults to $wgRCFeeds
 	 */
 	public function notifyRCFeeds( array $feeds = null ) {
-		$rcFeeds = MediaWikiServices::getInstance()->getMainConfig()->get( 'RCFeeds' );
+		$rcFeeds =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RCFeeds );
 		if ( $feeds === null ) {
 			$feeds = $rcFeeds;
 		}
@@ -597,7 +599,8 @@ class RecentChange implements Taggable {
 	 */
 	public static function getEngine( $uri, $params = [] ) {
 		wfDeprecated( __METHOD__, '1.29' );
-		$rcEngines = MediaWikiServices::getInstance()->getMainConfig()->get( 'RCEngines' );
+		$rcEngines =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RCEngines );
 		$scheme = parse_url( $uri, PHP_URL_SCHEME );
 		if ( !$scheme ) {
 			throw new MWException( "Invalid RCFeed uri: '$uri'" );
@@ -624,9 +627,9 @@ class RecentChange implements Taggable {
 	 */
 	public function doMarkPatrolled( Authority $performer, $auto = false, $tags = null ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$useRCPatrol = $mainConfig->get( 'UseRCPatrol' );
-		$useNPPatrol = $mainConfig->get( 'UseNPPatrol' );
-		$useFilePatrol = $mainConfig->get( 'UseFilePatrol' );
+		$useRCPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
+		$useNPPatrol = $mainConfig->get( MainConfigNames::UseNPPatrol );
+		$useFilePatrol = $mainConfig->get( MainConfigNames::UseFilePatrol );
 		// Fix up $tags so that the MarkPatrolled hook below always gets an array
 		if ( $tags === null ) {
 			$tags = [];
@@ -891,7 +894,8 @@ class RecentChange implements Taggable {
 		$logPage, $user, $actionComment, $ip, $type,
 		$action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = ''
 	) {
-		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
+		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::LogRestrictions );
 
 		# Don't add private logs to RC!
 		if ( isset( $logRestrictions[$type] ) && $logRestrictions[$type] != '*' ) {
@@ -1275,7 +1279,8 @@ class RecentChange implements Taggable {
 	 * @return bool
 	 */
 	public static function isInRCLifespan( $timestamp, $tolerance = 0 ) {
-		$rcMaxAge = MediaWikiServices::getInstance()->getMainConfig()->get( 'RCMaxAge' );
+		$rcMaxAge =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RCMaxAge );
 
 		return (int)wfTimestamp( TS_UNIX, $timestamp ) > time() - $tolerance - $rcMaxAge;
 	}

@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Page\WikiPageFactory;
@@ -106,8 +107,9 @@ class ApiEditPage extends ApiBase {
 		$this->wikiPageFactory = $wikiPageFactory ?? $services->getWikiPageFactory();
 
 		// Variables needed in ApiWatchlistTrait trait
-		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
-		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( MainConfigNames::WatchlistExpiry );
+		$this->watchlistMaxDuration =
+			$this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
 		$this->redirectLookup = $redirectLookup ?? $services->getRedirectLookup();
@@ -593,7 +595,8 @@ class ApiEditPage extends ApiBase {
 							break;
 						case EditPage::AS_CONTENT_TOO_BIG:
 						case EditPage::AS_MAX_ARTICLE_SIZE_EXCEEDED:
-							$status->fatal( 'apierror-contenttoobig', $this->getConfig()->get( 'MaxArticleSize' ) );
+							$status->fatal( 'apierror-contenttoobig',
+								$this->getConfig()->get( MainConfigNames::MaxArticleSize ) );
 							break;
 						case EditPage::AS_READ_ONLY_PAGE_ANON:
 							$status->fatal( 'apierror-noedit-anon' );

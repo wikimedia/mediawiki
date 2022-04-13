@@ -24,6 +24,7 @@
 namespace MediaWiki\Session;
 
 use BotPassword;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GrantsInfo;
 use User;
 use WebRequest;
@@ -70,7 +71,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 		}
 
 		// Enabled?
-		if ( !$this->getConfig()->get( 'EnableBotPasswords' ) ) {
+		if ( !$this->getConfig()->get( MainConfigNames::EnableBotPasswords ) ) {
 			return null;
 		}
 

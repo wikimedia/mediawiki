@@ -27,6 +27,7 @@ use Config;
 use Language;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerInterface;
 use User;
@@ -673,7 +674,8 @@ abstract class SessionProvider implements SessionProviderInterface {
 			);
 		}
 
-		$hash = \MWCryptHash::hmac( "$this\n$data", $key ?: $this->getConfig()->get( 'SecretKey' ), false );
+		$hash = \MWCryptHash::hmac( "$this\n$data",
+			$key ?: $this->getConfig()->get( MainConfigNames::SecretKey ), false );
 		if ( strlen( $hash ) < 32 ) {
 			// Should never happen, even md5 is 128 bits
 			// @codeCoverageIgnoreStart

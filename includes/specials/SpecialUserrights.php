@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
@@ -557,7 +558,8 @@ class UserrightsPage extends SpecialPage {
 	 * @return Status
 	 */
 	public function fetchUser( $username, $writing = true ) {
-		$parts = explode( $this->getConfig()->get( 'UserrightsInterwikiDelimiter' ), $username );
+		$parts = explode( $this->getConfig()->get( MainConfigNames::UserrightsInterwikiDelimiter ),
+			$username );
 		if ( count( $parts ) < 2 ) {
 			$name = trim( $username );
 			$dbDomain = '';

@@ -23,6 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserIdentityLookup;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -121,7 +122,7 @@ class SpecialLog extends SpecialPage {
 		// If the user doesn't have the right permission to view the specific
 		// log type, throw a PermissionsError
 		// If the log type is invalid, just show all public logs
-		$logRestrictions = $this->getConfig()->get( 'LogRestrictions' );
+		$logRestrictions = $this->getConfig()->get( MainConfigNames::LogRestrictions );
 		$type = $opts->getValue( 'type' );
 		if ( !LogPage::isLogType( $type ) ) {
 			$opts->setValue( 'type', '' );

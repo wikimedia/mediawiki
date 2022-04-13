@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -55,8 +56,8 @@ class LocalIdLookup extends CentralIdLookup {
 		Config $config,
 		ILoadBalancer $loadBalancer
 	) {
-		$this->sharedDB = $config->get( 'SharedDB' );
-		$this->sharedTables = $config->get( 'SharedTables' );
+		$this->sharedDB = $config->get( MainConfigNames::SharedDB );
+		$this->sharedTables = $config->get( MainConfigNames::SharedTables );
 		$this->localDatabases = $config->get( 'LocalDatabases' );
 		$this->loadBalancer = $loadBalancer;
 	}

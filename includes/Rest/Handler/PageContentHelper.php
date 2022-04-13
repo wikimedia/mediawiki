@@ -3,6 +3,7 @@
 namespace MediaWiki\Rest\Handler;
 
 use Config;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Permissions\Authority;
@@ -227,8 +228,8 @@ class PageContentHelper {
 				->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )
 				->getModel(),
 			'license' => [
-				'url' => $this->config->get( 'RightsUrl' ),
-				'title' => $this->config->get( 'RightsText' )
+				'url' => $this->config->get( MainConfigNames::RightsUrl ),
+				'title' => $this->config->get( MainConfigNames::RightsText )
 			],
 		];
 	}

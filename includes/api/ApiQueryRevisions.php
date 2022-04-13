@@ -23,6 +23,7 @@
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -149,7 +150,8 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		$useIndex = [];
 
 		if ( $params['user'] !== null &&
-			( $this->getConfig()->get( 'ActorTableSchemaMigrationStage' ) & SCHEMA_COMPAT_READ_TEMP )
+			( $this->getConfig()->get( MainConfigNames::ActorTableSchemaMigrationStage )
+				& SCHEMA_COMPAT_READ_TEMP )
 		) {
 			// We're going to want to use the page_actor_timestamp index (on revision_actor_temp)
 			// so use that table's denormalized fields.
