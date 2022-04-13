@@ -45,7 +45,9 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 		'ss_images'        => 'images'
 	];
 
-	// @todo deprecate this constructor
+	/**
+	 * @deprecated since 1.39 Use SiteStatsUpdate::factory() instead.
+	 */
 	public function __construct( $views, $edits, $good, $pages = 0, $users = 0 ) {
 		$this->edits = $edits;
 		$this->articles = $good;
@@ -64,7 +66,15 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 	}
 
 	/**
-	 * @param int[] $deltas Map of (counter type => integer delta)
+	 * @param int[] $deltas Map of (counter type => integer delta) e.g.
+	 * 		```
+	 * 		SiteStatsUpdate::factory( [
+	 *			'edits'    => 10,
+	 *			'articles' => 2,
+	 *			'pages'    => 7,
+	 *			'users'    => 5,
+	 *		] );
+	 * 		```
 	 * @return SiteStatsUpdate
 	 * @throws UnexpectedValueException
 	 */
