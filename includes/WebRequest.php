@@ -244,7 +244,7 @@ class WebRequest {
 		} else {
 			$requestPath = $requestUrl;
 		}
-		if ( substr( $requestPath, 0, strlen( $basePath ) ) !== $basePath ) {
+		if ( !str_starts_with( $requestPath, $basePath ) ) {
 			return false;
 		}
 		return rawurldecode( substr( $requestPath, strlen( $basePath ) ) );

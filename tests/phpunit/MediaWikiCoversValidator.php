@@ -43,7 +43,7 @@ trait MediaWikiCoversValidator {
 	public function testValidCovers() {
 		$class = static::class;
 		foreach ( get_class_methods( $this ) as $method ) {
-			if ( strncmp( $method, 'test', 4 ) === 0 ) {
+			if ( str_starts_with( $method, 'test' ) ) {
 				try {
 					Test::getLinesToBeCovered( $class, $method );
 				} catch ( CodeCoverageException $ex ) {

@@ -91,7 +91,7 @@ class SpecialLinkSearch extends QueryPage {
 			$protocol = $bits['scheme'] . $bits['delimiter'];
 			// Make sure wfParseUrl() didn't make some well-intended correction in the
 			// protocol
-			if ( strcasecmp( $protocol, substr( $target, 0, strlen( $protocol ) ) ) === 0 ) {
+			if ( str_starts_with( strtolower( $target ), strtolower( $protocol ) ) ) {
 				$target2 = substr( $target, strlen( $protocol ) );
 			} else {
 				// If it did, let LinkFilter::makeLikeArray() handle this

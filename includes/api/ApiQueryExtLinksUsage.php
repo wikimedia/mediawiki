@@ -271,7 +271,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			->get( MainConfigNames::UrlProtocols );
 		if ( $protocol && !in_array( $protocol, $urlProtocols ) ) {
 			foreach ( $urlProtocols as $p ) {
-				if ( substr( $p, 0, strlen( $protocol ) ) === $protocol ) {
+				if ( str_starts_with( $p, $protocol ) ) {
 					$protocol = $p;
 					break;
 				}

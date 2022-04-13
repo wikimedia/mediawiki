@@ -1466,7 +1466,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return string Input minus the initial BOM char
 	 */
 	protected function stripBom( $input ) {
-		if ( substr_compare( "\xef\xbb\xbf", $input, 0, 3 ) === 0 ) {
+		if ( str_starts_with( $input, "\xef\xbb\xbf" ) ) {
 			return substr( $input, 3 );
 		}
 		return $input;

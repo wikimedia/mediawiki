@@ -505,7 +505,7 @@ class SiteConfiguration {
 		foreach ( $this->suffixes as $altSite => $suffix ) {
 			if ( $suffix === '' ) {
 				return [ '', $languageCode ];
-			} elseif ( substr( $wiki, -strlen( $suffix ) ) === $suffix ) {
+			} elseif ( str_ends_with( $wiki, $suffix ) ) {
 				$site = is_string( $altSite ) ? $altSite : $suffix;
 				$languageCode = substr( $languageCode, 0, -strlen( $suffix ) );
 				return [ $site, $languageCode ];
