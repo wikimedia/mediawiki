@@ -57,10 +57,11 @@ class WikiFarmSettingsLoader {
 			$siteDetector = [ $this, 'detectWikiFarmSite' ];
 		}
 
-		if ( defined( 'MW_WIKI_NAME' ) ) {
+		$wikiName = $this->getWikiNameConstant();
+		if ( $wikiName !== null ) {
 			// MW_WIKI_NAME is used to control the target wiki when running CLI scripts.
 			// Maintenance.php sets it to the value of the --wiki option.
-			$site = MW_WIKI_NAME;
+			$site = $wikiName;
 		} else {
 			$site = $siteDetector();
 		}
@@ -73,6 +74,15 @@ class WikiFarmSettingsLoader {
 		if ( $this->settingsBuilder->fileExists( $path ) ) {
 			$this->settingsBuilder->loadFile( $path );
 		}
+	}
+
+	/**
+	 * Access MW_WIKI_NAME in a way that can be overridden by tests
+	 *
+	 * @return string|null
+	 */
+	protected function getWikiNameConstant() {
+		return defined( 'MW_WIKI_NAME' ) ? MW_WIKI_NAME : null;
 	}
 
 	/**
