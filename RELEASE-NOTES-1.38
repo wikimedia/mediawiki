@@ -594,6 +594,7 @@ because of Phabricator reports.
   now deprecated in favour of the new `wikipage.watchlistChange` hook.
 * The global function wfLogProfilingData() has been deprecated without a
   replacement. The logic has been moved to the MediaWiki class.
+* The "trace" option of SectionProfiler has been deprecated.
 * The PageArchive class has had several methods deprecated. The replacements are
   as follows:
    - Use UndeletePage instead of ::undeleteAsUser(), ::getFileStatus() and
