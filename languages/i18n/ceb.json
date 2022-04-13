@@ -14,7 +14,8 @@
 			"Reedy",
 			"לערי ריינהארט",
 			"아라",
-			"McDutchie"
+			"McDutchie",
+			"Spilltea"
 		]
 	},
 	"tog-underline": "Binadlisan nga mga sumpay:",
@@ -287,6 +288,7 @@
 	"virus-scanfailed": "scan failed (code $1)",
 	"virus-unknownscanner": "wala mailhing antivirus:",
 	"logouttext": "'''Nakabiya ka na.'''\n\nMahimo kang magpadayon sa paggamit sa {{SITENAME}} bisan wala ka magpaila o puyde usab nga <span class='plainlinks'>[$1 mag-log in ka'g usab]</span> o isip laing gumagamit. Palihog hinumdomi nga may ubang mga panid nga magpakita sama nga ikaw naka-log in pa; kini tungod kay wala pa nimo malimpiyohi ang cache sa imong brawser.",
+	"welcomeuser": "Timbayâ, $1!",
 	"yourname": "Ngalan sa tiggamit:",
 	"yourpassword": "Pasword:",
 	"userlogin-yourpassword": "Pasword:",

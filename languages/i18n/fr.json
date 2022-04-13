@@ -871,7 +871,7 @@
 	"session_fail_preview_html": "Désolé, nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.\n\n<em>Parce que {{SITENAME}} a activé le HTML brut, la prévisualisation est masquée afin de prévenir les attaques par JavaScript.</em>\n\n<strong>Si la tentative de modification est légitime, veuillez réessayer.</strong>\nSi cela échoue de nouveau, [[Special:UserLogout|déconnectez-vous]], puis reconnectez-vous, et vérifiez que votre navigateur accepte les témoins (''cookies'') de ce site.",
 	"edit_form_incomplete": "<strong>Certaines parties du formulaire de modification n’ont pas atteint le serveur, vérifiez que vos modifications sont intactes et essayez à nouveau.</strong>",
 	"editing": "Modification de $1",
-	"edit-textarea-aria-label": "Éditeur de source wikitexte",
+	"edit-textarea-aria-label": "Éditeur de source wikicode",
 	"creating": "Création de $1",
 	"editingsection": "Modification de $1 (section)",
 	"editingcomment": "Modification de $1 (nouvelle section)",
@@ -1286,7 +1286,7 @@
 	"badsiglinks": "Votre signature doit inclure un lien vers votre page utilisateur, votre page de discussion ou vos contributions sur ce wiki. Veuillez l’ajouter, par exemple : <code>$1</code>.",
 	"badsigsubst": "Votre signature comporte une substitution imbriquée (par exemple <code>subst:</code> ou <code><nowiki>~~~~</nowiki></code>).",
 	"badsiglength": "Votre signature est trop longue.\nElle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.",
-	"badsiglinebreak": "Votre signature doit consister en une unique ligne de wikitexte.",
+	"badsiglinebreak": "Votre signature doit consister en une unique ligne de wikicode.",
 	"linter-pager-bogus-image-options-details": "Option de fichier erronée",
 	"linter-pager-deletable-table-tag-details": "Balise de tableau qui devrait être supprimée",
 	"linter-pager-html5-misnesting-details": "Mauvaise imbrication (maintenant hors service)",
@@ -4324,5 +4324,5 @@
 	"paramvalidator-help-type-title": "Type : titre de page",
 	"paramvalidator-help-type-title-must-exist": "Accepte uniquement les pages qui existent.",
 	"paramvalidator-help-type-title-no-must-exist": "Accepte les pages inexistantes.",
-	"nonmain-slot-differences-therefore-readonly": "Vous ne pouvez pas modifier le wikitexte de cette révision de la page, car il y a eu des modifications des données sur la page depuis cette révision, qui ne sont pas basées sur le wikitexte. [$1 Pour rétablir cette version, cliquer ici.]"
+	"nonmain-slot-differences-therefore-readonly": "Vous ne pouvez pas modifier le wikicode de cette révision de la page car des modifications dans les données sur la page non basées sur le wikicode ont été effectuées depuis cette révision. [$1 Pour rétablir cette version, cliquer ici.]"
 }
