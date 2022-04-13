@@ -54,11 +54,6 @@ class SpecialWantedTemplates extends WantedQueryPage {
 		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 		$queryInfo = $linksMigration->getQueryInfo( 'templatelinks' );
 		list( $ns, $title ) = $linksMigration->getTitleFields( 'templatelinks' );
-		$groupBy = [ $ns, $title ];
-		if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
-			// It's a bit hacky but we will clean it up later
-			$groupBy = 'tl_target_id';
-		}
 		return [
 			'tables' => array_merge( $queryInfo['tables'], [ 'page' ] ),
 			'fields' => [
@@ -70,7 +65,7 @@ class SpecialWantedTemplates extends WantedQueryPage {
 				'page_title IS NULL',
 				$ns => NS_TEMPLATE
 			],
-			'options' => [ 'GROUP BY' => $groupBy ],
+			'options' => [ 'GROUP BY' => [ $ns, $title ] ],
 			'join_conds' => array_merge(
 				[ 'page' => [ 'LEFT JOIN',
 					[ "page_namespace = $ns", "page_title = $title" ] ] ],
