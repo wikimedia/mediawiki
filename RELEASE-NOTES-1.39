@@ -108,6 +108,8 @@ because of Phabricator reports.
 * Use of the SiteStatsUpdate constructor has been deprecated in favor of
   the ::factory() method.
 * Changes to skins:
+  - Skin::getCopyrightIcon(), ::getPoweredBy(), deprecated in 1.37 have been
+    removed.
   - Skin::makeSearchButton and Skin::makeSearchInput were deprecated in 1.38.
     Use SkinTemplate methods with the same name or Skin::getTemplateData
     instead.

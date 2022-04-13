@@ -916,27 +916,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @deprecated since 1.37
-	 * @return null|string
-	 */
-	protected function getCopyrightIcon() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return BaseTemplate::getCopyrightIconHTML( $this->getConfig(), $this );
-	}
-
-	/**
-	 * Gets the powered by MediaWiki icon.
-	 * @deprecated since 1.37
-	 * @return string
-	 */
-	protected function getPoweredBy() {
-		wfDeprecated( __METHOD__, '1.37' );
-		$text = BaseTemplate::getPoweredByHTML( $this->getConfig() );
-		$this->getHookRunner()->onSkinGetPoweredBy( $text, $this );
-		return $text;
-	}
-
-	/**
 	 * Get the timestamp of the latest revision, formatted in user language
 	 *
 	 * @return string
