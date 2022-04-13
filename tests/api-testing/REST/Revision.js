@@ -4,7 +4,6 @@ const { action, assert, REST, utils } = require( 'api-testing' );
 
 describe( 'Revision', () => {
 	const client = new REST();
-	const clientV0 = new REST( 'rest.php/coredev/v0' );
 	let mindy;
 
 	before( async () => {
@@ -56,7 +55,7 @@ describe( 'Revision', () => {
 				text: 'Hello World',
 				summary: 'creating page'
 			} );
-			const { status, body, headers } = await clientV0.get( `/revision/${newrevid}` );
+			const { status, body, headers } = await client.get( `/revision/${newrevid}` );
 
 			assert.strictEqual( status, 200 );
 			assert.strictEqual( body.id, newrevid );
@@ -71,7 +70,7 @@ describe( 'Revision', () => {
 		} );
 
 		it( 'should return 404 for revision that does not exist', async () => {
-			const { status } = await clientV0.get( '/revision/99999999' );
+			const { status } = await client.get( '/revision/99999999' );
 
 			assert.strictEqual( status, 404 );
 		} );
