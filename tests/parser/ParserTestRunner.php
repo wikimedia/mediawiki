@@ -1355,7 +1355,7 @@ class ParserTestRunner {
 			),
 			'wgMaxTocLevel' => $maxtoclevel,
 			'wgAllowExternalImages' => self::getOptionValue( 'wgAllowExternalImages', $opts, true ),
-			'wgThumbLimits' => [ self::getOptionValue( 'thumbsize', $opts, 180 ) ],
+			'wgThumbLimits' => [ 0, 0, 0, 0, 0, self::getOptionValue( 'thumbsize', $opts, 180 ) ],
 			'wgDefaultLanguageVariant' => $variant,
 			'wgLinkHolderBatchSize' => $linkHolderBatchSize,
 			// Set as a JSON object like:
@@ -1418,10 +1418,6 @@ class ParserTestRunner {
 		$user = new User;
 		$userOptionsManager->setOption( $user, 'language', $langCode );
 		$setup['wgLang'] = $lang;
-
-		// We (re)set $wgThumbLimits to a single-element array above.
-		$userOptionsManager->setOption( $user, 'thumbsize', 0 );
-
 		$setup['wgUser'] = $user;
 
 		// And put both user and language into the context
