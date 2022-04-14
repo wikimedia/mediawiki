@@ -8,11 +8,13 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserGroupManager;
 use MediaWikiUnitTestCase;
 use Title;
+use TitleFormatter;
 use User;
 use UserCache;
 use Wikimedia\TestingAccessWrapper;
@@ -65,6 +67,10 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			$this->createMock( UserCache::class );
 		$redirectLookup = $options['redirectLookup'] ??
 			$this->createMock( RedirectLookup::class );
+		$restrictionStore = $options['restrictionStore'] ??
+			$this->createMock( RestrictionStore::class );
+		$titleFormatter = $options['titleFormatter'] ??
+			$this->createMock( TitleFormatter::class );
 
 		$permissionManager = new PermissionManager(
 			new ServiceOptions( PermissionManager::CONSTRUCTOR_OPTIONS, $config ),
@@ -75,7 +81,9 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			$blockErrorFormatter,
 			$hookContainer,
 			$userCache,
-			$redirectLookup
+			$redirectLookup,
+			$restrictionStore,
+			$titleFormatter
 		);
 
 		$accessPermissionManager = TestingAccessWrapper::newFromObject( $permissionManager );
@@ -269,13 +277,17 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		$user->method( 'getName' )->willReturn( 'NameOfActingUser' );
 
 		$title = $this->createMock( Title::class );
-		$title->expects( $this->once() )
-			->method( 'getRestrictions' )
-			->with( $action )
-			->willReturn( $restrictions );
-		$title->method( 'areRestrictionsCascading' )->willReturn( $cascading );
 
-		$permissionManager = $this->getPermissionManager();
+		$restrictionStore = $this->createMock( RestrictionStore::class );
+		$restrictionStore->expects( $this->once() )
+			->method( 'getRestrictions' )
+			->with( $title, $action )
+			->willReturn( $restrictions );
+		$restrictionStore->method( 'areRestrictionsCascading' )->willReturn( $cascading );
+
+		$permissionManager = $this->getPermissionManager( [
+			'restrictionStore' => $restrictionStore,
+		] );
 		$permissionManager->overrideUserRightsForTesting( $user, $rights );
 
 		$result = $permissionManager->checkPageRestrictions(
