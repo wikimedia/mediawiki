@@ -144,23 +144,6 @@ class LinkRenderer {
 	}
 
 	/**
-	 * @deprecated since 1.37. Stub threshold feature was removed. See T284917
-	 * @param int $threshold
-	 */
-	public function setStubThreshold( $threshold ) {
-		wfDeprecated( __METHOD__, '1.37' );
-	}
-
-	/**
-	 * @deprecated since 1.37. Stub threshold feature was removed. See T284917
-	 * @return int
-	 */
-	public function getStubThreshold() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return 0;
-	}
-
-	/**
 	 * @param LinkTarget|PageReference $target
 	 * @param string|HtmlArmor|null $text
 	 * @param array $extraAttribs

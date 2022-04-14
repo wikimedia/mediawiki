@@ -586,27 +586,6 @@ class ParserOptions {
 	}
 
 	/**
-	 * Thumb size preferred by the user.
-	 * @deprecated since 1.37. Stub threshold feature has been removed. See T284917.
-	 * @return int
-	 */
-	public function getStubThreshold() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return 0;
-	}
-
-	/**
-	 * Thumb size preferred by the user.
-	 * @deprecated since 1.37. Stub threshold feature has been removed. See T284917.
-	 * @param int|null $x New value (null is no change)
-	 * @return int Old value
-	 */
-	public function setStubThreshold( $x ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return 0;
-	}
-
-	/**
 	 * Parsing the page for a "preview" operation?
 	 * @return bool
 	 */
