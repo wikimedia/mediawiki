@@ -39,6 +39,7 @@ use NamespaceInfo;
 use RequestContext;
 use SpecialPage;
 use Title;
+use TitleFormatter;
 use User;
 use UserCache;
 use Wikimedia\ScopedCallback;
@@ -106,6 +107,12 @@ class PermissionManager {
 
 	/** @var UserCache */
 	private $userCache;
+
+	/** @var RestrictionStore */
+	private $restrictionStore;
+
+	/** @var TitleFormatter */
+	private $titleFormatter;
 
 	/** @var string[][] Cached user rights */
 	private $usersRights = [];
@@ -219,6 +226,8 @@ class PermissionManager {
 	 * @param HookContainer $hookContainer
 	 * @param UserCache $userCache
 	 * @param RedirectLookup $redirectLookup
+	 * @param RestrictionStore $restrictionStore
+	 * @param TitleFormatter $titleFormatter
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -229,7 +238,9 @@ class PermissionManager {
 		BlockErrorFormatter $blockErrorFormatter,
 		HookContainer $hookContainer,
 		UserCache $userCache,
-		RedirectLookup $redirectLookup
+		RedirectLookup $redirectLookup,
+		RestrictionStore $restrictionStore,
+		TitleFormatter $titleFormatter
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
@@ -241,6 +252,8 @@ class PermissionManager {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userCache = $userCache;
 		$this->redirectLookup = $redirectLookup;
+		$this->restrictionStore = $restrictionStore;
+		$this->titleFormatter = $titleFormatter;
 	}
 
 	/**
@@ -961,7 +974,7 @@ class PermissionManager {
 	) {
 		// TODO: remove & rework upon further use of LinkTarget
 		$title = Title::newFromLinkTarget( $page );
-		foreach ( $title->getRestrictions( $action ) as $right ) {
+		foreach ( $this->restrictionStore->getRestrictions( $title, $action ) as $right ) {
 			// Backwards compatibility, rewrite sysop -> editprotected
 			if ( $right == 'sysop' ) {
 				$right = 'editprotected';
@@ -975,7 +988,7 @@ class PermissionManager {
 			}
 			if ( !$this->userHasRight( $user, $right ) ) {
 				$errors[] = [ 'protectedpagetext', $right, $action ];
-			} elseif ( $title->areRestrictionsCascading() &&
+			} elseif ( $this->restrictionStore->areRestrictionsCascading( $title ) &&
 				!$this->userHasRight( $user, 'protect' )
 			) {
 				$errors[] = [ 'protectedpagetext', 'protect', $action ];
@@ -1012,7 +1025,7 @@ class PermissionManager {
 		// TODO: remove & rework upon further use of LinkTarget
 		$title = Title::newFromLinkTarget( $page );
 		if ( $rigor !== self::RIGOR_QUICK && !$title->isUserConfigPage() ) {
-			list( $cascadingSources, $restrictions ) = $title->getCascadeProtectionSources();
+			list( $cascadingSources, $restrictions ) = $this->restrictionStore->getCascadeProtectionSources( $title );
 			# Cascading protection depends on more than this page...
 			# Several cascading protected pages may include this page...
 			# Check each cascading level
@@ -1029,9 +1042,8 @@ class PermissionManager {
 					}
 					if ( $right != '' && !$this->userHasAllRights( $user, 'protect', $right ) ) {
 						$wikiPages = '';
-						/** @var Title $wikiPage */
-						foreach ( $cascadingSources as $wikiPage ) {
-							$wikiPages .= '* [[:' . $wikiPage->getPrefixedText() . "]]\n";
+						foreach ( $cascadingSources as $pageIdentity ) {
+							$wikiPages .= '* [[:' . $this->titleFormatter->getPrefixedText( $pageIdentity ) . "]]\n";
 						}
 						$errors[] = [ 'cascadeprotected', count( $cascadingSources ), $wikiPages, $action ];
 					}

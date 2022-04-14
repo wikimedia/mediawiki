@@ -1392,7 +1392,9 @@ return [
 			$services->getBlockErrorFormatter(),
 			$services->getHookContainer(),
 			$services->getUserCache(),
-			$services->getRedirectLookup()
+			$services->getRedirectLookup(),
+			$services->getRestrictionStore(),
+			$services->getTitleFormatter()
 		);
 	},
 
