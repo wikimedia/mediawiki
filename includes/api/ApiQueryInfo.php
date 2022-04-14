@@ -530,12 +530,13 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 		list( $blNamespace, $blTitle ) = $linksMigration->getTitleFields( 'templatelinks' );
+		$queryInfo = $linksMigration->getQueryInfo( 'templatelinks' );
 
 		if ( count( $others ) ) {
 			// Non-images: check templatelinks
 			$lb = $this->linkBatchFactory->newLinkBatch( $others );
 			$this->resetQueryParams();
-			$this->addTables( [ 'page_restrictions', 'page', 'templatelinks' ] );
+			$this->addTables( array_merge( [ 'page_restrictions', 'page' ], $queryInfo['tables'] ) );
 			$this->addFields( [ 'pr_type', 'pr_level', 'pr_expiry',
 				'page_title', 'page_namespace',
 				$blNamespace, $blTitle ] );
@@ -543,6 +544,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->addWhere( 'pr_page = page_id' );
 			$this->addWhere( 'pr_page = tl_from' );
 			$this->addWhereFld( 'pr_cascade', 1 );
+			$this->addJoinConds( $queryInfo['joins'] );
 
 			$res = $this->select( __METHOD__ );
 			foreach ( $res as $row ) {
