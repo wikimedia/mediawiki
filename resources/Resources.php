@@ -133,12 +133,6 @@ return [
 		'skipFunction' => 'resources/src/skip-es6-polyfills.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'fetch-polyfill' => [
-		// Temporary alias. Use web2017-polyfills instead.
-		'scripts' => [],
-		'targets' => [ 'desktop', 'mobile' ],
-		'dependencies' => [ 'web2017-polyfills' ]
-	],
 	'web2017-polyfills' => [
 		'scripts' => [
 			'resources/lib/intersection-observer/intersection-observer.js',
