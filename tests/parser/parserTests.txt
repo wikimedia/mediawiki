@@ -2997,7 +2997,7 @@ parsoid=wt2html
 !! html/php
 <pre style="width:50%;">{{1x|foo}}</pre>
 !! html/parsoid
-<pre typeof="mw:Extension/pre" about="#mwt2" style="width:50%;" data-mw='{"name":"pre","attrs":{"style":"width:50%;"},"body":{"extsrc":"{{1x|foo}}"}}'>{{1x|foo}}</pre>
+<pre style="width:50%;" typeof="mw:Extension/pre" about="#mwt2" data-mw='{"name":"pre","attrs":{"style":"width:50%;"},"body":{"extsrc":"{{1x|foo}}"}}'>{{1x|foo}}</pre>
 !! end
 
 !! test
@@ -13950,6 +13950,9 @@ Templates: P-wrapping: 1c. Templates on consecutive lines
 <p>Foo
 </p><p>
 bar </p><div>baz</div>
+!! html/parsoid
+<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"Foo"}},"i":0}}]}'>Foo</span></p>
+<p about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"bar"}},"i":0}}]}'>bar</p> <div data-parsoid='{"stx":"html"}'>baz</div>
 !! end
 
 !! test
@@ -22862,8 +22865,6 @@ comment
 <a href="/index.php?title=ABC3D%25_%2B%2B&amp;action=edit&amp;redlink=1" class="new" title="ABC3D% ++ (page does not exist)">ABC3D% ++</a> <a href="/index.php?title=ABC3D%25_%2B%2B&amp;action=edit&amp;redlink=1" class="new" title="ABC3D% ++ (page does not exist)">+%20</a>
 !! end
 
-# Parsoid doesn't support this yet: see T75581
-# but it *should* omit the 'src' attribute if the image is bad.
 !! test
 Bad images - basic functionality
 !! wikitext
@@ -22872,7 +22873,7 @@ Bad images - basic functionality
 <p><a href="/wiki/File:Bad.jpg" title="File:Bad.jpg">File:Bad.jpg</a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Bad.jpg"><span class="mw-broken-media" resource="./File:Bad.jpg">File:Bad.jpg</span></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-badfile","message":"This image is on the bad file list."}]}'><a href="./Special:FilePath/Bad.jpg"><span class="mw-broken-media" resource="./File:Bad.jpg">File:Bad.jpg</span></a></span></p>
 !! end
 
 !! test
@@ -22888,7 +22889,7 @@ Bar foo
 </p>
 !! html/parsoid
 <p>Foo bar
-<span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Bad.jpg"><span class="mw-broken-media" resource="./File:Bad.jpg">File:Bad.jpg</span></a></span>
+<span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-badfile","message":"This image is on the bad file list."}]}'><a href="./Special:FilePath/Bad.jpg"><span class="mw-broken-media" resource="./File:Bad.jpg">File:Bad.jpg</span></a></span>
 Bar foo</p>
 !! end
 
@@ -26244,7 +26245,7 @@ parsoid=wt2html,html2html
 <table><tbody>
 <tr>
 <td title="Hello world">Foo
-</td><td style="color: red">Bar
+</td><td style="color:red">Bar
 </td></tr></tbody></table>
 !! end
 
