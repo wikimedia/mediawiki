@@ -21,6 +21,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -63,7 +64,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$this->addJoinConds( [ 'page' => [ 'JOIN', 'page_id=el_from' ] ] );
 
 		$miser_ns = [];
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$miser_ns = $params['namespace'] ?: [];
 		} else {
 			$this->addWhereFld( 'page_namespace', $params['namespace'] );
@@ -242,7 +243,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			'expandurl' => false,
 		];
 
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$ret['namespace'][ApiBase::PARAM_HELP_MSG_APPEND] = [
 				'api-help-param-limited-in-miser-mode',
 			];
@@ -252,7 +253,8 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 	}
 
 	public static function prepareProtocols() {
-		$urlProtocols = MediaWikiServices::getInstance()->getMainConfig()->get( 'UrlProtocols' );
+		$urlProtocols = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::UrlProtocols );
 		$protocols = [ '' ];
 		foreach ( $urlProtocols as $p ) {
 			if ( $p !== '//' ) {
@@ -265,7 +267,8 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 	public static function getProtocolPrefix( $protocol ) {
 		// Find the right prefix
-		$urlProtocols = MediaWikiServices::getInstance()->getMainConfig()->get( 'UrlProtocols' );
+		$urlProtocols = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::UrlProtocols );
 		if ( $protocol && !in_array( $protocol, $urlProtocols ) ) {
 			foreach ( $urlProtocols as $p ) {
 				if ( substr( $p, 0, strlen( $protocol ) ) === $protocol ) {

@@ -26,6 +26,7 @@
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Search\SearchWidgets\BasicSearchResultSetWidget;
 use MediaWiki\Search\SearchWidgets\FullSearchResultWidget;
 use MediaWiki\Search\SearchWidgets\InterwikiSearchResultSetWidget;
@@ -213,8 +214,8 @@ class SpecialSearch extends SpecialPage {
 
 		$this->setupPage( $term );
 
-		if ( $this->getConfig()->get( 'DisableTextSearch' ) ) {
-			$searchForwardUrl = $this->getConfig()->get( 'SearchForwardUrl' );
+		if ( $this->getConfig()->get( MainConfigNames::DisableTextSearch ) ) {
+			$searchForwardUrl = $this->getConfig()->get( MainConfigNames::SearchForwardUrl );
 			if ( $searchForwardUrl ) {
 				$url = str_replace( '$1', urlencode( $term ), $searchForwardUrl );
 				$out->redirect( $url );
@@ -365,7 +366,7 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	private function redirectOnExactMatch() {
-		if ( !$this->getConfig()->get( 'SearchMatchRedirectPreference' ) ) {
+		if ( !$this->getConfig()->get( MainConfigNames::SearchMatchRedirectPreference ) ) {
 			// If the preference for whether to redirect is disabled, use the default setting
 			$defaultOptions = $this->userOptionsManager->getDefaultOptions();
 			return $defaultOptions['search-match-redirect'];
@@ -384,7 +385,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$out = $this->getOutput();
-		$widgetOptions = $this->getConfig()->get( 'SpecialSearchFormOptions' );
+		$widgetOptions = $this->getConfig()->get( MainConfigNames::SpecialSearchFormOptions );
 		$formWidget = new MediaWiki\Search\SearchWidgets\SearchFormWidget(
 			$this,
 			$this->searchConfig,

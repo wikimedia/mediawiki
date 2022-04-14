@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -173,7 +174,7 @@ class SpecialProtectedtitles extends SpecialPage {
 		$options = [];
 
 		// First pass to load the log names
-		foreach ( $this->getConfig()->get( 'RestrictionLevels' ) as $type ) {
+		foreach ( $this->getConfig()->get( MainConfigNames::RestrictionLevels ) as $type ) {
 			if ( $type != '' && $type != '*' ) {
 				// Messages: restriction-level-sysop, restriction-level-autoconfirmed
 				$text = $this->msg( "restriction-level-$type" )->text();

@@ -90,7 +90,7 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 
 		while ( true ) {
 			$res = $dbw->newSelectQueryBuilder()
-				->select( array_values( $mapping[$table] ) )
+				->select( [ $mapping[$table]['ns'], $mapping[$table]['title'] ] )
 				->from( $table )
 				->where( [
 					$targetColumn => null,

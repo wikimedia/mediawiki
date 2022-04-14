@@ -24,6 +24,7 @@ use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -280,7 +281,8 @@ class ContribsPager extends RangeChronologicalPager {
 			$order
 		);
 
-		$options['MAX_EXECUTION_TIME'] = $this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' );
+		$options['MAX_EXECUTION_TIME'] =
+			$this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries );
 		/*
 		 * This hook will allow extensions to add in additional queries, so they can get their data
 		 * in My Contributions as well. Extensions should append their results to the $data array.
@@ -490,7 +492,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 * @since 1.30
 	 */
 	public function isQueryableRange( $ipRange ) {
-		$limits = $this->getConfig()->get( 'RangeContributionsCIDRLimit' );
+		$limits = $this->getConfig()->get( MainConfigNames::RangeContributionsCIDRLimit );
 
 		$bits = IPUtils::parseCIDR( $ipRange )[1];
 		if (

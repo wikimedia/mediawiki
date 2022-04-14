@@ -23,6 +23,7 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 
 /**
  * Implements Special:UserLogin
@@ -102,7 +103,7 @@ class SpecialUserLogin extends LoginSignupSpecialPage {
 	 * @param StatusValue|null $extraMessages
 	 */
 	protected function successfulAction( $direct = false, $extraMessages = null ) {
-		$secureLogin = $this->getConfig()->get( 'SecureLogin' );
+		$secureLogin = $this->getConfig()->get( MainConfigNames::SecureLogin );
 
 		$user = $this->targetUser ?: $this->getUser();
 		$session = $this->getRequest()->getSession();

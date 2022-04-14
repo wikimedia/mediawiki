@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -118,8 +119,8 @@ class RevisionContentHelper extends PageContentHelper {
 				'title' => $this->titleFormatter->getPrefixedText( $page ),
 			],
 			'license' => [
-				'url' => $this->config->get( 'RightsUrl' ),
-				'title' => $this->config->get( 'RightsText' )
+				'url' => $this->config->get( MainConfigNames::RightsUrl ),
+				'title' => $this->config->get( MainConfigNames::RightsText )
 			],
 		];
 

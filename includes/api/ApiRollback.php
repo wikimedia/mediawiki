@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\User\UserIdentity;
@@ -47,8 +48,9 @@ class ApiRollback extends ApiBase {
 		$this->rollbackPageFactory = $rollbackPageFactory;
 
 		// Variables needed in ApiWatchlistTrait trait
-		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
-		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( MainConfigNames::WatchlistExpiry );
+		$this->watchlistMaxDuration =
+			$this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 		$this->watchlistManager = $watchlistManager;
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
@@ -82,7 +84,7 @@ class ApiRollback extends ApiBase {
 
 		// @TODO: remove this hack once rollback uses POST (T88044)
 		$fname = __METHOD__;
-		$trxLimits = $this->getConfig()->get( 'TrxProfilerLimits' );
+		$trxLimits = $this->getConfig()->get( MainConfigNames::TrxProfilerLimits );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->redefineExpectations( $trxLimits['POST'], $fname );
 		DeferredUpdates::addCallableUpdate( static function () use ( $trxProfiler, $trxLimits, $fname ) {

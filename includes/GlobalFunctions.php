@@ -1953,28 +1953,6 @@ function wfGetDB( $db, $groups = [], $wiki = false ) {
 }
 
 /**
- * Get a load balancer object.
- *
- * @deprecated since 1.27, hard deprecated since 1.37
- * Use MediaWikiServices::getInstance()->getDBLoadBalancer()
- * or MediaWikiServices::getInstance()->getDBLoadBalancerFactory() instead.
- *
- * @param string|bool $wiki Wiki ID, or false for the current wiki
- * @return \Wikimedia\Rdbms\LoadBalancer
- */
-function wfGetLB( $wiki = false ) {
-	wfDeprecated( __FUNCTION__, '1.27' );
-	if ( $wiki === false ) {
-		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
-		return MediaWikiServices::getInstance()->getDBLoadBalancer();
-	} else {
-		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
-		return $factory->getMainLB( $wiki );
-	}
-}
-
-/**
  * Find a file.
  * @deprecated since 1.34, use MediaWikiServices
  * @param string|LinkTarget $title

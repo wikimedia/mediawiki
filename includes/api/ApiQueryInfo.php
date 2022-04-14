@@ -22,9 +22,11 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Permissions\RestrictionStore;
 
 /**
  * A query module to show basic page information.
@@ -45,6 +47,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $titleFormatter;
 	/** @var WatchedItemStore */
 	private $watchedItemStore;
+	/** @var RestrictionStore */
+	private $restrictionStore;
 
 	private $fld_protection = false, $fld_talkid = false,
 		$fld_subjectid = false, $fld_url = false,
@@ -105,6 +109,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @param TitleFormatter $titleFormatter
 	 * @param WatchedItemStore $watchedItemStore
 	 * @param LanguageConverterFactory $languageConverterFactory
+	 * @param RestrictionStore $restrictionStore
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
@@ -115,7 +120,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		TitleFactory $titleFactory,
 		TitleFormatter $titleFormatter,
 		WatchedItemStore $watchedItemStore,
-		LanguageConverterFactory $languageConverterFactory
+		LanguageConverterFactory $languageConverterFactory,
+		RestrictionStore $restrictionStore
 	) {
 		parent::__construct( $queryModule, $moduleName, 'in' );
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $contentLanguage );
@@ -124,6 +130,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->titleFactory = $titleFactory;
 		$this->titleFormatter = $titleFormatter;
 		$this->watchedItemStore = $watchedItemStore;
+		$this->restrictionStore = $restrictionStore;
 	}
 
 	/**
@@ -142,7 +149,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageSet->requestField( 'page_latest' );
 		$pageSet->requestField( 'page_len' );
 		$pageSet->requestField( 'page_content_model' );
-		if ( $config->get( 'PageLanguageUseDB' ) ) {
+		if ( $config->get( MainConfigNames::PageLanguageUseDB ) ) {
 			$pageSet->requestField( 'page_lang' );
 		}
 	}
@@ -518,7 +525,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 			// Applicable protection types
 			$this->restrictionTypes[$title->getNamespace()][$title->getDBkey()] =
-				array_values( $title->getRestrictionTypes() );
+				array_values( $this->restrictionStore->listApplicableRestrictionTypes( $title ) );
 		}
 
 		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
@@ -755,7 +762,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		$canUnwatchedpages = $this->getAuthority()->isAllowed( 'unwatchedpages' );
-		$unwatchedPageThreshold = $this->getConfig()->get( 'UnwatchedPageThreshold' );
+		$unwatchedPageThreshold =
+			$this->getConfig()->get( MainConfigNames::UnwatchedPageThreshold );
 		if ( !$canUnwatchedpages && !is_int( $unwatchedPageThreshold ) ) {
 			return;
 		}
@@ -784,7 +792,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$db = $this->getDB();
 
 		$canUnwatchedpages = $this->getAuthority()->isAllowed( 'unwatchedpages' );
-		$unwatchedPageThreshold = $config->get( 'UnwatchedPageThreshold' );
+		$unwatchedPageThreshold = $config->get( MainConfigNames::UnwatchedPageThreshold );
 		if ( !$canUnwatchedpages && !is_int( $unwatchedPageThreshold ) ) {
 			return;
 		}
@@ -806,7 +814,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->addOption( 'GROUP BY', [ 'page_namespace', 'page_title' ] );
 			$timestampRes = $this->select( __METHOD__ );
 
-			$age = $config->get( 'WatchersMaxAge' );
+			$age = $config->get( MainConfigNames::WatchersMaxAge );
 			$timestamps = [];
 			foreach ( $timestampRes as $row ) {
 				$revTimestamp = wfTimestamp( TS_UNIX, (int)$row->rev_timestamp );

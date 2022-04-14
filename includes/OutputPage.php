@@ -3570,7 +3570,7 @@ class OutputPage extends ContextSource {
 		$vars['wgIsProbablyEditable'] = $this->getAuthority()->probablyCan( 'edit', $title );
 		$vars['wgRelevantPageIsProbablyEditable'] = $relevantTitle &&
 			$this->getAuthority()->probablyCan( 'edit', $relevantTitle );
-		foreach ( $title->getRestrictionTypes() as $type ) {
+		foreach ( $services->getRestrictionStore()->listApplicableRestrictionTypes( $title ) as $type ) {
 			// Following keys are set in $vars:
 			// wgRestrictionCreate, wgRestrictionEdit, wgRestrictionMove, wgRestrictionUpload
 			$vars['wgRestriction' . ucfirst( $type )] = $title->getRestrictions( $type );
@@ -4272,12 +4272,12 @@ class OutputPage extends ContextSource {
 	 *
 	 * For example:
 	 *
-	 *     $wgOut->wrapWikiMsg( "<div class='errorbox'>\n$1\n</div>", 'some-error' );
+	 *     $wgOut->wrapWikiMsg( "<div class='customclass'>\n$1\n</div>", 'some-msg-key' );
 	 *
 	 * Is equivalent to:
 	 *
-	 *     $wgOut->addWikiTextAsInterface( "<div class='errorbox'>\n"
-	 *         . wfMessage( 'some-error' )->plain() . "\n</div>" );
+	 *     $wgOut->addWikiTextAsInterface( "<div class='customclass'>\n"
+	 *         . wfMessage( 'some-msg-key' )->plain() . "\n</div>" );
 	 *
 	 * The newline after the opening div is needed in some wikitext. See T21226.
 	 *

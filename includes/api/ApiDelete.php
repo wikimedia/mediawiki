@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\User\UserOptionsLookup;
@@ -62,8 +63,9 @@ class ApiDelete extends ApiBase {
 		$this->deletePageFactory = $deletePageFactory;
 
 		// Variables needed in ApiWatchlistTrait trait
-		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
-		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( MainConfigNames::WatchlistExpiry );
+		$this->watchlistMaxDuration =
+			$this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 		$this->watchlistManager = $watchlistManager;
 		$this->userOptionsLookup = $userOptionsLookup;
 	}

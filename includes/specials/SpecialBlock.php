@@ -30,6 +30,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
@@ -512,7 +513,7 @@ class SpecialBlock extends FormSpecialPage {
 				sort( $namespaceRestrictions );
 				$fields['NamespaceRestrictions']['default'] = implode( "\n", $namespaceRestrictions );
 
-				if ( $this->getConfig()->get( 'EnablePartialActionBlocks' ) ) {
+				if ( $this->getConfig()->get( MainConfigNames::EnablePartialActionBlocks ) ) {
 					$actionRestrictions = [];
 					foreach ( $block->getRestrictions() as $restriction ) {
 						if ( $restriction instanceof ActionRestriction ) {
@@ -559,7 +560,7 @@ class SpecialBlock extends FormSpecialPage {
 		] );
 		$this->getOutput()->addModules( [ 'mediawiki.special.block' ] );
 
-		$blockCIDRLimit = $this->getConfig()->get( 'BlockCIDRLimit' );
+		$blockCIDRLimit = $this->getConfig()->get( MainConfigNames::BlockCIDRLimit );
 		$text = $this->msg( 'blockiptext', $blockCIDRLimit['IPv4'], $blockCIDRLimit['IPv6'] )->parse();
 
 		$otherBlockMessages = [];
@@ -789,7 +790,7 @@ class SpecialBlock extends FormSpecialPage {
 	) {
 		// Temporarily access service container until the feature flag is removed: T280532
 		$enablePartialActionBlocks = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'EnablePartialActionBlocks' );
+			->getMainConfig()->get( MainConfigNames::EnablePartialActionBlocks );
 
 		$isPartialBlock = isset( $data['EditingRestriction'] ) &&
 			$data['EditingRestriction'] === 'partial';

@@ -88,6 +88,7 @@ because of Phabricator reports.
   - ::freeResult()
 * Title::getDefaultNamespace(), deprecated since 1.37, has been removed.
 * The DBPrimaryPos class alias 'DBMasterPos' has been removed.
+* The global function wfGetLB(), deprecated since 1.27, has been removed.
 * Passing a db to BlockRestrictionStore::loadByBlockId() is no longer supported.
   BlockRestrictionStoreFactory should be used to fetch a correct
   BlockRestrictionStore instead. This was deprecated since 1.38.
@@ -108,13 +109,19 @@ because of Phabricator reports.
 * Use of the SiteStatsUpdate constructor has been deprecated in favor of
   the ::factory() method.
 * Changes to skins:
+  - Skin::getCopyrightIcon(), ::getPoweredBy(), deprecated in 1.37 have been
+    removed.
   - Skin::makeSearchButton and Skin::makeSearchInput were deprecated in 1.38.
     Use SkinTemplate methods with the same name or Skin::getTemplateData
     instead.
+  - Styles for the HTML classes `warningbox`, `errorbox` and `successbox` have
+    been removed in favor of Html class methods.
   - The feature `legacy` used inside ResourceLoaderSkinModule,
     deprecated in 1.37, will no longer ship any styles.
   - Skin::getSkinStylePath, deprecated since 1.36, has been removed.
   - Skin::getPortletData has been made private.
+  - SkinTemplate::getPersonalToolsList(), deprecated in 1.35 has been
+    removed.
 * …
 
 === Deprecations in 1.39 ===
@@ -138,6 +145,7 @@ because of Phabricator reports.
   2) UrlUtils::validProtocols does not take a parameter (documentation said not
      to pass one to wfUrlProtocols anyway);
   3) they use type hints (don't try passing null instead of string, etc.).
+* MaintainableDBConnRef is deprecated, use DBConnRef instead.
 * …
 
 === Other changes in 1.39 ===

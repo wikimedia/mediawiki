@@ -25,6 +25,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionStore;
@@ -316,7 +317,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			$pager = $this->getPager( $userObj );
 			if ( IPUtils::isValidRange( $target ) && !$pager->isQueryableRange( $target ) ) {
 				// Valid range, but outside CIDR limit.
-				$limits = $this->getConfig()->get( 'RangeContributionsCIDRLimit' );
+				$limits = $this->getConfig()->get( MainConfigNames::RangeContributionsCIDRLimit );
 				$limit = $limits[ IPUtils::isIPv4( $target ) ? 'IPv4' : 'IPv6' ];
 				$out->addWikiMsg( 'sp-contributions-outofrange', $limit );
 			} else {

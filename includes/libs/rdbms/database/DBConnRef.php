@@ -26,7 +26,7 @@ use InvalidArgumentException;
  * @ingroup Database
  * @since 1.22
  */
-class DBConnRef implements IDatabase {
+class DBConnRef implements IMaintainableDatabase {
 	/** @var ILoadBalancer */
 	private $lb;
 	/** @var Database|null Live connection handle */
@@ -617,6 +617,10 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function flushSession( $fname = __METHOD__, $owner = null ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function flushSnapshot( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
@@ -712,6 +716,108 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function setIndexAliases( array $aliases ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function tableName( $name, $format = 'quoted' ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function tableNames( ...$tables ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function tableNamesN( ...$tables ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function sourceFile(
+		$filename,
+		callable $lineCallback = null,
+		callable $resultCallback = null,
+		$fname = false,
+		callable $inputCallback = null
+	) {
+		$this->assertRoleAllowsWrites();
+
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function sourceStream(
+		$fp,
+		callable $lineCallback = null,
+		callable $resultCallback = null,
+		$fname = __METHOD__,
+		callable $inputCallback = null
+	) {
+		$this->assertRoleAllowsWrites();
+
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function dropTable( $table, $fname = __METHOD__ ) {
+		$this->assertRoleAllowsWrites();
+
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function truncate( $tables, $fname = __METHOD__ ) {
+		$this->assertRoleAllowsWrites();
+
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function deadlockLoop( ...$args ) {
+		$this->assertRoleAllowsWrites();
+
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function listViews( $prefix = null, $fname = __METHOD__ ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function textFieldSize( $table, $field ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function streamStatementEnd( &$sql, &$newLine ) {
+		return $this->__call( __FUNCTION__, [ &$sql, &$newLine ] );
+	}
+
+	public function duplicateTableStructure(
+		$oldName, $newName, $temporary = false, $fname = __METHOD__
+	) {
+		$this->assertRoleAllowsWrites();
+
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function tableLocksHaveTransactionScope() {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function lockTables( array $read, array $write, $method ) {
+		$this->assertRoleAllowsWrites();
+
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function unlockTables( $method ) {
+		$this->assertRoleAllowsWrites();
+
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function indexUnique( $table, $index, $fname = __METHOD__ ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function listTables( $prefix = null, $fname = __METHOD__ ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function fieldInfo( $table, $field ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

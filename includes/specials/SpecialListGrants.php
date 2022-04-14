@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GrantsLocalization;
 
 /**
@@ -60,7 +61,9 @@ class SpecialListGrants extends SpecialPage {
 
 		$lang = $this->getLanguage();
 
-		foreach ( $this->getConfig()->get( 'GrantPermissions' ) as $grant => $rights ) {
+		foreach (
+			$this->getConfig()->get( MainConfigNames::GrantPermissions ) as $grant => $rights
+		) {
 			$descs = [];
 			$rights = array_filter( $rights ); // remove ones with 'false'
 			foreach ( $rights as $permission => $granted ) {

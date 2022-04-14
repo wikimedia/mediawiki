@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserNameUtils;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -197,7 +198,7 @@ class ImageListPager extends TablePager {
 			// img_description down here, in order so that its still after the username field.
 			$this->mFieldNames['img_description'] = $this->msg( 'listfiles_description' )->text();
 
-			if ( !$this->getConfig()->get( 'MiserMode' ) && !$this->mShowAll ) {
+			if ( !$this->getConfig()->get( MainConfigNames::MiserMode ) && !$this->mShowAll ) {
 				$this->mFieldNames['count'] = $this->msg( 'listfiles_count' )->text();
 			}
 			if ( $this->mShowAll ) {
@@ -220,10 +221,10 @@ class ImageListPager extends TablePager {
 		 * In particular that means we cannot sort by timestamp when not filtering
 		 * by user and including old images in the results. Which is sad. (T279982)
 		 */
-		if ( $this->getConfig()->get( 'MiserMode' ) && $this->mUserName !== null ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) && $this->mUserName !== null ) {
 			// If we're sorting by user, the index only supports sorting by time.
 			return $field === 'img_timestamp';
-		} elseif ( $this->getConfig()->get( 'MiserMode' )
+		} elseif ( $this->getConfig()->get( MainConfigNames::MiserMode )
 			&& $this->mShowAll /* && mUserName === null */
 		) {
 			// no oi_timestamp index, so only alphabetical sorting in this case.
@@ -406,7 +407,8 @@ class ImageListPager extends TablePager {
 	}
 
 	public function getDefaultSort() {
-		if ( $this->mShowAll && $this->getConfig()->get( 'MiserMode' ) && $this->mUserName === null ) {
+		if ( $this->mShowAll && $this->getConfig()->get( MainConfigNames::MiserMode ) &&
+		$this->mUserName === null ) {
 			// Unfortunately no index on oi_timestamp.
 			return 'img_name';
 		} else {

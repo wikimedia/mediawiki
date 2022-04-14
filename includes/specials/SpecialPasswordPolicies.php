@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
+
 /**
  * This special page lists the defined password policies for user groups.
  * See also @ref $wgPasswordPolicy.
@@ -57,14 +59,14 @@ class SpecialPasswordPolicies extends SpecialPage {
 		);
 
 		$config = $this->getConfig();
-		$policies = $config->get( 'PasswordPolicy' );
+		$policies = $config->get( MainConfigNames::PasswordPolicy );
 
-		$groupPermissions = $config->get( 'GroupPermissions' );
-		$revokePermissions = $config->get( 'RevokePermissions' );
-		$addGroups = $config->get( 'AddGroups' );
-		$removeGroups = $config->get( 'RemoveGroups' );
-		$groupsAddToSelf = $config->get( 'GroupsAddToSelf' );
-		$groupsRemoveFromSelf = $config->get( 'GroupsRemoveFromSelf' );
+		$groupPermissions = $config->get( MainConfigNames::GroupPermissions );
+		$revokePermissions = $config->get( MainConfigNames::RevokePermissions );
+		$addGroups = $config->get( MainConfigNames::AddGroups );
+		$removeGroups = $config->get( MainConfigNames::RemoveGroups );
+		$groupsAddToSelf = $config->get( MainConfigNames::GroupsAddToSelf );
+		$groupsRemoveFromSelf = $config->get( MainConfigNames::GroupsRemoveFromSelf );
 		$allGroups = array_unique( array_merge(
 			array_keys( $groupPermissions ),
 			array_keys( $revokePermissions ),
@@ -98,7 +100,7 @@ class SpecialPasswordPolicies extends SpecialPage {
 					SpecialPage::getTitleFor( 'Listusers' ),
 					$this->msg( 'listgrouprights-members' )->text()
 				);
-			} elseif ( !in_array( $group, $config->get( 'ImplicitGroups' ) ) ) {
+			} elseif ( !in_array( $group, $config->get( MainConfigNames::ImplicitGroups ) ) ) {
 				$grouplink = '<br />' . $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'Listusers' ),
 					$this->msg( 'listgrouprights-members' )->text(),

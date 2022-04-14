@@ -30,6 +30,7 @@ use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Mail\UserEmailContact;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
@@ -1009,7 +1010,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @since 1.23
 	 */
 	public function checkPasswordValidity( $password ) {
-		$passwordPolicy = MediaWikiServices::getInstance()->getMainConfig()->get( 'PasswordPolicy' );
+		$passwordPolicy = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::PasswordPolicy );
 
 		$upp = new UserPasswordPolicy(
 			$passwordPolicy['policies'],
@@ -1450,7 +1452,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool True if rate limited
 	 */
 	public function isPingLimitable() {
-		$rateLimitsExcludedIPs = MediaWikiServices::getInstance()->getMainConfig()->get( 'RateLimitsExcludedIPs' );
+		$rateLimitsExcludedIPs = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::RateLimitsExcludedIPs );
 		if ( IPUtils::isInRanges( $this->getRequest()->getIP(), $rateLimitsExcludedIPs ) ) {
 			// No other good way currently to disable rate limits
 			// for specific IPs. :P
@@ -1485,7 +1488,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			return $result;
 		}
 
-		$rateLimits = MediaWikiServices::getInstance()->getMainConfig()->get( 'RateLimits' );
+		$rateLimits =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RateLimits );
 		if ( !isset( $rateLimits[$action] ) ) {
 			return false;
 		}
@@ -2172,7 +2176,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 */
 	public function getToken( $forceCreation = true ) {
 		$authenticationTokenVersion = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'AuthenticationTokenVersion' );
+			->getMainConfig()->get( MainConfigNames::AuthenticationTokenVersion );
 
 		$this->load();
 		if ( !$this->mToken && $forceCreation ) {
@@ -2273,7 +2277,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 */
 	public function setEmailWithConfirmation( string $str ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$enableEmail = $config->get( 'EnableEmail' );
+		$enableEmail = $config->get( MainConfigNames::EnableEmail );
 
 		if ( !$enableEmail ) {
 			return Status::newFatal( 'emaildisabled' );
@@ -2287,7 +2291,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		$type = $oldaddr != '' ? 'changed' : 'set';
 		$notificationResult = null;
 
-		$emailAuthentication = $config->get( 'EmailAuthentication' );
+		$emailAuthentication = $config->get( MainConfigNames::EmailAuthentication );
 
 		if ( $emailAuthentication && $type === 'changed' ) {
 			// Send the user an email notifying the user of the change in registered
@@ -2374,7 +2378,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @deprecated since 1.26 Applications should use the OAuth extension
 	 */
 	public function getTokenFromOption( $oname ) {
-		$hiddenPrefs = MediaWikiServices::getInstance()->getMainConfig()->get( 'HiddenPrefs' );
+		$hiddenPrefs =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::HiddenPrefs );
 
 		$id = $this->getId();
 		if ( !$id || in_array( $oname, $hiddenPrefs ) ) {
@@ -2402,7 +2407,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @see setOption()
 	 */
 	public function resetTokenFromOption( $oname ) {
-		$hiddenPrefs = MediaWikiServices::getInstance()->getMainConfig()->get( 'HiddenPrefs' );
+		$hiddenPrefs =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::HiddenPrefs );
 		if ( in_array( $oname, $hiddenPrefs ) ) {
 			return false;
 		}
@@ -2439,8 +2445,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function requiresHTTPS() {
-		$forceHTTPS = MediaWikiServices::getInstance()->getMainConfig()->get( 'ForceHTTPS' );
-		$secureLogin = MediaWikiServices::getInstance()->getMainConfig()->get( 'SecureLogin' );
+		$forceHTTPS =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::ForceHTTPS );
+		$secureLogin =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::SecureLogin );
 		if ( $forceHTTPS ) {
 			return true;
 		}
@@ -2597,7 +2605,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool True or false
 	 */
 	public function useRCPatrol() {
-		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseRCPatrol' );
+		$useRCPatrol =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UseRCPatrol );
 		return $useRCPatrol && $this->isAllowedAny( 'patrol', 'patrolmarks' );
 	}
 
@@ -2606,8 +2615,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool True or false
 	 */
 	public function useNPPatrol() {
-		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseRCPatrol' );
-		$useNPPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseNPPatrol' );
+		$useRCPatrol =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UseRCPatrol );
+		$useNPPatrol =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UseNPPatrol );
 		return (
 			( $useRCPatrol || $useNPPatrol )
 				&& ( $this->isAllowedAny( 'patrol', 'patrolmarks' ) )
@@ -2619,8 +2630,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool True or false
 	 */
 	public function useFilePatrol() {
-		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseRCPatrol' );
-		$useFilePatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseFilePatrol' );
+		$useRCPatrol =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UseRCPatrol );
+		$useFilePatrol = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::UseFilePatrol );
 		return (
 			( $useRCPatrol || $useFilePatrol )
 				&& ( $this->isAllowedAny( 'patrol', 'patrolmarks' ) )
@@ -2646,10 +2659,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 */
 	public function getExperienceLevel() {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$learnerEdits = $mainConfig->get( 'LearnerEdits' );
-		$experiencedUserEdits = $mainConfig->get( 'ExperiencedUserEdits' );
-		$learnerMemberSince = $mainConfig->get( 'LearnerMemberSince' );
-		$experiencedUserMemberSince = $mainConfig->get( 'ExperiencedUserMemberSince' );
+		$learnerEdits = $mainConfig->get( MainConfigNames::LearnerEdits );
+		$experiencedUserEdits = $mainConfig->get( MainConfigNames::ExperiencedUserEdits );
+		$learnerMemberSince = $mainConfig->get( MainConfigNames::LearnerMemberSince );
+		$experiencedUserMemberSince =
+			$mainConfig->get( MainConfigNames::ExperiencedUserMemberSince );
 		if ( $this->isAnon() ) {
 			return false;
 		}
@@ -3273,7 +3287,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return Status
 	 */
 	public function sendMail( $subject, $body, $from = null, $replyto = null ) {
-		$passwordSender = MediaWikiServices::getInstance()->getMainConfig()->get( 'PasswordSender' );
+		$passwordSender = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::PasswordSender );
 
 		if ( $from instanceof User ) {
 			$sender = MailAddress::newFromUser( $from );
@@ -3300,7 +3315,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 */
 	protected function confirmationToken( &$expiration ) {
 		$userEmailConfirmationTokenExpiry = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'UserEmailConfirmationTokenExpiry' );
+			->getMainConfig()->get( MainConfigNames::UserEmailConfirmationTokenExpiry );
 		$now = time();
 		$expires = $now + $userEmailConfirmationTokenExpiry;
 		$expiration = wfTimestamp( TS_MW, $expires );
@@ -3401,8 +3416,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function canSendEmail() {
-		$enableEmail = MediaWikiServices::getInstance()->getMainConfig()->get( 'EnableEmail' );
-		$enableUserEmail = MediaWikiServices::getInstance()->getMainConfig()->get( 'EnableUserEmail' );
+		$enableEmail = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::EnableEmail );
+		$enableUserEmail = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::EnableUserEmail );
 		if ( !$enableEmail || !$enableUserEmail || !$this->isAllowed( 'sendemail' ) ) {
 			return false;
 		}
@@ -3431,7 +3448,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function isEmailConfirmed(): bool {
-		$emailAuthentication = MediaWikiServices::getInstance()->getMainConfig()->get( 'EmailAuthentication' );
+		$emailAuthentication = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::EmailAuthentication );
 		$this->load();
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$user = $this;
@@ -3457,7 +3475,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function isEmailConfirmationPending() {
-		$emailAuthentication = MediaWikiServices::getInstance()->getMainConfig()->get( 'EmailAuthentication' );
+		$emailAuthentication = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::EmailAuthentication );
 		return $emailAuthentication &&
 			!$this->isEmailConfirmed() &&
 			$this->mEmailToken &&

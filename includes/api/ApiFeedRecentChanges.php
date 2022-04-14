@@ -19,6 +19,7 @@
  * @since 1.23
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 
 /**
@@ -65,11 +66,11 @@ class ApiFeedRecentChanges extends ApiBase {
 
 		$this->params = $this->extractRequestParams();
 
-		if ( !$config->get( 'Feed' ) ) {
+		if ( !$config->get( MainConfigNames::Feed ) ) {
 			$this->dieWithError( 'feed-unavailable' );
 		}
 
-		$feedClasses = $config->get( 'FeedClasses' );
+		$feedClasses = $config->get( MainConfigNames::FeedClasses );
 		if ( !isset( $feedClasses[$this->params['feedformat']] ) ) {
 			$this->dieWithError( 'feed-invalid' );
 		}
@@ -145,7 +146,7 @@ class ApiFeedRecentChanges extends ApiBase {
 
 	public function getAllowedParams() {
 		$config = $this->getConfig();
-		$feedFormatNames = array_keys( $config->get( 'FeedClasses' ) );
+		$feedFormatNames = array_keys( $config->get( MainConfigNames::FeedClasses ) );
 
 		$ret = [
 			'feedformat' => [
@@ -167,7 +168,7 @@ class ApiFeedRecentChanges extends ApiBase {
 			'limit' => [
 				ApiBase::PARAM_DFLT => 50,
 				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => $config->get( 'FeedLimit' ),
+				ApiBase::PARAM_MAX => $config->get( MainConfigNames::FeedLimit ),
 				ApiBase::PARAM_TYPE => 'integer',
 			],
 			'from' => [

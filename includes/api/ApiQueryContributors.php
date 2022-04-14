@@ -23,6 +23,7 @@
  * @since 1.23
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -113,7 +114,8 @@ class ApiQueryContributors extends ApiQueryBase {
 
 		// For SCHEMA_COMPAT_READ_TEMP, target indexes on the
 		// revision_actor_temp table, otherwise on the revision table.
-		if ( $this->getConfig()->get( 'ActorTableSchemaMigrationStage' ) & SCHEMA_COMPAT_READ_TEMP ) {
+		if ( $this->getConfig()->get( MainConfigNames::ActorTableSchemaMigrationStage ) &
+		SCHEMA_COMPAT_READ_TEMP ) {
 			$pageField = 'revactor_page';
 			$idField = 'revactor_actor';
 			$countField = 'revactor_actor';

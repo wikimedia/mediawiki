@@ -1,8 +1,5 @@
 <?php
-
 /**
- * Hungarian (magyar) specific code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,39 +16,14 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
+ * @ingroup Database
  */
 
-use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
+namespace Wikimedia\Rdbms;
 
 /**
- * Hungarian localisation for MediaWiki
- *
- * @ingroup Language
+ * @newable
+ * @ingroup Database
  */
-class LanguageHu extends Language {
-
-	/**
-	 * @param string $word
-	 * @param string $case
-	 * @return string
-	 */
-	public function convertGrammar( $word, $case ) {
-		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::GrammarForms );
-		if ( isset( $grammarForms[$this->getCode()][$case][$word] ) ) {
-			return $grammarForms[$this->getCode()][$case][$word];
-		}
-
-		switch ( $case ) {
-			case 'rol':
-				return $word . 'ról';
-			case 'ba':
-				return $word . 'ba';
-			case 'k':
-				return $word . 'k';
-		}
-		return '';
-	}
+class DBSessionStateError extends DBTransactionError {
 }

@@ -23,6 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -235,7 +236,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			->getContentHandler( $this->oldTitle->getContentModel() )
 			->supportsRedirects();
 
-		if ( $this->getConfig()->get( 'FixDoubleRedirects' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::FixDoubleRedirects ) ) {
 			$out->addWikiMsg( 'movepagetext' );
 		} else {
 			$out->addWikiMsg( $handlerSupportsRedirects ?
@@ -336,7 +337,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				|| ( $oldTitleTalkSubpages && $canMoveSubpage ) );
 
 		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
-		if ( $this->getConfig()->get( 'FixDoubleRedirects' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::FixDoubleRedirects ) ) {
 			$hasRedirects = (bool)$dbr->selectField( 'redirect', '1',
 				[
 					'rd_namespace' => $this->oldTitle->getNamespace(),
@@ -510,7 +511,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		if ( $canMoveSubpage ) {
-			$maximumMovedPages = $this->getConfig()->get( 'MaximumMovedPages' );
+			$maximumMovedPages = $this->getConfig()->get( MainConfigNames::MaximumMovedPages );
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
 					'name' => 'wpMovesubpages',
@@ -732,7 +733,8 @@ class MovePageForm extends UnlistedSpecialPage {
 			return;
 		}
 
-		if ( $this->getConfig()->get( 'FixDoubleRedirects' ) && $this->fixRedirects ) {
+		if ( $this->getConfig()->get( MainConfigNames::FixDoubleRedirects ) &&
+		$this->fixRedirects ) {
 			DoubleRedirectJob::fixRedirects( 'move', $ot );
 		}
 
@@ -879,7 +881,8 @@ class MovePageForm extends UnlistedSpecialPage {
 						->rawParams( $oldLink, $newLink )->escaped();
 					++$count;
 
-					$maximumMovedPages = $this->getConfig()->get( 'MaximumMovedPages' );
+					$maximumMovedPages =
+						$this->getConfig()->get( MainConfigNames::MaximumMovedPages );
 					if ( $count >= $maximumMovedPages ) {
 						$extraOutput[] = $this->msg( 'movepage-max-pages' )
 							->numParams( $maximumMovedPages )->escaped();

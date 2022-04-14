@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -89,7 +90,7 @@ class ApiCSPReport extends ApiBase {
 	private function getFlags( $report, $userAgent ) {
 		$reportOnly = $this->getParameter( 'reportonly' );
 		$source = $this->getParameter( 'source' );
-		$falsePositives = $this->getConfig()->get( 'CSPFalsePositiveUrls' );
+		$falsePositives = $this->getConfig()->get( MainConfigNames::CSPFalsePositiveUrls );
 
 		$flags = [];
 		if ( $source !== 'internal' ) {

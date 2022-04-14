@@ -24,6 +24,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
@@ -660,7 +661,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		if ( $content && ( $this->diffto !== null || $this->difftotext !== null ) ) {
 			static $n = 0; // Number of uncached diffs we've had
 
-			if ( $n < $this->getConfig()->get( 'APIMaxUncachedDiffs' ) ) {
+			if ( $n < $this->getConfig()->get( MainConfigNames::APIMaxUncachedDiffs ) ) {
 				$vals['diff'] = [];
 				$context = new DerivativeContext( $this->getContext() );
 				$context->setTitle( $title );

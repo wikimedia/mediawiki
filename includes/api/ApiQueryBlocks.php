@@ -22,6 +22,7 @@
 
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -136,7 +137,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$this->addWhereFld( 'ipb_auto', 0 );
 		}
 		if ( $params['ip'] !== null ) {
-			$blockCIDRLimit = $this->getConfig()->get( 'BlockCIDRLimit' );
+			$blockCIDRLimit = $this->getConfig()->get( MainConfigNames::BlockCIDRLimit );
 			if ( IPUtils::isIPv4( $params['ip'] ) ) {
 				$type = 'IPv4';
 				$cidrLimit = $blockCIDRLimit['IPv4'];
@@ -302,7 +303,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			'page' => 'pages',
 			'ns' => 'namespaces',
 		];
-		if ( $this->getConfig()->get( 'EnablePartialActionBlocks' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::EnablePartialActionBlocks ) ) {
 			$keys['action'] = 'actions';
 		}
 
@@ -336,7 +337,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		$blockCIDRLimit = $this->getConfig()->get( 'BlockCIDRLimit' );
+		$blockCIDRLimit = $this->getConfig()->get( MainConfigNames::BlockCIDRLimit );
 
 		return [
 			'start' => [

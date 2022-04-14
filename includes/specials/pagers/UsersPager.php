@@ -26,6 +26,7 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -254,7 +255,7 @@ class UsersPager extends AlphabeticPager {
 		}
 
 		$edits = '';
-		if ( !$this->including && $this->getConfig()->get( 'Edititis' ) ) {
+		if ( !$this->including && $this->getConfig()->get( MainConfigNames::Edititis ) ) {
 			$count = $this->msg( 'usereditcount' )->numParams( $row->edits )->escaped();
 			$edits = $this->msg( 'word-separator' )->escaped() . $this->msg( 'brackets', $count )->escaped();
 		}

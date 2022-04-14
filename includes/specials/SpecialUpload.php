@@ -22,6 +22,7 @@
  * @ingroup Upload
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
@@ -652,7 +653,7 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		$msg = [];
-		$forceUIMsgAsContentMsg = (array)$config->get( 'ForceUIMsgAsContentMsg' );
+		$forceUIMsgAsContentMsg = (array)$config->get( MainConfigNames::ForceUIMsgAsContentMsg );
 		/* These messages are transcluded into the actual text of the description page.
 		 * Thus, forcing them as content messages makes the upload to produce an int: template
 		 * instead of hardcoding it there in the uploader language.
@@ -677,7 +678,7 @@ class SpecialUpload extends SpecialPage {
 			$pageText = $headerText . "\n" . $pageText;
 		}
 
-		if ( $config->get( 'UseCopyrightUpload' ) ) {
+		if ( $config->get( MainConfigNames::UseCopyrightUpload ) ) {
 			$pageText .= '== ' . $msg['filestatus'] . " ==\n" . $copyStatus . "\n";
 			$pageText .= $licenseText;
 			$pageText .= '== ' . $msg['filesource'] . " ==\n" . $source;
@@ -769,7 +770,8 @@ class SpecialUpload extends SpecialPage {
 				} else {
 					$msg->params( $details['finalExt'] );
 				}
-				$extensions = array_unique( $this->getConfig()->get( 'FileExtensions' ) );
+				$extensions =
+					array_unique( $this->getConfig()->get( MainConfigNames::FileExtensions ) );
 				$msg->params( $this->getLanguage()->commaList( $extensions ),
 					count( $extensions ) );
 

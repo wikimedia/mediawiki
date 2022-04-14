@@ -26,6 +26,7 @@
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -264,7 +265,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 				}
 			}
 		} else {
-			if ( $this->getConfig()->get( 'MiserMode' ) ) {
+			if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 				$miser_ns = $params['namespace'];
 			} else {
 				$this->addWhereFld( 'ar_namespace', $params['namespace'] );
@@ -491,7 +492,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			],
 		];
 
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$ret['user'][ApiBase::PARAM_HELP_MSG_APPEND] = [
 				'apihelp-query+alldeletedrevisions-param-miser-user-namespace',
 			];

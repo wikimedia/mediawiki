@@ -5,6 +5,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\UserFactory;
@@ -64,7 +65,8 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( UserFactory::class ),
 			$this->createNoOpMock( TitleFormatter::class ),
 			$this->createNoOpMock( HttpRequestFactory::class ),
-			$this->createNoOpMock( TrackingCategories::class )
+			$this->createNoOpMock( TrackingCategories::class ),
+			$this->createNoOpMock( SignatureValidatorFactory::class )
 		);
 		return $factory;
 	}

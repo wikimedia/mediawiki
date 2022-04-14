@@ -23,6 +23,7 @@
 
 use MediaWiki\Api\Validator\ApiParamValidator;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Rest\HeaderParser\Origin;
@@ -275,6 +276,7 @@ class ApiMain extends ApiBase {
 			'services' => [
 				'WatchlistManager',
 				'UserOptionsLookup',
+				'RestrictionStore',
 			]
 		],
 		'block' => [
@@ -560,7 +562,8 @@ class ApiMain extends ApiBase {
 			$services->getObjectFactory()
 		);
 
-		$this->mResult = new ApiResult( $this->getConfig()->get( 'APIMaxResultSize' ) );
+		$this->mResult =
+			new ApiResult( $this->getConfig()->get( MainConfigNames::APIMaxResultSize ) );
 
 		// Setup uselang. This doesn't use $this->getParameter()
 		// because we're not ready to handle errors yet.
@@ -614,9 +617,9 @@ class ApiMain extends ApiBase {
 			$services->getObjectFactory()
 		);
 		$this->mModuleMgr->addModules( self::MODULES, 'action' );
-		$this->mModuleMgr->addModules( $config->get( 'APIModules' ), 'action' );
+		$this->mModuleMgr->addModules( $config->get( MainConfigNames::APIModules ), 'action' );
 		$this->mModuleMgr->addModules( self::FORMATS, 'format' );
-		$this->mModuleMgr->addModules( $config->get( 'APIFormatModules' ), 'format' );
+		$this->mModuleMgr->addModules( $config->get( MainConfigNames::APIFormatModules ), 'format' );
 
 		$this->getHookRunner()->onApiMain__moduleManager( $this->mModuleMgr );
 
@@ -1068,8 +1071,8 @@ class ApiMain extends ApiBase {
 			$config = $this->getConfig();
 			$origin = Origin::parseHeaderList( $origins );
 			$matchedOrigin = $origin->match(
-				$config->get( 'CrossSiteAJAXdomains' ),
-				$config->get( 'CrossSiteAJAXdomainExceptions' )
+				$config->get( MainConfigNames::CrossSiteAJAXdomains ),
+				$config->get( MainConfigNames::CrossSiteAJAXdomainExceptions )
 			);
 
 			$allowOrigin = $originHeader;
@@ -1083,7 +1086,7 @@ class ApiMain extends ApiBase {
 			if ( $preflight ) {
 				// We allow the actual request to send the following headers
 				$requestedHeaders = $request->getHeader( 'Access-Control-Request-Headers' );
-				$allowedHeaders = $this->getConfig()->get( 'AllowedCorsHeaders' );
+				$allowedHeaders = $this->getConfig()->get( MainConfigNames::AllowedCorsHeaders );
 				if ( $requestedHeaders !== false ) {
 					if ( !self::matchRequestedHeaders( $requestedHeaders, $allowedHeaders ) ) {
 						$response->header( 'MediaWiki-CORS-Rejection: Unsupported header requested in preflight' );
@@ -1162,7 +1165,7 @@ class ApiMain extends ApiBase {
 
 		$config = $this->getConfig();
 
-		if ( $config->get( 'VaryOnXFP' ) ) {
+		if ( $config->get( MainConfigNames::VaryOnXFP ) ) {
 			$out->addVaryHeader( 'X-Forwarded-Proto' );
 		}
 
@@ -1307,7 +1310,7 @@ class ApiMain extends ApiBase {
 			$class = preg_replace( '#^Wikimedia\\\Rdbms\\\#', '', get_class( $e ) );
 			$code = 'internal_api_error_' . $class;
 			$data = [ 'errorclass' => get_class( $e ) ];
-			if ( $config->get( 'ShowExceptionDetails' ) ) {
+			if ( $config->get( MainConfigNames::ShowExceptionDetails ) ) {
 				if ( $e instanceof ILocalizedException ) {
 					$msg = $e->getMessageObject();
 				} elseif ( $e instanceof MessageSpecifier ) {
@@ -1390,7 +1393,7 @@ class ApiMain extends ApiBase {
 					. $this->msg( 'api-usage-mailinglist-ref' )->inLanguage( $formatter->getLanguage() )->text()
 				)
 			);
-		} elseif ( $config->get( 'ShowExceptionDetails' ) ) {
+		} elseif ( $config->get( MainConfigNames::ShowExceptionDetails ) ) {
 			$result->addContentValue(
 				$path,
 				'trace',
@@ -1422,7 +1425,7 @@ class ApiMain extends ApiBase {
 			$result->addValue( null, 'requestid', $requestid, ApiResult::NO_SIZE_CHECK );
 		}
 
-		if ( $this->getConfig()->get( 'ShowHostnames' ) && (
+		if ( $this->getConfig()->get( MainConfigNames::ShowHostnames ) && (
 			in_array( 'servedby', $force, true ) || $this->getParameter( 'servedby' )
 		) ) {
 			$result->addValue( null, 'servedby', wfHostname(), ApiResult::NO_SIZE_CHECK );
@@ -1525,7 +1528,8 @@ class ApiMain extends ApiBase {
 			'type' => 'db'
 		];
 
-		$jobQueueLagFactor = $this->getConfig()->get( 'JobQueueIncludeInMaxLagFactor' );
+		$jobQueueLagFactor =
+			$this->getConfig()->get( MainConfigNames::JobQueueIncludeInMaxLagFactor );
 		if ( $jobQueueLagFactor ) {
 			// Turn total number of jobs into seconds by using the configured value
 			$totalJobs = array_sum( $services->getJobQueueGroup()->getQueueSizes() );
@@ -1561,7 +1565,7 @@ class ApiMain extends ApiBase {
 				$response->header( 'Retry-After: ' . max( (int)$maxLag, 5 ) );
 				$response->header( 'X-Database-Lag: ' . (int)$lagInfo['lag'] );
 
-				if ( $this->getConfig()->get( 'ShowHostnames' ) ) {
+				if ( $this->getConfig()->get( MainConfigNames::ShowHostnames ) ) {
 					$this->dieWithError(
 						[ 'apierror-maxlag', $lagInfo['lag'], $lagInfo['host'] ],
 						'maxlag',
@@ -1660,13 +1664,13 @@ class ApiMain extends ApiBase {
 							$modifiedTimes = [
 								'page' => $lastMod,
 								'user' => $this->getUser()->getTouched(),
-								'epoch' => $config->get( 'CacheEpoch' ),
+								'epoch' => $config->get( MainConfigNames::CacheEpoch ),
 							];
 
-							if ( $config->get( 'UseCdn' ) ) {
+							if ( $config->get( MainConfigNames::UseCdn ) ) {
 								// T46570: the core page itself may not change, but resources might
 								$modifiedTimes['sepoch'] = wfTimestamp(
-									TS_MW, time() - $config->get( 'CdnMaxAge' )
+									TS_MW, time() - $config->get( MainConfigNames::CdnMaxAge )
 								);
 							}
 							$this->getHookRunner()->onOutputPageCheckLastModified( $modifiedTimes, $this->getOutput() );
@@ -1751,7 +1755,7 @@ class ApiMain extends ApiBase {
 	private function checkBotReadOnly() {
 		// Figure out how many servers have passed the lag threshold
 		$numLagged = 0;
-		$lagLimit = $this->getConfig()->get( 'APIMaxLagThreshold' );
+		$lagLimit = $this->getConfig()->get( MainConfigNames::APIMaxLagThreshold );
 		$laggedServers = [];
 		$loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		foreach ( $loadBalancer->getLagTimes() as $serverIndex => $lag ) {
@@ -1854,7 +1858,7 @@ class ApiMain extends ApiBase {
 
 		if ( $request->getProtocol() === 'http' &&
 			(
-				$this->getConfig()->get( 'ForceHTTPS' ) ||
+				$this->getConfig()->get( MainConfigNames::ForceHTTPS ) ||
 				$request->getSession()->shouldForceHTTPS() ||
 				( $this->getUser()->isRegistered() &&
 					$this->getUser()->requiresHTTPS() )
@@ -1912,7 +1916,7 @@ class ApiMain extends ApiBase {
 	 * @param ApiBase $module
 	 */
 	protected function setRequestExpectations( ApiBase $module ) {
-		$limits = $this->getConfig()->get( 'TrxProfilerLimits' );
+		$limits = $this->getConfig()->get( MainConfigNames::TrxProfilerLimits );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
 		if ( $this->getRequest()->hasSafeMethod() ) {
@@ -1948,7 +1952,7 @@ class ApiMain extends ApiBase {
 				'id' => MediaWikiServices::getInstance()
 					->getGlobalIdGenerator()->newUUIDv4(),
 				'dt' => wfTimestamp( TS_ISO_8601 ),
-				'domain' => $this->getConfig()->get( 'ServerName' ),
+				'domain' => $this->getConfig()->get( MainConfigNames::ServerName ),
 				// If using the EventBus extension (as intended) with this log channel,
 				// this stream name will map to a Kafka topic.
 				'stream' => 'mediawiki.api-request'
@@ -2146,7 +2150,7 @@ class ApiMain extends ApiBase {
 	 * @param int $httpCode HTTP status code, or 0 to not change
 	 */
 	protected function printResult( $httpCode = 0 ) {
-		if ( $this->getConfig()->get( 'DebugAPI' ) !== false ) {
+		if ( $this->getConfig()->get( MainConfigNames::DebugAPI ) !== false ) {
 			$this->addWarning( 'apiwarn-wgdebugapi' );
 		}
 

@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\ExtensionInfo;
+use MediaWiki\MainConfigNames;
 
 /**
  * Give information about the version of MediaWiki, PHP, the DB and extensions
@@ -714,7 +715,7 @@ class SpecialVersion extends SpecialPage {
 	 */
 	protected function getExtensionCategory( $type, ?string $text, array $creditsGroup ) {
 		$config = $this->getConfig();
-		$credits = $config->get( 'ExtensionCredits' );
+		$credits = $config->get( MainConfigNames::ExtensionCredits );
 
 		$out = '';
 
@@ -938,8 +939,9 @@ class SpecialVersion extends SpecialPage {
 	 * @return string Wikitext
 	 */
 	private function getHooks() {
-		if ( $this->getConfig()->get( 'SpecialVersionShowHooks' ) && count( $this->getConfig()->get( 'Hooks' ) ) ) {
-			$myHooks = $this->getConfig()->get( 'Hooks' );
+		if ( $this->getConfig()->get( MainConfigNames::SpecialVersionShowHooks ) &&
+		count( $this->getConfig()->get( MainConfigNames::Hooks ) ) ) {
+			$myHooks = $this->getConfig()->get( MainConfigNames::Hooks );
 			ksort( $myHooks );
 
 			$ret = [];
@@ -1212,10 +1214,10 @@ class SpecialVersion extends SpecialPage {
 	 */
 	public function getEntryPointInfo() {
 		$config = $this->getConfig();
-		$scriptPath = $config->get( 'ScriptPath' ) ?: '/';
+		$scriptPath = $config->get( MainConfigNames::ScriptPath ) ?: '/';
 
 		$entryPoints = [
-			'version-entrypoints-articlepath' => $config->get( 'ArticlePath' ),
+			'version-entrypoints-articlepath' => $config->get( MainConfigNames::ArticlePath ),
 			'version-entrypoints-scriptpath' => $scriptPath,
 			'version-entrypoints-index-php' => wfScript( 'index' ),
 			'version-entrypoints-api-php' => wfScript( 'api' ),

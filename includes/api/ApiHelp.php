@@ -22,6 +22,7 @@
 
 use HtmlFormatter\HtmlFormatter;
 use MediaWiki\ExtensionInfo;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -146,7 +147,7 @@ class ApiHelp extends ApiBase {
 			$options['recursivesubmodules'] &&
 			$context->getLanguage()->equals( $services->getContentLanguage() )
 		) {
-			$cacheHelpTimeout = $context->getConfig()->get( 'APICacheHelpTimeout' );
+			$cacheHelpTimeout = $context->getConfig()->get( MainConfigNames::APICacheHelpTimeout );
 			if ( $cacheHelpTimeout > 0 ) {
 				// Get help text from cache if present
 				$cacheKey = $cache->makeKey( 'apihelp', $modules[0]->getModulePath(),

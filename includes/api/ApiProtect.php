@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 
@@ -30,23 +32,30 @@ class ApiProtect extends ApiBase {
 
 	use ApiWatchlistTrait;
 
+	/** @var RestrictionStore */
+	private $restrictionStore;
+
 	/**
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
 	 * @param WatchlistManager $watchlistManager
 	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param RestrictionStore $restrictionStore
 	 */
 	public function __construct(
 		ApiMain $mainModule,
 		$moduleName,
 		WatchlistManager $watchlistManager,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
+		RestrictionStore $restrictionStore
 	) {
 		parent::__construct( $mainModule, $moduleName );
+		$this->restrictionStore = $restrictionStore;
 
 		// Variables needed in ApiWatchlistTrait trait
-		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
-		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( MainConfigNames::WatchlistExpiry );
+		$this->watchlistMaxDuration =
+			$this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 		$this->watchlistManager = $watchlistManager;
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
@@ -84,7 +93,7 @@ class ApiProtect extends ApiBase {
 			}
 		}
 
-		$restrictionTypes = $titleObj->getRestrictionTypes();
+		$restrictionTypes = $this->restrictionStore->listApplicableRestrictionTypes( $titleObj );
 		$levels = $this->getPermissionManager()->getNamespaceRestrictionLevels(
 			$titleObj->getNamespace(),
 			$user

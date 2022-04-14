@@ -4,6 +4,7 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Session\SessionManager;
 
 /**
@@ -286,6 +287,6 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 	}
 
 	protected function getRequestBlacklist() {
-		return $this->getConfig()->get( 'ChangeCredentialsBlacklist' );
+		return $this->getConfig()->get( MainConfigNames::ChangeCredentialsBlacklist );
 	}
 }

@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\UserOptionsLookup;
 
@@ -254,7 +255,7 @@ class SpecialExpandTemplates extends SpecialPage {
 		$lang = $title->getPageViewLanguage();
 		$out->addHTML( "<h2>" . $this->msg( 'expand_templates_preview' )->escaped() . "</h2>\n" );
 
-		if ( $this->getConfig()->get( 'RawHtml' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::RawHtml ) ) {
 			$request = $this->getRequest();
 			$user = $this->getUser();
 

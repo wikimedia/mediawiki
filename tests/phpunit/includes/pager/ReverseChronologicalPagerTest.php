@@ -64,5 +64,13 @@ class ReverseChronologicalPagerTest extends MediaWikiLangTestCase {
 			$pager->getDateCond( -1, 12 );
 			$this->assertEquals( $pager->mOffset, $db->timestamp( $currYear . '0101000000' ) );
 		}
+
+		// 3-digit year, T287621
+		$pager->getDateCond( 720, 1, 5 );
+		$this->assertEquals( $pager->mOffset, $db->timestamp( '07200106000000' ) );
+
+		// Y2K38 bug
+		$pager->getDateCond( 2042, 1, 5 );
+		$this->assertEquals( $pager->mOffset, $db->timestamp( '20320101000000' ) );
 	}
 }

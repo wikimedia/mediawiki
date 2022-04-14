@@ -7,10 +7,10 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
-use Wikimedia\Rdbms\MaintainableDBConnRef;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -36,7 +36,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			[ 'getConnectionRef', 'getLocalDomainID', 'reuseConnection' ]
 		);
 
-		$dbRef = new MaintainableDBConnRef( $lb, $db, DB_PRIMARY );
+		$dbRef = new DBConnRef( $lb, $db, DB_PRIMARY );
 		$lb->method( 'getConnectionRef' )->willReturn( $dbRef );
 		$lb->method( 'getLocalDomainID' )->willReturn( 'fake' );
 

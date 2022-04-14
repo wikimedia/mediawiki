@@ -29,6 +29,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\User\UserIdentity;
@@ -106,8 +107,9 @@ class ApiBlock extends ApiBase {
 		$this->blockActionInfo = $blockActionInfo;
 
 		// Variables needed in ApiWatchlistTrait trait
-		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
-		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( MainConfigNames::WatchlistExpiry );
+		$this->watchlistMaxDuration =
+			$this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 		$this->watchlistManager = $watchlistManager;
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
@@ -158,7 +160,7 @@ class ApiBlock extends ApiBase {
 			}, (array)$params['namespacerestrictions'] );
 			$restrictions = array_merge( $pageRestrictions, $namespaceRestrictions );
 
-			if ( $this->getConfig()->get( 'EnablePartialActionBlocks' ) ) {
+			if ( $this->getConfig()->get( MainConfigNames::EnablePartialActionBlocks ) ) {
 				$actionRestrictions = array_map( function ( $action ) {
 					return new ActionRestriction( 0, $this->blockActionInfo->getIdFromAction( $action ) );
 				}, (array)$params['actionrestrictions'] );
@@ -230,7 +232,7 @@ class ApiBlock extends ApiBase {
 		$res['partial'] = $params['partial'];
 		$res['pagerestrictions'] = $params['pagerestrictions'];
 		$res['namespacerestrictions'] = $params['namespacerestrictions'];
-		if ( $this->getConfig()->get( 'EnablePartialActionBlocks' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::EnablePartialActionBlocks ) ) {
 			$res['actionrestrictions'] = $params['actionrestrictions'];
 		}
 
@@ -306,7 +308,7 @@ class ApiBlock extends ApiBase {
 			],
 		];
 
-		if ( $this->getConfig()->get( 'EnablePartialActionBlocks' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::EnablePartialActionBlocks ) ) {
 			$params += [
 				'actionrestrictions' => [
 					ApiBase::PARAM_ISMULTI => true,

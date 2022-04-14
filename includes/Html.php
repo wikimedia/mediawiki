@@ -761,10 +761,7 @@ class Html {
 	 * @return string of HTML representing the notice
 	 */
 	public static function noticeBox( $html, $className ) {
-		return self::messageBox( $html, [
-			'mw-message-box-notice',
-			$className
-		] );
+		return self::messageBox( $html, [ 'mw-message-box-notice', $className ] );
 	}
 
 	/**
@@ -776,12 +773,7 @@ class Html {
 	 * @return string of HTML representing a warning box.
 	 */
 	public static function warningBox( $html, $className = '' ) {
-		return self::messageBox( $html, [
-			'mw-message-box-warning',
-			// Deprecated class kept for cached HTML. Will be removed shortly.
-			'warningbox',
-			$className
-		] );
+		return self::messageBox( $html, [ 'mw-message-box-warning', $className ] );
 	}
 
 	/**
@@ -794,12 +786,7 @@ class Html {
 	 * @return string of HTML representing an error box.
 	 */
 	public static function errorBox( $html, $heading = '', $className = '' ) {
-		return self::messageBox( $html, [
-			'mw-message-box-error',
-			// Deprecated class kept for cached HTML. Will be removed shortly.
-			'errorbox',
-			$className
-		], $heading );
+		return self::messageBox( $html, [ 'mw-message-box-error', $className ], $heading );
 	}
 
 	/**
@@ -811,12 +798,7 @@ class Html {
 	 * @return string of HTML representing a success box.
 	 */
 	public static function successBox( $html, $className = '' ) {
-		return self::messageBox( $html, [
-			'mw-message-box-success',
-			// Deprecated class `successbox`. Kept for gadgets/user styles.
-			'successbox',
-			$className
-		] );
+		return self::messageBox( $html, [ 'mw-message-box-success', $className ] );
 	}
 
 	/**

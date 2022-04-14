@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
+
 /**
  * API Serialized PHP output formatter
  * @ingroup API
@@ -60,7 +62,7 @@ class ApiFormatPhp extends ApiFormatBase {
 		// Flash, but what it does isn't friendly for the API. There's nothing
 		// we can do here that isn't actively broken in some manner, so let's
 		// just be broken in a useful manner.
-		if ( $this->getConfig()->get( 'MangleFlashPolicy' ) &&
+		if ( $this->getConfig()->get( MainConfigNames::MangleFlashPolicy ) &&
 			in_array( 'MediaWiki\\OutputHandler::handle', ob_list_handlers(), true ) &&
 			preg_match( '/\<\s*cross-domain-policy(?=\s|\>)/i', $text )
 		) {

@@ -25,6 +25,7 @@ use MediaWiki\Api\Validator\SubmoduleDef;
 use MediaWiki\Block\Block;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
@@ -988,7 +989,8 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function requirePostedParameters( $params, $prefix = 'prefix' ) {
 		// Skip if $wgDebugAPI is set or we're in internal mode
-		if ( $this->getConfig()->get( 'DebugAPI' ) || $this->getMain()->isInternalMode() ) {
+		if ( $this->getConfig()->get( MainConfigNames::DebugAPI ) ||
+		$this->getMain()->isInternalMode() ) {
 			return;
 		}
 
@@ -1616,7 +1618,7 @@ abstract class ApiBase extends ContextSource {
 	 * @throws ApiUsageException
 	 */
 	public function dieWithErrorOrDebug( $msg, $code = null, $data = null, $httpCode = null ) {
-		if ( $this->getConfig()->get( 'DebugAPI' ) !== true ) {
+		if ( $this->getConfig()->get( MainConfigNames::DebugAPI ) !== true ) {
 			$this->dieWithError( $msg, $code, $data, $httpCode );
 		} else {
 			$this->addWarning( $msg, $code, $data );
@@ -2002,8 +2004,8 @@ abstract class ApiBase extends ContextSource {
 
 		// Build map of extension directories to extension info
 		if ( self::$extensionInfo === null ) {
-			$extDir = $this->getConfig()->get( 'ExtensionDirectory' );
-			$baseDir = $this->getConfig()->get( 'BaseDirectory' );
+			$extDir = $this->getConfig()->get( MainConfigNames::ExtensionDirectory );
+			$baseDir = $this->getConfig()->get( MainConfigNames::BaseDirectory );
 			self::$extensionInfo = [
 				realpath( __DIR__ ) ?: __DIR__ => [
 					'path' => $baseDir,

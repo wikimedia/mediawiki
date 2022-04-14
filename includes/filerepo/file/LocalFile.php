@@ -20,6 +20,7 @@
 
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
@@ -1440,7 +1441,7 @@ class LocalFile extends File {
 	 */
 	public function prerenderThumbnails() {
 		$uploadThumbnailRenderMap = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'UploadThumbnailRenderMap' );
+			->getMainConfig()->get( MainConfigNames::UploadThumbnailRenderMap );
 
 		$jobs = [];
 

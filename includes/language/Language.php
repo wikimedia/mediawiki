@@ -4704,6 +4704,8 @@ class Language {
 	 * @return string
 	 */
 	public function formatBitrate( $bps ) {
+		// messages used: bitrate-bits, bitrate-kilobits, bitrate-megabits, bitrate-gigabits, bitrate-terabits,
+		// bitrate-petabits, bitrate-exabits, bitrate-zettabits, bitrate-yottabits
 		return $this->formatComputingNumbers( $bps, 1000, "bitrate-$1bits" );
 	}
 
@@ -4752,6 +4754,8 @@ class Language {
 	 * @return string Plain text (not HTML)
 	 */
 	public function formatSize( $size ) {
+		// messages used: size-bytes, size-kilobytes, size-megabytes, size-gigabytes, size-terabytes,
+		// size-petabytes, size-exabytes, size-zettabytes, size-yottabytes
 		return $this->formatComputingNumbers( $size, 1024, "size-$1bytes" );
 	}
 

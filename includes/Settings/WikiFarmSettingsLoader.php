@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Settings;
 
+use MediaWiki\MainConfigNames;
 use WebRequest;
 
 /**
@@ -45,9 +46,9 @@ class WikiFarmSettingsLoader {
 	public function loadWikiFarmSettings() {
 		$config = $this->settingsBuilder->getConfig();
 
-		$farmDir = $config->get( 'WikiFarmSettingsDirectory' );
-		$farmExt = $config->get( 'WikiFarmSettingsExtension' );
-		$siteDetector = $config->get( 'WikiFarmSiteDetector' );
+		$farmDir = $config->get( MainConfigNames::WikiFarmSettingsDirectory );
+		$farmExt = $config->get( MainConfigNames::WikiFarmSettingsExtension );
+		$siteDetector = $config->get( MainConfigNames::WikiFarmSiteDetector );
 
 		if ( !$farmDir ) {
 			return;
@@ -57,10 +58,11 @@ class WikiFarmSettingsLoader {
 			$siteDetector = [ $this, 'detectWikiFarmSite' ];
 		}
 
-		if ( defined( 'MW_WIKI_NAME' ) ) {
+		$wikiName = $this->getWikiNameConstant();
+		if ( $wikiName !== null ) {
 			// MW_WIKI_NAME is used to control the target wiki when running CLI scripts.
 			// Maintenance.php sets it to the value of the --wiki option.
-			$site = MW_WIKI_NAME;
+			$site = $wikiName;
 		} else {
 			$site = $siteDetector();
 		}
@@ -73,6 +75,15 @@ class WikiFarmSettingsLoader {
 		if ( $this->settingsBuilder->fileExists( $path ) ) {
 			$this->settingsBuilder->loadFile( $path );
 		}
+	}
+
+	/**
+	 * Access MW_WIKI_NAME in a way that can be overridden by tests
+	 *
+	 * @return string|null
+	 */
+	protected function getWikiNameConstant() {
+		return defined( 'MW_WIKI_NAME' ) ? MW_WIKI_NAME : null;
 	}
 
 	/**
@@ -94,7 +105,7 @@ class WikiFarmSettingsLoader {
 
 		$config = $this->settingsBuilder->getConfig();
 		$assumeProxiesUseDefaultProtocolPorts =
-			$config->get( 'AssumeProxiesUseDefaultProtocolPorts' );
+			$config->get( MainConfigNames::AssumeProxiesUseDefaultProtocolPorts );
 
 		$server = WebRequest::detectServer( $assumeProxiesUseDefaultProtocolPorts );
 

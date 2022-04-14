@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
@@ -119,7 +120,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$opts = $this->getOptions();
 
 		$config = $this->getConfig();
-		if ( ( $config->get( 'EnotifWatchlist' ) || $config->get( 'ShowUpdatedMarker' ) )
+		if ( ( $config->get( MainConfigNames::EnotifWatchlist ) ||
+				$config->get( MainConfigNames::ShowUpdatedMarker ) )
 			&& $request->getVal( 'reset' )
 			&& $request->wasPosted()
 			&& $user->matchEditToken( $request->getVal( 'token' ) )
@@ -405,7 +407,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$join_conds
 		);
 
-		if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
 			$tables[] = 'watchlist_expiry';
 			$fields[] = 'we_expiry';
 			$join_conds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
@@ -467,7 +469,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		// array_merge() is used intentionally here so that hooks can, should
 		// they so desire, override the ORDER BY / LIMIT condition(s)
 		$query_options = array_merge( $orderByAndLimit, $query_options );
-		$query_options['MAX_EXECUTION_TIME'] = $this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' );
+		$query_options['MAX_EXECUTION_TIME'] =
+			$this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries );
 
 		return $dbr->select(
 			$tables,
@@ -544,7 +547,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					$unwatchTooltipMessage = 'tooltip-ca-unwatch';
 					$diffInDays = null;
 					// Check if the watchlist expiry flag is enabled to show new tooltip message
-					if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
+					if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
 						$watchedItem = $this->watchedItemStore->getWatchedItem( $this->getUser(), $rc->getTitle() );
 						if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() !== null ) {
 							$diffInDays = $watchedItem->getExpiryInDays();
@@ -591,13 +594,13 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 			$rc->counter = $counter++;
 
-			if ( $this->getConfig()->get( 'ShowUpdatedMarker' ) ) {
+			if ( $this->getConfig()->get( MainConfigNames::ShowUpdatedMarker ) ) {
 				$unseen = !$this->isChangeEffectivelySeen( $rc );
 			} else {
 				$unseen = false;
 			}
 
-			if ( $this->getConfig()->get( 'RCShowWatchingUsers' )
+			if ( $this->getConfig()->get( MainConfigNames::RCShowWatchingUsers )
 				&& $this->userOptionsLookup->getBoolOption( $user, 'shownumberswatching' )
 			) {
 				$rcTitleValue = new TitleValue( (int)$obj->rc_namespace, $obj->rc_title );
@@ -808,7 +811,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 	private function cutoffselector( $options ) {
 		$selected = (float)$options['days'];
-		$maxDays = $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 );
+		$maxDays = $this->getConfig()->get( MainConfigNames::RCMaxAge ) / ( 3600 * 24 );
 		if ( $selected <= 0 ) {
 			$selected = $maxDays;
 		}
@@ -849,7 +852,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$user = $this->getUser();
 
 		$numItems = $this->countItems();
-		$showUpdatedMarker = $this->getConfig()->get( 'ShowUpdatedMarker' );
+		$showUpdatedMarker = $this->getConfig()->get( MainConfigNames::ShowUpdatedMarker );
 
 		// Show watchlist header
 		$watchlistHeader = '';
@@ -858,7 +861,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		} else {
 			$watchlistHeader .= $this->msg( 'watchlist-details' )->numParams( $numItems )->parse()
 				. $this->msg( 'word-separator' )->escaped();
-			if ( $this->getConfig()->get( 'EnotifWatchlist' )
+			if ( $this->getConfig()->get( MainConfigNames::EnotifWatchlist )
 				&& $this->userOptionsLookup->getBoolOption( $user, 'enotifwatchlistpages' )
 			) {
 				$watchlistHeader .= $this->msg( 'wlheader-enotif' )->parse()

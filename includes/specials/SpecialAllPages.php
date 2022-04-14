@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -85,7 +86,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 		$to = $request->getVal( 'to', null );
 		$namespace = $request->getInt( 'namespace' );
 
-		$miserMode = (bool)$this->getConfig()->get( 'MiserMode' );
+		$miserMode = (bool)$this->getConfig()->get( MainConfigNames::MiserMode );
 
 		// Redirects filter is disabled in MiserMode
 		$hideredirects = $request->getBool( 'hideredirects', false ) && !$miserMode;
@@ -119,7 +120,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 	protected function outputHTMLForm( $namespace = NS_MAIN,
 		$from = '', $to = '', $hideRedirects = false
 	) {
-		$miserMode = (bool)$this->getConfig()->get( 'MiserMode' );
+		$miserMode = (bool)$this->getConfig()->get( MainConfigNames::MiserMode );
 		$formDescriptor = [
 			'from' => [
 				'type' => 'text',

@@ -37,6 +37,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -385,6 +386,9 @@ class Parser {
 	/** @var TrackingCategories */
 	private $trackingCategories;
 
+	/** @var SignatureValidatorFactory */
+	private $signatureValidatorFactory;
+
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -436,6 +440,7 @@ class Parser {
 	 * @param TitleFormatter $titleFormatter
 	 * @param HttpRequestFactory $httpRequestFactory
 	 * @param TrackingCategories $trackingCategories
+	 * @param SignatureValidatorFactory $signatureValidatorFactory
 	 */
 	public function __construct(
 		ServiceOptions $svcOptions,
@@ -456,7 +461,8 @@ class Parser {
 		UserFactory $userFactory,
 		TitleFormatter $titleFormatter,
 		HttpRequestFactory $httpRequestFactory,
-		TrackingCategories $trackingCategories
+		TrackingCategories $trackingCategories,
+		SignatureValidatorFactory $signatureValidatorFactory
 	) {
 		if ( ParserFactory::$inParserFactory === 0 ) {
 			// Direct construction of Parser was deprecated in 1.34 and
@@ -521,6 +527,7 @@ class Parser {
 		$this->titleFormatter = $titleFormatter;
 		$this->httpRequestFactory = $httpRequestFactory;
 		$this->trackingCategories = $trackingCategories;
+		$this->signatureValidatorFactory = $signatureValidatorFactory;
 
 		// These steps used to be done in "::firstCallInit()"
 		// (if you're chasing a reference from some old code)
@@ -4701,9 +4708,11 @@ class Parser {
 			# New validator
 			$sigValidation = $this->svcOptions->get( 'SignatureValidation' );
 			if ( $isValid && $sigValidation === 'disallow' ) {
-				$services = MediaWikiServices::getInstance();
-				$parserOpts = $services->getParser()->getOptions();
-				$validator = $services->getSignatureValidatorFactory()
+				$parserOpts = new ParserOptions(
+					$this->mOptions->getUserIdentity(),
+					$this->contLang
+				);
+				$validator = $this->signatureValidatorFactory
 					->newSignatureValidator( $user, null, $parserOpts );
 				$isValid = !$validator->validateSignature( $nickname );
 			}

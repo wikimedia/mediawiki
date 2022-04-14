@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
+
 /**
  * API module that imports an XML file like Special:Import does
  *
@@ -131,7 +133,7 @@ class ApiImport extends ApiBase {
 	 * @since 1.27
 	 */
 	public function getAllowedImportSources() {
-		$importSources = $this->getConfig()->get( 'ImportSources' );
+		$importSources = $this->getConfig()->get( MainConfigNames::ImportSources );
 		$this->getHookRunner()->onImportSources( $importSources );
 
 		$result = [];

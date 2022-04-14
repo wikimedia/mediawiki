@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -57,7 +58,7 @@ class ApiSetPageLanguage extends ApiBase {
 
 	// Check if change language feature is enabled
 	protected function getExtendedDescription() {
-		if ( !$this->getConfig()->get( 'PageLanguageUseDB' ) ) {
+		if ( !$this->getConfig()->get( MainConfigNames::PageLanguageUseDB ) ) {
 			return 'apihelp-setpagelanguage-extended-description-disabled';
 		}
 		return parent::getExtendedDescription();
@@ -72,7 +73,7 @@ class ApiSetPageLanguage extends ApiBase {
 	 */
 	public function execute() {
 		// Check if change language feature is enabled
-		if ( !$this->getConfig()->get( 'PageLanguageUseDB' ) ) {
+		if ( !$this->getConfig()->get( MainConfigNames::PageLanguageUseDB ) ) {
 			$this->dieWithError( 'apierror-pagelang-disabled' );
 		}
 

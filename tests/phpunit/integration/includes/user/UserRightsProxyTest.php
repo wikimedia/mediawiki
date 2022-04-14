@@ -6,9 +6,9 @@ use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWikiIntegrationTestCase;
 use UserRightsProxy;
+use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
-use Wikimedia\Rdbms\MaintainableDBConnRef;
 
 /**
  * @coversDefaultClass UserRightsProxy
@@ -24,7 +24,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 			'wgLocalDatabases' => [ 'foowiki' ],
 		] );
 
-		$dbMock = $this->createMock( MaintainableDBConnRef::class );
+		$dbMock = $this->createMock( DBConnRef::class );
 
 		$row = (object)[
 			'user_name' => 'UserRightsProxyTest',
@@ -183,7 +183,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 		$key = 'foo';
 		$value = 'bar';
 
-		$dbMock = $this->createMock( MaintainableDBConnRef::class );
+		$dbMock = $this->createMock( DBConnRef::class );
 		$row = (object)[
 			'user_name' => 'UserRightsProxyTest',
 			'user_id' => 12345,

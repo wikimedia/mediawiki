@@ -289,10 +289,10 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			$year = 2032;
 		}
 
-		$ymd = (int)sprintf( "%04d%02d%02d", $year, $month, $day );
+		$ymd = sprintf( "%04d%02d%02d", $year, $month, $day );
 
-		if ( $ymd > 20320101 ) {
-			$ymd = 20320101;
+		if ( $ymd > '20320101' ) {
+			$ymd = '20320101';
 		}
 
 		return MWTimestamp::getInstance( "${ymd}000000" );
