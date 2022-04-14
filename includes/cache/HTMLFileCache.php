@@ -142,8 +142,6 @@ class HTMLFileCache extends FileCacheBase {
 	 * @return void
 	 */
 	public function loadFromFileCache( IContextSource $context, $mode = self::MODE_NORMAL ) {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-
 		wfDebug( __METHOD__ . "()" );
 		$filename = $this->cachePath();
 
@@ -153,7 +151,7 @@ class HTMLFileCache extends FileCacheBase {
 		}
 
 		$context->getOutput()->sendCacheControl();
-		header( "Content-Type: {$config->get( 'MimeType' )}; charset=UTF-8" );
+		header( "Content-Type: {$this->options->get( 'MimeType' )}; charset=UTF-8" );
 		header( 'Content-Language: ' .
 			MediaWikiServices::getInstance()->getContentLanguage()->getHtmlCode() );
 		if ( $this->useGzip() ) {
