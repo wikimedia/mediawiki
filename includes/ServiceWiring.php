@@ -2178,7 +2178,8 @@ return [
 			$services->getMessageFormatterFactory()->getTextFormatter(
 				$services->getContentLanguage()->getCode()
 			),
-			$services->getArchivedRevisionLookup()
+			$services->getArchivedRevisionLookup(),
+			$services->getRestrictionStore()
 		);
 	},
 

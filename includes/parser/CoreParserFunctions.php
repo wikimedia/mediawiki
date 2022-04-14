@@ -906,9 +906,10 @@ class CoreParserFunctions {
 	 */
 	public static function protectionlevel( $parser, $type = '', $title = '' ) {
 		$titleObject = Title::newFromText( $title ) ?? $parser->getTitle();
-		if ( $titleObject->areRestrictionsLoaded() || $parser->incrementExpensiveFunctionCount() ) {
-			$restrictions = $titleObject->getRestrictions( strtolower( $type ) );
-			# Title::getRestrictions returns an array, its possible it may have
+		$restrictionStore = MediaWikiServices::getInstance()->getRestrictionStore();
+		if ( $restrictionStore->areRestrictionsLoaded( $titleObject ) || $parser->incrementExpensiveFunctionCount() ) {
+			$restrictions = $restrictionStore->getRestrictions( $titleObject, strtolower( $type ) );
+			# RestrictionStore::getRestrictions returns an array, its possible it may have
 			# multiple values in the future
 			return implode( ',', $restrictions );
 		}
@@ -929,11 +930,12 @@ class CoreParserFunctions {
 	 */
 	public static function protectionexpiry( $parser, $type = '', $title = '' ) {
 		$titleObject = Title::newFromText( $title ) ?? $parser->getTitle();
-		if ( $titleObject->areRestrictionsLoaded() || $parser->incrementExpensiveFunctionCount() ) {
-			$expiry = $titleObject->getRestrictionExpiry( strtolower( $type ) );
-			// getRestrictionExpiry() returns false on invalid type; trying to
+		$restrictionStore = MediaWikiServices::getInstance()->getRestrictionStore();
+		if ( $restrictionStore->areRestrictionsLoaded( $titleObject ) || $parser->incrementExpensiveFunctionCount() ) {
+			$expiry = $restrictionStore->getRestrictionExpiry( $titleObject, strtolower( $type ) );
+			// getRestrictionExpiry() returns null on invalid type; trying to
 			// match protectionlevel() function that returns empty string instead
-			if ( $expiry === false ) {
+			if ( $expiry === null ) {
 				$expiry = '';
 			}
 			return $expiry;
@@ -1466,13 +1468,15 @@ class CoreParserFunctions {
 	 */
 	public static function cascadingsources( $parser, $title = '' ) {
 		$titleObject = Title::newFromText( $title ) ?? $parser->getTitle();
-		if ( $titleObject->areCascadeProtectionSourcesLoaded()
+		$restrictionStore = MediaWikiServices::getInstance()->getRestrictionStore();
+		if ( $restrictionStore->areCascadeProtectionSourcesLoaded( $titleObject )
 			|| $parser->incrementExpensiveFunctionCount()
 		) {
 			$names = [];
-			$sources = $titleObject->getCascadeProtectionSources();
-			foreach ( $sources[0] as $sourceTitle ) {
-				$names[] = $sourceTitle->getPrefixedText();
+			$sources = $restrictionStore->getCascadeProtectionSources( $titleObject );
+			$titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
+			foreach ( $sources[0] as $sourcePageIdentity ) {
+				$names[] = $titleFormatter->getPrefixedText( $sourcePageIdentity );
 			}
 			return implode( '|', $names );
 		}

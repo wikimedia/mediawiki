@@ -111,9 +111,11 @@ class TemplatesOnThisPageFormatter {
 	 * @return string
 	 */
 	private function formatTemplate( LinkTarget $target ) {
-		// TODO Would be nice if we didn't have to use Title here
+		// TODO Would be nice to have a better way to convert LinkTarget to PageIdentity
 		$titleObj = Title::newFromLinkTarget( $target );
-		$protected = $this->getRestrictionsText( $titleObj->getRestrictions( 'edit' ) );
+		$protected = $this->getRestrictionsText(
+			MediaWikiServices::getInstance()->getRestrictionStore()->getRestrictions( $titleObj, 'edit' )
+		);
 		$editLink = $this->buildEditLink( $titleObj );
 		return '<li>' . $this->linkRenderer->makeLink( $target )
 			. $this->context->msg( 'word-separator' )->escaped()

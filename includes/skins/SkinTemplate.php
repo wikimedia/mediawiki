@@ -1403,14 +1403,15 @@ class SkinTemplate extends Skin {
 					}
 				}
 
+				$restrictionStore = $services->getRestrictionStore();
 				if ( $this->getAuthority()->probablyCan( 'protect', $title ) &&
-					$services->getRestrictionStore()->listApplicableRestrictionTypes( $title ) &&
+					$restrictionStore->listApplicableRestrictionTypes( $title ) &&
 					$permissionManager->getNamespaceRestrictionLevels(
 						$title->getNamespace(),
 						$performer->getUser()
 					) !== [ '' ]
 				) {
-					$mode = $title->isProtected() ? 'unprotect' : 'protect';
+					$mode = $restrictionStore->isProtected( $title ) ? 'unprotect' : 'protect';
 					$content_navigation['actions'][$mode] = [
 						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
 						'text' => $this->getSkinNavOverrideableLabel(
