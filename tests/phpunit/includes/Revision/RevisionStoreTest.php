@@ -339,7 +339,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Storage\RevisionStore::isRevisionRow
+	 * @covers \MediaWiki\Revision\RevisionStore::isRevisionRow
 	 * @dataProvider provideIsRevisionRow
 	 */
 	public function testIsRevisionRow( $row, bool $expect ) {
