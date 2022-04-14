@@ -24,7 +24,6 @@ use LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\SpecialPage\SpecialPageFactory;
-use MediaWiki\User\UserIdentity;
 use TitleFormatter;
 
 /**
@@ -86,17 +85,6 @@ class LinkRendererFactory {
 			$this->hookContainer,
 			new ServiceOptions( LinkRenderer::CONSTRUCTOR_OPTIONS, $options )
 		);
-	}
-
-	/**
-	 * @deprecated since 1.37. LinkRenderer does not depend on the user any longer,
-	 * so calling ::create is sufficient.
-	 * @param UserIdentity $user
-	 * @return LinkRenderer
-	 */
-	public function createForUser( UserIdentity $user ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->create();
 	}
 
 	/**
