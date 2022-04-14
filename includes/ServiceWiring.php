@@ -47,6 +47,7 @@
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Auth\Throttler;
 use MediaWiki\BadFileLookup;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockErrorFormatter;
@@ -158,6 +159,8 @@ use MediaWiki\User\BotPasswordStore;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
 use MediaWiki\User\DefaultOptionsLookup;
 use MediaWiki\User\TalkPageNotificationManager;
+use MediaWiki\User\TempUser\RealTempUserConfig;
+use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
@@ -1825,6 +1828,29 @@ return [
 		return new TempFSFileFactory( $services->getMainConfig()->get( MainConfigNames::TmpDirectory ) );
 	},
 
+	'TempUserConfig' => static function ( MediaWikiServices $services ): RealTempUserConfig {
+		return new RealTempUserConfig(
+			$services->getMainConfig()->get( 'AutoCreateTempUser' )
+		);
+	},
+
+	'TempUserCreator' => static function ( MediaWikiServices $services ): TempUserCreator {
+		return new TempUserCreator(
+			$services->getTempUserConfig(),
+			$services->getObjectFactory(),
+			$services->getUserFactory(),
+			$services->getAuthManager(),
+			// This is supposed to match ThrottlePreAuthenticationProvider
+			new Throttler(
+				$services->getMainConfig()->get( 'AccountCreationThrottle' ),
+				[
+					'type' => 'acctcreate',
+					'cache' => $services->getLocalServerObjectCache()
+				]
+			)
+		);
+	},
+
 	'Tidy' => static function ( MediaWikiServices $services ): TidyDriverBase {
 		return new RemexDriver(
 			new ServiceOptions(
@@ -1953,7 +1979,8 @@ return [
 			$messageFormatterFactory->getTextFormatter(
 				$services->getContentLanguage()->getCode()
 			),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getTempUserConfig()
 		);
 	},
 

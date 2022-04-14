@@ -241,6 +241,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/** @var Authority|null lazy-initialized Authority of this user */
 	private $mThisAsAuthority;
 
+	/** @var bool|null */
+	private $isTemp;
+
 	/**
 	 * Lightweight constructor for an anonymous user.
 	 *
@@ -3771,5 +3774,26 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			: IPUtils::sanitizeIP( $sessionUser->getRequest()->getIP() );
 
 		return $this->getName() === $globalUserName;
+	}
+
+	/**
+	 * Is the user an autocreated temporary user?
+	 * @return bool
+	 */
+	public function isTemp(): bool {
+		if ( $this->isTemp === null ) {
+			$this->isTemp = MediaWikiServices::getInstance()->getUserNameUtils()
+				->isTemp( $this->getName() );
+		}
+		return $this->isTemp;
+	}
+
+	/**
+	 * Is the user a normal non-temporary registered user?
+	 *
+	 * @return bool
+	 */
+	public function isNamed(): bool {
+		return $this->isRegistered() && !$this->isTemp();
 	}
 }

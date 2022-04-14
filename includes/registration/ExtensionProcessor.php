@@ -67,6 +67,8 @@ class ExtensionProcessor implements Processor {
 		'SkinOOUIThemes',
 		'SearchMappings',
 		'TrackingCategories',
+		'TempUserSerialProviders',
+		'TempUserSerialMappings',
 	];
 
 	/**

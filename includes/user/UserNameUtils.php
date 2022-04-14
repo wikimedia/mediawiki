@@ -28,6 +28,7 @@ use MalformedTitleException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\User\TempUser\TempUserConfig;
 use Psr\Log\LoggerInterface;
 use TitleParser;
 use Wikimedia\IPUtils;
@@ -89,6 +90,9 @@ class UserNameUtils implements UserRigorOptions {
 	 */
 	private $hookRunner;
 
+	/** @var TempUserConfig */
+	private $tempUserConfig;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param Language $contentLang
@@ -96,6 +100,7 @@ class UserNameUtils implements UserRigorOptions {
 	 * @param TitleParser $titleParser
 	 * @param ITextFormatter $textFormatter the text formatter for the current content language
 	 * @param HookContainer $hookContainer
+	 * @param TempUserConfig $tempUserConfig
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -103,7 +108,8 @@ class UserNameUtils implements UserRigorOptions {
 		LoggerInterface $logger,
 		TitleParser $titleParser,
 		ITextFormatter $textFormatter,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		TempUserConfig $tempUserConfig
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
@@ -112,6 +118,7 @@ class UserNameUtils implements UserRigorOptions {
 		$this->titleParser = $titleParser;
 		$this->textFormatter = $textFormatter;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->tempUserConfig = $tempUserConfig;
 	}
 
 	/**
@@ -238,6 +245,13 @@ class UserNameUtils implements UserRigorOptions {
 			return false;
 		}
 
+		if ( $this->isTemp( $name ) ) {
+			$this->logger->debug(
+				__METHOD__ . ": '$name' uncreatable due to TempUserConfig"
+			);
+			return false;
+		}
+
 		return $this->isUsable( $name );
 	}
 
@@ -356,4 +370,24 @@ class UserNameUtils implements UserRigorOptions {
 		return IPUtils::isValidRange( $range );
 	}
 
+	/**
+	 * Is the user name reserved for temporary auto-created users?
+	 *
+	 * @since 1.39
+	 * @param string $name
+	 * @return bool
+	 */
+	public function isTemp( string $name ) {
+		return $this->tempUserConfig->isReservedName( $name );
+	}
+
+	/**
+	 * Get a placeholder name for a temporary user before serial acquisition
+	 *
+	 * @since 1.39
+	 * @return string
+	 */
+	public function getTempPlaceholder() {
+		return $this->tempUserConfig->getPlaceholderName();
+	}
 }

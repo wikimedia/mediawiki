@@ -113,6 +113,8 @@ use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\BotPasswordStore;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
 use MediaWiki\User\TalkPageNotificationManager;
+use MediaWiki\User\TempUser\RealTempUserConfig;
+use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
@@ -1722,6 +1724,22 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getTempFSFileFactory(): TempFSFileFactory {
 		return $this->getService( 'TempFSFileFactory' );
+	}
+
+	/**
+	 * @since 1.39
+	 * @return RealTempUserConfig
+	 */
+	public function getTempUserConfig(): RealTempUserConfig {
+		return $this->getService( 'TempUserConfig' );
+	}
+
+	/**
+	 * @since 1.39
+	 * @return TempUserCreator
+	 */
+	public function getTempUserCreator(): TempUserCreator {
+		return $this->getService( 'TempUserCreator' );
 	}
 
 	/**

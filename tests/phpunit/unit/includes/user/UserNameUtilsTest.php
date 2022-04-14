@@ -120,6 +120,12 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 			$utils->isCreatable( 'FooBar' ),
 			'User names with no issues can be created'
 		);
+
+		$tempUserName = '*Unregistered 1234';
+		$this->assertFalse(
+			$utils->isCreatable( $tempUserName ),
+			'UI account creation with the temp user prefix needs to be prevented'
+		);
 	}
 
 	/**
@@ -300,6 +306,19 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 			[ '::86:f:2001/ab', false ],
 			[ '::23:f:2001/', false ]
 		];
+	}
+
+	public function testIsTemp() {
+		$utils = $this->getDummyUserNameUtils();
+		$this->assertFalse( $utils->isTemp( 'Some user' ) );
+		$this->assertTrue( $utils->isTemp( '*Unregistered 1234' ) );
+		$this->assertTrue( $utils->isTemp( '*1234' ) );
+	}
+
+	public function testGetTempPlaceholder() {
+		$utils = $this->getDummyUserNameUtils();
+		$name = $utils->getTempPlaceholder();
+		$this->assertSame( '*Unregistered *', $name );
 	}
 
 }

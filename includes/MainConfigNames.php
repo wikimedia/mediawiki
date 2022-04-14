@@ -2663,6 +2663,12 @@ class MainConfigNames {
 	public const AllowRequiringEmailForResets = 'AllowRequiringEmailForResets';
 
 	/**
+	 * Name constant for the AutoCreateTempUser setting, for use with Config::get()
+	 * @see MainConfigSchema::AutoCreateTempUser
+	 */
+	public const AutoCreateTempUser = 'AutoCreateTempUser';
+
+	/**
 	 * Name constant for the AutoblockExpiry setting, for use with Config::get()
 	 * @see MainConfigSchema::AutoblockExpiry
 	 */

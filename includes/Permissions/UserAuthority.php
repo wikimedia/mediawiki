@@ -314,4 +314,15 @@ class UserAuthority implements Authority {
 		return $this->userBlock ?: null;
 	}
 
+	public function isRegistered(): bool {
+		return $this->actor->isRegistered();
+	}
+
+	public function isTemp(): bool {
+		return $this->actor->isTemp();
+	}
+
+	public function isNamed(): bool {
+		return $this->actor->isNamed();
+	}
 }

@@ -185,4 +185,38 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'Test', $user->getName() );
 	}
 
+	public function testNewTempPlaceholder() {
+		$this->setMwGlobals( [
+			'wgAutoCreateTempUser' => [
+				'enabled' => true,
+				'actions' => [ 'edit' ],
+				'genPattern' => '*Unregistered $1',
+				'matchPattern' => '*$1',
+				'serialProvider' => [ 'type' => 'local' ],
+				'serialMapping' => [ 'type' => 'plain-numeric' ],
+			]
+		] );
+		$user = $this->getUserFactory()->newTempPlaceholder();
+		$this->assertTrue( $user->isTemp() );
+		$this->assertFalse( $user->isRegistered() );
+		$this->assertFalse( $user->isNamed() );
+		$this->assertSame( 0, $user->getId() );
+	}
+
+	public function testNewUnsavedTempUser() {
+		$this->setMwGlobals( [
+			'wgAutoCreateTempUser' => [
+				'enabled' => true,
+				'actions' => [ 'edit' ],
+				'genPattern' => '*Unregistered $1',
+				'matchPattern' => '*$1',
+				'serialProvider' => [ 'type' => 'local' ],
+				'serialMapping' => [ 'type' => 'plain-numeric' ],
+			]
+		] );
+		$user = $this->getUserFactory()->newUnsavedTempUser( '*Unregistered 1234' );
+		$this->assertTrue( $user->isTemp() );
+		$this->assertFalse( $user->isNamed() );
+	}
+
 }
