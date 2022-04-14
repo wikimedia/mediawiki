@@ -1,7 +1,7 @@
 <?php
 
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Storage\DerivedPageDataUpdater;
-use MediaWiki\Storage\MutableRevisionRecord;
 use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
 

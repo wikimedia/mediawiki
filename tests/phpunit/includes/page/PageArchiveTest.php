@@ -2,7 +2,7 @@
 
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
 
