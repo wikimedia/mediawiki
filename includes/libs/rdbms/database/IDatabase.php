@@ -445,12 +445,13 @@ interface IDatabase extends ISQLPlatform {
 	 * aside from read-only automatic transactions (assuming no callbacks are registered).
 	 * If a transaction is still open anyway, it will be rolled back.
 	 *
+	 * @internal Only for use by LoadBalancer
+	 *
 	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @return bool Success
 	 * @throws DBError
 	 */
-	public function close( $fname = __METHOD__, $owner = null );
+	public function close( $fname = __METHOD__ );
 
 	/**
 	 * Run an SQL query and return the result
@@ -1962,12 +1963,12 @@ interface IDatabase extends ISQLPlatform {
 	 *
 	 * Connection and query errors will be suppressed and logged
 	 *
+	 * @internal For use by LoadBalancer only
 	 * @param string $fname Calling function name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @throws DBError If an error occurs, {@see query}
 	 * @since 1.38
 	 */
-	public function flushSession( $fname = __METHOD__, $owner = null );
+	public function flushSession( $fname = __METHOD__ );
 
 	/**
 	 * Commit any transaction but error out if writes or callbacks are pending

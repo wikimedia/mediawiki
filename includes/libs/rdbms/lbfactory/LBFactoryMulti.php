@@ -142,7 +142,7 @@ class LBFactoryMulti extends LBFactory {
 		}
 	}
 
-	public function newMainLB( $domain = false, $owner = null ): ILoadBalancer {
+	public function newMainLB( $domain = false ): ILoadBalancerForOwner {
 		$domainInstance = $this->resolveDomainInstance( $domain );
 		$database = $domainInstance->getDatabase();
 		$section = $this->getSectionFromDatabase( $database );
@@ -161,8 +161,7 @@ class LBFactoryMulti extends LBFactory {
 			// Use the LB-specific read-only reason if everything isn't already read-only
 			is_string( $this->readOnlyReason )
 				? $this->readOnlyReason
-				: ( $this->readOnlyBySection[$section] ?? false ),
-			$owner
+				: ( $this->readOnlyBySection[$section] ?? false )
 		);
 	}
 
@@ -171,13 +170,13 @@ class LBFactoryMulti extends LBFactory {
 		$section = $this->getSectionFromDatabase( $domainInstance->getDatabase() );
 
 		if ( !isset( $this->mainLBs[$section] ) ) {
-			$this->mainLBs[$section] = $this->newMainLB( $domain, $this->getOwnershipId() );
+			$this->mainLBs[$section] = $this->newMainLB( $domain );
 		}
 
 		return $this->mainLBs[$section];
 	}
 
-	public function newExternalLB( $cluster, $owner = null ): ILoadBalancer {
+	public function newExternalLB( $cluster ): ILoadBalancerForOwner {
 		if ( !isset( $this->externalLoadsByCluster[$cluster] ) ) {
 			throw new InvalidArgumentException( "Unknown cluster '$cluster'" );
 		}
@@ -189,16 +188,14 @@ class LBFactoryMulti extends LBFactory {
 				$this->templateOverridesByCluster[$cluster] ?? []
 			),
 			[ ILoadBalancer::GROUP_GENERIC => $this->externalLoadsByCluster[$cluster] ],
-			$this->readOnlyReason,
-			$owner
+			$this->readOnlyReason
 		);
 	}
 
 	public function getExternalLB( $cluster ): ILoadBalancer {
 		if ( !isset( $this->externalLBs[$cluster] ) ) {
 			$this->externalLBs[$cluster] = $this->newExternalLB(
-				$cluster,
-				$this->getOwnershipId()
+				$cluster
 			);
 		}
 
@@ -241,18 +238,16 @@ class LBFactoryMulti extends LBFactory {
 	 * @param array $serverTemplate
 	 * @param array $groupLoads
 	 * @param string|bool $readOnlyReason
-	 * @param int|null $owner
 	 * @return LoadBalancer
 	 */
 	private function newLoadBalancer(
 		string $clusterName,
 		array $serverTemplate,
 		array $groupLoads,
-		$readOnlyReason,
-		$owner
+		$readOnlyReason
 	) {
 		$lb = new LoadBalancer( array_merge(
-			$this->baseLoadBalancerParams( $owner ),
+			$this->baseLoadBalancerParams(),
 			[
 				'servers' => $this->makeServerConfigArrays( $serverTemplate, $groupLoads ),
 				'loadMonitor' => $this->loadMonitorConfig,

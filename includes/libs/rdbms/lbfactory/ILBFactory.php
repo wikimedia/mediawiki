@@ -120,10 +120,9 @@ interface ILBFactory {
 	 * still inherit from this ILBFactory instance, regardless of the $domain parameter.
 	 *
 	 * @param bool|string $domain Domain ID, or false for the current domain
-	 * @param int|null $owner Owner ID of the new instance (e.g. this LBFactory ID)
-	 * @return ILoadBalancer
+	 * @return ILoadBalancerForOwner
 	 */
-	public function newMainLB( $domain = false, $owner = null ): ILoadBalancer;
+	public function newMainLB( $domain = false ): ILoadBalancerForOwner;
 
 	/**
 	 * Get the tracked load balancer instance for the main cluster that handles the given domain
@@ -150,11 +149,10 @@ interface ILBFactory {
 	 * (DBO_TRX off) but still use DBO_TRX transaction rounds on other tables.
 	 *
 	 * @param string $cluster External cluster name
-	 * @param int|null $owner Owner ID of the new instance (e.g. this LBFactory ID)
 	 * @throws InvalidArgumentException If $cluster is not recognized
-	 * @return ILoadBalancer
+	 * @return ILoadBalancerForOwner
 	 */
-	public function newExternalLB( $cluster, $owner = null ): ILoadBalancer;
+	public function newExternalLB( $cluster ): ILoadBalancerForOwner;
 
 	/**
 	 * Get the tracked load balancer instance for an external cluster

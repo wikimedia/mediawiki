@@ -148,11 +148,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var DBUnexpectedError|null Last unresolved critical section error */
 	private $csmError;
 
-	/** var int An identifier for this class instance */
-	private $id;
-	/** @var int|null Integer ID of the managing LBFactory instance or null if none */
-	private $ownerId;
-
 	/** @var string Whether the database is a file on disk */
 	public const ATTR_DB_IS_FILE = 'db-is-file';
 	/** @var string Lock granularity is on the level of the entire database */
@@ -279,10 +274,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$params['schema'] != '' ? $params['schema'] : null,
 			$params['tablePrefix']
 		);
-
-		static $nextId;
-		$this->id = $nextId = ( is_int( $nextId ) ? $nextId++ : mt_rand() );
-		$this->ownerId = $params['ownerId'] ?? null;
 	}
 
 	/**
@@ -379,7 +370,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - agent: Optional name used to identify the end-user in query profiling/logging.
 	 *   - srvCache: Optional BagOStuff instance to an APC-style cache.
 	 *   - nonNativeInsertSelectBatchSize: Optional batch size for non-native INSERT SELECT.
-	 *   - ownerId: Optional integer ID of a LoadBalancer instance that manages this instance.
 	 *   - criticalSectionProvider: Optional CriticalSectionProvider instance.
 	 * @param int $connect One of the class constants (NEW_CONNECTED, NEW_UNCONNECTED) [optional]
 	 * @return Database|null If the database driver or extension cannot be found
@@ -403,7 +393,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				'lbInfo' => [],
 				'cliMode' => ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ),
 				'agent' => '',
-				'ownerId' => null,
 				'serverName' => null,
 				'topologyRole' => null,
 				'topologicalMaster' => null,
@@ -874,7 +863,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		);
 	}
 
-	final public function close( $fname = __METHOD__, $owner = null ) {
+	final public function close( $fname = __METHOD__ ) {
 		$error = null; // error to throw after disconnecting
 
 		$wasOpen = (bool)$this->conn;
@@ -896,16 +885,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$this->conn = null;
 
-		// Log or throw any unexpected errors after having disconnected
+		// Log any unexpected errors after having disconnected
 		if ( $error !== null ) {
-			// T217819, T231443: if this is probably just LoadBalancer trying to recover from
-			// errors and shutdown, then log any problems and move on since the request has to
+			// T217819, T231443: this is probably just LoadBalancer trying to recover from
+			// errors and shutdown. Log any problems and move on since the request has to
 			// end one way or another. Throwing errors is not very useful at some point.
-			if ( $this->ownerId !== null && $owner === $this->ownerId ) {
-				$this->queryLogger->error( $error, [ 'db_log_category' => 'query' ] );
-			} else {
-				throw new DBUnexpectedError( $this, $error );
-			}
+			$this->queryLogger->error( $error, [ 'db_log_category' => 'query' ] );
 		}
 
 		// Note that various subclasses call close() at the start of open(), which itself is
@@ -1536,27 +1521,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this,
 				$this->deprecationLogger,
 				$fname
-			);
-		}
-	}
-
-	/**
-	 * Assure that if this instance is owned, the caller is either the owner or is internal
-	 *
-	 * If a LoadBalancer owns the Database, then certain methods should only called through
-	 * that LoadBalancer to avoid broken contracts. Otherwise, those methods can publicly be
-	 * called by anything. In any case, internal methods from the Database itself should
-	 * always be allowed.
-	 *
-	 * @param string $fname
-	 * @param int|null $owner Owner ID of the caller
-	 * @throws DBTransactionError
-	 */
-	private function assertOwnership( $fname, $owner ) {
-		if ( $this->ownerId !== null && $owner !== $this->ownerId && $owner !== $this->id ) {
-			throw new DBTransactionError(
-				null,
-				"$fname: Database is owned by ID '{$this->ownerId}' (got '$owner')."
 			);
 		}
 	}
@@ -4775,8 +4739,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->transactionManager = $transactionManager;
 	}
 
-	public function flushSession( $fname = __METHOD__, $owner = null ) {
-		$this->assertOwnership( $fname, $owner );
+	public function flushSession( $fname = __METHOD__ ) {
 		if ( $this->trxLevel() ) {
 			// Any existing transaction should have been rolled back already
 			throw new DBUnexpectedError(
