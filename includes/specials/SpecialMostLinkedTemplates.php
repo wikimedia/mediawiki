@@ -80,11 +80,6 @@ class SpecialMostLinkedTemplates extends QueryPage {
 		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 		$queryInfo = $linksMigration->getQueryInfo( 'templatelinks' );
 		list( $ns, $title ) = $linksMigration->getTitleFields( 'templatelinks' );
-		$groupBy = [ $ns, $title ];
-		if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
-			// It's a bit hacky but we will clean it up later
-			$groupBy = 'tl_target_id';
-		}
 		return [
 			'tables' => $queryInfo['tables'],
 			'fields' => [
@@ -92,7 +87,7 @@ class SpecialMostLinkedTemplates extends QueryPage {
 				'title' => $title,
 				'value' => 'COUNT(*)'
 			],
-			'options' => [ 'GROUP BY' => $groupBy ],
+			'options' => [ 'GROUP BY' => [ $ns, $title ] ],
 			'join_conds' => $queryInfo['joins']
 		];
 	}
