@@ -5399,12 +5399,8 @@ class Parser {
 					} else {
 						# Validate internal parameters
 						switch ( $paramName ) {
-							case 'manualthumb':
 							case 'alt':
 							case 'class':
-								# @todo FIXME: Possibly check validity here for
-								# manualthumb? downstream behavior seems odd with
-								# missing manual thumbs.
 								$validated = true;
 								$value = $this->stripAltText( $value, $holders );
 								break;
@@ -5420,6 +5416,12 @@ class Parser {
 									}
 								}
 								break;
+							case 'manualthumb':
+								# @todo FIXME: Possibly check validity here for
+								# manualthumb? downstream behavior seems odd with
+								# missing manual thumbs.
+								$value = $this->stripAltText( $value, $holders );
+								// fall through
 							case 'frameless':
 							case 'framed':
 							case 'thumbnail':

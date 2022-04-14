@@ -1111,8 +1111,11 @@ parsoid=wt2html,wt2wt,html2html
 [[File:Foobar.jpg|frameless|frame|caption]]
 
 [[File:Foobar.jpg|frameless|thumb|caption]]
+
+[[File:Foobar.jpg|frameless|thumbnail=Thumb.png|caption]]
 !! html/php
 <p><a href="/wiki/File:Foobar.jpg" class="image" title="caption"><img alt="caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>
+</p><p><a href="/wiki/File:Foobar.jpg" class="image" title="caption"><img alt="caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>
 </p><p><a href="/wiki/File:Foobar.jpg" class="image" title="caption"><img alt="caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>
 </p><p><a href="/wiki/File:Foobar.jpg" class="image" title="caption"><img alt="caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>
 </p>
@@ -1132,7 +1135,9 @@ parsoid=wt2html,wt2wt,html2html
 [[File:Foobar.jpg|frame|caption]]
 [[File:Foobar.jpg|frame|frameless|caption]]
 [[File:Foobar.jpg|frame|thumb|caption]]
+[[File:Foobar.jpg|frame|thumbnail=Thumb.png|caption]]
 !! html/php
+<div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption">caption</div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption">caption</div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption">caption</div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:1943px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" class="thumbimage" /></a>  <div class="thumbcaption">caption</div></div></div>
@@ -1150,7 +1155,9 @@ parsoid=wt2html,wt2wt,html2html
 [[File:Foobar.jpg|thumb|caption]]
 [[File:Foobar.jpg|thumb|frameless|caption]]
 [[File:Foobar.jpg|thumb|frame|caption]]
+[[File:Foobar.jpg|thumb|thumbnail=Thumb.png|caption]]
 !! html/php
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
@@ -1158,6 +1165,23 @@ parsoid=wt2html,wt2wt,html2html
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x"/></a><figcaption>caption</figcaption></figure>
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x"/></a><figcaption>caption</figcaption></figure>
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x"/></a><figcaption>caption</figcaption></figure>
+!! end
+
+!! test
+Image with 'thumbnail=' first.
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+[[File:Foobar.jpg|thumbnail=Thumb.png|caption]]
+[[File:Foobar.jpg|thumbnail=Thumb.png|frameless|caption]]
+[[File:Foobar.jpg|thumbnail=Thumb.png|frame|caption]]
+[[File:Foobar.jpg|thumbnail=Thumb.png|thumb|caption]]
+!! html/php
+<div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><img alt="" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><img alt="" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><img alt="" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/File:Foobar.jpg" title="File:Foobar.jpg"><img alt="" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>caption</div></div></div>
+!! html/parsoid
 !! end
 
 ###################
