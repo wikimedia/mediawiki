@@ -3570,10 +3570,11 @@ class OutputPage extends ContextSource {
 		$vars['wgIsProbablyEditable'] = $this->getAuthority()->probablyCan( 'edit', $title );
 		$vars['wgRelevantPageIsProbablyEditable'] = $relevantTitle &&
 			$this->getAuthority()->probablyCan( 'edit', $relevantTitle );
-		foreach ( $services->getRestrictionStore()->listApplicableRestrictionTypes( $title ) as $type ) {
+		$restrictionStore = $services->getRestrictionStore();
+		foreach ( $restrictionStore->listApplicableRestrictionTypes( $title ) as $type ) {
 			// Following keys are set in $vars:
 			// wgRestrictionCreate, wgRestrictionEdit, wgRestrictionMove, wgRestrictionUpload
-			$vars['wgRestriction' . ucfirst( $type )] = $title->getRestrictions( $type );
+			$vars['wgRestriction' . ucfirst( $type )] = $restrictionStore->getRestrictions( $title, $type );
 		}
 		if ( $title->isMainPage() ) {
 			$vars['wgIsMainPage'] = true;

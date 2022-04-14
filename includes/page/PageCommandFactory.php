@@ -34,6 +34,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\PageUpdaterFactory;
@@ -153,6 +154,9 @@ class PageCommandFactory implements
 	/** @var ArchivedRevisionLookup */
 	private $archivedRevisionLookup;
 
+	/** @var RestrictionStore */
+	private $restrictionStore;
+
 	public function __construct(
 		Config $config,
 		LBFactory $lbFactory,
@@ -181,7 +185,8 @@ class PageCommandFactory implements
 		LoggerInterface $undeletePageLogger,
 		PageUpdaterFactory $pageUpdaterFactory,
 		ITextFormatter $contLangMsgTextFormatter,
-		ArchivedRevisionLookup $archivedRevisionLookup
+		ArchivedRevisionLookup $archivedRevisionLookup,
+		RestrictionStore $restrictionStore
 	) {
 		$this->config = $config;
 		$this->lbFactory = $lbFactory;
@@ -211,6 +216,7 @@ class PageCommandFactory implements
 		$this->pageUpdaterFactory = $pageUpdaterFactory;
 		$this->contLangMsgTextFormatter = $contLangMsgTextFormatter;
 		$this->archivedRevisionLookup = $archivedRevisionLookup;
+		$this->restrictionStore = $restrictionStore;
 	}
 
 	/**
@@ -309,7 +315,8 @@ class PageCommandFactory implements
 			$this->userEditTracker,
 			$this,
 			$this->collationFactory,
-			$this->pageUpdaterFactory
+			$this->pageUpdaterFactory,
+			$this->restrictionStore
 		);
 	}
 
