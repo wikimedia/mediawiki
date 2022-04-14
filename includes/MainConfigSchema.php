@@ -2928,32 +2928,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * RevisionStore table schema migration stage (content, slots, content_models & slot_roles
-	 * tables).
-	 *
-	 * Use the SCHEMA_COMPAT_XXX flags. Supported values:
-	 *
-	 * - SCHEMA_COMPAT_OLD
-	 * - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
-	 * - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
-	 * - SCHEMA_COMPAT_OLD
-	 *
-	 * Note that reading the old and new schema at the same time is not supported.
-	 * Attempting to set both read bits in $wgMultiContentRevisionSchemaMigrationStage
-	 * will result in an InvalidArgumentException.
-	 *
-	 * @see Task: https://phabricator.wikimedia.org/T174028
-	 * @see Commit: https://gerrit.wikimedia.org/r/#/c/378724/
-	 * @since 1.32
-	 * @deprecated Since 1.35, the only accepted value is SCHEMA_COMPAT_NEW.
-	 * No longer functions as a setting. Will be removed in 1.36.
-	 */
-	public const MultiContentRevisionSchemaMigrationStage = [
-		'default' => SCHEMA_COMPAT_NEW,
-		'type' => 'integer',
-	];
-
-	/**
 	 * Actor table schema migration stage, for migration from the temporary table
 	 * revision_actor_temp to the revision.rev_actor field.
 	 *
