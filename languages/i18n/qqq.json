@@ -2738,6 +2738,7 @@
 	"deleteprotected": "Used as error message when deleting the page. (If protection keeps the user from editing, the same user shouldn't be able to delete.)",
 	"deleting-backlinks-warning": "A warning shown when a page that is being deleted has at least one link to it or is transcluded in at least one page.",
 	"deleting-subpages-warning": "A warning shown when a page that is being deleted has at least one subpage. $1 is the number of subpages of the page. For any number of subpages over 50, $1 will be 51.\nSee also:\n* {{msg-mw|Deleting-backlinks-warning}}",
+	"deleting-talkpage-subpages-warning": "A warning shown when the associated talk page of a page that is being deleted has at least one subpage. $1 is the number of subpages of the page. For any number of subpages over 50, $1 will be 51.\nSee also:\n* {{msg-mw|Deleting-backlinks-warning}}",
 	"rollback": "{{Identical|Rollback}}",
 	"rollback-confirmation-confirm": "Prompt which asks the user to confirm that they want to really perform the rollback action after clicking on the rollback button.",
 	"rollback-confirmation-yes": "Button text to confirm that a rollback should be executed.",
