@@ -1568,17 +1568,7 @@ return [
 	},
 
 	'RevisionStoreFactory' => static function ( MediaWikiServices $services ): RevisionStoreFactory {
-		$config = $services->getMainConfig();
-
-		if ( $config->has( 'MultiContentRevisionSchemaMigrationStage' ) ) {
-			if ( $config->get( MainConfigNames::MultiContentRevisionSchemaMigrationStage ) !== SCHEMA_COMPAT_NEW ) {
-				throw new UnexpectedValueException(
-					'The MultiContentRevisionSchemaMigrationStage setting is no longer supported!'
-				);
-			}
-		}
-
-		$store = new RevisionStoreFactory(
+		return new RevisionStoreFactory(
 			$services->getDBLoadBalancerFactory(),
 			$services->getBlobStoreFactory(),
 			$services->getNameTableStoreFactory(),
@@ -1594,8 +1584,6 @@ return [
 			$services->getTitleFactory(),
 			$services->getHookContainer()
 		);
-
-		return $store;
 	},
 
 	'RollbackPageFactory' => static function ( MediaWikiServices $services ): RollbackPageFactory {

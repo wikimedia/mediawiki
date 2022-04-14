@@ -920,10 +920,6 @@ return [
 		'MaxExecutionTimeForExpensiveQueries' => [
 			'default' => 0,
 		],
-		'MultiContentRevisionSchemaMigrationStage' => [
-			'default' => 768,
-			'type' => 'integer',
-		],
 		'ActorTableSchemaMigrationStage' => [
 			'default' => 48,
 			'type' => 'integer',
