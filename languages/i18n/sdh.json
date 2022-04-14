@@ -7,7 +7,8 @@
 			"Kurdbuddha",
 			"Mjbmr",
 			"Paraw2",
-			"아라"
+			"아라",
+			"NR Deblocked"
 		]
 	},
 	"underline-always": "هەمیشە",
@@ -117,6 +118,7 @@
 	"talk": "وەتوویش",
 	"views": "دۊننەگان",
 	"toolbox": "ئامڕازەگان",
+	"cactions": "فرەتر",
 	"otherlanguages": "وە زوانەیل ترەک",
 	"redirectedfrom": "(ڕەوانەکریاێ لە $1)",
 	"redirectto": "ڕەوانەکردن ئەڕاێ:",
@@ -659,7 +661,6 @@
 	"special-characters-group-thai": "تایلەندی",
 	"special-characters-group-lao": "لائۆ",
 	"special-characters-group-khmer": "کمێر",
-	"view-view-foreign": "لە $1 بۊنەی",
 	"view-create-local": "وەسف ناوچەیی ئزافە بکە",
 	"nstab-mainpage": "دەسپێک",
 	"skin-action-protect": "بپیەرێزەێ",

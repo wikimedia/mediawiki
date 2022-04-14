@@ -1699,7 +1699,7 @@
 	"upload_directory_read_only": "파일 저장 디렉터리($1)에 쓰기 권한이 없습니다.",
 	"uploaderror": "올리기 오류",
 	"upload-recreate-warning": "<strong>경고: 해당 이름으로 된 파일이 삭제되었거나 이동되었습니다.</strong>\n\n편의를 위해 이 문서에 대한 삭제와 이동 기록을 다음과 같이 제공합니다:",
-	"uploadtext": "파일을 올리기 위해서는 아래의 양식을 채워주세요.\n[[Special:FileList|파일 목록]]에서 이전에 올라온 파일을 검색할 수 있습니다. [[Special:Log/upload|올리기 기록]]에는 파일이 올라온 기록이 남습니다. 삭제 기록은 [[Special:Log/delete|삭제 기록]]에서 볼 수 있습니다.\n\n문서에 파일을 넣으려면 아래 방법 중 하나를 사용하세요.\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code></strong> 파일의 온전한 모양을 사용하고자 할 때\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200픽셀|섬네일|왼쪽|설명]]</nowiki></code></strong> 파일의 너비를 200픽셀로 하고 왼쪽 정렬하며 '설명' 이라는 주석을 파일 밑에 달 때\n* <strong><code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code></strong> 파일을 직접 표시하지 않고 파일로 바로 링크할 때",
+	"uploadtext": "파일을 올리기 위해서는 아래의 양식을 채워주세요.\n이전에 올라온 파일을 보거나 검색하려면 [[Special:FileList|올라온 파일 목록]]으로 이동합니다. 올리기 및 다시 올리기는 [[Special:Log/upload|올리기 기록]]에 기록됩니다. 삭제는 [[Special:Log/delete|삭제 기록]]에 기록됩니다.\n\n문서에 파일을 넣으려면 아래 방법 중 하나를 사용하세요:\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code></strong> 파일의 온전한 모양을 사용하고자 할 때\n* <strong><code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200픽셀|섬네일|왼쪽|설명]]</nowiki></code></strong> 파일의 너비를 200픽셀로 하고 왼쪽 정렬하며 '설명' 이라는 주석을 파일 밑에 달 때\n* <strong><code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code></strong> 파일을 직접 표시하지 않고 파일로 바로 링크할 때",
 	"upload-permitted": "허용된 파일 {{PLURAL:$2|형식}}: $1",
 	"upload-preferred": "권장 파일 {{PLURAL:$2|형식}}: $1",
 	"upload-prohibited": "금지된 파일 {{PLURAL:$2|형식}}: $1",
