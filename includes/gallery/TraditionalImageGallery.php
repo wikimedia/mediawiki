@@ -104,42 +104,23 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				$img = false;
 			}
 
-			$params = $this->getThumbParams( $img );
-			$transformOptions = $params + $handlerOpts;
+			$transformOptions = $this->getThumbParams( $img ) + $handlerOpts;
+			$thumb = $img ? $img->transform( $transformOptions ) : false;
 
-			if ( $img ) {
-				$thumb = $img->transform( $transformOptions );
-			} else {
-				$thumb = false;
-			}
-
-			switch ( $img ? $img->getMediaType() : '' ) {
-				case 'AUDIO':
-					$rdfaType = 'mw:Audio';
-					break;
-				case 'VIDEO':
-					$rdfaType = 'mw:Video';
-					break;
-				default:
-					$rdfaType = 'mw:Image';
-			}
+			$rdfaType = [
+				'AUDIO' => 'mw:Audio',
+				'VIDEO' => 'mw:Video',
+			][ $img ? $img->getMediaType() : '' ] ?? 'mw:Image';
 
 			if ( !$img || !$thumb ) {
 				$rdfaType = 'mw:Error ' . $rdfaType;
 
-				$thumbhtml = Linker::makeBrokenImageLinkObj(
-					$nt, '', '', '', '', false, $transformOptions
-				);
-				$thumbhtml = Html::rawElement(
-					'span', [ 'typeof' => $rdfaType ], $thumbhtml
-				);
-
 				if ( $enableLegacyMediaDOM ) {
-					if ( $img ) {
-						$thumbhtml = htmlspecialchars( $img->getLastError() );
-					} else {
-						$thumbhtml = htmlspecialchars( $nt->getText() );
-					}
+					$thumbhtml = htmlspecialchars( $img ? $img->getLastError() : $nt->getText() );
+				} else {
+					$thumbhtml = Linker::makeBrokenImageLinkObj( $nt, '', '', '', '', false,
+						$transformOptions );
+					$thumbhtml = Html::rawElement( 'span', [ 'typeof' => $rdfaType ], $thumbhtml );
 				}
 
 				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: '
@@ -188,9 +169,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					$thumbhtml = Html::rawElement(
 						'span', [ 'typeof' => $rdfaType ], $thumbhtml
 					);
-				}
-
-				if ( $enableLegacyMediaDOM ) {
+				} else {
 					$thumbhtml = Html::rawElement( 'div', [
 						# Auto-margin centering for block-level elements. Needed
 						# now that we have video handlers since they may emit block-
@@ -217,10 +196,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					if ( $handler ) {
 						$handler->parserTransformHook( $this->mParser, $img );
 					}
-					if ( $img ) {
-						$this->mParser->modifyImageHtml(
-							$img, [ 'handler' => $imageParameters ], $thumbhtml );
-					}
+					$this->mParser->modifyImageHtml(
+						$img, [ 'handler' => $imageParameters ], $thumbhtml );
 				}
 			}
 
@@ -244,13 +221,9 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				$this->getCaptionHtml( $nt, $lang, $linkRenderer ) :
 				'';
 
-			$galleryText = $textlink . $text . $meta;
-			$galleryText = $this->wrapGalleryText( $galleryText, $thumb );
+			$galleryText = $this->wrapGalleryText( $textlink . $text . $meta, $thumb );
 
-			$gbWidth = $this->getGBWidth( $thumb ) . 'px';
-			if ( $this->getGBWidthOverwrite( $thumb ) ) {
-				$gbWidth = $this->getGBWidthOverwrite( $thumb );
-			}
+			$gbWidth = $this->getGBWidthOverwrite( $thumb ) ?: $this->getGBWidth( $thumb ) . 'px';
 			# Weird double wrapping (the extra div inside the li) needed due to FF2 bug
 			# Can be safely removed if FF2 falls completely out of existence
 			$output .= "\n\t\t" . '<li class="gallerybox" style="width: '
@@ -372,7 +345,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	/**
 	 * Get the transform parameters for a thumbnail.
 	 *
-	 * @param File $img The file in question. May be false for invalid image
+	 * @param File|false $img The file in question. May be false for invalid image
 	 * @return array
 	 */
 	protected function getThumbParams( $img ) {
@@ -400,7 +373,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 * plus padding on gallerybox.
 	 *
 	 * @note Important: parameter will be false if no thumb used.
-	 * @param MediaTransformOutput|false $thumb MediaTransformObject object or false.
+	 * @param MediaTransformOutput|false $thumb
 	 * @return float Width of gallerybox element
 	 */
 	protected function getGBWidth( $thumb ) {
@@ -415,7 +388,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	 * plus padding on gallerybox.
 	 *
 	 * @note Important: parameter will be false if no thumb used.
-	 * @param MediaTransformOutput|false $thumb MediaTransformObject object or false.
+	 * @param MediaTransformOutput|false $thumb
 	 * @return string|false Ignored if false.
 	 */
 	protected function getGBWidthOverwrite( $thumb ) {

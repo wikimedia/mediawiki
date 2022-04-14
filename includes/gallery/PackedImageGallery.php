@@ -47,7 +47,7 @@ class PackedImageGallery extends TraditionalImageGallery {
 	}
 
 	/**
-	 * @param File $img The file being transformed. May be false
+	 * @param File|false $img The file being transformed. May be false
 	 * @return array
 	 */
 	protected function getThumbParams( $img ) {
