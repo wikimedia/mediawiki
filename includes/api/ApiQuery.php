@@ -105,6 +105,7 @@ class ApiQuery extends ApiBase {
 				'TitleFormatter',
 				'WatchedItemStore',
 				'LanguageConverterFactory',
+				'RestrictionStore',
 			],
 		],
 		'links' => [

@@ -196,6 +196,7 @@ class ImportImages extends Maintenance {
 		$count = count( $files );
 		if ( $count > 0 ) {
 			$lbFactory = $services->getDBLoadBalancerFactory();
+			$restrictionStore = $services->getRestrictionStore();
 			foreach ( $files as $file ) {
 				if ( $sleep && ( $processed > 0 ) ) {
 					sleep( $sleep );
@@ -383,7 +384,7 @@ class ImportImages extends Maintenance {
 
 						$cascade = false;
 						$restrictions = [];
-						foreach ( $title->getRestrictionTypes() as $type ) {
+						foreach ( $restrictionStore->listApplicableRestrictionTypes( $title ) as $type ) {
 							$restrictions[$type] = $protectLevel;
 						}
 
