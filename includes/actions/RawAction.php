@@ -30,6 +30,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 
@@ -53,6 +54,9 @@ class RawAction extends FormlessAction {
 	/** @var RevisionLookup */
 	private $revisionLookup;
 
+	/** @var RestrictionStore */
+	private $restrictionStore;
+
 	/**
 	 * @param Page $page
 	 * @param IContextSource $context
@@ -60,6 +64,7 @@ class RawAction extends FormlessAction {
 	 * @param Parser $parser
 	 * @param PermissionManager $permissionManager
 	 * @param RevisionLookup $revisionLookup
+	 * @param RestrictionStore $restrictionStore
 	 */
 	public function __construct(
 		Page $page,
@@ -67,13 +72,15 @@ class RawAction extends FormlessAction {
 		HookContainer $hookContainer,
 		Parser $parser,
 		PermissionManager $permissionManager,
-		RevisionLookup $revisionLookup
+		RevisionLookup $revisionLookup,
+		RestrictionStore $restrictionStore
 	) {
 		parent::__construct( $page, $context );
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->parser = $parser;
 		$this->permissionManager = $permissionManager;
 		$this->revisionLookup = $revisionLookup;
+		$this->restrictionStore = $restrictionStore;
 	}
 
 	public function getName() {
@@ -171,12 +178,13 @@ class RawAction extends FormlessAction {
 		// but for now be more permissive. Allowing protected pages outside of
 		// NS_USER and NS_MEDIAWIKI in particular should be considered a temporary
 		// allowance.
+		$pageRestrictions = $this->restrictionStore->getRestrictions( $title, 'edit' );
 		if (
 			$contentType === 'text/javascript' &&
 			!$title->isUserJsConfigPage() &&
 			!$title->inNamespace( NS_MEDIAWIKI ) &&
-			!in_array( 'sysop', $title->getRestrictions( 'edit' ) ) &&
-			!in_array( 'editprotected', $title->getRestrictions( 'edit' ) )
+			!in_array( 'sysop', $pageRestrictions ) &&
+			!in_array( 'editprotected', $pageRestrictions )
 		) {
 
 			$log = LoggerFactory::getInstance( "security" );
