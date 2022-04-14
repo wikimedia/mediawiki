@@ -31,6 +31,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
@@ -134,6 +135,9 @@ class MovePage {
 	/** @var PageUpdaterFactory */
 	private $pageUpdaterFactory;
 
+	/** @var RestrictionStore */
+	private $restrictionStore;
+
 	/**
 	 * @internal Extensions should use the MovePageFactory.
 	 *
@@ -154,6 +158,7 @@ class MovePage {
 	 * @param MovePageFactory|null $movePageFactory
 	 * @param CollationFactory|null $collationFactory
 	 * @param PageUpdaterFactory|null $pageUpdaterFactory
+	 * @param RestrictionStore|null $restrictionStore
 	 * @deprecated since 1.34, hard deprecated since 1.37. Use MovePageFactory instead.
 	 */
 	public function __construct(
@@ -173,7 +178,8 @@ class MovePage {
 		UserEditTracker $userEditTracker = null,
 		MovePageFactory $movePageFactory = null,
 		CollationFactory $collationFactory = null,
-		PageUpdaterFactory $pageUpdaterFactory = null
+		PageUpdaterFactory $pageUpdaterFactory = null,
+		RestrictionStore $restrictionStore = null
 	) {
 		if ( !$options ) {
 			wfDeprecatedMsg(
@@ -210,6 +216,7 @@ class MovePage {
 		$this->movePageFactory = $movePageFactory ?? $services()->getMovePageFactory();
 		$this->collationFactory = $collationFactory ?? $services()->getCollationFactory();
 		$this->pageUpdaterFactory = $pageUpdaterFactory ?? $services()->getPageUpdaterFactory();
+		$this->restrictionStore = $restrictionStore ?? $services()->getRestrictionStore();
 	}
 
 	/**
@@ -679,7 +686,7 @@ class MovePage {
 		$this->hookRunner->onTitleMoveStarting( $this->oldTitle, $this->newTitle, $userObj );
 
 		$pageid = $this->oldTitle->getArticleID( Title::READ_LATEST );
-		$protected = $this->oldTitle->isProtected();
+		$protected = $this->restrictionStore->isProtected( $this->oldTitle );
 
 		// Attempt the actual move
 		$moveAttemptResult = $this->moveToInternal( $user, $this->newTitle, $reason, $createRedirect,

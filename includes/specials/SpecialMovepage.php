@@ -27,6 +27,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -101,6 +102,9 @@ class MovePageForm extends UnlistedSpecialPage {
 	/** @var WatchlistManager */
 	private $watchlistManager;
 
+	/** @var RestrictionStore */
+	private $restrictionStore;
+
 	/**
 	 * @param MovePageFactory $movePageFactory
 	 * @param PermissionManager $permManager
@@ -113,6 +117,7 @@ class MovePageForm extends UnlistedSpecialPage {
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param SearchEngineFactory $searchEngineFactory
 	 * @param WatchlistManager $watchlistManager
+	 * @param RestrictionStore $restrictionStore
 	 */
 	public function __construct(
 		MovePageFactory $movePageFactory,
@@ -125,7 +130,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		RepoGroup $repoGroup,
 		WikiPageFactory $wikiPageFactory,
 		SearchEngineFactory $searchEngineFactory,
-		WatchlistManager $watchlistManager
+		WatchlistManager $watchlistManager,
+		RestrictionStore $restrictionStore
 	) {
 		parent::__construct( 'Movepage' );
 		$this->movePageFactory = $movePageFactory;
@@ -139,6 +145,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->searchEngineFactory = $searchEngineFactory;
 		$this->watchlistManager = $watchlistManager;
+		$this->restrictionStore = $restrictionStore;
 	}
 
 	public function doesWrites() {
@@ -383,9 +390,9 @@ class MovePageForm extends UnlistedSpecialPage {
 			$out->addHTML( Html::errorBox( $errMsgHtml ) );
 		}
 
-		if ( $this->oldTitle->isProtected( 'move' ) ) {
+		if ( $this->restrictionStore->isProtected( $this->oldTitle, 'move' ) ) {
 			# Is the title semi-protected?
-			if ( $this->oldTitle->isSemiProtected( 'move' ) ) {
+			if ( $this->restrictionStore->isSemiProtected( $this->oldTitle, 'move' ) ) {
 				$noticeMsg = 'semiprotectedpagemovewarning';
 			} else {
 				# Then it must be protected based on static groups (regular)

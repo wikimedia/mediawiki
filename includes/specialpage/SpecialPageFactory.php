@@ -899,6 +899,7 @@ class SpecialPageFactory {
 				'WikiPageFactory',
 				'SearchEngineFactory',
 				'WatchlistManager',
+				'RestrictionStore',
 			]
 		],
 		'Mycontributions' => [
