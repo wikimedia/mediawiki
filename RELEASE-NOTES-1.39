@@ -107,8 +107,6 @@ because of Phabricator reports.
 * Changes to ResourceLoader modules:
   - The mediawiki.viewport module, deprecated in 1.37 has been
      removed. Use IntersectionObserver instead.
-* Use of the SiteStatsUpdate constructor has been deprecated in favor of
-  the ::factory() method.
 * Changes to skins:
   - Skin::getCopyrightIcon(), ::getPoweredBy(), deprecated in 1.37 have been
     removed.
@@ -129,6 +127,8 @@ because of Phabricator reports.
 * PageProps::getInstance(), deprecated since 1.38, emits deprecations warnings.
 * SpecialRedirectWithAction::__construct without SearchEngineFactory argument
   is hard deprecated.
+* Use of the SiteStatsUpdate constructor has been deprecated in favor of
+  the ::factory() method.
 * The following global functions are deprecated in favor of the listed UrlUtils
   methods.
   - wfExpandUrl -> UrlUtils::expand
