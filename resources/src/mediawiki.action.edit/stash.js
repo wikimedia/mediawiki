@@ -1,30 +1,29 @@
 /*!
- * Scripts for pre-emptive edit preparing on action=edit
+ * Pre-emptive page parsing edits.
+ *
+ * See also PageEditStash in PHP.
  */
 $( function () {
-	var idleTimeout = 3000,
-		api = new mw.Api(),
-		timer,
-		stashReq,
-		lastText,
-		lastSummary,
-		lastTextHash,
-		$form = $( '#editform' ),
-		$text = $form.find( '#wpTextbox1' ),
-		$summary = $form.find( '#wpSummary' ),
-		section = $form.find( '[name=wpSection]' ).val(),
-		model = $form.find( '[name=model]' ).val(),
-		format = $form.find( '[name=format]' ).val(),
-		revId = $form.find( '[name=parentRevId]' ).val(),
-		lastPriority = 0,
-		PRIORITY_LOW = 1,
-		PRIORITY_HIGH = 2;
+	var PRIORITY_LOW = 1;
+	var PRIORITY_HIGH = 2;
 
-	// We don't attempt to stash new section edits because in such cases the parser output
-	// varies on the edit summary (since it determines the new section's name).
+	// Do not attempt to stash "new section" edits, because for those cases the ParserOutput
+	// varies on the edit summary field, and thus pre-parsing the page whilst that field is
+	// being typed in would be counter-productive. (The field is re-purposed for the new
+	// section's heading.)
+	var $form = $( '#editform' );
+	var section = $form.find( '[name=wpSection]' ).val();
 	if ( !$form.length || section === 'new' ) {
 		return;
 	}
+
+	var lastText, lastSummary, lastTextHash;
+	var lastPriority = 0;
+	var $text = $form.find( '#wpTextbox1' );
+	var $summary = $form.find( '#wpSummary' );
+	var model = $form.find( '[name=model]' ).val();
+	var format = $form.find( '[name=format]' ).val();
+	var revId = $form.find( '[name=parentRevId]' ).val();
 
 	// Whether the body text content changed since the last stashEdit()
 	function isTextChanged() {
@@ -39,9 +38,11 @@ $( function () {
 	// Send a request to stash the edit to the API.
 	// If a request is in progress, abort it since its payload is stale and the API
 	// may limit concurrent stash parses.
+	var api = new mw.Api();
+	var stashReq;
 	function stashEdit() {
-		var textChanged = isTextChanged(),
-			priority = textChanged ? PRIORITY_HIGH : PRIORITY_LOW;
+		var textChanged = isTextChanged();
+		var priority = textChanged ? PRIORITY_HIGH : PRIORITY_LOW;
 
 		if ( stashReq ) {
 			if ( lastPriority > priority ) {
@@ -103,6 +104,8 @@ $( function () {
 		stashEdit();
 	}
 
+	var idleTimeout = 3000;
+	var timer;
 	function onKeyUp( e ) {
 		// Ignore keystrokes that don't modify text, like cursor movements.
 		// See <http://www.javascripter.net/faq/keycodes.htm> and
