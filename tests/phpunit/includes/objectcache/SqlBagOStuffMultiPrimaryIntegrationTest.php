@@ -5,13 +5,7 @@
  * @group Database
  * @covers SqlBagOStuff
  */
-class SqlBagOStuffMultiMysqlIntegrationTest extends BagOStuffTestBase {
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->markTestSkippedIfDbType( 'mysql' );
-	}
-
+class SqlBagOStuffMultiPrimaryIntegrationTest extends BagOStuffTestBase {
 	protected function newCacheInstance() {
 		return ObjectCache::newFromParams( [
 			'class' => SqlBagOStuff::class,
