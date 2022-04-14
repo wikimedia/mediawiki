@@ -938,6 +938,13 @@ CREATE INDEX user_email_token ON "user" (user_email_token);
 CREATE INDEX user_email ON "user" (user_email);
 
 
+CREATE TABLE user_autocreate_serial (
+  uas_shard INT NOT NULL,
+  uas_value INT NOT NULL,
+  PRIMARY KEY(uas_shard)
+);
+
+
 CREATE TABLE revision (
   rev_id SERIAL NOT NULL,
   rev_page INT NOT NULL,

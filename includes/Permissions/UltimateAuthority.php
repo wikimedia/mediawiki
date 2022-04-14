@@ -37,12 +37,17 @@ class UltimateAuthority implements Authority {
 	/** @var UserIdentity */
 	private $actor;
 
+	/** @var bool */
+	private $isTemp;
+
 	/**
 	 * @stable to call
 	 * @param UserIdentity $actor
+	 * @param bool $isTemp
 	 */
-	public function __construct( UserIdentity $actor ) {
+	public function __construct( UserIdentity $actor, $isTemp = false ) {
 		$this->actor = $actor;
+		$this->isTemp = $isTemp;
 	}
 
 	/**
@@ -167,4 +172,15 @@ class UltimateAuthority implements Authority {
 		return true;
 	}
 
+	public function isRegistered(): bool {
+		return $this->actor->isRegistered();
+	}
+
+	public function isTemp(): bool {
+		return $this->isTemp;
+	}
+
+	public function isNamed(): bool {
+		return $this->isRegistered() && !$this->isTemp();
+	}
 }

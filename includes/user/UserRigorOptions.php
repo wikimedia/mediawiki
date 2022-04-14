@@ -32,7 +32,8 @@ interface UserRigorOptions {
 	/**
 	 * @var string
 	 *
-	 * Check that a user name is valid for batch processes, login and account creation
+	 * Check that a user name is valid for batch processes, login and account
+	 * creation. This does not allow auto-created temporary user patterns.
 	 */
 	public const RIGOR_CREATABLE = 'creatable';
 

@@ -3567,6 +3567,26 @@
 		"pk": [ "user_id" ]
 	},
 	{
+		"name": "user_autocreate_serial",
+		"comment": "Table for sequential name generation for auto-created temporary users",
+		"columns": [
+			{
+				"name": "uas_shard",
+				"comment": "The segment of ID space, ID mod N, referred to by this row",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "uas_value",
+				"comment": "The maximum allocated ID value",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			}
+		],
+		"indexes": [],
+		"pk": [ "uas_shard" ]
+	},
+	{
 		"name": "revision",
 		"comment": "Every edit of a page creates also a revision row. This stores metadata about the revision, and a reference to the text storage backend.",
 		"columns": [
