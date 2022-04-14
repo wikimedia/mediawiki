@@ -43,6 +43,8 @@ use ReadOnlyMode;
 use RepoGroup;
 use Status;
 use StatusValue;
+use Wikimedia\Message\ITextFormatter;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use WikiPage;
@@ -100,6 +102,8 @@ class UndeletePage {
 	private $tags = [];
 	/** @var WikiPage|null If not null, it means that we have to undelete it. */
 	private $associatedTalk;
+	/** @var ITextFormatter */
+	private $contLangMsgTextFormatter;
 
 	/**
 	 * @internal Create via the UndeletePageFactory service.
@@ -115,6 +119,7 @@ class UndeletePage {
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param ArchivedRevisionLookup $archivedRevisionLookup
 	 * @param NamespaceInfo $namespaceInfo
+	 * @param ITextFormatter $contLangMsgTextFormatter
 	 * @param ProperPageIdentity $page
 	 * @param Authority $performer
 	 */
@@ -131,6 +136,7 @@ class UndeletePage {
 		IContentHandlerFactory $contentHandlerFactory,
 		ArchivedRevisionLookup $archivedRevisionLookup,
 		NamespaceInfo $namespaceInfo,
+		ITextFormatter $contLangMsgTextFormatter,
 		ProperPageIdentity $page,
 		Authority $performer
 	) {
@@ -146,6 +152,7 @@ class UndeletePage {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->archivedRevisionLookup = $archivedRevisionLookup;
 		$this->namespaceInfo = $namespaceInfo;
+		$this->contLangMsgTextFormatter = $contLangMsgTextFormatter;
 
 		$this->page = $page;
 		$this->performer = $performer;
@@ -355,7 +362,10 @@ class UndeletePage {
 			$this->addLogEntry( $this->page, $comment, $textRestored, $filesRestored );
 		}
 		if ( $talkRestored ) {
-			$this->addLogEntry( $this->associatedTalk, $comment, $talkRestored, 0 );
+			$talkRestoredComment = $this->contLangMsgTextFormatter->format(
+				MessageValue::new( 'undelete-talk-summary-prefix' )->params( $comment )
+			);
+			$this->addLogEntry( $this->associatedTalk, $talkRestoredComment, $talkRestored, 0 );
 		}
 
 		return $resStatus;

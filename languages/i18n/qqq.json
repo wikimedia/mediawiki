@@ -2864,6 +2864,7 @@
 	"undelete-bad-store-key": "Used as error message. Parameters:\n* $1 - timestamp (date and time)",
 	"undelete-cleanup-error": "Used as error message. Parameters:\n* $1 - file path",
 	"undelete-missing-filearchive": "Used as error message. Parameters:\n* $1 - missing ID",
+	"undelete-talk-summary-prefix": "Prefix used for the undeletion summary when restoring the associated talk page.\n\nParameters:\n* $1 - summary used for the base page undeletion",
 	"undelete-error": "Page title when a page could not be undeleted",
 	"undelete-error-associated-alreadytalk": "Error message shown when attempting to undelete the associated talk page of a page in the talk namespace.",
 	"undelete-error-associated-notdeleted": "Error message shown when attempting to undelete the associated talk page but it has no revisions to undelete.",
