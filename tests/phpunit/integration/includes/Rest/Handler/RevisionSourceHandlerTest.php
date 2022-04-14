@@ -77,7 +77,7 @@ class RevisionSourceHandlerTest extends MediaWikiIntegrationTestCase {
 			[ 'pathParams' => [ 'id' => $firstRev->getId() ] ]
 		);
 
-		$htmlUrl = "https://wiki.example.com/rest/coredev/v0/revision/{$firstRev->getId()}/html";
+		$htmlUrl = "https://wiki.example.com/rest/v1/revision/{$firstRev->getId()}/html";
 
 		$handler = $this->newHandler();
 		$config = [ 'format' => 'bare' ];
