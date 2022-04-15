@@ -822,6 +822,7 @@
 	"boteditletter": "b",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} addabòi mudìfigga",
 	"newsectionsummary": "/* $1 */ noba sezzioni",
+	"rc-old-title": "originariamenti criadda cumenti „$1“",
 	"recentchangeslinked": "Mudìfigghi curriraddi",
 	"recentchangeslinked-feed": "Mudìfigghi curriraddi",
 	"recentchangeslinked-toolbox": "Mudìfigghi curriraddi",
