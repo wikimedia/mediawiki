@@ -24,6 +24,7 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -227,10 +228,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			'pl_namespace' => $target->getNamespace(),
 			'pl_title' => $target->getDBkey(),
 		];
-		$conds['templatelinks'] = [
-			'tl_namespace' => $target->getNamespace(),
-			'tl_title' => $target->getDBkey(),
-		];
+		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+		$conds['templatelinks'] = $linksMigration->getLinksConditions( 'templatelinks', $target );
 		$conds['imagelinks'] = [
 			'il_to' => $target->getDBkey(),
 		];
