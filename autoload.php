@@ -1087,6 +1087,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Languages\\LanguageFactory' => __DIR__ . '/includes/language/LanguageFactory.php',
 	'MediaWiki\\Languages\\LanguageFallback' => __DIR__ . '/includes/language/LanguageFallback.php',
 	'MediaWiki\\Languages\\LanguageNameUtils' => __DIR__ . '/includes/language/LanguageNameUtils.php',
+	'MediaWiki\\Maintenance\\MaintenanceRunner' => __DIR__ . '/maintenance/includes/MaintenanceRunner.php',
 	'MediaWiki\\ProcOpenError' => __DIR__ . '/includes/exception/ProcOpenError.php',
 	'MediaWiki\\ShellDisabledError' => __DIR__ . '/includes/exception/ShellDisabledError.php',
 	'MediaWiki\\Skin\\ComponentRegistryContext' => __DIR__ . '/includes/skins/components/ComponentRegistryContext.php',
