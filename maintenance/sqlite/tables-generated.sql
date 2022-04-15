@@ -270,7 +270,7 @@ CREATE INDEX ctd_user_defined ON /*_*/change_tag_def (ctd_user_defined);
 
 
 CREATE TABLE /*_*/ipblocks_restrictions (
-  ir_ipb_id INTEGER NOT NULL,
+  ir_ipb_id INTEGER UNSIGNED NOT NULL,
   ir_type SMALLINT NOT NULL,
   ir_value INTEGER UNSIGNED NOT NULL,
   PRIMARY KEY(ir_ipb_id, ir_type, ir_value)
@@ -708,7 +708,7 @@ CREATE TABLE /*_*/ipblocks (
   ipb_range_end BLOB NOT NULL, ipb_deleted SMALLINT DEFAULT 0 NOT NULL,
   ipb_block_email SMALLINT DEFAULT 0 NOT NULL,
   ipb_allow_usertalk SMALLINT DEFAULT 0 NOT NULL,
-  ipb_parent_block_id INTEGER DEFAULT NULL,
+  ipb_parent_block_id INTEGER UNSIGNED DEFAULT NULL,
   ipb_sitewide SMALLINT DEFAULT 1 NOT NULL
 );
 
