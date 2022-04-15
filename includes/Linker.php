@@ -336,7 +336,11 @@ class Linker {
 		$enableLegacyMediaDOM = $config->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 
 		$classes = [];
-		if ( !isset( $handlerParams['width'] ) ) {
+		if (
+			!isset( $handlerParams['width'] ) &&
+			!isset( $frameParams['manualthumb'] ) &&
+			!isset( $frameParams['framed'] )
+		) {
 			$classes[] = 'mw-default-size';
 		}
 
@@ -582,13 +586,14 @@ class Linker {
 			'caption' => $label,
 			'align' => $align
 		];
-		if ( $framed ) {
-			$frameParams['framed'] = true;
-		}
+		$classes = [];
 		if ( $manualthumb ) {
 			$frameParams['manualthumb'] = $manualthumb;
+		} elseif ( $framed ) {
+			$frameParams['framed'] = true;
+		} elseif ( !isset( $params['width'] ) ) {
+			$classes[] = 'mw-default-size';
 		}
-		$classes = [ 'mw-default-size' ];
 		return self::makeThumbLink2(
 			$title, $file, $frameParams, $params, false, '', $classes
 		);
