@@ -21,6 +21,7 @@ use NamespaceInfo;
 use Psr\Log\NullLogger;
 use ReadOnlyMode;
 use RepoGroup;
+use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Rdbms\ILoadBalancer;
 use WikiPage;
 
@@ -54,6 +55,7 @@ class UndeletePageTest extends MediaWikiUnitTestCase {
 			$this->createMock( IContentHandlerFactory::class ),
 			$archivedRevisionLookup ?? $this->createMock( ArchivedRevisionLookup::class ),
 			$namespaceInfo ?? $this->createMock( NamespaceInfo::class ),
+			$this->createMock( ITextFormatter::class ),
 			$page ?? $this->createMock( ProperPageIdentity::class ),
 			$this->createMock( Authority::class )
 		);

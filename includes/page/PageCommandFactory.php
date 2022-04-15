@@ -367,6 +367,7 @@ class PageCommandFactory implements
 			$this->contentHandlerFactory,
 			$this->archivedRevisionLookup,
 			$this->namespaceInfo,
+			$this->contLangMsgTextFormatter,
 			$page,
 			$authority
 		);
