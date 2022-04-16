@@ -106,6 +106,8 @@ because of Phabricator reports.
   can use ObjectCache::getInstance() instead.
 * The global function wfGetMainCache(), deprecated since 1.32, has been removed.
   You can use ObjectCache::getLocalClusterInstance() instead.
+* MovePage::__construct() now requires that all parameters be passed. The
+  fallback to MediaWikiServices emitted deprecation notices since 1.37.
 * EventRelayerKafka, deprecated in 1.38, was removed.
 * MediaWiki\Logger\Monolog\KafkaHandler, deprecated in 1.38, was removed.
 * The global function wfWikiID(), deprecated since 1.35, has been removed.

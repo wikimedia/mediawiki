@@ -25,7 +25,6 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
@@ -124,6 +123,12 @@ class MovePage {
 	/** @var CollationFactory */
 	public $collationFactory;
 
+	/** @var PageUpdaterFactory */
+	private $pageUpdaterFactory;
+
+	/** @var RestrictionStore */
+	private $restrictionStore;
+
 	/**
 	 * @internal For use by PageCommandFactory
 	 */
@@ -132,91 +137,67 @@ class MovePage {
 		'MaximumMovedPages',
 	];
 
-	/** @var PageUpdaterFactory */
-	private $pageUpdaterFactory;
-
-	/** @var RestrictionStore */
-	private $restrictionStore;
-
 	/**
-	 * @internal Extensions should use the MovePageFactory.
+	 * @see MovePageFactory
 	 *
 	 * @param Title $oldTitle
 	 * @param Title $newTitle
-	 * @param ServiceOptions|null $options
-	 * @param ILoadBalancer|null $loadBalancer
-	 * @param NamespaceInfo|null $nsInfo
-	 * @param WatchedItemStoreInterface|null $watchedItems
-	 * @param RepoGroup|null $repoGroup
-	 * @param IContentHandlerFactory|null $contentHandlerFactory
-	 * @param RevisionStore|null $revisionStore
-	 * @param SpamChecker|null $spamChecker
-	 * @param HookContainer|null $hookContainer
-	 * @param WikiPageFactory|null $wikiPageFactory
-	 * @param UserFactory|null $userFactory
-	 * @param UserEditTracker|null $userEditTracker
-	 * @param MovePageFactory|null $movePageFactory
-	 * @param CollationFactory|null $collationFactory
-	 * @param PageUpdaterFactory|null $pageUpdaterFactory
-	 * @param RestrictionStore|null $restrictionStore
-	 * @deprecated since 1.34, hard deprecated since 1.37. Use MovePageFactory instead.
+	 * @param ServiceOptions $options
+	 * @param ILoadBalancer $loadBalancer
+	 * @param NamespaceInfo $nsInfo
+	 * @param WatchedItemStoreInterface $watchedItems
+	 * @param RepoGroup $repoGroup
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param RevisionStore $revisionStore
+	 * @param SpamChecker $spamChecker
+	 * @param HookContainer $hookContainer
+	 * @param WikiPageFactory $wikiPageFactory
+	 * @param UserFactory $userFactory
+	 * @param UserEditTracker $userEditTracker
+	 * @param MovePageFactory $movePageFactory
+	 * @param CollationFactory $collationFactory
+	 * @param PageUpdaterFactory $pageUpdaterFactory
+	 * @param RestrictionStore $restrictionStore
 	 */
 	public function __construct(
 		Title $oldTitle,
 		Title $newTitle,
-		ServiceOptions $options = null,
-		ILoadBalancer $loadBalancer = null,
-		NamespaceInfo $nsInfo = null,
-		WatchedItemStoreInterface $watchedItems = null,
-		RepoGroup $repoGroup = null,
-		IContentHandlerFactory $contentHandlerFactory = null,
-		RevisionStore $revisionStore = null,
-		SpamChecker $spamChecker = null,
-		HookContainer $hookContainer = null,
-		WikiPageFactory $wikiPageFactory = null,
-		UserFactory $userFactory = null,
-		UserEditTracker $userEditTracker = null,
-		MovePageFactory $movePageFactory = null,
-		CollationFactory $collationFactory = null,
-		PageUpdaterFactory $pageUpdaterFactory = null,
-		RestrictionStore $restrictionStore = null
+		ServiceOptions $options,
+		ILoadBalancer $loadBalancer,
+		NamespaceInfo $nsInfo,
+		WatchedItemStoreInterface $watchedItems,
+		RepoGroup $repoGroup,
+		IContentHandlerFactory $contentHandlerFactory,
+		RevisionStore $revisionStore,
+		SpamChecker $spamChecker,
+		HookContainer $hookContainer,
+		WikiPageFactory $wikiPageFactory,
+		UserFactory $userFactory,
+		UserEditTracker $userEditTracker,
+		MovePageFactory $movePageFactory,
+		CollationFactory $collationFactory,
+		PageUpdaterFactory $pageUpdaterFactory,
+		RestrictionStore $restrictionStore
 	) {
-		if ( !$options ) {
-			wfDeprecatedMsg(
-				__METHOD__ . ' without providing all services is deprecated',
-				'1.34'
-			);
-		}
-
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
 
-		$services = static function () {
-			// BC hack. Use a closure so this can be unit-tested.
-			return MediaWikiServices::getInstance();
-		};
-		$this->options = $options ??
-			new ServiceOptions(
-				self::CONSTRUCTOR_OPTIONS,
-				$services()->getMainConfig()
-			);
-		$this->loadBalancer = $loadBalancer ?? $services()->getDBLoadBalancer();
-		$this->nsInfo = $nsInfo ?? $services()->getNamespaceInfo();
-		$this->watchedItems = $watchedItems ?? $services()->getWatchedItemStore();
-		$this->repoGroup = $repoGroup ?? $services()->getRepoGroup();
-		$this->contentHandlerFactory =
-			$contentHandlerFactory ?? $services()->getContentHandlerFactory();
-
-		$this->revisionStore = $revisionStore ?? $services()->getRevisionStore();
-		$this->spamChecker = $spamChecker ?? $services()->getSpamChecker();
-		$this->hookRunner = new HookRunner( $hookContainer ?? $services()->getHookContainer() );
-		$this->wikiPageFactory = $wikiPageFactory ?? $services()->getWikiPageFactory();
-		$this->userFactory = $userFactory ?? $services()->getUserFactory();
-		$this->userEditTracker = $userEditTracker ?? $services()->getUserEditTracker();
-		$this->movePageFactory = $movePageFactory ?? $services()->getMovePageFactory();
-		$this->collationFactory = $collationFactory ?? $services()->getCollationFactory();
-		$this->pageUpdaterFactory = $pageUpdaterFactory ?? $services()->getPageUpdaterFactory();
-		$this->restrictionStore = $restrictionStore ?? $services()->getRestrictionStore();
+		$this->options = $options;
+		$this->loadBalancer = $loadBalancer;
+		$this->nsInfo = $nsInfo;
+		$this->watchedItems = $watchedItems;
+		$this->repoGroup = $repoGroup;
+		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->revisionStore = $revisionStore;
+		$this->spamChecker = $spamChecker;
+		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->wikiPageFactory = $wikiPageFactory;
+		$this->userFactory = $userFactory;
+		$this->userEditTracker = $userEditTracker;
+		$this->movePageFactory = $movePageFactory;
+		$this->collationFactory = $collationFactory;
+		$this->pageUpdaterFactory = $pageUpdaterFactory;
+		$this->restrictionStore = $restrictionStore;
 	}
 
 	/**
