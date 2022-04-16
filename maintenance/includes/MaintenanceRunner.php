@@ -2,12 +2,16 @@
 
 namespace MediaWiki\Maintenance;
 
+use Config;
 use Exception;
 use LCStoreNull;
 use Maintenance;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
+use MWException;
+use Profiler;
 
 /**
  * A runner for maintenance scripts.
@@ -22,6 +26,43 @@ class MaintenanceRunner {
 
 	/** @var MaintenanceParameters */
 	private $parameters;
+
+	/**
+	 * Default constructor. Children should call this *first* if implementing
+	 * their own constructors
+	 *
+	 * @stable to call
+	 */
+	public function __construct() {
+		$this->parameters = new MaintenanceParameters();
+		$this->addDefaultParams();
+	}
+
+	/**
+	 * Add the default parameters to the scripts
+	 */
+	protected function addDefaultParams() {
+		// Generic (non-script-dependent) options:
+
+		$this->parameters->addOption( 'conf', 'Location of LocalSettings.php, if not default', false, true );
+		$this->parameters->addOption( 'wiki', 'For specifying the wiki ID', false, true );
+		$this->parameters->addOption( 'globals', 'Output globals at the end of processing for debugging' );
+		$this->parameters->addOption(
+			'memory-limit',
+			'Set a specific memory limit for the script, '
+			. '"max" for no limit or "default" to avoid changing it',
+			false,
+			true
+		);
+		$this->parameters->addOption( 'server', "The protocol and server name to use in URLs, e.g. " .
+			"http://en.wikipedia.org. This is sometimes necessary because " .
+			"server name detection may fail in command line scripts.", false, true );
+		$this->parameters->addOption( 'profiler', 'Profiler output format (usually "text")', false, true );
+
+		// Save generic options to display them separately in help
+		$generic = $this->parameters->getOptionNames();
+		$this->parameters->assignGroup( Maintenance::GENERIC_MAINTENANCE_PARAMETERS, $generic );
+	}
 
 	/**
 	 * Initialize the runner
@@ -60,20 +101,26 @@ class MaintenanceRunner {
 		// make sure we clean up after ourselves.
 		register_shutdown_function( [ $this, 'cleanup' ] );
 
-		$this->parameters = $this->scriptObject->getParameters();
+		$scriptParams = $this->scriptObject->getParameters();
+		$scriptParams->mergeOptions( $this->parameters );
+		$this->parameters = $scriptParams;
 
 		// Basic checks and such
 		$this->scriptObject->setup();
 
-		# Set max execution time to 0 (no limit). PHP.net says that
-		# "When running PHP from the command line the default setting is 0."
-		# But sometimes this doesn't seem to be the case.
+		// Set the memory limit
+		// Note we need to set it again later in case LocalSettings changed it
+		$this->adjustMemoryLimit();
+
+		// Set max execution time to 0 (no limit). PHP.net says that
+		// "When running PHP from the command line the default setting is 0."
+		// But sometimes this doesn't seem to be the case.
 		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal Scalar okay with php8.1
 		ini_set( 'max_execution_time', 0 );
 
 		$wgCommandLineMode = true;
 
-		# Turn off output buffering if it's on
+		// Turn off output buffering if it's on
 		while ( ob_get_level() > 0 ) {
 			ob_end_flush();
 		}
@@ -91,6 +138,37 @@ class MaintenanceRunner {
 		// which has been called by Maintenance::setup(), which was called
 		// by $this->init().
 		return $this->scriptObject->getName();
+	}
+
+	/**
+	 * Normally we disable the memory_limit when running admin scripts.
+	 * Some scripts may wish to actually set a limit, however, to avoid
+	 * blowing up unexpectedly.
+	 * @see Maintenance::memoryLimit()
+	 * @return string
+	 */
+	private function memoryLimit() {
+		if ( $this->parameters->hasOption( 'memory-limit' ) ) {
+			$limit = $this->parameters->getOption( 'memory-limit', 'max' );
+			$limit = trim( $limit, "\" '" ); // trim quotes in case someone misunderstood
+			return $limit;
+		}
+
+		$limit = $this->scriptObject->memoryLimit();
+		return $limit ?: 'max';
+	}
+
+	/**
+	 * Adjusts PHP's memory limit to better suit our needs, if needed.
+	 */
+	private function adjustMemoryLimit() {
+		$limit = $this->memoryLimit();
+		if ( $limit == 'max' ) {
+			$limit = -1; // no memory limit
+		}
+		if ( $limit != 'default' ) {
+			ini_set( 'memory_limit', $limit );
+		}
 	}
 
 	/**
@@ -158,7 +236,43 @@ class MaintenanceRunner {
 			}
 		}
 
+		$output = $this->parameters->getOption( 'profiler' );
+		if ( $output ) {
+			// Per-script profiling; useful for debugging
+			$this->activateProfiler( $output, $config );
+		}
+
 		$this->scriptObject->finalSetup( $settingsBuilder );
+		$this->adjustMemoryLimit();
+	}
+
+	/**
+	 * Activate the profiler (assuming $wgProfiler is set)
+	 *
+	 * @param string $output
+	 * @param Config $config
+	 *
+	 * @throws MWException
+	 */
+	private function activateProfiler( string $output, Config $config ) {
+		$profiler = $config->get( MainConfigNames::Profiler );
+		$limits = $config->get( MainConfigNames::TrxProfilerLimits );
+
+		if ( isset( $profiler['class'] ) ) {
+			$class = $profiler['class'];
+			/** @var Profiler $profiler */
+			$profiler = new $class(
+				[ 'sampling' => 1, 'output' => [ $output ] ]
+				+ $profiler
+				+ [ 'threshold' => 0.0 ]
+			);
+			$profiler->setAllowOutput();
+			Profiler::replaceStubInstance( $profiler );
+		}
+
+		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
+		$trxProfiler->setExpectations( $limits['Maintenance'], __METHOD__ );
 	}
 
 	/**
@@ -195,7 +309,9 @@ class MaintenanceRunner {
 			$success = $this->scriptObject->execute() !== false;
 
 			// Potentially debug globals
-			$this->scriptObject->globals();
+			if ( $this->parameters->hasOption( 'globals' ) ) {
+				print_r( $GLOBALS );
+			}
 
 			$this->scriptObject->shutdown();
 
