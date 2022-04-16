@@ -175,7 +175,7 @@ class MediaWiki {
 	 */
 	public function getAction(): string {
 		if ( $this->action === null ) {
-			$this->action = Action::getActionName( $this->context );
+			$this->action = $this->context->getActionName();
 		}
 
 		return $this->action;
@@ -514,7 +514,7 @@ class MediaWiki {
 
 		$t = microtime( true );
 		$actionName = $this->getAction();
-		$action = Action::factory( $actionName, $article, $this->context );
+		$action = $services->getActionFactory()->getAction( $actionName, $article, $this->context );
 
 		if ( $action instanceof Action ) {
 			// Check read permissions
