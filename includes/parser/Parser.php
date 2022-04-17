@@ -4914,9 +4914,7 @@ class Parser {
 	 *
 	 * This interface (introduced r61913) appears to be undocumented, but
 	 * 'markerType' is used by some core tag hooks to override which strip
-	 * array their results are placed in. **Use great caution if attempting
-	 * this interface, as it is not documented and injudicious use could smash
-	 * private variables.**
+	 * array their results are placed in.
 	 *
 	 * @param string $tag The tag to use, e.g. 'hook' for "<hook>"
 	 * @param callable $callback The callback function (and object) to use for the tag
