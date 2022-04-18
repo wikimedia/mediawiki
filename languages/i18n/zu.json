@@ -13,10 +13,12 @@
 			"Irus",
 			"Mtonihouse",
 			"Nkankane",
-			"Weather Top Wizard"
+			"Weather Top Wizard",
+			"StarrySky"
 		]
 	},
 	"underline-always": "Njalo",
+	"underline-never": "neze",
 	"sunday": "iSonto",
 	"monday": "uMsombuluko",
 	"tuesday": "uLwesibili",
@@ -75,6 +77,7 @@
 	"moredotdotdot": "Amanye...",
 	"mypage": "Ikhasi lami",
 	"mytalk": "Ingxoxo yami",
+	"anontalk": "Ingxoxo yami",
 	"navigation": "Ukuqondiswa kwemikhumbi",
 	"and": "&#32;na",
 	"namespaces": "Izikhalamagama",

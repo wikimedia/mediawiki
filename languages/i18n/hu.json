@@ -395,7 +395,7 @@
 	"title-invalid-too-long": "A kért cím túl hosszú. Nem lehet hosszabb $1 bájtnál UTF-8 kódolásban.",
 	"title-invalid-leading-colon": "A kért cím érvénytelen kettőspontot tartalmaz az elején.",
 	"perfcached": "Az alábbi adatok gyorsítótárból (''cache''-ből) származnak, és ezért lehetséges, hogy nem a legfrissebb változatot mutatják. Legfeljebb $1 eredmény áll rendelkezésre a gyorsítótárban.",
-	"perfcachedts": "Az alábbi adatok gyorsítótárból (''cache''-ből) származnak, legutóbbi frissítésük ideje $1. Legfeljebb {{PLURAL:$4|egy eredmény|$4 eredmény}} áll rendelkezésre a gyorsítótárban.",
+	"perfcachedts": "Az alábbi adatok gyorsítótárból (''cache''-ből) származnak, legutóbbi frissítésük ideje $1. Legfeljebb $wgQueryCacheLimit eredmény áll rendelkezésre a gyorsítótárban.",
 	"querypage-no-updates": "Az oldal frissítése jelenleg le van tiltva. Az itt szereplő adatok nem frissülnek azonnal.",
 	"querypage-updates-periodical": "Az oldal frissítése időszakosan történik.",
 	"viewsource": "Lapforrás",

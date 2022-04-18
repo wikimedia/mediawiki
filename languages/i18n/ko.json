@@ -89,7 +89,8 @@
 			"Ohw0zuz4",
 			"Songhee",
 			"Underbaaar",
-			"Yunbj"
+			"Yunbj",
+			"Bluehill"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -136,7 +137,7 @@
 	"tog-useeditwarning": "바꾼 내용을 저장하지 않고 편집 페이지를 벗어날 때 내게 알리기",
 	"tog-prefershttps": "로그인하는 동안 항상 보안 연결 사용",
 	"tog-showrollbackconfirmation": "되돌리기 링크를 클릭할 때 확인창을 표시",
-	"tog-requireemail": "이메일 주소와 사용자 이름이 제공 되었을 때 이메일에 비밀번호 수정 메일 보내기",
+	"tog-requireemail": "이메일 주소와 사용자 이름이 모두 제공되었을 때만 비밀번호 재설정 메일 보내기",
 	"underline-always": "항상",
 	"underline-never": "항상 긋지 않기",
 	"underline-default": "스킨 또는 브라우저 기본값",

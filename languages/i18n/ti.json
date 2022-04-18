@@ -275,6 +275,7 @@
 	"permissionserrorstext-withaction": "{{PLURAL:$1|በዚ ዝስዕብ ምኽንያት|በዞም ዝስዕቡ ምኽንያታት}}፣ $2 ፍቓድ የብልካን፦",
 	"postedit-confirmation-created": "ገጽ ተፈጢሩ ኣሎ።",
 	"postedit-confirmation-saved": "{{GENDER:|ኣርትዖትካ|ኣርትዖትኪ}} ተቐሚጡ ኣሎ።",
+	"postedit-confirmation-published": "{{GENDER:|ኣርትዖትካ|ኣርትዖትኪ}} ተሓቲሙ።",
 	"slot-name-main": "መበገሲ",
 	"content-model-wikitext": "ጽሑፍ ዊኪ",
 	"content-model-javascript": "ጃቫስክሪፕት",
