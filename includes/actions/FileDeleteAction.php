@@ -115,7 +115,9 @@ class FileDeleteAction extends DeleteAction {
 			$this->oldImage,
 			$reason,
 			$suppress,
-			$context->getUser()
+			$context->getUser(),
+			[],
+			$request->getCheck( 'wpDeleteTalk' )
 		);
 
 		if ( !$status->isGood() ) {
