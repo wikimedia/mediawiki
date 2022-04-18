@@ -2564,6 +2564,7 @@
 	"undelete-bad-store-key": "Não foi possível restaurar a versão do ficheiro de $1: já não existia antes da eliminação.",
 	"undelete-cleanup-error": "Erro ao eliminar o ficheiro não utilizado \"$1\".",
 	"undelete-missing-filearchive": "Não é possível restaurar o ficheiro de ID $1, uma vez que ele não se encontra na base de dados. Isso pode significar que já tenha sido restaurado.",
+	"undelete-talk-summary-prefix": "Restaurada em conjunto com a página associada, com o motivo: $1",
 	"undelete-error": "Erro ao restaurar a página",
 	"undelete-error-associated-alreadytalk": "Não é possível restaurar a página de discussão associada de uma página de discussão",
 	"undelete-error-associated-notdeleted": "A página de discussão associada não tem nenhuma revisão que possa ser restaurada.",

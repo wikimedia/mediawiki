@@ -2580,6 +2580,7 @@
 	"undelete-bad-store-key": "Bestandsversie van tijdstip $1 kon niet hersteld worden: het bestand miste al voordat het werd verwijderd.",
 	"undelete-cleanup-error": "Fout bij het herstellen van ongebruikt archiefbestand \"$1\".",
 	"undelete-missing-filearchive": "Het is niet mogelijk om ID $1 terug te plaatsen, omdat deze niet in de database te vinden is.\nMisschien is deze versie al teruggeplaatst.",
+	"undelete-talk-summary-prefix": "Samen met de bijbehorende pagina hersteld, met als reden: $1",
 	"undelete-error": "Er is een fout opgetreden tijdens het verwijderen van de pagina",
 	"undelete-error-associated-alreadytalk": "Kan de bijbehorende overlegpagina van een overlegpagina niet herstellen.",
 	"undelete-error-associated-notdeleted": "De bijbehorende overlegpagina heeft geen versies die hersteld kunnen worden.",

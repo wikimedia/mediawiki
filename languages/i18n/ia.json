@@ -2484,6 +2484,7 @@
 	"undelete-bad-store-key": "Non pote restaurar le version del file con data e hora $1: le file mancava ja ante le deletion.",
 	"undelete-cleanup-error": "Error durante le deletion del file de archivo non usate \"$1\".",
 	"undelete-missing-filearchive": "Impossibile restaurar le file con ID de archvo $1 proque illo non es presente in le base de datos.\nEs possibile que illo ha ja essite restaurate.",
+	"undelete-talk-summary-prefix": "Restaurate insimul con le pagina associate pro le sequente motivo: $1",
 	"undelete-error": "Error durante le restauration del pagina",
 	"undelete-error-associated-alreadytalk": "Impossibile restaurar le pagina de discussion associate a un pagina de discussion.",
 	"undelete-error-associated-notdeleted": "Le pagina de discussion associate non ha versiones que pote esser restaurate.",
