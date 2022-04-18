@@ -2611,6 +2611,7 @@
 	"undelete-bad-store-key": "Impossibile annullare la cancellazione della versione del file con timestamp $1: file non disponibile prima della cancellazione.",
 	"undelete-cleanup-error": "Errore nella cancellazione del file di archivio non utilizzato \"$1\".",
 	"undelete-missing-filearchive": "Impossibile ripristinare l'ID $1 dell'archivio file in quanto non è presente nel database. Potrebbe essere stato già ripristinato.",
+	"undelete-talk-summary-prefix": "Ripristinata insieme alla pagina associata con motivazione: $1",
 	"undelete-error": "Errore nel ripristino della pagina",
 	"undelete-error-associated-notdeleted": "La pagina di discussione associata non ha versioni che possono essere ripristinate.",
 	"undelete-show-file-confirm": "Si desidera visualizzare la versione cancellata del file \"<nowiki>$1</nowiki>\" del $2 alle $3?",

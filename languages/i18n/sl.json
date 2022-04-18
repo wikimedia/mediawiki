@@ -2488,6 +2488,7 @@
 	"undelete-bad-store-key": "Redakcije datoteke s časovnim žigom $1 ni mogoče obnoviti: datoteka je manjkala pred izbrisom.",
 	"undelete-cleanup-error": "Napaka pri brisanju neuporabljene arhivske datoteke »$1«.",
 	"undelete-missing-filearchive": "Ne morem obnoviti datoteke arhiva ID $1, ker ga ni v zbirki podatkov.\nMorda je bil že obnovljen.",
+	"undelete-talk-summary-prefix": "Obnovljeno skupaj s povezano stranjo, podan razlog: $1",
 	"undelete-error": "Napaka pri obnovi strani",
 	"undelete-error-associated-alreadytalk": "Ne morete obnoviti povezane pogovorne strani pogovorne strani.",
 	"undelete-error-associated-notdeleted": "Povezana pogovorna stran nima redakcij, ki bi jih lahko obnovili.",

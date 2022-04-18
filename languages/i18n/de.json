@@ -2593,6 +2593,7 @@
 	"undelete-bad-store-key": "Die Dateiversion mit dem Zeitstempel $1 konnte nicht wiederhergestellt werden: Die Datei war bereits vor dem Löschen nicht mehr vorhanden.",
 	"undelete-cleanup-error": "Fehler beim Löschen der unbenutzten Archiv-Version $1.",
 	"undelete-missing-filearchive": "Die Datei mit der Archiv-ID $1 kann nicht wiederhergestellt werden, da sie nicht in der Datenbank vorhanden ist. Möglicherweise wurde sie bereits wiederhergestellt.",
+	"undelete-talk-summary-prefix": "Zusammen mit der zugehörigen Seite wiederhergestellt; Grund: $1",
 	"undelete-error": "Beim Wiederherstellen der Seite ist ein Fehler aufgetreten.",
 	"undelete-error-associated-alreadytalk": "Die zugehörige Diskussionsseite einer Diskussionsseite kann nicht wieder hergestellt werden.",
 	"undelete-error-associated-notdeleted": "Die zugehörige Diskussionsseite hat keine Versionen, die wiederhergestellt werden können.",

@@ -921,7 +921,7 @@
 	"right-hideuser": "In meidochnamme foar oare meidoggers ferskûlje",
 	"right-ipblock-exempt": "YP-, YP-rige- en auto-blokkades út 'e wei gean",
 	"right-protect": "Befeiligingsnivo's feroarje en beskerme siden bewurkje",
-	"right-editprotected": "Befeilige siden bewurkje (sûnder cascading-befeiliging)",
+	"right-editprotected": "Siden befeilige as \"{{int:protect-level-sysop}}\" bewurkje",
 	"right-editinterface": "Meidoggersinterface bewurkje",
 	"right-editusercss": "De CSS-bestannen fan oare meidoggers bewurkje",
 	"right-edituserjson": "De JSON-bestannen fan oare meidoggers bewurkje",
