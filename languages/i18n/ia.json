@@ -2469,6 +2469,7 @@
 	"undeletebtn": "Restaurar",
 	"undeletelink": "vider/restaurar",
 	"undeleteviewlink": "vider",
+	"undelete-undeletetalk": "Restaurar tote le versiones del pagina de discussion associate",
 	"undeleteinvert": "Inverter selection",
 	"undeletecomment": "Motivo:",
 	"cannotundelete": "Le restauration ha partial- o totalmente fallite:\n$1",

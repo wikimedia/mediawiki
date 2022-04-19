@@ -2508,6 +2508,7 @@
 	"undeletebtn": "שחזור",
 	"undeletelink": "הצגה/שחזור",
 	"undeleteviewlink": "הצגה",
+	"undelete-undeletetalk": "לשחזר את כל הגרסאות של דף השיחה המשויך.",
 	"undeleteinvert": "היפוך בחירה",
 	"undeletecomment": "סיבה:",
 	"cannotundelete": "השחזור (או חלק ממנו) נכשל:\n$1",

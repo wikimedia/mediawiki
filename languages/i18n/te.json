@@ -2503,6 +2503,7 @@
 	"undeletebtn": "పునఃస్థాపించు",
 	"undeletelink": "చూడండి/పునస్థాపించండి",
 	"undeleteviewlink": "చూడండి",
+	"undelete-undeletetalk": "సంబంధిత చర్చ పేజీకి చెందిన కూర్పుల తొలగింపును రద్దుచెయ్యి",
 	"undeleteinvert": "ఎంపికని తిరగవెయ్యి",
 	"undeletecomment": "కారణం:",
 	"cannotundelete": "తొలగింపు రద్దులు పూర్తిగానో, కొన్నిగానీ విఫలమయ్యాయి:\n$1",
