@@ -1208,7 +1208,7 @@ class SkinTemplate extends Skin {
 		$out = $this->getOutput();
 		$request = $this->getRequest();
 		$performer = $this->getAuthority();
-		$action = $this->getAction();
+		$action = $this->getContext()->getActionName();
 		$services = MediaWikiServices::getInstance();
 		$permissionManager = $services->getPermissionManager();
 		$categoriesData = $this->getCategoryPortletsData( $this->getOutput()->getCategoryLinks() );
