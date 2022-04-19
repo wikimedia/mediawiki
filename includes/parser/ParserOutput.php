@@ -306,7 +306,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mMaxAdaptiveExpiry = INF;
 
 	private const EDITSECTION_REGEX =
-		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#s';
+		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)">(.*?)</(?:mw:)?editsection>#s';
 
 	// finalizeAdaptiveCacheExpiry() uses TTL = MAX( m * PARSE_TIME + b, MIN_AR_TTL)
 	// Current values imply that m=3933.333333 and b=-333.333333
@@ -432,7 +432,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				function ( $m ) use ( $skin ) {
 					$editsectionPage = Title::newFromText( htmlspecialchars_decode( $m[1] ) );
 					$editsectionSection = htmlspecialchars_decode( $m[2] );
-					$editsectionContent = isset( $m[4] ) ? Sanitizer::decodeCharReferences( $m[3] ) : null;
+					$editsectionContent = Sanitizer::decodeCharReferences( $m[3] );
 
 					if ( !is_object( $editsectionPage ) ) {
 						LoggerFactory::getInstance( 'Parser' )

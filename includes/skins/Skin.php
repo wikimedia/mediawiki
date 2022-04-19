@@ -1870,20 +1870,18 @@ abstract class Skin extends ContextSource {
 	 *   the current page, if the section is included from a template)
 	 * @param string $section The designation of the section being pointed to,
 	 *   to be included in the link, like "&section=$section"
-	 * @param string|null $tooltip The tooltip to use for the link: will be escaped
-	 *   and wrapped in the 'editsectionhint' message
+	 * @param string $sectionTitle Section title. It is used in the link tooltip, escaped and
+	 *   wrapped in the 'editsectionhint' message
 	 * @param Language $lang
 	 * @return string HTML to use for edit link
 	 */
-	public function doEditSectionLink( Title $nt, $section, $tooltip, Language $lang ) {
+	public function doEditSectionLink( Title $nt, $section, $sectionTitle, Language $lang ) {
 		// HTML generated here should probably have userlangattributes
 		// added to it for LTR text on RTL pages
 
 		$attribs = [];
-		if ( $tooltip !== null ) {
-			$attribs['title'] = $this->msg( 'editsectionhint' )->rawParams( $tooltip )
-				->inLanguage( $lang )->text();
-		}
+		$attribs['title'] = $this->msg( 'editsectionhint' )->rawParams( $sectionTitle )
+			->inLanguage( $lang )->text();
 
 		$links = [
 			'editsection' => [
@@ -1894,7 +1892,7 @@ abstract class Skin extends ContextSource {
 			]
 		];
 
-		$this->getHookRunner()->onSkinEditSectionLinks( $this, $nt, $section, $tooltip, $links, $lang );
+		$this->getHookRunner()->onSkinEditSectionLinks( $this, $nt, $section, $sectionTitle, $links, $lang );
 
 		$result = Html::openElement( 'span', [ 'class' => 'mw-editsection' ] );
 		$result .= Html::rawElement( 'span', [ 'class' => 'mw-editsection-bracket' ], '[' );
