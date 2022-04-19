@@ -470,7 +470,7 @@ class DeletePage {
 		}
 		if ( $this->associatedTalk ) {
 			$talkReason = $this->contLangMsgTextFormatter->format(
-				MessageValue::new( 'delete-talk-summary-prefix' )->params( $origReason )
+				MessageValue::new( 'delete-talk-summary-prefix' )->plaintextParams( $origReason )
 			);
 			$talkHookStatus = $this->runPreDeleteHooks( $this->associatedTalk, $talkReason );
 			if ( !$talkHookStatus->isGood() ) {
