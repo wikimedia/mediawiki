@@ -363,7 +363,7 @@ class UndeletePage {
 		}
 		if ( $talkRestored ) {
 			$talkRestoredComment = $this->contLangMsgTextFormatter->format(
-				MessageValue::new( 'undelete-talk-summary-prefix' )->params( $comment )
+				MessageValue::new( 'undelete-talk-summary-prefix' )->plaintextParams( $comment )
 			);
 			$this->addLogEntry( $this->associatedTalk, $talkRestoredComment, $talkRestored, 0 );
 		}
