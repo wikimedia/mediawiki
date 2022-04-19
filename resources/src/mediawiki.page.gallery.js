@@ -86,8 +86,8 @@
 				preferredHeight,
 				newWidth,
 				padding,
+				$gallerybox,
 				$outerDiv,
-				$innerDiv,
 				$imageDiv,
 				$imageElm,
 				imageElm,
@@ -169,12 +169,12 @@
 				for ( j = 0; j < curRow.length; j++ ) {
 					newWidth = preferredHeight * curRow[ j ].aspect;
 					padding = curRow[ j ].width - curRow[ j ].imgWidth;
-					$outerDiv = curRow[ j ].$elm;
+					$gallerybox = curRow[ j ].$elm;
 					// This wrapper is only present if ParserEnableLegacyMediaDOM is true
-					$innerDiv = $outerDiv.children( 'div:not( [class] )' ).first();
-					$imageDiv = $outerDiv.find( 'div.thumb' ).first();
+					$outerDiv = $gallerybox.children( 'div:not( [class] )' ).first();
+					$imageDiv = $gallerybox.find( 'div.thumb' ).first();
 					$imageElm = $imageDiv.find( 'img, video' ).first();
-					$caption = $outerDiv.find( 'div.gallerytextwrapper' );
+					$caption = $gallerybox.find( 'div.gallerytextwrapper' );
 
 					// Since we are going to re-adjust the height, the vertical
 					// centering margins need to be reset.
@@ -183,14 +183,14 @@
 					if ( newWidth < 60 || !isFinite( newWidth ) ) {
 						// Making something skinnier than this will mess up captions,
 						if ( newWidth < 1 || !isFinite( newWidth ) ) {
-							$innerDiv.height( preferredHeight );
+							$outerDiv.height( preferredHeight );
 							// Don't even try and touch the image size if it could mean
 							// making it disappear.
 							continue;
 						}
 					} else {
+						$gallerybox.width( newWidth + padding );
 						$outerDiv.width( newWidth + padding );
-						$innerDiv.width( newWidth + padding );
 						$imageDiv.width( newWidth );
 						$caption.width( curRow[ j ].captionWidth + ( newWidth - curRow[ j ].imgWidth ) );
 					}
@@ -226,13 +226,13 @@
 				width = $( this ).data( 'width' ),
 				captionWidth = $( this ).data( 'captionWidth' ),
 				// This wrapper is only present if ParserEnableLegacyMediaDOM is true
-				$innerDiv = $( this ).children( 'div:not( [class] )' ).first(),
+				$outerDiv = $( this ).children( 'div:not( [class] )' ).first(),
 				$imageDiv = $( this ).find( 'div.thumb' ).first(),
 				$imageElm, imageElm;
 
 			// Restore original sizes so we can arrange the elements as on freshly loaded page
 			$( this ).width( width );
-			$innerDiv.width( width );
+			$outerDiv.width( width );
 			$imageDiv.width( imgWidth );
 			$( this ).find( 'div.gallerytextwrapper' ).width( captionWidth );
 
