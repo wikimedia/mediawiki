@@ -2597,6 +2597,7 @@
 	"undelete-bad-store-key": "無法取消刪除時間為 $1 的檔案修訂：在刪除前檔案已遺失。",
 	"undelete-cleanup-error": "刪除未使用的封存檔案 \"$1\" 時發生錯誤。",
 	"undelete-missing-filearchive": "資料庫不存在檔案封存 ID $1，無法還原檔案。\n該檔案可能已經取消刪除。",
+	"undelete-talk-summary-prefix": "和關聯頁面一併還原，原因：$1",
 	"undelete-error": "取消刪除頁面錯誤",
 	"undelete-error-associated-alreadytalk": "無法取消刪除一個討論頁關聯的討論頁。",
 	"undelete-error-associated-notdeleted": "關聯的討論頁沒有可還原的修訂。",

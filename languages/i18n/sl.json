@@ -2473,6 +2473,7 @@
 	"undeletebtn": "Obnovi",
 	"undeletelink": "prikaži/obnovi",
 	"undeleteviewlink": "ogled",
+	"undelete-undeletetalk": "Obnovi vse redakcije povezane pogovorne strani",
 	"undeleteinvert": "Obrni izbor",
 	"undeletecomment": "Razlog:",
 	"cannotundelete": "Nekatere ali vse obnove so spodletele:\n$1",

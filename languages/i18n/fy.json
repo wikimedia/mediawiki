@@ -920,7 +920,7 @@
 	"right-blockemail": "In meidogger it rjocht ta it ferstjoeren fan e-mail ôfnimme",
 	"right-hideuser": "In meidochnamme foar oare meidoggers ferskûlje",
 	"right-ipblock-exempt": "YP-, YP-rige- en auto-blokkades út 'e wei gean",
-	"right-protect": "Befeiligingsnivo's feroarje en beskerme siden bewurkje",
+	"right-protect": "Befeiligingsynstellings feroarje en siden mei kaskade-beskerming bewurkje",
 	"right-editprotected": "Siden befeilige as \"{{int:protect-level-sysop}}\" bewurkje",
 	"right-editinterface": "Meidoggersinterface bewurkje",
 	"right-editusercss": "De CSS-bestannen fan oare meidoggers bewurkje",
