@@ -156,6 +156,7 @@ because of Phabricator reports.
      to pass one to wfUrlProtocols anyway);
   3) they use type hints (don't try passing null instead of string, etc.).
 * MaintainableDBConnRef is deprecated, use DBConnRef instead.
+* Skin::getAction is deprecated. Use IContextSource::getActionName instead.
 * …
 
 === Other changes in 1.39 ===
