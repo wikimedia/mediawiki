@@ -24,7 +24,8 @@
 			"กิ๊ฟ เลิกล่ะ สายแข็ง",
 			"Darafsh",
 			"Beginneruser",
-			"Sunfyre"
+			"Sunfyre",
+			"Mojtabakd"
 		]
 	},
 	"config-desc": "نصب‌کنندهٔ مدیاویکی",
@@ -197,7 +198,7 @@
 	"config-almost-done": "شما تقریباً عملیات را کامل کرده‌اید.\nاکنون می‌توانید پیکربندی باقیمانده را نخوانده رها کنید و درحال‌حاضر ویکی را نصب کنید.",
 	"config-optional-continue": "سوال‌های بیشتری از من بپرسید.",
 	"config-optional-skip": "درحال‌حاضر خسته‌ام،سریعاً ویکی را نصب کنید.",
-	"config-profile": "شرح‌حال حقوق کاربر:",
+	"config-profile": "شرح‌حال اختیارات کاربر:",
 	"config-profile-wiki": "بازکردن ویکی",
 	"config-profile-no-anon": "ایجاد حساب مورد نیاز است",
 	"config-profile-fishbowl": "فقط کاربر مجاز",

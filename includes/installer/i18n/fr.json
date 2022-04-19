@@ -53,7 +53,7 @@
 	"config-wiki-language": "Langue du wiki :",
 	"config-wiki-language-help": "Sélectionner la langue dans laquelle le wiki sera principalement écrit.",
 	"config-back": "← Retour",
-	"config-continue": "Continuer →",
+	"config-continue": "Continuer ▸",
 	"config-page-language": "Langue",
 	"config-page-welcome": "Bienvenue sur MediaWiki !",
 	"config-page-dbconnect": "Connexion à la base de données",
