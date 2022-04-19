@@ -126,7 +126,7 @@ abstract class Skin extends ContextSource {
 		$blankedHeading = false;
 		// Heading can only be blanked on "views". It should
 		// still show on action=edit, diff pages and action=history
-		$isHeadingOverridable = $this->getAction() === 'view' &&
+		$isHeadingOverridable = $this->getContext()->getActionName() === 'view' &&
 			!$this->getRequest()->getRawVal( 'diff' );
 
 		if ( $isMainPage && $isHeadingOverridable ) {
@@ -2496,8 +2496,10 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * @return string
+	 * @deprecated since 1.39
 	 */
 	final protected function getAction(): string {
+		wfDeprecated( __METHOD__, '1.39' );
 		return $this->getContext()->getActionName();
 	}
 
@@ -2517,14 +2519,13 @@ abstract class Skin extends ContextSource {
 				'mw-body-content',
 			],
 		];
-		$action = $this->getAction();
 
 		# Add a mw-content-ltr/rtl class to be able to style based on text
 		# direction when the content is different from the UI language (only
 		# when viewing)
 		# Most information on special pages and file pages is in user language,
 		# rather than content language, so those will not get this
-		if ( $action === 'view' &&
+		if ( $this->getContext()->getActionName() === 'view' &&
 			( !$title->inNamespaces( NS_SPECIAL, NS_FILE ) || $title->isRedirect() ) ) {
 			$pageLang = $title->getPageViewLanguage();
 			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
