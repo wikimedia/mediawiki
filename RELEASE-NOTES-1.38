@@ -169,8 +169,10 @@ For notes on 1.37.x and older releases, see HISTORY.
 * jquery.jStorage, deprecated since MW 1.28; use "mediawiki.storage" instead.
 
 === Action API changes in 1.38 ===
-* New `undeletetalk` paramater on action=undelete that allows you to restore
-  all revisions of the associated talk page
+* New `deletetalk` parameter on action=delete that allows you to delete the
+  associated talk page of a subject page.
+* New `undeletetalk` parameter on action=undelete that allows you to restore
+  all revisions of the associated talk page.
 * New `variant` parameter for all API actions, for specifying language variant
   (akin to the existing `variant` parameter for index.php). Task T117549.
 
