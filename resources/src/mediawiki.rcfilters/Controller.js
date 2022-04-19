@@ -1043,7 +1043,7 @@ Controller.prototype._queryChangesList = function ( counterId, params ) {
 	// current/default values
 	uri.extend( stickyParams );
 
-	return $.ajax( uri.toString(), { contentType: 'html' } )
+	return $.ajax( uri.toString() )
 		.then(
 			function ( content, message, jqXHR ) {
 				if ( !latestRequest() ) {
