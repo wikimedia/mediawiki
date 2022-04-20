@@ -8,7 +8,8 @@
 			"ITshnik",
 			"MIKHEIL",
 			"Malafaya",
-			"გიორგიმელა"
+			"გიორგიმელა",
+			"Გიო ოქრო"
 		]
 	},
 	"exif-imagewidth": "სიგანე",
@@ -205,8 +206,10 @@
 	"exif-compression-34712": "JPEG2000",
 	"exif-copyrighted-true": "საავტორო უფლებებით დაცული",
 	"exif-copyrighted-false": "საავტორო უფლებები არ არის არჩეული",
+	"exif-photometricinterpretation-0": "შავი და თეთრი (თეთრი არის 0)",
 	"exif-photometricinterpretation-1": "შავი და თეთრი (შავი არის 0)",
 	"exif-photometricinterpretation-2": "RGB",
+	"exif-photometricinterpretation-3": "ფერთა პალიტრა",
 	"exif-photometricinterpretation-6": "YCbCr",
 	"exif-unknowndate": "უცნობი თარიღი",
 	"exif-orientation-1": "ნორმალური",
