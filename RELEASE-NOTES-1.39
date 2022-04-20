@@ -89,6 +89,8 @@ because of Phabricator reports.
 * …
 
 === Breaking changes in 1.39 ===
+* Basic non-JavaScript (Grade C) support has been dropped for Internet Explorer
+  9-10, Firefox 27-38, and Android 4.3-4.4.
 * The following methods, deprecated since 1.37, have been removed from IDatabase
   - ::fetchObject()
   - ::fetchRow()
