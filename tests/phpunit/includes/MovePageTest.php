@@ -63,7 +63,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getUserEditTracker(),
 			$this->getServiceContainer()->getMovePageFactory(),
 			$this->getServiceContainer()->getCollationFactory(),
-			$this->getServiceContainer()->getPageUpdaterFactory()
+			$this->getServiceContainer()->getPageUpdaterFactory(),
+			$this->getServiceContainer()->getRestrictionStore()
 		);
 	}
 
@@ -109,29 +110,6 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'page';
 		$this->tablesUsed[] = 'revision';
 		$this->tablesUsed[] = 'comment';
-	}
-
-	/**
-	 * @covers MovePage::__construct
-	 */
-	public function testConstructorDefaults() {
-		$services = $this->getServiceContainer();
-
-		$this->filterDeprecated( '/MovePage::__construct/' );
-
-		$obj1 = new MovePage( Title::newFromText( 'A' ), Title::newFromText( 'B' ) );
-		$obj2 = new MovePage(
-			Title::newFromText( 'A' ),
-			Title::newFromText( 'B' ),
-			new ServiceOptions( MovePage::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
-			$services->getDBLoadBalancer(),
-			$services->getNamespaceInfo(),
-			$services->getWatchedItemStore(),
-			$services->getRepoGroup(),
-			$services->getContentHandlerFactory()
-		);
-
-		$this->assertEquals( $obj2, $obj1 );
 	}
 
 	/**
