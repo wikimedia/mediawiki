@@ -1,6 +1,5 @@
 // Form elements and layouts
 
-@import 'mediawiki.mixins.less';
 @import 'mediawiki.ui/variables.less';
 
 /* stylelint-disable selector-class-pattern */
@@ -33,7 +32,7 @@
 //   </div>
 // </form>
 .mw-ui-vform {
-	.box-sizing( border-box );
+	box-sizing: border-box;
 	width: @defaultFormWidth;
 
 	// MW currently doesn't use the type attribute everywhere on inputs.
@@ -46,7 +45,7 @@
 	// Give dropdown lists the same spacing as input fields for consistency.
 	// Values taken from .agora-field-styling() in mixins/form.less
 	select {
-		.box-sizing( border-box );
+		box-sizing: border-box;
 		padding: 0.35em 0.5em;
 		vertical-align: middle;
 	}
@@ -54,7 +53,7 @@
 	> label {
 		display: block;
 		color: @color-base;
-		.box-sizing( border-box );
+		box-sizing: border-box;
 		width: auto;
 		margin: 0 0 0.2em;
 		padding: 0;
@@ -68,7 +67,7 @@
 	// Override input styling just for checkboxes and radio inputs.
 	input[ type='radio' ] {
 		display: inline;
-		.box-sizing( content-box );
+		box-sizing: content-box;
 		width: auto;
 	}
 
