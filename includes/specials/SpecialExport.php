@@ -26,6 +26,7 @@
 use MediaWiki\Export\WikiExporterFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -497,10 +498,13 @@ class SpecialExport extends SpecialPage {
 	 * @return array Associative array index by titles
 	 */
 	protected function getTemplates( $inputPages, $pageSet ) {
+		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+		list( $nsField, $titleField ) = $linksMigration->getTitleFields( 'templatelinks' );
+		$queryInfo = $linksMigration->getQueryInfo( 'templatelinks' );
 		return $this->getLinks( $inputPages, $pageSet,
-			'templatelinks',
-			[ 'namespace' => 'tl_namespace', 'title' => 'tl_title' ],
-			[ 'page_id=tl_from' ]
+			$queryInfo['tables'],
+			[ 'namespace' => $nsField, 'title' => $titleField ],
+			array_merge( [ 'page_id=tl_from' ], $queryInfo['joins'] )
 		);
 	}
 
