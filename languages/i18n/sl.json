@@ -2323,6 +2323,7 @@
 	"enotif_minoredit": "Manjše urejanje",
 	"created": "ustvaril",
 	"changed": "spremenil",
+	"deletepage-deletetalk": "Izbriši povezano pogovorno stran",
 	"deletepage-submit": "Izbriši stran",
 	"confirm": "Potrdi",
 	"excontent": "vsebina: '$1'",

@@ -2447,6 +2447,7 @@
 	"enotif_minoredit": "細部の編集",
 	"created": "作成",
 	"changed": "変更",
+	"deletepage-deletetalk": "関連するトークページを削除",
 	"deletepage-submit": "ページを削除",
 	"confirm": "確認",
 	"excontent": "内容:「$1」",
