@@ -1,10 +1,10 @@
 = MediaWiki 1.38 =
 
-== MediaWiki 1.38.0-PRERELEASE ==
+== MediaWiki 1.38.0-rc.0 ==
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.38 is an alpha-quality development branch, and is not recommended
+MediaWiki 1.38 is a pre-release testing branch, and is not recommended
 for use in production.
 
 == Upgrading notes for 1.38 ==
