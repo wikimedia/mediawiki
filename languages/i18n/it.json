@@ -2448,6 +2448,7 @@
 	"enotif_minoredit": "Questa è una modifica minore",
 	"created": "creata",
 	"changed": "modificata",
+	"deletepage-deletetalk": "Cancella la discussione associata",
 	"deletepage-submit": "Cancella pagina",
 	"confirm": "Conferma",
 	"excontent": "il contenuto era: '$1'",

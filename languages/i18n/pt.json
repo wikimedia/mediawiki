@@ -2399,6 +2399,7 @@
 	"enotif_minoredit": "Esta é uma edição menor",
 	"created": "criada",
 	"changed": "alterada",
+	"deletepage-deletetalk": "Eliminar a página de discussão associada",
 	"deletepage-submit": "Eliminar página",
 	"confirm": "Confirmar",
 	"excontent": "o conteúdo era: \"$1\"",
