@@ -7535,12 +7535,12 @@ config-schema:
             @since 1.19, if you follow the naming convention log-description-TYPE,
             where TYPE is your log type, yoy don't need to use this array.
     LogActions:
-        default: []
-        type: array
+        default: {  }
+        type: object
         description: |-
-            Lists the message key string for formatting individual events of each
-            type and action when listed in the logs.
-
+            Maps log actions to message keys, for formatting log entries of each type
+            and action when displaying logs to the user.
+            The array keys are composed as "$type/$action".
             Extensions with custom log types may add to this array.
     LogActionsHandlers:
         default: { block/block: BlockLogFormatter, block/reblock: BlockLogFormatter, block/unblock: BlockLogFormatter, contentmodel/change: ContentModelLogFormatter, contentmodel/new: ContentModelLogFormatter, delete/delete: DeleteLogFormatter, delete/delete_redir: DeleteLogFormatter, delete/delete_redir2: DeleteLogFormatter, delete/event: DeleteLogFormatter, delete/restore: DeleteLogFormatter, delete/revision: DeleteLogFormatter, import/interwiki: ImportLogFormatter, import/upload: ImportLogFormatter, managetags/activate: LogFormatter, managetags/create: LogFormatter, managetags/deactivate: LogFormatter, managetags/delete: LogFormatter, merge/merge: MergeLogFormatter, move/move: MoveLogFormatter, move/move_redir: MoveLogFormatter, patrol/patrol: PatrolLogFormatter, patrol/autopatrol: PatrolLogFormatter, protect/modify: ProtectLogFormatter, protect/move_prot: ProtectLogFormatter, protect/protect: ProtectLogFormatter, protect/unprotect: ProtectLogFormatter, rights/autopromote: RightsLogFormatter, rights/rights: RightsLogFormatter, suppress/block: BlockLogFormatter, suppress/delete: DeleteLogFormatter, suppress/event: DeleteLogFormatter, suppress/reblock: BlockLogFormatter, suppress/revision: DeleteLogFormatter, tag/update: TagLogFormatter, upload/overwrite: UploadLogFormatter, upload/revert: UploadLogFormatter, upload/upload: UploadLogFormatter }

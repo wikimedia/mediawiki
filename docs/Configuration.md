@@ -6272,9 +6272,9 @@ Extensions with custom log types may add to this array.
 where TYPE is your log type, yoy don't need to use this array.
 
 # LogActions {#LogActions}
-Lists the message key string for formatting individual events of each
-type and action when listed in the logs.
-
+Maps log actions to message keys, for formatting log entries of each type
+and action when displaying logs to the user.
+The array keys are composed as "$type/$action".
 Extensions with custom log types may add to this array.
 
 # LogActionsHandlers {#LogActionsHandlers}
