@@ -2,7 +2,6 @@
 /* ======================== */
 
 @import 'mediawiki.ui/variables.less';
-@import 'mediawiki.mixins.less';
 
 /* stylelint-disable selector-class-pattern */
 
@@ -17,7 +16,7 @@
 	}
 
 	.iw-resultset {
-		.box-sizing(border-box);
+		box-sizing: border-box;
 		padding: 0.5em;
 		vertical-align: top;
 		width: 100%;
@@ -62,7 +61,7 @@
 		float: left;
 		width: 100%;
 		height: 200px;
-		.box-sizing(border-box);
+		box-sizing: border-box;
 		/* stylelint-disable-next-line unit-disallowed-list */
 		padding: 0.25rem;
 	}
