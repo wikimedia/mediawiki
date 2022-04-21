@@ -462,8 +462,10 @@ abstract class BaseTemplate extends QuickTemplate {
 
 	/**
 	 * Output getTrail
+	 * @deprecated 1.39
 	 */
 	protected function printTrail() {
+		wfDeprecated( __METHOD__, '1.39' );
 		echo $this->getTrail();
 	}
 
@@ -474,8 +476,10 @@ abstract class BaseTemplate extends QuickTemplate {
 	 *
 	 * @return string|WrappedStringList HTML
 	 * @since 1.29
+	 * @deprecated 1.39
 	 */
 	public function getTrail() {
+		wfDeprecated( __METHOD__, '1.39' );
 		$skin = $this->getSkin();
 		$options = $skin->getOptions();
 

@@ -142,8 +142,14 @@ class SkinTemplate extends Skin {
 		$html = ob_get_contents();
 		ob_end_clean();
 
-		return $options['bodyOnly'] ?
-			$out->headElement( $this ) . $html . $out->tailElement( $this ) : $html;
+		// If skin is using bodyOnly mode, for now we must output head and tail.
+		// In future when this is the default,
+		// this logic will be moved into the OutputPage::output method.
+		if ( $options['bodyOnly'] ) {
+			$html = $out->headElement( $this ) . $html . $out->tailElement( $this );
+		}
+
+		return $html;
 	}
 
 	/**
@@ -361,10 +367,12 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'nav_urls', $this->buildNavUrls() );
 
 		// Do this last in case hooks above add bottom scripts
-		$tpl->set( 'bottomscripts', $this->bottomScripts() );
+		$tpl->set( 'bottomscripts', $this->bottomScripts( false ) );
+		$tpl->deprecate( 'bottomscripts', '1.39' );
 
 		// Set the head scripts near the end, in case the above actions resulted in added scripts
 		$tpl->set( 'headelement', $out->headElement( $this ) );
+		$tpl->deprecate( 'headelement', '1.39' );
 
 		$tpl->set( 'debug', '' );
 		$tpl->set( 'debughtml', MWDebug::getHTMLDebugLog() );
