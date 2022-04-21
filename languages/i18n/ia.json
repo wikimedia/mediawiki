@@ -2319,6 +2319,7 @@
 	"enotif_minoredit": "Isto es un modification minor",
 	"created": "create",
 	"changed": "modificate",
+	"deletepage-deletetalk": "Deler le pagina de discussion associate",
 	"deletepage-submit": "Deler pagina",
 	"confirm": "Confirmar",
 	"excontent": "contento esseva: '$1'",

@@ -2480,6 +2480,7 @@
 	"enotif_minoredit": "Это малая правка",
 	"created": "создана",
 	"changed": "изменена",
+	"deletepage-deletetalk": "Удалить связанную страницу обсуждения",
 	"deletepage-submit": "Удалить страницу",
 	"confirm": "Подтвердить",
 	"excontent": "содержимое: «$1»",
