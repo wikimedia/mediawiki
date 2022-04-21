@@ -716,9 +716,13 @@ abstract class Skin extends ContextSource {
 	/**
 	 * This gets called shortly before the "</body>" tag.
 	 * @deprecated since 1.37
+	 * @param bool $triggerWarnings introduced in 1.39 whether to trigger deprecation notice.
 	 * @return string|WrappedStringList HTML containing scripts to put before `</body>`
 	 */
-	public function bottomScripts() {
+	public function bottomScripts( $triggerWarnings = true ) {
+		if ( $triggerWarnings ) {
+			wfDeprecated( __METHOD__, '1.37' );
+		}
 		return $this->getOutput()->getBottomScripts();
 	}
 

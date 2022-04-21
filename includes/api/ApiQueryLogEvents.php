@@ -94,12 +94,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addWhere( $hideLogs );
 		}
 
-		$this->addTables( [ 'logging', 'actor', 'page' ] );
+		$this->addTables( [ 'logging', 'actor' ] );
 		$this->addJoinConds( [
 			'actor' => [ 'JOIN', 'actor_id=log_actor' ],
-			'page' => [ 'LEFT JOIN',
-				[ 'log_namespace=page_namespace',
-					'log_title=page_title' ] ] ] );
+		] );
 
 		$this->addFields( [
 			'log_id',
@@ -109,11 +107,18 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'log_deleted',
 		] );
 
-		$this->addFieldsIf( 'page_id', $this->fld_ids );
-		// log_page is the page_id saved at log time, whereas page_id is from a
-		// join at query time.  This leads to different results in various
-		// scenarios, e.g. deletion, recreation.
-		$this->addFieldsIf( 'log_page', $this->fld_ids );
+		if ( $this->fld_ids ) {
+			$this->addTables( 'page' );
+			$this->addJoinConds( [
+				'page' => [ 'LEFT JOIN',
+					[ 'log_namespace=page_namespace',
+						'log_title=page_title' ] ]
+			] );
+			// log_page is the page_id saved at log time, whereas page_id is from a
+			// join at query time.  This leads to different results in various
+			// scenarios, e.g. deletion, recreation.
+			$this->addFields( [ 'page_id', 'log_page' ] );
+		}
 		$this->addFieldsIf( [ 'actor_name', 'actor_user' ], $this->fld_user );
 		$this->addFieldsIf( 'actor_user', $this->fld_userid );
 		$this->addFieldsIf(
