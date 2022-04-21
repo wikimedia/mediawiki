@@ -47,6 +47,7 @@ class ParsoidServices {
 	 * @return DataAccess
 	 */
 	public function getParsoidDataAccess(): DataAccess {
+		wfDeprecated( __METHOD__, '1.39' );
 		return $this->services->getParsoidDataAccess();
 	}
 
@@ -54,6 +55,7 @@ class ParsoidServices {
 	 * @return PageConfigFactory
 	 */
 	public function getParsoidPageConfigFactory(): PageConfigFactory {
+		wfDeprecated( __METHOD__, '1.39' );
 		return $this->services->getParsoidPageConfigFactory();
 	}
 
@@ -61,6 +63,7 @@ class ParsoidServices {
 	 * @return SiteConfig
 	 */
 	public function getParsoidSiteConfig(): SiteConfig {
+		wfDeprecated( __METHOD__, '1.39' );
 		return $this->services->getParsoidSiteConfig();
 	}
 
