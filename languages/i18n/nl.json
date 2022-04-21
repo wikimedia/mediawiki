@@ -2415,6 +2415,7 @@
 	"enotif_minoredit": "Dit is een kleine bewerking",
 	"created": "aangemaakt",
 	"changed": "gewijzigd",
+	"deletepage-deletetalk": "Bijbehorende overlegpagina verwijderen",
 	"deletepage-submit": "Pagina verwijderen",
 	"confirm": "Bevestigen",
 	"excontent": "De inhoud was: \"$1\"",
