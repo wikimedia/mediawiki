@@ -81,14 +81,12 @@
 // Deprecated in MW v1.37.0, use unprefixed `transform:` now.
 .transform( @value ) {
 	-webkit-transform: @value; // Safari 3.1-8.0, iOS 3.2-8.4, Android 2.1-4.4.4
-	-ms-transform: @value; // IE 9
 	transform: @value; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 23+, iOS 9.2+, Android 5+
 }
 
 // Deprecated in MW v1.37.0, use unprefixed `transform-origin:` now.
 .transform-origin( @value ) {
 	-webkit-transform-origin: @value; // Chrome 4-35, Safari 3.1-8.0, iOS 3.2-8.4, Op 15-22, Android 2.1-4.4.4
-	-ms-transform-origin: @value; // IE 9
 	transform-origin: @value; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 23+, iOS 9.2+, Android 5+
 }
 
@@ -136,24 +134,18 @@
 }
 
 .flex-display( @display: flex ) {
-	display: ~'-ms-@{display}box'; // IE 10
 	display: @display;
 }
 
 .flex-wrap( @wrap: wrap ) {
-	-ms-flex-wrap: @wrap; // IE 10
 	flex-wrap: @wrap;
 }
 
 .flex( @grow: 1, @shrink: 1, @width: auto, @order: 1 ) {
-	// 2012 spec alignment to current spec
-	-ms-flex-pack: justify; // IE 10 (2012 spec)
 	// Current spec
 	justify-content: space-between;
 	width: @width; // Fallback for flex-basis
-	-ms-flex: @grow @shrink @width; // IE 10
 	flex: @grow @shrink @width;
-	-ms-flex-order: @order; // IE 10
 	order: @order;
 }
 
