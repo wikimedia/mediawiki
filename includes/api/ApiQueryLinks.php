@@ -21,7 +21,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Linker\LinksMigration;
 
 /**
  * A query module to list all wiki links on a given set of pages.
@@ -38,15 +38,20 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
+	/** @var LinksMigration */
+	private $linksMigration;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		LinksMigration $linksMigration
 	) {
 		switch ( $moduleName ) {
 			case self::LINKS:
@@ -67,6 +72,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 		parent::__construct( $query, $moduleName, $this->prefix );
 		$this->linkBatchFactory = $linkBatchFactory;
+		$this->linksMigration = $linksMigration;
 	}
 
 	public function execute() {
@@ -89,13 +95,12 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		if ( $pages === [] ) {
 			return; // nothing to do
 		}
-		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 
 		$params = $this->extractRequestParams();
 
-		if ( isset( $linksMigration::$mapping[$this->table] ) ) {
-			list( $nsField, $titleField ) = $linksMigration->getTitleFields( $this->table );
-			$queryInfo = $linksMigration->getQueryInfo( $this->table );
+		if ( isset( $this->linksMigration::$mapping[$this->table] ) ) {
+			list( $nsField, $titleField ) = $this->linksMigration->getTitleFields( $this->table );
+			$queryInfo = $this->linksMigration->getQueryInfo( $this->table );
 			$this->addTables( $queryInfo['tables'] );
 			$this->addJoinConds( $queryInfo['joins'] );
 		} else {

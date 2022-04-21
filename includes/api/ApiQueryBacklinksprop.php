@@ -23,8 +23,8 @@
  * @since 1.24
  */
 
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 
 /**
  * This implements prop=redirects, prop=linkshere, prop=catmembers,
@@ -78,12 +78,21 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		],
 	];
 
+	/** @var LinksMigration */
+	private $linksMigration;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
+	 * @param LinksMigration $linksMigration
 	 */
-	public function __construct( ApiQuery $query, $moduleName ) {
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		LinksMigration $linksMigration
+	) {
 		parent::__construct( $query, $moduleName, self::$settings[$moduleName]['code'] );
+		$this->linksMigration = $linksMigration;
 	}
 
 	public function execute() {
@@ -108,7 +117,6 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$pageSet = $this->getPageSet();
 		$titles = $pageSet->getGoodAndMissingPages();
 		$map = $pageSet->getGoodAndMissingTitlesByNamespace();
-		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 
 		// Add in special pages, they can theoretically have backlinks too.
 		// (although currently they only do for prop=redirects)
@@ -121,8 +129,8 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$p = $settings['prefix'];
 		$hasNS = !isset( $settings['to_namespace'] );
 		if ( $hasNS ) {
-			if ( isset( $linksMigration::$mapping[$settings['linktable']] ) ) {
-				list( $bl_namespace, $bl_title ) = $linksMigration->getTitleFields( $settings['linktable'] );
+			if ( isset( $this->linksMigration::$mapping[$settings['linktable']] ) ) {
+				list( $bl_namespace, $bl_title ) = $this->linksMigration->getTitleFields( $settings['linktable'] );
 			} else {
 				$bl_namespace = "{$p}_namespace";
 				$bl_title = "{$p}_title";
@@ -216,9 +224,9 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 		// Populate the rest of the query
 		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
-		if ( isset( $linksMigration::$mapping[$settings['linktable']] ) ) {
+		if ( isset( $this->linksMigration::$mapping[$settings['linktable']] ) ) {
 			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
-			$queryInfo = $linksMigration->getQueryInfo( $settings['linktable'] );
+			$queryInfo = $this->linksMigration->getQueryInfo( $settings['linktable'] );
 			$this->addTables( array_merge( [ 'page' ], $queryInfo['tables'] ) );
 			$this->addJoinConds( $queryInfo['joins'] );
 		} else {
@@ -294,7 +302,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				$this->addOption( 'USE INDEX', [ $settings['linktable'] => $idxWithFromNS ] );
 				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
-			} elseif ( !isset( $linksMigration::$mapping[$settings['linktable']] ) ) {
+			} elseif ( !isset( $this->linksMigration::$mapping[$settings['linktable']] ) ) {
 				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				$this->addOption( 'USE INDEX', [ $settings['linktable'] => $idxNoFromNS ] );
 			}

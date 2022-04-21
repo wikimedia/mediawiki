@@ -23,7 +23,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Linker\LinksMigration;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -36,17 +36,23 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialMostLinkedTemplates extends QueryPage {
 
+	/** @var LinksMigration */
+	private $linksMigration;
+
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		LinksMigration $linksMigration
 	) {
 		parent::__construct( 'Mostlinkedtemplates' );
 		$this->setDBLoadBalancer( $loadBalancer );
 		$this->setLinkBatchFactory( $linkBatchFactory );
+		$this->linksMigration = $linksMigration;
 	}
 
 	/**
@@ -77,9 +83,8 @@ class SpecialMostLinkedTemplates extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
-		$queryInfo = $linksMigration->getQueryInfo( 'templatelinks' );
-		list( $ns, $title ) = $linksMigration->getTitleFields( 'templatelinks' );
+		$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
+		list( $ns, $title ) = $this->linksMigration->getTitleFields( 'templatelinks' );
 		return [
 			'tables' => $queryInfo['tables'],
 			'fields' => [

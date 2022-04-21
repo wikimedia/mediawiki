@@ -24,9 +24,9 @@
  */
 
 use MediaWiki\Export\WikiExporterFactory;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -46,20 +46,26 @@ class SpecialExport extends SpecialPage {
 	/** @var TitleFormatter */
 	private $titleFormatter;
 
+	/** @var LinksMigration */
+	private $linksMigration;
+
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param WikiExporterFactory $wikiExporterFactory
 	 * @param TitleFormatter $titleFormatter
+	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
 		WikiExporterFactory $wikiExporterFactory,
-		TitleFormatter $titleFormatter
+		TitleFormatter $titleFormatter,
+		LinksMigration $linksMigration
 	) {
 		parent::__construct( 'Export' );
 		$this->loadBalancer = $loadBalancer;
 		$this->wikiExporterFactory = $wikiExporterFactory;
 		$this->titleFormatter = $titleFormatter;
+		$this->linksMigration = $linksMigration;
 	}
 
 	public function execute( $par ) {
@@ -498,9 +504,8 @@ class SpecialExport extends SpecialPage {
 	 * @return array Associative array index by titles
 	 */
 	protected function getTemplates( $inputPages, $pageSet ) {
-		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
-		list( $nsField, $titleField ) = $linksMigration->getTitleFields( 'templatelinks' );
-		$queryInfo = $linksMigration->getQueryInfo( 'templatelinks' );
+		list( $nsField, $titleField ) = $this->linksMigration->getTitleFields( 'templatelinks' );
+		$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
 		return $this->getLinks( $inputPages, $pageSet,
 			$queryInfo['tables'],
 			[ 'namespace' => $nsField, 'title' => $titleField ],

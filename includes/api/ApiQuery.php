@@ -82,6 +82,10 @@ class ApiQuery extends ApiBase {
 		],
 		'fileusage' => [
 			'class' => ApiQueryBacklinksprop::class,
+			'services' => [
+				// Same as for linkshere, redirects, transcludedin
+				'LinksMigration',
+			]
 		],
 		'images' => [
 			'class' => ApiQueryImages::class,
@@ -106,16 +110,23 @@ class ApiQuery extends ApiBase {
 				'WatchedItemStore',
 				'LanguageConverterFactory',
 				'RestrictionStore',
+				'LinksMigration',
 			],
 		],
 		'links' => [
 			'class' => ApiQueryLinks::class,
 			'services' => [
+				// Same as for templates
 				'LinkBatchFactory',
+				'LinksMigration',
 			]
 		],
 		'linkshere' => [
 			'class' => ApiQueryBacklinksprop::class,
+			'services' => [
+				// Same as for fileusage, redirects, transcludedin
+				'LinksMigration',
+			]
 		],
 		'iwlinks' => [
 			'class' => ApiQueryIWLinks::class,
@@ -135,6 +146,10 @@ class ApiQuery extends ApiBase {
 		],
 		'redirects' => [
 			'class' => ApiQueryBacklinksprop::class,
+			'services' => [
+				// Same as for fileusage, linkshere, transcludedin
+				'LinksMigration',
+			]
 		],
 		'revisions' => [
 			'class' => ApiQueryRevisions::class,
@@ -161,11 +176,17 @@ class ApiQuery extends ApiBase {
 		'templates' => [
 			'class' => ApiQueryLinks::class,
 			'services' => [
+				// Same as for links
 				'LinkBatchFactory',
+				'LinksMigration',
 			]
 		],
 		'transcludedin' => [
 			'class' => ApiQueryBacklinksprop::class,
+			'services' => [
+				// Same as for fileusage, linkshere, redirects
+				'LinksMigration',
+			]
 		],
 	];
 
@@ -195,6 +216,7 @@ class ApiQuery extends ApiBase {
 				// Same as for alllinks, allredirects, alltransclusions
 				'NamespaceInfo',
 				'GenderCache',
+				'LinksMigration',
 			]
 		],
 		'allimages' => [
@@ -210,6 +232,7 @@ class ApiQuery extends ApiBase {
 				// Same as for allfileusages, allredirects, alltransclusions
 				'NamespaceInfo',
 				'GenderCache',
+				'LinksMigration',
 			]
 		],
 		'allpages' => [
@@ -226,6 +249,7 @@ class ApiQuery extends ApiBase {
 				// Same as for allfileusages, alllinks, alltransclusions
 				'NamespaceInfo',
 				'GenderCache',
+				'LinksMigration',
 			]
 		],
 		'allrevisions' => [
@@ -250,6 +274,7 @@ class ApiQuery extends ApiBase {
 				// Same as for allfileusages, alllinks, allredirects
 				'NamespaceInfo',
 				'GenderCache',
+				'LinksMigration',
 			]
 		],
 		'allusers' => [
