@@ -20,6 +20,9 @@
  * @file
  */
 
+use MediaWiki\Linker\LinksMigration;
+use MediaWiki\MediaWikiServices;
+
 /**
  * Query module to enumerate links from all pages together.
  *
@@ -39,6 +42,9 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
 	/** @var GenderCache */
 	private $genderCache;
+
+	/** @var LinksMigration */
+	private $linksMigration;
 
 	/**
 	 * @param ApiQuery $query
@@ -115,9 +121,24 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	private function run( $resultPageSet = null ) {
 		$db = $this->getDB();
 		$params = $this->extractRequestParams();
+		$this->linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 
 		$pfx = $this->tablePrefix;
-		$fieldTitle = $this->fieldTitle;
+
+		$nsField = $pfx . 'namespace';
+		$titleField = $pfx . $this->fieldTitle;
+		if ( isset( $this->linksMigration::$mapping[$this->table] ) ) {
+			list( $nsField, $titleField ) = $this->linksMigration->getTitleFields( $this->table );
+			$queryInfo = $this->linksMigration->getQueryInfo( $this->table );
+			$this->addTables( $queryInfo['tables'] );
+			$this->addJoinConds( $queryInfo['joins'] );
+		} else {
+			if ( $this->useIndex ) {
+				$this->addOption( 'USE INDEX', $this->useIndex );
+			}
+			$this->addTables( $this->table );
+		}
+
 		$prop = array_fill_keys( $params['prop'], true );
 		$fld_ids = isset( $prop['ids'] );
 		$fld_title = isset( $prop['title'] );
@@ -143,9 +164,8 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			$this->addOption( 'DISTINCT' );
 		}
 
-		$this->addTables( $this->table );
 		if ( $this->hasNamespace ) {
-			$this->addWhereFld( $pfx . 'namespace', $namespace );
+			$this->addWhereFld( $nsField, $namespace );
 		}
 
 		$continue = $params['continue'] !== null;
@@ -155,14 +175,14 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			if ( $params['unique'] ) {
 				$this->dieContinueUsageIf( count( $continueArr ) != 1 );
 				$continueTitle = $db->addQuotes( $continueArr[0] );
-				$this->addWhere( "{$pfx}{$fieldTitle} $op= $continueTitle" );
+				$this->addWhere( "{$titleField} $op= $continueTitle" );
 			} else {
 				$this->dieContinueUsageIf( count( $continueArr ) != 2 );
 				$continueTitle = $db->addQuotes( $continueArr[0] );
 				$continueFrom = (int)$continueArr[1];
 				$this->addWhere(
-					"{$pfx}{$fieldTitle} $op $continueTitle OR " .
-					"({$pfx}{$fieldTitle} = $continueTitle AND " .
+					"{$titleField} $op $continueTitle OR " .
+					"({$titleField} = $continueTitle AND " .
 					"{$pfx}from $op= $continueFrom)"
 				);
 			}
@@ -173,28 +193,25 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			$this->titlePartToKey( $params['from'], $namespace );
 		$to = $params['to'] === null ? null :
 			$this->titlePartToKey( $params['to'], $namespace );
-		$this->addWhereRange( $pfx . $fieldTitle, 'newer', $from, $to );
+		$this->addWhereRange( $titleField, 'newer', $from, $to );
 
 		if ( isset( $params['prefix'] ) ) {
-			$this->addWhere( $pfx . $fieldTitle . $db->buildLike( $this->titlePartToKey(
+			$this->addWhere( $titleField . $db->buildLike( $this->titlePartToKey(
 				$params['prefix'], $namespace ), $db->anyString() ) );
 		}
 
-		$this->addFields( [ 'pl_title' => $pfx . $fieldTitle ] );
+		$this->addFields( [ 'pl_title' => $titleField ] );
 		$this->addFieldsIf( [ 'pl_from' => $pfx . 'from' ], !$params['unique'] );
 		foreach ( $this->props as $name => $field ) {
 			$this->addFieldsIf( $field, isset( $prop[$name] ) );
 		}
 
-		if ( $this->useIndex ) {
-			$this->addOption( 'USE INDEX', $this->useIndex );
-		}
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
 
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		$orderBy = [];
-		$orderBy[] = $pfx . $fieldTitle . $sort;
+		$orderBy[] = $titleField . $sort;
 		if ( !$params['unique'] ) {
 			$orderBy[] = $pfx . 'from' . $sort;
 		}
