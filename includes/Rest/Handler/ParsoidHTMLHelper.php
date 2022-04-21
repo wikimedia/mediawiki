@@ -34,7 +34,6 @@ use MediaWiki\Revision\RevisionRecord;
 use ParserCache;
 use ParserOptions;
 use ParserOutput;
-use TitleValue;
 use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -230,11 +229,7 @@ class ParsoidHTMLHelper {
 		// TODO: make ParsoidPageConfigFactory take PageReference as well
 		return MediaWikiServices::getInstance()
 			->get( 'ParsoidPageConfigFactory' )
-			->create(
-				TitleValue::newFromPage( $this->page ),
-				null,
-				$this->revision ? $this->revision->getId() : null
-			);
+			->create( $this->page, null, $this->revision );
 	}
 
 	/**

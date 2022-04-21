@@ -31,7 +31,9 @@ use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseException;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
+use MediaWiki\Revision\SlotRecord;
 use MobileContext;
 use ParserOutput;
 use RequestContext;
@@ -53,6 +55,7 @@ use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\Parsoid\Utils\Timing;
+use WikitextContent;
 
 /**
  * Base class for Parsoid handlers.
@@ -364,6 +367,24 @@ abstract class ParsoidHandler extends Handler {
 			throw new LogicException( 'Title not found!' );
 		}
 		$user = RequestContext::getMain()->getUser();
+
+		if ( $wikitextOverride === null ) {
+			$revisionRecord = null;
+		} else {
+			// Create a mutable revision record point to the same revision
+			// and set to the desired wikitext.
+			$revisionRecord = new MutableRevisionRecord( $title );
+			if ( $revision !== null ) {
+				$revisionRecord->setId( $revision );
+			}
+			$revisionRecord->setSlot(
+				SlotRecord::newUnsaved(
+					SlotRecord::MAIN,
+					new WikitextContent( $wikitextOverride )
+				)
+			);
+		}
+
 		// Note: Parsoid by design isn't supposed to use the user
 		// context right now, and all user state is expected to be
 		// introduced as a post-parse transform.  So although we pass a
@@ -371,7 +392,7 @@ abstract class ParsoidHandler extends Handler {
 		// corner cases; see PageConfigFactory::create() for more.
 		// @phan-suppress-next-line PhanUndeclaredMethod method defined in subtype
 		return $this->pageConfigFactory->create(
-			$title, $user, $revision, $wikitextOverride, $pagelanguageOverride,
+			$title, $user, $revisionRecord ?? $revision, null, $pagelanguageOverride,
 			$this->parsoidSettings
 		);
 	}
