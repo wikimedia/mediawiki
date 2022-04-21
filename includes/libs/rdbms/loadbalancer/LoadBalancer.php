@@ -1907,7 +1907,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		foreach ( $this->getOpenPrimaryConnections() as $conn ) {
-			$conn->flushSession( $fname );
+			$conn->flushSession( $fname, $conn::FLUSHING_ALL_PEERS );
 		}
 	}
 
