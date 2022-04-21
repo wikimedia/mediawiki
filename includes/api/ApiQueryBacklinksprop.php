@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 
 /**
  * This implements prop=redirects, prop=linkshere, prop=catmembers,
@@ -107,6 +108,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$pageSet = $this->getPageSet();
 		$titles = $pageSet->getGoodAndMissingPages();
 		$map = $pageSet->getGoodAndMissingTitlesByNamespace();
+		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 
 		// Add in special pages, they can theoretically have backlinks too.
 		// (although currently they only do for prop=redirects)
@@ -119,8 +121,12 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$p = $settings['prefix'];
 		$hasNS = !isset( $settings['to_namespace'] );
 		if ( $hasNS ) {
-			$bl_namespace = "{$p}_namespace";
-			$bl_title = "{$p}_title";
+			if ( isset( $linksMigration::$mapping[$settings['linktable']] ) ) {
+				list( $bl_namespace, $bl_title ) = $linksMigration->getTitleFields( $settings['linktable'] );
+			} else {
+				$bl_namespace = "{$p}_namespace";
+				$bl_title = "{$p}_title";
+			}
 		} else {
 			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			$bl_namespace = $settings['to_namespace'];
@@ -210,7 +216,15 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 		// Populate the rest of the query
 		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
-		$this->addTables( [ $settings['linktable'], 'page' ] );
+		if ( isset( $linksMigration::$mapping[$settings['linktable']] ) ) {
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
+			$queryInfo = $linksMigration->getQueryInfo( $settings['linktable'] );
+			$this->addTables( array_merge( [ 'page' ], $queryInfo['tables'] ) );
+			$this->addJoinConds( $queryInfo['joins'] );
+		} else {
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
+			$this->addTables( [ $settings['linktable'], 'page' ] );
+		}
 		$this->addWhere( "$bl_from = page_id" );
 
 		if ( $this->getModuleName() === 'redirects' ) {
@@ -279,17 +293,12 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			if ( $params['namespace'] !== null && !empty( $settings['from_namespace'] ) ) {
 				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				$this->addOption( 'USE INDEX', [ $settings['linktable'] => $idxWithFromNS ] );
-			} else {
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
+			} elseif ( !isset( $linksMigration::$mapping[$settings['linktable']] ) ) {
 				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				$this->addOption( 'USE INDEX', [ $settings['linktable'] => $idxNoFromNS ] );
 			}
 		}
-
-		// MySQL (or at least 5.5.5-10.0.23-MariaDB) chooses a really bad query
-		// plan if it thinks there will be more matching rows in the linktable
-		// than are in page. Use STRAIGHT_JOIN here to force it to use the
-		// intended, fast plan. See T145079 for details.
-		$this->addOption( 'STRAIGHT_JOIN' );
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
