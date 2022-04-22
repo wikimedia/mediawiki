@@ -63,6 +63,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Watchlist\WatchlistManager;
 use OOUI\ButtonWidget;
@@ -433,6 +434,9 @@ class EditPage implements IEditObject {
 	/** @var RedirectLookup */
 	private $redirectLookup;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/**
 	 * @stable to call
 	 * @param Article $article
@@ -468,6 +472,7 @@ class EditPage implements IEditObject {
 		$this->watchlistManager = $services->getWatchlistManager();
 		$this->userNameUtils = $services->getUserNameUtils();
 		$this->redirectLookup = $services->getRedirectLookup();
+		$this->userOptionsLookup = $services->getUserOptionsLookup();
 
 		$this->deprecatePublicProperty( 'mArticle', '1.30', __CLASS__ );
 		$this->deprecatePublicProperty( 'mTitle', '1.30', __CLASS__ );
@@ -865,7 +870,7 @@ class EditPage implements IEditObject {
 			// Nothing *to* preview for new sections
 			return false;
 		} elseif ( ( $request->getCheck( 'preload' ) || $this->mTitle->exists() )
-			&& $this->context->getUser()->getOption( 'previewonfirst' )
+			&& $this->userOptionsLookup->getOption( $this->context->getUser(), 'previewonfirst' )
 		) {
 			// Standard preference behavior
 			return true;
@@ -1056,7 +1061,7 @@ class EditPage implements IEditObject {
 				$this->allowBlankSummary = true;
 			} else {
 				$this->allowBlankSummary = $request->getBool( 'wpIgnoreBlankSummary' )
-					|| !$user->getOption( 'forceeditsummary' );
+					|| !$this->userOptionsLookup->getOption( $user, 'forceeditsummary' );
 			}
 
 			$this->autoSumm = $request->getText( 'wpAutoSummary' );
@@ -1215,13 +1220,12 @@ class EditPage implements IEditObject {
 		$this->textbox1 = $this->toEditText( $content );
 
 		$user = $this->context->getUser();
-		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 		// activate checkboxes if user wants them to be always active
 		# Sort out the "watch" checkbox
-		if ( $userOptionsLookup->getOption( $user, 'watchdefault' ) ) {
+		if ( $this->userOptionsLookup->getOption( $user, 'watchdefault' ) ) {
 			# Watch all edits
 			$this->watchthis = true;
-		} elseif ( $userOptionsLookup->getOption( $user, 'watchcreations' ) && !$this->mTitle->exists() ) {
+		} elseif ( $this->userOptionsLookup->getOption( $user, 'watchcreations' ) && !$this->mTitle->exists() ) {
 			# Watch creations
 			$this->watchthis = true;
 		} elseif ( $this->watchlistManager->isWatched( $user, $this->mTitle ) ) {
@@ -1232,7 +1236,7 @@ class EditPage implements IEditObject {
 			$watchedItem = $this->watchedItemStore->getWatchedItem( $user, $this->getTitle() );
 			$this->watchlistExpiry = $watchedItem ? $watchedItem->getExpiry() : null;
 		}
-		if ( !$this->isNew && $userOptionsLookup->getOption( $user, 'minordefault' ) ) {
+		if ( !$this->isNew && $this->userOptionsLookup->getOption( $user, 'minordefault' ) ) {
 			$this->minoredit = true;
 		}
 		if ( $this->textbox1 === false ) {
@@ -2636,11 +2640,11 @@ class EditPage implements IEditObject {
 
 		$user = $this->context->getUser();
 
-		if ( $user->getOption( 'uselivepreview' ) ) {
+		if ( $this->userOptionsLookup->getOption( $user, 'uselivepreview' ) ) {
 			$out->addModules( 'mediawiki.action.edit.preview' );
 		}
 
-		if ( $user->getOption( 'useeditwarning' ) ) {
+		if ( $this->userOptionsLookup->getOption( $user, 'useeditwarning' ) ) {
 			$out->addModules( 'mediawiki.action.edit.editWarning' );
 		}
 
@@ -2966,7 +2970,7 @@ class EditPage implements IEditObject {
 		$out->addHTML( $this->editFormPageTop );
 
 		$user = $this->context->getUser();
-		if ( $user->getOption( 'previewontop' ) ) {
+		if ( $this->userOptionsLookup->getOption( $user, 'previewontop' ) ) {
 			$this->displayPreviewArea( $previewOutput, true );
 		}
 
@@ -3204,7 +3208,7 @@ class EditPage implements IEditObject {
 		$out->addHTML( Html::hidden( 'wpUltimateParam', true ) );
 		$out->addHTML( $this->editFormTextBottom . "\n</form>\n" );
 
-		if ( !$user->getOption( 'previewontop' ) ) {
+		if ( !$this->userOptionsLookup->getOption( $user, 'previewontop' ) ) {
 			$this->displayPreviewArea( $previewOutput, false );
 		}
 	}
