@@ -32,6 +32,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\NameTableAccessException;
+use MediaWiki\User\UserOptionsLookup;
 
 /**
  * DifferenceEngine is responsible for rendering the difference between two revisions as HTML.
@@ -230,6 +231,9 @@ class DifferenceEngine extends ContextSource {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/** #@- */
 
 	/**
@@ -270,6 +274,7 @@ class DifferenceEngine extends ContextSource {
 		$this->revisionStore = $services->getRevisionStore();
 		$this->hookRunner = new HookRunner( $services->getHookContainer() );
 		$this->wikiPageFactory = $services->getWikiPageFactory();
+		$this->userOptionsLookup = $services->getUserOptionsLookup();
 	}
 
 	/**
@@ -1768,7 +1773,10 @@ class DifferenceEngine extends ContextSource {
 			'class' => [
 				'diff',
 				'diff-contentalign-' . $this->getDiffLang()->alignStart(),
-				'diff-editfont-' . $this->getUser()->getOption( 'editfont' )
+				'diff-editfont-' . $this->userOptionsLookup->getOption(
+					$this->getUser(),
+					'editfont'
+				)
 			],
 			'data-mw' => 'interface',
 		] );
