@@ -320,13 +320,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @param string|null $text HTML. Use null to indicate that this ParserOutput contains only
 	 *        meta-data, and the HTML output is undetermined, as opposed to empty. Passing null
-	 *        here causes hasText() to return false.
+	 *        here causes hasText() to return false. In 1.39 the default value changed from ''
+	 *        to null.
 	 * @param array $languageLinks
 	 * @param array $categoryLinks
 	 * @param bool $unused
 	 * @param string $titletext
 	 */
-	public function __construct( $text = '', $languageLinks = [], $categoryLinks = [],
+	public function __construct( $text = null, $languageLinks = [], $categoryLinks = [],
 		$unused = false, $titletext = ''
 	) {
 		$this->mText = $text;
@@ -873,8 +874,17 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $this->mExtraStyleSrcs;
 	}
 
+	/**
+	 * Set the text of the ParserOutput.
+	 *
+	 * If you did not generate html, pass null to mark it as such.
+	 *
+	 * @since 1.39 You can now pass null to this function
+	 * @param string|null $text HTML content of ParserOutput or null if not generated
+	 * @return string|null Previous value of ParserOutput's text
+	 */
 	public function setText( $text ) {
-		return wfSetVar( $this->mText, $text );
+		return wfSetVar( $this->mText, $text, true );
 	}
 
 	public function setLanguageLinks( $ll ) {

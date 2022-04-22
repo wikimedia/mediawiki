@@ -103,7 +103,7 @@ class JsonContentHandler extends CodeContentHandler {
 			$parserOutput->setText( $content->rootValueTable( $content->getData()->getValue() ) );
 			$parserOutput->addModuleStyles( [ 'mediawiki.content.json' ] );
 		} else {
-			$parserOutput->setText( '' );
+			$parserOutput->setText( null );
 		}
 	}
 }
