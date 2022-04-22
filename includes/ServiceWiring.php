@@ -1682,7 +1682,8 @@ return [
 			$services->getMainConfig(),
 			$services->getContentLanguage(),
 			$services->getHookContainer(),
-			ExtensionRegistry::getInstance()->getAttribute( 'SearchMappings' )
+			ExtensionRegistry::getInstance()->getAttribute( 'SearchMappings' ),
+			$services->getUserOptionsLookup()
 		);
 	},
 
