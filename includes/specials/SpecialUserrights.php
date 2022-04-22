@@ -921,6 +921,8 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		$ret .= "</tr>\n<tr>\n";
+		$uiLanguage = $this->getLanguage();
+		$userName = $user->getName();
 		foreach ( $columns as $column ) {
 			if ( $column === [] ) {
 				continue;
@@ -932,7 +934,7 @@ class UserrightsPage extends SpecialPage {
 					$attr['disabled'] = 'disabled';
 				}
 
-				$member = UserGroupMembership::getGroupMemberName( $group, $user->getName() );
+				$member = $uiLanguage->getGroupMemberName( $group, $userName );
 				if ( $checkbox['irreversible'] ) {
 					$text = $this->msg( 'userrights-irreversible-marker', $member )->text();
 				} elseif ( $checkbox['disabled'] && !$checkbox['disabled-expiry'] ) {
@@ -945,7 +947,6 @@ class UserrightsPage extends SpecialPage {
 
 				if ( $this->canProcessExpiries() ) {
 					$uiUser = $this->getUser();
-					$uiLanguage = $this->getLanguage();
 
 					$currentExpiry = isset( $usergroups[$group] ) ?
 						$usergroups[$group]->getExpiry() :

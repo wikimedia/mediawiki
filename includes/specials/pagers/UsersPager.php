@@ -435,8 +435,9 @@ class UsersPager extends AlphabeticPager {
 	 */
 	private function getAllGroups() {
 		$result = [];
+		$lang = $this->getLanguage();
 		foreach ( $this->userGroupManager->listAllGroups() as $group ) {
-			$result[$group] = UserGroupMembership::getGroupName( $group );
+			$result[$group] = $lang->getGroupName( $group );
 		}
 		asort( $result );
 
