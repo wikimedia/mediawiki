@@ -41,10 +41,8 @@ class CategoryPage extends Article {
 	public function view() {
 		$request = $this->getContext()->getRequest();
 		$diff = $request->getVal( 'diff' );
-		$diffOnly = $request->getBool( 'diffonly',
-			$this->getContext()->getUser()->getOption( 'diffonly' ) );
 
-		if ( $diff !== null && $diffOnly ) {
+		if ( $diff !== null && $this->isDiffOnlyView() ) {
 			parent::view();
 			return;
 		}

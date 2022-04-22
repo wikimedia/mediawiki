@@ -99,12 +99,8 @@ class ImagePage extends Article {
 		$out = $this->getContext()->getOutput();
 		$request = $this->getContext()->getRequest();
 		$diff = $request->getVal( 'diff' );
-		$diffOnly = $request->getBool(
-			'diffonly',
-			$this->getContext()->getUser()->getOption( 'diffonly' )
-		);
 
-		if ( $this->getTitle()->getNamespace() !== NS_FILE || ( $diff !== null && $diffOnly ) ) {
+		if ( $this->getTitle()->getNamespace() !== NS_FILE || ( $diff !== null && $this->isDiffOnlyView() ) ) {
 			parent::view();
 			return;
 		}
