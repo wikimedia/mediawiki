@@ -25,6 +25,7 @@
 
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 
@@ -53,7 +54,8 @@ class LogFormatter {
 	 * @return LogFormatter
 	 */
 	public static function newFromEntry( LogEntry $entry ) {
-		$logActionsHandlers = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogActionsHandlers' );
+		$logActionsHandlers = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::LogActionsHandlers );
 		$fulltype = $entry->getFullType();
 		$wildcard = $entry->getType() . '/*';
 		$handler = $logActionsHandlers[$fulltype] ?? $logActionsHandlers[$wildcard] ?? '';
@@ -170,7 +172,7 @@ class LogFormatter {
 	public function canViewLogType() {
 		// If the user doesn't have the right permission to view the specific
 		// log type, return false
-		$logRestrictions = $this->context->getConfig()->get( 'LogRestrictions' );
+		$logRestrictions = $this->context->getConfig()->get( MainConfigNames::LogRestrictions );
 		$type = $this->entry->getType();
 		return !isset( $logRestrictions[$type] )
 			|| $this->context->getAuthority()->isAllowed( $logRestrictions[$type] );

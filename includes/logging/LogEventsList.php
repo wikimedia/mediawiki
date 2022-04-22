@@ -25,6 +25,7 @@
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\Authority;
@@ -136,7 +137,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		// Title pattern, if allowed
-		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
+		if ( !$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$formDescriptor['pattern'] = $this->getTitlePatternDesc( $pattern );
 		}
 
@@ -552,7 +553,7 @@ class LogEventsList extends ContextSource {
 	 * @return bool
 	 */
 	public static function userCanViewLogType( $type, Authority $performer ) {
-		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
+		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::LogRestrictions );
 		if ( isset( $logRestrictions[$type] ) && !$performer->isAllowed( $logRestrictions[$type] )
 		) {
 			return false;
@@ -788,7 +789,7 @@ class LogEventsList extends ContextSource {
 	 * @throws InvalidArgumentException
 	 */
 	public static function getExcludeClause( $db, $audience = 'public', Authority $performer = null ) {
-		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
+		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::LogRestrictions );
 
 		if ( $audience != 'public' && $performer === null ) {
 			throw new InvalidArgumentException(
