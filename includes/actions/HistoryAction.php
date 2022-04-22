@@ -353,10 +353,6 @@ class HistoryAction extends FormlessAction {
 		$page_id = $this->getWikiPage()->getId();
 
 		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
-		// T270033 Index renaming
-		$revIndex = $dbr->indexExists( 'revision', 'page_timestamp',  __METHOD__ )
-			? 'page_timestamp'
-			: 'rev_page_timestamp';
 		return $dbr->select(
 			$revQuery['tables'],
 			$revQuery['fields'],
@@ -364,7 +360,7 @@ class HistoryAction extends FormlessAction {
 			__METHOD__,
 			[
 				'ORDER BY' => "rev_timestamp $dirs",
-				'USE INDEX' => [ 'revision' => $revIndex ],
+				'USE INDEX' => [ 'revision' => 'rev_page_timestamp' ],
 				'LIMIT' => $limit
 			],
 			$revQuery['joins']
