@@ -82,9 +82,12 @@ class McTest extends Maintenance {
 			$conf = $wgObjectCaches[$cacheType];
 			if ( $server !== null ) {
 				$conf['servers'] = [ $server ];
+				$host = $server;
+			} else {
+				$host = 'localhost';
 			}
-			$cacheByServer[$server] = new $class( $conf );
-			$cacheByServer[$server]->get( 'key' );
+			$cacheByServer[$host] = new $class( $conf );
+			$cacheByServer[$host]->get( 'key' );
 		}
 		$this->output( "done\n" );
 		$this->output( "Single and batched operation profiling/test results:\n" );
@@ -94,8 +97,7 @@ class McTest extends Maintenance {
 			$valueByKey["test$i"] = 'S' . str_pad( (string)$i, 2048 );
 		}
 
-		foreach ( $cacheByServer as $server => $mcc ) {
-			$host = $servers ?? 'localhost';
+		foreach ( $cacheByServer as $host => $mcc ) {
 			$this->output( str_pad( $host, $maxSrvLen ) . "\n" );
 			$this->benchmarkSingleKeyOps( $mcc, $valueByKey );
 			$this->benchmarkMultiKeyOpsImmediateBlocking( $mcc, $valueByKey );
