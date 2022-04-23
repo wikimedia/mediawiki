@@ -10,36 +10,35 @@ class HTMLTitleTextFieldTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideInterwiki
 	 */
-	public function testInterwiki( array $config, string $value, bool $isValid ) {
+	public function testInterwiki( array $config, string $value, $expected ) {
 		$this->setupInterwikiTable();
 		$field = new HTMLTitleTextField( $config + [ 'fieldname' => 'foo' ] );
 		$result = $field->validate( $value, [ 'foo' => $value ] );
-		if ( $isValid ) {
-			$this->assertSame( true, $result );
+		if ( $result instanceof Message ) {
+			$this->assertSame( $expected, $result->getKey() );
 		} else {
-			// phpcs:ignore MediaWiki.PHPUnit.AssertEquals.True
-			$this->assertNotSame( true, $result );
+			$this->assertSame( $expected, $result );
 		}
 	}
 
 	public function provideInterwiki() {
 		return [
 			'local title' => [ [ 'interwiki' => false ], 'SomeTitle', true ],
-			'interwiki title, default' => [ [], 'unittest_foo:SomeTitle', false ],
+			'interwiki title, default' => [ [], 'unittest_foo:SomeTitle', 'htmlform-title-interwiki' ],
 			'interwiki title, disallowed' => [ [ 'interwiki' => false ],
-				'unittest_foo:SomeTitle', false ],
+				'unittest_foo:SomeTitle', 'htmlform-title-interwiki' ],
 			'interwiki title, allowed' => [ [ 'interwiki' => true ],
 				'unittest_foo:SomeTitle', true ],
 			'namespace safety check' => [ [ 'interwiki' => true, 'namespace' => NS_TALK ],
-				'SomeTitle', false ],
+				'SomeTitle', 'htmlform-title-badnamespace' ],
 			'interwiki ignores namespace' => [ [ 'interwiki' => true, 'namespace' => NS_TALK ],
 				'unittest_foo:SomeTitle', true ],
 			'creatable safety check' => [ [ 'interwiki' => true, 'creatable' => true ],
-				'Special:Version', false ],
+				'Special:Version', 'htmlform-title-not-creatable' ],
 			'interwiki ignores creatable' => [ [ 'interwiki' => true, 'creatable' => true ],
 				'unittest_foo:Special:Version', true ],
 			'exists safety check' => [ [ 'interwiki' => true, 'exists' => true ],
-				'SomeTitle', false ],
+				'SomeTitle', 'htmlform-title-not-exists' ],
 			'interwiki ignores exists' => [ [ 'interwiki' => true, 'exists' => true ],
 				'unittest_foo:SomeTitle', true ],
 		];
