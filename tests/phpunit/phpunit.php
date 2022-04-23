@@ -11,8 +11,6 @@ use PHPUnit\TextUI\Command;
 
 class PHPUnitMaintClass {
 	public function setup() {
-		global $wgCommandLineMode;
-
 		// Set a flag which can be used to detect when other scripts have been entered
 		// through this entry point or not.
 		define( 'MW_PHPUNIT_TEST', true );
@@ -24,8 +22,15 @@ class PHPUnitMaintClass {
 			ini_set( 'display_errors', 'stderr' );
 		}
 
+		$this->prepareEnvironment();
+		require_once __DIR__ . '/../common/TestSetup.php';
+		TestSetup::snapshotGlobals();
+	}
+
+	public function prepareEnvironment() {
+		global $wgCommandLineMode;
+
 		# Disable the memory limit as it's not needed for tests.
-		# Note we need to set it again later in case LocalSettings changed it
 		ini_set( 'memory_limit', -1 );
 
 		# Set max execution time to 0 (no limit). PHP.net says that
@@ -39,22 +44,14 @@ class PHPUnitMaintClass {
 		while ( ob_get_level() > 0 ) {
 			ob_end_flush();
 		}
-
-		require_once __DIR__ . '/../common/TestSetup.php';
-		TestSetup::snapshotGlobals();
 	}
 
 	public function finalSetup() {
-		global $wgCommandLineMode, $wgShowExceptionDetails, $wgShowHostnames;
 		global $wgDBadminuser, $wgDBadminpassword;
 		global $wgDBuser, $wgDBpassword, $wgDBservers, $wgLBFactoryConf;
 
-		# Turn off output buffering again, it might have been turned on in the settings files
-		if ( ob_get_level() ) {
-			ob_end_flush();
-		}
-		# Same with these
-		$wgCommandLineMode = true;
+		# Prepare environment again, things might have changed in the settings files
+		$this->prepareEnvironment();
 
 		if ( isset( $wgDBadminuser ) ) {
 			$wgDBuser = $wgDBadminuser;
@@ -79,13 +76,6 @@ class PHPUnitMaintClass {
 			}
 		}
 
-		$wgShowExceptionDetails = true;
-		$wgShowHostnames = true;
-
-		@set_time_limit( 0 );
-
-		ini_set( 'memory_limit', -1 );
-
 		require_once __DIR__ . '/../common/TestsAutoLoader.php';
 
 		TestSetup::applyInitialConfig();
@@ -94,12 +84,6 @@ class PHPUnitMaintClass {
 	}
 
 	public function execute() {
-		if ( !class_exists( PHPUnit\Framework\TestCase::class ) ) {
-			echo "PHPUnit not found. Please install it and other dev dependencies by
-		running `composer install` in MediaWiki root directory.\n";
-			exit( 1 );
-		}
-
 		// Start an output buffer to avoid headers being sent by constructors,
 		// data providers, etc. (T206476)
 		ob_start();
@@ -126,10 +110,6 @@ if ( PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' ) {
 	exit( 'This script must be run from the command line' );
 }
 
-if ( !ini_get( 'register_argc_argv' ) ) {
-	exit( 'Cannot get command line arguments, register_argc_argv is set to false' );
-}
-
 define( 'MW_ENTRY_POINT', 'cli' );
 
 if ( strval( getenv( 'MW_INSTALL_PATH' ) ) === '' ) {
@@ -148,13 +128,12 @@ if ( getenv( 'PHPUNIT_WIKI' ) ) {
 define( 'MEDIAWIKI', true );
 
 $IP = getenv( 'MW_INSTALL_PATH' );
-require_once "$IP/includes/BootstrapHelperFunctions.php";
 
 $wrapper = new PHPUnitMaintClass();
 $wrapper->setup();
 
+require_once "$IP/includes/BootstrapHelperFunctions.php";
 wfDetectLocalSettingsFile( $IP );
-$wgCommandLineMode = true;
 
 function wfPHPUnitSetup() {
 	// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
