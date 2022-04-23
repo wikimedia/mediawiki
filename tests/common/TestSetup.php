@@ -37,9 +37,10 @@ class TestSetup {
 		global $wgJobTypeConf;
 		global $wgMWLoggerDefaultSpi;
 		global $wgAuthManagerConfig;
-		global $wgShowExceptionDetails;
+		global $wgShowExceptionDetails, $wgShowHostnames;
 
 		$wgShowExceptionDetails = true;
+		$wgShowHostnames = true;
 
 		// wfWarn should cause tests to fail
 		$wgDevelopmentWarnings = true;
