@@ -409,7 +409,7 @@ ${serverSetting}
 # with MediaWiki developers to help guide future development efforts.
 \$wgPingback = {$this->values['wgPingback']};
 
-# Site language code, should be one of the list in ./languages/data/Names.php
+# Site language code, should be one of the list in ./includes/languages/data/Names.php
 \$wgLanguageCode = \"{$this->values['wgLanguageCode']}\";
 
 # Time zone
