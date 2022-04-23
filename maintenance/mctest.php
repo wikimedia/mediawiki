@@ -69,7 +69,7 @@ class McTest extends Maintenance {
 			$servers = [ $server ];
 		} else {
 			// Note that some caches, like apcu, do not have a server list
-			$servers = $wgObjectCaches[$cacheType]['servers'] ?? [ '127.0.0.1' ];
+			$servers = $wgObjectCaches[$cacheType]['servers'] ?? [ null ];
 		}
 
 		// Use longest server string for output alignment
@@ -79,7 +79,10 @@ class McTest extends Maintenance {
 		/** @var BagOStuff[] $cacheByServer */
 		$cacheByServer = [];
 		foreach ( $servers as $server ) {
-			$conf = [ 'servers' => [ $server ] ] + $wgObjectCaches[$cacheType];
+			$conf = $wgObjectCaches[$cacheType];
+			if ( $server !== null ) {
+				$conf['servers'] = [ $server ];
+			}
 			$cacheByServer[$server] = new $class( $conf );
 			$cacheByServer[$server]->get( 'key' );
 		}
@@ -92,7 +95,8 @@ class McTest extends Maintenance {
 		}
 
 		foreach ( $cacheByServer as $server => $mcc ) {
-			$this->output( str_pad( $server, $maxSrvLen ) . "\n" );
+			$host = $servers ?? 'localhost';
+			$this->output( str_pad( $host, $maxSrvLen ) . "\n" );
 			$this->benchmarkSingleKeyOps( $mcc, $valueByKey );
 			$this->benchmarkMultiKeyOpsImmediateBlocking( $mcc, $valueByKey );
 			$this->benchmarkMultiKeyOpsDeferredBlocking( $mcc, $valueByKey );
