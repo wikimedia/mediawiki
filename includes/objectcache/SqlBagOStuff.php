@@ -215,12 +215,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$this->replicaOnly = $params['replicaOnly'] ?? false;
 
 		if ( $params['multiPrimaryMode'] ?? false ) {
-			if ( $dbType !== 'mysql' ) {
-				throw new InvalidArgumentException(
-					"Multi-primary mode only supports MySQL (got '$dbType')"
-				);
-			}
-
 			$this->multiPrimaryModeType = $dbType;
 		}
 
@@ -1293,10 +1287,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	/**
 	 * @param IDatabase $db
 	 * @param string|int $serialValue
-	 * @return string|int
+	 * @return string
 	 */
 	private function dbEncodeSerialValue( IDatabase $db, $serialValue ) {
-		return is_int( $serialValue ) ? $serialValue : $db->encodeBlob( $serialValue );
+		return is_int( $serialValue ) ? (string)$serialValue : $db->encodeBlob( $serialValue );
 	}
 
 	/**
