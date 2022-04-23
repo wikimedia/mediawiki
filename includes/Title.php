@@ -4234,7 +4234,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			$this->getId(),
 			$this->getNamespace(),
 			$this->getDBkey(),
-			self::LOCAL
+			$this->getWikiId()
 		);
 	}
 
