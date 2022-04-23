@@ -198,6 +198,7 @@ class SpecialStatistics extends SpecialPage {
 
 	private function getGroupStats() {
 		$linkRenderer = $this->getLinkRenderer();
+		$lang = $this->getLanguage();
 		$text = '';
 		foreach (
 			$this->getConfig()->get( MainConfigNames::GroupPermissions ) as $group => $permissions
@@ -207,7 +208,7 @@ class SpecialStatistics extends SpecialPage {
 				|| $group == '*' ) {
 				continue;
 			}
-			$groupnameLocalized = UserGroupMembership::getGroupName( $group );
+			$groupnameLocalized = $lang->getGroupName( $group );
 			$linkTarget = UserGroupMembership::getGroupPage( $group )
 				?: Title::makeTitleSafe( NS_PROJECT, $group );
 

@@ -84,14 +84,15 @@ class RightsLogFormatter extends LogFormatter {
 		$newGroups = $this->makeGroupArray( $params[4] );
 
 		$userName = $this->entry->getTarget()->getText();
+		$lang = $this->context->getLanguage();
 		if ( !$this->plaintext && count( $oldGroups ) ) {
 			foreach ( $oldGroups as &$group ) {
-				$group = UserGroupMembership::getGroupMemberName( $group, $userName );
+				$group = $lang->getGroupMemberName( $group, $userName );
 			}
 		}
 		if ( !$this->plaintext && count( $newGroups ) ) {
 			foreach ( $newGroups as &$group ) {
-				$group = UserGroupMembership::getGroupMemberName( $group, $userName );
+				$group = $lang->getGroupMemberName( $group, $userName );
 			}
 		}
 

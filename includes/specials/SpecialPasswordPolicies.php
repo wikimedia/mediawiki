@@ -78,13 +78,14 @@ class SpecialPasswordPolicies extends SpecialPage {
 		asort( $allGroups );
 
 		$linkRenderer = $this->getLinkRenderer();
+		$lang = $this->getLanguage();
 
 		foreach ( $allGroups as $group ) {
 			if ( $group == '*' ) {
 				continue;
 			}
 
-			$groupnameLocalized = UserGroupMembership::getGroupName( $group );
+			$groupnameLocalized = $lang->getGroupName( $group );
 
 			$grouppageLocalizedTitle = UserGroupMembership::getGroupPage( $group )
 				?: Title::makeTitle( NS_PROJECT, $group );

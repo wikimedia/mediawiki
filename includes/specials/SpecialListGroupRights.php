@@ -100,6 +100,7 @@ class SpecialListGroupRights extends SpecialPage {
 		asort( $allGroups );
 
 		$linkRenderer = $this->getLinkRenderer();
+		$lang = $this->getLanguage();
 
 		foreach ( $allGroups as $group ) {
 			$permissions = $this->groupPermissionsLookup->getGrantedPermissions( $group );
@@ -107,7 +108,7 @@ class SpecialListGroupRights extends SpecialPage {
 				? 'all'
 				: $group;
 
-			$groupnameLocalized = UserGroupMembership::getGroupName( $groupname );
+			$groupnameLocalized = $lang->getGroupName( $groupname );
 
 			$grouppageLocalizedTitle = UserGroupMembership::getGroupPage( $groupname )
 				?: Title::makeTitleSafe( NS_PROJECT, $groupname );
