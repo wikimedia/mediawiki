@@ -170,13 +170,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	private static function initializeForStandardPhpunitEntrypointIfNeeded() {
-		if ( function_exists( 'wfRequireOnceInGlobalScope' ) ) {
+		if ( defined( 'MW_PHPUNIT_UNIT' ) ) {
 			$IP = realpath( __DIR__ . '/../..' );
-			wfRequireOnceInGlobalScope( "$IP/includes/Defines.php" );
-			wfRequireOnceInGlobalScope( "$IP/includes/DefaultSettings.php" );
-			wfRequireOnceInGlobalScope( "$IP/includes/GlobalFunctions.php" );
-			wfRequireOnceInGlobalScope( "$IP/includes/Setup.php" );
-			wfRequireOnceInGlobalScope( "$IP/tests/common/TestsAutoLoader.php" );
+			TestSetup::requireOnceInGlobalScope( "$IP/includes/Defines.php" );
+			TestSetup::requireOnceInGlobalScope( "$IP/includes/DefaultSettings.php" );
+			TestSetup::requireOnceInGlobalScope( "$IP/includes/GlobalFunctions.php" );
+			TestSetup::requireOnceInGlobalScope( "$IP/includes/Setup.php" );
+			TestSetup::requireOnceInGlobalScope( "$IP/tests/common/TestsAutoLoader.php" );
 			TestSetup::applyInitialConfig();
 		}
 	}

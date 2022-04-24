@@ -131,7 +131,7 @@ if ( !interface_exists( LoggerInterface::class ) ) {
 	trigger_error( $message, E_USER_ERROR );
 }
 
-// explicitly global, so it works with wfRequireOnceInGlobalScope()
+// explicitly global, so it works with TestSetup::requireOnceInGlobalScope()
 global $wgSettings, $wgConf, $wgAutoloadClasses, $wgCommandLineMode;
 
 // Set $wgCommandLineMode to false if it wasn't set to true.
