@@ -23,6 +23,8 @@
 namespace Wikimedia\Rdbms;
 
 use RuntimeException;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
+use Wikimedia\Rdbms\Platform\PostgresPlatform;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WaitConditionLoop;
 
@@ -44,6 +46,9 @@ class DatabasePostgres extends Database {
 	/** @var resource|null */
 	private $lastResultHandle;
 
+	/** @var ISQLPlatform */
+	private $platform;
+
 	/**
 	 * @see Database::__construct()
 	 * @param array $params Additional parameters include:
@@ -63,6 +68,7 @@ class DatabasePostgres extends Database {
 		}
 
 		parent::__construct( $params );
+		$this->platform = new PostgresPlatform();
 	}
 
 	public function getType() {
@@ -129,7 +135,7 @@ class DatabasePostgres extends Database {
 			];
 			foreach ( $variables as $var => $val ) {
 				$this->query(
-					'SET ' . $this->addIdentifierQuotes( $var ) . ' = ' . $this->addQuotes( $val ),
+					'SET ' . $this->platform->addIdentifierQuotes( $var ) . ' = ' . $this->addQuotes( $val ),
 					__METHOD__,
 					self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX
 				);
@@ -456,7 +462,9 @@ __INDEXATTR__;
 							$toCheck = array_merge( $toCheck, $name );
 						} else {
 							// Quote alias names so $this->tableName() won't mangle them
-							$options['FOR UPDATE'][] = $hasAlias ? $this->addIdentifierQuotes( $alias ) : $alias;
+							$options['FOR UPDATE'][] = $hasAlias ?
+								// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
+								$this->platform->addIdentifierQuotes( $alias ) : $alias;
 						}
 					}
 				}
@@ -674,8 +682,8 @@ __INDEXATTR__;
 	public function duplicateTableStructure(
 		$oldName, $newName, $temporary = false, $fname = __METHOD__
 	) {
-		$newNameE = $this->addIdentifierQuotes( $newName );
-		$oldNameE = $this->addIdentifierQuotes( $oldName );
+		$newNameE = $this->platform->addIdentifierQuotes( $newName );
+		$oldNameE = $this->platform->addIdentifierQuotes( $oldName );
 
 		$temporary = $temporary ? 'TEMPORARY' : '';
 
@@ -705,8 +713,8 @@ __INDEXATTR__;
 		if ( $row ) {
 			$field = $row->attname;
 			$newSeq = "{$newName}_{$field}_seq";
-			$fieldE = $this->addIdentifierQuotes( $field );
-			$newSeqE = $this->addIdentifierQuotes( $newSeq );
+			$fieldE = $this->platform->addIdentifierQuotes( $field );
+			$newSeqE = $this->platform->addIdentifierQuotes( $newSeq );
 			$newSeqQ = $this->addQuotes( $newSeq );
 			$this->query(
 				"CREATE $temporary SEQUENCE $newSeqE OWNED BY $newNameE.$fieldE",
@@ -921,7 +929,7 @@ __INDEXATTR__;
 			} else {
 				// Prepend the desired schema to the search path (T17816)
 				$search_path = $this->getSearchPath();
-				array_unshift( $search_path, $this->addIdentifierQuotes( $desiredSchema ) );
+				array_unshift( $search_path, $this->platform->addIdentifierQuotes( $desiredSchema ) );
 				$this->setSearchPath( $search_path );
 				$this->coreSchema = $desiredSchema;
 				$this->queryLogger->debug(

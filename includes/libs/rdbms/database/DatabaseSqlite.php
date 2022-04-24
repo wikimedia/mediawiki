@@ -29,6 +29,8 @@ use NullLockManager;
 use PDO;
 use PDOException;
 use RuntimeException;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
+use Wikimedia\Rdbms\Platform\SqlitePlatform;
 
 /**
  * @ingroup Database
@@ -67,6 +69,9 @@ class DatabaseSqlite extends Database {
 		'temp_store' => [ 'FILE', 'MEMORY' ]
 	];
 
+	/** @var ISQLPlatform */
+	private $platform;
+
 	/**
 	 * Additional params include:
 	 *   - dbDirectory : directory containing the DB and the lock file directory
@@ -89,6 +94,7 @@ class DatabaseSqlite extends Database {
 		$this->trxMode = strtoupper( $params['trxMode'] ?? '' );
 
 		$this->lockMgr = $this->makeLockManager();
+		$this->platform = new SqlitePlatform();
 	}
 
 	protected static function getAttributes() {
@@ -922,9 +928,9 @@ class DatabaseSqlite extends Database {
 		$sqlCreateTable = $obj->sql;
 		$sqlCreateTable = preg_replace(
 			'/(?<=\W)"?' .
-				preg_quote( trim( $this->addIdentifierQuotes( $oldName ), '"' ), '/' ) .
+				preg_quote( trim( $this->platform->addIdentifierQuotes( $oldName ), '"' ), '/' ) .
 				'"?(?=\W)/',
-			$this->addIdentifierQuotes( $newName ),
+			$this->platform->addIdentifierQuotes( $newName ),
 			$sqlCreateTable,
 			1
 		);
@@ -966,8 +972,8 @@ class DatabaseSqlite extends Database {
 			}
 			// Try to come up with a new index name, given indexes have database scope in SQLite
 			$indexName = $newName . '_' . $index->name;
-			$sqlIndex .= ' ' . $this->addIdentifierQuotes( $indexName ) .
-				' ON ' . $this->addIdentifierQuotes( $newName );
+			$sqlIndex .= ' ' . $this->platform->addIdentifierQuotes( $indexName ) .
+				' ON ' . $this->platform->addIdentifierQuotes( $newName );
 
 			$indexInfo = $this->query(
 				'PRAGMA INDEX_INFO(' . $this->addQuotes( $index->name ) . ')',
@@ -1046,7 +1052,7 @@ class DatabaseSqlite extends Database {
 			$encSeqNames[] = $this->addQuotes( $this->tableName( $table, 'raw' ) );
 		}
 
-		$encMasterTable = $this->addIdentifierQuotes( 'sqlite_sequence' );
+		$encMasterTable = $this->platform->addIdentifierQuotes( 'sqlite_sequence' );
 		$this->query(
 			"DELETE FROM $encMasterTable WHERE name IN(" . implode( ',', $encSeqNames ) . ")",
 			$fname,
