@@ -1,6 +1,28 @@
 <?php
 
+use MediaWiki\MainConfigSchema;
+
 class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
+	/** @var string */
+	private $originalDefaultTimezone;
+
+	/**
+	 * Stop $wgLocaltimezone from clobbering the default, and make sure the timezone is UTC
+	 *
+	 * @before
+	 */
+	public function saveTimezoneSetUp(): void {
+		$this->originalDefaultTimezone = date_default_timezone_get();
+		date_default_timezone_set( 'UTC' );
+	}
+
+	/**
+	 * @after
+	 */
+	public function restoreTimezoneTearDown(): void {
+		date_default_timezone_set( $this->originalDefaultTimezone );
+	}
+
 	/**
 	 * Returns a callback that replaces its single input with all occurrences of $find replaced
 	 * with $replace. Arrays are traversed recursively, and values that are neither arrays nor
@@ -24,8 +46,34 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 		return $callback;
 	}
 
+	/**
+	 * This method is made necessary by the fact that the dynamic default for DummyLanguageCodes is
+	 * based on long lists that are returned from static methods that we can't override.
+	 * Copy-pasting those lists into the expected results would be both fragile and hard to read.
+	 *
+	 * @param array $dummyLanguageCodes Value that DummyLanguageCodes was set to in configuration
+	 * @param array $extraLanguageCodes Value that ExtraLanguageCodes was set to in configuration
+	 * @return array Expected value after dynamic defaults
+	 */
+	private static function getExpectedDummyLanguageCodes( array $dummyLanguageCodes,
+		array $extraLanguageCodes = MainConfigSchema::ExtraLanguageCodes['default']
+	): array {
+		$expected = $dummyLanguageCodes + [ 'qqq' => 'qqq', 'qqx' => 'qqx' ] + $extraLanguageCodes
+			+ LanguageCode::getDeprecatedCodeMapping();
+
+		// Copy-paste from SetupDynamicConfig
+		foreach ( LanguageCode::getNonstandardLanguageCodeMapping() as $code => $bcp47 ) {
+			$bcp47 = strtolower( $bcp47 ); // force case-insensitivity
+			if ( !isset( $expected[$bcp47] ) ) {
+				$expected[$bcp47] = $expected[$code] ?? $code;
+			}
+		}
+
+		return $expected;
+	}
+
 	public static function provideGlobals(): Generator {
-		$expected = [
+		$expectedDefault = [
 			'IP' => '/install/path',
 			'wgScriptPath' => '/wiki',
 			'wgScript' => '/wiki/index.php',
@@ -97,12 +145,39 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'backend' => 'local-backend',
 			],
 			'wgCookiePrefix' => 'my_wiki',
+			'wgUseEnotif' => false,
+			'wgLocaltimezone' => 'UTC',
+			'wgLocalTZoffset' => 0,
+			'wgDBerrorLogTZ' => 'UTC',
+			'wgCanonicalNamespaceNames' => NamespaceInfo::CANONICAL_NAMES,
+			'wgDummyLanguageCodes' => self::getExpectedDummyLanguageCodes( [] ),
+			'wgSlaveLagWarning' => 10,
+			'wgDatabaseReplicaLagWarning' => 10,
+			'wgSlaveLagCritical' => 30,
+			'wgDatabaseReplicaLagCritical' => 30,
+			// This will be wrong if LocalSettings.php was last touched before May 16, 2003.
+			'wgCacheEpoch' => static function (): string {
+				// We need a callback that will be evaluated at test time, because otherwise this
+				// doesn't work on CI for some reason.
+				return gmdate( 'YmdHis', filemtime( MW_CONFIG_FILE ) );
+			},
 		];
 
-		yield 'Nothing set' => [ [], $expected ];
+		foreach (
+			self::provideGlobalsInternal( $expectedDefault ) as $desc => $arr
+		) {
+			if ( is_array( $arr[1] ) ) {
+				$arr[1] += $expectedDefault;
+			}
+			yield $desc => $arr;
+		}
+	}
+
+	private static function provideGlobalsInternal( array $expectedDefault ): Generator {
+		yield 'Nothing set' => [ [], [] ];
 		yield '$wgScriptPath set' => [
 			[ 'wgScriptPath' => '/mywiki' ],
-			array_map( self::recursiveReplaceCallback( '/wiki', '/mywiki' ), $expected ),
+			array_map( self::recursiveReplaceCallback( '/wiki', '/mywiki' ), $expectedDefault ),
 		];
 		yield '$wgResourceBasePath set' => [
 			[ 'wgResourceBasePath' => '/resources' ],
@@ -111,7 +186,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'wgExtensionAssetsPath' => '/resources/extensions',
 				'wgStylePath' => '/resources/skins',
 				'wgLogo' => '/resources/resources/assets/change-your-logo.svg',
-			] + $expected,
+			],
 		];
 		yield '$wgUploadDirectory set' => [
 			[ 'wgUploadDirectory' => '/uploads' ],
@@ -144,11 +219,11 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 					'reserializeMetadata' => false,
 					'backend' => 'local-backend',
 				],
-			] + $expected,
+			],
 		];
 		yield '$wgCacheDirectory set' => [
 			[ 'wgCacheDirectory' => '/cache' ],
-			[ 'wgCacheDirectory' => '/cache' ] + $expected,
+			[ 'wgCacheDirectory' => '/cache' ],
 		];
 		yield '$wgDBprefix set' => [
 			[ 'wgDBprefix' => 'prefix_' ],
@@ -156,21 +231,21 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'wgDBprefix' => 'prefix_',
 				'wgSharedPrefix' => 'prefix_',
 				'wgCookiePrefix' => 'my_wiki_prefix_',
-			] + $expected,
+			],
 		];
 		yield '$wgDBmwschema set' => [
 			[ 'wgDBmwschema' => 'schema' ],
 			[
 				'wgDBmwschema' => 'schema',
 				'wgSharedSchema' => 'schema',
-			] + $expected,
+			],
 		];
 		yield '$wgSitename set' => [
 			[ 'wgSitename' => 'my site' ],
 			[
 				'wgSitename' => 'my site',
 				'wgMetaNamespace' => 'my_site',
-			] + $expected,
+			],
 		];
 		yield '$wgMainCacheType set' => [
 			[ 'wgMainCacheType' => 7 ],
@@ -186,7 +261,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 						'cacheId' => 7,
 					],
 				],
-			] + $expected,
+			],
 		];
 		yield '$wgMainWANCache set' => [
 			[ 'wgMainWANCache' => 'my-cache' ],
@@ -195,14 +270,14 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				// XXX Is this intentional? Customizing MainWANCache without adding it to
 				// WANObjectCaches seems like it will break everything?
 				'wgWANObjectCaches' => [ [ 'class' => 'WANObjectCache', 'cacheId' => 0 ] ],
-			] + $expected,
+			],
 		];
 		yield '$wgProhibitedFileExtensions set' => [
 			[ 'wgProhibitedFileExtensions' => [ 'evil' ] ],
 			[
 				'wgProhibitedFileExtensions' => [ 'evil' ],
 				'wgFileBlacklist' => [ 'evil' ],
-			] + $expected,
+			],
 		];
 		yield '$wgProhibitedFileExtensions and $wgFileBlacklist set' => [
 			[
@@ -212,14 +287,14 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			[
 				'wgProhibitedFileExtensions' => [ 'evil', 'eviler' ],
 				'wgFileBlacklist' => [ 'eviler' ],
-			] + $expected,
+			],
 		];
 		yield '$wgMimeTypeExclusions set' => [
 			[ 'wgMimeTypeExclusions' => [ 'evil' ] ],
 			[
 				'wgMimeTypeExclusions' => [ 'evil' ],
 				'wgMimeTypeBlacklist' => [ 'evil' ],
-			] + $expected,
+			],
 		];
 		yield '$wgMimeTypeExclusions and $wgMimeTypeBlacklist set' => [
 			[
@@ -229,14 +304,14 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			[
 				'wgMimeTypeExclusions' => [ 'evil', 'eviler' ],
 				'wgMimeTypeBlacklist' => [ 'eviler' ],
-			] + $expected,
+			],
 		];
 		yield '$wgEnableUserEmailMuteList set' => [
 			[ 'wgEnableUserEmailMuteList' => true ],
 			[
 				'wgEnableUserEmailMuteList' => true,
 				'wgEnableUserEmailBlacklist' => true,
-			] + $expected,
+			],
 		];
 		yield '$wgEnableUserEmailMuteList and $wgEnableUserEmailBlacklist both true' => [
 			[
@@ -246,7 +321,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			[
 				'wgEnableUserEmailMuteList' => true,
 				'wgEnableUserEmailBlacklist' => true,
-			] + $expected,
+			],
 		];
 		yield '$wgEnableUserEmailMuteList true and $wgEnableUserEmailBlacklist false' => [
 			[
@@ -256,21 +331,21 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			[
 				'wgEnableUserEmailMuteList' => false,
 				'wgEnableUserEmailBlacklist' => false,
-			] + $expected,
+			],
 		];
 		yield '$wgShortPagesNamespaceExclusions set' => [
 			[ 'wgShortPagesNamespaceExclusions' => [ NS_TALK ] ],
 			[
 				'wgShortPagesNamespaceExclusions' => [ NS_TALK ],
 				'wgShortPagesNamespaceBlacklist' => [ NS_TALK ],
-			] + $expected,
+			],
 		];
 		yield '$wgShortPagesNamespaceBlacklist set' => [
 			[ 'wgShortPagesNamespaceBlacklist' => [ NS_PROJECT ] ],
 			[
 				'wgShortPagesNamespaceExclusions' => [ NS_PROJECT ],
 				'wgShortPagesNamespaceBlacklist' => [ NS_PROJECT ],
-			] + $expected,
+			],
 		];
 		yield '$wgShortPagesNamespaceExclusions and $wgShortPagesNamespaceBlacklist set' => [
 			[
@@ -280,7 +355,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			[
 				'wgShortPagesNamespaceExclusions' => [ NS_PROJECT ],
 				'wgShortPagesNamespaceBlacklist' => [ NS_PROJECT ],
-			] + $expected,
+			],
 		];
 		yield '$wgFileExtension contains something from $wgProhibitedFileExtensions' => [
 			[
@@ -290,7 +365,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			[
 				'wgFileExtensions' => [ 'a', 'c' ],
 				'wgProhibitedFileExtensions' => [ 'b', 'd' ],
-			] + $expected,
+			],
 		];
 		yield '$wgRightsIcon old path convention' => [
 			[
@@ -304,7 +379,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'wgExtensionAssetsPath' => '/resources/extensions',
 				'wgLogo' => '/resources/resources/assets/change-your-logo.svg',
 				'wgRightsIcon' => '/resources/resources/assets/licenses/rights.png',
-			] + $expected,
+			],
 		];
 		yield 'Empty $wgFooterIcons[\'copyright\'][\'copyright\'], $wgRightsIcon set' => [
 			[
@@ -317,7 +392,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 					'src' => 'ico',
 					'alt' => null,
 				] ] ],
-			] + $expected,
+			],
 		];
 		yield 'Empty $wgFooterIcons[\'copyright\'][\'copyright\'], $wgRightsText set' => [
 			[
@@ -330,7 +405,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 					'src' => null,
 					'alt' => 'text',
 				] ] ],
-			] + $expected,
+			],
 		];
 		yield '$wgFooterIcons[\'poweredby\'][\'mediawiki\'][\'src\'] === null' => [
 			[
@@ -347,27 +422,26 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 					'srcset' => '/resources/resources/assets/poweredby_mediawiki_132x47.png 1.5x,' .
 						' /resources/resources/assets/poweredby_mediawiki_176x62.png 2x',
 				] ] ],
-			] + $expected,
+			],
 		];
 		yield '$wgFooterIcons[\'poweredby\'][\'mediawiki\'][\'src\'] === \'\'' => [
 			[ 'wgFooterIcons' => [ 'poweredby' => [ 'mediawiki' => [ 'src' => '' ] ] ] ],
-			[ 'wgFooterIcons' => [ 'poweredby' => [ 'mediawiki' => [ 'src' => '' ] ] ] ] +
-				$expected,
+			[ 'wgFooterIcons' => [ 'poweredby' => [ 'mediawiki' => [ 'src' => '' ] ] ] ],
 		];
 		yield '$wgFooterIcons[\'poweredby\']=== []' => [
 			[ 'wgFooterIcons' => [ 'poweredby' => [] ] ],
-			[ 'wgFooterIcons' => [ 'poweredby' => [] ] ] + $expected,
+			[ 'wgFooterIcons' => [ 'poweredby' => [] ] ],
 		];
 		yield '$wgNamespaceProtection set only for non-NS_MEDIAWIKI' => [
 			[ 'wgNamespaceProtection' => [ NS_PROJECT => 'editprotected' ] ],
 			[ 'wgNamespaceProtection' => [
 				NS_PROJECT => 'editprotected',
 				NS_MEDIAWIKI => 'editinterface',
-			] ] + $expected,
+			] ],
 		];
 		yield '$wgNamespaceProtection[NS_MEDIAWIKI] not editinterface' => [
 			[ 'wgNamespaceProtection' => [ NS_MEDIAWIKI => 'editprotected' ] ],
-			[ 'wgNamespaceProtection' => [ NS_MEDIAWIKI => 'editinterface' ] ] + $expected,
+			[ 'wgNamespaceProtection' => [ NS_MEDIAWIKI => 'editinterface' ] ],
 		];
 		yield 'Custom lock manager' => [
 			[ 'wgLockManagers' => [ [ 'foo' ] ] ],
@@ -378,7 +452,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			], [
 				'name' => 'nullLockManager',
 				'class' => NullLockManager::class,
-			] ] ] + $expected,
+			] ] ],
 		];
 		yield 'Customize some $wgGalleryOptions' => [
 			[ 'wgGalleryOptions' => [
@@ -397,13 +471,13 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'imageWidth' => 120,
 				'captionLength' => true,
 				'showDimensions' => true,
-			] ] + $expected,
+			] ],
 		];
 		yield 'Set $wgLocalFileRepo' => [
 			[ 'wgLocalFileRepo' => [ 'name' => 'asdfgh' ] ],
 			[ 'wgLocalFileRepo' => [
 				'name' => 'asdfgh', 'backend' => 'asdfgh-backend'
-			] ] + $expected,
+			] ],
 		];
 		$sharedUploadsExpected = [
 			'class' => FileRepo::class,
@@ -419,7 +493,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 		];
 		yield '$wgUseSharedUploads' => [
 			[ 'wgUseSharedUploads' => true ],
-			[ 'wgForeignFileRepos' => [ $sharedUploadsExpected ] ] + $expected,
+			[ 'wgForeignFileRepos' => [ $sharedUploadsExpected ] ],
 		];
 		$sharedUploadsDBnameExpected = [
 			'class' => ForeignDBRepo::class,
@@ -446,7 +520,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'wgUseSharedUploads' => true,
 				'wgSharedUploadDBname' => 'shared_uploads',
 			],
-			[ 'wgForeignFileRepos' => [ $sharedUploadsDBnameExpected ] ] + $expected,
+			[ 'wgForeignFileRepos' => [ $sharedUploadsDBnameExpected ] ],
 		];
 		$instantCommonsExpected = [
 			'class' => ForeignAPIRepo::class,
@@ -464,7 +538,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 		];
 		yield '$wgUseInstantCommons' => [
 			[ 'wgUseInstantCommons' => true ],
-			[ 'wgForeignFileRepos' => [ $instantCommonsExpected ] ] + $expected,
+			[ 'wgForeignFileRepos' => [ $instantCommonsExpected ] ],
 		];
 		yield '$wgUseSharedUploads and $wgUseInstantCommons' => [
 			[
@@ -473,7 +547,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			],
 			[ 'wgForeignFileRepos' => [
 				$sharedUploadsExpected, $instantCommonsExpected ]
-			] + $expected,
+			],
 		];
 		yield '$wgUseSharedUploads and $wgSharedUploadDBname and $wgUseInstantCommons' => [
 			[
@@ -483,7 +557,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			],
 			[ 'wgForeignFileRepos' => [
 				$sharedUploadsDBnameExpected, $instantCommonsExpected ]
-			] + $expected,
+			],
 		];
 		yield 'ForeignAPIRepo with no directory' => [
 			[
@@ -499,7 +573,8 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'directory' => '/upload',
 				'backend' => 'foreigner-backend',
 			] ] ] + array_map(
-				self::recursiveReplaceCallback( '/install/path/images', '/upload' ), $expected ),
+				self::recursiveReplaceCallback( '/install/path/images', '/upload' ),
+					$expectedDefault ),
 		];
 		yield '$wgDefaultUserOptions days too high' => [
 			[
@@ -515,6 +590,227 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'timecorrection' => 'System|0',
 			] ],
 		];
+		yield '$wgSharedDB set' => [
+			[ 'wgSharedDB' => 'shared_db' ],
+			[ 'wgCookiePrefix' => 'shared_db' ],
+		];
+		yield '$wgSharedDB and $wgSharedPrefix set' => [
+			[ 'wgSharedDB' => 'shared_db', 'wgSharedPrefix' => 'shared_prefix' ],
+			[
+				'wgCookiePrefix' => 'shared_db_shared_prefix',
+				'wgSharedPrefix' => 'shared_prefix',
+			],
+		];
+		yield '$wgSharedPrefix set with no $wgSharedDB' => [
+			[ 'wgSharedPrefix' => 'shared_prefix' ],
+			[ 'wgSharedPrefix' => 'shared_prefix' ],
+		];
+		yield '$wgSharedDB set but user not in $wgSharedTables' => [
+			[ 'wgSharedDB' => 'shared_db', 'wgSharedTables' => [ 'user_properties' ] ],
+			[],
+		];
+		yield '$wgSharedDB and $wgSharedPrefix set but user not in $wgSharedTables' => [
+			[
+				'wgSharedDB' => 'shared_db',
+				'wgSharedPrefix' => 'shared_prefix',
+				'wgSharedTables' => [ 'user_properties' ],
+			],
+			[ 'wgSharedPrefix' => 'shared_prefix' ],
+		];
+		yield '$wgCookiePrefix with allowed punctuation' => [
+			[ 'wgCookiePrefix' => "~!@#$%^&*()_-]{}|:<>/?\t\r\n\f" ],
+			[ 'wgCookiePrefix' => "~!@#$%^&*()_-]{}|:<>/?\t\r\n\f" ],
+		];
+		yield '$wgCookiePrefix with bad characters' => [
+			[ 'wgCookiePrefix' => 'n=o,t;a l+l.o"w\'e\\d[' ],
+			[ 'wgCookiePrefix' => 'n_o_t_a_l_l_o_w_e_d_' ],
+		];
+		yield '$wgEnotifUserTalk true' => [
+			[ 'wgEnotifUserTalk' => true ],
+			[ 'wgUseEnotif' => true ],
+		];
+		yield '$wgEnableEmail set to false' => [
+			[
+				'wgEnableEmail' => false,
+				'wgAllowHTMLEmail' => true,
+				'wgEmailAuthentication' => true,
+				'wgEnableUserEmail' => true,
+				'wgEnotifFromEditor' => true,
+				'wgEnotifImpersonal' => true,
+				'wgEnotifMaxRecips' => 0,
+				'wgEnotifMinorEdits' => true,
+				'wgEnotifRevealEditorAddress' => true,
+				'wgEnotifUseRealName' => true,
+				'wgEnotifUserTalk' => true,
+				'wgEnotifWatchlist' => true,
+				'wgGroupPermissions' => [ 'user' => [ 'sendemail' => true ] ],
+				'wgUseEnotif' => true,
+				'wgUserEmailUseReplyTo' => true,
+				'wgUsersNotifiedOnAllChanges' => [ 'Admin' ],
+			], [
+				'wgAllowHTMLEmail' => false,
+				'wgEmailAuthentication' => false,
+				'wgEnableUserEmail' => false,
+				'wgEnotifFromEditor' => false,
+				'wgEnotifImpersonal' => false,
+				'wgEnotifMaxRecips' => 0,
+				'wgEnotifMinorEdits' => false,
+				'wgEnotifRevealEditorAddress' => false,
+				'wgEnotifUseRealName' => false,
+				'wgEnotifUserTalk' => false,
+				'wgEnotifWatchlist' => false,
+				'wgGroupPermissions' => [ 'user' => [] ],
+				'wgUseEnotif' => false,
+				'wgUserEmailUseReplyTo' => false,
+				'wgUsersNotifiedOnAllChanges' => [],
+			],
+		];
+		yield 'Change PHP default timezone' => [
+			[ 'wgDefaultUserOptions' => [
+				'rcdays' => 0,
+				'watchlistdays' => 0,
+			] ],
+			[
+				'wgLocaltimezone' => 'America/Phoenix',
+				'wgLocalTZoffset' => -7 * 60,
+				'wgDefaultUserOptions' => [
+					'rcdays' => 0,
+					'watchlistdays' => 0,
+					'timecorrection' => 'System|' . (string)( -7 * 60 ),
+				],
+				'wgDBerrorLogTZ' => 'America/Phoenix',
+			],
+			static function ( self $testObj ): void {
+				// Pick a timezone with no DST
+				$testObj->assertTrue( date_default_timezone_set( 'America/Phoenix' ) );
+			},
+		];
+		yield '$wgDBerrorLogTZ set' => [
+			[ 'wgDBerrorLogTZ' => 'America/Phoenix' ],
+			[ 'wgDBerrorLogTZ' => 'America/Phoenix' ],
+		];
+		yield 'Setting $wgCanonicalNamespaceNames does nothing' => [
+			[ 'wgCanonicalNamespaceNames' => [ NS_MAIN => 'abc' ] ],
+			[],
+		];
+		yield '$wgExtraNamespaces set' => [
+			[ 'wgExtraNamespaces' => [ 100 => 'Extra' ] ],
+			[ 'wgCanonicalNamespaceNames' => NamespaceInfo::CANONICAL_NAMES + [ 100 => 'Extra' ] ],
+		];
+		yield '$wgDummyLanguageCodes set' => [
+			[ 'wgDummyLanguageCodes' => [ 'qqq' => 'qqqq', 'foo' => 'bar', 'bh' => 'hb' ] ],
+			[ 'wgDummyLanguageCodes' => self::getExpectedDummyLanguageCodes(
+				[ 'qqq' => 'qqqq', 'foo' => 'bar', 'bh' => 'hb' ] ) ],
+			static function ( self $testObj ): void {
+				$testObj->expectDeprecationAndContinue(
+					'/Use of \$wgDummyLanguageCodes was deprecated in MediaWiki 1\.29\./' );
+			},
+		];
+		yield '$wgExtraLanguageCodes set' => [
+			[ 'wgExtraLanguageCodes' => [ 'foo' => 'bar' ] ],
+			[ 'wgDummyLanguageCodes' => self::getExpectedDummyLanguageCodes( [],
+				[ 'foo' => 'bar' ] ) ],
+		];
+		yield '$wgDummyLanguageCodes and $wgExtraLanguageCodes set' => [
+			[
+				'wgDummyLanguageCodes' => [ 'foo' => 'bar', 'abc' => 'def' ],
+				'wgExtraLanguageCodes' => [ 'foo' => 'baz', 'ghi' => 'jkl' ],
+			],
+			[ 'wgDummyLanguageCodes' => self::getExpectedDummyLanguageCodes(
+				[ 'foo' => 'bar', 'abc' => 'def' ], [ 'foo' => 'baz', 'ghi' => 'jkl' ] ) ],
+			static function ( self $testObj ): void {
+				$testObj->expectDeprecationAndContinue(
+					'/Use of \$wgDummyLanguageCodes was deprecated in MediaWiki 1\.29\./' );
+			},
+		];
+		yield '$wgDatabaseReplicaLagWarning set' => [
+			[ 'wgDatabaseReplicaLagWarning' => 20 ],
+			[ 'wgDatabaseReplicaLagWarning' => 20, 'wgSlaveLagWarning' => 20 ],
+		];
+		yield '$wgSlaveLagWarning set' => [
+			[ 'wgSlaveLagWarning' => 20 ],
+			[ 'wgDatabaseReplicaLagWarning' => 20, 'wgSlaveLagWarning' => 20 ],
+			static function ( self $testObj ): void {
+				$testObj->expectDeprecationAndContinue(
+					'/Use of \$wgSlaveLagWarning set but \$wgDatabaseReplicaLagWarning unchanged;' .
+					' using \$wgSlaveLagWarning was deprecated in MediaWiki 1\.36\./' );
+			},
+		];
+		// XXX The settings are out of sync, this doesn't look intended
+		yield '$wgDatabaseReplicaLagWarning and $wgSlaveLagWarning set' => [
+			[ 'wgDatabaseReplicaLagWarning' => 20, 'wgSlaveLagWarning' => 30 ],
+			[ 'wgDatabaseReplicaLagWarning' => 20, 'wgSlaveLagWarning' => 30 ],
+		];
+		yield '$wgDatabaseReplicaLagCritical set' => [
+			[ 'wgDatabaseReplicaLagCritical' => 40 ],
+			[ 'wgDatabaseReplicaLagCritical' => 40, 'wgSlaveLagCritical' => 40 ],
+		];
+		yield '$wgSlaveLagCritical set' => [
+			[ 'wgSlaveLagCritical' => 40 ],
+			[ 'wgDatabaseReplicaLagCritical' => 40, 'wgSlaveLagCritical' => 40 ],
+			static function ( self $testObj ): void {
+				$testObj->expectDeprecationAndContinue(
+					'/Use of \$wgSlaveLagCritical set but \$wgDatabaseReplicaLagCritical unchanged;' .
+					' using \$wgSlaveLagCritical was deprecated in MediaWiki 1\.36\./' );
+			},
+		];
+		// XXX The settings are out of sync, this doesn't look intended
+		yield '$wgDatabaseReplicaLagCritical and $wgSlaveLagCritical set' => [
+			[ 'wgDatabaseReplicaLagCritical' => 40, 'wgSlaveLagCritical' => 60 ],
+			[ 'wgDatabaseReplicaLagCritical' => 40, 'wgSlaveLagCritical' => 60 ],
+		];
+		yield '$wgCacheEpoch set to before LocalSettings touched' => [
+			[ 'wgCacheEpoch' => static function () use ( $expectedDefault ): string {
+				return $expectedDefault['wgCacheEpoch']() - 1;
+			} ],
+			[],
+		];
+		yield '$wgCacheEpoch set to after LocalSettings touched' => [
+			[ 'wgCacheEpoch' => static function () use ( $expectedDefault ): string {
+				return $expectedDefault['wgCacheEpoch']() + 1;
+			} ],
+			[ 'wgCacheEpoch' => static function () use ( $expectedDefault ): string {
+				return $expectedDefault['wgCacheEpoch']() + 1;
+			} ],
+		];
+		yield '$wgInvalidateCacheOnLocalSettingsChange false' => [
+			[ 'wgInvalidateCacheOnLocalSettingsChange' => false ],
+			[ 'wgCacheEpoch' => '20030516000000' ],
+		];
+		yield '$wgNewUserLog is true' => [
+			[ 'wgNewUserLog' => true ],
+			static function ( self $testObj, array $vars ) use ( $expectedDefault ): array {
+				$testObj->assertContains( 'newusers', $vars['wgLogTypes'] );
+				$testObj->assertSame( 'newuserlogpage', $vars['wgLogNames']['newusers'] );
+				$testObj->assertSame( 'newuserlogpagetext', $vars['wgLogHeaders']['newusers'] );
+				$testObj->assertSame( NewUsersLogFormatter::class,
+					$vars['wgLogActionsHandlers']['newusers/newusers'] );
+				$testObj->assertSame( NewUsersLogFormatter::class,
+					$vars['wgLogActionsHandlers']['newusers/create'] );
+				$testObj->assertSame( NewUsersLogFormatter::class,
+					$vars['wgLogActionsHandlers']['newusers/create2'] );
+				$testObj->assertSame( NewUsersLogFormatter::class,
+					$vars['wgLogActionsHandlers']['newusers/byemail'] );
+				$testObj->assertSame( NewUsersLogFormatter::class,
+					$vars['wgLogActionsHandlers']['newusers/autocreate'] );
+
+				return $expectedDefault;
+			},
+		];
+		yield '$wgNewUserLog is false`' => [
+			[ 'wgNewUserLog' => false ],
+			static function ( self $testObj, array $vars ) use ( $expectedDefault ): array {
+				// Test that the new user log is not added to any of the various logging globals
+				$testObj->assertNotContains( 'newusers', $vars['wgLogTypes'] );
+				$testObj->assertArrayNotHasKey( 'newusers', $vars['wgLogNames'] );
+				$testObj->assertArrayNotHasKey( 'newusers', $vars['wgLogHeaders'] );
+				foreach ( $vars['wgLogActionsHandlers'] as $key => $unused ) {
+					$testObj->assertStringStartsNotWith( 'newusers', $key );
+				}
+
+				return $expectedDefault;
+			},
+		];
 	}
 
 	/**
@@ -525,19 +821,43 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideGlobals
 	 * @coversNothing Only covers code in global scope, no way to annotate that?
 	 *
-	 * @param array $test Keys are the names of variables, values are their values
-	 * @param array $expected Keys are the names of variables, values are their values
+	 * @param array $test Keys are the names of variables, values are their values. If a value is
+	 *   callable, it will be called with no arguments to obtain the value.
+	 * @param array|callable $expected Keys are the names of variables, values are their values. If
+	 *   a value is callable, it will be called with no arguments to obtain the value. If $expected
+	 *   is callable, then it will be called with $this and get_defined_vars() as arguments, and
+	 *   the returned array will be used for $expected.
+	 * @param ?callable $setup Run before SetupDynamicConfig is included. $this is passed as an
+	 *   argument, and there is no return value.
 	 */
-	public function testGlobals( array $test, array $expected ): void {
+	public function testGlobals( array $test, $expected, ?callable $setup = null ): void {
 		$IP = '/install/path';
 		require MW_INSTALL_PATH . '/includes/DefaultSettings.php';
 		foreach ( $test as $key => $val ) {
-			$$key = $val;
+			// $wgCacheEpoch default doesn't work properly on CI if evaluated in the provider
+			$$key = is_callable( $val ) ? $val() : $val;
+		}
+		if ( $setup ) {
+			$setup( $this );
 		}
 		require MW_INSTALL_PATH . '/includes/SetupDynamicConfig.php';
 
-		foreach ( $expected as $key => $val ) {
-			$this->assertSame( $val, $$key, "Unexpected value for \$$key" );
+		if ( is_callable( $expected ) ) {
+			$expected = $expected( $this, get_defined_vars() );
 		}
+
+		foreach ( $expected as $key => $val ) {
+			$this->assertSame( is_callable( $val ) ? $val() : $val,
+				$$key, "Unexpected value for \$$key" );
+		}
+	}
+
+	/**
+	 * @coversNothing Only covers code in global scope, no way to annotate that?
+	 */
+	public function testSetLocaltimezone(): void {
+		$tz = 'America/Los_Angeles';
+		$this->testGlobals( [ 'wgLocaltimezone' => $tz ], [] );
+		$this->assertSame( $tz, date_default_timezone_get() );
 	}
 }
