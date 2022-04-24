@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigSchema;
+use Wikimedia\ScopedCallback;
 
 class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 	/** @var string */
@@ -70,6 +71,36 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 		}
 
 		return $expected;
+	}
+
+	/**
+	 * Returns a callback that sets $_SERVER['HTTPS'] and $_SERVER['HTTP_X_FORWARDED_PROTO'] to
+	 * given values, which itself returns a ScopedCallback to reset them to their original values.
+	 * (This is probably more cautious than necessary, because tests should be run from the command
+	 * line and not have these values set to begin with, but you never know.)
+	 *
+	 * @param ?string $https New value for $_SERVER['HTTPS']
+	 * @param ?string $hxfp New value for $_SERVER['HTTP_X_FORWARDED_PROTO']
+	 * @return callable Sets $_SERVER as requested, and returns a ScopedCallback that restores the
+	 *   original values.
+	 */
+	private static function getHttpsResetCallback( ?string $https, ?string $hxfp ): callable {
+		return static function () use ( $https, $hxfp ): ScopedCallback {
+			$originalServerVals = [];
+			foreach ( [ 'HTTPS', 'HTTP_X_FORWARDED_PROTO' ] as $key ) {
+				if ( array_key_exists( $key, $_SERVER ) ) {
+					$originalServerVals[$key] = $_SERVER[$key];
+				}
+			}
+			$_SERVER['HTTPS'] = $https;
+			$_SERVER['HTTP_X_FORWARDED_PROTO'] = $hxfp;
+
+			return new ScopedCallback( static function () use ( $originalServerVals ): void {
+				foreach ( $originalServerVals as $key => $val ) {
+					$_SERVER[$key] = $val;
+				}
+			} );
+		};
 	}
 
 	public static function provideGlobals(): Generator {
@@ -811,6 +842,104 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				return $expectedDefault;
 			},
 		];
+		yield '$wgPageCreationLog is true' => [
+			[ 'wgPageCreationLog' => true ],
+			static function ( self $testObj, array $vars ) use ( $expectedDefault ): array {
+				$testObj->assertContains( 'create', $vars['wgLogTypes'] );
+				$testObj->assertSame( LogFormatter::class,
+					$vars['wgLogActionsHandlers']['create/create'] );
+
+				return $expectedDefault;
+			},
+		];
+		yield '$wgPageCreationLog is false`' => [
+			[ 'wgPageCreationLog' => false ],
+			static function ( self $testObj, array $vars ) use ( $expectedDefault ): array {
+				$testObj->assertNotContains( 'create', $vars['wgLogTypes'] );
+				$testObj->assertArrayNotHasKey( 'create/create', $vars['wgLogActionsHandlers'] );
+
+				return $expectedDefault;
+			},
+		];
+		yield '$wgPageLanguageUseDB is true' => [
+			[ 'wgPageLanguageUseDB' => true ],
+			static function ( self $testObj, array $vars ) use ( $expectedDefault ): array {
+				$testObj->assertContains( 'pagelang', $vars['wgLogTypes'] );
+				$testObj->assertSame( PageLangLogFormatter::class,
+					$vars['wgLogActionsHandlers']['pagelang/pagelang'] );
+
+				return $expectedDefault;
+			},
+		];
+		yield '$wgPageLanguageUseDB is false' => [
+			[ 'wgPageLanguageUseDB' => false ],
+			static function ( self $testObj, array $vars ) use ( $expectedDefault ): array {
+				$testObj->assertNotContains( 'pagelang', $vars['wgLogTypes'] );
+				$testObj->assertArrayNotHasKey( 'pagelang/pagelang',
+					$vars['wgLogActionsHandlers'] );
+
+				return $expectedDefault;
+			},
+		];
+		yield '$wgForceHTTPS is true, not HTTPS' => [
+			[ 'wgForceHTTPS' => true ],
+			[ 'wgCookieSecure' => true ],
+			self::getHttpsResetCallback( null, null ),
+		];
+		yield '$wgForceHTTPS is true, HTTPS' => [
+			[ 'wgForceHTTPS' => true ],
+			[ 'wgCookieSecure' => true ],
+			self::getHttpsResetCallback( 'on', 'https' ),
+		];
+		yield '$wgForceHTTPS is false, not HTTPS' => [
+			[ 'wgForceHTTPS' => false ],
+			[ 'wgCookieSecure' => false ],
+			self::getHttpsResetCallback( null, null ),
+		];
+		yield '$wgForceHTTPS is false, HTTPS off' => [
+			[ 'wgForceHTTPS' => false ],
+			[ 'wgCookieSecure' => false ],
+			self::getHttpsResetCallback( 'off', null ),
+		];
+		yield '$wgForceHTTPS is false, HTTPS' => [
+			[ 'wgForceHTTPS' => false ],
+			[ 'wgCookieSecure' => true ],
+			self::getHttpsResetCallback( 'on', null ),
+		];
+		yield '$wgForceHTTPS is false, forwarded HTTPS' => [
+			[ 'wgForceHTTPS' => false ],
+			[ 'wgCookieSecure' => true ],
+			self::getHttpsResetCallback( null, 'https' ),
+		];
+		yield '$wgMinimalPasswordLength' => [
+			[ 'wgMinimalPasswordLength' => 17 ],
+			static function ( self $testObj, array $vars ) use ( $expectedDefault ): array {
+				$testObj->assertSame( 17,
+					$vars['wgPasswordPolicy']['policies']['default']['MinimalPasswordLength'] );
+				return $expectedDefault;
+			},
+		];
+		yield '$wgMaximalPasswordLength' => [
+			[ 'wgMaximalPasswordLength' => 17 ],
+			static function ( self $testObj, array $vars ) use ( $expectedDefault ): array {
+				$testObj->assertSame( 17,
+					$vars['wgPasswordPolicy']['policies']['default']['MaximalPasswordLength'] );
+				return $expectedDefault;
+			},
+		];
+		yield 'Bogus $wgPHPSessionHandling' => [
+			[ 'wgPHPSessionHandling' => 'bogus' ],
+			[ 'wgPHPSessionHandling' => 'warn' ],
+		];
+		yield 'Enable $wgPHPSessionHandling' => [
+			[ 'wgPHPSessionHandling' => 'enable' ],
+			[ 'wgPHPSessionHandling' => 'enable' ],
+		];
+		yield 'Disable $wgPHPSessionHandling' => [
+			[ 'wgPHPSessionHandling' => 'disable' ],
+			[ 'wgPHPSessionHandling' => 'disable' ],
+		];
+		// XXX No obvious way to test MW_NO_SESSION, because constants can't be undefined
 	}
 
 	/**
@@ -828,7 +957,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 	 *   is callable, then it will be called with $this and get_defined_vars() as arguments, and
 	 *   the returned array will be used for $expected.
 	 * @param ?callable $setup Run before SetupDynamicConfig is included. $this is passed as an
-	 *   argument, and there is no return value.
+	 *   argument, and a ScopedCallback may optionally be returned.
 	 */
 	public function testGlobals( array $test, $expected, ?callable $setup = null ): void {
 		$IP = '/install/path';
@@ -838,7 +967,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			$$key = is_callable( $val ) ? $val() : $val;
 		}
 		if ( $setup ) {
-			$setup( $this );
+			$scopedCallback = $setup( $this );
 		}
 		require MW_INSTALL_PATH . '/includes/SetupDynamicConfig.php';
 
