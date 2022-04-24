@@ -124,6 +124,9 @@ class BenchmarkSettings extends Benchmarker {
 			'function' => static function () {
 				$IP = MW_INSTALL_PATH;
 				include MW_INSTALL_PATH . '/includes/DefaultSettings.php';
+
+				// phpcs:ignore MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgLocaltimezone
+				$wgLocaltimezone = 'utc';
 				include MW_INSTALL_PATH . '/includes/SetupDynamicConfig.php';
 			}
 		];

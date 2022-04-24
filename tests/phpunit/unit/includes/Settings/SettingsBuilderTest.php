@@ -569,4 +569,44 @@ class SettingsBuilderTest extends TestCase {
 		$this->assertTrue( $configSchema->hasSchemaFor( 'MySetting' ) );
 		$this->assertSame( 'bla', $configSchema->getDefaultFor( 'MySetting' ) );
 	}
+
+	/**
+	 * Make sure that the 'config-schema' and 'config-schema-inverse' keys
+	 * are fully processed and combined appropriately.
+	 */
+	public function testSchemaLoading() {
+		$settings = $this->newSettingsBuilder();
+		$settings->loadFile( 'fixtures/default-schema.json' );
+		$schema = $settings->getConfigSchema();
+
+		$this->assertSame(
+			'/DEFAULT/',
+			$schema->getDefaultFor( 'StyleDirectory' )
+		);
+		$this->assertSame(
+			[ 'callback' => [ 'MainConfigSchema', 'getDefaultUsePathInfo' ] ],
+			$schema->getDynamicDefaultDeclarationFor( 'UsePathInfo' )
+		);
+		$this->assertSame(
+			'replace',
+			$schema->getMergeStrategyFor( 'LBFactoryConf' )->getName()
+		);
+		$this->assertSame(
+			'/DEFAULT/',
+			$schema->getDefaultFor( 'ExtensionDirectory' )
+		);
+		$this->assertSame(
+			[ 'use' => [ 'ScriptPath' ], 'callback' => [ 'MainConfigSchema', 'getDefaultRestPath' ] ],
+			$schema->getDynamicDefaultDeclarationFor( 'RestPath' )
+		);
+		$this->assertSame(
+			[ 'use' => [ 'ScriptPath' ], 'callback' => [ 'MainConfigSchema', 'getDefaultRestPath' ] ],
+			$schema->getDynamicDefaultDeclarationFor( 'RestPath' )
+		);
+		$this->assertSame(
+			'replace',
+			$schema->getMergeStrategyFor( 'TiffThumbnailType' )->getName()
+		);
+	}
+
 }

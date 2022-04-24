@@ -373,6 +373,10 @@ class SettingsBuilder {
 				$settings['config-schema-inverse']['type'] ?? [],
 				$settings['source-name']
 			);
+			$this->configSchema->addDynamicDefaults(
+				$settings['config-schema-inverse']['dynamicDefault'] ?? [],
+				$settings['source-name']
+			);
 		}
 
 		if ( isset( $settings['config-schema'] ) ) {
@@ -554,7 +558,7 @@ class SettingsBuilder {
 	}
 
 	/**
-	 * Settings can't be loaded & applied after calling this
+	 * Settings can't be loaded and applied after calling this
 	 * method.
 	 *
 	 * @internal Most likely called only in Setup.php.
@@ -564,6 +568,15 @@ class SettingsBuilder {
 	public function finalize(): void {
 		$this->apply();
 		$this->finished = true;
+	}
+
+	/**
+	 * @internal For use in Setup.php, pending a better solution.
+	 * @return ConfigBuilder
+	 */
+	public function getConfigBuilder(): ConfigBuilder {
+		$this->apply();
+		return $this->configSink;
 	}
 
 }

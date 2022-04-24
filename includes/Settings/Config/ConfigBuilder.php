@@ -57,6 +57,14 @@ interface ConfigBuilder {
 	public function setMultiDefault( array $defaults, array $mergeStrategies ): ConfigBuilder;
 
 	/**
+	 * Get the current value for $key.
+	 *
+	 * @param string $key
+	 * @return mixed
+	 */
+	public function get( string $key );
+
+	/**
 	 * Build the resulting Config object.
 	 *
 	 * @return Config

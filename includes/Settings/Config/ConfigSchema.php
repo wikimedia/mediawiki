@@ -35,6 +35,14 @@ interface ConfigSchema {
 	public function getDefaults(): array;
 
 	/**
+	 * Get all dynamic default declarations.
+	 * @see DynamicDefaultValues.
+	 *
+	 * @return array<string,array>
+	 */
+	public function getDynamicDefaults(): array;
+
+	/**
 	 * Check if the $key has a default value set in the schema.
 	 *
 	 * @param string $key

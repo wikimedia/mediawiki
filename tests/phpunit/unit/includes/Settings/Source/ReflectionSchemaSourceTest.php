@@ -23,7 +23,7 @@ class ReflectionSchemaSourceTest extends TestCase {
 	];
 
 	public const TEST_MAP_TYPE = [
-		'type' => '?dict',
+		'type' => '?map',
 		'additionalProperties' => [
 			'type' => 'string|list',
 			'items' => [
@@ -31,6 +31,43 @@ class ReflectionSchemaSourceTest extends TestCase {
 			]
 		]
 	];
+
+	public const TEST_DYNAMIC_DEFAULT_AUTO = [
+		'type' => 'string',
+		'dynamicDefault' => true
+	];
+
+	public const TEST_DYNAMIC_DEFAULT_STRING = [
+		'type' => 'string',
+		'dynamicDefault' => 'get_include_path'
+	];
+
+	public const TEST_DYNAMIC_DEFAULT_IMPLIED = [
+		'type' => 'string',
+		'dynamicDefault' => [
+			'use' => [ 'A' ],
+		]
+	];
+
+	public const TEST_DYNAMIC_DEFAULT = [
+		'type' => 'string',
+		'dynamicDefault' => [
+			'use' => [ 'A' ],
+			'callback' => [ self::class, 'getTestDefault' ]
+		]
+	];
+
+	public static function getDefaultTEST_DYNAMIC_DEFAULT_AUTO() {
+		// noop
+	}
+
+	public static function getDefaultTEST_DYNAMIC_DEFAULT_IMPLIED() {
+		// noop
+	}
+
+	public static function getTestDefault() {
+		// noop
+	}
 
 	public function testLoad() {
 		$source = new ReflectionSchemaSource( self::class );
@@ -43,10 +80,12 @@ class ReflectionSchemaSourceTest extends TestCase {
 		$this->assertArrayNotHasKey( 'NOT_A_SCHEMA', $schemas );
 
 		$this->assertArrayHasKey( 'TEST_INTEGER', $schemas );
+		$this->assertArrayHasKey( 'default', $schemas['TEST_INTEGER'] );
 		$this->assertArrayHasKey( 'type', $schemas['TEST_INTEGER'] );
 		$this->assertSame( 'integer', $schemas['TEST_INTEGER']['type'] );
 
 		$this->assertArrayHasKey( 'TEST_MAP_TYPE', $schemas );
+		$this->assertArrayHasKey( 'default', $schemas['TEST_MAP_TYPE'] );
 		$this->assertArrayHasKey( 'additionalProperties', $schemas['TEST_MAP_TYPE'] );
 		$this->assertSame(
 			[ 'object', 'null' ],
@@ -59,6 +98,42 @@ class ReflectionSchemaSourceTest extends TestCase {
 		$this->assertSame(
 			'number',
 			$schemas['TEST_MAP_TYPE']['additionalProperties']['items']['type']
+		);
+	}
+
+	public function testDynamicDefault() {
+		$source = new ReflectionSchemaSource( self::class );
+		$settings = $source->load();
+
+		$this->assertArrayHasKey( 'config-schema', $settings );
+		$schemas = $settings['config-schema'];
+
+		$this->assertSame(
+			[ self::class, 'getDefaultTEST_DYNAMIC_DEFAULT_AUTO' ],
+			$schemas['TEST_DYNAMIC_DEFAULT_AUTO']['dynamicDefault']['callback']
+		);
+
+		$this->assertSame(
+			'get_include_path',
+			$schemas['TEST_DYNAMIC_DEFAULT_STRING']['dynamicDefault']['callback']
+		);
+
+		$this->assertSame(
+			[ self::class, 'getDefaultTEST_DYNAMIC_DEFAULT_IMPLIED' ],
+			$schemas['TEST_DYNAMIC_DEFAULT_IMPLIED']['dynamicDefault']['callback']
+		);
+		$this->assertSame(
+			[ 'A' ],
+			$schemas['TEST_DYNAMIC_DEFAULT_IMPLIED']['dynamicDefault']['use']
+		);
+
+		$this->assertSame(
+			[ self::class, 'getTestDefault' ],
+			$schemas['TEST_DYNAMIC_DEFAULT']['dynamicDefault']['callback']
+		);
+		$this->assertSame(
+			[ 'A' ],
+			$schemas['TEST_DYNAMIC_DEFAULT']['dynamicDefault']['use']
 		);
 	}
 

@@ -5,79 +5,11 @@
  */
 use Wikimedia\AtEase\AtEase;
 
-if ( $wgScript === false ) {
-	$wgScript = "$wgScriptPath/index.php";
-}
-if ( $wgLoadScript === false ) {
-	$wgLoadScript = "$wgScriptPath/load.php";
-}
-if ( $wgRestPath === false ) {
-	$wgRestPath = "$wgScriptPath/rest.php";
-}
-if ( $wgUsePathInfo === null ) {
-	// These often break when PHP is set up in CGI mode.
-	// PATH_INFO *may* be correct if cgi.fix_pathinfo is set, but then again it may not;
-	// lighttpd converts incoming path data to lowercase on systems
-	// with case-insensitive filesystems, and there have been reports of
-	// problems on Apache as well.
-	$wgUsePathInfo = ( strpos( PHP_SAPI, 'cgi' ) === false ) &&
-		( strpos( PHP_SAPI, 'apache2filter' ) === false ) &&
-		( strpos( PHP_SAPI, 'isapi' ) === false );
-}
-if ( $wgArticlePath === false ) {
-	if ( $wgUsePathInfo ) {
-		$wgArticlePath = "$wgScript/$1";
-	} else {
-		$wgArticlePath = "$wgScript?title=$1";
-	}
-}
-if ( $wgResourceBasePath === null ) {
-	$wgResourceBasePath = $wgScriptPath;
-}
-if ( $wgStylePath === false ) {
-	$wgStylePath = "$wgResourceBasePath/skins";
-}
-if ( $wgLocalStylePath === false ) {
-	// Avoid wgResourceBasePath here since that may point to a different domain (e.g. CDN)
-	$wgLocalStylePath = "$wgScriptPath/skins";
-}
-if ( $wgExtensionAssetsPath === false ) {
-	$wgExtensionAssetsPath = "$wgResourceBasePath/extensions";
-}
-
 // For backwards compatibility, the value of wgLogos is copied to wgLogo.
 // This is because some extensions/skins may be using $config->get('Logo')
 // to access the value.
 if ( $wgLogos !== false && isset( $wgLogos['1x'] ) ) {
 	$wgLogo = $wgLogos['1x'];
-}
-if ( $wgLogo === false ) {
-	$wgLogo = "$wgResourceBasePath/resources/assets/change-your-logo.svg";
-}
-
-if ( $wgUploadPath === false ) {
-	$wgUploadPath = "$wgScriptPath/images";
-}
-if ( $wgUploadDirectory === false ) {
-	$wgUploadDirectory = "$IP/images";
-}
-if ( $wgReadOnlyFile === false ) {
-	$wgReadOnlyFile = "{$wgUploadDirectory}/lock_yBgMBwiR";
-}
-if ( $wgFileCacheDirectory === false ) {
-	$wgFileCacheDirectory = "{$wgUploadDirectory}/cache";
-}
-if ( $wgDeletedDirectory === false ) {
-	$wgDeletedDirectory = "{$wgUploadDirectory}/deleted";
-}
-if ( $wgSharedPrefix === false ) {
-	$wgSharedPrefix = $wgDBprefix;
-}
-if ( $wgSharedSchema === false ) {
-	$wgSharedSchema = $wgDBmwschema;
-}
-if ( $wgMetaNamespace === false ) {
-	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 }
 
 if ( $wgMainWANCache === false ) {
@@ -170,13 +102,6 @@ $wgLockManagers[] = [
 ];
 
 /**
- * Determine whether EXIF info can be shown
- */
-if ( $wgShowEXIF === null ) {
-	$wgShowEXIF = function_exists( 'exif_read_data' );
-}
-
-/**
  * Default parameters for the "<gallery>" tag.
  * @see docs/Configuration.md for description of the fields.
  */
@@ -190,28 +115,7 @@ $wgGalleryOptions += [
 	'mode' => 'traditional',
 ];
 
-/**
- * Shortcuts for $wgLocalFileRepo
- */
-if ( !$wgLocalFileRepo ) {
-	$wgLocalFileRepo = [
-		'class' => LocalRepo::class,
-		'name' => 'local',
-		'directory' => $wgUploadDirectory,
-		'scriptDirUrl' => $wgScriptPath,
-		'favicon' => $wgFavicon,
-		'url' => $wgUploadBaseUrl ? $wgUploadBaseUrl . $wgUploadPath : $wgUploadPath,
-		'hashLevels' => $wgHashedUploadDirectory ? 2 : 0,
-		'thumbScriptUrl' => $wgThumbnailScriptPath,
-		'transformVia404' => !$wgGenerateThumbnailOnParse,
-		'deletedDir' => $wgDeletedDirectory,
-		'deletedHashLevels' => $wgHashedUploadDirectory ? 3 : 0,
-		'updateCompatibleMetadata' => $wgUpdateCompatibleMetadata,
-		'reserializeMetadata' => $wgUpdateCompatibleMetadata,
-	];
-}
-
-if ( !isset( $wgLocalFileRepo['backend'] ) ) {
+if ( isset( $wgLocalFileRepo['name'] ) && !isset( $wgLocalFileRepo['backend'] ) ) {
 	// Create a default FileBackend name.
 	// FileBackendGroup will register a default, if absent from $wgFileBackends.
 	$wgLocalFileRepo['backend'] = $wgLocalFileRepo['name'] . '-backend';
@@ -291,17 +195,6 @@ $wgDefaultUserOptions['watchlistdays'] = min(
 );
 unset( $rcMaxAgeDays );
 
-if ( !$wgCookiePrefix ) {
-	if ( $wgSharedDB && $wgSharedPrefix && in_array( 'user', $wgSharedTables ) ) {
-		$wgCookiePrefix = $wgSharedDB . '_' . $wgSharedPrefix;
-	} elseif ( $wgSharedDB && in_array( 'user', $wgSharedTables ) ) {
-		$wgCookiePrefix = $wgSharedDB;
-	} elseif ( $wgDBprefix ) {
-		$wgCookiePrefix = $wgDBname . '_' . $wgDBprefix;
-	} else {
-		$wgCookiePrefix = $wgDBname;
-	}
-}
 $wgCookiePrefix = strtr( $wgCookiePrefix, '=,; +."\'\\[', '__________' );
 
 if ( $wgEnableEmail ) {
@@ -326,26 +219,9 @@ if ( $wgEnableEmail ) {
 	$wgUsersNotifiedOnAllChanges = [];
 }
 
-if ( !$wgLocaltimezone ) {
-	// This defaults to the `date.timezone` value of the PHP INI option. If this option is not set,
-	// it falls back to UTC. Prior to PHP 7.0, this fallback produced a warning.
-	$wgLocaltimezone = date_default_timezone_get();
-}
-if ( !$wgLocaltimezone ) {
-	// Make doubly sure we have a valid time zone, even if date_default_timezone_get()
-	// returned garbage.
-	$wgLocaltimezone = 'UTC';
-}
 date_default_timezone_set( $wgLocaltimezone );
-if ( $wgLocalTZoffset === null ) {
-	$wgLocalTZoffset = (int)date( 'Z' ) / 60;
-}
 // The part after the System| is ignored, but rest of MW fills it out as the local offset.
 $wgDefaultUserOptions['timecorrection'] = "System|$wgLocalTZoffset";
-
-if ( !$wgDBerrorLogTZ ) {
-	$wgDBerrorLogTZ = $wgLocaltimezone;
-}
 
 /**
  * Definitions of the NS_ constants are in Defines.php
@@ -437,10 +313,6 @@ if ( $wgPageCreationLog ) {
 if ( $wgPageLanguageUseDB ) {
 	$wgLogTypes[] = 'pagelang';
 	$wgLogActionsHandlers['pagelang/pagelang'] = PageLangLogFormatter::class;
-}
-
-if ( $wgCookieSecure === 'detect' ) {
-	$wgCookieSecure = $wgForceHTTPS || ( WebRequest::detectProtocol() === 'https' );
 }
 
 // Backwards compatibility with old password limits

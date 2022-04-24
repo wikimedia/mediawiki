@@ -23,6 +23,17 @@ class ConfigSchemaAggregatorTest extends TestCase {
 		$this->assertSame( [ 'type' => 'number', ], $aggregator->getSchemaFor( 'bar' ) );
 	}
 
+	public function testAddSchemaMulti() {
+		$aggregator = new ConfigSchemaAggregator();
+		$aggregator->addSchemaMulti( [
+			'foo' => [ 'type' => 'string', ],
+			'bar' => [ 'type' => 'number', ],
+		] );
+		$this->assertTrue( $aggregator->hasSchemaFor( 'foo' ) );
+		$this->assertFalse( $aggregator->hasSchemaFor( 'xyzzy' ) );
+		$this->assertSame( [ 'type' => 'number', ], $aggregator->getSchemaFor( 'bar' ) );
+	}
+
 	public function testCombineSchema() {
 		$aggregator = new ConfigSchemaAggregator();
 		$aggregator->addTypes( [ 'foo' => 'string', ] );
@@ -58,6 +69,23 @@ class ConfigSchemaAggregatorTest extends TestCase {
 			'with_default' => 'bla',
 			'another_with_default' => 'blabla',
 		], $aggregator->getDefaults() );
+	}
+
+	public function testSetAndGetDynamicDefaults() {
+		$dyn1 = [ 'callback' => 'function1' ];
+		$dyn2 = [ 'callback' => 'function2', 'use' => [ 'Stuff' ] ];
+
+		$aggregator = new ConfigSchemaAggregator();
+		$aggregator->addSchema( 'no_dynamicDefault', [ 'default' => 'xyz', ] );
+		$aggregator->addSchema( 'with_dynamicDefault', [ 'dynamicDefault' => $dyn1, 'default' => 'bla', ] );
+		$aggregator->addDynamicDefaults( [ 'another_with_dynamicDefault' => $dyn2 ] );
+		$this->assertNull( $aggregator->getDynamicDefaultDeclarationFor( 'no_dynamicDefault' ) );
+		$this->assertSame( $dyn1, $aggregator->getDynamicDefaultDeclarationFor( 'with_dynamicDefault' ) );
+		$this->assertSame( [ 'dynamicDefault' => $dyn2 ], $aggregator->getSchemaFor( 'another_with_dynamicDefault' ) );
+		$this->assertEquals( [
+			'with_dynamicDefault' => $dyn1,
+			'another_with_dynamicDefault' => $dyn2,
+		], $aggregator->getDynamicDefaults() );
 	}
 
 	public function testGetDefaults() {

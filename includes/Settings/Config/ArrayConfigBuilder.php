@@ -16,7 +16,7 @@ class ArrayConfigBuilder extends ConfigBuilderBase {
 		return array_key_exists( $key, $this->config );
 	}
 
-	protected function get( string $key ) {
+	public function get( string $key ) {
 		return $this->config[$key] ?? null;
 	}
 

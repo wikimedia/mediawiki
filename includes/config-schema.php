@@ -2880,6 +2880,238 @@ return [
 			'Hooks' => 'array_merge_recursive',
 			'VirtualRestConfig' => 'array_plus_2d',
 		],
+		'dynamicDefault' => [
+			'UsePathInfo' => [
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultUsePathInfo',
+				],
+			],
+			'Script' => [
+				'use' => [
+					0 => 'ScriptPath',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultScript',
+				],
+			],
+			'LoadScript' => [
+				'use' => [
+					0 => 'ScriptPath',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultLoadScript',
+				],
+			],
+			'RestPath' => [
+				'use' => [
+					0 => 'ScriptPath',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultRestPath',
+				],
+			],
+			'StylePath' => [
+				'use' => [
+					0 => 'ResourceBasePath',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultStylePath',
+				],
+			],
+			'LocalStylePath' => [
+				'use' => [
+					0 => 'ScriptPath',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultLocalStylePath',
+				],
+			],
+			'ExtensionAssetsPath' => [
+				'use' => [
+					0 => 'ResourceBasePath',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultExtensionAssetsPath',
+				],
+			],
+			'ArticlePath' => [
+				'use' => [
+					0 => 'Script',
+					1 => 'UsePathInfo',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultArticlePath',
+				],
+			],
+			'UploadPath' => [
+				'use' => [
+					0 => 'ScriptPath',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultUploadPath',
+				],
+			],
+			'UploadDirectory' => [
+				'use' => [
+					0 => 'BaseDirectory',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultUploadDirectory',
+				],
+			],
+			'FileCacheDirectory' => [
+				'use' => [
+					0 => 'UploadDirectory',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultFileCacheDirectory',
+				],
+			],
+			'Logo' => [
+				'use' => [
+					0 => 'ResourceBasePath',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultLogo',
+				],
+			],
+			'DeletedDirectory' => [
+				'use' => [
+					0 => 'UploadDirectory',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultDeletedDirectory',
+				],
+			],
+			'LocalFileRepo' => [
+				'use' => [
+					0 => 'UploadDirectory',
+					1 => 'ScriptPath',
+					2 => 'Favicon',
+					3 => 'UploadBaseUrl',
+					4 => 'UploadPath',
+					5 => 'HashedUploadDirectory',
+					6 => 'ThumbnailScriptPath',
+					7 => 'GenerateThumbnailOnParse',
+					8 => 'DeletedDirectory',
+					9 => 'UpdateCompatibleMetadata',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultLocalFileRepo',
+				],
+			],
+			'ShowEXIF' => [
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultShowEXIF',
+				],
+			],
+			'SharedPrefix' => [
+				'use' => [
+					0 => 'DBprefix',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultSharedPrefix',
+				],
+			],
+			'SharedSchema' => [
+				'use' => [
+					0 => 'DBmwschema',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultSharedSchema',
+				],
+			],
+			'DBerrorLogTZ' => [
+				'use' => [
+					0 => 'Localtimezone',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultDBerrorLogTZ',
+				],
+			],
+			'Localtimezone' => [
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultLocaltimezone',
+				],
+			],
+			'LocalTZoffset' => [
+				'use' => [
+					0 => 'Localtimezone',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultLocalTZoffset',
+				],
+			],
+			'ResourceBasePath' => [
+				'use' => [
+					0 => 'ScriptPath',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultResourceBasePath',
+				],
+			],
+			'MetaNamespace' => [
+				'use' => [
+					0 => 'Sitename',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultMetaNamespace',
+				],
+			],
+			'CookieSecure' => [
+				'use' => [
+					0 => 'ForceHTTPS',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultCookieSecure',
+				],
+			],
+			'CookiePrefix' => [
+				'use' => [
+					0 => 'SharedDB',
+					1 => 'SharedPrefix',
+					2 => 'SharedTables',
+					3 => 'DBname',
+					4 => 'DBprefix',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultCookiePrefix',
+				],
+			],
+			'ReadOnlyFile' => [
+				'use' => [
+					0 => 'UploadDirectory',
+				],
+				'callback' => [
+					0 => 'MediaWiki\\MainConfigSchema',
+					1 => 'getDefaultReadOnlyFile',
+				],
+			],
+		],
 	],
 	'config-schema' => [
 		'LogoHD' => [
