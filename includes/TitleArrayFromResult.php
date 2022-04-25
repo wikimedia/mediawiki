@@ -67,7 +67,7 @@ class TitleArrayFromResult extends TitleArray implements Countable {
 	/**
 	 * @return int
 	 */
-	public function count() {
+	public function count(): int {
 		return $this->res->numRows();
 	}
 
@@ -79,13 +79,13 @@ class TitleArrayFromResult extends TitleArray implements Countable {
 		return $this->key;
 	}
 
-	public function next() {
+	public function next(): void {
 		$row = $this->res->next();
 		$this->setCurrent( $row );
 		$this->key++;
 	}
 
-	public function rewind() {
+	public function rewind(): void {
 		$this->res->rewind();
 		$this->key = 0;
 		$this->setCurrent( $this->res->current() );
@@ -94,7 +94,7 @@ class TitleArrayFromResult extends TitleArray implements Countable {
 	/**
 	 * @return bool
 	 */
-	public function valid() {
+	public function valid(): bool {
 		return $this->current !== false;
 	}
 }

@@ -79,7 +79,7 @@ abstract class FileBackendStoreShardListIterator extends FilterIterator {
 		}
 	}
 
-	public function rewind() {
+	public function rewind(): void {
 		parent::rewind();
 		$this->multiShardPaths = [];
 	}

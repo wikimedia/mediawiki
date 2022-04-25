@@ -135,7 +135,7 @@ trait ApiMessageTrait {
 		$this->apiData = $data;
 	}
 
-	public function serialize() {
+	public function serialize(): string {
 		return serialize( $this->__serialize() );
 	}
 
@@ -147,7 +147,7 @@ trait ApiMessageTrait {
 		];
 	}
 
-	public function unserialize( $serialized ) {
+	public function unserialize( $serialized ): void {
 		$this->__unserialize( unserialize( $serialized ) );
 	}
 

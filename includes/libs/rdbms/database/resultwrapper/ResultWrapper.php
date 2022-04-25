@@ -95,7 +95,7 @@ abstract class ResultWrapper implements IResultWrapper {
 		return $this->doNumRows();
 	}
 
-	public function count() {
+	public function count(): int {
 		return $this->doNumRows();
 	}
 
@@ -111,7 +111,7 @@ abstract class ResultWrapper implements IResultWrapper {
 		return $this->currentRow;
 	}
 
-	public function seek( $pos ) {
+	public function seek( $pos ): void {
 		$numRows = $this->numRows();
 		// Allow seeking to zero if there are no results
 		$max = $numRows ? $numRows - 1 : 0;
@@ -131,11 +131,11 @@ abstract class ResultWrapper implements IResultWrapper {
 		$this->currentRow = false;
 	}
 
-	#[\ReturnTypeWillChange]
-	public function rewind() {
+	public function rewind(): void {
 		$this->seek( 0 );
 	}
 
+	#[\ReturnTypeWillChange]
 	public function current() {
 		if ( $this->currentRow === null ) {
 			$this->currentRow = $this->fetchObject();
@@ -144,7 +144,7 @@ abstract class ResultWrapper implements IResultWrapper {
 		return $this->currentRow;
 	}
 
-	public function key() {
+	public function key(): int {
 		return $this->currentPos;
 	}
 
@@ -152,8 +152,7 @@ abstract class ResultWrapper implements IResultWrapper {
 		return $this->fetchObject();
 	}
 
-	#[\ReturnTypeWillChange]
-	public function valid() {
+	public function valid(): bool {
 		return $this->currentPos >= 0
 			&& $this->currentPos < $this->numRows();
 	}
