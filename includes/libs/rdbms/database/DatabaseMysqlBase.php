@@ -1139,7 +1139,7 @@ abstract class DatabaseMysqlBase extends Database {
 			$releaseLockFields[] = "RELEASE_LOCK($encName)";
 		}
 		if ( $releaseLockFields ) {
-			$sql = 'SELECT ' . implode( ',', $releaseLockFields ) . ')';
+			$sql = 'SELECT ' . implode( ',', $releaseLockFields );
 			list( $res, $err, $errno ) = $this->executeQuery( $sql, __METHOD__, $flags );
 			if ( $res === false ) {
 				$this->reportQueryError( $err, $errno, $sql, $fname, true );
