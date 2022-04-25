@@ -92,14 +92,15 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 		return $this->current;
 	}
 
-	public function rewind() {
+	public function rewind(): void {
 		$this->reset();
 	}
 
 	/**
 	 * Get the current list item, or false if we are at the end
-	 * @return RevisionItemBase
+	 * @return RevisionItemBase|false
 	 */
+	#[\ReturnTypeWillChange]
 	public function current() {
 		return $this->current;
 	}
@@ -109,17 +110,18 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	 * @return RevisionItemBase
 	 * @suppress PhanParamSignatureMismatchInternal
 	 */
+	#[\ReturnTypeWillChange]
 	public function next() {
 		$this->res->next();
 		$this->initCurrent();
 		return $this->current;
 	}
 
-	public function key() {
+	public function key(): int {
 		return $this->res ? $this->res->key() : 0;
 	}
 
-	public function valid() {
+	public function valid(): bool {
 		return $this->res ? $this->res->valid() : false;
 	}
 

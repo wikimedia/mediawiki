@@ -30,6 +30,10 @@ class FakeResultWrapper implements IResultWrapper {
 		return count( $this->result );
 	}
 
+	public function count(): int {
+		return $this->numRows();
+	}
+
 	public function fetchObject() {
 		$current = $this->current();
 
@@ -46,7 +50,7 @@ class FakeResultWrapper implements IResultWrapper {
 		return is_object( $row ) ? get_object_vars( $row ) : $row;
 	}
 
-	public function seek( $pos ) {
+	public function seek( $pos ): void {
 		$this->pos = $pos;
 	}
 
@@ -65,7 +69,7 @@ class FakeResultWrapper implements IResultWrapper {
 		return is_array( $row ) ? (object)$row : $row;
 	}
 
-	public function key() {
+	public function key(): int {
 		return $this->pos;
 	}
 

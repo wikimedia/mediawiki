@@ -590,8 +590,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	 */
 
 	/** @inheritDoc */
-	#[\ReturnTypeWillChange]
-	public function count() {
+	public function count(): int {
 		$data = &$this->backend->getData();
 		return count( $data );
 	}
@@ -611,22 +610,19 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/** @inheritDoc */
-	#[\ReturnTypeWillChange]
-	public function next() {
+	public function next(): void {
 		$data = &$this->backend->getData();
 		next( $data );
 	}
 
 	/** @inheritDoc */
-	#[\ReturnTypeWillChange]
-	public function rewind() {
+	public function rewind(): void {
 		$data = &$this->backend->getData();
 		reset( $data );
 	}
 
 	/** @inheritDoc */
-	#[\ReturnTypeWillChange]
-	public function valid() {
+	public function valid(): bool {
 		$data = &$this->backend->getData();
 		return key( $data ) !== null;
 	}

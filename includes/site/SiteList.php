@@ -99,7 +99,7 @@ class SiteList extends GenericArrayObject {
 	 *
 	 * @param mixed $index
 	 */
-	public function offsetUnset( $index ) {
+	public function offsetUnset( $index ): void {
 		if ( $this->offsetExists( $index ) ) {
 			/**
 			 * @var Site $site
@@ -338,7 +338,7 @@ class SiteList extends GenericArrayObject {
 	 *
 	 * @param array $serializationData
 	 */
-	public function __unserialize( $serializationData ) {
+	public function __unserialize( $serializationData ): void {
 		parent::__unserialize( $serializationData );
 
 		$this->byInternalId = $serializationData['internalIds'];

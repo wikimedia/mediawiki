@@ -1011,11 +1011,11 @@ class EditPage implements IEditObject {
 				}
 			}
 			$this->save = !$this->preview && !$this->diff;
-			if ( !preg_match( '/^\d{14}$/', $this->edittime ) ) {
+			if ( !$this->edittime || !preg_match( '/^\d{14}$/', $this->edittime ) ) {
 				$this->edittime = null;
 			}
 
-			if ( !preg_match( '/^\d{14}$/', $this->starttime ) ) {
+			if ( !$this->starttime || !preg_match( '/^\d{14}$/', $this->starttime ) ) {
 				$this->starttime = null;
 			}
 
