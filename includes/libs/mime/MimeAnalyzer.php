@@ -604,17 +604,32 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		}
 
 		/* Look for WebM and Matroska files */
-		if ( strncmp( $head16k, pack( "C4", 0x1a, 0x45, 0xdf, 0xa3 ), 4 ) == 0 ) {
+		if ( strncmp( $head16k, pack( "C4", 0x1a, 0x45, 0xdf, 0xa3 ), 4 ) === 0 ) {
 			$doctype = strpos( $head16k, "\x42\x82" );
 			if ( $doctype ) {
 				// Next byte is datasize, then data (sizes larger than 1 byte are stupid muxers)
 				$data = substr( $head16k, $doctype + 3, 8 );
-				if ( strncmp( $data, "matroska", 8 ) == 0 ) {
+				if ( strncmp( $data, "matroska", 8 ) === 0 ) {
 					$this->logger->info( __METHOD__ . ": recognized file as video/x-matroska" );
 					return "video/x-matroska";
-				} elseif ( strncmp( $data, "webm", 4 ) == 0 ) {
+				}
+
+				if ( strncmp( $data, "webm", 4 ) === 0 ) {
 					// XXX HACK look for a video track, if we don't find it, this is an audio file
-					$videotrack = strpos( $head16k, "\x86\x85V_VP" );
+					// This detection is very naive and doesn't parse the actual fields
+					// 0x86 byte indicates start of codecname field
+					// next byte is a variable length integer (vint) for the size of the value following it
+					// 8 (first bit is 1) indicates the smallest size vint, a single byte
+					// (unlikely we see larger vints here)
+					// 5 indicates a length of 5 ( V_VP8 or V_VP9 or V_AV1 )
+					// Sometimes we see 0x86 instead of 0x85 because a
+					// non-conforming muxer wrote a null terminated string
+					$videotrack = str_contains( $head16k, "\x86\x85V_VP8" ) ||
+						str_contains( $head16k, "\x86\x85V_VP9" ) ||
+						str_contains( $head16k, "\x86\x85V_AV1" ) ||
+						str_contains( $head16k, "\x86\x86V_VP8\x0" ) ||
+						str_contains( $head16k, "\x86\x86V_VP9\x0" ) ||
+						str_contains( $head16k, "\x86\x86V_AV1\x0" );
 
 					if ( $videotrack ) {
 						// There is a video track, so this is a video file.
