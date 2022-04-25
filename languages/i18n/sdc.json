@@ -1041,7 +1041,7 @@
 	"speciallogtitlelabel": "Aziòni effettuàda su (tìturu di la pàgina o {{ns:user}}:Nòmmu utènti):",
 	"log": "Rigisthri",
 	"all-logs-page": "Tutti li rigisthri",
-	"alllogstext": "Prisintazioni unifiggadda di li rigisthri reratibi a li operazioni di carriggamentu, canzilladdura, prutizioni, broccu e amministhrazioni di lu situ. Ribbendi li appósiddi campi si pò limità la visuarizzazioni a un'ippizzificu rigisthru, nommu utenti o pàgina.",
+	"alllogstext": "Prisintazioni unifiggadda di li rigisthri reratibi a {{SITENAME}}. Ribbendi li appósiddi campi si pò limità la visuarizzazioni a un'ippizzificu rigisthru, nommu utenti o pàgina.",
 	"logempty": "Lu rigisthru nò cunteni erementi curripundenti.",
 	"log-title-wildcard": "Zercha li tìturi ch'ischuminzani cun",
 	"allpages": "Tutti li pàgini",
