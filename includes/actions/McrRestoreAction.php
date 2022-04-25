@@ -13,7 +13,6 @@
  *
  * @ingroup Actions
  * @since 1.32
- * @deprecated since 1.32
  */
 class McrRestoreAction extends McrUndoAction {
 
