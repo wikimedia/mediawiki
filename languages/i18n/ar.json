@@ -2404,6 +2404,7 @@
 	"enotif_minoredit": "هذا تعديل طفيف",
 	"created": "أنشئت",
 	"changed": "غيرت",
+	"deletepage-deletetalk": "احذف صفحة النقاش المرتبطة",
 	"deletepage-submit": "حذف الصفحة",
 	"confirm": "أكد",
 	"excontent": "المحتوى كان: '$1'",
