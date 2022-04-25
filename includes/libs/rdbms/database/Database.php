@@ -850,7 +850,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @internal This method should not be used outside of Database classes
 	 *
-	 * @param int $errno
+	 * @param int|string $errno
 	 * @param string $errstr
 	 */
 	public function connectionErrorLogger( $errno, $errstr ) {
@@ -1711,7 +1711,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * If this returns false, it will be treated as a generic query error.
 	 *
 	 * @stable to override
-	 * @param int $errno Error number
+	 * @param int|string $errno Error number
 	 * @return bool
 	 * @since 1.39
 	 */
@@ -1724,7 +1724,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * flag nor the $ignoreErrors flag is set, throw a DBQueryError.
 	 *
 	 * @param string $error
-	 * @param int $errno
+	 * @param int|string $errno
 	 * @param string $sql
 	 * @param string $fname
 	 * @param bool $ignore
