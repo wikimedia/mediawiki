@@ -148,7 +148,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 		try {
 			$this->currentDomain = new DatabaseDomain(
-				strlen( $db ) ? $db : null,
+				$db && strlen( $db ) ? $db : null,
 				null,
 				$tablePrefix
 			);

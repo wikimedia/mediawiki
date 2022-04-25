@@ -69,7 +69,7 @@ class SearchResultSet extends BaseSearchResultSet {
 		return $this->count();
 	}
 
-	final public function count() {
+	final public function count(): int {
 		return count( $this->extractResults() );
 	}
 

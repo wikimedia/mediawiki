@@ -54,7 +54,7 @@ trait SearchResultSetTrait {
 		return null;
 	}
 
-	final public function getIterator() {
+	final public function getIterator(): ArrayIterator {
 		return new ArrayIterator( $this->extractResults() );
 	}
 }

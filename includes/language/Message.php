@@ -253,7 +253,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * @since 1.26
 	 * @return string
 	 */
-	public function serialize() {
+	public function serialize(): string {
 		return serialize( $this->__serialize() );
 	}
 
@@ -285,7 +285,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * @since 1.37.2
 	 * @param string $serialized
 	 */
-	public function unserialize( $serialized ) {
+	public function unserialize( $serialized ): void {
 		$this->__unserialize( unserialize( $serialized ) );
 	}
 
