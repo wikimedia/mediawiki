@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigSchema;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\ScopedCallback;
 
 class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
@@ -190,7 +191,10 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			'wgCacheEpoch' => static function (): string {
 				// We need a callback that will be evaluated at test time, because otherwise this
 				// doesn't work on CI for some reason.
-				return gmdate( 'YmdHis', filemtime( MW_CONFIG_FILE ) );
+				AtEase::suppressWarnings();
+				$ret = max( '20030516000000', gmdate( 'YmdHis', filemtime( MW_CONFIG_FILE ) ) );
+				AtEase::restoreWarnings();
+				return $ret;
 			},
 		];
 
@@ -794,7 +798,12 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			[ 'wgCacheEpoch' => static function () use ( $expectedDefault ): string {
 				return $expectedDefault['wgCacheEpoch']() - 1;
 			} ],
-			[],
+			[ 'wgCacheEpoch' => static function () use ( $expectedDefault ): string {
+				$expected = $expectedDefault['wgCacheEpoch']();
+				// If the file exists, its mtime is later than what we set $wgCacheEpoch to and so
+				// it should override what we set.
+				return file_exists( MW_CONFIG_FILE ) ? $expected : $expected - 1;
+			} ],
 		];
 		yield '$wgCacheEpoch set to after LocalSettings touched' => [
 			[ 'wgCacheEpoch' => static function () use ( $expectedDefault ): string {
