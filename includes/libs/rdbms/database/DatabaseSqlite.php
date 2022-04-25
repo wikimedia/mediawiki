@@ -70,7 +70,7 @@ class DatabaseSqlite extends Database {
 	];
 
 	/** @var ISQLPlatform */
-	private $platform;
+	protected $platform;
 
 	/**
 	 * Additional params include:
@@ -94,7 +94,7 @@ class DatabaseSqlite extends Database {
 		$this->trxMode = strtoupper( $params['trxMode'] ?? '' );
 
 		$this->lockMgr = $this->makeLockManager();
-		$this->platform = new SqlitePlatform();
+		$this->platform = new SqlitePlatform( $this );
 	}
 
 	protected static function getAttributes() {
@@ -894,14 +894,6 @@ class DatabaseSqlite extends Database {
 		$fld = "group_concat($field," . $this->addQuotes( $delim ) . ')';
 
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
-	}
-
-	public function buildGreatest( $fields, $values ) {
-		return $this->buildSuperlative( 'MAX', $fields, $values );
-	}
-
-	public function buildLeast( $fields, $values ) {
-		return $this->buildSuperlative( 'MIN', $fields, $values );
 	}
 
 	/**

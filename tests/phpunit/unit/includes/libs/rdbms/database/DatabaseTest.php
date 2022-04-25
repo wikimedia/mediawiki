@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DatabaseMysqli;
@@ -11,6 +12,7 @@ use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactorySingle;
+use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\Rdbms\TransactionManager;
 use Wikimedia\RequestTimeout\CriticalSectionScope;
 use Wikimedia\TestingAccessWrapper;
@@ -479,6 +481,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$wdb->deprecationLogger = static function ( $msg ) {
 		};
 		$wdb->currentDomain = DatabaseDomain::newUnspecified();
+		$wdb->platform = new SQLPlatform( new AddQuoterMock() );
 
 		$db->method( 'getServer' )->willReturn( '*dummy*' );
 		$db->setTransactionManager( new TransactionManager() );
@@ -496,7 +499,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->flushSnapshot( __METHOD__ ); // ok
 		$db->flushSnapshot( __METHOD__ ); // ok
 
-		$db->setFlag( DBO_TRX, $db::REMEMBER_PRIOR );
+		$db->setFlag( DBO_TRX, IDatabase::REMEMBER_PRIOR );
 		$db->query( 'SELECT 1', __METHOD__ );
 		$this->assertTrue( (bool)$db->trxLevel(), "Transaction started." );
 		$db->flushSnapshot( __METHOD__ ); // ok

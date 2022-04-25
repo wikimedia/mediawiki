@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use Wikimedia\Rdbms\Platform\MySQLPlatform;
 
 class MySQLPlatformTest extends PHPUnit\Framework\TestCase {
@@ -29,7 +30,7 @@ class MySQLPlatformTest extends PHPUnit\Framework\TestCase {
 	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform::addIdentifierQuotes
 	 */
 	public function testAddIdentifierQuotes( $expected, $in ) {
-		$platform = new MySQLPlatform();
+		$platform = new MySQLPlatform( new AddQuoterMock() );
 		$quoted = $platform->addIdentifierQuotes( $in );
 		$this->assertEquals( $expected, $quoted );
 	}

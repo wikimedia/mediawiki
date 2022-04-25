@@ -36,6 +36,8 @@ use RuntimeException;
 use Throwable;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
+use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\CriticalSectionScope;
 use Wikimedia\ScopedCallback;
@@ -219,6 +221,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** Table prefix to use on initial connection */
 	protected const CONN_INITIAL_TABLE_PREFIX = 'tablePrefix';
 
+	/** @var ISQLPlatform */
+	protected $platform;
+
 	/**
 	 * @note exceptions for missing libraries/drivers should be thrown in initConnection()
 	 * @stable to call
@@ -274,6 +279,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$params['schema'] != '' ? $params['schema'] : null,
 			$params['tablePrefix']
 		);
+		$this->platform = new SQLPlatform( $this );
 	}
 
 	/**
@@ -2788,7 +2794,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function bitNot( $field ) {
-		return "(~$field)";
+		return $this->platform->bitNot( $field );
 	}
 
 	/**
@@ -2796,7 +2802,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function bitAnd( $fieldLeft, $fieldRight ) {
-		return "($fieldLeft & $fieldRight)";
+		return $this->platform->bitAnd( $fieldLeft, $fieldRight );
 	}
 
 	/**
@@ -2804,7 +2810,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function bitOr( $fieldLeft, $fieldRight ) {
-		return "($fieldLeft | $fieldRight)";
+		return $this->platform->bitOr( $fieldLeft, $fieldRight );
 	}
 
 	/**
@@ -2832,7 +2838,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function buildGreatest( $fields, $values ) {
-		return $this->buildSuperlative( 'GREATEST', $fields, $values );
+		return $this->platform->buildGreatest( $fields, $values );
 	}
 
 	/**
@@ -2840,50 +2846,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function buildLeast( $fields, $values ) {
-		return $this->buildSuperlative( 'LEAST', $fields, $values );
-	}
-
-	/**
-	 * Build a superlative function statement comparing columns/values
-	 *
-	 * Integer and float values in $values will not be quoted
-	 *
-	 * If $fields is an array, then each value with a string key is treated as an expression
-	 * (which must be manually quoted); such string keys do not appear in the SQL and are only
-	 * descriptive aliases.
-	 *
-	 * @stable to override
-	 * @param string $sqlfunc Name of a SQL function
-	 * @param string|string[] $fields Name(s) of column(s) with values to compare
-	 * @param string|int|float|string[]|int[]|float[] $values Values to compare
-	 * @return string
-	 * @since 1.35
-	 */
-	protected function buildSuperlative( $sqlfunc, $fields, $values ) {
-		$fields = is_array( $fields ) ? $fields : [ $fields ];
-		$values = is_array( $values ) ? $values : [ $values ];
-
-		$encValues = [];
-		foreach ( $fields as $alias => $field ) {
-			if ( is_int( $alias ) ) {
-				$encValues[] = $this->addIdentifierQuotes( $field );
-			} else {
-				$encValues[] = $field; // expression
-			}
-		}
-		foreach ( $values as $value ) {
-			if ( is_int( $value ) || is_float( $value ) ) {
-				$encValues[] = $value;
-			} elseif ( is_string( $value ) ) {
-				$encValues[] = $this->addQuotes( $value );
-			} elseif ( $value === null ) {
-				throw new DBUnexpectedError( $this, 'Null value in superlative' );
-			} else {
-				throw new DBUnexpectedError( $this, 'Unexpected value type in superlative' );
-			}
-		}
-
-		return $sqlfunc . '(' . implode( ',', $encValues ) . ')';
+		return $this->platform->buildLeast( $fields, $values );
 	}
 
 	/**
@@ -3399,7 +3362,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function addIdentifierQuotes( $s ) {
-		return '"' . str_replace( '"', '""', $s ) . '"';
+		return $this->platform->addIdentifierQuotes( $s );
 	}
 
 	/**

@@ -1,8 +1,10 @@
 <?php
 
+use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\RequestTimeout\RequestTimeout;
 
@@ -78,6 +80,7 @@ class DatabaseTestHelper extends Database {
 		] );
 
 		$this->testName = $testName;
+		$this->platform = new SQLPlatform( new AddQuoterMock() );
 
 		$this->currentDomain = DatabaseDomain::newUnspecified();
 		$this->open( 'localhost', 'testuser', 'password', 'testdb', null, '' );

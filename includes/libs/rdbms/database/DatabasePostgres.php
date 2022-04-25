@@ -47,7 +47,7 @@ class DatabasePostgres extends Database {
 	private $lastResultHandle;
 
 	/** @var ISQLPlatform */
-	private $platform;
+	protected $platform;
 
 	/**
 	 * @see Database::__construct()
@@ -68,7 +68,7 @@ class DatabasePostgres extends Database {
 		}
 
 		parent::__construct( $params );
-		$this->platform = new PostgresPlatform();
+		$this->platform = new PostgresPlatform( $this );
 	}
 
 	public function getType() {

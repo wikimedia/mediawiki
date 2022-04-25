@@ -23,6 +23,7 @@
  * @copyright © 2013 Wikimedia Foundation and contributors
  */
 
+use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DatabaseMysqli;
 use Wikimedia\Rdbms\IDatabase;
@@ -677,7 +678,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		);
 		$db->method( 'addIdentifierQuotes' )->willReturnCallback(
 			static function ( $s ) {
-				return ( new MySQLPlatform() )->addIdentifierQuotes( $s );
+				return ( new MySQLPlatform( new AddQuoterMock() ) )->addIdentifierQuotes( $s );
 			}
 		);
 
@@ -716,7 +717,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		);
 		$db->method( 'addIdentifierQuotes' )->willReturnCallback(
 			static function ( $s ) {
-				return ( new MySQLPlatform() )->addIdentifierQuotes( $s );
+				return ( new MySQLPlatform( new AddQuoterMock() ) )->addIdentifierQuotes( $s );
 			}
 		);
 

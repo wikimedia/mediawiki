@@ -1,5 +1,7 @@
 <?php
 /**
+ * Help mocking DbQuoter interface, DO NOT use it in production.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,18 +20,27 @@
  * @file
  */
 
-namespace Wikimedia\Rdbms\Platform;
+namespace MediaWiki\Tests\Unit\Libs\Rdbms;
 
-/**
- * @since 1.38
- * @see ISQLPlatform
- */
-class SqlitePlatform extends SQLPlatform {
-	public function buildGreatest( $fields, $values ) {
-		return $this->buildSuperlative( 'MAX', $fields, $values );
-	}
+use Wikimedia\Rdbms\Blob;
 
-	public function buildLeast( $fields, $values ) {
-		return $this->buildSuperlative( 'MIN', $fields, $values );
+class AddQuoterMock implements \Wikimedia\Rdbms\Database\DbQuoter {
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
+	public function addQuotes( $s ) {
+		if ( $s instanceof Blob ) {
+			$s = $s->fetch();
+		}
+		if ( $s === null ) {
+			return 'NULL';
+		} elseif ( is_bool( $s ) ) {
+			return (string)(int)$s;
+		} elseif ( is_int( $s ) ) {
+			return (string)$s;
+		} else {
+			return "'" . str_replace( "'", "\'", $s ) . "'";
+		}
 	}
 }

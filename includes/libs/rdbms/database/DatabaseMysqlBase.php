@@ -119,9 +119,8 @@ abstract class DatabaseMysqlBase extends Database {
 		$this->utf8Mode = !empty( $params['utf8Mode'] );
 		$this->insertSelectIsSafe = isset( $params['insertSelectIsSafe'] )
 			? (bool)$params['insertSelectIsSafe'] : null;
-		$this->platform = new MySQLPlatform();
-
 		parent::__construct( $params );
+		$this->platform = new MySQLPlatform( $this );
 	}
 
 	/**
@@ -471,7 +470,7 @@ abstract class DatabaseMysqlBase extends Database {
 	public function addIdentifierQuotes( $s ) {
 		// Tests disabling constructor
 		if ( !$this->platform ) {
-			$this->platform = new MySQLPlatform();
+			$this->platform = new MySQLPlatform( $this );
 		}
 		return $this->platform->addIdentifierQuotes( $s );
 	}

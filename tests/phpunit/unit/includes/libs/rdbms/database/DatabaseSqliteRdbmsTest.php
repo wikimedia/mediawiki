@@ -1,7 +1,10 @@
 <?php
 
+use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\DatabaseSqlite;
+use Wikimedia\Rdbms\Platform\SqlitePlatform;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * DatabaseSqliteTest is already defined in mediawiki core hence the 'Rdbms' included in this
@@ -27,8 +30,10 @@ class DatabaseSqliteRdbmsTest extends PHPUnit\Framework\TestCase {
 				return "'$s'";
 			}
 		);
+		$wdb = TestingAccessWrapper::newFromObject( $db );
+		$wdb->platform = new SqlitePlatform( new AddQuoterMock() );
 
-		return $db;
+		return $wdb;
 	}
 
 	public function provideBuildSubstring() {
