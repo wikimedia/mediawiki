@@ -93,8 +93,13 @@ class LinksMigration {
 		$this->assertMapping( $table );
 		if ( $this->config->get( self::$mapping[$table]['config'] ) & SCHEMA_COMPAT_READ_NEW ) {
 			$targetId = self::$mapping[$table]['target_id'];
+			if ( $joinTable === 'linktarget' ) {
+				$tables = [ $table, 'linktarget' ];
+			} else {
+				$tables = [ 'linktarget', $table ];
+			}
 			return [
-				'tables' => [ 'linktarget', $table ],
+				'tables' => $tables,
 				'fields' => [
 					$targetId,
 					'lt_namespace',

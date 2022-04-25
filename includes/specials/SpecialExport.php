@@ -504,7 +504,10 @@ class SpecialExport extends SpecialPage {
 		return $this->getLinks( $inputPages, $pageSet,
 			$queryInfo['tables'],
 			[ 'namespace' => $nsField, 'title' => $titleField ],
-			array_merge( [ 'page_id=tl_from' ], $queryInfo['joins'] )
+			array_merge(
+				[ 'templatelinks' => [ 'JOIN', [ 'page_id=tl_from' ] ] ],
+				$queryInfo['joins']
+			)
 		);
 	}
 
@@ -559,9 +562,9 @@ class SpecialExport extends SpecialPage {
 	protected function getPageLinks( $inputPages, $pageSet, $depth ) {
 		for ( ; $depth > 0; --$depth ) {
 			$pageSet = $this->getLinks(
-				$inputPages, $pageSet, 'pagelinks',
+				$inputPages, $pageSet, [ 'pagelinks' ],
 				[ 'namespace' => 'pl_namespace', 'title' => 'pl_title' ],
-				[ 'page_id=pl_from' ]
+				[ 'pagelinks' => [ 'JOIN', [ 'page_id=pl_from' ] ] ]
 			);
 			$inputPages = array_keys( $pageSet );
 		}
@@ -573,7 +576,7 @@ class SpecialExport extends SpecialPage {
 	 * Expand a list of pages to include items used in those pages.
 	 * @param array $inputPages Array of page titles
 	 * @param array $pageSet
-	 * @param string $table
+	 * @param string[] $table
 	 * @param array $fields Array of field names
 	 * @param array $join
 	 * @return array
@@ -583,22 +586,22 @@ class SpecialExport extends SpecialPage {
 
 		foreach ( $inputPages as $page ) {
 			$title = Title::newFromText( $page );
+			$table[] = 'page';
 
 			if ( $title ) {
 				$pageSet[$title->getPrefixedText()] = true;
 				/// @todo FIXME: May or may not be more efficient to batch these
 				///        by namespace when given multiple input pages.
 				$result = $dbr->select(
-					[ 'page', $table ],
+					$table,
 					$fields,
-					array_merge(
-						$join,
-						[
-							'page_namespace' => $title->getNamespace(),
-							'page_title' => $title->getDBkey()
-						]
-					),
-					__METHOD__
+					[
+						'page_namespace' => $title->getNamespace(),
+						'page_title' => $title->getDBkey()
+					],
+					__METHOD__,
+					[],
+					$join
 				);
 
 				foreach ( $result as $row ) {
