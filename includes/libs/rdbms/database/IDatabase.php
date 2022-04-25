@@ -399,16 +399,14 @@ interface IDatabase extends ISQLPlatform {
 	public function insertId();
 
 	/**
-	 * Get the last error number
-	 * @see https://www.php.net/mysql_errno
+	 * Get the RDBMS-specific error code from the last query statement
 	 *
-	 * @return int
+	 * @return int|string Error code (integer or hexadecimal depending on RDBMS type)
 	 */
 	public function lastErrno();
 
 	/**
-	 * Get a description of the last error
-	 * @see https://www.php.net/mysql_error
+	 * Get the RDBMS-specific error description from the last query statement
 	 *
 	 * @return string
 	 */
