@@ -937,14 +937,12 @@ EOT
 				break;
 			}
 
-			$query = [];
-			# Add a redirect=no to make redirect pages reachable
-			if ( isset( $redirects[$element->page_title] ) ) {
-				$query['redirect'] = 'no';
-			}
 			$link = $linkRenderer->makeKnownLink(
 				Title::makeTitle( $element->page_namespace, $element->page_title ),
-				null, [], $query
+				null,
+				[],
+				// Add a redirect=no to make redirect pages reachable
+				[ 'redirect' => isset( $redirects[$element->page_title] ) ? 'no' : null ]
 			);
 			if ( !isset( $redirects[$element->page_title] ) ) {
 				# No redirects
