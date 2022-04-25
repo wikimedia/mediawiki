@@ -29,6 +29,7 @@
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionAccessException;
@@ -96,7 +97,8 @@ class WikiExporter {
 	 * @return string
 	 */
 	public static function schemaVersion() {
-		return MediaWikiServices::getInstance()->getMainConfig()->get( 'XmlDumpSchemaVersion' );
+		return MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::XmlDumpSchemaVersion );
 	}
 
 	/**

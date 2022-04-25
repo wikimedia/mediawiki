@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -79,7 +80,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		}
 
 		$lang = $this->getRenderLang();
-		$enableLegacyMediaDOM = $this->getConfig()->get( 'ParserEnableLegacyMediaDOM' );
+		$enableLegacyMediaDOM =
+			$this->getConfig()->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 
 		# Output each image...
 		foreach ( $this->mImages as [ $nt, $text, $alt, $link, $handlerOpts, $loading ] ) {

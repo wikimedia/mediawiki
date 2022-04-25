@@ -1011,13 +1011,13 @@ class SpecialPageFactory {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'DisableInternalSearch',
-		'EmailAuthentication',
-		'EnableEmail',
-		'EnableJavaScriptTest',
-		'EnableSpecialMute',
-		'PageLanguageUseDB',
-		'SpecialPages',
+		MainConfigNames::DisableInternalSearch,
+		MainConfigNames::EmailAuthentication,
+		MainConfigNames::EnableEmail,
+		MainConfigNames::EnableJavaScriptTest,
+		MainConfigNames::EnableSpecialMute,
+		MainConfigNames::PageLanguageUseDB,
+		MainConfigNames::SpecialPages,
 	];
 
 	/**
@@ -1067,7 +1067,7 @@ class SpecialPageFactory {
 		if ( !is_array( $this->list ) ) {
 			$this->list = self::CORE_LIST;
 
-			if ( !$this->options->get( 'DisableInternalSearch' ) ) {
+			if ( !$this->options->get( MainConfigNames::DisableInternalSearch ) ) {
 				$this->list['Search'] = [
 					'class' => \SpecialSearch::class,
 					'services' => [
@@ -1083,7 +1083,7 @@ class SpecialPageFactory {
 				];
 			}
 
-			if ( $this->options->get( 'EmailAuthentication' ) ) {
+			if ( $this->options->get( MainConfigNames::EmailAuthentication ) ) {
 				$this->list['Confirmemail'] = [
 					'class' => \SpecialConfirmEmail::class,
 					'services' => [
@@ -1098,7 +1098,7 @@ class SpecialPageFactory {
 				];
 			}
 
-			if ( $this->options->get( 'EnableEmail' ) ) {
+			if ( $this->options->get( MainConfigNames::EnableEmail ) ) {
 				$this->list['ChangeEmail'] = [
 					'class' => \SpecialChangeEmail::class,
 					'services' => [
@@ -1107,13 +1107,13 @@ class SpecialPageFactory {
 				];
 			}
 
-			if ( $this->options->get( 'EnableJavaScriptTest' ) ) {
+			if ( $this->options->get( MainConfigNames::EnableJavaScriptTest ) ) {
 				$this->list['JavaScriptTest'] = [
 					'class' => \SpecialJavaScriptTest::class
 				];
 			}
 
-			if ( $this->options->get( 'EnableSpecialMute' ) ) {
+			if ( $this->options->get( MainConfigNames::EnableSpecialMute ) ) {
 				$this->list['Mute'] = [
 					'class' => \SpecialMute::class,
 					'services' => [
@@ -1124,7 +1124,7 @@ class SpecialPageFactory {
 				];
 			}
 
-			if ( $this->options->get( 'PageLanguageUseDB' ) ) {
+			if ( $this->options->get( MainConfigNames::PageLanguageUseDB ) ) {
 				$this->list['PageLanguage'] = [
 					'class' => \SpecialPageLanguage::class,
 					'services' => [
@@ -1137,7 +1137,8 @@ class SpecialPageFactory {
 			}
 
 			// Add extension special pages
-			$this->list = array_merge( $this->list, $this->options->get( 'SpecialPages' ) );
+			$this->list = array_merge( $this->list,
+				$this->options->get( MainConfigNames::SpecialPages ) );
 
 			// This hook can be used to disable unwanted core special pages
 			// or conditionally register special pages.

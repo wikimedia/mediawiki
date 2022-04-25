@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -34,8 +35,8 @@ class EmailNotificationSecondaryAuthenticationProvider
 
 	protected function postInitSetup() {
 		if ( $this->sendConfirmationEmail === null ) {
-			$this->sendConfirmationEmail = $this->config->get( 'EnableEmail' )
-				&& $this->config->get( 'EmailAuthentication' );
+			$this->sendConfirmationEmail = $this->config->get( MainConfigNames::EnableEmail )
+				&& $this->config->get( MainConfigNames::EmailAuthentication );
 		}
 	}
 

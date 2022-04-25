@@ -29,6 +29,7 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\User\BotPasswordStore;
@@ -776,7 +777,7 @@ class AuthManager implements LoggerAwareInterface {
 				'user' => $user->getName(),
 				'clientip' => $this->request->getIP(),
 			] );
-			$rememberMeConfig = $this->config->get( 'RememberMe' );
+			$rememberMeConfig = $this->config->get( MainConfigNames::RememberMe );
 			if ( $rememberMeConfig === RememberMeAuthenticationRequest::ALWAYS_REMEMBER ) {
 				$rememberMe = true;
 			} elseif ( $rememberMeConfig === RememberMeAuthenticationRequest::NEVER_REMEMBER ) {
@@ -836,7 +837,7 @@ class AuthManager implements LoggerAwareInterface {
 				$timeSinceLogin = max( 0, time() - $last );
 			}
 
-			$thresholds = $this->config->get( 'ReauthenticateTime' );
+			$thresholds = $this->config->get( MainConfigNames::ReauthenticateTime );
 			if ( isset( $thresholds[$operation] ) ) {
 				$threshold = $thresholds[$operation];
 			} elseif ( isset( $thresholds['default'] ) ) {
@@ -851,7 +852,8 @@ class AuthManager implements LoggerAwareInterface {
 		} else {
 			$timeSinceLogin = -1;
 
-			$pass = $this->config->get( 'AllowSecuritySensitiveOperationIfCannotReauthenticate' );
+			$pass = $this->config->get(
+				MainConfigNames::AllowSecuritySensitiveOperationIfCannotReauthenticate );
 			if ( isset( $pass[$operation] ) ) {
 				$status = $pass[$operation] ? self::SEC_OK : self::SEC_FAIL;
 			} elseif ( isset( $pass['default'] ) ) {
@@ -1526,7 +1528,7 @@ class AuthManager implements LoggerAwareInterface {
 				$logSubtype = $provider->finishAccountCreation( $user, $creator, $state['primaryResponse'] );
 
 				// Log the creation
-				if ( $this->config->get( 'NewUserLog' ) ) {
+				if ( $this->config->get( MainConfigNames::NewUserLog ) ) {
 					$isAnon = $creator->isAnon();
 					$logEntry = new \ManualLogEntry(
 						'newusers',
@@ -1853,7 +1855,7 @@ class AuthManager implements LoggerAwareInterface {
 		} );
 
 		// Log the creation
-		if ( $this->config->get( 'NewUserLog' ) && $log ) {
+		if ( $this->config->get( MainConfigNames::NewUserLog ) && $log ) {
 			$logEntry = new \ManualLogEntry( 'newusers', 'autocreate' );
 			$logEntry->setPerformer( $user );
 			$logEntry->setTarget( $user->getUserPage() );
@@ -2226,7 +2228,8 @@ class AuthManager implements LoggerAwareInterface {
 		// AuthManager has its own req for some actions
 		switch ( $providerAction ) {
 			case self::ACTION_LOGIN:
-				$reqs[] = new RememberMeAuthenticationRequest( $this->config->get( 'RememberMe' ) );
+				$reqs[] = new RememberMeAuthenticationRequest(
+					$this->config->get( MainConfigNames::RememberMe ) );
 				break;
 
 			case self::ACTION_CREATE:
@@ -2436,7 +2439,8 @@ class AuthManager implements LoggerAwareInterface {
 	 * @return array
 	 */
 	private function getConfiguration() {
-		return $this->config->get( 'AuthManagerConfig' ) ?: $this->config->get( 'AuthManagerAutoConfig' );
+		return $this->config->get( MainConfigNames::AuthManagerConfig )
+			?: $this->config->get( MainConfigNames::AuthManagerAutoConfig );
 	}
 
 	/**

@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionStore;
@@ -297,7 +298,7 @@ abstract class Skin extends ContextSource {
 	 * @param OutputPage $out
 	 */
 	public function initPage( OutputPage $out ) {
-		$skinMetaTags = $this->getConfig()->get( 'SkinMetaTags' );
+		$skinMetaTags = $this->getConfig()->get( MainConfigNames::SkinMetaTags );
 		$this->preloadExistence();
 
 		if ( $this->isResponsive() ) {
@@ -437,7 +438,7 @@ abstract class Skin extends ContextSource {
 		}
 
 		// Footer links (used by SkinTemplate::prepareQuickTemplate)
-		if ( $this->getConfig()->get( 'FooterLinkCacheExpiry' ) <= 0 ) {
+		if ( $this->getConfig()->get( MainConfigNames::FooterLinkCacheExpiry ) <= 0 ) {
 			$titles = array_merge(
 				$titles,
 				array_filter( [
@@ -886,15 +887,16 @@ abstract class Skin extends ContextSource {
 
 		$config = $this->getConfig();
 
-		if ( $config->get( 'RightsPage' ) ) {
-			$title = Title::newFromText( $config->get( 'RightsPage' ) );
-			$link = $linkRenderer->makeKnownLink(
-				$title, new HtmlArmor( $config->get( 'RightsText' ) ?: $title->getText() )
+		if ( $config->get( MainConfigNames::RightsPage ) ) {
+			$title = Title::newFromText( $config->get( MainConfigNames::RightsPage ) );
+			$link = $linkRenderer->makeKnownLink( $title,
+				new HtmlArmor( $config->get( MainConfigNames::RightsText ) ?: $title->getText() )
 			);
-		} elseif ( $config->get( 'RightsUrl' ) ) {
-			$link = Linker::makeExternalLink( $config->get( 'RightsUrl' ), $config->get( 'RightsText' ) );
-		} elseif ( $config->get( 'RightsText' ) ) {
-			$link = $config->get( 'RightsText' );
+		} elseif ( $config->get( MainConfigNames::RightsUrl ) ) {
+			$link = Linker::makeExternalLink( $config->get( MainConfigNames::RightsUrl ),
+				$config->get( MainConfigNames::RightsText ) );
+		} elseif ( $config->get( MainConfigNames::RightsText ) ) {
+			$link = $config->get( MainConfigNames::RightsText );
 		} else {
 			# Give up now
 			return '';
@@ -982,8 +984,10 @@ abstract class Skin extends ContextSource {
 				$html = htmlspecialchars( $icon['alt'] ?? '' );
 			}
 			if ( $url ) {
-				$html = Html::rawElement( 'a',
-					[ 'href' => $url, 'target' => $this->getConfig()->get( 'ExternalLinkTarget' ) ],
+				$html = Html::rawElement( 'a', [
+						'href' => $url,
+						'target' => $this->getConfig()->get( MainConfigNames::ExternalLinkTarget ),
+					],
 					$html );
 			}
 		}
@@ -1058,10 +1062,10 @@ abstract class Skin extends ContextSource {
 		$wanCache = $services->getMainWANObjectCache();
 		$config = $this->getConfig();
 
-		return ( $config->get( 'FooterLinkCacheExpiry' ) > 0 )
+		return ( $config->get( MainConfigNames::FooterLinkCacheExpiry ) > 0 )
 			? $wanCache->getWithSetCallback(
 				$wanCache->makeKey( 'footer-links' ),
-				$config->get( 'FooterLinkCacheExpiry' ),
+				$config->get( MainConfigNames::FooterLinkCacheExpiry ),
 				$callback,
 				[
 					'checkKeys' => [
@@ -1205,7 +1209,7 @@ abstract class Skin extends ContextSource {
 	 * @since 1.35
 	 */
 	public function mapInterwikiToLanguage( $code ) {
-		$map = $this->getConfig()->get( 'InterlanguageLinkCodeMap' );
+		$map = $this->getConfig()->get( MainConfigNames::InterlanguageLinkCodeMap );
 		return $map[ $code ] ?? $code;
 	}
 
@@ -1218,7 +1222,7 @@ abstract class Skin extends ContextSource {
 	 * @return array
 	 */
 	public function getLanguages() {
-		if ( $this->getConfig()->get( 'HideInterlanguageLinks' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::HideInterlanguageLinks ) ) {
 			return [];
 		}
 		if ( $this->languageLinks === null ) {
@@ -1320,7 +1324,7 @@ abstract class Skin extends ContextSource {
 		$out = $this->getOutput();
 		$title = $this->getTitle();
 		$thispage = $title->getPrefixedDBkey();
-		$uploadNavigationUrl = $this->getConfig()->get( 'UploadNavigationUrl' );
+		$uploadNavigationUrl = $this->getConfig()->get( MainConfigNames::UploadNavigationUrl );
 
 		$nav_urls = [];
 		$nav_urls['mainpage'] = [ 'href' => self::makeMainPageUrl() ];
@@ -1413,7 +1417,8 @@ abstract class Skin extends ContextSource {
 			}
 
 			if ( $user->isRegistered() ) {
-				if ( $this->getUser()->isRegistered() && $this->getConfig()->get( 'EnableSpecialMute' ) ) {
+				if ( $this->getUser()->isRegistered() &&
+				$this->getConfig()->get( MainConfigNames::EnableSpecialMute ) ) {
 					$nav_urls['mute'] = [
 						'text' => $this->msg( 'mute-preferences' )->text(),
 						'href' => self::makeSpecialUrlSubpage( 'Mute', $rootUser )
@@ -1423,7 +1428,8 @@ abstract class Skin extends ContextSource {
 				$sur = new UserrightsPage;
 				$sur->setContext( $this->getContext() );
 				$canChange = $sur->userCanChangeRights( $user );
-				$delimiter = $this->getConfig()->get( 'UserrightsInterwikiDelimiter' );
+				$delimiter = $this->getConfig()->get(
+					MainConfigNames::UserrightsInterwikiDelimiter );
 				if ( str_contains( $rootUser, $delimiter ) ) {
 					// Username contains interwiki delimiter, link it via the
 					// #{userid} syntax. (T260222)
@@ -1509,10 +1515,10 @@ abstract class Skin extends ContextSource {
 			$config = $this->getConfig();
 			$languageCode = $this->getLanguage()->getCode();
 
-			$sidebar = $config->get( 'EnableSidebarCache' )
+			$sidebar = $config->get( MainConfigNames::EnableSidebarCache )
 				? $wanCache->getWithSetCallback(
 					$wanCache->makeKey( 'sidebar', $languageCode ),
-					$config->get( 'SidebarCacheExpiry' ),
+					$config->get( MainConfigNames::SidebarCacheExpiry ),
 					$callback,
 					[
 						'checkKeys' => [
@@ -1563,7 +1569,7 @@ abstract class Skin extends ContextSource {
 
 		$heading = '';
 		$config = $this->getConfig();
-		$messageTitle = $config->get( 'EnableSidebarCache' )
+		$messageTitle = $config->get( MainConfigNames::EnableSidebarCache )
 			? Title::newMainPage() : $this->getTitle();
 		$messageCache = MediaWikiServices::getInstance()->getMessageCache();
 
@@ -1612,14 +1618,16 @@ abstract class Skin extends ContextSource {
 						$href = $link;
 
 						// Parser::getExternalLinkAttribs won't work here because of the Namespace things
-						if ( $config->get( 'NoFollowLinks' ) &&
-							!wfMatchesDomainList( $href, $config->get( 'NoFollowDomainExceptions' ) )
+						if ( $config->get( MainConfigNames::NoFollowLinks ) &&
+							!wfMatchesDomainList( $href,
+								$config->get( MainConfigNames::NoFollowDomainExceptions ) )
 						) {
 							$extraAttribs['rel'] = 'nofollow';
 						}
 
-						if ( $config->get( 'ExternalLinkTarget' ) ) {
-							$extraAttribs['target'] = $config->get( 'ExternalLinkTarget' );
+						if ( $config->get( MainConfigNames::ExternalLinkTarget ) ) {
+							$extraAttribs['target'] =
+								$config->get( MainConfigNames::ExternalLinkTarget );
 						}
 					} else {
 						$title = Title::newFromText( $link );
@@ -1777,7 +1785,7 @@ abstract class Skin extends ContextSource {
 
 		if ( $name === 'default' ) {
 			// special case
-			$notice = $config->get( 'SiteNotice' );
+			$notice = $config->get( MainConfigNames::SiteNotice );
 			if ( empty( $notice ) ) {
 				return false;
 			}
@@ -1796,7 +1804,8 @@ abstract class Skin extends ContextSource {
 		$parsed = $cache->getWithSetCallback(
 			// Use the extra hash appender to let eg SSL variants separately cache
 			// Key is verified with md5 hash of unparsed wikitext
-			$cache->makeKey( $name, $config->get( 'RenderHashAppend' ), md5( $notice ) ),
+			$cache->makeKey(
+				$name, $config->get( MainConfigNames::RenderHashAppend ), md5( $notice ) ),
 			// TTL in seconds
 			600,
 			function () use ( $notice ) {
@@ -2411,8 +2420,8 @@ abstract class Skin extends ContextSource {
 		$title = $out->getTitle();
 		$titleExists = $title->exists();
 		$config = $this->getConfig();
-		$maxCredits = $config->get( 'MaxCredits' );
-		$showCreditsIfMax = $config->get( 'ShowCreditsIfMax' );
+		$maxCredits = $config->get( MainConfigNames::MaxCredits );
+		$showCreditsIfMax = $config->get( MainConfigNames::ShowCreditsIfMax );
 		$useCredits = $titleExists
 			&& $out->isArticle()
 			&& $out->isRevisionCurrent()
