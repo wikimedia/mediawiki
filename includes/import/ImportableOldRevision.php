@@ -9,7 +9,7 @@ interface ImportableOldRevision {
 
 	/**
 	 * @since 1.31
-	 * @return User
+	 * @return User|null Typically null, use {@see getUser} instead
 	 */
 	public function getUserObj();
 
