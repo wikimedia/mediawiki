@@ -138,4 +138,25 @@ class TestSetup {
 		ini_set( 'serialize_precision', 17 );
 	}
 
+	/**
+	 * @internal Should only be used in bootstrap.php and boostrap.maintenance.php
+	 *
+	 * PHPUnit includes the bootstrap file inside a method body, while most MediaWiki startup files
+	 * assume to be included in the global scope.
+	 * This utility provides a way to include these files: it makes all globals available in the
+	 * inclusion scope before including the file, then exports all new or changed globals.
+	 *
+	 * @param string $fileName the file to include
+	 */
+	public static function requireOnceInGlobalScope( string $fileName ): void {
+		// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.extract
+		extract( $GLOBALS, EXTR_REFS | EXTR_SKIP );
+
+		require_once $fileName;
+
+		foreach ( get_defined_vars() as $varName => $value ) {
+			$GLOBALS[$varName] = $value;
+		}
+	}
+
 }
