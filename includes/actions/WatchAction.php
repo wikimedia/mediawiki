@@ -94,8 +94,7 @@ class WatchAction extends FormAction {
 	}
 
 	protected function checkCanExecute( User $user ) {
-		// Must be logged in
-		if ( $user->isAnon() ) {
+		if ( !$user->isNamed() ) {
 			throw new UserNotLoggedIn( 'watchlistanontext', 'watchnologin' );
 		}
 

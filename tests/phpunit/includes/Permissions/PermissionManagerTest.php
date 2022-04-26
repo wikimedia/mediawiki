@@ -11,6 +11,7 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;
@@ -425,6 +426,42 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		$this->assertEmpty( $permissionManager->getPermissionErrors( 'edit', $this->user, $title ) );
 		$this->assertTrue( $permissionManager->userCan( 'edit', $this->user, $title ) );
+	}
+
+	public function testAutocreatePermissionsHack() {
+		$this->setMwGlobals( [
+			'wgAutoCreateTempUser' => [
+				'enabled' => true,
+				'actions' => [ 'edit' ],
+				'serialProvider' => [ 'type' => 'local' ],
+				'serialMapping' => [ 'type' => 'plain-numeric' ],
+				'matchPattern' => '*Unregistered $1',
+				'genPattern' => '*Unregistered $1'
+			],
+			'wgGroupPermissions' => [
+				'*' => [ 'edit' => false ],
+				'user' => [ 'edit' => true, 'createpage' => true ],
+			]
+		] );
+		$services = $this->getServiceContainer();
+		$permissionManager = $services->getPermissionManager();
+		$user = $services->getUserFactory()->newAnonymous();
+		$title = $this->getNonexistingTestPage()->getTitle();
+		$this->assertNotEmpty(
+			$permissionManager->getPermissionErrors(
+				'edit',
+				$user,
+				$title
+			)
+		);
+		$this->assertEmpty(
+			$permissionManager->getPermissionErrors(
+				'edit',
+				$user,
+				$title,
+				PermissionManager::RIGOR_QUICK
+			)
+		);
 	}
 
 	/**

@@ -32,6 +32,8 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\User\TempUser\TempUserConfig;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MessageSpecifier;
@@ -113,6 +115,12 @@ class PermissionManager {
 
 	/** @var TitleFormatter */
 	private $titleFormatter;
+
+	/** @var TempUserConfig */
+	private $tempUserConfig;
+
+	/** @var UserFactory */
+	private $userFactory;
 
 	/** @var string[][] Cached user rights */
 	private $usersRights = [];
@@ -228,6 +236,8 @@ class PermissionManager {
 	 * @param RedirectLookup $redirectLookup
 	 * @param RestrictionStore $restrictionStore
 	 * @param TitleFormatter $titleFormatter
+	 * @param TempUserConfig $tempUserConfig
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -240,7 +250,9 @@ class PermissionManager {
 		UserCache $userCache,
 		RedirectLookup $redirectLookup,
 		RestrictionStore $restrictionStore,
-		TitleFormatter $titleFormatter
+		TitleFormatter $titleFormatter,
+		TempUserConfig $tempUserConfig,
+		UserFactory $userFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
@@ -254,6 +266,8 @@ class PermissionManager {
 		$this->redirectLookup = $redirectLookup;
 		$this->restrictionStore = $restrictionStore;
 		$this->titleFormatter = $titleFormatter;
+		$this->tempUserConfig = $tempUserConfig;
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -407,6 +421,17 @@ class PermissionManager {
 	) {
 		if ( !in_array( $rigor, [ self::RIGOR_QUICK, self::RIGOR_FULL, self::RIGOR_SECURE ] ) ) {
 			throw new Exception( "Invalid rigor parameter '$rigor'." );
+		}
+
+		// With RIGOR_QUICK we can assume automatic account creation will
+		// occur. At a higher rigor level, the caller is required to opt
+		// in by either setting the create intent or actually creating
+		// the account.
+		if ( $rigor === self::RIGOR_QUICK
+			&& !$user->isRegistered()
+			&& $this->tempUserConfig->isAutoCreateAction( $action )
+		) {
+			$user = $this->userFactory->newTempPlaceholder();
 		}
 
 		# Read has special handling
@@ -888,7 +913,7 @@ class PermissionManager {
 				( !$this->nsInfo->isTalk( $title->getNamespace() ) &&
 					!$this->userHasRight( $user, 'createpage' ) )
 			) {
-				$errors[] = $user->isAnon() ? [ 'nocreatetext' ] : [ 'nocreate-loggedin' ];
+				$errors[] = $user->isNamed() ? [ 'nocreate-loggedin' ] : [ 'nocreatetext' ];
 			}
 		} elseif ( $action == 'move' ) {
 			if ( !$this->userHasRight( $user, 'move-rootuserpages' )
@@ -914,10 +939,19 @@ class PermissionManager {
 
 			if ( !$this->userHasRight( $user, 'move' ) ) {
 				// User can't move anything
-				$userCanMove = $this->groupHasPermission( 'user', 'move' );
-				$autoconfirmedCanMove = $this->groupHasPermission( 'autoconfirmed', 'move' );
-				if ( $user->isAnon() && ( $userCanMove || $autoconfirmedCanMove ) ) {
+				$userCanMove = $this->groupPermissionsLookup
+					->groupHasPermission( 'user', 'move' );
+				$namedCanMove = $this->groupPermissionsLookup
+					->groupHasPermission( 'named', 'move' );
+				$autoconfirmedCanMove = $this->groupPermissionsLookup
+					->groupHasPermission( 'autoconfirmed', 'move' );
+				if ( $user->isAnon()
+					&& ( $userCanMove || $namedCanMove || $autoconfirmedCanMove )
+				) {
 					// custom message if logged-in users without any special rights can move
+					$errors[] = [ 'movenologintext' ];
+				} elseif ( $user->isTemp() && ( $namedCanMove || $autoconfirmedCanMove ) ) {
+					// Temp user may be able to move if they log in as a proper account
 					$errors[] = [ 'movenologintext' ];
 				} else {
 					$errors[] = [ 'movenotallowed' ];
