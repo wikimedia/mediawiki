@@ -40,7 +40,7 @@ use Wikimedia\ScopedCallback;
  *
  * @ingroup Database
  */
-class LoadBalancer implements ILoadBalancer {
+class LoadBalancer implements ILoadBalancerForOwner {
 	/** @var ILoadMonitor */
 	private $loadMonitor;
 	/** @var CriticalSectionProvider|null */
@@ -130,11 +130,6 @@ class LoadBalancer implements ILoadBalancer {
 	private $disabled = false;
 	/** @var bool Whether the session consistency callback already executed */
 	private $chronologyCallbackTriggered = false;
-
-	/** var int An identifier for this class instance */
-	private $id;
-	/** @var int|null Integer ID of the managing LBFactory instance or null if none */
-	private $ownerId;
 
 	/** @var DatabaseDomain[] Map of (domain ID => domain instance) */
 	private $nonLocalDomainCache = [];
@@ -257,10 +252,6 @@ class LoadBalancer implements ILoadBalancer {
 
 		$group = $params['defaultGroup'] ?? self::GROUP_GENERIC;
 		$this->defaultGroup = isset( $this->groupLoads[$group] ) ? $group : self::GROUP_GENERIC;
-
-		static $nextId;
-		$this->id = $nextId = ( is_int( $nextId ) ? $nextId++ : mt_rand() );
-		$this->ownerId = $params['ownerId'] ?? null;
 	}
 
 	private static function newTrackedConnectionsArray() {
@@ -1328,7 +1319,6 @@ class LoadBalancer implements ILoadBalancer {
 				// Inject the PHP execution mode and the agent string
 				'cliMode' => $this->cliMode,
 				'agent' => $this->agent,
-				'ownerId' => $this->id,
 				// Inject object and callback dependencies
 				'lazyMasterHandle' => $this->getConnectionRef(
 					self::DB_PRIMARY,
@@ -1582,22 +1572,18 @@ class LoadBalancer implements ILoadBalancer {
 		return $highestPos;
 	}
 
-	public function disable( $fname = __METHOD__, $owner = null ) {
-		$this->assertOwnership( $fname, $owner );
-		$this->closeAll( $fname, $owner );
+	public function disable( $fname = __METHOD__ ) {
+		$this->closeAll( $fname );
 		$this->disabled = true;
 	}
 
-	public function closeAll( $fname = __METHOD__, $owner = null ) {
-		$this->assertOwnership( $fname, $owner );
-		if ( $this->ownerId === null ) {
-			/** @noinspection PhpUnusedLocalVariableInspection */
-			$scope = ScopedCallback::newScopedIgnoreUserAbort();
-		}
+	public function closeAll( $fname = __METHOD__ ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 		$this->forEachOpenConnection( function ( IDatabase $conn ) use ( $fname ) {
 			$srvName = $conn->getServerName();
 			$this->connLogger->debug( "$fname: closing connection to database '$srvName'." );
-			$conn->close( $fname, $this->id );
+			$conn->close( $fname );
 		} );
 
 		$this->conns = self::newTrackedConnectionsArray();
@@ -1641,19 +1627,16 @@ class LoadBalancer implements ILoadBalancer {
 		$conn->close( __METHOD__ );
 	}
 
-	public function commitAll( $fname = __METHOD__, $owner = null ) {
-		$this->commitPrimaryChanges( $fname, $owner );
-		$this->flushPrimarySnapshots( $fname, $owner );
-		$this->flushReplicaSnapshots( $fname, $owner );
+	public function commitAll( $fname = __METHOD__ ) {
+		$this->commitPrimaryChanges( $fname );
+		$this->flushPrimarySnapshots( $fname );
+		$this->flushReplicaSnapshots( $fname );
 	}
 
-	public function finalizePrimaryChanges( $fname = __METHOD__, $owner = null ) {
-		$this->assertOwnership( $fname, $owner );
+	public function finalizePrimaryChanges( $fname = __METHOD__ ) {
 		$this->assertTransactionRoundStage( [ self::ROUND_CURSORY, self::ROUND_FINALIZED ] );
-		if ( $this->ownerId === null ) {
-			/** @noinspection PhpUnusedLocalVariableInspection */
-			$scope = ScopedCallback::newScopedIgnoreUserAbort();
-		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
 		// Loop until callbacks stop adding callbacks on other connections
@@ -1676,13 +1659,10 @@ class LoadBalancer implements ILoadBalancer {
 		return $total;
 	}
 
-	public function approvePrimaryChanges( array $options, $fname = __METHOD__, $owner = null ) {
-		$this->assertOwnership( $fname, $owner );
+	public function approvePrimaryChanges( array $options, $fname = __METHOD__ ) {
 		$this->assertTransactionRoundStage( self::ROUND_FINALIZED );
-		if ( $this->ownerId === null ) {
-			/** @noinspection PhpUnusedLocalVariableInspection */
-			$scope = ScopedCallback::newScopedIgnoreUserAbort();
-		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
 		$limit = $options['maxWriteDuration'] ?? 0;
 
@@ -1730,8 +1710,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->trxRoundStage = self::ROUND_APPROVED;
 	}
 
-	public function beginPrimaryChanges( $fname = __METHOD__, $owner = null ) {
-		$this->assertOwnership( $fname, $owner );
+	public function beginPrimaryChanges( $fname = __METHOD__ ) {
 		if ( $this->trxRoundId !== false ) {
 			throw new DBTransactionError(
 				null,
@@ -1739,13 +1718,11 @@ class LoadBalancer implements ILoadBalancer {
 			);
 		}
 		$this->assertTransactionRoundStage( self::ROUND_CURSORY );
-		if ( $this->ownerId === null ) {
-			/** @noinspection PhpUnusedLocalVariableInspection */
-			$scope = ScopedCallback::newScopedIgnoreUserAbort();
-		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
 		// Clear any empty transactions (no writes/callbacks) from the implicit round
-		$this->flushPrimarySnapshots( $fname, $owner );
+		$this->flushPrimarySnapshots( $fname );
 
 		$this->trxRoundId = $fname;
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
@@ -1759,13 +1736,10 @@ class LoadBalancer implements ILoadBalancer {
 		$this->trxRoundStage = self::ROUND_CURSORY;
 	}
 
-	public function commitPrimaryChanges( $fname = __METHOD__, $owner = null ) {
-		$this->assertOwnership( $fname, $owner );
+	public function commitPrimaryChanges( $fname = __METHOD__ ) {
 		$this->assertTransactionRoundStage( self::ROUND_APPROVED );
-		if ( $this->ownerId === null ) {
-			/** @noinspection PhpUnusedLocalVariableInspection */
-			$scope = ScopedCallback::newScopedIgnoreUserAbort();
-		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
 		$failures = [];
 
@@ -1799,8 +1773,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->trxRoundStage = self::ROUND_COMMIT_CALLBACKS;
 	}
 
-	public function runPrimaryTransactionIdleCallbacks( $fname = __METHOD__, $owner = null ) {
-		$this->assertOwnership( $fname, $owner );
+	public function runPrimaryTransactionIdleCallbacks( $fname = __METHOD__ ) {
 		if ( $this->trxRoundStage === self::ROUND_COMMIT_CALLBACKS ) {
 			$type = IDatabase::TRIGGER_COMMIT;
 		} elseif ( $this->trxRoundStage === self::ROUND_ROLLBACK_CALLBACKS ) {
@@ -1811,10 +1784,8 @@ class LoadBalancer implements ILoadBalancer {
 				"Transaction should be in the callback stage (not '{$this->trxRoundStage}')"
 			);
 		}
-		if ( $this->ownerId === null ) {
-			/** @noinspection PhpUnusedLocalVariableInspection */
-			$scope = ScopedCallback::newScopedIgnoreUserAbort();
-		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
 		$oldStage = $this->trxRoundStage;
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
@@ -1871,8 +1842,7 @@ class LoadBalancer implements ILoadBalancer {
 		return $errors ? $errors[0] : null;
 	}
 
-	public function runPrimaryTransactionListenerCallbacks( $fname = __METHOD__, $owner = null ) {
-		$this->assertOwnership( $fname, $owner );
+	public function runPrimaryTransactionListenerCallbacks( $fname = __METHOD__ ) {
 		if ( $this->trxRoundStage === self::ROUND_COMMIT_CALLBACKS ) {
 			$type = IDatabase::TRIGGER_COMMIT;
 		} elseif ( $this->trxRoundStage === self::ROUND_ROLLBACK_CALLBACKS ) {
@@ -1883,10 +1853,8 @@ class LoadBalancer implements ILoadBalancer {
 				"Transaction should be in the callback stage (not '{$this->trxRoundStage}')"
 			);
 		}
-		if ( $this->ownerId === null ) {
-			/** @noinspection PhpUnusedLocalVariableInspection */
-			$scope = ScopedCallback::newScopedIgnoreUserAbort();
-		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
 		$errors = [];
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
@@ -1900,12 +1868,9 @@ class LoadBalancer implements ILoadBalancer {
 		return $errors ? $errors[0] : null;
 	}
 
-	public function rollbackPrimaryChanges( $fname = __METHOD__, $owner = null ) {
-		$this->assertOwnership( $fname, $owner );
-		if ( $this->ownerId === null ) {
-			/** @noinspection PhpUnusedLocalVariableInspection */
-			$scope = ScopedCallback::newScopedIgnoreUserAbort();
-		}
+	public function rollbackPrimaryChanges( $fname = __METHOD__ ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
 		$restore = ( $this->trxRoundId !== false );
 		$this->trxRoundId = false;
@@ -1924,8 +1889,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;
 	}
 
-	public function flushPrimarySessions( $fname = __METHOD__, $owner = null ) {
-		$this->assertOwnership( $fname, $owner );
+	public function flushPrimarySessions( $fname = __METHOD__ ) {
 		$this->assertTransactionRoundStage( [ self::ROUND_CURSORY ] );
 		if ( $this->hasPrimaryChanges() ) {
 			// Any transaction should have been rolled back beforehand
@@ -1933,8 +1897,8 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		$this->forEachOpenPrimaryConnection(
-			function ( IDatabase $conn ) use ( $fname ) {
-				$conn->flushSession( $fname, $this->id );
+			static function ( IDatabase $conn ) use ( $fname ) {
+				$conn->flushSession( $fname );
 			}
 		);
 	}
@@ -1956,27 +1920,6 @@ class LoadBalancer implements ILoadBalancer {
 			throw new DBTransactionError(
 				null,
 				"Transaction round stage must be $stageList (not '{$this->trxRoundStage}')"
-			);
-		}
-	}
-
-	/**
-	 * Assure that if this instance is owned, the caller is either the owner or is internal
-	 *
-	 * If an LBFactory owns the LoadBalancer, then certain methods should only called through
-	 * that LBFactory to avoid broken contracts. Otherwise, those methods can publicly be
-	 * called by anything. In any case, internal methods from the LoadBalancer itself should
-	 * always be allowed.
-	 *
-	 * @param string $fname
-	 * @param int|null $owner Owner ID of the caller
-	 * @throws DBTransactionError
-	 */
-	private function assertOwnership( $fname, $owner ) {
-		if ( $this->ownerId !== null && $owner !== $this->ownerId && $owner !== $this->id ) {
-			throw new DBTransactionError(
-				null,
-				"$fname: LoadBalancer is owned by ID '{$this->ownerId}' (got '$owner')."
 			);
 		}
 	}
@@ -2023,15 +1966,13 @@ class LoadBalancer implements ILoadBalancer {
 		}
 	}
 
-	public function flushReplicaSnapshots( $fname = __METHOD__, $owner = null ) {
-		$this->assertOwnership( $fname, $owner );
+	public function flushReplicaSnapshots( $fname = __METHOD__ ) {
 		$this->forEachOpenReplicaConnection( static function ( IDatabase $conn ) use ( $fname ) {
 			$conn->flushSnapshot( $fname );
 		} );
 	}
 
-	public function flushPrimarySnapshots( $fname = __METHOD__, $owner = null ) {
-		$this->assertOwnership( $fname, $owner );
+	public function flushPrimarySnapshots( $fname = __METHOD__ ) {
 		$this->forEachOpenPrimaryConnection( static function ( IDatabase $conn ) use ( $fname ) {
 			$conn->flushSnapshot( $fname );
 		} );
@@ -2417,7 +2358,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function redefineLocalDomain( $domain ) {
-		$this->closeAll( __METHOD__, $this->id );
+		$this->closeAll( __METHOD__ );
 
 		$this->setLocalDomain( DatabaseDomain::newFromId( $domain ) );
 	}
@@ -2497,7 +2438,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	public function __destruct() {
 		// Avoid connection leaks
-		$this->disable( __METHOD__, $this->ownerId );
+		$this->disable( __METHOD__ );
 	}
 }
 

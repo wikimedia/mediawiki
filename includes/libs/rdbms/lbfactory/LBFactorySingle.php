@@ -47,7 +47,7 @@ class LBFactorySingle extends LBFactory {
 		}
 
 		$lb = new LoadBalancerSingle( array_merge(
-			$this->baseLoadBalancerParams( $this->getOwnershipId() ),
+			$this->baseLoadBalancerParams(),
 			$conf
 		) );
 		$this->initLoadBalancer( $lb );
@@ -69,7 +69,7 @@ class LBFactorySingle extends LBFactory {
 		) );
 	}
 
-	public function newMainLB( $domain = false, $owner = null ): ILoadBalancer {
+	public function newMainLB( $domain = false ): ILoadBalancerForOwner {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new BadMethodCallException( "Method is not supported." );
 	}
@@ -78,7 +78,7 @@ class LBFactorySingle extends LBFactory {
 		return $this->lb;
 	}
 
-	public function newExternalLB( $cluster, $owner = null ): ILoadBalancer {
+	public function newExternalLB( $cluster ): ILoadBalancerForOwner {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new BadMethodCallException( "Method is not supported." );
 	}

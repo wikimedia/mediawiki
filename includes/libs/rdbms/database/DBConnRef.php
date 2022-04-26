@@ -243,7 +243,7 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function close( $fname = __METHOD__, $owner = null ) {
+	public function close( $fname = __METHOD__ ) {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new DBUnexpectedError( $this->conn, 'Cannot close shared connection.' );
 	}
@@ -617,7 +617,7 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function flushSession( $fname = __METHOD__, $owner = null ) {
+	public function flushSession( $fname = __METHOD__ ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

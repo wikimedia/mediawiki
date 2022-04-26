@@ -22,7 +22,6 @@
  */
 namespace Wikimedia\Rdbms;
 
-use Exception;
 use InvalidArgumentException;
 use LogicException;
 
@@ -108,44 +107,6 @@ interface ILoadBalancer {
 	public const CONN_INTENT_WRITABLE = 4;
 	/** Bypass and update any server-side read-only mode state cache */
 	public const CONN_REFRESH_READ_ONLY = 8;
-
-	/** Manager of ILoadBalancer instances is running post-commit callbacks */
-	public const STAGE_POSTCOMMIT_CALLBACKS = 'stage-postcommit-callbacks';
-	/** Manager of ILoadBalancer instances is running post-rollback callbacks */
-	public const STAGE_POSTROLLBACK_CALLBACKS = 'stage-postrollback-callbacks';
-
-	/**
-	 * Construct a manager of IDatabase connection objects
-	 *
-	 * @param array $params Parameter map with keys:
-	 *  - servers : List of server info structures
-	 *  - localDomain: A DatabaseDomain or domain ID string
-	 *  - loadMonitor : LoadMonitor::__construct() parameters with "class" field. [optional]
-	 *  - readOnlyReason : Reason the primary DB is read-only if so [optional]
-	 *  - waitTimeout : Maximum time to wait for replicas for consistency [optional]
-	 *  - maxLag: Try to avoid DB replicas with lag above this many seconds [optional]
-	 *  - srvCache : BagOStuff object for server cache [optional]
-	 *  - wanCache : WANObjectCache object [optional]
-	 *  - chronologyCallback: Callback to run before the first connection attempt [optional]
-	 *  - defaultGroup: Default query group; the generic group if not specified [optional]
-	 *  - hostname : The name of the current server [optional]
-	 *  - cliMode: Whether the execution context is a CLI script [optional]
-	 *  - profiler : Callback that takes a section name argument and returns
-	 *      a ScopedCallback instance that ends the profile section in its destructor [optional]
-	 *  - trxProfiler: TransactionProfiler instance [optional]
-	 *  - replLogger: PSR-3 logger instance [optional]
-	 *  - connLogger: PSR-3 logger instance [optional]
-	 *  - queryLogger: PSR-3 logger instance [optional]
-	 *  - perfLogger: PSR-3 logger instance [optional]
-	 *  - errorLogger : Callback that takes an Exception and logs it [optional]
-	 *  - deprecationLogger: Callback to log a deprecation warning [optional]
-	 *  - roundStage: STAGE_POSTCOMMIT_* class constant; for internal use [optional]
-	 *  - ownerId: integer ID of an LBFactory instance that manages this instance [optional]
-	 *  - clusterName: The logical name of the DB cluster [optional]
-	 *  - criticalSectionProvider: CriticalSectionProvider instance [optional]
-	 * @throws InvalidArgumentException
-	 */
-	public function __construct( array $params );
 
 	/**
 	 * Get the logical name of the database cluster
@@ -528,24 +489,6 @@ interface ILoadBalancer {
 	public function getReplicaResumePos();
 
 	/**
-	 * Close all connections and disable this load balancer
-	 *
-	 * Any attempt to open a new connection will result in a DBAccessError.
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 */
-	public function disable( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Close all open connections
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 */
-	public function closeAll( $fname = __METHOD__, $owner = null );
-
-	/**
 	 * Close a connection
 	 *
 	 * Using this function makes sure the LoadBalancer knows the connection is closed.
@@ -554,126 +497,6 @@ interface ILoadBalancer {
 	 * @param IDatabase $conn
 	 */
 	public function closeConnection( IDatabase $conn );
-
-	/**
-	 * Commit transactions on all open connections
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @throws DBExpectedError
-	 */
-	public function commitAll( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Run pre-commit callbacks and defer execution of post-commit callbacks
-	 *
-	 * Use this only for multi-database commits
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @return int Number of pre-commit callbacks run (since 1.32)
-	 * @since 1.37
-	 */
-	public function finalizePrimaryChanges( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Perform all pre-commit checks for things like replication safety
-	 *
-	 * Use this only for multi-database commits
-	 *
-	 * @param array $options Includes:
-	 *   - maxWriteDuration : max write query duration time in seconds
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @throws DBTransactionError
-	 * @since 1.37
-	 */
-	public function approvePrimaryChanges( array $options, $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Flush any primary transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)
-	 *
-	 * The DBO_TRX setting will be reverted to the default in each of these methods:
-	 *   - commitPrimaryChanges()
-	 *   - rollbackPrimaryChanges()
-	 *   - commitAll()
-	 * This allows for custom transaction rounds from any outer transaction scope.
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @throws DBExpectedError
-	 * @since 1.37
-	 */
-	public function beginPrimaryChanges( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Issue COMMIT on all open primary connections to flush changes and view snapshots
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @throws DBExpectedError
-	 * @since 1.37
-	 */
-	public function commitPrimaryChanges( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Consume and run all pending post-COMMIT/ROLLBACK callbacks and commit dangling transactions
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @return Exception|null The first exception or null if there were none
-	 * @since 1.37
-	 */
-	public function runPrimaryTransactionIdleCallbacks( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Run all recurring post-COMMIT/ROLLBACK listener callbacks
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @return Exception|null The first exception or null if there were none
-	 * @since 1.37
-	 */
-	public function runPrimaryTransactionListenerCallbacks( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Issue ROLLBACK only on primary, only if queries were done on connection
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @throws DBExpectedError
-	 * @since 1.37
-	 */
-	public function rollbackPrimaryChanges( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Release/destroy session-level named locks, table locks, and temp tables
-	 *
-	 * Only call this function right after calling rollbackPrimaryChanges()
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @throws DBExpectedError
-	 * @since 1.38
-	 */
-	public function flushPrimarySessions( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshots
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 */
-	public function flushReplicaSnapshots( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Commit all primary DB transactions so as to flush any REPEATABLE-READ or SSI snapshots
-	 *
-	 * An error will be thrown if a connection has pending writes or callbacks
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @since 1.37
-	 */
-	public function flushPrimarySnapshots( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * @return bool Whether a primary connection is already open
@@ -706,14 +529,6 @@ interface ILoadBalancer {
 	public function hasOrMadeRecentPrimaryChanges( $age = null );
 
 	/**
-	 * Get the list of callers that have pending primary changes
-	 *
-	 * @return string[] List of method names
-	 * @since 1.37
-	 */
-	public function pendingPrimaryChangeCallers();
-
-	/**
 	 * @note This method will trigger a DB connection if not yet done
 	 * @param string|bool $domain DB domain ID or false for the local domain
 	 * @return bool Whether the database for generic connections this request is highly "lagged"
@@ -741,21 +556,6 @@ interface ILoadBalancer {
 	 * @return bool
 	 */
 	public function pingAll();
-
-	/**
-	 * Call a function with each open connection object
-	 * @param callable $callback
-	 * @param array $params
-	 */
-	public function forEachOpenConnection( $callback, array $params = [] );
-
-	/**
-	 * Call a function with each open connection object to a primary
-	 * @param callable $callback
-	 * @param array $params
-	 * @since 1.37
-	 */
-	public function forEachOpenPrimaryConnection( $callback, array $params = [] );
 
 	/**
 	 * Get the name and lag time of the most-lagged replica server
@@ -804,14 +604,6 @@ interface ILoadBalancer {
 	 * @param callable|null $callback
 	 */
 	public function setTransactionListener( $name, callable $callback = null );
-
-	/**
-	 * Set a new table prefix for the existing local domain ID for testing
-	 *
-	 * @param string $prefix
-	 * @since 1.33
-	 */
-	public function setLocalDomainPrefix( $prefix );
 
 	/**
 	 * Make certain table names use their own database, schema, and table prefix

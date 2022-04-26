@@ -2441,15 +2441,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			$this->database->query( 'SELECT 2', $fname );
 		} );
 		$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
-		try {
-			$this->database->close();
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( DBUnexpectedError $ex ) {
-			$this->assertSame(
-				"Wikimedia\Rdbms\Database::close: transaction is still open (from $fname)",
-				$ex->getMessage()
-			);
-		}
+		$this->database->close();
 
 		$this->assertFalse( $this->database->isOpen() );
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = 3; ROLLBACK; SELECT 2' );
@@ -2460,25 +2452,16 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	 * @covers \Wikimedia\Rdbms\Database::close
 	 */
 	public function testPrematureClose2() {
-		try {
-			$fname = __METHOD__;
-			$this->database->startAtomic( __METHOD__ );
-			$this->database->onTransactionCommitOrIdle( function () use ( $fname ) {
-				$this->database->query( 'SELECT 1', $fname );
-			} );
-			$this->database->onAtomicSectionCancel( function () use ( $fname ) {
-				$this->database->query( 'SELECT 2', $fname );
-			} );
-			$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
-			$this->database->close();
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( DBUnexpectedError $ex ) {
-			$this->assertSame(
-				'Wikimedia\Rdbms\Database::close: atomic sections ' .
-				'DatabaseSQLTest::testPrematureClose2 are still open',
-				$ex->getMessage()
-			);
-		}
+		$fname = __METHOD__;
+		$this->database->startAtomic( __METHOD__ );
+		$this->database->onTransactionCommitOrIdle( function () use ( $fname ) {
+			$this->database->query( 'SELECT 1', $fname );
+		} );
+		$this->database->onAtomicSectionCancel( function () use ( $fname ) {
+			$this->database->query( 'SELECT 2', $fname );
+		} );
+		$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
+		$this->database->close();
 
 		$this->assertFalse( $this->database->isOpen() );
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = 3; ROLLBACK; SELECT 2' );
@@ -2489,19 +2472,10 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	 * @covers \Wikimedia\Rdbms\Database::close
 	 */
 	public function testPrematureClose3() {
-		try {
-			$this->database->setFlag( IDatabase::DBO_TRX );
-			$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
-			$this->assertSame( 1, $this->database->trxLevel() );
-			$this->database->close();
-			$this->fail( 'Expected exception not thrown' );
-		} catch ( DBUnexpectedError $ex ) {
-			$this->assertSame(
-				'Wikimedia\Rdbms\Database::close: ' .
-				'expected mass rollback of all peer transactions (DBO_TRX set)',
-				$ex->getMessage()
-			);
-		}
+		$this->database->setFlag( IDatabase::DBO_TRX );
+		$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
+		$this->assertSame( 1, $this->database->trxLevel() );
+		$this->database->close();
 
 		$this->assertFalse( $this->database->isOpen() );
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = 3; ROLLBACK' );
