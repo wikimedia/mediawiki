@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\User\ActorNormalization;
@@ -149,7 +150,7 @@ class LogPager extends ReverseChronologicalPager {
 		}
 
 		$wpfilters = $this->getRequest()->getArray( "wpfilters" );
-		$filterLogTypes = $this->getConfig()->get( 'FilterLogTypes' );
+		$filterLogTypes = $this->getConfig()->get( MainConfigNames::FilterLogTypes );
 
 		foreach ( $filterLogTypes as $type => $default ) {
 			// Back-compat: Check old URL params if the new param wasn't passed
@@ -174,7 +175,7 @@ class LogPager extends ReverseChronologicalPager {
 	 */
 	private function limitType( $types ) {
 		$user = $this->getUser();
-		$restrictions = $this->getConfig()->get( 'LogRestrictions' );
+		$restrictions = $this->getConfig()->get( MainConfigNames::LogRestrictions );
 		// If $types is not an array, make it an array
 		$types = ( $types === '' ) ? [] : (array)$types;
 		// Don't even show header for private logs; don't recognize it...
@@ -260,7 +261,7 @@ class LogPager extends ReverseChronologicalPager {
 		$ns = $page->getNamespace();
 		$db = $this->mDb;
 
-		$interwikiDelimiter = $this->getConfig()->get( 'UserrightsInterwikiDelimiter' );
+		$interwikiDelimiter = $this->getConfig()->get( MainConfigNames::UserrightsInterwikiDelimiter );
 
 		$doUserRightsLogLike = false;
 		if ( $this->types == [ 'rights' ] ) {
@@ -298,7 +299,7 @@ class LogPager extends ReverseChronologicalPager {
 			}
 			array_pop( $params ); // Get rid of the last % we added.
 			$this->mConds[] = 'log_title' . $db->buildLike( ...$params );
-		} elseif ( $pattern && !$this->getConfig()->get( 'MiserMode' ) ) {
+		} elseif ( $pattern && !$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$this->mConds[] = 'log_title' . $db->buildLike( $page->getDBkey(), $db->anyString() );
 			$this->pattern = $pattern;
 		} else {
@@ -319,7 +320,7 @@ class LogPager extends ReverseChronologicalPager {
 			// nothing to do
 			return;
 		}
-		$actions = $this->getConfig()->get( 'ActionFilteredLogs' );
+		$actions = $this->getConfig()->get( MainConfigNames::ActionFilteredLogs );
 		if ( isset( $actions[$type] ) ) {
 			// log type can be filtered by actions
 			$this->mLogEventsList->setAllowedActions( array_keys( $actions[$type] ) );
@@ -383,7 +384,8 @@ class LogPager extends ReverseChronologicalPager {
 			$options[] = 'STRAIGHT_JOIN';
 		}
 
-		$options['MAX_EXECUTION_TIME'] = $this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' );
+		$options['MAX_EXECUTION_TIME'] = $this->getConfig()
+			->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries );
 
 		$info = [
 			'tables' => $tables,
