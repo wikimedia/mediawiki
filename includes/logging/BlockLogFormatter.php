@@ -22,7 +22,7 @@
  * @since 1.25
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\MainConfigNames;
 
 /**
  * This class formats block log entries.
@@ -112,8 +112,8 @@ class BlockLogFormatter extends LogFormatter {
 						->numParams( count( $namespaces ) )
 						->rawParams( $this->context->getLanguage()->listToText( $namespaces ) )->text();
 				}
-				$enablePartialActionBlocks = MediaWikiServices::getInstance()
-					->getMainConfig()->get( 'EnablePartialActionBlocks' );
+				$enablePartialActionBlocks = $this->context->getConfig()
+					->get( MainConfigNames::EnablePartialActionBlocks );
 				if ( $actions && $enablePartialActionBlocks ) {
 					$restrictions[] = $this->msg( 'logentry-partialblock-block-action' )
 						->numParams( count( $actions ) )
