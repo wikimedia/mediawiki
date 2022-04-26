@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\UserGroupMembershipParam;
 use MediaWiki\Page\PageReference;
@@ -477,7 +478,8 @@ class Message implements MessageSpecifier, Serializable {
 	 * @since 1.26
 	 */
 	public function getTitle() {
-		$forceUIMsgAsContentMsg = MediaWikiServices::getInstance()->getMainConfig()->get( 'ForceUIMsgAsContentMsg' );
+		$forceUIMsgAsContentMsg = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ForceUIMsgAsContentMsg );
 
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$lang = $this->getLanguage();
@@ -865,7 +867,8 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return Message $this
 	 */
 	public function inContentLanguage() {
-		$forceUIMsgAsContentMsg = MediaWikiServices::getInstance()->getMainConfig()->get( 'ForceUIMsgAsContentMsg' );
+		$forceUIMsgAsContentMsg = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ForceUIMsgAsContentMsg );
 		if ( in_array( $this->key, (array)$forceUIMsgAsContentMsg ) ) {
 			return $this;
 		}

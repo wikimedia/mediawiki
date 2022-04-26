@@ -1823,7 +1823,7 @@ return [
 
 	'TempUserConfig' => static function ( MediaWikiServices $services ): RealTempUserConfig {
 		return new RealTempUserConfig(
-			$services->getMainConfig()->get( 'AutoCreateTempUser' )
+			$services->getMainConfig()->get( MainConfigNames::AutoCreateTempUser )
 		);
 	},
 
@@ -1835,7 +1835,7 @@ return [
 			$services->getAuthManager(),
 			// This is supposed to match ThrottlePreAuthenticationProvider
 			new Throttler(
-				$services->getMainConfig()->get( 'AccountCreationThrottle' ),
+				$services->getMainConfig()->get( MainConfigNames::AccountCreationThrottle ),
 				[
 					'type' => 'acctcreate',
 					'cache' => $services->getLocalServerObjectCache()
@@ -1894,12 +1894,12 @@ return [
 	'UrlUtils' => static function ( MediaWikiServices $services ): UrlUtils {
 		$config = $services->getMainConfig();
 		return new UrlUtils( [
-			UrlUtils::SERVER => $config->get( 'Server' ),
-			UrlUtils::CANONICAL_SERVER => $config->get( 'CanonicalServer' ),
-			UrlUtils::INTERNAL_SERVER => $config->get( 'InternalServer' ),
+			UrlUtils::SERVER => $config->get( MainConfigNames::Server ),
+			UrlUtils::CANONICAL_SERVER => $config->get( MainConfigNames::CanonicalServer ),
+			UrlUtils::INTERNAL_SERVER => $config->get( MainConfigNames::InternalServer ),
 			UrlUtils::FALLBACK_PROTOCOL => RequestContext::getMain()->getRequest()->getProtocol(),
-			UrlUtils::HTTPS_PORT => $config->get( 'HttpsPort' ),
-			UrlUtils::VALID_PROTOCOLS => $config->get( 'UrlProtocols' ),
+			UrlUtils::HTTPS_PORT => $config->get( MainConfigNames::HttpsPort ),
+			UrlUtils::VALID_PROTOCOLS => $config->get( MainConfigNames::UrlProtocols ),
 		] );
 	},
 

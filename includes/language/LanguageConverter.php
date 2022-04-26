@@ -24,6 +24,7 @@
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Revision\RevisionRecord;
@@ -254,7 +255,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return string[] Contains all valid variants
 	 */
 	final public function getVariants() {
-		$disabledVariants = MediaWikiServices::getInstance()->getMainConfig()->get( 'DisabledVariants' );
+		$disabledVariants = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::DisabledVariants );
 		return array_diff( $this->getLanguageVariants(), $disabledVariants );
 	}
 
@@ -286,7 +288,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return string The preferred language code
 	 */
 	public function getPreferredVariant() {
-		$defaultLanguageVariant = MediaWikiServices::getInstance()->getMainConfig()->get( 'DefaultLanguageVariant' );
+		$defaultLanguageVariant = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::DefaultLanguageVariant );
 
 		$req = $this->getURLVariant();
 
@@ -324,7 +327,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return string The default variant code
 	 */
 	public function getDefaultVariant() {
-		$defaultLanguageVariant = MediaWikiServices::getInstance()->getMainConfig()->get( 'DefaultLanguageVariant' );
+		$defaultLanguageVariant = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::DefaultLanguageVariant );
 
 		$req = $this->getURLVariant();
 
@@ -1092,7 +1096,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 */
 	protected function loadTables( $fromCache = true ) {
 		$languageConverterCacheType = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'LanguageConverterCacheType' );
+			->getMainConfig()->get( MainConfigNames::LanguageConverterCacheType );
 
 		if ( $this->mTablesLoaded ) {
 			return;

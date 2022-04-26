@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -18,9 +19,10 @@ class HTMLSelectLanguageField extends HTMLSelectField {
 
 		if ( $this->mParent instanceof HTMLForm ) {
 			$config = $this->mParent->getConfig();
-			$languageCode = $config->get( 'LanguageCode' );
+			$languageCode = $config->get( MainConfigNames::LanguageCode );
 		} else {
-			$languageCode = MediaWikiServices::getInstance()->getMainConfig()->get( 'LanguageCode' );
+			$languageCode = MediaWikiServices::getInstance()->getMainConfig()->get(
+				MainConfigNames::LanguageCode );
 		}
 
 		$languages = MediaWikiServices::getInstance()

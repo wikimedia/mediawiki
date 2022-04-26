@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserRigorOptions;
 use User;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -67,7 +68,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return null;
 		}
 
-		$grace = $this->config->get( 'PasswordExpireGrace' );
+		$grace = $this->config->get( MainConfigNames::PasswordExpireGrace );
 		if ( (int)$expiration + $grace < $now ) {
 			$data = [
 				'hard' => true,
@@ -132,7 +133,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 		$pwhash = $this->getPassword( $row->user_password );
 		if ( !$pwhash->verify( $req->password ) ) {
-			if ( $this->config->get( 'LegacyEncoding' ) ) {
+			if ( $this->config->get( MainConfigNames::LegacyEncoding ) ) {
 				// Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
 				// Check for this with iconv
 				$cp1252Password = iconv( 'UTF-8', 'WINDOWS-1252//TRANSLIT', $req->password );

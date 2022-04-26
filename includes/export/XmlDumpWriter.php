@@ -173,7 +173,7 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	private function dbname() {
-		$dbname = MediaWikiServices::getInstance()->getMainConfig()->get( 'DBname' );
+		$dbname = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::DBname );
 		return Xml::element( 'dbname', [], $dbname );
 	}
 
@@ -195,7 +195,8 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	private function caseSetting() {
-		$capitalLinks = MediaWikiServices::getInstance()->getMainConfig()->get( 'CapitalLinks' );
+		$capitalLinks = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::CapitalLinks );
 		// "case-insensitive" option is reserved for future
 		$sensitivity = $capitalLinks ? 'first-letter' : 'case-sensitive';
 		return Xml::element( 'case', [], $sensitivity );

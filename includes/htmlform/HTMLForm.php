@@ -23,6 +23,7 @@
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
 
 /**
@@ -375,7 +376,7 @@ class HTMLForm extends ContextSource {
 
 		// Evil hack for mobile :(
 		if (
-			!$this->getConfig()->get( 'HTMLFormAllowTableFormat' )
+			!$this->getConfig()->get( MainConfigNames::HTMLFormAllowTableFormat )
 			&& $this->displayFormat === 'table'
 		) {
 			$this->displayFormat = 'div';
@@ -477,7 +478,8 @@ class HTMLForm extends ContextSource {
 		}
 
 		// Evil hack for mobile :(
-		if ( !$this->getConfig()->get( 'HTMLFormAllowTableFormat' ) && $format === 'table' ) {
+		if ( !$this->getConfig()->get( MainConfigNames::HTMLFormAllowTableFormat ) &&
+		$format === 'table' ) {
 			$format = 'div';
 		}
 
@@ -1362,7 +1364,7 @@ class HTMLForm extends ContextSource {
 			) . "\n";
 		}
 		if ( $this->getMethod() === 'post' ||
-			$this->getAction() === $this->getConfig()->get( 'Script' )
+			$this->getAction() === $this->getConfig()->get( MainConfigNames::Script )
 		) {
 			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
@@ -1381,7 +1383,8 @@ class HTMLForm extends ContextSource {
 	 */
 	public function getButtons() {
 		$buttons = '';
-		$useMediaWikiUIEverywhere = $this->getConfig()->get( 'UseMediaWikiUIEverywhere' );
+		$useMediaWikiUIEverywhere =
+			$this->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
 
 		if ( $this->mShowSubmit ) {
 			$attribs = [];
@@ -2128,14 +2131,14 @@ class HTMLForm extends ContextSource {
 			return $this->mAction;
 		}
 
-		$articlePath = $this->getConfig()->get( 'ArticlePath' );
+		$articlePath = $this->getConfig()->get( MainConfigNames::ArticlePath );
 		// Check whether we are in GET mode and the ArticlePath contains a "?"
 		// meaning that getLocalURL() would return something like "index.php?title=...".
 		// As browser remove the query string before submitting GET forms,
 		// it means that the title would be lost. In such case use script path instead
 		// and put title in an hidden field (see getHiddenFields()).
 		if ( strpos( $articlePath, '?' ) !== false && $this->getMethod() === 'get' ) {
-			return $this->getConfig()->get( 'Script' );
+			return $this->getConfig()->get( MainConfigNames::Script );
 		}
 
 		return $this->getTitle()->getLocalURL();

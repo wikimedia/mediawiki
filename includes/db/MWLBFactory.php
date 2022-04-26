@@ -23,6 +23,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\IDatabase;
@@ -46,24 +47,24 @@ abstract class MWLBFactory {
 	 */
 	public const APPLY_DEFAULT_CONFIG_OPTIONS = [
 		'CommandLineMode',
-		'DBcompress',
-		'DBDefaultGroup',
-		'DBmwschema',
-		'DBname',
-		'DBpassword',
-		'DBport',
-		'DBprefix',
-		'DBserver',
-		'DBservers',
-		'DBssl',
-		'DBtype',
-		'DBuser',
-		'DebugDumpSql',
-		'DebugLogFile',
-		'DebugToolbar',
-		'ExternalServers',
-		'SQLiteDataDir',
-		'SQLMode',
+		MainConfigNames::DBcompress,
+		MainConfigNames::DBDefaultGroup,
+		MainConfigNames::DBmwschema,
+		MainConfigNames::DBname,
+		MainConfigNames::DBpassword,
+		MainConfigNames::DBport,
+		MainConfigNames::DBprefix,
+		MainConfigNames::DBserver,
+		MainConfigNames::DBservers,
+		MainConfigNames::DBssl,
+		MainConfigNames::DBtype,
+		MainConfigNames::DBuser,
+		MainConfigNames::DebugDumpSql,
+		MainConfigNames::DebugLogFile,
+		MainConfigNames::DebugToolbar,
+		MainConfigNames::ExternalServers,
+		MainConfigNames::SQLiteDataDir,
+		MainConfigNames::SQLMode,
 	];
 
 	/**
@@ -92,9 +93,9 @@ abstract class MWLBFactory {
 
 		$lbConf += [
 			'localDomain' => new DatabaseDomain(
-				$options->get( 'DBname' ),
-				$options->get( 'DBmwschema' ),
-				$options->get( 'DBprefix' )
+				$options->get( MainConfigNames::DBname ),
+				$options->get( MainConfigNames::DBmwschema ),
+				$options->get( MainConfigNames::DBprefix )
 			),
 			'profiler' => static function ( $section ) {
 				return Profiler::instance()->scopedProfileIn( $section );
@@ -108,7 +109,7 @@ abstract class MWLBFactory {
 			'deprecationLogger' => [ static::class, 'logDeprecation' ],
 			'cliMode' => $options->get( 'CommandLineMode' ),
 			'readOnlyReason' => $readOnlyMode->getReason(),
-			'defaultGroup' => $options->get( 'DBDefaultGroup' ),
+			'defaultGroup' => $options->get( MainConfigNames::DBDefaultGroup ),
 			'criticalSectionProvider' => $csProvider
 		];
 
@@ -119,48 +120,48 @@ abstract class MWLBFactory {
 		if ( $lbConf['class'] === Wikimedia\Rdbms\LBFactorySimple::class ) {
 			if ( isset( $lbConf['servers'] ) ) {
 				// Server array is already explicitly configured
-			} elseif ( is_array( $options->get( 'DBservers' ) ) ) {
+			} elseif ( is_array( $options->get( MainConfigNames::DBservers ) ) ) {
 				$lbConf['servers'] = [];
-				foreach ( $options->get( 'DBservers' ) as $i => $server ) {
+				foreach ( $options->get( MainConfigNames::DBservers ) as $i => $server ) {
 					$lbConf['servers'][$i] = self::initServerInfo( $server, $options );
 				}
 			} else {
 				$server = self::initServerInfo(
 					[
-						'host' => $options->get( 'DBserver' ),
-						'user' => $options->get( 'DBuser' ),
-						'password' => $options->get( 'DBpassword' ),
-						'dbname' => $options->get( 'DBname' ),
-						'type' => $options->get( 'DBtype' ),
+						'host' => $options->get( MainConfigNames::DBserver ),
+						'user' => $options->get( MainConfigNames::DBuser ),
+						'password' => $options->get( MainConfigNames::DBpassword ),
+						'dbname' => $options->get( MainConfigNames::DBname ),
+						'type' => $options->get( MainConfigNames::DBtype ),
 						'load' => 1
 					],
 					$options
 				);
 
-				$server['flags'] |= $options->get( 'DBssl' ) ? DBO_SSL : 0;
-				$server['flags'] |= $options->get( 'DBcompress' ) ? DBO_COMPRESS : 0;
+				$server['flags'] |= $options->get( MainConfigNames::DBssl ) ? DBO_SSL : 0;
+				$server['flags'] |= $options->get( MainConfigNames::DBcompress ) ? DBO_COMPRESS : 0;
 
 				$lbConf['servers'] = [ $server ];
 			}
 			if ( !isset( $lbConf['externalClusters'] ) ) {
-				$lbConf['externalClusters'] = $options->get( 'ExternalServers' );
+				$lbConf['externalClusters'] = $options->get( MainConfigNames::ExternalServers );
 			}
 
 			$serversCheck = $lbConf['servers'];
 		} elseif ( $lbConf['class'] === Wikimedia\Rdbms\LBFactoryMulti::class ) {
 			if ( isset( $lbConf['serverTemplate'] ) ) {
 				if ( in_array( $lbConf['serverTemplate']['type'], $typesWithSchema, true ) ) {
-					$lbConf['serverTemplate']['schema'] = $options->get( 'DBmwschema' );
+					$lbConf['serverTemplate']['schema'] = $options->get( MainConfigNames::DBmwschema );
 				}
-				$lbConf['serverTemplate']['sqlMode'] = $options->get( 'SQLMode' );
+				$lbConf['serverTemplate']['sqlMode'] = $options->get( MainConfigNames::SQLMode );
 				$serversCheck = [ $lbConf['serverTemplate'] ];
 			}
 		}
 
 		self::assertValidServerConfigs(
 			$serversCheck,
-			$options->get( 'DBname' ),
-			$options->get( 'DBprefix' )
+			$options->get( MainConfigNames::DBname ),
+			$options->get( MainConfigNames::DBprefix )
 		);
 
 		$lbConf['cpStash'] = $cpStash;
@@ -198,29 +199,29 @@ abstract class MWLBFactory {
 				}
 			}
 			$server += [
-				'dbDirectory' => $options->get( 'SQLiteDataDir' ),
+				'dbDirectory' => $options->get( MainConfigNames::SQLiteDataDir ),
 				'trxMode' => $isHttpRead ? 'DEFERRED' : 'IMMEDIATE'
 			];
 		} elseif ( $server['type'] === 'postgres' ) {
-			$server += [ 'port' => $options->get( 'DBport' ) ];
+			$server += [ 'port' => $options->get( MainConfigNames::DBport ) ];
 		}
 
 		if ( in_array( $server['type'], self::getDbTypesWithSchemas(), true ) ) {
-			$server += [ 'schema' => $options->get( 'DBmwschema' ) ];
+			$server += [ 'schema' => $options->get( MainConfigNames::DBmwschema ) ];
 		}
 
 		$flags = $server['flags'] ?? DBO_DEFAULT;
-		if ( $options->get( 'DebugDumpSql' )
-			|| $options->get( 'DebugLogFile' )
-			|| $options->get( 'DebugToolbar' )
+		if ( $options->get( MainConfigNames::DebugDumpSql )
+			|| $options->get( MainConfigNames::DebugLogFile )
+			|| $options->get( MainConfigNames::DebugToolbar )
 		) {
 			$flags |= DBO_DEBUG;
 		}
 		$server['flags'] = $flags;
 
 		$server += [
-			'tablePrefix' => $options->get( 'DBprefix' ),
-			'sqlMode' => $options->get( 'SQLMode' ),
+			'tablePrefix' => $options->get( MainConfigNames::DBprefix ),
+			'sqlMode' => $options->get( MainConfigNames::SQLMode ),
 		];
 
 		return $server;

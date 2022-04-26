@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
@@ -40,18 +41,18 @@ abstract class BaseTemplate extends QuickTemplate {
 	 */
 	public static function getCopyrightIconHTML( Config $config, Skin $skin ): string {
 		$out = '';
-		$footerIcons = $config->get( 'FooterIcons' );
+		$footerIcons = $config->get( MainConfigNames::FooterIcons );
 		$copyright = $footerIcons['copyright']['copyright'] ?? null;
 		// T291325: $wgFooterIcons['copyright']['copyright'] can return an array.
 		if ( $copyright !== null ) {
 			$out = $skin->makeFooterIcon( $copyright );
-		} elseif ( $config->get( 'RightsIcon' ) ) {
-			$icon = htmlspecialchars( $config->get( 'RightsIcon' ), ENT_COMPAT );
-			$url = $config->get( 'RightsUrl' );
+		} elseif ( $config->get( MainConfigNames::RightsIcon ) ) {
+			$icon = htmlspecialchars( $config->get( MainConfigNames::RightsIcon ), ENT_COMPAT );
+			$url = $config->get( MainConfigNames::RightsUrl );
 			if ( $url ) {
 				$out .= '<a href="' . htmlspecialchars( $url, ENT_COMPAT ) . '">';
 			}
-			$text = htmlspecialchars( $config->get( 'RightsText' ), ENT_COMPAT );
+			$text = htmlspecialchars( $config->get( MainConfigNames::RightsText ), ENT_COMPAT );
 			$out .= "<img src=\"$icon\" alt=\"$text\" width=\"88\" height=\"31\" />";
 			if ( $url ) {
 				$out .= '</a>';
@@ -66,7 +67,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @return string of HTML
 	 */
 	public static function getPoweredByHTML( Config $config ): string {
-		$resourceBasePath = $config->get( 'ResourceBasePath' );
+		$resourceBasePath = $config->get( MainConfigNames::ResourceBasePath );
 		$url1 = htmlspecialchars(
 			"$resourceBasePath/resources/assets/poweredby_mediawiki_88x31.png"
 		);

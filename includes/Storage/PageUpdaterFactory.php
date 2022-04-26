@@ -28,6 +28,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -61,12 +62,12 @@ class PageUpdaterFactory {
 	 * @internal
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'ArticleCountMethod',
-		'RCWatchCategoryMembership',
-		'PageCreationLog',
-		'UseAutomaticEditSummaries',
-		'ManualRevertSearchRadius',
-		'UseRCPatrol',
+		MainConfigNames::ArticleCountMethod,
+		MainConfigNames::RCWatchCategoryMembership,
+		MainConfigNames::PageCreationLog,
+		MainConfigNames::UseAutomaticEditSummaries,
+		MainConfigNames::ManualRevertSearchRadius,
+		MainConfigNames::UseRCPatrol,
 	];
 
 	/** @var RevisionStore */
@@ -285,9 +286,10 @@ class PageUpdaterFactory {
 			$this->softwareTags
 		);
 
-		$pageUpdater->setUsePageCreationLog( $this->options->get( 'PageCreationLog' ) );
+		$pageUpdater->setUsePageCreationLog(
+			$this->options->get( MainConfigNames::PageCreationLog ) );
 		$pageUpdater->setUseAutomaticEditSummaries(
-			$this->options->get( 'UseAutomaticEditSummaries' )
+			$this->options->get( MainConfigNames::UseAutomaticEditSummaries )
 		);
 
 		return $pageUpdater;
@@ -324,9 +326,10 @@ class PageUpdaterFactory {
 		);
 
 		$derivedDataUpdater->setLogger( $this->logger );
-		$derivedDataUpdater->setArticleCountMethod( $this->options->get( 'ArticleCountMethod' ) );
+		$derivedDataUpdater->setArticleCountMethod(
+			$this->options->get( MainConfigNames::ArticleCountMethod ) );
 		$derivedDataUpdater->setRcWatchCategoryMembership(
-			$this->options->get( 'RCWatchCategoryMembership' )
+			$this->options->get( MainConfigNames::RCWatchCategoryMembership )
 		);
 
 		return $derivedDataUpdater;

@@ -22,6 +22,7 @@ namespace MediaWiki\Linker;
 
 use Config;
 use InvalidArgumentException;
+use MediaWiki\MainConfigNames;
 
 /**
  * Service for compat reading of links tables
@@ -38,7 +39,7 @@ class LinksMigration {
 
 	public static $mapping = [
 		'templatelinks' => [
-			'config' => 'TemplateLinksSchemaMigrationStage',
+			'config' => MainConfigNames::TemplateLinksSchemaMigrationStage,
 			'page_id' => 'tl_from',
 			'ns' => 'tl_namespace',
 			'title' => 'tl_title',

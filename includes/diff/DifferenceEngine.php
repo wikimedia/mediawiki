@@ -24,6 +24,7 @@
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
@@ -896,7 +897,7 @@ class DifferenceEngine extends ContextSource {
 		// Prepare a change patrol link, if applicable
 		if (
 			// Is patrolling enabled and the user allowed to?
-			$config->get( 'UseRCPatrol' ) &&
+			$config->get( MainConfigNames::UseRCPatrol ) &&
 			$this->mNewPage &&
 			$this->getAuthority()->probablyCan( 'patrol', $this->mNewPage ) &&
 			// Only do this if the revision isn't more than 6 hours older
@@ -1430,9 +1431,9 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public static function getEngine() {
 		$diffEngine = MediaWikiServices::getInstance()->getMainConfig()
-			->get( 'DiffEngine' );
+			->get( MainConfigNames::DiffEngine );
 		$externalDiffEngine = MediaWikiServices::getInstance()->getMainConfig()
-			->get( 'ExternalDiffEngine' );
+			->get( MainConfigNames::ExternalDiffEngine );
 
 		if ( $diffEngine === null ) {
 			$engines = [ 'external', 'wikidiff2', 'php' ];
@@ -1516,7 +1517,7 @@ class DifferenceEngine extends ContextSource {
 			return '';
 		}
 		$data = [ $generator ];
-		if ( $this->getConfig()->get( 'ShowHostnames' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::ShowHostnames ) ) {
 			$data[] = wfHostname();
 		}
 		$data[] = wfTimestamp( TS_DB );

@@ -21,6 +21,7 @@ use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionRecord;
@@ -53,9 +54,9 @@ class DeletePage {
 	 * @internal For use by PageCommandFactory
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'DeleteRevisionsBatchSize',
-		'ActorTableSchemaMigrationStage',
-		'DeleteRevisionsLimit',
+		MainConfigNames::DeleteRevisionsBatchSize,
+		MainConfigNames::ActorTableSchemaMigrationStage,
+		MainConfigNames::DeleteRevisionsLimit,
 	];
 
 	/**
@@ -395,7 +396,7 @@ class DeletePage {
 		if ( !$this->deleter->isAllowed( 'bigdelete' ) && $this->isBigDeletion() ) {
 			$status->fatal(
 				'delete-toomanyrevisions',
-				Message::numParam( $this->options->get( 'DeleteRevisionsLimit' ) )
+				Message::numParam( $this->options->get( MainConfigNames::DeleteRevisionsLimit ) )
 			);
 		}
 		if ( $this->tags ) {
@@ -408,7 +409,7 @@ class DeletePage {
 	 * @return bool
 	 */
 	private function isBigDeletion(): bool {
-		$revLimit = $this->options->get( 'DeleteRevisionsLimit' );
+		$revLimit = $this->options->get( MainConfigNames::DeleteRevisionsLimit );
 		if ( !$revLimit ) {
 			return false;
 		}
@@ -439,7 +440,7 @@ class DeletePage {
 		$revCount = $this->revisionStore->countRevisionsByPageId( $dbr, $this->page->getId() );
 		$revCount += $safetyMargin;
 
-		if ( $revCount >= $this->options->get( 'DeleteRevisionsBatchSize' ) ) {
+		if ( $revCount >= $this->options->get( MainConfigNames::DeleteRevisionsBatchSize ) ) {
 			return true;
 		} elseif ( !$this->associatedTalk ) {
 			return false;
@@ -448,7 +449,7 @@ class DeletePage {
 		$talkRevCount = $this->revisionStore->countRevisionsByPageId( $dbr, $this->associatedTalk->getId() );
 		$talkRevCount += $safetyMargin;
 
-		return $talkRevCount >= $this->options->get( 'DeleteRevisionsBatchSize' );
+		return $talkRevCount >= $this->options->get( MainConfigNames::DeleteRevisionsBatchSize );
 	}
 
 	/**
@@ -763,7 +764,7 @@ class DeletePage {
 			$revQuery['joins']
 		);
 
-		$deleteBatchSize = $this->options->get( 'DeleteRevisionsBatchSize' );
+		$deleteBatchSize = $this->options->get( MainConfigNames::DeleteRevisionsBatchSize );
 		// Get as many of the page revisions as we are allowed to.  The +1 lets us recognize the
 		// unusual case where there were exactly $deleteBatchSize revisions remaining.
 		$res = $dbw->select(
@@ -820,7 +821,8 @@ class DeletePage {
 
 			$dbw->delete( 'revision', [ 'rev_id' => $revids ], __METHOD__ );
 			$dbw->delete( 'revision_comment_temp', [ 'revcomment_rev' => $revids ], __METHOD__ );
-			if ( $this->options->get( 'ActorTableSchemaMigrationStage' ) & SCHEMA_COMPAT_WRITE_TEMP ) {
+			if ( $this->options->get( MainConfigNames::ActorTableSchemaMigrationStage )
+			& SCHEMA_COMPAT_WRITE_TEMP ) {
 				$dbw->delete( 'revision_actor_temp', [ 'revactor_rev' => $revids ], __METHOD__ );
 			}
 

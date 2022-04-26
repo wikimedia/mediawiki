@@ -5,6 +5,7 @@ namespace MediaWiki\Skin;
 use Config;
 use Html;
 use Linker;
+use MediaWiki\MainConfigNames;
 use Message;
 use MessageLocalizer;
 use MWException;
@@ -154,7 +155,7 @@ class SkinComponentSearch implements SkinComponent {
 	 * @return array attributes of HTML input
 	 */
 	private function getSearchInputAttributes( array $attrs = [] ) {
-		$autoCapHint = $this->getConfig()->get( 'CapitalLinks' );
+		$autoCapHint = $this->getConfig()->get( MainConfigNames::CapitalLinks );
 		$realAttrs = [
 			'type' => 'search',
 			'name' => 'search',
@@ -245,7 +246,7 @@ class SkinComponentSearch implements SkinComponent {
 
 		$this->cachedData = [
 			'search-special-page-title' => $searchTitle->getText(),
-			'form-action' => $config->get( 'Script' ),
+			'form-action' => $config->get( MainConfigNames::Script ),
 			'html-button-search-fallback' => $this->makeSearchButton(
 				'fulltext',
 				$fallbackButtonAttributes + [

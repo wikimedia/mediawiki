@@ -20,6 +20,7 @@
 
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -124,7 +125,8 @@ class JavaScriptContentHandler extends CodeContentHandler {
 		ContentParseParams $cpoParams,
 		ParserOutput &$output
 	) {
-		$textModelsToParse = MediaWikiServices::getInstance()->getMainConfig()->get( 'TextModelsToParse' );
+		$textModelsToParse = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::TextModelsToParse );
 		'@phan-var TextContent $content';
 		if ( in_array( $content->getModel(), $textModelsToParse ) ) {
 			// parse just to get links etc into the database, HTML is replaced below.

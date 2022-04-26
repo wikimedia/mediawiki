@@ -22,6 +22,7 @@ namespace MediaWiki\Storage;
 
 use ExternalStoreAccess;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use WANObjectCache;
 use Wikimedia\Rdbms\ILBFactory;
 
@@ -58,10 +59,10 @@ class BlobStoreFactory {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'CompressRevisions',
-		'DefaultExternalStore',
-		'LegacyEncoding',
-		'RevisionCacheExpiry',
+		MainConfigNames::CompressRevisions,
+		MainConfigNames::DefaultExternalStore,
+		MainConfigNames::LegacyEncoding,
+		MainConfigNames::RevisionCacheExpiry,
 	];
 
 	public function __construct(
@@ -105,12 +106,13 @@ class BlobStoreFactory {
 			$dbDomain
 		);
 
-		$store->setCompressBlobs( $this->options->get( 'CompressRevisions' ) );
-		$store->setCacheExpiry( $this->options->get( 'RevisionCacheExpiry' ) );
-		$store->setUseExternalStore( $this->options->get( 'DefaultExternalStore' ) !== false );
+		$store->setCompressBlobs( $this->options->get( MainConfigNames::CompressRevisions ) );
+		$store->setCacheExpiry( $this->options->get( MainConfigNames::RevisionCacheExpiry ) );
+		$store->setUseExternalStore(
+			$this->options->get( MainConfigNames::DefaultExternalStore ) !== false );
 
-		if ( $this->options->get( 'LegacyEncoding' ) ) {
-			$store->setLegacyEncoding( $this->options->get( 'LegacyEncoding' ) );
+		if ( $this->options->get( MainConfigNames::LegacyEncoding ) ) {
+			$store->setLegacyEncoding( $this->options->get( MainConfigNames::LegacyEncoding ) );
 		}
 
 		return $store;

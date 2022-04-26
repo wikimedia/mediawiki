@@ -22,6 +22,7 @@ namespace MediaWiki\Preferences;
 
 use Html;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
@@ -41,8 +42,8 @@ class SignatureValidator {
 
 	/** @var array Made public for use in services */
 	public const CONSTRUCTOR_OPTIONS = [
-		'SignatureAllowedLintErrors',
-		'VirtualRestConfig',
+		MainConfigNames::SignatureAllowedLintErrors,
+		MainConfigNames::VirtualRestConfig,
 	];
 
 	/** @var UserIdentity */
@@ -118,7 +119,8 @@ class SignatureValidator {
 
 		$lintErrors = $this->checkLintErrors( $signature );
 		if ( $lintErrors ) {
-			$allowedLintErrors = $this->serviceOptions->get( 'SignatureAllowedLintErrors' );
+			$allowedLintErrors = $this->serviceOptions->get(
+				MainConfigNames::SignatureAllowedLintErrors );
 			$messages = '';
 
 			foreach ( $lintErrors as $error ) {
@@ -248,7 +250,7 @@ class SignatureValidator {
 		// This request is not cached, but that's okay, because $signature is short (other code checks
 		// the length against $wgMaxSigChars).
 
-		$vrsConfig = $this->serviceOptions->get( 'VirtualRestConfig' );
+		$vrsConfig = $this->serviceOptions->get( MainConfigNames::VirtualRestConfig );
 		if ( isset( $vrsConfig['modules']['parsoid'] ) ) {
 			$params = $vrsConfig['modules']['parsoid'];
 			if ( isset( $vrsConfig['global'] ) ) {

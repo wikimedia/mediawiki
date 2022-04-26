@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * A checkbox matrix
  * Operates similarly to HTMLMultiSelectField, but instead of using an array of
@@ -177,7 +179,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 
 	protected function getOneCheckboxHTML( $checked, $attribs ) {
 		$checkbox = Xml::check( "{$this->mName}[]", $checked, $attribs );
-		if ( $this->mParent->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
+		if ( $this->mParent->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere ) ) {
 			$checkbox = Html::openElement( 'div', [ 'class' => 'mw-ui-checkbox' ] ) .
 				$checkbox .
 				Html::element( 'label', [ 'for' => $attribs['id'] ] ) .
