@@ -1828,6 +1828,15 @@ return [
 	},
 
 	'TempUserCreator' => static function ( MediaWikiServices $services ): TempUserCreator {
+		$accountCreationThrottle = $services->getMainConfig()->get( MainConfigNames::AccountCreationThrottle );
+		// T306878: Handle old $wgAccountCreationThrottle format (number of attempts per 24 hours)
+		if ( !is_array( $accountCreationThrottle ) ) {
+			$accountCreationThrottle = [ [
+				'count' => $accountCreationThrottle,
+				'seconds' => 86400,
+			] ];
+		}
+
 		return new TempUserCreator(
 			$services->getTempUserConfig(),
 			$services->getObjectFactory(),
@@ -1835,7 +1844,7 @@ return [
 			$services->getAuthManager(),
 			// This is supposed to match ThrottlePreAuthenticationProvider
 			new Throttler(
-				$services->getMainConfig()->get( MainConfigNames::AccountCreationThrottle ),
+				$accountCreationThrottle,
 				[
 					'type' => 'acctcreate',
 					'cache' => $services->getLocalServerObjectCache()
