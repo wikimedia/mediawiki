@@ -11,6 +11,8 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\User\TempUser\RealTempUserConfig;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWikiUnitTestCase;
 use Title;
@@ -71,6 +73,10 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			$this->createMock( RestrictionStore::class );
 		$titleFormatter = $options['titleFormatter'] ??
 			$this->createMock( TitleFormatter::class );
+		$tempUserConfig = $options['tempUserConfig'] ??
+			new RealTempUserConfig( [] );
+		$userFactory = $options['userFactory'] ??
+			$this->createMock( UserFactory::class );
 
 		$permissionManager = new PermissionManager(
 			new ServiceOptions( PermissionManager::CONSTRUCTOR_OPTIONS, $config ),
@@ -83,7 +89,9 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			$userCache,
 			$redirectLookup,
 			$restrictionStore,
-			$titleFormatter
+			$titleFormatter,
+			$tempUserConfig,
+			$userFactory
 		);
 
 		$accessPermissionManager = TestingAccessWrapper::newFromObject( $permissionManager );
@@ -342,7 +350,7 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 	public function testCheckQuickPermissions(
 		int $namespace,
 		string $pageTitle,
-		bool $userIsAnon,
+		string $userType,
 		string $action,
 		array $rights,
 		string $expectedError
@@ -350,10 +358,15 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		// Convert string single error to the array of errors PermissionManager uses
 		$expectedErrors = ( $expectedError === '' ? [] : [ [ $expectedError ] ] );
 
+		$userIsAnon = $userType === 'anon';
+		$userIsTemp = $userType === 'temp';
+		$userIsNamed = $userType === 'user';
 		$user = $this->createMock( User::class );
 		$user->method( 'getId' )->willReturn( $userIsAnon ? 0 : 123 );
 		$user->method( 'getName' )->willReturn( $userIsAnon ? '1.1.1.1' : 'NameOfActingUser' );
 		$user->method( 'isAnon' )->willReturn( $userIsAnon );
+		$user->method( 'isNamed' )->willReturn( $userIsNamed );
+		$user->method( 'isTemp' )->willReturn( $userIsTemp );
 
 		// HookContainer - always return true (false tested separately)
 		$hookContainer = $this->createMock( HookContainer::class );
@@ -398,62 +411,69 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		// $namespace, $pageTitle, $userIsAnon, $action, $rights, $expectedError
 		// Four different possible errors when trying to create
 		yield 'Anon createtalk fail' => [
-			NS_TALK, 'Example', true, 'create', [], 'nocreatetext'
+			NS_TALK, 'Example', 'anon', 'create', [], 'nocreatetext'
 		];
 		yield 'Anon createpage fail' => [
-			NS_MAIN, 'Example', true, 'create', [], 'nocreatetext'
+			NS_MAIN, 'Example', 'anon', 'create', [], 'nocreatetext'
 		];
 		yield 'User createtalk fail' => [
-			NS_TALK, 'Example', false, 'create', [], 'nocreate-loggedin'
+			NS_TALK, 'Example', 'user', 'create', [], 'nocreate-loggedin'
 		];
 		yield 'User createpage fail' => [
-			NS_MAIN, 'Example', false, 'create', [], 'nocreate-loggedin'
+			NS_MAIN, 'Example', 'user', 'create', [], 'nocreate-loggedin'
 		];
+		yield 'Temp user createpage fail' => [
+			NS_MAIN, 'Example', 'temp', 'create', [], 'nocreatetext'
+		];
+
 		yield 'Createpage pass' => [
-			NS_MAIN, 'Example', true, 'create', [ 'createpage' ], ''
+			NS_MAIN, 'Example', 'anon', 'create', [ 'createpage' ], ''
 		];
 
 		// Three different namespace specific move failures, even if user has `move` rights
 		yield 'Move root user page fail' => [
-			NS_USER, 'Example', true, 'move', [ 'move' ], 'cant-move-user-page'
+			NS_USER, 'Example', 'anon', 'move', [ 'move' ], 'cant-move-user-page'
 		];
 		yield 'Move file fail' => [
-			NS_FILE, 'Example', true, 'move', [ 'move' ], 'movenotallowedfile'
+			NS_FILE, 'Example', 'anon', 'move', [ 'move' ], 'movenotallowedfile'
 		];
 		yield 'Move category fail' => [
-			NS_CATEGORY, 'Example', true, 'move', [ 'move' ], 'cant-move-category-page'
+			NS_CATEGORY, 'Example', 'anon', 'move', [ 'move' ], 'cant-move-category-page'
 		];
 
 		// No move rights at all. Different failures depending on who is allowed to move.
 		// Test method sets group permissions to [ 'autoconfirmed' => [ 'move' => true ] ]
 		yield 'Anon move fail, autoconfirmed can move' => [
-			NS_TALK, 'Example', true, 'move', [], 'movenologintext'
+			NS_TALK, 'Example', 'anon', 'move', [], 'movenologintext'
 		];
 		yield 'User move fail, autoconfirmed can move' => [
-			NS_TALK, 'Example', false, 'move', [], 'movenotallowed'
+			NS_TALK, 'Example', 'user', 'move', [], 'movenotallowed'
 		];
-		yield 'Move pass' => [ NS_MAIN, 'Example', true, 'move', [ 'move' ], '' ];
+		yield 'Temp user move fail, autoconfirmed can move' => [
+			NS_TALK, 'Example', 'temp', 'move', [], 'movenologintext'
+		];
+		yield 'Move pass' => [ NS_MAIN, 'Example', 'anon', 'move', [ 'move' ], '' ];
 
 		// Three different possible failures for move target
 		yield 'Move-target no rights' => [
-			NS_MAIN, 'Example', false, 'move-target', [], 'movenotallowed'
+			NS_MAIN, 'Example', 'user', 'move-target', [], 'movenotallowed'
 		];
 		yield 'Move-target to user root' => [
-			NS_USER, 'Example', false, 'move-target', [ 'move' ], 'cant-move-to-user-page'
+			NS_USER, 'Example', 'user', 'move-target', [ 'move' ], 'cant-move-to-user-page'
 		];
 		yield 'Move-target to category' => [
-			NS_CATEGORY, 'Example', false, 'move-target', [ 'move' ], 'cant-move-to-category-page'
+			NS_CATEGORY, 'Example', 'user', 'move-target', [ 'move' ], 'cant-move-to-category-page'
 		];
 		yield 'Move-target pass' => [
-			NS_MAIN, 'Example', false, 'move-target', [ 'move' ], ''
+			NS_MAIN, 'Example', 'user', 'move-target', [ 'move' ], ''
 		];
 
 		// Other actions without special handling
 		yield 'Missing rights for edit' => [
-			NS_MAIN, 'Example', false, 'edit', [], 'badaccess-group0'
+			NS_MAIN, 'Example', 'user', 'edit', [], 'badaccess-group0'
 		];
 		yield 'Having rights for edit' => [
-			NS_MAIN, 'Example', false, 'edit', [ 'edit', ], ''
+			NS_MAIN, 'Example', 'user', 'edit', [ 'edit', ], ''
 		];
 	}
 

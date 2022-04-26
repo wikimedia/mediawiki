@@ -159,6 +159,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	public function testShowUserLoggedInNoException() {
 		$registeredUser = $this->createMock( User::class );
 		$registeredUser->method( 'isRegistered' )->willReturn( true );
+		$registeredUser->method( 'isNamed' )->willReturn( true );
 		$testContext = new DerivativeContext( $this->watchAction->getContext() );
 		$testContext->setUser( $registeredUser );
 		$watchAction = $this->getWatchAction(

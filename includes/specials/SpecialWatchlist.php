@@ -86,7 +86,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 */
 	public function execute( $subpage ) {
 		// Anons don't get a watchlist
-		$this->requireLogin( 'watchlistanontext' );
+		$this->requireNamedUser( 'watchlistanontext' );
 
 		$output = $this->getOutput();
 		$request = $this->getRequest();

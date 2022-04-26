@@ -40,6 +40,7 @@ For notes on 1.38.x and older releases, see HISTORY.
 * …
 
 === New user-facing features in 1.39 ===
+* Optional automatic user creation on page save ($wgAutoCreateTempUser)
 * Administrators now have the option to delete/undelete the associated "Talk"
   page when they are (un)deleting a given page. `deletetalk` and `undeletetalk`
   options were added to the 'delete' and 'undelete' action APIs in MW 1.38.

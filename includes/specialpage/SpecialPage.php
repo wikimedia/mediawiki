@@ -419,6 +419,22 @@ class SpecialPage implements MessageLocalizer {
 	}
 
 	/**
+	 * If the user is not logged in or is a temporary user, throws UserNotLoggedIn
+	 *
+	 * @since 1.39
+	 * @param string $reasonMsg [optional] Message key to be displayed on login page
+	 * @param string $titleMsg [optional] Passed on to UserNotLoggedIn constructor
+	 * @throws UserNotLoggedIn
+	 */
+	public function requireNamedUser(
+		$reasonMsg = 'exception-nologin-text', $titleMsg = 'exception-nologin'
+	) {
+		if ( !$this->getUser()->isNamed() ) {
+			throw new UserNotLoggedIn( $reasonMsg, $titleMsg );
+		}
+	}
+
+	/**
 	 * Tells if the special page does something security-sensitive and needs extra defense against
 	 * a stolen account (e.g. a reauthentication). What exactly that will mean is decided by the
 	 * authentication framework.

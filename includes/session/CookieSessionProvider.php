@@ -322,7 +322,11 @@ class CookieSessionProvider extends SessionProvider {
 	public function suggestLoginUsername( WebRequest $request ) {
 		$name = $this->getCookie( $request, 'UserName', $this->cookieOptions['prefix'] );
 		if ( $name !== null ) {
-			$name = $this->userNameUtils->getCanonical( $name, UserRigorOptions::RIGOR_USABLE );
+			if ( $this->userNameUtils->isTemp( $name ) ) {
+				$name = false;
+			} else {
+				$name = $this->userNameUtils->getCanonical( $name, UserRigorOptions::RIGOR_USABLE );
+			}
 		}
 		return $name === false ? null : $name;
 	}
