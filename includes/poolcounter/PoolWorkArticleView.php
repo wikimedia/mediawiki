@@ -40,7 +40,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	protected $revision = null;
 
 	/** @var RevisionRenderer */
-	protected $renderer = null;
+	private $renderer = null;
 
 	/** @var LoggerSpi */
 	private $loggerSpi;
@@ -82,9 +82,6 @@ class PoolWorkArticleView extends PoolCounterWork {
 			return Status::newFatal( 'pool-errorunknown' );
 		}
 
-		// Reduce effects of race conditions for slow parses (T48014)
-		$cacheTime = wfTimestampNow();
-
 		$time = -microtime( true );
 		$parserOutput = $renderedRevision->getRevisionParserOutput();
 		$time += microtime( true );
@@ -100,34 +97,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 			] );
 		}
 
-		if ( $this->cacheable && $parserOutput->isCacheable() ) {
-			$this->saveInCache( $parserOutput, $cacheTime );
-		}
-
-		$this->afterWork( $parserOutput );
-
 		return Status::newGood( $parserOutput );
-	}
-
-	/**
-	 * Place the output in the cache from which getCachedWork() will retrieve it.
-	 * Will be called before saveInCache().
-	 *
-	 * @param ParserOutput $output
-	 * @param string $cacheTime
-	 */
-	protected function saveInCache( ParserOutput $output, string $cacheTime ) {
-		// noop
-	}
-
-	/**
-	 * Subclasses may implement this to perform some action after the work of rendering is done.
-	 * Will be called after saveInCache().
-	 *
-	 * @param ParserOutput $output
-	 */
-	protected function afterWork( ParserOutput $output ) {
-		// noop
 	}
 
 	/**

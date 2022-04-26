@@ -87,26 +87,31 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		$this->cacheable = $cacheable;
 	}
 
-	/**
-	 * @param ParserOutput $output
-	 * @param string $cacheTime
-	 */
-	protected function saveInCache( ParserOutput $output, string $cacheTime ) {
-		$this->parserCache->save(
-			$output,
-			$this->page,
-			$this->parserOptions,
-			$cacheTime,
-			$this->revision->getId()
-		);
-	}
+	/** @inheritDoc */
+	public function doWork() {
+		// Reduce effects of race conditions for slow parses (T48014)
+		$cacheTime = wfTimestampNow();
 
-	/**
-	 * @param ParserOutput $output
-	 */
-	protected function afterWork( ParserOutput $output ) {
-		$this->wikiPageFactory->newFromTitle( $this->page )
-			->triggerOpportunisticLinksUpdate( $output );
+		$status = parent::doWork();
+		/** @var ParserOutput|null $output */
+		$output = $status->getValue();
+
+		if ( $output ) {
+			if ( $this->cacheable && $output->isCacheable() ) {
+				$this->parserCache->save(
+					$output,
+					$this->page,
+					$this->parserOptions,
+					$cacheTime,
+					$this->revision->getId()
+				);
+			}
+
+			$this->wikiPageFactory->newFromTitle( $this->page )
+				->triggerOpportunisticLinksUpdate( $output );
+		}
+
+		return $status;
 	}
 
 	/**

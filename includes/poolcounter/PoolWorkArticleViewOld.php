@@ -56,12 +56,20 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 		$this->cacheable = true;
 	}
 
-	/**
-	 * @param ParserOutput $output
-	 * @param string $cacheTime
-	 */
-	protected function saveInCache( ParserOutput $output, string $cacheTime ) {
-		$this->cache->save( $output, $this->revision, $this->parserOptions, $cacheTime );
+	/** @inheritDoc */
+	public function doWork() {
+		// Reduce effects of race conditions for slow parses (T48014)
+		$cacheTime = wfTimestampNow();
+
+		$status = parent::doWork();
+		/** @var ParserOutput|null $output */
+		$output = $status->getValue();
+
+		if ( $output && $this->cacheable && $output->isCacheable() ) {
+			$this->cache->save( $output, $this->revision, $this->parserOptions, $cacheTime );
+		}
+
+		return $status;
 	}
 
 	/**
