@@ -161,9 +161,13 @@ abstract class BagOStuff implements
 	 */
 	public function __construct( array $params = [] ) {
 		$this->keyspace = $params['keyspace'] ?? 'local';
-		$this->asyncHandler = $params['asyncHandler'] ?? null;
 		$this->stats = $params['stats'] ?? new NullStatsdDataFactory();
 		$this->setLogger( $params['logger'] ?? new NullLogger() );
+
+		$asyncHandler = $params['asyncHandler'] ?? null;
+		if ( is_callable( $asyncHandler ) ) {
+			$this->asyncHandler = $asyncHandler;
+		}
 	}
 
 	/**
