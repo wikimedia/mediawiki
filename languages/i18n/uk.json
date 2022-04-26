@@ -2411,6 +2411,7 @@
 	"enotif_minoredit": "Це незначна зміна",
 	"created": "створена",
 	"changed": "змінена",
+	"deletepage-deletetalk": "Вилучити відповідну сторінку обговорення",
 	"deletepage-submit": "Вилучити сторінку",
 	"confirm": "Підтвердження",
 	"excontent": "зміст: «$1»",
