@@ -41,6 +41,11 @@
 		value: 'true'
 	} );
 
+	// Create initial fixture element
+	var fixture = document.createElement( 'div' );
+	fixture.id = 'qunit-fixture';
+	document.body.appendChild( fixture );
+
 	// SinonJS
 	//
 	// Glue code for nicer integration with QUnit setup/teardown
@@ -98,11 +103,6 @@
 				config.injectInto = this;
 				sinon.sandbox.create( config );
 
-				// Fixture element
-				this.fixture = document.createElement( 'div' );
-				this.fixture.id = 'qunit-fixture';
-				document.body.appendChild( this.fixture );
-
 				if ( orgBeforeEach ) {
 					return orgBeforeEach.apply( this, arguments );
 				}
@@ -112,8 +112,9 @@
 				if ( orgAfterEach ) {
 					ret = orgAfterEach.apply( this, arguments );
 				}
+
 				this.sandbox.verifyAndRestore();
-				this.fixture.parentNode.removeChild( this.fixture );
+
 				return ret;
 			};
 
