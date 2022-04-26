@@ -237,15 +237,26 @@ class SiteStats {
 
 	/**
 	 * @param IDatabase $db
-	 * @return stdClass|bool
+	 * @return stdClass
 	 */
 	private static function doLoadFromDB( IDatabase $db ) {
-		return $db->selectRow(
+		$rows = $db->select(
 			'site_stats',
 			self::selectFields(),
-			[ 'ss_row_id' => 1 ],
+			'*',
 			__METHOD__
 		);
+		$finalRow = new stdClass();
+		foreach ( $rows as $row ) {
+			foreach ( self::selectFields() as $field ) {
+				$finalRow->$field = $finalRow->$field ?? 0;
+				if ( $row->$field ) {
+					$finalRow->$field += $row->$field;
+				}
+			}
+
+		}
+		return $finalRow;
 	}
 
 	/**

@@ -3416,6 +3416,21 @@ class MainConfigSchema {
 		'default' => false,
 	];
 
+	/**
+	 * Whether site_stats table should have multiple rows. If set to true, in each update,
+	 * one of ten rows gets updated at random to reduce lock wait time in wikis
+	 * that have lots of concurrent edits.
+	 * It should be set to true in really large wikis with big flow of edits,
+	 * Otherwise it can cause inaccuracy in data.
+	 *
+	 * @since 1.39
+	 * @warning EXPERIMENTAL!
+	 */
+	public const MultiShardSiteStats = [
+		'default' => false,
+		'type' => 'boolean',
+	];
+
 	// endregion -- end performance hacks
 
 	/***************************************************************************/

@@ -1413,6 +1413,12 @@ class MainConfigNames {
 	public const ForceDeferredUpdatesPreSend = 'ForceDeferredUpdatesPreSend';
 
 	/**
+	 * Name constant for the MultiShardSiteStats setting, for use with Config::get()
+	 * @see MainConfigSchema::MultiShardSiteStats
+	 */
+	public const MultiShardSiteStats = 'MultiShardSiteStats';
+
+	/**
 	 * Name constant for the CacheDirectory setting, for use with Config::get()
 	 * @see MainConfigSchema::CacheDirectory
 	 */

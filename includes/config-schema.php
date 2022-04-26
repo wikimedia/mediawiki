@@ -424,6 +424,7 @@ return [
 			'LinkHolderBatchSize' => 1000,
 			'MaximumMovedPages' => 100,
 			'ForceDeferredUpdatesPreSend' => false,
+			'MultiShardSiteStats' => false,
 			'CacheDirectory' => false,
 			'MainCacheType' => 0,
 			'MessageCacheType' => -1,
@@ -2569,6 +2570,7 @@ return [
 				0 => 'integer',
 				1 => 'boolean',
 			],
+			'MultiShardSiteStats' => 'boolean',
 			'ObjectCaches' => 'object',
 			'MainWANCache' => [
 				0 => 'integer',
