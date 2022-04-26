@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Site\MediaWikiPageNameNormalizer;
 
@@ -654,7 +655,8 @@ class Site implements Serializable {
 	 * @return Site
 	 */
 	public static function newForType( $siteType ) {
-		$siteTypes = MediaWikiServices::getInstance()->getMainConfig()->get( 'SiteTypes' );
+		$siteTypes = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::SiteTypes );
 
 		if ( array_key_exists( $siteType, $siteTypes ) ) {
 			return new $siteTypes[$siteType]();

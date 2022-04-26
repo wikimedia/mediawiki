@@ -26,6 +26,7 @@ use ChangeTags;
 use DeferrableUpdate;
 use FormatJson;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use Psr\Log\LoggerInterface;
@@ -43,7 +44,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	/**
 	 * @internal
 	 */
-	public const CONSTRUCTOR_OPTIONS = [ 'RevertedTagMaxDepth' ];
+	public const CONSTRUCTOR_OPTIONS = [ MainConfigNames::RevertedTagMaxDepth ];
 
 	/** @var RevisionStore */
 	private $revisionStore;
@@ -119,7 +120,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 			return;
 		}
 
-		$maxDepth = $this->options->get( 'RevertedTagMaxDepth' );
+		$maxDepth = $this->options->get( MainConfigNames::RevertedTagMaxDepth );
 		$extraParams = $this->getTagExtraParams();
 		$revertedRevisionIds = $this->revisionStore->getRevisionIdsBetween(
 			$this->getOldestRevertedRevision()->getPageId(),
@@ -174,7 +175,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	 * @return bool
 	 */
 	private function shouldExecute(): bool {
-		$maxDepth = $this->options->get( 'RevertedTagMaxDepth' );
+		$maxDepth = $this->options->get( MainConfigNames::RevertedTagMaxDepth );
 		if ( !in_array( ChangeTags::TAG_REVERTED, $this->softwareTags ) || $maxDepth <= 0 ) {
 			return false;
 		}

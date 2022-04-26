@@ -31,6 +31,7 @@ use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreloadTransformParamsValue;
 use MediaWiki\Content\Transform\PreSaveTransformParamsValue;
 use MediaWiki\Content\ValidationParams;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -276,7 +277,8 @@ abstract class AbstractContent implements Content {
 	 * @see Content::getRedirectChain
 	 */
 	public function getRedirectChain() {
-		$maxRedirects = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxRedirects' );
+		$maxRedirects = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::MaxRedirects );
 		$title = $this->getRedirectTarget();
 		if ( $title === null ) {
 			return null;

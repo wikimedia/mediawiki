@@ -29,6 +29,7 @@ use HashBagOStuff;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWikiTitleCodec;
 use MWException;
 
@@ -80,8 +81,8 @@ class LanguageNameUtils {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'ExtraLanguageNames',
-		'UsePigLatinVariant',
+		MainConfigNames::ExtraLanguageNames,
+		MainConfigNames::UsePigLatinVariant,
 	];
 
 	/** @var HookRunner */
@@ -221,8 +222,8 @@ class LanguageNameUtils {
 			$this->hookRunner->onLanguageGetTranslatedLanguageNames( $names, $inLanguage );
 		}
 
-		$mwNames = $this->options->get( 'ExtraLanguageNames' ) + Data\Names::$names;
-		if ( $this->options->get( 'UsePigLatinVariant' ) ) {
+		$mwNames = $this->options->get( MainConfigNames::ExtraLanguageNames ) + Data\Names::$names;
+		if ( $this->options->get( MainConfigNames::UsePigLatinVariant ) ) {
 			// Pig Latin (for variant development)
 			$mwNames['en-x-piglatin'] = 'Igpay Atinlay';
 		}

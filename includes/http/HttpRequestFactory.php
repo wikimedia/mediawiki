@@ -23,6 +23,7 @@ use GuzzleHttp\Client;
 use GuzzleHttpRequest;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MultiHttpClient;
 use MWHttpRequest;
 use Profiler;
@@ -42,12 +43,12 @@ class HttpRequestFactory {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'HTTPTimeout',
-		'HTTPConnectTimeout',
-		'HTTPMaxTimeout',
-		'HTTPMaxConnectTimeout',
-		'LocalVirtualHosts',
-		'LocalHTTPProxy',
+		MainConfigNames::HTTPTimeout,
+		MainConfigNames::HTTPConnectTimeout,
+		MainConfigNames::HTTPMaxTimeout,
+		MainConfigNames::HTTPMaxConnectTimeout,
+		MainConfigNames::LocalVirtualHosts,
+		MainConfigNames::LocalHTTPProxy,
 	];
 
 	public function __construct( ServiceOptions $options, LoggerInterface $logger ) {
@@ -98,14 +99,14 @@ class HttpRequestFactory {
 		$options['timeout'] = $this->normalizeTimeout(
 			$options['timeout'] ?? null,
 			$options['maxTimeout'] ?? null,
-			$this->options->get( 'HTTPTimeout' ),
-			$this->options->get( 'HTTPMaxTimeout' ) ?: INF
+			$this->options->get( MainConfigNames::HTTPTimeout ),
+			$this->options->get( MainConfigNames::HTTPMaxTimeout ) ?: INF
 		);
 		$options['connectTimeout'] = $this->normalizeTimeout(
 			$options['connectTimeout'] ?? null,
 			$options['maxConnectTimeout'] ?? null,
-			$this->options->get( 'HTTPConnectTimeout' ),
-			$this->options->get( 'HTTPMaxConnectTimeout' ) ?: INF
+			$this->options->get( MainConfigNames::HTTPConnectTimeout ),
+			$this->options->get( MainConfigNames::HTTPMaxConnectTimeout ) ?: INF
 		);
 
 		return new GuzzleHttpRequest( $url, $options, $caller, Profiler::instance() );
@@ -231,22 +232,23 @@ class HttpRequestFactory {
 		$options['reqTimeout'] = $this->normalizeTimeout(
 			$options['reqTimeout'] ?? $options['timeout'] ?? null,
 			$options['maxReqTimeout'] ?? $options['maxTimeout'] ?? null,
-			$this->options->get( 'HTTPTimeout' ),
-			$this->options->get( 'HTTPMaxTimeout' ) ?: INF
+			$this->options->get( MainConfigNames::HTTPTimeout ),
+			$this->options->get( MainConfigNames::HTTPMaxTimeout ) ?: INF
 		);
 		$options['connTimeout'] = $this->normalizeTimeout(
 			$options['connTimeout'] ?? $options['connectTimeout'] ?? null,
 			$options['maxConnTimeout'] ?? $options['maxConnectTimeout'] ?? null,
-			$this->options->get( 'HTTPConnectTimeout' ),
-			$this->options->get( 'HTTPMaxConnectTimeout' ) ?: INF
+			$this->options->get( MainConfigNames::HTTPConnectTimeout ),
+			$this->options->get( MainConfigNames::HTTPMaxConnectTimeout ) ?: INF
 		);
 		$options += [
-			'maxReqTimeout' => $this->options->get( 'HTTPMaxTimeout' ) ?: INF,
-			'maxConnTimeout' => $this->options->get( 'HTTPMaxConnectTimeout' ) ?: INF,
+			'maxReqTimeout' => $this->options->get( MainConfigNames::HTTPMaxTimeout ) ?: INF,
+			'maxConnTimeout' =>
+				$this->options->get( MainConfigNames::HTTPMaxConnectTimeout ) ?: INF,
 			'userAgent' => $this->getUserAgent(),
 			'logger' => $this->logger,
-			'localProxy' => $this->options->get( 'LocalHTTPProxy' ),
-			'localVirtualHosts' => $this->options->get( 'LocalVirtualHosts' ),
+			'localProxy' => $this->options->get( MainConfigNames::LocalHTTPProxy ),
+			'localVirtualHosts' => $this->options->get( MainConfigNames::LocalVirtualHosts ),
 		];
 		return new MultiHttpClient( $options );
 	}
@@ -268,15 +270,15 @@ class HttpRequestFactory {
 		$config['timeout'] = $this->normalizeTimeout(
 			$config['timeout'] ?? null,
 			$config['maxTimeout'] ?? null,
-			$this->options->get( 'HTTPTimeout' ),
-			$this->options->get( 'HTTPMaxTimeout' ) ?: INF
+			$this->options->get( MainConfigNames::HTTPTimeout ),
+			$this->options->get( MainConfigNames::HTTPMaxTimeout ) ?: INF
 		);
 
 		$config['connect_timeout'] = $this->normalizeTimeout(
 			$config['connect_timeout'] ?? null,
 			$config['maxConnectTimeout'] ?? null,
-			$this->options->get( 'HTTPConnectTimeout' ),
-			$this->options->get( 'HTTPMaxConnectTimeout' ) ?: INF
+			$this->options->get( MainConfigNames::HTTPConnectTimeout ),
+			$this->options->get( MainConfigNames::HTTPMaxConnectTimeout ) ?: INF
 		);
 
 		if ( !isset( $config['headers']['User-Agent'] ) ) {

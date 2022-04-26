@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -174,7 +175,7 @@ class ObjectCache {
 			if ( isset( $params['servers'] ) ) {
 				foreach ( $params['servers'] as &$server ) {
 					if ( $server['type'] === 'sqlite' && !isset( $server['dbDirectory'] ) ) {
-						$server['dbDirectory'] = $conf->get( 'SQLiteDataDir' );
+						$server['dbDirectory'] = $conf->get( MainConfigNames::SQLiteDataDir );
 					}
 				}
 			} elseif ( !isset( $params['localKeyLB'] ) ) {
@@ -184,15 +185,15 @@ class ObjectCache {
 					}
 				];
 			}
-			$params += [ 'writeBatchSize' => $conf->get( 'UpdateRowsPerQuery' ) ];
+			$params += [ 'writeBatchSize' => $conf->get( MainConfigNames::UpdateRowsPerQuery ) ];
 		}
 
 		// Do b/c logic for MemcachedBagOStuff
 		if ( is_subclass_of( $class, MemcachedBagOStuff::class ) ) {
 			$params += [
-				'servers' => $conf->get( 'MemCachedServers' ),
-				'persistent' => $conf->get( 'MemCachedPersistent' ),
-				'timeout' => $conf->get( 'MemCachedTimeout' ),
+				'servers' => $conf->get( MainConfigNames::MemCachedServers ),
+				'persistent' => $conf->get( MainConfigNames::MemCachedPersistent ),
+				'timeout' => $conf->get( MainConfigNames::MemCachedTimeout ),
 			];
 		}
 

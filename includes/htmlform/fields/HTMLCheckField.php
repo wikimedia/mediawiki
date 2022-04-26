@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -15,7 +16,7 @@ class HTMLCheckField extends HTMLFormField {
 	 */
 	public function getInputHTML( $value ) {
 		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'UseMediaWikiUIEverywhere' );
+			->getMainConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
 
 		if ( !empty( $this->mParams['invert'] ) ) {
 			$value = !$value;

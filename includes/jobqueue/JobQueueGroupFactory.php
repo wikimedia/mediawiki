@@ -24,6 +24,7 @@ use ConfiguredReadOnlyMode;
 use IBufferingStatsdDataFactory;
 use JobQueueGroup;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use WANObjectCache;
 use WikiMap;
 use Wikimedia\UUID\GlobalIdGenerator;
@@ -39,10 +40,10 @@ class JobQueueGroupFactory {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'JobClasses',
-		'JobTypeConf',
-		'JobTypesExcludedFromDefaultQueue',
-		'LocalDatabases',
+		MainConfigNames::JobClasses,
+		MainConfigNames::JobTypeConf,
+		MainConfigNames::JobTypesExcludedFromDefaultQueue,
+		MainConfigNames::LocalDatabases,
 	];
 
 	/** @var JobQueueGroup[] */
@@ -103,7 +104,7 @@ class JobQueueGroupFactory {
 			$wikiId = WikiMap::getWikiIdFromDbDomain( $domain );
 			if (
 				!WikiMap::isCurrentWikiDbDomain( $domain ) &&
-				!in_array( $wikiId, $this->options->get( 'LocalDatabases' ) )
+				!in_array( $wikiId, $this->options->get( MainConfigNames::LocalDatabases ) )
 			) {
 				$invalidDomain = true;
 			} else {
@@ -114,9 +115,9 @@ class JobQueueGroupFactory {
 				$domain,
 				$this->readOnlyMode,
 				$invalidDomain,
-				$this->options->get( 'JobClasses' ),
-				$this->options->get( 'JobTypeConf' ),
-				$this->options->get( 'JobTypesExcludedFromDefaultQueue' ),
+				$this->options->get( MainConfigNames::JobClasses ),
+				$this->options->get( MainConfigNames::JobTypeConf ),
+				$this->options->get( MainConfigNames::JobTypesExcludedFromDefaultQueue ),
 				$this->statsdDataFactory,
 				$this->wanCache,
 				$this->globalIdGenerator

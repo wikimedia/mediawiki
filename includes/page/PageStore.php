@@ -12,6 +12,7 @@ use MalformedTitleException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use NamespaceInfo;
 use NullStatsdDataFactory;
 use stdClass;
@@ -51,7 +52,7 @@ class PageStore implements PageLookup {
 	 * @internal for use by service wiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'PageLanguageUseDB',
+		MainConfigNames::PageLanguageUseDB,
 	];
 
 	/**
@@ -376,7 +377,7 @@ class PageStore implements PageLookup {
 			'page_content_model'
 		];
 
-		if ( $this->options->get( 'PageLanguageUseDB' ) ) {
+		if ( $this->options->get( MainConfigNames::PageLanguageUseDB ) ) {
 			$fields[] = 'page_lang';
 		}
 

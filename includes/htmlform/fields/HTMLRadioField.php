@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -80,7 +81,7 @@ class HTMLRadioField extends HTMLFormField {
 
 	public function formatOptions( $options, $value ) {
 		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'UseMediaWikiUIEverywhere' );
+			->getMainConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
 
 		$html = '';
 

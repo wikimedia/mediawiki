@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -119,7 +120,7 @@ abstract class ImageGalleryBase extends ContextSource {
 			$context = RequestContext::getMainAndWarn( __METHOD__ );
 		}
 		if ( !$mode ) {
-			$galleryOptions = $context->getConfig()->get( 'GalleryOptions' );
+			$galleryOptions = $context->getConfig()->get( MainConfigNames::GalleryOptions );
 			$mode = $galleryOptions['mode'];
 		}
 
@@ -166,7 +167,7 @@ abstract class ImageGalleryBase extends ContextSource {
 			$this->setContext( $context );
 		}
 
-		$galleryOptions = $this->getConfig()->get( 'GalleryOptions' );
+		$galleryOptions = $this->getConfig()->get( MainConfigNames::GalleryOptions );
 		$this->mImages = [];
 		$this->mShowBytes = $galleryOptions['showBytes'];
 		$this->mShowDimensions = $galleryOptions['showDimensions'];

@@ -38,6 +38,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
@@ -86,8 +87,8 @@ class PageUpdater {
 	 * @internal
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'ManualRevertSearchRadius',
-		'UseRCPatrol',
+		MainConfigNames::ManualRevertSearchRadius,
+		MainConfigNames::UseRCPatrol,
 	];
 
 	/**
@@ -264,8 +265,8 @@ class PageUpdater {
 			new ServiceOptions(
 				EditResultBuilder::CONSTRUCTOR_OPTIONS,
 				[
-					'ManualRevertSearchRadius' =>
-						$serviceOptions->get( 'ManualRevertSearchRadius' )
+					MainConfigNames::ManualRevertSearchRadius =>
+						$serviceOptions->get( MainConfigNames::ManualRevertSearchRadius )
 				]
 			)
 		);
@@ -1611,7 +1612,7 @@ class PageUpdater {
 					// Should the reverted tag update be scheduled right away?
 					// The revert is approved if either patrolling is disabled or the
 					// edit is patrolled or autopatrolled.
-					$approved = !$this->serviceOptions->get( 'UseRCPatrol' ) ||
+					$approved = !$this->serviceOptions->get( MainConfigNames::UseRCPatrol ) ||
 						$this->rcPatrolStatus === RecentChange::PRC_PATROLLED ||
 						$this->rcPatrolStatus === RecentChange::PRC_AUTOPATROLLED;
 

@@ -29,6 +29,7 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
@@ -508,9 +509,9 @@ class Language {
 	 */
 	public function getNamespaces() {
 		if ( $this->namespaceNames === null ) {
-			$metaNamespace = $this->config->get( 'MetaNamespace' );
-			$metaNamespaceTalk = $this->config->get( 'MetaNamespaceTalk' );
-			$extraNamespaces = $this->config->get( 'ExtraNamespaces' );
+			$metaNamespace = $this->config->get( MainConfigNames::MetaNamespace );
+			$metaNamespaceTalk = $this->config->get( MainConfigNames::MetaNamespaceTalk );
+			$extraNamespaces = $this->config->get( MainConfigNames::ExtraNamespaces );
 			$validNamespaces = MediaWikiServices::getInstance()->getNamespaceInfo()->
 				getCanonicalNamespaces();
 
@@ -621,7 +622,7 @@ class Language {
 	 * @since 1.18
 	 */
 	public function getGenderNsText( $index, $gender ) {
-		$extraGenderNamespaces = $this->config->get( 'ExtraGenderNamespaces' );
+		$extraGenderNamespaces = $this->config->get( MainConfigNames::ExtraGenderNamespaces );
 
 		$ns = $extraGenderNamespaces +
 			(array)$this->localisationCache->getItem( $this->mCode, 'namespaceGenderAliases' );
@@ -636,8 +637,8 @@ class Language {
 	 * @since 1.18
 	 */
 	public function needsGenderDistinction() {
-		$extraGenderNamespaces = $this->config->get( 'ExtraGenderNamespaces' );
-		$extraNamespaces = $this->config->get( 'ExtraNamespaces' );
+		$extraGenderNamespaces = $this->config->get( MainConfigNames::ExtraGenderNamespaces );
+		$extraNamespaces = $this->config->get( MainConfigNames::ExtraNamespaces );
 		if ( count( $extraGenderNamespaces ) > 0 ) {
 			// $wgExtraGenderNamespaces overrides everything
 			return true;
@@ -685,7 +686,7 @@ class Language {
 				}
 			}
 
-			$extraGenderNamespaces = $this->config->get( 'ExtraGenderNamespaces' );
+			$extraGenderNamespaces = $this->config->get( MainConfigNames::ExtraGenderNamespaces );
 			$genders = $extraGenderNamespaces + (array)$this->localisationCache
 				->getItem( $this->mCode, 'namespaceGenderAliases' );
 			foreach ( $genders as $index => $forms ) {
@@ -709,7 +710,8 @@ class Language {
 
 			// In the case of conflicts between $wgNamespaceAliases and other sources
 			// of aliasing, $wgNamespaceAliases wins.
-			$this->namespaceAliases = $this->config->get( 'NamespaceAliases' ) + $this->namespaceAliases;
+			$this->namespaceAliases = $this->config->get( MainConfigNames::NamespaceAliases ) +
+				$this->namespaceAliases;
 
 			# Filter out aliases to namespaces that don't exist, e.g. from extensions
 			# that aren't loaded here but are included in the l10n cache.
@@ -802,7 +804,7 @@ class Language {
 	public function getDefaultDateFormat() {
 		$df = $this->localisationCache->getItem( $this->mCode, 'defaultDateFormat' );
 		if ( $df === 'dmy or mdy' ) {
-			return $this->config->get( 'AmericanDates' ) ? 'mdy' : 'dmy';
+			return $this->config->get( MainConfigNames::AmericanDates ) ? 'mdy' : 'dmy';
 		} else {
 			return $df;
 		}
@@ -2075,7 +2077,7 @@ class Language {
 	 * @return string
 	 */
 	public function userAdjust( $ts, $tz = false ) {
-		$localTZoffset = $this->config->get( 'LocalTZoffset' );
+		$localTZoffset = $this->config->get( MainConfigNames::LocalTZoffset );
 		if ( $tz === false ) {
 			$optionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 			$tz = $optionsLookup->getOption(
@@ -2688,7 +2690,8 @@ class Language {
 	 * @return string
 	 */
 	protected function mbUpperChar( $char ) {
-		$overrideUcfirstCharacters = $this->config->get( 'OverrideUcfirstCharacters' );
+		$overrideUcfirstCharacters =
+			$this->config->get( MainConfigNames::OverrideUcfirstCharacters );
 		return $overrideUcfirstCharacters[$char] ?? mb_strtoupper( $char );
 	}
 
@@ -2972,7 +2975,7 @@ class Language {
 	 * @return string
 	 */
 	public function normalize( $s ) {
-		$allUnicodeFixes = $this->config->get( 'AllUnicodeFixes' );
+		$allUnicodeFixes = $this->config->get( MainConfigNames::AllUnicodeFixes );
 
 		$s = UtfNormal\Validator::cleanUp( $s );
 		// Optimization: This is disabled by default to avoid negative performance impact.
@@ -3209,7 +3212,7 @@ class Language {
 	private function formatNumInternal(
 		string $number, bool $noTranslate, bool $noSeparators
 	): string {
-		$translateNumerals = $this->config->get( 'TranslateNumerals' );
+		$translateNumerals = $this->config->get( MainConfigNames::TranslateNumerals );
 
 		if ( $number === '' ) {
 			return $number;
@@ -3851,7 +3854,7 @@ class Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		$grammarForms = $this->config->get( 'GrammarForms' );
+		$grammarForms = $this->config->get( MainConfigNames::GrammarForms );
 		if ( isset( $grammarForms[$this->getCode()][$case][$word] ) ) {
 			return $grammarForms[$this->getCode()][$case][$word];
 		}
@@ -3902,7 +3905,7 @@ class Language {
 	 * @since 1.20
 	 */
 	public function getGrammarForms() {
-		$grammarForms = $this->config->get( 'GrammarForms' );
+		$grammarForms = $this->config->get( MainConfigNames::GrammarForms );
 		if ( isset( $grammarForms[$this->getCode()] )
 			&& is_array( $grammarForms[$this->getCode()] )
 		) {
@@ -4534,7 +4537,7 @@ class Language {
 			return $talk;
 		}
 
-		$talk = str_replace( '$1', $this->config->get( 'MetaNamespace' ), $talk );
+		$talk = str_replace( '$1', $this->config->get( MainConfigNames::MetaNamespace ), $talk );
 
 		# Allow grammar transformations
 		# Allowing full message-style parsing would make simple requests

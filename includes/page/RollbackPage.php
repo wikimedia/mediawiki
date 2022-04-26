@@ -26,6 +26,7 @@ use ManualLogEntry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Converter;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
@@ -59,8 +60,8 @@ class RollbackPage {
 	 * @var array
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'UseRCPatrol',
-		'DisableAnonTalk',
+		MainConfigNames::UseRCPatrol,
+		MainConfigNames::DisableAnonTalk,
 	];
 
 	/** @var ServiceOptions */
@@ -358,7 +359,7 @@ class RollbackPage {
 		// TODO: this logic should not be in the storage layer, it's here for compatibility
 		// with 1.31 behavior. Applying the 'autopatrol' right should be done in the same
 		// place the 'bot' right is handled, which is currently in EditPage::attemptSave.
-		if ( $this->options->get( 'UseRCPatrol' ) &&
+		if ( $this->options->get( MainConfigNames::UseRCPatrol ) &&
 			$this->performer->authorizeWrite( 'autopatrol', $this->page )
 		) {
 			$updater->setRcPatrolStatus( RecentChange::PRC_AUTOPATROLLED );
@@ -445,7 +446,7 @@ class RollbackPage {
 			$set['rc_bot'] = 1;
 		}
 
-		if ( $this->options->get( 'UseRCPatrol' ) ) {
+		if ( $this->options->get( MainConfigNames::UseRCPatrol ) ) {
 			// Mark all reverted edits as patrolled
 			$set['rc_patrolled'] = RecentChange::PRC_AUTOPATROLLED;
 		}
@@ -478,7 +479,8 @@ class RollbackPage {
 		if ( $this->summary === '' ) {
 			if ( !$currentEditorForPublic ) { // no public user name
 				$summary = MessageValue::new( 'revertpage-nouser' );
-			} elseif ( $this->options->get( 'DisableAnonTalk' ) && !$currentEditorForPublic->isRegistered() ) {
+			} elseif ( $this->options->get( MainConfigNames::DisableAnonTalk ) &&
+			!$currentEditorForPublic->isRegistered() ) {
 				$summary = MessageValue::new( 'revertpage-anon' );
 			} else {
 				$summary = MessageValue::new( 'revertpage' );
