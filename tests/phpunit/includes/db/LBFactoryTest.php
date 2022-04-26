@@ -33,6 +33,7 @@ use Wikimedia\Rdbms\LBFactorySimple;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\LoadMonitorNull;
 use Wikimedia\Rdbms\MySQLPrimaryPos;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
@@ -150,9 +151,9 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$called = 0;
 		$countLBsFunc = static function ( LBFactoryMulti $factory ) {
 			$count = 0;
-			$factory->forEachLB( static function () use ( &$count ) {
+			foreach ( $factory->getAllLBs() as $lb ) {
 				++$count;
-			} );
+			}
 
 			return $count;
 		};
@@ -685,10 +686,9 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$domain = new DatabaseDomain( $wgDBname, null, 'pref_' );
 		$factory->redefineLocalDomain( $domain );
 
-		$n = 0;
-		$lb->forEachOpenConnection( static function () use ( &$n ) {
-			++$n;
-		} );
+		/** @var LoadBalancer $lbWrapper */
+		$lbWrapper = TestingAccessWrapper::newFromObject( $lb );
+		$n = iterator_count( $lbWrapper->getOpenConnections() );
 		$this->assertSame( 0, $n, "Connections closed" );
 
 		$conn2 = $lb->getConnectionRef( DB_PRIMARY );

@@ -67,6 +67,8 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mock = $this->createMock( LBFactory::class );
 		$mock->method( 'getMainLB' )
 			->willReturn( $loadBalancer );
+		$mock->method( 'getLBsForOwner' )
+			->willReturn( [] );
 		return $mock;
 	}
 

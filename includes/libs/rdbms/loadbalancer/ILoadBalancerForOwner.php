@@ -210,6 +210,7 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 
 	/**
 	 * Call a function with each open connection object
+	 * @deprecated since 1.39
 	 * @param callable $callback
 	 * @param array $params
 	 */
@@ -217,6 +218,7 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 
 	/**
 	 * Call a function with each open connection object to a primary
+	 * @deprecated since 1.39
 	 * @param callable $callback
 	 * @param array $params
 	 * @since 1.37

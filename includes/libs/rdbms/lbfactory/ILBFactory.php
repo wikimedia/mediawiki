@@ -23,6 +23,7 @@
 
 namespace Wikimedia\Rdbms;
 
+use Generator;
 use InvalidArgumentException;
 
 /**
@@ -193,10 +194,20 @@ interface ILBFactory {
 	 * The callback is called with the load balancer as the first parameter,
 	 * and $params passed as the subsequent parameters.
 	 *
+	 * @deprecated since 1.39 use getAllLBs()
+	 *
 	 * @param callable $callback
 	 * @param array $params
 	 */
 	public function forEachLB( $callback, array $params = [] );
+
+	/**
+	 * Get all tracked load balancer instances (generator)
+	 *
+	 * @return Generator|ILoadBalancer[]
+	 * @since 1.39
+	 */
+	public function getAllLBs();
 
 	/**
 	 * Prepare all instantiated tracked load balancer instances for shutdown
