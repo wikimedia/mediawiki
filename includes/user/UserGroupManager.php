@@ -32,6 +32,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\GroupPermissionsLookup;
+use MediaWiki\User\TempUser\TempUserConfig;
 use Psr\Log\LoggerInterface;
 use ReadOnlyMode;
 use Sanitizer;
@@ -101,6 +102,9 @@ class UserGroupManager implements IDBAccessObject {
 	/** @var LoggerInterface */
 	private $logger;
 
+	/** @var TempUserConfig */
+	private $tempUserConfig;
+
 	/** @var callable[] */
 	private $clearCacheCallbacks;
 
@@ -154,6 +158,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param JobQueueGroup $jobQueueGroup for this $dbDomain
 	 * @param LoggerInterface $logger
+	 * @param TempUserConfig $tempUserConfig
 	 * @param callable[] $clearCacheCallbacks
 	 * @param string|bool $dbDomain
 	 */
@@ -166,6 +171,7 @@ class UserGroupManager implements IDBAccessObject {
 		GroupPermissionsLookup $groupPermissionsLookup,
 		JobQueueGroup $jobQueueGroup,
 		LoggerInterface $logger,
+		TempUserConfig $tempUserConfig,
 		array $clearCacheCallbacks = [],
 		$dbDomain = false
 	) {
@@ -179,6 +185,7 @@ class UserGroupManager implements IDBAccessObject {
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->logger = $logger;
+		$this->tempUserConfig = $tempUserConfig;
 		// Can't just inject ROM since we LB can be for foreign wiki
 		$this->readOnlyMode = new ReadOnlyMode( $configuredReadOnlyMode, $this->loadBalancer );
 		$this->clearCacheCallbacks = $clearCacheCallbacks;
@@ -280,9 +287,11 @@ class UserGroupManager implements IDBAccessObject {
 			!$this->canUseCachedValues( $user, self::CACHE_IMPLICIT, $queryFlags )
 		) {
 			$groups = [ '*' ];
-			if ( $user->isRegistered() ) {
+			if ( $this->tempUserConfig->isReservedName( $user->getName() ) ) {
 				$groups[] = 'user';
-
+			} elseif ( $user->isRegistered() ) {
+				$groups[] = 'user';
+				$groups[] = 'named';
 				$groups = array_unique( array_merge(
 					$groups,
 					$this->getUserAutopromoteGroups( $user )
