@@ -23,6 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -162,7 +163,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return string
 	 */
 	public function formatRow( $row ) {
-		$notifTimestamp = $this->getConfig()->get( 'ShowUpdatedMarker' )
+		$notifTimestamp = $this->getConfig()->get( MainConfigNames::ShowUpdatedMarker )
 			? $this->watchlistManager
 				->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
 			: false;

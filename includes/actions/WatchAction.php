@@ -20,6 +20,7 @@
  * @ingroup Actions
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
@@ -57,7 +58,7 @@ class WatchAction extends FormAction {
 		WatchedItemStore $watchedItemStore
 	) {
 		parent::__construct( $page, $context );
-		$this->watchlistExpiry = $this->getContext()->getConfig()->get( 'WatchlistExpiry' );
+		$this->watchlistExpiry = $this->getContext()->getConfig()->get( MainConfigNames::WatchlistExpiry );
 		if ( $this->watchlistExpiry ) {
 			// The watchedItem is only used in this action's form if $wgWatchlistExpiry is enabled.
 			$this->watchedItem = $watchedItemStore->getWatchedItem(

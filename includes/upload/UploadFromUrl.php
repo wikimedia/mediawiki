@@ -21,6 +21,7 @@
  * @ingroup Upload
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 
@@ -61,7 +62,7 @@ class UploadFromUrl extends UploadBase {
 	 * @return bool
 	 */
 	public static function isEnabled() {
-		$allowCopyUploads = MediaWikiServices::getInstance()->getMainConfig()->get( 'AllowCopyUploads' );
+		$allowCopyUploads = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::AllowCopyUploads );
 
 		return $allowCopyUploads && parent::isEnabled();
 	}
@@ -117,9 +118,9 @@ class UploadFromUrl extends UploadBase {
 	 */
 	private static function getAllowedHosts(): array {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$domains = $config->get( 'CopyUploadsDomains' );
+		$domains = $config->get( MainConfigNames::CopyUploadsDomains );
 
-		if ( $config->get( 'CopyUploadAllowOnWikiDomainConfig' ) ) {
+		if ( $config->get( MainConfigNames::CopyUploadAllowOnWikiDomainConfig ) ) {
 			$page = wfMessage( 'copyupload-allowed-domains' )->inContentLanguage()->plain();
 
 			foreach ( explode( "\n", $page ) as $line ) {
@@ -274,8 +275,9 @@ class UploadFromUrl extends UploadBase {
 	 * @return Status
 	 */
 	protected function reallyFetchFile( $httpOptions = [] ) {
-		$copyUploadProxy = MediaWikiServices::getInstance()->getMainConfig()->get( 'CopyUploadProxy' );
-		$copyUploadTimeout = MediaWikiServices::getInstance()->getMainConfig()->get( 'CopyUploadTimeout' );
+		$copyUploadProxy = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::CopyUploadProxy );
+		$copyUploadTimeout = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::CopyUploadTimeout );
 		if ( $this->mTempPath === false ) {
 			return Status::newFatal( 'tmp-create-error' );
 		}

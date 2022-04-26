@@ -22,6 +22,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -116,10 +117,10 @@ class ThumbnailImage extends MediaTransformOutput {
 	 */
 	public function toHtml( $options = [] ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$priorityHints = $mainConfig->get( 'PriorityHints' );
-		$priorityHintsRatio = $mainConfig->get( 'PriorityHintsRatio' );
-		$elementTiming = $mainConfig->get( 'ElementTiming' );
-		$nativeImageLazyLoading = $mainConfig->get( 'NativeImageLazyLoading' );
+		$priorityHints = $mainConfig->get( MainConfigNames::PriorityHints );
+		$priorityHintsRatio = $mainConfig->get( MainConfigNames::PriorityHintsRatio );
+		$elementTiming = $mainConfig->get( MainConfigNames::ElementTiming );
+		$nativeImageLazyLoading = $mainConfig->get( MainConfigNames::NativeImageLazyLoading );
 
 		if ( func_num_args() == 2 ) {
 			throw new MWException( __METHOD__ . ' called in the old style' );

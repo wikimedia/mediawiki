@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 
@@ -474,7 +475,7 @@ class UploadStash {
 	 */
 	public static function getExtensionForPath( $path ) {
 		$prohibitedFileExtensions = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'ProhibitedFileExtensions' );
+			->getMainConfig()->get( MainConfigNames::ProhibitedFileExtensions );
 		// Does this have an extension?
 		$n = strrpos( $path, '.' );
 

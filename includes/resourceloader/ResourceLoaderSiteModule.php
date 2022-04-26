@@ -20,6 +20,8 @@
  * @author Roan Kattouw
  */
 
+use MediaWiki\MainConfigNames;
+
 /**
  * Module for site customizations.
  *
@@ -38,7 +40,7 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
 		$pages = [];
-		if ( $this->getConfig()->get( 'UseSiteJs' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::UseSiteJs ) ) {
 			$skin = $context->getSkin();
 			$pages['MediaWiki:Common.js'] = [ 'type' => 'script' ];
 			$pages['MediaWiki:' . ucfirst( $skin ) . '.js'] = [ 'type' => 'script' ];

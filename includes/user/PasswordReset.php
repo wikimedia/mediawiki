@@ -76,9 +76,9 @@ class PasswordReset implements LoggerAwareInterface {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'AllowRequiringEmailForResets',
-		'EnableEmail',
-		'PasswordResetRoutes',
+		MainConfigNames::AllowRequiringEmailForResets,
+		MainConfigNames::EnableEmail,
+		MainConfigNames::PasswordResetRoutes,
 	];
 
 	/**

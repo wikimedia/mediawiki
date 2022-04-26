@@ -5,6 +5,7 @@
  * @ingroup Actions
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
@@ -68,7 +69,7 @@ class McrUndoAction extends FormAction {
 		$this->readOnlyMode = $readOnlyMode;
 		$this->revisionLookup = $revisionLookup;
 		$this->revisionRenderer = $revisionRenderer;
-		$this->useRCPatrol = $config->get( 'UseRCPatrol' );
+		$this->useRCPatrol = $config->get( MainConfigNames::UseRCPatrol );
 	}
 
 	public function getName() {
@@ -94,7 +95,7 @@ class McrUndoAction extends FormAction {
 
 		$out = $this->getOutput();
 		$out->setRobotPolicy( 'noindex,nofollow' );
-		if ( $this->getContext()->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
+		if ( $this->getContext()->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere ) ) {
 			$out->addModuleStyles( [
 				'mediawiki.ui.input',
 				'mediawiki.ui.checkbox',
@@ -477,7 +478,7 @@ class McrUndoAction extends FormAction {
 	protected function alterForm( HTMLForm $form ) {
 		$form->setWrapperLegendMsg( 'confirm-mcrundo-title' );
 
-		$labelAsPublish = $this->context->getConfig()->get( 'EditSubmitButtonLabelPublish' );
+		$labelAsPublish = $this->context->getConfig()->get( MainConfigNames::EditSubmitButtonLabelPublish );
 
 		$form->setId( 'mw-mcrundo-form' );
 		$form->setSubmitName( 'wpSave' );

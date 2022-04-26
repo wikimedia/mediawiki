@@ -30,6 +30,7 @@ use ManualLogEntry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\User\TempUser\TempUserConfig;
@@ -56,20 +57,20 @@ class UserGroupManager implements IDBAccessObject {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'AddGroups',
-		'AutoConfirmAge',
-		'AutoConfirmCount',
-		'Autopromote',
-		'AutopromoteOnce',
-		'AutopromoteOnceLogInRC',
-		'EmailAuthentication',
-		'ImplicitGroups',
-		'GroupInheritsPermissions',
-		'GroupPermissions',
-		'GroupsAddToSelf',
-		'GroupsRemoveFromSelf',
-		'RevokePermissions',
-		'RemoveGroups',
+		MainConfigNames::AddGroups,
+		MainConfigNames::AutoConfirmAge,
+		MainConfigNames::AutoConfirmCount,
+		MainConfigNames::Autopromote,
+		MainConfigNames::AutopromoteOnce,
+		MainConfigNames::AutopromoteOnceLogInRC,
+		MainConfigNames::EmailAuthentication,
+		MainConfigNames::ImplicitGroups,
+		MainConfigNames::GroupInheritsPermissions,
+		MainConfigNames::GroupPermissions,
+		MainConfigNames::GroupsAddToSelf,
+		MainConfigNames::GroupsRemoveFromSelf,
+		MainConfigNames::RevokePermissions,
+		MainConfigNames::RemoveGroups,
 	];
 
 	/** @var ServiceOptions */
@@ -202,9 +203,9 @@ class UserGroupManager implements IDBAccessObject {
 		return array_values( array_unique(
 			array_diff(
 				array_merge(
-					array_keys( $this->options->get( 'GroupPermissions' ) ),
-					array_keys( $this->options->get( 'RevokePermissions' ) ),
-					array_keys( $this->options->get( 'GroupInheritsPermissions' ) )
+					array_keys( $this->options->get( MainConfigNames::GroupPermissions ) ),
+					array_keys( $this->options->get( MainConfigNames::RevokePermissions ) ),
+					array_keys( $this->options->get( MainConfigNames::GroupInheritsPermissions ) )
 				),
 				$this->listAllImplicitGroups()
 			)
@@ -216,7 +217,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @return string[]
 	 */
 	public function listAllImplicitGroups(): array {
-		return $this->options->get( 'ImplicitGroups' );
+		return $this->options->get( MainConfigNames::ImplicitGroups );
 	}
 
 	/**
@@ -406,7 +407,7 @@ class UserGroupManager implements IDBAccessObject {
 		$promote = [];
 		// TODO: remove the need for the full user object
 		$userObj = User::newFromIdentity( $user );
-		foreach ( $this->options->get( 'Autopromote' ) as $group => $cond ) {
+		foreach ( $this->options->get( MainConfigNames::Autopromote ) as $group => $cond ) {
 			if ( $this->recCheckCondition( $cond, $userObj ) ) {
 				$promote[] = $group;
 			}
@@ -432,7 +433,7 @@ class UserGroupManager implements IDBAccessObject {
 		UserIdentity $user,
 		string $event
 	): array {
-		$autopromoteOnce = $this->options->get( 'AutopromoteOnce' );
+		$autopromoteOnce = $this->options->get( MainConfigNames::AutopromoteOnce );
 		$promote = [];
 
 		if ( isset( $autopromoteOnce[$event] ) && count( $autopromoteOnce[$event] ) ) {
@@ -542,7 +543,7 @@ class UserGroupManager implements IDBAccessObject {
 		switch ( $cond[0] ) {
 			case APCOND_EMAILCONFIRMED:
 				if ( Sanitizer::validateEmail( $user->getEmail() ) ) {
-					if ( $this->options->get( 'EmailAuthentication' ) ) {
+					if ( $this->options->get( MainConfigNames::EmailAuthentication ) ) {
 						return (bool)$user->getEmailAuthenticationTimestamp();
 					} else {
 						return true;
@@ -550,7 +551,7 @@ class UserGroupManager implements IDBAccessObject {
 				}
 				return false;
 			case APCOND_EDITCOUNT:
-				$reqEditCount = $cond[1] ?? $this->options->get( 'AutoConfirmCount' );
+				$reqEditCount = $cond[1] ?? $this->options->get( MainConfigNames::AutoConfirmCount );
 
 				// T157718: Avoid edit count lookup if specified edit count is 0 or invalid
 				if ( $reqEditCount <= 0 ) {
@@ -558,7 +559,7 @@ class UserGroupManager implements IDBAccessObject {
 				}
 				return $user->isRegistered() && $this->userEditTracker->getUserEditCount( $user ) >= $reqEditCount;
 			case APCOND_AGE:
-				$reqAge = $cond[1] ?? $this->options->get( 'AutoConfirmAge' );
+				$reqAge = $cond[1] ?? $this->options->get( MainConfigNames::AutoConfirmAge );
 				$age = time() - (int)wfTimestampOrNull( TS_UNIX, $user->getRegistration() );
 				return $age >= $reqAge;
 			case APCOND_AGE_FROM_EDIT:
@@ -660,7 +661,7 @@ class UserGroupManager implements IDBAccessObject {
 			'5::newgroups' => $newGroups,
 		] );
 		$logid = $logEntry->insert();
-		if ( $this->options->get( 'AutopromoteOnceLogInRC' ) ) {
+		if ( $this->options->get( MainConfigNames::AutopromoteOnceLogInRC ) ) {
 			$logEntry->publish( $logid );
 		}
 
@@ -1063,16 +1064,16 @@ class UserGroupManager implements IDBAccessObject {
 	public function getGroupsChangeableByGroup( string $group ): array {
 		return [
 			'add' => $this->expandChangeableGroupConfig(
-				$this->options->get( 'AddGroups' ), $group
+				$this->options->get( MainConfigNames::AddGroups ), $group
 			),
 			'remove' => $this->expandChangeableGroupConfig(
-				$this->options->get( 'RemoveGroups' ), $group
+				$this->options->get( MainConfigNames::RemoveGroups ), $group
 			),
 			'add-self' => $this->expandChangeableGroupConfig(
-				$this->options->get( 'GroupsAddToSelf' ), $group
+				$this->options->get( MainConfigNames::GroupsAddToSelf ), $group
 			),
 			'remove-self' => $this->expandChangeableGroupConfig(
-				$this->options->get( 'GroupsRemoveFromSelf' ), $group
+				$this->options->get( MainConfigNames::GroupsRemoveFromSelf ), $group
 			),
 		];
 	}

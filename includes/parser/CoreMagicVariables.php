@@ -153,7 +153,7 @@ class CoreMagicVariables {
 			case 'revisionid':
 				$namespace = $title->getNamespace();
 				if (
-					$svcOptions->get( 'MiserMode' ) &&
+					$svcOptions->get( MainConfigNames::MiserMode ) &&
 					!$parser->getOptions()->getInterfaceMessage() &&
 					// @TODO: disallow this variable on all namespaces
 					$nsInfo->isSubject( $namespace )
@@ -329,7 +329,7 @@ class CoreMagicVariables {
 	 * @return ConvertibleTimestamp
 	 */
 	private static function makeTsLocal( $svcOptions, $ts ) {
-		$localtimezone = $svcOptions->get( 'Localtimezone' );
+		$localtimezone = $svcOptions->get( MainConfigNames::Localtimezone );
 		$ts->setTimezone( $localtimezone );
 		return $ts;
 	}

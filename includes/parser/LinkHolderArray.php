@@ -23,6 +23,7 @@
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -109,7 +110,8 @@ class LinkHolderArray {
 	 * @return bool
 	 */
 	public function isBig() {
-		$linkHolderBatchSize = MediaWikiServices::getInstance()->getMainConfig()->get( 'LinkHolderBatchSize' );
+		$linkHolderBatchSize = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::LinkHolderBatchSize );
 		return $this->size > $linkHolderBatchSize;
 	}
 

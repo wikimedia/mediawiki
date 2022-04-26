@@ -26,6 +26,7 @@ namespace MediaWiki\Session;
 use CachedBagOStuff;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use User;
@@ -150,7 +151,7 @@ final class SessionBackend {
 		SessionId $id, SessionInfo $info, CachedBagOStuff $store, LoggerInterface $logger,
 		HookContainer $hookContainer, $lifetime
 	) {
-		$phpSessionHandling = \RequestContext::getMain()->getConfig()->get( 'PHPSessionHandling' );
+		$phpSessionHandling = \RequestContext::getMain()->getConfig()->get( MainConfigNames::PHPSessionHandling );
 		$this->usePhpSessionHandling = $phpSessionHandling !== 'disable';
 
 		if ( $info->getUserInfo() && !$info->getUserInfo()->isVerified() ) {

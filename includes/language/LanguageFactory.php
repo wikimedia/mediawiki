@@ -31,6 +31,7 @@ use LocalisationCache;
 use MapCacheLRU;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MainConfigNames;
 use MWException;
 
 /**
@@ -72,7 +73,7 @@ class LanguageFactory {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'DummyLanguageCodes',
+		MainConfigNames::DummyLanguageCodes,
 	];
 
 	/** How many distinct Language objects to retain at most in memory (T40439). */
@@ -119,7 +120,7 @@ class LanguageFactory {
 	 * @return Language
 	 */
 	public function getLanguage( $code ): Language {
-		$code = $this->options->get( 'DummyLanguageCodes' )[$code] ?? $code;
+		$code = $this->options->get( MainConfigNames::DummyLanguageCodes )[$code] ?? $code;
 		return $this->langObjCache->getWithSetCallback(
 			$code,
 			function () use ( $code ) {

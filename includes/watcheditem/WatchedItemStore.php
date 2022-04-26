@@ -4,6 +4,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\User\UserIdentity;
@@ -29,10 +30,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'UpdateRowsPerQuery',
-		'WatchlistExpiry',
-		'WatchlistExpiryMaxDuration',
-		'WatchlistPurgeRate',
+		MainConfigNames::UpdateRowsPerQuery,
+		MainConfigNames::WatchlistExpiry,
+		MainConfigNames::WatchlistExpiryMaxDuration,
+		MainConfigNames::WatchlistPurgeRate,
 	];
 
 	/**
@@ -145,10 +146,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		LinkBatchFactory $linkBatchFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->updateRowsPerQuery = $options->get( 'UpdateRowsPerQuery' );
-		$this->expiryEnabled = $options->get( 'WatchlistExpiry' );
-		$this->maxExpiryDuration = $options->get( 'WatchlistExpiryMaxDuration' );
-		$this->watchlistPurgeRate = $options->get( 'WatchlistPurgeRate' );
+		$this->updateRowsPerQuery = $options->get( MainConfigNames::UpdateRowsPerQuery );
+		$this->expiryEnabled = $options->get( MainConfigNames::WatchlistExpiry );
+		$this->maxExpiryDuration = $options->get( MainConfigNames::WatchlistExpiryMaxDuration );
+		$this->watchlistPurgeRate = $options->get( MainConfigNames::WatchlistPurgeRate );
 
 		$this->lbFactory = $lbFactory;
 		$this->loadBalancer = $lbFactory->getMainLB();

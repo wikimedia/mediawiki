@@ -20,6 +20,7 @@
 
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\DeletePageFactory;
@@ -88,7 +89,7 @@ class DeleteAction extends FormlessAction {
 		$this->readOnlyMode = $services->getReadOnlyMode();
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
 		$this->deletePageFactory = $services->getDeletePageFactory();
-		$this->deleteRevisionsLimit = $services->getMainConfig()->get( 'DeleteRevisionsLimit' );
+		$this->deleteRevisionsLimit = $services->getMainConfig()->get( MainConfigNames::DeleteRevisionsLimit );
 		$this->namespaceInfo = $services->getNamespaceInfo();
 		$this->titleFormatter = $services->getTitleFormatter();
 	}

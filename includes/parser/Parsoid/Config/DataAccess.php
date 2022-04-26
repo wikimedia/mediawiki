@@ -29,6 +29,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use Parser;
 use ParserFactory;
 use ReadOnlyMode;
@@ -71,7 +72,7 @@ class DataAccess extends IDataAccess {
 	private $previousPageConfig;
 
 	public const CONSTRUCTOR_OPTIONS = [
-		'SVGMaxSize',
+		MainConfigNames::SVGMaxSize,
 	];
 
 	/** @var ServiceOptions */
@@ -141,7 +142,7 @@ class DataAccess extends IDataAccess {
 			if ( isset( $hp['height'] ) && $file->isVectorized() ) {
 				// If it's a vector image, and user only specifies height
 				// we don't want it to be limited by its "normal" width.
-				$hp['width'] = $this->config->get( 'SVGMaxSize' );
+				$hp['width'] = $this->config->get( MainConfigNames::SVGMaxSize );
 			} else {
 				$hp['width'] = $file->getWidth( $page );
 			}

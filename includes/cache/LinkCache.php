@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
@@ -382,7 +383,8 @@ class LinkCache implements LoggerAwareInterface {
 	 * @return array
 	 */
 	public static function getSelectFields() {
-		$pageLanguageUseDB = MediaWikiServices::getInstance()->getMainConfig()->get( 'PageLanguageUseDB' );
+		$pageLanguageUseDB = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::PageLanguageUseDB );
 
 		$fields = array_merge(
 			PageStoreRecord::REQUIRED_FIELDS,

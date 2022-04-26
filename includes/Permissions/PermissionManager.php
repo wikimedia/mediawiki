@@ -28,6 +28,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Session\SessionManager;
@@ -67,17 +68,17 @@ class PermissionManager {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'WhitelistRead',
-		'WhitelistReadRegexp',
-		'EmailConfirmToEdit',
-		'BlockDisablesLogin',
-		'EnablePartialActionBlocks',
-		'GroupPermissions',
-		'RevokePermissions',
-		'AvailableRights',
-		'NamespaceProtection',
-		'RestrictionLevels',
-		'DeleteRevisionsLimit',
+		MainConfigNames::WhitelistRead,
+		MainConfigNames::WhitelistReadRegexp,
+		MainConfigNames::EmailConfirmToEdit,
+		MainConfigNames::BlockDisablesLogin,
+		MainConfigNames::EnablePartialActionBlocks,
+		MainConfigNames::GroupPermissions,
+		MainConfigNames::RevokePermissions,
+		MainConfigNames::AvailableRights,
+		MainConfigNames::NamespaceProtection,
+		MainConfigNames::RestrictionLevels,
+		MainConfigNames::DeleteRevisionsLimit,
 	];
 
 	/** @var ServiceOptions */
@@ -615,7 +616,7 @@ class PermissionManager {
 		// TODO: remove when LinkTarget usage will expand further
 		$title = Title::newFromLinkTarget( $page );
 
-		$whiteListRead = $this->options->get( 'WhitelistRead' );
+		$whiteListRead = $this->options->get( MainConfigNames::WhitelistRead );
 		$allowed = false;
 		if ( $this->isEveryoneAllowed( 'read' ) ) {
 			# Shortcut for public wikis, allows skipping quite a bit of code
@@ -664,7 +665,7 @@ class PermissionManager {
 			}
 		}
 
-		$whitelistReadRegexp = $this->options->get( 'WhitelistReadRegexp' );
+		$whitelistReadRegexp = $this->options->get( MainConfigNames::WhitelistReadRegexp );
 		if ( !$allowed && is_array( $whitelistReadRegexp )
 			&& !empty( $whitelistReadRegexp )
 		) {
@@ -757,11 +758,11 @@ class PermissionManager {
 		}
 
 		// Optimize for a very common case
-		if ( $action === 'read' && !$this->options->get( 'BlockDisablesLogin' ) ) {
+		if ( $action === 'read' && !$this->options->get( MainConfigNames::BlockDisablesLogin ) ) {
 			return $errors;
 		}
 
-		if ( $this->options->get( 'EmailConfirmToEdit' )
+		if ( $this->options->get( MainConfigNames::EmailConfirmToEdit )
 			&& !$user->isEmailConfirmed()
 			&& $action === 'edit'
 		) {
@@ -851,7 +852,7 @@ class PermissionManager {
 			if (
 				$this->isBlockedFrom( $user, $page, $useReplica ) ||
 				(
-					$this->options->get( 'EnablePartialActionBlocks' ) &&
+					$this->options->get( MainConfigNames::EnablePartialActionBlocks ) &&
 					$block->appliesToRight( $action )
 				)
 			) {
@@ -1170,14 +1171,14 @@ class PermissionManager {
 			}
 			if ( $rigor !== self::RIGOR_QUICK
 				&& $action == 'delete'
-				&& $this->options->get( 'DeleteRevisionsLimit' )
+				&& $this->options->get( MainConfigNames::DeleteRevisionsLimit )
 				&& !$this->userCan( 'bigdelete', $user, $title )
 				&& $title->isBigDeletion()
 			) {
 				// NOTE: This check is deprecated since 1.37, see T288759
 				$errors[] = [
 					'delete-toobig',
-					$wgLang->formatNum( $this->options->get( 'DeleteRevisionsLimit' ) )
+					$wgLang->formatNum( $this->options->get( MainConfigNames::DeleteRevisionsLimit ) )
 				];
 			}
 		} elseif ( $action === 'undelete' ) {
@@ -1490,7 +1491,7 @@ class PermissionManager {
 
 			if (
 				$userObj->isRegistered() &&
-				$this->options->get( 'BlockDisablesLogin' ) &&
+				$this->options->get( MainConfigNames::BlockDisablesLogin ) &&
 				$userObj->getBlock()
 			) {
 				$anon = new User;
@@ -1600,15 +1601,15 @@ class PermissionManager {
 			return $this->cachedRights[$right];
 		}
 
-		if ( !isset( $this->options->get( 'GroupPermissions' )['*'][$right] )
-			|| !$this->options->get( 'GroupPermissions' )['*'][$right]
+		if ( !isset( $this->options->get( MainConfigNames::GroupPermissions )['*'][$right] )
+			|| !$this->options->get( MainConfigNames::GroupPermissions )['*'][$right]
 		) {
 			$this->cachedRights[$right] = false;
 			return false;
 		}
 
 		// If it's revoked anywhere, then everyone doesn't have it
-		foreach ( $this->options->get( 'RevokePermissions' ) as $rights ) {
+		foreach ( $this->options->get( MainConfigNames::RevokePermissions ) as $rights ) {
 			if ( isset( $rights[$right] ) && $rights[$right] ) {
 				$this->cachedRights[$right] = false;
 				return false;
@@ -1646,10 +1647,10 @@ class PermissionManager {
 	 */
 	public function getAllPermissions() {
 		if ( $this->allRights === null ) {
-			if ( count( $this->options->get( 'AvailableRights' ) ) ) {
+			if ( count( $this->options->get( MainConfigNames::AvailableRights ) ) ) {
 				$this->allRights = array_unique( array_merge(
 					$this->coreRights,
-					$this->options->get( 'AvailableRights' )
+					$this->options->get( MainConfigNames::AvailableRights )
 				) );
 			} else {
 				$this->allRights = $this->coreRights;
@@ -1666,7 +1667,7 @@ class PermissionManager {
 	 * @return bool
 	 */
 	private function isNamespaceProtected( $index, UserIdentity $user ) {
-		$namespaceProtection = $this->options->get( 'NamespaceProtection' );
+		$namespaceProtection = $this->options->get( MainConfigNames::NamespaceProtection );
 		if ( isset( $namespaceProtection[$index] ) ) {
 			return !$this->userHasAllRights( $user, ...(array)$namespaceProtection[$index] );
 		}
@@ -1682,10 +1683,10 @@ class PermissionManager {
 	 * @return string[]
 	 */
 	public function getNamespaceRestrictionLevels( $index, UserIdentity $user = null ) {
-		if ( !isset( $this->options->get( 'NamespaceProtection' )[$index] ) ) {
+		if ( !isset( $this->options->get( MainConfigNames::NamespaceProtection )[$index] ) ) {
 			// All levels are valid if there's no namespace restriction.
 			// But still filter by user, if necessary
-			$levels = $this->options->get( 'RestrictionLevels' );
+			$levels = $this->options->get( MainConfigNames::RestrictionLevels );
 			if ( $user ) {
 				$levels = array_values( array_filter( $levels, function ( $level ) use ( $user ) {
 					$right = $level;
@@ -1710,7 +1711,7 @@ class PermissionManager {
 		//
 		// First, for each right, get a list of groups with that right.
 		$namespaceRightGroups = [];
-		foreach ( (array)$this->options->get( 'NamespaceProtection' )[$index] as $right ) {
+		foreach ( (array)$this->options->get( MainConfigNames::NamespaceProtection )[$index] as $right ) {
 			if ( $right == 'sysop' ) {
 				$right = 'editprotected'; // BC
 			}
@@ -1724,7 +1725,7 @@ class PermissionManager {
 
 		// Now, go through the protection levels one by one.
 		$usableLevels = [ '' ];
-		foreach ( $this->options->get( 'RestrictionLevels' ) as $level ) {
+		foreach ( $this->options->get( MainConfigNames::RestrictionLevels ) as $level ) {
 			$right = $level;
 			if ( $right == 'sysop' ) {
 				$right = 'editprotected'; // BC

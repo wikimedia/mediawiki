@@ -29,6 +29,7 @@
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionLookup;
@@ -113,7 +114,7 @@ class RawAction extends FormlessAction {
 
 		$contentType = $this->getContentType();
 
-		$maxage = $request->getInt( 'maxage', $config->get( 'CdnMaxAge' ) );
+		$maxage = $request->getInt( 'maxage', $config->get( MainConfigNames::CdnMaxAge ) );
 		$smaxage = $request->getIntOrNull( 'smaxage' );
 		if ( $smaxage === null ) {
 			if (
@@ -124,7 +125,7 @@ class RawAction extends FormlessAction {
 				// CSS/JSON/JS raw content has its own CDN max age configuration.
 				// Note: HtmlCacheUpdater::getUrls() includes action=raw for css/json/js
 				// pages, so if using the canonical url, this will get HTCP purges.
-				$smaxage = intval( $config->get( 'ForcedRawSMaxage' ) );
+				$smaxage = intval( $config->get( MainConfigNames::ForcedRawSMaxage ) );
 			} else {
 				// No CDN cache for anything else
 				$smaxage = 0;

@@ -31,6 +31,7 @@ use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
@@ -108,8 +109,8 @@ class BlockUser {
 	 * @internal For use by UserBlockCommandFactory
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'HideUserContribLimit',
-		'BlockAllowsUTEdit',
+		MainConfigNames::HideUserContribLimit,
+		MainConfigNames::BlockAllowsUTEdit,
 	];
 
 	/**
@@ -287,7 +288,7 @@ class BlockUser {
 			// - always blocked if the config says so;
 			// - otherwise blocked/unblocked if the option was passed in;
 			// - otherwise defaults to not blocked.
-			if ( !$this->options->get( 'BlockAllowsUTEdit' ) ) {
+			if ( !$this->options->get( MainConfigNames::BlockAllowsUTEdit ) ) {
 				$this->isUserTalkEditBlocked = true;
 			} else {
 				$this->isUserTalkEditBlocked = $blockOptions['isUserTalkEditBlocked'] ?? false;
@@ -508,7 +509,7 @@ class BlockUser {
 				return Status::newFatal( 'ipb_expiry_temp' );
 			}
 
-			$hideUserContribLimit = $this->options->get( 'HideUserContribLimit' );
+			$hideUserContribLimit = $this->options->get( MainConfigNames::HideUserContribLimit );
 			if (
 				$hideUserContribLimit !== false &&
 				$this->userEditTracker->getUserEditCount( $this->target ) > $hideUserContribLimit
@@ -749,7 +750,7 @@ class BlockUser {
 			$flags[] = 'noemail';
 		}
 
-		if ( $this->options->get( 'BlockAllowsUTEdit' ) && $this->isUserTalkEditBlocked ) {
+		if ( $this->options->get( MainConfigNames::BlockAllowsUTEdit ) && $this->isUserTalkEditBlocked ) {
 			// For grepping: message block-log-flags-nousertalk
 			$flags[] = 'nousertalk';
 		}

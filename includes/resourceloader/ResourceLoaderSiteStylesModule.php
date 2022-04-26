@@ -20,6 +20,8 @@
  * @author Roan Kattouw
  */
 
+use MediaWiki\MainConfigNames;
+
 /**
  * Module for site style customizations.
  *
@@ -38,7 +40,7 @@ class ResourceLoaderSiteStylesModule extends ResourceLoaderWikiModule {
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
 		$pages = [];
-		if ( $this->getConfig()->get( 'UseSiteCss' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::UseSiteCss ) ) {
 			$skin = $context->getSkin();
 			$pages['MediaWiki:Common.css'] = [ 'type' => 'style' ];
 			$pages['MediaWiki:' . ucfirst( $skin ) . '.css'] = [ 'type' => 'style' ];

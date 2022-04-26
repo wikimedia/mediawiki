@@ -24,6 +24,7 @@ use CommentStoreComment;
 use IContextSource;
 use InvalidArgumentException;
 use MediaWiki\DAO\WikiAwareEntityTrait;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Message;
@@ -277,7 +278,7 @@ abstract class AbstractBlock implements Block {
 	 */
 	public function appliesToRight( $right ) {
 		$config = RequestContext::getMain()->getConfig();
-		$blockDisablesLogin = $config->get( 'BlockDisablesLogin' );
+		$blockDisablesLogin = $config->get( MainConfigNames::BlockDisablesLogin );
 
 		$res = null;
 		switch ( $right ) {
@@ -498,7 +499,7 @@ abstract class AbstractBlock implements Block {
 		// This is a type of block which uses the ipb_allow_usertalk
 		// flag. The flag can still be overridden by global configs.
 		$config = RequestContext::getMain()->getConfig();
-		if ( !$config->get( 'BlockAllowsUTEdit' ) ) {
+		if ( !$config->get( MainConfigNames::BlockAllowsUTEdit ) ) {
 			return true;
 		}
 		return !$this->isUsertalkEditAllowed();

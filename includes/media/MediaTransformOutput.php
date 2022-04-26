@@ -22,6 +22,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -246,7 +247,7 @@ abstract class MediaTransformOutput {
 			return Xml::tags( 'a', $linkAttribs, $contents );
 		} else {
 			$parserEnableLegacyMediaDOM = MediaWikiServices::getInstance()
-				->getMainConfig()->get( 'ParserEnableLegacyMediaDOM' );
+				->getMainConfig()->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 			if ( $parserEnableLegacyMediaDOM ) {
 				return $contents;
 			} else {
@@ -282,7 +283,7 @@ abstract class MediaTransformOutput {
 		];
 
 		$parserEnableLegacyMediaDOM = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'ParserEnableLegacyMediaDOM' );
+			->getMainConfig()->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 		if ( $parserEnableLegacyMediaDOM ) {
 			$attribs['class'] = 'image';
 		} else {

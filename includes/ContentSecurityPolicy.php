@@ -366,7 +366,8 @@ class ContentSecurityPolicy {
 	private function getAdditionalSelfUrlsScript() {
 		$additionalUrls = [];
 		// wgExtensionAssetsPath for ?debug=true mode
-		$pathVars = [ 'LoadScript', 'ExtensionAssetsPath', 'ResourceBasePath' ];
+		$pathVars = [ MainConfigNames::LoadScript, MainConfigNames::ExtensionAssetsPath,
+			MainConfigNames::ResourceBasePath ];
 
 		foreach ( $pathVars as $path ) {
 			$url = $this->mwConfig->get( $path );
@@ -419,7 +420,8 @@ class ContentSecurityPolicy {
 		$repoGroup->forEachForeignRepo( $callback, [ &$pathUrls ] );
 
 		// Globals that might point to a different domain
-		$pathGlobals = [ 'LoadScript', 'ExtensionAssetsPath', 'StylePath', 'ResourceBasePath' ];
+		$pathGlobals = [ MainConfigNames::LoadScript, MainConfigNames::ExtensionAssetsPath,
+			MainConfigNames::StylePath, MainConfigNames::ResourceBasePath ];
 		foreach ( $pathGlobals as $path ) {
 			$pathUrls[] = $this->mwConfig->get( $path );
 		}
