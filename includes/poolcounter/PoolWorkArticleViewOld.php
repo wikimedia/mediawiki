@@ -65,7 +65,7 @@ class PoolWorkArticleViewOld extends PoolWorkArticleView {
 		/** @var ParserOutput|null $output */
 		$output = $status->getValue();
 
-		if ( $output && $this->cacheable && $output->isCacheable() ) {
+		if ( $output && $output->isCacheable() ) {
 			$this->cache->save( $output, $this->revision, $this->parserOptions, $cacheTime );
 		}
 
