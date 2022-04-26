@@ -27,6 +27,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
@@ -94,6 +95,14 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			$services->getGroupPermissionsLookup(),
 			$services->getJobQueueGroup(),
 			new TestLogger(),
+			new RealTempUserConfig( [
+				'enabled' => true,
+				'actions' => [ 'edit' ],
+				'serialProvider' => [ 'type' => 'local' ],
+				'serialMapping' => [ 'type' => 'plain-numeric' ],
+				'matchPattern' => '*Unregistered $1',
+				'genPattern' => '*Unregistered $1'
+			] ),
 			$callback ? [ $callback ] : []
 		);
 	}
@@ -163,13 +172,13 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$manager = $this->getManager();
 		$user = $this->getTestUser( 'unittesters' )->getUser();
 		$this->assertArrayEquals(
-			[ '*', 'user', 'autoconfirmed' ],
+			[ '*', 'user', 'named', 'autoconfirmed' ],
 			$manager->getUserImplicitGroups( $user )
 		);
 
 		$user = $this->getTestUser( [ 'bureaucrat', 'test' ] )->getUser();
 		$this->assertArrayEquals(
-			[ '*', 'user', 'autoconfirmed' ],
+			[ '*', 'user', 'named', 'autoconfirmed' ],
 			$manager->getUserImplicitGroups( $user )
 		);
 
@@ -178,7 +187,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			'added user to group'
 		);
 		$this->assertArrayEquals(
-			[ '*', 'user', 'autoconfirmed' ],
+			[ '*', 'user', 'named', 'autoconfirmed' ],
 			$manager->getUserImplicitGroups( $user )
 		);
 
@@ -190,35 +199,42 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		] ] );
 		$user = $this->getTestUser()->getUser();
 		$this->assertArrayEquals(
-			[ '*', 'user' ],
+			[ '*', 'user', 'named' ],
 			$manager->getUserImplicitGroups( $user )
 		);
 		$this->assertArrayEquals(
-			[ '*', 'user' ],
+			[ '*', 'user', 'named' ],
 			$manager->getUserEffectiveGroups( $user )
 		);
 		$user->confirmEmail();
 		$this->assertArrayEquals(
-			[ '*', 'user', 'dummy' ],
+			[ '*', 'user', 'named', 'dummy' ],
 			$manager->getUserImplicitGroups( $user, UserGroupManager::READ_NORMAL, true )
 		);
 		$this->assertArrayEquals(
-			[ '*', 'user', 'dummy' ],
+			[ '*', 'user', 'named', 'dummy' ],
 			$manager->getUserEffectiveGroups( $user )
 		);
 
 		$user = $this->getTestUser( [ 'dummy' ] )->getUser();
 		$user->confirmEmail();
 		$this->assertArrayEquals(
-			[ '*', 'user', 'dummy' ],
+			[ '*', 'user', 'named', 'dummy' ],
+			$manager->getUserImplicitGroups( $user )
+		);
+
+		$user = new User;
+		$user->setName( '*Unregistered 1234' );
+		$this->assertArrayEquals(
+			[ '*', 'user' ],
 			$manager->getUserImplicitGroups( $user )
 		);
 	}
 
 	public function provideGetEffectiveGroups() {
-		yield [ [], [ '*', 'user', 'autoconfirmed' ] ];
-		yield [ [ 'bureaucrat', 'test' ], [ '*', 'user', 'autoconfirmed', 'bureaucrat', 'test' ] ];
-		yield [ [ 'autoconfirmed', 'test' ], [ '*', 'user', 'autoconfirmed', 'test' ] ];
+		yield [ [], [ '*', 'user', 'named', 'autoconfirmed' ] ];
+		yield [ [ 'bureaucrat', 'test' ], [ '*', 'user', 'named', 'autoconfirmed', 'bureaucrat', 'test' ] ];
+		yield [ [ 'autoconfirmed', 'test' ], [ '*', 'user', 'named', 'autoconfirmed', 'test' ] ];
 	}
 
 	/**

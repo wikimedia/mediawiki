@@ -61,6 +61,9 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\Storage\PageUpdater;
+use MediaWiki\User\TempUser\TempUserCreator;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
@@ -437,6 +440,30 @@ class EditPage implements IEditObject {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
+	/** @var TempUserCreator */
+	private $tempUserCreator;
+
+	/** @var UserFactory */
+	private $userFactory;
+
+	/** @var User|null */
+	private $placeholderTempUser;
+
+	/** @var User|null */
+	private $unsavedTempUser;
+
+	/** @var User|null */
+	private $savedTempUser;
+
+	/** @var bool Whether temp user creation will be attempted */
+	private $tempUserCreateActive = false;
+
+	/** @var string|null If a temp user name was acquired, this is the name */
+	private $tempUserName;
+
+	/** @var bool Whether temp user creation was successful */
+	private $tempUserCreateDone = false;
+
 	/**
 	 * @stable to call
 	 * @param Article $article
@@ -473,6 +500,8 @@ class EditPage implements IEditObject {
 		$this->userNameUtils = $services->getUserNameUtils();
 		$this->redirectLookup = $services->getRedirectLookup();
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
+		$this->tempUserCreator = $services->getTempUserCreator();
+		$this->userFactory = $services->getUserFactory();
 
 		$this->deprecatePublicProperty( 'mArticle', '1.30', __CLASS__ );
 		$this->deprecatePublicProperty( 'mTitle', '1.30', __CLASS__ );
@@ -604,16 +633,19 @@ class EditPage implements IEditObject {
 			}
 		}
 
+		$this->maybeActivateTempUserCreate( !$this->firsttime );
+
 		$permErrors = $this->getEditPermissionErrors(
 			$this->save ? PermissionManager::RIGOR_SECURE : PermissionManager::RIGOR_FULL
 		);
 		if ( $permErrors ) {
 			wfDebug( __METHOD__ . ": User can't edit" );
 
-			if ( $this->context->getUser()->getBlock() && !$readOnlyMode->isReadOnly() ) {
+			$user = $this->context->getUser();
+			if ( $user->getBlock() && !$readOnlyMode->isReadOnly() ) {
 				// Auto-block user's IP if the account was "hard" blocked
-				DeferredUpdates::addCallableUpdate( function () {
-					$this->context->getUser()->spreadAnyEditBlock();
+				DeferredUpdates::addCallableUpdate( static function () use ( $user ) {
+					$user->spreadAnyEditBlock();
 				} );
 			}
 			$this->displayPermissionsError( $permErrors );
@@ -735,11 +767,146 @@ class EditPage implements IEditObject {
 	}
 
 	/**
+	 * Check the configuration and current user and enable automatic temporary
+	 * user creation if possible.
+	 *
+	 * @param bool $doAcquire Whether to acquire a name for the temporary account
+	 *
+	 * @since 1.39
+	 */
+	public function maybeActivateTempUserCreate( $doAcquire ) {
+		if ( $this->tempUserCreateActive ) {
+			// Already done
+			return;
+		}
+		$user = $this->context->getUser();
+		if ( !$user->isRegistered()
+			&& $this->tempUserCreator->isAutoCreateAction( 'edit' )
+			&& $this->permManager->userHasRight( $user, 'createaccount' )
+		) {
+			if ( $doAcquire ) {
+				$name = $this->tempUserCreator->acquireAndStashName(
+					$this->context->getRequest()->getSession() );
+				$this->unsavedTempUser = $this->userFactory->newUnsavedTempUser( $name );
+				$this->tempUserName = $name;
+			} else {
+				$this->placeholderTempUser = $this->userFactory->newTempPlaceholder();
+			}
+			$this->tempUserCreateActive = true;
+		}
+	}
+
+	/**
+	 * If automatic user creation is enabled, create the user and adjust the
+	 * PageUpdater so that it has the new user/actor ID.
+	 *
+	 * This is a helper for internalAttemptSave(). The name should have already
+	 * been acquired at this point for PST purposes, but if not, it will be
+	 * acquired here.
+	 *
+	 * If the edit is a null edit, the user will not be created.
+	 *
+	 * @param PageUpdater $pageUpdater
+	 * @return Status
+	 */
+	private function createTempUser( PageUpdater $pageUpdater ) {
+		if ( !$this->tempUserCreateActive ) {
+			return Status::newGood();
+		}
+		if ( !$pageUpdater->isChange() ) {
+			$pageUpdater->preventChange();
+			return Status::newGood();
+		}
+		$status = $this->tempUserCreator->create(
+			$this->tempUserName, // acquire if null
+			$this->context->getRequest()
+		);
+		if ( $status->isOK() ) {
+			$this->placeholderTempUser = null;
+			$this->unsavedTempUser = null;
+			$this->savedTempUser = $status->getUser();
+			$pageUpdater->updateAuthor( $status->getUser() );
+			$this->tempUserCreateDone = true;
+		}
+		return $status;
+	}
+
+	/**
+	 * Get the authority for permissions purposes.
+	 *
+	 * On an initial edit page GET request, if automatic temporary user creation
+	 * is enabled, this may be a placeholder user with a fixed name. Such users
+	 * are unsuitable for anything that uses or exposes the name, like
+	 * throttling. The only thing a placeholder user is good for is fooling the
+	 * permissions system into allowing edits by anons.
+	 *
+	 * @return Authority
+	 */
+	private function getAuthority(): Authority {
+		return $this->getUserForPermissions();
+	}
+
+	/**
+	 * Get the user for permissions purposes, with declared type User instead
+	 * of Authority for compatibility with PermissionManager.
+	 *
+	 * @return User
+	 */
+	private function getUserForPermissions() {
+		if ( $this->savedTempUser ) {
+			return $this->savedTempUser;
+		} elseif ( $this->unsavedTempUser ) {
+			return $this->unsavedTempUser;
+		} elseif ( $this->placeholderTempUser ) {
+			return $this->placeholderTempUser;
+		} else {
+			return $this->context->getUser();
+		}
+	}
+
+	/**
+	 * Get the user for preview or PST purposes. During the temporary user
+	 * creation flow this may be an unsaved temporary user.
+	 *
+	 * @return User
+	 */
+	private function getUserForPreview() {
+		if ( $this->savedTempUser ) {
+			return $this->savedTempUser;
+		} elseif ( $this->unsavedTempUser ) {
+			return $this->unsavedTempUser;
+		} elseif ( $this->tempUserCreateActive ) {
+			throw new MWException(
+				"Can't use the request user for preview with IP masking enabled" );
+		} else {
+			return $this->context->getUser();
+		}
+	}
+
+	/**
+	 * Get the user suitable for permanent attribution in the database. This
+	 * asserts that an anonymous user won't be used in IP masking mode.
+	 *
+	 * @return User
+	 */
+	private function getUserForSave() {
+		if ( $this->savedTempUser ) {
+			return $this->savedTempUser;
+		} elseif ( $this->tempUserCreateActive ) {
+			throw new MWException(
+				"Can't use the request user for storage with IP masking enabled" );
+		} else {
+			return $this->context->getUser();
+		}
+	}
+
+	/**
 	 * @param string $rigor PermissionManager::RIGOR_ constant
 	 * @return array
 	 */
 	private function getEditPermissionErrors( string $rigor = PermissionManager::RIGOR_SECURE ): array {
-		$user = $this->context->getUser();
+		$user = $this->getUserForPermissions();
+
 		$ignoredErrors = [];
 		if ( $this->preview || $this->diff ) {
 			$ignoredErrors = [ 'blockedtext', 'autoblockedtext', 'systemblockedtext' ];
@@ -1038,7 +1205,7 @@ class EditPage implements IEditObject {
 
 			$this->recreate = $request->getCheck( 'wpRecreate' );
 
-			$user = $this->getContext()->getUser();
+			$user = $this->context->getUser();
 
 			$this->minoredit = $request->getCheck( 'wpMinoredit' );
 			$this->watchthis = $request->getCheck( 'wpWatchthis' );
@@ -1257,7 +1424,6 @@ class EditPage implements IEditObject {
 
 		$content = false;
 
-		$user = $this->context->getUser();
 		$request = $this->context->getRequest();
 		// For message page not locally set, use the i18n message.
 		// For other non-existent articles, use preload text if any.
@@ -1285,7 +1451,7 @@ class EditPage implements IEditObject {
 		// For existing pages, get text based on "undo" or section parameters.
 		} elseif ( $this->section !== '' ) {
 			// Get section edit text (returns $def_text for invalid sections)
-			$orig = $this->getOriginalContent( $user );
+			$orig = $this->getOriginalContent( $this->getAuthority() );
 			$content = $orig ? $orig->getSection( $this->section ) : null;
 
 			if ( !$content ) {
@@ -1333,9 +1499,14 @@ class EditPage implements IEditObject {
 					if ( $undoMsg === null ) {
 						$oldContent = $this->page->getContent( RevisionRecord::RAW );
 						$services = MediaWikiServices::getInstance();
-						$popts = ParserOptions::newFromUserAndLang( $user, $services->getContentLanguage() );
+						$popts = ParserOptions::newFromUserAndLang(
+							$this->getUserForPreview(),
+							$services->getContentLanguage()
+						);
 						$contentTransformer = $services->getContentTransformer();
-						$newContent = $contentTransformer->preSaveTransform( $content, $this->mTitle, $user, $popts );
+						$newContent = $contentTransformer->preSaveTransform(
+							$content, $this->mTitle, $this->getUserForPreview(), $popts
+						);
 
 						if ( $newContent->getModel() !== $oldContent->getModel() ) {
 							// The undo may change content
@@ -1439,7 +1610,7 @@ class EditPage implements IEditObject {
 			}
 
 			if ( $content === false ) {
-				$content = $this->getOriginalContent( $user );
+				$content = $this->getOriginalContent( $this->getAuthority() );
 			}
 		}
 
@@ -1620,7 +1791,7 @@ class EditPage implements IEditObject {
 			$content = $converted;
 		}
 
-		$parserOptions = ParserOptions::newFromUser( $this->context->getUser() );
+		$parserOptions = ParserOptions::newFromUser( $this->getUserForPreview() );
 		return MediaWikiServices::getInstance()->getContentTransformer()->preloadTransform(
 			$content,
 			$title,
@@ -1694,11 +1865,11 @@ class EditPage implements IEditObject {
 	public function attemptSave( &$resultDetails = false ) {
 		// Allow bots to exempt some edits from bot flagging
 		$markAsBot = $this->markAsBot
-			&& $this->context->getAuthority()->isAllowed( 'bot' );
+			&& $this->getAuthority()->isAllowed( 'bot' );
 
 		// Allow trusted users to mark some edits as minor
 		$markAsMinor = $this->minoredit && !$this->isNew
-			&& $this->context->getAuthority()->isAllowed( 'minoredit' );
+			&& $this->getAuthority()->isAllowed( 'minoredit' );
 
 		$status = $this->internalAttemptSave( $resultDetails, $markAsBot, $markAsMinor );
 
@@ -1957,7 +2128,10 @@ class EditPage implements IEditObject {
 		}
 
 		$this->contentLength = strlen( $this->textbox1 );
-		$user = $this->context->getUser();
+
+		$requestUser = $this->context->getUser();
+		$authority = $this->getAuthority();
+		$pstUser = $this->getUserForPreview();
 
 		$changingContentModel = false;
 		if ( $this->contentModel !== $this->mTitle->getContentModel() ) {
@@ -1977,10 +2151,11 @@ class EditPage implements IEditObject {
 
 		// SimpleAntiSpamConstraint: ensure that the context request does not have
 		// `wpAntispam` set
+		// Use $user since there is no permissions aspect
 		$constraintRunner->addConstraint(
 			$constraintFactory->newSimpleAntiSpamConstraint(
 				$this->context->getRequest()->getText( 'wpAntispam' ),
-				$user,
+				$requestUser,
 				$this->mTitle
 			)
 		);
@@ -1997,21 +2172,21 @@ class EditPage implements IEditObject {
 			)
 		);
 		$constraintRunner->addConstraint(
-			new EditRightConstraint( $user )
+			new EditRightConstraint( $authority )
 		);
 		$constraintRunner->addConstraint(
 			new ImageRedirectConstraint(
 				$textbox_content,
 				$this->mTitle,
-				$user
+				$authority
 			)
 		);
 		$constraintRunner->addConstraint(
-			$constraintFactory->newUserBlockConstraint( $this->mTitle, $user )
+			$constraintFactory->newUserBlockConstraint( $this->mTitle, $requestUser )
 		);
 		$constraintRunner->addConstraint(
 			new ContentModelChangeConstraint(
-				$user,
+				$authority,
 				$this->mTitle,
 				$this->contentModel
 			)
@@ -2021,7 +2196,7 @@ class EditPage implements IEditObject {
 			$constraintFactory->newReadOnlyConstraint()
 		);
 		$constraintRunner->addConstraint(
-			new UserRateLimitConstraint( $user, $this->mTitle, $this->contentModel )
+			new UserRateLimitConstraint( $requestUser, $this->mTitle, $this->contentModel )
 		);
 		$constraintRunner->addConstraint(
 			// Same constraint is used to check size before and after merging the
@@ -2032,7 +2207,7 @@ class EditPage implements IEditObject {
 			)
 		);
 		$constraintRunner->addConstraint(
-			new ChangeTagsConstraint( $user, $this->changeTags )
+			new ChangeTagsConstraint( $authority, $this->changeTags )
 		);
 
 		// If the article has been deleted while editing, don't save it without
@@ -2060,8 +2235,8 @@ class EditPage implements IEditObject {
 		}
 		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
-		# Load the page data from the primary DB. If anything changes in the meantime,
-		# we detect it by using page_latest like a token in a 1 try compare-and-swap.
+		// Load the page data from the primary DB. If anything changes in the meantime,
+		// we detect it by using page_latest like a token in a 1 try compare-and-swap.
 		$this->page->loadPageData( WikiPage::READ_LATEST );
 		$new = !$this->page->exists();
 
@@ -2088,7 +2263,7 @@ class EditPage implements IEditObject {
 				$result['sectionanchor'] = $anchor;
 			}
 
-			$pageUpdater = $this->page->newPageUpdater( $user )
+			$pageUpdater = $this->page->newPageUpdater( $pstUser )
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 				->setContent( SlotRecord::MAIN, $content );
 			$pageUpdater->prepareUpdate( $flags );
@@ -2098,7 +2273,7 @@ class EditPage implements IEditObject {
 			$constraintRunner = new EditConstraintRunner();
 			// Late check for create permission, just in case *PARANOIA*
 			$constraintRunner->addConstraint(
-				new CreationPermissionConstraint( $user, $this->mTitle )
+				new CreationPermissionConstraint( $authority, $this->mTitle )
 			);
 
 			// Don't save a new page if it's blank or if it's a MediaWiki:
@@ -2119,7 +2294,7 @@ class EditPage implements IEditObject {
 					$this->summary,
 					$markAsMinor,
 					$this->context->getLanguage(),
-					$user
+					$pstUser
 				)
 			);
 
@@ -2151,7 +2326,7 @@ class EditPage implements IEditObject {
 				$this->isConflict = true;
 				[ $newSectionSummary, $newSectionAnchor ] = $this->newSectionSummary();
 				if ( $this->section === 'new' ) {
-					if ( $this->page->getUserText() === $user->getName() &&
+					if ( $this->page->getUserText() === $requestUser->getName() &&
 						$this->page->getComment() === $newSectionSummary
 					) {
 						// Probably a duplicate submission of a new comment.
@@ -2170,7 +2345,7 @@ class EditPage implements IEditObject {
 					&& $this->revisionStore->userWasLastToEdit(
 						wfGetDB( DB_PRIMARY ),
 						$this->mTitle->getArticleID(),
-						$user->getId(),
+						$requestUser->getId(),
 						$this->edittime
 					)
 				) {
@@ -2252,7 +2427,7 @@ class EditPage implements IEditObject {
 				return Status::newGood( self::AS_CONFLICT_DETECTED )->setOK( false );
 			}
 
-			$pageUpdater = $this->page->newPageUpdater( $user )
+			$pageUpdater = $this->page->newPageUpdater( $pstUser )
 				->setContent( SlotRecord::MAIN, $content );
 			$pageUpdater->prepareUpdate( $flags );
 
@@ -2266,7 +2441,7 @@ class EditPage implements IEditObject {
 					$this->summary,
 					$markAsMinor,
 					$this->context->getLanguage(),
-					$user
+					$requestUser
 				)
 			);
 
@@ -2288,7 +2463,7 @@ class EditPage implements IEditObject {
 						$this->allowBlankSummary,
 						$content,
 						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable FIXME T301947
-						$this->getOriginalContent( $user )
+						$this->getOriginalContent( $authority )
 					)
 				);
 			}
@@ -2358,6 +2533,12 @@ class EditPage implements IEditObject {
 		}
 		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM
 
+		// Auto-create the user if that is enabled
+		$status = $this->createTempUser( $pageUpdater );
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
 		if ( $this->undidRev && $this->isUndoClean( $content ) ) {
 			// As the user can change the edit's content before saving, we only mark
 			// "clean" undos as reverts. This is to avoid abuse by marking irrelevant
@@ -2372,9 +2553,7 @@ class EditPage implements IEditObject {
 		}
 
 		$needsPatrol = $useRCPatrol || ( $useNPPatrol && !$this->page->exists() );
-		if ( $needsPatrol && $this->context->getAuthority()
-				->authorizeWrite( 'autopatrol', $this->getTitle() )
-		) {
+		if ( $needsPatrol && $authority->authorizeWrite( 'autopatrol', $this->getTitle() ) ) {
 			$pageUpdater->setRcPatrolStatus( RecentChange::PRC_AUTOPATROLLED );
 		}
 
@@ -2406,7 +2585,7 @@ class EditPage implements IEditObject {
 		$result['nullEdit'] = $doEditStatus->hasMessage( 'edit-no-change' );
 		if ( $result['nullEdit'] ) {
 			// We don't know if it was a null edit until now, so increment here
-			$user->pingLimiter( 'linkpurge' );
+			$requestUser->pingLimiter( 'linkpurge' );
 		}
 		$result['redirect'] = $content->isRedirect();
 
@@ -2415,7 +2594,7 @@ class EditPage implements IEditObject {
 		// If the content model changed, add a log entry
 		if ( $changingContentModel ) {
 			$this->addContentModelChangeLogEntry(
-				$user,
+				$this->getUserForSave(),
 				// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
 				// $oldContentModel is set when $changingContentModel is true
 				$new ? false : $oldContentModel,
@@ -2503,7 +2682,7 @@ class EditPage implements IEditObject {
 		// Do a pre-save transform on the retrieved undo content
 		$services = MediaWikiServices::getInstance();
 		$contentLanguage = $services->getContentLanguage();
-		$user = $this->context->getUser();
+		$user = $this->getUserForPreview();
 		$parserOptions = ParserOptions::newFromUserAndLang( $user, $contentLanguage );
 		$contentTransformer = $services->getContentTransformer();
 		$undoContent = $contentTransformer->preSaveTransform( $undoContent, $this->mTitle, $user, $parserOptions );
@@ -2538,8 +2717,8 @@ class EditPage implements IEditObject {
 	 * Register the change of watch status
 	 */
 	private function updateWatchlist(): void {
-		$performer = $this->context->getAuthority();
-		if ( !$performer->getUser()->isRegistered() ) {
+		$user = $this->getUserForSave();
+		if ( !$user->isNamed() ) {
 			return;
 		}
 
@@ -2550,7 +2729,7 @@ class EditPage implements IEditObject {
 		// This can't run as a DeferredUpdate due to a possible race condition
 		// when the post-edit redirect happens if the pendingUpdates queue is
 		// too large to finish in time (T259564)
-		$this->watchlistManager->setWatch( $watch, $performer, $title, $watchlistExpiry );
+		$this->watchlistManager->setWatch( $watch, $user, $title, $watchlistExpiry );
 
 		$this->watchedItemStore->maybeEnqueueWatchlistExpiryJob();
 	}
@@ -2751,7 +2930,7 @@ class EditPage implements IEditObject {
 			$username = explode( '/', $this->mTitle->getText(), 2 )[0];
 			// Allow IP users
 			$validation = UserRigorOptions::RIGOR_NONE;
-			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromName( $username, $validation );
+			$user = $this->userFactory->newFromName( $username, $validation );
 			$ip = $this->userNameUtils->isIP( $username );
 			$block = DatabaseBlock::newFromTarget( $user, $user );
 
@@ -3363,7 +3542,8 @@ class EditPage implements IEditObject {
 				);
 				$out->wrapWikiMsg(
 					"<div id='mw-anon-edit-warning' class='mw-message-box mw-message-box-warning'>\n$1\n</div>",
-					[ 'anoneditwarning',
+					[
+						$this->tempUserCreateActive ? 'autocreate-edit-warning' : 'anoneditwarning',
 						// Log-in link
 						SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
 							'returnto' => $this->getTitle()->getPrefixedDBkey(),
@@ -3379,7 +3559,7 @@ class EditPage implements IEditObject {
 			} else {
 				$out->wrapWikiMsg(
 					"<div id='mw-anon-preview-warning' class='mw-message-box mw-message-box-warning'>\n$1</div>",
-					'anonpreviewwarning'
+					$this->tempUserCreateActive ? 'autocreate-preview-warning' : 'anonpreviewwarning'
 				);
 			}
 		} elseif ( $this->mTitle->isUserConfigPage() ) {
@@ -3724,7 +3904,7 @@ class EditPage implements IEditObject {
 		if ( $newContent ) {
 			$this->getHookRunner()->onEditPageGetDiffContent( $this, $newContent );
 
-			$user = $this->context->getUser();
+			$user = $this->getUserForPreview();
 			$popts = ParserOptions::newFromUserAndLang( $user,
 				MediaWikiServices::getInstance()->getContentLanguage() );
 			$services = MediaWikiServices::getInstance();
@@ -4262,7 +4442,7 @@ class EditPage implements IEditObject {
 	 *   - html: The HTML to be displayed
 	 */
 	protected function doPreviewParse( Content $content ) {
-		$user = $this->context->getUser();
+		$user = $this->getUserForPreview();
 		$parserOptions = $this->getPreviewParserOptions();
 
 		// NOTE: preSaveTransform doesn't have a fake revision to operate on.

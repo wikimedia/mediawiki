@@ -1043,4 +1043,77 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( $page->getCurrentUpdate(), $updater->prepareUpdate() );
 	}
+
+	/**
+	 * @covers \MediaWiki\Storage\PageUpdater::preventChange
+	 * @covers \MediaWiki\Storage\PageUpdater::doModify
+	 * @covers \MediaWiki\Storage\PageUpdater::isChange
+	 */
+	public function testPreventChange_modify() {
+		$user = $this->getTestUser()->getUser();
+		$title = $this->getDummyTitle( __METHOD__ );
+		$page = WikiPage::factory( $title );
+		$updater = $page->newPageUpdater( $user );
+
+		// Creation
+		$summary = CommentStoreComment::newUnsavedComment( 'one' );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem ipsum' ) );
+		$updater->prepareUpdate();
+		$rev = $updater->saveRevision( $summary, EDIT_NEW );
+		$this->assertInstanceOf( RevisionRecord::class, $rev );
+
+		// Null edit
+		$updater = $page->newPageUpdater( $user );
+		$summary = CommentStoreComment::newUnsavedComment( 'one' );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem ipsum' ) );
+		$updater->prepareUpdate();
+		$updater->preventChange();
+		$this->assertFalse( $updater->isChange() );
+		$rev = $updater->saveRevision( $summary );
+		$this->assertNull( $rev );
+
+		// Prevented edit
+		$updater = $page->newPageUpdater( $user );
+		$summary = CommentStoreComment::newUnsavedComment( 'one' );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'dolor sit amet' ) );
+		$updater->prepareUpdate();
+		$updater->preventChange();
+		$this->expectException( LogicException::class );
+		$updater->saveRevision( $summary );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\PageUpdater::preventChange
+	 * @covers \MediaWiki\Storage\PageUpdater::doCreate
+	 * @covers \MediaWiki\Storage\PageUpdater::isChange
+	 */
+	public function testPreventChange_create() {
+		$user = $this->getTestUser()->getUser();
+		$title = $this->getDummyTitle( __METHOD__ );
+		$page = WikiPage::factory( $title );
+
+		$updater = $page->newPageUpdater( $user );
+		$summary = CommentStoreComment::newUnsavedComment( 'one' );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem ipsum' ) );
+		$updater->prepareUpdate();
+		$updater->preventChange();
+		$this->assertTrue( $updater->isChange() );
+		$this->expectException( LogicException::class );
+		$updater->saveRevision( $summary, EDIT_NEW );
+	}
+
+	public function testUpdateAuthor() {
+		$title = $this->getDummyTitle( __METHOD__ );
+		$page = WikiPage::factory( $title );
+		$user = new User;
+		$user->setName( 'PageUpdaterTest' );
+		$updater = $page->newPageUpdater( $user );
+		$summary = CommentStoreComment::newUnsavedComment( 'one' );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( '~~~~' ) );
+
+		$user = User::createNew( $user->getName() );
+		$updater->updateAuthor( $user );
+		$rev = $updater->saveRevision( $summary, EDIT_NEW );
+		$this->assertGreaterThan( 0, $rev->getUser()->getId() );
+	}
 }

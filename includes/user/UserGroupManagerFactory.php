@@ -25,6 +25,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\Permissions\GroupPermissionsLookup;
+use MediaWiki\User\TempUser\TempUserConfig;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ILBFactory;
 
@@ -62,6 +63,9 @@ class UserGroupManagerFactory {
 	/** @var HookContainer */
 	private $hookContainer;
 
+	/** @var TempUserConfig */
+	private $tempUserConfig;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param ConfiguredReadOnlyMode $configuredReadOnlyMode
@@ -71,6 +75,7 @@ class UserGroupManagerFactory {
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param JobQueueGroupFactory $jobQueueGroupFactory
 	 * @param LoggerInterface $logger
+	 * @param TempUserConfig $tempUserConfig Assumed to be the same across all domains.
 	 * @param callable[] $clearCacheCallbacks
 	 */
 	public function __construct(
@@ -82,6 +87,7 @@ class UserGroupManagerFactory {
 		GroupPermissionsLookup $groupPermissionsLookup,
 		JobQueueGroupFactory $jobQueueGroupFactory,
 		LoggerInterface $logger,
+		TempUserConfig $tempUserConfig,
 		array $clearCacheCallbacks = []
 	) {
 		$this->options = $options;
@@ -92,6 +98,7 @@ class UserGroupManagerFactory {
 		$this->groupPermissionLookup = $groupPermissionsLookup;
 		$this->jobQueueGroupFactory = $jobQueueGroupFactory;
 		$this->logger = $logger;
+		$this->tempUserConfig = $tempUserConfig;
 		$this->clearCacheCallbacks = $clearCacheCallbacks;
 	}
 
@@ -110,6 +117,7 @@ class UserGroupManagerFactory {
 			$this->groupPermissionLookup,
 			$this->jobQueueGroupFactory->makeJobQueueGroup( $dbDomain ),
 			$this->logger,
+			$this->tempUserConfig,
 			$this->clearCacheCallbacks,
 			$dbDomain
 		);

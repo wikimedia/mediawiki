@@ -64,7 +64,8 @@ class ChangeTagsConstraint implements IEditConstraint {
 		// service as part of T245964
 		$changeTagStatus = ChangeTags::canAddTagsAccompanyingChange(
 			$this->tags,
-			$this->performer
+			$this->performer,
+			false
 		);
 
 		if ( $changeTagStatus->isOK() ) {
