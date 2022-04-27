@@ -27,7 +27,6 @@ use MediaWiki\Storage\EditResult;
  *
  * @ingroup Actions
  * @since 1.32
- * @deprecated since 1.32
  */
 class McrUndoAction extends FormAction {
 
