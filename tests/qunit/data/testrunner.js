@@ -503,7 +503,7 @@
 	// Small test suite to confirm proper functionality of the utilities and
 	// initializations defined above in this file.
 	QUnit.module( 'testrunner', QUnit.newMwEnvironment( {
-		setup: function () {
+		beforeEach: function () {
 			this.mwHtmlLive = mw.html;
 			mw.html = {
 				escape: function () {
@@ -511,7 +511,7 @@
 				}
 			};
 		},
-		teardown: function () {
+		afterEach: function () {
 			mw.html = this.mwHtmlLive;
 		},
 		config: {
@@ -520,166 +520,134 @@
 		messages: {
 			testMsg: 'Foo.'
 		}
-	} ) );
+	} ), function () {
 
-	QUnit.test( 'Setup', function ( assert ) {
-		assert.strictEqual( mw.html.escape( 'foo' ), 'mocked', 'setup() callback was ran.' );
-		assert.strictEqual( mw.config.get( 'testVar' ), 'foo', 'config object applied' );
-		assert.strictEqual( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object applied' );
+		QUnit.test( 'beforeEach', function ( assert ) {
+			assert.strictEqual( mw.html.escape( 'foo' ), 'mocked', 'callback ran' );
+			assert.strictEqual( mw.config.get( 'testVar' ), 'foo', 'config applied' );
+			assert.strictEqual( mw.messages.get( 'testMsg' ), 'Foo.', 'messages applied' );
 
-		mw.config.set( 'testVar', 'bar' );
-		mw.messages.set( 'testMsg', 'Bar.' );
-	} );
+			mw.config.set( 'testVar', 'bar' );
+			mw.messages.set( 'testMsg', 'Bar.' );
+		} );
 
-	QUnit.test( 'Teardown', function ( assert ) {
-		assert.strictEqual( mw.config.get( 'testVar' ), 'foo', 'config object restored and re-applied after test()' );
-		assert.strictEqual( mw.messages.get( 'testMsg' ), 'Foo.', 'messages object restored and re-applied after test()' );
-	} );
+		QUnit.test( 'afterEach', function ( assert ) {
+			assert.strictEqual( mw.config.get( 'testVar' ), 'foo', 'config restored' );
+			assert.strictEqual( mw.messages.get( 'testMsg' ), 'Foo.', 'messages restored' );
+		} );
 
-	QUnit.test( 'Loader status', function ( assert ) {
-		var modules = mw.loader.getModuleNames();
-		var error = [];
-		var missing = [];
+		QUnit.test( 'Loader status', function ( assert ) {
+			var modules = mw.loader.getModuleNames();
+			var error = [];
+			var missing = [];
 
-		for ( var i = 0; i < modules.length; i++ ) {
-			var state = mw.loader.getState( modules[ i ] );
-			if ( state === 'error' ) {
-				error.push( modules[ i ] );
-			} else if ( state === 'missing' ) {
-				missing.push( modules[ i ] );
+			for ( var i = 0; i < modules.length; i++ ) {
+				var state = mw.loader.getState( modules[ i ] );
+				if ( state === 'error' ) {
+					error.push( modules[ i ] );
+				} else if ( state === 'missing' ) {
+					missing.push( modules[ i ] );
+				}
 			}
-		}
 
-		assert.deepEqual( error, [], 'Modules in error state' );
-		assert.deepEqual( missing, [], 'Modules in missing state' );
+			assert.deepEqual( error, [], 'Modules in error state' );
+			assert.deepEqual( missing, [], 'Modules in missing state' );
+		} );
+
+		QUnit.test( 'assert.htmlEqual', function ( assert ) {
+			assert.htmlEqual(
+				'<div><p class="some classes" data-length="10">Child paragraph with <a href="http://example.com">A link</a></p>Regular text<span>A span</span></div>',
+				'<div><p data-length=\'10\'  class=\'some classes\'>Child paragraph with <a href=\'http://example.com\' >A link</a></p>Regular text<span>A span</span></div>',
+				'Attribute order, spacing and quotation marks (equal)'
+			);
+
+			assert.notHtmlEqual(
+				'<div><p class="some classes" data-length="10">Child paragraph with <a href="http://example.com">A link</a></p>Regular text<span>A span</span></div>',
+				'<div><p data-length=\'10\'  class=\'some more classes\'>Child paragraph with <a href=\'http://example.com\' >A link</a></p>Regular text<span>A span</span></div>',
+				'Attribute order, spacing and quotation marks (not equal)'
+			);
+
+			assert.htmlEqual(
+				'<label for="firstname" accesskey="f" class="important">First</label><input id="firstname" /><label for="lastname" accesskey="l" class="minor">Last</label><input id="lastname" />',
+				'<label for="firstname" accesskey="f" class="important">First</label><input id="firstname" /><label for="lastname" accesskey="l" class="minor">Last</label><input id="lastname" />',
+				'Multiple root nodes (equal)'
+			);
+
+			assert.notHtmlEqual(
+				'<label for="firstname" accesskey="f" class="important">First</label><input id="firstname" /><label for="lastname" accesskey="l" class="minor">Last</label><input id="lastname" />',
+				'<label for="firstname" accesskey="f" class="important">First</label><input id="firstname" /><label for="lastname" accesskey="l" class="important" >Last</label><input id="lastname" />',
+				'Multiple root nodes (not equal, last label node is different)'
+			);
+
+			assert.htmlEqual(
+				'fo&quot;o<br/>b&gt;ar',
+				'fo"o<br/>b>ar',
+				'Extra escaping is equal'
+			);
+			assert.notHtmlEqual(
+				'foo&lt;br/&gt;bar',
+				'foo<br/>bar',
+				'Text escaping (not equal)'
+			);
+
+			assert.htmlEqual(
+				'foo<a href="http://example.com">example</a>bar',
+				'foo<a href="http://example.com">example</a>bar',
+				'Outer text nodes are compared (equal)'
+			);
+
+			assert.notHtmlEqual(
+				'foo<a href="http://example.com">example</a>bar',
+				'foo<a href="http://example.com">example</a>quux',
+				'Outer text nodes are compared (last text node different)'
+			);
+		} );
+
+		// Regression test for 'this.sandbox undefined' error, fixed by
+		// ensuring Sinon setup/teardown is not re-run on inner module.
+		QUnit.module( 'testrunner-nested-test', function () {
+			QUnit.test( 'example', function ( assert ) {
+				assert.true( true, 'nested modules supported' );
+			} );
+		} );
+
+		var beforeEachRan = false;
+		QUnit.module( 'testrunner-nested-hooks', {
+			beforeEach: function () {
+				beforeEachRan = true;
+			}
+		} );
+
+		QUnit.test( 'beforeEach', function ( assert ) {
+			assert.true( beforeEachRan );
+		} );
 	} );
 
-	QUnit.test( 'assert.htmlEqual', function ( assert ) {
-		assert.htmlEqual(
-			'<div><p class="some classes" data-length="10">Child paragraph with <a href="http://example.com">A link</a></p>Regular text<span>A span</span></div>',
-			'<div><p data-length=\'10\'  class=\'some classes\'>Child paragraph with <a href=\'http://example.com\' >A link</a></p>Regular text<span>A span</span></div>',
-			'Attribute order, spacing and quotation marks (equal)'
-		);
-
-		assert.notHtmlEqual(
-			'<div><p class="some classes" data-length="10">Child paragraph with <a href="http://example.com">A link</a></p>Regular text<span>A span</span></div>',
-			'<div><p data-length=\'10\'  class=\'some more classes\'>Child paragraph with <a href=\'http://example.com\' >A link</a></p>Regular text<span>A span</span></div>',
-			'Attribute order, spacing and quotation marks (not equal)'
-		);
-
-		assert.htmlEqual(
-			'<label for="firstname" accesskey="f" class="important">First</label><input id="firstname" /><label for="lastname" accesskey="l" class="minor">Last</label><input id="lastname" />',
-			'<label for="firstname" accesskey="f" class="important">First</label><input id="firstname" /><label for="lastname" accesskey="l" class="minor">Last</label><input id="lastname" />',
-			'Multiple root nodes (equal)'
-		);
-
-		assert.notHtmlEqual(
-			'<label for="firstname" accesskey="f" class="important">First</label><input id="firstname" /><label for="lastname" accesskey="l" class="minor">Last</label><input id="lastname" />',
-			'<label for="firstname" accesskey="f" class="important">First</label><input id="firstname" /><label for="lastname" accesskey="l" class="important" >Last</label><input id="lastname" />',
-			'Multiple root nodes (not equal, last label node is different)'
-		);
-
-		assert.htmlEqual(
-			'fo&quot;o<br/>b&gt;ar',
-			'fo"o<br/>b>ar',
-			'Extra escaping is equal'
-		);
-		assert.notHtmlEqual(
-			'foo&lt;br/&gt;bar',
-			'foo<br/>bar',
-			'Text escaping (not equal)'
-		);
-
-		assert.htmlEqual(
-			'foo<a href="http://example.com">example</a>bar',
-			'foo<a href="http://example.com">example</a>bar',
-			'Outer text nodes are compared (equal)'
-		);
-
-		assert.notHtmlEqual(
-			'foo<a href="http://example.com">example</a>bar',
-			'foo<a href="http://example.com">example</a>quux',
-			'Outer text nodes are compared (last text node different)'
-		);
-	} );
-
-	QUnit.module( 'testrunner-after', QUnit.newMwEnvironment() );
-
-	QUnit.test( 'Teardown', function ( assert ) {
-		assert.strictEqual( mw.html.escape( '<' ), '&lt;', 'teardown() callback was ran.' );
-		assert.strictEqual( mw.config.get( 'testVar' ), null, 'config object restored to live in next module()' );
-		assert.strictEqual( mw.messages.get( 'testMsg' ), null, 'messages object restored to live in next module()' );
-	} );
-
-	QUnit.module( 'testrunner-each', {
-		beforeEach: function () {
-			this.mwHtmlLive = mw.html;
-		},
-		afterEach: function () {
-			mw.html = this.mwHtmlLive;
-		}
-	} );
-	QUnit.test( 'beforeEach', function ( assert ) {
-		assert.notStrictEqual( this.mwHtmlLive, undefined, 'setup() ran' );
-		mw.html = null;
-	} );
-	QUnit.test( 'afterEach', function ( assert ) {
-		assert.strictEqual( mw.html.escape( '<' ), '&lt;', 'afterEach() ran' );
-	} );
-
-	QUnit.module( 'testrunner-each-compat', {
+	var setupRan = false;
+	var teardownRan = false;
+	QUnit.module( 'testrunner-compat', {
 		// eslint-disable-next-line qunit/no-setup-teardown
 		setup: function () {
-			this.mwHtmlLive = mw.html;
+			setupRan = true;
 		},
 		// eslint-disable-next-line qunit/no-setup-teardown
 		teardown: function () {
-			mw.html = this.mwHtmlLive;
+			teardownRan = true;
 		}
 	} );
 	QUnit.test( 'setup', function ( assert ) {
-		assert.notStrictEqual( this.mwHtmlLive, undefined, 'setup() ran' );
-		mw.html = null;
+		assert.true( setupRan, 'callback ran' );
 	} );
 	QUnit.test( 'teardown', function ( assert ) {
-		assert.strictEqual( mw.html.escape( '<' ), '&lt;', 'teardown() ran' );
+		assert.true( teardownRan, 'callback ran' );
 	} );
 
-	// Regression test for 'this.sandbox undefined' error, fixed by
-	// ensuring Sinon setup/teardown is not re-run on inner module.
-	QUnit.module( 'testrunner-nested', function () {
-		QUnit.module( 'testrunner-nested-inner', function () {
-			QUnit.test( 'Dummy', function ( assert ) {
-				assert.true( true, 'Nested modules supported' );
-			} );
-		} );
-	} );
+	QUnit.module( 'testrunner-next', QUnit.newMwEnvironment() );
 
-	QUnit.module( 'testrunner-hooks-outer', function () {
-		var beforeHookWasExecuted = false;
-		var afterHookWasExecuted = false;
-		QUnit.module( 'testrunner-hooks', {
-			before: function () {
-				beforeHookWasExecuted = true;
-
-				// This way we can be sure that module `testrunner-hook-after` will always
-				// be executed after module `testrunner-hooks`
-				QUnit.module( 'testrunner-hooks-after' );
-				QUnit.test(
-					'`after` hook for module `testrunner-hooks` was executed',
-					function ( assert ) {
-						assert.true( afterHookWasExecuted );
-					}
-				);
-			},
-			after: function () {
-				afterHookWasExecuted = true;
-			}
-		} );
-
-		QUnit.test( '`before` hook was executed', function ( assert ) {
-			assert.true( beforeHookWasExecuted );
-		} );
+	QUnit.test( 'afterEach', function ( assert ) {
+		assert.strictEqual( mw.html.escape( '<' ), '&lt;', 'mock not leaked to next module' );
+		assert.strictEqual( mw.config.get( 'testVar' ), null, 'config not leaked to next module' );
+		assert.strictEqual( mw.messages.get( 'testMsg' ), null, 'messages not lekaed to next module' );
 	} );
 
 }() );
