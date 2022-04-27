@@ -40,7 +40,7 @@ class CreateAndPromote extends Maintenance {
 		$this->addDescription( 'Create a new user account and/or grant it additional rights' );
 		$this->addOption(
 			'force',
-			'If acccount exists already, just grant it rights or change password.'
+			'If account exists already, just grant it rights or change password.'
 		);
 		foreach ( self::$permitRoles as $role ) {
 			$this->addOption( $role, "Add the account to the {$role} group" );
