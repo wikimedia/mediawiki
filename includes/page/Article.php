@@ -996,14 +996,12 @@ class Article implements Page {
 			return [];
 		}
 
-		$policy = explode( ',', $policy );
-		$policy = array_map( 'trim', $policy );
-
 		$arr = [];
-		foreach ( $policy as $var ) {
-			if ( in_array( $var, [ 'index', 'noindex' ] ) ) {
+		foreach ( explode( ',', $policy ) as $var ) {
+			$var = trim( $var );
+			if ( $var === 'index' || $var === 'noindex' ) {
 				$arr['index'] = $var;
-			} elseif ( in_array( $var, [ 'follow', 'nofollow' ] ) ) {
+			} elseif ( $var === 'follow' || $var === 'nofollow' ) {
 				$arr['follow'] = $var;
 			}
 		}
