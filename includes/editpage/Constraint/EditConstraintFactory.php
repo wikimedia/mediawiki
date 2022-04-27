@@ -28,6 +28,7 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\Spi;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
 use ReadOnlyMode;
@@ -46,7 +47,7 @@ class EditConstraintFactory {
 	/** @internal */
 	public const CONSTRUCTOR_OPTIONS = [
 		// PageSizeConstraint
-		'MaxArticleSize',
+		MainConfigNames::MaxArticleSize,
 	];
 
 	/** @var ServiceOptions */
@@ -151,7 +152,7 @@ class EditConstraintFactory {
 		string $type
 	): PageSizeConstraint {
 		return new PageSizeConstraint(
-			$this->options->get( 'MaxArticleSize' ),
+			$this->options->get( MainConfigNames::MaxArticleSize ),
 			$contentSize,
 			$type
 		);

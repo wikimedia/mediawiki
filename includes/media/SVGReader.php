@@ -26,6 +26,7 @@
  * @license GPL-2.0-or-later
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 
@@ -56,7 +57,8 @@ class SVGReader {
 	 * @throws MWException|Exception
 	 */
 	public function __construct( $source ) {
-		$svgMetadataCutoff = MediaWikiServices::getInstance()->getMainConfig()->get( 'SVGMetadataCutoff' );
+		$svgMetadataCutoff = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::SVGMetadataCutoff );
 		$this->reader = new XMLReader();
 
 		// Don't use $file->getSize() since file object passed to SVGHandler::getMetadata is bogus.

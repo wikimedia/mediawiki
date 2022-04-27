@@ -32,6 +32,7 @@ use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Revision\RevisionRecord;
@@ -97,7 +98,7 @@ abstract class ContentHandler {
 	 */
 	public static function getContentText( Content $content = null ) {
 		$contentHandlerTextFallback = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'ContentHandlerTextFallback' );
+			->getMainConfig()->get( MainConfigNames::ContentHandlerTextFallback );
 
 		if ( $content === null ) {
 			return '';

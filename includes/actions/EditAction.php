@@ -18,6 +18,8 @@
  * @ingroup Actions
  */
 
+use MediaWiki\MainConfigNames;
+
 /**
  * Page edition handler (action=edit)
  *
@@ -57,7 +59,7 @@ class EditAction extends FormlessAction {
 		// Also to ensure cookie blocks can be set (T152462).
 		$out->disableClientCache();
 
-		if ( $this->getContext()->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
+		if ( $this->getContext()->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere ) ) {
 			$out->addModuleStyles( [
 				'mediawiki.ui.input',
 				'mediawiki.ui.checkbox',

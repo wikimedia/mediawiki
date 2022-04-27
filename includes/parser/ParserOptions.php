@@ -21,6 +21,7 @@
  * @ingroup Parser
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -1104,19 +1105,19 @@ class ParserOptions {
 	private static function getDefaults() {
 		$services = MediaWikiServices::getInstance();
 		$mainConfig = $services->getMainConfig();
-		$interwikiMagic = $mainConfig->get( 'InterwikiMagic' );
-		$allowExternalImages = $mainConfig->get( 'AllowExternalImages' );
-		$allowExternalImagesFrom = $mainConfig->get( 'AllowExternalImagesFrom' );
-		$enableImageWhitelist = $mainConfig->get( 'EnableImageWhitelist' );
-		$allowSpecialInclusion = $mainConfig->get( 'AllowSpecialInclusion' );
-		$maxArticleSize = $mainConfig->get( 'MaxArticleSize' );
-		$maxPPNodeCount = $mainConfig->get( 'MaxPPNodeCount' );
-		$maxTemplateDepth = $mainConfig->get( 'MaxTemplateDepth' );
-		$maxPPExpandDepth = $mainConfig->get( 'MaxPPExpandDepth' );
-		$cleanSignatures = $mainConfig->get( 'CleanSignatures' );
-		$externalLinkTarget = $mainConfig->get( 'ExternalLinkTarget' );
-		$expensiveParserFunctionLimit = $mainConfig->get( 'ExpensiveParserFunctionLimit' );
-		$enableMagicLinks = $mainConfig->get( 'EnableMagicLinks' );
+		$interwikiMagic = $mainConfig->get( MainConfigNames::InterwikiMagic );
+		$allowExternalImages = $mainConfig->get( MainConfigNames::AllowExternalImages );
+		$allowExternalImagesFrom = $mainConfig->get( MainConfigNames::AllowExternalImagesFrom );
+		$enableImageWhitelist = $mainConfig->get( MainConfigNames::EnableImageWhitelist );
+		$allowSpecialInclusion = $mainConfig->get( MainConfigNames::AllowSpecialInclusion );
+		$maxArticleSize = $mainConfig->get( MainConfigNames::MaxArticleSize );
+		$maxPPNodeCount = $mainConfig->get( MainConfigNames::MaxPPNodeCount );
+		$maxTemplateDepth = $mainConfig->get( MainConfigNames::MaxTemplateDepth );
+		$maxPPExpandDepth = $mainConfig->get( MainConfigNames::MaxPPExpandDepth );
+		$cleanSignatures = $mainConfig->get( MainConfigNames::CleanSignatures );
+		$externalLinkTarget = $mainConfig->get( MainConfigNames::ExternalLinkTarget );
+		$expensiveParserFunctionLimit = $mainConfig->get( MainConfigNames::ExpensiveParserFunctionLimit );
+		$enableMagicLinks = $mainConfig->get( MainConfigNames::EnableMagicLinks );
 		$languageConverterFactory = $services->getLanguageConverterFactory();
 		$userOptionsLookup = $services->getUserOptionsLookup();
 		$contentLanguage = $services->getContentLanguage();
@@ -1336,7 +1337,7 @@ class ParserOptions {
 	 * @return string Page rendering hash
 	 */
 	public function optionsHash( $forOptions, $title = null ) {
-		$renderHashAppend = MediaWikiServices::getInstance()->getMainConfig()->get( 'RenderHashAppend' );
+		$renderHashAppend = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RenderHashAppend );
 
 		$inCacheKey = self::allCacheVaryingOptions();
 

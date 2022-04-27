@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Wikimedia\Minify\CSSMin;
@@ -399,8 +400,8 @@ class ResourceLoaderImage {
 	 * @return string|bool PNG image data, or false on failure
 	 */
 	protected function rasterize( $svg ) {
-		$svgConverter = MediaWikiServices::getInstance()->getMainConfig()->get( 'SVGConverter' );
-		$svgConverterPath = MediaWikiServices::getInstance()->getMainConfig()->get( 'SVGConverterPath' );
+		$svgConverter = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::SVGConverter );
+		$svgConverterPath = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::SVGConverterPath );
 		// This code should be factored out to a separate method on SvgHandler, or perhaps a separate
 		// class, with a separate set of configuration settings.
 		//

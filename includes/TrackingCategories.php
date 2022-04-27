@@ -36,8 +36,8 @@ class TrackingCategories {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'TrackingCategories',
-		'EnableMagicLinks',
+		MainConfigNames::TrackingCategories,
+		MainConfigNames::EnableMagicLinks,
 	];
 
 	/** @var ServiceOptions */
@@ -114,7 +114,7 @@ class TrackingCategories {
 	public function getTrackingCategories() {
 		$categories = array_merge(
 			self::CORE_TRACKING_CATEGORIES,
-			$this->extensionRegistry->getAttribute( 'TrackingCategories' ),
+			$this->extensionRegistry->getAttribute( MainConfigNames::TrackingCategories ),
 			$this->options->get( MainConfigNames::TrackingCategories ) // deprecated
 		);
 

@@ -22,6 +22,7 @@
  * @ingroup Cache
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -68,9 +69,9 @@ class ResourceFileCache extends FileCacheBase {
 	 */
 	public static function useFileCache( ResourceLoaderContext $context ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$useFileCache = $mainConfig->get( 'UseFileCache' );
-		$defaultSkin = $mainConfig->get( 'DefaultSkin' );
-		$languageCode = $mainConfig->get( 'LanguageCode' );
+		$useFileCache = $mainConfig->get( MainConfigNames::UseFileCache );
+		$defaultSkin = $mainConfig->get( MainConfigNames::DefaultSkin );
+		$languageCode = $mainConfig->get( MainConfigNames::LanguageCode );
 		if ( !$useFileCache ) {
 			return false;
 		}

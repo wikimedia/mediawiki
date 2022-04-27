@@ -21,6 +21,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
@@ -142,7 +143,7 @@ class JpegHandler extends ExifBitmapHandler {
 	 * @return MediaTransformError|false
 	 */
 	public function rotate( $file, $params ) {
-		$jpegTran = MediaWikiServices::getInstance()->getMainConfig()->get( 'JpegTran' );
+		$jpegTran = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::JpegTran );
 
 		$rotation = ( $params['rotation'] + $this->getRotation( $file ) ) % 360;
 
@@ -190,7 +191,7 @@ class JpegHandler extends ExifBitmapHandler {
 	 */
 	protected function transformImageMagick( $image, $params ) {
 		$useTinyRGBForJPGThumbnails = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'UseTinyRGBForJPGThumbnails' );
+			->getMainConfig()->get( MainConfigNames::UseTinyRGBForJPGThumbnails );
 
 		$ret = parent::transformImageMagick( $image, $params );
 
@@ -246,7 +247,7 @@ class JpegHandler extends ExifBitmapHandler {
 	public function swapICCProfile( $filepath, array $colorSpaces,
 		array $oldProfileStrings, $profileFilepath
 	) {
-		$exiftool = MediaWikiServices::getInstance()->getMainConfig()->get( 'Exiftool' );
+		$exiftool = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::Exiftool );
 
 		if ( !$exiftool || !is_executable( $exiftool ) ) {
 			return false;

@@ -69,23 +69,23 @@ class SiteConfig extends ISiteConfig {
 	protected const COMMENT_REGEXP_FRAGMENT = '<!--(?>[\s\S]*?-->)';
 
 	public const CONSTRUCTOR_OPTIONS = [
-		'GalleryOptions',
-		'AllowExternalImages',
-		'AllowExternalImagesFrom',
-		'Server',
-		'ArticlePath',
-		'InterwikiMagic',
-		'ExtraInterlanguageLinkPrefixes',
-		'LocalInterwikis',
-		'LanguageCode',
-		'NamespaceAliases',
-		'UrlProtocols',
-		'Script',
-		'ScriptPath',
-		'LoadScript',
-		'LocalTZoffset',
-		'ThumbLimits',
-		'MaxTemplateDepth',
+		MainConfigNames::GalleryOptions,
+		MainConfigNames::AllowExternalImages,
+		MainConfigNames::AllowExternalImagesFrom,
+		MainConfigNames::Server,
+		MainConfigNames::ArticlePath,
+		MainConfigNames::InterwikiMagic,
+		MainConfigNames::ExtraInterlanguageLinkPrefixes,
+		MainConfigNames::LocalInterwikis,
+		MainConfigNames::LanguageCode,
+		MainConfigNames::NamespaceAliases,
+		MainConfigNames::UrlProtocols,
+		MainConfigNames::Script,
+		MainConfigNames::ScriptPath,
+		MainConfigNames::LoadScript,
+		MainConfigNames::LocalTZoffset,
+		MainConfigNames::ThumbLimits,
+		MainConfigNames::MaxTemplateDepth,
 	];
 
 	/** @var ServiceOptions */
@@ -686,7 +686,7 @@ class SiteConfig extends ISiteConfig {
 		// ::getMaxTemplateDepth() above, we need to reset the Config
 		// service.
 		if ( $this->config instanceof MutableConfig ) {
-			$this->config->set( 'MaxTemplateDepth', $depth );
+			$this->config->set( MainConfigNames::MaxTemplateDepth, $depth );
 		} else {
 			// Fall back on global variable (hopefully we're using
 			// a GlobalVarConfig and this will work)

@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
@@ -132,7 +133,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		$pages = [];
 
 		// Filter out pages from origins not allowed by the current wiki configuration.
-		if ( $config->get( 'UseSiteJs' ) ) {
+		if ( $config->get( MainConfigNames::UseSiteJs ) ) {
 			foreach ( $this->scripts as $script ) {
 				$pages[$script] = [ 'type' => 'script' ];
 			}
@@ -141,7 +142,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			}
 		}
 
-		if ( $config->get( 'UseSiteCss' ) ) {
+		if ( $config->get( MainConfigNames::UseSiteCss ) ) {
 			foreach ( $this->styles as $style ) {
 				$pages[$style] = [ 'type' => 'style' ];
 			}
@@ -250,7 +251,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 		if ( $content->isRedirect() ) {
 			if ( $maxRedirects === null ) {
-				$maxRedirects = $this->getConfig()->get( 'MaxRedirects' ) ?: 0;
+				$maxRedirects = $this->getConfig()->get( MainConfigNames::MaxRedirects ) ?: 0;
 			}
 			if ( $maxRedirects > 0 ) {
 				$newTitle = $content->getRedirectTarget();
@@ -410,7 +411,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( $this->getFlip( $context ) ) {
 				$style = CSSJanus::transform( $style, true, false );
 			}
-			$remoteDir = $this->getConfig()->get( 'ScriptPath' );
+			$remoteDir = $this->getConfig()->get( MainConfigNames::ScriptPath );
 			if ( $remoteDir === '' ) {
 				// When the site is configured with the script path at the
 				// document root, MediaWiki uses an empty string but that is

@@ -21,6 +21,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
@@ -43,9 +44,9 @@ class BitmapHandler extends TransformationalImageHandler {
 	 */
 	protected function getScalerType( $dstPath, $checkDstPath = true ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$useImageResize = $mainConfig->get( 'UseImageResize' );
-		$useImageMagick = $mainConfig->get( 'UseImageMagick' );
-		$customConvertCommand = $mainConfig->get( 'CustomConvertCommand' );
+		$useImageResize = $mainConfig->get( MainConfigNames::UseImageResize );
+		$useImageMagick = $mainConfig->get( MainConfigNames::UseImageMagick );
+		$customConvertCommand = $mainConfig->get( MainConfigNames::CustomConvertCommand );
 		if ( !$dstPath && $checkDstPath ) {
 			# No output path available, client side scaling only
 			$scaler = 'client';
@@ -112,7 +113,8 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * @return bool
 	 */
 	public function normaliseParams( $image, &$params ) {
-		$maxInterlacingAreas = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxInterlacingAreas' );
+		$maxInterlacingAreas = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::MaxInterlacingAreas );
 		if ( !parent::normaliseParams( $image, $params ) ) {
 			return false;
 		}
@@ -155,13 +157,13 @@ class BitmapHandler extends TransformationalImageHandler {
 	protected function transformImageMagick( $image, $params ) {
 		# use ImageMagick
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$sharpenReductionThreshold = $mainConfig->get( 'SharpenReductionThreshold' );
-		$sharpenParameter = $mainConfig->get( 'SharpenParameter' );
-		$maxAnimatedGifArea = $mainConfig->get( 'MaxAnimatedGifArea' );
-		$imageMagickTempDir = $mainConfig->get( 'ImageMagickTempDir' );
-		$imageMagickConvertCommand = $mainConfig->get( 'ImageMagickConvertCommand' );
-		$jpegPixelFormat = $mainConfig->get( 'JpegPixelFormat' );
-		$jpegQuality = $mainConfig->get( 'JpegQuality' );
+		$sharpenReductionThreshold = $mainConfig->get( MainConfigNames::SharpenReductionThreshold );
+		$sharpenParameter = $mainConfig->get( MainConfigNames::SharpenParameter );
+		$maxAnimatedGifArea = $mainConfig->get( MainConfigNames::MaxAnimatedGifArea );
+		$imageMagickTempDir = $mainConfig->get( MainConfigNames::ImageMagickTempDir );
+		$imageMagickConvertCommand = $mainConfig->get( MainConfigNames::ImageMagickConvertCommand );
+		$jpegPixelFormat = $mainConfig->get( MainConfigNames::JpegPixelFormat );
+		$jpegQuality = $mainConfig->get( MainConfigNames::JpegQuality );
 		$quality = [];
 		$sharpen = [];
 		$scene = false;
@@ -289,11 +291,11 @@ class BitmapHandler extends TransformationalImageHandler {
 	 */
 	protected function transformImageMagickExt( $image, $params ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$sharpenReductionThreshold = $mainConfig->get( 'SharpenReductionThreshold' );
-		$sharpenParameter = $mainConfig->get( 'SharpenParameter' );
-		$maxAnimatedGifArea = $mainConfig->get( 'MaxAnimatedGifArea' );
-		$jpegPixelFormat = $mainConfig->get( 'JpegPixelFormat' );
-		$jpegQuality = $mainConfig->get( 'JpegQuality' );
+		$sharpenReductionThreshold = $mainConfig->get( MainConfigNames::SharpenReductionThreshold );
+		$sharpenParameter = $mainConfig->get( MainConfigNames::SharpenParameter );
+		$maxAnimatedGifArea = $mainConfig->get( MainConfigNames::MaxAnimatedGifArea );
+		$jpegPixelFormat = $mainConfig->get( MainConfigNames::JpegPixelFormat );
+		$jpegQuality = $mainConfig->get( MainConfigNames::JpegQuality );
 		try {
 			$im = new Imagick();
 			$im->readImage( $params['srcPath'] );
@@ -382,7 +384,8 @@ class BitmapHandler extends TransformationalImageHandler {
 	 */
 	protected function transformCustom( $image, $params ) {
 		# Use a custom convert command
-		$customConvertCommand = MediaWikiServices::getInstance()->getMainConfig()->get( 'CustomConvertCommand' );
+		$customConvertCommand = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::CustomConvertCommand );
 
 		# Variables: %s %d %w %h
 		$src = Shell::escape( $params['srcPath'] );
@@ -517,7 +520,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 *    or null to use default quality.
 	 */
 	public static function imageJpegWrapper( $dst_image, $thumbPath, $quality = null ) {
-		$jpegQuality = MediaWikiServices::getInstance()->getMainConfig()->get( 'JpegQuality' );
+		$jpegQuality = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::JpegQuality );
 
 		if ( $quality === null ) {
 			$quality = $jpegQuality;
@@ -558,7 +561,8 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * @return bool Whether auto rotation is enabled
 	 */
 	public function autoRotateEnabled() {
-		$enableAutoRotation = MediaWikiServices::getInstance()->getMainConfig()->get( 'EnableAutoRotation' );
+		$enableAutoRotation = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::EnableAutoRotation );
 
 		if ( $enableAutoRotation === null ) {
 			// Only enable auto-rotation when we actually can
@@ -578,7 +582,7 @@ class BitmapHandler extends TransformationalImageHandler {
 	 */
 	public function rotate( $file, $params ) {
 		$imageMagickConvertCommand = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'ImageMagickConvertCommand' );
+			->getMainConfig()->get( MainConfigNames::ImageMagickConvertCommand );
 
 		$rotation = ( $params['rotation'] + $this->getRotation( $file ) ) % 360;
 		$scene = false;

@@ -385,23 +385,23 @@ abstract class Installer {
 				CACHE_MEMCACHED => $emptyCache,
 			] + $baseConfig->get( MainConfigNames::ObjectCaches );
 
-		$configOverrides->set( 'ObjectCaches', $objectCaches );
+		$configOverrides->set( MainConfigNames::ObjectCaches, $objectCaches );
 
 		// Load the installer's i18n.
-		$messageDirs = $baseConfig->get( 'MessagesDirs' );
+		$messageDirs = $baseConfig->get( MainConfigNames::MessagesDirs );
 		$messageDirs['MediawikiInstaller'] = __DIR__ . '/i18n';
 
-		$configOverrides->set( 'MessagesDirs', $messageDirs );
+		$configOverrides->set( MainConfigNames::MessagesDirs, $messageDirs );
 
 		$installerConfig = new MultiConfig( [ $configOverrides, $baseConfig ] );
 
 		// make sure we use the installer config as the main config
-		$configRegistry = $baseConfig->get( 'ConfigRegistry' );
+		$configRegistry = $baseConfig->get( MainConfigNames::ConfigRegistry );
 		$configRegistry['main'] = static function () use ( $installerConfig ) {
 			return $installerConfig;
 		};
 
-		$configOverrides->set( 'ConfigRegistry', $configRegistry );
+		$configOverrides->set( MainConfigNames::ConfigRegistry, $configRegistry );
 
 		return $installerConfig;
 	}
@@ -1895,33 +1895,33 @@ abstract class Installer {
 		$settings->overrideConfigValues( [
 
 			// Don't access the database
-			'UseDatabaseMessages' => false,
+			MainConfigNames::UseDatabaseMessages => false,
 
 			// Don't cache langconv tables
-			'LanguageConverterCacheType' => CACHE_NONE,
+			MainConfigNames::LanguageConverterCacheType => CACHE_NONE,
 
 			// Don't try to cache ResourceLoader dependencies in the database
-			'ResourceLoaderUseObjectCacheForDeps' => true,
+			MainConfigNames::ResourceLoaderUseObjectCacheForDeps => true,
 
 			// Debug-friendly
-			'ShowExceptionDetails' => true,
-			'ShowHostnames' => true,
+			MainConfigNames::ShowExceptionDetails => true,
+			MainConfigNames::ShowHostnames => true,
 
 			// Don't break forms
-			'ExternalLinkTarget' => '_blank',
+			MainConfigNames::ExternalLinkTarget => '_blank',
 
 			// Allow multiple ob_flush() calls
-			'DisableOutputCompression' => true,
+			MainConfigNames::DisableOutputCompression => true,
 
 			// Use a sensible cookie prefix (not my_wiki)
-			'CookiePrefix' => 'mw_installer',
+			MainConfigNames::CookiePrefix => 'mw_installer',
 
 			// Some of the environment checks make shell requests, remove limits
-			'MaxShellMemory' => 0,
+			MainConfigNames::MaxShellMemory => 0,
 
 			// Override the default CookieSessionProvider with a dummy
 			// implementation that won't stomp on PHP's cookies.
-			'SessionProviders' => [
+			MainConfigNames::SessionProviders => [
 				[
 					'class' => InstallerSessionProvider::class,
 					'args' => [ [
@@ -1931,14 +1931,14 @@ abstract class Installer {
 			],
 
 			// Don't use the DB as the main stash
-			'MainStash' => CACHE_NONE,
+			MainConfigNames::MainStash => CACHE_NONE,
 
 			// Don't try to use any object cache for SessionManager either.
-			'SessionCacheType' => CACHE_NONE,
+			MainConfigNames::SessionCacheType => CACHE_NONE,
 
 			// Set a dummy $wgServer to bypass the check in Setup.php, the
 			// web installer will automatically detect it and not use this value.
-			'Server' => 'https://🌻.invalid',
+			MainConfigNames::Server => 'https://🌻.invalid',
 		] );
 	}
 

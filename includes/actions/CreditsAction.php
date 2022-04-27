@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserRigorOptions;
 
@@ -133,7 +134,7 @@ class CreditsAction extends FormlessAction {
 	 * @return bool
 	 */
 	protected function canShowRealUserName() {
-		$hiddenPrefs = $this->context->getConfig()->get( 'HiddenPrefs' );
+		$hiddenPrefs = $this->context->getConfig()->get( MainConfigNames::HiddenPrefs );
 		return !in_array( 'realname', $hiddenPrefs );
 	}
 

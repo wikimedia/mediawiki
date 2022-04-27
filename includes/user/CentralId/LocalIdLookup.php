@@ -58,7 +58,7 @@ class LocalIdLookup extends CentralIdLookup {
 	) {
 		$this->sharedDB = $config->get( MainConfigNames::SharedDB );
 		$this->sharedTables = $config->get( MainConfigNames::SharedTables );
-		$this->localDatabases = $config->get( 'LocalDatabases' );
+		$this->localDatabases = $config->get( MainConfigNames::LocalDatabases );
 		$this->loadBalancer = $loadBalancer;
 	}
 

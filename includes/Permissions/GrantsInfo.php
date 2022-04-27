@@ -21,6 +21,7 @@
 namespace MediaWiki\Permissions;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 
 /**
  * Users can authorize applications to use their account via OAuth. Grants are used to
@@ -34,8 +35,8 @@ class GrantsInfo {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'GrantPermissions',
-		'GrantPermissionGroups',
+		MainConfigNames::GrantPermissions,
+		MainConfigNames::GrantPermissionGroups,
 	];
 
 	/** @var ServiceOptions */
@@ -56,7 +57,7 @@ class GrantsInfo {
 	 * @return string[]
 	 */
 	public function getValidGrants(): array {
-		return array_keys( $this->options->get( 'GrantPermissions' ) );
+		return array_keys( $this->options->get( MainConfigNames::GrantPermissions ) );
 	}
 
 	/**
@@ -65,7 +66,7 @@ class GrantsInfo {
 	 */
 	public function getRightsByGrant(): array {
 		$res = [];
-		foreach ( $this->options->get( 'GrantPermissions' ) as $grant => $rights ) {
+		foreach ( $this->options->get( MainConfigNames::GrantPermissions ) as $grant => $rights ) {
 			$res[$grant] = array_keys( array_filter( $rights ) );
 		}
 		return $res;
@@ -79,10 +80,10 @@ class GrantsInfo {
 	public function getGrantRights( $grants ): array {
 		$rights = [];
 		foreach ( (array)$grants as $grant ) {
-			if ( isset( $this->options->get( 'GrantPermissions' )[$grant] ) ) {
+			if ( isset( $this->options->get( MainConfigNames::GrantPermissions )[$grant] ) ) {
 				$rights = array_merge(
 					$rights,
-					array_keys( array_filter( $this->options->get( 'GrantPermissions' )[$grant] ) )
+					array_keys( array_filter( $this->options->get( MainConfigNames::GrantPermissions )[$grant] ) )
 				);
 			}
 		}
@@ -109,12 +110,12 @@ class GrantsInfo {
 		}
 
 		$groups = [];
-		foreach ( $this->options->get( 'GrantPermissions' ) as $grant => $rights ) {
+		foreach ( $this->options->get( MainConfigNames::GrantPermissions ) as $grant => $rights ) {
 			if ( $grantsFilter !== null && !isset( $grantsFilter[$grant] ) ) {
 				continue;
 			}
-			if ( isset( $this->options->get( 'GrantPermissionGroups' )[$grant] ) ) {
-				$groups[$this->options->get( 'GrantPermissionGroups' )[$grant]][] = $grant;
+			if ( isset( $this->options->get( MainConfigNames::GrantPermissionGroups )[$grant] ) ) {
+				$groups[$this->options->get( MainConfigNames::GrantPermissionGroups )[$grant]][] = $grant;
 			} else {
 				$groups['other'][] = $grant;
 			}
@@ -129,7 +130,7 @@ class GrantsInfo {
 	 */
 	public function getHiddenGrants(): array {
 		$grants = [];
-		foreach ( $this->options->get( 'GrantPermissionGroups' ) as $grant => $group ) {
+		foreach ( $this->options->get( MainConfigNames::GrantPermissionGroups ) as $grant => $group ) {
 			if ( $group === 'hidden' ) {
 				$grants[] = $grant;
 			}

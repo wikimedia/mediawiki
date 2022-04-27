@@ -22,6 +22,7 @@
 
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -277,7 +278,7 @@ class RollbackAction extends FormAction {
 			 * to prevent logstash.wikimedia.org from being spammed
 			 */
 			$fname = __METHOD__;
-			$trxLimits = $this->context->getConfig()->get( 'TrxProfilerLimits' );
+			$trxLimits = $this->context->getConfig()->get( MainConfigNames::TrxProfilerLimits );
 			$trxProfiler = Profiler::instance()->getTransactionProfiler();
 			$trxProfiler->redefineExpectations( $trxLimits['POST'], $fname );
 			DeferredUpdates::addCallableUpdate( static function () use ( $trxProfiler, $trxLimits, $fname

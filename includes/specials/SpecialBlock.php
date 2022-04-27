@@ -213,10 +213,10 @@ class SpecialBlock extends FormSpecialPage {
 	 */
 	protected function getFormFields() {
 		$conf = $this->getConfig();
-		$blockAllowsUTEdit = $conf->get( 'BlockAllowsUTEdit' );
+		$blockAllowsUTEdit = $conf->get( MainConfigNames::BlockAllowsUTEdit );
 		$this->getOutput()->addJsConfigVars(
 			'wgEnablePartialActionBlocks',
-			$conf->get( 'EnablePartialActionBlocks' )
+			$conf->get( MainConfigNames::EnablePartialActionBlocks )
 		);
 
 		$this->getOutput()->enableOOUI();
@@ -292,7 +292,7 @@ class SpecialBlock extends FormSpecialPage {
 			'section' => 'actions',
 		];
 
-		if ( $conf->get( 'EnablePartialActionBlocks' ) ) {
+		if ( $conf->get( MainConfigNames::EnablePartialActionBlocks ) ) {
 			$blockActions = $this->blockActionInfo->getAllBlockActions();
 			$a['ActionRestrictions'] = [
 				'type' => 'multiselect',
@@ -368,7 +368,7 @@ class SpecialBlock extends FormSpecialPage {
 			'type' => 'check',
 			'label-message' => [
 				'ipbenableautoblock',
-				Message::durationParam( $conf->get( 'AutoblockExpiry' ) )
+				Message::durationParam( $conf->get( MainConfigNames::AutoblockExpiry ) )
 			],
 			'default' => true,
 			'section' => 'options',

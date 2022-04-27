@@ -28,6 +28,7 @@ use MalformedTitleException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\TempUser\TempUserConfig;
 use Psr\Log\LoggerInterface;
 use TitleParser;
@@ -46,9 +47,9 @@ class UserNameUtils implements UserRigorOptions {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'MaxNameChars',
-		'ReservedUsernames',
-		'InvalidUsernameCharacters'
+		MainConfigNames::MaxNameChars,
+		MainConfigNames::ReservedUsernames,
+		MainConfigNames::InvalidUsernameCharacters
 	];
 
 	/**
@@ -136,7 +137,7 @@ class UserNameUtils implements UserRigorOptions {
 		if ( $name === ''
 			|| $this->isIP( $name )
 			|| strpos( $name, '/' ) !== false
-			|| strlen( $name ) > $this->options->get( 'MaxNameChars' )
+			|| strlen( $name ) > $this->options->get( MainConfigNames::MaxNameChars )
 			|| $name !== $this->contentLang->ucfirst( $name )
 		) {
 			return false;
@@ -192,7 +193,7 @@ class UserNameUtils implements UserRigorOptions {
 		}
 
 		if ( !$this->reservedUsernames ) {
-			$reservedUsernames = $this->options->get( 'ReservedUsernames' );
+			$reservedUsernames = $this->options->get( MainConfigNames::ReservedUsernames );
 			$this->hookRunner->onUserGetReservedNames( $reservedUsernames );
 			foreach ( $reservedUsernames as &$reserved ) {
 				if ( substr( $reserved, 0, 4 ) === 'msg:' ) {
@@ -234,7 +235,7 @@ class UserNameUtils implements UserRigorOptions {
 			return false;
 		}
 
-		$invalid = $this->options->get( 'InvalidUsernameCharacters' );
+		$invalid = $this->options->get( MainConfigNames::InvalidUsernameCharacters );
 		// Preg yells if you try to give it an empty string
 		if ( $invalid !== '' &&
 			preg_match( '/[' . preg_quote( $invalid, '/' ) . ']/', $name )

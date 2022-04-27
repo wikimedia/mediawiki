@@ -20,6 +20,7 @@
  * @author Roan Kattouw
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -46,7 +47,7 @@ class ResourceLoaderUserStylesModule extends ResourceLoaderWikiModule {
 		$config = $this->getConfig();
 		$pages = [];
 
-		if ( $config->get( 'AllowUserCss' ) ) {
+		if ( $config->get( MainConfigNames::AllowUserCss ) ) {
 			$titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
 			// Use localised/normalised variant to ensure $excludepage matches
 			$userPage = $titleFormatter->getPrefixedDBkey( new TitleValue( NS_USER, $user->getName() ) );
@@ -55,7 +56,7 @@ class ResourceLoaderUserStylesModule extends ResourceLoaderWikiModule {
 		}
 
 		// User group pages are maintained site-wide and enabled with site JS/CSS.
-		if ( $config->get( 'UseSiteCss' ) ) {
+		if ( $config->get( MainConfigNames::UseSiteCss ) ) {
 			$effectiveGroups = MediaWikiServices::getInstance()->getUserGroupManager()
 				->getUserEffectiveGroups( $user );
 			foreach ( $effectiveGroups as $group ) {

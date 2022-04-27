@@ -17,6 +17,7 @@
  *
  * @file
  */
+use MediaWiki\MainConfigNames;
 use Wikimedia\Minify\CSSMin;
 
 /**
@@ -339,7 +340,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			ResourceLoaderFileModule::extractBasePaths(
 				[],
 				null,
-				$this->getConfig()->get( 'ResourceBasePath' )
+				$this->getConfig()->get( MainConfigNames::ResourceBasePath )
 			);
 
 		$featureFilePaths = [];
@@ -356,8 +357,8 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 					}
 				}
 				if ( $feature === 'content-media' && (
-					!$this->getConfig()->get( 'ParserEnableLegacyMediaDOM' ) ||
-					$this->getConfig()->get( 'UseContentMediaStyles' )
+					!$this->getConfig()->get( MainConfigNames::ParserEnableLegacyMediaDOM ) ||
+					$this->getConfig()->get( MainConfigNames::UseContentMediaStyles )
 				) ) {
 					$featureFilePaths['all'][] = new ResourceLoaderFilePath(
 						'resources/src/mediawiki.skinning/content.media-common.less',
@@ -571,7 +572,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 *  - icon (string): a square logo similar to 1x, but without the wordmark. SVG recommended.
 	 */
 	public static function getAvailableLogos( Config $conf, string $lang = null ): array {
-		$logos = $conf->get( 'Logos' );
+		$logos = $conf->get( MainConfigNames::Logos );
 		if ( $logos === false ) {
 			// no logos were defined... this will either
 			// 1. Load from wgLogo and wgLogoHD
@@ -586,14 +587,14 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 
 		// If logos['1x'] is not defined, see if we can use wgLogo
 		if ( !isset( $logos[ '1x' ] ) ) {
-			$logo = $conf->get( 'Logo' );
+			$logo = $conf->get( MainConfigNames::Logo );
 			if ( $logo ) {
 				$logos['1x'] = $logo;
 			}
 		}
 
 		try {
-			$logoHD = $conf->get( 'LogoHD' );
+			$logoHD = $conf->get( MainConfigNames::LogoHD );
 			// make sure not false
 			if ( $logoHD ) {
 				// wfDeprecated( __METHOD__ . ' with $wgLogoHD set instead of $wgLogos', '1.35', false, 1 );

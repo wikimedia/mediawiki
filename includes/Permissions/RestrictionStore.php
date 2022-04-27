@@ -10,6 +10,7 @@ use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageStore;
@@ -29,10 +30,10 @@ class RestrictionStore {
 
 	/** @internal */
 	public const CONSTRUCTOR_OPTIONS = [
-		'NamespaceProtection',
-		'RestrictionLevels',
-		'RestrictionTypes',
-		'SemiprotectedRestrictionLevels',
+		MainConfigNames::NamespaceProtection,
+		MainConfigNames::RestrictionLevels,
+		MainConfigNames::RestrictionTypes,
+		MainConfigNames::SemiprotectedRestrictionLevels,
 	];
 
 	/** @var ServiceOptions */
@@ -214,7 +215,7 @@ class RestrictionStore {
 		$page->assertWiki( PageIdentity::LOCAL );
 
 		$restrictions = $this->getRestrictions( $page, $action );
-		$semi = $this->options->get( 'SemiprotectedRestrictionLevels' );
+		$semi = $this->options->get( MainConfigNames::SemiprotectedRestrictionLevels );
 		if ( !$restrictions || !$semi ) {
 			// Not protected, or all protection is full protection
 			return false;
@@ -265,7 +266,7 @@ class RestrictionStore {
 		return (bool)array_diff(
 			array_intersect(
 				$this->getRestrictions( $page, $action ),
-				$this->options->get( 'RestrictionLevels' )
+				$this->options->get( MainConfigNames::RestrictionLevels )
 			),
 			[ '' ]
 		);
@@ -320,7 +321,7 @@ class RestrictionStore {
 	 * @return string[]
 	 */
 	public function listAllRestrictionTypes( bool $exists = true ): array {
-		$types = $this->options->get( 'RestrictionTypes' );
+		$types = $this->options->get( MainConfigNames::RestrictionTypes );
 		if ( $exists ) {
 			// Remove the create restriction for existing titles
 			return array_values( array_diff( $types, [ 'create' ] ) );

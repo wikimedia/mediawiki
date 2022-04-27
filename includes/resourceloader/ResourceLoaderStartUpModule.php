@@ -20,6 +20,7 @@
  * @author Roan Kattouw
  */
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
@@ -160,7 +161,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$skin = $context->getSkin();
 		// Bypass target filter if this request is Special:JavaScriptTest.
 		// To prevent misuse in production, this is only allowed if testing is enabled server-side.
-		$byPassTargetFilter = $this->getConfig()->get( 'EnableJavaScriptTest' ) && $target === 'test';
+		$byPassTargetFilter = $this->getConfig()->get( MainConfigNames::EnableJavaScriptTest ) && $target === 'test';
 
 		$out = '';
 		$states = [];
@@ -313,7 +314,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return string localStorage item key for JavaScript
 	 */
 	private function getStoreKey(): string {
-		return 'MediaWikiModuleStore:' . $this->getConfig()->get( 'DBname' );
+		return 'MediaWikiModuleStore:' . $this->getConfig()->get( MainConfigNames::DBname );
 	}
 
 	/**
@@ -321,7 +322,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return int
 	 */
 	private function getMaxQueryLength(): int {
-		$len = $this->getConfig()->get( 'ResourceLoaderMaxQueryLength' );
+		$len = $this->getConfig()->get( MainConfigNames::ResourceLoaderMaxQueryLength );
 		// - Ignore -1, which in MW 1.34 and earlier was used to mean "unlimited".
 		// - Ignore invalid values, e.g. non-int or other negative values.
 		if ( $len === false || $len < 0 ) {
@@ -340,7 +341,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	private function getStoreVary( ResourceLoaderContext $context ): string {
 		return implode( ':', [
 			$context->getSkin(),
-			$this->getConfig()->get( 'ResourceLoaderStorageVersion' ),
+			$this->getConfig()->get( MainConfigNames::ResourceLoaderStorageVersion ),
 			$context->getLanguage(),
 		] );
 	}
@@ -363,7 +364,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$mwLoaderCode = file_get_contents( "$IP/resources/src/startup/mediawiki.js" ) .
 			file_get_contents( "$IP/resources/src/startup/mediawiki.loader.js" ) .
 			file_get_contents( "$IP/resources/src/startup/mediawiki.requestIdleCallback.js" );
-		if ( $conf->get( 'ResourceLoaderEnableJSProfiler' ) ) {
+		if ( $conf->get( MainConfigNames::ResourceLoaderEnableJSProfiler ) ) {
 			$mwLoaderCode .= file_get_contents( "$IP/resources/src/startup/profiler.js" );
 		}
 
@@ -383,7 +384,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 					0
 			),
 			'$VARS.storeEnabled' => $context->encodeJson(
-				$conf->get( 'ResourceLoaderStorageEnabled' )
+				$conf->get( MainConfigNames::ResourceLoaderStorageEnabled )
 					&& !$context->getDebug()
 					&& $context->getRequest()->getRawVal( 'safemode' ) !== '1'
 			),
@@ -392,11 +393,11 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'$VARS.groupUser' => $context->encodeJson( $this->getGroupId( self::GROUP_USER ) ),
 			'$VARS.groupPrivate' => $context->encodeJson( $this->getGroupId( self::GROUP_PRIVATE ) ),
 			// Only expose private mw.loader.isES6ForTest in test mode.
-			'$CODE.test( isES6Supported )' => $conf->get( 'EnableJavaScriptTest' ) ?
+			'$CODE.test( isES6Supported )' => $conf->get( MainConfigNames::EnableJavaScriptTest ) ?
 				'(mw.loader.isES6ForTest !== undefined ? mw.loader.isES6ForTest : isES6Supported)' :
 				'isES6Supported',
 			// Only expose private mw.redefineFallbacksForTest in test mode.
-			'$CODE.maybeRedefineFallbacksForTest();' => $conf->get( 'EnableJavaScriptTest' ) ?
+			'$CODE.maybeRedefineFallbacksForTest();' => $conf->get( MainConfigNames::EnableJavaScriptTest ) ?
 				'mw.redefineFallbacksForTest = defineFallbacks;' :
 				'',
 		];
@@ -410,7 +411,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'$CODE.consoleLog();' => 'console.log.apply( console, arguments );',
 		];
 		// When profiling is enabled, insert the calls. When disabled (by default), insert nothing.
-		$mwLoaderPairs += $conf->get( 'ResourceLoaderEnableJSProfiler' )
+		$mwLoaderPairs += $conf->get( MainConfigNames::ResourceLoaderEnableJSProfiler )
 			? $profilerStubs
 			: array_fill_keys( array_keys( $profilerStubs ), '' );
 		$mwLoaderPairs += $context->getDebug()

@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
@@ -34,11 +35,11 @@ use Wikimedia\IPUtils;
 abstract class FileCacheBase {
 	/** @var string[] */
 	private const CONSTRUCTOR_OPTIONS = [
-		'CacheEpoch',
-		'FileCacheDepth',
-		'FileCacheDirectory',
-		'MimeType',
-		'UseGzip',
+		MainConfigNames::CacheEpoch,
+		MainConfigNames::FileCacheDepth,
+		MainConfigNames::FileCacheDirectory,
+		MainConfigNames::MimeType,
+		MainConfigNames::UseGzip,
 	];
 
 	protected $mKey;
@@ -60,7 +61,7 @@ abstract class FileCacheBase {
 			self::CONSTRUCTOR_OPTIONS,
 			MediaWikiServices::getInstance()->getMainConfig()
 		);
-		$this->mUseGzip = (bool)$this->options->get( 'UseGzip' );
+		$this->mUseGzip = (bool)$this->options->get( MainConfigNames::UseGzip );
 	}
 
 	/**
@@ -68,7 +69,7 @@ abstract class FileCacheBase {
 	 * @return string
 	 */
 	final protected function baseCacheDirectory() {
-		return $this->options->get( 'FileCacheDirectory' );
+		return $this->options->get( MainConfigNames::FileCacheDirectory );
 	}
 
 	/**
@@ -131,7 +132,7 @@ abstract class FileCacheBase {
 	 * @return bool
 	 */
 	public function isCacheGood( $timestamp = '' ) {
-		$cacheEpoch = $this->options->get( 'CacheEpoch' );
+		$cacheEpoch = $this->options->get( MainConfigNames::CacheEpoch );
 
 		if ( !$this->isCached() ) {
 			return false;
@@ -226,7 +227,7 @@ abstract class FileCacheBase {
 	 * @return string
 	 */
 	protected function hashSubdirectory() {
-		$fileCacheDepth = $this->options->get( 'FileCacheDepth' );
+		$fileCacheDepth = $this->options->get( MainConfigNames::FileCacheDepth );
 
 		$subdir = '';
 		if ( $fileCacheDepth > 0 ) {
