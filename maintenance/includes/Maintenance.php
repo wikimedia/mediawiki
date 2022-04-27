@@ -1291,7 +1291,7 @@ abstract class Maintenance {
 	 * @return string
 	 */
 	public function loadSettings() {
-		global $wgCommandLineMode, $IP;
+		global $wgCommandLineMode;
 
 		if ( isset( $this->mOptions['conf'] ) ) {
 			// Define the constant instead of directly setting $settingsFile
@@ -1299,7 +1299,7 @@ abstract class Maintenance {
 			// MW_CONFIG_FILE if it is defined.
 			define( 'MW_CONFIG_FILE', $this->mOptions['conf'] );
 		}
-		$settingsFile = wfDetectLocalSettingsFile( $IP );
+		$settingsFile = wfDetectLocalSettingsFile();
 
 		if ( isset( $this->mOptions['wiki'] ) ) {
 			$wikiName = $this->mOptions['wiki'];

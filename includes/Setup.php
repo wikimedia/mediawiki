@@ -94,12 +94,13 @@ if ( !defined( 'MW_ENTRY_POINT' ) ) {
 	define( 'MW_ENTRY_POINT', 'unknown' );
 }
 
-if ( !defined( 'MW_INSTALL_PATH' ) ) {
-	define( 'MW_INSTALL_PATH', $IP );
-} else {
-	// enforce consistency
-	$IP = MW_INSTALL_PATH;
-}
+// The $IP variable is defined for use inside this file and by LocalSettings.php.
+// It is made available as a global variable for backwards compatibility,
+// but application logic should use the BaseDirectory config setting
+// or the MW_INSTALL_PATH constant.
+// The BaseDirectory setting is later defined to have the same value as MW_INSTALL_PATH.
+global $IP;
+$IP = $IP = wfDetectInstallPath();
 
 /**
  * Pre-config setup: Before loading LocalSettings.php
@@ -108,7 +109,6 @@ if ( !defined( 'MW_INSTALL_PATH' ) ) {
  */
 require_once "$IP/includes/AutoLoader.php";
 require_once "$IP/includes/Defines.php";
-require_once "$IP/includes/BootstrapHelperFunctions.php";
 
 // Load composer's autoloader if present
 if ( is_readable( "$IP/vendor/autoload.php" ) ) {

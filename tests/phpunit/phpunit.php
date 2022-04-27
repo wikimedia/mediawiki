@@ -133,6 +133,8 @@ $wrapper = new PHPUnitMaintClass();
 $wrapper->setup();
 
 require_once "$IP/includes/BootstrapHelperFunctions.php";
+
+$IP = wfDetectInstallPath(); // ensure MW_INSTALL_PATH is defined
 wfDetectLocalSettingsFile( $IP );
 
 function wfPHPUnitSetup() {
