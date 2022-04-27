@@ -1,16 +1,7 @@
-( function () {
-	/**
-	 * This module tests the input/output capabilities of the parsers of tablesorter.
-	 * It does not test actual sorting.
-	 */
-
-	var text, ipv4,
-		simpleMDYDatesInMDY, simpleMDYDatesInDMY, oldMDYDates, complexMDYDates, clobberedDates, MYDates, YDates, ISODates,
-		currencyData, transformedCurrencyData;
-
-	QUnit.module( 'jquery.tablesorter.parsers', QUnit.newMwEnvironment( {
-		setup: function () {
-			this.liveMonths = mw.language.months;
+QUnit.module( 'jquery.tablesorter.parsers', QUnit.newMwEnvironment(
+	{
+		beforeEach: function () {
+			this.originalMonths = mw.language.months;
 			mw.language.months = {
 				keys: {
 					names: [ 'january', 'february', 'march', 'april', 'may_long', 'june',
@@ -27,60 +18,54 @@
 				abbrev: [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
 					'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
 			};
-		},
-		teardown: function () {
-			mw.language.months = this.liveMonths;
-		},
-		config: {
-			wgPageContentLanguage: 'en',
-			/* default date format of the content language */
-			wgDefaultDateFormat: 'dmy',
-			/* These two are important for numeric interpretations */
-			wgSeparatorTransformTable: [ '', '' ],
-			wgDigitTransformTable: [ '', '' ]
-		}
-	} ) );
-
-	/**
-	 * For a value, check if the parser recognizes it and how it transforms it
-	 *
-	 * @param {string} msg text to pass on to qunit describing the test case
-	 * @param {string[]} parserId of the parser that will be tested
-	 * @param {string[][]} data Array of testcases. Each testcase, array of
-	 *      inputValue: The string value that we want to test the parser for
-	 *      recognized: If we expect that this value's type is detectable by the parser
-	 *      outputValue: The value the parser has converted the input to
-	 *      msg: describing the testcase
-	 * @param {Function} beforeTest Something to do before we start the testcase
-	 */
-	function parserTest( msg, parserId, data, beforeTest ) {
-		QUnit.test( msg, function ( assert ) {
-			var extractedR, extractedF, parser;
-
-			if ( beforeTest !== undefined ) {
-				beforeTest();
-			}
-
-			parser = $.tablesorter.getParser( parserId );
-			data.forEach( function ( testcase ) {
-				extractedR = parser.is( testcase[ 0 ] );
-				extractedF = parser.format( testcase[ 0 ] );
-
-				assert.strictEqual( extractedR, testcase[ 1 ], 'Detect: ' + testcase[ 3 ] );
-				assert.strictEqual( extractedF, testcase[ 2 ], 'Sortkey: ' + testcase[ 3 ] );
+			mw.config.set( {
+				wgPageContentLanguage: 'en',
+				/* default date format of the content language */
+				wgDefaultDateFormat: 'dmy',
+				/* These two are important for numeric interpretations */
+				wgSeparatorTransformTable: [ '', '' ],
+				wgDigitTransformTable: [ '', '' ]
 			} );
 
-		} );
-	}
+			/**
+			 * Check how the parser recognizes and transforms the data
+			 *
+			 * @param {Object} assert
+			 * @param {string} parserId The parser that will be tested
+			 * @param {string[][]} data Array of testcases. Each testcase, array of:
+			 *  - inputValue: The string value that we want to test the parser for.
+			 *  - recognized: If we expect that this value's type is detectable by the parser.
+			 *  - outputValue: The value the parser has converted the input to.
+			 *  - msg: describing the testcase.
+			 */
+			this.parser = function assertParser( assert, parserId, data ) {
+				var parser = $.tablesorter.getParser( parserId );
+				data.forEach( function ( testcase ) {
+					var extractedR = parser.is( testcase[ 0 ] );
+					var extractedF = parser.format( testcase[ 0 ] );
 
-	text = [
+					assert.strictEqual( extractedR, testcase[ 1 ], 'Detect: ' + testcase[ 3 ] );
+					assert.strictEqual( extractedF, testcase[ 2 ], 'Sortkey: ' + testcase[ 3 ] );
+				} );
+			};
+
+		},
+		afterEach: function () {
+			mw.language.months = this.originalMonths;
+		}
+	}
+) );
+
+QUnit.test( 'Textual keys', function ( assert ) {
+	this.parser( assert, 'text', [
 		[ 'Mars', true, 'Mars', 'Simple text' ],
 		[ 'Mẘas', true, 'Mẘas', 'Non ascii character' ],
 		[ 'A sentence', true, 'A sentence', 'A sentence with space chars' ]
-	];
-	parserTest( 'Textual keys', 'text', text );
+	] );
+} );
 
-	ipv4 = [
+QUnit.test( 'IPv4', function ( assert ) {
+	this.parser( assert, 'IPAddress', [
 		// Some randomly generated fake IPs
 		[ '0.0.0.0', true, 0, 'An IP address' ],
 		[ '255.255.255.255', true, 255255255255, 'An IP address' ],
@@ -91,10 +76,11 @@
 		[ 'Just text', false, -Infinity, 'A line with just text' ],
 		[ '45.238.27.109Postfix', false, 45238027109, 'An IP address with a connected postfix' ],
 		[ '45.238.27.109 postfix', false, 45238027109, 'An IP address with a separated postfix' ]
-	];
-	parserTest( 'IPv4', 'IPAddress', ipv4 );
+	] );
+} );
 
-	simpleMDYDatesInMDY = [
+QUnit.test( 'MDY Dates using mdy content language', function ( assert ) {
+	this.parser( assert, 'date', [
 		[ 'January 17, 2010', true, 20100117, 'Long middle endian date' ],
 		[ 'Jan 17, 2010', true, 20100117, 'Short middle endian date' ],
 		[ '1/17/2010', true, 20100117, 'Numeric middle endian date' ],
@@ -102,10 +88,15 @@
 		[ '01/07/2010', true, 20100107, 'Numeric middle endian date with padding on day' ],
 		[ '01/07/0010', true, 20100107, 'Numeric middle endian date with padding on year' ],
 		[ '5.12.1990', true, 19900512, 'Numeric middle endian date with . separator' ]
-	];
-	parserTest( 'MDY Dates using mdy content language', 'date', simpleMDYDatesInMDY );
+	] );
+} );
 
-	simpleMDYDatesInDMY = [
+QUnit.test( 'MDY Dates using dmy content language', function ( assert ) {
+	mw.config.set( {
+		wgDefaultDateFormat: 'dmy',
+		wgPageContentLanguage: 'de'
+	} );
+	this.parser( assert, 'date', [
 		[ 'January 17, 2010', true, 20100117, 'Long middle endian date' ],
 		[ 'Jan 17, 2010', true, 20100117, 'Short middle endian date' ],
 		[ '1/17/2010', true, 20101701, 'Numeric middle endian date' ],
@@ -113,25 +104,22 @@
 		[ '01/07/2010', true, 20100701, 'Numeric middle endian date with padding on day' ],
 		[ '01/07/0010', true, 20100701, 'Numeric middle endian date with padding on year' ],
 		[ '5.12.1990', true, 19901205, 'Numeric middle endian date with . separator' ]
-	];
-	parserTest( 'MDY Dates using dmy content language', 'date', simpleMDYDatesInDMY, function () {
-		mw.config.set( {
-			wgDefaultDateFormat: 'dmy',
-			wgPageContentLanguage: 'de'
-		} );
-	} );
+	] );
+} );
 
-	oldMDYDates = [
+QUnit.test( 'Very old MDY dates', function ( assert ) {
+	this.parser( assert, 'date', [
 		[ 'January 19, 1400 BC', false, '99999999', 'BC' ],
 		[ 'January 19, 1400BC', false, '99999999', 'Connected BC' ],
 		[ 'January, 19 1400 B.C.', false, '99999999', 'B.C.' ],
 		[ 'January 19, 1400 AD', false, '99999999', 'AD' ],
 		[ 'January, 19 10', true, 20100119, 'AD' ],
 		[ 'January, 19 1', false, '99999999', 'AD' ]
-	];
-	parserTest( 'Very old MDY dates', 'date', oldMDYDates );
+	] );
+} );
 
-	complexMDYDates = [
+QUnit.test( 'MDY Dates', function ( assert ) {
+	this.parser( assert, 'date', [
 		[ 'January, 19 2010', true, 20100119, 'Comma after month' ],
 		[ 'January 19, 2010', true, 20100119, 'Comma after day' ],
 		[ 'January/19/2010', true, 20100119, 'Forward slash separator' ],
@@ -141,10 +129,11 @@
 		[ 'December 12 \'10', true, 20101212, '' ],
 		[ 'Dec 12 \'10', true, 20101212, '' ],
 		[ 'Dec. 12 \'10', true, 20101212, '' ]
-	];
-	parserTest( 'MDY Dates', 'date', complexMDYDates );
+	] );
+} );
 
-	clobberedDates = [
+QUnit.test( 'Clobbered Dates', function ( assert ) {
+	this.parser( assert, 'date', [
 		[ 'January, 19 2010 - January, 20 2010', false, '99999999', 'Date range with hyphen' ],
 		[ 'January, 19 2010 — January, 20 2010', false, '99999999', 'Date range with mdash' ],
 		[ 'prefixJanuary, 19 2010', false, '99999999', 'Connected prefix' ],
@@ -154,26 +143,29 @@
 		[ 'A simple text', false, '99999999', 'Plain text in date sort' ],
 		[ '04l22l1991', false, '99999999', 'l char as separator' ],
 		[ 'January\\19\\2010', false, '99999999', 'backslash as date separator' ]
-	];
-	parserTest( 'Clobbered Dates', 'date', clobberedDates );
+	] );
+} );
 
-	MYDates = [
+QUnit.test( 'MY Dates', function ( assert ) {
+	this.parser( assert, 'date', [
 		[ 'December 2010', false, '99999999', 'Plain month year' ],
 		[ 'Dec 2010', false, '99999999', 'Abreviated month year' ],
 		[ '12 2010', false, '99999999', 'Numeric month year' ]
-	];
-	parserTest( 'MY Dates', 'date', MYDates );
+	] );
+} );
 
-	YDates = [
+QUnit.test( 'Y Dates', function ( assert ) {
+	this.parser( assert, 'date', [
 		[ '2010', false, '99999999', 'Plain 4-digit year' ],
 		[ '876', false, '99999999', '3-digit year' ],
 		[ '76', false, '99999999', '2-digit year' ],
 		[ '\'76', false, '99999999', '2-digit millenium bug year' ],
 		[ '2010 BC', false, '99999999', '4-digit year BC' ]
-	];
-	parserTest( 'Y Dates', 'date', YDates );
+	] );
+} );
 
-	ISODates = [
+QUnit.test( 'ISO Dates', function ( assert ) {
+	this.parser( assert, 'isoDate', [
 		[ '', false, -Infinity, 'Not a date' ],
 		[ '2000', false, 946684800000, 'Plain 4-digit year' ],
 		[ '2000-01', true, 946684800000, 'Year with month' ],
@@ -214,10 +206,11 @@
 		[ '2000-01-01T12:30:30+23:59', true, 946643490000, 'Date time in UTC+23:59' ],
 		[ '2000-01-01T123030+0100', true, 946726230000, 'Time without separators' ],
 		[ '20000101T123030+0100', false, 946726230000, 'All without separators' ]
-	];
-	parserTest( 'ISO Dates', 'isoDate', ISODates );
+	] );
+} );
 
-	currencyData = [
+QUnit.test( 'Currency', function ( assert ) {
+	this.parser( assert, 'currency', [
 		[ '1.02 $', true, 1.02, '' ],
 		[ '$ 3.00', true, 3, '' ],
 		[ '€ 2,99', true, 299, '' ],
@@ -231,10 +224,17 @@
 		[ '$ 2 299.99', true, 2299.99, '' ],
 		[ '$ 2 989', true, 2989, '' ],
 		[ '$ 2.989', true, 2.989, '' ]
-	];
-	parserTest( 'Currency', 'currency', currencyData );
+	] );
+} );
 
-	transformedCurrencyData = [
+QUnit.test( 'Currency with european separators', function ( assert ) {
+	mw.config.set( {
+		// We expect 22'234.444,22
+		// Map from ascii separators => localized separators
+		wgSeparatorTransformTable: [ ',\t.\t,', '\'\t,\t.' ],
+		wgDigitTransformTable: [ '', '' ]
+	} );
+	this.parser( assert, 'currency', [
 		[ '1.02 $', true, 102, '' ],
 		[ '$ 3.00', true, 300, '' ],
 		[ '€ 2,99', true, 2.99, '' ],
@@ -252,16 +252,7 @@
 		[ '2,989 $', true, 2.989, '' ],
 		[ '2 299.99 $', true, 229999, '' ],
 		[ '2 989 $', true, 2989, '' ]
-	];
-	parserTest( 'Currency with european separators', 'currency', transformedCurrencyData, function () {
-		mw.config.set( {
-			// We expect 22'234.444,22
-			// Map from ascii separators => localized separators
-			wgSeparatorTransformTable: [ ',\t.\t,', '\'\t,\t.' ],
-			wgDigitTransformTable: [ '', '' ]
-		} );
-	} );
+	] );
+} );
 
-	// TODO add numbers sorting tests for T10115 with a different language
-
-}() );
+// TODO add numbers sorting tests for T10115 with a different language
