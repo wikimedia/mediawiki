@@ -582,6 +582,7 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 			[ '<?xml version="1.0" encoding="utf-7"?><svg></svg>', true ],
 			[ '<?xml version="1.0" encoding="utf-8"?><svg></svg>', false ],
 			[ '<?xml version="1.0" encoding="WINDOWS-1252"?><svg></svg>', false ],
+			[ '<?xml version="1.0" encoding="us-ascii"?><svg></svg>', false ],
 		];
 	}
 

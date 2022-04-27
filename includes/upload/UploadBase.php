@@ -86,6 +86,7 @@ abstract class UploadBase {
 
 	protected static $safeXmlEncodings = [
 		'UTF-8',
+		'US-ASCII',
 		'ISO-8859-1',
 		'ISO-8859-2',
 		'UTF-16',
