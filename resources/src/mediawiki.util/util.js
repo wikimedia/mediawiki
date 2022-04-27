@@ -24,8 +24,8 @@ function rawurlencode( str ) {
  *
  * @ignore
  * @param {string} str String to be encoded
- * @param {string} mode Encoding mode, see documentation for $wgFragmentMode
- *     in DefaultSettings.php
+ * @param {string} mode Encoding mode, see documentation at
+ *     MainConfigSchema::FragmentMode.
  * @return {string} Encoded string
  */
 function escapeIdInternal( str, mode ) {

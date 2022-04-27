@@ -94,7 +94,7 @@ trait FileBackendGroupTestTrait {
 	 */
 	public function testConstructor_backendObject() {
 		// 'backend' being an object makes that repo from configuration ignored
-		// XXX This is not documented in DefaultSettings.php, does it do anything useful?
+		// XXX This is not documented in MainConfigSchema, does it do anything useful?
 		$obj = $this->newObj( [ 'ForeignFileRepos' => [ [ 'backend' => (object)[] ] ] ] );
 		$this->assertSame( FSFileBackend::class, $obj->config( 'local-backend' )['class'] );
 	}

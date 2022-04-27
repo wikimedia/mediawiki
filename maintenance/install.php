@@ -33,7 +33,7 @@ define( 'MEDIAWIKI_INSTALL', true );
 /**
  * Maintenance script to install and configure MediaWiki
  *
- * Default values for the options are defined in DefaultSettings.php
+ * Default values for the options are defined in MainConfigSchema.php
  * (see the mapping in CliInstaller.php)
  * Default for --dbpath (SQLite-specific) is defined in SqliteInstaller::getGlobalDefaults
  *
