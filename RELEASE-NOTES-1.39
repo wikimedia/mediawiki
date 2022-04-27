@@ -148,6 +148,8 @@ because of Phabricator reports.
   is hard deprecated.
 * Use of the SiteStatsUpdate constructor has been deprecated in favor of
   the ::factory() method.
+* Title::getSelectFields() has been deprecated in favor of
+  PageStore::newSelectQueryBuilder()
 * The following global functions are deprecated in favor of the listed UrlUtils
   methods.
   - wfExpandUrl -> UrlUtils::expand

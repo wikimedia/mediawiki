@@ -496,10 +496,12 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * objects.
 	 *
 	 * @deprecated since 1.36, use PageStore::newSelectQueryBuilder() instead.
+	 *   Hard deprecated in 1.39, remove in 1.40
 	 *
 	 * @return array
 	 */
 	protected static function getSelectFields() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()->getPageStore()->getSelectFields();
 	}
 
@@ -512,10 +514,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	public static function newFromID( $id, $flags = 0 ) {
 		$flags |= ( $flags & self::GAID_FOR_UPDATE ) ? self::READ_LATEST : 0; // b/c
+		$pageStore = MediaWikiServices::getInstance()->getPageStore();
 		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
 		$row = wfGetDB( $index )->selectRow(
 			'page',
-			self::getSelectFields(),
+			$pageStore->getSelectFields(),
 			[ 'page_id' => $id ],
 			__METHOD__,
 			$options
@@ -3243,10 +3246,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	public function isSingleRevRedirect() {
 		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
+		$pageStore = MediaWikiServices::getInstance()->getPageStore();
 
 		$row = $dbw->selectRow(
 			'page',
-			self::getSelectFields(),
+			$pageStore->getSelectFields(),
 			$this->pageCond(),
 			__METHOD__,
 			[ 'FOR UPDATE' ]
