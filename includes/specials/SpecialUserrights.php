@@ -167,18 +167,13 @@ class UserrightsPage extends SpecialPage {
 
 			$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
 			$out->addHTML(
-				Html::rawElement(
-					'div',
-					[
-						'class' => 'mw-notify-success mw-message-box-success mw-message-box',
-						'id' => 'mw-preferences-success',
-						'data-mw-autohide' => 'false',
-					],
+				Html::successBox(
 					Html::element(
 						'p',
 						[],
 						$this->msg( 'savedrights', $this->mFetchedUser->getName() )->text()
-					)
+					),
+					'mw-notify-success'
 				)
 			);
 		}

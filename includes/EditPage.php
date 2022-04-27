@@ -3566,34 +3566,46 @@ class EditPage implements IEditObject {
 					$this->context->getRequest()->getValues(),
 					[ 'title' => true, 'returnto' => true, 'returntoquery' => true ]
 				);
-				$out->wrapWikiMsg(
-					"<div id='mw-anon-edit-warning' class='mw-message-box mw-message-box-warning'>\n$1\n</div>",
-					[
-						$this->tempUserCreateActive ? 'autocreate-edit-warning' : 'anoneditwarning',
-						// Log-in link
-						SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
-							'returnto' => $this->getTitle()->getPrefixedDBkey(),
-							'returntoquery' => wfArrayToCgi( $returntoquery ),
-						] ),
-						// Sign-up link
-						SpecialPage::getTitleFor( 'CreateAccount' )->getFullURL( [
-							'returnto' => $this->getTitle()->getPrefixedDBkey(),
-							'returntoquery' => wfArrayToCgi( $returntoquery ),
-						] )
-					]
+				$out->addHTML(
+					Html::warningBox(
+						$out->msg(
+							$this->tempUserCreateActive ? 'autocreate-edit-warning' : 'anoneditwarning',
+							// Log-in link
+							SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
+								'returnto' => $this->getTitle()->getPrefixedDBkey(),
+								'returntoquery' => wfArrayToCgi( $returntoquery ),
+							] ),
+							// Sign-up link
+							SpecialPage::getTitleFor( 'CreateAccount' )->getFullURL( [
+								'returnto' => $this->getTitle()->getPrefixedDBkey(),
+								'returntoquery' => wfArrayToCgi( $returntoquery ),
+							] )
+						)->parse(),
+						'mw-anon-edit-warning'
+					)
 				);
 			} else {
-				$out->wrapWikiMsg(
-					"<div id='mw-anon-preview-warning' class='mw-message-box mw-message-box-warning'>\n$1</div>",
-					$this->tempUserCreateActive ? 'autocreate-preview-warning' : 'anonpreviewwarning'
+				$out->addHTML(
+					Html::warningBox(
+						$out->msg(
+							$this->tempUserCreateActive ? 'autocreate-preview-warning' : 'anonpreviewwarning'
+						)->parse(),
+						'mw-anon-preview-warning'
+					)
 				);
 			}
 		} elseif ( $this->mTitle->isUserConfigPage() ) {
 			# Check the skin exists
 			if ( $this->isWrongCaseUserConfigPage() ) {
-				$out->wrapWikiMsg(
-					"<div id='mw-userinvalidconfigtitle' class='mw-message-box mw-message-box-error'>\n$1\n</div>",
-					[ 'userinvalidconfigtitle', $this->mTitle->getSkinFromConfigSubpage() ]
+				$out->addHTML(
+					Html::errorBox(
+						$out->msg(
+							'userinvalidconfigtitle',
+							$this->mTitle->getSkinFromConfigSubpage()
+						)->parse(),
+						'',
+						'mw-userinvalidconfigtitle'
+					)
 				);
 			}
 			if ( $this->getTitle()->isSubpageOf( $user->getUserPage() ) ) {
@@ -4409,9 +4421,9 @@ class EditPage implements IEditObject {
 		}
 
 		if ( $this->isConflict ) {
-			$conflict = Html::rawElement(
-				'div', [ 'id' => 'mw-previewconflict', 'class' => 'mw-message-box mw-message-box-warning' ],
-				$this->context->msg( 'previewconflict' )->escaped()
+			$conflict = Html::warningBox(
+				$this->context->msg( 'previewconflict' )->escaped(),
+				'mw-previewconflict'
 			);
 		} else {
 			$conflict = '';

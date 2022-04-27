@@ -162,9 +162,16 @@ class DeleteAction extends FormlessAction {
 			if ( !$status->isGood() ) {
 				// If the page (and/or its talk) couldn't be found (e.g. because it was deleted in another request),
 				// let the user know.
-				$outputPage->wrapWikiTextAsInterface(
-					'warningbox',
-					Status::wrap( $status )->getWikiText( false, false, $context->getLanguage() )
+				$outputPage->addHTML(
+					Html::warningBox(
+						$outputPage->parseAsContent(
+							Status::wrap( $status )->getWikiText(
+								false,
+								false,
+								$context->getLanguage()
+							)
+						)
+					)
 				);
 			}
 

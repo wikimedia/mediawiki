@@ -86,14 +86,13 @@ class SpecialPreferences extends SpecialPage {
 			$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
 
 			$out->addHTML(
-				Html::rawElement(
-					'div',
-					[
-						'class' => 'mw-preferences-messagebox mw-notify-success mw-message-box-success mw-message-box',
-						'id' => 'mw-preferences-success',
-						'data-mw-autohide' => 'false',
-					],
-					Html::element( 'p', [], $this->msg( 'savedprefs' )->text() )
+				Html::successBox(
+					Html::element(
+						'p',
+						[],
+						$this->msg( 'savedprefs' )->text()
+					),
+					'mw-preferences-messagebox mw-notify-success'
 				)
 			);
 		}
