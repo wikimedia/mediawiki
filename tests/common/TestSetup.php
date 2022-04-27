@@ -161,7 +161,7 @@ class TestSetup {
 		require_once $fileName;
 
 		foreach ( get_defined_vars() as $varName => $value ) {
-			if ( $key === 'fileName' || $key === 'originalGlobals' || $key === 'key' ) {
+			if ( $varName === 'fileName' || $varName === 'originalGlobals' || $varName === 'key' ) {
 				continue;
 			}
 			if ( array_key_exists( $varName, $originalGlobals ) ) {
