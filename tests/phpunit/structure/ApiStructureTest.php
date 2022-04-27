@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -19,10 +20,10 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 	/** @var array Sets of globals to test. Each array element is input to HashConfig */
 	private static $testGlobals = [
 		[
-			'MiserMode' => false,
+			MainConfigNames::MiserMode => false,
 		],
 		[
-			'MiserMode' => true,
+			MainConfigNames::MiserMode => true,
 		],
 	];
 

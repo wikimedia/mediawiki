@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -63,7 +64,7 @@ class PurgeList extends Maintenance {
 		$conf = $this->getConfig();
 		if ( ( $this->namespaceId !== null || $this->allNamespaces )
 			&& $this->doDbTouch
-			&& $conf->get( 'MiserMode' )
+			&& $conf->get( MainConfigNames::MiserMode )
 		) {
 			$this->fatalError( 'Prevented mass db-invalidation (MiserMode is enabled).' );
 		}

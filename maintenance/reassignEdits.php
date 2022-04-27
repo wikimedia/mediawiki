@@ -23,6 +23,7 @@
  * @license GPL-2.0-or-later
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -76,7 +77,7 @@ class ReassignEdits extends Maintenance {
 	 * @return int Number of entries changed, or that would be changed
 	 */
 	private function doReassignEdits( &$from, &$to, $updateRC = false, $report = false ) {
-		$actorTableSchemaMigrationStage = $this->getConfig()->get( 'ActorTableSchemaMigrationStage' );
+		$actorTableSchemaMigrationStage = $this->getConfig()->get( MainConfigNames::ActorTableSchemaMigrationStage );
 		$dbw = $this->getDB( DB_PRIMARY );
 		$this->beginTransaction( $dbw, __METHOD__ );
 		$actorNormalization = MediaWikiServices::getInstance()->getActorNormalization();

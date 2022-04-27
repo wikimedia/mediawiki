@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 if ( !defined( 'MEDIAWIKI' ) ) {
@@ -162,7 +163,7 @@ return [
 			[
 				'name' => 'legacy.wikibits.js',
 				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
-					return $config->get( 'IncludeLegacyJavaScript' ) ?
+					return $config->get( MainConfigNames::IncludeLegacyJavaScript ) ?
 						new ResourceLoaderFilePath( 'legacy.wikibits.js' ) : '';
 				}
 			],
@@ -578,9 +579,9 @@ return [
 			[
 				'name' => 'resources/lib/vue/vue.js',
 				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
-					$baseDir = $config->get( 'BaseDirectory' );
+					$baseDir = $config->get( MainConfigNames::BaseDirectory );
 					// Use the development version if development mode is enabled, or if we're in debug mode
-					$file = $config->get( 'VueDevelopmentMode' ) || $context->getDebug() ?
+					$file = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug() ?
 						'resources/lib/vue/vue.global.js' :
 						'resources/lib/vue/vue.global.prod.js';
 					// The file shipped by Vue does var Vue = ...;, but doesn't export it
@@ -589,7 +590,7 @@ return [
 						';module.exports=Vue;';
 				},
 				'versionCallback' => static function ( ResourceLoaderContext $context, Config $config ) {
-					$file = $config->get( 'VueDevelopmentMode' ) || $context->getDebug() ?
+					$file = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug() ?
 						'resources/lib/vue/vue.global.js' :
 						'resources/lib/vue/vue.global.prod.js';
 					return new ResourceLoaderFilePath( $file );
@@ -617,9 +618,9 @@ return [
 			[
 				'name' => 'resources/lib/vuex/vuex.js',
 				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
-					$baseDir = $config->get( 'BaseDirectory' );
+					$baseDir = $config->get( MainConfigNames::BaseDirectory );
 					// Use the development version if development mode is enabled, or if we're in debug mode
-					$file = $config->get( 'VueDevelopmentMode' ) || $context->getDebug() ?
+					$file = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug() ?
 						'resources/lib/vuex/vuex.global.js' :
 						'resources/lib/vuex/vuex.global.prod.js';
 					// The file shipped by Vuex does var Vuex = ...;, but doesn't export it
@@ -629,7 +630,7 @@ return [
 						';module.exports=Vuex;';
 				},
 				'versionCallback' => static function ( ResourceLoaderContext $context, Config $config ) {
-					$file = $config->get( 'VueDevelopmentMode' ) || $context->getDebug() ?
+					$file = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug() ?
 						'resources/lib/vuex/vuex.global.js' :
 						'resources/lib/vuex/vuex.global.prod.js';
 					return new ResourceLoaderFilePath( $file );
@@ -1029,7 +1030,7 @@ return [
 			'mediawiki.ForeignUpload.js',
 			[
 				'name' => 'config.json',
-				'config' => [ 'ForeignUploadTargets', 'EnableUploads' ],
+				'config' => [ MainConfigNames::ForeignUploadTargets, MainConfigNames::EnableUploads ],
 			],
 		],
 		'dependencies' => [
@@ -1048,7 +1049,7 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src",
 		'packageFiles' => [
 			'mediawiki.ForeignStructuredUpload.js',
-			[ 'name' => 'config.json', 'config' => [ 'UploadDialog' ] ],
+			[ 'name' => 'config.json', 'config' => [ MainConfigNames::UploadDialog ] ],
 		],
 		'dependencies' => [
 			'mediawiki.ForeignUpload',
@@ -1171,7 +1172,7 @@ return [
 			'Uri.js',
 			[ 'name' => 'loose.regexp.js',
 				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
-					$baseDir = $config->get( 'BaseDirectory' );
+					$baseDir = $config->get( MainConfigNames::BaseDirectory );
 					return ResourceLoaderMwUrlModule::makeJsFromExtendedRegExp(
 						file_get_contents( "$baseDir/resources/src/mediawiki.Uri/loose.regexp" )
 					);
@@ -1182,7 +1183,7 @@ return [
 			],
 			[ 'name' => 'strict.regexp.js',
 				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
-					$baseDir = $config->get( 'BaseDirectory' );
+					$baseDir = $config->get( MainConfigNames::BaseDirectory );
 					return ResourceLoaderMwUrlModule::makeJsFromExtendedRegExp(
 						file_get_contents( "$baseDir/resources/src/mediawiki.Uri/strict.regexp" )
 					);
@@ -1220,9 +1221,9 @@ return [
 			'util.js',
 			'jquery.accessKeyLabel.js',
 			[ 'name' => 'config.json', 'config' => [
-				'FragmentMode',
-				'GenerateThumbnailOnParse',
-				'LoadScript',
+				MainConfigNames::FragmentMode,
+				MainConfigNames::GenerateThumbnailOnParse,
+				MainConfigNames::LoadScript,
 			] ],
 			[ 'name' => 'portletLinkOptions.json', 'callback' => 'Skin::getPortletLinkOptions' ],
 		],
@@ -1246,11 +1247,11 @@ return [
 		'packageFiles' => [
 			'index.js',
 			[ 'name' => 'config.json', 'config' => [
-				'prefix' => 'CookiePrefix',
-				'domain' => 'CookieDomain',
-				'path' => 'CookiePath',
-				'expires' => 'CookieExpiration',
-				'sameSiteLegacy' => 'UseSameSiteLegacyCookies',
+				'prefix' => MainConfigNames::CookiePrefix,
+				'domain' => MainConfigNames::CookieDomain,
+				'path' => MainConfigNames::CookiePath,
+				'expires' => MainConfigNames::CookieExpiration,
+				'sameSiteLegacy' => MainConfigNames::UseSameSiteLegacyCookies,
 			] ],
 		],
 		'dependencies' => 'jquery.cookie',
@@ -1378,7 +1379,7 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.action",
 		'packageFiles' => [
 			'mediawiki.action.protect.js',
-			[ 'name' => 'config.json', 'config' => [ 'CascadingRestrictionLevels' ] ],
+			[ 'name' => 'config.json', 'config' => [ MainConfigNames::CascadingRestrictionLevels ] ],
 		],
 		'dependencies' => [
 			'oojs-ui-core',
@@ -1404,7 +1405,7 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.action",
 		'packageFiles' => [
 			'mediawiki.action.view.postEdit.js',
-			[ 'name' => 'config.json', 'config' => [ 'EditSubmitButtonLabelPublish' ] ],
+			[ 'name' => 'config.json', 'config' => [ MainConfigNames::EditSubmitButtonLabelPublish ] ],
 		],
 		'dependencies' => [
 			'mediawiki.jqueryMsg',
@@ -1516,7 +1517,7 @@ return [
 				);
 
 				$magicWords = [
-					'SITENAME' => $config->get( 'Sitename' ),
+					'SITENAME' => $config->get( MainConfigNames::Sitename ),
 				];
 				Hooks::runner()->onResourceLoaderJqueryMsgModuleMagicWords( $context, $magicWords );
 
@@ -1677,7 +1678,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 		'packageFiles' => [
 			'mediawiki.page.watch.ajax.js',
-			[ 'name' => 'config.json', 'config' => [ 'WatchlistExpiry' ] ],
+			[ 'name' => 'config.json', 'config' => [ MainConfigNames::WatchlistExpiry ] ],
 		],
 		'dependencies' => [
 			'mediawiki.api',
@@ -1768,7 +1769,8 @@ return [
 			'dm/SavedQueriesModel.js',
 			'dm/SavedQueryItemModel.js',
 			// TODO consider merging this with the config.json for the ui code
-			[ 'name' => 'dmConfig.json', 'config' => [ 'StructuredChangeFiltersLiveUpdatePollingRate' ] ],
+			[ 'name' => 'dmConfig.json', 'config' =>
+				[ MainConfigNames::StructuredChangeFiltersLiveUpdatePollingRate ] ],
 			'HighlightColors.js',
 			'ui/CheckboxInputWidget.js',
 			'ui/FilterTagMultiselectWidget.js',
@@ -2086,7 +2088,7 @@ return [
 		'packageFiles' => [
 			'mediawiki.special.block.js',
 			[ 'name' => 'config.json', 'config' => [
-				'BlockAllowsUTEdit',
+				MainConfigNames::BlockAllowsUTEdit,
 			] ],
 		],
 		'dependencies' => [
