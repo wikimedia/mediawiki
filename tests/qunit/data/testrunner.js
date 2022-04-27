@@ -142,11 +142,12 @@
 	 * @param {Object} [localEnv.messages]
 	 */
 	QUnit.newMwEnvironment = ( function () {
-		var MwMap = mw.config.constructor; // internal use only
-		var ajaxRequests = [];
-
-		var liveConfig = mw.config;
-		var liveMessages = mw.messages;
+		// eslint-disable-next-line no-undef
+		var deepClone = typeof structuredClone === 'function' ? structuredClone : function ( obj ) {
+			return $.extend( /* deep */ true, {}, obj );
+		};
+		var liveConfig = mw.config.values;
+		var liveMessages = mw.messages.values;
 
 		var warnFn;
 		var errorFn;
@@ -167,26 +168,7 @@
 			}
 		}
 
-		function freshConfigCopy( custom ) {
-			var copy;
-			// Tests should mock all factors that directly influence the tested code.
-			// For backwards compatibility though we set mw.config to a fresh copy of the live
-			// config. This way any modifications made to mw.config during the test will not
-			// affect other tests, nor the global scope outside the test runner.
-			// This is a shallow copy, since overriding an array or object value via "custom"
-			// should replace it. Setting a config property means you override it, not extend it.
-			// NOTE: It is important that we suppress warnings because extend() will also access
-			// deprecated properties and trigger deprecation warnings from mw.log#deprecate.
-			suppressWarnings();
-			copy = $.extend( {}, liveConfig.get(), custom );
-			restoreWarnings();
-
-			return copy;
-		}
-
-		function freshMessagesCopy( custom ) {
-			return $.extend( /* deep */true, {}, liveMessages.get(), custom );
-		}
+		var ajaxRequests = [];
 
 		/**
 		 * @param {jQuery.Event} event
@@ -199,23 +181,20 @@
 
 		return function ( orgEnv ) {
 			var localEnv = makeSafeEnv( orgEnv );
-			// MediaWiki env testing
-			localEnv.config = localEnv.config || {};
-			localEnv.messages = localEnv.messages || {};
 
 			var orgBeforeEach = localEnv.beforeEach;
 			var orgAfterEach = localEnv.afterEach;
 
 			localEnv.beforeEach = function () {
-				// Greetings, mock environment!
-				mw.config = new MwMap();
-				mw.config.set( freshConfigCopy( localEnv.config ) );
-				mw.messages = new MwMap();
-				mw.messages.set( freshMessagesCopy( localEnv.messages ) );
-				// Update reference to mw.messages
-				mw.jqueryMsg.setParserDefaults( {
-					messages: mw.messages
-				} );
+				mw.config.values = deepClone( liveConfig );
+				if ( localEnv.config ) {
+					mw.config.set( localEnv.config );
+				}
+
+				mw.messages.values = deepClone( liveMessages );
+				if ( localEnv.messages ) {
+					mw.messages.set( localEnv.messages );
+				}
 
 				this.suppressWarnings = suppressWarnings;
 				this.restoreWarnings = restoreWarnings;
@@ -240,13 +219,8 @@
 				// still suppressed by the end of the test.
 				restoreWarnings();
 
-				// Farewell, mock environment!
-				mw.config = liveConfig;
-				mw.messages = liveMessages;
-				// Restore reference to mw.messages
-				mw.jqueryMsg.setParserDefaults( {
-					messages: liveMessages
-				} );
+				mw.config.values = liveConfig;
+				mw.messages.values = liveMessages;
 
 				// Tests should use fake timers or wait for animations to complete
 				// Check for incomplete animations/requests/etc and throw if there are any.
