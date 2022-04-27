@@ -87,6 +87,11 @@ MediaWiki supports over 350 languages. Many localisations are updated regularly.
 Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
+* (T304920) In Swahili, The "Media" namespace is now "Media", as in English,
+  and the "File" namespace is now "Faili". The old name of the "File" namespace
+  was "Picha", and it's kept for backwards compatibility. If you manage a wiki
+  in Swahili, and you use "Faili:" as a namespace anywhere in wikitext, and
+  you mean to use it as "Media:", these need to be replaced to "Media:".
 * …
 
 === Breaking changes in 1.39 ===
@@ -123,6 +128,8 @@ because of Phabricator reports.
 * Changes to ResourceLoader modules:
   - The mediawiki.viewport module, deprecated in 1.37 has been
      removed. Use IntersectionObserver instead.
+* If you manage a wiki in Swahili, and you use "Faili:" as a namespace anywhere,
+  and you mean to use it as "Media:", replace it with "Media:". See T304920.
 * Changes to skins:
   - Skin::getCopyrightIcon(), ::getPoweredBy(), deprecated in 1.37 have been
     removed.
