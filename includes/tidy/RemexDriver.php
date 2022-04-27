@@ -20,7 +20,7 @@ class RemexDriver extends TidyDriverBase {
 
 	/** @internal */
 	public const CONSTRUCTOR_OPTIONS = [
-		'TidyConfig',
+		MainConfigNames::TidyConfig,
 	];
 
 	/**

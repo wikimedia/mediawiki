@@ -89,7 +89,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 		// Disable module storage.
 		// The unit test for mw.loader.store will enable it (with a mock timers).
 		$config = new MultiConfig( [
-			new HashConfig( [ 'ResourceLoaderStorageEnabled' => false ] ),
+			new HashConfig( [ MainConfigNames::ResourceLoaderStorageEnabled => false ] ),
 			$rl->getConfig(),
 		] );
 

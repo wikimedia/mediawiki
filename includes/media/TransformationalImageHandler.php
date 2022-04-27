@@ -26,6 +26,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
@@ -176,7 +177,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		}
 
 		if ( $image->isTransformedLocally() && !$this->isImageAreaOkForThumbnaling( $image, $params ) ) {
-			$maxImageArea = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxImageArea' );
+			$maxImageArea = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::MaxImageArea );
 			return new TransformTooBigImageAreaError( $params, $maxImageArea );
 		}
 
@@ -535,7 +536,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			$cache::TTL_HOUR,
 			static function () use ( $method ) {
 				$imageMagickConvertCommand = MediaWikiServices::getInstance()
-					->getMainConfig()->get( 'ImageMagickConvertCommand' );
+					->getMainConfig()->get( MainConfigNames::ImageMagickConvertCommand );
 
 				$cmd = Shell::escape( $imageMagickConvertCommand ) . ' -version';
 				wfDebug( $method . ": Running convert -version" );
@@ -618,7 +619,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @since 1.25
 	 */
 	public function isImageAreaOkForThumbnaling( $file, &$params ) {
-		$maxImageArea = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxImageArea' );
+		$maxImageArea = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::MaxImageArea );
 
 		# For historical reasons, hook starts with BitmapHandler
 		$checkImageAreaHookResult = null;

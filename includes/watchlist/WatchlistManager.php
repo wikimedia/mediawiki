@@ -26,6 +26,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPageFactory;
@@ -56,7 +57,7 @@ class WatchlistManager {
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'UseEnotif',
-		'ShowUpdatedMarker',
+		MainConfigNames::ShowUpdatedMarker,
 	];
 
 	/** @var ServiceOptions */
@@ -165,7 +166,7 @@ class WatchlistManager {
 		$user = $performer->getUser();
 
 		if ( !$this->options->get( 'UseEnotif' ) &&
-			!$this->options->get( 'ShowUpdatedMarker' )
+			!$this->options->get( MainConfigNames::ShowUpdatedMarker )
 		) {
 			$this->talkPageNotificationManager->removeUserHasNewMessages( $user );
 			return;
@@ -231,7 +232,7 @@ class WatchlistManager {
 		}
 
 		if ( !$this->options->get( 'UseEnotif' ) &&
-			!$this->options->get( 'ShowUpdatedMarker' )
+			!$this->options->get( MainConfigNames::ShowUpdatedMarker )
 		) {
 			return;
 		}

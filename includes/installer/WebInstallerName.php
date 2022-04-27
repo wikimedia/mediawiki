@@ -19,6 +19,7 @@
  * @ingroup Installer
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserRigorOptions;
 
@@ -54,7 +55,7 @@ class WebInstallerName extends WebInstallerPage {
 		// Database isn't available in config yet, so take it
 		// from the installer
 		$pingbackConf = new HashConfig( [
-			'DBtype' => $this->getVar( 'wgDBtype' ),
+			MainConfigNames::DBtype => $this->getVar( 'wgDBtype' ),
 		] );
 		$pingbackInfo = Pingback::getSystemInfo( $pingbackConf );
 

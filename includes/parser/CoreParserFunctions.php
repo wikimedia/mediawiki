@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Revision\RevisionAccessException;
@@ -40,8 +41,8 @@ class CoreParserFunctions {
 	 */
 	public const REGISTER_OPTIONS = [
 		// See documentation for the corresponding config options
-		'AllowDisplayTitle',
-		'AllowSlowParserFunctions',
+		MainConfigNames::AllowDisplayTitle,
+		MainConfigNames::AllowSlowParserFunctions,
 	];
 
 	/**
@@ -54,8 +55,8 @@ class CoreParserFunctions {
 	 */
 	public static function register( Parser $parser, ServiceOptions $options ) {
 		$options->assertRequiredOptions( self::REGISTER_OPTIONS );
-		$allowDisplayTitle = $options->get( 'AllowDisplayTitle' );
-		$allowSlowParserFunctions = $options->get( 'AllowSlowParserFunctions' );
+		$allowDisplayTitle = $options->get( MainConfigNames::AllowDisplayTitle );
+		$allowSlowParserFunctions = $options->get( MainConfigNames::AllowSlowParserFunctions );
 
 		# Syntax for arguments (see Parser::setFunctionHook):
 		#  "name for lookup in localized magic words array",
@@ -435,7 +436,8 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function displaytitle( $parser, $text = '', $uarg = '' ) {
-		$restrictDisplayTitle = MediaWikiServices::getInstance()->getMainConfig()->get( 'RestrictDisplayTitle' );
+		$restrictDisplayTitle = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::RestrictDisplayTitle );
 
 		static $magicWords = null;
 		if ( $magicWords === null ) {
@@ -1312,7 +1314,7 @@ class CoreParserFunctions {
 		$services = MediaWikiServices::getInstance();
 		if (
 			$t->equals( $parser->getTitle() ) &&
-			$services->getMainConfig()->get( 'MiserMode' ) &&
+			$services->getMainConfig()->get( MainConfigNames::MiserMode ) &&
 			!$parser->getOptions()->getInterfaceMessage() &&
 			// @TODO: disallow this word on all namespaces (T235957)
 			$services->getNamespaceInfo()->isSubject( $t->getNamespace() )

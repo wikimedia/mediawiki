@@ -17,6 +17,7 @@
  *
  * @file
  */
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
@@ -158,7 +159,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 				'rc_bot' => 0,
 				'rc_log_type != ' . $dbr->addQuotes( 'newusers' ) . ' OR rc_log_type IS NULL',
 				'rc_timestamp >= ' . $dbr->addQuotes(
-					$dbr->timestamp( time() - $config->get( 'ActiveUserDays' ) * 24 * 3600 ) ),
+					$dbr->timestamp( time() - $config->get( MainConfigNames::ActiveUserDays ) * 24 * 3600 ) ),
 			] )
 			->caller( __METHOD__ )
 			->fetchField();

@@ -25,6 +25,7 @@ use Collation;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MWException;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
@@ -38,7 +39,7 @@ class CollationFactory {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'CategoryCollation',
+		MainConfigNames::CategoryCollation,
 	];
 
 	private const CORE_COLLATIONS = [
@@ -132,7 +133,7 @@ class CollationFactory {
 	}
 
 	public function getDefaultCollationName(): string {
-		return $this->options->get( 'CategoryCollation' );
+		return $this->options->get( MainConfigNames::CategoryCollation );
 	}
 
 	/**

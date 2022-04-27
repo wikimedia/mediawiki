@@ -7,6 +7,7 @@ use Config;
 use ExtensionRegistry;
 use HashConfig;
 use MediaWiki\Config\IterableConfig;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Cache\CachedSource;
 use MediaWiki\Settings\Config\ConfigBuilder;
@@ -89,8 +90,8 @@ class SettingsBuilder {
 		$this->configSchema = new ConfigSchemaAggregator();
 		$this->phpIniSink = $phpIniSink;
 		$this->settingsConfig = [
-			'ExtensionDirectory' => "$baseDir/extensions",
-			'StyleDirectory' => "$baseDir/skins",
+			MainConfigNames::ExtensionDirectory => "$baseDir/extensions",
+			MainConfigNames::StyleDirectory => "$baseDir/skins",
 		];
 		$this->reset();
 	}
@@ -358,7 +359,7 @@ class SettingsBuilder {
 		//       interoperability with wfLoadExtension() being called from LocalSettings.php.
 
 		if ( isset( $settings['extensions'] ) ) {
-			$extDir = $this->settingsConfig['ExtensionDirectory'];
+			$extDir = $this->settingsConfig[MainConfigNames::ExtensionDirectory];
 			foreach ( $settings['extensions'] ?? [] as $ext ) {
 				$path = "$extDir/$ext/extension.json"; // see wfLoadExtension
 				$this->extensionRegistry->queue( $path );
@@ -366,7 +367,7 @@ class SettingsBuilder {
 		}
 
 		if ( isset( $settings['skins'] ) ) {
-			$skinDir = $this->settingsConfig['StyleDirectory'];
+			$skinDir = $this->settingsConfig[MainConfigNames::StyleDirectory];
 			foreach ( $settings['skins'] ?? [] as $skin ) {
 				$path = "$skinDir/$skin/skin.json"; // see wfLoadSkin
 				$this->extensionRegistry->queue( $path );

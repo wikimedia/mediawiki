@@ -29,6 +29,7 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
@@ -483,8 +484,10 @@ class MessageCache implements LoggerAwareInterface {
 	 * @return array Loaded messages for storing in caches
 	 */
 	protected function loadFromDB( $code, $mode = null ) {
-		$maxMsgCacheEntrySize = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxMsgCacheEntrySize' );
-		$adaptiveMessageCache = MediaWikiServices::getInstance()->getMainConfig()->get( 'AdaptiveMessageCache' );
+		$maxMsgCacheEntrySize = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::MaxMsgCacheEntrySize );
+		$adaptiveMessageCache = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::AdaptiveMessageCache );
 		// (T164666) The query here performs really poorly on WMF's
 		// contributions replicas. We don't have a way to say "any group except
 		// contributions", so for the moment let's specify 'api'.
@@ -707,7 +710,8 @@ class MessageCache implements LoggerAwareInterface {
 	 * @throws MWException
 	 */
 	public function refreshAndReplaceInternal( $code, array $replacements ) {
-		$maxMsgCacheEntrySize = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxMsgCacheEntrySize' );
+		$maxMsgCacheEntrySize = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::MaxMsgCacheEntrySize );
 
 		// Allow one caller at a time to avoid race conditions
 		$scopedLock = $this->getReentrantScopedLock(

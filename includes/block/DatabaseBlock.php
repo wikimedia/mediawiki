@@ -31,6 +31,7 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use MWException;
@@ -419,7 +420,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return string
 	 */
 	protected static function getIpFragment( $hex ) {
-		$blockCIDRLimit = MediaWikiServices::getInstance()->getMainConfig()->get( 'BlockCIDRLimit' );
+		$blockCIDRLimit = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::BlockCIDRLimit );
 		if ( substr( $hex, 0, 3 ) == 'v6-' ) {
 			return 'v6-' . substr( substr( $hex, 3 ), 0, (int)floor( $blockCIDRLimit['IPv6'] / 4 ) );
 		} else {
@@ -820,7 +821,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return string
 	 */
 	public static function getAutoblockExpiry( $timestamp ) {
-		$autoblockExpiry = MediaWikiServices::getInstance()->getMainConfig()->get( 'AutoblockExpiry' );
+		$autoblockExpiry = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::AutoblockExpiry );
 
 		return wfTimestamp( TS_MW, (int)wfTimestamp( TS_UNIX, $timestamp ) + $autoblockExpiry );
 	}
@@ -1090,7 +1091,7 @@ class DatabaseBlock extends AbstractBlock {
 
 		$res = parent::appliesToRight( $right );
 
-		if ( !$res && $config->get( 'EnablePartialActionBlocks' ) ) {
+		if ( !$res && $config->get( MainConfigNames::EnablePartialActionBlocks ) ) {
 			$blockActions = MediaWikiServices::getInstance()->getBlockActionInfo()
 				->getAllBlockActions();
 

@@ -24,6 +24,7 @@
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\HookContainer\StaticHookRegistry;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -717,7 +718,7 @@ abstract class DatabaseUpdater {
 	 * @return string Full path to patch file
 	 */
 	public function patchPath( IDatabase $db, $patch ) {
-		$baseDir = MediaWikiServices::getInstance()->getMainConfig()->get( 'BaseDirectory' );
+		$baseDir = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::BaseDirectory );
 
 		$dbType = $db->getType();
 		if ( file_exists( "$baseDir/maintenance/$dbType/archives/$patch" ) ) {

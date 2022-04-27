@@ -25,6 +25,7 @@ use DeferredUpdates;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MWTimestamp;
@@ -41,7 +42,7 @@ class TalkPageNotificationManager {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'DisableAnonTalk'
+		MainConfigNames::DisableAnonTalk
 	];
 
 	/** @var array */
@@ -82,7 +83,7 @@ class TalkPageNotificationManager {
 		UserFactory $userFactory
 	) {
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->disableAnonTalk = $serviceOptions->get( 'DisableAnonTalk' );
+		$this->disableAnonTalk = $serviceOptions->get( MainConfigNames::DisableAnonTalk );
 		$this->loadBalancer = $loadBalancer;
 		$this->readOnlyMode = $readOnlyMode;
 		$this->revisionLookup = $revisionLookup;

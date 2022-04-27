@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -35,7 +36,7 @@ class CoreTagHooks {
 	 */
 	public const REGISTER_OPTIONS = [
 		// See documentation for the corresponding config options
-		'RawHtml',
+		MainConfigNames::RawHtml,
 	];
 
 	/**
@@ -48,7 +49,7 @@ class CoreTagHooks {
 	 */
 	public static function register( Parser $parser, ServiceOptions $options ) {
 		$options->assertRequiredOptions( self::REGISTER_OPTIONS );
-		$rawHtml = $options->get( 'RawHtml' );
+		$rawHtml = $options->get( MainConfigNames::RawHtml );
 		$parser->setHook( 'pre', [ __CLASS__, 'pre' ] );
 		$parser->setHook( 'nowiki', [ __CLASS__, 'nowiki' ] );
 		$parser->setHook( 'gallery', [ __CLASS__, 'gallery' ] );
@@ -104,7 +105,7 @@ class CoreTagHooks {
 	 * @internal
 	 */
 	public static function html( ?string $content, array $attributes, Parser $parser ) {
-		$rawHtml = MediaWikiServices::getInstance()->getMainConfig()->get( 'RawHtml' );
+		$rawHtml = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RawHtml );
 		if ( $rawHtml ) {
 			if ( $parser->getOptions()->getAllowUnsafeRawHtml() ) {
 				return [ $content ?? '', 'markerType' => 'nowiki' ];

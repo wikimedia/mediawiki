@@ -133,8 +133,8 @@ class MovePage {
 	 * @internal For use by PageCommandFactory
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'CategoryCollation',
-		'MaximumMovedPages',
+		MainConfigNames::CategoryCollation,
+		MainConfigNames::MaximumMovedPages,
 	];
 
 	/**

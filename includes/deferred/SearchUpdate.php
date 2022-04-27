@@ -23,6 +23,7 @@
  * @ingroup Search
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
@@ -73,7 +74,7 @@ class SearchUpdate implements DeferrableUpdate {
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getSearchEngineConfig();
 
-		if ( $config->getConfig()->get( 'DisableSearchUpdate' ) || !$this->id ) {
+		if ( $config->getConfig()->get( MainConfigNames::DisableSearchUpdate ) || !$this->id ) {
 			return;
 		}
 

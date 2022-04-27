@@ -399,26 +399,26 @@ class Parser {
 	public const CONSTRUCTOR_OPTIONS = [
 		// See documentation for the corresponding config options
 		// Many of these are only used in (eg) CoreMagicVariables
-		'AllowDisplayTitle',
-		'AllowSlowParserFunctions',
-		'ArticlePath',
-		'EnableScaryTranscluding',
-		'ExtraInterlanguageLinkPrefixes',
-		'FragmentMode',
-		'Localtimezone',
-		'MaxSigChars',
-		'MaxTocLevel',
-		'MiserMode',
-		'RawHtml',
-		'ScriptPath',
-		'Server',
-		'ServerName',
-		'ShowHostnames',
-		'SignatureValidation',
+		MainConfigNames::AllowDisplayTitle,
+		MainConfigNames::AllowSlowParserFunctions,
+		MainConfigNames::ArticlePath,
+		MainConfigNames::EnableScaryTranscluding,
+		MainConfigNames::ExtraInterlanguageLinkPrefixes,
+		MainConfigNames::FragmentMode,
+		MainConfigNames::Localtimezone,
+		MainConfigNames::MaxSigChars,
+		MainConfigNames::MaxTocLevel,
+		MainConfigNames::MiserMode,
+		MainConfigNames::RawHtml,
+		MainConfigNames::ScriptPath,
+		MainConfigNames::Server,
+		MainConfigNames::ServerName,
+		MainConfigNames::ShowHostnames,
+		MainConfigNames::SignatureValidation,
 		MainConfigNames::Sitename,
-		'StylePath',
-		'TranscludeCacheExpiry',
-		'PreprocessorCacheThreshold',
+		MainConfigNames::StylePath,
+		MainConfigNames::TranscludeCacheExpiry,
+		MainConfigNames::PreprocessorCacheThreshold,
 	];
 
 	/**
@@ -523,7 +523,7 @@ class Parser {
 			$this,
 			$wanCache,
 			[
-				'cacheThreshold' => $svcOptions->get( 'PreprocessorCacheThreshold' ),
+				'cacheThreshold' => $svcOptions->get( MainConfigNames::PreprocessorCacheThreshold ),
 				'disableLangConversion' => $languageConverterFactory->isConversionDisabled(),
 			]
 		);
@@ -830,7 +830,7 @@ class Parser {
 		$this->mOutput->setLimitReportData( 'limitreport-timingprofile', $profileReport );
 
 		// Add other cache related metadata
-		if ( $this->svcOptions->get( 'ShowHostnames' ) ) {
+		if ( $this->svcOptions->get( MainConfigNames::ShowHostnames ) ) {
 			$this->mOutput->setLimitReportData( 'cachereport-origin', wfHostname() );
 		}
 		$this->mOutput->setLimitReportData( 'cachereport-timestamp',
@@ -2667,7 +2667,7 @@ class Parser {
 								LanguageNameUtils::AUTONYMS,
 								LanguageNameUtils::DEFINED
 							)
-						|| in_array( $iw, $this->svcOptions->get( 'ExtraInterlanguageLinkPrefixes' ) )
+						|| in_array( $iw, $this->svcOptions->get( MainConfigNames::ExtraInterlanguageLinkPrefixes ) )
 					)
 				) {
 					# T26502: filter duplicates
@@ -3848,7 +3848,7 @@ class Parser {
 	 * @internal
 	 */
 	public function interwikiTransclude( LinkTarget $link, $action ) {
-		if ( !$this->svcOptions->get( 'EnableScaryTranscluding' ) ) {
+		if ( !$this->svcOptions->get( MainConfigNames::EnableScaryTranscluding ) ) {
 			return wfMessage( 'scarytranscludedisabled' )->inContentLanguage()->text();
 		}
 
@@ -3871,7 +3871,7 @@ class Parser {
 				( $wikiId !== false ) ? $wikiId : 'external',
 				sha1( $url )
 			),
-			$this->svcOptions->get( 'TranscludeCacheExpiry' ),
+			$this->svcOptions->get( MainConfigNames::TranscludeCacheExpiry ),
 			function ( $oldValue, &$ttl ) use ( $url, $fname, $cache ) {
 				$req = $this->httpRequestFactory->create( $url, [], $fname );
 
@@ -4237,7 +4237,7 @@ class Parser {
 
 		$headlines = $numMatches !== false ? $matches[3] : [];
 
-		$maxTocLevel = $this->svcOptions->get( 'MaxTocLevel' );
+		$maxTocLevel = $this->svcOptions->get( MainConfigNames::MaxTocLevel );
 		foreach ( $headlines as $headline ) {
 			$isTemplate = false;
 			$titleText = false;
@@ -4705,7 +4705,7 @@ class Parser {
 		if ( $nickname === null || $nickname === '' ) {
 			// Empty value results in the default signature (even when fancysig is enabled)
 			$nickname = $username;
-		} elseif ( mb_strlen( $nickname ) > $this->svcOptions->get( 'MaxSigChars' ) ) {
+		} elseif ( mb_strlen( $nickname ) > $this->svcOptions->get( MainConfigNames::MaxSigChars ) ) {
 			$nickname = $username;
 			$this->logger->debug( __METHOD__ . ": $username has overlong signature." );
 		} elseif ( $fancySig !== false ) {
@@ -4713,7 +4713,7 @@ class Parser {
 			$isValid = $this->validateSig( $nickname ) !== false;
 
 			# New validator
-			$sigValidation = $this->svcOptions->get( 'SignatureValidation' );
+			$sigValidation = $this->svcOptions->get( MainConfigNames::SignatureValidation );
 			if ( $isValid && $sigValidation === 'disallow' ) {
 				$parserOpts = new ParserOptions(
 					$this->mOptions->getUserIdentity(),
@@ -6167,7 +6167,7 @@ class Parser {
 	}
 
 	private function makeLegacyAnchor( $sectionName ) {
-		$fragmentMode = $this->svcOptions->get( 'FragmentMode' );
+		$fragmentMode = $this->svcOptions->get( MainConfigNames::FragmentMode );
 		if ( isset( $fragmentMode[1] ) && $fragmentMode[1] === 'legacy' ) {
 			// ForAttribute() and ForLink() are the same for legacy encoding
 			$id = Sanitizer::escapeIdForAttribute( $sectionName, Sanitizer::ID_FALLBACK );

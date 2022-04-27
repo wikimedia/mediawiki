@@ -27,6 +27,7 @@
 
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
@@ -365,7 +366,7 @@ class BacklinkCache {
 	 * @return int
 	 */
 	public function getNumLinks( $table, $max = INF ) {
-		$updateRowsPerJob = MediaWikiServices::getInstance()->getMainConfig()->get( 'UpdateRowsPerJob' );
+		$updateRowsPerJob = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UpdateRowsPerJob );
 
 		// 1) try partition cache ...
 		if ( isset( $this->partitionCache[$table] ) ) {

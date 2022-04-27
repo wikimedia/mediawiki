@@ -25,6 +25,7 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -146,7 +147,7 @@ class WikitextContent extends TextContent {
 	 * @return array List of two elements: Title|null and string.
 	 */
 	public function getRedirectTargetAndText() {
-		$maxRedirects = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxRedirects' );
+		$maxRedirects = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::MaxRedirects );
 
 		if ( $this->redirectTargetAndText !== null ) {
 			return $this->redirectTargetAndText;
@@ -240,7 +241,8 @@ class WikitextContent extends TextContent {
 	 * @return bool
 	 */
 	public function isCountable( $hasLinks = null, Title $title = null ) {
-		$articleCountMethod = MediaWikiServices::getInstance()->getMainConfig()->get( 'ArticleCountMethod' );
+		$articleCountMethod = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::ArticleCountMethod );
 
 		if ( $this->isRedirect() ) {
 			return false;

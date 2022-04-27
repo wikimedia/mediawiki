@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 
@@ -94,7 +95,7 @@ class HTMLFileCache extends FileCacheBase {
 	public static function useFileCache( IContextSource $context, $mode = self::MODE_NORMAL ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 
-		if ( !$config->get( 'UseFileCache' ) && $mode !== self::MODE_REBUILD ) {
+		if ( !$config->get( MainConfigNames::UseFileCache ) && $mode !== self::MODE_REBUILD ) {
 			return false;
 		}
 
@@ -151,7 +152,7 @@ class HTMLFileCache extends FileCacheBase {
 		}
 
 		$context->getOutput()->sendCacheControl();
-		header( "Content-Type: {$this->options->get( 'MimeType' )}; charset=UTF-8" );
+		header( "Content-Type: {$this->options->get( MainConfigNames::MimeType )}; charset=UTF-8" );
 		header( 'Content-Language: ' .
 			MediaWikiServices::getInstance()->getContentLanguage()->getHtmlCode() );
 		if ( $this->useGzip() ) {
@@ -224,7 +225,7 @@ class HTMLFileCache extends FileCacheBase {
 	 */
 	public static function clearFileCache( $page ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		if ( !$config->get( 'UseFileCache' ) ) {
+		if ( !$config->get( MainConfigNames::UseFileCache ) ) {
 			return false;
 		}
 

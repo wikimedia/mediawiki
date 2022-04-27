@@ -22,6 +22,7 @@
 namespace MediaWiki\Block;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
@@ -56,7 +57,7 @@ class BlockUtils {
 	 * @internal Only for use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'BlockCIDRLimit',
+		MainConfigNames::BlockCIDRLimit,
 	];
 
 	/**
@@ -201,7 +202,7 @@ class BlockUtils {
 	 */
 	private function validateIPv4Range( int $range ): Status {
 		$status = Status::newGood();
-		$blockCIDRLimit = $this->options->get( 'BlockCIDRLimit' );
+		$blockCIDRLimit = $this->options->get( MainConfigNames::BlockCIDRLimit );
 
 		if ( $blockCIDRLimit['IPv4'] == 32 ) {
 			// Range block effectively disabled
@@ -225,7 +226,7 @@ class BlockUtils {
 	 */
 	private function validateIPv6Range( int $range ): Status {
 		$status = Status::newGood();
-		$blockCIDRLimit = $this->options->get( 'BlockCIDRLimit' );
+		$blockCIDRLimit = $this->options->get( MainConfigNames::BlockCIDRLimit );
 
 		if ( $blockCIDRLimit['IPv6'] == 128 ) {
 			// Range block effectively disabled

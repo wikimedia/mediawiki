@@ -27,6 +27,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\RedirectLookup;
@@ -148,7 +149,7 @@ class InfoAction extends FormlessAction {
 		$this->watchedItemStore = $watchedItemStore;
 		$this->redirectLookup = $redirectLookup;
 		$this->restrictionStore = $restrictionStore;
-		$this->actorTableSchemaMigrationStage = $config->get( 'ActorTableSchemaMigrationStage' );
+		$this->actorTableSchemaMigrationStage = $config->get( MainConfigNames::ActorTableSchemaMigrationStage );
 	}
 
 	/**
@@ -419,7 +420,7 @@ class InfoAction extends FormlessAction {
 		$pageLangHtml = $pageLang . ' - ' .
 			$this->languageNameUtils->getLanguageName( $pageLang, $lang->getCode() );
 		// Link to Special:PageLanguage with pre-filled page title if user has permissions
-		if ( $config->get( 'PageLanguageUseDB' )
+		if ( $config->get( MainConfigNames::PageLanguageUseDB )
 			&& $this->getContext()->getAuthority()->probablyCan( 'pagelang', $title )
 		) {
 			$pageLangHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
@@ -475,7 +476,7 @@ class InfoAction extends FormlessAction {
 			$this->msg( "pageinfo-robot-${policy['index']}" )
 		];
 
-		$unwatchedPageThreshold = $config->get( 'UnwatchedPageThreshold' );
+		$unwatchedPageThreshold = $config->get( MainConfigNames::UnwatchedPageThreshold );
 		if ( $this->getContext()->getAuthority()->isAllowed( 'unwatchedpages' ) ||
 			( $unwatchedPageThreshold !== false &&
 				$pageCounts['watchers'] >= $unwatchedPageThreshold )
@@ -486,10 +487,10 @@ class InfoAction extends FormlessAction {
 				$lang->formatNum( $pageCounts['watchers'] )
 			];
 			if (
-				$config->get( 'ShowUpdatedMarker' ) &&
+				$config->get( MainConfigNames::ShowUpdatedMarker ) &&
 				isset( $pageCounts['visitingWatchers'] )
 			) {
-				$minToDisclose = $config->get( 'UnwatchedPageSecret' );
+				$minToDisclose = $config->get( MainConfigNames::UnwatchedPageSecret );
 				if ( $pageCounts['visitingWatchers'] > $minToDisclose ||
 					$this->getContext()->getAuthority()->isAllowed( 'unwatchedpages' ) ) {
 					$pageInfo['header-basic'][] = [
@@ -762,7 +763,7 @@ class InfoAction extends FormlessAction {
 		$pageInfo['header-edits'][] = [
 			$this->msg(
 				'pageinfo-recent-edits',
-				$lang->formatDuration( $config->get( 'RCMaxAge' ) )
+				$lang->formatDuration( $config->get( MainConfigNames::RCMaxAge ) )
 			),
 			$lang->formatNum( $pageCounts['recent_edits'] )
 		];
@@ -798,9 +799,9 @@ class InfoAction extends FormlessAction {
 			$pageCounts['transclusion']['from'] > 0 ||
 			$pageCounts['transclusion']['to'] > 0
 		) {
-			$options = [ 'LIMIT' => $config->get( 'PageInfoTransclusionLimit' ) ];
+			$options = [ 'LIMIT' => $config->get( MainConfigNames::PageInfoTransclusionLimit ) ];
 			$transcludedTemplates = $title->getTemplateLinksFrom( $options );
-			if ( $config->get( 'MiserMode' ) ) {
+			if ( $config->get( MainConfigNames::MiserMode ) ) {
 				$transcludedTargets = [];
 			} else {
 				$transcludedTargets = $title->getTemplateLinksTo( $options );
@@ -846,7 +847,7 @@ class InfoAction extends FormlessAction {
 				];
 			}
 
-			if ( !$config->get( 'MiserMode' ) && $pageCounts['transclusion']['to'] > 0 ) {
+			if ( !$config->get( MainConfigNames::MiserMode ) && $pageCounts['transclusion']['to'] > 0 ) {
 				if ( $pageCounts['transclusion']['to'] > count( $transcludedTargets ) ) {
 					$more = $linkRenderer->makeLink(
 						$whatLinksHere,
@@ -899,7 +900,7 @@ class InfoAction extends FormlessAction {
 		} elseif ( $title->isUserJsonConfigPage() ) {
 			$rights[] = 'edituserjson';
 		} else {
-			$namespaceProtection = $this->context->getConfig()->get( 'NamespaceProtection' );
+			$namespaceProtection = $this->context->getConfig()->get( MainConfigNames::NamespaceProtection );
 			$right = $namespaceProtection[$title->getNamespace()] ?? null;
 			if ( $right ) {
 				// a single string as the value is allowed as well as an array
@@ -956,11 +957,11 @@ class InfoAction extends FormlessAction {
 				$result = [];
 				$result['watchers'] = $watchedItemStore->countWatchers( $title );
 
-				if ( $config->get( 'ShowUpdatedMarker' ) ) {
+				if ( $config->get( MainConfigNames::ShowUpdatedMarker ) ) {
 					$updated = (int)wfTimestamp( TS_UNIX, $page->getTimestamp() );
 					$result['visitingWatchers'] = $watchedItemStore->countVisitingWatchers(
 						$title,
-						$updated - $config->get( 'WatchersMaxAge' )
+						$updated - $config->get( MainConfigNames::WatchersMaxAge )
 					);
 				}
 
@@ -974,7 +975,7 @@ class InfoAction extends FormlessAction {
 				$result['edits'] = $edits;
 
 				// Total number of distinct authors
-				if ( $config->get( 'MiserMode' ) ) {
+				if ( $config->get( MainConfigNames::MiserMode ) ) {
 					$result['authors'] = 0;
 				} else {
 					$result['authors'] = (int)$dbr->selectField(
@@ -988,7 +989,7 @@ class InfoAction extends FormlessAction {
 				}
 
 				// "Recent" threshold defined by RCMaxAge setting
-				$threshold = $dbr->timestamp( time() - $config->get( 'RCMaxAge' ) );
+				$threshold = $dbr->timestamp( time() - $config->get( MainConfigNames::RCMaxAge ) );
 
 				// Recent number of edits
 				$edits = (int)$dbr->selectField(
@@ -1045,7 +1046,7 @@ class InfoAction extends FormlessAction {
 				}
 
 				// Counts for the number of transclusion links (to/from)
-				if ( $config->get( 'MiserMode' ) ) {
+				if ( $config->get( MainConfigNames::MiserMode ) ) {
 					$result['transclusion']['to'] = 0;
 				} else {
 					$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();

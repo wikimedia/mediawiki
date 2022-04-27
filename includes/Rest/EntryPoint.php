@@ -6,6 +6,7 @@ use ExtensionRegistry;
 use IContextSource;
 use MediaWiki;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\BasicAccess\CompoundAuthorizer;
 use MediaWiki\Rest\BasicAccess\MWBasicAuthorizer;
@@ -58,7 +59,7 @@ class EntryPoint {
 		// Always include the "official" routes. Include additional routes if specified.
 		$routeFiles = array_merge(
 			[ 'includes/Rest/coreRoutes.json' ],
-			$conf->get( 'RestAPIAdditionalRouteFiles' )
+			$conf->get( MainConfigNames::RestAPIAdditionalRouteFiles )
 		);
 		array_walk( $routeFiles, static function ( &$val, $key ) {
 			global $IP;
@@ -68,8 +69,8 @@ class EntryPoint {
 		return ( new Router(
 			$routeFiles,
 			ExtensionRegistry::getInstance()->getAttribute( 'RestRoutes' ),
-			$conf->get( 'CanonicalServer' ),
-			$conf->get( 'RestPath' ),
+			$conf->get( MainConfigNames::CanonicalServer ),
+			$conf->get( MainConfigNames::RestPath ),
 			$services->getLocalServerObjectCache(),
 			$responseFactory,
 			$authorizer,
@@ -88,7 +89,7 @@ class EntryPoint {
 		if ( self::$mainRequest === null ) {
 			$conf = MediaWikiServices::getInstance()->getMainConfig();
 			self::$mainRequest = new RequestFromGlobals( [
-				'cookiePrefix' => $conf->get( 'CookiePrefix' )
+				'cookiePrefix' => $conf->get( MainConfigNames::CookiePrefix )
 			] );
 		}
 		return self::$mainRequest;

@@ -316,7 +316,7 @@ class ApiOpenSearch extends ApiBase {
 
 		// Use open search specific default limit
 		$this->allowedParams['limit'][ApiBase::PARAM_DFLT] = $this->getConfig()->get(
-			'OpenSearchDefaultLimit'
+			MainConfigNames::OpenSearchDefaultLimit
 		);
 
 		return $this->allowedParams;

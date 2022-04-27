@@ -21,6 +21,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\RequestTimeout\TimeoutException;
 
@@ -47,7 +48,8 @@ class TiffHandler extends ExifBitmapHandler {
 	 * @return bool
 	 */
 	public function canRender( $file ) {
-		$tiffThumbnailType = MediaWikiServices::getInstance()->getMainConfig()->get( 'TiffThumbnailType' );
+		$tiffThumbnailType = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::TiffThumbnailType );
 
 		return (bool)$tiffThumbnailType
 			|| $file->getRepo() instanceof ForeignAPIRepo;
@@ -71,13 +73,14 @@ class TiffHandler extends ExifBitmapHandler {
 	 * @return array
 	 */
 	public function getThumbType( $ext, $mime, $params = null ) {
-		$tiffThumbnailType = MediaWikiServices::getInstance()->getMainConfig()->get( 'TiffThumbnailType' );
+		$tiffThumbnailType = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::TiffThumbnailType );
 
 		return $tiffThumbnailType;
 	}
 
 	public function getSizeAndMetadata( $state, $filename ) {
-		$showEXIF = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowEXIF' );
+		$showEXIF = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::ShowEXIF );
 
 		try {
 			$meta = BitmapMetadataHandler::Tiff( $filename );

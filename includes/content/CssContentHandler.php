@@ -23,6 +23,7 @@
 
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Minify\CSSMin;
 
@@ -109,7 +110,8 @@ class CssContentHandler extends CodeContentHandler {
 		ContentParseParams $cpoParams,
 		ParserOutput &$output
 	) {
-		$textModelsToParse = MediaWikiServices::getInstance()->getMainConfig()->get( 'TextModelsToParse' );
+		$textModelsToParse = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::TextModelsToParse );
 		'@phan-var CssContent $content';
 		if ( in_array( $content->getModel(), $textModelsToParse ) ) {
 			// parse just to get links etc into the database, HTML is replaced below.

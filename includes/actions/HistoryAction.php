@@ -21,6 +21,7 @@
  * @ingroup Actions
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -152,7 +153,7 @@ class HistoryAction extends FormlessAction {
 		// But, when all of the revisions are marked as seen, then only way for new unseen revision
 		// markers to appear, is for the page to be edited, which updates page_touched/Last-Modified.
 		$watchlistManager = $services->getWatchlistManager();
-		$hasUnseenRevisionMarkers = $config->get( 'ShowUpdatedMarker' ) &&
+		$hasUnseenRevisionMarkers = $config->get( MainConfigNames::ShowUpdatedMarker ) &&
 			$watchlistManager->getTitleNotificationTimestamp(
 				$this->getUser(),
 				$this->getTitle()
@@ -182,7 +183,7 @@ class HistoryAction extends FormlessAction {
 			'mediawiki.action.history.styles',
 			'mediawiki.special.changeslist',
 		] );
-		if ( $config->get( 'UseMediaWikiUIEverywhere' ) ) {
+		if ( $config->get( MainConfigNames::UseMediaWikiUIEverywhere ) ) {
 			$out->addModuleStyles( [
 				'mediawiki.ui.input',
 				'mediawiki.ui.checkbox',
@@ -203,7 +204,7 @@ class HistoryAction extends FormlessAction {
 
 		// Fail nicely if article doesn't exist.
 		if ( !$this->getWikiPage()->exists() ) {
-			$send404Code = $config->get( 'Send404Code' );
+			$send404Code = $config->get( MainConfigNames::Send404Code );
 			if ( $send404Code ) {
 				$out->setStatusCode( 404 );
 			}
@@ -382,7 +383,7 @@ class HistoryAction extends FormlessAction {
 		}
 		$request = $this->getRequest();
 
-		$feedClasses = $this->context->getConfig()->get( 'FeedClasses' );
+		$feedClasses = $this->context->getConfig()->get( MainConfigNames::FeedClasses );
 		/** @var RSSFeed|AtomFeed $feed */
 		$feed = new $feedClasses[$type](
 			$this->getTitle()->getPrefixedText() . ' - ' .
@@ -396,7 +397,7 @@ class HistoryAction extends FormlessAction {
 		$limit = $request->getInt( 'limit', 10 );
 		$limit = min(
 			max( $limit, 1 ),
-			$this->context->getConfig()->get( 'FeedLimit' )
+			$this->context->getConfig()->get( MainConfigNames::FeedLimit )
 		);
 
 		$items = $this->fetchRevisions( $limit, 0, self::DIR_NEXT );

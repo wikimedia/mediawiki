@@ -30,6 +30,7 @@ use DeprecationHelper;
 use Job;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
@@ -178,11 +179,11 @@ class LinksUpdate extends DataUpdate {
 			$services->getCollationFactory(),
 			$page,
 			$services->getLinkTargetLookup(),
-			$config->get( 'UpdateRowsPerQuery' ),
+			$config->get( MainConfigNames::UpdateRowsPerQuery ),
 			function ( $table, $rows ) {
 				$this->getHookRunner()->onLinksUpdateAfterInsert( $this, $table, $rows );
 			},
-			$config->get( 'TempCategoryCollations' )
+			$config->get( MainConfigNames::TempCategoryCollations )
 		);
 		// TODO: this does not have to be called in LinksDeletionUpdate
 		$this->tableFactory->setParserOutput( $parserOutput );

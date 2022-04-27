@@ -21,6 +21,7 @@
 namespace MediaWiki\Permissions;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 
 /**
  * Lookup permissions for groups and groups with permissions.
@@ -34,9 +35,9 @@ class GroupPermissionsLookup {
 	 * @var string[]
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'GroupInheritsPermissions',
-		'GroupPermissions',
-		'RevokePermissions',
+		MainConfigNames::GroupInheritsPermissions,
+		MainConfigNames::GroupPermissions,
+		MainConfigNames::RevokePermissions,
 	];
 
 	/** @var array[] */
@@ -53,9 +54,9 @@ class GroupPermissionsLookup {
 	 */
 	public function __construct( ServiceOptions $options ) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->groupPermissions = $options->get( 'GroupPermissions' );
-		$this->revokePermissions = $options->get( 'RevokePermissions' );
-		$this->groupInheritance = $options->get( 'GroupInheritsPermissions' );
+		$this->groupPermissions = $options->get( MainConfigNames::GroupPermissions );
+		$this->revokePermissions = $options->get( MainConfigNames::RevokePermissions );
+		$this->groupInheritance = $options->get( MainConfigNames::GroupInheritsPermissions );
 	}
 
 	/**

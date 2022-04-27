@@ -21,6 +21,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Wikimedia\AtEase\AtEase;
@@ -47,8 +48,8 @@ class SvgHandler extends ImageHandler {
 	];
 
 	public function isEnabled() {
-		$svgConverters = MediaWikiServices::getInstance()->getMainConfig()->get( 'SVGConverters' );
-		$svgConverter = MediaWikiServices::getInstance()->getMainConfig()->get( 'SVGConverter' );
+		$svgConverters = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::SVGConverters );
+		$svgConverter = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::SVGConverter );
 		if ( !isset( $svgConverters[$svgConverter] ) ) {
 			wfDebug( "\$wgSVGConverter is invalid, disabling SVG rendering." );
 
@@ -189,7 +190,7 @@ class SvgHandler extends ImageHandler {
 	 * @return array Modified $params
 	 */
 	protected function normaliseParamsInternal( $image, $params ) {
-		$svgMaxSize = MediaWikiServices::getInstance()->getMainConfig()->get( 'SVGMaxSize' );
+		$svgMaxSize = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::SVGMaxSize );
 
 		# Don't make an image bigger than wgMaxSVGSize on the smaller side
 		if ( $params['physicalWidth'] <= $params['physicalHeight'] ) {
@@ -314,9 +315,9 @@ class SvgHandler extends ImageHandler {
 	 */
 	public function rasterize( $srcPath, $dstPath, $width, $height, $lang = false ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$svgConverters = $mainConfig->get( 'SVGConverters' );
-		$svgConverter = $mainConfig->get( 'SVGConverter' );
-		$svgConverterPath = $mainConfig->get( 'SVGConverterPath' );
+		$svgConverters = $mainConfig->get( MainConfigNames::SVGConverters );
+		$svgConverter = $mainConfig->get( MainConfigNames::SVGConverter );
+		$svgConverterPath = $mainConfig->get( MainConfigNames::SVGConverterPath );
 		$err = false;
 		$retval = '';
 		if ( isset( $svgConverters[$svgConverter] ) ) {

@@ -29,6 +29,7 @@ use Config;
 use FauxRequest;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserNameUtils;
 use MWException;
@@ -224,7 +225,7 @@ class SessionManager implements SessionManagerInterface {
 			}
 			$store = $options['store'];
 		} else {
-			$store = \ObjectCache::getInstance( $this->config->get( 'SessionCacheType' ) );
+			$store = \ObjectCache::getInstance( $this->config->get( MainConfigNames::SessionCacheType ) );
 		}
 
 		$this->logger->debug( 'SessionManager using store ' . get_class( $store ) );
@@ -466,7 +467,7 @@ class SessionManager implements SessionManagerInterface {
 	protected function getProviders() {
 		if ( $this->sessionProviders === null ) {
 			$this->sessionProviders = [];
-			foreach ( $this->config->get( 'SessionProviders' ) as $spec ) {
+			foreach ( $this->config->get( MainConfigNames::SessionProviders ) as $spec ) {
 				/** @var SessionProvider */
 				$provider = $this->objectFactory->createObject( $spec );
 				$provider->init(
@@ -908,7 +909,7 @@ class SessionManager implements SessionManagerInterface {
 				$this->store,
 				$this->logger,
 				$this->hookContainer,
-				$this->config->get( 'ObjectCacheSessionExpiry' )
+				$this->config->get( MainConfigNames::ObjectCacheSessionExpiry )
 			);
 			$this->allSessionBackends[$id] = $backend;
 			$delay = $backend->delaySave();
@@ -1042,7 +1043,7 @@ class SessionManager implements SessionManagerInterface {
 	public function logPotentialSessionLeakage( Session $session = null ) {
 		$proxyLookup = MediaWikiServices::getInstance()->getProxyLookup();
 		$session = $session ?: self::getGlobalSession();
-		$suspiciousIpExpiry = $this->config->get( 'SuspiciousIpExpiry' );
+		$suspiciousIpExpiry = $this->config->get( MainConfigNames::SuspiciousIpExpiry );
 
 		if ( $suspiciousIpExpiry === false
 			// We only care about logged-in users.

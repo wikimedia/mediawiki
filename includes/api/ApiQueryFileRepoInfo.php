@@ -21,6 +21,8 @@
  * @since 1.22
  */
 
+use MediaWiki\MainConfigNames;
+
 /**
  * A query action to return meta information about the foreign file repos
  * configured on the wiki.
@@ -54,7 +56,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 
 		$repos = [];
 
-		$foreignTargets = $conf->get( 'ForeignUploadTargets' );
+		$foreignTargets = $conf->get( MainConfigNames::ForeignUploadTargets );
 
 		$this->repoGroup->forEachForeignRepo(
 			static function ( FileRepo $repo ) use ( &$repos, $props, $foreignTargets ) {
@@ -66,7 +68,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 		);
 
 		$localInfo = $this->repoGroup->getLocalRepo()->getInfo();
-		$localInfo['canUpload'] = $conf->get( 'EnableUploads' );
+		$localInfo['canUpload'] = $conf->get( MainConfigNames::EnableUploads );
 		$repos[] = array_intersect_key( $localInfo, $props );
 
 		$result = $this->getResult();
