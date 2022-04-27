@@ -1,5 +1,5 @@
 /*!
- * QUnit 2.18.0
+ * QUnit 2.18.2
  * https://qunitjs.com/
  *
  * Copyright OpenJS Foundation and other contributors
@@ -8,17 +8,6 @@
  */
 
 /** Font Family and Sizes */
-
-/* Style our buttons in a simple way, uninfluenced by the styles
-   the tested app might load. Don't affect buttons in #qunit-fixture!
-   https://github.com/qunitjs/qunit/pull/1395
-   https://github.com/qunitjs/qunit/issues/1437 */
-#qunit-testrunner-toolbar button,
-#qunit-testresult button {
-	font-size: initial;
-	border: initial;
-	background-color: buttonface;
-}
 
 #qunit-tests, #qunit-header, #qunit-banner, #qunit-testrunner-toolbar, #qunit-filteredTest, #qunit-userAgent, #qunit-testresult {
 	font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
@@ -33,6 +22,20 @@
 #qunit-tests, #qunit-header, #qunit-banner, #qunit-filteredTest, #qunit-userAgent, #qunit-testresult, #qunit-modulefilter {
 	margin: 0;
 	padding: 0;
+}
+
+/* Style our buttons in a simple way, uninfluenced by the styles
+   the tested app might load. Don't affect buttons in #qunit-fixture!
+   https://github.com/qunitjs/qunit/pull/1395
+   https://github.com/qunitjs/qunit/issues/1437 */
+#qunit-testrunner-toolbar button,
+#qunit-testresult button {
+	all: unset; /* best effort, modern browsers only */
+	font: inherit;
+	color: initial;
+	border: initial;
+	background-color: buttonface;
+	padding: 0 4px;
 }
 
 
@@ -134,8 +137,46 @@
 	height: 1.6em;
 }
 
+#qunit-testrunner-toolbar button,
+#qunit-testresult button {
+  border-radius: .25em;
+  border: 1px solid #AAA;
+  background-color: #F8F8F8;
+  color: #222;
+  line-height: 1.6;
+  cursor: pointer;
+}
+#qunit-testrunner-toolbar button:hover,
+#qunit-testresult button:hover {
+	border-color: #AAA;
+	background-color: #FFF;
+	color: #444;
+}
+#qunit-testrunner-toolbar button:active,
+#qunit-testresult button:active {
+	border-color: #777;
+	background-color: #CCC;
+	color: #000;
+}
+#qunit-testrunner-toolbar button:focus,
+#qunit-testresult button:focus {
+	border-color: #2F68DA;
+	/* emulate 2px border without a layout shift */
+	box-shadow: inset 0 0 0 1px #2F68DA
+}
+#qunit-testrunner-toolbar button:disabled,
+#qunit-testresult button:disabled {
+	border-color: #CCC;
+	background-color: #CCC;
+	color: #FFF;
+  cursor: default;
+}
+
 #qunit-toolbar-filters {
 	float: right;
+	/* aligning right avoids overflows and inefficient use of space
+	   around the dropdown menu on narrow viewports */
+	text-align: right;
 }
 
 .qunit-url-config,
@@ -143,6 +184,7 @@
 #qunit-modulefilter {
 	display: inline-block;
 	line-height: 2.1em;
+	text-align: left;
 }
 
 .qunit-filter,
@@ -158,11 +200,17 @@
 #qunit-modulefilter-search {
 	box-sizing: border-box;
 	min-width: 400px;
+	min-width: min(400px, 80vw);
 }
 
+#qunit-modulefilter-search-container {
+	position: relative;
+}
 #qunit-modulefilter-search-container:after {
 	position: absolute;
 	right: 0.3em;
+	bottom: 0;
+	line-height: 100%;
 	content: "\25bc";
 	color: black;
 }
@@ -171,41 +219,32 @@
 	/* align with #qunit-modulefilter-search */
 	box-sizing: border-box;
 	min-width: 400px;
+	min-width: min(400px, 80vw);
+	max-width: 80vw;
 	position: absolute;
 	right: 0;
-	top: 50%;
-	margin-top: 0.8em;
+	top: 100%;
+	margin-top: 2px;
 
-	border: 1px solid #D3D3D3;
-	border-top: none;
+	border: 1px solid #AAA;
+	border-top-color: transparent;
 	border-radius: 0 0 .25em .25em;
 	color: #0D3349;
 	background-color: #F5F5F5;
 	z-index: 99;
 }
 
-#qunit-modulefilter-dropdown a {
-	color: inherit;
-	text-decoration: none;
-}
-
-#qunit-modulefilter-dropdown .clickable.checked {
-	font-weight: bold;
-	color: #0D3349;
-	background-color: #E2F0F7;
-}
-
-#qunit-modulefilter-dropdown .clickable:hover {
-	color: #FFF;
-	background-color: #0D3349;
-}
-
 #qunit-modulefilter-actions {
 	display: block;
 	overflow: auto;
-
 	/* align with #qunit-modulefilter-dropdown-list */
 	font: smaller/1.5em sans-serif;
+}
+@media (min-width: 350px) {
+	#qunit-modulefilter-actions {
+		position: absolute;
+		right: 0;
+	}
 }
 
 #qunit-modulefilter-dropdown #qunit-modulefilter-actions > * {
@@ -217,33 +256,33 @@
 
 #qunit-modulefilter-dropdown #qunit-modulefilter-actions > button {
 	float: right;
-	font: inherit;
-}
-
-#qunit-modulefilter-dropdown #qunit-modulefilter-actions > :last-child {
-	/* insert padding to align with checkbox margins */
-	padding-left: 3px;
+	margin: 0.25em;
 }
 
 #qunit-modulefilter-dropdown-list {
-	max-height: 200px;
-	overflow-y: auto;
 	margin: 0;
-	border-top: 2px groove threedhighlight;
-	padding: 0.4em 0 0;
+	padding: 0;
 	font: smaller/1.5em sans-serif;
 }
 
 #qunit-modulefilter-dropdown-list li {
+	list-style: none;
+}
+#qunit-modulefilter-dropdown-list .clickable {
+	display: block;
+	padding: 0.25em 0.50em 0.25em 0.15em;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-
-#qunit-modulefilter-dropdown-list .clickable {
-	display: block;
-	padding-left: 0.15em;
-	padding-right: 0.5em;
+#qunit-modulefilter-dropdown-list .clickable.checked {
+	font-weight: bold;
+	background-color: #E2F0F7;
+	color: #0D3349;
+}
+#qunit-modulefilter-dropdown .clickable:hover {
+	background-color: #FFF;
+	color: #444;
 }
 
 
