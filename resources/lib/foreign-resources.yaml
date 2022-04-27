@@ -337,11 +337,11 @@ qunitjs:
   # Integrity from link modals at https://code.jquery.com/qunit/
   files:
     qunit.js:
-      src: https://code.jquery.com/qunit/qunit-2.18.0.js
-      integrity: sha256-TLK2e33vMxDueQWBbROhSVGcIzqtLAjQPfrIPmfq9R4=
+      src: https://code.jquery.com/qunit/qunit-2.18.2.js
+      integrity: sha256-ZHKhdrkmp5cjQJGuc4fGv024PWo9IqBQJTawS4erwz0=
     qunit.css:
-      src: https://code.jquery.com/qunit/qunit-2.18.0.css
-      integrity: sha256-POO1U+Az2IC7NO8KxF7RhmdYRBHsI9ApZh841xT5CBY=
+      src: https://code.jquery.com/qunit/qunit-2.18.2.css
+      integrity: sha256-GmRML6cGwIPA5an2uTNHHKynhn8ooqM058EpN+fpmbM=
 
 sinonjs:
   type: file

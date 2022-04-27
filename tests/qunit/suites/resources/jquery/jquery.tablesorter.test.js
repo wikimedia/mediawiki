@@ -215,7 +215,7 @@
 		];
 
 	QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
-		setup: function () {
+		beforeEach: function () {
 			this.liveMonths = mw.language.months;
 			mw.language.months = {
 				keys: {
@@ -234,7 +234,7 @@
 					'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
 			};
 		},
-		teardown: function () {
+		afterEach: function () {
 			mw.language.months = this.liveMonths;
 		},
 		config: {
@@ -254,11 +254,10 @@
 	 * @return {jQuery}
 	 */
 	function tableCreate( header, data ) {
-		var i,
-			$table = $( '<table class="sortable"><thead></thead><tbody></tbody></table>' ),
-			$thead = $table.find( 'thead' ),
-			$tbody = $table.find( 'tbody' ),
-			$tr = $( '<tr>' );
+		var $table = $( '<table class="sortable"><thead></thead><tbody></tbody></table>' );
+		var $thead = $table.find( 'thead' );
+		var $tbody = $table.find( 'tbody' );
+		var $tr = $( '<tr>' );
 
 		header.forEach( function ( str ) {
 			var $th = $( '<th>' );
@@ -266,7 +265,7 @@
 		} );
 		$tr.appendTo( $thead );
 
-		for ( i = 0; i < data.length; i++ ) {
+		for ( var i = 0; i < data.length; i++ ) {
 			$tr = $( '<tr>' );
 			// eslint-disable-next-line no-loop-func
 			data[ i ].forEach( function ( str ) {
@@ -960,8 +959,7 @@
 	} );
 
 	QUnit.test( 'Test detection routine', function ( assert ) {
-		var $table;
-		$table = $(
+		var $table = $(
 			'<table class="sortable">' +
 				'<caption>CAPTION</caption>' +
 				'<tr><th>THEAD</th></tr>' +
@@ -979,10 +977,9 @@
 		);
 	} );
 
-	/** FIXME: the diff output is not very readeable. */
+	// FIXME: the diff output is not very readeable.
 	QUnit.test( 'T34047 - caption must be before thead', function ( assert ) {
-		var $table;
-		$table = $(
+		var $table = $(
 			'<table class="sortable">' +
 				'<caption>CAPTION</caption>' +
 				'<tr><th>THEAD</th></tr>' +
@@ -1535,8 +1532,7 @@
 	);
 
 	QUnit.test( 'T105731 - incomplete rows in table body', function ( assert ) {
-		var $table, parsers;
-		$table = $(
+		var $table = $(
 			'<table class="sortable">' +
 				'<tr><th>A</th><th>B</th></tr>' +
 				'<tr><td>3</td></tr>' +
@@ -1548,7 +1544,7 @@
 		// now the first row have 2 columns
 		$table.find( '.headerSort' ).eq( 1 ).trigger( 'click' );
 
-		parsers = $table.data( 'tablesorter' ).config.parsers;
+		var parsers = $table.data( 'tablesorter' ).config.parsers;
 
 		assert.strictEqual(
 			parsers.length,
@@ -1570,8 +1566,7 @@
 	} );
 
 	QUnit.test( 'bug T114721 - use of expand-child class', function ( assert ) {
-		var $table, parsers;
-		$table = $(
+		var $table = $(
 			'<table class="sortable">' +
 				'<tr><th>A</th><th>B</th></tr>' +
 				'<tr><td>b</td><td>4</td></tr>' +
@@ -1596,7 +1591,7 @@
 			'row with expand-child class follow above row'
 		);
 
-		parsers = $table.data( 'tablesorter' ).config.parsers;
+		var parsers = $table.data( 'tablesorter' ).config.parsers;
 		assert.strictEqual(
 			parsers[ 1 ].id,
 			'number',
@@ -1604,8 +1599,7 @@
 		);
 	} );
 	QUnit.test( 'T29745 - References ignored in sortkey', function ( assert ) {
-		var $table, parsers;
-		$table = $(
+		var $table = $(
 			'<table class="sortable">' +
 				'<tr><th>A</th></tr>' +
 				'<tr><td>10</td></tr>' +
@@ -1624,7 +1618,7 @@
 			'References ignored in sortkey'
 		);
 
-		parsers = $table.data( 'tablesorter' ).config.parsers;
+		var parsers = $table.data( 'tablesorter' ).config.parsers;
 		assert.strictEqual(
 			parsers[ 0 ].id,
 			'number',
