@@ -730,12 +730,13 @@ class Parser {
 			&& $this->mOutput->getDisplayTitle() === false
 		) {
 			$titleText = $this->getTargetLanguageConverter()->getConvRuleTitle();
-			if ( $titleText === false ) {
+			if ( $titleText !== false ) {
+				$titleText = Sanitizer::removeSomeTags( $titleText );
+			} else {
 				$titleText = $this->getTargetLanguageConverter()->convertTitle( $page );
+				$titleText = htmlspecialchars( $titleText, ENT_NOQUOTES );
 			}
-			$this->mOutput->setTitleText(
-				htmlspecialchars( $titleText, ENT_NOQUOTES )
-			);
+			$this->mOutput->setTitleText( $titleText );
 		}
 
 		# Compute runtime adaptive expiry if set
