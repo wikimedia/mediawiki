@@ -583,11 +583,10 @@ class SpecialExport extends SpecialPage {
 	 */
 	protected function getLinks( $inputPages, $pageSet, $table, $fields, $join ) {
 		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+		$table[] = 'page';
 
 		foreach ( $inputPages as $page ) {
 			$title = Title::newFromText( $page );
-			$table[] = 'page';
-
 			if ( $title ) {
 				$pageSet[$title->getPrefixedText()] = true;
 				/// @todo FIXME: May or may not be more efficient to batch these
