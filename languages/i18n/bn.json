@@ -2531,7 +2531,7 @@
 	"undelete-talk-summary-prefix": "সংশ্লিষ্ট পাতার সাথে একসাথে পুনরুদ্ধার করা হয়েছে, সংশ্লিষ্ট পাতাটি পুনরুদ্ধার করার কারণ: $1",
 	"undelete-error": "অপসারিত পাতা ফিরিয়ে আনতে ত্রুটি",
 	"undelete-error-associated-alreadytalk": "একটি আলাপ পাতার সংশ্লিষ্ট আলাপ পাতা পুনরুদ্ধার করা যাবে না।",
-	"undelete-error-associated-notdeleted": "সংশ্লিষ্ট আলাপ পাতায় কোনো সংশোধন নেই যা পুনরুদ্ধার করা যায়।",
+	"undelete-error-associated-notdeleted": "সংশ্লিষ্ট আলাপ পাতায় এমন কোনও সংস্করণ নেই যা পুনরুদ্ধার করা যেতে পারে।",
 	"undelete-show-file-confirm": "আপনি কি নিশ্চিত যে \"<nowiki>$1</nowiki>\" ফাইলের $2 এর $3 সময়ে অপসারিত রিভিশন প্রদর্শন করা হবে?",
 	"undelete-show-file-submit": "হ্যাঁ",
 	"undelete-back-to-list": "সকল অপসারিত সংস্করণ দেখুন",
