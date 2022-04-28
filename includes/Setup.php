@@ -110,13 +110,6 @@ require_once "$IP/includes/AutoLoader.php";
 require_once "$IP/includes/Defines.php";
 require_once "$IP/includes/BootstrapHelperFunctions.php";
 
-// Load composer's autoloader if present
-if ( is_readable( "$IP/vendor/autoload.php" ) ) {
-	require_once "$IP/vendor/autoload.php";
-} elseif ( file_exists( "$IP/vendor/autoload.php" ) ) {
-	die( "$IP/vendor/autoload.php exists but is not readable" );
-}
-
 // Assert that composer dependencies were successfully loaded
 if ( !interface_exists( LoggerInterface::class ) ) {
 	$message = (
