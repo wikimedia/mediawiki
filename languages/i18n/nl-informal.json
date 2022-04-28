@@ -277,5 +277,6 @@
 	"compare-revision-not-exists": "De versie die je hebt opgegeven bestaat niet.",
 	"htmlform-float-invalid": "De waarde die je hebt opgegeven is geen getal.",
 	"feedback-bugornote": "Als je zover bent om een technisch probleem in detail te beschrijven, [$1 rapporteer dan een bug].\nAnders kan je ook het eenvoudige formulier hieronder gebruiken.\nJe reactie wordt dan toegevoegd aan de pagina \"[$3 $2]\", samen met je gebruikersnaam en de browser die je gebruikt.",
-	"feedback-thanks": "Bedankt! Je terugkoppeling is op de pagina \"[$2 $1]\" geplaatst."
+	"feedback-thanks": "Bedankt! Je terugkoppeling is op de pagina \"[$2 $1]\" geplaatst.",
+	"userlogout-temp": "Weet je zeker dat je je wilt afmelden? Je zult je niet opnieuw bij dit tijdelijke account kunnen aanmelden."
 }
