@@ -1359,4 +1359,23 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $permManager->userCan( 'undelete', $admin, $userJs ) );
 		$this->assertTrue( $permManager->userCan( 'undelete', $interfaceAdmin, $userJs ) );
 	}
+
+	/**
+	 * Regression test for T306358 -- proper page assertion when checking
+	 * blocked status on a special page
+	 */
+	public function testBlockedFromNonProperPage() {
+		$page = Title::newFromText( 'Special:Blankpage' );
+		$pm = $this->getServiceContainer()->getPermissionManager();
+		$user = $this->getMockBuilder( User::class )
+			->onlyMethods( [ 'getBlock' ] )
+			->getMock();
+		$user->method( 'getBlock' )
+			->willReturn( new DatabaseBlock( [
+				'address' => '127.0.8.1',
+				'by' => $this->user,
+			] ) );
+		$errors = $pm->getPermissionErrors( 'test', $user, $page );
+		$this->assertNotEmpty( $errors );
+	}
 }
