@@ -5,6 +5,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
@@ -1901,8 +1902,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$langNameUtils = $this->getMockBuilder( LanguageNameUtils::class )
 			->setConstructorArgs( [
 				new ServiceOptions( LanguageNameUtils::CONSTRUCTOR_OPTIONS, [
-					'ExtraLanguageNames' => [],
-					'UsePigLatinVariant' => false,
+					MainConfigNames::ExtraLanguageNames => [],
+					MainConfigNames::UsePigLatinVariant => false,
 				] ),
 				$this->createHookContainer()
 			] )

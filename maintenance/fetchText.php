@@ -24,6 +24,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Storage\BlobAccessException;
@@ -52,7 +53,7 @@ class FetchText extends Maintenance {
 		// To account for parts of MediaWiki that get their own db connection outside of
 		// Maintenance::getDB(), we set this global variable so that they will attempt
 		// to use this group.
-		$settingsBuilder->putConfigValue( 'DBDefaultGroup', 'dump' );
+		$settingsBuilder->putConfigValue( MainConfigNames::DBDefaultGroup, 'dump' );
 		// do this last so that options can override
 
 		parent::finalSetup( $settingsBuilder );

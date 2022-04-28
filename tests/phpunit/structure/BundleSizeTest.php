@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Structure;
 
 use DerivativeResourceLoaderContext;
 use FauxRequest;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use ResourceLoaderContext;
@@ -69,7 +70,7 @@ abstract class BundleSizeTest extends MediaWikiIntegrationTestCase {
 	 * @return string Skin name
 	 */
 	public function getSkinName(): string {
-		return MediaWikiServices::getInstance()->getMainConfig()->get( 'DefaultSkin' );
+		return MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::DefaultSkin );
 	}
 
 }

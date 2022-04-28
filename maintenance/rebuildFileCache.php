@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use Wikimedia\AtEase\AtEase;
@@ -46,9 +47,9 @@ class RebuildFileCache extends Maintenance {
 	}
 
 	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
-		$this->enabled = $settingsBuilder->getConfig()->get( 'UseFileCache' );
+		$this->enabled = $settingsBuilder->getConfig()->get( MainConfigNames::UseFileCache );
 		// Script will handle capturing output and saving it itself
-		$settingsBuilder->putConfigValue( 'UseFileCache', false );
+		$settingsBuilder->putConfigValue( MainConfigNames::UseFileCache, false );
 
 		// Avoid DB writes (like enotif/counters)
 		MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()

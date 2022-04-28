@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -53,8 +54,8 @@ class TestLocalisationCache extends LocalisationCache {
 		// Test run performance is killed if we have to regenerate l10n for every test
 		$cacheKey = sha1( json_encode( [
 			$code,
-			$this->selfAccess->options->get( 'ExtensionMessagesFiles' ),
-			$this->selfAccess->options->get( 'MessagesDirs' ),
+			$this->selfAccess->options->get( MainConfigNames::ExtensionMessagesFiles ),
+			$this->selfAccess->options->get( MainConfigNames::MessagesDirs ),
 			// json_encode doesn't handle objects well
 			self::hashiblifyArray( Hooks::getHandlers( 'LocalisationCacheRecacheFallback' ) ),
 			self::hashiblifyArray( Hooks::getHandlers( 'LocalisationCacheRecache' ) ),

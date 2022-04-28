@@ -27,6 +27,7 @@
  */
 
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -373,7 +374,7 @@ class ParserTestRunner {
 		MediaWikiServices::getInstance()->redefineService(
 			'MediaHandlerFactory',
 			static function ( MediaWikiServices $services ) {
-				$handlers = $services->getMainConfig()->get( 'ParserTestMediaHandlers' );
+				$handlers = $services->getMainConfig()->get( MainConfigNames::ParserTestMediaHandlers );
 				return new MediaHandlerFactory(
 					new NullLogger(),
 					$handlers

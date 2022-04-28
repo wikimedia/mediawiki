@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 
@@ -57,30 +58,30 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 	public static function getSettings() {
 		return [
 			// For ResourceLoader class
-			'ResourceLoaderDebug' => true,
-			'LoadScript' => '/w/load.php',
-			'EnableJavaScriptTest' => false,
+			MainConfigNames::ResourceLoaderDebug => true,
+			MainConfigNames::LoadScript => '/w/load.php',
+			MainConfigNames::EnableJavaScriptTest => false,
 			// For ResourceLoader::respond() - TODO: Inject somehow T32956
-			'UseFileCache' => false,
+			MainConfigNames::UseFileCache => false,
 
 			// For ResourceLoaderModule
-			'ResourceLoaderValidateJS' => false,
+			MainConfigNames::ResourceLoaderValidateJS => false,
 
 			// For ResourceLoaderWikiModule
-			'MaxRedirects' => 1,
+			MainConfigNames::MaxRedirects => 1,
 
 			// For ResourceLoaderSkinModule
-			'Logos' => false,
-			'Logo' => '/logo.png',
-			'BaseDirectory' => MW_INSTALL_PATH,
-			'ResourceBasePath' => '/w',
-			'ParserEnableLegacyMediaDOM' => true,
+			MainConfigNames::Logos => false,
+			MainConfigNames::Logo => '/logo.png',
+			MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
+			MainConfigNames::ResourceBasePath => '/w',
+			MainConfigNames::ParserEnableLegacyMediaDOM => true,
 
 			// For  ResourceLoader::getSiteConfigSettings and ResourceLoaderStartUpModule
-			'Server' => 'https://example.org',
-			'ScriptPath' => '/w',
-			'Script' => '/w/index.php',
-			'ResourceLoaderEnableJSProfiler' => false,
+			MainConfigNames::Server => 'https://example.org',
+			MainConfigNames::ScriptPath => '/w',
+			MainConfigNames::Script => '/w/index.php',
+			MainConfigNames::ResourceLoaderEnableJSProfiler => false,
 		];
 	}
 
