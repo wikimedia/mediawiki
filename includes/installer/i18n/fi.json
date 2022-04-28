@@ -29,7 +29,8 @@
 			"VezonThunder",
 			"아라",
 			"4shadoww",
-			"Moottori"
+			"Moottori",
+			"Rönttönen"
 		]
 	},
 	"config-desc": "Asennin MediaWikiä varten",
@@ -228,6 +229,7 @@
 	"config-upload-enable": "Ota käyttöön tiedostojen lataaminen",
 	"config-upload-deleted": "Poistettujen tiedostojen hakemisto:",
 	"config-upload-deleted-help": "Valitse hakemisto johon poistetut tiedostot arkistoidaan.\nHakemiston ei tulisi olla käytettävissä internetverkosta.",
+	"config-logo-filedrop": "Pudota kuvatiedosto tähän",
 	"config-instantcommons": "Aktivoi Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] on ominaisuus, joka antaa wikien käyttää kuvia, ääniä ja muuta mediaa [https://commons.wikimedia.org/ Wikimedia Commons] -sivustolta.\nTehdäkseen tämän MediaWiki tarvitsee Internet-yhteyden.\n\nLisätietoja tästä ominaisuudesta, mukaan lukien ohjeet, kuinka sen voi asettaa muille wikeille kuin Wikimedia Commons, löytyy [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos ohjeista].",
 	"config-cc-error": "Creative Commons -lisenssinvalitsija ei antanut tulosta.\nSyötä lisenssin nimi manuaalisesti.",
