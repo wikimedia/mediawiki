@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -43,7 +45,7 @@ class AddRFCandPMIDInterwiki extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$interwikiCache = $this->getConfig()->get( 'InterwikiCache' );
+		$interwikiCache = $this->getConfig()->get( MainConfigNames::InterwikiCache );
 		// Using something other than the database,
 		if ( $interwikiCache !== false ) {
 			return true;

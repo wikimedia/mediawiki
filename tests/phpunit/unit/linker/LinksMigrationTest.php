@@ -2,6 +2,7 @@
 
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTargetLookup;
+use MediaWiki\MainConfigNames;
 
 /**
  * @covers MediaWiki\Linker\LinksMigration
@@ -28,7 +29,7 @@ class LinksMigrationTest extends MediaWikiUnitTestCase {
 
 		$config = new HashConfig(
 			[
-				'TemplateLinksSchemaMigrationStage' => $configValue
+				MainConfigNames::TemplateLinksSchemaMigrationStage => $configValue
 			]
 		);
 		$linksMigration = new LinksMigration( $config, $linkTargetStore );
@@ -56,7 +57,7 @@ class LinksMigrationTest extends MediaWikiUnitTestCase {
 
 		$config = new HashConfig(
 			[
-				'TemplateLinksSchemaMigrationStage' => $configValue
+				MainConfigNames::TemplateLinksSchemaMigrationStage => $configValue
 			]
 		);
 		$linksMigration = new LinksMigration( $config, $linkTargetStore );

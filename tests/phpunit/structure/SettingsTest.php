@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Structure;
 
 use ExtensionRegistry;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\PhpIniSink;
@@ -50,7 +51,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		$settingsBuilder->apply();
 
 		// Assert we've read some random config value
-		$this->assertTrue( $settingsBuilder->getConfig()->has( 'Server' ) );
+		$this->assertTrue( $settingsBuilder->getConfig()->has( MainConfigNames::Server ) );
 	}
 
 	/**
@@ -246,7 +247,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 
 	public function provideConfigStructureHandling() {
 		yield 'NamespacesWithSubpages' => [
-			'NamespacesWithSubpages',
+			MainConfigNames::NamespacesWithSubpages,
 			[ 0 => true, 1 => false,
 				2 => true, 3 => true, 4 => true, 5 => true, 7 => true,
 				8 => true, 9 => true, 10 => true, 11 => true, 12 => true,
@@ -255,56 +256,56 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 			[ 0 => true, 1 => false ]
 		];
 		yield 'InterwikiCache array' => [
-			'InterwikiCache',
+			MainConfigNames::InterwikiCache,
 			[ 'x' => [ 'foo' => 1 ] ],
 			[ 'x' => [ 'foo' => 1 ] ],
 		];
 		yield 'InterwikiCache string' => [
-			'InterwikiCache',
+			MainConfigNames::InterwikiCache,
 			'interwiki.map',
 			'interwiki.map',
 		];
 		yield 'InterwikiCache string over array' => [
-			'InterwikiCache',
+			MainConfigNames::InterwikiCache,
 			'interwiki.map',
 			[ 'x' => [ 'foo' => 1 ] ],
 			'interwiki.map',
 		];
 		yield 'ProxyList array' => [
-			'ProxyList',
+			MainConfigNames::ProxyList,
 			[ 'a', 'b', 'c' ],
 			[ 'a', 'b', 'c' ],
 		];
 		yield 'ProxyList string' => [
-			'ProxyList',
+			MainConfigNames::ProxyList,
 			'interwiki.map',
 			'interwiki.map',
 		];
 		yield 'ProxyList string over array' => [
-			'ProxyList',
+			MainConfigNames::ProxyList,
 			'interwiki.map',
 			[ 'a', 'b', 'c' ],
 			'interwiki.map',
 		];
 		yield 'ProxyList array over array' => [
-			'ProxyList',
+			MainConfigNames::ProxyList,
 			[ 'a', 'b', 'c', 'd' ],
 			[ 'a', 'b' ],
 			[ 'c', 'd' ],
 		];
 		yield 'Logos' => [
-			'Logos',
+			MainConfigNames::Logos,
 			[ '1x' => 'Logo1', '2x' => 'Logo2' ],
 			[ '1x' => 'Logo1', '2x' => 'Logo2' ],
 		];
 		yield 'Logos clear' => [
-			'Logos',
+			MainConfigNames::Logos,
 			false,
 			[ '1x' => 'Logo1', '2x' => 'Logo2' ],
 			false
 		];
 		yield 'RevokePermissions' => [
-			'RevokePermissions',
+			MainConfigNames::RevokePermissions,
 			[ '*' => [ 'read' => true, 'edit' => true, ] ],
 			[ '*' => [ 'edit' => true ] ],
 			[ '*' => [ 'read' => true ] ]
@@ -417,7 +418,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 				$f1,
 			]
 		];
-		$settingsBuilder->putConfigValue( 'Hooks', $hooks );
+		$settingsBuilder->putConfigValue( MainConfigNames::Hooks, $hooks );
 
 		$f2 = static function () {
 			// noop
@@ -430,7 +431,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 				$f2,
 			]
 		];
-		$settingsBuilder->putConfigValue( 'Hooks', $hooks );
+		$settingsBuilder->putConfigValue( MainConfigNames::Hooks, $hooks );
 
 		$config = $settingsBuilder->getConfig();
 
@@ -444,7 +445,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 				$f2,
 			]
 		];
-		$this->assertSame( $hooks, $config->get( 'Hooks' ) );
+		$this->assertSame( $hooks, $config->get( MainConfigNames::Hooks ) );
 	}
 
 	/**
@@ -452,7 +453,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testPasswordPolicyMerge() {
 		$settingsBuilder = $this->getSettingsBuilderWithSchema();
-		$defaultPolicies = $settingsBuilder->getConfig()->get( 'PasswordPolicy' );
+		$defaultPolicies = $settingsBuilder->getConfig()->get( MainConfigNames::PasswordPolicy );
 
 		$newPolicies = [
 			'policies' => [
@@ -471,8 +472,8 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 				'SomeOtherCheck' => 'myOtherCheck',
 			]
 		];
-		$settingsBuilder->putConfigValue( 'PasswordPolicy', $newPolicies );
-		$mergedPolicies = $settingsBuilder->getConfig()->get( 'PasswordPolicy' );
+		$settingsBuilder->putConfigValue( MainConfigNames::PasswordPolicy, $newPolicies );
+		$mergedPolicies = $settingsBuilder->getConfig()->get( MainConfigNames::PasswordPolicy );
 
 		// check that the new policies have been applied
 		$this->assertSame(

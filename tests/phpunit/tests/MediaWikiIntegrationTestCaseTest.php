@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -259,11 +260,11 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 			'_TEST_ResetService_Dummy',
 			static function ( MediaWikiServices $services ) {
 				$conf = $services->getMainConfig();
-				return (object)[ 'lang' => $conf->get( 'LanguageCode' ) ];
+				return (object)[ 'lang' => $conf->get( MainConfigNames::LanguageCode ) ];
 			}
 		);
 
-		$lang = $services->getMainConfig()->get( 'LanguageCode' );
+		$lang = $services->getMainConfig()->get( MainConfigNames::LanguageCode );
 		$dummy = $services->getService( '_TEST_ResetService_Dummy' );
 		$this->assertSame( $lang, $dummy->lang );
 

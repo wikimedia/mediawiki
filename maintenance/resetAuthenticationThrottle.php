@@ -23,6 +23,7 @@
 
 use MediaWiki\Auth\Throttler;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\IPUtils;
 
@@ -89,7 +90,7 @@ class ResetAuthenticationThrottle extends Maintenance {
 	protected function clearLoginThrottle( $rawUsername, $ip ) {
 		$this->output( 'Clearing login throttle...' );
 
-		$passwordAttemptThrottle = $this->getConfig()->get( 'PasswordAttemptThrottle' );
+		$passwordAttemptThrottle = $this->getConfig()->get( MainConfigNames::PasswordAttemptThrottle );
 		if ( !$passwordAttemptThrottle ) {
 			$this->output( "none set\n" );
 			return;
@@ -128,7 +129,7 @@ class ResetAuthenticationThrottle extends Maintenance {
 	protected function clearSignupThrottle( $ip ) {
 		$this->output( 'Clearing signup throttle...' );
 
-		$accountCreationThrottle = $this->getConfig()->get( 'AccountCreationThrottle' );
+		$accountCreationThrottle = $this->getConfig()->get( MainConfigNames::AccountCreationThrottle );
 		if ( !is_array( $accountCreationThrottle ) ) {
 			$accountCreationThrottle = [ [
 				'count' => $accountCreationThrottle,

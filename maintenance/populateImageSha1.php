@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
@@ -110,9 +111,10 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 			// in the pipe buffer. This can improve performance by up to a
 			// factor of 2.
 			$config = $this->getConfig();
-			$cmd = 'mysql -u' . Shell::escape( $config->get( 'DBuser' ) ) .
-				' -h' . Shell::escape( $config->get( 'DBserver' ) ) .
-				' -p' . Shell::escape( $config->get( 'DBpassword' ), $config->get( 'DBname' ) );
+			$cmd = 'mysql -u' . Shell::escape( $config->get( MainConfigNames::DBuser ) ) .
+				' -h' . Shell::escape( $config->get( MainConfigNames::DBserver ) ) .
+				' -p' . Shell::escape( $config->get( MainConfigNames::DBpassword ),
+					$config->get( MainConfigNames::DBname ) );
 			$this->output( "Using pipe method\n" );
 			$pipe = popen( $cmd, 'w' );
 		}

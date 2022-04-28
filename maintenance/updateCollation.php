@@ -26,6 +26,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -118,7 +119,7 @@ TEXT
 		if ( $this->hasOption( 'target-collation' ) ) {
 			$this->collationName = $this->getOption( 'target-collation' );
 		} else {
-			$this->collationName = $this->getConfig()->get( 'CategoryCollation' );
+			$this->collationName = $this->getConfig()->get( MainConfigNames::CategoryCollation );
 		}
 		if ( $this->hasOption( 'remote' ) ) {
 			$realCollationName = 'remote-' . $this->collationName;

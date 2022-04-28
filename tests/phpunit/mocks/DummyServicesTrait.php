@@ -32,6 +32,7 @@ use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
 use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\UserIdentity;
@@ -309,14 +310,14 @@ trait DummyServicesTrait {
 			NamespaceInfo::CONSTRUCTOR_OPTIONS,
 			$options, // caller can override the default config by specifying it here
 			[
-				'CanonicalNamespaceNames' => NamespaceInfo::CANONICAL_NAMES,
-				'CapitalLinkOverrides' => [],
-				'CapitalLinks' => true,
-				'ContentNamespaces' => [ NS_MAIN ],
-				'ExtraNamespaces' => [],
-				'ExtraSignatureNamespaces' => [],
-				'NamespaceContentModels' => [],
-				'NamespacesWithSubpages' => [
+				MainConfigNames::CanonicalNamespaceNames => NamespaceInfo::CANONICAL_NAMES,
+				MainConfigNames::CapitalLinkOverrides => [],
+				MainConfigNames::CapitalLinks => true,
+				MainConfigNames::ContentNamespaces => [ NS_MAIN ],
+				MainConfigNames::ExtraNamespaces => [],
+				MainConfigNames::ExtraSignatureNamespaces => [],
+				MainConfigNames::NamespaceContentModels => [],
+				MainConfigNames::NamespacesWithSubpages => [
 					NS_TALK => true,
 					NS_USER => true,
 					NS_USER_TALK => true,
@@ -331,7 +332,7 @@ trait DummyServicesTrait {
 					NS_HELP_TALK => true,
 					NS_CATEGORY_TALK => true,
 				],
-				'NonincludableNamespaces' => [],
+				MainConfigNames::NonincludableNamespaces => [],
 			]
 		);
 		return new NamespaceInfo(
@@ -373,11 +374,11 @@ trait DummyServicesTrait {
 	 */
 	private function getDummyUserNameUtils( array $options = [] ) {
 		$baseOptions = [
-			'MaxNameChars' => 255,
-			'ReservedUsernames' => [
+			MainConfigNames::MaxNameChars => 255,
+			MainConfigNames::ReservedUsernames => [
 				'MediaWiki default'
 			],
-			'InvalidUsernameCharacters' => '@:',
+			MainConfigNames::InvalidUsernameCharacters => '@:',
 		];
 		$serviceOptions = new ServiceOptions(
 			UserNameUtils::CONSTRUCTOR_OPTIONS,

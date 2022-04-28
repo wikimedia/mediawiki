@@ -28,6 +28,7 @@ require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -161,7 +162,7 @@ class NamespaceDupes extends Maintenance {
 
 		// We'll need to check for lowercase keys as well,
 		// since we're doing case-sensitive searches in the db.
-		$capitalLinks = $this->getConfig()->get( 'CapitalLinks' );
+		$capitalLinks = $this->getConfig()->get( MainConfigNames::CapitalLinks );
 		foreach ( $spaces as $name => $ns ) {
 			$moreNames = [];
 			$moreNames[] = $contLang->uc( $name );

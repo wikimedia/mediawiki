@@ -24,6 +24,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -48,7 +49,7 @@ class UpdateSpecialPages extends Maintenance {
 
 		$this->doSpecialPageCacheUpdates( $dbw );
 
-		$queryCacheLimit = (int)$config->get( 'QueryCacheLimit' );
+		$queryCacheLimit = (int)$config->get( MainConfigNames::QueryCacheLimit );
 		$disabledQueryPages = QueryPage::getDisabledQueryPages( $config );
 		foreach ( QueryPage::getPages() as $page ) {
 			list( , $special ) = $page;
@@ -145,7 +146,7 @@ class UpdateSpecialPages extends Maintenance {
 	}
 
 	public function doSpecialPageCacheUpdates( $dbw ) {
-		foreach ( $this->getConfig()->get( 'SpecialPageCacheUpdates' ) as $special => $call ) {
+		foreach ( $this->getConfig()->get( MainConfigNames::SpecialPageCacheUpdates ) as $special => $call ) {
 			# --list : just show the name of pages
 			if ( $this->hasOption( 'list' ) ) {
 				$this->output( "$special [callback]\n" );

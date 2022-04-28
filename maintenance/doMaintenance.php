@@ -24,6 +24,7 @@
  * @file
  * @ingroup Maintenance
  */
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 
@@ -76,14 +77,14 @@ if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
 		$config = $settingsBuilder->getConfig();
 
 		if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
-			$cacheConf = $config->get( 'LocalisationCacheConf' );
+			$cacheConf = $config->get( MainConfigNames::LocalisationCacheConf );
 			if ( $cacheConf['storeClass'] === false
 				&& ( $cacheConf['store'] == 'db'
 					|| ( $cacheConf['store'] == 'detect'
-						&& !$config->get( 'CacheDirectory' ) ) )
+						&& !$config->get( MainConfigNames::CacheDirectory ) ) )
 			) {
 				$cacheConf['storeClass'] = LCStoreNull::class;
-				$settingsBuilder->putConfigValue( 'LocalisationCacheConf', $cacheConf );
+				$settingsBuilder->putConfigValue( MainConfigNames::LocalisationCacheConf, $cacheConf );
 			}
 		}
 

@@ -4,6 +4,7 @@ use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
@@ -340,14 +341,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				'apc' => $hashCache,
 				'apcu' => $hashCache,
 				'wincache' => $hashCache,
-			] + $baseConfig->get( 'ObjectCaches' );
+			] + $baseConfig->get( MainConfigNames::ObjectCaches );
 
-		$defaultOverrides->set( 'ObjectCaches', $objectCaches );
-		$defaultOverrides->set( 'MainCacheType', CACHE_NONE );
-		$defaultOverrides->set( 'JobTypeConf', [ 'default' => [ 'class' => JobQueueMemory::class ] ] );
+		$defaultOverrides->set( MainConfigNames::ObjectCaches, $objectCaches );
+		$defaultOverrides->set( MainConfigNames::MainCacheType, CACHE_NONE );
+		$defaultOverrides->set( MainConfigNames::JobTypeConf, [ 'default' => [ 'class' => JobQueueMemory::class ] ] );
 
 		// Use a fast hash algorithm to hash passwords.
-		$defaultOverrides->set( 'PasswordDefault', 'A' );
+		$defaultOverrides->set( MainConfigNames::PasswordDefault, 'A' );
 
 		$testConfig = $customOverrides
 			? new MultiConfig( [ $customOverrides, $defaultOverrides, $baseConfig ] )
@@ -1044,7 +1045,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		// (T247990) Cache the original service wirings to work around a memory leak on PHP 7.4 and above
 		if ( !self::$originalServiceWirings ) {
-			$serviceWiringFiles = self::$originalServices->getBootstrapConfig()->get( 'ServiceWiringFiles' );
+			$serviceWiringFiles = self::$originalServices->getBootstrapConfig()->get( MainConfigNames::ServiceWiringFiles );
 
 			foreach ( $serviceWiringFiles as $wiringFile ) {
 				self::$originalServiceWirings[] = require $wiringFile;
@@ -1063,8 +1064,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		// Load the default wiring from the specified files.
 		// NOTE: this logic mirrors the logic in MediaWikiServices::newInstance
-		if ( $configOverrides->has( 'ServiceWiringFiles' ) ) {
-			$wiringFiles = $testConfig->get( 'ServiceWiringFiles' );
+		if ( $configOverrides->has( MainConfigNames::ServiceWiringFiles ) ) {
+			$wiringFiles = $testConfig->get( MainConfigNames::ServiceWiringFiles );
 			$newServices->loadWiringFiles( $wiringFiles );
 		} else {
 			// (T247990) Avoid including default wirings many times - use cached wirings

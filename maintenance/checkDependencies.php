@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -79,8 +81,8 @@ class CheckDependencies extends Maintenance {
 	}
 
 	private function loadThing( &$dependencies, $name, $extensions, $skins ) {
-		$extDir = $this->getConfig()->get( 'ExtensionDirectory' );
-		$styleDir = $this->getConfig()->get( 'StyleDirectory' );
+		$extDir = $this->getConfig()->get( MainConfigNames::ExtensionDirectory );
+		$styleDir = $this->getConfig()->get( MainConfigNames::StyleDirectory );
 		$queue = [];
 		$missing = false;
 		foreach ( $extensions as $extension ) {
