@@ -194,7 +194,7 @@ class UserDef extends TypeDef {
 			// for User objects (local is the default, but we specify it anyway to show
 			// that its intentional even though the username is for a different wiki)
 			// NOTE: We deliberately use the raw $value instead of the canonical $name
-			// to avoid convering the first character of the interwiki prefic to uppercase
+			// to avoid convering the first character of the interwiki prefix to uppercase
 			$user = $name !== false ? new UserIdentityValue( 0, $value, UserIdentityValue::LOCAL ) : null;
 			return [ 'interwiki', $user ];
 		}
