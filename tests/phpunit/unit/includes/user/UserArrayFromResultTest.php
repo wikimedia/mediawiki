@@ -16,7 +16,7 @@ class UserArrayFromResultTest extends \MediaWikiUnitTestCase {
 			->willReturn( $row );
 		$resultWrapper->method( 'numRows' )
 			->willReturn( $numRows );
-		$resultWrapper->method( 'next' )
+		$resultWrapper->method( 'fetchObject' )
 			->willReturn( $row );
 
 		return $resultWrapper;
