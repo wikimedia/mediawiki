@@ -398,6 +398,7 @@ class Names {
 		# 'ruq-grek' => 'Βλαεστε', # Megleno-Romanian (Greek script)
 		'ruq-latn' => 'Vlăheşte', # Megleno-Romanian (Latin script)
 		'rw' => 'Ikinyarwanda', # Kinyarwanda
+		'ryu' => 'うちなーぐち', # Okinawan
 		'sa' => 'संस्कृतम्', # Sanskrit
 		'sah' => 'саха тыла', # Sakha
 		'sat' => 'ᱥᱟᱱᱛᱟᱲᱤ', # Santali
