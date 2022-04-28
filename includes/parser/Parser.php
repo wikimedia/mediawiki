@@ -47,6 +47,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\Utils\UrlUtils;
 use Psr\Log\LoggerInterface;
 use Wikimedia\IPUtils;
 use Wikimedia\ScopedCallback;
@@ -216,7 +217,14 @@ class Parser {
 	private $mSubstWords;
 
 	# Initialised in constructor
-	private $mExtLinkBracketedRegex, $mUrlProtocols;
+	private $mExtLinkBracketedRegex;
+
+	/**
+	 * Initialized in constructor
+	 *
+	 * @var UrlUtils
+	 */
+	private $urlUtils;
 
 	# Initialized in constructor
 	/**
@@ -429,7 +437,7 @@ class Parser {
 	 * @param MagicWordFactory $magicWordFactory
 	 * @param Language $contLang Content language
 	 * @param ParserFactory $factory
-	 * @param string $urlProtocols As returned from wfUrlProtocols()
+	 * @param UrlUtils $urlUtils
 	 * @param SpecialPageFactory $spFactory
 	 * @param LinkRendererFactory $linkRendererFactory
 	 * @param NamespaceInfo $nsInfo
@@ -452,7 +460,7 @@ class Parser {
 		MagicWordFactory $magicWordFactory,
 		Language $contLang,
 		ParserFactory $factory,
-		string $urlProtocols,
+		UrlUtils $urlUtils,
 		SpecialPageFactory $spFactory,
 		LinkRendererFactory $linkRendererFactory,
 		NamespaceInfo $nsInfo,
@@ -496,8 +504,8 @@ class Parser {
 		$svcOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->svcOptions = $svcOptions;
 
-		$this->mUrlProtocols = $urlProtocols;
-		$this->mExtLinkBracketedRegex = '/\[(((?i)' . $this->mUrlProtocols . ')' .
+		$this->urlUtils = $urlUtils;
+		$this->mExtLinkBracketedRegex = '/\[(((?i)' . $this->urlUtils->validProtocols() . ')' .
 			self::EXT_LINK_ADDR .
 			self::EXT_LINK_URL_CLASS . '*)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F\\x{FFFD}]*?)\]/Su';
 
@@ -1755,7 +1763,7 @@ class Parser {
 	 * @return string
 	 */
 	private function handleMagicLinks( $text ) {
-		$prots = wfUrlProtocolsWithoutProtRel();
+		$prots = $this->urlUtils->validAbsoluteProtocols();
 		$urlChar = self::EXT_LINK_URL_CLASS;
 		$addr = self::EXT_LINK_ADDR;
 		$space = self::SPACE_NOT_NL; #  non-newline space
@@ -2215,7 +2223,7 @@ class Parser {
 			}
 
 			// Excluding protocol-relative URLs may avoid many false positives.
-			if ( preg_match( '/^(?:' . wfUrlProtocolsWithoutProtRel() . ')/', $text ) ) {
+			if ( preg_match( '/^(?:' . $this->urlUtils->validAbsoluteProtocols() . ')/', $text ) ) {
 				$text = $this->getTargetLanguageConverter()->markNoConversion( $text );
 			}
 
@@ -2569,7 +2577,7 @@ class Parser {
 			# Don't allow internal links to pages containing
 			# PROTO: where PROTO is a valid URL protocol; these
 			# should be external links.
-			if ( preg_match( '/^(?i:' . $this->mUrlProtocols . ')/', $origLink ) ) {
+			if ( preg_match( '/^(?i:' . $this->urlUtils->validProtocols() . ')/', $origLink ) ) {
 				$s .= $prefix . '[[' . $line;
 				continue;
 			}
@@ -2803,7 +2811,7 @@ class Parser {
 	 * @return string Less-or-more HTML with NOPARSE bits
 	 */
 	private function armorLinks( $text ) {
-		return preg_replace( '/\b((?i)' . $this->mUrlProtocols . ')/',
+		return preg_replace( '/\b((?i)' . $this->urlUtils->validProtocols() . ')/',
 			self::MARKER_PREFIX . "NOPARSE$1", $text );
 	}
 
@@ -5556,7 +5564,7 @@ class Parser {
 	private function parseLinkParameter( $value ) {
 		$chars = self::EXT_LINK_URL_CLASS;
 		$addr = self::EXT_LINK_ADDR;
-		$prots = $this->mUrlProtocols;
+		$prots = $this->urlUtils->validProtocols();
 		$type = null;
 		$target = false;
 		if ( $value === '' ) {
@@ -5714,7 +5722,7 @@ class Parser {
 	 * @return string
 	 */
 	public function getUrlProtocols() {
-		return $this->mUrlProtocols;
+		return $this->urlUtils->validProtocols();
 	}
 
 	/**
@@ -6267,7 +6275,8 @@ class Parser {
 		# @todo FIXME: Not tolerant to blank link text
 		# I.E. [https://www.mediawiki.org] will render as [1] or something depending
 		# on how many empty links there are on the page - need to figure that out.
-		$text = preg_replace( '/\[(?i:' . $this->mUrlProtocols . ')([^ ]+?) ([^[]+)\]/', '$2', $text );
+		$text = preg_replace(
+			'/\[(?i:' . $this->urlUtils->validProtocols() . ')([^ ]+?) ([^[]+)\]/', '$2', $text );
 
 		# Parse wikitext quotes (italics & bold)
 		$text = $this->doQuotes( $text );

@@ -211,7 +211,7 @@ class UrlUtils {
 	 *
 	 * @todo Need to integrate this into expand() (see T34168)
 	 *
-	 * @param array $urlParts URL parts, as output from wfParseUrl
+	 * @param array $urlParts URL parts, as output from parse()
 	 * @return string URL assembled from its component parts
 	 */
 	public function assemble( array $urlParts ): string {
