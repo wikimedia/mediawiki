@@ -6,6 +6,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\Utils\UrlUtils;
 
 /**
  * @covers Parser::__construct
@@ -47,7 +48,7 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			$mwFactory,
 			$this->createMock( Language::class ),
 			$this->createMock( ParserFactory::class ),
-			'a snail can sleep for three years',
+			$this->createMock( UrlUtils::class ),
 			$this->createMock( MediaWiki\Special\SpecialPageFactory::class ),
 			$this->createMock( MediaWiki\Linker\LinkRendererFactory::class ),
 			$this->createMock( NamespaceInfo::class ),
