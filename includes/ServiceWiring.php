@@ -1266,7 +1266,7 @@ return [
 			$options,
 			$services->getMagicWordFactory(),
 			$services->getContentLanguage(),
-			wfUrlProtocols(),
+			$services->getUrlUtils(),
 			$services->getSpecialPageFactory(),
 			$services->getLinkRendererFactory(),
 			$services->getNamespaceInfo(),

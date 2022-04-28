@@ -186,7 +186,7 @@ define( 'APCOND_ISBOT', 9 );
 /** @} */
 
 /** @{
- * Protocol constants for wfExpandUrl()
+ * Protocol constants for UrlUtils::expand()
  * PROTO_FALLBACK is @since 1.39
  */
 define( 'PROTO_HTTP', 'http://' );

@@ -31,6 +31,7 @@ use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\Utils\UrlUtils;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -46,8 +47,8 @@ class ParserFactory {
 	/** @var Language */
 	private $contLang;
 
-	/** @var string */
-	private $urlProtocols;
+	/** @var UrlUtils */
+	private $urlUtils;
 
 	/** @var SpecialPageFactory */
 	private $specialPageFactory;
@@ -111,7 +112,7 @@ class ParserFactory {
 	 * @param ServiceOptions $svcOptions
 	 * @param MagicWordFactory $magicWordFactory
 	 * @param Language $contLang Content language
-	 * @param string $urlProtocols As returned from wfUrlProtocols()
+	 * @param UrlUtils $urlUtils
 	 * @param SpecialPageFactory $spFactory
 	 * @param LinkRendererFactory $linkRendererFactory
 	 * @param NamespaceInfo $nsInfo
@@ -135,7 +136,7 @@ class ParserFactory {
 		ServiceOptions $svcOptions,
 		MagicWordFactory $magicWordFactory,
 		Language $contLang,
-		string $urlProtocols,
+		UrlUtils $urlUtils,
 		SpecialPageFactory $spFactory,
 		LinkRendererFactory $linkRendererFactory,
 		NamespaceInfo $nsInfo,
@@ -160,7 +161,7 @@ class ParserFactory {
 		$this->svcOptions = $svcOptions;
 		$this->magicWordFactory = $magicWordFactory;
 		$this->contLang = $contLang;
-		$this->urlProtocols = $urlProtocols;
+		$this->urlUtils = $urlUtils;
 		$this->specialPageFactory = $spFactory;
 		$this->linkRendererFactory = $linkRendererFactory;
 		$this->nsInfo = $nsInfo;
@@ -193,7 +194,7 @@ class ParserFactory {
 				$this->magicWordFactory,
 				$this->contLang,
 				$this,
-				$this->urlProtocols,
+				$this->urlUtils,
 				$this->specialPageFactory,
 				$this->linkRendererFactory,
 				$this->nsInfo,

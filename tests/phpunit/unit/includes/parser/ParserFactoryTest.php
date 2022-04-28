@@ -11,6 +11,7 @@ use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\Utils\UrlUtils;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -48,11 +49,15 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
+		$urlUtils = $this->createMock( UrlUtils::class );
+		$urlUtils->method( 'validProtocols' )->willReturn( 'http:\/\/|https:\/\/' );
+		$urlUtils->expects( $this->never() )->method( $this->anythingBut( 'validProtocols' ) );
+
 		$factory = new ParserFactory(
 			$options,
 			$mwFactory,
 			$this->createNoOpMock( Language::class ),
-			"",
+			$urlUtils,
 			$this->createNoOpMock( SpecialPageFactory::class ),
 			$this->createNoOpMock( LinkRendererFactory::class ),
 			$this->createNoOpMock( NamespaceInfo::class ),
