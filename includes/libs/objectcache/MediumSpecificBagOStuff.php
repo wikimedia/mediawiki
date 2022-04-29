@@ -94,7 +94,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
 
-		if ( !empty( $params['reportDupes'] ) && is_callable( $this->asyncHandler ) ) {
+		if ( !empty( $params['reportDupes'] ) && $this->asyncHandler ) {
 			$this->reportDupes = true;
 		}
 
