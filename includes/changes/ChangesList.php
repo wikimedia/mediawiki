@@ -101,7 +101,11 @@ class ChangesList extends ContextSource {
 		$sk = $context->getSkin();
 		$list = null;
 		if ( Hooks::runner()->onFetchChangesList( $user, $sk, $list, $groups ) ) {
-			$new = $context->getRequest()->getBool( 'enhanced', $user->getOption( 'usenewrc' ) );
+			$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+			$new = $context->getRequest()->getBool(
+				'enhanced',
+				$userOptionsLookup->getBoolOption( $user, 'usenewrc' )
+			);
 
 			return $new ?
 				new EnhancedChangesList( $context, $groups ) :
