@@ -111,6 +111,7 @@ class TestSetup {
 					'class' => MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider::class,
 					'services' => [
 						'DBLoadBalancer',
+						'UserOptionsLookup',
 					],
 					'args' => [ [
 						'authoritative' => false,

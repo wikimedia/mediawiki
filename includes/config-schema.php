@@ -1981,6 +1981,7 @@ return [
 						'class' => 'MediaWiki\\Auth\\TemporaryPasswordPrimaryAuthenticationProvider',
 						'services' => [
 							0 => 'DBLoadBalancer',
+							1 => 'UserOptionsLookup',
 						],
 						'args' => [
 							0 => [

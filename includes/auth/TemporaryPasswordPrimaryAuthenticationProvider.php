@@ -22,7 +22,7 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserRigorOptions;
 use SpecialPage;
 use User;
@@ -58,15 +58,23 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/**
 	 * @param ILoadBalancer $loadBalancer
+	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param array $params
 	 *  - emailEnabled: (bool) must be true for the option to email passwords to be present
 	 *  - newPasswordExpiry: (int) expiraton time of temporary passwords, in seconds
 	 *  - passwordReminderResendTime: (int) cooldown period in hours until a password reminder can
 	 *    be sent to the same user again
 	 */
-	public function __construct( ILoadBalancer $loadBalancer, $params = [] ) {
+	public function __construct(
+		ILoadBalancer $loadBalancer,
+		UserOptionsLookup $userOptionsLookup,
+		$params = []
+	) {
 		parent::__construct( $params );
 
 		if ( isset( $params['emailEnabled'] ) ) {
@@ -82,6 +90,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			$this->allowRequiringEmail = $params['allowRequiringEmailForResets'];
 		}
 		$this->loadBalancer = $loadBalancer;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	protected function postInitSetup() {
@@ -454,7 +463,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		$this->getHookRunner()->onUser__mailPasswordInternal( $creatingUser, $ip, $user );
 
 		$mainPageUrl = \Title::newMainPage()->getCanonicalURL();
-		$userLanguage = $user->getOption( 'language' );
+		$userLanguage = $this->userOptionsLookup->getOption( $user, 'language' );
 		$subjectMessage = wfMessage( 'createaccount-title' )->inLanguage( $userLanguage );
 		$bodyMessage = wfMessage( 'createaccount-text', $ip, $user->getName(), $password,
 			'<' . $mainPageUrl . '>', round( $this->newPasswordExpiry / 86400 ) )
@@ -482,7 +491,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		if ( !$user ) {
 			return \Status::newFatal( 'noname' );
 		}
-		$userLanguage = $user->getOption( 'language' );
+		$userLanguage = $this->userOptionsLookup->getOption( $user, 'language' );
 		$callerIsAnon = IPUtils::isValid( $req->caller );
 		$callerName = $callerIsAnon ? $req->caller : User::newFromName( $req->caller )->getName();
 		$passwordMessage = wfMessage( 'passwordreset-emailelement', $user->getName(),
@@ -493,7 +502,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			'<' . \Title::newMainPage()->getCanonicalURL() . '>',
 			round( $this->newPasswordExpiry / 86400 ) )->text();
 
-		if ( $this->allowRequiringEmail && !MediaWikiServices::getInstance()->getUserOptionsLookup()
+		if ( $this->allowRequiringEmail && !$this->userOptionsLookup
 			->getBoolOption( $user, 'requireemail' )
 		) {
 			$body .= "\n\n";
