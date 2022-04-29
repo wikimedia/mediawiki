@@ -446,14 +446,15 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @return bool
 	 */
 	protected function isDenseTagFilter( $tagIds, $limit ) {
-		global $wgMiserMode;
+		$miserMode = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::MiserMode );
 
 		$dbr = $this->getDB();
 		if ( !$tagIds
 			// This is a MySQL-specific hack
 			|| $dbr->getType() !== 'mysql'
 			// Unnecessary for small wikis
-			|| !$wgMiserMode
+			|| !$miserMode
 		) {
 			return false;
 		}

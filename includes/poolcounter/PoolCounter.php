@@ -21,6 +21,8 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
@@ -117,11 +119,12 @@ abstract class PoolCounter {
 	 * @return PoolCounter
 	 */
 	public static function factory( string $type, string $key ) {
-		global $wgPoolCounterConf;
-		if ( !isset( $wgPoolCounterConf[$type] ) ) {
+		$poolCounterConf = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::PoolCounterConf );
+		if ( !isset( $poolCounterConf[$type] ) ) {
 			return new PoolCounterNull;
 		}
-		$conf = $wgPoolCounterConf[$type];
+		$conf = $poolCounterConf[$type];
 
 		/** @var PoolCounter $poolCounter */
 		$poolCounter = ObjectFactory::getObjectFromSpec(

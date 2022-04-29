@@ -310,8 +310,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$localBasePath = null,
 		$remoteBasePath = null
 	) {
-		global $IP, $wgResourceBasePath;
-
+		global $IP;
 		// The different ways these checks are done, and their ordering, look very silly,
 		// but were preserved for backwards-compatibility just in case. Tread lightly.
 
@@ -319,18 +318,20 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$localBasePath = $IP;
 		}
 		if ( $remoteBasePath === null ) {
-			$remoteBasePath = $wgResourceBasePath;
+			$remoteBasePath = MediaWikiServices::getInstance()->getMainConfig()
+				->get( MainConfigNames::ResourceBasePath );
 		}
 
 		if ( isset( $options['remoteExtPath'] ) ) {
-			global $wgExtensionAssetsPath;
-			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
-			$remoteBasePath = $wgExtensionAssetsPath . '/' . $options['remoteExtPath'];
+			$extensionAssetsPath = MediaWikiServices::getInstance()->getMainConfig()
+				->get( MainConfigNames::ExtensionAssetsPath );
+			$remoteBasePath = $extensionAssetsPath . '/' . $options['remoteExtPath'];
 		}
 
 		if ( isset( $options['remoteSkinPath'] ) ) {
-			global $wgStylePath;
-			$remoteBasePath = $wgStylePath . '/' . $options['remoteSkinPath'];
+			$stylePath = MediaWikiServices::getInstance()->getMainConfig()
+				->get( MainConfigNames::StylePath );
+			$remoteBasePath = $stylePath . '/' . $options['remoteSkinPath'];
 		}
 
 		if ( array_key_exists( 'localBasePath', $options ) ) {

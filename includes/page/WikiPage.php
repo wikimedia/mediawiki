@@ -2224,8 +2224,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	public function doUpdateRestrictions( array $limit, array $expiry,
 		&$cascade, $reason, UserIdentity $user, $tags = []
 	) {
-		global $wgCascadingRestrictionLevels;
-
 		if ( wfReadOnly() ) {
 			return Status::newFatal( wfMessage( 'readonlytext', wfReadOnlyReason() ) );
 		}
@@ -2322,7 +2320,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				$editrestriction[$key] = 'editsemiprotected'; // backwards compatibility
 			}
 
-			$cascadingRestrictionLevels = $wgCascadingRestrictionLevels;
+			$cascadingRestrictionLevels = MediaWikiServices::getInstance()->getMainConfig()
+				->get( MainConfigNames::CascadingRestrictionLevels );
+
 			foreach ( array_keys( $cascadingRestrictionLevels, 'sysop' ) as $key ) {
 				$cascadingRestrictionLevels[$key] = 'editprotected'; // backwards compatibility
 			}

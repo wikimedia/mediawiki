@@ -2,7 +2,7 @@
 
 use MediaWiki\User\UserIdentityValue;
 
-class MailAddressTest extends MediaWikiUnitTestCase {
+class MailAddressTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers MailAddress::__construct
