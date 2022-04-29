@@ -1573,3 +1573,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-UploadWizard
 	branch = REL1_38
 	ignore = dirty
+[submodule "extensions/InterwikiSorting"]
+	path = extensions/InterwikiSorting
+	url = https://github.com/wikimedia/mediawiki-extensions-InterwikiSorting
+	branch = REL1_38
+	ignore = dirty
