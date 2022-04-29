@@ -28,6 +28,7 @@
 require_once __DIR__ . '/../Maintenance.php';
 require_once __DIR__ . '/../../includes/export/WikiExporter.php';
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -179,7 +180,7 @@ abstract class BackupDumper extends Maintenance {
 		parent::finalSetup( $settingsBuilder );
 		// re-declare the --schema-version option to include the default schema version
 		// in the description.
-		$schemaVersion = $settingsBuilder->getConfig()->get( 'XmlDumpSchemaVersion' );
+		$schemaVersion = $settingsBuilder->getConfig()->get( MainConfigNames::XmlDumpSchemaVersion );
 		$this->addOption( 'schema-version', 'Schema version to use for output. ' .
 			'Default: ' . $schemaVersion, false, true );
 	}
