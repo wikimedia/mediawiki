@@ -1,0 +1,19 @@
+diff --git a/includes/Parse.php b/includes/Parse.php
+index b6775a3..58b579f 100644
+--- a/includes/Parse.php
++++ b/includes/Parse.php
+@@ -202,7 +202,13 @@ class Parse {
+ 			$query = new Query( $this->parameters );
+ 
+ 			$foundRows = null;
+-			$rows = $query->buildAndSelect( $calcRows, $foundRows );
++			$profilingContext = '';
++			$currentTitle= $parser->getTitle();
++			if ( $currentTitle instanceof Title ) {
++				$profilingContext
++					= str_replace( [ '*', '/' ], '-', $currentTitle->getPrefixedDBkey() );
++			}
++			$rows = $query->buildAndSelect( $calcRows, $foundRows, $profilingContext );
+ 			if ( $rows === false ) {
+ 				// This error path is very fast (We exit immediately if poolcounter is full)
+ 				// Thus it should be safe to try again in ~5 minutes.
