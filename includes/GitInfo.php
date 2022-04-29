@@ -116,7 +116,7 @@ class GitInfo {
 	 * fallback in the extension directory itself
 	 * @since 1.24
 	 */
-	protected static function getCacheFilePath( $repoDir ) {
+	protected static function getCacheFilePath( $repoDir, $forceCache ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$gitInfoCacheDirectory = $config->get( 'GitInfoCacheDirectory' );
 		$baseDir = $config->get( 'BaseDirectory' );
@@ -137,7 +137,7 @@ class GitInfo {
 			// a filename
 			$repoName = strtr( $repoName, DIRECTORY_SEPARATOR, '-' );
 			$fileName = 'info' . $repoName . '.json';
-			$cachePath = "{$wgGitInfoCacheDirectory}/{$fileName}";
+			$cachePath = "{$gitInfoCacheDirectory}/{$fileName}";
 			if ( is_readable( $cachePath ) || $forceCache ) {
 				return $cachePath;
 			}
