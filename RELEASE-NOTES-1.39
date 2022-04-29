@@ -118,6 +118,7 @@ because of Phabricator reports.
   fallback to MediaWikiServices emitted deprecation notices since 1.37.
 * EventRelayerKafka, deprecated in 1.38, was removed.
 * MediaWiki\Logger\Monolog\KafkaHandler, deprecated in 1.38, was removed.
+* The "trace" option of SectionProfiler, deprecated in 1.38, was removed.
 * The global function wfWikiID(), deprecated since 1.35, has been removed.
 * Database::wasKnownStatementRollbackError() was removed. Subclasses should
   override isKnownStatementRollbackError() instead.
