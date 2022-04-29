@@ -1583,3 +1583,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-CreatedPagesList
 	branch = REL1_38
 	ignore = dirty
+[submodule "extensions/CategoryExplorer"]
+	path = extensions/CategoryExplorer
+	url = https://github.com/wikimedia/mediawiki-extensions-CategoryExplorer
+	branch = REL1_38
+	ignore = dirty
