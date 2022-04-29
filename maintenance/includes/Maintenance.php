@@ -1700,7 +1700,7 @@ abstract class Maintenance {
 		} else {
 			$this->fatalError( $errorMsg );
 		}
-		if ( !$user || !$user->getId() ) {
+		if ( !$user || !$user->isRegistered() ) {
 			if ( $this->hasOption( "user" ) ) {
 				$this->fatalError( "No such user: " . $this->getOption( 'user' ) );
 			} elseif ( $this->hasOption( "userid" ) ) {

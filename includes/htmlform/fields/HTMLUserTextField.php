@@ -56,7 +56,7 @@ class HTMLUserTextField extends HTMLTextField {
 			return $this->msg( 'htmlform-user-not-valid', $value );
 		} elseif (
 			// check, if the user exists, if requested
-			( $this->mParams['exists'] && $user->getId() === 0 ) &&
+			( $this->mParams['exists'] && !$user->isRegistered() ) &&
 			// check, if the username is a valid IP address, otherwise save the error message
 			!( $this->mParams['ipallowed'] && IPUtils::isValid( $value ) ) &&
 			// check, if the username is a valid IP range, otherwise save the error message

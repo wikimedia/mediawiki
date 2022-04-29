@@ -172,8 +172,7 @@ class WatchlistManager {
 			return;
 		}
 
-		$userId = $user->getId();
-		if ( !$userId ) {
+		if ( !$user->isRegistered() ) {
 			return;
 		}
 
@@ -258,13 +257,11 @@ class WatchlistManager {
 	 * @return string|bool|null String timestamp, false if not watched, null if nothing is unseen
 	 */
 	public function getTitleNotificationTimestamp( UserIdentity $user, $title ) {
-		$userId = $user->getId();
-
-		if ( !$userId ) {
+		if ( !$user->isRegistered() ) {
 			return false;
 		}
 
-		$cacheKey = 'u' . (string)$userId . '-' .
+		$cacheKey = 'u' . (string)$user->getId() . '-' .
 			(string)$title->getNamespace() . ':' . $title->getDBkey();
 
 		// avoid isset here, as it'll return false for null entries

@@ -622,7 +622,7 @@ class UserGroupManager implements IDBAccessObject {
 			__METHOD__ . " is not supported for foreign domains: {$this->dbDomain} used"
 		);
 
-		if ( $this->readOnlyMode->isReadOnly() || !$user->getId() ) {
+		if ( $this->readOnlyMode->isReadOnly() || !$user->isRegistered() ) {
 			return [];
 		}
 

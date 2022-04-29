@@ -703,7 +703,7 @@ class AuthManager implements LoggerAwareInterface {
 					get_class( $provider ) . " returned an invalid username: {$res->username}"
 				);
 			}
-			if ( $user->getId() === 0 ) {
+			if ( !$user->isRegistered() ) {
 				// User doesn't exist locally. Create it.
 				$this->logger->info( 'Auto-creating {user} on login', [
 					'user' => $user->getName(),
@@ -1065,7 +1065,7 @@ class AuthManager implements LoggerAwareInterface {
 			return Status::newFatal( 'noname' );
 		} else {
 			$user->load( $flags ); // Explicitly load with $flags, auto-loading always uses READ_NORMAL
-			if ( $user->getId() !== 0 ) {
+			if ( $user->isRegistered() ) {
 				return Status::newFatal( 'userexists' );
 			}
 		}
@@ -1302,7 +1302,7 @@ class AuthManager implements LoggerAwareInterface {
 			$user->load( User::READ_LOCKING );
 
 			if ( $state['userid'] === 0 ) {
-				if ( $user->getId() !== 0 ) {
+				if ( $user->isRegistered() ) {
 					$this->logger->debug( __METHOD__ . ': User exists locally', [
 						'user' => $user->getName(),
 						'creator' => $creator->getName(),
@@ -1313,7 +1313,7 @@ class AuthManager implements LoggerAwareInterface {
 					return $ret;
 				}
 			} else {
-				if ( $user->getId() === 0 ) {
+				if ( !$user->isRegistered() ) {
 					$this->logger->debug( __METHOD__ . ': User does not exist locally when it should', [
 						'user' => $user->getName(),
 						'creator' => $creator->getName(),
@@ -1913,7 +1913,7 @@ class AuthManager implements LoggerAwareInterface {
 			throw new \LogicException( 'Account linking is not possible' );
 		}
 
-		if ( $user->getId() === 0 ) {
+		if ( !$user->isRegistered() ) {
 			if ( !$this->userNameUtils->isUsable( $user->getName() ) ) {
 				$msg = wfMessage( 'noname' );
 			} else {

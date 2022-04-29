@@ -2305,7 +2305,7 @@ abstract class UploadBase {
 	private static function getUploadSessionKey( BagOStuff $store, UserIdentity $user, $statusKey ) {
 		return $store->makeKey(
 			'uploadstatus',
-			$user->getId() ?: md5( $user->getName() ),
+			$user->isRegistered() ? $user->getId() : md5( $user->getName() ),
 			$statusKey
 		);
 	}

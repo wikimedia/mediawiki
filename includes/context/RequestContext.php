@@ -639,7 +639,7 @@ class RequestContext implements IContextSource, MutableContext {
 		if ( $params['userId'] ) { // logged-in user
 			$user = User::newFromId( $params['userId'] );
 			$user->load();
-			if ( !$user->getId() ) {
+			if ( !$user->isRegistered() ) {
 				throw new MWException( "No user with ID '{$params['userId']}'." );
 			}
 		} else { // anon user

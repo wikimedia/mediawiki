@@ -64,7 +64,7 @@ class LocalIdLookup extends CentralIdLookup {
 
 	public function isAttached( UserIdentity $user, $wikiId = UserIdentity::LOCAL ): bool {
 		// If the user has no ID, it can't be attached
-		if ( !$user->getId() ) {
+		if ( !$user->isRegistered() ) {
 			return false;
 		}
 

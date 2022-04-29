@@ -121,7 +121,7 @@ class HTMLFileCache extends FileCacheBase {
 		$ulang = $context->getLanguage();
 
 		// Check that there are no other sources of variation
-		if ( $user->getId() ||
+		if ( $user->isRegistered() ||
 			!$ulang->equals( MediaWikiServices::getInstance()->getContentLanguage() ) ) {
 			return false;
 		}
