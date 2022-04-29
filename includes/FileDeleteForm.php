@@ -95,7 +95,7 @@ class FileDeleteForm {
 			$deleteStatus = $deletePage
 				->setSuppress( $suppress )
 				->setTags( $tags ?: [] )
-				->deleteUnsafe( $reason );
+				->deleteIfAllowed( $reason );
 
 			// DeletePage returns a non-fatal error status if the page
 			// or revision is missing, so check for isOK() rather than isGood().

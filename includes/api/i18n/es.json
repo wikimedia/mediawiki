@@ -46,7 +46,8 @@
 			"Ryo567",
 			"Tiberius1701",
 			"Whovian Biologist",
-			"YoViajo"
+			"YoViajo",
+			"DiegoAmbrocio"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentación]]\n* [[mw:Special:MyLanguage/API:Etiquette|Normas de uso y etiqueta]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de correo]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anuncios API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y peticiones]\n</div>\n<strong>Estado:</strong> La API de MediaWiki es una interfaz madura y estable que se mejora y prueba activamente. Aunque tratamos de evitarlo, es posible que ocasionalmente debamos hacer cambios importantes. Suscríbete a la [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ lista de correo mediawiki-api-announce] para recibir avisos de actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se enviará un encabezado HTTP con la clave «MediaWiki-API-Error» y, luego, el valor del encabezado y el código de error devuelto se establecerán en el mismo valor. Para obtener más información, consulta [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errores y advertencias]].\n\n<p class=\"mw-apisandbox-link\"><strong>Pruebas:</strong> Para facilitar la comprobación de las solicitudes de API, consulta [[Special:ApiSandbox]].</p>",
@@ -197,6 +198,7 @@
 	"apihelp-expandtemplates-paramvalue-prop-parsetree": "El árbol XML analiza el árbol de la entrada.",
 	"apihelp-expandtemplates-param-includecomments": "Incluir o no los comentarios HTML en la salida.",
 	"apihelp-expandtemplates-param-generatexml": "Generar un árbol de análisis XML (remplazado por $1prop=parsetree).",
+	"apihelp-expandtemplates-param-showstrategykeys": "Si se incluye la información de la estrategia de fusión interna en jsconfigvars.",
 	"apihelp-expandtemplates-example-simple": "Expandir el wikitexto <kbd><nowiki>{{Project:Sandbox}}</nowiki></kbd>.",
 	"apihelp-feedcontributions-summary": "Devuelve el suministro de contribuciones de un usuario.",
 	"apihelp-feedcontributions-param-feedformat": "El formato del suministro.",
@@ -388,6 +390,7 @@
 	"apihelp-parse-param-disablelimitreport": "Omitir el informe de límite (\"NewPP limit report\") desde la salida del analizador.",
 	"apihelp-parse-param-disablepp": "Usa <var>$1disablelimitreport</var> en su lugar.",
 	"apihelp-parse-param-disableeditsection": "Omitir los enlaces de edición de sección de la salida del analizador.",
+	"apihelp-parse-param-showstrategykeys": "Si se incluye la información de la estrategia de fusión interna en jsconfigvars.",
 	"apihelp-parse-param-generatexml": "Generar árbol de análisis sintáctico XML (requiere modelo de contenido <code>$1</code>; sustituido por <kbd>$2prop=parsetree</kbd>).",
 	"apihelp-parse-param-preview": "Analizar en modo de vista previa.",
 	"apihelp-parse-param-sectionpreview": "Analizar sección en modo de vista previa (también activa el modo de vista previa).",

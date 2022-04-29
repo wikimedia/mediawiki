@@ -5,7 +5,6 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
 /**
  * @covers MediaWikiIntegrationTestCase
  * @group Database
- * @group Broken Flaky T292239
  */
 class MediaWikiIntegrationTestCaseSchema1Test extends MediaWikiIntegrationTestCase {
 

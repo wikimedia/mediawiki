@@ -1,10 +1,10 @@
 = MediaWiki 1.38 =
 
-== MediaWiki 1.38.0-PRERELEASE ==
+== MediaWiki 1.38.0-rc.0 ==
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.38 is an alpha-quality development branch, and is not recommended
+MediaWiki 1.38 is a pre-release testing branch, and is not recommended
 for use in production.
 
 == Upgrading notes for 1.38 ==
@@ -14,147 +14,165 @@ See the file UPGRADE for more detailed per-version upgrade instructions from the
 oldest supported upgrading version, MediaWiki 1.29.
 
 Some specific notes for MediaWiki 1.38 upgrades are below:
-* …
+* (T191740) The AbuseFilter extension is now bundled with MediaWiki. This is an
+  anti-abuse feature that lets privileged users to set specific actions to be
+  taken when actions by users, such as edits or file uploads, match certain
+  criteria.
+* (T232948) The Math extension is now bundled with MediaWiki. This is a content
+  feature that lets users create mathematical formulæ, written in a sub-set of
+  LaTeX and rendered in MathML with a fallback SVG image. By default, it will
+  use Wikimedia's mathoid service to render each formula, but local rendering
+  can be set up for network isolation or performance.
+* (T191743) The Minerva skin is now bundled with MediaWiki. This is a simple,
+  light-weight, and scalable skin that is particularly optimised for mobile use,
+  and integrates well with the MobileFrontend extension (available separately),
+  but can also be used as a regular desktop skin.
 
 For notes on 1.37.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.38 ===
-* Deprecate $wgAjaxUploadDestCheck, act as always-true
-* $wgInterwikiCache no longer supports the string value for CDB files.
-* Deprecate $wgParserOutputHooks; These should be done with
-  OutputPageParserOutputHook instead. (T292321)
-* …
 
 ==== New configuration ====
+* (T297708) $wgMaxExecutionTimeForExpensiveQueries - This setting can be used to
+  control the maximum execution time for several expensive query pages (e.g.
+  RecentChanges and UserContribs).
 * $wgBrowserFormatDetection – This setting allows overriding browsers' automatic
   detection and handling of formats. It's initially used to prevent auto-linking
   of possible telephone numbers in wiki pages' output in Safari on iOS; this can
   be re-enabled if you wish, or locally extended for other browsers' quirks.
-* (T240685) $wgMetricsTarget, $wgMetricsFormat, $wgMetricsPrefix - Configuration
-  for a new MetricsFactory service with support for the dogstatsd format,
-  intended for integration with Prometheus integration.
+* (T240685) $wgMetricsTarget, $wgMetricsFormat, $wgMetricsPrefix - These provide
+  configuration for a new MetricsFactory service with support for the dogstatsd
+  format, intended for integration with Prometheus integration.
 * $wgGroupInheritsPermissions – This setting allows inheriting permissions, both
   granted and revoked, from another group.
-* $wgForeignApiRepos – ForeignAPIRepo now has a apiMetadataExpiry option
-  to control how long file metadata is cached. Additionally the default changed
+* $wgForeignApiRepos – ForeignAPIRepo now has a apiMetadataExpiry option to
+  control for how long file metadata is cached. Additionally the default changed
   from 1 hour to 4 hours.
-* $wgSkinsPreferred – List of preferred skins to be listed higher in
-  Special:Preferences
-* $wgEnableRemoteBagOStuffTests replaces the environment variable
+* $wgSkinsPreferred – This lets you set a list of preferred skins to be listed
+  higher in Special:Preferences.
+* $wgWikiFarmSettingsDirectory – A directory that contains site-specific
+  configuration files. Setting this will enable multi-tenant ("wiki farm")
+  mode, causing site-specific settings to be loaded based on information from
+  the web request. EXPERIMENTAL.
+* $wgWikiFarmSettingsExtension – The file extension to be used when looking up
+  site-specific settings files in $wgWikiFarmSettingsDirectory, such as 'json'
+  or 'yaml'. EXPERIMENTAL.
+* $wgWikiFarmSiteDetector – A callback function that returns the name of the
+  wiki for the current request. This is used in multi-tenant ("wiki farm")
+  mode to determine which settings file to load from
+  $wgWikiFarmSettingsDirectory. EXPERIMENTAL.
+* $wgEnableRemoteBagOStuffTests – This replaces the environment variable
   PHPUNIT_USE_BAGOSTUFF.
 * (T230211) $wgForceDeferredUpdatesPreSend – Force deferred updates to be run
-  before sending a response to the client,
-  instead of attempting to run them after sending the response. Setting this
-  to true is useful for end-to-end testing, to ensure that the effects of a
-  request are visible to any subsequent requests, even if they are made
-  immediately after the first one. Note however that this does not ensure
-  that database replication is complete, nor does it execute any jobs
-  enqueued for later.
+  before sending a response to the client, instead of attempting to run them
+  after sending the response. Setting this to true is useful for end-to-end
+  testing, to ensure that the effects of a request are visible to any subsequent
+  requests, even if they are made immediately after the first one. Note however
+  that this does not ensure that database replication is complete, nor does it
+  execute any jobs enqueued for later.
 * $wgTemplateLinksSchemaMigrationStage – Templatelinks table schema migration
   stage, for normalizing tl_namespace and tl_title fields.
-* …
 
 ==== Changed configuration ====
-* $wgMaxImageArea - This setting may now be set to false to disable size
-  checking before scaling. Extensions can still override its value by
-  using the BitmapHandlerCheckImageArea hook.
-* …
+* $wgStyleDirectory and $wgExtensionDirectory – These are now set later, so can
+  no longer be used within LocalSettings.php unless explicitly set in that file.
+* $wgFileBackends – This setting no longer takes 'fileJournal' as an option.
+* $wgMaxImageArea - This setting may now be set to false to disable size.
+  checking before scaling. Extensions can still override its value by using the
+  BitmapHandlerCheckImageArea hook.
+* $wgAjaxUploadDestCheck – This is now deprecated, and act as always-true.
+* $wgInterwikiCache – This no longer supports the string value for CDB files.
+* $wgParserOutputHooks – This is now deprecated; adjustments using this should
+  be done with OutputPageParserOutputHook instead. (T292321)
+* $wgExternalStores – This is newly documentated in
+  includes/externalstore/README.md.
 
 ==== Removed configuration ====
-* $wgShellLocale - This setting has been removed as it was a flawed solution
-  to the problem of locale dependence, MediaWiki will now always set a locale
-  of C.UTF-8 or C and works around the remaining problems of the C locale by
-  not using escapeshellarg. This follows the direction of PHP 8.0, which sets
-  a locale of C by default instead of respecting LC_CTYPE.
+* $wgShellLocale - This setting has been removed as it was a flawed solution to
+  the problem of locale dependence, MediaWiki will now always set a locale of
+  C.UTF-8 or C and works around the remaining problems of the C locale by not
+  using escapeshellarg. This follows the direction of PHP 8.0, which sets a
+  locale of C by default instead of respecting LC_CTYPE.
 * $wgLoggedOutMaxAge - Experiment removed, originally added in 1.35. (T293848)
 * $wgIncludejQueryMigrate - Deprecated in 1.36. We only support jQuery v3.
 * $wgUseCategoryBrowser - This experimental feature has been removed. If you
   still need to use this feature, please see [[mw:Extension:CategoryExplorer]].
 * $wgStyleSheetPath - alias for $wgStylePath, deprecated since 1.3 (2004).
-* …
-
-=== New user-facing features in 1.38 ===
-* …
 
 === New operator/developer features in 1.38 ===
 * EXPERIMENTAL: The environment variable MW_CONFIG_FILE can be used to specify
   the location of the settings file. This allows alternative settings files to
   be loaded depending on the environment. Settings files may be given as PHP
-  files like the traditional LocalSettings.php file, or they may use
-  JSON or YAML format.
+  files like the traditional LocalSettings.php file, or they may use JSON or
+  YAML format.
   See https://www.mediawiki.org/wiki/Manual:YAML_settings_file_format
-* Added a deleteUserEmail maintenance script - This file enables the deletion
-  of a given user's associated email address. It can be helpful for
+* Added a deleteUserEmail maintenance script - This file enables the deletion of
+  a given user's associated email address. It can be helpful for
   privacy-preserving operations.
-* Description array for constructing HTMLForm now can use 'disable-if' to
-  disable fields on condition easily, supported expressions are the same
-  as 'hide-if'.
-* New interface IForeignRepoWithMWApi. This allows you to mark extension file
-  repos as supporting making API queries against the foreign file repo so
-  that extensions like TimedMediaHandler that depend on this can stop
-  hardcoding looking for specific class names.
-* Running QUnit tests for an individual test suite module is possible
-  with `grunt qunit --qunit-component={componentName}`, where
-  {componentName} is "MediaWiki" to run core's QUnit tests or the skin
-  or extension name.
-* Added Less `.user-select()` mixin to 'mediawiki.mixins'.
-* …
+* The description array for constructing an HTMLForm now can use 'disable-if' to
+  disable fields on condition easily, supported expressions are the same as
+  'hide-if'.
+* There is a new interface, IForeignRepoWithMWApi, to allows you to mark file
+  repos provided by an extension as supporting making API queries against the
+  foreign file repo so that extensions like TimedMediaHandler that depend on
+  this can stop hard-coding looking for specific class names.
+* Added EXPERIMENTAL support for an easy to configure multi-tenant ("wiki
+  farm") mode:
+  Settings for each site can be placed in a directory specified by
+  $wgWikiFarmSettingsDirectory. Site detection is controlled by
+  $wgWikiFarmSiteDetector and defaults to the requested host name.
+  For example, setting $wgWikiFarmSettingsDirectory = "sites" would cause
+  the settings for wiki.example.com to be loaded from
+  "sites/wiki_example_com.yaml".
+  WARNING: YAML files under the web root may be accessible to browsers, please
+  take appropriate measures to protect them from access via HTTP.
+* Running QUnit tests for an individual test suite module is possible with
+  `grunt qunit --qunit-component={componentName}`, where {componentName} is
+  "MediaWiki" to run core's QUnit tests or the skin or extension name.
+* The 'mediawiki.mixins' module now has a `.user-select()` Less mixin.
 
 === External library changes in 1.38 ===
 
 ==== New external libraries ====
 * symfony/yaml was promoted from development-only.
-* Added Codex v0.1.0-alpha.3
-* …
-
-===== New development-only external libraries =====
-* Updated QUnit from 2.16.0 to 2.18.0.
-* …
 
 ==== Changed external libraries ====
 * Updated OOUI from v0.42.0 to v0.43.2.
-* Updated WVUI from v0.3.0 to v0.3.5
-* Upgraded Vue from 2.6.11 to 3.2.23
+* Updated Vue from 2.6.11 to 3.2.23.
+* Updated WVUI from v0.3.0 to v0.4.0.
 * Updated composer/semver from 3.2.5 to 3.2.6.
 * Updated guzzlehttp/guzzle from 7.2.0 to 7.4.1.
 * Updated pear/mail_mime from 1.10.9 to 1.10.11.
 * Updated pear/net_smtp from 1.9.2 to 1.10.0.
 * Updated psr/log from 1.1.3 to 1.1.4.
+* Updated psy/psysh from 0.10.5 to 0.11.1.
+* Updated symfony/polyfill-php80 from 1.23.1 to 1.25.0.
 * Updated wikimedia/assert from 0.5.0 to 0.5.1.
 * Updated wikimedia/cdb from 1.4.1 to 2.0.0.
+* Updated wikimedia/ip-utils from 3.0.2 to 4.0.0.
 * Updated wikimedia/minify from 2.2.4 to 2.2.6.
+* Updated wikimedia/object-factory from 3.0.2 to 4.0.0.
 * Updated wikimedia/parsoid from v0.14.0-a14 to v0.15.0-a1.
 * Updated wikimedia/purtle from 1.0.7 to 1.0.8.
+* Updated wikimedia/request-timeout from 1.1.0 to 1.2.0.
 * Updated wikimedia/shellbox from 2.0.0 to 3.0.0.
 * Updated wikimedia/wrappedstring from 3.2.0 to 4.0.1.
-* Updated psy/psysh from 0.10.5 to 0.11.1.
-* Updated symfony/polyfill-php80 from 1.23.1 to 1.24.0.
-* Updated wikimedia/ip-utils from 3.0.2 to 4.0.0.
-* Updated wikimedia/request-timeout from 1.1.0 to 1.2.0.
-* Updated wikimedia/object-factory from 3.0.2 to 4.0.0.
-* …
 
 ===== Changed development-only external libraries =====
+* Updated QUnit from 2.16.0 to 2.18.0.
 * Updated composer/semver from 3.5.4 to 3.5.5.
 * Updated composer/spdx-licenses from 1.5.4 to 1.5.5.
 * Updated doctrine/dbal for PHP < 7.3 from 2.10.4 to 2.13.6.
 * Updated doctrine/dbal for PHP >= 7.3 from 3.0.0 to 3.1.5.
-* …
 
 ==== Removed external libraries ====
 * jquery.jStorage, deprecated since MW 1.28; use "mediawiki.storage" instead.
-* …
-
-=== Bug fixes in 1.38 ===
-* …
 
 === Action API changes in 1.38 ===
+* New `deletetalk` parameter on action=delete that allows you to delete the
+  associated talk page of a subject page.
 * New `variant` parameter for all API actions, for specifying language variant
   (akin to the existing `variant` parameter for index.php). Task T117549.
-* …
-
-=== Action API internal changes in 1.38 ===
-* …
 
 === Languages updated in 1.38 ===
 MediaWiki supports over 400 languages. Many localisations are updated regularly.
@@ -202,8 +220,8 @@ because of Phabricator reports.
   1.34, have been removed.
 * FileBackendGroup::singleton() and ::destroySingletons(), both deprecated since
   1.35, have been removed.
-* TemplateParser used to support disabling the cache with a boolean parameter
-  in its constructor. This was deprecated in 1.35 and has now been removed.
+* TemplateParser used to support disabling the cache with a boolean parameter in
+  its constructor. This was deprecated in 1.35 and has now been removed.
 * The ArticleUndeleteLogEntry hook, deprecated in 1.37, was removed.
 * The BeforeResetNotificationTimestamp hook, deprecated in 1.37, was removed.
 * The global function mimeTypeMatch() has been removed without a deprecation
@@ -216,9 +234,9 @@ because of Phabricator reports.
   Use mw.cookie from the mediawiki.cookie module instead.
 * The signature of PageUpdater::markAsRevert method was changed. It has never
   been used outside of MediaWiki core.
-* If you want to use interwiki titles with HTMLTitleTextField, you now need
-  to pass 'interwiki' => true. In 1.37, the default behavior was to let
-  interwiki title through by default, logging a deprecation warning.
+* If you want to use interwiki titles with HTMLTitleTextField, you now need to
+  pass 'interwiki' => true. In 1.37, the default behavior was to let interwiki
+  title through by default, logging a deprecation warning.
 * The `UndeleteForm::undelete` hook, deprecated in 1.37, was removed.
 * BagOStuff::setDebug(), deprecated since 1.36, has been removed.
 * The `jquery.mw-jump` ResourceLoader module was removed.
@@ -249,7 +267,7 @@ because of Phabricator reports.
   - Skin::mainPageLink()
 * Parser::getUser and ::mUser, as well as ParserOptions::getUser, deprecated
   since 1.37, has been removed.
-* Parser::$mStripState, deprecated in 1.35, has been made private.  Use
+* Parser::$mStripState, deprecated in 1.35, has been made private. Use
   Parser::getStripState() instead.
 * The following deprecated features in blocks were removed:
   - DatabaseBlock constructor 'byText' property with blocker's name, use 'by'
@@ -266,8 +284,8 @@ because of Phabricator reports.
     WatchAction::doUnwatch(), WatchAction::getWatchToken()
   - User::isWatched(), User::isTempWatched(), User::addWatch(),
     User::removeWatch()
-* ParserOptions::setTidy() that had no effect and was deprecated since 1.35
-  has been removed.
+* ParserOptions::setTidy() that had no effect and was deprecated since 1.35 has
+  been removed.
 * The "YAML" encoding option of EtcdConfig, has been removed without
   deprecation.
 * The constant ApiBase::PARAM_VALUE_LINKS, deprecated since 1.35 has been
@@ -276,8 +294,8 @@ because of Phabricator reports.
   since 1.37, were removed.
 * The experimental FileJournal system has been removed without deprecation. This
   includes the FileJournal abstract class, its implementation classes
-  DBFileJournal and NullFileJournal, various minor getters and setters, and
-  the option for the wiki configuration $wgFileBackends.
+  DBFileJournal and NullFileJournal, various minor getters and setters, and the
+  option for the wiki configuration $wgFileBackends.
 * The return values for each `bind` function in checkboxHack.js has been changed
   from an object to a function. In addition, the `unbind` function has been
   removed. A deprecation process was assumed unnecessary as there were no known
@@ -323,12 +341,12 @@ because of Phabricator reports.
 * The UserRightsProxy class was deprecated. Pass the correct domain to
   UserGroupManagerFactory instead.
 * Parser option enableLimitReport was deprecated. The report is now generated
-  post-parse and can be included by providing 'includeDebugInfo' option
-  to ParserOutput::getText. Thus, ParserOptions::enableLimitReport and
+  post-parse and can be included by providing 'includeDebugInfo' option to
+  ParserOutput::getText. Thus, ParserOptions::enableLimitReport and
   ::getEnableLimitReport methods were deprecated.
 * Ajax action that was deprecated in 1.27 now has been removed.
-* The following methods have been removed from IDatabase without deprecation
-  as they were completely unused:
+* The following methods have been removed from IDatabase without deprecation as
+  they were completely unused:
   - ::preCommitCallbacksPending()
   - ::pendingWriteRowsAffected()
   - ::getServerUptime()
@@ -360,6 +378,17 @@ because of Phabricator reports.
   - ::$mHijriCalendarMonthMsgs → HIJRI_CALENDAR_MONTH_MESSAGES
 * wfIncrStats, deprecated since 1.36, has been removed.
 * Profiler::profileIn and ::profileOut, deprecated in 1.33, has been removed.
+* IEditObject::AS_CANNOT_USE_CUSTOM_MODEL, deprecated in 1.35, was removed.
+* Several protected methods in EditPage were made private. None of these was
+  used outside of EditPage itself. Since the class is not stable to extend,
+  this change happened without a deprecation phase.
+* The following public methods in EditPage, unused externally, were
+  made private:
+   - ::getCancelLink()
+   - ::isSupportedContentModel()
+   - ::getParentRevId()
+* EditPage::setApiEditOverride() was marked as @internal for use by
+  ApiEditPage only.
 * SelectQueryBuilder::straightJoin() was renamed to straightJoinOption().
 * The following deprecated methods have been removed from ILBFactory:
   - ::beginMasterChanges() since 1.37
@@ -367,8 +396,8 @@ because of Phabricator reports.
   - ::rollbackMasterChanges() since 1.37
   - ::hasMasterChanges() since 1.37
   - ::hasOrMadeRecentMasterChanges() since 1.37
-* The "groupLoadsByDB" option to LBFactoryMulti has been removed. Consider
-  using "groupLoadsBySection" instead.
+* The "groupLoadsByDB" option to LBFactoryMulti has been removed. Consider using
+  "groupLoadsBySection" instead.
 * The following methods have been removed from ILoadBalancer without deprecation
   as they were completely unused:
   - ::waitForOne()
@@ -414,9 +443,11 @@ because of Phabricator reports.
   - ::$editintro
   - ::$scrolltop
   - ::$markAsBot
-* Special:ListFiles and Special:NewFiles no longer allows to search for parts
-  of file names (option was not available for $wgMiserMode = true)
+* Special:ListFiles and Special:NewFiles no longer allows to search for parts of
+  file names (option was not available for $wgMiserMode = true)
 * DBAccessBase, deprecated since 1.37, has been removed.
+* The UserNamePrefixSearch service no longer supports a UserIdentity parameter
+  to search(), to check for a specific audience an Authority object is required.
 * The methods CoreParserFunctions::register() and CoreTagHooks::register() have
   been marked @internal, and had a seconds parameter added. These methods are
   intended for use in Parser's constructor, and are not used by any known
@@ -424,13 +455,12 @@ because of Phabricator reports.
 * LoadBalancer::openConnection(), deprecated since 1.34, has been removed.
 * Skin::preloadExistence has been made private. There is no known usages outside
   of MediaWiki core.
-* …
 
 === Deprecations in 1.38 ===
 * The MWGrants class is deprecated in favor of the new GrantsInfo and
   GrantsLocalization services.
-* The global functions wfReadOnly() and wfReadOnlyReason() have been
-  deprecated in favor of the ReadOnlyMode service.
+* The global functions wfReadOnly() and wfReadOnlyReason() have been deprecated
+  in favor of the ReadOnlyMode service.
 * PageProps::getInstance() has been deprecated. Use
   MediaWikiServices::getPageProps() instead.
 * User::setOption(), deprecated since 1.35, now emits deprecation warnings.
@@ -451,29 +481,28 @@ because of Phabricator reports.
     SkinTemplateNavigation__Universal hook if they need access to this data.
 * Usage of several template data keys in QuickTemplate are now deprecated:
   - searchaction, poweredbyico, copyrightico
-* DatabaseBlock::purgeExpired(), deprecated since 1.36, now emits
-  deprecation warnings.
+* DatabaseBlock::purgeExpired(), deprecated since 1.36, now emits deprecation
+  warnings.
 * The following methods from the User class now trigger deprecation warnings:
    - ::blockedBy
    - ::getBlockId
-* Content::getParserOutput and AbstractContent::fillParserOutput
-  was hard-deprecated, use ContentRenderer::getParserOutput instead.
-  Extensions defining a content model should
-  override ContentHandler::fillParserOutput.
-* Title::newFromIDs and TitleFactory::newFromIDs have been hard deprecated.
-  Use a PageSelectQueryBuilder from a PageStore instead.
-* Content::getRedirectChain() and Content::getUltimateRedirectTarget() have
-  been deprecated with no replacement because support for $wgMaxRedirect
-  will be removed completely. See T296430 for more information.
+* Content::getParserOutput and AbstractContent::fillParserOutput was
+  hard-deprecated, use ContentRenderer::getParserOutput instead. Extensions
+  defining a content model should override ContentHandler::fillParserOutput.
+* Title::newFromIDs and TitleFactory::newFromIDs have been hard deprecated. Use
+  a PageSelectQueryBuilder from a PageStore instead.
+* Content::getRedirectChain() and Content::getUltimateRedirectTarget() have been
+  deprecated with no replacement because support for $wgMaxRedirect will be
+  removed completely. See T296430 for more information.
 * WikiPage::getRedirectTarget() has been deprecated. Use the equivalent
   RedirectLookup::getRedirectTarget() instead.
-* Article::doDelete() was deprecated. Use WikiPage::doDeleteArticleReal if
-  you only need to delete the article. If you also need things to happen
-  with OutputPage, you may want to check the hooks in DeleteAction instead.
+* Article::doDelete() was deprecated. Use WikiPage::doDeleteArticleReal if you
+  only need to delete the article. If you also need things to happen with
+  OutputPage, you may want to check the hooks in DeleteAction instead.
 * Instantiating the MessageContent class now emits deprecation notices.
 * Message::content() now triggers deprecation warnings.
 * Parser::setDefaultSort(), Parser::getDefaultSort(), and
-  Parser::getCustomDefaultSort() now trigger deprecation warnings.  Use
+  Parser::getCustomDefaultSort() now trigger deprecation warnings. Use
   ParserOutput::{get,set}PageProperty('defaultsort') instead.
 * The following methods from the ParserOutput class now emit deprecation
   warnings:
@@ -498,11 +527,11 @@ because of Phabricator reports.
      to use the OutputPageParserOutput hook instead
 * The use of ParserOutput::setExtensionData() to overwrite previous values
   stored under a given key has been deprecated; use the new
-  ::appendExtensionData() to collect multiple values in the ParserOutput
-  rather than destructively updating stored values. (T300981)
-* The signatures of the following methods from the ParserOutput class
-  were narrowed, restricting the permitted argument types:
-   - ::addModules() - if you formerly passed a string, pass an array with
+  ::appendExtensionData() to collect multiple values in the ParserOutput rather
+  than destructively updating stored values. (T300981)
+* The signatures of the following methods from the ParserOutput class were
+  narrowed, restricting the permitted argument types:
+  - ::addModules() - if you formerly passed a string, pass an array with
      the string as the only element.
    - ::addModuleStyles() - if you formerly passed a string, pass an array
      with the string as the only element.
@@ -528,13 +557,18 @@ because of Phabricator reports.
    - ImageHistoryList::preventClickjacking()
    - ImageHistoryPseudoPager::preventClickjacking()
    - ContribsPager::preventClickjacking()
-* OutputPage::enableClientCache() was deprecated, because it is universally
-  used to do the opposite -- use OutputPage::disableClientCache() instead.
-* Sanitizer::removeHTMLtags() has been deprecated. Its output can
-  include unbalanced or ill-formed HTML and thus external callers may
-  be misled about how to safely incorporate its output into a page. It
-  is recommended to use the new Sanitizer::removeSomeTags() method
-  instead, which will always return balanced HTML.
+* OutputPage::enableClientCache() was deprecated, because it is universally used
+  to do the opposite -- use OutputPage::disableClientCache() instead.
+* Sanitizer::removeHTMLtags() has been deprecated. Its output can include
+  unbalanced or ill-formed HTML and thus external callers may be misled about
+  how to safely incorporate its output into a page. It is recommended to use the
+  new Sanitizer::removeSomeTags() method instead, which will always return
+  balanced HTML.
+* EventRelayerKafka was deprecated. To use $wgEventRelayerConfig with Kafka,
+  add a similar class to your code.
+* MediaWiki\Logger\Monolog\KafkaHandler was deprecated. Consider using
+  $wgMWLoggerDefaultSpi with SyslogHandler, or to use Kafka, add a similar
+  Monolog handler class to your code.
 * Collation::singleton() and ::factory() now trigger deprecation warnings.
 * The following methods in MWNamespace, all deprecated since 1.34, now emit
   deprecation warnings:
@@ -548,8 +582,8 @@ because of Phabricator reports.
   - isContent()
   - hasSubpages()
   - getContentNamespaces()
-* Return values in the parameter $pageLang of the hook PageContentLanguage
-  with other types than a Language object, deprecated since 1.33, now emmits
+* Return values in the parameter $pageLang of the hook PageContentLanguage with
+  other types than a Language object, deprecated since 1.33, now emmits
   deprecation warnings.
 * Passing a db to BlockRestrictionStore::loadByBlockId() is deprecated.
   BlockRestrictionStoreFactory should be used to fetch a correct
@@ -560,8 +594,9 @@ because of Phabricator reports.
   now deprecated in favour of the new `wikipage.watchlistChange` hook.
 * The global function wfLogProfilingData() has been deprecated without a
   replacement. The logic has been moved to the MediaWiki class.
-* The PageArchive class has had several methods deprecated. The replacements
-  are as follows:
+* The "trace" option of SectionProfiler has been deprecated.
+* The PageArchive class has had several methods deprecated. The replacements are
+  as follows:
    - Use UndeletePage instead of ::undeleteAsUser(), ::getFileStatus() and
      ::getRevisionStatus().
    - Use the respective methods of the new ArchivedRevisionLookup service
@@ -587,10 +622,10 @@ because of Phabricator reports.
   Application logic should use the BaseDirectory setting from the main config.
   Tests and framework code that need to function without MediaWiki being
   fully initialized should use the MW_INSTALL_PATH constant.
-* The global function wfWikiID(), deprecated since 1.35, now emits
-  deprecation warnings.
-* AbstractBlock::getBy() now takes a wikiId as a parameter and emits
-  deprecation warnings in case of cross-wiki accesses.
+* The global function wfWikiID(), deprecated since 1.35, now emits deprecation
+  warnings.
+* AbstractBlock::getBy() now takes a wikiId as a parameter and emits deprecation
+  warnings in case of cross-wiki accesses.
 * The `button` parameter for `bindUpdateAriaExpandedOnInput` and
   `updateAriaExpanded` in checkboxHack.js have been deprecated.
   `bindToggleOnSpaceEnter` has also been deprecated in favor of
@@ -600,18 +635,34 @@ because of Phabricator reports.
   transactions, using FOR UPDATE for SELECT queries.
 * EditPage::addNewLineAtEnd() was deprecated; use
   TextboxBuilder::addNewLineAtEnd instead.
-* EditPage::getCopywarn() was deprecated; use
-  EditPage::getCopyrightWarning instead.
-* EditPage::getCopyrightWarning() without passing a MessageLocalizer
-  parameter has been deprecated.
+* EditPage::getCopywarn() was deprecated; use EditPage::getCopyrightWarning
+  instead.
+* EditPage::getCopyrightWarning() without passing a MessageLocalizer parameter
+  has been deprecated.
+* Passing the $formCallback parameter to EditPage::showEditForm, deprecated in
+  1.25 and previously emitting a warn notice, now emits a deprecation notice.
+* EditPage::$action has been deprecated.
+* The following properties in EditPage now emit deprecation notices when used
+  from another class:
+  - mArticle (use ::getArticle() instead)
+  - mTitle (use ::getTitle() instead)
+  - isNew (no replacement)
+  - allowBlankArticle (no replacement)
+  - selfRedirect (no replacement)
+  - allowSelfRedirect (no replacement)
+  - diff (no replacement)
+  - textbox2 (no replacement)
+  - undoAfter (no replacement)
+  - edit (no replacement)
+  - contentLength (no replacement)
 * The HTMLForm methods getPreText, setPreText, addPreText, getPostText,
   setPostText, addPostText, getHeaderText, setHeaderText, addHeaderText,
   getFooterText, setFooterText and addFooterText have been renamed to
   getPreHtml, setPreHtml, addPreHtml, getPostHtml, setPostHtml, addPostHtml,
-  getHeaderHtml, setHeaderHtml, addHeaderHtml, getFooterHtml, setFooterHtml
-  and addFooterHtml respectively.
-* The FormSpecialPage methods preText and postText have been renamed to
-  preHtml and postHtml respectively.
+  getHeaderHtml, setHeaderHtml, addHeaderHtml, getFooterHtml, setFooterHtml and
+  addFooterHtml respectively.
+* The FormSpecialPage methods preText and postText have been renamed to preHtml
+  and postHtml respectively.
 * Article::doDelete, deprecated in 1.37, now emits deprecation notices.
 * The following Less mediawiki.mixins have been deprecated:
   - .background-image()
@@ -624,7 +675,6 @@ because of Phabricator reports.
 * BagOStuff::incr() and BagOStuff::decr() are now deprecated.
 * Action::exists() and ActionFactory::actionExists() are deprecated, use
   (bool)ActionFactory::getAction().
-* …
 
 === Other changes in 1.38 ===
 * The following things were changed in the file deletion form:
@@ -640,10 +690,15 @@ because of Phabricator reports.
   earlier. This means that extensions that are installed via composer and
   execute code upon autoloading can not depend on any MediaWiki classes,
   constants or globals in that code.
-* …
+* The source of truth for configuration defaults is now the MainConfigSchema
+  class. DefaultSettings.php still exists for backwards compatibility. A PHP
+  file generated for optimized loading will be used in Setup.php to initialize
+  configuration variables. Setup.php can be made to load DefaultSettings.php
+  as before by setting MW_USE_LEGACY_DEFAULT_SETTINGS as  an environment
+  variable (e.g. via SetEnv in htaccess) or a PHP constant (e.g. via
+  auto_prepend_file in php.ini).
 
 == Compatibility ==
-
 MediaWiki 1.38 requires PHP 7.3.19 or later and the following PHP extensions:
 
 * ctype

@@ -17,7 +17,7 @@
 			"ديفيد",
 			"روخو",
 			"محمد أحمد عبد الفتاح",
-			"SaldırganSincap"
+			"FiberAhmed"
 		]
 	},
 	"config-desc": "مثبت برمجيات ميدياويكي",
@@ -226,7 +226,9 @@
 	"config-upload-help": "من المحتمل أن تؤدي عمليات رفع الملفات إلى تعريض الخادم لمخاطر أمنية. \nلمزيد من المعلومات; اقرأ [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security قسم الأمن] في الدليل. \n\nلتمكين رفع الملفات; قم بتغيير الوضع في الدليل الفرعي <code>الصور</code> تحت الدليل الرئيسي لميدياويكي كي يتمكن خادم الويب من الكتابة إليه، \nثم قم بتمكين هذا الخيار.",
 	"config-upload-deleted": "المجلد للملفات المحذوفة:",
 	"config-upload-deleted-help": "اختر دليلا لأرشفة الملفات المحذوفة،\nمن الناحية المثالية، لا يمكن الوصول إلى هذا من الويب.",
+	"config-personalization-settings": "التخصيص",
 	"config-logo-preview-main": "الصفحة الرئيسية",
+	"config-logo-icon": "الشعار (رمز)",
 	"config-instantcommons": "تمكين الاستخدام الفوري لويكيميديا كومنز InstantCommons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons كومنز الفوري] هي ميزة تسمح للويكي باستخدام الصور والأصوات والوسائط الأخرى الموجودة على موقع [https://commons.wikimedia.org/ ويكيميديا كومنز]،\nمن أجل القيام بذلك; يتطلب ميدياويكي الوصول إلى الإنترنت. \n\nلمزيد من المعلومات حول هذه الميزة، بما في ذلك تعليمات حول كيفية إعدادها لمواقع ويكي بخلاف ويكيميديا كومنز; يُرجَى الرجوع إلى [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos الدليل].",
 	"config-cc-error": "لم يعطِ منتقي رخصة المشاع الإبداعي أية نتيجة; أدخل اسم الترخيص يدويا.",

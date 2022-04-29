@@ -1,12 +1,24 @@
 {
 	"config-schema": {
+		"SiteName": {
+			"default": false
+		},
+		"HttpsPort": {
+			"default": 443
+		},
 		"ExtensionDirectory": {
-			"type": "string",
 			"default": "/DEFAULT/"
 		},
 		"StyleDirectory": {
-			"type": "string",
 			"default": "/DEFAULT/"
+		},
+		"ForeignUploadTargets": {
+			"default": [ "local" ],
+			"type": "array"
+		},
+		"ExtraLanguageCodes": {
+			"default": { "simple": "en" },
+			"type": "object"
 		}
 	}
 }

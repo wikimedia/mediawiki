@@ -53,6 +53,7 @@
 	"config-no-fts3": "<strong>Warning:</strong> SQLite is compiled without the [//sqlite.org/fts3.html FTS3 module], search features will be unavailable on this backend.",
 	"config-pcre-old": "<strong>Fatal:</strong> PCRE $1 or later is required.\nYour PHP binary is linked with PCRE $2.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE More information].",
 	"config-pcre-no-utf8": "<strong>Fatal:</strong> PHP's PCRE module seems to be compiled without PCRE_UTF8 support.\nMediaWiki requires UTF-8 support to function correctly.",
+	"config-pcre-invalid-newline": "<strong>Fatal:</strong> PHP's PCRE module seems to be compiled with PCRE_CONFIG_NEWLINE = -1 for ANY.\nMediaWiki is not compatible with this configuration.",
 	"config-memory-raised": "PHP's <code>memory_limit</code> is $1, raised to $2.",
 	"config-memory-bad": "<strong>Warning:</strong> PHP's <code>memory_limit</code> is $1.\nThis is probably too low.\nThe installation may fail!",
 	"config-apc": "[https://www.php.net/apc APC] is installed",

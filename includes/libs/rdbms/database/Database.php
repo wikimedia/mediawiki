@@ -119,10 +119,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var int[] Prior flags member variable values */
 	private $priorFlags = [];
 
-	/** @var array<string,array> Map of (name => (UNIX time,trx ID)) for current lock() mutexes */
+	/** @var array<string,float> Map of (name => UNIX timestamp) for locks obtained via lock() */
 	protected $sessionNamedLocks = [];
-	/** @var array<string,array> Map of (name => (type,pristine,trx ID)) for current temp tables */
+	/** @var array Map of (table name => 1) for current TEMPORARY tables */
 	protected $sessionTempTables = [];
+	/** @var array Map of (table name => 1) for current TEMPORARY tables */
+	protected $sessionDirtyTempTables = [];
 
 	/** @var array|null Replication lag estimate at the time of BEGIN for the last transaction */
 	private $trxReplicaLagStatus = null;
@@ -162,20 +164,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public const NEW_UNCONNECTED = 0;
 	/** @var int New Database instance will already be connected when returned */
 	public const NEW_CONNECTED = 1;
-
-	/** No errors occurred during the query */
-	protected const ERR_NONE = 0;
-	/** Retry query due to a connection loss detected while sending the query (session intact) */
-	protected const ERR_RETRY_QUERY = 1;
-	/** Abort query (no retries) due to a statement rollback (session/transaction intact) */
-	protected const ERR_ABORT_QUERY = 2;
-	/** Abort any current transaction, by rolling it back, due to an error during the query */
-	protected const ERR_ABORT_TRX = 4;
-	/** Abort and reset session due to server-side session-level state loss (locks, temp tables) */
-	protected const ERR_ABORT_SESSION = 8;
-
-	/** Assume that queries taking this long to yield connection loss errors are at fault */
-	protected const DROPPED_CONN_BLAME_THRESHOLD_SEC = 3.0;
 
 	/** @var string Idiom used when a cancelable atomic section started the transaction */
 	private const NOT_APPLICABLE = 'n/a';
@@ -558,30 +546,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Get the status of the current transaction
-	 *
-	 * @return int One of the TransactionManager::STATUS_TRX_* class constants
+	 * @return int One of the STATUS_TRX_* class constants
 	 * @since 1.31
-	 * @internal This method should not be used outside of Database/LoadBalancer
 	 */
 	public function trxStatus() {
 		return $this->transactionManager->trxStatus();
-	}
-
-	/**
-	 * Get important session state that cannot be recovered upon connection loss
-	 *
-	 * @return array<string,mixed> Map of (property => value) for the current session state
-	 */
-	private function sessionStateInfo() {
-		return [
-			'trxId' => $this->transactionManager->getTrxId(),
-			'trxExplicit' => $this->transactionManager->explicitTrxActive(),
-			'trxWriteCallers' => $this->transactionManager->pendingWriteCallers(),
-			'trxPreCommitCbCallers' => $this->transactionManager->pendingPreCommitCallbackCallers(),
-			'sessNamedLocks' => $this->sessionNamedLocks,
-			'sessTempTables' => $this->sessionTempTables
-		];
 	}
 
 	public function tablePrefix( $prefix = null ) {
@@ -884,7 +853,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			[
 				'db_server' => $this->getServerName(),
 				'db_name' => $this->getDBname(),
-				'db_user' => $this->connectionParams[self::CONN_USER] ?? null,
+				'db_user' => $this->connectionParams[self::CONN_USER],
 			],
 			$extras
 		);
@@ -1021,7 +990,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * - Reject write queries to replica DBs, in query().
 	 *
-	 * @param string $sql SQL query
+	 * @param string $sql
 	 * @param int $flags Query flags to query()
 	 * @return bool
 	 */
@@ -1057,16 +1026,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @param string $sql SQL query
+	 * @param string $sql
 	 * @return string|null
 	 */
 	protected function getQueryVerb( $sql ) {
-		// Distinguish ROLLBACK from ROLLBACK TO SAVEPOINT
-		return preg_match(
-			'/^\s*(rollback\s+to\s+savepoint|[a-z]+)/i',
-			$sql,
-			$m
-		) ? strtoupper( $m[1] ) : null;
+		return preg_match( '/^\s*([a-z]+)/i', $sql, $m ) ? strtoupper( $m[1] ) : null;
 	}
 
 	/**
@@ -1086,18 +1050,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected function isTransactableQuery( $sql ) {
 		return !in_array(
 			$this->getQueryVerb( $sql ),
-			[
-				'BEGIN',
-				'ROLLBACK',
-				'ROLLBACK TO SAVEPOINT',
-				'COMMIT',
-				'SET',
-				'SHOW',
-				'CREATE',
-				'ALTER',
-				'USE',
-				'SHOW'
-			],
+			[ 'BEGIN', 'ROLLBACK', 'COMMIT', 'SET', 'SHOW', 'CREATE', 'ALTER', 'USE', 'SHOW' ],
 			true
 		);
 	}
@@ -1150,10 +1103,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( $queryVerb === 'CREATE' ) {
 				// Record the type of temporary table being created
 				$tableType = $pseudoPermanent ? self::TEMP_PSEUDO_PERMANENT : self::TEMP_NORMAL;
-			} elseif ( isset( $this->sessionTempTables[$table] ) ) {
-				$tableType = $this->sessionTempTables[$table]['type'];
 			} else {
-				$tableType = null;
+				$tableType = $this->sessionTempTables[$table] ?? null;
 			}
 
 			if ( $tableType !== null ) {
@@ -1176,24 +1127,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		foreach ( $changes as list( $tmpTableType, $verb, $table ) ) {
 			switch ( $verb ) {
 				case 'CREATE':
-					$this->sessionTempTables[$table] = [
-						'type' => $tmpTableType,
-						'pristine' => true,
-						'trxId' => $this->transactionManager->getTrxId()
-					];
+					$this->sessionTempTables[$table] = $tmpTableType;
 					break;
 				case 'DROP':
 					unset( $this->sessionTempTables[$table] );
+					unset( $this->sessionDirtyTempTables[$table] );
 					break;
 				case 'TRUNCATE':
-					if ( isset( $this->sessionTempTables[$table] ) ) {
-						$this->sessionTempTables[$table]['pristine'] = true;
-					}
+					unset( $this->sessionDirtyTempTables[$table] );
 					break;
 				default:
-					if ( isset( $this->sessionTempTables[$table] ) ) {
-						$this->sessionTempTables[$table]['pristine'] = false;
-					}
+					$this->sessionDirtyTempTables[$table] = 1;
 					break;
 			}
 		}
@@ -1209,28 +1153,24 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected function isPristineTemporaryTable( $table ) {
 		$rawTable = $this->tableName( $table, 'raw' );
 
-		return isset( $this->sessionTempTables[$rawTable] )
-			? $this->sessionTempTables[$rawTable]['pristine']
-			: false;
+		return (
+			isset( $this->sessionTempTables[$rawTable] ) &&
+			!isset( $this->sessionDirtyTempTables[$rawTable] )
+		);
 	}
 
 	public function query( $sql, $fname = __METHOD__, $flags = self::QUERY_NORMAL ) {
 		$flags = (int)$flags; // b/c; this field used to be a bool
 		// Double check that the SQL query is appropriate in the current context and is
-		// allowed for an outside caller (e.g. does not break session/transaction tracking).
+		// allowed for an outside caller (e.g. does not break transaction/session tracking).
 		$this->assertQueryIsCurrentlyAllowed( $sql, $fname );
 
 		// Send the query to the server and fetch any corresponding errors
-		list( $ret, $err, $errno, $errFlags ) = $this->executeQuery( $sql, $fname, $flags );
+		list( $ret, $err, $errno, $unignorable ) = $this->executeQuery( $sql, $fname, $flags );
 		if ( $ret === false ) {
-			// An error occurred; log and report it as needed. Errors that corrupt the state of
-			// the transaction/session cannot be silenced from the client.
-			$ignore = (
-				$this->fieldHasBit( $flags, self::QUERY_SILENCE_ERRORS ) &&
-				!$this->fieldHasBit( $errFlags, self::ERR_ABORT_SESSION ) &&
-				!$this->fieldHasBit( $errFlags, self::ERR_ABORT_TRX )
-			);
-			$this->reportQueryError( $err, $errno, $sql, $fname, $ignore );
+			$ignoreErrors = $this->fieldHasBit( $flags, self::QUERY_SILENCE_ERRORS );
+			// Throw an error unless both the ignore flag was set and a rollback is not needed
+			$this->reportQueryError( $err, $errno, $sql, $fname, $ignoreErrors && !$unignorable );
 		}
 
 		return $ret;
@@ -1246,18 +1186,20 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * This is meant for internal use with Database subclasses.
 	 *
-	 * @param string $sql Original SQL statement query
+	 * @param string $sql Original SQL query
 	 * @param string $fname Name of the calling function
 	 * @param int $flags Bit field of class QUERY_* constants
 	 * @return array An n-tuple of:
 	 *   - mixed|bool: An object, resource, or true on success; false on failure
 	 *   - string: The result of calling lastError()
 	 *   - int: The result of calling lastErrno()
-	 *   - int: Bit field of ERR_* class constants
+	 *   - bool: Whether a rollback is needed to allow future non-rollback queries
 	 * @throws DBUnexpectedError
 	 */
 	final protected function executeQuery( $sql, $fname, $flags ) {
 		$this->assertHasConnectionHandle();
+
+		$priorTransaction = $this->trxLevel();
 
 		if ( $this->isWriteQuery( $sql, $flags ) ) {
 			// Do not treat temporary table writes as "meaningful writes" since they are only
@@ -1269,16 +1211,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			foreach ( $tempTableChanges as list( $tmpType ) ) {
 				$isPermWrite = $isPermWrite || ( $tmpType !== self::TEMP_NORMAL );
 			}
+
 			// Permit temporary table writes on replica DB connections
 			// but require a writable primary DB connection for any persistent writes.
 			if ( $isPermWrite ) {
 				$this->assertIsWritablePrimary();
-				// DBConnRef uses QUERY_REPLICA_ROLE to enforce replica roles for raw SQL queries
+
+				// DBConnRef uses QUERY_REPLICA_ROLE to enforce the replica role for raw SQL queries
 				if ( $this->fieldHasBit( $flags, self::QUERY_REPLICA_ROLE ) ) {
-					throw new DBReadOnlyRoleError(
-						$this,
-						"Cannot write; target role is DB_REPLICA"
-					);
+					throw new DBReadOnlyRoleError( $this, "Cannot write; target role is DB_REPLICA" );
 				}
 			}
 		} else {
@@ -1288,51 +1229,61 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$tempTableChanges = [];
 		}
 
-		// Add agent and calling method comments to the SQL
-		$commentedSql = $this->getCommentedSql( $sql, $fname );
-		// How many silent retry attempts are left for recoverable connection loss errors
-		$retriesLeft = $this->fieldHasBit( $flags, self::QUERY_NO_RETRY ) ? 0 : 1;
+		// Add trace comment to the begin of the sql string, right after the operator.
+		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (T44598).
+		// NOTE: Don't add varying ids such as request id or session id to the comment.
+		// It would break aggregation of similar queries in analysis tools (see T193050#7512149)
+		$encName = preg_replace( '/[\x00-\x1F\/]/', '-', "$fname {$this->agent}" );
+		$commentedSql = preg_replace( '/\s|$/', " /* $encName */ ", $sql, 1 );
+
+		$corruptedTrx = false;
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 
-		do {
-			// Start a DBO_TRX wrapper transaction as needed (throw an error on failure)
-			if ( $this->beginIfImplied( $sql, $fname, $flags ) ) {
-				// Since begin() was called, any connection loss already handled
-				--$retriesLeft;
-			}
-			// Send the query to the server, fetching any results and corresponding errors.
-			// Silently retry the query if the error was just a recoverable connection loss.
-			list( $ret, $err, $errno, $errflags ) = $this->executeQueryAttempt(
-				$sql,
-				$commentedSql,
-				$isPermWrite,
-				$fname,
-				$flags
-			);
-		} while ( $this->fieldHasBit( $errflags, self::ERR_RETRY_QUERY ) && $retriesLeft-- > 0 );
+		// Send the query to the server and fetch any corresponding errors.
+		// This also doubles as a "ping" to see if the connection was dropped.
+		list( $ret, $err, $errno, $recoverableSR, $recoverableCL, $reconnected ) =
+			$this->executeQueryAttempt( $sql, $commentedSql, $isPermWrite, $fname, $flags );
+
+		// Check if the query failed due to a recoverable connection loss
+		$allowRetry = !$this->fieldHasBit( $flags, self::QUERY_NO_RETRY );
+		if ( $ret === false && $recoverableCL && $reconnected && $allowRetry ) {
+			// Silently resend the query to the server since it is safe and possible
+			list( $ret, $err, $errno, $recoverableSR, $recoverableCL ) =
+				$this->executeQueryAttempt( $sql, $commentedSql, $isPermWrite, $fname, $flags );
+		}
 
 		// Register creation and dropping of temporary tables
 		$this->registerTempWrites( $ret, $tempTableChanges );
 
+		if ( $ret === false && $priorTransaction ) {
+			if ( $recoverableSR ) {
+				# We're ignoring an error that caused just the current query to be aborted.
+				# But log the cause so we can log a deprecation notice if a caller actually
+				# does ignore it.
+				$this->transactionManager->setTrxStatusIgnoredCause( [ $err, $errno, $fname ] );
+			} elseif ( !$recoverableCL ) {
+				# Either the query was aborted or all queries after BEGIN where aborted.
+				# In the first case, the only options going forward are (a) ROLLBACK, or
+				# (b) ROLLBACK TO SAVEPOINT (if one was set). If the later case, the only
+				# option is ROLLBACK, since the snapshots would have been released.
+				$corruptedTrx = true; // cannot recover
+				$trxError = $this->getQueryException( $err, $errno, $sql, $fname );
+				$this->transactionManager->setTransactionError( $trxError );
+			}
+		}
+
 		$this->completeCriticalSection( __METHOD__, $cs );
 
-		return [ $ret, $err, $errno, $errflags ];
+		return [ $ret, $err, $errno, $corruptedTrx ];
 	}
 
 	/**
-	 * Wrapper for doQuery() that handles a single SQL statement query attempt
+	 * Wrapper for doQuery() that handles DBO_TRX, profiling, logging, affected row count
+	 * tracking, and reconnects (without retry) on query failure due to connection loss
 	 *
-	 * This method handles profiling, debug logging, reconnection and the tracking of:
-	 *   - write callers
-	 *   - last write time
-	 *   - affected row count of the last write
-	 *   - whether writes occured in a transaction
-	 *
-	 * This method does *not* handle DBO_TRX transaction logic *nor* query retries.
-	 *
-	 * @param string $sql Original SQL statement query
-	 * @param string $commentedSql SQL statement query with debugging/trace comment
+	 * @param string $sql Original SQL query
+	 * @param string $commentedSql SQL query with debugging/trace comment
 	 * @param bool $isPermWrite Whether the query is a (non-temporary table) write
 	 * @param string $fname Name of the calling function
 	 * @param int $flags Bit field of class QUERY_* constants
@@ -1340,12 +1291,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - mixed|bool: An object, resource, or true on success; false on failure
 	 *   - string: The result of calling lastError()
 	 *   - int: The result of calling lastErrno()
-	 *   - int: Bit field of ERR_* class constants
+	 * 	 - bool: Whether a statement rollback error occurred
+	 *   - bool: Whether a disconnect *both* happened *and* was recoverable
+	 *   - bool: Whether a reconnection attempt was *both* made *and* succeeded
 	 * @throws DBUnexpectedError
 	 */
 	private function executeQueryAttempt( $sql, $commentedSql, $isPermWrite, $fname, $flags ) {
-		// Transaction attributes before issuing this query
-		$priorSessInfo = $this->sessionStateInfo();
+		$priorWritesPending = $this->writesOrCallbacksPending();
+
+		if ( ( $flags & self::QUERY_IGNORE_DBO_TRX ) == 0 ) {
+			$this->beginIfImplied( $sql, $fname );
+		}
 
 		// Keep track of whether the transaction has write queries pending
 		if ( $isPermWrite ) {
@@ -1356,25 +1312,29 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			);
 		}
 
-		$prefix = ( $this->topologyRole === self::ROLE_STREAMING_MASTER ) ? 'query-m: ' : 'query: ';
-		$generalizedSql = new GeneralizedSql( $sql, $prefix );
+		$prefix = $this->topologyRole === IDatabase::ROLE_STREAMING_MASTER ? 'query-m: ' : 'query: ';
+		$generalizedSql = new GeneralizedSql( $commentedSql, $prefix );
 
 		$startTime = microtime( true );
-		$ps = $this->profiler ? ( $this->profiler )( $generalizedSql->stringify() ) : null;
+		$ps = $this->profiler
+			? ( $this->profiler )( $generalizedSql->stringify() )
+			: null;
 		$this->affectedRowCount = null;
 		$this->lastQuery = $sql;
 		$ret = $this->doQuery( $commentedSql );
 		$lastError = $this->lastError();
 		$lastErrno = $this->lastErrno();
+
 		$this->affectedRowCount = $this->affectedRows();
 		unset( $ps ); // profile out (if set)
 		$queryRuntime = max( microtime( true ) - $startTime, 0.0 );
 
-		$errflags = self::ERR_NONE;
+		$recoverableSR = false; // recoverable statement rollback?
+		$recoverableCL = false; // recoverable connection loss?
+		$reconnected = false; // reconnection both attempted and succeeded?
 
 		if ( $ret !== false ) {
 			$this->lastPing = $startTime;
-			// Keep track of whether the transaction has write queries pending
 			if ( $isPermWrite && $this->trxLevel() ) {
 				$this->transactionManager->updateTrxWriteQueryReport(
 					$this->getQueryVerb( $sql ),
@@ -1384,51 +1344,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				);
 			}
 		} elseif ( $this->isConnectionError( $lastErrno ) ) {
-			// Connection lost before or during the query...
-			// Determine how to proceed given the lost session state
-			$connLossFlag = $this->assessConnectionLoss( $sql, $queryRuntime, $priorSessInfo );
-			// Update session state tracking and try to reestablish a connection
+			# Check if no meaningful session state was lost
+			$recoverableCL = $this->canRecoverFromDisconnect( $sql, $priorWritesPending );
+			# Update session state tracking and try to restore the connection
 			$reconnected = $this->replaceLostConnection( $lastErrno, __METHOD__ );
-			// Check if important server-side session-level state was lost
-			if ( $connLossFlag >= self::ERR_ABORT_SESSION ) {
-				$sessionError = $this->getQueryException( $lastError, $lastErrno, $sql, $fname );
-				$this->transactionManager->setSessionError( $sessionError );
-			}
-			// Check if important server-side transaction-level state was lost
-			if ( $connLossFlag >= self::ERR_ABORT_TRX ) {
-				$trxError = $this->getQueryException( $lastError, $lastErrno, $sql, $fname );
-				$this->transactionManager->setTransactionError( $trxError );
-			}
-			// Check if the query should be retried (having made the reconnection attempt)
-			if ( $connLossFlag === self::ERR_RETRY_QUERY ) {
-				$errflags |= ( $reconnected ? self::ERR_RETRY_QUERY : self::ERR_ABORT_QUERY );
-			} else {
-				$errflags |= $connLossFlag;
-			}
-		} elseif ( $this->isKnownStatementRollbackError( $lastErrno ) ) {
-			// Query error triggered a server-side statement-only rollback...
-			$errflags |= self::ERR_ABORT_QUERY;
-			if ( $this->trxLevel() ) {
-				// Allow legacy callers to ignore such errors via QUERY_IGNORE_DBO_TRX and
-				// try/catch. However, a deprecation notice will be logged on the next query.
-				$cause = [ $lastError, $lastErrno, $fname ];
-				$this->transactionManager->setTrxStatusIgnoredCause( $cause );
-			}
 		} else {
-			// Some other error occurred during the query...
-			if ( $this->trxLevel() ) {
-				// Server-side handling of errors during transactions varies widely depending on
-				// the RDBMS type and configuration. There are several possible results: (a) the
-				// whole transaction is rolled back, (b) only the queries after BEGIN are rolled
-				// back, (c) the transaction is marked as "aborted" and a ROLLBACK is required
-				// before other queries are permitted. For compatibility reasons, pessimistically
-				// require a ROLLBACK query (not using SAVEPOINT) before allowing other queries.
-				$trxError = $this->getQueryException( $lastError, $lastErrno, $sql, $fname );
-				$this->transactionManager->setTransactionError( $trxError );
-				$errflags |= self::ERR_ABORT_TRX;
-			} else {
-				$errflags |= self::ERR_ABORT_QUERY;
-			}
+			# Check if only the last query was rolled back
+			$recoverableSR = $this->wasKnownStatementRollbackError();
 		}
 
 		if ( $sql === self::PING_QUERY ) {
@@ -1467,22 +1389,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				static::class . '::doQuery() should return an IResultWrapper' );
 		}
 
-		return [ $ret, $lastError, $lastErrno, $errflags ];
-	}
-
-	/**
-	 * @param string $sql
-	 * @param string $fname
-	 * @return string
-	 */
-	private function getCommentedSql( $sql, $fname ) {
-		// Add trace comment to the begin of the sql string, right after the operator.
-		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (T44598).
-		// NOTE: Don't add varying ids such as request id or session id to the comment.
-		// It would break aggregation of similar queries in analysis tools (see T193050#7512149)
-		$encName = preg_replace( '/[\x00-\x1F\/]/', '-', "$fname {$this->agent}" );
-
-		return preg_replace( '/\s|$/', " /* $encName */ ", $sql, 1 );
+		return [ $ret, $lastError, $lastErrno, $recoverableSR, $recoverableCL, $reconnected ];
 	}
 
 	/**
@@ -1490,24 +1397,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @param string $sql
 	 * @param string $fname
-	 * @param int $flags
-	 * @return bool Whether an implicit transaction was started
-	 * @throws DBError
 	 */
-	private function beginIfImplied( $sql, $fname, $flags ) {
+	private function beginIfImplied( $sql, $fname ) {
 		if (
-			!$this->fieldHasBit( $flags, self::QUERY_IGNORE_DBO_TRX ) &&
 			!$this->trxLevel() &&
 			$this->getFlag( self::DBO_TRX ) &&
 			$this->isTransactableQuery( $sql )
 		) {
 			$this->begin( __METHOD__ . " ($fname)", self::TRANSACTION_INTERNAL );
 			$this->transactionManager->turnOnAutomatic();
-
-			return true;
 		}
-
-		return false;
 	}
 
 	/**
@@ -1520,119 +1419,60 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	private function assertQueryIsCurrentlyAllowed( $sql, $fname ) {
 		$verb = $this->getQueryVerb( $sql );
-
 		if ( $verb === 'USE' ) {
 			throw new DBUnexpectedError( $this, "Got USE query; use selectDomain() instead" );
 		}
 
-		if ( $verb === 'ROLLBACK' ) {
-			// Whole transaction rollback is used for recovery
+		if ( $verb === 'ROLLBACK' ) { // transaction/savepoint
 			return;
 		}
 
 		if ( $this->csmError ) {
 			throw new DBTransactionStateError(
 				$this,
-				"Cannot execute query from $fname while session state is out of sync",
-				[],
-				$this->csmError
+				"Cannot execute query from $fname while session state is out of sync.\n\n" .
+					$this->csmError->getMessage() . "\n" .
+					$this->csmError->getTraceAsString()
 			);
 		}
 
-		$this->transactionManager->assertSessionStatus( $this, $fname );
-
-		if ( $verb !== 'ROLLBACK TO SAVEPOINT' ) {
-			$this->transactionManager->assertTransactionStatus(
-				$this,
-				$this->deprecationLogger,
-				$fname
-			);
-		}
+		$this->transactionManager->assertTransactionStatus( $this, $this->deprecationLogger, $fname );
 	}
 
 	/**
-	 * Determine how to handle a connection lost discovered during a query attempt
+	 * Determine whether it is safe to retry queries after a database connection is lost
 	 *
-	 * This checks if explicit transactions, pending transaction writes, and important
-	 * session-level state (locks, temp tables) was lost. Point-in-time read snapshot loss
-	 * is considered acceptable for DBO_TRX logic.
-	 *
-	 * If state was lost, but that loss was discovered during a ROLLBACK that would have
-	 * destroyed that state anyway, treat the error as recoverable.
-	 *
-	 * @param string $sql SQL query statement that encountered or caused the connection loss
-	 * @param float $walltime How many seconds passes while attempting the query
-	 * @param array $priorSessInfo Result of sessionStateInfo(), just before the query
-	 * @return int Recovery approach. One of the following ERR_* class constants:
-	 *   - Database::ERR_RETRY_QUERY: reconnect silently, retry query
-	 *   - Database::ERR_ABORT_QUERY: reconnect silently, do not retry query
-	 *   - Database::ERR_ABORT_TRX: reconnect, throw error, enforce transaction rollback
-	 *   - Database::ERR_ABORT_SESSION: reconnect, throw error, enforce session rollback
+	 * @param string $sql SQL query
+	 * @param bool $priorWritesPending Whether there is a transaction open with
+	 *     possible write queries or transaction pre-commit/idle callbacks
+	 *     waiting on it to finish.
+	 * @return bool True if it is safe to retry the query, false otherwise
 	 */
-	private function assessConnectionLoss( string $sql, float $walltime, array $priorSessInfo ) {
-		$verb = $this->getQueryVerb( $sql );
-
-		if ( $walltime < self::DROPPED_CONN_BLAME_THRESHOLD_SEC ) {
-			// Query failed quickly; the connection was probably lost before the query was sent
-			$res = self::ERR_RETRY_QUERY;
-		} else {
-			// Query took a long time; the connection was probably lost during query execution
-			$res = self::ERR_ABORT_QUERY;
-		}
-
-		// List of problems causing session/transaction state corruption
+	private function canRecoverFromDisconnect( $sql, $priorWritesPending ) {
 		$blockers = [];
-		// Loss of named locks breaks future callers relying on those locks for critical sections
-		foreach ( $priorSessInfo['sessNamedLocks'] as $lockName => $lockInfo ) {
-			if ( $lockInfo['trxId'] && $lockInfo['trxId'] === $priorSessInfo['trxId'] ) {
-				// Treat lost locks acquired during the lost transaction as a transaction state
-				// problem. Connection loss on ROLLBACK (non-SAVEPOINT) is tolerable since
-				// rollback automatically triggered server-side.
-				if ( $verb !== 'ROLLBACK' ) {
-					$res = max( $res, self::ERR_ABORT_TRX );
-					$blockers[] = "named lock '$lockName'";
-				}
-			} else {
-				// Treat lost locks acquired either during prior transactions or during no
-				// transaction as a session state problem.
-				$res = max( $res, self::ERR_ABORT_SESSION );
-				$blockers[] = "named lock '$lockName'";
-			}
+		if ( $this->sessionNamedLocks ) {
+			// Named locks were automatically released, breaking the expectations
+			// of callers relying on those locks for critical section enforcement
+			$blockers[] = 'named locks';
 		}
-		// Loss of temp tables breaks future callers relying on those tables for queries
-		foreach ( $priorSessInfo['sessTempTables'] as $tableName => $tableInfo ) {
-			if ( $tableInfo['trxId'] && $tableInfo['trxId'] === $priorSessInfo['trxId'] ) {
-				// Treat lost temp tables created during the lost transaction as a transaction
-				// state problem. Connection loss on ROLLBACK (non-SAVEPOINT) is tolerable since
-				// rollback automatically triggered server-side.
-				if ( $verb !== 'ROLLBACK' ) {
-					$res = max( $res, self::ERR_ABORT_TRX );
-					$blockers[] = "temp table '$tableName'";
-				}
-			} else {
-				// Treat lost temp tables created either during prior transactions or during
-				// no transaction as a session state problem.
-				$res = max( $res, self::ERR_ABORT_SESSION );
-				$blockers[] = "temp table '$tableName'";
-			}
+		if ( $this->sessionTempTables ) {
+			// Temp tables were automatically dropped, breaking the expectations
+			// of callers relying on those tables having been created/populated
+			$blockers[] = 'temp tables';
 		}
-		// Loss of transaction writes breaks future callers and DBO_TRX logic relying on those
-		// writes to be atomic and still pending. Connection loss on ROLLBACK (non-SAVEPOINT) is
-		// tolerable since rollback automatically triggered server-side.
-		if ( $priorSessInfo['trxWriteCallers'] && $verb !== 'ROLLBACK' ) {
-			$res = max( $res, self::ERR_ABORT_TRX );
-			$blockers[] = 'uncommitted writes';
+		if ( $priorWritesPending && $sql !== 'ROLLBACK' ) {
+			// Transaction was automatically rolled back, breaking the expectations
+			// of callers and DBO_TRX semantics relying on that transaction to provide
+			// atomic writes (point-in-time snapshot loss is acceptable for DBO_TRX)
+			$blockers[] = 'transaction writes';
 		}
-		if ( $priorSessInfo['trxPreCommitCbCallers'] && $verb !== 'ROLLBACK' ) {
-			$res = max( $res, self::ERR_ABORT_TRX );
-			$blockers[] = 'pre-commit callbacks';
-		}
-		if ( $priorSessInfo['trxExplicit'] && $verb !== 'ROLLBACK' && $sql !== 'COMMIT' ) {
-			// Transaction automatically rolled back, breaking the expectations of callers
-			// relying on that transaction to provide atomic writes, serializability, or use
-			// one  point-in-time snapshot for all reads. Assume that connection loss is OK
-			// with ROLLBACK (non-SAVEPOINT). Likewise for COMMIT (T127428).
-			$res = max( $res, self::ERR_ABORT_TRX );
+		if ( $this->transactionManager->explicitTrxActive() && $sql !== 'ROLLBACK' && $sql !== 'COMMIT' ) {
+			// Transaction was automatically rolled back, breaking the expectations of
+			// callers relying on that transaction to provide atomic writes, serializability,
+			// or read results consistent with a single point-in-time snapshot. Disconnection
+			// on ROLLBACK is not an issue, since the intended result of rolling back the
+			// transaction was in fact achieved. Disconnection on COMMIT of an empty transaction
+			// is also not an issue, for similar reasons (T127428).
 			$blockers[] = 'explicit transaction';
 		}
 
@@ -1645,9 +1485,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					'db_log_category' => 'connection'
 				] )
 			);
+
+			return false;
 		}
 
-		return $res;
+		return true;
 	}
 
 	/**
@@ -1658,6 +1500,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// https://dev.mysql.com/doc/refman/5.7/en/implicit-commit.html
 		// https://www.postgresql.org/docs/9.2/static/sql-createtable.html (ignoring ON COMMIT)
 		$this->sessionTempTables = [];
+		$this->sessionDirtyTempTables = [];
 		// https://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_get-lock
 		// https://www.postgresql.org/docs/9.4/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$this->sessionNamedLocks = [];
@@ -1684,9 +1527,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Handle callbacks in trxEndCallbacks, e.g. onTransactionResolution().
 		// If callback suppression is set then the array will remain unhandled.
 		$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
-		// Handle callbacks in trxRecurringCallbacks, e.g. setTransactionListener().
-		// If callback suppression is set then the array will remain unhandled.
+		// Handle callbacks in trxRecurringCallbacks, e.g. setTransactionListener()
 		$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
+	}
+
+	/**
+	 * Checks whether the cause of the error is detected to be a timeout.
+	 *
+	 * It returns false by default, and not all engines support detecting this yet.
+	 * If this returns false, it will be treated as a generic query error.
+	 *
+	 * @stable to override
+	 * @param string $error Error text
+	 * @param int $errno Error number
+	 * @return bool
+	 */
+	protected function wasQueryTimeout( $error, $errno ) {
+		return false;
 	}
 
 	/**
@@ -1741,7 +1598,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return DBError
 	 */
 	private function getQueryException( $error, $errno, $sql, $fname ) {
-		if ( $this->isQueryTimeoutError( $errno ) ) {
+		if ( $this->wasQueryTimeout( $error, $errno ) ) {
 			return new DBQueryTimeoutError( $this, $error, $errno, $sql, $fname );
 		} elseif ( $this->isConnectionError( $errno ) ) {
 			return new DBQueryDisconnectedError( $this, $error, $errno, $sql, $fname );
@@ -4060,35 +3917,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 * @param int|string $errno
 	 * @return bool Whether the given query error was a connection drop
-	 * @since 1.38
 	 */
 	protected function isConnectionError( $errno ) {
 		return false;
 	}
 
 	/**
-	 * Checks whether the cause of the error is detected to be a timeout.
-	 *
-	 * It returns false by default, and not all engines support detecting this yet.
-	 * If this returns false, it will be treated as a generic query error.
-	 *
 	 * @stable to override
-	 * @param int $errno Error number
-	 * @return bool
-	 */
-	protected function isQueryTimeoutError( $errno ) {
-		return false;
-	}
-
-	/**
-	 * @stable to override
-	 * @param int|string $errno
 	 * @return bool Whether it is known that the last query error only caused statement rollback
 	 * @note This is for backwards compatibility for callers catching DBError exceptions in
 	 *   order to ignore problems like duplicate key errors or foreign key violations
 	 * @since 1.31
 	 */
-	protected function isKnownStatementRollbackError( $errno ) {
+	protected function wasKnownStatementRollbackError() {
 		return false; // don't know; it could have caused a transaction rollback
 	}
 
@@ -4560,12 +4401,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					);
 				}
 			} else {
-				// Put the transaction into an error state if it's not already in one
-				$trxError = new DBUnexpectedError(
-					$this,
-					"Uncancelable atomic section canceled (got $fname)"
-				);
-				$this->transactionManager->setTransactionError( $trxError );
+				$this->transactionManager->setTransactionErrorFromStatus( $this, $fname );
 			}
 		} finally {
 			// Fix up callbacks owned by the sections that were just cancelled.
@@ -4710,15 +4546,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( !$this->trxLevel() ) {
-			$this->transactionManager->setTrxStatusToNone();
 			$this->transactionManager->clearPreEndCallbacks();
-			if ( $this->transactionManager->trxLevel() <= TransactionManager::STATUS_TRX_ERROR ) {
-				$this->connLogger->info(
-					"$fname: acknowledged server-side transaction loss on {db_server}",
-					$this->getLogContext()
-				);
-			}
-
 			return;
 		}
 
@@ -4757,53 +4585,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	public function setTransactionManager( TransactionManager $transactionManager ) {
 		$this->transactionManager = $transactionManager;
-	}
-
-	public function flushSession( $fname = __METHOD__, $owner = null ) {
-		if ( $this->ownerId !== null && $owner !== $this->ownerId ) {
-			throw new DBUnexpectedError(
-				$this,
-				"$fname: Database is owned by ID '{$this->ownerId}' (got '$owner')"
-			);
-		}
-
-		if ( $this->trxLevel() ) {
-			// Any existing transaction should have been rolled back already
-			throw new DBUnexpectedError(
-				$this,
-				"$fname: transaction still in progress (not yet rolled back)"
-			);
-		}
-
-		// If the session state was already lost due to either an unacknowledged session
-		// state loss error (e.g. dropped connection) or an explicit connection close call,
-		// then there is nothing to do here. Note that such cases, even temporary tables and
-		// server-side config variables are lost (the invocation of this method is assumed to
-		// imply that such losses are tolerable).
-		if ( $this->transactionManager->sessionStatus() <= TransactionManager::STATUS_SESS_ERROR ) {
-			$this->connLogger->info(
-				"$fname: acknowledged server-side session loss on {db_server}",
-				$this->getLogContext()
-			);
-		} elseif ( $this->isOpen() ) {
-			// Connection handle exists; server-side session state must be flushed
-			$this->doFlushSession( $fname );
-			$this->sessionNamedLocks = [];
-		}
-
-		$this->transactionManager->clearSessionError();
-	}
-
-	/**
-	 * Reset the server-side session state for named locks and table locks
-	 *
-	 * Connection and query errors will be suppressed and logged
-	 *
-	 * @param string $fname
-	 * @since 1.38
-	 */
-	protected function doFlushSession( $fname ) {
-		// no-op
 	}
 
 	public function flushSnapshot( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
@@ -4953,15 +4734,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Get the replica DB lag when the current transaction started
 	 *
-	 * This is useful given that transactions might use point-in-time read snapshots,
-	 * in which case the lag estimate should be recorded just before the transaction
-	 * establishes the read snapshot (either BEGIN or the first SELECT/write query).
+	 * This is useful when transactions might use snapshot isolation
+	 * (e.g. REPEATABLE-READ in innodb), so the "real" lag of that data
+	 * is this lag plus transaction duration. If they don't, it is still
+	 * safe to be pessimistic. This returns null if there is no transaction.
 	 *
-	 * If snapshots are not used, it is still safe to be pessimistic.
+	 * This returns null if the lag status for this transaction was not yet recorded.
 	 *
-	 * This returns null if there is no transaction or the lag status was not yet recorded.
-	 *
-	 * @return array|null ('lag': seconds or false, 'since': UNIX timestamp of BEGIN) or null
+	 * @return array|null ('lag': seconds or false on error, 'since': UNIX timestamp of BEGIN)
 	 * @since 1.27
 	 */
 	final protected function getRecordedTransactionLagStatus() {
@@ -5327,19 +5107,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$lockTsUnix = $this->doLock( $lockName, $method, $timeout );
 		if ( $lockTsUnix !== null ) {
 			$locked = true;
-			$this->sessionNamedLocks[$lockName] = [
-				'ts' => $lockTsUnix,
-				'trxId' => $this->transactionManager->getTrxId()
-			];
+			$this->sessionNamedLocks[$lockName] = $lockTsUnix;
 		} else {
 			$locked = false;
-			$this->queryLogger->info(
-				__METHOD__ . " failed to acquire lock '{lockname}'",
+			$this->queryLogger->info( __METHOD__ . " failed to acquire lock '{lockname}'",
 				[
 					'lockname' => $lockName,
 					'db_log_category' => 'locking'
-				]
-			);
+				] );
 		}
 
 		if ( $this->fieldHasBit( $flags, self::LOCK_TIMESTAMP ) ) {
@@ -5649,13 +5424,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *     try {
 	 *         //...send a query that changes the session/transaction state...
 	 *     } catch ( DBError $e ) {
+	 *         // Rely on assertQueryIsCurrentlyAllowed()/canRecoverFromDisconnect() to ensure
+	 *         // the rollback of incomplete transactions and the prohibition of reconnections
+	 *         // that mask a loss of session state (e.g. named locks and temp tables)
 	 *         $this->completeCriticalSection( __METHOD__, $cs );
 	 *         throw $expectedException;
 	 *     }
 	 *     try {
 	 *         //...send another query that changes the session/transaction state...
 	 *     } catch ( DBError $trxError ) {
-	 *         // Require ROLLBACK before allowing any other queries from outside callers
+	 *         // Inform assertQueryIsCurrentlyAllowed() that the transaction must be rolled
+	 *         // back (e.g. even if the error was a pre-query check or normally recoverable)
 	 *         $this->completeCriticalSection( __METHOD__, $cs, $trxError );
 	 *         throw $expectedException;
 	 *     }

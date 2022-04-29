@@ -3650,6 +3650,15 @@ return [
 		'XmlDumpSchemaVersion' => [
 			'default' => '0.11',
 		],
+		'WikiFarmSettingsDirectory' => [
+			'default' => null,
+		],
+		'WikiFarmSettingsExtension' => [
+			'default' => 'yaml',
+		],
+		'WikiFarmSiteDetector' => [
+			'default' => null,
+		],
 		'ExtensionFunctions' => [
 			'default' => [
 			],
@@ -3874,7 +3883,7 @@ return [
 		'LogActions' => [
 			'default' => [
 			],
-			'type' => 'array',
+			'type' => 'object',
 		],
 		'LogActionsHandlers' => [
 			'default' => [

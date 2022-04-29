@@ -121,7 +121,6 @@ abstract class LBFactory implements ILBFactory {
 	private const ROUND_ROLLING_BACK = 'within-rollback';
 	private const ROUND_COMMIT_CALLBACKS = 'within-commit-callbacks';
 	private const ROUND_ROLLBACK_CALLBACKS = 'within-rollback-callbacks';
-	private const ROUND_ROLLBACK_SESSIONS = 'within-rollback-session';
 
 	private static $loggerFields =
 		[ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ];
@@ -334,16 +333,6 @@ abstract class LBFactory implements ILBFactory {
 		// Run all post-commit callbacks in a separate step
 		$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;
 		$this->executePostTransactionCallbacks();
-		$this->trxRoundStage = self::ROUND_CURSORY;
-	}
-
-	final public function flushPrimarySessions( $fname = __METHOD__ ) {
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$scope = ScopedCallback::newScopedIgnoreUserAbort();
-
-		// Release named locks and table locks on all primary DB connections
-		$this->trxRoundStage = self::ROUND_ROLLBACK_SESSIONS;
-		$this->forEachLBCallMethod( 'flushPrimarySessions', [ $fname, $this->id ] );
 		$this->trxRoundStage = self::ROUND_CURSORY;
 	}
 
