@@ -411,8 +411,6 @@ class RecentChange implements Taggable {
 	public function save( $send = self::SEND_FEED ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
 		$putIPinRC = $mainConfig->get( MainConfigNames::PutIPinRC );
-		$useEnotif = $mainConfig->get( 'UseEnotif' );
-		$showUpdatedMarker = $mainConfig->get( MainConfigNames::ShowUpdatedMarker );
 		$dbw = wfGetDB( DB_PRIMARY );
 		if ( !is_array( $this->mExtra ) ) {
 			$this->mExtra = [];
@@ -501,7 +499,10 @@ class RecentChange implements Taggable {
 		}
 
 		# E-mail notifications
-		if ( $useEnotif || $showUpdatedMarker ) {
+		if ( $mainConfig->get( MainConfigNames::EnotifUserTalk ) ||
+			$mainConfig->get( MainConfigNames::EnotifWatchlist ) ||
+			$mainConfig->get( MainConfigNames::ShowUpdatedMarker )
+		) {
 			$userFactory = MediaWikiServices::getInstance()->getUserFactory();
 			$editor = $userFactory->newFromUserIdentity( $this->getPerformerIdentity() );
 			$page = $this->getPage();

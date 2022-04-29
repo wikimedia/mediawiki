@@ -168,7 +168,6 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'backend' => 'local-backend',
 			],
 			'CookiePrefix' => 'my_wiki',
-			'UseEnotif' => false,
 			'Localtimezone' => 'UTC',
 			'LocalTZoffset' => 0,
 			'DBerrorLogTZ' => 'UTC',
@@ -649,10 +648,6 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			[ 'CookiePrefix' => 'n=o,t;a l+l.o"w\'e\\d[' ],
 			[ 'CookiePrefix' => 'n_o_t_a_l_l_o_w_e_d_' ],
 		];
-		yield '$wgEnotifUserTalk true' => [
-			[ 'EnotifUserTalk' => true ],
-			[ 'UseEnotif' => true ],
-		];
 		yield '$wgEnableEmail set to false' => [
 			[
 				'EnableEmail' => false,
@@ -668,7 +663,6 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'EnotifUserTalk' => true,
 				'EnotifWatchlist' => true,
 				'GroupPermissions' => [ 'user' => [ 'sendemail' => true ] ],
-				'UseEnotif' => true,
 				'UserEmailUseReplyTo' => true,
 				'UsersNotifiedOnAllChanges' => [ 'Admin' ],
 			], [
@@ -684,7 +678,6 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'EnotifUserTalk' => false,
 				'EnotifWatchlist' => false,
 				'GroupPermissions' => [ 'user' => [] ],
-				'UseEnotif' => false,
 				'UserEmailUseReplyTo' => false,
 				'UsersNotifiedOnAllChanges' => [],
 			],
