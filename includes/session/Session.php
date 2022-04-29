@@ -643,7 +643,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	 *  rather than array_key_exists(). So do that.
 	 * @inheritDoc
 	 */
-	public function offsetExists( $offset ): bool {
+	public function offsetExists( $offset ) {
 		$data = &$this->backend->getData();
 		return isset( $data[$offset] );
 	}
@@ -656,7 +656,6 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	 *  be created with a null value, and does not raise a PHP warning.
 	 * @inheritDoc
 	 */
-	#[\ReturnTypeWillChange]
 	public function &offsetGet( $offset ) {
 		$data = &$this->backend->getData();
 		if ( !array_key_exists( $offset, $data ) ) {
@@ -667,12 +666,12 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/** @inheritDoc */
-	public function offsetSet( $offset, $value ): void {
+	public function offsetSet( $offset, $value ) {
 		$this->set( $offset, $value );
 	}
 
 	/** @inheritDoc */
-	public function offsetUnset( $offset ): void {
+	public function offsetUnset( $offset ) {
 		$this->remove( $offset );
 	}
 

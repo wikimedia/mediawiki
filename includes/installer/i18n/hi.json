@@ -8,8 +8,7 @@
 			"Shyamal",
 			"Smtchahal",
 			"Vivek Rai",
-			"संजीव कुमार",
-			"AnupamM"
+			"संजीव कुमार"
 		]
 	},
 	"config-desc": "साँचा लिए इंस्टॉलर",
@@ -85,8 +84,6 @@
 	"config-email-watchlist": "ध्यानसूची अधिसूचना को सक्षम करें",
 	"config-upload-enable": "फ़ाइल अपलोड सक्रिय करें",
 	"config-upload-help": "यदि आप अपने सर्वर में फ़ाइल अपलोड की सेवा दे रहे हैं तो आपको सुरक्षा से समझौता करना पड़ सकता है।\n\nअधिक जानकारी के लिए मार्गदर्शक में [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security सुरक्षा अनुभाग] देखें।\n\nयदि आप फ़ाइल अपलोड को सक्रिय करना चाहते हैं तो आपको मीडियाविकि के फोंल्डर के <code>images</code> फोंल्डर में जाने के बाद उसे सर्वर द्वारा लिखने लायक बनाना होगा।\nउसके बाद ही आप इस विकल्प को सक्रिय कर सकते हैं।",
-	"config-personalization-settings": "निजीकरण",
-	"config-logo-preview-main": "मुखपृष्ठ",
 	"config-instantcommons": "''कॉमन्स'' सक्रिय करें",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/InstantCommons कॉमन्स] एक प्रकार की विशेषता प्रदान करता है, जिससे आप विकि में [https://commons.wikimedia.org/ विकिमीडिया कॉमन्स] साइट के किसी भी तस्वीर, आवाज या अन्य फ़ाइल का उपयोग अपने मीडियाविकि में कर सकते हैं। इसके लिए मीडियाविकि को इंटरनेट से जुड़ा होना चाहिए।\n\nइस विशेषता की अधिक जानकारी के लिए और इसे किस प्रकार आप अपने विकि में सक्रिय कर सकते हैं आदि जानने के लिए [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos मार्गदर्शक] देखें।",
 	"config-extensions": "एक्सटेंशन",

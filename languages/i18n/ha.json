@@ -190,7 +190,7 @@
 	"delete": "Soke",
 	"undelete_short": "Wanda ba'a goge ba {{PLURAL:$1|gyara daya|$1 gyararraki}}",
 	"viewdeleted_short": "Duma {{PLURAL:$1|goge gyara daya|$1 goge gyararraki}}",
-	"protect": "Ƙarewa",
+	"protect": "Karewa",
 	"protect_change": "sauyawa",
 	"action-unprotect": "Canza kariya",
 	"unprotect": "Canza kariya",
@@ -783,10 +783,11 @@
 	"logentry-upload-upload": "$1 {{GENDER:$2|ya loda|ta loda}} $3",
 	"searchsuggest-search": "Binciko {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|rana|ranaku}}",
+	"view-view-foreign": "Duba wannan hoto a $1",
 	"view-create-local": "Ƙara bayanin gida",
 	"nstab-mainpage": "Babban shafi",
 	"view-edit-local": "Gyara bayanin gida",
 	"skin-action-protect": "Karewa",
-	"skin-action-delete": "Gogewa",
+	"skin-action-delete": "Soke",
 	"skin-action-move": "Gusarwa"
 }

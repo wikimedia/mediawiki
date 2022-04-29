@@ -5,8 +5,7 @@
 			"Fierodelveneto",
 			"Nintendofan885",
 			"S4b1nuz E.656",
-			"Starladin",
-			"JuaFlick"
+			"Starladin"
 		]
 	},
 	"tog-underline": "Sotrissëia i lians",
@@ -407,7 +406,7 @@
 	"action-createaccount": "cherié la registraziun de chësc utënt",
 	"action-move": "Spostëia",
 	"action-delete": "Straihëia",
-	"action-protect": "Stravèrda",
+	"action-protect": "Straverda",
 	"enhancedrc-history": "storia",
 	"recentchanges": "Ultimi mudamënc",
 	"recentchanges-legend": "Opziuns ultimes mudaziuns",
@@ -804,10 +803,11 @@
 	"removecredentials": "Straiha i dac d'azes",
 	"passwordpolicies": "Politiches sön la parora tle",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "La password ne pó nia ester na secuënza tl inom dl utënt",
+	"view-view-foreign": "Ciara sön $1",
 	"view-create-local": "Jonta na descrzion lochela",
 	"nstab-mainpage": "Plata prinzipala",
 	"view-edit-local": "Müda la descriziun locala",
-	"skin-action-protect": "Stravèrda",
+	"skin-action-protect": "Straverda",
 	"skin-action-delete": "Straihëia",
 	"skin-action-move": "Spostëia"
 }

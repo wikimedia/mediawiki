@@ -6,10 +6,6 @@ use Kafka\Produce;
  * Event relayer for Apache Kafka.
  * Configuring for WANCache:
  * 'relayerConfig' => [ 'class' => 'EventRelayerKafka', 'KafkaEventHost' => 'localhost:9092' ],
- *
- * @see $wgEventRelayerConfig
- * @since 1.27
- * @deprecated since 1.38
  */
 class EventRelayerKafka extends EventRelayer {
 	/**
@@ -32,8 +28,6 @@ class EventRelayerKafka extends EventRelayer {
 	 * @param array $params
 	 */
 	public function __construct( array $params ) {
-		wfDeprecated( __CLASS__, '1.38' );
-
 		parent::__construct( $params );
 
 		$this->config = new HashConfig( $params );

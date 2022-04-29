@@ -502,25 +502,4 @@ class SettingsBuilderTest extends TestCase {
 		$this->assertTrue( $defaultConfig->has( 'MySetting' ) );
 		$this->assertSame( 'bla', $defaultConfig->get( 'MySetting' ) );
 	}
-
-	public function provideLoadWikiFarmSettings() {
-		yield 'By WIKI_NAME' => [
-			[],
-			[ 'WIKI_NAME' => 'alpha' ],
-			[ 'SiteName' => 'Alpha Wiki' ]
-		];
-
-		yield 'By SERVER_NAME' => [
-			[],
-			[ 'SERVER_NAME' => 'alpha' ],
-			[ 'SiteName' => 'Alpha Wiki' ]
-		];
-
-		yield 'By WIKI_NAME using JSON' => [
-			[ 'WikiFarmSettingsExtension' => 'json' ],
-			[ 'WIKI_NAME' => 'beta' ],
-			[ 'SiteName' => 'Beta Wiki' ]
-		];
-	}
-
 }

@@ -13,13 +13,10 @@
 			"Rosinah3",
 			"Vogone",
 			"Weather Top Wizard",
-			"לערי ריינהארט",
-			"StarrySky",
-			"Mehtab ahmed"
+			"לערי ריינהארט"
 		]
 	},
 	"underline-always": "Njalo",
-	"underline-never": "neze",
 	"sunday": "iSonto",
 	"monday": "uMsombuluko",
 	"tuesday": "uLwesibili",
@@ -78,7 +75,6 @@
 	"moredotdotdot": "Amanye...",
 	"mypage": "Ikhasi lami",
 	"mytalk": "Ingxoxo yami",
-	"anontalk": "Ingxoxo yami",
 	"navigation": "Ukuqondiswa kwemikhumbi",
 	"and": "&#32;na",
 	"namespaces": "Izikhalamagama",
@@ -134,7 +130,7 @@
 	"privacy": "Inqubomgomo yobumfihlo",
 	"privacypage": "Project:Inqubomgomo yemfihlo",
 	"ok": "Kulungile",
-	"retrievedfrom": "\"$1\" تان ورتل",
+	"retrievedfrom": "Retrieved from \"$1\"",
 	"youhavenewmessagesmulti": "Uyanemilayezo emisha e $1",
 	"editsection": "hlela",
 	"editold": "hlela",

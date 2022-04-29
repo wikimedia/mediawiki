@@ -1817,12 +1817,11 @@ class ChangeTags {
 				foreach ( $tagHitCounts as $tagName => $hits ) {
 					$labelMsg = self::tagShortDescriptionMessage( $tagName, $localizer );
 					$descriptionMsg = self::tagLongDescriptionMessage( $tagName, $localizer );
-					// Don't cache the message object, use the correct MessageLocalizer to parse later.
 					$result[] = [
 						'name' => $tagName,
-						'labelMsg' => (bool)$labelMsg,
+						'labelMsg' => $labelMsg,
 						'label' => $labelMsg ? $labelMsg->plain() : $tagName,
-						'descriptionMsg' => (bool)$descriptionMsg,
+						'descriptionMsg' => $descriptionMsg,
 						'description' => $descriptionMsg ? $descriptionMsg->plain() : '',
 						'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
 						'hits' => $hits,
@@ -1851,19 +1850,16 @@ class ChangeTags {
 		$tags = self::getChangeTagListSummary( $localizer, $lang );
 		foreach ( $tags as &$tagInfo ) {
 			if ( $tagInfo['labelMsg'] ) {
-				// Use localizer with the correct page title to parse plain message from the cache.
-				$labelMsg = new RawMessage( $tagInfo['label'] );
-				$tagInfo['label'] = Sanitizer::stripAllTags( $localizer->msg( $labelMsg )->parse() );
+				$tagInfo['label'] = Sanitizer::stripAllTags( $tagInfo['labelMsg']->parse() );
 			} else {
 				$tagInfo['label'] = $localizer->msg( 'tag-hidden', $tagInfo['name'] )->text();
 			}
-			if ( $tagInfo['descriptionMsg'] ) {
-				$descriptionMsg = new RawMessage( $tagInfo['description'] );
-				$tagInfo['description'] = $lang->truncateForVisual(
-					Sanitizer::stripAllTags( $localizer->msg( $descriptionMsg )->parse() ),
+			$tagInfo['description'] = $tagInfo['descriptionMsg'] ?
+				$lang->truncateForVisual(
+					Sanitizer::stripAllTags( $tagInfo['descriptionMsg']->parse() ),
 					self::TAG_DESC_CHARACTER_LIMIT
-				);
-			}
+				) :
+				'';
 			unset( $tagInfo['labelMsg'] );
 			unset( $tagInfo['descriptionMsg'] );
 		}

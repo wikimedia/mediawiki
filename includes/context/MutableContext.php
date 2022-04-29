@@ -48,12 +48,6 @@ interface MutableContext {
 	public function setWikiPage( WikiPage $wikiPage );
 
 	/**
-	 * @since 1.38
-	 * @param string $action
-	 */
-	public function setActionName( string $action ): void;
-
-	/**
 	 * @param OutputPage $output
 	 */
 	public function setOutput( OutputPage $output );

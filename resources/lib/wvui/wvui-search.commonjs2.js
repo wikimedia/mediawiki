@@ -197,6 +197,7 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, "version", function() { return /* binding */ version; });
+__webpack_require__.d(__webpack_exports__, "restSearchClient", function() { return /* reexport */ restSearchClient; });
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/button/Button.vue?vue&type=template&id=000e54fa&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"wvui-button",class:_vm.rootClasses,on:{"click":_vm.onClick}},[_vm._t("default")],2)}
@@ -1333,12 +1334,12 @@ var Input_component = normalizeComponent(
 )
 
 /* harmony default export */ var Input = (Input_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/typeahead-search/TypeaheadSearch.vue?vue&type=template&id=12b7de50&
-var TypeaheadSearchvue_type_template_id_12b7de50_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"wvui-typeahead-search",class:_vm.rootClasses,attrs:{"role":"combobox","aria-expanded":_vm.isExpandedString,"aria-haspopup":"listbox","aria-owns":_vm.suggestionsId},on:{"mouseover":_vm.onRootMouseOver,"mouseout":_vm.onRootMouseOut,"keydown":[function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"up",38,$event.key,["Up","ArrowUp"])){ return null; }return _vm.onKeyDownUp($event)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"down",40,$event.key,["Down","ArrowDown"])){ return null; }return _vm.onKeyDownDown($event)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"escape",undefined,$event.key,undefined)){ return null; }return _vm.onKeyDownEscape($event)}]}},[_c('form',{staticClass:"wvui-typeahead-search__form",attrs:{"id":_vm.id,"action":_vm.formAction},on:{"submit":_vm.onSubmit}},[_c('div',{staticClass:"wvui-typeahead-search__wrapper"},[_c('wvui-input',_vm._b({staticClass:"wvui-typeahead-search__input",attrs:{"start-icon":_vm.startIcon,"value":_vm.inputValue,"type":_vm.InputType.Search,"name":"search","autocapitalize":"off","autocomplete":"off","aria-autocomplete":"list","aria-controls":_vm.suggestionsId,"aria-activedescendant":_vm.activeSuggestionId},on:{"input":_vm.onInput,"blur":_vm.onInputBlur,"focus":_vm.onInputFocus}},'wvui-input',_vm.$attrs,false)),_vm._v(" "),_vm._t("default"),_vm._v(" "),_c('ol',{staticClass:"wvui-typeahead-search__suggestions",attrs:{"id":_vm.suggestionsId,"role":"listbox","aria-label":_vm.suggestionsLabel}},[_vm._l((_vm.suggestionsList),function(suggestion,index){return _c('li',{key:index,attrs:{"role":"option","aria-selected":_vm.isSuggestionSelected(index)}},[_c('wvui-typeahead-suggestion',{key:suggestion.id,staticClass:"wvui-typeahead-search__suggestion",attrs:{"id":_vm.getSuggestionId( suggestion ),"search-page-title":_vm.searchPageTitle,"article-path":_vm.formAction,"query":_vm.searchQuery,"active":_vm.suggestionActiveIndex === index,"suggestion":suggestion,"show-thumbnail":_vm.showThumbnail,"show-description":_vm.showDescription,"highlight-query":_vm.highlightQuery},on:{"mouseover":function($event){return _vm.onSuggestionMouseOver( index )},"mousedown":_vm.onSuggestionMouseDown,"click":function($event){return _vm.onSuggestionClick( suggestion )}}})],1)}),_vm._v(" "),_c('li',{attrs:{"role":"option"}},[_c('a',{ref:"footer",staticClass:"wvui-typeahead-search__suggestions__footer",class:_vm.footerClasses,attrs:{"id":_vm.footerId,"tabindex":"-1","href":_vm.footerUrl},on:{"mouseover":_vm.onFooterHover,"mousedown":_vm.onSuggestionMouseDown,"click":function($event){return _vm.onSuggestionClick()}}},[_c('wvui-icon',{staticClass:"wvui-typeahead-search__suggestions__footer__icon",attrs:{"icon":_vm.articleIcon}}),_vm._v(" "),_c('span',{staticClass:"wvui-typeahead-search__suggestions__footer__text"},[_vm._t("search-footer-text",[_c('strong',{staticClass:"wvui-typeahead-search__suggestions__footer__text__query"},[_vm._v("\n\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.searchQuery)+"\n\t\t\t\t\t\t\t\t")])],{"searchQuery":_vm.searchQuery})],2)],1)])],2)],2),_vm._v(" "),_c('wvui-button',{staticClass:"wvui-typeahead-search__submit"},[_vm._v("\n\t\t\t"+_vm._s(_vm.buttonLabel)+"\n\t\t")])],1)])}
-var TypeaheadSearchvue_type_template_id_12b7de50_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/typeahead-search/TypeaheadSearch.vue?vue&type=template&id=9b14b82c&
+var TypeaheadSearchvue_type_template_id_9b14b82c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"wvui-typeahead-search",class:_vm.rootClasses,attrs:{"role":"combobox","aria-expanded":_vm.isExpandedString,"aria-haspopup":"listbox","aria-owns":_vm.suggestionsId},on:{"mouseover":_vm.onRootMouseOver,"mouseout":_vm.onRootMouseOut,"keydown":[function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"up",38,$event.key,["Up","ArrowUp"])){ return null; }return _vm.onKeyDownUp($event)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"down",40,$event.key,["Down","ArrowDown"])){ return null; }return _vm.onKeyDownDown($event)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"escape",undefined,$event.key,undefined)){ return null; }return _vm.onKeyDownEscape($event)}]}},[_c('form',{staticClass:"wvui-typeahead-search__form",attrs:{"id":_vm.id,"action":_vm.formAction},on:{"submit":_vm.onSubmit}},[_c('div',{staticClass:"wvui-typeahead-search__wrapper"},[_c('wvui-input',_vm._b({staticClass:"wvui-typeahead-search__input",attrs:{"start-icon":_vm.startIcon,"value":_vm.inputValue,"type":_vm.InputType.Search,"name":"search","autocapitalize":"off","autocomplete":"off","aria-autocomplete":"list","aria-controls":_vm.suggestionsId,"aria-activedescendant":_vm.activeSuggestionId},on:{"input":_vm.onInput,"blur":_vm.onInputBlur,"focus":_vm.onInputFocus}},'wvui-input',_vm.$attrs,false)),_vm._v(" "),_vm._t("default"),_vm._v(" "),_c('ol',{staticClass:"wvui-typeahead-search__suggestions",attrs:{"id":_vm.suggestionsId,"role":"listbox","aria-label":_vm.suggestionsLabel}},[_vm._l((_vm.suggestionsList),function(suggestion,index){return _c('li',{key:index,attrs:{"role":"option","aria-selected":_vm.isSuggestionSelected(index)}},[_c('wvui-typeahead-suggestion',{key:suggestion.id,staticClass:"wvui-typeahead-search__suggestion",attrs:{"id":_vm.getSuggestionId( suggestion ),"search-page-title":_vm.searchPageTitle,"article-path":_vm.formAction,"query":_vm.searchQuery,"active":_vm.suggestionActiveIndex === index,"suggestion":suggestion,"show-thumbnail":_vm.showThumbnail,"show-description":_vm.showDescription,"highlight-query":_vm.highlightQuery},on:{"mouseover":function($event){return _vm.onSuggestionMouseOver( index )},"mousedown":_vm.onSuggestionMouseDown,"click":function($event){return _vm.onSuggestionClick( suggestion )}}})],1)}),_vm._v(" "),_c('li',{attrs:{"role":"option"}},[_c('a',{ref:"footer",staticClass:"wvui-typeahead-search__suggestions__footer",class:_vm.footerClasses,attrs:{"id":_vm.footerId,"tabindex":"-1","href":_vm.footerUrl},on:{"mouseover":_vm.onFooterHover,"mousedown":_vm.onSuggestionMouseDown,"click":function($event){return _vm.onSuggestionClick()}}},[_c('wvui-icon',{staticClass:"wvui-typeahead-search__suggestions__footer__icon",attrs:{"icon":_vm.articleIcon}}),_vm._v(" "),_c('span',{staticClass:"wvui-typeahead-search__suggestions__footer__text"},[_vm._t("search-footer-text",[_c('strong',{staticClass:"wvui-typeahead-search__suggestions__footer__text__query"},[_vm._v("\n\t\t\t\t\t\t\t\t\t"+_vm._s(_vm.searchQuery)+"\n\t\t\t\t\t\t\t\t")])],{"searchQuery":_vm.searchQuery})],2)],1)])],2)],2),_vm._v(" "),_c('wvui-button',{staticClass:"wvui-typeahead-search__submit"},[_vm._v("\n\t\t\t"+_vm._s(_vm.buttonLabel)+"\n\t\t")])],1)])}
+var TypeaheadSearchvue_type_template_id_9b14b82c_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/typeahead-search/TypeaheadSearch.vue?vue&type=template&id=12b7de50&
+// CONCATENATED MODULE: ./src/components/typeahead-search/TypeaheadSearch.vue?vue&type=template&id=9b14b82c&
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/typeahead-suggestion/TypeaheadSuggestion.vue?vue&type=template&id=e306f976&
 var TypeaheadSuggestionvue_type_template_id_e306f976_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.suggestion)?_c('a',{staticClass:"wvui-typeahead-suggestion",class:_vm.rootClasses,attrs:{"href":_vm.suggestionWikiLink},on:{"mouseover":_vm.onMouseOver,"mousedown":_vm.onMouseDown,"click":_vm.onClick}},[(_vm.showThumbnail && _vm.suggestion.thumbnail)?_c('span',{staticClass:"wvui-typeahead-suggestion__thumbnail",style:({backgroundImage: _vm.thumbnailBackgroundImage})}):(_vm.showThumbnail)?_c('span',{staticClass:"wvui-typeahead-suggestion__thumbnail-placeholder"},[_c('wvui-icon',{staticClass:"wvui-typeahead-suggestion__thumbnail-icon",attrs:{"icon":_vm.defaultThumbnailIcon}})],1):_vm._e(),_vm._v(" "),_c('span',{staticClass:"wvui-typeahead-suggestion__text"},[_c('wvui-typeahead-suggestion-title',{attrs:{"query":_vm.query,"title":_vm.suggestion.title,"highlight-query":_vm.highlightQuery}}),_vm._v(" "),(_vm.showDescription && _vm.suggestion.description)?_c('span',{staticClass:"wvui-typeahead-suggestion__description"},[_vm._v(_vm._s(_vm.suggestion.description))]):_vm._e()],1)]):_vm._e()}
@@ -1640,6 +1641,94 @@ var TypeaheadSuggestion_component = normalizeComponent(
 )
 
 /* harmony default export */ var TypeaheadSuggestion = (TypeaheadSuggestion_component.exports);
+// CONCATENATED MODULE: ./src/http/fetch.ts
+var fetch_assign = (undefined && undefined.__assign) || function () {
+    fetch_assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return fetch_assign.apply(this, arguments);
+};
+var nullAbortController = {
+    abort: function () {
+        // Do nothing (no-op)
+    },
+    signal: undefined
+};
+// A wrapper which combines native fetch() in browsers and the following json() call.
+function fetchJson(resource, init) {
+    // As of 2020, browser support for AbortController is limited:
+    // https://caniuse.com/abortcontroller
+    // so replacing it with no-op if it doesn't exist.
+    var controller = window.AbortController ?
+        new AbortController() :
+        nullAbortController;
+    var getJson = fetch(resource, fetch_assign(fetch_assign({}, init), { signal: controller.signal }))
+        .then(function (response) {
+        if (!response.ok) {
+            return Promise.reject("Network request failed with HTTP code " + response.status + ".");
+        }
+        return response.json();
+    });
+    return {
+        fetch: getJson,
+        abort: function () { return controller.abort(); }
+    };
+}
+
+// CONCATENATED MODULE: ./src/components/typeahead-search/http/restSearchClient.ts
+
+
+
+function adaptApiResponse(query, restResponse) {
+    return {
+        query: query,
+        results: restResponse.pages
+            .map(function (_a) {
+            var _b, _c;
+            var id = _a.id, key = _a.key, title = _a.title, description = _a.description, thumbnail = _a.thumbnail;
+            return ({
+                id: id,
+                key: key,
+                title: title,
+                description: description,
+                thumbnail: thumbnail ? {
+                    url: thumbnail.url,
+                    width: (_b = thumbnail.width) !== null && _b !== void 0 ? _b : undefined,
+                    height: (_c = thumbnail.height) !== null && _c !== void 0 ? _c : undefined
+                } : undefined
+            });
+        })
+    };
+}
+function restSearchClient(getJson) {
+    if (getJson === void 0) { getJson = fetchJson; }
+    return {
+        // https://www.mediawiki.org/wiki/API:REST_API/Reference#Autocomplete_page_title
+        fetchByTitle: function (query, domain, limit) {
+            if (limit === void 0) { limit = 10; }
+            var params = {
+                q: query,
+                limit: limit
+            };
+            var headers = {
+                accept: 'application/json'
+            };
+            var url = "//" + domain + "/w/rest.php/v1/search/title?" + buildQueryString(params);
+            var _a = getJson(url, { headers: headers }), fetch = _a.fetch, abort = _a.abort;
+            var searchResponsePromise = fetch.then(function (res) { return adaptApiResponse(query, res); });
+            return {
+                abort: abort,
+                fetch: searchResponsePromise
+            };
+        }
+    };
+}
+
 // CONCATENATED MODULE: ./src/components/typeahead-search/lifecycle-events/index.ts
 
 
@@ -1650,6 +1739,7 @@ var TypeaheadSuggestion_component = normalizeComponent(
 var DEBOUNCE_INTERVAL = 120;
 
 // CONCATENATED MODULE: ./node_modules/ts-loader??ref--0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/typeahead-search/TypeaheadSearch.vue?vue&type=script&lang=ts&
+
 
 
 
@@ -1681,7 +1771,7 @@ var DEBOUNCE_INTERVAL = 120;
         },
         client: {
             type: Object,
-            required: true
+            default: function () { return restSearchClient(); }
         },
         urlGenerator: {
             type: Object,
@@ -1764,7 +1854,7 @@ var DEBOUNCE_INTERVAL = 120;
         footerUrl: function () {
             return this.urlGenerator.generateUrl(this.searchQuery, {
                 title: this.searchPageTitle
-            }, this.formAction);
+            });
         },
         isFooterActive: function () {
             return this.suggestionActiveIndex === this.suggestionsList.length;
@@ -2031,8 +2121,8 @@ var TypeaheadSearchvue_type_style_index_0_lang_less_ = __webpack_require__(12);
 
 var TypeaheadSearch_component = normalizeComponent(
   typeahead_search_TypeaheadSearchvue_type_script_lang_ts_,
-  TypeaheadSearchvue_type_template_id_12b7de50_render,
-  TypeaheadSearchvue_type_template_id_12b7de50_staticRenderFns,
+  TypeaheadSearchvue_type_template_id_9b14b82c_render,
+  TypeaheadSearchvue_type_template_id_9b14b82c_staticRenderFns,
   false,
   null,
   null,
@@ -2051,7 +2141,8 @@ var TypeaheadSearch_component = normalizeComponent(
 
 // Export version as a named export so that the default export can be
 // passed to the Vue app instance's components directly.
-var version = "0.4.0";
+var version = "0.3.4";
+
 // Export all components available in the library.
 /* harmony default export */ var wvui_search = __webpack_exports__["default"] = ({
     WvuiButton: Button,

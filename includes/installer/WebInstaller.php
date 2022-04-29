@@ -1196,10 +1196,7 @@ class WebInstaller extends Installer {
 	 * @return string
 	 */
 	protected function envGetDefaultServer() {
-		$assumeProxiesUseDefaultProtocolPorts =
-			$this->getVar( 'wgAssumeProxiesUseDefaultProtocolPorts' );
-
-		return WebRequest::detectServer( $assumeProxiesUseDefaultProtocolPorts );
+		return WebRequest::detectServer();
 	}
 
 	/**

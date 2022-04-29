@@ -24,9 +24,7 @@
 			"Selven",
 			"The Polish",
 			"Tosky",
-			"아라",
-			"Marty5550",
-			"GpieroMW"
+			"아라"
 		]
 	},
 	"config-desc": "Programma di installazione per MediaWiki",
@@ -189,7 +187,6 @@
 	"config-admin-email-help": "Inserisci qui un indirizzo email per poter ricevere email dagli altri utenti del wiki, reimpostare la tua password, ed essere informato delle modifiche apportate alle pagine tuoi osservati speciali. Se non ti interessa, puoi lasciare vuoto questo campo.",
 	"config-admin-error-user": "Errore interno durante la creazione di un amministratore con il nome \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Errore interno durante l'impostazione di una password per amministratore \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
-	"config-admin-error-password-invalid": "Password di amministratore wiki non valida: $1",
 	"config-admin-error-bademail": "È stato inserito un indirizzo email non valido.",
 	"config-subscribe": "Sottoscrivi la [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mailing list degli annunci di rilasci].",
 	"config-subscribe-help": "Si tratta di una mailing list a basso traffico dedicata agli annunci di nuove versioni, compresi importanti segnalazioni riguardanti la sicurezza.\nÈ consigliato iscriversi e aggiornare la propria installazione di MediaWiki quando una nuova versione viene resa pubblica.",
@@ -233,11 +230,6 @@
 	"config-upload-help": "Il caricamento di file potrebbe esporre il tuo server a rischi di sicurezza.\nPer ulteriori informazioni, leggi la  [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security sezione sulla sicurezza] nel manuale.\n\nPer consentire il caricamento di file, modifica la modalità nella sottodirectory <code>images</code> della directory principale di MediaWiki affinché il server web possa scrivere lì.\nPoi attiva questa opzione.",
 	"config-upload-deleted": "Directory per i file cancellati:",
 	"config-upload-deleted-help": "Scegli una directory in cui archiviare i file cancellati.\nIdealmente, questa non dovrebbe essere accessibile dal web.",
-	"config-personalization-settings": "Personalizzazione",
-	"config-logo-summary": "Per ciascuno di questi  campi, è necessario caricare un'immagine di dimensioni appropriate, ed immettere l' URL nella casella sotto. È possibile utilizzare <code>$wgStylePath</code> oppure <code>$wgScriptPath</code> se il logo è relativo a tali percorsi. È possibile lasciare una di queste caselle vuote.\n\nCon i browsers supportati è possibile trascinare le immagini dal sistema operativo nelle caselle di inserimento o nell'area di anteprima.",
-	"config-logo-preview-main": "Pagina principale",
-	"config-logo-icon": "Logo (icona)",
-	"config-logo-icon-help": "La tua icona del logo dovrebbe essere quadrata e possibilmente avere o più di 50px di risoluzione, oppure essere un file SVG.",
 	"config-instantcommons": "Abilita Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] è una funzionalità che consente ai wiki di usare immagini, suoni e altri file multimediali che trovate sul sito [https://commons.wikimedia.org/ Wikimedia Commons].\nPer fare questo, MediaWiki richiede l'accesso a Internet.\n\nPer ulteriori informazioni su questa funzionalità, incluse le istruzioni su come configurarlo per wiki diversi da Wikimedia Commons, consultare [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos il manuale].",
 	"config-cc-error": "Il selettore di licenze Creative Commons non ha dato alcun risultato.\nInserisci manualmente il nome della licenza.",
@@ -299,7 +291,6 @@
 	"config-install-sysop": "Creazione dell'account utente per l'amministratore",
 	"config-install-subscribe-fail": "Impossibile sottoscrivere [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL non è installato e <code>allow_url_fopen</code> non è disponibile.",
-	"config-install-subscribe-alreadypending": "Una richiesta di sottoscrizione a mediawiki-announce è stata già inviata. Rispondere alla e-mail di conferma che è stata precedentemente inviata.",
 	"config-install-mainpage": "Creazione della pagina principale con contenuto predefinito",
 	"config-install-mainpage-exists": "La pagina principale già esiste, saltata",
 	"config-install-extension-tables": "Creazione delle tabelle per le estensioni attivate",

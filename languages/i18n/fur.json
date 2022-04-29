@@ -15,11 +15,7 @@
 			"Urhixidur",
 			"לערי ריינהארט",
 			"아라",
-<<<<<<< HEAD
 			"McDutchie"
-=======
-			"Balint36"
->>>>>>> ddc1a4b848086f3ea5de57e756d396b514bc7b63
 		]
 	},
 	"tog-underline": "Sotlinee leams",
@@ -332,7 +328,7 @@
 	"title-invalid-too-long": "Il titul de pagjine domandade al è masse lunc. Nol à di jessi plui lunc di {{PLURAL:$1|byte}} in codifiche UTF-8.",
 	"title-invalid-leading-colon": "Il titul de pagjine domandade nol è valit par vie che al à i doi pont al inizi dal titul",
 	"perfcached": "I dats seguints a vegnin di une copie de \"cache\" dal database e a podaressin no jessi inzornâts. La cache e rive a tignî al massim  {{PLURAL:$1|un risultâ disponibil|$1 risultats disponibii}}",
-	"perfcachedts": "I dats seguints a vegnin di une copie de \"cache\" dal database dal $1 e a podaressin no jessi inzornâts. La cache e rive a tignî al massim  {{PLURAL:$4|un risultâ disponibil|$4 risultats disponibii}}",
+	"perfcachedts": "I dats seguints a vegnin di une copie de \"cache\" dal database dal $1 e a podaressin no jessi inzornâts. La cache e rive a tignî al massim  {{PLURAL:$1|un risultâ disponibil|$1 risultats disponibii}}",
 	"querypage-no-updates": "Inzornaments de pagjine a son al moment sospindûts. I dats metûts no saràn salvâts.",
 	"viewsource": "Cjale risultive",
 	"viewsource-title": "Cjale il codiç di $1",
@@ -1326,6 +1322,7 @@
 	"mw-widgets-abandonedit-title": "Sêstu sigûr?",
 	"mw-widgets-mediasearch-input-placeholder": "Cîr files multimediâi",
 	"mw-widgets-mediasearch-noresults": "Nissun risultât.",
+	"view-view-foreign": "Vjôt su $1",
 	"view-create-local": "Zonte une descrizion locâl",
 	"nstab-mainpage": "Pagjine principâl",
 	"view-edit-local": "Zonte une descrizion locâl",

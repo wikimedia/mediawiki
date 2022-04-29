@@ -137,20 +137,6 @@ class SettingsBuilder {
 	}
 
 	/**
-	 * Checks whether the given file exists relative to the settings builder's
-	 * base directory.
-	 *
-	 * @unstable
-	 *
-	 * @param string $path
-	 * @return bool
-	 */
-	public function fileExists( string $path ): bool {
-		$path = SettingsFileUtils::resolveRelativeLocation( $path, $this->baseDir );
-		return file_exists( $path );
-	}
-
-	/**
 	 * @param SettingsSource $source
 	 *
 	 * @return SettingsSource
@@ -197,16 +183,6 @@ class SettingsBuilder {
 	public function getDefaultConfig(): IterableConfig {
 		$this->apply();
 		return new HashConfig( $this->configSchema->getDefaults() );
-	}
-
-	/**
-	 * Returns the names of all defined configuration variables
-	 *
-	 * @return string[]
-	 */
-	public function getDefinedConfigKeys(): array {
-		$this->apply();
-		return array_keys( $this->configSchema->getSchemas() );
 	}
 
 	/**
@@ -474,7 +450,6 @@ class SettingsBuilder {
 	 * @return void
 	 */
 	public function finalize(): void {
-		$this->apply();
 		$this->finished = true;
 	}
 }

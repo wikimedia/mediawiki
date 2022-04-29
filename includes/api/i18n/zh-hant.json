@@ -23,13 +23,8 @@
 			"Zhxy 519",
 			"列维劳德",
 			"烈羽",
-<<<<<<< HEAD
 			"Winston Sung",
 			"Tranve"
-=======
-			"星海",
-			"Sidishandsome"
->>>>>>> ddc1a4b848086f3ea5de57e756d396b514bc7b63
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|說明文件]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etiquette 與使用指南]]\n* [[mw:Special:MyLanguage/API:FAQ|常見問題]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 郵寄清單]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 報告錯誤及請求功能]\n</div>\n<strong>狀態資訊：</strong>MediaWiki API 已是成熟、穩定，並積極支援以改善的介面。儘管我們儘可能避免，但仍偶有需要重大變更的情況，請訂閱[https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ mediawiki-api-announce 郵寄清單]以便獲得更新通知。\n\n<strong>錯誤的請求：</strong>當 API 收到錯誤的請求，會發出以「MediaWiki-API-Error」為鍵的 HTTP 標頭欄位，隨後標頭欄位的值，以及傳回的錯誤碼會設為相同值。詳細資訊請參閱 [[mw:Special:MyLanguage/API:Errors_and_warnings|API: 錯誤與警告]]。\n\n<p class=\"mw-apisandbox-link\"><strong>測試：</strong>要簡化 API 請求的測試過程，請見 [[Special:ApiSandbox]]。</p>",
@@ -157,7 +152,7 @@
 	"apihelp-edit-summary": "建立與編輯頁面。",
 	"apihelp-edit-param-title": "您欲編輯的頁面標題。 無法與 <var>$1pageid</var> 同時使用。",
 	"apihelp-edit-param-pageid": "您欲編輯頁面的頁面 ID。 無法與 <var>$1title</var> 同時使用。",
-	"apihelp-edit-param-section": "章節標籤。<kbd>0</kbd> 代表最上層章節，<kbd>new</kbd> 代表新章節。通常是正整數但也可以是非數字。",
+	"apihelp-edit-param-section": "章節編號。<kbd>0</kbd> 代表最上層章節，<kbd>new</kbd> 代表新章節。",
 	"apihelp-edit-param-sectiontitle": "新章節的標題。",
 	"apihelp-edit-param-text": "頁面內容。",
 	"apihelp-edit-param-summary": "編輯摘要。 當未設定 $1section=new 與 $1sectiontitle 時也會當做章節標題。",
@@ -393,7 +388,7 @@
 	"apihelp-parse-paramvalue-prop-properties": "指定多項定義在已解析原始 wikitext 的屬性。",
 	"apihelp-parse-paramvalue-prop-limitreportdata": "取得結構化限制報告。當有設定 <var>$1disablelimitreport</var> 時，則不會給予資料。",
 	"apihelp-parse-paramvalue-prop-limitreporthtml": "取得限制報告的 HTML 版本。當有設定 <var>$1disablelimitreport</var> 時，則不會給予資料。",
-	"apihelp-parse-paramvalue-prop-parsetree": "修訂內容的 XML 解析樹狀（需要內容模型 <code>$1</code>）",
+	"apihelp-parse-paramvalue-prop-parsetree": "修訂內容的 XML 解析樹狀（需要內容模組 <code>$1</code>）",
 	"apihelp-parse-paramvalue-prop-parsewarnings": "提供發生在解析內容時的警告（以 wikitext）。",
 	"apihelp-parse-paramvalue-prop-parsewarningshtml": "提供發生在解析內容時的警告（以 HTML）。",
 	"apihelp-parse-param-wrapoutputclass": "要包在解析器輸出內容的 CSS 類別。",
@@ -406,7 +401,7 @@
 	"apihelp-parse-param-disablepp": "請改用<var>$1disablelimitreport</var>。",
 	"apihelp-parse-param-disableeditsection": "從解析輸出內容省略編輯段落連結。",
 	"apihelp-parse-param-disablestylededuplication": "不要在解析結果去除重複的行內樣式表。",
-	"apihelp-parse-param-generatexml": "產生 XML 解析樹狀（需要被 <kbd>$2prop=parsetree</kbd> 給取代的 <code>$1</code> 內容模型）。",
+	"apihelp-parse-param-generatexml": "產生 XML 解析樹狀（需要被 <kbd>$2prop=parsetree</kbd> 給取代的 <code>$1</code> 內容模組）。",
 	"apihelp-parse-param-preview": "在預覽模式下解析。",
 	"apihelp-parse-param-sectionpreview": "在段落預覽模式下解析（要同時啟用預覽模式）。",
 	"apihelp-parse-param-disabletoc": "在輸出裡忽略目錄。",
@@ -1128,7 +1123,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-content": "各修訂間隔的內容。若是已刪除修訂的內容，會回傳 <samp>texthidden</samp> 屬性。",
 	"apihelp-query+revisions+base-paramvalue-prop-tags": "修訂標籤。",
 	"apihelp-query+revisions+base-paramvalue-prop-roles": "列出存在於修訂的內容間隔作用。",
-	"apihelp-query+revisions+base-paramvalue-prop-parsetree": "請改用 <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> 或 <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>。修訂內容的 XML 解析樹狀（需要內容模型 <code>$1</code>）。",
+	"apihelp-query+revisions+base-paramvalue-prop-parsetree": "請改用 <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> 或 <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>。修訂內容的 XML 解析樹狀（需要內容模組 <code>$1</code>）。",
 	"apihelp-query+revisions+base-param-slots": "當間隔相關屬性包含在 <var>$1props</var> 時，要回傳資料的修訂間隔。若忽略的話，來自 <kbd>main</kbd> 間隔的資料會以向下兼容格式回傳。",
 	"apihelp-query+revisions+base-param-limit": "限制所回傳的修訂數量。",
 	"apihelp-query+revisions+base-param-expandtemplates": "請改用 <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd>。在修訂內容裡展開模板（需要 $1prop=content）。",
@@ -1555,9 +1550,7 @@
 	"api-help-license-unknown": "授權條款：<span class=\"apihelp-unknown\">未知</span>",
 	"api-help-parameters": "{{PLURAL:$1|參數}}：",
 	"api-help-param-deprecated": "已棄用。",
-	"api-help-param-deprecated-label": "不建議使用",
 	"api-help-param-internal": "內部。",
-	"api-help-param-internal-label": "內部",
 	"api-help-param-templated": "此為[[Special:ApiHelp/main#main/templatedparams|模板參數]]。當做出請求時，$2。",
 	"api-help-param-templated-var-first": "在參數名稱裡的 <var>&#x7B;$1&#x7D;</var> 應替換成 <var>$2</var> 的值",
 	"api-help-param-templated-var": "<var>&#x7B;$1&#x7D;</var> 與 <var>$2</var> 的值",
@@ -1600,7 +1593,7 @@
 	"apierror-allimages-redirect": "當使用 <kbd>allimages</kbd> 作為產生器時，請改用 <kbd>gaifilterredir=nonredirects</kbd> 而不是 <var>redirects</var>。",
 	"apierror-allpages-generator-redirects": "當使用 <kbd>allpages</kbd> 作為產生器時，請改用 <kbd>gapfilterredir=nonredirects</kbd> 而不是 <var>redirects</var>。",
 	"apierror-appendnotsupported": "無法附加到使用內容模組 $1 的頁面。",
-	"apierror-articleexists": "您所嘗試建立的條目已被創建。",
+	"apierror-articleexists": "您所嘗試建立的條目剛剛已被創建。",
 	"apierror-assertanonfailed": "您已不再登出，所以操作無法完成。",
 	"apierror-assertbotfailed": "您沒有 <code>bot</code> 權限，所以操作無法完成。",
 	"apierror-assertnameduserfailed": "您已不再以「$1」身份登入，所以操作無法完成。",

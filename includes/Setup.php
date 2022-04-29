@@ -56,10 +56,8 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\Config\GlobalConfigBuilder;
 use MediaWiki\Settings\Config\PhpIniSink;
-use MediaWiki\Settings\LocalSettingsLoader;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\Source\PhpSettingsSource;
-use MediaWiki\Settings\WikiFarmSettingsLoader;
 use Psr\Log\LoggerInterface;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\RequestTimeout\RequestTimeout;
@@ -153,14 +151,14 @@ $wgSettings = new SettingsBuilder(
 	new PhpIniSink()
 );
 
-if ( getenv( 'MW_USE_LEGACY_DEFAULT_SETTINGS' ) || defined( 'MW_USE_LEGACY_DEFAULT_SETTINGS' ) ) {
-	// Load the old DefaultSettings.php file. Should be removed in 1.39. See T300129.
+// If MW_USE_CONFIG_SCHEMA, use the experimental setup based on config-schema.yaml. See T300129.
+if ( getenv( 'MW_USE_CONFIG_SCHEMA' ) ) {
+	$wgSettings->load( new PhpSettingsSource( "$IP/includes/config-schema.php" ) );
+} else {
 	require_once "$IP/includes/DefaultSettings.php";
 
-	// This is temporary until we no longer need this mode.
+	// This is temporary until we transition to config-schema.yaml
 	$wgSettings->load( new PhpSettingsSource( "$IP/includes/config-merge-strategies.php" ) );
-} else {
-	$wgSettings->load( new PhpSettingsSource( "$IP/includes/config-schema.php" ) );
 }
 
 require_once "$IP/includes/GlobalFunctions.php";
@@ -186,25 +184,30 @@ $wgSettings->putConfigValues( [
 ] );
 $wgSettings->apply();
 
+// $wgSettings->apply() puts all configuration into global variables.
+// If we are not in global scope, make all relevant globals available
+// in this file's scope as well.
+$wgScopeTest = 'MediaWiki Setup.php scope test';
+if ( !isset( $GLOBALS['wgScopeTest'] ) || $GLOBALS['wgScopeTest'] !== $wgScopeTest ) {
+	foreach ( $wgSettings->getDefaultConfig() as $key => $unused ) {
+		$var = "wg$key";
+		// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
+		global $var;
+	}
+}
+unset( $wgScopeTest );
+
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	call_user_func( MW_CONFIG_CALLBACK, $wgSettings );
 } else {
 	wfDetectLocalSettingsFile( $IP );
 
-	if ( getenv( 'MW_USE_LOCAL_SETTINGS_LOADER' ) ) {
-		// NOTE: This will not work for configuration variables that use a prefix
-		//       other than "wg".
-		$localSettingsLoader = new LocalSettingsLoader( $wgSettings, $IP );
-		$localSettingsLoader->loadLocalSettingsFile( MW_CONFIG_FILE );
-		unset( $localSettingsLoader );
+	if ( str_ends_with( MW_CONFIG_FILE, '.php' ) ) {
+		// make defaults available as globals
+		$wgSettings->apply();
+		require_once MW_CONFIG_FILE;
 	} else {
-		if ( str_ends_with( MW_CONFIG_FILE, '.php' ) ) {
-			// make defaults available as globals
-			$wgSettings->apply();
-			require_once MW_CONFIG_FILE;
-		} else {
-			$wgSettings->loadFile( MW_CONFIG_FILE );
-		}
+		$wgSettings->loadFile( MW_CONFIG_FILE );
 	}
 }
 
@@ -222,13 +225,6 @@ if ( defined( 'MW_SETUP_CALLBACK' ) ) {
 	call_user_func( MW_SETUP_CALLBACK, $wgSettings );
 	// Make any additional settings available in globals for use here
 	$wgSettings->apply();
-}
-
-// If in a wiki-farm, load site-specific settings
-if ( $wgSettings->getConfig()->get( 'WikiFarmSettingsDirectory' ) ) {
-	$wikiFarmSettingsLoader = new WikiFarmSettingsLoader( $wgSettings );
-	$wikiFarmSettingsLoader->loadWikiFarmSettings();
-	unset( $wikiFarmSettingsLoader );
 }
 
 // All settings should be loaded now.

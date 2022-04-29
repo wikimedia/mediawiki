@@ -23,7 +23,6 @@ namespace MediaWiki\Json;
 
 trait JsonUnserializableTrait {
 
-	#[\ReturnTypeWillChange]
 	public function jsonSerialize() {
 		return $this->annotateJsonForDeserialization(
 			$this->toJsonArray()

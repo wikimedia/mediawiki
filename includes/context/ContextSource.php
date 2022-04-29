@@ -119,17 +119,6 @@ abstract class ContextSource implements IContextSource {
 	}
 
 	/**
-	 * Get the action name for the current web request.
-	 *
-	 * @since 1.38
-	 * @stable to override
-	 * @return string
-	 */
-	public function getActionName(): string {
-		return $this->getContext()->getActionName();
-	}
-
-	/**
 	 * @since 1.18
 	 * @stable to override
 	 * @return OutputPage

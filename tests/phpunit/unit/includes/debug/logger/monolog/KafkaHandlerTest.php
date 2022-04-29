@@ -35,7 +35,6 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 		) {
 			$this->markTestSkipped( 'Monolog and Kafka are required for the KafkaHandlerTest' );
 		}
-		$this->hideDeprecated( KafkaHandler::class );
 	}
 
 	public function topicNamingProvider() {

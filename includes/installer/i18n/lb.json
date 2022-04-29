@@ -144,8 +144,6 @@
 	"config-upload-settings": "Eropgeluede Biller a Fichieren",
 	"config-upload-enable": "Eropluede vu Fichieren aschalten",
 	"config-upload-deleted": "Repertoire fir geläscht Fichieren:",
-	"config-personalization-settings": "Personalisatioun",
-	"config-logo-preview-main": "Haaptsäit",
 	"config-instantcommons": "\"Instant Commons\" aktivéieren",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/InstantCommons Instant Commons] ass eng Funktioun déi et Wikien erlaabt fir Biller, Téin an aner Medien vu [https://commons.wikimedia.org/ Wikimedia Commons] ze benotzen.\nFir datt dat funktionéiert brauch MediaWiki Zougang zum Internet.\n\nFir méi Informatiounen iwwer dës Funktioun, inklusiv Instruktioune wéi Dir se fir aner Wikie wéi Wikimedia Commons astelle musst, kuckt [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos d'Handbuch].",
 	"config-cc-again": "Nach eng kéier eraussichen...",

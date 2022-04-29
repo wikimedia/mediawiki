@@ -59,12 +59,7 @@ class SectionProfiler {
 	 */
 	public function __construct( array $params = [] ) {
 		$this->errorEntry = $this->getErrorEntry();
-		// collateOnly (meaning: no tracing) is true by default.
-		// Setting trace=true produces collateOnly=false
 		$this->collateOnly = empty( $params['trace'] );
-		if ( !$this->collateOnly ) {
-			wfDeprecated( __CLASS__ . ' with "trace" option', '1.38' );
-		}
 		$this->logger = LoggerFactory::getInstance( 'profiler' );
 	}
 

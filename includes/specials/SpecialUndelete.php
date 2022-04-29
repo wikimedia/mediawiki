@@ -1387,8 +1387,8 @@ class SpecialUndelete extends SpecialPage {
 			->setUndeleteOnlyTimestamps( $this->mTargetTimestamp )
 			->setUndeleteOnlyFileVersions( $this->mFileVersions )
 			->setUnsuppress( $this->mUnsuppress )
-			// TODO This is currently duplicating some permission checks, but we do need it (T305680)
-			->undeleteIfAllowed( $this->mComment );
+			// TODO Should use undeleteIfAllowed instead.
+			->undeleteUnsafe( $this->mComment );
 
 		if ( !$status->isGood() ) {
 			$out->setPageTitle( $this->msg( 'undelete-error' ) );

@@ -134,11 +134,7 @@
 			"לערי ריינהארט",
 			"아라",
 			555,
-<<<<<<< HEAD
 			"Wiiformii"
-=======
-			"YuriNikolai"
->>>>>>> ddc1a4b848086f3ea5de57e756d396b514bc7b63
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -2636,7 +2632,6 @@
 	"undelete-show-file-confirm": "Você tem certeza de que deseja visualizar um versão eliminada do arquivo \"<nowiki>$1</nowiki>\" das $3 de $2?",
 	"undelete-show-file-submit": "Sim",
 	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",
-	"undelete-back-to-list": "Ver todas as revisões eliminadas",
 	"namespace": "Espaço nominal:",
 	"invert": "Inverter seleção",
 	"tooltip-invert": "Marque esta caixa para esconder as alterações a páginas no espaço nominal selecionado (e no espaço nominal associado, se escolheu fazê-lo)",
@@ -3830,8 +3825,6 @@
 	"searchsuggest-containing": "Procure por páginas contendo",
 	"search-match-redirect-label": "Redirecionar para correspondências exatas ao pesquisar",
 	"search-match-redirect-help": "Selecione para ser redirecionado para uma página quando o título da página corresponder ao que você pesquisou",
-	"searchlimit-label": "Número de resultados de pesquisa mostrados em cada página:",
-	"searchlimit-help": "Número máximo: 500",
 	"api-clientside-error-noconnect": "Não foi possível ligar ao servidor. Certifique-se que tem uma ligação à Internet a funcionar e tente novamente.",
 	"api-clientside-error-http": "Servidor devolveu um erro: HTTP $1.",
 	"api-clientside-error-timeout": "O servidor não respondeu dentro do tempo esperado.",
@@ -4173,6 +4166,7 @@
 	"config-missing-key": "Parâmetro de configuração do MediaWiki ausente \"$1\"",
 	"config-invalid-key": "Parâmetro de configuração do MediaWiki inválido \"$1\": $2",
 	"changeslist-nocomment": "Sem resumo de edição",
+	"view-view-foreign": "Ver em $1",
 	"view-create-local": "Adicionar descrição local",
 	"nstab-mainpage": "Página principal",
 	"view-edit-local": "Editar descrição local",

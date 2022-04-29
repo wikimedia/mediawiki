@@ -23,7 +23,6 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -95,7 +94,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$opts->add( 'target', '' );
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
 		$opts->add( 'limit', $this->getConfig()->get( 'QueryPageDefaultLimit' ) );
-		$opts->add( 'offset', '' );
+		$opts->add( 'offset', 0 );
 		$opts->add( 'from', 0 );
 		$opts->add( 'dir', 'next' );
 		$opts->add( 'hideredirs', false );
@@ -131,76 +130,31 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$out->setPageTitle( $this->msg( 'whatlinkshere-title', $this->target->getPrefixedText() ) );
 		$out->addBacklinkSubtitle( $this->target );
 
-		[ $offsetNamespace, $offsetPageID, $dir ] = $this->parseOffsetAndDir( $opts );
+		// Workaround for legacy 'from' and 'back' system.
+		// We need only 'from' param to get offset.
+		$from = $opts->getValue( 'from' );
+		$opts->reset( 'from' );
+		$dir = $from ? 'next' : $opts->getValue( 'dir' );
+		// 'from' was included in result set, offset is excluded. We need to align them.
+		$offset = $from ? $from - 1 : $opts->getValue( 'offset' );
 
 		$this->showIndirectLinks(
 			0,
 			$this->target,
 			$opts->getValue( 'limit' ),
-			$offsetNamespace,
-			$offsetPageID,
+			$offset,
 			$dir
 		);
-	}
-
-	/**
-	 * Parse the offset and direction parameters.
-	 *
-	 * Three parameter kinds are supported:
-	 * * from=123 (legacy), where page ID 123 is the first included one
-	 * * offset=123&dir=next/prev (legacy), where page ID 123 is the last excluded one
-	 * * offset=0|123&dir=next/prev (current), where namespace 0 page ID 123 is the last excluded one
-	 *
-	 * @param FormOptions $opts
-	 * @return array
-	 */
-	private function parseOffsetAndDir( FormOptions $opts ): array {
-		$from = $opts->getValue( 'from' );
-		$opts->reset( 'from' );
-
-		if ( $from ) {
-			$dir = 'next';
-			$offsetNamespace = null;
-			$offsetPageID = $from - 1;
-		} else {
-			$dir = $opts->getValue( 'dir' );
-			[ $offsetNamespaceString, $offsetPageIDString ] = explode(
-				'|',
-				$opts->getValue( 'offset' ) . '|'
-			);
-			if ( !$offsetPageIDString ) {
-				$offsetPageIDString = $offsetNamespaceString;
-				$offsetNamespaceString = '';
-			}
-			if ( is_numeric( $offsetNamespaceString ) ) {
-				$offsetNamespace = (int)$offsetNamespaceString;
-			} else {
-				$offsetNamespace = null;
-			}
-			$offsetPageID = (int)$offsetPageIDString;
-		}
-
-		if ( $offsetNamespace === null ) {
-			$offsetTitle = MediaWikiServices::getInstance()
-				->getTitleFactory()
-				->newFromID( $offsetPageID );
-			$offsetNamespace = $offsetTitle ? $offsetTitle->getNamespace() : 0;
-		}
-
-		return [ $offsetNamespace, $offsetPageID, $dir ];
 	}
 
 	/**
 	 * @param int $level Recursion level
 	 * @param Title $target Target title
 	 * @param int $limit Number of entries to display
-	 * @param int $offsetNamespace Display from this namespace number (included)
-	 * @param int $offsetPageID Display from this article ID (excluded)
+	 * @param int $offset Display from this article ID (excluded)
 	 * @param string $dir 'next' or 'prev'
 	 */
-	private function showIndirectLinks(
-		$level, $target, $limit, $offsetNamespace = 0, $offsetPageID = 0, $dir = 'next'
-	) {
+	private function showIndirectLinks( $level, $target, $limit, $offset = 0, $dir = 'next' ) {
 		$out = $this->getOutput();
 		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 
@@ -242,25 +196,18 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			} else {
 				$namespaces = $namespace;
 			}
-		} else {
-			// Select all namespaces.
-			// This allows the database to use the *_from_namespace index. (T297754)
-			$namespaces = $this->namespaceInfo->getValidNamespaces();
+			$conds['redirect']['page_namespace'] = $namespaces;
+			$conds['pagelinks']['pl_from_namespace'] = $namespaces;
+			$conds['templatelinks']['tl_from_namespace'] = $namespaces;
+			$conds['imagelinks']['il_from_namespace'] = $namespaces;
 		}
-		$conds['redirect']['page_namespace'] = $namespaces;
-		$conds['pagelinks']['pl_from_namespace'] = $namespaces;
-		$conds['templatelinks']['tl_from_namespace'] = $namespaces;
-		$conds['imagelinks']['il_from_namespace'] = $namespaces;
 
-		if ( $offsetPageID ) {
+		if ( $offset ) {
 			$rel = $dir === 'prev' ? '<' : '>';
-			$conds['redirect'][] = "rd_from $rel $offsetPageID";
-			$conds['templatelinks'][] = "(tl_from_namespace = $offsetNamespace AND tl_from $rel $offsetPageID " .
-				"OR tl_from_namespace $rel $offsetNamespace)";
-			$conds['pagelinks'][] = "(pl_from_namespace = $offsetNamespace AND pl_from $rel $offsetPageID " .
-				"OR pl_from_namespace $rel $offsetNamespace)";
-			$conds['imagelinks'][] = "(il_from_namespace = $offsetNamespace AND il_from $rel $offsetPageID " .
-				"OR il_from_namespace $rel $offsetNamespace)";
+			$conds['redirect'][] = "rd_from $rel $offset";
+			$conds['templatelinks'][] = "tl_from $rel $offset";
+			$conds['pagelinks'][] = "pl_from $rel $offset";
+			$conds['imagelinks'][] = "il_from $rel $offset";
 		}
 
 		if ( $hideredirs ) {
@@ -289,7 +236,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				->table( $table )
 				->fields( [ $fromCol, 'rd_from', 'rd_fragment' ] )
 				->conds( $conds[$table] )
-				->orderBy( [ $fromCol . '_namespace', $fromCol ], $sortDirection )
+				->orderBy( $fromCol, $sortDirection )
 				->limit( 2 * $queryLimit )
 				->leftJoin( 'redirect', 'redirect', $on );
 
@@ -298,7 +245,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				->join( 'page', 'page', "$fromCol = page_id" )
 				->fields( [ 'page_id', 'page_namespace', 'page_title',
 					'rd_from', 'rd_fragment', 'page_is_redirect' ] )
-				->orderBy( [ 'page_namespace', 'page_id' ], $sortDirection )
+				->orderBy( 'page_id', $sortDirection )
 				->limit( $queryLimit )
 				->caller( $fname )
 				->fetchResultSet();
@@ -392,54 +339,40 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			}
 		}
 
-		// Sort by namespace + page ID, changing the keys to 0-based indices
-		usort( $rows, static function ( $rowA, $rowB ) {
-			if ( $rowA->page_namespace !== $rowB->page_namespace ) {
-				return $rowA->page_namespace < $rowB->page_namespace ? -1 : 1;
-			}
-			if ( $rowA->page_id !== $rowB->page_id ) {
-				return $rowA->page_id < $rowB->page_id ? -1 : 1;
-			}
-			return 0;
-		} );
+		// Sort by key and then change the keys to 0-based indices
+		ksort( $rows );
+		$rows = array_values( $rows );
 
 		$numRows = count( $rows );
 
 		// Work out the start and end IDs, for prev/next links
 		if ( !$limit ) { // T289351
-			$nextNamespace = $nextPageId = $prevNamespace = $prevPageId = false;
+			$nextId = $prevId = false;
 			$rows = [];
 		} elseif ( $dir === 'prev' ) {
 			if ( $numRows > $limit ) {
 				// More rows available after these ones
-				// Get the next row from the last row in the result set
-				$nextNamespace = $rows[$limit]->page_namespace;
-				$nextPageId = $rows[$limit]->page_id;
+				// Get the nextId from the last row in the result set
+				$nextId = $rows[$limit]->page_id;
 				// Remove undisplayed rows, for dir='prev' we need to discard first record after sorting
 				$rows = array_slice( $rows, 1, $limit );
-				// Get the prev row from the first displayed row
-				$prevNamespace = $rows[0]->page_namespace;
-				$prevPageId = $rows[0]->page_id;
+				// Get the prevId from the first displayed row
+				$prevId = $rows[0]->page_id;
 			} else {
-				// Get the next row from the last displayed row
-				$nextNamespace = $rows[$numRows - 1]->page_namespace;
-				$nextPageId = $rows[$numRows - 1]->page_id;
-				$prevNamespace = false;
-				$prevPageId = false;
+				// Get the nextId from the last displayed row
+				$nextId = $rows[$numRows - 1]->page_id;
+				$prevId = false;
 			}
 		} else {
 			// If offset is not set disable prev link
-			$prevNamespace = $offsetPageID ? $rows[0]->page_namespace : false;
-			$prevPageId = $offsetPageID ? $rows[0]->page_id : false;
+			$prevId = $offset ? $rows[0]->page_id : false;
 			if ( $numRows > $limit ) {
-				// Get the next row from the last displayed row
-				$nextNamespace = $rows[$limit - 1]->page_namespace;
-				$nextPageId = $rows[$limit - 1]->page_id;
+				// Get the nextId from the last displayed row
+				$nextId = $rows[$limit - 1]->page_id;
 				// Remove undisplayed rows
 				$rows = array_slice( $rows, 0, $limit );
 			} else {
-				$nextNamespace = false;
-				$nextPageId = false;
+				$nextId = false;
 			}
 		}
 
@@ -470,7 +403,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 			$out->addWikiMsg( 'whatlinkshere-count', Message::numParam( count( $rows ) ) );
 
-			$prevnext = $this->getPrevNext( $prevNamespace, $prevPageId, $nextNamespace, $nextPageId );
+			$prevnext = $this->getPrevNext( $prevId, $nextId );
 			$out->addHTML( $prevnext );
 		}
 		$out->addHTML( $this->listStart( $level ) );
@@ -610,7 +543,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		);
 	}
 
-	private function getPrevNext( $prevNamespace, $prevPageId, $nextNamespace, $nextPageId ) {
+	private function getPrevNext( $prevId, $nextId ) {
 		$currentLimit = $this->opts->getValue( 'limit' );
 		$prev = $this->msg( 'whatlinkshere-prev' )->numParams( $currentLimit )->text();
 		$next = $this->msg( 'whatlinkshere-next' )->numParams( $currentLimit )->text();
@@ -618,12 +551,12 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$changed = $this->opts->getChangedValues();
 		unset( $changed['target'] ); // Already in the request title
 
-		if ( $prevPageId != 0 ) {
-			$overrides = [ 'dir' => 'prev', 'offset' => "$prevNamespace|$prevPageId", ];
+		if ( $prevId != 0 ) {
+			$overrides = [ 'dir' => 'prev', 'offset' => $prevId, ];
 			$prev = Message::rawParam( $this->makeSelfLink( $prev, array_merge( $changed, $overrides ) ) );
 		}
-		if ( $nextPageId != 0 ) {
-			$overrides = [ 'dir' => 'next', 'offset' => "$nextNamespace|$nextPageId", ];
+		if ( $nextId != 0 ) {
+			$overrides = [ 'dir' => 'next', 'offset' => $nextId, ];
 			$next = Message::rawParam( $this->makeSelfLink( $next, array_merge( $changed, $overrides ) ) );
 		}
 

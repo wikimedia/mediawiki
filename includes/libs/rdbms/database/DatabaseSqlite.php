@@ -83,20 +83,11 @@ class DatabaseSqlite extends Database {
 		} elseif ( isset( $params['dbDirectory'] ) ) {
 			$this->dbDir = $params['dbDirectory'];
 		}
-
 		parent::__construct( $params );
 
 		$this->trxMode = strtoupper( $params['trxMode'] ?? '' );
 
-		$lockDirectory = $this->getLockFileDirectory();
-		if ( $lockDirectory !== null ) {
-			$this->lockMgr = new FSLockManager( [
-				'domain' => $this->getDomainID(),
-				'lockDirectory' => $lockDirectory
-			] );
-		} else {
-			$this->lockMgr = new NullLockManager( [ 'domain' => $this->getDomainID() ] );
-		}
+		$this->initLockManager();
 	}
 
 	protected static function getAttributes() {
@@ -234,11 +225,28 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
+	 * Initialize/reset the lock manager instance
+	 */
+	private function initLockManager() {
+		$lockDirectory = $this->getLockFileDirectory();
+		if ( $lockDirectory !== null ) {
+			$this->lockMgr = new FSLockManager( [
+				'domain' => $this->getDomainID(),
+				'lockDirectory' => $lockDirectory
+			] );
+		} else {
+			$this->lockMgr = new NullLockManager( [ 'domain' => $this->getDomainID() ] );
+		}
+	}
+
+	/**
 	 * Does not actually close the connection, just destroys the reference for GC to do its work
 	 * @return bool
 	 */
 	protected function closeConnection() {
 		$this->conn = null;
+		// Release all locks, via FSLockManager::__destruct, as the baset class expects
+		$this->lockMgr = null;
 
 		return true;
 	}
@@ -620,7 +628,7 @@ class DatabaseSqlite extends Database {
 		return $errno == 17; // SQLITE_SCHEMA;
 	}
 
-	protected function wasKnownStatementRollbackError() {
+	protected function isKnownStatementRollbackError( $errno ) {
 		// ON CONFLICT ROLLBACK clauses make it so that SQLITE_CONSTRAINT error is
 		// ambiguous with regard to whether it implies a ROLLBACK or an ABORT happened.
 		// https://sqlite.org/lang_createtable.html#uniqueconst
@@ -1072,6 +1080,17 @@ class DatabaseSqlite extends Database {
 
 	protected function doHandleSessionLossPreconnect() {
 		$this->sessionAttachedDbs = [];
+		// Release all locks, via FSLockManager::__destruct, as the base class expects
+		$this->lockMgr = null;
+		// Create a new lock manager instance
+		$this->initLockManager();
+	}
+
+	protected function doFlushSession( $fname ) {
+		// Release all locks, via FSLockManager::__destruct, as the base class expects
+		$this->lockMgr = null;
+		// Create a new lock manager instance
+		$this->initLockManager();
 	}
 
 	/**

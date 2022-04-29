@@ -46,11 +46,9 @@ use MediaWiki\EditPage\IEditObject;
 use MediaWiki\EditPage\TextboxBuilder;
 use MediaWiki\EditPage\TextConflictHelper;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Page\PageReference;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
@@ -64,7 +62,6 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchlistManager;
-use OOUI\ButtonWidget;
 use OOUI\CheckboxInputWidget;
 use OOUI\DropdownInputWidget;
 use OOUI\FieldLayout;
@@ -131,7 +128,7 @@ class EditPage implements IEditObject {
 	 * @deprecated for public usage since 1.30 use EditPage::getArticle()
 	 * @var Article
 	 */
-	private $mArticle;
+	public $mArticle;
 
 	/** @var WikiPage */
 	private $page;
@@ -140,15 +137,12 @@ class EditPage implements IEditObject {
 	 * @deprecated for public usage since 1.30 use EditPage::getTitle()
 	 * @var Title
 	 */
-	private $mTitle;
+	public $mTitle;
 
 	/** @var null|Title */
 	private $mContextTitle = null;
 
-	/**
-	 * @deprecated for public usage since 1.38 with no replacement
-	 * @var string
-	 */
+	/** @var string */
 	public $action = 'submit';
 
 	/** @var bool Whether an edit conflict needs to be resolved. Detected based on whether
@@ -158,7 +152,7 @@ class EditPage implements IEditObject {
 	public $isConflict = false;
 
 	/** @var bool New page or new section */
-	private $isNew = false;
+	public $isNew = false;
 
 	/** @var bool */
 	private $deletedSinceEdit;
@@ -172,7 +166,7 @@ class EditPage implements IEditObject {
 	 */
 	public $firsttime;
 
-	/** @var stdClass|null */
+	/** @var bool|stdClass */
 	private $lastDelete;
 
 	/** @var bool */
@@ -200,13 +194,13 @@ class EditPage implements IEditObject {
 	protected $blankArticle = false;
 
 	/** @var bool */
-	private $allowBlankArticle = false;
+	protected $allowBlankArticle = false;
 
 	/** @var bool */
-	private $selfRedirect = false;
+	protected $selfRedirect = false;
 
 	/** @var bool */
-	private $allowSelfRedirect = false;
+	protected $allowSelfRedirect = false;
 
 	/** @var string */
 	private $autoSumm = '';
@@ -241,7 +235,7 @@ class EditPage implements IEditObject {
 	public $preview = false;
 
 	/** @var bool */
-	private $diff = false;
+	public $diff = false;
 
 	/** @var bool */
 	private $minoredit = false;
@@ -267,7 +261,7 @@ class EditPage implements IEditObject {
 	public $textbox1 = '';
 
 	/** @var string */
-	private $textbox2 = '';
+	public $textbox2 = '';
 
 	/** @var string */
 	public $summary = '';
@@ -357,15 +351,15 @@ class EditPage implements IEditObject {
 	/* $didSave should be set to true whenever an article was successfully altered. */
 	public $didSave = false;
 	public $undidRev = 0;
-	private $undoAfter = 0;
+	public $undoAfter = 0;
 
 	public $suppressIntro = false;
 
 	/** @var bool */
-	private $edit;
+	protected $edit;
 
 	/** @var bool|int */
-	private $contentLength = false;
+	protected $contentLength = false;
 
 	/**
 	 * @var bool Set in ApiEditPage, based on ContentHandler::allowsDirectApiEditing
@@ -467,18 +461,6 @@ class EditPage implements IEditObject {
 		$this->watchlistManager = $services->getWatchlistManager();
 		$this->userNameUtils = $services->getUserNameUtils();
 		$this->redirectLookup = $services->getRedirectLookup();
-
-		$this->deprecatePublicProperty( 'mArticle', '1.30', __CLASS__ );
-		$this->deprecatePublicProperty( 'mTitle', '1.30', __CLASS__ );
-		$this->deprecatePublicProperty( 'isNew', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'allowBlankArticle', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'selfRedirect', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'allowSelfRedirect', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'diff', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'textbox2', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'undoAfter', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'edit', '1.38', __CLASS__ );
-		$this->deprecatePublicProperty( 'contentLength', '1.38', __CLASS__ );
 	}
 
 	/**
@@ -530,7 +512,7 @@ class EditPage implements IEditObject {
 	 * @return bool
 	 * @throws MWException If $modelId has no known handler
 	 */
-	private function isSupportedContentModel( string $modelId ): bool {
+	public function isSupportedContentModel( $modelId ) {
 		return $this->enableApiEditOverride === true ||
 			$this->contentHandlerFactory->getContentHandler( $modelId )->supportsDirectEditing();
 	}
@@ -538,7 +520,6 @@ class EditPage implements IEditObject {
 	/**
 	 * Allow editing of content that supports API direct editing, but not general
 	 * direct editing. Set to false by default.
-	 * @internal Must only be used by ApiEditPage
 	 *
 	 * @param bool $enableOverride
 	 */
@@ -575,8 +556,7 @@ class EditPage implements IEditObject {
 		$this->importFormData( $request );
 		$this->firsttime = false;
 
-		$readOnlyMode = MediaWikiServices::getInstance()->getReadOnlyMode();
-		if ( $this->save && $readOnlyMode->isReadOnly() ) {
+		if ( $this->save && wfReadOnly() ) {
 			// Force preview
 			$this->save = false;
 			$this->preview = true;
@@ -603,7 +583,7 @@ class EditPage implements IEditObject {
 		if ( $permErrors ) {
 			wfDebug( __METHOD__ . ": User can't edit" );
 
-			if ( $this->context->getUser()->getBlock() && !$readOnlyMode->isReadOnly() ) {
+			if ( $this->context->getUser()->getBlock() && !wfReadOnly() ) {
 				// Auto-block user's IP if the account was "hard" blocked
 				DeferredUpdates::addCallableUpdate( function () {
 					$this->context->getUser()->spreadAnyEditBlock();
@@ -731,19 +711,29 @@ class EditPage implements IEditObject {
 	 * @param string $rigor PermissionManager::RIGOR_ constant
 	 * @return array
 	 */
-	private function getEditPermissionErrors( string $rigor = PermissionManager::RIGOR_SECURE ): array {
+	protected function getEditPermissionErrors( $rigor = PermissionManager::RIGOR_SECURE ) {
 		$user = $this->context->getUser();
-		$ignoredErrors = [];
-		if ( $this->preview || $this->diff ) {
-			$ignoredErrors = [ 'blockedtext', 'autoblockedtext', 'systemblockedtext' ];
-		}
-		return $this->permManager->getPermissionErrors(
+		$permErrors = $this->permManager->getPermissionErrors(
 			'edit',
 			$user,
 			$this->mTitle,
-			$rigor,
-			$ignoredErrors
+			$rigor
 		);
+		# Ignore some permissions errors when a user is just previewing/viewing diffs
+		if ( $this->preview || $this->diff ) {
+			$remove = [];
+			foreach ( $permErrors as $error ) {
+				if ( $error[0] === 'blockedtext' ||
+					$error[0] === 'autoblockedtext' ||
+					$error[0] === 'systemblockedtext'
+				) {
+					$remove[] = $error;
+				}
+			}
+			$permErrors = wfArrayDiff2( $permErrors, $remove );
+		}
+
+		return $permErrors;
 	}
 
 	/**
@@ -754,10 +744,11 @@ class EditPage implements IEditObject {
 	 *   previewing or showing the difference, it will be a
 	 *   "View source for ..." page displaying the source code after the error message.
 	 *
+	 * @since 1.19
 	 * @param array $permErrors Array of permissions errors
 	 * @throws PermissionsError
 	 */
-	private function displayPermissionsError( array $permErrors ): void {
+	protected function displayPermissionsError( array $permErrors ) {
 		$out = $this->context->getOutput();
 		if ( $this->context->getRequest()->getBool( 'redlink' ) ) {
 			// The edit page was reached via a red link.
@@ -790,7 +781,7 @@ class EditPage implements IEditObject {
 	 * @param Content $content
 	 * @param string $errorMessage additional wikitext error message to display
 	 */
-	private function displayViewSourcePage( Content $content, string $errorMessage ): void {
+	protected function displayViewSourcePage( Content $content, $errorMessage = '' ) {
 		$out = $this->context->getOutput();
 		$this->getHookRunner()->onEditPage__showReadOnlyForm_initial( $this, $out );
 
@@ -884,7 +875,7 @@ class EditPage implements IEditObject {
 	 *
 	 * @return bool
 	 */
-	private function isWrongCaseUserConfigPage(): bool {
+	protected function isWrongCaseUserConfigPage() {
 		if ( $this->mTitle->isUserConfigPage() ) {
 			$name = $this->mTitle->getSkinFromConfigSubpage();
 			$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
@@ -905,7 +896,7 @@ class EditPage implements IEditObject {
 	 *
 	 * @return bool True if this edit page supports sections, false otherwise.
 	 */
-	private function isSectionEditSupported(): bool {
+	protected function isSectionEditSupported() {
 		$currentRev = $this->page->getRevisionRecord();
 
 		// $currentRev is null for non-existing pages, use the page default content model.
@@ -1481,10 +1472,11 @@ class EditPage implements IEditObject {
 	 * encountered the result will be null and not the
 	 * 'missing-revision' message.
 	 *
+	 * @since 1.19
 	 * @param Authority $performer to get the revision for
 	 * @return Content|null
 	 */
-	private function getOriginalContent( Authority $performer ): ?Content {
+	private function getOriginalContent( Authority $performer ) {
 		if ( $this->section === 'new' ) {
 			return $this->getCurrentContent();
 		}
@@ -1506,9 +1498,10 @@ class EditPage implements IEditObject {
 	 * across a recoverable edit conflict, the ID of the newer revision to
 	 * which we have rebased this page.
 	 *
+	 * @since 1.27
 	 * @return int Revision ID
 	 */
-	private function getParentRevId() {
+	public function getParentRevId() {
 		if ( $this->parentRevId ) {
 			return $this->parentRevId;
 		} else {
@@ -1548,8 +1541,10 @@ class EditPage implements IEditObject {
 	 * @param array $params Parameters to use (interface-message style) in the preloaded text
 	 *
 	 * @return Content
+	 *
+	 * @since 1.21
 	 */
-	private function getPreloadedContent( string $preload, array $params ): Content {
+	protected function getPreloadedContent( $preload, $params = [] ) {
 		$handler = $this->contentHandlerFactory->getContentHandler( $this->contentModel );
 
 		if ( $preload === '' ) {
@@ -1612,7 +1607,8 @@ class EditPage implements IEditObject {
 		}
 
 		$parserOptions = ParserOptions::newFromUser( $this->context->getUser() );
-		return MediaWikiServices::getInstance()->getContentTransformer()->preloadTransform(
+		$contentTransformer = MediaWikiServices::getInstance()->getContentTransformer();
+		return $contentTransformer->preloadTransform(
 			$content,
 			$title,
 			$parserOptions,
@@ -1636,10 +1632,11 @@ class EditPage implements IEditObject {
 	/**
 	 * Make sure the form isn't faking a user's credentials.
 	 *
-	 * @param WebRequest $request
+	 * @param WebRequest &$request
 	 * @return bool
+	 * @internal
 	 */
-	private function tokenOk( WebRequest $request ): bool {
+	public function tokenOk( &$request ) {
 		$token = $request->getVal( 'wpEditToken' );
 		$user = $this->context->getUser();
 		$this->mTokenOk = $user->matchEditToken( $token );
@@ -1660,7 +1657,7 @@ class EditPage implements IEditObject {
 	 *
 	 * @param int $statusValue The status value (to check for new article status)
 	 */
-	private function setPostEditCookie( int $statusValue ): void {
+	protected function setPostEditCookie( $statusValue ) {
 		$revisionId = $this->page->getLatest();
 		$postEditKey = self::POST_EDIT_COOKIE_KEY_PREFIX . $revisionId;
 
@@ -1758,6 +1755,12 @@ class EditPage implements IEditObject {
 			case self::AS_HOOK_ERROR:
 				return false;
 
+			case self::AS_CANNOT_USE_CUSTOM_MODEL:
+				wfDeprecated(
+					__METHOD__ . ' with $statusValue == AS_CANNOT_USE_CUSTOM_MODEL',
+					'1.35'
+				);
+				// ...and fall through to next case
 			case self::AS_PARSE_ERROR:
 			case self::AS_UNICODE_NOT_SUPPORTED:
 				$out->wrapWikiTextAsInterface( 'error',
@@ -1924,7 +1927,7 @@ class EditPage implements IEditObject {
 			$status = Status::newFatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR;
 			return $status;
-		} elseif ( $this->hookError ) {
+		} elseif ( $this->hookError != '' ) {
 			# ...or the hook could be expecting us to produce an error
 			$status = Status::newFatal( 'hookaborted' );
 			$status->value = self::AS_HOOK_ERROR_EXPECTED;
@@ -2166,6 +2169,7 @@ class EditPage implements IEditObject {
 				}
 			}
 
+			// If sectiontitle is set, use it, otherwise use the summary as the section title.
 			if ( $this->sectiontitle !== '' ) {
 				$sectionTitle = $this->sectiontitle;
 			} else {
@@ -2207,7 +2211,7 @@ class EditPage implements IEditObject {
 					'Getting section {section}',
 					[ 'section' => $this->section ]
 				);
-				$content = $this->page->replaceSectionAtRev(
+				$content = $this->page->replaceSectionContent(
 					$this->section,
 					$textbox_content,
 					$sectionTitle
@@ -2367,17 +2371,15 @@ class EditPage implements IEditObject {
 				CommentStoreComment::newUnsavedComment( trim( $this->summary ) ),
 				$flags
 			);
-		/** @var Status $doEditStatus */
 		$doEditStatus = $pageUpdater->getStatus();
 
 		if ( !$doEditStatus->isOK() ) {
 			// Failure from doEdit()
 			// Show the edit conflict page for certain recognized errors from doEdit(),
 			// but don't show it for errors from extension hooks
-			if (
-				$doEditStatus->hasMessage( 'edit-gone-missing' ) ||
-				$doEditStatus->hasMessage( 'edit-conflict' ) ||
-				$doEditStatus->hasMessage( 'edit-already-exists' )
+			$errors = $doEditStatus->getErrorsArray();
+			if ( in_array( $errors[0][0],
+					[ 'edit-gone-missing', 'edit-conflict', 'edit-already-exists' ] )
 			) {
 				$this->isConflict = true;
 				// Destroys data doEdit() put in $status->value but who cares
@@ -2426,7 +2428,7 @@ class EditPage implements IEditObject {
 			$this->tooBig = true;
 		} elseif ( $failed instanceof UserBlockConstraint ) {
 			// Auto-block user's IP if the account was "hard" blocked
-			if ( !MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
+			if ( !wfReadOnly() ) {
 				$this->context->getUser()->spreadAnyEditBlock();
 			}
 		} elseif ( $failed instanceof DefaultTextConstraint ) {
@@ -2501,7 +2503,7 @@ class EditPage implements IEditObject {
 	 * @param string $newModel
 	 * @param string $reason
 	 */
-	private function addContentModelChangeLogEntry( UserIdentity $user, $oldModel, $newModel, $reason ): void {
+	protected function addContentModelChangeLogEntry( UserIdentity $user, $oldModel, $newModel, $reason ) {
 		$new = $oldModel === false;
 		$log = new ManualLogEntry( 'contentmodel', $new ? 'new' : 'change' );
 		$log->setPerformer( $user );
@@ -2518,7 +2520,7 @@ class EditPage implements IEditObject {
 	/**
 	 * Register the change of watch status
 	 */
-	private function updateWatchlist(): void {
+	protected function updateWatchlist() {
 		$performer = $this->context->getAuthority();
 		if ( !$performer->getUser()->isRegistered() ) {
 			return;
@@ -2540,6 +2542,8 @@ class EditPage implements IEditObject {
 	 * Attempts to do 3-way merge of edit content with a base revision
 	 * and current content, in case of edit conflict, in whichever way appropriate
 	 * for the content type.
+	 *
+	 * @since 1.21
 	 *
 	 * @param Content $editContent
 	 *
@@ -2682,7 +2686,7 @@ class EditPage implements IEditObject {
 	/**
 	 * Show all applicable editing introductions
 	 */
-	private function showIntro(): void {
+	protected function showIntro() {
 		if ( $this->suppressIntro ) {
 			return;
 		}
@@ -2830,7 +2834,7 @@ class EditPage implements IEditObject {
 	 *
 	 * @return bool
 	 */
-	private function showCustomIntro(): bool {
+	protected function showCustomIntro() {
 		if ( $this->editintro ) {
 			$title = Title::newFromText( $this->editintro );
 			if ( $this->isPageExistingAndViewable( $title, $this->context->getUser() ) ) {
@@ -2864,7 +2868,7 @@ class EditPage implements IEditObject {
 	 * @throws MWException If $content is not an instance of TextContent and
 	 *   $this->allowNonTextContent is not true.
 	 */
-	private function toEditText( $content ) {
+	protected function toEditText( $content ) {
 		if ( $content === null || $content === false || is_string( $content ) ) {
 			return $content;
 		}
@@ -2912,8 +2916,8 @@ class EditPage implements IEditObject {
 	 * @param callable|null $formCallback That takes an OutputPage parameter; will be called
 	 *     during form output near the top, for captchas and the like.
 	 *
-	 * The $formCallback parameter is deprecated since MediaWiki 1.25 and hard-deprecated since
-	 * 1.38. Please use the EditPage::showEditForm:fields hook instead.
+	 * The $formCallback parameter is deprecated since MediaWiki 1.25. Please
+	 * use the EditPage::showEditForm:fields hook instead.
 	 */
 	public function showEditForm( $formCallback = null ) {
 		# need to parse the preview early so that we know which templates are used,
@@ -2956,7 +2960,7 @@ class EditPage implements IEditObject {
 
 		$out->addHTML( $this->editFormTextTop );
 
-		if ( $this->formtype !== 'save' && $this->wasDeletedSinceLastEdit() ) {
+		if ( $this->wasDeletedSinceLastEdit() && $this->formtype !== 'save' ) {
 			$out->addHTML( Html::errorBox(
 				$out->msg( 'deletedwhileediting' )->parse(),
 				'',
@@ -2979,7 +2983,8 @@ class EditPage implements IEditObject {
 		) );
 
 		if ( is_callable( $formCallback ) ) {
-			wfDeprecated( 'The $formCallback parameter to ' . __METHOD__, '1.25' );
+			// TODO go through deprecation process
+			wfWarn( 'The $formCallback parameter to ' . __METHOD__ . ' is deprecated' );
 			call_user_func_array( $formCallback, [ &$out ] );
 		}
 
@@ -3021,18 +3026,14 @@ class EditPage implements IEditObject {
 			$key = $comment === ''
 				? 'confirmrecreate-noreason'
 				: 'confirmrecreate';
-			$out->addHTML( Html::rawElement(
-				'div',
-				[ 'class' => 'mw-confirm-recreate' ],
-				$this->context->msg( $key, $username, "<nowiki>$comment</nowiki>" )->parse() .
-					Xml::checkLabel(
-						$this->context->msg( 'recreate' )->text(),
-						'wpRecreate',
-						'wpRecreate',
-						false,
-						[ 'title' => Linker::titleAttrib( 'recreate' ), 'tabindex' => 1, 'id' => 'wpRecreate' ]
-					)
-			) );
+			$out->addHTML(
+				'<div class="mw-confirm-recreate">' .
+					$this->context->msg( $key, $username, "<nowiki>$comment</nowiki>" )->parse() .
+				Xml::checkLabel( $this->context->msg( 'recreate' )->text(), 'wpRecreate', 'wpRecreate', false,
+					[ 'title' => Linker::titleAttrib( 'recreate' ), 'tabindex' => 1, 'id' => 'wpRecreate' ]
+				) .
+				'</div>'
+			);
 		}
 
 		# When the summary is hidden, also hide them on preview/show changes
@@ -3086,8 +3087,8 @@ class EditPage implements IEditObject {
 		$out->enableOOUI();
 
 		if ( $this->section === 'new' ) {
-			$this->showSummaryInput( true );
-			$out->addHTML( $this->getSummaryPreview( true ) );
+			$this->showSummaryInput( true, $this->summary );
+			$out->addHTML( $this->getSummaryPreview( true, $this->summary ) );
 		}
 
 		$out->addHTML( $this->editFormTextBeforeContent );
@@ -3195,7 +3196,7 @@ class EditPage implements IEditObject {
 	 * Wrapper around TemplatesOnThisPageFormatter to make
 	 * a "templates on this page" list.
 	 *
-	 * @param LinkTarget[] $templates
+	 * @param Title[] $templates
 	 * @return string HTML
 	 */
 	public function makeTemplatesOnThisPageList( array $templates ) {
@@ -3231,11 +3232,11 @@ class EditPage implements IEditObject {
 		}
 	}
 
-	private function showHeader(): void {
+	protected function showHeader() {
 		$out = $this->context->getOutput();
 		$user = $this->context->getUser();
 		if ( $this->isConflict ) {
-			$this->addExplainConflictHeader();
+			$this->addExplainConflictHeader( $out );
 			$this->editRevId = $this->page->getLatest();
 		} else {
 			if ( $this->section !== '' && $this->section !== 'new' && !$this->summary &&
@@ -3324,11 +3325,10 @@ class EditPage implements IEditObject {
 			}
 		}
 
-		$readOnlyMode = MediaWikiServices::getInstance()->getReadOnlyMode();
-		if ( $readOnlyMode->isReadOnly() ) {
+		if ( wfReadOnly() ) {
 			$out->wrapWikiMsg(
 				"<div id=\"mw-read-only-warning\">\n$1\n</div>",
-				[ 'readonlywarning', $readOnlyMode->getReason() ]
+				[ 'readonlywarning', wfReadOnlyReason() ]
 			);
 		} elseif ( $user->isAnon() ) {
 			if ( $this->formtype !== 'preview' ) {
@@ -3470,8 +3470,9 @@ class EditPage implements IEditObject {
 	 * @param bool $isSubjectPreview True if this is the section subject/title
 	 *   up top, or false if this is the comment summary
 	 *   down below the textarea
+	 * @param string $summary The text of the summary to display
 	 */
-	private function showSummaryInput( bool $isSubjectPreview ): void {
+	protected function showSummaryInput( $isSubjectPreview, $summary = "" ) {
 		# Add a class if 'missingsummary' is triggered to allow styling of the summary line
 		$summaryClass = $this->missingSummary ? 'mw-summarymissed' : 'mw-summary';
 		if ( $isSubjectPreview ) {
@@ -3485,7 +3486,7 @@ class EditPage implements IEditObject {
 		$labelText = $this->context->msg( $isSubjectPreview ? 'subject' : 'summary' )->parse();
 		$this->context->getOutput()->addHTML(
 			$this->getSummaryInputWidget(
-				$this->summary,
+				$summary,
 				$labelText,
 				[ 'class' => $summaryClass ]
 			)
@@ -3496,11 +3497,12 @@ class EditPage implements IEditObject {
 	 * @param bool $isSubjectPreview True if this is the section subject/title
 	 *   up top, or false if this is the comment summary
 	 *   down below the textarea
+	 * @param string $summary The text of the summary to display
 	 * @return string
 	 */
-	private function getSummaryPreview( bool $isSubjectPreview ): string {
+	protected function getSummaryPreview( $isSubjectPreview, $summary = "" ) {
 		// avoid spaces in preview, gets always trimmed on save
-		$summary = trim( $this->summary );
+		$summary = trim( $summary );
 		if ( $summary === '' || ( !$this->preview && !$this->diff ) ) {
 			return "";
 		}
@@ -3520,7 +3522,7 @@ class EditPage implements IEditObject {
 		return Xml::tags( 'div', [ 'class' => 'mw-summary-preview' ], $summary );
 	}
 
-	private function showFormBeforeText(): void {
+	protected function showFormBeforeText() {
 		$out = $this->context->getOutput();
 		$out->addHTML( Html::hidden( 'wpSection', $this->section ) );
 		$out->addHTML( Html::hidden( 'wpStarttime', $this->starttime ) );
@@ -3561,7 +3563,15 @@ class EditPage implements IEditObject {
 		$this->showTextbox1();
 	}
 
-	private function showTextbox1(): void {
+	/**
+	 * Method to output wpTextbox1
+	 * The $textoverride method can be used by subclasses overriding showContentForm
+	 * to pass back to this method.
+	 *
+	 * @param array|null $customAttribs Array of html attributes to use in the textarea
+	 * @param string|null $textoverride Optional text to override $this->textarea1 with
+	 */
+	protected function showTextbox1( $customAttribs = null, $textoverride = null ) {
 		if ( $this->formtype === 'save' && $this->wasDeletedSinceLastEdit() ) {
 			$attribs = [ 'style' => 'display:none;' ];
 		} else {
@@ -3578,17 +3588,21 @@ class EditPage implements IEditObject {
 				'tabindex' => 1
 			];
 
+			if ( is_array( $customAttribs ) ) {
+				$attribs += $customAttribs;
+			}
+
 			$attribs = $builder->mergeClassesIntoAttributes( $classes, $attribs );
 		}
 
 		$this->showTextbox(
-			$this->textbox1,
+			$textoverride ?? $this->textbox1,
 			'wpTextbox1',
 			$attribs
 		);
 	}
 
-	private function showTextbox2(): void {
+	protected function showTextbox2() {
 		$this->showTextbox( $this->textbox2, 'wpTextbox2', [ 'tabindex' => 6, 'readonly' ] );
 	}
 
@@ -3606,7 +3620,7 @@ class EditPage implements IEditObject {
 		);
 	}
 
-	private function displayPreviewArea( string $previewOutput, bool $isOnTop ): void {
+	protected function displayPreviewArea( $previewOutput, $isOnTop = false ) {
 		$attribs = [ 'id' => 'wikiPreview' ];
 		if ( $isOnTop ) {
 			$attribs['class'] = 'ontop';
@@ -3651,7 +3665,7 @@ class EditPage implements IEditObject {
 	 *
 	 * @param string $text The HTML to be output for the preview.
 	 */
-	private function showPreview( string $text ): void {
+	protected function showPreview( $text ) {
 		if ( $this->mArticle instanceof CategoryPage ) {
 			$this->mArticle->openShowCategory();
 		}
@@ -3733,7 +3747,7 @@ class EditPage implements IEditObject {
 		$this->context->getOutput()->addHTML( Html::rawElement( 'div', [ 'id' => 'wikiDiff' ], $difftext ) );
 	}
 
-	private function showHeaderCopyrightWarning(): void {
+	protected function showHeaderCopyrightWarning() {
 		$msg = 'editpage-head-copy-warn';
 		if ( !$this->context->msg( $msg )->isDisabled() ) {
 			$this->context->getOutput()->wrapWikiMsg(
@@ -3751,7 +3765,7 @@ class EditPage implements IEditObject {
 	 * This will display between the save button and the edit tools,
 	 * so should remain short!
 	 */
-	private function showTosSummary(): void {
+	protected function showTosSummary() {
 		$msgKey = 'editpage-tos-summary';
 		$this->getHookRunner()->onEditPageTosSummary( $this->mTitle, $msgKey );
 		$msg = $this->context->msg( $msgKey );
@@ -3768,7 +3782,7 @@ class EditPage implements IEditObject {
 	 * Inserts optional text shown below edit and upload forms. Can be used to offer special
 	 * characters not present on most keyboards for copying/pasting.
 	 */
-	private function showEditTools(): void {
+	protected function showEditTools() {
 		$this->context->getOutput()->addHTML( Html::rawElement(
 			'div',
 			[ 'class' => 'mw-editTools' ],
@@ -3790,14 +3804,14 @@ class EditPage implements IEditObject {
 	/**
 	 * Get the copyright warning, by default returns wikitext
 	 *
-	 * @param PageReference $page
+	 * @param Title $title
 	 * @param string $format Output format, valid values are any function of a Message object
-	 * @param MessageLocalizer|Language|string|null $localizer A MessageLocalizer.
+	 * @param MessageLocalizer|Language|string|null $localizer Context for localisation messages.
 	 *   For backwards-compatibility, a Language object, or a string language code, or omitting the
-	 *   parameter is also allowed, but emits deprecation warnings since 1.38.
+	 *   parameter is also allowed, but emits deprecation warnings.
 	 * @return string
 	 */
-	public static function getCopyrightWarning( $page, $format = 'plain', $localizer = null ) {
+	public static function getCopyrightWarning( $title, $format = 'plain', $localizer = null ) {
 		if ( !$localizer instanceof MessageLocalizer ) {
 			wfDeprecated( __METHOD__ . ' without MessageLocalizer', '1.38' );
 			$context = RequestContext::getMain();
@@ -3817,10 +3831,9 @@ class EditPage implements IEditObject {
 				'[[' . $localizer->msg( 'copyrightpage' )->inContentLanguage()->text() . ']]' ];
 		}
 		// Allow for site and per-namespace customization of contribution/copyright notice.
-		$title = Title::castFromPageReference( $page );
 		Hooks::runner()->onEditPageCopyrightWarning( $title, $copywarnMsg );
 
-		$msg = $localizer->msg( ...$copywarnMsg )->page( $page );
+		$msg = $localizer->msg( ...$copywarnMsg )->page( $title );
 		return Html::rawElement( 'div', [ 'id' => 'editpage-copywarn' ], $msg->$format() );
 	}
 
@@ -3882,9 +3895,9 @@ class EditPage implements IEditObject {
 		$out = $this->context->getOutput();
 		$out->addHTML( "<div class='editOptions'>\n" );
 
-		if ( $this->section !== 'new' ) {
-			$this->showSummaryInput( false );
-			$out->addHTML( $this->getSummaryPreview( false ) );
+		if ( $this->section != 'new' ) {
+			$this->showSummaryInput( false, $this->summary );
+			$out->addHTML( $this->getSummaryPreview( false, $this->summary ) );
 		}
 
 		$checkboxes = $this->getCheckboxesWidget(
@@ -3928,7 +3941,7 @@ class EditPage implements IEditObject {
 	 * Show an edit conflict. textbox1 is already shown in showEditForm().
 	 * If you want to use another entry point to this function, be careful.
 	 */
-	private function showConflict(): void {
+	protected function showConflict() {
 		$out = $this->context->getOutput();
 		if ( $this->getHookRunner()->onEditPageBeforeConflictDiff( $this, $out ) ) {
 			$this->incrementConflictStats();
@@ -3937,15 +3950,15 @@ class EditPage implements IEditObject {
 		}
 	}
 
-	private function incrementConflictStats(): void {
+	protected function incrementConflictStats() {
 		$this->getEditConflictHelper()->incrementConflictStats( $this->context->getUser() );
 	}
 
 	/**
 	 * @param int $tabindex Current tabindex
-	 * @return ButtonWidget
+	 * @return string
 	 */
-	private function getCancelLink( int $tabindex ): ButtonWidget {
+	public function getCancelLink( $tabindex = 0 ) {
 		$cancelParams = [];
 		if ( !$this->isConflict && $this->oldid > 0 ) {
 			$cancelParams['oldid'] = $this->oldid;
@@ -3984,7 +3997,7 @@ class EditPage implements IEditObject {
 	 * deletes.
 	 * @return bool
 	 */
-	private function wasDeletedSinceLastEdit(): bool {
+	protected function wasDeletedSinceLastEdit() {
 		if ( $this->deletedSinceEdit !== null ) {
 			return $this->deletedSinceEdit;
 		}
@@ -4007,9 +4020,9 @@ class EditPage implements IEditObject {
 	/**
 	 * Get the last log record of this page being deleted, if ever.  This is
 	 * used to detect whether a delete occurred during editing.
-	 * @return stdClass|null
+	 * @return bool|stdClass
 	 */
-	private function getLastDelete(): ?stdClass {
+	protected function getLastDelete() {
 		$dbr = wfGetDB( DB_REPLICA );
 		$commentQuery = CommentStore::getStore()->getJoin( 'log_comment' );
 		$data = $dbr->selectRow(
@@ -4037,7 +4050,7 @@ class EditPage implements IEditObject {
 			] + $commentQuery['joins']
 		);
 		// Quick paranoid permission checks...
-		if ( $data !== false ) {
+		if ( is_object( $data ) ) {
 			if ( $data->log_deleted & LogPage::DELETED_USER ) {
 				$data->actor_name = $this->context->msg( 'rev-deleted-user' )->escaped();
 			}
@@ -4048,7 +4061,7 @@ class EditPage implements IEditObject {
 			}
 		}
 
-		return $data ?: null;
+		return $data;
 	}
 
 	/**
@@ -4269,7 +4282,7 @@ class EditPage implements IEditObject {
 	 * @return array
 	 */
 	public function getTemplates() {
-		if ( $this->preview || $this->section !== '' ) {
+		if ( $this->preview || $this->section != '' ) {
 			$templates = [];
 			if ( !isset( $this->mParserOutput ) ) {
 				return $templates;
@@ -4358,6 +4371,7 @@ class EditPage implements IEditObject {
 	/**
 	 * Get the watchthis and watchlistExpiry form field definitions.
 	 *
+	 * @since 1.35
 	 * @param bool $watch
 	 * @return array[]
 	 */
@@ -4410,8 +4424,7 @@ class EditPage implements IEditObject {
 	 *
 	 * @param int &$tabindex Current tabindex
 	 * @param array $checked Array of checkbox => bool, where bool indicates the checked
-	 *                 status of the checkbox
-	 *
+	 *  status of the checkbox
 	 * @return \OOUI\Element[] Associative array of string keys to \OOUI\Widget or \OOUI\Layout
 	 *  instances
 	 */
@@ -4462,9 +4475,10 @@ class EditPage implements IEditObject {
 	/**
 	 * Get the message key of the label for the button to save the page
 	 *
+	 * @since 1.30
 	 * @return string
 	 */
-	private function getSubmitButtonLabel(): string {
+	protected function getSubmitButtonLabel() {
 		$labelAsPublish =
 			$this->context->getConfig()->get( 'EditSubmitButtonLabelPublish' );
 
@@ -4481,11 +4495,9 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Returns an array of html code of the following buttons:
-	 * save, diff and preview
+	 * Return an array of html code of the following buttons: save, diff and preview
 	 *
 	 * @param int &$tabindex Current tabindex
-	 *
 	 * @return string[] Strings or objects with a __toString() implementation. Usually an array of
 	 *  {@see ButtonInputWidget}, but EditPageBeforeEditButtons hook handlers might inject something
 	 *  else.
@@ -4583,9 +4595,9 @@ class EditPage implements IEditObject {
 		$out = $this->context->getOutput();
 		$out->prepareErrorPage( $this->context->msg( 'spamprotectiontitle' ) );
 
-		$spamText = $this->context->msg( 'spamprotectiontext' )->parseAsBlock();
+		$spamHtml = $this->context->msg( 'spamprotectiontext' )->parseAsBlock();
 		if ( $match ) {
-			$spamText .= $this->context->msg( 'spamprotectionmatch' )
+			$spamHtml .= $this->context->msg( 'spamprotectionmatch' )
 				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 				->params( wfEscapeWikiText( $match ) )
 				->parseAsBlock();
@@ -4593,7 +4605,7 @@ class EditPage implements IEditObject {
 		$out->addHTML( Html::rawElement(
 			'div',
 			[ 'id' => 'spamprotected' ],
-			$spamText
+			$spamHtml
 		) );
 
 		$out->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
@@ -4605,7 +4617,10 @@ class EditPage implements IEditObject {
 		$out->addReturnTo( $this->getContextTitle(), [ 'action' => 'edit' ] );
 	}
 
-	private function addEditNotices(): void {
+	/**
+	 * @since 1.29
+	 */
+	protected function addEditNotices() {
 		$out = $this->context->getOutput();
 		$editNotices = $this->mTitle->getEditNotices( $this->oldid );
 		if ( count( $editNotices ) ) {
@@ -4622,13 +4637,19 @@ class EditPage implements IEditObject {
 		}
 	}
 
-	private function addTalkPageText(): void {
+	/**
+	 * @since 1.29
+	 */
+	protected function addTalkPageText() {
 		if ( $this->mTitle->isTalkPage() ) {
 			$this->context->getOutput()->addWikiMsg( 'talkpagetext' );
 		}
 	}
 
-	private function addLongPageWarningHeader(): void {
+	/**
+	 * @since 1.29
+	 */
+	protected function addLongPageWarningHeader() {
 		if ( $this->contentLength === false ) {
 			$this->contentLength = strlen( $this->textbox1 );
 		}
@@ -4657,7 +4678,10 @@ class EditPage implements IEditObject {
 		}
 	}
 
-	private function addPageProtectionWarningHeaders(): void {
+	/**
+	 * @since 1.29
+	 */
+	protected function addPageProtectionWarningHeaders() {
 		$out = $this->context->getOutput();
 		$restrictionStore = MediaWikiServices::getInstance()->getRestrictionStore();
 		if ( $restrictionStore->isProtected( $this->mTitle, 'edit' ) &&
@@ -4691,7 +4715,7 @@ class EditPage implements IEditObject {
 			$notice .= '</div>';
 			$out->wrapWikiMsg( $notice, [ 'cascadeprotectedwarning', $cascadeSourcesCount ] );
 		}
-		if ( !$this->mTitle->exists() && $restrictionStore->getRestrictions( $this->mTitle, 'create' ) ) {
+		if ( !$this->mTitle->exists() && $this->mTitle->getRestrictions( 'create' ) ) {
 			LogEventsList::showLogExtract(
 				$out,
 				'protect',
@@ -4707,8 +4731,12 @@ class EditPage implements IEditObject {
 		}
 	}
 
-	private function addExplainConflictHeader(): void {
-		$this->context->getOutput()->addHTML(
+	/**
+	 * @param OutputPage $out
+	 * @since 1.29
+	 */
+	protected function addExplainConflictHeader( OutputPage $out ) {
+		$out->addHTML(
 			$this->getEditConflictHelper()->getExplainHeader()
 		);
 	}

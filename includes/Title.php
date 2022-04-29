@@ -218,15 +218,25 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	private function __construct() {
-		$this->deprecatePublicProperty( 'mTextform', '1.37', __CLASS__ );
-		$this->deprecatePublicProperty( 'mUrlform', '1.37', __CLASS__ );
-		$this->deprecatePublicProperty( 'mDbkeyform', '1.37', __CLASS__ );
-		$this->deprecatePublicProperty( 'mNamespace', '1.37', __CLASS__ );
-		$this->deprecatePublicProperty( 'mInterwiki', '1.37', __CLASS__ );
-
 		// Phan is being silly about callable|string, see T297352.
+		// Note that the silliness doesn't trigger for 'getText', because gettext() exists
+		// as a global built-in function.
+		$this->deprecatePublicPropertyFallback( 'mTextform', '1.38', 'getText' );
+
 		// @phan-suppress-next-line PhanUndeclaredFunctionInCallable
-		$this->deprecatePublicPropertyFallback( 'mFragment', '1.37', 'getFragment', 'setFragment' );
+		$this->deprecatePublicPropertyFallback( 'mUrlform', '1.38', 'getPartialURL' );
+
+		// @phan-suppress-next-line PhanUndeclaredFunctionInCallable
+		$this->deprecatePublicPropertyFallback( 'mDbkeyform', '1.38', 'getDBkey' );
+
+		// @phan-suppress-next-line PhanUndeclaredFunctionInCallable
+		$this->deprecatePublicPropertyFallback( 'mNamespace', '1.38', 'getNamespace' );
+
+		// @phan-suppress-next-line PhanUndeclaredFunctionInCallable
+		$this->deprecatePublicPropertyFallback( 'mInterwiki', '1.38', 'getInterwiki' );
+
+		// @phan-suppress-next-line PhanUndeclaredFunctionInCallable
+		$this->deprecatePublicPropertyFallback( 'mFragment', '1.38', 'getFragment', 'setFragment' );
 	}
 
 	/**
@@ -698,22 +708,13 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return Title
 	 */
 	public static function newMainPage( MessageLocalizer $localizer = null ) {
-		static $recursionGuard = false;
-		if ( $recursionGuard ) {
-			// Somehow parsing the message contents has fallen back to the
-			// main page (bare local interwiki), so use the hardcoded
-			// fallback (T297571).
-			return self::newFromText( 'Main Page' );
-		}
 		if ( $localizer ) {
 			$msg = $localizer->msg( 'mainpage' );
 		} else {
 			$msg = wfMessage( 'mainpage' );
 		}
 
-		$recursionGuard = true;
 		$title = self::newFromText( $msg->inContentLanguage()->text() );
-		$recursionGuard = false;
 
 		// Every page renders at least one link to the Main Page (e.g. sidebar).
 		// If the localised value is invalid, don't produce fatal errors that
@@ -4175,7 +4176,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * If this ID is 0, this means the page does not exist.
 	 *
 	 * @see getArticleID()
-	 * @since 1.36, since 1.35.6 as an alias of getArticleId()
+	 * @since 1.35
 	 *
 	 * @param string|false $wikiId The wiki ID expected by the caller.
 	 *

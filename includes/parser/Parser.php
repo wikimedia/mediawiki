@@ -4401,8 +4401,7 @@ class Parser {
 			}
 			$tocraw[] = [
 				'toclevel' => $toclevel,
-				// cast $level to string in order to keep b/c for the parse api
-				'level' => (string)$level,
+				'level' => $level,
 				'line' => $tocline,
 				'number' => $numbering,
 				'index' => ( $isTemplate ? 'T-' : '' ) . $sectionIndex,
