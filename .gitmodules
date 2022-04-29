@@ -1578,3 +1578,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-InterwikiSorting
 	branch = REL1_38
 	ignore = dirty
+[submodule "extensions/CreatedPagesList"]
+	path = extensions/CreatedPagesList
+	url = https://github.com/wikimedia/mediawiki-extensions-CreatedPagesList
+	branch = REL1_38
+	ignore = dirty
