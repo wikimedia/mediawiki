@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Radio checkbox fields.
@@ -80,8 +79,7 @@ class HTMLRadioField extends HTMLFormField {
 	}
 
 	public function formatOptions( $options, $value ) {
-		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()
-			->getMainConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
+		$useMediaWikiUIEverywhere = $this->mParent->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
 
 		$html = '';
 
