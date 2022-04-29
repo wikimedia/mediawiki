@@ -19,7 +19,8 @@
 			"Tobi 406",
 			"Umherirrender",
 			"Wikinaut",
-			"아라"
+			"아라",
+			"Brettchenweber"
 		]
 	},
 	"config-desc": "Das MediaWiki-Installationsprogramm",
@@ -73,6 +74,7 @@
 	"config-no-fts3": "'''Warnung:''' SQLite wurde ohne das [//sqlite.org/fts3.html FTS3-Modul] kompiliert, sodass keine Suchfunktionen für dieses Datenbanksystem zur Verfügung stehen werden.",
 	"config-pcre-old": "<strong>Fataler Fehler:</strong> PCRE $1 oder neuer ist erforderlich!\nDie vorhandene PHP-Binärdatei ist mit PCRE $2 verknüpft.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE Weitere Informationen].",
 	"config-pcre-no-utf8": "'''Fataler Fehler:''' Das PHP-Modul PCRE scheint ohne PCRE_UTF8-Unterstützung kompiliert worden zu sein.\nMediaWiki benötigt die UTF-8-Unterstützung, um fehlerfrei lauffähig zu sein.",
+	"config-pcre-invalid-newline": "<strong>Fataler Fehler:</strong> PHPs PCRE-Modul scheint mit PCRE_CONFIG_NEWLINE = -1 für ANY kompiliert zu sein.\nMediaWiki ist mit dieser Konfiguration nicht kompatibel.",
 	"config-memory-raised": "Der PHP-Parameter <code>memory_limit</code> betrug $1 und wurde auf $2 erhöht.",
 	"config-memory-bad": "'''Warnung:''' Der PHP-Parameter <code>memory_limit</code> beträgt $1.\nDieser Wert ist wahrscheinlich zu niedrig.\nDer Installationsvorgang könnte eventuell scheitern!",
 	"config-apc": "[https://www.php.net/apc APC] ist installiert",
@@ -229,12 +231,12 @@
 	"config-upload-deleted": "Verzeichnis für gelöschte Dateien:",
 	"config-upload-deleted-help": "Bitte ein Verzeichnis auswählen, in dem gelöschte Dateien archiviert werden sollen.\nIdealerweise sollte es nicht über das Internet zugänglich sein.",
 	"config-personalization-settings": "Personalisierung",
-	"config-logo-summary": "Für jedes dieser Felder musst du ein Bild in der entsprechenden Größe hochladen und die URL in die unten stehenden Felder eingeben. Du kannst  <code>$wgStylePath</code> oder <code>$wgScriptPath</code> verwenden, wenn dein Logo relativ zu diesen Pfaden abgelegt ist. You can leave any of these boxes blank. Du kannst jedes dieser Felder leer lassen. \n\nIn unterstützten Browsern kannst du auch Bilddateien aus deinem Dateisystem in die Eingabefelder oder den Vorschaubereich ziehen.",
+	"config-logo-summary": "Für jedes dieser Felder musst du ein Bild in der entsprechenden Größe hochladen und die URL in die unten stehenden Felder eingeben. Du kannst  <code>$wgStylePath</code> oder <code>$wgScriptPath</code> verwenden, wenn dein Logo relativ zu diesen Pfaden abgelegt ist. Du kannst jedes dieser Felder leer lassen. \n\nIn unterstützten Browsern kannst du auch Bilddateien aus deinem Dateisystem in die Eingabefelder oder den Vorschaubereich ziehen.",
 	"config-logo-preview-main": "Hauptseite",
 	"config-logo-icon": "Logo (Icon)",
 	"config-logo-icon-help": "Dein Logo-Symbol sollte quadratisch und idealerweise größer als 50 Pixel oder ein SVG sein.",
 	"config-logo-wordmark": "Wortmarke (optional)",
-	"config-logo-wordmark-help": "Der Name deiner Website. Wenn nicht definiert, wird in der Regel auf Text zurückgreifen. Idealerweise ein SVG mit einer Höhe von 30 Pixel oder weniger.",
+	"config-logo-wordmark-help": "Der Name deiner Website. Wenn nicht definiert, wird in der Regel auf Text zurückgegriffen. Idealerweise ein SVG mit einer Höhe von 30 Pixel oder weniger.",
 	"config-logo-tagline": "Tagline (optional)",
 	"config-logo-tagline-help": "Die Tagline deiner Website. Nur verwenden, wenn du oben eine Wortmarke definiert hast. Wenn du keine Wortmarke definiert hast, wird diese in der Regel in Text umgewandelt. Die kombinierte Höhe von Tagline und Wortmarke sollte in der Regel 50 Pixel nicht überschreiten.",
 	"config-logo-sidebar": "Logo in der Seitenleiste (optional):",

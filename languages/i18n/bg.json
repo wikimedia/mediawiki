@@ -51,8 +51,12 @@
 			"Петър Петров",
 			"לערי ריינהארט",
 			"아라",
+<<<<<<< HEAD
 			"McDutchie",
 			"NikiTricky"
+=======
+			"QuickQuokka"
+>>>>>>> ddc1a4b848086f3ea5de57e756d396b514bc7b63
 		]
 	},
 	"tog-underline": "Подчертаване на препратките:",
@@ -1365,7 +1369,7 @@
 	"action-reupload-shared": "предефиране на едноименен файл от общото мултимедийно хранилище",
 	"action-upload_by_url": "качване на този файл от URL адрес",
 	"action-writeapi": "използване на API за писане",
-	"action-delete": "изтриване на страницата",
+	"action-delete": "изтриване на тази страницата",
 	"action-deleterevision": "изтриване на версии",
 	"action-deletelogentry": "изтриване на записи от дневника",
 	"action-deletedhistory": "преглед на изтритата история на тази страница",
@@ -3927,7 +3931,6 @@
 	"paramvalidator-help-type-user-subtype-cidr": "IP-диапазон",
 	"paramvalidator-help-type-user-subtype-interwiki": "име на междууикито (напр. „представка>ПримерноИме“)",
 	"paramvalidator-help-type-user-subtype-id": "Идентификатор на потребителя (напр. „#12345“)",
-	"view-view-foreign": "Преглед в $1",
 	"view-create-local": "Добавяне на локално описание",
 	"nstab-mainpage": "Начална страница",
 	"view-edit-local": "Редактиране на локалното описание",

@@ -57,6 +57,11 @@ class RequestContext implements IContextSource, MutableContext {
 	private $wikipage;
 
 	/**
+	 * @var null|string
+	 */
+	private $action;
+
+	/**
 	 * @var OutputPage
 	 */
 	private $output;
@@ -172,8 +177,9 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public function setTitle( Title $title = null ) {
 		$this->title = $title;
-		// Erase the WikiPage so a new one with the new title gets created.
+		// Clear cache of derived getters
 		$this->wikipage = null;
+		$this->clearActionName();
 	}
 
 	/**
@@ -233,6 +239,8 @@ class RequestContext implements IContextSource, MutableContext {
 		}
 		// Defer this to the end since setTitle sets it to null.
 		$this->wikipage = $wikiPage;
+		// Clear cache of derived getter
+		$this->clearActionName();
 	}
 
 	/**
@@ -255,6 +263,64 @@ class RequestContext implements IContextSource, MutableContext {
 		}
 
 		return $this->wikipage;
+	}
+
+	/**
+	 * @since 1.38
+	 * @param string $action
+	 */
+	public function setActionName( string $action ): void {
+		$this->action = $action;
+	}
+
+	/**
+	 * Get the action name for the current web request.
+	 *
+	 * This generally returns "view" if the current request or process is
+	 * not for a skinned index.php web request (e.g. load.php, thumb.php,
+	 * job runner, CLI, API).
+	 *
+	 * @warning This must not be called before or during the Setup.php phase,
+	 * and may cause an error or warning if called too early.
+	 *
+	 * @since 1.38
+	 * @return string Action
+	 */
+	public function getActionName(): string {
+		// Optimisation: This is cached to avoid repeated running of the
+		// expensive operations to compute this. The computation involves creation
+		// of Article, WikiPage, and ContentHandler objects (and the various
+		// database queries these classes require to be instantiated), as well
+		// as potentially slow extension hooks at various level in these
+		// classes.
+		//
+		// This is value frequently needed in OutputPage and in various
+		// Skin-related methods and classes.
+		if ( $this->action === null ) {
+			$this->action = MediaWikiServices::getInstance()
+				->getActionFactory()
+				->getActionName( $this );
+		}
+
+		return $this->action;
+	}
+
+	private function clearActionName(): void {
+		if ( $this->action !== null ) {
+			// Log if cleared after something already computed it as that is
+			// likely to cause bugs (given the first caller may be using it for
+			// something), and also because it's an expensive thing to needlessly
+			// compute multiple times even when it produces the same value.
+			//
+			// TODO: Once confident we don't rely on this,
+			// change to E_USER_WARNING with trigger_error and silence error
+			// in relevant tests.
+			$logger = LoggerFactory::getInstance( 'Setup' );
+			$logger->warning( 'Changing action after getActionName was already called',
+				[ 'exception' => new Exception ]
+			);
+			$this->action = null;
+		}
 	}
 
 	/**

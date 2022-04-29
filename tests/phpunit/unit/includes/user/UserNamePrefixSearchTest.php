@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\User;
 
 use InvalidArgumentException;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWikiUnitTestCase;
@@ -94,7 +93,6 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 
 		$userNamePrefixSearch = new UserNamePrefixSearch(
 			$loadBalancer,
-			$this->createNoOpMock( UserFactory::class ),
 			$userNameUtils
 		);
 		$res = $userNamePrefixSearch->search(
@@ -139,7 +137,6 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 	public function testSearchInvalidAudience() {
 		$userNamePrefixSearch = new UserNamePrefixSearch(
 			$this->createMock( LoadBalancer::class ),
-			$this->createMock( UserFactory::class ),
 			$this->createMock( UserNameUtils::class )
 		);
 

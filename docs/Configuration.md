@@ -5855,6 +5855,33 @@ GetPagesFromNamespace functions.
 The schema to use per default when generating XML dumps. This allows sites to control
 explicitly when to make breaking changes to their export and dump format.
 
+# WikiFarmSettingsDirectory {#WikiFarmSettingsDirectory}
+EXPERIMENTAL: A directory that contains site-specific
+configuration files. Setting this will enable multi-tenant ("wiki farm")
+mode, causing site-specific settings to be loaded based on information from
+the web request.
+@unstable
+@since 1.38
+
+# WikiFarmSettingsExtension {#WikiFarmSettingsExtension}
+EXPERIMENTAL: The file extension to be used when looking up
+site-specific settings files in $wgWikiFarmSettingsDirectory, such as 'json'
+or 'yaml'.
+@unstable
+@since 1.38
+
+# WikiFarmSiteDetector {#WikiFarmSiteDetector}
+EXPERIMENTAL: Callback to use to determine the name of the requested site for the
+current request. Per default, a method built into WikiFarmSettingsLoader is used,
+which will try to determine the wiki name based on the WIKI_NAME environment
+variable (if set), or the requested (virtual) host.
+Must return a string or null. The return value is used together with the
+WikiFarmSettingsDirectory and WikiFarmSettingsExtension to construct the path of
+the settings file that holds site specific configuration for the requested site.
+Note that the global $wgRequest is not yet available when this callback is called.
+@unstable
+@since 1.38
+
 # ExtensionFunctions {#ExtensionFunctions}
 A list of callback functions which are called once MediaWiki is fully
 initialised
@@ -6245,9 +6272,9 @@ Extensions with custom log types may add to this array.
 where TYPE is your log type, yoy don't need to use this array.
 
 # LogActions {#LogActions}
-Lists the message key string for formatting individual events of each
-type and action when listed in the logs.
-
+Maps log actions to message keys, for formatting log entries of each type
+and action when displaying logs to the user.
+The array keys are composed as "$type/$action".
 Extensions with custom log types may add to this array.
 
 # LogActionsHandlers {#LogActionsHandlers}

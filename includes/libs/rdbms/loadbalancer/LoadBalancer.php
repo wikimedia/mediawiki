@@ -1910,11 +1910,9 @@ class LoadBalancer implements ILoadBalancer {
 		$restore = ( $this->trxRoundId !== false );
 		$this->trxRoundId = false;
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
-		$this->forEachOpenPrimaryConnection(
-			static function ( IDatabase $conn ) use ( $fname ) {
-				$conn->rollback( $fname, $conn::FLUSHING_ALL_PEERS );
-			}
-		);
+		$this->forEachOpenPrimaryConnection( static function ( IDatabase $conn ) use ( $fname ) {
+			$conn->rollback( $fname, $conn::FLUSHING_ALL_PEERS );
+		} );
 		if ( $restore ) {
 			// Unmark handles as participating in this explicit transaction round
 			$this->forEachOpenPrimaryConnection( function ( Database $conn ) {
@@ -1922,20 +1920,6 @@ class LoadBalancer implements ILoadBalancer {
 			} );
 		}
 		$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;
-	}
-
-	public function flushPrimarySessions( $fname = __METHOD__, $owner = null ) {
-		$this->assertTransactionRoundStage( [ self::ROUND_CURSORY ] );
-		if ( $this->hasPrimaryChanges() ) {
-			// Any transaction should have been rolled back beforehand
-			throw new DBTransactionError( null, "Cannot reset session while writes are pending" );
-		}
-
-		$this->forEachOpenPrimaryConnection(
-			static function ( IDatabase $conn ) use ( $fname ) {
-				$conn->flushSession( $fname );
-			}
-		);
 	}
 
 	/**

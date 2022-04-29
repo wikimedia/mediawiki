@@ -37,7 +37,7 @@ class FileSourceTest extends TestCase {
 	}
 
 	public function testLoadBadFormat() {
-		$source = new FileSource( __DIR__ . '/fixtures/bad.json', new JsonFormat() );
+		$source = new FileSource( __DIR__ . '/fixtures/bad.txt', new JsonFormat() );
 
 		$this->expectException( SettingsBuilderException::class );
 

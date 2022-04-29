@@ -17,7 +17,7 @@ Important: Upgrading from releases older than two LTS release is not supported a
 If you want to upgrade from an old version, please upgrade to a more recent LTS version first,
 then to this version.
 
-Currently any upgrade from any version older than 1.27 will fail.
+Currently any upgrade from any version older than 1.29 will fail.
 
 === Consult the release notes ===
 

@@ -9,7 +9,6 @@
  *
  * @covers MediaWikiIntegrationTestCase
  * @group Database
- * @group Broken Flaky T292239
  */
 class MediaWikiIntegrationTestCaseSchema2Test extends MediaWikiIntegrationTestCase {
 

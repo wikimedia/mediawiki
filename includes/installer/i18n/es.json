@@ -52,10 +52,14 @@
 			"Translationista",
 			"Vivaelcelta",
 			"아라",
+<<<<<<< HEAD
 			"AVIADOR71",
 			"Jakeukalane",
 			"Reverse88",
 			"DDPAT"
+=======
+			"DiegoAmbrocio"
+>>>>>>> ddc1a4b848086f3ea5de57e756d396b514bc7b63
 		]
 	},
 	"config-desc": "El instalador de MediaWiki",
@@ -264,6 +268,11 @@
 	"config-upload-help": "La subida de archivos potencialmente expone tu servidor a riesgos de seguridad.\nPara obtener más información, consulta la [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security sección de seguridad] en el manual.\n\nPara activar la subida de archivos, cambia el modo en el subdirectorio <code>images</code> bajo el directorio raíz de MediaWiki para que el servidor web pueda escribir en él.\nLuego, activa esta opción.",
 	"config-upload-deleted": "Directorio para los archivos eliminados:",
 	"config-upload-deleted-help": "Elige un directorio en el que guardar los archivos eliminados.\nLo ideal es una carpeta no accesible desde la red.",
+	"config-personalization-settings": "Personalización",
+	"config-logo-preview-main": "Página principal",
+	"config-logo-icon": "Logotipo (icono)",
+	"config-logo-icon-help": "El icono de su logotipo debe ser cuadrado e idealmente de más de 50px o un SVG.",
+	"config-logo-filedrop": "Suelte un archivo de imagen aquí",
 	"config-instantcommons": "Activar Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] es una característica que permite que las wikis puedan utilizar imágenes, sonidos y otros archivos multimedia que se encuentran en el sitio [https://commons.wikimedia.org/ Wikimedia Commons].\nPara ello, MediaWiki requiere acceso a Internet.\n\nPara obtener más información sobre esta función, incluidas las instrucciones sobre cómo configurarlo para otras wikis distintas de Wikimedia Commons, consulta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos el manual].",
 	"config-cc-error": "El selector de licencia de Creative Commons no dio resultado.\nEscribe el nombre de la licencia manualmente.",

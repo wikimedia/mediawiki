@@ -8376,6 +8376,49 @@ $wgXmlDumpSchemaVersion = XML_DUMP_SCHEMA_VERSION_11;
 // endregion -- end of import/export
 
 /***************************************************************************/
+// region   Wiki Farm
+/** @name   Wiki Farm */
+/**
+ * EXPERIMENTAL: A directory that contains site-specific
+ * configuration files. Setting this will enable multi-tenant ("wiki farm")
+ * mode, causing site-specific settings to be loaded based on information from
+ * the web request.
+ *
+ * @unstable
+ * @since 1.38
+ */
+$wgWikiFarmSettingsDirectory = null;
+
+/**
+ * EXPERIMENTAL: The file extension to be used when looking up
+ * site-specific settings files in $wgWikiFarmSettingsDirectory, such as 'json'
+ * or 'yaml'.
+ *
+ * @unstable
+ * @since 1.38
+ */
+$wgWikiFarmSettingsExtension = 'yaml';
+
+/**
+ * EXPERIMENTAL: Callback to use to determine the name of the requested site for the
+ * current request. Per default, a method built into WikiFarmSettingsLoader is used,
+ * which will try to determine the wiki name based on the WIKI_NAME environment
+ * variable (if set), or the requested (virtual) host.
+ *
+ * Must return a string or null. The return value is used together with the
+ * WikiFarmSettingsDirectory and WikiFarmSettingsExtension to construct the path of
+ * the settings file that holds site specific configuration for the requested site.
+ *
+ * Note that the global $wgRequest is not yet available when this callback is called.
+ *
+ * @unstable
+ * @since 1.38
+ */
+$wgWikiFarmSiteDetector = null;
+
+// endregion -- End Wiki Farm
+
+/***************************************************************************/
 // region   Extensions
 /** @name   Extensions */
 
