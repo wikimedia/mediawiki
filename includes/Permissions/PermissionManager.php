@@ -827,23 +827,26 @@ class PermissionManager {
 		// There is no way to instantiate an action by restriction. However, this
 		// will get the action where the restriction is the same. This may result
 		// in actions being blocked that shouldn't be.
-		// TODO: this drags a ton of dependencies in, would be good to avoid Article
-		//  instantiation and decouple it creating an ActionPermissionChecker interface
-		// Creating an action will perform several database queries to ensure that
-		// the action has not been overridden by the content type.
-		// FIXME: avoid use of RequestContext since it drags in User and Title dependencies
-		//  probably we may use fake context object since it's unlikely that Action uses it
-		//  anyway. It would be nice if we could avoid instantiating the Action at all.
+		$actionObj = null;
 		$title = Title::newFromLinkTarget( $page, 'clone' );
-		$context = RequestContext::getMain();
-		$actionObj = Action::factory(
-			$action,
-			Article::newFromTitle( $title, $context ),
-			$context
-		);
-		// Ensure that the retrieved action matches the restriction.
-		if ( $actionObj && $actionObj->getRestriction() !== $action ) {
-			$actionObj = null;
+		if ( $title->canExist() ) {
+			// TODO: this drags a ton of dependencies in, would be good to avoid Article
+			//  instantiation and decouple it creating an ActionPermissionChecker interface
+			// Creating an action will perform several database queries to ensure that
+			// the action has not been overridden by the content type.
+			// FIXME: avoid use of RequestContext since it drags in User and Title dependencies
+			//  probably we may use fake context object since it's unlikely that Action uses it
+			//  anyway. It would be nice if we could avoid instantiating the Action at all.
+			$context = RequestContext::getMain();
+			$actionObj = Action::factory(
+				$action,
+				Article::newFromTitle( $title, $context ),
+				$context
+			);
+			// Ensure that the retrieved action matches the restriction.
+			if ( $actionObj && $actionObj->getRestriction() !== $action ) {
+				$actionObj = null;
+			}
 		}
 
 		// If no action object is returned, assume that the action requires unblock
