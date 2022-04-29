@@ -3948,6 +3948,7 @@
 	"deflate-invaliddeflate": "Le contento fornite non es correctemente comprimite",
 	"unprotected-js": "Pro motivos de securitate, non es possibile cargar codice JavaScript de paginas non protegite. Crea JavaScript solmente in le spatio de nomines \"MediaWiki:\" o como un subpagina de usator.",
 	"userlogout-continue": "Vole tu clauder le session?",
+	"userlogout-temp": "Es tu secur de voler clauder session? Il non essera possibile reaperir session con iste conto temporari.",
 	"paramvalidator-baduser": "Valor invalide \"$2\" pro le parametro de usator <var>$1</var>.",
 	"paramvalidator-help-type-user": "Typo: {{PLURAL:$1|1=usator|2=lista de usatores}}, {{PLURAL:$3|per|per un de}} $2",
 	"paramvalidator-help-type-user-subtype-name": "nomine de usator",
