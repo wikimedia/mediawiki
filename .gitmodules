@@ -711,7 +711,7 @@
 [submodule "skins/Tweeki"]
 	path = skins/Tweeki
 	url = https://github.com/thaider/Tweeki
-	branch = REL1_38
+	branch = master
 	ignore = dirty
 [submodule "extensions/GuidedTour"]
 	path = extensions/GuidedTour
