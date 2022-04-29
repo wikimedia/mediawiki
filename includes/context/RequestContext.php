@@ -447,7 +447,9 @@ class RequestContext implements IContextSource, MutableContext {
 				// Optimisation: Avoid slow getVal(), this isn't user-generated content.
 				$code = $request->getRawVal( 'uselang', 'user' );
 				if ( $code === 'user' ) {
-					$code = $user->getOption( 'language' );
+					$userOptionsLookup = MediaWikiServices::getInstance()
+						->getUserOptionsLookup();
+					$code = $userOptionsLookup->getOption( $user, 'language' );
 				}
 
 				// There are certain characters we don't allow in language code strings,
@@ -508,7 +510,9 @@ class RequestContext implements IContextSource, MutableContext {
 			} else {
 				// No hook override, go through normal processing
 				if ( !in_array( 'skin', $this->getConfig()->get( 'HiddenPrefs' ) ) ) {
-					$userSkin = $this->getUser()->getOption( 'skin' );
+					$userOptionsLookup = MediaWikiServices::getInstance()
+						->getUserOptionsLookup();
+					$userSkin = $userOptionsLookup->getOption( $this->getUser(), 'skin' );
 					// Optimisation: Avoid slow getVal(), this isn't user-generated content.
 					$userSkin = $this->getRequest()->getRawVal( 'useskin', $userSkin );
 				} else {
