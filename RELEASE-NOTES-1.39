@@ -37,6 +37,10 @@ For notes on 1.38.x and older releases, see HISTORY.
 ==== Removed configuration ====
 * $wgMultiContentRevisionSchemaMigrationStage - Migration is over, was
   deprecated since 1.35.
+* $wgWikiFarmSiteDetector – experimental setting removed without replacement.
+  Use the MW_WIKI_NAME environment variable to specifiy the name of the site
+  to load configuration for. Using the WIKI_NAME environment variable for this
+  purpose is deprecated.
 * $wgAllowJavaUploads - To allow uploads of JAR files, remove application/java
   from $wgMimeTypeExclusions.
 * …
@@ -153,6 +157,12 @@ because of Phabricator reports.
   - Skin::getPortletData has been made private.
   - SkinTemplate::getPersonalToolsList(), deprecated in 1.35 has been
     removed.
+* Experimental wiki farm support: Automatic detection of the requested site
+  within a wiki farm based on the requested domain has been removed.
+  Use the MW_WIKI_NAME environment variable to specifiy the name of the site
+  to load configuration for. Using the WIKI_NAME environment variable for this
+  purpose is deprecated. This is only relevant if you have been using
+  $wgWikiFarmSettingsDirectory to load wiki farm config.
 * Calling getId() on a User or UserIdentityValue from the wrong wiki, deprecated
   since 1.36, now throws an exception.
 * IResultWrapper::next() now returns void, to match the Iterator interface that

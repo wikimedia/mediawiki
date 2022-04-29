@@ -3827,12 +3827,6 @@ class MainConfigNames {
 	public const WikiFarmSettingsExtension = 'WikiFarmSettingsExtension';
 
 	/**
-	 * Name constant for the WikiFarmSiteDetector setting, for use with Config::get()
-	 * @see MainConfigSchema::WikiFarmSiteDetector
-	 */
-	public const WikiFarmSiteDetector = 'WikiFarmSiteDetector';
-
-	/**
 	 * Name constant for the ExtensionFunctions setting, for use with Config::get()
 	 * @see MainConfigSchema::ExtensionFunctions
 	 */
