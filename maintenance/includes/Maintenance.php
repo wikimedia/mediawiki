@@ -21,6 +21,7 @@
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
@@ -1142,8 +1143,8 @@ abstract class Maintenance {
 
 		$config = $settingsBuilder->getConfig();
 		$overrides = [];
-		$overrides['DBadminuser'] = $config->get( 'DBadminuser' );
-		$overrides['DBadminpassword'] = $config->get( 'DBadminpassword' );
+		$overrides['DBadminuser'] = $config->get( MainConfigNames::DBadminuser );
+		$overrides['DBadminpassword'] = $config->get( MainConfigNames::DBadminpassword );
 
 		# Turn off output buffering again, it might have been turned on in the settings files
 		if ( ob_get_level() ) {
@@ -1154,7 +1155,7 @@ abstract class Maintenance {
 
 		# Override $wgServer
 		if ( $this->hasOption( 'server' ) ) {
-			$overrides['Server'] = $this->getOption( 'server', $config->get( 'Server' ) );
+			$overrides['Server'] = $this->getOption( 'server', $config->get( MainConfigNames::Server ) );
 		}
 
 		# If these were passed, use them
@@ -1183,7 +1184,7 @@ abstract class Maintenance {
 			$overrides['DBpassword'] = $overrides[ 'DBadminpassword' ];
 
 			/** @var array $dbServers */
-			$dbServers = $config->get( 'DBservers' );
+			$dbServers = $config->get( MainConfigNames::DBservers );
 			if ( $dbServers ) {
 				foreach ( $dbServers as $i => $server ) {
 					$dbServers[$i]['user'] = $overrides['DBuser'];
@@ -1192,7 +1193,7 @@ abstract class Maintenance {
 				$overrides['DBservers'] = $dbServers;
 			}
 
-			$lbFactoryConf = $config->get( 'LBFactoryConf' );
+			$lbFactoryConf = $config->get( MainConfigNames::LBFactoryConf );
 			if ( isset( $lbFactoryConf['serverTemplate'] ) ) {
 				$lbFactoryConf['serverTemplate']['user'] = $overrides['DBuser'];
 				$lbFactoryConf['serverTemplate']['password'] = $overrides['DBpassword'];
