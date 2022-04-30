@@ -590,36 +590,42 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	 */
 
 	/** @inheritDoc */
+	#[\ReturnTypeWillChange]
 	public function count() {
 		$data = &$this->backend->getData();
 		return count( $data );
 	}
 
 	/** @inheritDoc */
+	#[\ReturnTypeWillChange]
 	public function current() {
 		$data = &$this->backend->getData();
 		return current( $data );
 	}
 
 	/** @inheritDoc */
+	#[\ReturnTypeWillChange]
 	public function key() {
 		$data = &$this->backend->getData();
 		return key( $data );
 	}
 
 	/** @inheritDoc */
+	#[\ReturnTypeWillChange]
 	public function next() {
 		$data = &$this->backend->getData();
 		next( $data );
 	}
 
 	/** @inheritDoc */
+	#[\ReturnTypeWillChange]
 	public function rewind() {
 		$data = &$this->backend->getData();
 		reset( $data );
 	}
 
 	/** @inheritDoc */
+	#[\ReturnTypeWillChange]
 	public function valid() {
 		$data = &$this->backend->getData();
 		return key( $data ) !== null;
