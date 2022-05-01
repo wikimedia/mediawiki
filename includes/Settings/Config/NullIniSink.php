@@ -5,7 +5,7 @@ namespace MediaWiki\Settings\Config;
 /**
  * Null implementation of PhpIniSink, useful for testing and benchmarking.
  *
- * @unstable
+ * @since 1.39
  */
 class NullIniSink extends PhpIniSink {
 

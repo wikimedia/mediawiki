@@ -5,6 +5,11 @@ namespace MediaWiki\Settings\Config;
 use Config;
 use GlobalVarConfig;
 
+/**
+ * ConfigBuilder implemented on top of global variables.
+ *
+ * @since 1.39
+ */
 class GlobalConfigBuilder extends ConfigBuilderBase {
 
 	/** @var string */

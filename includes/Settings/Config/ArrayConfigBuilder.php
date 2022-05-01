@@ -6,6 +6,11 @@ use Config;
 use HashConfig;
 use MediaWiki\Config\IterableConfig;
 
+/**
+ * ConfigBuilder implemented around arrays, will create an IterableConfig.
+ *
+ * @since 1.39
+ */
 class ArrayConfigBuilder extends ConfigBuilderBase {
 
 	/** @var array */
