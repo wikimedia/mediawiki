@@ -150,6 +150,8 @@ because of Phabricator reports.
   - Skin::getPortletData has been made private.
   - SkinTemplate::getPersonalToolsList(), deprecated in 1.35 has been
     removed.
+* Calling getId() on a User or UserIdentityValue from the wrong wiki, deprecated
+  since 1.36, now throws an exception.
 * …
 
 === Deprecations in 1.39 ===

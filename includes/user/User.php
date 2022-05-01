@@ -1887,7 +1887,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return int The user's ID; 0 if the user is anonymous or nonexistent
 	 */
 	public function getId( $wikiId = self::LOCAL ): int {
-		$this->deprecateInvalidCrossWiki( $wikiId, '1.36' );
+		$this->assertWiki( $wikiId );
 		if ( $this->mId === null && $this->mName !== null ) {
 			$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
 			if ( $userNameUtils->isIP( $this->mName ) || ExternalUserNames::isExternal( $this->mName ) ) {
