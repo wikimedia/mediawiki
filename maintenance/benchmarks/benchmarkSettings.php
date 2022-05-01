@@ -120,6 +120,31 @@ class BenchmarkSettings extends Benchmarker {
 			}
 		];
 
+		$benches['DefaultSettings.php + SetupDynamicConfig.php'] = [
+			'function' => static function () {
+				$IP = MW_INSTALL_PATH;
+				include MW_INSTALL_PATH . '/includes/DefaultSettings.php';
+				include MW_INSTALL_PATH . '/includes/SetupDynamicConfig.php';
+			}
+		];
+
+		$benches['config-schema.php + finalize'] = [
+			'function' => function () {
+				$settingsBuilder = $this->newSettingsBuilder();
+				$settingsBuilder->load(
+					new PhpSettingsSource( MW_INSTALL_PATH . '/includes/config-schema.php' )
+				);
+				$settingsBuilder->finalize(); // applies some dynamic defaults
+
+				// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.extract
+				extract( $GLOBALS );
+
+				// phpcs:ignore MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgDummyLanguageCodes
+				$wgDummyLanguageCodes = [];
+				include MW_INSTALL_PATH . '/includes/SetupDynamicConfig.php';
+			}
+		];
+
 		$this->bench( $benches );
 	}
 }
