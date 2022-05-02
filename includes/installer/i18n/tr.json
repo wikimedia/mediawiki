@@ -27,7 +27,8 @@
 			"MuratTheTurkish",
 			"SaldırganSincap",
 			"Sezgin İbiş",
-			"Stonecy"
+			"Stonecy",
+			"Can"
 		]
 	},
 	"config-desc": "MediaWiki yükleyicisi",
@@ -82,6 +83,7 @@
 	"config-no-fts3": "<strong>Uyarı:</strong> SQLite [//sqlite.org/fts3.html FTS3 modülü] olmadan derlendi, bu arkayüzde arama özellikleri kullanılamayacaktır.",
 	"config-pcre-old": "<strong>Ağır hata:</strong> PCRE $1 veya daha üst gerekli.\nSizin PHP kurulumunuz PCRE $2 ile bağlı.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE Daha fazla bilgi].",
 	"config-pcre-no-utf8": "<strong>Ağır hata:</strong> PHP'nin PCRE modülü PCRE_UTF8 desteği olmadan derlenmiş gözüküyor.\nMediaWiki'nin doğru çalışabilmesi için UTF-8 desteği gereklidir.",
+	"config-pcre-invalid-newline": "<strong>Hata:</strong> PHP'nin PCRE modülü, HERHANGİ BİR için PCRE_CONFIG_NEWLINE = -1 ile derlenmiş gibi görünüyor.\nMediaWiki bu yapılandırmayla uyumlu değil.",
 	"config-memory-raised": "PHP'nin <code>memory_limit</code> (hafıza sınırı) değeri $1, $2 ile yükseltildi.",
 	"config-memory-bad": "<strong>Uyarı:</strong> PHP'nin <code>memory_limit</code> (hafıza sınırı) değeri $1.\nBu büyük ihtimalle çok düşük.\nKurulum başarısız olabilir!",
 	"config-apc": "[https://www.php.net/tr/apc APC] kuruldu",

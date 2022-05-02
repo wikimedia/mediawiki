@@ -11,7 +11,8 @@
 			"Withoutaname",
 			"පසිඳු කාවින්ද",
 			"Phjtieudoc",
-			"NguoiDungKhongDinhDanh"
+			"NguoiDungKhongDinhDanh",
+			"Ngoxuannguyenchuong"
 		]
 	},
 	"config-desc": "Trình cài đặt MediaWiki",
@@ -49,7 +50,7 @@
 	"config-page-existingwiki": "Wiki đã tồn tại",
 	"config-help-restart": "Bạn có muốn xóa tất cả dữ liệu được lưu mà bạn vừa nhập và khởi động lại quá trình cài đặt?",
 	"config-restart": "Có, khởi động lại nó",
-	"config-welcome": "MediaWiki là gói phần mềm wiki có mã nguồn mở bằng ngôn ngữ PHP. Phần mềm này là nền tảng của Wikipedia và các dự án khác trực thuộc Wikimedia, nói chung được hàng triệu người sử dụng hàng tháng. MediaWiki được địa phương hóa sang hơn 350 ngôn ngữ. Độ tin cậy và các tính năng đầy đủ đã thu hút một cộng đồng người dùng và nhà phát triển bên thứ ba mạnh mẽ.\n=== Kiểm tra môi trường ===\nBây giờ sẽ kiểm tra sơ qua môi trường này có phù hợp cho việc cài đặt MediaWiki.\nHãy nhớ bao gồm thông tin này khi nào xin hỗ trợ hoàn thành việc cài đặt.",
+	"config-welcome": "MediaWiki là gói phần mềm wiki có mã nguồn mở viết bằng ngôn ngữ PHP. Phần mềm này là nền tảng của Wikipedia và các dự án khác trực thuộc Wikimedia, được hàng trăm triệu người sử dụng mỗi tháng. MediaWiki được địa phương hóa sang hơn 350 ngôn ngữ; độ tin cậy và độ đa dạng tính năng của nó đã thu hút một cộng đồng lớn người dùng và nhà phát triển bên thứ ba.\n=== Kiểm tra môi trường ===\nBước tiếp theo sẽ là kiểm tra môi trường để xem việc cài đặt MediaWiki có phù hợp hay không.\nHãy nhớ bao gồm thông tin này khi yêu cầu hỗ trợ hoàn thành việc cài đặt.",
 	"config-welcome-section-copyright": "=== Bản quyền và Điều khoản ===\n\n$1\n\nChương trình này là phần mềm tự do; bạn được phép tái phân phối và/hoặc sửa đổi nó theo những điều khoản của Giấy phép Công cộng GNU do Quỹ Phần mềm Tự do xuất bản; phiên bản 2 hay bất kỳ phiên bản nào mới hơn nào của Giấy phép (tùy bạn lựa chọn).\n\nChương trình này được phân phối với hy vọng rằng nó sẽ hữu ích, nhưng <strong>không có bất kỳ một đảm bảo nào</strong>, ngay cả những bảo đảm ngụ ý cho <strong>tính thương mại</strong> hoặc <strong>phù hợp với mục đích đặc biệt nào đó</strong>. \nXem Giấy phép Công cộng GNU để biết thêm chi tiết.\n\nCó lẽ bạn đã nhận được [$2 bản sao Giấy phép Công cộng GNU] đi kèm với chương trình này; nếu không, hãy viết thư đến:\n Free Software Foundation, Inc.\n 51 Franklin St., Fifth Floor\n Boston, MA 02110-1301\n USA\nhoặc [https://www.gnu.org/copyleft/gpl.html đọc nó trực tuyến].",
 	"config-sidebar": "* [https://www.mediawiki.org/wiki/Special:MyLanguage/MediaWiki Trang chủ MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Hướng dẫn sử dụng]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Contents Hướng dẫn quản lý]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Câu thường hỏi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Communication Thắc mắc]\n* [https://phabricator.wikimedia.org/ Theo dõi lỗi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute Đóng góp]",
 	"config-sidebar-relnotes": "Thông báo phát hành",

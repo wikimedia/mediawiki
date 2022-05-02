@@ -18,7 +18,8 @@
 			"YaronSh",
 			"ערן",
 			"שמזן",
-			"Matma Rex"
+			"Matma Rex",
+			"Ex-Diktator"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|תיעוד]]\n* [[mw:Special:MyLanguage/API:FAQ|שו\"ת]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api רשימת תפוצה]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce הודעות על API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R באגים ובקשות]\n</div>\n<strong>מצב:</strong> ה־API של מדיה־ויקי הוא ממשק ותיק ויציב שנתמך ומשתפר באופן סדיר. אף שאנחנו משתדלים להימנע מכך, לעיתים עלינו לבצע שינויים שעלולים לשבש דברים בפונקציונליות הזאת; באפשרותך לעשות מינוי ל[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ רשימת התפוצה mediawiki-api-announce] כדי לקבל הודעות על עדכונים.\n\n<strong>בקשות שגויות:</strong> כשבקשות שגויות נשלחות ל־API, יישלח כותר HTTP עם המפתח \"MediaWiki-API-Error\", ואז גם הערך של הכותרת וגם קוד השגיאה יוגדרו לאותו ערך. למידע נוסף, אפשר לעיין בדף [[mw:Special:MyLanguage/API:Errors_and_warnings|API:שגיאות ואזהרות]].\n\n<p class=\"mw-apisandbox-link\"><strong>בדיקה:</strong> לבדיקה קלה יותר של בקשות, אפשר להשתמש ב[[Special:ApiSandbox|ארגז החול של API]].</p>",
@@ -212,7 +213,7 @@
 	"apihelp-feedrecentchanges-param-invert": "כל מרחבי השם למעט זה שנבחר.",
 	"apihelp-feedrecentchanges-param-associated": "לכלול מרחב שם משויך (שיחה או ראשי).",
 	"apihelp-feedrecentchanges-param-days": "לכמה ימים להגביל את התוצאות.",
-	"apihelp-feedrecentchanges-param-limit": "המספר המרבי של התוצאות להחזיר.",
+	"apihelp-feedrecentchanges-param-limit": "מספר התוצאות המרבי להחזרה.",
 	"apihelp-feedrecentchanges-param-from": "להציג תוצאות מאז.",
 	"apihelp-feedrecentchanges-param-hideminor": "הסתרת שינוים משניים.",
 	"apihelp-feedrecentchanges-param-hidebots": "הסתרת שינויים שנעשו על ידי בוטים.",
@@ -316,7 +317,7 @@
 	"apihelp-move-example-move": "העברת <kbd>Badtitle</kbd> ל־<kbd>Goodtitle</kbd> בלי להשאיר הפניה.",
 	"apihelp-opensearch-summary": "חיפוש בוויקי בפרוטוקול OpenSearch.",
 	"apihelp-opensearch-param-search": "מחרוזת לחיפוש.",
-	"apihelp-opensearch-param-limit": "המספר המרבי של התוצאות שתוחזרנה.",
+	"apihelp-opensearch-param-limit": "מספר התוצאות המרבי להחזרה.",
 	"apihelp-opensearch-param-namespace": "מרחבי השם שבהם יתבצע החיפוש. לשדה זה אין משמעות אם <var>$1search</var> מתחיל עם תחילית תקינה של מרחב שם.",
 	"apihelp-opensearch-param-suggest": "כבר לא בשימוש.",
 	"apihelp-opensearch-param-redirects": "איך לטפל בהפניות:\n;return:להחזיר את ההפניה עצמה.\n;resolve:להחזיר את דף היעד. יכול להחזיר פחות מ־$1limit תוצאות.\nמסיבות היסטוריות, ברירת המחדל היא \"return\" עבור $1format=json ו־\"resolve\" עבור תסדירים אחרים.",

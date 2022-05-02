@@ -3698,7 +3698,7 @@
 	"logentry-merge-merge": "$1, $3 sayfasını ($5 tarihine kadar olan sürümler) $4 ile {{GENDER:$2|birleştirdi}}",
 	"logentry-move-move": "$1, $3 sayfasını $4 sayfasına {{GENDER:$2|taşıdı}}",
 	"logentry-move-move-noredirect": "$1 kullanıcısı $3 sayfasını $4 sayfasına yönlendirme olmaksızın {{GENDER:$2|taşıdı}}",
-	"logentry-move-move_redir": "$1 kullanıcısı $3 sayfasını $4 sayfasına yönlendirme üzerinden {{GENDER:$2|taşıdı}}",
+	"logentry-move-move_redir": "$1, $3 sayfasını $4 sayfasına yönlendirme üzerinden {{GENDER:$2|taşıdı}}",
 	"logentry-move-move_redir-noredirect": "$1 kullanıcısı $3 sayfasını bir yönlendirme üzerine yönlendirme bırakmadan $4 olarak {{GENDER:$2|taşıdı}}",
 	"logentry-patrol-patrol": "$1 kullanıcısı $3 sayfasının $4 revizyonunu kontrol edildi olarak {{GENDER:$2|işaretledi}}",
 	"logentry-patrol-patrol-auto": "$1 kullanıcısı $3 sayfasının $4 sürümünü otomatik olarak {{GENDER:$2|kontrol etti}}",

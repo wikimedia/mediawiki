@@ -49,7 +49,8 @@
 			"Neriah",
 			"דגש",
 			"לואיקה",
-			"מגזין יהלום"
+			"מגזין יהלום",
+			"Ex-Diktator"
 		]
 	},
 	"tog-underline": "סימון קישורים בקו תחתי:",
@@ -695,7 +696,7 @@
 	"accmailtitle": "הסיסמה נשלחה",
 	"accmailtext": "סיסמה אקראית עבור [[User talk:$1|$1]] נשלחה אל $2. ניתן לשנותה בדף <em>[[Special:ChangePassword|שינוי הסיסמה]]</em> לאחר הכניסה לחשבון.",
 	"newarticle": "(חדש)",
-	"newarticletext": "{{GENDER:|הגעת|הגעת|הגעתם}} לדף שעדיין אינו קיים.\nכדי ליצור את הדף הזה, {{GENDER:|התחל|התחילי|התחילו}} להקליד בתיבת הטקסט שלמטה ({{GENDER:|ראה|ראי|ראו}} את [$1 דף העזרה] למידע נוסף).\nאם {{GENDER:|הגעת|הגעת|הגעתם}} לכאן בטעות, {{GENDER:|לחץ|לחצי|לחצו}} על כפתור ה<strong>חזרה</strong> (Back) בדפדפן {{GENDER:|שלך|שלך|שלכם}}.",
+	"newarticletext": "הגעת לדף שעדיין אינו קיים.\nכדי ליצור את הדף הזה, יש להתחיל להקליד בתיבת הטקסט שלמטה (ר' את [$1 דף העזרה] למידע נוסף).\nאם הגעת לכאן בטעות, נא ללחוץ על כפתור ה<strong>חזרה</strong> בדפדפן שלך.",
 	"anontalkpagetext": "----\n<em>זהו דף שיחה של משתמש אנונימי שעדיין לא יצר חשבון באתר, או שהוא לא משתמש בו.</em>\nלכן עלינו להשתמש בכתובת ה־IP המספרית כדי לזהותו.\nייתכן שכתובת IP זו תהיה משותפת למספר משתמשים.\nאם אתם משתמשים אנונימיים ומרגישים שקיבלתם הודעות שאינן רלוונטיות עבורכם, אנא [[Special:CreateAccount|צרו חשבון]] או [[Special:UserLogin|היכנסו לחשבון]] כדי להימנע מבלבולים עתידיים עם משתמשים אנונימיים אחרים.",
 	"noarticletext": "אין כרגע טקסט בדף הזה.\nבאפשרותך [[Special:Search/{{PAGENAME}}|לחפש את כותרת הדף]] בדפים אחרים,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} לחפש את הדף ביומנים],\nאו [{{fullurl:{{FULLPAGENAME}}|action=edit}} ליצור את הדף]</span>.",
 	"noarticletext-nopermission": "אין כרגע טקסט בדף הזה.\nבאפשרותך [[Special:Search/{{PAGENAME}}|לחפש את כותרת הדף]] בדפים אחרים או <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} לחפש את הדף ביומנים]</span>, אך אין לך הרשאה ליצור את הדף.",
@@ -3630,7 +3631,7 @@
 	"revdelete-uname-unhid": "הסתרת שם המשתמש בוטלה",
 	"revdelete-restricted": "נוספו הגבלות למפעילי מערכת",
 	"revdelete-unrestricted": "הוסרו הגבלות ממפעילי מערכת",
-	"logentry-block-block": "$1 {{GENDER:$2|חסם|חסמה}} את {{GENDER:$4|$3}} למשך $5 $6",
+	"logentry-block-block": "$1 {{GENDER:$2|חסם|חסמה}} את {{GENDER:$4|$3}} עם זמן פקיעה של $5 $6",
 	"logentry-block-unblock": "$1 {{GENDER:$2|שחרר|שחררה}} את החסימה של {{GENDER:$4|$3}}",
 	"logentry-block-reblock": "$1 {{GENDER:$2|שינה|שינתה}} את הגדרות החסימה של {{GENDER:$4|$3}} עם זמן פקיעה של $5 $6",
 	"logentry-partialblock-block-page": "{{PLURAL:$1|הדף|הדפים}} $2",
