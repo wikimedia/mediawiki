@@ -11,6 +11,7 @@
 	"apihelp-feedcontributions-param-deletedonly": "رڳو ڊٿل ڀاڱيداريون ڏيکاريو",
 	"apihelp-feedcontributions-param-newonly": "صرف اھي سنوارون ڏيکاريو جيڪي صفحي سرجايون آھن.",
 	"apihelp-feedrecentchanges-param-target": "صرف ھن صفحي کان ڳنڍيل صفحن تي تبديليون ڏيکاريو.",
+	"apihelp-feedrecentchanges-example-simple": "تازيون تبديليون ڏيکاريو",
 	"apihelp-feedrecentchanges-example-30days": "30 ڏينھن لاءِ تازيون تبديليون ڏيکاريو.",
 	"apihelp-patrol-summary": "ڪنھن صفحي يا ورجاءَ جو گشت ڪريو.",
 	"apihelp-patrol-example-rcid": "ڪنھن تازي تبديلي جو گشت ڪريو",
