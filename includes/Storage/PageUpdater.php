@@ -50,6 +50,7 @@ use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MWException;
+use Psr\Log\LoggerInterface;
 use RecentChange;
 use RuntimeException;
 use Status;
@@ -210,6 +211,9 @@ class PageUpdater {
 	/** @var string[] */
 	private $softwareTags = [];
 
+	/** @var LoggerInterface */
+	private $logger;
+
 	/**
 	 * @param UserIdentity $author
 	 * @param WikiPage $wikiPage
@@ -225,6 +229,7 @@ class PageUpdater {
 	 * @param ServiceOptions $serviceOptions
 	 * @param string[] $softwareTags Array of currently enabled software change tags. Can be
 	 *        obtained from ChangeTags::getSoftwareTags()
+	 * @param LoggerInterface $logger
 	 */
 	public function __construct(
 		UserIdentity $author,
@@ -239,7 +244,8 @@ class PageUpdater {
 		UserGroupManager $userGroupManager,
 		TitleFormatter $titleFormatter,
 		ServiceOptions $serviceOptions,
-		array $softwareTags
+		array $softwareTags,
+		LoggerInterface $logger
 	) {
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $serviceOptions;
@@ -271,6 +277,7 @@ class PageUpdater {
 			)
 		);
 		$this->softwareTags = $softwareTags;
+		$this->logger = $logger;
 	}
 
 	/**
@@ -916,6 +923,7 @@ class PageUpdater {
 			}
 
 			$this->status = $hookStatus;
+			$this->logger->info( "Hook prevented page save", [ 'status' => $hookStatus ] );
 			return null;
 		}
 
