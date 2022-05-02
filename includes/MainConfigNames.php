@@ -187,6 +187,9 @@ class MainConfigNames {
 	/**
 	 * Name constant for the LogoHD setting, for use with Config::get()
 	 * @see MainConfigSchema::LogoHD
+	 * @deprecated since 1.35. Developers should retrieve this logo (and other variants) using
+	 *    the static function ResourceLoaderSkinModule::getAvailableLogos. $wgLogos
+	 *    should be used instead.
 	 */
 	public const LogoHD = 'LogoHD';
 
@@ -223,6 +226,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the UploadStashScalerBaseUrl setting, for use with Config::get()
 	 * @see MainConfigSchema::UploadStashScalerBaseUrl
+	 * @deprecated since 1.36 Use thumbProxyUrl in $wgLocalFileRepo
 	 */
 	public const UploadStashScalerBaseUrl = 'UploadStashScalerBaseUrl';
 
@@ -919,6 +923,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the EnableSpecialMute setting, for use with Config::get()
 	 * @see MainConfigSchema::EnableSpecialMute
+	 * @deprecated since 1.34
 	 */
 	public const EnableSpecialMute = 'EnableSpecialMute';
 
@@ -1153,6 +1158,10 @@ class MainConfigNames {
 	/**
 	 * Name constant for the SharedDB setting, for use with Config::get()
 	 * @see MainConfigSchema::SharedDB
+	 * @deprecated since 1.21 In new code, use the $wiki parameter to LBFactory::getMainLB()
+	 *    to access remote databases. Using LBFactory::getMainLB() allows the shared
+	 *    database to reside on separate servers to the wiki's own database, with
+	 *    suitable configuration of $wgLBFactoryConf
 	 */
 	public const SharedDB = 'SharedDB';
 
@@ -1255,6 +1264,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the ContentHandlerTextFallback setting, for use with Config::get()
 	 * @see MainConfigSchema::ContentHandlerTextFallback
+	 * @deprecated since 1.37
 	 */
 	public const ContentHandlerTextFallback = 'ContentHandlerTextFallback';
 
@@ -1633,6 +1643,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the ParserCacheUseJson setting, for use with Config::get()
 	 * @see MainConfigSchema::ParserCacheUseJson
+	 * @deprecated since 1.36
 	 */
 	public const ParserCacheUseJson = 'ParserCacheUseJson';
 
@@ -1711,6 +1722,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the SquidPurgeUseHostHeader setting, for use with Config::get()
 	 * @see MainConfigSchema::SquidPurgeUseHostHeader
+	 * @deprecated since 1.21
 	 */
 	public const SquidPurgeUseHostHeader = 'SquidPurgeUseHostHeader';
 
@@ -1783,6 +1795,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the DummyLanguageCodes setting, for use with Config::get()
 	 * @see MainConfigSchema::DummyLanguageCodes
+	 * @deprecated since 1.29
 	 */
 	public const DummyLanguageCodes = 'DummyLanguageCodes';
 
@@ -2077,6 +2090,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the IncludeLegacyJavaScript setting, for use with Config::get()
 	 * @see MainConfigSchema::IncludeLegacyJavaScript
+	 * @deprecated since 1.26: Always declare dependencies.
 	 */
 	public const IncludeLegacyJavaScript = 'IncludeLegacyJavaScript';
 
@@ -2329,6 +2343,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the AllowImageTag setting, for use with Config::get()
 	 * @see MainConfigSchema::AllowImageTag
+	 * @deprecated since 1.35; register an extension tag named <img> instead.
 	 */
 	public const AllowImageTag = 'AllowImageTag';
 
@@ -2545,12 +2560,14 @@ class MainConfigNames {
 	/**
 	 * Name constant for the MinimalPasswordLength setting, for use with Config::get()
 	 * @see MainConfigSchema::MinimalPasswordLength
+	 * @deprecated since 1.26, use $wgPasswordPolicy's MinimalPasswordLength.
 	 */
 	public const MinimalPasswordLength = 'MinimalPasswordLength';
 
 	/**
 	 * Name constant for the MaximalPasswordLength setting, for use with Config::get()
 	 * @see MainConfigSchema::MaximalPasswordLength
+	 * @deprecated since 1.26, use $wgPasswordPolicy's MaximalPasswordLength.
 	 */
 	public const MaximalPasswordLength = 'MaximalPasswordLength';
 
@@ -2653,6 +2670,8 @@ class MainConfigNames {
 	/**
 	 * Name constant for the AllowRequiringEmailForResets setting, for use with Config::get()
 	 * @see MainConfigSchema::AllowRequiringEmailForResets
+	 * @deprecated This feature is under development, don't assume this flag's existence or
+	 *    function outside of MediaWiki
 	 */
 	public const AllowRequiringEmailForResets = 'AllowRequiringEmailForResets';
 
@@ -3319,6 +3338,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the ParserTestFiles setting, for use with Config::get()
 	 * @see MainConfigSchema::ParserTestFiles
+	 * @deprecated since 1.30
 	 */
 	public const ParserTestFiles = 'ParserTestFiles';
 
@@ -3361,6 +3381,8 @@ class MainConfigNames {
 	/**
 	 * Name constant for the OpenSearchTemplate setting, for use with Config::get()
 	 * @see MainConfigSchema::OpenSearchTemplate
+	 * @deprecated since 1.25 Use $wgOpenSearchTemplates['application/x-suggestions+json']
+	 *    instead
 	 */
 	public const OpenSearchTemplate = 'OpenSearchTemplate';
 
@@ -3373,6 +3395,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the EnableOpenSearchSuggest setting, for use with Config::get()
 	 * @see MainConfigSchema::EnableOpenSearchSuggest
+	 * @deprecated since 1.35 No longer used
 	 */
 	public const EnableOpenSearchSuggest = 'EnableOpenSearchSuggest';
 
@@ -3889,6 +3912,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the AutoloadAttemptLowercase setting, for use with Config::get()
 	 * @see MainConfigSchema::AutoloadAttemptLowercase
+	 * @deprecated since 1.35
 	 */
 	public const AutoloadAttemptLowercase = 'AutoloadAttemptLowercase';
 
@@ -3985,6 +4009,8 @@ class MainConfigNames {
 	/**
 	 * Name constant for the TrackingCategories setting, for use with Config::get()
 	 * @see MainConfigSchema::TrackingCategories
+	 * @deprecated since 1.25 Extensions should now register tracking categories using the new
+	 *    extension registration system.
 	 */
 	public const TrackingCategories = 'TrackingCategories';
 
@@ -4267,6 +4293,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the ShellboxUrl setting, for use with Config::get()
 	 * @see MainConfigSchema::ShellboxUrl
+	 * @deprecated since 1.37; use $wgShellboxUrls instead
 	 */
 	public const ShellboxUrl = 'ShellboxUrl';
 

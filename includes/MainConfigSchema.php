@@ -513,6 +513,9 @@ class MainConfigSchema {
 	public const LogoHD = [
 		'default' => false,
 		'type' => 'map|false',
+		'deprecated' => 'since 1.35. Developers should retrieve this logo (and other variants) ' .
+			'using the static function ResourceLoaderSkinModule::getAvailableLogos. $wgLogos ' .
+			'should be used instead.',
 	];
 
 	/**
@@ -607,6 +610,7 @@ class MainConfigSchema {
 	 */
 	public const UploadStashScalerBaseUrl = [
 		'default' => false,
+		'deprecated' => 'since 1.36 Use thumbProxyUrl in $wgLocalFileRepo',
 	];
 
 	/**
@@ -2306,6 +2310,7 @@ class MainConfigSchema {
 	 */
 	public const EnableSpecialMute = [
 		'default' => false,
+		'deprecated' => 'since 1.34',
 	];
 
 	/**
@@ -2726,6 +2731,10 @@ class MainConfigSchema {
 	 */
 	public const SharedDB = [
 		'default' => null,
+		'deprecated' => 'since 1.21 In new code, use the $wiki parameter to ' .
+			'LBFactory::getMainLB() to access remote databases. Using LBFactory::getMainLB() ' .
+			'allows the shared database to reside on separate servers to the wiki\'s own ' .
+			'database, with suitable configuration of $wgLBFactoryConf',
 	];
 
 	/**
@@ -3030,6 +3039,7 @@ class MainConfigSchema {
 	 */
 	public const ContentHandlerTextFallback = [
 		'default' => 'ignore',
+		'deprecated' => 'since 1.37',
 	];
 
 	/**
@@ -3932,6 +3942,7 @@ class MainConfigSchema {
 	 */
 	public const ParserCacheUseJson = [
 		'default' => true,
+		'deprecated' => 'since 1.36',
 	];
 
 	/**
@@ -4116,6 +4127,7 @@ class MainConfigSchema {
 	 */
 	public const SquidPurgeUseHostHeader = [
 		'default' => true,
+		'deprecated' => 'since 1.21',
 	];
 
 	/**
@@ -4315,6 +4327,7 @@ class MainConfigSchema {
 	public const DummyLanguageCodes = [
 		'default' => [],
 		'type' => 'map',
+		'deprecated' => 'since 1.29',
 	];
 
 	/**
@@ -5403,6 +5416,7 @@ class MainConfigSchema {
 	 */
 	public const IncludeLegacyJavaScript = [
 		'default' => false,
+		'deprecated' => 'since 1.26: Always declare dependencies.',
 	];
 
 	/**
@@ -6002,6 +6016,7 @@ class MainConfigSchema {
 	 */
 	public const AllowImageTag = [
 		'default' => false,
+		'deprecated' => 'since 1.35; register an extension tag named <img> instead.',
 	];
 
 	/**
@@ -6679,6 +6694,7 @@ class MainConfigSchema {
 	 */
 	public const MinimalPasswordLength = [
 		'default' => false,
+		'deprecated' => 'since 1.26, use $wgPasswordPolicy\'s MinimalPasswordLength.',
 	];
 
 	/**
@@ -6694,6 +6710,7 @@ class MainConfigSchema {
 	 */
 	public const MaximalPasswordLength = [
 		'default' => false,
+		'deprecated' => 'since 1.26, use $wgPasswordPolicy\'s MaximalPasswordLength.',
 	];
 
 	/**
@@ -7046,6 +7063,8 @@ class MainConfigSchema {
 	 */
 	public const AllowRequiringEmailForResets = [
 		'default' => false,
+		'deprecated' => 'This feature is under development, don\'t assume this flag\'s existence ' .
+			'or function outside of MediaWiki',
 	];
 
 	/**
@@ -9196,6 +9215,7 @@ class MainConfigSchema {
 	public const ParserTestFiles = [
 		'default' => [],
 		'type' => 'map',
+		'deprecated' => 'since 1.30',
 	];
 
 	/**
@@ -9267,6 +9287,8 @@ class MainConfigSchema {
 	 */
 	public const OpenSearchTemplate = [
 		'default' => false,
+		'deprecated' => 'since 1.25 ' .
+			'Use $wgOpenSearchTemplates[\'application/x-suggestions+json\'] instead',
 	];
 
 	/**
@@ -9293,6 +9315,7 @@ class MainConfigSchema {
 	 */
 	public const EnableOpenSearchSuggest = [
 		'default' => true,
+		'deprecated' => 'since 1.35 No longer used',
 	];
 
 	/**
@@ -10488,6 +10511,7 @@ class MainConfigSchema {
 	 */
 	public const AutoloadAttemptLowercase = [
 		'default' => false,
+		'deprecated' => 'since 1.35',
 	];
 
 	/**
@@ -10832,6 +10856,8 @@ class MainConfigSchema {
 	public const TrackingCategories = [
 		'default' => [],
 		'type' => 'list',
+		'deprecated' => 'since 1.25 Extensions should now register tracking categories using ' .
+			'the new extension registration system.',
 	];
 
 	// endregion -- End categories
@@ -11622,6 +11648,7 @@ class MainConfigSchema {
 	 */
 	public const ShellboxUrl = [
 		'default' => null,
+		'deprecated' => 'since 1.37; use $wgShellboxUrls instead',
 	];
 
 	/**

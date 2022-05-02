@@ -107,6 +107,7 @@ return [
 				0 => 'object',
 				1 => 'boolean',
 			],
+			'deprecated' => 'since 1.35. Developers should retrieve this logo (and other variants) using the static function ResourceLoaderSkinModule::getAvailableLogos. $wgLogos should be used instead.',
 		],
 		'Favicon' => [
 			'default' => '/favicon.ico',
@@ -130,6 +131,7 @@ return [
 		],
 		'UploadStashScalerBaseUrl' => [
 			'default' => false,
+			'deprecated' => 'since 1.36 Use thumbProxyUrl in $wgLocalFileRepo',
 		],
 		'ActionPaths' => [
 			'default' => [
@@ -736,6 +738,7 @@ return [
 		],
 		'EnableSpecialMute' => [
 			'default' => false,
+			'deprecated' => 'since 1.34',
 		],
 		'EnableUserEmailMuteList' => [
 			'default' => false,
@@ -865,6 +868,7 @@ return [
 		],
 		'SharedDB' => [
 			'default' => null,
+			'deprecated' => 'since 1.21 In new code, use the $wiki parameter to LBFactory::getMainLB() to access remote databases. Using LBFactory::getMainLB() allows the shared database to reside on separate servers to the wiki\'s own database, with suitable configuration of $wgLBFactoryConf',
 		],
 		'SharedPrefix' => [
 			'default' => false,
@@ -946,6 +950,7 @@ return [
 		],
 		'ContentHandlerTextFallback' => [
 			'default' => 'ignore',
+			'deprecated' => 'since 1.37',
 		],
 		'TextModelsToParse' => [
 			'default' => [
@@ -1276,6 +1281,7 @@ return [
 		],
 		'ParserCacheUseJson' => [
 			'default' => true,
+			'deprecated' => 'since 1.36',
 		],
 		'EnableRemoteBagOStuffTests' => [
 			'default' => false,
@@ -1319,6 +1325,7 @@ return [
 		],
 		'SquidPurgeUseHostHeader' => [
 			'default' => true,
+			'deprecated' => 'since 1.21',
 		],
 		'HTCPRouting' => [
 			'default' => [
@@ -1372,6 +1379,7 @@ return [
 			'default' => [
 			],
 			'type' => 'object',
+			'deprecated' => 'since 1.29',
 		],
 		'AllUnicodeFixes' => [
 			'default' => false,
@@ -1569,6 +1577,7 @@ return [
 		],
 		'IncludeLegacyJavaScript' => [
 			'default' => false,
+			'deprecated' => 'since 1.26: Always declare dependencies.',
 		],
 		'ResourceLoaderMaxQueryLength' => [
 			'default' => false,
@@ -1798,6 +1807,7 @@ return [
 		],
 		'AllowImageTag' => [
 			'default' => false,
+			'deprecated' => 'since 1.35; register an extension tag named <img> instead.',
 		],
 		'TidyConfig' => [
 			'default' => [
@@ -2065,9 +2075,11 @@ return [
 		],
 		'MinimalPasswordLength' => [
 			'default' => false,
+			'deprecated' => 'since 1.26, use $wgPasswordPolicy\'s MinimalPasswordLength.',
 		],
 		'MaximalPasswordLength' => [
 			'default' => false,
+			'deprecated' => 'since 1.26, use $wgPasswordPolicy\'s MaximalPasswordLength.',
 		],
 		'InvalidPasswordReset' => [
 			'default' => true,
@@ -2270,6 +2282,7 @@ return [
 		],
 		'AllowRequiringEmailForResets' => [
 			'default' => false,
+			'deprecated' => 'This feature is under development, don\'t assume this flag\'s existence or function outside of MediaWiki',
 		],
 		'AutoCreateTempUser' => [
 			'default' => [
@@ -3316,6 +3329,7 @@ return [
 			'default' => [
 			],
 			'type' => 'object',
+			'deprecated' => 'since 1.30',
 		],
 		'EnableJavaScriptTest' => [
 			'default' => false,
@@ -3337,6 +3351,7 @@ return [
 		],
 		'OpenSearchTemplate' => [
 			'default' => false,
+			'deprecated' => 'since 1.25 Use $wgOpenSearchTemplates[\'application/x-suggestions+json\'] instead',
 		],
 		'OpenSearchTemplates' => [
 			'default' => [
@@ -3347,6 +3362,7 @@ return [
 		],
 		'EnableOpenSearchSuggest' => [
 			'default' => true,
+			'deprecated' => 'since 1.35 No longer used',
 		],
 		'OpenSearchDefaultLimit' => [
 			'default' => 10,
@@ -3722,6 +3738,7 @@ return [
 		],
 		'AutoloadAttemptLowercase' => [
 			'default' => false,
+			'deprecated' => 'since 1.35',
 		],
 		'ExtensionCredits' => [
 			'default' => [
@@ -3837,6 +3854,7 @@ return [
 			'default' => [
 			],
 			'type' => 'array',
+			'deprecated' => 'since 1.25 Extensions should now register tracking categories using the new extension registration system.',
 		],
 		'LogTypes' => [
 			'default' => [
@@ -4256,6 +4274,7 @@ return [
 		],
 		'ShellboxUrl' => [
 			'default' => null,
+			'deprecated' => 'since 1.37; use $wgShellboxUrls instead',
 		],
 		'ShellboxUrls' => [
 			'default' => [
