@@ -33,5 +33,6 @@
 	"config-help-restart": "ڇا توھان سڄي سانڍيل ڊيٽا ختم ڪرڻ چاھيو ٿا جيڪا توھان داخل ڪئي آھي ۽ تنصيبڪاريءَ جي عمل کي ٻيھر شروع ڪرڻ چاھيو ٿا؟",
 	"config-restart": "ها، ان کي شروع ڪريو",
 	"config-env-php": "PHP $1 تنصيب ٿي چڪو",
-	"config-project-namespace": "رٿا نانءُپولار:"
+	"config-project-namespace": "رٿا نانءُپولار:",
+	"config-skins": "ظاھريتون"
 }

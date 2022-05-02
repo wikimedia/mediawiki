@@ -2582,6 +2582,7 @@
 	"undeletebtn": "還原",
 	"undeletelink": "檢視/還原",
 	"undeleteviewlink": "檢視",
+	"undelete-undeletetalk": "恢復關聯討論頁的所有修訂",
 	"undeleteinvert": "反向選擇",
 	"undeletecomment": "原因：",
 	"cannotundelete": "部份或全部的取消刪除失敗：\n$1",
