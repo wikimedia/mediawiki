@@ -54,12 +54,14 @@
 use MediaWiki\HeaderCallback;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\Config\GlobalConfigBuilder;
 use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\LocalSettingsLoader;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\Source\PhpSettingsSource;
+use MediaWiki\Settings\Source\ReflectionSchemaSource;
 use MediaWiki\Settings\WikiFarmSettingsLoader;
 use Psr\Log\LoggerInterface;
 use Wikimedia\RequestTimeout\RequestTimeout;
@@ -143,7 +145,12 @@ $wgSettings = new SettingsBuilder(
 	new PhpIniSink()
 );
 
-if ( getenv( 'MW_USE_LEGACY_DEFAULT_SETTINGS' ) || defined( 'MW_USE_LEGACY_DEFAULT_SETTINGS' ) ) {
+if ( defined( 'MW_USE_CONFIG_SCHEMA_CLASS' ) ) {
+	// Load config schema from MainConfigSchema. Useful for running scripts that
+	// generate other representations of the config schema. This is slow, so it
+	// should not be used for serving web traffic.
+	$wgSettings->load( new ReflectionSchemaSource( MainConfigSchema::class ) );
+} elseif ( getenv( 'MW_USE_LEGACY_DEFAULT_SETTINGS' ) || defined( 'MW_USE_LEGACY_DEFAULT_SETTINGS' ) ) {
 	// Load the old DefaultSettings.php file. Should be removed in 1.39. See T300129.
 	require_once "$IP/includes/DefaultSettings.php";
 
