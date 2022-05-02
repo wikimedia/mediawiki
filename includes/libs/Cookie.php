@@ -192,7 +192,7 @@ class Cookie {
 	 * @return bool
 	 */
 	protected function canServePath( $path ) {
-		return ( $this->path && substr_compare( $this->path, $path, 0, strlen( $this->path ) ) == 0 );
+		return $this->path && str_starts_with( $path, $this->path );
 	}
 
 	/**
