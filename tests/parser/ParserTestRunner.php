@@ -1516,7 +1516,6 @@ class ParserTestRunner {
 	 * @return ScopedCallback The teardown object
 	 */
 	public function setupUploads( $nextTeardown = null ) {
-		$setup = [];
 		$teardown = [];
 
 		$this->checkSetupDone( 'setupDatabase' );
@@ -1699,15 +1698,6 @@ class ParserTestRunner {
 			$this->db->timestamp( '20010115123600' )
 		);
 
-		// The above calls to recordUpload3 call the bad file service which
-		// caches the wfMessage.  Reset the service so that any
-		// "MediaWiki:bad image list" articles added get fetched
-		$setup[] = static function () {
-			MediaWikiServices::getInstance()->resetServiceForTesting( 'BadFileLookup' );
-		};
-
-		$teardown[] = $this->executeSetupSnippets( $setup );
-
 		return $this->createTeardownObject( $teardown, $nextTeardown );
 	}
 
@@ -1859,6 +1849,12 @@ class ParserTestRunner {
 		// Wipe WANObjectCache process cache, which is invalidated by article insertion
 		// due to T144706
 		MediaWikiServices::getInstance()->getMainWANObjectCache()->clearProcessCache();
+
+		// Reset the service so that any "MediaWiki:bad image list" articles
+		// added get fetched
+		$teardown[] = static function () {
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'BadFileLookup' );
+		};
 
 		$this->executeSetupSnippets( $teardown );
 
