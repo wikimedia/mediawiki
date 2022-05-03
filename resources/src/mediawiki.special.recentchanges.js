@@ -24,7 +24,7 @@
 
 		init: function () {
 			$select = $( 'select#namespace' );
-			$checkboxes = $( '#nsassociated, #nsinvert, .contribs-ns-filters' )
+			$checkboxes = $( '#nsassociated, #nsinvert' )
 				.closest( '.mw-input-with-label' );
 
 			if ( $select.length === 0 ) {
