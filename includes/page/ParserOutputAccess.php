@@ -29,6 +29,7 @@ use MediaWiki\Revision\RevisionRenderer;
 use ParserCache;
 use ParserOptions;
 use ParserOutput;
+use PoolCounterWork;
 use PoolWorkArticleView;
 use PoolWorkArticleViewCurrent;
 use PoolWorkArticleViewOld;
@@ -365,14 +366,14 @@ class ParserOutputAccess {
 	 * @param RevisionRecord $revision
 	 * @param int $options
 	 *
-	 * @return PoolWorkArticleView
+	 * @return PoolCounterWork
 	 */
 	private function newPoolWorkArticleView(
 		PageRecord $page,
 		ParserOptions $parserOptions,
 		RevisionRecord $revision,
 		int $options
-	): PoolWorkArticleView {
+	): PoolCounterWork {
 		$useCache = $this->shouldUseCache( $page, $revision );
 
 		switch ( $useCache ) {
