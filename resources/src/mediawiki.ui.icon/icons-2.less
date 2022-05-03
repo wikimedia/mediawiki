@@ -107,7 +107,8 @@
 		.mixin-background-square( @icon-size-md );
 	}
 
-	& + span {
+	// Use `not` selector to ensure we don't add space for machine readable markup. More info: T307233
+	& + span:not( :empty ) {
 		// Margin is added to separate accompanying text.
 		margin-left: @margin-icon-md-labelled;
 	}
