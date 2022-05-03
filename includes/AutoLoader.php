@@ -22,13 +22,6 @@
 
 // NO_AUTOLOAD -- file scope code, can't load self
 
-// Load composer's autoloader if present
-if ( is_readable( __DIR__ . '/../vendor/autoload.php' ) ) {
-	require_once __DIR__ . '/../vendor/autoload.php';
-} elseif ( file_exists( __DIR__ . '/../vendor/autoload.php' ) ) {
-	die( __DIR__ . '/../vendor/autoload.php exists but is not readable' );
-}
-
 /**
  * Locations of core classes
  * Extension classes are specified with $wgAutoloadClasses
@@ -194,3 +187,10 @@ class AutoLoader {
 
 AutoLoader::$psr4Namespaces = AutoLoader::getAutoloadNamespaces();
 spl_autoload_register( [ 'AutoLoader', 'autoload' ] );
+
+// Load composer's autoloader if present
+if ( is_readable( __DIR__ . '/../vendor/autoload.php' ) ) {
+	require_once __DIR__ . '/../vendor/autoload.php';
+} elseif ( file_exists( __DIR__ . '/../vendor/autoload.php' ) ) {
+	die( __DIR__ . '/../vendor/autoload.php exists but is not readable' );
+}
