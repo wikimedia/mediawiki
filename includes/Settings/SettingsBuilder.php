@@ -99,8 +99,6 @@ class SettingsBuilder {
 	/**
 	 * Load settings from a {@link SettingsSource}.
 	 *
-	 * @unstable
-	 *
 	 * @param SettingsSource $source
 	 * @return $this
 	 */
@@ -116,8 +114,6 @@ class SettingsBuilder {
 	/**
 	 * Load settings from an array.
 	 *
-	 * @unstable
-	 *
 	 * @param array $newSettings
 	 *
 	 * @return $this
@@ -129,8 +125,6 @@ class SettingsBuilder {
 	/**
 	 * Load settings from a file.
 	 *
-	 * @unstable
-	 *
 	 * @param string $path
 	 * @return $this
 	 */
@@ -141,8 +135,6 @@ class SettingsBuilder {
 	/**
 	 * Checks whether the given file exists relative to the settings builder's
 	 * base directory.
-	 *
-	 * @unstable
 	 *
 	 * @param string $path
 	 * @return bool
@@ -213,8 +205,6 @@ class SettingsBuilder {
 
 	/**
 	 * Apply any settings loaded so far to the runtime environment.
-	 *
-	 * @unstable
 	 *
 	 * @note This usually makes all configuration available in global variables.
 	 * This may however not be the case in the future.
@@ -380,7 +370,7 @@ class SettingsBuilder {
 	 * Depending on the variable's specification, the new value may
 	 * be merged with the previous value, or may replace it.
 	 * This is a shorthand for putConfigValues( [ $key => $value ] ).
-	 * @unstable
+	 *
 	 * @see overrideConfigValue
 	 *
 	 * @param string $key the name of the config setting
@@ -397,7 +387,7 @@ class SettingsBuilder {
 	 * Depending on the variables' specification, the new values may
 	 * be merged with the previous values, or they may replace them.
 	 * This is a shorthand for loadArray( [ 'config' => $values ] ).
-	 * @unstable
+	 *
 	 * @see overrideConfigValues
 	 *
 	 * @param array $values An associative array mapping names to values.
@@ -412,7 +402,7 @@ class SettingsBuilder {
 	 * Override the value of a config variable.
 	 * This ignores any merge strategies and discards any previous value.
 	 * This is a shorthand for overrideConfigValues( [ $key => $value ] ).
-	 * @unstable
+	 *
 	 * @see putConfigValue
 	 *
 	 * @param string $key the name of the config setting
@@ -428,7 +418,7 @@ class SettingsBuilder {
 	 * Override the value of multiple config variables.
 	 * This ignores any merge strategies and discards any previous value.
 	 * This is a shorthand for loadArray( [ 'config-overrides' => $values ] ).
-	 * @unstable
+	 *
 	 * @see putConfigValues
 	 *
 	 * @param array $values An associative array mapping names to values.
@@ -444,7 +434,6 @@ class SettingsBuilder {
 	 *
 	 * @note This will implicitly call apply()
 	 *
-	 * @unstable
 	 * @return Config
 	 */
 	public function getConfig(): Config {

@@ -5,12 +5,17 @@ namespace MediaWiki\Settings\Config;
 use Wikimedia\NormalizedException\NormalizedExceptionTrait;
 
 /**
- * @unstable
+ * Settings sink for values to pass to ini_set.
+ *
+ * @since 1.39
  */
 class PhpIniSink {
 	use NormalizedExceptionTrait;
 
 	/**
+	 * Sets a php runtime configuration value using ini_set().
+	 * A PHP notice is triggered if setting the value fails.
+	 *
 	 * @param string $option
 	 * @param string $value
 	 * @return void
