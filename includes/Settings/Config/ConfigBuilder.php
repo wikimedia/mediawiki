@@ -8,7 +8,7 @@ use MediaWiki\Settings\SettingsBuilderException;
 /**
  * Builder for Config objects.
  *
- * @unstable
+ * @since 1.39
  */
 interface ConfigBuilder {
 
