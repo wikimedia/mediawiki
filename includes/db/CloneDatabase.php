@@ -21,7 +21,6 @@
  * @ingroup Database
  */
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 class CloneDatabase {
@@ -139,9 +138,9 @@ class CloneDatabase {
 			$wgDBname => $lbFactory->getLocalDomainID()
 		];
 		$lbFactory->setDomainAliases( $aliases );
-		$lbFactory->forEachLB( static function ( ILoadBalancer $lb ) use ( $aliases ) {
+		foreach ( $lbFactory->getAllLBs() as $lb ) {
 			$lb->setDomainAliases( $aliases );
-		} );
+		}
 
 		$wgDBprefix = $prefix;
 	}

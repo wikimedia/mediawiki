@@ -512,6 +512,14 @@ interface ILoadBalancer {
 	public function hasPrimaryChanges();
 
 	/**
+	 * Determine whether an explicit transaction is active on any open primary
+	 * connection.
+	 * @return bool
+	 * @since 1.39
+	 */
+	public function explicitTrxActive();
+
+	/**
 	 * Get the timestamp of the latest write query done by this thread
 	 * @return float|bool UNIX timestamp or false
 	 * @since 1.37

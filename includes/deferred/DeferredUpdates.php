@@ -29,7 +29,6 @@ use Wikimedia\Rdbms\DBTransactionError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\LBFactory;
-use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -547,16 +546,13 @@ class DeferredUpdates {
 			return true;
 		}
 
-		$connsBusy = false;
-		$lbFactory->forEachLB( static function ( LoadBalancer $lb ) use ( &$connsBusy ) {
-			$lb->forEachOpenPrimaryConnection( static function ( IDatabase $conn ) use ( &$connsBusy ) {
-				if ( $conn->writesOrCallbacksPending() || $conn->explicitTrxActive() ) {
-					$connsBusy = true;
-				}
-			} );
-		} );
+		foreach ( $lbFactory->getAllLBs() as $lb ) {
+			if ( $lb->hasPrimaryChanges() || $lb->explicitTrxActive() ) {
+				return true;
+			}
+		}
 
-		return $connsBusy;
+		return false;
 	}
 
 	/**

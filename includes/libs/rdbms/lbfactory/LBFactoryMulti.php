@@ -223,11 +223,21 @@ class LBFactoryMulti extends LBFactory {
 	}
 
 	public function forEachLB( $callback, array $params = [] ) {
+		wfDeprecated( __METHOD__, '1.39' );
 		foreach ( $this->mainLBs as $lb ) {
 			$callback( $lb, ...$params );
 		}
 		foreach ( $this->externalLBs as $lb ) {
 			$callback( $lb, ...$params );
+		}
+	}
+
+	protected function getLBsForOwner() {
+		foreach ( $this->mainLBs as $lb ) {
+			yield $lb;
+		}
+		foreach ( $this->externalLBs as $lb ) {
+			yield $lb;
 		}
 	}
 
