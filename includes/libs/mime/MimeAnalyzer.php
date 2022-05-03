@@ -595,7 +595,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		];
 
 		foreach ( $headers as $magic => $candidate ) {
-			if ( strncmp( $head, $magic, strlen( $magic ) ) == 0 ) {
+			if ( str_starts_with( $head, $magic ) ) {
 				$this->logger->info( __METHOD__ .
 					": magic header in $file recognized as $candidate" );
 				// @phan-suppress-next-line PhanTypeMismatchReturn False positive
@@ -604,17 +604,17 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		}
 
 		/* Look for WebM and Matroska files */
-		if ( strncmp( $head16k, pack( "C4", 0x1a, 0x45, 0xdf, 0xa3 ), 4 ) === 0 ) {
+		if ( str_starts_with( $head16k, pack( "C4", 0x1a, 0x45, 0xdf, 0xa3 ) ) ) {
 			$doctype = strpos( $head16k, "\x42\x82" );
 			if ( $doctype ) {
 				// Next byte is datasize, then data (sizes larger than 1 byte are stupid muxers)
 				$data = substr( $head16k, $doctype + 3, 8 );
-				if ( strncmp( $data, "matroska", 8 ) === 0 ) {
+				if ( str_starts_with( $data, "matroska" ) ) {
 					$this->logger->info( __METHOD__ . ": recognized file as video/x-matroska" );
 					return "video/x-matroska";
 				}
 
-				if ( strncmp( $data, "webm", 4 ) === 0 ) {
+				if ( str_starts_with( $data, "webm" ) ) {
 					// XXX HACK look for a video track, if we don't find it, this is an audio file
 					// This detection is very naive and doesn't parse the actual fields
 					// 0x86 byte indicates start of codecname field
@@ -646,28 +646,26 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		}
 
 		/* Look for WebP */
-		if ( strncmp( $head, "RIFF", 4 ) == 0 &&
-			strncmp( substr( $head, 8, 7 ), "WEBPVP8", 7 ) == 0
-		) {
+		if ( str_starts_with( $head, "RIFF" ) && substr( $head, 8, 7 ) === "WEBPVP8" ) {
 			$this->logger->info( __METHOD__ . ": recognized file as image/webp" );
 			return "image/webp";
 		}
 
 		/* Look for JPEG2000 */
-		if ( strncmp( $head, "\x00\x00\x00\x0cjP\x20\x20\x0d\x0a\x87\x0a", 12 ) == 0 ) {
+		if ( str_starts_with( $head, "\x00\x00\x00\x0cjP\x20\x20\x0d\x0a\x87\x0a" ) ) {
 			$this->logger->info( __METHOD__ . ": recognized as JPEG2000" );
 			// we skip 4 bytes
-			if ( strncmp( substr( $head, 16, 8 ), "ftypjp2 ", 8 ) == 0 ) {
+			if ( substr( $head, 16, 8 ) === "ftypjp2 " ) {
 				$this->logger->info( __METHOD__ . ": recognized file as image/jp2" );
 				return 'image/jp2';
-			} elseif ( strncmp( substr( $head, 16, 8 ), "ftypjpx ", 8 ) == 0 ) {
+			} elseif ( substr( $head, 16, 8 ) === "ftypjpx " ) {
 				$this->logger->info( __METHOD__ . ": recognized file as image/jpx" );
 				return 'image/jpx';
 			}
 		}
 
 		/* Look for MS Compound Binary (OLE) files */
-		if ( strncmp( $head, "\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1", 8 ) == 0 ) {
+		if ( str_starts_with( $head, "\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1" ) ) {
 			$this->logger->info( __METHOD__ . ': recognized MS CFB (OLE) file' );
 			return $this->detectMicrosoftBinaryType( $f );
 		}

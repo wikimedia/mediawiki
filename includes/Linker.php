@@ -1515,7 +1515,7 @@ class Linker {
 				# check for .. subpage backlinks
 				$dotdotcount = 0;
 				$nodotdot = $target;
-				while ( strncmp( $nodotdot, "../", 3 ) == 0 ) {
+				while ( str_starts_with( $nodotdot, "../" ) ) {
 					++$dotdotcount;
 					$nodotdot = substr( $nodotdot, 3 );
 				}

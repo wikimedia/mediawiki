@@ -1187,7 +1187,7 @@ class FileRepo {
 		$this->assertWritableRepo(); // fail out if read-only
 
 		$temp = $this->getVirtualUrl( 'temp' );
-		if ( substr( $virtualUrl, 0, strlen( $temp ) ) != $temp ) {
+		if ( !str_starts_with( $virtualUrl, $temp ) ) {
 			wfDebug( __METHOD__ . ": Invalid temp virtual URL" );
 
 			return false;

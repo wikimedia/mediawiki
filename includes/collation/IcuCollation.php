@@ -460,7 +460,7 @@ class IcuCollation extends Collation {
 			// An element "X" will always sort directly
 			// before "XZ" (Unless we have "XY", but we
 			// do not update $prev in that case).
-			if ( substr( $trimmedKey, 0, strlen( $prev ) ) === $prev ) {
+			if ( str_starts_with( $trimmedKey, $prev ) ) {
 				$duplicatePrefixes[] = $key;
 				// If this is an expansion, we don't want to
 				// compare the next element to this element,

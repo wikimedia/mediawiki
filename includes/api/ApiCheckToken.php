@@ -40,7 +40,7 @@ class ApiCheckToken extends ApiBase {
 			$this->getUser(), $this->getRequest()->getSession(), $salts[$params['type']]
 		);
 
-		if ( substr( $token, -strlen( urldecode( Token::SUFFIX ) ) ) === urldecode( Token::SUFFIX ) ) {
+		if ( str_ends_with( $token, urldecode( Token::SUFFIX ) ) ) {
 			$this->addWarning( 'apiwarn-checktoken-percentencoding' );
 		}
 

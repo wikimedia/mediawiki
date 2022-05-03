@@ -418,7 +418,7 @@ abstract class SearchEngine {
 			}
 
 			foreach ( $allkeywords as $kw ) {
-				if ( strncmp( $query, $kw, strlen( $kw ) ) == 0 ) {
+				if ( str_starts_with( $query, $kw ) ) {
 					$parsed = substr( $query, strlen( $kw ) );
 					$allQuery = true;
 					break;
