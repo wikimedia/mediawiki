@@ -518,10 +518,13 @@ EOF
 	 * @covers ParserOutput::hasText
 	 */
 	public function testHasText() {
-		$po = new ParserOutput();
+		$po = new ParserOutput( '' );
 		$this->assertTrue( $po->hasText() );
 
 		$po = new ParserOutput( null );
+		$this->assertFalse( $po->hasText() );
+
+		$po = new ParserOutput();
 		$this->assertFalse( $po->hasText() );
 
 		$po = new ParserOutput( '' );
@@ -530,6 +533,10 @@ EOF
 		$po = new ParserOutput( null );
 		$po->setText( '' );
 		$this->assertTrue( $po->hasText() );
+
+		$po = new ParserOutput( 'foo' );
+		$po->setText( null );
+		$this->assertFalse( $po->hasText() );
 	}
 
 	/**

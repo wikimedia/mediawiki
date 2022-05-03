@@ -1753,6 +1753,12 @@ abstract class ContentHandler {
 	 * Unless $cpoParams->getGenerateHtml() was false,
 	 * this includes an HTML representation of the content.
 	 *
+	 * If $cpoParams->getGenerateHtml() is false, and you chose not to generate
+	 * html, the ParserOutput must have a text of null. If the
+	 * text of the ParserOutput object is anything other than null (even if ''),
+	 * it is assumed that you don't support not generating html, and that it is
+	 * safe to reuse the parser output for calls expecting that html was generated.
+	 *
 	 * Subclasses are expected to override this method.
 	 *
 	 * This placeholder implementation always throws an exception.

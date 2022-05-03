@@ -154,27 +154,27 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithUsedOptions->recordOption( 'optA' );
 		$parserOutputWithUsedOptions->recordOption( 'optX' );
 
-		$parserOutputWithExtensionData = new ParserOutput();
+		$parserOutputWithExtensionData = new ParserOutput( '' );
 		foreach ( self::MOCK_EXT_DATA as $key => $value ) {
 			$parserOutputWithExtensionData->setExtensionData( $key, $value );
 		}
 
-		$parserOutputWithProperties = new ParserOutput();
+		$parserOutputWithProperties = new ParserOutput( '' );
 		foreach ( self::MOCK_EXT_DATA as $key => $value ) {
 			$parserOutputWithProperties->setPageProperty( $key, $value );
 		}
 
-		$parserOutputWithFalsyProperties = new ParserOutput();
+		$parserOutputWithFalsyProperties = new ParserOutput( '' );
 		foreach ( self::MOCK_FALSY_PROPERTIES as $key => $value ) {
 			$parserOutputWithFalsyProperties->setPageProperty( $key, $value );
 		}
 
-		$parserOutputWithBinaryProperties = new ParserOutput();
+		$parserOutputWithBinaryProperties = new ParserOutput( '' );
 		foreach ( self::MOCK_BINARY_PROPERTIES as $key => $value ) {
 			$parserOutputWithBinaryProperties->setPageProperty( $key, $value );
 		}
 
-		$parserOutputWithMetadata = new ParserOutput();
+		$parserOutputWithMetadata = new ParserOutput( '' );
 		$parserOutputWithMetadata->setSpeculativeRevIdUsed( 42 );
 		$parserOutputWithMetadata->addLanguageLink( 'link1' );
 		$parserOutputWithMetadata->addLanguageLink( 'link2' );
@@ -213,7 +213,7 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadata->setNewSection( true );
 		$parserOutputWithMetadata->setFlag( 'test' );
 
-		$parserOutputWithMetadataPost1_31 = new ParserOutput();
+		$parserOutputWithMetadataPost1_31 = new ParserOutput( '' );
 		$parserOutputWithMetadataPost1_31->addWrapperDivClass( 'test_wrapper' );
 		$parserOutputWithMetadataPost1_31->setSpeculativePageIdUsed( 4242 );
 		$parserOutputWithMetadataPost1_31->setRevisionTimestampUsed(
@@ -222,7 +222,7 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadataPost1_31->setRevisionUsedSha1Base36( 'test_hash' );
 		$parserOutputWithMetadataPost1_31->setNoGallery( true );
 
-		$parserOutputWithMetadataPost1_34 = new ParserOutput();
+		$parserOutputWithMetadataPost1_34 = new ParserOutput( '' );
 		$parserOutputWithMetadataPost1_34->addExtraCSPStyleSrc( 'style1' );
 		$parserOutputWithMetadataPost1_34->addExtraCSPDefaultSrc( 'default1' );
 		$parserOutputWithMetadataPost1_34->addExtraCSPScriptSrc( 'script1' );
@@ -230,7 +230,7 @@ abstract class ParserCacheSerializationTestCases {
 
 		return [
 			'empty' => [
-				'instance' => new ParserOutput(),
+				'instance' => new ParserOutput( '' ),
 				'assertions' => function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					// Empty CacheTime assertions
 					self::getCacheTimeTestCases()['empty']['assertions']( $testCase, $object );

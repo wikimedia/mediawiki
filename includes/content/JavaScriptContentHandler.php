@@ -149,7 +149,7 @@ class JavaScriptContentHandler extends CodeContentHandler {
 				"\n" . $content->getText() . "\n"
 			) . "\n";
 		} else {
-			$html = '';
+			$html = null;
 		}
 
 		$output->clearWrapperDivClass();

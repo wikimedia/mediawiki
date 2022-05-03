@@ -241,7 +241,7 @@ class TextContentHandler extends ContentHandler {
 				$html = htmlspecialchars( $content->getText(), ENT_COMPAT );
 			}
 		} else {
-			$html = '';
+			$html = null;
 		}
 
 		$output->clearWrapperDivClass();

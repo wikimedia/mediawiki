@@ -288,7 +288,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 			->method( 'getDataForSearchIndex' )
 			->willReturn( [ 'file_text' => 'This is file content' ] );
 
-		$data = $handler->getDataForSearchIndex( $page, new ParserOutput(), $mockEngine );
+		$data = $handler->getDataForSearchIndex( $page, new ParserOutput( '' ), $mockEngine );
 		$this->assertArrayHasKey( 'file_text', $data );
 		$this->assertEquals( 'This is file content', $data['file_text'] );
 	}
