@@ -158,6 +158,8 @@ because of Phabricator reports.
   given null. Previously it did nothing if given null.
 * The default value for the first argument to the ParserOutput constructor
   is now null instead of ''.
+* IDatabase::lockTables() and IDatabase::unlockTables(), deprecated since 1.38,
+  have been removed.
 * …
 
 === Deprecations in 1.39 ===

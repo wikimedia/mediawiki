@@ -1253,35 +1253,6 @@ SQL;
 		return parent::streamStatementEnd( $sql, $newLine );
 	}
 
-	public function doLockTables( array $read, array $write, $method ) {
-		$tablesWrite = [];
-		foreach ( $write as $table ) {
-			$tablesWrite[] = $this->tableName( $table );
-		}
-		$tablesRead = [];
-		foreach ( $read as $table ) {
-			$tablesRead[] = $this->tableName( $table );
-		}
-
-		// Acquire locks for the duration of the current transaction...
-		if ( $tablesWrite ) {
-			$this->query(
-				'LOCK TABLE ONLY ' . implode( ',', $tablesWrite ) . ' IN EXCLUSIVE MODE',
-				$method,
-				self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
-			);
-		}
-		if ( $tablesRead ) {
-			$this->query(
-				'LOCK TABLE ONLY ' . implode( ',', $tablesRead ) . ' IN SHARE MODE',
-				$method,
-				self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
-			);
-		}
-
-		return true;
-	}
-
 	public function doLockIsFree( string $lockName, string $method ) {
 		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );

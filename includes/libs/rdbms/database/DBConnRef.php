@@ -793,22 +793,6 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function tableLocksHaveTransactionScope() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function lockTables( array $read, array $write, $method ) {
-		$this->assertRoleAllowsWrites();
-
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	public function unlockTables( $method ) {
-		$this->assertRoleAllowsWrites();
-
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function indexUnique( $table, $index, $fname = __METHOD__ ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

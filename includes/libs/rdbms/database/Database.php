@@ -5398,56 +5398,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return false;
 	}
 
-	public function tableLocksHaveTransactionScope() {
-		return true;
-	}
-
-	final public function lockTables( array $read, array $write, $method ) {
-		if ( $this->writesOrCallbacksPending() ) {
-			throw new DBUnexpectedError( $this, "Transaction writes or callbacks still pending" );
-		}
-
-		if ( $this->tableLocksHaveTransactionScope() ) {
-			$this->startAtomic( $method );
-		}
-
-		return $this->doLockTables( $read, $write, $method );
-	}
-
-	/**
-	 * Helper function for lockTables() that handles the actual table locking
-	 *
-	 * @stable to override
-	 * @param array $read Array of tables to lock for read access
-	 * @param array $write Array of tables to lock for write access
-	 * @param string $method Name of caller
-	 * @return true
-	 */
-	protected function doLockTables( array $read, array $write, $method ) {
-		return true;
-	}
-
-	final public function unlockTables( $method ) {
-		if ( $this->tableLocksHaveTransactionScope() ) {
-			$this->endAtomic( $method );
-
-			return true; // locks released on COMMIT/ROLLBACK
-		}
-
-		return $this->doUnlockTables( $method );
-	}
-
-	/**
-	 * Helper function for unlockTables() that handles the actual table unlocking
-	 *
-	 * @stable to override
-	 * @param string $method Name of caller
-	 * @return true
-	 */
-	protected function doUnlockTables( $method ) {
-		return true;
-	}
-
 	public function dropTable( $table, $fname = __METHOD__ ) {
 		if ( !$this->tableExists( $table, $fname ) ) {
 			return false;
