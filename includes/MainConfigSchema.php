@@ -1389,18 +1389,10 @@ class MainConfigSchema {
 			'text/scriptlet', 'application/x-msdownload',
 			# Windows metafile, client-side vulnerability on some systems
 			'application/x-msmetafile',
+			# Files that look like java files
+			'application/java'
 		],
 		'type' => 'list',
-	];
-
-	/**
-	 * Allow Java archive uploads.
-	 *
-	 * This is not recommended for public wikis since a maliciously-constructed
-	 * applet running on the same domain as the wiki can steal the user's cookies.
-	 */
-	public const AllowJavaUploads = [
-		'default' => false,
 	];
 
 	/**

@@ -37,6 +37,8 @@ For notes on 1.38.x and older releases, see HISTORY.
 ==== Removed configuration ====
 * $wgMultiContentRevisionSchemaMigrationStage - Migration is over, was
   deprecated since 1.35.
+* $wgAllowJavaUploads - To allow uploads of JAR files, remove application/java
+  from $wgMimeTypeExclusions.
 * …
 
 === New user-facing features in 1.39 ===

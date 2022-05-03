@@ -491,12 +491,6 @@ class MainConfigNames {
 	public const MimeTypeExclusions = 'MimeTypeExclusions';
 
 	/**
-	 * Name constant for the AllowJavaUploads setting, for use with Config::get()
-	 * @see MainConfigSchema::AllowJavaUploads
-	 */
-	public const AllowJavaUploads = 'AllowJavaUploads';
-
-	/**
 	 * Name constant for the CheckFileExtensions setting, for use with Config::get()
 	 * @see MainConfigSchema::CheckFileExtensions
 	 */

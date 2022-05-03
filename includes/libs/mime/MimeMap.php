@@ -217,9 +217,6 @@ class MimeMap {
 		'application/vnd.ms-excel.sheet.binary.macroenabled.12' => [ 'xlsb' ],
 		'model/vnd.dwfx+xps' => [ 'dwfx' ],
 		'application/vnd.ms-xpsdocument' => [ 'xps' ],
-		'application/x-opc+zip' => [
-			'docx', 'dotx', 'docm', 'dotm', 'potx', 'ppsx', 'pptx', 'ppam', 'pptm', 'potm', 'ppsm',
-			'xlsx', 'xltx', 'xlsm', 'xltm', 'xlam', 'xlsb', 'dwfx', 'xps' ],
 		'chemical/x-mdl-molfile' => [ 'mol' ],
 		'chemical/x-mdl-sdfile' => [ 'sdf' ],
 		'chemical/x-mdl-rxnfile' => [ 'rxn' ],
@@ -228,6 +225,17 @@ class MimeMap {
 		'application/x-amf' => [ 'amf' ],
 		'application/sla' => [ 'stl' ],
 		'application/wasm' => [ 'wasm' ],
+
+		// Vague pseudo-types should be at the end so that they don't take
+		// precedence over the more specific types above in getMimeTypesFromExtension()
+		'application/x-opc+zip' => [
+			'docx', 'dotx', 'docm', 'dotm', 'potx', 'ppsx', 'pptx', 'ppam', 'pptm', 'potm', 'ppsm',
+			'xlsx', 'xltx', 'xlsm', 'xltm', 'xlam', 'xlsb', 'dwfx', 'xps'
+		],
+		'application/vnd.oasis.opendocument' => [
+			'odt', 'ott', 'odg', 'otg', 'odp', 'otp', 'ods', 'ots', 'odc', 'otc',
+			'odi', 'oti', 'odf', 'otf', 'odm', 'oth',
+		]
 	];
 
 	/** @var array Map of built-in media types and their associated MIME types */
