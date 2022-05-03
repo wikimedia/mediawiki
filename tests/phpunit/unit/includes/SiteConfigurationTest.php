@@ -98,7 +98,7 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 		$site = null;
 		$lang = null;
 		foreach ( $conf->suffixes as $suffix ) {
-			if ( substr( $wiki, -strlen( $suffix ) ) == $suffix ) {
+			if ( str_ends_with( $wiki, $suffix ) ) {
 				$site = $suffix;
 				$lang = substr( $wiki, 0, -strlen( $suffix ) );
 				break;

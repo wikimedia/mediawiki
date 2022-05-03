@@ -205,7 +205,7 @@ class ParserTestRunner {
 			);
 			foreach ( $dirIterator as $fileInfo ) {
 				/** @var SplFileInfo $fileInfo */
-				if ( substr( $fileInfo->getFilename(), -4 ) === '.txt' ) {
+				if ( str_ends_with( $fileInfo->getFilename(), '.txt' ) ) {
 					$name = $info['name'] . '_' . $counter;
 					while ( isset( $files[$name] ) ) {
 						$counter++;

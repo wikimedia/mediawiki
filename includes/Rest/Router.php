@@ -246,9 +246,7 @@ class Router {
 	 * @return false|string
 	 */
 	private function getRelativePath( $path ) {
-		if ( strlen( $this->rootPath ) > strlen( $path ) ||
-			substr_compare( $path, $this->rootPath, 0, strlen( $this->rootPath ) ) !== 0
-		) {
+		if ( !str_starts_with( $path, $this->rootPath ) ) {
 			return false;
 		}
 		return substr( $path, strlen( $this->rootPath ) );

@@ -185,7 +185,7 @@ foreach ( $mmfl['setupFiles'] as $fileName ) {
 		fwrite( STDERR, "Loading data from $fileName\n" );
 	}
 	// Using extension.json or skin.json
-	if ( substr( $fileName, -strlen( '.json' ) ) === '.json' ) {
+	if ( str_ends_with( $fileName, '.json' ) ) {
 		$queue[$fileName] = 1;
 	} else {
 		require_once $fileName;

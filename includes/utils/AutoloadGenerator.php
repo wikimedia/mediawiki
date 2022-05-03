@@ -147,11 +147,10 @@ class AutoloadGenerator {
 		if ( !$path ) {
 			throw new \Exception( "Invalid path: $inputPath" );
 		}
-		$len = strlen( $this->basepath );
-		if ( substr( $path, 0, $len ) !== $this->basepath ) {
+		if ( !str_starts_with( $path, $this->basepath ) ) {
 			throw new \Exception( "Path is not within basepath: $inputPath" );
 		}
-		$shortpath = substr( $path, $len );
+		$shortpath = substr( $path, strlen( $this->basepath ) );
 		$this->overrides[$fqcn] = $shortpath;
 	}
 
@@ -165,7 +164,7 @@ class AutoloadGenerator {
 		// to files that are outside of $this->basepath.
 		$inputPath = self::normalizePathSeparator( $inputPath );
 		$len = strlen( $this->basepath );
-		if ( substr( $inputPath, 0, $len ) !== $this->basepath ) {
+		if ( !str_starts_with( $inputPath, $this->basepath ) ) {
 			throw new \Exception( "Path is not within basepath: $inputPath" );
 		}
 		if ( $this->shouldExclude( $inputPath ) ) {

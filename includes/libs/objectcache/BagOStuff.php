@@ -127,8 +127,6 @@ abstract class BagOStuff implements
 	protected const GLOBAL_KEYSPACE = 'global';
 	/** @var string Precomputed global cache key prefix (needs no encoding) */
 	protected const GLOBAL_PREFIX = 'global:';
-	/** @var string Precomputed global cache key prefix length */
-	protected const GLOBAL_PREFIX_LEN = 7;
 
 	/** @var int Item is a single cache key */
 	protected const ARG0_KEY = 0;
@@ -587,7 +585,7 @@ abstract class BagOStuff implements
 	 * @since 1.35
 	 */
 	public function isKeyGlobal( $key ) {
-		return ( strncmp( $key, self::GLOBAL_PREFIX, self::GLOBAL_PREFIX_LEN ) === 0 );
+		return str_starts_with( $key, self::GLOBAL_PREFIX );
 	}
 
 	/**

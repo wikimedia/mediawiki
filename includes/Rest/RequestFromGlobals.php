@@ -59,9 +59,9 @@ class RequestFromGlobals extends RequestBase {
 	public function getProtocolVersion() {
 		if ( $this->protocol === null ) {
 			$serverProtocol = $_SERVER['SERVER_PROTOCOL'] ?? '';
-			$prefixLength = strlen( 'HTTP/' );
-			if ( strncmp( $serverProtocol, 'HTTP/', $prefixLength ) === 0 ) {
-				$this->protocol = substr( $serverProtocol, $prefixLength );
+			$prefix = 'HTTP/';
+			if ( str_starts_with( $serverProtocol, $prefix ) ) {
+				$this->protocol = substr( $serverProtocol, strlen( $prefix ) );
 			} else {
 				$this->protocol = '1.1';
 			}
