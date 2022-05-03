@@ -742,8 +742,14 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->managerPriv->setDefaultUserOptions( $user, $useContextLang );
 		$user->saveSettings();
 		$this->assertNotEquals( $oldToken, $user->getToken() );
-		$this->assertSame( $expectedLang, $user->getOption( 'language' ) );
-		$this->assertSame( $expectedVariant, $user->getOption( 'variant' ) );
+		$this->assertSame(
+			$expectedLang,
+			$this->userOptionsManager->getOption( $user, 'language' )
+		);
+		$this->assertSame(
+			$expectedVariant,
+			$this->userOptionsManager->getOption( $user, 'variant' )
+		);
 	}
 
 	public function provideSetDefaultUserOptions() {
