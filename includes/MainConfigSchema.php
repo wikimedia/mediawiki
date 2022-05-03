@@ -6508,6 +6508,7 @@ class MainConfigSchema {
 					'class' => \MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider::class,
 					'services' => [
 						'DBLoadBalancer',
+						'UserOptionsLookup',
 					],
 					'args' => [ [
 						// Fall through to LocalPasswordPrimaryAuthenticationProvider
