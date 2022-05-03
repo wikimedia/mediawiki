@@ -368,35 +368,35 @@ class ImageListPager extends TablePager {
 	protected function combineResult( $res1, $res2, $limit, $order ) {
 		$res1->rewind();
 		$res2->rewind();
-		$topRes1 = $res1->next();
-		$topRes2 = $res2->next();
+		$topRes1 = $res1->fetchObject();
+		$topRes2 = $res2->fetchObject();
 		$resultArray = [];
 		for ( $i = 0; $i < $limit && $topRes1 && $topRes2; $i++ ) {
 			if ( strcmp( $topRes1->{$this->mIndexField[0]}, $topRes2->{$this->mIndexField[0]} ) > 0 ) {
 				if ( $order !== IndexPager::QUERY_ASCENDING ) {
 					$resultArray[] = $topRes1;
-					$topRes1 = $res1->next();
+					$topRes1 = $res1->fetchObject();
 				} else {
 					$resultArray[] = $topRes2;
-					$topRes2 = $res2->next();
+					$topRes2 = $res2->fetchObject();
 				}
 			} elseif ( $order !== IndexPager::QUERY_ASCENDING ) {
 				$resultArray[] = $topRes2;
-				$topRes2 = $res2->next();
+				$topRes2 = $res2->fetchObject();
 			} else {
 				$resultArray[] = $topRes1;
-				$topRes1 = $res1->next();
+				$topRes1 = $res1->fetchObject();
 			}
 		}
 
 		for ( ; $i < $limit && $topRes1; $i++ ) {
 			$resultArray[] = $topRes1;
-			$topRes1 = $res1->next();
+			$topRes1 = $res1->fetchObject();
 		}
 
 		for ( ; $i < $limit && $topRes2; $i++ ) {
 			$resultArray[] = $topRes2;
-			$topRes2 = $res2->next();
+			$topRes2 = $res2->fetchObject();
 		}
 
 		return new FakeResultWrapper( $resultArray );

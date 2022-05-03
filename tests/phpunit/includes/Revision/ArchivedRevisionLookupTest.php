@@ -173,7 +173,7 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( 2, $revisions->numRows() );
 		// Get the rows as arrays
 		$row0 = (array)$revisions->current();
-		$row1 = (array)$revisions->next();
+		$row1 = (array)$revisions->fetchObject();
 
 		$expectedRows = $this->getExpectedArchiveRows();
 

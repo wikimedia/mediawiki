@@ -89,11 +89,9 @@ interface IResultWrapper extends Countable, SeekableIterator {
 	public function key();
 
 	/**
-	 * @return stdClass
-	 * @suppress PhanParamSignatureMismatchInternal
+	 * @return void
 	 */
-	#[\ReturnTypeWillChange]
-	public function next();
+	public function next(): void;
 
 	/**
 	 * Get the names of the fields in the result
