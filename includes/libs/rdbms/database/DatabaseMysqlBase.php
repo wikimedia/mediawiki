@@ -1090,38 +1090,6 @@ abstract class DatabaseMysqlBase extends Database {
 		return true;
 	}
 
-	public function tableLocksHaveTransactionScope() {
-		return false; // tied to TCP connection
-	}
-
-	protected function doLockTables( array $read, array $write, $method ) {
-		$items = [];
-		foreach ( $write as $table ) {
-			$items[] = $this->tableName( $table ) . ' WRITE';
-		}
-		foreach ( $read as $table ) {
-			$items[] = $this->tableName( $table ) . ' READ';
-		}
-
-		$this->query(
-			"LOCK TABLES " . implode( ',', $items ),
-			$method,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
-		);
-
-		return true;
-	}
-
-	protected function doUnlockTables( $method ) {
-		$this->query(
-			"UNLOCK TABLES",
-			$method,
-			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
-		);
-
-		return true;
-	}
-
 	protected function doFlushSession( $fname ) {
 		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS | self::QUERY_NO_RETRY;
 
