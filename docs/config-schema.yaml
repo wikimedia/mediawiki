@@ -904,17 +904,12 @@ config-schema:
             - text/scriptlet
             - application/x-msdownload
             - application/x-msmetafile
+            - application/java
         type: array
         description: |-
             Files with these MIME types will never be allowed as uploads
             if $wgVerifyMimeType is enabled.
             @since 1.37; previously $wgMimeTypeBlacklist
-    AllowJavaUploads:
-        default: false
-        description: |-
-            Allow Java archive uploads.
-            This is not recommended for public wikis since a maliciously-constructed
-            applet running on the same domain as the wiki can steal the user's cookies.
     CheckFileExtensions:
         default: true
         description: |-

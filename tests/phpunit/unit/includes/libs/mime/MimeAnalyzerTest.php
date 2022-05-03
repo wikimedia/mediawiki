@@ -62,6 +62,8 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 				'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ],
 			[ 'djvu', 'image/x-djvu', 'image/vnd.djvu' ],
 			[ 'wav', 'audio/wav', 'audio/wav' ],
+			[ 'odt', 'application/vnd.oasis.opendocument',
+				'application/vnd.oasis.opendocument.text' ],
 
 			// XXX: It's probably wrong (as in: confusing and error-prone) for
 			//   ::improveTypeFromExtension to return null (T253483).
@@ -125,29 +127,34 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		);
 	}
 
-	/**
-	 * @covers MimeAnalyzer::detectZipType
-	 * @dataProvider provideOpendocumentsformatHeaders
-	 */
-	public function testDetectZipTypeRecognizesOpendocuments( $expected, $header ) {
-		$this->assertEquals(
-			$expected,
-			$this->mimeAnalyzer->detectZipType( $header )
-		);
+	public static function provideDetectZipTypeFromFile() {
+		return [
+			'[Content_Type].xml at end (T291750)' => [
+				'type-at-end.docx',
+				'application/x-opc+zip'
+			],
+			'Typical ODT gives fake generic type' => [
+				'lo6-empty.odt',
+				'application/vnd.oasis.opendocument'
+			],
+			'Ye olde GIFAR vulnerability' => [
+				'gifar.gif',
+				'application/java',
+			],
+		];
 	}
 
 	/**
-	 * An ODF file is a ZIP file of multiple files. The first one being
-	 * 'mimetype' and is not compressed.
+	 * @dataProvider provideDetectZipTypeFromFile
+	 * @param string $fileName
+	 * @param string $expected
 	 */
-	public function provideOpendocumentsformatHeaders() {
-		$thirtychars = str_repeat( 0, 30 );
-		return [
-			'Database front end document header based on ODF 1.2' => [
-				'application/vnd.oasis.opendocument.base',
-				$thirtychars . 'mimetypeapplication/vnd.oasis.opendocument.basePK',
-			],
-		];
+	public function testDetectZipTypeFromFile( $fileName, $expected ) {
+		$file = fopen( __DIR__ . '/../../../../data/media/' . $fileName, 'r' );
+		$this->assertEquals(
+			$expected,
+			$this->mimeAnalyzer->detectZipTypeFromFile( $file )
+		);
 	}
 
 	public function providePngZipConfusion() {
@@ -177,6 +184,11 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 				'zip-kind-of-valid-2.png',
 				'application/zip',
 			],
+			[
+				'Ye olde GIFAR vulnerability',
+				'gifar.gif',
+				'application/java'
+			]
 		];
 	}
 
