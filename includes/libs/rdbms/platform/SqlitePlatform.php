@@ -32,4 +32,14 @@ class SqlitePlatform extends SQLPlatform {
 	public function buildLeast( $fields, $values ) {
 		return $this->buildSuperlative( 'MIN', $fields, $values );
 	}
+
+	/**
+	 * Build a concatenation list to feed into a SQL query
+	 *
+	 * @param string[] $stringList
+	 * @return string
+	 */
+	public function buildConcat( $stringList ) {
+		return '(' . implode( ') || (', $stringList ) . ')';
+	}
 }
