@@ -385,11 +385,9 @@ return [
 				12 => 'text/scriptlet',
 				13 => 'application/x-msdownload',
 				14 => 'application/x-msmetafile',
+				15 => 'application/java',
 			],
 			'type' => 'array',
-		],
-		'AllowJavaUploads' => [
-			'default' => false,
 		],
 		'CheckFileExtensions' => [
 			'default' => true,

@@ -551,7 +551,6 @@ abstract class UploadBase {
 	 */
 	protected function verifyPartialFile() {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$allowJavaUploads = $config->get( MainConfigNames::AllowJavaUploads );
 		$disableUploadScriptChecks = $config->get( MainConfigNames::DisableUploadScriptChecks );
 		# getTitle() sets some internal parameters like $this->mFinalExtension
 		$this->getTitle();
@@ -576,24 +575,6 @@ abstract class UploadBase {
 				if ( $svgStatus !== false ) {
 					return $svgStatus;
 				}
-			}
-		}
-
-		# Check for Java applets, which if uploaded can bypass cross-site
-		# restrictions.
-		if ( !$allowJavaUploads ) {
-			$this->mJavaDetected = false;
-			$zipStatus = ZipDirectoryReader::read( $this->mTempPath,
-				[ $this, 'zipEntryCallback' ] );
-			if ( !$zipStatus->isOK() ) {
-				$errors = $zipStatus->getErrorsArray();
-				$error = reset( $errors );
-				if ( $error[0] !== 'zip-wrong-format' ) {
-					return $error;
-				}
-			}
-			if ( $this->mJavaDetected ) {
-				return [ 'uploadjava' ];
 			}
 		}
 
