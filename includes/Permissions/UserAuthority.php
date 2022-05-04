@@ -264,7 +264,7 @@ class UserAuthority implements Authority {
 
 			$blockError = false;
 			foreach ( $errors as $err ) {
-				$status->fatal( ...$err );
+				$status->fatal( wfMessage( ...$err ) );
 
 				// HACK: Detect whether the permission was denied because the user is blocked.
 				//       A similar hack exists in ApiBase::$blockMsgMap.
