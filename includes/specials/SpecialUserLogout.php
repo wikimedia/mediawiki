@@ -27,6 +27,11 @@
  * @ingroup SpecialPage
  */
 class SpecialUserLogout extends FormSpecialPage {
+	/**
+	 * @var string
+	 */
+	private $oldUserName;
+
 	public function __construct() {
 		parent::__construct( 'Userlogout' );
 	}
@@ -52,11 +57,13 @@ class SpecialUserLogout extends FormSpecialPage {
 	}
 
 	public function execute( $par ) {
-		if ( $this->getUser()->isAnon() ) {
+		$user = $this->getUser();
+		if ( $user->isAnon() ) {
 			$this->setHeaders();
 			$this->showSuccess();
 			return;
 		}
+		$this->oldUserName = $user->getName();
 
 		parent::execute( $par );
 	}
@@ -99,12 +106,10 @@ class SpecialUserLogout extends FormSpecialPage {
 	public function onSuccess() {
 		$this->showSuccess();
 
-		$user = $this->getUser();
-		$oldName = $user->getName();
 		$out = $this->getOutput();
 		// Hook.
 		$injected_html = '';
-		$this->getHookRunner()->onUserLogoutComplete( $user, $injected_html, $oldName );
+		$this->getHookRunner()->onUserLogoutComplete( $this->getUser(), $injected_html, $this->oldUserName );
 		$out->addHTML( $injected_html );
 	}
 
