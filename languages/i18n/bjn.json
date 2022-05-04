@@ -1074,7 +1074,6 @@
 	"php-uploaddisabledtext": "Mahunggah barakas di PHP dipajahakan.\nMuhun pariksa setelan file_uploads.",
 	"uploadscripted": "Barakas ngini mangandung HTML atawa kudi script nang kawa ditarjamahakan tasalah ulih sabuah panjalajah web.",
 	"uploadvirus": "Barakas baisi pirus!\nRirincian: $1",
-	"uploadjava": "Barakas ngini adalah sabuah barakas ZIP nang mangandung sabuah barakas Java .class.\nMahunggah babarakas java kada dibulihakan, karana inya kawa maluncati wawatas kaamanan.",
 	"upload-source": "Asal mula barakas",
 	"sourcefilename": "Ngaranbarakas asal mula:",
 	"sourceurl": "Asal mula URL:",

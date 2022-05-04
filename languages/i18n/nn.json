@@ -1447,7 +1447,6 @@
 	"php-uploaddisabledtext": "PHP-filopplasting er deaktivert. Sjå innstillinga for file_uploads.",
 	"uploadscripted": "Fila inneheld HTML- eller skriptkode som feilaktig kan bli tolka og køyrd av nettlesarar.",
 	"uploadvirus": "Fila innheld virus! Detaljar: $1",
-	"uploadjava": "Fila er ei ZIP-fil som inneheld ei Java .class-fil.\nOpplasting av Java-filer er ikkje tillate av di dei kan gå utanom tryggingsavgrensingane.",
 	"upload-source": "Kjeldefil",
 	"sourcefilename": "Filsti:",
 	"sourceurl": "Kjelde-URL:",

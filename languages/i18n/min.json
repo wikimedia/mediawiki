@@ -1567,7 +1567,6 @@
 	"uploadscriptednamespace": "Berkas SVG ko mamuek ruang namo ilegal \"<nowiki>$1</nowiki>\"",
 	"uploadinvalidxml": "XML dalam berkas nan diunggah indak bisa diuraikan.",
 	"uploadvirus": "Berkas tasabuik manganduang virus! Rincian: $1",
-	"uploadjava": "Berkas iko adolah berkas ZIP nan manganduang berkas .class Java.\nPangunggahan berkas Java indak dipabuliahan dek dapek manyababkan pangabaian batasan kaamanan.",
 	"upload-source": "Berkas sumber",
 	"sourcefilename": "Namo berkas sumber:",
 	"sourceurl": "URL sumber:",

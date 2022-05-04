@@ -1396,7 +1396,6 @@
 	"uploaded-remote-url-svg": "ilabu’ nu mapatapabaway a SVG tangan matepa <code>$1=\"$2\"</code>, masatezep SVG pisaungay amahicahica tu ibaatay a URL misetin maazihan.",
 	"uploaded-image-filter-svg": "ilabu’ mapatapabaway a SVG tangan matepa zunga sebseb-sakaluk pisaungay URL:<code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploadinvalidxml": "la’cus mitingalaw matapabaway tangan a XML.",
-	"uploadjava": "kya tangan ku yamalyilu Java .class tangan a ZIP tangan.\nzayhan Java tangan hakay takud han zahkez kinsa pakazahkezan a munday, caay mahasa patapabaw Java tangan.",
 	"upload-source": "saangangan a tangan",
 	"sourcefilename": "saangangan tangan kalungangan:",
 	"sourceurl": "saangangan URL:",

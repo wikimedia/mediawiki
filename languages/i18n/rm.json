@@ -1069,7 +1069,6 @@
 	"php-uploaddisabledtext": "La funcziun da chargiar si datotecas è deactivada en PHP. \nControllescha per plaschair l'opziun <code>file_uploads</code>.",
 	"uploadscripted": "Questa datoteca cuntegna HTML u code da scripts che pudess vegnir exequì per sbagl dal navigatur.",
 	"uploadvirus": "La datoteca cuntegna in virus! Detagls: $1",
-	"uploadjava": "La datoteca è ina datoteca da ZIP che cuntegna ina datoteca .class da Java.\nIgl n'è betg lubì da transferir datotecas da Java, perquai che quellas pon pussiblitar da giuntgir restricziuns da segirezza.",
 	"upload-source": "Datoteca da funtauna",
 	"sourcefilename": "Num da la datoteca d'origin:",
 	"sourceurl": "URL da funtauna:",

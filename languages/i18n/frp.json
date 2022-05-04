@@ -1361,7 +1361,6 @@
 	"uploadscriptednamespace": "Cél fichiér SVG contint un èspâço de noms « <nowiki>$1</nowiki> » pas ôtorisâ.",
 	"uploadinvalidxml": "Lo XML dedens lo fichiér tèlèchargiê at pas possu étre analisâ.",
 	"uploadvirus": "Cél fichiér contint un virus !\nDètalys : $1",
-	"uploadjava": "O est un fichiér ZIP que contint un fichiér Java « .class ».\nLo tèlèchargement de fichiérs Java est pas ôtorisâ, pôvont èvitar de rèstriccions de sècuritât.",
 	"upload-source": "Fichiér sôrsa",
 	"sourcefilename": "Nom du fichiér sôrsa :",
 	"sourceurl": "URL sôrsa :",

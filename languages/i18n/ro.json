@@ -1742,7 +1742,6 @@
 	"uploadscriptednamespace": "Acest fișier SVG conține un spațiu de nume „<nowiki>$1</nowiki>” neautorizat.",
 	"uploadinvalidxml": "Nu s-a putut analiza conținutul XML din fișierul încărcat.",
 	"uploadvirus": "Fișierul conține un virus! Detalii: $1",
-	"uploadjava": "Fișierul de față este o arhivă ZIP care conține un fișier de clasă Java.\nÎncărcarea fișierelor Java nu este permisă, întrucât pot evita restricțiile de securitate.",
 	"upload-source": "Fișier sursă",
 	"sourcefilename": "Numele fișierului sursă:",
 	"sourceurl": "URL sursă:",

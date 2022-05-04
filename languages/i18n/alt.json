@@ -1676,7 +1676,6 @@
 	"uploadscriptednamespace": "Бу SVG файлда јастыра аттардыҥ телкеми бар \"<nowiki>$1</nowiki>\".",
 	"uploadinvalidxml": "Салынган файлдагы XML-ды аайлап болбос.",
 	"uploadvirus": "Файлда вирус бар!\nКӧр.: $1",
-	"uploadjava": "Бу файл ZIP архив эмтир, оныҥ ичинде java-ныҥ .class файлы бар. \nJava файлдарды саларга јарабас, каршузын јетирер аргалу учун.",
 	"upload-source": "Тӧс файл",
 	"sourcefilename": "Тӧс файлдыҥ ады:",
 	"sourceurl": "Алган јердиҥ URL-ы:",

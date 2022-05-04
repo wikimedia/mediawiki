@@ -1545,7 +1545,6 @@
 	"uploadscriptednamespace": "呢個SVG文件可能有“<nowiki>$1</nowiki>”嘅非法字詞響度",
 	"uploadinvalidxml": "分析唔到已經上傳咗嘅XML文件",
 	"uploadvirus": "呢個檔案有病毒！\n詳情：$1",
-	"uploadjava": "呢個係個ZIP檔案包括Java .class檔案。\n因為保安問題，上傳Java檔案係禁止左嘅。",
 	"upload-source": "來源快勞",
 	"sourcefilename": "來源檔名:",
 	"sourceurl": "來源網址:",

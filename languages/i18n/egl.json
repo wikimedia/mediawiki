@@ -1188,7 +1188,6 @@
 	"uploadscriptednamespace": "Cól file SVG ché al gh'à un namespace '<nowiki>$1</nowiki>' mìa permés.",
 	"uploadinvalidxml": "Al côdis XML int al file al pōl mìa èser lavurê bèin.",
 	"uploadvirus": "Cól fil ché al ghè un 'virus'! Particulêr: $1",
-	"uploadjava": "Cól file ché l'é un file ZIP che 'l gh'à dèinter un file .class Java. Carghêr i file Java an n'é mìa permés, perché pōlen schivşêr i lémit ed sicurèsa.",
 	"upload-source": "File 'd urégin",
 	"sourcefilename": "Nòm dal file 'd urégin:",
 	"sourceurl": "URL 'd urégin:",

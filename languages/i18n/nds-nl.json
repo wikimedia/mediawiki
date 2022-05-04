@@ -1296,7 +1296,6 @@
 	"php-uploaddisabledtext": "t Opsturen van PHP-bestaanden is uutezet. Kiek de instellingen veur t opsturen van bestaanden effen nao.",
 	"uploadscripted": "In dit bestaand steet HTML- of skriptkode die verkeerd elezen kan wörden deur de webkieker.",
 	"uploadvirus": "In dit bestaand zit n virus! Gegevens: $1",
-	"uploadjava": "t Bestaand is n ZIP-bestaand waor n Java .class-bestaand in zit.\nt Oplaojen van Java-bestaanden is niet toe-estaon umdat hiermee beveiligingsinstellingen umzeild kunnen wörden.",
 	"upload-source": "Bronbestaand",
 	"sourcefilename": "Bestaandsnaam op de hardeschieve:",
 	"sourceurl": "Bronwebadres:",

@@ -1563,7 +1563,6 @@
 	"uploadscriptednamespace": "Un anv esaouenn berzet zo er restr SVG \"<nowiki>$1</nowiki>\".",
 	"uploadinvalidxml": "N'eus ket bet gallet dielfennañ an XML er restr ezporzhiet.",
 	"uploadvirus": "Viruzet eo ar restr! Titouroù : $1",
-	"uploadjava": "Ur restr ZIP a ra gant Java .class eo homañ.\nN'haller ket enporzhiañ restroù Java peogwir e c'haller mont dreist da vevennoù surentez ganto.",
 	"upload-source": "Restr orin",
 	"sourcefilename": "Anv ar restr tarzh :",
 	"sourceurl": "URL tarzh :",

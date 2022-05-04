@@ -972,7 +972,6 @@
 	"php-uploaddisabledtext": "PHP-Doatäi-Uploads wuuden deaktivierd. Wröich ju file_uploads-Ienstaalenge.",
 	"uploadscripted": "Disse Doatäi änthaalt HTML- of Scriptcode, ju bie Fersjoon fon aan Webbrowser apfierd wäide kuude.",
 	"uploadvirus": "Disse Doatäi änthaalt n Virus! Details: $1",
-	"uploadjava": "Dit is ne ZIP-Doatäi, ju der ne CLASS-Doatäi fon Java änthaalt.\nDät Hoochleeden fon Java-Doatäie is nit toulät, deer do dät Uumgungen fon Sicherhaidsienskränkengen muugelk moakje kuuden.",
 	"upload-source": "Wälledoatäi",
 	"sourcefilename": "Wälledoatäi:",
 	"sourceurl": "Wälle-URL:",

@@ -1511,7 +1511,6 @@
 	"uploadscriptednamespace": "Esta fix SVG conteni un nom de spasio nonvalida \"<nowiki>$1</nowiki>\".",
 	"uploadinvalidxml": "La XML en la fix cargada no ia pote es analiseda.",
 	"uploadvirus": "La fix conteni un virus!\nDetalias: $1",
-	"uploadjava": "La fix es un fix ZIP cual conteni un fix .class de Java.\nOn no permete carga fixes de Java car los pote causa la sircoveni de restrinjes de securia.",
 	"upload-source": "Fix fontal",
 	"sourcefilename": "Nom de fix fontal:",
 	"sourceurl": "URL fontal:",

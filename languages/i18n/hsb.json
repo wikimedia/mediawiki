@@ -1548,7 +1548,6 @@
 	"uploadscriptednamespace": "Tuta SVG-dataja wobsahuje njedowoleny mjenowy rum '<nowiki>$1</nowiki>'",
 	"uploadinvalidxml": "XML w nahratej dataji njeda so parsować.",
 	"uploadvirus": "Dataja wirus wobsahuje! Podrobnosće: $1",
-	"uploadjava": "Tuta dataja je ZIP-dataja, kotraž .class-dataju z Javy wobsahuje.\nNahraće datajow Javy njeje dowolene, dokelž móhli wobeńdźenje wěstotnych wobmjezowanjow zmóžnić.",
 	"upload-source": "Žórłowa dataja",
 	"sourcefilename": "Mjeno žórłoweje dataje:",
 	"sourceurl": "URL žórła:",

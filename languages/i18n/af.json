@@ -1337,7 +1337,6 @@
 	"php-uploaddisabledtext": "Die oplaai van lêers is in PHP afgeskakel.\nKyk na die \"file_uploads\"-instelling.",
 	"uploadscripted": "Hierdie lêer bevat HTML- en scriptkode wat verkeerdelik deur 'n webblaaier geïnterpreteer kan word.",
 	"uploadvirus": "Hierdie lêer bevat 'n virus! Inligting: $1",
-	"uploadjava": "Die lêer is 'n ZIP wat 'n Java .class-lêer bevat.\nDie oplaai van Java-lêers word nie toegelaat nie, omdat dit sekuriteit kan omseil.",
 	"upload-source": "Bronlêer",
 	"sourcefilename": "Oorspronklike lêernaam:",
 	"sourceurl": "Bron-URL:",

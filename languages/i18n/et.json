@@ -1717,7 +1717,6 @@
 	"uploadscriptednamespace": "See SVG-fail sisaldab keelatud nimeruumi \"<nowiki>$1</nowiki>\".",
 	"uploadinvalidxml": "Üleslaaditud failis sisalduvat XMLi ei õnnestunud liigendada.",
 	"uploadvirus": "Fail sisaldab viirust! Täpsemalt: $1",
-	"uploadjava": "See fail on ZIP-fail, milles on Java .class-fail.\nJava failide üleslaadimine on keelatud, kuna nende kaudu võidaks turvapiiranguist mööda minna.",
 	"upload-source": "Lähtefail",
 	"sourcefilename": "Lähtefail:",
 	"sourceurl": "Allika URL:",

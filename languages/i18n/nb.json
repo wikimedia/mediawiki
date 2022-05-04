@@ -1746,7 +1746,6 @@
 	"uploadscriptednamespace": "Denne SVG-filen inneholder et ulovlig navnerom «<nowiki>$1</nowiki>».",
 	"uploadinvalidxml": "XML-en i den opplastede filen kunne ikke tolkes.",
 	"uploadvirus": "Denne filen inneholder virus!\nDetaljer: $1",
-	"uploadjava": "Filen er en ZIP-fil som inneholder en Java-fil av typen .class.\nDet er ikke tillatt å laste opp Java-filer, fordi de kan omgå sikkerhetsrestriksjoner.",
 	"upload-source": "Kildefil",
 	"sourcefilename": "Velg en fil:",
 	"sourceurl": "Kildens URL:",

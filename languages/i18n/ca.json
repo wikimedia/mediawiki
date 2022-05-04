@@ -1763,7 +1763,6 @@
 	"uploadscriptednamespace": "Aquest fitxer SVG conté un espai de noms \"<nowiki>$1</nowiki>\" no autoritzat",
 	"uploadinvalidxml": "No s'ha pogut analitzar l'XML del fitxer carregat.",
 	"uploadvirus": "El fitxer conté un virus! Detalls: $1",
-	"uploadjava": "El fitxer és un arxiu ZIP que conté un fitxer .class de Java. No està permesa la càrrega de fitxers Java, perquè poden passar per alt les restriccions de seguretat.",
 	"upload-source": "Fitxer font",
 	"sourcefilename": "Nom del fitxer font:",
 	"sourceurl": "URL d'origen:",

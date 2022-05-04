@@ -1326,7 +1326,6 @@
 	"uploadscriptednamespace": "Tha ainm-spàs \"<nowiki>$1</nowiki>\" mì-dhligheach san fhaidhle SVG seo.",
 	"uploadinvalidxml": "Cha b' urrainn dhuinn an XML san fhaidhle air a luchdadh suas a pharsadh.",
 	"uploadvirus": "Tha bhìoras san fhaidhle!\nFiosrachadh: $1",
-	"uploadjava": "Tha am faidhle seo 'na fhaidhle ZIP sa bheil faidhle .class Java.\nChan fhaod thu faidhlichean Java a luchdadh suas on a b' urrainn dhaibh cuingeachaidhean na tèarainteachd a leigeil seachad.",
 	"upload-source": "Am faidhle tùsail:",
 	"sourcefilename": "Ainm an fhaidhle thùsail:",
 	"sourceurl": "An URL tùsail:",

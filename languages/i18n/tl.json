@@ -1261,7 +1261,6 @@
 	"php-uploaddisabledtext": "Hindi pinapagana ang mga pagkakarga ng talaksang PHP.  Pakisuri ang katakdaan ng mga_pagkakarga_ng_talaksan.",
 	"uploadscripted": "Naglalaman ang talaksan na ito ng HTML o kodigong script na maaaring mali ang pagkaintindi ng isang web browser.",
 	"uploadvirus": "Naglalaman ng virus ang talaksan! Mga detalye: $1",
-	"uploadjava": "Ang talaksan ay isang talaksang ZIP na naglalaman ng isang .klase ng talaksan. na Java.  Hindi pinapayagan ang pagkakarga ng mga talaksang Java, dahil nakasasanhi sila ng mga paglilimita ng kaligtasan na kailangang lampasan.",
 	"upload-source": "Batayang file",
 	"sourcefilename": "Pangalan ng panggagalingang file:",
 	"sourceurl": "Batayang URL:",

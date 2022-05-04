@@ -1728,7 +1728,6 @@
 	"uploadscriptednamespace": "Гэты файл SVG утрымлівае недапушчальную прастору імёнаў \"<nowiki>$1</nowiki>\".",
 	"uploadinvalidxml": "Немагчыма прааналізаваць XML ва ўкладзеным файле.",
 	"uploadvirus": "Файл утрымлівае вірус! Падрабязнасці: $1",
-	"uploadjava": "Файл ўяўляе сабой ZIP-архіў, які змяшчае .class файл Java.",
 	"upload-source": "Зыходны файл",
 	"sourcefilename": "Вытокавы файл:",
 	"sourceurl": "Зыходная спасылка",

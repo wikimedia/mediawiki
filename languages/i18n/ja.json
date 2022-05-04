@@ -1822,7 +1822,6 @@
 	"uploadscriptednamespace": "この SVG ファイルは無効な名前空間「<nowiki>$1</nowiki>」を含んでいます。",
 	"uploadinvalidxml": "アップロードされたファイルに含まれる XML が構文解析できませんでした。",
 	"uploadvirus": "このファイルはウイルスを含んでいます!\n詳細: $1",
-	"uploadjava": "このファイルは、Javaの.classファイルを含むZIPファイルです。\nセキュリティ上の制限を回避されるおそれがあるため、Javaファイルのアップロードは許可されていません。",
 	"upload-source": "アップロード元ファイル",
 	"sourcefilename": "アップロード元のファイル名:",
 	"sourceurl": "アップロード元の URL:",

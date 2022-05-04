@@ -1573,7 +1573,6 @@
 	"uploadscriptednamespace": "Aqueste fichièr SVG conten un espaci de noms '<nowiki>$1</nowiki>' pas autorizat.",
 	"uploadinvalidxml": "Lo XML dins lo fichièr importat a pas pogut èsser analisat.",
 	"uploadvirus": "Aqueste fichièr conten un virús ! Per mai de detalhs, consultatz : $1",
-	"uploadjava": "Es un fichièr ZIP que conten un fichièr Java .class.\nLo telecargament de fichièrs Java es pas autorizat, perque pòdon contornar de restriccions de seguretat.",
 	"upload-source": "Fichièr font",
 	"sourcefilename": "Nom del fichièr font :",
 	"sourceurl": "URL font :",

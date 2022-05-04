@@ -1476,7 +1476,6 @@
 	"uploadscriptednamespace": "Šis SVG fails satur nelegālu vārdtelpu \"<nowiki>$1</nowiki>\".",
 	"uploadinvalidxml": "Nevarēja apstrādāt augšupielādētā faila XML saturu.",
 	"uploadvirus": "Šis fails satur vīrusu! Sīkāk: $1",
-	"uploadjava": "Fails ir ZIP fails, kas satur Java .class failu.\nJava failu augšupielāde nav atļauta, jo tas var radīt iespējas apiet drošības ierobežojumus.",
 	"upload-source": "Augšupielādējamais fails",
 	"sourcefilename": "Faila adrese:",
 	"sourceurl": "Avota URL:",

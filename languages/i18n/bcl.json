@@ -1449,7 +1449,6 @@
 	"php-uploaddisabledtext": "An pagkarga kan mga sagunson pinagpundo nguna sa PHP.\nPakihilnga man tabi an panuytuyan kan pagkarga nin mga sagunson.",
 	"uploadscripted": "Ining ''file'' igwang HTML o kodang eskritura na pwede ser na salang mainterpretar kan ''browser''.",
 	"uploadvirus": "May virus an ''file''! Mga detalye: $1",
-	"uploadjava": "An sagunson yaon sa ZIP an porma na igwang Java .class na sagunson.\nPagkakarga na mga Java an mga sagunson dae pinagtutugutan, nin huli ta sinda minakausa nin mga restriksyon sa seguridad na lagpason.",
 	"upload-source": "Gikanang sagunson",
 	"sourcefilename": "Ginikanan kan pangaran nin sagunson:",
 	"sourceurl": "Ginikanan kan kilyawan:",

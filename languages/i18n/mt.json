@@ -1489,7 +1489,6 @@
 	"uploadscriptednamespace": "Il-fajl SVG jinkludi spazju tal-isem \"<nowiki>$1</nowiki>\" li mhuwiex permess.",
 	"uploadinvalidxml": "L-XML fil-fajl imtella' ma setax jiġi analizzat.",
 	"uploadvirus": "Dan il-fajl huwa infettat b'virus! Dettalji: $1",
-	"uploadjava": "Il-fajl huwa fajl ZIP li jinkludi fajl .class tal-Java.\nIt-tlugħ ta' fajls tal-Java mhuwiex permess, minħabba li jistgħu jaqbżu restrizzjonijiet ta' sigurtà.",
 	"upload-source": "Sors tal-fajl",
 	"sourcefilename": "L-isem tal-fajl tal-oriġini:",
 	"sourceurl": "Sors tal-URL:",

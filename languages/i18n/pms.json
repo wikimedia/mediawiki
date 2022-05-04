@@ -1695,7 +1695,6 @@
 	"uploadscriptednamespace": "S'archivi SVG a conten në spassi nominal «<nowiki>$1</nowiki>» nen autorisà",
 	"uploadinvalidxml": "L'XML ant l'archivi carià a l'ha nen podù esse analisà.",
 	"uploadvirus": "St'archivi-sì a l'han andrinta un '''vìrus!''' Detaj: $1",
-	"uploadjava": "L'archivi a l'é n'archivi ZIP ch'a conten n'archivi Java .class.\nAs peulo pa cariesse dj'archivi Java, përché a peulo causé l'agirament ëd le restrission ëd sicurëssa.",
 	"upload-source": "Archivi sorgiss",
 	"sourcefilename": "Nòm dl'archivi sorgiss:",
 	"sourceurl": "Adrëssa dl'aragnà sorgiss:",

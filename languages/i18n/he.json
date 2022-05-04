@@ -1739,7 +1739,6 @@
 	"uploadscriptednamespace": "קובץ ה‏‏־SVG הזה כולל מרחב שם בלתי־חוקי \"<nowiki>$1</nowiki>\".",
 	"uploadinvalidxml": "לא ניתן לפרש את ה־XML בקובץ שהועלה.",
 	"uploadvirus": "הקובץ מכיל וירוס!\nפרטים:\n<div dir=\"ltr\">$1</div>",
-	"uploadjava": "הקובץ הזה הוא קובץ ZIP שמכיל קובץ &lrm;.class של Java.\nהעלאת קובצי Java אסורה כי הם יכולים לגרום לעקיפת מגבלות האבטחה.",
 	"upload-source": "קובץ המקור",
 	"sourcefilename": "שם קובץ המקור:",
 	"sourceurl": "כתובת URL של המקור:",

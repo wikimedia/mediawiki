@@ -1346,7 +1346,6 @@
 	"uploadscriptednamespace": "De aanjejovve <i lang=\"en\" xml:lang=\"en\">SVG</i>-Dattei benöds dä verbodde Nahme-Roum „<nowiki>$1</nowiki>“",
 	"uploadinvalidxml": "Dat <i lang=\"en\" xml:lang=\"en\">XML</i> en dä huh jelaade Dattei kunnt wohr nit en Oodenong beim Ongersöhke.",
 	"uploadvirus": "Esu ene Dress:\n<br />\nEn dä Datei stich e Kompjutervirus!\n<br />\nDe Einzelheite: $1",
-	"uploadjava": "Dat es en Sammel_Dattei em ZIP-Fommaat, woh en Java-.class-Datei dren shtich.\nJava-Datteie huhlaade es nit zohjelohße, weil mer domet de Enshtellunge ömjonn kann, di der ẞörver schöze un däm sing Sescherheit jarranteere.",
 	"upload-source": "Wo de Daate herkumme",
 	"sourcefilename": "Dattei zem huhlahde:",
 	"sourceurl": "<i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Uniform Ressource Locator\">URL</i>  för vun eronger ze lahde",

@@ -1819,7 +1819,6 @@
 	"uploadscriptednamespace": "Bu SVG dosyası geçersiz \"<nowiki>$1</nowiki>\" ad adını içermektedir.",
 	"uploadinvalidxml": "Yüklenen dosyadaki XML işlenemedi.",
 	"uploadvirus": "Bu dosya virüs içermektedir!\nAyrıntılar: $1",
-	"uploadjava": "Dosya, bir Java .class dosyası içeren bir ZIP dosyasıdır.\nJava dosyalarının yüklenmesine izin verilmez, çünkü güvenlik kısıtlamalarının atlanmasına neden olabilirler.",
 	"upload-source": "Kaynak dosyası",
 	"sourcefilename": "Kaynak dosya adı:",
 	"sourceurl": "Kaynak URL'si:",

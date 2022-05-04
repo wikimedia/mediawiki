@@ -1694,7 +1694,6 @@
 	"uploadscriptednamespace": "Ova SVG datoteka sadrži pogrešan imenski prostor „<nowiki>$1</nowiki>“",
 	"uploadinvalidxml": "Nije moguće raščlaniti XML u otpremljenoj datoteci.",
 	"uploadvirus": "Datoteka sadrži virus.\nDetalji: $1",
-	"uploadjava": "Datoteka je formata ZIP koji sadrži java .class element.\nSlanje java datoteka nije dozvoljeno jer one mogu izazvati zaobilaženje sigurnosnih ograničenja.",
 	"upload-source": "Izvorna datoteka",
 	"sourcefilename": "Naziv izvorne datoteke:",
 	"sourceurl": "URL izvora:",

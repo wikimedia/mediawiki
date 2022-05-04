@@ -1694,7 +1694,6 @@
 	"uploadscriptednamespace": "Tento SVG súbor obsahuje nepovolený menný priestor „<nowiki>$1</nowiki>“.",
 	"uploadinvalidxml": "XML v nahranom súbore sa nedá spracovať.",
 	"uploadvirus": "Súbor obsahuje vírus! Podrobnosti: $1",
-	"uploadjava": "Súbor je vo formáte ZIP, ktorý obsahuje Java súbor .class.\nNahrávanie súborov Java nie je povolené, pretože môžu spôsobiť obídenie bezpečnostných obmedzení.",
 	"upload-source": "Zdrojový súbor",
 	"sourcefilename": "Názov zdrojového súboru:",
 	"sourceurl": "Zdrojový URL:",
