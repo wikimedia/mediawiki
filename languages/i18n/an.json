@@ -1030,7 +1030,6 @@
 	"php-uploaddisabledtext": "A carga de fichers PHP ye desactivata. Por favor, verfique a confeguración de file_uploads.",
 	"uploadscripted": "Iste fichero contiene codigo de script u HTML que puede estar interpretado incorrectament por un navegador.",
 	"uploadvirus": "Iste fichero tiene un virus! Detalles: $1",
-	"uploadjava": "O fichero ye un ZIP que contiene un fichero .class de Java.\nNo se permite puyar fichers Java, porque pueden fer que se puedan blincar restriccions de seguranza.",
 	"upload-source": "Fichero fuent",
 	"sourcefilename": "Nombre d'o fichero d'orichen:",
 	"sourceurl": "URL d'orichen",

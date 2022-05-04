@@ -1775,7 +1775,6 @@
 	"uploadscriptednamespace": "Berkas SVG ini memuat ruang nama ilegal \"<nowiki>$1</nowiki>\".",
 	"uploadinvalidxml": "XML dalam berkas yang diunggah tidak bisa diuraikan.",
 	"uploadvirus": "Berkas tersebut mengandung virus! \nPerincian: $1",
-	"uploadjava": "Berkas ini adalah berkas ZIP yang mengandung berkas .class Java.\nPenggunggahan berkas Java tidak diperbolehkan karena dapat menyebabkan pengabaian batasan keamanan.",
 	"upload-source": "Berkas sumber",
 	"sourcefilename": "Nama berkas sumber:",
 	"sourceurl": "URL sumber:",

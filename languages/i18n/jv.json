@@ -1449,7 +1449,6 @@
 	"php-uploaddisabledtext": "Pangunggahan berkas dipatèni ing PHP.\nMangga priksa panyetèlan pangunggahan berkas.",
 	"uploadscripted": "Berkas iki ngandhut HTML utawa kodhe kang bisa diinterpretasi salah déning pangluru wèb.",
 	"uploadvirus": "Berkas iki ngamot virus! Détil: $1",
-	"uploadjava": "Barkasé barkas ZIP kang ngemu barkas .class Java.\nNgunggah barkas Java ora diidinaké amarga bisa njalari dilanggaré watesan kaamanan.",
 	"upload-source": "Berkas sumber",
 	"sourcefilename": "Aran berkas sumber:",
 	"sourceurl": "URL sumber:",

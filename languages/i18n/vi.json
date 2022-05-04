@@ -1752,7 +1752,6 @@
 	"uploadscriptednamespace": "Tập tin SVG này chứa không gian tên “<nowiki>$1</nowiki>” không được cho phép",
 	"uploadinvalidxml": "Không thể phân tích mã XML trong tập tin tải lên.",
 	"uploadvirus": "Tập tin có virút! Chi tiết: $1",
-	"uploadjava": "Tập tin ZIP này chứa một tập tin Java .class.\nKhông được phép tải lên các tập tin Java, bởi vì chúng có thể vượt qua các hạn chế bảo mật.",
 	"upload-source": "Tập tin gốc",
 	"sourcefilename": "Tên tập tin nguồn:",
 	"sourceurl": "URL gốc:",

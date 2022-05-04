@@ -1483,7 +1483,6 @@
 	"uploadscriptednamespace": "This SVG file contains aen illegal namespace \"<nowiki>$1</nowiki>\"",
 	"uploadinvalidxml": "The XML in the uplaided file coudna be parsed.",
 	"uploadvirus": "The file hauds a virus! Details: $1",
-	"uploadjava": "The file is ae ZIP file that contains ae Java .class file.\nUplaidin Java files isna permitit cause thay can cause secureetie restreections tae be bypassed.",
 	"upload-source": "Soorce file",
 	"sourcefilename": "Soorce filename:",
 	"sourceurl": "Soorce URL:",

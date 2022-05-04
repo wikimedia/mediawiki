@@ -1587,7 +1587,6 @@
 	"uploadscriptednamespace": "Šis SVG failas turi neteisėtą vietą vardui '<nowiki>$1</nowiki>'",
 	"uploadinvalidxml": "XML įkeltoje rinkmenoje negali būti išnagrinėtas.",
 	"uploadvirus": "Šiame faile yra virusas! Smulkiau: $1",
-	"uploadjava": "Ši rinkmena tai ZIP rinkmena, kurioje yra Java .class rinkmena.\nĮkelti Java rinkmenų neleidžiama, nes jos gali padėti apeiti saugumo apribojimus.",
 	"upload-source": "Pradinė rinkmena",
 	"sourcefilename": "Įkeliama rinkmena:",
 	"sourceurl": "Šaltinio adresas:",

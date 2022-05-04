@@ -1777,7 +1777,6 @@
 	"uploadscriptednamespace": "이 SVG 파일은 사용할 수 없는 이름공간 '<nowiki>$1</nowiki>'을 포함하고 있습니다.",
 	"uploadinvalidxml": "업로드된 파일의 XML의 구문을 분석할 수 없습니다.",
 	"uploadvirus": "파일이 바이러스를 포함하고 있습니다!\n자세한 설명: $1",
-	"uploadjava": "이 ZIP 파일은 자바의 .class 파일을 포함하고 있습니다.\n보안 규제를 우회할 수 있기 때문에 자바 파일을 올리는 것이 허용되지 않습니다.",
 	"upload-source": "원본 파일",
 	"sourcefilename": "원본 파일 이름:",
 	"sourceurl": "출처 URL:",

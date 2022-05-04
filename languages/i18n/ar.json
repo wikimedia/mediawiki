@@ -1788,7 +1788,6 @@
 	"uploadscriptednamespace": "يحتوي ملف SVG هذا على اسم نطاق غير مشروع \"<nowiki>$1</nowiki>\"",
 	"uploadinvalidxml": "تعذر تحليل XML في الملف المرفوع.",
 	"uploadvirus": "الملف يحتوي على فيروس! التفاصيل: $1",
-	"uploadjava": "يحتوي ملف ZIP هذا على ملفات جافا .class.\nلا يسمح برفع ملفات جافا لأنها تتيح تخطي القيود الأمنية.",
 	"upload-source": "الملف المصدر",
 	"sourcefilename": "اسم ملف المصدر:",
 	"sourceurl": "مسار المصدر:",

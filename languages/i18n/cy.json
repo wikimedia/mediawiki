@@ -1495,7 +1495,6 @@
 	"uploadscriptednamespace": "Mae'r ffeil SVG hon yn cynnwys yr enw '<nowiki>$1</nowiki>' sy'n enw annilys ar barth",
 	"uploadinvalidxml": "Ni ellid dosrannu'r XML yn y ffeil a uwchlwythwyd.",
 	"uploadvirus": "Mae firws gan y ffeil hon! Manylion: $1",
-	"uploadjava": "Ffeil ZIP yw hwn sy'n cynnwys ffeil Java .class.\nNi chaniateir uwchlwytho ffeiliau Java, oherwydd y gallant osgoi cyfyngiadau diogelwch.",
 	"upload-source": "Y ffeil wreiddiol",
 	"sourcefilename": "Enw'r ffeil wreiddiol:",
 	"sourceurl": "URL y gwreiddiol:",

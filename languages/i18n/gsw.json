@@ -1281,7 +1281,6 @@
 	"uploadscriptednamespace": "I deren SVG-Datei het’s der illegal Namensruum «<nowiki>$1</nowiki>».",
 	"uploadinvalidxml": "S XML in dr uffegladene Datei het nit chenne parst wäre.",
 	"uploadvirus": "In däre Datei het s e Virus! Detail: $1",
-	"uploadjava": "Des isch e ZIP-Datei, wu s e CLASS-Datei vu Java din het.\nS Uffelade vu Java-Dateien isch nit gstattet, wel si s Umgoh vu Sicherheitsyyschränkige chennte megli mache.",
 	"upload-source": "Quälldatei",
 	"sourcefilename": "Quälldatei:",
 	"sourceurl": "Quäll-URL:",

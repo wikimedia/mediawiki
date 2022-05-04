@@ -1538,7 +1538,6 @@
 	"uploadscriptednamespace": " SVG-файлында ярамаған исем бар '<nowiki>$1</nowiki>'",
 	"uploadinvalidxml": "Тейәлгән файлда анализлап булмай XML .",
 	"uploadvirus": "Файлда вирус бар!\nТулыраҡ мәғлүмәт: $1",
-	"uploadjava": "Был, эсендә Java .class файлы булған ZIP-архив.\nИменлек өсөн Java-файлдарын тейәү тыйылған.",
 	"upload-source": "Сығанаҡ файл",
 	"sourcefilename": "Файлдың сығанаҡ исеме:",
 	"sourceurl": "Сығанаҡ URL:",

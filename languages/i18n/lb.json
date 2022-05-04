@@ -1576,7 +1576,6 @@
 	"uploadscriptednamespace": "An dësem SVG-Fichier ass en illegalen Nummraum \"<nowiki>$1</nowiki>\"",
 	"uploadinvalidxml": "Den XML am eropgelueden Fichier konnt net verschafft ginn.",
 	"uploadvirus": "An dësem Fichier ass ee Virus! Detailer: $1",
-	"uploadjava": "An dësem ZIP-Fichier ass e JAVA CLASS-Fichier dran.\nD'Eropluede vu JAVA-Fichieren ass net erlaabt, well si d'Ëmgoe vu Sécherheetsmoossnamen erméigleche kënnen.",
 	"upload-source": "Quell-Fichier",
 	"sourcefilename": "Numm vum Originalfichier:",
 	"sourceurl": "Quell-URL:",

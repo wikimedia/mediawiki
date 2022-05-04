@@ -1707,7 +1707,6 @@
 	"uploadscriptednamespace": "Datoteka SVG vsebuje nedovoljen imenski prostor »<nowiki>$1</nowiki>«",
 	"uploadinvalidxml": "XML v naloženi datoteki ne moremo razčleniti.",
 	"uploadvirus": "Datoteka vsebuje virus!\nPodrobnosti: $1",
-	"uploadjava": "Datoteka je datoteka ZIP, ki vsebuje javansko datoteko .class.\nNalaganje javanskih datotek ni dovoljeno, ker je z njimi mogoče obiti varnostne omejitve.",
 	"upload-source": "Izvorna datoteka",
 	"sourcefilename": "Ime izvorne datoteke:",
 	"sourceurl": "Izvorni URL:",

@@ -1665,7 +1665,6 @@
 	"uploadscriptednamespace": "SVG fitxategi hau legez kanpoko \"<nowiki>$1</nowiki>\" izen eremua dauka.",
 	"uploadinvalidxml": "Ezin izan da analizatu XMLa igotako fitxategian.",
 	"uploadvirus": "Fitxategiak birusa dauka! Xehetasunak: $1",
-	"uploadjava": "Fitxategia ZIP bat da eta Java .class fitxategi bat du.\nJava fitxategiak igotzea ez dago baimendua, segurtasun muga batzuk hausteko aukera ematen duelako.",
 	"upload-source": "Jatorrizko fitxategia",
 	"sourcefilename": "Iturri-fitxategiaren izena:",
 	"sourceurl": "Jatorrizko URL-a:",

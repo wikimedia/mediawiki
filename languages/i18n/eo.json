@@ -1741,7 +1741,6 @@
 	"uploadscriptednamespace": "Ĉi tiu SVG-dosiero enhavas nevalidan nomspacon \"<nowiki>$1</nowiki>\"",
 	"uploadinvalidxml": "Ne eblas interpreti la XML-sintakson en la alŝutita dosiero",
 	"uploadvirus": "Viruso troviĝas en la dosiero! Detaloj: $1",
-	"uploadjava": "La dosiero estas ZIP-dosiero kiu enhavas .class-dosieron de Java.\nAlŝutante Java-dosieron estas malpermesita, ĉar ili povas kaŭzi sekureco-limigojn esti preterpasitaj.",
 	"upload-source": "Fonta dosiero:",
 	"sourcefilename": "Fonta dosiernomo:",
 	"sourceurl": "Fonta URL:",

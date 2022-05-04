@@ -1834,7 +1834,6 @@
 	"uploadscriptednamespace": "Questo file SVG contiene un namespace '<nowiki>$1</nowiki>' non consentito",
 	"uploadinvalidxml": "Il codice XML nel file caricato non può essere elaborato.",
 	"uploadvirus": "Questo file contiene un virus! Dettagli: $1",
-	"uploadjava": "Questo file è un file ZIP che contiene un file .class Java.\nCaricare i file Java non è consentito, perché possono causare l'aggiramento delle restrizioni di sicurezza.",
 	"upload-source": "File di origine",
 	"sourcefilename": "Nome del file di origine:",
 	"sourceurl": "URL di origine:",

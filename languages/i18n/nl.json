@@ -1798,7 +1798,6 @@
 	"uploadscriptednamespace": "Dit SVG-bestand bevat een ongeldige naamruimte <nowiki>\"$1\"</nowiki>.",
 	"uploadinvalidxml": "De XML in het geüploade bestand kon niet worden verwerkt.",
 	"uploadvirus": "Het bestand bevat een virus! Details: $1",
-	"uploadjava": "Het bestand is een ZIP-bestand dat een Java .class-bestand bevat.\nHet uploaden van Java-bestanden is niet toegestaan omdat hiermee beveiligingsinstellingen omzeild kunnen worden.",
 	"upload-source": "Bronbestand",
 	"sourcefilename": "Oorspronkelijke bestandsnaam:",
 	"sourceurl": "Bron-URL:",

@@ -1528,7 +1528,6 @@
 	"uploadscriptednamespace": "Stu file SVG cuntene nu namespace '<nowiki>$1</nowiki>' nun permesso.",
 	"uploadinvalidxml": "'O códece XML d' 'o file carrecato nun se può passà.",
 	"uploadvirus": "Stu file cuntene nu virus! Dettaglie: $1",
-	"uploadjava": "Stu file è nu file ZIP ca cuntene nu file .class Java.\nCarrecà 'e file Java nun è permesso, pecché ponno appassà 'e restriziune 'e sicurezza.",
 	"upload-source": "File d'origgine",
 	"sourcefilename": "Nomme d' 'o file d'origgine:",
 	"sourceurl": "URL d'origgine:",

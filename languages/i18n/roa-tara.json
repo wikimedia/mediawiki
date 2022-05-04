@@ -1620,7 +1620,6 @@
 	"uploadscriptednamespace": "Stu file SVG tène 'nu namespace illegale '<nowiki>$1</nowiki>'",
 	"uploadinvalidxml": "L'XML jndr'à 'u file carecate non ge pò essere analizzate.",
 	"uploadvirus": "Alanga toje, 'u file condiene 'nu virus! Dettaglie: $1",
-	"uploadjava": "'U file jè 'nu file de tipe ZIP ca condene 'nu file de classe Java.\n'U carecamende de le file Java non g'è permesse, purcé lore ponne causà l'aggiramende de le restriziune de sicurezze.",
 	"upload-source": "File sorgende",
 	"sourcefilename": "Nome d'u fail d'origgine:",
 	"sourceurl": "URL sorgende:",

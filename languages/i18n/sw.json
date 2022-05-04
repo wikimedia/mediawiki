@@ -1254,7 +1254,6 @@
 	"uploadscriptednamespace": "Faili ya SVG iko na jina batili \"<nowiki>$1</nowiki>\".",
 	"uploadinvalidxml": "XML katika faili iliyopakiwa haikuchanganuliwa.",
 	"uploadvirus": "Faili lina kirusi!\nMaelezo mengine: $1",
-	"uploadjava": "Faili ZIP hili lina faili Java .class humo ndani.\nHairuhusiki kupakia mafaili ya Java, kwa sababu yanawezesha kusababisha vizuio vya usalama kuzungukwa.",
 	"upload-source": "Faili la chanzo",
 	"sourcefilename": "Jina la faili la chanzo:",
 	"sourceurl": "URL ya chanzo:",

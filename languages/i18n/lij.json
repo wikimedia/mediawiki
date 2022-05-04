@@ -1646,7 +1646,6 @@
 	"uploadscriptednamespace": "Questo file SVG o conten un namespace '<nowiki>$1</nowiki>' non consentio",
 	"uploadinvalidxml": "O codiçe XML into file caregou o no poeu ese elaboou.",
 	"uploadvirus": "Questo file o conten un virus! Dettaggi: $1",
-	"uploadjava": "Questo file o l'è un file ZIP ch'o conten un file .class Java.\nCaregâ i file Java no l'è consentio, perché poeuan caosâ l'aggiamento de restriçioin de segueçça.",
 	"upload-source": "File de origine",
 	"sourcefilename": "Nomme do file d'origgine:",
 	"sourceurl": "URL de origine:",

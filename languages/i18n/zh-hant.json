@@ -1812,7 +1812,6 @@
 	"uploadscriptednamespace": "此 SVG 檔案使用了非法的命名空間 \"<nowiki>$1</nowiki>\"。",
 	"uploadinvalidxml": "無法解析已上傳檔案中的 XML。",
 	"uploadvirus": "該檔案含有病毒！\n詳細資料：$1",
-	"uploadjava": "該檔案為包含 Java .class 檔案的 ZIP 檔案。\n因 Java 檔案可能跳過安全檢查造成安全性問題，不允許上傳 Java 檔案。",
 	"upload-source": "來源檔案",
 	"sourcefilename": "來源檔案名稱：",
 	"sourceurl": "來源 URL：",

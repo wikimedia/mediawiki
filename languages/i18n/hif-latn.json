@@ -1369,7 +1369,6 @@
 	"uploadscriptednamespace": "Ii SVG file me illegal namespace \"<nowiki>$1</nowiki>\" hae.",
 	"uploadinvalidxml": "Upload karaa gais file ke XML ke parse nai karaa jaae sake hae.",
 	"uploadvirus": "Ii file me virus hai! Details: $1",
-	"uploadjava": "Ii file ek ZIP file hae jisme Java .class ke file hae.\nJava ke uplaod kare ke anumati nai hae, kaaheki isse kuchh security restrictions ke bypass karaa jaae sake hae.",
 	"upload-source": "Suruu waala file",
 	"sourcefilename": "Suruu waala file ke naam:",
 	"sourceurl": "Suruu waala URL",

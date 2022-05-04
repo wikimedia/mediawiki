@@ -1352,7 +1352,6 @@
 	"php-uploaddisabledtext": "El caricamento de file tramite PHP el xe disabilità. Contròla la configurassion de file_uploads.",
 	"uploadscripted": "Sto file contegne codexe HTML o de script, che podaria essere interpretà eroneamente da un browser web.",
 	"uploadvirus": "Sto file contegne un virus! Detagli: $1",
-	"uploadjava": "Sto file xe un file ZIP che contien un file Java \".class\".\nCargar file Java no xe consentìo, parché łi podarìa cauxare on ajiramento de łe restrision de sicuresa.",
 	"upload-source": "File de origine",
 	"sourcefilename": "Nome del file de origine:",
 	"sourceurl": "URL de origine:",

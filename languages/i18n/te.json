@@ -1733,7 +1733,6 @@
 	"uploadscriptednamespace": "ఈ SVG ఫైలులోని పేరుబరి \"<nowiki>$1</nowiki>\" చెల్లనిది",
 	"uploadinvalidxml": "ఎక్కించిన ఫైలులోని XML ను పార్సు చెయ్యలేకపోయాం.",
 	"uploadvirus": "ఈ ఫైలులో వైరస్‌ ఉంది! వివరాలు: $1",
-	"uploadjava": "ఇదొక ZIP ఫైలు, ఇందులో ఒక Java .class ఫైలు ఉంది.\nJava ఫైళ్ళ వలన భద్రతకు తూట్లు పడే అవకాశం ఉంది కాబట్టి, వాటిని ఎక్కించడానికి అనుమతి లేదు.",
 	"upload-source": "మూల దస్త్రం",
 	"sourcefilename": "మూలం ఫైలుపేరు:",
 	"sourceurl": "మూల URL:",

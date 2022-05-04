@@ -1495,7 +1495,6 @@
 	"upload-scripted-pi-callback": "Nuk mund të ngarkohet skedari që përmban instruksione të procesimit të XML-stylesheet",
 	"uploadinvalidxml": "XML në skedarin e ngarkuar nuk mund të kontrollohej.",
 	"uploadvirus": "Skeda përmban një virus! Detaje: $1",
-	"uploadjava": "Dokumenti është në formatin ZIP i cili përmban Java. class dokumente.\nNgarkimi i Java dokumenteve nuk është i lejuar, sepse ato mund të shkaktojnë kufizime të sigurisë për ti anashkaluar.",
 	"upload-source": "Burimi i skedës",
 	"sourcefilename": "Emri i skedës:",
 	"sourceurl": "Burimi URL:",

@@ -1766,7 +1766,6 @@
 	"uploadscriptednamespace": "Tämä SVG-tiedosto sisältää nimiavaruuden ”<nowiki>$1</nowiki>”, joka ei ole sallittu.",
 	"uploadinvalidxml": "Ladatun tiedoston XML-koodia ei voitu jäsentää kunnolla.",
 	"uploadvirus": "Tiedosto sisältää viruksen. Tarkemmat tiedot: $1",
-	"uploadjava": "Tämä tiedosto on ZIP-tiedosto, joka sisältää Java .class-tiedoston.\nJava-tiedostojen tallentaminen ei ole sallittua, sillä ne saattavat aiheuttaa tietoturvariskejä.",
 	"upload-source": "Lähdetiedosto",
 	"sourcefilename": "Lähdetiedoston nimi:",
 	"sourceurl": "URL-lähde",

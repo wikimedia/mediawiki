@@ -1724,7 +1724,6 @@
 	"uploadscriptednamespace": "Fail SVG ini mengandungi ruang nama terlarang \"<nowiki>$1</nowiki>\"",
 	"uploadinvalidxml": "XML dalam fail yang dimuat naik ini tidak dapat dihuraikan.",
 	"uploadvirus": "Fail tersebut mengandungi virus! Butiran: $1",
-	"uploadjava": "Fail ini ialah fail ZIP yang mengandungi fail .class Java.\nMemuat naik fail Java tidak dibenarkan, kerana boleh menyebabkan sekatan keselamatan dipintas.",
 	"upload-source": "Fail sumber",
 	"sourcefilename": "Nama fail sumber:",
 	"sourceurl": "Sumber URL:",

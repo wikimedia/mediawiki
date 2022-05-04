@@ -1780,7 +1780,6 @@
 	"uploadscriptednamespace": "Este ficheiro SVG contém um espaço nominal que não é permitido \"<nowiki>$1</nowiki>\".",
 	"uploadinvalidxml": "Não foi possível analisar o XML do ficheiro carregado.",
 	"uploadvirus": "O ficheiro contém um vírus! \nDetalhes: $1",
-	"uploadjava": "Este é um ficheiro ZIP que contém um ficheiro .class de Java.\nNão é permitido o carregamento de ficheiros Java, porque estes podem contornar as restrições de segurança.",
 	"upload-source": "Ficheiro de origem",
 	"sourcefilename": "Nome do ficheiro de origem:",
 	"sourceurl": "URL fonte:",

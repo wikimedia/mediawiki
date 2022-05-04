@@ -1875,7 +1875,6 @@
 	"uploadscriptednamespace": "此SVG文件包含非法命名空间“<nowiki>$1</nowiki>”。",
 	"uploadinvalidxml": "上传文件中的XML无法解析。",
 	"uploadvirus": "该文件包含病毒！\n详情：$1",
-	"uploadjava": "该文件是ZIP文件，其中包含Java的.class文件。\n上传Java文件不被允许，因为它们可能绕过限制，从而引起安全问题。",
 	"upload-source": "来源文件",
 	"sourcefilename": "源文件名：",
 	"sourceurl": "来源网址：",

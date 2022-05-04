@@ -1775,7 +1775,6 @@
 	"uploadscriptednamespace": "Denna SVG-fil innehåller den ogiltiga namnrymden \"<nowiki>$1</nowiki>\".",
 	"uploadinvalidxml": "XML-koden i den uppladdade filen kunde inte tolkas.",
 	"uploadvirus": "Filen innehåller virus! Detaljer: $1",
-	"uploadjava": "Filen är en ZIP-fil som innehåller en Java .class-fil.\nUppladdning av Java filer tillåts inte eftersom de kan orsaka att säkerhetsbegränsningar kan kringgås.",
 	"upload-source": "Källfil",
 	"sourcefilename": "Ursprungsfilens namn:",
 	"sourceurl": "Källans URL:",

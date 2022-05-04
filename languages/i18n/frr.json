@@ -1337,7 +1337,6 @@
 	"uploadscriptednamespace": "Detdiar SVG-datei wiset üüb en ferkiarden nöömrüm \"<nowiki>$1</nowiki>\".",
 	"uploadinvalidxml": "Det XML uun det huuchschüürd datei küd ei ''parset'' wurd.",
 	"uploadvirus": "Uun detdiar datei as en wiirus! Details: $1",
-	"uploadjava": "Detdiar as en ZIP-datei mä en CLASS-datei faan Java.\nJava-datein kön ei tuläät wurd, auer jo det seekerhaid uun fraag stel küd.",
 	"upload-source": "Kweldatei",
 	"sourcefilename": "Kweldateinööm:",
 	"sourceurl": "Kwel-URL:",

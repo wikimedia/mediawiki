@@ -1811,7 +1811,6 @@
 	"uploadscriptednamespace": "Diese SVG-Datei enthält den unzulässigen Namensraum „<nowiki>$1</nowiki>“.",
 	"uploadinvalidxml": "Das XML in der hochgeladenen Datei konnte nicht geparst werden.",
 	"uploadvirus": "Diese Datei enthält einen Virus! Details: $1",
-	"uploadjava": "Dies ist eine ZIP-Datei, die ein CLASS-Datei von Java enthält.\nDas Hochladen von Java-Dateien ist nicht gestattet, da sie die Umgehung von Sicherheitseinschränkungen ermöglichen könnten.",
 	"upload-source": "Quelldatei",
 	"sourcefilename": "Quelldatei:",
 	"sourceurl": "Quell-URL:",

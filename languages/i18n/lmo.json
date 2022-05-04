@@ -1704,7 +1704,6 @@
 	"uploadscriptednamespace": "Quell fail SVG chì el gh'hà dent un spazzi di nom '<nowiki>$1</nowiki>'minga permetud",
 	"uploadinvalidxml": "A se po minga laoragh adree al codes XML del fail caregad.",
 	"uploadvirus": "Quell fail chì el gh'hà dent un virus! Detali: $1",
-	"uploadjava": "Chesschì l'è un fail ZIP che 'l gh'hà dent un fail  .class Java.\nA caregà i fail Java l'è minga permettud, perchè poden fa de manera che se poda giragh intorna di vincol de sicurezza.",
 	"upload-source": "Fail de origin",
 	"sourcefilename": "Nom de l'archivi sorgent:",
 	"sourceurl": "URL d'originː",

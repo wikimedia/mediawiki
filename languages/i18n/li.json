@@ -1535,7 +1535,6 @@
 	"uploadscriptednamespace": "Dit SVG-bestandj bevat 'n óngeljige naamruumde <nowiki>\"$1\"</nowiki>.",
 	"uploadinvalidxml": "De XML in 't geüpload bestandj kós neet waere verwirk.",
 	"uploadvirus": "'t Bestand bevat 'n virus! Details: $1",
-	"uploadjava": "'t Bestandj is e ZIP-bestandj det 'n Java .class-bestandj bevat.\n't Uploade van Java-bestenj is neet toegestaon omdet hiemit beveiligingsinstellinge omzeild kinne waere.",
 	"upload-source": "Brónbestandj",
 	"sourcefilename": "Oorspronkelike bestandsnaam:",
 	"sourceurl": "Brón URL:",

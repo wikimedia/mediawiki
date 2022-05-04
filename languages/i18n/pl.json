@@ -1794,7 +1794,6 @@
 	"uploadscriptednamespace": "Ten plik SVG zawiera niedozwoloną przestrzeń nazw „<nowiki>$1</nowiki>”.",
 	"uploadinvalidxml": "Nie udało się przeanalizować XML w załadowanym pliku.",
 	"uploadvirus": "W pliku jest wirus! Szczegóły: $1",
-	"uploadjava": "Ten plik zawiera deklarację klasy Java skompresowaną ZIP.\nPrzesyłanie plików Java nie jest dozwolone, ponieważ mogłoby zostać użyte do obchodzenia zabezpieczeń.",
 	"upload-source": "Plik źródłowy",
 	"sourcefilename": "Nazwa pierwotna:",
 	"sourceurl": "Źródłowy adres URL:",

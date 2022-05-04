@@ -1543,7 +1543,6 @@
 	"uploadscriptednamespace": "Daytoy a papeles ti SVG ket aglaon iti maysa a saan a mabalin a nagan ti espasio ti \"<nowiki>$1</nowiki>\".",
 	"uploadinvalidxml": "Ti XML iti naikarga a papeles ket saan a maiwaswas.",
 	"uploadvirus": "Ti papeles ket aglaon ti birus! \nDagiti salaysay: $1",
-	"uploadjava": "Daytoy a papeles ket papeles ti ZIP nga aglaon ti Java .a klase ti papeles.\nTi panangikarga ti papales ti Java ket saan a maipalubos gapu ta makapataudda a manglabas kadagiti panangigawid ti seguridad.",
 	"upload-source": "Taudan ti papeles",
 	"sourcefilename": "Taudan a nagan ti papeles:",
 	"sourceurl": "Taudan ti URL:",

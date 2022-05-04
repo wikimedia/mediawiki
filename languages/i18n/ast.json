@@ -1659,7 +1659,6 @@
 	"uploadscriptednamespace": "Esti ficheru SVG contien l'espaciu de nomes illegal «<nowiki>$1</nowiki>»",
 	"uploadinvalidxml": "Nun pudo interpretase'l XML del ficheru cargáu.",
 	"uploadvirus": "¡El ficheru tien un virus!\nDetalles: $1",
-	"uploadjava": "El ficheru ye un archivu ZIP que contien un ficheru .class de Java.\nXubir ficheros Java nun ta permitío, porque puede facer que se salten les torgues de seguridá.",
 	"upload-source": "Ficheru orixe",
 	"sourcefilename": "Nome del ficheru orixinal:",
 	"sourceurl": "URL d'orixe:",

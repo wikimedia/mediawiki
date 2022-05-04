@@ -1704,7 +1704,6 @@
 	"uploadscriptednamespace": "Iste file SVG contine un spatio de nomines invalide: \"<nowiki>$1</nowiki>\"",
 	"uploadinvalidxml": "Le codice XML in le file incargate non pote esser interpretate.",
 	"uploadvirus": "Le file contine un virus! Detalios: $1",
-	"uploadjava": "Iste file es un archivo ZIP que contine un file .class de Java.\nNon es permittite incargar files Java, proque istes pote contornar le restrictiones de securitate.",
 	"upload-source": "File de origine",
 	"sourcefilename": "Nomine del file de origine:",
 	"sourceurl": "URL de origine:",

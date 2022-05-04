@@ -1586,7 +1586,6 @@
 	"uploadscriptednamespace": "Бу SVG-билэ алҕастаах аат даллаах эбит: '<nowiki>$1</nowiki>'",
 	"uploadinvalidxml": "Хачайдаммит билэҕэ XML анаалыстанар кыаҕа суох.",
 	"uploadvirus": "Бу билэ вирустаах! Көр: $1",
-	"uploadjava": "Билэ Java .class билэлээх ZIP-архыып эбит.\nКуттал суох буолбатын диэн Java-билэрэри манна угар бобуллар.",
 	"upload-source": "Билэ бастакы торума",
 	"sourcefilename": "Билэ сытар сирэ:",
 	"sourceurl": "Сытар сирин URL аадырыһа:",
