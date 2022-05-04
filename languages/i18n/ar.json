@@ -94,7 +94,8 @@
 			"SaldırganSincap",
 			"FiberAhmed",
 			"Hubaishan",
-			"NancyMilad"
+			"NancyMilad",
+			"أَحمد"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -4161,6 +4162,7 @@
 	"passwordpolicies-policy-minimalpasswordlength": "يجب أن يكون طول كلمة المرور على الأقل $1 {{PLURAL:$1|حرف|أحرف}}",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "يجب أن يكون طول كلمة المرور على الأقل $1 {{PLURAL:$1|حرف|أحرف}} لتتمكن من تسجيل الدخول",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "كلمة السر لا يمكن أن تكون سلسلة حروف فرعية خلال اسم المستخدم.",
+	"passwordpolicies-policy-passwordcannotmatchdefaults": "لا يمكن أن تتطابق كلمة المرور مع قائمة محددة من كلمات المرور الافتراضية",
 	"passwordpolicies-policy-maximalpasswordlength": "يجب أن يكون طول كلمة المرور أقل من $1 {{PLURAL:$1|حرف|أحرف}}",
 	"passwordpolicies-policyflag-forcechange": "يجب أن تتغير عند تسجيل الدخول",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "اقتراح التغيير عند تسجيل الدخول",

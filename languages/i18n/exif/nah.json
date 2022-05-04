@@ -4,7 +4,8 @@
 			"Akapochtli",
 			"Fluence",
 			"Ricardo gs",
-			"Taresi"
+			"Taresi",
+			"Languaeditor"
 		]
 	},
 	"exif-photometricinterpretation": "Pixel tlachīhualiztli",
@@ -12,7 +13,7 @@
 	"exif-software": "Software omotequitiuh",
 	"exif-artist": "Chīhualōni",
 	"exif-exifversion": "Exif-cuepaliztli",
-	"exif-usercomment": "Tequitiuhqui oquihtoh",
+	"exif-usercomment": "Tlen kiꞌihtoa ni tekitiketl",
 	"exif-exposuretime": "Cāuhcāyōtl",
 	"exif-fnumber": "F Tlapōhualli",
 	"exif-isospeedratings": "ISO iciuhquiliztli tlapōhualcāyōtl",
@@ -25,7 +26,7 @@
 	"exif-gpsaltitude": "Huehcapancayōtl",
 	"exif-gpstimestamp": "GPS cāhuitl (atomic tepozcāhuitl)",
 	"exif-languagecode": "Tlahtolli",
-	"exif-iimcategory": "Neneuhcayotl",
+	"exif-iimcategory": "Nehnewkayotl",
 	"exif-orientation-1": "Yectli",
 	"exif-meteringmode-255": "Occē",
 	"exif-lightsource-1": "Tōnameyōtl",

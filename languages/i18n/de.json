@@ -2397,7 +2397,7 @@
 	"unwatch": "Nicht mehr beobachten",
 	"unwatchthispage": "Nicht mehr beobachten",
 	"notanarticle": "Keine Seite",
-	"notvisiblerev": "Version wurde gelöscht",
+	"notvisiblerev": "Die letzte Version von einem anderen Benutzer wurde gelöscht",
 	"watchlist-details": "{{PLURAL:$1|Eine Seite ist|$1 Seiten sind}} auf deiner Beobachtungsliste (sowie Diskussionsseiten).",
 	"watchlist-expiry-days-left": "{{PLURAL:$1|$1 Tag verbleibt|$1 Tage verbleiben}}",
 	"watchlist-expiring-days-full-text": "Noch {{PLURAL:$1|$1 Tag|$1 Tage}} auf deiner Beobachtungsliste",

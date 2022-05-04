@@ -27,7 +27,8 @@
 			"아라",
 			"McDutchie",
 			"Wangombe",
-			"Amire80"
+			"Amire80",
+			"Hasley"
 		]
 	},
 	"tog-underline": "Wekea mstari viungo:",
@@ -289,7 +290,7 @@
 	"sort-descending": "Pangia kwa kushuka",
 	"sort-ascending": "Pangia kwa kupanda",
 	"nstab-main": "Ukurasa",
-	"nstab-user": "{{GENDER:$1|Ukiraza wa mtumiaji }}",
+	"nstab-user": "{{GENDER:$1|Ukurasa wa mtumiaji}}",
 	"nstab-media": "Ukurasa wa faili",
 	"nstab-special": "Ukurasa maalum",
 	"nstab-project": "Ukurasa wa mradi",
