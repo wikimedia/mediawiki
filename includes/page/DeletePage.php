@@ -45,7 +45,7 @@ use Wikimedia\RequestTimeout\TimeoutException;
 use WikiPage;
 
 /**
- * Backend logic for perfoming a page delete action.
+ * Backend logic for performing a page delete action.
  *
  * @since 1.37
  */
