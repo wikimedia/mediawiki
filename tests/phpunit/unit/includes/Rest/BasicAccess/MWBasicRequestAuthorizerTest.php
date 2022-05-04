@@ -11,6 +11,7 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\Tests\Rest\Handler\SessionHelperTestTrait;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use Psr\Container\ContainerInterface;
@@ -23,6 +24,8 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * @covers \MediaWiki\Rest\BasicAccess\MWBasicRequestAuthorizer
  */
 class MWBasicRequestAuthorizerTest extends MediaWikiUnitTestCase {
+	use SessionHelperTestTrait;
+
 	private function createRouter( $userRights, $request ) {
 		$objectFactory = new ObjectFactory(
 			$this->getMockForAbstractClass( ContainerInterface::class )
@@ -43,7 +46,8 @@ class MWBasicRequestAuthorizerTest extends MediaWikiUnitTestCase {
 			$objectFactory,
 			new Validator( $objectFactory, $request, $authority ),
 			new PHPErrorReporter(),
-			$this->createHookContainer()
+			$this->createHookContainer(),
+			$this->getSession()
 		);
 	}
 
