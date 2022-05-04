@@ -38,8 +38,9 @@ require_once "$IP/tests/common/TestSetup.php";
 
 // We don't use a settings file here but some code still assumes that one exists
 TestSetup::requireOnceInGlobalScope( "$IP/includes/BootstrapHelperFunctions.php" );
+
+$IP = wfDetectInstallPath(); // ensure MW_INSTALL_PATH is defined
 wfDetectLocalSettingsFile( $IP );
-define( 'MW_INSTALL_PATH', $IP );
 
 // these variables must be defined before setup runs
 $GLOBALS['IP'] = $IP;

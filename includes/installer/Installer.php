@@ -646,7 +646,7 @@ abstract class Installer {
 	 * @return array|false
 	 */
 	public static function getExistingLocalSettings() {
-		global $IP;
+		$IP = wfDetectInstallPath();
 
 		// You might be wondering why this is here. Well if you don't do this
 		// then some poorly-formed extensions try to call their own classes
