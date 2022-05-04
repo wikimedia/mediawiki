@@ -70,7 +70,8 @@ class GenerateConfigDefaultSettings extends Maintenance {
 			$doc[] = "@since {$schema['since']}";
 		}
 		if ( isset( $schema['deprecated'] ) ) {
-			$doc[] = "@deprecated {$schema['deprecated']}";
+			$deprecated = str_replace( "\n", "\n *    ", wordwrap( $schema['deprecated'] ) );
+			$doc[] = "@deprecated {$deprecated}";
 		}
 		if ( $docType ) {
 			$doc[] = "@var $docType";

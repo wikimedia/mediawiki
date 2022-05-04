@@ -53,16 +53,17 @@ class GenerateConfigNames extends Maintenance {
 	private function getConstantDeclaration( string $name, array $schema ): string {
 		$chunks = [];
 
+		$chunks[] = "Name constant for the $name setting, for use with Config::get()";
+		$chunks[] = "@see MainConfigSchema::$name";
+
 		if ( isset( $schema['since'] ) ) {
-			$chunks[] = "\t * @since {$schema['since']}\n";
+			$chunks[] = "@since {$schema['since']}";
 		}
 
 		if ( isset( $schema['deprecated'] ) ) {
-			$chunks[] = "\t * @deprecated {$schema['deprecated']}\n";
+			$deprecated = str_replace( "\n", "\n\t *    ", wordwrap( $schema['deprecated'] ) );
+			$chunks[] = "@deprecated {$deprecated}";
 		}
-
-		$chunks[] = "Name constant for the $name setting, for use with Config::get()";
-		$chunks[] = "@see MainConfigSchema::$name";
 
 		$code = "\t/**\n\t * ";
 		$code .= implode( "\n\t * ", $chunks );
