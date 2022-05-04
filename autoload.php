@@ -1826,6 +1826,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\DatabaseMysqli' => __DIR__ . '/includes/libs/rdbms/database/DatabaseMysqli.php',
 	'Wikimedia\\Rdbms\\DatabasePostgres' => __DIR__ . '/includes/libs/rdbms/database/DatabasePostgres.php',
 	'Wikimedia\\Rdbms\\DatabaseSqlite' => __DIR__ . '/includes/libs/rdbms/database/DatabaseSqlite.php',
+	'Wikimedia\\Rdbms\\Database\\DbQuoter' => __DIR__ . '/includes/libs/rdbms/database/DbQuoter.php',
 	'Wikimedia\\Rdbms\\DoctrineAbstractSchemaTrait' => __DIR__ . '/includes/libs/rdbms/dbal/DoctrineAbstractSchemaTrait.php',
 	'Wikimedia\\Rdbms\\DoctrineSchemaBuilder' => __DIR__ . '/includes/libs/rdbms/dbal/DoctrineSchemaBuilder.php',
 	'Wikimedia\\Rdbms\\DoctrineSchemaBuilderFactory' => __DIR__ . '/includes/libs/rdbms/dbal/DoctrineSchemaBuilderFactory.php',

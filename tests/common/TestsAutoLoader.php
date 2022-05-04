@@ -248,6 +248,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/unit/includes/libs/filebackend/fsfile
 	'TempFSFileTestTrait' => "$testDir/phpunit/unit/includes/libs/filebackend/fsfile/TempFSFileTestTrait.php",
 
+	# tests/phpunit/unit/includes/libs/filebackend/fsfile
+	'MediaWiki\\Tests\\Unit\\Libs\\Rdbms\\AddQuoterMock' => "$testDir/phpunit/unit/includes/libs/rdbms/AddQuoterMock.php",
+
 	# tests/phpunit/unit/includes/utils
 	'UrlUtilsTest' => "$testDir/phpunit/unit/includes/utils/UrlUtilsTest.php",
 

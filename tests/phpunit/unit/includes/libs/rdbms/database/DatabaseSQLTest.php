@@ -1114,22 +1114,22 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			[
 				'field',
 				'value',
-				"GREATEST(field,'value')"
+				"GREATEST(\"field\",'value')"
 			],
 			[
 				[ 'field' ],
 				[ 'value' ],
-				"GREATEST(field,'value')"
+				"GREATEST(\"field\",'value')"
 			],
 			[
 				[ 'field', 'field2' ],
 				[ 'value', 'value2' ],
-				"GREATEST(field,field2,'value','value2')"
+				"GREATEST(\"field\",\"field2\",'value','value2')"
 			],
 			[
 				[ 'field', 'b' => 'field2 + 1' ],
 				[ 'value', 'value2' ],
-				"GREATEST(field,field2 + 1,'value','value2')"
+				"GREATEST(\"field\",field2 + 1,'value','value2')"
 			],
 		];
 	}
@@ -1150,22 +1150,22 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			[
 				'field',
 				'value',
-				"LEAST(field,'value')"
+				"LEAST(\"field\",'value')"
 			],
 			[
 				[ 'field' ],
 				[ 'value' ],
-				"LEAST(field,'value')"
+				"LEAST(\"field\",'value')"
 			],
 			[
 				[ 'field', 'field2' ],
 				[ 'value', 'value2' ],
-				"LEAST(field,field2,'value','value2')"
+				"LEAST(\"field\",\"field2\",'value','value2')"
 			],
 			[
 				[ 'field', 'b' => 'field2 + 1' ],
 				[ 'value', 'value2' ],
-				"LEAST(field,field2 + 1,'value','value2')"
+				"LEAST(\"field\",field2 + 1,'value','value2')"
 			],
 		];
 	}

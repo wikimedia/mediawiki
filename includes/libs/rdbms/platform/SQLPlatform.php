@@ -19,13 +19,24 @@
  */
 namespace Wikimedia\Rdbms\Platform;
 
+use Wikimedia\Rdbms\Database\DbQuoter;
+use Wikimedia\Rdbms\DBLanguageError;
+
 /**
  * Sql abstraction object.
- * This class nor any of its subclasses should create or use a db connection.
- * It also should not become stateful. Preferably the constructor should stay empty.
+ * This class nor any of its subclasses shouldn't create a db connection.
+ * It also should not become stateful. The constructor should only rely on addQuotes() method in Database.
+ * Later that should be replaced with an implementation that doesn't use db connections.
  * @since 1.39
  */
 class SQLPlatform implements ISQLPlatform {
+	/** @var DbQuoter */
+	protected $quoter;
+
+	public function __construct( DbQuoter $quoter ) {
+		$this->quoter = $quoter;
+	}
+
 	/**
 	 * @inheritDoc
 	 * @stable to override
@@ -56,6 +67,61 @@ class SQLPlatform implements ISQLPlatform {
 	 */
 	public function addIdentifierQuotes( $s ) {
 		return '"' . str_replace( '"', '""', $s ) . '"';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function buildGreatest( $fields, $values ) {
+		return $this->buildSuperlative( 'GREATEST', $fields, $values );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function buildLeast( $fields, $values ) {
+		return $this->buildSuperlative( 'LEAST', $fields, $values );
+	}
+
+	/**
+	 * Build a superlative function statement comparing columns/values
+	 *
+	 * Integer and float values in $values will not be quoted
+	 *
+	 * If $fields is an array, then each value with a string key is treated as an expression
+	 * (which must be manually quoted); such string keys do not appear in the SQL and are only
+	 * descriptive aliases.
+	 *
+	 * @param string $sqlfunc Name of a SQL function
+	 * @param string|string[] $fields Name(s) of column(s) with values to compare
+	 * @param string|int|float|string[]|int[]|float[] $values Values to compare
+	 * @return string
+	 */
+	protected function buildSuperlative( $sqlfunc, $fields, $values ) {
+		$fields = is_array( $fields ) ? $fields : [ $fields ];
+		$values = is_array( $values ) ? $values : [ $values ];
+
+		$encValues = [];
+		foreach ( $fields as $alias => $field ) {
+			if ( is_int( $alias ) ) {
+				$encValues[] = $this->addIdentifierQuotes( $field );
+			} else {
+				$encValues[] = $field; // expression
+			}
+		}
+		foreach ( $values as $value ) {
+			if ( is_int( $value ) || is_float( $value ) ) {
+				$encValues[] = $value;
+			} elseif ( is_string( $value ) ) {
+				$encValues[] = $this->quoter->addQuotes( $value );
+			} elseif ( $value === null ) {
+				throw new DBLanguageError( 'Null value in superlative' );
+			} else {
+				throw new DBLanguageError( 'Unexpected value type in superlative' );
+			}
+		}
+
+		return $sqlfunc . '(' . implode( ',', $encValues ) . ')';
 	}
 
 }

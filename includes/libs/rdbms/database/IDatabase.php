@@ -22,6 +22,7 @@ namespace Wikimedia\Rdbms;
 use Exception;
 use InvalidArgumentException;
 use stdClass;
+use Wikimedia\Rdbms\Database\DbQuoter;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\ScopedCallback;
 
@@ -36,7 +37,7 @@ use Wikimedia\ScopedCallback;
  * @note IDatabase and DBConnRef should be updated to reflect any changes
  * @ingroup Database
  */
-interface IDatabase extends ISQLPlatform {
+interface IDatabase extends ISQLPlatform, DbQuoter {
 	/** @var int Callback triggered immediately due to no active transaction */
 	public const TRIGGER_IDLE = 1;
 	/** @var int Callback triggered by COMMIT */
@@ -1018,38 +1019,6 @@ interface IDatabase extends ISQLPlatform {
 	);
 
 	/**
-	 * Build a GREATEST function statement comparing columns/values
-	 *
-	 * Integer and float values in $values will not be quoted
-	 *
-	 * If $fields is an array, then each value with a string key is treated as an expression
-	 * (which must be manually quoted); such string keys do not appear in the SQL and are only
-	 * descriptive aliases.
-	 *
-	 * @param string|string[] $fields Name(s) of column(s) with values to compare
-	 * @param string|int|float|string[]|int[]|float[] $values Values to compare
-	 * @return mixed
-	 * @since 1.35
-	 */
-	public function buildGreatest( $fields, $values );
-
-	/**
-	 * Build a LEAST function statement comparing columns/values
-	 *
-	 * Integer and float values in $values will not be quoted
-	 *
-	 * If $fields is an array, then each value with a string key is treated as an expression
-	 * (which must be manually quoted); such string keys do not appear in the SQL and are only
-	 * descriptive aliases.
-	 *
-	 * @param string|string[] $fields Name(s) of column(s) with values to compare
-	 * @param string|int|float|string[]|int[]|float[] $values Values to compare
-	 * @return mixed
-	 * @since 1.35
-	 */
-	public function buildLeast( $fields, $values );
-
-	/**
 	 * Build a SUBSTRING function
 	 *
 	 * Behavior for non-ASCII values is undefined.
@@ -1181,14 +1150,6 @@ interface IDatabase extends ISQLPlatform {
 	 * @since 1.36
 	 */
 	public function getServerName();
-
-	/**
-	 * Escape and quote a raw value string for use in a SQL query
-	 *
-	 * @param string|int|float|null|bool|Blob $s
-	 * @return string
-	 */
-	public function addQuotes( $s );
 
 	/**
 	 * LIKE statement wrapper

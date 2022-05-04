@@ -126,6 +126,7 @@ because of Phabricator reports.
   override isKnownStatementRollbackError() instead.
 * Database::wasQueryTimeoutError() was removed. Subclasses should
   override isQueryTimeoutError() instead.
+* Database::buildSuperlative() has been removed without deprecation.
 * The following methods, deprecated in 1.37, have been removed:
   - Linker::setStubThreshold(), ::getStubThreshold().
   - LinkRendererFactory::createForUser().

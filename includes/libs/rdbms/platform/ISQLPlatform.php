@@ -21,8 +21,9 @@ namespace Wikimedia\Rdbms\Platform;
 
 /**
  * Interface for query language.
- * Note: This is for simple SQL operations, use QueryBuilder for building
- * full queries.
+ * Note: This is for simple SQL operations, use QueryBuilder for building full queries.
+ *
+ * Methods of this interface should be only used by rdbms library.
  * @since 1.39
  */
 interface ISQLPlatform {
@@ -57,4 +58,36 @@ interface ISQLPlatform {
 	 * @since 1.33
 	 */
 	public function addIdentifierQuotes( $s );
+
+	/**
+	 * Build a GREATEST function statement comparing columns/values
+	 *
+	 * Integer and float values in $values will not be quoted
+	 *
+	 * If $fields is an array, then each value with a string key is treated as an expression
+	 * (which must be manually quoted); such string keys do not appear in the SQL and are only
+	 * descriptive aliases.
+	 *
+	 * @param string|string[] $fields Name(s) of column(s) with values to compare
+	 * @param string|int|float|string[]|int[]|float[] $values Values to compare
+	 * @return mixed
+	 * @since 1.35 in IDatabase, moved to ISQLPlatform in 1.39
+	 */
+	public function buildGreatest( $fields, $values );
+
+	/**
+	 * Build a LEAST function statement comparing columns/values
+	 *
+	 * Integer and float values in $values will not be quoted
+	 *
+	 * If $fields is an array, then each value with a string key is treated as an expression
+	 * (which must be manually quoted); such string keys do not appear in the SQL and are only
+	 * descriptive aliases.
+	 *
+	 * @param string|string[] $fields Name(s) of column(s) with values to compare
+	 * @param string|int|float|string[]|int[]|float[] $values Values to compare
+	 * @return mixed
+	 * @since 1.35 in IDatabase, moved to ISQLPlatform in 1.39
+	 */
+	public function buildLeast( $fields, $values );
 }
