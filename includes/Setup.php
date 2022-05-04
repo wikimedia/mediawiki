@@ -2,22 +2,22 @@
 /**
  * The setup for all MediaWiki processes (both web-based and CLI).
  *
- * This file must be included by all entry points (such as WebStart.php and doMaintenance.php).
- * - The entry point MUST do these:
+ * The entry point (such as WebStart.php and doMaintenance.php) has these responsibilities:
+ * - The entry point MUST:
  *   - define the 'MEDIAWIKI' constant.
- *   - define the $IP global variable.
- * - The entry point SHOULD do these:
- *    - define the 'MW_ENTRY_POINT' constant.
- *    - display an error if MW_CONFIG_CALLBACK is not defined and the
- *      file specified in MW_CONFIG_FILE (or the $IP/LocalSettings.php default)
- *      does not exist. The error should either be sent before and instead
- *      of the Setup.php inclusion, or (if it needs classes and dependencies
- *      from core) the error can be displayed via a MW_CONFIG_CALLBACK,
- *      which must then abort the process to prevent the rest of Setup.php
- *      from executing.
+ * - The entry point SHOULD:
+ *   - define the 'MW_ENTRY_POINT' constant.
+ *   - display an error if MW_CONFIG_CALLBACK is not defined and the
+ *     file specified in MW_CONFIG_FILE (or the LocalSettings.php default location)
+ *     does not exist. The error should either be sent before and instead
+ *     of the Setup.php inclusion, or (if it needs classes and dependencies
+ *     from core) the error can be displayed via a MW_CONFIG_CALLBACK,
+ *     which must then abort the process to prevent the rest of Setup.php
+ *     from executing.
  *
- * It does:
+ * This file does:
  * - run-time environment checks,
+ * - define MW_INSTALL_PATH, $IP, and $wgBaseDirectory,
  * - load autoloaders, constants, default settings, and global functions,
  * - load the site configuration (e.g. LocalSettings.php),
  * - load the enabled extensions (via ExtensionRegistry),
@@ -96,21 +96,22 @@ if ( !defined( 'MW_ENTRY_POINT' ) ) {
 	define( 'MW_ENTRY_POINT', 'unknown' );
 }
 
-// The $IP variable is defined for use inside this file and by LocalSettings.php.
-// It is made available as a global variable for backwards compatibility,
-// but application logic should use the BaseDirectory config setting
-// or the MW_INSTALL_PATH constant.
-// The BaseDirectory setting is later defined to have the same value as MW_INSTALL_PATH.
+// The $IP variable is defined for use by LocalSettings.php.
+// It is made available as a global variable for backwards compatibility.
+//
+// Source code should instead use the MW_INSTALL_PATH constant, or the
+// MainConfigNames::BaseDirectory setting. The BaseDirectory setting is set further
+// down in Setup.php to the value of MW_INSTALL_PATH.
 global $IP;
-$IP = $IP = wfDetectInstallPath();
+$IP = $IP = wfDetectInstallPath(); // ensure MW_INSTALL_PATH is defined
 
 /**
  * Pre-config setup: Before loading LocalSettings.php
  *
  * These are changes and additions to runtime that don't vary on site configuration.
  */
-require_once "$IP/includes/AutoLoader.php";
-require_once "$IP/includes/Defines.php";
+require_once MW_INSTALL_PATH . '/includes/AutoLoader.php';
+require_once MW_INSTALL_PATH . '/includes/Defines.php';
 
 // Assert that composer dependencies were successfully loaded
 if ( !interface_exists( LoggerInterface::class ) ) {
@@ -139,7 +140,7 @@ $wgConf = new SiteConfiguration;
 $wgAutoloadClasses = $wgAutoloadClasses ?? [];
 
 $wgSettings = new SettingsBuilder(
-	$IP,
+	MW_INSTALL_PATH,
 	ExtensionRegistry::getInstance(),
 	new GlobalConfigBuilder( 'wg' ),
 	new PhpIniSink()
@@ -152,15 +153,15 @@ if ( defined( 'MW_USE_CONFIG_SCHEMA_CLASS' ) ) {
 	$wgSettings->load( new ReflectionSchemaSource( MainConfigSchema::class ) );
 } elseif ( getenv( 'MW_USE_LEGACY_DEFAULT_SETTINGS' ) || defined( 'MW_USE_LEGACY_DEFAULT_SETTINGS' ) ) {
 	// Load the old DefaultSettings.php file. Should be removed in 1.39. See T300129.
-	require_once "$IP/includes/DefaultSettings.php";
+	require_once MW_INSTALL_PATH . '/includes/DefaultSettings.php';
 
 	// This is temporary until we no longer need this mode.
-	$wgSettings->load( new PhpSettingsSource( "$IP/includes/config-merge-strategies.php" ) );
+	$wgSettings->load( new PhpSettingsSource( MW_INSTALL_PATH . '/includes/config-merge-strategies.php' ) );
 } else {
-	$wgSettings->load( new PhpSettingsSource( "$IP/includes/config-schema.php" ) );
+	$wgSettings->load( new PhpSettingsSource( MW_INSTALL_PATH . '/includes/config-schema.php' ) );
 }
 
-require_once "$IP/includes/GlobalFunctions.php";
+require_once MW_INSTALL_PATH . '/includes/GlobalFunctions.php';
 
 HeaderCallback::register();
 
@@ -175,10 +176,10 @@ mb_internal_encoding( 'UTF-8' );
 // Initialize some config settings with dynamic defaults, and
 // make default settings available in globals for use in LocalSettings.php.
 $wgSettings->putConfigValues( [
-	MainConfigNames::BaseDirectory => $IP,
-	MainConfigNames::ExtensionDirectory => "{$IP}/extensions",
-	MainConfigNames::StyleDirectory => "{$IP}/skins",
-	MainConfigNames::ServiceWiringFiles => [ "{$IP}/includes/ServiceWiring.php" ],
+	MainConfigNames::BaseDirectory => MW_INSTALL_PATH,
+	MainConfigNames::ExtensionDirectory => MW_INSTALL_PATH . '/extensions',
+	MainConfigNames::StyleDirectory => MW_INSTALL_PATH . '/skins',
+	MainConfigNames::ServiceWiringFiles => [ MW_INSTALL_PATH . '/includes/ServiceWiring.php' ],
 	'Version' => MW_VERSION,
 ] );
 $wgSettings->apply();
@@ -186,12 +187,12 @@ $wgSettings->apply();
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	call_user_func( MW_CONFIG_CALLBACK, $wgSettings );
 } else {
-	wfDetectLocalSettingsFile( $IP );
+	wfDetectLocalSettingsFile( MW_INSTALL_PATH );
 
 	if ( getenv( 'MW_USE_LOCAL_SETTINGS_LOADER' ) ) {
 		// NOTE: This will not work for configuration variables that use a prefix
 		//       other than "wg".
-		$localSettingsLoader = new LocalSettingsLoader( $wgSettings, $IP );
+		$localSettingsLoader = new LocalSettingsLoader( $wgSettings, MW_INSTALL_PATH );
 		$localSettingsLoader->loadLocalSettingsFile( MW_CONFIG_FILE );
 		unset( $localSettingsLoader );
 	} else {
