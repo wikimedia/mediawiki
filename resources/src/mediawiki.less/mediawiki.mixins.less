@@ -47,10 +47,12 @@
 	// but not the "auto" property. It is advisable to set the @lang attribute
 	// on the HTML element to enable hyphenation support and improve accessibility.
 	// Chrome 55-87 only supports `auto` exclusively on Mac platform.
+	/* stylelint-disable plugin/no-unsupported-browser-features */
 	-webkit-hyphens: @value; // Safari 5.1+, iOS 4.2+
 	-moz-hyphens: @value;    // Firefox 6-42
 	-ms-hyphens: @value;     // IE 10-11, Edge 12-18
 	hyphens: @value;         // Firefox 43+, Chrome 55+, Android 62+, UC Browser 11.8+, Samsung 6.2+
+	/* stylelint-enable plugin/no-unsupported-browser-features */
 }
 
 // Use to truncate overflow text with value of `ellipsis` (mixin default)
