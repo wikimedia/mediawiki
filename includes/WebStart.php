@@ -47,12 +47,6 @@ header( 'X-Content-Type-Options: nosniff' );
 # its purpose.
 define( 'MEDIAWIKI', true );
 
-# Full path to the installation directory.
-$IP = getenv( 'MW_INSTALL_PATH' );
-if ( $IP === false ) {
-	$IP = dirname( __DIR__ );
-}
-
 /**
  * @param SettingsBuilder $settings
  *
@@ -66,7 +60,10 @@ function wfWebStartNoLocalSettings( SettingsBuilder $settings ) {
 	die();
 }
 
-require_once "$IP/includes/BootstrapHelperFunctions.php";
+require_once __DIR__ . "/BootstrapHelperFunctions.php";
+
+# Full path to the installation directory.
+$IP = wfDetectInstallPath();
 
 // If no LocalSettings file exists, try to display an error page
 // (use a callback because it depends on TemplateParser)
