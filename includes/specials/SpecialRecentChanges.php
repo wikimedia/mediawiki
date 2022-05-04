@@ -817,15 +817,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Add page-specific modules.
-	 */
-	protected function addModules() {
-		parent::addModules();
-		$out = $this->getOutput();
-		$out->addModules( 'mediawiki.special.recentchanges' );
-	}
-
-	/**
 	 * Get last modified date, for client caching
 	 * Don't use this if we are using the patrol feature, patrol changes don't
 	 * update the timestamp
@@ -852,10 +843,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		);
 		$nsLabel = Xml::label( $this->msg( 'namespace' )->text(), 'namespace' );
 		$attribs = [ 'class' => [ 'mw-input-with-label' ] ];
-		// Hide the checkboxes when the namespace filter is set to 'all'.
-		if ( $opts['namespace'] === '' ) {
-			$attribs['class'][] = 'mw-input-hidden';
-		}
 		$invert = Html::rawElement( 'span', $attribs, Xml::checkLabel(
 			$this->msg( 'invert' )->text(), 'invert', 'nsinvert',
 			$opts['invert'],

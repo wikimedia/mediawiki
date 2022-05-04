@@ -2274,13 +2274,6 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 		'styles' => 'resources/src/mediawiki.special.preferences.styles.ooui.less',
 	],
-	'mediawiki.special.recentchanges' => [
-		'dependencies' => [
-			'mediawiki.widgets'
-		],
-		'scripts' => 'resources/src/mediawiki.special.recentchanges.js',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 	'mediawiki.special.revisionDelete' => [
 		'scripts' => 'resources/src/mediawiki.special.revisionDelete.js',
 		'messages' => [
