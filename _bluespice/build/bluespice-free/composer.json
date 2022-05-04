@@ -54,9 +54,6 @@
 		"mediawiki/extjs-base": "dev-master",
 		"mediawiki/oojsplus": "dev-master",
 
-		"mediawiki/chameleon-skin": "~1.0",
-		"bluespice/calumma": "dev-master",
-
 		"bluespice/discovery-skin": "dev-master"
 	}
 }
