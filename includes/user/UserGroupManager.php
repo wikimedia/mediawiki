@@ -292,7 +292,9 @@ class UserGroupManager implements IDBAccessObject {
 				$groups[] = 'user';
 			} elseif ( $user->isRegistered() ) {
 				$groups[] = 'user';
-				$groups[] = 'named';
+				if ( $this->tempUserConfig->isEnabled() ) {
+					$groups[] = 'named';
+				}
 				$groups = array_unique( array_merge(
 					$groups,
 					$this->getUserAutopromoteGroups( $user )

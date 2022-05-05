@@ -13,6 +13,13 @@ namespace MediaWiki\User\TempUser;
  */
 interface TempUserConfig {
 	/**
+	 * Is temp user creation enabled?
+	 *
+	 * @return bool
+	 */
+	public function isEnabled();
+
+	/**
 	 * Is the action valid for user auto-creation?
 	 *
 	 * @param string $action
