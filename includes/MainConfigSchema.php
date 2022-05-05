@@ -79,7 +79,7 @@ use WinCacheBagOStuff;
 
 /**
  * This class contains schema declarations for all configuration variables
- * known to MediaWiki core. The schema definitiona follow the JSON Schema
+ * known to MediaWiki core. The schema definitions follow the JSON Schema
  * specification.
  *
  * @see https://json-schema.org/learn/getting-started-step-by-step.html
