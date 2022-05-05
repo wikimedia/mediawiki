@@ -89,12 +89,10 @@
 	padding: 0 @margin-circle 0 0;
 	// The width is 5 circles times their diameter + individual margin
 	// and then plus the general margin
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	width: ~'calc( ( @{size-circle-result} + @{margin-circle-result} ) * 5 )';
 	// And we want to shift the entire block to the left of the li
 	position: relative;
 	// Negative left margin of width + padding
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	margin-left: ~'calc( ( @{size-circle-result} + @{margin-circle-result} ) * -5 - @{margin-circle} )';
 
 	.mw-rcfilters-ui-changesListWrapperWidget-highlighted & {
