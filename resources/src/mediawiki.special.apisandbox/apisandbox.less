@@ -1,11 +1,9 @@
 @import 'mediawiki.ui/variables.less';
+@import 'mediawiki.mixins.less';
 
 .mw-apisandbox-toolbar {
 	background: #fff;
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-	position: -webkit-sticky;
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-	position: sticky;
+	.position-sticky();
 	top: 0;
 	padding: 0.5em 0;
 	box-shadow: 0 2px 0 0 rgba( 0, 0, 0, 0.1 );
