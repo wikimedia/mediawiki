@@ -4119,7 +4119,7 @@ class MainConfigSchema {
 	 */
 	public const SquidPurgeUseHostHeader = [
 		'default' => true,
-		'deprecated' => 'since 1.21',
+		'deprecated' => 'since 1.33',
 	];
 
 	/**

@@ -1716,7 +1716,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the SquidPurgeUseHostHeader setting, for use with Config::get()
 	 * @see MainConfigSchema::SquidPurgeUseHostHeader
-	 * @deprecated since 1.21
+	 * @deprecated since 1.33
 	 */
 	public const SquidPurgeUseHostHeader = 'SquidPurgeUseHostHeader';
 
