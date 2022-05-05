@@ -677,7 +677,7 @@
 	"mergelog": "Yekkirina gotaran",
 	"revertmerge": "Veqetîne",
 	"history-title": "$1: Tarîxa guhertoyan",
-	"difference-title": "$2: Ferqa di neqeba guhertoyan de",
+	"difference-title": "$1: Ferqa di neqeba guhartoyan de",
 	"difference-title-multipage": "$1 û $2: Ferqa di neqeba rûpelan de",
 	"difference-multipage": "(Cudahî di navbera rûpelan de)",
 	"lineno": "Rêz $1:",
