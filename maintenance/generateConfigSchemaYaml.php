@@ -33,14 +33,19 @@ class GenerateConfigSchemaYaml extends Maintenance {
 	public function execute() {
 		$schemas = $this->loadSchema();
 
-		// Cast empty arrays to objects if they are declared to be of type object.
-		// This ensures they get represented in yaml as {} rather than [].
 		foreach ( $schemas as &$sch ) {
+			// Cast empty arrays to objects if they are declared to be of type object.
+			// This ensures they get represented in yaml as {} rather than [].
 			if ( isset( $sch['default'] ) && isset( $sch['type'] ) ) {
 				$types = (array)$sch['type'];
 				if ( $sch['default'] === [] && in_array( 'object', $types ) ) {
 					$sch['default'] = new stdClass();
 				}
+			}
+
+			// Wrap long deprecation messages
+			if ( isset( $sch['deprecated'] ) ) {
+				$sch['deprecated'] = wordwrap( $sch['deprecated'] );
 			}
 		}
 

@@ -250,6 +250,10 @@ config-schema:
         type:
             - object
             - boolean
+        deprecated: |-
+            since 1.35. Developers should retrieve this logo (and other variants) using
+            the static function ResourceLoaderSkinModule::getAvailableLogos. $wgLogos
+            should be used instead.
         description: |-
             Array with URL paths to HD versions of the wiki logo. The scaled logo size
             should be under 135x155 pixels.
@@ -332,6 +336,7 @@ config-schema:
             @since 1.4
     UploadStashScalerBaseUrl:
         default: false
+        deprecated: 'since 1.36 Use thumbProxyUrl in $wgLocalFileRepo'
         description: |-
             To enable remote on-demand scaling, set this to the thumbnail base URL.
             Full thumbnail URL will be like $wgUploadStashScalerBaseUrl/e/e6/Foo.jpg/123px-Foo.jpg
@@ -1495,6 +1500,7 @@ config-schema:
             This can potentially be abused, as it's hard to track.
     EnableSpecialMute:
         default: false
+        deprecated: 'since 1.34'
         description: |-
             Set to true to enable the Special Mute page. This allows users
             to mute unwanted communications from other users, and is linked
@@ -1734,6 +1740,11 @@ config-schema:
         description: 'To override default SQLite data directory ($docroot/../data)'
     SharedDB:
         default: null
+        deprecated: |-
+            since 1.21 In new code, use the $wiki parameter to LBFactory::getMainLB()
+            to access remote databases. Using LBFactory::getMainLB() allows the shared
+            database to reside on separate servers to the wiki's own database, with
+            suitable configuration of $wgLBFactoryConf
         description: |-
             Shared database for multiple wikis. Commonly used for storing a user table
             for single sign-on. The server for this database must be the same as for the
@@ -1950,6 +1961,7 @@ config-schema:
             @since 1.21
     ContentHandlerTextFallback:
         default: ignore
+        deprecated: 'since 1.37'
         description: |-
             How to react if a plain text version of a non-text Content object is requested using
             ContentHandler::getContentText():
@@ -2530,6 +2542,7 @@ config-schema:
             which can be slow if a large number of extensions are being loaded.
     ParserCacheUseJson:
         default: true
+        deprecated: 'since 1.36'
         description: |-
             Enable JSON serialization for ParserCache.
             In 1.36 the default serialization format for ParserCache has been changed from PHP
@@ -2635,6 +2648,7 @@ config-schema:
             @since 1.34 Renamed from $wgSquidServersNoPurge
     SquidPurgeUseHostHeader:
         default: true
+        deprecated: 'since 1.21'
         description: |-
             Whether to use a Host header in purge requests sent to the proxy servers
             configured in $wgCdnServers. Set this to false to support a CDN
@@ -2779,6 +2793,7 @@ config-schema:
     DummyLanguageCodes:
         default: {  }
         type: object
+        deprecated: 'since 1.29'
         description: |-
             Functionally the same as $wgExtraLanguageCodes, but deprecated. Instead of
             appending values to this array, append them to $wgExtraLanguageCodes.
@@ -3527,6 +3542,7 @@ config-schema:
             This will still be overridden when the debug URL parameter is used.
     IncludeLegacyJavaScript:
         default: false
+        deprecated: 'since 1.26: Always declare dependencies.'
         description: |-
             Whether to ensure the mediawiki.legacy library is loaded before other modules.
             @deprecated since 1.26: Always declare dependencies.
@@ -3960,6 +3976,7 @@ config-schema:
             @since 1.14
     AllowImageTag:
         default: false
+        deprecated: 'since 1.35; register an extension tag named <img> instead.'
         description: |-
             A different approach to the above: simply allow the "<img>" tag to be used.
             This allows you to specify alt text and other attributes, copy-paste HTML to
@@ -4359,12 +4376,14 @@ config-schema:
             @since 1.27
     MinimalPasswordLength:
         default: false
+        deprecated: 'since 1.26, use $wgPasswordPolicy''s MinimalPasswordLength.'
         description: |-
             Specifies the minimal length of a user password. If set to 0, empty pass-
             words are allowed.
             @deprecated since 1.26, use $wgPasswordPolicy's MinimalPasswordLength.
     MaximalPasswordLength:
         default: false
+        deprecated: 'since 1.26, use $wgPasswordPolicy''s MaximalPasswordLength.'
         description: |-
             Specifies the maximal length of a user password (T64685).
             It is not recommended to make this greater than the default, as it can
@@ -4590,6 +4609,9 @@ config-schema:
             @since 1.27
     AllowRequiringEmailForResets:
         default: false
+        deprecated: |-
+            This feature is under development, don't assume this flag's existence or
+            function outside of MediaWiki
         description: |-
             Temporary feature flag that controls whether users will see a checkbox allowing them to
             require providing email during password resets.
@@ -5828,6 +5850,7 @@ config-schema:
     ParserTestFiles:
         default: {  }
         type: object
+        deprecated: 'since 1.30'
         description: |-
             Parser test suite files to be run by parserTests.php when no specific
             filename is passed to it.
@@ -5866,6 +5889,9 @@ config-schema:
             should be empty for CJK since the words are not separate
     OpenSearchTemplate:
         default: false
+        deprecated: |-
+            since 1.25 Use $wgOpenSearchTemplates['application/x-suggestions+json']
+            instead
         description: |-
             Template for OpenSearch suggestions, defaults to API action=opensearch
             Sites with heavy load would typically have these point to a custom
@@ -5884,6 +5910,7 @@ config-schema:
             Placeholders: {searchTerms}
     EnableOpenSearchSuggest:
         default: true
+        deprecated: 'since 1.35 No longer used'
         description: |-
             This was previously a used to force empty responses from ApiOpenSearch
             with the 'suggest' parameter set.
@@ -6646,6 +6673,7 @@ config-schema:
             SpecialPage.
     AutoloadAttemptLowercase:
         default: false
+        deprecated: 'since 1.35'
         description: |-
             Switch controlling legacy case-insensitive classloading.
             Do not disable if your wiki must support data created by PHP4, or by
@@ -6888,6 +6916,9 @@ config-schema:
     TrackingCategories:
         default: []
         type: array
+        deprecated: |-
+            since 1.25 Extensions should now register tracking categories using the new
+            extension registration system.
         description: |-
             Array holding default tracking category names.
             Array contains the system messages for each tracking category.
@@ -7389,6 +7420,7 @@ config-schema:
             @since 1.31
     ShellboxUrl:
         default: null
+        deprecated: 'since 1.37; use $wgShellboxUrls instead'
         description: '@deprecated since 1.37; use $wgShellboxUrls instead'
     ShellboxUrls:
         default:

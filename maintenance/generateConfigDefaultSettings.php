@@ -6,6 +6,10 @@ use Wikimedia\StaticArrayWriter;
 require_once __DIR__ . '/Maintenance.php';
 require_once __DIR__ . '/includes/ConfigSchemaDerivativeTrait.php';
 
+// Tell Setup.php to load the config schema from MainConfigSchema rather than
+// any generated file, so we can use this script to re-generate a broken schema file.
+define( 'MW_USE_CONFIG_SCHEMA_CLASS', 1 );
+
 /**
  * Maintenance script that generates a DefaultSettings.php file,
  * for backwards compatibility and as documentation stub.
@@ -70,7 +74,8 @@ class GenerateConfigDefaultSettings extends Maintenance {
 			$doc[] = "@since {$schema['since']}";
 		}
 		if ( isset( $schema['deprecated'] ) ) {
-			$doc[] = "@deprecated {$schema['deprecated']}";
+			$deprecated = str_replace( "\n", "\n *    ", wordwrap( $schema['deprecated'] ) );
+			$doc[] = "@deprecated {$deprecated}";
 		}
 		if ( $docType ) {
 			$doc[] = "@var $docType";
