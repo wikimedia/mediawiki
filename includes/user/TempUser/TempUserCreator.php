@@ -139,6 +139,10 @@ class TempUserCreator implements TempUserConfig {
 		return $createStatus;
 	}
 
+	public function isEnabled() {
+		return $this->config->isEnabled();
+	}
+
 	public function isAutoCreateAction( string $action ) {
 		return $this->config->isAutoCreateAction( $action );
 	}
