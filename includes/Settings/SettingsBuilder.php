@@ -67,6 +67,18 @@ class SettingsBuilder {
 	private $finished = false;
 
 	/**
+	 * Whether we have to apply reverse-merging when applying defaults.
+	 * This will initially be false, and become true once any config settings have been
+	 * assigned a value.
+	 *
+	 * This is used as an optimization, to avoid costly merge logic when loading initial
+	 * defaults before any config variables have been set.
+	 *
+	 * @var bool
+	 */
+	private $defaultsNeedMerging = false;
+
+	/**
 	 * @param string $baseDir
 	 * @param ExtensionRegistry $extensionRegistry
 	 * @param ConfigBuilder $configSink
@@ -288,6 +300,7 @@ class SettingsBuilder {
 	 * @return string
 	 */
 	private function updateSettingsConfig( $config ): string {
+		// No merge strategies are applied, defaults are set in the constructor.
 		foreach ( $this->settingsConfig as $key => $dummy ) {
 			if ( array_key_exists( $key, $config ) ) {
 				$this->settingsConfig[ $key ] = $config[ $key ];
@@ -295,6 +308,26 @@ class SettingsBuilder {
 		}
 		// @phan-suppress-next-line PhanTypeMismatchReturnNullable,PhanPossiblyUndeclaredVariable Always set
 		return $key;
+	}
+
+	/**
+	 * Notify SettingsBuilder that it can no longer assume that is has full knowledge of
+	 * all configuration variables that have been set. This would be the case when other code
+	 * (such as LocalSettings.php) is manipulating global variables which represent config
+	 * values.
+	 *
+	 * This is used for optimization: up until this method is called, default values can be set
+	 * directly for any config values that have not been set yet. This avoids the need to
+	 * run merge logic for all default values during initialization.
+	 *
+	 * @note It is useful to call apply() just before this method, so any settings already queued
+	 * will still benefit from assuming that globals are not dirty.
+	 *
+	 * @return self
+	 */
+	public function assumeDirtyConfig(): SettingsBuilder {
+		$this->defaultsNeedMerging = true;
+		return $this;
 	}
 
 	/**
@@ -312,6 +345,24 @@ class SettingsBuilder {
 			$this->updateSettingsConfig( $settings['config-overrides'] );
 		}
 
+		foreach ( $settings['config-schema'] ?? [] as $key => $schema ) {
+			if ( array_key_exists( 'default', $schema ) ) {
+				if ( $this->defaultsNeedMerging ) {
+					$this->configSink->setDefault(
+						$key,
+						$schema['default'],
+						$this->configSchema->getMergeStrategyFor( $key )
+					);
+				} else {
+					// Optimization: no merge strategy, just override
+					$this->configSink->set(
+						$key,
+						$schema['default']
+					);
+				}
+			}
+		}
+
 		foreach ( $settings['config'] ?? [] as $key => $value ) {
 			$this->configSink->set(
 				$key,
@@ -320,19 +371,17 @@ class SettingsBuilder {
 			);
 		}
 
-		foreach ( $settings['config-schema'] ?? [] as $key => $schema ) {
-			if ( $this->configSchema->hasDefaultFor( $key ) ) {
-				$this->configSink->setDefault(
-					$key,
-					$this->configSchema->getDefaultFor( $key ),
-					$this->configSchema->getMergeStrategyFor( $key )
-				);
-			}
-		}
-
 		foreach ( $settings['config-overrides'] ?? [] as $key => $value ) {
 			// no merge strategy, just override
 			$this->configSink->set( $key, $value );
+		}
+
+		if ( isset( $settings['config'] ) || isset( $settings['config-overrides'] ) ) {
+			// We have set some config variables, we can no longer assume we can blindly set defaults
+			// without merging with existing config variables.
+			// XXX: We could potentially track which config variables have been set, so we can still
+			//      apply defaults for other config vars without merging.
+			$this->defaultsNeedMerging = true;
 		}
 
 		foreach ( $settings['php-ini'] ?? [] as $option => $value ) {

@@ -152,12 +152,12 @@ class SettingsBuilderTest extends TestCase {
 		$setting->apply();
 	}
 
-	public function provideConfigOverrides() {
+	public function provideConfigDefaults() {
 		yield 'sets a value from a single settings file' => [
 			'settingsBatches' => [
 				[ 'config' => [ 'MySetting' => 'MyValue', ], ],
 			],
-			'expectedGlobals' => [
+			'expected' => [
 				'MySetting' => 'MyValue',
 			],
 		];
@@ -166,7 +166,7 @@ class SettingsBuilderTest extends TestCase {
 				[ 'config' => [ 'MySetting' => 'MyValue', ], ],
 				[ 'config' => [ 'MyOtherSetting' => 'MyOtherValue', ], ],
 			],
-			'expectedGlobals' => [
+			'expected' => [
 				'MySetting' => 'MyValue',
 				'MyOtherSetting' => 'MyOtherValue',
 			],
@@ -176,7 +176,7 @@ class SettingsBuilderTest extends TestCase {
 				[ 'config' => [ 'MySetting' => 'MyValue', ], ],
 				[ 'config' => [ 'MySetting' => 'MyOtherValue', ], ],
 			],
-			'expectedGlobals' => [
+			'expected' => [
 				'MySetting' => 'MyOtherValue',
 			],
 		];
@@ -184,7 +184,7 @@ class SettingsBuilderTest extends TestCase {
 			'settingsBatches' => [
 				[ 'config-schema' => [ 'MySetting' => [ 'default' => 'MyDefault', ], ], ],
 			],
-			'expectedGlobals' => [
+			'expected' => [
 				'MySetting' => 'MyDefault',
 			],
 		];
@@ -195,7 +195,7 @@ class SettingsBuilderTest extends TestCase {
 					'config' => [ 'MySetting' => 'MyValue', ],
 				],
 			],
-			'expectedGlobals' => [
+			'expected' => [
 				'MySetting' => 'MyValue',
 			],
 		];
@@ -203,7 +203,7 @@ class SettingsBuilderTest extends TestCase {
 			'settingsBatches' => [
 				[ 'config-schema' => [ 'MySetting' => [ 'default' => null, ], ], ],
 			],
-			'expectedGlobals' => [
+			'expected' => [
 				'MySetting' => null,
 			],
 		];
@@ -214,7 +214,7 @@ class SettingsBuilderTest extends TestCase {
 					'config' => [ 'MySetting' => null, ],
 				],
 			],
-			'expectedGlobals' => [
+			'expected' => [
 				'MySetting' => null,
 			],
 		];
@@ -230,7 +230,7 @@ class SettingsBuilderTest extends TestCase {
 					'config' => [ 'MySetting' => [ 'a' => [ 'b' => 'd' ], ], ],
 				]
 			],
-			'expectedGlobals' => [
+			'expected' => [
 				'MySetting' => [ 'a' => [ 'b' => [ 'c', 'd' ], ], ],
 			],
 		];
@@ -246,11 +246,11 @@ class SettingsBuilderTest extends TestCase {
 					'config-overrides' => [ 'MySetting' => [ 'a' => [ 'b' => 'd' ], ], ],
 				]
 			],
-			'expectedGlobals' => [
+			'expected' => [
 				'MySetting' => [ 'a' => [ 'b' => 'd' ], ],
 			],
 		];
-		yield 'merge strategy is applied backwards setting schema default' => [
+		yield 'config value is merged into default when setting both in the same settings file' => [
 			'settingsBatches' => [
 				[
 					'config' => [ 'MySetting' => [ 'a' => [ 'b' => 'd' ], ], ],
@@ -260,38 +260,39 @@ class SettingsBuilderTest extends TestCase {
 					], ],
 				]
 			],
-			'expectedGlobals' => [
+			'expected' => [
 				'MySetting' => [ 'a' => [ 'b' => [ 'c', 'd' ], ], ],
 			],
 		];
-		yield 'merge strategy is applied backwards setting schema default in different batch' => [
+		yield 'default is merged backwards into config value when set later' => [
 			'settingsBatches' => [
 				[
 					'config' => [ 'MySetting' => [ 'a' => [ 'b' => 'd' ], ], ],
-				], [
+				],
+				[
 					'config-schema' => [ 'MySetting' => [
 						'mergeStrategy' => MergeStrategy::ARRAY_MERGE_RECURSIVE,
 						'default' => [ 'a' => [ 'b' => 'c' ], ],
 					], ],
 				]
 			],
-			'expectedGlobals' => [
+			'expected' => [
 				'MySetting' => [ 'a' => [ 'b' => [ 'c', 'd' ], ], ],
 			],
 		];
 	}
 
 	/**
-	 * @dataProvider provideConfigOverrides
+	 * @dataProvider provideConfigDefaults
 	 */
-	public function testConfigOverrides( array $settingsBatches, array $expectedGlobals ) {
+	public function testConfigDefaults( array $settingsBatches, array $expected ) {
 		$configBuilder = new ArrayConfigBuilder();
 		$setting = $this->newSettingsBuilder( [ 'configBuilder' => $configBuilder ] );
 		foreach ( $settingsBatches as $batch ) {
 			$setting->loadArray( $batch );
 		}
 		$setting->apply();
-		foreach ( $expectedGlobals as $key => $value ) {
+		foreach ( $expected as $key => $value ) {
 			$this->assertSame( $value, $configBuilder->build()->get( $key ) );
 		}
 	}
@@ -367,8 +368,26 @@ class SettingsBuilderTest extends TestCase {
 
 	public function testApplyDefaultDoesNotOverwriteExisting() {
 		$configBuilder = new ArrayConfigBuilder();
-		$configBuilder->set( 'MySetting', 'existing' );
+
+		// If we set a value via SettingsBuilder, defining a default later
+		// should not override it.
 		$this->newSettingsBuilder( [ 'configBuilder' => $configBuilder ] )
+			->putConfigValue( 'MySetting', 'existing' )
+			->loadArray( [ 'config-schema' => [ 'MySetting' => [ 'default' => 'default' ], ], ] )
+			->apply();
+
+		$this->assertSame( 'existing', $configBuilder->build()->get( 'MySetting' ) );
+	}
+
+	public function testApplyDefaultDoesNotOverwritePreexisting() {
+		$configBuilder = new ArrayConfigBuilder();
+
+		// If we set a value in the config directly, defining a default later
+		// would override it, unless we call assumeDirtyConfig().
+		$configBuilder->set( 'MySetting', 'existing' );
+
+		$this->newSettingsBuilder( [ 'configBuilder' => $configBuilder ] )
+			->assumeDirtyConfig()
 			->loadArray( [ 'config-schema' => [ 'MySetting' => [ 'default' => 'default' ], ], ] )
 			->apply();
 		$this->assertSame( 'existing', $configBuilder->build()->get( 'MySetting' ) );
@@ -380,6 +399,38 @@ class SettingsBuilderTest extends TestCase {
 			->loadArray( [ 'config-schema' => [ 'MySetting' => [ 'default' => 'default' ], ], ] )
 			->loadArray( [ 'config-schema' => [ 'MySetting' => [ 'default' => 'override' ], ], ] )
 			->apply();
+	}
+
+	public function testConfigSchemaDefaultsEvaluation() {
+		$settingsBuilder = $this->newSettingsBuilder();
+		$settingsBuilder->loadArray( [
+			'config-schema' => [
+				'A' => [ 'default' => [ 'a' ], 'type' => 'array' ],
+				'B' => [ 'default' => [ 'b' ], 'type' => 'array' ],
+			],
+			'config' => [
+				'B' => [ 'b2' ],
+				'C' => [ 'c2' ],
+			]
+		] );
+		$settingsBuilder->loadArray( [
+			'config-schema' => [
+				'X' => [ 'default' => [ 'x' ], 'type' => 'array' ],
+			],
+			'config' => [
+				'A' => [ 'a3' ],
+				'B' => [ 'b3' ],
+			],
+			'config-overrides' => [
+				'C' => [ 'c4' ],
+			]
+		] );
+
+		$config = $settingsBuilder->getConfig();
+		$this->assertSame( [ 'a', 'a3' ], $config->get( 'A' ) );
+		$this->assertSame( [ 'b', 'b2', 'b3' ], $config->get( 'B' ) );
+		$this->assertSame( [ 'c4' ], $config->get( 'C' ) );
+		$this->assertSame( [ 'x' ], $config->get( 'X' ) );
 	}
 
 	public function provideValidate() {
