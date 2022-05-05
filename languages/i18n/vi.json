@@ -774,7 +774,7 @@
 	"edit-slots-cannot-add": "{{PLURAL:$1|Vị trí|Các vị trí}} sau không được hỗ trợ: $2.",
 	"edit-slots-cannot-remove": "{{PLURAL:$1|Vị trí|Các vị trí}} sau là bắt buộc nên không thể bỏ qua: $2",
 	"edit-slots-missing": "{{PLURAL:$1|Vị trí|Các vị trí}} sau không được sử dụng: $2.",
-	"postedit-confirmation-created": "Trang đã được tạo ra.",
+	"postedit-confirmation-created": "Đã tạo trang.",
 	"postedit-confirmation-restored": "Trang đã được phục hồi.",
 	"postedit-confirmation-saved": "Sửa đổi của bạn đã được lưu.",
 	"postedit-confirmation-published": "Thay đổi của bạn đã được xuất bản.",
