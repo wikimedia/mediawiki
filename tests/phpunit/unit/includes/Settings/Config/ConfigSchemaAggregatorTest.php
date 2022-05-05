@@ -85,7 +85,15 @@ class ConfigSchemaAggregatorTest extends TestCase {
 		$this->assertEquals( [
 			'with_mergeStrategy' => 'array_plus',
 			'another_with_mergeStrategy' => 'array_merge',
-		], $aggregator->getMergeStrategies() );
+		], $aggregator->getMergeStrategyNames() );
+
+		foreach ( $aggregator->getMergeStrategies() as $key => $strategy ) {
+			$this->assertEquals( $aggregator->getMergeStrategyFor( $key ), $strategy );
+		}
+		$this->assertEquals(
+			array_keys( $aggregator->getMergeStrategyNames() ),
+			array_keys( $aggregator->getMergeStrategies() )
+		);
 	}
 
 	public function testMergeStrategieOverrideFails() {
