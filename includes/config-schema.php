@@ -3694,9 +3694,6 @@ return [
 		'WikiFarmSettingsExtension' => [
 			'default' => 'yaml',
 		],
-		'WikiFarmSiteDetector' => [
-			'default' => null,
-		],
 		'ExtensionFunctions' => [
 			'default' => [
 			],
