@@ -85,6 +85,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	/** @var Exception[] Map of (shard index => Exception) */
 	protected $connFailureErrors = [];
 
+	/** @var bool Whether zlib methods are available to PHP */
+	private $hasZlib;
+
 	private const SHARD_LOCAL = 'local';
 	private const SHARD_GLOBAL = 'global';
 
@@ -220,6 +223,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		$this->attrMap[self::ATTR_DURABILITY] = self::QOS_DURABILITY_RDBMS;
 		$this->attrMap[self::ATTR_EMULATION] = self::QOS_EMULATION_SQL;
+
+		$this->hasZlib = extension_loaded( 'zlib' );
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
@@ -1624,7 +1629,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		$serial = serialize( $value );
-		if ( function_exists( 'gzdeflate' ) ) {
+		if ( $this->hasZlib ) {
 			// On typical message and page data, this can provide a 3X storage savings
 			$serial = gzdeflate( $serial );
 		}
@@ -1641,7 +1646,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			return (int)$value;
 		}
 
-		if ( function_exists( 'gzinflate' ) ) {
+		if ( $this->hasZlib ) {
 			AtEase::suppressWarnings();
 			$decompressed = gzinflate( $value );
 			AtEase::restoreWarnings();
