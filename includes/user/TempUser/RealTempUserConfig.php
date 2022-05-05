@@ -52,6 +52,10 @@ class RealTempUserConfig implements TempUserConfig {
 		}
 	}
 
+	public function isEnabled() {
+		return $this->enabled;
+	}
+
 	public function isAutoCreateAction( string $action ) {
 		if ( $action === 'create' ) {
 			$action = 'edit';
