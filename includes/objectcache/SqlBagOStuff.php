@@ -643,7 +643,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	/**
-	 * Set key/value pairs belonging to a partition table on the the given server
+	 * Set key/value pairs belonging to a partition table on the given server
 	 *
 	 * In multi-primary mode, if the current row for a key exists and has a modification token
 	 * with a greater integral UNIX timestamp than that of the provided modification timestamp,
@@ -704,7 +704,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	/**
-	 * Purge/tombstone key/value pairs belonging to a partition table on the the given server
+	 * Purge/tombstone key/value pairs belonging to a partition table on the given server
 	 *
 	 * In multi-primary mode, if the current row for a key exists and has a modification token
 	 * with a greater integral UNIX timestamp than that of the provided modification timestamp,
@@ -754,7 +754,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	/**
-	 * Insert key/value pairs belonging to a partition table on the the given server
+	 * Insert key/value pairs belonging to a partition table on the given server
 	 *
 	 * If the current row for a key exists and has an integral UNIX timestamp of expiration
 	 * greater than that of the provided modification timestamp, then the write to that key
@@ -818,7 +818,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	/**
-	 * Insert key/value pairs belonging to a partition table on the the given server
+	 * Insert key/value pairs belonging to a partition table on the given server
 	 *
 	 * If the current row for a key exists, has an integral UNIX timestamp of expiration greater
 	 * than that of the provided modification timestamp, and the CAS token does not match, then
@@ -892,7 +892,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	/**
-	 * Update the TTL for keys belonging to a partition table on the the given server
+	 * Update the TTL for keys belonging to a partition table on the given server
 	 *
 	 * If no current row for a key exists or the current row has an integral UNIX timestamp of
 	 * expiration less than that of the provided modification timestamp, then the write to that
