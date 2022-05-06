@@ -30,7 +30,7 @@ use Wikimedia\Rdbms\LoadBalancer;
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script for finding and replacing invalid actor IDs, see T261325.
+ * Maintenance script for finding and replacing invalid actor IDs, see T261325 and T307738.
  *
  * @ingroup Maintenance
  */
@@ -70,9 +70,13 @@ class FindMissingActors extends Maintenance {
 		$this->addDescription( 'Find and fix invalid actor IDs.' );
 		$this->addOption( 'field', 'The name of a database field to process',
 			true, true );
+		$this->addOption( 'type', 'Which type of invalid actors to find or fix, '
+			. 'missing or broken (with empty actor_name which can\'t be associated '
+			. 'with an existing user).',
+			false, true );
 		$this->addOption( 'skip', 'A comma-separated list of actor IDs to skip.',
 			false, true );
-		$this->addOption( 'overwrite-with', 'Replace missing actors with this user. '
+		$this->addOption( 'overwrite-with', 'Replace invalid actors with this user. '
 			. 'Typically, this would be "Unknown user", but it could be any reserved '
 			. 'system user (per $wgReservedUsernames) or locally registered user. '
 			. 'If not given, invalid actors will only be listed, not fixed. '
@@ -189,10 +193,15 @@ class FindMissingActors extends Maintenance {
 			$this->fatalError( "Unknown field: $field.\n" );
 		}
 
+		$type = $this->getOption( 'type', 'missing' );
+		if ( $type !== 'missing' && $type !== 'broken' ) {
+			$this->fatalError( "Unknown type: $type.\n" );
+		}
+
 		$skip = $this->parseIntList( $this->getOption( 'skip', '' ) );
 		$overwrite = $this->getNewActorId();
 
-		$bad = $this->findBadActors( $field, $skip );
+		$bad = $this->findBadActors( $field, $type, $skip );
 
 		if ( $bad && $overwrite ) {
 			$this->output( "\n" );
@@ -215,11 +224,12 @@ class FindMissingActors extends Maintenance {
 	 * Find rows that have bad actor IDs.
 	 *
 	 * @param string $field the database field in which to detect bad actor IDs.
+	 * @param string $type type of bad actors, missing or broken.
 	 * @param int[] $skip bad actor IDs not to replace.
 	 *
 	 * @return array a list of row IDs, identifying rows in which the actor ID needs to be replaced.
 	 */
-	private function findBadActors( $field, $skip ) {
+	private function findBadActors( $field, $type, $skip ) {
 		[ $table, $actorField, $idField ] = $this->getTableInfo( $field );
 		$this->output( "Finding invalid actor IDs in $table.$actorField...\n" );
 
@@ -238,13 +248,15 @@ class FindMissingActors extends Maintenance {
 
 		SELECT log_id
 		FROM logging
-		JOIN actor ON log_actor = actor_id
+		LEFT JOIN actor ON log_actor = actor_id
 		WHERE actor_id IS NULL
 		AND log_actor NOT IN (1, 2, 3, 4)
 		LIMIT 1000;
-		 */
+		*/
 
-		$conds = [ 'actor_id' => null ];
+		$conds = $type == 'missing'
+			? [ 'actor_id' => null ]
+			: [ 'actor_name' => '' ];
 
 		if ( $skip ) {
 			$conds[] = $actorField . ' NOT IN ( ' . $dbr->makeList( $skip ) . ' ) ';
