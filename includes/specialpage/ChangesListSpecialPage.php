@@ -24,6 +24,7 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ResourceLoader as RL;
 use MediaWiki\User\UserIdentity;
 use OOUI\IconWidget;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
@@ -843,11 +844,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * Get essential data about getRcFiltersConfigVars() for change detection.
 	 *
 	 * @internal For use by Resources.php only.
-	 * @see ResourceLoaderModule::getDefinitionSummary() and ResourceLoaderModule::getVersionHash()
-	 * @param ResourceLoaderContext $context
+	 * @see Module::getDefinitionSummary() and Module::getVersionHash()
+	 * @param RL\Context $context
 	 * @return array
 	 */
-	public static function getRcFiltersConfigSummary( ResourceLoaderContext $context ) {
+	public static function getRcFiltersConfigSummary( RL\Context $context ) {
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()
 			->getLanguage( $context->getLanguage() );
 		return [
@@ -862,10 +863,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * Get config vars to export with the mediawiki.rcfilters.filters.ui module.
 	 *
 	 * @internal For use by Resources.php only.
-	 * @param ResourceLoaderContext $context
+	 * @param RL\Context $context
 	 * @return array
 	 */
-	public static function getRcFiltersConfigVars( ResourceLoaderContext $context ) {
+	public static function getRcFiltersConfigVars( RL\Context $context ) {
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()
 			->getLanguage( $context->getLanguage() );
 		return [

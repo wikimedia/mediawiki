@@ -28,6 +28,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ProcOpenError;
+use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Utils\UrlUtils;
 use Wikimedia\AtEase\AtEase;

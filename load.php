@@ -26,6 +26,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ResourceLoader\Context;
 
 // This endpoint is supposed to be independent of request cookies and other
 // details of the session. Enforce this constraint with respect to session use.
@@ -46,7 +47,7 @@ function wfLoadMain() {
 	$services->getDBLoadBalancerFactory()->disableChronologyProtection();
 
 	$resourceLoader = $services->getResourceLoader();
-	$context = new ResourceLoaderContext( $resourceLoader, $wgRequest );
+	$context = new Context( $resourceLoader, $wgRequest );
 
 	// Respond to ResourceLoader request
 	$resourceLoader->respond( $context );
