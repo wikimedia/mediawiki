@@ -2222,6 +2222,7 @@
 	"tags-active-yes": "မွေး",
 	"tags-active-no": "မွေးတဝ်း",
 	"tags-hitcount": "ပြောင်ꩻလုဲင်ႏချက် $1 {{PLURAL:$1|ဗာႏ|ဗာႏဖုံႏ}}",
+	"htmlform-submit": "ဒင်ႏသွင်ꩻသော့ꩻ",
 	"revdelete-content-hid": "ပလို့ꩻ အကျောင်ꩻခရာႏ",
 	"logentry-protect-protect": "$1 {{GENDER:$2|ရဲးကမ်းခါꩻလဲဉ်း}} $3 သွူ $4",
 	"searchsuggest-search": "ထိုမ်ႏထွား {{SITENAME}}ကို",
