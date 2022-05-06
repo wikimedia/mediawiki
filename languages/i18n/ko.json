@@ -1261,6 +1261,7 @@
 	"userrights-conflict": "사용자 권한 바꾸기가 충돌합니다! 바뀜을 검토하고 확인하세요.",
 	"group": "그룹:",
 	"group-user": "사용자",
+	"group-named": "등록된 사용자",
 	"group-autoconfirmed": "자동 인증된 사용자",
 	"group-bot": "봇",
 	"group-sysop": "관리자",
