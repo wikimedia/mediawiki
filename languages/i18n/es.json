@@ -2398,7 +2398,7 @@
 	"categoriespagetext": "{{PLURAL:$1|La siguiente categoría existe|Las siguientes $1 categorías existen}} en la wiki y pueden o no estar sin uso.\nVéase también las [[Special:WantedCategories|Categorías requeridas]].",
 	"categoriesfrom": "Mostrar categorías que empiecen por:",
 	"deletedcontributions": "Contribuciones borradas de usuario",
-	"deletedcontributions-title": "Contribuciones borradas por $1",
+	"deletedcontributions-title": "Contribuciones borradas de $1",
 	"sp-deletedcontributions-contribs": "contribuciones",
 	"linksearch": "Búsqueda de enlaces externos",
 	"linksearch-pat": "Patrón de búsqueda:",
@@ -4207,5 +4207,5 @@
 	"paramvalidator-help-type-title": "Tipo: título de página",
 	"paramvalidator-help-type-title-must-exist": "Sólo acepta páginas que existen.",
 	"paramvalidator-help-type-title-no-must-exist": "Acepta páginas inexistentes.",
-	"nonmain-slot-differences-therefore-readonly": "No puedes editar el wikitexto en esta revisión de página, ya que ha habido cambios en los datos de la página desde esta revisión que no están basados en wikitexto. [$1 Para restaurar esta revisión, has clic aquí.]"
+	"nonmain-slot-differences-therefore-readonly": "No se puede editar el wikitexto en esta revisión, ya que ha habido cambios posteriores en los datos de la página que no están basados en wikitexto. Es posible [$1 restaurar esta revisión.]"
 }

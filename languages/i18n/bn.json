@@ -3151,7 +3151,7 @@
 	"bydate": "তারিখ অনুযায়ী",
 	"sp-newimages-showfrom": "$2, $1 এর পরের নতুন ছবিগুলো দেখাও",
 	"seconds-abbrev": "$1 সে",
-	"minutes-abbrev": "$1 মিনিট",
+	"minutes-abbrev": "$1 মি",
 	"hours-abbrev": "$1 ঘ",
 	"days-abbrev": "$1 দিন",
 	"seconds": "{{PLURAL:$1|$1 সেকেন্ড|$1 সেকেন্ড}}",

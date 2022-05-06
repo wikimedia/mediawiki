@@ -11,7 +11,8 @@
 			"Urhixidur",
 			"Vlad5250",
 			"Wikicology",
-			"아라"
+			"아라",
+			"Oyatopeabioye"
 		]
 	},
 	"tog-underline": "Ìfàlàsábẹ́ àwọn àjápọ̀:",
@@ -198,6 +199,7 @@
 	"talk": "Ìfọ̀rọ̀wérọ̀",
 	"views": "Àwọn ìwò",
 	"toolbox": "Àwọn irinṣẹ́",
+	"cactions": "siwaju",
 	"tool-link-userrights": "Yí àwọn ẹgbẹ́ {{GENDER:$1|oníṣe}} padà",
 	"tool-link-userrights-readonly": "Ìgbéwò àwọn ẹgbẹ́ {{GENDER:$1|oníṣe}}",
 	"tool-link-emailuser": "Fi email ránṣẹ́ sí {{GENDER:$1|oníṣe}} yìí",
@@ -868,9 +870,6 @@
 	"restoreprefs": "Ìdápadà gbogbo áwọn ìtò àtìbẹ̀rẹ̀ (nínú gbogbo àwọn abala)",
 	"prefs-editing": "Àtúnṣe ṣíṣẹ",
 	"searchresultshead": "Àwárí",
-	"stub-threshold": "Àlà fún ìtúnṣe àjàpọ̀ ẹ̀kúnrẹ́rẹ́ ($1):",
-	"stub-threshold-sample-link": "àpẹrẹ",
-	"stub-threshold-disabled": "Dídálẹ́kun",
 	"recentchangesdays": "Iye ọjọ́ láti fihàn nínú àwọn àtúnṣe tuntun:",
 	"recentchangesdays-max": "{{PLURAL:$1|Ọjọ́|Ọjọ́}} $1 púpọ̀jùlọ",
 	"recentchangescount": "Iye àwọn àtúnṣe tí yíò hàn nínú àwọn àtúnṣe tuntun, ìtàn ojúewé, àti nínú àwọn àkọọ́lẹ̀, látìbẹ̀rẹ̀:",

@@ -3331,6 +3331,7 @@
 	"duplicate-displaytitle": "<strong>경고:</strong> \"$2\" 표시 제목은 먼저번의 표시 제목 \"$1\"을 덮어씁니다.",
 	"restricted-displaytitle": "<strong>경고:</strong> 표시하려는 제목 \"$1\"은(는) 문서의 실제 제목과 동일하지 않으므로 무시되었습니다.",
 	"invalid-indicator-name": "<strong>오류:</strong> 문서 상태 표시기의 <code>name</code> 특성은 비어 있지 않아야 합니다.",
+	"invalid-langconvert-attrs": "<strong>오류:</strong> Langconvert 태그의 <code>from</code> 및 <code>to</code> 속성은 비어있지 않아야 하며 변환 가능한 유형의 동일 언어에 대해 BCP 47 코드를 포함해야 합니다.",
 	"version": "버전",
 	"version-extensions": "설치된 확장 기능",
 	"version-skins": "설치된 스킨",
