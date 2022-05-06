@@ -28,6 +28,19 @@ abstract class ConfigBuilderBase implements ConfigBuilder {
 		return $this;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	public function setMulti( array $values ): ConfigBuilder {
+		foreach ( $values as $key => $value ) {
+			$this->set( $key, $value );
+		}
+		return $this;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
 	public function setDefault(
 		string $key,
 		$defaultValue,

@@ -6,11 +6,6 @@ use Config;
 use HashConfig;
 use MediaWiki\Config\IterableConfig;
 
-/**
- * ConfigBuilder implemented around arrays, will create an IterableConfig.
- *
- * @since 1.39
- */
 class ArrayConfigBuilder extends ConfigBuilderBase {
 
 	/** @var array */
@@ -26,6 +21,11 @@ class ArrayConfigBuilder extends ConfigBuilderBase {
 
 	protected function update( string $key, $value ) {
 		$this->config[$key] = $value;
+	}
+
+	public function setMulti( array $values ): ConfigBuilder {
+		$this->config = array_merge( $this->config, $values );
+		return $this;
 	}
 
 	/**

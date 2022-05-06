@@ -5,11 +5,6 @@ namespace MediaWiki\Settings\Config;
 use Config;
 use GlobalVarConfig;
 
-/**
- * ConfigBuilder implemented on top of global variables.
- *
- * @since 1.39
- */
 class GlobalConfigBuilder extends ConfigBuilderBase {
 
 	/** @var string */
@@ -38,6 +33,17 @@ class GlobalConfigBuilder extends ConfigBuilderBase {
 	protected function update( string $key, $value ) {
 		$var = $this->getVarName( $key );
 		$GLOBALS[ $var ] = $value;
+	}
+
+	public function setMulti( array $values ): ConfigBuilder {
+		// NOTE: It is tempting to do $GLOBALS = array_merge( $GLOBALS, $values ).
+		//       But that no longer works in PHP 8.1!
+		//       See https://wiki.php.net/rfc/restrict_globals_usage
+		foreach ( $values as $key => $value ) {
+			$var = $this->prefix . $key; // inline getVarName() to avoid function call
+			$GLOBALS[$var] = $value;
+		}
+		return $this;
 	}
 
 	private function getVarName( string $key ): string {
