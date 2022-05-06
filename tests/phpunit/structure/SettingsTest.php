@@ -68,6 +68,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testCurrentSettingsValidate() {
 		global $wgSettings;
+		$this->markTestSkipped( 'T307769' );
 		$validationResult = $wgSettings->validate();
 		$this->assertStatusOK( $validationResult );
 	}
