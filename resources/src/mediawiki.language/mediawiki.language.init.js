@@ -14,7 +14,7 @@
 		/**
 		 * Language-related data (keyed by language, contains instances of mw.Map).
 		 *
-		 * Exported dynamically by the ResourceLoaderLanguageDataModule class in PHP.
+		 * Exported dynamically by the ResourceLoader\LanguageDataModule class in PHP.
 		 *
 		 * To set data:
 		 *

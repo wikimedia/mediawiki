@@ -223,6 +223,24 @@ because of Phabricator reports.
 * ILBFactory::forEachLB() is deprecated. Use ::getAllLBs().
 * LoadBalancer::forEachOpenConnection() and ::forEachOpenPrimaryConnection()
   are deprecated without replacement.
+* The following classes were moved from the root namespace to the
+  MediaWiki\ResourceLoader namespace, the old names becoming deprecated aliases:
+  ResourceLoader, ResourceLoaderContext, DerivativeResourceLoaderContext,
+  MessageBlobStore, VueComponentParser.
+* The following classes had the "ResourceLoader" prefix stripped while being
+  moved to the MediaWiki\ResourceLoader namespace, the old names becoming
+  deprecated aliases: ResourceLoaderCircularDependencyError,
+  ResourceLoaderClientHtml, ResourceLoaderCodexModule, ResourceLoaderFileModule,
+  ResourceLoaderFilePath, ResourceLoaderForeignApiModule, ResourceLoaderImage,
+  ResourceLoaderImageModule, ResourceLoaderLanguageDataModule,
+  ResourceLoaderLessVarFileModule, ResourceLoaderModule,
+  ResourceLoaderMwUrlModule, ResourceLoaderOOUIFileModule,
+  ResourceLoaderOOUIIconPackModule, ResourceLoaderOOUIImageModule,
+  ResourceLoaderOOUIModule, ResourceLoaderSiteModule,
+  ResourceLoaderSiteStylesModule, ResourceLoaderSkinModule,
+  ResourceLoaderStartUpModule, ResourceLoaderUserModule,
+  ResourceLoaderUserOptionsModule, ResourceLoaderUserStylesModule,
+  ResourceLoaderWikiModule.
 * The following methods in WikiRevision and their interfaces
   ImportableUploadRevision and ImportableOldRevision are deprecated:
   - ::getUserObj() → ::getUser()
