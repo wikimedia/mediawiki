@@ -253,9 +253,6 @@ abstract class DatabaseMysqlBase extends Database {
 		} else {
 			$error = $this->mysqlError();
 		}
-		if ( $error ) {
-			$error .= ' (' . $this->getServerName() . ')';
-		}
 
 		return $error;
 	}
