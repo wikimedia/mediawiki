@@ -254,7 +254,8 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * unless $forceClone is "clone". If $forceClone is "clone" and the given TitleValue
 	 * is already a Title instance, that instance is copied using the clone operator.
 	 *
-	 * @deprecated since 1.34, use newFromLinkTarget or castFromLinkTarget
+	 * @deprecated since 1.34, use newFromLinkTarget or castFromLinkTarget. Hard
+	 *   deprecated in 1.39.
 	 *
 	 * @param TitleValue $titleValue Assumed to be safe.
 	 * @param string $forceClone set to NEW_CLONE to ensure a fresh instance is returned.
@@ -262,6 +263,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return Title
 	 */
 	public static function newFromTitleValue( TitleValue $titleValue, $forceClone = '' ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return self::newFromLinkTarget( $titleValue, $forceClone );
 	}
 

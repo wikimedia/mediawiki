@@ -174,6 +174,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideNewFromTitleValue
 	 */
 	public function testNewFromTitleValue( TitleValue $value ) {
+		$this->hideDeprecated( 'Title::newFromTitleValue' );
 		$title = Title::newFromTitleValue( $value );
 
 		$dbkey = str_replace( ' ', '_', $value->getText() );
