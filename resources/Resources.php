@@ -1418,6 +1418,8 @@ return [
 			'postedit-confirmation-restored',
 			'postedit-confirmation-saved',
 			'postedit-confirmation-published',
+			'postedit-temp-created-label',
+			'postedit-temp-created',
 		],
 	],
 	'mediawiki.action.view.redirect' => [
