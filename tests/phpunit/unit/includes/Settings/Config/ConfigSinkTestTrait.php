@@ -19,12 +19,22 @@ trait ConfigSinkTestTrait {
 		$this->assertKeyHasValue( 'TestKey2', 'bar' );
 	}
 
+	public function testSetAll() {
+		$this->getConfigSink()
+			->setMulti( [
+				'TestAllKey1' => 'foo',
+				'TestAllKey2' => 'bar'
+			] );
+		$this->assertKeyHasValue( 'TestAllKey1', 'foo' );
+		$this->assertKeyHasValue( 'TestAllKey2', 'bar' );
+	}
+
 	public function testSetDefault() {
 		$this->getConfigSink()
-			->setDefault( 'TestKey1', 'foo' )
-			->setDefault( 'TestKey2', 'bar' );
-		$this->assertKeyHasValue( 'TestKey1', 'foo' );
-		$this->assertKeyHasValue( 'TestKey2', 'bar' );
+			->setDefault( 'TestDefaultKey1', 'foo' )
+			->setDefault( 'TestDefaultKey2', 'bar' );
+		$this->assertKeyHasValue( 'TestDefaultKey1', 'foo' );
+		$this->assertKeyHasValue( 'TestDefaultKey2', 'bar' );
 	}
 
 	public function provideSetNewValue() {
@@ -56,12 +66,12 @@ trait ConfigSinkTestTrait {
 	 */
 	public function testSetNewValue( $first, $second, $strategy, $expected ) {
 		$this->getConfigSink()
-			->set( 'TestKey', $first )
+			->set( 'TestNewValueKey', $first )
 			->set(
-				'TestKey',
+				'TestNewValueKey',
 				$second, $strategy ? MergeStrategy::newFromName( $strategy ) : null
 			);
-		$this->assertKeyHasValue( 'TestKey', $expected );
+		$this->assertKeyHasValue( 'TestNewValueKey', $expected );
 	}
 
 	public function provideSetDefaultValue() {
@@ -94,13 +104,13 @@ trait ConfigSinkTestTrait {
 	 */
 	public function testSetDefaultValue( $first, $second, $strategy, $expected ) {
 		$this->getConfigSink()
-			->set( 'TestKey', $first )
+			->set( 'TestDefaultValueKey', $first )
 			->setDefault(
-				'TestKey',
+				'TestDefaultValueKey',
 				$second,
 				$strategy ? MergeStrategy::newFromName( $strategy ) : null
 			);
-		$this->assertKeyHasValue( 'TestKey', $expected );
+		$this->assertKeyHasValue( 'TestDefaultValueKey', $expected );
 	}
 
 }

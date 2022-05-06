@@ -371,9 +371,9 @@ class SettingsBuilder {
 			);
 		}
 
-		foreach ( $settings['config-overrides'] ?? [] as $key => $value ) {
-			// no merge strategy, just override
-			$this->configSink->set( $key, $value );
+		if ( isset( $settings['config-overrides'] ) ) {
+			// no merge strategies, just override in one go
+			$this->configSink->setMulti( $settings['config-overrides'] );
 		}
 
 		if ( isset( $settings['config'] ) || isset( $settings['config-overrides'] ) ) {
