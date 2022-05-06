@@ -1532,7 +1532,7 @@
 	"rcfilters-filter-reviewstatus-unpatrolled-label": "Nepatrulate",
 	"rcfilters-filter-reviewstatus-manual-description": "Modificări marcate manual ca patrulate.",
 	"rcfilters-filter-reviewstatus-manual-label": "Patrulate manual",
-	"rcfilters-filter-reviewstatus-auto-description": "Editări făcute de utilizatori avansați a cărui muncă este marcată automat ca patrulată.",
+	"rcfilters-filter-reviewstatus-auto-description": "Editări făcute de utilizatori avansați a căror muncă este marcată automat ca patrulată.",
 	"rcfilters-filter-reviewstatus-auto-label": "Patrulate automat",
 	"rcfilters-filtergroup-significance": "Semnificație",
 	"rcfilters-filter-minor-label": "Modificări minore",

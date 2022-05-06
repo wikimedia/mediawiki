@@ -4008,6 +4008,7 @@
 	"userjsispublic": "Ricorda: le sottopagine JavaScript non devono contenere dati riservati poiché sono visualizzabili da altri utenti.",
 	"userjsonispublic": "Ricorda: le sottopagine JSON non dovrebbero contenere dati personali perché sono visibili agli altri utenti.",
 	"usercssispublic": "Ricorda: le sottopagine CSS non devono contenere dati riservati poiché sono visualizzabili da altri utenti.",
+	"userjsdangerous": "Nota bene: gli script inclusi in questa pagina saranno eseguiti ogni volta che qualsiasi pagina viene caricata. Il codice dannoso aggiunto qui potrebbe compromettere l'utenza. Il codice sarà eseguito durante l'anteprima di questa pagina.",
 	"restrictionsfield-badip": "Indirizzo IP o intervallo non valido: $1",
 	"restrictionsfield-label": "Intervalli IP consentiti:",
 	"restrictionsfield-help": "Un indirizzo IP o intervallo CIDR per linea. Per consentire tutto, utilizza:<pre>0.0.0.0/0\n::/0</pre>",

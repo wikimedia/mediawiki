@@ -227,7 +227,7 @@
 	"apihelp-protect-example-protect": "محافظت از صفحه",
 	"apihelp-protect-example-unprotect": "خارج ساختن صفحه از حفاظت با تغییر سطح حفاظتی به <kbd>all</kbd>.",
 	"apihelp-protect-example-unprotect2": "خارج ساختن صفحه از حفاظت با قراردادن هیچ‌گونه محدودیت‌حفاظتی",
-	"apihelp-purge-param-forcelinkupdate": "به‌روزرسانی جدول‌های پیوندها و انجام به‌روزرسانی‌های ثانویهٔ دیگر برای داده‌ها.",
+	"apihelp-purge-param-forcelinkupdate": "روزآمدسازی جدول‌های پیوندها و انجام روزآمدسازی‌های ثانویهٔ دیگر برای داده‌ها.",
 	"apihelp-purge-param-forcerecursivelinkupdate": "جدول پیوندهای این صفحه و جدول پیوندهای هر صفحه‌ای را که از این صفحه به‌عنوان الگو استفاده می‌کند، روزآمدسازی کنید.",
 	"apihelp-query-param-list": "کدام فهرست‌ها دریافت شود.",
 	"apihelp-query-param-meta": "کدام فراداده‌ها دریافت شود.",
