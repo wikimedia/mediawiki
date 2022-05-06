@@ -212,7 +212,7 @@ class SettingsBuilder {
 	 */
 	public function getDefinedConfigKeys(): array {
 		$this->apply();
-		return array_keys( $this->configSchema->getSchemas() );
+		return $this->configSchema->getDefinedKeys();
 	}
 
 	/**
@@ -237,10 +237,6 @@ class SettingsBuilder {
 		$allSettings = $this->loadRecursive( $this->currentBatch );
 
 		foreach ( $allSettings as $settings ) {
-			$this->configSchema->addSchemas(
-				$settings['config-schema'] ?? [],
-				$settings['source-name']
-			);
 			$this->applySettings( $settings );
 		}
 		$this->reset();
@@ -331,6 +327,61 @@ class SettingsBuilder {
 	}
 
 	/**
+	 * Apply schemas from the settings array.
+	 *
+	 * This returns the default values to apply, splits into two two categories:
+	 * "hard" defaults, which can be applied as config overrides without merging.
+	 * And "soft" defaults, which have to be reverse-merged.
+	 * Defaults can be considered "hard" if no config value was yet set for them. However,
+	 * we can only know that as long as we can be sure that nothing has changed config values
+	 * in a way that bypasses SettingsLoader (e.g. by setting global variables in LocalSettings.php).
+	 *
+	 * @param array $settings A settings structure.
+	 */
+	private function applySchemas( array $settings ) {
+		$defaults = [];
+
+		if ( isset( $settings['config-schema-inverse'] ) ) {
+			$defaults = $settings['config-schema-inverse']['default'] ?? [];
+			$this->configSchema->addDefaults(
+				$defaults,
+				$settings['source-name']
+			);
+			$this->configSchema->addMergeStrategies(
+				$settings['config-schema-inverse']['mergeStrategy'] ?? [],
+				$settings['source-name']
+			);
+			$this->configSchema->addTypes(
+				$settings['config-schema-inverse']['type'] ?? [],
+				$settings['source-name']
+			);
+		}
+
+		if ( isset( $settings['config-schema'] ) ) {
+			foreach ( $settings['config-schema'] as $key => $schema ) {
+				$this->configSchema->addSchema( $key, $schema );
+
+				if ( array_key_exists( 'default', $schema ) ) {
+					$defaults[$key] = $schema['default'];
+				}
+			}
+		}
+
+		if ( $this->defaultsNeedMerging ) {
+			foreach ( $settings['config-schema'] ?? [] as $key => $schema ) {
+				$this->configSink->setDefault(
+					$key,
+					$schema['default'],
+					$this->configSchema->getMergeStrategyFor( $key )
+				);
+			}
+		} else {
+			// Optimization: no merge strategy, just override in one go
+			$this->configSink->setMulti( $defaults );
+		}
+	}
+
+	/**
 	 * Apply the settings array.
 	 *
 	 * @param array $settings
@@ -345,23 +396,7 @@ class SettingsBuilder {
 			$this->updateSettingsConfig( $settings['config-overrides'] );
 		}
 
-		foreach ( $settings['config-schema'] ?? [] as $key => $schema ) {
-			if ( array_key_exists( 'default', $schema ) ) {
-				if ( $this->defaultsNeedMerging ) {
-					$this->configSink->setDefault(
-						$key,
-						$schema['default'],
-						$this->configSchema->getMergeStrategyFor( $key )
-					);
-				} else {
-					// Optimization: no merge strategy, just override
-					$this->configSink->set(
-						$key,
-						$schema['default']
-					);
-				}
-			}
-		}
+		$this->applySchemas( $settings );
 
 		foreach ( $settings['config'] ?? [] as $key => $value ) {
 			$this->configSink->set(
