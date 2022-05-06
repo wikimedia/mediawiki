@@ -2681,7 +2681,7 @@ return [
 				0 => 'string',
 				1 => 'null',
 			],
-			'SessionProviders' => 'array',
+			'SessionProviders' => 'object',
 			'AutoCreateTempUser' => 'object',
 			'BlockCIDRLimit' => 'object',
 			'EnablePartialActionBlocks' => 'boolean',
@@ -2944,9 +2944,6 @@ return [
 		],
 		'MaximalPasswordLength' => [
 			'deprecated' => 'since 1.26, use $wgPasswordPolicy\'s MaximalPasswordLength.',
-		],
-		'SessionProviders' => [
-			'ignoreKeys' => true,
 		],
 		'AllowRequiringEmailForResets' => [
 			'deprecated' => 'This feature is under development, don\'t assume this flag\'s existence or function outside of MediaWiki',

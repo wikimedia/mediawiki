@@ -7111,14 +7111,14 @@ class MainConfigSchema {
 	/**
 	 * MediaWiki\Session\SessionProvider configuration.
 	 *
-	 * Values are ObjectFactory specifications for the SessionProviders
-	 * to be used. Keys in the array are ignored. Order is not significant.
+	 * Values are ObjectFactory specifications for the SessionProviders to be
+	 * used. Keys in the array are ignored; the class name is conventionally
+	 * used as the key to avoid collisions. Order is not significant.
 	 *
 	 * @since 1.27
 	 */
 	public const SessionProviders = [
-		'type' => 'list',
-		'ignoreKeys' => true,
+		'type' => 'map',
 		'default' => [
 			\MediaWiki\Session\CookieSessionProvider::class => [
 				'class' => \MediaWiki\Session\CookieSessionProvider::class,
