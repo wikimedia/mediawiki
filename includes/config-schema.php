@@ -719,7 +719,6 @@ return [
 			],
 			'ExtraSignatureNamespaces' => [
 			],
-			'MaxRedirects' => 1,
 			'InvalidRedirectTargets' => [
 				0 => 'Filepath',
 				1 => 'Mypage',
