@@ -43,6 +43,8 @@ For notes on 1.38.x and older releases, see HISTORY.
   purpose is deprecated.
 * $wgAllowJavaUploads - To allow uploads of JAR files, remove application/java
   from $wgMimeTypeExclusions.
+* $wgMaxRedirects has been removed. This feature never worked as intended,
+  see T296430.
 * …
 
 === New user-facing features in 1.39 ===
@@ -201,6 +203,11 @@ because of Phabricator reports.
      to pass one to wfUrlProtocols anyway);
   3) they use type hints (don't try passing null instead of string, etc.).
 * MaintainableDBConnRef is deprecated, use DBConnRef instead.
+* AbstractContent::getRedirectChain() and
+  AbstractContent::getUltimateRedirectTarget() are now emitting deprecation
+  warnings (T296430).
+* Passing an array of targets to Article::getRedirectHeaderHtml() is
+  deprecated. Supply a single redirect target instead (T296430).
 * Skin::getAction is deprecated. Use IContextSource::getActionName instead.
 * ILBFactory::forEachLB() is deprecated. Use ::getAllLBs().
 * LoadBalancer::forEachOpenConnection() and ::forEachOpenPrimaryConnection()

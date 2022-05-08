@@ -61,14 +61,11 @@ class ViewAction extends FormlessAction {
 			$redirFromTitle = $this->getArticle()->getRedirectedFrom();
 			if ( !$redirFromTitle ) {
 				$touched = $this->getWikiPage()->getTouched();
-			} elseif ( $config->get( MainConfigNames::MaxRedirects ) <= 1 ) {
+			} else {
 				$touched = max(
 					$this->getWikiPage()->getTouched(),
 					$redirFromTitle->getTouched()
 				);
-			} else {
-				// Don't bother following the chain and getting the max mtime
-				$touched = null;
 			}
 
 			// Send HTTP 304 if the IMS matches or otherwise set expiry/last-modified headers

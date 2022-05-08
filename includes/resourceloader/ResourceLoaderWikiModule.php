@@ -213,13 +213,14 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	/**
 	 * @param PageIdentity $page
 	 * @param ResourceLoaderContext $context
-	 * @param int|null $maxRedirects Maximum number of redirects to follow. If
-	 *  null, uses $wgMaxRedirects
+	 * @param int $maxRedirects Maximum number of redirects to follow.
+	 *        Either 0 or 1.
 	 * @return Content|null
 	 * @since 1.32 added the $context and $maxRedirects parameters
+	 * @internal for testing
 	 */
 	protected function getContentObj(
-		PageIdentity $page, ResourceLoaderContext $context, $maxRedirects = null
+		PageIdentity $page, ResourceLoaderContext $context, $maxRedirects = 1
 	) {
 		$overrideCallback = $context->getContentOverrideCallback();
 		$content = $overrideCallback ? call_user_func( $overrideCallback, $page ) : null;
@@ -249,14 +250,9 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			}
 		}
 
-		if ( $content->isRedirect() ) {
-			if ( $maxRedirects === null ) {
-				$maxRedirects = $this->getConfig()->get( MainConfigNames::MaxRedirects ) ?: 0;
-			}
-			if ( $maxRedirects > 0 ) {
-				$newTitle = $content->getRedirectTarget();
-				return $newTitle ? $this->getContentObj( $newTitle, $context, $maxRedirects - 1 ) : null;
-			}
+		if ( $maxRedirects > 0 && $content->isRedirect() ) {
+			$newTitle = $content->getRedirectTarget();
+			return $newTitle ? $this->getContentObj( $newTitle, $context, 0 ) : null;
 		}
 
 		return $content;

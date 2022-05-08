@@ -1733,39 +1733,38 @@ class Article implements Page {
 	 *
 	 * @since 1.23
 	 * @param Language $lang
-	 * @param Title|Title[] $target Destination(s) to redirect
+	 * @param Title $target Destination to redirect
 	 * @param bool $forceKnown Should the image be shown as a bluelink regardless of existence?
 	 * @return string Containing HTML with redirect link
 	 */
 	public static function getRedirectHeaderHtml( Language $lang, $target, $forceKnown = false ) {
-		if ( !is_array( $target ) ) {
-			$target = [ $target ];
+		if ( is_array( $target ) ) {
+			// Up until 1.39, $target was allowed to be an array.
+			wfDeprecatedMsg( 'The $target parameter can no longer be an array', '1.39' );
+			$target = reset( $target ); // There really can only be one element (T296430)
 		}
 
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 		$html = '<ul class="redirectText">';
-		/** @var Title $title */
-		foreach ( $target as $title ) {
-			if ( $forceKnown ) {
-				$link = $linkRenderer->makeKnownLink(
-					$title,
-					$title->getFullText(),
-					[],
-					// Make sure wiki page redirects are not followed
-					$title->isRedirect() ? [ 'redirect' => 'no' ] : []
-				);
-			} else {
-				$link = $linkRenderer->makeLink(
-					$title,
-					$title->getFullText(),
-					[],
-					// Make sure wiki page redirects are not followed
-					$title->isRedirect() ? [ 'redirect' => 'no' ] : []
-				);
-			}
-			$html .= '<li>' . $link . '</li>';
+		if ( $forceKnown ) {
+			$link = $linkRenderer->makeKnownLink(
+				$target,
+				$target->getFullText(),
+				[],
+				// Make sure wiki page redirects are not followed
+				$target->isRedirect() ? [ 'redirect' => 'no' ] : []
+			);
+		} else {
+			$link = $linkRenderer->makeLink(
+				$target,
+				$target->getFullText(),
+				[],
+				// Make sure wiki page redirects are not followed
+				$target->isRedirect() ? [ 'redirect' => 'no' ] : []
+			);
 		}
+		$html .= '<li>' . $link . '</li>';
 		$html .= '</ul>';
 
 		$redirectToText = wfMessage( 'redirectto' )->inLanguage( $lang )->escaped();
