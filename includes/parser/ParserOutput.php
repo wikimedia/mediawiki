@@ -1501,15 +1501,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *    $output->getExtensionData( 'my_ext_foo' );
 	 * @endcode
 	 *
-	 * In MediaWiki 1.20 and older, you have to use a custom member variable
-	 * within the ParserOutput object, but this will not work in modern
-	 * MediaWiki with $wgParserCacheUseJson set to true (the default):
-	 *
-	 * @par Example:
-	 * @code
-	 *    $parser->getOutput()->my_ext_foo = '...';
-	 * @endcode
-	 *
 	 * @param string $name
 	 * @param int|float|string|bool|null $value
 	 * @since 1.38

@@ -74,7 +74,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function newHandler( Parsoid $parsoid = null ): PageHTMLHandler {
 		$parserCacheFactoryOptions = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
-			'ParserCacheUseJson' => true,
 			'CacheEpoch' => '20200202112233',
 			'OldRevisionParserCacheExpireTime' => 60,
 		] );

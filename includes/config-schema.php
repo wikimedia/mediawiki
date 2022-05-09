@@ -538,7 +538,6 @@ return [
 			'UseGzip' => false,
 			'InvalidateCacheOnLocalSettingsChange' => true,
 			'ExtensionInfoMTime' => false,
-			'ParserCacheUseJson' => true,
 			'EnableRemoteBagOStuffTests' => false,
 			'UseCdn' => false,
 			'VaryOnXFP' => false,
@@ -2888,9 +2887,6 @@ return [
 		],
 		'ContentHandlerTextFallback' => [
 			'deprecated' => 'since 1.37',
-		],
-		'ParserCacheUseJson' => [
-			'deprecated' => 'since 1.36',
 		],
 		'SquidPurgeUseHostHeader' => [
 			'deprecated' => 'since 1.33',

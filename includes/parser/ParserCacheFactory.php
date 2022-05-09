@@ -80,7 +80,6 @@ class ParserCacheFactory {
 	 * @internal
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		MainConfigNames::ParserCacheUseJson, // Temporary feature flag, remove before 1.36 is released.
 		MainConfigNames::CacheEpoch,
 		MainConfigNames::OldRevisionParserCacheExpireTime,
 	];
@@ -137,8 +136,7 @@ class ParserCacheFactory {
 				$this->stats,
 				$this->logger,
 				$this->titleFactory,
-				$this->wikiPageFactory,
-				$this->options->get( MainConfigNames::ParserCacheUseJson )
+				$this->wikiPageFactory
 			);
 
 			$this->parserCaches[$name] = $cache;

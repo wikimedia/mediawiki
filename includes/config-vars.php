@@ -1613,13 +1613,6 @@ $wgInvalidateCacheOnLocalSettingsChange = null;
 $wgExtensionInfoMTime = null;
 
 /**
- * Config variable stub for the ParserCacheUseJson setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::ParserCacheUseJson
- * @deprecated since 1.36
- */
-$wgParserCacheUseJson = null;
-
-/**
  * Config variable stub for the EnableRemoteBagOStuffTests setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::EnableRemoteBagOStuffTests
  */

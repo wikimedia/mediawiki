@@ -77,7 +77,6 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function newHandler( Parsoid $parsoid = null ): RevisionHTMLHandler {
 		$parserCacheFactoryOptions = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
-			'ParserCacheUseJson' => true,
 			'CacheEpoch' => '20200202112233',
 			'OldRevisionParserCacheExpireTime' => 60 * 60,
 		] );
