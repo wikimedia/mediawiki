@@ -40,7 +40,7 @@ class DeleteTag extends Maintenance {
 
 		$this->output( "Deleting tag '$tag'...\n" );
 
-		// Make the tag imposssible to add by users while we're deleting it and drop the
+		// Make the tag impossible to add by users while we're deleting it and drop the
 		// usage counter to zero
 		$dbw->update(
 			'change_tag_def',

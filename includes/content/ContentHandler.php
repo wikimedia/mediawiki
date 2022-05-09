@@ -594,7 +594,7 @@ abstract class ContentHandler {
 	 * (Note that in older versions of MediaWiki the hook documentation instructed extensions
 	 * to return false from the hook; you should not rely on always being able to decorate
 	 * the DifferenceEngine instance from the hook. If the owner of the content type wants to
-	 * decorare the instance, overriding this method is a safer approach.)
+	 * decorate the instance, overriding this method is a safer approach.)
 	 *
 	 * @todo This is page-level functionality so it should not belong to ContentHandler.
 	 *   Move it to a better place once one exists (e.g. PageTypeHandler).

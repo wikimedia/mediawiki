@@ -144,7 +144,7 @@ class XhprofData {
 	 * called from that function during the measurement period.
 	 *
 	 * See getRawData() for a description of the metric that are returned for
-	 * each funcition call. The values for the wt, cpu, mu and pmu metrics are
+	 * each function call. The values for the wt, cpu, mu and pmu metrics are
 	 * arrays with these values:
 	 * - total: Cumulative value
 	 * - min: Minimum value

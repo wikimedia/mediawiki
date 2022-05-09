@@ -159,7 +159,7 @@ class UndeletePage {
 	}
 
 	/**
-	 * Whether to remove all ar_deleted/fa_deleted restrictions of seletected revs.
+	 * Whether to remove all ar_deleted/fa_deleted restrictions of selected revs.
 	 *
 	 * @param bool $unsuppress
 	 * @return self For chaining
@@ -225,7 +225,7 @@ class UndeletePage {
 	}
 
 	/**
-	 * Wether to delete the associated talk page with the subject page
+	 * Whether to delete the associated talk page with the subject page
 	 *
 	 * @param bool $undelete
 	 * @return self For chaining

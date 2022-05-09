@@ -148,14 +148,14 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 				],
 			],
 
-			'first two same as prefs, second two overriden' => [
+			'first two same as prefs, second two overridden' => [
 				'expectedValuesDefaults' => 'wikiDefaults',
 				'expectedValues' => [
 					// First two same as prefs
 					'hideminor' => true,
 					'hidebots' => false,
 
-					// Second two overriden
+					// Second two overridden
 					'hideanons' => false,
 					'hideliu' => true,
 					'userExpLevel' => 'registered'

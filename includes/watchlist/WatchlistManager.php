@@ -501,7 +501,7 @@ class WatchlistManager {
 			return StatusValue::newGood();
 		}
 
-		// Only call addWatchhIgnoringRights() or removeWatch() if there's been a change in the watched status.
+		// Only call addWatchIgnoringRights() or removeWatch() if there's been a change in the watched status.
 		$link = TitleValue::newFromPage( $target );
 		$oldWatchedItem = $this->watchedItemStore->getWatchedItem( $performer->getUser(), $link );
 		$changingWatchStatus = (bool)$oldWatchedItem !== $watch;

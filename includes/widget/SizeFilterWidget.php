@@ -28,7 +28,7 @@ class SizeFilterWidget extends \OOUI\Widget {
 	 * @param array $config Configuration options
 	 *   - array $config['textinput'] Configuration for the TextInputWidget
 	 *   - array $config['radioselectinput'] Configuration for the RadioSelectWidget
-	 *   - bool $congif['selectMin'] Whether to select 'min', false would select 'max'
+	 *   - bool $config['selectMin'] Whether to select 'min', false would select 'max'
 	 */
 	public function __construct( array $config = [] ) {
 		// Configuration initialization

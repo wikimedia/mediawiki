@@ -149,7 +149,7 @@ class TemplateParser {
 				}
 			}
 
-			// We're not using the cached code for whathever reason. Recompile the template and
+			// We're not using the cached code for whatever reason. Recompile the template and
 			// cache it.
 			if ( !$compiledTemplate ) {
 				$compiledTemplate = $this->compile( $templateName );

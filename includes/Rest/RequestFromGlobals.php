@@ -44,7 +44,7 @@ class RequestFromGlobals extends RequestBase {
 				//
 				// Since $requestUrl here is absolute-path references
 				// so all titles that contain colon followed by a
-				// number would be inacessible if the exception occurs.
+				// number would be inaccessible if the exception occurs.
 				$uriInstance = (
 					new Uri( '//HOST:80' . $requestUrl )
 				)->withScheme( '' )->withHost( '' )->withPort( null );

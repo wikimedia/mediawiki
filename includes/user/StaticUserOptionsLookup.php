@@ -4,7 +4,7 @@ namespace MediaWiki\User;
 
 /**
  * A UserOptionsLookup that's just an array. Useful for testing and creating staging environments.
- * Note that unlike UserOptionsManager, no attempt is made to canonincalize user names.
+ * Note that unlike UserOptionsManager, no attempt is made to canonicalize user names.
  * @since 1.36
  */
 class StaticUserOptionsLookup extends UserOptionsLookup {

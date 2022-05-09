@@ -659,7 +659,7 @@ class Language {
 
 	/**
 	 * @return array<string,int> Map from names to namespace IDs. Note that each
-	 * namepace ID can have multiple alias.
+	 * namespace ID can have multiple alias.
 	 */
 	public function getNamespaceAliases() {
 		if ( $this->namespaceAliases === null ) {
@@ -2762,7 +2762,7 @@ class Language {
 		if ( $this->isMultibyte( $str ) ) {
 			$str = $this->lc( $str );
 
-			// since \b doesn't work for UTF-8, we explicitely define word break chars
+			// since \b doesn't work for UTF-8, we explicitly define word break chars
 			$breaks = "[ \-\(\)\}\{\.,\?!]";
 
 			// find first letter after word break
@@ -3690,7 +3690,7 @@ class Language {
 			return $text; // string short enough even *with* HTML (short-circuit)
 		}
 
-		$dispLen = 0; // innerHTML legth so far
+		$dispLen = 0; // innerHTML length so far
 		$testingEllipsis = false; // checking if ellipses will make string longer/equal?
 		$tagType = 0; // 0-open, 1-close
 		$bracketState = 0; // 1-tag start, 2-tag name, 0-neither
@@ -3702,7 +3702,7 @@ class Language {
 		$textLen = strlen( $text );
 		$neLength = max( 0, $length - strlen( $ellipsis ) ); // non-ellipsis len if truncated
 		for ( $pos = 0; true; ++$pos ) {
-			# Consider truncation once the display length has reached the maximim.
+			# Consider truncation once the display length has reached the maximum.
 			# We check if $dispLen > 0 to grab tags for the $neLength = 0 case.
 			# Check that we're not in the middle of a bracket/entity...
 			if ( $dispLen && $dispLen >= $neLength && $bracketState == 0 && !$entityState ) {

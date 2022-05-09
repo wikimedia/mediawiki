@@ -705,7 +705,7 @@ class GlobalIdGenerator {
 	 * Delete all cache files that have been created (T46850)
 	 *
 	 * This is a cleanup method primarily meant to be used from unit tests to
-	 * avoid poluting the local filesystem. If used outside of a unit test
+	 * avoid polluting the local filesystem. If used outside of a unit test
 	 * environment it should be used with caution as it may destroy state saved
 	 * in the files.
 	 *

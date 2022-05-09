@@ -1148,7 +1148,7 @@ class RevisionStore
 	 * @param SlotRecord $slot The SlotRecord to load content for
 	 * @param string|null $blobData The content blob, in the form indicated by $blobFlags
 	 * @param string|null $blobFlags Flags indicating how $blobData needs to be processed.
-	 *        Use null if no processing should happen. That is in constrast to the empty string,
+	 *        Use null if no processing should happen. That is in contrast to the empty string,
 	 *        which causes the blob to be decoded according to the configured legacy encoding.
 	 * @param string|null $blobFormat MIME type indicating how $dataBlob is encoded
 	 * @param int $queryFlags
@@ -2309,7 +2309,7 @@ class RevisionStore
 
 		$lb = $this->getDBLoadBalancer();
 
-		// Make sure new pending/committed revision are visibile later on
+		// Make sure new pending/committed revision are visible later on
 		// within web requests to certain avoid bugs like T93866 and T94407.
 		if ( !$rev
 			&& !( $flags & self::READ_LATEST )

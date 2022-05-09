@@ -34,7 +34,7 @@ use MediaWiki\Settings\SettingsBuilder;
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Base class for interating over a dump.
+ * Base class for iterating over a dump.
  *
  * @ingroup Maintenance
  */

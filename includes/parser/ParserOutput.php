@@ -594,7 +594,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * Returns the class (or classes) to be used with the wrapper div for this otuput.
+	 * Returns the class (or classes) to be used with the wrapper div for this output.
 	 * If there is no wrapper class given, no wrapper div should be added.
 	 * The wrapper div is added automatically by getText().
 	 *
@@ -1280,7 +1280,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * Accomodate very basic transcluding of a temporary OutputPage object into parser output.
+	 * Accommodate very basic transcluding of a temporary OutputPage object into parser output.
 	 *
 	 * This is a fragile method that cannot be relied upon in any meaningful way.
 	 * It exists solely to support the wikitext feature of transcluding a SpecialPage, and

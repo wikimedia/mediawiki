@@ -324,7 +324,7 @@ class RawAction extends FormlessAction {
 		$ctype = $this->getRequest()->getRawVal( 'ctype' );
 
 		if ( $ctype == '' ) {
-			// Legacy compatibilty
+			// Legacy compatibility
 			$gen = $this->getRequest()->getRawVal( 'gen' );
 			if ( $gen == 'js' ) {
 				$ctype = 'text/javascript';

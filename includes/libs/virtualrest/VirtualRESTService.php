@@ -70,7 +70,7 @@ abstract class VirtualRESTService {
 	 * or added request, the 'response' array can be filled in, which will prevent the
 	 * client from executing it. If an original request is removed, at some point it
 	 * must be added back (with the same key) in onRequests() or onResponses();
-	 * it's reponse may be filled in as with other requests.
+	 * its response may be filled in as with other requests.
 	 *
 	 * @param array[] $reqs Map of Virtual HTTP request arrays
 	 * @param Closure $idGeneratorFunc Method to generate unique keys for new requests
@@ -102,7 +102,7 @@ abstract class VirtualRESTService {
 	 * or added request, the 'response' array can be filled in, which will prevent the
 	 * client from executing it. If an original request is removed, at some point it
 	 * must be added back (with the same key) in onRequests() or onResponses();
-	 * it's reponse may be filled in as with other requests. All requests added to $reqs
+	 * its response may be filled in as with other requests. All requests added to $reqs
 	 * will be passed through onRequests() to handle any munging required as normal.
 	 *
 	 * The incoming URL parameter will be relative to the service mount point.

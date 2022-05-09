@@ -320,7 +320,7 @@ class SpecialMediaStatistics extends QueryPage {
 				[],
 				// for grep:
 				// mediastatistics-table-mimetype, mediastatistics-table-extensions
-				// tatistics-table-count, mediastatistics-table-totalbytes
+				// mediastatistics-table-count, mediastatistics-table-totalbytes
 				$this->msg( 'mediastatistics-table-' . $header )->parse()
 			);
 		}

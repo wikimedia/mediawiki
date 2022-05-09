@@ -1736,7 +1736,7 @@ class FileRepo {
 	}
 
 	/**
-	 * Determine if a relative path is valid, i.e. not blank or involving directory traveral
+	 * Determine if a relative path is valid, i.e. not blank or involving directory traversal
 	 *
 	 * @param string $filename
 	 * @return bool

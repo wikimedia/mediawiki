@@ -189,7 +189,7 @@ class MonologSpi implements Spi {
 	 */
 	public function getLogger( $channel ) {
 		if ( !isset( $this->singletons['loggers'][$channel] ) ) {
-			// Fallback to using the '@default' configuration if an explict
+			// Fallback to using the '@default' configuration if an explicit
 			// configuration for the requested channel isn't found.
 			$spec = $this->config['loggers'][$channel] ?? $this->config['loggers']['@default'];
 

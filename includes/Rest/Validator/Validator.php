@@ -98,7 +98,7 @@ class Validator {
 	 * Validate parameters
 	 * @param array[] $paramSettings Parameter settings
 	 * @return array Validated parameters
-	 * @throws HttpException on validaton failure
+	 * @throws HttpException on validation failure
 	 */
 	public function validateParams( array $paramSettings ) {
 		$validatedParams = [];

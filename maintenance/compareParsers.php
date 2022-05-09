@@ -184,7 +184,7 @@ class CompareParsers extends DumpIterator {
 	}
 
 	private static function checkParserLocally( $parserName ) {
-		/* Look for the parser in a file appropiately named in the current folder */
+		/* Look for the parser in a file appropriately named in the current folder */
 		if ( !class_exists( $parserName ) && file_exists( "$parserName.php" ) ) {
 			global $wgAutoloadClasses;
 			$wgAutoloadClasses[$parserName] = realpath( '.' ) . "/$parserName.php";

@@ -643,7 +643,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 	protected function getApproximateLagStatus() {
 		if ( $this->getLagDetectionMethod() === 'pt-heartbeat' ) {
-			// Disable caching since this is fast enough and we don't wan't
+			// Disable caching since this is fast enough and we don't want
 			// to be *too* pessimistic by having both the cache TTL and the
 			// pt-heartbeat interval count as lag in getSessionLagStatus()
 			return parent::getApproximateLagStatus();

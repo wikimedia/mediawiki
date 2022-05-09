@@ -131,7 +131,7 @@ class WatchedItemQueryService {
 	 *                                 (defaults to all types), allowed values: RC_EDIT, RC_NEW,
 	 *                                 RC_LOG, RC_EXTERNAL, RC_CATEGORIZE
 	 *        'onlyByUser'          => string only list changes by a specified user
-	 *        'notByUser'           => string do not incluide changes by a specified user
+	 *        'notByUser'           => string do not include changes by a specified user
 	 *        'dir'                 => string in which direction to enumerate, accepted values:
 	 *                                 - DIR_OLDER list newest first
 	 *                                 - DIR_NEWER list oldest first
@@ -282,7 +282,7 @@ class WatchedItemQueryService {
 	 *                          one of the self::SORT_* constants
 	 *        'namespaceIds' => int[] optional namespace IDs to filter by (defaults to all namespaces)
 	 *        'limit'        => int maximum number of items to return
-	 *        'filter'       => string optional filter, one of the self::FILTER_* contants
+	 *        'filter'       => string optional filter, one of the self::FILTER_* constants
 	 *        'from'         => LinkTarget requires 'sort' key, only return items starting from
 	 *                          those related to the link target
 	 *        'until'        => LinkTarget requires 'sort' key, only return items until

@@ -108,7 +108,7 @@ abstract class Handler {
 	 *
 	 * Keeps intact ;@$!*(),~: (urlencode does not, but wfUrlencode does).
 	 * Encodes spaces as underscores (wfUrlencode does not).
-	 * Encodes slashes (wfUrlencode does not, but keeping them messes with REST pathes).
+	 * Encodes slashes (wfUrlencode does not, but keeping them messes with REST paths).
 	 * Encodes pluses (this is not necessary, and may change).
 	 *
 	 * @see wfUrlencode

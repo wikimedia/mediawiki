@@ -846,7 +846,7 @@ class FSFileBackend extends FileBackendStore {
 	/**
 	 * @param string $fsSrcPath Absolute file system path
 	 * @param string $fsDstPath Absolute file system path
-	 * @param bool $ignoreMissing Whether to no-op if the source file is non-existant
+	 * @param bool $ignoreMissing Whether to no-op if the source file is non-existent
 	 * @return string Command
 	 */
 	private function makeMoveCommand( $fsSrcPath, $fsDstPath, $ignoreMissing = false ) {
@@ -867,7 +867,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @param string $fsPath Absolute file system path
-	 * @param bool $ignoreMissing Whether to no-op if the file is non-existant
+	 * @param bool $ignoreMissing Whether to no-op if the file is non-existent
 	 * @return string Command
 	 */
 	private function makeUnlinkCommand( $fsPath, $ignoreMissing = false ) {

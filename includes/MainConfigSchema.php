@@ -11775,7 +11775,7 @@ class MainConfigSchema {
 
 	/**
 	 * Number of jobs to perform per request. May be less than one in which case
-	 * jobs are performed probabalistically. If this is zero, jobs will not be done
+	 * jobs are performed probabilistically. If this is zero, jobs will not be done
 	 * during ordinary apache requests. In this case, maintenance/runJobs.php should
 	 * be run periodically.
 	 */
@@ -11886,7 +11886,7 @@ class MainConfigSchema {
 	 * events.
 	 *
 	 * Some extensions may want to use "channel categories" so that different channels can also
-	 * share the same custom relayer instance (e.g. when it's likely to be overriden). They can use
+	 * share the same custom relayer instance (e.g. when it's likely to be overridden). They can use
 	 * EventRelayerGroup::getRelayer() based on the category but call notify() on various different
 	 * actual channels. One reason for this would be that some system have very different
 	 * performance vs durability needs, so one system (e.g. Kafka) may not be suitable for all

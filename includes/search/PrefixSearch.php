@@ -137,7 +137,7 @@ abstract class PrefixSearch {
 		if ( $offset === 0 ) {
 			// Only perform exact db match if offset === 0
 			// This is still far from perfect but at least we avoid returning the
-			// same title afain and again when the user is scrolling with a query
+			// same title again and again when the user is scrolling with a query
 			// that matches a title in the db.
 			$rescorer = new SearchExactMatchRescorer();
 			$srchres = $rescorer->rescore( $search, $namespaces, $srchres, $limit );
