@@ -863,7 +863,7 @@ CREATE TABLE /*_*/user (
   user_email_token BLOB DEFAULT NULL,
   user_email_token_expires BLOB DEFAULT NULL,
   user_registration BLOB DEFAULT NULL,
-  user_editcount INTEGER DEFAULT NULL,
+  user_editcount INTEGER UNSIGNED DEFAULT NULL,
   user_password_expires BLOB DEFAULT NULL
 );
 

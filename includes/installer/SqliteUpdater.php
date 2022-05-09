@@ -187,6 +187,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'addTable', 'user_autocreate_serial', 'patch-user_autocreate_serial.sql' ],
 			[ 'modifyField', 'ipblocks_restrictions', 'ir_ipb_id', 'patch-ipblocks_restrictions-ir_ipb_id.sql' ],
 			[ 'modifyField', 'ipblocks', 'ipb_id', 'patch-ipblocks-ipb_id.sql' ],
+			[ 'modifyField', 'user', 'user_editcount', 'patch-user-user_editcount.sql' ],
 		];
 	}
 

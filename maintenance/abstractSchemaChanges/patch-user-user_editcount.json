@@ -1,0 +1,175 @@
+{
+	"comment": "Set user_editcount to unsigned in user table",
+	"before": {
+		"name": "user",
+		"columns": [
+			{
+				"name": "user_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "user_name",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			},
+			{
+				"name": "user_real_name",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			},
+			{
+				"name": "user_password",
+				"type": "blob",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "user_newpassword",
+				"type": "blob",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "user_newpass_time",
+				"type": "binary",
+				"options": { "notnull": false, "length": 14 }
+			},
+			{
+				"name": "user_email",
+				"type": "blob",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "user_touched",
+				"type": "binary",
+				"options": { "notnull": true, "length": 14 }
+			},
+			{
+				"name": "user_token",
+				"type": "binary",
+				"options": { "notnull": true, "default": "", "length": 32, "fixed": true }
+			},
+			{
+				"name": "user_email_authenticated",
+				"type": "binary",
+				"options": { "notnull": false, "length": 14 }
+			},
+			{
+				"name": "user_email_token",
+				"type": "binary",
+				"options": { "notnull": false, "length": 32, "fixed": true }
+			},
+			{
+				"name": "user_email_token_expires",
+				"type": "binary",
+				"options": { "notnull": false, "length": 14 }
+			},
+			{
+				"name": "user_registration",
+				"type": "binary",
+				"options": { "notnull": false, "length": 14 }
+			},
+			{
+				"name": "user_editcount",
+				"type": "integer",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "user_password_expires",
+				"type": "binary",
+				"options": { "notnull": false, "length": 14 }
+			}
+		],
+		"indexes": [
+			{ "name": "user_name", "columns": [ "user_name" ], "unique": true },
+			{ "name": "user_email_token", "columns": [ "user_email_token" ], "unique": false },
+			{ "name": "user_email", "columns": [ "user_email" ], "unique": false, "options": { "lengths": [ 50, null, null ] } }
+		],
+		"pk": [ "user_id" ]
+	},
+	"after": {
+		"name": "user",
+		"columns": [
+			{
+				"name": "user_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "user_name",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			},
+			{
+				"name": "user_real_name",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			},
+			{
+				"name": "user_password",
+				"type": "blob",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "user_newpassword",
+				"type": "blob",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "user_newpass_time",
+				"type": "binary",
+				"options": { "notnull": false, "length": 14 }
+			},
+			{
+				"name": "user_email",
+				"type": "blob",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "user_touched",
+				"type": "binary",
+				"options": { "notnull": true, "length": 14 }
+			},
+			{
+				"name": "user_token",
+				"type": "binary",
+				"options": { "notnull": true, "default": "", "length": 32, "fixed": true }
+			},
+			{
+				"name": "user_email_authenticated",
+				"type": "binary",
+				"options": { "notnull": false, "length": 14 }
+			},
+			{
+				"name": "user_email_token",
+				"type": "binary",
+				"options": { "notnull": false, "length": 32, "fixed": true }
+			},
+			{
+				"name": "user_email_token_expires",
+				"type": "binary",
+				"options": { "notnull": false, "length": 14 }
+			},
+			{
+				"name": "user_registration",
+				"type": "binary",
+				"options": { "notnull": false, "length": 14 }
+			},
+			{
+				"name": "user_editcount",
+				"type": "integer",
+				"options": { "notnull": false, "unsigned": true }
+			},
+			{
+				"name": "user_password_expires",
+				"type": "binary",
+				"options": { "notnull": false, "length": 14 }
+			}
+		],
+		"indexes": [
+			{ "name": "user_name", "columns": [ "user_name" ], "unique": true },
+			{ "name": "user_email_token", "columns": [ "user_email_token" ], "unique": false },
+			{ "name": "user_email", "columns": [ "user_email" ], "unique": false, "options": { "lengths": [ 50, null, null ] } }
+		],
+		"pk": [ "user_id" ]
+	}
+}
