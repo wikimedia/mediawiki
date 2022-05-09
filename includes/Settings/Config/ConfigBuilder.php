@@ -3,6 +3,7 @@
 namespace MediaWiki\Settings\Config;
 
 use Config;
+use MediaWiki\Settings\SettingsBuilderException;
 
 /**
  * Builder for Config objects.
@@ -22,12 +23,13 @@ interface ConfigBuilder {
 	public function set( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigBuilder;
 
 	/**
-	 * Set all values in the array, with no merge strategy applied.
+	 * Set all values in the array.
 	 *
 	 * @param array $values
+	 * @param MergeStrategy[] $mergeStrategies The merge strategies indexed by config key
 	 * @return ConfigBuilder
 	 */
-	public function setMulti( array $values ): ConfigBuilder;
+	public function setMulti( array $values, array $mergeStrategies = [] ): ConfigBuilder;
 
 	/**
 	 * Set the default for the configuration $key to $defaultValue.
@@ -42,6 +44,17 @@ interface ConfigBuilder {
 	 * @return ConfigBuilder
 	 */
 	public function setDefault( string $key, $defaultValue, MergeStrategy $mergeStrategy = null ): ConfigBuilder;
+
+	/**
+	 * Set defaults in a batch.
+	 *
+	 * @param array $defaults The default values
+	 * @param MergeStrategy[] $mergeStrategies The merge strategies indexed by config key
+	 * @return ConfigBuilder
+	 * @throws SettingsBuilderException if a merge strategy is not provided and
+	 *   the value is not an array.
+	 */
+	public function setMultiDefault( array $defaults, array $mergeStrategies ): ConfigBuilder;
 
 	/**
 	 * Build the resulting Config object.
