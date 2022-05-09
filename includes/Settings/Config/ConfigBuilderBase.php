@@ -18,7 +18,7 @@ abstract class ConfigBuilderBase implements ConfigBuilder {
 		$newValue,
 		MergeStrategy $mergeStrategy = null
 	): ConfigBuilder {
-		if ( $mergeStrategy && is_array( $newValue ) ) {
+		if ( $mergeStrategy && $this->has( $key ) && is_array( $newValue ) ) {
 			$oldValue = $this->get( $key );
 			if ( $oldValue && is_array( $oldValue ) ) {
 				$newValue = $mergeStrategy->merge( $oldValue, $newValue );

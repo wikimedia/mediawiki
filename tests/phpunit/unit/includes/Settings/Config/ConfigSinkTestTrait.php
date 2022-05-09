@@ -77,8 +77,8 @@ trait ConfigSinkTestTrait {
 	public function provideSetDefaultValue() {
 		yield 'do not replace 1 with 2' => [ 1, 2, null, 1 ];
 		yield 'do not replace 0 with 2' => [ 0, 2, null, 0 ];
-		yield 'do not replace null with 2' => [ false, 2, null, null ];
-		yield 'do not replace false with 2' => [ null, 2, null, false ];
+		yield 'do not replace null with 2' => [ null, 2, null, null ];
+		yield 'do not replace false with 2' => [ false, 2, null, false ];
 		yield 'do not replace an empty array with 2' => [ [], 2, null, [] ];
 		yield 'do not replace an empty array with a non-empty one' => [ [], [ 2 ], null, [] ];
 
