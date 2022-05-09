@@ -1432,6 +1432,7 @@
 	"apihelp-undelete-param-fileids": "ID-ene til filrevisjonene som skal gjenopprettes. Hvis både <var>$1timestamps</var> og <var>$1fileids</var> er tomme blir alt gjenopprettet.",
 	"apihelp-undelete-param-watchlist": "Legg til eller fjern siden fra den gjeldende brukerens overvåkningsliste, bruk innstillinger (ignoreres for botbrukere) eller ikke endre overvåkning.",
 	"apihelp-undelete-param-watchlistexpiry": "Tidsstempel for utløp i overvåkningslisten.  Utelat denne parameteren for å la den gjeldende utløpstiden være uendret.",
+	"apihelp-undelete-param-undeletetalk": "Gjenopprett alle revisjoner av den tilknyttede diskusjonssiden hvis det er noen.",
 	"apihelp-undelete-example-page": "Gjenopprett siden <kbd>Main Page</kbd>.",
 	"apihelp-undelete-example-revisions": "Gjenopprett to revisjoner av siden <kbd>Main Page</kbd>.",
 	"apihelp-unlinkaccount-summary": "Fjern en lenket tredjepartskonto fra den gjeldende brukeren.",
