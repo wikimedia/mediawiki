@@ -11,6 +11,7 @@
 	"apihelp-feedcontributions-param-deletedonly": "رڳو ڊٿل ڀاڱيداريون ڏيکاريو",
 	"apihelp-feedcontributions-param-newonly": "صرف اھي سنوارون ڏيکاريو جيڪي صفحي سرجايون آھن.",
 	"apihelp-feedrecentchanges-param-target": "صرف ھن صفحي کان ڳنڍيل صفحن تي تبديليون ڏيکاريو.",
+	"apihelp-feedrecentchanges-example-simple": "تازيون تبديليون ڏيکاريو",
 	"apihelp-feedrecentchanges-example-30days": "30 ڏينھن لاءِ تازيون تبديليون ڏيکاريو.",
 	"apihelp-patrol-summary": "ڪنھن صفحي يا ورجاءَ جو گشت ڪريو.",
 	"apihelp-patrol-example-rcid": "ڪنھن تازي تبديلي جو گشت ڪريو",
@@ -34,7 +35,7 @@
 	"apihelp-query+watchlist-paramvalue-type-new": "صفحي سرجايون.",
 	"apihelp-query+watchlist-paramvalue-type-log": "لاگ داخلائون.",
 	"apihelp-rollback-summary": "صفحي ۾ آخري سنوار اڻڪريو.",
-	"apihelp-rollback-param-markbot": "واپس-ورايل سنوارن کي نشان لڳايو ۽ بوٽ طور واپس-ورايل سنوارون.",
+	"apihelp-rollback-param-markbot": "موٽايل سنوارن کي نشان لڳايو ۽ بطور بوٽ سنوارون موٽايو.",
 	"apihelp-stashedit-param-contentmodel": "نئين مواد جو مواد نمونو.",
 	"apihelp-stashedit-param-summary": "تَتُ بدلايو."
 }

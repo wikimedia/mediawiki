@@ -4,7 +4,8 @@
 			"Amire80",
 			"ChoiChong",
 			"Jobrz0405",
-			"Kyoww"
+			"Kyoww",
+			"春春眠眠"
 		]
 	},
 	"tog-underline": "リンクぬ下線",
@@ -126,6 +127,7 @@
 	"portal-url": "Project:コミュニティ・ポータル",
 	"privacy": "プライバシー・ポリシー",
 	"privacypage": "Project:プライバシー・ポリシー",
+	"ok": "OK",
 	"retrievedfrom": "「$1」から取得",
 	"youhavenewmessages": "$1が{{PLURAL:$3|あいびーん}} ($2)。",
 	"youhavenewmessagesfromusers": "{{PLURAL:$3|他ぬ利用者|$3 ちゅぬ利用者}}からぬ$1が{{PLURAL:$4|あいびーん}} ($2)。",
@@ -447,6 +449,7 @@
 	"contribslink": "貢献",
 	"block-log-flags-nocreate": "アカウントちゅくゆんん禁止",
 	"proxyblocker": "プロキシブロッカー",
+	"movereason": "理由:",
 	"export": "ページぬかちゅんいじゆん",
 	"thumbnail-more": "拡大",
 	"tooltip-n-mainpage": "メインページんかい移ゆん",
@@ -498,6 +501,7 @@
 	"specialpageinfo-submit": "ページんかい移動",
 	"specialpagehistory-submit": "ページんかい移動",
 	"specialpurge-submit": "ページんかい移動",
+	"htmlform-submit": "送信",
 	"revdelete-content-hid": "内容ぬかくすん",
 	"feedback-cancel": "ヰーヰー",
 	"searchsuggest-search": "{{SITENAME}}を探すん",

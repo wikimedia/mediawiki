@@ -177,7 +177,8 @@
 			"小美粉粉",
 			"魔琴",
 			"ShuyanW",
-			"SunAfterRain"
+			"SunAfterRain",
+			"StarrySky"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -185,7 +186,7 @@
 	"tog-hidepatrolled": "在最近更改中隐藏已巡查编辑",
 	"tog-newpageshidepatrolled": "在新页面列表中隐藏已巡查页面",
 	"tog-hidecategorization": "隐藏页面分类",
-	"tog-extendwatchlist": "展开监视列表以显示所有更改，而不仅是最近更改",
+	"tog-extendwatchlist": "展开监视列表以显示所有更改，而不仅仅是最近更改",
 	"tog-usenewrc": "按页面分组最近更改和监视列表中的更改",
 	"tog-numberheadings": "自动编号标题",
 	"tog-editondblclick": "双击编辑页面",

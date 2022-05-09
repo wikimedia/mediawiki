@@ -4138,6 +4138,7 @@
 	"passwordpolicies-policy-passwordcannotmatchusername": "لا يمكن أن تكون كلمة المرور هي نفس اسم المستخدم",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "كلمة السر لا يمكن أن تكون سلسلة حروف فرعية خلال اسم المستخدم.",
 	"passwordpolicies-policy-passwordcannotmatchblacklist": "لا يمكن أن تتطابق كلمة المرور مع كلمات المرور المدرجة على القائمة السوداء تحديدا",
+	"passwordpolicies-policy-passwordcannotmatchdefaults": "لا يمكن أن تتطابق كلمة المرور مع قائمة محددة من كلمات المرور الافتراضية",
 	"passwordpolicies-policy-maximalpasswordlength": "يجب أن يكون طول كلمة المرور أقل من $1 {{PLURAL:$1|حرف|أحرف}}",
 	"passwordpolicies-policy-passwordnotinlargeblacklist": "لا يمكن أن تكون كلمة المرور في قائمة كلمات المرور الـ100.000 الأكثر استخداما.",
 	"passwordpolicies-policyflag-forcechange": "يجب أن تتغير عند تسجيل الدخول",
