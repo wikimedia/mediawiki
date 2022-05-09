@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Verifies that special page aliases are valid, with no slashes.
@@ -14,6 +15,26 @@ use MediaWiki\Languages\LanguageNameUtils;
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
 class SpecialPageAliasTest extends MediaWikiIntegrationTestCase {
+	/** @var ?array Cache language names */
+	private static $langNames = null;
+
+	/**
+	 * @throws Exception
+	 */
+	public static function setUpBeforeClass(): void {
+		if ( !self::$langNames ) {
+			$langNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+			self::$langNames = $langNameUtils->getLanguageNames(
+				LanguageNameUtils::AUTONYMS,
+				LanguageNameUtils::SUPPORTED
+			);
+		}
+	}
+
+	/** @return void */
+	public static function tearDownAfterClass(): void {
+		self::$langNames = null;
+	}
 
 	/**
 	 * @coversNothing
@@ -32,14 +53,10 @@ class SpecialPageAliasTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * FIXME: Cannot access MW services in a dataProvider.
-	 *
 	 * @return Generator
 	 */
 	public function validSpecialPageAliasesProvider() {
-		$codes = array_keys( $this->getServiceContainer()
-				->getLanguageNameUtils()
-				->getLanguageNames( LanguageNameUtils::AUTONYMS, LanguageNameUtils::SUPPORTED ) );
+		$codes = array_keys( self::$langNames );
 
 		foreach ( $codes as $code ) {
 			$specialPageAliases = $this->getSpecialPageAliases( $code );
