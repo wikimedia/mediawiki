@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\MediaWikiServices;
 
 /**
  * A query module to list all wiki links on a given set of pages.
@@ -88,16 +89,27 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		if ( $pages === [] ) {
 			return; // nothing to do
 		}
+		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 
 		$params = $this->extractRequestParams();
 
+		if ( isset( $linksMigration::$mapping[$this->table] ) ) {
+			list( $nsField, $titleField ) = $linksMigration->getTitleFields( $this->table );
+			$queryInfo = $linksMigration->getQueryInfo( $this->table );
+			$this->addTables( $queryInfo['tables'] );
+			$this->addJoinConds( $queryInfo['joins'] );
+		} else {
+			$this->addTables( $this->table );
+			$nsField = $this->prefix . '_namespace';
+			$titleField = $this->prefix . '_title';
+		}
+
 		$this->addFields( [
 			'pl_from' => $this->prefix . '_from',
-			'pl_namespace' => $this->prefix . '_namespace',
-			'pl_title' => $this->prefix . '_title'
+			'pl_namespace' => $nsField,
+			'pl_title' => $titleField,
 		] );
 
-		$this->addTables( $this->table );
 		$this->addWhereFld( $this->prefix . '_from', array_keys( $pages ) );
 
 		$multiNS = true;
@@ -125,7 +137,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				return;
 			}
 		} elseif ( $params['namespace'] ) {
-			$this->addWhereFld( $this->prefix . '_namespace', $params['namespace'] );
+			$this->addWhereFld( $nsField, $params['namespace'] );
 			$multiNS = $params['namespace'] === null || count( $params['namespace'] ) !== 1;
 		}
 
@@ -139,9 +151,9 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			$this->addWhere(
 				"{$this->prefix}_from $op $plfrom OR " .
 				"({$this->prefix}_from = $plfrom AND " .
-				"({$this->prefix}_namespace $op $plns OR " .
-				"({$this->prefix}_namespace = $plns AND " .
-				"{$this->prefix}_title $op= $pltitle)))"
+				"($nsField $op $plns OR " .
+				"($nsField = $plns AND " .
+				"$titleField $op= $pltitle)))"
 			);
 		}
 
@@ -156,10 +168,10 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			$order[] = $this->prefix . '_from' . $sort;
 		}
 		if ( $multiNS ) {
-			$order[] = $this->prefix . '_namespace' . $sort;
+			$order[] = $nsField . $sort;
 		}
 		if ( $multiTitle ) {
-			$order[] = $this->prefix . '_title' . $sort;
+			$order[] = $titleField . $sort;
 		}
 		if ( $order ) {
 			$this->addOption( 'ORDER BY', $order );
