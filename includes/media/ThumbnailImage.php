@@ -180,7 +180,7 @@ class ThumbnailImage extends MediaTransformOutput {
 			$title = $options['custom-title-link'];
 			$linkAttribs = [
 				'href' => $title->getLinkURL( $options['custom-title-link-query'] ?? null ),
-				'title' => empty( $options['title'] ) ? $title->getFullText() : $options['title']
+				'title' => empty( $options['title'] ) ? $title->getPrefixedText() : $options['title']
 			];
 		} elseif ( !empty( $options['desc-link'] ) ) {
 			$linkAttribs = $this->getDescLinkAttribs(
