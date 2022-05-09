@@ -316,6 +316,7 @@ class Names {
 		'mni' => 'ꯃꯤꯇꯩ ꯂꯣꯟ', # Manipuri/Meitei
 		'mnw' => 'ဘာသာ မန်', # Mon, T201583
 		'mo' => 'молдовеняскэ', # Moldovan, deprecated (ISO 639-2: ro-Cyrl-MD)
+		'mos' => 'moore', # Mooré
 		'mr' => 'मराठी', # Marathi
 		'mrh' => 'Mara', # Mara
 		'mrj' => 'кырык мары', # Hill Mari
