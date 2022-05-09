@@ -264,12 +264,6 @@ class XmlDumpWriter {
 				$out .= "\n";
 			}
 		}
-
-		if ( $row->page_restrictions != '' ) {
-			$out .= '    ' . Xml::element( 'restrictions', [],
-				strval( $row->page_restrictions ) ) . "\n";
-		}
-
 		$this->hookRunner->onXmlDumpWriterOpenPage( $this, $out, $row, $this->currentTitle );
 
 		return $out;

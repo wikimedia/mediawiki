@@ -601,12 +601,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			if ( isset( $row->page_lang ) ) {
 				$this->mDbPageLanguage = (string)$row->page_lang;
 			}
-			if ( isset( $row->page_restrictions ) ) {
-				// If we have them handy, save them so we don't need to look them up later
-				MediaWikiServices::getInstance()->getRestrictionStore()
-					->registerOldRestrictions( $this, $row->page_restrictions );
-
-			}
 		} else { // page not found
 			$this->mArticleID = 0;
 			$this->mLength = 0;
@@ -2645,14 +2639,10 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @deprecated since 1.37, use RestrictionStore::loadRestrictionsFromRows instead
 	 *
 	 * @param stdClass[] $rows Array of db result objects
-	 * @param string|null $oldFashionedRestrictions Comma-separated set of permission keys
-	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
-	 * Edit and move sections are separated by a colon
-	 * Example: "edit=autoconfirmed,sysop:move=sysop"
 	 */
-	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
+	public function loadRestrictionsFromRows( $rows ) {
 		MediaWikiServices::getInstance()->getRestrictionStore()->loadRestrictionsFromRows(
-			$this, $rows, $oldFashionedRestrictions
+			$this, $rows
 		);
 	}
 
@@ -2661,16 +2651,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @deprecated since 1.37, no public replacement
 	 *
-	 * @param string|null $oldFashionedRestrictions Comma-separated set of permission keys
-	 * indicating who can move or edit the page from the page table, (pre 1.10) rows.
-	 * Edit and move sections are separated by a colon
-	 * Example: "edit=autoconfirmed,sysop:move=sysop"
 	 * @param int $flags A bit field. If self::READ_LATEST is set, skip replicas and read
 	 *  from the primary DB.
 	 */
-	public function loadRestrictions( $oldFashionedRestrictions = null, $flags = 0 ) {
-		MediaWikiServices::getInstance()->getRestrictionStore()->loadRestrictions( $this, $flags,
-			$oldFashionedRestrictions );
+	public function loadRestrictions( $flags = 0 ) {
+		MediaWikiServices::getInstance()->getRestrictionStore()->loadRestrictions( $this, $flags );
 	}
 
 	/**
