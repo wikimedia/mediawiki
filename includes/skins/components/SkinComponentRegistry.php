@@ -19,7 +19,6 @@
 namespace MediaWiki\Skin;
 
 use RuntimeException;
-use Skin;
 use SpecialPage;
 
 /**
@@ -30,14 +29,14 @@ class SkinComponentRegistry {
 	/** @var SkinComponent[]|null null if not initialized. */
 	private $components = null;
 
-	/** @var Skin */
-	private $skin;
+	/** @var SkinComponentRegistryContext */
+	private $skinContext;
 
 	/**
-	 * @param Skin $skin
+	 * @param SkinComponentRegistryContext $skinContext
 	 */
-	public function __construct( Skin $skin ) {
-		$this->skin = $skin;
+	public function __construct( SkinComponentRegistryContext $skinContext ) {
+		$this->skinContext = $skinContext;
 	}
 
 	/**
@@ -82,27 +81,27 @@ class SkinComponentRegistry {
 	 * @throws RuntimeException if given an unknown name
 	 */
 	private function registerComponent( string $name ) {
-		$skin = $this->skin;
+		$skin = $this->skinContext;
 		$user = $skin->getUser();
 		switch ( $name ) {
 			case 'logos':
 				$component = new SkinComponentLogo(
-					$this->skin->getConfig(),
-					$this->skin->getLanguage()->getCode()
+					$skin->getConfig(),
+					$skin->getLanguage()
 				);
 				break;
 			case 'search-box':
 				$component = new SkinComponentSearch(
 					$skin->getConfig(),
 					$user,
-					$skin->getContext(),
+					$skin->getMessageLocalizer(),
 					SpecialPage::newSearchPage( $user ),
 					$skin->getRelevantTitle()
 				);
 				break;
 			case 'toc':
 				$component = new SkinComponentTableOfContents(
-					$this->skin->getOutput()
+					$skin->getOutput()
 				);
 				break;
 			default:
