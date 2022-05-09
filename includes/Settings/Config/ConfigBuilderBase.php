@@ -31,9 +31,9 @@ abstract class ConfigBuilderBase implements ConfigBuilder {
 	/**
 	 * @inheritDoc
 	 */
-	public function setMulti( array $values ): ConfigBuilder {
+	public function setMulti( array $values, array $mergeStrategies = [] ): ConfigBuilder {
 		foreach ( $values as $key => $value ) {
-			$this->set( $key, $value );
+			$this->set( $key, $value, $mergeStrategies[$key] ?? null );
 		}
 		return $this;
 	}
@@ -58,6 +58,16 @@ abstract class ConfigBuilderBase implements ConfigBuilder {
 			$this->update( $key, $defaultValue );
 		}
 
+		return $this;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function setMultiDefault( array $defaults, array $mergeStrategies ): ConfigBuilder {
+		foreach ( $defaults as $key => $defaultValue ) {
+			$this->setDefault( $key, $defaultValue, $mergeStrategies[$key] ?? null );
+		}
 		return $this;
 	}
 

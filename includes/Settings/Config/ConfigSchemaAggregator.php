@@ -7,6 +7,7 @@ use JsonSchema\Constraints\Constraint;
 use JsonSchema\Validator;
 use MediaWiki\Settings\SettingsBuilderException;
 use StatusValue;
+use function array_key_exists;
 
 /**
  * Aggregates multiple config schemas.
@@ -31,6 +32,9 @@ class ConfigSchemaAggregator {
 
 	/** @var Validator */
 	private $validator;
+
+	/** @var MergeStrategy[]|null */
+	private $mergeStrategyCache;
 
 	/**
 	 * Add a config schema to the aggregator.
@@ -60,6 +64,9 @@ class ConfigSchemaAggregator {
 		if ( isset( $schema['mergeStrategy'] ) ) {
 			$this->mergeStrategies[$key] = $schema['mergeStrategy'];
 		}
+
+		// TODO: mark cache as incomplete rather than throwing it away
+		$this->mergeStrategyCache = null;
 	}
 
 	/**
@@ -121,6 +128,9 @@ class ConfigSchemaAggregator {
 			'mergeStrategies',
 			$sourceName
 		);
+
+		// TODO: mark cache as incomplete rather than throwing it away
+		$this->mergeStrategyCache = null;
 	}
 
 	/**
@@ -184,18 +194,18 @@ class ConfigSchemaAggregator {
 	/**
 	 * Get all known types.
 	 *
-	 * @return array
+	 * @return array<string|array>
 	 */
 	public function getTypes(): array {
 		return $this->types;
 	}
 
 	/**
-	 * Get all known merge strategies.
+	 * Get the names of all known merge strategies.
 	 *
-	 * @return array
+	 * @return array<string>
 	 */
-	public function getMergeStrategies(): array {
+	public function getMergeStrategyNames(): array {
 		return $this->mergeStrategies;
 	}
 
@@ -227,14 +237,56 @@ class ConfigSchemaAggregator {
 	 * @throws SettingsBuilderException if merge strategy name is invalid.
 	 */
 	public function getMergeStrategyFor( string $key ): ?MergeStrategy {
-		$strategyName = $this->mergeStrategies[$key] ?? null;
+		if ( $this->mergeStrategyCache === null ) {
+			$this->initMergeStrategies();
+		}
+		return $this->mergeStrategyCache[$key] ?? null;
+	}
 
-		if ( $strategyName === null ) {
-			$type = $this->types[ $key ] ?? null;
-			$strategyName = $type ? $this->getStrategyForType( $type ) : null;
+	/**
+	 * Get all merge strategies indexed by config key. If there is no merge
+	 * strategy for a given key, the element will be absent.
+	 *
+	 * @return MergeStrategy[]
+	 */
+	public function getMergeStrategies() {
+		if ( $this->mergeStrategyCache === null ) {
+			$this->initMergeStrategies();
+		}
+		return $this->mergeStrategyCache;
+	}
+
+	/**
+	 * Initialise $this->mergeStrategyCache
+	 */
+	private function initMergeStrategies() {
+		// XXX: Keep $strategiesByName for later, in case we reset the cache?
+		//      Or we could make a bulk version of MergeStrategy::newFromName(),
+		//      to make use of the cache there without the overhead of a method
+		//      call for each setting.
+
+		$strategiesByName = [];
+		$strategiesByKey = [];
+
+		// Explicitly defined merge strategies
+		$strategyNamesByKey = $this->mergeStrategies;
+
+		// Loop over settings for which we know a type but not a merge strategy,
+		// so we can add a merge strategy for them based on their type.
+		$types = array_diff_key( $this->types, $strategyNamesByKey );
+		foreach ( $types as $key => $type ) {
+			$strategyNamesByKey[$key] = self::getStrategyForType( $type );
 		}
 
-		return $strategyName ? MergeStrategy::newFromName( $strategyName ) : null;
+		// Assign MergeStrategy objects to settings. Create only one object per strategy name.
+		foreach ( $strategyNamesByKey as $key => $strategyName ) {
+			if ( !array_key_exists( $strategyName, $strategiesByName ) ) {
+				$strategiesByName[$strategyName] = MergeStrategy::newFromName( $strategyName );
+			}
+			$strategiesByKey[$key] = $strategiesByName[$strategyName];
+		}
+
+		$this->mergeStrategyCache = $strategiesByKey;
 	}
 
 	/**
@@ -244,7 +296,7 @@ class ConfigSchemaAggregator {
 	 *
 	 * @return string
 	 */
-	private function getStrategyForType( $type ): string {
+	private static function getStrategyForType( $type ) {
 		if ( is_array( $type ) ) {
 			if ( in_array( 'array', $type ) ) {
 				$type = 'array';

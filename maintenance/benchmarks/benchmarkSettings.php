@@ -52,6 +52,16 @@ class BenchmarkSettings extends Benchmarker {
 	public function execute() {
 		$benches = [];
 
+		$schemaSource = new ReflectionSchemaSource( MainConfigSchema::class );
+		$schema = $schemaSource->load();
+		$defaults = [];
+
+		foreach ( $schema['config-schema'] as $key => $sch ) {
+			if ( array_key_exists( 'default', $sch ) ) {
+				$defaults[$key] = $sch['default'];
+			}
+		}
+
 		$benches['DefaultSettings.php'] = [
 			'setup' => static function () {
 				// do this once beforehand
@@ -82,6 +92,19 @@ class BenchmarkSettings extends Benchmarker {
 		$benches['config-schema.php'] = [
 			'function' => function () {
 				$settingsBuilder = $this->newSettingsBuilder();
+				$settingsBuilder->load(
+					new PhpSettingsSource( MW_INSTALL_PATH . '/includes/config-schema.php' )
+				);
+				$settingsBuilder->apply();
+			}
+		];
+
+		$benches['config-schema.php + merge'] = [
+			'function' => function () use ( $defaults ) {
+				$settingsBuilder = $this->newSettingsBuilder();
+
+				// worst case: all config is set before defaults are applied
+				$settingsBuilder->loadArray( [ 'config' => $defaults ] );
 				$settingsBuilder->load(
 					new PhpSettingsSource( MW_INSTALL_PATH . '/includes/config-schema.php' )
 				);

@@ -19,6 +19,7 @@ use MediaWiki\Settings\Source\SettingsFileUtils;
 use MediaWiki\Settings\Source\SettingsIncludeLocator;
 use MediaWiki\Settings\Source\SettingsSource;
 use StatusValue;
+use function array_key_exists;
 
 /**
  * Utility for loading settings files.
@@ -368,13 +369,8 @@ class SettingsBuilder {
 		}
 
 		if ( $this->defaultsNeedMerging ) {
-			foreach ( $settings['config-schema'] ?? [] as $key => $schema ) {
-				$this->configSink->setDefault(
-					$key,
-					$schema['default'],
-					$this->configSchema->getMergeStrategyFor( $key )
-				);
-			}
+			$mergeStrategies = $this->configSchema->getMergeStrategies();
+			$this->configSink->setMultiDefault( $defaults, $mergeStrategies );
 		} else {
 			// Optimization: no merge strategy, just override in one go
 			$this->configSink->setMulti( $defaults );
@@ -398,12 +394,9 @@ class SettingsBuilder {
 
 		$this->applySchemas( $settings );
 
-		foreach ( $settings['config'] ?? [] as $key => $value ) {
-			$this->configSink->set(
-				$key,
-				$value,
-				$this->configSchema->getMergeStrategyFor( $key )
-			);
+		if ( isset( $settings['config'] ) ) {
+			$mergeStrategies = $this->configSchema->getMergeStrategies();
+			$this->configSink->setMulti( $settings['config'], $mergeStrategies );
 		}
 
 		if ( isset( $settings['config-overrides'] ) ) {
@@ -555,4 +548,5 @@ class SettingsBuilder {
 		$this->apply();
 		$this->finished = true;
 	}
+
 }

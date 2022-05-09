@@ -43,7 +43,7 @@ class GenerateConfigSchemaArray extends Maintenance {
 		$schemaInverse = [
 			'default' => $aggregator->getDefaults(),
 			'type' => $aggregator->getTypes(),
-			'mergeStrategy' => $aggregator->getMergeStrategies(),
+			'mergeStrategy' => $aggregator->getMergeStrategyNames(),
 		];
 		$content = ( new StaticArrayWriter() )->write(
 			[ 'config-schema-inverse' => $schemaInverse ],

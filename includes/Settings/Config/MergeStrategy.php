@@ -3,6 +3,7 @@
 namespace MediaWiki\Settings\Config;
 
 use MediaWiki\Settings\SettingsBuilderException;
+use function array_key_exists;
 
 class MergeStrategy {
 
