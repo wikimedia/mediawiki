@@ -157,7 +157,7 @@ class TrackingCategories {
 					}
 					// XXX: should be a better way to convert a TitleValue
 					// to a PageReference!
-					$tempTitle = Title::newFromTitleValue( $tempTitle );
+					$tempTitle = Title::newFromLinkTarget( $tempTitle );
 					$catName = $msgObj->page( $tempTitle )->text();
 					# Allow tracking categories to be disabled by setting them to "-"
 					if ( $catName !== '-' ) {
