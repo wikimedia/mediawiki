@@ -1,11 +1,14 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @covers AutoLoader
  */
 class AutoLoaderTest extends MediaWikiIntegrationTestCase {
 
 	private $oldPsr4;
+	private $oldClassFiles;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -20,18 +23,25 @@ class AutoLoaderTest extends MediaWikiIntegrationTestCase {
 				__DIR__ . '/../data/autoloader/TestAutoloadedSerializedClass.php',
 		] );
 		AutoLoader::resetAutoloadLocalClassesLower();
-
 		$this->mergeMwGlobalArrayValue( 'wgAutoloadClasses', [
 			'TestAutoloadedClass' => __DIR__ . '/../data/autoloader/TestAutoloadedClass.php',
 		] );
 
-		$this->oldPsr4 = AutoLoader::$psr4Namespaces;
-		AutoLoader::$psr4Namespaces['Test\\MediaWiki\\AutoLoader\\'] =
-			__DIR__ . '/../data/autoloader/psr4';
+		$access = TestingAccessWrapper::newFromClass( AutoLoader::class );
+		$this->oldPsr4 = $access->psr4Namespaces;
+		$this->oldClassFiles = $access->classFiles;
+		AutoLoader::registerNamespaces( [
+			'Test\\MediaWiki\\AutoLoader\\' => __DIR__ . '/../data/autoloader/psr4'
+		] );
+		AutoLoader::registerClasses( [
+			'TestAnotherAutoloadedClass' => __DIR__ . '/../data/autoloader/TestAnotherAutoloadedClass.php',
+		] );
 	}
 
 	protected function tearDown(): void {
-		AutoLoader::$psr4Namespaces = $this->oldPsr4;
+		$access = TestingAccessWrapper::newFromClass( AutoLoader::class );
+		$access->psr4Namespaces = $this->oldPsr4;
+		$access->classFiles = $this->oldClassFiles;
 		parent::tearDown();
 	}
 
@@ -45,6 +55,10 @@ class AutoLoaderTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExtensionClass() {
+		$this->assertTrue( class_exists( 'TestAnotherAutoloadedClass' ) );
+	}
+
+	public function testLegacyExtensionClass() {
 		$this->assertTrue( class_exists( 'TestAutoloadedClass' ) );
 	}
 

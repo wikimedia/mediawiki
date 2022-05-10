@@ -170,6 +170,7 @@ abstract class DatabaseUpdater {
 		$registry->clearQueue();
 
 		// Read extension.json files
+		// NOTE: As a side-effect, this registers classes and namespaces with the autoloader.
 		$data = $registry->readFromQueue( $queue );
 
 		// Merge extension attribute hooks with hooks defined by a .php
@@ -179,10 +180,10 @@ abstract class DatabaseUpdater {
 			$legacySchemaHooks = array_merge( $legacySchemaHooks, $vars['wgHooks']['LoadExtensionSchemaUpdates'] );
 		}
 
-		// Merge classes from extension.json
-		global $wgAutoloadClasses;
+		// Register classes defined by extensions that are loaded by including of a file that
+		// updates global variables, rather than having an extension.json manifest.
 		if ( $vars && isset( $vars['wgAutoloadClasses'] ) ) {
-			$wgAutoloadClasses += $vars['wgAutoloadClasses'];
+			AutoLoader::registerClasses( $vars['wgAutoloadClasses'] );
 		}
 
 		return new HookContainer(

@@ -1563,7 +1563,7 @@ abstract class Installer {
 
 	/**
 	 * Auto-detect extensions with an extension.json file. Load the extensions,
-	 * populate $wgAutoloadClasses and return the merged registry data.
+	 * register classes with the autoloader and return the merged registry data.
 	 *
 	 * @return array
 	 */
@@ -1579,8 +1579,7 @@ abstract class Installer {
 
 		$registry = new ExtensionRegistry();
 		$data = $registry->readFromQueue( $queue );
-		global $wgAutoloadClasses;
-		$wgAutoloadClasses += $data['globals']['wgAutoloadClasses'];
+		AutoLoader::registerClasses( $data['globals']['wgAutoloadClasses'] );
 		return $data;
 	}
 
