@@ -38,7 +38,6 @@ trait LinkCacheTestTrait {
 			'page_latest' => (int)$revision,
 			'page_content_model' => $model ? (string)$model : null,
 			'page_lang' => $lang ? (string)$lang : null,
-			'page_restrictions' => null,
 			'page_is_new' => 0,
 			'page_touched' => '',
 		] );

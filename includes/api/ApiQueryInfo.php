@@ -77,7 +77,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	/** @var Title[] */
 	private $everything;
 
-	private $pageRestrictions, $pageIsRedir, $pageIsNew, $pageTouched,
+	private $pageIsRedir, $pageIsNew, $pageTouched,
 		$pageLatest, $pageLength;
 
 	private $protections, $restrictionTypes, $watched, $watchers, $visitingwatchers,
@@ -138,7 +138,6 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @return void
 	 */
 	public function requestExtraData( $pageSet ) {
-		$pageSet->requestField( 'page_restrictions' );
 		// If the pageset is resolving redirects we won't get page_is_redirect.
 		// But we can't know for sure until the pageset is executed (revids may
 		// turn it off), so request it unconditionally.
@@ -198,7 +197,6 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 		}
 
-		$this->pageRestrictions = $pageSet->getCustomField( 'page_restrictions' );
 		// when resolving redirects, no page will have this field
 		$this->pageIsRedir = !$pageSet->isResolvingRedirects()
 			? $pageSet->getCustomField( 'page_is_redirect' )
@@ -455,45 +453,6 @@ class ApiQueryInfo extends ApiQueryBase {
 					$a['cascade'] = true;
 				}
 				$this->protections[$title->getNamespace()][$title->getDBkey()][] = $a;
-			}
-			// Also check old restrictions
-			foreach ( $this->titles as $pageId => $title ) {
-				if ( $this->pageRestrictions[$pageId] ) {
-					$namespace = $title->getNamespace();
-					$dbKey = $title->getDBkey();
-					$restrictions = explode( ':', trim( $this->pageRestrictions[$pageId] ) );
-					foreach ( $restrictions as $restrict ) {
-						$temp = explode( '=', trim( $restrict ) );
-						if ( count( $temp ) == 1 ) {
-							// old old format should be treated as edit/move restriction
-							$restriction = trim( $temp[0] );
-
-							if ( $restriction == '' ) {
-								continue;
-							}
-							$this->protections[$namespace][$dbKey][] = [
-								'type' => 'edit',
-								'level' => $restriction,
-								'expiry' => 'infinity',
-							];
-							$this->protections[$namespace][$dbKey][] = [
-								'type' => 'move',
-								'level' => $restriction,
-								'expiry' => 'infinity',
-							];
-						} else {
-							$restriction = trim( $temp[1] );
-							if ( $restriction == '' ) {
-								continue;
-							}
-							$this->protections[$namespace][$dbKey][] = [
-								'type' => $temp[0],
-								'level' => $restriction,
-								'expiry' => 'infinity',
-							];
-						}
-					}
-				}
 			}
 		}
 

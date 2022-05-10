@@ -80,7 +80,6 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			'page_latest' => 23948576,
 			'page_len' => 2323,
 			'page_content_model' => CONTENT_MODEL_WIKITEXT,
-			'page_restrictions' => ''
 		] );
 	}
 

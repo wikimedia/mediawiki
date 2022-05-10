@@ -370,7 +370,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				'page_id',
 				'page_namespace',
 				'page_title',
-				'page_restrictions',
 				'page_is_redirect',
 				'page_is_new',
 				'page_random',
@@ -539,10 +538,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$lc->addGoodLinkObjFromRow( $this->mTitle, $data );
 
 			$this->mTitle->loadFromRow( $data );
-
-			// Old-fashioned restrictions
-			$this->mTitle->loadRestrictions( $data->page_restrictions );
-
 			$this->mId = intval( $data->page_id );
 			$this->mTouched = MWTimestamp::convert( TS_MW, $data->page_touched );
 			$this->mLanguage = $data->page_lang ?? null;
@@ -1395,7 +1390,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			[
 				'page_namespace'    => $this->mTitle->getNamespace(),
 				'page_title'        => $this->mTitle->getDBkey(),
-				'page_restrictions' => '',
 				'page_is_redirect'  => 0, // Will set this shortly...
 				'page_is_new'       => 1,
 				'page_random'       => wfRandom(),
@@ -2229,7 +2223,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		}
 
 		$this->loadPageData( 'fromdbmaster' );
-		$this->mTitle->loadRestrictions( null, Title::READ_LATEST );
+		$this->mTitle->loadRestrictions( Title::READ_LATEST );
 		$restrictionTypes = $this->mTitle->getRestrictionTypes();
 		$id = $this->getId();
 
@@ -2399,14 +2393,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 					];
 				}
 			}
-
-			// Clear out legacy restriction fields
-			$dbw->update(
-				'page',
-				[ 'page_restrictions' => '' ],
-				[ 'page_id' => $id ],
-				__METHOD__
-			);
 
 			$this->getHookRunner()->onRevisionFromEditComplete(
 				$this, $nullRevisionRecord, $latest, $user, $tags );
