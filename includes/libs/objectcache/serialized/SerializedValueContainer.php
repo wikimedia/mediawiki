@@ -40,7 +40,10 @@ class SerializedValueContainer {
 	 * @return bool
 	 */
 	public static function isUnified( $value ) {
-		return self::instanceOf( $value, self::SCHEMA_UNIFIED );
+		return (
+			$value instanceof stdClass &&
+			( $value->{self::SCHEMA} ?? null ) === self::SCHEMA_UNIFIED
+		);
 	}
 
 	/**
@@ -48,19 +51,9 @@ class SerializedValueContainer {
 	 * @return bool
 	 */
 	public static function isSegmented( $value ) {
-		return self::instanceOf( $value, self::SCHEMA_SEGMENTED );
-	}
-
-	/**
-	 * @param mixed $value
-	 * @param string $schema SCHEMA_* class constant
-	 * @return bool
-	 */
-	private static function instanceOf( $value, $schema ) {
 		return (
 			$value instanceof stdClass &&
-			property_exists( $value, self::SCHEMA ) &&
-			$value->{self::SCHEMA} === $schema
+			( $value->{self::SCHEMA} ?? null ) === self::SCHEMA_SEGMENTED
 		);
 	}
 }
