@@ -1958,7 +1958,7 @@ class EditPage implements IEditObject {
 					$query .= $extraQueryRedirect;
 				}
 				$anchor = $resultDetails['sectionanchor'] ?? '';
-				$out->redirect( $this->mTitle->getFullURL( $query ) . $anchor );
+				$this->doPostEditRedirect( $query, $anchor );
 				return false;
 
 			case self::AS_SUCCESS_UPDATE:
@@ -1982,7 +1982,7 @@ class EditPage implements IEditObject {
 					$extraQuery .= $extraQueryRedirect;
 				}
 
-				$out->redirect( $this->mTitle->getFullURL( $extraQuery ) . $sectionanchor );
+				$this->doPostEditRedirect( $extraQuery, $sectionanchor );
 				return false;
 
 			case self::AS_SPAM_ERROR:
@@ -2029,6 +2029,29 @@ class EditPage implements IEditObject {
 				);
 				return true;
 		}
+	}
+
+	/**
+	 * Emit the post-save redirect. The URL is modifiable with a hook.
+	 *
+	 * @param string $query
+	 * @param string $anchor
+	 * @return void
+	 */
+	private function doPostEditRedirect( $query, $anchor ) {
+		$out = $this->context->getOutput();
+		$url = $this->mTitle->getFullURL( $query ) . $anchor;
+		if ( $this->tempUserCreateDone ) {
+			$this->getHookRunner()->onTempUserCreatedRedirect(
+				$this->context->getRequest()->getSession(),
+				$this->context->getUser(),
+				$this->mTitle->getPrefixedDBkey(),
+				$query,
+				$anchor,
+				$url
+			);
+		}
+		$out->redirect( $url );
 	}
 
 	/**

@@ -12,6 +12,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Session\Session;
 use MediaWiki\User\UserIdentity;
 use Parser;
 use ParserOptions;
@@ -369,6 +370,7 @@ class HookRunner implements
 	\MediaWiki\Hook\SpecialWatchlistGetNonRevisionTypesHook,
 	\MediaWiki\Hook\TestCanonicalRedirectHook,
 	\MediaWiki\Hook\ThumbnailBeforeProduceHTMLHook,
+	\MediaWiki\Hook\TempUserCreatedRedirectHook,
 	\MediaWiki\Hook\TitleExistsHook,
 	\MediaWiki\Hook\TitleGetEditNoticesHook,
 	\MediaWiki\Hook\TitleGetRestrictionTypesHook,
@@ -2445,6 +2447,14 @@ class HookRunner implements
 		);
 	}
 
+	public function onMaintenanceShellStart(): void {
+		$this->container->run(
+			'MaintenanceShellStart',
+			[],
+			[ 'abortable' => false ]
+		);
+	}
+
 	public function onMaintenanceUpdateAddParams( &$params ) {
 		return $this->container->run(
 			'MaintenanceUpdateAddParams',
@@ -3817,6 +3827,20 @@ class HookRunner implements
 		);
 	}
 
+	public function onTempUserCreatedRedirect(
+		Session $session,
+		UserIdentity $user,
+		string $returnTo,
+		string $returnToQuery,
+		string $returnToAnchor,
+		&$redirectUrl
+	) {
+		return $this->container->run(
+			'TempUserCreatedRedirect',
+			[ $session, $user, $returnTo, $returnToQuery, $returnToAnchor, &$redirectUrl ]
+		);
+	}
+
 	public function onTestCanonicalRedirect( $request, $title, $output ) {
 		return $this->container->run(
 			'TestCanonicalRedirect',
@@ -4484,14 +4508,6 @@ class HookRunner implements
 		return $this->container->run(
 			'XmlDumpWriterWriteRevision',
 			[ $obj, &$out, $row, $text, $rev ]
-		);
-	}
-
-	public function onMaintenanceShellStart(): void {
-		$this->container->run(
-			'MaintenanceShellStart',
-			[],
-			[ 'abortable' => false ]
 		);
 	}
 }

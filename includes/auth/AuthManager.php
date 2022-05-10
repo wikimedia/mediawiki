@@ -1722,11 +1722,10 @@ class AuthManager implements LoggerAwareInterface {
 			}
 		}
 
-		// Is the username creatable?
-		if ( $source !== self::AUTOCREATE_SOURCE_TEMP
-			&& !$this->userNameUtils->isCreatable( $username )
-		) {
-			$this->logger->debug( __METHOD__ . ': name "{username}" is not creatable', [
+		// Is the username valid? (Previously isCreatable() was checked here but
+		// that doesn't work with auto-creation of TempUser accounts by CentralAuth)
+		if ( !$this->userNameUtils->isValid( $username ) ) {
+			$this->logger->debug( __METHOD__ . ': name "{username}" is not valid', [
 				'username' => $username,
 			] );
 			$session->set( 'AuthManager::AutoCreateBlacklist', 'noname' );

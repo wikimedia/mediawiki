@@ -2734,18 +2734,18 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
-		// Uncreatable name
+		// Invalid name
 		$session->clear();
-		$user = \User::newFromName( $username . '@' );
+		$user = \User::newFromName( $username . "\u{0080}", false );
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->never() );
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, true, true );
 		$this->unhook( 'LocalUserCreated' );
 		$this->assertEquals( Status::newFatal( 'noname' ), $ret );
 		$this->assertSame( 0, $user->getId() );
-		$this->assertNotEquals( $username . '@', $user->getId() );
+		$this->assertNotEquals( $username . "\u{0080}", $user->getId() );
 		$this->assertSame( 0, $session->getUser()->getId() );
 		$this->assertSame( [
-			[ LogLevel::DEBUG, 'name "{username}" is not creatable' ],
+			[ LogLevel::DEBUG, 'name "{username}" is not valid' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 		$this->assertSame( 'noname', $session->get( 'AuthManager::AutoCreateBlacklist' ) );
