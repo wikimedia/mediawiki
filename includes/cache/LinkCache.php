@@ -202,7 +202,7 @@ class LinkCache implements LoggerAwareInterface {
 	 *        Can be given as an object or an associative array containing the
 	 *        page_namespace and page_title fields.
 	 *        In MediaWiki 1.36 and earlier, only LinkTarget was accepted.
-	 * @param string $field ( 'id', 'length', 'redirect', 'revision', 'model', 'lang', 'restrictions' )
+	 * @param string $field ( 'id', 'length', 'redirect', 'revision', 'model', 'lang' )
 	 * @return string|int|null The field value, or null if the page was not cached or does not exist
 	 *         or is not a proper page (e.g. a special page or interwiki link).
 	 */
@@ -238,10 +238,6 @@ class LinkCache implements LoggerAwareInterface {
 			case 'lang':
 				return !empty( $row->page_lang )
 					? strval( $row->page_lang )
-					: null;
-			case 'restrictions':
-				return !empty( $row->page_restrictions )
-					? strval( $row->page_restrictions )
 					: null;
 			default:
 				throw new InvalidArgumentException( "Unknown field: $field" );
@@ -294,7 +290,6 @@ class LinkCache implements LoggerAwareInterface {
 			'page_latest' => (int)$revision,
 			'page_content_model' => $model ? (string)$model : null,
 			'page_lang' => $lang ? (string)$lang : null,
-			'page_restrictions' => null,
 			'page_is_new' => 0,
 			'page_touched' => '',
 		] );
@@ -390,7 +385,6 @@ class LinkCache implements LoggerAwareInterface {
 			PageStoreRecord::REQUIRED_FIELDS,
 			[
 				'page_len',
-				'page_restrictions',
 				'page_content_model',
 			]
 		);

@@ -395,7 +395,6 @@ class WikiExporter {
 		unset( $join['page'] );
 
 		$fields = array_merge( $revQuery['fields'], $slotQuery['fields'] );
-		$fields[] = 'page_restrictions';
 
 		if ( $this->text != self::STUB ) {
 			$fields['_load_content'] = '1';

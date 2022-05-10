@@ -1985,9 +1985,9 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			[ 'getRestrictionExpiry', [ 'hij' ], null, [ 'expectedReturn' => false ] ],
 			[ 'areRestrictionsCascading', [], true ],
 			[ 'areRestrictionsCascading', [], false ],
-			[ 'loadRestrictionsFromRows', [ [ 'hij' ], 'klm' ], null, [ 'void' => true ] ],
-			[ 'loadRestrictions', [ 'nop', 123 ], null,
-				[ 'void' => true, 'expectedParams' => [ 123, 'nop' ] ] ],
+			[ 'loadRestrictionsFromRows', [ [ 'hij' ] ], null, [ 'void' => true ] ],
+			[ 'loadRestrictions', [ 123 ], null,
+				[ 'void' => true, 'expectedParams' => [ 123 ] ] ],
 			[ 'flushRestrictions', [], null, [ 'void' => true ] ],
 		];
 	}

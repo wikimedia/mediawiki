@@ -268,7 +268,6 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 			'page_len' => 155,
 			'page_content_model' => CONTENT_FORMAT_TEXT,
 			'page_lang' => 'xyz',
-			'page_restrictions' => 'test'
 		];
 
 		$linkCache = $this->getServiceContainer()->getLinkCache();

@@ -64,7 +64,6 @@ class RestrictionStore {
 	 * @var array[] Caching various restrictions data in the following format:
 	 * cache key => [
 	 *   string[] `restrictions` => restrictions loaded for pages
-	 *   string `oldRestrictions` => legacy-formatted restrictions from page.page_restrictions
 	 *   ?string `expiry` => restrictions expiry data for pages
 	 *   ?array `create_protection` => value for getCreateProtection
 	 *   bool `cascade` => cascade restrictions on this page to included templates and images?
@@ -337,13 +336,10 @@ class RestrictionStore {
 	 * @param PageIdentity $page Must be local
 	 * @param int $flags IDBAccessObject::READ_XXX constants (e.g., READ_LATEST to read from
 	 *   primary DB)
-	 * @param string|null $oldRestrictions Restrictions in legacy format (page.page_restrictions).
-	 *   null means we don't know about any legacy restrictions and they need to be looked up.
-	 *   Example: "edit=autoconfirmed,sysop:move=sysop"
 	 * @internal
 	 */
 	public function loadRestrictions(
-		PageIdentity $page, int $flags = IDBAccessObject::READ_NORMAL, ?string $oldRestrictions = null
+		PageIdentity $page, int $flags = IDBAccessObject::READ_NORMAL
 	): void {
 		$page->assertWiki( PageIdentity::LOCAL );
 
@@ -402,7 +398,7 @@ class RestrictionStore {
 				);
 			}
 
-			$this->loadRestrictionsFromRows( $page, $rows, $oldRestrictions );
+			$this->loadRestrictionsFromRows( $page, $rows );
 		} else {
 			$titleProtection = $this->getCreateProtectionInternal( $page );
 
@@ -431,12 +427,9 @@ class RestrictionStore {
 	 *
 	 * @param PageIdentity $page Must be local
 	 * @param stdClass[] $rows Array of db result objects
-	 * @param string|null $oldRestrictions Restrictions in legacy format (page.page_restrictions).
-	 *   null means we don't know about any legacy restrictions and they need to be looked up.
-	 *   Example: "edit=autoconfirmed,sysop:move=sysop"
 	 */
 	public function loadRestrictionsFromRows(
-		PageIdentity $page, array $rows, ?string $oldRestrictions = null
+		PageIdentity $page, array $rows
 	): void {
 		$page->assertWiki( PageIdentity::LOCAL );
 
@@ -450,25 +443,6 @@ class RestrictionStore {
 		}
 
 		$cacheEntry['cascade'] = false;
-
-		// Backwards-compatibility: also load the restrictions from the page record (old format).
-		// Don't include in test coverage, we're planning to drop support.
-		// @codeCoverageIgnoreStart
-		$cacheEntry['oldRestrictions'] = $oldRestrictions ?? $cacheEntry['oldRestrictions'] ?? null;
-
-		if ( $cacheEntry['oldRestrictions'] === null ) {
-			$this->linkCache->addLinkObj( $page );
-			$cachedOldRestrictions = $this->linkCache->getGoodLinkFieldObj( $page, 'restrictions' );
-			if ( $cachedOldRestrictions !== null ) {
-				$cacheEntry['oldRestrictions'] = $cachedOldRestrictions;
-			}
-		}
-
-		if ( $cacheEntry['oldRestrictions'] ) {
-			$cacheEntry['restrictions'] =
-				$this->convertOldRestrictions( $cacheEntry['oldRestrictions'] );
-		}
-		// @codeCoverageIgnoreEnd
 
 		if ( !$rows ) {
 			return;
@@ -499,33 +473,6 @@ class RestrictionStore {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Given a string formatted like the legacy page.page_restrictions field, return an array of
-	 * restrictions in the format returned by getAllRestrictions().
-	 *
-	 * @param string $oldRestrictions Restrictions in legacy format (page.page_restrictions).
-	 *   Example: "edit=autoconfirmed,sysop:move=sysop"
-	 * @return string[][] As returned by getAllRestrictions()
-	 * @codeCoverageIgnore We're planning to drop support for this
-	 */
-	private function convertOldRestrictions( string $oldRestrictions ): array {
-		$ret = [];
-		foreach ( explode( ':', trim( $oldRestrictions ) ) as $restrict ) {
-			$restrictionPair = explode( '=', trim( $restrict ) );
-			if ( count( $restrictionPair ) == 1 ) {
-				// old old format should be treated as edit/move restriction
-				$ret['edit'] = explode( ',', trim( $restrictionPair[0] ) );
-				$ret['move'] = explode( ',', trim( $restrictionPair[0] ) );
-			} else {
-				$restriction = trim( $restrictionPair[1] );
-				if ( $restriction != '' ) { // some old entries are empty
-					$ret[$restrictionPair[0]] = explode( ',', $restriction );
-				}
-			}
-		}
-		return $ret;
 	}
 
 	/**
@@ -731,23 +678,6 @@ class RestrictionStore {
 		$page->assertWiki( PageIdentity::LOCAL );
 
 		unset( $this->cache[CacheKeyHelper::getKeyForPage( $page )] );
-	}
-
-	/**
-	 * Register legacy restrictions from page.page_restrictions. This is nice to do if you have a
-	 * page row handy anyway, so we don't have to look them up separately later.
-	 *
-	 * @param PageIdentity $page Must be local
-	 * @param string $oldRestrictions Restrictions in legacy format (page.page_restrictions).
-	 *   Example: "edit=autoconfirmed,sysop:move=sysop"
-	 * @internal
-	 * @codeCoverageIgnore We're planning to drop support for this
-	 */
-	public function registerOldRestrictions( PageIdentity $page, string $oldRestrictions ): void {
-		$page->assertWiki( PageIdentity::LOCAL );
-
-		$this->cache[CacheKeyHelper::getKeyForPage( $page )]['oldRestrictions'] =
-			$oldRestrictions;
 	}
 
 }

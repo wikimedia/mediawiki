@@ -1551,7 +1551,6 @@ more stuff
 			'page_latest' => '99',
 			'page_namespace' => '3',
 			'page_title' => 'JaJaTitle',
-			'page_restrictions' => 'edit=autoconfirmed,sysop:move=sysop',
 			'page_touched' => '20120101020202',
 			'page_links_updated' => '20140101020202',
 			'page_lang' => 'it',
@@ -1575,13 +1574,6 @@ more stuff
 				$test->assertSame( 'it', $wikiPage->getLanguage() );
 				$test->assertSame( 3, $wikiPage->getTitle()->getNamespace() );
 				$test->assertSame( 'JaJaTitle', $wikiPage->getTitle()->getDBkey() );
-				$test->assertSame(
-					[
-						'edit' => [ 'autoconfirmed', 'sysop' ],
-						'move' => [ 'sysop' ],
-					],
-					$wikiPage->getTitle()->getAllRestrictions()
-				);
 				$test->assertSame( '20120101020202', $wikiPage->getTouched() );
 				$test->assertSame( '20140101020202', $wikiPage->getLinksTimestamp() );
 			}
@@ -1594,20 +1586,6 @@ more stuff
 			static function ( WikiPage $wikiPage, self $test ) {
 				$test->assertSame( '20120101020202', $wikiPage->getTouched() );
 				$test->assertSame( '20140101020202', $wikiPage->getLinksTimestamp() );
-			}
-		];
-		yield 'no restrictions' => [
-			$this->getRow( [
-				'page_restrictions' => '',
-			] ),
-			static function ( WikiPage $wikiPage, self $test ) {
-			$test->assertSame(
-				[
-					'edit' => [],
-					'move' => [],
-				],
-				$wikiPage->getTitle()->getAllRestrictions()
-			);
 			}
 		];
 		yield 'no language' => [
@@ -1757,7 +1735,6 @@ more stuff
 			[
 				'page_namespace',
 				'page_title',
-				'page_restrictions',
 				'page_is_redirect',
 				'page_is_new',
 				'page_latest',
@@ -1767,7 +1744,6 @@ more stuff
 			[ [
 				'0',
 				__METHOD__,
-				'',
 				'0',
 				'1',
 				'0',
