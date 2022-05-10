@@ -2792,6 +2792,7 @@ return [
 			'oojs-ui-widgets',
 			'mediawiki.ForeignApi',
 			'mediawiki.Title',
+			'mediawiki.user',
 			'mediawiki.util',
 		],
 		'messages' => [
