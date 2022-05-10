@@ -76,14 +76,14 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected static function checkAutoLoadConf() {
-		global $wgAutoloadLocalClasses, $wgAutoloadClasses, $IP;
+		$IP = MW_INSTALL_PATH;
 
 		// wgAutoloadLocalClasses has precedence, just like in includes/AutoLoader.php
-		$expected = $wgAutoloadLocalClasses + $wgAutoloadClasses;
+		$expected = AutoLoader::getClassFiles();
 		$actual = [];
 
 		$psr4Namespaces = [];
-		foreach ( AutoLoader::getAutoloadNamespaces() as $ns => $path ) {
+		foreach ( AutoLoader::CORE_NAMESPACES as $ns => $path ) {
 			$psr4Namespaces[rtrim( $ns, '\\' ) . '\\'] = self::fixSlashes( rtrim( $path, '/' ) );
 		}
 
@@ -107,7 +107,7 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 				continue;
 			}
 
-			list( $classesInFile, $aliasesInFile ) = self::parseFile( $contents );
+			[ $classesInFile, $aliasesInFile ] = self::parseFile( $contents );
 
 			foreach ( $classesInFile as $className => $ignore ) {
 				// Skip if it's a PSR4 class
@@ -150,7 +150,7 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 		$path = __DIR__ . '/../../..';
 		$oldAutoload = file_get_contents( $path . '/autoload.php' );
 		$generator = new AutoloadGenerator( $path, 'local' );
-		$generator->setPsr4Namespaces( AutoLoader::getAutoloadNamespaces() );
+		$generator->setPsr4Namespaces( AutoLoader::CORE_NAMESPACES );
 		$generator->initMediaWikiDefault();
 		$newAutoload = $generator->getAutoload( 'maintenance/generateLocalAutoload.php' );
 
@@ -164,7 +164,9 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAutoloadNamespaces() {
 		$missing = [];
-		foreach ( AutoLoader::$psr4Namespaces as $ns => $path ) {
+		$psr4Namespaces = AutoLoader::getNamespaceDirectories();
+
+		foreach ( $psr4Namespaces as $ns => $path ) {
 			if ( !is_dir( $path ) ) {
 				$missing[] = "Directory $path for namespace $ns does not exist";
 			}

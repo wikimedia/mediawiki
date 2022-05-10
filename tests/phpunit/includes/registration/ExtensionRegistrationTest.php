@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Registration;
 use AutoLoader;
 use ExtensionRegistry;
 use Generator;
+use HashBagOStuff;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -12,11 +13,27 @@ use MediaWikiIntegrationTestCase;
  */
 class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 
-	protected function tearDown(): void {
-		// For testExportAutoload().
-		unset( AutoLoader::$psr4Namespaces['Dummy\Test\Namespace'] );
-		unset( $GLOBALS['wgAutoloadClasses']['FooBarClass'] );
+	private $autoloaderState;
 
+	protected function setUp(): void {
+		parent::setUp();
+
+		$this->autoloaderState = AutoLoader::getState();
+
+		// Make sure to restore globals
+		$this->stashMwGlobals( [
+			'wgAutoloadClasses',
+			'wgHooks',
+			'wgNamespaceProtection',
+			'wgNamespaceModels',
+			'wgAvailableRights',
+			'wgAuthManagerAutoConfig',
+			'wgGroupPermissions',
+		] );
+	}
+
+	protected function tearDown(): void {
+		AutoLoader::restoreState( $this->autoloaderState );
 		parent::tearDown();
 	}
 
@@ -73,12 +90,17 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExportAutoload() {
+		global $wgAutoloadClasses;
+		$oldAutoloadClasses = $wgAutoloadClasses;
+
 		$manifest = [
 			'AutoloadClasses' => [
-				'FooBarClass' => __DIR__ . '/FooBarClass.php',
+				'TestAutoloaderClass' =>
+					__DIR__ . '/../../data/autoloader/TestAutoloadedClass.php',
 			],
 			'AutoloadNamespaces' => [
-				'Dummy\Test\Namespace' => __DIR__,
+				'Dummy\Test\Namespace\\' =>
+					__DIR__ . '/../../data/autoloader/psr4/',
 			],
 			'HookHandler' => [
 				'main' => [ 'class' => 'Whatever' ]
@@ -88,11 +110,25 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 		$file = $this->makeManifestFile( $manifest );
 
 		$registry = new ExtensionRegistry();
+		$registry->setCache( new HashBagOStuff() );
+
 		$registry->queue( $file );
 		$registry->loadFromQueue();
 
-		$this->assertArrayHasKey( 'Dummy\Test\Namespace', AutoLoader::$psr4Namespaces );
-		$this->assertArrayHasKey( 'FooBarClass', $GLOBALS['wgAutoloadClasses'] );
+		$this->assertArrayHasKey( 'TestAutoloaderClass', AutoLoader::getClassFiles() );
+		$this->assertArrayHasKey( 'Dummy\Test\Namespace\\', AutoLoader::getNamespaceDirectories() );
+
+		// Now, reset and do it again, but with the cached extension info.
+		// This is needed because autoloader registration is currently handled
+		// differently when loading from the cache (T240535).
+		AutoLoader::restoreState( $this->autoloaderState );
+		$wgAutoloadClasses = $oldAutoloadClasses;
+
+		$registry->queue( $file );
+		$registry->loadFromQueue();
+
+		$this->assertArrayHasKey( 'TestAutoloaderClass', AutoLoader::getClassFiles() );
+		$this->assertArrayHasKey( 'Dummy\Test\Namespace\\', AutoLoader::getNamespaceDirectories() );
 	}
 
 	/**
