@@ -287,7 +287,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$hideLiu = $registration->getFilter( 'hideliu' );
 		$hideLiu->setDefault( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideliu' ) );
 
-		// Selecting both hideanons and hideliu on watchlist preferances
+		// Selecting both hideanons and hideliu on watchlist preferences
 		// gives mutually exclusive filters, so those are ignored
 		if ( $this->userOptionsLookup->getBoolOption( $user, 'watchlisthideanons' ) &&
 			!$this->userOptionsLookup->getBoolOption( $user, 'watchlisthideliu' )

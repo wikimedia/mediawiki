@@ -565,7 +565,7 @@ class LogFormatter {
 	}
 
 	/**
-	 * Formats parameters intented for action message from
+	 * Formats parameters intended for action message from
 	 * array of all parameters. There are three hardcoded
 	 * parameters (array is zero-indexed, this list not):
 	 *  - 1: user name with premade link

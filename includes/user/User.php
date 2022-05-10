@@ -1313,7 +1313,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 */
 	protected function makeUpdateConditions( IDatabase $db, array $conditions ) {
 		if ( $this->mTouched ) {
-			// CAS check: only update if the row wasn't changed sicne it was loaded.
+			// CAS check: only update if the row wasn't changed since it was loaded.
 			$conditions['user_touched'] = $db->timestamp( $this->mTouched );
 		}
 
@@ -1715,7 +1715,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * Check if user is blocked
 	 *
 	 * @deprecated since 1.34, use User::getBlock() or
-	 *             Authority:getBlock() or Authority:definitlyCan() or
+	 *             Authority:getBlock() or Authority:definitelyCan() or
 	 *             Authority:authorizeRead() or Authority:authorizeWrite() or
 	 *             PermissionManager::isBlockedFrom(), as appropriate.
 	 *
@@ -3505,7 +3505,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * Get the permissions associated with a given list of groups
 	 *
 	 * @deprecated since 1.34, use GroupPermissionsLookup::getGroupPermissions() instead in 1.36+,
-	 *    or PermissionManager::getGroupPermisions() in 1.34 and 1.35
+	 *    or PermissionManager::getGroupPermissions() in 1.34 and 1.35
 	 *
 	 * @param string[] $groups internal group names
 	 * @return string[] permission key names for given groups combined

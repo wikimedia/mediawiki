@@ -25,7 +25,7 @@ namespace MediaWiki\Skin;
 interface SkinComponent {
 	/**
 	 * This returns all the data that is needed to the component.
-	 * Returned array must be seralized. This will be passed directly
+	 * Returned array must be serialized. This will be passed directly
 	 * to a template (usually Mustache) for rendering.
 	 *
 	 * @return array Data related to component required to render.

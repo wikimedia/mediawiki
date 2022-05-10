@@ -28,7 +28,7 @@ require_once __DIR__ . '/Maintenance.php';
 use MediaWiki\MediaWikiServices;
 
 /**
- * Maintenance script that fixes any entriy for protocol-relative URLs
+ * Maintenance script that fixes any entry for protocol-relative URLs
  * in the externallinks table.
  *
  * @ingroup Maintenance

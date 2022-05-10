@@ -691,7 +691,7 @@ class DiffEngine {
 		}
 		/*
 		 * computing the true LCS is too expensive, instead find the diagonal
-		 * with the most progress and pretend a midle snake of length 0 occurs
+		 * with the most progress and pretend a middle snake of length 0 occurs
 		 * there.
 		 */
 

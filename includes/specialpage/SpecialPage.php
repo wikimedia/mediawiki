@@ -265,7 +265,7 @@ class SpecialPage implements MessageLocalizer {
 	 *
 	 * @note If cache time is not 0, then the current user becomes an anon
 	 *   if you want to do any per-user customizations, than this method
-	 *   must be overriden to return 0.
+	 *   must be overridden to return 0.
 	 * @since 1.26
 	 * @stable to override
 	 * @return int Time in seconds, 0 to disable caching altogether,

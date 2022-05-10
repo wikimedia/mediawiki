@@ -160,7 +160,7 @@ class AutoloadGenerator {
 	 */
 	public function readFile( $inputPath ) {
 		// NOTE: do NOT expand $inputPath using realpath(). It is perfectly
-		// reasonable for LocalSettings.php and similiar files to be symlinks
+		// reasonable for LocalSettings.php and similar files to be symlinks
 		// to files that are outside of $this->basepath.
 		$inputPath = self::normalizePathSeparator( $inputPath );
 		$len = strlen( $this->basepath );

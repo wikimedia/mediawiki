@@ -722,7 +722,7 @@ TEXT
 			}
 		}
 
-		// Retirieving a good text for $id failed (at least) maxFailures times.
+		// Retrieving a good text for $id failed (at least) maxFailures times.
 		// We abort for this $id.
 
 		// Restoring the consecutive failures, and maybe aborting, if the dump

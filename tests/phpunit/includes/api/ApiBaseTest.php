@@ -45,7 +45,7 @@ class ApiBaseTest extends ApiTestCase {
 			[ null, 'getModuleManager' ],
 			[ null, 'getCustomPrinter' ],
 			[ [], 'getHelpUrls' ],
-			// @todo This is actually overriden by MockApi
+			// @todo This is actually overridden by MockApi
 			// [ [], 'getAllowedParams' ],
 			[ true, 'shouldCheckMaxLag' ],
 			[ true, 'isReadMode' ],

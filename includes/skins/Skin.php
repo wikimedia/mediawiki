@@ -1001,13 +1001,13 @@ abstract class Skin extends ContextSource {
 	 * return an HTML link for use in the footer.
 	 *
 	 * @param string $desc The i18n message key for the link text.
-	 * 		The content of this message will be the visibile text label.
+	 * 		The content of this message will be the visible text label.
 	 * 		If this is set to nonexisting message key or the message is
 	 * 		disabled, the link will not be generated, empty string will
 	 * 		be returned in the stead.
 	 * @param string $page The i18n message key for the page to link to.
 	 * 		The content of this message will be the destination page for
-	 * 		the footer link. Given a messsage key 'Privacypage' with content
+	 * 		the footer link. Given a message key 'Privacypage' with content
 	 * 		'Project:Privacy policy', the link will lead to the wiki page with
 	 * 		the title of the content.
 	 *

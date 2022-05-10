@@ -237,7 +237,7 @@ class UploadForm extends HTMLForm {
 	}
 
 	/**
-	 * Get the messages indicating which extensions are preferred and prohibitted.
+	 * Get the messages indicating which extensions are preferred and prohibited.
 	 *
 	 * @return string HTML string containing the message
 	 */

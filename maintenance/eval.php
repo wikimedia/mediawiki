@@ -71,7 +71,7 @@ while ( ( $__line = Maintenance::readconsole() ) !== false ) {
 		// Internal state may be corrupted or fatals may occur later due
 		// to some object not being set. Don't drop out of eval in case
 		// lines were being pasted in (which would then get dumped to the shell).
-		// Instead, just absorb the remaning commands. Let "exit" through per DWIM.
+		// Instead, just absorb the remaining commands. Let "exit" through per DWIM.
 		echo "Exception was thrown before; please restart eval.php\n";
 		continue;
 	}

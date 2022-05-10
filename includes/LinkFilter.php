@@ -145,7 +145,7 @@ class LinkFilter {
 			}
 		}
 
-		// Regularlize explicit specification of the DNS root.
+		// Regularize explicit specification of the DNS root.
 		// Browsers seem to do this for IPv4 literals too.
 		if ( substr( $host, -1 ) === '.' ) {
 			$host = substr( $host, 0, -1 );

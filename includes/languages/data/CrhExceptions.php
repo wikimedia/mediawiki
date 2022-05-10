@@ -594,7 +594,7 @@ class CrhExceptions {
 			'/([' . Crh::C_CONS . '])Ё/u' => '$1Ö',
 
 			# остальные вхождения о, у, ё, ю
-			# other occurences of о, у, ё, ю
+			# other occurrences of о, у, ё, ю
 			'/Ё([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => 'YO$1',
 			'/Ю([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => 'YU$1',
 

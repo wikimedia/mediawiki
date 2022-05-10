@@ -50,7 +50,7 @@ if ( $ext == 'php' ) {
 	// Let built-in server handle script inclusion.
 	return false;
 } else {
-	// Serve static file with appropiate Content-Type headers.
+	// Serve static file with appropriate Content-Type headers.
 	// The built-in server for PHP 7.0+ supports most files already
 	// (contrary to PHP 5.2, which was supported when router.php was created).
 	// But it still doesn't support as many MIME types as MediaWiki (e.g. ".json")

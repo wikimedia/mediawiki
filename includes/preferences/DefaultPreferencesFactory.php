@@ -263,7 +263,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	}
 
 	/**
-	 * Simplify form descriptor for vaidation or something similar.
+	 * Simplify form descriptor for validation or something similar.
 	 *
 	 * @param array $descriptor HTML form descriptor.
 	 * @return array
@@ -285,7 +285,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 					// Special case, should be kept.
 					case 'options-message':
 						break;
-					// Special case, should be transfered.
+					// Special case, should be transferred.
 					case 'options-messages':
 						unset( $params[$key] );
 						$params['options'] = $value;

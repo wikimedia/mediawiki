@@ -1340,7 +1340,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$this->doTransition( 'has-revision' );
 
 		// NOTE: in case we have a User object, don't override with a UserIdentity.
-		// We already checked that $revision->getUser() mathces $this->user;
+		// We already checked that $revision->getUser() matches $this->user;
 		if ( !$this->user ) {
 			$this->user = $revision->getUser( RevisionRecord::RAW );
 		}
@@ -1437,7 +1437,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 	public function getSecondaryDataUpdates( $recursive = false ) {
 		if ( $this->isContentDeleted() ) {
 			// This shouldn't happen, since the current content is always public,
-			// and DataUpates are only needed for current content.
+			// and DataUpdates are only needed for current content.
 			return [];
 		}
 
@@ -1555,7 +1555,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$this->doSecondaryDataUpdates( [
 			// T52785 do not update any other pages on a null edit
 			'recursive' => $this->options['changed'],
-			// Defer the getCannonicalParserOutput() call made by getSecondaryDataUpdates()
+			// Defer the getCanonicalParserOutput() call made by getSecondaryDataUpdates()
 			'defer' => DeferredUpdates::POSTSEND
 		] );
 

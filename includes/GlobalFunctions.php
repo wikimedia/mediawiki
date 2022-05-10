@@ -2233,7 +2233,7 @@ function wfIsInfinity( $str ) {
  * $params is considered non-standard if they involve a non-standard
  * width or any non-default parameters aside from width and page number.
  * The number of possible files with standard parameters is far less than
- * that of all combinations; rate-limiting for them can thus be more generious.
+ * that of all combinations; rate-limiting for them can thus be more generous.
  *
  * @param File $file
  * @param array $params
@@ -2286,7 +2286,7 @@ function wfThumbIsStandard( File $file, array $params ) {
 		// Append any default values to the map (e.g. "lossy", "lossless", ...)
 		$handler->normaliseParams( $file, $normalParams );
 	} else {
-		// If not, then check if the width matchs one of $wgImageLimits
+		// If not, then check if the width matches one of $wgImageLimits
 		$match = false;
 		foreach ( $imageLimits as $pair ) {
 			$normalParams = $basicParams + [ 'width' => $pair[0], 'height' => $pair[1] ];

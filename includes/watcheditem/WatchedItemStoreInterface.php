@@ -262,7 +262,7 @@ interface WatchedItemStoreInterface {
 	);
 
 	/**
-	 * Reset all watchlist notificaton timestamps for a user using the job queue
+	 * Reset all watchlist notification timestamps for a user using the job queue
 	 *
 	 * @since 1.31
 	 *

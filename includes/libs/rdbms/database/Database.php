@@ -1308,7 +1308,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - write callers
 	 *   - last write time
 	 *   - affected row count of the last write
-	 *   - whether writes occured in a transaction
+	 *   - whether writes occurred in a transaction
 	 *
 	 * This method does *not* handle DBO_TRX transaction logic *nor* query retries.
 	 *

@@ -102,7 +102,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	/**
 	 * Set which diff engine to use.
 	 * @param string $type One of the ENGINE_* constants.
-	 * @param string|null $executable Path to an external exectable, only when type is ENGINE_EXTERNAL.
+	 * @param string|null $executable Path to an external executable, only when type is ENGINE_EXTERNAL.
 	 */
 	public function setEngine( $type, $executable = null ) {
 		$engines = [ self::ENGINE_PHP, self::ENGINE_WIKIDIFF2, self::ENGINE_EXTERNAL,
@@ -190,7 +190,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	 */
 	protected function getTextDiffInternal( $oldText, $newText ) {
 		// TODO move most of this into three parallel implementations of a text diff generator
-		// class, choose which one to use via dependecy injection
+		// class, choose which one to use via dependency injection
 
 		$oldText = str_replace( "\r\n", "\n", $oldText );
 		$newText = str_replace( "\r\n", "\n", $newText );

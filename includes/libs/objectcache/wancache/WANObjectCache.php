@@ -56,7 +56,7 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
  *        database replication, to ensure deterministic values without oscillation.
  *   - B) Validity is checked against the source after get().
  *        This is the inverse of A. The unique identifier is embedded inside the value
- *        and validated after on retreival. If outdated, the value is recomputed.
+ *        and validated after on retrieval. If outdated, the value is recomputed.
  *   - C) The value is cached with a modest TTL (without validation).
  *        If value recomputation is reasonably performant, and the value is allowed to
  *        be stale, one should consider using TTL only – using the value's age as
@@ -152,7 +152,7 @@ class WANObjectCache implements
 	protected $useInterimHoldOffCaching = true;
 	/** @var float Unix timestamp of the oldest possible valid values */
 	protected $epoch;
-	/** @var string Stable secret used for hasing long strings into key components */
+	/** @var string Stable secret used for hashing long strings into key components */
 	protected $secret;
 	/** @var int Scheme to use for key coalescing (Hash Tags or Hash Stops) */
 	protected $coalesceScheme;
@@ -770,7 +770,7 @@ class WANObjectCache implements
 	 *      Default: WANObjectCache::STALE_TTL_NONE
 	 *   - creating: Optimize for the case where the key does not already exist.
 	 *      Default: false
-	 *   - version: Integer version number signifiying the format of the value.
+	 *   - version: Integer version number signifying the format of the value.
 	 *      Default: null
 	 *   - walltime: How long the value took to generate in seconds. Default: null
 	 * @phpcs:ignore Generic.Files.LineLength
@@ -2196,7 +2196,7 @@ class WANObjectCache implements
 			$id = $params['id'];
 
 			if ( array_key_exists( $id, $newValsById ) ) {
-				// Value was already regerated as expected, so use the value in $newValsById
+				// Value was already regenerated as expected, so use the value in $newValsById
 				$newValue = $newValsById[$id];
 				$ttl = $newTTLsById[$id];
 				$setOpts = $newSetOpts;
@@ -2417,7 +2417,7 @@ class WANObjectCache implements
 	 * For use with getMultiWithSetCallback() and getMultiWithUnionSetCallback().
 	 *
 	 * *Only* use this method if the entity ID/key mapping is trivially 1:1 without exception.
-	 * Key generation method must utitilize the *full* entity ID in the key (not a hash of it).
+	 * Key generation method must utilize the *full* entity ID in the key (not a hash of it).
 	 *
 	 * Example usage:
 	 * @code
@@ -2910,7 +2910,7 @@ class WANObjectCache implements
 
 	/**
 	 * @param array|string|false $wrapped The entry at a cache key (false if key is nonexistant)
-	 * @param float $now Unix Current timestamp (preferrably pre-query)
+	 * @param float $now Unix Current timestamp (preferably pre-query)
 	 * @return array<int,mixed> Result map/n-tuple that includes the following:
 	 *   - WANObjectCache::RES_VALUE: value or false if absent/tombstoned/malformed
 	 *   - WANObjectCache::KEY_VERSION: value version number; null if there is no value

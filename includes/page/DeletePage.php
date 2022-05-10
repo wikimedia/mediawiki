@@ -599,7 +599,7 @@ class DeletePage {
 			}
 			$dbw->endAtomic( __METHOD__ );
 			if ( $dbw->explicitTrxActive() ) {
-				// Explict transactions may never happen here in practice.  Log to be sure.
+				// Explicit transactions may never happen here in practice.  Log to be sure.
 				if ( !$explictTrxLogged ) {
 					$explictTrxLogged = true;
 					LoggerFactory::getInstance( 'wfDebug' )->debug(

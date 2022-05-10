@@ -1841,7 +1841,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Divide the element name passed by the xml parser to the callback into URI and prifix.
+	 * Divide the element name passed by the xml parser to the callback into URI and prefix.
 	 * @param string $element
 	 * @return array Containing the namespace URI and prefix
 	 */
@@ -1939,7 +1939,7 @@ abstract class UploadBase {
 				? wfMessage( 'virus-scanfailed', [ $exitCode ] )->text()
 				: null;
 		} elseif ( $mappedCode === AV_SCAN_ABORTED ) {
-			# scan failed because filetype is unknown (probably imune)
+			# scan failed because filetype is unknown (probably immune)
 			wfDebug( __METHOD__ . ": unsupported file type $file (code $exitCode)." );
 			$output = null;
 		} elseif ( $mappedCode === AV_NO_VIRUS ) {

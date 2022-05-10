@@ -2552,7 +2552,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *        themselves.
 	 * @return array Two elements: First is an array of Title objects of the
 	 *        pages from which cascading restrictions have come if $getPages
-	 *        is true, or a bool indicating whetehr any cascading protection
+	 *        is true, or a bool indicating whether any cascading protection
 	 *        applies if $getPages was set to false.
 	 *        Second is an array like that returned by Title::getAllRestrictions(),
 	 *        or an empty array if $getPages is false.
@@ -2943,7 +2943,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @note This overrides Title::setContentModel()
 	 *
-	 * @param int|bool $id Page ID, 0 for non-existant, or false for "unknown" (lazy-load)
+	 * @param int|bool $id Page ID, 0 for non-existent, or false for "unknown" (lazy-load)
 	 */
 	public function resetArticleID( $id ) {
 		if ( $id === false ) {

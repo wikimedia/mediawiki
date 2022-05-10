@@ -312,7 +312,7 @@ class UserMailer {
 		// escaping (e.g. due to spaces). MediaWiki's email sanitizer should generally
 		// be good enough, but just in case, put in double quotes, and remove any
 		// double quotes present (" is not allowed in emails, so should have no
-		// effect, although this might cause apostrophees to be double escaped)
+		// effect, although this might cause apostrophes to be double escaped)
 		$returnPathCLI = '"' . str_replace( '"', '', $returnPath ) . '"';
 		$extraParams .= ' -f ' . $returnPathCLI;
 
@@ -485,7 +485,7 @@ class UserMailer {
 
 	/**
 	 * Strips bad characters from a header value to prevent PHP mail header injection attacks
-	 * @param string $val String to be santizied
+	 * @param string $val String to be sanitized
 	 * @return string
 	 */
 	public static function sanitizeHeaderValue( $val ) {

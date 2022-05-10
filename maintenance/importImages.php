@@ -461,7 +461,7 @@ class ImportImages extends Maintenance {
 	}
 
 	/**
-	 * Find an auxilliary file with the given extension, matching
+	 * Find an auxiliary file with the given extension, matching
 	 * the give base file path. $maxStrip determines how many extensions
 	 * may be stripped from the original file name before appending the
 	 * new extension. For example, with $maxStrip = 1 (the default),

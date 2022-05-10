@@ -119,7 +119,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *
 	 * Parameters include:
 	 *   - server: Server config map for Database::factory() that describes the database to
-	 *      use for all key operations in the current region. This is overriden by "servers".
+	 *      use for all key operations in the current region. This is overridden by "servers".
 	 *   - servers: Map of tag strings to server config maps, each for Database::factory(),
 	 *      describing the set of database servers on which to distribute key operations in the
 	 *      current region. Data is distributed among the servers via key hashing based on the
@@ -128,10 +128,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *      in multiple regions (each having different hostnames).
 	 *   - localKeyLB: ObjectFactory::getObjectFromSpec array yielding ILoadBalancer.
 	 *      This load balancer is used for local keys, e.g. those using makeKey().
-	 *      This is overriden by "server" and "servers".
+	 *      This is overridden by "server" and "servers".
 	 *   - globalKeyLB: ObjectFactory::getObjectFromSpec array yielding ILoadBalancer.
 	 *      This load balancer is used for global keys, e.g. those using makeGlobalKey().
-	 *      This is overriden by "server" and "servers".
+	 *      This is overridden by "server" and "servers".
 	 *   - globalKeyLbDomain: database name to use for "globalKeyLB" load balancer.
 	 *   - multiPrimaryMode: Whether the portion of the dataset belonging to each tag/shard is
 	 *      replicated among one or more regions, with one "co-primary" server in each region.
@@ -654,7 +654,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @param string $ptable Name of the partition table where the argument keys belong
 	 * @param float $mtime UNIX modification timestamp
 	 * @param array<string,array> $argsByKey Non-empty (key => (value,exptime)) map
-	 * @param array<string,mixed> &$resByKey Map of (key => result) for succesful writes [returned]
+	 * @param array<string,mixed> &$resByKey Map of (key => result) for successful writes [returned]
 	 * @throws DBError
 	 */
 	private function modifyTableSpecificBlobsForSet(

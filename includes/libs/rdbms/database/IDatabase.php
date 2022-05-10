@@ -903,7 +903,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	 * @param array|string $conds Condition in the format of IDatabase::select() conditions.
 	 *   In order to prevent possible performance or replication issues or damaging a data
 	 *   accidentally, an empty condition for 'update' queries isn't allowed.
-	 *   IDatabase::ALL_ROWS should be passed explicitely in order to update all rows.
+	 *   IDatabase::ALL_ROWS should be passed explicitly in order to update all rows.
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @param string|array $options Combination map/list where each string-keyed entry maps
 	 *   a non-boolean option to the option parameters and each integer-keyed value is the

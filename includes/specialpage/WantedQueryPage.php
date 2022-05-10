@@ -137,7 +137,7 @@ abstract class WantedQueryPage extends QueryPage {
 	/**
 	 * Do not order descending for all order fields.  We will use DESC only on one field, see
 	 * getOrderFields above. This overwrites sortDescending from QueryPage::getOrderFields().
-	 * Do NOT change this to true unless you remove the phrase DESC in getOrderFiels above.
+	 * Do NOT change this to true unless you remove the phrase DESC in getOrderFields above.
 	 * If you do a database error will be thrown due to double adding DESC to query!
 	 *
 	 * @stable to override

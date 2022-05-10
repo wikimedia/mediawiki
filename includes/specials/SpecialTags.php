@@ -134,7 +134,7 @@ class SpecialTags extends SpecialPage {
 		// List all defined tags, even if they were never applied
 		$definedTags = array_keys( $this->explicitlyDefinedTags + $this->softwareDefinedTags );
 
-		// Show header only if there exists atleast one tag
+		// Show header only if there exists at least one tag
 		if ( !$tagStats && !$definedTags ) {
 			return;
 		}

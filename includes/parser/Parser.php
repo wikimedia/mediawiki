@@ -5167,7 +5167,7 @@ class Parser {
 			}
 
 			# We need to get what handler the file uses, to figure out parameters.
-			# Note, a hook can overide the file name, and chose an entirely different
+			# Note, a hook can override the file name, and chose an entirely different
 			# file (which potentially could be of a different type and have different handler).
 			$options = [];
 			$descQuery = false;

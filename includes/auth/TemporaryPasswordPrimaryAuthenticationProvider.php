@@ -66,7 +66,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param array $params
 	 *  - emailEnabled: (bool) must be true for the option to email passwords to be present
-	 *  - newPasswordExpiry: (int) expiraton time of temporary passwords, in seconds
+	 *  - newPasswordExpiry: (int) expiration time of temporary passwords, in seconds
 	 *  - passwordReminderResendTime: (int) cooldown period in hours until a password reminder can
 	 *    be sent to the same user again
 	 */

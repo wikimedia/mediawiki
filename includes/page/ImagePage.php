@@ -316,7 +316,7 @@ class ImagePage extends Article {
 	}
 
 	/**
-	 * Returns language code to be used for dispaying the image, based on request context and
+	 * Returns language code to be used for displaying the image, based on request context and
 	 * languages available in the file.
 	 *
 	 * @param WebRequest $request
