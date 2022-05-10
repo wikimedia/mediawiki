@@ -1137,8 +1137,13 @@ class OutputPage extends ContextSource {
 	 * @return string HTML
 	 */
 	public function getUnprefixedDisplayTitle() {
+		$service = MediaWikiServices::getInstance();
+		$languageConverter = $service->getLanguageConverterFactory()
+			->getLanguageConverter( $service->getContentLanguage() );
 		$text = $this->getDisplayTitle();
-		$nsPrefix = $this->getTitle()->getNsText() . ':';
+		$nsPrefix = $languageConverter->convertNamespace(
+			$this->getTitle()->getNamespace()
+		) . ':';
 		$prefix = preg_quote( $nsPrefix, '/' );
 
 		return preg_replace( "/^$prefix/i", '', $text );
