@@ -41,7 +41,8 @@
 			"FakeGreenHand",
 			"Sun8908",
 			"TKsdik8900",
-			"滝沢朔太郎"
+			"滝沢朔太郎",
+			"StarrySky"
 		]
 	},
 	"tog-underline": "以底線識鏈接：",
@@ -731,6 +732,7 @@
 	"showhideselectedversions": "示／藏之擇",
 	"editundo": "悔",
 	"diff-empty": "（無異）",
+	"diff-multi-sameuser": "（$2多作未示之審有$1）",
 	"diff-multi-manyusers": "（$2多作未示之審有$1）",
 	"searchresults": "得尋",
 	"searchresults-title": "「$1」得尋",

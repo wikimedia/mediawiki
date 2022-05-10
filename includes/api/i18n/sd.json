@@ -35,7 +35,7 @@
 	"apihelp-query+watchlist-paramvalue-type-new": "صفحي سرجايون.",
 	"apihelp-query+watchlist-paramvalue-type-log": "لاگ داخلائون.",
 	"apihelp-rollback-summary": "صفحي ۾ آخري سنوار اڻڪريو.",
-	"apihelp-rollback-param-markbot": "واپس-ورايل سنوارن کي نشان لڳايو ۽ بوٽ طور واپس-ورايل سنوارون.",
+	"apihelp-rollback-param-markbot": "موٽايل سنوارن کي نشان لڳايو ۽ بطور بوٽ سنوارون موٽايو.",
 	"apihelp-stashedit-param-contentmodel": "نئين مواد جو مواد نمونو.",
 	"apihelp-stashedit-param-summary": "تَتُ بدلايو."
 }

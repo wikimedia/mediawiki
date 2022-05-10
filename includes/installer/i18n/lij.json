@@ -59,6 +59,7 @@
 	"config-no-fts3": "<strong>Atençión:</strong> SQLite o l'é conpilòu sénsa o [//sqlite.org/fts3.html mòdolo FTS3], e fonçionalitæ de riçèrca no saiàn disponìbili in sce 'sto backend chi.",
 	"config-pcre-old": "<strong>Erô fatâle:</strong> o l'é domandòu PCRE $1 ò sucesîvo.\nO tò PHP binâio o l'é colegòu con PCRE $2.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE Ciù informaçioîn].",
 	"config-pcre-no-utf8": "<strong>Erô fatâle</strong>: o mòdolo PCRE de PHP o pâ ch'o ségge stæto conpilòu sénsa o sùporto PCRE_UTF8.\nMediaWiki o l'à bezéugno do sùporto UTF8 pe fonçionâ coretaménte.",
+	"config-pcre-invalid-newline": "<strong>Erô fatâle:</strong> o mòdolo PCRE de PHP o pâ ch'o ségge stæto conpilòu con PCRE_CONFIG_NEWLINE = -1 pe ANY.\nMediaWiki o no l'é conpatìbile con sta configuraçión chi.",
 	"config-memory-raised": "O valô <code>memory_limit</code> de PHP o l'é $1, aomentòu a $2.",
 	"config-memory-bad": "<strong>Atençión:</strong> o valô de <code>memory_limit</code> de PHP o l'é $1.\nFòscia o l'é tròppo bàsso.\nL'instalaçión a poriéiva falî!",
 	"config-apc": "[https://www.php.net/apc APC] o l'é instalòu",
