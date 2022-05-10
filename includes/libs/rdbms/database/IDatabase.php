@@ -103,10 +103,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	public const QUERY_NORMAL = 0;
 	/** @var int Ignore query errors and return false when they happen */
 	public const QUERY_SILENCE_ERRORS = 1; // b/c for 1.32 query() argument; (int)true = 1
-	/**
-	 * @var int Treat the TEMPORARY table from the given CREATE query as if it is
-	 *   permanent as far as write tracking is concerned. This is useful for testing.
-	 */
+	/** Track a TEMPORARY table CREATE as if it was for a permanent table (for testing) */
 	public const QUERY_PSEUDO_PERMANENT = 2;
 	/** @var int Enforce that a query does not make effective writes */
 	public const QUERY_REPLICA_ROLE = 4;
@@ -444,7 +441,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	public function close( $fname = __METHOD__ );
 
 	/**
-	 * Run an SQL query and return the result
+	 * Run an SQL query statement and return the result
 	 *
 	 * If a connection loss is detected, then an attempt to reconnect will be made.
 	 * For queries that involve no larger transactions or locks, they will be re-issued
@@ -459,11 +456,9 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	 *
 	 * However, the query wrappers themselves should call this function.
 	 *
-	 * @param string $sql SQL query
-	 * @param string $fname Name of the calling function, for profiling/SHOW PROCESSLIST
-	 *     comment (you can use __METHOD__ or add some extra info)
-	 * @param int $flags Bit field of IDatabase::QUERY_* constants. Note that suppression
-	 *     of errors is best handled by try/catch rather than using one of these flags.
+	 * @param string $sql Single-statement SQL query
+	 * @param string $fname Caller name; used for profiling/SHOW PROCESSLIST comments
+	 * @param int $flags Bit field of IDatabase::QUERY_* constants.
 	 * @return bool|IResultWrapper True for a successful write query, IResultWrapper object
 	 *     for a successful read query, or false on failure if QUERY_SILENCE_ERRORS is set.
 	 * @throws DBQueryError If the query is issued, fails, and QUERY_SILENCE_ERRORS is not set.
@@ -858,7 +853,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	public function tableExists( $table, $fname = __METHOD__ );
 
 	/**
-	 * Insert the given row(s) into a table
+	 * Insert row(s) into a table, in the provided order
 	 *
 	 * @param string $table Table name
 	 * @param array|array[] $rows Row(s) to insert, as either:
@@ -1057,7 +1052,11 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	public function nextSequenceValue( $seqName );
 
 	/**
-	 * Insert row(s) into a table, deleting all conflicting rows beforehand
+	 * Insert row(s) into a table, in the provided order, while deleting conflicting rows
+	 *
+	 * Conflicts are determined by the provided unique indexes. Note that it is possible
+	 * for the provided rows to conflict even among themselves; it is preferable for the
+	 * caller to de-duplicate such input beforehand.
 	 *
 	 * Note some important implications of the deletion semantics:
 	 *   - If the table has an AUTOINCREMENT column and $rows omit that column, then any
@@ -1086,11 +1085,13 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ );
 
 	/**
-	 * Upsert the given row(s) into a table
+	 * Upsert row(s) into a table, in the provided order, while updating conflicting rows
 	 *
-	 * This updates any existing rows that conflict with the provided rows and inserts
-	 * any of the provided rows that do not conflict with existing rows. Conflicts are
-	 * determined by the provided unique indexes.
+	 * Conflicts are determined by the provided unique indexes. Note that it is possible
+	 * for the provided rows to conflict even among themselves; it is preferable for the
+	 * caller to de-duplicate such input beforehand.
+	 *
+	 * @see IDatabase::buildExcludedValue()
 	 *
 	 * @param string $table Table name
 	 * @param array|array[] $rows Row(s) to insert, in the form of either:
