@@ -114,14 +114,23 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				'VIDEO' => 'mw:Video',
 			][ $img ? $img->getMediaType() : '' ] ?? 'mw:Image';
 
-			if ( !$img || !$thumb ) {
+			$isBadFile = $img && $thumb && $this->mHideBadImages &&
+				$badFileLookup->isBadFile( $nt->getDBkey(), $this->getContextTitle() );
+
+			if ( !$img || !$thumb || $isBadFile ) {
 				$rdfaType = 'mw:Error ' . $rdfaType;
 
 				if ( $enableLegacyMediaDOM ) {
-					$thumbhtml = htmlspecialchars( $img ? $img->getLastError() : $nt->getText() );
+					if ( $isBadFile ) {
+						$thumbhtml = $linkRenderer->makeKnownLink( $nt, $nt->getText() );
+					} else {
+						$thumbhtml = htmlspecialchars( $img ? $img->getLastError() : $nt->getText() );
+					}
 				} else {
-					$thumbhtml = Linker::makeBrokenImageLinkObj( $nt, '', '', '', '', false,
-						$transformOptions );
+					// FIXME: BadFile is known
+					$thumbhtml = Linker::makeBrokenImageLinkObj(
+						$nt, '', '', '', '', false, $transformOptions
+					);
 					$thumbhtml = Html::rawElement( 'span', [ 'typeof' => $rdfaType ], $thumbhtml );
 				}
 
@@ -132,14 +141,6 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				if ( !$img && $resolveFilesViaParser ) {
 					$this->mParser->addTrackingCategory( 'broken-file-category' );
 				}
-			} elseif ( $this->mHideBadImages &&
-				$badFileLookup->isBadFile( $nt->getDBkey(), $this->getContextTitle() )
-			) {
-				# The image is bad, so just show it as a text link.
-				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' .
-					( $this->getThumbPadding() + $this->mHeights ) . 'px;">' .
-					$linkRenderer->makeKnownLink( $nt, $nt->getText() ) .
-					'</div>';
 			} else {
 				/** @var MediaTransformOutput $thumb */
 				$vpad = $this->getVPad( $this->mHeights, $thumb->getHeight() );

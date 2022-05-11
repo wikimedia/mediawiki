@@ -175,6 +175,26 @@ Bar foo</p>
 !! end
 
 !! test
+Bad images - in gallery
+!! wikitext
+<gallery>
+File:Bad.jpg
+</gallery>
+!! html/php
+<ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
+			<div class="thumb" style="height: 150px;"><a href="/wiki/File:Bad.jpg" title="File:Bad.jpg">Bad.jpg</a></div>
+			<div class="gallerytext">
+			</div>
+		</div></li>
+</ul>
+!! html/parsoid
+<ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-badfile","message":"This image is on the bad file list."}]}'><a href="./Special:FilePath/Bad.jpg"><span class="mw-broken-media" resource="./File:Bad.jpg" data-width="120" data-height="120">File:Bad.jpg</span></a></span></div><div class="gallerytext"></div></li>
+</ul>
+!! end
+
+!! test
 Allow empty links in image captions (T62753)
 !! options
 thumbsize=220
