@@ -539,7 +539,7 @@ Image with link parameter, wgExternalLinkTarget
 !! wikitext
 [[Image:foobar.jpg|link=http://example.com/]]
 !! config
-wgExternalLinkTarget='foobar'
+wgExternalLinkTarget="foobar"
 wgParserEnableLegacyMediaDOM=false
 !! html/php
 <p><span class="mw-default-size" typeof="mw:Image"><a href="http://example.com/" target="foobar" rel="nofollow noreferrer noopener"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></span>
@@ -552,7 +552,7 @@ Thumb with link parameter, wgExternalLinkTarget
 !! wikitext
 [[Image:foobar.jpg|thumb|link=http://example.com/]]
 !! config
-wgExternalLinkTarget='foobar'
+wgExternalLinkTarget="foobar"
 wgParserEnableLegacyMediaDOM=false
 !! html/php
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="http://example.com/" target="foobar" rel="nofollow noreferrer noopener"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a><figcaption></figcaption></figure>
@@ -575,7 +575,7 @@ Image with link parameter, wgNoFollowDomainExceptions
 !! wikitext
 [[Image:foobar.jpg|link=http://example.com/]]
 !! config
-wgNoFollowDomainExceptions='example.com'
+wgNoFollowDomainExceptions="example.com"
 wgParserEnableLegacyMediaDOM=false
 !! html/php
 <p><span class="mw-default-size" typeof="mw:Image"><a href="http://example.com/"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></span>
@@ -588,7 +588,7 @@ Image with link parameter, wgExternalLinkTarget, unnamed parameter
 !! wikitext
 [[Image:foobar.jpg|link=http://example.com/|Title]]
 !! config
-wgExternalLinkTarget='foobar'
+wgExternalLinkTarget="foobar"
 wgParserEnableLegacyMediaDOM=false
 !! html/php
 <p><span class="mw-default-size" typeof="mw:Image"><a href="http://example.com/" title="Title" target="foobar" rel="nofollow noreferrer noopener"><img alt="Title" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></span>
