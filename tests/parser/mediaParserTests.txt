@@ -162,6 +162,7 @@ wgParserEnableLegacyMediaDOM=false
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x"/></a><figcaption>one <i>two</i> <span typeof="mw:Entity">|</span> three</figcaption></figure>
 !! end
 
+## FIXME: Legacy output doesn't match Parsoid
 !! test
 Bad images - basic functionality
 !! config
@@ -175,6 +176,7 @@ wgParserEnableLegacyMediaDOM=false
 <p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-badfile","message":"This image is on the bad file list."}]}'><a href="./Special:FilePath/Bad.jpg"><span class="mw-broken-media" resource="./File:Bad.jpg">File:Bad.jpg</span></a></span></p>
 !! end
 
+## FIXME: Legacy output doesn't match Parsoid
 !! test
 Bad images - T18039: text after bad image disappears
 !! config
@@ -192,6 +194,28 @@ Bar foo
 <p>Foo bar
 <span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-badfile","message":"This image is on the bad file list."}]}'><a href="./Special:FilePath/Bad.jpg"><span class="mw-broken-media" resource="./File:Bad.jpg">File:Bad.jpg</span></a></span>
 Bar foo</p>
+!! end
+
+!! test
+Bad images - in gallery
+!! config
+wgParserEnableLegacyMediaDOM=false
+!! wikitext
+<gallery>
+File:Bad.jpg
+</gallery>
+!! html/php
+<ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 155px">
+			<div class="thumb" style="height: 150px;"><span typeof="mw:Error mw:Image"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Bad.jpg" class="new" title="File:Bad.jpg"><span class="mw-broken-media" data-width="120" data-height="120">File:Bad.jpg</span></a></span></div>
+			<div class="gallerytext">
+			</div>
+		</li>
+</ul>
+!! html/parsoid
+<ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-badfile","message":"This image is on the bad file list."}]}'><a href="./Special:FilePath/Bad.jpg"><span class="mw-broken-media" resource="./File:Bad.jpg" data-width="120" data-height="120">File:Bad.jpg</span></a></span></div><div class="gallerytext"></div></li>
+</ul>
 !! end
 
 !! test
