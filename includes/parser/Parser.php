@@ -5237,10 +5237,8 @@ class Parser {
 							// FIXME: Support 'no-link' here?
 							if ( $type === 'link-url' ) {
 								$imageOptions[$type] = $target;
-								$this->mOutput->addExternalLink( $target );
 							} elseif ( $type === 'link-title' ) {
 								$imageOptions[$type] = $target;
-								$this->mOutput->addLink( $target );
 							}
 							break;
 						default:
