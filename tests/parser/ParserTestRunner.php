@@ -1373,11 +1373,18 @@ class ParserTestRunner {
 		}
 
 		if ( $config ) {
-			$configLines = explode( "\n", $config );
+			if ( is_string( $config ) ) {
+				// Temporary transition code
+				$configLines = explode( "\n", $config );
 
-			foreach ( $configLines as $line ) {
-				list( $var, $value )  = explode( '=', $line, 2 );
-				$setup[$var] = eval( "return $value;" );
+				foreach ( $configLines as $line ) {
+					list( $var, $value )  = explode( '=', $line, 2 );
+					$setup[$var] = eval( "return $value;" );
+				}
+			} else {
+				foreach ( $config as $var => $value ) {
+					$setup[$var] = $value;
+				}
 			}
 		}
 
