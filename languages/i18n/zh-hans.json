@@ -1356,6 +1356,7 @@
 	"userrights-conflict": "用户权限的更改存在冲突！请检查并确认您的更改。",
 	"group": "用户组：",
 	"group-user": "用户",
+	"group-named": "注册用户",
 	"group-autoconfirmed": "自动确认用户",
 	"group-bot": "机器人",
 	"group-sysop": "管理员",

@@ -1334,6 +1334,7 @@
 	"group-bureaucrat-member": "{{GENDER:$1|burocrate}}",
 	"group-suppress-member": "{{GENDER:$1|soppressore|sopprimitrice}}",
 	"grouppage-user": "{{ns:project}}:Utenti",
+	"grouppage-named": "{{ns:project}}:Utenti registrati",
 	"grouppage-autoconfirmed": "{{ns:project}}:Utenti autoconvalidati",
 	"grouppage-bot": "{{ns:project}}:Bot",
 	"grouppage-sysop": "{{ns:project}}:Amministratori",
