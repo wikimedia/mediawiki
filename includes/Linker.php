@@ -534,7 +534,7 @@ class Linker {
 	 * @param Parser|null $parser
 	 * @return array
 	 */
-	private static function getImageLinkMTOParams( $frameParams, $query = '', $parser = null ) {
+	public static function getImageLinkMTOParams( $frameParams, $query = '', $parser = null ) {
 		$mtoParams = [];
 		if ( isset( $frameParams['link-url'] ) && $frameParams['link-url'] !== '' ) {
 			$mtoParams['custom-url-link'] = $frameParams['link-url'];

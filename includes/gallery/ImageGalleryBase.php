@@ -280,6 +280,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
 	 * @param int $loading Sets loading attribute of the underlying <img> (optional)
+	 * @param ?array $imageOptions To supercede the $link param
 	 */
 	public function add(
 			$title,
@@ -287,13 +288,14 @@ abstract class ImageGalleryBase extends ContextSource {
 			$alt = '',
 			$link = '',
 			$handlerOpts = [],
-			$loading = self::LOADING_DEFAULT
+			$loading = self::LOADING_DEFAULT,
+			?array $imageOptions = null
 		) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
-		$this->mImages[] = [ $title, $html, $alt, $link, $handlerOpts, $loading ];
+		$this->mImages[] = [ $title, $html, $alt, $link, $handlerOpts, $loading, $imageOptions ];
 		wfDebug( 'ImageGallery::add ' . $title->getText() );
 	}
 
@@ -307,6 +309,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
 	 * @param int $loading Sets loading attribute of the underlying <img> (optional)
+	 * @param ?array $imageOptions To supercede the $link param
 	 */
 	public function insert(
 			$title,
@@ -314,13 +317,14 @@ abstract class ImageGalleryBase extends ContextSource {
 			$alt = '',
 			$link = '',
 			$handlerOpts = [],
-			$loading = self::LOADING_DEFAULT
+			$loading = self::LOADING_DEFAULT,
+			?array $imageOptions = null
 		) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
-		array_unshift( $this->mImages, [ &$title, $html, $alt, $link, $handlerOpts, $loading ] );
+		array_unshift( $this->mImages, [ &$title, $html, $alt, $link, $handlerOpts, $loading, $imageOptions ] );
 	}
 
 	/**

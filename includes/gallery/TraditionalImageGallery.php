@@ -84,7 +84,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			$this->getConfig()->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 
 		# Output each image...
-		foreach ( $this->mImages as [ $nt, $text, $alt, $link, $handlerOpts, $loading ] ) {
+		foreach ( $this->mImages as [ $nt, $text, $alt, $link, $handlerOpts, $loading, $imageOptions ] ) {
 			// "text" means "caption" here
 			/** @var Title $nt */
 
@@ -144,12 +144,20 @@ class TraditionalImageGallery extends ImageGalleryBase {
 				/** @var MediaTransformOutput $thumb */
 				$vpad = $this->getVPad( $this->mHeights, $thumb->getHeight() );
 
-				$imageParameters = [
-					'desc-link' => true,
-					'desc-query' => $descQuery,
-					'alt' => $alt,
-					'custom-url-link' => $link
-				];
+				// Backwards compat before the $imageOptions existed
+				if ( $imageOptions === null ) {
+					$imageParameters = [
+						'desc-link' => true,
+						'desc-query' => $descQuery,
+						'alt' => $alt,
+						'custom-url-link' => $link
+					];
+				} else {
+					$params = [ 'alt' => $alt ];
+					$imageParameters = Linker::getImageLinkMTOParams(
+						$imageOptions, $descQuery, $this->mParser
+					) + $params;
+				}
 
 				// In the absence of both alt text and caption, fall back on
 				// providing screen readers with the filename as alt text
