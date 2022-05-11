@@ -253,7 +253,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->editingPreferences( $user, $context, $preferences );
 		$this->rcPreferences( $user, $context, $preferences );
 		$this->watchlistPreferences( $user, $context, $preferences );
-		$this->searchPreferences( $preferences );
+		$this->searchPreferences( $context, $preferences );
 
 		$this->hookRunner->onGetPreferences( $user, $preferences );
 
@@ -1442,9 +1442,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	}
 
 	/**
+	 * @param IContextSource $context
 	 * @param array &$defaultPreferences
 	 */
-	protected function searchPreferences( &$defaultPreferences ) {
+	protected function searchPreferences( $context, &$defaultPreferences ) {
 		$defaultPreferences['search-special-page'] = [
 			'type' => 'api',
 		];
@@ -1474,7 +1475,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'max' => 500,
 			'section' => 'searchoptions/searchmisc',
 			'label-message' => 'searchlimit-label',
-			'help-message' => 'searchlimit-help',
+			'help-message' => $context->msg( 'searchlimit-help', 500 ),
 			'filter' => IntvalFilter::class,
 		];
 	}
