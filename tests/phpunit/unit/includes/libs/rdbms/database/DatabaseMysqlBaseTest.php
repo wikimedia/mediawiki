@@ -669,18 +669,15 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testIndexAliases() {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->onlyMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix', 'addIdentifierQuotes' ] )
+			->onlyMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
 		$db->method( 'mysqlRealEscapeString' )->willReturnCallback(
 			static function ( $s ) {
 				return str_replace( "'", "\\'", $s );
 			}
 		);
-		$db->method( 'addIdentifierQuotes' )->willReturnCallback(
-			static function ( $s ) {
-				return ( new MySQLPlatform( new AddQuoterMock() ) )->addIdentifierQuotes( $s );
-			}
-		);
+		$wdb = TestingAccessWrapper::newFromObject( $db );
+		$wdb->platform = new MySQLPlatform( new AddQuoterMock() );
 
 		/** @var IDatabase $db */
 		$db->setIndexAliases( [ 'a_b_idx' => 'a_c_idx' ] );
@@ -708,18 +705,15 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testTableAliases() {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->onlyMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix', 'addIdentifierQuotes' ] )
+			->onlyMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
 		$db->method( 'mysqlRealEscapeString' )->willReturnCallback(
 			static function ( $s ) {
 				return str_replace( "'", "\\'", $s );
 			}
 		);
-		$db->method( 'addIdentifierQuotes' )->willReturnCallback(
-			static function ( $s ) {
-				return ( new MySQLPlatform( new AddQuoterMock() ) )->addIdentifierQuotes( $s );
-			}
-		);
+		$wdb = TestingAccessWrapper::newFromObject( $db );
+		$wdb->platform = new MySQLPlatform( new AddQuoterMock() );
 
 		/** @var IDatabase $db */
 		$db->setTableAliases( [

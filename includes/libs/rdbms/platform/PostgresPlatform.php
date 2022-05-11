@@ -25,7 +25,7 @@ namespace Wikimedia\Rdbms\Platform;
  * @see ISQLPlatform
  */
 class PostgresPlatform extends SQLPlatform {
-	/**
-	 * Empty for now
-	 */
+	public function buildConcat( $stringList ) {
+		return implode( ' || ', $stringList );
+	}
 }

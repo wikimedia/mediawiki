@@ -878,16 +878,6 @@ class DatabaseSqlite extends Database {
 		return $this->lockMgr->unlock( [ $lockName ], LockManager::LOCK_EX )->isGood();
 	}
 
-	/**
-	 * Build a concatenation list to feed into a SQL query
-	 *
-	 * @param string[] $stringList
-	 * @return string
-	 */
-	public function buildConcat( $stringList ) {
-		return '(' . implode( ') || (', $stringList ) . ')';
-	}
-
 	public function buildGroupConcatField(
 		$delim, $table, $field, $conds = '', $join_conds = []
 	) {
