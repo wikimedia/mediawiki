@@ -5234,10 +5234,10 @@ class Parser {
 								$linkValue = substr( $linkValue, 4, -2 );
 							}
 							list( $type, $target ) = $this->parseLinkParameter( $linkValue );
-							// FIXME: Support 'no-link' here?
-							if ( $type === 'link-url' ) {
-								$imageOptions[$type] = $target;
-							} elseif ( $type === 'link-title' ) {
+							if ( $type ) {
+								if ( $type === 'no-link' ) {
+									$target = true;
+								}
 								$imageOptions[$type] = $target;
 							}
 							break;
