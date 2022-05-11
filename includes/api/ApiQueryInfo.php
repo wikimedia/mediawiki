@@ -21,9 +21,9 @@
  */
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
@@ -49,6 +49,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $watchedItemStore;
 	/** @var RestrictionStore */
 	private $restrictionStore;
+	/** @var LinksMigration */
+	private $linksMigration;
 
 	private $fld_protection = false, $fld_talkid = false,
 		$fld_subjectid = false, $fld_url = false,
@@ -110,6 +112,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @param WatchedItemStore $watchedItemStore
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 * @param RestrictionStore $restrictionStore
+	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
@@ -121,7 +124,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		TitleFormatter $titleFormatter,
 		WatchedItemStore $watchedItemStore,
 		LanguageConverterFactory $languageConverterFactory,
-		RestrictionStore $restrictionStore
+		RestrictionStore $restrictionStore,
+		LinksMigration $linksMigration
 	) {
 		parent::__construct( $queryModule, $moduleName, 'in' );
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $contentLanguage );
@@ -131,6 +135,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->titleFormatter = $titleFormatter;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->restrictionStore = $restrictionStore;
+		$this->linksMigration = $linksMigration;
 	}
 
 	/**
@@ -487,9 +492,8 @@ class ApiQueryInfo extends ApiQueryBase {
 				array_values( $this->restrictionStore->listApplicableRestrictionTypes( $title ) );
 		}
 
-		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
-		list( $blNamespace, $blTitle ) = $linksMigration->getTitleFields( 'templatelinks' );
-		$queryInfo = $linksMigration->getQueryInfo( 'templatelinks' );
+		list( $blNamespace, $blTitle ) = $this->linksMigration->getTitleFields( 'templatelinks' );
+		$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
 
 		if ( count( $others ) ) {
 			// Non-images: check templatelinks

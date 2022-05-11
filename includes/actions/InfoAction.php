@@ -27,6 +27,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -90,6 +91,9 @@ class InfoAction extends FormlessAction {
 	/** @var RestrictionStore */
 	private $restrictionStore;
 
+	/** @var LinksMigration */
+	private $linksMigration;
+
 	/** @var int */
 	private $actorTableSchemaMigrationStage;
 
@@ -111,6 +115,7 @@ class InfoAction extends FormlessAction {
 	 * @param WatchedItemStoreInterface $watchedItemStore
 	 * @param RedirectLookup $redirectLookup
 	 * @param RestrictionStore $restrictionStore
+	 * @param LinksMigration $linksMigration
 	 * @param Config $config
 	 */
 	public function __construct(
@@ -131,6 +136,7 @@ class InfoAction extends FormlessAction {
 		WatchedItemStoreInterface $watchedItemStore,
 		RedirectLookup $redirectLookup,
 		RestrictionStore $restrictionStore,
+		LinksMigration $linksMigration,
 		Config $config
 	) {
 		parent::__construct( $page, $context );
@@ -149,6 +155,7 @@ class InfoAction extends FormlessAction {
 		$this->watchedItemStore = $watchedItemStore;
 		$this->redirectLookup = $redirectLookup;
 		$this->restrictionStore = $restrictionStore;
+		$this->linksMigration = $linksMigration;
 		$this->actorTableSchemaMigrationStage = $config->get( MainConfigNames::ActorTableSchemaMigrationStage );
 	}
 
@@ -1049,11 +1056,10 @@ class InfoAction extends FormlessAction {
 				if ( $config->get( MainConfigNames::MiserMode ) ) {
 					$result['transclusion']['to'] = 0;
 				} else {
-					$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 					$result['transclusion']['to'] = (int)$dbr->selectField(
 						'templatelinks',
 						'COUNT(tl_from)',
-						$linksMigration->getLinksConditions( 'templatelinks', $title ),
+						$this->linksMigration->getLinksConditions( 'templatelinks', $title ),
 						$fname
 					);
 				}

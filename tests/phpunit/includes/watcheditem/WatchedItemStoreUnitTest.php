@@ -2,6 +2,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageIdentityValue;
@@ -148,6 +149,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( Language::class ),
 			$this->createMock( GenderCache::class ),
 			$this->getMockLoadBalancer( $mockDb ),
+			$this->createMock( LinksMigration::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 	}

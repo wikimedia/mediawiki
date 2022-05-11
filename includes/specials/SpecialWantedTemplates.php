@@ -27,7 +27,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Linker\LinksMigration;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -37,23 +37,28 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class SpecialWantedTemplates extends WantedQueryPage {
 
+	/** @var LinksMigration */
+	private $linksMigration;
+
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		LinksMigration $linksMigration
 	) {
 		parent::__construct( 'Wantedtemplates' );
 		$this->setDBLoadBalancer( $loadBalancer );
 		$this->setLinkBatchFactory( $linkBatchFactory );
+		$this->linksMigration = $linksMigration;
 	}
 
 	public function getQueryInfo() {
-		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
-		$queryInfo = $linksMigration->getQueryInfo( 'templatelinks' );
-		list( $ns, $title ) = $linksMigration->getTitleFields( 'templatelinks' );
+		$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
+		list( $ns, $title ) = $this->linksMigration->getTitleFields( 'templatelinks' );
 		return [
 			'tables' => array_merge( $queryInfo['tables'], [ 'page' ] ),
 			'fields' => [

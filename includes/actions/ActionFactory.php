@@ -118,6 +118,7 @@ class ActionFactory {
 				'WatchedItemStore',
 				'RedirectLookup',
 				'RestrictionStore',
+				'LinksMigration',
 				'MainConfig'
 			],
 		],

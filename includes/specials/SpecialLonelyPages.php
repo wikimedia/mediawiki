@@ -23,7 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Linker\LinksMigration;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -37,23 +37,29 @@ class SpecialLonelyPages extends PageQueryPage {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
+	/** @var LinksMigration */
+	private $linksMigration;
+
 	/**
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param LanguageConverterFactory $languageConverterFactory
+	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
 		NamespaceInfo $namespaceInfo,
 		ILoadBalancer $loadBalancer,
 		LinkBatchFactory $linkBatchFactory,
-		LanguageConverterFactory $languageConverterFactory
+		LanguageConverterFactory $languageConverterFactory,
+		LinksMigration $linksMigration
 	) {
 		parent::__construct( 'Lonelypages' );
 		$this->namespaceInfo = $namespaceInfo;
 		$this->setDBLoadBalancer( $loadBalancer );
 		$this->setLinkBatchFactory( $linkBatchFactory );
 		$this->setLanguageConverter( $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() ) );
+		$this->linksMigration = $linksMigration;
 	}
 
 	protected function getPageHeader() {
@@ -73,13 +79,12 @@ class SpecialLonelyPages extends PageQueryPage {
 	}
 
 	public function getQueryInfo() {
-		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
-		$queryInfo = $linksMigration->getQueryInfo(
+		$queryInfo = $this->linksMigration->getQueryInfo(
 			'templatelinks',
 			'templatelinks',
 			'LEFT JOIN'
 		);
-		list( $ns, $title ) = $linksMigration->getTitleFields( 'templatelinks' );
+		list( $ns, $title ) = $this->linksMigration->getTitleFields( 'templatelinks' );
 		$tables = array_merge( [ 'page', 'pagelinks' ], $queryInfo['tables'] );
 		$conds = [
 			'pl_namespace IS NULL',

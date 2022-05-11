@@ -406,6 +406,7 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 			$services->getContentLanguage(),
 			$services->getGenderCache(),
 			$fakeLB,
+			$services->getLinksMigration(),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 		$parser = new CommentParser(

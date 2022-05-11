@@ -23,8 +23,8 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -61,6 +61,9 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	/** @var TitleFactory */
 	private $titleFactory;
 
+	/** @var LinksMigration */
+	private $linksMigration;
+
 	protected $limits = [ 20, 50, 100, 250, 500 ];
 
 	/**
@@ -70,6 +73,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	 * @param SearchEngineFactory $searchEngineFactory
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param TitleFactory $titleFactory
+	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
@@ -77,7 +81,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		IContentHandlerFactory $contentHandlerFactory,
 		SearchEngineFactory $searchEngineFactory,
 		NamespaceInfo $namespaceInfo,
-		TitleFactory $titleFactory
+		TitleFactory $titleFactory,
+		LinksMigration $linksMigration
 	) {
 		parent::__construct( 'Whatlinkshere' );
 		$this->loadBalancer = $loadBalancer;
@@ -86,6 +91,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$this->searchEngineFactory = $searchEngineFactory;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->titleFactory = $titleFactory;
+		$this->linksMigration = $linksMigration;
 	}
 
 	public function execute( $par ) {
@@ -228,8 +234,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			'pl_namespace' => $target->getNamespace(),
 			'pl_title' => $target->getDBkey(),
 		];
-		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
-		$conds['templatelinks'] = $linksMigration->getLinksConditions( 'templatelinks', $target );
+		$conds['templatelinks'] = $this->linksMigration->getLinksConditions( 'templatelinks', $target );
 		$conds['imagelinks'] = [
 			'il_to' => $target->getDBkey(),
 		];
