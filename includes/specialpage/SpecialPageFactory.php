@@ -118,6 +118,7 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 				'LinkBatchFactory',
 				'LanguageConverterFactory',
+				'LinksMigration',
 			]
 		],
 		'Fewestrevisions' => [
@@ -219,6 +220,7 @@ class SpecialPageFactory {
 			'class' => \SpecialUnusedTemplates::class,
 			'services' => [
 				'DBLoadBalancer',
+				'LinksMigration',
 			]
 		],
 		'Unwatchedpages' => [
@@ -257,6 +259,7 @@ class SpecialPageFactory {
 			'services' => [
 				'DBLoadBalancer',
 				'LinkBatchFactory',
+				'LinksMigration',
 			]
 		],
 
@@ -740,6 +743,7 @@ class SpecialPageFactory {
 			'services' => [
 				'DBLoadBalancer',
 				'LinkBatchFactory',
+				'LinksMigration',
 			]
 		],
 		'Mostcategories' => [
@@ -775,6 +779,7 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 				'WikiExporterFactory',
 				'TitleFormatter',
+				'LinksMigration',
 			]
 		],
 		'Import' => [
@@ -811,6 +816,7 @@ class SpecialPageFactory {
 				'SearchEngineFactory',
 				'NamespaceInfo',
 				'TitleFactory',
+				'LinksMigration',
 			]
 		],
 		'MergeHistory' => [

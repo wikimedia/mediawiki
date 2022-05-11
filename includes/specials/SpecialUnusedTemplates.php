@@ -24,7 +24,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Linker\LinksMigration;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -34,12 +34,20 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class SpecialUnusedTemplates extends QueryPage {
 
+	/** @var LinksMigration */
+	private $linksMigration;
+
 	/**
 	 * @param ILoadBalancer $loadBalancer
+	 * @param LinksMigration $linksMigration
 	 */
-	public function __construct( ILoadBalancer $loadBalancer ) {
+	public function __construct(
+		ILoadBalancer $loadBalancer,
+		LinksMigration $linksMigration
+	) {
 		parent::__construct( 'Unusedtemplates' );
 		$this->setDBLoadBalancer( $loadBalancer );
+		$this->linksMigration = $linksMigration;
 	}
 
 	public function isExpensive() {
@@ -59,13 +67,12 @@ class SpecialUnusedTemplates extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
-		$queryInfo = $linksMigration->getQueryInfo(
+		$queryInfo = $this->linksMigration->getQueryInfo(
 			'templatelinks',
 			'templatelinks',
 			'LEFT JOIN'
 		);
-		list( $ns, $title ) = $linksMigration->getTitleFields( 'templatelinks' );
+		list( $ns, $title ) = $this->linksMigration->getTitleFields( 'templatelinks' );
 		$joinConds = [];
 		$templatelinksJoin = [
 			'LEFT JOIN', [ "$title = page_title",

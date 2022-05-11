@@ -21,7 +21,6 @@
  */
 
 use MediaWiki\Linker\LinksMigration;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Query module to enumerate links from all pages together.
@@ -51,12 +50,14 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	 * @param string $moduleName
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param GenderCache $genderCache
+	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		NamespaceInfo $namespaceInfo,
-		GenderCache $genderCache
+		GenderCache $genderCache,
+		LinksMigration $linksMigration
 	) {
 		switch ( $moduleName ) {
 			case 'alllinks':
@@ -100,6 +101,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		parent::__construct( $query, $moduleName, $prefix );
 		$this->namespaceInfo = $namespaceInfo;
 		$this->genderCache = $genderCache;
+		$this->linksMigration = $linksMigration;
 	}
 
 	public function execute() {
@@ -121,7 +123,6 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	private function run( $resultPageSet = null ) {
 		$db = $this->getDB();
 		$params = $this->extractRequestParams();
-		$this->linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 
 		$pfx = $this->tablePrefix;
 

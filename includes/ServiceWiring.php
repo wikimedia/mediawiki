@@ -820,6 +820,7 @@ return [
 			$services->getContentLanguage(),
 			$services->getGenderCache(),
 			$services->getDBLoadBalancer(),
+			$services->getLinksMigration(),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 	},

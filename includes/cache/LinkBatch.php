@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -81,6 +82,9 @@ class LinkBatch {
 	 */
 	private $loadBalancer;
 
+	/** @var LinksMigration */
+	private $linksMigration;
+
 	/** @var LoggerInterface */
 	private $logger;
 
@@ -91,6 +95,7 @@ class LinkBatch {
 	 * @param Language|null $contentLanguage
 	 * @param GenderCache|null $genderCache
 	 * @param ILoadBalancer|null $loadBalancer
+	 * @param LinksMigration|null $linksMigration
 	 * @param LoggerInterface|null $logger
 	 * @deprecated since 1.35 Use makeLinkBatch of the LinkBatchFactory service instead
 	 */
@@ -101,6 +106,7 @@ class LinkBatch {
 		?Language $contentLanguage = null,
 		?GenderCache $genderCache = null,
 		?ILoadBalancer $loadBalancer = null,
+		?LinksMigration $linksMigration = null,
 		?LoggerInterface $logger = null
 	) {
 		$getServices = static function () {
@@ -113,6 +119,7 @@ class LinkBatch {
 		$this->contentLanguage = $contentLanguage ?? $getServices()->getContentLanguage();
 		$this->genderCache = $genderCache ?? $getServices()->getGenderCache();
 		$this->loadBalancer = $loadBalancer ?? $getServices()->getDBLoadBalancer();
+		$this->linksMigration = $linksMigration ?? $getServices()->getLinksMigration();
 		$this->logger = $logger ?? LoggerFactory::getInstance( 'LinkBatch' );
 
 		foreach ( $arr as $item ) {
@@ -370,10 +377,9 @@ class LinkBatch {
 	 * @return string|bool String with SQL where clause fragment, or false if no items.
 	 */
 	public function constructSet( $prefix, $db ) {
-		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
-		if ( isset( $linksMigration::$prefixToTableMapping[$prefix] ) ) {
-			list( $blNamespace, $blTitle ) = $linksMigration->getTitleFields(
-				$linksMigration::$prefixToTableMapping[$prefix]
+		if ( isset( $this->linksMigration::$prefixToTableMapping[$prefix] ) ) {
+			list( $blNamespace, $blTitle ) = $this->linksMigration->getTitleFields(
+				$this->linksMigration::$prefixToTableMapping[$prefix]
 			);
 		} else {
 			$blNamespace = "{$prefix}_namespace";

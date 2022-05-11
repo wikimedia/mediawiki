@@ -55,6 +55,7 @@
 			"Teak",
 			"Telaneo",
 			"Wouterkoch",
+			"Yupik",
 			"לערי ריינהארט",
 			"아라"
 		]
@@ -1247,7 +1248,7 @@
 	"group-bureaucrat-member": "{{GENDER:$1|byråkrat}}",
 	"group-suppress-member": "{{GENDER:$1|historikkrydder}}",
 	"grouppage-user": "{{ns:project}}:Brukere",
-	"grouppage-named": "{{ns:Project}}:Registrerte brukere",
+	"grouppage-named": "{{ns:project}}:Registrerte brukere",
 	"grouppage-autoconfirmed": "{{ns:project}}:Autobekreftede brukere",
 	"grouppage-bot": "{{ns:project}}:Roboter",
 	"grouppage-sysop": "{{ns:project}}:Administratorer",
