@@ -41,7 +41,6 @@ use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\CriticalSectionScope;
 use Wikimedia\ScopedCallback;
-use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Relational database abstraction object
@@ -3214,56 +3213,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @stable to override
-	 * @param string $s
-	 * @param string $escapeChar
-	 * @return string
-	 */
-	protected function escapeLikeInternal( $s, $escapeChar = '`' ) {
-		return str_replace(
-			[ $escapeChar, '%', '_' ],
-			[ "{$escapeChar}{$escapeChar}", "{$escapeChar}%", "{$escapeChar}_" ],
-			$s
-		);
-	}
-
-	/**
 	 * @inheritDoc
 	 * @stable to override
 	 */
 	public function buildLike( $param, ...$params ) {
-		if ( is_array( $param ) ) {
-			$params = $param;
-		} else {
-			$params = func_get_args();
-		}
-
-		$s = '';
-
-		// We use ` instead of \ as the default LIKE escape character, since addQuotes()
-		// may escape backslashes, creating problems of double escaping. The `
-		// character has good cross-DBMS compatibility, avoiding special operators
-		// in MS SQL like ^ and %
-		$escapeChar = '`';
-
-		foreach ( $params as $value ) {
-			if ( $value instanceof LikeMatch ) {
-				$s .= $value->toString();
-			} else {
-				$s .= $this->escapeLikeInternal( $value, $escapeChar );
-			}
-		}
-
-		return ' LIKE ' .
-			$this->addQuotes( $s ) . ' ESCAPE ' . $this->addQuotes( $escapeChar ) . ' ';
+		return $this->platform->buildLike( $param, ...$params );
 	}
 
 	public function anyChar() {
-		return new LikeMatch( '_' );
+		return $this->platform->anyChar();
 	}
 
 	public function anyString() {
-		return new LikeMatch( '%' );
+		return $this->platform->anyString();
 	}
 
 	public function nextSequenceValue( $seqName ) {
@@ -3678,17 +3640,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function limitResult( $sql, $limit, $offset = false ) {
-		if ( !is_numeric( $limit ) ) {
-			throw new DBUnexpectedError(
-				$this,
-				"Invalid non-numeric limit passed to " . __METHOD__
-			);
-		}
-		// This version works in MySQL and SQLite. It will very likely need to be
-		// overridden for most other RDBMS subclasses.
-		return "$sql LIMIT "
-			. ( ( is_numeric( $offset ) && $offset != 0 ) ? "{$offset}," : "" )
-			. "{$limit} ";
+		return $this->platform->limitResult( $sql, $limit, $offset );
 	}
 
 	/**
@@ -3696,7 +3648,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function unionSupportsOrderAndLimit() {
-		return true; // True for almost every DB supported
+		return $this->platform->unionSupportsOrderAndLimit();
 	}
 
 	/**
@@ -3704,9 +3656,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function unionQueries( $sqls, $all ) {
-		$glue = $all ? ') UNION ALL (' : ') UNION (';
-
-		return '(' . implode( $glue, $sqls ) . ')';
+		return $this->platform->unionQueries( $sqls, $all );
 	}
 
 	public function unionConditionPermutations(
@@ -3790,11 +3740,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function conditional( $cond, $caseTrueExpression, $caseFalseExpression ) {
-		if ( is_array( $cond ) ) {
-			$cond = $this->makeList( $cond, self::LIST_AND );
-		}
-
-		return "(CASE WHEN $cond THEN $caseTrueExpression ELSE $caseFalseExpression END)";
+		return $this->platform->conditional( $cond, $caseTrueExpression, $caseFalseExpression );
 	}
 
 	/**
@@ -3802,7 +3748,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function strreplace( $orig, $old, $new ) {
-		return "REPLACE({$orig}, {$old}, {$new})";
+		return $this->platform->strreplace( $orig, $old, $new );
 	}
 
 	/**
@@ -4619,17 +4565,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function timestamp( $ts = 0 ) {
-		$t = new ConvertibleTimestamp( $ts );
-		// Let errors bubble up to avoid putting garbage in the DB
-		return $t->getTimestamp( TS_MW );
+		return $this->platform->timestamp( $ts );
 	}
 
 	public function timestampOrNull( $ts = null ) {
-		if ( $ts === null ) {
-			return null;
-		} else {
-			return $this->timestamp( $ts );
-		}
+		return $this->platform->timestampOrNull( $ts );
 	}
 
 	public function affectedRows() {
@@ -5254,21 +5194,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function getInfinity() {
-		return 'infinity';
+		return $this->platform->getInfinity();
 	}
 
 	public function encodeExpiry( $expiry ) {
-		return ( $expiry == '' || $expiry == 'infinity' || $expiry == $this->getInfinity() )
-			? $this->getInfinity()
-			: $this->timestamp( $expiry );
+		return $this->platform->encodeExpiry( $expiry );
 	}
 
 	public function decodeExpiry( $expiry, $format = TS_MW ) {
-		if ( $expiry == '' || $expiry == 'infinity' || $expiry == $this->getInfinity() ) {
-			return 'infinity';
-		}
-
-		return ConvertibleTimestamp::convert( $format, $expiry );
+		return $this->platform->decodeExpiry( $expiry, $format );
 	}
 
 	/**

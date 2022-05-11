@@ -20,6 +20,7 @@
 namespace Wikimedia\Rdbms\Platform;
 
 use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\LikeMatch;
 
 /**
  * Interface for query language.
@@ -186,4 +187,153 @@ interface ISQLPlatform {
 	 * @return string
 	 */
 	public function buildConcat( $stringList );
+
+	/**
+	 * Construct a LIMIT query with optional offset
+	 *
+	 * The SQL should be adjusted so that only the first $limit rows
+	 * are returned. If $offset is provided as well, then the first $offset
+	 * rows should be discarded, and the next $limit rows should be returned.
+	 * If the result of the query is not ordered, then the rows to be returned
+	 * are theoretically arbitrary.
+	 *
+	 * $sql is expected to be a SELECT, if that makes a difference.
+	 *
+	 * @param string $sql SQL query we will append the limit too
+	 * @param int $limit The SQL limit
+	 * @param int|bool $offset The SQL offset (default false)
+	 * @return string
+	 * @since 1.34 in IDatabase, moved to ISQLPlatform in 1.39
+	 */
+	public function limitResult( $sql, $limit, $offset = false );
+
+	/**
+	 * LIKE statement wrapper
+	 *
+	 * This takes a variable-length argument list with parts of pattern to match
+	 * containing either string literals that will be escaped or tokens returned by
+	 * anyChar() or anyString(). Alternatively, the function could be provided with
+	 * an array of aforementioned parameters.
+	 *
+	 * Example: $dbr->buildLike( 'My_page_title/', $dbr->anyString() ) returns
+	 * a LIKE clause that searches for subpages of 'My page title'.
+	 * Alternatively:
+	 *   $pattern = [ 'My_page_title/', $dbr->anyString() ];
+	 *   $query .= $dbr->buildLike( $pattern );
+	 *
+	 * @since 1.16 in IDatabase, moved to ISQLPlatform in 1.39
+	 * @param array[]|string|LikeMatch $param
+	 * @param string|LikeMatch ...$params
+	 * @return string Fully built LIKE statement
+	 */
+	public function buildLike( $param, ...$params );
+
+	/**
+	 * Returns a token for buildLike() that denotes a '_' to be used in a LIKE query
+	 *
+	 * @return LikeMatch
+	 */
+	public function anyChar();
+
+	/**
+	 * Returns a token for buildLike() that denotes a '%' to be used in a LIKE query
+	 *
+	 * @return LikeMatch
+	 */
+	public function anyString();
+
+	/**
+	 * Determine if the RDBMS supports ORDER BY and LIMIT for separate subqueries within UNION
+	 *
+	 * @return bool
+	 */
+	public function unionSupportsOrderAndLimit();
+
+	/**
+	 * Construct a UNION query
+	 *
+	 * This is used for providing overload point for other DB abstractions
+	 * not compatible with the MySQL syntax.
+	 * @param array $sqls SQL statements to combine
+	 * @param bool $all Either IDatabase::UNION_ALL or IDatabase::UNION_DISTINCT
+	 * @return string SQL fragment
+	 */
+	public function unionQueries( $sqls, $all );
+
+	/**
+	 * Convert a timestamp in one of the formats accepted by ConvertibleTimestamp
+	 * to the format used for inserting into timestamp fields in this DBMS
+	 *
+	 * The result is unquoted, and needs to be passed through addQuotes()
+	 * before it can be included in raw SQL.
+	 *
+	 * @param string|int $ts
+	 *
+	 * @return string
+	 */
+	public function timestamp( $ts = 0 );
+
+	/**
+	 * Convert a timestamp in one of the formats accepted by ConvertibleTimestamp
+	 * to the format used for inserting into timestamp fields in this DBMS
+	 *
+	 * If NULL is input, it is passed through, allowing NULL values to be inserted
+	 * into timestamp fields.
+	 *
+	 * The result is unquoted, and needs to be passed through addQuotes()
+	 * before it can be included in raw SQL.
+	 *
+	 * @param string|int|null $ts
+	 *
+	 * @return string|null
+	 */
+	public function timestampOrNull( $ts = null );
+
+	/**
+	 * Find out when 'infinity' is. Most DBMSes support this. This is a special
+	 * keyword for timestamps in PostgreSQL, and works with CHAR(14) as well
+	 * because "i" sorts after all numbers.
+	 *
+	 * @return string
+	 */
+	public function getInfinity();
+
+	/**
+	 * Encode an expiry time into the DBMS dependent format
+	 *
+	 * @param string $expiry Timestamp for expiry, or the 'infinity' string
+	 * @return string
+	 */
+	public function encodeExpiry( $expiry );
+
+	/**
+	 * Decode an expiry time into a DBMS independent format
+	 *
+	 * @param string $expiry DB timestamp field value for expiry
+	 * @param int $format TS_* constant, defaults to TS_MW
+	 * @return string
+	 */
+	public function decodeExpiry( $expiry, $format = TS_MW );
+
+	/**
+	 * Returns an SQL expression for a simple conditional
+	 *
+	 * This doesn't need to be overridden unless CASE isn't supported in the RDBMS.
+	 *
+	 * @param string|array $cond SQL condition expression (yields a boolean)
+	 * @param string $caseTrueExpression SQL expression to return when the condition is true
+	 * @param string $caseFalseExpression SQL expression to return when the condition is false
+	 * @return string SQL fragment
+	 */
+	public function conditional( $cond, $caseTrueExpression, $caseFalseExpression );
+
+	/**
+	 * Returns a SQL expression for simple string replacement (e.g. REPLACE() in mysql)
+	 *
+	 * @param string $orig Column to modify
+	 * @param string $old Column to seek
+	 * @param string $new Column to replace with
+	 * @return string
+	 */
+	public function strreplace( $orig, $old, $new );
 }
