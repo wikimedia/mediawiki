@@ -2248,7 +2248,7 @@
 	"modifiedarticleprotection-comment": "{{GENDER:$2|Pakeitė „[[$1]]“ apsaugos lygį}}",
 	"unprotectedarticle-comment": "{{GENDER:$2|Atrakino}} „[[$1]]“",
 	"protect-title": "Nustatomas apsaugos lygis puslapiui „$1“",
-	"protect-title-notallowed": "Peržiūrėti \"$1\" apsaugos lygį",
+	"protect-title-notallowed": "Peržiūrėti \"$1\" apsaugos nustatymus",
 	"prot_1movedto2": "[[$1]] pervadintas į [[$2]]",
 	"protect-badnamespace-title": "Neapsaugota vardų sritis",
 	"protect-badnamespace-text": "Puslapiai šioje vardų srityje negali būti apsaugoti.",
