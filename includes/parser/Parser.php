@@ -5194,8 +5194,9 @@ class Parser {
 
 			$label = '';
 			$alt = '';
-			$link = '';
 			$handlerOptions = [];
+			$imageOptions = [];
+
 			if ( isset( $matches[3] ) ) {
 				// look for an |alt= definition while trying not to break existing
 				// captions with multiple pipes (|) in it, until a more sensible grammar
@@ -5233,11 +5234,12 @@ class Parser {
 								$linkValue = substr( $linkValue, 4, -2 );
 							}
 							list( $type, $target ) = $this->parseLinkParameter( $linkValue );
+							// FIXME: Support 'no-link' here?
 							if ( $type === 'link-url' ) {
-								$link = $target;
+								$imageOptions[$type] = $target;
 								$this->mOutput->addExternalLink( $target );
 							} elseif ( $type === 'link-title' ) {
-								$link = $target->getLinkURL();
+								$imageOptions[$type] = $target;
 								$this->mOutput->addLink( $target );
 							}
 							break;
@@ -5255,7 +5257,10 @@ class Parser {
 				}
 			}
 
-			$ig->add( $title, $label, $alt, $link, $handlerOptions );
+			$ig->add(
+				$title, $label, $alt, '', $handlerOptions,
+				ImageGalleryBase::LOADING_DEFAULT, $imageOptions
+			);
 		}
 		$html = $ig->toHTML();
 		$this->hookRunner->onAfterParserFetchFileAndTitle( $this, $ig, $html );
