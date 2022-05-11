@@ -544,7 +544,7 @@ return [
 			'tzm-latn' => 'resources/lib/moment/locale/tzm-latn.js',
 			'uk' => 'resources/lib/moment/locale/uk.js',
 			'ur' => 'resources/lib/moment/locale/ur.js',
-			'uz' => 'resources/lib/moment/locale/uz.js',
+			'uz' => 'resources/lib/moment/locale/uz-latn.js', # https://phabricator.wikimedia.org/T308123
 			'uz-latn' => 'resources/lib/moment/locale/uz-latn.js',
 			'vi' => 'resources/lib/moment/locale/vi.js',
 			'yo' => 'resources/lib/moment/locale/yo.js',
