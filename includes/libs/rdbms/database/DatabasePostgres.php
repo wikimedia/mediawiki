@@ -1224,10 +1224,6 @@ SQL;
 		return [ $startOpts, $useIndex, $preLimitTail, $postLimitTail, $ignoreIndex ];
 	}
 
-	public function buildConcat( $stringList ) {
-		return implode( ' || ', $stringList );
-	}
-
 	public function buildGroupConcatField(
 		$delim, $table, $field, $conds = '', $join_conds = []
 	) {

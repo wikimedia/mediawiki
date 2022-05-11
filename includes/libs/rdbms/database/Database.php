@@ -2612,181 +2612,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function makeList( array $a, $mode = self::LIST_COMMA ) {
-		$first = true;
-		$list = '';
-
-		foreach ( $a as $field => $value ) {
-			if ( $first ) {
-				$first = false;
-			} else {
-				if ( $mode == self::LIST_AND ) {
-					$list .= ' AND ';
-				} elseif ( $mode == self::LIST_OR ) {
-					$list .= ' OR ';
-				} else {
-					$list .= ',';
-				}
-			}
-
-			if ( ( $mode == self::LIST_AND || $mode == self::LIST_OR ) && is_numeric( $field ) ) {
-				$list .= "($value)";
-			} elseif ( $mode == self::LIST_SET && is_numeric( $field ) ) {
-				$list .= "$value";
-			} elseif (
-				( $mode == self::LIST_AND || $mode == self::LIST_OR ) && is_array( $value )
-			) {
-				// Remove null from array to be handled separately if found
-				$includeNull = false;
-				foreach ( array_keys( $value, null, true ) as $nullKey ) {
-					$includeNull = true;
-					unset( $value[$nullKey] );
-				}
-				if ( count( $value ) == 0 && !$includeNull ) {
-					throw new InvalidArgumentException(
-						__METHOD__ . ": empty input for field $field" );
-				} elseif ( count( $value ) == 0 ) {
-					// only check if $field is null
-					$list .= "$field IS NULL";
-				} else {
-					// IN clause contains at least one valid element
-					if ( $includeNull ) {
-						// Group subconditions to ensure correct precedence
-						$list .= '(';
-					}
-					if ( count( $value ) == 1 ) {
-						// Special-case single values, as IN isn't terribly efficient
-						// Don't necessarily assume the single key is 0; we don't
-						// enforce linear numeric ordering on other arrays here.
-						$value = array_values( $value )[0];
-						$list .= $field . " = " . $this->addQuotes( $value );
-					} else {
-						$list .= $field . " IN (" . $this->makeList( $value ) . ") ";
-					}
-					// if null present in array, append IS NULL
-					if ( $includeNull ) {
-						$list .= " OR $field IS NULL)";
-					}
-				}
-			} elseif ( $value === null ) {
-				if ( $mode == self::LIST_AND || $mode == self::LIST_OR ) {
-					$list .= "$field IS ";
-				} elseif ( $mode == self::LIST_SET ) {
-					$list .= "$field = ";
-				}
-				$list .= 'NULL';
-			} else {
-				if (
-					$mode == self::LIST_AND || $mode == self::LIST_OR || $mode == self::LIST_SET
-				) {
-					$list .= "$field = ";
-				}
-				$list .= $mode == self::LIST_NAMES ? $value : $this->addQuotes( $value );
-			}
-		}
-
-		return $list;
+		return $this->platform->makeList( $a, $mode );
 	}
 
 	public function makeWhereFrom2d( $data, $baseKey, $subKey ) {
-		$conds = [];
-
-		foreach ( $data as $base => $sub ) {
-			if ( count( $sub ) ) {
-				$conds[] = $this->makeList(
-					[ $baseKey => $base, $subKey => array_map( 'strval', array_keys( $sub ) ) ],
-					self::LIST_AND
-				);
-			}
-		}
-
-		if ( $conds ) {
-			return $this->makeList( $conds, self::LIST_OR );
-		} else {
-			// Nothing to search for...
-			return false;
-		}
+		return $this->platform->makeWhereFrom2d( $data, $baseKey, $subKey );
 	}
 
 	public function factorConds( $condsArray ) {
-		if ( count( $condsArray ) === 0 ) {
-			throw new InvalidArgumentException(
-				__METHOD__ . ": empty condition array" );
-		}
-		$condsByFieldSet = [];
-		foreach ( $condsArray as $conds ) {
-			if ( !count( $conds ) ) {
-				throw new InvalidArgumentException(
-					__METHOD__ . ": empty condition subarray" );
-			}
-			$fieldKey = implode( ',', array_keys( $conds ) );
-			$condsByFieldSet[$fieldKey][] = $conds;
-		}
-		$result = '';
-		foreach ( $condsByFieldSet as $conds ) {
-			if ( $result !== '' ) {
-				$result .= ' OR ';
-			}
-			$result .= $this->factorCondsWithCommonFields( $conds );
-		}
-		return $result;
-	}
-
-	/**
-	 * Same as factorConds() but with each element in the array having the same
-	 * set of array keys. Validation is done by the caller.
-	 *
-	 * @param array $condsArray
-	 * @return string
-	 */
-	private function factorCondsWithCommonFields( $condsArray ) {
-		$first = $condsArray[array_key_first( $condsArray )];
-		if ( count( $first ) === 1 ) {
-			// IN clause
-			$field = array_key_first( $first );
-			$values = [];
-			foreach ( $condsArray as $conds ) {
-				$values[] = $conds[$field];
-			}
-			return $this->makeList( [ $field => $values ], self::LIST_AND );
-		}
-
-		$field1 = array_key_first( $first );
-		$nullExpressions = [];
-		$expressionsByField1 = [];
-		foreach ( $condsArray as $conds ) {
-			$value1 = $conds[$field1];
-			unset( $conds[$field1] );
-			if ( $value1 === null ) {
-				$nullExpressions[] = $conds;
-			} else {
-				$expressionsByField1[$value1][] = $conds;
-			}
-
-		}
-		$wrap = false;
-		$result = '';
-		foreach ( $expressionsByField1 as $value1 => $expressions ) {
-			if ( $result !== '' ) {
-				$result .= ' OR ';
-				$wrap = true;
-			}
-			$factored = $this->factorCondsWithCommonFields( $expressions );
-			$result .= "($field1 = " . $this->addQuotes( $value1 ) .
-				" AND $factored)";
-		}
-		if ( count( $nullExpressions ) ) {
-			$factored = $this->factorCondsWithCommonFields( $nullExpressions );
-			if ( $result !== '' ) {
-				$result .= ' OR ';
-				$wrap = true;
-			}
-			$result .= "($field1 IS NULL AND $factored)";
-		}
-		if ( $wrap ) {
-			return "($result)";
-		} else {
-			return $result;
-		}
+		return $this->platform->factorConds( $condsArray );
 	}
 
 	/**
@@ -2818,7 +2652,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function buildConcat( $stringList ) {
-		return 'CONCAT(' . implode( ',', $stringList ) . ')';
+		return $this->platform->buildConcat( $stringList );
 	}
 
 	/**
