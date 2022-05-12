@@ -14,7 +14,7 @@ use Wikimedia\ScopedCallback;
 class ParsoidTestFileSuite extends TestSuite {
 	use SuiteEventsTrait;
 
-	public const VALID_TEST_MODES = [ 'wt2html', 'wt2html+integrated', 'wt2wt' ];
+	public const VALID_TEST_MODES = [ 'wt2html', 'wt2html+integrated', 'wt2wt', 'html2wt', 'html2html' ];
 
 	private $ptRunner;
 	private $ptFileName;
