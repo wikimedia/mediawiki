@@ -41,7 +41,8 @@
 			"灰太狼Wolffy55",
 			"逆襲的天邪鬼",
 			"飞舞回堂前",
-			"아라"
+			"아라",
+			"StarrySky"
 		]
 	},
 	"tog-underline": "以底線識鏈接：",
@@ -722,6 +723,7 @@
 	"showhideselectedversions": "示／藏之擇",
 	"editundo": "悔",
 	"diff-empty": "（無異）",
+	"diff-multi-sameuser": "（$2多作未示之審有$1）",
 	"diff-multi-manyusers": "（$2多作未示之審有$1）",
 	"searchresults": "得尋",
 	"searchresults-title": "「$1」得尋",
@@ -2156,7 +2158,6 @@
 	"special-characters-group-arabic": "阿拉伯字母",
 	"special-characters-group-arabicextended": "阿拉伯擴字",
 	"mw-widgets-mediasearch-noresults": "無所獲",
-	"view-view-foreign": "觀於$1",
 	"view-create-local": "增地言",
 	"nstab-mainpage": "卷首",
 	"view-edit-local": "纂地言",
