@@ -26,6 +26,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$config = $this->getServiceContainer()->getMainConfig();
 		return new $class(
 			$code,
+			$this->createNoOpMock( NamespaceInfo::class ),
 			$this->createNoOpMock( LocalisationCache::class ),
 			$this->createNoOpMock( LanguageNameUtils::class ),
 			$this->createNoOpMock( LanguageFallback::class ),
@@ -2079,25 +2080,30 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @dataProvider provideGetNamespaces
 	 */
 	public function testGetNamespaces( string $langCode, array $config, array $expected ) {
+		$services = $this->getServiceContainer();
 		$langClass = Language::class . ucfirst( $langCode );
 		if ( !class_exists( $langClass ) ) {
 			$langClass = Language::class;
 		}
 		$config += [
-			'wgMetaNamespace' => 'Project',
-			'wgMetaNamespaceTalk' => false,
-			'wgExtraNamespaces' => [],
+			MainConfigNames::MetaNamespace => 'Project',
+			MainConfigNames::MetaNamespaceTalk => false,
+			MainConfigNames::ExtraNamespaces => [],
 		];
-		$this->setMwGlobals( $config );
+		$nsInfo = new NamespaceInfo(
+			new ServiceOptions( NamespaceInfo::CONSTRUCTOR_OPTIONS, $config, $services->getMainConfig() ),
+			$services->getHookContainer()
+		);
 		/** @var Language $lang */
 		$lang = new $langClass(
 			$langCode,
-			MediaWikiServices::getInstance()->getLocalisationCache(),
+			$nsInfo,
+			$services->getLocalisationCache(),
 			$this->createNoOpMock( LanguageNameUtils::class ),
 			$this->createNoOpMock( LanguageFallback::class ),
 			$this->createNoOpMock( LanguageConverterFactory::class ),
 			$this->createMock( HookContainer::class ),
-			$this->getServiceContainer()->getMainConfig()
+			new MultiConfig( [ new HashConfig( $config ), $services->getMainConfig() ] )
 		);
 		$namespaces = $lang->getNamespaces();
 		$this->assertArraySubmapSame( $expected, $namespaces );
@@ -2151,8 +2157,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			'Custom project NS + extra' => [
 				'en',
 				[
-					'wgMetaNamespace' => 'Wikipedia',
-					'wgExtraNamespaces' => [
+					MainConfigNames::MetaNamespace => 'Wikipedia',
+					MainConfigNames::ExtraNamespaces => [
 						100 => 'Borderlands',
 						101 => 'Borderlands_talk',
 					],
@@ -2167,9 +2173,9 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			'Custom project NS and talk + extra' => [
 				'en',
 				[
-					'wgMetaNamespace' => 'Wikipedia',
-					'wgMetaNamespaceTalk' => 'Wikipedia_drama',
-					'wgExtraNamespaces' => [
+					MainConfigNames::MetaNamespace => 'Wikipedia',
+					MainConfigNames::MetaNamespaceTalk => 'Wikipedia_drama',
+					MainConfigNames::ExtraNamespaces => [
 						100 => 'Borderlands',
 						101 => 'Borderlands_talk',
 					],
@@ -2193,7 +2199,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			'Ukrainian custom NS' => [
 				'uk',
 				[
-					'wgMetaNamespace' => 'Вікіпедія',
+					MainConfigNames::MetaNamespace => 'Вікіпедія',
 				],
 				$ukNamespaces + [
 					NS_MAIN => '',

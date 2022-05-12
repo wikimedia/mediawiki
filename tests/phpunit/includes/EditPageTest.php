@@ -19,9 +19,6 @@ class EditPageTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$contLang = $this->getServiceContainer()->getContentLanguage();
-		$this->setContentLang( $contLang );
-
 		$this->setMwGlobals( [
 			'wgExtraNamespaces' => [
 				12312 => 'Dummy',
@@ -29,10 +26,15 @@ class EditPageTest extends MediaWikiLangTestCase {
 			],
 			'wgNamespaceContentModels' => [ 12312 => 'testing' ],
 		] );
+		$this->getServiceContainer()->resetServiceForTesting( 'NamespaceInfo' );
+		$this->getServiceContainer()->resetServiceForTesting( 'ContentLanguage' );
 		$this->mergeMwGlobalArrayValue(
 			'wgContentHandlers',
 			[ 'testing' => 'DummyContentHandlerForTesting' ]
 		);
+
+		$contLang = $this->getServiceContainer()->getContentLanguage();
+		$this->setContentLang( $contLang );
 	}
 
 	/**

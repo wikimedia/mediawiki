@@ -416,8 +416,12 @@ class ParserTestRunner {
 		// Changing wgExtraNamespaces invalidates caches in NamespaceInfo and any live Language
 		// object, both on setup and teardown
 		$reset = static function () {
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'MainConfig' );
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'NamespaceInfo' );
-			MediaWikiServices::getInstance()->getContentLanguage()->resetNamespaces();
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'LanguageFactory' );
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'ContentLanguage' );
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'LinkCache' );
+			MediaWikiServices::getInstance()->resetServiceForTesting( 'LanguageConverterFactory' );
 		};
 		$setup[] = $reset;
 		$teardown[] = $reset;
@@ -1509,7 +1513,6 @@ class ParserTestRunner {
 		// Set content language. This invalidates the magic word cache and title services
 		// In addition the ParserFactory needs to be recreated as well.
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langCode );
-		$lang->resetNamespaces();
 		$setup[] = static function () use ( $lang ) {
 			MediaWikiServices::getInstance()->disableService( 'ContentLanguage' );
 			MediaWikiServices::getInstance()->redefineService(
