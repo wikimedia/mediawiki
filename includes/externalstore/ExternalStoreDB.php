@@ -187,7 +187,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * Get a primary database connection for the specified cluster
 	 *
 	 * @param string $cluster Cluster name
-	 * @return DBConnRef
+	 * @return \Wikimedia\Rdbms\IMaintainableDatabase
 	 * @since 1.37
 	 */
 	public function getPrimary( $cluster ) {
@@ -204,7 +204,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	/**
 	 * @deprecated since 1.37; please use getPrimary() instead.
 	 * @param string $cluster Cluster name
-	 * @return DBConnRef
+	 * @return \Wikimedia\Rdbms\IMaintainableDatabase
 	 */
 	public function getMaster( $cluster ) {
 		wfDeprecated( __METHOD__, '1.37' );

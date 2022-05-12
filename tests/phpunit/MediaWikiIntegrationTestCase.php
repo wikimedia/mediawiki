@@ -434,7 +434,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
 
 				$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-				$this->db = $lb->getConnection( DB_PRIMARY );
+				$this->db = $lb->getConnectionInternal( DB_PRIMARY );
 
 				$this->checkDbIsSupported();
 

@@ -242,7 +242,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		// Ask for the connection so that LB sets internal state
 		// about this connection being the primary connection
 		$lb = $lbFactory->getMainLB();
-		$conn = $lb->getConnection( $lb->getWriterIndex() );
+		$conn = $lb->getConnectionInternal( $lb->getWriterIndex() );
 		$this->assertSame( $db, $conn, 'Same DB instance' );
 		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX is set' );
 
@@ -339,7 +339,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		// Ask for the connection so that LB sets internal state
 		// about this connection being the primary connection
 		$lb = $lbFactory->getMainLB();
-		$conn = $lb->getConnection( $lb->getWriterIndex() );
+		$conn = $lb->getConnectionInternal( $lb->getWriterIndex() );
 		$this->assertSame( $db, $conn, 'Same DB instance' );
 
 		$this->assertFalse( $lb->hasPrimaryChanges() );

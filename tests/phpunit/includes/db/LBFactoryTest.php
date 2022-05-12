@@ -479,10 +479,10 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			"Correct full table name"
 		);
 
-		$lb->reuseConnection( $db ); // don't care
+		unset( $db );
 
-		$db = $lb->getConnection( DB_PRIMARY ); // local domain connection
 		$factory->setLocalDomainPrefix( 'my_' );
+		$db = $lb->getConnection( DB_PRIMARY ); // local domain connection
 
 		$this->assertEquals( $wgDBname, $db->getDBname() );
 		$this->assertEquals(
@@ -548,7 +548,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			"Correct full table name"
 		);
 
-		$lb->reuseConnection( $db ); // don't care
+		unset( $db );
 
 		$factory->setLocalDomainPrefix( 'my_' );
 		$db = $lb->getConnection( DB_PRIMARY, [], "$wgDBname-my_" );
@@ -596,12 +596,8 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		/** @var IDatabase $db */
 		$db = $lb->getConnection( DB_PRIMARY, [], $lb::DOMAIN_ANY );
 
-		try {
-			$this->assertFalse( @$db->selectDomain( 'garbagedb' ) );
-			$this->fail( "No error thrown." );
-		} catch ( \Wikimedia\Rdbms\DBQueryError $e ) {
-			$this->assertRegExp( '/[\'"]garbagedb[\'"]/', $e->getMessage() );
-		}
+		$this->expectException( \Wikimedia\Rdbms\DBUnexpectedError::class );
+		$db->selectDomain( 'garbagedb' );
 	}
 
 	/**
@@ -626,7 +622,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		}
 
 		/** @var IDatabase $db */
-		$this->assertNotNull( $lb->getConnection( DB_PRIMARY, [], $lb::DOMAIN_ANY ) );
+		$this->assertNotNull( $lb->getConnectionInternal( DB_PRIMARY, [], $lb::DOMAIN_ANY ) );
 	}
 
 	/**
@@ -650,7 +646,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			$this->markTestSkipped( "Not applicable per databasesAreIndependent()" );
 		}
 
-		$db = $lb->getConnection( DB_PRIMARY );
+		$db = $lb->getConnectionInternal( DB_PRIMARY );
 		$db->selectDomain( 'garbage-db' );
 	}
 

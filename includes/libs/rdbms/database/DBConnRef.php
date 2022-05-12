@@ -62,7 +62,7 @@ class DBConnRef implements IMaintainableDatabase {
 	public function __call( $name, array $arguments ) {
 		if ( $this->conn === null ) {
 			list( $index, $groups, $wiki, $flags ) = $this->params;
-			$this->conn = $this->lb->getConnection( $index, $groups, $wiki, $flags );
+			$this->conn = $this->lb->getConnectionInternal( $index, $groups, $wiki, $flags );
 		}
 
 		return $this->conn->$name( ...$arguments );
@@ -109,12 +109,10 @@ class DBConnRef implements IMaintainableDatabase {
 			$domain = DatabaseDomain::newFromId( $this->params[self::FLD_DOMAIN] );
 			// Avoid triggering a database connection
 			return $domain->getTablePrefix();
-		} elseif ( $this->conn !== null && $prefix === null ) {
+		} else {
 			// This will just return the prefix
 			return $this->__call( __FUNCTION__, func_get_args() );
 		}
-		// Disallow things that might confuse the LoadBalancer tracking
-		throw $this->getDomainChangeException();
 	}
 
 	public function dbSchema( $schema = null ) {
@@ -850,7 +848,7 @@ class DBConnRef implements IMaintainableDatabase {
 	 */
 	public function __destruct() {
 		if ( $this->conn ) {
-			$this->lb->reuseConnection( $this->conn );
+			$this->lb->reuseConnectionInternal( $this->conn );
 		}
 	}
 }

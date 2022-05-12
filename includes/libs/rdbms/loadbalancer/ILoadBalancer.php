@@ -23,7 +23,6 @@
 namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
-use LogicException;
 
 /**
  * Database cluster connection, tracking, load balancing, and transaction manager interface
@@ -219,7 +218,7 @@ interface ILoadBalancer {
 	public function getAnyOpenConnection( $i, $flags = 0 );
 
 	/**
-	 * Get a live handle for a specific or virtual (DB_PRIMARY/DB_REPLICA) server index
+	 * Get a lazy handle for a specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 *
 	 * The server index, $i, can be one of the following:
 	 *   - DB_REPLICA: a server index will be selected by the load balancer based on read
@@ -237,9 +236,7 @@ interface ILoadBalancer {
 	 *      server selection method is usually only useful for internal load balancing logic.
 	 *      The value of $groups should be [] when using a specific server index.
 	 *
-	 * Handles acquired by this method, getConnectionRef(), getLazyConnectionRef(), and
-	 * getMaintenanceConnectionRef() use the same set of shared connection pools. Callers that
-	 * get a *local* DB domain handle for the same server will share one handle for all of those
+	 * Callers that get a *local* DB domain handle for the same server will share one handle for all of those
 	 * callers using CONN_TRX_AUTOCOMMIT (via $flags) and one handle for all of those callers not
 	 * using CONN_TRX_AUTOCOMMIT. Callers that get a *foreign* DB domain handle (via $domain) will
 	 * share any handle that has the right CONN_TRX_AUTOCOMMIT mode and is already on the right
@@ -252,10 +249,6 @@ interface ILoadBalancer {
 	 * callers get local DB domain (the default), transaction round aware (the default), samely
 	 * query grouped (the default), DB_REPLICA handles. All such callers will operate within a
 	 * single database transaction as a consequence.
-	 *
-	 * Callers of this function that use a non-local $domain must call reuseConnection() after
-	 * their last query on this handle executed. This lets the load balancer share the handle with
-	 * other callers requesting connections on different database domains.
 	 *
 	 * Use CONN_TRX_AUTOCOMMIT to use a separate pool of only auto-commit handles. This flag
 	 * is ignored for databases with ATTR_DB_LEVEL_LOCKING (e.g. sqlite) in order to avoid
@@ -302,30 +295,19 @@ interface ILoadBalancer {
 	public function getServerConnection( $i, $domain, $flags = 0 );
 
 	/**
-	 * Mark a live handle as being available for reuse under a different database domain
-	 *
-	 * This mechanism is reference-counted, and must be called the same number of times as
-	 * getConnection() to work. Never call this on handles acquired via getConnectionRef(),
-	 * getLazyConnectionRef(), and getMaintenanceConnectionRef(), as they already manage
-	 * the logic of calling this method when they fall out of scope in PHP.
-	 *
-	 * @see ILoadBalancer::getConnection()
-	 *
+	 * @deprecated since 1.39 noop
 	 * @param IDatabase $conn
-	 * @throws LogicException
 	 */
 	public function reuseConnection( IDatabase $conn );
 
 	/**
-	 * Get a live database handle reference for a server index
-	 *
-	 * The CONN_TRX_AUTOCOMMIT flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
-	 * (e.g. sqlite) in order to avoid deadlocks. The getServerAttributes() method can be used
-	 * to check such flags beforehand. Avoid the use of begin() or startAtomic()
-	 * on any CONN_TRX_AUTOCOMMIT connections.
-	 *
-	 * @see ILoadBalancer::getConnection() for parameter information
-	 *
+	 * @internal Only to be used by DBConnRef
+	 * @param IDatabase $conn
+	 */
+	public function reuseConnectionInternal( IDatabase $conn );
+
+	/**
+	 * @deprecated since 1.39, use ILoadBalancer::getConnection() instead.
 	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
 	 * @param string|bool $domain DB domain ID or false for the local domain
@@ -333,6 +315,16 @@ interface ILoadBalancer {
 	 * @return DBConnRef
 	 */
 	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase;
+
+	/**
+	 * @internal Only to be used by DBConnRef
+	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
+	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
+	 * @param string|bool $domain DB domain ID or false for the local domain
+	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
+	 * @return IDatabase
+	 */
+	public function getConnectionInternal( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase;
 
 	/**
 	 * Get a lazy-connecting database handle reference for a server index
@@ -346,7 +338,7 @@ interface ILoadBalancer {
 	 * on any CONN_TRX_AUTOCOMMIT connections.
 	 *
 	 * @see ILoadBalancer::getConnection() for parameter information
-	 *
+	 * @deprecated since 1.38, use ILoadBalancer::getConnectionRef() instead.
 	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
 	 * @param string|bool $domain DB domain ID or false for the local domain
@@ -354,7 +346,6 @@ interface ILoadBalancer {
 	 * @return IDatabase Live connection handle
 	 * @throws DBError If no live handle could be obtained
 	 * @throws DBAccessError If disable() was previously called
-	 * @deprecated since 1.38 use getConnectionRef instead
 	 */
 	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase;
 

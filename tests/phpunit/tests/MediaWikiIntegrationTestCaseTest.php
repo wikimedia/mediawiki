@@ -222,7 +222,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$lb = $lbFactory->newMainLB();
-		$db = $lb->getConnection( DB_REPLICA );
+		$db = $lb->getConnection( DB_PRIMARY );
 
 		$this->assertNotSame( $this->db, $db );
 
