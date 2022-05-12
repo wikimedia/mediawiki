@@ -34,11 +34,14 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use Psr\Log\NullLogger;
 use Wikimedia\Parsoid\Config\PageConfig;
+use Wikimedia\Parsoid\Core\SelserData;
 use Wikimedia\Parsoid\ParserTests\ParserHook as ParsoidParserHook;
 use Wikimedia\Parsoid\ParserTests\RawHTML as ParsoidRawHTML;
 use Wikimedia\Parsoid\ParserTests\StyleTag as ParsoidStyleTag;
 use Wikimedia\Parsoid\ParserTests\Test as ParsoidTest;
 use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\Parsoid\Utils\ContentUtils;
+use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
@@ -1291,6 +1294,59 @@ class ParserTestRunner {
 	}
 
 	/**
+	 * @param Parsoid $parsoid
+	 * @param PageConfig $pageConfig
+	 * @param ParsoidTest $test
+	 * @return ParserTestResult|false false if skipped
+	 */
+	private function selser( Parsoid $parsoid, PageConfig $pageConfig, ParsoidTest $test ) {
+		if ( $test->wikitext === null ) {
+			return false; // FIXME: Is this an error in the test setup?
+		}
+
+		if ( $test->cachedBODYstr === null ) {
+			$test->cachedBODYstr = $parsoid->wikitext2html( $pageConfig, [
+				'body_only' => true,
+				'wrapSections' => $test->options['parsoid']['wrapSections'] ?? false,
+			] );
+		}
+
+		// Apply edits to the HTML.
+		// Always serialize to string and reparse before passing to selser/wt2wt.
+		$doc = DOMUtils::parseHTML( $test->cachedBODYstr, true );
+		$testManualChanges = $testOpts['parsoid']['changes'] ?? null;
+		if ( $testManualChanges && $test->changetree === [ 'manual' ] ) {
+			$test->applyManualChanges( $doc );
+		} else {
+			$changetree = isset( $options['changetree'] ) ?
+				json_decode( $options['changetree'] ) : $test->changetree;
+			if ( !$changetree ) {
+				$changetree = $test->generateChanges( $options, $doc );
+			}
+			$test->applyChanges( [], $doc, $changetree );
+		}
+		$editedHTML = ContentUtils::toXML( DOMCompat::getBody( $doc ) );
+
+		// Run selser on edited doc
+		$selserData = new SelserData( $test->wikitext, $test->cachedBODYstr );
+		$out = $parsoid->html2wikitext( $pageConfig, $editedHTML, [], $selserData );
+
+		// Set up test results
+		if ( $test->changetree === [ 5 ] ) {
+			$expected = $test->wikitext;
+			$out = preg_replace( '/<!--' . ParsoidTest::STATIC_RANDOM_STRING . '-->/', '', $out );
+		} elseif ( $test->changetree === [ 'manual' ] &&
+			isset( $test->options['parsoid']['changes'] )
+		) {
+			$expected = $test->sections['wikitext/edited'];
+		} else {
+			$expected = $parsoid->html2wikitext( $pageConfig, $editedHTML );
+		}
+
+		return $this->getTestResult( $test, $expected, $out );
+	}
+
+	/**
 	 * Run a given wikitext input through a freshly-constructed Parsoid parser,
 	 * running in 'integrated' mode, and compare the output against the
 	 * expected results.
@@ -1352,6 +1408,9 @@ class ParserTestRunner {
 
 			case 'html2html':
 				return $this->html2html( $parsoid, $pageConfig, $test );
+
+			case 'selser':
+				return $this->selser( $parsoid, $pageConfig, $test );
 
 			default:
 				// Unsupported Mode
