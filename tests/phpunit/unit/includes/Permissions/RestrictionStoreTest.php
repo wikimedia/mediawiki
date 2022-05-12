@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Unit\Permissions;
 use DatabaseTestHelper;
 use LinkCache;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReferenceValue;
@@ -88,6 +89,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 			$this->newMockLoadBalancer( $options['db'] ?? [] ),
 			// @todo test that these calls work correctly
 			$this->createNoOpMock( LinkCache::class, [ 'addLinkObj', 'getGoodLinkFieldObj' ] ),
+			$this->createNoOpMock( LinksMigration::class, [ 'getLinksConditions' ] ),
 			$this->getDummyCommentStore(),
 			$this->createHookContainer( isset( $options['hookFn'] )
 				? [ 'TitleGetRestrictionTypes' => $options['hookFn'] ]

@@ -31,6 +31,9 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 	/** @var LinkCache */
 	private $linkCache;
 
+	/** @var \MediaWiki\Linker\LinksMigration */
+	private $linksMigration;
+
 	/** @var HookContainer */
 	private $hookContainer;
 
@@ -50,6 +53,7 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 		$this->wanCache = $services->getMainWANObjectCache();
 		$this->loadBalancer = $services->getDBLoadBalancer();
 		$this->linkCache = $services->getLinkCache();
+		$this->linksMigration = $services->getLinksMigration();
 		$this->commentStore = $services->getCommentStore();
 		$this->hookContainer = $services->getHookContainer();
 		$this->pageStore = $services->getPageStore();
@@ -77,6 +81,7 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 			$this->wanCache,
 			$this->loadBalancer,
 			$this->linkCache,
+			$this->linksMigration,
 			$this->commentStore,
 			$this->hookContainer,
 			$this->pageStore

@@ -10,12 +10,14 @@ use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageStore;
 use stdClass;
 use Title;
+use TitleValue;
 use WANObjectCache;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -48,6 +50,9 @@ class RestrictionStore {
 	/** @var LinkCache */
 	private $linkCache;
 
+	/** @var LinksMigration */
+	private $linksMigration;
+
 	/** @var CommentStore */
 	private $commentStore;
 
@@ -78,6 +83,7 @@ class RestrictionStore {
 	 * @param WANObjectCache $wanCache
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LinkCache $linkCache
+	 * @param LinksMigration $linksMigration
 	 * @param CommentStore $commentStore
 	 * @param HookContainer $hookContainer
 	 * @param PageStore $pageStore
@@ -87,6 +93,7 @@ class RestrictionStore {
 		WANObjectCache $wanCache,
 		ILoadBalancer $loadBalancer,
 		LinkCache $linkCache,
+		LinksMigration $linksMigration,
 		CommentStore $commentStore,
 		HookContainer $hookContainer,
 		PageStore $pageStore
@@ -96,6 +103,7 @@ class RestrictionStore {
 		$this->wanCache = $wanCache;
 		$this->loadBalancer = $loadBalancer;
 		$this->linkCache = $linkCache;
+		$this->linksMigration = $linksMigration;
 		$this->commentStore = $commentStore;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
@@ -572,12 +580,12 @@ class RestrictionStore {
 			];
 		} else {
 			$tables = [ 'templatelinks', 'page_restrictions' ];
-			$where_clauses = [
-				'tl_namespace' => $page->getNamespace(),
-				'tl_title' => $page->getDBkey(),
-				'tl_from=pr_page',
-				'pr_cascade' => 1
-			];
+			$where_clauses = $this->linksMigration->getLinksConditions(
+				'templatelinks',
+				TitleValue::newFromPage( $page )
+			);
+			$where_clauses[] = 'tl_from=pr_page';
+			$where_clauses['pr_cascade'] = 1;
 		}
 
 		if ( $shortCircuit ) {
