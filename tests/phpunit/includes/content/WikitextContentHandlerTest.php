@@ -25,8 +25,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	 * @covers WikitextContentHandler::makeRedirectContent
 	 */
 	public function testMakeRedirectContent( $title, $expected ) {
-		$this->getServiceContainer()->getContentLanguage()->resetNamespaces();
-
+		$this->getServiceContainer()->resetServiceForTesting( 'ContentLanguage' );
 		$this->getServiceContainer()->resetServiceForTesting( 'MagicWordFactory' );
 
 		if ( is_string( $title ) ) {
