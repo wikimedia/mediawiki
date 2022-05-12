@@ -3756,7 +3756,7 @@
 	"search-match-redirect-label": "מעבר ישיר לתוצאת חיפוש אם היא מהווה התאמה מדויקת לחיפוש",
 	"search-match-redirect-help": "סימון העדפה זו יגרום לכך שהדפדפן יעבור ישירות לדף שנמצא בחיפוש, אם כותרת הדף מתאימה למונח שחיפשת",
 	"searchlimit-label": "כמה תוצאות חיפוש להציג בכל דף:",
-	"searchlimit-help": "המספר המרבי: 500",
+	"searchlimit-help": "המספר המרבי: $1",
 	"api-clientside-error-noconnect": "הניסיון להתחבר לשרת נכשל. באפשרותך לוודא שהחיבור שלך לאינטרנט תקין ולנסות שוב.",
 	"api-clientside-error-http": "השרת החזיר שגיאה: HTTP $1.",
 	"api-clientside-error-timeout": "השרת לא השיב בזמן המצופה.",
