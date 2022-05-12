@@ -83,7 +83,8 @@
     "extensions/SemanticMediaWiki",
     "extensions/QuickInstantCommons",
     "extensions/StandardDialogs",
-    "skins/Tweeki"
+    "skins/Tweeki",
+    "extensions/SemanticScribunto"
   ],
   "stable": [
     "extensions/SnapProjectEmbed",
