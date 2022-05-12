@@ -14,7 +14,7 @@ use Wikimedia\ScopedCallback;
 class ParsoidTestFileSuite extends TestSuite {
 	use SuiteEventsTrait;
 
-	public const VALID_TEST_MODES = [ 'wt2html', 'wt2html+integrated', 'wt2wt' ];
+	public const VALID_TEST_MODES = [ 'wt2html', 'wt2html+integrated', 'wt2wt', 'html2wt', 'html2html', 'selser' ];
 
 	private $ptRunner;
 	private $ptFileName;
@@ -46,7 +46,13 @@ class ParsoidTestFileSuite extends TestSuite {
 
 		foreach ( $this->ptFileInfo->testCases as $t ) {
 			$testModes = $t->computeTestModes( self::VALID_TEST_MODES );
-			$runnerOpts = [ 'numchanges' => 20 ]; // the default in Parsoid
+
+			// Generating selser edit trees requires the DOM.
+			// So, we cannot pregenerate selser auto-edit tests.
+			// They have to be generated dynamically. So, set this to 0.
+			// We will handle auto-edit selser testing separately.
+			$runnerOpts = [ 'numchanges' => 0, 'selser' => true ];
+
 			$suite = $this;
 			$t->testAllModes( $testModes, $runnerOpts,
 				static function ( ParsoidTest $newTest, string $mode, array $options ) use ( $suite, $runner, $fileName, $t, $skipMessage ) {
