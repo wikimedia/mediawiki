@@ -96,6 +96,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $called );
 
 		$dbw = $lb->getConnection( DB_PRIMARY );
+		$dbw->getServerName();
 		$this->assertTrue( $called );
 		$this->assertEquals(
 			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'master shows as master'
@@ -108,7 +109,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			$dbr::ROLE_STREAMING_MASTER, $dbr->getTopologyRole(), 'DB_REPLICA also gets the master' );
 		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
 
-		if ( !$lb->getServerAttributes( $lb->getWriterIndex() )[$dbw::ATTR_DB_LEVEL_LOCKING] ) {
+		if ( !$lb->getServerAttributes( $lb->getWriterIndex() )[Database::ATTR_DB_LEVEL_LOCKING] ) {
 			$dbwAuto = $lb->getConnection( DB_PRIMARY, [], false, $lb::CONN_TRX_AUTOCOMMIT );
 			$this->assertFalse(
 				$dbwAuto->getFlag( $dbw::DBO_TRX ), "No DBO_TRX with CONN_TRX_AUTOCOMMIT" );
@@ -124,6 +125,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 				$dbr, $dbrAuto, "CONN_TRX_AUTOCOMMIT uses separate connection" );
 
 			$dbwAuto2 = $lb->getConnection( DB_PRIMARY, [], false, $lb::CONN_TRX_AUTOCOMMIT );
+			$dbwAuto2->getServerName();
 			$this->assertEquals( $dbwAuto2, $dbwAuto, "CONN_TRX_AUTOCOMMIT reuses connections" );
 		}
 
@@ -188,7 +190,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
 		$this->assertEquals( $dbr->getLBInfo( 'serverIndex' ), $lb->getReaderIndex() );
 
-		if ( !$lb->getServerAttributes( $lb->getWriterIndex() )[$dbw::ATTR_DB_LEVEL_LOCKING] ) {
+		if ( !$lb->getServerAttributes( $lb->getWriterIndex() )[Database::ATTR_DB_LEVEL_LOCKING] ) {
 			$dbwAuto = $lb->getConnection( DB_PRIMARY, [], false, $lb::CONN_TRX_AUTOCOMMIT );
 			$this->assertFalse(
 				$dbwAuto->getFlag( $dbw::DBO_TRX ), "No DBO_TRX with CONN_TRX_AUTOCOMMIT" );
@@ -204,6 +206,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 				$dbr, $dbrAuto, "CONN_TRX_AUTOCOMMIT uses separate connection" );
 
 			$dbwAuto2 = $lb->getConnection( DB_PRIMARY, [], false, $lb::CONN_TRX_AUTOCOMMIT );
+			$dbwAuto2->getServerName();
 			$this->assertEquals( $dbwAuto2, $dbwAuto, "CONN_TRX_AUTOCOMMIT reuses connections" );
 		}
 
@@ -354,12 +357,13 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	private function assertWriteAllowed( Database $db ) {
+	private function assertWriteAllowed( IMaintainableDatabase $db ) {
 		$table = $db->tableName( 'some_table' );
 		// Trigger a transaction so that rollback() will remove all the tables.
 		// Don't do this for MySQL as it auto-commits transactions for DDL
 		// statements such as CREATE TABLE.
 		$useAtomicSection = in_array( $db->getType(), [ 'sqlite', 'postgres' ], true );
+		/** @var Database $db */
 		try {
 			$db->dropTable( 'some_table' );
 			$this->assertNotEquals( TransactionManager::STATUS_TRX_ERROR, $db->trxStatus() );
@@ -442,8 +446,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection()
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::getAnyOpenConnection()
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnectionInternal()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getWriterIndex()
 	 */
 	public function testOpenConnection() {
@@ -452,12 +455,12 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$i = $lb->getWriterIndex();
 		$this->assertFalse( $lb->getAnyOpenConnection( $i ) );
 
-		$conn1 = $lb->getConnection( $i );
+		$conn1 = $lb->getConnectionInternal( $i );
+		$conn1->getServerName();
 		$this->assertNotEquals( null, $conn1 );
-		$this->assertEquals( $conn1, $lb->getAnyOpenConnection( $i ) );
 		$this->assertFalse( $conn1->getFlag( DBO_TRX ) );
 
-		$conn2 = $lb->getConnection( $i, [], false, $lb::CONN_TRX_AUTOCOMMIT );
+		$conn2 = $lb->getConnectionInternal( $i, [], false, $lb::CONN_TRX_AUTOCOMMIT );
 		$this->assertNotEquals( null, $conn2 );
 		$this->assertFalse( $conn2->getFlag( DBO_TRX ) );
 
@@ -465,26 +468,8 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			$this->assertFalse(
 				$lb->getAnyOpenConnection( $i, $lb::CONN_TRX_AUTOCOMMIT ) );
 			$this->assertEquals( $conn1,
-				$lb->getConnection(
+				$lb->getConnectionInternal(
 					$i, [], false, $lb::CONN_TRX_AUTOCOMMIT ), $lb::CONN_TRX_AUTOCOMMIT );
-		} else {
-			$this->assertEquals( $conn2,
-				$lb->getAnyOpenConnection( $i, $lb::CONN_TRX_AUTOCOMMIT ) );
-			$this->assertEquals( $conn2,
-				$lb->getConnection( $i, [], false, $lb::CONN_TRX_AUTOCOMMIT ) );
-
-			$conn2->startAtomic( __METHOD__ );
-			try {
-				$lb->getConnection( $i, [], false, $lb::CONN_TRX_AUTOCOMMIT );
-				$conn2->endAtomic( __METHOD__ );
-				$this->fail( "No exception thrown." );
-			} catch ( DBUnexpectedError $e ) {
-				$this->assertEquals(
-					'Handle requested with CONN_TRX_AUTOCOMMIT yet it has a transaction',
-					$e->getMessage()
-				);
-			}
-			$conn2->endAtomic( __METHOD__ );
 		}
 
 		$lb->closeAll( __METHOD__ );
@@ -525,7 +510,9 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$conn1 = $lb->getConnection( $lb->getWriterIndex(), [], false );
+		$conn1->getServerName();
 		$conn2 = $lb->getConnection( $lb->getWriterIndex(), [], '' );
+		$conn2->getServerName();
 
 		/** @var LoadBalancer $lbWrapper */
 		$lbWrapper = TestingAccessWrapper::newFromObject( $lb );
@@ -588,9 +575,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$lb->flushPrimarySessions( __METHOD__ );
 		$this->assertSame( TransactionManager::STATUS_TRX_NONE, $conn1->trxStatus() );
 		$this->assertSame( TransactionManager::STATUS_TRX_NONE, $conn2->trxStatus() );
-
-		$conn1->close();
-		$conn2->close();
 	}
 
 	/**

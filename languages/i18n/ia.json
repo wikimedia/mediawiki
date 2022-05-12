@@ -3628,7 +3628,7 @@
 	"search-match-redirect-label": "Rediriger al pagina si un recerca ha trovate un titulo exacte",
 	"search-match-redirect-help": "Selige isto pro esser redirigite a un pagina quando le titulo del pagina corresponde a lo que tu ha cercate",
 	"searchlimit-label": "Numero de resultatos de recerca a monstrar sur cata pagina:",
-	"searchlimit-help": "Numero maxime: 500",
+	"searchlimit-help": "Numero maxime: $1",
 	"api-clientside-error-noconnect": "Impossibile connecter al servitor. Assecura te que le connexion a Internet functiona e tenta de novo.",
 	"api-clientside-error-http": "Le servitor ha retornate un error: HTTP $1.",
 	"api-clientside-error-timeout": "Le servitor non ha respondite intra le tempore expectate.",
