@@ -87,12 +87,14 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		$this->cacheable = $cacheable;
 	}
 
-	/** @inheritDoc */
+	/**
+	 * @return Status
+	 */
 	public function doWork() {
 		// Reduce effects of race conditions for slow parses (T48014)
 		$cacheTime = wfTimestampNow();
 
-		$status = parent::doWork();
+		$status = $this->renderRevision();
 		/** @var ParserOutput|null $output */
 		$output = $status->getValue();
 
