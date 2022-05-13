@@ -16,7 +16,7 @@
 	 * @private
 	 * @param {jQuery} $root
 	 * @param {string} name
-	 * @return {jQuery|OO.ui.Widget|null}
+	 * @return {jQuery|null}
 	 */
 	function conditionGetField( $root, name ) {
 		var nameFilter = function () {
@@ -28,11 +28,23 @@
 			$found = $root.closest( 'form' ).find( '[name]' ).filter( nameFilter );
 		}
 		if ( $found.length ) {
-			var $widget = $found.closest( '.oo-ui-widget[data-ooui]' );
-			if ( $widget.length ) {
-				return OO.ui.Widget.static.infuse( $widget );
-			}
 			return $found;
+		}
+		return null;
+	}
+
+	/**
+	 * Helper function to get the OOUI widget containing the given field, if any.
+	 *
+	 * @ignore
+	 * @private
+	 * @param {jQuery} $field
+	 * @return {OO.ui.Widget|null}
+	 */
+	function getWidget( $field ) {
+		var $widget = $field.closest( '.oo-ui-widget[data-ooui]' );
+		if ( $widget.length ) {
+			return OO.ui.Widget.static.infuse( $widget );
 		}
 		return null;
 	}
@@ -46,11 +58,11 @@
 	 * @param {jQuery} $root
 	 * @param {Array} spec
 	 * @return {Array}
-	 * @return {Array} return.0 Dependent fields, array of jQuery objects or OO.ui.Widgets
+	 * @return {Array} return.0 Dependent fields, array of jQuery objects
 	 * @return {Function} return.1 Test function
 	 */
 	function conditionParse( $root, spec ) {
-		var op, i, l, v, field, $field, fields, func, funcs, getVal;
+		var op, i, l, v, $field, fields, func, funcs, getVal;
 
 		op = spec[ 0 ];
 		l = spec.length;
@@ -104,39 +116,38 @@
 				if ( l !== 3 ) {
 					throw new Error( op + ' takes exactly two parameters' );
 				}
-				field = conditionGetField( $root, spec[ 1 ] );
-				if ( !field ) {
+				$field = conditionGetField( $root, spec[ 1 ] );
+				if ( !$field ) {
 					return [ [], function () {
 						return false;
 					} ];
 				}
 				v = spec[ 2 ];
 
-				if ( !( field instanceof $ ) ) {
-					// field is a OO.ui.Widget
-					if ( field.supports( 'isSelected' ) ) {
-						getVal = function () {
-							var selected = field.isSelected();
-							return selected ? field.getValue() : '';
-						};
-					} else {
-						getVal = function () {
-							return field.getValue();
-						};
+				var widget;
+				getVal = function () {
+					// When the value is requested for the first time,
+					// determine if we need to treat this field as a OOUI widget.
+					if ( widget === undefined ) {
+						widget = getWidget( $field );
 					}
-				} else {
-					$field = $( field );
-					if ( $field.prop( 'type' ) === 'radio' || $field.prop( 'type' ) === 'checkbox' ) {
-						getVal = function () {
+
+					if ( widget ) {
+						if ( widget.supports( 'isSelected' ) ) {
+							var selected = widget.isSelected();
+							return selected ? widget.getValue() : '';
+						} else {
+							return widget.getValue();
+						}
+					} else {
+						if ( $field.prop( 'type' ) === 'radio' || $field.prop( 'type' ) === 'checkbox' ) {
 							var $selected = $field.filter( ':checked' );
 							return $selected.length ? $selected.val() : '';
-						};
-					} else {
-						getVal = function () {
+						} else {
 							return $field.val();
-						};
+						}
 					}
-				}
+				};
 
 				switch ( op ) {
 					case '===':
@@ -151,17 +162,23 @@
 						break;
 				}
 
-				return [ [ field ], func ];
+				return [ [ $field ], func ];
 
 			default:
 				throw new Error( 'Unrecognized operation \'' + op + '\'' );
 		}
 	}
 
-	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
-		var $exclude = $root.find( '.mw-htmlform-autoinfuse-lazy' )
-			.find( '.mw-htmlform-hide-if, .mw-htmlform-disable-if' );
-		var $fields = $root.find( '.mw-htmlform-hide-if, .mw-htmlform-disable-if' ).not( $exclude );
+	/**
+	 * Helper function to get the list of ResourceLoader modules needed to infuse the OOUI widgets
+	 * containing the given fields.
+	 *
+	 * @ignore
+	 * @private
+	 * @param {jQuery} $fields
+	 * @return {string[]}
+	 */
+	function gatherOOUIModules( $fields ) {
 		var $oouiFields = $fields.filter( '[data-ooui]' );
 		var modules = [];
 
@@ -180,7 +197,16 @@
 			} );
 		}
 
-		mw.loader.using( modules ).done( function () {
+		return modules;
+	}
+
+	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
+		var $exclude = $root.find( '.mw-htmlform-autoinfuse-lazy' )
+			.find( '.mw-htmlform-hide-if, .mw-htmlform-disable-if' );
+		var $fields = $root.find( '.mw-htmlform-hide-if, .mw-htmlform-disable-if' ).not( $exclude );
+
+		// Load modules for the fields we will hide/disable
+		mw.loader.using( gatherOOUIModules( $fields ) ).done( function () {
 			$fields.each( function () {
 				var v, i, fields = [], test = {}, func, spec, $elOrLayout,
 					$el = $( this );
@@ -247,11 +273,21 @@
 						}
 					}
 				};
-				for ( i = 0; i < fields.length; i++ ) {
-					// The .on() method works mostly the same for jQuery objects and OO.ui.Widget
-					fields[ i ].on( 'change', func );
-				}
-				func();
+
+				// Load modules for the fields whose state we will check
+				mw.loader.using( gatherOOUIModules( $( fields.map( function ( $node ) {
+					return $node.closest( '.oo-ui-fieldLayout[data-ooui]' )[ 0 ];
+				} ) ) ) ).done( function () {
+					for ( i = 0; i < fields.length; i++ ) {
+						var widget = getWidget( fields[ i ] );
+						if ( widget ) {
+							fields[ i ] = widget;
+						}
+						// The .on() method works mostly the same for jQuery objects and OO.ui.Widget
+						fields[ i ].on( 'change', func );
+					}
+					func();
+				} );
 			} );
 		} );
 	} );
