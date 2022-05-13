@@ -210,6 +210,7 @@ $bookstoreList = [
 $magicWords = [
 #   ID                               CASE  SYNONYMS
 	'!'                       => [ 1, '!' ],
+	'='                       => [ 1, '=' ],
 	'anchorencode'            => [ 0, 'ANCHORENCODE' ],
 	'articlepath'             => [ 0, 'ARTICLEPATH' ],
 	'basepagename'            => [ 1, 'BASEPAGENAME' ],

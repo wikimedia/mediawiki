@@ -64,6 +64,8 @@ class CoreMagicVariables {
 		switch ( $id ) {
 			case '!':
 				return '|';
+			case '=':
+				return '=';
 			case 'currentmonth':
 				return $pageLang->formatNumNoSeparators( $ts->format( 'm' ) );
 			case 'currentmonth1':

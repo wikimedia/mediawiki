@@ -52,6 +52,11 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Administrators now have the option to delete/undelete the associated "Talk"
   page when they are (un)deleting a given page. `deletetalk` and `undeletetalk`
   options were added to the 'delete' and 'undelete' action APIs in MW 1.38.
+* `{{=}}` is now a wikitext built-in magic word, expanding to `=`.  This is
+  conventionally used as an escape mechanism to allow the use of `=` in
+  unnamed template arguments.  Defining [[Template:=]] to expand to something
+  other than `=` has been deprecated since 1.36, with affected pages put into
+  a special tracking category for migration.
 * …
 
 === New developer features in 1.39 ===
