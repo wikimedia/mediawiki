@@ -109,131 +109,6 @@ class ResourceLoader implements LoggerAwareInterface {
 	private $moduleSkinStyles = [];
 
 	/**
-	 * Load information stored in the database and dependency tracking store about modules
-	 *
-	 * @param string[] $moduleNames
-	 * @param ResourceLoaderContext $context ResourceLoader-specific context of the request
-	 */
-	public function preloadModuleInfo( array $moduleNames, ResourceLoaderContext $context ) {
-		// Load all tracked indirect file dependencies for the modules
-		$vary = ResourceLoaderModule::getVary( $context );
-		$entitiesByModule = [];
-		foreach ( $moduleNames as $moduleName ) {
-			$entitiesByModule[$moduleName] = "$moduleName|$vary";
-		}
-		$depsByEntity = $this->depStore->retrieveMulti(
-			self::RL_DEP_STORE_PREFIX,
-			$entitiesByModule
-		);
-		// Inject the indirect file dependencies for all the modules
-		foreach ( $moduleNames as $moduleName ) {
-			$module = $this->getModule( $moduleName );
-			if ( $module ) {
-				$entity = $entitiesByModule[$moduleName];
-				$deps = $depsByEntity[$entity];
-				$paths = ResourceLoaderModule::expandRelativePaths( $deps['paths'] );
-				$module->setFileDependencies( $context, $paths );
-			}
-		}
-
-		// Batched version of ResourceLoaderWikiModule::getTitleInfo
-		$dbr = wfGetDB( DB_REPLICA );
-		ResourceLoaderWikiModule::preloadTitleInfo( $context, $dbr, $moduleNames );
-
-		// Prime in-object cache for message blobs for modules with messages
-		$modulesWithMessages = [];
-		foreach ( $moduleNames as $moduleName ) {
-			$module = $this->getModule( $moduleName );
-			if ( $module && $module->getMessages() ) {
-				$modulesWithMessages[$moduleName] = $module;
-			}
-		}
-		// Prime in-object cache for message blobs for modules with messages
-		$lang = $context->getLanguage();
-		$store = $this->getMessageBlobStore();
-		$blobs = $store->getBlobs( $modulesWithMessages, $lang );
-		foreach ( $blobs as $moduleName => $blob ) {
-			$modulesWithMessages[$moduleName]->setMessageBlob( $blob, $lang );
-		}
-	}
-
-	/**
-	 * Run JavaScript or CSS data through a filter, caching the filtered result for future calls.
-	 *
-	 * Available filters are:
-	 *
-	 *    - minify-js
-	 *    - minify-css
-	 *
-	 * If $data is empty, only contains whitespace or the filter was unknown,
-	 * $data is returned unmodified.
-	 *
-	 * @param string $filter Name of filter to run
-	 * @param string $data Text to filter, such as JavaScript or CSS text
-	 * @param array<string,bool> $options Keys:
-	 *  - (bool) cache: Whether to allow caching this data. Default: true.
-	 * @return string Filtered data or unfiltered data
-	 */
-	public static function filter( $filter, $data, array $options = [] ) {
-		if ( strpos( $data, self::FILTER_NOMIN ) !== false ) {
-			return $data;
-		}
-
-		if ( isset( $options['cache'] ) && $options['cache'] === false ) {
-			return self::applyFilter( $filter, $data ) ?? $data;
-		}
-
-		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-		$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
-
-		$key = $cache->makeGlobalKey(
-			'resourceloader-filter',
-			$filter,
-			self::CACHE_VERSION,
-			md5( $data )
-		);
-
-		$incKey = "resourceloader_cache.$filter.hit";
-		$result = $cache->getWithSetCallback(
-			$key,
-			BagOStuff::TTL_DAY,
-			function () use ( $filter, $data, &$incKey ) {
-				$incKey = "resourceloader_cache.$filter.miss";
-				return self::applyFilter( $filter, $data );
-			}
-		);
-		$stats->increment( $incKey );
-		if ( $result === null ) {
-			// Cached failure
-			$result = $data;
-		}
-
-		return $result;
-	}
-
-	/**
-	 * @param string $filter
-	 * @param string $data
-	 * @return string|null
-	 */
-	private static function applyFilter( $filter, $data ) {
-		$data = trim( $data );
-		if ( $data ) {
-			try {
-				$data = ( $filter === 'minify-css' )
-					? CSSMin::minify( $data )
-					: JavaScriptMinifier::minify( $data );
-			} catch ( TimeoutException $e ) {
-				throw $e;
-			} catch ( Exception $e ) {
-				MWExceptionHandler::logException( $e );
-				return null;
-			}
-		}
-		return $data;
-	}
-
-	/**
 	 * @param Config $config Required configuration:
 	 *  - EnableJavaScriptTest
 	 *  - LoadScript
@@ -508,6 +383,55 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 
 		return $this->modules[$name];
+	}
+
+	/**
+	 * Load information stored in the database and dependency tracking store about modules
+	 *
+	 * @param string[] $moduleNames
+	 * @param ResourceLoaderContext $context ResourceLoader-specific context of the request
+	 */
+	public function preloadModuleInfo( array $moduleNames, ResourceLoaderContext $context ) {
+		// Load all tracked indirect file dependencies for the modules
+		$vary = ResourceLoaderModule::getVary( $context );
+		$entitiesByModule = [];
+		foreach ( $moduleNames as $moduleName ) {
+			$entitiesByModule[$moduleName] = "$moduleName|$vary";
+		}
+		$depsByEntity = $this->depStore->retrieveMulti(
+			self::RL_DEP_STORE_PREFIX,
+			$entitiesByModule
+		);
+		// Inject the indirect file dependencies for all the modules
+		foreach ( $moduleNames as $moduleName ) {
+			$module = $this->getModule( $moduleName );
+			if ( $module ) {
+				$entity = $entitiesByModule[$moduleName];
+				$deps = $depsByEntity[$entity];
+				$paths = ResourceLoaderModule::expandRelativePaths( $deps['paths'] );
+				$module->setFileDependencies( $context, $paths );
+			}
+		}
+
+		// Batched version of ResourceLoaderWikiModule::getTitleInfo
+		$dbr = wfGetDB( DB_REPLICA );
+		ResourceLoaderWikiModule::preloadTitleInfo( $context, $dbr, $moduleNames );
+
+		// Prime in-object cache for message blobs for modules with messages
+		$modulesWithMessages = [];
+		foreach ( $moduleNames as $moduleName ) {
+			$module = $this->getModule( $moduleName );
+			if ( $module && $module->getMessages() ) {
+				$modulesWithMessages[$moduleName] = $module;
+			}
+		}
+		// Prime in-object cache for message blobs for modules with messages
+		$lang = $context->getLanguage();
+		$store = $this->getMessageBlobStore();
+		$blobs = $store->getBlobs( $modulesWithMessages, $lang );
+		foreach ( $blobs as $moduleName => $blob ) {
+			$modulesWithMessages[$moduleName]->setMessageBlob( $blob, $lang );
+		}
 	}
 
 	/**
@@ -1925,6 +1849,82 @@ MESSAGE;
 			$ret->setScheme( false );
 		}
 		return $ret->getURL();
+	}
+
+	/**
+	 * Run JavaScript or CSS data through a filter, caching the filtered result for future calls.
+	 *
+	 * Available filters are:
+	 *
+	 *    - minify-js
+	 *    - minify-css
+	 *
+	 * If $data is empty, only contains whitespace or the filter was unknown,
+	 * $data is returned unmodified.
+	 *
+	 * @param string $filter Name of filter to run
+	 * @param string $data Text to filter, such as JavaScript or CSS text
+	 * @param array<string,bool> $options Keys:
+	 *  - (bool) cache: Whether to allow caching this data. Default: true.
+	 * @return string Filtered data or unfiltered data
+	 */
+	public static function filter( $filter, $data, array $options = [] ) {
+		if ( strpos( $data, self::FILTER_NOMIN ) !== false ) {
+			return $data;
+		}
+
+		if ( isset( $options['cache'] ) && $options['cache'] === false ) {
+			return self::applyFilter( $filter, $data ) ?? $data;
+		}
+
+		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$cache = ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
+
+		$key = $cache->makeGlobalKey(
+			'resourceloader-filter',
+			$filter,
+			self::CACHE_VERSION,
+			md5( $data )
+		);
+
+		$incKey = "resourceloader_cache.$filter.hit";
+		$result = $cache->getWithSetCallback(
+			$key,
+			BagOStuff::TTL_DAY,
+			function () use ( $filter, $data, &$incKey ) {
+				$incKey = "resourceloader_cache.$filter.miss";
+				return self::applyFilter( $filter, $data );
+			}
+		);
+		$stats->increment( $incKey );
+		if ( $result === null ) {
+			// Cached failure
+			$result = $data;
+		}
+
+		return $result;
+	}
+
+	/**
+	 * @param string $filter
+	 * @param string $data
+	 * @return string|null
+	 */
+	private static function applyFilter( $filter, $data ) {
+		$data = trim( $data );
+		if ( $data ) {
+			try {
+				$data = ( $filter === 'minify-css' )
+					? CSSMin::minify( $data )
+					: JavaScriptMinifier::minify( $data );
+			} catch ( TimeoutException $e ) {
+				throw $e;
+			} catch ( Exception $e ) {
+				MWExceptionHandler::logException( $e );
+				return null;
+			}
+		}
+		return $data;
 	}
 
 	/**
