@@ -1578,6 +1578,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				$foundDefault = true;
 			}
 
+			// Create talk page link if relevant message exists.
+			$talkPageMsg = $context->msg( "$skinkey-prefs-talkpage" );
+			if ( $talkPageMsg->exists() ) {
+				$linkTools[] = $talkPageMsg->parse();
+			}
+
 			// Create preview link
 			$mplink = htmlspecialchars( $mptitle->getLocalURL( [ 'useskin' => $skinkey ] ) );
 			$linkTools[] = "<a target='_blank' href=\"$mplink\">$previewtext</a>";
