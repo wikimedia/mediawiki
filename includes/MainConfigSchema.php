@@ -2564,7 +2564,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Database port number (for PostgreSQL and Microsoft SQL Server).
+	 * Database port number
 	 */
 	public const DBport = [
 		'default' => 5432,

@@ -195,7 +195,7 @@
 	"config-license-help": "Wikilari publiko askok ekarpen guztiak jartzen dituzte [https://freedomdefined.org/Definition lizentzia aske] azpian.\nHonek komunitatearen jabetza zentzuaren kontzeptua sortzen laguntzen du eta epe luzerako ekarpena bultzatzen du.\nEz da, oro har, wiki pribatu edo korporatiborik behar.\n\nWikipediatik testua erabiltzeko aukera izan nahi baduzu eta Wikipediak zure wikietatik kopiatutako testua onartzeko gai izatea nahi baduzu,  <strong>{{int:config-license-cc-by-sa}}</strong> aukeratu beharko zenuke.\n\nWikipedia lehenago erabili izan du GNU Dokumentazio Librearen Lizentzia.\nGFDL baliozko lizentzia da, baina ulertzeko zaila da.\nGFDLren baimenarekin lotutako edukiak berrerabiltzea ere zaila da.",
 	"config-email-settings": "E-posta hobespenak",
 	"config-enable-email": "Aktibatu irteerako emaila.",
-	"config-enable-email-help": "Lan egiteko email-a nahi baduzu, [Config-dbsupport-oracle/manual/en/mail.configuration.php PHP's mail settings] ondo konfiguratu egin behar da. Email ezaugarririk ez baduzu nahi, hemen kendu ditzakezu.",
+	"config-enable-email-help": "Lan egiteko email-a nahi baduzu, [https://www.php.net/manual/en/mail.configuration.php PHP's mail settings] ondo konfiguratu egin behar da. Email ezaugarririk ez baduzu nahi, hemen kendu ditzakezu.",
 	"config-email-user": "Aktibatu erabiltzaileen arteko emaila.",
 	"config-email-user-help": "Baimena eman erabiltzaileei beraien artean emailak bidaltzeko, lehentasunetan aukera aktibatuta badaukate.",
 	"config-email-usertalk": "Aktibatu erabiltzaileen eztabaida orrien jakinarazpena",

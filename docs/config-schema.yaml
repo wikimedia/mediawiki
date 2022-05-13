@@ -1668,7 +1668,7 @@ config-schema:
         description: 'Database host name or IP address'
     DBport:
         default: 5432
-        description: 'Database port number (for PostgreSQL and Microsoft SQL Server).'
+        description: 'Database port number'
     DBuser:
         default: wikiuser
         description: 'Database username'
