@@ -2017,6 +2017,7 @@
 	"feedback-thanks-title": "Rahmat!",
 	"searchsuggest-search": "{{SITENAME}}dan qidirish",
 	"searchsuggest-containing": "ichida bu boʻlgan...",
+	"api-clientside-error-noconnect": "Serverga ulanib boʻlmadi. Internet aloqasiga ulanganingizga amin boʻling va qaytadan urinib koʻring.",
 	"api-error-unknownerror": "Noaniq xato: \"$1\".",
 	"duration-days": "$1 {{PLURAL:$1|kun}}",
 	"duration-weeks": "$1 {{PLURAL:$1|hafta}}",
