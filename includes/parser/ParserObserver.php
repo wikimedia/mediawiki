@@ -28,6 +28,7 @@
 
 namespace MediaWiki\Parser;
 
+use Content;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Page\PageReference;
 use ParserOptions;
@@ -64,10 +65,11 @@ class ParserObserver {
 	 * @param PageReference $page
 	 * @param int|null $revId
 	 * @param ParserOptions $options
+	 * @param Content $content
 	 * @param ParserOutput $output
 	 */
 	public function notifyParse(
-		PageReference $page, ?int $revId, ParserOptions $options, ParserOutput $output
+		PageReference $page, ?int $revId, ParserOptions $options, Content $content, ParserOutput $output
 	) {
 		$pageKey = CacheKeyHelper::getKeyForPage( $page );
 
@@ -76,7 +78,9 @@ class ParserObserver {
 			Title::castFromPageReference( $page )
 		);
 
-		$index = $this->getParseId( $pageKey, $revId, $optionsHash );
+		$contentStr = $content->isValid() ? $content->serialize() : null;
+
+		$index = $this->getParseId( $pageKey, $revId, $optionsHash, $contentStr );
 
 		$stackTrace = ( new RuntimeException() )->getTraceAsString();
 		if ( array_key_exists( $index, $this->previousParseStackTraces ) ) {
@@ -90,6 +94,7 @@ class ParserObserver {
 					'page' => $pageKey,
 					'rev' => $revId,
 					'options-hash' => $optionsHash,
+					'content' => $contentStr,
 					'trace' => $stackTrace,
 					'previous-trace' => $this->previousParseStackTraces[$index],
 				]
@@ -102,13 +107,16 @@ class ParserObserver {
 	 * @param string $titleStr
 	 * @param int|null $revId
 	 * @param string $optionsHash
+	 * @param string|null $contentStr
 	 * @return string
 	 */
-	private function getParseId( string $titleStr, ?int $revId, string $optionsHash ): string {
+	private function getParseId( string $titleStr, ?int $revId, string $optionsHash, ?string $contentStr ): string {
 		// $revId may be null when previewing a new page
 		$revIdStr = $revId ?? "";
+		// $contentStr may be null if the content could not be serialized
+		$contentSha1 = $contentStr ? sha1( $contentStr ) : 'INVALID';
 
-		return "$titleStr.$revIdStr.$optionsHash";
+		return "$titleStr.$revIdStr.$optionsHash.$contentSha1";
 	}
 
 }

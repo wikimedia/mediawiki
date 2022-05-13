@@ -25,10 +25,12 @@ class ParserObserverTest extends MediaWikiUnitTestCase {
 		$options = $this->createNoOpMock( ParserOptions::class, [ 'optionsHash' ] );
 		$options->method( 'optionsHash' )->willReturnOnConsecutiveCalls( $hashOne, $hashTwo );
 
+		$content = new DummyContentForTesting( "hello world" );
+
 		$output = new ParserOutput();
 		$observer = new ParserObserver( $logger );
-		$observer->notifyParse( $title, null, $options, $output );
-		$observer->notifyParse( $title, null, $options, $output );
+		$observer->notifyParse( $title, null, $options, $content, $output );
+		$observer->notifyParse( $title, null, $options, $content, $output );
 
 		$this->assertArrayEquals( $expects, $logger->getBuffer() );
 	}
