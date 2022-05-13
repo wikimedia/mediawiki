@@ -101,7 +101,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$this->outputHeader();
 		$this->addHelpLink( 'Help:What links here' );
 		$out->addModuleStyles( 'mediawiki.special.changeslist' );
-		$out->addModules( 'mediawiki.special.recentchanges' );
 
 		$opts = new FormOptions();
 
@@ -661,64 +660,48 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	private function whatlinkshereForm() {
 		// We get nicer value from the title object
 		$this->opts->consumeValue( 'target' );
-
 		$target = $this->target ? $this->target->getPrefixedText() : '';
-		$namespace = $this->opts->consumeValue( 'namespace' );
-		$nsinvert = $this->opts->consumeValue( 'invert' );
+		$this->opts->consumeValue( 'namespace' );
+		$this->opts->consumeValue( 'invert' );
 
-		# Build up the form
-		$f = Xml::openElement( 'form', [ 'action' => wfScript() ] );
-
-		# Values that should not be forgotten
-		$f .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
-		foreach ( $this->opts->getUnconsumedValues() as $name => $value ) {
-			$f .= Html::hidden( $name, $value );
-		}
-
-		$f .= Xml::fieldset( $this->msg( 'whatlinkshere' )->text() );
-
-		# Target input (.mw-searchInput enables suggestions)
-		$f .= Xml::inputLabel( $this->msg( 'whatlinkshere-page' )->text(), 'target',
-			'mw-whatlinkshere-target', 40, $target, [ 'class' => 'mw-searchInput' ] );
-
-		$f .= ' ';
-
-		# Namespace selector
-		$f .= Html::namespaceSelector(
-			[
-				'selected' => $namespace,
-				'all' => '',
-				'label' => $this->msg( 'namespace' )->text(),
-				'in-user-lang' => true,
-			], [
+		$fields = [
+			'target' => [
+				'type' => 'title',
+				'name' => 'target',
+				'default' => $target,
+				'id' => 'mw-whatlinkshere-target',
+				'label-message' => 'whatlinkshere-page',
+			],
+			'namespace' => [
+				'type' => 'namespaceselect',
 				'name' => 'namespace',
 				'id' => 'namespace',
-				'class' => 'namespaceselector',
-			]
-		);
+				'label-message' => 'namespace',
+				'all' => '',
+				'in-user-lang' => true,
+			],
+			'invert' => [
+				'type' => 'check',
+				'name' => 'invert',
+				'id' => 'nsinvert',
+				'hide-if' => [ '===', 'namespace', '' ],
+				'label-raw' => Html::element(
+					'span',
+					[ 'title' => $this->msg( 'tooltip-whatlinkshere-invert' )->text() ],
+					$this->msg( 'invert' )->text()
+				),
+			],
+		];
 
-		$hidden = $namespace === '' ? ' mw-input-hidden' : '';
-		$f .= ' ' .
-			Html::rawElement( 'span',
-				[ 'class' => 'mw-input-with-label' . $hidden ],
-				Xml::checkLabel(
-					$this->msg( 'invert' )->text(),
-					'invert',
-					'nsinvert',
-					$nsinvert,
-					[ 'title' => $this->msg( 'tooltip-whatlinkshere-invert' )->text() ]
-				)
-			);
+		$form = HTMLForm::factory( 'table', $fields, $this->getContext() )
+			->setMethod( 'GET' )
+			->setTitle( $this->getPageTitle() )
+			// Values that should not be forgotten
+			->addHiddenFields( $this->opts->getUnconsumedValues() )
+			->setWrapperLegendMsg( 'whatlinkshere' )
+			->setSubmitTextMsg( 'whatlinkshere-submit' );
 
-		$f .= ' ';
-
-		# Submit
-		$f .= Xml::submitButton( $this->msg( 'whatlinkshere-submit' )->text() );
-
-		# Close
-		$f .= Xml::closeElement( 'fieldset' ) . Xml::closeElement( 'form' ) . "\n";
-
-		return $f;
+		return $form->prepareForm()->getHTML( false );
 	}
 
 	/**
