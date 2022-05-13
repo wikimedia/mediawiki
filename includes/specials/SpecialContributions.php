@@ -135,7 +135,6 @@ class SpecialContributions extends IncludableSpecialPage {
 			'mediawiki.special.changeslist',
 		] );
 		$out->addModules( [
-			'mediawiki.special.recentchanges',
 			// Certain skins e.g. Minerva might have disabled this module.
 			'mediawiki.page.ready'
 		] );
@@ -710,12 +709,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			'name' => 'wpfilters',
 			'flatlist' => true,
 			// Only shown when namespaces are selected.
-			'cssclass' => $ns === '' ?
-				'contribs-ns-filters mw-input-with-label mw-input-hidden' :
-				'contribs-ns-filters mw-input-with-label',
-			// `contribs-ns-filters` class allows these fields to be toggled on/off by JavaScript.
-			// See resources/src/mediawiki.special.recentchanges.js
-			'infusable' => true,
+			'hide-if' => [ '===', 'namespace', 'all' ],
 			'options-messages' => [
 				'invert' => 'nsInvert',
 				'namespace_association' => 'associated',
