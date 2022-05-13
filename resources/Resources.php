@@ -2523,22 +2523,31 @@ return [
 	],
 
 	'mediawiki.widgets' => [
-		'scripts' => [
-			'resources/src/mediawiki.widgets/mw.widgets.NamespaceInputWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.ComplexNamespaceInputWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.CopyTextLayout.js',
-			'resources/src/mediawiki.widgets/mw.widgets.TitleWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.TitleSearchWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.ComplexTitleInputWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.TitleOptionWidget.js',
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.widgets",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.widgets",
+		'packageFiles' => [
+			'index.js',
+			[ 'name' => 'data.json', 'callback' => static function ( MessageLocalizer $messageLocalizer ) {
+				$userLang = $messageLocalizer->msg( 'unused' )->getLanguage();
+				return [
+					'formattedNamespaces' => $userLang->getFormattedNamespaces(),
+				];
+			} ],
+			'mw.widgets.NamespaceInputWidget.js',
+			'mw.widgets.ComplexNamespaceInputWidget.js',
+			'mw.widgets.CopyTextLayout.js',
+			'mw.widgets.TitleWidget.js',
+			'mw.widgets.TitleInputWidget.js',
+			'mw.widgets.TitleSearchWidget.js',
+			'mw.widgets.ComplexTitleInputWidget.js',
+			'mw.widgets.TitleOptionWidget.js',
 		],
 		'styles' => [
-			'resources/src/mediawiki.widgets/mw.widgets.CopyTextLayout.css',
+			'mw.widgets.CopyTextLayout.css',
 		],
 		'skinStyles' => [
 			'default' => [
-				'resources/src/mediawiki.widgets/mw.widgets.TitleWidget.less',
+				'mw.widgets.TitleWidget.less',
 			],
 		],
 		'dependencies' => [
