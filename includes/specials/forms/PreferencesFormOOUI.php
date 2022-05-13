@@ -114,17 +114,6 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 		$html = parent::getButtons();
 
 		if ( $this->areOptionsEditable() ) {
-			$t = $this->getTitle()->getSubpage( 'reset' );
-
-			$html .= new OOUI\ButtonWidget( [
-				'infusable' => true,
-				'id' => 'mw-prefs-restoreprefs',
-				'label' => $this->msg( 'restoreprefs' )->text(),
-				'href' => $t->getLinkURL(),
-				'flags' => [ 'destructive' ],
-				'framed' => false,
-			] );
-
 			$html = Xml::tags( 'div', [ 'class' => 'mw-prefs-buttons' ], $html );
 		}
 

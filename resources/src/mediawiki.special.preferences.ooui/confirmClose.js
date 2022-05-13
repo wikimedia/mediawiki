@@ -4,7 +4,7 @@
  */
 ( function () {
 	$( function () {
-		var allowCloseWindow, saveButton, restoreButton;
+		var allowCloseWindow, saveButton;
 
 		// Check if all of the form values are unchanged.
 		// (This function could be changed to infuse and check OOUI widgets, but that would only make it
@@ -46,7 +46,6 @@
 		}
 
 		saveButton = OO.ui.infuse( $( '#prefcontrol' ) );
-		restoreButton = OO.ui.infuse( $( '#mw-prefs-restoreprefs' ) );
 
 		// Disable the button to save preferences unless preferences have changed
 		// Check if preferences have been changed before JS has finished loading
@@ -70,11 +69,5 @@
 			test: isPrefsChanged
 		} );
 		$( '#mw-prefs-form' ).on( 'submit', allowCloseWindow.release );
-		restoreButton.on( 'click', function () {
-			allowCloseWindow.release();
-			// The default behavior of events in OOUI is always prevented. Follow the link manually.
-			// Note that middle-click etc. still works, as it doesn't emit a OOUI 'click' event.
-			location.href = restoreButton.getHref();
-		} );
 	} );
 }() );

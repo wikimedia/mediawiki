@@ -142,11 +142,21 @@ class SpecialPreferences extends SpecialPage {
 
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle( 'reset' ) ); // Reset subpage
-		HTMLForm::factory( 'ooui', [], $context, 'prefs-restore' )
+		$desc = [
+			'confirm' => [
+				'type' => 'check',
+				'label-message' => 'prefs-reset-confirm',
+				'required' => true,
+			],
+		];
+		// TODO: disable the submit button if the checkbox is not checked
+		HTMLForm::factory( 'ooui', $desc, $context, 'prefs-restore' )
 			->setSubmitTextMsg( 'restoreprefs' )
 			->setSubmitDestructive()
 			->setSubmitCallback( [ $this, 'submitReset' ] )
 			->suppressReset()
+			->showCancel()
+			->setCancelTarget( $this->getPageTitle() )
 			->show();
 	}
 
