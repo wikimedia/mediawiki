@@ -144,7 +144,8 @@ class UrlUtils {
 				$defaultProto = $serverProto ?? PROTO_HTTP;
 			}
 
-			$defaultProtoWithoutSlashes = $defaultProto === null ? '' : substr( $defaultProto, 0, -2 );
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal T308355
+			$defaultProtoWithoutSlashes = $defaultProto === PROTO_FALLBACK ? '' : substr( $defaultProto, 0, -2 );
 
 			if ( substr( $url, 0, 2 ) == '//' ) {
 				$url = $defaultProtoWithoutSlashes . $url;

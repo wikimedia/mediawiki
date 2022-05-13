@@ -45,132 +45,105 @@ class UrlUtilsProviders {
 		];
 	}
 
-	/**
-	 * Helper method to reduce nesting in provideExpand()
-	 *
-	 * @return Generator
-	 */
-	private static function provideExpandCases(): Generator {
+	public static function provideExpand() {
+		$modes = [ 'http', 'https' ];
 		$servers = [
 			'http://example.com',
 			'https://example.com',
 			'//example.com',
 		];
+		$defaultProtos = [
+			'http' => PROTO_HTTP,
+			'https' => PROTO_HTTPS,
+			'protocol-relative' => PROTO_RELATIVE,
+			'fallback' => PROTO_FALLBACK,
+			'canonical' => PROTO_CANONICAL,
+		];
 
-		foreach ( $servers as $server ) {
-			foreach ( [ 'http://example2.com', 'https://example2.com' ] as $canServer ) {
-				foreach ( [ 'http://internal.com', 'https://internal.com' ] as $intServer ) {
-					foreach ( [ 'http', 'https' ] as $fallbackProto ) {
-						foreach ( [ 111, 443 ] as $httpsPort ) {
-							$options = [
-								UrlUtils::SERVER => $server,
-								UrlUtils::CANONICAL_SERVER => $canServer,
-								UrlUtils::INTERNAL_SERVER => $intServer,
-								UrlUtils::FALLBACK_PROTOCOL => $fallbackProto,
-								UrlUtils::HTTPS_PORT => $httpsPort,
-							];
-							foreach ( self::DEFAULT_PROTOS as $protoDesc => $defaultProto ) {
-								yield [ $options, $protoDesc, $defaultProto ];
-							}
+		foreach ( $modes as $fallbackProto ) {
+			foreach ( $servers as $server ) {
+				foreach ( $modes as $canServerMode ) {
+					$canServer = "$canServerMode://example2.com";
+					$options = [
+						UrlUtils::SERVER => $server,
+						UrlUtils::CANONICAL_SERVER => $canServer,
+						UrlUtils::HTTPS_PORT => 443,
+						UrlUtils::FALLBACK_PROTOCOL => $fallbackProto,
+					];
+					foreach ( $defaultProtos as $protoDesc => $defaultProto ) {
+						$case = "fallback: $fallbackProto, default: $protoDesc, server: $server, canonical: $canServer";
+						yield "No-op fully-qualified http URL ($case)" => [
+							'http://example.com',
+							$options, $defaultProto,
+							'http://example.com',
+						];
+						yield "No-op fully-qualified https URL ($case)" => [
+							'https://example.com',
+							$options, $defaultProto,
+							'https://example.com',
+						];
+						yield "No-op rootless path-only URL ($case" => [
+							"wiki/FooBar",
+							$options, $defaultProto,
+							'wiki/FooBar',
+						];
+
+						// Determine expected protocol
+						if ( $protoDesc === 'protocol-relative' ) {
+							$p = '';
+						} elseif ( $protoDesc === 'fallback' ) {
+							$p = "$fallbackProto:";
+						} elseif ( $protoDesc === 'canonical' ) {
+							$p = "$canServerMode:";
+						} else {
+							$p = $protoDesc . ':';
 						}
+						yield "Expand protocol-relative URL ($case)" => [
+							'//wikipedia.org',
+							$options, $defaultProto,
+							"$p//wikipedia.org",
+						];
+
+						// Determine expected server name
+						if ( $protoDesc === 'canonical' ) {
+							$srv = $canServer;
+						} elseif ( $server === '//example.com' ) {
+							$srv = $p . $server;
+						} else {
+							$srv = $server;
+						}
+						yield "Expand path that starts with slash ($case)" => [
+							'/wiki/FooBar',
+							$options, $defaultProto,
+							"$srv/wiki/FooBar",
+						];
 					}
 				}
 			}
 		}
-	}
 
-	public static function provideExpand(): Generator {
-		$modes = [ 'http', 'https' ];
-
-		foreach ( self::provideExpandCases() as [ $options, $protoDesc, $defaultProto ] ) {
-			$case = "default: $protoDesc";
-			foreach ( $options as $key => $val ) {
-				$case .= ", $key: $val";
-			}
-
-			yield "No-op fully-qualified http URL ($case)" => [
-				'http://example.com',
-				$options, $defaultProto,
-				'http://example.com',
-			];
-			yield "No-op fully-qualified https URL ($case)" => [
-				'https://example.com',
-				$options, $defaultProto,
-				'https://example.com',
-			];
-			yield "No-op fully-qualified https URL with port ($case)" => [
-				'https://example.com:222',
-				$options, $defaultProto,
-				'https://example.com:222',
-			];
-			yield "No-op fully-qualified https URL with standard port ($case)" => [
-				'https://example.com:443',
-				$options, $defaultProto,
-				'https://example.com:443',
-			];
-			yield "No-op rootless path-only URL ($case)" => [
-				"wiki/FooBar",
-				$options, $defaultProto,
-				'wiki/FooBar',
-			];
-
-			// Determine expected protocol
-			switch ( $protoDesc ) {
-				case 'protocol-relative':
-					$p = '';
-					break;
-
-				case 'fallback':
-				case 'current':
-					$p = $options[UrlUtils::FALLBACK_PROTOCOL] . ':';
-					break;
-
-				case 'canonical':
-					$p = strtok( $options[UrlUtils::CANONICAL_SERVER], ':' ) . ':';
-					break;
-
-				case 'internal':
-					$p = strtok( $options[UrlUtils::INTERNAL_SERVER], ':' ) . ':';
-					break;
-
-				case 'http':
-				case 'https':
-					$p = "$protoDesc:";
-			}
-			yield "Expand protocol-relative URL ($case)" => [
-				'//wikipedia.org',
-				$options, $defaultProto,
-				"$p//wikipedia.org",
-			];
-
-			// Determine expected server name
-			if ( $protoDesc === 'canonical' ) {
-				$srv = $options[UrlUtils::CANONICAL_SERVER];
-			} elseif ( $protoDesc === 'internal' ) {
-				$srv = $options[UrlUtils::INTERNAL_SERVER];
-			} elseif ( substr( $options[UrlUtils::SERVER], 0, 2 ) === '//' ) {
-				$srv = $p . $options[UrlUtils::SERVER];
-			} else {
-				$srv = $options[UrlUtils::SERVER];
-			}
-
-			// Add a port only if it's not the default port, the server
-			// protocol is relative, and we're actually trying to produce an
-			// HTTPS URL
-			if ( $options[UrlUtils::HTTPS_PORT] !== 443 &&
-				substr( $options[UrlUtils::SERVER], 0, 2 ) === '//' &&
-				( $defaultProto === PROTO_HTTPS || ( $defaultProto === PROTO_FALLBACK &&
-					$options[UrlUtils::FALLBACK_PROTOCOL] === 'https' ) )
-			) {
-				$srv .= ':' . $options[UrlUtils::HTTPS_PORT];
-			}
-
-			yield "Expand path that starts with slash ($case)" => [
-				'/wiki/FooBar',
-				$options, $defaultProto,
-				"$srv/wiki/FooBar",
-			];
-		}
+		// Non-standard https port
+		$optionsRel111 = [
+			UrlUtils::SERVER => '//wiki.example.com',
+			UrlUtils::CANONICAL_SERVER => 'http://wiki.example.com',
+			UrlUtils::HTTPS_PORT => 111,
+			UrlUtils::FALLBACK_PROTOCOL => 'https',
+		];
+		yield "No-op foreign URL, ignore custom port config" => [
+			'https://foreign.example.com/foo',
+			$optionsRel111, PROTO_HTTPS,
+			'https://foreign.example.com/foo',
+		];
+		yield "No-op foreign URL, preserve existing port" => [
+			'https://foreign.example.com:222/foo',
+			$optionsRel111, PROTO_HTTPS,
+			'https://foreign.example.com:222/foo',
+		];
+		yield "Expand path with custom HTTPS port" => [
+			'/foo',
+			$optionsRel111, PROTO_HTTPS,
+			'https://wiki.example.com:111/foo',
+		];
 
 		// Silly corner cases
 		yield 'CanonicalServer with no protocol' => [
