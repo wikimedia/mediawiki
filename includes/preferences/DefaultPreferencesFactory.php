@@ -552,7 +552,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'type' => 'info',
 			'raw' => true,
 			'label-message' => 'prefs-user-downloaddata-label',
-			'default' => HTML::Element(
+			'default' => Html::element(
 				'a',
 				[
 					'href' => $this->options->get( MainConfigNames::ScriptPath ) .
@@ -561,6 +561,21 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				$context->msg( 'prefs-user-downloaddata-info' )->text()
 			),
 			'help-message' => [ 'prefs-user-downloaddata-help-message', urlencode( $user->getTitleKey() ) ],
+			'section' => 'personal/info',
+		];
+
+		$defaultPreferences['restoreprefs'] = [
+			'type' => 'info',
+			'raw' => true,
+			'label-message' => 'prefs-user-restoreprefs-label',
+			'default' => Html::element(
+				'a',
+				[
+					'href' => SpecialPage::getTitleFor( 'Preferences' )
+						->getSubpage( 'reset' )->getLocalURL()
+				],
+				$context->msg( 'prefs-user-restoreprefs-info' )->text()
+			),
 			'section' => 'personal/info',
 		];
 

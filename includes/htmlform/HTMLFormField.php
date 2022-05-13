@@ -401,7 +401,7 @@ abstract class HTMLFormField {
 
 		if ( isset( $this->mParams['required'] )
 			&& $this->mParams['required'] !== false
-			&& $value === ''
+			&& ( $value === '' || $value === false )
 		) {
 			return $this->msg( 'htmlform-required' );
 		}
