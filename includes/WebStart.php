@@ -49,26 +49,22 @@ define( 'MEDIAWIKI', true );
 
 /**
  * @param SettingsBuilder $settings
- *
  * @return never
  */
 function wfWebStartNoLocalSettings( SettingsBuilder $settings ) {
 	# LocalSettings.php is the per-site customization file. If it does not exist
 	# the wiki installer needs to be launched or the generated file uploaded to
 	# the root wiki directory. Give a hint, if it is not readable by the server.
-	require_once MW_INSTALL_PATH . '/includes/NoLocalSettings.php';
+	require_once __DIR__ . '/NoLocalSettings.php';
 	die();
 }
 
-require_once __DIR__ . "/BootstrapHelperFunctions.php";
-
-# Full path to the installation directory.
-$IP = wfDetectInstallPath();
+require_once __DIR__ . '/BootstrapHelperFunctions.php';
 
 // If no LocalSettings file exists, try to display an error page
 // (use a callback because it depends on TemplateParser)
 if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
-	wfDetectLocalSettingsFile( $IP );
+	wfDetectLocalSettingsFile();
 	if ( !is_readable( MW_CONFIG_FILE ) ) {
 		define( 'MW_CONFIG_CALLBACK', 'wfWebStartNoLocalSettings' );
 	}
@@ -87,7 +83,7 @@ if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
 	define( 'MW_SETUP_CALLBACK', 'wfWebStartSetup' );
 }
 
-require_once "$IP/includes/Setup.php";
+require_once __DIR__ . '/Setup.php';
 
 # Multiple DBs or commits might be used; keep the request as transactional as possible
 if ( isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] === 'POST' ) {
