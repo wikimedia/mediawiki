@@ -35,11 +35,11 @@ class PoolWorkArticleView extends PoolCounterWork {
 	/** @var ParserOptions */
 	protected $parserOptions;
 
-	/** @var RevisionRecord|null */
-	protected $revision = null;
+	/** @var RevisionRecord */
+	protected $revision;
 
 	/** @var RevisionRenderer */
-	private $renderer = null;
+	private $renderer;
 
 	/** @var LoggerSpi */
 	protected $loggerSpi;
@@ -69,13 +69,19 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 * @return Status
 	 */
 	public function doWork() {
+		return $this->renderRevision();
+	}
+
+	/**
+	 * @return Status with the value being a ParserOutput or null
+	 */
+	public function renderRevision(): Status {
 		$renderedRevision = $this->renderer->getRenderedRevision(
 			$this->revision,
 			$this->parserOptions,
 			null,
 			[ 'audience' => RevisionRecord::RAW ]
 		);
-
 		if ( !$renderedRevision ) {
 			// audience check failed
 			return Status::newFatal( 'pool-errorunknown' );
