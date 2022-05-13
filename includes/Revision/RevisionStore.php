@@ -353,7 +353,7 @@ class RevisionStore
 			if ( $title ) {
 				$this->logger->info(
 					__METHOD__ . ' fell back to READ_LATEST and got a Title.',
-					[ 'trace' => wfBacktrace() ]
+					[ 'exception' => new RuntimeException() ]
 				);
 				return $title;
 			}
@@ -1209,7 +1209,7 @@ class RevisionStore
 					'rev_id' => $slot->getRevision(),
 					'role_name' => $slot->getRole(),
 					'model_name' => $model,
-					'trace' => wfBacktrace()
+					'exception' => new RuntimeException()
 				]
 			);
 
@@ -1438,7 +1438,7 @@ class RevisionStore
 				__METHOD__ . ' falling back to READ_LATEST.',
 				[
 					'revid' => $revId,
-					'trace' => wfBacktrace( true )
+					'exception' => new RuntimeException(),
 				]
 			);
 			return $this->loadSlotRecordsFromDb(
@@ -1513,7 +1513,7 @@ class RevisionStore
 				[
 					'revid' => $revId,
 					'queryFlags' => $queryFlags,
-					'trace' => wfBacktrace( true )
+					'exception' => new RuntimeException(),
 				]
 			);
 
@@ -1783,7 +1783,7 @@ class RevisionStore
 							'RevisionStoreCacheRecord refresh callback falling back to READ_LATEST.',
 							[
 								'revid' => $revId,
-								'trace' => wfBacktrace( true )
+								'exception' => new RuntimeException(),
 							]
 						);
 						$dbw = $this->getDBConnectionRefForQueryFlags( self::READ_LATEST );
@@ -1855,7 +1855,7 @@ class RevisionStore
 						'page_id_reloaded' => $masterPageId,
 						'page_latest' => $masterLatest,
 						'rev_id' => $revId,
-						'trace' => wfBacktrace()
+						'exception' => new RuntimeException(),
 					] + $context
 				);
 			} else {
@@ -1882,7 +1882,7 @@ class RevisionStore
 						'rev_page_title' => (string)$page,
 						'page_latest' => $masterLatest,
 						'rev_id' => $revId,
-						'trace' => wfBacktrace()
+						'exception' => new RuntimeException(),
 					] + $context
 				);
 			}

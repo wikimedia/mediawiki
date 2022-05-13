@@ -150,14 +150,14 @@ class LinkBatch {
 			// For now, let's avoid things like T282180. We should be more strict in the future.
 			$this->logger->warning(
 				'Skipping null link, probably due to a bad title.',
-				[ 'trace' => wfBacktrace( true ) ]
+				[ 'exception' => new RuntimeException() ]
 			);
 			return;
 		}
 		if ( $link instanceof LinkTarget && $link->isExternal() ) {
 			$this->logger->warning(
 				'Skipping interwiki link',
-				[ 'trace' => wfBacktrace( true ) ]
+				[ 'exception' => new RuntimeException() ]
 			);
 			return;
 		}
