@@ -1719,6 +1719,7 @@ abstract class ContentHandler {
 				$title,
 				$cpoParams->getRevId(),
 				$parserOptions,
+				$content,
 				$po
 			);
 			$parserOptions->setRedirectTarget( $oldRedir );
