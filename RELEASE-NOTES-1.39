@@ -168,6 +168,8 @@ because of Phabricator reports.
   $wgWikiFarmSettingsDirectory to load wiki farm config.
 * Calling getId() on a User or UserIdentityValue from the wrong wiki, deprecated
   since 1.36, now throws an exception.
+* The MWNamespace class, deprecated since 1.34, has been removed. Use the
+  NamespaceInfo service instead.
 * IResultWrapper::next() now returns void, to match the Iterator interface that
   it implements. fetchObject() has the same behavior as next() used to.
 * ParserOutput::setText will now set the ParserOutput's text to null if

@@ -814,7 +814,6 @@ $wgAutoloadLocalClasses = [
 	'MWGrants' => __DIR__ . '/includes/MWGrants.php',
 	'MWHttpRequest' => __DIR__ . '/includes/http/MWHttpRequest.php',
 	'MWLBFactory' => __DIR__ . '/includes/db/MWLBFactory.php',
-	'MWNamespace' => __DIR__ . '/includes/MWNamespace.php',
 	'MWOldPassword' => __DIR__ . '/includes/password/MWOldPassword.php',
 	'MWRestrictions' => __DIR__ . '/includes/utils/MWRestrictions.php',
 	'MWSaltedPassword' => __DIR__ . '/includes/password/MWSaltedPassword.php',
