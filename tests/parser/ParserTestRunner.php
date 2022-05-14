@@ -40,6 +40,7 @@ use Wikimedia\Parsoid\ParserTests\ParserHook as ParsoidParserHook;
 use Wikimedia\Parsoid\ParserTests\RawHTML as ParsoidRawHTML;
 use Wikimedia\Parsoid\ParserTests\StyleTag as ParsoidStyleTag;
 use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
+use Wikimedia\Parsoid\ParserTests\TestFileReader as ParsoidTestFileReader;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
@@ -187,13 +188,6 @@ class ParserTestRunner {
 			$this->options['selser'] = true;
 		}
 
-		// PHPUnit tests and test runners requires all tests to be pregenerated.
-		// But, generating selser edit trees requires the DOM.
-		// So, we cannot pregenerate selser auto-edit tests.
-		// They have to be generated dynamically. So, set this to 0.
-		// We will handle auto-edit selser tests as a composite test.
-		$this->options['numchanges'] = 0;
-
 		$this->requestedTestModes = array_intersect(
 			array_keys( array_filter( $this->options ) ),
 			self::VALID_TEST_MODES
@@ -203,6 +197,7 @@ class ParserTestRunner {
 	/**
 	 * @param TestRecorder $recorder
 	 * @param array $options
+	 *  - parsoid (bool) if true, run Parsoid tests
 	 *  - testFile (string)
 	 *      If set, the (Parsoid) test file to run tests from.
 	 *      Currently, only used for CLI PHPUnit test runs
@@ -215,6 +210,7 @@ class ParserTestRunner {
 	 *  - selser (bool/"noauto")
 	 *      If true, run Parsoid auto-generated selser tests
 	 *      If "noauto", run Parsoid manual edit selser tests
+	 *  - numchanges (int) number of selser edit tests to generate
 	 *  - changetree (array|null)
 	 *      If not null, run a Parsoid selser edit test with this changetree
 	 *  - updateKnownFailures (bool)
@@ -237,8 +233,16 @@ class ParserTestRunner {
 	public function __construct( TestRecorder $recorder, $options = [] ) {
 		$this->recorder = $recorder;
 		$this->options = $options;
-		// Makes it possile to use without isset
+		// Makes it possible to use without isset
+		$this->options['parsoid'] = !empty( $this->options['parsoid'] );
+		$this->options['knownFailures'] =
+			!isset( $this->options['knownFailures'] ) || $this->options['knownFailures'];
 		$this->options['updateKnownFailures'] = !empty( $this->options['updateKnownFailures'] );
+
+		// NOTE that this implicitly assumes that we are running in Parsoid mode.
+		// For the PHPUnit test runner, this is not a problem when running different
+		// test suites since know what mode tests are running in. For parserTests.php
+		// script run, we need an explicit option enabling this.
 		// Initialize upfront since test suites access these computed values
 		$this->computeRequestedTestModes();
 
@@ -860,17 +864,12 @@ class ParserTestRunner {
 			$ok = true;
 
 			foreach ( $filenames as $filename ) {
-				$testFileInfo = TestFileReader::read( $filename, [
-					'runDisabled' => $this->runDisabled,
-					'regex' => $this->regex ] );
-
-				// Don't start the suite if there are no enabled tests in the file
-				if ( !$testFileInfo['tests'] ) {
-					continue;
-				}
-
 				$this->recorder->startSuite( $filename );
-				$ok = $this->runTests( $testFileInfo ) && $ok;
+				if ( $this->options['parsoid'] ) {
+					$ok = $this->runParsoidTests( $filename ) && $ok;
+				} else {
+					$ok = $this->runTests( $filename ) && $ok;
+				}
 				$this->recorder->endSuite( $filename );
 			}
 
@@ -912,18 +911,23 @@ class ParserTestRunner {
 	 * Run the tests from a single file. staticSetup() and setupDatabase()
 	 * must have been called already.
 	 *
-	 * @param array $testFileInfo Parsed file info returned by TestFileReader
+	 * @param string $filename Test file name
 	 * @return bool True if passed all tests, false if any tests failed.
 	 */
-	public function runTests( $testFileInfo ) {
-		$ok = true;
+	public function runTests( string $filename ): bool {
+		$testFileInfo = TestFileReader::read( $filename, [
+			'runDisabled' => $this->runDisabled,
+			'regex' => $this->regex
+		] );
 
-		$this->checkSetupDone( 'staticSetup' );
-
-		// Don't add articles from the file if there are no enabled tests from the file
+		// Don't start the suite if there are no enabled tests in the file
 		if ( !$testFileInfo['tests'] ) {
 			return true;
 		}
+
+		$ok = true;
+
+		$this->checkSetupDone( 'staticSetup' );
 
 		// If any requirements are not met, mark all tests from the file as skipped
 		if ( !$this->meetsRequirements( $testFileInfo['fileOptions']['requirements'] ?? [] ) ) {
@@ -940,8 +944,7 @@ class ParserTestRunner {
 		// Run tests
 		foreach ( $testFileInfo['tests'] as $test ) {
 			$this->recorder->startTest( $test );
-			$result =
-				$this->runTest( $test );
+			$result = $this->runTest( $test );
 			if ( $result !== false ) {
 				$ok = $ok && $result->isSuccess();
 				$this->recorder->record( $test, $result );
@@ -952,6 +955,151 @@ class ParserTestRunner {
 		ScopedCallback::consume( $teardown );
 
 		return $ok;
+	}
+
+	/**
+	 * @param array $fileOptions
+	 * @param array $runnerOpts
+	 * @param string|null $filename
+	 * @return string|null
+	 */
+	public function getSkipMessage( array $fileOptions, array $runnerOpts = [], string $filename = null ): ?string {
+		// If any requirements are not met, mark all tests from the file as skipped
+		if ( !isset( $fileOptions['parsoid-compatible'] ) ) {
+			// Running files in Parsoid integrated mode is opt-in for now.
+			return 'not compatible with Parsoid integrated mode';
+		} elseif ( !MediaWikiServices::getInstance()->hasService( 'ParsoidPageConfigFactory' ) ) {
+			// Disable integrated mode if Parsoid's services aren't available
+			// (Temporary measure until Parsoid is fully integrated in core.)
+			return 'Parsoid not available';
+		} elseif ( !$this->meetsRequirements( $fileOptions['requirements'] ?? [] ) ) {
+			return 'required extension not enabled';
+		} elseif ( ( $runnerOpts['testFile'] ?? $filename ) !== $filename ) {
+			return 'Not the requested test file';
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Run the tests from a single file. staticSetup() and setupDatabase()
+	 * must have been called already.
+	 *
+	 * @param string $filename Test file name
+	 * @return bool True if passed all tests, false if any tests failed.
+	 */
+	public function runParsoidTests( string $filename ): bool {
+		$testFileInfo = ParsoidTestFileReader::read( $filename,
+			static function ( $msg ) {
+				wfDeprecatedMsg( $msg, '1.35', false, false );
+			}
+		);
+
+		$this->checkSetupDone( 'staticSetup' );
+
+		$skipMessage = $this->getSkipMessage( $testFileInfo->fileOptions );
+		if ( $skipMessage !== null ) {
+			foreach ( $testFileInfo->testCases as $t ) {
+				$test = $this->testToArray( $t );
+				$this->recorder->startTest( $test );
+				$this->recorder->skipped( $test, $skipMessage );
+			}
+			return true;
+		}
+
+		// Add articles
+		$articles = [];
+		foreach ( $testFileInfo->articles as $a ) {
+			$articles[] = [
+				'name' => $a->title,
+				'text' => $a->text,
+				'line' => $a->lineNumStart,
+				'file' => $a->filename,
+			];
+		}
+		$teardown = $this->addArticles( $articles );
+
+		// Run tests
+		$ok = true;
+		$runner = $this;
+		$testFilter = [ 'regex' => $this->regex ];
+		$validTestModes = $this->getRequestedTestModes();
+		foreach ( $testFileInfo->testCases as $t ) {
+			// Skip disabled / filtered tests
+			if ( ( isset( $t->options['disabled'] ) && !$this->runDisabled ) ||
+				!$t->matchesFilter( $testFilter )
+			) {
+				continue;
+			}
+
+			$testModes = $t->computeTestModes( $validTestModes );
+			$t->testAllModes( $testModes, $this->options,
+				function ( ParserTest $test, string $mode, array $options ) use ( $runner, $t, &$ok ) {
+					// $test could be a clone of $t
+					// Ensure that updates to knownFailures in $test are reflected in $t
+					$test->knownFailures = &$t->knownFailures;
+					if ( $mode === 'selser' && $test->changetree === null ) {
+						// This is an auto-edit test with either a CLI changetree
+						// or a change tree that should be generated
+						$result = $this->runParsoidTest( $test, 'selser-auto', json_decode( $runner->options['changetree'] ) );
+					} else {
+						$result = $this->runParsoidTest( $test, $mode, $test->changetree );
+					}
+
+					if ( $result !== false ) {
+						$testAsArray = $this->testToArray( $test, $mode );
+						$ok = $ok && $result->isSuccess();
+						$this->recorder->record( $testAsArray, $result );
+					}
+				}
+			);
+		}
+
+		if ( $this->options['updateKnownFailures'] ) {
+			$this->updateKnownFailures( $testFileInfo );
+		}
+
+		// Clean up
+		ScopedCallback::consume( $teardown );
+
+		return $ok;
+	}
+
+	/**
+	 * Update known failures JSON file for the parser tests file
+	 * @param ParsoidTestFileReader $testFileInfo
+	 */
+	public function updateKnownFailures( ParsoidTestFileReader $testFileInfo ): void {
+		$testKnownFailures = [];
+		foreach ( $testFileInfo->testCases as $t ) {
+			if ( $t->knownFailures ) {
+				$testKnownFailures[$t->testName] = $t->knownFailures;
+				// FIXME: This reduces noise when updateKnownFailures is used
+				// with a subset of test modes. But, this also mixes up the selser
+				// test results with non-selser ones.
+				// ksort( $testKnownFailures[$t->testName] );
+			}
+		}
+		// Sort, otherwise, titles get added above based on the first
+		// failing mode, which can make diffs harder to verify when
+		// failing modes change.
+		ksort( $testKnownFailures );
+		$contents = json_encode(
+			$testKnownFailures,
+			JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES |
+			JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE
+		) . "\n";
+
+		if ( file_exists( $testFileInfo->knownFailuresPath ) ) {
+			$old = file_get_contents( $testFileInfo->knownFailuresPath );
+		} else {
+			$old = "";
+		}
+
+		if ( $testFileInfo->knownFailuresPath && $old !== $contents ) {
+			error_log( "Updating known failures file: {$testFileInfo->knownFailuresPath}" );
+			file_put_contents( $testFileInfo->knownFailuresPath, $contents );
+		}
 	}
 
 	/**
@@ -1215,12 +1363,17 @@ class ParserTestRunner {
 	/**
 	 * FIXME: This will likely move to Test.php in the Parsoid repo
 	 * @param ParserTest $test
+	 * @param string $modeDesc Parsoid test mode (for selser, changetree is part of it)
 	 * @return array
 	 */
-	public function testToArray( ParserTest $test ): array {
+	public function testToArray( ParserTest $test, string $modeDesc = '' ): array {
+		 $desc = ( $test->comment ?? '' ) . $test->testName;
+		 if ( $modeDesc ) {
+			 $desc .= " ($modeDesc)";
+		 }
 		 return [
 			'test' => $test->testName,
-			'desc' => ( $test->comment ?? '' ) . $test->testName,
+			'desc' => $desc,
 			'input' => $test->wikitext,
 			'result' => $test->legacyHtml,
 			'options' => $test->options,
@@ -1243,7 +1396,15 @@ class ParserTestRunner {
 	private function processResults(
 		ParserTest $test, string $mode, $rawExpected, string $rawActual, callable $normalizer
 	): ParserTestResult {
-		$expectedFailure = $test->knownFailures[$mode] ?? null;
+		$testAsArray = $this->testToArray( $test, $mode );
+		$this->recorder->startTest( $testAsArray );
+
+		if ( !$this->options['knownFailures'] ) {
+			// Ignore known failures
+			$expectedFailure = null;
+		} else {
+			$expectedFailure = $test->knownFailures[$mode] ?? null;
+		}
 		if ( $expectedFailure !== null ) {
 			$actual = $rawActual;
 			$expected = $expectedFailure;
@@ -1275,7 +1436,7 @@ class ParserTestRunner {
 			}
 		}
 
-		return new ParserTestResult( $this->testToArray( $test ), $expected, $actual );
+		return new ParserTestResult( $testAsArray, $expected, $actual );
 	}
 
 	/**
@@ -1514,7 +1675,42 @@ class ParserTestRunner {
 	 * @param ParserTest $test
 	 * @return ParserTestResult|false false if skipped
 	 */
-	private function selserAutoEdits( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test ) {
+	private function selserAutoEdit( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test ) {
+		if ( $test->wikitext === null ) {
+			return false; // FIXME: Is this an error in the test setup?
+		}
+
+		if ( $test->cachedBODYstr === null ) {
+			$test->cachedBODYstr = $parsoid->wikitext2html( $pageConfig, [
+				'body_only' => true,
+				'wrapSections' => $test->options['parsoid']['wrapSections'] ?? false,
+			] );
+		}
+
+		// Apply edits to the HTML.
+		// Always serialize to string and reparse before passing to selser/wt2wt.
+		$doc = DOMUtils::parseHTML( $test->cachedBODYstr, true );
+		if ( !$test->changetree ) {
+			$test->changetree = $test->generateChanges( $doc );
+			if ( !$test->changetree ) {
+				return false;
+			}
+		}
+		list( $out, $expected ) = $this->runSelserEditTest( $parsoid, $pageConfig, $test, $doc );
+		return new ParserTestResult(
+			$this->testToArray( $test, "selser " . json_encode( $test->changetree ) ),
+			$expected,
+			$out
+		);
+	}
+
+	/**
+	 * @param Parsoid $parsoid
+	 * @param PageConfig $pageConfig
+	 * @param ParserTest $test
+	 * @return ParserTestResult|false false if skipped
+	 */
+	private function selserAutoEditComposite( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test ) {
 		if ( $test->wikitext === null ) {
 			return false; // FIXME: Is this an error in the test setup?
 		}
@@ -1532,7 +1728,7 @@ class ParserTestRunner {
 			$doc = DOMUtils::parseHTML( $test->cachedBODYstr, true );
 			$mode = "selser:" . json_encode( $test->changetree );
 			list( $out, $expected ) = $this->runSelserEditTest( $parsoid, $pageConfig, $test, $doc );
-			return new ParserTestResult( $this->testToArray( $test ), $expected, $out );
+			return new ParserTestResult( $this->testToArray( $test, $mode ), $expected, $out );
 		} else {
 			$mode = "selserAutoEdits";
 			$numChanges = $runnerOpts['numchanges'] ?? 20; // default in Parsoid
@@ -1563,7 +1759,7 @@ class ParserTestRunner {
 					$test->selserChangeTrees[$i] = $test->changetree;
 				}
 			}
-			return new ParserTestResult( $this->testToArray( $test ), $bufExpected, $bufOut );
+			return new ParserTestResult( $this->testToArray( $test, "selser-auto" ), $bufExpected, $bufOut );
 		}
 	}
 
@@ -1636,10 +1832,17 @@ class ParserTestRunner {
 				$test->changetree = null; // Reset after each selser test
 				break;
 
+			case 'selser-auto-composite':
+				$test->changetree = $changetree;
+				$res = $this->selserAutoEditComposite( $parsoid, $pageConfig, $test );
+				$test->changetree = null; // Reset after each selser test
+				break;
+
 			case 'selser-auto':
 				$test->changetree = $changetree;
-				$res = $this->selserAutoEdits( $parsoid, $pageConfig, $test );
-				$test->changetree = null; // Reset after each selser test
+				$res = $this->selserAutoEdit( $parsoid, $pageConfig, $test );
+				// Don't reset changetree here -- it is used to detect duplicate trees
+				// and stop selser test generation in Test.php::testAllModes
 				break;
 
 			default:
