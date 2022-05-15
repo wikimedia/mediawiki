@@ -1986,7 +1986,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[ 'alice', 'Alice', 'simple ASCII string', false ],
 			[ 'århus',  'Århus', 'unicode string', false ],
 			// overrides do not affect ASCII characters
-			[ 'foo', 'Foo', 'ASCII is not overriden', [ 'f' => 'b' ] ],
+			[ 'foo', 'Foo', 'ASCII is not overridden', [ 'f' => 'b' ] ],
 			// but they do affect non-ascii ones
 			[ 'èl', 'Ll' , 'Non-ASCII is overridden', [ 'è' => 'L' ] ],
 		];
