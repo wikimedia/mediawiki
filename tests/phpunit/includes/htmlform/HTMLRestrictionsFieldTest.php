@@ -29,13 +29,12 @@ class HTMLRestrictionsFieldTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideValidate
 	 */
 	public function testForm( $text, $value ) {
-		$form = HTMLForm::factory( 'ooui', [
-			'restrictions' => [ 'class' => HTMLRestrictionsField::class ],
-		] );
 		$request = new FauxRequest( [ 'wprestrictions' => $text ], true );
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setRequest( $request );
-		$form->setContext( $context );
+		$form = HTMLForm::factory( 'ooui', [
+			'restrictions' => [ 'class' => HTMLRestrictionsField::class ],
+		], $context );
 		$form->setTitle( Title::newFromText( 'Main Page' ) )->setSubmitCallback( static function () {
 			return true;
 		} )->prepareForm();

@@ -689,9 +689,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$this->toc = false;
 		}
 
-		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getPageTitle() ); // Remove subpage
-		$form = new EditWatchlistNormalHTMLForm( $fields, $context );
+		$form = new EditWatchlistNormalHTMLForm( $fields, $this->getContext() );
+		$form->setTitle( $this->getPageTitle() ); // Remove subpage
 		$form->setSubmitTextMsg( 'watchlistedit-normal-submit' );
 		$form->setSubmitDestructive();
 		# Used message keys:
@@ -780,9 +779,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				'default' => $titles,
 			],
 		];
-		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getPageTitle( 'raw' ) ); // Reset subpage
-		$form = new OOUIHTMLForm( $fields, $context );
+		$form = new OOUIHTMLForm( $fields, $this->getContext() );
+		$form->setTitle( $this->getPageTitle( 'raw' ) ); // Reset subpage
 		$form->setSubmitTextMsg( 'watchlistedit-raw-submit' );
 		# Used message keys: 'accesskey-watchlistedit-raw-submit', 'tooltip-watchlistedit-raw-submit'
 		$form->setSubmitTooltip( 'watchlistedit-raw-submit' );
@@ -799,9 +797,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @return HTMLForm
 	 */
 	protected function getClearForm() {
-		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getPageTitle( 'clear' ) ); // Reset subpage
-		$form = new OOUIHTMLForm( [], $context );
+		$form = new OOUIHTMLForm( [], $this->getContext() );
+		$form->setTitle( $this->getPageTitle( 'clear' ) ); // Reset subpage
 		$form->setSubmitTextMsg( 'watchlistedit-clear-submit' );
 		# Used message keys: 'accesskey-watchlistedit-clear-submit', 'tooltip-watchlistedit-clear-submit'
 		$form->setSubmitTooltip( 'watchlistedit-clear-submit' );

@@ -136,9 +136,6 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 		$this->mTarget = $par ?? $request->getVal( 'wpTarget', $request->getVal( 'target', '' ) );
 
-		// Make sure, that HTMLForm uses the correct target.
-		$request->setVal( 'wpTarget', $this->mTarget );
-
 		// This needs to be below assignment of $this->mTarget because
 		// getDescription() needs it to determine the correct page title.
 		$this->setHeaders();
@@ -170,12 +167,6 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				list( $title, $msg, $params ) = $error;
 				throw new ErrorPageError( $title, $msg, $params );
 		}
-
-		// Make sure, that a submitted form isn't submitted to a subpage (which could be
-		// a non-existing username)
-		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getPageTitle() ); // Remove subpage
-		$this->setContext( $context );
 
 		// A little hack: HTMLForm will check $this->mTarget only, if the form was posted, not
 		// if the user opens Special:EmailUser/Florian (e.g.). So check, if the user did that
@@ -337,6 +328,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		], $this->getContext() );
 
 		$htmlForm
+			->setTitle( $this->getPageTitle() ) // Remove subpage
 			->setSubmitCallback( [ $this, 'sendEmailForm' ] )
 			->setFormIdentifier( 'userForm' )
 			->setId( 'askusername' )
@@ -361,6 +353,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$htmlForm = HTMLForm::factory( 'ooui', $this->getFormFields(), $this->getContext() );
 		// By now we are supposed to be sure that $this->mTarget is a user name
 		$htmlForm
+			->setTitle( $this->getPageTitle() ) // Remove subpage
 			->addPreText( $this->msg( 'emailpagetext', $this->mTarget )->parse() )
 			->setSubmitTextMsg( 'emailsend' )
 			->setSubmitCallback( [ __CLASS__, 'submit' ] )

@@ -288,8 +288,6 @@ class SpecialUpload extends SpecialPage {
 	 */
 	protected function getUploadForm( $message = '', $sessionKey = '', $hideIgnoreWarning = false ) {
 		# Initialize form
-		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getPageTitle() ); // Remove subpage
 		$form = new UploadForm(
 			[
 				'watch' => $this->getWatchCheck(),
@@ -303,12 +301,13 @@ class SpecialUpload extends SpecialPage {
 				'textaftersummary' => $this->uploadFormTextAfterSummary,
 				'destfile' => $this->mDesiredDestName,
 			],
-			$context,
+			$this->getContext(),
 			$this->getLinkRenderer(),
 			$this->localRepo,
 			$this->getContentLanguage(),
 			$this->nsInfo
 		);
+		$form->setTitle( $this->getPageTitle() ); // Remove subpage
 
 		# Check the token, but only if necessary
 		if (
