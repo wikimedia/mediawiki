@@ -1,6 +1,6 @@
 ( function () {
 	QUnit.module( 'mw.loader', QUnit.newMwEnvironment( {
-		setup: function ( assert ) {
+		beforeEach: function ( assert ) {
 			// Expose for load.mock.php
 			mw.loader.testFail = function ( reason ) {
 				assert.true( false, reason );
@@ -22,7 +22,7 @@
 				this.sandbox.stub( mw, 'requestIdleCallback', mw.requestIdleCallbackInternal );
 			};
 		},
-		teardown: function () {
+		afterEach: function () {
 			mw.loader.maxQueryLength = 2000;
 			// Teardown for StringSet shim test
 			if ( this.nativeSet ) {

@@ -1,6 +1,6 @@
 ( function () {
 	QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment( {
-		setup: function () {
+		beforeEach: function () {
 			this.server = this.sandbox.useFakeServer();
 			this.server.respondImmediately = true;
 			// Cannot stub by simple assignment because read-only.
@@ -10,7 +10,7 @@
 			this.crypto = Object.getOwnPropertyDescriptor( window, 'crypto' );
 			this.msCrypto = Object.getOwnPropertyDescriptor( window, 'msCrypto' );
 		},
-		teardown: function () {
+		afterEach: function () {
 			if ( this.crypto ) {
 				Object.defineProperty( window, 'crypto', this.crypto );
 			}

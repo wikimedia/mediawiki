@@ -75,14 +75,14 @@
 	);
 
 	QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
-		setup: function () {
+		beforeEach: function () {
 			$.fn.updateTooltipAccessKeys.setTestMode( true );
 			this.origConfig = mw.util.setOptionsForTest( {
 				FragmentMode: [ 'legacy', 'html5' ],
 				LoadScript: '/w/load.php'
 			} );
 		},
-		teardown: function () {
+		afterEach: function () {
 			$.fn.updateTooltipAccessKeys.setTestMode( false );
 			mw.util.setOptionsForTest( this.origConfig );
 		},

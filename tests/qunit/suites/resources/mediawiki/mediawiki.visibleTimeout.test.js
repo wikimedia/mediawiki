@@ -1,5 +1,5 @@
 QUnit.module( 'mediawiki.visibleTimeout', QUnit.newMwEnvironment( {
-	setup: function () {
+	beforeEach: function () {
 		// Document with just enough stuff to make the tests work.
 		var listeners = [];
 		this.mockDocument = {
@@ -36,7 +36,7 @@ QUnit.module( 'mediawiki.visibleTimeout', QUnit.newMwEnvironment( {
 			return this.sandbox.clock.now;
 		} ).bind( this ) );
 	},
-	teardown: function () {
+	afterEach: function () {
 		// Restore
 		this.visibleTimeout.init();
 	}

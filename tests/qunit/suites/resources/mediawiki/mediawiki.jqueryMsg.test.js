@@ -12,7 +12,7 @@
 	}
 
 	QUnit.module( 'mediawiki.jqueryMsg', QUnit.newMwEnvironment( {
-		setup: function () {
+		beforeEach: function () {
 			this.originalMwLanguage = mw.language;
 			this.getMwLanguage = function ( langCode ) {
 				mw.language = Object.create( this.originalMwLanguage );
@@ -50,7 +50,7 @@
 				format: 'parse'
 			} );
 		},
-		teardown: function () {
+		afterEach: function () {
 			mw.language = this.originalMwLanguage;
 			mw.jqueryMsg.setParserDefaults( this.parserDefaults );
 		},

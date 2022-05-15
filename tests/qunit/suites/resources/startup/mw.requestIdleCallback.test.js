@@ -1,6 +1,6 @@
 ( function () {
 	QUnit.module( 'mw.requestIdleCallback', QUnit.newMwEnvironment( {
-		setup: function () {
+		beforeEach: function () {
 			var clock = this.clock = this.sandbox.useFakeTimers();
 
 			this.sandbox.stub( mw, 'now', function () {
