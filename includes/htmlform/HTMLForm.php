@@ -231,6 +231,7 @@ class HTMLForm extends ContextSource {
 	protected $mSubmitTooltip;
 
 	protected $mFormIdentifier;
+	/** @var Title|null */
 	protected $mTitle;
 	protected $mMethod = 'post';
 	protected $mWasSubmitted = false;
@@ -328,12 +329,15 @@ class HTMLForm extends ContextSource {
 	 *
 	 * @param string $displayFormat
 	 * @param array $descriptor Array of Field constructs, as described
-	 * 	in the class documentation
-	 * @param IContextSource|null $context Available since 1.18, required since 1.38.
+	 *     in the class documentation
+	 * @param IContextSource $context Context used to fetch submitted form fields and
+	 *     generate localisation messages
 	 * @param string $messagePrefix A prefix to go in front of default messages
 	 * @return HTMLForm
 	 */
-	public static function factory( $displayFormat, $descriptor, $context = null, $messagePrefix = '' ) {
+	public static function factory(
+		$displayFormat, $descriptor, IContextSource $context, $messagePrefix = ''
+	) {
 		switch ( $displayFormat ) {
 			case 'vform':
 				return new VFormHTMLForm( $descriptor, $context, $messagePrefix );
@@ -352,27 +356,16 @@ class HTMLForm extends ContextSource {
 	 * @stable to call
 	 *
 	 * @param array $descriptor Array of Field constructs, as described
-	 * 	in the class documentation
-	 * @param IContextSource|null $context Available since 1.18, required since 1.38.
-	 *     Obviates the need to call $form->setTitle()
+	 *     in the class documentation
+	 * @param IContextSource $context Context used to fetch submitted form fields and
+	 *     generate localisation messages
 	 * @param string $messagePrefix A prefix to go in front of default messages
 	 */
-	public function __construct( $descriptor, /*IContextSource*/ $context = null,
-		$messagePrefix = ''
+	public function __construct(
+		$descriptor, IContextSource $context, $messagePrefix = ''
 	) {
-		if ( $context instanceof IContextSource ) {
-			$this->setContext( $context );
-			$this->mTitle = false; // We don't need them to set a title
-			$this->mMessagePrefix = $messagePrefix;
-		} elseif ( $context === null && $messagePrefix !== '' ) {
-			wfDeprecated( __METHOD__ . ' without $context', '1.38' );
-			$this->mMessagePrefix = $messagePrefix;
-		} elseif ( is_string( $context ) && $messagePrefix === '' ) {
-			wfDeprecated( __METHOD__ . ' without $context', '1.38' );
-			// B/C since 1.18
-			// it's actually $messagePrefix
-			$this->mMessagePrefix = $context;
-		}
+		$this->setContext( $context );
+		$this->mMessagePrefix = $messagePrefix;
 
 		// Evil hack for mobile :(
 		if (
@@ -570,11 +563,6 @@ class HTMLForm extends ContextSource {
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function prepareForm() {
-		# Check if we have the info we need
-		if ( !$this->mTitle instanceof PageReference && $this->mTitle !== false ) {
-			throw new MWException( 'You must call setTitle() on an HTMLForm' );
-		}
-
 		# Load data from the request.
 		if (
 			$this->mFormIdentifier === null ||

@@ -190,6 +190,8 @@ because of Phabricator reports.
   is now null instead of ''.
 * IDatabase::lockTables() and IDatabase::unlockTables(), deprecated since 1.38,
   have been removed.
+* The $context parameter to `new HTMLForm( … )` and `HTMLForm::factory( … )`
+  is now required.
 * …
 
 === Deprecations in 1.39 ===

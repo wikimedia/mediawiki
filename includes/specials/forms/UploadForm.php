@@ -112,7 +112,7 @@ class UploadForm extends HTMLForm {
 			+ $this->getOptionsSection();
 
 		$this->getHookRunner()->onUploadFormInitDescriptor( $descriptor );
-		parent::__construct( $descriptor, $context, 'upload' );
+		parent::__construct( $descriptor, $this->getContext(), 'upload' );
 
 		# Add a link to edit MediaWiki:Licenses
 		if ( $this->getAuthority()->isAllowed( 'editinterface' ) ) {
