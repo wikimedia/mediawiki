@@ -140,8 +140,6 @@ class SpecialPreferences extends SpecialPage {
 
 		$this->getOutput()->addWikiMsg( 'prefs-reset-intro' );
 
-		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getPageTitle( 'reset' ) ); // Reset subpage
 		$desc = [
 			'confirm' => [
 				'type' => 'check',
@@ -150,7 +148,8 @@ class SpecialPreferences extends SpecialPage {
 			],
 		];
 		// TODO: disable the submit button if the checkbox is not checked
-		HTMLForm::factory( 'ooui', $desc, $context, 'prefs-restore' )
+		HTMLForm::factory( 'ooui', $desc, $this->getContext(), 'prefs-restore' )
+			->setTitle( $this->getPageTitle( 'reset' ) ) // Reset subpage
 			->setSubmitTextMsg( 'restoreprefs' )
 			->setSubmitDestructive()
 			->setSubmitCallback( [ $this, 'submitReset' ] )

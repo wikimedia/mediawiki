@@ -141,10 +141,9 @@ class SpecialPrefixindex extends SpecialAllPages {
 				'label-message' => 'prefixindex-strip',
 			],
 		];
-		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getPageTitle() ); // Remove subpage
-		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $context )
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
 			->setMethod( 'get' )
+			->setTitle( $this->getPageTitle() ) // Remove subpage
 			->setWrapperLegendMsg( 'prefixindex' )
 			->setSubmitTextMsg( 'prefixindex-submit' );
 
