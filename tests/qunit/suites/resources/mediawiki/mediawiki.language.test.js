@@ -4,11 +4,11 @@
 	var grammarTests, bcp47Tests;
 
 	QUnit.module( 'mediawiki.language', QUnit.newMwEnvironment( {
-		setup: function () {
+		beforeEach: function () {
 			this.liveLangData = mw.language.data;
 			mw.language.data = {};
 		},
-		teardown: function () {
+		afterEach: function () {
 			mw.language.data = this.liveLangData;
 		},
 		messages: {

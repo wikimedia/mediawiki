@@ -2,7 +2,7 @@
 	var TEST_MODEL = 'test-content-model';
 
 	QUnit.module( 'mediawiki.messagePoster', QUnit.newMwEnvironment( {
-		teardown: function () {
+		afterEach: function () {
 			mw.messagePoster.factory.unregister( TEST_MODEL );
 		}
 	} ) );

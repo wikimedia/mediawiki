@@ -1,6 +1,6 @@
 ( function () {
 	QUnit.module( 'mediawiki.ForeignRest', QUnit.newMwEnvironment( {
-		setup: function () {
+		beforeEach: function () {
 			this.server = this.sandbox.useFakeServer();
 			this.server.respondImmediately = true;
 			this.actionApi = new mw.ForeignApi( 'http://test.example.com/api.php' );

@@ -1,6 +1,6 @@
 ( function () {
 	QUnit.module( 'mediawiki.api.parse', QUnit.newMwEnvironment( {
-		setup: function () {
+		beforeEach: function () {
 			this.server = this.sandbox.useFakeServer();
 			this.server.respondImmediately = true;
 		}

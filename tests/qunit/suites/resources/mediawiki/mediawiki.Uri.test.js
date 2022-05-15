@@ -1,10 +1,10 @@
 ( function () {
 	QUnit.module( 'mediawiki.Uri', QUnit.newMwEnvironment( {
-		setup: function () {
+		beforeEach: function () {
 			this.mwUriOrg = mw.Uri;
 			mw.Uri = mw.UriRelative( 'http://example.org/w/index.php' );
 		},
-		teardown: function () {
+		afterEach: function () {
 			mw.Uri = this.mwUriOrg;
 			delete this.mwUriOrg;
 		}
