@@ -392,8 +392,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$curTTL = null;
 		$cache->get( $key, $curTTL );
-		$this->assertLessThanOrEqual( 20, $curTTL, 'Current TTL between 19-20 (overriden)' );
-		$this->assertGreaterThanOrEqual( 19, $curTTL, 'Current TTL between 19-20 (overriden)' );
+		$this->assertLessThanOrEqual( 20, $curTTL, 'Current TTL between 19-20 (overridden)' );
+		$this->assertGreaterThanOrEqual( 19, $curTTL, 'Current TTL between 19-20 (overridden)' );
 
 		$wasSet = 0;
 		$v = $cache->getWithSetCallback(
@@ -755,8 +755,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$curTTL = null;
 		$cache->get( $keyA, $curTTL );
-		$this->assertLessThanOrEqual( 20, $curTTL, 'Current TTL between 19-20 (overriden)' );
-		$this->assertGreaterThanOrEqual( 19, $curTTL, 'Current TTL between 19-20 (overriden)' );
+		$this->assertLessThanOrEqual( 20, $curTTL, 'Current TTL between 19-20 (overridden)' );
+		$this->assertGreaterThanOrEqual( 19, $curTTL, 'Current TTL between 19-20 (overridden)' );
 
 		$wasSet = 0;
 		$value = "@efef$";
