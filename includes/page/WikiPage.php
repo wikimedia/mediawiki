@@ -2223,8 +2223,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		}
 
 		$this->loadPageData( 'fromdbmaster' );
-		$this->mTitle->loadRestrictions( Title::READ_LATEST );
-		$restrictionTypes = $this->mTitle->getRestrictionTypes();
+		$restrictionStore = MediaWikiServices::getInstance()->getRestrictionStore();
+		$restrictionStore->loadRestrictions( $this->mTitle, IDBAccessObject::READ_LATEST );
+		$restrictionTypes = $restrictionStore->listApplicableRestrictionTypes( $this->mTitle );
 		$id = $this->getId();
 
 		if ( !$cascade ) {
@@ -2253,7 +2254,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			}
 
 			// Get current restrictions on $action
-			$current = implode( '', $this->mTitle->getRestrictions( $action ) );
+			$current = implode( '', $restrictionStore->getRestrictions( $this->mTitle, $action ) );
 			if ( $current != '' ) {
 				$isProtected = true;
 			}
@@ -2264,13 +2265,13 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				// Only check expiry change if the action is actually being
 				// protected, since expiry does nothing on an not-protected
 				// action.
-				if ( $this->mTitle->getRestrictionExpiry( $action ) != $expiry[$action] ) {
+				if ( $restrictionStore->getRestrictionExpiry( $this->mTitle, $action ) != $expiry[$action] ) {
 					$changed = true;
 				}
 			}
 		}
 
-		if ( !$changed && $protect && $this->mTitle->areRestrictionsCascading() != $cascade ) {
+		if ( !$changed && $protect && $restrictionStore->areRestrictionsCascading( $this->mTitle ) != $cascade ) {
 			$changed = true;
 		}
 
@@ -2306,7 +2307,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			// Only certain restrictions can cascade...
 			$editrestriction = isset( $limit['edit'] )
 				? [ $limit['edit'] ]
-				: $this->mTitle->getRestrictions( 'edit' );
+				: $restrictionStore->getRestrictions( $this->mTitle, 'edit' );
 			foreach ( array_keys( $editrestriction, 'sysop' ) as $key ) {
 				$editrestriction[$key] = 'editprotected'; // backwards compatibility
 			}
@@ -3197,7 +3198,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			'rootJobTimestamp' => $parserOutput->getCacheTime()
 		];
 
-		if ( $this->mTitle->areRestrictionsCascading() ) {
+		if ( MediaWikiServices::getInstance()->getRestrictionStore()->areRestrictionsCascading( $this->mTitle ) ) {
 			// In general, MediaWiki does not re-run LinkUpdate (e.g. for search index, category
 			// listings, and backlinks for Whatlinkshere), unless either the page was directly
 			// edited, or was re-generate following a template edit propagating to an affected
