@@ -65,7 +65,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.27
-	 * @var User
+	 * @var User|null
 	 */
 	public $userObj = null;
 
@@ -259,7 +259,8 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @param User $user
 	 */
 	public function setUserObj( $user ) {
-		$this->userObj = $user;
+		// Not officially supported, but some callers pass false from e.g. User::newFromName()
+		$this->userObj = $user ?: null;
 	}
 
 	/**
@@ -457,7 +458,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.27
-	 * @return User
+	 * @return User|null Typically null, use {@see getUser} instead
 	 */
 	public function getUserObj() {
 		return $this->userObj;
