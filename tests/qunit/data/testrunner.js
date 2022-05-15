@@ -82,24 +82,17 @@
 		};
 		var liveConfig = mw.config.values;
 		var liveMessages = mw.messages.values;
+		var liveWarnFn = mw.log.warn;
+		var liveErrorFn = mw.log.error;
+		var $doc = $( document );
 
-		var warnFn;
-		var errorFn;
 		function suppressWarnings() {
-			if ( warnFn === undefined ) {
-				warnFn = mw.log.warn;
-				errorFn = mw.log.error;
-				mw.log.warn = mw.log.error = function () {};
-			}
+			mw.log.warn = mw.log.error = function () {};
 		}
 
 		function restoreWarnings() {
-			// Guard against calls not balanced with suppressWarnings()
-			if ( warnFn !== undefined ) {
-				mw.log.warn = warnFn;
-				mw.log.error = errorFn;
-				warnFn = errorFn = undefined;
-			}
+			mw.log.warn = liveWarnFn;
+			mw.log.error = liveErrorFn;
 		}
 
 		var ajaxRequests = [];
@@ -134,7 +127,7 @@
 				this.restoreWarnings = restoreWarnings;
 
 				// Start tracking ajax requests
-				$( document ).on( 'ajaxSend', trackAjax );
+				$doc.on( 'ajaxSend', trackAjax );
 
 				if ( orgBeforeEach ) {
 					return orgBeforeEach.apply( this, arguments );
@@ -147,7 +140,7 @@
 				}
 
 				// Stop tracking ajax requests
-				$( document ).off( 'ajaxSend', trackAjax );
+				$doc.off( 'ajaxSend', trackAjax );
 
 				// For convenience and to avoid leakage, always restore after each test.
 				// Restoring earlier is allowed.
