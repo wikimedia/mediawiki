@@ -1871,13 +1871,14 @@ more stuff
 		$status = $page->doUpdateRestrictions( $limit, $expiry, $cascade, 'aReason', $userIdentity, [] );
 
 		$logId = $status->getValue();
-		$allRestrictions = $page->getTitle()->getAllRestrictions();
+		$restrictionStore = $this->getServiceContainer()->getRestrictionStore();
+		$allRestrictions = $restrictionStore->getAllRestrictions( $page->getTitle() );
 
 		$this->assertStatusGood( $status );
 		$this->assertIsInt( $logId );
 		$this->assertSame( $expectedRestrictions, $allRestrictions );
 		foreach ( $expectedRestrictionExpiries as $key => $value ) {
-			$this->assertSame( $value, $page->getTitle()->getRestrictionExpiry( $key ) );
+			$this->assertSame( $value, $restrictionStore->getRestrictionExpiry( $page->getTitle(), $key ) );
 		}
 
 		// Make sure the log entry looks good
