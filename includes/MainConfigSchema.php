@@ -5457,27 +5457,19 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * How long a CDN or browser may cache a ResourceLoader HTTP response.
+	 * Override how long a CDN or browser may cache a ResourceLoader HTTP response.
 	 *
 	 * Maximum time in seconds. Used for the `max-age` and `s-maxage` Cache-Control headers.
 	 *
 	 * Valid keys:
-	 *   - versioned: Used for URLs carrying a "version" parameter.
-	 *     This applies to the bulk of load.php transfers, and may have a long cache
-	 *     duration (e.g. weeks or months), because a change in the module bundle will
-	 *     naturally produce a different URL and thus automatically bust the cache.
-	 *   - unversioned: Used for URLs that must not carry a "version" parameter.
-	 *     This includes the startup manifest and controls how quickly changes (in
-	 *     the module registry, dependency tree, and module version) will propagate
-	 *     to clients. This should have a short cache duration (e.g. minutes).
+	 *   - versioned
+	 *   - unversioned
 	 *
+	 * @see ResourceLoader::__construct
 	 * @since 1.35
 	 */
 	public const ResourceLoaderMaxage = [
-		'default' => [
-			'versioned' => 30 * 24 * 60 * 60, // 30 days
-			'unversioned' => 5 * 60, // 5 minutes
-		],
+		'default' => [],
 		'type' => 'map',
 	];
 

@@ -161,8 +161,7 @@ class StartUpModule extends Module {
 		$target = $context->getRequest()->getRawVal( 'target', 'desktop' );
 		$safemode = $context->getRequest()->getRawVal( 'safemode' ) === '1';
 		$skin = $context->getSkin();
-		// Bypass target filter if this request is Special:JavaScriptTest.
-		// To prevent misuse in production, this is only allowed if testing is enabled server-side.
+		// Allow disabling target filter, for use by SpecialJavaScriptTest.
 		$byPassTargetFilter = $this->getConfig()->get( MainConfigNames::EnableJavaScriptTest ) && $target === 'test';
 
 		$out = '';

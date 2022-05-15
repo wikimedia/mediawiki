@@ -41,7 +41,14 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 			'only' => 'scripts',
 			'safemode' => null,
 		];
-		$resourceLoader = $rl ?: new ResourceLoader( MediaWikiServices::getInstance()->getMainConfig() );
+		$resourceLoader = $rl ?: new ResourceLoader(
+			MediaWikiServices::getInstance()->getMainConfig(),
+			null,
+			null,
+			[
+				'loadScript' => '/w/load.php',
+			]
+		);
 		$request = new FauxRequest( [
 			'debug' => $options['debug'],
 			'lang' => $options['lang'],
@@ -61,13 +68,6 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 
 	public static function getSettings() {
 		return [
-			// For ResourceLoader class
-			MainConfigNames::ResourceLoaderDebug => true,
-			MainConfigNames::LoadScript => '/w/load.php',
-			MainConfigNames::EnableJavaScriptTest => false,
-			// For ResourceLoader::respond() - TODO: Inject somehow T32956
-			MainConfigNames::UseFileCache => false,
-
 			// For ResourceLoaderModule
 			MainConfigNames::ResourceLoaderValidateJS => false,
 
