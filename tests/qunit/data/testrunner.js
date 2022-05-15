@@ -24,9 +24,12 @@
 	fixture.id = 'qunit-fixture';
 	document.body.appendChild( fixture );
 
-	// SinonJS
+	// Integrate SinonJS with QUnit
 	//
-	// Glue code for nicer integration with QUnit
+	// - Add a Sinon sandbox to the test context that is automatically
+	//   restored at the end of each test.
+	// - Forward sinon assertions to QUnit.
+	//
 	// Inspired by http://sinonjs.org/releases/sinon-qunit-1.0.0.js
 	sinon.assert.fail = function ( msg ) {
 		QUnit.assert.true( false, msg );
@@ -42,61 +45,15 @@
 		useFakeTimers: false,
 		useFakeServer: false
 	};
-	// Extend QUnit.module with:
-	// - Add a Sinon sandbox to the test context.
-	( function () {
-		var nested;
-		var orgModule = QUnit.module;
-		QUnit.module = function ( name, localEnv, executeNow ) {
-			if ( nested ) {
-				// In a nested module, don't re-add our hooks, QUnit does that already.
-				return orgModule.apply( this, arguments );
-			}
-			if ( arguments.length === 2 && typeof localEnv === 'function' ) {
-				executeNow = localEnv;
-				localEnv = undefined;
-			}
-			var orgExecute;
-			if ( executeNow ) {
-				// Wrap executeNow() so that we can detect nested modules
-				orgExecute = executeNow;
-				executeNow = function () {
-					var ret;
-					nested = true;
-					ret = orgExecute.apply( this, arguments );
-					nested = false;
-					return ret;
-				};
-			}
-
-			localEnv = localEnv || {};
-			var orgBeforeEach = localEnv.beforeEach;
-			var orgAfterEach = localEnv.afterEach;
-
-			localEnv.beforeEach = function () {
-				// Sinon sandbox
-				var config = sinon.getConfig( sinon.config );
-				config.injectInto = this;
-				sinon.sandbox.create( config );
-
-				if ( orgBeforeEach ) {
-					return orgBeforeEach.apply( this, arguments );
-				}
-			};
-			localEnv.afterEach = function () {
-				var ret;
-				if ( orgAfterEach ) {
-					ret = orgAfterEach.apply( this, arguments );
-				}
-
-				this.sandbox.verifyAndRestore();
-
-				return ret;
-			};
-
-			return orgModule( name, localEnv, executeNow );
-		};
-	}() );
+	QUnit.hooks.beforeEach( function () {
+		// Sinon sandbox
+		var config = sinon.getConfig( sinon.config );
+		config.injectInto = this;
+		sinon.sandbox.create( config );
+	} );
+	QUnit.hooks.afterEach( function () {
+		this.sandbox.verifyAndRestore();
+	} );
 
 	/**
 	 * Ensure mw.config and other `mw` singleton state is prestine for each test.
@@ -156,7 +113,7 @@
 			ajaxRequests.push( { xhr: jqXHR, options: ajaxOptions } );
 		}
 
-		return function ( localEnv ) {
+		return function newMwEnvironment( localEnv ) {
 			localEnv = localEnv || {};
 
 			var orgBeforeEach = localEnv.beforeEach;
@@ -577,14 +534,6 @@
 				'foo<a href="http://example.com">example</a>quux',
 				'Outer text nodes are compared (last text node different)'
 			);
-		} );
-
-		// Regression test for 'this.sandbox undefined' error, fixed by
-		// ensuring Sinon create/restore is not re-run on inner module.
-		QUnit.module( 'testrunner-nested-test', function () {
-			QUnit.test( 'example', function ( assert ) {
-				assert.true( true, 'nested modules supported' );
-			} );
 		} );
 
 		var beforeEachRan = false;
