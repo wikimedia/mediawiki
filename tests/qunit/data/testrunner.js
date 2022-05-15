@@ -1,28 +1,6 @@
 ( function () {
 	'use strict';
 
-	/**
-	 * Make a safe copy of localEnv:
-	 * - Creates a new object that inherits, instead of modifying the original.
-	 *   This prevents recursion in the event that a test suite stores inherits
-	 *   hooks object statically and passes it to multiple QUnit.module() calls.
-	 * - Supporting QUnit 1.x 'setup' and 'teardown' hooks
-	 *   (deprecated in QUnit 1.16, removed in QUnit 2).
-	 *
-	 * @param {Object} localEnv
-	 * @return {Object}
-	 */
-	function makeSafeEnv( localEnv ) {
-		var wrap = localEnv ? Object.create( localEnv ) : {};
-		if ( wrap.setup ) {
-			wrap.beforeEach = wrap.beforeEach || wrap.setup;
-		}
-		if ( wrap.teardown ) {
-			wrap.afterEach = wrap.afterEach || wrap.teardown;
-		}
-		return wrap;
-	}
-
 	// For each test that is asynchronous, allow this time to pass before
 	// killing the test and assuming timeout failure.
 	QUnit.config.testTimeout = 60 * 1000;
@@ -48,7 +26,7 @@
 
 	// SinonJS
 	//
-	// Glue code for nicer integration with QUnit setup/teardown
+	// Glue code for nicer integration with QUnit
 	// Inspired by http://sinonjs.org/releases/sinon-qunit-1.0.0.js
 	sinon.assert.fail = function ( msg ) {
 		QUnit.assert.true( false, msg );
@@ -65,9 +43,7 @@
 		useFakeServer: false
 	};
 	// Extend QUnit.module with:
-	// - Add support for QUnit 1.x 'setup' and 'teardown' hooks
 	// - Add a Sinon sandbox to the test context.
-	// - Add a test fixture to the test context.
 	( function () {
 		var nested;
 		var orgModule = QUnit.module;
@@ -93,7 +69,7 @@
 				};
 			}
 
-			localEnv = makeSafeEnv( localEnv );
+			localEnv = localEnv || {};
 			var orgBeforeEach = localEnv.beforeEach;
 			var orgAfterEach = localEnv.afterEach;
 
@@ -180,8 +156,8 @@
 			ajaxRequests.push( { xhr: jqXHR, options: ajaxOptions } );
 		}
 
-		return function ( orgEnv ) {
-			var localEnv = makeSafeEnv( orgEnv );
+		return function ( localEnv ) {
+			localEnv = localEnv || {};
 
 			var orgBeforeEach = localEnv.beforeEach;
 			var orgAfterEach = localEnv.afterEach;
@@ -604,7 +580,7 @@
 		} );
 
 		// Regression test for 'this.sandbox undefined' error, fixed by
-		// ensuring Sinon setup/teardown is not re-run on inner module.
+		// ensuring Sinon create/restore is not re-run on inner module.
 		QUnit.module( 'testrunner-nested-test', function () {
 			QUnit.test( 'example', function ( assert ) {
 				assert.true( true, 'nested modules supported' );
@@ -621,25 +597,6 @@
 		QUnit.test( 'beforeEach', function ( assert ) {
 			assert.true( beforeEachRan );
 		} );
-	} );
-
-	var setupRan = false;
-	var teardownRan = false;
-	QUnit.module( 'testrunner-compat', {
-		// eslint-disable-next-line qunit/no-setup-teardown
-		setup: function () {
-			setupRan = true;
-		},
-		// eslint-disable-next-line qunit/no-setup-teardown
-		teardown: function () {
-			teardownRan = true;
-		}
-	} );
-	QUnit.test( 'setup', function ( assert ) {
-		assert.true( setupRan, 'callback ran' );
-	} );
-	QUnit.test( 'teardown', function ( assert ) {
-		assert.true( teardownRan, 'callback ran' );
 	} );
 
 	QUnit.module( 'testrunner-next', QUnit.newMwEnvironment() );
