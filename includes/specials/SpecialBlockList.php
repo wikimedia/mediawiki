@@ -159,11 +159,10 @@ class SpecialBlockList extends SpecialPage {
 			'cssclass' => 'mw-field-limit mw-has-field-block-type',
 		];
 
-		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getPageTitle() ); // Remove subpage
-		$form = HTMLForm::factory( 'ooui', $fields, $context );
+		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 		$form
 			->setMethod( 'get' )
+			->setTitle( $this->getPageTitle() ) // Remove subpage
 			->setFormIdentifier( 'blocklist' )
 			->setWrapperLegendMsg( 'ipblocklist-legend' )
 			->setSubmitTextMsg( 'ipblocklist-submit' )

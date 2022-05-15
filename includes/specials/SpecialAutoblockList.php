@@ -111,10 +111,9 @@ class SpecialAutoblockList extends SpecialPage {
 			]
 		];
 
-		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getPageTitle() ); // Remove subpage
-		$form = HTMLForm::factory( 'ooui', $fields, $context );
+		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 		$form->setMethod( 'get' )
+			->setTitle( $this->getPageTitle() ) // Remove subpage
 			->setFormIdentifier( 'blocklist' )
 			->setWrapperLegendMsg( 'autoblocklist-legend' )
 			->setSubmitTextMsg( 'autoblocklist-submit' )

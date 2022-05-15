@@ -383,15 +383,14 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// create the form, which will also be used to execute a callback to process incoming form data
 		// this design is extremely dubious, but supposedly HTMLForm is our standard now?
 
-		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getPageTitle() ); // Remove subpage
 		$form = HTMLForm::factory( 'ooui', [
 			'Clear' => [
 				'type' => 'hidden',
 				'default' => true,
 				'name' => 'clear',
 			]
-		], $context, 'clearStashedUploads' );
+		], $this->getContext(), 'clearStashedUploads' );
+		$form->setTitle( $this->getPageTitle() ); // Remove subpage
 		$form->setSubmitDestructive();
 		$form->setSubmitCallback( function ( $formData, $form ) {
 			if ( isset( $formData['Clear'] ) ) {
