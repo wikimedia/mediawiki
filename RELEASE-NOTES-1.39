@@ -217,6 +217,11 @@ because of Phabricator reports.
 * ILBFactory::forEachLB() is deprecated. Use ::getAllLBs().
 * LoadBalancer::forEachOpenConnection() and ::forEachOpenPrimaryConnection()
   are deprecated without replacement.
+* The following methods in WikiRevision and their interfaces
+  ImportableUploadRevision and ImportableOldRevision are deprecated:
+  - ::getUserObj() → ::getUser()
+  - ::setUserObj() → ::setUsername()
+  - ::setUserIP() → ::setUsername()
 * …
 
 === Other changes in 1.39 ===

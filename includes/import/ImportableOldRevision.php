@@ -8,6 +8,7 @@ use MediaWiki\Revision\SlotRecord;
 interface ImportableOldRevision {
 
 	/**
+	 * @deprecated since 1.39, use {@see getUser} instead; this is almost always null anyway
 	 * @since 1.31
 	 * @return User|null Typically null, use {@see getUser} instead
 	 */

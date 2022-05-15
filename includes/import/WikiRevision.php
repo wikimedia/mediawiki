@@ -64,6 +64,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	public $user_text = "";
 
 	/**
+	 * @deprecated since 1.39, use {@see $user_text} instead
 	 * @since 1.27
 	 * @var User|null
 	 */
@@ -255,15 +256,20 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	}
 
 	/**
+	 * @deprecated since 1.39, use {@see setUsername} instead
 	 * @since 1.27
 	 * @param User $user
 	 */
 	public function setUserObj( $user ) {
 		// Not officially supported, but some callers pass false from e.g. User::newFromName()
 		$this->userObj = $user ?: null;
+		if ( $this->user_text === '' && $user ) {
+			$this->user_text = $user->getName();
+		}
 	}
 
 	/**
+	 * @deprecated since 1.39, use {@see setUsername} instead, it does the same anyway
 	 * @since 1.2
 	 * @param string $ip
 	 */
@@ -457,6 +463,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	}
 
 	/**
+	 * @deprecated since 1.39, use {@see getUser} instead; this is almost always null anyway
 	 * @since 1.27
 	 * @return User|null Typically null, use {@see getUser} instead
 	 */
