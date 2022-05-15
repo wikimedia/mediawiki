@@ -56,7 +56,7 @@ class ResourceLoaderUserOptionsModuleTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString(
 			'"y":"1"',
 			$script,
-			'send overriden value'
+			'send overridden value'
 		);
 		$this->assertStringContainsString(
 			'"userjs-extra":"1"',
