@@ -140,7 +140,7 @@
 					return orgBeforeEach.apply( this, arguments );
 				}
 			};
-			localEnv.afterEach = function () {
+			localEnv.afterEach = function ( assert ) {
 				var ret;
 				if ( orgAfterEach ) {
 					ret = orgAfterEach.apply( this, arguments );
@@ -149,57 +149,62 @@
 				// Stop tracking ajax requests
 				$( document ).off( 'ajaxSend', trackAjax );
 
-				// As a convenience feature, automatically restore warnings if they're
-				// still suppressed by the end of the test.
+				// For convenience and to avoid leakage, always restore after each test.
+				// Restoring earlier is allowed.
 				restoreWarnings();
 
 				mw.config.values = liveConfig;
 				mw.messages.values = liveMessages;
 
-				// Tests should use fake timers or wait for animations to complete
-				// Check for incomplete animations/requests/etc and throw if there are any.
+				// Assert there are no dangling animations
+				// Tests should use fake timers or own and wait for their UI to complete
 				if ( $.timers && $.timers.length !== 0 ) {
-					var timerLen = $.timers.length;
-					// eslint-disable-next-line no-jquery/no-each-util
-					$.each( $.timers, function ( i, timer ) {
-						var node = timer.elem;
-						var attribs = {};
-						// eslint-disable-next-line no-jquery/no-each-util
-						$.each( node.attributes, function ( j, attrib ) {
-							attribs[ attrib.name ] = attrib.value;
-						} );
-						mw.log.warn( 'Unfinished animation #' + i + ' in ' + timer.queue + ' queue on ' +
-							mw.html.element( node.nodeName.toLowerCase(), attribs )
-						);
+					var animations = $.timers.map( function ( timer, i ) {
+						var htmlStr = timer.elem.outerHTML;
+						htmlStr = htmlStr.length <= 50 ? htmlStr : htmlStr.slice( 0, 50 ) + '…';
+						return 'Unfinished animation #' + i + ' on ' + htmlStr;
 					} );
-					// Force animations to stop to give the next test a clean start
+					// Stop animations to ensure a clean start for the next test
 					$.timers = [];
 					$.fx.stop();
 
-					throw new Error( 'Unfinished animations: ' + timerLen );
+					assert.pushResult( {
+						result: false,
+						message: 'global failure: Unfinished animations',
+						actual: animations,
+						expected: [],
+						source: 'newMwEnvironment'
+					} );
 				}
 
-				// Test should use fake XHR, wait for requests, or call abort()
-				var $activeLen = $.active;
-				var pending;
-				if ( $activeLen !== undefined && $activeLen !== 0 ) {
-					pending = ajaxRequests.filter( function ( ajax ) {
-						return ajax.xhr.state() === 'pending';
-					} );
-					if ( pending.length !== $activeLen ) {
-						mw.log.warn( 'Pending requests does not match jQuery.active count' );
-					}
-					// Force requests to stop to give the next test a clean start
+				// Assert there are no dangling requests
+				// Test should use fake XHR, or wait for requests, or call abort()
+				if ( $.active ) {
+					var activeLen = $.active;
+					var pending = [];
 					ajaxRequests.forEach( function ( ajax, i ) {
-						mw.log.warn(
-							'AJAX request #' + i + ' (state: ' + ajax.xhr.state() + ')',
-							ajax.options
-						);
-						ajax.xhr.abort();
+						if ( ajax.xhr.state() === 'pending' ) {
+							ajax.xhr.abort();
+							pending.push( [
+								'Unfinished AJAX request #' + i + ' to ' + ajax.options.url,
+								ajax.options
+							] );
+						}
 					} );
+					// Stop requests to ensure a clean start for the next test
 					ajaxRequests = [];
 
-					throw new Error( 'Pending AJAX requests: ' + pending.length + ' (active: ' + $activeLen + ')' );
+					if ( pending.length !== activeLen ) {
+						pending.push( 'Some pending requests bypassed ajaxSend() and are missing details' );
+					}
+
+					assert.pushResult( {
+						result: false,
+						message: 'global failure: Unfinished AJAX requests',
+						actual: pending,
+						expected: [],
+						source: 'newMwEnvironment'
+					} );
 				}
 
 				return ret;
@@ -534,6 +539,21 @@
 				'foo<a href="http://example.com">example</a>quux',
 				'Outer text nodes are compared (last text node different)'
 			);
+		} );
+
+		QUnit.module.skip( 'dangling operations', function () {
+			// Expect failure:
+			// > Unfinished animation #0 on <p style="">Hello</p>
+			QUnit.test( 'animation', function () {
+				// eslint-disable-next-line no-jquery/no-fade
+				$( '<p>Hello</p>' ).appendTo( '#qunit-fixture' ).fadeOut( { duration: 2 } );
+			} );
+
+			// Expect failure:
+			// > Unfinished AJAX request #0 to /foo
+			QUnit.test( 'ajax', function () {
+				$.get( '/foo' );
+			} );
 		} );
 
 		var beforeEachRan = false;
