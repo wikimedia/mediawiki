@@ -53,6 +53,7 @@ class AuthenticationResponseTest extends \MediaWikiUnitTestCase {
 				'status' => AuthenticationResponse::FAIL,
 				'message' => $msg,
 				'messageType' => 'error',
+				'failReasons' => []
 			] ],
 
 			[ 'newRestart', [ $msg ], [
