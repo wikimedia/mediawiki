@@ -77,6 +77,9 @@ class DeleteAction extends FormlessAction {
 	/** @var TitleFormatter */
 	private $titleFormatter;
 
+	/** @var TitleFactory */
+	private $titleFactory;
+
 	/**
 	 * @inheritDoc
 	 */
@@ -92,6 +95,7 @@ class DeleteAction extends FormlessAction {
 		$this->deleteRevisionsLimit = $services->getMainConfig()->get( MainConfigNames::DeleteRevisionsLimit );
 		$this->namespaceInfo = $services->getNamespaceInfo();
 		$this->titleFormatter = $services->getTitleFormatter();
+		$this->titleFactory = $services->getTitleFactory();
 	}
 
 	public function getName() {
@@ -258,16 +262,27 @@ class DeleteAction extends FormlessAction {
 			);
 		}
 
-		$subpageQueryLimit = 51;
-		$subpages = $title->getSubpages( $subpageQueryLimit );
-		$subpageCount = count( $subpages );
-		if ( $subpageCount > 0 ) {
+		$subpageCount = count( $title->getSubpages( 51 ) );
+		if ( $subpageCount ) {
 			$outputPage->addHtml(
 				Html::warningBox(
-					$outputPage->msg( 'deleting-subpages-warning', Message::numParam( $subpageCount ) )->parse(),
+					$outputPage->msg( 'deleting-subpages-warning' )->numParams( $subpageCount )->parse(),
 					'plainlinks'
 				)
 			);
+		}
+
+		if ( !$title->isTalkPage() ) {
+			$talkPageTitle = $this->titleFactory->newFromLinkTarget( $this->namespaceInfo->getTalkPage( $title ) );
+			$subpageCount = count( $talkPageTitle->getSubpages( 51 ) );
+			if ( $subpageCount ) {
+				$outputPage->addHtml(
+					Html::warningBox(
+						$outputPage->msg( 'deleting-talkpage-subpages-warning' )->numParams( $subpageCount )->parse(),
+						'plainlinks'
+					)
+				);
+			}
 		}
 
 		$outputPage->addWikiMsg( 'confirmdeletetext' );
