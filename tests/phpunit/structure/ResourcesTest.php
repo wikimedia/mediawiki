@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\ResourceLoader as RL;
 use Wikimedia\Minify\CSSMin;
 use Wikimedia\TestingAccessWrapper;
 
@@ -41,7 +40,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 		$illegalDeps = [ 'startup' ];
 		// Can't depend on modules in the `noscript` group, find all such module names
 		// to add to $ilegalDeps. See T291735
-		/** @var RL\Module $module */
+		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			if ( $module->getGroup() === 'noscript' ) {
 				$illegalDeps[] = $moduleName;
@@ -61,7 +60,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 		$actualIllegal = [];
 		$expectedIllegal = [];
 
-		/** @var RL\Module $module */
+		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			foreach ( $module->getDependencies( $data['context'] ) as $dep ) {
 				if ( !in_array( $dep, $knownDeps, true ) ) {
@@ -85,7 +84,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 		$data = self::getAllModules();
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 
-		/** @var RL\Module $module */
+		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			foreach ( $module->getMessages() as $msgKey ) {
 				$this->assertTrue(
@@ -106,7 +105,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 	public function testUnsatisfiableDependencies() {
 		$data = self::getAllModules();
 
-		/** @var RL\Module $module */
+		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			$moduleTargets = $module->getTargets();
 			foreach ( $module->getDependencies( $data['context'] ) as $dep ) {
@@ -170,20 +169,20 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 		return [
 			'modules' => $modules,
 			'resourceloader' => $rl,
-			'context' => new RL\ResourceLoaderContext( $rl, new FauxRequest() )
+			'context' => new ResourceLoaderContext( $rl, new FauxRequest() )
 		];
 	}
 
 	/**
 	 * Get all stylesheet files from modules that are an instance of
-	 * RL\FileModule (or one of its subclasses).
+	 * ResourceLoaderFileModule (or one of its subclasses).
 	 */
 	public static function provideMediaStylesheets() {
 		$data = self::getAllModules();
 		$context = $data['context'];
 
 		foreach ( $data['modules'] as $moduleName => $module ) {
-			if ( !$module instanceof RL\FileModule ) {
+			if ( !$module instanceof ResourceLoaderFileModule ) {
 				continue;
 			}
 
@@ -210,12 +209,12 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Check all resource files from RL\FileModule modules.
+	 * Check all resource files from ResourceLoaderFileModule modules.
 	 */
 	public function testResourceFiles() {
 		$data = self::getAllModules();
 
-		// See also RL\FileModule::__construct
+		// See also ResourceLoaderFileModule::__construct
 		$filePathProps = [
 			// Lists of file paths
 			'lists' => [
@@ -233,7 +232,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 		];
 
 		foreach ( $data['modules'] as $moduleName => $module ) {
-			if ( !$module instanceof RL\FileModule ) {
+			if ( !$module instanceof ResourceLoaderFileModule ) {
 				continue;
 			}
 
@@ -272,7 +271,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 			}
 
 			foreach ( $files as $file ) {
-				$relativePath = ( $file instanceof RL\FilePath ? $file->getPath() : $file );
+				$relativePath = ( $file instanceof ResourceLoaderFilePath ? $file->getPath() : $file );
 				$this->assertFileExists(
 					$moduleProxy->getLocalPath( $file ),
 					"File '$relativePath' referenced by '$moduleName' must exist."
@@ -297,13 +296,13 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Check all image files from RL\ImageModule modules.
+	 * Check all image files from ResourceLoaderImageModule modules.
 	 */
 	public function testImageFiles() {
 		$data = self::getAllModules();
 
 		foreach ( $data['modules'] as $moduleName => $module ) {
-			if ( !$module instanceof RL\ImageModule ) {
+			if ( !$module instanceof ResourceLoaderImageModule ) {
 				continue;
 			}
 

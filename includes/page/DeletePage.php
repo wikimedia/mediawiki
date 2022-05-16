@@ -24,7 +24,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
-use MediaWiki\ResourceLoader\WikiModule;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
@@ -32,6 +31,7 @@ use MediaWiki\User\UserFactory;
 use Message;
 use NamespaceInfo;
 use RawMessage;
+use ResourceLoaderWikiModule;
 use SearchUpdate;
 use SiteStatsUpdate;
 use Status;
@@ -894,7 +894,7 @@ class DeletePage {
 			WikiPage::onArticleDelete( $page->getTitle() );
 		}
 
-		WikiModule::invalidateModuleCache(
+		ResourceLoaderWikiModule::invalidateModuleCache(
 			$page->getTitle(),
 			$revRecord,
 			null,

@@ -22,7 +22,7 @@
  */
 
 /**
- * This is a wrapper for APCU's shared memory functions
+ * This is a wrapper for APCu's shared memory functions
  *
  * Use PHP serialization to avoid bugs and easily create CAS tokens.
  * APCu has a memory corruption bug when the serializer is set to 'default'.
@@ -50,7 +50,8 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 	private static $CAS_MAX_ATTEMPTS = 100;
 
 	public function __construct( array $params = [] ) {
-		$params['segmentationSize'] = $params['segmentationSize'] ?? INF;
+		// No use in segmenting values
+		$params['segmentationSize'] = INF;
 		parent::__construct( $params );
 		// The extension serializer is still buggy, unlike "php" and "igbinary"
 		$this->nativeSerialize = ( ini_get( 'apc.serializer' ) !== 'default' );

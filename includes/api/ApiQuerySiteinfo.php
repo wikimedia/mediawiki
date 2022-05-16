@@ -26,7 +26,6 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
-use MediaWiki\ResourceLoader\SkinModule;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserOptionsLookup;
@@ -238,7 +237,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		// A logo can either be a relative or an absolute path
 		// make sure we always return an absolute path
-		$logo = SkinModule::getAvailableLogos( $config );
+		$logo = ResourceLoaderSkinModule::getAvailableLogos( $config );
 		$data['logo'] = wfExpandUrl( $logo['1x'], PROTO_RELATIVE );
 
 		$data['generator'] = 'MediaWiki ' . MW_VERSION;

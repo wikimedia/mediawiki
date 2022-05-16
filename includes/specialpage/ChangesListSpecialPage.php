@@ -24,7 +24,6 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\ResourceLoader\ResourceLoaderContext;
 use MediaWiki\User\UserIdentity;
 use OOUI\IconWidget;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
@@ -844,7 +843,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * Get essential data about getRcFiltersConfigVars() for change detection.
 	 *
 	 * @internal For use by Resources.php only.
-	 * @see Module::getDefinitionSummary() and Module::getVersionHash()
+	 * @see ResourceLoaderModule::getDefinitionSummary() and ResourceLoaderModule::getVersionHash()
 	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */

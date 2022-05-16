@@ -22,9 +22,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\ResourceLoader\ResourceLoader;
-use MediaWiki\ResourceLoader\ResourceLoaderContext;
-use MediaWiki\ResourceLoader\SkinModule;
 
 /**
  * Output class modelled on OutputPage.
@@ -142,7 +139,7 @@ class WebInstallerOutput {
 			'only' => 'styles',
 		] ) );
 
-		$module = new SkinModule( [
+		$module = new ResourceLoaderSkinModule( [
 			'features' => [
 				'elements',
 				'interface-message-box'
