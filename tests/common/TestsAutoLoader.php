@@ -252,7 +252,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Unit\\Libs\\Rdbms\\AddQuoterMock' => "$testDir/phpunit/unit/includes/libs/rdbms/AddQuoterMock.php",
 
 	# tests/phpunit/unit/includes/utils
-	'UrlUtilsTest' => "$testDir/phpunit/unit/includes/utils/UrlUtilsTest.php",
+	'UrlUtilsProviders' => "$testDir/phpunit/unit/includes/utils/UrlUtilsProviders.php",
 
 	# tests/phpunit/includes/unit/password
 	'PasswordTestCase' => "$testDir/phpunit/unit/includes/password/PasswordTestCase.php",

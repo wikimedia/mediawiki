@@ -495,17 +495,13 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideWfMatchesDomainList
+	 * Same tests as the UrlUtils method to ensure they don't fall out of sync
+	 * @dataProvider UrlUtilsProviders::provideMatchesDomainList
 	 * @covers ::wfMatchesDomainList
 	 */
 	public function testWfMatchesDomainList( $url, $domains, $expected ) {
 		$actual = wfMatchesDomainList( $url, $domains );
 		$this->assertEquals( $expected, $actual );
-	}
-
-	public static function provideWfMatchesDomainList() {
-		// Same tests as the UrlUtils method to ensure they don't fall out of sync
-		return UrlUtilsTest::provideMatchesDomainList();
 	}
 
 	/**

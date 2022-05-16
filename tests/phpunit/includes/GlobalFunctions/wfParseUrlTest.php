@@ -38,20 +38,13 @@ class WfParseUrlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideURLs
+	 * Same tests as the UrlUtils method
+	 * @dataProvider UrlUtilsProviders::provideParse
 	 */
 	public function testWfParseUrl( $url, $parts ) {
 		$this->assertEquals(
 			$parts,
 			wfParseUrl( $url )
 		);
-	}
-
-	/**
-	 * Provider of URLs for testing wfParseUrl()
-	 */
-	public static function provideURLs() {
-		// Same tests as the UrlUtils method to ensure they don't fall out of sync
-		return UrlUtilsTest::provideParse();
 	}
 }
