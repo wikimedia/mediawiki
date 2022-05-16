@@ -40,8 +40,8 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 	private const WIKITEXT_OLD = 'Hello \'\'\'Goat\'\'\'';
 	private const WIKITEXT = 'Hello \'\'\'World\'\'\'';
 
-	private const HTML_OLD = '<p>Hello <b>Goat</b></p>';
-	private const HTML = '<p>Hello <b>World</b></p>';
+	private const HTML_OLD = '>Goat<';
+	private const HTML = '>World<';
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -144,12 +144,24 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( '<!DOCTYPE html>', $htmlresult );
 		$this->assertStringContainsString( '<html', $htmlresult );
 		$this->assertStringContainsString( $revInfo['html'], $htmlresult );
+
+		// Test that data-parsoid has been added to ParserOutput
+		$pageBundle = $helper->getHtml()->getExtensionData( ParsoidHTMLHelper::PARSOID_PAGE_BUNDLE_KEY );
+
+		$this->assertIsArray( $pageBundle );
+		$this->assertArrayHasKey( 'parsoid', $pageBundle );
+		$this->assertArrayHasKey( 'mw', $pageBundle );
+		$this->assertIsArray( $pageBundle['parsoid'] );
+		$this->assertIsArray( $pageBundle['mw'] );
+
+		// check that we actually got data-parsoid mappings.
+		$this->assertNotEmpty( $pageBundle['parsoid']['ids'] );
 	}
 
 	/**
 	 * @dataProvider provideRevisionReferences()
 	 */
-	public function testHtmlIsCached( $revRef, $revInfo ) {
+	public function testHtmlIsCached( $revRef ) {
 		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
 		$rev = $revRef ? $revisions[ $revRef ] : null;
 
@@ -169,6 +181,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		$helper = $this->newHelper( $cache, $parsoid );
 		$helper->init( $page, $rev );
 		$htmlresult = $helper->getHtml()->getRawText();
+		$this->assertNotNull( $helper->getHtml()->getExtensionData( ParsoidHTMLHelper::PARSOID_PAGE_BUNDLE_KEY ) );
 		$this->assertStringContainsString( 'mocked HTML', $htmlresult );
 	}
 

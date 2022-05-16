@@ -1688,11 +1688,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @endcode
 	 *
 	 * @note Only scalar values, e.g. numbers, strings, arrays or MediaWiki\Json\JsonUnserializable
-	 * instances are supported as a value. Attempt to set other class instance as a extension data
+	 * instances are supported as a value. Attempt to set other class instance as extension data
 	 * will break ParserCache for the page.
 	 *
 	 * @note Since MW 1.38 the practice of setting conflicting values for
-	 * the same key has been deprecated.  As with ::setJsConfigVar() if
+	 * the same key has been deprecated.  As with ::setJsConfigVar(), if
 	 * you set the same key multiple times on a ParserOutput, it is expected
 	 * that the value will be identical each time.  If you want to collect
 	 * multiple pieces of data under a single key, use ::appendExtensionData().
