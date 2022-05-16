@@ -351,6 +351,10 @@ class StatusValue {
 			if ( $error['message'] === $source ) {
 				$this->errors[$index]['message'] = $dest;
 				$replaced = true;
+			} elseif ( $error['message'] instanceof MessageSpecifier
+				&& $error['message']->getKey() === $source ) {
+				$this->errors[$index]['message'] = $dest;
+				$replaced = true;
 			}
 		}
 

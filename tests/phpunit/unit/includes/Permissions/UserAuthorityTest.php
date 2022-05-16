@@ -30,12 +30,21 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\UserAuthority;
 use MediaWikiUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+use Status;
 use User;
 
 /**
  * @covers \MediaWiki\Permissions\UserAuthority
  */
 class UserAuthorityTest extends MediaWikiUnitTestCase {
+
+	/** @var string[] Some dummy message parameters to test error message formatting. */
+	private const FAKE_BLOCK_MESSAGE_PARAMS = [
+		'[[User:Blocker|Blocker]]',
+		'Block reason that can contain {{templates}}',
+		'192.168.0.1',
+		'Blocker',
+	];
 
 	/**
 	 * @param string[] $permissions
@@ -68,7 +77,10 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 				}
 
 				if ( $user->getBlock() && $permission !== 'read' ) {
-					$errors[] = [ 'blockedtext-partial' ];
+					$errors[] = array_merge(
+						[ 'blockedtext-partial' ],
+						self::FAKE_BLOCK_MESSAGE_PARAMS
+					);
 				}
 
 				return $errors;
@@ -267,5 +279,37 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$authority = $this->newAuthority( [ 'foo', 'bar' ], $actor );
 
 		$this->assertSame( $block, $authority->getBlock() );
+	}
+
+	/**
+	 * Regression test for T306494: check that when creating a PermissionStatus,
+	 * the message contains all parameters and when converted to a Status, the parameters
+	 * are not wikitext escaped.
+	 */
+	public function testInternalCanWithPermissionStatusMessageFormatting() {
+		$block = $this->createNoOpMock( Block::class );
+		$user = $this->getBlockedUser( $block );
+
+		$authority = $this->newAuthority( [ 'read', 'edit' ], $user );
+
+		$permissionStatus = PermissionStatus::newEmpty();
+		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
+
+		$authority->authorizeWrite(
+			'edit',
+			$target,
+			$permissionStatus
+		);
+
+		$this->assertTrue( $permissionStatus->hasMessage( 'blockedtext-partial' ) );
+
+		$status = Status::wrap( $permissionStatus );
+
+		$message = $status->getMessage();
+		$this->assertEquals( 'blockedtext-partial', $message->getKey() );
+		$this->assertArrayEquals(
+			self::FAKE_BLOCK_MESSAGE_PARAMS,
+			$message->getParams()
+		);
 	}
 }
