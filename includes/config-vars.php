@@ -2199,12 +2199,6 @@ $wgDisableHardRedirects = null;
 $wgFixDoubleRedirects = null;
 
 /**
- * Config variable stub for the InterwikiPrefixDisplayTypes setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::InterwikiPrefixDisplayTypes
- */
-$wgInterwikiPrefixDisplayTypes = null;
-
-/**
  * Config variable stub for the LocalInterwikis setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::LocalInterwikis
  */

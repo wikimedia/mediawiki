@@ -726,8 +726,6 @@ return [
 			],
 			'DisableHardRedirects' => false,
 			'FixDoubleRedirects' => false,
-			'InterwikiPrefixDisplayTypes' => [
-			],
 			'LocalInterwikis' => [
 			],
 			'InterwikiExpiry' => 10800,
@@ -2628,7 +2626,6 @@ return [
 			'ShortPagesNamespaceExclusions' => 'array',
 			'ExtraSignatureNamespaces' => 'array',
 			'InvalidRedirectTargets' => 'array',
-			'InterwikiPrefixDisplayTypes' => 'object',
 			'LocalInterwikis' => 'array',
 			'InterwikiCache' => [
 				0 => 'boolean',

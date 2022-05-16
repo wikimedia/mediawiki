@@ -5851,29 +5851,6 @@ class MainConfigSchema {
 	/** @name   Interwiki links and sites */
 
 	/**
-	 * Mapping of interwiki index prefixes to descriptors that
-	 * can be used to change the display of interwiki search results.
-	 *
-	 * Descriptors are appended to CSS classes of interwiki results
-	 * which using InterwikiSearchResultWidget.
-	 *
-	 * Predefined descriptors include the following words:
-	 * definition, textbook, news, quotation, book, travel, course
-	 *
-	 * **Example:**
-	 *
-	 * ```
-	 * $wgInterwikiPrefixDisplayTypes = [
-	 * 'iwprefix' => 'definition'
-	 * ];
-	 * ```
-	 */
-	public const InterwikiPrefixDisplayTypes = [
-		'default' => [],
-		'type' => 'map',
-	];
-
-	/**
 	 * Array for local interwiki values, for each of the interwiki prefixes that point to
 	 * the current wiki.
 	 *
