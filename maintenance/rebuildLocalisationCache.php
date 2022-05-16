@@ -34,7 +34,6 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\Settings\SettingsBuilder;
 
 require_once __DIR__ . '/Maintenance.php';

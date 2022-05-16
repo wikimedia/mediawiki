@@ -23,7 +23,6 @@
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Skin\SkinComponent;
@@ -960,7 +959,7 @@ abstract class Skin extends ContextSource {
 		$mp = $this->msg( 'mainpage' )->escaped();
 		$url = htmlspecialchars( Title::newMainPage()->getLocalURL() );
 
-		$logourl = RL\SkinModule::getAvailableLogos( $this->getConfig() )[ '1x' ];
+		$logourl = ResourceLoaderSkinModule::getAvailableLogos( $this->getConfig() )[ '1x' ];
 		return "<a href='{$url}'><img{$a} src='{$logourl}' alt='[{$mp}]' /></a>";
 	}
 
@@ -2600,7 +2599,7 @@ abstract class Skin extends ContextSource {
 	 * Returns skin options for portlet links, used by addPortletLink
 	 *
 	 * @internal
-	 * @param RL\ResourceLoaderContext $context
+	 * @param ResourceLoaderContext $context
 	 * @return array $linkOptions
 	 *   - 'text-wrapper' key to specify a list of elements to wrap the text of
 	 *   a link in. This should be an array of arrays containing a 'tag' and
@@ -2610,7 +2609,7 @@ abstract class Skin extends ContextSource {
 	 *   for your options. If text-wrapper contains multiple entries they are
 	 *   interpreted as going from the outer wrapper to the inner wrapper.
 	 */
-	public static function getPortletLinkOptions( RL\ResourceLoaderContext $context ): array {
+	public static function getPortletLinkOptions( ResourceLoaderContext $context ): array {
 		$skinName = $context->getSkin();
 		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
 		$options = $skinFactory->getSkinOptions( $skinName );

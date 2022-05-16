@@ -27,10 +27,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\PermissionStatus;
-use MediaWiki\ResourceLoader as RL;
-use MediaWiki\ResourceLoader\DerivativeResourceLoaderContext;
-use MediaWiki\ResourceLoader\ResourceLoader;
-use MediaWiki\ResourceLoader\ResourceLoaderContext;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -205,7 +201,7 @@ class OutputPage extends ContextSource {
 	/** @var ResourceLoader */
 	protected $mResourceLoader;
 
-	/** @var RL\ClientHtml */
+	/** @var ResourceLoaderClientHtml */
 	private $rlClient;
 
 	/** @var ResourceLoaderContext */
@@ -236,11 +232,11 @@ class OutputPage extends ContextSource {
 
 	/** @var array
 	 * What level of 'untrustworthiness' is allowed in CSS/JS modules loaded on this page?
-	 * @see RL\Module::$origin
-	 * RL\Module::ORIGIN_ALL is assumed unless overridden;
+	 * @see ResourceLoaderModule::$origin
+	 * ResourceLoaderModule::ORIGIN_ALL is assumed unless overridden;
 	 */
 	protected $mAllowedModules = [
-		RL\Module::TYPE_COMBINED => RL\Module::ORIGIN_ALL,
+		ResourceLoaderModule::TYPE_COMBINED => ResourceLoaderModule::ORIGIN_ALL,
 	];
 
 	/** @var bool Whether output is disabled.  If this is true, the 'output' method will do nothing. */
@@ -551,13 +547,13 @@ class OutputPage extends ContextSource {
 	 * @return string[]
 	 */
 	protected function filterModules( array $modules, $position = null,
-		$type = RL\Module::TYPE_COMBINED
+		$type = ResourceLoaderModule::TYPE_COMBINED
 	) {
 		$resourceLoader = $this->getResourceLoader();
 		$filteredModules = [];
 		foreach ( $modules as $val ) {
 			$module = $resourceLoader->getModule( $val );
-			if ( $module instanceof RL\Module
+			if ( $module instanceof ResourceLoaderModule
 				&& $module->getOrigin() <= $this->getAllowedModules( $type )
 			) {
 				if ( $this->mTarget && !in_array( $this->mTarget, $module->getTargets() ) ) {
@@ -595,7 +591,7 @@ class OutputPage extends ContextSource {
 	 * @return string[] Array of module names
 	 */
 	public function getModules( $filter = false, $position = null, $param = 'mModules',
-		$type = RL\Module::TYPE_COMBINED
+		$type = ResourceLoaderModule::TYPE_COMBINED
 	) {
 		$modules = array_values( array_unique( $this->$param ) );
 		return $filter
@@ -621,7 +617,7 @@ class OutputPage extends ContextSource {
 	 */
 	public function getModuleStyles( $filter = false, $position = null ) {
 		return $this->getModules( $filter, null, 'mModuleStyles',
-			RL\Module::TYPE_STYLES
+			ResourceLoaderModule::TYPE_STYLES
 		);
 	}
 
@@ -1683,34 +1679,34 @@ class OutputPage extends ContextSource {
 	 */
 	public function disallowUserJs() {
 		$this->reduceAllowedModules(
-			RL\Module::TYPE_SCRIPTS,
-			RL\Module::ORIGIN_CORE_INDIVIDUAL
+			ResourceLoaderModule::TYPE_SCRIPTS,
+			ResourceLoaderModule::ORIGIN_CORE_INDIVIDUAL
 		);
 
 		// Site-wide styles are controlled by a config setting, see T73621
 		// for background on why. User styles are never allowed.
 		if ( $this->getConfig()->get( MainConfigNames::AllowSiteCSSOnRestrictedPages ) ) {
-			$styleOrigin = RL\Module::ORIGIN_USER_SITEWIDE;
+			$styleOrigin = ResourceLoaderModule::ORIGIN_USER_SITEWIDE;
 		} else {
-			$styleOrigin = RL\Module::ORIGIN_CORE_INDIVIDUAL;
+			$styleOrigin = ResourceLoaderModule::ORIGIN_CORE_INDIVIDUAL;
 		}
 		$this->reduceAllowedModules(
-			RL\Module::TYPE_STYLES,
+			ResourceLoaderModule::TYPE_STYLES,
 			$styleOrigin
 		);
 	}
 
 	/**
 	 * Show what level of JavaScript / CSS untrustworthiness is allowed on this page
-	 * @see RL\Module::$origin
-	 * @param string $type RL\Module TYPE_ constant
-	 * @return int Module ORIGIN_ class constant
+	 * @see ResourceLoaderModule::$origin
+	 * @param string $type ResourceLoaderModule TYPE_ constant
+	 * @return int ResourceLoaderModule ORIGIN_ class constant
 	 */
 	public function getAllowedModules( $type ) {
-		if ( $type == RL\Module::TYPE_COMBINED ) {
+		if ( $type == ResourceLoaderModule::TYPE_COMBINED ) {
 			return min( array_values( $this->mAllowedModules ) );
 		} else {
-			return $this->mAllowedModules[$type] ?? RL\Module::ORIGIN_ALL;
+			return $this->mAllowedModules[$type] ?? ResourceLoaderModule::ORIGIN_ALL;
 		}
 	}
 
@@ -1721,7 +1717,7 @@ class OutputPage extends ContextSource {
 	 * level will remain unchanged.
 	 *
 	 * @param string $type
-	 * @param int $level RL\Module class constant
+	 * @param int $level ResourceLoaderModule class constant
 	 */
 	public function reduceAllowedModules( $type, $level ) {
 		$this->mAllowedModules[$type] = min( $this->getAllowedModules( $type ), $level );
@@ -3182,7 +3178,7 @@ class OutputPage extends ContextSource {
 	 * the module filters retroactively. Skins and extension hooks may also add modules until very
 	 * late in the request lifecycle.
 	 *
-	 * @return RL\ClientHtml
+	 * @return ResourceLoaderClientHtml
 	 */
 	public function getRlClient() {
 		if ( !$this->rlClient ) {
@@ -3200,21 +3196,21 @@ class OutputPage extends ContextSource {
 
 			// Prepare exempt modules for buildExemptModules()
 			$exemptGroups = [
-				RL\Module::GROUP_SITE => [],
-				RL\Module::GROUP_NOSCRIPT => [],
-				RL\Module::GROUP_PRIVATE => [],
-				RL\Module::GROUP_USER => []
+				ResourceLoaderModule::GROUP_SITE => [],
+				ResourceLoaderModule::GROUP_NOSCRIPT => [],
+				ResourceLoaderModule::GROUP_PRIVATE => [],
+				ResourceLoaderModule::GROUP_USER => []
 			];
 			$exemptStates = [];
 			$moduleStyles = $this->getModuleStyles( /*filter*/ true );
 
-			// Preload getTitleInfo for isKnownEmpty calls below and in RL\ClientHtml
+			// Preload getTitleInfo for isKnownEmpty calls below and in ResourceLoaderClientHtml
 			// Separate user-specific batch for improved cache-hit ratio.
 			$userBatch = [ 'user.styles', 'user' ];
 			$siteBatch = array_diff( $moduleStyles, $userBatch );
 			$dbr = wfGetDB( DB_REPLICA );
-			RL\WikiModule::preloadTitleInfo( $context, $dbr, $siteBatch );
-			RL\WikiModule::preloadTitleInfo( $context, $dbr, $userBatch );
+			ResourceLoaderWikiModule::preloadTitleInfo( $context, $dbr, $siteBatch );
+			ResourceLoaderWikiModule::preloadTitleInfo( $context, $dbr, $userBatch );
 
 			// Filter out modules handled by buildExemptModules()
 			$moduleStyles = array_filter( $moduleStyles,
@@ -3226,7 +3222,7 @@ class OutputPage extends ContextSource {
 							// The `noscript` module is excluded from the client
 							// side registry, no need to set its state either.
 							// But we still output it. See T291735
-							if ( $group !== RL\Module::GROUP_NOSCRIPT ) {
+							if ( $group !== ResourceLoaderModule::GROUP_NOSCRIPT ) {
 								$exemptStates[$name] = 'ready';
 							}
 							if ( !$module->isKnownEmpty( $context ) ) {
@@ -3241,7 +3237,7 @@ class OutputPage extends ContextSource {
 			);
 			$this->rlExemptStyleModules = $exemptGroups;
 
-			$rlClient = new RL\ClientHtml( $context, [
+			$rlClient = new ResourceLoaderClientHtml( $context, [
 				'target' => $this->getTarget(),
 				'nonce' => $this->CSP->getNonce(),
 				// When 'safemode', disallowUserJs(), or reduceAllowedModules() is used
@@ -3251,8 +3247,8 @@ class OutputPage extends ContextSource {
 				// lazy-loaded modules at run-time on the client-side, pass 'safemode' down to the
 				// StartupModule so that the client-side registry will not contain any restricted
 				// modules either. (T152169, T185303)
-				'safemode' => ( $this->getAllowedModules( RL\Module::TYPE_COMBINED )
-					<= RL\Module::ORIGIN_CORE_INDIVIDUAL
+				'safemode' => ( $this->getAllowedModules( ResourceLoaderModule::TYPE_COMBINED )
+					<= ResourceLoaderModule::ORIGIN_CORE_INDIVIDUAL
 				) ? '1' : null,
 			] );
 			$rlClient->setConfig( $this->getJSVars() );
@@ -3375,7 +3371,7 @@ class OutputPage extends ContextSource {
 	 * Explicitly load or embed modules on a page.
 	 *
 	 * @param array|string $modules One or more module names
-	 * @param string $only RL\Module TYPE_ class constant
+	 * @param string $only ResourceLoaderModule TYPE_ class constant
 	 * @param array $extraQuery [optional] Array with extra query parameters for the request
 	 * @return string|WrappedStringList HTML
 	 */
@@ -3383,7 +3379,7 @@ class OutputPage extends ContextSource {
 		// Apply 'target' and 'origin' filters
 		$modules = $this->filterModules( (array)$modules, null, $only );
 
-		return RL\ClientHtml::makeLoad(
+		return ResourceLoaderClientHtml::makeLoad(
 			$this->getRlClientContext(),
 			$modules,
 			$only,
@@ -3467,7 +3463,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get an array containing the variables to be set in mw.config in JavaScript.
 	 *
-	 * Do not add things here which can be evaluated in RL\StartUpModule
+	 * Do not add things here which can be evaluated in ResourceLoaderStartUpModule
 	 * - in other words, page-independent/site-wide variables (without state).
 	 * You will only be adding bloat to the html page and causing page caches to
 	 * have to be purged on configuration changes.
@@ -4033,7 +4029,7 @@ class OutputPage extends ContextSource {
 		//   both of the above.
 		//
 		// The effective order for stylesheets must thus be:
-		// 1. Page style modules, formatted server-side by RL\ClientHtml.
+		// 1. Page style modules, formatted server-side by ResourceLoaderClientHtml.
 		// 2. Dynamically-loaded styles, inserted client-side by mw.loader.
 		// 3. Styles that are site-specific, private or from the user, formatted
 		//    server-side by this function.
@@ -4051,14 +4047,14 @@ class OutputPage extends ContextSource {
 			if ( $moduleNames ) {
 				$append[] = $this->makeResourceLoaderLink(
 					array_diff( $moduleNames, $separateReq ),
-					RL\Module::TYPE_STYLES
+					ResourceLoaderModule::TYPE_STYLES
 				);
 
 				foreach ( array_intersect( $moduleNames, $separateReq ) as $name ) {
 					// These require their own dedicated request in order to support "@import"
 					// syntax, which is incompatible with concatenation. (T147667, T37562)
 					$append[] = $this->makeResourceLoaderLink( $name,
-						RL\Module::TYPE_STYLES
+						ResourceLoaderModule::TYPE_STYLES
 					);
 				}
 			}
@@ -4329,7 +4325,7 @@ class OutputPage extends ContextSource {
 	 * @param string $dir Language direction
 	 */
 	public static function setupOOUI( $skinName = 'default', $dir = 'ltr' ) {
-		$themes = RL\OOUIFileModule::getSkinThemeMap();
+		$themes = ResourceLoaderOOUIFileModule::getSkinThemeMap();
 		$theme = $themes[$skinName] ?? $themes['default'];
 		// For example, 'OOUI\WikimediaUITheme'.
 		$themeClass = "OOUI\\{$theme}Theme";

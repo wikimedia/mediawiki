@@ -7,8 +7,6 @@
  * mapping expected inputs to outputs, which is used then run by QUnit.
  */
 
-use MediaWiki\ResourceLoader\LanguageDataModule;
-
 require __DIR__ . '/../../../maintenance/Maintenance.php';
 
 class GenerateJqueryMsgData extends Maintenance {
@@ -48,7 +46,7 @@ class GenerateJqueryMsgData extends Maintenance {
 		$tests = [];
 		$jsData = [];
 		foreach ( self::$testLangs as $languageCode ) {
-			$jsData[$languageCode] = LanguageDataModule::getData( $languageCode );
+			$jsData[$languageCode] = ResourceLoaderLanguageDataModule::getData( $languageCode );
 			foreach ( self::$keyToTestArgs as $key => $testArgs ) {
 				foreach ( $testArgs as $args ) {
 					// Get the raw message, without any transformations.

@@ -144,11 +144,11 @@ $wgAutoloadClasses += [
 	'PoolWorkArticleViewTest' =>
 		"$testDir/phpunit/includes/poolcounter/PoolWorkArticleViewTest.php",
 
-	# tests/phpunit/includes/ResourceLoader
-	'MediaWiki\\Tests\\ResourceLoader\\ImageModuleTest' =>
-		"$testDir/phpunit/includes/ResourceLoader/ImageModuleTest.php",
-	'MediaWiki\\Tests\\ResourceLoader\\ImageModuleTestable' =>
-		"$testDir/phpunit/includes/ResourceLoader/ImageModuleTest.php",
+	# tests/phpunit/includes/resourceloader
+	'ResourceLoaderImageModuleTest' =>
+		"$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
+	'ResourceLoaderImageModuleTestable' =>
+		"$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
 
 	# tests/phpunit/includes/session
 	'MediaWiki\\Session\\TestBagOStuff' => "$testDir/phpunit/includes/session/TestBagOStuff.php",

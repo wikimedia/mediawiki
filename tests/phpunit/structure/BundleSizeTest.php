@@ -2,13 +2,13 @@
 
 namespace MediaWiki\Tests\Structure;
 
+use DerivativeResourceLoaderContext;
 use FauxRequest;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\ResourceLoader\DerivativeResourceLoaderContext;
-use MediaWiki\ResourceLoader\Module;
-use MediaWiki\ResourceLoader\ResourceLoaderContext;
 use MediaWikiIntegrationTestCase;
+use ResourceLoaderContext;
+use ResourceLoaderModule;
 
 /**
  * Compare bundle sizes from each skin/extension bundlesize.config.json with ResourceLoader output.
@@ -48,9 +48,9 @@ abstract class BundleSizeTest extends MediaWikiIntegrationTestCase {
 			$module = $resourceLoader->getModule( $moduleName );
 			$contentContext = new DerivativeResourceLoaderContext( $context );
 			$contentContext->setOnly(
-				$module->getType() === Module::LOAD_STYLES
-					? Module::TYPE_STYLES
-					: Module::TYPE_COMBINED
+				$module->getType() === ResourceLoaderModule::LOAD_STYLES
+					? ResourceLoaderModule::TYPE_STYLES
+					: ResourceLoaderModule::TYPE_COMBINED
 			);
 			$content = $resourceLoader->makeModuleResponse( $context, [ $moduleName => $module ] );
 			$contentTransferSize = strlen( gzencode( $content, 9 ) );

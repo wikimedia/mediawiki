@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Skins\Hook;
 
-use MediaWiki\ResourceLoader\ResourceLoaderContext;
+use ResourceLoaderContext;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

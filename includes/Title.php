@@ -33,7 +33,6 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\ProperPageIdentity;
-use MediaWiki\ResourceLoader\WikiModule;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\IDatabase;
@@ -688,7 +687,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * will use the user language, which would involve initialising the session
 	 * via `RequestContext::getMain()->getLanguage()`. For session-less endpoints,
 	 * be sure to pass in a MessageLocalizer (such as your own RequestContext,
-	 * or ResourceLoaderContext) to prevent an error.
+	 * or ResourceloaderContext) to prevent an error.
 	 *
 	 * @note The Title instance returned by this method is not guaranteed to be a fresh instance.
 	 * It may instead be a cached instance created previously, with references to it remaining
@@ -3682,7 +3681,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 					MediaWikiServices::getInstance()->getLinkCache()->invalidateTitle( $this );
 
-					WikiModule::invalidateModuleCache(
+					ResourceLoaderWikiModule::invalidateModuleCache(
 						$this, null, null, $dbw->getDomainID() );
 				}
 			),
