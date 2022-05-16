@@ -1871,7 +1871,7 @@
 	"rcfilters-watchlist-edit-watchlist-button": "Label for the button to edit the watched pages on [[Special:Watchlist]] when using the structured filters interface.\n\nCf. {{msg-mw|watchlisttools-edit}}.",
 	"rcfilters-watchlist-showupdated": "Message at the top of [[Special:Watchlist]] when the Structured filters are enabled that describes what unseen changes look like.\n\nCf. {{msg-mw|wlheader-showupdated}}",
 	"rcfilters-preference-label": "Option in RecentChanges tab of [[Special:Preferences]].",
-	"rcfilters-preference-help": "Explanation for the option in the RecentChanges tab of [[Special:Preferences]].",
+	"rcfilters-preference-help": "Explanation for the option in the RecentChanges tab of [[Special:Preferences]].\n\n* \"Recent changes\" is {{msg-mw|recentchanges}}\n* \"Related changes\" is {{msg-mw|recentchangeslinked}}",
 	"rcfilters-watchlist-preference-label": "Option in Watchlist tab of [[Special:Preferences]].",
 	"rcfilters-watchlist-preference-help": "Explanation for the option in the Watchlist tab of [[Special:Preferences]].",
 	"rcfilters-filter-showlinkedfrom-label": "Label that indicates that the page is showing changes that link FROM the target page. Used on [[Special:Recentchangeslinked]] when structured filters are enabled.",

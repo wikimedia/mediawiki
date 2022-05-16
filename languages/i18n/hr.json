@@ -2152,6 +2152,7 @@
 	"enotif_minoredit": "Ovo je sitnije uređivanje",
 	"created": "stvorio",
 	"changed": "promijenio",
+	"deletepage-deletetalk": "Izbriši i stranicu za razgovor",
 	"deletepage-submit": "Izbriši stranicu",
 	"confirm": "Potvrdi",
 	"excontent": "sadržaj je bio: '$1'",

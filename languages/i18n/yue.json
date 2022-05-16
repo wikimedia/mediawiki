@@ -2323,6 +2323,7 @@
 	"autoblocklist-otherblocks": "其他{{PLURAL:$1|自動封鎖}}",
 	"ipblocklist": "封咗嘅用戶",
 	"ipblocklist-legend": "搵一位封咗嘅用戶",
+	"blocklist-autoblocks": "收埋自動封鎖",
 	"blocklist-userblocks": "收埋戶口封鎖",
 	"blocklist-tempblocks": "收埋臨時封鎖",
 	"blocklist-indefblocks": "收埋永久封鎖",
