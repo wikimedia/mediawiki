@@ -152,7 +152,7 @@ class WebInstallerOutput {
 		] );
 		$module->setConfig( $resourceLoader->getConfig() );
 
-		// Based on: ResourceLoaderFileModule::getStyles (without the DB query)
+		// Based on MediaWiki\ResourceLoader\FileModule::getStyles, without the DB query
 		$styles = ResourceLoader::makeCombinedStyles(
 			$module->readStyleFiles(
 				$module->getStyleFiles( $rlContext ),

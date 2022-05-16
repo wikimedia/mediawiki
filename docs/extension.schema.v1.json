@@ -350,7 +350,7 @@
 							}
 						},
 						{
-							"description": "A ResourceLoader ImageModule definition",
+							"description": "An ImageModule definition",
 							"additionalProperties": false,
 							"properties": {
 								"class": {
@@ -398,7 +398,7 @@
 							}
 						},
 						{
-							"description": "An arbitrary ResourceLoaderModule definition by class",
+							"description": "An arbitrary ResourceLoader Module definition by class",
 							"properties": {
 								"class": {
 									"type": "string",
