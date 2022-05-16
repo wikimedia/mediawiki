@@ -268,7 +268,7 @@
 	"config-install-user-missing": "The specified user \"$1\" does not exist.",
 	"config-install-user-missing-create": "The specified user \"$1\" does not exist.\nPlease click the \"create account\" checkbox below if you want to create it.",
 	"config-install-logo-blank": "Enter a valid logo URL.",
-	"config-install-restore-services": "Restoring mediawiki services",
+	"config-install-restore-services": "Restoring MediaWiki services",
 	"config-install-tables": "Creating tables, step one",
 	"config-install-tables-exist": "<strong>Warning:</strong> MediaWiki tables seem to already exist.\nSkipping creation.",
 	"config-install-tables-failed": "<strong>Error:</strong> Table creation failed with the following error: $1",
