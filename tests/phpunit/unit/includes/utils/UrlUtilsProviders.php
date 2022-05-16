@@ -60,66 +60,63 @@ class UrlUtilsProviders {
 			'canonical' => PROTO_CANONICAL,
 		];
 
-		foreach ( $modes as $fallbackProto ) {
-			foreach ( $servers as $server ) {
-				foreach ( $modes as $canServerMode ) {
-					$canServer = "$canServerMode://example2.com";
-					$options = [
-						UrlUtils::SERVER => $server,
-						UrlUtils::CANONICAL_SERVER => $canServer,
-						UrlUtils::HTTPS_PORT => 443,
-						UrlUtils::FALLBACK_PROTOCOL => $fallbackProto,
-					];
-					foreach ( $defaultProtos as $protoDesc => $defaultProto ) {
-						$case = "fallback: $fallbackProto, default: $protoDesc, server: $server, canonical: $canServer";
-						yield "No-op fully-qualified http URL ($case)" => [
-							'http://example.com',
-							$options, $defaultProto,
-							'http://example.com',
-						];
-						yield "No-op fully-qualified https URL ($case)" => [
-							'https://example.com',
-							$options, $defaultProto,
-							'https://example.com',
-						];
-						yield "No-op rootless path-only URL ($case" => [
-							"wiki/FooBar",
-							$options, $defaultProto,
-							'wiki/FooBar',
-						];
+		foreach ( ArrayUtils::cartesianProduct( $modes, $servers, $modes, array_keys( $defaultProtos ) )
+			as [ $fallbackProto, $server, $canServerMode, $protoDesc ]
+		) {
+			$defaultProto = $defaultProtos[$protoDesc];
+			$canServer = "$canServerMode://example2.com";
+			$options = [
+				UrlUtils::SERVER => $server,
+				UrlUtils::CANONICAL_SERVER => $canServer,
+				UrlUtils::HTTPS_PORT => 443,
+				UrlUtils::FALLBACK_PROTOCOL => $fallbackProto,
+			];
+			$case = "fallback: $fallbackProto, default: $protoDesc, server: $server, canonical: $canServer";
+			yield "No-op fully-qualified http URL ($case)" => [
+				'http://example.com',
+				$options, $defaultProto,
+				'http://example.com',
+			];
+			yield "No-op fully-qualified https URL ($case)" => [
+				'https://example.com',
+				$options, $defaultProto,
+				'https://example.com',
+			];
+			yield "No-op rootless path-only URL ($case" => [
+				"wiki/FooBar",
+				$options, $defaultProto,
+				'wiki/FooBar',
+			];
 
-						// Determine expected protocol
-						if ( $protoDesc === 'protocol-relative' ) {
-							$p = '';
-						} elseif ( $protoDesc === 'fallback' ) {
-							$p = "$fallbackProto:";
-						} elseif ( $protoDesc === 'canonical' ) {
-							$p = "$canServerMode:";
-						} else {
-							$p = $protoDesc . ':';
-						}
-						yield "Expand protocol-relative URL ($case)" => [
-							'//wikipedia.org',
-							$options, $defaultProto,
-							"$p//wikipedia.org",
-						];
-
-						// Determine expected server name
-						if ( $protoDesc === 'canonical' ) {
-							$srv = $canServer;
-						} elseif ( $server === '//example.com' ) {
-							$srv = $p . $server;
-						} else {
-							$srv = $server;
-						}
-						yield "Expand path that starts with slash ($case)" => [
-							'/wiki/FooBar',
-							$options, $defaultProto,
-							"$srv/wiki/FooBar",
-						];
-					}
-				}
+			// Determine expected protocol
+			if ( $protoDesc === 'protocol-relative' ) {
+				$p = '';
+			} elseif ( $protoDesc === 'fallback' ) {
+				$p = "$fallbackProto:";
+			} elseif ( $protoDesc === 'canonical' ) {
+				$p = "$canServerMode:";
+			} else {
+				$p = $protoDesc . ':';
 			}
+			yield "Expand protocol-relative URL ($case)" => [
+				'//wikipedia.org',
+				$options, $defaultProto,
+				"$p//wikipedia.org",
+			];
+
+			// Determine expected server name
+			if ( $protoDesc === 'canonical' ) {
+				$srv = $canServer;
+			} elseif ( $server === '//example.com' ) {
+				$srv = $p . $server;
+			} else {
+				$srv = $server;
+			}
+			yield "Expand path that starts with slash ($case)" => [
+				'/wiki/FooBar',
+				$options, $defaultProto,
+				"$srv/wiki/FooBar",
+			];
 		}
 
 		// Non-standard https port
