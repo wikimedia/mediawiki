@@ -2,9 +2,7 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use BagOStuff;
 use DeferredUpdates;
-use EmptyBagOStuff;
 use Exception;
 use ExtensionRegistry;
 use HashBagOStuff;
@@ -35,10 +33,14 @@ use WikiPage;
  */
 class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	use HandlerTestTrait;
+	use HTMLHandlerTestTrait;
 
 	private const WIKITEXT = 'Hello \'\'\'World\'\'\'';
 
-	private const HTML = '<p>Hello <b>World</b></p>';
+	private const HTML = '>World</';
+
+	/** @var HashBagOStuff */
+	private $parserCacheBagOStuff;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -51,6 +53,8 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			'text',
 			'content'
 		];
+
+		$this->parserCacheBagOStuff = new HashBagOStuff();
 	}
 
 	/**
@@ -63,12 +67,12 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param BagOStuff|null $cache
 	 * @param Parsoid|MockObject|null $parsoid
+	 *
 	 * @return PageHTMLHandler
 	 * @throws Exception
 	 */
-	private function newHandler( BagOStuff $cache = null, Parsoid $parsoid = null ): PageHTMLHandler {
+	private function newHandler( Parsoid $parsoid = null ): PageHTMLHandler {
 		$parserCacheFactoryOptions = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
 			'ParserCacheUseJson' => true,
 			'CacheEpoch' => '20200202112233',
@@ -76,8 +80,8 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$parserCacheFactory = new ParserCacheFactory(
-			$cache ?: new EmptyBagOStuff(),
-			new WANObjectCache( [ 'cache' => $cache ?: new EmptyBagOStuff() ] ),
+			$this->parserCacheBagOStuff,
+			new WANObjectCache( [ 'cache' => $this->parserCacheBagOStuff ] ),
 			$this->createHookContainer(),
 			new JsonCodec(),
 			new NullStatsdDataFactory(),
@@ -96,7 +100,8 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getTitleFormatter(),
 			$parserCacheFactory,
 			$this->getServiceContainer()->getGlobalIdGenerator(),
-			$this->getServiceContainer()->getPageStore()
+			$this->getServiceContainer()->getPageStore(),
+			$this->getParsoidOutputStash()
 		);
 
 		if ( $parsoid !== null ) {
@@ -162,13 +167,12 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
 		);
 
-		$cache = new HashBagOStuff();
 		$parsoid = $this->createNoOpMock( Parsoid::class, [ 'wikitext2html' ] );
 		$parsoid->expects( $this->once() )
 			->method( 'wikitext2html' )
 			->willReturn( new PageBundle( 'mocked HTML', null, null, '1.0' ) );
 
-		$handler = $this->newHandler( $cache, $parsoid );
+		$handler = $this->newHandler( $parsoid );
 		$response = $this->executeHandler( $handler, $request, [
 			'format' => 'html'
 		] );
@@ -176,7 +180,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'mocked HTML', $htmlResponse );
 
 		// check that we can run the test again and ensure that the parse is only run once
-		$handler = $this->newHandler( $cache, $parsoid );
+		$handler = $this->newHandler( $parsoid );
 		$response = $this->executeHandler( $handler, $request, [
 			'format' => 'html'
 		] );
@@ -195,13 +199,11 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
 		);
 
-		$cache = new HashBagOStuff();
-
 		// First, test it works if nothing was cached yet.
 		// Make some time pass since page was created:
 		$time += 10;
 		MWTimestamp::setFakeTime( $time );
-		$handler = $this->newHandler( $cache );
+		$handler = $this->newHandler();
 		$response = $this->executeHandler( $handler, $request, [
 			'format' => 'html'
 		] );
@@ -213,7 +215,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			$response->getHeaderLine( 'Last-Modified' ) );
 
 		// Now, test that headers work when getting from cache too.
-		$handler = $this->newHandler( $cache );
+		$handler = $this->newHandler();
 		$response = $this->executeHandler( $handler, $request, [
 			'format' => 'html'
 		] );
@@ -234,7 +236,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 		DeferredUpdates::doUpdates();
 
-		$handler = $this->newHandler( $cache );
+		$handler = $this->newHandler();
 		$response = $this->executeHandler( $handler, $request, [
 			'format' => 'html'
 		] );
@@ -289,7 +291,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			->method( 'wikitext2html' )
 			->willThrowException( $parsoidException );
 
-		$handler = $this->newHandler( null, $parsoid );
+		$handler = $this->newHandler( $parsoid );
 		$this->expectExceptionObject( $expectedException );
 		$this->executeHandler( $handler, $request, [
 			'format' => 'html'
@@ -340,6 +342,49 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( CONTENT_MODEL_WIKITEXT, $data['content_model'] );
 		$this->assertSame( 'https://example.com/rights', $data['license']['url'] );
 		$this->assertSame( 'some rights', $data['license']['title'] );
+	}
+
+	/**
+	 * Request One:
+	 *
+	 * When a request is made with no stash entries in the stash and stashing
+	 * is set to false, don't stash anything. At this point, the stash is empty.
+	 *
+	 * Request Two:
+	 *
+	 * Once a request is made with stashing option set to true, we should have
+	 * one entry in parsoid stash. So at this point, the stash is no longer empty
+	 * as before.
+	 *
+	 * Request Three:
+	 *
+	 * Upon the third request, there is already a stash entry and if the 3rd request's
+	 * stashing option is set to false, we're not invalidating the stash entries that
+	 * exiting with the UUID. So, if we request a parsoid stashed object from the stash
+	 * with a given UUID that exist, we should have a hit.
+	 */
+	public function testExecuteStashParsoidOutput() {
+		$page = $this->getExistingTestPage();
+		$outputStash = $this->getParsoidOutputStash();
+
+		[ /* $html1 */, $etag1, $stashKey1 ] = $this->executePageHTMLRequest( $page );
+		$this->assertNull( $outputStash->get( $stashKey1 ) );
+
+		[ /* $html2 */, $etag2, $stashKey2 ] = $this->executePageHTMLRequest( $page, [ 'stash' => true ] );
+		$this->assertNotNull( $outputStash->get( $stashKey2 ) );
+
+		[ /* $html3 */, $etag3, $stashKey3 ] = $this->executePageHTMLRequest( $page );
+		/**
+		 * The stash for the previous request should still live at this point.
+		 */
+		$this->assertNotNull( $outputStash->get( $stashKey2 ) );
+		$this->assertNotNull( $outputStash->get( $stashKey3 ) );
+		$this->assertSame( $etag1, $etag3 );
+		$this->assertNotSame( $etag1, $etag2 );
+
+		// Make sure the output for stashed and unstashed doesn't have the same tag,
+		// since it will actually be different!
+		// FIXME: implement flavors and write test cases for them.
 	}
 
 }

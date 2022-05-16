@@ -21,10 +21,13 @@
  */
 namespace MediaWiki\Rest\Handler;
 
+use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageRecord;
+use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Parser\RevisionOutputCache;
+use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\RevisionRecord;
 use ParserCache;
@@ -32,6 +35,7 @@ use ParserOptions;
 use ParserOutput;
 use TitleValue;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
@@ -65,6 +69,9 @@ class ParsoidHTMLHelper {
 	/** @var GlobalIdGenerator */
 	private $globalIdGenerator;
 
+	/** @var ParsoidOutputStash */
+	private $parsoidOutputStash;
+
 	/** @var PageRecord|null */
 	private $page = null;
 
@@ -74,27 +81,42 @@ class ParsoidHTMLHelper {
 	/** @var RevisionRecord|null */
 	private $revision = null;
 
+	/** @var ?array Validated parameters, overwritten in init(). */
+	private $parameters = [ 'stash' => false ];
+
+	/** @var ParserOutput|null */
+	private $parserOutput = null;
+
 	/**
 	 * @param ParserCache $parserCache
 	 * @param RevisionOutputCache $revisionOutputCache
 	 * @param GlobalIdGenerator $globalIdGenerator
+	 * @param ParsoidOutputStash $parsoidOutputStash
 	 */
 	public function __construct(
 		ParserCache $parserCache,
 		RevisionOutputCache $revisionOutputCache,
-		GlobalIdGenerator $globalIdGenerator
+		GlobalIdGenerator $globalIdGenerator,
+		ParsoidOutputStash $parsoidOutputStash
 	) {
 		$this->parserCache = $parserCache;
 		$this->globalIdGenerator = $globalIdGenerator;
 		$this->revisionOutputCache = $revisionOutputCache;
+		$this->parsoidOutputStash = $parsoidOutputStash;
 	}
 
 	/**
 	 * @param PageRecord $page
+	 * @param array $parameters
 	 * @param RevisionRecord|null $revision
 	 */
-	public function init( PageRecord $page, ?RevisionRecord $revision = null ) {
+	public function init(
+		PageRecord $page,
+		array $parameters,
+		?RevisionRecord $revision = null
+	) {
 		$this->page = $page;
+		$this->parameters = $parameters;
 		$this->revision = $revision;
 	}
 
@@ -110,7 +132,7 @@ class ParsoidHTMLHelper {
 			$pageBundle = $parsoid->wikitext2html( $pageConfig, [
 				'pageBundle' => true,
 			] );
-			$fakeParserOutput = $this->createParserOutputFromPageBundle( $pageBundle );
+			$parserOutput = $this->createParserOutputFromPageBundle( $pageBundle );
 			$time = microtime( true ) - $startTime;
 			if ( $time > 3 ) {
 				LoggerFactory::getInstance( 'slow-parsoid' )
@@ -119,7 +141,7 @@ class ParsoidHTMLHelper {
 						'title' => (string)$this->page,
 					] );
 			}
-			return $fakeParserOutput;
+			return $parserOutput;
 		} catch ( ClientError $e ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-html-backend-error' ),
@@ -198,52 +220,60 @@ class ParsoidHTMLHelper {
 	}
 
 	/**
+	 * @param ParserOutput $parserOutput
+	 *
+	 * @return PageBundle
+	 */
+	private function makePageBundle( ParserOutput $parserOutput ): PageBundle {
+		$pbData = $parserOutput->getExtensionData( self::PARSOID_PAGE_BUNDLE_KEY );
+		return new PageBundle(
+			$parserOutput->getRawText(),
+			$pbData['parsoid'] ?? [],
+			$pbData['mw'] ?? []
+		);
+	}
+
+	/**
 	 * @return ParserOutput a tuple with html and content-type
 	 * @throws LocalizedHttpException
 	 */
 	public function getHtml(): ParserOutput {
-		$parserOptions = ParserOptions::newCanonical( 'canonical' );
+		$parserOutput = $this->getParserOutput();
 
-		$revId = $this->revision ? $this->revision->getId() : $this->page->getLatest();
-		$isOld = $revId !== $this->page->getLatest();
-
-		if ( $isOld ) {
-			$parserOutput = $this->revisionOutputCache->get( $this->revision, $parserOptions );
-		} else {
-			$parserOutput = $this->parserCache->get( $this->page, $parserOptions );
-		}
-		if ( $parserOutput ) {
-			return $parserOutput;
-		}
-
-		$fakeParserOutput = $this->parse();
-
-		// XXX: ParserOutput should just always record the revision ID and timestamp
-		$now = wfTimestampNow();
-		$fakeParserOutput->setCacheRevisionId( $revId );
-		$fakeParserOutput->setCacheTime( $now );
-
-		if ( $isOld ) {
-			$this->revisionOutputCache->save( $fakeParserOutput, $this->revision, $parserOptions, $now );
-		} else {
-			$this->parserCache->save( $fakeParserOutput, $this->page, $parserOptions, $now );
+		if ( $this->parameters['stash'] ) {
+			$parsoidStashKey = ParsoidRenderID::newFromKey(
+				$parserOutput->getExtensionData( self::RENDER_ID_KEY )
+			);
+			$stashSuccess = $this->parsoidOutputStash->set(
+				$parsoidStashKey,
+				$this->makePageBundle( $parserOutput )
+			);
+			if ( !$stashSuccess ) {
+				throw new LocalizedHttpException(
+					MessageValue::new( 'rest-html-backend-error' ),
+					500,
+					[ 'reason' => 'Failed to stash parser output' ]
+				);
+			}
 		}
 
-		return $fakeParserOutput;
+		return $parserOutput;
 	}
 
 	/**
 	 * Returns an ETag uniquely identifying the HTML output.
+	 *
 	 * @return string|null
 	 */
 	public function getETag(): ?string {
-		$parserOutput = $this->getHtml();
-		$renderId = $parserOutput->getExtensionData( self::RENDER_ID_KEY );
-		// Fallback for backwards compatibility with older cached entries.
-		if ( !$renderId ) {
-			$renderId = $this->getLastModified();
+		$parserOutput = $this->getParserOutput();
+		$eTag = $parserOutput->getExtensionData( self::RENDER_ID_KEY );
+
+		if ( $this->parameters['stash'] ) {
+			$eTag = "$eTag/stash";
 		}
-		return "\"{$parserOutput->getCacheRevisionId()}/{$renderId}\"";
+
+		return "\"{$eTag}\"";
 	}
 
 	/**
@@ -252,7 +282,7 @@ class ParsoidHTMLHelper {
 	 * @return string|null
 	 */
 	public function getLastModified(): ?string {
-		return $this->getHtml()->getCacheTime();
+		return $this->getParserOutput()->getCacheTime();
 	}
 
 	/**
@@ -268,8 +298,8 @@ class ParsoidHTMLHelper {
 	 * @return ParserOutput
 	 */
 	private function createParserOutputFromPageBundle( PageBundle $pageBundle ): ParserOutput {
-		$fakeParserOutput = new ParserOutput( $pageBundle->html );
-		$fakeParserOutput->setExtensionData(
+		$parserOutput = new ParserOutput( $pageBundle->html );
+		$parserOutput->setExtensionData(
 			self::PARSOID_PAGE_BUNDLE_KEY,
 			[
 				'parsoid' => $pageBundle->parsoid,
@@ -277,12 +307,77 @@ class ParsoidHTMLHelper {
 			]
 		);
 
+		return $parserOutput;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getParamSettings(): array {
+		return [
+			'stash' => [
+				Handler::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'boolean',
+				ParamValidator::PARAM_DEFAULT => false,
+				ParamValidator::PARAM_REQUIRED => false,
+			]
+		];
+	}
+
+	/**
+	 * @return ParserOutput
+	 */
+	private function getParserOutput(): ParserOutput {
+		if ( $this->parserOutput ) {
+			return $this->parserOutput;
+		}
+
+		$revId = $this->revision ? $this->revision->getId() : $this->page->getLatest();
+		$parserOptions = ParserOptions::newCanonical( 'canonical' );
+
+		$isOld = $revId !== $this->page->getLatest();
+
+		if ( $isOld ) {
+			$this->parserOutput = $this->revisionOutputCache->get( $this->revision,
+				$parserOptions );
+		} else {
+			$this->parserOutput = $this->parserCache->get( $this->page,
+				$parserOptions );
+
+			if ( $this->parserOutput ) {
+				// Ignore cached ParserOutput if it is incomplete,
+				// because it was stored by an old version of the code.
+				if ( !$this->parserOutput->getExtensionData( self::PARSOID_PAGE_BUNDLE_KEY )
+					|| !$this->parserOutput->getExtensionData( self::RENDER_ID_KEY )
+				) {
+					$this->parserOutput = null;
+				}
+			}
+		}
+		if ( $this->parserOutput ) {
+			return $this->parserOutput;
+		}
+
+		$this->parserOutput = $this->parse();
+
 		// TODO: when we make tighter integration with Parsoid, render ID should become
 		// a standard ParserOutput property. Nothing else needs it now, so don't generate
 		// it in ParserCache just yet.
-		$fakeParserOutput->setExtensionData( self::RENDER_ID_KEY, $this->globalIdGenerator->newUUIDv1() );
+		$parsoidRenderId = new ParsoidRenderID( $revId, $this->globalIdGenerator->newUUIDv1() );
+		$this->parserOutput->setExtensionData( self::RENDER_ID_KEY, $parsoidRenderId->getKey() );
 
-		return $fakeParserOutput;
+		// XXX: ParserOutput should just always record the revision ID and timestamp
+		$now = wfTimestampNow();
+		$this->parserOutput->setCacheRevisionId( $revId );
+		$this->parserOutput->setCacheTime( $now );
+
+		if ( $isOld ) {
+			$this->revisionOutputCache->save( $this->parserOutput, $this->revision, $parserOptions, $now );
+		} else {
+			$this->parserCache->save( $this->parserOutput, $this->page, $parserOptions, $now );
+		}
+
+		return $this->parserOutput;
 	}
 
 }

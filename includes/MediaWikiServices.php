@@ -48,6 +48,7 @@ use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
+use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Export\WikiExporterFactory;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
@@ -1428,6 +1429,15 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getParsoidDataAccess(): DataAccess {
 		return $this->getService( 'ParsoidDataAccess' );
+	}
+
+	/**
+	 * @return ParsoidOutputStash
+	 * @since 1.39
+	 * @unstable since 1.39, should be stable before release of 1.39
+	 */
+	public function getParsoidOutputStash(): ParsoidOutputStash {
+		return $this->getService( 'ParsoidOutputStash' );
 	}
 
 	/**
