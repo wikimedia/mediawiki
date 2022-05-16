@@ -50,7 +50,7 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	public $supportedEngines = [ 'InnoDB' ];
 
-	public static $minimumVersion = '5.5.8';
+	public static $minimumVersion = '5.7.0';
 	protected static $notMinimumVersionMessage = 'config-mysql-old';
 
 	public $webUserPrivs = [
