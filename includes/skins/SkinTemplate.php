@@ -23,6 +23,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\ResourceLoader as RL;
 
 /**
  * Base class for QuickTemplate-based skins.
@@ -282,7 +283,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'articlepath', $config->get( MainConfigNames::ArticlePath ) );
 		$tpl->set( 'scriptpath', $config->get( MainConfigNames::ScriptPath ) );
 		$tpl->set( 'serverurl', $config->get( MainConfigNames::Server ) );
-		$logos = ResourceLoaderSkinModule::getAvailableLogos( $config );
+		$logos = RL\SkinModule::getAvailableLogos( $config );
 		$tpl->set( 'logopath', $logos['1x'] );
 		$tpl->set( 'sitename', $config->get( MainConfigNames::Sitename ) );
 

@@ -174,7 +174,7 @@
 					"type": "object",
 					"anyOf": [
 						{
-							"description": "A ResourceLoaderFileModule definition",
+							"description": "A ResourceLoader FileModule definition",
 							"additionalProperties": false,
 							"properties": {
 								"localBasePath": {
@@ -321,11 +321,11 @@
 							}
 						},
 						{
-							"description": "A ResourceLoaderWikiModule definition",
+							"description": "A ResourceLoader WikiModule definition",
 							"additionalProperties": false,
 							"properties": {
 								"class": {
-									"enum": ["ResourceLoaderWikiModule"]
+									"type": "string"
 								},
 								"group": {
 									"type": "string",
@@ -367,7 +367,7 @@
 							"additionalProperties": false,
 							"properties": {
 								"class": {
-									"enum": ["ResourceLoaderImageModule"]
+									"type": "string"
 								},
 								"localBasePath": {
 									"type": "string",
@@ -411,7 +411,7 @@
 							}
 						},
 						{
-							"description": "An arbitrary ResourceLoaderModule definition by class",
+							"description": "An arbitrary ResourceLoader Module definition by class",
 							"properties": {
 								"class": {
 									"type": "string",
@@ -421,11 +421,11 @@
 							"required": ["class"]
 						},
 						{
-							"description": "An arbitrary ResourceLoaderModule definition with instantiator",
+							"description": "An arbitrary ResourceLoader Module definition with instantiator",
 							"properties": {
 								"factory": {
 									"type": "string",
-									"description": "A static instantiator function for creating the ResourceLoaderModule object."
+									"description": "A static instantiator function for creating the ResourceLoader Module object."
 								}
 							},
 							"required": ["factory"]
@@ -448,7 +448,7 @@
 		},
 		"QUnitTestModule": {
 			"type": "object",
-			"description": "A ResourceLoaderFileModule definition registered only when wgEnableJavaScriptTest is true.",
+			"description": "A ResourceLoader FileModule definition registered only when wgEnableJavaScriptTest is true.",
 			"additionalProperties": false,
 			"properties": {
 				"localBasePath": {
@@ -994,11 +994,11 @@
 		},
 		"SkinOOUIThemes": {
 			"type": "object",
-			"description": "Map of skin names to OOUI themes to use. Same format as ResourceLoaderOOUIModule::$builtinSkinThemeMap."
+			"description": "Map of skin names to OOUI themes to use. Same format as MediaWiki\\ResourceLoader\\OOUIModule::$builtinSkinThemeMap."
 		},
 		"OOUIThemePaths": {
 			"type": "object",
-			"description": "Map of custom OOUI theme names to paths to load them from. Same format as ResourceLoaderOOUIModule::$builtinThemePaths.",
+			"description": "Map of custom OOUI theme names to paths to load them from. Same format as MediaWiki\\ResourceLoader\\OOUIModule::$builtinThemePaths.",
 			"patternProperties": {
 				"^[A-Za-z]+$": {
 					"type": "object",

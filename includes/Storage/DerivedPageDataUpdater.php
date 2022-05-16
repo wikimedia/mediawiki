@@ -40,6 +40,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionRecord;
@@ -61,7 +62,6 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RefreshSecondaryDataUpdate;
-use ResourceLoaderWikiModule;
 use RevertedTagUpdateJob;
 use SearchUpdate;
 use SiteStatsUpdate;
@@ -1672,7 +1672,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$oldRevisionRecord = $this->getParentRevision();
 
 		// TODO: In the wiring, register a listener for this on the new PageEventEmitter
-		ResourceLoaderWikiModule::invalidateModuleCache(
+		RL\WikiModule::invalidateModuleCache(
 			$title,
 			$oldRevisionRecord,
 			$this->revision,
