@@ -77,7 +77,7 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 					],
 				],
 				[
-					'text' => 'User restored page Page (2 revisions and 1 file)',
+					'text' => 'User undeleted page Page (2 revisions and 1 file)',
 					'api' => [
 						'count' => [
 							'revisions' => 2,
@@ -98,7 +98,7 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 					'params' => [],
 				],
 				[
-					'text' => 'User restored page Page',
+					'text' => 'User undeleted page Page',
 					'api' => [],
 				],
 			],
@@ -115,7 +115,7 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 				],
 				[
 					'legacy' => true,
-					'text' => 'User restored page Page',
+					'text' => 'User undeleted page Page',
 					'api' => [],
 				],
 			],
