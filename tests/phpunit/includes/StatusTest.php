@@ -538,6 +538,20 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers Status::replaceMessage
+	 */
+	public function testReplaceMessageByKey() {
+		$status = new Status();
+
+		$status->error( new Message( 'key1', [ 'foo1', 'bar1' ] ) );
+		$newMessage = new Message( 'key2', [ 'foo2', 'bar2' ] );
+
+		$status->replaceMessage( 'key1', $newMessage );
+
+		$this->assertEquals( $newMessage, $status->errors[0]['message'] );
+	}
+
+	/**
 	 * @covers Status::getErrorMessage
 	 */
 	public function testGetErrorMessage() {
