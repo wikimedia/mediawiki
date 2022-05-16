@@ -1490,7 +1490,7 @@
 	"boteditletter": "რ",
 	"unpatrolledletter": "!",
 	"rc-change-size": "$1",
-	"rc-change-size-new": "ზომა ცვლილების შემდეგ არის: {{PLURAL:$1|ბაიტი|ბაიტი}}",
+	"rc-change-size-new": "ზომა ცვლილების შემდეგ არის $1 ბაიტი",
 	"newsectionsummary": "/* $1 */ ახალი სექცია",
 	"rc-enhanced-expand": "დეტალების  ჩვენება",
 	"rc-enhanced-hide": "დამატებითი ინფორმაციის დამალვა",

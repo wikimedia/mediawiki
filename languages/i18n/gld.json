@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
-			"RFScott"
+			"RFScott",
+			"Pacha Tchernof"
 		]
 	},
 	"sunday": "воскресенье",
@@ -539,7 +540,7 @@
 	"nextdiff": "Диая калаори →",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3 страница}}",
 	"file-info-size": "$1 × $2 {{PLURAL:$2|пиксель}}, файл размерани: $3, MIME-тип: $4",
-	"file-info-size-pages": "$1 × $2 пикселей, размер файла: $3, MIME-тип: $4, $5 {{PLURAL:$5|страница}}",
+	"file-info-size-pages": "$1 × $2 пкс, размер файла: $3, MIME-тип: $4, $5 {{PLURAL:$5|страница|страницы|страниц}}",
 	"file-nohires": "Улэн разрешение абани",
 	"svg-long-desc": "SVG-файл, номинально $1 × $2 пиксель, файл размерани: $3",
 	"show-big-image": "Эрдэ би файл",

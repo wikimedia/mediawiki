@@ -1470,7 +1470,7 @@
 	"rcfilters-activefilters-hide-tooltip": "সক্রিয় ছাঁকনির এলাকা লুকান",
 	"rcfilters-activefilters-show-tooltip": "সক্রিয় ছাঁকনির এলাকা দেখান",
 	"rcfilters-advancedfilters": "উন্নত ছাঁকনি",
-	"rcfilters-limit-title": "যেসব ফলাফল দেখাবে",
+	"rcfilters-limit-title": "যত ফলাফল দেখাবে",
 	"rcfilters-limit-and-date-label": "$1টি {{PLURAL:$1|পরিবর্তন}}, $2",
 	"rcfilters-limit-and-date-popup-dialog-aria-label": "পরিবর্তনের সংখ্যা ও সময় অনুযায়ী ফলাফল ছাঁকুন",
 	"rcfilters-date-popup-title": "অনুসন্ধানের সময়কাল",

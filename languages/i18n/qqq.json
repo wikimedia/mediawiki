@@ -233,7 +233,8 @@
 			"আফতাবুজ্জামান",
 			"Eihel",
 			"Sandipan",
-			"SunAfterRain"
+			"SunAfterRain",
+			"Msz2001"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -2728,7 +2729,7 @@
 	"cantrollback": "Used as error message when rollback fails due to there not being a valid revision to revert back to.\n\nSee also:\n* {{msg-mw|Notvisiblerev}}\n{{Identical|Revert}}\n{{Identical|Rollback}}",
 	"alreadyrolled": "Appear when there's rollback and/or edit collision.\n\nRefers to:\n* {{msg-mw|Pipe-separator}}\n* {{msg-mw|Contribslink}}\nParameters:\n* $1 - the page to be rolled back\n* $2 - the editor to be rolled-back of that page\n* $3 - the editor that cause collision\n{{Identical|Rollback}}",
 	"editcomment": "Only shown if there is an edit {{msg-mw|Summary}}. Parameters:\n* $1 - the edit summary",
-	"revertpage": "Parameters:\n* $1 - username 1\n* $2 - username 2\n{{Identical|Revert}}",
+	"revertpage": "Parameters:\n* $1 - username of the author of the reverted edits\n* $2 - username of the author of the restored version\n{{Identical|Revert}}",
 	"revertpage-anon": "Parameters:\n* $1 - username 1\n* $2 - username 2\n* $3 - (Optional) revision ID of the revision reverted to\n* $4 - (Optional) timestamp of the revision reverted to\n* $5 - (Optional) revision ID of the revision reverted from\n* $6 - (Optional) timestamp of the revision reverted from\nSee also:\n* {{msg-mw|Revertpage}}\n* {{msg-mw|Revertpage-nouser}}\n{{Identical|Revert}}",
 	"revertpage-nouser": "This is a confirmation message a user sees after reverting, when the username of the version is hidden with RevisionDelete.\n\nIn other cases the message {{msg-mw|Revertpage}} or {{msg-mw|Revertpage-anon}} is used.\n\nParameters:\n* $1 - username 1, can be used for GENDER\n* $2 - (Optional) username 2\n* $3 - (Optional) revision ID of the revision reverted to\n* $4 - (Optional) timestamp of the revision reverted to\n* $5 - (Optional) revision ID of the revision reverted from\n* $6 - (Optional) timestamp of the revision reverted from",
 	"rollback-success": "This message shows up on screen after successful revert (generally visible only to admins). Parameters:\n* $1 - user whose changes have been reverted\n* $2 - user who produced version, which replaces reverted version\n* $3 - the first user's name, can be used for GENDER\n* $4 - the second user's name, can be used for GENDER\n{{Identical|Revert}}\n{{Identical|Rollback}}",

@@ -981,7 +981,7 @@
 	"searchrelated": "rellacionáu",
 	"searchall": "toos",
 	"showingresults": "Abaxo s'{{PLURAL:$1|amuesa hasta <strong>un</strong> resultáu|amuesen <strong>$1</strong> resultaos}}, principando por #<strong>$2</strong>.",
-	"showingresultsinrange": "Más abaxo s'{{PLURAL:$1|amuesa|amuesen}} fasta {{PLURAL:$1|<strong>1</strong> resultáu|<strong>$1</strong> resultaos}} nel rangu ente #<strong>$2</strong> y #<strong>$3</strong>.",
+	"showingresultsinrange": "Más abaxo s'{{PLURAL:$1|amuesa|amuesen}} fasta {{PLURAL:$1|<strong>1</strong> resultáu|<strong>$1</strong> resultaos}} nel intervalu ente los nᵒˢ <strong>$2</strong> y <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Resultáu <strong>$1</strong> de <strong>$3</strong>|Resultaos <strong>$1 - $2</strong> de <strong>$3</strong>}}",
 	"search-nonefound": "Nun hebo resultaos que casaren cola consulta.",
 	"search-nonefound-thiswiki": "Nun hebo resultaos que casaran cola consulta nesti sitiu.",
