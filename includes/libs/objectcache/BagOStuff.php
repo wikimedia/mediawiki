@@ -76,6 +76,7 @@ use Wikimedia\ScopedCallback;
  *    distributed system for these operations.
  *
  * @stable to extend
+ * @newable
  * @ingroup Cache
  */
 abstract class BagOStuff implements
@@ -148,13 +149,13 @@ abstract class BagOStuff implements
 	private const WRAPPER_COLLECTION_CALLBACK = 1;
 
 	/**
-	 * Parameters include:
+	 * @stable to call
+	 * @param array $params Parameters include:
 	 *   - keyspace: Keyspace to use for keys in makeKey(). [Default: "local"]
 	 *   - asyncHandler: Callable to use for scheduling tasks after the web request ends.
 	 *      In CLI mode, it should run the task immediately. [Default: null]
 	 *   - stats: IStatsdDataFactory instance. [optional]
 	 *   - logger: Psr\Log\LoggerInterface instance. [optional]
-	 * @param array $params
 	 * @phan-param array{keyspace?:string,logger?:Psr\Log\LoggerInterface,asyncHandler?:callable} $params
 	 */
 	public function __construct( array $params = [] ) {

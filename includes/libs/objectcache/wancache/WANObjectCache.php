@@ -121,6 +121,7 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
  *        values cannot be stored, neither regularly nor using interim keys.
  *
  * @ingroup Cache
+ * @newable
  * @since 1.26
  */
 class WANObjectCache implements
@@ -311,6 +312,7 @@ class WANObjectCache implements
 	private const PURGE_VAL_PREFIX = 'PURGED';
 
 	/**
+	 * @stable to call
 	 * @param array $params
 	 *   - cache    : BagOStuff object for a persistent cache
 	 *   - logger   : LoggerInterface object
