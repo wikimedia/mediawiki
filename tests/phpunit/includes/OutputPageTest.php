@@ -6,6 +6,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
@@ -2575,7 +2576,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * See ResourceLoaderClientHtmlTest for full coverage.
+	 * See ClientHtmlTest for full coverage.
 	 *
 	 * @dataProvider provideMakeResourceLoaderLink
 	 *
@@ -2600,7 +2601,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$nonce->setAccessible( true );
 		$nonce->setValue( $out->getCSP(), 'secret' );
 		$rl = $out->getResourceLoader();
-		$rl->setMessageBlobStore( $this->createMock( MessageBlobStore::class ) );
+		$rl->setMessageBlobStore( $this->createMock( RL\MessageBlobStore::class ) );
 		$rl->setDependencyStore( $this->createMock( KeyValueDependencyStore::class ) );
 		$rl->register( [
 			'test.foo' => [
@@ -2649,27 +2650,27 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		return [
 			// Single only=scripts load
 			[
-				[ 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ],
+				[ 'test.foo', RL\Module::TYPE_SCRIPTS ],
 				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.foo\u0026only=scripts");'
 					. "});</script>"
 			],
 			// Multiple only=styles load
 			[
-				[ [ 'test.baz', 'test.foo', 'test.bar' ], ResourceLoaderModule::TYPE_STYLES ],
+				[ [ 'test.baz', 'test.foo', 'test.bar' ], RL\Module::TYPE_STYLES ],
 
 				'<link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles"/>'
 			],
 			// Private embed (only=scripts)
 			[
-				[ 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ],
+				[ 'test.quux', RL\Module::TYPE_SCRIPTS ],
 				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
 					. "mw.test.baz({token:123});\nmw.loader.state({\"test.quux\":\"ready\"});"
 					. "});</script>"
 			],
 			// Load private module (combined)
 			[
-				[ 'test.quux', ResourceLoaderModule::TYPE_COMBINED ],
+				[ 'test.quux', RL\Module::TYPE_COMBINED ],
 				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
 					. "mw.loader.implement(\"test.quux@1ev0i\",function($,jQuery,require,module){"
 					. "mw.test.baz({token:123});},{\"css\":[\".mw-icon{transition:none}"
@@ -2677,17 +2678,17 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			],
 			// Load no modules
 			[
-				[ [], ResourceLoaderModule::TYPE_COMBINED ],
+				[ [], RL\Module::TYPE_COMBINED ],
 				'',
 			],
 			// noscript group
 			[
-				[ 'test.noscript', ResourceLoaderModule::TYPE_STYLES ],
+				[ 'test.noscript', RL\Module::TYPE_STYLES ],
 				'<noscript><link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?lang=en&amp;modules=test.noscript&amp;only=styles"/></noscript>'
 			],
 			// Load two modules in separate groups
 			[
-				[ [ 'test.group.foo', 'test.group.bar' ], ResourceLoaderModule::TYPE_COMBINED ],
+				[ [ 'test.group.foo', 'test.group.bar' ], RL\Module::TYPE_COMBINED ],
 				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.group.bar");'
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.group.foo");'
@@ -2724,7 +2725,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			->willReturn( [] );
 		/** @var OutputPage $op */
 		$rl = $op->getResourceLoader();
-		$rl->setMessageBlobStore( $this->createMock( MessageBlobStore::class ) );
+		$rl->setMessageBlobStore( $this->createMock( RL\MessageBlobStore::class ) );
 
 		// Register custom modules
 		$rl->register( [
@@ -2763,7 +2764,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				'exemptStyleModules' => [ 'site' => [ 'site.styles' ], 'user' => [ 'user.styles' ] ],
 				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
 				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=tgzos"/>',
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=94mvi"/>',
 			],
 			'custom modules' => [
 				'exemptStyleModules' => [
@@ -2774,7 +2775,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=example.site.a%2Cb&amp;only=styles"/>' . "\n" .
 				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles"/>' . "\n" .
 				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=example.user&amp;only=styles&amp;version={blankCombi}"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=tgzos"/>',
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=94mvi"/>',
 			],
 		];
 		// phpcs:enable
@@ -2992,11 +2993,11 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider providePreloadLinkHeaders
-	 * @covers ResourceLoaderSkinModule::getPreloadLinks
+	 * @covers \MediaWiki\ResourceLoader\SkinModule::getPreloadLinks
 	 */
 	public function testPreloadLinkHeaders( $config, $result ) {
-		$ctx = $this->createMock( ResourceLoaderContext::class );
-		$module = new ResourceLoaderSkinModule();
+		$ctx = $this->createMock( RL\ResourceLoaderContext::class );
+		$module = new RL\SkinModule();
 		$module->setConfig( new HashConfig( $config + ResourceLoaderTestCase::getSettings() ) );
 
 		$this->assertEquals( [ $result ], $module->getHeaders( $ctx ) );

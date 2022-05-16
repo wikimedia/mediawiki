@@ -22,6 +22,8 @@
  */
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\ResourceLoader\ResourceLoader;
+use MediaWiki\ResourceLoader\ResourceLoaderContext;
 
 /**
  * @ingroup SpecialPage

@@ -24,6 +24,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ResourceLoader\ResourceLoaderContext;
 
 /**
  * ResourceLoader request result caching in the file system.

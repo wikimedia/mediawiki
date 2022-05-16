@@ -2,6 +2,10 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ResourceLoader\FileModule;
+use MediaWiki\ResourceLoader\Module;
+use MediaWiki\ResourceLoader\ResourceLoader;
+use MediaWiki\ResourceLoader\ResourceLoaderContext;
 use Psr\Log\LoggerInterface;
 
 abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
@@ -103,7 +107,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 
 /* Stubs */
 
-class ResourceLoaderTestModule extends ResourceLoaderModule {
+class ResourceLoaderTestModule extends Module {
 	protected $messages = [];
 	protected $dependencies = [];
 	protected $group = null;
@@ -114,7 +118,7 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	protected $es6 = false;
 	protected $isRaw = false;
 	protected $isKnownEmpty = false;
-	protected $type = ResourceLoaderModule::LOAD_GENERAL;
+	protected $type = Module::LOAD_GENERAL;
 	protected $targets = [ 'phpunit' ];
 	protected $shouldEmbed = null;
 	protected $mayValidateScript = false;
@@ -191,7 +195,7 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
  * - Implements getLessVars() support.
  * - Disables database persistance of discovered file dependencies.
  */
-class ResourceLoaderFileTestModule extends ResourceLoaderFileModule {
+class ResourceLoaderFileTestModule extends FileModule {
 	protected $lessVars = [];
 
 	public function __construct( $options = [] ) {
@@ -221,7 +225,7 @@ class ResourceLoaderFileTestModule extends ResourceLoaderFileModule {
 	}
 }
 
-class ResourceLoaderFileModuleTestingSubclass extends ResourceLoaderFileModule {
+class ResourceLoaderFileModuleTestingSubclass extends FileModule {
 }
 
 class EmptyResourceLoader extends ResourceLoader {

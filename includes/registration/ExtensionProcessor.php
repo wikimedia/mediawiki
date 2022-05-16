@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\ResourceLoader\FilePath;
 
 class ExtensionProcessor implements Processor {
 
@@ -596,7 +597,7 @@ class ExtensionProcessor implements Processor {
 			$baseDir = $basePath === '' ? $dir : "$dir/$basePath";
 			foreach ( $data['scripts'] ?? [] as $scripts ) {
 				$this->attributes['MessagePosterModule']['scripts'][] =
-					new ResourceLoaderFilePath( $scripts, $baseDir );
+					new FilePath( $scripts, $baseDir );
 			}
 			foreach ( $data['dependencies'] ?? [] as $dependency ) {
 				$this->attributes['MessagePosterModule']['dependencies'][] = $dependency;
