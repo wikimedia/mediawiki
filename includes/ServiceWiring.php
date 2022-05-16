@@ -129,8 +129,6 @@ use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidator;
 use MediaWiki\Preferences\SignatureValidatorFactory;
-use MediaWiki\ResourceLoader\MessageBlobStore;
-use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\MainSlotRoleHandler;

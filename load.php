@@ -26,7 +26,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\ResourceLoader\ResourceLoaderContext;
 
 // This endpoint is supposed to be independent of request cookies and other
 // details of the session. Enforce this constraint with respect to session use.

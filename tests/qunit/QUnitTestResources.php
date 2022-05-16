@@ -1,7 +1,5 @@
 <?php
 // These modules are only registered when $wgEnableJavaScriptTest is true
-use MediaWiki\ResourceLoader\FilePath;
-
 return [
 
 	'sinonjs' => [
@@ -29,11 +27,11 @@ return [
 		'packageFiles' => [
 			[
 				'name' => 'mediawiki.jqueryMsg.testdata.js',
-				'file' => new FilePath( __DIR__ . '/data/mediawiki.jqueryMsg.testdata.js' ),
+				'file' => new ResourceLoaderFilePath( __DIR__ . '/data/mediawiki.jqueryMsg.testdata.js' ),
 			],
 			[
 				'name' => 'mediawiki.jqueryMsg.data.json',
-				'file' => new FilePath( __DIR__ . '/data/mediawiki.jqueryMsg.data.json' ),
+				'file' => new ResourceLoaderFilePath( __DIR__ . '/data/mediawiki.jqueryMsg.data.json' ),
 			],
 			'bs.js',
 			'dsb.js',

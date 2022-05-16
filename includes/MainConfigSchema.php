@@ -420,7 +420,7 @@ class MainConfigSchema {
 	 *
 	 * Defaults to "$wgResourceBasePath/resources/assets/change-your-logo.svg".
 	 * Developers should retrieve this logo (and other variants) using
-	 * the static function MediaWiki\ResourceLoader\SkinModule::getAvailableLogos
+	 *   the static function ResourceLoaderSkinModule::getAvailableLogos
 	 * Ignored if $wgLogos is set.
 	 */
 	public const Logo = [
@@ -507,14 +507,14 @@ class MainConfigSchema {
 	 *
 	 * @since 1.25
 	 * @deprecated since 1.35. Developers should retrieve this logo (and other variants) using
-	 *   the static function MediaWiki\ResourceLoader\SkinModule::getAvailableLogos.
-	 *   $wgLogos should be used instead.
+	 *   the static function ResourceLoaderSkinModule::getAvailableLogos. $wgLogos should be used
+	 *   instead.
 	 */
 	public const LogoHD = [
 		'default' => false,
 		'type' => 'map|false',
 		'deprecated' => 'since 1.35. Developers should retrieve this logo (and other variants) ' .
-			'using the static function MediaWiki\ResourceLoader\SkinModule::getAvailableLogos. $wgLogos ' .
+			'using the static function ResourceLoaderSkinModule::getAvailableLogos. $wgLogos ' .
 			'should be used instead.',
 	];
 
@@ -4926,14 +4926,14 @@ class MainConfigSchema {
 	 *
 	 * - class `{string}`:
 	 *   By default a module is assumed to bundle file resources
-	 *   as handled by the MediaWiki\ResourceLoader\FileModule class. Use this option
-	 *   to use a different implementation of MediaWiki\ResourceLoader\Module instead.
+	 *   as handled by the ResourceLoaderFileModule class. Use this option
+	 *   to use a different implementation of ResourceLoaderModule instead.
 	 *
-	 *   Default: `\MediaWiki\ResourceLoader\FileModule`
+	 *   Default: `ResourceLoaderFileModule`
 	 *
 	 * - factory `{string}`:
-	 *   Override the instantiation of the MediaWiki\ResourceLoader\Module
-	 *   class using a PHP callback. This allows dependency injection to be used.
+	 *   Override the instantiation of the ResourceLoaderModule class using
+	 *   a PHP callback. This allows dependency injection to be used.
 	 *   This option cannot be combined with the `class` option.
 	 *
 	 *   Since: MW 1.30
@@ -5106,7 +5106,7 @@ class MainConfigSchema {
 	 *
 	 * ```
 	 * $wgResourceModules['ext.myExtension'] = [
-	 *   'class' => WikiModule::class,
+	 *   'class' => ResourceLoaderWikiModule::class,
 	 * ];
 	 * ```
 	 *
@@ -5349,7 +5349,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * The default 'remoteBasePath' value for instances of MediaWiki\ResourceLoader\FileModule.
+	 * The default 'remoteBasePath' value for instances of ResourceLoaderFileModule.
 	 *
 	 * Defaults to $wgScriptPath.
 	 */
@@ -5420,7 +5420,7 @@ class MainConfigSchema {
 	 *
 	 * Default: `2000`.
 	 *
-	 * @see \MediaWiki\ResourceLoader\StartUpModule::getMaxQueryLength
+	 * @see \ResourceLoaderStartUpModule::getMaxQueryLength
 	 * @since 1.17
 	 */
 	public const ResourceLoaderMaxQueryLength = [

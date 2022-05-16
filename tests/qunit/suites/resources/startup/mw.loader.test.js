@@ -988,7 +988,7 @@
 			fn();
 		} );
 
-		// See ResourceLoader\StartUpModule::$groupIds
+		// See ResourceLoaderStartUpModule::$groupIds
 		mw.loader.register( name, 'x', [], 1 );
 		assert.strictEqual( mw.loader.store.get( name ), false, 'Not in store' );
 
@@ -1011,7 +1011,7 @@
 			fn();
 		} );
 
-		// See ResourceLoader\StartUpModule::$groupIds
+		// See ResourceLoaderStartUpModule::$groupIds
 		mw.loader.register( name, 'y', [], 0 );
 		assert.strictEqual( mw.loader.store.get( name ), false, 'Not in store' );
 

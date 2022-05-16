@@ -66,6 +66,7 @@ class AutoLoader {
 		'MediaWiki\\Page\\' => __DIR__ . '/page/',
 		'MediaWiki\\Parser\\' => __DIR__ . '/parser/',
 		'MediaWiki\\Preferences\\' => __DIR__ . '/preferences/',
+		'MediaWiki\\ResourceLoader\\' => __DIR__ . '/resourceloader/',
 		'MediaWiki\\Search\\' => __DIR__ . '/search/',
 		'MediaWiki\\Search\\SearchWidgets\\' => __DIR__ . '/search/searchwidgets/',
 		'MediaWiki\\Session\\' => __DIR__ . '/session/',
