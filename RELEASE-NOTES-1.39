@@ -264,8 +264,8 @@ MediaWiki 1.39 requires PHP 7.3.19 or later and the following PHP extensions:
 * mbstring
 * xml
 
-MariaDB/MySQL is the recommended database software. PostgreSQL or SQLite can be
-used instead, but support for them is somewhat less mature.
+MariaDB is the recommended database software. MySQL, PostgreSQL, or SQLite can
+be used instead, but support for them is somewhat less mature.
 
 The supported versions are:
 
