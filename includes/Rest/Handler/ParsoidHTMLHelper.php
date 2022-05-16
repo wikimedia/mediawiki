@@ -34,6 +34,7 @@ use TitleValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Core\ClientError;
+use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\UUID\GlobalIdGenerator;
@@ -49,6 +50,11 @@ use Wikimedia\UUID\GlobalIdGenerator;
 class ParsoidHTMLHelper {
 
 	private const RENDER_ID_KEY = 'parsoid-render-id';
+
+	/**
+	 * @internal needed in test case
+	 */
+	public const PARSOID_PAGE_BUNDLE_KEY = 'parsoid-page-bundle';
 
 	/** @var ParserCache */
 	private $parserCache;
@@ -102,10 +108,9 @@ class ParsoidHTMLHelper {
 		try {
 			$startTime = microtime( true );
 			$pageBundle = $parsoid->wikitext2html( $pageConfig, [
-				'discardDataParsoid' => true,
 				'pageBundle' => true,
 			] );
-			$fakeParserOutput = new ParserOutput( $pageBundle->html );
+			$fakeParserOutput = $this->createParserOutputFromPageBundle( $pageBundle );
 			$time = microtime( true ) - $startTime;
 			if ( $time > 3 ) {
 				LoggerFactory::getInstance( 'slow-parsoid' )
@@ -218,11 +223,6 @@ class ParsoidHTMLHelper {
 		$fakeParserOutput->setCacheRevisionId( $revId );
 		$fakeParserOutput->setCacheTime( $now );
 
-		// TODO: when we make tighter integration with Parsoid, render ID should become
-		// a standard ParserOutput property. Nothing else needs it now, so don't generate
-		// it in ParserCache just yet.
-		$fakeParserOutput->setExtensionData( self::RENDER_ID_KEY, $this->globalIdGenerator->newUUIDv1() );
-
 		if ( $isOld ) {
 			$this->revisionOutputCache->save( $fakeParserOutput, $this->revision, $parserOptions, $now );
 		} else {
@@ -253,6 +253,36 @@ class ParsoidHTMLHelper {
 	 */
 	public function getLastModified(): ?string {
 		return $this->getHtml()->getCacheTime();
+	}
+
+	/**
+	 * Creates a ParserOutput object containing the relevant data from
+	 * the given PageBundle object.
+	 *
+	 * We need to inject data-parsoid and other properties into the
+	 * parser output object for caching, so we can use it for VE edits
+	 * and transformations.
+	 *
+	 * @param PageBundle $pageBundle
+	 *
+	 * @return ParserOutput
+	 */
+	private function createParserOutputFromPageBundle( PageBundle $pageBundle ): ParserOutput {
+		$fakeParserOutput = new ParserOutput( $pageBundle->html );
+		$fakeParserOutput->setExtensionData(
+			self::PARSOID_PAGE_BUNDLE_KEY,
+			[
+				'parsoid' => $pageBundle->parsoid,
+				'mw' => $pageBundle->mw
+			]
+		);
+
+		// TODO: when we make tighter integration with Parsoid, render ID should become
+		// a standard ParserOutput property. Nothing else needs it now, so don't generate
+		// it in ParserCache just yet.
+		$fakeParserOutput->setExtensionData( self::RENDER_ID_KEY, $this->globalIdGenerator->newUUIDv1() );
+
+		return $fakeParserOutput;
 	}
 
 }
