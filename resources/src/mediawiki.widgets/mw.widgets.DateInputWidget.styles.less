@@ -33,24 +33,12 @@
 @transition-ease-medium: @transition-duration-medium; // `ease` is the initial value
 @transition-duration-medium: 250ms;
 
-// Mixins taken from OOUI
-.oo-ui-box-sizing( @type: border-box ) {
-	-moz-box-sizing: @type;
-	box-sizing: @type;
-}
-
 .oo-ui-inline-spacing( @spacing, @cancelled-spacing: 0 ) {
 	margin-right: @spacing;
 
 	&:last-child {
 		margin-right: @cancelled-spacing;
 	}
-}
-
-.oo-ui-transition( @value1, @value2: X, ... ) {
-	@value: ~`'@{arguments}'.replace( /[\[\]]|\,\sX/g, '' )`;
-	-webkit-transition: @value;
-	transition: @value;
 }
 
 // DateInputWidget rules
@@ -82,7 +70,7 @@
 	&-handle {
 		background-color: @background-color-base;
 		color: @color-base--emphasized;
-		.oo-ui-box-sizing( border-box );
+		box-sizing: border-box;
 		width: 100%;
 		border: @border-base;
 		border-radius: @border-radius-base;
@@ -93,10 +81,7 @@
 	&.oo-ui-widget-enabled {
 		.mw-widget-dateInputWidget-handle {
 			box-shadow: @box-shadow-widget; // necessary for smooth transition
-			.oo-ui-transition(
-				border-color @transition-ease-medium,
-				box-shadow @transition-ease-medium
-			);
+			transition: border-color @transition-ease-medium, box-shadow @transition-ease-medium;
 
 			&:hover {
 				border-color: @border-color-input--hover;

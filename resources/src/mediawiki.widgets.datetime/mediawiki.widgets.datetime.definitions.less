@@ -5,11 +5,6 @@
  * widget in OOUI once OOUI is capable of handling it)
  */
 
-.oo-ui-box-sizing( @type: border-box ) {
-	-moz-box-sizing: @type;
-	box-sizing: @type;
-}
-
 .oo-ui-unselectable() {
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -24,11 +19,6 @@
 	&:last-child {
 		margin-right: @cancelled-spacing;
 	}
-}
-
-.oo-ui-transition( @value ) {
-	-webkit-transition: @value;
-	transition: @value;
 }
 
 // Variables taken from OOUI's WikimediaUI theme, see its common.less for further explanations

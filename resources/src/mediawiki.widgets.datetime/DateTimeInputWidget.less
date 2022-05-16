@@ -25,7 +25,7 @@
 		background-color: @background-color-base;
 		color: @color-base;
 		display: inline-block;
-		.oo-ui-box-sizing( border-box );
+		box-sizing: border-box;
 		width: 100%;
 		height: @size-base;
 		border: @border-base;
@@ -36,7 +36,7 @@
 		vertical-align: bottom;
 		overflow: hidden;
 		.oo-ui-unselectable();
-		.oo-ui-transition( box-shadow @transition-base );
+		transition: box-shadow @transition-base;
 
 		> .oo-ui-iconElement-icon,
 		> .oo-ui-indicatorElement-indicator {
@@ -69,7 +69,7 @@
 	&-field {
 		background-color: transparent;
 		color: inherit;
-		.oo-ui-box-sizing( content-box );
+		box-sizing: content-box;
 		border: 0;
 		border-radius: @border-radius-base;
 		padding-top: @padding-vertical-base;
@@ -133,7 +133,7 @@
 
 	&.oo-ui-widget-enabled {
 		.mw-widgets-datetime-dateTimeInputWidget-handle {
-			.oo-ui-transition( border-color @transition-ease-medium );
+			transition: border-color @transition-ease-medium;
 
 			&:hover {
 				border-color: @border-color-input--hover;
