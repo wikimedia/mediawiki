@@ -17,6 +17,8 @@
  *
  * @file
  */
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 
 /**
  * MediaWiki exception
@@ -32,7 +34,8 @@ class MWException extends Exception {
 	 *
 	 * @return bool
 	 */
-	public function useOutputPage() {
+	private function useOutputPage() {
+		// NOTE: keep in sync with MWExceptionRenderer::useOutputPage
 		return $this->useMessageCache() &&
 		!empty( $GLOBALS['wgFullyInitialised'] ) &&
 		!empty( $GLOBALS['wgOut'] ) &&
@@ -79,7 +82,7 @@ class MWException extends Exception {
 	 * @return string Message with arguments replaced
 	 */
 	public function msg( $key, $fallback, ...$params ) {
-		// FIXME: Keep logic in sync with MWExceptionRenderer::msg.
+		// NOTE: Keep logic in sync with MWExceptionRenderer::msg.
 		$res = false;
 		if ( $this->useMessageCache() ) {
 			try {
@@ -98,6 +101,18 @@ class MWException extends Exception {
 		return $res;
 	}
 
+	private function shouldShowExceptionDetails(): bool {
+		// NOTE: keep in sync with MWExceptionRenderer::shouldShowExceptionDetails
+		if ( MediaWikiServices::hasInstance() ) {
+			$services = MediaWikiServices::getInstance();
+			if ( $services->hasService( 'MainConfig' ) ) {
+				return $services->getMainConfig()->get( MainConfigNames::ShowExceptionDetails );
+			}
+		}
+		global $wgShowExceptionDetails;
+		return $wgShowExceptionDetails ?? false;
+	}
+
 	/**
 	 * If $wgShowExceptionDetails is true, return a HTML message with a
 	 * backtrace to the error, otherwise show a message to ask to set it to true
@@ -108,9 +123,7 @@ class MWException extends Exception {
 	 * @return string Html to output
 	 */
 	public function getHTML() {
-		global $wgShowExceptionDetails;
-
-		if ( $wgShowExceptionDetails ) {
+		if ( self::shouldShowExceptionDetails() ) {
 			return '<p>' . nl2br( htmlspecialchars( MWExceptionHandler::getLogMessage( $this ) ) ) .
 			'</p><p>Backtrace:</p><p>' .
 			nl2br( htmlspecialchars( MWExceptionHandler::getRedactedTraceAsString( $this ) ) ) .
@@ -145,9 +158,7 @@ class MWException extends Exception {
 	 * @return string
 	 */
 	public function getText() {
-		global $wgShowExceptionDetails;
-
-		if ( $wgShowExceptionDetails ) {
+		if ( self::shouldShowExceptionDetails() ) {
 			return MWExceptionHandler::getLogMessage( $this ) .
 			"\nBacktrace:\n" . MWExceptionHandler::getRedactedTraceAsString( $this ) . "\n";
 		} else {
