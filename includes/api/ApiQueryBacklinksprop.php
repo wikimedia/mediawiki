@@ -224,11 +224,17 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 		// Populate the rest of the query
 		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
+		list( $idxNoFromNS, $idxWithFromNS ) = $settings['indexes'];
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		if ( isset( $this->linksMigration::$mapping[$settings['linktable']] ) ) {
 			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			$queryInfo = $this->linksMigration->getQueryInfo( $settings['linktable'] );
 			$this->addTables( array_merge( [ 'page' ], $queryInfo['tables'] ) );
 			$this->addJoinConds( $queryInfo['joins'] );
+			// TODO: Move to links migration
+			if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
+				$idxWithFromNS .= '_target_id';
+			}
 		} else {
 			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			$this->addTables( [ $settings['linktable'], 'page' ] );
@@ -297,7 +303,6 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		// (...)" and chooses the wrong index, so specify the correct index to
 		// use for the query. See T139056 for details.
 		if ( !empty( $settings['indexes'] ) ) {
-			list( $idxNoFromNS, $idxWithFromNS ) = $settings['indexes'];
 			if ( $params['namespace'] !== null && !empty( $settings['from_namespace'] ) ) {
 				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				$this->addOption( 'USE INDEX', [ $settings['linktable'] => $idxWithFromNS ] );
