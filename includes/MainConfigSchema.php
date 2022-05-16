@@ -4448,22 +4448,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * If set to true, the MediaWiki 1.4 to 1.5 schema conversion will
-	 * create stub reference rows in the text table instead of copying
-	 * the full text of all current entries from 'cur' to 'text'.
-	 *
-	 * This will speed up the conversion step for large sites, but
-	 * requires that the cur table be kept around for those revisions
-	 * to remain viewable.
-	 *
-	 * This option affects the updaters *only*. Any present cur stub
-	 * revisions will be readable at runtime regardless of this setting.
-	 */
-	public const LegacySchemaConversion = [
-		'default' => false,
-	];
-
-	/**
 	 * Enable dates like 'May 12' instead of '12 May', if the default date format
 	 * is 'dmy or mdy'.
 	 */

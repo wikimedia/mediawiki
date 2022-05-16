@@ -1784,12 +1784,6 @@ $wgAllUnicodeFixes = null;
 $wgLegacyEncoding = null;
 
 /**
- * Config variable stub for the LegacySchemaConversion setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::LegacySchemaConversion
- */
-$wgLegacySchemaConversion = null;
-
-/**
  * Config variable stub for the AmericanDates setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::AmericanDates
  */
