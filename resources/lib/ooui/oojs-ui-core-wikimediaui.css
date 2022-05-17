@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.43.2-pre (630d30f69c)
+ * OOUI v0.44.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-03-11T22:31:38Z
+ * Date: 2022-05-17T17:51:03Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -20,7 +20,6 @@
 .oo-ui-buttonElement > .oo-ui-buttonElement-button {
   cursor: pointer;
   display: inline-block;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   vertical-align: middle;
   font-family: inherit;
@@ -55,6 +54,7 @@
   text-decoration: none;
 }
 .oo-ui-buttonElement > input.oo-ui-buttonElement-button {
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   -webkit-appearance: none;
 }
 .oo-ui-buttonElement.oo-ui-labelElement > .oo-ui-buttonElement-button {
@@ -77,12 +77,10 @@
   right: 0.71428571em;
 }
 .oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
-  -webkit-transition: background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
   transition: background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
 }
 .oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon,
 .oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
-  -webkit-transition: opacity 100ms;
   transition: opacity 100ms;
 }
 .oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon:not( .oo-ui-image-invert ),
@@ -371,7 +369,6 @@
 }
 
 .oo-ui-clippableElement-clippable {
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   min-height: 40px;
   -webkit-overflow-scrolling: touch;
@@ -385,7 +382,6 @@
 
 .oo-ui-labelElement .oo-ui-labelElement-label,
 .oo-ui-labelElement.oo-ui-labelElement-label {
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .oo-ui-labelElement-invisible {
@@ -440,16 +436,7 @@
   background-color: #eaecf0;
   background-image: linear-gradient(135deg, #fff 25%, transparent 25%, transparent 50%, #fff 50%, #fff 75%, transparent 75%, transparent);
   background-size: 1.42857143em 1.42857143em;
-  -webkit-animation: oo-ui-pendingElement-stripes 650ms linear infinite;
   animation: oo-ui-pendingElement-stripes 650ms linear infinite;
-}
-@-webkit-keyframes oo-ui-pendingElement-stripes {
-  0% {
-    background-position: -1.42857143em 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
 }
 @keyframes oo-ui-pendingElement-stripes {
   0% {
@@ -544,7 +531,6 @@
 }
 .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
 .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   width: 40%;
   padding-right: 2.64285714em;
@@ -589,7 +575,6 @@
   margin-left: 0;
 }
 .oo-ui-fieldLayout-messages {
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   max-width: 50em;
   padding: 4px 0;
@@ -826,7 +811,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-decoratedOptionWidget.oo-ui-widget-enabled .oo-ui-iconElement-icon,
 .oo-ui-decoratedOptionWidget.oo-ui-widget-enabled .oo-ui-indicatorElement-indicator {
   opacity: 0.87;
-  -webkit-transition: opacity 100ms;
   transition: opacity 100ms;
 }
 .oo-ui-decoratedOptionWidget.oo-ui-widget-disabled .oo-ui-iconElement-icon,
@@ -877,7 +861,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 
 .oo-ui-messageWidget {
   position: relative;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   font-weight: bold;
 }
@@ -1035,6 +1018,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-popupWidget {
   position: absolute;
   z-index: 1;
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 }
 .oo-ui-popupWidget-popup {
   position: relative;
@@ -1111,6 +1095,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 @supports ( filter: drop-shadow( 0 0 0 ) ) {
   .oo-ui-popupWidget {
+    /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
     filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.3));
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
@@ -1192,7 +1177,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-width: 9px;
 }
 .oo-ui-popupWidget-transitioning .oo-ui-popupWidget-popup {
-  -webkit-transition: width 100ms, height 100ms, left 100ms;
   transition: width 100ms, height 100ms, left 100ms;
 }
 .oo-ui-popupWidget-head {
@@ -1273,7 +1257,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-checkboxInputWidget [type='checkbox'] + span {
   background-color: #fff;
   background-size: 0 0;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   position: absolute;
   left: 0;
@@ -1306,7 +1289,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox'] + span {
   cursor: pointer;
-  -webkit-transition: background-color 100ms, border-color 100ms, box-shadow 100ms;
   transition: background-color 100ms, border-color 100ms, box-shadow 100ms;
 }
 .oo-ui-checkboxInputWidget.oo-ui-widget-enabled [type='checkbox']:focus + span {
@@ -1356,7 +1338,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-dropdownInputWidget {
   position: relative;
   vertical-align: middle;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   width: 100%;
   max-width: 50em;
@@ -1374,18 +1355,18 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   background-position: -9999em 0;
   background-repeat: no-repeat;
   width: 100%;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .oo-ui-dropdownInputWidget.oo-ui-widget-enabled select {
   cursor: pointer;
 }
 .oo-ui-dropdownInputWidget select {
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   -webkit-appearance: none;
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   -moz-appearance: none;
   background-color: transparent;
   background-position: right 12px center;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   height: 2.28571429em;
   border: 1px solid #a2a9b1;
@@ -1395,17 +1376,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   font-size: inherit;
   font-family: inherit;
   vertical-align: middle;
-  /* stylelint-disable-next-line declaration-block-no-duplicate-properties */
-  background-position: -9999em 0\9;
-  padding: 0\9;
-  /* Support IE 10: Move it in again and also add `padding`. Because we talk to morons. */
-}
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  .oo-ui-dropdownInputWidget select {
-    background-position: right 12px center;
-    padding-left: 12px;
-    padding-right: 2.14285714em;
-  }
 }
 .oo-ui-dropdownInputWidget select::-ms-expand {
   display: none;
@@ -1419,7 +1389,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-dropdownInputWidget.oo-ui-widget-enabled {
   background-color: #f8f9fa;
-  -webkit-transition: background-color 100ms;
   transition: background-color 100ms;
 }
 .oo-ui-dropdownInputWidget.oo-ui-widget-enabled:hover {
@@ -1427,7 +1396,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-dropdownInputWidget.oo-ui-widget-enabled select {
   color: #202122;
-  -webkit-transition: border-color 100ms, box-shadow 100ms;
   transition: border-color 100ms, box-shadow 100ms;
 }
 .oo-ui-dropdownInputWidget.oo-ui-widget-enabled select:hover {
@@ -1475,7 +1443,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   background-color: #fff;
   position: absolute;
   left: 0;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   width: 1.42857143em;
   height: 1.42857143em;
@@ -1511,7 +1478,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio'] + span {
   cursor: pointer;
-  -webkit-transition: background-color 100ms, border-color 100ms, border-width 100ms;
   transition: background-color 100ms, border-color 100ms, border-width 100ms;
 }
 .oo-ui-radioInputWidget.oo-ui-widget-enabled [type='radio']:hover + span {
@@ -1549,7 +1515,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-textInputWidget {
   position: relative;
   vertical-align: middle;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   width: 100%;
   max-width: 50em;
@@ -1561,7 +1526,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -moz-appearance: textfield;
   display: block;
   width: 100%;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .oo-ui-textInputWidget input::-ms-clear {
@@ -1670,7 +1634,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled .oo-ui-inputWidget-input {
   box-shadow: inset 0 0 0 1px transparent;
-  -webkit-transition: border-color 250ms, box-shadow 250ms;
   transition: border-color 250ms, box-shadow 250ms;
   /* stylelint-disable selector-no-vendor-prefix */
   /* stylelint-enable selector-no-vendor-prefix */
@@ -1769,7 +1732,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 
 .oo-ui-menuOptionWidget {
-  -webkit-transition: background-color 100ms, color 100ms;
   transition: background-color 100ms, color 100ms;
 }
 .oo-ui-menuOptionWidget-checkIcon {
@@ -1831,7 +1793,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .oo-ui-dropdownWidget-handle .oo-ui-labelElement-label {
@@ -1868,7 +1829,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle {
   background-color: #f8f9fa;
   color: #202122;
-  -webkit-transition: background-color 100ms, border-color 100ms, box-shadow 100ms;
   transition: background-color 100ms, border-color 100ms, box-shadow 100ms;
 }
 .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle:hover {
@@ -1892,7 +1852,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle .oo-ui-iconElement-icon,
 .oo-ui-dropdownWidget.oo-ui-widget-enabled .oo-ui-dropdownWidget-handle .oo-ui-indicatorElement-indicator {
   opacity: 0.87;
-  -webkit-transition: opacity 100ms;
   transition: opacity 100ms;
 }
 .oo-ui-dropdownWidget.oo-ui-widget-enabled.oo-ui-dropdownWidget-open .oo-ui-dropdownWidget-handle {
@@ -2045,7 +2004,6 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 
 .oo-ui-progressBarWidget {
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   max-width: 50em;
   border: 1px solid #a2a9b1;
@@ -2058,15 +2016,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-progressBarWidget-bar {
   height: 1em;
-  -webkit-transition: width 100ms;
   transition: width 100ms;
 }
 .oo-ui-progressBarWidget-indeterminate .oo-ui-progressBarWidget-bar {
-  -webkit-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
   animation: oo-ui-progressBarWidget-slide 2s infinite linear;
   width: 40%;
-  -webkit-transform: translate(-25%);
-  -ms-transform: translate(-25%);
   transform: translate(-25%);
 }
 .oo-ui-progressBarWidget.oo-ui-widget-enabled .oo-ui-progressBarWidget-bar {
@@ -2075,27 +2029,11 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-progressBarWidget.oo-ui-widget-disabled .oo-ui-progressBarWidget-bar {
   background-color: #c8ccd1;
 }
-@-webkit-keyframes oo-ui-progressBarWidget-slide {
-  from {
-    -webkit-transform: translate(-100%);
-    -ms-transform: translate(-100%);
-    transform: translate(-100%);
-  }
-  to {
-    -webkit-transform: translate(350%);
-    -ms-transform: translate(350%);
-    transform: translate(350%);
-  }
-}
 @keyframes oo-ui-progressBarWidget-slide {
   from {
-    -webkit-transform: translate(-100%);
-    -ms-transform: translate(-100%);
     transform: translate(-100%);
   }
   to {
-    -webkit-transform: translate(350%);
-    -ms-transform: translate(350%);
     transform: translate(350%);
   }
 }

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.43.2-pre (630d30f69c)
+ * OOUI v0.44.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-03-11T22:31:30Z
+ * Date: 2022-05-17T17:50:55Z
  */
 ( function ( OO ) {
 
@@ -3200,18 +3200,12 @@ OO.ui.MessageDialog.prototype.attachActions = function () {
  * @private
  */
 OO.ui.MessageDialog.prototype.fitActions = function () {
-	var i, len, action,
-		previous = this.verticalActionLayout,
-		actions = this.actions.get();
+	var previous = this.verticalActionLayout;
 
 	// Detect clipping
 	this.toggleVerticalActionLayout( false );
-	for ( i = 0, len = actions.length; i < len; i++ ) {
-		action = actions[ i ];
-		if ( action.$element[ 0 ].scrollWidth > action.$element[ 0 ].clientWidth ) {
-			this.toggleVerticalActionLayout( true );
-			break;
-		}
+	if ( this.$actions[ 0 ].scrollWidth > this.$actions[ 0 ].clientWidth ) {
+		this.toggleVerticalActionLayout( true );
 	}
 
 	// Move the body out of the way of the foot
