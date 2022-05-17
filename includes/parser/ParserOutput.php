@@ -284,7 +284,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private const SPECULATIVE_FIELDS = [
 		'speculativePageIdUsed',
 		'mSpeculativeRevId',
-		'revisionTimestampUsed'
+		'revisionTimestampUsed',
 	];
 
 	/** @var int|null Assumed rev ID for {{REVISIONID}} if no revision is set */
@@ -442,7 +442,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 									'placeholder' => $m[0],
 									'editsectionPage' => $m[1],
 									'titletext' => $this->getTitleText(),
-									'phab' => 'T261347'
+									'phab' => 'T261347',
 								]
 							);
 						return '';
@@ -1903,7 +1903,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 					'cachereport-timestamp',
 					'cachereport-ttl',
 					'cachereport-transientcontent',
-					'limitreport-timingprofile'
+					'limitreport-timingprofile',
 				] ) ) {
 					// These keys are processed separately.
 					continue;
