@@ -133,9 +133,7 @@
 .mw-ui-icon-element {
 	border-radius: @border-radius-base;
 	padding: @icon-padding-md;
-	// Use semi-colon if multiple arguments are needed!
-	// See https://stackoverflow.com/questions/11419741/less-css-mixins-with-variable-number-of-arguments
-	.transition( background-color @transition-duration-base; );
+	transition: background-color @transition-duration-base;
 
 	// Combined with nowrap & ellipsis from .mw-ui-icon, forms safe "screen-reader" text.
 	color: transparent;

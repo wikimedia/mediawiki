@@ -38,7 +38,7 @@
 .mw-ui-button-states() {
 	&:not( :disabled ) {
 		// Add `transition`s exclusively on enabled buttons.
-		.transition( ~'background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms' );
+		transition: background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms;
 
 		// Make sure that `color` isn't inheriting from user-agent styles
 		&:visited {
