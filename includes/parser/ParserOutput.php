@@ -284,7 +284,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private const SPECULATIVE_FIELDS = [
 		'speculativePageIdUsed',
 		'mSpeculativeRevId',
-		'revisionTimestampUsed'
+		'revisionTimestampUsed',
 	];
 
 	/** @var int|null Assumed rev ID for {{REVISIONID}} if no revision is set */
@@ -442,7 +442,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 									'placeholder' => $m[0],
 									'editsectionPage' => $m[1],
 									'titletext' => $this->getTitleText(),
-									'phab' => 'T261347'
+									'phab' => 'T261347',
 								]
 							);
 						return '';
@@ -1903,7 +1903,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 					'cachereport-timestamp',
 					'cachereport-ttl',
 					'cachereport-transientcontent',
-					'limitreport-timingprofile'
+					'limitreport-timingprofile',
 				] ) ) {
 					// These keys are processed separately.
 					continue;
@@ -2273,13 +2273,15 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 						$metadata->appendJsConfigVar( $key, $item, $strategy );
 					}
 				}
-			} elseif ( array_key_exists( $key, $this->mJsConfigVars ) ) {
+			} elseif ( $metadata instanceof ParserOutput &&
+				array_key_exists( $key, $metadata->mJsConfigVars )
+			) {
 				// This behavior is deprecated, will likely result in
 				// incorrect output, and we'll eventually emit a
 				// warning here---but at the moment this is usually
 				// caused by limitations in Parsoid and/or use of
 				// the ParserAfterParse hook: T303015#7770480
-				$this->mJsConfigVars[$key] = $value;
+				$metadata->mJsConfigVars[$key] = $value;
 			} else {
 				$metadata->setJsConfigVar( $key, $value );
 			}
@@ -2292,13 +2294,15 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 						$metadata->appendExtensionData( $key, $item, $strategy );
 					}
 				}
-			} elseif ( array_key_exists( $key, $this->mExtensionData ) ) {
+			} elseif ( $metadata instanceof ParserOutput &&
+				array_key_exists( $key, $metadata->mExtensionData )
+			) {
 				// This behavior is deprecated, will likely result in
 				// incorrect output, and we'll eventually emit a
 				// warning here---but at the moment this is usually
 				// caused by limitations in Parsoid and/or use of
 				// the ParserAfterParse hook: T303015#7770480
-				$this->mExtensionData[$key] = $value;
+				$metadata->mExtensionData[$key] = $value;
 			} else {
 				$metadata->setExtensionData( $key, $value );
 			}
