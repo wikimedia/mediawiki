@@ -39,6 +39,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 *
 	 * The following features are available:
 	 *
+	 * "accessibility":
+	 *     Adds universal accessibility rules.
+	 *
 	 * "logo":
 	 *     Adds CSS to style an element with class `mw-wiki-logo` using the value of wgLogos['1x'].
 	 *     This is enabled by default if no features are added.
@@ -109,6 +112,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 * NOTE: The order of the keys defines the order in which the styles are output.
 	 */
 	private const FEATURE_FILES = [
+		'accessibility' => [
+			'all' => [ 'resources/src/mediawiki.skinning/accessibility.less' ],
+		],
 		'normalize' => [
 			'all' => [ 'resources/src/mediawiki.skinning/normalize.less' ],
 		],
@@ -182,6 +188,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 * @var array<string,bool>
 	 */
 	private const DEFAULT_FEATURES_SPECIFIED = [
+		'accessibility' => true,
 		'content-body' => true,
 		'toc' => true,
 	];
