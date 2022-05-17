@@ -33,6 +33,10 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @since 1.39
  */
 class SQLPlatform implements ISQLPlatform {
+	/** @var array[] Current map of (table => (dbname, schema, prefix) map) */
+	protected $tableAliases = [];
+	/** @var string[] Current map of (index alias => index) */
+	protected $indexAliases = [];
 	/** @var DbQuoter */
 	protected $quoter;
 
@@ -527,5 +531,40 @@ class SQLPlatform implements ISQLPlatform {
 	 */
 	public function implicitOrderby() {
 		return true;
+	}
+
+	/**
+	 * Allows for index remapping in queries where this is not consistent across DBMS
+	 *
+	 * TODO: Make it protected once all the code is moved over.
+	 *
+	 * @param string $index
+	 * @return string
+	 */
+	public function indexName( $index ) {
+		return $this->indexAliases[$index] ?? $index;
+	}
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
+	public function setTableAliases( array $aliases ) {
+		$this->tableAliases = $aliases;
+	}
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
+	public function setIndexAliases( array $aliases ) {
+		$this->indexAliases = $aliases;
+	}
+
+	/**
+	 * @return array[]
+	 */
+	public function getTableAliases() {
+		return $this->tableAliases;
 	}
 }

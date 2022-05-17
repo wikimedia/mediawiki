@@ -1019,7 +1019,7 @@ class DatabaseSqlite extends Database {
 	 * Issue ATTATCH statements for all unattached foreign DBs in table aliases
 	 */
 	private function attachDatabasesFromTableAliases() {
-		foreach ( $this->tableAliases as $params ) {
+		foreach ( $this->platform->getTableAliases() as $params ) {
 			if (
 				$params['dbname'] !== $this->getDBname() &&
 				!isset( $this->sessionAttachedDbs[$params['dbname']] )

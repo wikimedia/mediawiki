@@ -624,6 +624,8 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 		TestingAccessWrapper::newFromObject( $db )->currentDomain =
 			new DatabaseDomain( null, null, '' );
+		TestingAccessWrapper::newFromObject( $db )->platform =
+			new MySQLPlatform( new AddQuoterMock() );
 
 		/** @var IDatabase $db */
 		$sql = $db->selectSQLText(
@@ -651,6 +653,8 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 		TestingAccessWrapper::newFromObject( $db )->currentDomain =
 			new DatabaseDomain( null, null, '' );
+		TestingAccessWrapper::newFromObject( $db )->platform =
+			new MySQLPlatform( new AddQuoterMock() );
 
 		/** @var IDatabase $db */
 		$sql = $db->newSelectQueryBuilder()
@@ -745,6 +749,8 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			->onlyMethods( [ 'getMySqlServerVariant', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
 		$db->method( 'getMySqlServerVariant' )->willReturn( [ 'MariaDB', '10.4.21' ] );
+		TestingAccessWrapper::newFromObject( $db )->platform =
+			new MySQLPlatform( new AddQuoterMock() );
 
 		/** @var IDatabase $db */
 		$sql = $db->selectSQLText( 'image',
