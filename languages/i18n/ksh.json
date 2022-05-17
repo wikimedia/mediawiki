@@ -15,7 +15,8 @@
 			"TTO",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Dun de Lengks ongerschtriische:",
@@ -2684,7 +2685,7 @@
 	"autoredircomment": "Leit öm op „[[$1]]“",
 	"autosumm-new": "De Sigg wood neu aanjelaat met däm Aanfang: $1",
 	"autosumm-newblank": "En läddijje Sigg wood aanjelaat",
-	"size-bytes": "$1&nbsp;<i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Binary Digit\">{{PLURAL:$1|Byte|Bytes|Byte}}</i>",
+	"size-bytes": "$1&nbsp;{{PLURAL:$1|Byte|Bytes|Byte}}",
 	"size-kilobytes": "$1&nbsp;KB",
 	"size-megabytes": "$1&nbsp;MB",
 	"size-gigabytes": "$1&nbsp;GB",
