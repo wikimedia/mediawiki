@@ -1,0 +1,24 @@
+/**
+ * Respect users who prefer reduced motion.
+ * Inspiration taken from sanitize.css
+ * https://github.com/csstools/sanitize.css/blob/v13.0.0/reduce-motion.css,
+ * itself based on collection at
+ * https://github.com/jensimmons/cssremedy/issues/11
+ */
+/* stylelint-disable declaration-no-important, time-min-milliseconds, selector-pseudo-element-colon-notation, plugin/no-unsupported-browser-features */
+@media ( prefers-reduced-motion: reduce ) {
+	*,
+	::before,
+	::after {
+		animation-delay: -1ms !important;
+		animation-duration: 1ms !important;
+		animation-iteration-count: 1 !important;
+		background-attachment: initial !important;
+		scroll-behavior: auto !important;
+		// Set duration to very short for balancing non-obstructive visibility
+		// and continuing firing `transitionend` event.
+		// See https: //github.com/jensimmons/cssremedy/issues/11#issuecomment-462527813
+		// for outline of different values resulting in `0.01ms`.
+		transition-duration: 0.01ms !important;
+	}
+}

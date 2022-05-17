@@ -588,6 +588,7 @@ CSS
 			],
 			[
 				[
+					'accessibility' => false,
 					'content-body' => false,
 					'elements' => true,
 					'normalize' => true,
