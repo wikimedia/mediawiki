@@ -363,7 +363,8 @@ abstract class DatabaseMysqlBase extends Database {
 
 		// We can't use buildLike() here, because it specifies an escape character
 		// other than the backslash, which is the only one supported by SHOW TABLES
-		$encLike = $this->escapeLikeInternal( $tableName, '\\' );
+		// TODO: Avoid using platform's internal methods
+		$encLike = $this->platform->escapeLikeInternal( $tableName, '\\' );
 
 		// If the database has been specified (such as for shared tables), use "FROM"
 		if ( $database !== '' ) {

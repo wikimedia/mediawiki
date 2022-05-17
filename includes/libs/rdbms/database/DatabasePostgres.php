@@ -25,7 +25,6 @@ namespace Wikimedia\Rdbms;
 use RuntimeException;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\Platform\PostgresPlatform;
-use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WaitConditionLoop;
 
 /**
@@ -649,10 +648,6 @@ __INDEXATTR__;
 		return $size;
 	}
 
-	public function limitResult( $sql, $limit, $offset = false ) {
-		return "$sql LIMIT $limit " . ( is_numeric( $offset ) ? " OFFSET {$offset} " : '' );
-	}
-
 	public function wasDeadlock() {
 		// https://www.postgresql.org/docs/9.2/static/errcodes-appendix.html
 		return $this->lastErrno() === '40P01';
@@ -761,12 +756,6 @@ __INDEXATTR__;
 		}
 
 		return $endArray;
-	}
-
-	public function timestamp( $ts = 0 ) {
-		$ct = new ConvertibleTimestamp( $ts );
-
-		return $ct->getTimestamp( TS_POSTGRES );
 	}
 
 	/**

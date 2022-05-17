@@ -42,4 +42,22 @@ class SqlitePlatform extends SQLPlatform {
 	public function buildConcat( $stringList ) {
 		return '(' . implode( ') || (', $stringList ) . ')';
 	}
+
+	/**
+	 * @param string[] $sqls
+	 * @param bool $all Whether to "UNION ALL" or not
+	 * @return string
+	 */
+	public function unionQueries( $sqls, $all ) {
+		$glue = $all ? ' UNION ALL ' : ' UNION ';
+
+		return implode( $glue, $sqls );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function unionSupportsOrderAndLimit() {
+		return false;
+	}
 }
