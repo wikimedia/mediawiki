@@ -109,10 +109,11 @@ class EntryPoint {
 		$conf = $services->getMainConfig();
 
 		$responseFactory = new ResponseFactory( self::getTextFormatters( $services ) );
+		$responseFactory->setSendExceptionBacktrace( $conf->get( 'ShowExceptionDetails' ) );
 
 		$cors = new CorsUtils(
 			new ServiceOptions(
-				CorsUtils::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
+				CorsUtils::CONSTRUCTOR_OPTIONS, $conf
 			),
 			$responseFactory,
 			$context->getUser()

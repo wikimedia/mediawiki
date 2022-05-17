@@ -581,13 +581,19 @@ TXT;
 	 * @since 1.26
 	 * @param Throwable $e
 	 * @param string $catcher CAUGHT_BY_* class constant indicating what caught the error
+	 * @param bool|null $includeBacktrace Whether to include a backtrace. If null,
+	 *        the value of $wgLogExceptionBacktrace will be used.
 	 * @return array
 	 */
 	public static function getStructuredExceptionData(
 		Throwable $e,
-		$catcher = self::CAUGHT_BY_OTHER
+		$catcher = self::CAUGHT_BY_OTHER,
+		?bool $includeBacktrace = null
 	) {
 		global $wgLogExceptionBacktrace;
+		if ( $includeBacktrace === null ) {
+			$includeBacktrace = $wgLogExceptionBacktrace;
+		}
 
 		$data = [
 			'id' => WebRequest::getRequestId(),
@@ -607,7 +613,7 @@ TXT;
 			$data['suppressed'] = true;
 		}
 
-		if ( $wgLogExceptionBacktrace ) {
+		if ( $includeBacktrace ) {
 			$data['backtrace'] = self::getRedactedTrace( $e );
 		}
 
