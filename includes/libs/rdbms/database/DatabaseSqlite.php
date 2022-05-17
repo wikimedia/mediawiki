@@ -605,24 +605,6 @@ class DatabaseSqlite extends Database {
 	/**
 	 * @return bool
 	 */
-	public function unionSupportsOrderAndLimit() {
-		return false;
-	}
-
-	/**
-	 * @param string[] $sqls
-	 * @param bool $all Whether to "UNION ALL" or not
-	 * @return string
-	 */
-	public function unionQueries( $sqls, $all ) {
-		$glue = $all ? ' UNION ALL ' : ' UNION ';
-
-		return implode( $glue, $sqls );
-	}
-
-	/**
-	 * @return bool
-	 */
 	public function wasDeadlock() {
 		return $this->lastErrno() == 5; // SQLITE_BUSY
 	}

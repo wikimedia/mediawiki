@@ -20,12 +20,24 @@
 
 namespace Wikimedia\Rdbms\Platform;
 
+use Wikimedia\Timestamp\ConvertibleTimestamp;
+
 /**
  * @since 1.39
  * @see ISQLPlatform
  */
 class PostgresPlatform extends SQLPlatform {
+	public function limitResult( $sql, $limit, $offset = false ) {
+		return "$sql LIMIT $limit " . ( is_numeric( $offset ) ? " OFFSET {$offset} " : '' );
+	}
+
 	public function buildConcat( $stringList ) {
 		return implode( ' || ', $stringList );
+	}
+
+	public function timestamp( $ts = 0 ) {
+		$ct = new ConvertibleTimestamp( $ts );
+
+		return $ct->getTimestamp( TS_POSTGRES );
 	}
 }

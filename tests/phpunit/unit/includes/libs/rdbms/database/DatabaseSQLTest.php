@@ -1173,7 +1173,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider provideBuildLike
 	 * @covers Wikimedia\Rdbms\Database::buildLike
-	 * @covers Wikimedia\Rdbms\Database::escapeLikeInternal
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::escapeLikeInternal
 	 */
 	public function testBuildLike( $array, $sqlText ) {
 		$this->assertEquals( trim( $this->database->buildLike(

@@ -22,6 +22,8 @@ namespace Wikimedia\Rdbms\Platform;
 use InvalidArgumentException;
 use Wikimedia\Rdbms\Database\DbQuoter;
 use Wikimedia\Rdbms\DBLanguageError;
+use Wikimedia\Rdbms\LikeMatch;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Sql abstraction object.
@@ -309,6 +311,154 @@ class SQLPlatform implements ISQLPlatform {
 	 */
 	public function buildConcat( $stringList ) {
 		return 'CONCAT(' . implode( ',', $stringList ) . ')';
+	}
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
+	public function limitResult( $sql, $limit, $offset = false ) {
+		if ( !is_numeric( $limit ) ) {
+			throw new DBLanguageError(
+				"Invalid non-numeric limit passed to " . __METHOD__
+			);
+		}
+		// This version works in MySQL and SQLite. It will very likely need to be
+		// overridden for most other RDBMS subclasses.
+		return "$sql LIMIT "
+			. ( ( is_numeric( $offset ) && $offset != 0 ) ? "{$offset}," : "" )
+			. "{$limit} ";
+	}
+
+	/**
+	 * @stable to override
+	 * @param string $s
+	 * @param string $escapeChar
+	 * @return string
+	 */
+	public function escapeLikeInternal( $s, $escapeChar = '`' ) {
+		return str_replace(
+			[ $escapeChar, '%', '_' ],
+			[ "{$escapeChar}{$escapeChar}", "{$escapeChar}%", "{$escapeChar}_" ],
+			$s
+		);
+	}
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
+	public function buildLike( $param, ...$params ) {
+		if ( is_array( $param ) ) {
+			$params = $param;
+		} else {
+			$params = func_get_args();
+		}
+
+		$s = '';
+
+		// We use ` instead of \ as the default LIKE escape character, since addQuotes()
+		// may escape backslashes, creating problems of double escaping. The `
+		// character has good cross-DBMS compatibility, avoiding special operators
+		// in MS SQL like ^ and %
+		$escapeChar = '`';
+
+		foreach ( $params as $value ) {
+			if ( $value instanceof LikeMatch ) {
+				$s .= $value->toString();
+			} else {
+				$s .= $this->escapeLikeInternal( $value, $escapeChar );
+			}
+		}
+
+		return ' LIKE ' .
+			$this->quoter->addQuotes( $s ) . ' ESCAPE ' . $this->quoter->addQuotes( $escapeChar ) . ' ';
+	}
+
+	public function anyChar() {
+		return new LikeMatch( '_' );
+	}
+
+	public function anyString() {
+		return new LikeMatch( '%' );
+	}
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
+	public function unionSupportsOrderAndLimit() {
+		return true; // True for almost every DB supported
+	}
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
+	public function unionQueries( $sqls, $all ) {
+		$glue = $all ? ') UNION ALL (' : ') UNION (';
+
+		return '(' . implode( $glue, $sqls ) . ')';
+	}
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
+	public function conditional( $cond, $caseTrueExpression, $caseFalseExpression ) {
+		if ( is_array( $cond ) ) {
+			$cond = $this->makeList( $cond, self::LIST_AND );
+		}
+
+		return "(CASE WHEN $cond THEN $caseTrueExpression ELSE $caseFalseExpression END)";
+	}
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
+	public function strreplace( $orig, $old, $new ) {
+		return "REPLACE({$orig}, {$old}, {$new})";
+	}
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
+	public function timestamp( $ts = 0 ) {
+		$t = new ConvertibleTimestamp( $ts );
+		// Let errors bubble up to avoid putting garbage in the DB
+		return $t->getTimestamp( TS_MW );
+	}
+
+	public function timestampOrNull( $ts = null ) {
+		if ( $ts === null ) {
+			return null;
+		} else {
+			return $this->timestamp( $ts );
+		}
+	}
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
+	public function getInfinity() {
+		return 'infinity';
+	}
+
+	public function encodeExpiry( $expiry ) {
+		return ( $expiry == '' || $expiry == 'infinity' || $expiry == $this->getInfinity() )
+			? $this->getInfinity()
+			: $this->timestamp( $expiry );
+	}
+
+	public function decodeExpiry( $expiry, $format = TS_MW ) {
+		if ( $expiry == '' || $expiry == 'infinity' || $expiry == $this->getInfinity() ) {
+			return 'infinity';
+		}
+
+		return ConvertibleTimestamp::convert( $format, $expiry );
 	}
 
 }
