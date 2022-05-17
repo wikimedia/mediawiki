@@ -316,8 +316,9 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Return a string of the MediaWiki version with Git revision if available.
 	 *
-	 * @param string $flags
-	 * @param Language|string|null $lang
+	 * @param string $flags If set to 'nodb', the language-specific parantheses are not used.
+	 * @param Language|string|null $lang Language in which to render the version; ignored if
+	 *   $flags is set to 'nodb'.
 	 * @return mixed
 	 */
 	public static function getVersion( $flags = '', $lang = null ) {
