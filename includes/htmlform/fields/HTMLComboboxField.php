@@ -50,6 +50,10 @@ class HTMLComboboxField extends HTMLTextField {
 			$disabled = true;
 		}
 
+		if ( $this->mPlaceholder !== '' ) {
+			$attribs['placeholder'] = $this->mPlaceholder;
+		}
+
 		return new OOUI\ComboBoxInputWidget( [
 			'name' => $this->mName,
 			'id' => $this->mID,
