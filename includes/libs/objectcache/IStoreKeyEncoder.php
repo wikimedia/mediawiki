@@ -10,6 +10,10 @@ interface IStoreKeyEncoder {
 	/**
 	 * Make a cache key using the "global" keyspace for the given components
 	 *
+	 * Callers should:
+	 *   - Limit the collection name (first component) to 48 characters
+	 *   - Use hashes for any components based on user-supplied input
+	 *
 	 * Encoding is limited to the escaping of delimiter (":") and escape ("%") characters.
 	 * Any backend-specific encoding should be delegated to methods that use the network.
 	 *
@@ -21,6 +25,10 @@ interface IStoreKeyEncoder {
 
 	/**
 	 * Make a cache key using the default keyspace for the given components
+	 *
+	 * Callers should:
+	 *   - Limit the collection name (first component) to 48 characters
+	 *   - Use hashes for any components based on user-supplied input
 	 *
 	 * Encoding is limited to the escaping of delimiter (":") and escape ("%") characters.
 	 * Any backend-specific encoding should be delegated to methods that use the network.
