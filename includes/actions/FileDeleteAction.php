@@ -144,6 +144,7 @@ class FileDeleteAction extends DeleteAction {
 
 	protected function showFormWarnings(): void {
 		$this->getOutput()->addHTML( $this->prepareMessage( 'filedelete-intro' ) );
+		$this->showSubpagesWarnings();
 	}
 
 	/**
