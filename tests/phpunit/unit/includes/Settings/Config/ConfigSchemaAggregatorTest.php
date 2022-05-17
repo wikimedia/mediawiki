@@ -23,9 +23,23 @@ class ConfigSchemaAggregatorTest extends TestCase {
 		$this->assertSame( [ 'type' => 'number', ], $aggregator->getSchemaFor( 'bar' ) );
 	}
 
+	public function testCombineSchema() {
+		$aggregator = new ConfigSchemaAggregator();
+		$aggregator->addTypes( [ 'foo' => 'string', ] );
+		$aggregator->addSchema( 'bar', [ 'type' => 'number', ] );
+		$aggregator->addSchema( 'foo', [ 'default' => 'X', ] );
+		$this->assertTrue( $aggregator->hasSchemaFor( 'foo' ) );
+		$this->assertTrue( $aggregator->hasSchemaFor( 'bar' ) );
+		$this->assertFalse( $aggregator->hasSchemaFor( 'xyzzy' ) );
+		$this->assertSame( [ 'type' => 'number', ], $aggregator->getSchemaFor( 'bar' ) );
+		$this->assertSame( 'X', $aggregator->getDefaultFor( 'foo' ) );
+		$this->assertSame( 'string', $aggregator->getTypeFor( 'foo' ) );
+	}
+
 	public function testAddSchemaOverrideFails() {
 		$aggregator = new ConfigSchemaAggregator();
-		$aggregator->addSchema( 'foo', [ 'type' => 'string', ] );
+		$aggregator->addTypes( [ 'foo' => 'int', ] );
+
 		$this->expectException( SettingsBuilderException::class );
 		$aggregator->addSchema( 'foo', [ 'type' => 'string', ] );
 	}
@@ -58,6 +72,7 @@ class ConfigSchemaAggregatorTest extends TestCase {
 		$aggregator->addSchema( 'no_type', [ 'default' => 'xyz', ] );
 		$aggregator->addSchema( 'with_type', [ 'type' => 'string', 'default' => 'bla', ] );
 		$aggregator->addTypes( [ 'another_with_type' => 'number' ] );
+		$this->assertSame( 'string', $aggregator->getTypeFor( 'with_type' ) );
 		$this->assertSame( [ 'type' => 'number' ], $aggregator->getSchemaFor( 'another_with_type' ) );
 		$this->assertEquals( [
 			'with_type' => 'string',
