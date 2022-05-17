@@ -5255,6 +5255,8 @@ class Parser {
 				}
 			}
 
+			$imageOptions['title'] = $this->stripAltText( $label, false );
+
 			$ig->add(
 				$title, $label, $alt, '', $handlerOptions,
 				ImageGalleryBase::LOADING_DEFAULT, $imageOptions

@@ -154,7 +154,10 @@ class TraditionalImageGallery extends ImageGalleryBase {
 						'custom-url-link' => $link
 					];
 				} else {
-					$params = [ 'alt' => $alt ];
+					$params = [
+						'alt' => $alt,
+						'title' => $imageOptions['title'],
+					];
 					$imageParameters = Linker::getImageLinkMTOParams(
 						$imageOptions, $descQuery, $this->mParser
 					) + $params;
