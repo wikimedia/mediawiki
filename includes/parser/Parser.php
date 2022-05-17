@@ -5480,7 +5480,7 @@ class Parser {
 
 		# Will the image be presented in a frame, with the caption below?
 		// @phan-suppress-next-line PhanImpossibleCondition
-		$imageIsFramed = isset( $params['frame']['framed'] )
+		$hasVisibleCaption = isset( $params['frame']['framed'] )
 			// @phan-suppress-next-line PhanImpossibleCondition
 			|| isset( $params['frame']['thumbnail'] )
 			// @phan-suppress-next-line PhanImpossibleCondition
@@ -5500,16 +5500,16 @@ class Parser {
 		# named parameter entirely for images without a caption; adding an ex-
 		# plicit caption= parameter and preserving the old magic unnamed para-
 		# meter for BC; ...
-		if ( $imageIsFramed ) { # Framed image
+		if ( $hasVisibleCaption ) {
 			// @phan-suppress-next-line PhanImpossibleCondition
 			if ( $caption === '' && !isset( $params['frame']['alt'] ) ) {
 				# No caption or alt text, add the filename as the alt text so
 				# that screen readers at least get some description of the image
 				$params['frame']['alt'] = $link->getText();
 			}
-			# Do not set $params['frame']['title'] because tooltips don't make sense
-			# for framed images
-		} else { # Inline image
+			# Do not set $params['frame']['title'] because tooltips are unnecessary
+			# for framed images, the caption is visible
+		} else {
 			// @phan-suppress-next-line PhanImpossibleCondition
 			if ( !isset( $params['frame']['alt'] ) ) {
 				# No alt text, use the "caption" for the alt text

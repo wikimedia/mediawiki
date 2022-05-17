@@ -245,7 +245,7 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 [[File:Foobar.jpg|link=|stuff]]
 !! html/php
-<p><span class="mw-default-size" typeof="mw:Image"><span><img alt="stuff" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" title="stuff" width="1941" height="220" /></span></span>
+<p><span class="mw-default-size" typeof="mw:Image"><span title="stuff"><img alt="stuff" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></span></span>
 </p>
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:Image" data-mw='{"caption":"stuff"}'><span><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></span></span></p>

@@ -121,6 +121,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		$priorityHintsRatio = $mainConfig->get( MainConfigNames::PriorityHintsRatio );
 		$elementTiming = $mainConfig->get( MainConfigNames::ElementTiming );
 		$nativeImageLazyLoading = $mainConfig->get( MainConfigNames::NativeImageLazyLoading );
+		$enableLegacyMediaDOM = $mainConfig->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 
 		if ( func_num_args() == 2 ) {
 			throw new MWException( __METHOD__ . ' called in the old style' );
@@ -192,7 +193,11 @@ class ThumbnailImage extends MediaTransformOutput {
 		} else {
 			$linkAttribs = false;
 			if ( !empty( $options['title'] ) ) {
-				$attribs['title'] = $options['title'];
+				if ( $enableLegacyMediaDOM ) {
+					$attribs['title'] = $options['title'];
+				} else {
+					$linkAttribs = [ 'title' => $options['title'] ];
+				}
 			}
 		}
 
