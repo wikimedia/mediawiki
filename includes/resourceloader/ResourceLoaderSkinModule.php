@@ -420,8 +420,6 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			if ( is_array( $logo ) ) {
 				if ( isset( $logo['svg'] ) ) {
 					$styles['all'][] = '.mw-wiki-logo { ' .
-						'background-image: -webkit-linear-gradient(transparent, transparent), ' .
-							CSSMin::buildUrlValue( $logo['svg'] ) . '; ' .
 						'background-image: linear-gradient(transparent, transparent), ' .
 							CSSMin::buildUrlValue( $logo['svg'] ) . ';' .
 						'background-size: 135px auto; }';

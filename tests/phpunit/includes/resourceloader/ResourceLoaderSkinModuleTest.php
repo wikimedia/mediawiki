@@ -214,7 +214,7 @@ CSS
 .mw-wiki-logo { background-image: url(/logo.png); }
 CSS
 					, <<<CSS
-.mw-wiki-logo { background-image: -webkit-linear-gradient(transparent, transparent), url(/logo.svg); background-image: linear-gradient(transparent, transparent), url(/logo.svg);background-size: 135px auto; }
+.mw-wiki-logo { background-image: linear-gradient(transparent, transparent), url(/logo.svg);background-size: 135px auto; }
 CSS
 					],
 				],
