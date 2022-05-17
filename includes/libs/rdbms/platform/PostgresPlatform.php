@@ -40,4 +40,12 @@ class PostgresPlatform extends SQLPlatform {
 
 		return $ct->getTimestamp( TS_POSTGRES );
 	}
+
+	public function buildStringCast( $field ) {
+		return $field . '::text';
+	}
+
+	public function implicitOrderby() {
+		return false;
+	}
 }

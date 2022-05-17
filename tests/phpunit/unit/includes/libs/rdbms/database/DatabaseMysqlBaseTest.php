@@ -606,6 +606,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			->disableOriginalConstructor()
 			->onlyMethods( [] )
 			->getMock();
+		TestingAccessWrapper::newFromObject( $db )->platform = new MySQLPlatform( new AddQuoterMock() );
 
 		/** @var IDatabase $db */
 		$output = $db->buildIntegerCast( 'fieldName' );
