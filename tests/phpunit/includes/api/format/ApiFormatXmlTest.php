@@ -9,7 +9,7 @@ class ApiFormatXmlTest extends ApiFormatTestBase {
 
 	protected $printerName = 'xml';
 
-	public function setUp(): void {
+	protected function setUp(): void {
 		parent::setUp();
 		$page = WikiPage::factory( Title::newFromText( 'MediaWiki:ApiFormatXmlTest.xsl' ) );
 		$user = self::getTestSysop()->getUser();

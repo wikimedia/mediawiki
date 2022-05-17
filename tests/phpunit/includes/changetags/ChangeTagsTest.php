@@ -21,7 +21,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'archive';
 	}
 
-	public function tearDown(): void {
+	protected function tearDown(): void {
 		ChangeTags::$avoidReopeningTablesForTesting = false;
 		parent::tearDown();
 	}

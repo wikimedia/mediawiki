@@ -11,7 +11,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  */
 class PingbackTest extends MediaWikiUnitTestCase {
 
-	public function setUp(): void {
+	protected function setUp(): void {
 		parent::setUp();
 		ConvertibleTimestamp::setFakeTime( '20110401090000' );
 	}
