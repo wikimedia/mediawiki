@@ -389,9 +389,12 @@ class ContribsPager extends RangeChronologicalPager {
 			// tables and joins are already handled by RevisionStore::getQueryInfo()
 			$conds = $this->actorMigration->getWhere( $dbr, 'rev_user', $this->targetUser );
 			$queryInfo['conds'][] = $conds['conds'];
-			// Force the appropriate index to avoid bad query plans (T189026)
+			// Force the appropriate index to avoid bad query plans (T189026 and T307295)
 			if ( isset( $conds['orconds']['actor'] ) ) {
 				$queryInfo['options']['USE INDEX']['temp_rev_user'] = 'actor_timestamp';
+			}
+			if ( isset( $conds['orconds']['newactor'] ) ) {
+				$queryInfo['options']['USE INDEX']['revision'] = 'rev_actor_timestamp';
 			}
 		}
 
