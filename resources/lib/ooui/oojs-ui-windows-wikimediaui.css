@@ -1,19 +1,18 @@
 /*!
- * OOUI v0.43.2-pre (630d30f69c)
+ * OOUI v0.44.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-03-11T22:31:38Z
+ * Date: 2022-05-17T17:51:03Z
  */
 
 .oo-ui-window {
   background: transparent;
 }
 .oo-ui-window-frame {
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .oo-ui-window-content {
@@ -53,7 +52,6 @@
   position: absolute;
   left: 0;
   right: 0;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .oo-ui-dialog-content > .oo-ui-window-head {
@@ -86,13 +84,11 @@
   bottom: auto;
 }
 .oo-ui-messageDialog-actions-horizontal {
-  display: table;
-  table-layout: fixed;
+  display: flex;
   width: 100%;
 }
 .oo-ui-messageDialog-actions-horizontal .oo-ui-actionWidget {
-  display: table-cell;
-  width: 1%;
+  flex-grow: 1;
 }
 .oo-ui-messageDialog-actions-vertical {
   display: block;
@@ -103,8 +99,6 @@
   text-overflow: ellipsis;
 }
 .oo-ui-messageDialog-content > .oo-ui-window-foot {
-  /* For some reason `outline` in this file is throwing warnings, but not elsewhere */
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   outline: 1px solid #a2a9b1;
 }
 .oo-ui-messageDialog-title,
@@ -214,7 +208,6 @@
 }
 .oo-ui-processDialog-content .oo-ui-window-head,
 .oo-ui-processDialog-content .oo-ui-window-foot {
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   outline: 1px solid #c8ccd1;
 }
 .oo-ui-processDialog-content .oo-ui-window-head {
@@ -396,16 +389,12 @@
 .oo-ui-windowManager-modal > .oo-ui-dialog {
   background-color: rgba(255, 255, 255, 0.5);
   opacity: 0;
-  -webkit-transition: opacity ease-out 250ms;
   transition: opacity ease-out 250ms;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog > .oo-ui-window-frame {
   background-color: #fff;
   opacity: 0;
-  -webkit-transform: scale(0.5);
-  -ms-transform: scale(0.5);
   transform: scale(0.5);
-  -webkit-transition: all ease-out 250ms;
   transition: all ease-out 250ms;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-setup {
@@ -413,15 +402,12 @@
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-setup > .oo-ui-window-frame {
   opacity: 1;
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
   transform: scale(1);
 }
 .oo-ui-windowManager-modal.oo-ui-windowManager-floating > .oo-ui-dialog > .oo-ui-window-frame {
   top: 1em;
   bottom: 1em;
   max-height: 100%;
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   max-height: calc( 100% - 2em );
   border: 1px solid #a2a9b1;
   border-radius: 2px;
