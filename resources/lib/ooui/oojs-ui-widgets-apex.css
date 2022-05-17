@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.43.2-pre (630d30f69c)
+ * OOUI v0.44.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-03-11T22:31:38Z
+ * Date: 2022-05-17T17:51:03Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ),
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
@@ -38,7 +38,6 @@
 }
 .oo-ui-bookletLayout-stackLayout > .oo-ui-panelLayout {
   width: 100%;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .oo-ui-bookletLayout-outlinePanel-editable > .oo-ui-outlineSelectWidget {
@@ -113,7 +112,6 @@
 }
 .oo-ui-menuLayout > .oo-ui-menuLayout-menu,
 .oo-ui-menuLayout > .oo-ui-menuLayout-content {
-  -webkit-transition: height 250ms, width 250ms, top 250ms, left 250ms, right 250ms, bottom 250ms;
   transition: height 250ms, width 250ms, top 250ms, left 250ms, right 250ms, bottom 250ms;
 }
 .oo-ui-menuLayout > .oo-ui-menuLayout-menu {
@@ -271,12 +269,10 @@
   display: inline-block;
   vertical-align: middle;
   overflow: hidden;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   background-color: #ebebeb;
-  background-image: -webkit-linear-gradient(top, #ddd 0, #fafafa 100%);
   background-image: linear-gradient(to bottom, #ddd 0, #fafafa 100%);
   width: 4em;
   height: 2em;
@@ -291,7 +287,6 @@
 .oo-ui-toggleSwitchWidget-grip {
   position: absolute;
   display: block;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .oo-ui-toggleSwitchWidget:last-child {
@@ -314,7 +309,6 @@
 }
 .oo-ui-toggleSwitchWidget-grip {
   background-color: #ebebeb;
-  background-image: -webkit-linear-gradient(top, #fafafa 0, #ddd 100%);
   background-image: linear-gradient(to bottom, #fafafa 0, #ddd 100%);
   top: 0.25em;
   left: 0.25em;
@@ -324,7 +318,6 @@
   border: 1px solid #ccc;
   border-radius: 1em;
   box-shadow: 0 0.1em 0.25em rgba(0, 0, 0, 0.1);
-  -webkit-transition: left 250ms, margin-left 250ms;
   transition: left 250ms, margin-left 250ms;
 }
 .oo-ui-toggleSwitchWidget-glow {
@@ -335,10 +328,8 @@
   left: 0;
   border-radius: 1em;
   box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.07);
-  -webkit-transition: opacity 250ms;
   transition: opacity 250ms;
   background-color: #cde7f4;
-  background-image: -webkit-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
   background-image: linear-gradient(to bottom, #b0d9ee 0, #eaf4fa 100%);
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -378,7 +369,6 @@
   left: 0.5em;
   background-position: center center;
   background-repeat: no-repeat;
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   background-size: contain;
 }
 .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-thumbnail > .oo-ui-selectFileWidget-noThumbnail-icon {
@@ -516,7 +506,6 @@
 .oo-ui-outlineControlsWidget-items,
 .oo-ui-outlineControlsWidget-movers {
   float: left;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .oo-ui-outlineControlsWidget-items {
@@ -564,13 +553,11 @@
 }
 .oo-ui-tabSelectWidget-mobile.oo-ui-tabSelectWidget-framed:after {
   background-color: #eeeeee;
-  background-image: -webkit-linear-gradient(left, rgba(238, 238, 238, 0) 0, #eee 100%);
   background-image: linear-gradient(to right, rgba(238, 238, 238, 0) 0, #eee 100%);
   background-color: transparent;
 }
 .oo-ui-tabSelectWidget-mobile.oo-ui-tabSelectWidget-frameless:after {
   background-color: #ffffff;
-  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0, #fff 100%);
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0, #fff 100%);
   background-color: transparent;
   bottom: 2px;
@@ -581,7 +568,6 @@
 
 .oo-ui-tabOptionWidget {
   display: inline-block;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   vertical-align: bottom;
   color: #333;
@@ -632,7 +618,6 @@
   border-width: 0;
   background-color: transparent;
   box-shadow: inset 0 0 0 0 #087ecc;
-  -webkit-transition: color 100ms, box-shadow 100ms;
   transition: color 100ms, box-shadow 100ms;
 }
 .oo-ui-tabSelectWidget-frameless .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected {
@@ -695,7 +680,6 @@
   padding: 0.15em 0.25em;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 3px;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .oo-ui-tagMultiselectWidget-handle:last-child {
@@ -805,10 +789,8 @@
   cursor: default;
   white-space: nowrap;
   background-color: #ebebeb;
-  background-image: -webkit-linear-gradient(top, #fafafa 0, #ddd 100%);
   background-image: linear-gradient(to bottom, #fafafa 0, #ddd 100%);
   color: #333;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   width: auto;
   max-width: 100%;
@@ -856,7 +838,6 @@
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled .oo-ui-buttonElement-button {
   display: block;
-  -webkit-transition: background-color 100ms;
   transition: background-color 100ms;
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled .oo-ui-buttonElement-button .oo-ui-iconElement-icon {

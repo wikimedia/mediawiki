@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.43.2-pre (630d30f69c)
+ * OOUI v0.44.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-03-11T22:31:38Z
+ * Date: 2022-05-17T17:51:03Z
  */
 .oo-ui-tool > .oo-ui-tool-link > .oo-ui-tool-checkIcon {
   display: none;
@@ -47,7 +47,6 @@
   margin: 0.375em;
   border-radius: 3px;
   border: 1px solid transparent;
-  -webkit-transition: border-color 250ms;
   transition: border-color 250ms;
 }
 .oo-ui-toolGroup-empty {
@@ -125,7 +124,6 @@
   border-color: rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 0.0875em 0.0875em 0 rgba(0, 0, 0, 0.07);
   background-color: #f8fbfd;
-  background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
   background-image: linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
 }
 .oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools > .oo-ui-tool.oo-ui-tool-active.oo-ui-widget-enabled + .oo-ui-tool-active.oo-ui-widget-enabled {
@@ -145,7 +143,6 @@
 }
 .oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools > .oo-ui-tool.oo-ui-flaggedElement-progressive {
   background-color: #cde7f4;
-  background-image: -webkit-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
   background-image: linear-gradient(to bottom, #eaf4fa 0, #b0d9ee 100%);
   border: 1px solid #a6cee1;
 }
@@ -154,7 +151,6 @@
 }
 .oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools > .oo-ui-tool.oo-ui-flaggedElement-progressive.oo-ui-tool-active.oo-ui-widget-enabled {
   background-color: #cde7f4;
-  background-image: -webkit-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
   background-image: linear-gradient(to bottom, #b0d9ee 0, #eaf4fa 100%);
   border: 1px solid #a6cee1;
 }
@@ -163,7 +159,6 @@
 }
 .oo-ui-barToolGroup-tools.oo-ui-toolGroup-enabled-tools > .oo-ui-tool.oo-ui-flaggedElement-destructive {
   background-color: #ebebeb;
-  background-image: -webkit-linear-gradient(top, #fafafa 0, #ddd 100%);
   background-image: linear-gradient(to bottom, #fafafa 0, #ddd 100%);
   border: 1px solid #ccc;
 }
@@ -289,7 +284,6 @@
 }
 .oo-ui-popupToolGroup-active.oo-ui-widget-enabled {
   background-color: #f8fbfd;
-  background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
   background-image: linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
@@ -297,7 +291,6 @@
 }
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-progressive {
   background-color: #cde7f4;
-  background-image: -webkit-linear-gradient(top, #eaf4fa 0, #b0d9ee 100%);
   background-image: linear-gradient(to bottom, #eaf4fa 0, #b0d9ee 100%);
   border: 1px solid #a6cee1;
 }
@@ -306,13 +299,11 @@
 }
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-progressive.oo-ui-popupToolGroup-active.oo-ui-widget-enabled {
   background-color: #cde7f4;
-  background-image: -webkit-linear-gradient(top, #b0d9ee 0, #eaf4fa 100%);
   background-image: linear-gradient(to bottom, #b0d9ee 0, #eaf4fa 100%);
   border: 1px solid #a6cee1;
 }
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-destructive {
   background-color: #ebebeb;
-  background-image: -webkit-linear-gradient(top, #fafafa 0, #ddd 100%);
   background-image: linear-gradient(to bottom, #fafafa 0, #ddd 100%);
   border: 1px solid #ccc;
 }
@@ -354,7 +345,6 @@
 
 .oo-ui-listToolGroup-tools .oo-ui-tool {
   display: block;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .oo-ui-listToolGroup-tools {
@@ -372,7 +362,6 @@
   border-color: rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 0.0875em 0.0875em 0 rgba(0, 0, 0, 0.07);
   background-color: #f8fbfd;
-  background-image: -webkit-linear-gradient(top, #f1f7fb 0, #fff 100%);
   background-image: linear-gradient(to bottom, #f1f7fb 0, #fff 100%);
 }
 .oo-ui-listToolGroup-tools .oo-ui-tool-active.oo-ui-widget-enabled + .oo-ui-tool-active.oo-ui-widget-enabled {
@@ -504,7 +493,6 @@
 }
 .oo-ui-toolbar-bar {
   background-color: #f8fbfd;
-  background-image: -webkit-linear-gradient(top, #fff 0, #f1f7fb 100%);
   background-image: linear-gradient(to bottom, #fff 0, #f1f7fb 100%);
 }
 .oo-ui-toolbar-position-top > .oo-ui-toolbar-bar {

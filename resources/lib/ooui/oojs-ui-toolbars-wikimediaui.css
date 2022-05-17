@@ -1,15 +1,14 @@
 /*!
- * OOUI v0.43.2-pre (630d30f69c)
+ * OOUI v0.44.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-03-11T22:31:38Z
+ * Date: 2022-05-17T17:51:03Z
  */
 .oo-ui-tool {
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .oo-ui-tool > .oo-ui-tool-link > .oo-ui-tool-checkIcon {
@@ -17,7 +16,6 @@
 }
 .oo-ui-tool .oo-ui-tool-link {
   position: relative;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding-top: 3em;
   padding-left: 3em;
@@ -42,7 +40,6 @@
   line-height: 1.42857143em;
 }
 .oo-ui-tool.oo-ui-widget-enabled .oo-ui-tool-link {
-  -webkit-transition: background-color 100ms;
   transition: background-color 100ms;
 }
 .oo-ui-tool.oo-ui-widget-enabled .oo-ui-tool-link:focus {
@@ -52,13 +49,11 @@
 }
 .oo-ui-tool.oo-ui-widget-enabled .oo-ui-iconElement-icon {
   opacity: 0.87;
-  -webkit-transition: opacity 100ms;
   transition: opacity 100ms;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
 .oo-ui-tool.oo-ui-widget-enabled .oo-ui-tool-title {
-  -webkit-transition: color 100ms;
   transition: color 100ms;
 }
 .oo-ui-tool.oo-ui-widget-enabled:hover .oo-ui-iconElement-icon {
@@ -181,7 +176,6 @@
 .oo-ui-toolGroup {
   display: inline-block;
   vertical-align: middle;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .oo-ui-toolGroup-empty {
@@ -292,7 +286,6 @@
   min-width: 1.85714286em;
 }
 .oo-ui-popupToolGroup-handle {
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .oo-ui-popupToolGroup-handle .oo-ui-iconElement-icon {
@@ -389,7 +382,6 @@
   padding-left: 2.5em;
 }
 .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle {
-  -webkit-transition: background-color 100ms, box-shadow 100ms;
   transition: background-color 100ms, box-shadow 100ms;
 }
 .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle:hover {
@@ -401,7 +393,6 @@
 .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle .oo-ui-iconElement-icon,
 .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator {
   opacity: 0.87;
-  -webkit-transition: opacity 100ms;
   transition: opacity 100ms;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
@@ -422,7 +413,6 @@
 }
 .oo-ui-toolbar-actions .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle {
   border-right: 1px solid transparent;
-  -webkit-transition: background-color 100ms, border-color 100ms, box-shadow 100ms;
   transition: background-color 100ms, border-color 100ms, box-shadow 100ms;
 }
 .oo-ui-toolbar-actions .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle:hover {
@@ -534,7 +524,6 @@
 
 .oo-ui-listToolGroup-tools .oo-ui-tool {
   display: block;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .oo-ui-listToolGroup-tools .oo-ui-tool.oo-ui-widget-enabled:hover {

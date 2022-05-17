@@ -1,4 +1,23 @@
 # OOUI Release History
+## v0.44.0 / 2022-05-06
+### Breaking changes
+* [BREAKING CHANGE] Drop support for IE<10, FF<38, Android<4.4 (Volker E.)
+
+### Styles
+* MessageDialog: Use flexbox for horizontal layout (Ed Sanders)
+* Apex: Fix border colour of MessageWidget type=warning (Ed Sanders)
+
+### Code
+* Element.php: Fix 'visiblity' typo (Klein Muçi)
+* README: Give automatic command to bump the version number (James D. Forrester)
+* build: Add the publish-build step as a prepublishOnly task (James D. Forrester)
+* build: Remove IE9 compatibility flag from grunt-cssmin (Ed Sanders)
+* build: Update stylelint-config-wikimedia to 0.13.0 (Ed Sanders)
+* build: Update to QUnit 2.18.2 (James D. Forrester)
+* docs: Remove mentions of unsupported browsers (Ed Sanders)
+* stylelint: Lint core files with support-basic rules (Ed Sanders)
+
+
 ## v0.43.2 / 2022-03-11
 ### Styles
 * WikimediaUI theme: Remove duplicated `border-width` property (Volker E.)
