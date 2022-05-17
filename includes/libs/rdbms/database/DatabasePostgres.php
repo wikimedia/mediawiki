@@ -23,7 +23,6 @@
 namespace Wikimedia\Rdbms;
 
 use RuntimeException;
-use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\Platform\PostgresPlatform;
 use Wikimedia\WaitConditionLoop;
 
@@ -34,8 +33,6 @@ class DatabasePostgres extends Database {
 	/** @var int */
 	private $port;
 	/** @var string */
-	private $coreSchema;
-	/** @var string */
 	private $tempSchema;
 	/** @var null|string[] Map of (reserved table name => alternate table name) */
 	private $keywordTableMap;
@@ -45,7 +42,7 @@ class DatabasePostgres extends Database {
 	/** @var resource|null */
 	private $lastResultHandle;
 
-	/** @var ISQLPlatform */
+	/** @var PostgresPlatform */
 	protected $platform;
 
 	/**
@@ -67,7 +64,12 @@ class DatabasePostgres extends Database {
 		}
 
 		parent::__construct( $params );
-		$this->platform = new PostgresPlatform( $this );
+		$this->platform = new PostgresPlatform(
+			$this,
+			$params['queryLogger'],
+			$this->currentDomain->getSchema(),
+			$this->currentDomain->getTablePrefix()
+		);
 	}
 
 	public function getType() {
@@ -137,18 +139,11 @@ class DatabasePostgres extends Database {
 			}
 			$this->determineCoreSchema( $schema );
 			$this->currentDomain = new DatabaseDomain( $db, $schema, $tablePrefix );
+			$this->platform->setSchema( $schema );
+			$this->platform->setPrefix( $tablePrefix );
 		} catch ( RuntimeException $e ) {
 			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
-	}
-
-	protected function relationSchemaQualifier() {
-		if ( $this->coreSchema === $this->currentDomain->getSchema() ) {
-			// The schema to be used is now in the search path; no need for explicit qualification
-			return '';
-		}
-
-		return parent::relationSchemaQualifier();
 	}
 
 	public function databasesAreIndependent() {
@@ -169,6 +164,8 @@ class DatabasePostgres extends Database {
 			);
 		} else {
 			$this->currentDomain = $domain;
+			$this->platform->setSchema( $domain->getSchema() );
+			$this->platform->setPrefix( $domain->getTablePrefix() );
 		}
 
 		return true;
@@ -459,7 +456,6 @@ __INDEXATTR__;
 						} else {
 							// Quote alias names so $this->tableName() won't mangle them
 							$options['FOR UPDATE'][] = $hasAlias ?
-								// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 								$this->platform->addIdentifierQuotes( $alias ) : $alias;
 						}
 					}
@@ -909,7 +905,7 @@ __INDEXATTR__;
 
 		if ( $this->schemaExists( $desiredSchema ) ) {
 			if ( in_array( $desiredSchema, $this->getSchemas() ) ) {
-				$this->coreSchema = $desiredSchema;
+				$this->platform->setCoreSchema( $desiredSchema );
 				$this->queryLogger->debug(
 					"Schema \"" . $desiredSchema . "\" already in the search path\n" );
 			} else {
@@ -917,15 +913,15 @@ __INDEXATTR__;
 				$search_path = $this->getSearchPath();
 				array_unshift( $search_path, $this->platform->addIdentifierQuotes( $desiredSchema ) );
 				$this->setSearchPath( $search_path );
-				$this->coreSchema = $desiredSchema;
+				$this->platform->setCoreSchema( $desiredSchema );
 				$this->queryLogger->debug(
 					"Schema \"" . $desiredSchema . "\" added to the search path\n" );
 			}
 		} else {
-			$this->coreSchema = $this->getCurrentSchema();
+			$this->platform->setCoreSchema( $this->getCurrentSchema() );
 			$this->queryLogger->debug(
 				"Schema \"" . $desiredSchema . "\" not found, using current \"" .
-				$this->coreSchema . "\"\n" );
+				$this->getCoreSchema() . "\"\n" );
 		}
 	}
 
@@ -936,7 +932,7 @@ __INDEXATTR__;
 	 * @return string Core schema name
 	 */
 	public function getCoreSchema() {
-		return $this->coreSchema;
+		return $this->platform->getCoreSchema();
 	}
 
 	/**
@@ -1179,35 +1175,6 @@ SQL;
 		}
 
 		return "'" . pg_escape_string( $conn, (string)$s ) . "'";
-	}
-
-	protected function makeSelectOptions( array $options ) {
-		$preLimitTail = $postLimitTail = '';
-		$startOpts = $useIndex = $ignoreIndex = '';
-
-		$noKeyOptions = [];
-		foreach ( $options as $key => $option ) {
-			if ( is_numeric( $key ) ) {
-				$noKeyOptions[$option] = true;
-			}
-		}
-
-		$preLimitTail .= $this->makeGroupByWithHaving( $options );
-
-		$preLimitTail .= $this->makeOrderBy( $options );
-
-		if ( isset( $options['FOR UPDATE'] ) ) {
-			$postLimitTail .= ' FOR UPDATE OF ' .
-				implode( ', ', array_map( [ $this, 'tableName' ], $options['FOR UPDATE'] ) );
-		} elseif ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
-			$postLimitTail .= ' FOR UPDATE';
-		}
-
-		if ( isset( $noKeyOptions['DISTINCT'] ) || isset( $noKeyOptions['DISTINCTROW'] ) ) {
-			$startOpts .= 'DISTINCT';
-		}
-
-		return [ $startOpts, $useIndex, $preLimitTail, $postLimitTail, $ignoreIndex ];
 	}
 
 	public function buildGroupConcatField(

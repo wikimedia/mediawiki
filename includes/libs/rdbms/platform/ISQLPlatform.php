@@ -408,4 +408,116 @@ interface ISQLPlatform {
 	 * @internal only to be used inside rdbms library
 	 */
 	public function getTableAliases();
+
+	/**
+	 * Take the same arguments as IDatabase::select() and return the SQL it would use
+	 *
+	 * This can be useful for making UNION queries, where the SQL text of each query
+	 * is needed. In general, however, callers outside of Database classes should just
+	 * use select().
+	 *
+	 * @see IDatabase::select()
+	 *
+	 * @param string|array $table Table name
+	 * @param string|array $vars Field names
+	 * @param string|array $conds Conditions
+	 * @param string $fname Caller function name
+	 * @param string|array $options Query options
+	 * @param string|array $join_conds Join conditions
+	 * @return string SQL query string
+	 */
+	public function selectSQLText(
+		$table,
+		$vars,
+		$conds = '',
+		$fname = __METHOD__,
+		$options = [],
+		$join_conds = []
+	);
+
+	/**
+	 * Format a table name ready for use in constructing an SQL query
+	 *
+	 * This does two important things: it quotes the table names to clean them up,
+	 * and it adds a table prefix if only given a table name with no quotes.
+	 *
+	 * All functions of this object which require a table name call this function
+	 * themselves. Pass the canonical name to such functions. This is only needed
+	 * when calling query() directly.
+	 *
+	 * @note This function does not sanitize user input. It is not safe to use
+	 *   this function to escape user input.
+	 * @param string $name Database table name
+	 * @param string $format One of:
+	 *   quoted - Automatically pass the table name through addIdentifierQuotes()
+	 *            so that it can be used in a query.
+	 *   raw - Do not add identifier quotes to the table name
+	 * @return string Full database name
+	 */
+	public function tableName( $name, $format = 'quoted' );
+
+	/**
+	 * Fetch a number of table names into an array
+	 * This is handy when you need to construct SQL for joins
+	 *
+	 * Example:
+	 * list( $user, $watchlist ) = $dbr->tableNames( 'user', 'watchlist' ) );
+	 * $sql = "SELECT wl_namespace, wl_title FROM $watchlist, $user
+	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
+	 *
+	 * @param string ...$tables
+	 * @return array
+	 */
+	public function tableNames( ...$tables );
+
+	/**
+	 * Fetch a number of table names into an zero-indexed numerical array
+	 * This is handy when you need to construct SQL for joins
+	 *
+	 * Example:
+	 * list( $user, $watchlist ) = $dbr->tableNamesN( 'user', 'watchlist' );
+	 * $sql = "SELECT wl_namespace,wl_title FROM $watchlist,$user
+	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
+	 *
+	 * @param string ...$tables
+	 * @return array
+	 */
+	public function tableNamesN( ...$tables );
+
+	/**
+	 * Construct a UNION query for permutations of conditions
+	 *
+	 * Databases sometimes have trouble with queries that have multiple values
+	 * for multiple condition parameters combined with limits and ordering.
+	 * This method constructs queries for the Cartesian product of the
+	 * conditions and unions them all together.
+	 *
+	 * @see IDatabase::select()
+	 * @param string|array $table Table name
+	 * @param string|array $vars Field names
+	 * @param array $permute_conds Conditions for the Cartesian product. Keys
+	 *  are field names, values are arrays of the possible values for that
+	 *  field.
+	 * @param string|array $extra_conds Additional conditions to include in the
+	 *  query.
+	 * @param string $fname Caller function name
+	 * @param string|array $options Query options. In addition to the options
+	 *  recognized by IDatabase::select(), the following may be used:
+	 *   - NOTALL: Set to use UNION instead of UNION ALL.
+	 *   - INNER ORDER BY: If specified and supported, subqueries will use this
+	 *     instead of ORDER BY.
+	 * @param string|array $join_conds Join conditions
+	 * @return string SQL query string.
+	 * @since 1.30
+	 */
+	public function unionConditionPermutations(
+		$table,
+		$vars,
+		array $permute_conds,
+		$extra_conds = '',
+		$fname = __METHOD__,
+		$options = [],
+		$join_conds = []
+	);
+
 }

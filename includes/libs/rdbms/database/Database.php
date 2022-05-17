@@ -34,7 +34,6 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
 use Throwable;
-use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
@@ -280,7 +279,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$params['schema'] != '' ? $params['schema'] : null,
 			$params['tablePrefix']
 		);
-		$this->platform = new SQLPlatform( $this );
+		$this->platform = new SQLPlatform(
+			$this,
+			$params['queryLogger'],
+			$this->currentDomain->getSchema(),
+			$this->currentDomain->getTablePrefix()
+		);
 	}
 
 	/**
@@ -593,6 +597,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->currentDomain->getSchema(),
 				$prefix
 			);
+			$this->platform->setPrefix( $prefix );
 		}
 
 		return $old;
@@ -615,17 +620,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				( $schema !== '' ) ? $schema : null,
 				$this->currentDomain->getTablePrefix()
 			);
+			$this->platform->setSchema( $this->currentDomain->getSchema() );
 		}
 
 		return (string)$old;
-	}
-
-	/**
-	 * @stable to override
-	 * @return string Schema to use to qualify relations in queries
-	 */
-	protected function relationSchemaQualifier() {
-		return $this->dbSchema();
 	}
 
 	public function getLBInfo( $name = null ) {
@@ -1826,126 +1824,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $values;
 	}
 
-	/**
-	 * Returns an optional USE INDEX clause to go after the table, and a
-	 * string to go at the end of the query.
-	 *
-	 * @see Database::select()
-	 *
-	 * @stable to override
-	 * @param array $options Associative array of options to be turned into
-	 *   an SQL query, valid keys are listed in the function.
-	 * @return array
-	 */
-	protected function makeSelectOptions( array $options ) {
-		$preLimitTail = $postLimitTail = '';
-		$startOpts = '';
-
-		$noKeyOptions = [];
-
-		foreach ( $options as $key => $option ) {
-			if ( is_numeric( $key ) ) {
-				$noKeyOptions[$option] = true;
-			}
-		}
-
-		$preLimitTail .= $this->makeGroupByWithHaving( $options );
-
-		$preLimitTail .= $this->makeOrderBy( $options );
-
-		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
-			$postLimitTail .= ' FOR UPDATE';
-		}
-
-		if ( isset( $noKeyOptions['LOCK IN SHARE MODE'] ) ) {
-			$postLimitTail .= ' LOCK IN SHARE MODE';
-		}
-
-		if ( isset( $noKeyOptions['DISTINCT'] ) || isset( $noKeyOptions['DISTINCTROW'] ) ) {
-			$startOpts .= 'DISTINCT';
-		}
-
-		# Various MySQL extensions
-		if ( isset( $noKeyOptions['STRAIGHT_JOIN'] ) ) {
-			$startOpts .= ' /*! STRAIGHT_JOIN */';
-		}
-
-		if ( isset( $noKeyOptions['SQL_BIG_RESULT'] ) ) {
-			$startOpts .= ' SQL_BIG_RESULT';
-		}
-
-		if ( isset( $noKeyOptions['SQL_BUFFER_RESULT'] ) ) {
-			$startOpts .= ' SQL_BUFFER_RESULT';
-		}
-
-		if ( isset( $noKeyOptions['SQL_SMALL_RESULT'] ) ) {
-			$startOpts .= ' SQL_SMALL_RESULT';
-		}
-
-		if ( isset( $noKeyOptions['SQL_CALC_FOUND_ROWS'] ) ) {
-			$startOpts .= ' SQL_CALC_FOUND_ROWS';
-		}
-
-		if ( isset( $options['USE INDEX'] ) && is_string( $options['USE INDEX'] ) ) {
-			$useIndex = $this->useIndexClause( $options['USE INDEX'] );
-		} else {
-			$useIndex = '';
-		}
-		if ( isset( $options['IGNORE INDEX'] ) && is_string( $options['IGNORE INDEX'] ) ) {
-			$ignoreIndex = $this->ignoreIndexClause( $options['IGNORE INDEX'] );
-		} else {
-			$ignoreIndex = '';
-		}
-
-		return [ $startOpts, $useIndex, $preLimitTail, $postLimitTail, $ignoreIndex ];
-	}
-
-	/**
-	 * Returns an optional GROUP BY with an optional HAVING
-	 *
-	 * @param array $options Associative array of options
-	 * @return string
-	 * @see Database::select()
-	 * @since 1.21
-	 */
-	protected function makeGroupByWithHaving( $options ) {
-		$sql = '';
-		if ( isset( $options['GROUP BY'] ) ) {
-			$gb = is_array( $options['GROUP BY'] )
-				? implode( ',', $options['GROUP BY'] )
-				: $options['GROUP BY'];
-			$sql .= ' GROUP BY ' . $gb;
-		}
-		if ( isset( $options['HAVING'] ) ) {
-			$having = is_array( $options['HAVING'] )
-				? $this->makeList( $options['HAVING'], self::LIST_AND )
-				: $options['HAVING'];
-			$sql .= ' HAVING ' . $having;
-		}
-
-		return $sql;
-	}
-
-	/**
-	 * Returns an optional ORDER BY
-	 *
-	 * @param array $options Associative array of options
-	 * @return string
-	 * @see Database::select()
-	 * @since 1.21
-	 */
-	protected function makeOrderBy( $options ) {
-		if ( isset( $options['ORDER BY'] ) ) {
-			$ob = is_array( $options['ORDER BY'] )
-				? implode( ',', $options['ORDER BY'] )
-				: $options['ORDER BY'];
-
-			return ' ORDER BY ' . $ob;
-		}
-
-		return '';
-	}
-
 	public function select(
 		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
@@ -1961,89 +1839,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = []
 	) {
-		if ( is_array( $vars ) ) {
-			$fields = implode( ',', $this->fieldNamesWithAlias( $vars ) );
-		} else {
-			$fields = $vars;
-		}
-
-		$options = (array)$options;
-		$useIndexes = ( isset( $options['USE INDEX'] ) && is_array( $options['USE INDEX'] ) )
-			? $options['USE INDEX']
-			: [];
-		$ignoreIndexes = (
-			isset( $options['IGNORE INDEX'] ) &&
-			is_array( $options['IGNORE INDEX'] )
-		)
-			? $options['IGNORE INDEX']
-			: [];
-
-		if (
-			$this->selectOptionsIncludeLocking( $options ) &&
-			$this->selectFieldsOrOptionsAggregate( $vars, $options )
-		) {
-			// Some DB types (e.g. postgres) disallow FOR UPDATE with aggregate
-			// functions. Discourage use of such queries to encourage compatibility.
-			call_user_func(
-				$this->deprecationLogger,
-				__METHOD__ . ": aggregation used with a locking SELECT ($fname)"
-			);
-		}
-
-		if ( is_array( $table ) ) {
-			if ( count( $table ) === 0 ) {
-				$from = '';
-			} else {
-				$from = ' FROM ' .
-					$this->tableNamesWithIndexClauseOrJOIN(
-						$table, $useIndexes, $ignoreIndexes, $join_conds );
-			}
-		} elseif ( $table != '' ) {
-			$from = ' FROM ' .
-				$this->tableNamesWithIndexClauseOrJOIN(
-					[ $table ], $useIndexes, $ignoreIndexes, [] );
-		} else {
-			$from = '';
-		}
-
-		list( $startOpts, $useIndex, $preLimitTail, $postLimitTail, $ignoreIndex ) =
-			$this->makeSelectOptions( $options );
-
-		if ( is_array( $conds ) ) {
-			$conds = $this->makeList( $conds, self::LIST_AND );
-		}
-
-		if ( $conds === null || $conds === false ) {
-			$this->queryLogger->warning(
-				__METHOD__
-				. ' called from '
-				. $fname
-				. ' with incorrect parameters: $conds must be a string or an array',
-				[ 'db_log_category' => 'sql' ]
-			);
-			$conds = '';
-		}
-
-		if ( $conds === '' || $conds === '*' ) {
-			$sql = "SELECT $startOpts $fields $from $useIndex $ignoreIndex $preLimitTail";
-		} elseif ( is_string( $conds ) ) {
-			$sql = "SELECT $startOpts $fields $from $useIndex $ignoreIndex " .
-				"WHERE $conds $preLimitTail";
-		} else {
-			throw new DBUnexpectedError( $this, __METHOD__ . ' called with incorrect parameters' );
-		}
-
-		if ( isset( $options['LIMIT'] ) ) {
-			$sql = $this->limitResult( $sql, $options['LIMIT'],
-				$options['OFFSET'] ?? false );
-		}
-		$sql = "$sql $postLimitTail";
-
-		if ( isset( $options['EXPLAIN'] ) ) {
-			$sql = 'EXPLAIN ' . $sql;
-		}
-
-		return $sql;
+		return $this->platform->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 	}
 
 	public function selectRow( $table, $vars, $conds, $fname = __METHOD__,
@@ -2112,49 +1908,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$row = $res ? $res->fetchRow() : [];
 
 		return isset( $row['rowcount'] ) ? (int)$row['rowcount'] : 0;
-	}
-
-	/**
-	 * @param string|array $options
-	 * @return bool
-	 */
-	private function selectOptionsIncludeLocking( $options ) {
-		$options = (array)$options;
-		foreach ( [ 'FOR UPDATE', 'LOCK IN SHARE MODE' ] as $lock ) {
-			if ( in_array( $lock, $options, true ) ) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * @param array|string $fields
-	 * @param array|string $options
-	 * @return bool
-	 */
-	private function selectFieldsOrOptionsAggregate( $fields, $options ) {
-		foreach ( (array)$options as $key => $value ) {
-			if ( is_string( $key ) ) {
-				if ( preg_match( '/^(?:GROUP BY|HAVING)$/i', $key ) ) {
-					return true;
-				}
-			} elseif ( is_string( $value ) ) {
-				if ( preg_match( '/^(?:DISTINCT|DISTINCTROW)$/i', $value ) ) {
-					return true;
-				}
-			}
-		}
-
-		$regex = '/^(?:COUNT|MIN|MAX|SUM|GROUP_CONCAT|LISTAGG|ARRAY_AGG)\s*\\(/i';
-		foreach ( (array)$fields as $field ) {
-			if ( is_string( $field ) && preg_match( $regex, $field ) ) {
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 	/**
@@ -2781,6 +2534,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	protected function doSelectDomain( DatabaseDomain $domain ) {
 		$this->currentDomain = $domain;
+		$this->platform->setSchema( $domain->getSchema() );
+		$this->platform->setPrefix( $domain->getTablePrefix() );
 	}
 
 	public function getDBname() {
@@ -2800,167 +2555,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function tableName( $name, $format = 'quoted' ) {
-		if ( $name instanceof Subquery ) {
-			throw new DBUnexpectedError(
-				$this,
-				__METHOD__ . ': got Subquery instance when expecting a string'
-			);
-		}
-
-		# Skip the entire process when we have a string quoted on both ends.
-		# Note that we check the end so that we will still quote any use of
-		# use of `database`.table. But won't break things if someone wants
-		# to query a database table with a dot in the name.
-		if ( $this->isQuotedIdentifier( $name ) ) {
-			return $name;
-		}
-
-		# Lets test for any bits of text that should never show up in a table
-		# name. Basically anything like JOIN or ON which are actually part of
-		# SQL queries, but may end up inside of the table value to combine
-		# sql. Such as how the API is doing.
-		# Note that we use a whitespace test rather than a \b test to avoid
-		# any remote case where a word like on may be inside of a table name
-		# surrounded by symbols which may be considered word breaks.
-		if ( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) {
-			$this->queryLogger->warning(
-				__METHOD__ . ": use of subqueries is not supported this way",
-				[
-					'exception' => new RuntimeException(),
-					'db_log_category' => 'sql',
-				]
-			);
-
-			return $name;
-		}
-
-		# Split database and table into proper variables.
-		list( $database, $schema, $prefix, $table ) = $this->qualifiedTableComponents( $name );
-
-		# Quote $table and apply the prefix if not quoted.
-		# $tableName might be empty if this is called from Database::replaceVars()
-		$tableName = "{$prefix}{$table}";
-		if ( $format === 'quoted'
-			&& !$this->isQuotedIdentifier( $tableName )
-			&& $tableName !== ''
-		) {
-			$tableName = $this->addIdentifierQuotes( $tableName );
-		}
-
-		# Quote $schema and $database and merge them with the table name if needed
-		$tableName = $this->prependDatabaseOrSchema( $schema, $tableName, $format );
-		$tableName = $this->prependDatabaseOrSchema( $database, $tableName, $format );
-
-		return $tableName;
-	}
-
-	/**
-	 * Get the table components needed for a query given the currently selected database
-	 *
-	 * @param string $name Table name in the form of db.schema.table, db.table, or table
-	 * @return array (DB name or "" for default, schema name, table prefix, table name)
-	 */
-	protected function qualifiedTableComponents( $name ) {
-		# We reverse the explode so that database.table and table both output the correct table.
-		$dbDetails = explode( '.', $name, 3 );
-		if ( count( $dbDetails ) == 3 ) {
-			list( $database, $schema, $table ) = $dbDetails;
-			# We don't want any prefix added in this case
-			$prefix = '';
-		} elseif ( count( $dbDetails ) == 2 ) {
-			list( $database, $table ) = $dbDetails;
-			# We don't want any prefix added in this case
-			$prefix = '';
-			# In dbs that support it, $database may actually be the schema
-			# but that doesn't affect any of the functionality here
-			$schema = '';
-		} else {
-			list( $table ) = $dbDetails;
-			$tableAliases = $this->platform->getTableAliases();
-			if ( isset( $tableAliases[$table] ) ) {
-				$database = $tableAliases[$table]['dbname'];
-				$schema = is_string( $tableAliases[$table]['schema'] )
-					? $tableAliases[$table]['schema']
-					: $this->relationSchemaQualifier();
-				$prefix = is_string( $tableAliases[$table]['prefix'] )
-					? $tableAliases[$table]['prefix']
-					: $this->tablePrefix();
-			} else {
-				$database = '';
-				$schema = $this->relationSchemaQualifier(); # Default schema
-				$prefix = $this->tablePrefix(); # Default prefix
-			}
-		}
-
-		return [ $database, $schema, $prefix, $table ];
-	}
-
-	/**
-	 * @param string|null $namespace Database or schema
-	 * @param string $relation Name of table, view, sequence, etc...
-	 * @param string $format One of (raw, quoted)
-	 * @return string Relation name with quoted and merged $namespace as needed
-	 */
-	private function prependDatabaseOrSchema( $namespace, $relation, $format ) {
-		if ( $namespace !== null && $namespace !== '' ) {
-			if ( $format === 'quoted' && !$this->isQuotedIdentifier( $namespace ) ) {
-				$namespace = $this->addIdentifierQuotes( $namespace );
-			}
-			$relation = $namespace . '.' . $relation;
-		}
-
-		return $relation;
+		return $this->platform->tableName( $name, $format );
 	}
 
 	public function tableNames( ...$tables ) {
-		$retVal = [];
-
-		foreach ( $tables as $name ) {
-			$retVal[$name] = $this->tableName( $name );
-		}
-
-		return $retVal;
+		return $this->platform->tableNames( ...$tables );
 	}
 
 	public function tableNamesN( ...$tables ) {
-		$retVal = [];
-
-		foreach ( $tables as $name ) {
-			$retVal[] = $this->tableName( $name );
-		}
-
-		return $retVal;
-	}
-
-	/**
-	 * Get an aliased table name
-	 *
-	 * This returns strings like "tableName AS newTableName" for aliased tables
-	 * and "(SELECT * from tableA) newTablename" for subqueries (e.g. derived tables)
-	 *
-	 * @see Database::tableName()
-	 * @param string|Subquery $table Table name or object with a 'sql' field
-	 * @param string|bool $alias Table alias (optional)
-	 * @return string SQL name for aliased table. Will not alias a table to its own name
-	 */
-	protected function tableNameWithAlias( $table, $alias = false ) {
-		if ( is_string( $table ) ) {
-			$quotedTable = $this->tableName( $table );
-		} elseif ( $table instanceof Subquery ) {
-			$quotedTable = (string)$table;
-		} else {
-			throw new InvalidArgumentException( "Table must be a string or Subquery" );
-		}
-
-		if ( $alias === false || $alias === $table ) {
-			if ( $table instanceof Subquery ) {
-				throw new InvalidArgumentException( "Subquery table missing alias" );
-			}
-
-			return $quotedTable;
-		} else {
-			return $quotedTable . ' ' . $this->addIdentifierQuotes( $alias );
-		}
+		return $this->platform->tableNamesN( ...$tables );
 	}
 
 	/**
@@ -2977,154 +2580,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			return $name;
 		} else {
 			return $name . ' AS ' . $this->addIdentifierQuotes( $alias ); // PostgreSQL needs AS
-		}
-	}
-
-	/**
-	 * Gets an array of aliased field names
-	 *
-	 * @param array $fields [ [alias] => field ]
-	 * @return string[] See fieldNameWithAlias()
-	 */
-	protected function fieldNamesWithAlias( $fields ) {
-		$retval = [];
-		foreach ( $fields as $alias => $field ) {
-			if ( is_numeric( $alias ) ) {
-				$alias = $field;
-			}
-			$retval[] = $this->fieldNameWithAlias( $field, $alias );
-		}
-
-		return $retval;
-	}
-
-	/**
-	 * Get the aliased table name clause for a FROM clause
-	 * which might have a JOIN and/or USE INDEX or IGNORE INDEX clause
-	 *
-	 * @param array $tables ( [alias] => table )
-	 * @param array $use_index Same as for select()
-	 * @param array $ignore_index Same as for select()
-	 * @param array $join_conds Same as for select()
-	 * @return string
-	 */
-	protected function tableNamesWithIndexClauseOrJOIN(
-		$tables,
-		$use_index = [],
-		$ignore_index = [],
-		$join_conds = []
-	) {
-		$ret = [];
-		$retJOIN = [];
-		$use_index = (array)$use_index;
-		$ignore_index = (array)$ignore_index;
-		$join_conds = (array)$join_conds;
-
-		foreach ( $tables as $alias => $table ) {
-			if ( !is_string( $alias ) ) {
-				// No alias? Set it equal to the table name
-				$alias = $table;
-			}
-
-			if ( is_array( $table ) ) {
-				// A parenthesized group
-				if ( count( $table ) > 1 ) {
-					$joinedTable = '(' .
-						$this->tableNamesWithIndexClauseOrJOIN(
-							$table, $use_index, $ignore_index, $join_conds ) . ')';
-				} else {
-					// Degenerate case
-					$innerTable = reset( $table );
-					$innerAlias = key( $table );
-					$joinedTable = $this->tableNameWithAlias(
-						$innerTable,
-						is_string( $innerAlias ) ? $innerAlias : $innerTable
-					);
-				}
-			} else {
-				$joinedTable = $this->tableNameWithAlias( $table, $alias );
-			}
-
-			// Is there a JOIN clause for this table?
-			if ( isset( $join_conds[$alias] ) ) {
-				Assert::parameterType( 'array', $join_conds[$alias], "join_conds[$alias]" );
-				list( $joinType, $conds ) = $join_conds[$alias];
-				$tableClause = $this->normalizeJoinType( $joinType );
-				$tableClause .= ' ' . $joinedTable;
-				if ( isset( $use_index[$alias] ) ) { // has USE INDEX?
-					$use = $this->useIndexClause( implode( ',', (array)$use_index[$alias] ) );
-					if ( $use != '' ) {
-						$tableClause .= ' ' . $use;
-					}
-				}
-				if ( isset( $ignore_index[$alias] ) ) { // has IGNORE INDEX?
-					$ignore = $this->ignoreIndexClause(
-						implode( ',', (array)$ignore_index[$alias] ) );
-					if ( $ignore != '' ) {
-						$tableClause .= ' ' . $ignore;
-					}
-				}
-				$on = $this->makeList( (array)$conds, self::LIST_AND );
-				if ( $on != '' ) {
-					$tableClause .= ' ON (' . $on . ')';
-				}
-
-				$retJOIN[] = $tableClause;
-			} elseif ( isset( $use_index[$alias] ) ) {
-				// Is there an INDEX clause for this table?
-				$tableClause = $joinedTable;
-				$tableClause .= ' ' . $this->useIndexClause(
-						implode( ',', (array)$use_index[$alias] )
-					);
-
-				$ret[] = $tableClause;
-			} elseif ( isset( $ignore_index[$alias] ) ) {
-				// Is there an INDEX clause for this table?
-				$tableClause = $joinedTable;
-				$tableClause .= ' ' . $this->ignoreIndexClause(
-						implode( ',', (array)$ignore_index[$alias] )
-					);
-
-				$ret[] = $tableClause;
-			} else {
-				$tableClause = $joinedTable;
-
-				$ret[] = $tableClause;
-			}
-		}
-
-		// We can't separate explicit JOIN clauses with ',', use ' ' for those
-		$implicitJoins = implode( ',', $ret );
-		$explicitJoins = implode( ' ', $retJOIN );
-
-		// Compile our final table clause
-		return implode( ' ', [ $implicitJoins, $explicitJoins ] );
-	}
-
-	/**
-	 * Validate and normalize a join type
-	 *
-	 * Subclasses may override this to add supported join types.
-	 *
-	 * @param string $joinType
-	 * @return string
-	 */
-	protected function normalizeJoinType( string $joinType ) {
-		switch ( strtoupper( $joinType ) ) {
-			case 'JOIN':
-			case 'INNER JOIN':
-				return 'JOIN';
-
-			case 'LEFT JOIN':
-				return 'LEFT JOIN';
-
-			case 'STRAIGHT_JOIN':
-			case 'STRAIGHT JOIN':
-				// MySQL only
-				return 'JOIN';
-
-			default:
-				return $joinType;
 		}
 	}
 
@@ -3176,7 +2631,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return bool
 	 */
 	public function isQuotedIdentifier( $name ) {
-		return $name[0] == '"' && substr( $name, -1, 1 ) == '"';
+		return $this->platform->isQuotedIdentifier( $name );
 	}
 
 	/**
@@ -3197,36 +2652,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function nextSequenceValue( $seqName ) {
 		return null;
-	}
-
-	/**
-	 * USE INDEX clause.
-	 *
-	 * This can be used as optimisation in queries that affect tables with multiple
-	 * indexes if the database does not pick the most optimal one by default.
-	 * The "right" index might vary between database backends and versions thereof,
-	 * as such in practice this is biased toward specifically improving performance
-	 * of large wiki farms that use MySQL or MariaDB (like Wikipedia).
-	 *
-	 * @stable to override
-	 * @param string $index
-	 * @return string
-	 */
-	public function useIndexClause( $index ) {
-		return '';
-	}
-
-	/**
-	 * IGNORE INDEX clause.
-	 *
-	 * The inverse of Database::useIndexClause.
-	 *
-	 * @stable to override
-	 * @param string $index
-	 * @return string
-	 */
-	public function ignoreIndexClause( $index ) {
-		return '';
 	}
 
 	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
@@ -3635,71 +3060,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$options = [],
 		$join_conds = []
 	) {
-		// First, build the Cartesian product of $permute_conds
-		$conds = [ [] ];
-		foreach ( $permute_conds as $field => $values ) {
-			if ( !$values ) {
-				// Skip empty $values
-				continue;
-			}
-			$values = array_unique( $values );
-			$newConds = [];
-			foreach ( $conds as $cond ) {
-				foreach ( $values as $value ) {
-					$cond[$field] = $value;
-					$newConds[] = $cond; // Arrays are by-value, not by-reference, so this works
-				}
-			}
-			$conds = $newConds;
-		}
-
-		$extra_conds = $extra_conds === '' ? [] : (array)$extra_conds;
-
-		// If there's just one condition and no subordering, hand off to
-		// selectSQLText directly.
-		if ( count( $conds ) === 1 &&
-			( !isset( $options['INNER ORDER BY'] ) || !$this->unionSupportsOrderAndLimit() )
-		) {
-			return $this->selectSQLText(
-				$table, $vars, $conds[0] + $extra_conds, $fname, $options, $join_conds
-			);
-		}
-
-		// Otherwise, we need to pull out the order and limit to apply after
-		// the union. Then build the SQL queries for each set of conditions in
-		// $conds. Then union them together (using UNION ALL, because the
-		// product *should* already be distinct).
-		$orderBy = $this->makeOrderBy( $options );
-		$limit = $options['LIMIT'] ?? null;
-		$offset = $options['OFFSET'] ?? false;
-		$all = empty( $options['NOTALL'] ) && !in_array( 'NOTALL', $options );
-		if ( !$this->unionSupportsOrderAndLimit() ) {
-			unset( $options['ORDER BY'], $options['LIMIT'], $options['OFFSET'] );
-		} else {
-			if ( array_key_exists( 'INNER ORDER BY', $options ) ) {
-				$options['ORDER BY'] = $options['INNER ORDER BY'];
-			}
-			if ( $limit !== null && is_numeric( $offset ) && $offset != 0 ) {
-				// We need to increase the limit by the offset rather than
-				// using the offset directly, otherwise it'll skip incorrectly
-				// in the subqueries.
-				$options['LIMIT'] = $limit + $offset;
-				unset( $options['OFFSET'] );
-			}
-		}
-
-		$sqls = [];
-		foreach ( $conds as $cond ) {
-			$sqls[] = $this->selectSQLText(
-				$table, $vars, $cond + $extra_conds, $fname, $options, $join_conds
-			);
-		}
-		$sql = $this->unionQueries( $sqls, $all ) . $orderBy;
-		if ( $limit !== null ) {
-			$sql = $this->limitResult( $sql, $limit, $offset );
-		}
-
-		return $sql;
+		return $this->platform->unionConditionPermutations(
+			$table,
+			$vars,
+			$permute_conds,
+			$extra_conds,
+			$fname,
+			$options,
+			$join_conds
+		);
 	}
 
 	/**

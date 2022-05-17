@@ -1,11 +1,11 @@
 <?php
 
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
+use MediaWiki\Tests\Unit\Libs\Rdbms\SQLPlatformTestHelper;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\FakeResultWrapper;
-use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\RequestTimeout\RequestTimeout;
 
@@ -42,11 +42,6 @@ class DatabaseTestHelper extends Database {
 	 */
 	protected $tablesExists;
 
-	/**
-	 * @var bool Value to return from unionSupportsOrderAndLimit()
-	 */
-	protected $unionSupportsOrderAndLimit = true;
-
 	/** @var int[] */
 	protected $forcedAffectedCountQueue = [];
 
@@ -81,7 +76,7 @@ class DatabaseTestHelper extends Database {
 		] );
 
 		$this->testName = $testName;
-		$this->platform = new SQLPlatform( new AddQuoterMock() );
+		$this->platform = new SQLPlatformTestHelper( new AddQuoterMock() );
 
 		$this->currentDomain = DatabaseDomain::newUnspecified();
 		$this->open( 'localhost', 'testuser', 'password', 'testdb', null, '' );
@@ -153,11 +148,6 @@ class DatabaseTestHelper extends Database {
 	public function strencode( $s ) {
 		// Choose apos to avoid handling of escaping double quotes in quoted text
 		return str_replace( "'", "\'", $s );
-	}
-
-	public function addIdentifierQuotes( $s ) {
-		// no escaping to avoid handling of double quotes in quoted text
-		return $s;
 	}
 
 	public function query( $sql, $fname = '', $flags = 0 ) {
@@ -261,21 +251,5 @@ class DatabaseTestHelper extends Database {
 		}
 
 		return new FakeResultWrapper( $res );
-	}
-
-	public function unionSupportsOrderAndLimit() {
-		return $this->unionSupportsOrderAndLimit;
-	}
-
-	public function setUnionSupportsOrderAndLimit( $v ) {
-		$this->unionSupportsOrderAndLimit = (bool)$v;
-	}
-
-	public function useIndexClause( $index ) {
-		return "FORCE INDEX (" . $this->indexName( $index ) . ")";
-	}
-
-	public function ignoreIndexClause( $index ) {
-		return "IGNORE INDEX (" . $this->indexName( $index ) . ")";
 	}
 }

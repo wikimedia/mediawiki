@@ -117,7 +117,12 @@ abstract class DatabaseMysqlBase extends Database {
 		$this->insertSelectIsSafe = isset( $params['insertSelectIsSafe'] )
 			? (bool)$params['insertSelectIsSafe'] : null;
 		parent::__construct( $params );
-		$this->platform = new MySQLPlatform( $this );
+		$this->platform = new MySQLPlatform(
+			$this,
+			$params['queryLogger'],
+			$this->currentDomain->getSchema(),
+			$this->currentDomain->getTablePrefix()
+		);
 	}
 
 	/**
@@ -153,6 +158,7 @@ abstract class DatabaseMysqlBase extends Database {
 				null,
 				$tablePrefix
 			);
+			$this->platform->setPrefix( $tablePrefix );
 			// Abstract over any excessive MySQL defaults
 			$set = [ 'group_concat_max_len = 262144' ];
 			// Set any custom settings defined by site config
@@ -198,6 +204,7 @@ abstract class DatabaseMysqlBase extends Database {
 				null,
 				$domain->getTablePrefix()
 			);
+			$this->platform->setPrefix( $domain->getTablePrefix() );
 
 			return true;
 		}
@@ -215,6 +222,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 		// Update that domain fields on success (no exception thrown)
 		$this->currentDomain = $domain;
+		$this->platform->setPrefix( $domain->getTablePrefix() );
 
 		return true;
 	}
@@ -347,7 +355,7 @@ abstract class DatabaseMysqlBase extends Database {
 	public function tableExists( $table, $fname = __METHOD__ ) {
 		// Split database and table into proper variables as Database::tableName() returns
 		// shared tables prefixed with their database, which do not work in SHOW TABLES statements
-		list( $database, , $prefix, $table ) = $this->qualifiedTableComponents( $table );
+		list( $database, , $prefix, $table ) = $this->platform->qualifiedTableComponents( $table );
 		$tableName = "{$prefix}{$table}";
 
 		if ( isset( $this->sessionTempTables[$tableName] ) ) {
@@ -429,17 +437,6 @@ abstract class DatabaseMysqlBase extends Database {
 		return $result ?: false;
 	}
 
-	protected function normalizeJoinType( string $joinType ) {
-		switch ( strtoupper( $joinType ) ) {
-			case 'STRAIGHT_JOIN':
-			case 'STRAIGHT JOIN':
-				return 'STRAIGHT_JOIN';
-
-			default:
-				return parent::normalizeJoinType( $joinType );
-		}
-	}
-
 	/**
 	 * @param string $s
 	 * @return string
@@ -453,18 +450,6 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return mixed
 	 */
 	abstract protected function mysqlRealEscapeString( $s );
-
-	/**
-	 * @param string $s
-	 * @return string
-	 */
-	public function addIdentifierQuotes( $s ) {
-		// Tests disabling constructor
-		if ( !$this->platform ) {
-			$this->platform = new MySQLPlatform( $this );
-		}
-		return $this->platform->addIdentifierQuotes( $s );
-	}
 
 	/**
 	 * @param string $name
@@ -922,22 +907,6 @@ abstract class DatabaseMysqlBase extends Database {
 		$row = $res->fetchObject();
 
 		return $row ? (bool)$row->Value : false;
-	}
-
-	/**
-	 * @param string $index
-	 * @return string
-	 */
-	public function useIndexClause( $index ) {
-		return "FORCE INDEX (" . $this->indexName( $index ) . ")";
-	}
-
-	/**
-	 * @param string $index
-	 * @return string
-	 */
-	public function ignoreIndexClause( $index ) {
-		return "IGNORE INDEX (" . $this->indexName( $index ) . ")";
 	}
 
 	/**

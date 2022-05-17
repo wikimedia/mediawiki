@@ -94,7 +94,12 @@ class DatabaseSqlite extends Database {
 		$this->trxMode = strtoupper( $params['trxMode'] ?? '' );
 
 		$this->lockMgr = $this->makeLockManager();
-		$this->platform = new SqlitePlatform( $this );
+		$this->platform = new SqlitePlatform(
+			$this,
+			$params['queryLogger'],
+			$this->currentDomain->getSchema(),
+			$this->currentDomain->getTablePrefix()
+		);
 	}
 
 	protected static function getAttributes() {
@@ -177,6 +182,7 @@ class DatabaseSqlite extends Database {
 		}
 
 		$this->currentDomain = new DatabaseDomain( $db, null, $tablePrefix );
+		$this->platform->setPrefix( $tablePrefix );
 
 		try {
 			$flags = self::QUERY_CHANGE_TRX | self::QUERY_NO_RETRY;
@@ -398,6 +404,7 @@ class DatabaseSqlite extends Database {
 				null,
 				$domain->getTablePrefix()
 			);
+			$this->platform->setPrefix( $domain->getTablePrefix() );
 
 			return true;
 		}
@@ -410,22 +417,6 @@ class DatabaseSqlite extends Database {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Use MySQL's naming (accounts for prefix etc) but remove surrounding backticks
-	 *
-	 * @param string $name
-	 * @param string $format
-	 * @return string
-	 */
-	public function tableName( $name, $format = 'quoted' ) {
-		// table names starting with sqlite_ are reserved
-		if ( strpos( $name, 'sqlite_' ) === 0 ) {
-			return $name;
-		}
-
-		return str_replace( '"', '', parent::tableName( $name, $format ) );
 	}
 
 	/**
@@ -536,17 +527,6 @@ class DatabaseSqlite extends Database {
 		$options = explode( ' ', $firstPart );
 
 		return in_array( 'UNIQUE', $options );
-	}
-
-	protected function makeSelectOptions( array $options ) {
-		// Remove problematic options that the base implementation converts to SQL
-		foreach ( $options as $k => $v ) {
-			if ( is_numeric( $k ) && ( $v === 'FOR UPDATE' || $v === 'LOCK IN SHARE MODE' ) ) {
-				$options[$k] = '';
-			}
-		}
-
-		return parent::makeSelectOptions( $options );
 	}
 
 	/**

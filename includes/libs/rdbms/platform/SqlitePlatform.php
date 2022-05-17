@@ -78,4 +78,31 @@ class SqlitePlatform extends SQLPlatform {
 	public function buildStringCast( $field ) {
 		return 'CAST ( ' . $field . ' AS TEXT )';
 	}
+
+	/**
+	 * Use MySQL's naming (accounts for prefix etc) but remove surrounding backticks
+	 *
+	 * @param string $name
+	 * @param string $format
+	 * @return string
+	 */
+	public function tableName( $name, $format = 'quoted' ) {
+		// table names starting with sqlite_ are reserved
+		if ( strpos( $name, 'sqlite_' ) === 0 ) {
+			return $name;
+		}
+
+		return str_replace( '"', '', parent::tableName( $name, $format ) );
+	}
+
+	protected function makeSelectOptions( array $options ) {
+		// Remove problematic options that the base implementation converts to SQL
+		foreach ( $options as $k => $v ) {
+			if ( is_numeric( $k ) && ( $v === 'FOR UPDATE' || $v === 'LOCK IN SHARE MODE' ) ) {
+				$options[$k] = '';
+			}
+		}
+
+		return parent::makeSelectOptions( $options );
+	}
 }
