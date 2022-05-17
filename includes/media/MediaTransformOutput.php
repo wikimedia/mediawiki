@@ -243,7 +243,7 @@ abstract class MediaTransformOutput {
 	 * @return string
 	 */
 	protected function linkWrap( $linkAttribs, $contents ) {
-		if ( $linkAttribs ) {
+		if ( isset( $linkAttribs['href'] ) ) {
 			return Xml::tags( 'a', $linkAttribs, $contents );
 		} else {
 			$parserEnableLegacyMediaDOM = MediaWikiServices::getInstance()
@@ -251,7 +251,7 @@ abstract class MediaTransformOutput {
 			if ( $parserEnableLegacyMediaDOM ) {
 				return $contents;
 			} else {
-				return Xml::tags( 'span', null, $contents );
+				return Xml::tags( 'span', $linkAttribs ?: null, $contents );
 			}
 		}
 	}

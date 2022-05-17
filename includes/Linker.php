@@ -279,6 +279,7 @@ class Linker {
 	 *          valign          Vertical alignment (baseline, sub, super, top, text-top, middle,
 	 *                          bottom, text-bottom)
 	 *          alt             Alternate text for image (i.e. alt attribute). Plain text.
+	 *          title           Used for tooltips if caption isn't visible.
 	 *          class           HTML for image classes. Plain text.
 	 *          caption         HTML for image caption.
 	 *          link-url        URL to link to
@@ -398,9 +399,12 @@ class Linker {
 			}
 		}
 
-		if ( isset( $frameParams['thumbnail'] ) || isset( $frameParams['manualthumb'] )
-			|| isset( $frameParams['framed'] )
-		) {
+		// Parser::makeImage has a similarly named variable
+		$hasVisibleCaption = isset( $frameParams['thumbnail'] ) ||
+			isset( $frameParams['manualthumb'] ) ||
+			isset( $frameParams['framed'] );
+
+		if ( $hasVisibleCaption ) {
 			if ( $enableLegacyMediaDOM ) {
 				// This is no longer needed in our new media output, since the
 				// default styling in content.media-common.less takes care of it;
@@ -629,9 +633,6 @@ class Linker {
 		if ( !isset( $frameParams['alt'] ) ) {
 			$frameParams['alt'] = '';
 		}
-		if ( !isset( $frameParams['title'] ) ) {
-			$frameParams['title'] = '';
-		}
 		if ( !isset( $frameParams['caption'] ) ) {
 			$frameParams['caption'] = '';
 		}
@@ -722,11 +723,6 @@ class Linker {
 
 		if ( !$exists ) {
 			$label = '';
-			if ( $enableLegacyMediaDOM ) {
-				// This is the information for tooltips for inline images which
-				// Parsoid stores in data-mw.  See T273014
-				$label = $frameParams['title'];
-			}
 			$s .= self::makeBrokenImageLinkObj(
 				$title, $label, '', '', '', (bool)$time, $handlerParams
 			);
@@ -746,7 +742,6 @@ class Linker {
 			}
 			$params = [
 				'alt' => $frameParams['alt'],
-				'title' => $frameParams['title'],
 			];
 			if ( $enableLegacyMediaDOM ) {
 				$params += [
