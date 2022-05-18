@@ -46,6 +46,26 @@ class ConfigSchemaAggregatorTest extends TestCase {
 		], $aggregator->getDefaults() );
 	}
 
+	public function testGetDefaults() {
+		$aggregator = new ConfigSchemaAggregator();
+		$aggregator->addSchema( 'no_default', [ 'type' => 'string', ] );
+		$aggregator->addSchema( 'with_default', [ 'type' => 'string', 'default' => 'bla', ] );
+		$aggregator->addSchema(
+			'another_with_default',
+			[ 'type' => 'string', 'default' => 'blabla', ]
+		);
+
+		$this->assertEquals( [
+			'with_default' => 'bla',
+			'another_with_default' => 'blabla',
+		], $aggregator->getDefaults() );
+
+		$this->assertFalse( $aggregator->hasDefaultFor( 'no_default' ) );
+		$this->assertNull( $aggregator->getDefaultFor( 'no_default' ) );
+		$this->assertTrue( $aggregator->hasDefaultFor( 'with_default' ) );
+		$this->assertSame( 'bla', $aggregator->getDefaultFor( 'with_default' ) );
+	}
+
 	public function testDefaultOverrideFails() {
 		$aggregator = new ConfigSchemaAggregator();
 		$aggregator->addSchema( 'foo', [ 'default' => 'bla', ] );

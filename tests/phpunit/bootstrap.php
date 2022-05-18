@@ -22,6 +22,8 @@
  * @ingroup Testing
  */
 
+use MediaWiki\MainConfigSchema;
+
 if ( PHP_SAPI !== 'cli' ) {
 	die( 'This file is only meant to be executed indirectly by PHPUnit\'s bootstrap process!' );
 }
@@ -48,16 +50,22 @@ $GLOBALS['IP'] = $IP;
 TestSetup::snapshotGlobals();
 
 // Faking in lieu of Setup.php
-$GLOBALS['wgScopeTest'] = 'MediaWiki Setup.php scope test';
 $GLOBALS['wgCommandLineMode'] = true;
 $GLOBALS['wgAutoloadClasses'] = [];
+$GLOBALS['wgBaseDirectory'] = MW_INSTALL_PATH;
 
 TestSetup::requireOnceInGlobalScope( "$IP/includes/AutoLoader.php" );
 TestSetup::requireOnceInGlobalScope( "$IP/tests/common/TestsAutoLoader.php" );
 TestSetup::requireOnceInGlobalScope( "$IP/includes/Defines.php" );
-TestSetup::requireOnceInGlobalScope( "$IP/includes/DefaultSettings.php" );
-TestSetup::requireOnceInGlobalScope( "$IP/includes/DevelopmentSettings.php" );
 TestSetup::requireOnceInGlobalScope( "$IP/includes/GlobalFunctions.php" );
+
+// Extract the defaults into global variables.
+// NOTE: this does not apply any dynamic defaults.
+foreach ( MainConfigSchema::listDefaultValues( 'wg' ) as $var => $value ) {
+	$GLOBALS[$var] = $value;
+}
+
+TestSetup::requireOnceInGlobalScope( "$IP/includes/DevelopmentSettings.php" );
 
 TestSetup::applyInitialConfig();
 MediaWikiCliOptions::initialize();

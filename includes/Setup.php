@@ -156,6 +156,7 @@ if ( defined( 'MW_USE_CONFIG_SCHEMA_CLASS' ) ) {
 	require_once MW_INSTALL_PATH . '/includes/DefaultSettings.php';
 
 	// This is temporary until we no longer need this mode.
+	// TODO: delete config-merge-strategies.php when this code is removed.
 	$wgSettings->load( new PhpSettingsSource( MW_INSTALL_PATH . '/includes/config-merge-strategies.php' ) );
 } else {
 	$wgSettings->load( new PhpSettingsSource( MW_INSTALL_PATH . '/includes/config-schema.php' ) );
@@ -184,6 +185,20 @@ $wgSettings->putConfigValues( [
 ] );
 $wgSettings->apply();
 
+// $wgSettings->apply() puts all configuration into global variables.
+// If we are not in global scope, make all relevant globals available
+// in this file's scope as well.
+$wgScopeTest = 'MediaWiki Setup.php scope test';
+if ( !isset( $GLOBALS['wgScopeTest'] ) || $GLOBALS['wgScopeTest'] !== $wgScopeTest ) {
+	foreach ( $wgSettings->getConfigSchema()->getDefinedKeys() as $key ) {
+		$var = "wg$key";
+		// phpcs:ignore MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
+		global $$var;
+	}
+	unset( $key, $var );
+}
+unset( $wgScopeTest );
+
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	call_user_func( MW_CONFIG_CALLBACK, $wgSettings );
 } else {
@@ -211,7 +226,7 @@ $wgSettings->apply();
 
 /**
  * Customization point after all loading (constants, functions, classes,
- * DefaultSettings, LocalSettings). Specifically, this is before usage of
+ * LocalSettings). Specifically, this is before usage of
  * settings, before instantiation of Profiler (and other singletons), and
  * before any setup functions or hooks run.
  */
@@ -539,6 +554,8 @@ if ( !$wgCommandLineMode ) {
 	Pingback::schedulePingback();
 }
 
+// Explicit globals, so this works with bootstrap.php
+global $wgFullyInitialised;
 $wgFullyInitialised = true;
 
 // T264370

@@ -28,6 +28,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Interwiki\NullInterwikiLookup;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use Wikimedia\AtEase\AtEase;
@@ -169,34 +170,33 @@ abstract class Installer {
 	 *
 	 * @var array
 	 */
-	protected $defaultVarNames = [
-		'wgSitename',
-		'wgPasswordSender',
-		'wgLanguageCode',
-		'wgLocaltimezone',
-		'wgRightsIcon',
-		'wgRightsText',
-		'wgRightsUrl',
-		'wgEnableEmail',
-		'wgEnableUserEmail',
-		'wgEnotifUserTalk',
-		'wgEnotifWatchlist',
-		'wgEmailAuthentication',
-		'wgDBname',
-		'wgDBtype',
-		'wgDiff3',
-		'wgImageMagickConvertCommand',
-		'wgGitBin',
-		'IP',
-		'wgScriptPath',
-		'wgMetaNamespace',
-		'wgDeletedDirectory',
-		'wgEnableUploads',
-		'wgSecretKey',
-		'wgUseInstantCommons',
-		'wgUpgradeKey',
-		'wgDefaultSkin',
-		'wgPingback',
+	private const DEFAULT_VAR_NAMES = [
+		'Sitename',
+		'PasswordSender',
+		'LanguageCode',
+		'Localtimezone',
+		'RightsIcon',
+		'RightsText',
+		'RightsUrl',
+		'EnableEmail',
+		'EnableUserEmail',
+		'EnotifUserTalk',
+		'EnotifWatchlist',
+		'EmailAuthentication',
+		'DBname',
+		'DBtype',
+		'Diff3',
+		'ImageMagickConvertCommand',
+		'GitBin',
+		'ScriptPath',
+		'MetaNamespace',
+		'DeletedDirectory',
+		'EnableUploads',
+		'SecretKey',
+		'UseInstantCommons',
+		'UpgradeKey',
+		'DefaultSkin',
+		'Pingback',
 	];
 
 	/**
@@ -442,8 +442,9 @@ abstract class Installer {
 	private function getDefaultSettings(): array {
 		$ret = $this->internalDefaults;
 
-		foreach ( $this->defaultVarNames as $var ) {
-			$ret[$var] = $GLOBALS[$var];
+		foreach ( self::DEFAULT_VAR_NAMES as $name ) {
+			$var = "wg{$name}";
+			$ret[$var] = MainConfigSchema::getDefaultValue( $name );
 		}
 		return $ret;
 	}
@@ -586,7 +587,7 @@ abstract class Installer {
 
 	/**
 	 * Get an MW configuration variable, or internal installer configuration variable.
-	 * The defaults come from $GLOBALS (ultimately DefaultSettings.php).
+	 * The defaults come from MainConfigSchema.
 	 * Installer variables are typically prefixed by an underscore.
 	 *
 	 * @param string $name
@@ -678,7 +679,11 @@ abstract class Installer {
 		}
 		unset( $lsExists );
 
-		require "$IP/includes/DefaultSettings.php";
+		// Extract the defaults into the current scope
+		foreach ( MainConfigSchema::listDefaultValues( 'wg' ) as $var => $value ) {
+			$$var = $value;
+		}
+
 		$wgExtensionDirectory = "$IP/extensions";
 		$wgStyleDirectory = "$IP/skins";
 
@@ -1540,7 +1545,10 @@ abstract class Installer {
 		 * but we're not opening that can of worms
 		 * @see https://phabricator.wikimedia.org/T28857
 		 */
-		require "$IP/includes/DefaultSettings.php";
+		// Extract the defaults into the current scope
+		foreach ( MainConfigSchema::listDefaultValues( 'wg' ) as $var => $value ) {
+			$$var = $value;
+		}
 
 		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables
 		global $wgAutoloadClasses, $wgExtensionDirectory, $wgStyleDirectory;

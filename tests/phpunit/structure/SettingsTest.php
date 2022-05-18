@@ -78,9 +78,9 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 			'script' => MW_INSTALL_PATH . '/maintenance/generateConfigSchemaArray.php',
 			'expectedFile' => MW_INSTALL_PATH . '/includes/config-schema.php',
 		];
-		yield 'includes/DefaultSettings.php' => [
-			'script' => MW_INSTALL_PATH . '/maintenance/generateConfigDefaultSettings.php',
-			'expectedFile' => MW_INSTALL_PATH . '/includes/DefaultSettings.php',
+		yield 'includes/config-vars.php' => [
+			'script' => MW_INSTALL_PATH . '/maintenance/generateConfigVars.php',
+			'expectedFile' => MW_INSTALL_PATH . '/includes/config-vars.php',
 		];
 		yield 'docs/config-schema.yaml' => [
 			'script' => MW_INSTALL_PATH . '/maintenance/generateConfigSchemaYaml.php',
@@ -125,6 +125,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideDefaultSettingsConsistency
 	 */
 	public function testDefaultSettingsConsistency( SettingsSource $source ) {
+		$this->expectDeprecationAndContinue( '/DefaultSettings\\.php/' );
 		$defaultSettingsProps = ( static function () {
 			require MW_INSTALL_PATH . '/includes/DefaultSettings.php';
 			$vars = get_defined_vars();
@@ -516,6 +517,26 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 			$defaultPolicies['policies']['default'],
 			$mergedPolicies['policies']['default']
 		);
+	}
+
+	/**
+	 * @covers \MediaWiki\MainConfigSchema::listDefaultValues
+	 * @covers \MediaWiki\MainConfigSchema::getDefaultValue
+	 */
+	public function testMainConfigSchemaDefaults() {
+		$defaults = iterator_to_array( MainConfigSchema::listDefaultValues() );
+		$prefixed = iterator_to_array( MainConfigSchema::listDefaultValues( 'wg' ) );
+
+		$schema = $this->getSchemaData();
+		foreach ( $schema['config-schema'] as $name => $sch ) {
+			$this->assertArrayHasKey( $name, $defaults );
+			$this->assertArrayHasKey( "wg$name", $prefixed );
+
+			$this->assertSame( $sch['default'] ?? null, $defaults[$name] );
+			$this->assertSame( $sch['default'] ?? null, $prefixed["wg$name"] );
+
+			$this->assertSame( $sch['default'] ?? null, MainConfigSchema::getDefaultValue( $name ) );
+		}
 	}
 
 }

@@ -215,6 +215,9 @@ because of Phabricator reports.
      to pass one to wfUrlProtocols anyway);
   3) they use type hints (don't try passing null instead of string, etc.).
 * MaintainableDBConnRef is deprecated, use DBConnRef instead.
+* Loading DefaultSettings.php is deprecated. To get default values of main
+  config settings, use MainConfigSchema::listDefaultValues() or
+  MainConfigSchema::getDefaultValue().
 * AbstractContent::getRedirectChain() and
   AbstractContent::getUltimateRedirectTarget() are now emitting deprecation
   warnings (T296430).

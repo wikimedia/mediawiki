@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Schema containing merge strategies to supplement the information coming from
+ * DefaultSettings.php. Only used in Setup.php if MW_USE_LEGACY_DEFAULT_SETTINGS
+ * is set.
+ *
+ * @todo Remove this when it is no longer needed.
+ */
 use MediaWiki\MainConfigNames;
 
 return [

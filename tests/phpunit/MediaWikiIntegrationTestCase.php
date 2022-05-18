@@ -174,7 +174,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		if ( defined( 'MW_PHPUNIT_UNIT' ) ) {
 			$IP = realpath( __DIR__ . '/../..' );
 			TestSetup::requireOnceInGlobalScope( "$IP/includes/Defines.php" );
-			TestSetup::requireOnceInGlobalScope( "$IP/includes/DefaultSettings.php" );
 			TestSetup::requireOnceInGlobalScope( "$IP/includes/GlobalFunctions.php" );
 			TestSetup::requireOnceInGlobalScope( "$IP/includes/Setup.php" );
 			TestSetup::requireOnceInGlobalScope( "$IP/tests/common/TestsAutoLoader.php" );

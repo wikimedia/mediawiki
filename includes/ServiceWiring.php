@@ -138,6 +138,7 @@ use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\Settings\Config\ConfigSchema;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Shell\ShellboxClientFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
@@ -413,6 +414,11 @@ return [
 
 	'ConfigRepository' => static function ( MediaWikiServices $services ): ConfigRepository {
 		return new ConfigRepository( $services->getConfigFactory() );
+	},
+
+	'ConfigSchema' => static function ( MediaWikiServices $services ): ConfigSchema {
+		global $wgSettings; // TODO: have Setup.php declare this service
+		return $wgSettings->getConfigSchema();
 	},
 
 	'ConfiguredReadOnlyMode' => static function ( MediaWikiServices $services ): ConfiguredReadOnlyMode {

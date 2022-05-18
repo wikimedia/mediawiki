@@ -207,7 +207,7 @@ class SiteConfig extends ISiteConfig {
 		// Override parent default
 		// Override parent default
 		if ( isset( $this->parsoidSettings['linting'] ) ) {
-			// @todo: Add this setting to MW's DefaultSettings.php
+			// @todo: Add this setting to MW's MainConfigSchema
 			$this->linterEnabled = $this->parsoidSettings['linting'];
 		}
 
