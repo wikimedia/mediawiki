@@ -44,29 +44,44 @@ class ConfigSchemaAggregator implements ConfigSchema {
 	 * @param string $sourceName
 	 */
 	public function addSchema( string $key, array $schema, string $sourceName = 'unknown' ) {
-		if ( $this->hasSchemaFor( $key ) ) {
-			throw new SettingsBuilderException( 'Overriding config schema for {key} from {source}', [
-				'source' => $sourceName,
-				'key' => $key,
-			] );
-		}
-
 		$this->schemas[$key] = $schema;
 
-		if ( array_key_exists( 'default', $schema ) ) {
-			$this->defaults[$key] = $schema['default'];
-		}
-
-		if ( isset( $schema['type'] ) ) {
-			$this->types[$key] = $schema['type'];
-		}
+		$this->setListValueInternal( $schema, $this->defaults, $key, 'default', $sourceName );
+		$this->setListValueInternal( $schema, $this->types, $key, 'type', $sourceName );
+		$this->setListValueInternal( $schema, $this->mergeStrategies, $key, 'mergeStrategy', $sourceName );
 
 		if ( isset( $schema['mergeStrategy'] ) ) {
-			$this->mergeStrategies[$key] = $schema['mergeStrategy'];
+			// TODO: mark cache as incomplete rather than throwing it away
+			$this->mergeStrategyCache = null;
 		}
+	}
 
-		// TODO: mark cache as incomplete rather than throwing it away
-		$this->mergeStrategyCache = null;
+	/**
+	 * Update a map with a specific field.
+	 *
+	 * @param array $schema
+	 * @param array &$target
+	 * @param string $key
+	 * @param string $fieldName
+	 * @param string $sourceName
+	 *
+	 * @return void
+	 * @throws SettingsBuilderException if a conflict is detected
+	 *
+	 */
+	private function setListValueInternal( $schema, &$target, $key, $fieldName, $sourceName ) {
+		if ( array_key_exists( $fieldName, $schema ) ) {
+			if ( array_key_exists( $key, $target ) ) {
+				throw new SettingsBuilderException(
+					"Overriding $fieldName in schema for {key} from {source}",
+					[
+						'source' => $sourceName,
+						'key' => $key,
+					]
+				);
+			}
+			$target[$key] = $schema[$fieldName];
+		}
 	}
 
 	/**
@@ -228,6 +243,16 @@ class ConfigSchemaAggregator implements ConfigSchema {
 	 */
 	public function getDefaultFor( string $key ) {
 		return $this->defaults[$key] ?? null;
+	}
+
+	/**
+	 * Get type for the $key, or null if the type is not known.
+	 *
+	 * @param string $key
+	 * @return mixed
+	 */
+	public function getTypeFor( string $key ) {
+		return $this->types[$key] ?? null;
 	}
 
 	/**

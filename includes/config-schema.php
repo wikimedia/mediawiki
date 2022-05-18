@@ -2874,4 +2874,151 @@ return [
 			'VirtualRestConfig' => 'array_plus_2d',
 		],
 	],
+	'config-schema' => [
+		'LogoHD' => [
+			'deprecated' => 'since 1.35. Developers should retrieve this logo (and other variants) using the static function ResourceLoaderSkinModule::getAvailableLogos. $wgLogos should be used instead.',
+		],
+		'UploadStashScalerBaseUrl' => [
+			'deprecated' => 'since 1.36 Use thumbProxyUrl in $wgLocalFileRepo',
+		],
+		'EnableSpecialMute' => [
+			'deprecated' => 'since 1.34',
+		],
+		'SharedDB' => [
+			'deprecated' => 'since 1.21 In new code, use the $wiki parameter to LBFactory::getMainLB() to access remote databases. Using LBFactory::getMainLB() allows the shared database to reside on separate servers to the wiki\'s own database, with suitable configuration of $wgLBFactoryConf',
+		],
+		'LocalDatabases' => [
+			'items' => [
+				'type' => 'string',
+			],
+		],
+		'ContentHandlerTextFallback' => [
+			'deprecated' => 'since 1.37',
+		],
+		'ParserCacheUseJson' => [
+			'deprecated' => 'since 1.36',
+		],
+		'SquidPurgeUseHostHeader' => [
+			'deprecated' => 'since 1.33',
+		],
+		'DummyLanguageCodes' => [
+			'deprecated' => 'since 1.29',
+		],
+		'RawHtmlMessages' => [
+			'items' => [
+				'type' => 'string',
+			],
+		],
+		'IncludeLegacyJavaScript' => [
+			'deprecated' => 'since 1.26: Always declare dependencies.',
+		],
+		'AllowImageTag' => [
+			'deprecated' => 'since 1.35; register an extension tag named <img> instead.',
+		],
+		'ReauthenticateTime' => [
+			'additionalProperties' => [
+				'type' => 'integer',
+			],
+		],
+		'AllowSecuritySensitiveOperationIfCannotReauthenticate' => [
+			'additionalProperties' => [
+				'type' => 'boolean',
+			],
+		],
+		'ChangeCredentialsBlacklist' => [
+			'items' => [
+				'type' => 'string',
+			],
+		],
+		'RemoveCredentialsBlacklist' => [
+			'items' => [
+				'type' => 'string',
+			],
+		],
+		'MinimalPasswordLength' => [
+			'deprecated' => 'since 1.26, use $wgPasswordPolicy\'s MinimalPasswordLength.',
+		],
+		'MaximalPasswordLength' => [
+			'deprecated' => 'since 1.26, use $wgPasswordPolicy\'s MaximalPasswordLength.',
+		],
+		'SessionProviders' => [
+			'ignoreKeys' => true,
+		],
+		'AllowRequiringEmailForResets' => [
+			'deprecated' => 'This feature is under development, don\'t assume this flag\'s existence or function outside of MediaWiki',
+		],
+		'GroupPermissions' => [
+			'additionalProperties' => [
+				'type' => 'object',
+				'additionalProperties' => [
+					'type' => 'boolean',
+				],
+			],
+		],
+		'GroupInheritsPermissions' => [
+			'items' => [
+				'type' => 'string',
+			],
+		],
+		'SoftBlockRanges' => [
+			'items' => [
+				'type' => 'string',
+			],
+		],
+		'GrantPermissions' => [
+			'additionalProperties' => [
+				'type' => 'object',
+				'additionalProperties' => [
+					'type' => 'boolean',
+				],
+			],
+		],
+		'GrantPermissionGroups' => [
+			'additionalProperties' => [
+				'type' => 'string',
+			],
+		],
+		'ParserTestFiles' => [
+			'deprecated' => 'since 1.30',
+		],
+		'OpenSearchTemplate' => [
+			'deprecated' => 'since 1.25 Use $wgOpenSearchTemplates[\'application/x-suggestions+json\'] instead',
+		],
+		'EnableOpenSearchSuggest' => [
+			'deprecated' => 'since 1.35 No longer used',
+		],
+		'SoftwareTags' => [
+			'additionalProperties' => [
+				'type' => 'boolean',
+			],
+		],
+		'AutoloadAttemptLowercase' => [
+			'deprecated' => 'since 1.35',
+		],
+		'JobBackoffThrottling' => [
+			'items' => [
+				'type' => 'number',
+			],
+		],
+		'TrackingCategories' => [
+			'deprecated' => 'since 1.25 Extensions should now register tracking categories using the new extension registration system.',
+		],
+		'RangeContributionsCIDRLimit' => [
+			'additionalProperties' => [
+				'type' => 'integer',
+			],
+		],
+		'ShellboxUrl' => [
+			'deprecated' => 'since 1.37; use $wgShellboxUrls instead',
+		],
+		'ShellboxUrls' => [
+			'additionalProperties' => [
+				'type' => [
+					0 => 'string',
+					1 => 'boolean',
+					2 => 'null',
+				],
+			],
+		],
+	],
 ];
