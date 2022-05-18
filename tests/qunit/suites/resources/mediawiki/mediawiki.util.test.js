@@ -833,17 +833,4 @@
 		} );
 
 	} );
-
-	QUnit.test( 'repeatString', function ( assert ) {
-		var strings = [
-			[ '::', ':', 2, 'Return string count(2) times' ],
-			[ ' :  : ', ' : ', 2, 'String with spaces' ],
-			[ ':', ':', -1, 'No change if count is out of range' ],
-			[ ':', ':', Infinity, 'No change if count is out of range' ],
-			[ '', '', 2, 'No change if empty string is passed' ]
-		];
-		strings.forEach( function ( stringCase ) {
-			assert.strictEqual( util.repeatString( stringCase[ 1 ], stringCase[ 2 ] ), stringCase[ 0 ], stringCase[ 3 ] );
-		} );
-	} );
 }() );
