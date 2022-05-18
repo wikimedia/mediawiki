@@ -44,6 +44,22 @@ function escapeIdInternal( str, mode ) {
 }
 
 /**
+ * Takes a string (str) and returns string repeated count times
+ *
+ * @ignore
+ * @param {string} str String to be repeated
+ * @param {number} count Number of times to repeat string
+ * @return {string} String repeated count times
+ */
+function repeatString( str, count ) {
+	var repeatedString = '';
+	for ( var i = 0; i < count; i++ ) {
+		repeatedString += str;
+	}
+	return repeatedString;
+}
+
+/**
  * Utility library provided by the `mediawiki.util` module.
  *
  * @class mw.util
@@ -797,24 +813,6 @@ util = {
 	},
 
 	/**
-	 * Takes a string (str) and returns string repeated count times
-	 *
-	 * @param {string} str string to be repeated
-	 * @param {number} count number of times to repeat string
-	 * @return {string} String repeated count times
-	 */
-	repeatString: function ( str, count ) {
-		if ( count <= 0 || count === Infinity || str === '' ) {
-			return str;
-		}
-		var repeatedString = '';
-		for ( var i = 0; i < count; i++ ) {
-			repeatedString += str;
-		}
-		return repeatedString;
-	},
-
-	/**
 	 * This functionality has been adapted from \Wikimedia\IPUtils::sanitizeIP()
 	 *
 	 * Convert an IP into a verbose, uppercase, normalized form.
@@ -840,11 +838,11 @@ util = {
 			return ip.replace( /(^|\.)0+(\d)/g, '$1$2' );
 		}
 		ip = ip.toUpperCase();
-		var abbrevPos, CIDRStart, addressEnd, repeatStr, extra, pad;
-		abbrevPos = ip.search( /::/ );
+		var abbrevPos = ip.search( /::/ );
 		if ( abbrevPos !== -1 ) {
-			CIDRStart = ip.search( /\// );
-			addressEnd = ( CIDRStart !== -1 ) ? CIDRStart - 1 : ip.length - 1;
+			var CIDRStart = ip.search( /\// );
+			var addressEnd = ( CIDRStart !== -1 ) ? CIDRStart - 1 : ip.length - 1;
+			var repeatStr, extra, pad;
 			if ( abbrevPos === 0 ) {
 				repeatStr = '0:';
 				extra = ip === '::' ? '0' : '';
@@ -859,7 +857,7 @@ util = {
 				pad = 8;
 			}
 			ip = ip.replace( '::',
-				this.repeatString( repeatStr, pad - ( ip.split( ':' ).length - 1 ) ) + extra
+				repeatString( repeatStr, pad - ( ip.split( ':' ).length - 1 ) ) + extra
 			);
 		}
 		return ip.replace( /(^|:)0+(([0-9A-Fa-f]{1,4}))/g, '$1$2' );
