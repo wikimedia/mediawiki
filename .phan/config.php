@@ -83,6 +83,8 @@ $cfg['directory_list'] = [
 $cfg['exclude_analysis_directory_list'] = [
 	'vendor/',
 	'.phan/',
+	// Generated documentation stub for configuration variables.
+	'includes/config-vars.php',
 	// The referenced classes are not available in vendor, only when
 	// included from composer.
 	'includes/composer/',

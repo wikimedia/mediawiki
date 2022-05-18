@@ -96,6 +96,7 @@ use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\Settings\Config\ConfigSchema;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Shell\ShellboxClientFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
@@ -821,6 +822,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getConfigRepository(): ConfigRepository {
 		return $this->getService( 'ConfigRepository' );
+	}
+
+	/**
+	 * @since 1.39
+	 * @return ConfigSchema
+	 */
+	public function getConfigSchema(): ConfigSchema {
+		return $this->getService( 'ConfigSchema' );
 	}
 
 	/**

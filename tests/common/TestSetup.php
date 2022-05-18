@@ -22,8 +22,9 @@ class TestSetup {
 	}
 
 	/**
-	 * This should be called before Setup.php, e.g. from the finalSetup() method
-	 * of a Maintenance subclass
+	 * Overrides config settings for testing.
+	 * This should be called after loading local settings, typically from the finalSetup() method
+	 * of a Maintenance subclass which then gets called via MW_SETUP_CALLBACK in Setup.php.
 	 */
 	public static function applyInitialConfig() {
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgMainWANCache, $wgSessionCacheType;

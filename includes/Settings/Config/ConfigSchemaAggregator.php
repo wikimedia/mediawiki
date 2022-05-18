@@ -16,7 +16,7 @@ use function array_key_exists;
  * for settings defaults, types and merge strategies in bulk, and later
  * accessing them independently of each other, for each config key.
  */
-class ConfigSchemaAggregator {
+class ConfigSchemaAggregator implements ConfigSchema {
 
 	/** @var array[] Maps config keys to JSON schema structures */
 	private $schemas = [];
@@ -183,7 +183,7 @@ class ConfigSchemaAggregator {
 	}
 
 	/**
-	 * Get all known default values.
+	 * Get all defined default values.
 	 *
 	 * @return array
 	 */
@@ -221,6 +221,7 @@ class ConfigSchemaAggregator {
 
 	/**
 	 * Get default value for the $key.
+	 * For keys that do not define a default, null is assumed.
 	 *
 	 * @param string $key
 	 * @return mixed

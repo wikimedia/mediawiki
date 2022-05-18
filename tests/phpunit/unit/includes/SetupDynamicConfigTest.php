@@ -969,8 +969,9 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 	 *   argument, and a ScopedCallback may optionally be returned.
 	 */
 	public function testGlobals( array $test, $expected, ?callable $setup = null ): void {
-		$IP = '/install/path';
-		require MW_INSTALL_PATH . '/includes/DefaultSettings.php';
+		foreach ( MainConfigSchema::listDefaultValues( 'wg' ) as $key => $val ) {
+			$$key = $val;
+		}
 		foreach ( $test as $key => $val ) {
 			// $wgCacheEpoch default doesn't work properly on CI if evaluated in the provider
 			$$key = is_callable( $val ) ? $val() : $val;
@@ -978,6 +979,8 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 		if ( $setup ) {
 			$scopedCallback = $setup( $this );
 		}
+
+		$IP = '/install/path';
 		require MW_INSTALL_PATH . '/includes/SetupDynamicConfig.php';
 
 		if ( is_callable( $expected ) ) {

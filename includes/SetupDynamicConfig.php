@@ -326,10 +326,15 @@ if ( $wgEnableEmail ) {
 	$wgUsersNotifiedOnAllChanges = [];
 }
 
-if ( $wgLocaltimezone === null ) {
+if ( !$wgLocaltimezone ) {
 	// This defaults to the `date.timezone` value of the PHP INI option. If this option is not set,
 	// it falls back to UTC. Prior to PHP 7.0, this fallback produced a warning.
 	$wgLocaltimezone = date_default_timezone_get();
+}
+if ( !$wgLocaltimezone ) {
+	// Make doubly sure we have a valid time zone, even if date_default_timezone_get()
+	// returned garbage.
+	$wgLocaltimezone = 'UTC';
 }
 date_default_timezone_set( $wgLocaltimezone );
 if ( $wgLocalTZoffset === null ) {
