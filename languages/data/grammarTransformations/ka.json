@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Გიო ოქრო",
+			"Amir E. Aharoni"
+		],
+		"comment": "This is work in progress. These rules don't cover the whole grammar of the language, and are intended only for names of Wikimedia projects."
+	},
+	"ნათესაობითი": [
+		[ "(.+)ა$", "$1ის" ],
+		[ "(.+)ი$", "$1ის" ]
+	]
+}

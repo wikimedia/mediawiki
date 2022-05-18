@@ -264,6 +264,87 @@
 			}
 		],
 
+		ka: [
+			{
+				word: 'ვიკიპედია',
+				grammarForm: 'ნათესაობითი',
+				expected: 'ვიკიპედიის',
+				description: 'Grammar test for Georgian genitive case'
+			},
+			{
+				word: 'ვიქსიკონი',
+				grammarForm: 'ნათესაობითი',
+				expected: 'ვიქსიკონის',
+				description: 'Grammar test for Georgian genitive case'
+			},
+			{
+				word: 'ვიკიწიგნები',
+				grammarForm: 'ნათესაობითი',
+				expected: 'ვიკიწიგნების',
+				description: 'Grammar test for Georgian genitive case'
+			},
+			{
+				word: 'ვიკიციტატა',
+				grammarForm: 'ნათესაობითი',
+				expected: 'ვიკიციტატის',
+				description: 'Grammar test for Georgian genitive case'
+			},
+			{
+				word: 'ვიკისიახლეები',
+				grammarForm: 'ნათესაობითი',
+				expected: 'ვიკისიახლეების',
+				description: 'Grammar test for Georgian genitive case'
+			},
+			{
+				word: 'ვიკისახეობები',
+				grammarForm: 'ნათესაობითი',
+				expected: 'ვიკისახეობების',
+				description: 'Grammar test for Georgian genitive case'
+			},
+			{
+				word: 'ვიკიმონაცემები',
+				grammarForm: 'ნათესაობითი',
+				expected: 'ვიკიმონაცემების',
+				description: 'Grammar test for Georgian genitive case'
+			},
+			{
+				word: 'ვიკისაწყობი',
+				grammarForm: 'ნათესაობითი',
+				expected: 'ვიკისაწყობის',
+				description: 'Grammar test for Georgian genitive case'
+			},
+			{
+				word: 'ვიკივოიაჟი',
+				grammarForm: 'ნათესაობითი',
+				expected: 'ვიკივოიაჟის',
+				description: 'Grammar test for Georgian genitive case'
+			},
+			{
+				word: 'მეტა-ვიკი',
+				grammarForm: 'ნათესაობითი',
+				expected: 'მეტა-ვიკის',
+				description: 'Grammar test for Georgian genitive case'
+			},
+			{
+				word: 'მედიავიკი',
+				grammarForm: 'ნათესაობითი',
+				expected: 'მედიავიკის',
+				description: 'Grammar test for Georgian genitive case'
+			},
+			{
+				word: 'ვიკივერსიტეტი',
+				grammarForm: 'ნათესაობითი',
+				expected: 'ვიკივერსიტეტის',
+				description: 'Grammar test for Georgian genitive case'
+			},
+			{
+				word: 'თავისუფლება',
+				grammarForm: 'ნათესაობითი',
+				expected: 'თავისუფლების',
+				description: 'Grammar test for Georgian genitive case'
+			}
+		],
+
 		ru: [
 			{
 				word: 'тесть',
