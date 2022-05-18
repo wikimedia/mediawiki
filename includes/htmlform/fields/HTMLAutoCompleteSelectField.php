@@ -26,10 +26,6 @@
  *      the 'other' message.
  *   other - Raw text to use for the 'other' message
  *
- * The old name of autocomplete-data[-messages] was autocomplete[-messages] which is still
- * recognized but deprecated since MediaWiki 1.29 since it conflicts with how autocomplete is
- * used in HTMLTextField.
- *
  * @stable to extend
  */
 class HTMLAutoCompleteSelectField extends HTMLTextField {
@@ -43,22 +39,6 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		$params += [
 			'require-match' => false,
 		];
-
-		// FIXME B/C, remove in 1.30
-		if (
-			array_key_exists( 'autocomplete', $params )
-			&& !array_key_exists( 'autocomplete-data', $params )
-		) {
-			$params['autocomplete-data'] = $params['autocomplete'];
-			unset( $params['autocomplete'] );
-		}
-		if (
-			array_key_exists( 'autocomplete-messages', $params )
-			&& !array_key_exists( 'autocomplete-data-messages', $params )
-		) {
-			$params['autocomplete-data-messages'] = $params['autocomplete-messages'];
-			unset( $params['autocomplete-messages'] );
-		}
 
 		parent::__construct( $params );
 
