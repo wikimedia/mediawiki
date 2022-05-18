@@ -273,10 +273,11 @@ class DatabasePostgres extends Database {
 		if ( $this->lastResultHandle ) {
 			$lastErrno = pg_result_error_field( $this->lastResultHandle, PGSQL_DIAG_SQLSTATE );
 			if ( $lastErrno !== false ) {
-				return (int)$lastErrno;
+				return $lastErrno;
 			}
 		}
-		return 0;
+
+		return '00000';
 	}
 
 	protected function fetchAffectedRowCount() {
