@@ -1,11 +1,23 @@
 = MediaWiki 1.38 =
 
-== MediaWiki 1.38.0-rc.0 ==
+== MediaWiki 1.38-rc.1 ==
 
 THIS IS NOT A RELEASE YET
 
 MediaWiki 1.38 is a pre-release testing branch, and is not recommended
 for use in production.
+
+=== Changes since MediaWiki 1.38.0-rc.0 ===
+* Localisation updates.
+* (T305028) Undeprecate EditPage::$textbox2.
+* (T305635) LogActions is a map, not a list.
+* (T306721) Add wikimedia/equivset to vendor; needed by bundled AbuseFilter.
+* (T307284) Simplify TransactionManager::pendingWriteQueryDuration.
+* (T307307) Add symfony/yaml to vendor.
+* Fix old_name in UserLogoutComplete hook.
+* REST: don't send stack trace in error responses.
+* (T307998) SessionManager: stop storing an ObjectFactory instance.
+* (T193565) UserGroupManager: Fix dbDomain in addUserToGroup() deferred update.
 
 == Upgrading notes for 1.38 ==
 Don't forget to always back up your database before upgrading!
