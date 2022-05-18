@@ -79,8 +79,10 @@ class ParserObserver {
 		);
 
 		$contentStr = $content->isValid() ? $content->serialize() : null;
+		// $contentStr may be null if the content could not be serialized
+		$contentSha1 = $contentStr ? sha1( $contentStr ) : 'INVALID';
 
-		$index = $this->getParseId( $pageKey, $revId, $optionsHash, $contentStr );
+		$index = $this->getParseId( $pageKey, $revId, $optionsHash, $contentSha1 );
 
 		$stackTrace = ( new RuntimeException() )->getTraceAsString();
 		if ( array_key_exists( $index, $this->previousParseStackTraces ) ) {
@@ -94,7 +96,7 @@ class ParserObserver {
 					'page' => $pageKey,
 					'rev' => $revId,
 					'options-hash' => $optionsHash,
-					'content' => $contentStr,
+					'contentSha1' => $contentSha1,
 					'trace' => $stackTrace,
 					'previous-trace' => $this->previousParseStackTraces[$index],
 				]
@@ -107,14 +109,12 @@ class ParserObserver {
 	 * @param string $titleStr
 	 * @param int|null $revId
 	 * @param string $optionsHash
-	 * @param string|null $contentStr
+	 * @param string $contentSha1
 	 * @return string
 	 */
-	private function getParseId( string $titleStr, ?int $revId, string $optionsHash, ?string $contentStr ): string {
+	private function getParseId( string $titleStr, ?int $revId, string $optionsHash, string $contentSha1 ): string {
 		// $revId may be null when previewing a new page
 		$revIdStr = $revId ?? "";
-		// $contentStr may be null if the content could not be serialized
-		$contentSha1 = $contentStr ? sha1( $contentStr ) : 'INVALID';
 
 		return "$titleStr.$revIdStr.$optionsHash.$contentSha1";
 	}
