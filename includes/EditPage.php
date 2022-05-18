@@ -2044,7 +2044,7 @@ class EditPage implements IEditObject {
 		if ( $this->tempUserCreateDone ) {
 			$this->getHookRunner()->onTempUserCreatedRedirect(
 				$this->context->getRequest()->getSession(),
-				$this->context->getUser(),
+				$this->getUserForSave(),
 				$this->mTitle->getPrefixedDBkey(),
 				$query,
 				$anchor,
