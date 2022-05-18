@@ -250,9 +250,11 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			}
 		}
 
-		if ( $maxRedirects > 0 && $content->isRedirect() ) {
+		if ( $maxRedirects > 0 ) {
 			$newTitle = $content->getRedirectTarget();
-			return $newTitle ? $this->getContentObj( $newTitle, $context, 0 ) : null;
+			if ( $newTitle ) {
+				return $this->getContentObj( $newTitle, $context, 0 );
+			}
 		}
 
 		return $content;
