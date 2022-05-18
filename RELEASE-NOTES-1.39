@@ -45,6 +45,8 @@ For notes on 1.38.x and older releases, see HISTORY.
   from $wgMimeTypeExclusions.
 * $wgMaxRedirects has been removed. This feature never worked as intended,
   see T296430.
+* $wgElementTiming has been removed. This feature was experimental,
+  and disabled by default.
 * …
 
 === New user-facing features in 1.39 ===

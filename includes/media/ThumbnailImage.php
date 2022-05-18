@@ -119,7 +119,6 @@ class ThumbnailImage extends MediaTransformOutput {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
 		$priorityHints = $mainConfig->get( MainConfigNames::PriorityHints );
 		$priorityHintsRatio = $mainConfig->get( MainConfigNames::PriorityHintsRatio );
-		$elementTiming = $mainConfig->get( MainConfigNames::ElementTiming );
 		$nativeImageLazyLoading = $mainConfig->get( MainConfigNames::NativeImageLazyLoading );
 		$enableLegacyMediaDOM = $mainConfig->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 
@@ -140,8 +139,6 @@ class ThumbnailImage extends MediaTransformOutput {
 			$attribs['loading'] = $options['loading'] ?? 'lazy';
 		}
 
-		$elementTimingName = 'thumbnail';
-
 		if ( $priorityHints
 			&& !self::$firstNonIconImageRendered
 			&& $this->width * $this->height > 100 * 100 ) {
@@ -152,15 +149,7 @@ class ThumbnailImage extends MediaTransformOutput {
 
 			if ( $random <= $priorityHintsRatio ) {
 				$attribs['importance'] = 'high';
-				$elementTimingName = 'thumbnail-high';
-			} else {
-				// This lets us track that the thumbnail *would* have gotten high priority but didn't.
-				$elementTimingName = 'thumbnail-top';
 			}
-		}
-
-		if ( $elementTiming ) {
-			$attribs['elementtiming'] = $elementTimingName;
 		}
 
 		if ( !empty( $options['custom-url-link'] ) ) {
