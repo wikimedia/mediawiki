@@ -1047,7 +1047,7 @@
 	"prefs-help-recentchangescount": "Nilai maksimum: 1000",
 	"prefs-help-watchlist-token2": "Puniki pinaka sereg rahasia nuju umpan web saking lis pangawasan ragané.\nSapasira sané nguningayang pacang prasida ngawacén lis pangawasan ragané, asapunika sampunang ngawedar.\nPinaka perlu, [[Special:ResetTokens|Ida prasida nyumu]].",
 	"prefs-help-tokenmanagement": "Ida prasida nyingakin miwah nyumu sereg rahasia akun Ida sané prasida ngaksés umpan Wéb saking lis pangawasan Ida. Sapasira sané uningayang prasida nyingakin lis pangawasan Ida, asapunika sampunang kawedar.",
-	"prefs-user-downloaddata-label": "Data akun:",
+	"prefs-user-downloaddata-label": "Ngakses data akun:",
 	"prefs-user-downloaddata-info": "Data akun tyang saking proyék puniki",
 	"savedprefs": "Rujukan ida sampun karaksa",
 	"savedrights": "Seka anganggé {{GENDER:$1|$1}} sampun karaksa",

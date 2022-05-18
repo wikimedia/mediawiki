@@ -2368,6 +2368,7 @@
 	"deleteprotected": "Strani ne morete izbrisati, ker jo je nekdo zaščitil.",
 	"deleting-backlinks-warning": "<strong>Opozorilo:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|Druge strani]] se povezujejo na ali vključujejo stran, ki jo nameravate izbrisati.",
 	"deleting-subpages-warning": "<strong>Opozorilo:</strong> Stran, ki jo nameravate izbrisati, ima [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|podstran|$1 podstrani|51=več kot 50 podstrani}}]].",
+	"deleting-talkpage-subpages-warning": "<strong>Opozorilo:</strong> Povezana pogovorna stran, ki jo nameravate izbrisati, ima [[Special:PrefixIndex/{{TALKPAGENAME}}|{{PLURAL:$1|podstran|$1 podstrani|51=več kot 50 podstrani}}]].",
 	"rollback": "Vrni spremembe",
 	"rollback-confirmation-confirm": "Prosimo, potrdite:",
 	"rollback-confirmation-yes": "Vrni",

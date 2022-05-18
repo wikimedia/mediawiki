@@ -2404,6 +2404,7 @@
 	"deleteprotected": "אין לך הרשאה למחוק את הדף הזה כי הוא מוגן.",
 	"deleting-backlinks-warning": "<strong>אזהרה:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|דפים אחרים]] מקשרים לדף {{GENDER:|שאתה עומד|שאת עומדת}} למחוק או מכלילים אותו.",
 	"deleting-subpages-warning": "<strong>אזהרה:</strong> לדף {{GENDER:|שאתה עומד|שאת עומדת}} למחוק יש [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|דף־משנה|$1 דפי־משנה|51=יותר מ־50 דפי משנה}}]].",
+	"deleting-talkpage-subpages-warning": "<strong>אזהרה:</strong> לדף השיחה המשויך {{GENDER:|שאתה עומד|שאת עומדת}} למחוק יש [[Special:PrefixIndex/{{TALKPAGENAME}}|{{PLURAL:$1|דף־משנה|$1 דפי־משנה|51=יותר מ־50 דפי משנה}}]].",
 	"rollback": "שחזור עריכות",
 	"rollback-confirmation-confirm": "לאישורך:",
 	"rollback-confirmation-yes": "שחזור",
