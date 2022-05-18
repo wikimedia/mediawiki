@@ -277,6 +277,8 @@
 				// Load modules for the fields whose state we will check
 				mw.loader.using( gatherOOUIModules( $( fields.map( function ( $node ) {
 					return $node.closest( '.oo-ui-fieldLayout[data-ooui]' )[ 0 ];
+				} ).filter( function ( node ) {
+					return !!node;
 				} ) ) ) ).done( function () {
 					for ( i = 0; i < fields.length; i++ ) {
 						var widget = getWidget( fields[ i ] );
