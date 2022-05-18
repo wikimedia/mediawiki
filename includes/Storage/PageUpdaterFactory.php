@@ -283,7 +283,8 @@ class PageUpdaterFactory {
 				PageUpdater::CONSTRUCTOR_OPTIONS,
 				$this->options
 			),
-			$this->softwareTags
+			$this->softwareTags,
+			$this->logger
 		);
 
 		$pageUpdater->setUsePageCreationLog(
