@@ -106,7 +106,9 @@
 			"Žekřil71pl",
 			"לערי ריינהארט",
 			"아라",
-			"Ostrzyciel"
+			"Ostrzyciel",
+			"Msz2001",
+			"Strebski"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -1513,7 +1515,7 @@
 	"recentchanges-noresult": "Brak zmian w wybranym okresie spełniających twoje kryteria.",
 	"recentchanges-timeout": "To wyszukiwanie przekroczyło limit czasu. Możesz spróbować z innymi parametrami wyszukiwania.",
 	"recentchanges-network": "Z powodu błędu technicznego nie można załadować żadnych wyników. Spróbuj odświeżyć stronę.",
-	"recentchanges-notargetpage": "Wprowadź powyżej nazwę strony, aby zobaczy zmiany związane z tą stroną.",
+	"recentchanges-notargetpage": "Wprowadź powyżej nazwę strony, aby zobaczyć zmiany związane z tą stroną.",
 	"recentchanges-feed-description": "Obserwuj najświeższe zmiany w tej wiki.",
 	"recentchanges-label-newpage": "W tej edycji utworzono nową stronę",
 	"recentchanges-label-minor": "To jest drobna zmiana",
@@ -2466,7 +2468,7 @@
 	"cantrollback": "Nie można cofnąć edycji tego autora, ponieważ jest jedynym autorem tej strony.",
 	"alreadyrolled": "Nie można dla strony [[:$1|$1]] cofnąć ostatniej zmiany, którą {{GENDER:$2|wykonał|wykonała|wykonał(a)}} [[User:$2|$2]] ([[User talk:$2|dyskusja]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).\nKtoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści strony.\n\nAutorem ostatniej zmiany jest teraz [[User:$3|$3]] ([[User talk:$3|dyskusja]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "Edycję opisał: <em>$1</em>.",
-	"revertpage": "Wycofano edycje użytkownika [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].",
+	"revertpage": "Wycofanie edycji użytkownika [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].",
 	"revertpage-anon": "Wycofano edycje użytkownika [[Special:Contributions/$2|$2]]. Autor przywróconej wersji to [[User:$1|$1]].",
 	"revertpage-nouser": "Wycofano edycje ukrytego użytkownika. Autor przywróconej wersji to {{GENDER:$1|[[User:$1|$1]]}}.",
 	"rollback-success": "Wycofano edycje {{GENDER:$3|użytkownika|użytkowniczki}} $1;\nprzywrócono ostatnią wersję autorstwa {{GENDER:$4|$2}}.",

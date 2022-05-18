@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
-			"RFScott"
+			"RFScott",
+			"Pacha Tchernof"
 		]
 	},
 	"sunday": "воскресенье",
@@ -222,7 +223,7 @@
 	"noarticletext-nopermission": "Эси нирухэн абани. [[Special:Search/{{PAGENAME}}|эйвэ ба̄ми мутэйсу]] гой страницасалду\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ба̄ори тэй нирухэвэни журналсалду], бидяра '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} тэй гэрбуку страницава аӈгойни мутэйсу]'''</span>. Эй страницава аӈгоми мутэ̄сису",
 	"userpage-userdoesnotexist-view": "Тамача учётнай дякани «$1» абани.",
 	"clearyourcache": "<strong>Ичэусу:</strong> Статьява ангора, сайна суэ браузераи кэшэвэни силкоми ая, калахаваи ичэгугуи.\n* <strong>Firefox / Safari:</strong> Клавишава дяпами <em>Shift</em>, инструмент панэльдоани <em>Гучи модан ичэури</em> дигдаосо, гучи <em>Ctrl+F5</em>, <em>Ctrl+R</em> (<em>⌘+R</em> Mac-ду) дигдаосо\n* <strong>Google Chrome:</strong> <em>Ctrl+Shift+R</em> (<em>⌘+Shift+R</em> на Mac) дигдаосо\n* <strong>Internet Explorer / Edge:</strong> <em>Ctrl</em>-вэ дяпами, <em>Гучи модан ичэури</em> дигдаосо, <em>Ctrl+F5</em> дигдаосо\n* <strong>Opera:</strong> <em>Ctrl+F5</em>-вэ дигдаосо.",
-	"previewnote": "<strong>Ичэусу, эй предварительнай просмотр-маня.</strong>\nКалахавасу эчиэ публиковалара!",
+	"previewnote": "<strong>Ичэусу, эй предпросмотр-маня.</strong>\nКалахавасу эчиэ публиковалара!",
 	"continue-editing": "Калаори боачи энэури",
 	"editing": "$1ва калаори",
 	"creating": "$1ва анговори",
@@ -550,7 +551,7 @@
 	"nextdiff": "Диая калаори →",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3 страница}}",
 	"file-info-size": "$1 × $2 {{PLURAL:$2|пиксель}}, файл размерани: $3, MIME-тип: $4",
-	"file-info-size-pages": "$1 × $2 пикселей, размер файла: $3, MIME-тип: $4, $5 {{PLURAL:$5|страница}}",
+	"file-info-size-pages": "$1 × $2 пкс, размер файла: $3, MIME-тип: $4, $5 {{PLURAL:$5|страница|страницы|страниц}}",
 	"file-nohires": "Улэн разрешение абани",
 	"svg-long-desc": "SVG-файл, номинально $1 × $2 пиксель, файл размерани: $3",
 	"show-big-image": "Эрдэ би файл",

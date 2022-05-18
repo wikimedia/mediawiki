@@ -11,7 +11,8 @@
 			"Батыр Комдошев",
 			"Кудайкул",
 			"Толуш",
-			"아라"
+			"아라",
+			"Radmir Far"
 		]
 	},
 	"tog-underline": "Тайантыны чийе тартары:",
@@ -1036,9 +1037,6 @@
 	"restoreprefs": "Озо болгон јазалталарга орныктырар (ончо секцияларда)",
 	"prefs-editing": "Тӱзедиш",
 	"searchresultshead": "Бедреш",
-	"stub-threshold": "Јазамалдардыҥ тайантыларыныҥ билдиретен кеми ($1):",
-	"stub-threshold-sample-link": "јозок",
-	"stub-threshold-disabled": "Токтодылган",
 	"recentchangesdays": "Канча кӱнниҥ калганчы тӱзедӱлерин кӧргӱзер:",
 	"recentchangesdays-max": "Эҥ кӧби $1 {{PLURAL:$1|кӱн}}",
 	"recentchangescount": "Калганчы тӱзедӱлердиҥ тизиминде, бӱктердиҥ тӱӱкизинде ле журналдардагы кӧрӱзилетен тӱзедӱлердиҥ озо болор тоозы:",
@@ -2015,7 +2013,7 @@
 	"booksources-search": "Бедреш",
 	"magiclink-tracking-rfc": "RFC куулгазын ссылкаларын тузаланган бÿктер",
 	"magiclink-tracking-pmid": "PMID куулгазын ссылкаларын тузаланган бÿктер",
-	"magiclink-tracking-isbn": "ISBN куулгазын ссылкаларын тузаланган бÿктер",
+	"magiclink-tracking-isbn": "ISBN куулгазын ссылкаларын тузаланган бӱктер",
 	"specialloguserlabel": "Бӱдӱреечи:",
 	"speciallogtitlelabel": "Амаду (ады эмезе {{ns:user}}:туружаачыныҥ ады):",
 	"log": "Журналдары",
