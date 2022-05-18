@@ -2389,7 +2389,6 @@ return [
 			],
 			'PriorityHints' => false,
 			'PriorityHintsRatio' => 1.0,
-			'ElementTiming' => false,
 			'ReportToExpiry' => 86400,
 			'ReportToEndpoints' => [
 			],
@@ -2854,7 +2853,6 @@ return [
 			'OriginTrials' => 'array',
 			'PriorityHints' => 'boolean',
 			'PriorityHintsRatio' => 'number',
-			'ElementTiming' => 'boolean',
 			'ReportToExpiry' => 'integer',
 			'ReportToEndpoints' => 'array',
 			'FeaturePolicyReportOnly' => 'array',

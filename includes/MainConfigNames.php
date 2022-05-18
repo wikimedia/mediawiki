@@ -4418,12 +4418,6 @@ class MainConfigNames {
 	public const PriorityHintsRatio = 'PriorityHintsRatio';
 
 	/**
-	 * Name constant for the ElementTiming setting, for use with Config::get()
-	 * @see MainConfigSchema::ElementTiming
-	 */
-	public const ElementTiming = 'ElementTiming';
-
-	/**
 	 * Name constant for the ReportToExpiry setting, for use with Config::get()
 	 * @see MainConfigSchema::ReportToExpiry
 	 */

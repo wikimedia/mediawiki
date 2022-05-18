@@ -12033,17 +12033,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Enable Element Timing.
-	 *
-	 * @warning EXPERIMENTAL!
-	 * @since 1.33
-	 */
-	public const ElementTiming = [
-		'default' => false,
-		'type' => 'boolean',
-	];
-
-	/**
 	 * Expiry of the endpoint definition for the Reporting API.
 	 *
 	 * @warning EXPERIMENTAL!

@@ -7618,13 +7618,6 @@ config-schema:
             Ratio of requests that should get Priority Hints when the feature is enabled.
             @warning EXPERIMENTAL!
             @since 1.34
-    ElementTiming:
-        default: false
-        type: boolean
-        description: |-
-            Enable Element Timing.
-            @warning EXPERIMENTAL!
-            @since 1.33
     ReportToExpiry:
         default: 86400
         type: integer

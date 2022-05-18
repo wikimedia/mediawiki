@@ -4402,12 +4402,6 @@ $wgPriorityHints = null;
 $wgPriorityHintsRatio = null;
 
 /**
- * Config variable stub for the ElementTiming setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::ElementTiming
- */
-$wgElementTiming = null;
-
-/**
  * Config variable stub for the ReportToExpiry setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ReportToExpiry
  */
