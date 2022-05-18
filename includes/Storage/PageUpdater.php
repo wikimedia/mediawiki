@@ -815,7 +815,7 @@ class PageUpdater {
 	 * user-level edit conflict, and to adjust the content of the new revision accordingly,
 	 * e.g. by using a 3-way-merge.
 	 *
-	 * MCR migration note: this replaces WikiPage::doEditContent. Callers that change to using
+	 * MCR migration note: this replaces WikiPage::doUserEditContent. Callers that change to using
 	 * saveRevision() now need to check the "minoredit" themselves before using EDIT_MINOR.
 	 *
 	 * @param CommentStoreComment $summary Edit summary
@@ -1049,7 +1049,7 @@ class PageUpdater {
 	 * The Status object indicating whether saveRevision() was successful, or null if
 	 * saveRevision() was not yet called on this instance.
 	 *
-	 * @note This is here for compatibility with WikiPage::doEditContent. It may be deprecated
+	 * @note This is here for compatibility with WikiPage::doUserEditContent. It may be deprecated
 	 * soon.
 	 *
 	 * Possible status errors:
