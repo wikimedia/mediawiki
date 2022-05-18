@@ -2386,6 +2386,7 @@
 	"deleteprotected": "ఈ పేజీ సంరక్షణలో ఉంది కనుక మీరు తొలగించలేరు.",
 	"deleting-backlinks-warning": "<strong>హెచ్చరిక:</strong> మీరు తొలగించబోతున్న పేజీకి [[Special:WhatLinksHere/{{FULLPAGENAME}}|ఇతర పేజీల]] నుండి లింకులు ఉన్నాయి. లేదా ఇతర పేజీల్లో అది ట్రాన్స్‍క్లూడు అవుతోంది.",
 	"deleting-subpages-warning": "<strong>హెచ్చరిక:</strong> మీరు తొలగించబోతున్న పేజీకి [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|ఒక ఉపపేజీ ఉంది|$1 ఉపపేజీలున్నాయి|51=50 కి పైగా ఉపపేజీలున్నాయి}}]].",
+	"deleting-talkpage-subpages-warning": "<strong>హెచ్చరిక:</strong> మీరు తొలగించబోతున్న పేజీకి చెందిన చర్చ పేజీకి [[Special:PrefixIndex/{{TALKPAGENAME}}|{{PLURAL:$1|ఒక ఉపపేజీ ఉంది|$1 ఉపపేజీలున్నాయి|51=50 కి పైగా ఉపపేజీలున్నాయి}}]].",
 	"rollback": "దిద్దుబాట్లను రద్దుచేయి",
 	"rollback-confirmation-confirm": "నిర్ధారించండి:",
 	"rollback-confirmation-yes": "రోల్‌బ్యాక్ చెయ్యి",

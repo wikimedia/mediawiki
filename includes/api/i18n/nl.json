@@ -3,6 +3,7 @@
 		"authors": [
 			"1233qwer1234qwer4",
 			"Edoderoo",
+			"Elderson",
 			"Elroy",
 			"Encycloon",
 			"HanV",
@@ -277,7 +278,7 @@
 	"apihelp-query+allusers-paramvalue-prop-rights": "Toont de rechten die de gebruiker heeft.",
 	"apihelp-query+allusers-paramvalue-prop-editcount": "Voegt het aantal bewerkingen van de gebruiker toe.",
 	"apihelp-query+allusers-paramvalue-prop-registration": "Voegt de registratiedatum van de gebruiker toe, indien beschikbaar (kan leeg zijn).",
-	"apihelp-query+allusers-param-limit": "Het totaal aantal aan gebruikersnamen dat getoont moet worden.",
+	"apihelp-query+allusers-param-limit": "Het totaal aantal aan gebruikersnamen dat getoond moet worden.",
 	"apihelp-query+allusers-param-witheditsonly": "Toon alleen gebruikers die bewerkingen hebben gemaakt.",
 	"apihelp-query+allusers-param-activeusers": "Toon alleen gebruikers die actief zijn geweest in de laatste {{PLURAL:$1|dag|$1 dagen}}.",
 	"apihelp-query+allusers-example-y": "Toon gebruikers vanaf <kbd>Y</kbd>.",
