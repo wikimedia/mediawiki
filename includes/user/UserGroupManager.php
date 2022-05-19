@@ -807,7 +807,7 @@ class UserGroupManager implements IDBAccessObject {
 		// Purge old, expired memberships from the DB
 		$fname = __METHOD__;
 		DeferredUpdates::addCallableUpdate( function () use ( $fname ) {
-			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA, [], $this->dbDomain );
 			$hasExpiredRow = (bool)$dbr->selectField( 'user_groups', '1',
 				[ 'ug_expiry < ' . $dbr->addQuotes( $dbr->timestamp() ) ],
 				$fname
