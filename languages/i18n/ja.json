@@ -126,7 +126,8 @@
 			"赤城。",
 			"青子守歌",
 			"고솜",
-			"아라"
+			"아라",
+			"あたまボーズ"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -3990,7 +3991,7 @@
 	"mediastatistics-header-unknown": "不明",
 	"mediastatistics-header-bitmap": "ビットマップ画像",
 	"mediastatistics-header-drawing": "線画 (ベクターイメージ)",
-	"mediastatistics-header-audio": "オーディオ",
+	"mediastatistics-header-audio": "音声",
 	"mediastatistics-header-video": "動画",
 	"mediastatistics-header-multimedia": "リッチメディア",
 	"mediastatistics-header-office": "オフィスファイル",

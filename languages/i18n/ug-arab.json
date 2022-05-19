@@ -21,7 +21,8 @@
 			"Vlad5250",
 			"بىلگە",
 			"چۈشكۈن",
-			"아라"
+			"아라",
+			"TayfunEt."
 		]
 	},
 	"tog-underline": "ئۇلانما ئاستى سىزىقى:",
@@ -1668,7 +1669,7 @@
 	"usermessage-template": "MediaWiki:UserMessage",
 	"watchlist": "كۆزەت تىزىملىكى",
 	"mywatchlist": "كۆزىتىش تىزىملىكى",
-	"watchlistfor2": "$1 $2 ئۈچۈن",
+	"watchlistfor2": "$1 ئۈچۈن",
 	"nowatchlist": "كۆزەت تىزىملىكىڭىز بوش.",
 	"watchlistanontext": "$1 كۆزەت تىزىملىكىڭىزنى كۆرۈپ تەھرىرلەڭ.",
 	"watchnologin": "تىزىمغا كىرمىدى",
@@ -2644,7 +2645,6 @@
 	"special-characters-group-khmer": "كېخمېرچە",
 	"mw-widgets-mediasearch-noresults": "نەتىجە تېپىلمىدى",
 	"randomrootpage": "خالىغان غول بەت",
-	"view-view-foreign": "$1 دە كۆرۈش",
 	"view-create-local": "يەرلىك ئىزاھات قوشۇش",
 	"nstab-mainpage": "باش بەت",
 	"view-edit-local": "يەرلىك ئىزاھاتنى تەھرىرلەش",

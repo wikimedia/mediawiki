@@ -11,7 +11,8 @@
 			"Батыр Комдошев",
 			"Кудайкул",
 			"Толуш",
-			"아라"
+			"아라",
+			"Radmir Far"
 		]
 	},
 	"tog-underline": "Тайантыны чийе тартары:",
@@ -2000,7 +2001,7 @@
 	"booksources-search": "Бедреш",
 	"magiclink-tracking-rfc": "RFC куулгазын ссылкаларын тузаланган бÿктер",
 	"magiclink-tracking-pmid": "PMID куулгазын ссылкаларын тузаланган бÿктер",
-	"magiclink-tracking-isbn": "ISBN куулгазын ссылкаларын тузаланган бÿктер",
+	"magiclink-tracking-isbn": "ISBN куулгазын ссылкаларын тузаланган бӱктер",
 	"specialloguserlabel": "Бӱдӱреечи:",
 	"speciallogtitlelabel": "Амаду (ады эмезе {{ns:user}}:туружаачыныҥ ады):",
 	"log": "Журналдары",
@@ -2486,7 +2487,6 @@
 	"duration-years": "$1 {{PLURAL:$1|јыл}}",
 	"duration-centuries": "$1 {{PLURAL:$1|чак}}",
 	"randomrootpage": "Болгобой учураган тазыл бӱк",
-	"view-view-foreign": "$1 сайттаҥ кӧрӧр",
 	"view-create-local": "Ичи-бойына јартамал кожор",
 	"nstab-mainpage": "Тӧс бӱк",
 	"view-edit-local": "Ичи-бойына јартамал кожор",

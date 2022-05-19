@@ -2316,6 +2316,7 @@
 	"exbeforeblank": "เนื้อหาก่อนถูกทำว่างคือ: \"$1\"",
 	"delete-confirm": "ลบ \"$1\"",
 	"delete-legend": "ลบ",
+	"delete-talk-summary-prefix": "ถูกลบพร้อมกับหน้าที่เกี่ยวข้องด้วยเหตุผล: $1",
 	"historywarning": "<strong>คำเตือน:</strong> หน้าที่คุณกำลังลบมีประวัติ $1 {{PLURAL:$1|รุ่น}}:",
 	"historyaction-submit": "แสดงรุ่นแก้ไข",
 	"confirmdeletetext": "คุณกำลังลบหน้า รวมทั้งประวัติทั้งหมดของหน้า\nกรุณายืนยันว่าคุณเจตนา เข้าใจผลกระทบ และการกระทำนี้สอดคล้องกับ[[{{MediaWiki:Policy-url}}|นโยบาย]]",
