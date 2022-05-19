@@ -1,6 +1,7 @@
 <?php
 
 use Wikimedia\NormalizedException\NormalizedException;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @author Antoine Musso
@@ -21,6 +22,8 @@ class MWExceptionHandlerTest extends \MediaWikiUnitTestCase {
 	}
 
 	protected function tearDown(): void {
+		TestingAccessWrapper::newFromClass( MWExceptionHandler::class )
+			->logExceptionBacktrace = true;
 		ini_set( 'zend.exception_ignore_args', $this->oldSettingValue );
 		parent::tearDown();
 	}
@@ -151,13 +154,7 @@ TEXT;
 	 */
 	public function testJsonserializeexceptionKeys( $expectedKeyType, $exClass, $key ) {
 		$json = json_decode(
-			MWExceptionHandler::jsonSerializeException(
-				new $exClass(),
-				true,
-				0,
-				MWExceptionHandler::CAUGHT_BY_OTHER,
-				true
-			)
+			MWExceptionHandler::jsonSerializeException( new $exClass() )
 		);
 		$this->assertObjectHasAttribute( $key, $json );
 		$this->assertSame( $expectedKeyType, gettype( $json->$key ), "Type of the '$key' key" );
@@ -185,14 +182,10 @@ TEXT;
 	 * @covers MWExceptionHandler::jsonSerializeException
 	 */
 	public function testJsonserializeexceptionBacktracingEnabled() {
+		TestingAccessWrapper::newFromClass( MWExceptionHandler::class )
+			->logExceptionBacktrace = true;
 		$json = json_decode(
-			MWExceptionHandler::jsonSerializeException(
-				new Exception(),
-				true,
-				0,
-				MWExceptionHandler::CAUGHT_BY_OTHER,
-				true
-			)
+			MWExceptionHandler::jsonSerializeException( new Exception() )
 		);
 		$this->assertObjectHasAttribute( 'backtrace', $json );
 	}
@@ -204,14 +197,10 @@ TEXT;
 	 * @covers MWExceptionHandler::jsonSerializeException
 	 */
 	public function testJsonserializeexceptionBacktracingDisabled() {
+		TestingAccessWrapper::newFromClass( MWExceptionHandler::class )
+			->logExceptionBacktrace = false;
 		$json = json_decode(
-			MWExceptionHandler::jsonSerializeException(
-				new Exception(),
-				true,
-				0,
-				MWExceptionHandler::CAUGHT_BY_OTHER,
-				false
-			)
+			MWExceptionHandler::jsonSerializeException( new Exception() )
 		);
 		$this->assertObjectNotHasAttribute( 'backtrace', $json );
 	}

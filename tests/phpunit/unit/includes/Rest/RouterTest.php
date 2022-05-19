@@ -161,10 +161,6 @@ class RouterTest extends \MediaWikiUnitTestCase {
 		$body->rewind();
 		$data = json_decode( $body->getContents(), true );
 		$this->assertStringContainsString( 'RuntimeException', $data['message'] );
-		$this->assertStringContainsString( 'Fatal mock error', $data['message'] );
-		$this->assertSame( RuntimeException::class, $data['exception']['type'] );
-		$this->assertSame( 12345, $data['exception']['code'] );
-		$this->assertSame( 'Fatal mock error', $data['exception']['message'] );
 		$this->assertNotEmpty( $this->reportedErrors );
 		$this->assertInstanceOf( RuntimeException::class, $this->reportedErrors[0] );
 	}

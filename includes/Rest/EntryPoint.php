@@ -111,7 +111,7 @@ class EntryPoint {
 		$conf = $services->getMainConfig();
 
 		$responseFactory = new ResponseFactory( self::getTextFormatters( $services ) );
-		$responseFactory->setSendExceptionBacktrace( MWExceptionRenderer::shouldShowExceptionDetails() );
+		$responseFactory->setShowExceptionDetails( MWExceptionRenderer::shouldShowExceptionDetails() );
 
 		$cors = new CorsUtils(
 			new ServiceOptions(

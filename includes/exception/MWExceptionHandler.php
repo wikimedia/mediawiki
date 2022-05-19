@@ -605,22 +605,13 @@ TXT;
 	 *
 	 * @param Throwable $e
 	 * @param string $catcher CAUGHT_BY_* class constant indicating what caught the error
-	 * @param bool|null $includeBacktrace Whether to include a backtrace. If null,
-	 *        the value of $includeBacktrace that was provided to installHandler() will be
-	 *        used.
-	 *
 	 * @return array
 	 * @since 1.26
 	 */
 	public static function getStructuredExceptionData(
 		Throwable $e,
-		$catcher = self::CAUGHT_BY_OTHER,
-		?bool $includeBacktrace = null
+		$catcher = self::CAUGHT_BY_OTHER
 	) {
-		if ( $includeBacktrace === null ) {
-			$includeBacktrace = self::$logExceptionBacktrace;
-		}
-
 		$data = [
 			'id' => WebRequest::getRequestId(),
 			'type' => get_class( $e ),
@@ -639,7 +630,7 @@ TXT;
 			$data['suppressed'] = true;
 		}
 
-		if ( $includeBacktrace ) {
+		if ( self::$logExceptionBacktrace ) {
 			$data['backtrace'] = self::getRedactedTrace( $e );
 		}
 
@@ -703,20 +694,16 @@ TXT;
 	 * @param bool $pretty Add non-significant whitespace to improve readability (default: false).
 	 * @param int $escaping Bitfield consisting of FormatJson::.*_OK class constants.
 	 * @param string $catcher CAUGHT_BY_* class constant indicating what caught the error
-	 * @param bool|null $includeBacktrace Whether to include a backtrace. If null,
-	 *        the value of $includeBacktrace that was provided to installHandler() will be
-	 *        used.
 	 * @return string|false JSON string if successful; false upon failure
 	 */
 	public static function jsonSerializeException(
 		Throwable $e,
 		$pretty = false,
 		$escaping = 0,
-		$catcher = self::CAUGHT_BY_OTHER,
-		?bool $includeBacktrace = null
+		$catcher = self::CAUGHT_BY_OTHER
 	) {
 		return FormatJson::encode(
-			self::getStructuredExceptionData( $e, $catcher, $includeBacktrace ),
+			self::getStructuredExceptionData( $e, $catcher ),
 			$pretty,
 			$escaping
 		);
