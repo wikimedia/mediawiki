@@ -804,6 +804,7 @@
 	"postedit-confirmation-restored": "Sivu on nyt palautettu (aiempaan versioonsa).",
 	"postedit-confirmation-saved": "Muokkauksesi on tallennettu.",
 	"postedit-confirmation-published": "Muokkauksesi julkaistiin.",
+	"postedit-temp-created-label": "Väliaikainen tunnus",
 	"edit-already-exists": "Uuden sivun luominen ei onnistunut.\nSe on jo olemassa.",
 	"defaultmessagetext": "Viestin oletusteksti",
 	"content-failed-to-parse": "Sisältö tyypiltään $2 ei jäsenny tyypiksi $1: $3",
