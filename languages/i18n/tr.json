@@ -3739,7 +3739,7 @@
 	"logentry-partialblock-reblock": "$1, {{GENDER:$4|$3}} kullanıcıya engellenme ayarlarını $5 süreyle $7 sayfası engelleyecek şekilde {{GENDER:$2|değiştirdi}} $6",
 	"logentry-non-editing-block-block": "$1, {{GENDER:$4|$3}} kullanıcıya $5 bir bitiş tarihi süresiyle belirtilen düzenleme dışı işlemlerden {{GENDER:$2|engellendi}} $6",
 	"logentry-non-editing-block-reblock": "$1, $5 bitiş tarihi süresi olan belirli düzenleme dışı eylemler için {{GENDER:$4|$3}} için engel ayarlarını {{GENDER:$2|değiştirdi}} $6",
-	"logentry-suppress-block": "$1, {{GENDER:$4|$3}} kullanıcıya $5 bitiş tarihle {{GENDER:$2|engellendi}} $6",
+	"logentry-suppress-block": "$1,{{GENDER:$4|$3}} kullanıcı $5 bitiş tarihi ile {{GENDER:$2|engellendi}} $6",
 	"logentry-suppress-reblock": "$1, {{GENDER:$4|$3}} kullanıcıya engellenme süresini $5 olarak {{GENDER:$2|değiştirdi}} $6",
 	"logentry-import-upload": "$1, $3 sayfasına dosya yüklemesiyle {{GENDER:$2|içe aktardı}}",
 	"logentry-import-upload-details": "$1, $3 sayfasına dosya yüklemesiyle {{GENDER:$2|içe aktardı}} ($4 {{PLURAL:$4|revizyon}})",
