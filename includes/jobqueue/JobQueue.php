@@ -480,6 +480,7 @@ abstract class JobQueue {
 	 *
 	 * This does nothing for certain queue classes.
 	 *
+	 * @internal For use within JobQueue only
 	 * @param IJobSpecification $job
 	 * @throws JobQueueError
 	 * @return bool
