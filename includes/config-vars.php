@@ -4390,18 +4390,6 @@ $wgPingback = null;
 $wgOriginTrials = null;
 
 /**
- * Config variable stub for the PriorityHints setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::PriorityHints
- */
-$wgPriorityHints = null;
-
-/**
- * Config variable stub for the PriorityHintsRatio setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::PriorityHintsRatio
- */
-$wgPriorityHintsRatio = null;
-
-/**
  * Config variable stub for the ReportToExpiry setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ReportToExpiry
  */

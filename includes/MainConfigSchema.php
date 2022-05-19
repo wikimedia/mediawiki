@@ -12011,28 +12011,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Enable client-side Priority Hints.
-	 *
-	 * @warning EXPERIMENTAL!
-	 * @since 1.33
-	 */
-	public const PriorityHints = [
-		'default' => false,
-		'type' => 'boolean',
-	];
-
-	/**
-	 * Ratio of requests that should get Priority Hints when the feature is enabled.
-	 *
-	 * @warning EXPERIMENTAL!
-	 * @since 1.34
-	 */
-	public const PriorityHintsRatio = [
-		'default' => 1.0,
-		'type' => 'float',
-	];
-
-	/**
 	 * Expiry of the endpoint definition for the Reporting API.
 	 *
 	 * @warning EXPERIMENTAL!

@@ -4406,18 +4406,6 @@ class MainConfigNames {
 	public const OriginTrials = 'OriginTrials';
 
 	/**
-	 * Name constant for the PriorityHints setting, for use with Config::get()
-	 * @see MainConfigSchema::PriorityHints
-	 */
-	public const PriorityHints = 'PriorityHints';
-
-	/**
-	 * Name constant for the PriorityHintsRatio setting, for use with Config::get()
-	 * @see MainConfigSchema::PriorityHintsRatio
-	 */
-	public const PriorityHintsRatio = 'PriorityHintsRatio';
-
-	/**
 	 * Name constant for the ReportToExpiry setting, for use with Config::get()
 	 * @see MainConfigSchema::ReportToExpiry
 	 */
