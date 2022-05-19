@@ -1,4 +1,8 @@
-## 2.0.0 / 2021-01-11
+## 2.1.0 / 2022-05-19
+
+* Use @wdio/spec-reporter.
+
+## 2.0.0 / 2022-01-11
 
 The wdio-mediawiki library now requires WebdriverIO async mode.
 
