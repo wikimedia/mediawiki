@@ -62,16 +62,16 @@
 	 * @return {Function} return.1 Test function
 	 */
 	function conditionParse( $root, spec ) {
-		var op, i, l, v, $field, fields, func, funcs, getVal;
+		var i, v, $field, fields, func;
 
-		op = spec[ 0 ];
-		l = spec.length;
+		var op = spec[ 0 ];
+		var l = spec.length;
 		switch ( op ) {
 			case 'AND':
 			case 'OR':
 			case 'NAND':
 			case 'NOR':
-				funcs = [];
+				var funcs = [];
 				fields = [];
 				for ( i = 1; i < l; i++ ) {
 					if ( !Array.isArray( spec[ i ] ) ) {
@@ -86,8 +86,7 @@
 				var valueChk = { AND: false, OR: true, NAND: false, NOR: true };
 				var valueRet = { AND: true, OR: false, NAND: false, NOR: true };
 				func = function () {
-					var j;
-					for ( j = 0; j < l; j++ ) {
+					for ( var j = 0; j < l; j++ ) {
 						if ( valueChk[ op ] === funcs[ j ]() ) {
 							return !valueRet[ op ];
 						}
@@ -125,7 +124,7 @@
 				v = spec[ 2 ];
 
 				var widget;
-				getVal = function () {
+				var getVal = function () {
 					// When the value is requested for the first time,
 					// determine if we need to treat this field as a OOUI widget.
 					if ( widget === undefined ) {
@@ -185,13 +184,10 @@
 		if ( $oouiFields.length ) {
 			modules.push( 'mediawiki.htmlform.ooui' );
 			$oouiFields.each( function () {
-				var data, extraModules,
-					$el = $( this );
-
-				data = $el.data( 'mw-modules' );
+				var data = $( this ).data( 'mw-modules' );
 				if ( data ) {
 					// We can trust this value, 'data-mw-*' attributes are banned from user content in Sanitizer
-					extraModules = data.split( ',' );
+					var extraModules = data.split( ',' );
 					modules.push.apply( modules, extraModules );
 				}
 			} );
@@ -208,9 +204,9 @@
 		// Load modules for the fields we will hide/disable
 		mw.loader.using( gatherOOUIModules( $fields ) ).done( function () {
 			$fields.each( function () {
-				var v, i, fields = [], test = {}, func, spec, $elOrLayout,
-					$el = $( this );
+				var $el = $( this );
 
+				var spec, $elOrLayout;
 				if ( $el.is( '[data-ooui]' ) ) {
 					// $elOrLayout should be a FieldLayout that mixes in mw.htmlform.Element
 					$elOrLayout = OO.ui.FieldLayout.static.infuse( $el );
@@ -224,14 +220,16 @@
 					return;
 				}
 
+				var fields = [];
+				var test = {};
 				[ 'hide', 'disable' ].forEach( function ( type ) {
 					if ( spec[ type ] ) {
-						v = conditionParse( $root, spec[ type ] );
+						var v = conditionParse( $root, spec[ type ] );
 						fields = fields.concat( fields, v[ 0 ] );
 						test[ type ] = v[ 1 ];
 					}
 				} );
-				func = function () {
+				var func = function () {
 					var shouldHide = spec.hide ? test.hide() : false;
 					var shouldDisable = shouldHide || ( spec.disable ? test.disable() : false );
 					if ( spec.hide ) {
@@ -274,13 +272,17 @@
 					}
 				};
 
-				// Load modules for the fields whose state we will check
-				mw.loader.using( gatherOOUIModules( $( fields.map( function ( $node ) {
+				var oouiNodes = fields.map( function ( $node ) {
+					// We expect undefined for non-OOUI nodes (T308626)
 					return $node.closest( '.oo-ui-fieldLayout[data-ooui]' )[ 0 ];
 				} ).filter( function ( node ) {
+					// Remove undefined
 					return !!node;
-				} ) ) ) ).done( function () {
-					for ( i = 0; i < fields.length; i++ ) {
+				} );
+
+				// Load modules for the fields whose state we will check
+				mw.loader.using( gatherOOUIModules( $( oouiNodes ) ) ).done( function () {
+					for ( var i = 0; i < fields.length; i++ ) {
 						var widget = getWidget( fields[ i ] );
 						if ( widget ) {
 							fields[ i ] = widget;
