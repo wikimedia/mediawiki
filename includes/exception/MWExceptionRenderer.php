@@ -34,19 +34,30 @@ class MWExceptionRenderer {
 	public const AS_RAW = 1; // show as text
 	public const AS_PRETTY = 2; // show as HTML
 
-	private static function shouldShowExceptionDetails(): bool {
-		// NOTE: keep in sync with MWException::shouldShowExceptionDetails
-		if ( MediaWikiServices::hasInstance() ) {
-			$services = MediaWikiServices::getInstance();
-			if ( $services->hasService( 'MainConfig' ) ) {
-				return $services->getMainConfig()->get( MainConfigNames::ShowExceptionDetails );
-			}
-		}
+	/**
+	 * Whether to print exceptino details.
+	 *
+	 * The default is configured by $wgShowExceptionDetails.
+	 * May be changed at runtime via MWExceptionRenderer::setShowExceptionDetails().
+	 *
+	 * @see MainConfigNames::ShowExceptionDetails
+	 */
+	private static $showExceptionDetails = false;
 
-		// Shouldn't happen, since Setup.php calls MediaWikiServices::allowGlobalInstance() before
-		// MWExceptionHandler::installHandler(). But we shouldn't just crash and if it does,
-		// we should return nicely and continue to report the original error.
-		return false;
+	/**
+	 * @internal For use within core wiring only.
+	 * @return bool
+	 */
+	public static function shouldShowExceptionDetails(): bool {
+		return self::$showExceptionDetails;
+	}
+
+	/**
+	 * @param bool $showDetails
+	 * @internal For use by Setup.php and other internal use cases.
+	 */
+	public static function setShowExceptionDetails( bool $showDetails ): void {
+		self::$showExceptionDetails = $showDetails;
 	}
 
 	/**
@@ -189,15 +200,12 @@ class MWExceptionRenderer {
 	}
 
 	/**
-	 * If $wgShowExceptionDetails is true, return a HTML message with a
-	 * backtrace to the error, otherwise show a message to ask to set it to true
-	 * to show that information.
+	 * Format an HTML message for the given exception object.
 	 *
 	 * @param Throwable $e
 	 * @return string Html to output
 	 */
 	public static function getHTML( Throwable $e ) {
-		// XXX: do we need a parameter to control inclusion of exception details?
 		if ( self::shouldShowExceptionDetails() ) {
 			$html = Html::errorBox( "<p>" .
 				nl2br( htmlspecialchars( MWExceptionHandler::getLogMessage( $e ) ) ) .

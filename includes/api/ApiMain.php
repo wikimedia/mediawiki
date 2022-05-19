@@ -1304,13 +1304,11 @@ class ApiMain extends ApiBase {
 		} elseif ( $type !== 'error' ) {
 			// None of the rest have any messages for non-error types
 		} else {
-			// Something is seriously wrong
-			$config = $this->getConfig();
 			// TODO: Avoid embedding arbitrary class names in the error code.
 			$class = preg_replace( '#^Wikimedia\\\Rdbms\\\#', '', get_class( $e ) );
 			$code = 'internal_api_error_' . $class;
 			$data = [ 'errorclass' => get_class( $e ) ];
-			if ( $config->get( MainConfigNames::ShowExceptionDetails ) ) {
+			if ( MWExceptionRenderer::shouldShowExceptionDetails() ) {
 				if ( $e instanceof ILocalizedException ) {
 					$msg = $e->getMessageObject();
 				} elseif ( $e instanceof MessageSpecifier ) {
