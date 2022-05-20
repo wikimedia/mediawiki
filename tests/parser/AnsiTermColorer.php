@@ -29,7 +29,7 @@ class AnsiTermColorer {
 	/**
 	 * Return ANSI terminal escape code for changing text attribs/color
 	 *
-	 * @param string $color Semicolon-separated list of attribute/color codes
+	 * @param string|int $color Semicolon-separated list of attribute/color codes
 	 * @return string
 	 */
 	public function color( $color ) {

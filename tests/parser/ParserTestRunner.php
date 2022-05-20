@@ -32,18 +32,24 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\TestMode as ParserTestMode;
 use Psr\Log\NullLogger;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Parsoid\Config\PageConfig;
+use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\SelserData;
 use Wikimedia\Parsoid\DOM\Document;
+use Wikimedia\Parsoid\Ext\ExtensionModule;
+use Wikimedia\Parsoid\ParserTests\Article as ParserTestArticle;
 use Wikimedia\Parsoid\ParserTests\ParserHook as ParsoidParserHook;
 use Wikimedia\Parsoid\ParserTests\RawHTML as ParsoidRawHTML;
 use Wikimedia\Parsoid\ParserTests\StyleTag as ParsoidStyleTag;
 use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
-use Wikimedia\Parsoid\ParserTests\TestFileReader as ParsoidTestFileReader;
+use Wikimedia\Parsoid\ParserTests\TestFileReader;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Utils\DOMDataUtils;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\IDatabase;
@@ -67,17 +73,6 @@ class ParserTestRunner {
 		'extraParserTests.txt',
 		'legacyMediaParserTests.txt',
 		'mediaParserTests.txt',
-	];
-
-	/**
-	 * Valid parser test modes
-	 */
-	public const VALID_TEST_MODES = [
-		'wt2html' => true,
-		'wt2wt' => true,
-		'html2wt' => true,
-		'html2html' => true,
-		'selser' => true,
 	];
 
 	/**
@@ -224,28 +219,15 @@ class ParserTestRunner {
 			'knownFailures' => true,
 			'updateKnownFailures' => false,
 			'changetree' => null,
-			// These keys should match those in self::VALID_TEST_MODES
-			'wt2html' => false,
-			'wt2wt' => false,
-			'html2wt' => false,
-			'html2html' => false,
-			'selser' => false,
+			// Options can also match those in ParserTestModes::TEST_MODES
+			// but we don't need to initialize those here; they will be
+			// accessed via $this->requestedTestModes instead.
 		];
-		// If no specific test mode is set, enable them all
-		$allModes = true;
-		foreach ( self::VALID_TEST_MODES as $mode => $ignore ) {
-			if ( $this->options[$mode] ?? false ) {
-				$allModes = false;
-			}
-		}
-		if ( $allModes ) {
-			$this->options = self::VALID_TEST_MODES + $this->options;
-		}
 		// Requested test modes are used for Parsoid tests and ignored for
 		// legacy parser tests.
-		$this->requestedTestModes = array_keys( array_intersect_assoc(
-			$this->options, self::VALID_TEST_MODES
-		) );
+		$this->requestedTestModes = ParserTestMode::requestedTestModes(
+			$this->options
+		);
 
 		// @phan-suppress-next-line PhanEmptyForeach False positive
 		foreach ( $this->options['norm'] as $func ) {
@@ -863,7 +845,7 @@ class ParserTestRunner {
 				if ( $this->options['parsoid'] ) {
 					$ok = $this->runParsoidTests( $filename ) && $ok;
 				} else {
-					$ok = $this->runTests( $filename ) && $ok;
+					$ok = $this->runLegacyTests( $filename ) && $ok;
 				}
 				$this->recorder->endSuite( $filename );
 			}
@@ -904,46 +886,50 @@ class ParserTestRunner {
 	}
 
 	/**
-	 * Run the tests from a single file. staticSetup() and setupDatabase()
-	 * must have been called already.
+	 * Run the legacy parser tests from a single file. staticSetup() and
+	 * setupDatabase() must have been called already.
 	 *
 	 * @param string $filename Test file name
 	 * @return bool True if passed all tests, false if any tests failed.
 	 */
-	public function runTests( string $filename ): bool {
-		$testFileInfo = TestFileReader::read( $filename, [
-			'runDisabled' => $this->runDisabled,
-			'regex' => $this->regex
-		] );
-
-		// Don't start the suite if there are no enabled tests in the file
-		if ( !$testFileInfo['tests'] ) {
-			return true;
-		}
-
-		$ok = true;
+	public function runLegacyTests( string $filename ): bool {
+		$mode = new ParserTestMode( 'legacy' );
+		$testFileInfo = TestFileReader::read( $filename,
+			static function ( $msg ) {
+				wfDeprecatedMsg( $msg, '1.35', false, false );
+			}
+		);
 
 		$this->checkSetupDone( 'staticSetup' );
 
 		// If any requirements are not met, mark all tests from the file as skipped
-		if ( !$this->meetsRequirements( $testFileInfo['fileOptions']['requirements'] ?? [] ) ) {
-			foreach ( $testFileInfo['tests'] as $test ) {
-				$this->recorder->startTest( $test );
-				$this->recorder->skipped( $test, 'required extension not enabled' );
+		$skipMessage = $this->getFileSkipMessage( true, $testFileInfo->fileOptions, $filename );
+		if ( $skipMessage !== null ) {
+			foreach ( $testFileInfo->testCases as $test ) {
+				$this->recorder->startTest( $test, $mode );
+				$this->recorder->skipped( $test, $mode, $skipMessage );
 			}
 			return true;
 		}
 
 		// Add articles
-		$teardown = $this->addArticles( $testFileInfo['articles'] );
+		$teardown = $this->addArticles( $testFileInfo->articles );
 
 		// Run tests
-		foreach ( $testFileInfo['tests'] as $test ) {
-			$this->recorder->startTest( $test );
-			$result = $this->runTest( $test );
+		$ok = true;
+		$runner = $this;
+		foreach ( $testFileInfo->testCases as $test ) {
+			$skip = $this->getTestSkipMessage( $test, $mode );
+			if ( $skip ) {
+				continue;
+			}
+			$this->recorder->startTest( $test, $mode );
+			$result = $this->runTest( $test, $mode );
 			if ( $result !== false ) {
 				$ok = $ok && $result->isSuccess();
-				$this->recorder->record( $test, $result );
+				$this->recorder->record( $result );
+			} else {
+				$this->recorder->skipped( $test, $mode, 'SKIP' );
 			}
 		}
 
@@ -954,20 +940,29 @@ class ParserTestRunner {
 	}
 
 	/**
+	 * @param bool $isLegacy
 	 * @param array $fileOptions
-	 * @param array $runnerOpts
-	 * @param string|null $filename
+	 * @param string $filename
 	 * @return string|null
 	 */
-	public function getSkipMessage( array $fileOptions, array $runnerOpts = [], string $filename = null ): ?string {
+	public function getFileSkipMessage( bool $isLegacy, array $fileOptions, string $filename ): ?string {
+		$runnerOpts = $this->getOptions();
+		// Verify minimum version #
+		$testFormat = intval( $fileOptions['version'] ?? '1' );
+		if ( $testFormat < 2 ) {
+			throw new MWException(
+				"$filename needs an update. Support for the parserTest v1 file format was removed in MediaWiki 1.36"
+			);
+		}
+
 		// If any requirements are not met, mark all tests from the file as skipped
-		if ( !isset( $fileOptions['parsoid-compatible'] ) ) {
+		if ( !(
+			$isLegacy ||
+			isset( $fileOptions['parsoid-compatible'] ) ||
+			( $runnerOpts['parsoid'] ?? false )
+		) ) {
 			// Running files in Parsoid integrated mode is opt-in for now.
 			return 'not compatible with Parsoid integrated mode';
-		} elseif ( !MediaWikiServices::getInstance()->hasService( 'ParsoidPageConfigFactory' ) ) {
-			// Disable integrated mode if Parsoid's services aren't available
-			// (Temporary measure until Parsoid is fully integrated in core.)
-			return 'Parsoid not available';
 		} elseif ( !$this->meetsRequirements( $fileOptions['requirements'] ?? [] ) ) {
 			return 'required extension not enabled';
 		} elseif ( ( $runnerOpts['testFile'] ?? $filename ) !== $filename ) {
@@ -975,6 +970,44 @@ class ParserTestRunner {
 		} else {
 			return null;
 		}
+	}
+
+	public function getTestSkipMessage( ParserTest $test, ParserTestMode $mode ) {
+			if ( $test->wikitext === null ) {
+				// Note that /in theory/ we could have pure html2html tests
+				// with no wikitext section, but /in practice/ all tests
+				// include a wikitext section.
+				$test->error( "Test lacks wikitext section", $test->testName );
+			}
+			// Skip disabled / filtered tests
+			if ( isset( $test->options['disabled'] ) && !$this->runDisabled ) {
+				return "Test disabled";
+			}
+			$testFilter = [ 'regex' => $this->regex ];
+			if ( !$test->matchesFilter( $testFilter ) ) {
+				return "Test doesn't match filter";
+			}
+			// Skip parsoid-only tests if running in a legacy test mode
+			if ( $test->legacyHtml === null ) {
+				// A Parsoid-only test should have one of the following sections
+				if (
+					isset( $test->sections['html/parsoid'] ) ||
+					isset( $test->sections['html/parsoid+integrated'] ) ||
+					isset( $test->sections['html/parsoid+standalone'] ) ||
+					isset( $test->sections['wikitext/edited'] )
+				) {
+					if ( $mode->isLegacy() ) {
+						// Not an error, just skip this test if we're in
+						// legacy mode.
+						return "Parsoid-only test";
+					}
+				} else {
+					// This test lacks both a legacy html section and also
+					// any parsoid-specific html or wikitext/edited section.
+					$test->error( "Test lacks html section", $test->testName );
+				}
+			}
+			return null;
 	}
 
 	/**
@@ -985,7 +1018,9 @@ class ParserTestRunner {
 	 * @return bool True if passed all tests, false if any tests failed.
 	 */
 	public function runParsoidTests( string $filename ): bool {
-		$testFileInfo = ParsoidTestFileReader::read( $filename,
+		$testModes = $this->getRequestedTestModes();
+		$skipMode = new ParserTestMode( $testModes[0] );
+		$testFileInfo = TestFileReader::read( $filename,
 			static function ( $msg ) {
 				wfDeprecatedMsg( $msg, '1.35', false, false );
 			}
@@ -993,59 +1028,53 @@ class ParserTestRunner {
 
 		$this->checkSetupDone( 'staticSetup' );
 
-		$skipMessage = $this->getSkipMessage( $testFileInfo->fileOptions );
+		// If any requirements are not met, mark all tests from the file as skipped
+		$skipMessage = $this->getFileSkipMessage( false, $testFileInfo->fileOptions, $filename );
 		if ( $skipMessage !== null ) {
-			foreach ( $testFileInfo->testCases as $t ) {
-				$test = $this->testToArray( $t );
-				$this->recorder->startTest( $test );
-				$this->recorder->skipped( $test, $skipMessage );
+			foreach ( $testFileInfo->testCases as $test ) {
+				$this->recorder->startTest( $test, $skipMode );
+				$this->recorder->skipped( $test, $skipMode, $skipMessage );
 			}
 			return true;
 		}
 
 		// Add articles
-		$articles = [];
-		foreach ( $testFileInfo->articles as $a ) {
-			$articles[] = [
-				'name' => $a->title,
-				'text' => $a->text,
-				'line' => $a->lineNumStart,
-				'file' => $a->filename,
-			];
-		}
-		$teardown = $this->addArticles( $articles );
+		$teardown = $this->addArticles( $testFileInfo->articles );
 
 		// Run tests
 		$ok = true;
 		$runner = $this;
 		$testFilter = [ 'regex' => $this->regex ];
-		$validTestModes = $this->getRequestedTestModes();
 		foreach ( $testFileInfo->testCases as $t ) {
-			// Skip disabled / filtered tests
-			if ( ( isset( $t->options['disabled'] ) && !$this->runDisabled ) ||
-				!$t->matchesFilter( $testFilter )
-			) {
+			$skip = $this->getTestSkipMessage( $t, $skipMode );
+			if ( $skip ) {
 				continue;
 			}
 
-			$testModes = $t->computeTestModes( $validTestModes );
-			$t->testAllModes( $testModes, $this->options,
-				function ( ParserTest $test, string $mode, array $options ) use ( $runner, $t, &$ok ) {
+			$t->testAllModes( $t->computeTestModes( $testModes ), $this->options,
+				function ( ParserTest $test, string $modeStr, array $options ) use ( $runner, $t, &$ok ) {
 					// $test could be a clone of $t
 					// Ensure that updates to knownFailures in $test are reflected in $t
 					$test->knownFailures = &$t->knownFailures;
-					if ( $mode === 'selser' && $test->changetree === null ) {
+					$mode = new ParserTestMode( $modeStr, $test->changetree );
+					if ( $modeStr === 'selser' && $test->changetree === null ) {
 						// This is an auto-edit test with either a CLI changetree
 						// or a change tree that should be generated
-						$result = $this->runParsoidTest( $test, 'selser-auto', json_decode( $runner->options['changetree'] ) );
-					} else {
-						$result = $this->runParsoidTest( $test, $mode, $test->changetree );
+						$mode = new ParserTestMode( 'selser-auto', json_decode( $runner->options['changetree'] ) );
 					}
+					$this->recorder->startTest( $test, $mode );
+					// We know this is a parsoid test (because we're in
+					// ::runParsoidTests) and we've already checked
+					// ::getTestSkipMessage() so we can dispatch directly to
+					// ::runParsoidTest() instead of going through the
+					// ::runTest() dispatcher.
+					$result = $this->runParsoidTest( $test, $mode );
 
 					if ( $result !== false ) {
-						$testAsArray = $this->testToArray( $test, $mode );
 						$ok = $ok && $result->isSuccess();
-						$this->recorder->record( $testAsArray, $result );
+						$this->recorder->record( $result );
+					} else {
+						$this->recorder->skipped( $test, $mode, 'SKIP' );
 					}
 				}
 			);
@@ -1063,9 +1092,9 @@ class ParserTestRunner {
 
 	/**
 	 * Update known failures JSON file for the parser tests file
-	 * @param ParsoidTestFileReader $testFileInfo
+	 * @param TestFileReader $testFileInfo
 	 */
-	public function updateKnownFailures( ParsoidTestFileReader $testFileInfo ): void {
+	public function updateKnownFailures( TestFileReader $testFileInfo ): void {
 		$testKnownFailures = [];
 		foreach ( $testFileInfo->testCases as $t ) {
 			if ( $t->knownFailures && $t->testName ) {
@@ -1102,13 +1131,13 @@ class ParserTestRunner {
 	/**
 	 * Shared code to initialize ParserOptions based on the $test object,
 	 * used by both the legacy Parser and the Parsoid parser.
-	 * @param stdClass $test
+	 * @param ParserTest $test
 	 * @param callable $parserOptionsCallback A callback to create the
 	 *   initial ParserOptions object.  This allows for some minor
 	 *   differences in how the legacy Parser and Parsoid create this.
 	 * @return array An array of Title, ParserOptions, and integer revId.
 	 */
-	private function setupParserOptions( $test, callable $parserOptionsCallback ) {
+	private function setupParserOptions( ParserTest $test, callable $parserOptionsCallback ) {
 		$opts = $test->options;
 		$context = RequestContext::getMain();
 		$user = $context->getUser();
@@ -1116,7 +1145,8 @@ class ParserTestRunner {
 		$title = isset( $opts['title'] )
 			? Title::newFromText( $opts['title'] )
 			: $this->defaultTitle;
-		$wikitext = $test->wikitext ?? $test->input;
+		$wikitext = $test->wikitext;
+		'@phan-var string $wikitext'; // assert that this is not null
 
 		$options = $parserOptionsCallback(
 			$context, $title, $revId, $wikitext
@@ -1125,7 +1155,7 @@ class ParserTestRunner {
 		$options->setUserLang( $context->getLanguage() );
 
 		if ( isset( $opts['lastsavedrevision'] ) ) {
-			$content = new WikitextContent( $test->wikitext ?? $test->input );
+			$content = new WikitextContent( $wikitext );
 			$title = Title::newFromRow( (object)[
 				'page_id' => 187,
 				'page_len' => $content->getSize(),
@@ -1177,6 +1207,26 @@ class ParserTestRunner {
 	}
 
 	/**
+	 * Run a given wikitext input through either the legacy wiki parser
+	 * or Parsoid, depending on the given test mode, and compare the
+	 * output against the expected results.
+	 *
+	 * @param ParserTest $test The test parameters
+	 * @param ParserTestMode $mode The test mode
+	 * @return ParserTestResult|false The test results.
+	 */
+	public function runTest( ParserTest $test, ParserTestMode $mode ) {
+		if ( $this->getTestSkipMessage( $test, $mode ) ) {
+			return false;
+		}
+		if ( $mode->isLegacy() ) {
+			return $this->runLegacyTest( $test, $mode );
+		} else {
+			return $this->runParsoidTest( $test, $mode );
+		}
+	}
+
+	/**
 	 * Run a given wikitext input through a freshly-constructed instance
 	 * of the legacy wiki parser, and compare the output against the expected
 	 * results.
@@ -1186,25 +1236,21 @@ class ParserTestRunner {
 	 * staticSetup() and setupWikiData() must be called before this function
 	 * is entered.
 	 *
-	 * @param array $test The test parameters:
-	 *  - test: The test name
-	 *  - desc: The subtest description
-	 *  - input: Wikitext to try rendering
-	 *  - options: Array of test options
-	 *  - config: Overrides for global variables, one per line
-	 *
+	 * @param ParserTest $test The test parameters
+	 * @param ParserTestMode $mode The test mode
 	 * @return ParserTestResult|false false if skipped
 	 */
-	public function runTest( $test ) {
-		wfDebug( __METHOD__ . ": running {$test['desc']}" );
-		$opts = $test['options'];
+	 public function runLegacyTest( ParserTest $test, ParserTestMode $mode ) {
+		$desc = ( $test->comment ?? '' ) . $test->testName;
+		wfDebug( __METHOD__ . ": running $desc" );
+		$opts = $test->options;
 		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
 			wfDeprecated( 'preprocessor=Preprocessor_DOM', '1.36' );
 			return false; // Skip test.
 		}
 		$teardownGuard = $this->perTestSetup( $test );
 		[ $title, $options, $revId ] = $this->setupParserOptions(
-			(object)$test,
+			$test,
 			static function ( $context, $title, $revId, $wikitext ) {
 				return ParserOptions::newFromContext( $context );
 			}
@@ -1227,24 +1273,26 @@ class ParserTestRunner {
 			} );
 		}
 
+		$wikitext = $test->wikitext;
+		'@phan-var string $wikitext'; // assert that this is not null
 		if ( isset( $opts['pst'] ) ) {
-			$out = $parser->preSaveTransform( $test['input'], $title, $options->getUserIdentity(), $options );
+			$out = $parser->preSaveTransform( $wikitext, $title, $options->getUserIdentity(), $options );
 			$output = $parser->getOutput();
 		} elseif ( isset( $opts['msg'] ) ) {
-			$out = $parser->transformMsg( $test['input'], $options, $title );
+			$out = $parser->transformMsg( $wikitext, $options, $title );
 		} elseif ( isset( $opts['section'] ) ) {
 			$section = $opts['section'];
-			$out = $parser->getSection( $test['input'], $section );
+			$out = $parser->getSection( $wikitext, $section );
 		} elseif ( isset( $opts['replace'] ) ) {
 			$section = $opts['replace'][0];
 			$replace = $opts['replace'][1];
-			$out = $parser->replaceSection( $test['input'], $section, $replace );
+			$out = $parser->replaceSection( $wikitext, $section, $replace );
 		} elseif ( isset( $opts['comment'] ) ) {
-			$out = Linker::formatComment( $test['input'], $title, $local );
+			$out = Linker::formatComment( $wikitext, $title, $local );
 		} elseif ( isset( $opts['preload'] ) ) {
-			$out = $parser->getPreloadText( $test['input'], $title, $options );
+			$out = $parser->getPreloadText( $wikitext, $title, $options );
 		} else {
-			$output = $parser->parse( $test['input'], $title, $options, true, true, $revId );
+			$output = $parser->parse( $wikitext, $title, $options, true, true, $revId );
 			$out = $output->getText( [
 				'allowTOC' => !isset( $opts['notoc'] ),
 				'unwrap' => !isset( $opts['wrap'] ),
@@ -1262,16 +1310,17 @@ class ParserTestRunner {
 
 		ScopedCallback::consume( $teardownGuard );
 
-		$expected = $test['result'];
+		$expected = $test->legacyHtml;
+		'@phan-var string $expected'; // assert that this is not null
 		if ( count( $this->normalizationFunctions ) ) {
 			$expected = ParserTestResultNormalizer::normalize(
-				$test['expected'], $this->normalizationFunctions );
+				$expected, $this->normalizationFunctions );
 			$out = ParserTestResultNormalizer::normalize( $out, $this->normalizationFunctions );
 		}
 
-		$testResult = new ParserTestResult( $test, $expected, $out );
+		$testResult = new ParserTestResult( $test, $mode, $expected, $out );
 		return $testResult;
-	}
+	 }
 
 	/**
 	 * Add information from the parser output to the result string
@@ -1337,71 +1386,25 @@ class ParserTestRunner {
 	}
 
 	/**
-	 * @param array $opts test options
-	 * @return Parsoid
-	 */
-	private function createParsoid( array $opts ): Parsoid {
-		$services = MediaWikiServices::getInstance();
-		$siteConfig = $services->get( 'ParsoidSiteConfig' );
-		$dataAccess = $services->get( 'ParsoidDataAccess' );
-
-		// Create Parsoid object.
-		// @todo T270307: unregister these after this test
-		$siteConfig->registerExtensionModule( ParsoidParserHook::class );
-		if ( ( $opts['wgrawhtml'] ?? null ) === '1' ) {
-			$siteConfig->registerExtensionModule( ParsoidRawHTML::class );
-		}
-		if ( isset( $opts['styletag'] ) ) {
-			$siteConfig->registerExtensionModule( ParsoidStyleTag::class );
-		}
-
-		return new Parsoid( $siteConfig, $dataAccess );
-	}
-
-	/**
-	 * FIXME: This will likely move to Test.php in the Parsoid repo
-	 * @param ParserTest $test
-	 * @param string $modeDesc Parsoid test mode (for selser, changetree is part of it)
-	 * @return array
-	 */
-	public function testToArray( ParserTest $test, string $modeDesc = '' ): array {
-		 $desc = ( $test->comment ?? '' ) . $test->testName;
-		 if ( $modeDesc ) {
-			 $desc .= " ($modeDesc)";
-		 }
-		 return [
-			'test' => $test->testName,
-			'desc' => $desc,
-			'input' => $test->wikitext,
-			'result' => $test->legacyHtml,
-			'options' => $test->options,
-			'config' => $test->config ?? '',
-			'line' => $test->lineNumStart,
-			'file' => $test->filename,
-		];
-	}
-
-	/**
 	 * This processes test results and updates the known failures info for the test
 	 *
 	 * @param ParserTest $test
-	 * @param string $mode
+	 * @param ParserTestMode $mode
 	 * @param string|null|callable $rawExpected
+	 *  If null, indicates that the normalizer should look for the expected
+	 *  output in the $test object.
 	 * @param string $rawActual
 	 * @param callable $normalizer normalizer of expected & actual output strings
 	 * @return ParserTestResult
 	 */
 	private function processResults(
-		ParserTest $test, string $mode, $rawExpected, string $rawActual, callable $normalizer
+		ParserTest $test, ParserTestMode $mode, $rawExpected, string $rawActual, callable $normalizer
 	): ParserTestResult {
-		$testAsArray = $this->testToArray( $test, $mode );
-		$this->recorder->startTest( $testAsArray );
-
 		if ( !$this->options['knownFailures'] ) {
 			// Ignore known failures
 			$expectedFailure = null;
 		} else {
-			$expectedFailure = $test->knownFailures[$mode] ?? null;
+			$expectedFailure = $test->knownFailures["$mode"] ?? null;
 		}
 		if ( $expectedFailure !== null ) {
 			$actual = $rawActual;
@@ -1410,13 +1413,14 @@ class ParserTestRunner {
 			if ( is_callable( $rawExpected ) ) {
 				$rawExpected = $rawExpected();
 			}
-			list( $actual, $expected ) = $normalizer( $rawActual, $rawExpected );
+			$standalone = false; // We're testing in integrated mode
+			list( $actual, $expected ) = $normalizer( $rawActual, $rawExpected, $standalone );
 		}
 
 		if ( $this->options['updateKnownFailures'] ) {
 			if ( $actual !== $expected ) {
 				if ( $expectedFailure === null ) {
-					$test->knownFailures[$mode] = $rawActual;
+					$test->knownFailures["$mode"] = $rawActual;
 				} else {
 					if ( is_callable( $rawExpected ) ) {
 						$rawExpected = $rawExpected();
@@ -1425,16 +1429,36 @@ class ParserTestRunner {
 					if ( $actual === $expected ) {
 						wfDebug( "$mode: EXPECTED TO FAIL, BUT PASSED!" );
 						// Expected to fail, but passed!
-						unset( $test->knownFailures[$mode] );
+						unset( $test->knownFailures["$mode"] );
 					} else {
 						wfDebug( "$mode: KNOWN FAILURE CHANGED!" );
-						$test->knownFailures[$mode] = $rawActual;
+						$test->knownFailures["$mode"] = $rawActual;
 					}
 				}
 			}
 		}
 
-		return new ParserTestResult( $testAsArray, $expected, $actual );
+		return new ParserTestResult( $test, $mode, $expected, $actual );
+	}
+
+	private function fetchCachedDoc( $parsoid, $pageConfig, $test ) {
+		// If cachedBODYstr is not already set, create it here.
+		if ( $test->cachedBODYstr === null ) {
+			$this->wt2html( $parsoid, $pageConfig, $test, new ParserTestMode( 'cache' ) );
+		}
+		$doc = DOMUtils::parseHTML( $test->cachedBODYstr, true );
+		// XXX applyChanges calls functions in WTUtils which assume we
+		// have a DataBag associated with the document.
+		DOMDataUtils::prepareDoc( $doc );
+		return $doc;
+	}
+
+	private function fetchCachedWt( $parsoid, $pageConfig, $test ) {
+		// If cachedWTstr is not already set, set it here.
+		if ( ( $test->cachedWTstr ?? null ) === null ) {
+			$this->html2wt( $parsoid, $pageConfig, $test, new ParserTestMode( 'cache' ) );
+		}
+		return $test->cachedWTstr;
 	}
 
 	/**
@@ -1443,16 +1467,20 @@ class ParserTestRunner {
 	 * @param Parsoid $parsoid
 	 * @param PageConfig $pageConfig
 	 * @param ParserTest $test
+	 * @param ParserTestMode $mode
 	 * @return ParserTestResult|false false if skipped
 	 */
-	private function wt2html( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test ) {
+	private function wt2html( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test, ParserTestMode $mode ) {
 		$html = $test->sections['html/parsoid+integrated'] ?? $test->parsoidHtml;
-		if ( $html === null ) {
-			return false; // Skip. Nothing to test.
-		}
+		Assert::invariant(
+			$test->wikitext !== null,
+			"All tests include a wikitext section"
+		);
 
-		if ( $test->wikitext === null ) {
-			return false; // Legacy-only test or non-wt2html
+		if ( $html === null && $mode->mode !== 'cache' ) {
+			// Nothing to test, but if mode is 'cache' we're executing this
+			// in order to set cachedBODYstr (say, for a wt2wt test)
+			return false;
 		}
 
 		$origOut = $parsoid->wikitext2html( $pageConfig, [
@@ -1462,7 +1490,9 @@ class ParserTestRunner {
 		$test->cachedBODYstr = $origOut;
 
 		return $this->processResults(
-			$test, 'wt2html', null, $origOut, [ $test, "normalizeHTML" ]
+			// Passing 'null' for expected output here asks normalizeHTML
+			// to look it up for us, based on parsoid-only & standalone status
+			$test, $mode, null, $origOut, [ $test, "normalizeHTML" ]
 		);
 	}
 
@@ -1470,21 +1500,21 @@ class ParserTestRunner {
 	 * @param Parsoid $parsoid
 	 * @param PageConfig $pageConfig
 	 * @param ParserTest $test
+	 * @param ParserTestMode $mode
 	 * @return ParserTestResult|false false if skipped
 	 */
-	private function wt2wt( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test ) {
-		if ( $test->wikitext === null ) {
-			return false; // FIXME: Is this an error in the test setup?
-		}
+	private function wt2wt( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test, ParserTestMode $mode ) {
+		Assert::invariant(
+			$test->wikitext !== null,
+			"All tests include a wikitext section"
+		);
 
-		if ( $test->cachedBODYstr === null ) {
-			$test->cachedBODYstr = $parsoid->wikitext2html( $pageConfig, [
-				'body_only' => true,
-				'wrapSections' => $test->options['parsoid']['wrapSections'] ?? false,
-			] );
+		// Handle a 'changes' option if present.
+		$doc = $this->fetchCachedDoc( $parsoid, $pageConfig, $test );
+		$testManualChanges = $test->options['parsoid']['changes'] ?? null;
+		if ( $testManualChanges ) {
+			$test->applyManualChanges( $doc );
 		}
-
-		$doc = DOMUtils::parseHTML( $test->cachedBODYstr, true );
 
 		$origWT = $parsoid->dom2wikitext( $pageConfig, $doc );
 		if ( isset( $test->options['parsoid']['changes'] ) ) {
@@ -1494,7 +1524,7 @@ class ParserTestRunner {
 		}
 
 		return $this->processResults(
-			$test, 'wt2wt', $expectedWT, $origWT, [ $test, "normalizeWT" ]
+			$test, $mode, $expectedWT, $origWT, [ $test, "normalizeWT" ]
 		);
 	}
 
@@ -1502,22 +1532,28 @@ class ParserTestRunner {
 	 * @param Parsoid $parsoid
 	 * @param PageConfig $pageConfig
 	 * @param ParserTest $test
+	 * @param ParserTestMode $mode
 	 * @return ParserTestResult|false false if skipped
 	 */
-	private function html2wt( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test ) {
+	private function html2wt( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test, ParserTestMode $mode ) {
 		$html = $test->sections['html/parsoid+integrated'] ?? $test->parsoidHtml;
 		if ( $html === null ) {
+			// Although ::getTestSkipMessage checks that parsoid-only tests
+			// have html sections, this test would have (eg) only an
+			// html/parsoid+standalone section, and we're executing in
+			// integrated mode.
 			return false; // Skip. Nothing to test.
 		}
-		if ( $test->wikitext === null ) {
-			return false; // FIXME: Is this an error in the test setup?
+		if ( $test->wikitext === null && $mode->mode !== 'cache' ) {
+			// If mode is 'cache' we're executing this in order to
+			// set cachedWTstr.
+			throw new MWException( 'Error in the test setup' );
 		}
 
-		// @phan-suppress-next-line PhanUndeclaredProperty
-		$test->cachedWTStr = $origWT = $parsoid->html2wikitext( $pageConfig, $html );
+		$test->cachedWTstr = $origWT = $parsoid->html2wikitext( $pageConfig, $html );
 
 		return $this->processResults(
-			$test, 'html2wt', $test->wikitext, $origWT, [ $test, "normalizeWT" ]
+			$test, $mode, $test->wikitext ?? '', $origWT, [ $test, "normalizeWT" ]
 		);
 	}
 
@@ -1525,16 +1561,20 @@ class ParserTestRunner {
 	 * @param Parsoid $parsoid
 	 * @param PageConfig $pageConfig
 	 * @param ParserTest $test
+	 * @param ParserTestMode $mode
 	 * @return ParserTestResult|false false if skipped
 	 */
-	private function html2html( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test ) {
+	private function html2html( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test, ParserTestMode $mode ) {
 		$html = $test->sections['html/parsoid+integrated'] ?? $test->parsoidHtml;
 		if ( $html === null ) {
+			// Although ::getTestSkipMessage checks that parsoid-only tests
+			// have html sections, this test would have (eg) only an
+			// html/parsoid+standalone section, and we're executing in
+			// integrated mode.
 			return false; // Skip. Nothing to test.
 		}
 
-		// @phan-suppress-next-line PhanUndeclaredProperty
-		$wt = $test->cachedWTStr ?? $parsoid->html2wikitext( $pageConfig, $html );
+		$wt = $this->fetchCachedWt( $parsoid, $pageConfig, $test );
 
 		// Construct a fresh PageConfig object with $wt
 		$oldWt = $test->wikitext;
@@ -1548,7 +1588,7 @@ class ParserTestRunner {
 		] );
 
 		return $this->processResults(
-			$test, 'html2html', $test->cachedNormalizedHTML, $newHtml, [ $test, "normalizeHTML" ]
+			$test, $mode, $test->cachedNormalizedHTML, $newHtml, [ $test, "normalizeHTML" ]
 		);
 	}
 
@@ -1557,7 +1597,7 @@ class ParserTestRunner {
 		$pageConfigFactory = $services->get( 'ParsoidPageConfigFactory' );
 		$pageConfig = null;
 		[ $title, $options, $revId ] = $this->setupParserOptions(
-			(object)$this->testToArray( $test ),
+			$test,
 			static function ( $context, $title, $revId, $wikitext ) use ( $pageConfigFactory, &$pageConfig ) {
 				$pageConfig = $pageConfigFactory->create(
 					$title,
@@ -1585,38 +1625,33 @@ class ParserTestRunner {
 	 * @param Parsoid $parsoid
 	 * @param PageConfig $pageConfig
 	 * @param ParserTest $test
+	 * @param ParserTestMode $mode
 	 * @return ParserTestResult|false false if skipped
 	 */
-	private function selser( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test ) {
-		if ( $test->wikitext === null ) {
-			return false; // FIXME: Is this an error in the test setup?
-		}
+	private function selser( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test, ParserTestMode $mode ) {
+		Assert::invariant(
+			$test->wikitext !== null,
+			"All tests include a wikitext section"
+		);
 
 		if ( $test->changetree === [ 'manual' ] && !isset( $test->options['parsoid']['changes'] ) ) {
-			return false; // FIXME: Is this an error in the test setup?
-		}
-
-		if ( $test->cachedBODYstr === null ) {
-			$test->cachedBODYstr = $parsoid->wikitext2html( $pageConfig, [
-				'body_only' => true,
-				'wrapSections' => $test->options['parsoid']['wrapSections'] ?? false,
-			] );
+			throw new MWException( 'Error in the test setup!' );
 		}
 
 		// Apply edits to the HTML.
 		// Always serialize to string and reparse before passing to selser/wt2wt.
-		$doc = DOMUtils::parseHTML( $test->cachedBODYstr, true );
+		$doc = $this->fetchCachedDoc( $parsoid, $pageConfig, $test );
 		if ( $test->changetree === [ 'manual' ] ) {
 			$test->applyManualChanges( $doc );
-			$knownFailuresIndex = 'selser [manual]';
 			$expectedWT = $test->sections['wikitext/edited'];
-			$expectedFailure = $test->knownFailures[$knownFailuresIndex] ?? null;
+			$expectedFailure = $test->knownFailures["$mode"] ?? null;
 		} else {
 			// $test->changetree === [ 5 ]
-			$test->applyChanges( [], $doc, $test->changetree );
-			$knownFailuresIndex = 'selser [5]';
+			$changetree = $test->changetree;
+			'@phan-var array $changetree'; // assert that this is not null
+			$test->applyChanges( [], $doc, $changetree );
 			$expectedWT = $test->wikitext;
-			$expectedFailure = $test->knownFailures[$knownFailuresIndex] ?? null;
+			$expectedFailure = $test->knownFailures["$mode"] ?? null;
 		}
 		$editedHTML = ContentUtils::toXML( DOMCompat::getBody( $doc ) );
 
@@ -1629,7 +1664,7 @@ class ParserTestRunner {
 		}
 
 		return $this->processResults(
-			$test, $knownFailuresIndex, $expectedWT, $origWT, [ $test, "normalizeWT" ]
+			$test, $mode, $expectedWT, $origWT, [ $test, "normalizeWT" ]
 		);
 	}
 
@@ -1637,11 +1672,12 @@ class ParserTestRunner {
 	 * @param Parsoid $parsoid
 	 * @param PageConfig $pageConfig
 	 * @param ParserTest $test
+	 * @param ParserTestMode $mode
 	 * @param Document $doc
 	 * @return array
 	 */
 	private function runSelserEditTest(
-		Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test, Document $doc
+		Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test, ParserTestMode $mode, Document $doc
 	): array {
 		$test->applyChanges( [], $doc, $test->changetree );
 		$editedHTML = ContentUtils::toXML( DOMCompat::getBody( $doc ) );
@@ -1650,11 +1686,8 @@ class ParserTestRunner {
 		$selserData = new SelserData( $test->wikitext, $test->cachedBODYstr );
 		$origWT = $parsoid->html2wikitext( $pageConfig, $editedHTML, [], $selserData );
 
-		$knownFailuresIndex = 'selser ' . json_encode( $test->changetree );
-		$expectedFailure = $test->knownFailures[$knownFailuresIndex] ?? null;
-
 		$ptResult = $this->processResults(
-			$test, $knownFailuresIndex,
+			$test, $mode,
 			static function () use ( $parsoid, $pageConfig, $editedHTML ): string {
 				return $parsoid->html2wikitext( $pageConfig, $editedHTML );
 			},
@@ -1668,32 +1701,30 @@ class ParserTestRunner {
 	 * @param Parsoid $parsoid
 	 * @param PageConfig $pageConfig
 	 * @param ParserTest $test
+	 * @param ParserTestMode $mode
 	 * @return ParserTestResult|false false if skipped
 	 */
-	private function selserAutoEdit( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test ) {
-		if ( $test->wikitext === null ) {
-			return false; // FIXME: Is this an error in the test setup?
-		}
-
-		if ( $test->cachedBODYstr === null ) {
-			$test->cachedBODYstr = $parsoid->wikitext2html( $pageConfig, [
-				'body_only' => true,
-				'wrapSections' => $test->options['parsoid']['wrapSections'] ?? false,
-			] );
-		}
+	private function selserAutoEdit( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test, ParserTestMode $mode ) {
+		Assert::invariant(
+			$test->wikitext !== null,
+			"All tests include a wikitext section"
+		);
 
 		// Apply edits to the HTML.
 		// Always serialize to string and reparse before passing to selser/wt2wt.
-		$doc = DOMUtils::parseHTML( $test->cachedBODYstr, true );
+		$doc = $this->fetchCachedDoc( $parsoid, $pageConfig, $test );
 		if ( !$test->changetree ) {
 			$test->changetree = $test->generateChanges( $doc );
 			if ( !$test->changetree ) {
+				// No more changes to make
 				return false;
 			}
+			$mode = new ParserTestMode( 'selser', $test->changetree );
 		}
-		list( $out, $expected ) = $this->runSelserEditTest( $parsoid, $pageConfig, $test, $doc );
+		list( $out, $expected ) = $this->runSelserEditTest( $parsoid, $pageConfig, $test, $mode, $doc );
 		return new ParserTestResult(
-			$this->testToArray( $test, "selser " . json_encode( $test->changetree ) ),
+			$test,
+			$mode,
 			$expected,
 			$out
 		);
@@ -1703,42 +1734,44 @@ class ParserTestRunner {
 	 * @param Parsoid $parsoid
 	 * @param PageConfig $pageConfig
 	 * @param ParserTest $test
+	 * @param ParserTestMode $mode
 	 * @return ParserTestResult|false false if skipped
 	 */
-	private function selserAutoEditComposite( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test ) {
-		if ( $test->wikitext === null ) {
-			return false; // FIXME: Is this an error in the test setup?
-		}
-
-		if ( $test->cachedBODYstr === null ) {
-			$test->cachedBODYstr = $parsoid->wikitext2html( $pageConfig, [
-				'body_only' => true,
-				'wrapSections' => $test->options['parsoid']['wrapSections'] ?? false,
-			] );
-		}
+	private function selserAutoEditComposite( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test, ParserTestMode $mode ) {
+		Assert::invariant(
+			$test->wikitext !== null,
+			"All tests include a wikitext section"
+		);
+		$runnerOpts = $this->getOptions();
 
 		if ( $test->changetree ) {
 			// Apply edits to the HTML.
 			// Always serialize to string and reparse before passing to selser/wt2wt.
-			$doc = DOMUtils::parseHTML( $test->cachedBODYstr, true );
-			$mode = "selser:" . json_encode( $test->changetree );
-			list( $out, $expected ) = $this->runSelserEditTest( $parsoid, $pageConfig, $test, $doc );
-			return new ParserTestResult( $this->testToArray( $test, $mode ), $expected, $out );
+			$doc = $this->fetchCachedDoc( $parsoid, $pageConfig, $test );
+			Assert::invariant(
+				$mode->changetree === $test->changetree,
+				"changetree should be consistent with mode"
+			);
+			list( $out, $expected ) = $this->runSelserEditTest( $parsoid, $pageConfig, $test, $mode, $doc );
+			return new ParserTestResult( $test, $mode, $expected, $out );
 		} else {
-			$mode = "selserAutoEdits";
-			$numChanges = 20; // default in Parsoid
+			// this mode is a composite of multiple selser tests
+			$mode = new ParserTestMode( "selserAutoEdits" );
+			$numChanges = $runnerOpts['numchanges'] ?? 20; // default in Parsoid
 			$results = [];
 			$bufOut = "";
 			$bufExpected = "";
 			for ( $i = 0; $i < $numChanges; $i++ ) {
 				// Apply edits to the HTML.
 				// Always serialize to string and reparse before passing to selser/wt2wt.
-				$doc = DOMUtils::parseHTML( $test->cachedBODYstr, true );
+				$doc = $this->fetchCachedDoc( $parsoid, $pageConfig, $test );
 				$test->seed = $i . '';
 				$test->changetree = $test->generateChanges( $doc );
 				if ( $test->changetree ) {
-					list( $out, $expected ) = $this->runSelserEditTest( $parsoid, $pageConfig, $test, $doc );
-					$testTitle = "TEST: {$test->testName} (selser: " . json_encode( $test->changetree ) . ")\n";
+					// new mode with the generated changetree
+					$nmode = new ParserTestMode( 'selser', $test->changetree );
+					list( $out, $expected ) = $this->runSelserEditTest( $parsoid, $pageConfig, $test, $nmode, $doc );
+					$testTitle = "TEST: {$test->testName} ($nmode)\n";
 					$bufOut .= $testTitle;
 					$bufExpected .= $testTitle;
 					$bufOut .= "RESULT: $out\n";
@@ -1754,8 +1787,22 @@ class ParserTestRunner {
 					$test->selserChangeTrees[$i] = $test->changetree;
 				}
 			}
-			return new ParserTestResult( $this->testToArray( $test, "selser-auto" ), $bufExpected, $bufOut );
+			return new ParserTestResult( $test, $mode, $bufExpected, $bufOut );
 		}
+	}
+
+	/**
+	 * Helper function to register a Parsoid extension module in such a
+	 * way that it can be cleaned up after the test is complete.
+	 * @param SiteConfig $siteConfig
+	 * @param class-string<ExtensionModule> $moduleName
+	 * @return callable
+	 */
+	private static function registerExtensionModule( SiteConfig $siteConfig, string $moduleName ): callable {
+		$id = $siteConfig->registerExtensionModule( $moduleName );
+		return static function () use ( $siteConfig, $id ) {
+			$siteConfig->unregisterExtensionModule( $id );
+		};
 	}
 
 	/**
@@ -1769,13 +1816,13 @@ class ParserTestRunner {
 	 * is entered.
 	 *
 	 * @param ParserTest $test The test parameters:
-	 * @param string $mode Parsoid test mode to run
-	 * @param array|null $changetree Specific changetree to run selser test in
+	 * @param ParserTestMode $mode Parsoid test mode to run (including specific
+	 *  changetree to run selser test in, if applicable)
 	 *
 	 * @return ParserTestResult|false false if skipped
 	 */
-	public function runParsoidTest( ParserTest $test, string $mode, array $changetree = null ) {
-		wfDebug( __METHOD__ . ": running {$test->testName} (parsoid:$mode)" );
+	public function runParsoidTest( ParserTest $test, ParserTestMode $mode ) {
+		wfDebug( __METHOD__ . ": running {$test->testName} [$mode]" );
 
 		// Skip deprecated preprocessor tests
 		// @phan-suppress-next-line PhanImpossibleCondition Other preprocessor are deprecated, see runTest
@@ -1795,51 +1842,61 @@ class ParserTestRunner {
 			return false;
 		}
 
-		$testAsArray = $this->testToArray( $test );
-		$teardownGuard = $this->perTestSetup( $testAsArray );
+		$teardownGuard = $this->perTestSetup( $test );
+		$teardown = [];
 
-		// @phan-suppress-next-line PhanUndeclaredProperty
-		$parsoid = $test->parsoid ?? null;
-		if ( !$parsoid ) {
-			// Cache the Parsoid object
-			// @phan-suppress-next-line PhanUndeclaredProperty
-			$parsoid = $test->parsoid = $this->createParsoid( $testAsArray );
+		// Register any special extensions required by this test case
+		$services = MediaWikiServices::getInstance();
+		$siteConfig = $services->get( 'ParsoidSiteConfig' );
+		$teardown[] = self::registerExtensionModule( $siteConfig, ParsoidParserHook::class );
+		if ( ( $test->options['wgrawhtml'] ?? null ) === '1' ) {
+			$teardown[] = self::registerExtensionModule( $siteConfig, ParsoidRawHTML::class );
 		}
+		if ( isset( $test->options['styletag'] ) ) {
+			$teardown[] = self::registerExtensionModule( $siteConfig, ParsoidStyleTag::class );
+		}
+		// unregister these after this test
+		$teardownGuard = $this->createTeardownObject( $teardown, $teardownGuard );
+
+		// Create the Parsoid object. (This is cheap, since the SiteConfig
+		// and DataAccess are cached by the ServiceContainer.)
+		$dataAccess = $services->get( 'ParsoidDataAccess' );
+		$parsoid = new Parsoid( $siteConfig, $dataAccess );
 
 		list( $pageConfig ) = $this->setupParsoidTransform( $test );
-		switch ( $mode ) {
+		switch ( $mode->mode ) {
 			case 'wt2html':
 			case 'wt2html+integrated':
-				$res = $this->wt2html( $parsoid, $pageConfig, $test );
+				$res = $this->wt2html( $parsoid, $pageConfig, $test, $mode );
 				break;
 
 			case 'wt2wt':
-				$res = $this->wt2wt( $parsoid, $pageConfig, $test );
+				$res = $this->wt2wt( $parsoid, $pageConfig, $test, $mode );
 				break;
 
 			case 'html2wt':
-				$res = $this->html2wt( $parsoid, $pageConfig, $test );
+				$res = $this->html2wt( $parsoid, $pageConfig, $test, $mode );
 				break;
 
 			case 'html2html':
-				$res = $this->html2html( $parsoid, $pageConfig, $test );
+				$res = $this->html2html( $parsoid, $pageConfig, $test, $mode );
 				break;
 
 			case 'selser':
-				$test->changetree = $changetree;
-				$res = $this->selser( $parsoid, $pageConfig, $test );
+				$test->changetree = $mode->changetree;
+				$res = $this->selser( $parsoid, $pageConfig, $test, $mode );
 				$test->changetree = null; // Reset after each selser test
 				break;
 
 			case 'selser-auto-composite':
-				$test->changetree = $changetree;
-				$res = $this->selserAutoEditComposite( $parsoid, $pageConfig, $test );
+				$test->changetree = $mode->changetree;
+				$res = $this->selserAutoEditComposite( $parsoid, $pageConfig, $test, $mode );
 				$test->changetree = null; // Reset after each selser test
 				break;
 
 			case 'selser-auto':
-				$test->changetree = $changetree;
-				$res = $this->selserAutoEdit( $parsoid, $pageConfig, $test );
+				$test->changetree = $mode->changetree;
+				$res = $this->selserAutoEdit( $parsoid, $pageConfig, $test, $mode );
 				// Don't reset changetree here -- it is used to detect duplicate trees
 				// and stop selser test generation in Test.php::testAllModes
 				break;
@@ -1871,18 +1928,18 @@ class ParserTestRunner {
 	 *
 	 * @see staticSetup() for more information about setup/teardown
 	 *
-	 * @param array $test Test info supplied by TestFileReader
+	 * @param ParserTest $test Test info supplied by TestFileReader
 	 * @param callable|null $nextTeardown
 	 * @return ScopedCallback
 	 */
-	public function perTestSetup( $test, $nextTeardown = null ) {
+	public function perTestSetup( ParserTest $test, $nextTeardown = null ) {
 		$teardown = [];
 
 		$this->checkSetupDone( 'setupDatabase' );
 		$teardown[] = $this->markSetupDone( 'perTestSetup' );
 
-		$opts = $test['options'];
-		$config = $test['config'];
+		$opts = $test->options;
+		$config = $test->config ?? '';
 
 		// Find out values for some special options.
 		$langCode =
@@ -2361,7 +2418,7 @@ class ParserTestRunner {
 	 *
 	 * @see staticSetup() for more information about setup/teardown
 	 *
-	 * @param array $articles Article info array from TestFileReader
+	 * @param ParserTestArticle[] $articles Article info array from TestFileReader
 	 * @param ?ScopedCallback $nextTeardown The next teardown object
 	 * @return ScopedCallback The teardown object
 	 */
@@ -2400,7 +2457,7 @@ class ParserTestRunner {
 		$teardown[] = $this->executeSetupSnippets( $setup );
 
 		foreach ( $articles as $info ) {
-			$this->addArticle( $info['name'], $info['text'], $info['file'], $info['line'] );
+			$this->addArticle( $info->title, $info->text, $info->filename, $info->lineNumStart );
 		}
 
 		// Wipe WANObjectCache process cache, which is invalidated by article insertion
@@ -2425,7 +2482,7 @@ class ParserTestRunner {
 	 * test files from having conflicts when they choose the same names
 	 * for article or template test fixtures.
 	 *
-	 * @param array $articles Article info array from TestFileReader
+	 * @param ParserTestArticle[] $articles Article info array from TestFileReader
 	 */
 	public function cleanupArticles( $articles ) {
 		$this->checkSetupDone( 'setupDatabase' );
@@ -2434,7 +2491,7 @@ class ParserTestRunner {
 		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
 		$delPageFactory = MediaWikiServices::getInstance()->getDeletePageFactory();
 		foreach ( $articles as $info ) {
-			$name = self::chomp( $info['name'] );
+			$name = self::chomp( $info->title );
 			$title = Title::newFromText( $name );
 			$page = $wikiPageFactory->newFromTitle( $title );
 			$delPageFactory->newDeletePage( $page, $user )->deleteUnsafe( 'cleaning up' );
@@ -2495,6 +2552,7 @@ class ParserTestRunner {
 		} else {
 			$restore = false;
 		}
+		$status = null;
 		try {
 			$status = $page->doUserEditContent(
 				$newContent,
@@ -2508,9 +2566,7 @@ class ParserTestRunner {
 			}
 		}
 
-		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 		if ( !$status->isOK() ) {
-			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 			throw new MWException( $status->getWikiText( false, false, 'en' ) );
 		}
 
