@@ -40,7 +40,6 @@ class PageCommandFactoryTest extends MediaWikiUnitTestCase {
 
 			// DeletePage
 			'DeleteRevisionsBatchSize' => 10,
-			'ActorTableSchemaMigrationStage' => SCHEMA_COMPAT_NEW,
 			'DeleteRevisionsLimit' => 10,
 		] );
 

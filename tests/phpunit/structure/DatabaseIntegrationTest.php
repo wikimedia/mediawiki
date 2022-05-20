@@ -30,7 +30,6 @@ class DatabaseIntegrationTest extends MediaWikiIntegrationTestCase {
 		// @todo Remove exception once these tables are fixed
 		$excludeList = [
 			'user_newtalk',
-			'revision_actor_temp',
 			'objectcache',
 		];
 

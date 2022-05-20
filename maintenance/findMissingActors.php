@@ -107,8 +107,6 @@ class FindMissingActors extends Maintenance {
 	 * @return array
 	 */
 	private function getTables() {
-		global $wgActorTableSchemaMigrationStage;
-
 		if ( !$this->tables ) {
 			$tables = [
 				'ar_actor' => [ 'archive', 'ar_actor', 'ar_id' ],
@@ -118,14 +116,8 @@ class FindMissingActors extends Maintenance {
 				'fa_actor' => [ 'filearchive', 'fa_actor', 'fa_id' ],
 				'rc_actor' => [ 'recentchanges', 'rc_actor', 'rc_id' ],
 				'log_actor' => [ 'logging', 'log_actor', 'log_id' ],
+				'rev_actor' => [ 'revision', 'rev_actor', 'rev_id' ],
 			];
-
-			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_TEMP ) {
-				$tables['revactor_actor'] = [ 'revision_actor_temp', 'revactor_actor', 'revactor_rev' ];
-			}
-			if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
-				$tables['rev_actor'] = [ 'revision', 'rev_actor', 'rev_id' ];
-			}
 			$this->tables = $tables;
 		}
 		return $this->tables;

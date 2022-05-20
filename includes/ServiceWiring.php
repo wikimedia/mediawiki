@@ -201,7 +201,7 @@ return [
 
 	'ActorMigration' => static function ( MediaWikiServices $services ): ActorMigration {
 		return new ActorMigration(
-			$services->getMainConfig()->get( MainConfigNames::ActorTableSchemaMigrationStage ),
+			SCHEMA_COMPAT_NEW,
 			$services->getActorStoreFactory()
 		);
 	},
