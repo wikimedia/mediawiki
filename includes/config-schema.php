@@ -2387,8 +2387,6 @@ return [
 			'Pingback' => false,
 			'OriginTrials' => [
 			],
-			'PriorityHints' => false,
-			'PriorityHintsRatio' => 1.0,
 			'ReportToExpiry' => 86400,
 			'ReportToEndpoints' => [
 			],
@@ -2851,8 +2849,6 @@ return [
 			'EventRelayerConfig' => 'object',
 			'Pingback' => 'boolean',
 			'OriginTrials' => 'array',
-			'PriorityHints' => 'boolean',
-			'PriorityHintsRatio' => 'number',
 			'ReportToExpiry' => 'integer',
 			'ReportToEndpoints' => 'array',
 			'FeaturePolicyReportOnly' => 'array',

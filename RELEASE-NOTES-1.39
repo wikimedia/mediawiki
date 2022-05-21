@@ -47,6 +47,8 @@ For notes on 1.38.x and older releases, see HISTORY.
   see T296430.
 * $wgElementTiming has been removed. This feature was experimental,
   and disabled by default.
+* $wgPriorityHints and $wgPriorityHintsRatio have been removed.
+  This feature was experimental, and disabled by default.
 * …
 
 === New user-facing features in 1.39 ===
