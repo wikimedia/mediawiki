@@ -1405,7 +1405,8 @@ return [
 			$services->getRestrictionStore(),
 			$services->getTitleFormatter(),
 			$services->getTempUserConfig(),
-			$services->getUserFactory()
+			$services->getUserFactory(),
+			$services->getActionFactory()
 		);
 	},
 
