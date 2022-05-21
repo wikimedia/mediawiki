@@ -66,6 +66,7 @@ class ApiHelp extends ApiBase {
 		$out = new OutputPage( $context );
 		$out->setRobotPolicy( 'noindex,nofollow' );
 		$out->setCopyrightUrl( 'https://www.mediawiki.org/wiki/Special:MyLanguage/Copyright' );
+		$out->disallowUserJs();
 		$context->setOutput( $out );
 
 		self::getHelp( $context, $modules, $params );
