@@ -7604,20 +7604,6 @@ config-schema:
         description: |-
             Origin Trials tokens.
             @since 1.33
-    PriorityHints:
-        default: false
-        type: boolean
-        description: |-
-            Enable client-side Priority Hints.
-            @warning EXPERIMENTAL!
-            @since 1.33
-    PriorityHintsRatio:
-        default: 1.0
-        type: number
-        description: |-
-            Ratio of requests that should get Priority Hints when the feature is enabled.
-            @warning EXPERIMENTAL!
-            @since 1.34
     ReportToExpiry:
         default: 86400
         type: integer

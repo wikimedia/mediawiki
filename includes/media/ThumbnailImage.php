@@ -31,8 +31,6 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Media
  */
 class ThumbnailImage extends MediaTransformOutput {
-	private static $firstNonIconImageRendered = false;
-
 	/**
 	 * Get a thumbnail object from a file and parameters.
 	 * If $path is set to null, the output file is treated as a source copy.
@@ -117,8 +115,6 @@ class ThumbnailImage extends MediaTransformOutput {
 	 */
 	public function toHtml( $options = [] ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$priorityHints = $mainConfig->get( MainConfigNames::PriorityHints );
-		$priorityHintsRatio = $mainConfig->get( MainConfigNames::PriorityHintsRatio );
 		$nativeImageLazyLoading = $mainConfig->get( MainConfigNames::NativeImageLazyLoading );
 		$enableLegacyMediaDOM = $mainConfig->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 
@@ -137,19 +133,6 @@ class ThumbnailImage extends MediaTransformOutput {
 
 		if ( $options['loading'] ?? $nativeImageLazyLoading ) {
 			$attribs['loading'] = $options['loading'] ?? 'lazy';
-		}
-
-		if ( $priorityHints
-			&& !self::$firstNonIconImageRendered
-			&& $this->width * $this->height > 100 * 100 ) {
-			self::$firstNonIconImageRendered = true;
-
-			// Generate a random number between 0.01 and 1.0, included
-			$random = rand( 1, 100 ) / 100.0;
-
-			if ( $random <= $priorityHintsRatio ) {
-				$attribs['importance'] = 'high';
-			}
 		}
 
 		if ( !empty( $options['custom-url-link'] ) ) {
