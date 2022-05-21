@@ -4,16 +4,20 @@
  * https://github.com/csstools/sanitize.css/blob/v13.0.0/reduce-motion.css,
  * itself based on collection at
  * https://github.com/jensimmons/cssremedy/issues/11
+ *
+ * Note, we also don't set `background-attachment: initial !important;` as
+ * setting a background property changes the default rendering of unstyled
+ * elements like `button`s and we don't feature `fixed` anywhere in deployed
+ * skins or extensions.
  */
-/* stylelint-disable declaration-no-important, time-min-milliseconds, selector-pseudo-element-colon-notation, plugin/no-unsupported-browser-features */
+/* stylelint-disable declaration-no-important, time-min-milliseconds, selector-pseudo-element-colon-notation */
 @media ( prefers-reduced-motion: reduce ) {
 	*,
 	::before,
 	::after {
-		animation-delay: -1ms !important;
-		animation-duration: 1ms !important;
+		animation-delay: -0.01ms !important;
+		animation-duration: 0.01ms !important;
 		animation-iteration-count: 1 !important;
-		background-attachment: initial !important;
 		scroll-behavior: auto !important;
 		// Set duration to very short for balancing non-obstructive visibility
 		// and continuing firing `transitionend` event.
