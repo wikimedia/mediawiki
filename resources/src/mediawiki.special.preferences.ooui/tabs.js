@@ -82,10 +82,10 @@
 		function detectHash() {
 			var hash = location.hash,
 				matchedElement, $parentSection;
-			if ( hash.match( /^#mw-prefsection-[\w]+$/ ) ) {
+			if ( /^#mw-prefsection-[\w]+$/.test( hash ) ) {
 				mw.storage.session.remove( 'mwpreferences-prevTab' );
 				switchPrefTab( hash.slice( 1 ) );
-			} else if ( hash.match( /^#mw-[\w-]+$/ ) ) {
+			} else if ( /^#mw-[\w-]+$/.test( hash ) ) {
 				matchedElement = document.getElementById( hash.slice( 1 ) );
 				$parentSection = $( matchedElement ).closest( '.mw-prefs-section-fieldset' );
 				if ( $parentSection.length ) {
@@ -99,7 +99,7 @@
 
 		$( window ).on( 'hashchange', function () {
 			var hash = location.hash;
-			if ( hash.match( /^#mw-[\w-]+/ ) ) {
+			if ( /^#mw-[\w-]+/.test( hash ) ) {
 				detectHash();
 			} else if ( hash === '' ) {
 				switchPrefTab( 'mw-prefsection-personal', true );

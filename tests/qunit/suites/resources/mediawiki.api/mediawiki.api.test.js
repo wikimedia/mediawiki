@@ -311,7 +311,7 @@
 			'{ "query": { "tokens": { "testposttoken": "good" } } }'
 		] );
 		this.server.respondWith( 'POST', /api/, function ( request ) {
-			if ( request.requestBody.match( /token=good/ ) ) {
+			if ( request.requestBody.indexOf( 'token=good' ) !== -1 ) {
 				request.respond( 200, { 'Content-Type': 'application/json' },
 					'{ "example": { "foo": "quux" } }'
 				);
@@ -384,12 +384,12 @@
 			]
 		) );
 		this.server.respondWith( 'POST', /api/, function ( request ) {
-			if ( request.requestBody.match( /token=bad/ ) ) {
+			if ( request.requestBody.indexOf( 'token=bad' ) !== -1 ) {
 				request.respond( 200, { 'Content-Type': 'application/json' },
 					'{ "error": { "code": "badtoken" } }'
 				);
 			}
-			if ( request.requestBody.match( /token=good/ ) ) {
+			if ( request.requestBody.indexOf( 'token=good' ) !== -1 ) {
 				request.respond( 200, { 'Content-Type': 'application/json' },
 					'{ "example": { "foo": "quux" } }'
 				);
@@ -423,9 +423,9 @@
 			]
 		);
 		this.server.respondWith( 'POST', /api/, function ( request ) {
-			if ( request.requestBody.match( /token=good-A/ ) ) {
+			if ( request.requestBody.indexOf( 'token=good-A' ) !== -1 ) {
 				sequenceA( request );
-			} else if ( request.requestBody.match( /token=good-B/ ) ) {
+			} else if ( request.requestBody.indexOf( 'token=good-B' ) !== -1 ) {
 				request.respond( 200, { 'Content-Type': 'application/json' },
 					'{ "example": { "value": "B" } }'
 				);

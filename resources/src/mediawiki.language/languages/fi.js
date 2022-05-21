@@ -12,13 +12,13 @@ mw.language.convertGrammar = function ( word, form ) {
 	}
 
 	// vowel harmony flag
-	aou = word.match( /[aou][^äöy]*$/i );
+	aou = /[aou][^äöy]*$/i.test( word );
 	origWord = word;
-	if ( word.match( /wiki$/i ) ) {
+	if ( /wiki$/i.test( word ) ) {
 		aou = false;
 	}
 	// append i after final consonant
-	if ( word.match( /[bcdfghjklmnpqrstvwxz]$/i ) ) {
+	if ( /[bcdfghjklmnpqrstvwxz]$/i.test( word ) ) {
 		word += 'i';
 	}
 
