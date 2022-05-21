@@ -1934,8 +1934,8 @@ function wfRelativePath( $path, $from ) {
  * administrative tasks. See the IMaintainableDatabase and IDatabase interfaces
  * for details.
  *
- * @todo Replace calls to wfGetDB with calls to LoadBalancer::getConnection()
- *       on an injected instance of LoadBalancer.
+ * @deprecated since 1.39, use LoadBalancer::getConnectionRef() on an injected
+ * instance of LoadBalancer instead.
  *
  * @return \Wikimedia\Rdbms\DBConnRef
  */
