@@ -441,48 +441,33 @@ class IcuCollation extends Collation {
 		 * will change, but nonetheless they are assumptions.
 		 */
 
-		$prev = false;
+		$prev = '';
 		$duplicatePrefixes = [];
 		foreach ( $letterMap as $key => $value ) {
-			// Remove terminator byte. Otherwise the prefix
-			// comparison will get hung up on that.
-			$trimmedKey = rtrim( $key, "\0" );
-			if ( $prev === false || $prev === '' ) {
-				$prev = $trimmedKey;
-				// We don't yet have a collation element
-				// to compare against, so continue.
-				continue;
-			}
-
 			// Due to the fact the array is sorted, we only have
 			// to compare with the element directly previous
 			// to the current element (skipping expansions).
 			// An element "X" will always sort directly
 			// before "XZ" (Unless we have "XY", but we
 			// do not update $prev in that case).
-			if ( str_starts_with( $trimmedKey, $prev ) ) {
+			if ( $prev !== '' && str_starts_with( $key, $prev ) ) {
 				$duplicatePrefixes[] = $key;
 				// If this is an expansion, we don't want to
 				// compare the next element to this element,
 				// but to what is currently $prev
 				continue;
 			}
-			$prev = $trimmedKey;
+			$prev = $key;
 		}
 		foreach ( $duplicatePrefixes as $badKey ) {
 			wfDebug( "Removing '{$letterMap[$badKey]}' from first letters." );
 			unset( $letterMap[$badKey] );
 			// This code assumes that unsetting does not change sort order.
 		}
-		$data = [
+		return [
 			'chars' => array_values( $letterMap ),
 			'keys' => array_keys( $letterMap ),
 		];
-
-		// Reduce memory usage before caching
-		unset( $letterMap );
-
-		return $data;
 	}
 
 	/**
