@@ -202,7 +202,9 @@ class ApiSetNotificationTimestamp extends ApiBase {
 							$r['known'] = true;
 						}
 					}
-					if ( isset( $timestamps[$ns] ) && array_key_exists( $dbkey, $timestamps[$ns] ) ) {
+					if ( isset( $timestamps[$ns] ) && array_key_exists( $dbkey, $timestamps[$ns] )
+						&& $timestamps[$ns][$dbkey] !== false
+					) {
 						$r['notificationtimestamp'] = '';
 						if ( $timestamps[$ns][$dbkey] !== null ) {
 							$r['notificationtimestamp'] = wfTimestamp( TS_ISO_8601, $timestamps[$ns][$dbkey] );
