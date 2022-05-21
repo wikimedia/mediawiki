@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Unit\Permissions;
 
+use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
@@ -77,6 +78,8 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			new RealTempUserConfig( [] );
 		$userFactory = $options['userFactory'] ??
 			$this->createMock( UserFactory::class );
+		$actionFactory = $options['actionFactory'] ??
+			$this->createMock( ActionFactory::class );
 
 		$permissionManager = new PermissionManager(
 			new ServiceOptions( PermissionManager::CONSTRUCTOR_OPTIONS, $config ),
@@ -91,7 +94,8 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			$restrictionStore,
 			$titleFormatter,
 			$tempUserConfig,
-			$userFactory
+			$userFactory,
+			$actionFactory
 		);
 
 		$accessPermissionManager = TestingAccessWrapper::newFromObject( $permissionManager );

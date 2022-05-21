@@ -407,36 +407,36 @@ class IcuCollation extends Collation {
 		}
 		ksort( $letterMap, SORT_STRING );
 
-		/* Remove duplicate prefixes. Basically if something has a sortkey
+		/* Remove duplicate prefixes. Basically, if something has a sortkey
 		 * which is a prefix of some other sortkey, then it is an
 		 * expansion and probably should not be considered a section
 		 * header.
 		 *
-		 * For example 'þ' is sometimes sorted as if it is the letters
+		 * For example, 'þ' is sometimes sorted as if it is the letters
 		 * 'th'. Other times it is its own primary element. Another
-		 * example is '₨'. Sometimes its a currency symbol. Sometimes it
+		 * example is '₨'. Sometimes it's a currency symbol. Sometimes it
 		 * is an 'R' followed by an 's'.
 		 *
-		 * Additionally an expanded element should always sort directly
+		 * Additionally, an expanded element should always sort directly
 		 * after its first element due to the way sortkeys work.
 		 *
-		 * UCA sortkey elements are of variable length but no collation
+		 * UCA sortkey elements are of variable length, but no collation
 		 * element should be a prefix of some other element, so I think
 		 * this is safe. See:
-		 * - https://ssl.icu-project.org/repos/icu/icuhtml/trunk/design/collation/ICU_collation_design.htm
+		 * - https://unicode-org.github.io/icu-docs/design/collation/ICU_collation_design.htm
 		 * - https://icu.unicode.org/design/collation/uca-weight-allocation
 		 *
 		 * Additionally, there is something called primary compression to
 		 * worry about. Basically, if you have two primary elements that
-		 * are more than one byte and both start with the same byte then
-		 * the first byte is dropped on the second primary. Additionally
+		 * are more than one byte and both start with the same byte, then
+		 * the first byte is dropped on the second primary. Additionally,
 		 * either \x03 or \xFF may be added to mean that the next primary
 		 * does not start with the first byte of the first primary.
 		 *
 		 * This shouldn't matter much, as the first primary is not
 		 * changed, and that is what we are comparing against.
 		 *
-		 * tl;dr: This makes some assumptions about how icu implements
+		 * tl;dr: This makes some assumptions about how ICU implements
 		 * collations. It seems incredibly unlikely these assumptions
 		 * will change, but nonetheless they are assumptions.
 		 */

@@ -19,9 +19,9 @@
  */
 namespace MediaWiki\Permissions;
 
-use Action;
 use Article;
 use Exception;
+use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
@@ -122,6 +122,9 @@ class PermissionManager {
 
 	/** @var UserFactory */
 	private $userFactory;
+
+	/** @var ActionFactory */
+	private $actionFactory;
 
 	/** @var string[][] Cached user rights */
 	private $usersRights = [];
@@ -239,6 +242,7 @@ class PermissionManager {
 	 * @param TitleFormatter $titleFormatter
 	 * @param TempUserConfig $tempUserConfig
 	 * @param UserFactory $userFactory
+	 * @param ActionFactory $actionFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -253,7 +257,8 @@ class PermissionManager {
 		RestrictionStore $restrictionStore,
 		TitleFormatter $titleFormatter,
 		TempUserConfig $tempUserConfig,
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		ActionFactory $actionFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
@@ -269,6 +274,7 @@ class PermissionManager {
 		$this->titleFormatter = $titleFormatter;
 		$this->tempUserConfig = $tempUserConfig;
 		$this->userFactory = $userFactory;
+		$this->actionFactory = $actionFactory;
 	}
 
 	/**
@@ -838,7 +844,7 @@ class PermissionManager {
 			//  probably we may use fake context object since it's unlikely that Action uses it
 			//  anyway. It would be nice if we could avoid instantiating the Action at all.
 			$context = RequestContext::getMain();
-			$actionObj = Action::factory(
+			$actionObj = $this->actionFactory->getAction(
 				$action,
 				Article::newFromTitle( $title, $context ),
 				$context
