@@ -44,27 +44,27 @@ class TextboxBuilderTest extends MediaWikiIntegrationTestCase {
 				[],
 			],
 			[
-				true,
+				[ '', 'something' ],
 				[],
 				[],
 			],
 			[
-				true,
+				[ '', 'something' ],
 				[ 'isProtected' ],
 				[ 'mw-textarea-protected' ]
 			],
 			[
-				true,
+				[ '', 'something' ],
 				[ 'isProtected', 'isSemiProtected' ],
 				[ 'mw-textarea-sprotected' ],
 			],
 			[
-				true,
+				[ '', 'something' ],
 				[ 'isProtected', 'isCascadeProtected' ],
 				[ 'mw-textarea-protected', 'mw-textarea-cprotected' ],
 			],
 			[
-				true,
+				[ '', 'something' ],
 				[ 'isProtected', 'isCascadeProtected', 'isSemiProtected' ],
 				[ 'mw-textarea-sprotected', 'mw-textarea-cprotected' ],
 			],

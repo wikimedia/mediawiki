@@ -52,7 +52,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 	 */
 	private function newPermissionsManager( array $permissions ): PermissionManager {
 		/** @var PermissionManager|MockObject $permissionManager */
-		$permissionManager = $this->createNoOpMock(
+		$permissionManager = $this->createMock(
 			PermissionManager::class,
 			[ 'userHasRight', 'userCan', 'getPermissionErrors', 'isBlockedFrom' ]
 		);
@@ -104,7 +104,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 	}
 
 	private function newAuthority( array $permissions, User $actor = null ): Authority {
-		/** @var UserAuthority|MockObject $permissionManager */
+		/** @var PermissionManager|MockObject $permissionManager */
 		$permissionManager = $this->newPermissionsManager( $permissions );
 		return new UserAuthority(
 			$actor ?? $this->newUser(),
