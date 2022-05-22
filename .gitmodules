@@ -588,11 +588,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-TorBlock
 	branch = REL1_38
 	ignore = dirty
-[submodule "extensions/LocalisationUpdate"]
-	path = extensions/LocalisationUpdate
-	url = https://github.com/wikimedia/mediawiki-extensions-LocalisationUpdate
-	branch = master
-	ignore = dirty
 [submodule "extensions/Newsletter"]
 	path = extensions/Newsletter
 	url = https://github.com/wikimedia/mediawiki-extensions-Newsletter
