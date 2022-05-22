@@ -1588,3 +1588,8 @@
 	url = https://gitlab.com/nonsensopedia/extensions/namespacepreload
 	branch = master
 	ignore = dirty
+[submodule "extensions/ExternalData"]
+	path = extensions/ExternalData
+	url = https://github.com/wikimedia/mediawiki-extensions-ExternalData
+	branch = master
+	ignore = dirty
