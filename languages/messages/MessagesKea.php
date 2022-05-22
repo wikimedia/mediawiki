@@ -14,7 +14,7 @@ $fallback = 'pt';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Multimédia',
-	NS_SPECIAL          => 'Special',
+	NS_SPECIAL          => 'Spesial',
 	NS_TALK             => 'Diskuson',
 	NS_USER             => 'Uzuáriu',
 	NS_USER_TALK        => 'Diskuson_di_uzuáriu',
