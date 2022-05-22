@@ -35,4 +35,16 @@ class MySQLPlatform extends SQLPlatform {
 		// Remove NUL bytes and escape backticks by doubling
 		return '`' . str_replace( [ "\0", '`' ], [ '', '``' ], $s ) . '`';
 	}
+
+	public function buildStringCast( $field ) {
+		return "CAST( $field AS BINARY )";
+	}
+
+	/**
+	 * @param string $field Field or column to cast
+	 * @return string
+	 */
+	public function buildIntegerCast( $field ) {
+		return 'CAST( ' . $field . ' AS SIGNED )';
+	}
 }

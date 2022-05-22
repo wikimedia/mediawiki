@@ -60,4 +60,22 @@ class SqlitePlatform extends SQLPlatform {
 	public function unionSupportsOrderAndLimit() {
 		return false;
 	}
+
+	public function buildSubstring( $input, $startPosition, $length = null ) {
+		$this->assertBuildSubstringParams( $startPosition, $length );
+		$params = [ $input, $startPosition ];
+		if ( $length !== null ) {
+			$params[] = $length;
+		}
+		return 'SUBSTR(' . implode( ',', $params ) . ')';
+	}
+
+	/**
+	 * @param string $field Field or column to cast
+	 * @return string
+	 * @since 1.28
+	 */
+	public function buildStringCast( $field ) {
+		return 'CAST ( ' . $field . ' AS TEXT )';
+	}
 }

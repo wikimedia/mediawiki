@@ -336,4 +336,40 @@ interface ISQLPlatform {
 	 * @return string
 	 */
 	public function strreplace( $orig, $old, $new );
+
+	/**
+	 * Build a SUBSTRING function
+	 *
+	 * Behavior for non-ASCII values is undefined.
+	 *
+	 * @param string $input Field name
+	 * @param int $startPosition Positive integer
+	 * @param int|null $length Non-negative integer length or null for no limit
+	 * @throws \InvalidArgumentException
+	 * @return string SQL text
+	 * @since 1.31 in IDatabase, moved to ISQLPlatform in 1.39
+	 */
+	public function buildSubString( $input, $startPosition, $length = null );
+
+	/**
+	 * @param string $field Field or column to cast
+	 * @return string
+	 * @since 1.28 in IDatabase, moved to ISQLPlatform in 1.39
+	 */
+	public function buildStringCast( $field );
+
+	/**
+	 * @param string $field Field or column to cast
+	 * @return string
+	 * @since 1.31 in IDatabase, moved to ISQLPlatform in 1.39
+	 */
+	public function buildIntegerCast( $field );
+
+	/**
+	 * Returns true if this database does an implicit order by when the column has an index
+	 * For example: SELECT page_title FROM page LIMIT 1
+	 *
+	 * @return bool
+	 */
+	public function implicitOrderby();
 }

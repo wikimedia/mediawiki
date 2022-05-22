@@ -1679,7 +1679,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers Wikimedia\Rdbms\Database::buildSubstring
-	 * @covers Wikimedia\Rdbms\Database::assertBuildSubstringParams
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::assertBuildSubstringParams
 	 * @dataProvider provideBuildSubstring_invalidParams
 	 */
 	public function testBuildSubstring_invalidParams( $start, $length ) {
