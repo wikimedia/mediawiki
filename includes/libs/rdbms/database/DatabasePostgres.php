@@ -74,10 +74,6 @@ class DatabasePostgres extends Database {
 		return 'postgres';
 	}
 
-	public function implicitOrderby() {
-		return false;
-	}
-
 	protected function open( $server, $user, $password, $db, $schema, $tablePrefix ) {
 		if ( !function_exists( 'pg_connect' ) ) {
 			throw $this->newExceptionAfterConnectError(
@@ -1220,10 +1216,6 @@ SQL;
 		$fld = "array_to_string(array_agg($field)," . $this->addQuotes( $delim ) . ')';
 
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
-	}
-
-	public function buildStringCast( $field ) {
-		return $field . '::text';
 	}
 
 	public function streamStatementEnd( &$sql, &$newLine ) {

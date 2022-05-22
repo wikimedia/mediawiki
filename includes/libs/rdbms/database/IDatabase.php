@@ -20,7 +20,6 @@
 namespace Wikimedia\Rdbms;
 
 use Exception;
-use InvalidArgumentException;
 use stdClass;
 use Wikimedia\Rdbms\Database\DbQuoter;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
@@ -262,14 +261,6 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	 * @param array|mixed|null $value If $nameOrArray is a string, the new key value (null to unset)
 	 */
 	public function setLBInfo( $nameOrArray, $value = null );
-
-	/**
-	 * Returns true if this database does an implicit order by when the column has an index
-	 * For example: SELECT page_title FROM page LIMIT 1
-	 *
-	 * @return bool
-	 */
-	public function implicitOrderby();
 
 	/**
 	 * Get the last query that sent on account of IDatabase::query()
@@ -918,34 +909,6 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	public function buildGroupConcatField(
 		$delim, $table, $field, $conds = '', $join_conds = []
 	);
-
-	/**
-	 * Build a SUBSTRING function
-	 *
-	 * Behavior for non-ASCII values is undefined.
-	 *
-	 * @param string $input Field name
-	 * @param int $startPosition Positive integer
-	 * @param int|null $length Non-negative integer length or null for no limit
-	 * @throws InvalidArgumentException
-	 * @return string SQL text
-	 * @since 1.31
-	 */
-	public function buildSubString( $input, $startPosition, $length = null );
-
-	/**
-	 * @param string $field Field or column to cast
-	 * @return string
-	 * @since 1.28
-	 */
-	public function buildStringCast( $field );
-
-	/**
-	 * @param string $field Field or column to cast
-	 * @return string
-	 * @since 1.31
-	 */
-	public function buildIntegerCast( $field );
 
 	/**
 	 * Equivalent to IDatabase::selectSQLText() except wraps the result in Subquery
