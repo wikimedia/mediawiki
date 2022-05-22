@@ -42,4 +42,10 @@ $namespaceGenderAliases = [
 	],
 ];
 
+$dateFormats = [
+	'dmy time' => 'H:i',
+	'dmy date' => 'j \d\i F \d\i Y',
+	'dmy both' => 'H:i, j \d\i F \d\i Y',
+];
+
 $linkTrail = '/^([áàâãç̈éèêíóòôõúa-z]+)(.*)$/sDu';
