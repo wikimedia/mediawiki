@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
 use MediaWiki\EditPage\Constraint\AutoSummaryMissingSummaryConstraint;
@@ -46,7 +47,7 @@ use MediaWiki\EditPage\IEditObject;
 use MediaWiki\EditPage\TextboxBuilder;
 use MediaWiki\EditPage\TextConflictHelper;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
-use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -56,6 +57,7 @@ use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
@@ -464,6 +466,15 @@ class EditPage implements IEditObject {
 	/** @var bool Whether temp user creation was successful */
 	private $tempUserCreateDone = false;
 
+	/** @var LinkRenderer */
+	private $linkRenderer;
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var RestrictionStore */
+	private $restrictionStore;
+
 	/**
 	 * @stable to call
 	 * @param Article $article
@@ -502,6 +513,9 @@ class EditPage implements IEditObject {
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
 		$this->tempUserCreator = $services->getTempUserCreator();
 		$this->userFactory = $services->getUserFactory();
+		$this->linkRenderer = $services->getLinkRenderer();
+		$this->linkBatchFactory = $services->getLinkBatchFactory();
+		$this->restrictionStore = $services->getRestrictionStore();
 
 		$this->deprecatePublicProperty( 'mArticle', '1.30', __CLASS__ );
 		$this->deprecatePublicProperty( 'mTitle', '1.30', __CLASS__ );
@@ -3422,12 +3436,15 @@ class EditPage implements IEditObject {
 	 * Wrapper around TemplatesOnThisPageFormatter to make
 	 * a "templates on this page" list.
 	 *
-	 * @param LinkTarget[] $templates
+	 * @param PageIdentity[] $templates
 	 * @return string HTML
 	 */
 	public function makeTemplatesOnThisPageList( array $templates ) {
 		$templateListFormatter = new TemplatesOnThisPageFormatter(
-			$this->context, MediaWikiServices::getInstance()->getLinkRenderer()
+			$this->context,
+			$this->linkRenderer,
+			$this->linkBatchFactory,
+			$this->restrictionStore
 		);
 
 		// preview if preview, else section if section, else false
@@ -4497,7 +4514,7 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * @return array
+	 * @return Title[]
 	 */
 	public function getTemplates() {
 		if ( $this->preview || $this->section !== '' ) {
@@ -4890,14 +4907,13 @@ class EditPage implements IEditObject {
 
 	private function addPageProtectionWarningHeaders(): void {
 		$out = $this->context->getOutput();
-		$restrictionStore = MediaWikiServices::getInstance()->getRestrictionStore();
-		if ( $restrictionStore->isProtected( $this->mTitle, 'edit' ) &&
+		if ( $this->restrictionStore->isProtected( $this->mTitle, 'edit' ) &&
 			$this->permManager->getNamespaceRestrictionLevels(
 				$this->getTitle()->getNamespace()
 			) !== [ '' ]
 		) {
 			# Is the title semi-protected?
-			if ( $restrictionStore->isSemiProtected( $this->mTitle ) ) {
+			if ( $this->restrictionStore->isSemiProtected( $this->mTitle ) ) {
 				$noticeMsg = 'semiprotectedpagewarning';
 			} else {
 				# Then it must be protected based on static groups (regular)
@@ -4906,9 +4922,9 @@ class EditPage implements IEditObject {
 			LogEventsList::showLogExtract( $out, 'protect', $this->mTitle, '',
 				[ 'lim' => 1, 'msgKey' => [ $noticeMsg ] ] );
 		}
-		if ( $restrictionStore->isCascadeProtected( $this->mTitle ) ) {
+		if ( $this->restrictionStore->isCascadeProtected( $this->mTitle ) ) {
 			# Is this page under cascading protection from some source pages?
-			$cascadeSources = $restrictionStore->getCascadeProtectionSources( $this->mTitle )[0];
+			$cascadeSources = $this->restrictionStore->getCascadeProtectionSources( $this->mTitle )[0];
 			/** @var Title[] $cascadeSources */
 			$cascadeSources = array_map( 'Title::castFromPageIdentity', $cascadeSources );
 			$noticeContent = "\n$1\n";
@@ -4925,7 +4941,7 @@ class EditPage implements IEditObject {
 			);
 			$out->wrapWikiMsg( $notice, [ 'cascadeprotectedwarning', $cascadeSourcesCount ] );
 		}
-		if ( !$this->mTitle->exists() && $restrictionStore->getRestrictions( $this->mTitle, 'create' ) ) {
+		if ( !$this->mTitle->exists() && $this->restrictionStore->getRestrictions( $this->mTitle, 'create' ) ) {
 			LogEventsList::showLogExtract(
 				$out,
 				'protect',

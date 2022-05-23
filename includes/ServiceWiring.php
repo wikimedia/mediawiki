@@ -73,6 +73,8 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\Edit\ParsoidOutputStash;
+use MediaWiki\Edit\SimpleParsoidOutputStash;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Export\WikiExporterFactory;
@@ -1323,6 +1325,12 @@ return [
 			$services->getReadOnlyMode(),
 			$services->getParserFactory() // *legacy* parser factory
 		);
+	},
+
+	'ParsoidOutputStash' => static function ( MediaWikiServices $services ): ParsoidOutputStash {
+		// TODO: Determine storage requirements and config options for stashing parsoid
+		//       output for VE edits (T309016).
+		return new SimpleParsoidOutputStash( ObjectCache::getLocalClusterInstance() );
 	},
 
 	'ParsoidPageConfigFactory' => static function ( MediaWikiServices $services ): MWPageConfigFactory {

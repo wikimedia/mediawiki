@@ -840,7 +840,9 @@ class InfoAction extends FormlessAction {
 
 				$templateListFormatter = new TemplatesOnThisPageFormatter(
 					$this->getContext(),
-					$linkRenderer
+					$linkRenderer,
+					$this->linkBatchFactory,
+					$this->restrictionStore
 				);
 
 				$pageInfo['header-properties'][] = [
@@ -864,7 +866,9 @@ class InfoAction extends FormlessAction {
 
 				$templateListFormatter = new TemplatesOnThisPageFormatter(
 					$this->getContext(),
-					$linkRenderer
+					$linkRenderer,
+					$this->linkBatchFactory,
+					$this->restrictionStore
 				);
 
 				$pageInfo['header-properties'][] = [

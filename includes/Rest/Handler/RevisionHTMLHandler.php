@@ -4,6 +4,7 @@ namespace MediaWiki\Rest\Handler;
 
 use Config;
 use LogicException;
+use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -31,13 +32,23 @@ class RevisionHTMLHandler extends SimpleHandler {
 	/** @var RevisionContentHelper */
 	private $contentHelper;
 
+	/**
+	 * @param Config $config
+	 * @param RevisionLookup $revisionLookup
+	 * @param TitleFormatter $titleFormatter
+	 * @param ParserCacheFactory $parserCacheFactory
+	 * @param GlobalIdGenerator $globalIdGenerator
+	 * @param PageLookup $pageLookup
+	 * @param ParsoidOutputStash $parsoidOutputStash
+	 */
 	public function __construct(
 		Config $config,
 		RevisionLookup $revisionLookup,
 		TitleFormatter $titleFormatter,
 		ParserCacheFactory $parserCacheFactory,
 		GlobalIdGenerator $globalIdGenerator,
-		PageLookup $pageLookup
+		PageLookup $pageLookup,
+		ParsoidOutputStash $parsoidOutputStash
 	) {
 		$this->contentHelper = new RevisionContentHelper(
 			$config,
@@ -48,7 +59,8 @@ class RevisionHTMLHandler extends SimpleHandler {
 		$this->htmlHelper = new ParsoidHTMLHelper(
 			$parserCacheFactory->getParserCache( 'parsoid' ),
 			$parserCacheFactory->getRevisionOutputCache( 'parsoid' ),
-			$globalIdGenerator
+			$globalIdGenerator,
+			$parsoidOutputStash
 		);
 	}
 
@@ -59,7 +71,7 @@ class RevisionHTMLHandler extends SimpleHandler {
 		$revision = $this->contentHelper->getTargetRevision();
 
 		if ( $page && $revision ) {
-			$this->htmlHelper->init( $page, $revision );
+			$this->htmlHelper->init( $page, $this->getValidatedParams(), $revision );
 		}
 	}
 
@@ -139,7 +151,10 @@ class RevisionHTMLHandler extends SimpleHandler {
 	}
 
 	public function getParamSettings(): array {
-		return $this->contentHelper->getParamSettings();
+		return array_merge(
+			$this->contentHelper->getParamSettings(),
+			$this->htmlHelper->getParamSettings()
+		);
 	}
 
 	/**
