@@ -290,6 +290,7 @@ MediaWikiServices::allowGlobalInstance();
 // is complete.
 define( 'MW_SERVICE_BOOTSTRAP_COMPLETE', 1 );
 
+MWExceptionRenderer::setShowExceptionDetails( $wgShowExceptionDetails );
 MWExceptionHandler::installHandler( $wgLogExceptionBacktrace, $wgPropagateErrors );
 
 // Non-trivial validation of: $wgServer

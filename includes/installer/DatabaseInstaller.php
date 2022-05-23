@@ -425,6 +425,7 @@ abstract class DatabaseInstaller {
 			$up->doUpdates();
 			$up->purgeCache();
 		} catch ( MWException $e ) {
+			// TODO: Remove special casing in favour of MWExceptionRenderer
 			echo "\nAn error occurred:\n";
 			echo $e->getText();
 			$ret = false;
