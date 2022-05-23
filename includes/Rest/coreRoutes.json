@@ -52,7 +52,8 @@
 			"TitleFormatter",
 			"ParserCacheFactory",
 			"GlobalIdGenerator",
-			"PageStore"
+			"PageStore",
+			"ParsoidOutputStash"
 		],
 		"format": "html"
 	},
@@ -65,7 +66,8 @@
 			"TitleFormatter",
 			"ParserCacheFactory",
 			"GlobalIdGenerator",
-			"PageStore"
+			"PageStore",
+			"ParsoidOutputStash"
 		],
 		"format": "with_html"
 	},
@@ -150,7 +152,8 @@
 			"TitleFormatter",
 			"ParserCacheFactory",
 			"GlobalIdGenerator",
-			"PageStore"
+			"PageStore",
+			"ParsoidOutputStash"
 		],
 		"format": "html"
 	},
@@ -163,7 +166,8 @@
 			"TitleFormatter",
 			"ParserCacheFactory",
 			"GlobalIdGenerator",
-			"PageStore"
+			"PageStore",
+			"ParsoidOutputStash"
 		],
 		"format": "with_html"
 	},

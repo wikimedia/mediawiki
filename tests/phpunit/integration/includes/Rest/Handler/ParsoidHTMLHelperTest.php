@@ -96,7 +96,8 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		$helper = new ParsoidHTMLHelper(
 			$parserCache,
 			$revisionOutputCache,
-			$this->getServiceContainer()->getGlobalIdGenerator()
+			$this->getServiceContainer()->getGlobalIdGenerator(),
+			$this->getServiceContainer()->getParsoidOutputStash()
 		);
 
 		if ( $parsoid !== null ) {
@@ -137,7 +138,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		$rev = $revRef ? $revisions[ $revRef ] : null;
 
 		$helper = $this->newHelper();
-		$helper->init( $page, $rev );
+		$helper->init( $page, [], $rev );
 
 		$htmlresult = $helper->getHtml()->getRawText();
 
@@ -173,13 +174,13 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 
 		$helper = $this->newHelper( $cache, $parsoid );
 
-		$helper->init( $page, $rev );
+		$helper->init( $page, [], $rev );
 		$htmlresult = $helper->getHtml()->getRawText();
 		$this->assertStringContainsString( 'mocked HTML', $htmlresult );
 
 		// check that we can run the test again and ensure that the parse is only run once
 		$helper = $this->newHelper( $cache, $parsoid );
-		$helper->init( $page, $rev );
+		$helper->init( $page, [], $rev );
 		$htmlresult = $helper->getHtml()->getRawText();
 		$this->assertNotNull( $helper->getHtml()->getExtensionData( ParsoidHTMLHelper::PARSOID_PAGE_BUNDLE_KEY ) );
 		$this->assertStringContainsString( 'mocked HTML', $htmlresult );
@@ -196,7 +197,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 
 		// First, test it works if nothing was cached yet.
 		$helper = $this->newHelper( $cache );
-		$helper->init( $page, $rev );
+		$helper->init( $page, [], $rev );
 		$etag = $helper->getETag();
 		$lastModified = $helper->getLastModified();
 		$helper->getHtml(); // put HTML into the cache
@@ -213,7 +214,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		$now = MWTimestamp::convert( TS_UNIX, self::TIMESTAMP_LATER ) + 100;
 		MWTimestamp::setFakeTime( $now );
 		$helper = $this->newHelper( $cache );
-		$helper->init( $page, $rev );
+		$helper->init( $page, [], $rev );
 
 		$this->assertSame( $etag, $helper->getETag() );
 		$this->assertSame(
@@ -232,7 +233,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		$page->clear();
 
 		$helper = $this->newHelper( $cache );
-		$helper->init( $page, $rev );
+		$helper->init( $page, [], $rev );
 
 		$this->assertNotSame( $etag, $helper->getETag() );
 		$this->assertSame(
@@ -279,7 +280,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 			->willThrowException( $parsoidException );
 
 		$helper = $this->newHelper( null, $parsoid );
-		$helper->init( $page );
+		$helper->init( $page, [] );
 
 		$this->expectExceptionObject( $expectedException );
 		$helper->getHtml();

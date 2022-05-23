@@ -4,6 +4,7 @@ namespace MediaWiki\Rest\Handler;
 
 use Config;
 use LogicException;
+use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -36,7 +37,8 @@ class PageHTMLHandler extends SimpleHandler {
 		TitleFormatter $titleFormatter,
 		ParserCacheFactory $parserCacheFactory,
 		GlobalIdGenerator $globalIdGenerator,
-		PageLookup $pageLookup
+		PageLookup $pageLookup,
+		ParsoidOutputStash $parsoidOutputStash
 	) {
 		$this->contentHelper = new PageContentHelper(
 			$config,
@@ -47,7 +49,8 @@ class PageHTMLHandler extends SimpleHandler {
 		$this->htmlHelper = new ParsoidHTMLHelper(
 			$parserCacheFactory->getParserCache( 'parsoid' ),
 			$parserCacheFactory->getRevisionOutputCache( 'parsoid' ),
-			$globalIdGenerator
+			$globalIdGenerator,
+			$parsoidOutputStash
 		);
 	}
 
@@ -56,7 +59,7 @@ class PageHTMLHandler extends SimpleHandler {
 
 		$page = $this->contentHelper->getPage();
 		if ( $page ) {
-			$this->htmlHelper->init( $page );
+			$this->htmlHelper->init( $page, $this->getValidatedParams() );
 		}
 	}
 
@@ -131,6 +134,9 @@ class PageHTMLHandler extends SimpleHandler {
 	}
 
 	public function getParamSettings(): array {
-		return $this->contentHelper->getParamSettings();
+		return array_merge(
+			$this->contentHelper->getParamSettings(),
+			$this->htmlHelper->getParamSettings()
+		);
 	}
 }
