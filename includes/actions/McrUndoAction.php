@@ -112,23 +112,28 @@ class McrUndoAction extends FormAction {
 			// Note: EditPage has a special message for temp user creation intent here.
 			// But McrUndoAction doesn't support user creation.
 			if ( !$this->getRequest()->getCheck( 'wpPreview' ) ) {
-				$out->wrapWikiMsg(
-					"<div id='mw-anon-edit-warning' class='mw-message-box mw-message-box-warning'>\n$1\n</div>",
-					[ 'anoneditwarning',
-						// Log-in link
-						SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
-							'returnto' => $this->getTitle()->getPrefixedDBkey()
-						] ),
-						// Sign-up link
-						SpecialPage::getTitleFor( 'CreateAccount' )->getFullURL( [
-							'returnto' => $this->getTitle()->getPrefixedDBkey()
-						] )
-					]
+				$out->addHTML(
+					Html::warningBox(
+						$out->msg(
+							'anoneditwarning',
+							// Log-in link
+							SpecialPage::getTitleFor( 'Userlogin' )->getFullURL( [
+								'returnto' => $this->getTitle()->getPrefixedDBkey()
+							] ),
+							// Sign-up link
+							SpecialPage::getTitleFor( 'CreateAccount' )->getFullURL( [
+								'returnto' => $this->getTitle()->getPrefixedDBkey()
+							] )
+						)->parse(),
+						'mw-anon-edit-warning'
+					)
 				);
 			} else {
-				$out->wrapWikiMsg(
-					"<div id='mw-anon-preview-warning' class='mw-message-box mw-message-box-warning'>\n$1</div>",
-					'anonpreviewwarning'
+				$out->addHTML(
+					Html::warningBox(
+						$out->msg( 'anonpreviewwarning' )->parse(),
+						'mw-anon-preview-warning'
+					)
 				);
 			}
 		}
