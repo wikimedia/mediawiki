@@ -25,8 +25,6 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
@@ -304,9 +302,6 @@ class MergeHistory {
 	 * @return Status status of the history merge
 	 */
 	public function merge( Authority $performer, $reason = '' ) {
-		$actorTableSchemaMigrationStage = MediaWikiServices::getInstance()
-			->getMainConfig()->get( MainConfigNames::ActorTableSchemaMigrationStage );
-
 		$status = new Status();
 
 		// Check validity and permissions required for merge
@@ -333,20 +328,6 @@ class MergeHistory {
 		if ( $this->revisionsMerged < 1 ) {
 			$this->dbw->endAtomic( __METHOD__ );
 			return $status->fatal( 'mergehistory-fail-no-change' );
-		}
-
-		// Update denormalized revactor_page too
-		if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_TEMP ) {
-			$this->dbw->update(
-				'revision_actor_temp',
-				[ 'revactor_page' => $this->dest->getId() ],
-				[
-					'revactor_page' => $this->source->getId(),
-					// Slightly hacky, but should work given the values assigned in this class
-					str_replace( 'rev_timestamp', 'revactor_timestamp', $this->getTimeWhere() ?? '' )
-				],
-				__METHOD__
-			);
 		}
 
 		$haveRevisions = $this->dbw->lockForUpdate(

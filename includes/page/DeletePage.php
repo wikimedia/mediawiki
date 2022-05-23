@@ -55,7 +55,6 @@ class DeletePage {
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::DeleteRevisionsBatchSize,
-		MainConfigNames::ActorTableSchemaMigrationStage,
 		MainConfigNames::DeleteRevisionsLimit,
 	];
 
@@ -756,7 +755,7 @@ class DeletePage {
 		$dbw->lockForUpdate(
 			array_intersect(
 				$revQuery['tables'],
-				[ 'revision', 'revision_comment_temp', 'revision_actor_temp' ]
+				[ 'revision', 'revision_comment_temp' ]
 			),
 			[ 'rev_page' => $id ],
 			__METHOD__,
@@ -821,11 +820,6 @@ class DeletePage {
 
 			$dbw->delete( 'revision', [ 'rev_id' => $revids ], __METHOD__ );
 			$dbw->delete( 'revision_comment_temp', [ 'revcomment_rev' => $revids ], __METHOD__ );
-			if ( $this->options->get( MainConfigNames::ActorTableSchemaMigrationStage )
-			& SCHEMA_COMPAT_WRITE_TEMP ) {
-				$dbw->delete( 'revision_actor_temp', [ 'revactor_rev' => $revids ], __METHOD__ );
-			}
-
 			// Also delete records from ip_changes as applicable.
 			if ( count( $ipRevIds ) > 0 ) {
 				$dbw->delete( 'ip_changes', [ 'ipc_rev_id' => $ipRevIds ], __METHOD__ );

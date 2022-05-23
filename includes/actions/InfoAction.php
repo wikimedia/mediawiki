@@ -94,9 +94,6 @@ class InfoAction extends FormlessAction {
 	/** @var LinksMigration */
 	private $linksMigration;
 
-	/** @var int */
-	private $actorTableSchemaMigrationStage;
-
 	/**
 	 * @param Page $page
 	 * @param IContextSource $context
@@ -156,7 +153,6 @@ class InfoAction extends FormlessAction {
 		$this->redirectLookup = $redirectLookup;
 		$this->restrictionStore = $restrictionStore;
 		$this->linksMigration = $linksMigration;
-		$this->actorTableSchemaMigrationStage = $config->get( MainConfigNames::ActorTableSchemaMigrationStage );
 	}
 
 	/**
@@ -946,17 +942,10 @@ class InfoAction extends FormlessAction {
 				);
 				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
 
-				if ( $this->actorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
-					$tables = [ 'revision' ];
-					$field = 'rev_actor';
-					$pageField = 'rev_page';
-					$tsField = 'rev_timestamp';
-				} else /* SCHEMA_COMPAT_READ_TEMP */ {
-					$tables = [ 'revision_actor_temp' ];
-					$field = 'revactor_actor';
-					$pageField = 'revactor_page';
-					$tsField = 'revactor_timestamp';
-				}
+				$tables = [ 'revision' ];
+				$field = 'rev_actor';
+				$pageField = 'rev_page';
+				$tsField = 'rev_timestamp';
 				$joins = [];
 
 				$watchedItemStore = $this->watchedItemStore;

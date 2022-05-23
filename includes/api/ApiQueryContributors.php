@@ -23,7 +23,6 @@
  * @since 1.23
  */
 
-use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -111,19 +110,9 @@ class ApiQueryContributors extends ApiQueryBase {
 
 		$result = $this->getResult();
 		$revQuery = $this->revisionStore->getQueryInfo();
-
-		// For SCHEMA_COMPAT_READ_TEMP, target indexes on the
-		// revision_actor_temp table, otherwise on the revision table.
-		if ( $this->getConfig()->get( MainConfigNames::ActorTableSchemaMigrationStage ) &
-		SCHEMA_COMPAT_READ_TEMP ) {
-			$pageField = 'revactor_page';
-			$idField = 'revactor_actor';
-			$countField = 'revactor_actor';
-		} else {
-			$pageField = 'rev_page';
-			$idField = 'rev_actor';
-			$countField = 'rev_actor';
-		}
+		$pageField = 'rev_page';
+		$idField = 'rev_actor';
+		$countField = 'rev_actor';
 
 		// First, count anons
 		$this->addTables( $revQuery['tables'] );

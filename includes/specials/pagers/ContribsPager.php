@@ -342,11 +342,6 @@ class ContribsPager extends RangeChronologicalPager {
 			? null : $this->getIpRangeConds( $dbr, $this->target );
 		if ( $ipRangeConds ) {
 			return 'ip_changes';
-		} else {
-			$conds = $this->actorMigration->getWhere( $dbr, 'rev_user', $this->targetUser );
-			if ( isset( $conds['orconds']['actor'] ) ) {
-				return 'revision_actor_temp';
-			}
 		}
 
 		return 'revision';
@@ -510,8 +505,6 @@ class ContribsPager extends RangeChronologicalPager {
 				return 'rev_timestamp';
 			case 'ip_changes':
 				return 'ipc_rev_timestamp';
-			case 'revision_actor_temp':
-				return 'revactor_timestamp';
 			default:
 				wfWarn(
 					__METHOD__ . ": Unknown value '$target' from " . static::class . '::getTargetTable()', 0
@@ -562,8 +555,6 @@ class ContribsPager extends RangeChronologicalPager {
 				return [ 'rev_id' ];
 			case 'ip_changes':
 				return [ 'ipc_rev_id' ];
-			case 'revision_actor_temp':
-				return [ 'revactor_rev' ];
 			default:
 				wfWarn(
 					__METHOD__ . ": Unknown value '$target' from " . static::class . '::getTargetTable()', 0

@@ -101,16 +101,6 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		$tsField = 'rev_timestamp';
 		$idField = 'rev_id';
 		$pageField = 'rev_page';
-		if ( $params['user'] !== null &&
-			( $this->getConfig()->get( MainConfigNames::ActorTableSchemaMigrationStage ) &
-				SCHEMA_COMPAT_READ_TEMP )
-		) {
-			// The query is probably best done using the actor_timestamp index on
-			// revision_actor_temp. Use the denormalized fields from that table.
-			$tsField = 'revactor_timestamp';
-			$idField = 'revactor_rev';
-			$pageField = 'revactor_page';
-		}
 
 		// Namespace check is likely to be desired, but can't be done
 		// efficiently in SQL.
@@ -159,24 +149,6 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			}
 		}
 
-		// If we're going to be using actor_timestamp, we need to swap the order of `revision`
-		// and `revision_actor_temp` in the query (for the straight join) and adjust some field aliases.
-		if ( $idField !== 'rev_id' && isset( $revQuery['tables']['temp_rev_user'] ) ) {
-			$aliasFields = [ 'rev_id' => $idField, 'rev_timestamp' => $tsField, 'rev_page' => $pageField ];
-			$revQuery['fields'] = array_merge(
-				$aliasFields,
-				array_diff( $revQuery['fields'], array_keys( $aliasFields ) )
-			);
-			unset( $revQuery['tables']['temp_rev_user'] );
-			$revQuery['tables'] = array_merge(
-				[ 'temp_rev_user' => 'revision_actor_temp' ],
-				$revQuery['tables']
-			);
-			$revQuery['joins']['revision'] = $revQuery['joins']['temp_rev_user'];
-			unset( $revQuery['joins']['temp_rev_user'] );
-		}
-
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		$this->addTables( $revQuery['tables'] );
 		$this->addFields( $revQuery['fields'] );
 		$this->addJoinConds( $revQuery['joins'] );

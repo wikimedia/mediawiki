@@ -32,6 +32,9 @@ class SqliteUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return [
+			// 1.35 but must come first
+			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
+
 			// 1.31
 			[ 'addField', 'image', 'img_description_id', 'patch-image-img_description_id.sql' ],
 			[ 'migrateComments' ],
@@ -44,7 +47,6 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'migrateArchiveText' ],
 			[ 'addTable', 'actor', 'patch-actor-table.sql' ],
 			[ 'addField', 'archive', 'ar_actor', 'patch-archive-ar_actor.sql' ],
-			[ 'addTable', 'revision_actor_temp', 'patch-revision_actor_temp-table.sql' ],
 			[ 'addField', 'ipblocks', 'ipb_by_actor', 'patch-ipblocks-ipb_by_actor.sql' ],
 			[ 'addField', 'image', 'img_actor', 'patch-image-img_actor.sql' ],
 			[ 'addField', 'oldimage', 'oi_actor', 'patch-oldimage-oi_actor.sql' ],
@@ -114,7 +116,6 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'page', 'page_restrictions', 'patch-page_restrictions-null.sql' ],
 			[ 'renameIndex', 'ipblocks', 'ipb_address', 'ipb_address_unique', false,
 				'patch-ipblocks-rename-ipb_address.sql' ],
-			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
 			[ 'dropField', 'archive', 'ar_text_id', 'patch-archive-MCR.sql' ],
 			[ 'doFixIpbAddressUniqueIndex' ],
 			[ 'modifyField', 'actor', 'actor_name', 'patch-actor-actor_name-varbinary.sql' ],
@@ -134,7 +135,6 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'protected_titles', 'pt_title', 'patch-protected_titles-pt_title-varbinary.sql' ],
 			[ 'modifyField', 'protected_titles', 'pt_expiry', 'patch-protected_titles-pt_expiry-drop-default.sql' ],
 			[ 'modifyField', 'ip_changes', 'ipc_rev_timestamp',  'patch-ip_changes-pc_rev_timestamp-drop-default.sql' ],
-			[ 'modifyField', 'revision_actor_temp', 'revactor_timestamp', 'patch-revactor_timestamp-drop-default.sql' ],
 			[ 'renameIndex', 'watchlist', 'namespace_title', 'wl_namespace_title', false,
 				'patch-watchlist-namespace_title-rename-index.sql' ],
 			[ 'modifyField', 'job', 'job_title', 'patch-job-job_title-varbinary.sql' ],
@@ -188,6 +188,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'ipblocks_restrictions', 'ir_ipb_id', 'patch-ipblocks_restrictions-ir_ipb_id.sql' ],
 			[ 'modifyField', 'ipblocks', 'ipb_id', 'patch-ipblocks-ipb_id.sql' ],
 			[ 'modifyField', 'user', 'user_editcount', 'patch-user-user_editcount.sql' ],
+			[ 'runMaintenance', MigrateRevisionActorTemp::class, 'maintenance/migrateRevisionActorTemp.php' ],
+			[ 'dropTable', 'revision_actor_temp' ],
 		];
 	}
 

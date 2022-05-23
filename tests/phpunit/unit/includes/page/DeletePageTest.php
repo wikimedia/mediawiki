@@ -62,7 +62,6 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 			DeletePage::CONSTRUCTOR_OPTIONS,
 			[
 				'DeleteRevisionsBatchSize' => 100,
-				'ActorTableSchemaMigrationStage' => SCHEMA_COMPAT_NEW,
 				'DeleteRevisionsLimit' => $deleteLimit
 			]
 		);
