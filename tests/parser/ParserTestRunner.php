@@ -40,7 +40,7 @@ use Wikimedia\Parsoid\ParserTests\ParserHook as ParsoidParserHook;
 use Wikimedia\Parsoid\ParserTests\RawHTML as ParsoidRawHTML;
 use Wikimedia\Parsoid\ParserTests\StyleTag as ParsoidStyleTag;
 use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
-use Wikimedia\Parsoid\ParserTests\TestFileReader as ParsoidTestFileReader;
+use Wikimedia\Parsoid\ParserTests\TestFileReader;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
@@ -989,7 +989,7 @@ class ParserTestRunner {
 	 * @return bool True if passed all tests, false if any tests failed.
 	 */
 	public function runParsoidTests( string $filename ): bool {
-		$testFileInfo = ParsoidTestFileReader::read( $filename,
+		$testFileInfo = TestFileReader::read( $filename,
 			static function ( $msg ) {
 				wfDeprecatedMsg( $msg, '1.35', false, false );
 			}
@@ -1067,9 +1067,9 @@ class ParserTestRunner {
 
 	/**
 	 * Update known failures JSON file for the parser tests file
-	 * @param ParsoidTestFileReader $testFileInfo
+	 * @param TestFileReader $testFileInfo
 	 */
-	public function updateKnownFailures( ParsoidTestFileReader $testFileInfo ): void {
+	public function updateKnownFailures( TestFileReader $testFileInfo ): void {
 		$testKnownFailures = [];
 		foreach ( $testFileInfo->testCases as $t ) {
 			if ( $t->knownFailures ) {
