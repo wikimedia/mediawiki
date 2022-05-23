@@ -32,6 +32,8 @@ For notes on 1.38.x and older releases, see HISTORY.
 * …
 
 ==== Changed configuration ====
+* $wgInvalidUsernameCharacters now contains the char '>',
+  reserved delimiter for external user names.
 * …
 
 ==== Removed configuration ====
