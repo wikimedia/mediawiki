@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\TestSuite;
 use Wikimedia\Parsoid\ParserTests\Test as ParsoidTest;
 use Wikimedia\ScopedCallback;
@@ -30,22 +29,8 @@ class ParsoidTestFileSuite extends TestSuite {
 		$this->ptFileInfo = Wikimedia\Parsoid\ParserTests\TestFileReader::read( $fileName, static function ( $msg ) {
 			wfDeprecatedMsg( $msg, '1.35', false, false );
 		} );
-		$fileOptions = $this->ptFileInfo->fileOptions;
-		if ( !isset( $fileOptions['parsoid-compatible'] ) ) {
-			// Running files in Parsoid integrated mode is opt-in for now.
-			$skipMessage = 'not compatible with Parsoid integrated mode';
-		} elseif ( !MediaWikiServices::getInstance()->hasService( 'ParsoidPageConfigFactory' ) ) {
-			// Disable integrated mode if Parsoid's services aren't available
-			// (Temporary measure until Parsoid is fully integrated in core.)
-			$skipMessage = 'Parsoid not available';
-		} elseif ( !$this->ptRunner->meetsRequirements( $fileOptions['requirements'] ?? [] ) ) {
-			$skipMessage = 'required extension not enabled';
-		} elseif ( ( $runnerOpts['testFile'] ?? $fileName ) !== $fileName ) {
-			$skipMessage = 'Not the requested test file';
-		} else {
-			$skipMessage = null;
-		}
 
+		$skipMessage = $this->ptRunner->getSkipMessage( $this->ptFileInfo->fileOptions, $runnerOpts, $fileName );
 		// Don't bother doing anything else if a skip message is set.
 		if ( $skipMessage !== null ) {
 			return;
@@ -76,14 +61,14 @@ class ParsoidTestFileSuite extends TestSuite {
 				}
 			);
 
-			// Add a "selser-auto" composite test
+			// Add a "selser-auto-composite" composite test
 			if ( in_array( 'selser', $testModes ) &&
 				$runnerOpts['selser'] !== 'noauto' &&
 				( $t->options['parsoid']['selser'] ?? null ) !== 'noauto'
 			) {
 				$newTest = $test;
 				$newTest['parsoid'] = $t;
-				$newTest['parsoidMode'] = "selser-auto";
+				$newTest['parsoidMode'] = "selser-auto-composite";
 				$newTest['parsoid-changetree'] = $runnerOpts['changetree'];
 				$pit = new ParserIntegrationTest( $runner, $fileName, $newTest, $skipMessage );
 				$suite->addTest( $pit, [ 'Database', 'Parser', 'ParserTests' ] );
@@ -106,36 +91,7 @@ class ParsoidTestFileSuite extends TestSuite {
 
 	protected function tearDown(): void {
 		if ( $this->ptRunner->getOptions()['updateKnownFailures'] ) {
-			$testKnownFailures = [];
-			foreach ( $this->ptFileInfo->testCases as $t ) {
-				if ( $t->knownFailures ) {
-					$testKnownFailures[$t->testName] = $t->knownFailures;
-					// FIXME: This reduces noise when updateKnownFailures is used
-					// with a subset of test modes. But, this also mixes up the selser
-					// test results with non-selser ones.
-					// ksort( $testKnownFailures[$t->testName] );
-				}
-			}
-			// Sort, otherwise, titles get added above based on the first
-			// failing mode, which can make diffs harder to verify when
-			// failing modes change.
-			ksort( $testKnownFailures );
-			$contents = json_encode(
-				$testKnownFailures,
-				JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES |
-				JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE
-			) . "\n";
-
-			if ( file_exists( $this->ptFileInfo->knownFailuresPath ) ) {
-				$old = file_get_contents( $this->ptFileInfo->knownFailuresPath );
-			} else {
-				$old = "";
-			}
-
-			if ( $this->ptFileInfo->knownFailuresPath && $old !== $contents ) {
-				error_log( "Updating known failures file: {$this->ptFileInfo->knownFailuresPath}" );
-				file_put_contents( $this->ptFileInfo->knownFailuresPath, $contents );
-			}
+			$this->ptRunner->updateKnownFailures( $this->ptFileInfo );
 		}
 
 		if ( $this->ptTeardownScope ) {
