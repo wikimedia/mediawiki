@@ -165,8 +165,8 @@ class UserEditTracker {
 	 * @return string|false Timestamp of edit, or false for non-existent/anonymous user accounts.
 	 */
 	private function getUserEditTimestamp( UserIdentity $user, int $type ) {
-		if ( $user->getId() === 0 ) {
-			return false; // anonymous user
+		if ( !$user->isRegistered() ) {
+			return false;
 		}
 
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );

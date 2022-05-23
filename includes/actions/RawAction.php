@@ -156,7 +156,7 @@ class RawAction extends FormlessAction {
 			// even if subpages are disabled.
 			$rootPage = strtok( $title->getText(), '/' );
 			$userFromTitle = User::newFromName( $rootPage, 'usable' );
-			if ( !$userFromTitle || $userFromTitle->getId() === 0 ) {
+			if ( !$userFromTitle || !$userFromTitle->isRegistered() ) {
 				$elevated = $this->getContext()->getAuthority()->isAllowed( 'editinterface' );
 				$elevatedText = $elevated ? 'by elevated ' : '';
 				$log = LoggerFactory::getInstance( "security" );

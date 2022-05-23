@@ -48,7 +48,7 @@ class ResetUserEmail extends Maintenance {
 		} else {
 			$user = User::newFromName( $userName );
 		}
-		if ( !$user || !$user->getId() || !$user->loadFromId() ) {
+		if ( !$user || !$user->isRegistered() || !$user->loadFromId() ) {
 			$this->fatalError( "Error: user '$userName' does not exist\n" );
 		}
 
