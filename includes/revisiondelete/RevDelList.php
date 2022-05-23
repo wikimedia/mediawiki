@@ -288,7 +288,7 @@ abstract class RevDelList extends RevisionListBase {
 		$this->updateLog(
 			$logType,
 			[
-				'title' => $this->title,
+				'page' => $this->page,
 				'count' => $successCount,
 				'newBits' => $virtualNewBits,
 				'oldBits' => $virtualOldBits,
@@ -356,7 +356,7 @@ abstract class RevDelList extends RevisionListBase {
 	 * @param array $params Associative array of parameters:
 	 *     newBits:         The new value of the *_deleted bitfield
 	 *     oldBits:         The old value of the *_deleted bitfield.
-	 *     title:           The target title
+	 *     page:            The target page reference
 	 *     ids:             The ID list
 	 *     comment:         The log comment
 	 *     authorActors:    The array of the actor IDs of the offenders
@@ -373,7 +373,7 @@ abstract class RevDelList extends RevisionListBase {
 		$logParams = $this->getLogParams( $params );
 		// Actually add the deletion log entry
 		$logEntry = new ManualLogEntry( $logType, $this->getLogAction() );
-		$logEntry->setTarget( $params['title'] );
+		$logEntry->setTarget( $params['page'] );
 		$logEntry->setComment( $params['comment'] );
 		$logEntry->setParameters( $logParams );
 		$logEntry->setPerformer( $this->getUser() );
