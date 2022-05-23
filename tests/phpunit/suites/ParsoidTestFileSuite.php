@@ -14,8 +14,6 @@ use Wikimedia\ScopedCallback;
 class ParsoidTestFileSuite extends TestSuite {
 	use SuiteEventsTrait;
 
-	public const VALID_TEST_MODES = [ 'wt2html', 'wt2html+integrated', 'wt2wt', 'html2wt', 'html2html', 'selser' ];
-
 	private $ptRunner;
 	private $ptFileName;
 	private $ptFileInfo;
@@ -26,6 +24,8 @@ class ParsoidTestFileSuite extends TestSuite {
 	public function __construct( $runner, $name, $fileName ) {
 		parent::__construct( $name );
 		$this->ptRunner = $runner;
+		$runnerOpts = $this->ptRunner->getOptions();
+
 		$this->ptFileName = $fileName;
 		$this->ptFileInfo = Wikimedia\Parsoid\ParserTests\TestFileReader::read( $fileName, static function ( $msg ) {
 			wfDeprecatedMsg( $msg, '1.35', false, false );
@@ -40,40 +40,54 @@ class ParsoidTestFileSuite extends TestSuite {
 			$skipMessage = 'Parsoid not available';
 		} elseif ( !$this->ptRunner->meetsRequirements( $fileOptions['requirements'] ?? [] ) ) {
 			$skipMessage = 'required extension not enabled';
+		} elseif ( ( $runnerOpts['testFile'] ?? $fileName ) !== $fileName ) {
+			$skipMessage = 'Not the requested test file';
 		} else {
 			$skipMessage = null;
 		}
 
+		// Don't bother doing anything else if a skip message is set.
+		if ( $skipMessage !== null ) {
+			return;
+		}
+
+		$validTestModes = $this->ptRunner->getRequestedTestModes();
+
+		$suite = $this;
 		foreach ( $this->ptFileInfo->testCases as $t ) {
-			$testModes = $t->computeTestModes( self::VALID_TEST_MODES );
-
-			// Generating selser edit trees requires the DOM.
-			// So, we cannot pregenerate selser auto-edit tests.
-			// They have to be generated dynamically. So, set this to 0.
-			// We will handle auto-edit selser testing separately.
-			$runnerOpts = [ 'numchanges' => 0, 'selser' => true ];
-
-			$suite = $this;
+			$testModes = $t->computeTestModes( $validTestModes );
+			$test = $this->ptRunner->testToArray( $t );
 			$t->testAllModes( $testModes, $runnerOpts,
-				static function ( ParsoidTest $newTest, string $mode, array $options ) use ( $suite, $runner, $fileName, $t, $skipMessage ) {
-					// $options is being ignored but it is identical to $runnerOpts
-					$test = [
-						'test' => $t->testName,
-						'desc' => ( $t->comment ?? '' ) . $t->testName,
-						'input' => $t->wikitext,
-						'result' => $t->legacyHtml,
-						'options' => $t->options,
-						'config' => $t->config ?? '',
-						'line' => $t->lineNumStart,
-						'file' => $t->filename,
-						'parsoid' => $newTest,
-						'parsoidMode' => $mode
-					];
-					$pit = new ParserIntegrationTest( $runner, $fileName, $test, $skipMessage );
-					$suite->addTest( $pit, [ 'Database', 'Parser', 'ParserTests' ] );
+				static function ( ParsoidTest $psdTest, string $mode, array $options ) use (
+					$t, $suite, $runner, $runnerOpts, $fileName, $test, $skipMessage
+				) {
+					if ( $mode !== 'selser' || $runnerOpts['changetree'] === null ) {
+						// $psdTest could be a clone of $t
+						// Ensure that updates to knownFailures in $psdTest are reflected in $t
+						$psdTest->knownFailures = &$t->knownFailures;
+						// $options is being ignored but it is identical to $runnerOpts
+						$newTest = $test;
+						$newTest['parsoid'] = $psdTest;
+						$newTest['parsoidMode'] = $mode;
+						$newTest['parsoid-changetree'] = $psdTest->changetree;
+						$pit = new ParserIntegrationTest( $runner, $fileName, $newTest, $skipMessage );
+						$suite->addTest( $pit, [ 'Database', 'Parser', 'ParserTests' ] );
+					}
 				}
 			);
 
+			// Add a "selser-auto" composite test
+			if ( in_array( 'selser', $testModes ) &&
+				$runnerOpts['selser'] !== 'noauto' &&
+				( $t->options['parsoid']['selser'] ?? null ) !== 'noauto'
+			) {
+				$newTest = $test;
+				$newTest['parsoid'] = $t;
+				$newTest['parsoidMode'] = "selser-auto";
+				$newTest['parsoid-changetree'] = $runnerOpts['changetree'];
+				$pit = new ParserIntegrationTest( $runner, $fileName, $newTest, $skipMessage );
+				$suite->addTest( $pit, [ 'Database', 'Parser', 'ParserTests' ] );
+			}
 		}
 	}
 
@@ -87,12 +101,43 @@ class ParsoidTestFileSuite extends TestSuite {
 				'file' => $a->filename,
 			];
 		}
-		$this->ptTeardownScope = $this->ptRunner->addArticles(
-			$articles
-		);
+		$this->ptTeardownScope = $this->ptRunner->addArticles( $articles );
 	}
 
 	protected function tearDown(): void {
+		if ( $this->ptRunner->getOptions()['updateKnownFailures'] ) {
+			$testKnownFailures = [];
+			foreach ( $this->ptFileInfo->testCases as $t ) {
+				if ( $t->knownFailures ) {
+					$testKnownFailures[$t->testName] = $t->knownFailures;
+					// FIXME: This reduces noise when updateKnownFailures is used
+					// with a subset of test modes. But, this also mixes up the selser
+					// test results with non-selser ones.
+					// ksort( $testKnownFailures[$t->testName] );
+				}
+			}
+			// Sort, otherwise, titles get added above based on the first
+			// failing mode, which can make diffs harder to verify when
+			// failing modes change.
+			ksort( $testKnownFailures );
+			$contents = json_encode(
+				$testKnownFailures,
+				JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES |
+				JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE
+			) . "\n";
+
+			if ( file_exists( $this->ptFileInfo->knownFailuresPath ) ) {
+				$old = file_get_contents( $this->ptFileInfo->knownFailuresPath );
+			} else {
+				$old = "";
+			}
+
+			if ( $this->ptFileInfo->knownFailuresPath && $old !== $contents ) {
+				error_log( "Updating known failures file: {$this->ptFileInfo->knownFailuresPath}" );
+				file_put_contents( $this->ptFileInfo->knownFailuresPath, $contents );
+			}
+		}
+
 		if ( $this->ptTeardownScope ) {
 			ScopedCallback::consume( $this->ptTeardownScope );
 		}
