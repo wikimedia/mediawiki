@@ -1378,4 +1378,51 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$errors = $pm->getPermissionErrors( 'test', $user, $page );
 		$this->assertNotEmpty( $errors );
 	}
+
+	/**
+	 * Tests $wgWhitelistRead.
+	 *
+	 * @dataProvider provideWhitelistRead
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkReadPermissions
+	 */
+	public function testWhitelistRead( array $whitelist, string $title, bool $shouldAllow ) {
+		$this->setMwGlobals( 'wgWhitelistRead', $whitelist );
+		$this->setGroupPermissions( '*', 'read', false );
+
+		$this->setMwGlobals( 'wgLanguageCode', 'es' );
+		foreach ( [
+			'ContentLanguage',
+			'MainConfig',
+			'_MediaWikiTitleCodec',
+			'TitleParser',
+			'TitleFormatter',
+			'PermissionManager',
+		  ] as $service ) {
+			$this->getServiceContainer()->resetServiceForTesting( $service );
+		}
+
+		$title = Title::newFromText( $title );
+		$pm = $this->getServiceContainer()->getPermissionManager();
+		$errors = $pm->getPermissionErrors( 'read', new User, $title );
+		if ( $shouldAllow ) {
+			$this->assertSame( [], $errors );
+		} else {
+			$this->assertNotEmpty( $errors );
+		}
+	}
+
+	/**
+	 * @return array[]
+	 */
+	public function provideWhitelistRead() {
+		return [
+			'no match' => [ [ 'Bar', 'Baz' ], 'Foo', false ],
+			'match' => [ [ 'Bar', 'Foo', 'Baz' ], 'Foo', true ],
+			'text form' => [ [ 'Foo bar' ], 'Foo_bar', true ],
+			'dbkey form' => [ [ 'Foo_bar' ], 'Foo bar', true ],
+			'local namespace' => [ [ 'Usuario:Foo' ], 'User:Foo', true ],
+			'legacy mainspace' => [ [ ':Foo' ], 'Foo', true ],
+			'local special' => [ [ 'Especial:Todas' ], 'Special:Allpages', true ],
+		];
+	}
 }
