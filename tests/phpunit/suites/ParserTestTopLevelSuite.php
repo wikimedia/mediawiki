@@ -68,7 +68,10 @@ class ParserTestTopLevelSuite extends TestSuite {
 		parent::__construct();
 
 		$this->ptRecorder = new PhpunitTestRecorder;
-		$this->ptRunner = new ParserTestRunner( $this->ptRecorder );
+		$this->ptRunner = new ParserTestRunner(
+			$this->ptRecorder,
+			json_decode( getenv( "PARSERTEST_FLAGS" ) ?: "[]", true )
+		);
 
 		if ( is_string( $flags ) ) {
 			$flags = self::CORE_ONLY;
