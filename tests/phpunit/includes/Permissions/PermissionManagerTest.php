@@ -236,7 +236,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	}
 
 	public function testCascadingSourcesRestrictions() {
-		$this->setTitle( NS_MAIN, "test page" );
+		$this->setTitle( NS_MAIN, "Test page" );
 		$this->overrideUserPermissions( $this->user, [ "edit", "bogus", 'createpage' ] );
 
 		$rs = $this->getServiceContainer()->getRestrictionStore();
