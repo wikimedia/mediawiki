@@ -552,7 +552,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( !$isRange ) {
 			$tools['user-talk'] = $linkRenderer->makeLink(
 				$talkpage,
-				$sp->msg( 'sp-contributions-talk' )->text()
+				$sp->msg( 'sp-contributions-talk' )->text(),
+				[ 'class' => 'mw-contributions-link-talk' ]
 			);
 		}
 
@@ -561,16 +562,19 @@ class SpecialContributions extends IncludableSpecialPage {
 			if ( $target->getBlock() && $target->getBlock()->getType() != DatabaseBlock::TYPE_AUTO ) {
 				$tools['block'] = $linkRenderer->makeKnownLink( # Change block link
 					SpecialPage::getTitleFor( 'Block', $username ),
-					$sp->msg( 'change-blocklink' )->text()
+					$sp->msg( 'change-blocklink' )->text(),
+					[ 'class' => 'mw-contributions-link-change-block' ]
 				);
 				$tools['unblock'] = $linkRenderer->makeKnownLink( # Unblock link
 					SpecialPage::getTitleFor( 'Unblock', $username ),
-					$sp->msg( 'unblocklink' )->text()
+					$sp->msg( 'unblocklink' )->text(),
+					[ 'class' => 'mw-contributions-link-unblock' ]
 				);
 			} else { # User is not blocked
 				$tools['block'] = $linkRenderer->makeKnownLink( # Block link
 					SpecialPage::getTitleFor( 'Block', $username ),
-					$sp->msg( 'blocklink' )->text()
+					$sp->msg( 'blocklink' )->text(),
+					[ 'class' => 'mw-contributions-link-block' ]
 				);
 			}
 		}
@@ -579,7 +583,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$tools['log-block'] = $linkRenderer->makeKnownLink(
 			SpecialPage::getTitleFor( 'Log', 'block' ),
 			$sp->msg( 'sp-contributions-blocklog' )->text(),
-			[],
+			[ 'class' => 'mw-contributions-link-block-log' ],
 			[ 'page' => $userpage->getPrefixedText() ]
 		);
 
@@ -588,7 +592,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			$tools['log-suppression'] = $linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Log', 'suppress' ),
 				$sp->msg( 'sp-contributions-suppresslog', $username )->text(),
-				[],
+				[ 'class' => 'mw-contributions-link-suppress-log' ],
 				[ 'offender' => $username ]
 			);
 		}
@@ -599,7 +603,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			if ( !$isIP || $permissionManager->userHasRight( $target, 'upload' ) ) {
 				$tools['uploads'] = $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'Listfiles', $username ),
-					$sp->msg( 'sp-contributions-uploads' )->text()
+					$sp->msg( 'sp-contributions-uploads' )->text(),
+					[ 'class' => 'mw-contributions-link-uploads' ]
 				);
 			}
 
@@ -607,7 +612,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			# Todo: T146628
 			$tools['logs'] = $linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Log', $username ),
-				$sp->msg( 'sp-contributions-logs' )->text()
+				$sp->msg( 'sp-contributions-logs' )->text(),
+				[ 'class' => 'mw-contributions-link-logs' ]
 			);
 
 			# Add link to deleted user contributions for privileged users
@@ -615,7 +621,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			if ( $permissionManager->userHasRight( $sp->getUser(), 'deletedhistory' ) ) {
 				$tools['deletedcontribs'] = $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'DeletedContributions', $username ),
-					$sp->msg( 'sp-contributions-deleted', $username )->text()
+					$sp->msg( 'sp-contributions-deleted', $username )->text(),
+					[ 'class' => 'mw-contributions-link-deleted-contribs' ]
 				);
 			}
 		}
@@ -626,7 +633,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		if ( $userrightsPage->userCanChangeRights( $target ) ) {
 			$tools['userrights'] = $linkRenderer->makeKnownLink(
 				SpecialPage::getTitleFor( 'Userrights', $username ),
-				$sp->msg( 'sp-contributions-userrights', $username )->text()
+				$sp->msg( 'sp-contributions-userrights', $username )->text(),
+				[ 'class' => 'mw-contributions-link-user-rights' ]
 			);
 		}
 
