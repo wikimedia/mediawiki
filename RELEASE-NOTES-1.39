@@ -201,7 +201,7 @@ because of Phabricator reports.
 === Deprecations in 1.39 ===
 * PageProps::getInstance(), deprecated since 1.38, emits deprecations warnings.
 * The global function wfGetDB() has been deprecated. Use
-  LoadBalancer::getConnectionRef() instead.
+  LoadBalancer::getConnection() instead.
 * SpecialRedirectWithAction::__construct without SearchEngineFactory argument
   is hard deprecated.
 * Use of the SiteStatsUpdate constructor has been deprecated in favor of

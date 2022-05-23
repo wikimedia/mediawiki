@@ -1929,12 +1929,12 @@ function wfRelativePath( $path, $from ) {
  * updater to ensure that a proper database is being updated.
  *
  * Note 3: When replacing calls to this with calls to methods on an injected
- * LoadBalancer, LoadBalancer::getConnectionRef is more commonly needed than
+ * LoadBalancer, LoadBalancer::getConnection is more commonly needed than
  * LoadBalancer::getMaintenanceConnectionRef, which is needed for more advanced
  * administrative tasks. See the IMaintainableDatabase and IDatabase interfaces
  * for details.
  *
- * @deprecated since 1.39, use LoadBalancer::getConnectionRef() on an injected
+ * @deprecated since 1.39, use LoadBalancer::getConnection() on an injected
  * instance of LoadBalancer instead.
  *
  * @return \Wikimedia\Rdbms\DBConnRef
