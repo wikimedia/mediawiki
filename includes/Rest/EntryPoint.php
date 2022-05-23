@@ -12,6 +12,7 @@ use MediaWiki\Rest\BasicAccess\CompoundAuthorizer;
 use MediaWiki\Rest\BasicAccess\MWBasicAuthorizer;
 use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
+use MWExceptionRenderer;
 use RequestContext;
 use Title;
 use WebResponse;
@@ -110,7 +111,7 @@ class EntryPoint {
 		$conf = $services->getMainConfig();
 
 		$responseFactory = new ResponseFactory( self::getTextFormatters( $services ) );
-		$responseFactory->setSendExceptionBacktrace( $conf->get( 'ShowExceptionDetails' ) );
+		$responseFactory->setSendExceptionBacktrace( MWExceptionRenderer::shouldShowExceptionDetails() );
 
 		$cors = new CorsUtils(
 			new ServiceOptions(

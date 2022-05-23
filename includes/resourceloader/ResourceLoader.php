@@ -1014,10 +1014,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @return string Sanitized text that can be returned to the user
 	 */
 	protected static function formatExceptionNoComment( Throwable $e ) {
-		$showExceptionDetails = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::ShowExceptionDetails );
-
-		if ( !$showExceptionDetails ) {
+		if ( !MWExceptionRenderer::shouldShowExceptionDetails() ) {
 			return MWExceptionHandler::getPublicLogMessage( $e );
 		}
 
