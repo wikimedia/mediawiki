@@ -6,9 +6,7 @@ use ApiBase;
 use ApiMain;
 use Exception;
 use FauxRequest;
-use MediaWiki\Session\Session;
-use MediaWiki\Session\SessionId;
-use MediaWiki\Session\SessionProviderInterface;
+use Language;
 use PHPUnit\Framework\MockObject\MockBuilder;
 use PHPUnit\Framework\MockObject\MockObject;
 use RequestContext;
@@ -76,15 +74,7 @@ trait ActionModuleBasedHandlerTestTrait {
 	 * @return ApiMain
 	 */
 	private function getApiMain( $csrfSafe = false ) {
-		/** @var SessionProviderInterface|MockObject $session */
-		$sessionProvider =
-			$this->createNoOpMock( SessionProviderInterface::class, [ 'safeAgainstCsrf' ] );
-		$sessionProvider->method( 'safeAgainstCsrf' )->willReturn( $csrfSafe );
-
-		/** @var Session|MockObject $session */
-		$session = $this->createNoOpMock( Session::class, [ 'getSessionId', 'getProvider' ] );
-		$session->method( 'getSessionId' )->willReturn( new SessionId( 'test' ) );
-		$session->method( 'getProvider' )->willReturn( $sessionProvider );
+		$session = $this->getSession( $csrfSafe );
 
 		// NOTE: This being a FauxRequest instance triggers special case behavior
 		// in ApiMain, causing ApiMain::isInternalMode() to return true. Among other things,
@@ -96,15 +86,16 @@ trait ActionModuleBasedHandlerTestTrait {
 		$fauxRequest->method( 'getSession' )->willReturn( $session );
 		$fauxRequest->method( 'getSessionId' )->willReturn( $session->getSessionId() );
 
+		/** @var Language|MockObject $language */
+		$language = $this->createNoOpMock( Language::class );
 		$testContext = RequestContext::getMain();
 
 		$fauxContext = new RequestContext();
 		$fauxContext->setRequest( $fauxRequest );
 		$fauxContext->setUser( $testContext->getUser() );
-		$fauxContext->setLanguage( $testContext->getLanguage() );
+		$fauxContext->setLanguage( $language );
 
-		$apiMain = new ApiMain( $fauxContext, true );
-		return $apiMain;
+		return new ApiMain( $fauxContext, true );
 	}
 
 }

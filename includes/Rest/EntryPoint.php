@@ -79,7 +79,8 @@ class EntryPoint {
 			$objectFactory,
 			$restValidator,
 			new MWErrorReporter(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$context->getRequest()->getSession()
 		) )->setCors( $cors );
 	}
 

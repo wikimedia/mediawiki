@@ -8,6 +8,8 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Validator\BodyValidator;
 use MediaWiki\Rest\Validator\NullBodyValidator;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\Session\Session;
+use Wikimedia\Message\MessageValue;
 
 /**
  * Base class for REST route handlers.
@@ -52,6 +54,9 @@ abstract class Handler {
 	/** @var HookContainer */
 	private $hookContainer;
 
+	/** @var Session */
+	private $session;
+
 	/** @var HookRunner */
 	private $hookRunner;
 
@@ -63,10 +68,12 @@ abstract class Handler {
 	 * @param Authority $authority
 	 * @param ResponseFactory $responseFactory
 	 * @param HookContainer $hookContainer
+	 * @param Session $session
 	 * @internal
 	 */
 	final public function init( Router $router, RequestInterface $request, array $config,
-		Authority $authority, ResponseFactory $responseFactory, HookContainer $hookContainer
+		Authority $authority, ResponseFactory $responseFactory, HookContainer $hookContainer,
+		Session $session
 	) {
 		$this->router = $router;
 		$this->request = $request;
@@ -75,6 +82,7 @@ abstract class Handler {
 		$this->responseFactory = $responseFactory;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->session = $session;
 		$this->postInitSetup();
 	}
 
@@ -172,6 +180,17 @@ abstract class Handler {
 	}
 
 	/**
+	 * Get the Session.
+	 * This will raise a fatal error if init() has not been
+	 * called.
+	 *
+	 * @return Session
+	 */
+	public function getSession(): Session {
+		return $this->session;
+	}
+
+	/**
 	 * Validate the request parameters/attributes and body. If there is a validation
 	 * failure, a response with an error message should be returned or an
 	 * HttpException should be thrown.
@@ -186,6 +205,27 @@ abstract class Handler {
 		$this->validatedParams = $validatedParams;
 		$this->validatedBody = $validatedBody;
 		$this->postValidationSetup();
+	}
+
+	/**
+	 * Check the session (and session provider)
+	 * @throws HttpException on failed check
+	 * @internal
+	 */
+	public function checkSession() {
+		if ( !$this->session->getProvider()->safeAgainstCsrf() ) {
+			if ( $this->requireSafeAgainstCsrf() ) {
+				throw new LocalizedHttpException(
+					new MessageValue( 'rest-requires-safe-against-csrf' ),
+					400
+				);
+			}
+		} elseif ( !empty( $this->validatedBody['token'] ) ) {
+			throw new LocalizedHttpException(
+				new MessageValue( 'rest-extraneous-csrf-token' ),
+				400
+			);
+		}
 	}
 
 	/**
@@ -394,6 +434,24 @@ abstract class Handler {
 	 */
 	public function needsWriteAccess() {
 		return true;
+	}
+
+	/**
+	 * Indicates whether this route can be accessed only by session providers safe vs csrf
+	 *
+	 * The handler should override this if the route must only be accessed by session
+	 * providers that are safe against csrf.
+	 *
+	 * A return value of false does not necessarily mean the route is vulnerable to csrf attacks.
+	 * It means the route can be accessed by session providers that are not automatically safe
+	 * against csrf attacks, so the possibility of csrf attacks must be considered.
+	 *
+	 * @stable to override
+	 *
+	 * @return bool
+	 */
+	public function requireSafeAgainstCsrf() {
+		return false;
 	}
 
 	/**

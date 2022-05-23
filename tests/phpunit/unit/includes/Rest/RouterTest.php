@@ -14,6 +14,7 @@ use MediaWiki\Rest\ResponseException;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\Tests\Rest\Handler\SessionHelperTestTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
@@ -26,6 +27,7 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  */
 class RouterTest extends \MediaWikiUnitTestCase {
 	use MockAuthorityTrait;
+	use SessionHelperTestTrait;
 
 	/** @var Throwable[] */
 	private $reportedErrors = [];
@@ -66,7 +68,8 @@ class RouterTest extends \MediaWikiUnitTestCase {
 			$objectFactory,
 			new Validator( $objectFactory, $request, $authority ),
 			$mockErrorReporter,
-			$this->createHookContainer()
+			$this->createHookContainer(),
+			$this->getSession()
 		);
 	}
 
