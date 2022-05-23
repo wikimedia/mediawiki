@@ -1593,3 +1593,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-ExternalData
 	branch = master
 	ignore = dirty
+[submodule "extensions/NativeSvgHandler"]
+	path = extensions/NativeSvgHandler
+	url = https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler
+	branch = REL1_38
+	ignore = dirty
