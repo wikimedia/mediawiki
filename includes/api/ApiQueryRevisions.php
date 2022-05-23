@@ -23,7 +23,6 @@
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
-use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -148,18 +147,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			'revision' => 'rev_timestamp',
 		];
 		$useIndex = [];
-
-		if ( $params['user'] !== null &&
-			( $this->getConfig()->get( MainConfigNames::ActorTableSchemaMigrationStage )
-				& SCHEMA_COMPAT_READ_TEMP )
-		) {
-			// We're going to want to use the page_actor_timestamp index (on revision_actor_temp)
-			// so use that table's denormalized fields.
-			$idField = 'revactor_rev';
-			$tsField = 'revactor_timestamp';
-			$pageField = 'revactor_page';
-		}
-
 		if ( $resultPageSet === null ) {
 			$this->parseParameters( $params );
 			$opts = [ 'page' ];
@@ -167,15 +154,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 				$opts[] = 'user';
 			}
 			$revQuery = $this->revisionStore->getQueryInfo( $opts );
-
-			if ( $idField !== 'rev_id' ) {
-				$aliasFields = [ 'rev_id' => $idField, 'rev_timestamp' => $tsField, 'rev_page' => $pageField ];
-				$revQuery['fields'] = array_merge(
-					$aliasFields,
-					array_diff( $revQuery['fields'], array_keys( $aliasFields ) )
-				);
-			}
-
 			$this->addTables( $revQuery['tables'] );
 			$this->addFields( $revQuery['fields'] );
 			$this->addJoinConds( $revQuery['joins'] );

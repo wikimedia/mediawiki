@@ -41,6 +41,11 @@ class PostgresUpdater extends DatabaseUpdater {
 	 */
 	protected function getCoreUpdateList() {
 		return [
+			// 1.35 but must come first
+			[ 'addPgField', 'revision', 'rev_actor', 'INTEGER NOT NULL DEFAULT 0' ],
+			[ 'addPgIndex', 'revision', 'rev_actor_timestamp', '(rev_actor,rev_timestamp,rev_id)' ],
+			[ 'addPgIndex', 'revision', 'rev_page_actor_timestamp', '(rev_page,rev_actor,rev_timestamp)' ],
+
 			// Exception to the sequential updates. Renaming pagecontent and mwuser.
 			// Introduced in 1.36.
 			[ 'renameTable', 'pagecontent', 'text' ],
@@ -66,7 +71,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addTable', 'slot_roles', 'patch-slot_roles-table.sql' ],
 			[ 'migrateArchiveText' ],
 			[ 'addTable', 'actor', 'patch-actor-table.sql' ],
-			[ 'addTable', 'revision_actor_temp', 'patch-revision_actor_temp-table.sql' ],
 			[ 'setDefault', 'revision', 'rev_user', 0 ],
 			[ 'setDefault', 'revision', 'rev_user_text', '' ],
 			[ 'setDefault', 'archive', 'ar_user', 0 ],
@@ -219,9 +223,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'setDefault', 'user_newtalk', 'user_ip', '' ],
 			[ 'changeNullableField', 'user_newtalk', 'user_ip', 'NOT NULL', true ],
 			[ 'setDefault', 'user_newtalk', 'user_id', 0 ],
-			[ 'renameIndex', 'revision_actor_temp', 'rev_actor_timestamp', 'revactor_actor_timestamp' ],
-			[ 'renameIndex', 'revision_actor_temp',
-				'rev_page_actor_timestamp', 'revactor_page_actor_timestamp' ],
 			[ 'dropPgIndex', 'revision', 'rev_user_idx' ],
 			[ 'dropPgIndex', 'revision', 'rev_user_text_idx' ],
 			[ 'dropPgIndex', 'revision', 'rev_text_id_idx' ],
@@ -232,9 +233,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropPgField', 'revision', 'rev_content_model' ],
 			[ 'dropPgField', 'revision', 'rev_content_format' ],
 			[ 'addPgField', 'revision', 'rev_comment_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'addPgField', 'revision', 'rev_actor', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'addPgIndex', 'revision', 'rev_actor_timestamp', '(rev_actor,rev_timestamp,rev_id)' ],
-			[ 'addPgIndex', 'revision', 'rev_page_actor_timestamp', '(rev_page,rev_actor,rev_timestamp)' ],
 			[ 'dropPgField', 'archive', 'ar_text_id' ],
 			[ 'dropPgField', 'archive', 'ar_content_model' ],
 			[ 'dropPgField', 'archive', 'ar_content_format' ],
@@ -380,9 +378,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'ip_changes', 'ipc_hex', 'TEXT', "ipc_hex::TEXT DEFAULT ''" ],
 			[ 'setDefault', 'ip_changes', 'ipc_rev_id', 0 ],
 			[ 'changeField', 'revision_comment_temp', 'revcomment_comment_id', 'BIGINT', '' ],
-			[ 'dropFkey', 'revision_actor_temp', 'revactor_page' ],
-			[ 'changeField', 'revision_actor_temp', 'revactor_actor', 'BIGINT', '' ],
-			[ 'changeNullableField', 'revision_actor_temp', 'revactor_page', 'NOT NULL', true ],
 			[ 'renameIndex', 'watchlist', 'namespace_title', 'wl_namespace_title' ],
 			[ 'dropFkey', 'page_props', 'pp_page' ],
 			// page_props primary key change moved from the Schema SQL file to here in 1.36
@@ -601,6 +596,8 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// 1.39
 			[ 'addTable', 'user_autocreate_serial', 'patch-user_autocreate_serial.sql' ],
+			[ 'runMaintenance', MigrateRevisionActorTemp::class, 'maintenance/migrateRevisionActorTemp.php' ],
+			[ 'dropTable', 'revision_actor_temp' ],
 		];
 	}
 

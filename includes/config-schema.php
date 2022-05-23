@@ -380,7 +380,6 @@ return [
 			'DatabaseReplicaLagWarning' => 10,
 			'DatabaseReplicaLagCritical' => 30,
 			'MaxExecutionTimeForExpensiveQueries' => 0,
-			'ActorTableSchemaMigrationStage' => 48,
 			'TemplateLinksSchemaMigrationStage' => 3,
 			'ContentHandlers' => [
 				'wikitext' => 'WikitextContentHandler',
@@ -2533,7 +2532,6 @@ return [
 			],
 			'LBFactoryConf' => 'object',
 			'LocalDatabases' => 'array',
-			'ActorTableSchemaMigrationStage' => 'integer',
 			'TemplateLinksSchemaMigrationStage' => 'integer',
 			'ContentHandlers' => 'object',
 			'NamespaceContentModels' => 'object',

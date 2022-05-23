@@ -32,6 +32,9 @@ use Wikimedia\Rdbms\MySQLField;
 class MysqlUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
 		return [
+			// 1.35 but it must come first
+			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
+
 			// 1.31
 			[ 'addField', 'image', 'img_description_id', 'patch-image-img_description_id.sql' ],
 			[ 'migrateComments' ],
@@ -43,7 +46,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addTable', 'content_models', 'patch-content_models.sql' ],
 			[ 'migrateArchiveText' ],
 			[ 'addTable', 'actor', 'patch-actor-table.sql' ],
-			[ 'addTable', 'revision_actor_temp', 'patch-revision_actor_temp-table.sql' ],
 			[ 'addField', 'archive', 'ar_actor', 'patch-archive-ar_actor.sql' ],
 			[ 'addField', 'ipblocks', 'ipb_by_actor', 'patch-ipblocks-ipb_by_actor.sql' ],
 			[ 'addField', 'image', 'img_actor', 'patch-image-img_actor.sql' ],
@@ -120,7 +122,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'page', 'page_restrictions', 'patch-page_restrictions-null.sql' ],
 			[ 'renameIndex', 'ipblocks', 'ipb_address', 'ipb_address_unique', false,
 				'patch-ipblocks-rename-ipb_address.sql' ],
-			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
 			[ 'dropField', 'archive', 'ar_text_id', 'patch-archive-MCR.sql' ],
 			[ 'doLanguageLinksLengthSync' ],
 			[ 'doFixIpbAddressUniqueIndex' ],
@@ -145,7 +146,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'protected_titles', 'pt_title', 'patch-protected_titles-pt_title-varbinary.sql' ],
 			[ 'dropDefault', 'protected_titles', 'pt_expiry' ],
 			[ 'dropDefault', 'ip_changes', 'ipc_rev_timestamp' ],
-			[ 'dropDefault', 'revision_actor_temp', 'revactor_timestamp' ],
 			[ 'modifyField', 'ipblocks_restrictions', 'ir_type', 'patch-ipblocks_restrictions-ir_type.sql' ],
 			[ 'renameIndex', 'watchlist', 'namespace_title', 'wl_namespace_title', false,
 				'patch-watchlist-namespace_title-rename-index.sql' ],
@@ -216,6 +216,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'ipblocks_restrictions', 'ir_ipb_id', 'patch-ipblocks_restrictions-ir_ipb_id.sql' ],
 			[ 'modifyField', 'ipblocks', 'ipb_id', 'patch-ipblocks-ipb_id.sql' ],
 			[ 'modifyField', 'user', 'user_editcount', 'patch-user-user_editcount.sql' ],
+			[ 'runMaintenance', MigrateRevisionActorTemp::class, 'maintenance/migrateRevisionActorTemp.php' ],
+			[ 'dropTable', 'revision_actor_temp' ],
 		];
 	}
 

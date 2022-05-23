@@ -1216,12 +1216,6 @@ $wgDatabaseReplicaLagCritical = null;
 $wgMaxExecutionTimeForExpensiveQueries = null;
 
 /**
- * Config variable stub for the ActorTableSchemaMigrationStage setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::ActorTableSchemaMigrationStage
- */
-$wgActorTableSchemaMigrationStage = null;
-
-/**
  * Config variable stub for the TemplateLinksSchemaMigrationStage setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::TemplateLinksSchemaMigrationStage
  */
