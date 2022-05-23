@@ -30,7 +30,7 @@ class RevisionList extends RevisionListBase {
 
 	/** @inheritDoc */
 	public function doQuery( $db ) {
-		$conds = [ 'rev_page' => $this->title->getId() ];
+		$conds = [ 'rev_page' => $this->page->getId() ];
 		if ( $this->ids !== null ) {
 			$conds['rev_id'] = array_map( 'intval', $this->ids );
 		}

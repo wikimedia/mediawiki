@@ -459,7 +459,7 @@ class ActorMigrationBase {
 		$names = [];
 		$actors = [];
 		foreach ( $users as $user ) {
-			if ( $useId && $user->getId() ) {
+			if ( $useId && $user->isRegistered() ) {
 				$ids[] = $user->getId();
 			} else {
 				// make sure to use normalized form of IP for anonymous users

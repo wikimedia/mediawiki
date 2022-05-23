@@ -72,7 +72,7 @@ class InvalidateUserSessions extends Maintenance {
 			$user = User::newFromName( $username );
 			try {
 				$sessionManager->invalidateSessionsForUser( $user );
-				if ( $user->getId() ) {
+				if ( $user->isRegistered() ) {
 					$this->output( "Invalidated sessions for user $username\n" );
 				} else {
 					# session invalidation might still work if there is a central identity provider

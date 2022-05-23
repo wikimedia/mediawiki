@@ -318,13 +318,12 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				if ( $this->fld_user ) {
 					$vals['user'] = $u->getName();
 				}
-				$userid = $u->getId();
-				if ( !$userid ) {
+				if ( !$u->isRegistered() ) {
 					$vals['anon'] = true;
 				}
 
 				if ( $this->fld_userid ) {
-					$vals['userid'] = $userid;
+					$vals['userid'] = $u->getId();
 				}
 			}
 		}

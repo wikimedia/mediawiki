@@ -41,7 +41,7 @@ class MakeTestEdits extends Maintenance {
 
 	public function execute() {
 		$user = User::newFromName( $this->getOption( 'user' ) );
-		if ( !$user->getId() ) {
+		if ( !$user->isRegistered() ) {
 			$this->fatalError( "No such user exists." );
 		}
 
