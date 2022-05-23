@@ -176,6 +176,10 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			$this->msg( 'viewprevnext' )->rawParams(
 				$pagingLinks['prev'], $pagingLinks['next'], $limits )->escaped();
 
+		$this->mNavigationBar = Html::rawElement( 'div', [ 'class' => 'mw-pager-navigation-bar' ],
+			$this->mNavigationBar
+		);
+
 		return $this->mNavigationBar;
 	}
 
