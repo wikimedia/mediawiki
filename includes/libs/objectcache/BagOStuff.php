@@ -646,7 +646,7 @@ abstract class BagOStuff implements
 	}
 
 	/**
-	 * Make a "generic" reversible cache key from the given components
+	 * Stage a set of new key values for storage and estimate the amount of bytes needed
 	 *
 	 * All previously prepared values will be cleared. Each of the new prepared values will be
 	 * individually cleared as they get used by write operations for that key. This is done to
@@ -660,7 +660,8 @@ abstract class BagOStuff implements
 	 *     $cache->setMulti( [ $key2 => $value2, $key3 => $value3 ], $cache::TTL_HOUR );
 	 * @endcode
 	 *
-	 * This is only useful if the caller needs an estimate of the serialized object sizes.
+	 * This is only useful if the caller needs an estimate of the serialized object sizes,
+	 * such as cache wrappers with adaptive write slam avoidance or store wrappers with metrics.
 	 * The caller cannot know the serialization format and even if it did, it could be expensive
 	 * to serialize complex values twice just to get the size information before writing them to
 	 * cache. This method solves both problems by making the cache instance do the serialization

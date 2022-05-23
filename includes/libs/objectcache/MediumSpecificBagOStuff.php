@@ -1036,6 +1036,22 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	}
 
 	/**
+	 * Estimate the size of a each variable once serialized
+	 *
+	 * @param array $values List/map with PHP variable values to serialize
+	 * @return int[]|null[] Corresponding list of size estimates (null for invalid values)
+	 * @since 1.39
+	 */
+	protected function guessSerialSizeOfValues( array $values ) {
+		$sizes = [];
+		foreach ( $values as $value ) {
+			$sizes[] = $this->guessSerialValueSize( $value );
+		}
+
+		return $sizes;
+	}
+
+	/**
 	 * Log if a new cache value does not appear suitable for serialization at a quick glance
 	 *
 	 * This aids migration of values to JSON-like structures and the debugging of exceptions
