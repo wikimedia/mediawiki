@@ -19,10 +19,8 @@
 		animation-duration: 0.01ms !important;
 		animation-iteration-count: 1 !important;
 		scroll-behavior: auto !important;
-		// Set duration to very short for balancing non-obstructive visibility
-		// and continuing firing `transitionend` event.
-		// See https: //github.com/jensimmons/cssremedy/issues/11#issuecomment-462527813
-		// for outline of different values resulting in `0.01ms`.
-		transition-duration: 0.01ms !important;
+		// Set to `0` even though it implicates not firing `transitionend` in certain browsers.
+		// Do not set this to non-zero value, as it results in infinite motion on iOS. See T308979.
+		transition-duration: 0 !important;
 	}
 }
