@@ -500,6 +500,7 @@ class MimeMap {
 		'image/x-psd' => 'image/x-photoshop',
 		'image/photoshop' => 'image/x-photoshop',
 		'image/vnd.adobe.photoshop' => 'image/x-photoshop',
+		'application/vnd.ms-opentype' => 'application/vnd.oasis.opendocument.formula-template',
 		'application/svg+xml' => 'image/svg+xml',
 		'application/svg' => 'image/svg+xml',
 		'image/svg' => 'image/svg+xml',
