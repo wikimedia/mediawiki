@@ -1214,7 +1214,7 @@
 	"userrights-groupsmember": "Thuộc nhóm:",
 	"userrights-groupsmember-auto": "Ngầm thuộc nhóm:",
 	"userrights-groupsmember-type": "$1",
-	"userrights-systemuser": "{{GENDER:$1}}Đây là người dùng hệ thống",
+	"userrights-systemuser": "{{GENDER:$1}}Đây là tài khoản hệ thống",
 	"userrights-groups-help": "Bạn có thể thay đổi các nhóm người dùng của thành viên này:\n* Hộp kiểm được đánh dấu có nghĩa rằng thành viên thuộc về nhóm đó.\n* Hộp không được đánh dấu có nghĩa rằng thành viên không thuộc về nhóm đó.\n* Dấu * có nghĩa là bạn sẽ không thể xóa thành viên ra khỏi nhóm này một khi bạn đã thêm họ vào, hoặc ngược lại.\n* Dấu # có nghĩa là bạn chỉ có thể giảm thời hạn thành viên được ở trong nhóm này; bạn không thể tăng thời hạn đó lên được.",
 	"userrights-reason": "Lý do:",
 	"userrights-no-interwiki": "Bạn không có quyền thay đổi quyền hạn của thành viên tại các wiki khác.",

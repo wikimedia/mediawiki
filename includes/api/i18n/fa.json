@@ -52,7 +52,7 @@
 	"apihelp-block-param-namespacerestrictions": "فهرست فضاهای نام برای قطع دسترسی ویرایشی کاربر در آن‌ها. تنها زمانی قابل اعمال است که <var>partial</var> روی true تنظیم شده‌باشد.",
 	"apihelp-block-example-ip-simple": "قطع دسترسی آی‌پی <kbd>۱۹۲٫۰٫۲٫۵</kbd> برای سه روز به‌همراه دلیل.",
 	"apihelp-block-example-user-complex": "بستن کاربر <kbd>خرابکار</kbd> به شکل نامحدود به‌همراه دلیل، همچنين جلوگيری از ايجاد حساب جديد و ارسال ايميل.",
-	"apihelp-changeauthenticationdata-summary": "تغییر دادۀ تأیید اعتبار برای کاربر کنونی",
+	"apihelp-changeauthenticationdata-summary": "تغییر دادۀ اصالت‌سنجی برای کاربر کنونی",
 	"apihelp-changeauthenticationdata-example-password": "تلاش برای تغيير رمز عبور فعلی کاربر به <kbd>نمونهٔ رمز عبور</kbd>.",
 	"apihelp-changecontentmodel-summary": "تغییر مدل محتوای یک صفحه",
 	"apihelp-changecontentmodel-param-title": "عنوان صفحه برای تغییر مدل محتوای آن. نمی‌تواند همزمان با <var>$1pageid</var> استفاده شود.",

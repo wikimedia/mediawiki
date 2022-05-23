@@ -1881,6 +1881,7 @@
 	"booksources-search-legend": "Serchez librala fonti",
 	"booksources-search": "Serchar",
 	"booksources-text": "Infre vu povas vidar listo di ligili ad altra retsitui qui vendas nova ed uzata libri, ed anke povas havar informi pri la libri quin vu serchabas:\nLa {{SITENAME}} ne mantenas komercala relati kun ta vendeyi mencionata, e la listo ne povas konsideresar rekomendo o vend-anunco.",
+	"magiclink-tracking-pmid": "Pagini qui uzas ligili PMID",
 	"magiclink-tracking-pmid-desc": "Ica pagino uzas magiala ligili PMID. Videz [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] pri quale migrar.",
 	"magiclink-tracking-isbn": "Pagini qui uzas ligili ISBN",
 	"specialloguserlabel": "Agero:",

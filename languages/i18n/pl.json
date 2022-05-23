@@ -1500,7 +1500,7 @@
 	"recentchanges-noresult": "Brak zmian w wybranym okresie spełniających twoje kryteria.",
 	"recentchanges-timeout": "To wyszukiwanie przekroczyło limit czasu. Możesz spróbować z innymi parametrami wyszukiwania.",
 	"recentchanges-network": "Z powodu błędu technicznego nie można załadować żadnych wyników. Spróbuj odświeżyć stronę.",
-	"recentchanges-notargetpage": "Wprowadź powyżej nazwę strony, aby zobaczy zmiany związane z tą stroną.",
+	"recentchanges-notargetpage": "Wprowadź powyżej nazwę strony, aby zobaczyć zmiany związane z tą stroną.",
 	"recentchanges-feed-description": "Obserwuj najświeższe zmiany w tej wiki.",
 	"recentchanges-label-newpage": "W tej edycji utworzono nową stronę",
 	"recentchanges-label-minor": "To jest drobna zmiana",
