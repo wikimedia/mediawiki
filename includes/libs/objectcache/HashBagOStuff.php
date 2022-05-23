@@ -175,13 +175,8 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	public function setNewPreparedValues( array $valueByKey ) {
-		// Do not bother with serialization as this class does not serialize values
-		$sizes = [];
-		foreach ( $valueByKey as $value ) {
-			$sizes[] = $this->guessSerialValueSize( $value );
-		}
-
-		return $sizes;
+		// Do not bother staging serialized values as this class does not serialize values
+		return $this->guessSerialSizeOfValues( $valueByKey );
 	}
 
 	/**

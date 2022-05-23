@@ -64,32 +64,33 @@ abstract class AlphabeticPager extends IndexPager {
 			$this->msg( 'viewprevnext' )->rawParams( $pagingLinks['prev'],
 				$pagingLinks['next'], $limits )->escaped();
 
-		if ( !is_array( $this->getIndexField() ) ) {
-			# Early return to avoid undue nesting
-			return $this->mNavigationBar;
-		}
+		if ( is_array( $this->getIndexField() ) ) {
+			$extra = '';
+			$msgs = $this->getOrderTypeMessages();
+			foreach ( $msgs as $order => $msg ) {
+				if ( $extra !== '' ) {
+					$extra .= $this->msg( 'pipe-separator' )->escaped();
+				}
 
-		$extra = '';
-		$msgs = $this->getOrderTypeMessages();
-		foreach ( $msgs as $order => $msg ) {
+				if ( $order == $this->mOrderType ) {
+					$extra .= $this->msg( $msg )->escaped();
+				} else {
+					$extra .= $this->makeLink(
+						$this->msg( $msg )->escaped(),
+						[ 'order' => $order ]
+					);
+				}
+			}
+
 			if ( $extra !== '' ) {
-				$extra .= $this->msg( 'pipe-separator' )->escaped();
-			}
-
-			if ( $order == $this->mOrderType ) {
-				$extra .= $this->msg( $msg )->escaped();
-			} else {
-				$extra .= $this->makeLink(
-					$this->msg( $msg )->escaped(),
-					[ 'order' => $order ]
-				);
+				$extra = ' ' . $this->msg( 'parentheses' )->rawParams( $extra )->escaped();
+				$this->mNavigationBar .= $extra;
 			}
 		}
 
-		if ( $extra !== '' ) {
-			$extra = ' ' . $this->msg( 'parentheses' )->rawParams( $extra )->escaped();
-			$this->mNavigationBar .= $extra;
-		}
+		$this->mNavigationBar = Html::rawElement( 'div', [ 'class' => 'mw-pager-navigation-bar' ],
+			$this->mNavigationBar
+		);
 
 		return $this->mNavigationBar;
 	}
