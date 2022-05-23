@@ -365,6 +365,7 @@ class Names {
 		'pam' => 'Kapampangan', # Pampanga
 		'pap' => 'Papiamentu', # Papiamentu
 		'pcd' => 'Picard', # Picard
+		'pcm' => 'Naijá', # Nigerian Pidgin
 		'pdc' => 'Deitsch', # Pennsylvania German
 		'pdt' => 'Plautdietsch', # Plautdietsch/Mennonite Low German
 		'pfl' => 'Pälzisch', # Palatinate German
