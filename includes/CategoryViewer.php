@@ -116,7 +116,7 @@ class CategoryViewer extends ContextSource {
 
 		$this->setContext( $context );
 		$this->getOutput()->addModuleStyles( [
-			'mediawiki.action.view.categoryPage.styles'
+			'mediawiki.action.styles',
 		] );
 		$this->from = $from;
 		$this->until = $until;
