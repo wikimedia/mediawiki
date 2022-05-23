@@ -10,6 +10,7 @@ use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\Session\Session;
 use Throwable;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -71,6 +72,9 @@ class Router {
 	/** @var HookContainer */
 	private $hookContainer;
 
+	/** @var Session */
+	private $session;
+
 	/**
 	 * @param string[] $routeFiles List of names of JSON files containing routes
 	 * @param array $extraRoutes Extension route array
@@ -84,6 +88,7 @@ class Router {
 	 * @param Validator $restValidator
 	 * @param ErrorReporter $errorReporter
 	 * @param HookContainer $hookContainer
+	 * @param Session $session
 	 * @internal
 	 */
 	public function __construct(
@@ -98,7 +103,8 @@ class Router {
 		ObjectFactory $objectFactory,
 		Validator $restValidator,
 		ErrorReporter $errorReporter,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		Session $session
 	) {
 		$this->routeFiles = $routeFiles;
 		$this->extraRoutes = $extraRoutes;
@@ -112,6 +118,7 @@ class Router {
 		$this->restValidator = $restValidator;
 		$this->errorReporter = $errorReporter;
 		$this->hookContainer = $hookContainer;
+		$this->session = $session;
 	}
 
 	/**
@@ -381,7 +388,9 @@ class Router {
 		);
 		/** @var $handler Handler (annotation for PHPStorm) */
 		$handler = $this->objectFactory->createObject( $objectFactorySpec );
-		$handler->init( $this, $request, $spec, $this->authority, $this->responseFactory, $this->hookContainer );
+		$handler->init( $this, $request, $spec, $this->authority, $this->responseFactory,
+			$this->hookContainer, $this->session
+		);
 
 		return $handler;
 	}
@@ -398,6 +407,9 @@ class Router {
 		if ( $authResult ) {
 			return $this->responseFactory->createHttpError( 403, [ 'error' => $authResult ] );
 		}
+
+		// Check session (and session provider)
+		$handler->checkSession();
 
 		// Validate the parameters
 		$handler->validate( $this->restValidator );

@@ -16,6 +16,7 @@ use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\Tests\Rest\Handler\SessionHelperTestTrait;
 use MediaWiki\User\UserIdentityValue;
 use Psr\Container\ContainerInterface;
 use RequestContext;
@@ -27,6 +28,7 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * @covers \MediaWiki\Rest\Router
  */
 class EntryPointTest extends \MediaWikiIntegrationTestCase {
+	use SessionHelperTestTrait;
 
 	private function createRouter( RequestInterface $request ) {
 		global $IP;
@@ -49,7 +51,8 @@ class EntryPointTest extends \MediaWikiIntegrationTestCase {
 			$objectFactory,
 			new Validator( $objectFactory, $request, $authority ),
 			new PHPErrorReporter(),
-			$this->createHookContainer()
+			$this->createHookContainer(),
+			$this->getSession()
 		);
 	}
 
