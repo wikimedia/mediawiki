@@ -120,6 +120,48 @@
 		},
 
 		/**
+		 * Perform REST API PUT request.
+		 *
+		 * Note: only sending application/json is currently supported.
+		 *
+		 * @method
+		 * @param {string} path
+		 * @param {Object} body
+		 * @param {Object} [headers]
+		 * @return {jQuery.Promise}
+		 */
+		put: function ( path, body, headers ) {
+			headers = objectKeysToLowerCase( headers );
+			return this.ajax( path, {
+				type: 'PUT',
+				headers: $.extend( headers, { 'content-type': 'application/json' } ),
+				data: JSON.stringify( body ),
+				dataType: 'json'
+			} );
+		},
+
+		/**
+		 * Perform REST API DELETE request.
+		 *
+		 * Note: only sending application/json is currently supported.
+		 *
+		 * @method
+		 * @param {string} path
+		 * @param {Object} body
+		 * @param {Object} [headers]
+		 * @return {jQuery.Promise}
+		 */
+		delete: function ( path, body, headers ) {
+			headers = objectKeysToLowerCase( headers );
+			return this.ajax( path, {
+				type: 'DELETE',
+				headers: $.extend( headers, { 'content-type': 'application/json' } ),
+				data: JSON.stringify( body ),
+				dataType: 'json'
+			} );
+		},
+
+		/**
 		 * Perform the API call.
 		 *
 		 * @method

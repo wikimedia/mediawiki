@@ -66,6 +66,48 @@
 		} );
 	} );
 
+	QUnit.test( 'put()', function ( assert ) {
+		var api = new mw.Rest();
+
+		this.server.respond( function ( request ) {
+			assert.strictEqual( request.method, 'PUT', 'Method should be PUT' );
+			assert.true( /rest.php\/test\/bla\/bla\/bla$/.test( request.url ), 'Url should be correct' );
+			assert.true( /^application\/json/.test( request.requestHeaders[ 'Content-Type' ] ), 'Should set JSON content-type' );
+			assert.strictEqual( request.requestHeaders.authorization, 'my_token', 'Should pass request header' );
+			assert.deepEqual( JSON.parse( request.requestBody ), { param: 'value' }, 'Body should be correct' );
+			request.respond( 201, { 'Content-Type': 'application/json' }, '{}' );
+		} );
+
+		return api.put( '/test/bla/bla/bla', {
+			param: 'value'
+		}, {
+			authorization: 'my_token'
+		} ).then( function ( data ) {
+			assert.deepEqual( data, {}, 'If request succeeds without errors, resolve deferred' );
+		} );
+	} );
+
+	QUnit.test( 'delete()', function ( assert ) {
+		var api = new mw.Rest();
+
+		this.server.respond( function ( request ) {
+			assert.strictEqual( request.method, 'DELETE', 'Method should be DELETE' );
+			assert.true( /rest.php\/test\/bla\/bla\/bla$/.test( request.url ), 'Url should be correct' );
+			assert.true( /^application\/json/.test( request.requestHeaders[ 'Content-Type' ] ), 'Should set JSON content-type' );
+			assert.strictEqual( request.requestHeaders.authorization, 'my_token', 'Should pass request header' );
+			assert.deepEqual( JSON.parse( request.requestBody ), { param: 'value' }, 'Body should be correct' );
+			request.respond( 201, { 'Content-Type': 'application/json' }, '{}' );
+		} );
+
+		return api.delete( '/test/bla/bla/bla', {
+			param: 'value'
+		}, {
+			authorization: 'my_token'
+		} ).then( function ( data ) {
+			assert.deepEqual( data, {}, 'If request succeeds without errors, resolve deferred' );
+		} );
+	} );
+
 	QUnit.test( 'http error', function ( assert ) {
 		var api = new mw.Rest();
 
