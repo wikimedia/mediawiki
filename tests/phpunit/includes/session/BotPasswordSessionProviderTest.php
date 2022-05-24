@@ -5,7 +5,6 @@ namespace MediaWiki\Session;
 use MediaWikiIntegrationTestCase;
 use MultiConfig;
 use Psr\Log\LogLevel;
-use RequestContext;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -45,7 +44,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 			] );
 		}
 		$manager = new SessionManager( [
-			'config' => new MultiConfig( [ $this->config, RequestContext::getMain()->getConfig() ] ),
+			'config' => new MultiConfig( [ $this->config, $this->getServiceContainer()->getMainConfig() ] ),
 			'logger' => new \Psr\Log\NullLogger,
 			'store' => new TestBagOStuff,
 		] );

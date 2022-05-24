@@ -277,7 +277,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		ScopedCallback::consume( $reset );
 
 		// Now configure BotPasswordSessionProvider for further tests...
-		$mainConfig = RequestContext::getMain()->getConfig();
+		$mainConfig = $this->getServiceContainer()->getMainConfig();
 		$config = new HashConfig( [
 			'SessionProviders' => $mainConfig->get( 'SessionProviders' ) + [
 				MediaWiki\Session\BotPasswordSessionProvider::class => [
@@ -288,7 +288,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 			],
 		] );
 		$manager = new SessionManager( [
-			'config' => new MultiConfig( [ $config, RequestContext::getMain()->getConfig() ] ),
+			'config' => new MultiConfig( [ $config, $mainConfig ] ),
 			'logger' => new Psr\Log\NullLogger,
 			'store' => new EmptyBagOStuff,
 		] );

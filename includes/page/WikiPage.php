@@ -3191,7 +3191,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			return;
 		}
 
-		$config = RequestContext::getMain()->getConfig();
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		$params = [
 			'isOpportunistic' => true,
@@ -3216,7 +3216,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				RefreshLinksJob::newPrioritized( $this->mTitle, $params )
 			);
 		} elseif ( !$config->get( MainConfigNames::MiserMode ) &&
-		$parserOutput->hasReducedExpiry() ) {
+			$parserOutput->hasReducedExpiry()
+		) {
 			// Assume the output contains "dynamic" time/random based magic words.
 			// Only update pages that expired due to dynamic content and NOT due to edits
 			// to referenced templates/files. When the cache expires due to dynamic content,
