@@ -114,6 +114,18 @@ codex-icons:
     package/LICENSE:
     package/README.md:
 
+codex-search:
+  type: tar
+  src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.1.0-alpha.6.tgz
+  integrity: sha512-fbQO1396haVP8WR6rt/EThFARd0wV1cO6SDZo0RPJzNv/cYVB44j7ds5+apnBkPHfqdXoW6ySUMBcywekXTiwA==
+  dest:
+    package/dist/codex-search.es.js:
+    package/dist/codex-search.umd.js:
+    package/dist/codex-search.style.css:
+    package/dist/codex-search.style-rtl.css:
+    package/LICENSE:
+    package/README.md:
+
 url:
   type: multi-file
   files:
