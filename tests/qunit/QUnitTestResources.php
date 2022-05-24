@@ -29,11 +29,11 @@ return [
 		'packageFiles' => [
 			[
 				'name' => 'mediawiki.jqueryMsg.testdata.js',
-				'file' => new FilePath( __DIR__ . '/data/mediawiki.jqueryMsg.testdata.js' ),
+				'file' => new FilePath( __DIR__ . '/data/mediawiki.jqueryMsg.testdata.js', '' ),
 			],
 			[
 				'name' => 'mediawiki.jqueryMsg.data.json',
-				'file' => new FilePath( __DIR__ . '/data/mediawiki.jqueryMsg.data.json' ),
+				'file' => new FilePath( __DIR__ . '/data/mediawiki.jqueryMsg.data.json', '' ),
 			],
 			'bs.js',
 			'dsb.js',

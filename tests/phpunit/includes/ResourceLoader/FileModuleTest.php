@@ -634,9 +634,11 @@ class FileModuleTest extends ResourceLoaderTestCase {
 
 	public function provideGetScriptPackageFiles() {
 		$basePath = __DIR__ . '/../../data/resourceloader';
+		$basePathB = __DIR__ . '/../../data/resourceloader-b';
 		$base = [ 'localBasePath' => $basePath ];
 		$commentScript = file_get_contents( "$basePath/script-comment.js" );
 		$nosemiScript = file_get_contents( "$basePath/script-nosemi.js" );
+		$nosemiBScript = file_get_contents( "$basePathB/script-nosemi.js" );
 		$vueComponentDebug = trim( file_get_contents( "$basePath/vue-component-output-debug.js.txt" ) );
 		$vueComponentNonDebug = trim( file_get_contents( "$basePath/vue-component-output-nondebug.js.txt" ) );
 		$config = \MediaWiki\MediaWikiServices::getInstance()->getMainConfig();
@@ -836,6 +838,24 @@ class FileModuleTest extends ResourceLoaderTestCase {
 				],
 				[
 					'lang' => 'nl'
+				]
+			],
+			'package file with callback that returns a file with base path' => [
+				$base + [
+					'packageFiles' => [
+						[ 'name' => 'dynamic.js', 'callback' => static function () use ( $basePathB ) {
+							return new FilePath( 'script-nosemi.js', $basePathB );
+						} ]
+					]
+				],
+				[
+					'files' => [
+						'dynamic.js' => [
+							'type' => 'script',
+							'content' => $nosemiBScript,
+						]
+					],
+					'main' => 'dynamic.js'
 				]
 			],
 			'.vue file in debug mode' => [

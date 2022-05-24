@@ -704,7 +704,10 @@ class FileModule extends Module {
 	 */
 	protected function getLocalPath( $path ) {
 		if ( $path instanceof FilePath ) {
-			return $path->getLocalPath();
+			if ( $path->getLocalBasePath() !== null ) {
+				return $path->getLocalPath();
+			}
+			$path = $path->getPath();
 		}
 
 		return "{$this->localBasePath}/$path";
@@ -716,7 +719,10 @@ class FileModule extends Module {
 	 */
 	protected function getRemotePath( $path ) {
 		if ( $path instanceof FilePath ) {
-			return $path->getRemotePath();
+			if ( $path->getRemoteBasePath() !== null ) {
+				return $path->getRemotePath();
+			}
+			$path = $path->getPath();
 		}
 
 		if ( $this->remoteBasePath === '/' ) {
@@ -1312,7 +1318,7 @@ class FileModule extends Module {
 						$expanded['callbackParam']
 					);
 					if ( $callbackResult instanceof FilePath ) {
-						$expanded['filePath'] = $callbackResult->getPath();
+						$expanded['filePath'] = $callbackResult;
 					} else {
 						$expanded['definitionSummary'] = $callbackResult;
 					}
@@ -1326,7 +1332,7 @@ class FileModule extends Module {
 						$expanded['callbackParam']
 					);
 					if ( $callbackResult instanceof FilePath ) {
-						$expanded['filePath'] = $callbackResult->getPath();
+						$expanded['filePath'] = $callbackResult;
 					} else {
 						$expanded['content'] = $callbackResult;
 					}
@@ -1405,7 +1411,7 @@ class FileModule extends Module {
 				);
 				if ( $callbackResult instanceof FilePath ) {
 					// Fall through to the filePath handling code below
-					$fileInfo['filePath'] = $callbackResult->getPath();
+					$fileInfo['filePath'] = $callbackResult;
 				} else {
 					$fileInfo['content'] = $callbackResult;
 				}
