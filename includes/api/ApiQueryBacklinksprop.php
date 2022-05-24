@@ -54,6 +54,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			'code' => 'lh',
 			'prefix' => 'pl',
 			'linktable' => 'pagelinks',
+			'indexes' => [ 'pl_namespace', 'pl_backlinks_namespace' ],
 			'from_namespace' => true,
 			'showredirects' => true,
 		],
@@ -68,6 +69,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			'code' => 'fu',
 			'prefix' => 'il',
 			'linktable' => 'imagelinks',
+			'indexes' => [ 'il_to', 'il_backlinks_namespace' ],
 			'from_namespace' => true,
 			'to_namespace' => NS_FILE,
 			'exampletitle' => 'File:Example.jpg',
@@ -220,12 +222,17 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		}
 
 		// Populate the rest of the query
+		list( $idxNoFromNS, $idxWithFromNS ) = $settings['indexes'] ?? [ '', '' ];
 		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		if ( isset( $this->linksMigration::$mapping[$settings['linktable']] ) ) {
 			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			$queryInfo = $this->linksMigration->getQueryInfo( $settings['linktable'] );
 			$this->addTables( array_merge( [ 'page' ], $queryInfo['tables'] ) );
 			$this->addJoinConds( $queryInfo['joins'] );
+			// TODO: Move to links migration
+			if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
+				$idxWithFromNS .= '_target_id';
+			}
 		} else {
 			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			$this->addTables( [ $settings['linktable'], 'page' ] );
@@ -289,6 +296,21 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 		// Override any ORDER BY from above with what we calculated earlier.
 		$this->addOption( 'ORDER BY', array_keys( $sortby ) );
+
+		// MySQL's optimizer chokes if we have too many values in "$bl_title IN
+		// (...)" and chooses the wrong index, so specify the correct index to
+		// use for the query. See T139056 for details.
+		if ( !empty( $settings['indexes'] ) ) {
+			if ( $params['namespace'] !== null && !empty( $settings['from_namespace'] ) ) {
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
+				$this->addOption( 'USE INDEX', [ $settings['linktable'] => $idxWithFromNS ] );
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
+			} elseif ( !isset( $this->linksMigration::$mapping[$settings['linktable']] ) ) {
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
+				$this->addOption( 'USE INDEX', [ $settings['linktable'] => $idxNoFromNS ] );
+			}
+		}
+
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
 		$res = $this->select( __METHOD__ );
