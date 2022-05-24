@@ -542,5 +542,6 @@
 	"changecredentials-submit": "Anmeldeinformationen ändern",
 	"credentialsform-provider": "Typ der Anmeldeinformationen:",
 	"credentialsform-account": "Benutzername:",
-	"specialmute-error-no-options": "Stummschaltungs-Funktionen sind nicht verfügbar. Gründe dafür könnten sein: Sie haben Ihre E-Mail-Adresse nicht bestätigt, ein Administrator hat die E-Mail-Funktionen deaktiviert oder eine E-Mail-Negativliste in diesem Wiki eingerichtet."
+	"specialmute-error-no-options": "Stummschaltungs-Funktionen sind nicht verfügbar. Gründe dafür könnten sein: Sie haben Ihre E-Mail-Adresse nicht bestätigt, ein Administrator hat die E-Mail-Funktionen deaktiviert oder eine E-Mail-Negativliste in diesem Wiki eingerichtet.",
+	"userlogout-continue": "Möchten Sie sich abmelden?"
 }

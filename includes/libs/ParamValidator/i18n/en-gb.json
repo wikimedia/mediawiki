@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Reedy"
+		]
+	},
+	"paramvalidator-badvalue-enumnotmulti": "Unrecognised value for parameter \"$1\": $2.",
+	"paramvalidator-unrecognizedvalues": "Unrecognised {{PLURAL:$4|value|values}} for parameter \"$1\": $3"
+}

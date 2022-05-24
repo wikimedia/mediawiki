@@ -40,6 +40,7 @@
 	"apihelp-query+categorymembers-param-dir": "Къепе листар.",
 	"apihelp-query+pageswithprop-param-dir": "Къепе листар.",
 	"apihelp-query+watchlist-paramvalue-type-new": "АгӀонаш кхоллар.",
+	"apihelp-revisiondelete-param-type": "Верси дӀайаккхаран тайпа.",
 	"apihelp-rollback-example-simple": "<kbd>Main Page</kbd> агӀонан тӀаьххьара <kbd>Example</kbd> декъашхочо бина хийцамаш йухабаха.",
 	"apihelp-tag-summary": "Билгалонаш тӀетохар йа дӀайахар цхьадолу нисдаршкахь а, тептарийн дӀайаздаршкахь а",
 	"apihelp-userrights-param-userid": "Декъашхочун ID.",

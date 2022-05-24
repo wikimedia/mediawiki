@@ -8,7 +8,8 @@
 			"Gkbediako",
 			"Mybluberet",
 			"Owula kpakpo",
-			"Zimosa"
+			"Zimosa",
+			"Jwale2"
 		]
 	},
 	"sunday": "Hɔgbaa",
@@ -419,6 +420,7 @@
 	"blocklogpage": "Tsii lɔg",
 	"blocklogentry": "atsi  [[$1]] kɛ tsakemɔ bei ni ji $2 $3",
 	"movelogpage": "Tsi lɔg",
+	"movereason": "Ejakɛ",
 	"export": "Majemɔ baafai",
 	"thumbnail-more": "Gblamɔ mli",
 	"tooltip-pt-watchlist": "Baafai ni ookwɛ kɛha tsakemɔi",
@@ -522,6 +524,7 @@
 	"tags-delete": "jiemɔ",
 	"tags-hitcount": "$1 {{PLURAL:$1|tsakemɔ|tsakemɔi}}{{PLURAL:$1|}}",
 	"pagehistory": "Baafa lɛ blema sane",
+	"htmlform-submit": "Kɛya",
 	"htmlform-no": "Dabi",
 	"htmlform-yes": "Yoo",
 	"logentry-delete-restore": "$1 {{YOO ALOO NUU:$2|akɛba ekoŋŋ}} baafa $3 ($4)",
