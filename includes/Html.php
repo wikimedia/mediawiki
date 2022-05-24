@@ -594,7 +594,7 @@ class Html {
 		$attrs = [];
 		if ( $nonce !== null ) {
 			$attrs['nonce'] = $nonce;
-		} elseif ( ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() ) ) {
+		} elseif ( ContentSecurityPolicy::isNonceRequired( MediaWikiServices::getInstance()->getMainConfig() ) ) {
 			wfWarn( "no nonce set on script. CSP will break it" );
 		}
 
@@ -618,7 +618,7 @@ class Html {
 		$attrs = [ 'src' => $url ];
 		if ( $nonce !== null ) {
 			$attrs['nonce'] = $nonce;
-		} elseif ( ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() ) ) {
+		} elseif ( ContentSecurityPolicy::isNonceRequired( MediaWikiServices::getInstance()->getMainConfig() ) ) {
 			wfWarn( "no nonce set on script. CSP will break it" );
 		}
 

@@ -185,7 +185,6 @@ class CategoryMembershipChangeJob extends Job {
 	protected function notifyUpdatesForRevision(
 		LBFactory $lbFactory, WikiPage $page, RevisionRecord $newRev
 	) {
-		$config = RequestContext::getMain()->getConfig();
 		$title = $page->getTitle();
 
 		// Get the new revision
@@ -216,7 +215,7 @@ class CategoryMembershipChangeJob extends Job {
 		$catMembChange = new CategoryMembershipChange( $title, $blc, $newRev );
 		$catMembChange->checkTemplateLinks();
 
-		$batchSize = $config->get( MainConfigNames::UpdateRowsPerQuery );
+		$batchSize = $services->getMainConfig()->get( MainConfigNames::UpdateRowsPerQuery );
 		$insertCount = 0;
 
 		foreach ( $categoryInserts as $categoryName ) {

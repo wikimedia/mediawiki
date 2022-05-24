@@ -277,8 +277,8 @@ abstract class AbstractBlock implements Block {
 	 *  unsure (e.g. unrecognized right or unset property)
 	 */
 	public function appliesToRight( $right ) {
-		$config = RequestContext::getMain()->getConfig();
-		$blockDisablesLogin = $config->get( MainConfigNames::BlockDisablesLogin );
+		$blockDisablesLogin = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::BlockDisablesLogin );
 
 		$res = null;
 		switch ( $right ) {
@@ -498,8 +498,9 @@ abstract class AbstractBlock implements Block {
 
 		// This is a type of block which uses the ipb_allow_usertalk
 		// flag. The flag can still be overridden by global configs.
-		$config = RequestContext::getMain()->getConfig();
-		if ( !$config->get( MainConfigNames::BlockAllowsUTEdit ) ) {
+		if ( !MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::BlockAllowsUTEdit )
+		) {
 			return true;
 		}
 		return !$this->isUsertalkEditAllowed();

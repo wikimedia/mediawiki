@@ -122,7 +122,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $this->store, $manager->store );
 
 		$manager = TestingAccessWrapper::newFromObject( new SessionManager() );
-		$this->assertSame( \RequestContext::getMain()->getConfig(), $manager->config );
+		$this->assertSame( $this->getServiceContainer()->getMainConfig(), $manager->config );
 
 		$manager = TestingAccessWrapper::newFromObject( new SessionManager( [
 			'config' => $this->config,

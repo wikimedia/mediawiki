@@ -69,7 +69,7 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 		// Set configuration variables
 		$main->getContext()->setConfig( new MultiConfig( [
 			new HashConfig( $globals ),
-			RequestContext::getMain()->getConfig(),
+			$this->getServiceContainer()->getMainConfig(),
 		] ) );
 		foreach ( $globals as $k => $v ) {
 			$this->setMwGlobals( "wg$k", $v );
