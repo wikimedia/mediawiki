@@ -372,6 +372,16 @@ class LogPager extends ReverseChronologicalPager {
 				# no duplicate log rows. Otherwise, we need to remove the duplicates.
 				$options[] = 'DISTINCT';
 			}
+		} elseif ( array_key_exists( 'log_actor', $this->mConds ) ) {
+			// Optimizer doesn't pick the right index when a user has lots of log actions (T303089)
+			$index = 'log_actor_time';
+			foreach ( $this->getFilterParams() as $type => $hide ) {
+				if ( !$hide ) {
+					$index = 'log_actor_type_time';
+					break;
+				}
+			}
+			$options['USE INDEX'] = [ 'logging' => $index ];
 		}
 		# Don't show duplicate rows when using log_search
 		$joins['log_search'] = [ 'JOIN', 'ls_log_id=log_id' ];
