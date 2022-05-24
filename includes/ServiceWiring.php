@@ -126,6 +126,7 @@ use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
@@ -1447,6 +1448,17 @@ return [
 		return new ProxyLookup(
 			$mainConfig->get( MainConfigNames::CdnServers ),
 			$mainConfig->get( MainConfigNames::CdnServersNoPurge ),
+			$services->getHookContainer()
+		);
+	},
+
+	'RateLimiter' => static function ( MediaWikiServices $services ): RateLimiter {
+		return new RateLimiter(
+			new ServiceOptions( RateLimiter::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			ObjectCache::getLocalClusterInstance(),
+			$services->getCentralIdLookupFactory()->getNonLocalLookup(),
+			$services->getUserFactory(),
+			$services->getUserGroupManager(),
 			$services->getHookContainer()
 		);
 	},

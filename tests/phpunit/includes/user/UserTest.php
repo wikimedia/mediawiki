@@ -5,6 +5,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
@@ -1910,8 +1911,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$access->mRequest = $req;
 		$access->mId = $id;
 		$access->mLoadedItems = true;
-
-		$this->overrideUserPermissions( $user, [
+		$access->mThisAsAuthority = new SimpleAuthority( $user, [
+			'autoconfirmed' => ( $id > 0 ),
 			'noratelimit' => false,
 		] );
 
