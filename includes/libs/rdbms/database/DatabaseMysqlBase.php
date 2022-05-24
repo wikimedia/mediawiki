@@ -65,8 +65,6 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @var string|null
 	 */
 	protected $sslCiphers;
-	/** @var string sql_mode value to send on connection */
-	protected $sqlMode;
 	/** @var bool Use experimental UTF-8 transmission encoding */
 	protected $utf8Mode;
 	/** @var bool|null */
@@ -115,7 +113,6 @@ abstract class DatabaseMysqlBase extends Database {
 				$this->$var = $params[$var];
 			}
 		}
-		$this->sqlMode = $params['sqlMode'] ?? null;
 		$this->utf8Mode = !empty( $params['utf8Mode'] );
 		$this->insertSelectIsSafe = isset( $params['insertSelectIsSafe'] )
 			? (bool)$params['insertSelectIsSafe'] : null;
@@ -158,10 +155,6 @@ abstract class DatabaseMysqlBase extends Database {
 			);
 			// Abstract over any excessive MySQL defaults
 			$set = [ 'group_concat_max_len = 262144' ];
-			// Set SQL mode, default is turning them all off, can be overridden or skipped with null
-			if ( is_string( $this->sqlMode ) ) {
-				$set[] = 'sql_mode = ' . $this->addQuotes( $this->sqlMode );
-			}
 			// Set any custom settings defined by site config
 			// https://dev.mysql.com/doc/refman/5.7/en/innodb-parameters.html
 			foreach ( $this->connectionVariables as $var => $val ) {
