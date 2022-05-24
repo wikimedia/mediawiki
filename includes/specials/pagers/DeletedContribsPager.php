@@ -31,12 +31,9 @@ use Wikimedia\Rdbms\IResultWrapper;
 /**
  * @ingroup Pager
  */
-class DeletedContribsPager extends IndexPager {
+class DeletedContribsPager extends ReverseChronologicalPager {
 
-	/**
-	 * @var bool Default direction for pager
-	 */
-	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
+	public $mGroupByDate = true;
 
 	/**
 	 * @var string[] Local cache for escaped messages
@@ -52,11 +49,6 @@ class DeletedContribsPager extends IndexPager {
 	 * @var string|int A single namespace number, or an empty string for all namespaces
 	 */
 	public $namespace = '';
-
-	/**
-	 * @var string Navigation bar with paging links.
-	 */
-	protected $mNavigationBar;
 
 	/** @var CommentStore */
 	private $commentStore;
@@ -192,47 +184,18 @@ class DeletedContribsPager extends IndexPager {
 		return $this->namespace;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function getStartBody() {
-		return "<ul>\n";
+		return "<section class='mw-pager-body'>\n";
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function getEndBody() {
-		return "</ul>\n";
-	}
-
-	public function getNavigationBar() {
-		if ( !$this->isNavigationBarShown() ) {
-			return '';
-		}
-
-		if ( isset( $this->mNavigationBar ) ) {
-			return $this->mNavigationBar;
-		}
-
-		$linkTexts = [
-			'prev' => $this->msg( 'pager-newer-n' )->numParams( $this->mLimit )->escaped(),
-			'next' => $this->msg( 'pager-older-n' )->numParams( $this->mLimit )->escaped(),
-			'first' => $this->msg( 'histlast' )->escaped(),
-			'last' => $this->msg( 'histfirst' )->escaped()
-		];
-
-		$pagingLinks = $this->getPagingLinks( $linkTexts );
-		$limitLinks = $this->getLimitLinks();
-		$lang = $this->getLanguage();
-		$limits = $lang->pipeList( $limitLinks );
-
-		$firstLast = $lang->pipeList( [ $pagingLinks['first'], $pagingLinks['last'] ] );
-		$firstLast = $this->msg( 'parentheses' )->rawParams( $firstLast )->escaped();
-		$prevNext = $this->msg( 'viewprevnext' )
-			->rawParams(
-				$pagingLinks['prev'],
-				$pagingLinks['next'],
-				$limits
-			)->escaped();
-		$separator = $this->msg( 'word-separator' )->escaped();
-		$this->mNavigationBar = $firstLast . $separator . $prevNext;
-
-		return $this->mNavigationBar;
+		return "</section>\n";
 	}
 
 	private function getNamespaceCond() {
