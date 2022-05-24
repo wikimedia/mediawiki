@@ -687,6 +687,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
+	 * @return bool
+	 * @since 1.39
+	 * @internal For use by Database/LoadBalancer only
+	 */
+	public function sessionLocksPending() {
+		return (bool)$this->sessionNamedLocks;
+	}
+
+	/**
 	 * @return string|null ID of the active explicit transaction round being participating in
 	 */
 	final protected function getTransactionRoundId() {
@@ -1000,22 +1009,32 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return bool
 	 */
 	protected function isWriteQuery( $sql, $flags ) {
+		// Check if a SQL wrapper method already flagged the query as a write
 		if (
 			$this->fieldHasBit( $flags, self::QUERY_CHANGE_ROWS ) ||
 			$this->fieldHasBit( $flags, self::QUERY_CHANGE_SCHEMA )
 		) {
 			return true;
-		} elseif (
+		}
+		// Check if a SQL wrapper method already flagged the query as a non-write
+		if (
 			$this->fieldHasBit( $flags, self::QUERY_CHANGE_NONE ) ||
+			$this->fieldHasBit( $flags, self::QUERY_CHANGE_TRX ) ||
 			$this->fieldHasBit( $flags, self::QUERY_CHANGE_LOCKS )
 		) {
 			return false;
 		}
-		// BEGIN and COMMIT queries are considered read queries here.
+		// Treat SELECT queries without FOR UPDATE queries as non-writes. This matches
+		// how MySQL enforces read_only (FOR SHARE and LOCK IN SHADE MODE are allowed).
+		// Handle (SELECT ...) UNION (SELECT ...) queries in a similar fashion.
+		if ( preg_match( '/^\s*\(?SELECT\b/i', $sql ) ) {
+			return (bool)preg_match( '/\bFOR\s+UPDATE\)?\s*$/i', $sql );
+		}
+		// BEGIN and COMMIT queries are considered non-write queries here.
 		// Database backends and drivers (MySQL, MariaDB, php-mysqli) generally
 		// treat these as write queries, in that their results have "affected rows"
 		// as meta data as from writes, instead of "num rows" as from reads.
-		// But, we treat them as read queries because when reading data (from
+		// But, we treat them as non-write queries because when reading data (from
 		// either replica or primary DB) we use transactions to enable repeatable-read
 		// snapshots, which ensures we get consistent results from the same snapshot
 		// for all queries within a request. Use cases:
@@ -1025,7 +1044,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		//   that transactions by themselves don't make changes, only actual writes
 		//   within the transaction matter, which we still detect.
 		return !preg_match(
-			'/^\s*(?:SELECT|BEGIN|ROLLBACK|COMMIT|SAVEPOINT|RELEASE|SET|SHOW|EXPLAIN|USE|\(SELECT)\b/i',
+			'/^\s*(BEGIN|ROLLBACK|COMMIT|SAVEPOINT|RELEASE|SET|SHOW|EXPLAIN|USE)\b/i',
 			$sql
 		);
 	}
@@ -1947,9 +1966,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function select(
 		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
+		$options = (array)$options;
 		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
+		// Treat SELECT queries with FOR UPDATE as writes. This matches
+		// how MySQL enforces read_only (FOR SHARE and LOCK IN SHADE MODE are allowed).
+		$flags = in_array( 'FOR UPDATE', $options, true )
+			? self::QUERY_CHANGE_ROWS
+			: self::QUERY_CHANGE_NONE;
 
-		return $this->query( $sql, $fname, self::QUERY_CHANGE_NONE );
+		return $this->query( $sql, $fname, $flags );
 	}
 
 	/**
