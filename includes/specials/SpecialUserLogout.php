@@ -94,7 +94,7 @@ class SpecialUserLogout extends FormSpecialPage {
 				'cannotlogoutnow-title',
 				'cannotlogoutnow-text',
 				[
-					$session->getProvider()->describe( RequestContext::getMain()->getLanguage() )
+					$session->getProvider()->describe( $this->getLanguage() )
 				]
 			);
 		}

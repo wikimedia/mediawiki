@@ -240,7 +240,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		if ( !$this->isSignup() && !$authManager->canAuthenticateNow() ) {
 			if ( !$session->canSetUser() ) {
 				throw new ErrorPageError( 'cannotloginnow-title', 'cannotloginnow-text', [
-					$session->getProvider()->describe( RequestContext::getMain()->getLanguage() )
+					$session->getProvider()->describe( $this->getLanguage() )
 				] );
 			}
 			throw new ErrorPageError( 'cannotlogin-title', 'cannotlogin-text' );
