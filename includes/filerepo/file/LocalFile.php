@@ -77,6 +77,9 @@ class LocalFile extends File {
 	/** @var string Metadata serialization: JSON */
 	private const MDS_JSON = 'json';
 
+	/** @var int Maximum number of pages for which to trigger render jobs */
+	private const MAX_PAGE_RENDER_JOBS = 50;
+
 	/** @var bool Does the file exist on disk? (loadFromXxx) */
 	protected $fileExists;
 
@@ -1536,7 +1539,11 @@ class LocalFile extends File {
 
 		foreach ( $sizes as $size ) {
 			if ( $this->isMultipage() ) {
-				for ( $page = 1; $page <= $this->pageCount(); $page++ ) {
+				// (T309114) Only trigger render jobs up to MAX_PAGE_RENDER_JOBS to avoid
+				// a flood of jobs for huge files.
+				$pageLimit = min( $this->pageCount(), self::MAX_PAGE_RENDER_JOBS );
+
+				for ( $page = 1; $page <= $pageLimit; $page++ ) {
 					$jobs[] = new ThumbnailRenderJob(
 						$this->getTitle(),
 						[ 'transformParams' => [
