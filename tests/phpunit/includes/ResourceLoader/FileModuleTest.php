@@ -9,7 +9,6 @@ use MediaWiki\ResourceLoader\FileModule;
 use MediaWiki\ResourceLoader\FilePath;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use Psr\Container\ContainerInterface;
-use RequestContext;
 use ResourceLoaderFileTestModule;
 use ResourceLoaderTestCase;
 use RuntimeException;
@@ -640,7 +639,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		$nosemiScript = file_get_contents( "$basePath/script-nosemi.js" );
 		$vueComponentDebug = trim( file_get_contents( "$basePath/vue-component-output-debug.js.txt" ) );
 		$vueComponentNonDebug = trim( file_get_contents( "$basePath/vue-component-output-nondebug.js.txt" ) );
-		$config = RequestContext::getMain()->getConfig();
+		$config = \MediaWiki\MediaWikiServices::getInstance()->getMainConfig();
 		return [
 			[
 				$base + [

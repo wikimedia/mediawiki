@@ -370,7 +370,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	public function testCSPIsEnabled( $main, $reportOnly, $expected ) {
 		$this->setMwGlobals( 'wgCSPReportOnlyHeader', $reportOnly );
 		$this->setMwGlobals( 'wgCSPHeader', $main );
-		$res = ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() );
+		$res = ContentSecurityPolicy::isNonceRequired( $this->getServiceContainer()->getMainConfig() );
 		$this->assertSame( $expected, $res );
 	}
 

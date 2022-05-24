@@ -141,7 +141,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			->onlyMethods( [ 'allowsAuthenticationDataChange' ] )
 			->setConstructorArgs( [
 				$request,
-				\RequestContext::getMain()->getConfig(),
+				$mwServices->getMainConfig(),
 				$mwServices->getObjectFactory(),
 				$mwServices->getHookContainer(),
 				$mwServices->getReadOnlyMode(),
