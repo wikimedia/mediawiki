@@ -2747,7 +2747,7 @@
 	"movepage-moved-redirect": "yew rayberdışi vıraziya",
 	"movepage-moved-noredirect": "yew rayberdışi çap bı",
 	"movepage-delete-first": "Hedef pela de, letey gureyê pela berdışi zêde vurnayışi estê. Kerem kerê vêri pela menuel bıesternê u dıma reyna bıcerrebnê .",
-	"articleexists": "[[:$1]] nameyê pela database ma dı esta ya zi tı raşt nınuşt. .\nYewna name bınus.",
+	"articleexists": "Yew pele [[:$1]] de xora esta, ya zi nameyo ke şıma çinıto we nêvêreno.\nKerem kerên, yewna name weçinê.",
 	"redirectexists": "[[:$1]] de ho ra yew serşıkıtış esto u otomatik nêesteriyeno.\nKerem ke hewna name bıde",
 	"cantmove-titleprotected": "şıma nêşkeni yew peli bıhewelnê tiya çunke pawıyeno",
 	"movetalk": "Pela werênayışiya eleqedare bıkırışe",

@@ -4,6 +4,7 @@
 			"Amire80",
 			"Bill Pirkle",
 			"Matma Rex",
+			"McDutchie",
 			"Raymond",
 			"Tim Starling"
 		]
@@ -45,5 +46,5 @@
 	"rest-extraneous-csrf-token": "Error message for REST API debugging, shown when an CSRF token was provided by the client, even though the authentication mechanisms used is safe against CSRF attacks.",
 	"rest-cannot-load-file": "Error message for REST API debugging, shown when a media file could not be loaded. Parameters:\n* $1: The title of the page",
 	"rest-cross-origin-anon-write": "Error message for REST API debugging, shown when a client attempts to make a cross-origin anon write.",
-	"rest-requires-safe-against-csrf": "Error message for REST API debugging, shown when a handler requires a CSRF-safe session provider, but a non-CSRF-safe session provider was used."
+	"rest-requires-safe-against-csrf": "Error message for REST API debugging, shown when a handler requires a [[:w:Cross-site request forgery|CSRF]]-safe session provider, but a non-CSRF-safe session provider was used."
 }
