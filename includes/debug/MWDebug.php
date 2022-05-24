@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Logger\LegacyLogger;
+use MediaWiki\ResourceLoader\ResourceLoader;
 use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 

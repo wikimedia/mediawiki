@@ -188,8 +188,8 @@ class MainConfigNames {
 	 * Name constant for the LogoHD setting, for use with Config::get()
 	 * @see MainConfigSchema::LogoHD
 	 * @deprecated since 1.35. Developers should retrieve this logo (and other variants) using
-	 *    the static function ResourceLoaderSkinModule::getAvailableLogos. $wgLogos
-	 *    should be used instead.
+	 *    the static function MediaWiki\ResourceLoader\SkinModule::getAvailableLogos.
+	 *    $wgLogos should be used instead.
 	 */
 	public const LogoHD = 'LogoHD';
 

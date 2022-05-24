@@ -2870,7 +2870,7 @@ return [
 	],
 	'config-schema' => [
 		'LogoHD' => [
-			'deprecated' => 'since 1.35. Developers should retrieve this logo (and other variants) using the static function ResourceLoaderSkinModule::getAvailableLogos. $wgLogos should be used instead.',
+			'deprecated' => 'since 1.35. Developers should retrieve this logo (and other variants) using the static function MediaWiki\\ResourceLoader\\SkinModule::getAvailableLogos. $wgLogos should be used instead.',
 		],
 		'UploadStashScalerBaseUrl' => [
 			'deprecated' => 'since 1.36 Use thumbProxyUrl in $wgLocalFileRepo',

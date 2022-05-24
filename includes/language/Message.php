@@ -37,7 +37,7 @@ use Wikimedia\RequestTimeout\TimeoutException;
  * between old and new functions.
  *
  * The preferred way to create Message objects is via the msg() method of
- * of an available RequestContext and ResourceLoaderContext object; this will
+ * of an available RequestContext and ResourceLoader Context object; this will
  * ensure that the message uses the correct language. When that is not
  * possible, the wfMessage() global function can be used, which will cause
  * Message to get the language from the global RequestContext object. In

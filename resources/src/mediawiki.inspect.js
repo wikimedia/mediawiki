@@ -114,7 +114,7 @@
 		//
 		// We typically receive them from the server through batches from load.php,
 		// or embedded as inline scripts (handled in PHP by ResourceLoader::makeModuleResponse
-		// and ResourceLoaderClientHtml respectively).
+		// and ResourceLoader\ClientHtml respectively).
 		//
 		// Each module is bundled by ResourceLoader::makeLoaderImplementScript in PHP,
 		// and might look as follows:

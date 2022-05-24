@@ -22,6 +22,23 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ResourceLoader\Context;
+use MediaWiki\ResourceLoader\FilePath;
+use MediaWiki\ResourceLoader\ForeignApiModule;
+use MediaWiki\ResourceLoader\LanguageDataModule;
+use MediaWiki\ResourceLoader\LessVarFileModule;
+use MediaWiki\ResourceLoader\Module;
+use MediaWiki\ResourceLoader\MwUrlModule;
+use MediaWiki\ResourceLoader\OOUIFileModule;
+use MediaWiki\ResourceLoader\OOUIIconPackModule;
+use MediaWiki\ResourceLoader\OOUIImageModule;
+use MediaWiki\ResourceLoader\SiteModule;
+use MediaWiki\ResourceLoader\SiteStylesModule;
+use MediaWiki\ResourceLoader\SkinModule;
+use MediaWiki\ResourceLoader\UserModule;
+use MediaWiki\ResourceLoader\UserOptionsModule;
+use MediaWiki\ResourceLoader\UserStylesModule;
+use MediaWiki\ResourceLoader\WikiModule;
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );
@@ -32,29 +49,29 @@ global $wgBaseDirectory;
 
 return [
 	// Scripts managed by the local wiki (stored in the MediaWiki namespace)
-	'site' => [ 'class' => ResourceLoaderSiteModule::class ],
-	'site.styles' => [ 'class' => ResourceLoaderSiteStylesModule::class ],
+	'site' => [ 'class' => SiteModule::class ],
+	'site.styles' => [ 'class' => SiteStylesModule::class ],
 	'noscript' => [
 		'targets' => [ 'desktop', 'mobile' ],
-		'class' => ResourceLoaderWikiModule::class,
+		'class' => WikiModule::class,
 		'styles' => [ 'MediaWiki:Noscript.css' ],
-		'group' => ResourceLoaderModule::GROUP_NOSCRIPT,
+		'group' => Module::GROUP_NOSCRIPT,
 	],
 	'filepage' => [
-		'class' => ResourceLoaderWikiModule::class,
+		'class' => WikiModule::class,
 		'styles' => [ 'MediaWiki:Filepage.css' ],
 	],
 
 	// Scripts managed by the current user (stored in their user space)
-	'user' => [ 'class' => ResourceLoaderUserModule::class ],
-	'user.styles' => [ 'class' => ResourceLoaderUserStylesModule::class ],
+	'user' => [ 'class' => UserModule::class ],
+	'user.styles' => [ 'class' => UserStylesModule::class ],
 
-	'user.options' => [ 'class' => ResourceLoaderUserOptionsModule::class ],
+	'user.options' => [ 'class' => UserOptionsModule::class ],
 
 	'mediawiki.skinning.elements' => [
 		'deprecated' => 'Your default skin ResourceLoader class should use '
-			. 'ResourceLoaderSkinModule::class',
-		'class' => ResourceLoaderSkinModule::class,
+			. '\MediaWiki\ResourceLoader\SkinModule::class',
+		'class' => SkinModule::class,
 		'features' => [
 			'elements' => true,
 			'legacy' => true,
@@ -62,8 +79,8 @@ return [
 	],
 	'mediawiki.skinning.content' => [
 		'deprecated' => 'Your default skin ResourceLoader class should use '
-			. 'ResourceLoaderSkinModule::class',
-		'class' => ResourceLoaderSkinModule::class,
+			. '\MediaWiki\ResourceLoader\SkinModule::class',
+		'class' => SkinModule::class,
 		'features' => [
 			'elements' => true,
 			'content' => true,
@@ -71,7 +88,7 @@ return [
 		],
 	],
 	'mediawiki.skinning.interface' => [
-		'class' => ResourceLoaderSkinModule::class,
+		'class' => SkinModule::class,
 		'features' => [
 			'elements' => true,
 			'content' => true,
@@ -82,7 +99,7 @@ return [
 	],
 	'jquery.makeCollapsible.styles' => [
 		'targets' => [ 'desktop', 'mobile' ],
-		'class' => ResourceLoaderLessVarFileModule::class,
+		'class' => LessVarFileModule::class,
 		'lessMessages' => [
 			'collapsible-collapse',
 			'collapsible-expand',
@@ -108,8 +125,8 @@ return [
 
 	'mediawiki.skinning.content.externallinks' => [
 		'deprecated' => 'Your default skin ResourceLoader class should use '
-			. 'the "content-links" feature in ResourceLoaderSkinModule::class',
-		'class' => ResourceLoaderSkinModule::class,
+			. 'the "content-links" feature in \MediaWiki\ResourceLoader\SkinModule::class',
+		'class' => SkinModule::class,
 		'features' => [ 'content-links' ],
 	],
 
@@ -162,9 +179,9 @@ return [
 			[ 'name' => 'user.json', 'callback' => 'ResourceLoader::getUserDefaults' ],
 			[
 				'name' => 'legacy.wikibits.js',
-				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
+				'callback' => static function ( Context $context, Config $config ) {
 					return $config->get( MainConfigNames::IncludeLegacyJavaScript ) ?
-						new ResourceLoaderFilePath( 'legacy.wikibits.js' ) : '';
+						new FilePath( 'legacy.wikibits.js' ) : '';
 				}
 			],
 		],
@@ -578,7 +595,7 @@ return [
 			'resources/src/vue/i18n.js',
 			[
 				'name' => 'resources/lib/vue/vue.js',
-				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
+				'callback' => static function ( Context $context, Config $config ) {
 					$baseDir = $config->get( MainConfigNames::BaseDirectory );
 					// Use the development version if development mode is enabled, or if we're in debug mode
 					$file = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug() ?
@@ -589,11 +606,11 @@ return [
 					return file_get_contents( "$baseDir/$file" ) .
 						';module.exports=Vue;';
 				},
-				'versionCallback' => static function ( ResourceLoaderContext $context, Config $config ) {
+				'versionCallback' => static function ( Context $context, Config $config ) {
 					$file = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug() ?
 						'resources/lib/vue/vue.global.js' :
 						'resources/lib/vue/vue.global.prod.js';
-					return new ResourceLoaderFilePath( $file );
+					return new FilePath( $file );
 				}
 			],
 
@@ -617,7 +634,7 @@ return [
 		'packageFiles' => [
 			[
 				'name' => 'resources/lib/vuex/vuex.js',
-				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
+				'callback' => static function ( Context $context, Config $config ) {
 					$baseDir = $config->get( MainConfigNames::BaseDirectory );
 					// Use the development version if development mode is enabled, or if we're in debug mode
 					$file = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug() ?
@@ -629,11 +646,11 @@ return [
 						file_get_contents( "$baseDir/$file" ) .
 						';module.exports=Vuex;';
 				},
-				'versionCallback' => static function ( ResourceLoaderContext $context, Config $config ) {
+				'versionCallback' => static function ( Context $context, Config $config ) {
 					$file = $config->get( MainConfigNames::VueDevelopmentMode ) || $context->getDebug() ?
 						'resources/lib/vuex/vuex.global.js' :
 						'resources/lib/vuex/vuex.global.prod.js';
-					return new ResourceLoaderFilePath( $file );
+					return new FilePath( $file );
 				}
 			],
 		],
@@ -674,14 +691,14 @@ return [
 	],
 
 	'@wikimedia/codex' => [
-		'class' => 'ResourceLoaderCodexModule',
+		'class' => '\MediaWiki\ResourceLoader\CodexModule',
 		'targets' => [ 'desktop', 'mobile' ],
 		'packageFiles' => [
 			'resources/src/codex/codex.js',
 			'resources/lib/codex/codex.umd.js',
 		],
 		'dirSpecificStyles' => [
-			// Special syntax supported by ResourceLoaderCodexModule
+			// Special syntax supported by CodexModule
 			'ltr' => 'resources/lib/codex/codex.style.css',
 			'rtl' => 'resources/lib/codex/codex.style-rtl.css'
 		],
@@ -835,7 +852,7 @@ return [
 	],
 	'mediawiki.ForeignApi' => [
 		'targets' => [ 'desktop', 'mobile' ],
-		'class' => ResourceLoaderForeignApiModule::class,
+		'class' => ForeignApiModule::class,
 		// Additional dependencies generated dynamically
 		'dependencies' => 'mediawiki.ForeignApi.core',
 	],
@@ -859,7 +876,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.hlist' => [
-		'class' => ResourceLoaderLessVarFileModule::class,
+		'class' => LessVarFileModule::class,
 		'lessMessages' => [
 			'colon-separator',
 			'parentheses-start',
@@ -1160,8 +1177,8 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.toc.styles' => [
-		'deprecated' => 'Please use the `toc` feature on ResourceLoaderSkinModule',
-		'class' => ResourceLoaderSkinModule::class,
+		'deprecated' => 'Please use the `toc` feature on SkinModule',
+		'class' => SkinModule::class,
 		'features' => [ 'toc' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -1171,25 +1188,25 @@ return [
 		'packageFiles' => [
 			'Uri.js',
 			[ 'name' => 'loose.regexp.js',
-				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
+				'callback' => static function ( Context $context, Config $config ) {
 					$baseDir = $config->get( MainConfigNames::BaseDirectory );
-					return ResourceLoaderMwUrlModule::makeJsFromExtendedRegExp(
+					return MwUrlModule::makeJsFromExtendedRegExp(
 						file_get_contents( "$baseDir/resources/src/mediawiki.Uri/loose.regexp" )
 					);
 				},
 				'versionCallback' => static function () {
-					return new ResourceLoaderFilePath( 'loose.regexp' );
+					return new FilePath( 'loose.regexp' );
 				},
 			],
 			[ 'name' => 'strict.regexp.js',
-				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
+				'callback' => static function ( Context $context, Config $config ) {
 					$baseDir = $config->get( MainConfigNames::BaseDirectory );
-					return ResourceLoaderMwUrlModule::makeJsFromExtendedRegExp(
+					return MwUrlModule::makeJsFromExtendedRegExp(
 						file_get_contents( "$baseDir/resources/src/mediawiki.Uri/strict.regexp" )
 					);
 				},
 				'versionCallback' => static function () {
-					return new ResourceLoaderFilePath( 'strict.regexp' );
+					return new FilePath( 'strict.regexp' );
 				},
 			],
 		],
@@ -1465,7 +1482,7 @@ return [
 	/* MediaWiki Language */
 
 	'mediawiki.language' => [
-		'class' => ResourceLoaderLanguageDataModule::class,
+		'class' => LanguageDataModule::class,
 		'scripts' => [
 			'resources/src/mediawiki.language/mediawiki.language.init.js',
 			'resources/src/mediawiki.language/mediawiki.language.js',
@@ -1516,7 +1533,7 @@ return [
 		'packageFiles' => [
 			'mediawiki.jqueryMsg.js',
 			[ 'name' => 'parserDefaults.json', 'callback' => static function (
-				ResourceLoaderContext $context, Config $config
+				Context $context, Config $config
 			) {
 				$tagData = Sanitizer::getRecognizedTagData();
 				$allowedHtmlElements = array_merge(
@@ -1563,7 +1580,7 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.language",
 		'packageFiles' => [
 			'mediawiki.language.names.js',
-			[ 'name' => 'names.json', 'callback' => static function ( ResourceLoaderContext $context ) {
+			[ 'name' => 'names.json', 'callback' => static function ( Context $context ) {
 				return MediaWikiServices::getInstance()
 					->getLanguageNameUtils()
 					->getLanguageNames( $context->getLanguage(), 'all' );
@@ -1660,7 +1677,7 @@ return [
 			'checkboxShift.js',
 			'checkboxHack.js',
 			[ 'name' => 'config.json', 'callback' => static function (
-				ResourceLoaderContext $context,
+				Context $context,
 				Config $config
 			) {
 				$readyConfig = [
@@ -1963,7 +1980,7 @@ return [
 		],
 	],
 	'mediawiki.interface.helpers.styles' => [
-		'class' => ResourceLoaderLessVarFileModule::class,
+		'class' => LessVarFileModule::class,
 		'lessMessages' => [
 			'comma-separator',
 			'parentheses-start',
@@ -2448,7 +2465,7 @@ return [
 	/* MediaWiki Legacy */
 
 	'mediawiki.legacy.commonPrint' => [
-		'deprecated' => 'Use ResourceLoaderSkinModule',
+		'deprecated' => 'Use SkinModule',
 		'styles' => [
 			'resources/src/mediawiki.skinning/commonPrint.less' => [ 'media' => 'print' ]
 		],
@@ -2456,8 +2473,8 @@ return [
 	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.legacy.shared' => [
 		'deprecated' => 'Your default skin ResourceLoader class should use '
-			. 'ResourceLoaderSkinModule::class',
-		'class' => ResourceLoaderSkinModule::class,
+			. '\MediaWiki\ResourceLoader\SkinModule::class',
+		'class' => SkinModule::class,
 		'features' => [
 			'legacy' => true,
 		],
@@ -2983,7 +3000,7 @@ return [
 
 	// The core JavaScript library.
 	'oojs-ui-core' => [
-		'class' => ResourceLoaderOOUIFileModule::class,
+		'class' => OOUIFileModule::class,
 		'scripts' => [
 			'resources/lib/ooui/oojs-ui-core.js',
 			'resources/src/ooui-local.js',
@@ -3011,7 +3028,7 @@ return [
 	],
 	// This contains only the styles required by core widgets.
 	'oojs-ui-core.styles' => [
-		'class' => ResourceLoaderOOUIFileModule::class,
+		'class' => OOUIFileModule::class,
 		'styles' => [
 			'resources/lib/ooui/wikimedia-ui-base.less', // Providing Wikimedia UI LESS variables to all
 		],
@@ -3019,7 +3036,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'oojs-ui-core.icons' => [
-		'class' => ResourceLoaderOOUIIconPackModule::class,
+		'class' => OOUIIconPackModule::class,
 		'icons' => [
 			'add', 'alert', 'infoFilled', 'error', 'check', 'close', 'info', 'search', 'subtract'
 		],
@@ -3027,7 +3044,7 @@ return [
 	],
 	// Additional widgets and layouts module.
 	'oojs-ui-widgets' => [
-		'class' => ResourceLoaderOOUIFileModule::class,
+		'class' => OOUIFileModule::class,
 		'scripts' => 'resources/lib/ooui/oojs-ui-widgets.js',
 		'themeStyles' => 'widgets',
 		'dependencies' => [
@@ -3046,19 +3063,19 @@ return [
 	// they depend on the internal structure of OOUI widgets, which can change at any time. If you
 	// find that you need to load this module, you're probably doing something wrong or very hacky.
 	'oojs-ui-widgets.styles' => [
-		'class' => ResourceLoaderOOUIFileModule::class,
+		'class' => OOUIFileModule::class,
 		'themeStyles' => 'widgets',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'oojs-ui-widgets.icons' => [
-		'class' => ResourceLoaderOOUIIconPackModule::class,
+		'class' => OOUIIconPackModule::class,
 		// Do not repeat icons already used in 'oojs-ui-core.icons'
 		'icons' => [ 'attachment', 'collapse', 'expand', 'trash', 'upload' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	// Toolbar and tools module.
 	'oojs-ui-toolbars' => [
-		'class' => ResourceLoaderOOUIFileModule::class,
+		'class' => OOUIFileModule::class,
 		'scripts' => 'resources/lib/ooui/oojs-ui-toolbars.js',
 		'themeStyles' => 'toolbars',
 		'dependencies' => [
@@ -3073,14 +3090,14 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'oojs-ui-toolbars.icons' => [
-		'class' => ResourceLoaderOOUIIconPackModule::class,
+		'class' => OOUIIconPackModule::class,
 		// Do not repeat icons already used in 'oojs-ui-core.icons': 'check'
 		'icons' => [ 'collapse', 'expand' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	// Windows and dialogs module.
 	'oojs-ui-windows' => [
-		'class' => ResourceLoaderOOUIFileModule::class,
+		'class' => OOUIFileModule::class,
 		'scripts' => 'resources/lib/ooui/oojs-ui-windows.js',
 		'themeStyles' => 'windows',
 		'dependencies' => [
@@ -3098,78 +3115,78 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'oojs-ui-windows.icons' => [
-		'class' => ResourceLoaderOOUIIconPackModule::class,
+		'class' => OOUIIconPackModule::class,
 		// Do not repeat icons already used in 'oojs-ui-core.icons': 'close'
 		'icons' => [ 'previous' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
 	'oojs-ui.styles.indicators' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => OOUIImageModule::class,
 		'themeImages' => 'indicators',
 	],
 	'oojs-ui.styles.icons-accessibility' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-accessibility',
 	],
 	'oojs-ui.styles.icons-alerts' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-alerts',
 	],
 	'oojs-ui.styles.icons-content' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-content',
 	],
 	'oojs-ui.styles.icons-editing-advanced' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-editing-advanced',
 	],
 	'oojs-ui.styles.icons-editing-citation' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-editing-citation',
 	],
 	'oojs-ui.styles.icons-editing-core' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-editing-core',
 	],
 	'oojs-ui.styles.icons-editing-list' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-editing-list',
 	],
 	'oojs-ui.styles.icons-editing-styling' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-editing-styling',
 	],
 	'oojs-ui.styles.icons-interactions' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-interactions',
 	],
 	'oojs-ui.styles.icons-layout' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-layout',
 	],
 	'oojs-ui.styles.icons-location' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-location',
 	],
 	'oojs-ui.styles.icons-media' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-media',
 	],
 	'oojs-ui.styles.icons-moderation' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-moderation',
 	],
 	'oojs-ui.styles.icons-movement' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-movement',
 	],
 	'oojs-ui.styles.icons-user' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-user',
 	],
 	'oojs-ui.styles.icons-wikimedia' => [
-		'class' => ResourceLoaderOOUIImageModule::class,
+		'class' => OOUIImageModule::class,
 		'themeImages' => 'icons-wikimedia',
 	],
 ];

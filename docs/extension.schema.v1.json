@@ -164,7 +164,7 @@
 					"type": "object",
 					"anyOf": [
 						{
-							"description": "A ResourceLoaderFileModule definition",
+							"description": "A FileModule definition",
 							"additionalProperties": false,
 							"properties": {
 								"localBasePath": {
@@ -308,11 +308,11 @@
 							}
 						},
 						{
-							"description": "A ResourceLoaderWikiModule definition",
+							"description": "A WikiModule definition",
 							"additionalProperties": false,
 							"properties": {
 								"class": {
-									"enum": ["ResourceLoaderWikiModule"]
+									"type": "string"
 								},
 								"group": {
 									"type": "string",
@@ -350,11 +350,11 @@
 							}
 						},
 						{
-							"description": "A ResourceLoaderImageModule definition",
+							"description": "A ResourceLoader ImageModule definition",
 							"additionalProperties": false,
 							"properties": {
 								"class": {
-									"enum": ["ResourceLoaderImageModule"]
+									"type": "string"
 								},
 								"localBasePath": {
 									"type": "string",
@@ -425,7 +425,7 @@
 		},
 		"QUnitTestModule": {
 			"type": "object",
-			"description": "A ResourceLoaderFileModule definition registered only when wgEnableJavaScriptTest is true.",
+			"description": "A ResourceLoader FileModule definition registered only when wgEnableJavaScriptTest is true.",
 			"additionalProperties": false,
 			"properties": {
 				"localBasePath": {
@@ -963,11 +963,11 @@
 		},
 		"SkinOOUIThemes": {
 			"type": "object",
-			"description": "Map of skin names to OOUI themes to use. Same format as ResourceLoaderOOUIModule::$builtinSkinThemeMap."
+			"description": "Map of skin names to OOUI themes to use. Same format as MediaWiki\\ResourceLoader\\OOUIModule::$builtinSkinThemeMap."
 		},
 		"OOUIThemePaths": {
 			"type": "object",
-			"description": "Map of custom OOUI theme names to paths to load them from. Same format as ResourceLoaderOOUIModule::$builtinThemePaths.",
+			"description": "Map of custom OOUI theme names to paths to load them from. Same format as MediaWiki\\ResourceLoader\\OOUIModule::$builtinThemePaths.",
 			"patternProperties": {
 				"^[A-Za-z]+$": {
 					"type": "object",

@@ -19,7 +19,7 @@
 namespace MediaWiki\Skin;
 
 use Config;
-use ResourceLoaderSkinModule;
+use MediaWiki\ResourceLoader as RL;
 
 /**
  * @internal for use inside Skin and SkinTemplate classes only
@@ -64,6 +64,6 @@ class SkinComponentLogo implements SkinComponent {
 	 * - array tagline with `src`, `width`, `height` and `style` keys.
 	 */
 	public function getTemplateData(): array {
-		return ResourceLoaderSkinModule::getAvailableLogos( $this->getConfig(), $this->getLanguage() );
+		return RL\SkinModule::getAvailableLogos( $this->getConfig(), $this->getLanguage() );
 	}
 }

@@ -22,6 +22,8 @@
  */
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\ResourceLoader as RL;
+use MediaWiki\ResourceLoader\ResourceLoader;
 
 /**
  * @ingroup SpecialPage
@@ -66,9 +68,9 @@ class SpecialJavaScriptTest extends SpecialPage {
 			'debug' => (string)ResourceLoader::inDebugMode(),
 			'target' => 'test',
 		];
-		$embedContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
+		$embedContext = new RL\Context( $rl, new FauxRequest( $query ) );
 		$query['only'] = 'scripts';
-		$startupContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
+		$startupContext = new RL\Context( $rl, new FauxRequest( $query ) );
 
 		$modules = $rl->getTestSuiteModuleNames();
 		$component = $this->getContext()->getRequest()->getVal( 'component' );

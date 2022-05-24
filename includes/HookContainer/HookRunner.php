@@ -11,12 +11,12 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Session\Session;
 use MediaWiki\User\UserIdentity;
 use Parser;
 use ParserOptions;
-use ResourceLoaderContext;
 use Skin;
 use SpecialPage;
 use StatusValue;
@@ -3187,7 +3187,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onResourceLoaderJqueryMsgModuleMagicWords( ResourceLoaderContext $context,
+	public function onResourceLoaderJqueryMsgModuleMagicWords( RL\Context $context,
 		array &$magicWords
 	): void {
 		$this->container->run(
@@ -3413,7 +3413,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onSkinPageReadyConfig( ResourceLoaderContext $context,
+	public function onSkinPageReadyConfig( RL\Context $context,
 		array &$config
 	): void {
 		$this->container->run(

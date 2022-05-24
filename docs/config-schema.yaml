@@ -197,7 +197,7 @@ config-schema:
             The URL path of the wiki logo. The logo size should be 135x135 pixels.
             Defaults to "$wgResourceBasePath/resources/assets/change-your-logo.svg".
             Developers should retrieve this logo (and other variants) using
-              the static function ResourceLoaderSkinModule::getAvailableLogos
+            the static function MediaWiki\ResourceLoader\SkinModule::getAvailableLogos
             Ignored if $wgLogos is set.
     Logos:
         default: false
@@ -254,8 +254,8 @@ config-schema:
             - boolean
         deprecated: |-
             since 1.35. Developers should retrieve this logo (and other variants) using
-            the static function ResourceLoaderSkinModule::getAvailableLogos. $wgLogos
-            should be used instead.
+            the static function MediaWiki\ResourceLoader\SkinModule::getAvailableLogos.
+            $wgLogos should be used instead.
         description: |-
             Array with URL paths to HD versions of the wiki logo. The scaled logo size
             should be under 135x155 pixels.
@@ -278,8 +278,8 @@ config-schema:
             @endcode
             @since 1.25
             @deprecated since 1.35. Developers should retrieve this logo (and other variants) using
-              the static function ResourceLoaderSkinModule::getAvailableLogos. $wgLogos should be used
-              instead.
+              the static function MediaWiki\ResourceLoader\SkinModule::getAvailableLogos.
+              $wgLogos should be used instead.
     Favicon:
         default: /favicon.ico
         description: |-
@@ -3173,12 +3173,12 @@ config-schema:
             ## Options
             - class `{string}`:
               By default a module is assumed to bundle file resources
-              as handled by the ResourceLoaderFileModule class. Use this option
-              to use a different implementation of ResourceLoaderModule instead.
-              Default: `ResourceLoaderFileModule`
+              as handled by the MediaWiki\ResourceLoader\FileModule class. Use this option
+              to use a different implementation of MediaWiki\ResourceLoader\Module instead.
+              Default: `\MediaWiki\ResourceLoader\FileModule`
             - factory `{string}`:
-              Override the instantiation of the ResourceLoaderModule class using
-              a PHP callback. This allows dependency injection to be used.
+              Override the instantiation of the MediaWiki\ResourceLoader\Module
+              class using a PHP callback. This allows dependency injection to be used.
               This option cannot be combined with the `class` option.
               Since: MW 1.30
             - dependencies `{string[]|string}`:
@@ -3302,7 +3302,7 @@ config-schema:
             **Example: Using an alternate subclass**
             ```
             $wgResourceModules['ext.myExtension'] = [
-              'class' => ResourceLoaderWikiModule::class,
+              'class' => WikiModule::class,
             ];
             ```
             **Example: Deprecated module**
@@ -3494,7 +3494,7 @@ config-schema:
     ResourceBasePath:
         default: null
         description: |-
-            The default 'remoteBasePath' value for instances of ResourceLoaderFileModule.
+            The default 'remoteBasePath' value for instances of MediaWiki\ResourceLoader\FileModule.
             Defaults to $wgScriptPath.
     ResourceLoaderMaxage:
         default:
@@ -3543,7 +3543,7 @@ config-schema:
             but may be needed based on the query string limit supported by your web
             server and/or your user's web browsers.
             Default: `2000`.
-            @see \ResourceLoaderStartUpModule::getMaxQueryLength
+            @see \MediaWiki\ResourceLoader\StartUpModule::getMaxQueryLength
             @since 1.17
     ResourceLoaderValidateJS:
         default: true
