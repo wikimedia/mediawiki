@@ -43,6 +43,10 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 	private const HTML_OLD = '>Goat<';
 	private const HTML = '>World<';
 
+	private const PARAM_DEFAULTS = [
+		'stash' => false,
+	];
+
 	protected function setUp(): void {
 		parent::setUp();
 
@@ -138,7 +142,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		$rev = $revRef ? $revisions[ $revRef ] : null;
 
 		$helper = $this->newHelper();
-		$helper->init( $page, [], $rev );
+		$helper->init( $page, self::PARAM_DEFAULTS, $rev );
 
 		$htmlresult = $helper->getHtml()->getRawText();
 
@@ -174,13 +178,13 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 
 		$helper = $this->newHelper( $cache, $parsoid );
 
-		$helper->init( $page, [], $rev );
+		$helper->init( $page, self::PARAM_DEFAULTS, $rev );
 		$htmlresult = $helper->getHtml()->getRawText();
 		$this->assertStringContainsString( 'mocked HTML', $htmlresult );
 
 		// check that we can run the test again and ensure that the parse is only run once
 		$helper = $this->newHelper( $cache, $parsoid );
-		$helper->init( $page, [], $rev );
+		$helper->init( $page, self::PARAM_DEFAULTS, $rev );
 		$htmlresult = $helper->getHtml()->getRawText();
 		$this->assertNotNull( $helper->getHtml()->getExtensionData( ParsoidHTMLHelper::PARSOID_PAGE_BUNDLE_KEY ) );
 		$this->assertStringContainsString( 'mocked HTML', $htmlresult );
@@ -197,7 +201,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 
 		// First, test it works if nothing was cached yet.
 		$helper = $this->newHelper( $cache );
-		$helper->init( $page, [], $rev );
+		$helper->init( $page, self::PARAM_DEFAULTS, $rev );
 		$etag = $helper->getETag();
 		$lastModified = $helper->getLastModified();
 		$helper->getHtml(); // put HTML into the cache
@@ -214,7 +218,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		$now = MWTimestamp::convert( TS_UNIX, self::TIMESTAMP_LATER ) + 100;
 		MWTimestamp::setFakeTime( $now );
 		$helper = $this->newHelper( $cache );
-		$helper->init( $page, [], $rev );
+		$helper->init( $page, self::PARAM_DEFAULTS, $rev );
 
 		$this->assertSame( $etag, $helper->getETag() );
 		$this->assertSame(
@@ -233,13 +237,50 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		$page->clear();
 
 		$helper = $this->newHelper( $cache );
-		$helper->init( $page, [], $rev );
+		$helper->init( $page, self::PARAM_DEFAULTS, $rev );
 
 		$this->assertNotSame( $etag, $helper->getETag() );
 		$this->assertSame(
 			MWTimestamp::convert( TS_MW, $now ),
 			MWTimestamp::convert( TS_MW, $helper->getLastModified() )
 		);
+	}
+
+	public function provideETagSuffix() {
+		yield 'stash + html' =>
+			[ [ 'stash' => true ], 'html', '/stash/html' ];
+
+		yield 'view html' =>
+			[ [], 'html', '/view/html' ];
+
+		yield 'stash + wrapped' =>
+			[ [ 'stash' => true ], 'with_html', '/stash/with_html' ];
+
+		yield 'view wrapped' =>
+			[ [], 'with_html', '/view/with_html' ];
+
+		yield 'stash' =>
+			[ [ 'stash' => true ], '', '/stash' ];
+
+		yield 'nothing' =>
+			[ [], '', '/view' ];
+	}
+
+	/**
+	 * @dataProvider provideETagSuffix()
+	 */
+	public function testETagSuffix( array $params, string $mode, string $suffix ) {
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		$cache = new HashBagOStuff();
+
+		// First, test it works if nothing was cached yet.
+		$helper = $this->newHelper( $cache );
+		$helper->init( $page, $params + self::PARAM_DEFAULTS );
+
+		$etag = $helper->getETag( $mode );
+		$etag = trim( $etag, '"' );
+		$this->assertStringEndsWith( $suffix, $etag );
 	}
 
 	public function provideHandlesParsoidError() {
@@ -280,7 +321,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 			->willThrowException( $parsoidException );
 
 		$helper = $this->newHelper( null, $parsoid );
-		$helper->init( $page, [] );
+		$helper->init( $page, self::PARAM_DEFAULTS );
 
 		$this->expectExceptionObject( $expectedException );
 		$helper->getHtml();

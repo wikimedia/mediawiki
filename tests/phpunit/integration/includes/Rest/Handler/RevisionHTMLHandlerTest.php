@@ -411,4 +411,16 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		// FIXME: implement flavors
 	}
 
+	public function testETagVariesOnFormat() {
+		$page = $this->getExistingTestPage();
+
+		[ /* $html1 */, $etag1 ] =
+			$this->executeRevisionHTMLRequest( $page->getLatest(), [], [ 'format' => 'html' ] );
+
+		[ /* $html2 */, $etag2 ] =
+			$this->executeRevisionHTMLRequest( $page->getLatest(), [], [ 'format' => 'with_html' ] );
+
+		$this->assertNotSame( $etag1, $etag2 );
+	}
+
 }
