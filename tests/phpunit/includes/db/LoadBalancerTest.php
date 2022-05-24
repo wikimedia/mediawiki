@@ -477,6 +477,38 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$lb->closeAll( __METHOD__ );
 	}
 
+	public function testReconfigure() {
+		$conf = [
+			'servers' => [ $this->makeServerConfig() ],
+			'clusterName' => 'A',
+			'localDomain' => $this->db->getDomainID()
+		];
+
+		$lb = new LoadBalancer( $conf );
+		$this->assertSame( 'A', $lb->getClusterName() );
+
+		$con = $lb->getConnectionInternal( DB_PRIMARY );
+		$ref = $lb->getConnection( DB_PRIMARY );
+
+		$this->assertTrue( $con->isOpen() );
+		$this->assertTrue( $ref->isOpen() );
+
+		// Reconfigure the LoadBalancer
+		$conf['clusterName'] = 'X';
+		$lb->reconfigure( $conf );
+		$this->assertSame( 'X', $lb->getClusterName() );
+
+		// Reconfiguring should not close connections immediately.
+		$this->assertTrue( $con->isOpen() );
+
+		// Connection refs should detect the config change, close the old connection,
+		// and get a new connection.
+		$this->assertTrue( $ref->isOpen() );
+
+		// The old connection should have been called by DBConnRef.
+		$this->assertFalse( $con->isOpen() );
+	}
+
 	/**
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getWriterIndex()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getOpenPrimaryConnections()

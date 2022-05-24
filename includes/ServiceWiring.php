@@ -536,8 +536,32 @@ return [
 	'DBLoadBalancerFactory' =>
 	static function ( MediaWikiServices $services ): Wikimedia\Rdbms\LBFactory {
 		$mainConfig = $services->getMainConfig();
+		$lbFactoryConfigBuilder = $services->getDBLoadBalancerFactoryConfigBuilder();
 
-		$cpStashType = $mainConfig->get( MainConfigNames::ChronologyProtectorStash );
+		$lbConf = $lbFactoryConfigBuilder->applyDefaultConfig(
+			$mainConfig->get( MainConfigNames::LBFactoryConf )
+		);
+
+		$class = $lbFactoryConfigBuilder->getLBFactoryClass( $lbConf );
+		$instance = new $class( $lbConf );
+
+		$lbFactoryConfigBuilder->setDomainAliases( $instance );
+
+		// NOTE: This accesses ProxyLookup from the MediaWikiServices singleton
+		// for non-essential non-nonimal purposes (via WebRequest::getIP).
+		// This state is fine (and meant) to be consistent for a given PHP process,
+		// even if applied to the service container for a different wiki.
+		$lbFactoryConfigBuilder->applyGlobalState(
+			$instance,
+			$mainConfig,
+			$services->getStatsdDataFactory()
+		);
+
+		return $instance;
+	},
+
+	'DBLoadBalancerFactoryConfigBuilder' => static function ( MediaWikiServices $services ): MWLBFactory {
+		$cpStashType = $services->getMainConfig()->get( MainConfigNames::ChronologyProtectorStash );
 		if ( is_string( $cpStashType ) ) {
 			$cpStash = ObjectCache::getInstance( $cpStashType );
 		} else {
@@ -559,10 +583,8 @@ return [
 			// Use process cache if no APCU or other local-server cache (e.g. on CLI)
 			$srvCache = new HashBagOStuff( [ 'maxKeys' => 100 ] );
 		}
-
-		$lbConf = MWLBFactory::applyDefaultConfig(
-			$mainConfig->get( MainConfigNames::LBFactoryConf ),
-			new ServiceOptions( MWLBFactory::APPLY_DEFAULT_CONFIG_OPTIONS, $mainConfig ),
+		return new MWLBFactory(
+			new ServiceOptions( MWLBFactory::APPLY_DEFAULT_CONFIG_OPTIONS, $services->getMainConfig() ),
 			$services->getConfiguredReadOnlyMode(),
 			$cpStash,
 			$srvCache,
@@ -570,23 +592,6 @@ return [
 			$services->getCriticalSectionProvider(),
 			$services->getStatsdDataFactory()
 		);
-
-		$class = MWLBFactory::getLBFactoryClass( $lbConf );
-		$instance = new $class( $lbConf );
-
-		MWLBFactory::setDomainAliases( $instance );
-
-		// NOTE: This accesses ProxyLookup from the MediaWikiServices singleton
-		// for non-essential non-nonimal purposes (via WebRequest::getIP).
-		// This state is fine (and meant) to be consistent for a given PHP process,
-		// even if applied to the service container for a different wiki.
-		MWLBFactory::applyGlobalState(
-			$instance,
-			$mainConfig,
-			$services->getStatsdDataFactory()
-		);
-
-		return $instance;
 	},
 
 	'DeletePageFactory' => static function ( MediaWikiServices $services ): DeletePageFactory {

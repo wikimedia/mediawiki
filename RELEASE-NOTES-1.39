@@ -35,6 +35,10 @@ For notes on 1.38.x and older releases, see HISTORY.
 * $wgCopyUploadAllowOnWikiDomainConfig – Configures if administrators can use
   the MediaWiki:Copyupload-allowed-domains system message to define which
   domains can be used with the upload-by-url tool.
+* $wgLBFactoryConf['configCallback'] can be set to a callback function that
+  returns an array with keys to update in $wgLBFactoryConf. This can be used
+  to update the database configuration on the fly, e.g. to take replica hosts
+  out of rotation.
 * …
 
 ==== Changed configuration ====

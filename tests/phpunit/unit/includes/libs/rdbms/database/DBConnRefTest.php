@@ -1,5 +1,6 @@
 <?php
 
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -14,12 +15,23 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 
 	/**
-	 * @return ILoadBalancer
+	 * @return ILoadBalancer|MockObject
 	 */
 	private function getLoadBalancerMock() {
+		// getConnection() and getConnectionInternal() should keep returning the same connection
+		// on every call, unless that connection was closed. Then they should return a new
+		// connection.
+		$conn = $this->getDatabaseMock();
+		$getDatabaseMock = function () use ( &$conn ) {
+			if ( !$conn->isOpen() ) {
+				$conn = $this->getDatabaseMock();
+			}
+			return $conn;
+		};
+
 		$lb = $this->createMock( ILoadBalancer::class );
-		$lb->method( 'getConnection' )->willReturn( $this->getDatabaseMock() );
-		$lb->method( 'getConnectionInternal' )->willReturn( $this->getDatabaseMock() );
+		$lb->method( 'getConnection' )->willReturnCallback( $getDatabaseMock );
+		$lb->method( 'getConnectionInternal' )->willReturnCallback( $getDatabaseMock );
 
 		$lb->method( 'getConnectionRef' )->willReturnCallback(
 			function () use ( $lb ) {
@@ -63,6 +75,30 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	private function getDBConnRef( ILoadBalancer $lb = null ) {
 		$lb = $lb ?: $this->getLoadBalancerMock();
 		return new DBConnRef( $lb, $this->getDatabaseMock(), DB_PRIMARY );
+	}
+
+	/**
+	 * Test that bumping the modification counter causes the wrapped connection
+	 * to be discarded and re-aquired.
+	 */
+	public function testModCount() {
+		$lb = $this->getLoadBalancerMock();
+		$lb->expects( $this->exactly( 3 ) )->method( 'getConnectionInternal' );
+
+		$params = [ DB_PRIMARY, [], 'mywiki', 0 ];
+		$modcount = 0;
+		$ref = new DBConnRef( $lb, $params, DB_PRIMARY, $modcount );
+
+		$ref->select( 'test', '*' );
+		$ref->select( 'test', '*' );
+
+		$modcount++; // cause second call to getConnectionInternal
+		$ref->select( 'test', '*' );
+		$ref->select( 'test', '*' );
+
+		$modcount++; // cause third call to getConnectionInternal
+		$ref->select( 'test', '*' );
+		$ref->select( 'test', '*' );
 	}
 
 	public function testConstruct() {
