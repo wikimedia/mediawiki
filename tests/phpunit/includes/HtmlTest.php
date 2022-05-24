@@ -82,7 +82,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testElementBasics() {
 		$this->assertEquals(
-			'<img/>',
+			'<img>',
 			Html::element( 'img', null, '' ),
 			'Self-closing tag for short-tag elements'
 		);
@@ -480,7 +480,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testHtmlElementAcceptsNewHtml5TypesInHtml5Mode( $HTML5InputType ) {
 		$this->assertEquals(
-			'<input type="' . $HTML5InputType . '"/>',
+			'<input type="' . $HTML5InputType . '">',
 			Html::element( 'input', [ 'type' => $HTML5InputType ] ),
 			'In HTML5, Html::element() should accept type="' . $HTML5InputType . '"'
 		);
@@ -573,7 +573,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		$cases = [];
 
 		# ## Generic cases, match $attribDefault static array
-		$cases[] = [ '<area/>',
+		$cases[] = [ '<area>',
 			'area', [ 'shape' => 'rect' ]
 		];
 
@@ -608,18 +608,18 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 			'form', [ 'enctype' => 'application/x-www-form-urlencoded' ]
 		];
 
-		$cases[] = [ '<input/>',
+		$cases[] = [ '<input>',
 			'input', [ 'formaction' => 'GET' ]
 		];
-		$cases[] = [ '<input/>',
+		$cases[] = [ '<input>',
 			'input', [ 'type' => 'text' ]
 		];
 
-		$cases[] = [ '<keygen/>',
+		$cases[] = [ '<keygen>',
 			'keygen', [ 'keytype' => 'rsa' ]
 		];
 
-		$cases[] = [ '<link/>',
+		$cases[] = [ '<link>',
 			'link', [ 'media' => 'all' ]
 		];
 
@@ -645,27 +645,27 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		# ## SPECIFIC CASES
 
 		# <link type="text/css">
-		$cases[] = [ '<link/>',
+		$cases[] = [ '<link>',
 			'link', [ 'type' => 'text/css' ]
 		];
 
 		# <input> specific handling
-		$cases[] = [ '<input type="checkbox"/>',
+		$cases[] = [ '<input type="checkbox">',
 			'input', [ 'type' => 'checkbox', 'value' => 'on' ],
 			'Default value "on" is stripped of checkboxes',
 		];
-		$cases[] = [ '<input type="radio"/>',
+		$cases[] = [ '<input type="radio">',
 			'input', [ 'type' => 'radio', 'value' => 'on' ],
 			'Default value "on" is stripped of radio buttons',
 		];
-		$cases[] = [ '<input type="submit" value="Submit"/>',
+		$cases[] = [ '<input type="submit" value="Submit">',
 			'input', [ 'type' => 'submit', 'value' => 'Submit' ],
 			'Default value "Submit" is kept on submit buttons (for possible l10n issues)',
 		];
-		$cases[] = [ '<input type="color"/>',
+		$cases[] = [ '<input type="color">',
 			'input', [ 'type' => 'color', 'value' => '' ],
 		];
-		$cases[] = [ '<input type="range"/>',
+		$cases[] = [ '<input type="range">',
 			'input', [ 'type' => 'range', 'value' => '' ],
 		];
 
@@ -714,12 +714,12 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testWrapperInput() {
 		$this->assertEquals(
-			'<input type="radio" value="testval" name="testname"/>',
+			'<input type="radio" value="testval" name="testname">',
 			Html::input( 'testname', 'testval', 'radio' ),
 			'Input wrapper with type and value.'
 		);
 		$this->assertEquals(
-			'<input name="testname"/>',
+			'<input name="testname">',
 			Html::input( 'testname' ),
 			'Input wrapper with all default values.'
 		);
@@ -730,17 +730,17 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testWrapperCheck() {
 		$this->assertEquals(
-			'<input type="checkbox" value="1" name="testname"/>',
+			'<input type="checkbox" value="1" name="testname">',
 			Html::check( 'testname' ),
 			'Checkbox wrapper unchecked.'
 		);
 		$this->assertEquals(
-			'<input checked="" type="checkbox" value="1" name="testname"/>',
+			'<input checked="" type="checkbox" value="1" name="testname">',
 			Html::check( 'testname', true ),
 			'Checkbox wrapper checked.'
 		);
 		$this->assertEquals(
-			'<input type="checkbox" value="testval" name="testname"/>',
+			'<input type="checkbox" value="testval" name="testname">',
 			Html::check( 'testname', false, [ 'value' => 'testval' ] ),
 			'Checkbox wrapper with a value override.'
 		);
@@ -751,17 +751,17 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testWrapperRadio() {
 		$this->assertEquals(
-			'<input type="radio" value="1" name="testname"/>',
+			'<input type="radio" value="1" name="testname">',
 			Html::radio( 'testname' ),
 			'Radio wrapper unchecked.'
 		);
 		$this->assertEquals(
-			'<input checked="" type="radio" value="1" name="testname"/>',
+			'<input checked="" type="radio" value="1" name="testname">',
 			Html::radio( 'testname', true ),
 			'Radio wrapper checked.'
 		);
 		$this->assertEquals(
-			'<input type="radio" value="testval" name="testname"/>',
+			'<input type="radio" value="testval" name="testname">',
 			Html::radio( 'testname', false, [ 'value' => 'testval' ] ),
 			'Radio wrapper with a value override.'
 		);

@@ -219,8 +219,7 @@ class Html {
 	public static function rawElement( $element, $attribs = [], $contents = '' ) {
 		$start = self::openElement( $element, $attribs );
 		if ( isset( self::$voidElements[$element] ) ) {
-			// Silly XML.
-			return substr( $start, 0, -1 ) . '/>';
+			return $start;
 		} else {
 			return $start . $contents . self::closeElement( $element );
 		}
