@@ -223,6 +223,9 @@ class RefreshLinksJob extends Job {
 			return true;
 		}
 
+		// These can be fairly long-running jobs, while commitAndWaitForReplication
+		// releases primary snapshots, let the replica release their snapshot as well
+		$lbFactory->flushReplicaSnapshots( __METHOD__ );
 		// Parse during a fresh transaction round for better read consistency
 		$lbFactory->beginPrimaryChanges( __METHOD__ );
 		$output = $this->getParserOutput( $renderer, $parserCache, $page, $stats );
