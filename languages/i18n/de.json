@@ -4100,7 +4100,7 @@
 	"deflate-invaliddeflate": "Der angegebene Inhalt ist nicht ordnungsgemäß komprimiert",
 	"unprotected-js": "Aus Sicherheitsgründen kann JavaScript-Code nicht mehr von ungeschützten Seiten geladen werden. Erstelle die JavaScript-Seite bitte ausschließlich im Namensraum „MediaWiki“ oder als Benutzerunterseite.",
 	"userlogout-continue": "Möchtest du dich abmelden?",
-	"userlogout-temp": "Bist du sicher, dass du sich abmelden möchtest? Es gibt keine Möglichkeit, sich wieder mit deinem temporären Konto anzumelden.",
+	"userlogout-temp": "Bist du sicher, dass du dich abmelden möchtest? Es gibt keine Möglichkeit, dich wieder mit deinem temporären Konto anzumelden.",
 	"paramvalidator-baduser": "Ungültiger Wert „$2“ für den Benutzerparameter <var>$1<var>.",
 	"paramvalidator-help-type-user": "Typ: {{PLURAL:$1|1=Benutzer|2=Liste von Benutzern}}, {{PLURAL:$3|von|von einem der}} $2",
 	"paramvalidator-help-type-user-subtype-name": "Benutzername",
