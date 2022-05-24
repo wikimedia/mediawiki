@@ -669,18 +669,15 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @stable to override
 	 *
 	 * @param string $text Text displayed on the link
-	 * @param array|null $query Associative array of parameter to be in the query string
+	 * @param array|null $query Associative array of parameter to be in the query string.
+	 *  If null, no link is generated.
 	 * @param string|null $type Link type used to create additional attributes, like "rel", "class" or
 	 *  "title". Valid values (non-exhaustive list): 'first', 'last', 'prev', 'next', 'asc', 'desc'.
 	 * @return string HTML fragment
 	 */
 	protected function makeLink( $text, array $query = null, $type = null ) {
-		if ( $query === null ) {
-			return $text;
-		}
-
 		$attrs = [];
-		if ( in_array( $type, [ 'prev', 'next' ] ) ) {
+		if ( $query !== null && in_array( $type, [ 'prev', 'next' ] ) ) {
 			$attrs['rel'] = $type;
 		}
 
@@ -692,12 +689,16 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$attrs['class'] = "mw-{$type}link";
 		}
 
-		return $this->getLinkRenderer()->makeKnownLink(
-			$this->getTitle(),
-			new HtmlArmor( $text ),
-			$attrs,
-			$query + $this->getDefaultQuery()
-		);
+		if ( $query !== null ) {
+			return $this->getLinkRenderer()->makeKnownLink(
+				$this->getTitle(),
+				new HtmlArmor( $text ),
+				$attrs,
+				$query + $this->getDefaultQuery()
+			);
+		} else {
+			return Html::rawElement( 'span', $attrs, $text );
+		}
 	}
 
 	/**
@@ -851,17 +852,15 @@ abstract class IndexPager extends ContextSource implements Pager {
 		$links = [];
 
 		foreach ( $queries as $type => $query ) {
-			if ( $query !== false ) {
-				$links[$type] = $this->makeLink(
-					$linkTexts[$type],
-					$query,
-					$type
-				);
-			} elseif ( isset( $disabledTexts[$type] ) ) {
-				$links[$type] = $disabledTexts[$type];
-			} else {
-				$links[$type] = $linkTexts[$type];
+			$linkText = $linkTexts[$type];
+			if ( !$query && isset( $disabledTexts[$type] ) ) {
+				$linkText = $disabledTexts[$type];
 			}
+			$links[$type] = $this->makeLink(
+				$linkText,
+				$query ?: null,
+				$type
+			);
 		}
 
 		return $links;
