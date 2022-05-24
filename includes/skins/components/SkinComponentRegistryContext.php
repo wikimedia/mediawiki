@@ -33,15 +33,14 @@ class SkinComponentRegistryContext implements ComponentRegistryContext {
 	/** @var Skin */
 	private $skin;
 
-	/** @var MessageLocalizer */
-	private $localizer;
+	/** @var MessageLocalizer|null */
+	private $localizer = null;
 
 	/**
 	 * @param Skin $skin
 	 */
 	public function __construct( Skin $skin ) {
 		$this->skin = $skin;
-		$this->localizer = $skin->getContext();
 	}
 
 	/**
@@ -90,6 +89,13 @@ class SkinComponentRegistryContext implements ComponentRegistryContext {
 	 * @return MessageLocalizer
 	 */
 	public function getMessageLocalizer(): MessageLocalizer {
+		if ( $this->localizer === null ) {
+			// Cannot call getContext in constructor,
+			// because Skin::class does not have a context yet.
+			// But it is valid to call it now
+			$this->localizer = $this->skin->getContext();
+		}
+
 		return $this->localizer;
 	}
 }
