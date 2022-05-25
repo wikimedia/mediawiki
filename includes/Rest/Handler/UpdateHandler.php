@@ -85,13 +85,7 @@ class UpdateHandler extends EditHandler {
 				ParamValidator::PARAM_TYPE => 'array',
 				ParamValidator::PARAM_REQUIRED => false,
 			],
-			'token' => [
-				self::PARAM_SOURCE => 'body',
-				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => false,
-				ParamValidator::PARAM_DEFAULT => '',
-			],
-		] );
+		] + $this->getTokenParamDefinition() );
 	}
 
 	/**
@@ -111,7 +105,7 @@ class UpdateHandler extends EditHandler {
 			);
 		}
 
-		$token = $this->getActionModuleToken();
+		$token = $this->getToken() ?? $this->getUser()->getEditToken();
 
 		$params = [
 			'action' => 'edit',
