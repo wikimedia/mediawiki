@@ -379,5 +379,9 @@
 	"exif-usepanoramaviewer-true": "Да",
 	"exif-usepanoramaviewer-false": "Нет",
 	"exif-exposurelockused-true": "Да",
-	"exif-exposurelockused-false": "Нет"
+	"exif-exposurelockused-false": "Нет",
+	"exif-croppedareaimagewidthpixels": "Обрезанная ширина панорамы",
+	"exif-croppedareaimageheightpixels": "Обрезанная высота панорамы",
+	"exif-fullpanowidthpixels": "Полная ширина панорамы",
+	"exif-fullpanoheightpixels": "Полная высота панорамы"
 }
