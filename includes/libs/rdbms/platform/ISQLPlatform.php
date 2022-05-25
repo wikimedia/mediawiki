@@ -372,4 +372,40 @@ interface ISQLPlatform {
 	 * @return bool
 	 */
 	public function implicitOrderby();
+
+	/**
+	 * Make certain table names use their own database, schema, and table prefix
+	 * when passed into SQL queries pre-escaped and without a qualified database name
+	 *
+	 * For example, "user" can be converted to "myschema.mydbname.user" for convenience.
+	 * Appearances like `user`, somedb.user, somedb.someschema.user will used literally.
+	 *
+	 * Calling this twice will completely clear any old table aliases. Also, note that
+	 * callers are responsible for making sure the schemas and databases actually exist.
+	 *
+	 * @param array[] $aliases Map of (table => (dbname, schema, prefix) map)
+	 * @since 1.28 in IDatabase, moved to ISQLPlatform in 1.39
+	 */
+	public function setTableAliases( array $aliases );
+
+	/**
+	 * Convert certain index names to alternative names before querying the DB
+	 *
+	 * Note that this applies to indexes regardless of the table they belong to.
+	 *
+	 * This can be employed when an index was renamed X => Y in code, but the new Y-named
+	 * indexes were not yet built on all DBs. After all the Y-named ones are added by the DBA,
+	 * the aliases can be removed, and then the old X-named indexes dropped.
+	 *
+	 * @param string[] $aliases
+	 * @since 1.31 in IDatabase, moved to ISQLPlatform in 1.39
+	 */
+	public function setIndexAliases( array $aliases );
+
+	/**
+	 * Return current table aliases.
+	 *
+	 * @internal only to be used inside rdbms library
+	 */
+	public function getTableAliases();
 }

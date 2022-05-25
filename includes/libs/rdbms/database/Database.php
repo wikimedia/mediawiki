@@ -36,7 +36,6 @@ use RuntimeException;
 use Throwable;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
-use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\CriticalSectionScope;
@@ -108,10 +107,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $lbInfo = [];
 	/** @var string|false Current SQL query delimiter */
 	protected $delimiter = ';';
-	/** @var array[] Current map of (table => (dbname, schema, prefix) map) */
-	protected $tableAliases = [];
-	/** @var string[] Current map of (index alias => index) */
-	protected $indexAliases = [];
 	/** @var array|null Current variables use for schema element placeholders */
 	protected $schemaVars;
 
@@ -220,7 +215,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** Table prefix to use on initial connection */
 	protected const CONN_INITIAL_TABLE_PREFIX = 'tablePrefix';
 
-	/** @var ISQLPlatform */
+	/** @var SQLPlatform */
 	protected $platform;
 
 	/**
@@ -2878,13 +2873,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$schema = '';
 		} else {
 			list( $table ) = $dbDetails;
-			if ( isset( $this->tableAliases[$table] ) ) {
-				$database = $this->tableAliases[$table]['dbname'];
-				$schema = is_string( $this->tableAliases[$table]['schema'] )
-					? $this->tableAliases[$table]['schema']
+			$tableAliases = $this->platform->getTableAliases();
+			if ( isset( $tableAliases[$table] ) ) {
+				$database = $tableAliases[$table]['dbname'];
+				$schema = is_string( $tableAliases[$table]['schema'] )
+					? $tableAliases[$table]['schema']
 					: $this->relationSchemaQualifier();
-				$prefix = is_string( $this->tableAliases[$table]['prefix'] )
-					? $this->tableAliases[$table]['prefix']
+				$prefix = is_string( $tableAliases[$table]['prefix'] )
+					? $tableAliases[$table]['prefix']
 					: $this->tablePrefix();
 			} else {
 				$database = '';
@@ -3136,7 +3132,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return string
 	 */
 	protected function indexName( $index ) {
-		return $this->indexAliases[$index] ?? $index;
+		return $this->platform->indexName( $index );
 	}
 
 	/**
@@ -5208,7 +5204,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function setTableAliases( array $aliases ) {
-		$this->tableAliases = $aliases;
+		$this->platform->setTableAliases( $aliases );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getTableAliases() {
+		return $this->platform->getTableAliases();
 	}
 
 	/**
@@ -5216,7 +5219,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 */
 	public function setIndexAliases( array $aliases ) {
-		$this->indexAliases = $aliases;
+		$this->platform->setIndexAliases( $aliases );
 	}
 
 	/**
