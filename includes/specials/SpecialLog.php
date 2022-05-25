@@ -26,6 +26,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserIdentityLookup;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Timestamp\TimestampException;
 
@@ -152,12 +153,23 @@ class SpecialLog extends SpecialPage {
 		# to lookup for a user by that name and eventually fix user input. See T3697.
 		if ( in_array( $opts->getValue( 'type' ), self::getLogTypesOnUser( $this->getHookRunner() ) ) ) {
 			# ok we have a type of log which expect a user title.
-			$target = Title::newFromText( $opts->getValue( 'page' ) );
+			$page = $opts->getValue( 'page' );
+			$target = Title::newFromText( $page );
 			if ( $target && $target->getNamespace() === NS_MAIN ) {
+				if ( IPUtils::isValidRange( $target->getText() ) ) {
+					$page = IPUtils::sanitizeRange( $target->getText() );
+				}
 				# User forgot to add 'User:', we are adding it for him
 				$opts->setValue( 'page',
-					Title::makeTitleSafe( NS_USER, $opts->getValue( 'page' ) )
+					Title::makeTitleSafe( NS_USER, $page )
 				);
+			} elseif ( $target && $target->getNamespace() === NS_USER
+				&& IPUtils::isValidRange( $target->getText() )
+			) {
+				$page = IPUtils::sanitizeRange( $target->getText() );
+				if ( $page !== $target->getText() ) {
+					$opts->setValue( 'page', Title::makeTitleSafe( NS_USER, $page ) );
+				}
 			}
 		}
 
@@ -235,7 +247,6 @@ class SpecialLog extends SpecialPage {
 			$this->getLinkRenderer(),
 			LogEventsList::USE_CHECKBOXES
 		);
-
 		$pager = new LogPager(
 			$loglist,
 			$opts->getValue( 'type' ),
