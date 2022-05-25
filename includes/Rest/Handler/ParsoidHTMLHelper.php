@@ -81,8 +81,11 @@ class ParsoidHTMLHelper {
 	/** @var RevisionRecord|null */
 	private $revision = null;
 
-	/** @var ?array Validated parameters, overwritten in init(). */
-	private $parameters = [ 'stash' => false ];
+	/** @var ?string [ 'view', 'stash' ] are the supported flavors for now */
+	private $flavor = null;
+
+	/** @var bool */
+	private $stash = false;
 
 	/** @var ParserOutput|null */
 	private $parserOutput = null;
@@ -116,8 +119,9 @@ class ParsoidHTMLHelper {
 		?RevisionRecord $revision = null
 	) {
 		$this->page = $page;
-		$this->parameters = $parameters;
 		$this->revision = $revision;
+		$this->stash = $parameters['stash'];
+		$this->flavor = $parameters['stash'] ? 'stash' : 'view'; // more to come, T308743
 	}
 
 	/**
@@ -240,7 +244,7 @@ class ParsoidHTMLHelper {
 	public function getHtml(): ParserOutput {
 		$parserOutput = $this->getParserOutput();
 
-		if ( $this->parameters['stash'] ) {
+		if ( $this->stash ) {
 			$parsoidStashKey = ParsoidRenderID::newFromKey(
 				$parserOutput->getExtensionData( self::RENDER_ID_KEY )
 			);
@@ -263,14 +267,18 @@ class ParsoidHTMLHelper {
 	/**
 	 * Returns an ETag uniquely identifying the HTML output.
 	 *
+	 * @param string $suffix A suffix to attach to the etag.
+	 *
 	 * @return string|null
 	 */
-	public function getETag(): ?string {
+	public function getETag( string $suffix = '' ): ?string {
 		$parserOutput = $this->getParserOutput();
 		$eTag = $parserOutput->getExtensionData( self::RENDER_ID_KEY );
 
-		if ( $this->parameters['stash'] ) {
-			$eTag = "$eTag/stash";
+		if ( $suffix !== '' ) {
+			$eTag = "$eTag/{$this->flavor}/$suffix";
+		} else {
+			$eTag = "$eTag/{$this->flavor}";
 		}
 
 		return "\"{$eTag}\"";

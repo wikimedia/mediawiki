@@ -209,7 +209,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		] );
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
 		$etag = $response->getHeaderLine( 'ETag' );
-		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x"', $etag );
+		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x/%s"', $etag );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
 		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time ),
 			$response->getHeaderLine( 'Last-Modified' ) );
@@ -222,7 +222,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
 		$this->assertSame( $etag, $response->getHeaderLine( 'ETag' ) );
 		$etag = $response->getHeaderLine( 'ETag' );
-		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x"', $etag );
+		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x/%s"', $etag );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
 		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time ),
 			$response->getHeaderLine( 'Last-Modified' ) );
@@ -243,7 +243,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
 		$this->assertNotSame( $etag, $response->getHeaderLine( 'ETag' ) );
 		$etag = $response->getHeaderLine( 'ETag' );
-		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x"', $etag );
+		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x/%s"', $etag );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
 		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time ),
 			$response->getHeaderLine( 'Last-Modified' ) );
@@ -385,6 +385,18 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		// Make sure the output for stashed and unstashed doesn't have the same tag,
 		// since it will actually be different!
 		// FIXME: implement flavors and write test cases for them.
+	}
+
+	public function testETagVariesOnFormat() {
+		$page = $this->getExistingTestPage();
+
+		[ /* $html1 */, $etag1 ] =
+			$this->executePageHTMLRequest( $page, [], [ 'format' => 'html' ] );
+
+		[ /* $html2 */, $etag2 ] =
+			$this->executePageHTMLRequest( $page, [], [ 'format' => 'with_html' ] );
+
+		$this->assertNotSame( $etag1, $etag2 );
 	}
 
 }
