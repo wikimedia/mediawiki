@@ -112,7 +112,9 @@ class PageHTMLHandler extends SimpleHandler {
 		if ( !$this->contentHelper->isAccessible() ) {
 			return null;
 		}
-		return $this->htmlHelper->getETag();
+
+		// Vary eTag based on output mode
+		return $this->htmlHelper->getETag( $this->getOutputMode() );
 	}
 
 	/**

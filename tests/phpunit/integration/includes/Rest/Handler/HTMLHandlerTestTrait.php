@@ -26,10 +26,16 @@ trait HTMLHandlerTestTrait {
 	/**
 	 * @param string $page
 	 * @param array $queryParams
+	 * @param array $config
 	 *
 	 * @return array
+	 * @throws \Exception
 	 */
-	private function executePageHTMLRequest( string $page, array $queryParams = [] ): array {
+	private function executePageHTMLRequest(
+		string $page,
+		array $queryParams = [],
+		array $config = []
+	): array {
 		$handler = $this->newHandler();
 		$request = new RequestData( [
 			'pathParams' => [ 'title' => $page ],
@@ -37,7 +43,7 @@ trait HTMLHandlerTestTrait {
 		] );
 		$result = $this->executeHandler( $handler,
 			$request,
-			[ 'format' => 'html' ] );
+			$config + [ 'format' => 'html' ] );
 		$etag = $result->getHeaderLine( 'ETag' );
 		$stashKey = ParsoidRenderID::newFromETag( $etag );
 
@@ -47,10 +53,16 @@ trait HTMLHandlerTestTrait {
 	/**
 	 * @param int $revId
 	 * @param array $queryParams
+	 * @param array $config
 	 *
 	 * @return array
+	 * @throws \Exception
 	 */
-	private function executeRevisionHTMLRequest( int $revId, array $queryParams = [] ): array {
+	private function executeRevisionHTMLRequest(
+		int $revId,
+		array $queryParams = [],
+		array $config = []
+	): array {
 		$handler = $this->newHandler();
 		$request = new RequestData( [
 			'pathParams' => [ 'id' => $revId ],
@@ -58,7 +70,7 @@ trait HTMLHandlerTestTrait {
 		] );
 		$result = $this->executeHandler( $handler,
 			$request,
-			[ 'format' => 'html' ] );
+			$config + [ 'format' => 'html' ] );
 		$etag = $result->getHeaderLine( 'ETag' );
 		$stashKey = ParsoidRenderID::newFromETag( $etag );
 
