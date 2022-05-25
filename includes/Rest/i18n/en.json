@@ -42,5 +42,6 @@
 	"rest-extraneous-csrf-token": "Extraneous CSRF token found. CSRF tokens must not be used when using authentication mechanisms such as OAuth that are safe against CSRF attacks.",
 	"rest-cannot-load-file": "The file for title \"$1\" cannot be loaded.",
 	"rest-cross-origin-anon-write": "Anonymous cross-origin write requests are not allowed",
-	"rest-requires-safe-against-csrf": "This endpoint requires a CSRF-safe session provider."
+	"rest-requires-safe-against-csrf": "This endpoint requires a CSRF-safe session provider.",
+	"rest-badtoken": "The CSRF token provided is invalid."
 }
