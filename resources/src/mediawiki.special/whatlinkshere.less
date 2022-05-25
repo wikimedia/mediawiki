@@ -1,0 +1,48 @@
+/*!
+ * Styling for Special:WhatLinksHere
+ */
+
+// OOUIHTMLForm styles
+@ooui-font-size-browser: 16; // assumed browser default of `16px`
+@ooui-font-size-base: 0.875 / 1em; // equals `14px` at browser default of `16px`
+
+@ooui-spacing-large: 16 / @ooui-font-size-browser / @ooui-font-size-base; // Equals `1.1428571em`≈`16px`.
+
+.mw-special-Whatlinkshere {
+	.oo-ui-fieldsetLayout-group {
+		max-width: 50em;
+
+		.oo-ui-panelLayout-padded.oo-ui-panelLayout-framed {
+			border: 0;
+			padding: 0;
+		}
+
+		// Hide extra `legend`s when grouping form in sections.
+		.oo-ui-fieldsetLayout.oo-ui-labelElement > .oo-ui-fieldsetLayout-header {
+			display: none;
+		}
+	}
+
+	#mw-htmlform-whatlinkshere-ns {
+		display: flex;
+		justify-content: space-between;
+		align-items: end;
+		flex-wrap: wrap;
+		// To remove the left padding when its child checkbox is wrapped
+		margin-left: -@ooui-spacing-large;
+	}
+
+	#mw-htmlform-whatlinkshere-ns > .mw-htmlform-field-HTMLSelectNamespace {
+		flex-grow: 1;
+		padding-left: @ooui-spacing-large;
+	}
+
+	#mw-htmlform-whatlinkshere-ns > .mw-htmlform-field-HTMLCheckField {
+		padding-left: @ooui-spacing-large;
+	}
+
+	#mw-htmlform-whatlinkshere-filter > .mw-htmlform-field-HTMLCheckField {
+		display: inline-block;
+		padding-right: @ooui-spacing-large;
+	}
+}

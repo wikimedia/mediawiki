@@ -100,7 +100,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->addHelpLink( 'Help:What links here' );
-		$out->addModuleStyles( 'mediawiki.special.changeslist' );
+		$out->addModuleStyles( 'mediawiki.special' );
 
 		$opts = new FormOptions();
 
@@ -347,10 +347,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			if ( $level == 0 && !$this->including() ) {
 				$out->addHTML( $this->whatlinkshereForm() );
 
-				// Show filters only if there are links
-				if ( $hidelinks || $hidetrans || $hideredirs || $hideimages ) {
-					$out->addHTML( $this->getFilterPanel() );
-				}
 				$msgKey = is_int( $namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
 				$link = $this->getLinkRenderer()->makeLink(
 					$this->target,
@@ -468,7 +464,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		if ( $level == 0 && !$this->including() ) {
 			$out->addHTML( $this->whatlinkshereForm() );
-			$out->addHTML( $this->getFilterPanel() );
 
 			$link = $this->getLinkRenderer()->makeLink(
 				$this->target,
@@ -671,6 +666,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				'default' => $target,
 				'id' => 'mw-whatlinkshere-target',
 				'label-message' => 'whatlinkshere-page',
+				'section' => 'whatlinkshere-target',
 			],
 			'namespace' => [
 				'type' => 'namespaceselect',
@@ -679,64 +675,51 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				'label-message' => 'namespace',
 				'all' => '',
 				'in-user-lang' => true,
+				'section' => 'whatlinkshere-ns',
 			],
 			'invert' => [
 				'type' => 'check',
 				'name' => 'invert',
 				'id' => 'nsinvert',
 				'hide-if' => [ '===', 'namespace', '' ],
-				'label-raw' => Html::element(
-					'span',
-					[ 'title' => $this->msg( 'tooltip-whatlinkshere-invert' )->text() ],
-					$this->msg( 'invert' )->text()
-				),
+				'label-message' => 'invert',
+				'help-message' => 'tooltip-whatlinkshere-invert',
+				'help-inline' => false,
+				'section' => 'whatlinkshere-ns',
 			],
 		];
 
-		$form = HTMLForm::factory( 'table', $fields, $this->getContext() )
-			->setMethod( 'GET' )
-			->setTitle( $this->getPageTitle() )
-			// Values that should not be forgotten
-			->addHiddenFields( $this->opts->getUnconsumedValues() )
-			->setWrapperLegendMsg( 'whatlinkshere' )
-			->setSubmitTextMsg( 'whatlinkshere-submit' );
-
-		return $form->prepareForm()->getHTML( false );
-	}
-
-	/**
-	 * Create filter panel
-	 *
-	 * @return string HTML fieldset and filter panel with the show/hide links
-	 */
-	private function getFilterPanel() {
-		$show = $this->msg( 'show' )->text();
-		$hide = $this->msg( 'hide' )->text();
-
-		$changed = $this->opts->getChangedValues();
-		unset( $changed['target'] ); // Already in the request title
-
-		$links = [];
-		$types = [ 'hidetrans', 'hidelinks', 'hideredirs' ];
-		if ( $this->target->getNamespace() === NS_FILE ) {
-			$types[] = 'hideimages';
+		$filters = [ 'hidetrans', 'hidelinks', 'hideredirs' ];
+		if ( $this->target instanceof Title &&
+			$this->target->getNamespace() == NS_FILE ) {
+			$filters[] = 'hideimages';
 		}
 
 		// Combined message keys: 'whatlinkshere-hideredirs', 'whatlinkshere-hidetrans',
 		// 'whatlinkshere-hidelinks', 'whatlinkshere-hideimages'
 		// To be sure they will be found by grep
-		foreach ( $types as $type ) {
-			$chosen = $this->opts->getValue( $type );
-			$msg = $chosen ? $show : $hide;
-			$overrides = [ $type => !$chosen ];
-			$links[] = $this->msg( "whatlinkshere-{$type}" )->rawParams(
-				$this->makeSelfLink( $msg, array_merge( $changed, $overrides ) ) )->escaped();
+		foreach ( $filters as $filter ) {
+			$msg = $this->msg( 'hide' )->text();
+			$msg = $this->msg( "whatlinkshere-{$filter}", $msg )->text();
+			$fields[$filter] = [
+				'type' => 'check',
+				'name' => $filter,
+				'label' => $msg,
+				'section' => 'whatlinkshere-filter',
+			];
 		}
 
-		return Xml::fieldset(
-			$this->msg( 'whatlinkshere-filters' )->text(),
-			$this->getLanguage()->pipeList( $links )
-		);
+		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() )
+			->setMethod( 'GET' )
+			->setTitle( $this->getPageTitle() )
+			// When target is defined, the user is paging through results
+			// so we hide the form by default to allow users to focus on browsing
+			// rather than defining parameters
+			->setCollapsibleOptions( $this->opts['target'] ?? false )
+			->setWrapperLegendMsg( 'whatlinkshere' )
+			->setSubmitTextMsg( 'whatlinkshere-submit' );
+
+		return $form->prepareForm()->getHTML( false );
 	}
 
 	/**
