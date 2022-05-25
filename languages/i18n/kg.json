@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"DannyS712",
 			"Irus",
 			"Mouse21",
@@ -305,8 +306,8 @@
 	"recentchanges-label-bot": "Nsoba yayi me salama na robo",
 	"rcshowhideminor": "$1 bansoba ya fyoti",
 	"rcshowhidemine": "$1 bansoba ya munu",
-	"diff": "nsoba",
-	"hist": "nsoba",
+	"diff": "nsoba (diff)",
+	"hist": "nsoba (hist)",
 	"hide": "Bûmbisa",
 	"show": "Monisa",
 	"minoreditletter": "f",
