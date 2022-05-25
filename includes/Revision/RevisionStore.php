@@ -1682,7 +1682,7 @@ class RevisionStore
 		$comment = $this->commentStore->getCommentLegacy( $db, 'ar_comment', $row, true );
 
 		if ( !( $slots instanceof RevisionSlots ) ) {
-			$slots = $this->newRevisionSlots( $row->ar_rev_id, $row, $slots, $queryFlags, $page );
+			$slots = $this->newRevisionSlots( (int)$row->ar_rev_id, $row, $slots, $queryFlags, $page );
 		}
 		return new RevisionArchiveRecord( $page, $user, $comment, $row, $slots, $this->wikiId );
 	}
@@ -1765,7 +1765,7 @@ class RevisionStore
 		$comment = $this->commentStore->getCommentLegacy( $db, 'rev_comment', $row, true );
 
 		if ( !( $slots instanceof RevisionSlots ) ) {
-			$slots = $this->newRevisionSlots( $row->rev_id, $row, $slots, $queryFlags, $page );
+			$slots = $this->newRevisionSlots( (int)$row->rev_id, $row, $slots, $queryFlags, $page );
 		}
 
 		// If this is a cached row, instantiate a cache-aware RevisionRecord to avoid stale data.
