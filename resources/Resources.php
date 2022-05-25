@@ -2392,6 +2392,7 @@ return [
 		],
 	],
 	'mediawiki.special.createaccount' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.special.createaccount",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.special.createaccount",
 		'packageFiles' => [
