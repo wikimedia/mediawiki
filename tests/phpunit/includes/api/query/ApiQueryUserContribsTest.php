@@ -114,6 +114,7 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 			yield "User IDs, $name" => [ [ 'ucuserids' => $users ], $reverse, 9 ];
 			yield "Users by prefix, $name" => [ [ 'ucuserprefix' => __CLASS__ ], $reverse, 9 ];
 			yield "IPs by prefix, $name" => [ [ 'ucuserprefix' => '192.168.2.' ], $reverse, 9 ];
+			yield "IPs by range, $name" => [ [ 'uciprange' => '192.168.2.0/24' ], $reverse, 9 ];
 		}
 	}
 
