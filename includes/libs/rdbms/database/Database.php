@@ -253,6 +253,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->lbInfo = $params['lbInfo'] ?? [];
 		$this->lazyMasterHandle = $params['lazyMasterHandle'] ?? null;
 		$this->connectionVariables = $params['variables'] ?? [];
+		// Set SQL mode, default is turning them all off, can be overridden or skipped with null
+		if ( is_string( $params['sqlMode'] ?? null ) ) {
+			$this->connectionVariables['sql_mode'] = $params['sqlMode'];
+		}
 
 		$this->flags = (int)$params['flags'];
 		$this->cliMode = (bool)$params['cliMode'];
