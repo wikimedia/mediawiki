@@ -73,6 +73,9 @@ class TrackingCategories {
 		'post-expand-template-argument-category',
 		'post-expand-template-inclusion-category',
 		'restricted-displaytitle-ignored',
+		# template-equals-category is unused in MW>=1.39, but the category
+		# can be left around for a major release or so for an easier
+		# transition for anyone who didn't do the cleanup. T91154
 		'template-equals-category',
 		'template-loop-category',
 		'unstrip-depth-category',
