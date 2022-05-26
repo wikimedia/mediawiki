@@ -101,7 +101,8 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			$parserCacheFactory,
 			$this->getServiceContainer()->getGlobalIdGenerator(),
 			$this->getServiceContainer()->getPageStore(),
-			$this->getParsoidOutputStash()
+			$this->getParsoidOutputStash(),
+			$this->getServiceContainer()->getStatsdDataFactory()
 		);
 
 		if ( $parsoid !== null ) {
