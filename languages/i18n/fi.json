@@ -1147,6 +1147,7 @@
 	"prefs-custom-js": "Käyttäjäkohtainen JavaScript-sivu",
 	"prefs-common-config": "Yhteiset CSS/JSON/JavaScript-sivut kaikille ulkoasuille:",
 	"prefs-reset-intro": "Voit käyttää tätä sivua palauttaaksesi kaikki asetuksesi sivuston oletusasetuksiin. Tätä ei voi kumota.",
+	"prefs-reset-confirm": "Kyllä, haluan nollata asetukseni.",
 	"prefs-emailconfirm-label": "Sähköpostin varmistus:",
 	"youremail": "Sähköpostiosoite:",
 	"username": "{{GENDER:$1|Käyttäjänimi}}:",

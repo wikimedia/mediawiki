@@ -3557,7 +3557,7 @@
 	"feedback-thanks-title": "Ďakujeme",
 	"feedback-useragent": "Prehliadač:",
 	"searchsuggest-search": "Hľadať na {{SITENAME}}",
-	"searchsuggest-containing": "obsahuje...",
+	"searchsuggest-containing": "Hľadať stránky obsahujúce",
 	"search-match-redirect-label": "Pri vyhľadávaní presmerovať na presné zhody",
 	"search-match-redirect-help": "Vyberte, ak chcete byť presmerovaný na stránku, ktorej názov sa zhoduje s vaším vyhľadávaním",
 	"searchlimit-label": "Počet výsledkov vyhľadávania na stránku:",

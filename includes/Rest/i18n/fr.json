@@ -44,5 +44,6 @@
 	"rest-extraneous-csrf-token": "Jeton CRSF superflu trouvé. Les jetons CSRF ne doivent pas être utilisés lors de l’utilisation de mécanismes d’authentification tels que OAuth, qui sont sûrs vis-à-vis des attaques CSRF.",
 	"rest-cannot-load-file": "Le fichier de titre « $1 » n’a pas pu être chargé.",
 	"rest-cross-origin-anon-write": "Les requêtes d’écriture anonymes d’origine croisée ne sont pas autorisées",
-	"rest-requires-safe-against-csrf": "Ce point de terminaison exige un fournisseur de session qui protège des usurpations de sites (CSRF)."
+	"rest-requires-safe-against-csrf": "Ce point de terminaison exige un fournisseur de session qui protège des usurpations de sites (CSRF).",
+	"rest-badtoken": "Le jeton CSRF fourni n’est pas valide."
 }
