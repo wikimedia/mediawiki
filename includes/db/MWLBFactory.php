@@ -138,7 +138,9 @@ abstract class MWLBFactory {
 					$options
 				);
 
-				$server['flags'] |= $options->get( MainConfigNames::DBssl ) ? DBO_SSL : 0;
+				if ( $options->get( MainConfigNames::DBssl ) ) {
+					$server['ssl'] = true;
+				}
 				$server['flags'] |= $options->get( MainConfigNames::DBcompress ) ? DBO_COMPRESS : 0;
 
 				$lbConf['servers'] = [ $server ];

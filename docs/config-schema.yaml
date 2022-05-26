@@ -1684,8 +1684,7 @@ config-schema:
             Whether to use SSL in DB connection.
             This setting is only used if $wgLBFactoryConf['class'] is set to
             '\Wikimedia\Rdbms\LBFactorySimple' and $wgDBservers is an empty array; otherwise
-            the DBO_SSL flag must be set in the 'flags' option of the database
-            connection to achieve the same functionality.
+            the 'ssl' parameter of the server array must be set to achieve the same functionality.
     DBcompress:
         default: false
         description: |-
@@ -1807,9 +1806,10 @@ config-schema:
               - flags:       (optional) Bit field of properties:
                              - DBO_DEFAULT:    Transactionalize web requests and use autocommit otherwise
                              - DBO_DEBUG:      Equivalent of $wgDebugDumpSql
-                             - DBO_SSL:        Use TLS connection encryption if available
+                             - DBO_SSL:        Use TLS connection encryption if available (deprecated)
                              - DBO_COMPRESS:   Use protocol compression with database connections
                              - DBO_PERSISTENT: Enables persistent database connections
+              - ssl:         (optional) Boolean, whether to use TLS encryption. Overrides DBO_SSL.
               - max lag:     (optional) Maximum replication lag before a replica DB goes out of rotation
               - is static:   (optional) Set to true if the dataset is static and no replication is used.
               - cliMode:     (optional) Connection handles will not assume that requests are short-lived
