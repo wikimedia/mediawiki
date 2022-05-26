@@ -30,6 +30,7 @@ use MediaWiki\Settings\SettingsBuilder;
 
 // No AutoLoader yet
 require_once __DIR__ . '/includes/MaintenanceRunner.php';
+require_once __DIR__ . '/includes/MaintenanceParameters.php';
 
 if ( !defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 	echo "This file must be included after Maintenance.php\n";
@@ -40,7 +41,7 @@ if ( !defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 // If a class is using CommandLineInc (old school maintenance), they definitely
 // cannot be included and will proceed with execution
 // @phan-suppress-next-line PhanSuspiciousValueComparisonInGlobalScope
-if ( !Maintenance::shouldExecute() && $maintClass != CommandLineInc::class ) {
+if ( !MaintenanceRunner::shouldExecute() && $maintClass != CommandLineInc::class ) {
 	return;
 }
 
