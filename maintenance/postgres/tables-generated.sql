@@ -868,7 +868,6 @@ CREATE TABLE page (
   page_id SERIAL NOT NULL,
   page_namespace INT NOT NULL,
   page_title TEXT NOT NULL,
-  page_restrictions TEXT DEFAULT NULL,
   page_is_redirect SMALLINT DEFAULT 0 NOT NULL,
   page_is_new SMALLINT DEFAULT 0 NOT NULL,
   page_random FLOAT NOT NULL,

@@ -218,6 +218,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'user', 'user_editcount', 'patch-user-user_editcount.sql' ],
 			[ 'runMaintenance', MigrateRevisionActorTemp::class, 'maintenance/migrateRevisionActorTemp.php' ],
 			[ 'dropTable', 'revision_actor_temp' ],
+			[ 'runMaintenance', UpdateRestrictions::class, 'maintenance/updateRestrictions.php' ],
+			[ 'dropField', 'page', 'page_restrictions', 'patch-page-drop-page_restrictions.sql' ],
 		];
 	}
 
