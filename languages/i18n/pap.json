@@ -10,7 +10,8 @@
 			"ObaTango",
 			"Sdm1985",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Suprayá lenk:",
@@ -124,7 +125,7 @@
 	"hidden-category-category": "Kategoria skondí",
 	"category-subcat-count": "{{PLURAL:$2|E kategoria akí tin solamente e próksimo supkategoria.|E kategoria akí tin e siguiente {{PLURAL:$1|supkategoria|$1 supkategorianan}}, di $2 na tur.}}",
 	"category-subcat-count-limited": "E kategoria akí tin e siguiente {{PLURAL:$1|supkategoria|$1 supkategorianan}}.",
-	"category-article-count": "{{PLURAL:$2|E kategoria akí tin solamente e próksimo página.|E próksimo{{PLURAL:$1|página ta|$1páginanan ta}} den e kategoria akí, di $2 na tur.}}",
+	"category-article-count": "{{PLURAL:$2|E kategoria akí tin solamente e próksimo página.|E próksimo {{PLURAL:$1|página ta|$1 páginanan ta}} den e kategoria akí, di $2 na tur.}}",
 	"category-article-count-limited": "E próksimo {{PLURAL:$1|página ta|$1 páginana ta}} den e kategoria akí.",
 	"category-file-count": "{{PLURAL:$2|E kategoria akí tin solamente e próksimo fail.|E próksimo {{PLURAL:$1|fail ta|$1 failnan ta}} den e kategoria akí, di $2 na tur.}}",
 	"category-file-count-limited": "E próksimo {{PLURAL:$1|fail ta|$1 failnan ta}} den e kategoria akí.",
@@ -658,7 +659,6 @@
 	"logentry-newusers-create": "Kuenta di usuario $1 ta {{GENDER:$2|kreá}}",
 	"logentry-upload-upload": "$1 a {{GENDER:$2|añadí}}$3",
 	"searchsuggest-search": "Búskeda di {{SITENAME}}",
-	"view-view-foreign": "Bista di $1",
 	"view-create-local": "Añadí deskripshon lokal",
 	"nstab-mainpage": "Página prinsipal",
 	"view-edit-local": "Editá deskripshon lokal",
