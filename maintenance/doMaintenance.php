@@ -41,7 +41,7 @@ if ( !defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 // If a class is using CommandLineInc (old school maintenance), they definitely
 // cannot be included and will proceed with execution
 // @phan-suppress-next-line PhanSuspiciousValueComparisonInGlobalScope
-if ( !Maintenance::shouldExecute() && $maintClass != CommandLineInc::class ) {
+if ( !MaintenanceRunner::shouldExecute() && $maintClass != CommandLineInc::class ) {
 	return;
 }
 

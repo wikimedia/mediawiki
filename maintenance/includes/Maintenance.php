@@ -23,6 +23,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\MaintenanceParameters;
+use MediaWiki\Maintenance\MaintenanceRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
@@ -203,40 +204,22 @@ abstract class Maintenance {
 	public function __construct() {
 		$this->parameters = new MaintenanceParameters();
 		$this->addDefaultParams();
-		register_shutdown_function( [ $this, 'outputChanneled' ], false );
 	}
 
 	/**
-	 * Should we execute the maintenance script, or just allow it to be included
-	 * as a standalone class? It checks that the call stack only includes this
-	 * function and "requires" (meaning was called from the file scope)
-	 *
+	 * @since 1.39
+	 * @return MaintenanceParameters
+	 */
+	public function getParameters() {
+		return $this->parameters;
+	}
+
+	/**
+	 * @deprecated since 1.39, use MaintenanceRunner::shouldExecute().
 	 * @return bool
 	 */
 	public static function shouldExecute() {
-		global $wgCommandLineMode;
-
-		if ( !function_exists( 'debug_backtrace' ) ) {
-			// If someone has a better idea...
-			return $wgCommandLineMode;
-		}
-
-		$bt = debug_backtrace();
-		$count = count( $bt );
-		if ( $count < 2 ) {
-			return false;
-		}
-		if ( $bt[0]['class'] !== self::class || $bt[0]['function'] !== 'shouldExecute' ) {
-			return false; // last call should be to this function
-		}
-		$includeFuncs = [ 'require_once', 'require', 'include', 'include_once' ];
-		for ( $i = 1; $i < $count; $i++ ) {
-			if ( !in_array( $bt[$i]['function'], $includeFuncs ) ) {
-				return false; // previous calls should all be "requires"
-			}
-		}
-
-		return true;
+		return MaintenanceRunner::shouldExecute();
 	}
 
 	/**
@@ -709,49 +692,11 @@ abstract class Maintenance {
 	 * Do some checking and basic setup
 	 */
 	public function setup() {
-		global $IP, $wgCommandLineMode;
-
-		# Abort if called from a web server
-		# wfIsCLI() is not available yet
-		if ( PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' ) {
-			$this->fatalError( 'This script must be run from the command line' );
-		}
-
-		if ( $IP === null ) {
-			$this->fatalError( "\$IP not set, aborting!\n" .
-				'(Did you forget to call parent::__construct() in your maintenance script?)' );
-		}
-
-		# Make sure we can handle script parameters
-		if ( !ini_get( 'register_argc_argv' ) ) {
-			$this->fatalError( 'Cannot get command line arguments, register_argc_argv is set to false' );
-		}
-
-		// Send PHP warnings and errors to stderr instead of stdout.
-		// This aids in diagnosing problems, while keeping messages
-		// out of redirected output.
-		if ( ini_get( 'display_errors' ) ) {
-			ini_set( 'display_errors', 'stderr' );
-		}
-
 		$this->loadParamsAndArgs();
 
 		# Set the memory limit
 		# Note we need to set it again later in case LocalSettings changed it
 		$this->adjustMemoryLimit();
-
-		# Set max execution time to 0 (no limit). PHP.net says that
-		# "When running PHP from the command line the default setting is 0."
-		# But sometimes this doesn't seem to be the case.
-		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal Scalar okay with php8.1
-		ini_set( 'max_execution_time', 0 );
-
-		$wgCommandLineMode = true;
-
-		# Turn off output buffering if it's on
-		while ( ob_get_level() > 0 ) {
-			ob_end_flush();
-		}
 	}
 
 	/**
@@ -1109,41 +1054,12 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Generic setup for most installs. Returns the location of LocalSettings
+	 * @deprecated since 1.39. Does nothing. Unused.
 	 * @return string
 	 */
 	public function loadSettings() {
-		global $wgCommandLineMode;
-
-		if ( $this->hasOption( 'conf' ) ) {
-			// Define the constant instead of directly setting $settingsFile
-			// to ensure consistency. wfDetectLocalSettingsFile() will return
-			// MW_CONFIG_FILE if it is defined.
-			define( 'MW_CONFIG_FILE', $this->getOption( 'conf' ) );
-		}
-		$settingsFile = wfDetectLocalSettingsFile();
-
-		if ( $this->hasOption( 'wiki' ) ) {
-			$wikiName = $this->getOption( 'wiki' );
-			$bits = explode( '-', $wikiName, 2 );
-			define( 'MW_DB', $bits[0] );
-			define( 'MW_PREFIX', $bits[1] ?? '' );
-			define( 'MW_WIKI_NAME', $wikiName );
-		} elseif ( $this->hasOption( 'server' ) ) {
-			// Provide the option for site admins to detect and configure
-			// multiple wikis based on server names. This offers --server
-			// as alternative to --wiki.
-			// See https://www.mediawiki.org/wiki/Manual:Wiki_family
-			$_SERVER['SERVER_NAME'] = $this->getOption( 'server' );
-		}
-
-		if ( !is_readable( $settingsFile ) ) {
-			$this->fatalError( "The file $settingsFile must exist and be readable.\n" .
-				"Use --conf to specify it." );
-		}
-		$wgCommandLineMode = true;
-
-		return $settingsFile;
+		// noop
+		return MW_CONFIG_FILE;
 	}
 
 	/**
