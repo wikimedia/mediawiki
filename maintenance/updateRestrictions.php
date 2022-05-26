@@ -121,6 +121,7 @@ class UpdateRestrictions extends Maintenance {
 		} while ( $batchMaxPageId < $maxPageId );
 
 		$this->output( "...Done!\n" );
+		return true;
 	}
 
 	/**
