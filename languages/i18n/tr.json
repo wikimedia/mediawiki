@@ -1397,7 +1397,7 @@
 	"right-import": "Diğer vikilerden sayfaları içeri aktar",
 	"right-importupload": "Bir dosya yüklemesinden sayfaları içeri aktar",
 	"right-patrol": "Diğerlerinin değişikliklerini kontrol edilmiş olarak işaretle",
-	"right-autopatrol": "Kişinin kendi değişikliklerinin otomatikman denetlendi olarak işaretlenmiş olması",
+	"right-autopatrol": "Kendin tarafından açılan maddeleri otomatik olarak kontrol edilmiş işaretle",
 	"right-patrolmarks": "Son değişiklikler gözleme işaretlerini görüntüle",
 	"right-unwatchedpages": "İzlenmeyen sayfaların bir listesini görüntüle",
 	"right-mergehistory": "Sayfalarının tarihlerini birleştir",

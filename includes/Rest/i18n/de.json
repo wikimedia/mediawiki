@@ -41,5 +41,6 @@
 	"rest-extraneous-csrf-token": "Fremdes CSRF-Token gefunden. CSRF-Token dürfen nicht verwendet werden, wenn Authentifizierungsmechanismen wie OAuth verwendet werden, die gegen CSRF-Angriffe sicher sind.",
 	"rest-cannot-load-file": "Die Datei von „$1“ kann nicht geladen werden.",
 	"rest-cross-origin-anon-write": "Anonyme Cross-Origin-Schreibanfragen sind nicht erlaubt",
-	"rest-requires-safe-against-csrf": "Dieser Endpunkt erfordert einen CSRF-sicheren Sitzungsanbieter."
+	"rest-requires-safe-against-csrf": "Dieser Endpunkt erfordert einen CSRF-sicheren Sitzungsanbieter.",
+	"rest-badtoken": "Das angegebene CSRF-Token ist ungültig."
 }
