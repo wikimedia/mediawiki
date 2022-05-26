@@ -22,11 +22,16 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Maintenance\MaintenanceParameters;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\Shell;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+
+// NOTE: MaintenanceParameters is needed in the constructor, and we may not have
+//       autoloading enabled at this point?
+require_once __DIR__ . '/MaintenanceParameters.php';
 
 /**
  * Abstract maintenance class for quickly writing and churning out
@@ -71,26 +76,36 @@ abstract class Maintenance {
 	public const STDIN_ALL = -1;
 
 	/**
-	 * Array of desired/allowed params
+	 * @var MaintenanceParameters
+	 */
+	protected $parameters;
+
+	/**
+	 * Empty.
+	 * @deprecated since 1.39, use $this->parameters instead.
 	 * @var array[]
 	 * @phan-var array<string,array{desc:string,require:bool,withArg:string,shortName:string,multiOccurrence:bool}>
 	 */
 	protected $mParams = [];
 
-	/** @var array Mapping short parameters to long ones */
-	protected $mShortParamsMap = [];
-
-	/** @var array Desired/allowed args */
+	/**
+	 * Empty.
+	 * @var array Desired/allowed args
+	 * @deprecated since 1.39, use $this->parameters instead.
+	 */
 	protected $mArgList = [];
 
-	/** @var array This is the list of options that were actually passed */
+	/**
+	 * @var array This is the list of options that were actually passed
+	 * @deprecated since 1.39, use $this->parameters instead.
+	 */
 	protected $mOptions = [];
 
-	/** @var array This is the list of arguments that were actually passed */
+	/**
+	 * @var array This is the list of arguments that were actually passed
+	 * @deprecated since 1.39, use $this->parameters instead.
+	 */
 	protected $mArgs = [];
-
-	/** @var bool Allow arbitrary options to be passed, or only specified ones? */
-	protected $mAllowUnregisteredOptions = false;
 
 	/** @var string|null Name of the script currently running */
 	protected $mSelf;
@@ -99,10 +114,16 @@ abstract class Maintenance {
 	protected $mQuiet = false;
 	protected $mDbUser, $mDbPass;
 
-	/** @var string A description of the script, children should change this via addDescription() */
+	/**
+	 * @var string A description of the script, children should change this via addDescription()
+	 * @deprecated since 1.39, use $this->parameters instead.
+	 */
 	protected $mDescription = '';
 
-	/** @var bool Have we already loaded our user input? */
+	/**
+	 * @var bool Have we already loaded our user input?
+	 * @deprecated since 1.39, treat as private to the Maintenance base class
+	 */
 	protected $mInputLoaded = false;
 
 	/**
@@ -115,14 +136,13 @@ abstract class Maintenance {
 
 	/**
 	 * Generic options added by addDefaultParams()
-	 * @var array[]
-	 * @phan-var array<string,array{desc:string,require:bool,withArg:string,shortName:string,multiOccurrence:bool}>
+	 * @var string[]
 	 */
 	private $mGenericParameters = [];
+
 	/**
 	 * Generic options which might or not be supported by the script
-	 * @var array[]
-	 * @phan-var array<string,array{desc:string,require:bool,withArg:string,shortName:string,multiOccurrence:bool}>
+	 * @var string[]
 	 */
 	private $mDependentParameters = [];
 
@@ -169,6 +189,7 @@ abstract class Maintenance {
 	 * This is an array of arrays where
 	 * 0 => the option and 1 => parameter value.
 	 *
+	 * @deprecated since 1.39, use $this->parameters instead.
 	 * @var array
 	 */
 	public $orderedOptions = [];
@@ -180,6 +201,7 @@ abstract class Maintenance {
 	 * @stable to call
 	 */
 	public function __construct() {
+		$this->parameters = new MaintenanceParameters();
 		$this->addDefaultParams();
 		register_shutdown_function( [ $this, 'outputChanneled' ], false );
 	}
@@ -234,7 +256,7 @@ abstract class Maintenance {
 	 * @return bool true if the option exists, false otherwise
 	 */
 	protected function supportsOption( $name ) {
-		return isset( $this->mParams[$name] );
+		return $this->parameters->supportsOption( $name );
 	}
 
 	/**
@@ -251,17 +273,14 @@ abstract class Maintenance {
 	protected function addOption( $name, $description, $required = false,
 		$withArg = false, $shortName = false, $multiOccurrence = false
 	) {
-		$this->mParams[$name] = [
-			'desc' => $description,
-			'require' => $required,
-			'withArg' => $withArg,
-			'shortName' => $shortName,
-			'multiOccurrence' => $multiOccurrence
-		];
-
-		if ( $shortName !== false ) {
-			$this->mShortParamsMap[$shortName] = $name;
-		}
+		$this->parameters->addOption(
+			$name,
+			$description,
+			$required,
+			$withArg,
+			$shortName,
+			$multiOccurrence
+		);
 	}
 
 	/**
@@ -271,7 +290,7 @@ abstract class Maintenance {
 	 * @return bool
 	 */
 	protected function hasOption( $name ) {
-		return isset( $this->mOptions[$name] );
+		return $this->parameters->hasOption( $name );
 	}
 
 	/**
@@ -286,11 +305,7 @@ abstract class Maintenance {
 	 * @return-taint none
 	 */
 	protected function getOption( $name, $default = null ) {
-		if ( $this->hasOption( $name ) ) {
-			return $this->mOptions[$name];
-		} else {
-			return $default;
-		}
+		return $this->parameters->getOption( $name, $default );
 	}
 
 	/**
@@ -300,11 +315,7 @@ abstract class Maintenance {
 	 * @param bool $required Is this required?
 	 */
 	protected function addArg( $arg, $description, $required = true ) {
-		$this->mArgList[] = [
-			'name' => $arg,
-			'desc' => $description,
-			'require' => $required
-		];
+		$this->parameters->addArg( $arg, $description, $required );
 	}
 
 	/**
@@ -312,7 +323,7 @@ abstract class Maintenance {
 	 * @param string $name The option to remove.
 	 */
 	protected function deleteOption( $name ) {
-		unset( $this->mParams[$name] );
+		$this->parameters->deleteOption( $name );
 	}
 
 	/**
@@ -321,7 +332,7 @@ abstract class Maintenance {
 	 * @param bool $allow Should we allow?
 	 */
 	protected function setAllowUnregisteredOptions( $allow ) {
-		$this->mAllowUnregisteredOptions = $allow;
+		$this->parameters->setAllowUnregisteredOptions( $allow );
 	}
 
 	/**
@@ -329,7 +340,7 @@ abstract class Maintenance {
 	 * @param string $text The text of the description
 	 */
 	protected function addDescription( $text ) {
-		$this->mDescription = $text;
+		$this->parameters->setDescription( $text );
 	}
 
 	/**
@@ -338,11 +349,7 @@ abstract class Maintenance {
 	 * @return bool
 	 */
 	protected function hasArg( $argId = 0 ) {
-		if ( func_num_args() === 0 ) {
-			wfDeprecated( __METHOD__ . ' without an $argId', '1.33' );
-		}
-
-		return isset( $this->mArgs[$argId] );
+		return $this->parameters->hasArg( $argId );
 	}
 
 	/**
@@ -353,11 +360,7 @@ abstract class Maintenance {
 	 * @return-taint none
 	 */
 	protected function getArg( $argId = 0, $default = null ) {
-		if ( func_num_args() === 0 ) {
-			wfDeprecated( __METHOD__ . ' without an $argId', '1.33' );
-		}
-
-		return $this->mArgs[$argId] ?? $default;
+		return $this->parameters->getArg( $argId, $default );
 	}
 
 	/**
@@ -385,9 +388,9 @@ abstract class Maintenance {
 		if ( $this->mBatchSize ) {
 			$this->addOption( 'batch-size', 'Run this many operations ' .
 				'per batch, default: ' . $this->mBatchSize, false, true );
-			if ( isset( $this->mParams['batch-size'] ) ) {
+			if ( $this->supportsOption( 'batch-size' ) ) {
 				// This seems a little ugly...
-				$this->mDependentParameters['batch-size'] = $this->mParams['batch-size'];
+				$this->mDependentParameters[] = 'batch-size';
 			}
 		}
 	}
@@ -576,7 +579,7 @@ abstract class Maintenance {
 		$this->addOption( 'profiler', 'Profiler output format (usually "text")', false, true );
 
 		# Save generic options to display them separately in help
-		$this->mGenericParameters = $this->mParams;
+		$this->mGenericParameters = $this->parameters->getOptionNames();
 
 		# Script-dependent options:
 
@@ -588,8 +591,11 @@ abstract class Maintenance {
 		}
 
 		# Save additional script-dependent options to display
-		#  them separately in help
-		$this->mDependentParameters = array_diff_key( $this->mParams, $this->mGenericParameters );
+		# them separately in help
+		$this->mDependentParameters = array_diff(
+			$this->parameters->getOptionNames(),
+			$this->mGenericParameters
+		);
 	}
 
 	/**
@@ -687,7 +693,11 @@ abstract class Maintenance {
 		 * @var Maintenance $child
 		 */
 		$child = new $maintClass();
-		$child->loadParamsAndArgs( $this->mSelf, $this->mOptions, $this->mArgs );
+		$child->loadParamsAndArgs(
+			$this->mSelf,
+			$this->parameters->getOptions(),
+			$this->parameters->getArgs()
+		);
 		if ( $this->mDb !== null ) {
 			$child->setDB( $this->mDb );
 		}
@@ -805,8 +815,7 @@ abstract class Maintenance {
 	 * Clear all params and arguments.
 	 */
 	public function clearParamsAndArgs() {
-		$this->mOptions = [];
-		$this->mArgs = [];
+		$this->parameters->clear();
 		$this->mInputLoaded = false;
 	}
 
@@ -818,106 +827,38 @@ abstract class Maintenance {
 	 * @param array $argv
 	 */
 	public function loadWithArgv( $argv ) {
-		$options = [];
-		$args = [];
-		$this->orderedOptions = [];
+		$this->parameters->assignGroup(
+			'Generic maintenance parameters',
+			$this->mGenericParameters
+		);
+		$this->parameters->assignGroup(
+			'Script dependent parameters',
+			$this->mDependentParameters
+		);
 
-		# Parse arguments
-		for ( $arg = reset( $argv ); $arg !== false; $arg = next( $argv ) ) {
-			if ( $arg == '--' ) {
-				# End of options, remainder should be considered arguments
-				$arg = next( $argv );
-				while ( $arg !== false ) {
-					$args[] = $arg;
-					$arg = next( $argv );
-				}
-				break;
-			} elseif ( substr( $arg, 0, 2 ) == '--' ) {
-				# Long options
-				$option = substr( $arg, 2 );
-				if ( isset( $this->mParams[$option] ) && $this->mParams[$option]['withArg'] ) {
-					$param = next( $argv );
-					if ( $param === false ) {
-						$this->error( "\nERROR: $option parameter needs a value after it\n" );
-						$this->maybeHelp( true );
-					}
-
-					$this->setParam( $options, $option, $param );
-				} else {
-					$bits = explode( '=', $option, 2 );
-					$this->setParam( $options, $bits[0], $bits[1] ?? 1 );
-				}
-			} elseif ( $arg == '-' ) {
-				# Lonely "-", often used to indicate stdin or stdout.
-				$args[] = $arg;
-			} elseif ( substr( $arg, 0, 1 ) == '-' ) {
-				# Short options
-				$argLength = strlen( $arg );
-				for ( $p = 1; $p < $argLength; $p++ ) {
-					$option = $arg[$p];
-					if ( !isset( $this->mParams[$option] ) && isset( $this->mShortParamsMap[$option] ) ) {
-						$option = $this->mShortParamsMap[$option];
-					}
-
-					if ( isset( $this->mParams[$option]['withArg'] ) && $this->mParams[$option]['withArg'] ) {
-						$param = next( $argv );
-						if ( $param === false ) {
-							$this->error( "\nERROR: $option parameter needs a value after it\n" );
-							$this->maybeHelp( true );
-						}
-						$this->setParam( $options, $option, $param );
-					} else {
-						$this->setParam( $options, $option, 1 );
-					}
-				}
-			} else {
-				$args[] = $arg;
-			}
+		if ( $this->mDescription ) {
+			$this->parameters->setDescription( $this->mDescription );
 		}
 
-		$this->mOptions = $options;
-		$this->mArgs = $args;
+		$this->parameters->loadWithArgv( $argv );
+
+		if ( $this->parameters->hasErrors() ) {
+			$errors = "\nERROR: " . implode( "\nERROR: ", $this->parameters->getErrors() ) . "\n";
+			$this->error( $errors );
+			$this->maybeHelp( true );
+		}
+
+		// compatibility
+		$this->mOptions = $this->parameters->getOptions();
+		$this->orderedOptions = $this->parameters->getOptionsSequence();
+		$this->mArgs = $this->parameters->getArgs();
+
 		$this->loadSpecialVars();
 		$this->mInputLoaded = true;
 	}
 
 	/**
-	 * Helper function used solely by loadParamsAndArgs
-	 * to prevent code duplication
-	 *
-	 * This sets the param in the options array based on
-	 * whether or not it can be specified multiple times.
-	 *
-	 * @since 1.27
-	 * @param array &$options
-	 * @param string $option
-	 * @param mixed $value
-	 */
-	private function setParam( &$options, $option, $value ) {
-		$this->orderedOptions[] = [ $option, $value ];
-
-		if ( isset( $this->mParams[$option] ) ) {
-			$multi = $this->mParams[$option]['multiOccurrence'];
-		} else {
-			$multi = false;
-		}
-		$exists = array_key_exists( $option, $options );
-		if ( $multi && $exists ) {
-			$options[$option][] = $value;
-		} elseif ( $multi ) {
-			$options[$option] = [ $value ];
-		} elseif ( !$exists ) {
-			$options[$option] = $value;
-		} else {
-			$this->error( "\nERROR: $option parameter given twice\n" );
-			$this->maybeHelp( true );
-		}
-	}
-
-	/**
 	 * Process command line arguments
-	 * $mOptions becomes an array with keys set to the option names
-	 * $mArgs becomes a zero-based array containing the non-option arguments
 	 *
 	 * @param string|null $self The name of the script, if any
 	 * @param array|null $opts An array of options, in form of key=>value
@@ -925,16 +866,12 @@ abstract class Maintenance {
 	 */
 	public function loadParamsAndArgs( $self = null, $opts = null, $args = null ) {
 		# If we were given opts or args, set those and return early
-		if ( $self !== null ) {
-			$this->mSelf = $self;
-			$this->mInputLoaded = true;
-		}
-		if ( $opts !== null ) {
-			$this->mOptions = $opts;
-			$this->mInputLoaded = true;
-		}
-		if ( $args !== null ) {
-			$this->mArgs = $args;
+		if ( $self !== null || $opts !== null || $args !== null ) {
+			if ( $self !== null ) {
+				$this->mSelf = $self;
+				$this->parameters->setName( $self );
+			}
+			$this->parameters->setOptionsAndArgs( $opts ?? [], $args ?? [] );
 			$this->mInputLoaded = true;
 		}
 
@@ -949,6 +886,7 @@ abstract class Maintenance {
 
 		global $argv;
 		$this->mSelf = $argv[0];
+		$this->parameters->setName( $this->mSelf );
 		$this->loadWithArgv( array_slice( $argv, 1 ) );
 	}
 
@@ -957,32 +895,14 @@ abstract class Maintenance {
 	 * @stable to override
 	 */
 	public function validateParamsAndArgs() {
-		$die = false;
-		# Check to make sure we've got all the required options
-		foreach ( $this->mParams as $opt => $info ) {
-			if ( $info['require'] && !$this->hasOption( $opt ) ) {
-				$this->error( "Param $opt required!" );
-				$die = true;
-			}
-		}
-		# Check arg list too
-		foreach ( $this->mArgList as $k => $info ) {
-			if ( $info['require'] && !$this->hasArg( $k ) ) {
-				$this->error( 'Argument <' . $info['name'] . '> required!' );
-				$die = true;
-			}
-		}
-		if ( !$this->mAllowUnregisteredOptions ) {
-			# Check for unexpected options
-			foreach ( $this->mOptions as $opt => $val ) {
-				if ( !$this->supportsOption( $opt ) ) {
-					$this->error( "Unexpected option $opt!" );
-					$die = true;
-				}
-			}
+		$valid = $this->parameters->validate();
+
+		if ( $this->parameters->hasErrors() ) {
+			$errors = "\nERROR: " . implode( "\nERROR: ", $this->parameters->getErrors() ) . "\n";
+			$this->error( $errors );
 		}
 
-		$this->maybeHelp( $die );
+		$this->maybeHelp( !$valid );
 	}
 
 	/**
@@ -1021,108 +941,9 @@ abstract class Maintenance {
 	 * Definitely show the help. Does not exit.
 	 */
 	protected function showHelp() {
-		$screenWidth = 80; // TODO: Calculate this!
-		$tab = "    ";
-		$descWidth = $screenWidth - ( 2 * strlen( $tab ) );
-
-		ksort( $this->mParams );
 		$this->mQuiet = false;
-
-		// Description ...
-		if ( $this->mDescription ) {
-			$this->output( "\n" . wordwrap( $this->mDescription, $screenWidth ) . "\n" );
-		}
-		$output = "\nUsage: php " . basename( $this->mSelf );
-
-		// ... append parameters ...
-		if ( $this->mParams ) {
-			$output .= " [--" . implode( "|--", array_keys( $this->mParams ) ) . "]";
-		}
-
-		// ... and append arguments.
-		if ( $this->mArgList ) {
-			$output .= ' ';
-			foreach ( $this->mArgList as $k => $arg ) {
-				if ( $arg['require'] ) {
-					$output .= '<' . $arg['name'] . '>';
-				} else {
-					$output .= '[' . $arg['name'] . ']';
-				}
-				if ( $k < count( $this->mArgList ) - 1 ) {
-					$output .= ' ';
-				}
-			}
-		}
-		$this->output( "$output\n\n" );
-
-		$this->formatHelpItems(
-			$this->mGenericParameters,
-			'Generic maintenance parameters',
-			$descWidth, $tab
-		);
-
-		$this->formatHelpItems(
-			$this->mDependentParameters,
-			'Script dependent parameters',
-			$descWidth, $tab
-		);
-
-		// Script-specific parameters not defined on construction by
-		// Maintenance::addDefaultParams()
-		$scriptSpecificParams = array_diff_key(
-			# all script parameters:
-			$this->mParams,
-			# remove the Maintenance default parameters:
-			$this->mGenericParameters,
-			$this->mDependentParameters
-		);
-
-		$this->formatHelpItems(
-			$scriptSpecificParams,
-			'Script specific parameters',
-			$descWidth, $tab
-		);
-
-		// Print arguments
-		if ( count( $this->mArgList ) > 0 ) {
-			$this->output( "Arguments:\n" );
-			// Arguments description
-			foreach ( $this->mArgList as $info ) {
-				$openChar = $info['require'] ? '<' : '[';
-				$closeChar = $info['require'] ? '>' : ']';
-				$this->output(
-					wordwrap(
-						"$tab$openChar" . $info['name'] . "$closeChar: " . $info['desc'],
-						$descWidth,
-						"\n$tab$tab"
-					) . "\n"
-				);
-			}
-			$this->output( "\n" );
-		}
-	}
-
-	private function formatHelpItems( array $items, $heading, $descWidth, $tab ) {
-		if ( $items === [] ) {
-			return;
-		}
-
-		$this->output( "$heading:\n" );
-
-		foreach ( $items as $name => $info ) {
-			if ( $info['shortName'] !== false ) {
-				$name .= ' (-' . $info['shortName'] . ')';
-			}
-			$this->output(
-				wordwrap(
-					"$tab--$name: " . strtr( $info['desc'], [ "\n" => "\n$tab$tab" ] ),
-					$descWidth,
-					"\n$tab$tab"
-				) . "\n"
-			);
-		}
-
-		$this->output( "\n" );
+		$help = $this->parameters->getHelp();
+		$this->output( $help );
 	}
 
 	/**
@@ -1294,26 +1115,26 @@ abstract class Maintenance {
 	public function loadSettings() {
 		global $wgCommandLineMode;
 
-		if ( isset( $this->mOptions['conf'] ) ) {
+		if ( $this->hasOption( 'conf' ) ) {
 			// Define the constant instead of directly setting $settingsFile
 			// to ensure consistency. wfDetectLocalSettingsFile() will return
 			// MW_CONFIG_FILE if it is defined.
-			define( 'MW_CONFIG_FILE', $this->mOptions['conf'] );
+			define( 'MW_CONFIG_FILE', $this->getOption( 'conf' ) );
 		}
 		$settingsFile = wfDetectLocalSettingsFile();
 
-		if ( isset( $this->mOptions['wiki'] ) ) {
-			$wikiName = $this->mOptions['wiki'];
+		if ( $this->hasOption( 'wiki' ) ) {
+			$wikiName = $this->getOption( 'wiki' );
 			$bits = explode( '-', $wikiName, 2 );
 			define( 'MW_DB', $bits[0] );
 			define( 'MW_PREFIX', $bits[1] ?? '' );
 			define( 'MW_WIKI_NAME', $wikiName );
-		} elseif ( isset( $this->mOptions['server'] ) ) {
+		} elseif ( $this->hasOption( 'server' ) ) {
 			// Provide the option for site admins to detect and configure
 			// multiple wikis based on server names. This offers --server
 			// as alternative to --wiki.
 			// See https://www.mediawiki.org/wiki/Manual:Wiki_family
-			$_SERVER['SERVER_NAME'] = $this->mOptions['server'];
+			$_SERVER['SERVER_NAME'] = $this->getOption( 'server' );
 		}
 
 		if ( !is_readable( $settingsFile ) ) {
@@ -1693,7 +1514,6 @@ abstract class Maintenance {
 	 * @return User
 	 */
 	protected function validateUserOption( $errorMsg ) {
-		$user = null;
 		if ( $this->hasOption( "user" ) ) {
 			$user = User::newFromName( $this->getOption( 'user' ) );
 		} elseif ( $this->hasOption( "userid" ) ) {
@@ -1709,7 +1529,6 @@ abstract class Maintenance {
 			}
 		}
 
-		// @phan-suppress-next-line PhanTypeMismatchReturnNullable T240141
 		return $user;
 	}
 }

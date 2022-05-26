@@ -30,6 +30,7 @@ use MediaWiki\Settings\SettingsBuilder;
 
 // No AutoLoader yet
 require_once __DIR__ . '/includes/MaintenanceRunner.php';
+require_once __DIR__ . '/includes/MaintenanceParameters.php';
 
 if ( !defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 	echo "This file must be included after Maintenance.php\n";
