@@ -809,7 +809,6 @@ CREATE UNIQUE INDEX ar_revid_uniq ON /*_*/archive (ar_rev_id);
 CREATE TABLE /*_*/page (
   page_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   page_namespace INTEGER NOT NULL, page_title BLOB NOT NULL,
-  page_restrictions BLOB DEFAULT NULL,
   page_is_redirect SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
   page_is_new SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
   page_random DOUBLE PRECISION NOT NULL,

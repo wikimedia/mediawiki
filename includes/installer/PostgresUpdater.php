@@ -598,6 +598,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addTable', 'user_autocreate_serial', 'patch-user_autocreate_serial.sql' ],
 			[ 'runMaintenance', MigrateRevisionActorTemp::class, 'maintenance/migrateRevisionActorTemp.php' ],
 			[ 'dropTable', 'revision_actor_temp' ],
+			[ 'runMaintenance', UpdateRestrictions::class, 'maintenance/updateRestrictions.php' ],
+			[ 'dropPgField', 'page', 'page_restrictions' ],
 		];
 	}
 
