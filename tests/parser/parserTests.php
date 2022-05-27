@@ -230,7 +230,14 @@ class ParserTestsMaintenance extends Maintenance {
 			'use-tidy-config' => $this->hasOption( 'use-tidy-config' ),
 			'file-backend' => $this->getOption( 'file-backend' ),
 			'upload-dir' => $this->getOption( 'upload-dir' ),
-			'parsoid' => $this->hasOption( 'parsoid' ),
+			// Passing a parsoid-specific option implies --parsoid
+			'parsoid' => (
+				$this->hasOption( 'parsoid' ) ||
+				$this->hasOption( 'wt2html' ) ||
+				$this->hasOption( 'wt2wt' ) ||
+				$this->hasOption( 'html2wt' ) ||
+				$this->hasOption( 'html2html' ) ||
+				$selserOpt ),
 			'wt2html' => $this->hasOption( 'wt2html' ),
 			'wt2wt' => $this->hasOption( 'wt2wt' ),
 			'html2wt' => $this->hasOption( 'html2wt' ),
