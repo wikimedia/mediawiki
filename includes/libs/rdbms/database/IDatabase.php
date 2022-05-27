@@ -93,7 +93,10 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	public const DBO_SYSDBA = 64;
 	/** @var int Schema file mode; was used by Oracle */
 	public const DBO_DDLMODE = 128;
-	/** @var int Enable SSL/TLS in connection protocol */
+	/**
+	 * @var int Enable SSL/TLS in connection protocol
+	 * @deprecated since 1.39 use 'ssl' parameter
+	 */
 	public const DBO_SSL = 256;
 	/** @var int Enable compression in connection protocol */
 	public const DBO_COMPRESS = 512;

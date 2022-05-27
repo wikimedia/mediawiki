@@ -2667,8 +2667,7 @@ class MainConfigSchema {
 	 *
 	 * This setting is only used if $wgLBFactoryConf['class'] is set to
 	 * '\Wikimedia\Rdbms\LBFactorySimple' and $wgDBservers is an empty array; otherwise
-	 * the DBO_SSL flag must be set in the 'flags' option of the database
-	 * connection to achieve the same functionality.
+	 * the 'ssl' parameter of the server array must be set to achieve the same functionality.
 	 */
 	public const DBssl = [
 		'default' => false,
@@ -2850,10 +2849,11 @@ class MainConfigSchema {
 	 *   - flags:       (optional) Bit field of properties:
 	 *                  - DBO_DEFAULT:    Transactionalize web requests and use autocommit otherwise
 	 *                  - DBO_DEBUG:      Equivalent of $wgDebugDumpSql
-	 *                  - DBO_SSL:        Use TLS connection encryption if available
+	 *                  - DBO_SSL:        Use TLS connection encryption if available (deprecated)
 	 *                  - DBO_COMPRESS:   Use protocol compression with database connections
 	 *                  - DBO_PERSISTENT: Enables persistent database connections
 	 *
+	 *   - ssl:         (optional) Boolean, whether to use TLS encryption. Overrides DBO_SSL.
 	 *   - max lag:     (optional) Maximum replication lag before a replica DB goes out of rotation
 	 *   - is static:   (optional) Set to true if the dataset is static and no replication is used.
 	 *   - cliMode:     (optional) Connection handles will not assume that requests are short-lived
@@ -3507,9 +3507,61 @@ class MainConfigSchema {
 	 * or $wgLanguageConverterCacheType.
 	 *
 	 * The format is an associative array where the key is a cache identifier, and
-	 * the value is an associative array of parameters. The "class" parameter is the
-	 * class name which will be used. Alternatively, a "factory" parameter may be
-	 * given, giving a callable function which will generate a suitable cache object.
+	 * the value is an associative array of parameters. One of the following
+	 * parameters specifying the class must be given:
+	 *
+	 *   - class: The class name which will be used.
+	 *   - factory: A callable function which will generate a suitable cache object.
+	 *
+	 * The following parameters are shared and understood by most classes:
+	 *
+	 *   - loggroup: The log channel to use.
+	 *
+	 * For SqlBagOStuff, the main configured database will be used, unless one of the following
+	 * three parameters is given:
+	 *
+	 *   - server: Server config map for Database::factory() that describes the database to
+	 *      use for all key operations in the current region. This is overridden by "servers".
+	 *   - servers: Map of tag strings to server config maps, each for Database::factory(),
+	 *      describing the set of database servers on which to distribute key operations in the
+	 *      current region. Data is distributed among the servers via key hashing based on the
+	 *      server tags. Therefore, each tag represents a shard of the dataset. Tags are useful
+	 *      for failover using cold-standby servers and for managing shards with replica servers
+	 *      in multiple regions (each having different hostnames).
+	 *   - cluster: The ExternalStore cluster name to use.
+	 *
+	 * SqlBagOStuff also accepts the following optional parameters:
+	 *
+	 *   - dbDomain: The database name to pass to the LoadBalancer.
+	 *   - multiPrimaryMode: Whether the portion of the dataset belonging to each tag/shard is
+	 *      replicated among one or more regions, with one "co-primary" server in each region.
+	 *      Queries are issued in a manner that provides Last-Write-Wins eventual consistency.
+	 *      This option requires the "server" or "servers" options. Only MySQL, with statment
+	 *      based replication (log_bin='ON' and binlog_format='STATEMENT') is supported. Also,
+	 *      the `modtoken` column must exist on the `objectcache` table(s).
+	 *   - purgePeriod: The average number of object cache writes in between garbage collection
+	 *      operations, where expired entries are removed from the database. Or in other words,
+	 *      the probability of performing a purge is one in every this number. If set to zero,
+	 *      purging will never be done at runtime (for use with PurgeParserCache).
+	 *   - purgeLimit: Maximum number of rows to purge at once.
+	 *   - tableName: The table name to use, default is "objectcache".
+	 *   - shards: The number of tables to use for data storage on each server. If greater than
+	 *      1, table names are formed in the style objectcacheNNN where NNN is the shard index,
+	 *      between 0 and shards-1. The number of digits used in the suffix is the minimum number
+	 *      required to hold the largest shard index. Data is distributed among the tables via
+	 *      key hashing. This helps mitigate MySQL bugs 61735 and 61736.
+	 *   - replicaOnly: Whether to only use replica servers and only support read operations.
+	 *      This option requires the use of LoadBalancer and should only be used by
+	 *      ReplicatedBagOStuff.
+	 *   - syncTimeout: Max seconds to wait for replica DBs to catch up for WRITE_SYNC.
+	 *   - writeBatchSize: Default maximum number of rows to change in each query for write
+	 *      operations that can be chunked into a set of smaller writes.
+	 *
+	 * For MemcachedPhpBagOStuff parameters see {@link MemcachedPhpBagOStuff::__construct}
+	 *
+	 * For MemcachedPeclBagOStuff parameters see {@link MemcachedPeclBagOStuff::__construct}
+	 *
+	 * For RedisBagOStuff parameters see {@link RedisBagOStuff::__construct}
 	 */
 	public const ObjectCaches = [
 		'default' => [

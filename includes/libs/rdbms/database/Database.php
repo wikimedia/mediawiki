@@ -103,6 +103,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var int Current bit field of class DBO_* constants */
 	protected $flags;
+	/** @var bool Whether to use SSL connections */
+	protected $ssl;
 	/** @var array Current LoadBalancer tracking information */
 	protected $lbInfo = [];
 	/** @var string|false Current SQL query delimiter */
@@ -254,6 +256,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		$this->flags = (int)$params['flags'];
+		$this->ssl = $params['ssl'] ?? (bool)( $this->flags & self::DBO_SSL );
 		$this->cliMode = (bool)$params['cliMode'];
 		$this->agent = (string)$params['agent'];
 		$this->serverName = $params['serverName'];
