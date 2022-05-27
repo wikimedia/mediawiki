@@ -1939,7 +1939,6 @@ class ParserTestRunner {
 		$teardown[] = $this->markSetupDone( 'perTestSetup' );
 
 		$opts = $test->options;
-		$config = $test->config ?? '';
 
 		// Find out values for some special options.
 		$langCode =
@@ -1980,19 +1979,9 @@ class ParserTestRunner {
 			$setup['wgNonincludableNamespaces'] = [ $nonIncludable ];
 		}
 
-		if ( $config ) {
-			if ( is_string( $config ) ) {
-				// Temporary transition code
-				$configLines = explode( "\n", $config );
-
-				foreach ( $configLines as $line ) {
-					list( $var, $value )  = explode( '=', $line, 2 );
-					$setup[$var] = eval( "return $value;" );
-				}
-			} else {
-				foreach ( $config as $var => $value ) {
-					$setup[$var] = $value;
-				}
+		if ( $test->config ) {
+			foreach ( $test->config as $var => $value ) {
+				$setup[$var] = $value;
 			}
 		}
 

@@ -62,7 +62,7 @@ class ParserFuzzTest extends Maintenance {
 			'wikitext' => '',
 			'html' => '',
 			'options' => [],
-			'config' => '',
+			'config' => [],
 		], [], '' );
 
 		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
