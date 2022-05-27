@@ -7,6 +7,8 @@
  * @author Antoine Musso
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * @group Database
  * @covers QueryPage<extended>

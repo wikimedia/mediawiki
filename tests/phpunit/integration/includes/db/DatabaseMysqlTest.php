@@ -2,11 +2,14 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DatabaseMysqlBase;
 use Wikimedia\Rdbms\DBQueryDisconnectedError;
+use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
 use Wikimedia\Rdbms\DBSessionStateError;
 use Wikimedia\Rdbms\DBTransactionStateError;
 use Wikimedia\Rdbms\DBUnexpectedError;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\TransactionManager;
 
 /**

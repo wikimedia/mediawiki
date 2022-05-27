@@ -4,6 +4,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
  * @group Cache

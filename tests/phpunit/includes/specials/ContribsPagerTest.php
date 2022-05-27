@@ -2,6 +2,7 @@
 
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\TestingAccessWrapper;
 
 /**

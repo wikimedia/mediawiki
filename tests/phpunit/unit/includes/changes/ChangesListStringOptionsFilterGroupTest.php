@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -176,7 +177,7 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiUnitTestCase {
 	 */
 	protected function modifyQueryHelper( $groupDefinition, $input ) {
 		$ctx = $this->createMock( IContextSource::class );
-		$dbr = $this->createMock( Wikimedia\Rdbms\IDatabase::class );
+		$dbr = $this->createMock( IDatabase::class );
 		$tables = [];
 		$fields = [];
 		$conds = [];

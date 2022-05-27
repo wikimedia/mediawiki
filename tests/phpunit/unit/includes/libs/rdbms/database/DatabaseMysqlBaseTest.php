@@ -25,7 +25,9 @@
 
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\DatabaseMysqlBase;
 use Wikimedia\Rdbms\DatabaseMysqli;
+use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\MySQLPrimaryPos;

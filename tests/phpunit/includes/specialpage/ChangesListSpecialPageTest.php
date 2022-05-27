@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\Rdbms\Database;
 use Wikimedia\TestingAccessWrapper;
 
 /**

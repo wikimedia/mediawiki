@@ -4,6 +4,7 @@ use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\RequestTimeout\RequestTimeout;
