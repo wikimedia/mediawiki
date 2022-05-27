@@ -3,6 +3,12 @@
 /**
  * Block media items
  */
+
+figure[ typeof~='mw:File' ],
+figure[ typeof~='mw:File/Frameless' ],
+/* TODO: Remove "Image|Video|Audio" when version 2.4.0 of the content is no
+ * longer supported
+ */
 figure[ typeof~='mw:Image' ],
 figure[ typeof~='mw:Video' ],
 figure[ typeof~='mw:Audio' ],
@@ -57,6 +63,11 @@ figure[ typeof~='mw:Audio/Frameless' ] {
 	}
 }
 
+figure[ typeof~='mw:File/Thumb' ],
+figure[ typeof~='mw:File/Frame' ],
+/* TODO: Remove "Image|Video|Audio" when version 2.4.0 of the content is no
+ * longer supported
+ */
 figure[ typeof~='mw:Image/Thumb' ],
 figure[ typeof~='mw:Video/Thumb' ],
 figure[ typeof~='mw:Audio/Thumb' ],
@@ -144,8 +155,8 @@ figure[ typeof~='mw:Audio/Frame' ] {
 		/**
 		 * Broken media get a span instead.
 		 *
-		 * FIXME: The `> span:first-child` can be removed once the class
-		 * is rolled out in Parsoid as well and content in RESTBase regenerated.
+		 * FIXME: The `> span:first-child` can be removed when version 2.4.0
+		 * of the content is no longer supported
 		 */
 		> span:first-child,
 		> span.mw-broken-media {
