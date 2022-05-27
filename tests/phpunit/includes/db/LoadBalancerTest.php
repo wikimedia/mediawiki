@@ -747,8 +747,8 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers LoadBalancer::setDomainAliases()
-	 * @covers LoadBalancer::resolveDomainID()
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::setDomainAliases()
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::resolveDomainID()
 	 */
 	public function testSetDomainAliases() {
 		$lb = $this->newMultiServerLocalLoadBalancer();

@@ -4,8 +4,8 @@ use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 
 /**
- * @covers LinksDeletionUpdate
- * @covers LinksUpdate
+ * @covers \MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate
+ * @covers \MediaWiki\Deferred\LinksUpdate\LinksUpdate
  * @covers \MediaWiki\Deferred\LinksUpdate\CategoryLinksTable
  * @covers \MediaWiki\Deferred\LinksUpdate\ExternalLinksTable
  * @covers \MediaWiki\Deferred\LinksUpdate\GenericPageLinksTable
