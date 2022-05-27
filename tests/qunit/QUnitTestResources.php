@@ -27,14 +27,8 @@ return [
 		'localBasePath' => "{$GLOBALS['IP']}/resources/src/mediawiki.language/languages",
 		'remoteBasePath' => "{$GLOBALS['wgResourceBasePath']}/resources/src/mediawiki.language/languages",
 		'packageFiles' => [
-			[
-				'name' => 'mediawiki.jqueryMsg.testdata.js',
-				'file' => new FilePath( __DIR__ . '/data/mediawiki.jqueryMsg.testdata.js', '' ),
-			],
-			[
-				'name' => 'mediawiki.jqueryMsg.data.json',
-				'file' => new FilePath( __DIR__ . '/data/mediawiki.jqueryMsg.data.json', '' ),
-			],
+			new FilePath( 'mediawiki.jqueryMsg.testdata.js', __DIR__ . '/data' ),
+			new FilePath( 'mediawiki.jqueryMsg.data.json', __DIR__ . '/data' ),
 			'bs.js',
 			'dsb.js',
 			'fi.js',
