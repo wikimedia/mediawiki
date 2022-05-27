@@ -1262,7 +1262,7 @@ class FileModule extends Module {
 		$mainFile = null;
 
 		foreach ( $this->packageFiles as $key => $fileInfo ) {
-			if ( is_string( $fileInfo ) ) {
+			if ( !is_array( $fileInfo ) ) {
 				$fileInfo = [ 'name' => $fileInfo, 'file' => $fileInfo ];
 			}
 			if ( !isset( $fileInfo['name'] ) ) {
@@ -1271,7 +1271,7 @@ class FileModule extends Module {
 				$this->getLogger()->error( $msg );
 				throw new LogicException( $msg );
 			}
-			$fileName = $fileInfo['name'];
+			$fileName = $this->getPath( $fileInfo['name'] );
 
 			// Infer type from alias if needed
 			$type = $fileInfo['type'] ?? self::getPackageFileType( $fileName );
