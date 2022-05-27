@@ -99,7 +99,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		// of whether any column values changed. This is what callers want to know and is
 		// consistent with what Postgres, SQLite, and SQL Server return.
 		$flags = MYSQLI_CLIENT_FOUND_ROWS;
-		if ( $this->getFlag( self::DBO_SSL ) ) {
+		if ( $this->ssl ) {
 			$flags |= MYSQLI_CLIENT_SSL;
 			$mysqli->ssl_set(
 				$this->sslKeyPath,
