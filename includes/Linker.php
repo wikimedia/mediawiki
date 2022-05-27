@@ -425,16 +425,7 @@ class Linker {
 			) . $postfix;
 		}
 
-		switch ( $file ? $file->getMediaType() : '' ) {
-			case 'AUDIO':
-				$rdfaType = 'mw:Audio';
-				break;
-			case 'VIDEO':
-				$rdfaType = 'mw:Video';
-				break;
-			default:
-				$rdfaType = 'mw:Image';
-		}
+		$rdfaType = 'mw:File';
 
 		if ( $file && isset( $frameParams['frameless'] ) ) {
 			$rdfaType .= '/Frameless';
@@ -645,7 +636,7 @@ class Linker {
 		$thumb = false;
 		$noscale = false;
 		$manualthumb = false;
-		$rdfaType = null;
+		$rdfaType = 'mw:File/Thumb';
 
 		if ( !$exists ) {
 			$outerWidth = $handlerParams['width'] + 2;
@@ -667,7 +658,7 @@ class Linker {
 				// Use image dimensions, don't scale
 				$thumb = $file->getUnscaledThumb( $handlerParams );
 				$noscale = true;
-				$rdfaType = '/Frame';
+				$rdfaType = 'mw:File/Frame';
 			} else {
 				# Do not present an image bigger than the source, for bitmap-style images
 				# This is a hack to maintain compatibility with arbitrary pre-1.10 behavior
@@ -772,19 +763,6 @@ class Linker {
 		$s .= Html::rawElement(
 			'figcaption', [], $frameParams['caption'] ?? ''
 		);
-
-		$rdfaType = $rdfaType ?: '/Thumb';
-
-		switch ( $thumb ? $thumb->getFile()->getMediaType() : '' ) {
-			case 'AUDIO':
-				$rdfaType = 'mw:Audio' . $rdfaType;
-				break;
-			case 'VIDEO':
-				$rdfaType = 'mw:Video' . $rdfaType;
-				break;
-			default:
-				$rdfaType = 'mw:Image' . $rdfaType;
-		}
 
 		if ( !$exists || !$thumb ) {
 			$rdfaType = 'mw:Error ' . $rdfaType;

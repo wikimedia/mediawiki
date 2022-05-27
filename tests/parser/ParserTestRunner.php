@@ -70,7 +70,13 @@ class ParserTestRunner {
 	/**
 	 * Valid parser test modes
 	 */
-	public const VALID_TEST_MODES = [ 'wt2html', 'wt2wt', 'html2wt', 'html2html', 'selser' ];
+	public const VALID_TEST_MODES = [
+		'wt2html' => true,
+		'wt2wt' => true,
+		'html2wt' => true,
+		'html2html' => true,
+		'selser' => true,
+	];
 
 	/**
 	 * @var array The status of each setup function
@@ -166,35 +172,6 @@ class ParserTestRunner {
 	}
 
 	/**
-	 * Process options to compute requested test modes and initialize defaults
-	 */
-	private function computeRequestedTestModes(): void {
-		// Eliminate the need to use isset
-		$allModes = true;
-		foreach ( self::VALID_TEST_MODES as $m ) {
-			$this->options[$m] = $this->options[$m] ?? false;
-			if ( $this->options[$m] ) {
-				$allModes = false;
-			}
-		}
-		$this->options['changetree'] = $this->options['changetree'] ?? null;
-
-		// If no specific test mode is set, enable them all
-		if ( $allModes ) {
-			$this->options['wt2wt'] = true;
-			$this->options['wt2html'] = true;
-			$this->options['html2html'] = true;
-			$this->options['html2wt'] = true;
-			$this->options['selser'] = true;
-		}
-
-		$this->requestedTestModes = array_intersect(
-			array_keys( array_filter( $this->options ) ),
-			self::VALID_TEST_MODES
-		);
-	}
-
-	/**
 	 * @param TestRecorder $recorder
 	 * @param array $options
 	 *  - parsoid (bool) if true, run Parsoid tests
@@ -232,49 +209,63 @@ class ParserTestRunner {
 	 */
 	public function __construct( TestRecorder $recorder, $options = [] ) {
 		$this->recorder = $recorder;
-		$this->options = $options;
-		// Makes it possible to use without isset
-		$this->options['parsoid'] = !empty( $this->options['parsoid'] );
-		$this->options['knownFailures'] =
-			!isset( $this->options['knownFailures'] ) || $this->options['knownFailures'];
-		$this->options['updateKnownFailures'] = !empty( $this->options['updateKnownFailures'] );
+		$this->options = $options + [
+			'keep-uploads' => false,
+			'file-backend' => false,
+			'run-disabled' => false,
+			'disable-save-parse' => false,
+			'upload-dir' => null,
+			'regex' => false,
+			'norm' => [],
+			// Parsoid-specific options
+			'parsoid' => false,
+			'knownFailures' => true,
+			'updateKnownFailures' => false,
+			'changetree' => null,
+			// These keys should match those in self::VALID_TEST_MODES
+			'wt2html' => false,
+			'wt2wt' => false,
+			'html2wt' => false,
+			'html2html' => false,
+			'selser' => false,
+		];
+		// If no specific test mode is set, enable them all
+		$allModes = true;
+		foreach ( self::VALID_TEST_MODES as $mode => $ignore ) {
+			if ( $this->options[$mode] ?? false ) {
+				$allModes = false;
+			}
+		}
+		if ( $allModes ) {
+			$this->options = self::VALID_TEST_MODES + $this->options;
+		}
+		// Requested test modes are used for Parsoid tests and ignored for
+		// legacy parser tests.
+		$this->requestedTestModes = array_keys( array_intersect_assoc(
+			$this->options, self::VALID_TEST_MODES
+		) );
 
-		// NOTE that this implicitly assumes that we are running in Parsoid mode.
-		// For the PHPUnit test runner, this is not a problem when running different
-		// test suites since know what mode tests are running in. For parserTests.php
-		// script run, we need an explicit option enabling this.
-		// Initialize upfront since test suites access these computed values
-		$this->computeRequestedTestModes();
-
-		if ( isset( $options['norm'] ) ) {
-			foreach ( $options['norm'] as $func ) {
-				if ( in_array( $func, [ 'removeTbody', 'trimWhitespace' ] ) ) {
-					$this->normalizationFunctions[] = $func;
-				} else {
-					$this->recorder->warning(
-						"Warning: unknown normalization option \"$func\"\n" );
-				}
+		foreach ( $this->options['norm'] as $func ) {
+			if ( in_array( $func, [ 'removeTbody', 'trimWhitespace' ] ) ) {
+				$this->normalizationFunctions[] = $func;
+			} else {
+				$this->recorder->warning(
+					"Warning: unknown normalization option \"$func\"\n" );
 			}
 		}
 
-		if ( isset( $options['regex'] ) && $options['regex'] !== false ) {
-			$this->regex = $options['regex'];
+		if ( $this->options['regex'] !== false ) {
+			$this->regex = $this->options['regex'];
 		} else {
 			# Matches anything
 			$this->regex = '//';
 		}
 
-		$this->keepUploads = !empty( $options['keep-uploads'] );
-
-		$this->fileBackendName = $options['file-backend'] ?? false;
-
-		$this->runDisabled = !empty( $options['run-disabled'] );
-
-		$this->disableSaveParse = !empty( $options['disable-save-parse'] );
-
-		if ( isset( $options['upload-dir'] ) ) {
-			$this->uploadDir = $options['upload-dir'];
-		}
+		$this->keepUploads = (bool)$this->options['keep-uploads'];
+		$this->fileBackendName = $this->options['file-backend'];
+		$this->runDisabled = (bool)$this->options['run-disabled'];
+		$this->disableSaveParse = (bool)$this->options['disable-save-parse'];
+		$this->uploadDir = $this->options['upload-dir'];
 
 		$this->defaultTitle = Title::newFromText( 'Parser test' );
 	}

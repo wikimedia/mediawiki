@@ -109,10 +109,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			$transformOptions = $this->getThumbParams( $img ) + $handlerOpts;
 			$thumb = $img ? $img->transform( $transformOptions ) : false;
 
-			$rdfaType = [
-				'AUDIO' => 'mw:Audio',
-				'VIDEO' => 'mw:Video',
-			][ $img ? $img->getMediaType() : '' ] ?? 'mw:Image';
+			$rdfaType = 'mw:File';
 
 			$isBadFile = $img && $thumb && $this->mHideBadImages &&
 				$badFileLookup->isBadFile( $nt->getDBkey(), $this->getContextTitle() );
