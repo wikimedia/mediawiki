@@ -20,18 +20,23 @@
 
 namespace MediaWiki\ResourceLoader;
 
+use RuntimeException;
+
 /**
  * An object to represent a path to a JavaScript/CSS file, along with a remote
- * and local base path, for use with ResourceLoaderFileModule.
+ * and local base path, for use with FileModule.
+ *
+ * Null base path indicates that the corresponding base path from FileModule
+ * should be used.
  *
  * @ingroup ResourceLoader
  * @since 1.17
  */
 class FilePath {
-	/** @var string Local base path */
+	/** @var string|null Local base path */
 	protected $localBasePath;
 
-	/** @var string Remote base path */
+	/** @var string|null Remote base path */
 	protected $remoteBasePath;
 
 	/** @var string Path to the file */
@@ -39,28 +44,36 @@ class FilePath {
 
 	/**
 	 * @param string $path Relative path to the file, no leading slash.
-	 * @param string $localBasePath Base path to prepend when generating a local path.
-	 * @param string $remoteBasePath Base path to prepend when generating a remote path.
+	 * @param string|null $localBasePath Base path to prepend when generating a local path.
+	 * @param string|null $remoteBasePath Base path to prepend when generating a remote path.
 	 *   Should not have a trailing slash unless at web document root.
 	 */
-	public function __construct( $path, $localBasePath = '', $remoteBasePath = '' ) {
+	public function __construct( $path, $localBasePath = null, $remoteBasePath = null ) {
 		$this->path = $path;
 		$this->localBasePath = $localBasePath;
 		$this->remoteBasePath = $remoteBasePath;
 	}
 
-	/** @return string */
+	/**
+	 * @return string
+	 * @throws RuntimeException If the base path was not provided. You must either provide the base
+	 *   path in the constructor, or use getPath() instead and add the base path from a FileModule.
+	 */
 	public function getLocalPath() {
-		return $this->localBasePath === '' ?
-			$this->path :
-			"{$this->localBasePath}/{$this->path}";
+		if ( $this->localBasePath === null ) {
+			throw new RuntimeException( 'Base path was not provided' );
+		}
+		return "{$this->localBasePath}/{$this->path}";
 	}
 
-	/** @return string */
+	/**
+	 * @return string
+	 * @throws RuntimeException If the base path was not provided. You must either provide the base
+	 *   path in the constructor, or use getPath() instead and add the base path from a FileModule.
+	 */
 	public function getRemotePath() {
-		if ( $this->remoteBasePath === '' ) {
-			// No base path configured
-			return $this->path;
+		if ( $this->remoteBasePath === null ) {
+			throw new RuntimeException( 'Base path was not provided' );
 		}
 		if ( $this->remoteBasePath === '/' ) {
 			// In document root
@@ -70,12 +83,12 @@ class FilePath {
 		return "{$this->remoteBasePath}/{$this->path}";
 	}
 
-	/** @return string */
+	/** @return string|null */
 	public function getLocalBasePath() {
 		return $this->localBasePath;
 	}
 
-	/** @return string */
+	/** @return string|null */
 	public function getRemoteBasePath() {
 		return $this->remoteBasePath;
 	}
