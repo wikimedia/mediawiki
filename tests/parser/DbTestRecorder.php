@@ -23,7 +23,7 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
 
 class DbTestRecorder extends TestRecorder {
 	public $version;
-	/** @var Database */
+	/** @var IMaintainableDatabase */
 	private $db;
 
 	public function __construct( IMaintainableDatabase $db ) {

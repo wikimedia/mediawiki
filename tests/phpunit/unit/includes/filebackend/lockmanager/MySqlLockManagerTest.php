@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\TestingAccessWrapper;
 
 class MySqlLockManagerTest extends MediaWikiUnitTestCase {

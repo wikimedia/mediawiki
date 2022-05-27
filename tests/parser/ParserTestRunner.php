@@ -45,6 +45,8 @@ use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
+use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -101,7 +103,7 @@ class ParserTestRunner {
 
 	/**
 	 * Our connection to the database
-	 * @var Database
+	 * @var IDatabase
 	 */
 	private $db;
 

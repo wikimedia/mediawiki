@@ -21,6 +21,8 @@
  * @file
  */
 
+use Wikimedia\Rdbms\IMaintainableDatabase;
+
 /**
  * @group Database
  * @covers \Wikimedia\Rdbms\ResultWrapper

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Revision\MutableRevisionRecord;
+use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\TestingAccessWrapper;
 
 /**
