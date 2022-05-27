@@ -136,7 +136,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAddQuotes()
-	 * @covers DatabaseSqlite::addQuotes
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::addQuotes
 	 */
 	public function testAddQuotes( $value, $expected ) {
 		// check quoting
@@ -161,7 +161,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DatabaseSqlite::replaceVars
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::replaceVars
 	 */
 	public function testReplaceVars() {
 		$this->assertEquals( 'foo', $this->replaceVars( 'foo' ), "Don't break anything accidentally" );
@@ -220,7 +220,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DatabaseSqlite::tableName
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::tableName
 	 */
 	public function testTableName() {
 		// @todo Moar!
@@ -233,7 +233,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DatabaseSqlite::duplicateTableStructure
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::duplicateTableStructure
 	 */
 	public function testDuplicateTableStructure() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
@@ -273,7 +273,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DatabaseSqlite::duplicateTableStructure
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::duplicateTableStructure
 	 */
 	public function testDuplicateTableStructureVirtual() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
@@ -296,7 +296,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DatabaseSqlite::deleteJoin
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::deleteJoin
 	 */
 	public function testDeleteJoin() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
@@ -337,7 +337,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DatabaseSqlite::insertId
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertId
 	 */
 	public function testInsertIdType() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
@@ -353,7 +353,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DatabaseSqlite::insert
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insert
 	 */
 	public function testInsertAffectedRows() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
