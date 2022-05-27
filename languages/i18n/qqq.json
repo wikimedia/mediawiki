@@ -2951,7 +2951,6 @@
 	"whatlinkshere-hidetrans": "First filter option in [[Special:WhatLinksHere]]. Parameters:\n* $1 is the {{msg-mw|hide}} or {{msg-mw|show}}",
 	"whatlinkshere-hidelinks": "Filter option in [[Special:WhatLinksHere]].\n* $1 is the {{msg-mw|hide}} or {{msg-mw|show}}",
 	"whatlinkshere-hideimages": "Filter option in [[Special:WhatLinksHere]].\n\n$1 is {{msg-mw|hide}} or {{msg-mw|show}}.\n\nSee also:\n*{{msg-mw|Isimage}}\n*{{msg-mw|Media tip}}",
-	"whatlinkshere-filters": "{{Identical|Filter}}",
 	"whatlinkshere-sectionredir": "Used in [[Special:WhatLinksHere]] if the page is a redirect to a section. Parameters:\n* $1 - name of the section.",
 	"whatlinkshere-submit": "Label for submit button in [[Special:WhatLinksHere]]\n{{Identical|Go}}",
 	"autoblockid": "Used as name of autoblock, instead of autoblocked IPs. Parameters:\n* $1 - autoblock ID",
