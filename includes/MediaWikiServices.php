@@ -108,6 +108,7 @@ use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
+use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\GroupPermissionsLookup;
@@ -1570,6 +1571,15 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getParsoidPageConfigFactory(): PageConfigFactory {
 		return $this->getService( 'ParsoidPageConfigFactory' );
+	}
+
+	/**
+	 * @return ParsoidParserFactory
+	 * @since 1.41
+	 * @internal
+	 */
+	public function getParsoidParserFactory(): ParsoidParserFactory {
+		return $this->getService( 'ParsoidParserFactory' );
 	}
 
 	/**

@@ -29,6 +29,7 @@ use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Parser\Parsoid\ParsoidParserFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
@@ -56,6 +57,9 @@ class WikitextContentHandler extends TextContentHandler {
 	/** @var MagicWordFactory */
 	private $magicWordFactory;
 
+	/** @var ParsoidParserFactory */
+	private $parsoidParserFactory;
+
 	/**
 	 * @param string $modelId
 	 * @param TitleFactory $titleFactory
@@ -63,6 +67,7 @@ class WikitextContentHandler extends TextContentHandler {
 	 * @param GlobalIdGenerator $globalIdGenerator
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param MagicWordFactory $magicWordFactory
+	 * @param ParsoidParserFactory $parsoidParserFactory
 	 */
 	public function __construct(
 		string $modelId,
@@ -70,7 +75,8 @@ class WikitextContentHandler extends TextContentHandler {
 		ParserFactory $parserFactory,
 		GlobalIdGenerator $globalIdGenerator,
 		LanguageNameUtils $languageNameUtils,
-		MagicWordFactory $magicWordFactory
+		MagicWordFactory $magicWordFactory,
+		ParsoidParserFactory $parsoidParserFactory
 	) {
 		// $modelId should always be CONTENT_MODEL_WIKITEXT
 		parent::__construct( $modelId, [ CONTENT_FORMAT_WIKITEXT ] );
@@ -79,6 +85,7 @@ class WikitextContentHandler extends TextContentHandler {
 		$this->globalIdGenerator = $globalIdGenerator;
 		$this->languageNameUtils = $languageNameUtils;
 		$this->magicWordFactory = $magicWordFactory;
+		$this->parsoidParserFactory = $parsoidParserFactory;
 	}
 
 	protected function getContentClass() {
@@ -173,7 +180,8 @@ class WikitextContentHandler extends TextContentHandler {
 			$this->parserFactory,
 			$this->globalIdGenerator,
 			$this->languageNameUtils,
-			$this->magicWordFactory
+			$this->magicWordFactory,
+			$this->parsoidParserFactory
 		);
 	}
 
@@ -340,10 +348,21 @@ class WikitextContentHandler extends TextContentHandler {
 		$revId = $cpoParams->getRevId();
 
 		[ $redir, $text ] = $content->getRedirectTargetAndText();
+		if ( $parserOptions->getUseParsoid() && !$redir ) {
+			$parser = $this->parsoidParserFactory->create();
+		} else {
+			$parser = $this->parserFactory->getInstance();
+		}
+		$parserOutput = $parser
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
+			->parse( $text, $title, $parserOptions, true, true, $revId );
 
-		$parser = $this->parserFactory->getInstance();
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
-		$parserOutput = $parser->parse( $text, $title, $parserOptions, true, true, $revId );
+		// T330667: Record the fact that we used the value of
+		// 'useParsoid' to influence this parse.  Note that
+		// ::getUseParsoid() has a side-effect on $parserOutput here
+		// which didn't occur when we called ::getUseParsoid() earlier
+		// because $parserOutput didn't exist at that time.
+		$parserOptions->getUseParsoid();
 
 		// Add redirect indicator at the top
 		if ( $redir ) {

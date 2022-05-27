@@ -85,12 +85,12 @@ class RevisionHTMLHandler extends SimpleHandler {
 				$response->setHeader( 'Content-Type', 'text/html' );
 				$this->htmlHelper->putHeaders( $response, $setContentLanguageHeader );
 				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
-				$response->setBody( new StringStream( $parserOutput->getText() ) );
+				$response->setBody( new StringStream( $parserOutput->getRawText() ) );
 				break;
 			case 'with_html':
 				$parserOutput = $this->htmlHelper->getHtml();
 				$body = $this->contentHelper->constructMetadata();
-				$body['html'] = $parserOutput->getText();
+				$body['html'] = $parserOutput->getRawText();
 				$response = $this->getResponseFactory()->createJson( $body );
 				// For JSON content, it doesn't make sense to set content language header
 				$this->htmlHelper->putHeaders( $response, !$setContentLanguageHeader );
