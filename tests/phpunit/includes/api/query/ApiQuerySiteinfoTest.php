@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
 /**

@@ -19,6 +19,8 @@
  * @ingroup Testing
  */
 
+use Wikimedia\Rdbms\IDatabase;
+
 class DbTestPreviewer extends TestRecorder {
 	protected $filter; // /< Test name filter callback
 	protected $lb; // /< Database load balancer

@@ -2,11 +2,14 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DatabaseMysqlBase;
 use Wikimedia\Rdbms\DBQueryDisconnectedError;
+use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\DBQueryTimeoutError;
 use Wikimedia\Rdbms\DBSessionStateError;
 use Wikimedia\Rdbms\DBTransactionStateError;
 use Wikimedia\Rdbms\DBUnexpectedError;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\TransactionManager;
 
 /**
@@ -40,7 +43,7 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Database::query()
+	 * @covers \Wikimedia\Rdbms\Database::query()
 	 */
 	public function testQueryTimeout() {
 		try {
@@ -58,7 +61,7 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Database::query()
+	 * @covers \Wikimedia\Rdbms\Database::query()
 	 */
 	public function testConnectionKill() {
 		try {
@@ -73,9 +76,9 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Database::query()
-	 * @covers Database::rollback()
-	 * @covers Database::flushSession()
+	 * @covers \Wikimedia\Rdbms\Database::query()
+	 * @covers \Wikimedia\Rdbms\Database::rollback()
+	 * @covers \Wikimedia\Rdbms\Database::flushSession()
 	 */
 	public function testConnectionLoss() {
 		$row = $this->conn->query( 'SELECT connection_id() AS id', __METHOD__ )->fetchObject();
@@ -151,10 +154,10 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Database::query()
-	 * @covers Database::cancelAtomic()
-	 * @covers Database::rollback()
-	 * @covers Database::flushSession()
+	 * @covers \Wikimedia\Rdbms\Database::query()
+	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic()
+	 * @covers \Wikimedia\Rdbms\Database::rollback()
+	 * @covers \Wikimedia\Rdbms\Database::flushSession()
 	 */
 	public function testTransactionError() {
 		$this->assertSame( TransactionManager::STATUS_TRX_NONE, $this->conn->trxStatus() );

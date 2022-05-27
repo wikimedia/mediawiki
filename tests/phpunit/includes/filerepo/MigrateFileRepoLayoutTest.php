@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\FakeResultWrapper;
+
 /**
  * @covers MigrateFileRepoLayout
  */

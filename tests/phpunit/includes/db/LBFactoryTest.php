@@ -24,6 +24,7 @@
  */
 
 use Wikimedia\Rdbms\ChronologyProtector;
+use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;

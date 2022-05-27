@@ -1,6 +1,7 @@
 <?php
 
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBTransactionError;
 use Wikimedia\Rdbms\DBTransactionStateError;
 use Wikimedia\Rdbms\DBUnexpectedError;

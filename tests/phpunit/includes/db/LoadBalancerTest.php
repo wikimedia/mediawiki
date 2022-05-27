@@ -25,6 +25,8 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBReadOnlyRoleError;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\LoadMonitorNull;
 use Wikimedia\Rdbms\TransactionManager;
@@ -745,8 +747,8 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers LoadBalancer::setDomainAliases()
-	 * @covers LoadBalancer::resolveDomainID()
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::setDomainAliases()
+	 * @covers \Wikimedia\Rdbms\LoadBalancer::resolveDomainID()
 	 */
 	public function testSetDomainAliases() {
 		$lb = $this->newMultiServerLocalLoadBalancer();

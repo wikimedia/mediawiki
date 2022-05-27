@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\Rdbms\DBReadOnlyError;
 
 /**
  * @author Addshore

@@ -802,8 +802,8 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Database::executeQuery()
-	 * @covers Database::assertIsWritablePrimary()
+	 * @covers \Wikimedia\Rdbms\Database::executeQuery()
+	 * @covers \Wikimedia\Rdbms\Database::assertIsWritablePrimary()
 	 */
 	public function testShouldRejectPersistentWriteQueryOnReplicaDatabaseConnection() {
 		$this->expectException( DBReadOnlyRoleError::class );
@@ -818,8 +818,8 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Database::executeQuery()
-	 * @covers Database::assertIsWritablePrimary()
+	 * @covers \Wikimedia\Rdbms\Database::executeQuery()
+	 * @covers \Wikimedia\Rdbms\Database::assertIsWritablePrimary()
 	 */
 	public function testShouldAcceptTemporaryTableOperationsOnReplicaDatabaseConnection() {
 		$dbr = new DatabaseTestHelper(
@@ -842,8 +842,8 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Database::executeQuery()
-	 * @covers Database::assertIsWritablePrimary()
+	 * @covers \Wikimedia\Rdbms\Database::executeQuery()
+	 * @covers \Wikimedia\Rdbms\Database::assertIsWritablePrimary()
 	 */
 	public function testShouldRejectPseudoPermanentTemporaryTableOperationsOnReplicaDatabaseConnection() {
 		$this->expectException( DBReadOnlyRoleError::class );
@@ -862,8 +862,8 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Database::executeQuery()
-	 * @covers Database::assertIsWritablePrimary()
+	 * @covers \Wikimedia\Rdbms\Database::executeQuery()
+	 * @covers \Wikimedia\Rdbms\Database::assertIsWritablePrimary()
 	 */
 	public function testShouldAcceptWriteQueryOnPrimaryDatabaseConnection() {
 		$dbr = new DatabaseTestHelper(
@@ -877,8 +877,8 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Database::executeQuery()
-	 * @covers Database::assertIsWritablePrimary()
+	 * @covers \Wikimedia\Rdbms\Database::executeQuery()
+	 * @covers \Wikimedia\Rdbms\Database::assertIsWritablePrimary()
 	 */
 	public function testShouldRejectWriteQueryOnPrimaryDatabaseConnectionWhenReplicaQueryRoleFlagIsSet() {
 		$this->expectException( DBReadOnlyRoleError::class );
@@ -897,8 +897,8 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Database::commenceCriticalSection()
-	 * @covers Database::completeCriticalSection()
+	 * @covers \Wikimedia\Rdbms\Database::commenceCriticalSection()
+	 * @covers \Wikimedia\Rdbms\Database::completeCriticalSection()
 	 */
 	public function testCriticalSectionErrorSelect() {
 		$this->expectException( DBTransactionStateError::class );
@@ -914,8 +914,8 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Database::commenceCriticalSection()
-	 * @covers Database::completeCriticalSection()
+	 * @covers \Wikimedia\Rdbms\Database::commenceCriticalSection()
+	 * @covers \Wikimedia\Rdbms\Database::completeCriticalSection()
 	 */
 	public function testCriticalSectionErrorRollback() {
 		$db = TestingAccessWrapper::newFromObject( $this->db );
