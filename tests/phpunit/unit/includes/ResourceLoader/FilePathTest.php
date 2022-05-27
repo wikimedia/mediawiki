@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Unit\ResourceLoader;
 
 use MediaWiki\ResourceLoader\FilePath;
 use MediaWikiUnitTestCase;
+use RuntimeException;
 
 /**
  * @covers \MediaWiki\ResourceLoader\FilePath
@@ -38,13 +39,30 @@ class FilePathTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testGetterNoBase() {
-		$path = new FilePath( 'dummy/path', '', '' );
+		$path = new FilePath( 'dummy/path' );
 
-		// No transformation
-		$this->assertSame( 'dummy/path', $path->getLocalPath() );
-		$this->assertSame( 'dummy/path', $path->getRemotePath() );
-		$this->assertSame( '', $path->getLocalBasePath() );
-		$this->assertSame( '', $path->getRemoteBasePath() );
+		try {
+			$path->getLocalPath();
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( RuntimeException $ex ) {
+			$this->assertSame(
+				'Base path was not provided',
+				$ex->getMessage(),
+				'Expected exception'
+			);
+		}
+		try {
+			$path->getRemotePath();
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( RuntimeException $ex ) {
+			$this->assertSame(
+				'Base path was not provided',
+				$ex->getMessage(),
+				'Expected exception'
+			);
+		}
+		$this->assertSame( null, $path->getLocalBasePath() );
+		$this->assertSame( null, $path->getRemoteBasePath() );
 		$this->assertSame( 'dummy/path', $path->getPath() );
 	}
 }
