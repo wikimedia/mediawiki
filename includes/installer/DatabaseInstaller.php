@@ -226,7 +226,7 @@ abstract class DatabaseInstaller {
 			return $status;
 		}
 
-		$this->db->setFlag( DBO_DDLMODE ); // For Oracle's handling of schema files
+		$this->db->setFlag( DBO_DDLMODE );
 		$this->db->begin( __METHOD__ );
 
 		// @phan-suppress-next-line SecurityCheck-PathTraversal False positive

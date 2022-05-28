@@ -186,7 +186,7 @@
 	"config-license-help": "Vàire wiki pùbliche a buto tute le contribussion sota na [https://freedomdefined.org/Definition licensa lìbera]. Sòn a giuta a creé un sens d'apartenensa a la comunità e a ancoragia ëd contribussion ëd longa durà.\nA l'é generalment nen necessari për na wiki privà o d'asienda.\n\nS'a veul podèj dovré dij test da Wikipedia, e a veul che Wikipedia a aceta dij test copià da soa wiki, a dovrìa serne <strong>{{int:config-license-cc-by-sa}}</strong>.\n\nWikipedia prima a dovrava la GNU Free Documentation License.\nLa GFDL a l'é anco' na licensa bon-a, ma a l'é complicà capila.\nA l'é ëdcò mal fé riutilisé dël contnù licensià sota la GFDL.",
 	"config-email-settings": "Ampostassion ëd pòsta eletrònica",
 	"config-enable-email": "Abilité ij mëssagi ëd pòsta eletrònica an surtìa",
-	"config-enable-email-help": "S'a veul che la pòsta eletrònica a marcia, j'[Config-dbsupport-oracle/manual/en/mail.configuration.php ampostassion ëd pòsta eletrònica PHP] a devo esse configurà për da bin.\nS'a veul pa 'd funsion ëd pòsta eletrònica, a dev disabiliteje ambelessì.",
+	"config-enable-email-help": "S'a veul che la pòsta eletrònica a marcia, j'[https://www.php.net/manual/en/mail.configuration.php ampostassion ëd pòsta eletrònica PHP] a devo esse configurà për da bin.\nS'a veul pa 'd funsion ëd pòsta eletrònica, a dev disabiliteje ambelessì.",
 	"config-email-user": "Abilité ij mëssagi ëd pòsta eletrònica da utent a utent",
 	"config-email-user-help": "A përmët a tùit j'utent ëd mandesse ëd mëssagi ëd pòsta eletrònica se lor a l'han abilità sòn an soe preferense.",
 	"config-email-usertalk": "Abilité notìfica dle pàgine ëd discussion dj'utent",

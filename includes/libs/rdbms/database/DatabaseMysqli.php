@@ -97,7 +97,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		$mysqli = mysqli_init();
 		// Make affectedRows() for UPDATE reflect the number of matching rows, regardless
 		// of whether any column values changed. This is what callers want to know and is
-		// consistent with what Postgres, SQLite, and SQL Server return.
+		// consistent with what Postgres and SQLite return.
 		$flags = MYSQLI_CLIENT_FOUND_ROWS;
 		if ( $this->ssl ) {
 			$flags |= MYSQLI_CLIENT_SSL;
