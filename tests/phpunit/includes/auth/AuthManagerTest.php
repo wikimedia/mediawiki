@@ -3,6 +3,7 @@
 namespace MediaWiki\Auth;
 
 use Config;
+use Language;
 use MediaWiki\Auth\Hook\AuthManagerLoginAuthenticateAuditHook;
 use MediaWiki\Auth\Hook\LocalUserCreatedHook;
 use MediaWiki\Auth\Hook\SecuritySensitiveOperationStatusHook;
@@ -11,6 +12,7 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionProvider;
@@ -32,6 +34,7 @@ use Status;
 use StatusValue;
 use WebRequest;
 use Wikimedia\ObjectFactory\ObjectFactory;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 

@@ -21,7 +21,7 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 	 * @dataProvider providePopulateUser
 	 * @param string $email Email to set
 	 * @param string $realname Realname to set
-	 * @param StatusValue $expect Expected return
+	 * @param \StatusValue $expect Expected return
 	 */
 	public function testPopulateUser( $email, $realname, $expect ) {
 		$user = new \User();
