@@ -520,22 +520,12 @@ abstract class BagOStuff implements
 	/**
 	 * Let a callback be run to avoid wasting time on special blocking calls
 	 *
-	 * The callbacks may or may not be called ever, in any particular order.
-	 * They are likely to be invoked when something WRITE_SYNC is used used.
-	 * They should follow a caching pattern as shown below, so that any code
-	 * using the work will get it's result no matter what happens.
-	 * @code
-	 *     $result = null;
-	 *     $workCallback = function () use ( &$result ) {
-	 *         if ( !$result ) {
-	 *             $result = ....
-	 *         }
-	 *         return $result;
-	 *     }
-	 * @endcode
+	 * This is hard-deprecated and non-functional since 1.39. The callback
+	 * will not be called.
 	 *
 	 * @param callable $workCallback
 	 * @since 1.28
+	 * @deprecated since 1.39
 	 */
 	abstract public function addBusyCallback( callable $workCallback );
 
