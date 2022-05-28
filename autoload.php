@@ -469,7 +469,6 @@ $wgAutoloadLocalClasses = [
 	'FSFileBackendList' => __DIR__ . '/includes/libs/filebackend/fileiteration/FSFileBackendList.php',
 	'FSFileOpHandle' => __DIR__ . '/includes/libs/filebackend/fileophandle/FSFileOpHandle.php',
 	'FSLockManager' => __DIR__ . '/includes/libs/lockmanager/FSLockManager.php',
-	'FakeConverter' => __DIR__ . '/includes/language/TrivialLanguageConverter.php',
 	'FakeMaintenance' => __DIR__ . '/maintenance/includes/FakeMaintenance.php',
 	'FakeResultWrapper' => __DIR__ . '/includes/libs/rdbms/database/resultwrapper/FakeResultWrapper.php',
 	'FallbackContent' => __DIR__ . '/includes/content/FallbackContent.php',
