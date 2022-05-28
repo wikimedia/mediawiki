@@ -92,7 +92,6 @@ $wgAutoloadLocalClasses = [
 	'ApiQueryCategories' => __DIR__ . '/includes/api/ApiQueryCategories.php',
 	'ApiQueryCategoryInfo' => __DIR__ . '/includes/api/ApiQueryCategoryInfo.php',
 	'ApiQueryCategoryMembers' => __DIR__ . '/includes/api/ApiQueryCategoryMembers.php',
-	'ApiQueryContributions' => __DIR__ . '/includes/api/ApiQueryUserContribs.php',
 	'ApiQueryContributors' => __DIR__ . '/includes/api/ApiQueryContributors.php',
 	'ApiQueryDeletedRevisions' => __DIR__ . '/includes/api/ApiQueryDeletedRevisions.php',
 	'ApiQueryDeletedrevs' => __DIR__ . '/includes/api/ApiQueryDeletedrevs.php',

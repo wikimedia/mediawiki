@@ -212,6 +212,8 @@ because of Phabricator reports.
   a MediaWiki\Page\PageIdentity is required.
 * The deprecated class alias FakeConverter has been removed, use
   TrivialLanguageConverter instead.
+* The deprecated ApiQueryContributions class alias has been removed, use
+  ApiQueryUserContribs instead.
 * …
 
 === Deprecations in 1.39 ===
