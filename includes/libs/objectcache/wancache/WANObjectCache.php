@@ -1967,13 +1967,10 @@ class WANObjectCache implements
 		$ttl = max( self::INTERIM_KEY_TTL, (int)$ttl );
 
 		$wrapped = $this->wrap( $value, $ttl, $version, $now, $walltime );
-		$this->cache->merge(
+		$this->cache->set(
 			$this->makeSisterKey( $key, self::TYPE_INTERIM ),
-			static function () use ( $wrapped ) {
-				return $wrapped;
-			},
-			$ttl,
-			1
+			$wrapped,
+			$ttl
 		);
 	}
 
