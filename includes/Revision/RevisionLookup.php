@@ -170,9 +170,3 @@ interface RevisionLookup extends IDBAccessObject {
 	): ?RevisionRecord;
 
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.32
- */
-class_alias( RevisionLookup::class, 'MediaWiki\Storage\RevisionLookup' );

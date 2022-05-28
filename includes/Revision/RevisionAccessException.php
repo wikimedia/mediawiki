@@ -60,9 +60,3 @@ class RevisionAccessException extends RuntimeException implements INormalizedExc
 		);
 	}
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.32
- */
-class_alias( RevisionAccessException::class, 'MediaWiki\Storage\RevisionAccessException' );

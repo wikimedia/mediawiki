@@ -129,9 +129,3 @@ interface RevisionFactory extends IDBAccessObject {
 	public function isRevisionRow( $row, string $table = '' );
 
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.32
- */
-class_alias( RevisionFactory::class, 'MediaWiki\Storage\RevisionFactory' );
