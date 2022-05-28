@@ -88,18 +88,12 @@ class ParserFuzzTest extends Maintenance {
 			// Run the test
 			try {
 				$parser->parse( $input, $title, $opts );
-				$fail = false;
+				$numSuccess++;
 			} catch ( Exception $exception ) {
-				$fail = true;
-			}
-
-			if ( $fail ) {
 				echo "Test failed with seed {$this->seed}\n";
 				echo "Input:\n";
 				printf( "string(%d) \"%s\"\n\n", strlen( $input ), $input );
 				echo "$exception\n";
-			} else {
-				$numSuccess++;
 			}
 
 			$numTotal++;
