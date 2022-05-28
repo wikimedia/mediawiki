@@ -125,7 +125,7 @@ abstract class DatabaseUpdater {
 		Maintenance $maintenance = null
 	) {
 		$this->db = $db;
-		$this->db->setFlag( DBO_DDLMODE ); // For Oracle's handling of schema files
+		$this->db->setFlag( DBO_DDLMODE );
 		$this->shared = $shared;
 		if ( $maintenance ) {
 			$this->maintenance = $maintenance;

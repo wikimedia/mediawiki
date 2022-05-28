@@ -49,7 +49,7 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( Language::class ),
 			$this->createMock( ParserFactory::class ),
 			$this->createMock( UrlUtils::class ),
-			$this->createMock( MediaWiki\Special\SpecialPageFactory::class ),
+			$this->createMock( MediaWiki\SpecialPage\SpecialPageFactory::class ),
 			$this->createMock( MediaWiki\Linker\LinkRendererFactory::class ),
 			$this->createMock( NamespaceInfo::class ),
 			new Psr\Log\NullLogger(),
