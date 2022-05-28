@@ -197,8 +197,3 @@ class TrivialLanguageConverter implements ILanguageConverter {
 		return htmlspecialchars( $this->convert( $text ) );
 	}
 }
-
-/**
- * @deprecated since 1.35 use TrivialLanguageConverter instead
- */
-class_alias( TrivialLanguageConverter::class, 'FakeConverter' );
