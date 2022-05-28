@@ -365,7 +365,7 @@ class SessionManager implements SessionManagerInterface {
 		}
 
 		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
-		return $this->getSessionFromInfo( $infos[0], $request );
+		return $this->getSessionFromInfo( $infos[0], $request, true );
 	}
 
 	public function invalidateSessionsForUser( User $user ) {
@@ -887,9 +887,11 @@ class SessionManager implements SessionManagerInterface {
 	 *  own Session. Most session providers won't need this.
 	 * @param SessionInfo $info
 	 * @param WebRequest $request
+	 * @param bool $empty True when we are creating an empty session (ie. this method was called
+	 *   from getEmptySession()).
 	 * @return Session
 	 */
-	public function getSessionFromInfo( SessionInfo $info, WebRequest $request ) {
+	public function getSessionFromInfo( SessionInfo $info, WebRequest $request, $empty = false ) {
 		// @codeCoverageIgnoreStart
 		if ( defined( 'MW_NO_SESSION' ) ) {
 			$ep = defined( 'MW_ENTRY_POINT' ) ? MW_ENTRY_POINT : 'this';
@@ -920,7 +922,11 @@ class SessionManager implements SessionManagerInterface {
 				$this->config->get( MainConfigNames::ObjectCacheSessionExpiry )
 			);
 			$this->allSessionBackends[$id] = $backend;
-			$delay = $backend->delaySave();
+			// Do not save the session when we are creating an empty session. It's pointless
+			// and might result in unpersisting cookies, which is a problem when tombstoned.
+			if ( !$empty ) {
+				$delay = $backend->delaySave();
+			}
 		} else {
 			$backend = $this->allSessionBackends[$id];
 			$delay = $backend->delaySave();
