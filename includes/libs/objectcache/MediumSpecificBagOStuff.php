@@ -48,9 +48,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	/** @var bool */
 	private $dupeTrackScheduled = false;
 
-	/** @var callable[] */
-	protected $busyCallbacks = [];
-
 	/** @var array[] Map of (key => (PHP variable value, serialized value)) */
 	protected $preparedValues = [];
 
@@ -805,7 +802,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	}
 
 	final public function addBusyCallback( callable $workCallback ) {
-		$this->busyCallbacks[] = $workCallback;
+		wfDeprecated( __METHOD__, '1.39' );
 	}
 
 	/**

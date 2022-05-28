@@ -32,7 +32,6 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
-use Wikimedia\WaitConditionLoop;
 
 /**
  * RDBMS-based caching module
@@ -1835,15 +1834,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				return true; // not applicable
 			}
 
-			$loop = new WaitConditionLoop(
-				static function () use ( $lb, $primaryPos ) {
-					return $lb->waitForAll( $primaryPos, 1 );
-				},
-				$this->syncTimeout,
-				$this->busyCallbacks
-			);
-
-			return ( $loop->invoke() === $loop::CONDITION_REACHED );
+			return $lb->waitForAll( $primaryPos, $this->syncTimeout );
 		} catch ( DBError $e ) {
 			$this->setAndLogDBError( $e );
 

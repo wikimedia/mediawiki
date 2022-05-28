@@ -281,6 +281,7 @@ because of Phabricator reports.
   - ::getUserObj() → ::getUser()
   - ::setUserObj() → ::setUsername()
   - ::setUserIP() → ::setUsername()
+* ObjectCache::addBusyCallback() is deprecated and non-functional.
 * …
 
 === Other changes in 1.39 ===
