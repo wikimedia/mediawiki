@@ -213,9 +213,3 @@ class RevisionStoreRecord extends RevisionRecord {
 	}
 
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.32
- */
-class_alias( RevisionStoreRecord::class, 'MediaWiki\Storage\RevisionStoreRecord' );

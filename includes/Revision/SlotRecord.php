@@ -686,9 +686,3 @@ class SlotRecord {
 	}
 
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.32
- */
-class_alias( SlotRecord::class, 'MediaWiki\Storage\SlotRecord' );

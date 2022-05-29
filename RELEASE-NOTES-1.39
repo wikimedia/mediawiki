@@ -194,6 +194,8 @@ because of Phabricator reports.
   since 1.36, now throws an exception.
 * The MWNamespace class, deprecated since 1.34, has been removed. Use the
   NamespaceInfo service instead.
+* The UnknownContent and UnknownContentHandler class aliases have been removed,
+  use FallbackContent and FallbackContentHandler instead.
 * IResultWrapper::next() now returns void, to match the Iterator interface that
   it implements. fetchObject() has the same behavior as next() used to.
 * In HTMLForm HTMLAutoCompleteSelectFields, the parameters 'autocomplete' and
@@ -207,11 +209,19 @@ because of Phabricator reports.
   have been removed.
 * The $context parameter to `new HTMLForm( … )` and `HTMLForm::factory( … )`
   is now required.
+* The class alias for revision related classes in namespace MediaWiki\Storage
+  has been removed. Classes are IncompleteRevisionException,
+  MutableRevisionRecord, MutableRevisionSlots, RevisionAccessException,
+  RevisionArchiveRecord, RevisionFactory, RevisionLookup, RevisionRecord,
+  RevisionSlots, RevisionStore, RevisionStoreRecord, SlotRecord, and
+  SuppressedDataException.
 * Passing a MediaWiki\Linker\LinkTarget to EditPage::makeTemplatesOnThisPageList
   or TemplatesOnThisPageFormatter::format is no longer supported,
   a MediaWiki\Page\PageIdentity is required.
 * The deprecated class alias FakeConverter has been removed, use
   TrivialLanguageConverter instead.
+* The deprecated ApiQueryContributions class alias has been removed, use
+  ApiQueryUserContribs instead.
 * …
 
 === Deprecations in 1.39 ===

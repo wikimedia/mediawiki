@@ -589,9 +589,3 @@ abstract class RevisionRecord implements WikiAwareEntity {
 		return false;
 	}
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.32
- */
-class_alias( RevisionRecord::class, 'MediaWiki\Storage\RevisionRecord' );
