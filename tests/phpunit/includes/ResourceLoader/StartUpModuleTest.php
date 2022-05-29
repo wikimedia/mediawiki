@@ -5,7 +5,6 @@ namespace MediaWiki\Tests\ResourceLoader;
 use Exception;
 use MediaWiki\ResourceLoader\Module;
 use MediaWiki\ResourceLoader\StartUpModule;
-use ResourceLoaderStartUpModule;
 use ResourceLoaderTestCase;
 use ResourceLoaderTestModule;
 
@@ -766,7 +765,7 @@ mw.loader.register([
 		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
 		$rl = $context->getResourceLoader();
 		$rl->register( $case['modules'] );
-		$module = new ResourceLoaderStartUpModule();
+		$module = new StartUpModule();
 		$module->setConfig( $rl->getConfig() );
 		$out = ltrim( $case['out'], "\n" );
 
@@ -809,7 +808,7 @@ mw.loader.register([
 		] );
 		$rl = $context->getResourceLoader();
 		$rl->register( $modules );
-		$module = new ResourceLoaderStartUpModule();
+		$module = new StartUpModule();
 		$module->setConfig( $rl->getConfig() );
 		$out = 'mw.loader.addSource({"local":"/w/load.php"});' . "\n"
 		. 'mw.loader.register(['
@@ -835,7 +834,7 @@ mw.loader.register([
 		] );
 		$rl = $context->getResourceLoader();
 		$rl->register( $modules );
-		$module = new ResourceLoaderStartUpModule();
+		$module = new StartUpModule();
 		$module->setConfig( $rl->getConfig() );
 		$out =
 'mw.loader.addSource({
@@ -871,11 +870,11 @@ mw.loader.register([
 	public function testGetVersionHash_varyConfig() {
 		$context = $this->getResourceLoaderContext();
 
-		$module = new ResourceLoaderStartUpModule();
+		$module = new StartUpModule();
 		$module->setConfig( $context->getResourceLoader()->getConfig() );
 		$version1 = $module->getVersionHash( $context );
 
-		$module = new ResourceLoaderStartUpModule();
+		$module = new StartUpModule();
 		$module->setConfig( $context->getResourceLoader()->getConfig() );
 		$version2 = $module->getVersionHash( $context );
 
@@ -898,7 +897,7 @@ mw.loader.register([
 			'test.a' => [ 'class' => ResourceLoaderTestModule::class ],
 			'test.b' => [ 'class' => ResourceLoaderTestModule::class ],
 		] );
-		$module = new ResourceLoaderStartUpModule();
+		$module = new StartUpModule();
 		$module->setConfig( $rl1->getConfig() );
 		$version1 = $module->getVersionHash( $context1 );
 
@@ -908,7 +907,7 @@ mw.loader.register([
 			'test.b' => [ 'class' => ResourceLoaderTestModule::class ],
 			'test.c' => [ 'class' => ResourceLoaderTestModule::class ],
 		] );
-		$module = new ResourceLoaderStartUpModule();
+		$module = new StartUpModule();
 		$module->setConfig( $rl2->getConfig() );
 		$version2 = $module->getVersionHash( $context2 );
 
@@ -921,7 +920,7 @@ mw.loader.register([
 				'script' => 'different',
 			],
 		] );
-		$module = new ResourceLoaderStartUpModule();
+		$module = new StartUpModule();
 		$module->setConfig( $rl3->getConfig() );
 		$version3 = $module->getVersionHash( $context3 );
 
@@ -951,7 +950,7 @@ mw.loader.register([
 				'dependencies' => [ 'x', 'y' ],
 			],
 		] );
-		$module = new ResourceLoaderStartUpModule();
+		$module = new StartUpModule();
 		$module->setConfig( $rl->getConfig() );
 		$version1 = $module->getVersionHash( $context );
 
@@ -963,7 +962,7 @@ mw.loader.register([
 				'dependencies' => [ 'x', 'z' ],
 			],
 		] );
-		$module = new ResourceLoaderStartUpModule();
+		$module = new StartUpModule();
 		$module->setConfig( $rl->getConfig() );
 		$version2 = $module->getVersionHash( $context );
 

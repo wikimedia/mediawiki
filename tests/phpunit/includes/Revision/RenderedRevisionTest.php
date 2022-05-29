@@ -6,6 +6,7 @@ use Content;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Content\Renderer\ContentRenderer;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Revision\MutableRevisionRecord;

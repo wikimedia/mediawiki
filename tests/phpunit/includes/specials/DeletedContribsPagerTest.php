@@ -1,5 +1,10 @@
 <?php
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Revision\RevisionStore;
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * @group Database
  */

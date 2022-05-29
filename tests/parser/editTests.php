@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Settings\SettingsBuilder;
+use MediaWiki\Tests\AnsiTermColorer;
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 

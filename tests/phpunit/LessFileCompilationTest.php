@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\ResourceLoader\Module;
+
 /**
  * Modelled on Sebastian Bergmann's PHPUnit_Extensions_PhptTestCase class.
  *
@@ -15,17 +17,16 @@ class LessFileCompilationTest extends ResourceLoaderTestCase {
 	protected $file;
 
 	/**
-	 * @var ResourceLoaderModule The ResourceLoader module that contains
-	 *   the file
+	 * @var Module The ResourceLoader module that contains the file
 	 */
 	protected $module;
 
 	/**
 	 * @param string $file
-	 * @param ResourceLoaderModule $module The ResourceLoader module that
+	 * @param Module $module The ResourceLoader module that
 	 *   contains the file
 	 */
-	public function __construct( $file, ResourceLoaderModule $module ) {
+	public function __construct( $file, Module $module ) {
 		parent::__construct( 'testLessFileCompilation' );
 
 		$this->file = $file;

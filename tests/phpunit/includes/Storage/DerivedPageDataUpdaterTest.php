@@ -19,6 +19,7 @@ use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWikiIntegrationTestCase;
+use Message;
 use MockTitleTrait;
 use MWCallableUpdate;
 use MWTimestamp;
