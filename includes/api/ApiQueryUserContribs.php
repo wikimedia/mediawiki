@@ -764,9 +764,3 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Usercontribs';
 	}
 }
-
-/**
- * @since 1.9
- * @deprecated since 1.32
- */
-class_alias( ApiQueryUserContribs::class, 'ApiQueryContributions' );
