@@ -3401,9 +3401,3 @@ class RevisionStore
 
 	// TODO: move relevant methods from Title here, e.g. isBigDeletion, etc.
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.32
- */
-class_alias( RevisionStore::class, 'MediaWiki\Storage\RevisionStore' );

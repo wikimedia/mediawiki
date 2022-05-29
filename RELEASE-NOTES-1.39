@@ -209,6 +209,12 @@ because of Phabricator reports.
   have been removed.
 * The $context parameter to `new HTMLForm( … )` and `HTMLForm::factory( … )`
   is now required.
+* The class alias for revision related classes in namespace MediaWiki\Storage
+  has been removed. Classes are IncompleteRevisionException,
+  MutableRevisionRecord, MutableRevisionSlots, RevisionAccessException,
+  RevisionArchiveRecord, RevisionFactory, RevisionLookup, RevisionRecord,
+  RevisionSlots, RevisionStore, RevisionStoreRecord, SlotRecord, and
+  SuppressedDataException.
 * Passing a MediaWiki\Linker\LinkTarget to EditPage::makeTemplatesOnThisPageList
   or TemplatesOnThisPageFormatter::format is no longer supported,
   a MediaWiki\Page\PageIdentity is required.

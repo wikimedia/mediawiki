@@ -331,9 +331,3 @@ class RevisionSlots {
 	}
 
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.32
- */
-class_alias( RevisionSlots::class, 'MediaWiki\Storage\RevisionSlots' );
