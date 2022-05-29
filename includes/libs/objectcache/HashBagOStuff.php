@@ -79,11 +79,12 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		unset( $this->bag[$key] );
 		$this->bag[$key] = $temp;
 
-		if ( $getToken ) {
+		$value = $this->bag[$key][self::KEY_VAL];
+		if ( $getToken && $value !== false ) {
 			$casToken = $this->bag[$key][self::KEY_CAS];
 		}
 
-		return $this->bag[$key][self::KEY_VAL];
+		return $value;
 	}
 
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
