@@ -886,6 +886,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'weight' => 100,
 				],
 			];
+			if ( !$this->msg( 'createacct-username-help' )->isDisabled() ) {
+				$fieldDefinitions['username']['help-message'] = 'createacct-username-help';
+			}
 		} else {
 			// When the user's password is too weak, they might be asked to provide a stronger one
 			// as a followup step. That is a form with only two fields, 'password' and 'retype',
