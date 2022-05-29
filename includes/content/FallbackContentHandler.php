@@ -36,8 +36,8 @@ use MediaWiki\Content\Renderer\ContentParseParams;
 class FallbackContentHandler extends ContentHandler {
 
 	/**
-	 * Constructs an UnknownContentHandler. Since UnknownContentHandler can be registered
-	 * for multiple model IDs on a system, multiple instances of UnknownContentHandler may
+	 * Constructs an FallbackContentHandler. Since FallbackContentHandler can be registered
+	 * for multiple model IDs on a system, multiple instances of FallbackContentHandler may
 	 * coexist.
 	 *
 	 * To preserve the serialization format of the original content model, it must be supplied
@@ -75,25 +75,25 @@ class FallbackContentHandler extends ContentHandler {
 	}
 
 	/**
-	 * Constructs an UnknownContent instance wrapping the given data.
+	 * Constructs an FallbackContent instance wrapping the given data.
 	 *
 	 * @since 1.21
 	 *
 	 * @param string $blob serialized content in an unknown format
 	 * @param string|null $format ignored
 	 *
-	 * @return Content The UnknownContent object wrapping $data
+	 * @return Content The FallbackContent object wrapping $data
 	 */
 	public function unserializeContent( $blob, $format = null ) {
 		return new FallbackContent( $blob, $this->getModelID() );
 	}
 
 	/**
-	 * Creates an empty UnknownContent object.
+	 * Creates an empty FallbackContent object.
 	 *
 	 * @since 1.21
 	 *
-	 * @return Content A new UnknownContent object with empty text.
+	 * @return Content A new FallbackContent object with empty text.
 	 */
 	public function makeEmptyContent() {
 		return $this->unserializeContent( '' );
@@ -134,5 +134,3 @@ class FallbackContentHandler extends ContentHandler {
 		return new UnsupportedSlotDiffRenderer( $context );
 	}
 }
-
-class_alias( FallbackContentHandler::class, 'UnknownContentHandler' );

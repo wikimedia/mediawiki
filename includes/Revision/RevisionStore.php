@@ -1203,7 +1203,7 @@ class RevisionStore
 		// If the content model is not known, don't fail here (T220594, T220793, T228921)
 		if ( !$this->contentHandlerFactory->isDefinedModel( $model ) ) {
 			$this->logger->warning(
-				"Undefined content model '$model', falling back to UnknownContent",
+				"Undefined content model '$model', falling back to FallbackContent",
 				[
 					'content_address' => $slot->getAddress(),
 					'rev_id' => $slot->getRevision(),

@@ -194,6 +194,8 @@ because of Phabricator reports.
   since 1.36, now throws an exception.
 * The MWNamespace class, deprecated since 1.34, has been removed. Use the
   NamespaceInfo service instead.
+* The UnknownContent and UnknownContentHandler class aliases have been removed,
+  use FallbackContent and FallbackContentHandler instead.
 * IResultWrapper::next() now returns void, to match the Iterator interface that
   it implements. fetchObject() has the same behavior as next() used to.
 * In HTMLForm HTMLAutoCompleteSelectFields, the parameters 'autocomplete' and
