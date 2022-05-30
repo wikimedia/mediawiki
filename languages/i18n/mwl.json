@@ -944,7 +944,6 @@
 	"whatlinkshere-hidetrans": "$1 anclusones",
 	"whatlinkshere-hidelinks": "$1 lhigaçones",
 	"whatlinkshere-hideimages": "$1 lhigaçones pa fexeiros",
-	"whatlinkshere-filters": "Filtros",
 	"block": "Bloquiar outelizador(a)",
 	"unblock": "Zbloquiar outelizador",
 	"blockip": "Bloquiar {{GENDER:$1|outelizador|outelizadora|outelizador(a)}}",

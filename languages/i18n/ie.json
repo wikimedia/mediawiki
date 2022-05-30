@@ -1369,7 +1369,6 @@
 	"whatlinkshere-hidetrans": "$1 transclusiones",
 	"whatlinkshere-hidelinks": "$1 ligamentes",
 	"whatlinkshere-hideimages": "$1 ligamentes de file",
-	"whatlinkshere-filters": "Filtres",
 	"whatlinkshere-sectionredir": "redirectement por section \"$1\"",
 	"whatlinkshere-submit": "Continuar",
 	"blockip": "Blocar {{GENDER:$1|usator}}",

@@ -576,7 +576,6 @@
 	"whatlinkshere-hideredirs": "enidän göndermää $1",
 	"whatlinkshere-hidetrans": "Eklemää $1",
 	"whatlinkshere-hidelinks": "baalantıları $1",
-	"whatlinkshere-filters": "Filtralar",
 	"blockip": "Bu kullanıcıya köstek ol",
 	"ipboptions": "2 saat:2 hours,1 gün:1 day,3 gün:3 days, 1 afta:1 week, 2 afta:2 weeks, 1 ay:1 month, 3 ay:3 months, 6 ay:6 months, 1 yıl:1 year, zamansız:infinite",
 	"ipblocklist": "Köstekli kullanıcılar hem IP adresleri listası",

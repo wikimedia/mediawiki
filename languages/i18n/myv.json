@@ -1361,7 +1361,6 @@
 	"whatlinkshere-hidetrans": "сюлмавозь пелькстнэде $1",
 	"whatlinkshere-hidelinks": "сюлмавома петнеде $1",
 	"whatlinkshere-hideimages": "файлань $1 сюлмавомапенеть",
-	"whatlinkshere-filters": "Сувтеметь",
 	"block": "Аравтомс теицянть саймас",
 	"unblock": "Нолдамс теицянть саймасто",
 	"blockip": "Аравтомс {{GENDER:$1|теицянть}} саймас",

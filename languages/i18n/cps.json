@@ -556,7 +556,6 @@
 	"whatlinkshere-hideredirs": "$1 ka mga gindirekta liwat",
 	"whatlinkshere-hidetrans": "$1 ang mga transklusyon",
 	"whatlinkshere-hidelinks": "$1 ang mga link",
-	"whatlinkshere-filters": "Mga pangsala",
 	"blockip": "Punggan ang naga-usar",
 	"ipboptions": "2 oras:2 hours,1 adlaw:1 day,3 adlaw:3 days,1 semana:1 week,2 semana:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tu-ig:1 year,wala katapusan:infinite",
 	"ipblocklist": "Napunggan nga mga IP Address kag mga bansag (usernames)",

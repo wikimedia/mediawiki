@@ -1759,7 +1759,6 @@
 	"whatlinkshere-hidetrans": "$1 بین اضاف",
 	"whatlinkshere-hidelinks": "$1 لینکان",
 	"whatlinkshere-hideimages": "$1 لیناکن عکس",
-	"whatlinkshere-filters": "فیلتران",
 	"blockip": "محدود کتن کاربر",
 	"blockiptext": "چه ای فرم جهلی په نوشتن دسترسی په یک خاصین آدرس آی پی یا نام کاربری استفاده کن.\nشی فقط انجام بیت په خاطر جلوگیری چه هرابکاری  په اساس [[{{MediaWiki:Policy-url}}|سیاست]].\nیک حاصین دلیلی بنویس جهلء (مثلا، گوشگ صفخات خاصی که هراب بپتگنت).",
 	"ipaddressorusername": "آیپی یا کارزورۏکی نام:",

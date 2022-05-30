@@ -845,7 +845,6 @@
 	"whatlinkshere-hideredirs": "$1 redireksyon yo",
 	"whatlinkshere-hidetrans": "$1 kontni anndan li",
 	"whatlinkshere-hidelinks": "$1 lyen yo",
-	"whatlinkshere-filters": "Filt yo",
 	"blockip": "Bloke yon adrès IP oubyen yon itilizatè",
 	"ipboptions": "2 èdtan:2 hours,1 jou:1 day,3 jou:3 days,1 semèn:1 week,2 semèn:2 weeks,1 mwa:1 month,3 mwa:3 months,6 mwa:6 months,1 lane:1 year,ki pap janm fini:infinite",
 	"ipblocklist": "Lis IP ak itilizatè yo ki bloke",

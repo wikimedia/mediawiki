@@ -1190,7 +1190,6 @@
 	"whatlinkshere-hidetrans": "$1 näüdüsses pruukmisõq",
 	"whatlinkshere-hidelinks": "$1 lingiq",
 	"whatlinkshere-hideimages": "Teedüstülingiq ($1)",
-	"whatlinkshere-filters": "Sõglaq",
 	"blockip": "Piäq puutri võrgoaadrõs kinniq",
 	"blockiptext": "Taa vorm om kimmä puutri võrgoaadrõsi päält tettüisi kirotuisi kinniqpidämises. '''Taad tohis tetäq õnnõ lehti ts'urkmisõ vasta ni [[{{MediaWiki:Policy-url}}|{{SITENAME}} sisekõrra perrä]]'''. Kimmähe tulõ täütäq ka rida \"põhjus\". Sinnäq võinuq pandaq nt lingiq noilõ lehile, midä rikuti.",
 	"ipaddressorusername": "Puutri võrgoaadrõs vai pruukjanimi",
