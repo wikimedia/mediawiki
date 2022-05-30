@@ -2722,7 +2722,6 @@
 	"whatlinkshere-hidetrans": "$1 включения",
 	"whatlinkshere-hidelinks": "$1 ссылки",
 	"whatlinkshere-hideimages": "$1 файловые ссылки",
-	"whatlinkshere-filters": "Фильтры",
 	"whatlinkshere-sectionredir": "перенаправление в раздел «$1»",
 	"whatlinkshere-submit": "Выполнить",
 	"autoblockid": "Автоблокировка #$1",

@@ -1725,7 +1725,6 @@
 	"whatlinkshere-hidetrans": "$1 оруулалт",
 	"whatlinkshere-hidelinks": "Линкүүдийг $1",
 	"whatlinkshere-hideimages": "$1 файлын холбоос",
-	"whatlinkshere-filters": "Шүүлтүүрүүд",
 	"block": "Хэрэглэгчийг блок хийх",
 	"unblock": "Хэрэглэгчийг блокоос гаргах",
 	"blockip": "{{GENDER:$1|хэрэглэгчийн}} түгжих",

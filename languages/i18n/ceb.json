@@ -753,7 +753,6 @@
 	"whatlinkshere-hideredirs": "$1 ka redirek",
 	"whatlinkshere-hidetrans": "$1 ka transklusyon",
 	"whatlinkshere-hidelinks": "$1 ka sumpay",
-	"whatlinkshere-filters": "Mga filter",
 	"blockip": "I-block ang gumagamit",
 	"ipboptions": "2 ka oras:2 hours,1 ka adlaw:1 day,3 ka adlaw:3 days,1 ka semana:1 week,2 ka semana:2 weeks,1 ka buwan:1 month,3 ka buwan:3 months,6 ka buwan:6 months,1 ka tuig:1 year,hangtod-sa-hangtod:infinite",
 	"ipblocklist": "Na-block nga mga adres sa IP ug username",

@@ -2606,7 +2606,6 @@
 	"whatlinkshere-hidetrans": "$1 transkluderinger",
 	"whatlinkshere-hidelinks": "$1 lenker",
 	"whatlinkshere-hideimages": "$1 fillenker",
-	"whatlinkshere-filters": "Filtre",
 	"whatlinkshere-sectionredir": "omdirigering til seksjonen «$1»",
 	"whatlinkshere-submit": "Hent liste",
 	"autoblockid": "Autoblokker #$1",

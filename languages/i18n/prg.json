@@ -1342,7 +1342,6 @@
 	"whatlinkshere-hidetrans": "$1 entensīsenei",
 	"whatlinkshere-hidelinks": "$1 autengīnsenei",
 	"whatlinkshere-hideimages": "$1 autengīnsenei iz bildins",
-	"whatlinkshere-filters": "Filterei",
 	"blockip": "Blōkis tērpautajan",
 	"blockiptext": "Tērpaus zemmaisin fōrmularan, kāi blōkilai enpeisāsenes mazīngiskwan iz kōnkretai IP adressin anga kōnkretasmu tērpautajan.\nBlōkitun prawerru tēr kāi ebsergītun ezze wandalisman be preitarīngi sen [[{{MediaWiki:Policy-url}}|pōlitikin]].\nPadāis brewīnslin zemmais (p. endījanei tītelins stēisan wandalizītan pāusan).",
 	"ipaddressorusername": "IP adressi anga tērpautajas pabilisnā:",

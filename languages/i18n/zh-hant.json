@@ -2662,7 +2662,6 @@
 	"whatlinkshere-hidetrans": "$1嵌入",
 	"whatlinkshere-hidelinks": "$1連結",
 	"whatlinkshere-hideimages": "$1 檔案連結",
-	"whatlinkshere-filters": "篩選",
 	"whatlinkshere-sectionredir": "重新導向到章節「$1」",
 	"whatlinkshere-submit": "前往",
 	"autoblockid": "自動封鎖 #$1",
