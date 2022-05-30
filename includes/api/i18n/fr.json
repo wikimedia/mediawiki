@@ -165,7 +165,7 @@
 	"apihelp-edit-param-section": "Numéro de section. <kbd>0</kbd> pour la section de tête, <kbd>new</kbd> pour une nouvelle section.",
 	"apihelp-edit-param-sectiontitle": "Le titre pour une nouvelle section.",
 	"apihelp-edit-param-text": "Contenu de la page.",
-	"apihelp-edit-param-summary": "Résumé de modification. Également le titre de la section quand $1section=new et $1sectiontitle n’est pas défini.",
+	"apihelp-edit-param-summary": "Résumé des modifications. Également le titre de la section quand $1section=new et $1sectiontitle n’est pas défini.",
 	"apihelp-edit-param-tags": "Modifier les balises à appliquer à la version.",
 	"apihelp-edit-param-minor": "Marquer cette modification comme étant mineure.",
 	"apihelp-edit-param-notminor": "Ne pas marquer cette modification comme mineure, même si la préférence utilisateur « {{int:tog-minordefault}} » est positionnée.",

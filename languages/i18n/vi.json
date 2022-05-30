@@ -439,7 +439,7 @@
 	"virus-scanfailed": "quét thất bại (mã $1)",
 	"virus-unknownscanner": "không nhận ra phần mềm diệt virus:",
 	"logouttext": "'''Bạn đã đăng xuất.'''\n\nXin lưu ý rằng một vài trang có thể vẫn hiển thị như khi bạn còn đăng nhập, cho đến khi bạn xóa vùng nhớ đệm (''cache'') của trình duyệt.",
-	"logging-out-notify": "Đang đăng xuất, xin chờ đợi.",
+	"logging-out-notify": "Đang đăng xuất...",
 	"logout-failed": "Không thể đăng xuất lúc này: $1",
 	"cannotlogoutnow-title": "Không thể đăng xuất lúc này",
 	"cannotlogoutnow-text": "Không thể đăng xuất khi đang dùng $1.",

@@ -17,7 +17,9 @@
 			"EDYNKRA",
 			"Julia",
 			"Lynessa",
-			"Kewl Sunshine"
+			"Kewl Sunshine",
+			"Afimaame",
+			"Merlin266"
 		]
 	},
 	"tog-underline": "Twa link nyina ase:",
@@ -476,6 +478,7 @@
 	"loginreqlink": "kɔ mu",
 	"loginreqpagetext": "Yɛsrɛ wo $1 ansa na w'aho nkratafa foforo.",
 	"newarticle": "(Foforo)",
+	"noarticletext": "Akyɛrɛsɛm biara nni krataa yi mu.\nWobɛtumi [[Special:Search/{{PAGENAME}}|hwehwɛ saa krataa tiasɛm]] wɔ krataa foforɔ mu,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],\nanaa [{{fullurl:{{FULLPAGENAME}}|action=sesa}} yɛ saa krataa yi]</span>.",
 	"userpage-userdoesnotexist-view": "Din ahyɛnsode yi \"$1\" nni nwuma mu.",
 	"note": "<strong>Fa to wo tirim:</strong>",
 	"continue-editing": "Kɔ sesa",
@@ -738,6 +741,7 @@
 	"filehist-datetime": "Da/Mmere",
 	"filehist-thumb": "Tɔfabɔ",
 	"filehist-thumbtext": "Tɔfabɔ a ɛfa $1 ho",
+	"filehist-nothumb": "Nkyerɛkyerɛ mu biara nni ha",
 	"filehist-user": "Odwumdini",
 	"filehist-dimensions": "Akwan ahodoɔ",
 	"filehist-comment": "Adwenkyerɛ",
@@ -797,6 +801,7 @@
 	"allpages": "Nkrataa fa no nyinaa",
 	"allarticles": "Nkratafa nyinaa",
 	"allpagessubmit": "Kɔ",
+	"allpages-hide-redirects": "Sie deɛ ɛbɛma wo akɔ baabi foforɔ",
 	"categories": "Nkyekyɛmu",
 	"listgrouprights-members": "Ekuomma no din",
 	"emailuser": "Ma nea ɔredi dwuma no email nkaebɔ",
@@ -850,6 +855,8 @@
 	"blocklink": "si kwan",
 	"contribslink": "mmoa",
 	"block-log-flags-nocreate": "Wo din a worete no annyɛ yie.",
+	"newtitle": "Ti asɛm foforɔ:",
+	"movereason": "Nea nti:",
 	"export": "Fa nkratafa no kɔ",
 	"tooltip-pt-mytalk": "Wokasa bea",
 	"tooltip-pt-preferences": "Nea wo pɛ",

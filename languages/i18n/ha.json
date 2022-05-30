@@ -21,7 +21,8 @@
 			"Lamma64",
 			"Nura A Sani",
 			"Omar Ali",
-			"Bello Na'im"
+			"Bello Na'im",
+			"Khalilulahi"
 		]
 	},
 	"tog-underline": "Zana layin link",
@@ -775,6 +776,7 @@
 	"fileduplicatesearch-submit": "Nema",
 	"specialpages": "Shafuna na musamman",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
+	"htmlform-submit": "Shigar da sakon",
 	"logentry-newusers-create": "Anyi kirkiri sabon account $1",
 	"logentry-upload-upload": "$1 {{GENDER:$2|ya loda|ta loda}} $3",
 	"searchsuggest-search": "Binciko {{SITENAME}}",
