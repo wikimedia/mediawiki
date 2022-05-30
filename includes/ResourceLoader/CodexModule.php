@@ -61,7 +61,7 @@ class CodexModule extends FileModule {
 	 *     "packageFiles": [
 	 *         {
 	 *             "name": "icons.json",
-	 *             "callback": "ResourceLoaderCodexModule::getIcons",
+	 *             "callback": "MediaWiki\\ResourceLoader\\CodexModule::getIcons",
 	 *             "callbackParam": [
 	 *                 "cdxIconClear",
 	 *                 "cdxIconTrash"

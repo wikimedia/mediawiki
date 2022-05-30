@@ -174,7 +174,7 @@
 					"type": "object",
 					"anyOf": [
 						{
-							"description": "A ResourceLoader FileModule definition",
+							"description": "A FileModule definition",
 							"additionalProperties": false,
 							"properties": {
 								"localBasePath": {
@@ -321,7 +321,7 @@
 							}
 						},
 						{
-							"description": "A ResourceLoader WikiModule definition",
+							"description": "A WikiModule definition",
 							"additionalProperties": false,
 							"properties": {
 								"class": {
@@ -363,7 +363,7 @@
 							}
 						},
 						{
-							"description": "A ResourceLoaderImageModule definition",
+							"description": "An ImageModule definition",
 							"additionalProperties": false,
 							"properties": {
 								"class": {

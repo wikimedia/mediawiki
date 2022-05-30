@@ -153,9 +153,13 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	}
 
 	/**
+	 * Get an item
+	 *
+	 * The CAS token should be null if the key does not exist or the value is corrupt
+	 *
 	 * @param string $key
 	 * @param int $flags Bitfield of BagOStuff::READ_* constants [optional]
-	 * @param mixed|null &$casToken cas() token if MediumSpecificBagOStuff::PASS_BY_REF [returned]
+	 * @param mixed &$casToken CAS token if MediumSpecificBagOStuff::PASS_BY_REF [returned]
 	 * @return mixed Returns false on failure or if the item does not exist
 	 */
 	abstract protected function doGet( $key, $flags = 0, &$casToken = null );
@@ -330,9 +334,9 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Check and set an item
+	 * Set an item if the current CAS token matches the provided CAS token
 	 *
-	 * @param mixed $casToken
+	 * @param mixed $casToken Only set the item if it still has this CAS token
 	 * @param string $key
 	 * @param mixed $value
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
@@ -355,9 +359,9 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Check and set an item
+	 * Set an item if the current CAS token matches the provided CAS token
 	 *
-	 * @param mixed $casToken
+	 * @param mixed $casToken CAS token from an existing version of the key
 	 * @param string $key
 	 * @param mixed $value
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
@@ -372,11 +376,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 
 		$curCasToken = self::PASS_BY_REF; // passed by reference
 		$watchPoint = $this->watchErrors();
-		$this->doGet( $key, self::READ_LATEST, $curCasToken );
-		if ( is_object( $curCasToken ) ) {
-			// Using === does not work with objects since it checks for instance identity
-			throw new UnexpectedValueException( "CAS token cannot be an object" );
-		}
+		$exists = ( $this->doGet( $key, self::READ_LATEST, $curCasToken ) !== false );
 		if ( $this->getLastError( $watchPoint ) ) {
 			// Fail if the old CAS token could not be read
 			$success = false;
@@ -384,19 +384,40 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 				__METHOD__ . ' failed due to write I/O error for {key}.',
 				[ 'key' => $key ]
 			);
-		} elseif ( $casToken === $curCasToken ) {
+		} elseif ( $exists && $this->tokensMatch( $casToken, $curCasToken ) ) {
 			$success = $this->doSet( $key, $value, $exptime, $flags );
 		} else {
 			$success = false; // mismatched or failed
 			$this->logger->info(
 				__METHOD__ . ' failed due to race condition for {key}.',
-				[ 'key' => $key ]
+				[ 'key' => $key, 'key_exists' => $exists ]
 			);
 		}
 
 		$this->unlock( $key );
 
 		return $success;
+	}
+
+	/**
+	 * @param mixed $value CAS token for an existing key
+	 * @param mixed $otherValue CAS token for an existing key
+	 * @return bool Whether the two tokens match
+	 */
+	final protected function tokensMatch( $value, $otherValue ) {
+		$type = gettype( $value );
+		// Ideally, tokens are counters, timestamps, hashes, or serialized PHP values.
+		// However, some classes might use the PHP values themselves.
+		if ( $type !== gettype( $otherValue ) ) {
+			return false;
+		}
+		// Serialize both tokens to strictly compare objects or arrays (which might objects
+		// nested inside). Note that this will not apply if integer/string CAS tokens are used.
+		if ( $type === 'array' || $type === 'object' ) {
+			return ( serialize( $value ) === serialize( $otherValue ) );
+		}
+		// For string/integer tokens, use a simple comparison
+		return ( $value === $otherValue );
 	}
 
 	/**

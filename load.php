@@ -1,7 +1,7 @@
 <?php
 /**
- * The web entry point for ResourceLoader, which serves static CSS/JavaScript
- * via ResourceLoaderModule subclasses.
+ * The web entry point for @ref ResourceLoader, which serves static CSS/JavaScript
+ * via @ref MediaWiki\ResourceLoader\Module Module subclasses.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

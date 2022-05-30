@@ -451,7 +451,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 		}
 
-		// Batched version of ResourceLoaderWikiModule::getTitleInfo
+		// Batched version of WikiModule::getTitleInfo
 		$dbr = wfGetDB( DB_REPLICA );
 		WikiModule::preloadTitleInfo( $context, $dbr, $moduleNames );
 

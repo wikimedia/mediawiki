@@ -3344,7 +3344,7 @@ config-schema:
             **Example: Using an alternate subclass**
             ```
             $wgResourceModules['ext.myExtension'] = [
-              'class' => WikiModule::class,
+              'class' => \MediaWiki\ResourceLoader\WikiModule::class,
             ];
             ```
             **Example: Deprecated module**

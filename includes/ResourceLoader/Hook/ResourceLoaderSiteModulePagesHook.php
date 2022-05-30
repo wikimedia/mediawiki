@@ -13,7 +13,7 @@ interface ResourceLoaderSiteModulePagesHook {
 	/**
 	 * Change which wiki pages comprise the `site` module in given skin.
 	 *
-	 * This hook is called from ResourceLoaderSiteModule.
+	 * This hook is called from MediaWiki\ResourceLoader\SiteModule.
 	 *
 	 * @since 1.35
 	 * @param string $skin Current skin key

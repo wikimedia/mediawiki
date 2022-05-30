@@ -45,14 +45,14 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
 
-		$blob = wincache_ucache_get( $key );
-		if ( !is_string( $blob ) && !is_int( $blob ) ) {
+		$data = wincache_ucache_get( $key );
+		if ( !is_string( $data ) && !is_int( $data ) ) {
 			return false;
 		}
 
-		$value = $this->unserialize( $blob );
+		$value = $this->unserialize( $data );
 		if ( $getToken && $value !== false ) {
-			$casToken = (string)$blob; // don't bother hashing this
+			$casToken = $data;
 		}
 
 		return $value;

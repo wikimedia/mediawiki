@@ -5206,7 +5206,7 @@ class MainConfigSchema {
 	 *
 	 * ```
 	 * $wgResourceModules['ext.myExtension'] = [
-	 *   'class' => WikiModule::class,
+	 *   'class' => \MediaWiki\ResourceLoader\WikiModule::class,
 	 * ];
 	 * ```
 	 *
