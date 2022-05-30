@@ -2577,7 +2577,6 @@
 	"whatlinkshere-hidetrans": "$1 inkludojn",
 	"whatlinkshere-hidelinks": "$1 ligilojn",
 	"whatlinkshere-hideimages": "$1 dosier{{PLURAL:$1|a ligilo|aj ligiloj}}",
-	"whatlinkshere-filters": "Filtriloj",
 	"whatlinkshere-sectionredir": "alidirekto al sekcio \"$1\"",
 	"whatlinkshere-submit": "Ek",
 	"autoblockid": "Aŭtomata forbaro #$1",

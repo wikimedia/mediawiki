@@ -1214,7 +1214,6 @@
 	"whatlinkshere-hidetrans": "Vurloageneibindunga $1",
 	"whatlinkshere-hidelinks": "Links $1",
 	"whatlinkshere-hideimages": "Dateilinks $1",
-	"whatlinkshere-filters": "Filter",
 	"blockip": "IP-Atresse/Benutzer sperra",
 	"blockiptext": "Mit diesem Formular sperrst du anne IP-Atresse oder an'n Nutzernoama, su doaß vu dort kenne Änderunga meh vorgenumma waan kinna.\nDies sullte ock erfolga, im Vandalismus zu verhindern und ei Iebereinstimmung miet dann [[{{MediaWiki:Policy-url}}|Richtlinien]].\nBitte gib dann Grund fier de Sperre oa.",
 	"ipaddressorusername": "IP-Atresse oder Benutzernoame:",

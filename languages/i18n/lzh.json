@@ -1612,7 +1612,6 @@
 	"whatlinkshere-hidetrans": "$1含",
 	"whatlinkshere-hidelinks": "$1佐",
 	"whatlinkshere-hideimages": "$1檔佐",
-	"whatlinkshere-filters": "濾",
 	"blockip": "禁簿",
 	"blockiptext": "函下禁纂，簿、址明判；[[{{MediaWiki:Policy-url}}|秉據]]如斯，立法克亂。指罪證行，了冤無憾。",
 	"ipaddressorusername": "IP、簿名或封鎖簿：",

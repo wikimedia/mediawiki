@@ -2686,7 +2686,6 @@
 	"whatlinkshere-hidetrans": "参照読み込みを$1",
 	"whatlinkshere-hidelinks": "リンクを$1",
 	"whatlinkshere-hideimages": "ファイルへのリンクを$1",
-	"whatlinkshere-filters": "絞り込み",
 	"whatlinkshere-sectionredir": "\"$1\"節へのリダイレクト",
 	"whatlinkshere-submit": "実行",
 	"autoblockid": "自動ブロック #$1",

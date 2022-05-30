@@ -790,7 +790,6 @@
 	"whatlinkshere-next": "{{PLURAL:$1|suivante|$1 suivantes}}",
 	"whatlinkshere-links": "← liens",
 	"whatlinkshere-hidelinks": "$1 les liens",
-	"whatlinkshere-filters": "Filtres",
 	"block": "Bloquer l’useur",
 	"unblock": "Débloquer l’useur",
 	"blockip": "Bloquer l’{{GENDER:$1|useur|useuse}}",

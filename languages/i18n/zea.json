@@ -776,7 +776,6 @@
 	"whatlinkshere-hidetrans": "transclusies $1",
 	"whatlinkshere-hidelinks": "verwieziengen $1",
 	"whatlinkshere-hideimages": "bestandsverwiezingen $1",
-	"whatlinkshere-filters": "Filters",
 	"blockip": "Blokkeer gebruker",
 	"ipboptions": "2 uur:2 hours,1 dag:1 day,3 daegen:3 days,1 week:1 week,2 weken:2 weeks,1 maend:1 month,3 maenden:3 months,6 maenden:6 months,1 jaer:1 year,onbepaeld:infinite",
 	"badipaddress": "Ongeldig IP-adres",

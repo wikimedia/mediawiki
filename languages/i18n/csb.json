@@ -984,7 +984,6 @@
 	"whatlinkshere-hidetrans": "$1 doparłãczenia",
 	"whatlinkshere-hidelinks": "$1 lënczi",
 	"whatlinkshere-hideimages": "$1 lënk z lopków",
-	"whatlinkshere-filters": "Filtrë",
 	"blockip": "Blokùjë {{GENDER:$1|brëkòwnika|brëkòwniczkã}}",
 	"blockiptext": "Brëkùje formùlarza niżi abë zascëgòwac prawò zapisënkù spòd gwësny adresë IP. To robi sã blós dlôte abë zascëgnąc wandalëznom, a bëc w zgòdze ze [[{{MediaWiki:Policy-url}}|wskôzama]]. Pòdôj przëczënã (np. dając miona starn, na chtërnëch dopùszczono sã wandalëzny).",
 	"ipbreason": "Przëczëna:",

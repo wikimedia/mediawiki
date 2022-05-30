@@ -1572,7 +1572,6 @@
 	"whatlinkshere-hidetrans": "$1嵌入",
 	"whatlinkshere-hidelinks": "$1链接",
 	"whatlinkshere-hideimages": "$1文件链接",
-	"whatlinkshere-filters": "过滤器",
 	"blockip": "查封{{GENDER:$1|用户}}",
 	"blockiptext": "用下头个表单来禁止来自某一特定IP地址或用户名个修改权限。只有勒勒为仔防止破坏，及符合[[{{MediaWiki:Policy-url}}|政策]]个情况下底才好采取此行动。请勒勒下底输入一个具体个理由（譬如引述一只畀破坏个页面）。侬好用[https://zh.wikipedia.org/wiki/无类别域间路由 CIDR]语法查封IP地址段；允许个最大段是/$1（针对IPv4）搭/$2（针对IPv6）。",
 	"ipaddressorusername": "IP地址、用户名或封锁ID：",

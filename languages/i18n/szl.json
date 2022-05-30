@@ -1482,7 +1482,6 @@
 	"whatlinkshere-hidetrans": "$1 dołōnczynia",
 	"whatlinkshere-hidelinks": "$1 linki",
 	"whatlinkshere-hideimages": "$1 linki zbiorōw",
-	"whatlinkshere-filters": "Filtry",
 	"blockip": "Zawrzij sprowjorza",
 	"blockiptext": "Tyn formularz służy do zawjerańo sprowjyń spod uokreślůnygo adresu IP abo kůnkretnymu użytkowńikowi.\nZawjerać noleży jydyńy po to, by zapobjec wandalizmům, zgodńy ze [[{{MediaWiki:Policy-url}}|przijyntymi reglůma]].\nPodej powůd (np. umjeszczajůnc mjana zajtůw, na kerych dopuszczůno śe wandalizmu).",
 	"ipaddressorusername": "Adres IP abo mjano użytkowńika",
