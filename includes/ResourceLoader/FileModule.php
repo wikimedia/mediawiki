@@ -57,69 +57,42 @@ class FileModule extends Module {
 	/** @var string Remote base path, see __construct() */
 	protected $remoteBasePath = '';
 
-	/** @var array Saves a list of the templates named by the modules. */
-	protected $templates = [];
-
 	/**
-	 * @var array List of paths to JavaScript files to always include
-	 * @par Usage:
-	 * @code
-	 * [ [file-path], [file-path], ... ]
-	 * @endcode
+	 * @var array<int,string|FilePath> List of JavaScript file paths to always include
 	 */
 	protected $scripts = [];
 
 	/**
-	 * @var array List of JavaScript files to include when using a specific language
-	 * @par Usage:
-	 * @code
-	 * [ [language-code] => [ [file-path], [file-path], ... ], ... ]
-	 * @endcode
+	 * @var array<string,array<int,string|FilePath>> Lists of JavaScript files by language code
 	 */
 	protected $languageScripts = [];
 
 	/**
-	 * @var array List of JavaScript files to include when using a specific skin
-	 * @par Usage:
-	 * @code
-	 * [ [skin-name] => [ [file-path], [file-path], ... ], ... ]
-	 * @endcode
+	 * @var array<string,array<int,string|FilePath>> Lists of JavaScript files by skin name
 	 */
 	protected $skinScripts = [];
 
 	/**
-	 * @var array List of paths to JavaScript files to include in debug mode
-	 * @par Usage:
-	 * @code
-	 * [ [skin-name] => [ [file-path], [file-path], ... ], ... ]
-	 * @endcode
+	 * @var array<int,string|FilePath> List of paths to JavaScript files to include in debug mode
 	 */
 	protected $debugScripts = [];
 
 	/**
-	 * @var array List of paths to CSS files to always include
-	 * @par Usage:
-	 * @code
-	 * [ [file-path], [file-path], ... ]
-	 * @endcode
+	 * @var array<int,string|FilePath> List of CSS file files to always include
 	 */
 	protected $styles = [];
 
 	/**
-	 * @var array List of paths to CSS files to include when using specific skins
-	 * @par Usage:
-	 * @code
-	 * [ [file-path], [file-path], ... ]
-	 * @endcode
+	 * @var array<string,array<int,string|FilePath>> Lists of CSS files by skin name
 	 */
 	protected $skinStyles = [];
 
 	/**
-	 * @var array List of packaged files to make available through require()
-	 * @par Usage:
-	 * @code
-	 * [ [file-path-or-object], [file-path-or-object], ... ]
-	 * @endcode
+	 * Packaged files definition, to bundle and make available client-side via `require()`.
+	 *
+	 * @see FileModule::expandPackageFiles()
+	 * @var null|array
+	 * @phan-var null|array<int,string|FilePath|array{main?:bool,name?:string,file?:string|FilePath,type?:string,content?:mixed,config?:array,callback?:callable,callbackParam?:mixed,versionCallback?:callable}>
 	 */
 	protected $packageFiles = null;
 
@@ -136,30 +109,25 @@ class FileModule extends Module {
 	private $fullyExpandedPackageFiles = [];
 
 	/**
-	 * @var array List of modules this module depends on
-	 * @par Usage:
-	 * @code
-	 * [ [file-path], [file-path], ... ]
-	 * @endcode
+	 * @var string[] List of modules this module depends on
 	 */
 	protected $dependencies = [];
 
 	/**
-	 * @var string File name containing the body of the skip function
+	 * @var null|string File name containing the body of the skip function
 	 */
 	protected $skipFunction = null;
 
 	/**
-	 * @var array List of message keys used by this module
-	 * @par Usage:
-	 * @code
-	 * [ [message-key], [message-key], ... ]
-	 * @endcode
+	 * @var string[] List of message keys used by this module
 	 */
 	protected $messages = [];
 
-	/** @var string Name of group to load this module in */
-	protected $group;
+	/** @var array<int|string,string|FilePath> List of the named templates used by this module */
+	protected $templates = [];
+
+	/** @var null|string Name of group to load this module in */
+	protected $group = null;
 
 	/** @var bool Link to raw files in debug mode */
 	protected $debugRaw = true;
@@ -180,16 +148,12 @@ class FileModule extends Module {
 	protected $hasGeneratedStyles = false;
 
 	/**
-	 * @var array Place where readStyleFile() tracks file dependencies
-	 * @par Usage:
-	 * @code
-	 * [ [file-path], [file-path], ... ]
-	 * @endcode
+	 * @var string[] Place where readStyleFile() tracks file dependencies
 	 */
 	protected $localFileRefs = [];
 
 	/**
-	 * @var array Place where readStyleFile() tracks file dependencies for non-existent files.
+	 * @var string[] Place where readStyleFile() tracks file dependencies for non-existent files.
 	 * Used in tests to detect missing dependencies.
 	 */
 	protected $missingLocalFileRefs = [];
@@ -207,13 +171,11 @@ class FileModule extends Module {
 	 *     Defaults to $IP
 	 * @param string|null $remoteBasePath Base path to prepend to all remote paths in $options.
 	 *     Defaults to $wgResourceBasePath
-	 * @throws InvalidArgumentException
-	 * @see $wgResourceModules
 	 */
 	public function __construct(
 		array $options = [],
-		$localBasePath = null,
-		$remoteBasePath = null
+		string $localBasePath = null,
+		string $remoteBasePath = null
 	) {
 		// Flag to decide whether to automagically add the mediawiki.template module
 		$hasTemplates = false;
@@ -397,7 +359,7 @@ class FileModule extends Module {
 
 	/**
 	 * @param Context $context
-	 * @return string[]
+	 * @return string[] URLs
 	 */
 	public function getScriptURLsForDebug( Context $context ) {
 		$rl = $context->getResourceLoader();
@@ -459,7 +421,7 @@ class FileModule extends Module {
 
 	/**
 	 * @param Context $context
-	 * @return string[][]
+	 * @return string[][] Lists of URLs by media type
 	 */
 	public function getStyleURLsForDebug( Context $context ) {
 		if ( $this->hasGeneratedStyles ) {
@@ -483,7 +445,7 @@ class FileModule extends Module {
 	}
 
 	/**
-	 * Gets list of message keys used by this module.
+	 * Get message keys used by this module.
 	 *
 	 * @return string[] List of message keys
 	 */
@@ -492,16 +454,17 @@ class FileModule extends Module {
 	}
 
 	/**
-	 * Gets the name of the group this module should be loaded in.
+	 * Get the name of the group this module should be loaded in.
 	 *
-	 * @return string Group name
+	 * @return null|string Group name
 	 */
 	public function getGroup() {
 		return $this->group;
 	}
 
 	/**
-	 * Gets list of names of modules this module depends on.
+	 * Get names of modules this module depends on.
+	 *
 	 * @param Context|null $context
 	 * @return string[] List of module names
 	 */
@@ -514,21 +477,17 @@ class FileModule extends Module {
 	 *
 	 * @param string $localPath The path to the resource to load
 	 * @param string $type The type of resource being loaded (for error reporting only)
-	 * @throws RuntimeException If the supplied path is not found, or not a path
 	 * @return string
 	 */
 	private function getFileContents( $localPath, $type ) {
 		if ( !is_file( $localPath ) ) {
-			throw new RuntimeException(
-				__METHOD__ . ": $type file not found, or is not a file: \"$localPath\""
-			);
+			throw new RuntimeException( "$type file not found or not a file: \"$localPath\"" );
 		}
 		return $this->stripBom( file_get_contents( $localPath ) );
 	}
 
 	/**
 	 * @return null|string
-	 * @throws RuntimeException If the file doesn't exist
 	 */
 	public function getSkipFunction() {
 		if ( !$this->skipFunction ) {
@@ -558,7 +517,7 @@ class FileModule extends Module {
 	 * Helper method for getDefinitionSummary.
 	 *
 	 * @param Context $context
-	 * @return string
+	 * @return string Hash
 	 */
 	private function getFileHashes( Context $context ) {
 		$files = [];
@@ -810,14 +769,14 @@ class FileModule extends Module {
 	}
 
 	/**
-	 * Get a list of script file paths for this module, in order of proper execution.
+	 * Get script file paths for this module, in order of proper execution.
 	 *
 	 * @param Context $context
-	 * @return string[] List of file paths
+	 * @return array<int,string|FilePath> File paths
 	 */
-	private function getScriptFiles( Context $context ) {
-		// Execution order, as documented at $wgResourceModules:
-		// scripts, languageScripts, skinScripts, debugScripts.
+	private function getScriptFiles( Context $context ): array {
+		// List in execution order: scripts, languageScripts, skinScripts, debugScripts.
+		// Documented at MediaWiki\MainConfigSchema::ResourceModules.
 		$files = array_merge(
 			$this->scripts,
 			$this->getLanguageScripts( $context->getLanguage() ),
@@ -835,7 +794,7 @@ class FileModule extends Module {
 	 * possibly using a fallback language.
 	 *
 	 * @param string $lang
-	 * @return string[]
+	 * @return array<int,string|FilePath> File paths
 	 */
 	private function getLanguageScripts( string $lang ): array {
 		$scripts = self::tryForKey( $this->languageScripts, $lang );
@@ -900,7 +859,7 @@ class FileModule extends Module {
 	 *
 	 * @internal Exposed only for use by structure phpunit tests.
 	 * @param Context $context
-	 * @return string[][] List of file paths
+	 * @return array<string,array<int,string|FilePath>> Map from media type to list of file paths
 	 */
 	public function getStyleFiles( Context $context ) {
 		return array_merge_recursive(
@@ -976,12 +935,11 @@ class FileModule extends Module {
 	/**
 	 * Get the contents of a list of JavaScript files. Helper for getScript().
 	 *
-	 * @param string[] $scripts List of file paths to scripts to read, remap and concatenate
-	 * @return string Concatenated JavaScript data from $scripts
-	 * @throws RuntimeException
+	 * @param array<int,string|FilePath> $scripts List of file paths to scripts to read, remap and concatenate
+	 * @return string Concatenated JavaScript code
 	 */
 	private function readScriptFiles( array $scripts ) {
-		if ( empty( $scripts ) ) {
+		if ( !$scripts ) {
 			return '';
 		}
 		$js = '';
@@ -994,14 +952,12 @@ class FileModule extends Module {
 	}
 
 	/**
-	 * Get the contents of a list of CSS files.
+	 * Read the contents of a list of CSS files and remap and concatenate these.
 	 *
 	 * @internal This is considered a private method. Exposed for internal use by WebInstallerOutput.
-	 * @param array $styles Map of media type to file paths to read, remap, and concatenate
+	 * @param array<string,array<int,string|FilePath>> $styles Map of media type to file paths
 	 * @param Context $context
-	 * @return string[] List of concatenated and remapped CSS data from $styles,
-	 *     keyed by media type
-	 * @throws RuntimeException
+	 * @return array<string,string> Map of combined CSS code, keyed by media type
 	 */
 	public function readStyleFiles( array $styles, Context $context ) {
 		if ( !$styles ) {
@@ -1024,10 +980,9 @@ class FileModule extends Module {
 	 * This method can be used as a callback for array_map()
 	 *
 	 * @internal
-	 * @param string $path File path of style file to read
+	 * @param string|FilePath $path Path of style file to read
 	 * @param Context $context
-	 * @return string CSS data in script file
-	 * @throws RuntimeException If the file doesn't exist
+	 * @return string CSS code
 	 */
 	protected function readStyleFile( $path, Context $context ) {
 		$localPath = $this->getLocalPath( $path );
@@ -1047,11 +1002,11 @@ class FileModule extends Module {
 	 * - URL remapping and data URI embedding
 	 *
 	 * @internal
-	 * @param string $style CSS/LESS string
-	 * @param string $styleLang Language of $style ('css' or 'less')
-	 * @param string $path File path where the CSS/LESS lives, used for resolving relative file paths
+	 * @param string $style CSS or LESS code
+	 * @param string $styleLang Language of $style code ('css' or 'less')
+	 * @param string|FilePath $path Path to code file, used for resolving relative file paths
 	 * @param Context $context
-	 * @return string Processed CSS
+	 * @return string Processed CSS code
 	 */
 	protected function processStyle( $style, $styleLang, $path, Context $context ) {
 		$localPath = $this->getLocalPath( $path );
@@ -1146,7 +1101,6 @@ class FileModule extends Module {
 	 * Keeps track of all used files and adds them to localFileRefs.
 	 *
 	 * @since 1.35
-	 * @throws Exception If less.php encounters a parse error
 	 * @param string $style LESS source to compile
 	 * @param string $stylePath File path of LESS source, used for resolving relative file paths
 	 * @param Context $context Context in which to generate script
@@ -1211,9 +1165,9 @@ class FileModule extends Module {
 	}
 
 	/**
-	 * Takes named templates by the module and returns an array mapping.
-	 * @return array Templates mapping template alias to content
-	 * @throws RuntimeException If a file doesn't exist
+	 * Get content of named templates for this module.
+	 *
+	 * @return array<string,string> Templates mapping template alias to content
 	 */
 	public function getTemplates() {
 		$templates = [];
@@ -1248,7 +1202,6 @@ class FileModule extends Module {
 	 * @param Context $context
 	 * @return array|null
 	 * @phan-return array{main:?string,files:array[]}|null
-	 * @throws LogicException If the 'packageFiles' definition is invalid.
 	 */
 	private function expandPackageFiles( Context $context ) {
 		$hash = $context->getHash();
@@ -1382,7 +1335,8 @@ class FileModule extends Module {
 	}
 
 	/**
-	 * Resolves the package files definition and generates the content of each package file.
+	 * Resolve the package files definition and generates the content of each package file.
+	 *
 	 * @param Context $context
 	 * @return array|null Package files data structure, see ResourceLoaderModule::getScript()
 	 * @throws RuntimeException If a file doesn't exist, or parsing a .vue file fails
