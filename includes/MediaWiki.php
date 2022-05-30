@@ -530,16 +530,20 @@ class MediaWiki {
 				$request->markAsSafeRequest();
 			}
 
-			# Let CDN cache things if we can purge them.
+			// Let CDN cache things if we can purge them.
+			// Also unconditionally cache page views.
 			if ( $this->config->get( MainConfigNames::UseCdn ) ) {
 				$htmlCacheUpdater = $services->getHtmlCacheUpdater();
-				if ( in_array(
+				if (
+					in_array(
 						// Use PROTO_INTERNAL because that's what HtmlCacheUpdater::getUrls() uses
 						wfExpandUrl( $request->getRequestURL(), PROTO_INTERNAL ),
 						$htmlCacheUpdater->getUrls( $requestTitle )
 					)
 				) {
 					$output->setCdnMaxage( $this->config->get( MainConfigNames::CdnMaxAge ) );
+				} elseif ( $action instanceof ViewAction ) {
+					$output->setCdnMaxage( 3600 );
 				}
 			}
 
