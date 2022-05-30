@@ -3007,16 +3007,17 @@ class MainConfigSchema {
 	 *
 	 * Use the SCHEMA_COMPAT_XXX flags. Supported values:
 	 *
-	 *   - SCHEMA_COMPAT_OLD
 	 *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
 	 *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW
 	 *   - SCHEMA_COMPAT_NEW
 	 *
 	 * History:
 	 *   - 1.38: Added
+	 *   - 1.39: Default has changed to SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
+	 *     and support for SCHEMA_COMPAT_OLD is dropped.
 	 */
 	public const TemplateLinksSchemaMigrationStage = [
-		'default' => SCHEMA_COMPAT_OLD,
+		'default' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
 		'type' => 'integer',
 	];
 

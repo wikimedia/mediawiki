@@ -557,18 +557,18 @@
 			{
 				"name": "tl_namespace",
 				"type": "integer",
-				"options": { "notnull": true, "default": 0 }
+				"options": { "default": 0 }
 			},
 			{
 				"name": "tl_title",
 				"type": "binary",
-				"options": { "notnull": true, "length": 255, "default": "" }
+				"options": { "length": 255, "default": "" }
 			},
 			{
 				"name": "tl_target_id",
 				"type": "bigint",
 				"comment": "Foreign key to linktarget.lt_id",
-				"options": { "notnull": false, "unsigned": true, "default": null }
+				"options": { "notnull": true, "unsigned": true }
 			}
 		],
 		"indexes": [
@@ -597,7 +597,7 @@
 				"unique": false
 			}
 		],
-		"pk": [ "tl_from", "tl_namespace", "tl_title" ]
+		"pk": [ "tl_from", "tl_target_id" ]
 	},
 	{
 		"name": "imagelinks",

@@ -44,6 +44,7 @@ class LinksMigration {
 			'ns' => 'tl_namespace',
 			'title' => 'tl_title',
 			'target_id' => 'tl_target_id',
+			'deprecated_configs' => [ SCHEMA_COMPAT_OLD ],
 		],
 	];
 
@@ -137,6 +138,13 @@ class LinksMigration {
 		if ( !isset( self::$mapping[$table] ) ) {
 			throw new InvalidArgumentException(
 				"LinksMigration doesn't support the $table table yet"
+			);
+		}
+
+		$config = $this->config->get( self::$mapping[$table]['config'] );
+		if ( in_array( $config, self::$mapping[$table]['deprecated_configs'] ) ) {
+			throw new InvalidArgumentException(
+				"LinksMigration config $config on $table table is not supported anymore"
 			);
 		}
 	}

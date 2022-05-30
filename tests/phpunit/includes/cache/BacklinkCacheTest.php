@@ -140,12 +140,21 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 	 * @covers BacklinkCache::partition
 	 */
 	public function testPartition() {
+		$targetId = $this->getServiceContainer()->getLinkTargetLookup()->acquireLinkTargetId(
+			Title::newFromText( 'BLCTest1234' ),
+			$this->db
+		);
+		$targetRow = [
+			'tl_target_id' => $targetId,
+			'tl_namespace' => 0,
+			'tl_title' => 'BLCTest1234',
+		];
 		$this->db->insert( 'templatelinks', [
-			[ 'tl_from' => 56890, 'tl_from_namespace' => 0, 'tl_namespace' => 0, 'tl_title' => 'BLCTest1234' ],
-			[ 'tl_from' => 56891, 'tl_from_namespace' => 0, 'tl_namespace' => 0, 'tl_title' => 'BLCTest1234' ],
-			[ 'tl_from' => 56892, 'tl_from_namespace' => 0, 'tl_namespace' => 0, 'tl_title' => 'BLCTest1234' ],
-			[ 'tl_from' => 56893, 'tl_from_namespace' => 0, 'tl_namespace' => 0, 'tl_title' => 'BLCTest1234' ],
-			[ 'tl_from' => 56894, 'tl_from_namespace' => 0, 'tl_namespace' => 0, 'tl_title' => 'BLCTest1234' ],
+			[ 'tl_from' => 56890, 'tl_from_namespace' => 0 ] + $targetRow,
+			[ 'tl_from' => 56891, 'tl_from_namespace' => 0 ] + $targetRow,
+			[ 'tl_from' => 56892, 'tl_from_namespace' => 0 ] + $targetRow,
+			[ 'tl_from' => 56893, 'tl_from_namespace' => 0 ] + $targetRow,
+			[ 'tl_from' => 56894, 'tl_from_namespace' => 0 ] + $targetRow,
 		] );
 		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
 		$backlinkCache = $blcFactory->getBacklinkCache( Title::newFromText( 'BLCTest1234' ) );
