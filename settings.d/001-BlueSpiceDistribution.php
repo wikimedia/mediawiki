@@ -21,6 +21,12 @@ $GLOBALS['wgUFAllowedNamespaces'] = array_fill( 0, 5000, true );
 require_once __DIR__ . "/../extensions/UrlGetParameters/UrlGetParameters.php";
 wfLoadExtension( 'FlexiSkin' );
 wfLoadExtension( 'Loops' );
+wfLoadExtension( 'InviteSignup' );
+$GLOBALS['wgGroupPermissions']['sysop']['invitesignup'] = true;
+$GLOBALS['bsgPermissionConfig']['invitesignup'] = [
+	'type' => 'global',
+	'roles' => [ 'admin' ]
+];
 
 $GLOBALS['wgGroupTypes'] = [
 	'*'                => 'implicit',
