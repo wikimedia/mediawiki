@@ -23,11 +23,10 @@ namespace MediaWiki\ResourceLoader;
 use RuntimeException;
 
 /**
- * An object to represent a path to a JavaScript/CSS file, along with a remote
- * and local base path, for use with FileModule.
+ * A path to a bundled file (such as JavaScript or CSS), along with a remote and local base path.
  *
- * Null base path indicates that the corresponding base path from FileModule
- * should be used.
+ * This is for use with FileModule. Base path may be `null`, which indicates that the
+ * path is expanded relative to the corresponding base path of the FileModule object instead.
  *
  * @ingroup ResourceLoader
  * @since 1.17
