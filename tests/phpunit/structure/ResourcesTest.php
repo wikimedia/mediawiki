@@ -17,16 +17,15 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ResourcesTest extends MediaWikiIntegrationTestCase {
 
-	/**
-	 * @dataProvider provideMediaStylesheets
-	 */
-	public function testStyleMedia( $moduleName, $media, $filename, $css ) {
-		$cssText = CSSMin::minify( $css->cssText );
+	public function testStyleMedia() {
+		foreach ( self::provideMediaStylesheets() as list( $moduleName, $media, $filename, $css ) ) {
+			$cssText = CSSMin::minify( $css->cssText );
 
-		$this->assertTrue(
-			strpos( $cssText, '@media' ) === false,
-			'Stylesheets should not both specify "media" and contain @media'
-		);
+			$this->assertTrue(
+				strpos( $cssText, '@media' ) === false,
+				'Stylesheets should not both specify "media" and contain @media'
+			);
+		}
 	}
 
 	/**
