@@ -21,6 +21,7 @@
  */
 namespace MediaWiki\Rest\Handler;
 
+use IBufferingStatsdDataFactory;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -90,22 +91,28 @@ class ParsoidHTMLHelper {
 	/** @var ParserOutput|null */
 	private $parserOutput = null;
 
+	/** @var IBufferingStatsdDataFactory */
+	private $stats;
+
 	/**
 	 * @param ParserCache $parserCache
 	 * @param RevisionOutputCache $revisionOutputCache
 	 * @param GlobalIdGenerator $globalIdGenerator
 	 * @param ParsoidOutputStash $parsoidOutputStash
+	 * @param IBufferingStatsdDataFactory $statsDataFactory
 	 */
 	public function __construct(
 		ParserCache $parserCache,
 		RevisionOutputCache $revisionOutputCache,
 		GlobalIdGenerator $globalIdGenerator,
-		ParsoidOutputStash $parsoidOutputStash
+		ParsoidOutputStash $parsoidOutputStash,
+		IBufferingStatsdDataFactory $statsDataFactory
 	) {
 		$this->parserCache = $parserCache;
 		$this->globalIdGenerator = $globalIdGenerator;
 		$this->revisionOutputCache = $revisionOutputCache;
 		$this->parsoidOutputStash = $parsoidOutputStash;
+		$this->stats = $statsDataFactory;
 	}
 
 	/**
@@ -253,12 +260,14 @@ class ParsoidHTMLHelper {
 				$this->makePageBundle( $parserOutput )
 			);
 			if ( !$stashSuccess ) {
+				$this->stats->increment( 'parsoidhtmlhelper.stashing.stash.failed' );
 				throw new LocalizedHttpException(
 					MessageValue::new( 'rest-html-backend-error' ),
 					500,
 					[ 'reason' => 'Failed to stash parser output' ]
 				);
 			}
+			$this->stats->increment( 'parsoidhtmlhelper.stashing.stash.save' );
 		}
 
 		return $parserOutput;
@@ -348,9 +357,11 @@ class ParsoidHTMLHelper {
 		if ( $isOld ) {
 			$this->parserOutput = $this->revisionOutputCache->get( $this->revision,
 				$parserOptions );
+			$this->stats->increment( 'parsoidhtmlhelper.stashing.revision.cache.hit' );
 		} else {
 			$this->parserOutput = $this->parserCache->get( $this->page,
 				$parserOptions );
+			$this->stats->increment( 'parsoidhtmlhelper.stashing.parser.cache.hit' );
 
 			if ( $this->parserOutput ) {
 				// Ignore cached ParserOutput if it is incomplete,
@@ -381,8 +392,10 @@ class ParsoidHTMLHelper {
 
 		if ( $isOld ) {
 			$this->revisionOutputCache->save( $this->parserOutput, $this->revision, $parserOptions, $now );
+			$this->stats->increment( 'parsoidhtmlhelper.stashing.revision.cache.miss' );
 		} else {
 			$this->parserCache->save( $this->parserOutput, $this->page, $parserOptions, $now );
+			$this->stats->increment( 'parsoidhtmlhelper.stashing.parser.cache.miss' );
 		}
 
 		return $this->parserOutput;

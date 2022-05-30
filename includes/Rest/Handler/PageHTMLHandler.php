@@ -3,6 +3,7 @@
 namespace MediaWiki\Rest\Handler;
 
 use Config;
+use IBufferingStatsdDataFactory;
 use LogicException;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Page\PageLookup;
@@ -38,7 +39,8 @@ class PageHTMLHandler extends SimpleHandler {
 		ParserCacheFactory $parserCacheFactory,
 		GlobalIdGenerator $globalIdGenerator,
 		PageLookup $pageLookup,
-		ParsoidOutputStash $parsoidOutputStash
+		ParsoidOutputStash $parsoidOutputStash,
+		IBufferingStatsdDataFactory $statsDataFactory
 	) {
 		$this->contentHelper = new PageContentHelper(
 			$config,
@@ -50,7 +52,8 @@ class PageHTMLHandler extends SimpleHandler {
 			$parserCacheFactory->getParserCache( 'parsoid' ),
 			$parserCacheFactory->getRevisionOutputCache( 'parsoid' ),
 			$globalIdGenerator,
-			$parsoidOutputStash
+			$parsoidOutputStash,
+			$statsDataFactory
 		);
 	}
 
