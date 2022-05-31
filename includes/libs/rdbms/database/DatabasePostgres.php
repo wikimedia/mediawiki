@@ -1293,10 +1293,7 @@ SQL;
 	}
 
 	protected function doFlushSession( $fname ) {
-		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS | self::QUERY_NO_RETRY;
-
-		// In Postgres, ROLLBACK already releases table locks;
-		// https://www.postgresql.org/docs/9.4/sql-lock.html
+		$flags = self::QUERY_CHANGE_LOCKS | self::QUERY_NO_RETRY;
 
 		// https://www.postgresql.org/docs/9.1/functions-admin.html
 		$sql = "pg_advisory_unlock_all()";
