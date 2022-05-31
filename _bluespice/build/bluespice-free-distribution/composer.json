@@ -6,6 +6,7 @@
 	"require": {
 		"bluespice/visualeditorconnector": "dev-REL1_35",
 		"hallowelt/filter-special-pages": "dev-REL1_35",
+		"mediawiki/invite-signup": "dev-REL1_35",
 		"mediawiki/arrays": "dev-REL1_35",
 		"mediawiki/dynamic-page-list3": "3.4.*",
 		"mediawiki/echo": "dev-REL1_35",

@@ -1,0 +1,12 @@
+--- InviteSignup/InviteSignupHooks.php	2021-04-19 15:45:41.062398505 +0200
++++ InviteSignup.patch/InviteSignupHooks.php	2021-04-19 15:41:26.925355809 +0200
+@@ -36,7 +36,8 @@
+ 				if ( !is_array( $wgWhitelistRead ) ) {
+ 					$wgWhitelistRead = [];
+ 				}
+-				array_push( $wgWhitelistRead, "Special:CreateAccount" );
++
++				$wgWhitelistRead[] = $title->getPrefixedText();
+ 			}
+ 		}
+ 	}
