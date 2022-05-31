@@ -2215,12 +2215,6 @@ class MainConfigNames {
 	public const FixDoubleRedirects = 'FixDoubleRedirects';
 
 	/**
-	 * Name constant for the InterwikiPrefixDisplayTypes setting, for use with Config::get()
-	 * @see MainConfigSchema::InterwikiPrefixDisplayTypes
-	 */
-	public const InterwikiPrefixDisplayTypes = 'InterwikiPrefixDisplayTypes';
-
-	/**
 	 * Name constant for the LocalInterwikis setting, for use with Config::get()
 	 * @see MainConfigSchema::LocalInterwikis
 	 */

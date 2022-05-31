@@ -57,6 +57,8 @@ For notes on 1.38.x and older releases, see HISTORY.
 * In $wgObjectCaches, globalKeyLB and localKeyLB are no longer supported.
 * $wgLegacySchemaConversion - This global configuration has been
   removed because it was unused.
+* $wgInterwikiPrefixDisplayTypes - This global configuration has been
+  removed because it was unused.
 * …
 
 === New user-facing features in 1.39 ===

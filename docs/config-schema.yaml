@@ -3824,22 +3824,6 @@ config-schema:
         description: |-
             Fix double redirects after a page move.
             Tends to conflict with page move vandalism, use only on a private wiki.
-    InterwikiPrefixDisplayTypes:
-        default: {  }
-        type: object
-        description: |-
-            Mapping of interwiki index prefixes to descriptors that
-            can be used to change the display of interwiki search results.
-            Descriptors are appended to CSS classes of interwiki results
-            which using InterwikiSearchResultWidget.
-            Predefined descriptors include the following words:
-            definition, textbook, news, quotation, book, travel, course
-            **Example:**
-            ```
-            $wgInterwikiPrefixDisplayTypes = [
-            'iwprefix' => 'definition'
-            ];
-            ```
     LocalInterwikis:
         default: []
         type: array
