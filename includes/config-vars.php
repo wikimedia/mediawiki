@@ -1397,6 +1397,12 @@ $wgMaximumMovedPages = null;
 $wgForceDeferredUpdatesPreSend = null;
 
 /**
+ * Config variable stub for the MultiShardSiteStats setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::MultiShardSiteStats
+ */
+$wgMultiShardSiteStats = null;
+
+/**
  * Config variable stub for the CacheDirectory setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::CacheDirectory
  */
