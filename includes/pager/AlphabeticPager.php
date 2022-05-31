@@ -29,11 +29,7 @@
 abstract class AlphabeticPager extends IndexPager {
 
 	/**
-	 * Shamelessly stolen bits from ReverseChronologicalPager,
-	 * didn't want to do class magic as may be still revamped
-	 *
 	 * @stable to override
-	 *
 	 * @return string HTML
 	 */
 	public function getNavigationBar() {
@@ -45,24 +41,11 @@ abstract class AlphabeticPager extends IndexPager {
 			return $this->mNavigationBar;
 		}
 
-		$linkTexts = [
-			'prev' => $this->msg( 'prevn' )->numParams( $this->mLimit )->escaped(),
-			'next' => $this->msg( 'nextn' )->numParams( $this->mLimit )->escaped(),
-			'first' => $this->msg( 'page_first' )->escaped(),
-			'last' => $this->msg( 'page_last' )->escaped()
-		];
-
-		$lang = $this->getLanguage();
-
-		$pagingLinks = $this->getPagingLinks( $linkTexts );
-		$limitLinks = $this->getLimitLinks();
-		$limits = $lang->pipeList( $limitLinks );
-
-		$this->mNavigationBar = $this->msg( 'parentheses' )->rawParams(
-			$lang->pipeList( [ $pagingLinks['first'],
-			$pagingLinks['last'] ] ) )->escaped() . " " .
-			$this->msg( 'viewprevnext' )->rawParams( $pagingLinks['prev'],
-				$pagingLinks['next'], $limits )->escaped();
+		$navBuilder = $this->getNavigationBuilder()
+			->setPrevMsg( 'prevn' )
+			->setNextMsg( 'nextn' )
+			->setFirstMsg( 'page_first' )
+			->setLastMsg( 'page_last' );
 
 		if ( is_array( $this->getIndexField() ) ) {
 			$extra = '';
@@ -82,15 +65,10 @@ abstract class AlphabeticPager extends IndexPager {
 				}
 			}
 
-			if ( $extra !== '' ) {
-				$extra = ' ' . $this->msg( 'parentheses' )->rawParams( $extra )->escaped();
-				$this->mNavigationBar .= $extra;
-			}
+			$navBuilder->setExtra( $extra );
 		}
 
-		$this->mNavigationBar = Html::rawElement( 'div', [ 'class' => 'mw-pager-navigation-bar' ],
-			$this->mNavigationBar
-		);
+		$this->mNavigationBar = $navBuilder->getHtml();
 
 		return $this->mNavigationBar;
 	}

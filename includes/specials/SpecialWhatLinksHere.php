@@ -18,13 +18,13 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @todo Use some variant of Pager or something; the pagination here is lousy.
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Navigation\PagerNavigationBuilder;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -37,8 +37,6 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 class SpecialWhatLinksHere extends IncludableSpecialPage {
 	/** @var FormOptions */
 	protected $opts;
-
-	protected $selfTitle;
 
 	/** @var Title */
 	protected $target;
@@ -137,8 +135,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		}
 
 		$this->getSkin()->setRelevantTitle( $this->target );
-
-		$this->selfTitle = $this->getPageTitle( $this->target->getPrefixedDBkey() );
 
 		$out->setPageTitle( $this->msg( 'whatlinkshere-title', $this->target->getPrefixedText() ) );
 		$out->addBacklinkSubtitle( $this->target );
@@ -613,43 +609,27 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		return $this->getLanguage()->pipeList( $links );
 	}
 
-	private function makeSelfLink( $text, $query ) {
-		return $this->getLinkRenderer()->makeKnownLink(
-			$this->selfTitle,
-			$text,
-			[],
-			$query
-		);
-	}
-
 	private function getPrevNext( $prevNamespace, $prevPageId, $nextNamespace, $nextPageId ) {
-		$currentLimit = $this->opts->getValue( 'limit' );
-		$prev = $this->msg( 'whatlinkshere-prev' )->numParams( $currentLimit )->text();
-		$next = $this->msg( 'whatlinkshere-next' )->numParams( $currentLimit )->text();
+		$navBuilder = new PagerNavigationBuilder( $this->getContext() );
 
-		$changed = $this->opts->getChangedValues();
-		unset( $changed['target'] ); // Already in the request title
+		$navBuilder
+			->setPage( $this->getPageTitle( $this->target->getPrefixedDBkey() ) )
+			// Remove 'target', already included in the request title
+			->setLinkQuery( array_diff_key( $this->opts->getChangedValues(), [ 'target' => null ] ) )
+			->setLimits( $this->limits )
+			->setLimitLinkQueryParam( 'limit' )
+			->setCurrentLimit( $this->opts->getValue( 'limit' ) )
+			->setPrevMsg( 'whatlinkshere-prev' )
+			->setNextMsg( 'whatlinkshere-next' );
 
 		if ( $prevPageId != 0 ) {
-			$overrides = [ 'dir' => 'prev', 'offset' => "$prevNamespace|$prevPageId", ];
-			$prev = Message::rawParam( $this->makeSelfLink( $prev, array_merge( $changed, $overrides ) ) );
+			$navBuilder->setPrevLinkQuery( [ 'dir' => 'prev', 'offset' => "$prevNamespace|$prevPageId" ] );
 		}
 		if ( $nextPageId != 0 ) {
-			$overrides = [ 'dir' => 'next', 'offset' => "$nextNamespace|$nextPageId", ];
-			$next = Message::rawParam( $this->makeSelfLink( $next, array_merge( $changed, $overrides ) ) );
+			$navBuilder->setNextLinkQuery( [ 'dir' => 'next', 'offset' => "$nextNamespace|$nextPageId" ] );
 		}
 
-		$limitLinks = [];
-		$lang = $this->getLanguage();
-		foreach ( $this->limits as $limit ) {
-			$prettyLimit = $lang->formatNum( $limit );
-			$overrides = [ 'limit' => $limit ];
-			$limitLinks[] = $this->makeSelfLink( $prettyLimit, array_merge( $changed, $overrides ) );
-		}
-
-		$nums = $lang->pipeList( $limitLinks );
-
-		return $this->msg( 'viewprevnext' )->params( $prev, $next )->rawParams( $nums )->escaped();
+		return $navBuilder->getHtml();
 	}
 
 	private function whatlinkshereForm() {

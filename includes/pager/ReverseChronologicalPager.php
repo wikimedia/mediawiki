@@ -147,7 +147,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 
 	/**
 	 * @stable to override
-	 * @return string
+	 * @return string HTML
 	 */
 	public function getNavigationBar() {
 		if ( !$this->isNavigationBarShown() ) {
@@ -158,27 +158,13 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			return $this->mNavigationBar;
 		}
 
-		$linkTexts = [
-			'prev' => $this->msg( 'pager-newer-n' )->numParams( $this->mLimit )->escaped(),
-			'next' => $this->msg( 'pager-older-n' )->numParams( $this->mLimit )->escaped(),
-			'first' => $this->msg( 'histlast' )->escaped(),
-			'last' => $this->msg( 'histfirst' )->escaped()
-		];
+		$navBuilder = $this->getNavigationBuilder()
+			->setPrevMsg( 'pager-newer-n' )
+			->setNextMsg( 'pager-older-n' )
+			->setFirstMsg( 'histlast' )
+			->setLastMsg( 'histfirst' );
 
-		$pagingLinks = $this->getPagingLinks( $linkTexts );
-		$limitLinks = $this->getLimitLinks();
-		$limits = $this->getLanguage()->pipeList( $limitLinks );
-		$firstLastLinks = $this->msg( 'parentheses' )->rawParams( "{$pagingLinks['first']}" .
-			$this->msg( 'pipe-separator' )->escaped() .
-			"{$pagingLinks['last']}" )->escaped();
-
-		$this->mNavigationBar = $firstLastLinks . ' ' .
-			$this->msg( 'viewprevnext' )->rawParams(
-				$pagingLinks['prev'], $pagingLinks['next'], $limits )->escaped();
-
-		$this->mNavigationBar = Html::rawElement( 'div', [ 'class' => 'mw-pager-navigation-bar' ],
-			$this->mNavigationBar
-		);
+		$this->mNavigationBar = $navBuilder->getHtml();
 
 		return $this->mNavigationBar;
 	}

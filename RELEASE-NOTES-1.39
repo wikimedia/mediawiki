@@ -569,6 +569,11 @@ because of Phabricator reports.
   if you absolutely must use raw SQL, write several tableName() calls instead.
 * Language::isWellFormedLanguageTag() has been deprecated in favor of
   LanguageCode::isWellFormedLanguageTag().
+* The PrevNextNavigationRenderer helper class has been deprecated in favor of
+  the new PagerNavigationBuilder one.
+* IndexPager::getPagingLinks(), IndexPager::getLimitLinks() and
+  IndexPager::buildPrevNextNavigation() have been deprecated in favor of
+  IndexPager::getNavigationBuilder().
 * …
 
 === Other changes in 1.39 ===
