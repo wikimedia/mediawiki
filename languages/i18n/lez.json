@@ -98,7 +98,7 @@
 	"oct": "окт",
 	"nov": "ноя",
 	"dec": "дек",
-	"pagecategories": "{{PLURAL:$1|1=Категория}}",
+	"pagecategories": "{{PLURAL:$1|1=Категория|Категорияр}}",
 	"category_header": "«$1» категориядин ччинар",
 	"subcategories": "агъакатегорияр",
 	"category-media-header": "\"$1\" категориядин медиа",
