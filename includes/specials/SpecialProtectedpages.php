@@ -126,6 +126,7 @@ class SpecialProtectedpages extends SpecialPage {
 		) );
 
 		if ( $pager->getNumRows() ) {
+			$this->getOutput()->addModuleStyles( 'mediawiki.interface.helpers.styles' );
 			$this->getOutput()->addParserOutputContent( $pager->getFullOutput() );
 		} else {
 			$this->getOutput()->addWikiMsg( 'protectedpagesempty' );
