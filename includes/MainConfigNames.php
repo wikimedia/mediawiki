@@ -1800,12 +1800,6 @@ class MainConfigNames {
 	public const LegacyEncoding = 'LegacyEncoding';
 
 	/**
-	 * Name constant for the LegacySchemaConversion setting, for use with Config::get()
-	 * @see MainConfigSchema::LegacySchemaConversion
-	 */
-	public const LegacySchemaConversion = 'LegacySchemaConversion';
-
-	/**
 	 * Name constant for the AmericanDates setting, for use with Config::get()
 	 * @see MainConfigSchema::AmericanDates
 	 */

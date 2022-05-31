@@ -578,7 +578,6 @@ return [
 			],
 			'AllUnicodeFixes' => false,
 			'LegacyEncoding' => false,
-			'LegacySchemaConversion' => false,
 			'AmericanDates' => false,
 			'TranslateNumerals' => true,
 			'UseDatabaseMessages' => true,

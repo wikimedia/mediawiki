@@ -24,9 +24,6 @@
  * To speed up conversion from 1.4 to 1.5 schema, text rows can refer to the
  * leftover cur table as the backend. This avoids expensively copying hundreds
  * of megabytes of data during the conversion downtime.
- *
- * Serialized HistoryBlobCurStub objects will be inserted into the text table
- * on conversion if $wgLegacySchemaConversion is set to true.
  */
 class HistoryBlobCurStub {
 	/** @var int */
