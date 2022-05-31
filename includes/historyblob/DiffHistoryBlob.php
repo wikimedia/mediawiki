@@ -220,9 +220,9 @@ class DiffHistoryBlob implements HistoryBlob {
 
 		$header = unpack( 'Vofp/Vcsize', substr( $diff, 0, 8 ) );
 
-		# Check the checksum if hash extension is available
+		# Check the checksum
 		$ofp = $this->xdiffAdler32( $base );
-		if ( $ofp !== false && $ofp !== substr( $diff, 0, 4 ) ) {
+		if ( $ofp !== substr( $diff, 0, 4 ) ) {
 			wfDebug( __METHOD__ . ": incorrect base checksum" );
 			return false;
 		}
@@ -268,13 +268,9 @@ class DiffHistoryBlob implements HistoryBlob {
 	 * the bytes backwards and initialised with 0 instead of 1. See T36428.
 	 *
 	 * @param string $s
-	 * @return string|bool False if the hash extension is not available
+	 * @return string
 	 */
 	public function xdiffAdler32( $s ) {
-		if ( !function_exists( 'hash' ) ) {
-			return false;
-		}
-
 		static $init;
 		if ( $init === null ) {
 			$init = str_repeat( "\xf0", 205 ) . "\xee" . str_repeat( "\xf0", 67 ) . "\x02";
