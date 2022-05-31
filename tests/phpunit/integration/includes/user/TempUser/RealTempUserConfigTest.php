@@ -7,7 +7,7 @@ namespace MediaWiki\Tests\User\TempUser;
  * @group Database
  */
 class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
-	/** This is meant to be the default config from DefaultSettings.php */
+	/** This is meant to be the default config from MainConfigSchema */
 	private const DEFAULTS = [
 		'enabled' => false,
 		'actions' => [ 'edit' ],

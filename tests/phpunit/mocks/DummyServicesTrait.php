@@ -326,7 +326,7 @@ trait DummyServicesTrait {
 		//     This shouldn't be an issue though, since it should only be called in
 		//     the dedicated tests for that deprecation method, which use the real service
 
-		// configuration is based on DefaultSettings
+		// configuration is based on the defaults in MainConfigSchema
 		$serviceOptions = new ServiceOptions(
 			NamespaceInfo::CONSTRUCTOR_OPTIONS,
 			$options, // caller can override the default config by specifying it here

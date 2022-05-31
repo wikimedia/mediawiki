@@ -437,7 +437,6 @@ abstract class Installer {
 
 	/**
 	 * @return array
-	 * @return-taint none Taint-check really doesn't like the assignment from $GLOBALS
 	 */
 	private function getDefaultSettings(): array {
 		$ret = $this->internalDefaults;
@@ -1560,7 +1559,8 @@ abstract class Installer {
 		}
 
 		// @phpcs:disable MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgHooks
-		// @phan-suppress-next-line PhanUndeclaredVariable,PhanCoalescingAlwaysNull $wgHooks is set by DefaultSettings
+		// @phpcs:ignore Generic.Files.LineLength.TooLong
+		// @phan-suppress-next-line PhanUndeclaredVariable,PhanCoalescingAlwaysNull $wgHooks is defined by MainConfigSchema
 		$hooksWeWant = $wgHooks['LoadExtensionSchemaUpdates'] ?? [];
 		// @phpcs:enable MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgHooks
 

@@ -9,7 +9,7 @@ class TestSetup {
 	/**
 	 * For use in MediaWikiUnitTestCase.
 	 *
-	 * This should be called before DefaultSettings.php or Setup.php loads.
+	 * This should be called before default settings are applied or Setup.php loads.
 	 */
 	public static function snapshotGlobals() {
 		self::$bootstrapGlobals = [];
@@ -51,15 +51,15 @@ class TestSetup {
 		// cache meant for the local wiki from outside the test run.
 		// See also MediaWikiIntegrationTestCase::run() which mocks CACHE_DB and APC.
 
-		// Disabled in DefaultSettings, override local settings
+		// Disabled per default in MainConfigSchema, override local settings
 		$wgMainWANCache =
 		$wgMainCacheType = CACHE_NONE;
-		// Uses CACHE_ANYTHING in DefaultSettings, use hash instead of db
+		// Uses CACHE_ANYTHING per default in MainConfigSchema, use hash instead of db
 		$wgMessageCacheType =
 		$wgParserCacheType =
 		$wgSessionCacheType =
 		$wgLanguageConverterCacheType = 'hash';
-		// Uses db-replicated in DefaultSettings
+		// Uses db-replicated per default in MainConfigSchema
 		$wgMainStash = 'hash';
 		$wgChronologyProtectorStash = 'hash';
 		// Use hash instead of db

@@ -35,7 +35,7 @@ interface ConfigSchema {
 	public function getDefaults(): array;
 
 	/**
-	 * Check if the $key has a default values set in the schema.
+	 * Check if the $key has a default value set in the schema.
 	 *
 	 * @param string $key
 	 *
@@ -44,7 +44,7 @@ interface ConfigSchema {
 	public function hasDefaultFor( string $key ): bool;
 
 	/**
-	 * Get default value for the $key.
+	 * Get the default value for the $key.
 	 * For keys that do not define a default, null is assumed.
 	 *
 	 * @param string $key
