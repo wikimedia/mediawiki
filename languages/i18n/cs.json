@@ -674,7 +674,7 @@
 	"anoneditwarning": "<strong>Varování:</strong> Nejste přihlášen(a). Pokud uložíte jakoukoli editaci, vaše IP adresa bude zveřejněna v historii této stránky. Pokud se <strong>[$1 přihlásíte]</strong> nebo si <strong>[$2 vytvoříte účet]</strong>, vaše editace budou připsány vašemu uživatelskému jménu a získáte i další výhody.",
 	"autocreate-edit-warning": "<strong>Varování:</strong> Nejste přihlášen(a). Vaše editace bude přiřazena <strong>automaticky vygenerovanému jménu</strong> pomocí cookie uložené do vašeho prohlížeče. Vaše IP adresa bude viditelná důvěryhodným uživatelům. Pokud se <strong>[$1 přihlásíte]</strong> nebo si <strong>[$2 založíte účet]</strong>, budou vaše editace přiřazeny pod vámi zvolené jméno, spolu s dalšími výhodami.",
 	"anonpreviewwarning": "<em>Nejste přihlášen(a). Zveřejněním se vaše IP adresa zaznamená v historii této stránky.</em>",
-	"autocreate-preview-warning": "<em>Nejste přihlášen(a). Vaše editace bude přiřazena automaticky vygenerovanému jménu a vaše IP adresa bude viditelná správcům.",
+	"autocreate-preview-warning": "<em>Nejste přihlášen(a). Vaše editace bude přiřazena automaticky vygenerovanému jménu a vaše IP adresa bude viditelná správcům.</em>",
 	"missingsummary": "<strong>Připomenutí:</strong> Nezadali jste shrnutí editace. Pokud ještě jednou kliknete na „$1“, bude vaše editace zveřejněna bez shrnutí.",
 	"selfredirect": "<strong>Upozornění:</strong> Pokoušíte se tuto stránku přesměrovat na sebe samu.\nMožná jste zadali chybný cíl přesměrování, nebo editujete špatnou stránku.\nPokud ještě jednou kliknete na „$1“, bude i přesto přesměrování vytvořeno.",
 	"missingcommenttext": "Prosím, zadejte komentář.",
