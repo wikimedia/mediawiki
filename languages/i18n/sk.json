@@ -3583,7 +3583,7 @@
 	"feedback-thanks-title": "Ďakujeme",
 	"feedback-useragent": "Prehliadač:",
 	"searchsuggest-search": "Hľadať na {{SITENAME}}",
-	"searchsuggest-containing": "obsahuje...",
+	"searchsuggest-containing": "Hľadať stránky obsahujúce",
 	"search-match-redirect-label": "Pri vyhľadávaní presmerovať na presné zhody",
 	"search-match-redirect-help": "Vyberte, ak chcete byť presmerovaný na stránku, ktorej názov sa zhoduje s vaším vyhľadávaním",
 	"api-clientside-error-noconnect": "Nepodarilo sa pripojiť k serveru. Uistite sa, že máte funkčné pripojenie k internetu, a skúste to znova.",

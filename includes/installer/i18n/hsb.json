@@ -157,7 +157,7 @@
 	"config-license-cc-choose": "Swójsku licencu Creative Commons wubrać",
 	"config-email-settings": "E-mejlowe nastajenja",
 	"config-enable-email": "Wuchadźace e-mejlki zmóžnić",
-	"config-enable-email-help": "Jeli chceš e-mejl wužiwać, dyrbja so [Config-dbsupport-oracle/manual/en/mail.configuration.php e-mejlowe nastajenja PHP] prawje konfigurować.\nJeli nochceš e-mejlowe funkcije wužiwać, móžeš je tu znjemóžnić.",
+	"config-enable-email-help": "Jeli chceš e-mejl wužiwać, dyrbja so [https://www.php.net/manual/en/mail.configuration.php e-mejlowe nastajenja PHP] prawje konfigurować.\nJeli nochceš e-mejlowe funkcije wužiwać, móžeš je tu znjemóžnić.",
 	"config-email-user": "E-mejl mjez wužiwarjemi zmóžnić",
 	"config-email-user-help": "Wšěm wužiwarjam dowolić, jednomu druhemu e-mejlki pósłać, jeli su tutu funkciju w swojich nastajenjach zmóžnili.",
 	"config-email-usertalk": "Zdźělenja za wužiwarske diskusijne strony zmóžnić",
