@@ -3,7 +3,7 @@
 @import 'mediawiki.mixins';
 
 /**
- * Helper classes used across special pages
+ * Helper classes used across special pages and actions
  */
 
 /* Content dividers */
@@ -128,6 +128,17 @@ span.comment {
 	overflow-wrap: break-word;
 }
 
+/* The auto-generated edit comments */
+.autocomment,
+.autocomment a,
+.autocomment a:visited {
+	color: #72777d;
+}
+
+.mw-comment-none {
+	.mixin-screen-reader-text();
+}
+
 /** rev_deleted stuff */
 li span.deleted,
 span.history-deleted {
@@ -140,17 +151,6 @@ span.mw-history-suppressed {
 	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	text-decoration-style: double;
 	color: #202122;
-}
-
-/* The auto-generated edit comments */
-.autocomment,
-.autocomment a,
-.autocomment a:visited {
-	color: #72777d;
-}
-
-.mw-comment-none {
-	.mixin-screen-reader-text();
 }
 
 /* (show/hide) revision deletion links */
