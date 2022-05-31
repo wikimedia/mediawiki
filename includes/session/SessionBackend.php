@@ -32,7 +32,6 @@ use Psr\Log\LoggerInterface;
 use User;
 use WebRequest;
 use Wikimedia\AtEase\AtEase;
-use Wikimedia\LightweightObjectStore\ExpirationAwareness;
 
 /**
  * This is the actual workhorse for Session.
@@ -53,10 +52,6 @@ use Wikimedia\LightweightObjectStore\ExpirationAwareness;
  * @since 1.27
  */
 final class SessionBackend {
-
-	/** Expiration time of tombstone records in seconds */
-	private const TOMBSTONE_EXPIRY = ExpirationAwareness::TTL_MINUTE;
-
 	/** @var SessionId */
 	private $id;
 
@@ -127,7 +122,7 @@ final class SessionBackend {
 	/** @var array|null provider-specified metadata */
 	private $providerMetadata = null;
 
-	/** @var int UNIX timestamp at which the session will expire */
+	/** @var int */
 	private $expires = 0;
 
 	/** @var int */
@@ -302,7 +297,8 @@ final class SessionBackend {
 
 			$this->autosave();
 
-			$this->tombstone( $oldId );
+			// Delete the data for the old session ID now
+			$this->store->delete( $this->store->makeKey( 'MWSession', $oldId ) );
 		}
 
 		return $this->id;
@@ -636,39 +632,6 @@ final class SessionBackend {
 	}
 
 	/**
-	 * Put a tombstone in the session store for the given ID, to mark it as not used anymore.
-	 * For most purposes this is the same as deleting the object with that ID.
-	 *
-	 * @param string $id
-	 * @return bool Success.
-	 */
-	private function tombstone( $id ) {
-		// Match the data format from save(). The 'tombstoned' flag makes SessionManager
-		// abort any loading attempts, but use data for an anonymous session just in case.
-		return $this->store->set(
-			$this->store->makeKey( 'MWSession', $id ),
-			[
-				'data' => [],
-				'metadata' => [
-					'provider' => (string)$this->provider,
-					'providerMetadata' => null,
-					'userId' => 0,
-					'userName' => null,
-					'userToken' => null,
-					'remember' => false,
-					'forceHTTPS' => $this->forceHTTPS,
-					'expires' => time() + self::TOMBSTONE_EXPIRY,
-					'loggedOut' => 0,
-					'persisted' => false,
-					'tombstoned' => true,
-				],
-			],
-			self::TOMBSTONE_EXPIRY,
-			CachedBagOStuff::WRITE_SYNC
-		);
-	}
-
-	/**
 	 * Delay automatic saving while multiple updates are being made
 	 *
 	 * Calls to save() will not be delayed.
@@ -807,7 +770,6 @@ final class SessionBackend {
 			'expires' => time() + $this->lifetime,
 			'loggedOut' => $this->loggedOut,
 			'persisted' => $this->persist,
-			'tombstoned' => false,
 		];
 
 		$this->hookRunner->onSessionMetadata( $this, $metadata, $this->requests );

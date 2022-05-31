@@ -307,15 +307,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotEquals( self::SESSIONID, $backend->getId() );
 		$this->assertSame( $backend->getId(), $sessionId->getId() );
 		$this->assertIsArray( $this->store->getSession( $backend->getId() ) );
-		$oldSession = $this->store->getSession( self::SESSIONID );
-		$oldSessionFromBackend = $this->store->getSessionFromBackend( self::SESSIONID );
-		$this->assertIsArray( $oldSession );
-		foreach ( [ $oldSession, $oldSessionFromBackend ] as $sessionStore ) {
-			$this->assertTrue( $sessionStore['metadata']['tombstoned'] );
-			$this->assertSame( 0, $sessionStore['metadata']['userId'] );
-			$this->assertSame( null, $sessionStore['metadata']['userName'] );
-			$this->assertSame( null, $sessionStore['metadata']['userToken'] );
-		}
+		$this->assertFalse( $this->store->getSession( self::SESSIONID ) );
 		$this->assertSame( $id, session_id() );
 		$this->assertArrayNotHasKey( self::SESSIONID, $manager->allSessionBackends );
 		$this->assertArrayHasKey( $backend->getId(), $manager->allSessionBackends );
