@@ -29,7 +29,7 @@ MediaWiki.Logger.LegacyLogger instances. The MediaWiki.Logger.LegacyLogger class
 implements the PSR-3 logger interface and provides output and configuration
 equivalent to the historic logging output of wfDebug, wfDebugLog, wfLogDBError
 and wfErrorLog. The MediaWiki.Logger.LegacySpi class is the default service
-provider configured in DefaultSettings.php. It's usage should be transparent for
+provider defined in MainConfigSchema.php. It's usage should be transparent for
 users who are not ready or do not wish to switch to a alternate logging
 platform.
 

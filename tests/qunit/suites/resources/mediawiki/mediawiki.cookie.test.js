@@ -86,7 +86,7 @@
 		options = jqcookie.lastCall.args[ 2 ];
 		assert.strictEqual( options.expires, undefined, 'null forces session cookie' );
 
-		// Per DefaultSettings.php, if wgCookieExpiration is 0,
+		// Per MainConfigSchema, if the CookieExpiration setting is 0,
 		// then the default should be session cookies
 		setDefaults( $.extend( {}, defaults, { expires: 0 } ) );
 

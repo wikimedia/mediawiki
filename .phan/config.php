@@ -35,7 +35,6 @@ $cfg['file_list'] = array_merge(
 		// You can check the parser order with --dump-parsed-file-list
 		'includes/Defines.php',
 		// @todo This isn't working yet, see globals_type_map below
-		// 'includes/DefaultSettings.php',
 		// 'includes/Setup.php',
 	]
 );
@@ -104,8 +103,10 @@ $cfg['exclude_analysis_directory_list'] = [
 $cfg['enable_class_alias_support'] = false;
 
 $cfg['ignore_undeclared_variables_in_global_scope'] = true;
-// @todo It'd be great if we could just make phan read these from DefaultSettings, to avoid
-// duplicating the types.
+// @todo It'd be great if we could just make phan read these from config-schema.php, to avoid
+// duplicating the types. config-schema.php has JSON types though, not PHP types.
+// @todo As we are removing access to global variables from the code base,
+// remove them from here as well, so phan complains when something tries to use them.
 $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'IP' => 'string',
 	'wgGalleryOptions' => 'array',
