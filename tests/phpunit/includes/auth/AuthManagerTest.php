@@ -15,7 +15,6 @@ use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionInfo;
-use MediaWiki\Session\SessionProvider;
 use MediaWiki\Session\UserInfo;
 use MediaWiki\User\BotPasswordStore;
 use MediaWiki\User\UserFactory;
@@ -396,19 +395,17 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	public function testSecuritySensitiveOperationStatus( $mutableSession ) {
 		$this->logger = new \Psr\Log\NullLogger();
 		$user = \User::newFromName( 'UTSysop' );
-		$sessionId = str_pad( '', 32, 'a' );
 		$provideUser = null;
 		$reauth = $mutableSession ? AuthManager::SEC_REAUTH : AuthManager::SEC_FAIL;
 
-		/** @var SessionProvider $provider */
 		list( $provider, $reset ) = $this->getMockSessionProvider(
 			$mutableSession, [ 'provideSessionInfo' ]
 		);
 		$provider->method( 'provideSessionInfo' )
-			->will( $this->returnCallback( static function () use ( $provider, &$sessionId, &$provideUser ) {
+			->will( $this->returnCallback( static function () use ( $provider, &$provideUser ) {
 				return new SessionInfo( SessionInfo::MIN_PRIORITY, [
 					'provider' => $provider,
-					'id' => $sessionId,
+					'id' => \DummySessionProvider::ID,
 					'persisted' => true,
 					'userInfo' => UserInfo::newFromUser( $provideUser, true )
 				] );
@@ -426,8 +423,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$session->set( 'AuthManager:lastAuthTimestamp', time() - 5 );
 		$this->assertSame( $reauth, $this->manager->securitySensitiveOperationStatus( 'foo' ) );
 
-		// reset mock ID to avoid tombstone
-		$sessionId = str_pad( '', 32, 'b' );
 		$provideUser = $user;
 		$session = $provider->getManager()->getSessionForRequest( $this->request );
 		$this->assertSame( $user->getId(), $session->getUser()->getId() );
