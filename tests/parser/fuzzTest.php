@@ -6,9 +6,13 @@ use Wikimedia\ScopedCallback;
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
 class ParserFuzzTest extends Maintenance {
+	/** @var ParserTestRunner */
 	private $parserTest;
+	/** @var int */
 	private $maxFuzzTestLength = 300;
+	/** @var int */
 	private $memoryLimit = 100;
+	/** @var int */
 	private $seed;
 
 	public function __construct() {

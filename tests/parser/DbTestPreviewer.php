@@ -22,17 +22,21 @@
 use Wikimedia\Rdbms\IDatabase;
 
 class DbTestPreviewer extends TestRecorder {
-	protected $filter; // /< Test name filter callback
-	protected $lb; // /< Database load balancer
-	protected $db; // /< Database connection to the main DB
-	protected $curRun; // /< run ID number for the current run
-	protected $prevRun; // /< run ID number for the previous run, if any
-	protected $results; // /< Result array
+	/** @var callable|false Test name filter callback */
+	protected $filter;
+	/** @var IDatabase Database connection to the main DB */
+	protected $db;
+	/** @var int run ID number for the current run */
+	protected $curRun;
+	/** @var int|false run ID number for the previous run, if any */
+	protected $prevRun;
+	/** @var array Result array */
+	protected $results;
 
 	/**
 	 * This should be called before the table prefix is changed
 	 * @param IDatabase $db
-	 * @param bool|string $filter
+	 * @param callable|false $filter
 	 */
 	public function __construct( $db, $filter = false ) {
 		$this->db = $db;

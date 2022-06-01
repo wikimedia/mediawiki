@@ -22,9 +22,12 @@
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 class DbTestRecorder extends TestRecorder {
+	/** @var string */
 	public $version;
 	/** @var IMaintainableDatabase */
 	private $db;
+	/** @var int */
+	private $curRun;
 
 	public function __construct( IMaintainableDatabase $db ) {
 		$this->db = $db;
