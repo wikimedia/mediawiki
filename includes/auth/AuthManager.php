@@ -30,6 +30,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\User\BotPasswordStore;
@@ -1085,31 +1086,96 @@ class AuthManager implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Basic permissions checks on whether a user can create accounts
-	 * @param Authority $creator User doing the account creation
-	 * @return Status
+	 * @param callable $authorizer ( string $action, PageIdentity $target, PermissionStatus $status )
+	 * @param Authority $creator
+	 * @return StatusValue
 	 */
-	public function checkAccountCreatePermissions( Authority $creator ) {
+	private function authorizeInternal(
+		callable $authorizer,
+		Authority $creator
+	): StatusValue {
 		// Wiki is read-only?
 		if ( $this->readOnlyMode->isReadOnly() ) {
-			return Status::newFatal( wfMessage( 'readonlytext', $this->readOnlyMode->getReason() ) );
+			return StatusValue::newFatal( wfMessage( 'readonlytext', $this->readOnlyMode->getReason() ) );
 		}
 
 		$permStatus = new PermissionStatus();
-		if ( !$creator->authorizeWrite(
+		if ( !$authorizer(
 			'createaccount',
 			SpecialPage::getTitleFor( 'CreateAccount' ),
 			$permStatus
 		) ) {
-			return Status::wrap( $permStatus );
+			return $permStatus;
 		}
 
 		$ip = $this->getRequest()->getIP();
 		if ( $this->blockManager->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ ) ) {
-			return Status::newFatal( 'sorbs_create_account_reason' );
+			return StatusValue::newFatal( 'sorbs_create_account_reason' );
 		}
 
-		return Status::newGood();
+		return StatusValue::newGood();
+	}
+
+	/**
+	 * Check whether $creator can create accounts.
+	 *
+	 * @note this method does not guarantee full permissions check, so it should only
+	 * be used to to decide whether to show a form. To authorize the account creation
+	 * action use {@link self::authorizeCreateAccount} instead.
+	 *
+	 * @since 1.39
+	 * @param Authority $creator
+	 * @return StatusValue
+	 */
+	public function probablyCanCreateAccount( Authority $creator ): StatusValue {
+		return $this->authorizeInternal(
+			static function (
+				string $action,
+				PageIdentity $target,
+				PermissionStatus $status
+			) use ( $creator ) {
+				return $creator->probablyCan( $action, $target, $status );
+			},
+			$creator
+		);
+	}
+
+	/**
+	 * Authorize the account creation by $creator
+	 *
+	 * @note this method should be used right before the account is created.
+	 * To check whether a current performer has the potential to create accounts,
+	 * use {@link self::probablyCanCreateAccount} instead.
+	 *
+	 * @since 1.39
+	 * @param Authority $creator
+	 * @return StatusValue
+	 */
+	public function authorizeCreateAccount( Authority $creator ): StatusValue {
+		return $this->authorizeInternal(
+			static function (
+				string $action,
+				PageIdentity $target,
+				PermissionStatus $status
+			) use ( $creator ) {
+				return $creator->authorizeWrite( $action, $target, $status );
+			},
+			$creator
+		);
+	}
+
+	/**
+	 * Basic permissions checks on whether a user can create accounts
+	 *
+	 * @deprecated since 1.39, use ::authorizeCreateAccount or
+	 *   ::probablyCanCreateAccount instead
+	 *
+	 * @param Authority $creator User doing the account creation
+	 * @return StatusValue
+	 */
+	public function checkAccountCreatePermissions( Authority $creator ): StatusValue {
+		wfDeprecated( __METHOD__, '1.39' );
+		return Status::wrap( $this->authorizeCreateAccount( $creator ) );
 	}
 
 	/**
@@ -1150,7 +1216,7 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		// Permissions check
-		$status = $this->checkAccountCreatePermissions( $creator );
+		$status = Status::wrap( $this->authorizeCreateAccount( $creator ) );
 		if ( !$status->isGood() ) {
 			$this->logger->debug( __METHOD__ . ': {creator} cannot create users: {reason}', [
 				'user' => $username,
@@ -1285,7 +1351,7 @@ class AuthManager implements LoggerAwareInterface {
 			}
 
 			// Permissions check
-			$status = $this->checkAccountCreatePermissions( $creator );
+			$status = Status::wrap( $this->authorizeCreateAccount( $creator ) );
 			if ( !$status->isGood() ) {
 				$this->logger->debug( __METHOD__ . ': {creator} cannot create users: {reason}', [
 					'user' => $user->getName(),
