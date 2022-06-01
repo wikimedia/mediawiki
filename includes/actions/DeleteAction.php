@@ -256,24 +256,29 @@ class DeleteAction extends FormlessAction {
 	}
 
 	protected function showFormWarnings(): void {
-		$title = $this->getTitle();
-		$outputPage = $this->getOutput();
+		$this->showBacklinksWarning();
+		$this->showSubpagesWarnings();
+	}
 
-		$backlinkCache = $this->backlinkCacheFactory->getBacklinkCache( $title );
+	private function showBacklinksWarning(): void {
+		$backlinkCache = $this->backlinkCacheFactory->getBacklinkCache( $this->getTitle() );
 		if ( $backlinkCache->hasLinks( 'pagelinks' ) || $backlinkCache->hasLinks( 'templatelinks' ) ) {
-			$outputPage->addHtml(
+			$this->getOutput()->addHtml(
 				Html::warningBox(
-					$outputPage->msg( 'deleting-backlinks-warning' )->parse(),
+					$this->msg( 'deleting-backlinks-warning' )->parse(),
 					'plainlinks'
 				)
 			);
 		}
+	}
 
+	protected function showSubpagesWarnings(): void {
+		$title = $this->getTitle();
 		$subpageCount = count( $title->getSubpages( 51 ) );
 		if ( $subpageCount ) {
-			$outputPage->addHtml(
+			$this->getOutput()->addHtml(
 				Html::warningBox(
-					$outputPage->msg( 'deleting-subpages-warning' )->numParams( $subpageCount )->parse(),
+					$this->msg( 'deleting-subpages-warning' )->numParams( $subpageCount )->parse(),
 					'plainlinks'
 				)
 			);
@@ -283,16 +288,14 @@ class DeleteAction extends FormlessAction {
 			$talkPageTitle = $this->titleFactory->newFromLinkTarget( $this->namespaceInfo->getTalkPage( $title ) );
 			$subpageCount = count( $talkPageTitle->getSubpages( 51 ) );
 			if ( $subpageCount ) {
-				$outputPage->addHtml(
+				$this->getOutput()->addHtml(
 					Html::warningBox(
-						$outputPage->msg( 'deleting-talkpage-subpages-warning' )->numParams( $subpageCount )->parse(),
+						$this->msg( 'deleting-talkpage-subpages-warning' )->numParams( $subpageCount )->parse(),
 						'plainlinks'
 					)
 				);
 			}
 		}
-
-		$outputPage->addWikiMsg( 'confirmdeletetext' );
 	}
 
 	private function tempConfirmDelete(): void {
@@ -307,6 +310,8 @@ class DeleteAction extends FormlessAction {
 			$this->showHistoryWarnings();
 		}
 		$this->showFormWarnings();
+
+		$outputPage->addWikiMsg( 'confirmdeletetext' );
 
 		// FIXME: Replace (or at least rename) this hook
 		$this->getHookRunner()->onArticleConfirmDelete( $this->getArticle(), $outputPage, $reason );
