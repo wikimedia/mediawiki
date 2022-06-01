@@ -138,7 +138,18 @@ class RevDelLogItem extends RevDelItem {
 			$comment = '<span class="history-deleted">' . $comment . '</span>';
 		}
 
-		return "<li>$loglink $date $action $comment</li>";
+		$content = "$loglink $date $action $comment";
+		$attribs = [];
+		if ( $this->row->ts_tags ) {
+			list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow(
+				$this->row->ts_tags,
+				'revisiondelete',
+				$this->list->getContext()
+			);
+			$content .= " $tagSummary";
+			$attribs['class'] = implode( ' ', $classes );
+		}
+		return Xml::tags( 'li', $attribs, $content );
 	}
 
 	public function getApiData( ApiResult $result ) {
