@@ -543,6 +543,9 @@ class PermissionManager {
 		}
 		// remove duplicate errors
 		$errors = array_unique( $errors, SORT_REGULAR );
+		if ( $errors ) {
+			$this->hookRunner->onPermissionErrorAudit( $page, $user, $action, $rigor, $errors );
+		}
 
 		return $errors;
 	}
