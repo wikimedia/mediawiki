@@ -2653,6 +2653,7 @@
 	"feedback-thanks-title": "Awanu!",
 	"feedback-useragent": "Afọzedaitọ",
 	"searchsuggest-search": "Dín {{SITENAME}}",
+	"searchsuggest-containing": "Dín weda he bẹ ... hẹn lẹ",
 	"api-error-unknown-warning": "Avase he ma yin yinyọnẹn: \"$1\".",
 	"api-error-unknownerror": "Nuṣiwa he ma yin yinyọnẹn: \"$1\".",
 	"duration-seconds": "$1 {{PLURAL:$1|nukunwhiwhe-daa|nukunwhiwhe-daa lẹ}}",

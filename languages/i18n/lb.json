@@ -1711,6 +1711,7 @@
 	"listfiles-userdoesnotexist": "De Benotzerkont \"$1\" ass net registréiert.",
 	"imgfile": "Fichier",
 	"listfiles": "Lëscht vun de Fichieren",
+	"listfiles_subpage": "Vum $1 eropgeluede Fichieren",
 	"listfiles_thumb": "Miniaturbild",
 	"listfiles_date": "Datum",
 	"listfiles_name": "Numm",

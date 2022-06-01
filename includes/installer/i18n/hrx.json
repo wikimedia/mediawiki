@@ -186,7 +186,7 @@
 	"config-license-help": "Viele öffentliche Wikis publiziere all Beiträche unner en [https://freedomdefined.org/Definition/De freie Lizenz].\nDas träht dozu bei en Gefühl von Gemeinschaft zu schaffe und ermuticht zu längerfristicher Mitoorweit.\nDahinchege ist im Allgemeinen en freie Lizenz uff geschlossne Wikis net notwennich.\n\nSoweit man Texte aus der Wikipedia verwenne möcht und umgekehrt, sollt die Creative Commons-Lizenz \"Noomenennung, Weitergäb unner gleiche Bedingunge\" gewählt sin.\n\nDie Wikipedia nutzte voarmols die GNU-Lizenz für freie Dokumentation (GFDL).\nDie GFDL ist en gültiche Lizenz, wo awer schwear zu verstehn ist.\nEs ist zudem schwierich gemäss die Lizenz lizenziert Inhalte wiederzuverwenne.",
 	"config-email-settings": "E-Mail-Instellunge",
 	"config-enable-email": "Ausgehende E-Mails ermöchliche",
-	"config-enable-email-help": "Soweit die E-Mail-Funktione benutzt sin solle, müsse die entsprechende [Config-dbsupport-oracle/manual/en/mail.configuration.php PHP-E-Mail-Einstellungen] richtich konfiguriert sin.\nFür den Fall, dass die E-Mail-Funktione net benöticht sin, könne die dohier deaktiviert sin.",
+	"config-enable-email-help": "Soweit die E-Mail-Funktione benutzt sin solle, müsse die entsprechende [https://www.php.net/manual/en/mail.configuration.php PHP-E-Mail-Einstellungen] richtich konfiguriert sin.\nFür den Fall, dass die E-Mail-Funktione net benöticht sin, könne die dohier deaktiviert sin.",
 	"config-email-user": "E-Mail-Versand von Benutzer zu Benutzer aktiviere",
 	"config-email-user-help": "Alle Benutzer ermöchliche, sich gecheseitich E-Mails zu schicke, soweit die das in ehre Instellunge aktiviert hoon.",
 	"config-email-usertalk": "Benachrichtigunge zu Ändrunge an Benutzerdiskussionsseite ermöchliche",

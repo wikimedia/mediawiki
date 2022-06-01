@@ -5,7 +5,8 @@
 			"Irus",
 			"Mouse21",
 			"Rkupsala",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"Amire80"
 		]
 	},
 	"tog-showhiddencats": "Monisa bakalasi ya kubûmba",
@@ -314,8 +315,8 @@
 	"recentchanges-label-bot": "Nsoba yayi me salama na robo",
 	"rcshowhideminor": "$1 bansoba ya fyoti",
 	"rcshowhidemine": "$1 bansoba ya munu",
-	"diff": "nsoba",
-	"hist": "nsoba",
+	"diff": "nsoba (diff)",
+	"hist": "nsoba (hist)",
 	"hide": "Bûmbisa",
 	"show": "Monisa",
 	"minoreditletter": "f",
