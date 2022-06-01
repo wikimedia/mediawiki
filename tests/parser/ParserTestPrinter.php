@@ -92,7 +92,7 @@ class ParserTestPrinter extends TestRecorder {
 	 * @param string $path
 	 */
 	public function startSuite( $path ) {
-		print $this->term->color( 1 ) .
+		print $this->term->color( '1' ) .
 			"Running parser tests from \"$path\"..." .
 			$this->term->reset() .
 			"\n";
@@ -231,8 +231,8 @@ class ParserTestPrinter extends TestRecorder {
 	private function colorDiff( $text ) {
 		return preg_replace(
 			[ '/^(-.*)$/m', '/^(\+.*)$/m' ],
-			[ $this->term->color( 34 ) . '$1' . $this->term->reset(),
-				$this->term->color( 31 ) . '$1' . $this->term->reset() ],
+			[ $this->term->color( '34' ) . '$1' . $this->term->reset(),
+				$this->term->color( '31' ) . '$1' . $this->term->reset() ],
 			$text );
 	}
 
@@ -267,23 +267,23 @@ class ParserTestPrinter extends TestRecorder {
 		$start = max( 0, $position - 10 );
 		$before = $position - $start;
 		$fragment = '...' .
-			$this->term->color( 34 ) .
+			$this->term->color( '34' ) .
 			substr( $text, $start, $before ) .
-			$this->term->color( 0 ) .
-			$this->term->color( 31 ) .
-			$this->term->color( 1 ) .
+			$this->term->color( '0' ) .
+			$this->term->color( '31' ) .
+			$this->term->color( '1' ) .
 			substr( $text, $position, 1 ) .
-			$this->term->color( 0 ) .
-			$this->term->color( 34 ) .
+			$this->term->color( '0' ) .
+			$this->term->color( '34' ) .
 			substr( $text, $position + 1, 9 ) .
-			$this->term->color( 0 ) .
+			$this->term->color( '0' ) .
 			'...';
 		$display = str_replace( "\n", ' ', $fragment );
 		$caret = '   ' .
 			str_repeat( ' ', $before ) .
-			$this->term->color( 31 ) .
+			$this->term->color( '31' ) .
 			'^' .
-			$this->term->color( 0 );
+			$this->term->color( '0' );
 
 		return "$display\n$caret";
 	}
@@ -312,23 +312,23 @@ class ParserTestPrinter extends TestRecorder {
 		if ( $this->total > 0 ) {
 			$this->reportPercentage( $this->success, $this->total );
 		} else {
-			print $this->term->color( 31 ) . "No tests found." . $this->term->reset() . "\n";
+			print $this->term->color( '31' ) . "No tests found." . $this->term->reset() . "\n";
 		}
 	}
 
 	private function reportPercentage( $success, $total ) {
 		$ratio = wfPercent( 100 * $success / $total );
-		print $this->term->color( 1 ) . "Passed $success of $total tests ($ratio)";
+		print $this->term->color( '1' ) . "Passed $success of $total tests ($ratio)";
 		if ( $this->skipped ) {
 			print ", skipped {$this->skipped}";
 		}
 		print "... ";
 
 		if ( $success == $total ) {
-			print $this->term->color( 32 ) . "ALL TESTS PASSED!";
+			print $this->term->color( '32' ) . "ALL TESTS PASSED!";
 		} else {
 			$failed = $total - $success;
-			print $this->term->color( 31 ) . "$failed tests failed!";
+			print $this->term->color( '31' ) . "$failed tests failed!";
 		}
 
 		print $this->term->reset() . "\n";

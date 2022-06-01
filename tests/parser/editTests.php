@@ -172,7 +172,7 @@ class ParserEditTests extends Maintenance {
 		$term = new AnsiTermColorer;
 		$heading = "─── $text ";
 		$heading .= str_repeat( '─', $this->termWidth - mb_strlen( $heading ) );
-		$heading = $term->color( 34 ) . $heading . $term->reset() . "\n";
+		$heading = $term->color( '34' ) . $heading . $term->reset() . "\n";
 		return $heading;
 	}
 
@@ -185,9 +185,9 @@ class ParserEditTests extends Maintenance {
 
 	protected function handleFailure( $index, $testInfo, $result ) {
 		$term = new AnsiTermColorer;
-		$div1 = $term->color( 34 ) . str_repeat( '━', $this->termWidth ) .
+		$div1 = $term->color( '34' ) . str_repeat( '━', $this->termWidth ) .
 			$term->reset() . "\n";
-		$div2 = $term->color( 34 ) . str_repeat( '─', $this->termWidth ) .
+		$div2 = $term->color( '34' ) . str_repeat( '─', $this->termWidth ) .
 			$term->reset() . "\n";
 
 		print $div1;
@@ -238,7 +238,7 @@ class ParserEditTests extends Maintenance {
 			if ( !preg_match( '/^(.*\[)(.)(\].*)$/', $spec, $m ) ) {
 				throw new MWException( 'Invalid option spec: ' . $spec );
 			}
-			print '* ' . $m[1] . $term->color( 35 ) . $m[2] . $term->color( 0 ) . $m[3] . "\n";
+			print '* ' . $m[1] . $term->color( '35' ) . $m[2] . $term->color( '0' ) . $m[3] . "\n";
 			$options[strtoupper( $m[2] )] = true;
 		}
 
