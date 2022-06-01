@@ -12,7 +12,7 @@ class PhpunitTestRecorder extends TestRecorder {
 
 	/**
 	 * Mark a test skipped
-	 * @param string $test
+	 * @param array $test
 	 * @param string $reason
 	 */
 	public function skipped( $test, $reason ) {
