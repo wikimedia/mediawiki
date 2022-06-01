@@ -227,6 +227,8 @@ because of Phabricator reports.
   TrivialLanguageConverter instead.
 * The deprecated ApiQueryContributions class alias has been removed, use
   ApiQueryUserContribs instead.
+* The deprecated MediaWiki\Special\SpecialPageFactory class alias has been
+  removed, use MediaWiki\SpecialPage\SpecialPageFactory instead.
 * The following skin modules, deprecated in 1.37, have been removed:
 	- mediawiki.skinning.elements
 	- mediawiki.skinning.content
