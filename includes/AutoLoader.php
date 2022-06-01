@@ -36,6 +36,7 @@ class AutoLoader {
 	 *
 	 * @see <https://www.php-fig.org/psr/psr-4/>
 	 * @internal Only public for usage in AutoloadGenerator
+	 * @phpcs-require-sorted-array
 	 */
 	public const CORE_NAMESPACES = [
 		'MediaWiki\\' => __DIR__ . '/',
@@ -50,18 +51,18 @@ class AutoLoader {
 		'MediaWiki\\DB\\' => __DIR__ . '/db/',
 		'MediaWiki\\Deferred\\LinksUpdate\\' => __DIR__ . '/deferred/LinksUpdate/',
 		'MediaWiki\\Diff\\' => __DIR__ . '/diff/',
-		'MediaWiki\\Edit\\' => __DIR__ . '/edit/',
 		'MediaWiki\\EditPage\\' => __DIR__ . '/editpage/',
+		'MediaWiki\\Edit\\' => __DIR__ . '/edit/',
 		'MediaWiki\\FileBackend\\LockManager\\' => __DIR__ . '/filebackend/lockmanager/',
-		'MediaWiki\\JobQueue\\' => __DIR__ . '/jobqueue/',
-		'MediaWiki\\Json\\' => __DIR__ . '/json/',
 		'MediaWiki\\Http\\' => __DIR__ . '/http/',
 		'MediaWiki\\Installer\\' => __DIR__ . '/installer/',
 		'MediaWiki\\Interwiki\\' => __DIR__ . '/interwiki/',
+		'MediaWiki\\JobQueue\\' => __DIR__ . '/jobqueue/',
+		'MediaWiki\\Json\\' => __DIR__ . '/json/',
 		'MediaWiki\\Languages\\Data\\' => __DIR__ . '/languages/data/',
 		'MediaWiki\\Linker\\' => __DIR__ . '/linker/',
 		'MediaWiki\\Logger\\' => __DIR__ . '/debug/logger/',
-		'MediaWiki\\Logger\Monolog\\' => __DIR__ . '/debug/logger/monolog/',
+		'MediaWiki\\Logger\\Monolog\\' => __DIR__ . '/debug/logger/monolog/',
 		'MediaWiki\\Mail\\' => __DIR__ . '/mail/',
 		'MediaWiki\\Page\\' => __DIR__ . '/page/',
 		'MediaWiki\\Parser\\' => __DIR__ . '/parser/',
