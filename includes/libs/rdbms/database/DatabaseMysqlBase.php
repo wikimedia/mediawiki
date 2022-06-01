@@ -1081,16 +1081,10 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	protected function doFlushSession( $fname ) {
-		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS | self::QUERY_NO_RETRY;
+		$flags = self::QUERY_CHANGE_LOCKS | self::QUERY_NO_RETRY;
 
-		// In MySQL, ROLLBACK does not automatically release table locks;
-		// https://dev.mysql.com/doc/refman/8.0/en/lock-tables.html
-		$sql = "UNLOCK TABLES";
-		list( $res, $err, $errno ) = $this->executeQuery( $sql, $fname, $flags );
-		if ( $res === false ) {
-			$this->reportQueryError( $err, $errno, $sql, $fname, true );
-		}
-
+		// Note that RELEASE_ALL_LOCKS() is not supported well enough to use here.
+		// https://mariadb.com/kb/en/release_all_locks/
 		$releaseLockFields = [];
 		foreach ( $this->sessionNamedLocks as $name => $info ) {
 			$encName = $this->addQuotes( $this->makeLockName( $name ) );
