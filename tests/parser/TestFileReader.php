@@ -30,7 +30,7 @@ class TestFileReader {
 	 * @return array
 	 */
 	public static function read( $file, array $options = [] ) {
-		$options = $options + [
+		$options += [
 			'runDisabled' => false,
 			'filter' => false,
 		];

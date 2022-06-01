@@ -42,7 +42,7 @@ class TestRecorder {
 
 	/**
 	 * Called before starting a test
-	 * @param string $test
+	 * @param array $test
 	 */
 	public function startTest( $test ) {
 	}
@@ -78,7 +78,7 @@ class TestRecorder {
 
 	/**
 	 * Mark a test skipped
-	 * @param string $test
+	 * @param array $test
 	 * @param string $subtest
 	 */
 	public function skipped( $test, $subtest ) {

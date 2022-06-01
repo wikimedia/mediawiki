@@ -4,7 +4,7 @@
  * Common code for test environment initialisation and teardown
  */
 class TestSetup {
-	/** @var arrary */
+	/** @var array */
 	public static $bootstrapGlobals;
 
 	/**
@@ -133,11 +133,13 @@ class TestSetup {
 		];
 
 		// xdebug's default of 100 is too low for MediaWiki
+		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 		ini_set( 'xdebug.max_nesting_level', 1000 );
 
 		// Bug T116683 serialize_precision of 100
 		// may break testing against floating point values
 		// treated with PHP's serialize()
+		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 		ini_set( 'serialize_precision', 17 );
 	}
 

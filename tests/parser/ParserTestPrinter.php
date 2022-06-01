@@ -148,6 +148,7 @@ class ParserTestPrinter extends TestRecorder {
 			}
 
 			if ( $this->showDiffs ) {
+				// @phan-suppress-next-line SecurityCheck-XSS
 				print $this->quickDiff( $testResult->expected, $testResult->actual );
 				if ( !$this->wellFormed( $testResult->actual ) ) {
 					print "XML error: $this->xmlError\n";
@@ -246,7 +247,7 @@ class ParserTestPrinter extends TestRecorder {
 		$parser = xml_parser_create( "UTF-8" );
 
 		# case folding violates XML standard, turn it off
-		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, false );
+		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, 0 );
 
 		if ( !xml_parse( $parser, $html, true ) ) {
 			$err = xml_error_string( xml_get_error_code( $parser ) );
@@ -298,7 +299,7 @@ class ParserTestPrinter extends TestRecorder {
 
 	/**
 	 * Mark a test skipped
-	 * @param string $test
+	 * @param array $test
 	 * @param string $subtest
 	 */
 	public function skipped( $test, $subtest ) {

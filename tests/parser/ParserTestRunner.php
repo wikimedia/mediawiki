@@ -247,6 +247,7 @@ class ParserTestRunner {
 			$this->options, self::VALID_TEST_MODES
 		) );
 
+		// @phan-suppress-next-line PhanEmptyForeach False positive
 		foreach ( $this->options['norm'] as $func ) {
 			if ( in_array( $func, [ 'removeTbody', 'trimWhitespace' ] ) ) {
 				$this->normalizationFunctions[] = $func;
@@ -558,6 +559,7 @@ class ParserTestRunner {
 			$useConfig['name'] = 'local-backend'; // swap name
 			unset( $useConfig['lockManager'] );
 			$class = $useConfig['class'];
+			// @phan-suppress-next-line PhanInvalidFQSENInClasslike
 			$backend = new $class( $useConfig );
 		} else {
 			# Replace with a mock. We do not care about generating real
@@ -885,6 +887,7 @@ class ParserTestRunner {
 	 */
 	public function meetsRequirements( $requirements ) {
 		foreach ( $requirements as $requirement ) {
+			$ok = true;
 			switch ( $requirement['type'] ) {
 				case 'hook':
 					$ok = $this->requireHook( $requirement['name'] );
@@ -1065,7 +1068,8 @@ class ParserTestRunner {
 	public function updateKnownFailures( ParsoidTestFileReader $testFileInfo ): void {
 		$testKnownFailures = [];
 		foreach ( $testFileInfo->testCases as $t ) {
-			if ( $t->knownFailures ) {
+			if ( $t->knownFailures && $t->testName ) {
+				// @phan-suppress-next-line PhanTypeMismatchDimAssignment False positive
 				$testKnownFailures[$t->testName] = $t->knownFailures;
 				// FIXME: This reduces noise when updateKnownFailures is used
 				// with a subset of test modes. But, this also mixes up the selser
@@ -1214,6 +1218,7 @@ class ParserTestRunner {
 			// into <link> tags), add tag hooks to allow them to be generated.
 			$parser->setHook( 'style', static function ( $content, $attributes, $parser ) {
 				$marker = Parser::MARKER_PREFIX . '-style-' . md5( $content ) . Parser::MARKER_SUFFIX;
+				// @phan-suppress-next-line SecurityCheck-XSS
 				$parser->getStripState()->addNoWiki( $marker, $content );
 				return Html::inlineStyle( $marker, 'all', $attributes );
 			} );
@@ -1384,7 +1389,7 @@ class ParserTestRunner {
 	 * @param string|null|callable $rawExpected
 	 * @param string $rawActual
 	 * @param callable $normalizer normalizer of expected & actual output strings
-	 * @return array
+	 * @return ParserTestResult
 	 */
 	private function processResults(
 		ParserTest $test, string $mode, $rawExpected, string $rawActual, callable $normalizer
@@ -1479,12 +1484,7 @@ class ParserTestRunner {
 			] );
 		}
 
-		// Handle a 'changes' option if present.
-		$testManualChanges = $testOpts['parsoid']['changes'] ?? null;
 		$doc = DOMUtils::parseHTML( $test->cachedBODYstr, true );
-		if ( $testManualChanges ) {
-			$test->applyManualChanges( $doc );
-		}
 
 		$origWT = $parsoid->dom2wikitext( $pageConfig, $doc );
 		if ( isset( $test->options['parsoid']['changes'] ) ) {
@@ -1513,6 +1513,7 @@ class ParserTestRunner {
 			return false; // FIXME: Is this an error in the test setup?
 		}
 
+		// @phan-suppress-next-line PhanUndeclaredProperty
 		$test->cachedWTStr = $origWT = $parsoid->html2wikitext( $pageConfig, $html );
 
 		return $this->processResults(
@@ -1532,6 +1533,7 @@ class ParserTestRunner {
 			return false; // Skip. Nothing to test.
 		}
 
+		// @phan-suppress-next-line PhanUndeclaredProperty
 		$wt = $test->cachedWTStr ?? $parsoid->html2wikitext( $pageConfig, $html );
 
 		// Construct a fresh PageConfig object with $wt
@@ -1555,7 +1557,7 @@ class ParserTestRunner {
 		$pageConfigFactory = $services->get( 'ParsoidPageConfigFactory' );
 		$pageConfig = null;
 		[ $title, $options, $revId ] = $this->setupParserOptions(
-			$test,
+			(object)$this->testToArray( $test ),
 			static function ( $context, $title, $revId, $wikitext ) use ( $pageConfigFactory, &$pageConfig ) {
 				$pageConfig = $pageConfigFactory->create(
 					$title,
@@ -1590,7 +1592,7 @@ class ParserTestRunner {
 			return false; // FIXME: Is this an error in the test setup?
 		}
 
-		if ( $test->changetree === [ 'manual' ] && !isset( $testOpts['parsoid']['changes'] ) ) {
+		if ( $test->changetree === [ 'manual' ] && !isset( $test->options['parsoid']['changes'] ) ) {
 			return false; // FIXME: Is this an error in the test setup?
 		}
 
@@ -1724,7 +1726,7 @@ class ParserTestRunner {
 			return new ParserTestResult( $this->testToArray( $test, $mode ), $expected, $out );
 		} else {
 			$mode = "selserAutoEdits";
-			$numChanges = $runnerOpts['numchanges'] ?? 20; // default in Parsoid
+			$numChanges = 20; // default in Parsoid
 			$results = [];
 			$bufOut = "";
 			$bufExpected = "";
@@ -1776,6 +1778,7 @@ class ParserTestRunner {
 		wfDebug( __METHOD__ . ": running {$test->testName} (parsoid:$mode)" );
 
 		// Skip deprecated preprocessor tests
+		// @phan-suppress-next-line PhanImpossibleCondition Other preprocessor are deprecated, see runTest
 		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
 			return false;
 		}
@@ -1792,12 +1795,15 @@ class ParserTestRunner {
 			return false;
 		}
 
-		$teardownGuard = $this->perTestSetup( $this->testToArray( $test ) );
+		$testAsArray = $this->testToArray( $test );
+		$teardownGuard = $this->perTestSetup( $testAsArray );
 
+		// @phan-suppress-next-line PhanUndeclaredProperty
 		$parsoid = $test->parsoid ?? null;
 		if ( !$parsoid ) {
 			// Cache the Parsoid object
-			$parsoid = $test->parsoid = $this->createParsoid( $test->options );
+			// @phan-suppress-next-line PhanUndeclaredProperty
+			$parsoid = $test->parsoid = $this->createParsoid( $testAsArray );
 		}
 
 		list( $pageConfig ) = $this->setupParsoidTransform( $test );
@@ -2502,7 +2508,9 @@ class ParserTestRunner {
 			}
 		}
 
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 		if ( !$status->isOK() ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 			throw new MWException( $status->getWikiText( false, false, 'en' ) );
 		}
 
