@@ -439,12 +439,19 @@ abstract class Installer {
 	 * @return array
 	 */
 	private function getDefaultSettings(): array {
+		global $wgLocaltimezone;
+
 		$ret = $this->internalDefaults;
 
 		foreach ( self::DEFAULT_VAR_NAMES as $name ) {
 			$var = "wg{$name}";
 			$ret[$var] = MainConfigSchema::getDefaultValue( $name );
 		}
+
+		// Set $wgLocaltimezone to the value of the global, which SetupDynamicConfig.php will have
+		// set to something that is a valid timezone.
+		$ret['wgLocaltimezone'] = $wgLocaltimezone;
+
 		return $ret;
 	}
 
