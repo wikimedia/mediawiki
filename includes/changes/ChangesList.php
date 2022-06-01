@@ -718,7 +718,11 @@ class ChangesList extends ContextSource {
 		$mark = $this->getLanguage()->getDirMark();
 
 		return Html::openElement( 'span', [ 'class' => 'mw-changeslist-log-entry' ] )
-			. $formatter->getActionText() . " $mark" . $formatter->getComment()
+			. $formatter->getActionText()
+			. " $mark"
+			. $formatter->getComment()
+			. $this->msg( 'word-separator' )->escaped()
+			. $formatter->getActionLinks()
 			. Html::closeElement( 'span' );
 	}
 
