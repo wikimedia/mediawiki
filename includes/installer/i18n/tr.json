@@ -27,7 +27,9 @@
 			"MuratTheTurkish",
 			"SaldırganSincap",
 			"Sezgin İbiş",
-			"Stonecy"
+			"Stonecy",
+			"Can",
+			"Cobija"
 		]
 	},
 	"config-desc": "MediaWiki yükleyicisi",
@@ -82,6 +84,7 @@
 	"config-no-fts3": "<strong>Uyarı:</strong> SQLite [//sqlite.org/fts3.html FTS3 modülü] olmadan derlendi, bu arkayüzde arama özellikleri kullanılamayacaktır.",
 	"config-pcre-old": "<strong>Ağır hata:</strong> PCRE $1 veya daha üst gerekli.\nSizin PHP kurulumunuz PCRE $2 ile bağlı.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE Daha fazla bilgi].",
 	"config-pcre-no-utf8": "<strong>Ağır hata:</strong> PHP'nin PCRE modülü PCRE_UTF8 desteği olmadan derlenmiş gözüküyor.\nMediaWiki'nin doğru çalışabilmesi için UTF-8 desteği gereklidir.",
+	"config-pcre-invalid-newline": "<strong>Hata:</strong> PHP'nin PCRE modülü, HERHANGİ BİR için PCRE_CONFIG_NEWLINE = -1 ile derlenmiş gibi görünüyor.\nMediaWiki bu yapılandırmayla uyumlu değil.",
 	"config-memory-raised": "PHP'nin <code>memory_limit</code> (hafıza sınırı) değeri $1, $2 ile yükseltildi.",
 	"config-memory-bad": "<strong>Uyarı:</strong> PHP'nin <code>memory_limit</code> (hafıza sınırı) değeri $1.\nBu büyük ihtimalle çok düşük.\nKurulum başarısız olabilir!",
 	"config-apc": "[https://www.php.net/tr/apc APC] kuruldu",
@@ -304,7 +307,7 @@
 	"config-install-subscribe-alreadypending": "mediawiki-announce'a abonelik isteği zaten gönderildi. Lütfen daha önce gönderilen onay e-postasına cevap verin.",
 	"config-install-subscribe-possiblefail": "mediawiki-announce'a abonelik isteğiniz onaylanmamış olabilir. Eğer birkaç dakika içinde onay e-postası almazsanız, [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ lists.wikimedia.org] adresine giderek tekrar istek gönderin.",
 	"config-install-mainpage": "Varsayılan içerik ile anasayfa oluşturma",
-	"config-install-mainpage-exists": "Ana sayfa zaten var, atlanıyor",
+	"config-install-mainpage-exists": "Anasayfa zaten var, atlanıyor",
 	"config-install-extension-tables": "Uzantılar için etkinleştirilmiş tablolar oluşturma",
 	"config-install-mainpage-failed": "Anasayfa eklenemedi: $1",
 	"config-install-done": "<strong>Tebrikler!</strong>\nMediaWiki'yi yüklediniz.\n\nYükleyici bir <code>LocalSettings.php</code> dosyası oluşturdu.\nTüm yapılandırmanızı içerir.\n\nİndirmeniz ve viki kurulumunuzun (index.php ile aynı dizin) temeline koymanız gerekir. İndirme otomatik olarak başlamalıydı.\n\nİndirme teklif edilmediyse veya iptal ettiyseniz, aşağıdaki bağlantıyı tıklayarak indirmeyi yeniden başlatabilirsiniz:\n\n$3\n\n<strong>Not:</strong> Bunu şimdi yapmazsanız, yüklemeden indirmeden çıkarsanız bu oluşturulan yapılandırma dosyası size daha sonra erişemez.\n\nBu yapıldığında, <strong>[$2 vikinizi girebilirsiniz]</strong>.",

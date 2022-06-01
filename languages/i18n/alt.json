@@ -11,7 +11,8 @@
 			"Soul Train",
 			"Батыр Комдошев",
 			"Кудайкул",
-			"Толуш"
+			"Толуш",
+			"Radmir Far"
 		]
 	},
 	"tog-underline": "Тайантыны чийе тартары:",
@@ -1936,7 +1937,7 @@
 	"booksources-search": "Бедреш",
 	"magiclink-tracking-rfc": "RFC куулгазын ссылкаларын тузаланган бÿктер",
 	"magiclink-tracking-pmid": "PMID куулгазын ссылкаларын тузаланган бÿктер",
-	"magiclink-tracking-isbn": "ISBN куулгазын ссылкаларын тузаланган бÿктер",
+	"magiclink-tracking-isbn": "ISBN куулгазын ссылкаларын тузаланган бӱктер",
 	"specialloguserlabel": "Бӱдӱреечи:",
 	"speciallogtitlelabel": "Амаду (ады эмезе {{ns:user}}:туружаачыныҥ ады):",
 	"log": "Журналдары",

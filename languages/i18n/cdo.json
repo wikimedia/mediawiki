@@ -18,7 +18,8 @@
 			"Ztl8702",
 			"ديفيد",
 			"唐吉訶德的侍從",
-			"아라"
+			"아라",
+			"沈澄心"
 		]
 	},
 	"tog-underline": "Â-hĕk-siáng lièng-giék",
@@ -262,9 +263,9 @@
 	"youhavenewmessagesmulti": "汝有趁$1來其新信息",
 	"editsection": "siŭ-gāi",
 	"editold": "修改",
-	"viewsourceold": "看源代碼",
+	"viewsourceold": "Káng nguòng-dâi-mā",
 	"editlink": "siŭ-gāi",
-	"viewsourcelink": "Káng nguòng-dâi-mā",
+	"viewsourcelink": "káng nguòng-dâi-mā",
 	"editsectionhint": "Siŭ-gāi dâung-lŏk: $1",
 	"toc": "Mŭk-liŏh",
 	"showtoc": "顯示",
@@ -343,7 +344,7 @@
 	"perfcachedts": "下底其數據已經緩存過了，最後更新遘$1。{{PLURAL:$4|$4條結果}}會敆緩存臺中討著。",
 	"querypage-no-updates": "茲蜀頁其更新乞禁止了。\n數據嚽塊現刻時𣍐更新了。",
 	"viewsource": "Káng nguòng-dâi-mā",
-	"viewsource-title": "覷\"$1\"其源代碼",
+	"viewsource-title": "Káng \"$1\" gì nguòng-dâi-mā",
 	"actionthrottled": "行動乞取消咯",
 	"protectedpagetext": "茲頁已經乞保護起咯，𣍐使修改或者其它行動。",
 	"viewsourcetext": "汝會使看共複製茲蜀頁其源代碼。",
@@ -603,6 +604,7 @@
 	"search-section": "(dâung-lŏk $1)",
 	"search-file-match": "(hù-hăk ùng-giông nô̤i-ṳ̀ng)",
 	"search-suggest": "汝其意思是伓是：$1",
+	"search-interwiki-more": "(gó-sâ̤)",
 	"searchrelated": "相關其",
 	"searchall": "全部",
 	"showingresults": "顯示趁#<b>$2</b>開始其{{PLURAL:$1|'''$1'''萆結果}}。",

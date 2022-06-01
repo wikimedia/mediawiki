@@ -23,7 +23,8 @@
 			"Winston Sung",
 			"列维劳德",
 			"Tranve",
-			"星海"
+			"星海",
+			"Sidishandsome"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|說明文件]]\n* [[mw:Special:MyLanguage/API:FAQ|常見問題]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 郵寄清單]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 報告錯誤及請求功能]\n</div>\n<strong>狀態資訊：</strong>MediaWiki API 已是成熟、穩定，並積極支援以改善的介面。儘管我們儘可能避免，但仍偶有需要重大變更的情況，請訂閱[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 郵寄清單]以便獲得更新通知。\n\n<strong>錯誤的請求：</strong>當 API 收到錯誤的請求，會發出以「MediaWiki-API-Error」為鍵的 HTTP 標頭欄位，隨後標頭欄位的值，以及傳回的錯誤碼會設為相同值。詳細資訊請參閱 [[mw:Special:MyLanguage/API:Errors_and_warnings|API: 錯誤與警告]]。\n\n<p class=\"mw-apisandbox-link\"><strong>測試：</strong>要簡化 API 請求的測試過程，請見 [[Special:ApiSandbox]]。</p>",
@@ -380,7 +381,7 @@
 	"apihelp-parse-paramvalue-prop-properties": "指定多項定義在已解析原始 wikitext 的屬性。",
 	"apihelp-parse-paramvalue-prop-limitreportdata": "取得結構化限制報告。當有設定 <var>$1disablelimitreport</var> 時，則不會給予資料。",
 	"apihelp-parse-paramvalue-prop-limitreporthtml": "取得限制報告的 HTML 版本。當有設定 <var>$1disablelimitreport</var> 時，則不會給予資料。",
-	"apihelp-parse-paramvalue-prop-parsetree": "修訂內容的 XML 解析樹狀（需要內容模組 <code>$1</code>）",
+	"apihelp-parse-paramvalue-prop-parsetree": "修訂內容的 XML 解析樹狀（需要內容模型 <code>$1</code>）",
 	"apihelp-parse-paramvalue-prop-parsewarnings": "提供發生在解析內容時的警告。",
 	"apihelp-parse-param-wrapoutputclass": "要包在解析器輸出內容的 CSS 類別。",
 	"apihelp-parse-param-pst": "在解析之前執行在輸入裡的預先儲存轉換。僅當與文字使用時有效。",
@@ -392,7 +393,7 @@
 	"apihelp-parse-param-disablepp": "請改用<var>$1disablelimitreport</var>。",
 	"apihelp-parse-param-disableeditsection": "從解析輸出內容省略編輯段落連結。",
 	"apihelp-parse-param-disablestylededuplication": "不要在解析結果去除重複的行內樣式表。",
-	"apihelp-parse-param-generatexml": "產生 XML 解析樹狀（需要被 <kbd>$2prop=parsetree</kbd> 給取代的 <code>$1</code> 內容模組）。",
+	"apihelp-parse-param-generatexml": "產生 XML 解析樹狀（需要被 <kbd>$2prop=parsetree</kbd> 給取代的 <code>$1</code> 內容模型）。",
 	"apihelp-parse-param-preview": "在預覽模式下解析。",
 	"apihelp-parse-param-sectionpreview": "在段落預覽模式下解析（要同時啟用預覽模式）。",
 	"apihelp-parse-param-disabletoc": "在輸出裡忽略目錄。",
@@ -1115,7 +1116,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-content": "各修訂間隔的內容。若是已刪除修訂的內容，會回傳 <samp>texthidden</samp> 屬性。",
 	"apihelp-query+revisions+base-paramvalue-prop-tags": "修訂標籤。",
 	"apihelp-query+revisions+base-paramvalue-prop-roles": "列出存在於修訂的內容間隔作用。",
-	"apihelp-query+revisions+base-paramvalue-prop-parsetree": "請改用 <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> 或 <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>。修訂內容的 XML 解析樹狀（需要內容模組 <code>$1</code>）。",
+	"apihelp-query+revisions+base-paramvalue-prop-parsetree": "請改用 <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> 或 <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>。修訂內容的 XML 解析樹狀（需要內容模型 <code>$1</code>）。",
 	"apihelp-query+revisions+base-param-slots": "當間隔相關屬性包含在 <var>$1props</var> 時，要回傳資料的修訂間隔。若忽略的話，來自 <kbd>main</kbd> 間隔的資料會以向下兼容格式回傳。",
 	"apihelp-query+revisions+base-param-limit": "限制所回傳的修訂數量。",
 	"apihelp-query+revisions+base-param-expandtemplates": "請改用 <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd>。在修訂內容裡展開模板（需要 $1prop=content）。",

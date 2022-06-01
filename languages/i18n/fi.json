@@ -1678,7 +1678,7 @@
 	"recentchanges-page-removed-from-category": "[[:$1]] poistettu luokasta",
 	"recentchanges-page-removed-from-category-bundled": "[[:$1]] poistettu luokasta, [[Special:WhatLinksHere/$1|tämä sivu on sisällytetty muihin sivuihin]]",
 	"autochange-username": "MediaWiki automaattinen muutos",
-	"upload": "Lähetä tiedosto",
+	"upload": "Tallenna tiedosto",
 	"uploadbtn": "Tallenna tiedosto",
 	"reuploaddesc": "Peruuta tallennus ja palaa tallennuslomakkeelle.",
 	"upload-tryagain": "Lähetä muutettu tiedostokuvaus",

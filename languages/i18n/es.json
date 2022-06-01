@@ -1025,7 +1025,7 @@
 	"viewpagelogs-lowercase": "ver los registros de esta página",
 	"nohistory": "No hay historial de ediciones de esta página.",
 	"currentrev": "Revisión actual",
-	"currentrev-asof": "Revisión actual del $1",
+	"currentrev-asof": "Revisión actual - $1",
 	"revisionasof": "Revisión del $1",
 	"revision-info": "Revisión del $1 de {{GENDER:$6|$2}}$7",
 	"previousrevision": "← Revisión anterior",

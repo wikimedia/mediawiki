@@ -65,6 +65,7 @@
 	"apihelp-query+alllinks-paramvalue-prop-title": "Sernamey rê link dek",
 	"apihelp-query+allmessages-param-lang": "Mesaja açarn ena zıwan.",
 	"apihelp-query+blocks-example-simple": "Listey bloqeyan",
+	"apihelp-query+deletedrevs-paraminfo-modes": "{{PLURAL:$1|Mod|Modi}}: $2",
 	"api-help-parameters": "{{PLURAL:$1|Parametre|Parametreyi}}:",
 	"api-help-param-internal": "Zerre.",
 	"api-help-examples": "{{PLURAL:$1|Nımune|Nımuneyi}}:",

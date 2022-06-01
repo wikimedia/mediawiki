@@ -590,36 +590,42 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	 */
 
 	/** @inheritDoc */
+	#[\ReturnTypeWillChange]
 	public function count() {
 		$data = &$this->backend->getData();
 		return count( $data );
 	}
 
 	/** @inheritDoc */
+	#[\ReturnTypeWillChange]
 	public function current() {
 		$data = &$this->backend->getData();
 		return current( $data );
 	}
 
 	/** @inheritDoc */
+	#[\ReturnTypeWillChange]
 	public function key() {
 		$data = &$this->backend->getData();
 		return key( $data );
 	}
 
 	/** @inheritDoc */
+	#[\ReturnTypeWillChange]
 	public function next() {
 		$data = &$this->backend->getData();
 		next( $data );
 	}
 
 	/** @inheritDoc */
+	#[\ReturnTypeWillChange]
 	public function rewind() {
 		$data = &$this->backend->getData();
 		reset( $data );
 	}
 
 	/** @inheritDoc */
+	#[\ReturnTypeWillChange]
 	public function valid() {
 		$data = &$this->backend->getData();
 		return key( $data ) !== null;
@@ -630,7 +636,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	 *  rather than array_key_exists(). So do that.
 	 * @inheritDoc
 	 */
-	public function offsetExists( $offset ) {
+	public function offsetExists( $offset ): bool {
 		$data = &$this->backend->getData();
 		return isset( $data[$offset] );
 	}
@@ -643,6 +649,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	 *  be created with a null value, and does not raise a PHP warning.
 	 * @inheritDoc
 	 */
+	#[\ReturnTypeWillChange]
 	public function &offsetGet( $offset ) {
 		$data = &$this->backend->getData();
 		if ( !array_key_exists( $offset, $data ) ) {
@@ -653,12 +660,12 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/** @inheritDoc */
-	public function offsetSet( $offset, $value ) {
+	public function offsetSet( $offset, $value ): void {
 		$this->set( $offset, $value );
 	}
 
 	/** @inheritDoc */
-	public function offsetUnset( $offset ) {
+	public function offsetUnset( $offset ): void {
 		$this->remove( $offset );
 	}
 

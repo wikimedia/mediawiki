@@ -13,10 +13,13 @@
 			"Irus",
 			"Mtonihouse",
 			"Nkankane",
-			"Weather Top Wizard"
+			"Weather Top Wizard",
+			"StarrySky",
+			"Mehtab ahmed"
 		]
 	},
 	"underline-always": "Njalo",
+	"underline-never": "neze",
 	"sunday": "iSonto",
 	"monday": "uMsombuluko",
 	"tuesday": "uLwesibili",
@@ -75,6 +78,7 @@
 	"moredotdotdot": "Amanye...",
 	"mypage": "Ikhasi lami",
 	"mytalk": "Ingxoxo yami",
+	"anontalk": "Ingxoxo yami",
 	"navigation": "Ukuqondiswa kwemikhumbi",
 	"and": "&#32;na",
 	"namespaces": "Izikhalamagama",
@@ -125,7 +129,7 @@
 	"privacy": "Inqubomgomo yobumfihlo",
 	"privacypage": "Project:Inqubomgomo yemfihlo",
 	"ok": "Kulungile",
-	"retrievedfrom": "Retrieved from \"$1\"",
+	"retrievedfrom": "\"$1\" تان ورتل",
 	"youhavenewmessagesmulti": "Uyanemilayezo emisha e $1",
 	"editsection": "hlela",
 	"editold": "hlela",
