@@ -67,6 +67,7 @@
  * @author User670839245
  * @author Waihorace
  * @author Wilsonmess
+ * @author Winston Sung
  * @author Wmr89502270
  * @author Wong128hk
  * @author Wrightbus
@@ -79,6 +80,8 @@
  * @author 范
  * @author 阿pp
  */
+
+$fallback = 'zh-cn, zh, zh-hant';
 
 $fallback8bitEncoding = 'windows-936';
 

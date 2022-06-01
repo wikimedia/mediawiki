@@ -10,4 +10,4 @@
  * @author Hakka
  */
 
-$fallback = 'zh-hans';
+$fallback = 'zh-hans, zh, zh-hant';

@@ -8,7 +8,7 @@
  *
  */
 
-$fallback = 'zh-hans';
+$fallback = 'gan, gan-hant, zh-hans, zh, zh-hant';
 
 $namespaceNames = [
 	NS_TALK             => '谈詑',

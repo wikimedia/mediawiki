@@ -7,9 +7,10 @@
  * @file
  *
  * @author Amir E. Aharoni
+ * @author Winston Sung
  */
 
-$fallback = 'zh-hans';
+$fallback = 'zh-cn, zh-hans, zh, zh-hant';
 
 $linkTrail = '/^()(.*)$/sD';
 

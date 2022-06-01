@@ -8,8 +8,9 @@
  *
  * @author PhiLiP
  * @author Shizhao
+ * @author Winston Sung
  * @author Wong128hk
  */
 
 # Inherit everything for now
-$fallback = 'zh-hans';
+$fallback = 'zh-hans, zh-cn, zh, zh-hant';

@@ -14,11 +14,12 @@
  * @author Simon Shek
  * @author StephDC
  * @author Super Wang
+ * @author Winston Sung
  * @author Xiaomingyan
  * @author Yanteng3
  */
 
-$fallback = 'zh-hant'; // T125373
+$fallback = 'zh-hant, zh, zh-hans'; // T125373, T278639, T286291
 
 /** @phpcs-require-sorted-array */
 $specialPageAliases = [

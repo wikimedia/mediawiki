@@ -9,9 +9,10 @@
  * @author Hiong3-eng5
  * @author Ianbu
  * @author Kaihsu
+ * @author Winston Sung
  */
 
-$fallback = 'cdo, zh-hant';
+$fallback = 'cdo, zh-hant, zh, zh-hans';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Mûi-thé',

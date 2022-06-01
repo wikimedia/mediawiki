@@ -17,10 +17,13 @@
  * @author Simon Shek
  * @author Waihorace
  * @author William915
+ * @author Winston Sung
  * @author Wong128hk
  * @author Xiaomingyan
  * @author Yfdyh000
  */
+
+$fallback = 'zh-hk, zh-hant, zh, zh-hans';
 
 $namespaceNames = [
 	NS_MEDIA            => '媒體',

@@ -7,7 +7,7 @@
  * @file
  */
 
-$fallback = 'zh-tw, zh-hant, zh-hans';
+$fallback = 'zh-tw, zh-hant, zh, zh-hans';
 
 $namespaceNames = [
 	NS_MEDIA            => 'media',
