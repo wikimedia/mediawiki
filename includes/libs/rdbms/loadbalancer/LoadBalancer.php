@@ -1715,13 +1715,16 @@ class LoadBalancer implements ILoadBalancerForOwner {
 					);
 				}
 			}
-			// If a connection sits idle while slow queries execute on another, that connection
-			// may end up dropped before the commit round is reached. Ping servers to detect this.
-			if ( $conn->writesOrCallbacksPending() && !$conn->ping() ) {
-				throw new DBTransactionError(
-					$conn,
-					"A connection to the {$conn->getDBname()} database was lost before commit"
-				);
+			// If a connection sits idle for too long it might be dropped, causing transaction
+			// writes and session locks to be lost. Ping all the server connections before making
+			// any attempt to commit the transactions belonging to the active transaction round.
+			if ( $conn->writesOrCallbacksPending() || $conn->sessionLocksPending() ) {
+				if ( !$conn->ping() ) {
+					throw new DBTransactionError(
+						$conn,
+						"Pre-commit ping failed on server {$conn->getServerName()}"
+					);
+				}
 			}
 		}
 		$this->trxRoundStage = self::ROUND_APPROVED;
@@ -1731,7 +1734,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		if ( $this->trxRoundId !== false ) {
 			throw new DBTransactionError(
 				null,
-				"$fname: Transaction round '{$this->trxRoundId}' already started"
+				"Transaction round '{$this->trxRoundId}' already started"
 			);
 		}
 		$this->assertTransactionRoundStage( self::ROUND_CURSORY );
@@ -1776,7 +1779,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		if ( $failures ) {
 			throw new DBTransactionError(
 				null,
-				"$fname: Commit failed on server(s) " . implode( "\n", array_unique( $failures ) )
+				"Commit failed on server(s) " . implode( "\n", array_unique( $failures ) )
 			);
 		}
 		if ( $restore ) {
