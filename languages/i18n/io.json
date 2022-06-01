@@ -2341,6 +2341,7 @@
 	"sp-contributions-newonly": "Montrar nur redakti qui esas kreado di pagini",
 	"sp-contributions-hideminor": "Celar kurta redaktaji",
 	"sp-contributions-submit": "Serchez",
+	"sp-contributions-concurrency-user": "Pardonez, tre multa demandi venis de vua uzero-konto. Probez itere pose.",
 	"whatlinkshere": "Quo ligesas adhike",
 	"whatlinkshere-count": "Montrata $1 {{PLURAL:$1|artiklo|artikli}}.",
 	"whatlinkshere-title": "Pagini qui ligesas a(d) \"$1\"",
