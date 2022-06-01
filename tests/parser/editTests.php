@@ -11,14 +11,26 @@ define( 'MW_PARSER_TEST', true );
  * Interactive parser test runner and test file editor
  */
 class ParserEditTests extends Maintenance {
+	/** @var int */
 	private $termWidth;
+	/** @var array */
 	private $testFiles;
+	/** @var int */
 	private $testCount;
+	/** @var TestRecorder */
 	private $recorder;
+	/** @var ParserTestRunner */
 	private $runner;
+	/** @var int */
 	private $numExecuted;
+	/** @var int */
 	private $numSkipped;
+	/** @var int */
 	private $numFailed;
+	/** @var array */
+	private $results;
+	/** @var array */
+	private $session;
 
 	public function __construct() {
 		parent::__construct();

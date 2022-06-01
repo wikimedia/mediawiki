@@ -4,6 +4,7 @@
  * Common code for test environment initialisation and teardown
  */
 class TestSetup {
+	/** @var arrary */
 	public static $bootstrapGlobals;
 
 	/**
