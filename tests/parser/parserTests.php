@@ -197,7 +197,7 @@ class ParserTestsMaintenance extends Maintenance {
 			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 			$recorderLB = $lbFactory->newMainLB();
 			// This connection will have the wiki's table prefix, not parsertest_
-			$recorderDB = $recorderLB->getConnection( DB_PRIMARY );
+			$recorderDB = $recorderLB->getMaintenanceConnectionRef( DB_PRIMARY );
 
 			// Add recorder before previewer because recorder will create the
 			// DB table if it doesn't exist

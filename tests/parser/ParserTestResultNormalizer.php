@@ -6,7 +6,7 @@
 class ParserTestResultNormalizer {
 	/** @var DOMDocument */
 	protected $doc;
-	/** @var DOMNode */
+	/** @var DOMNode|null */
 	protected $body;
 	/** @var DOMXPath */
 	protected $xpath;

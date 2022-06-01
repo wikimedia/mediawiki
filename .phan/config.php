@@ -36,6 +36,8 @@ $cfg['file_list'] = array_merge(
 		'includes/Defines.php',
 		// @todo This isn't working yet, see globals_type_map below
 		// 'includes/Setup.php',
+		'tests/phpunit/MediaWikiIntegrationTestCase.php',
+		'tests/phpunit/includes/TestUser.php',
 	]
 );
 
@@ -76,12 +78,16 @@ $cfg['directory_list'] = [
 	'mw-config/',
 	'resources/',
 	'vendor/',
+	'tests/common/',
+	'tests/parser/',
+	'tests/phpunit/mocks/',
 	// Do NOT add .phan/stubs/ here: stubs are conditionally loaded in file_list
 ];
 
 $cfg['exclude_analysis_directory_list'] = [
 	'vendor/',
 	'.phan/',
+	'tests/phpunit/',
 	// Generated documentation stub for configuration variables.
 	'includes/config-vars.php',
 	// The referenced classes are not available in vendor, only when

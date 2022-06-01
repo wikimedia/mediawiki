@@ -127,6 +127,7 @@ class DbTestPreviewer extends TestRecorder {
 					printf( "\n%4d %s\n", $count, $label );
 
 					foreach ( $breakdown[$code] as $differing_test_name => $statusInfo ) {
+						// @phan-suppress-next-line SecurityCheck-XSS
 						print "      * $differing_test_name  [$statusInfo]\n";
 					}
 				}

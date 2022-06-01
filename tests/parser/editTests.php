@@ -60,6 +60,7 @@ class ParserEditTests extends Maintenance {
 		if ( $this->hasOption( 'use-tidy-config' ) ) {
 			$this->session['options']['use-tidy-config'] = true;
 		}
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable options always set
 		$this->runner = new ParserTestRunner( $this->recorder, $this->session['options'] );
 
 		$this->runTests();
@@ -117,7 +118,7 @@ class ParserEditTests extends Maintenance {
 		$done = $this->numExecuted;
 		$total = $this->testCount;
 		$width = $this->termWidth - 9;
-		$pos = round( $width * $done / $total );
+		$pos = (int)round( $width * $done / $total );
 		printf( '│' . str_repeat( '█', $pos ) . str_repeat( '-', $width - $pos ) .
 			"│ %5.1f%%\r", $done / $total * 100 );
 	}
@@ -163,6 +164,7 @@ class ParserEditTests extends Maintenance {
 			print "Could not find the test after a restart, did you rename it?";
 			unset( $this->session['startFile'] );
 			unset( $this->session['startTest'] );
+			// @phan-suppress-next-line PhanPossiblyInfiniteRecursionSameParams
 			$this->showResults();
 		}
 		print "All done\n";
@@ -436,7 +438,9 @@ class ParserEditTests extends Maintenance {
 		$this->editTest( $testInfo['file'],
 			[], // deletions
 			[ // changes
+				// @phan-suppress-next-line PhanTypeInvalidArrayKeyLiteral
 				$testInfo['test'] => [
+					// @phan-suppress-next-line PhanTypeInvalidArrayKeyLiteral
 					$testInfo['resultSection'] => [
 						'op' => 'update',
 						'value' => $result->actual . "\n"
@@ -444,6 +448,7 @@ class ParserEditTests extends Maintenance {
 				]
 			]
 		);
+		return false;
 	}
 
 	protected function deleteTest( $testInfo ) {
@@ -451,6 +456,7 @@ class ParserEditTests extends Maintenance {
 			[ $testInfo['test'] ], // deletions
 			[] // changes
 		);
+		return false;
 	}
 
 	protected function switchTidy( $testInfo ) {
@@ -460,14 +466,17 @@ class ParserEditTests extends Maintenance {
 		} elseif ( in_array( $resultSection, [ 'html/*', 'html', 'result' ] ) ) {
 			$newSection = 'html';
 		} else {
+			// @phan-suppress-next-line PhanTypeSuspiciousStringExpression
 			print "Unrecognised result section name \"$resultSection\"";
-			return;
+			return true;
 		}
 
 		$this->editTest( $testInfo['file'],
 			[], // deletions
 			[ // changes
+				// @phan-suppress-next-line PhanTypeInvalidArrayKeyLiteral
 				$testInfo['test'] => [
+					// @phan-suppress-next-line PhanTypeInvalidArrayKeyLiteral
 					$resultSection => [
 						'op' => 'rename',
 						'value' => $newSection
@@ -475,19 +484,23 @@ class ParserEditTests extends Maintenance {
 				]
 			]
 		);
+		return false;
 	}
 
 	protected function deleteSubtest( $testInfo ) {
 		$this->editTest( $testInfo['file'],
 			[], // deletions
 			[ // changes
+				// @phan-suppress-next-line PhanTypeInvalidArrayKeyLiteral
 				$testInfo['test'] => [
+					// @phan-suppress-next-line PhanTypeInvalidArrayKeyLiteral
 					$testInfo['resultSection'] => [
 						'op' => 'delete'
 					]
 				]
 			]
 		);
+		return false;
 	}
 }
 
