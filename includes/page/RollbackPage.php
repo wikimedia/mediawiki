@@ -429,7 +429,7 @@ class RollbackPage {
 	}
 
 	/**
-	 * Set patrolling and bot flag on the edits, which gets rolled back.
+	 * Set patrolling and bot flag on the edits which get rolled back.
 	 *
 	 * @param IDatabase $dbw
 	 * @param RevisionRecord $current
@@ -440,28 +440,70 @@ class RollbackPage {
 		RevisionRecord $current,
 		RevisionRecord $target
 	) {
-		$set = [];
-		if ( $this->bot ) {
-			// Mark all reverted edits as bot
-			$set['rc_bot'] = 1;
+		$useRCPatrol = $this->options->get( MainConfigNames::UseRCPatrol );
+		if ( !$this->bot && !$useRCPatrol ) {
+			return;
 		}
 
-		if ( $this->options->get( MainConfigNames::UseRCPatrol ) ) {
-			// Mark all reverted edits as patrolled
-			$set['rc_patrolled'] = RecentChange::PRC_AUTOPATROLLED;
+		$actorId = $this->actorNormalization
+			->acquireActorId( $current->getUser( RevisionRecord::RAW ), $dbw );
+		$rows = $dbw->select(
+			'recentchanges',
+			[ 'rc_id', 'rc_patrolled' ],
+			[
+				'rc_cur_id' => $current->getPageId(),
+				'rc_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $target->getTimestamp() ) ),
+				'rc_actor' => $actorId
+			],
+			__METHOD__
+		);
+
+		$all = [];
+		$patrolled = [];
+		$unpatrolled = [];
+		foreach ( $rows as $row ) {
+			$all[] = (int)$row->rc_id;
+			if ( $row->rc_patrolled ) {
+				$patrolled[] = (int)$row->rc_id;
+			} else {
+				$unpatrolled[] = (int)$row->rc_id;
+			}
 		}
 
-		if ( $set ) {
-			$actorId = $this->actorNormalization
-				->acquireActorId( $current->getUser( RevisionRecord::RAW ), $dbw );
+		if ( $useRCPatrol && $this->bot ) {
+			// Mark all reverted edits as if they were made by a bot
+			// Also mark only unpatrolled reverted edits as patrolled
+			if ( $unpatrolled ) {
+				$dbw->update(
+					'recentchanges',
+					[ 'rc_bot' => 1, 'rc_patrolled' => RecentChange::PRC_AUTOPATROLLED ],
+					[ 'rc_id' => $unpatrolled ],
+					__METHOD__
+				);
+			}
+			if ( $patrolled ) {
+				$dbw->update(
+					'recentchanges',
+					[ 'rc_bot' => 1 ],
+					[ 'rc_id' => $patrolled ],
+					__METHOD__
+				);
+			}
+		} elseif ( $useRCPatrol ) {
+			// Mark only unpatrolled reverted edits as patrolled
+			if ( $unpatrolled ) {
+				$dbw->update(
+					'recentchanges',
+					[ 'rc_patrolled' => RecentChange::PRC_AUTOPATROLLED ],
+					[ 'rc_id' => $unpatrolled ],
+					__METHOD__
+				);
+			}
+		} else { // if ( $this->bot )
 			$dbw->update(
 				'recentchanges',
-				$set,
-				[ /* WHERE */
-					'rc_cur_id' => $current->getPageId(),
-					'rc_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $target->getTimestamp() ) ),
-					'rc_actor' => $actorId
-				],
+				[ 'rc_bot' => 1 ],
+				[ 'rc_id' => $all ],
 				__METHOD__
 			);
 		}
