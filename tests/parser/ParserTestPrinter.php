@@ -129,7 +129,6 @@ class ParserTestPrinter extends TestRecorder {
 	 * about what went wrong if so configured.
 	 *
 	 * @param ParserTestResult $testResult
-	 * @return bool
 	 */
 	private function showFailure( ParserTestResult $testResult ) {
 		if ( $this->showFailure ) {
@@ -155,8 +154,6 @@ class ParserTestPrinter extends TestRecorder {
 				}
 			}
 		}
-
-		return false;
 	}
 
 	/**
