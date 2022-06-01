@@ -55,11 +55,7 @@ class DbTestRecorder extends TestRecorder {
 				'tr_uname' => php_uname()
 			],
 			__METHOD__ );
-		if ( $this->db->getType() === 'postgres' ) {
-			$this->curRun = $this->db->currentSequenceValue( 'testrun_id_seq' );
-		} else {
-			$this->curRun = $this->db->insertId();
-		}
+		$this->curRun = $this->db->insertId();
 	}
 
 	/**
