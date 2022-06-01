@@ -1,9 +1,12 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
+
 class PhpunitTestRecorder extends TestRecorder {
+	/** @var TestCase */
 	private $testCase;
 
-	public function setTestCase( PHPUnit\Framework\TestCase $testCase ) {
+	public function setTestCase( TestCase $testCase ) {
 		$this->testCase = $testCase;
 	}
 

@@ -4,7 +4,14 @@
  * @ingroup Testing
  */
 class ParserTestResultNormalizer {
-	protected $doc, $xpath, $invalid;
+	/** @var DOMDocument */
+	protected $doc;
+	/** @var DOMNode */
+	protected $body;
+	/** @var DOMXPath */
+	protected $xpath;
+	/** @var bool */
+	protected $invalid;
 
 	public static function normalize( $text, $funcs ) {
 		$norm = new self( $text );

@@ -5,6 +5,7 @@
  * It proxies calls to all constituent objects.
  */
 class MultiTestRecorder extends TestRecorder {
+	/** @var TestRecorder[] */
 	private $recorders = [];
 
 	public function addRecorder( TestRecorder $recorder ) {

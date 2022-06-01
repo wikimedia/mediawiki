@@ -20,6 +20,8 @@
  */
 
 use MediaWiki\Shell\Shell;
+use MediaWiki\Tests\AnsiTermColorer;
+use MediaWiki\Tests\DummyTermColorer;
 
 /**
  * This is a TestRecorder responsible for printing information about progress,
@@ -27,16 +29,27 @@ use MediaWiki\Shell\Shell;
  * frontend.
  */
 class ParserTestPrinter extends TestRecorder {
+	/** @var int */
 	private $total;
+	/** @var int */
 	private $success;
+	/** @var int */
 	private $skipped;
+	/** @var AnsiTermColorer|DummyTermColorer */
 	private $term;
+	/** @var bool */
 	private $showDiffs;
+	/** @var bool */
 	private $showProgress;
+	/** @var bool */
 	private $showFailure;
+	/** @var bool */
 	private $showOutput;
+	/** @var bool */
 	private $useDwdiff;
+	/** @var bool */
 	private $markWhitespace;
+	/** @var string */
 	private $xmlError;
 
 	public function __construct( $term, $options ) {
