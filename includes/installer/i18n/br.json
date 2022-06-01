@@ -187,7 +187,7 @@
 	"config-license-cc-choose": "Dibabit un aotre-implijout Creative Commons personelaet",
 	"config-email-settings": "Arventennoù ar postel",
 	"config-enable-email": "Gweredekaat ar posteloù a ya kuit",
-	"config-enable-email-help": "Mar fell deoc'h ober gant ar posteler eo ret deoc'h [Config-dbsupport-oracle/manual/en/mail.configuration.php kefluniañ arventennoù postel PHP] ervat.\nMar ne fell ket deoc'h ober gant ar servij posteloù e c'hall bezañ diweredekaet amañ.",
+	"config-enable-email-help": "Mar fell deoc'h ober gant ar posteler eo ret deoc'h [https://www.php.net/manual/en/mail.configuration.php kefluniañ arventennoù postel PHP] ervat.\nMar ne fell ket deoc'h ober gant ar servij posteloù e c'hall bezañ diweredekaet amañ.",
 	"config-email-user": "Gweredekaat ar posteloù a implijer da implijer",
 	"config-email-user-help": "Aotren a ra an holl implijerien da gas posteloù an eil d'egile mard eo bet gweredekaet an arc'hwel ganto en ho penndibaboù.",
 	"config-email-usertalk": "Gweredekaat kemennadur pajennoù kaozeal an implijerien",
