@@ -1,11 +1,16 @@
 = MediaWiki 1.38 =
 
-== MediaWiki 1.38-rc.1 ==
-
 THIS IS NOT A RELEASE YET
 
 MediaWiki 1.38 is a pre-release testing branch, and is not recommended
 for use in production.
+
+=== Changes since MediaWiki 1.38.0-rc.1 ===
+* Localisation updates.
+* (T309114) LocalFile::prerenderThumbnails: Limit the number of thumbnail
+  jobs triggered.
+
+== MediaWiki 1.38-rc.1 ==
 
 === Changes since MediaWiki 1.38.0-rc.0 ===
 * Localisation updates.
