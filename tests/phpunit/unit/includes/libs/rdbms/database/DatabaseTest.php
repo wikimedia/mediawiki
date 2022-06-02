@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
+use MediaWiki\Tests\Unit\Libs\Rdbms\SQLPlatformTestHelper;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DatabaseMysqli;
@@ -178,10 +179,10 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideTableNamesWithIndexClauseOrJOIN
-	 * @covers Wikimedia\Rdbms\Database::tableNamesWithIndexClauseOrJOIN
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::tableNamesWithIndexClauseOrJOIN
 	 */
 	public function testTableNamesWithIndexClauseOrJOIN( $tables, $join_conds, $expect ) {
-		$clause = TestingAccessWrapper::newFromObject( $this->db )
+		$clause = TestingAccessWrapper::newFromObject( ( new SQLPlatformTestHelper( new AddQuoterMock() ) ) )
 			->tableNamesWithIndexClauseOrJOIN( $tables, [], [], $join_conds );
 		$this->assertSame( $expect, $clause );
 	}

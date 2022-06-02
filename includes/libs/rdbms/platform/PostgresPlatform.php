@@ -27,6 +27,9 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @see ISQLPlatform
  */
 class PostgresPlatform extends SQLPlatform {
+	/** @var string */
+	private $coreSchema;
+
 	public function limitResult( $sql, $limit, $offset = false ) {
 		return "$sql LIMIT $limit " . ( is_numeric( $offset ) ? " OFFSET {$offset} " : '' );
 	}
@@ -48,4 +51,51 @@ class PostgresPlatform extends SQLPlatform {
 	public function implicitOrderby() {
 		return false;
 	}
+
+	public function getCoreSchema(): string {
+		return $this->coreSchema;
+	}
+
+	public function setCoreSchema( string $coreSchema ): void {
+		$this->coreSchema = $coreSchema;
+	}
+
+	protected function makeSelectOptions( array $options ) {
+		$preLimitTail = $postLimitTail = '';
+		$startOpts = $useIndex = $ignoreIndex = '';
+
+		$noKeyOptions = [];
+		foreach ( $options as $key => $option ) {
+			if ( is_numeric( $key ) ) {
+				$noKeyOptions[$option] = true;
+			}
+		}
+
+		$preLimitTail .= $this->makeGroupByWithHaving( $options );
+
+		$preLimitTail .= $this->makeOrderBy( $options );
+
+		if ( isset( $options['FOR UPDATE'] ) ) {
+			$postLimitTail .= ' FOR UPDATE OF ' .
+				implode( ', ', array_map( [ $this, 'tableName' ], $options['FOR UPDATE'] ) );
+		} elseif ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
+			$postLimitTail .= ' FOR UPDATE';
+		}
+
+		if ( isset( $noKeyOptions['DISTINCT'] ) || isset( $noKeyOptions['DISTINCTROW'] ) ) {
+			$startOpts .= 'DISTINCT';
+		}
+
+		return [ $startOpts, $useIndex, $preLimitTail, $postLimitTail, $ignoreIndex ];
+	}
+
+	protected function relationSchemaQualifier() {
+		if ( $this->coreSchema === $this->schema ) {
+			// The schema to be used is now in the search path; no need for explicit qualification
+			return '';
+		}
+
+		return parent::relationSchemaQualifier();
+	}
+
 }

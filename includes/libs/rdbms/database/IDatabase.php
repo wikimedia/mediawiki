@@ -700,32 +700,6 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	);
 
 	/**
-	 * Take the same arguments as IDatabase::select() and return the SQL it would use
-	 *
-	 * This can be useful for making UNION queries, where the SQL text of each query
-	 * is needed. In general, however, callers outside of Database classes should just
-	 * use select().
-	 *
-	 * @see IDatabase::select()
-	 *
-	 * @param string|array $table Table name
-	 * @param string|array $vars Field names
-	 * @param string|array $conds Conditions
-	 * @param string $fname Caller function name
-	 * @param string|array $options Query options
-	 * @param string|array $join_conds Join conditions
-	 * @return string SQL query string
-	 */
-	public function selectSQLText(
-		$table,
-		$vars,
-		$conds = '',
-		$fname = __METHOD__,
-		$options = [],
-		$join_conds = []
-	);
-
-	/**
 	 * Wrapper to IDatabase::select() that only fetches one row (via LIMIT)
 	 *
 	 * If the query returns no rows, false is returned.
@@ -1172,42 +1146,6 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 		$insertOptions = [],
 		$selectOptions = [],
 		$selectJoinConds = []
-	);
-
-	/**
-	 * Construct a UNION query for permutations of conditions
-	 *
-	 * Databases sometimes have trouble with queries that have multiple values
-	 * for multiple condition parameters combined with limits and ordering.
-	 * This method constructs queries for the Cartesian product of the
-	 * conditions and unions them all together.
-	 *
-	 * @see IDatabase::select()
-	 * @param string|array $table Table name
-	 * @param string|array $vars Field names
-	 * @param array $permute_conds Conditions for the Cartesian product. Keys
-	 *  are field names, values are arrays of the possible values for that
-	 *  field.
-	 * @param string|array $extra_conds Additional conditions to include in the
-	 *  query.
-	 * @param string $fname Caller function name
-	 * @param string|array $options Query options. In addition to the options
-	 *  recognized by IDatabase::select(), the following may be used:
-	 *   - NOTALL: Set to use UNION instead of UNION ALL.
-	 *   - INNER ORDER BY: If specified and supported, subqueries will use this
-	 *     instead of ORDER BY.
-	 * @param string|array $join_conds Join conditions
-	 * @return string SQL query string.
-	 * @since 1.30
-	 */
-	public function unionConditionPermutations(
-		$table,
-		$vars,
-		array $permute_conds,
-		$extra_conds = '',
-		$fname = __METHOD__,
-		$options = [],
-		$join_conds = []
 	);
 
 	/**

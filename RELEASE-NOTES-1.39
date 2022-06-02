@@ -120,6 +120,7 @@ because of Phabricator reports.
 * (T307080) Added language support for Okinawan (ryu).
 * (T307887) Added language support for Mooré (mos).
 * (T308813) Added language support for Nigerian Pidgin (pcm).
+* (T309763) Added language support for Tai Nüa (tdd).
 * (T304920) In Swahili, The "Media" namespace is now "Media", as in English,
   and the "File" namespace is now "Faili". The old name of the "File" namespace
   was "Picha", and it's kept for backwards compatibility. If you manage a wiki
@@ -226,6 +227,13 @@ because of Phabricator reports.
   TrivialLanguageConverter instead.
 * The deprecated ApiQueryContributions class alias has been removed, use
   ApiQueryUserContribs instead.
+* The following skin modules, deprecated in 1.37, have been removed:
+	- mediawiki.skinning.elements
+	- mediawiki.skinning.content
+	- mediawiki.toc.styles
+	- mediawiki.legacy.config
+	- mediawiki.legacy.shared
+	- mediawiki.legacy.commonPrint
 * …
 
 === Deprecations in 1.39 ===
