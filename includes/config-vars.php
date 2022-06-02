@@ -1469,6 +1469,12 @@ $wgEnableWANCacheReaper = null;
 $wgMainStash = null;
 
 /**
+ * Config variable stub for the ParsoidCacheConfig setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ParsoidCacheConfig
+ */
+$wgParsoidCacheConfig = null;
+
+/**
  * Config variable stub for the ChronologyProtectorStash setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ChronologyProtectorStash
  */

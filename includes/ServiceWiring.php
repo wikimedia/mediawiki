@@ -1326,7 +1326,12 @@ return [
 	'ParsoidOutputStash' => static function ( MediaWikiServices $services ): ParsoidOutputStash {
 		// TODO: Determine storage requirements and config options for stashing parsoid
 		//       output for VE edits (T309016).
-		return new SimpleParsoidOutputStash( ObjectCache::getLocalClusterInstance() );
+		$config = $services->getMainConfig()->get( MainConfigNames::ParsoidCacheConfig );
+		$backend = $config['StashBackend']
+			? ObjectCache::getInstance( $config['StashBackend'] )
+			: $services->getMainObjectStash();
+
+		return new SimpleParsoidOutputStash( $backend, $config['StashDuration'] );
 	},
 
 	'ParsoidPageConfigFactory' => static function ( MediaWikiServices $services ): MWPageConfigFactory {

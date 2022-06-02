@@ -18,11 +18,16 @@ class SimpleParsoidOutputStash implements ParsoidOutputStash {
 	/** @var BagOStuff */
 	private $bagOfStuff;
 
+	/** @var int */
+	private $duration;
+
 	/**
-	 * @param BagOStuff $bagOfStuff
+	 * @param BagOStuff $bagOfStuff storage backend
+	 * @param int $duration cache duration in seconds
 	 */
-	public function __construct( BagOStuff $bagOfStuff ) {
+	public function __construct( BagOStuff $bagOfStuff, int $duration ) {
 		$this->bagOfStuff = $bagOfStuff;
+		$this->duration = $duration;
 	}
 
 	/**
@@ -37,7 +42,7 @@ class SimpleParsoidOutputStash implements ParsoidOutputStash {
 	public function set( ParsoidRenderId $renderId, PageBundle $bundle ): bool {
 		$pageBundleJson = FormatJson::encode( $this->jsonSerializePageBundle( $bundle ) );
 
-		return $this->bagOfStuff->set( $renderId->getKey(), $pageBundleJson );
+		return $this->bagOfStuff->set( $renderId->getKey(), $pageBundleJson, $this->duration );
 	}
 
 	/**

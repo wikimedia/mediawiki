@@ -2380,6 +2380,28 @@ config-schema:
             Valid options are the keys of {@link $wgObjectCaches}, e.g. CACHE_* constants.
             @see \BagOStuff
             @since 1.26
+    ParsoidCacheConfig:
+        type: object
+        default:
+            StashBackend: null
+            StashDuration: 86400
+        description: |-
+            Configuration for the caching related to parsoid output. The configuration contains the
+            following keys:
+            - StashBackend: The name of the object store to be used by the ParsoidOutputStash service,
+                  which stores the base state of HTML based edits.
+                  Valid options are the keys of {@link $wgObjectCaches}, e.g. CACHE_* constants.
+                  Per default, the value of the MainStash setting will be used.
+                  This should be an object store that provides fairly solid persistence guarantees,
+                  since losing an entry from the stash may mean that the user can't save their edit.
+                  If null, the value of the MainStash configuration setting will be used.
+            - StashDuration: The number of seconds for which an entry in the stash should be kept.
+                  Should be long enough for users to finish editing,
+                  since losing an entry from the stash may mean that the user can't save their edit.
+                  This is set to one day per default.
+            @since 1.39
+            @unstable Per MediaWiki 1.39, the structure of this configuration is still subject to
+                      change.
     ChronologyProtectorStash:
         default: null
         type:
