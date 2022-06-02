@@ -2461,7 +2461,7 @@
 	"deleteprotected": "U kunt deze pagina niet verwijderen omdat hij is beveiligd.",
 	"deleting-backlinks-warning": "<strong>Waarschuwing:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|andere pagina's]] gebruiken of verwijzen naar de pagina die u wilt verwijderen.",
 	"deleting-subpages-warning": "<strong>Waarschuwing:</strong>De pagina die u wilt verwijderen heeft [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|een deelpagina|$1 deelpagina's|51=meer dan 50 deelpagina's}}]].",
-	"deleting-talkpage-subpages-warning": "<strong>Waarschuwing:</strong> De bijbehorende overlegpagina die u wilt verwijderen heeft [[Special:PrefixIndex/{{TALKPAGENAME}}|{{PLURAL:$1|een deelpagina|$1 deelpagina's|51=meer dan 50 deelpagina's}}]].",
+	"deleting-talkpage-subpages-warning": "<strong>Waarschuwing:</strong> De bijbehorende overlegpagina die u wilt verwijderen heeft [[Special:PrefixIndex/{{TALKPAGENAME}}/|{{PLURAL:$1|een deelpagina|$1 deelpagina's|51=meer dan 50 deelpagina's}}]].",
 	"rollback": "Wijzigingen ongedaan maken",
 	"rollback-confirmation-confirm": "Bevestig:",
 	"rollback-confirmation-yes": "Terugdraaien",
