@@ -734,12 +734,6 @@ class MainConfigNames {
 	public const VerifyMimeType = 'VerifyMimeType';
 
 	/**
-	 * Name constant for the VerifyMimeTypeIE setting, for use with Config::get()
-	 * @see MainConfigSchema::VerifyMimeTypeIE
-	 */
-	public const VerifyMimeTypeIE = 'VerifyMimeTypeIE';
-
-	/**
 	 * Name constant for the MimeTypeFile setting, for use with Config::get()
 	 * @see MainConfigSchema::MimeTypeFile
 	 */
