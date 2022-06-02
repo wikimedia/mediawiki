@@ -47,4 +47,31 @@ class MySQLPlatform extends SQLPlatform {
 	public function buildIntegerCast( $field ) {
 		return 'CAST( ' . $field . ' AS SIGNED )';
 	}
+
+	protected function normalizeJoinType( string $joinType ) {
+		switch ( strtoupper( $joinType ) ) {
+			case 'STRAIGHT_JOIN':
+			case 'STRAIGHT JOIN':
+				return 'STRAIGHT_JOIN';
+
+			default:
+				return parent::normalizeJoinType( $joinType );
+		}
+	}
+
+	/**
+	 * @param string $index
+	 * @return string
+	 */
+	public function useIndexClause( $index ) {
+		return "FORCE INDEX (" . $this->indexName( $index ) . ")";
+	}
+
+	/**
+	 * @param string $index
+	 * @return string
+	 */
+	public function ignoreIndexClause( $index ) {
+		return "IGNORE INDEX (" . $this->indexName( $index ) . ")";
+	}
 }

@@ -37,55 +37,6 @@ use RuntimeException;
  */
 interface IMaintainableDatabase extends IDatabase {
 	/**
-	 * Format a table name ready for use in constructing an SQL query
-	 *
-	 * This does two important things: it quotes the table names to clean them up,
-	 * and it adds a table prefix if only given a table name with no quotes.
-	 *
-	 * All functions of this object which require a table name call this function
-	 * themselves. Pass the canonical name to such functions. This is only needed
-	 * when calling query() directly.
-	 *
-	 * @note This function does not sanitize user input. It is not safe to use
-	 *   this function to escape user input.
-	 * @param string $name Database table name
-	 * @param string $format One of:
-	 *   quoted - Automatically pass the table name through addIdentifierQuotes()
-	 *            so that it can be used in a query.
-	 *   raw - Do not add identifier quotes to the table name
-	 * @return string Full database name
-	 */
-	public function tableName( $name, $format = 'quoted' );
-
-	/**
-	 * Fetch a number of table names into an array
-	 * This is handy when you need to construct SQL for joins
-	 *
-	 * Example:
-	 * list( $user, $watchlist ) = $dbr->tableNames( 'user', 'watchlist' ) );
-	 * $sql = "SELECT wl_namespace, wl_title FROM $watchlist, $user
-	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
-	 *
-	 * @param string ...$tables
-	 * @return array
-	 */
-	public function tableNames( ...$tables );
-
-	/**
-	 * Fetch a number of table names into an zero-indexed numerical array
-	 * This is handy when you need to construct SQL for joins
-	 *
-	 * Example:
-	 * list( $user, $watchlist ) = $dbr->tableNamesN( 'user', 'watchlist' );
-	 * $sql = "SELECT wl_namespace,wl_title FROM $watchlist,$user
-	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
-	 *
-	 * @param string ...$tables
-	 * @return array
-	 */
-	public function tableNamesN( ...$tables );
-
-	/**
 	 * Returns the size of a text field, or -1 for "unlimited"
 	 *
 	 * @param string $table

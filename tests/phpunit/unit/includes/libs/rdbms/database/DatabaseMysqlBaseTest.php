@@ -616,21 +616,11 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::normalizeJoinType
+	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform::normalizeJoinType
 	 */
 	public function testNormalizeJoinType() {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
-			->disableOriginalConstructor()
-			->onlyMethods( [] )
-			->getMock();
-
-		TestingAccessWrapper::newFromObject( $db )->currentDomain =
-			new DatabaseDomain( null, null, '' );
-		TestingAccessWrapper::newFromObject( $db )->platform =
-			new MySQLPlatform( new AddQuoterMock() );
-
-		/** @var IDatabase $db */
-		$sql = $db->selectSQLText(
+		$platform = new MySQLPlatform( new AddQuoterMock() );
+		$sql = $platform->selectSQLText(
 			[ 'a', 'b' ],
 			'aa',
 			[],
@@ -645,7 +635,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::normalizeJoinType
+	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform::normalizeJoinType
 	 */
 	public function testNormalizeJoinTypeSqb() {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )

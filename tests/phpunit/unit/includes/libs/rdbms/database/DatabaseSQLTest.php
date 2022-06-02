@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
+use MediaWiki\Tests\Unit\Libs\Rdbms\SQLPlatformTestHelper;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBTransactionError;
@@ -22,9 +24,13 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	/** @var DatabaseTestHelper|Database */
 	private $database;
 
+	/** @var \Wikimedia\Rdbms\Platform\SQLPlatform */
+	private $platform;
+
 	protected function setUp(): void {
 		parent::setUp();
 		$this->database = new DatabaseTestHelper( __CLASS__, [ 'cliMode' => true ] );
+		$this->platform = new SQLPlatformTestHelper( new AddQuoterMock() );
 		MWDebug::clearDeprecationFilters();
 		MWDebug::clearLog();
 	}
@@ -43,15 +49,15 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider provideSelect
 	 * @covers Wikimedia\Rdbms\Database::select
-	 * @covers Wikimedia\Rdbms\Database::selectSQLText
-	 * @covers Wikimedia\Rdbms\Database::tableNamesWithIndexClauseOrJOIN
-	 * @covers Wikimedia\Rdbms\Database::useIndexClause
-	 * @covers Wikimedia\Rdbms\Database::ignoreIndexClause
-	 * @covers Wikimedia\Rdbms\Database::makeSelectOptions
-	 * @covers Wikimedia\Rdbms\Database::makeOrderBy
-	 * @covers Wikimedia\Rdbms\Database::makeGroupByWithHaving
-	 * @covers Wikimedia\Rdbms\Database::selectFieldsOrOptionsAggregate
-	 * @covers Wikimedia\Rdbms\Database::selectOptionsIncludeLocking
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::selectSQLText
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::tableNamesWithIndexClauseOrJOIN
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::useIndexClause
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::ignoreIndexClause
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::makeSelectOptions
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::makeOrderBy
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::makeGroupByWithHaving
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::selectFieldsOrOptionsAggregate
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::selectOptionsIncludeLocking
 	 */
 	public function testSelect( $sql, $sqlText ) {
 		$this->database->select(
@@ -1104,10 +1110,10 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	 * @covers Wikimedia\Rdbms\Database::buildGreatest
 	 */
 	public function testBuildGreatest( $fields, $values, $sqlText ) {
-		$this->assertEquals( trim( $this->database->buildGreatest(
-			$fields,
-			$values
-		) ), $sqlText );
+		$this->assertEquals(
+			$sqlText,
+			trim( $this->platform->buildGreatest( $fields, $values ) )
+		);
 	}
 
 	public static function provideGreatest() {
@@ -1115,22 +1121,22 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			[
 				'field',
 				'value',
-				"GREATEST(\"field\",'value')"
+				"GREATEST(field,'value')"
 			],
 			[
 				[ 'field' ],
 				[ 'value' ],
-				"GREATEST(\"field\",'value')"
+				"GREATEST(field,'value')"
 			],
 			[
 				[ 'field', 'field2' ],
 				[ 'value', 'value2' ],
-				"GREATEST(\"field\",\"field2\",'value','value2')"
+				"GREATEST(field,field2,'value','value2')"
 			],
 			[
 				[ 'field', 'b' => 'field2 + 1' ],
 				[ 'value', 'value2' ],
-				"GREATEST(\"field\",field2 + 1,'value','value2')"
+				"GREATEST(field,field2 + 1,'value','value2')"
 			],
 		];
 	}
@@ -1140,10 +1146,10 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	 * @covers Wikimedia\Rdbms\Database::buildLeast
 	 */
 	public function testBuildLeast( $fields, $values, $sqlText ) {
-		$this->assertEquals( trim( $this->database->buildLeast(
-			$fields,
-			$values
-		) ), $sqlText );
+		$this->assertEquals(
+			$sqlText,
+			trim( $this->platform->buildLeast( $fields, $values ) )
+		);
 	}
 
 	public static function provideLeast() {
@@ -1151,22 +1157,22 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			[
 				'field',
 				'value',
-				"LEAST(\"field\",'value')"
+				"LEAST(field,'value')"
 			],
 			[
 				[ 'field' ],
 				[ 'value' ],
-				"LEAST(\"field\",'value')"
+				"LEAST(field,'value')"
 			],
 			[
 				[ 'field', 'field2' ],
 				[ 'value', 'value2' ],
-				"LEAST(\"field\",\"field2\",'value','value2')"
+				"LEAST(field,field2,'value','value2')"
 			],
 			[
 				[ 'field', 'b' => 'field2 + 1' ],
 				[ 'value', 'value2' ],
-				"LEAST(\"field\",field2 + 1,'value','value2')"
+				"LEAST(field,field2 + 1,'value','value2')"
 			],
 		];
 	}
@@ -1177,7 +1183,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::escapeLikeInternal
 	 */
 	public function testBuildLike( $array, $sqlText ) {
-		$this->assertEquals( trim( $this->database->buildLike(
+		$this->assertEquals( trim( $this->platform->buildLike(
 			$array
 		) ), $sqlText );
 	}
@@ -1258,10 +1264,10 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testUnionConditionPermutations( $params, $expect ) {
 		if ( isset( $params['unionSupportsOrderAndLimit'] ) ) {
-			$this->database->setUnionSupportsOrderAndLimit( $params['unionSupportsOrderAndLimit'] );
+			$this->platform->setUnionSupportsOrderAndLimit( $params['unionSupportsOrderAndLimit'] );
 		}
 
-		$sql = trim( $this->database->unionConditionPermutations(
+		$sql = trim( $this->platform->unionConditionPermutations(
 			$params['table'],
 			$params['vars'],
 			$params['permute_conds'],
