@@ -227,6 +227,13 @@ because of Phabricator reports.
   TrivialLanguageConverter instead.
 * The deprecated ApiQueryContributions class alias has been removed, use
   ApiQueryUserContribs instead.
+* The following skin modules, deprecated in 1.37, have been removed:
+	- mediawiki.skinning.elements
+	- mediawiki.skinning.content
+	- mediawiki.toc.styles
+	- mediawiki.legacy.config
+	- mediawiki.legacy.shared
+	- mediawiki.legacy.commonPrint
 * …
 
 === Deprecations in 1.39 ===

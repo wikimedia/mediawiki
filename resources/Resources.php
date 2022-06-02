@@ -68,25 +68,6 @@ return [
 
 	'user.options' => [ 'class' => UserOptionsModule::class ],
 
-	'mediawiki.skinning.elements' => [
-		'deprecated' => 'Your default skin ResourceLoader class should use '
-			. '\MediaWiki\ResourceLoader\SkinModule::class',
-		'class' => SkinModule::class,
-		'features' => [
-			'elements' => true,
-			'legacy' => true,
-		],
-	],
-	'mediawiki.skinning.content' => [
-		'deprecated' => 'Your default skin ResourceLoader class should use '
-			. '\MediaWiki\ResourceLoader\SkinModule::class',
-		'class' => SkinModule::class,
-		'features' => [
-			'elements' => true,
-			'content' => true,
-			'legacy' => true,
-		],
-	],
 	'mediawiki.skinning.interface' => [
 		'class' => SkinModule::class,
 		'features' => [
@@ -1194,12 +1175,6 @@ return [
 		'dependencies' => [
 			'mediawiki.cookie',
 		],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
-	'mediawiki.toc.styles' => [
-		'deprecated' => 'Please use the `toc` feature on SkinModule',
-		'class' => SkinModule::class,
-		'features' => [ 'toc' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.Uri' => [
@@ -2477,31 +2452,10 @@ return [
 	/* MediaWiki Installer */
 
 	// Used in the web installer. Test it after modifying this definition!
-	'mediawiki.legacy.config' => [
-		'deprecated' => 'This module will be removed in 1.37. Use `mediawiki.skinning.interface`.',
-		// These files are not actually loaded via ResourceLoader, so dependencies etc. won't work.
-		'scripts' => 'mw-config/config.js',
-		'styles' => 'mw-config/config.css',
-	],
 
 	/* MediaWiki Legacy */
 
-	'mediawiki.legacy.commonPrint' => [
-		'deprecated' => 'Use SkinModule',
-		'styles' => [
-			'resources/src/mediawiki.skinning/commonPrint.less' => [ 'media' => 'print' ]
-		],
-	],
 	// Used in the web installer. Test it after modifying this definition!
-	'mediawiki.legacy.shared' => [
-		'deprecated' => 'Your default skin ResourceLoader class should use '
-			. '\MediaWiki\ResourceLoader\SkinModule::class',
-		'class' => SkinModule::class,
-		'features' => [
-			'legacy' => true,
-		],
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 
 	/* MediaWiki UI */
 
