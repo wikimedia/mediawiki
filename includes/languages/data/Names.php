@@ -457,6 +457,7 @@ class Names {
 		'ta' => 'தமிழ்', # Tamil
 		'tay' => 'Tayal', # Atayal
 		'tcy' => 'ತುಳು', # Tulu
+		'tdd' => 'ᥖᥭᥰᥖᥬᥳᥑᥨᥒᥰ', # Tai Nüa
 		'te' => 'తెలుగు', # Telugu
 		'tet' => 'tetun', # Tetun
 		'tg' => 'тоҷикӣ', # Tajiki (falls back to tg-cyrl)
