@@ -2677,6 +2677,7 @@
 	"feedback-thanks-title": "Awanu!",
 	"feedback-useragent": "Afọzedaitọ",
 	"searchsuggest-search": "Dín {{SITENAME}}",
+	"searchsuggest-containing": "Dín weda he bẹ ... hẹn lẹ",
 	"searchlimit-help": "Sọha he sù hugan: 500",
 	"api-error-unknown-warning": "Avase he ma yin yinyọnẹn: \"$1\".",
 	"api-error-unknownerror": "Nuṣiwa he ma yin yinyọnẹn: \"$1\".",

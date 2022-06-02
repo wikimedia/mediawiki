@@ -191,7 +191,7 @@
 	"config-license-help": "Nu cuofeno 'e wiki pubbrece lassano 'e cuntribbute lloro cu na [https://freedomdefined.org/Definition licienza libbera]. Chesto aiutasse a crià nu senso 'e pruprietà spartuta dint'a communità e ncuraggiasse a cuntribbuiì a nu tèrmene luongo. Nun è generalmente necessario pe' nu wiki privato o aziendale.\n\nSi vulite ausà testi 'a Wikipedia, o vulite ca Wikipedia se pozza miette 'n grado d'accettà teste cupiate d' 'o wiki vuosto, avissev'a scegiere <strong>{{int:config-license-cc-by-sa}}</strong>.\n\nApprimma Wikipedia aveva ausato 'a GNU Free Documentation License. 'A GFDL è una licienza valida, ma è di difficile comprensiona e complica 'o riutilizzo 'e cuntenute.",
 	"config-email-settings": "Mpustaziune email",
 	"config-enable-email": "Premmette mmasciate elettroniche r'asciuta",
-	"config-enable-email-help": "Si vulite ca 'o sistema 'e mmasciate mail funziunasse, [Config-dbsupport-oracle/manual/en/mail.configuration.php 'e mpustaziune PHP] s'avesser'a ffà bbuone.\nSi nun vulite 'a funziona mmasciata e-mail, allora stutate chiste llàn.",
+	"config-enable-email-help": "Si vulite ca 'o sistema 'e mmasciate mail funziunasse, [https://www.php.net/manual/en/mail.configuration.php 'e mpustaziune PHP] s'avesser'a ffà bbuone.\nSi nun vulite 'a funziona mmasciata e-mail, allora stutate chiste llàn.",
 	"config-email-user": "Premmette email utente-utente",
 	"config-email-user-help": "Cunzente a ll'utente 'e mannà uno a ll'ato le mail si 'e teneno appicciate dint' 'e preferenze lloro.",
 	"config-email-usertalk": "Premmette notifiche p' 'e paggene 'e chiacchiera utente",
