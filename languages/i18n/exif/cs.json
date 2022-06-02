@@ -363,7 +363,22 @@
 	"exif-firstphotodate": "Datum prvního snímku",
 	"exif-lastphotodate": "Datum posledního snímku",
 	"exif-projectiontype": "Typ projekce",
+	"exif-usepanoramaviewer": "Použít prohlížeč panoramat",
+	"exif-usepanoramaviewer-true": "Ano",
+	"exif-usepanoramaviewer-false": "Ne",
 	"exif-exposurelockused": "Použit zámek expozice",
 	"exif-exposurelockused-true": "Ano",
-	"exif-exposurelockused-false": "Ne"
+	"exif-exposurelockused-false": "Ne",
+	"exif-initialviewheadingdegrees": "Počáteční směr pohledu (stupňů)",
+	"exif-initialhorizontalfovdegrees": "Počáteční zorné pole (stupňů vodorovně)",
+	"exif-initialverticalfovdegrees": "Počáteční zorné pole (stupňů svisle)",
+	"exif-sourcephotoscount": "Počet zdrojových fotografií",
+	"exif-croppedareaimagewidthpixels": "Oříznutá šířka panoramatu",
+	"exif-croppedareaimageheightpixels": "Oříznutá výška panoramatu",
+	"exif-fullpanowidthpixels": "Celková šířka panoramatu",
+	"exif-fullpanoheightpixels": "Celková výška panoramatu",
+	"exif-croppedarealeftpixels": "Ořez panoramatu zleva",
+	"exif-croppedareatoppixels": "Ořez panoramatu shora",
+	"exif-initialcameradolly": "Počáteční pojezd kamery",
+	"exif-stitchingsoftware": "Slepovací software"
 }
