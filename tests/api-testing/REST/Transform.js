@@ -52,8 +52,7 @@ describe( '/transform/ endpoint', function () {
 	const client = new REST();
 	const parsedUrl = new url.URL( client.req.app );
 	const PARSOID_URL = parsedUrl.href;
-	const hostname = parsedUrl.hostname;
-	const endpointPrefix = client.pathPrefix = `rest.php/coredev/v0/${hostname}`;
+	const endpointPrefix = client.pathPrefix = 'rest.php/coredev/v0';
 	const page = utils.title( 'TransformSource ' );
 	const pageEncoded = encodeURIComponent( page );
 	let revid;
