@@ -53,19 +53,19 @@ class UserTimeCorrection {
 	/** @var string Time correction based on a user defined timezone */
 	public const ZONEINFO = 'ZoneInfo';
 
-	/* @var DateTime */
+	/** @var DateTime */
 	private $date;
 
-	/* @var bool */
+	/** @var bool */
 	private $valid;
 
-	/* @var string */
+	/** @var string */
 	private $correctionType;
 
-	/* @var int Offset in minutes */
+	/** @var int Offset in minutes */
 	private $offset;
 
-	/* @var DateTimeZone|null */
+	/** @var DateTimeZone|null */
 	private $timeZone;
 
 	/**
@@ -170,7 +170,7 @@ class UserTimeCorrection {
 			try {
 				$this->correctionType = self::ZONEINFO;
 				$this->timeZone = new DateTimeZone( $data[2] );
-				$this->offset = floor( $this->timeZone->getOffset( $this->date ) / 60 );
+				$this->offset = (int)floor( $this->timeZone->getOffset( $this->date ) / 60 );
 				$this->valid = true;
 				return;
 			} catch ( TimeoutException $e ) {
@@ -202,7 +202,6 @@ class UserTimeCorrection {
 		// $timeCorrection actually isn't a pipe separated value, but instead
 		// a colon separated value. This is only used by the userinput of the preferences
 		// but can also still be present in the Db. (but shouldn't be)
-		$diff = 0;
 		$data = explode( ':', $timeCorrection, 2 );
 		if ( count( $data ) >= 2 ) {
 			// Combination hours and minutes.

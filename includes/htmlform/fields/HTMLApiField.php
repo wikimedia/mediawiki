@@ -1,5 +1,6 @@
 <?php
-/*
+
+/**
  * @stable to extend
  */
 class HTMLApiField extends HTMLFormField {

@@ -35,9 +35,6 @@ class TimezoneFilter implements Filter {
 	 * @inheritDoc
 	 */
 	public function filterFromForm( $tz ) {
-		if ( $tz === UserTimeCorrection::SYSTEM ) {
-			return $tz;
-		}
 		return ( new UserTimeCorrection( $tz ) )->toString();
 	}
 }
