@@ -13,7 +13,7 @@
 * (T306362, T308680) change-your-logo.svg: Resize to 135px square, re-crush,
   and manually minify.
 
-== MediaWiki 1.38-rc.1 ==
+== MediaWiki 1.38.0-rc.1 ==
 
 === Changes since MediaWiki 1.38.0-rc.0 ===
 * Localisation updates.
