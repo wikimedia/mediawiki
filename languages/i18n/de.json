@@ -2473,7 +2473,7 @@
 	"deleteprotected": "Du kannst diese Seite nicht löschen, da sie geschützt wurde.",
 	"deleting-backlinks-warning": "<strong>Warnung:</strong> Es verweisen noch [[Special:WhatLinksHere/{{FULLPAGENAME}}|andere Seiten]] auf diese zu löschende Seite oder sie ist noch an anderer Stelle eingebunden.",
 	"deleting-subpages-warning": "<strong>Warnung:</strong> Die Seite, die du löschen möchtest, hat [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|eine Unterseite|$1 Unterseiten|51=über 50 Unterseiten}}]].",
-	"deleting-talkpage-subpages-warning": "<strong>Warnung:</strong> Die zugehörige Diskussionsseite, die du löschen möchtest, hat [[Special:PrefixIndex/{{TALKPAGENAME}}|{{PLURAL:$1|eine Unterseite|$1 Unterseiten|51=über 50 Unterseiten}}]].",
+	"deleting-talkpage-subpages-warning": "<strong>Warnung:</strong> Die zugehörige Diskussionsseite, die du löschen möchtest, hat [[Special:PrefixIndex/{{TALKPAGENAME}}/|{{PLURAL:$1|eine Unterseite|$1 Unterseiten|51=über 50 Unterseiten}}]].",
 	"rollback": "Zurücksetzen der Änderungen",
 	"rollback-confirmation-confirm": "Bitte bestätigen:",
 	"rollback-confirmation-yes": "Zurücksetzen",

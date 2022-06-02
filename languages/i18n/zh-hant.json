@@ -1667,7 +1667,7 @@
 	"rcfilters-watchlist-edit-watchlist-button": "編輯您的監視頁面列表",
 	"rcfilters-watchlist-showupdated": "自更改發生以來，對您尚未訪問的頁面做出的更改以<strong>粗體</strong>顯示，並帶有實心圓形標記。",
 	"rcfilters-preference-label": "使用非 JavaScript 介面",
-	"rcfilters-preference-help": "載入不帶篩選搜尋或明顯標示功能的近期變更、監視列表和類似頁面。",
+	"rcfilters-preference-help": "載入不帶篩選搜尋及明顯標示功能的[[{{#special:RecentChanges}}|近期變更]]、[[{{#special:RecentChangesLinked}}|相關變更]]頁面。",
 	"rcfilters-watchlist-preference-label": "使用非 JavaScript 介面",
 	"rcfilters-watchlist-preference-help": "載入不帶篩選搜尋或明顯標示功能的監視清單。",
 	"rcfilters-filter-showlinkedfrom-label": "顯示連結自此頁面的頁面上的變更",

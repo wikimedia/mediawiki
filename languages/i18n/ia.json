@@ -2364,7 +2364,7 @@
 	"deleteprotected": "Tu non pote deler iste pagina perque illo ha essite protegite.",
 	"deleting-backlinks-warning": "<strong>Attention:</strong> Il ha [[Special:WhatLinksHere/{{FULLPAGENAME}}|altere paginas]] que liga a o transclude le pagina que tu es sur le puncto de deler.",
 	"deleting-subpages-warning": "<strong>Attention:</strong> Le pagina que tu es sur le puncto de deler ha [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|un subpagina|$1 subpaginas|51=plus de 50 subpaginas}}]].",
-	"deleting-talkpage-subpages-warning": "<strong>Attention:</strong> Le pagina de discussion associate al pagina que tu es sur le puncto de deler ha [[Special:PrefixIndex/{{TALKPAGENAME}}|{{PLURAL:$1|un subpagina|$1 subpaginas|51=plus de 50 subpaginas}}]].",
+	"deleting-talkpage-subpages-warning": "<strong>Attention:</strong> Le pagina de discussion associate al pagina que tu es sur le puncto de deler ha [[Special:PrefixIndex/{{TALKPAGENAME}}/|{{PLURAL:$1|un subpagina|$1 subpaginas|51=plus de 50 subpaginas}}]].",
 	"rollback": "Revocar modificationes",
 	"rollback-confirmation-confirm": "Per favor confirma:",
 	"rollback-confirmation-yes": "Revocar",
