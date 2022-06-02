@@ -11,7 +11,7 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 			'Page/Another/ar',
 			'Page/Another/en',
 			'Page/Another/ru',
-			'Page/Another/zh-hans',
+			'Page/Another/zh',
 		];
 		foreach ( $titles as $title ) {
 			$page = WikiPage::factory( Title::newFromText( $title ) );
@@ -69,8 +69,11 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 			[ 'Page/Another', 'Page/Another', 'en', 'en' ],
 			[ 'Page/Another/ru', 'Page/Another', 'en', 'ru' ],
 			[ 'Page/Another', 'Page/Another', 'en', 'es' ],
-			[ 'Page/Another/zh-hans', 'Page/Another', 'en', 'zh-hans' ],
-			[ 'Page/Another/zh-hans', 'Page/Another', 'en', 'zh-mo' ],
+			[ 'Page/Another/zh', 'Page/Another', 'en', 'zh' ],
+			[ 'Page/Another/zh', 'Page/Another', 'en', 'zh-hans' ],
+			[ 'Page/Another/zh', 'Page/Another', 'en', 'zh-mo' ],
+			[ 'Page/Another/zh', 'Page/Another', 'en', 'gan' ],
+			[ 'Page/Another/zh', 'Page/Another', 'en', 'gan-hant' ],
 			[ 'Page/Another/en', 'Page/Another', 'de', 'es' ],
 			[ 'Page/Another/ar', 'Page/Another', 'en', 'ar' ],
 			[ 'Page/Another/ar', 'Page/Another', 'en', 'arz' ],
