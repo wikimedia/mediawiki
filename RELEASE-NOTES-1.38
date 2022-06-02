@@ -10,6 +10,8 @@
 * (T309028) SECURITY: ApiEditPage: update title after redirects.
 * (T308967) notifications: prevent log spam when invalid user object listed.
 * composer: Lock Parsoid version to specific 0.15.0 release.
+* (T306362, T308680) change-your-logo.svg: Resize to 135px square, re-crush,
+  and manually minify.
 
 == MediaWiki 1.38-rc.1 ==
 
