@@ -84,6 +84,8 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		}
 		$search->setFeatureData( 'rewrite', (bool)$params['enablerewrites'] );
 		$search->setFeatureData( 'interwiki', (bool)$interwiki );
+		// Hint to some SearchEngines about what snippets we would like returned
+		$search->setFeatureData( 'snippets', $this->decideSnippets( $prop ) );
 
 		$nquery = $search->replacePrefixes( $query );
 		if ( $nquery !== $query ) {
@@ -350,6 +352,26 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			}
 		}
 		return $totalhits;
+	}
+
+	private function decideSnippets( array $prop ): array {
+		// Field names align with definitions in ContentHandler::getFieldsForSearchIndex.
+		// Except `redirect` which isn't explicitly created, but refers to the title of
+		// pages that redirect to the result page.
+		$fields = [];
+		if ( isset( $prop['titlesnippet'] ) ) {
+			$fields[] = 'title';
+		}
+		if ( isset( $prop['redirectsnippet'] ) ) {
+			$fields[] = 'redirect';
+		}
+		if ( isset( $prop['categorysnippet'] ) ) {
+			$fields[] = 'category';
+		}
+		if ( isset( $prop['sectionsnippet'] ) ) {
+			$fields[] = 'heading';
+		}
+		return $fields;
 	}
 
 	public function getCacheMode( $params ) {
