@@ -5,6 +5,7 @@
 			"Dim Grits",
 			"Eleferen",
 			"Facenapalm",
+			"Fenixs-ru",
 			"Kaganer",
 			"Kareyac",
 			"Lemondoge",
@@ -378,10 +379,12 @@
 	"exif-usepanoramaviewer": "Использовать программу просмотра панорам",
 	"exif-usepanoramaviewer-true": "Да",
 	"exif-usepanoramaviewer-false": "Нет",
+	"exif-exposurelockused": "Используется блокировка экспозиции",
 	"exif-exposurelockused-true": "Да",
 	"exif-exposurelockused-false": "Нет",
 	"exif-croppedareaimagewidthpixels": "Обрезанная ширина панорамы",
 	"exif-croppedareaimageheightpixels": "Обрезанная высота панорамы",
 	"exif-fullpanowidthpixels": "Полная ширина панорамы",
-	"exif-fullpanoheightpixels": "Полная высота панорамы"
+	"exif-fullpanoheightpixels": "Полная высота панорамы",
+	"exif-stitchingsoftware": "Программное обеспечение для сшивания"
 }

@@ -2339,6 +2339,7 @@
 	"feedback-terms": "Ik begryp dat myn 'user agent'-ynformaasje gegevens befettet oer myn eksakte ferzje webblêder en bestjoeringssysteem, en dat dy yn 't iepenbier dield wurdt by myn weromkeppeling.",
 	"feedback-useragent": "Useragent:",
 	"searchsuggest-search": "{{GRAMMAR:Lidw|{{SITENAME}}}} trochsykje",
+	"searchsuggest-containing": "Siden sykje mei as ynhâld",
 	"searchlimit-label": "Wer te jaan tal sykresultaten de side:",
 	"searchlimit-help": "Maksimumtal: $1",
 	"api-error-unknownerror": "Unbekende flater: \"$1\".",

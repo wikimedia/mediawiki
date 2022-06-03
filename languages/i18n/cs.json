@@ -2417,7 +2417,7 @@
 	"deleteprotected": "Tuto stránku nemůžete smazat, protože je zamčena.",
 	"deleting-backlinks-warning": "<strong>Upozornění:</strong> Stránka, kterou se chystáte smazat, je [[Special:WhatLinksHere/{{FULLPAGENAME}}|na jiných stránkách]] odkazována nebo je do nich vložena.",
 	"deleting-subpages-warning": "<strong>Upozornění:</strong> Stránka, kterou se chystáte smazat, má [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|podstránku|$1 podstránky|$1 podstránek|51=více než 50 podstránek}}]].",
-	"deleting-talkpage-subpages-warning": "<strong>Varování:</strong> Související diskusní stránka ke stránce, kterou se chystáte smazat, má [[Special:PrefixIndex/{{TALKPAGENAME}}|{{PLURAL:$1|podstránku|$1 podstránky|$1 podstránek|51=přes 50 podstránek}}]].",
+	"deleting-talkpage-subpages-warning": "<strong>Varování:</strong> Související diskusní stránka ke stránce, kterou se chystáte smazat, má [[Special:PrefixIndex/{{TALKPAGENAME}}/|{{PLURAL:$1|podstránku|$1 podstránky|$1 podstránek|51=přes 50 podstránek}}]].",
 	"rollback": "Vrátit zpět editace",
 	"rollback-confirmation-confirm": "Potvrďte prosím:",
 	"rollback-confirmation-yes": "Vrátit zpět",
