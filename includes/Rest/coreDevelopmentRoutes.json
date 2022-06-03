@@ -37,19 +37,19 @@
 	},
 	{
 		"method": "POST",
-		"path": "/coredev/v0/{domain}/transform/{from}/to/{format}/{title}/{revision}",
+		"path": "/coredev/v0/transform/{from}/to/{format}/{title}/{revision}",
 		"class": "MediaWiki\\Rest\\Handler\\TransformHandler",
 		"factory": "MediaWiki\\Rest\\Handler\\TransformHandler::factory"
 	},
 	{
 		"method": "POST",
-		"path": "/coredev/v0/{domain}/transform/{from}/to/{format}",
+		"path": "/coredev/v0/transform/{from}/to/{format}",
 		"class": "MediaWiki\\Rest\\Handler\\TransformHandler",
 		"factory": "MediaWiki\\Rest\\Handler\\TransformHandler::factory"
 	},
 	{
 		"method": "POST",
-		"path": "/coredev/v0/{domain}/transform/{from}/to/{format}/{title}",
+		"path": "/coredev/v0/transform/{from}/to/{format}/{title}",
 		"class": "MediaWiki\\Rest\\Handler\\TransformHandler",
 		"factory": "MediaWiki\\Rest\\Handler\\TransformHandler::factory"
 	}

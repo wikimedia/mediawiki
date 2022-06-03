@@ -30,15 +30,12 @@ use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseException;
 use MediaWiki\Revision\RevisionAccessException;
-use MobileContext;
 use ParserOutput;
 use RequestContext;
 use Title;
 use UIDGenerator;
 use WikiMap;
 use Wikimedia\Http\HttpAcceptParser;
-use Wikimedia\Message\DataMessageValue;
-use Wikimedia\ParamValidator\ValidationException;
 use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Config\PageConfigFactory;
@@ -130,42 +127,6 @@ abstract class ParsoidHandler extends Handler {
 	}
 
 	/**
-	 * Verify that the {domain} path parameter matches the actual domain.
-	 * @param string $domain Domain name parameter to validate
-	 */
-	protected function assertDomainIsCorrect( $domain ): void {
-		// We are cutting some corners here (IDN, non-ASCII casing)
-		// since domain name support is provisional.
-		// TODO use a proper validator instead
-		$server = \RequestContext::getMain()->getConfig()->get( 'Server' );
-		$expectedDomain = wfParseUrl( $server )['host'] ?? null;
-		if ( !$expectedDomain ) {
-			throw new LogicException( 'Cannot parse $wgServer' );
-		}
-		if ( strcasecmp( (string)$expectedDomain, $domain ) === 0 ) {
-			return;
-		}
-
-		// TODO probably the better
-		if ( $this->extensionRegistry->isLoaded( 'MobileFrontend' ) ) {
-			// @phan-suppress-next-line PhanUndeclaredClassMethod
-			$mobileServer = MobileContext::singleton()->getMobileUrl( $server );
-			$expectedMobileDomain = wfParseUrl( $mobileServer )['host'] ?? null;
-			if ( strcasecmp( (string)$expectedMobileDomain, $domain ) === 0 ) {
-				return;
-			}
-		}
-
-		throw new ValidationException(
-			new DataMessageValue( 'mwparsoid-invalid-domain', [], 'invalid-domain', [
-				'expected' => $expectedDomain,
-				'actual' => $domain,
-			] ),
-			'domain', $domain, []
-		);
-	}
-
-	/**
 	 * Get the parsed body by content-type
 	 *
 	 * @return array
@@ -240,7 +201,6 @@ abstract class ParsoidHandler extends Handler {
 		$attribs['envOptions'] = [
 			// We use `prefix` but ought to use `domain` (T206764)
 			'prefix' => $attribs['iwp'],
-			'domain' => $request->getPathParam( 'domain' ),
 			'pageName' => $attribs['pageName'],
 			'offsetType' => $attribs['offsetType'],
 			'cookie' => $request->getHeaderLine( 'Cookie' ),
@@ -252,10 +212,6 @@ abstract class ParsoidHandler extends Handler {
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
 		];
 		$attribs['opts'] = $opts;
-
-		if ( empty( $this->parsoidSettings['debugApi'] ) ) {
-			$this->assertDomainIsCorrect( $attribs['envOptions']['domain'] );
-		}
 
 		$this->requestAttributes = $attribs;
 		return $this->requestAttributes;
@@ -436,7 +392,6 @@ abstract class ParsoidHandler extends Handler {
 	protected function createRedirectToOldidResponse(
 		PageConfig $pageConfig, array $attribs
 	): Response {
-		$domain = $attribs['envOptions']['domain'];
 		$format = $this->getRequest()->getPathParam( 'format' );
 		$target = $pageConfig->getTitle();
 		$encodedTarget = PHPUtils::encodeURIComponent( $target );
@@ -450,10 +405,10 @@ abstract class ParsoidHandler extends Handler {
 
 		if ( $this->getRequest()->getMethod() === 'POST' ) {
 			$from = $this->getRequest()->getPathParam( 'from' );
-			$newPath = "/coredev/v0/$domain/transform/$from/to/$format/$encodedTarget/$revid";
+			$newPath = "/coredev/v0/transform/$from/to/$format/$encodedTarget/$revid";
 		} else {
 			// TODO: Change this to the /v1/ revision endpoint
-			$newPath = "/$domain/v3/page/$format/$encodedTarget/$revid";
+			$newPath = "/v3/page/$format/$encodedTarget/$revid";
 		}
 		return $this->createRedirectResponse( $newPath, $this->getRequest()->getQueryParams() );
 	}
@@ -517,7 +472,7 @@ abstract class ParsoidHandler extends Handler {
 				);
 				$encodedTarget = PHPUtils::encodeURIComponent( $redirectTarget );
 				$redirectPath =
-					"/{$attribs['envOptions']['domain']}/v3/page/$encodedTarget/wikitext";
+					"/v3/page/$encodedTarget/wikitext";
 				if ( $redirectInfo['revId'] ) {
 					$redirectPath .= '/' . $redirectInfo['revId'];
 				}

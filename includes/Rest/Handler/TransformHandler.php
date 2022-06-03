@@ -26,20 +26,16 @@ use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Handler for transforming content given in the request.
- * - /{domain}/v1/transform/{from}/to/{format}
- * - /{domain}/v1/transform/{from}/to/{format}/{title}
- * - /{domain}/v1/transform/{from}/to/{format}/{title}/{revision}
+ * - /v1/transform/{from}/to/{format}
+ * - /v1/transform/{from}/to/{format}/{title}
+ * - /v1/transform/{from}/to/{format}/{title}/{revision}
  *
  * @see https://www.mediawiki.org/wiki/Parsoid/API#POST
  */
 class TransformHandler extends ParsoidHandler {
 	/** @inheritDoc */
 	public function getParamSettings() {
-		return [ // The host part of $wgServer (without the port)
-			// TODO: Make this parameter optional, no needed in core.
-			'domain' => [ self::PARAM_SOURCE => 'path',
-				ParamValidator::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_REQUIRED => true, ],
+		return [
 			'from' => [ self::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true, ],
