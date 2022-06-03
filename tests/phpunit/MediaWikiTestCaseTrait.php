@@ -338,7 +338,8 @@ trait MediaWikiTestCaseTrait {
 
 	protected function assertStatusOK( StatusValue $status, $message = '' ) {
 		if ( !$status->isOK() ) {
-			$this->failStatus( $status, 'Status should be OK', $message );
+			$errors = $status->splitByErrorType()[0];
+			$this->failStatus( $errors, 'Status should be OK', $message );
 		} else {
 			$this->addToAssertionCount( 1 );
 		}
