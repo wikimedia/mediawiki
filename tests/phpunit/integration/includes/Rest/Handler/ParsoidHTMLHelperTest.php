@@ -101,7 +101,8 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 			$parserCache,
 			$revisionOutputCache,
 			$this->getServiceContainer()->getGlobalIdGenerator(),
-			$this->getServiceContainer()->getParsoidOutputStash()
+			$this->getServiceContainer()->getParsoidOutputStash(),
+			new NullStatsdDataFactory()
 		);
 
 		if ( $parsoid !== null ) {
