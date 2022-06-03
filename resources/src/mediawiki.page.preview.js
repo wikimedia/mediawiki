@@ -177,6 +177,13 @@
 			$( '.catlinks[data-mw="interface"]' ).replaceWith( $content );
 		}
 
+		// Table of contents.
+		if ( response.parse.sections ) {
+			mw.hook( 'wikipage.tableOfContents' ).fire(
+				response.parse.hidetoc ? [] : response.parse.sections
+			);
+		}
+
 		// Templates.
 		if ( response.parse.templates ) {
 			showTemplates( response.parse.templates );
@@ -244,7 +251,7 @@
 
 		if ( !config.showDiff ) {
 			$.extend( params, {
-				prop: 'text|indicators|displaytitle|modules|jsconfigvars|categorieshtml|templates|langlinks|limitreporthtml|parsewarningshtml',
+				prop: 'text|indicators|displaytitle|modules|jsconfigvars|categorieshtml|sections|templates|langlinks|limitreporthtml|parsewarningshtml',
 				text: config.$textareaNode.textSelection( 'getContents' ),
 				pst: true,
 				preview: true,
@@ -376,6 +383,8 @@
 
 		if ( config.showDiff ) {
 			config.$previewNode.hide();
+			// Hide the table of contents, in case it was previously shown after previewing.
+			mw.hook( 'wikipage.tableOfContents' ).fire( [] );
 
 			var diffPar = {
 				action: 'compare',
