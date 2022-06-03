@@ -1172,9 +1172,16 @@ class ParserOptions {
 			'cleanSignatures' => $cleanSignatures,
 			'disableContentConversion' => $languageConverterFactory->isConversionDisabled(),
 			'disableTitleConversion' => $languageConverterFactory->isLinkConversionDisabled(),
-			'magicISBNLinks' => $enableMagicLinks['ISBN'],
-			'magicPMIDLinks' => $enableMagicLinks['PMID'],
-			'magicRFCLinks' => $enableMagicLinks['RFC'],
+			// FIXME: The fallback to false for enableMagicLinks is a band-aid to allow
+			// the phpunit entrypoint patch (I82045c207738d152d5b0006f353637cfaa40bb66)
+			// to be merged.
+			// It is possible that a test somewhere is globally resetting $wgEnableMagicLinks
+			// to null, or that ParserOptions is somehow similarly getting reset in such a way
+			// that $enableMagicLinks ends up as null rather than an array. This workaround
+			// seems harmless, but would be nice to eventually fix the underlying issue.
+			'magicISBNLinks' => $enableMagicLinks['ISBN'] ?? false,
+			'magicPMIDLinks' => $enableMagicLinks['PMID'] ?? false,
+			'magicRFCLinks' => $enableMagicLinks['RFC'] ?? false,
 			'thumbsize' => $userOptionsLookup->getDefaultOption( 'thumbsize' ),
 			'userlang' => $contentLanguage,
 		];
