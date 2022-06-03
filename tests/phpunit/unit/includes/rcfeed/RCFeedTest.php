@@ -56,6 +56,7 @@ class RCFeedTest extends MediaWikiUnitTestCase {
 		$this->hideDeprecated( '$wgRCFeeds without class' );
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Unknown RCFeed engine' );
+		$GLOBALS['wgRCEngines'] = [];
 		$feed = RCFeed::factory( [ 'uri' => 'test://bogus' ] );
 	}
 }
