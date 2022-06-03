@@ -447,13 +447,20 @@ class RollbackPage {
 
 		$actorId = $this->actorNormalization
 			->acquireActorId( $current->getUser( RevisionRecord::RAW ), $dbw );
+		$timestamp = $dbw->timestamp( $target->getTimestamp() );
 		$rows = $dbw->select(
 			'recentchanges',
 			[ 'rc_id', 'rc_patrolled' ],
 			[
 				'rc_cur_id' => $current->getPageId(),
-				'rc_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $target->getTimestamp() ) ),
-				'rc_actor' => $actorId
+				$dbw->makeList( [
+					'rc_timestamp > ' . $dbw->addQuotes( $timestamp ),
+					$dbw->makeList( [
+						'rc_timestamp' => $timestamp,
+						'rc_this_oldid > ' . $dbw->addQuotes( $target->getId() ),
+					], IDatabase::LIST_AND ),
+				], IDatabase::LIST_OR ),
+				'rc_actor' => $actorId,
 			],
 			__METHOD__
 		);
