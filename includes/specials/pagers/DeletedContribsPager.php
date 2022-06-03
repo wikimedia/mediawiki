@@ -120,6 +120,15 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 		$queryInfo['join_conds'] = $queryInfo['joins'];
 		unset( $queryInfo['joins'] );
 
+		ChangeTags::modifyDisplayQuery(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
+			$queryInfo['conds'],
+			$queryInfo['join_conds'],
+			$queryInfo['options'],
+			''
+		);
+
 		return $queryInfo;
 	}
 
@@ -223,7 +232,7 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 			$revId = $revRecord->getId();
 			if ( $revId ) {
 				$attribs['data-mw-revid'] = $revId;
-				$ret = $this->formatRevisionRow( $row );
+				[ $ret, $classes ] = $this->formatRevisionRow( $row );
 			}
 		}
 
@@ -256,7 +265,7 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 	 *
 	 * @todo This would probably look a lot nicer in a table.
 	 * @param stdClass $row
-	 * @return string
+	 * @return array
 	 */
 	private function formatRevisionRow( $row ) {
 		$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
@@ -353,14 +362,21 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 				[ $last, $dellog, $reviewlink ] ) )->escaped()
 		);
 
+		// Tags, if any.
+		list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow(
+			$row->ts_tags,
+			'deletedcontributions',
+			$this->getContext()
+		);
+
 		$separator = '<span class="mw-changeslist-separator">. .</span>';
-		$ret = "{$del}{$link} {$tools} {$separator} {$mflag} {$pagelink} {$comment}";
+		$ret = "{$del}{$link} {$tools} {$separator} {$mflag} {$pagelink} {$comment} {$tagSummary}";
 
 		# Denote if username is redacted for this edit
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_USER ) ) {
 			$ret .= " <strong>" . $this->msg( 'rev-deleted-user-contribs' )->escaped() . "</strong>";
 		}
 
-		return $ret;
+		return [ $ret, $classes ];
 	}
 }
