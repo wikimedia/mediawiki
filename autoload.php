@@ -601,6 +601,7 @@ $wgAutoloadLocalClasses = [
 	'HTMLTextAreaField' => __DIR__ . '/includes/htmlform/fields/HTMLTextAreaField.php',
 	'HTMLTextField' => __DIR__ . '/includes/htmlform/fields/HTMLTextField.php',
 	'HTMLTextFieldWithButton' => __DIR__ . '/includes/htmlform/fields/HTMLTextFieldWithButton.php',
+	'HTMLTimezoneField' => __DIR__ . '/includes/htmlform/fields/HTMLTimezoneField.php',
 	'HTMLTitleTextField' => __DIR__ . '/includes/htmlform/fields/HTMLTitleTextField.php',
 	'HTMLTitlesMultiselectField' => __DIR__ . '/includes/htmlform/fields/HTMLTitlesMultiselectField.php',
 	'HTMLUserTextField' => __DIR__ . '/includes/htmlform/fields/HTMLUserTextField.php',
