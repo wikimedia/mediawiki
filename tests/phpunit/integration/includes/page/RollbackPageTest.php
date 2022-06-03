@@ -16,7 +16,6 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
-use MWTimestamp;
 use ReadOnlyMode;
 use RecentChange;
 use Title;
@@ -115,13 +114,6 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		] )->rollbackIfAllowed()->isGood() );
 	}
 
-	private function editPageWithClockTick( $page, $text, $summary, $performer ) {
-		$time = MWTimestamp::time();
-		$status = $this->editPage( $page, $text, $summary, NS_MAIN, $performer );
-		MWTimestamp::setFakeTime( $time + 1 );
-		return $status;
-	}
-
 	public function testRollback() {
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser()->getUser();
@@ -131,15 +123,15 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
 		// Make some edits
 		$text = "one";
-		$status1 = $this->editPageWithClockTick( $page, $text, "section one", $admin );
+		$status1 = $this->editPage( $page, $text, "section one", NS_MAIN, $admin );
 		$this->assertStatusGood( $status1, 'edit 1 success' );
 
 		$text .= "\n\ntwo";
-		$status2 = $this->editPageWithClockTick( $page, $text, "adding section two", $user1 );
+		$status2 = $this->editPage( $page, $text, "adding section two", NS_MAIN, $user1 );
 		$this->assertStatusGood( $status2, 'edit 2 success' );
 
 		$text .= "\n\nthree";
-		$status3 = $this->editPageWithClockTick( $page, $text, "adding section three", $user2 );
+		$status3 = $this->editPage( $page, $text, "adding section three", NS_MAIN, $user2 );
 		$this->assertStatusGood( $status3, 'edit 3 success' );
 
 		/** @var RevisionRecord $rev1 */
@@ -249,12 +241,12 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 	private function prepareForRollback( Authority $user1, Authority $user2, WikiPage $page ): array {
 		$result = [];
 		$text = "one";
-		$status = $this->editPageWithClockTick( $page, $text, "section one", $user1 );
+		$status = $this->editPage( $page, $text, "section one", NS_MAIN, $user1 );
 		$this->assertStatusGood( $status, 'edit 1 success' );
 		$result['revision-one'] = $status->getValue()['revision-record'];
 
 		$text .= "\n\ntwo";
-		$status = $this->editPageWithClockTick( $page, $text, "adding section two", $user2 );
+		$status = $this->editPage( $page, $text, "adding section two", NS_MAIN, $user2 );
 		$this->assertStatusGood( $status, 'edit 2 success' );
 		$result['revision-two'] = $status->getValue()['revision-record'];
 		return $result;
@@ -337,7 +329,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		] = $this->prepareForRollback( $admin, $user1, $page );
 
 		$text = "one\n\ntwo\n\nthree";
-		$status = $this->editPageWithClockTick( $page, $text, "adding section three", $user1 );
+		$status = $this->editPage( $page, $text, "adding section three", NS_MAIN, $user1 );
 		$this->assertStatusGood( $status, 'edit 3 success' );
 		$rev3 = $status->getValue()['revision-record'];
 
