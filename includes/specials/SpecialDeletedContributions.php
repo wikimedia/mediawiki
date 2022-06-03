@@ -106,7 +106,10 @@ class SpecialDeletedContributions extends SpecialPage {
 		$this->outputHeader();
 		$this->checkPermissions();
 		$out = $this->getOutput();
-		$out->addModuleStyles( 'mediawiki.interface.helpers.styles' );
+		$out->addModuleStyles( [
+			'mediawiki.interface.helpers.styles',
+			'mediawiki.special.changeslist',
+		] );
 		$this->addHelpLink( 'Help:User contributions' );
 
 		$opts = new FormOptions();
