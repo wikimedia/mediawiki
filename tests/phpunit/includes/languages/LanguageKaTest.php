@@ -19,70 +19,70 @@ class LanguageKaTest extends LanguageClassesTestCase {
 	}
 
 	public static function providerGrammar() {
-			yield 'Wikipedia genitive' => [
-				'ვიკიპედიის',
-				'ვიკიპედია',
-				'ნათესაობითი',
-			];
-			yield 'Wiktionary genitive' => [
-				'ვიქსიკონის',
-				'ვიქსიკონი',
-				'ნათესაობითი',
-			];
-			yield 'Wikibooks genitive' => [
-				'ვიკიწიგნების',
-				'ვიკიწიგნები',
-				'ნათესაობითი',
-			];
-			yield 'Wikiquote genitive' => [
-				'ვიკიციტატის',
-				'ვიკიციტატა',
-				'ნათესაობითი',
-			];
-			yield 'Wikinews genitive' => [
-				'ვიკისიახლეების',
-				'ვიკისიახლეები',
-				'ნათესაობითი',
-			];
-			yield 'Wikispecies genitive' => [
-				'ვიკისახეობების',
-				'ვიკისახეობები',
-				'ნათესაობითი',
-			];
-			yield 'Wikidata genitive' => [
-				'ვიკიმონაცემების',
-				'ვიკიმონაცემები',
-				'ნათესაობითი',
-			];
-			yield 'Commons genitive' => [
-				'ვიკისაწყობის',
-				'ვიკისაწყობი',
-				'ნათესაობითი',
-			];
-			yield 'Wikivoyage genitive' => [
-				'ვიკივოიაჟის',
-				'ვიკივოიაჟი',
-				'ნათესაობითი',
-			];
-			yield 'Meta-Wiki genitive' => [
-				'მეტა-ვიკის',
-				'მეტა-ვიკი',
-				'ნათესაობითი',
-			];
-			yield 'MediaWiki genitive' => [
-				'მედიავიკის',
-				'მედიავიკი',
-				'ნათესაობითი',
-			];
-			yield 'Wikiversity genitive' => [
-				'ვიკივერსიტეტის',
-				'ვიკივერსიტეტი',
-				'ნათესაობითი',
-			];
-			yield 'Freedom genitive' => [
-				'თავისუფლების',
-				'თავისუფლება',
-				'ნათესაობითი',
-			];
+		yield 'Wikipedia genitive' => [
+			'ვიკიპედიის',
+			'ვიკიპედია',
+			'ნათესაობითი',
+		];
+		yield 'Wiktionary genitive' => [
+			'ვიქსიკონის',
+			'ვიქსიკონი',
+			'ნათესაობითი',
+		];
+		yield 'Wikibooks genitive' => [
+			'ვიკიწიგნების',
+			'ვიკიწიგნები',
+			'ნათესაობითი',
+		];
+		yield 'Wikiquote genitive' => [
+			'ვიკიციტატის',
+			'ვიკიციტატა',
+			'ნათესაობითი',
+		];
+		yield 'Wikinews genitive' => [
+			'ვიკისიახლეების',
+			'ვიკისიახლეები',
+			'ნათესაობითი',
+		];
+		yield 'Wikispecies genitive' => [
+			'ვიკისახეობების',
+			'ვიკისახეობები',
+			'ნათესაობითი',
+		];
+		yield 'Wikidata genitive' => [
+			'ვიკიმონაცემების',
+			'ვიკიმონაცემები',
+			'ნათესაობითი',
+		];
+		yield 'Commons genitive' => [
+			'ვიკისაწყობის',
+			'ვიკისაწყობი',
+			'ნათესაობითი',
+		];
+		yield 'Wikivoyage genitive' => [
+			'ვიკივოიაჟის',
+			'ვიკივოიაჟი',
+			'ნათესაობითი',
+		];
+		yield 'Meta-Wiki genitive' => [
+			'მეტა-ვიკის',
+			'მეტა-ვიკი',
+			'ნათესაობითი',
+		];
+		yield 'MediaWiki genitive' => [
+			'მედიავიკის',
+			'მედიავიკი',
+			'ნათესაობითი',
+		];
+		yield 'Wikiversity genitive' => [
+			'ვიკივერსიტეტის',
+			'ვიკივერსიტეტი',
+			'ნათესაობითი',
+		];
+		yield 'Freedom genitive' => [
+			'თავისუფლების',
+			'თავისუფლება',
+			'ნათესაობითი',
+		];
 	}
 }
