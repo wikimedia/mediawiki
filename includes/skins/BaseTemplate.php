@@ -346,16 +346,7 @@ abstract class BaseTemplate extends QuickTemplate {
 
 		if ( $option == 'icononly' ) {
 			// Unset any icons which don't have an image
-			foreach ( $footericons as $footerIconsKey => &$footerIconsBlock ) {
-				foreach ( $footerIconsBlock as $footerIconKey => $footerIcon ) {
-					if ( !is_string( $footerIcon ) && !isset( $footerIcon['src'] ) ) {
-						unset( $footerIconsBlock[$footerIconKey] );
-					}
-				}
-				if ( $footerIconsBlock === [] ) {
-					unset( $footericons[$footerIconsKey] );
-				}
-			}
+			$this->unsetIconsWithoutImages( $footericons );
 		} elseif ( $option == 'nocopyright' ) {
 			unset( $footericons['copyright'] );
 		}
@@ -364,16 +355,43 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
+	 * Unsets any elements in an array of icon definitions which do
+	 * not have src attributes or are not strings.
+	 *
+	 * @param array &$icons
+	 */
+	private function unsetIconsWithoutImages( array &$icons ) {
+		// Unset any icons which don't have an image
+		foreach ( $icons as $iconsKey => &$iconsBlock ) {
+			foreach ( $iconsBlock as $iconKey => $icon ) {
+				if ( !is_string( $icon ) && !isset( $icon['src'] ) ) {
+					unset( $iconsBlock[$iconKey] );
+				}
+			}
+			if ( $iconsBlock === [] ) {
+				unset( $icons[$iconsKey] );
+			}
+		}
+	}
+
+	/**
 	 * Renderer for getFooterIcons and getFooterLinks
 	 *
 	 * @param string $iconStyle $option for getFooterIcons: "icononly", "nocopyright"
+	 *   the "nocopyright" option is deprecated in 1.35 because of its association with getFooterIcons
 	 * @param string $linkStyle $option for getFooterLinks: "flat"
 	 *
 	 * @return string html
 	 * @since 1.29
 	 */
 	protected function getFooter( $iconStyle = 'icononly', $linkStyle = 'flat' ) {
-		$validFooterIcons = $this->getFooterIcons( $iconStyle );
+		$validFooterIcons = $this->get( 'footericons' );
+		if ( $iconStyle === 'icononly' ) {
+			$this->unsetIconsWithoutImages( $validFooterIcons );
+		} else {
+			// take a deprecated unsupported path
+			$validFooterIcons = $this->getFooterIcons( $iconStyle );
+		}
 		$validFooterLinks = $this->getFooterLinks( $linkStyle );
 
 		$html = '';
