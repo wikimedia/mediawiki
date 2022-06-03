@@ -2525,7 +2525,7 @@
 	"deleteprotected": "Вы не можете удалить эту страницу, поскольку она защищена.",
 	"deleting-backlinks-warning": "<strong>Предупреждение:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|Другие страницы]] ссылаются на страницу, которую вы собираетесь удалить, или содержат её.",
 	"deleting-subpages-warning": "<strong>Предупреждение:</strong> У страницы, которую вы собираетесь удалить, имеется [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|$1 подстраница|$1 подстраницы|$1 подстраниц|51=более 50 подстраниц}}]].",
-	"deleting-talkpage-subpages-warning": "<strong>Предупреждение:</strong> У связанной страницы обсуждения, которую вы собираетесь удалить, имеется [[Special:PrefixIndex/{{TALKPAGENAME}}|{{PLURAL:$1|$1 подстраница|$1 подстраницы|$1 подстраниц|51=более 50 подстраниц}}]].",
+	"deleting-talkpage-subpages-warning": "<strong>Предупреждение:</strong> У связанной страницы обсуждения, которую вы собираетесь удалить, имеется [[Special:PrefixIndex/{{TALKPAGENAME}}/|{{PLURAL:$1|$1 подстраница|$1 подстраницы|$1 подстраниц|51=более 50 подстраниц}}]].",
 	"rollback": "Откатить изменения",
 	"rollback-confirmation-confirm": "Пожалуйста, подтвердите:",
 	"rollback-confirmation-yes": "Откатить",

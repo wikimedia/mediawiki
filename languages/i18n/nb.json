@@ -2409,7 +2409,7 @@
 	"deleteprotected": "Du kan ikke slette denne siden fordi den er beskyttet.",
 	"deleting-backlinks-warning": "<strong>Advarsel:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|Andre sider]] lenker til eller inkluderer siden du er i ferd med å slette.",
 	"deleting-subpages-warning": "<strong>Advarsel:</strong> Siden du er i ferd med å slette har [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|en underside|$1 undersider|51=over 50 undersider}}]].",
-	"deleting-talkpage-subpages-warning": "<strong>Advarsel:</strong> Den tilknyttede diskusjonssiden til siden du er i ferd med å slette har [[Special:PrefixIndex/{{TALKPAGENAME}}|{{PLURAL:$1|ei underside|$1 undersider|51=over 50 undersider}}]].",
+	"deleting-talkpage-subpages-warning": "<strong>Advarsel:</strong> Den tilknyttede diskusjonssiden til siden du er i ferd med å slette har [[Special:PrefixIndex/{{TALKPAGENAME}}/|{{PLURAL:$1|ei underside|$1 undersider|51=over 50 undersider}}]].",
 	"rollback": "Fjern redigeringer",
 	"rollback-confirmation-confirm": "Vennligst bekreft:",
 	"rollback-confirmation-yes": "Tilbakestill",
