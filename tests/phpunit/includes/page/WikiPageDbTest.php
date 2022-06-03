@@ -933,14 +933,17 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::isCountable
 	 */
 	public function testIsCountable( $title, $model, $text, $mode, $expected ) {
-		$this->hideDeprecated( 'WikiPage::prepareContentForEdit without a UserIdentity' );
 		$this->setMwGlobals( 'wgArticleCountMethod', $mode );
 
 		$title = Title::newFromText( $title );
 
 		$page = $this->createPage( $title, $text, $model );
 
-		$editInfo = $page->prepareContentForEdit( $page->getContent() );
+		$editInfo = $page->prepareContentForEdit(
+			$page->getContent(),
+			null,
+			$this->getTestUser()->getUser()
+		);
 
 		$v = $page->isCountable();
 		$w = $page->isCountable( $editInfo );
