@@ -1953,12 +1953,13 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * Prior to 1.30, this returned a stdClass.
 	 *
 	 * @deprecated since 1.32, use newPageUpdater() or getCurrentUpdate() instead.
-	 * @note Calling without a UserIdentity is separately deprecated since 1.37
+	 * @note Calling without a UserIdentity was separately deprecated from 1.37 to 1.39, since
+	 * 1.39 the UserIdentity has been required.
 	 *
 	 * @param Content $content
 	 * @param RevisionRecord|null $revision
 	 *        Used with vary-revision or vary-revision-id.
-	 * @param UserIdentity|null $user
+	 * @param UserIdentity $user
 	 * @param string|null $serialFormat IGNORED
 	 * @param bool $useStash Use prepared edit stash
 	 *
@@ -1968,18 +1969,11 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 */
 	public function prepareContentForEdit(
 		Content $content,
-		RevisionRecord $revision = null,
-		UserIdentity $user = null,
+		?RevisionRecord $revision,
+		UserIdentity $user,
 		$serialFormat = null,
 		$useStash = true
 	) {
-		if ( !$user ) {
-			wfDeprecated( __METHOD__ . ' without a UserIdentity', '1.37' );
-			// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser
-			global $wgUser;
-			$user = StubGlobalUser::getRealUser( $wgUser );
-		}
-
 		$slots = RevisionSlotsUpdate::newFromContent( [ SlotRecord::MAIN => $content ] );
 		$updater = $this->getDerivedDataUpdater( $user, $revision, $slots );
 
