@@ -1099,7 +1099,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Skin\\SkinComponentTableOfContents' => __DIR__ . '/includes/skins/components/SkinComponentTableOfContents.php',
 	'MediaWiki\\Skins\\Hook\\SkinAfterPortletHook' => __DIR__ . '/includes/skins/Hook/SkinAfterPortletHook.php',
 	'MediaWiki\\Skins\\Hook\\SkinPageReadyConfigHook' => __DIR__ . '/includes/skins/Hook/SkinPageReadyConfigHook.php',
-	'MediaWiki\\Special\\SpecialPageFactory' => __DIR__ . '/includes/specialpage/SpecialPageFactory.php',
 	'MediaWiki\\User\\WatchlistNotificationManager' => __DIR__ . '/includes/watchlist/WatchlistManager.php',
 	'MediaWiki\\Watchlist\\WatchlistManager' => __DIR__ . '/includes/watchlist/WatchlistManager.php',
 	'MediumSpecificBagOStuff' => __DIR__ . '/includes/libs/objectcache/MediumSpecificBagOStuff.php',
