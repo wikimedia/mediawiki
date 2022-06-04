@@ -73,8 +73,8 @@ class JsonContentHandler extends CodeContentHandler {
 
 		'@phan-var JsonContent $content';
 
-		// FIXME: WikiPage::doEditContent invokes PST before validation. As such, native data
-		// may be invalid (though PST result is discarded later in that case).
+		// FIXME: WikiPage::doUserEditContent invokes PST before validation. As such, native
+		// data may be invalid (though PST result is discarded later in that case).
 		if ( !$content->isValid() ) {
 			return $content;
 		}
@@ -97,7 +97,7 @@ class JsonContentHandler extends CodeContentHandler {
 		ParserOutput &$parserOutput
 	) {
 		'@phan-var JsonContent $content';
-		// FIXME: WikiPage::doEditContent generates parser output before validation.
+		// FIXME: WikiPage::doUserEditContent generates parser output before validation.
 		// As such, native data may be invalid (though output is discarded later in that case).
 		if ( $cpoParams->getGenerateHtml() && $content->isValid() ) {
 			$parserOutput->setText( $content->rootValueTable( $content->getData()->getValue() ) );

@@ -2111,9 +2111,9 @@ class EditPage implements IEditObject {
 	 *   - spam (string): Spam string from content if any spam is detected by
 	 *     matchSpamRegex.
 	 *   - sectionanchor (string): Section anchor for a section save.
-	 *   - nullEdit (bool): Set if doEditContent is OK.  True if null edit,
+	 *   - nullEdit (bool): Set if doUserEditContent is OK.  True if null edit,
 	 *     false otherwise.
-	 *   - redirect (bool): Set if doEditContent is OK. True if resulting
+	 *   - redirect (bool): Set if doUserEditContent is OK. True if resulting
 	 *     revision is a redirect.
 	 * @param bool $markAsBot True if edit is being made under the bot right
 	 *     and the bot wishes the edit to be marked as such.
