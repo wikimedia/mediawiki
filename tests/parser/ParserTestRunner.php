@@ -919,18 +919,8 @@ class ParserTestRunner {
 		$ok = true;
 		$runner = $this;
 		foreach ( $testFileInfo->testCases as $test ) {
-			$skip = $this->getTestSkipMessage( $test, $mode );
-			if ( $skip ) {
-				continue;
-			}
-			$this->recorder->startTest( $test, $mode );
 			$result = $this->runTest( $test, $mode );
-			if ( $result !== false ) {
-				$ok = $ok && $result->isSuccess();
-				$this->recorder->record( $result );
-			} else {
-				$this->recorder->skipped( $test, $mode, 'SKIP' );
-			}
+			$ok = $ok && $result->isSuccess();
 		}
 
 		// Clean up
@@ -1046,11 +1036,6 @@ class ParserTestRunner {
 		$runner = $this;
 		$testFilter = [ 'regex' => $this->regex ];
 		foreach ( $testFileInfo->testCases as $t ) {
-			$skip = $this->getTestSkipMessage( $t, $skipMode );
-			if ( $skip ) {
-				continue;
-			}
-
 			$t->testAllModes( $t->computeTestModes( $testModes ), $this->options,
 				function ( ParserTest $test, string $modeStr, array $options ) use ( $runner, $t, &$ok ) {
 					// $test could be a clone of $t
@@ -1062,20 +1047,8 @@ class ParserTestRunner {
 						// or a change tree that should be generated
 						$mode = new ParserTestMode( 'selser-auto', json_decode( $runner->options['changetree'] ) );
 					}
-					$this->recorder->startTest( $test, $mode );
-					// We know this is a parsoid test (because we're in
-					// ::runParsoidTests) and we've already checked
-					// ::getTestSkipMessage() so we can dispatch directly to
-					// ::runParsoidTest() instead of going through the
-					// ::runTest() dispatcher.
-					$result = $this->runParsoidTest( $test, $mode );
-
-					if ( $result !== false ) {
-						$ok = $ok && $result->isSuccess();
-						$this->recorder->record( $result );
-					} else {
-						$this->recorder->skipped( $test, $mode, 'SKIP' );
-					}
+					$result = $this->runTest( $test, $mode );
+					$ok = $ok && $result->isSuccess();
 				}
 			);
 		}
@@ -1219,11 +1192,16 @@ class ParserTestRunner {
 		if ( $this->getTestSkipMessage( $test, $mode ) ) {
 			return false;
 		}
-		if ( $mode->isLegacy() ) {
-			return $this->runLegacyTest( $test, $mode );
+		$this->recorder->startTest( $test, $mode );
+		$result = $mode->isLegacy() ?
+				$this->runLegacyTest( $test, $mode ) :
+				$this->runParsoidTest( $test, $mode );
+		if ( $result === false ) {
+			$this->recorder->skipped( $test, $mode, 'SKIP' );
 		} else {
-			return $this->runParsoidTest( $test, $mode );
+			$this->recorder->record( $result );
 		}
+		return $result;
 	}
 
 	/**
