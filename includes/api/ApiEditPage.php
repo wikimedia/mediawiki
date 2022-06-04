@@ -160,8 +160,10 @@ class ApiEditPage extends ApiBase {
 				ApiResult::setIndexedTagName( $redirValues, 'r' );
 				$apiResult->addValue( null, 'redirects', $redirValues );
 
-				// Since the page changed, update $pageObj
+				// Since the page changed, update $pageObj and $titleObj
 				$pageObj = $this->wikiPageFactory->newFromTitle( $redirTarget );
+				$titleObj = $pageObj->getTitle();
+
 				$this->getErrorFormatter()->setContextTitle( $redirTarget );
 			}
 		}

@@ -36,7 +36,6 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use User;
 use WebRequest;
-use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * This serves as the entry point to the MediaWiki session handling system.
@@ -104,9 +103,6 @@ class SessionManager implements SessionManagerInterface {
 
 	/** @var UserNameUtils */
 	private $userNameUtils;
-
-	/** @var ObjectFactory */
-	private $objectFactory;
 
 	/** @var CachedBagOStuff|null */
 	private $store;
@@ -229,9 +225,7 @@ class SessionManager implements SessionManagerInterface {
 
 		$this->logger->debug( 'SessionManager using store ' . get_class( $store ) );
 		$this->store = $store instanceof CachedBagOStuff ? $store : new CachedBagOStuff( $store );
-		$services = MediawikiServices::getInstance();
-		$this->userNameUtils = $services->getUserNameUtils();
-		$this->objectFactory = $services->getObjectFactory();
+		$this->userNameUtils = MediawikiServices::getInstance()->getUserNameUtils();
 
 		register_shutdown_function( [ $this, 'shutdown' ] );
 	}
@@ -465,9 +459,10 @@ class SessionManager implements SessionManagerInterface {
 	protected function getProviders() {
 		if ( $this->sessionProviders === null ) {
 			$this->sessionProviders = [];
+			$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
 			foreach ( $this->config->get( 'SessionProviders' ) as $spec ) {
 				/** @var SessionProvider */
-				$provider = $this->objectFactory->createObject( $spec );
+				$provider = $objectFactory->createObject( $spec );
 				$provider->init(
 					$this->logger,
 					$this->config,

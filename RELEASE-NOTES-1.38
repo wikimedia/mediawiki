@@ -1,11 +1,31 @@
 = MediaWiki 1.38 =
 
-== MediaWiki 1.38.0-rc.0 ==
+== MediaWiki 1.38.0 ==
 
-THIS IS NOT A RELEASE YET
+=== Changes since MediaWiki 1.38.0-rc.1 ===
+* Localisation updates.
+* (T309114) LocalFile::prerenderThumbnails: Limit the number of thumbnail
+  jobs triggered.
+* (T305779) phpunit: Support setting skin context in BundleSizeTest subclasses.
+* (T309028) SECURITY: ApiEditPage: update title after redirects.
+* (T308967) notifications: prevent log spam when invalid user object listed.
+* composer: Lock Parsoid version to specific 0.15.0 release.
+* (T306362, T308680) change-your-logo.svg: Resize to 135px square, re-crush,
+  and manually minify.
 
-MediaWiki 1.38 is a pre-release testing branch, and is not recommended
-for use in production.
+== MediaWiki 1.38.0-rc.1 ==
+
+=== Changes since MediaWiki 1.38.0-rc.0 ===
+* Localisation updates.
+* (T305028) Undeprecate EditPage::$textbox2.
+* (T305635) LogActions is a map, not a list.
+* (T306721) Add wikimedia/equivset to vendor; needed by bundled AbuseFilter.
+* (T307284) Simplify TransactionManager::pendingWriteQueryDuration.
+* (T307307) Add symfony/yaml to vendor.
+* Fix old_name in UserLogoutComplete hook.
+* REST: don't send stack trace in error responses.
+* (T307998) SessionManager: stop storing an ObjectFactory instance.
+* (T193565) UserGroupManager: Fix dbDomain in addUserToGroup() deferred update.
 
 == Upgrading notes for 1.38 ==
 Don't forget to always back up your database before upgrading!
@@ -99,6 +119,10 @@ For notes on 1.37.x and older releases, see HISTORY.
   still need to use this feature, please see [[mw:Extension:CategoryExplorer]].
 * $wgStyleSheetPath - alias for $wgStylePath, deprecated since 1.3 (2004).
 
+=== User-facing changes in 1.38 ===
+* (T284921) The "auto-number headings" feature was removed following a
+  consultation, due to performance reasons.
+
 === New operator/developer features in 1.38 ===
 * EXPERIMENTAL: The environment variable MW_CONFIG_FILE can be used to specify
   the location of the settings file. This allows alternative settings files to
@@ -152,7 +176,7 @@ For notes on 1.37.x and older releases, see HISTORY.
 * Updated wikimedia/ip-utils from 3.0.2 to 4.0.0.
 * Updated wikimedia/minify from 2.2.4 to 2.2.6.
 * Updated wikimedia/object-factory from 3.0.2 to 4.0.0.
-* Updated wikimedia/parsoid from v0.14.0-a14 to v0.15.0-a1.
+* Updated wikimedia/parsoid from v0.14.0-a14 to v0.15.0.
 * Updated wikimedia/purtle from 1.0.7 to 1.0.8.
 * Updated wikimedia/request-timeout from 1.1.0 to 1.2.0.
 * Updated wikimedia/shellbox from 2.0.0 to 3.0.0.
