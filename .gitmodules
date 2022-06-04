@@ -515,7 +515,7 @@
 	ignore = dirty
 [submodule "extensions/Wikibase"]
 	path = extensions/Wikibase
-	url = https://github.com/wikimedia/mediawiki-extensions-Wikibase
+	url = https://github.com/wikimedia/Wikibase
 	branch = REL1_38
 	ignore = dirty
 [submodule "extensions/RSS"]
