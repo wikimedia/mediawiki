@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Tests\TestMode as ParserTestMode;
+use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
+
 /**
  * This is the TestCase subclass for running a single parser test via the
  * ParserTestRunner integration test system.
@@ -30,8 +33,11 @@ class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 	use MediaWikiTestCaseTrait;
 
-	/** @var array */
+	/** @var ParserTest */
 	private $ptTest;
+
+	/** @var ParserTestMode */
+	private $ptMode;
 
 	/** @var ParserTestRunner */
 	private $ptRunner;
@@ -39,11 +45,12 @@ class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 	/** @var string|null */
 	private $skipMessage;
 
-	public function __construct( $runner, $fileName, $test, $skipMessage = null ) {
+	public function __construct( $runner, $fileName, ParserTest $test, ParserTestMode $mode, $skipMessage = null ) {
 		parent::__construct( 'testParse',
-			[ ( $test['parsoid'] ?? false ) ? 'parsoid:' . $test['parsoidMode'] : 'legacy parser' ],
-			basename( $fileName ) . ': ' . $test['desc'] );
+			[ "$mode" ],
+			basename( $fileName ) . ': ' . $test->testName );
 		$this->ptTest = $test;
+		$this->ptTestMode = $mode;
 		$this->ptRunner = $runner;
 		$this->skipMessage = $skipMessage;
 	}
@@ -53,18 +60,10 @@ class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 			$this->markTestSkipped( $this->skipMessage );
 		}
 		$this->ptRunner->getRecorder()->setTestCase( $this );
-		if ( $this->ptTest['parsoid'] ?? false ) {
-			$result = $this->ptRunner->runParsoidTest(
-				$this->ptTest['parsoid'],
-				$this->ptTest['parsoidMode'],
-				$this->ptTest['parsoid-changetree'] ?? null
-			);
-		} else {
-			$result = $this->ptRunner->runTest( $this->ptTest );
-		}
+		$result = $this->ptRunner->runTest( $this->ptTest, $this->ptTestMode );
 		if ( $result === false ) {
 			// Test intentionally skipped.
-			$result = new ParserTestResult( $this->ptTest, "SKIP", "SKIP" );
+			$result = new ParserTestResult( $this->ptTest, $this->ptTestMode, "SKIP", "SKIP" );
 		}
 		$this->assertEquals( $result->expected, $result->actual );
 	}

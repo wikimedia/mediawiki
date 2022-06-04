@@ -61,8 +61,9 @@ class DbTestPreviewer extends TestRecorder {
 		$this->results = [];
 	}
 
-	public function record( $test, ParserTestResult $result ) {
-		$this->results[$test['desc']] = $result->isSuccess() ? 1 : 0;
+	public function record( ParserTestResult $result ) {
+		$desc = $result->getDescription();
+		$this->results[$desc] = $result->isSuccess() ? 1 : 0;
 	}
 
 	public function report() {
@@ -127,7 +128,7 @@ class DbTestPreviewer extends TestRecorder {
 					printf( "\n%4d %s\n", $count, $label );
 
 					foreach ( $breakdown[$code] as $differing_test_name => $statusInfo ) {
-						// @phan-suppress-next-line SecurityCheck-XSS
+						// @phan-suppress-next-line SecurityCheck-XSS CLI tool
 						print "      * $differing_test_name  [$statusInfo]\n";
 					}
 				}

@@ -1,7 +1,9 @@
 <?php
 
+use MediaWiki\Tests\TestMode as ParserTestMode;
 use PHPUnit\Framework\TestSuite;
-use Wikimedia\Parsoid\ParserTests\Test as ParsoidTest;
+use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
+use Wikimedia\Parsoid\ParserTests\TestFileReader;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -23,39 +25,51 @@ class ParsoidTestFileSuite extends TestSuite {
 	public function __construct( $runner, $name, $fileName ) {
 		parent::__construct( $name );
 		$this->ptRunner = $runner;
-		$runnerOpts = $this->ptRunner->getOptions();
-
 		$this->ptFileName = $fileName;
-		$this->ptFileInfo = Wikimedia\Parsoid\ParserTests\TestFileReader::read( $fileName, static function ( $msg ) {
-			wfDeprecatedMsg( $msg, '1.35', false, false );
-		} );
+		try {
+			$this->ptFileInfo = TestFileReader::read( $fileName, static function ( $msg ) {
+				wfDeprecatedMsg( $msg, '1.35', false, false );
+			} );
+		} catch ( \Exception $e ) {
+			// Friendlier wrapping for any syntax errors that might occur.
+			throw new MWException(
+				$fileName . ': ' . $e->getMessage()
+			);
+		}
 
-		$skipMessage = $this->ptRunner->getSkipMessage( $this->ptFileInfo->fileOptions, $runnerOpts, $fileName );
+		$skipMessage = $this->ptRunner->getFileSkipMessage(
+			false, /* parsoid tests */
+			$this->ptFileInfo->fileOptions,
+			$fileName
+		);
 		// Don't bother doing anything else if a skip message is set.
 		if ( $skipMessage !== null ) {
 			return;
 		}
 
 		$validTestModes = $this->ptRunner->getRequestedTestModes();
+		$skipMode = new ParserTestMode( $validTestModes[0] );
 
 		$suite = $this;
 		foreach ( $this->ptFileInfo->testCases as $t ) {
+			$skipMessage = $this->ptRunner->getTestSkipMessage( $t, $skipMode );
+			if ( $skipMessage ) {
+				continue;
+			}
 			$testModes = $t->computeTestModes( $validTestModes );
-			$test = $this->ptRunner->testToArray( $t );
-			$t->testAllModes( $testModes, $runnerOpts,
-				static function ( ParsoidTest $psdTest, string $mode, array $options ) use (
-					$t, $suite, $runner, $runnerOpts, $fileName, $test, $skipMessage
+			$t->testAllModes( $testModes, $runner->getOptions(),
+				// $options is being ignored but it is identical to $runnerOpts
+				function ( ParserTest $test, string $modeStr, array $options ) use (
+					$t, $suite, $fileName, $skipMessage
 				) {
-					if ( $mode !== 'selser' || $runnerOpts['changetree'] === null ) {
-						// $psdTest could be a clone of $t
-						// Ensure that updates to knownFailures in $psdTest are reflected in $t
-						$psdTest->knownFailures = &$t->knownFailures;
-						// $options is being ignored but it is identical to $runnerOpts
-						$newTest = $test;
-						$newTest['parsoid'] = $psdTest;
-						$newTest['parsoidMode'] = $mode;
-						$newTest['parsoid-changetree'] = $psdTest->changetree;
-						$pit = new ParserIntegrationTest( $runner, $fileName, $newTest, $skipMessage );
+					if ( $modeStr !== 'selser' || $test->changetree !== null ) {
+						// $test could be a clone of $t
+						// Ensure that updates to knownFailures in $test are reflected in $t
+						$test->knownFailures = &$t->knownFailures;
+						$runner = $this->ptRunner;
+						$runnerOpts = $runner->getOptions();
+						$mode = new ParserTestMode( $modeStr, $test->changetree );
+						$pit = new ParserIntegrationTest( $runner, $fileName, $test, $mode, $skipMessage );
 						$suite->addTest( $pit, [ 'Database', 'Parser', 'ParserTests' ] );
 					}
 				}
@@ -63,30 +77,20 @@ class ParsoidTestFileSuite extends TestSuite {
 
 			// Add a "selser-auto-composite" composite test
 			if ( in_array( 'selser', $testModes ) &&
-				$runnerOpts['selser'] !== 'noauto' &&
+				 ( $runnerOpts['selser'] ?? null ) !== 'noauto' &&
 				( $t->options['parsoid']['selser'] ?? null ) !== 'noauto'
 			) {
-				$newTest = $test;
-				$newTest['parsoid'] = $t;
-				$newTest['parsoidMode'] = "selser-auto-composite";
-				$newTest['parsoid-changetree'] = $runnerOpts['changetree'];
-				$pit = new ParserIntegrationTest( $runner, $fileName, $newTest, $skipMessage );
+				$mode = new ParserTestMode( 'selser-auto-composite', $runnerOpts['changetree'] ?? null );
+				$pit = new ParserIntegrationTest( $runner, $fileName, $t, $mode, $skipMessage );
 				$suite->addTest( $pit, [ 'Database', 'Parser', 'ParserTests' ] );
 			}
 		}
 	}
 
 	protected function setUp(): void {
-		$articles = [];
-		foreach ( $this->ptFileInfo->articles as $a ) {
-			$articles[] = [
-				'name' => $a->title,
-				'text' => $a->text,
-				'line' => $a->lineNumStart,
-				'file' => $a->filename,
-			];
-		}
-		$this->ptTeardownScope = $this->ptRunner->addArticles( $articles );
+		$this->ptTeardownScope = $this->ptRunner->addArticles(
+			$this->ptFileInfo->articles
+		);
 	}
 
 	protected function tearDown(): void {
