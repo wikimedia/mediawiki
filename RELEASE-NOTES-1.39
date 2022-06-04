@@ -122,6 +122,7 @@ because of Phabricator reports.
 * (T307887) Added language support for Mooré (mos).
 * (T308813) Added language support for Nigerian Pidgin (pcm).
 * (T309763) Added language support for Tai Nüa (tdd).
+* (T310040) Added language support for Fante (fat).
 * (T304920) In Swahili, The "Media" namespace is now "Media", as in English,
   and the "File" namespace is now "Faili". The old name of the "File" namespace
   was "Picha", and it's kept for backwards compatibility. If you manage a wiki

@@ -158,6 +158,7 @@ class Names {
 		'eu' => 'euskara', # Basque
 		'ext' => 'estremeñu', # Extremaduran
 		'fa' => 'فارسی', # Persian
+		'fat' => 'mfantse', # Fante
 		'ff' => 'Fulfulde', # Fulfulde, Maasina
 		'fi' => 'suomi', # Finnish
 		'fit' => 'meänkieli', # Tornedalen Finnish
