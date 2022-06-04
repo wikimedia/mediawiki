@@ -36,9 +36,6 @@ class ApiQueryTokens extends ApiQueryBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
-		$res = [
-			ApiResult::META_TYPE => 'assoc',
-		];
 
 		if ( $this->lacksSameOriginSecurity() ) {
 			$this->addWarning( [ 'apiwarn-tokens-origin' ] );
@@ -48,11 +45,23 @@ class ApiQueryTokens extends ApiQueryBase {
 		$user = $this->getUser();
 		$session = $this->getRequest()->getSession();
 		$salts = self::getTokenTypeSalts();
-		foreach ( $params['type'] as $type ) {
-			$res[$type . 'token'] = self::getToken( $user, $session, $salts[$type] )->toString();
-		}
 
-		$this->getResult()->addValue( 'query', $this->getModuleName(), $res );
+		$done = [];
+		$path = [ 'query', $this->getModuleName() ];
+		$this->getResult()->addArrayType( $path, 'assoc' );
+
+		foreach ( $params['type'] as $type ) {
+			$token = self::getToken( $user, $session, $salts[$type] )->toString();
+			$fit = $this->getResult()->addValue( $path, $type . 'token', $token );
+
+			if ( !$fit ) {
+				// Abuse type as a query-continue parameter and set it to all unprocessed types
+				$this->setContinueEnumParameter( 'type',
+					array_diff( $params['type'], $done ) );
+				break;
+			}
+			$done[] = $type;
+		}
 	}
 
 	/**
