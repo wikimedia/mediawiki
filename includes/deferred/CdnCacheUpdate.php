@@ -309,30 +309,12 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 			foreach ( [ 'desktop', 'phone-tablet' ] as $deviceHeader ) {
 				$url = self::expand( $url );
 				$urlInfo = wfParseUrl( $url );
-				$urlHost = strlen( $urlInfo['port'] ?? null )
 				$urlHost = strlen( $urlInfo['port'] ?? '' )
-					? IPUtils::combineHostAndPort( $urlInfo['host'],
-					 (int)$urlInfo['port'] )
+					? IPUtils::combineHostAndPort( $urlInfo['host'], (int)$urlInfo['port'] )
+					: $urlInfo['host'];
 				$baseReq = [
 					'method' => 'PURGE',
 					'url' => $url,
-					'headers' => [
-						'Host' => $urlHost,
-						'Connection' => 'Keep-Alive',
-						'Proxy-Connection' => 'Keep-Alive',
-					'	User-Agent' => 'MediaWiki/' . MW_VERSION . ' ' . __CLASS__
-					]
-				];
-				/**
-				 * Voidwalker hack start (force http scheme)
-				 * Varnish does not understand attempted https connections, causing purge requests going through https to fail.
-				 * See also phabricator.miraheze.org/T7441 and phabricator.wikimedia.org/T285504
-				 */
-				$urlInfo['scheme'] = 'http';
-				$baseReq = [
-					'method' => 'PURGE',		
-					'url' => wfAssembleUrl( $urlInfo ),
-					// Voidwalker hack end
 					'headers' => [
 						'Host' => $urlHost,
 						'Connection' => 'Keep-Alive',
@@ -341,10 +323,10 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 						'X-Device' => $deviceHeader
 					]
 				];
-
-				foreach ( $wgCdnServers as $server ) {
+				foreach ( $cdnServers as $server ) {
 					$reqs[] = ( $baseReq + [ 'proxy' => $server ] );
 				}
+			}
 			// Southparkfan hack end
 		}
 
