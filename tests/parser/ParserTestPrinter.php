@@ -22,6 +22,8 @@
 use MediaWiki\Shell\Shell;
 use MediaWiki\Tests\AnsiTermColorer;
 use MediaWiki\Tests\DummyTermColorer;
+use MediaWiki\Tests\TestMode as ParserTestMode;
+use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
 
 /**
  * This is a TestRecorder responsible for printing information about progress,
@@ -76,13 +78,14 @@ class ParserTestPrinter extends TestRecorder {
 		$this->skipped = 0;
 	}
 
-	public function startTest( $test ) {
+	public function startTest( ParserTest $test, ParserTestMode $mode ) {
 		if ( $this->showProgress ) {
-			$this->showTesting( $test['desc'] );
+			$fake = new ParserTestResult( $test, $mode, '', '' );
+			$this->showTesting( $fake->getDescription() );
 		}
 	}
 
-	private function showTesting( $desc ) {
+	private function showTesting( string $desc ) {
 		print "Running test $desc... ";
 	}
 
@@ -91,18 +94,18 @@ class ParserTestPrinter extends TestRecorder {
 	 *
 	 * @param string $path
 	 */
-	public function startSuite( $path ) {
-		print $this->term->color( '1' ) .
+	public function startSuite( string $path ) {
+		print $this->term->color( 1 ) .
 			"Running parser tests from \"$path\"..." .
 			$this->term->reset() .
 			"\n";
 	}
 
-	public function endSuite( $path ) {
+	public function endSuite( string $path ) {
 		print "\n";
 	}
 
-	public function record( $test, ParserTestResult $result ) {
+	public function record( ParserTestResult $result ): void {
 		$this->total++;
 		$this->success += ( $result->isSuccess() ? 1 : 0 );
 
@@ -118,7 +121,7 @@ class ParserTestPrinter extends TestRecorder {
 	 *
 	 * @param ParserTestResult $testResult
 	 */
-	private function showSuccess( ParserTestResult $testResult ) {
+	private function showSuccess( ParserTestResult $testResult ): void {
 		if ( $this->showProgress ) {
 			print $this->term->color( '1;32' ) . 'PASSED' . $this->term->reset() . "\n";
 		}
@@ -130,7 +133,7 @@ class ParserTestPrinter extends TestRecorder {
 	 *
 	 * @param ParserTestResult $testResult
 	 */
-	private function showFailure( ParserTestResult $testResult ) {
+	private function showFailure( ParserTestResult $testResult ): void {
 		if ( $this->showFailure ) {
 			if ( !$this->showProgress ) {
 				# In quiet mode we didn't show the 'Testing' message before the
@@ -140,7 +143,7 @@ class ParserTestPrinter extends TestRecorder {
 
 			print $this->term->color( '31' ) . 'FAILED!' . $this->term->reset() . "\n";
 
-			print "{$testResult->test['file']}:{$testResult->test['line']}\n";
+			print "{$testResult->test->filename}:{$testResult->test->lineNumStart}\n";
 
 			if ( $this->showOutput ) {
 				print "--- Expected ---\n{$testResult->expected}\n";
@@ -148,7 +151,7 @@ class ParserTestPrinter extends TestRecorder {
 			}
 
 			if ( $this->showDiffs ) {
-				// @phan-suppress-next-line SecurityCheck-XSS
+				// @phan-suppress-next-line SecurityCheck-XSS This is a CLI tool
 				print $this->quickDiff( $testResult->expected, $testResult->actual );
 				if ( !$this->wellFormed( $testResult->actual ) ) {
 					print "XML error: $this->xmlError\n";
@@ -293,16 +296,17 @@ class ParserTestPrinter extends TestRecorder {
 	 * Show a warning to the user
 	 * @param string $message
 	 */
-	public function warning( $message ) {
+	public function warning( string $message ) {
 		echo "$message\n";
 	}
 
 	/**
 	 * Mark a test skipped
-	 * @param array $test
+	 * @param ParserTest $test
+	 * @param ParserTestMode $mode
 	 * @param string $subtest
 	 */
-	public function skipped( $test, $subtest ) {
+	public function skipped( ParserTest $test, ParserTestMode $mode, string $subtest ) {
 		if ( $this->showProgress ) {
 			print $this->term->color( '1;33' ) . 'SKIPPED' . $this->term->reset() . "\n";
 		}

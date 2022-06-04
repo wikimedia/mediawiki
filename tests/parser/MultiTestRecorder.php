@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Tests\TestMode as ParserTestMode;
+use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
+
 /**
  * This is a TestRecorder representing a collection of other TestRecorders.
  * It proxies calls to all constituent objects.
@@ -22,27 +25,27 @@ class MultiTestRecorder extends TestRecorder {
 		$this->proxy( __FUNCTION__, func_get_args() );
 	}
 
-	public function startTest( $test ) {
+	public function startTest( ParserTest $test, ParserTestMode $mode ) {
 		$this->proxy( __FUNCTION__, func_get_args() );
 	}
 
-	public function startSuite( $path ) {
+	public function startSuite( string $path ) {
 		$this->proxy( __FUNCTION__, func_get_args() );
 	}
 
-	public function endSuite( $path ) {
+	public function endSuite( string $path ) {
 		$this->proxy( __FUNCTION__, func_get_args() );
 	}
 
-	public function record( $test, ParserTestResult $result ) {
+	public function record( ParserTestResult $result ) {
 		$this->proxy( __FUNCTION__, func_get_args() );
 	}
 
-	public function warning( $message ) {
+	public function warning( string $message ) {
 		$this->proxy( __FUNCTION__, func_get_args() );
 	}
 
-	public function skipped( $test, $subtest ) {
+	public function skipped( ParserTest $test, ParserTestMode $mode, string $reason ) {
 		$this->proxy( __FUNCTION__, func_get_args() );
 	}
 

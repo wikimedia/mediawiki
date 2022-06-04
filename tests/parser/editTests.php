@@ -2,6 +2,9 @@
 
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Tests\AnsiTermColorer;
+use MediaWiki\Tests\TestMode as ParserTestMode;
+use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
+use Wikimedia\Parsoid\ParserTests\TestFileReader;
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
@@ -13,7 +16,7 @@ define( 'MW_PARSER_TEST', true );
 class ParserEditTests extends Maintenance {
 	/** @var int */
 	private $termWidth;
-	/** @var array */
+	/** @var TestFileReader[] */
 	private $testFiles;
 	/** @var int */
 	private $testCount;
@@ -83,8 +86,34 @@ class ParserEditTests extends Maintenance {
 		foreach ( ParserTestRunner::getParserTestFiles() as $file ) {
 			$fileInfo = TestFileReader::read( $file );
 			$this->testFiles[$file] = $fileInfo;
-			$this->testCount += count( $fileInfo['tests'] );
+			$this->testCount += count( $fileInfo->testCases );
 		}
+	}
+
+	protected function getTestDesc( ParserTest $test ) {
+		return $test->testName; // could include mode here too
+	}
+
+	protected function getResultSection( ParserTest $test ) {
+		// This used to switch between html and html+tidy, but we
+		// got rid of the "notidy" support some time ago.
+		// This should probably eventually support html+standalone
+		// and html+integrated in a similar way, but for now just
+		// walk the legacy HTML fallback set
+		$legacyHtmlKeys = [
+			'html/php', 'html/*', 'html',
+			# deprecated
+			'result',
+			'html/php+tidy',
+			'html/*+tidy',
+			'html+tidy',
+		];
+		foreach ( $legacyHtmlKeys as $key ) {
+			if ( $test->sections[$key] ?? false ) {
+				return $key;
+			}
+		}
+		return 'html';
 	}
 
 	protected function runTests() {
@@ -97,14 +126,16 @@ class ParserEditTests extends Maintenance {
 		$this->numExecuted = 0;
 		$this->numSkipped = 0;
 		$this->numFailed = 0;
+		$mode = new ParserTestMode( 'legacy' );
 		foreach ( $this->testFiles as $fileName => $fileInfo ) {
-			$this->runner->addArticles( $fileInfo['articles'] );
-			foreach ( $fileInfo['tests'] as $testInfo ) {
-				$result = $this->runner->runTest( $testInfo );
+			$this->runner->addArticles( $fileInfo->articles );
+			foreach ( $fileInfo->testCases as $testInfo ) {
+				$result = $this->runner->runTest( $testInfo, $mode );
 				if ( $result === false ) {
 					$this->numSkipped++;
 				} elseif ( !$result->isSuccess() ) {
-					$this->results[$fileName][$testInfo['desc']] = $result;
+					$desc = $this->getTestDesc( $testInfo );
+					$this->results[$fileName][$desc] = $result;
 					$this->numFailed++;
 				}
 				$this->numExecuted++;
@@ -143,14 +174,15 @@ class ParserEditTests extends Maintenance {
 				$testIndex += count( $this->results[$fileName] );
 				continue;
 			}
-			foreach ( $fileInfo['tests'] as $testInfo ) {
-				if ( !isset( $this->results[$fileName][$testInfo['desc']] ) ) {
+			foreach ( $fileInfo->testCases as $testInfo ) {
+				$desc = $this->getTestDesc( $testInfo );
+				if ( !isset( $this->results[$fileName][$desc] ) ) {
 					continue;
 				}
-				$result = $this->results[$fileName][$testInfo['desc']];
+				$result = $this->results[$fileName][$desc];
 				$testIndex++;
 				if ( !$foundStart && $startTest !== false ) {
-					if ( $testInfo['desc'] !== $startTest ) {
+					if ( $desc !== $startTest ) {
 						continue;
 					}
 					$foundStart = true;
@@ -192,12 +224,13 @@ class ParserEditTests extends Maintenance {
 		$div2 = $term->color( '34' ) . str_repeat( '─', $this->termWidth ) .
 			$term->reset() . "\n";
 
+		$desc = $this->getTestDesc( $testInfo );
 		print $div1;
-		print "Failure $index/{$this->numFailed}: {$testInfo['file']} line {$testInfo['line']}\n" .
-			"{$testInfo['desc']}\n";
+		print "Failure $index/{$this->numFailed}: {$testInfo->filename} line {$testInfo->lineNumStart}\n" .
+			"{$desc}\n";
 
 		print $this->heading( 'Input' );
-		print "{$testInfo['input']}\n";
+		print "{$testInfo->wikitext}\n";
 
 		print $this->heading( 'Alternating expected/actual output' );
 		print $this->alternatingAligned( $result->expected, $result->actual );
@@ -212,13 +245,13 @@ class ParserEditTests extends Maintenance {
 		}
 		print $diff;
 
-		if ( $testInfo['options'] || $testInfo['config'] ) {
+		if ( $testInfo->options || $testInfo->config ) {
 			print $this->heading( 'Options / Config' );
-			if ( $testInfo['options'] ) {
-				print $testInfo['options'] . "\n";
+			if ( $testInfo->options ) {
+				print json_encode( $testInfo->options ) . "\n";
 			}
-			if ( $testInfo['config'] ) {
-				print $testInfo['config'] . "\n";
+			if ( $testInfo->config ) {
+				print json_encode( $testInfo->config ) . "\n";
 			}
 		}
 
@@ -229,7 +262,11 @@ class ParserEditTests extends Maintenance {
 			'[U]pdate source file, copy actual to expected',
 			'[I]gnore' ];
 
-		if ( !empty( $testInfo['isSubtest'] ) ) {
+		# XXX originally isSubtest was a way to edit the +tidy vs +untidy
+		# portions of the test separately (I believe)
+		// @phan-suppress-next-line PhanUndeclaredProperty
+		if ( !empty( $testInfo->isSubtest ) ) {
+			# FIXME: this is orphan code, will never be true
 			$specs[] = 'Delete [s]ubtest';
 		}
 		$specs[] = '[D]elete test';
@@ -365,8 +402,8 @@ class ParserEditTests extends Maintenance {
 			$argv[0],
 			'--session-data',
 			json_encode( [
-				'startFile' => $testInfo['file'],
-				'startTest' => $testInfo['desc']
+				'startFile' => $testInfo->filename,
+				'startTest' => $this->getTestDesc( $testInfo ),
 			] + $this->session ) ] );
 
 		print "pcntl_exec() failed\n";
@@ -375,7 +412,7 @@ class ParserEditTests extends Maintenance {
 
 	protected function findTest( $file, $testInfo ) {
 		$initialPart = '';
-		for ( $i = 1; $i < $testInfo['line']; $i++ ) {
+		for ( $i = 1; $i < $testInfo->lineNumStart; $i++ ) {
 			$line = fgets( $file );
 			if ( $line === false ) {
 				print "Error reading from file\n";
@@ -393,7 +430,7 @@ class ParserEditTests extends Maintenance {
 		$testPart = $line;
 
 		$desc = fgets( $file );
-		if ( trim( $desc ) !== $testInfo['desc'] ) {
+		if ( trim( $desc ) !== $this->getTestDesc( $testInfo ) ) {
 			print "Description does not match, cannot edit\n";
 			return false;
 		}
@@ -435,13 +472,12 @@ class ParserEditTests extends Maintenance {
 	}
 
 	protected function update( $testInfo, $result ) {
-		$this->editTest( $testInfo['file'],
+		$resultSection = $this->getResultSection( $testInfo );
+		$this->editTest( $testInfo->filename,
 			[], // deletions
 			[ // changes
-				// @phan-suppress-next-line PhanTypeInvalidArrayKeyLiteral
-				$testInfo['test'] => [
-					// @phan-suppress-next-line PhanTypeInvalidArrayKeyLiteral
-					$testInfo['resultSection'] => [
+				$testInfo->testName => [
+					$resultSection => [
 						'op' => 'update',
 						'value' => $result->actual . "\n"
 					]
@@ -452,31 +488,28 @@ class ParserEditTests extends Maintenance {
 	}
 
 	protected function deleteTest( $testInfo ) {
-		$this->editTest( $testInfo['file'],
-			[ $testInfo['test'] ], // deletions
+		$this->editTest( $testInfo->filename,
+			[ $testInfo->testName ], // deletions
 			[] // changes
 		);
 		return false;
 	}
 
 	protected function switchTidy( $testInfo ) {
-		$resultSection = $testInfo['resultSection'];
+		$resultSection = $this->getResultSection( $testInfo );
 		if ( in_array( $resultSection, [ 'html/php' ] ) ) {
 			$newSection = 'html/php';
 		} elseif ( in_array( $resultSection, [ 'html/*', 'html', 'result' ] ) ) {
 			$newSection = 'html';
 		} else {
-			// @phan-suppress-next-line PhanTypeSuspiciousStringExpression
 			print "Unrecognised result section name \"$resultSection\"";
 			return true;
 		}
 
-		$this->editTest( $testInfo['file'],
+		$this->editTest( $testInfo->filename,
 			[], // deletions
 			[ // changes
-				// @phan-suppress-next-line PhanTypeInvalidArrayKeyLiteral
-				$testInfo['test'] => [
-					// @phan-suppress-next-line PhanTypeInvalidArrayKeyLiteral
+				$testInfo->testName => [
 					$resultSection => [
 						'op' => 'rename',
 						'value' => $newSection
@@ -488,13 +521,12 @@ class ParserEditTests extends Maintenance {
 	}
 
 	protected function deleteSubtest( $testInfo ) {
-		$this->editTest( $testInfo['file'],
+		$resultSection = $this->getResultSection( $testInfo );
+		$this->editTest( $testInfo->filename,
 			[], // deletions
 			[ // changes
-				// @phan-suppress-next-line PhanTypeInvalidArrayKeyLiteral
-				$testInfo['test'] => [
-					// @phan-suppress-next-line PhanTypeInvalidArrayKeyLiteral
-					$testInfo['resultSection'] => [
+				$testInfo->testName => [
+					$resultSection => [
 						'op' => 'delete'
 					]
 				]

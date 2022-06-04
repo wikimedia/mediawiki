@@ -29,7 +29,7 @@ class DbTestRecorder extends TestRecorder {
 	/** @var int */
 	private $curRun;
 
-	public function __construct( IMaintainableDatabase $db ) {
+	public function __construct( $db ) {
 		$this->db = $db;
 	}
 
@@ -64,14 +64,14 @@ class DbTestRecorder extends TestRecorder {
 	/**
 	 * Record an individual test item's success or failure to the db
 	 *
-	 * @param array $test
 	 * @param ParserTestResult $result
 	 */
-	public function record( $test, ParserTestResult $result ) {
+	public function record( ParserTestResult $result ) {
+		$desc = $result->getDescription();
 		$this->db->insert( 'testitem',
 			[
 				'ti_run' => $this->curRun,
-				'ti_name' => $test['desc'],
+				'ti_name' => $desc,
 				'ti_success' => $result->isSuccess() ? 1 : 0,
 			],
 			__METHOD__ );

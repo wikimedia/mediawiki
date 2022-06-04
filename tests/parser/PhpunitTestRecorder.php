@@ -1,6 +1,8 @@
 <?php
 
+use MediaWiki\Tests\TestMode as ParserTestMode;
 use PHPUnit\Framework\TestCase;
+use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
 
 class PhpunitTestRecorder extends TestRecorder {
 	/** @var TestCase */
@@ -12,10 +14,11 @@ class PhpunitTestRecorder extends TestRecorder {
 
 	/**
 	 * Mark a test skipped
-	 * @param array $test
+	 * @param ParserTest $test
+	 * @param ParserTestMode $mode
 	 * @param string $reason
 	 */
-	public function skipped( $test, $reason ) {
+	public function skipped( ParserTest $test, ParserTestMode $mode, string $reason ) {
 		$this->testCase->markTestSkipped( "SKIPPED: $reason" );
 	}
 }

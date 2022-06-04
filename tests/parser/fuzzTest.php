@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Settings\SettingsBuilder;
+use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
 use Wikimedia\ScopedCallback;
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
@@ -56,14 +57,13 @@ class ParserFuzzTest extends Maintenance {
 		$teardown = $this->parserTest->setupDatabase( $teardown );
 		$teardown = $this->parserTest->setupUploads( $teardown );
 
-		$fakeTest = [
-			'test' => '',
-			'desc' => '',
-			'input' => '',
-			'result' => '',
-			'options' => '',
-			'config' => ''
-		];
+		$fakeTest = new ParserTest( [
+			'testName' => '',
+			'wikitext' => '',
+			'html' => '',
+			'options' => [],
+			'config' => '',
+		], [], '' );
 
 		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 		ini_set( 'memory_limit', $this->memoryLimit * 1048576 * 2 );
