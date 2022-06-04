@@ -149,6 +149,8 @@ because of Phabricator reports.
 * MovePage::__construct() now requires that all parameters be passed. The
   fallback to MediaWikiServices emitted deprecation notices since 1.37.
 * WikiPage::doEditContent(), deprecated since 1.32, was removed.
+* WikiPage::prepareContentForEdit() now requires a UserIdentity parameter to be
+  provided. Not providing one has been deprecated since 1.37.
 * EventRelayerKafka, deprecated in 1.38, was removed.
 * MediaWiki\Logger\Monolog\KafkaHandler, deprecated in 1.38, was removed.
 * The "trace" option of SectionProfiler, deprecated in 1.38, was removed.
