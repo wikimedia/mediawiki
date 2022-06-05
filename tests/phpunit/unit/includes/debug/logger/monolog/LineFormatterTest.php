@@ -36,7 +36,7 @@ class LineFormatterTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Logger\Monolog\LineFormatter::normalizeException
+	 * @covers \MediaWiki\Logger\Monolog\LineFormatter::normalizeException
 	 */
 	public function testNormalizeExceptionNoTrace() {
 		$fixture = new LineFormatter();
@@ -55,7 +55,7 @@ class LineFormatterTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Logger\Monolog\LineFormatter::normalizeException
+	 * @covers \MediaWiki\Logger\Monolog\LineFormatter::normalizeException
 	 */
 	public function testNormalizeExceptionTrace() {
 		$fixture = new LineFormatter();
@@ -74,7 +74,7 @@ class LineFormatterTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Logger\Monolog\LineFormatter::normalizeException
+	 * @covers \MediaWiki\Logger\Monolog\LineFormatter::normalizeException
 	 */
 	public function testNormalizeExceptionErrorNoTrace() {
 		if ( !class_exists( AssertionError::class ) ) {
@@ -97,7 +97,7 @@ class LineFormatterTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Logger\Monolog\LineFormatter::normalizeException
+	 * @covers \MediaWiki\Logger\Monolog\LineFormatter::normalizeException
 	 */
 	public function testNormalizeExceptionErrorTrace() {
 		if ( !class_exists( AssertionError::class ) ) {

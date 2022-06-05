@@ -165,7 +165,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideSpecialsAndNSPermissions
-	 * @covers MediaWiki\Permissions\PermissionManager::checkSpecialsAndNSPermissions
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkSpecialsAndNSPermissions
 	 */
 	public function testSpecialsAndNSPermissions(
 		$namespace,
