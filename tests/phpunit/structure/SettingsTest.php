@@ -74,19 +74,19 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 
 	public function provideConfigGeneration() {
 		yield 'includes/config-schema.php' => [
-			'script' => MW_INSTALL_PATH . '/maintenance/generateConfigSchemaArray.php',
+			'option' => '--schema',
 			'expectedFile' => MW_INSTALL_PATH . '/includes/config-schema.php',
 		];
 		yield 'includes/config-vars.php' => [
-			'script' => MW_INSTALL_PATH . '/maintenance/generateConfigVars.php',
+			'option' => '--vars',
 			'expectedFile' => MW_INSTALL_PATH . '/includes/config-vars.php',
 		];
 		yield 'docs/config-schema.yaml' => [
-			'script' => MW_INSTALL_PATH . '/maintenance/generateConfigSchemaYaml.php',
+			'option' => '--yaml',
 			'expectedFile' => MW_INSTALL_PATH . '/docs/config-schema.yaml',
 		];
 		yield 'includes/MainConfigNames.php' => [
-			'script' => MW_INSTALL_PATH . '/maintenance/generateConfigNames.php',
+			'option' => '--names',
 			'expectedFile' => MW_INSTALL_PATH . '/includes/MainConfigNames.php',
 		];
 	}
@@ -94,8 +94,9 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideConfigGeneration
 	 */
-	public function testConfigGeneration( string $script, string $expectedFile ) {
-		$schemaGenerator = Shell::makeScriptCommand( $script, [ '--output', 'php://stdout' ] );
+	public function testConfigGeneration( string $option, string $expectedFile ) {
+		$script = MW_INSTALL_PATH . '/maintenance/generateConfigSchema.php';
+		$schemaGenerator = Shell::makeScriptCommand( $script, [ $option, 'php://stdout' ] );
 		$result = $schemaGenerator->execute();
 		$this->assertSame( 0, $result->getExitCode(), 'Config generation must finish successfully' );
 

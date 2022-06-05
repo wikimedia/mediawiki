@@ -14,6 +14,7 @@
 		 stopOnFailure="false"
 		 beStrictAboutTestsThatDoNotTestAnything="true"
 		 beStrictAboutOutputDuringTests="true"
+		 printerClass="MediaWikiPHPUnitResultPrinter"
 		 verbose="false">
 	<php>
 		<ini name="memory_limit" value="512M" />
