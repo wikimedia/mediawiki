@@ -228,11 +228,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-DPLForum
 	branch = REL1_38
 	ignore = dirty
-[submodule "extensions/Tabber"]
-	path = extensions/Tabber
-	url = https://github.com/wikimedia/mediawiki-extensions-Tabber
-	branch = REL1_38
-	ignore = dirty
 [submodule "extensions/Poem"]
 	path = extensions/Poem
 	url = https://github.com/wikimedia/mediawiki-extensions-Poem
