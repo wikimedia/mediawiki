@@ -22,6 +22,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * This is the abstract base class for API formatters.
@@ -362,9 +363,8 @@ abstract class ApiFormatBase extends ApiBase {
 		$ret = [];
 		if ( $this->getIsHtml() ) {
 			$ret['wrappedhtml'] = [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-format-param-wrappedhtml',
-
 			];
 		}
 		return $ret;

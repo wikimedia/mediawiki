@@ -25,6 +25,7 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * @ingroup API
@@ -73,8 +74,8 @@ class ApiOpenSearch extends ApiBase {
 			$format = $params['format'];
 
 			$allowedParams = $this->getAllowedParams();
-			if ( !in_array( $format, $allowedParams['format'][ApiBase::PARAM_TYPE] ) ) {
-				$format = $allowedParams['format'][ApiBase::PARAM_DFLT];
+			if ( !in_array( $format, $allowedParams['format'][ParamValidator::PARAM_TYPE] ) ) {
+				$format = $allowedParams['format'][ParamValidator::PARAM_DEFAULT];
 			}
 
 			if ( substr( $format, -2 ) === 'fm' ) {
@@ -300,22 +301,22 @@ class ApiOpenSearch extends ApiBase {
 		}
 		$this->allowedParams = $this->buildCommonApiParams( false ) + [
 			'suggest' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				// Deprecated since 1.35
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'redirects' => [
-				ApiBase::PARAM_TYPE => [ 'return', 'resolve' ],
+				ParamValidator::PARAM_TYPE => [ 'return', 'resolve' ],
 			],
 			'format' => [
-				ApiBase::PARAM_DFLT => 'json',
-				ApiBase::PARAM_TYPE => [ 'json', 'jsonfm', 'xml', 'xmlfm' ],
+				ParamValidator::PARAM_DEFAULT => 'json',
+				ParamValidator::PARAM_TYPE => [ 'json', 'jsonfm', 'xml', 'xmlfm' ],
 			],
 			'warningsaserror' => false,
 		];
 
 		// Use open search specific default limit
-		$this->allowedParams['limit'][ApiBase::PARAM_DFLT] = $this->getConfig()->get(
+		$this->allowedParams['limit'][ParamValidator::PARAM_DEFAULT] = $this->getConfig()->get(
 			MainConfigNames::OpenSearchDefaultLimit
 		);
 

@@ -19,6 +19,8 @@
  * @file
  */
 
+use Wikimedia\ParamValidator\ParamValidator;
+
 /**
  * @ingroup API
  * @since 1.25
@@ -98,23 +100,23 @@ class ApiManageTags extends ApiBase {
 	public function getAllowedParams() {
 		return [
 			'operation' => [
-				ApiBase::PARAM_TYPE => [ 'create', 'delete', 'activate', 'deactivate' ],
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => [ 'create', 'delete', 'activate', 'deactivate' ],
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'tag' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'reason' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 			'ignorewarnings' => [
-				ApiBase::PARAM_TYPE => 'boolean',
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_TYPE => 'boolean',
+				ParamValidator::PARAM_DEFAULT => false,
 			],
 			'tags' => [
-				ApiBase::PARAM_TYPE => 'tags',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'tags',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 		];
 	}

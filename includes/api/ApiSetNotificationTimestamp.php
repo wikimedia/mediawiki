@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Revision\RevisionStore;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -251,16 +252,16 @@ class ApiSetNotificationTimestamp extends ApiBase {
 	public function getAllowedParams( $flags = 0 ) {
 		$result = [
 			'entirewatchlist' => [
-				ApiBase::PARAM_TYPE => 'boolean'
+				ParamValidator::PARAM_TYPE => 'boolean'
 			],
 			'timestamp' => [
-				ApiBase::PARAM_TYPE => 'timestamp'
+				ParamValidator::PARAM_TYPE => 'timestamp'
 			],
 			'torevid' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 			'newerthanrevid' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',

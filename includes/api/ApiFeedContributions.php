@@ -33,6 +33,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserRigorOptions;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -297,34 +298,34 @@ class ApiFeedContributions extends ApiBase {
 
 		$ret = [
 			'feedformat' => [
-				ApiBase::PARAM_DFLT => 'rss',
-				ApiBase::PARAM_TYPE => $feedFormatNames
+				ParamValidator::PARAM_DEFAULT => 'rss',
+				ParamValidator::PARAM_TYPE => $feedFormatNames
 			],
 			'user' => [
-				ApiBase::PARAM_TYPE => 'user',
+				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'cidr', 'id', 'interwiki' ],
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'namespace' => [
-				ApiBase::PARAM_TYPE => 'namespace'
+				ParamValidator::PARAM_TYPE => 'namespace'
 			],
 			'year' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 			'month' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 			'tagfilter' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array_values( ChangeTags::listDefinedTags() ),
-				ApiBase::PARAM_DFLT => '',
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => array_values( ChangeTags::listDefinedTags() ),
+				ParamValidator::PARAM_DEFAULT => '',
 			],
 			'deletedonly' => false,
 			'toponly' => false,
 			'newonly' => false,
 			'hideminor' => false,
 			'showsizediff' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 			],
 		];
 

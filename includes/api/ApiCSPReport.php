@@ -23,6 +23,7 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use Psr\Log\LoggerInterface;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Api module to receive and log CSP violation reports
@@ -259,13 +260,13 @@ class ApiCSPReport extends ApiBase {
 	public function getAllowedParams() {
 		return [
 			'reportonly' => [
-				ApiBase::PARAM_TYPE => 'boolean',
-				ApiBase::PARAM_DFLT => false
+				ParamValidator::PARAM_TYPE => 'boolean',
+				ParamValidator::PARAM_DEFAULT => false
 			],
 			'source' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_DFLT => 'internal',
-				ApiBase::PARAM_REQUIRED => false
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_DEFAULT => 'internal',
+				ParamValidator::PARAM_REQUIRED => false
 			]
 		];
 	}

@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Revision\RevisionStore;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * API module that functions as a shortcut to the wikitext preprocessor. Expands
@@ -210,14 +211,14 @@ class ApiExpandTemplates extends ApiBase {
 		return [
 			'title' => null,
 			'text' => [
-				ApiBase::PARAM_TYPE => 'text',
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'text',
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'revid' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 			],
 			'prop' => [
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_TYPE => [
 					'wikitext',
 					'categories',
 					'properties',
@@ -228,13 +229,13 @@ class ApiExpandTemplates extends ApiBase {
 					'encodedjsconfigvars',
 					'parsetree',
 				],
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_ISMULTI => true,
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			'includecomments' => false,
 			'showstrategykeys' => false,
 			'generatexml' => [
-				ApiBase::PARAM_TYPE => 'boolean',
+				ParamValidator::PARAM_TYPE => 'boolean',
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 		];

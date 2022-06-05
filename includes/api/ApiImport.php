@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MainConfigNames;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * API module that imports an XML file like Special:Import does
@@ -161,25 +162,25 @@ class ApiImport extends ApiBase {
 		return [
 			'summary' => null,
 			'xml' => [
-				ApiBase::PARAM_TYPE => 'upload',
+				ParamValidator::PARAM_TYPE => 'upload',
 			],
 			'interwikiprefix' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 			'interwikisource' => [
-				ApiBase::PARAM_TYPE => $this->getAllowedImportSources(),
+				ParamValidator::PARAM_TYPE => $this->getAllowedImportSources(),
 			],
 			'interwikipage' => null,
 			'fullhistory' => false,
 			'templates' => false,
 			'namespace' => [
-				ApiBase::PARAM_TYPE => 'namespace'
+				ParamValidator::PARAM_TYPE => 'namespace'
 			],
 			'assignknownusers' => false,
 			'rootpage' => null,
 			'tags' => [
-				ApiBase::PARAM_TYPE => 'tags',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'tags',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 		];
 	}

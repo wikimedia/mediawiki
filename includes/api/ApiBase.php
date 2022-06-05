@@ -1892,7 +1892,7 @@ abstract class ApiBase extends ContextSource {
 				if ( !is_array( $settings[self::PARAM_TYPE] ) ) {
 					self::dieDebug( __METHOD__,
 						'ApiBase::PARAM_HELP_MSG_PER_VALUE may only be used when ' .
-						'ApiBase::PARAM_TYPE is an array' );
+						'ParamValidator::PARAM_TYPE is an array' );
 				}
 
 				$valueMsgs = $settings[self::PARAM_HELP_MSG_PER_VALUE];

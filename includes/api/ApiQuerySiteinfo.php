@@ -30,6 +30,7 @@ use MediaWiki\ResourceLoader\SkinModule;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserOptionsLookup;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -1000,9 +1001,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	public function getAllowedParams() {
 		return [
 			'prop' => [
-				ApiBase::PARAM_DFLT => 'general',
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'general',
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => [
 					'general',
 					'namespaces',
 					'namespacealiases',
@@ -1031,7 +1032,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			'filteriw' => [
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_TYPE => [
 					'local',
 					'!local',
 				]

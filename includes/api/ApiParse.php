@@ -31,6 +31,7 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * @ingroup API
@@ -1006,26 +1007,26 @@ class ApiParse extends ApiBase {
 		return [
 			'title' => null,
 			'text' => [
-				ApiBase::PARAM_TYPE => 'text',
+				ParamValidator::PARAM_TYPE => 'text',
 			],
 			'revid' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 			],
 			'summary' => null,
 			'page' => null,
 			'pageid' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 			],
 			'redirects' => false,
 			'oldid' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 			],
 			'prop' => [
-				ApiBase::PARAM_DFLT => 'text|langlinks|categories|links|templates|' .
+				ParamValidator::PARAM_DEFAULT => 'text|langlinks|categories|links|templates|' .
 					'images|externallinks|sections|revid|displaytitle|iwlinks|' .
 					'properties|parsewarnings',
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => [
 					'text',
 					'langlinks',
 					'categories',
@@ -1064,15 +1065,15 @@ class ApiParse extends ApiBase {
 			'pst' => false,
 			'onlypst' => false,
 			'effectivelanglinks' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'section' => null,
 			'sectiontitle' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 			'disablepp' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'disablelimitreport' => false,
@@ -1080,7 +1081,7 @@ class ApiParse extends ApiBase {
 			'disablestylededuplication' => false,
 			'showstrategykeys' => false,
 			'generatexml' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => [
 					'apihelp-parse-param-generatexml', CONTENT_MODEL_WIKITEXT
 				],
@@ -1092,13 +1093,13 @@ class ApiParse extends ApiBase {
 			'useskin' => [
 				// T237856; We use all installed skins here to allow hidden (but usable) skins
 				// to continue working correctly with some features such as Live Preview
-				ApiBase::PARAM_TYPE => array_keys( $this->skinFactory->getInstalledSkins() ),
+				ParamValidator::PARAM_TYPE => array_keys( $this->skinFactory->getInstalledSkins() ),
 			],
 			'contentformat' => [
-				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
+				ParamValidator::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
 			],
 			'contentmodel' => [
-				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getContentModels(),
+				ParamValidator::PARAM_TYPE => $this->contentHandlerFactory->getContentModels(),
 			],
 		];
 	}

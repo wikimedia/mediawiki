@@ -471,19 +471,19 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	public function getAllowedParams() {
 		return [
 			'start' => [
-				ApiBase::PARAM_TYPE => 'timestamp',
+				ParamValidator::PARAM_TYPE => 'timestamp',
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'modes', 1, 2 ] ],
 			],
 			'end' => [
-				ApiBase::PARAM_TYPE => 'timestamp',
+				ParamValidator::PARAM_TYPE => 'timestamp',
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'modes', 1, 2 ] ],
 			],
 			'dir' => [
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_TYPE => [
 					'newer',
 					'older'
 				],
-				ApiBase::PARAM_DFLT => 'older',
+				ParamValidator::PARAM_DEFAULT => 'older',
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'modes', 1, 3 ] ],
 			],
@@ -497,26 +497,26 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'modes', 3 ] ],
 			],
 			'unique' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'modes', 3 ] ],
 			],
 			'namespace' => [
-				ApiBase::PARAM_TYPE => 'namespace',
-				ApiBase::PARAM_DFLT => NS_MAIN,
+				ParamValidator::PARAM_TYPE => 'namespace',
+				ParamValidator::PARAM_DEFAULT => NS_MAIN,
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'modes', 3 ] ],
 			],
 			'tag' => null,
 			'user' => [
-				ApiBase::PARAM_TYPE => 'user',
+				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
 			],
 			'excludeuser' => [
-				ApiBase::PARAM_TYPE => 'user',
+				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
 			],
 			'prop' => [
-				ApiBase::PARAM_DFLT => 'user|comment',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'user|comment',
+				ParamValidator::PARAM_TYPE => [
 					'revid',
 					'parentid',
 					'user',
@@ -530,14 +530,14 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					'token',
 					'tags'
 				],
-				ApiBase::PARAM_ISMULTI => true
+				ParamValidator::PARAM_ISMULTI => true
 			],
 			'limit' => [
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
+				ParamValidator::PARAM_DEFAULT => 10,
+				ParamValidator::PARAM_TYPE => 'limit',
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				IntegerDef::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',

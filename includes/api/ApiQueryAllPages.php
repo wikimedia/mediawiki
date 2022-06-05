@@ -22,6 +22,8 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\RestrictionStore;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 /**
  * Query module to enumerate all available pages.
@@ -293,69 +295,69 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			'to' => null,
 			'prefix' => null,
 			'namespace' => [
-				ApiBase::PARAM_DFLT => NS_MAIN,
-				ApiBase::PARAM_TYPE => 'namespace',
+				ParamValidator::PARAM_DEFAULT => NS_MAIN,
+				ParamValidator::PARAM_TYPE => 'namespace',
 			],
 			'filterredir' => [
-				ApiBase::PARAM_DFLT => 'all',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'all',
+				ParamValidator::PARAM_TYPE => [
 					'all',
 					'redirects',
 					'nonredirects'
 				]
 			],
 			'minsize' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 			],
 			'maxsize' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 			],
 			'prtype' => [
-				ApiBase::PARAM_TYPE => $this->restrictionStore->listAllRestrictionTypes( true ),
-				ApiBase::PARAM_ISMULTI => true
+				ParamValidator::PARAM_TYPE => $this->restrictionStore->listAllRestrictionTypes( true ),
+				ParamValidator::PARAM_ISMULTI => true
 			],
 			'prlevel' => [
-				ApiBase::PARAM_TYPE =>
+				ParamValidator::PARAM_TYPE =>
 					$this->getConfig()->get( MainConfigNames::RestrictionLevels ),
-				ApiBase::PARAM_ISMULTI => true
+				ParamValidator::PARAM_ISMULTI => true
 			],
 			'prfiltercascade' => [
-				ApiBase::PARAM_DFLT => 'all',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'all',
+				ParamValidator::PARAM_TYPE => [
 					'cascading',
 					'noncascading',
 					'all'
 				],
 			],
 			'limit' => [
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
+				ParamValidator::PARAM_DEFAULT => 10,
+				ParamValidator::PARAM_TYPE => 'limit',
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				IntegerDef::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			],
 			'dir' => [
-				ApiBase::PARAM_DFLT => 'ascending',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'ascending',
+				ParamValidator::PARAM_TYPE => [
 					'ascending',
 					'descending'
 				]
 			],
 			'filterlanglinks' => [
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_TYPE => [
 					'withlanglinks',
 					'withoutlanglinks',
 					'all'
 				],
-				ApiBase::PARAM_DFLT => 'all'
+				ParamValidator::PARAM_DEFAULT => 'all'
 			],
 			'prexpiry' => [
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_TYPE => [
 					'indefinite',
 					'definite',
 					'all'
 				],
-				ApiBase::PARAM_DFLT => 'all'
+				ParamValidator::PARAM_DEFAULT => 'all'
 			],
 		];
 

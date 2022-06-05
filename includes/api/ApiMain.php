@@ -30,6 +30,7 @@ use MediaWiki\Rest\HeaderParser\Origin;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\UserRigorOptions;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -2176,29 +2177,29 @@ class ApiMain extends ApiBase {
 	public function getAllowedParams() {
 		return [
 			'action' => [
-				ApiBase::PARAM_DFLT => 'help',
-				ApiBase::PARAM_TYPE => 'submodule',
+				ParamValidator::PARAM_DEFAULT => 'help',
+				ParamValidator::PARAM_TYPE => 'submodule',
 			],
 			'format' => [
-				ApiBase::PARAM_DFLT => self::API_DEFAULT_FORMAT,
-				ApiBase::PARAM_TYPE => 'submodule',
+				ParamValidator::PARAM_DEFAULT => self::API_DEFAULT_FORMAT,
+				ParamValidator::PARAM_TYPE => 'submodule',
 			],
 			'maxlag' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 			'smaxage' => [
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_DFLT => 0
+				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_DEFAULT => 0
 			],
 			'maxage' => [
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_DFLT => 0
+				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_DEFAULT => 0
 			],
 			'assert' => [
-				ApiBase::PARAM_TYPE => [ 'anon', 'user', 'bot' ]
+				ParamValidator::PARAM_TYPE => [ 'anon', 'user', 'bot' ]
 			],
 			'assertuser' => [
-				ApiBase::PARAM_TYPE => 'user',
+				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name' ],
 			],
 			'requestid' => null,
@@ -2207,19 +2208,19 @@ class ApiMain extends ApiBase {
 			'responselanginfo' => false,
 			'origin' => null,
 			'uselang' => [
-				ApiBase::PARAM_DFLT => self::API_DEFAULT_USELANG,
+				ParamValidator::PARAM_DEFAULT => self::API_DEFAULT_USELANG,
 			],
 			'variant' => null,
 			'errorformat' => [
-				ApiBase::PARAM_TYPE => [ 'plaintext', 'wikitext', 'html', 'raw', 'none', 'bc' ],
-				ApiBase::PARAM_DFLT => 'bc',
+				ParamValidator::PARAM_TYPE => [ 'plaintext', 'wikitext', 'html', 'raw', 'none', 'bc' ],
+				ParamValidator::PARAM_DEFAULT => 'bc',
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			'errorlang' => [
-				ApiBase::PARAM_DFLT => 'uselang',
+				ParamValidator::PARAM_DEFAULT => 'uselang',
 			],
 			'errorsuselocal' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 			],
 		];
 	}

@@ -22,6 +22,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Reset password, with AuthManager
@@ -118,11 +119,11 @@ class ApiResetPassword extends ApiBase {
 
 		$ret = [
 			'user' => [
-				ApiBase::PARAM_TYPE => 'user',
+				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name' ],
 			],
 			'email' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 		];
 

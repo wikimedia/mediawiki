@@ -23,6 +23,7 @@
 use MediaWiki\Export\WikiExporterFactory;
 use MediaWiki\MainConfigNames;
 use Wikimedia\ObjectFactory\ObjectFactory;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -873,23 +874,23 @@ class ApiQuery extends ApiBase {
 	public function getAllowedParams( $flags = 0 ) {
 		$result = [
 			'prop' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => 'submodule',
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'submodule',
 			],
 			'list' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => 'submodule',
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'submodule',
 			],
 			'meta' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => 'submodule',
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'submodule',
 			],
 			'indexpageids' => false,
 			'export' => false,
 			'exportnowrap' => false,
 			'exportschema' => [
-				ApiBase::PARAM_DFLT => WikiExporter::schemaVersion(),
-				ApiBase::PARAM_TYPE => XmlDumpWriter::$supportedSchemas,
+				ParamValidator::PARAM_DEFAULT => WikiExporter::schemaVersion(),
+				ParamValidator::PARAM_TYPE => XmlDumpWriter::$supportedSchemas,
 			],
 			'iwurl' => false,
 			'continue' => [
