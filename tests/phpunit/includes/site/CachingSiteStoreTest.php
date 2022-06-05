@@ -101,12 +101,12 @@ class CachingSiteStoreTest extends \MediaWikiIntegrationTestCase {
 			->willReturn( $this->getTestSite() );
 
 		$dbSiteStore->method( 'getSites' )
-			->will( $this->returnCallback( function () {
+			->willReturnCallback( function () {
 				$siteList = new SiteList();
 				$siteList->setSite( $this->getTestSite() );
 
 				return $siteList;
-			} ) );
+			} );
 
 		$store = new CachingSiteStore( $dbSiteStore, ObjectCache::getLocalClusterInstance() );
 

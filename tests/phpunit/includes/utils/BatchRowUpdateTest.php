@@ -202,9 +202,9 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 		$db->method( 'select' )
 			->will( $this->consecutivelyReturnFromSelect( $retvals ) );
 		$db->method( 'addQuotes' )
-			->will( $this->returnCallback( static function ( $value ) {
+			->willReturnCallback( static function ( $value ) {
 				return "'$value'"; // not real quoting: doesn't matter in test
-			} ) );
+			} );
 
 		return $db;
 	}

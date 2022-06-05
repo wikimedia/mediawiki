@@ -32,10 +32,10 @@ class SpecialPreferencesTest extends MediaWikiIntegrationTestCase {
 
 		# The mocked user has a long nickname
 		$user->method( 'getOption' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ 'nickname', null, false, 'superlongnickname' ],
 			]
-			) );
+			);
 
 		// isAnyAllowed used to return null from the mock,
 		// thus revoke it's permissions.

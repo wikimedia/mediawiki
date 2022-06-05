@@ -24,7 +24,7 @@ class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$engine->method( 'getProfiles' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ SearchEngine::COMPLETION_PROFILE_TYPE, $api->getUser(), [
 					[
 						'name' => 'normal',
@@ -36,7 +36,7 @@ class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 						'desc-message' => 'strict-message',
 					],
 				] ],
-			] ) );
+			] );
 
 		$params = $api->getAllowedParams();
 

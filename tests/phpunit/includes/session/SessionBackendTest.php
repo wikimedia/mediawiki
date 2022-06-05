@@ -725,11 +725,11 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$mockHook = $this->getMockBuilder( __CLASS__ )
 			->onlyMethods( [ 'onSessionMetadata' ] )->getMock();
 		$mockHook->method( 'onSessionMetadata' )
-			->will( $this->returnCallback(
+			->willReturnCallback(
 				static function ( SessionBackend $backend, array &$metadata, array $requests ) {
 					$metadata['userId']++;
 				}
-			) );
+			);
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'SessionMetadata' => [ $mockHook ] ] );
 		$this->store->setSessionData( self::SESSIONID, $testData );
 		$backend = $this->getBackend( $user );

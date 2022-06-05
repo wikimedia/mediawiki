@@ -22,10 +22,10 @@ class LanguageFallbackTest extends MediaWikiUnitTestCase {
 	private function getLanguageNameUtils() {
 		$mockLangNameUtils = $this->createMock( LanguageNameUtils::class );
 		$mockLangNameUtils->method( 'isValidBuiltInCode' )
-			->will( $this->returnCallback( static function ( $code ) {
+			->willReturnCallback( static function ( $code ) {
 				// One-line copy-paste
 				return (bool)preg_match( '/^[a-z0-9-]{2,}$/', $code );
-			} ) );
+			} );
 		$mockLangNameUtils->expects( $this->never() )
 			->method( $this->anythingBut( 'isValidBuiltInCode' ) );
 		return $mockLangNameUtils;

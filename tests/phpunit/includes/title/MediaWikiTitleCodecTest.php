@@ -60,9 +60,9 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 
 		$genderCache->method( 'getGenderOf' )
-			->will( $this->returnCallback( static function ( $userName ) {
+			->willReturnCallback( static function ( $userName ) {
 				return preg_match( '/^[^- _]+a( |_|$)/u', $userName ) ? 'female' : 'male';
-			} ) );
+			} );
 
 		return $genderCache;
 	}

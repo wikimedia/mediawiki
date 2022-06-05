@@ -74,11 +74,11 @@ class AbstractSecondaryAuthenticationProviderTest extends \MediaWikiUnitTestCase
 			)
 			->willReturn( $reqs );
 		$provider->expects( $this->exactly( 3 ) )->method( 'providerChangeAuthenticationData' )
-			->will( $this->returnCallback( function ( $req ) {
+			->willReturnCallback( function ( $req ) {
 				$this->assertSame( 'UTSysop', $req->username );
 				$this->assertFalse( $req->done );
 				$req->done = true;
-			} ) );
+			} );
 
 		$provider->providerRevokeAccessForUser( 'UTSysop' );
 

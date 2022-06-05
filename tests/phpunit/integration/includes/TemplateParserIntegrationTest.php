@@ -44,9 +44,9 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 		$cache1 = $this->createMock( BagOStuff::class );
 		$cache1->expects( $this->once() )->method( 'get' )->willReturn( false );
 		$cache1->expects( $this->once() )->method( 'set' )
-			->will( $this->returnCallback( static function ( $key, $val ) use ( &$store ) {
+			->willReturnCallback( static function ( $key, $val ) use ( &$store ) {
 				$store = [ 'key' => $key, 'val' => $val ];
-			} ) );
+			} );
 
 		$tp1 = new TemplateParser( self::DIR, $cache1 );
 		$this->assertEquals( self::RESULT, $tp1->processTemplate( self::NAME, [] ) );
@@ -78,9 +78,9 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 		// 2. Expect a cache hit that passes validation checks, and no compilation
 		$cache2 = $this->createMock( BagOStuff::class );
 		$cache2->expects( $this->once() )->method( 'get' )
-			->will( $this->returnCallback( static function ( $key ) use ( &$store ) {
+			->willReturnCallback( static function ( $key ) use ( &$store ) {
 				return $key === $store['key'] ? $store['val'] : false;
-			} ) );
+			} );
 		$cache2->expects( $this->never() )->method( 'set' );
 
 		$tp2 = $this->getMockBuilder( TemplateParser::class )
@@ -102,9 +102,9 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 		$cache1 = $this->createMock( BagOStuff::class );
 		$cache1->expects( $this->once() )->method( 'get' )->willReturn( false );
 		$cache1->expects( $this->once() )->method( 'set' )
-			->will( $this->returnCallback( static function ( $key, $val ) use ( &$store ) {
+			->willReturnCallback( static function ( $key, $val ) use ( &$store ) {
 				$store = [ 'key' => $key, 'val' => $val ];
-			} ) );
+			} );
 
 		$tp1 = new TemplateParser( self::DIR, $cache1 );
 		$this->assertEquals( self::RESULT, $tp1->processTemplate( self::NAME, [] ) );
@@ -115,9 +115,9 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 		// 2. Expect a cache hit that fails validation, and a re-compilation
 		$cache2 = $this->createMock( BagOStuff::class );
 		$cache2->expects( $this->once() )->method( 'get' )
-			->will( $this->returnCallback( static function ( $key ) use ( &$store ) {
+			->willReturnCallback( static function ( $key ) use ( &$store ) {
 				return $key === $store['key'] ? $store['val'] : false;
-			} ) );
+			} );
 		$cache2->expects( $this->once() )->method( 'set' );
 
 		$tp2 = $this->getMockBuilder( TemplateParser::class )
@@ -140,9 +140,9 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 		$cache1 = $this->createMock( BagOStuff::class );
 		$cache1->expects( $this->once() )->method( 'get' )->willReturn( false );
 		$cache1->expects( $this->once() )->method( 'set' )
-			->will( $this->returnCallback( static function ( $key, $val ) use ( &$store ) {
+			->willReturnCallback( static function ( $key, $val ) use ( &$store ) {
 				$store = [ 'key' => $key, 'val' => $val ];
-			} ) );
+			} );
 
 		$tp1 = new TemplateParser( self::DIR, $cache1 );
 		$this->assertEquals( self::RESULT, $tp1->processTemplate( self::NAME, [] ) );
@@ -153,9 +153,9 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 		// 2. Expect a cache hit that fails validation, and a re-compilation
 		$cache2 = $this->createMock( BagOStuff::class );
 		$cache2->expects( $this->once() )->method( 'get' )
-			->will( $this->returnCallback( static function ( $key ) use ( &$store ) {
+			->willReturnCallback( static function ( $key ) use ( &$store ) {
 				return $key === $store['key'] ? $store['val'] : false;
-			} ) );
+			} );
 		$cache2->expects( $this->once() )->method( 'set' );
 
 		$tp2 = $this->getMockBuilder( TemplateParser::class )
@@ -301,9 +301,9 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 		$cache = $this->createMock( BagOStuff::class );
 		$cache->expects( $this->once() )->method( 'get' )->willReturn( false );
 		$cache->expects( $this->once() )->method( 'set' )
-			->will( $this->returnCallback( static function ( $key, $val ) use ( &$store ) {
+			->willReturnCallback( static function ( $key, $val ) use ( &$store ) {
 				$store = [ 'key' => $key, 'val' => $val ];
-			} ) );
+			} );
 		$tp = new TemplateParser( self::DIR, $cache );
 		$tp->processTemplate( 'has_partial', [] );
 
@@ -333,9 +333,9 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 		$cache = $this->createMock( BagOStuff::class );
 		$cache->expects( $this->once() )->method( 'get' )->willReturn( false );
 		$cache->expects( $this->once() )->method( 'set' )
-			->will( $this->returnCallback( static function ( $key, $val ) use ( &$store ) {
+			->willReturnCallback( static function ( $key, $val ) use ( &$store ) {
 				$store = [ 'key' => $key, 'val' => $val ];
-			} ) );
+			} );
 
 		$tp = new TemplateParser( self::DIR, $cache );
 		$tp->enableRecursivePartials( true );

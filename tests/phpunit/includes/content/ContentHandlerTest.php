@@ -428,9 +428,9 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 
 		$searchEngine->method( 'makeSearchFieldMapping' )
-			->will( $this->returnCallback( static function ( $name, $type ) {
+			->willReturnCallback( static function ( $name, $type ) {
 					return new DummySearchIndexFieldDefinition( $name, $type );
-			} ) );
+			} );
 
 		return $searchEngine;
 	}

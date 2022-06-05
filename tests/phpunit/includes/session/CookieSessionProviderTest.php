@@ -686,7 +686,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$mock = $this->getMockBuilder( __CLASS__ )
 			->onlyMethods( [ 'onUserSetCookies' ] )->getMock();
 		$mock->expects( $this->once() )->method( 'onUserSetCookies' )
-			->will( $this->returnCallback( function ( $u, &$sessionData, &$cookies ) use ( $user ) {
+			->willReturnCallback( function ( $u, &$sessionData, &$cookies ) use ( $user ) {
 				$this->assertSame( $user, $u );
 				$this->assertEquals( [
 					'wsUserID' => $user->getId(),
@@ -702,7 +702,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 				$sessionData['foo'] = 'foo!';
 				$cookies['bar'] = 'bar!';
 				return true;
-			} ) );
+			} );
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'UserSetCookies' => [ $mock ] ] );
 		$backend->setUser( $user );
 		$backend->setRememberUser( false );
@@ -733,7 +733,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$mock = $this->getMockBuilder( __CLASS__ )
 			->onlyMethods( [ 'onUserSetCookies' ] )->getMock();
 		$mock->expects( $this->once() )->method( 'onUserSetCookies' )
-			->will( $this->returnCallback( function ( $u, &$sessionData, &$cookies ) use ( $user ) {
+			->willReturnCallback( function ( $u, &$sessionData, &$cookies ) use ( $user ) {
 				$this->assertSame( $user, $u );
 				$this->assertEquals( [
 					'wsUserID' => $user->getId(),
@@ -749,7 +749,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 				$sessionData['foo'] = 'foo 2!';
 				$cookies['bar'] = 'bar 2!';
 				return true;
-			} ) );
+			} );
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'UserSetCookies' => [ $mock ] ] );
 		$backend->setUser( $user );
 		$backend->setRememberUser( true );

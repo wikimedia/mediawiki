@@ -527,9 +527,9 @@ class ApiMainTest extends ApiTestCase {
 			->onlyMethods( [ 'getConditionalRequestData' ] )
 			->getMockForAbstractClass();
 		$module->method( 'getConditionalRequestData' )
-			->will( $this->returnCallback( static function ( $condition ) use ( $conditions ) {
+			->willReturnCallback( static function ( $condition ) use ( $conditions ) {
 				return $conditions[$condition] ?? null;
-			} ) );
+			} );
 
 		$ret = $priv->checkConditionalRequestHeaders( $module );
 
@@ -657,9 +657,9 @@ class ApiMainTest extends ApiTestCase {
 			->onlyMethods( [ 'getConditionalRequestData' ] )
 			->getMockForAbstractClass();
 		$module->method( 'getConditionalRequestData' )
-			->will( $this->returnCallback( static function ( $condition ) use ( $conditions ) {
+			->willReturnCallback( static function ( $condition ) use ( $conditions ) {
 				return $conditions[$condition] ?? null;
-			} ) );
+			} );
 		$priv->mModule = $module;
 
 		$priv->sendCacheHeaders( $isError );

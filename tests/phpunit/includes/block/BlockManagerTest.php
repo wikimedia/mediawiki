@@ -285,10 +285,10 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			->onlyMethods( [ 'checkHost' ] )
 			->getMock();
 		$blockManager->method( 'checkHost' )
-			->will( $this->returnValueMap( [ [
+			->willReturnMap( [ [
 				$options['dnsblQuery'],
 				$options['dnsblResponse'],
-			] ] ) );
+			] ] );
 
 		$this->assertSame(
 			$expected,
