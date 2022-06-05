@@ -99,6 +99,9 @@ use WinCacheBagOStuff;
  * - mergeStrategy: see the {@link MediaWiki\Settings\Config\MergeStrategy}.
  * - ignoreKeys: the array should be handled like a set, keys are ignored for validation.
  *
+ * @note After changing this file, run maintenance/generateConfigSchema.php to update
+ *       all the files derived from the information in MainConfigSchema.
+ *
  * @since 1.39
  */
 class MainConfigSchema {
