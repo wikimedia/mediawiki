@@ -652,8 +652,6 @@ return [
 			],
 			'ResourceBasePath' => null,
 			'ResourceLoaderMaxage' => [
-				'versioned' => 2592000,
-				'unversioned' => 300,
 			],
 			'ResourceLoaderUseObjectCacheForDeps' => false,
 			'ResourceLoaderDebug' => false,

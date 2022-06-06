@@ -348,12 +348,11 @@ class ClientHtmlTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	private static function makeContext( $extraQuery = [] ) {
-		$conf = new HashConfig( [
-			'EnableJavaScriptTest' => false,
-			'LoadScript' => '/w/load.php',
-		] );
+		$conf = new HashConfig( [] );
 		return new Context(
-			new ResourceLoader( $conf ),
+			new ResourceLoader( $conf, null, null, [
+				'loadScript' => '/w/load.php',
+			] ),
 			new FauxRequest( array_merge( [
 				'lang' => 'nl',
 				'skin' => 'fallback',

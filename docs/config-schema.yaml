@@ -3539,22 +3539,15 @@ config-schema:
             The default 'remoteBasePath' value for instances of MediaWiki\ResourceLoader\FileModule.
             Defaults to $wgScriptPath.
     ResourceLoaderMaxage:
-        default:
-            versioned: 2592000
-            unversioned: 300
+        default: {  }
         type: object
         description: |-
-            How long a CDN or browser may cache a ResourceLoader HTTP response.
+            Override how long a CDN or browser may cache a ResourceLoader HTTP response.
             Maximum time in seconds. Used for the `max-age` and `s-maxage` Cache-Control headers.
             Valid keys:
-              - versioned: Used for URLs carrying a "version" parameter.
-                This applies to the bulk of load.php transfers, and may have a long cache
-                duration (e.g. weeks or months), because a change in the module bundle will
-                naturally produce a different URL and thus automatically bust the cache.
-              - unversioned: Used for URLs that must not carry a "version" parameter.
-                This includes the startup manifest and controls how quickly changes (in
-                the module registry, dependency tree, and module version) will propagate
-                to clients. This should have a short cache duration (e.g. minutes).
+              - versioned
+              - unversioned
+            @see ResourceLoader::__construct
             @since 1.35
     ResourceLoaderUseObjectCacheForDeps:
         default: false
