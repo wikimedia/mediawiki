@@ -236,7 +236,7 @@ class ApiExpandTemplates extends ApiBase {
 			'showstrategykeys' => false,
 			'generatexml' => [
 				ParamValidator::PARAM_TYPE => 'boolean',
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 		];
 	}

@@ -28,6 +28,7 @@ use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\EnumDef;
 
 /**
  * A query module to show basic page information.
@@ -860,7 +861,7 @@ class ApiQueryInfo extends ApiQueryBase {
 					// need to be added to getCacheMode()
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
-				ApiBase::PARAM_DEPRECATED_VALUES => [
+				EnumDef::PARAM_DEPRECATED_VALUES => [
 					'readable' => true, // Since 1.32
 				],
 			],

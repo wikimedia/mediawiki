@@ -21,6 +21,7 @@
  */
 
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\EnumDef;
 
 /**
  * Query module to perform full text search within wiki titles and content
@@ -422,7 +423,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				],
 				ParamValidator::PARAM_ISMULTI => true,
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
-				ApiBase::PARAM_DEPRECATED_VALUES => [
+				EnumDef::PARAM_DEPRECATED_VALUES => [
 					'score' => true,
 					'hasrelated' => true
 				],

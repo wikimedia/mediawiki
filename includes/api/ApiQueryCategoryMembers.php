@@ -385,10 +385,10 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'startsortkeyprefix' => null,
 			'endsortkeyprefix' => null,
 			'startsortkey' => [
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'endsortkey' => [
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 		];
 

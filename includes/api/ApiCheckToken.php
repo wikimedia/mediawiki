@@ -72,7 +72,7 @@ class ApiCheckToken extends ApiBase {
 			'token' => [
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
-				ApiBase::PARAM_SENSITIVE => true,
+				ParamValidator::PARAM_SENSITIVE => true,
 			],
 			'maxtokenage' => [
 				ParamValidator::PARAM_TYPE => 'integer',

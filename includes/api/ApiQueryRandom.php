@@ -201,7 +201,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 				ParamValidator::PARAM_DEFAULT => 'nonredirects', // for BC
 			],
 			'redirect' => [
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 				ParamValidator::PARAM_DEFAULT => false,
 			],
 			'limit' => [

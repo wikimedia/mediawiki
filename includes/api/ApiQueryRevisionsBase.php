@@ -32,6 +32,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 /**
@@ -779,7 +780,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					'parsetree' => [ 'apihelp-query+revisions+base-paramvalue-prop-parsetree',
 						CONTENT_MODEL_WIKITEXT ],
 				],
-				ApiBase::PARAM_DEPRECATED_VALUES => [
+				EnumDef::PARAM_DEPRECATED_VALUES => [
 					'parsetree' => true,
 				],
 			],
@@ -787,7 +788,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				ParamValidator::PARAM_TYPE => $slotRoles,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-slots',
 				ParamValidator::PARAM_ISMULTI => true,
-				ApiBase::PARAM_ALL => true,
+				ParamValidator::PARAM_ALL => true,
 			],
 			'limit' => [
 				ParamValidator::PARAM_TYPE => 'limit',
@@ -799,38 +800,38 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			'expandtemplates' => [
 				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-expandtemplates',
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'generatexml' => [
 				ParamValidator::PARAM_DEFAULT => false,
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-generatexml',
 			],
 			'parse' => [
 				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-parse',
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'section' => [
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-section',
 			],
 			'diffto' => [
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-diffto',
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'difftotext' => [
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-difftotext',
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'difftotextpst' => [
 				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-difftotextpst',
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'contentformat' => [
 				ParamValidator::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-contentformat',
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 		];
 	}

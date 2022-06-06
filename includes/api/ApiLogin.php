@@ -284,7 +284,7 @@ class ApiLogin extends ApiBase {
 			'token' => [
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false, // for BC
-				ApiBase::PARAM_SENSITIVE => true,
+				ParamValidator::PARAM_SENSITIVE => true,
 				ApiBase::PARAM_HELP_MSG => [ 'api-help-param-token', 'login' ],
 			],
 		];

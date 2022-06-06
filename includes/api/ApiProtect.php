@@ -205,7 +205,7 @@ class ApiProtect extends ApiBase {
 			'cascade' => false,
 			'watch' => [
 				ParamValidator::PARAM_DEFAULT => false,
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 		] + $this->getWatchlistParams();
 	}

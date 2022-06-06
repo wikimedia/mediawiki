@@ -22,6 +22,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinksMigration;
+use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -230,7 +231,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			'namespace' => [
 				ParamValidator::PARAM_TYPE => 'namespace',
 				ParamValidator::PARAM_ISMULTI => true,
-				ApiBase::PARAM_EXTRA_NAMESPACES => [ NS_MEDIA, NS_SPECIAL ],
+				NamespaceDef::PARAM_EXTRA_NAMESPACES => [ NS_MEDIA, NS_SPECIAL ],
 			],
 			'limit' => [
 				ParamValidator::PARAM_DEFAULT => 10,

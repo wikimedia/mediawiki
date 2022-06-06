@@ -719,19 +719,19 @@ class ApiComparePages extends ApiBase {
 
 			'text' => [
 				ParamValidator::PARAM_TYPE => 'text',
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'contentformat' => [
 				ParamValidator::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'contentmodel' => [
 				ParamValidator::PARAM_TYPE => $this->contentHandlerFactory->getContentModels(),
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'section' => [
 				ParamValidator::PARAM_DEFAULT => null,
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 		];
 
@@ -776,7 +776,7 @@ class ApiComparePages extends ApiBase {
 		$ret['slots'] = [
 			ParamValidator::PARAM_TYPE => $slotRoles,
 			ParamValidator::PARAM_ISMULTI => true,
-			ApiBase::PARAM_ALL => true,
+			ParamValidator::PARAM_ALL => true,
 		];
 
 		return $ret;

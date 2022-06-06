@@ -748,7 +748,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			'tag' => null,
 			'toponly' => [
 				ParamValidator::PARAM_DEFAULT => false,
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 		];
 	}

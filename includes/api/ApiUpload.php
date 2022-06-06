@@ -959,7 +959,7 @@ class ApiUpload extends ApiBase {
 			],
 			'watch' => [
 				ParamValidator::PARAM_DEFAULT => false,
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 		];
 
@@ -979,7 +979,7 @@ class ApiUpload extends ApiBase {
 			'url' => null,
 			'filekey' => null,
 			'sessionkey' => [
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'stash' => false,
 
