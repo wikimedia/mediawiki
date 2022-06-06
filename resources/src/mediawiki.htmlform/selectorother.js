@@ -42,18 +42,21 @@
 		 * @param {boolean|jQuery.Event} instant
 		 */
 		function handleSelectOrOther( instant ) {
-			var $other = $root.find( '#' + $( this ).attr( 'id' ) + '-other' );
+			var $select = $( this ).find( 'select' ),
+				$other = $( this ).find( 'input' );
 			$other = $other.add( $other.siblings( 'br' ) );
-			if ( $( this ).val() === 'other' ) {
+			if ( $select.val() === 'other' ) {
 				$other.goIn( instant );
 			} else {
 				$other.goOut( instant );
 			}
 		}
 
+		// Exclude OOUI widgets, since they're infused and SelectWithInputWidget
+		// is responsible for this logic.
 		$root
-			.on( 'change', '.mw-htmlform-select-or-other', handleSelectOrOther )
-			.find( '.mw-htmlform-select-or-other' )
+			.on( 'change', '.mw-htmlform-select-or-other:not(.oo-ui-widget)', handleSelectOrOther )
+			.find( '.mw-htmlform-select-or-other:not(.oo-ui-widget)' )
 			.each( function () {
 				handleSelectOrOther.call( this, true );
 			} );
