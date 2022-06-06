@@ -2,16 +2,22 @@
 
 namespace MediaWiki\Tests\Revision;
 
+use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Revision\IncompleteRevisionException;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionStore;
 use MediaWikiIntegrationTestCase;
+use MWException;
 use MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
+use WikitextContent;
+use WikitextContentHandler;
 
 /**
  * Tests RevisionStore
@@ -343,5 +349,83 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsRevisionRow( $row, bool $expect ) {
 		$this->assertSame( $expect, $this->getRevisionStore()->isRevisionRow( $row ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::failOnNull
+	 */
+	public function testFailOnNull() {
+		$revStore = TestingAccessWrapper::newFromObject( $this->getRevisionStore() );
+		// Success - not null
+		$this->assertSame( 123, $revStore->failOnNull( 123, 'value' ) );
+
+		// Failure - null throws exception
+		$this->expectException( IncompleteRevisionException::class );
+		$revStore->failOnNull( null, 'value' );
+	}
+
+	public function provideFailOnEmpty() {
+		yield 'null' => [ null ];
+		yield 'zero' => [ 0 ];
+		yield 'empty string' => [ '' ];
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::failOnEmpty
+	 * @dataProvider provideFailOnEmpty
+	 */
+	public function testFailOnEmpty( $emptyValue ) {
+		$revStore = TestingAccessWrapper::newFromObject( $this->getRevisionStore() );
+		$this->expectException( IncompleteRevisionException::class );
+		$revStore->failOnEmpty( $emptyValue, 'value' );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::failOnEmpty
+	 */
+	public function testFailOnEmpty_pass() {
+		$revStore = TestingAccessWrapper::newFromObject( $this->getRevisionStore() );
+		$this->assertSame( 123, $revStore->failOnEmpty( 123, 'value' ) );
+	}
+
+	public function provideCheckContent() {
+		yield 'unsupported format' => [
+			false,
+			false,
+			'Can\'t use format text/x-wiki with content model wikitext on [0:Example] role main'
+		];
+		yield 'invalid content' => [
+			true,
+			false,
+			'New content for [0:Example] role main is not valid! Content model is wikitext'
+		];
+		yield 'valid content' => [ true, true, null ];
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::checkContent
+	 * @dataProvider provideCheckContent
+	 */
+	public function testCheckContent( bool $isSupported, bool $isValid, ?string $error ) {
+		$revStore = TestingAccessWrapper::newFromObject( $this->getRevisionStore() );
+		$contentHandler = $this->createMock( WikitextContentHandler::class );
+		$contentHandler->method( 'isSupportedFormat' )->willReturn( $isSupported );
+		$content = $this->createMock( WikitextContent::class );
+		$content->method( 'getModel' )->willReturn( CONTENT_MODEL_WIKITEXT );
+		$content->method( 'getDefaultFormat' )->willReturn( CONTENT_FORMAT_WIKITEXT );
+		$content->method( 'getContentHandler' )->willReturn( $contentHandler );
+		$content->method( 'isValid' )->willReturn( $isValid );
+
+		if ( $error !== null ) {
+			$this->expectException( MWException::class );
+			$this->expectExceptionMessage( $error );
+		}
+		$revStore->checkContent(
+			$content,
+			new PageIdentityValue( 0, NS_MAIN, 'Example', PageIdentityValue::LOCAL ),
+			'main'
+		);
+		// Avoid issues with no assertions for the non-exception case
+		$this->addToAssertionCount( 1 );
 	}
 }
