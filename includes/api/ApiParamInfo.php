@@ -433,18 +433,18 @@ class ApiParamInfo extends ApiBase {
 			],
 
 			'querymodules' => [
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 				ParamValidator::PARAM_ISMULTI => true,
 				ParamValidator::PARAM_TYPE => $querymodules,
 			],
 			'mainmodule' => [
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'pagesetmodule' => [
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'formatmodules' => [
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 				ParamValidator::PARAM_ISMULTI => true,
 				ParamValidator::PARAM_TYPE => $formatmodules,
 			]

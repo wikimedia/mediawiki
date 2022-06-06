@@ -564,7 +564,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			],
 			'token' => [
 				ParamValidator::PARAM_TYPE => 'string',
-				ApiBase::PARAM_SENSITIVE => true,
+				ParamValidator::PARAM_SENSITIVE => true,
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',

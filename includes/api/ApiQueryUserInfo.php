@@ -355,7 +355,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		return [
 			'prop' => [
 				ParamValidator::PARAM_ISMULTI => true,
-				ApiBase::PARAM_ALL => true,
+				ParamValidator::PARAM_ALL => true,
 				ParamValidator::PARAM_TYPE => [
 					'blockinfo',
 					'hasmsg',

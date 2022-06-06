@@ -1786,9 +1786,9 @@ abstract class ApiBase extends ContextSource {
 
 		if ( $this->needsToken() ) {
 			$params['token'] = [
-				self::PARAM_TYPE => 'string',
-				self::PARAM_REQUIRED => true,
-				self::PARAM_SENSITIVE => true,
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_SENSITIVE => true,
 				self::PARAM_HELP_MSG => [
 					'api-help-param-token',
 					$this->needsToken(),
@@ -1833,11 +1833,11 @@ abstract class ApiBase extends ContextSource {
 			}
 			$msgs[$param] = [ $msg ];
 
-			if ( isset( $settings[self::PARAM_TYPE] ) &&
-				$settings[self::PARAM_TYPE] === 'submodule'
+			if ( isset( $settings[ParamValidator::PARAM_TYPE] ) &&
+				$settings[ParamValidator::PARAM_TYPE] === 'submodule'
 			) {
-				if ( isset( $settings[self::PARAM_SUBMODULE_MAP] ) ) {
-					$map = $settings[self::PARAM_SUBMODULE_MAP];
+				if ( isset( $settings[SubmoduleDef::PARAM_SUBMODULE_MAP] ) ) {
+					$map = $settings[SubmoduleDef::PARAM_SUBMODULE_MAP];
 				} else {
 					$prefix = $this->isMain() ? '' : ( $this->getModulePath() . '+' );
 					$map = [];
@@ -1889,16 +1889,16 @@ abstract class ApiBase extends ContextSource {
 					self::dieDebug( __METHOD__,
 						'ApiBase::PARAM_HELP_MSG_PER_VALUE is not valid' );
 				}
-				if ( !is_array( $settings[self::PARAM_TYPE] ) ) {
+				if ( !is_array( $settings[ParamValidator::PARAM_TYPE] ) ) {
 					self::dieDebug( __METHOD__,
 						'ApiBase::PARAM_HELP_MSG_PER_VALUE may only be used when ' .
 						'ParamValidator::PARAM_TYPE is an array' );
 				}
 
 				$valueMsgs = $settings[self::PARAM_HELP_MSG_PER_VALUE];
-				$deprecatedValues = $settings[self::PARAM_DEPRECATED_VALUES] ?? [];
+				$deprecatedValues = $settings[EnumDef::PARAM_DEPRECATED_VALUES] ?? [];
 
-				foreach ( $settings[self::PARAM_TYPE] as $value ) {
+				foreach ( $settings[ParamValidator::PARAM_TYPE] as $value ) {
 					if ( isset( $valueMsgs[$value] ) ) {
 						$msg = $valueMsgs[$value];
 					} else {

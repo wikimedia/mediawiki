@@ -180,7 +180,7 @@ class ApiUserrights extends ApiBase {
 			],
 			'userid' => [
 				ParamValidator::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'add' => [
 				ParamValidator::PARAM_TYPE => $allGroups,
