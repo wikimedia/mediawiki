@@ -2387,7 +2387,7 @@
 	"deleteprotected": "Вы не можаце выдаліць гэтую старонку, бо яна ахавана.",
 	"deleting-backlinks-warning": "<strong>Увага:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|Іншыя старонкі]] спасылаюцца на ці ўключаюць старонку, якую вы збіраецеся выдаліць.",
 	"deleting-subpages-warning": "<strong>Увага:</strong> Старонка, якую вы хочаце выдаліць, мае [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|$1 падстаронку|$1 падстаронкі|$1 падстаронак|51=болей за 50 падстаронак}}]].",
-	"deleting-talkpage-subpages-warning": "<strong>Увага:</strong> Старонка, якую вы хочаце выдаліць, мае [[Special:PrefixIndex/{{TALKPAGENAME}}|{{PLURAL:$1|$1 падстаронку|$1 падстаронкі|$1 падстаронак|51=болей за 50 падстаронак}}]].",
+	"deleting-talkpage-subpages-warning": "<strong>Увага:</strong> Старонка, якую вы хочаце выдаліць, мае [[Special:PrefixIndex/{{TALKPAGENAME}}/|{{PLURAL:$1|$1 падстаронку|$1 падстаронкі|$1 падстаронак|51=болей за 50 падстаронак}}]].",
 	"rollback": "Адкаціць праўкі",
 	"rollback-confirmation-confirm": "Калі ласка, пацвердзіце:",
 	"rollback-confirmation-yes": "Адкат",
