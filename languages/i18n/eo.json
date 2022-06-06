@@ -1140,7 +1140,7 @@
 	"badsiglength": "La subskribo estas tro longa.\nĜi devas esti sub $1 {{PLURAL:$1|signo|signoj}}.",
 	"badsiglinebreak": "Via subskribo devas konsisti de ununura linio de vikiteksto.",
 	"linterror-bogus-image-options": "Malvalida dosiera opcio",
-	"linterror-deletable-table-tag": "Tabla etikedo kiu devus esti forigita",
+	"linterror-deletable-table-tag": "Table-etikedo devus esti forigita",
 	"linterror-html5-misnesting": "Misingado (nun rompita)",
 	"linterror-misc-tidy-replacement-issues": "Diversaj markadaj eraroj",
 	"linterror-misnested-tag": "Misingita etikedo kiu devus esti ĝuste ingita",

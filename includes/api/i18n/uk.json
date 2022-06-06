@@ -1572,7 +1572,7 @@
 	"api-help-param-type-enum": "{{PLURAL:$1|1=Одне з наступних значень|2=Значення (розділені через <kbd>{{!}}</kbd> або [[Special:ApiHelp/main#main/datatypes|альтернативу]])}}: $2",
 	"api-help-param-multi-separate": "Розділіть значення з допомогою <kbd>|</kbd> або [[Special:ApiHelp/main#main/datatypes|альтернативу]].",
 	"api-help-param-multi-all": "Щоб зазначити всі значення, використовуйте <kbd>$1</kbd>.",
-	"api-help-param-default-empty": "За замовчуванням: <span class=\"apihelp-empty\">(пусто)</span>",
+	"api-help-param-default-empty": "За замовчуванням: <span class=\"apihelp-empty\">(порожньо)</span>",
 	"api-help-param-token": "Токен «$1» отримано з [[Special:ApiHelp/query+tokens|action=query&meta=tokens]]",
 	"api-help-param-token-webui": "Для сумісності, приймається також токен, використаний у користувацькому веб-інтерфейсі.",
 	"api-help-param-disabled-in-miser-mode": "Вимкнено через [[mw:Special:MyLanguage/Manual:$wgMiserMode|скупий режим]].",

@@ -2443,7 +2443,7 @@
 	"deleteprotected": "شما نمی‌توانید این صفحه را پاک کنید چون که از آن محافظت شده‌است.",
 	"deleting-backlinks-warning": "<strong>هشدار:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|صفحه‌های دیگری]] هستند که به صفحه‌ای که شما در حال حذف آن هستید پیوند دارند یا آن را تراگنجانیده‌اند.",
 	"deleting-subpages-warning": "<strong>هشدار:</strong> صفحه‌ای که شما می‌خواهید حذف کنید [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|یک زیرصفحه|$1 زیرصفحه|51=بیش از پنجاه زیرصفحه}}]] دارد.",
-	"deleting-talkpage-subpages-warning": "<strong>هشدار:</strong> صفحهٔ بحث مرتبط با صفحه‌ای که در حال حذف آن هستید دارای [[Special:PrefixIndex/{{TALKPAGENAME}}|{{PLURAL:$1|یک زیرصفحه|$1 زیرصفحه|51=بیش از ۵۰ زیرصفحه}}]] است.",
+	"deleting-talkpage-subpages-warning": "<strong>هشدار:</strong> صفحهٔ بحث مرتبط با صفحه‌ای که در حال حذف آن هستید دارای [[Special:PrefixIndex/{{TALKPAGENAME}}/|{{PLURAL:$1|یک زیرصفحه|$1 زیرصفحه|51=بیش از ۵۰ زیرصفحه}}]] است.",
 	"rollback": "واگردانی ویرایش‌ها",
 	"rollback-confirmation-confirm": "لطفاً تأیید کنید:",
 	"rollback-confirmation-yes": "واگردانی",
