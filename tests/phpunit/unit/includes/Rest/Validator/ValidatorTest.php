@@ -83,9 +83,9 @@ class ValidatorTest extends \MediaWikiUnitTestCase {
 		];
 
 		yield 'DELETE request with non-empty body' => [
-			$emptyBodyValidator,
+			$nonEmptyBodyValidator,
 			new RequestData( $nonEmptyBodyParams + [ 'method' => 'DELETE ' ] ),
-			null
+			$bodyData
 		];
 
 		yield 'POST request with empty body' => [
