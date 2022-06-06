@@ -2388,7 +2388,7 @@
 	"delete-legend": "Xóa",
 	"historywarning": "'''Cảnh báo:''' Trang bạn sắp xóa đã có lịch sử $1 {{PLURAL:}}phiên bản:",
 	"historyaction-submit": "Xem các phiên bản",
-	"confirmdeletetext": "Bạn đang chuẩn bị xóa một trang cùng với tất cả lịch sử của nó.\nXin xác nhận việc bạn định làm, và hiểu rõ những hệ lụy của nó, và bạn thực hiện nó theo đúng đúng [[{{MediaWiki:Policy-url}}|quy định]].",
+	"confirmdeletetext": "Bạn đang chuẩn bị xóa một trang cùng với tất cả lịch sử của nó.\nXin xác nhận việc bạn định làm, và hiểu rõ những hệ lụy của nó, và bạn thực hiện nó theo đúng [[{{MediaWiki:Policy-url}}|quy định]].",
 	"actioncomplete": "Đã thực hiện xong",
 	"actionfailed": "Tác vụ thất bại",
 	"deletedtext": "Đã xóa “$1”. Xem danh sách các tác vụ xóa gần nhất tại $2.",

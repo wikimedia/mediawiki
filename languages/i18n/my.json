@@ -2429,7 +2429,7 @@
 	"watchlisttools-edit": "စောင့်ကြည့်စာရင်းများကို ကြည့်ပြီး တည်းဖြတ်ပါ။",
 	"watchlisttools-raw": "စောင့်ကြည့်စာရင်း အကြမ်းကို တည်းဖြတ်ရန်",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|ဆွေးနွေး]])",
-	"timezone-local": "ဒေသတွင်း",
+	"timezone-local": "ဒေသန္တရ",
 	"duplicate-defaultsort": "'''သတိပေးချက် -''' ပုံမှန် sort key \"$2\" oသည် ယခင်ပုံမှန်ဖြစ်သော sort key \"$1\" ကို override ထပ်ရေးမည်ဖြစ်သည်.",
 	"version": "ဗားရှင်း",
 	"version-specialpages": "အထူး စာမျက်နှာများ",

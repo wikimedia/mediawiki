@@ -3283,7 +3283,7 @@
 	"confirm-watch-button": "موافق",
 	"confirm-watch-top": "إضافة هذه الصفحة إلى قائمة مراقبتك؟",
 	"confirm-watch-label": "الفترة الزمنية لقائمة المراقبة:",
-	"watchlist-expiry-options": "Permanent:infinite,أسبوع واحد:1 week,شهر واحد:1 month,3 أشهر:3 months,6 أشهر:6 months",
+	"watchlist-expiry-options": "دائم:infinite,أسبوع واحد:1 week,شهر واحد:1 month,3 أشهر:3 months,6 أشهر:6 months",
 	"watchlist-expires-in-aria-label": "انتهاء صلاحية عنصر قائمة المراقبة",
 	"confirm-watch-button-expiry": "راقب",
 	"confirm-unwatch-button": "موافق",
