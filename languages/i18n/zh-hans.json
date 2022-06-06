@@ -2730,7 +2730,7 @@
 	"blockiptext": "使用下方的表单来禁止来自特定IP地址或用户名的写访问。\n只有在为了防止破坏，并符合[[{{MediaWiki:Policy-url}}|方针]]的情况下才可采取此行动。\n请在下面输入一个具体的理由（例如引述一个被破坏的页面）。\n您可以使用[https://zh.wikipedia.org/wiki/无类别域间路由 CIDR]语法封禁IP地址段；允许的最大段是/$1（用于IPv4）和/$2（用于IPv6）。",
 	"ipaddressorusername": "IP地址，用户名或封禁ID：",
 	"ipbreason": "原因：",
-	"ipbreason-dropdown": "*常见封禁原因\n** 插入虚假信息\n** 移除页面内容\n** 添加垃圾外部链接\n** 插入无意义文字\n** 恐吓行为/骚扰\n** 滥用多个账户\n** 不能接受的用户名",
+	"ipbreason-dropdown": "*常见封禁原因\n** 填写不实内容\n** 删除页面内容\n** 添加垃圾链接\n** 添加无意义文字\n** 无礼的行为、攻击/骚扰他人\n** 滥用多个傀儡账户\n** 不可接受的用户名",
 	"ipb-hardblock": "封禁使用该IP地址登录的用户",
 	"ipbcreateaccount": "账号创建",
 	"ipbemailban": "发送电子邮件",
