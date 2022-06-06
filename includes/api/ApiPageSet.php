@@ -1630,32 +1630,32 @@ class ApiPageSet extends ApiBase {
 	public function getAllowedParams( $flags = 0 ) {
 		$result = [
 			'titles' => [
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_ISMULTI => true,
 				ApiBase::PARAM_HELP_MSG => 'api-pageset-param-titles',
 			],
 			'pageids' => [
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_ISMULTI => true,
 				ApiBase::PARAM_HELP_MSG => 'api-pageset-param-pageids',
 			],
 			'revids' => [
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_ISMULTI => true,
 				ApiBase::PARAM_HELP_MSG => 'api-pageset-param-revids',
 			],
 			'generator' => [
-				ApiBase::PARAM_TYPE => null,
+				ParamValidator::PARAM_TYPE => null,
 				ApiBase::PARAM_HELP_MSG => 'api-pageset-param-generator',
 				ApiBase::PARAM_SUBMODULE_PARAM_PREFIX => 'g',
 			],
 			'redirects' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => $this->mAllowGenerator
 					? 'api-pageset-param-redirects-generator'
 					: 'api-pageset-param-redirects-nogenerator',
 			],
 			'converttitles' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => [
 					'api-pageset-param-converttitles',
 					[ Message::listParam( LanguageConverter::$languagesWithVariants, 'text' ) ],
@@ -1666,7 +1666,7 @@ class ApiPageSet extends ApiBase {
 		if ( !$this->mAllowGenerator ) {
 			unset( $result['generator'] );
 		} elseif ( $flags & ApiBase::GET_VALUES_FOR_HELP ) {
-			$result['generator'][ApiBase::PARAM_TYPE] = 'submodule';
+			$result['generator'][ParamValidator::PARAM_TYPE] = 'submodule';
 			$result['generator'][ApiBase::PARAM_SUBMODULE_MAP] = $this->getGenerators();
 		}
 

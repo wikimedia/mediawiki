@@ -22,6 +22,7 @@
 
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageNameUtils;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * A query action to return messages from site message cache
@@ -250,12 +251,12 @@ class ApiQueryAllMessages extends ApiQueryBase {
 	public function getAllowedParams() {
 		return [
 			'messages' => [
-				ApiBase::PARAM_DFLT => '*',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_DEFAULT => '*',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'prop' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => [
 					'default'
 				]
 			],
@@ -263,13 +264,13 @@ class ApiQueryAllMessages extends ApiQueryBase {
 			'nocontent' => false,
 			'includelocal' => false,
 			'args' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_ALLOW_DUPLICATES => true,
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_ALLOW_DUPLICATES => true,
 			],
 			'filter' => [],
 			'customised' => [
-				ApiBase::PARAM_DFLT => 'all',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'all',
+				ParamValidator::PARAM_TYPE => [
 					'all',
 					'modified',
 					'unmodified'

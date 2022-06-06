@@ -27,6 +27,7 @@ use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Query module to get information about the currently logged-in user
@@ -353,9 +354,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	public function getAllowedParams() {
 		return [
 			'prop' => [
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_ISMULTI => true,
 				ApiBase::PARAM_ALL => true,
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_TYPE => [
 					'blockinfo',
 					'hasmsg',
 					'groups',

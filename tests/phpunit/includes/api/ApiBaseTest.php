@@ -2,6 +2,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -403,7 +404,7 @@ class ApiBaseTest extends ApiTestCase {
 			'String param, empty' => [ '', 'default', '', [] ],
 			'String param, required, empty' => [
 				'',
-				[ ApiBase::PARAM_DFLT => 'default', ApiBase::PARAM_REQUIRED => true ],
+				[ ParamValidator::PARAM_DEFAULT => 'default', ParamValidator::PARAM_REQUIRED => true ],
 				ApiUsageException::newWithMessage( null, [
 					'paramvalidator-missingparam',
 					Message::plaintextParam( 'myParam' ),
@@ -535,13 +536,13 @@ class ApiBaseTest extends ApiTestCase {
 			],
 			'Deprecated parameter with default, unspecified' => [
 				null,
-				[ ApiBase::PARAM_DEPRECATED => true, ApiBase::PARAM_DFLT => 'foo' ],
+				[ ApiBase::PARAM_DEPRECATED => true, ParamValidator::PARAM_DEFAULT => 'foo' ],
 				'foo',
 				[],
 			],
 			'Deprecated parameter with default, specified' => [
 				'foo',
-				[ ApiBase::PARAM_DEPRECATED => true, ApiBase::PARAM_DFLT => 'foo' ],
+				[ ApiBase::PARAM_DEPRECATED => true, ParamValidator::PARAM_DEFAULT => 'foo' ],
 				'foo',
 				[ [
 					'paramvalidator-param-deprecated',
@@ -564,7 +565,7 @@ class ApiBaseTest extends ApiTestCase {
 				[
 					ApiBase::PARAM_TYPE => [ 'a' ],
 					ApiBase::PARAM_DEPRECATED_VALUES => [ 'a' => true ],
-					ApiBase::PARAM_DFLT => 'a'
+					ParamValidator::PARAM_DEFAULT => 'a'
 				],
 				'a',
 				[],
@@ -574,7 +575,7 @@ class ApiBaseTest extends ApiTestCase {
 				[
 					ApiBase::PARAM_TYPE => [ 'a' ],
 					ApiBase::PARAM_DEPRECATED_VALUES => [ 'a' => true ],
-					ApiBase::PARAM_DFLT => 'a'
+					ParamValidator::PARAM_DEFAULT => 'a'
 				],
 				'a',
 				[ [

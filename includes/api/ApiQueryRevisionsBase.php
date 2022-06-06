@@ -739,9 +739,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		return [
 			'prop' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_DFLT => 'ids|timestamp|flags|comment|user',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_DEFAULT => 'ids|timestamp|flags|comment|user',
+				ParamValidator::PARAM_TYPE => [
 					'ids',
 					'flags',
 					'timestamp',
@@ -784,30 +784,30 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				],
 			],
 			'slots' => [
-				ApiBase::PARAM_TYPE => $slotRoles,
+				ParamValidator::PARAM_TYPE => $slotRoles,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-slots',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_ISMULTI => true,
 				ApiBase::PARAM_ALL => true,
 			],
 			'limit' => [
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2,
+				ParamValidator::PARAM_TYPE => 'limit',
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				IntegerDef::PARAM_MAX2 => ApiBase::LIMIT_BIG2,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-limit',
 			],
 			'expandtemplates' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-expandtemplates',
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'generatexml' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_DEPRECATED => true,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-generatexml',
 			],
 			'parse' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-parse',
 				ApiBase::PARAM_DEPRECATED => true,
 			],
@@ -823,12 +823,12 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'difftotextpst' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-difftotextpst',
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'contentformat' => [
-				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
+				ParamValidator::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
 				ApiBase::PARAM_HELP_MSG => 'apihelp-query+revisions+base-param-contentformat',
 				ApiBase::PARAM_DEPRECATED => true,
 			],

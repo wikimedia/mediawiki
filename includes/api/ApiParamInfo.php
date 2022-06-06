@@ -22,6 +22,7 @@
 
 use MediaWiki\ExtensionInfo;
 use MediaWiki\User\UserFactory;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * @ingroup API
@@ -424,17 +425,17 @@ class ApiParamInfo extends ApiBase {
 
 		return [
 			'modules' => [
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'helpformat' => [
-				ApiBase::PARAM_DFLT => 'none',
-				ApiBase::PARAM_TYPE => [ 'html', 'wikitext', 'raw', 'none' ],
+				ParamValidator::PARAM_DEFAULT => 'none',
+				ParamValidator::PARAM_TYPE => [ 'html', 'wikitext', 'raw', 'none' ],
 			],
 
 			'querymodules' => [
 				ApiBase::PARAM_DEPRECATED => true,
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => $querymodules,
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => $querymodules,
 			],
 			'mainmodule' => [
 				ApiBase::PARAM_DEPRECATED => true,
@@ -444,8 +445,8 @@ class ApiParamInfo extends ApiBase {
 			],
 			'formatmodules' => [
 				ApiBase::PARAM_DEPRECATED => true,
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => $formatmodules,
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => $formatmodules,
 			]
 		];
 	}

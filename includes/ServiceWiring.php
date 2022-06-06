@@ -1479,16 +1479,21 @@ return [
 	},
 
 	'ResourceLoader' => static function ( MediaWikiServices $services ): ResourceLoader {
-		// @todo This should not take a Config object, but it's not so easy to remove because it
-		// exposes it in a getter, which is actually used.
 		$config = $services->getMainConfig();
 
+		$maxage = $config->get( MainConfigNames::ResourceLoaderMaxage );
 		$rl = new ResourceLoader(
 			$config,
 			LoggerFactory::getInstance( 'resourceloader' ),
 			$config->get( MainConfigNames::ResourceLoaderUseObjectCacheForDeps )
 				? new KeyValueDependencyStore( $services->getMainObjectStash() )
-				: new SqlModuleDependencyStore( $services->getDBLoadBalancer() )
+				: new SqlModuleDependencyStore( $services->getDBLoadBalancer() ),
+			[
+				'loadScript' => $config->get( MainConfigNames::LoadScript ),
+				'maxageVersioned' => $maxage['versioned'] ?? null,
+				'maxageUnversioned' => $maxage['unversioned'] ?? null,
+				'useFileCache' => $config->get( MainConfigNames::UseFileCache ),
+			]
 		);
 
 		$extRegistry = ExtensionRegistry::getInstance();

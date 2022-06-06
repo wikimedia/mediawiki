@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\ParamValidator\ParamValidator;
+
 /**
  * Query module to perform full text search within wiki titles and content
  *
@@ -385,24 +387,24 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 		$this->allowedParams = $this->buildCommonApiParams() + [
 			'what' => [
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_TYPE => [
 					'title',
 					'text',
 					'nearmatch',
 				]
 			],
 			'info' => [
-				ApiBase::PARAM_DFLT => 'totalhits|suggestion|rewrittenquery',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'totalhits|suggestion|rewrittenquery',
+				ParamValidator::PARAM_TYPE => [
 					'totalhits',
 					'suggestion',
 					'rewrittenquery',
 				],
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'prop' => [
-				ApiBase::PARAM_DFLT => 'size|wordcount|timestamp|snippet',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'size|wordcount|timestamp|snippet',
+				ParamValidator::PARAM_TYPE => [
 					'size',
 					'wordcount',
 					'timestamp',
@@ -418,7 +420,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					'hasrelated', // deprecated
 					'extensiondata',
 				],
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_ISMULTI => true,
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 				ApiBase::PARAM_DEPRECATED_VALUES => [
 					'score' => true,
@@ -431,8 +433,8 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 		// Generators only add info/properties if explicitly requested. T263841
 		if ( $this->isInGeneratorMode() ) {
-			$this->allowedParams['prop'][ApiBase::PARAM_DFLT] = '';
-			$this->allowedParams['info'][ApiBase::PARAM_DFLT] = '';
+			$this->allowedParams['prop'][ParamValidator::PARAM_DEFAULT] = '';
+			$this->allowedParams['info'][ParamValidator::PARAM_DEFAULT] = '';
 		}
 
 		// If we have more than one engine the list of available sorts is
@@ -440,8 +442,8 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$alternatives = $this->searchEngineConfig->getSearchTypes();
 		if ( count( $alternatives ) == 1 ) {
 			$this->allowedParams['sort'] = [
-				ApiBase::PARAM_DFLT => SearchEngine::DEFAULT_SORT,
-				ApiBase::PARAM_TYPE => $this->searchEngineFactory->create()->getValidSorts(),
+				ParamValidator::PARAM_DEFAULT => SearchEngine::DEFAULT_SORT,
+				ParamValidator::PARAM_TYPE => $this->searchEngineFactory->create()->getValidSorts(),
 			];
 		}
 

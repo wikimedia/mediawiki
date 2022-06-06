@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\ParamValidator\ParamValidator;
+
 /**
  * API XML output formatter
  * @ingroup API
@@ -284,7 +286,7 @@ class ApiFormatXml extends ApiFormatBase {
 				ApiBase::PARAM_HELP_MSG => 'apihelp-xml-param-xslt',
 			],
 			'includexmlnamespace' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-xml-param-includexmlnamespace',
 			],
 		];

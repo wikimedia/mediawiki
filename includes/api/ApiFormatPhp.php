@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MainConfigNames;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * API Serialized PHP output formatter
@@ -75,8 +76,8 @@ class ApiFormatPhp extends ApiFormatBase {
 	public function getAllowedParams() {
 		return parent::getAllowedParams() + [
 			'formatversion' => [
-				ApiBase::PARAM_TYPE => [ '1', '2', 'latest' ],
-				ApiBase::PARAM_DFLT => '1',
+				ParamValidator::PARAM_TYPE => [ '1', '2', 'latest' ],
+				ParamValidator::PARAM_DEFAULT => '1',
 				ApiBase::PARAM_HELP_MSG => 'apihelp-php-param-formatversion',
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],

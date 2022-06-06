@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MainConfigNames;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * A query action to return meta information about the foreign file repos
@@ -87,9 +88,9 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 
 		return [
 			'prop' => [
-				ApiBase::PARAM_DFLT => implode( '|', $props ),
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => $props,
+				ParamValidator::PARAM_DEFAULT => implode( '|', $props ),
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => $props,
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 		];

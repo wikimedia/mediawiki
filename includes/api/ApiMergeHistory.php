@@ -22,6 +22,7 @@
 
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\PageIdentity;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * API Module to merge page histories
@@ -127,14 +128,14 @@ class ApiMergeHistory extends ApiBase {
 		return [
 			'from' => null,
 			'fromid' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 			'to' => null,
 			'toid' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 			'timestamp' => [
-				ApiBase::PARAM_TYPE => 'timestamp'
+				ParamValidator::PARAM_TYPE => 'timestamp'
 			],
 			'reason' => '',
 		];

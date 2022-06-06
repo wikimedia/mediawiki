@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\ParamValidator\ParamValidator;
+
 /**
  * API JSON output formatter
  * @ingroup API
@@ -125,16 +127,16 @@ class ApiFormatJson extends ApiFormatBase {
 				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-callback',
 			],
 			'utf8' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-utf8',
 			],
 			'ascii' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-ascii',
 			],
 			'formatversion' => [
-				ApiBase::PARAM_TYPE => [ '1', '2', 'latest' ],
-				ApiBase::PARAM_DFLT => '1',
+				ParamValidator::PARAM_TYPE => [ '1', '2', 'latest' ],
+				ParamValidator::PARAM_DEFAULT => '1',
 				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-formatversion',
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],

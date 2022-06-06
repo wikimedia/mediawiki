@@ -24,6 +24,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * API Module to move pages
@@ -242,11 +243,11 @@ class ApiMove extends ApiBase {
 		$params = [
 			'from' => null,
 			'fromid' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 			'to' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true
 			],
 			'reason' => '',
 			'movetalk' => false,
@@ -261,8 +262,8 @@ class ApiMove extends ApiBase {
 		return $params + [
 			'ignorewarnings' => false,
 			'tags' => [
-				ApiBase::PARAM_TYPE => 'tags',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'tags',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 		];
 	}

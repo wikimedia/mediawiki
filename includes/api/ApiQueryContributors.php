@@ -27,6 +27,8 @@ use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserGroupManager;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 /**
  * A query module to show contributors to a page
@@ -267,27 +269,27 @@ class ApiQueryContributors extends ApiQueryBase {
 
 		return [
 			'group' => [
-				ApiBase::PARAM_TYPE => $userGroups,
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => $userGroups,
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'excludegroup' => [
-				ApiBase::PARAM_TYPE => $userGroups,
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => $userGroups,
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'rights' => [
-				ApiBase::PARAM_TYPE => $userRights,
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => $userRights,
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'excluderights' => [
-				ApiBase::PARAM_TYPE => $userRights,
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => $userRights,
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'limit' => [
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
+				ParamValidator::PARAM_DEFAULT => 10,
+				ParamValidator::PARAM_TYPE => 'limit',
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				IntegerDef::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',

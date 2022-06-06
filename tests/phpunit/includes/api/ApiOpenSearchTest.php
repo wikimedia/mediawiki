@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\ParamValidator\ParamValidator;
+
 /**
  * TODO convert to unit test, no integration is needed
  *
@@ -42,7 +44,7 @@ class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertArrayNotHasKey( 'offset', $params );
 		$this->assertArrayHasKey( 'profile', $params, print_r( $params, true ) );
-		$this->assertEquals( 'normal', $params['profile'][ApiBase::PARAM_DFLT] );
+		$this->assertEquals( 'normal', $params['profile'][ParamValidator::PARAM_DEFAULT] );
 	}
 
 	private function replaceSearchEngineConfig() {

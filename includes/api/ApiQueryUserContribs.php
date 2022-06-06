@@ -30,6 +30,8 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
 use Wikimedia\IPUtils;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -669,48 +671,48 @@ class ApiQueryUserContribs extends ApiQueryBase {
 	public function getAllowedParams() {
 		return [
 			'limit' => [
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
+				ParamValidator::PARAM_DEFAULT => 10,
+				ParamValidator::PARAM_TYPE => 'limit',
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				IntegerDef::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			],
 			'start' => [
-				ApiBase::PARAM_TYPE => 'timestamp'
+				ParamValidator::PARAM_TYPE => 'timestamp'
 			],
 			'end' => [
-				ApiBase::PARAM_TYPE => 'timestamp'
+				ParamValidator::PARAM_TYPE => 'timestamp'
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],
 			'user' => [
-				ApiBase::PARAM_TYPE => 'user',
+				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'interwiki' ],
-				ApiBase::PARAM_ISMULTI => true
+				ParamValidator::PARAM_ISMULTI => true
 			],
 			'userids' => [
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_ISMULTI => true
+				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_ISMULTI => true
 			],
 			'userprefix' => null,
 			'iprange' => null,
 			'dir' => [
-				ApiBase::PARAM_DFLT => 'older',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'older',
+				ParamValidator::PARAM_TYPE => [
 					'newer',
 					'older'
 				],
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
 			],
 			'namespace' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => 'namespace'
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'namespace'
 			],
 			'prop' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_DFLT => 'ids|title|timestamp|comment|size|flags',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_DEFAULT => 'ids|title|timestamp|comment|size|flags',
+				ParamValidator::PARAM_TYPE => [
 					'ids',
 					'title',
 					'timestamp',
@@ -725,8 +727,8 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			'show' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => [
 					'minor',
 					'!minor',
 					'patrolled',
@@ -745,7 +747,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			],
 			'tag' => null,
 			'toponly' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 		];

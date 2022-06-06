@@ -27,6 +27,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
@@ -688,48 +689,48 @@ class ApiComparePages extends ApiBase {
 		$fromToParams = [
 			'title' => null,
 			'id' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 			'rev' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 
 			'slots' => [
-				ApiBase::PARAM_TYPE => $slotRoles,
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => $slotRoles,
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'text-{slot}' => [
 				ApiBase::PARAM_TEMPLATE_VARS => [ 'slot' => 'slots' ], // fixed below
-				ApiBase::PARAM_TYPE => 'text',
+				ParamValidator::PARAM_TYPE => 'text',
 			],
 			'section-{slot}' => [
 				ApiBase::PARAM_TEMPLATE_VARS => [ 'slot' => 'slots' ], // fixed below
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 			'contentformat-{slot}' => [
 				ApiBase::PARAM_TEMPLATE_VARS => [ 'slot' => 'slots' ], // fixed below
-				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
+				ParamValidator::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
 			],
 			'contentmodel-{slot}' => [
 				ApiBase::PARAM_TEMPLATE_VARS => [ 'slot' => 'slots' ], // fixed below
-				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getContentModels(),
+				ParamValidator::PARAM_TYPE => $this->contentHandlerFactory->getContentModels(),
 			],
 			'pst' => false,
 
 			'text' => [
-				ApiBase::PARAM_TYPE => 'text',
+				ParamValidator::PARAM_TYPE => 'text',
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'contentformat' => [
-				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
+				ParamValidator::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'contentmodel' => [
-				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getContentModels(),
+				ParamValidator::PARAM_TYPE => $this->contentHandlerFactory->getContentModels(),
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'section' => [
-				ApiBase::PARAM_DFLT => null,
+				ParamValidator::PARAM_DEFAULT => null,
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 		];
@@ -750,13 +751,13 @@ class ApiComparePages extends ApiBase {
 
 		$ret = wfArrayInsertAfter(
 			$ret,
-			[ 'torelative' => [ ApiBase::PARAM_TYPE => [ 'prev', 'next', 'cur' ], ] ],
+			[ 'torelative' => [ ParamValidator::PARAM_TYPE => [ 'prev', 'next', 'cur' ], ] ],
 			'torev'
 		);
 
 		$ret['prop'] = [
-			ApiBase::PARAM_DFLT => 'diff|ids|title',
-			ApiBase::PARAM_TYPE => [
+			ParamValidator::PARAM_DEFAULT => 'diff|ids|title',
+			ParamValidator::PARAM_TYPE => [
 				'diff',
 				'diffsize',
 				'rel',
@@ -768,13 +769,13 @@ class ApiComparePages extends ApiBase {
 				'size',
 				'timestamp',
 			],
-			ApiBase::PARAM_ISMULTI => true,
+			ParamValidator::PARAM_ISMULTI => true,
 			ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 		];
 
 		$ret['slots'] = [
-			ApiBase::PARAM_TYPE => $slotRoles,
-			ApiBase::PARAM_ISMULTI => true,
+			ParamValidator::PARAM_TYPE => $slotRoles,
+			ParamValidator::PARAM_ISMULTI => true,
 			ApiBase::PARAM_ALL => true,
 		];
 

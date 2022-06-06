@@ -36,6 +36,7 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
 /**
@@ -250,11 +251,11 @@ class ApiBlock extends ApiBase {
 	public function getAllowedParams() {
 		$params = [
 			'user' => [
-				ApiBase::PARAM_TYPE => 'user',
+				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'cidr', 'id' ],
 			],
 			'userid' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 			'expiry' => 'never',
@@ -275,7 +276,7 @@ class ApiBlock extends ApiBase {
 		if ( $this->watchlistExpiryEnabled ) {
 			$params += [
 				'watchlistexpiry' => [
-					ApiBase::PARAM_TYPE => 'expiry',
+					ParamValidator::PARAM_TYPE => 'expiry',
 					ExpiryDef::PARAM_MAX => $this->watchlistMaxDuration,
 					ExpiryDef::PARAM_USE_MAX => true,
 				]
@@ -284,12 +285,12 @@ class ApiBlock extends ApiBase {
 
 		$params += [
 			'tags' => [
-				ApiBase::PARAM_TYPE => 'tags',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'tags',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'partial' => false,
 			'pagerestrictions' => [
-				ApiBase::PARAM_TYPE => 'title',
+				ParamValidator::PARAM_TYPE => 'title',
 				TitleDef::PARAM_MUST_EXIST => true,
 
 				// TODO: TitleDef returns instances of TitleValue when PARAM_RETURN_OBJECT is
@@ -298,21 +299,21 @@ class ApiBlock extends ApiBase {
 				// string or instance of Title.
 				//TitleDef::PARAM_RETURN_OBJECT => true,
 
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_ISMULTI_LIMIT1 => 10,
-				ApiBase::PARAM_ISMULTI_LIMIT2 => 10,
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_ISMULTI_LIMIT1 => 10,
+				ParamValidator::PARAM_ISMULTI_LIMIT2 => 10,
 			],
 			'namespacerestrictions' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => 'namespace',
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'namespace',
 			],
 		];
 
 		if ( $this->getConfig()->get( MainConfigNames::EnablePartialActionBlocks ) ) {
 			$params += [
 				'actionrestrictions' => [
-					ApiBase::PARAM_ISMULTI => true,
-					ApiBase::PARAM_TYPE => array_keys(
+					ParamValidator::PARAM_ISMULTI => true,
+					ParamValidator::PARAM_TYPE => array_keys(
 						$this->blockActionInfo->getAllBlockActions()
 					),
 				],

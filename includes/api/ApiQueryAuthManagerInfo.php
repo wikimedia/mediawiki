@@ -23,6 +23,7 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\MainConfigNames;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * A query action to return meta information about AuthManager state.
@@ -111,7 +112,7 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 		return [
 			'securitysensitiveoperation' => null,
 			'requestsfor' => [
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_TYPE => [
 					AuthManager::ACTION_LOGIN,
 					AuthManager::ACTION_LOGIN_CONTINUE,
 					AuthManager::ACTION_CREATE,

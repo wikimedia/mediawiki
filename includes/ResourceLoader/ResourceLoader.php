@@ -106,6 +106,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	private const RL_DEP_STORE_PREFIX = 'ResourceLoaderModule';
 	/** @var int How long to preserve indirect dependency metadata in our backend store. */
 	private const RL_MODULE_DEP_TTL = BagOStuff::TTL_WEEK;
+	/** @var int */
+	private const MAXAGE_RECOVER = 60;
 
 	/** @var int|null */
 	protected static $debugMode = null;
@@ -122,6 +124,14 @@ class ResourceLoader implements LoggerAwareInterface {
 	private $hookContainer;
 	/** @var HookRunner */
 	private $hookRunner;
+	/** @var string */
+	private $loadScript;
+	/** @var int */
+	private $maxageVersioned;
+	/** @var int */
+	private $maxageUnversioned;
+	/** @var bool */
+	private $useFileCache;
 
 	/** @var Module[] Map of (module name => ResourceLoaderModule) */
 	private $modules = [];
@@ -147,19 +157,39 @@ class ResourceLoader implements LoggerAwareInterface {
 	private $moduleSkinStyles = [];
 
 	/**
-	 * @param Config $config Required configuration:
-	 *  - EnableJavaScriptTest
-	 *  - LoadScript
-	 *  - ResourceLoaderMaxage
-	 *  - UseFileCache
+	 * @internal For ServiceWiring only (TODO: Make stable as part of T32956).
+	 * @param Config $config Generic pass-through for use by extension callbacks
+	 *  and other MediaWiki-specific module classes.
 	 * @param LoggerInterface|null $logger [optional]
 	 * @param DependencyStore|null $tracker [optional]
+	 * @param array $params [optional]
+	 *  - loadScript: URL path to the load.php entrypoint.
+	 *    Default: `'/load.php'`.
+	 *  - maxageVersioned: HTTP cache max-age in seconds for URLs with a "version" parameter.
+	 *    This applies to most load.php responses, and may have a long duration (e.g. weeks or
+	 *    months), because a change in the module bundle will naturally produce a different URL
+	 *    and thus automatically bust the CDN and web browser caches.
+	 *    Default: 30 days.
+	 *  - maxageUnversioned: HTTP cache max-age in seconds for URLs without a "version" parameter.
+	 *    This should have a short duration (e.g. minutes), and affects the startup manifest which
+	 *    controls how quickly changes (in the module registry, dependency tree, or module content)
+	 *    will propagate to clients.
+	 *    Default: 5 minutes.
+	 *  - useFileCache: Enable use of MediaWiki's FileCache feature.
+	 *    See also $wgUseFileCache and ResourceFileCache.
+	 *    Default: `false`.
 	 */
 	public function __construct(
 		Config $config,
 		LoggerInterface $logger = null,
-		DependencyStore $tracker = null
+		DependencyStore $tracker = null,
+		array $params = []
 	) {
+		$this->loadScript = $params['loadScript'] ?? '/load.php';
+		$this->maxageVersioned = $params['maxageVersioned'] ?? 30 * 24 * 60 * 60;
+		$this->maxageUnversioned = $params['maxageUnversioned'] ?? 5 * 60;
+		$this->useFileCache = $params['useFileCache'] ?? false;
+
 		$this->config = $config;
 		$this->logger = $logger ?: new NullLogger();
 
@@ -168,7 +198,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		$this->hookRunner = new HookRunner( $this->hookContainer );
 
 		// Add 'local' source first
-		$this->addSource( 'local', $config->get( MainConfigNames::LoadScript ) );
+		$this->addSource( 'local', $this->loadScript );
 
 		// Special module that always exists
 		$this->register( 'startup', [ 'class' => StartUpModule::class ] );
@@ -281,18 +311,9 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @codeCoverageIgnore
 	 */
 	public function registerTestModules(): void {
-		global $IP;
-
-		if ( $this->config->get( MainConfigNames::EnableJavaScriptTest ) !== true ) {
-			throw new MWException( 'Attempt to register JavaScript test modules '
-				. 'but <code>$wgEnableJavaScriptTest</code> is false. '
-				. 'Edit your <code>LocalSettings.php</code> to enable it.' );
-		}
-
-		// This has a 'qunit' key for compat with the below hook.
 		$testModulesMeta = [ 'qunit' => [] ];
-
 		$this->hookRunner->onResourceLoaderTestModules( $testModulesMeta, $this );
+
 		$extRegistry = ExtensionRegistry::getInstance();
 		// In case of conflict, the deprecated hook has precedence.
 		$testModules = $testModulesMeta['qunit']
@@ -313,7 +334,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 
 		// Core test suites (their names have further precedence).
-		$testModules = ( include "$IP/tests/qunit/QUnitTestResources.php" ) + $testModules;
+		$testModules = ( include MW_INSTALL_PATH . '/tests/qunit/QUnitTestResources.php' ) + $testModules;
 		$testSuiteModuleNames[] = 'test.MediaWiki';
 
 		$this->register( $testModules );
@@ -800,7 +821,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 
 			// Use file cache if enabled and available...
-			if ( $this->config->get( MainConfigNames::UseFileCache ) ) {
+			if ( $this->useFileCache ) {
 				$fileCache = ResourceFileCache::newFromContext( $context );
 				if ( $this->tryRespondFromFileCache( $fileCache, $context, $etag ) ) {
 					return; // output handled
@@ -888,20 +909,24 @@ class ResourceLoader implements LoggerAwareInterface {
 		Context $context, $etag, $errors, array $extra = []
 	): void {
 		HeaderCallback::warnIfHeadersSent();
-		$rlMaxage = $this->config->get( MainConfigNames::ResourceLoaderMaxage );
-		// Use a short cache expiry so that updates propagate to clients quickly, if:
-		// - No version specified (shared resources, e.g. stylesheets)
-		// - There were errors (recover quickly)
-		// - Version mismatch (T117587, T47877)
-		if ( $context->getVersion() === null
-			|| $errors
+
+		if ( $errors
 			|| $context->getVersion() !== $this->makeVersionQuery( $context, $context->getModules() )
 		) {
-			$maxage = $rlMaxage['unversioned'];
-		// If a version was specified we can use a longer expiry time since changing
-		// version numbers causes cache misses
+			// If we need to self-correct, set a very short cache expiry
+			// to basically just debounce CDN traffic. This applies to:
+			// - Internal errors, e.g. due to misconfiguration.
+			// - Version mismatch, e.g. due to deployment race (T117587, T47877).
+			$maxage = self::MAXAGE_RECOVER;
+		} elseif ( $context->getVersion() === null ) {
+			// Resources that can't set a version, should have their updates propagate to
+			// clients quickly. This applies to shared resources linked from HTML, such as
+			// the startup module and stylesheets.
+			$maxage = $this->maxageUnversioned;
 		} else {
-			$maxage = $rlMaxage['versioned'];
+			// When a version is set, use a long expiry because changes
+			// will naturally miss the cache by using a differente URL.
+			$maxage = $this->maxageVersioned;
 		}
 		if ( $context->getImageObj() ) {
 			// Output different headers if we're outputting textual errors.
@@ -980,13 +1005,12 @@ class ResourceLoader implements LoggerAwareInterface {
 		Context $context,
 		$etag
 	) {
-		$rlMaxage = $this->config->get( MainConfigNames::ResourceLoaderMaxage );
 		// Buffer output to catch warnings.
 		ob_start();
 		// Get the maximum age the cache can be
 		$maxage = $context->getVersion() === null
-			? $rlMaxage['unversioned']
-			: $rlMaxage['versioned'];
+			? $this->maxageUnversioned
+			: $this->maxageVersioned;
 		// Minimum timestamp the cache file must have
 		$minTime = time() - $maxage;
 		$good = $fileCache->isCacheGood( ConvertibleTimestamp::convert( TS_MW, $minTime ) );

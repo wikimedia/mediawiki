@@ -26,6 +26,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 /**
  * Query action to List the log events, with optional filtering by various parameters.
@@ -442,9 +444,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 		$ret = [
 			'prop' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_DFLT => 'ids|title|type|user|timestamp|comment|details',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_DEFAULT => 'ids|title|type|user|timestamp|comment|details',
+				ParamValidator::PARAM_TYPE => [
 					'ids',
 					'title',
 					'type',
@@ -459,43 +461,43 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			'type' => [
-				ApiBase::PARAM_TYPE => LogPage::validTypes(),
+				ParamValidator::PARAM_TYPE => LogPage::validTypes(),
 			],
 			'action' => [
 				// validation on request is done in execute()
-				ApiBase::PARAM_TYPE => $logActions
+				ParamValidator::PARAM_TYPE => $logActions
 			],
 			'start' => [
-				ApiBase::PARAM_TYPE => 'timestamp'
+				ParamValidator::PARAM_TYPE => 'timestamp'
 			],
 			'end' => [
-				ApiBase::PARAM_TYPE => 'timestamp'
+				ParamValidator::PARAM_TYPE => 'timestamp'
 			],
 			'dir' => [
-				ApiBase::PARAM_DFLT => 'older',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'older',
+				ParamValidator::PARAM_TYPE => [
 					'newer',
 					'older'
 				],
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
 			],
 			'user' => [
-				ApiBase::PARAM_TYPE => 'user',
+				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
 			],
 			'title' => null,
 			'namespace' => [
-				ApiBase::PARAM_TYPE => 'namespace',
+				ParamValidator::PARAM_TYPE => 'namespace',
 				ApiBase::PARAM_EXTRA_NAMESPACES => [ NS_MEDIA, NS_SPECIAL ],
 			],
 			'prefix' => [],
 			'tag' => null,
 			'limit' => [
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
+				ParamValidator::PARAM_DEFAULT => 10,
+				ParamValidator::PARAM_TYPE => 'limit',
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				IntegerDef::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',

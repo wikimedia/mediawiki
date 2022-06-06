@@ -22,6 +22,7 @@
 
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -139,22 +140,22 @@ class ApiSetPageLanguage extends ApiBase {
 		return [
 			'title' => null,
 			'pageid' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 			'lang' => [
-				ApiBase::PARAM_TYPE => array_merge(
+				ParamValidator::PARAM_TYPE => array_merge(
 					[ 'default' ],
 					array_keys( $this->languageNameUtils->getLanguageNames(
 						LanguageNameUtils::AUTONYMS,
 						LanguageNameUtils::SUPPORTED
 					) )
 				),
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'reason' => null,
 			'tags' => [
-				ApiBase::PARAM_TYPE => 'tags',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'tags',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 		];
 	}
