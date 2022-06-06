@@ -12,7 +12,7 @@ use Wikimedia\Message\DataMessageValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers MediaWiki\Api\Validator\ApiParamValidatorCallbacks
+ * @covers \MediaWiki\Api\Validator\ApiParamValidatorCallbacks
  * @group API
  * @group medium
  */
