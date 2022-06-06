@@ -217,7 +217,7 @@ class ApiParamValidatorTest extends ApiTestCase {
 						ParamValidator::PARAM_ISMULTI => true
 					],
 					'test-{x}' => [
-						ApiBase::PARAM_TYPE => [],
+						ParamValidator::PARAM_TYPE => [],
 						ApiBase::PARAM_RANGE_ENFORCE => true,
 						ApiBase::PARAM_HELP_MSG => 'foo',
 						ApiBase::PARAM_HELP_MSG_APPEND => [],
