@@ -106,6 +106,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	private const RL_DEP_STORE_PREFIX = 'ResourceLoaderModule';
 	/** @var int How long to preserve indirect dependency metadata in our backend store. */
 	private const RL_MODULE_DEP_TTL = BagOStuff::TTL_WEEK;
+	/** @var int */
+	private const MAXAGE_RECOVER = 60;
 
 	/** @var int|null */
 	protected static $debugMode = null;
@@ -907,18 +909,23 @@ class ResourceLoader implements LoggerAwareInterface {
 		Context $context, $etag, $errors, array $extra = []
 	): void {
 		HeaderCallback::warnIfHeadersSent();
-		// Use a short cache expiry so that updates propagate to clients quickly, if:
-		// - No version specified (shared resources, e.g. stylesheets)
-		// - There were errors (recover quickly)
-		// - Version mismatch (T117587, T47877)
-		if ( $context->getVersion() === null
-			|| $errors
+
+		if ( $errors
 			|| $context->getVersion() !== $this->makeVersionQuery( $context, $context->getModules() )
 		) {
+			// If we need to self-correct, set a very short cache expiry
+			// to basically just debounce CDN traffic. This applies to:
+			// - Internal errors, e.g. due to misconfiguration.
+			// - Version mismatch, e.g. due to deployment race (T117587, T47877).
+			$maxage = self::MAXAGE_RECOVER;
+		} elseif ( $context->getVersion() === null ) {
+			// Resources that can't set a version, should have their updates propagate to
+			// clients quickly. This applies to shared resources linked from HTML, such as
+			// the startup module and stylesheets.
 			$maxage = $this->maxageUnversioned;
-		// If a version was specified we can use a longer expiry time since changing
-		// version numbers causes cache misses
 		} else {
+			// When a version is set, use a long expiry because changes
+			// will naturally miss the cache by using a differente URL.
 			$maxage = $this->maxageVersioned;
 		}
 		if ( $context->getImageObj() ) {
