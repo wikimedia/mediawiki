@@ -102,8 +102,7 @@ Message.prototype = {
 	 * @chainable
 	 */
 	params: function ( parameters ) {
-		var i;
-		for ( i = 0; i < parameters.length; i++ ) {
+		for ( var i = 0; i < parameters.length; i++ ) {
 			this.parameters.push( parameters[ i ] );
 		}
 		return this;
@@ -245,9 +244,8 @@ mw.inspect = function () {
  * @return {string} Transformed format string
  */
 mw.internalDoTransformFormatForQqx = function ( formatString, parameters ) {
-	var replacement;
 	if ( formatString.indexOf( '$*' ) !== -1 ) {
-		replacement = '';
+		var replacement = '';
 		if ( parameters.length ) {
 			replacement = ': ' + parameters.map( function ( _, i ) {
 				return '$' + ( i + 1 );
@@ -365,9 +363,8 @@ mw.track = function ( topic, data ) {
 mw.trackSubscribe = function ( topic, callback ) {
 	var seen = 0;
 	function handler( trackQueue ) {
-		var event;
 		for ( ; seen < trackQueue.length; seen++ ) {
-			event = trackQueue[ seen ];
+			var event = trackQueue[ seen ];
 			if ( event.topic.indexOf( topic ) === 0 ) {
 				callback.call( event, event.topic, event.data );
 			}
@@ -449,7 +446,8 @@ var hooks = Object.create( null );
  */
 mw.hook = function ( name ) {
 	return hooks[ name ] || ( hooks[ name ] = ( function () {
-		var memory, fns = [];
+		var memory;
+		var fns = [];
 		function rethrow( e ) {
 			setTimeout( function () {
 				throw e;
@@ -463,8 +461,7 @@ mw.hook = function ( name ) {
 			 * @chainable
 			 */
 			add: function () {
-				var i = 0;
-				for ( ; i < arguments.length; i++ ) {
+				for ( var i = 0; i < arguments.length; i++ ) {
 					if ( memory ) {
 						try {
 							arguments[ i ].apply( null, memory );
@@ -483,8 +480,8 @@ mw.hook = function ( name ) {
 			 * @chainable
 			 */
 			remove: function () {
-				var i = 0, j;
-				for ( ; i < arguments.length; i++ ) {
+				for ( var i = 0; i < arguments.length; i++ ) {
+					var j;
 					while ( ( j = fns.indexOf( arguments[ i ] ) ) !== -1 ) {
 						fns.splice( j, 1 );
 					}
@@ -499,8 +496,7 @@ mw.hook = function ( name ) {
 			 * @chainable
 			 */
 			fire: function () {
-				var i = 0;
-				for ( ; i < fns.length; i++ ) {
+				for ( var i = 0; i < fns.length; i++ ) {
 					try {
 						fns[ i ].apply( null, arguments );
 					} catch ( e ) {
@@ -574,11 +570,11 @@ mw.html = {
 	 * @return {string} HTML
 	 */
 	element: function ( name, attrs, contents ) {
-		var v, attrName, s = '<' + name;
+		var s = '<' + name;
 
 		if ( attrs ) {
-			for ( attrName in attrs ) {
-				v = attrs[ attrName ];
+			for ( var attrName in attrs ) {
+				var v = attrs[ attrName ];
 				// Convert name=true, to name=name
 				if ( v === true ) {
 					v = attrName;
