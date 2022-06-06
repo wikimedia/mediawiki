@@ -15,15 +15,13 @@
 	margin-top: 12px;
 }
 
-.mw-block-restriction.oo-ui-fieldLayout {
-	.oo-ui-tagMultiselectWidget,
-	.oo-ui-textInputWidget {
-		max-width: 50em - 2 * @ooui-spacing-radio-label;
-	}
-}
-
 .mw-block-partial-restriction.oo-ui-fieldLayout {
 	margin-left: @ooui-spacing-radio-label;
+
+	.oo-ui-tagMultiselectWidget,
+	.oo-ui-textInputWidget {
+		max-width: 50em - @ooui-spacing-radio-label;
+	}
 
 	// Match spacing of partial action checkboxes to block detail checkboxes
 	.oo-ui-checkboxMultioptionWidget {
