@@ -2,12 +2,6 @@
  * Styles for Special:Block
  */
 
-// OOUIHTMLForm specifics
-@ooui-font-size-browser: 16; // Assumed browser default of `16px`.
-@ooui-font-size-base: 0.875 / 1em; // Equals `14px` at browser default of `16px`.
-
-@ooui-spacing-radio-label: 26 / @ooui-font-size-browser / @ooui-font-size-base; // Equals `1.85714286em`≈`26px`.
-
 // Affects sitewide/partial radio, partial action checkboxes, and block detail checkboxes
 .mw-block-editing-restriction.oo-ui-fieldLayout,
 .mw-block-action-restriction .oo-ui-checkboxMultioptionWidget,
@@ -15,16 +9,7 @@
 	margin-top: 12px;
 }
 
-.mw-block-restriction.oo-ui-fieldLayout {
-	.oo-ui-tagMultiselectWidget,
-	.oo-ui-textInputWidget {
-		max-width: 50em - 2 * @ooui-spacing-radio-label;
-	}
-}
-
 .mw-block-partial-restriction.oo-ui-fieldLayout {
-	margin-left: @ooui-spacing-radio-label;
-
 	// Match spacing of partial action checkboxes to block detail checkboxes
 	.oo-ui-checkboxMultioptionWidget {
 		padding: 0;

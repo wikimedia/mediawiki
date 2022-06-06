@@ -272,7 +272,7 @@ class SpecialBlock extends FormSpecialPage {
 			'label' => $this->msg( 'ipb-pages-label' )->text(),
 			'exists' => true,
 			'max' => 10,
-			'cssclass' => 'mw-block-partial-restriction',
+			'cssclass' => 'mw-htmlform-checkradio-indent mw-block-partial-restriction',
 			'showMissing' => false,
 			'excludeDynamicNamespaces' => true,
 			'input' => [
@@ -285,7 +285,7 @@ class SpecialBlock extends FormSpecialPage {
 			'type' => 'namespacesmultiselect',
 			'label' => $this->msg( 'ipb-namespaces-label' )->text(),
 			'exists' => true,
-			'cssclass' => 'mw-block-partial-restriction',
+			'cssclass' => 'mw-htmlform-checkradio-indent mw-block-partial-restriction',
 			'input' => [
 				'autocomplete' => false
 			],
@@ -296,7 +296,7 @@ class SpecialBlock extends FormSpecialPage {
 			$blockActions = $this->blockActionInfo->getAllBlockActions();
 			$a['ActionRestrictions'] = [
 				'type' => 'multiselect',
-				'cssclass' => 'mw-block-partial-restriction mw-block-action-restriction',
+				'cssclass' => 'mw-htmlform-checkradio-indent mw-block-partial-restriction mw-block-action-restriction',
 				'options-messages' => array_combine(
 					array_map( static function ( $action ) {
 						return "ipb-action-$action";
