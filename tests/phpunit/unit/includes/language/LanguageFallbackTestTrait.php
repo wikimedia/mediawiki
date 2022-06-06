@@ -43,7 +43,7 @@ trait LanguageFallbackTestTrait {
 		$mockLocCache->expects( $this->exactly( $expectedGets ) )->method( 'getItem' )
 			->with( $this->anything(),
 				$this->logicalOr( 'fallbackSequence', 'originalFallbackSequence' ) )
-			->will( $this->returnCallback( static function ( $code, $key ) use ( $map ) {
+			->willReturnCallback( static function ( $code, $key ) use ( $map ) {
 				if ( $key === 'originalFallbackSequence' || $code === 'en' ) {
 					return $map[$code];
 				}
@@ -52,7 +52,7 @@ trait LanguageFallbackTestTrait {
 					$fallbacks[] = 'en';
 				}
 				return $fallbacks;
-			} ) );
+			} );
 		$mockLocCache->expects( $this->never() )->method( $this->anythingBut( 'getItem' ) );
 		return $mockLocCache;
 	}

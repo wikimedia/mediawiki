@@ -1261,15 +1261,15 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			$mockContLang = $this->createMock( Language::class );
 			$mockContLang
 				->method( 'convertHtml' )
-				->will( $this->returnCallback( static function ( $arg ) {
+				->willReturnCallback( static function ( $arg ) {
 					return $arg;
-				} ) );
+				} );
 
 			$mockLanguageConverter = $this
 				->createMock( ILanguageConverter::class );
 			$mockLanguageConverter
 				->method( 'findVariantLink' )
-				->will( $this->returnCallback( $variantLinkCallback ) );
+				->willReturnCallback( $variantLinkCallback );
 
 			$languageConverterFactory = $this
 				->createMock( LanguageConverterFactory::class );
@@ -1292,7 +1292,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $title );
 
 		$op->method( 'addCategoryLinksToLBAndGetResult' )
-			->will( $this->returnCallback( static function ( array $categories ) use ( $fakeResults ) {
+			->willReturnCallback( static function ( array $categories ) use ( $fakeResults ) {
 				$return = [];
 				foreach ( $categories as $category => $unused ) {
 					if ( isset( $fakeResults[$category] ) ) {
@@ -1300,7 +1300,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 					}
 				}
 				return new FakeResultWrapper( $return );
-			} ) );
+			} );
 
 		$this->assertSame( [], $op->getCategories() );
 

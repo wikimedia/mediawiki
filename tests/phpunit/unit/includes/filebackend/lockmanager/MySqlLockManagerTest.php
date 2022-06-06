@@ -41,14 +41,14 @@ class MySqlLockManagerTest extends MediaWikiUnitTestCase {
 
 		$mockDb->expects( $this->once() )->method( 'query' )
 			->with( 'SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;' )
-			->will( $this->returnCallback( static function () use ( &$isolationSet ) {
+			->willReturnCallback( static function () use ( &$isolationSet ) {
 				$isolationSet = true;
-			} ) );
+			} );
 
 		$mockDb->expects( $this->once() )->method( 'startAtomic' )
-			->will( $this->returnCallback( static function () use ( &$trxStarted ) {
+			->willReturnCallback( static function () use ( &$trxStarted ) {
 				$trxStarted = true;
-			} ) );
+			} );
 
 		// Because of the way PHPUnit works, we don't test the order of inserts relative to
 		// selectField. It shouldn't matter if the correct results are obtained in all cases.
@@ -80,10 +80,10 @@ class MySqlLockManagerTest extends MediaWikiUnitTestCase {
 
 		$mockDb->expects( $this->exactly( count( $expectedInserts ) ) )->method( 'insert' )
 			->withConsecutive( ...$expectedInserts )
-			->will( $this->returnCallback( function () use ( &$isolationSet, &$trxStarted ) {
+			->willReturnCallback( function () use ( &$isolationSet, &$trxStarted ) {
 				$this->assertTrue( $isolationSet, 'Read uncommitted must be set before queries' );
 				$this->assertTrue( $trxStarted, 'Transaction must be started before writes' );
-			} ) );
+			} );
 
 		$expectedSelectFieldArgs = [];
 		$selectFieldReturns = [];
@@ -116,9 +116,9 @@ class MySqlLockManagerTest extends MediaWikiUnitTestCase {
 			->withConsecutive( ...$expectedSelectFieldArgs )
 			->willReturnOnConsecutiveCalls( ...$selectFieldReturns );
 
-		$mockDb->method( 'addQuotes' )->will( $this->returnCallback( static function ( $s ) {
+		$mockDb->method( 'addQuotes' )->willReturnCallback( static function ( $s ) {
 			return "'$s'";
-		} ) );
+		} );
 
 		$lm = new MySqlLockManager( [
 			'dbServers' => [ 'main' => $mockDb ],

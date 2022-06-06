@@ -158,11 +158,11 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			] )
 			->getMock();
 		$manager->method( 'allowsAuthenticationDataChange' )
-			->will( $this->returnCallback( static function ( $req ) {
+			->willReturnCallback( static function ( $req ) {
 				return $req->getUniqueId() !== 'BadReq'
 					? \StatusValue::newGood()
 					: \StatusValue::newFatal( 'no' );
-			} ) );
+			} );
 		$this->initProvider( $provider, null, null, $manager );
 
 		$this->assertEquals(
@@ -225,14 +225,14 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			->getMock();
 		$provider->expects( $this->never() )->method( 'beginLinkAttempt' );
 		$provider->method( 'providerAllowsAuthenticationDataChange' )
-			->will( $this->returnCallback( static function ( $req ) {
+			->willReturnCallback( static function ( $req ) {
 				return $req->getUniqueId() === 'Request3'
 					? \StatusValue::newFatal( 'foo' ) : \StatusValue::newGood();
-			} ) );
+			} );
 		$provider->method( 'providerChangeAuthenticationData' )
-			->will( $this->returnCallback( static function ( $req ) use ( &$done ) {
+			->willReturnCallback( static function ( $req ) use ( &$done ) {
 				$done[$req->id] = true;
-			} ) );
+			} );
 		$config = new \HashConfig( [
 			'AuthManagerConfig' => [
 				'preauth' => [],

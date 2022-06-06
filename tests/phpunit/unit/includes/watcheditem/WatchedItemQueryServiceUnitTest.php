@@ -70,9 +70,9 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 			} );
 
 		$mock->method( 'addQuotes' )
-			->will( $this->returnCallback( static function ( $value ) {
+			->willReturnCallback( static function ( $value ) {
 				return "'$value'";
-			} ) );
+			} );
 
 		$mock->method( 'timestamp' )
 			->will( $this->returnArgument( 0 ) );
@@ -103,9 +103,9 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 	private function getMockWatchedItemStore() {
 		$mock = $this->createMock( WatchedItemStore::class );
 		$mock->method( 'getLatestNotificationTimestamp' )
-			->will( $this->returnCallback( static function ( $timestamp ) {
+			->willReturnCallback( static function ( $timestamp ) {
 				return $timestamp;
-			} ) );
+			} );
 		return $mock;
 	}
 
@@ -348,7 +348,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$this->isType( 'array' ),
 				$this->isType( 'array' )
 			)
-			->will( $this->returnCallback( static function (
+			->willReturnCallback( static function (
 				$user, $options, $db, &$tables, &$fields, &$conds, &$dbOptions, &$joinConds
 			) {
 				$tables[] = 'extension_dummy_table';
@@ -356,7 +356,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$conds[] = 'extension_dummy_cond';
 				$dbOptions[] = 'extension_dummy_option';
 				$joinConds['extension_dummy_join_cond'] = [];
-			} ) );
+			} );
 		$mockExtension->expects( $this->once() )
 			->method( 'modifyWatchedItemsWithRCInfo' )
 			->with(
@@ -367,7 +367,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$this->anything(),
 				$this->anything() // Can't test for null here, PHPUnit applies this after the callback
 			)
-			->will( $this->returnCallback( function ( $user, $options, $db, &$items, $res, &$startFrom ) {
+			->willReturnCallback( function ( $user, $options, $db, &$items, $res, &$startFrom ) {
 				foreach ( $items as $i => &$item ) {
 					$item[1]['extension_dummy_field'] = $i;
 				}
@@ -375,7 +375,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 
 				$this->assertNull( $startFrom );
 				$startFrom = [ '20160203123456', 42 ];
-			} ) );
+			} );
 
 		$queryService = $this->newService( $mockDb );
 		TestingAccessWrapper::newFromObject( $queryService )->extensions = [ $mockExtension ];
@@ -1501,21 +1501,21 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 
 		$mockDb = $this->getMockDb();
 		$mockDb->method( 'addQuotes' )
-			->will( $this->returnCallback( static function ( $value ) {
+			->willReturnCallback( static function ( $value ) {
 				return "'$value'";
-			} ) );
+			} );
 		$mockDb->method( 'makeList' )
 			->with(
 				$this->isType( 'array' ),
 				$this->isType( 'int' )
 			)
-			->will( $this->returnCallback( static function ( $a, $conj ) {
+			->willReturnCallback( static function ( $a, $conj ) {
 				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
 				return implode( $sqlConj, array_map( static function ( $s ) {
 					return '(' . $s . ')';
 				}, $a
 				) );
-			} ) );
+			} );
 		$mockDb->expects( $this->once() )
 			->method( 'select' )
 			->with(

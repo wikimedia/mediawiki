@@ -161,41 +161,41 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$provider1 = $providerBuilder->getMock();
 		$provider1->method( 'provideSessionInfo' )
 			->with( $this->identicalTo( $request ) )
-			->will( $this->returnCallback( static function ( $request ) {
+			->willReturnCallback( static function ( $request ) {
 				return $request->info1;
-			} ) );
+			} );
 		$provider1->method( 'newSessionInfo' )
-			->will( $this->returnCallback( static function () use ( $idEmpty, $provider1 ) {
+			->willReturnCallback( static function () use ( $idEmpty, $provider1 ) {
 				return new SessionInfo( SessionInfo::MIN_PRIORITY, [
 					'provider' => $provider1,
 					'id' => $idEmpty,
 					'persisted' => true,
 					'idIsSafe' => true,
 				] );
-			} ) );
+			} );
 		$provider1->method( '__toString' )
 			->willReturn( 'Provider1' );
 		$provider1->method( 'describe' )
 			->willReturn( '#1 sessions' );
 		$provider1->method( 'unpersistSession' )
-			->will( $this->returnCallback( static function ( $request ) {
+			->willReturnCallback( static function ( $request ) {
 				$request->unpersist1 = true;
-			} ) );
+			} );
 
 		$provider2 = $providerBuilder->getMock();
 		$provider2->method( 'provideSessionInfo' )
 			->with( $this->identicalTo( $request ) )
-			->will( $this->returnCallback( static function ( $request ) {
+			->willReturnCallback( static function ( $request ) {
 				return $request->info2;
-			} ) );
+			} );
 		$provider2->method( '__toString' )
 			->willReturn( 'Provider2' );
 		$provider2->method( 'describe' )
 			->willReturn( '#2 sessions' );
 		$provider2->method( 'unpersistSession' )
-			->will( $this->returnCallback( static function ( $request ) {
+			->willReturnCallback( static function ( $request ) {
 				$request->unpersist2 = true;
-			} ) );
+			} );
 
 		$this->config->set( 'SessionProviders', [
 			$this->objectCacheDef( $provider1 ),
@@ -451,9 +451,9 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			->with( $this->callback( static function ( $id ) use ( &$expectId ) {
 				return $id === $expectId;
 			} ) )
-			->will( $this->returnCallback( static function () use ( &$info1 ) {
+			->willReturnCallback( static function () use ( &$info1 ) {
 				return $info1;
-			} ) );
+			} );
 		$provider1->method( '__toString' )
 			->willReturn( 'MockProvider1' );
 
@@ -464,9 +464,9 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			->with( $this->callback( static function ( $id ) use ( &$expectId ) {
 				return $id === $expectId;
 			} ) )
-			->will( $this->returnCallback( static function () use ( &$info2 ) {
+			->willReturnCallback( static function () use ( &$info2 ) {
 				return $info2;
-			} ) );
+			} );
 		$provider1->method( '__toString' )
 			->willReturn( 'MockProvider2' );
 
@@ -943,12 +943,12 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$provider->method( '__toString' )
 			->willReturn( 'Mock' );
 		$provider->method( 'mergeMetadata' )
-			->will( $this->returnCallback( static function ( $a, $b ) {
+			->willReturnCallback( static function ( $a, $b ) {
 				if ( $b === [ 'Throw' ] ) {
 					throw new MetadataMergeException( 'no merge!' );
 				}
 				return [ 'Merged' ];
-			} ) );
+			} );
 
 		$provider2 = $builder->getMockForAbstractClass();
 		$this->initProvider( $provider2, null, null, $manager );
@@ -959,10 +959,10 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$provider2->method( '__toString' )
 			->willReturn( 'Mock2' );
 		$provider2->method( 'refreshSessionInfo' )
-			->will( $this->returnCallback( static function ( $info, $request, &$metadata ) {
+			->willReturnCallback( static function ( $info, $request, &$metadata ) {
 				$metadata['changed'] = true;
 				return true;
-			} ) );
+			} );
 
 		$provider3 = $builder->getMockForAbstractClass();
 		$this->initProvider( $provider3, null, null, $manager );

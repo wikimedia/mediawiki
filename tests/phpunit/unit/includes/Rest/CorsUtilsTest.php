@@ -47,13 +47,13 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 
 		$request = $this->createMock( RequestInterface::class );
 		$request->method( 'hasHeader' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ 'Origin', (bool)$origin ]
-			] ) );
+			] );
 		$request->method( 'getHeader' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ 'Origin', [ $origin ] ]
-			] ) );
+			] );
 
 		$handler = $this->createMock( Handler::class );
 		$handler->method( 'needsWriteAccess' )
@@ -110,14 +110,14 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 
 		$request = $this->createMock( RequestInterface::class );
 		$request->method( 'hasHeader' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ 'Origin', true ]
-			] ) );
+			] );
 		$request->expects( $this->once() )
 			->method( 'getHeader' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ 'Origin', [ 'https://www.mediawiki.org' ] ]
-			] ) );
+			] );
 
 		$handler = $this->createMock( Handler::class );
 		$handler->method( 'needsWriteAccess' )
@@ -187,13 +187,13 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 
 		$request = $this->createMock( RequestInterface::class );
 		$request->method( 'hasHeader' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ 'Origin', true ]
-			] ) );
+			] );
 		$request->method( 'getHeader' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ 'Origin', [ 'https://example.com' ] ],
-			] ) );
+			] );
 		$request->method( 'getMethod' )
 			->willReturn( $requestMethod );
 
@@ -244,13 +244,13 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 
 		$request = $this->createMock( RequestInterface::class );
 		$request->method( 'hasHeader' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ 'Origin', (bool)$origin ]
-			] ) );
+			] );
 		$request->method( 'getHeader' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ 'Origin', [ $origin ] ],
-			] ) );
+			] );
 		$request->method( 'getMethod' )
 			->willReturn( $requestMethod );
 

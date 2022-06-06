@@ -303,10 +303,10 @@ TEXT
 		$image->method( 'getDataUri' )
 			->willReturn( $dataUriReturnValue );
 		$image->method( 'getUrl' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ $context, 'load.php', null, 'original', 'original.svg' ],
 				[ $context, 'load.php', null, 'rasterized', 'rasterized.png' ],
-			] ) );
+			] );
 
 		return $image;
 	}

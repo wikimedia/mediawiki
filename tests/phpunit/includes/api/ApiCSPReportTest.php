@@ -76,12 +76,12 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 	private function doExecute( array $params, array $cspReport ) {
 		$log = [];
 		$logger = $this->createMock( Psr\Log\AbstractLogger::class );
-		$logger->method( 'warning' )->will( $this->returnCallback(
+		$logger->method( 'warning' )->willReturnCallback(
 			static function ( $msg, $ctx ) use ( &$log ) {
 				unset( $ctx['csp-report'] );
 				$log[] = [ $msg, $ctx ];
 			}
-		) );
+		);
 		$this->setLogger( 'csp-report-only', $logger );
 
 		$postBody = json_encode( [ 'csp-report' => $cspReport ] );
@@ -99,11 +99,11 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 			->disableOriginalConstructor()
 			->onlyMethods( [ 'getParameter', 'getRequest', 'getResult' ] )
 			->getMock();
-		$api->method( 'getParameter' )->will( $this->returnCallback(
+		$api->method( 'getParameter' )->willReturnCallback(
 			static function ( $key ) use ( $req ) {
 				return $req->getRawVal( $key );
 			}
-		) );
+		);
 		$api->method( 'getRequest' )->willReturn( $req );
 		$api->method( 'getResult' )->willReturn( new ApiResult( false ) );
 

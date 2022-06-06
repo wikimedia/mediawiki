@@ -20,13 +20,13 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 		global $IP;
 
 		$mockLangNameUtils = $this->createMock( LanguageNameUtils::class );
-		$mockLangNameUtils->method( 'isValidBuiltInCode' )->will( $this->returnCallback(
+		$mockLangNameUtils->method( 'isValidBuiltInCode' )->willReturnCallback(
 			static function ( $code ) {
 				// Copy-paste, but it's only one line
 				return (bool)preg_match( '/^[a-z0-9-]{2,}$/', $code );
 			}
-		) );
-		$mockLangNameUtils->method( 'isSupportedLanguage' )->will( $this->returnCallback(
+		);
+		$mockLangNameUtils->method( 'isSupportedLanguage' )->willReturnCallback(
 			static function ( $code ) {
 				return in_array( $code, [
 					'ar',
@@ -38,14 +38,14 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 					'ru',
 				] );
 			}
-		) );
-		$mockLangNameUtils->method( 'getMessagesFileName' )->will( $this->returnCallback(
+		);
+		$mockLangNameUtils->method( 'getMessagesFileName' )->willReturnCallback(
 			static function ( $code ) {
 				global $IP;
 				$code = str_replace( '-', '_', ucfirst( $code ) );
 				return "$IP/languages/messages/Messages$code.php";
 			}
-		) );
+		);
 		$mockLangNameUtils->expects( $this->never() )->method( $this->anythingBut(
 			'isValidBuiltInCode', 'isSupportedLanguage', 'getMessagesFileName'
 		) );

@@ -52,10 +52,10 @@ WIKITEXT;
 	private function getMockRepoGroup() {
 		$mock = $this->createMock( RepoGroup::class );
 		$mock->expects( $this->once() )->method( 'findFile' )
-			->will( $this->returnCallback( function ( $name ) {
+			->willReturnCallback( function ( $name ) {
 				$mockFile = $this->createMock( File::class );
 				$mockFile->expects( $this->once() )->method( 'getTitle' )
-					->will( $this->returnCallback( static function () use ( $name ) {
+					->willReturnCallback( static function () use ( $name ) {
 						switch ( $name ) {
 							case 'Redirect to bad.jpg':
 								return new TitleValue( NS_FILE, 'Bad.jpg' );
@@ -68,10 +68,10 @@ WIKITEXT;
 							default:
 								return new TitleValue( NS_FILE, $name );
 						}
-					} ) );
+					} );
 				$mockFile->expects( $this->never() )->method( $this->anythingBut( 'getTitle' ) );
 				return $mockFile;
-			} ) );
+			} );
 		$mock->expects( $this->never() )->method( $this->anythingBut( 'findFile' ) );
 
 		return $mock;

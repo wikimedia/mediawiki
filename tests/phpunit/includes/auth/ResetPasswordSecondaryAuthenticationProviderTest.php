@@ -70,15 +70,15 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 			] )
 			->getMock();
 		$provider->method( 'providerAllowsAuthenticationDataChange' )
-			->will( $this->returnCallback( function ( $req ) {
+			->willReturnCallback( function ( $req ) {
 				$this->assertSame( 'UTSysop', $req->username );
 				return $req->allow;
-			} ) );
+			} );
 		$provider->method( 'providerChangeAuthenticationData' )
-			->will( $this->returnCallback( function ( $req ) {
+			->willReturnCallback( function ( $req ) {
 				$this->assertSame( 'UTSysop', $req->username );
 				$req->done = true;
-			} ) );
+			} );
 		$config = new \HashConfig( [
 			'AuthManagerConfig' => [
 				'preauth' => [],

@@ -60,9 +60,9 @@ class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
 		$benchProxy->defaultCount = 1;
 
 		$bench->expects( $this->exactly( 1 ) )->method( 'hasOption' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ 'verbose', true ],
-			] ) );
+			] );
 
 		$bench->expects( $this->once() )->method( 'verboseRun' )
 			->with( 0 )
@@ -123,9 +123,9 @@ class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
 		$benchProxy->defaultCount = 1;
 
 		$bench->expects( $this->exactly( 1 ) )->method( 'hasOption' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ 'verbose', true ],
-			] ) );
+			] );
 
 		$bench->expects( $this->once() )->method( 'output' )
 			->with( $this->callback( static function ( $out ) {

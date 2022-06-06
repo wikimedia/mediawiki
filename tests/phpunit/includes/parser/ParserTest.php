@@ -32,14 +32,14 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			->onlyMethods( [ 'get', 'getVariableIDs' ] )
 			->getMock();
 		$mwFactory
-			->method( 'get' )->will( $this->returnCallback( function ( $arg ) {
+			->method( 'get' )->willReturnCallback( function ( $arg ) {
 				$mw = $this->getMockBuilder( MagicWord::class )
 					->disableOriginalConstructor()
 					->onlyMethods( [ 'getSynonyms' ] )
 					->getMock();
 				$mw->method( 'getSynonyms' )->willReturn( [] );
 				return $mw;
-			} ) );
+			} );
 		$mwFactory
 			->method( 'getVariableIDs' )->willReturn( [] );
 

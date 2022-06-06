@@ -34,9 +34,9 @@ class SiteImporterTest extends MediaWikiIntegrationTestCase {
 
 		$store->expects( $this->once() )
 			->method( 'saveSites' )
-			->will( $this->returnCallback( function ( $sites ) use ( $expectedSites ) {
+			->willReturnCallback( function ( $sites ) use ( $expectedSites ) {
 				$this->assertSitesEqual( $expectedSites, $sites );
-			} ) );
+			} );
 
 		$store->method( 'getSites' )
 			->willReturn( new SiteList() );

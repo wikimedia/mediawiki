@@ -158,10 +158,10 @@ class MessageBlobStoreTest extends \PHPUnit\Framework\TestCase {
 		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 		$blobStore->expects( $this->once() )
 			->method( 'fetchMessage' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				// message key, language code, message value
 				[ 'foo', 'en', 'Hello' ],
-			] ) );
+			] );
 
 		// Assert
 		$blob = $blobStore->getBlob( $module, 'en' );
@@ -176,11 +176,11 @@ class MessageBlobStoreTest extends \PHPUnit\Framework\TestCase {
 		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 		$blobStore->expects( $this->exactly( 2 ) )
 			->method( 'fetchMessage' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				// message key, language code, message value
 				[ 'foo', 'en', 'Hello' ],
 				[ 'bar', 'en', 'World' ],
-			] ) );
+			] );
 
 		// Assert
 		$blob = $blobStore->getBlob( $module, 'en' );

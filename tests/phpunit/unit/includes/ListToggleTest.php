@@ -32,7 +32,7 @@ class ListToggleTest extends MediaWikiUnitTestCase {
 
 		$output = $this->createMock( OutputPage::class );
 		$output->method( 'msg' )
-			->will( $this->returnCallback( static function ( $key ) {
+			->willReturnCallback( static function ( $key ) {
 				return new class( $key ) extends Message {
 					protected function fetchMessage() {
 						return "($this->key$*)";
@@ -53,7 +53,7 @@ class ListToggleTest extends MediaWikiUnitTestCase {
 						return $string;
 					}
 				};
-			} ) );
+			} );
 		$output->expects( $this->once() )
 			->method( 'getLanguage' )
 			->willReturn( $language );
