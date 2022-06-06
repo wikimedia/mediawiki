@@ -39,9 +39,7 @@ class ArrayDiffFormatterTest extends \MediaWikiUnitTestCase {
 		if ( $type === 'change' ) {
 			$diffOp->method( 'getClosing' )
 				->with( $this->isType( 'integer' ) )
-				->willReturnCallback( static function () {
-					return 'mockLine';
-				} );
+				->willReturn( 'mockLine' );
 		} else {
 			$diffOp->method( 'getClosing' )
 				->willReturn( $closing );
