@@ -155,4 +155,6 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiIntegrati
 			);
 		}
 	}
+
+	abstract public function validateOptionsProvider();
 }
