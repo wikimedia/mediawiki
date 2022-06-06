@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Api\Validator\SubmoduleDef;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
@@ -1646,7 +1647,7 @@ class ApiPageSet extends ApiBase {
 			'generator' => [
 				ParamValidator::PARAM_TYPE => null,
 				ApiBase::PARAM_HELP_MSG => 'api-pageset-param-generator',
-				ApiBase::PARAM_SUBMODULE_PARAM_PREFIX => 'g',
+				SubmoduleDef::PARAM_SUBMODULE_PARAM_PREFIX => 'g',
 			],
 			'redirects' => [
 				ParamValidator::PARAM_DEFAULT => false,
@@ -1667,7 +1668,7 @@ class ApiPageSet extends ApiBase {
 			unset( $result['generator'] );
 		} elseif ( $flags & ApiBase::GET_VALUES_FOR_HELP ) {
 			$result['generator'][ParamValidator::PARAM_TYPE] = 'submodule';
-			$result['generator'][ApiBase::PARAM_SUBMODULE_MAP] = $this->getGenerators();
+			$result['generator'][SubmoduleDef::PARAM_SUBMODULE_MAP] = $this->getGenerators();
 		}
 
 		return $result;

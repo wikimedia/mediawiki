@@ -303,7 +303,7 @@ class ApiOpenSearch extends ApiBase {
 			'suggest' => [
 				ParamValidator::PARAM_DEFAULT => false,
 				// Deprecated since 1.35
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'redirects' => [
 				ParamValidator::PARAM_TYPE => [ 'return', 'resolve' ],

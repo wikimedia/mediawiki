@@ -32,6 +32,7 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\EnumDef;
 
 /**
  * @ingroup API
@@ -1057,7 +1058,7 @@ class ApiParse extends ApiBase {
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [
 					'parsetree' => [ 'apihelp-parse-paramvalue-prop-parsetree', CONTENT_MODEL_WIKITEXT ],
 				],
-				ApiBase::PARAM_DEPRECATED_VALUES => [
+				EnumDef::PARAM_DEPRECATED_VALUES => [
 					'headitems' => 'apiwarn-deprecation-parse-headitems',
 				],
 			],
@@ -1066,7 +1067,7 @@ class ApiParse extends ApiBase {
 			'onlypst' => false,
 			'effectivelanglinks' => [
 				ParamValidator::PARAM_DEFAULT => false,
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'section' => null,
 			'sectiontitle' => [
@@ -1074,7 +1075,7 @@ class ApiParse extends ApiBase {
 			],
 			'disablepp' => [
 				ParamValidator::PARAM_DEFAULT => false,
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'disablelimitreport' => false,
 			'disableeditsection' => false,
@@ -1085,7 +1086,7 @@ class ApiParse extends ApiBase {
 				ApiBase::PARAM_HELP_MSG => [
 					'apihelp-parse-param-generatexml', CONTENT_MODEL_WIKITEXT
 				],
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'preview' => false,
 			'sectionpreview' => false,

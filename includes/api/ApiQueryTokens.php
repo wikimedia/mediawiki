@@ -121,7 +121,7 @@ class ApiQueryTokens extends ApiQueryBase {
 				ParamValidator::PARAM_DEFAULT => 'csrf',
 				ParamValidator::PARAM_ISMULTI => true,
 				ParamValidator::PARAM_TYPE => array_keys( self::getTokenTypeSalts() ),
-				ApiBase::PARAM_ALL => true,
+				ParamValidator::PARAM_ALL => true,
 			],
 		];
 	}

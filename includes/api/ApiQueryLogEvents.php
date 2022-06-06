@@ -23,6 +23,7 @@
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\MainConfigNames;
+use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
@@ -488,7 +489,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'title' => null,
 			'namespace' => [
 				ParamValidator::PARAM_TYPE => 'namespace',
-				ApiBase::PARAM_EXTRA_NAMESPACES => [ NS_MEDIA, NS_SPECIAL ],
+				NamespaceDef::PARAM_EXTRA_NAMESPACES => [ NS_MEDIA, NS_SPECIAL ],
 			],
 			'prefix' => [],
 			'tag' => null,

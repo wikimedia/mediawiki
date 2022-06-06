@@ -256,7 +256,7 @@ class ApiBlock extends ApiBase {
 			],
 			'userid' => [
 				ParamValidator::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'expiry' => 'never',
 			'reason' => '',

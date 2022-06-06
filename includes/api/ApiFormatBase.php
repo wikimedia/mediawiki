@@ -164,7 +164,7 @@ abstract class ApiFormatBase extends ApiBase {
 			return $paramSettings;
 		}
 
-		return $paramSettings[self::PARAM_DFLT] ?? null;
+		return $paramSettings[ParamValidator::PARAM_DEFAULT] ?? null;
 	}
 
 	/**

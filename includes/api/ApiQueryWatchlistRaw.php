@@ -216,7 +216,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			],
 			'token' => [
 				ParamValidator::PARAM_TYPE => 'string',
-				ApiBase::PARAM_SENSITIVE => true,
+				ParamValidator::PARAM_SENSITIVE => true,
 			],
 			'dir' => [
 				ParamValidator::PARAM_DEFAULT => 'ascending',

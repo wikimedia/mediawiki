@@ -135,7 +135,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 			],
 			'sessionkey' => [
 				ParamValidator::PARAM_ISMULTI => true,
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'prop' => [
 				ParamValidator::PARAM_ISMULTI => true,

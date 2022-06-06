@@ -502,7 +502,7 @@ class ApiHelp extends ApiBase {
 					}
 
 					// Add "deprecated" flag
-					if ( !empty( $settings[ApiBase::PARAM_DEPRECATED] ) ) {
+					if ( !empty( $settings[ParamValidator::PARAM_DEPRECATED] ) ) {
 						$help['parameters'] .= Html::openElement( 'dd',
 							[ 'class' => 'info' ] );
 						$help['parameters'] .= self::wrap(

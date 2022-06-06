@@ -286,7 +286,7 @@ class ApiDelete extends ApiBase {
 			'deletetalk' => false,
 			'watch' => [
 				ParamValidator::PARAM_DEFAULT => false,
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 		];
 
@@ -297,7 +297,7 @@ class ApiDelete extends ApiBase {
 		return $params + [
 			'unwatch' => [
 				ParamValidator::PARAM_DEFAULT => false,
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'oldimage' => null,
 		];
