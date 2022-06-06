@@ -103,9 +103,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 	private function getMockWatchedItemStore() {
 		$mock = $this->createMock( WatchedItemStore::class );
 		$mock->method( 'getLatestNotificationTimestamp' )
-			->willReturnCallback( static function ( $timestamp ) {
-				return $timestamp;
-			} );
+			->willReturnArgument( 0 );
 		return $mock;
 	}
 
