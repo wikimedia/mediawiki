@@ -17,7 +17,7 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers MediaWiki\Api\Validator\ApiParamValidator
+ * @covers \MediaWiki\Api\Validator\ApiParamValidator
  * @group API
  * @group medium
  */
