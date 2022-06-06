@@ -29,6 +29,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * A query action to enumerate revisions of a given page, or show top revisions
@@ -449,24 +450,24 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	public function getAllowedParams() {
 		$ret = parent::getAllowedParams() + [
 			'startid' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
 			],
 			'endid' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
 			],
 			'start' => [
-				ApiBase::PARAM_TYPE => 'timestamp',
+				ParamValidator::PARAM_TYPE => 'timestamp',
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
 			],
 			'end' => [
-				ApiBase::PARAM_TYPE => 'timestamp',
+				ParamValidator::PARAM_TYPE => 'timestamp',
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
 			],
 			'dir' => [
-				ApiBase::PARAM_DFLT => 'older',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'older',
+				ParamValidator::PARAM_TYPE => [
 					'newer',
 					'older'
 				],
@@ -474,13 +475,13 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
 			],
 			'user' => [
-				ApiBase::PARAM_TYPE => 'user',
+				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
 				UserDef::PARAM_RETURN_OBJECT => true,
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],
 			],
 			'excludeuser' => [
-				ApiBase::PARAM_TYPE => 'user',
+				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
 				UserDef::PARAM_RETURN_OBJECT => true,
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'singlepageonly' ] ],

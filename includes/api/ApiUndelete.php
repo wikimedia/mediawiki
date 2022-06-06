@@ -27,6 +27,7 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * @ingroup API
@@ -153,21 +154,21 @@ class ApiUndelete extends ApiBase {
 	public function getAllowedParams() {
 		return [
 			'title' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true
 			],
 			'reason' => '',
 			'tags' => [
-				ApiBase::PARAM_TYPE => 'tags',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'tags',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'timestamps' => [
-				ApiBase::PARAM_TYPE => 'timestamp',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'timestamp',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'fileids' => [
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'undeletetalk' => false,
 		] + $this->getWatchlistParams();

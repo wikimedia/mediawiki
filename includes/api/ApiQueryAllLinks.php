@@ -21,6 +21,8 @@
  */
 
 use MediaWiki\Linker\LinksMigration;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 /**
  * Query module to enumerate links from all pages together.
@@ -300,28 +302,28 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			'prefix' => null,
 			'unique' => false,
 			'prop' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_DFLT => 'title',
-				ApiBase::PARAM_TYPE => array_merge(
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_DEFAULT => 'title',
+				ParamValidator::PARAM_TYPE => array_merge(
 					[ 'ids', 'title' ], array_keys( $this->props )
 				),
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			'namespace' => [
-				ApiBase::PARAM_DFLT => $this->dfltNamespace,
-				ApiBase::PARAM_TYPE => 'namespace',
+				ParamValidator::PARAM_DEFAULT => $this->dfltNamespace,
+				ParamValidator::PARAM_TYPE => 'namespace',
 				ApiBase::PARAM_EXTRA_NAMESPACES => [ NS_MEDIA, NS_SPECIAL ],
 			],
 			'limit' => [
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
+				ParamValidator::PARAM_DEFAULT => 10,
+				ParamValidator::PARAM_TYPE => 'limit',
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				IntegerDef::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			],
 			'dir' => [
-				ApiBase::PARAM_DFLT => 'ascending',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'ascending',
+				ParamValidator::PARAM_TYPE => [
 					'ascending',
 					'descending'
 				]

@@ -27,6 +27,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * A query module to show basic page information.
@@ -839,8 +840,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	public function getAllowedParams() {
 		return [
 			'prop' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => [
 					'protection',
 					'talkid',
 					'watched', # private
@@ -864,17 +865,17 @@ class ApiQueryInfo extends ApiQueryBase {
 				],
 			],
 			'linkcontext' => [
-				ApiBase::PARAM_TYPE => 'title',
-				ApiBase::PARAM_DFLT => $this->titleFactory->newMainPage()->getPrefixedText(),
+				ParamValidator::PARAM_TYPE => 'title',
+				ParamValidator::PARAM_DEFAULT => $this->titleFactory->newMainPage()->getPrefixedText(),
 				TitleDef::PARAM_RETURN_OBJECT => true,
 			],
 			'testactions' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'testactionsdetail' => [
-				ApiBase::PARAM_TYPE => [ 'boolean', 'full', 'quick' ],
-				ApiBase::PARAM_DFLT => 'boolean',
+				ParamValidator::PARAM_TYPE => [ 'boolean', 'full', 'quick' ],
+				ParamValidator::PARAM_DEFAULT => 'boolean',
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			'continue' => [

@@ -478,7 +478,7 @@ class ApiHelp extends ApiBase {
 				foreach ( $params as $name => $settings ) {
 					$settings = $paramValidator->normalizeSettings( $settings );
 
-					if ( $settings[ApiBase::PARAM_TYPE] === 'submodule' ) {
+					if ( $settings[ParamValidator::PARAM_TYPE] === 'submodule' ) {
 						$groups[] = $name;
 					}
 
@@ -676,8 +676,8 @@ class ApiHelp extends ApiBase {
 	public function getAllowedParams() {
 		return [
 			'modules' => [
-				ApiBase::PARAM_DFLT => 'main',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_DEFAULT => 'main',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'submodules' => false,
 			'recursivesubmodules' => false,

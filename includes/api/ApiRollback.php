@@ -26,6 +26,7 @@ use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * @ingroup API
@@ -138,17 +139,17 @@ class ApiRollback extends ApiBase {
 		$params = [
 			'title' => null,
 			'pageid' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 			'tags' => [
-				ApiBase::PARAM_TYPE => 'tags',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'tags',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'user' => [
-				ApiBase::PARAM_TYPE => 'user',
+				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
 				UserDef::PARAM_RETURN_OBJECT => true,
-				ApiBase::PARAM_REQUIRED => true
+				ParamValidator::PARAM_REQUIRED => true
 			],
 			'summary' => '',
 			'markbot' => false,

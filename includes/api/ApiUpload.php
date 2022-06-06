@@ -23,6 +23,8 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 /**
  * @ingroup API
@@ -943,20 +945,20 @@ class ApiUpload extends ApiBase {
 	public function getAllowedParams() {
 		$params = [
 			'filename' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 			'comment' => [
-				ApiBase::PARAM_DFLT => ''
+				ParamValidator::PARAM_DEFAULT => ''
 			],
 			'tags' => [
-				ApiBase::PARAM_TYPE => 'tags',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'tags',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'text' => [
-				ApiBase::PARAM_TYPE => 'text',
+				ParamValidator::PARAM_TYPE => 'text',
 			],
 			'watch' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_DEPRECATED => true,
 			],
 		];
@@ -972,7 +974,7 @@ class ApiUpload extends ApiBase {
 		$params += [
 			'ignorewarnings' => false,
 			'file' => [
-				ApiBase::PARAM_TYPE => 'upload',
+				ParamValidator::PARAM_TYPE => 'upload',
 			],
 			'url' => null,
 			'filekey' => null,
@@ -982,16 +984,16 @@ class ApiUpload extends ApiBase {
 			'stash' => false,
 
 			'filesize' => [
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_MIN => 0,
-				ApiBase::PARAM_MAX => UploadBase::getMaxUploadSize(),
+				ParamValidator::PARAM_TYPE => 'integer',
+				IntegerDef::PARAM_MIN => 0,
+				IntegerDef::PARAM_MAX => UploadBase::getMaxUploadSize(),
 			],
 			'offset' => [
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_MIN => 0,
+				ParamValidator::PARAM_TYPE => 'integer',
+				IntegerDef::PARAM_MIN => 0,
 			],
 			'chunk' => [
-				ApiBase::PARAM_TYPE => 'upload',
+				ParamValidator::PARAM_TYPE => 'upload',
 			],
 
 			'async' => false,

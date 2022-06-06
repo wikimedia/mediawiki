@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Session\Token;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * @since 1.25
@@ -65,16 +66,16 @@ class ApiCheckToken extends ApiBase {
 	public function getAllowedParams() {
 		return [
 			'type' => [
-				ApiBase::PARAM_TYPE => array_keys( ApiQueryTokens::getTokenTypeSalts() ),
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => array_keys( ApiQueryTokens::getTokenTypeSalts() ),
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'token' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
 				ApiBase::PARAM_SENSITIVE => true,
 			],
 			'maxtokenage' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 			],
 		];
 	}

@@ -21,6 +21,8 @@
  */
 
 use MediaWiki\MainConfigNames;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 /**
  * This action allows users to get their watchlist items in RSS/Atom formats.
@@ -258,14 +260,14 @@ class ApiFeedWatchlist extends ApiBase {
 		$feedFormatNames = array_keys( $this->getConfig()->get( MainConfigNames::FeedClasses ) );
 		$ret = [
 			'feedformat' => [
-				ApiBase::PARAM_DFLT => 'rss',
-				ApiBase::PARAM_TYPE => $feedFormatNames
+				ParamValidator::PARAM_DEFAULT => 'rss',
+				ParamValidator::PARAM_TYPE => $feedFormatNames
 			],
 			'hours' => [
-				ApiBase::PARAM_DFLT => 24,
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => 72,
+				ParamValidator::PARAM_DEFAULT => 24,
+				ParamValidator::PARAM_TYPE => 'integer',
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => 72,
 			],
 			'linktosections' => false,
 		];
@@ -284,15 +286,15 @@ class ApiFeedWatchlist extends ApiBase {
 			foreach ( $copyParams as $from => $to ) {
 				$p = $wlparams[$from];
 				if ( !is_array( $p ) ) {
-					$p = [ ApiBase::PARAM_DFLT => $p ];
+					$p = [ ParamValidator::PARAM_DEFAULT => $p ];
 				}
 				if ( !isset( $p[ApiBase::PARAM_HELP_MSG] ) ) {
 					$p[ApiBase::PARAM_HELP_MSG] = "apihelp-query+watchlist-param-$from";
 				}
-				if ( isset( $p[ApiBase::PARAM_TYPE] ) && is_array( $p[ApiBase::PARAM_TYPE] ) &&
+				if ( isset( $p[ParamValidator::PARAM_TYPE] ) && is_array( $p[ParamValidator::PARAM_TYPE] ) &&
 					isset( $p[ApiBase::PARAM_HELP_MSG_PER_VALUE] )
 				) {
-					foreach ( $p[ApiBase::PARAM_TYPE] as $v ) {
+					foreach ( $p[ParamValidator::PARAM_TYPE] as $v ) {
 						if ( !isset( $p[ApiBase::PARAM_HELP_MSG_PER_VALUE][$v] ) ) {
 							$p[ApiBase::PARAM_HELP_MSG_PER_VALUE][$v] = "apihelp-query+watchlist-paramvalue-$from-$v";
 						}

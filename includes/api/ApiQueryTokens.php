@@ -25,6 +25,7 @@
 
 use MediaWiki\Api\ApiHookRunner;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Module to fetch tokens via action=query&meta=tokens
@@ -117,9 +118,9 @@ class ApiQueryTokens extends ApiQueryBase {
 	public function getAllowedParams() {
 		return [
 			'type' => [
-				ApiBase::PARAM_DFLT => 'csrf',
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array_keys( self::getTokenTypeSalts() ),
+				ParamValidator::PARAM_DEFAULT => 'csrf',
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => array_keys( self::getTokenTypeSalts() ),
 				ApiBase::PARAM_ALL => true,
 			],
 		];

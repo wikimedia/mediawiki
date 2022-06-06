@@ -25,6 +25,8 @@
 
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 /**
  * This implements prop=redirects, prop=linkshere, prop=catmembers,
@@ -401,25 +403,25 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 		$ret = [
 			'prop' => [
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_TYPE => [
 					'pageid',
 					'title',
 				],
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_DFLT => 'pageid|title',
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_DEFAULT => 'pageid|title',
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			'namespace' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => 'namespace',
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'namespace',
 			],
 			'show' => null, // Will be filled/removed below
 			'limit' => [
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
+				ParamValidator::PARAM_DEFAULT => 10,
+				ParamValidator::PARAM_TYPE => 'limit',
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				IntegerDef::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
@@ -434,12 +436,12 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		}
 
 		if ( !empty( $settings['showredirects'] ) ) {
-			$ret['prop'][ApiBase::PARAM_TYPE][] = 'redirect';
-			$ret['prop'][ApiBase::PARAM_DFLT] .= '|redirect';
+			$ret['prop'][ParamValidator::PARAM_TYPE][] = 'redirect';
+			$ret['prop'][ParamValidator::PARAM_DEFAULT] .= '|redirect';
 		}
 		if ( isset( $settings['props'] ) ) {
-			$ret['prop'][ApiBase::PARAM_TYPE] = array_merge(
-				$ret['prop'][ApiBase::PARAM_TYPE], $settings['props']
+			$ret['prop'][ParamValidator::PARAM_TYPE] = array_merge(
+				$ret['prop'][ParamValidator::PARAM_TYPE], $settings['props']
 			);
 		}
 
@@ -453,8 +455,8 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		}
 		if ( $show ) {
 			$ret['show'] = [
-				ApiBase::PARAM_TYPE => $show,
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => $show,
+				ParamValidator::PARAM_ISMULTI => true,
 			];
 		} else {
 			unset( $ret['show'] );

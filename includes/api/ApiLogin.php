@@ -26,6 +26,7 @@ use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Unit to authenticate log-in attempts to the current wiki.
@@ -277,12 +278,12 @@ class ApiLogin extends ApiBase {
 		return [
 			'name' => null,
 			'password' => [
-				ApiBase::PARAM_TYPE => 'password',
+				ParamValidator::PARAM_TYPE => 'password',
 			],
 			'domain' => null,
 			'token' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => false, // for BC
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => false, // for BC
 				ApiBase::PARAM_SENSITIVE => true,
 				ApiBase::PARAM_HELP_MSG => [ 'api-help-param-token', 'login' ],
 			],

@@ -1,5 +1,6 @@
 <?php
 
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -309,7 +310,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		$main = new ApiMain( $context );
 		$allowedParams = [
 			'foo' => [],
-			'bar' => [ ApiBase::PARAM_DFLT => 'bar?' ],
+			'bar' => [ ParamValidator::PARAM_DEFAULT => 'bar?' ],
 			'baz' => 'baz!',
 		];
 
@@ -336,7 +337,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		$printer = $this->getMockFormatter( null, 'mockfm' );
 		$this->assertSame( [
 			'wrappedhtml' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-format-param-wrappedhtml',
 			]
 		], $printer->getAllowedParams() );

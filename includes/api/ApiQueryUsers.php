@@ -25,6 +25,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserNameUtils;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Query module to get information about a list of users
@@ -333,8 +334,8 @@ class ApiQueryUsers extends ApiQueryBase {
 	public function getAllowedParams() {
 		return [
 			'prop' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => [
 					'blockinfo',
 					'groups',
 					'groupmemberships',
@@ -353,11 +354,11 @@ class ApiQueryUsers extends ApiQueryBase {
 			],
 			'attachedwiki' => null,
 			'users' => [
-				ApiBase::PARAM_ISMULTI => true
+				ParamValidator::PARAM_ISMULTI => true
 			],
 			'userids' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 		];
 	}
