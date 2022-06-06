@@ -125,7 +125,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 
 	public function getInputHTML( $value ) {
 		$oldClass = $this->mClass;
-		$this->mClass = (array)$this->mClass;
+		$classes = (array)$this->mClass;
 
 		$valInSelect = false;
 		$ret = '';
@@ -141,7 +141,6 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 			$selected = $valInSelect ? $value : 'other';
 			$select = new XmlSelect( $this->mName . '-select', $this->mID . '-select', $selected );
 			$select->addOptions( $this->getOptions() );
-			$select->setAttribute( 'class', 'mw-htmlform-select-or-other' );
 
 			if ( !empty( $this->mParams['disabled'] ) ) {
 				$select->setAttribute( 'disabled', 'disabled' );
@@ -153,7 +152,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 
 			$ret = $select->getHTML() . "<br />\n";
 
-			$this->mClass[] = 'mw-htmlform-hide-if';
+			$classes[] = 'mw-htmlform-hide-if';
 		}
 
 		if ( $valInSelect ) {
@@ -165,7 +164,8 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 			}
 		}
 
-		$this->mClass[] = 'mw-htmlform-autocomplete';
+		$classes[] = 'mw-htmlform-autocomplete';
+		$this->mClass = implode( ' ', $classes );
 		$ret .= parent::getInputHTML( $valInSelect ? '' : $value );
 		$this->mClass = $oldClass;
 
