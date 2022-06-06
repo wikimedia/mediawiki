@@ -1,5 +1,11 @@
 = MediaWiki 1.38 =
 
+== MediaWiki 1.38.1 ==
+
+=== Changes since MediaWiki 1.38.0 ===
+* (T309860) Add justinrainbow/json-schema to vendor.
+* (T309933) Drop PHP 7.2 support in MediaWiki 1.38; require 7.3.19.
+
 == MediaWiki 1.38.0 ==
 
 === Changes since MediaWiki 1.38.0-rc.1 ===
@@ -159,6 +165,7 @@ For notes on 1.37.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 * symfony/yaml was promoted from development-only.
+* justinrainbow/json-schema was promoted from development-only.
 
 ==== Changed external libraries ====
 * Updated OOUI from v0.42.0 to v0.43.2.
