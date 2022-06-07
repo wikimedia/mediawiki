@@ -1381,7 +1381,7 @@
 [submodule "extensions/RemovePII"]
 	path = extensions/RemovePII
 	url = https://github.com/miraheze/RemovePII
-	branch = 1_38-support
+	branch = master
 	ignore = dirty
 [submodule "skins/Monaco"]
 	path = skins/Monaco
