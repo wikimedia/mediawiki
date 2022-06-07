@@ -1635,13 +1635,6 @@ class MainConfigNames {
 	public const ExtensionInfoMTime = 'ExtensionInfoMTime';
 
 	/**
-	 * Name constant for the ParserCacheUseJson setting, for use with Config::get()
-	 * @see MainConfigSchema::ParserCacheUseJson
-	 * @deprecated since 1.36
-	 */
-	public const ParserCacheUseJson = 'ParserCacheUseJson';
-
-	/**
 	 * Name constant for the EnableRemoteBagOStuffTests setting, for use with Config::get()
 	 * @see MainConfigSchema::EnableRemoteBagOStuffTests
 	 */
