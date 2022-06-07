@@ -53,6 +53,7 @@ class HTMLInfoField extends HTMLFormField {
 
 		return new OOUI\LabelWidget( [
 			'label' => $value,
+			'id' => $this->mID
 		] );
 	}
 
