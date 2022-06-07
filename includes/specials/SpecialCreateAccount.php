@@ -151,7 +151,8 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		 */
 		$this->getHookRunner()->onBeforeWelcomeCreation( $welcome_creation_msg, $injected_html );
 
-		$this->showSuccessPage( 'signup', $this->msg( 'welcomeuser', $this->getUser()->getName() ),
+		$this->showSuccessPage( 'signup',
+			$this->msg( 'welcomeuser', $this->getUser()->getName() )->escaped(),
 			$welcome_creation_msg, $injected_html, $extraMessages );
 	}
 
