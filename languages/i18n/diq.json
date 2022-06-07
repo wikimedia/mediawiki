@@ -2666,7 +2666,7 @@
 	"blocklog-showsuppresslog": "verniyê no/na karberi cıwa ver geriyayo/ya.",
 	"blocklogentry": "[[$1]] heta $2 û sebebê $3 ra kılit bi",
 	"reblock-logentry": "qey [[$1]]i tarixê qediyayişi $2 $3 pa ninan a eyarê ver-grewtışan vurna.",
-	"blocklogtext": "No kuliyatê kılitkerdış u rakerdışê fealiyetê karberano.\nAdresê IP'ya ke otomatikmen kılit biyê lista de çıniya.\nSeba lista karberanê ke heta nıka kılit biyê [[Special:BlockList|lista kılitkerdışê IPy]] bıvinê.",
+	"blocklogtext": "No kuliyatê kılitkerdış u rakerdışê fealiyetê karberano.\nAdresê IPyê ke otomatikmen kılit biyê, lista de çıniyê.\nSeba lista karberanê ke heta nıka kılit biyê [[Special:BlockList|lista kılitkerdışê IPyi]] bıvêne.",
 	"unblocklogentry": "$1 ake",
 	"block-log-flags-anononly": "tenya karberê anonimi",
 	"block-log-flags-nocreate": "akerdışê hesabi kılit bi",

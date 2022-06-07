@@ -885,7 +885,7 @@
 	"rev-deleted-event": "(লগের তথ্য সরানো হয়েছে)",
 	"rev-deleted-user-contribs": "[ব্যবহারকারীর নাম অথবা আইপি ঠিকানা সরানো হয়েছে - অবদান থেকে সম্পাদনা লুকিয়ে রাখা হয়েছে]",
 	"rev-deleted-text-permission": "পাতার এই সংস্করণটি <strong>অপসারিত হয়েছে</strong>।\nবিস্তারিত কারণ এর [{{fullurl:{{#Special:Log}}/delete|page=$1}} অপসারণ লগে] পাওয়া যেতে পারে।",
-	"rev-suppressed-text": "পাতার এই সংশোধনটি <strong>অপসারিত</strong> হয়েছে",
+	"rev-suppressed-text": "পাতার এই সংস্করণটি <strong>গোপন</strong> করা হয়েছে।",
 	"rev-suppressed-text-permission": "পাতার সংশোধনটি <strong>গোপন</strong> করা হয়েছে।\nবিস্তারিত বিবরণ [{{fullurl:{{#Special:Log}}/suppress|page=$1}} গোপনকার্যের লগে] থাকতে পারে।",
 	"rev-deleted-text-unhide": "পাতার এই সংস্করণটি '''অপসারিত''' হয়েছে।\nবিস্তারিত কারণ এর [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অপসারণ লগে] পাওয়া যেতে পারে।\nআপনি ইচ্ছা পোষণ করলে [$1 এই সংস্করণটি দেখতে পারেন]।",
 	"rev-suppressed-text-unhide": "পাতার এই সংস্করণটি '''অপসারিত''' হয়েছে।\nবিস্তারিত কারণ এর [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অপসারণ লগে] পাওয়া যেতে পারে।\nআপনি ইচ্ছা পোষণ করলে [$1 এই সংস্করণটি দেখতে পারেন]।",

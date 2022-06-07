@@ -2457,7 +2457,7 @@
 	"deleteprotected": "Ви не можете видалити цю сторінку, тому що вона захищена.",
 	"deleting-backlinks-warning": "<strong>Попередження:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|інші сторінки]] посилаються або містять сторінку, яку Ви маєте намір видалити.",
 	"deleting-subpages-warning": "<strong>Попередження:</strong> Сторінка, яку Ви маєте намір вилучити, має [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|$1 підсторінку|$1 підсторінки|$1 підсторінок|51=понад 50 підсторінок}}]].",
-	"deleting-talkpage-subpages-warning": "<strong>Попередження:</strong> Пов'язана сторінка обговорення сторінки, яку Ви маєте намір вилучити, має [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|$1 підсторінку|$1 підсторінки|$1 підсторінок|51=понад 50 підсторінок}}]].",
+	"deleting-talkpage-subpages-warning": "<strong>Попередження:</strong> Пов'язана сторінка обговорення сторінки, яку Ви маєте намір вилучити, має [[Special:PrefixIndex/{{TALKPAGENAME}}/|{{PLURAL:$1|$1 підсторінку|$1 підсторінки|$1 підсторінок|51=понад 50 підсторінок}}]].",
 	"rollback": "Відкинуто редагування",
 	"rollback-confirmation-confirm": "Будь ласка, підтвердіть:",
 	"rollback-confirmation-yes": "Відкинути",
