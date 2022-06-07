@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Parser;
 
 use BagOStuff;
+use CacheTime;
 use EmptyBagOStuff;
 use HashBagOStuff;
 use InvalidArgumentException;
@@ -484,7 +485,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 			'RejectParserCacheValue' =>
 				function ( ParserOutput $value, WikiPage $hookPage, ParserOptions $popts )
 				use ( $wikiPageMock, $parserOutput, $options ) {
-					$this->assertSame( $parserOutput, $value );
+					$this->assertEquals( $parserOutput, $value );
 					$this->assertSame( $wikiPageMock, $hookPage );
 					$this->assertSame( $options, $popts );
 					return false;
@@ -569,12 +570,11 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideCorruptData() {
-		yield 'PHP serialization, bad data' => [ false, 'bla bla' ];
-		yield 'JSON serialization, bad data' => [ true, 'bla bla' ];
-		yield 'JSON serialization, no _class_' => [ true, '{"test":"test"}' ];
-		yield 'JSON serialization, non-existing _class_' => [ true, '{"_class_":"NonExistentBogusClass"}' ];
+		yield 'JSON serialization, bad data' => [ 'bla bla' ];
+		yield 'JSON serialization, no _class_' => [ '{"test":"test"}' ];
+		yield 'JSON serialization, non-existing _class_' => [ '{"_class_":"NonExistentBogusClass"}' ];
 		$wrongInstance = new JsonUnserializableSuperClass( 'test' );
-		yield 'JSON serialization, wrong class' => [ true, json_encode( $wrongInstance->jsonSerialize() ) ];
+		yield 'JSON serialization, wrong class' => [ json_encode( $wrongInstance->jsonSerialize() ) ];
 	}
 
 	/**
@@ -586,12 +586,10 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideCorruptData
 	 * @covers ParserCache::get
 	 * @covers ParserCache::restoreFromJson
-	 * @param bool $json
 	 * @param string $data
 	 */
-	public function testCorruptData( bool $json, string $data ) {
+	public function testCorruptData( string $data ) {
 		$cache = $this->createParserCache( null, new HashBagOStuff() );
-		$cache->setJsonSupport( $json, $json );
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 
 		$options1 = ParserOptions::newCanonical( 'canonical' );
@@ -639,14 +637,38 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test whats happen when we turn on JSON support but there
-	 * are still old entries in the cache.
+	 * Test what happens when upgrading from 1.35 or earlier,
+	 * when old cache entries do not yet use JSON.
 	 *
 	 * @covers ParserCache::get
 	 */
 	public function testMigrationToJson() {
-		$cache = $this->createParserCache();
-		$cache->setJsonSupport( false, false );
+		$bagOStuff = new HashBagOStuff();
+
+		$cache = $this->getMockBuilder( ParserCache::class )
+			->setConstructorArgs( [
+				'test',
+				$bagOStuff,
+				'19900220000000',
+				$this->createHookContainer( [] ),
+				new JsonCodec(),
+				new NullStatsdDataFactory(),
+				new NullLogger(),
+				$this->getServiceContainer()->getTitleFactory(),
+				$this->getServiceContainer()->getWikiPageFactory()
+			] )
+			->onlyMethods( [ 'convertForCache' ] )
+			->getMock();
+
+		// Emulate pre-1.36 behavior: rely on native PHP serialization.
+		// Note that backwards compatibility of the actual serialization is covered
+		// by ParserOutputTest which uses various versions of serialized data
+		// under tests/phpunit/data/ParserCache.
+		$cache->method( 'convertForCache' )->willReturnCallback(
+			static function ( CacheTime $obj, string $key ) {
+				return $obj;
+			}
+		);
 
 		$parserOutput1 = new ParserOutput( 'Lorem Ipsum' );
 
@@ -654,7 +676,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$cache->save( $parserOutput1, $this->page, $options, $this->cacheTime );
 
 		// emulate migration to JSON
-		$cache->setJsonSupport( true, true );
+		$cache = $this->createParserCache( null, $bagOStuff );
 
 		// make sure we can load non-json cache data
 		$cachedOutput = $cache->get( $this->page, $options );
@@ -670,50 +692,11 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test whats happen when we have to roll back from supporting JSON
-	 * to not supporting JSON.
-	 *
-	 * @covers ParserCache::get
-	 */
-	public function testRollbackFromJson() {
-		$cache = $this->createParserCache();
-		$cache->setJsonSupport( true, true );
-
-		$parserOutput1 = new ParserOutput( 'Lorem Ipsum' );
-
-		$options = ParserOptions::newCanonical( 'canonical' );
-		$cache->save( $parserOutput1, $this->page, $options, $this->cacheTime );
-
-		// emulate rolling back to not writing but still reading JSON
-		$cache->setJsonSupport( true, false );
-
-		// make sure we can load json cache data
-		$cachedOutput = $cache->get( $this->page, $options );
-		$this->assertEquals( $parserOutput1, $cachedOutput );
-
-		// emulate rolling back to not reading JSON
-		$cache->setJsonSupport( false, false );
-
-		// make sure we don't crash and burn
-		$cachedOutput = $cache->get( $this->page, $options );
-		$this->assertFalse( $cachedOutput );
-
-		// now test that the cache works without JSON
-		$parserOutput2 = new ParserOutput( 'dolor sit amet' );
-		$cache->save( $parserOutput2, $this->page, $options, $this->cacheTime );
-
-		// make sure we can load non-json cache data
-		$cachedOutput = $cache->get( $this->page, $options );
-		$this->assertEquals( $parserOutput2, $cachedOutput );
-	}
-
-	/**
-	 * @covers ParserCache::encodeAsJson
+	 * @covers ParserCache::convertForCache
 	 */
 	public function testNonSerializableJsonIsReported() {
 		$testLogger = new TestLogger( true );
 		$cache = $this->createParserCache( null, null, $testLogger );
-		$cache->setJsonSupport( true, true );
 
 		$parserOutput = $this->createDummyParserOutput();
 		$parserOutput->setExtensionData( 'test', new User() );
@@ -725,12 +708,11 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ParserCache::encodeAsJson
+	 * @covers ParserCache::convertForCache
 	 */
 	public function testCyclicStructuresDoNotBlowUpInJson() {
 		$testLogger = new TestLogger( true );
 		$cache = $this->createParserCache( null, null, $testLogger );
-		$cache->setJsonSupport( true, true );
 
 		$parserOutput = $this->createDummyParserOutput();
 		$cyclicArray = [ 'a' => 'b' ];
@@ -745,12 +727,12 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Tests that unicode characters are not \u escaped
-	 * @covers ParserCache::encodeAsJson
+	 *
+	 * @covers ParserCache::convertForCache
 	 */
 	public function testJsonEncodeUnicode() {
 		$unicodeCharacter = "Э";
 		$cache = $this->createParserCache( null, new HashBagOStuff() );
-		$cache->setJsonSupport( true, true );
 
 		$parserOutput = $this->createDummyParserOutput();
 		$parserOutput->setText( $unicodeCharacter );

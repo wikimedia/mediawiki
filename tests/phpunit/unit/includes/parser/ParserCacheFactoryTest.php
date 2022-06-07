@@ -17,7 +17,6 @@ class ParserCacheFactoryTest extends MediaWikiUnitTestCase {
 	 */
 	private function newParserCacheFactory() {
 		$options = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
-			'ParserCacheUseJson' => true,
 			'CacheEpoch' => '20200202112233',
 			'OldRevisionParserCacheExpireTime' => 60,
 		] );

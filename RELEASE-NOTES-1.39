@@ -45,6 +45,9 @@ For notes on 1.38.x and older releases, see HISTORY.
   Use the MW_WIKI_NAME environment variable to specifiy the name of the site
   to load configuration for. Using the WIKI_NAME environment variable for this
   purpose is deprecated.
+* $wgParserCacheUseJson - the ParserCache now always uses JSON serialization.
+  Reading old non-JSON cache entries is still supported. The setting had been
+  deprecated since 1.36.
 * $wgAllowJavaUploads - To allow uploads of JAR files, remove application/java
   from $wgMimeTypeExclusions.
 * $wgMaxRedirects has been removed. This feature never worked as intended,
