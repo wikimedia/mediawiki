@@ -421,6 +421,10 @@ class DatabaseSqlite extends Database {
 			);
 		}
 
+		// Update that domain fields on success (no exception thrown)
+		$this->currentDomain = $domain;
+		$this->platform->setPrefix( $domain->getTablePrefix() );
+
 		return true;
 	}
 
