@@ -192,9 +192,7 @@ $wgScriptPath = '/wiki';
  * redirect loops when "pretty URLs" are used.
  * @since 1.2.1
  */
-$wgUsePathInfo = ( strpos( PHP_SAPI, 'cgi' ) === false ) &&
-	( strpos( PHP_SAPI, 'apache2filter' ) === false ) &&
-	( strpos( PHP_SAPI, 'isapi' ) === false );
+$wgUsePathInfo = null;
 
 /**
  * The URL path to index.php.
@@ -980,7 +978,7 @@ $wgLockManagers = [];
  * extension=extensions/php_exif.dll
  * @endcode
  */
-$wgShowEXIF = function_exists( 'exif_read_data' );
+$wgShowEXIF = null;
 
 /**
  * Shortcut for the 'updateCompatibleMetadata' setting of $wgLocalFileRepo.
