@@ -93,10 +93,10 @@
 			<arguments>
 				<array>
 					<element key="slowThreshold">
-						<integer>50</integer>
+						<integer>100</integer>
 					</element>
 					<element key="reportLength">
-						<integer>50</integer>
+						<integer>25</integer>
 					</element>
 				</array>
 			</arguments>
