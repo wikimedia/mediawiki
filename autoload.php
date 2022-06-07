@@ -1759,6 +1759,7 @@ $wgAutoloadLocalClasses = [
 	'WebRequest' => __DIR__ . '/includes/WebRequest.php',
 	'WebRequestUpload' => __DIR__ . '/includes/WebRequestUpload.php',
 	'WebResponse' => __DIR__ . '/includes/WebResponse.php',
+	'WikiBirthday' => __DIR__ . '/maintenance/wikiBirthday.php',
 	'WikiCategoryPage' => __DIR__ . '/includes/page/WikiCategoryPage.php',
 	'WikiExporter' => __DIR__ . '/includes/export/WikiExporter.php',
 	'WikiFilePage' => __DIR__ . '/includes/page/WikiFilePage.php',
