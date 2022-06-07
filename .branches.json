@@ -83,7 +83,8 @@
     "extensions/QuickInstantCommons",
     "extensions/StandardDialogs",
     "skins/Tweeki",
-    "extensions/ExternalData"
+    "extensions/ExternalData",
+    "extensions/RemovePII"
   ],
   "stable": [
     "extensions/SnapProjectEmbed",
@@ -94,8 +95,5 @@
     "skins/Citizen",
     "extensions/TabberNeue",
     "skins/Evelution"
-  ],
-  "1_38-support": [
-    "extensions/RemovePII"
   ]
 }
