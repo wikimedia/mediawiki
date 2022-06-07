@@ -809,19 +809,6 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	public function databasesAreIndependent();
 
 	/**
-	 * Change the current database
-	 *
-	 * This should only be called by a load balancer or if the handle is not attached to one
-	 *
-	 * @param string $db
-	 * @return bool True unless an exception was thrown
-	 * @throws DBConnectionError If databasesAreIndependent() is true and connection change fails
-	 * @throws DBError On query error or if database changes are disallowed
-	 * @deprecated Since 1.32 Use selectDomain() instead
-	 */
-	public function selectDB( $db );
-
-	/**
 	 * Set the current domain (database, schema, and table prefix)
 	 *
 	 * This will throw an error for some database types if the database is unspecified

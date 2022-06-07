@@ -248,6 +248,8 @@ because of Phabricator reports.
 * Optional parameter of ILBFactory::commitAll(), $options has been removed
   without deprecation as they are unused.
 * LoadMonitorMysql was removed without deprecation. Use LoadMonitor instead.
+* IDatabase::selectDB(), deprecated since 1.32, has been removed.
+  Use IDatabase::selectDomain() instead.
 * The following deprecated hooks have been removed:
   - BaseTemplateAfterPortlet, deprecated in 1.35
   - BeforeParserFetchTemplateAndtitle, deprecated in 1.36

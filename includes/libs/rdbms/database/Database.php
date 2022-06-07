@@ -1775,16 +1775,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return false;
 	}
 
-	final public function selectDB( $db ) {
-		$this->selectDomain( new DatabaseDomain(
-			$db,
-			$this->currentDomain->getSchema(),
-			$this->currentDomain->getTablePrefix()
-		) );
-
-		return true;
-	}
-
 	final public function selectDomain( $domain ) {
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 

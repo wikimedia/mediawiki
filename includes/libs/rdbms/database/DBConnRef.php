@@ -473,12 +473,6 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function selectDB( $db ) {
-		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
-		// Disallow things that might confuse the LoadBalancer tracking
-		throw $this->getDomainChangeException();
-	}
-
 	public function selectDomain( $domain ) {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		// Disallow things that might confuse the LoadBalancer tracking

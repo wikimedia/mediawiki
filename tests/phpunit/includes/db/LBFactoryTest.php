@@ -390,7 +390,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection
 	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::doSelectDomain
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::selectDB
 	 */
 	public function testNiceDomains() {
 		global $wgDBname;
@@ -474,7 +473,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection
 	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::doSelectDomain
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::selectDB
 	 */
 	public function testTrickyDomain() {
 		global $wgDBname;
@@ -545,7 +543,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection
 	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::doSelectDomain
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::selectDB
 	 */
 	public function testInvalidSelectDB() {
 		if ( wfGetDB( DB_PRIMARY )->databasesAreIndependent() ) {
@@ -568,8 +565,8 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::selectDB
-	 * @covers \Wikimedia\Rdbms\DatabasePostgres::selectDB
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::doSelectDomain
+	 * @covers \Wikimedia\Rdbms\DatabasePostgres::doSelectDomain
 	 */
 	public function testInvalidSelectDBIndependent() {
 		$dbname = 'unittest-domain'; // explodes if DB is selected
@@ -593,8 +590,8 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::selectDB
-	 * @covers \Wikimedia\Rdbms\DatabasePostgres::selectDB
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::doSelectDomain
+	 * @covers \Wikimedia\Rdbms\DatabasePostgres::doSelectDomain
 	 */
 	public function testInvalidSelectDBIndependent2() {
 		$dbname = 'unittest-domain'; // explodes if DB is selected
@@ -620,7 +617,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::redefineLocalDomain
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::selectDB
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::doSelectDomain
 	 */
 	public function testRedefineLocalDomain() {
 		global $wgDBname;
