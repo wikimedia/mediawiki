@@ -5196,6 +5196,7 @@ class Parser {
 			$alt = '';
 			$handlerOptions = [];
 			$imageOptions = [];
+			$hasAlt = false;
 
 			if ( isset( $matches[3] ) ) {
 				// look for an |alt= definition while trying not to break existing
@@ -5224,6 +5225,7 @@ class Parser {
 					$paramName = $paramMap[$magicName];
 					switch ( $paramName ) {
 						case 'gallery-internal-alt':
+							$hasAlt = true;
 							$alt = $this->stripAltText( $match, false );
 							break;
 						case 'gallery-internal-link':
@@ -5255,6 +5257,14 @@ class Parser {
 				}
 			}
 
+			// Match makeImage when !$hasVisibleCaption
+			if ( !$hasAlt ) {
+				if ( $label !== '' ) {
+					$alt = $this->stripAltText( $label, false );
+				} else {
+					$alt = $title->getText();
+				}
+			}
 			$imageOptions['title'] = $this->stripAltText( $label, false );
 
 			$ig->add(
