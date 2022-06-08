@@ -379,6 +379,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data['categorycollation'] = $config->get( MainConfigNames::CategoryCollation );
 
+		$data['nofollowlinks'] = $config->get( MainConfigNames::NoFollowLinks );
+		$data['nofollownsexceptions'] = $config->get( MainConfigNames::NoFollowNsExceptions );
+		$data['nofollowdomainexceptions'] = $config->get( MainConfigNames::NoFollowDomainExceptions );
+		$data['externallinktarget'] = $config->get( MainConfigNames::ExternalLinkTarget );
+
 		$this->getHookRunner()->onAPIQuerySiteInfoGeneralInfo( $this, $data );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
