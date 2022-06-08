@@ -4162,6 +4162,8 @@ wgParserEnableLegacyMediaDOM=false
 ## Expect the media structure to account for cases like this since it's common enough
 !! test
 File in formatting element violating content model
+!! options
+parsoid=wt2html,html2html
 !! config
 wgParserEnableLegacyMediaDOM=false
 !! wikitext
@@ -4170,6 +4172,21 @@ wgParserEnableLegacyMediaDOM=false
 <p><i></i></p><figure class="mw-default-size" typeof="mw:File/Thumb"><i><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a><figcaption></figcaption></i></figure><p class="mw-empty-elt"></p>
 !! html/parsoid
 <p data-parsoid='{"stx":"html","autoInsertedEnd":true}'><i data-parsoid='{"autoInsertedEnd":true}'></i></p><figure class="mw-default-size" typeof="mw:Image/Thumb"><i data-parsoid='{"autoInsertedStart":true,"autoInsertedEnd":true}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x"/></a><figcaption></figcaption></i></figure><p class="mw-empty-elt" data-parsoid='{"autoInsertedStart":true,"stx":"html"}'></p>
+!! end
+
+## Expect the media structure to account for cases like this since it's common enough
+!! test
+File in formatting element violating content model, multiple open
+!! options
+parsoid=wt2html,html2html
+!! config
+wgParserEnableLegacyMediaDOM=false
+!! wikitext
+<p>'''''[[File:Foobar.jpg|thumb]]'''''</p>
+!! html/php
+<p><i><b></b></i></p><figure class="mw-default-size" typeof="mw:File/Thumb"><i><b><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a><figcaption></figcaption></b></i></figure><p class="mw-empty-elt"></p>
+!! html/parsoid
+<p data-parsoid='{"stx":"html","autoInsertedEnd":true}'><i data-parsoid='{"autoInsertedEnd":true}'><b data-parsoid='{"autoInsertedEnd":true}'></b></i></p><figure class="mw-default-size" typeof="mw:Image/Thumb"><i data-parsoid='{"autoInsertedStart":true,"autoInsertedEnd":true}'><b data-parsoid='{"autoInsertedStart":true,"autoInsertedEnd":true}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x"/></a><figcaption></figcaption></b></i></figure><p class="mw-empty-elt" data-parsoid='{"autoInsertedStart":true,"stx":"html"}'></p>
 !! end
 
 !! test
