@@ -36,6 +36,14 @@ class MySQLPlatform extends SQLPlatform {
 		return '`' . str_replace( [ "\0", '`' ], [ '', '``' ], $s ) . '`';
 	}
 
+	/**
+	 * @param string $name
+	 * @return bool
+	 */
+	public function isQuotedIdentifier( $name ) {
+		return strlen( $name ) && $name[0] == '`' && substr( $name, -1, 1 ) == '`';
+	}
+
 	public function buildStringCast( $field ) {
 		return "CAST( $field AS BINARY )";
 	}

@@ -451,14 +451,6 @@ abstract class DatabaseMysqlBase extends Database {
 	 */
 	abstract protected function mysqlRealEscapeString( $s );
 
-	/**
-	 * @param string $name
-	 * @return bool
-	 */
-	public function isQuotedIdentifier( $name ) {
-		return strlen( $name ) && $name[0] == '`' && substr( $name, -1, 1 ) == '`';
-	}
-
 	protected function doGetLag() {
 		if ( $this->getLagDetectionMethod() === 'pt-heartbeat' ) {
 			return $this->getLagFromPtHeartbeat();
