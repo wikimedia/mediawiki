@@ -363,6 +363,7 @@
 	"exif-firstphotodate": "Datum prvního snímku",
 	"exif-lastphotodate": "Datum posledního snímku",
 	"exif-projectiontype": "Typ projekce",
+	"exif-projectiontype-equirectangular": "Ekvidistantní válcová",
 	"exif-usepanoramaviewer": "Použít prohlížeč panoramat",
 	"exif-usepanoramaviewer-true": "Ano",
 	"exif-usepanoramaviewer-false": "Ne",
