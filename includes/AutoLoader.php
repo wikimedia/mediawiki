@@ -144,6 +144,21 @@ class AutoLoader {
 	}
 
 	/**
+	 * Batch version of loadFile()
+	 *
+	 * @see loadFile()
+	 *
+	 * @since 1.39
+	 *
+	 * @param string[] $files the paths of the files to load.
+	 */
+	public static function loadFiles( array $files ): void {
+		foreach ( $files as $f ) {
+			self::loadFile( $f );
+		}
+	}
+
+	/**
 	 * Find the file containing the given class.
 	 *
 	 * @param string $className Name of class we're looking for.

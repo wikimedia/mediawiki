@@ -171,12 +171,11 @@ abstract class DatabaseUpdater {
 		$registry->clearQueue();
 
 		// Read extension.json files
-		// NOTE: As a side-effect, this registers classes and namespaces with the autoloader.
-		$data = $registry->readFromQueue( $queue );
+		$extInfo = $registry->readFromQueue( $queue );
 
 		// Merge extension attribute hooks with hooks defined by a .php
 		// registration file included from LocalSettings.php
-		$legacySchemaHooks = $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ?? [];
+		$legacySchemaHooks = $extInfo['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ?? [];
 		if ( $vars && isset( $vars['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
 			$legacySchemaHooks = array_merge( $legacySchemaHooks, $vars['wgHooks']['LoadExtensionSchemaUpdates'] );
 		}
@@ -187,11 +186,23 @@ abstract class DatabaseUpdater {
 			AutoLoader::registerClasses( $vars['wgAutoloadClasses'] );
 		}
 
+		// Register class definitions from extension.json files
+		if ( !isset( $extInfo['autoloaderPaths'] )
+			|| !isset( $extInfo['autoloaderClasses'] )
+			|| !isset( $extInfo['autoloaderNS'] )
+		) {
+			// NOTE: protect against changes to the structure of $extInfo. It's volatile, and this usage easy to miss.
+			throw new LogicException( 'Missing autoloader keys from extracted extension info' );
+		}
+		AutoLoader::loadFiles( $extInfo['autoloaderPaths'] );
+		AutoLoader::registerClasses( $extInfo['autoloaderClasses'] );
+		AutoLoader::registerNamespaces( $extInfo['autoloaderNS'] );
+
 		return new HookContainer(
 			new StaticHookRegistry(
 				[ 'LoadExtensionSchemaUpdates' => $legacySchemaHooks ],
-				$data['attributes']['Hooks'] ?? [],
-				$data['attributes']['DeprecatedHooks'] ?? []
+				$extInfo['attributes']['Hooks'] ?? [],
+				$extInfo['attributes']['DeprecatedHooks'] ?? []
 			),
 			MediaWikiServices::getInstance()->getObjectFactory()
 		);

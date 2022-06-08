@@ -1439,7 +1439,7 @@
 	"apihelp-undelete-param-title": "שם הדף לשחזור ממחיקה.",
 	"apihelp-undelete-param-reason": "סיבה לשחזור.",
 	"apihelp-undelete-param-tags": "תגי שינוי שיחולו על הרשומה ביומן המחיקה.",
-	"apihelp-undelete-param-timestamps": "חותמי־זמן של הגרסה לשחזור. אם גם <var>$1timestamps</var> וגם <var>$1fileids</var> ריקים, הכול ישוחזר.",
+	"apihelp-undelete-param-timestamps": "חותמי־זמן של הגרסה לשחזור ממחיקה. אם גם <var>$1timestamps</var> וגם <var>$1fileids</var> ריקים, הכול ישוחזר.",
 	"apihelp-undelete-param-fileids": "מזהי גרסאות הקובץ לשחזור. אם גם <var>$1timestamps</var> וגם <var>$1fileids</var> ריקים, הכול ישוחזר.",
 	"apihelp-undelete-param-watchlist": "הוספה או הסרה של הדף ללא תנאי מרשימת המעקב של המשתמש הנוכחי, להשתמש בהעדפות (לא חל על משתמשי בוט), או לא לשנות את המעקב.",
 	"apihelp-undelete-param-watchlistexpiry": "חותם־זמן לתפוגת רשימת המעקב. יש להשמיט את הפרמטר הזה לגמרי כדי להותיר את התפוגה הנוכחית ללא שינוי.",
