@@ -48,6 +48,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @param Authority|null $performer
 	 * @param string|null $tokenType Set to a string like 'csrf' to send an
 	 *   appropriate token
+	 * @param string|null $paramPrefix Prefix to prepend to parameters
 	 * @return array List of:
 	 * - the result data (array)
 	 * - the request (WebRequest)
@@ -56,7 +57,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @throws ApiUsageException
 	 */
 	protected function doApiRequest( array $params, array $session = null,
-		$appendModule = false, Authority $performer = null, $tokenType = null
+		$appendModule = false, Authority $performer = null, $tokenType = null,
+		$paramPrefix = null
 	) {
 		global $wgRequest;
 
@@ -96,6 +98,15 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 				)->toString();
 			}
 		}
+
+		// prepend parameters with prefix
+		foreach ( array_keys( $params ) as $key ) {
+			$newKeys[] = $paramPrefix . $key;
+		}
+		$params = array_combine(
+			$newKeys,
+			array_values( $params )
+		);
 
 		$wgRequest = $this->buildFauxRequest( $params, $sessionObj );
 		RequestContext::getMain()->setRequest( $wgRequest );
@@ -141,12 +152,13 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @param array|null $session Session array
 	 * @param Authority|null $performer A User object for the context
 	 * @param string $tokenType Which token type to pass
+	 * @param string|null $paramPrefix Prefix to prepend to parameters
 	 * @return array Result of the API call
 	 */
 	protected function doApiRequestWithToken( array $params, array $session = null,
-		Authority $performer = null, $tokenType = 'auto'
+		Authority $performer = null, $tokenType = 'auto', $paramPrefix = null
 	) {
-		return $this->doApiRequest( $params, $session, false, $performer, $tokenType );
+		return $this->doApiRequest( $params, $session, false, $performer, $tokenType, $paramPrefix );
 	}
 
 	protected static function getErrorFormatter() {
