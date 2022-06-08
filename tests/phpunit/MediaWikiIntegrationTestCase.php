@@ -170,7 +170,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$this->backupStaticAttributes = false;
 	}
 
-	private static function initializeForStandardPhpunitEntrypointIfNeeded() {
+	public static function initializeForStandardPhpunitEntrypointIfNeeded() {
 		if ( defined( 'MW_PHPUNIT_UNIT' ) ) {
 			$IP = realpath( __DIR__ . '/../..' );
 			TestSetup::requireOnceInGlobalScope( "$IP/includes/Defines.php" );
