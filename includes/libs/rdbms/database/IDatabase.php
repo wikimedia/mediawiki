@@ -462,6 +462,22 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	public function query( $sql, $fname = __METHOD__, $flags = 0 );
 
 	/**
+	 * Run a batch of SQL query statements and return the results.
+	 *
+	 * @see IDatabase::query()
+	 *
+	 * @param string[] $sqls Map of (statement ID => SQL statement)
+	 * @param string $fname Name of the calling function
+	 * @param int $flags Bit field of IDatabase::QUERY_* constants
+	 * @param string|null $summarySql Virtual SQL for profiling (e.g. "UPSERT INTO TABLE 'x'")
+	 * @return array<string,QueryStatus> Ordered map of (statement ID => QueryStatus)
+	 * @since 1.39
+	 */
+	public function queryMulti(
+		array $sqls, string $fname = __METHOD__, int $flags = 0, ?string $summarySql = null
+	);
+
+	/**
 	 * Create an empty SelectQueryBuilder which can be used to run queries
 	 * against this connection.
 	 *
@@ -888,7 +904,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	);
 
 	/**
-	 * Build a reference to a column value from the conflicting proposed upsert() row
+	 * Build a reference to a column value from the conflicting proposed upsert() row.
 	 *
 	 * The reference comes in the form of an alias, function, or parenthesized SQL expression.
 	 * It can be used in upsert() SET expressions to handle the merging of column values between
@@ -896,9 +912,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	 * been "excluded" from insertion in favor of updating the existing row.
 	 *
 	 * This is useful for multi-row upserts() since the proposed values cannot just be included
-	 * as literals in the SET expressions. An alternative would be using CASE to check the keys
-	 * of the existing row in order to yield the corresponding proposed row value, but that would
-	 * get extremely verbose.
+	 * as literals in the SET expressions.
 	 *
 	 * @see IDatabase::upsert()
 	 *
@@ -1089,7 +1103,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	);
 
 	/**
-	 * Delete all rows in a table that match a condition which includes a join
+	 * Delete all rows in a table that match a condition which includes a join.
 	 *
 	 * For safety, an empty $conds will not delete everything. If you want to
 	 * delete all rows where the join condition matches, set $conds=IDatabase::ALL_ROWS.
