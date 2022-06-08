@@ -1168,6 +1168,12 @@ class FormatMetadata extends ContextSource {
 
 			return ""; // paranoia. This should never happen
 		} else {
+			// Check if $vals contains nested arrays
+			$containsNestedArrays = in_array( true, array_map( 'is_array', $vals ), true );
+			if ( $containsNestedArrays ) {
+				wfLogWarning( __METHOD__ . ': Invalid $vals, contains nested arrays: ' . json_encode( $vals ) );
+			}
+
 			/* @todo FIXME: This should hide some of the list entries if there are
 			 * say more than four. Especially if a field is translated into 20
 			 * languages, we don't want to show them all by default
