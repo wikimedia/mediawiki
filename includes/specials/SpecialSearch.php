@@ -510,11 +510,6 @@ class SpecialSearch extends SpecialPage {
 			}
 		}
 
-		// Show the create link ahead
-		$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
-
-		$this->getHookRunner()->onSpecialSearchResults( $term, $titleMatches, $textMatches );
-
 		// If we have no results and have not already displayed an error message
 		if ( $num === 0 && !$hasSearchErrors ) {
 			$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>", [
@@ -523,6 +518,11 @@ class SpecialSearch extends SpecialPage {
 				$term,
 			] );
 		}
+
+		// Show the create link ahead
+		$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
+
+		$this->getHookRunner()->onSpecialSearchResults( $term, $titleMatches, $textMatches );
 
 		// Although $num might be 0 there can still be secondary or inline
 		// results to display.
