@@ -234,7 +234,7 @@
 	"page-atom-feed": "Feed Atom \"$1\"",
 	"red-link-title": "$1 (nyns eus an folen ma)",
 	"nstab-main": "Folen",
-	"nstab-user": "{{GENDER:$1|Hanow devnydhyer}}:",
+	"nstab-user": "Folen dhevnydhyer",
 	"nstab-media": "Folen media",
 	"nstab-special": "Folen arbennek",
 	"nstab-project": "Folen ragdres",

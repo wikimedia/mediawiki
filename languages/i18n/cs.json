@@ -57,7 +57,10 @@
 			"Walter Klosse",
 			"Want",
 			"YjM",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"Adam N.",
+			"Robert Knobloch",
+			"TheMatto58"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -540,7 +543,7 @@
 	"emailauthenticated": "Vaše e-mailová adresa byla ověřena $2 v $3.",
 	"emailnotauthenticated": "Vaše e-mailová adresa dosud nebyla ověřena.\nU následujících funkcí nebudou zasílány žádné e-maily.",
 	"noemailprefs": "Pro zprovoznění následujících možností musíte zadat svou e-mailovou adresu.",
-	"emailconfirmlink": "Podvrďte svou e-mailovou adresu",
+	"emailconfirmlink": "Potvrďte svou e-mailovou adresu",
 	"invalidemailaddress": "Zadaná e-mailová adresa nemůže být přijata, neboť nemá správný formát. Zadejte platnou e-mailovou adresu nebo obsah tohoto pole vymažte.",
 	"cannotchangeemail": "U uživatelských účtů na této wiki nelze měnit e-mailové adresy.",
 	"emaildisabled": "Tento server nemůže odesílat e-maily.",

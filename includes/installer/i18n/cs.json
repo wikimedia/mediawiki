@@ -68,6 +68,7 @@
 	"config-no-fts3": "<strong>Upozornění:</strong> SQLite bylo přeloženo bez [//sqlite.org/fts3.html modulu FTS3], funkce pro vyhledávání zde nebudou dostupné.",
 	"config-pcre-old": "<strong>Kritická chyba:</strong> Je vyžadováno PCRE verze $1 nebo novější.\nVaše binárka PHP obsahuje PCRE $2.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE Více informací.]",
 	"config-pcre-no-utf8": "<strong>Kritická chyba:</strong> PHP modul PCRE byl zřejmě přeložen bez podpory PCRE_UTF8.\nMediaWiki vyžaduje ke správné funkci podporu UTF-8.",
+	"config-pcre-invalid-newline": "<strong>Kritická chyba:</strong> PHP modul PCRE byl zřejmě přeložen s PCRE_CONFIG_NEWLINE = -1 pro ANY.\nMediaWiki není s takovou konfigurací kompatibilní.",
 	"config-memory-raised": "<code>memory_limit</code> v PHP byl nastaven na $1, zvýšen na $2.",
 	"config-memory-bad": "<strong>Upozornění:</strong> <code>memory_limit</code> je v PHP nastaven na $1.\nTo je pravděpodobně příliš málo.\nInstalace může selhat!",
 	"config-apc": "Je nainstalováno [https://www.php.net/apc APC]",

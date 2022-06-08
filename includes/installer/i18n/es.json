@@ -50,7 +50,10 @@
 			"AVIADOR71",
 			"Jakeukalane",
 			"Reverse88",
-			"DDPAT"
+			"DDPAT",
+			"DiegoAmbrocio",
+			"Enly M",
+			"Ice bulldog"
 		]
 	},
 	"config-desc": "El instalador de MediaWiki",
@@ -60,8 +63,8 @@
 	"config-localsettings-cli-upgrade": "Se ha detectado un archivo <code>LocalSettings.php</code>.\nPara actualizar la instalación, en su lugar ejecuta <code>update.php</code>",
 	"config-localsettings-key": "Clave de actualización:",
 	"config-localsettings-badkey": "La clave de actualización proporcionada es incorrecta.",
-	"config-upgrade-key-missing": "Se ha detectado una instalación existente de MediaWiki.\nPara actualizar la instalación, añade la siguiente línea al final de tu  <code>LocalSettings.php</code>:\n\n$1",
-	"config-localsettings-incomplete": "El archivo <code>LocalSettings.php</code> existente parece estar incompleto.\nLa variable $1 no está definida.\nCambia <code>LocalSettings.php</code> para que esta variable quede establecida y haz clic en \"{{int:Config-continue}}\".",
+	"config-upgrade-key-missing": "Se ha detectado una instalación existente de MediaWiki.\nPara actualizar la instalación, añade la siguiente línea al final de tu <code>LocalSettings.php</code>:\n\n$1",
+	"config-localsettings-incomplete": "El archivo existente <code>LocalSettings.php</code> parece estar incompleto.\nLa variable $1 no está definida.\nCambia <code>LocalSettings.php</code> para que esta variable quede establecida y haz clic en \"{{int:Config-continue}}\".",
 	"config-localsettings-connection-error": "Se ha producido un error al conectar con la base de datos a través de la configuración especificada en <code>LocalSettings.php</code>. Corrige estos ajustes e inténtalo de nuevo.\n\n$1",
 	"config-session-error": "Error al iniciar la sesión: $1",
 	"config-session-expired": "Tus datos de sesión parecen haber expirado.\nLas sesiones están configuradas por una duración de $1.\nPuedes incrementar esto configurando <code>session.gc_maxlifetime</code> en php.ini.\nReiniciar el proceso de instalación.",

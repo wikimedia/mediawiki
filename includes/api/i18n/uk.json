@@ -23,7 +23,8 @@
 			"Vlad5250",
 			"Zoranzoki21",
 			"Ата",
-			"Максим Підліснюк"
+			"Максим Підліснюк",
+			"Ice bulldog"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документація]]\n* [[mw:Special:MyLanguage/API:Etiquette|Етикет і настанови з використання]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаПи]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Список розсилки]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Оголошення API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Баґи і запити]\n</div>\n<strong>Статус:</strong> Усі функції, вказані на цій сторінці, мають працювати, але API далі перебуває в активній розробці і може змінитися у будь-який момент. Підпишіться на [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ список розсилки mediawiki-api-announce], щоб помічати оновлення.\n\n<strong>Хибні запити:</strong> Коли до API надсилаються хибні запити, буде відіслано HTTP-шапку з ключем «MediaWiki-API-Error», а тоді і значення шапки, і код помилки, надіслані назад, будуть встановлені з тим же значенням. Більше інформації див. на сторінці [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Помилки й попередження]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестування:</strong> Для зручності тестування запитів API, див. [[Special:ApiSandbox]].</p>",
@@ -1569,7 +1570,7 @@
 	"api-help-param-type-enum": "{{PLURAL:$1|1=Одне з наступних значень|2=Значення (розділені через <kbd>{{!}}</kbd> або [[Special:ApiHelp/main#main/datatypes|альтернативу]])}}: $2",
 	"api-help-param-multi-separate": "Розділіть значення з допомогою <kbd>|</kbd> або [[Special:ApiHelp/main#main/datatypes|альтернативу]].",
 	"api-help-param-multi-all": "Щоб зазначити всі значення, використовуйте <kbd>$1</kbd>.",
-	"api-help-param-default-empty": "За замовчуванням: <span class=\"apihelp-empty\">(пусто)</span>",
+	"api-help-param-default-empty": "За замовчуванням: <span class=\"apihelp-empty\">(порожньо)</span>",
 	"api-help-param-token": "Токен «$1» отримано з [[Special:ApiHelp/query+tokens|action=query&meta=tokens]]",
 	"api-help-param-token-webui": "Для сумісності, приймається також токен, використаний у користувацькому веб-інтерфейсі.",
 	"api-help-param-disabled-in-miser-mode": "Вимкнено через [[mw:Special:MyLanguage/Manual:$wgMiserMode|скупий режим]].",
@@ -1605,7 +1606,7 @@
 	"apierror-badcontinue": "Параметр продовження недійсний. Вам треба вказати початкове значення, отримане з попереднього запиту.",
 	"apierror-baddiff": "Цю різницю версій неможливо відтворити: одна або й обидві версії не існують, або Ви не маєте прав на їх перегляд.",
 	"apierror-baddiffto": "Для <var>$1diffto</var> треба задати невід'ємне число,<kbd>prev</kbd>, <kbd>next</kbd> або <kbd>cur</kbd>.",
-	"apierror-badformat-generic": "Запитуваний формат $1 не підтримується контентною моделлю$2.",
+	"apierror-badformat-generic": "Запитуваний формат $1 не підтримується контентною моделлю $2.",
 	"apierror-badformat": "Запитуваний формат $1 не підтримується контентною моделлю $2, що використовується $3.",
 	"apierror-badgenerator-notgenerator": "Модуль <kbd>$1</kbd> не може бути використаний як генератор.",
 	"apierror-badgenerator-unknown": "Невідомий <kbd>generator=$1</kbd>.",
@@ -1627,7 +1628,7 @@
 	"apierror-blocked-partial": "Вам заблоковано доступ до редагування цієї сторінки.",
 	"apierror-botsnotsupported": "Інтерфейс не підтримується для ботів.",
 	"apierror-cannot-async-upload-file": "Параметри <var>async</var> та <var>file</var> не можна поєднувати. Якщо Ви хочете, щоб завантажений Вами файл був опрацьований асинхронно, спершу завантажте його у сховок (використавши параметр <var>stash</var>), а тоді опублікуйте цей підготовлений файл (використавши <var>filekey</var> та <var>async</var>).",
-	"apierror-cannotreauthenticate": "Ця діє недоступна, оскільки Вашу ідентичність неможливо перевірити.",
+	"apierror-cannotreauthenticate": "Ця дія недоступна, оскільки Вашу ідентичність неможливо перевірити.",
 	"apierror-cannotviewtitle": "Ви не маєте дозволу на перегляд $1.",
 	"apierror-cantblock-email": "Ви не маєте прав на блокування користувачам можливості надсилання електронної пошти через вікі.",
 	"apierror-cantblock": "Ви не маєте прав на блокування користувачів.",
