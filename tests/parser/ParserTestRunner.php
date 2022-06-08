@@ -1187,11 +1187,11 @@ class ParserTestRunner {
 	 *
 	 * @param ParserTest $test The test parameters
 	 * @param ParserTestMode $mode The test mode
-	 * @return ParserTestResult|false The test results.
+	 * @return ParserTestResult The test results.
 	 */
-	public function runTest( ParserTest $test, ParserTestMode $mode ) {
+	public function runTest( ParserTest $test, ParserTestMode $mode ): ParserTestResult {
 		if ( $this->getTestSkipMessage( $test, $mode ) ) {
-			return false;
+			return new ParserTestResult( $test, $mode, 'SKIP', 'SKIP' );
 		}
 		$this->recorder->startTest( $test, $mode );
 		$result = $mode->isLegacy() ?
@@ -1199,10 +1199,11 @@ class ParserTestRunner {
 				$this->runParsoidTest( $test, $mode );
 		if ( $result === false ) {
 			$this->recorder->skipped( $test, $mode, 'SKIP' );
+			return new ParserTestResult( $test, $mode, 'SKIP', 'SKIP' );
 		} else {
 			$this->recorder->record( $result );
+			return $result;
 		}
-		return $result;
 	}
 
 	/**
