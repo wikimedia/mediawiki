@@ -7,6 +7,7 @@ use ExtensionRegistry;
 use Generator;
 use HashBagOStuff;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers ExtensionRegistry
@@ -601,6 +602,22 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 		$file = $this->getNewTempFile();
 		file_put_contents( $file, json_encode( $manifest ) );
 		return $file;
+	}
+
+	public function testExportAutoloaderWithPsr4Namespaces() {
+		$dir = __DIR__ . '/../../data/registration';
+		$registry = new ExtensionRegistry();
+		$data = $registry->readFromQueue( [
+			"{$dir}/autoload_namespaces.json" => 1
+		] );
+
+		$access = TestingAccessWrapper::newFromObject( $registry );
+		$access->exportExtractedData( $data );
+
+		$this->assertTrue(
+			class_exists( 'Test\\MediaWiki\\AutoLoader\\TestFooBar' ),
+			"Registry initializes Autoloader from AutoloadNamespaces"
+		);
 	}
 
 }

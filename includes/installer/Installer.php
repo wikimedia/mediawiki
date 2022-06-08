@@ -1585,17 +1585,21 @@ abstract class Installer {
 	protected function getAutoExtensionData() {
 		$exts = $this->getVar( '_Extensions' );
 		$installPath = $this->getVar( 'IP' );
-		$queue = [];
+
+		$extensionProcessor = new ExtensionProcessor();
 		foreach ( $exts as $e ) {
-			if ( file_exists( "$installPath/extensions/$e/extension.json" ) ) {
-				$queue["$installPath/extensions/$e/extension.json"] = 1;
+			$jsonPath = "$installPath/extensions/$e/extension.json";
+			if ( file_exists( $jsonPath ) ) {
+				$extensionProcessor->extractInfoFromFile( $jsonPath );
 			}
 		}
 
-		$registry = new ExtensionRegistry();
-		$data = $registry->readFromQueue( $queue );
-		AutoLoader::registerClasses( $data['globals']['wgAutoloadClasses'] );
-		return $data;
+		$autoload = $extensionProcessor->getExtractedAutoloadInfo();
+		AutoLoader::loadFiles( $autoload['files'] );
+		AutoLoader::registerClasses( $autoload['classes'] );
+		AutoLoader::registerNamespaces( $autoload['namespaces'] );
+
+		return $extensionProcessor->getExtractedInfo();
 	}
 
 	/**

@@ -80,15 +80,17 @@ $directoryToJsonMap = [
 	$GLOBALS['wgExtensionDirectory'] => 'extension*.json',
 	$GLOBALS['wgStyleDirectory'] => 'skin*.json'
 ];
+
+$extensionProcessor = new ExtensionProcessor();
+
 foreach ( $directoryToJsonMap as $directory => $jsonFilePattern ) {
 	foreach ( new GlobIterator( $directory . '/*/' . $jsonFilePattern ) as $iterator ) {
 		$jsonPath = $iterator->getPathname();
-		// ExtensionRegistry->readFromQueue is not used as it checks extension/skin
-		// dependencies, which we don't need or want for unit tests.
-		$json = file_get_contents( $jsonPath );
-		$info = json_decode( $json, true );
-		$dir = dirname( $jsonPath );
-		ExtensionRegistry::exportAutoloadClassesAndNamespaces( $dir, $info );
-		ExtensionRegistry::exportTestAutoloadClassesAndNamespaces( $dir, $info );
+		$extensionProcessor->extractInfoFromFile( $jsonPath );
 	}
 }
+
+$autoload = $extensionProcessor->getExtractedAutoloadInfo( true );
+AutoLoader::loadFiles( $autoload['files'] );
+AutoLoader::registerClasses( $autoload['classes'] );
+AutoLoader::registerNamespaces( $autoload['namespaces'] );
