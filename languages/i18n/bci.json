@@ -248,7 +248,7 @@
 	"confirmable-confirm": "Amoun bou {{GENDER:$1|i}} nanwlè kpa?",
 	"confirmable-yes": "Eein",
 	"confirmable-no": "Tchètchè",
-	"thisisdeleted": "Amoun koundè fa $1 klé anzè amoun sa amoun si sou?",
+	"thisisdeleted": "Amoun kounndê nian $1 annzê amoun kounndê sa amoun sin i sou ?",
 	"viewdeleted": "Nian $1?",
 	"restorelink": "{{PLURAL:$1|nounnoun ni liké katchilè koun|nounnoun ni liké katchilè $1}}",
 	"feed-invalid": "Interneti conti yilè i lika nga ô fi'n ô tia sou.",
