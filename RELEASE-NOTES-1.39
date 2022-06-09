@@ -77,15 +77,6 @@ For notes on 1.38.x and older releases, see HISTORY.
 * …
 
 === New developer features in 1.39 ===
-* tests/phpunit/phpunit.php has been deprecated (T90875) along with suites.xml
-  (T227900). The default entrypoint for running tests is
-  `composer phpunit` which now points to `vendor/bin/phpunit`.
-  `phpunit.xml.dist` replaces `suites.xml`, and can be overridden locally
-  with `phpunit.xml`. Please update your scripts to use
-  `composer phpunit --` or `vendor/bin/phpunit`. Note that if you are running
-   unit tests (not integration tests), you should use
-   `composer phpunit:unit` which loads a custom bootstrap file that does
-   not require MediaWiki to be installed.
 * …
 
 === External library changes in 1.39 ===
