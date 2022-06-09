@@ -1,22 +1,17 @@
 <?php
 
 /**
- * The tests here verify that phpunit.xml.dist covers all of the tests under /tests/phpunit
+ * The tests here verify that phpunit/suite.xml covers all of the tests under /tests/phpunit
  * @group medium
  */
 class SuiteDirectoryTest extends PHPUnit\Framework\TestCase {
 
-	/**
-	 * @coversNothing
-	 */
 	public function testSuiteXmlDirectories() {
 		// realpath() also normalizes directory separator on windows for prefix compares
-		$rootPath = realpath( __DIR__ . '/' );
+		$rootPath = realpath( __DIR__ . '/..' );
 
 		$dom = new DOMDocument();
-
-		$ip = dirname( __DIR__, 3 );
-		$dom->load( "$ip/phpunit.xml.dist" );
+		$dom->load( "$rootPath/suite.xml" );
 		/** @var DOMElement $suites */
 		$suites = $dom->documentElement->getElementsByTagName( 'testsuites' )[0];
 

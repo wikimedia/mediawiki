@@ -144,7 +144,7 @@ class TestSetup {
 	}
 
 	/**
-	 * @internal Should only be used in tests/phpunit/bootstrap.php.
+	 * @internal Should only be used in bootstrap.php and boostrap.maintenance.php
 	 *
 	 * PHPUnit includes the bootstrap file inside a method body, while most MediaWiki startup files
 	 * assume to be included in the global scope.
