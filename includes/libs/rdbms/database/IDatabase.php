@@ -888,6 +888,27 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	);
 
 	/**
+	 * Build a reference to a column value from the conflicting proposed upsert() row
+	 *
+	 * The reference comes in the form of an alias, function, or parenthesized SQL expression.
+	 * It can be used in upsert() SET expressions to handle the merging of column values between
+	 * each conflicting pair of existing and proposed rows. Such proposed rows are said to have
+	 * been "excluded" from insertion in favor of updating the existing row.
+	 *
+	 * This is useful for multi-row upserts() since the proposed values cannot just be included
+	 * as literals in the SET expressions. An alternative would be using CASE to check the keys
+	 * of the existing row in order to yield the corresponding proposed row value, but that would
+	 * get extremely verbose.
+	 *
+	 * @see IDatabase::upsert()
+	 *
+	 * @param string $column Column name
+	 * @return string SQL expression returning a scalar
+	 * @since 1.39
+	 */
+	public function buildExcludedValue( $column );
+
+	/**
 	 * Equivalent to IDatabase::selectSQLText() except wraps the result in Subquery
 	 *
 	 * @see IDatabase::selectSQLText()
@@ -1033,6 +1054,8 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	 *
 	 * @see IDatabase::buildExcludedValue()
 	 *
+	 * @see IDatabase::buildExcludedValue()
+	 *
 	 * @param string $table Table name
 	 * @param array|array[] $rows Row(s) to insert, in the form of either:
 	 *   - A string-keyed map of (column name => value) defining a new row. Values are
@@ -1046,7 +1069,6 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	 *   one such key. Each unique key on the table is "applicable" unless either:
 	 *     - It involves an AUTOINCREMENT column for which no values are assigned in $rows
 	 *     - It involves a UUID column for which newly generated UUIDs are assigned in $rows
-	 *   Passing string[] to $uniqueKeys is deprecated.
 	 * @param array $set Combination map/list where each string-keyed entry maps a column
 	 *   to a literal assigned value and each integer-keyed value is a SQL assignment expression
 	 *   of the form "<unquoted alphanumeric column> = <SQL expression>". The (column => value)
@@ -1054,7 +1076,9 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	 *   The SQL assignment entries are useful for updates like "column = column + X". All of
 	 *   the assignments have no defined execution order, so callers should make sure that they
 	 *   not depend on each other. Do not modify AUTOINCREMENT or UUID columns in assignments,
-	 *   even if they are just "secondary" unique keys.
+	 *   even if they are just "secondary" unique keys. For multi-row upserts, use
+	 *   buildExcludedValue() to reference the value of a column from the corresponding row
+	 *   in $rows that conflicts with the current row.
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError If an error occurs, {@see query}
@@ -1065,10 +1089,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	);
 
 	/**
-	 * DELETE where the condition is a join.
-	 *
-	 * MySQL overrides this to use a multi-table DELETE syntax, in other databases
-	 * we use sub-selects
+	 * Delete all rows in a table that match a condition which includes a join
 	 *
 	 * For safety, an empty $conds will not delete everything. If you want to
 	 * delete all rows where the join condition matches, set $conds=IDatabase::ALL_ROWS.

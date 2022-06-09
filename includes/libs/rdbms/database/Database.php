@@ -2449,16 +2449,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Make SQL lists of columns, row tuples for INSERT/VALUES expressions
+	 * Make SQL lists of columns, row tuples, and column aliases for INSERT/VALUES expressions
 	 *
 	 * The tuple column order is that of the columns of the first provided row.
 	 * The provided rows must have exactly the same keys and ordering thereof.
 	 *
 	 * @param array[] $rows Non-empty list of (column => value) maps
-	 * @return array (comma-separated columns, comma-separated tuples)
+	 * @param string $aliasPrefix Optional prefix to prepend to the magic alias names
+	 * @return array (comma-separated columns, comma-separated tuples, comma-separated aliases)
 	 * @since 1.35
 	 */
-	protected function makeInsertLists( array $rows ) {
+	protected function makeInsertLists( array $rows, $aliasPrefix = '' ) {
 		$firstRow = $rows[0];
 		if ( !is_array( $firstRow ) || !$firstRow ) {
 			throw new DBUnexpectedError( $this, 'Got an empty row list or empty row' );
@@ -2481,9 +2482,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$valueTuples[] = '(' . $this->makeList( $row, self::LIST_COMMA ) . ')';
 		}
 
+		$magicAliasFields = [];
+		foreach ( $tupleColumns as $column ) {
+			$magicAliasFields[] = $aliasPrefix . $column;
+		}
+
 		return [
 			$this->makeList( $tupleColumns, self::LIST_NAMES ),
-			implode( ',', $valueTuples )
+			implode( ',', $valueTuples ),
+			$this->makeList( $magicAliasFields, self::LIST_NAMES )
 		];
 	}
 
@@ -2664,6 +2671,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return new Subquery(
 			$this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds )
 		);
+	}
+
+	public function buildExcludedValue( $column ) {
+		/* @see Database::doUpsert() */
+		// This can be treated like a single value since __VALS is a single row table
+		return "(SELECT __$column FROM __VALS)";
 	}
 
 	/**
@@ -2929,13 +2942,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @param string $table
-	 * @param array[] $rows Non-empty list of rows
-	 * @param string[] $identityKey List of columns defining a unique key
-	 * @param string[] $set Non-empty combined column/literal map and SQL assignment list
-	 * @param string $fname
+	 * Perform an UPSERT query
+	 *
 	 * @see Database::upsert()
+	 * @see Database::buildExcludedValue()
+	 *
 	 * @stable to override
+	 *
+	 * @param string $table Table name
+	 * @param array[] $rows Non-empty list of rows to insert
+	 * @param string[] $identityKey Columns of the (unique) identity key to UPSERT upon
+	 * @param string[] $set Non-empty map of (column name => SQL expression or literal)
+	 * @param string $fname
 	 * @since 1.35
 	 */
 	protected function doUpsert(
@@ -2945,18 +2963,39 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		array $set,
 		string $fname
 	) {
+		$encTable = $this->tableName( $table );
+		$sqlColumnAssignments = $this->makeList( $set, self::LIST_SET );
+		// Check if there is a SQL assignment expression in $set
+		$useWith = isset( $set[0] );
+
 		$affectedRowCount = 0;
 		$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 		try {
 			foreach ( $rows as $row ) {
-				// Update any existing conflicting rows (including ones inserted from $rows)
+				// Update any existing conflicting row (including ones inserted from $rows)
+				[ $sqlColumns, $sqlTuples, $sqlVals ] = $this->makeInsertLists( [ $row ], '__' );
 				$sqlConditions = $this->makeKeyCollisionCondition( [ $row ], $identityKey );
-				$this->update( $table, $set, [ $sqlConditions ], $fname );
+				// Since "WITH...AS (VALUES ...)" loses type information, subclasses should
+				// override with method if that might cause problems with the SET clause.
+				// https://www.sqlite.org/lang_update.html
+				// https://mariadb.com/kb/en/with/
+				// https://dev.mysql.com/doc/refman/8.0/en/update.html
+				// https://www.postgresql.org/docs/9.2/sql-update.html
+				$sql =
+					( $useWith ? "WITH __VALS ($sqlVals) AS (VALUES $sqlTuples) " : "" ) .
+					"UPDATE $encTable SET $sqlColumnAssignments " .
+					"WHERE ($sqlConditions)";
+				$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 				$rowsUpdated = $this->affectedRows();
 				$affectedRowCount += $rowsUpdated;
+				// Insert the new row if there are no conflicts
 				if ( $rowsUpdated <= 0 ) {
-					// Now insert the row if there are no conflicts
-					$this->insert( $table, $row, $fname );
+					// https://sqlite.org/lang_insert.html
+					// https://mariadb.com/kb/en/with/
+					// https://dev.mysql.com/doc/refman/8.0/en/with.html
+					// https://www.postgresql.org/docs/9.2/sql-insert.html
+					$sql = "INSERT INTO $encTable ($sqlColumns) VALUES $sqlTuples";
+					$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 					$affectedRowCount += $this->affectedRows();
 				}
 			}
