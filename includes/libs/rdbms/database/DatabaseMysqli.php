@@ -67,11 +67,12 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		$conn->multi_query( $combinedSql );
 
 		reset( $sqls );
+		$done = false;
 		do {
 			$mysqliResult = $conn->store_result();
 			$statementId = key( $sqls );
 			if ( $statementId !== null ) {
-				// Database uses "true" for succesfull queries without result sets
+				// Database uses "true" for successful queries without result sets
 				if ( $mysqliResult === false ) {
 					$res = ( $conn->errno === 0 );
 				} elseif ( $mysqliResult instanceof mysqli_result ) {
@@ -87,8 +88,12 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 				);
 				next( $sqls );
 			}
-			// For error handling, continue regardless of next_result() returning false
-		} while ( $conn->more_results() && ( $conn->next_result() || true ) );
+			if ( $conn->more_results() ) {
+				$conn->next_result();
+			} else {
+				$done = true;
+			}
+		} while ( !$done );
 		// Fill in status for statements aborted due to prior statement failure
 		while ( ( $statementId = key( $sqls ) ) !== null ) {
 			$qsByStatementId[$statementId] = new QueryStatus( false, 0, 'Query aborted', 0 );

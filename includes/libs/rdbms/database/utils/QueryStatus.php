@@ -26,7 +26,6 @@
 namespace Wikimedia\Rdbms;
 
 /**
- * @internal This class should only be used by Database
  * @since 1.39
  */
 class QueryStatus {
@@ -44,6 +43,8 @@ class QueryStatus {
 	public $flags;
 
 	/**
+	 * @internal Should only be constructed by Database
+	 *
 	 * @param ResultWrapper|bool|null $res
 	 * @param int $affected
 	 * @param string $error
