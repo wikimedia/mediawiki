@@ -131,7 +131,8 @@ because of Phabricator reports.
   was "Picha", and it's kept for backwards compatibility. If you manage a wiki
   in Swahili, and you use "Faili:" as a namespace anywhere in wikitext, and
   you mean to use it as "Media:", these need to be replaced to "Media:".
-* …
+* (T309866) Some namespace translations were updated for Kyrgyz (ky). The old
+  ones are retained as aliases for backwards compatibility.
 
 === Breaking changes in 1.39 ===
 * Basic non-JavaScript (Grade C) support has been dropped for Internet Explorer
