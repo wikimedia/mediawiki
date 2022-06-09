@@ -3450,7 +3450,7 @@
 	"watchlistedit-clear-done": "您的监视列表已清空。",
 	"watchlistedit-clear-jobqueue": "您的监视列表正在清空。这需要花一些时间！",
 	"watchlistedit-clear-removed": "$1个标题已移除：",
-	"watchlistedit-too-many": "页面太多，无法显示。",
+	"watchlistedit-too-many": "您的监视列表已更新。页面太多，无法显示。",
 	"watchlisttools-clear": "清空监视列表",
 	"watchlisttools-view": "查看相关更改",
 	"watchlisttools-edit": "查看并编辑监视列表",

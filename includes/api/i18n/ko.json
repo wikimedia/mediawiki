@@ -691,7 +691,7 @@
 	"apihelp-undelete-param-title": "복구할 문서의 제목입니다.",
 	"apihelp-undelete-param-reason": "복구할 이유입니다.",
 	"apihelp-undelete-param-tags": "삭제 기록의 항목에 적용할 변경 태그입니다.",
-	"apihelp-undelete-param-timestamps": "복구할 판의 타임스탬프입니다. <var>$1timestamps</var>와 <var>$1fileids</var>가 둘 다 비어있으면 모든 판이 복구됩니다.",
+	"apihelp-undelete-param-timestamps": "삭제 취소할 판의 타임스탬프입니다. <var>$1timestamps</var>와 <var>$1fileids</var>가 둘 다 비어있으면 모든 판이 삭제 취소됩니다.",
 	"apihelp-undelete-param-fileids": "복구할 파일 판의 ID입니다. <var>$1timestamps</var>와 <var>$1fileids</var>가 둘 다 비어있으면 모든 판이 복구됩니다.",
 	"apihelp-undelete-param-watchlist": "현재 사용자의 주시목록에서 문서를 무조건적으로 추가하거나 제거하거나, 환경 설정을 사용하거나 (봇 사용자는 무시됨) 주시를 변경하지 않습니다.",
 	"apihelp-undelete-example-page": "<kbd>대문</kbd> 문서를 복구합니다.",

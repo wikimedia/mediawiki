@@ -3537,7 +3537,7 @@
 	"watchlistedit-clear-done": "Votre liste de suivi a été effacée.",
 	"watchlistedit-clear-jobqueue": "Votre liste de suivi est en cours d’effacement. Cela peut prendre un certain temps !",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|Un titre a été retiré|$1 titres ont été retirés}} :",
-	"watchlistedit-too-many": "Il y a trop de pages à afficher ici.",
+	"watchlistedit-too-many": "Votre liste de suivi a été mise à jour. Il y a trop de pages à afficher ici.",
 	"watchlisttools-clear": "Effacer la liste de suivi",
 	"watchlisttools-view": "Afficher les modifications pertinentes",
 	"watchlisttools-edit": "Afficher et modifier la liste de suivi",
