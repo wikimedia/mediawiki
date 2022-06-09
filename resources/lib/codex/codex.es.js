@@ -169,7 +169,7 @@ const _sfc_main$h = defineComponent({
 });
 const _hoisted_1$g = ["value", "disabled", ".indeterminate"];
 const _hoisted_2$b = /* @__PURE__ */ createElementVNode("span", { class: "cdx-checkbox__icon" }, null, -1);
-const _hoisted_3$7 = { class: "cdx-checkbox__label-content" };
+const _hoisted_3$8 = { class: "cdx-checkbox__label-content" };
 function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", {
     class: normalizeClass(["cdx-checkbox", _ctx.rootClasses])
@@ -192,7 +192,7 @@ function _sfc_render$h(_ctx, _cache, $props, $setup, $data, $options) {
         [vModelCheckbox, _ctx.wrappedModel]
       ]),
       _hoisted_2$b,
-      createElementVNode("span", _hoisted_3$7, [
+      createElementVNode("span", _hoisted_3$8, [
         renderSlot(_ctx.$slots, "default")
       ])
     ], 544)
@@ -204,19 +204,19 @@ var svgArticleSearch = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16
 var svgCheck = '<path d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>';
 var svgClear = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0zm5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>';
 var svgClose = '<path d="m4.34 2.93 12.73 12.73-1.41 1.41L2.93 4.35z"/><path d="M17.07 4.34 4.34 17.07l-1.41-1.41L15.66 2.93z"/>';
-var svgCollapse = '<path d="m2.5 15.25 7.5-7.5 7.5 7.5 1.5-1.5-9-9-9 9z"/>';
 var svgError = '<path d="M13.728 1H6.272L1 6.272v7.456L6.272 19h7.456L19 13.728V6.272zM11 15H9v-2h2zm0-4H9V5h2z"/>';
 var svgExpand = '<path d="m17.5 4.75-7.5 7.5-7.5-7.5L1 6.25l9 9 9-9z"/>';
 var svgImageLayoutFrameless = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>';
 var svgLightbulb = '<path d="M8 19a1 1 0 001 1h2a1 1 0 001-1v-1H8zm9-12a7 7 0 10-12 4.9S7 14 7 15v1a1 1 0 001 1h4a1 1 0 001-1v-1c0-1 2-3.1 2-3.1A7 7 0 0017 7z"/>';
 var svgInfoFilled = '<path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zM9 5h2v2H9zm0 4h2v6H9z"/>';
+var svgNext = '<path d="M7 1 5.6 2.5 13 10l-7.4 7.5L7 19l9-9z"/>';
+var svgPrevious = '<path d="m4 10 9 9 1.4-1.5L7 10l7.4-7.5L13 1z"/>';
 var svgSearch = '<path d="M12.2 13.6a7 7 0 111.4-1.4l5.4 5.4-1.4 1.4-5.4-5.4zM3 8a5 5 0 1010 0A5 5 0 103 8z"/>';
 const cdxIconAlert = svgAlert;
 const cdxIconArticleSearch = svgArticleSearch;
 const cdxIconCheck = svgCheck;
 const cdxIconClear = svgClear;
 const cdxIconClose = svgClose;
-const cdxIconCollapse = svgCollapse;
 const cdxIconError = svgError;
 const cdxIconExpand = svgExpand;
 const cdxIconImageLayoutFrameless = svgImageLayoutFrameless;
@@ -225,6 +225,14 @@ const cdxIconInfoFilled = {
     ar: svgLightbulb
   },
   default: svgInfoFilled
+};
+const cdxIconNext = {
+  ltr: svgNext,
+  shouldFlip: true
+};
+const cdxIconPrevious = {
+  ltr: svgPrevious,
+  shouldFlip: true
 };
 const cdxIconSearch = svgSearch;
 function resolveIcon(icon, langCode, dir) {
@@ -327,7 +335,7 @@ const _sfc_main$g = defineComponent({
 });
 const _hoisted_1$f = ["aria-hidden"];
 const _hoisted_2$a = { key: 0 };
-const _hoisted_3$6 = ["innerHTML"];
+const _hoisted_3$7 = ["innerHTML"];
 const _hoisted_4$4 = ["d"];
 function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", {
@@ -347,7 +355,7 @@ function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
         key: 1,
         fill: "currentColor",
         innerHTML: _ctx.iconSvg
-      }, null, 8, _hoisted_3$6)) : (openBlock(), createElementBlock("path", {
+      }, null, 8, _hoisted_3$7)) : (openBlock(), createElementBlock("path", {
         key: 2,
         d: _ctx.iconPath,
         fill: "currentColor"
@@ -356,32 +364,32 @@ function _sfc_render$g(_ctx, _cache, $props, $setup, $data, $options) {
   ], 2);
 }
 var CdxIcon = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["render", _sfc_render$g]]);
-function useStringHelpers() {
-  function regExpEscape(value) {
-    return value.replace(/([\\{}()|.?*+\-^$[\]])/g, "\\$1");
-  }
-  const COMBINING_MARK = "[\u0300-\u036F\u0483-\u0489\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u07FD\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08D3-\u08E1\u08E3-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962\u0963\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u09FE\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2\u0AE3\u0AFA-\u0AFF\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B62\u0B63\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C00-\u0C04\u0C3E-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0C81-\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2\u0CE3\u0D00-\u0D03\u0D3B\u0D3C\u0D3E-\u0D44\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D62\u0D63\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F3E\u0F3F\u0F71-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102B-\u103E\u1056-\u1059\u105E-\u1060\u1062-\u1064\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F\u109A-\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4-\u17D3\u17DD\u180B-\u180D\u1885\u1886\u18A9\u1920-\u192B\u1930-\u193B\u1A17-\u1A1B\u1A55-\u1A5E\u1A60-\u1A7C\u1A7F\u1AB0-\u1ABE\u1B00-\u1B04\u1B34-\u1B44\u1B6B-\u1B73\u1B80-\u1B82\u1BA1-\u1BAD\u1BE6-\u1BF3\u1C24-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE8\u1CED\u1CF2-\u1CF4\u1CF7-\u1CF9\u1DC0-\u1DF9\u1DFB-\u1DFF\u20D0-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302F\u3099\u309A\uA66F-\uA672\uA674-\uA67D\uA69E\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA823-\uA827\uA880\uA881\uA8B4-\uA8C5\uA8E0-\uA8F1\uA8FF\uA926-\uA92D\uA947-\uA953\uA980-\uA983\uA9B3-\uA9C0\uA9E5\uAA29-\uAA36\uAA43\uAA4C\uAA4D\uAA7B-\uAA7D\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEB-\uAAEF\uAAF5\uAAF6\uABE3-\uABEA\uABEC\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE2F]";
-  function splitStringAtMatch(query, title) {
-    if (!query) {
-      return [title, "", ""];
-    }
-    const sanitizedQuery = regExpEscape(query);
-    const match = new RegExp(sanitizedQuery + COMBINING_MARK + "*", "i").exec(title);
-    if (!match || match.index === void 0) {
-      return [title, "", ""];
-    }
-    const matchStartIndex = match.index;
-    const matchEndIndex = matchStartIndex + match[0].length;
-    const highlightedTitle = title.slice(matchStartIndex, matchEndIndex);
-    const beforeHighlight = title.slice(0, matchStartIndex);
-    const afterHighlight = title.slice(matchEndIndex, title.length);
-    return [beforeHighlight, highlightedTitle, afterHighlight];
-  }
-  return {
-    regExpEscape,
-    splitStringAtMatch
-  };
+function regExpEscape(value) {
+  return value.replace(/([\\{}()|.?*+\-^$[\]])/g, "\\$1");
 }
+const COMBINING_MARK = "[\u0300-\u036F\u0483-\u0489\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u07FD\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08D3-\u08E1\u08E3-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962\u0963\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u09FE\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2\u0AE3\u0AFA-\u0AFF\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B62\u0B63\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C00-\u0C04\u0C3E-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0C81-\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2\u0CE3\u0D00-\u0D03\u0D3B\u0D3C\u0D3E-\u0D44\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D62\u0D63\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F3E\u0F3F\u0F71-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102B-\u103E\u1056-\u1059\u105E-\u1060\u1062-\u1064\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F\u109A-\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4-\u17D3\u17DD\u180B-\u180D\u1885\u1886\u18A9\u1920-\u192B\u1930-\u193B\u1A17-\u1A1B\u1A55-\u1A5E\u1A60-\u1A7C\u1A7F\u1AB0-\u1ABE\u1B00-\u1B04\u1B34-\u1B44\u1B6B-\u1B73\u1B80-\u1B82\u1BA1-\u1BAD\u1BE6-\u1BF3\u1C24-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE8\u1CED\u1CF2-\u1CF4\u1CF7-\u1CF9\u1DC0-\u1DF9\u1DFB-\u1DFF\u20D0-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302F\u3099\u309A\uA66F-\uA672\uA674-\uA67D\uA69E\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA823-\uA827\uA880\uA881\uA8B4-\uA8C5\uA8E0-\uA8F1\uA8FF\uA926-\uA92D\uA947-\uA953\uA980-\uA983\uA9B3-\uA9C0\uA9E5\uAA29-\uAA36\uAA43\uAA4C\uAA4D\uAA7B-\uAA7D\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEB-\uAAEF\uAAF5\uAAF6\uABE3-\uABEA\uABEC\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE2F]";
+function splitStringAtMatch(query, title) {
+  if (!query) {
+    return [title, "", ""];
+  }
+  const sanitizedQuery = regExpEscape(query);
+  const match = new RegExp(sanitizedQuery + COMBINING_MARK + "*", "i").exec(title);
+  if (!match || match.index === void 0) {
+    return [title, "", ""];
+  }
+  const matchStartIndex = match.index;
+  const matchEndIndex = matchStartIndex + match[0].length;
+  const highlightedTitle = title.slice(matchStartIndex, matchEndIndex);
+  const beforeHighlight = title.slice(0, matchStartIndex);
+  const afterHighlight = title.slice(matchEndIndex, title.length);
+  return [beforeHighlight, highlightedTitle, afterHighlight];
+}
+var stringHelpers = /* @__PURE__ */ Object.freeze({
+  __proto__: null,
+  [Symbol.toStringTag]: "Module",
+  regExpEscape,
+  splitStringAtMatch
+});
 var SearchResultTitle_vue_vue_type_style_index_0_lang = "";
 const _sfc_main$f = defineComponent({
   name: "CdxSearchResultTitle",
@@ -396,7 +404,6 @@ const _sfc_main$f = defineComponent({
     }
   },
   setup: (props) => {
-    const { splitStringAtMatch } = useStringHelpers();
     const titleChunks = computed(() => splitStringAtMatch(props.searchQuery, String(props.title)));
     return {
       titleChunks
@@ -546,11 +553,11 @@ const _hoisted_2$8 = {
   key: 1,
   class: "cdx-menu-item__thumbnail-placeholder"
 };
-const _hoisted_3$5 = { class: "cdx-menu-item__text" };
+const _hoisted_3$6 = { class: "cdx-menu-item__text" };
 const _hoisted_4$3 = ["lang"];
-const _hoisted_5$1 = /* @__PURE__ */ createTextVNode(/* @__PURE__ */ toDisplayString(" ") + " ");
-const _hoisted_6$1 = ["lang"];
-const _hoisted_7 = ["lang"];
+const _hoisted_5$2 = /* @__PURE__ */ createTextVNode(/* @__PURE__ */ toDisplayString(" ") + " ");
+const _hoisted_6$2 = ["lang"];
+const _hoisted_7$1 = ["lang"];
 function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_search_result_title = resolveComponent("cdx-search-result-title");
@@ -586,7 +593,7 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
               icon: _ctx.icon,
               class: "cdx-menu-item__icon"
             }, null, 8, ["icon"])) : createCommentVNode("", true),
-            createElementVNode("span", _hoisted_3$5, [
+            createElementVNode("span", _hoisted_3$6, [
               _ctx.highlightQuery ? (openBlock(), createBlock(_component_cdx_search_result_title, {
                 key: 0,
                 title: _ctx.title,
@@ -600,7 +607,7 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
                 createElementVNode("bdi", null, toDisplayString(_ctx.title), 1)
               ], 8, _hoisted_4$3)),
               _ctx.match ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
-                _hoisted_5$1,
+                _hoisted_5$2,
                 _ctx.highlightQuery ? (openBlock(), createBlock(_component_cdx_search_result_title, {
                   key: 0,
                   title: _ctx.match,
@@ -612,7 +619,7 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
                   lang: (_d = _ctx.language) == null ? void 0 : _d.match
                 }, [
                   createElementVNode("bdi", null, toDisplayString(_ctx.match), 1)
-                ], 8, _hoisted_6$1))
+                ], 8, _hoisted_6$2))
               ], 64)) : createCommentVNode("", true),
               _ctx.description ? (openBlock(), createElementBlock("span", {
                 key: 3,
@@ -620,7 +627,7 @@ function _sfc_render$e(_ctx, _cache, $props, $setup, $data, $options) {
                 lang: (_e = _ctx.language) == null ? void 0 : _e.description
               }, [
                 createElementVNode("bdi", null, toDisplayString(_ctx.description), 1)
-              ], 8, _hoisted_7)) : createCommentVNode("", true)
+              ], 8, _hoisted_7$1)) : createCommentVNode("", true)
             ])
           ];
         }),
@@ -668,15 +675,13 @@ let counter = 0;
 function useGeneratedId(identifier) {
   const vm = getCurrentInstance();
   const externalId = (vm == null ? void 0 : vm.props.id) || (vm == null ? void 0 : vm.attrs.id);
-  let generatedId;
   if (identifier) {
-    generatedId = `${LibraryPrefix}-${identifier}-${counter++}`;
+    return `${LibraryPrefix}-${identifier}-${counter++}`;
   } else if (externalId) {
-    generatedId = `${LibraryPrefix}-${externalId}-${counter++}`;
+    return `${LibraryPrefix}-${externalId}-${counter++}`;
   } else {
-    generatedId = `${LibraryPrefix}-${counter++}`;
+    return `${LibraryPrefix}-${counter++}`;
   }
-  return ref(generatedId);
 }
 var Menu_vue_vue_type_style_index_0_lang = "";
 const _sfc_main$c = defineComponent({
@@ -736,9 +741,8 @@ const _sfc_main$c = defineComponent({
   ],
   setup(props, { emit, slots }) {
     const computedMenuItems = computed(() => {
-      const generateMenuItemId = () => useGeneratedId("menu-item").value;
       return props.menuItems.map((menuItem) => __spreadProps(__spreadValues({}, menuItem), {
-        id: generateMenuItemId()
+        id: useGeneratedId("menu-item")
       }));
     });
     const computedShowNoResultsSlot = computed(() => {
@@ -912,7 +916,7 @@ const _hoisted_2$6 = {
   key: 0,
   class: "cdx-menu__pending cdx-menu-item"
 };
-const _hoisted_3$4 = {
+const _hoisted_3$5 = {
   key: 1,
   class: "cdx-menu__no-results cdx-menu-item"
 };
@@ -923,7 +927,7 @@ function _sfc_render$c(_ctx, _cache, $props, $setup, $data, $options) {
     _ctx.showPending && _ctx.computedMenuItems.length === 0 && _ctx.$slots.pending ? (openBlock(), createElementBlock("li", _hoisted_2$6, [
       renderSlot(_ctx.$slots, "pending")
     ])) : createCommentVNode("", true),
-    _ctx.computedShowNoResultsSlot ? (openBlock(), createElementBlock("li", _hoisted_3$4, [
+    _ctx.computedShowNoResultsSlot ? (openBlock(), createElementBlock("li", _hoisted_3$5, [
       renderSlot(_ctx.$slots, "no-results")
     ])) : createCommentVNode("", true),
     (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.computedMenuItems, (menuItem) => {
@@ -1035,7 +1039,7 @@ const _sfc_main$b = defineComponent({
     const internalClasses = computed(() => {
       return {
         "cdx-text-input--has-start-icon": !!props.startIcon,
-        "cdx-text-input--has-end-icon": !!props.endIcon || props.clearable,
+        "cdx-text-input--has-end-icon": !!props.endIcon,
         "cdx-text-input--clearable": isClearable.value
       };
     });
@@ -1051,13 +1055,8 @@ const _sfc_main$b = defineComponent({
         "cdx-text-input__input--is-active": isActive.value
       };
     });
-    const computedEndIcon = computed(() => {
-      return isClearable.value ? cdxIconClear : props.endIcon;
-    });
-    const onEndIconClick = () => {
-      if (isClearable.value) {
-        wrappedModel.value = "";
-      }
+    const onClear = () => {
+      wrappedModel.value = "";
     };
     const onInput = (event) => {
       emit("input", event);
@@ -1080,12 +1079,12 @@ const _sfc_main$b = defineComponent({
       rootStyle,
       otherAttrs,
       inputClasses,
-      computedEndIcon,
-      onEndIconClick,
+      onClear,
       onInput,
       onChange,
       onFocus,
-      onBlur
+      onBlur,
+      cdxIconClear
     };
   },
   methods: {
@@ -1119,15 +1118,20 @@ function _sfc_render$b(_ctx, _cache, $props, $setup, $data, $options) {
     _ctx.startIcon ? (openBlock(), createBlock(_component_cdx_icon, {
       key: 0,
       icon: _ctx.startIcon,
-      class: "cdx-text-input__start-icon"
+      class: "cdx-text-input__icon cdx-text-input__start-icon"
     }, null, 8, ["icon"])) : createCommentVNode("", true),
-    _ctx.isClearable || _ctx.endIcon ? (openBlock(), createBlock(_component_cdx_icon, {
+    _ctx.endIcon ? (openBlock(), createBlock(_component_cdx_icon, {
       key: 1,
-      icon: _ctx.computedEndIcon,
-      class: "cdx-text-input__end-icon",
+      icon: _ctx.endIcon,
+      class: "cdx-text-input__icon cdx-text-input__end-icon"
+    }, null, 8, ["icon"])) : createCommentVNode("", true),
+    _ctx.isClearable ? (openBlock(), createBlock(_component_cdx_icon, {
+      key: 2,
+      icon: _ctx.cdxIconClear,
+      class: "cdx-text-input__icon cdx-text-input__clear-icon",
       onMousedown: _cache[5] || (_cache[5] = withModifiers(() => {
       }, ["prevent"])),
-      onClick: _ctx.onEndIconClick
+      onClick: _ctx.onClear
     }, null, 8, ["icon", "onClick"])) : createCommentVNode("", true)
   ], 6);
 }
@@ -1261,7 +1265,6 @@ function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
         "aria-autocomplete": "list",
         autocomplete: "off",
         role: "combobox",
-        tabindex: "0",
         onKeydown: _ctx.onKeydown,
         onFocus: _ctx.onInputFocus,
         onBlur: _ctx.onInputBlur
@@ -1393,6 +1396,7 @@ const _sfc_main$9 = defineComponent({
     watch(modelValueProp, (newVal) => {
       if (newVal !== null) {
         inputValue.value = selectedMenuItem.value ? selectedMenuItem.value.label || selectedMenuItem.value.value : "";
+        emit("new-input", inputValue.value);
       }
     });
     watch(toRef(props, "menuItems"), (newVal) => {
@@ -1432,6 +1436,7 @@ function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
       modelValue: _ctx.inputValue,
       "onUpdate:modelValue": _cache[0] || (_cache[0] = ($event) => _ctx.inputValue = $event)
     }, _ctx.otherAttrs, {
+      class: "cdx-lookup__input",
       role: "combobox",
       autocomplete: "off",
       "aria-autocomplete": "list",
@@ -1646,7 +1651,7 @@ const _sfc_main$7 = defineComponent({
 });
 const _hoisted_1$7 = ["name", "value", "disabled"];
 const _hoisted_2$4 = /* @__PURE__ */ createElementVNode("span", { class: "cdx-radio__icon" }, null, -1);
-const _hoisted_3$3 = { class: "cdx-radio__label-content" };
+const _hoisted_3$4 = { class: "cdx-radio__label-content" };
 function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", {
     class: normalizeClass(["cdx-radio", _ctx.rootClasses])
@@ -1667,7 +1672,7 @@ function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
         [vModelRadio, _ctx.wrappedModel]
       ]),
       _hoisted_2$4,
-      createElementVNode("span", _hoisted_3$3, [
+      createElementVNode("span", _hoisted_3$4, [
         renderSlot(_ctx.$slots, "default")
       ])
     ])
@@ -1820,6 +1825,7 @@ const _sfc_main$5 = defineComponent({
     });
     const rootClasses = computed(() => {
       return {
+        "cdx-select--enabled": !props.disabled,
         "cdx-select--disabled": props.disabled,
         "cdx-select--expanded": expanded.value,
         "cdx-select--value-selected": !!selectedMenuItem.value,
@@ -1830,9 +1836,6 @@ const _sfc_main$5 = defineComponent({
     const highlightedId = computed(() => {
       var _a, _b;
       return (_b = (_a = menu.value) == null ? void 0 : _a.getHighlightedMenuItem()) == null ? void 0 : _b.id;
-    });
-    const indicatorIcon = computed(() => {
-      return expanded.value ? cdxIconCollapse : cdxIconExpand;
     });
     function onBlur() {
       expanded.value = false;
@@ -1860,24 +1863,26 @@ const _sfc_main$5 = defineComponent({
       modelWrapper,
       selectedMenuItem,
       highlightedId,
-      indicatorIcon,
       expanded,
       onBlur,
       currentLabel,
       rootClasses,
       onClick,
       onKeydown,
-      startIcon
+      startIcon,
+      cdxIconExpand
     };
   }
 });
-const _hoisted_1$5 = ["aria-owns", "aria-labelledby", "aria-activedescendant", "aria-expanded", "aria-disabled"];
-const _hoisted_2$3 = ["id"];
+const _hoisted_1$5 = ["aria-disabled"];
+const _hoisted_2$3 = ["aria-owns", "aria-labelledby", "aria-activedescendant", "aria-expanded"];
+const _hoisted_3$3 = ["id"];
 function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_menu = resolveComponent("cdx-menu");
   return openBlock(), createElementBlock("div", {
-    class: normalizeClass(["cdx-select", _ctx.rootClasses])
+    class: normalizeClass(["cdx-select", _ctx.rootClasses]),
+    "aria-disabled": _ctx.disabled
   }, [
     createElementVNode("div", {
       ref: "handle",
@@ -1890,7 +1895,6 @@ function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
       "aria-activedescendant": _ctx.highlightedId,
       "aria-haspopup": "listbox",
       "aria-expanded": _ctx.expanded,
-      "aria-disabled": _ctx.disabled,
       onClick: _cache[0] || (_cache[0] = (...args) => _ctx.onClick && _ctx.onClick(...args)),
       onBlur: _cache[1] || (_cache[1] = (...args) => _ctx.onBlur && _ctx.onBlur(...args)),
       onKeydown: _cache[2] || (_cache[2] = (...args) => _ctx.onKeydown && _ctx.onKeydown(...args))
@@ -1906,17 +1910,17 @@ function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
         }, () => [
           createTextVNode(toDisplayString(_ctx.currentLabel), 1)
         ])
-      ], 8, _hoisted_2$3),
+      ], 8, _hoisted_3$3),
       _ctx.startIcon ? (openBlock(), createBlock(_component_cdx_icon, {
         key: 0,
         icon: _ctx.startIcon,
         class: "cdx-select__start-icon"
       }, null, 8, ["icon"])) : createCommentVNode("", true),
       createVNode(_component_cdx_icon, {
-        icon: _ctx.indicatorIcon,
+        icon: _ctx.cdxIconExpand,
         class: "cdx-select__indicator"
       }, null, 8, ["icon"])
-    ], 40, _hoisted_1$5),
+    ], 40, _hoisted_2$3),
     createVNode(_component_cdx_menu, mergeProps({
       id: _ctx.menuId,
       ref: "menu",
@@ -1931,7 +1935,7 @@ function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
       ]),
       _: 3
     }, 16, ["id", "selected", "expanded", "menu-items"])
-  ], 2);
+  ], 10, _hoisted_1$5);
 }
 var Select = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$5]]);
 var Tab_vue_vue_type_style_index_0_lang = "";
@@ -2021,6 +2025,10 @@ function useIntersectionObserver(templateRef, observerOptions) {
 var Tabs_vue_vue_type_style_index_0_lang = "";
 const _sfc_main$3 = defineComponent({
   name: "CdxTabs",
+  components: {
+    CdxButton,
+    CdxIcon
+  },
   props: {
     active: {
       type: String,
@@ -2041,6 +2049,10 @@ const _sfc_main$3 = defineComponent({
   ],
   setup(props, { slots, emit }) {
     const rootElement = ref();
+    const listElement = ref();
+    const focusHolder = ref();
+    const prevScroller = ref();
+    const nextScroller = ref();
     const currentDirection = useComputedDirection(rootElement);
     const contents = computed(() => {
       var _a;
@@ -2072,7 +2084,7 @@ const _sfc_main$3 = defineComponent({
           }
           map.set(item.props.name, {
             name: item.props.name,
-            id: useGeneratedId(item.props.name).value,
+            id: useGeneratedId(item.props.name),
             label: item.props.label || item.props.name,
             disabled: item.props.disabled
           });
@@ -2119,27 +2131,61 @@ const _sfc_main$3 = defineComponent({
         "cdx-tabs--quiet": !props.framed
       };
     });
-    const observerAvailable = computed(() => {
-      if (typeof window !== "object") {
-        return false;
+    function getScrollDistance(tabLabel) {
+      if (!listElement.value || !prevScroller.value || !nextScroller.value) {
+        return 0;
       }
-      return "IntersectionObserver" in window && "IntersectionObserverEntry" in window && "intersectionRatio" in window.IntersectionObserverEntry.prototype;
-    });
-    const headerClasses = computed(() => {
-      return {
-        "cdx-tabs__header--has-start-gradient": !firstLabelVisible.value && observerAvailable.value,
-        "cdx-tabs__header--has-end-gradient": !lastLabelVisible.value && observerAvailable.value
-      };
-    });
-    watch(activeTab, () => {
+      const leftScroller = currentDirection.value === "rtl" ? nextScroller.value : prevScroller.value;
+      const rightScroller = currentDirection.value === "rtl" ? prevScroller.value : nextScroller.value;
+      const labelLeft = tabLabel.offsetLeft;
+      const labelRight = labelLeft + tabLabel.clientWidth;
+      const visibleLeft = listElement.value.scrollLeft + leftScroller.clientWidth;
+      const visibleRight = listElement.value.scrollLeft + listElement.value.clientWidth - rightScroller.clientWidth;
+      if (labelLeft < visibleLeft) {
+        return labelLeft - visibleLeft;
+      }
+      if (labelRight > visibleRight) {
+        return labelRight - visibleRight;
+      }
+      return 0;
+    }
+    function scrollTabs(logicalDirection) {
       var _a;
-      if (document && activeTabId.value) {
-        (_a = document.getElementById(`${activeTabId.value}-label`)) == null ? void 0 : _a.scrollIntoView({
-          behavior: "smooth",
-          block: "nearest",
-          inline: "nearest"
-        });
+      if (!listElement.value || !prevScroller.value || !nextScroller.value) {
+        return;
       }
+      const scrollDirection = logicalDirection === "next" && currentDirection.value === "ltr" || logicalDirection === "prev" && currentDirection.value === "rtl" ? 1 : -1;
+      let scrollDistance = 0;
+      let tabLabel = logicalDirection === "next" ? listElement.value.firstElementChild : listElement.value.lastElementChild;
+      while (tabLabel) {
+        const nextTabLabel = logicalDirection === "next" ? tabLabel.nextElementSibling : tabLabel.previousElementSibling;
+        scrollDistance = getScrollDistance(tabLabel);
+        if (Math.sign(scrollDistance) === scrollDirection) {
+          if (nextTabLabel && Math.abs(scrollDistance) < 0.25 * listElement.value.clientWidth) {
+            scrollDistance = getScrollDistance(nextTabLabel);
+          }
+          break;
+        }
+        tabLabel = nextTabLabel;
+      }
+      listElement.value.scrollBy({
+        left: scrollDistance,
+        behavior: "smooth"
+      });
+      (_a = focusHolder.value) == null ? void 0 : _a.focus();
+    }
+    watch(activeTab, () => {
+      if (activeTabId.value === void 0 || !listElement.value || !prevScroller.value || !nextScroller.value) {
+        return;
+      }
+      const activeTabLabel = document.getElementById(`${activeTabId.value}-label`);
+      if (!activeTabLabel) {
+        return;
+      }
+      listElement.value.scrollBy({
+        left: getScrollDistance(activeTabLabel),
+        behavior: "smooth"
+      });
     });
     return {
       activeTab,
@@ -2147,12 +2193,20 @@ const _sfc_main$3 = defineComponent({
       activeTabId,
       currentDirection,
       rootElement,
+      listElement,
+      focusHolder,
+      prevScroller,
+      nextScroller,
       rootClasses,
-      headerClasses,
       tabNames,
       tabsData,
+      firstLabelVisible,
+      lastLabelVisible,
       getLabelClasses,
-      assignTemplateRefIfNecessary
+      assignTemplateRefIfNecessary,
+      scrollTabs,
+      cdxIconPrevious,
+      cdxIconNext
     };
   },
   methods: {
@@ -2200,25 +2254,58 @@ const _sfc_main$3 = defineComponent({
     }
   }
 });
-const _hoisted_1$3 = ["aria-activedescendant"];
-const _hoisted_2$2 = ["id"];
-const _hoisted_3$2 = ["href", "aria-selected", "onClick", "onKeyup"];
-const _hoisted_4$2 = { class: "cdx-tabs__content" };
+const _hoisted_1$3 = {
+  ref: "focusHolder",
+  tabindex: "-1"
+};
+const _hoisted_2$2 = {
+  ref: "prevScroller",
+  class: "cdx-tabs__prev-scroller"
+};
+const _hoisted_3$2 = ["aria-activedescendant"];
+const _hoisted_4$2 = ["id"];
+const _hoisted_5$1 = ["href", "aria-selected", "onClick", "onKeyup"];
+const _hoisted_6$1 = {
+  ref: "nextScroller",
+  class: "cdx-tabs__next-scroller"
+};
+const _hoisted_7 = { class: "cdx-tabs__content" };
 function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_cdx_icon = resolveComponent("cdx-icon");
+  const _component_cdx_button = resolveComponent("cdx-button");
   return openBlock(), createElementBlock("div", {
     ref: "rootElement",
     class: normalizeClass(["cdx-tabs", _ctx.rootClasses])
   }, [
     createElementVNode("div", {
-      class: normalizeClass(["cdx-tabs__header", _ctx.headerClasses]),
+      class: "cdx-tabs__header",
       tabindex: "0",
       onKeydown: [
-        _cache[1] || (_cache[1] = withKeys(withModifiers((...args) => _ctx.onRightArrowKeypress && _ctx.onRightArrowKeypress(...args), ["prevent"]), ["right"])),
-        _cache[2] || (_cache[2] = withKeys(withModifiers((...args) => _ctx.onDownArrowKeypress && _ctx.onDownArrowKeypress(...args), ["prevent"]), ["down"])),
-        _cache[3] || (_cache[3] = withKeys(withModifiers((...args) => _ctx.onLeftArrowKeypress && _ctx.onLeftArrowKeypress(...args), ["prevent"]), ["left"]))
+        _cache[4] || (_cache[4] = withKeys(withModifiers((...args) => _ctx.onRightArrowKeypress && _ctx.onRightArrowKeypress(...args), ["prevent"]), ["right"])),
+        _cache[5] || (_cache[5] = withKeys(withModifiers((...args) => _ctx.onDownArrowKeypress && _ctx.onDownArrowKeypress(...args), ["prevent"]), ["down"])),
+        _cache[6] || (_cache[6] = withKeys(withModifiers((...args) => _ctx.onLeftArrowKeypress && _ctx.onLeftArrowKeypress(...args), ["prevent"]), ["left"]))
       ]
     }, [
+      createElementVNode("div", _hoisted_1$3, null, 512),
+      withDirectives(createElementVNode("div", _hoisted_2$2, [
+        createVNode(_component_cdx_button, {
+          class: "cdx-tabs__scroll-button",
+          type: "quiet",
+          tabindex: "-1",
+          onMousedown: _cache[0] || (_cache[0] = withModifiers(() => {
+          }, ["prevent"])),
+          onClick: _cache[1] || (_cache[1] = ($event) => _ctx.scrollTabs("prev"))
+        }, {
+          default: withCtx(() => [
+            createVNode(_component_cdx_icon, { icon: _ctx.cdxIconPrevious }, null, 8, ["icon"])
+          ]),
+          _: 1
+        })
+      ], 512), [
+        [vShow, !_ctx.firstLabelVisible]
+      ]),
       createElementVNode("ul", {
+        ref: "listElement",
         class: "cdx-tabs__list",
         role: "tablist",
         "aria-activedescendant": _ctx.activeTabId
@@ -2238,15 +2325,30 @@ function _sfc_render$3(_ctx, _cache, $props, $setup, $data, $options) {
               tabIndex: "-1",
               "aria-selected": tab.name === _ctx.activeTab,
               onClick: withModifiers(($event) => _ctx.select(tab.name), ["prevent"]),
-              onKeyup: withKeys(($event) => _ctx.select(tab.name), ["enter"]),
-              onFocus: _cache[0] || (_cache[0] = withModifiers(() => {
-              }, ["prevent"]))
-            }, toDisplayString(tab.label), 41, _hoisted_3$2)
-          ], 10, _hoisted_2$2);
+              onKeyup: withKeys(($event) => _ctx.select(tab.name), ["enter"])
+            }, toDisplayString(tab.label), 41, _hoisted_5$1)
+          ], 10, _hoisted_4$2);
         }), 128))
-      ], 8, _hoisted_1$3)
-    ], 34),
-    createElementVNode("div", _hoisted_4$2, [
+      ], 8, _hoisted_3$2),
+      withDirectives(createElementVNode("div", _hoisted_6$1, [
+        createVNode(_component_cdx_button, {
+          class: "cdx-tabs__scroll-button",
+          type: "quiet",
+          tabindex: "-1",
+          onMousedown: _cache[2] || (_cache[2] = withModifiers(() => {
+          }, ["prevent"])),
+          onClick: _cache[3] || (_cache[3] = ($event) => _ctx.scrollTabs("next"))
+        }, {
+          default: withCtx(() => [
+            createVNode(_component_cdx_icon, { icon: _ctx.cdxIconNext }, null, 8, ["icon"])
+          ]),
+          _: 1
+        })
+      ], 512), [
+        [vShow, !_ctx.lastLabelVisible]
+      ])
+    ], 32),
+    createElementVNode("div", _hoisted_7, [
       renderSlot(_ctx.$slots, "default")
     ])
   ], 2);
@@ -2396,10 +2498,6 @@ const _sfc_main = defineComponent({
       type: String,
       required: true
     },
-    buttonLabel: {
-      type: String,
-      required: true
-    },
     searchResultsLabel: {
       type: String,
       required: true
@@ -2407,6 +2505,10 @@ const _sfc_main = defineComponent({
     searchResults: {
       type: Array,
       default: () => []
+    },
+    buttonLabel: {
+      type: String,
+      default: ""
     },
     initialInputValue: {
       type: String,
@@ -2685,6 +2787,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => _ctx.inputValue = $event),
         "button-label": _ctx.buttonLabel
       }, _ctx.otherAttrs, {
+        class: "cdx-typeahead-search__input",
         name: "search",
         role: "combobox",
         autocomplete: "off",
@@ -2761,4 +2864,4 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   ], 6);
 }
 var TypeaheadSearch = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render]]);
-export { CdxButton, Checkbox as CdxCheckbox, Combobox as CdxCombobox, CdxIcon, Lookup as CdxLookup, CdxMenu, CdxMenuItem, Message as CdxMessage, CdxProgressBar, Radio as CdxRadio, CdxSearchInput, CdxSearchResultTitle, Select as CdxSelect, Tab as CdxTab, Tabs as CdxTabs, CdxTextInput, ToggleButton as CdxToggleButton, ToggleSwitch as CdxToggleSwitch, TypeaheadSearch as CdxTypeaheadSearch, useComputedDirection, useComputedLanguage, useGeneratedId, useIntersectionObserver, useModelWrapper, useSplitAttributes, useStringHelpers };
+export { CdxButton, Checkbox as CdxCheckbox, Combobox as CdxCombobox, CdxIcon, Lookup as CdxLookup, CdxMenu, CdxMenuItem, Message as CdxMessage, CdxProgressBar, Radio as CdxRadio, CdxSearchInput, CdxSearchResultTitle, Select as CdxSelect, Tab as CdxTab, Tabs as CdxTabs, CdxTextInput, ToggleButton as CdxToggleButton, ToggleSwitch as CdxToggleSwitch, TypeaheadSearch as CdxTypeaheadSearch, stringHelpers, useComputedDirection, useComputedLanguage, useGeneratedId, useIntersectionObserver, useModelWrapper, useSplitAttributes };
