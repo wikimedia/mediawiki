@@ -4,8 +4,6 @@ class DiffHistoryBlobTest extends MediaWikiUnitTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-
-		$this->checkPHPExtension( 'hash' );
 		$this->checkPHPExtension( 'xdiff' );
 
 		if ( !function_exists( 'xdiff_string_rabdiff' ) ) {
