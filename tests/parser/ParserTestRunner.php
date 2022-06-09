@@ -739,8 +739,8 @@ class ParserTestRunner {
 			// Additions from Parsoid
 			[
 				'iw_prefix' => 'en',
-				'iw_url' => 'http://en.wikipedia.org/wiki/$1',
-				'iw_local' => 1,
+				'iw_url' => '//en.wikipedia.org/wiki/$1',
+				'iw_local' => 1
 			],
 			[
 				'iw_prefix' => 'stats',
