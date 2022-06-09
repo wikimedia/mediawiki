@@ -13,7 +13,8 @@
 			"Stisc-14",
 			"Urhixidur",
 			"Whytheonlyone",
-			"Zetud"
+			"Zetud",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Souligner les liens:",
@@ -167,7 +168,7 @@
 	"action-unprotect": "Changer la protection",
 	"unprotect": "Changer la protection",
 	"newpage": "Nouvelle page",
-	"talkpagelinktext": "Discuter",
+	"talkpagelinktext": "discuter",
 	"specialpage": "Page espéciale",
 	"personaltools": "Outils personnels",
 	"talk": "Discussion",
@@ -782,7 +783,7 @@
 	"tool-link-contributions": "Contributions de l’{{GENDER:$1|useur|useuse}}",
 	"mycontris": "Contributions",
 	"uctop": "actuel",
-	"sp-contributions-talk": "Discuter",
+	"sp-contributions-talk": "discuter",
 	"sp-contributions-submit": "Charcher",
 	"whatlinkshere": "Pages liées",
 	"whatlinkshere-title": "Pages qui connectent vers \"$1\"",

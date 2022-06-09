@@ -58,7 +58,8 @@
 			"এম আবু সাঈদ",
 			"খাত্তাব হাসান",
 			"Meghmollar2017",
-			"FARMER"
+			"FARMER",
+			"মোঃ মারুফ হাসান24"
 		]
 	},
 	"tog-underline": "সংযোগের নিচে দাগ দেখানো হোক:",
@@ -881,6 +882,7 @@
 	"rev-deleted-event": "(লগের তথ্য সরানো হয়েছে)",
 	"rev-deleted-user-contribs": "[ব্যবহারকারীর নাম অথবা আইপি ঠিকানা সরানো হয়েছে - অবদান থেকে সম্পাদনা লুকিয়ে রাখা হয়েছে]",
 	"rev-deleted-text-permission": "পাতার এই সংস্করণটি <strong>অপসারিত হয়েছে</strong>।\nবিস্তারিত কারণ এর [{{fullurl:{{#Special:Log}}/delete|page=$1}} অপসারণ লগে] পাওয়া যেতে পারে।",
+	"rev-suppressed-text": "পাতার এই সংস্করণটি <strong>গোপন</strong> করা হয়েছে।",
 	"rev-suppressed-text-permission": "পাতার সংশোধনটি <strong>গোপন</strong> করা হয়েছে।\nবিস্তারিত বিবরণ [{{fullurl:{{#Special:Log}}/suppress|page=$1}} গোপনকার্যের লগে] থাকতে পারে।",
 	"rev-deleted-text-unhide": "পাতার এই সংস্করণটি '''অপসারিত''' হয়েছে।\nবিস্তারিত কারণ এর [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অপসারণ লগে] পাওয়া যেতে পারে।\nআপনি ইচ্ছা পোষণ করলে [$1 এই সংস্করণটি দেখতে পারেন]।",
 	"rev-suppressed-text-unhide": "পাতার এই সংস্করণটি '''অপসারিত''' হয়েছে।\nবিস্তারিত কারণ এর [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} অপসারণ লগে] পাওয়া যেতে পারে।\nআপনি ইচ্ছা পোষণ করলে [$1 এই সংস্করণটি দেখতে পারেন]।",
@@ -1062,7 +1064,7 @@
 	"prefs-labs": "পরীক্ষাগার সুবিধাসমূহ",
 	"prefs-user-pages": "ব্যবহারকারীর পাতা",
 	"prefs-personal": "ব্যবহারকারীর বৃত্তান্ত",
-	"prefs-rc": "সাম্প্রতিক পরিবর্তনসমূহ",
+	"prefs-rc": "সাম্প্রতিক পরিবর্তন",
 	"prefs-watchlist": "নজরতালিকা",
 	"prefs-editwatchlist": "নজরতালিকা সম্পাদনা",
 	"prefs-editwatchlist-label": "আপনার নজরতালিকার ভুক্তিসমূহ সম্পাদনা করুন:",
@@ -1147,6 +1149,7 @@
 	"badsiglinebreak": "আপনার স্বাক্ষরের উইকিলেখা অবশ্যই এক লাইনে থাকতে হবে। কোনও লাইনভঙ্গ যোগ করা যাবে না",
 	"linterror-bogus-image-options": "ভুয়া ফাইল বিকল্প",
 	"linterror-deletable-table-tag": "টেবিল ট্যাগ যা মুছে ফেলা উচিত",
+	"linterror-html5-misnesting": "মিসনেস্টিং (এখন ভাঙা)",
 	"linterror-misc-tidy-replacement-issues": "বিবিধ মার্কআপ ত্রুটি",
 	"linterror-missing-end-tag": "সমাপ্তির ট্যাগ অনুপস্থিত",
 	"linterror-multiline-html-table-in-list": "তালিকার ভেতরে একাধিক লাইনের এইচটিএমএল৫ টেবিল",
@@ -2274,7 +2277,7 @@
 	"emailuser-title-notarget": "ব্যবহারকারীকে ই-মেইল করুন",
 	"emailpagetext": "আপনি নিচের ফর্মটি ব্যবহার করে এই {{GENDER:$1|ব্যবহারকারীকে}} একটি ই-মেইল পাঠাতে পারেন।\nআপনি [[Special:Preferences|আপনার ব্যবহারকারী পছন্দে]] যে ই-মেইল ঠিকানাটি প্রবেশ করিয়েছেন সেটিকে ই-মেইলের ''প্রেরক'' হিসেবে দেখানো হবে, যেনো মেইলের প্রাপক আপনাকে উত্তর দিতে পারেন।",
 	"defemailsubject": "{{SITENAME}} ব্যবহারকারী \"$1\" প্রেরিত ইমেইল",
-	"usermaildisabled": "ব্যবহারকারী ই-মেইল নিস্ক্রিয়",
+	"usermaildisabled": "ব্যবহারকারীর ই-মেইল নিষ্ক্রিয়",
 	"usermaildisabledtext": "আপনি এই উইকির অন্যান্য ব্যবহারকারীকে ইমেইল পাঠাতে পারবেন না",
 	"noemailtitle": "ই-মেইল ঠিকানা নেই",
 	"noemailtext": "এই ব্যবহারকারী কোন বৈধ ই-মেইল ঠিকানা জানাননি।",

@@ -48,7 +48,8 @@
 			"Петар Петковић",
 			"Сербијана",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Vipz"
 		]
 	},
 	"tog-underline": "Подвлачење веза:",
@@ -434,7 +435,7 @@
 	"userlogin-yourpassword-ph": "Унесите лозинку",
 	"createacct-yourpassword-ph": "Унесите лозинку",
 	"yourpasswordagain": "Поново унеси лозинку:",
-	"createacct-useuniquepass": "Препоручује се да изаберете јединствену лозинку, коју не употребљавате ни на једном другом сајту.",
+	"createacct-useuniquepass": "Изаберите јединствену лозинку, ону коју не употребљавате ни на једном другом сајту.",
 	"createacct-yourpasswordagain": "Потврдите лозинку",
 	"createacct-yourpasswordagain-ph": "Поново унесите лозинку",
 	"userlogin-remembermypassword": "Не одјављуј ме",
@@ -3488,8 +3489,9 @@
 	"tag-mw-undo-description": "Измене које поништавају претходне измене",
 	"tag-mw-manual-revert": "ручно враћање",
 	"tag-mw-manual-revert-description": "Измене којима се страница ручно враћа на старију верзију",
-	"tag-mw-reverted": "враћено",
+	"tag-mw-reverted": "враћена измена",
 	"tag-mw-reverted-description": "Измене које су касније враћене другом изменом",
+	"tag-mw-server-side-upload": "отпремање на страни сервера",
 	"tag-mw-server-side-upload-description": "Датотеке отпремљене преко скрипте за одржавање",
 	"tags-title": "Ознаке",
 	"tags-intro": "Ова страница наводи ознаке којима софтвер може да означи измене, те њихово значење.",

@@ -1278,6 +1278,7 @@
 	"rcfilters-quickfilters-placeholder-description": "আপোনাৰ ছেকনীৰ ছেটিংছ সাঁচি থ'বলৈ আৰু পাছত সেয়া ব্যৱহাৰ কৰিবলৈ তলত থকা সক্ৰিয় পৰিস্ৰাৱক ক্ষেত্ৰৰ বুক্‌মাৰ্ক চিহ্নটো ক্লিক কৰক।",
 	"rcfilters-savedqueries-defaultlabel": "সঞ্চিত পৰিস্ৰাৱক",
 	"rcfilters-savedqueries-remove": "মচি পেলাওক",
+	"rcfilters-savedqueries-cancel-label": "বাতিল কৰক",
 	"rcfilters-show-new-changes": "$1ৰ পৰা নতুন সালসলনিবোৰ চাওক",
 	"rcfilters-search-placeholder": "সাল-সলনিসমূহ ছেকক (ছেকনীৰ নামৰ বাবে মেনু বা সন্ধান ব্যৱহাৰ কৰক)",
 	"rcfilters-search-placeholder-mobile": "ছাকনী",

@@ -2972,7 +2972,7 @@
 	"feedback-thanks-title": "Danko!",
 	"feedback-useragent": "Uzero-aganto:",
 	"searchsuggest-search": "Serchez en {{SITENAME}}",
-	"searchsuggest-containing": "quan kontenas...",
+	"searchsuggest-containing": "Serchanta pagini quin kontenas...",
 	"duration-seconds": "$1 {{PLURAL:$1|sekundo|sekundi}}",
 	"duration-minutes": "$1 {{PLURAL:$1|minuto|minuti}}",
 	"duration-hours": "$1 {{PLURAL:$1|horo|hori}}",

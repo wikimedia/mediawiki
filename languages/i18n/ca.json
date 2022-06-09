@@ -1221,7 +1221,7 @@
 	"userrights-user-editname": "Introduïu un nom d'usuari:",
 	"editusergroup": "Carrega els grups d'usuari",
 	"editinguser": "Modificació dels permisos de {{GENDER:$1|l'usuari|la usuària}} <strong>[[User:$1|$1]]</strong>$2",
-	"viewinguserrights": "Visualització del drets de {{GENDER:$1|l'usuari|la usuària}} <strong>[[User:$1|$1]]</strong> $2",
+	"viewinguserrights": "Visualització dels grups d'usuari de {{GENDER:$1|l'usuari|la usuària}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Edita els grups de l'{{GENDER:$1|usuari|usuària}}",
 	"userrights-viewusergroup": "Mostra els grups de {{GENDER:$1|l'usuari|la usuària}}",
 	"saveusergroups": "Desa els grups d'{{GENDER:$1|usuari}}",

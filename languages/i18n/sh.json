@@ -24,7 +24,8 @@
 			"Сербијана",
 			"לערי ריינהארט",
 			"ديفيد",
-			"아라"
+			"아라",
+			"Vipz"
 		]
 	},
 	"tog-underline": "Podvlačenje linkova:",
@@ -51,7 +52,7 @@
 	"tog-enotifrevealaddr": "Otkrij moju e-adresu u porukama obaviještenja",
 	"tog-shownumberswatching": "Prikaži broj korisnika koji prate",
 	"tog-oldsig": "Postojeći potpis:",
-	"tog-fancysig": "Smatraj potpis kao wikitekst (bez automatskog linka)",
+	"tog-fancysig": "Smatraj potpis kao wikitekst (bez automatskog linka ka tvojoj korisničkoj stranici)",
 	"tog-uselivepreview": "Prikazuj pregled bez ponovnog učitavanja stranice",
 	"tog-forceeditsummary": "Opomeni me pri unosu praznog sažetka (ili predodređenog sažetka pri uklanjanju izmjene)",
 	"tog-watchlisthideown": "Sakrij moje izmjene s praćenih",
@@ -3761,7 +3762,6 @@
 	"deflate-invaliddeflate": "Sadržaj nije ispravno pročišćen",
 	"unprotected-js": "JavaScript ne može da se učita sa nezaštićenih stranica iz bezbednosnih razloga. Samo napravite JavaScript u imenskom prostoru MediaWiki: ili kao korisničku podstranicu",
 	"userlogout-continue": "Želite se odjaviti?",
-	"view-view-foreign": "Vidi na $1",
 	"view-create-local": "Dodaj lokalni opis",
 	"nstab-mainpage": "Glavna stranica",
 	"view-edit-local": "Uredi lokalni opis",

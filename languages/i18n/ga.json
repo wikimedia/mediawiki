@@ -25,7 +25,8 @@
 			"לערי ריינהארט",
 			"ديفيد",
 			"පසිඳු කාවින්ද",
-			"아라"
+			"아라",
+			"Dowlinme"
 		]
 	},
 	"tog-underline": "Folínte faoi naisc:",
@@ -1418,6 +1419,7 @@
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|chlib amháin|clib}}]]: $2",
 	"diff-form-submit": "Taispeáin difríochtaí",
 	"deletepage": "Scrios an leathanach",
+	"htmlform-submit": "Cuir isteach",
 	"htmlform-selectorother-other": "Eile",
 	"logentry-move-move": "{{GENDER:$2|Bhog}} $1 an leathanach $3 go $4",
 	"feedback-cancel": "Cealaigh",

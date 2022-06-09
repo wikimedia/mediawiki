@@ -25,7 +25,8 @@
 			"Vlad5250",
 			"Yannos",
 			"ZaDiak",
-			"아라"
+			"아라",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Ὑπογραμμίζειν συνδέσμους:",
@@ -1339,7 +1340,7 @@
 	"sp-contributions-deleted": "διεγραμμένοι ἔρανοι χρωμένου",
 	"sp-contributions-uploads": "ἐπιφορτώσεις",
 	"sp-contributions-logs": "ἱστορικά",
-	"sp-contributions-talk": "Διαλέγεσθαι",
+	"sp-contributions-talk": "διαλέγεσθαι",
 	"sp-contributions-userrights": "Διαχείρισις δικαιωμάτων χρωμένου",
 	"sp-contributions-search": "Ζητεῖν ἐράνους",
 	"sp-contributions-username": "IP-διεύθυνσις ἢ ὄνομα χρωμένου:",
@@ -1873,7 +1874,6 @@
 	"special-characters-group-arabic": "Ἀραβικόν",
 	"special-characters-group-hebrew": "Ἑβραϊκόν",
 	"special-characters-group-telugu": "Τελουγούϊον",
-	"view-view-foreign": "Ὁρᾶν ἐν $1",
 	"view-create-local": "Προστιθέναι περιγραφὴν τοπικήν",
 	"nstab-mainpage": "Κυρία Δέλτος",
 	"skin-action-protect": "Φυλάττειν",

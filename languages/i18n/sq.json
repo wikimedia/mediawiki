@@ -46,7 +46,8 @@
 			"Vinie007",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Nënvizimi i lidhjes:",
@@ -2185,7 +2186,7 @@
 	"sp-contributions-deleted": "kontributet e grisura të {{GENDER:$1|përdoruesit|përdorueses}}",
 	"sp-contributions-uploads": "ngarkimet",
 	"sp-contributions-logs": "regjistra",
-	"sp-contributions-talk": "Diskutoni",
+	"sp-contributions-talk": "diskutoni",
 	"sp-contributions-userrights": "menaxhimi i të drejtave të {{GENDER:$1|përdoruesit}}",
 	"sp-contributions-blocked-notice": "{{GENDER:$1|Ky përdorues|Kjo përdoruese}} është bllokuar.\nZëri më i ri i regjistrit të bllokimeve jepet më poshtë, për referencë:",
 	"sp-contributions-blocked-notice-anon": "Kjo adresë IP është e bllokuar aktualisht.\nBllokimi i funditë është më poshtë për referencë:",

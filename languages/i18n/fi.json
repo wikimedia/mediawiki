@@ -83,7 +83,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Korjaus1",
-			"Moottori"
+			"Moottori",
+			"Huusmik"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -879,8 +880,10 @@
 	"nextrevision": "Uudempi versio →",
 	"currentrevisionlink": "Nykyinen versio",
 	"cur": "nyk.",
+	"tooltip-cur": "Ero uusimpaan versioon",
 	"next": "seur.",
 	"last": "edell.",
+	"tooltip-last": "Ero edelliseen versioon",
 	"page_first": "ensimmäinen sivu",
 	"page_last": "viimeinen sivu",
 	"histlegend": "Eroavaisuuksien valinta: Merkitse niiden versioiden valintaympyrät, joita haluat vertailla, ja paina enter tai alhaalla olevaa nappia.<br />\nSelitys: <strong>({{int:cur}})</strong> = eroavaisuudet uusimpaan versioon, <strong>({{int:last}})</strong> = eroavaisuudet edeltävään versioon, <strong>{{int:minoreditletter}}</strong> = pieni muutos.",

@@ -791,7 +791,7 @@
 	"post-expand-template-inclusion-category": "Старонкі, на якіх перавышаны максімальны аб’ём шаблона",
 	"post-expand-template-argument-warning": "Увага: на гэтай старонцы ёсць прынамсі адзін параметр шаблона, які занадта доўгі ў разгорнутым выглядзе.\nТакія параметры былі прапушчаныя.",
 	"post-expand-template-argument-category": "Старонкі, на якіх прапушчаны параметры шаблонаў",
-	"template-equals-category": "Старонкі, якія выкарыстоўваюць = у якасці шаблону",
+	"template-equals-category": "Старонкі, якія выкарыстоўваюць = у якасці шаблона",
 	"template-equals-category-desc": "Старонка змяшчае <code><nowiki>{{=}}</nowiki></code>, але ў гэтай вікі гэты код не пашыраецца да <code>=</code>. Такое выкарыстанне састарэлае; будучыя версіі МэдыяВікі прыменяць <code><nowiki>{{=}}</nowiki></code> як функцыю парсеру.",
 	"template-equals-warning": "<strong>Увага:</strong> Старонка змяшчае <code><nowiki>{{=}}</nowiki></code>, але ў гэтай вікі гэты код не пашыраецца да <code>=</code>. Такое выкарыстанне састарэлае; будучыя версіі МэдыяВікі рэалізуюць <code><nowiki>{{=}}</nowiki></code> як функцыю парсеру.",
 	"parser-template-loop-warning": "Цыклічнае ўключэнне шаблона: [[$1]]",

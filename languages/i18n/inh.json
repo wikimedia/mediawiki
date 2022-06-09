@@ -397,7 +397,7 @@
 	"blocked-notice-logextract": "{{GENDER:$1|Ер доакъашхо}} укх юкъа {{GENDER:$1|блок теха ва|блок теха я}}.\nЛохе белгалдаьккхад блок тохара тептара чура тӀехьара дӀаяздаьр:",
 	"clearyourcache": "<strong>Теркалде:</strong> Хетаргахьа, оагӀув дӀаязъяь яьлча хьай браузера кэш ӀоцӀенъе езаргья хьа, хьадаь дола хувцамаш гуш хургдолаш.\n* <strong>Firefox / Safari:</strong> <em>Shift</em> яха лак тоӀаяь лоатта а еш кечалий панела тӀа <em>Кердадаккха (обновить)</em> яхача тоӀабе, е <em>Ctrl+F5</em> яха лакаш тоӀае е <em>Ctrl+R</em> (Mac тӀа → <em>⌘+R</em>)\n* <strong>Google Chrome:</strong> <em>Ctrl+Shift+R</em> тоӀае (Mac тӀа → <em>⌘-Shift+R</em>)\n* <strong>Internet Explorer / Edge:</strong> <em>Ctrl</em> яха лак тоӀаяь лоатта а еш, ӀотӀатоӀае <em>Кердадаккха (обновить)</em> е <em>Ctrl+F5</em> тоӀае\n* <strong>Opera:</strong> <em>Ctrl+F5</em> тоӀае",
 	"note": "'''Белгалдоахар:'''",
-	"previewnote": "<strong>ТЕРКАМ! ЕР ХЬАЛХХЕ БӀАРГТОХАР МАРА ДАЦ.</strong>\nХЬА ХУВЦАМАШ КХЫ А ДӀАЯЗДАЬДАЦ!",
+	"previewnote": "<strong>ТЕРКАМ! ЕР ХЬАЛХХЕ БӀАРГТОХАР ДА.</strong>\nХЬА ХУВЦАМАШ КХЫ А ДӀАЯЗДАЬДАЦ!",
 	"continue-editing": "ОАГӀУВ ТОАЕРГЙОЛАШ ДӀÁХО ДЕХЬАВÁЛА",
 	"editing": "Тоадар: $1",
 	"creating": "«$1» яхаш цӀи йола оагӀув хьакхоллар",
