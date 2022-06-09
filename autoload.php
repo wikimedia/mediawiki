@@ -1851,6 +1851,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\PostgresBlob' => __DIR__ . '/includes/libs/rdbms/encasing/PostgresBlob.php',
 	'Wikimedia\\Rdbms\\PostgresField' => __DIR__ . '/includes/libs/rdbms/field/PostgresField.php',
 	'Wikimedia\\Rdbms\\PostgresResultWrapper' => __DIR__ . '/includes/libs/rdbms/database/resultwrapper/PostgresResultWrapper.php',
+	'Wikimedia\\Rdbms\\QueryStatus' => __DIR__ . '/includes/libs/rdbms/database/utils/QueryStatus.php',
 	'Wikimedia\\Rdbms\\ResultWrapper' => __DIR__ . '/includes/libs/rdbms/database/resultwrapper/ResultWrapper.php',
 	'Wikimedia\\Rdbms\\SQLiteField' => __DIR__ . '/includes/libs/rdbms/field/SQLiteField.php',
 	'Wikimedia\\Rdbms\\SchemaBuilder' => __DIR__ . '/includes/libs/rdbms/dbal/SchemaBuilder.php',

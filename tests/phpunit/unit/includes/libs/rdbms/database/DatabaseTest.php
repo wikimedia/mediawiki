@@ -14,6 +14,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Rdbms\Platform\SQLPlatform;
+use Wikimedia\Rdbms\QueryStatus;
 use Wikimedia\Rdbms\TransactionManager;
 use Wikimedia\RequestTimeout\CriticalSectionScope;
 use Wikimedia\TestingAccessWrapper;
@@ -452,7 +453,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		static $abstractMethods = [
 			'fetchAffectedRowCount',
 			'closeConnection',
-			'doQuery',
+			'doSingleStatementQuery',
 			'fieldInfo',
 			'getSoftwareLink',
 			'getServerVersion',
@@ -483,9 +484,18 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		};
 		$wdb->currentDomain = DatabaseDomain::newUnspecified();
 		$wdb->platform = new SQLPlatform( new AddQuoterMock() );
+		// Info used for logging/errors
+		$wdb->connectionParams = [
+			'host' => 'localhost',
+			'user' => 'testuser'
+		];
 
 		$db->method( 'getServer' )->willReturn( '*dummy*' );
 		$db->setTransactionManager( new TransactionManager() );
+
+		$qs = new QueryStatus( false, 0, '', 0 );
+		$qs->res = true;
+		$db->method( 'doSingleStatementQuery' )->willReturn( $qs );
 
 		return $db;
 	}

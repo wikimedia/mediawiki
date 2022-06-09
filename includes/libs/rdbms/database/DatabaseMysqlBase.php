@@ -178,9 +178,9 @@ abstract class DatabaseMysqlBase extends Database {
 				$flags = self::QUERY_NO_RETRY | self::QUERY_CHANGE_TRX;
 				// Avoid using query() so that replaceLostConnection() does not throw
 				// errors if the transaction status is STATUS_TRX_ERROR
-				list( $ret, $err, $errno ) = $this->executeQuery( $sql, __METHOD__, $flags );
-				if ( $ret === false ) {
-					$this->reportQueryError( $err, $errno, $sql, __METHOD__ );
+				$qs = $this->executeQuery( $sql, __METHOD__, $flags, $sql );
+				if ( $qs->res === false ) {
+					$this->reportQueryError( $qs->message, $qs->code, $sql, __METHOD__ );
 				}
 			}
 		} catch ( RuntimeException $e ) {
@@ -210,12 +210,10 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		if ( $database !== $this->getDBname() ) {
-			$sql = 'USE ' . $this->platform->addIdentifierQuotes( $database );
-			list( $res, $err, $errno ) =
-				$this->executeQuery( $sql, __METHOD__, self::QUERY_IGNORE_DBO_TRX );
-
-			if ( $res === false ) {
-				$this->reportQueryError( $err, $errno, $sql, __METHOD__ );
+			$sql = 'USE ' . $this->addIdentifierQuotes( $database );
+			$qs = $this->executeQuery( $sql, __METHOD__, self::QUERY_IGNORE_DBO_TRX, $sql );
+			if ( $qs->res === false ) {
+				$this->reportQueryError( $qs->message, $qs->code, $sql, __METHOD__ );
 				return false; // unreachable
 			}
 		}
@@ -446,6 +444,8 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
+	 * Escape special characters in a string for use in an SQL statement
+	 *
 	 * @param string $s
 	 * @return mixed
 	 */
@@ -1043,7 +1043,6 @@ abstract class DatabaseMysqlBase extends Database {
 
 	protected function doFlushSession( $fname ) {
 		$flags = self::QUERY_CHANGE_LOCKS | self::QUERY_NO_RETRY;
-
 		// Note that RELEASE_ALL_LOCKS() is not supported well enough to use here.
 		// https://mariadb.com/kb/en/release_all_locks/
 		$releaseLockFields = [];
@@ -1053,9 +1052,9 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 		if ( $releaseLockFields ) {
 			$sql = 'SELECT ' . implode( ',', $releaseLockFields );
-			list( $res, $err, $errno ) = $this->executeQuery( $sql, __METHOD__, $flags );
-			if ( $res === false ) {
-				$this->reportQueryError( $err, $errno, $sql, $fname, true );
+			$qs = $this->executeQuery( $sql, __METHOD__, $flags, $sql );
+			if ( $qs->res === false ) {
+				$this->reportQueryError( $qs->message, $qs->code, $sql, $fname, true );
 			}
 		}
 	}

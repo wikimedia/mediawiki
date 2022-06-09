@@ -964,7 +964,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	abstract protected function closeConnection();
 
 	/**
-	 * Run a query and return a DBMS-dependent wrapper or boolean
+	 * Run a query and return a QueryStatus instance with the query result information
 	 *
 	 * This is meant to handle the basic command of actually sending a query to the
 	 * server via the driver. No implicit transaction, reconnection, nor retry logic
@@ -977,19 +977,45 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * to doQuery() such that an immediately subsequent call to lastError()/lastErrno()
 	 * meaningfully reflects any error that occurred during that public query method call.
 	 *
-	 * For SELECT queries, this returns either:
-	 *   - a) An IResultWrapper describing the query results
+	 * For SELECT queries, the result field contains either:
+	 *   - a) A driver-specific IResultWrapper describing the query results
 	 *   - b) False, on any query failure
 	 *
-	 * For non-SELECT queries, this returns either:
-	 *   - a) A driver-specific value/resource, only on success
+	 * For non-SELECT queries, the result field contains either:
+	 *   - a) A driver-specific IResultWrapper, only on success
 	 *   - b) True, only on success (e.g. no meaningful result other than "OK")
 	 *   - c) False, on any query failure
 	 *
-	 * @param string $sql SQL query
-	 * @return IResultWrapper|bool An IResultWrapper, or true on success; false on failure
+	 * @param string $sql Single-statement SQL query
+	 * @return QueryStatus
+	 * @since 1.39
 	 */
-	abstract protected function doQuery( $sql );
+	abstract protected function doSingleStatementQuery( string $sql ): QueryStatus;
+
+	/**
+	 * Execute a batch of query statements, aborting remaining statements if one fails
+	 *
+	 * @see Database::doQuery()
+	 *
+	 * @stable to override
+	 * @param string[] $sqls Non-empty map of (statement ID => SQL statement)
+	 * @return array<string,QueryStatus> Map of (statement ID => QueryStatus)
+	 * @since 1.39
+	 */
+	protected function doMultiStatementQuery( array $sqls ): array {
+		$qsByStatementId = [];
+
+		$aborted = false;
+		foreach ( $sqls as $statementId => $sql ) {
+			$qs = $aborted
+				? new QueryStatus( false, 0, 'Query aborted', 0 )
+				: $this->doSingleStatementQuery( $sql );
+			$qsByStatementId[$statementId] = $qs;
+			$aborted = ( $qs->res === false );
+		}
+
+		return $qsByStatementId;
+	}
 
 	/**
 	 * Determine whether a query writes to the DB. When in doubt, this returns true.
@@ -1207,147 +1233,245 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			: false;
 	}
 
-	public function query( $sql, $fname = __METHOD__, $flags = self::QUERY_NORMAL ) {
+	public function query( $sql, $fname = __METHOD__, $flags = 0 ) {
 		$flags = (int)$flags; // b/c; this field used to be a bool
-		// Double check that the SQL query is appropriate in the current context and is
-		// allowed for an outside caller (e.g. does not break session/transaction tracking).
+
+		// Make sure that this caller is allowed to issue this query statement
 		$this->assertQueryIsCurrentlyAllowed( $sql, $fname );
 
 		// Send the query to the server and fetch any corresponding errors
-		list( $ret, $err, $errno, $errFlags ) = $this->executeQuery( $sql, $fname, $flags );
-		if ( $ret === false ) {
+		/** @var QueryStatus $qs */
+		$qs = $this->executeQuery( $sql, $fname, $flags, $sql );
+
+		// Handle any errors that occurred
+		if ( $qs->res === false ) {
 			// An error occurred; log and report it as needed. Errors that corrupt the state of
 			// the transaction/session cannot be silenced from the client.
 			$ignore = (
 				$this->fieldHasBit( $flags, self::QUERY_SILENCE_ERRORS ) &&
-				!$this->fieldHasBit( $errFlags, self::ERR_ABORT_SESSION ) &&
-				!$this->fieldHasBit( $errFlags, self::ERR_ABORT_TRX )
+				!$this->fieldHasBit( $qs->flags, self::ERR_ABORT_SESSION ) &&
+				!$this->fieldHasBit( $qs->flags, self::ERR_ABORT_TRX )
 			);
-			$this->reportQueryError( $err, $errno, $sql, $fname, $ignore );
+			// Throw an error unless both the ignore flag was set and a rollback is not needed
+			$this->reportQueryError( $qs->message, $qs->code, $sql, $fname, $ignore );
 		}
 
-		return $ret;
+		return $qs->res;
 	}
 
 	/**
-	 * Execute a query, retrying it if there is a recoverable connection loss
+	 * Run a batch of SQL query statements and return the results
 	 *
-	 * This is similar to query() except:
-	 *   - It does not prevent all non-ROLLBACK queries if there is a corrupted transaction
-	 *   - It does not disallow raw queries that are supposed to use dedicated IDatabase methods
-	 *   - It does not throw exceptions for common error cases
+	 * @see Database::query()
 	 *
-	 * This is meant for internal use with Database subclasses.
-	 *
-	 * @param string $sql Original SQL statement query
+	 * @param string[] $sqls Map of (statement ID => SQL statement)
 	 * @param string $fname Name of the calling function
-	 * @param int $flags Bit field of class QUERY_* constants
-	 * @return array An n-tuple of:
-	 *   - mixed|bool: An object, resource, or true on success; false on failure
-	 *   - string: The result of calling lastError()
-	 *   - int: The result of calling lastErrno()
-	 *   - int: Bit field of ERR_* class constants
-	 * @throws DBUnexpectedError
+	 * @param int $flags Bit field of IDatabase::QUERY_* constants
+	 * @param string $summarySql Virtual SQL for profiling (e.g. "UPSERT INTO TABLE 'x'")
+	 * @return array<string,QueryStatus> Ordered map of (statement ID => QueryStatus)
+	 * @since 1.39
 	 */
-	final protected function executeQuery( $sql, $fname, $flags ) {
-		$this->assertHasConnectionHandle();
-
-		if ( $this->isWriteQuery( $sql, $flags ) ) {
-			// Do not treat temporary table writes as "meaningful writes" since they are only
-			// visible to one session and are not permanent. Profile them as reads. Integration
-			// tests can override this behavior via $flags.
-			$pseudoPermanent = $this->fieldHasBit( $flags, self::QUERY_PSEUDO_PERMANENT );
-			$tempTableChanges = $this->getTempTableWrites( $sql, $pseudoPermanent );
-			$isPermWrite = !$tempTableChanges;
-			foreach ( $tempTableChanges as list( $tmpType ) ) {
-				$isPermWrite = $isPermWrite || ( $tmpType !== self::TEMP_NORMAL );
-			}
-			// Permit temporary table writes on replica DB connections
-			// but require a writable primary DB connection for any persistent writes.
-			if ( $isPermWrite ) {
-				$this->assertIsWritablePrimary();
-				// DBConnRef uses QUERY_REPLICA_ROLE to enforce replica roles for raw SQL queries
-				if ( $this->fieldHasBit( $flags, self::QUERY_REPLICA_ROLE ) ) {
-					throw new DBReadOnlyRoleError(
-						$this,
-						"Cannot write; target role is DB_REPLICA"
-					);
-				}
-			}
-		} else {
-			// No permanent writes in this query
-			$isPermWrite = false;
-			// No temporary tables written to either
-			$tempTableChanges = [];
+	public function queryMulti( array $sqls, string $fname, int $flags, string $summarySql ) {
+		// Make sure that this caller is allowed to issue these query statements
+		foreach ( $sqls as $sql ) {
+			$this->assertQueryIsCurrentlyAllowed( $sql, $fname );
 		}
 
-		// Add agent and calling method comments to the SQL
-		$commentedSql = $this->makeCommentedSql( $sql, $fname );
+		// Send the query statements to the server and fetch the results
+		$statusByStatementId = $this->executeQuery( $sqls, $fname, $flags, $summarySql );
+		// @phan-suppress-next-line PhanTypeSuspiciousNonTraversableForeach
+		foreach ( $statusByStatementId as $statementId => $qs ) {
+			if ( $qs->res === false ) {
+				// An error occurred; log and report it as needed. Errors that corrupt the state of
+				// the transaction/session cannot be silenced from the client.
+				$ignore = (
+					$this->fieldHasBit( $flags, self::QUERY_SILENCE_ERRORS ) &&
+					!$this->fieldHasBit( $qs->flags, self::ERR_ABORT_SESSION ) &&
+					!$this->fieldHasBit( $qs->flags, self::ERR_ABORT_TRX )
+				);
+				$this->reportQueryError(
+					$qs->message,
+					$qs->code,
+					$sqls[$statementId],
+					$fname,
+					$ignore
+				);
+			}
+		}
+
+		return $statusByStatementId;
+	}
+
+	/**
+	 * Execute a set of queries without enforcing public (non-Database) caller restrictions
+	 *
+	 * Retry it if there is a recoverable connection loss (e.g. no important state lost)
+	 *
+	 * This does not precheck for transaction/session state errors or critical section errors
+	 *
+	 * @see Database::query()
+	 * @see Database::querMulti()
+	 *
+	 * @param string|string[] $sqls SQL statment or (statement ID => SQL statement) map
+	 * @param string $fname Name of the calling function
+	 * @param int $flags Bit field of class QUERY_* constants
+	 * @param string $summarySql Actual/simplified SQL for profiling
+	 * @return QueryStatus|array<string,QueryStatus> QueryStatus (when given a string statement)
+	 *   or ordered map of (statement ID => QueryStatus) (when given an array of statements)
+	 * @throws DBUnexpectedError
+	 * @since 1.34
+	 */
+	final protected function executeQuery( $sqls, $fname, $flags, $summarySql ) {
+		if ( is_array( $sqls ) ) {
+			// Query consists of an atomic match of statements
+			$multiMode = true;
+			$statementsById = $sqls;
+		} else {
+			// Query consists of a single statement
+			$multiMode = false;
+			$statementsById = [ '*' => $sqls ];
+		}
+
+		$this->assertHasConnectionHandle();
+
+		$hasPermWrite = false;
+		$cStatementsById = [];
+		$tempTableChangesByStatementId = [];
+		foreach ( $statementsById as $statementId => $sql ) {
+			if ( $this->isWriteQuery( $sql, $flags ) ) {
+				$verb = $this->getQueryVerb( $sql );
+				// Temporary table writes are not "meaningful" writes, since they are only
+				// visible to one (ephermal) session, so treat them as reads instead. This
+				// can be overriden during integration testing via $flags. For simplicity,
+				// disallow CREATE/DROP statements during multi queries, avoiding the need
+				// to speculatively track whether a table will be temporary at query time.
+				if ( $multiMode && in_array( $verb, [ 'CREATE', 'DROP' ] ) ) {
+					throw new DBUnexpectedError(
+						$this,
+						"Cannot issue CREATE/DROP as part of multi-queries"
+					);
+				}
+				$pseudoPermanent = $this->fieldHasBit( $flags, self::QUERY_PSEUDO_PERMANENT );
+				$tempTableChanges = $this->getTempTableWrites( $sql, $pseudoPermanent );
+				$isPermWrite = !$tempTableChanges;
+				foreach ( $tempTableChanges as list( $tmpType ) ) {
+					$isPermWrite = $isPermWrite || ( $tmpType !== self::TEMP_NORMAL );
+				}
+				// Permit temporary table writes on replica connections, but require a writable
+				// master connection for writes to persistent tables. Note that this
+				if ( $isPermWrite ) {
+					$this->assertIsWritablePrimary();
+					// DBConnRef uses QUERY_REPLICA_ROLE to enforce replica roles during query()
+					if ( $this->fieldHasBit( $flags, self::QUERY_REPLICA_ROLE ) ) {
+						throw new DBReadOnlyRoleError(
+							$this,
+							"Cannot write; target role is DB_REPLICA"
+						 );
+					}
+				}
+				$hasPermWrite = $hasPermWrite || $isPermWrite;
+			} else {
+				// No temporary tables written to either
+				$tempTableChanges = [];
+			}
+			$tempTableChangesByStatementId[$statementId] = $tempTableChanges;
+			// Add agent and calling method comments to the SQL
+			$cStatementsById[$statementId] = $this->makeCommentedSql( $sql, $fname );
+		}
+
 		// Whether a silent retry attempt is left for recoverable connection loss errors
 		$retryLeft = !$this->fieldHasBit( $flags, self::QUERY_NO_RETRY );
+		$firstStatement = reset( $statementsById );
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 
 		do {
 			// Start a DBO_TRX wrapper transaction as needed (throw an error on failure)
-			if ( $this->beginIfImplied( $sql, $fname, $flags ) ) {
-				// Since begin() was called, any connection loss already handled
+			if ( $this->beginIfImplied( $firstStatement, $fname, $flags ) ) {
+				// Since begin() was called, any connection loss was already handled
 				$retryLeft = false;
 			}
-			// Send the query to the server, fetching any results and corresponding errors
-			// Send the query to the server, fetching any results and corresponding errors.
-			// Silently retry the query if the error was just a recoverable connection loss.
-			list( $ret, $err, $errno, $errflags ) = $this->executeQueryAttempt(
-				$sql,
-				$commentedSql,
-				$isPermWrite,
+			// Send the query statements to the server and fetch any results. Retry all the
+			// statements if the error was a recoverable connection loss on the first statement.
+			// To reduce the risk of running queries twice, do not retry the statements if there
+			// is a connection error during any of the subsequent statements.
+			$statusByStatementId = $this->attemptQuery(
+				$statementsById,
+				$cStatementsById,
 				$fname,
-				$flags
+				$summarySql,
+				$hasPermWrite,
+				$multiMode
 			);
-			// Silently retry the query if the error was just a recoverable connection loss
-			if ( !$retryLeft ) {
-				break;
-			}
-			$retryLeft = false;
-		} while ( $this->fieldHasBit( $errflags, self::ERR_RETRY_QUERY ) );
+		} while (
+			// Query had at least one statement
+			( $firstQs = reset( $statusByStatementId ) ) &&
+			// An error occurred that can be recovered from via query retry
+			$this->fieldHasBit( $firstQs->flags, self::ERR_RETRY_QUERY ) &&
+			// The retry has not been exhausted (consume it now)
+			$retryLeft && !( $retryLeft = false )
+		 );
 
-		// Register creation and dropping of temporary tables
-		$this->registerTempWrites( $ret, $tempTableChanges );
+		foreach ( $statusByStatementId as $statementId => $qs ) {
+			// Register creation and dropping of temporary tables
+			$this->registerTempWrites( $qs->res, $tempTableChangesByStatementId[$statementId] );
+		}
 
 		$this->completeCriticalSection( __METHOD__, $cs );
 
-		return [ $ret, $err, $errno, $errflags ];
+		return $multiMode ? $statusByStatementId : $statusByStatementId['*'];
 	}
 
 	/**
-	 * Wrapper for doQuery() that handles a single SQL statement query attempt
+	 * Query method wrapper handling profiling, logging, affected row count tracking, and
+	 * automatic reconnections (without retry) on query failure due to connection loss
+	 *
+	 * Note that this does not handle DBO_TRX logic.
 	 *
 	 * This method handles profiling, debug logging, reconnection and the tracking of:
 	 *   - write callers
 	 *   - last write time
 	 *   - affected row count of the last write
 	 *   - whether writes occurred in a transaction
+	 *   - last successful query time (confirming that the connection was not dropped)
 	 *
-	 * This method does *not* handle DBO_TRX transaction logic *nor* query retries.
+	 * @see doSingleStatementQuery()
+	 * @see doMultiStatementQuery()
 	 *
-	 * @param string $sql Original SQL statement query
-	 * @param string $commentedSql SQL statement query with debugging/trace comment
-	 * @param bool $isPermWrite Whether the query is a (non-temporary table) write
+	 * @param string[] $statementsById Map of (statement ID => SQL statement)
+	 * @param string[] $cStatementsById Map of (statement ID => commented SQL statement)
 	 * @param string $fname Name of the calling function
-	 * @param int $flags Bit field of class QUERY_* constants
-	 * @return array An n-tuple of:
-	 *   - mixed|bool: An object, resource, or true on success; false on failure
-	 *   - string: The result of calling lastError()
-	 *   - int: The result of calling lastErrno()
-	 *   - int: Bit field of ERR_* class constants
+	 * @param string $summarySql Actual/simplified SQL for profiling
+	 * @param bool $hasPermWrite Whether any of the queries write to permanent tables
+	 * @param bool $multiMode Whether this is for an anomic statement batch
+	 * @return array<string,QueryStatus> Map of (statement ID => statement result)
 	 * @throws DBUnexpectedError
 	 */
-	private function executeQueryAttempt( $sql, $commentedSql, $isPermWrite, $fname, $flags ) {
+	private function attemptQuery(
+		array $statementsById,
+		array $cStatementsById,
+		string $fname,
+		string $summarySql,
+		bool $hasPermWrite,
+		bool $multiMode
+	) {
+		// Treat empty multi-statement query lists as no query at all
+		if ( !$statementsById ) {
+			return [];
+		}
+
 		// Transaction attributes before issuing this query
 		$priorSessInfo = $this->getCriticalSessionInfo();
 
-		// Keep track of whether the transaction has write queries pending
-		if ( $isPermWrite ) {
+		// Get the transaction-aware SQL string used for profiling
+		$prefix = ( $this->topologyRole === self::ROLE_STREAMING_MASTER ) ? 'query-m: ' : 'query: ';
+		$generalizedSql = new GeneralizedSql( $summarySql, $prefix );
+
+		$startTime = microtime( true );
+		$ps = $this->profiler ? ( $this->profiler )( $generalizedSql->stringify() ) : null;
+		$this->lastQuery = $summarySql;
+		$this->affectedRowCount = null;
+		if ( $hasPermWrite ) {
 			$this->lastWriteTime = microtime( true );
 			$this->transactionManager->transactionWritingIn(
 				$this->getServerName(),
@@ -1355,95 +1479,109 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			);
 		}
 
-		$prefix = ( $this->topologyRole === self::ROLE_STREAMING_MASTER ) ? 'query-m: ' : 'query: ';
-		$generalizedSql = new GeneralizedSql( $commentedSql, $prefix );
+		if ( $multiMode ) {
+			$qsByStatementId = $this->doMultiStatementQuery( $cStatementsById );
+		} else {
+			$qsByStatementId = [ '*' => $this->doSingleStatementQuery( $cStatementsById['*'] ) ];
+		}
 
-		$startTime = microtime( true );
-		$ps = $this->profiler ? ( $this->profiler )( $generalizedSql->stringify() ) : null;
-		$this->affectedRowCount = null;
-		$this->lastQuery = $sql;
-		$ret = $this->doQuery( $commentedSql );
-		$lastError = $this->lastError();
-		$lastErrno = $this->lastErrno();
-		$this->affectedRowCount = $this->affectedRows();
 		unset( $ps ); // profile out (if set)
 		$queryRuntime = max( microtime( true ) - $startTime, 0.0 );
 
-		$errflags = self::ERR_NONE;
+		$lastStatus = end( $qsByStatementId );
+		// Use the last affected row count for consistency with lastErrno()/lastError()
+		$this->affectedRowCount = $lastStatus->rowsAffected;
+		// Compute the total number of rows affected by all statements in the query
+		$totalAffectedRowCount = 0;
+		foreach ( $qsByStatementId as $qs ) {
+			$totalAffectedRowCount += $qs->rowsAffected;
+		}
 
-		if ( $ret !== false ) {
+		if ( $lastStatus->res !== false ) {
 			$this->lastPing = $startTime;
-			// Keep track of whether the transaction has write queries pending
-			if ( $isPermWrite && $this->trxLevel() ) {
+			if ( $hasPermWrite && $this->trxLevel() ) {
 				$this->transactionManager->updateTrxWriteQueryReport(
-					$this->getQueryVerb( $sql ),
+					$summarySql,
 					$queryRuntime,
-					$this->affectedRows(),
+					$totalAffectedRowCount,
 					$fname
 				);
 			}
-		} elseif ( $this->isConnectionError( $lastErrno ) ) {
-			// Connection lost before or during the query...
-			// Determine how to proceed given the lost session state
-			$connLossFlag = $this->assessConnectionLoss( $sql, $queryRuntime, $priorSessInfo );
-			// Update session state tracking and try to reestablish a connection
-			$reconnected = $this->replaceLostConnection( $lastErrno, __METHOD__ );
-			// Check if important server-side session-level state was lost
-			if ( $connLossFlag >= self::ERR_ABORT_SESSION ) {
-				$sessionError = $this->getQueryException( $lastError, $lastErrno, $sql, $fname );
-				$this->transactionManager->setSessionError( $sessionError );
-			}
-			// Check if important server-side transaction-level state was lost
-			if ( $connLossFlag >= self::ERR_ABORT_TRX ) {
-				$trxError = $this->getQueryException( $lastError, $lastErrno, $sql, $fname );
-				$this->transactionManager->setTransactionError( $trxError );
-			}
-			// Check if the query should be retried (having made the reconnection attempt)
-			if ( $connLossFlag === self::ERR_RETRY_QUERY ) {
-				$errflags |= ( $reconnected ? self::ERR_RETRY_QUERY : self::ERR_ABORT_QUERY );
-			} else {
-				$errflags |= $connLossFlag;
-			}
-		} elseif ( $this->isKnownStatementRollbackError( $lastErrno ) ) {
-			// Query error triggered a server-side statement-only rollback...
-			$errflags |= self::ERR_ABORT_QUERY;
-			if ( $this->trxLevel() ) {
-				// Allow legacy callers to ignore such errors via QUERY_IGNORE_DBO_TRX and
-				// try/catch. However, a deprecation notice will be logged on the next query.
-				$cause = [ $lastError, $lastErrno, $fname ];
-				$this->transactionManager->setTrxStatusIgnoredCause( $cause );
-			}
-		} else {
-			// Some other error occurred during the query...
-			if ( $this->trxLevel() ) {
+		}
+
+		$errflags = 0;
+		$numRowsReturned = 0;
+		$numRowsAffected = 0;
+		if ( !$multiMode && $lastStatus->res === false ) {
+			$lastSql = end( $statementsById );
+			$lastError = $lastStatus->message;
+			$lastErrno = $lastStatus->code;
+			if ( $this->isConnectionError( $lastErrno ) ) {
+				// Connection lost before or during the query...
+				// Determine how to proceed given the lost session state
+				$connLossFlag = $this->assessConnectionLoss(
+					$lastSql,
+					$queryRuntime,
+					$priorSessInfo
+				);
+				// Update session state tracking and try to reestablish a connection
+				$reconnected = $this->replaceLostConnection( $lastErrno, __METHOD__ );
+				// Check if important server-side session-level state was lost
+				if ( $connLossFlag >= self::ERR_ABORT_SESSION ) {
+					$ex = $this->getQueryException( $lastError, $lastErrno, $lastSql, $fname );
+					$this->transactionManager->setSessionError( $ex );
+				}
+				// Check if important server-side transaction-level state was lost
+				if ( $connLossFlag >= self::ERR_ABORT_TRX ) {
+					$ex = $this->getQueryException( $lastError, $lastErrno, $lastSql, $fname );
+					$this->transactionManager->setTransactionError( $ex );
+				}
+				// Check if the query should be retried (having made the reconnection attempt)
+				if ( $connLossFlag === self::ERR_RETRY_QUERY ) {
+					$errflags |= ( $reconnected ? self::ERR_RETRY_QUERY : self::ERR_ABORT_QUERY );
+				} else {
+					$errflags |= $connLossFlag;
+				}
+			} elseif ( $this->isKnownStatementRollbackError( $lastErrno ) ) {
+				// Query error triggered a server-side statement-only rollback...
+				$errflags |= self::ERR_ABORT_QUERY;
+				if ( $this->trxLevel() ) {
+					// Allow legacy callers to ignore such errors via QUERY_IGNORE_DBO_TRX and
+					// try/catch. However, a deprecation notice will be logged on the next query.
+					$cause = [ $lastError, $lastErrno, $fname ];
+					$this->transactionManager->setTrxStatusIgnoredCause( $cause );
+				}
+			} elseif ( $this->trxLevel() ) {
+				// Some other error occurred during the query, within a transaction...
 				// Server-side handling of errors during transactions varies widely depending on
 				// the RDBMS type and configuration. There are several possible results: (a) the
 				// whole transaction is rolled back, (b) only the queries after BEGIN are rolled
 				// back, (c) the transaction is marked as "aborted" and a ROLLBACK is required
 				// before other queries are permitted. For compatibility reasons, pessimistically
 				// require a ROLLBACK query (not using SAVEPOINT) before allowing other queries.
-				$trxError = $this->getQueryException( $lastError, $lastErrno, $sql, $fname );
-				$this->transactionManager->setTransactionError( $trxError );
+				$ex = $this->getQueryException( $lastError, $lastErrno, $lastSql, $fname );
+				$this->transactionManager->setTransactionError( $ex );
 				$errflags |= self::ERR_ABORT_TRX;
 			} else {
+				// Some other error occurred during the query, without a transaction...
 				$errflags |= self::ERR_ABORT_QUERY;
 			}
 		}
-
-		if ( $sql === self::PING_QUERY ) {
-			$this->lastRoundTripEstimate = $queryRuntime;
+		foreach ( $qsByStatementId as $qs ) {
+			$qs->flags = $errflags;
+			$numRowsReturned += $qs->rowsReturned;
+			$numRowsAffected += $qs->rowsAffected;
 		}
 
-		$numRows = 0;
-		if ( $ret instanceof IResultWrapper ) {
-			$numRows = $ret->numRows();
+		if ( !$multiMode && $statementsById['*'] === self::PING_QUERY ) {
+			$this->lastRoundTripEstimate = $queryRuntime;
 		}
 
 		$this->transactionManager->recordQueryCompletion(
 			$generalizedSql,
 			$startTime,
-			$isPermWrite,
-			$isPermWrite ? $this->affectedRows() : $numRows,
+			$hasPermWrite,
+			$hasPermWrite ? $numRowsAffected : $numRowsReturned,
 			$this->getServerName()
 		);
 
@@ -1453,7 +1591,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				"{method} [{runtime}s] {db_server}: {sql}",
 				$this->getLogContext( [
 					'method' => $fname,
-					'sql' => $sql,
+					'sql' => $summarySql,
 					'domain' => $this->getDomainID(),
 					'runtime' => round( $queryRuntime, 3 ),
 					'db_log_category' => 'query'
@@ -1461,12 +1599,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			);
 		}
 
-		if ( !is_bool( $ret ) && $ret !== null && !( $ret instanceof IResultWrapper ) ) {
-			throw new DBUnexpectedError( $this,
-				static::class . '::doQuery() should return an IResultWrapper' );
-		}
-
-		return [ $ret, $lastError, $lastErrno, $errflags ];
+		return $qsByStatementId;
 	}
 
 	/**
@@ -1510,14 +1643,22 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Error out if the DB is not in a valid state for a query via query()
+	 * Check if the given query is appropriate to run in a public context
+	 *
+	 * The caller is assumed to come from outside Database.
+	 * In order to keep the DB handle's session state tracking in sync, certain queries
+	 * like "USE", "BEGIN", "COMMIT", and "ROLLBACK" must not be issued directly from
+	 * outside callers. Such commands should only be issued through dedicated methods
+	 * like selectDomain(), begin(), commit(), and rollback(), respectively.
+	 *
+	 * This also checks if the session state tracking was corrupted by a prior exception.
 	 *
 	 * @param string $sql
 	 * @param string $fname
 	 * @throws DBUnexpectedError
 	 * @throws DBTransactionStateError
 	 */
-	private function assertQueryIsCurrentlyAllowed( $sql, $fname ) {
+	private function assertQueryIsCurrentlyAllowed( string $sql, string $fname ) {
 		$verb = $this->getQueryVerb( $sql );
 
 		if ( $verb === 'USE' ) {
@@ -1526,6 +1667,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		if ( $verb === 'ROLLBACK' ) {
 			// Whole transaction rollback is used for recovery
+			// @TODO: T269161; prevent "BEGIN"/"COMMIT"/"ROLLBACK" from outside callers
 			return;
 		}
 
@@ -1708,19 +1850,24 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Report a query error. Log the error, and if neither the object ignore
-	 * flag nor the $ignoreErrors flag is set, throw a DBQueryError.
+	 * Report a query error
+	 *
+	 * If $ignore is set, emit a DEBUG level log entry and continue,
+	 * otherwise, emit an ERROR level log entry and throw an exception.
 	 *
 	 * @param string $error
 	 * @param int|string $errno
 	 * @param string $sql
 	 * @param string $fname
-	 * @param bool $ignore
+	 * @param bool $ignore Whether to just log an error rather than throw an exception
 	 * @throws DBQueryError
 	 */
 	public function reportQueryError( $error, $errno, $sql, $fname, $ignore = false ) {
 		if ( $ignore ) {
-			$this->queryLogger->debug( "SQL ERROR (ignored): $error", [ 'db_log_category' => 'query' ] );
+			$this->queryLogger->debug(
+				"SQL ERROR (ignored): $error",
+				[ 'db_log_category' => 'query' ]
+			);
 		} else {
 			throw $this->getQueryExceptionAndLog( $error, $errno, $sql, $fname );
 		}
@@ -2709,7 +2856,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$sqlCondition = $this->makeKeyCollisionCondition( [ $row ], $identityKey );
 				$this->delete( $table, [ $sqlCondition ], $fname );
 				$affectedRowCount += $this->affectedRows();
-				// Now insert the row
+				// Insert the new row
 				$this->insert( $table, $row, $fname );
 				$affectedRowCount += $this->affectedRows();
 			}
@@ -2727,8 +2874,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param array[] $rows Non-empty list of rows
 	 * @param string[] $uniqueKey List of columns that define a single unique index
 	 * @return string
+	 * @since 1.38
 	 */
-	private function makeKeyCollisionCondition( array $rows, array $uniqueKey ) {
+	protected function makeKeyCollisionCondition( array $rows, array $uniqueKey ) {
 		if ( !$rows ) {
 			throw new DBUnexpectedError( $this, "Empty row array" );
 		} elseif ( !$uniqueKey ) {
@@ -2812,11 +2960,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					$affectedRowCount += $this->affectedRows();
 				}
 			}
-			$this->endAtomic( $fname );
 		} catch ( DBError $e ) {
 			$this->cancelAtomic( $fname );
 			throw $e;
 		}
+		$this->endAtomic( $fname );
+		// Set the affected row count for the whole operation
 		$this->affectedRowCount = $affectedRowCount;
 	}
 
