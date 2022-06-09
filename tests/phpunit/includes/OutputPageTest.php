@@ -6,6 +6,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\PageStoreRecord;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
@@ -2989,6 +2990,37 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @covers OutputPage::addParserOutput
 	 */
 	public function testIsTOCEnabled() {
+		$op = $this->newInstance();
+		$this->assertFalse( $op->isTOCEnabled() );
+
+		$pOut1 = $this->createParserOutputStub();
+		$pOut1->method( 'getOutputFlag' )->will( $this->returnValueMap( [
+			[ ParserOutputFlags::SHOW_TOC, false ],
+		] ) );
+		$op->addParserOutputMetadata( $pOut1 );
+		$this->assertFalse( $op->isTOCEnabled() );
+
+		$pOut2 = $this->createParserOutputStub();
+		$pOut2->method( 'getOutputFlag' )->will( $this->returnValueMap( [
+			[ ParserOutputFlags::SHOW_TOC, true ],
+		] ) );
+		$op->addParserOutput( $pOut2 );
+		$this->assertTrue( $op->isTOCEnabled() );
+
+		// The parser output doesn't disable the TOC after it was enabled
+		$op->addParserOutputMetadata( $pOut1 );
+		$this->assertTrue( $op->isTOCEnabled() );
+	}
+
+	/**
+	 * @covers OutputPage::isTOCEnabled
+	 * @covers OutputPage::addParserOutputMetadata
+	 * @covers OutputPage::addParserOutput
+	 */
+	public function testIsTOCEnabledBackCompat() {
+		// This tests backward compatibility: OutputPage *used* to use
+		// ParserOutput::getTOCHTML() to determine whether the TOC should
+		// be enabled, before ParserOutputFlags::SHOW_TOC was added in 1.39.
 		$op = $this->newInstance();
 		$this->assertFalse( $op->isTOCEnabled() );
 

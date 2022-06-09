@@ -26,6 +26,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
@@ -2148,13 +2149,26 @@ class OutputPage extends ContextSource {
 		// used to mark individual language links.
 		$linkFlags = [];
 		$this->getHookRunner()->onLanguageLinks( $this->getTitle(), $this->mLanguageLinks, $linkFlags );
+
 		$this->getHookRunner()->onOutputPageParserOutput( $this, $parserOutput );
 
 		// This check must be after 'OutputPageParserOutput' runs in addParserOutputMetadata
 		// so that extensions may modify ParserOutput to toggle TOC.
 		// This cannot be moved to addParserOutputText because that is not
 		// called by EditPage for Preview.
-		if ( $parserOutput->getTOCHTML() ) {
+
+		// T294950/T293513: ParserOutput::getTOCHTML() will be
+		// replaced by ParserOutput::getSections(), and
+		// ParserOutputFlags::SHOW_TOC is used to indicate whether the TOC
+		// should be shown (or hidden) in the output.
+		$this->mEnableTOC = $this->mEnableTOC ||
+			$parserOutput->getOutputFlag( ParserOutputFlags::SHOW_TOC );
+		// But extensions used to be able to modify ParserOutput::setTOCHTML()
+		// to toggle TOC in the OutputPageParserOutput hook; so for backward
+		// compatibility check to see if that happened.
+		$isTocPresent = (bool)$parserOutput->getTOCHTML();
+		if ( $isTocPresent && !$this->mEnableTOC ) {
+			// Eventually we'll emit a deprecation message here (T293513)
 			$this->mEnableTOC = true;
 		}
 	}
