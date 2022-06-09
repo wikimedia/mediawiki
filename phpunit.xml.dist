@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="tests/phpunit/bootstrap.integration.php"
+<phpunit bootstrap="tests/phpunit/bootstrap.php"
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.8/phpunit.xsd"
 
@@ -14,12 +14,10 @@
 		 stopOnFailure="false"
 		 beStrictAboutTestsThatDoNotTestAnything="true"
 		 beStrictAboutOutputDuringTests="true"
-		 verbose="false"
 		 printerClass="MediaWikiPHPUnitResultPrinter"
-		 stderr="true">
+		 verbose="false">
 	<php>
-		<ini name="memory_limit" value="-1" />
-		<ini name="max_execution_time" value="0" />
+		<ini name="memory_limit" value="512M" />
 	</php>
 	<testsuites>
 		<testsuite name="core:unit">
