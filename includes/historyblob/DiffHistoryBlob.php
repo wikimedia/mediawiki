@@ -20,11 +20,9 @@
  * @file
  */
 
-use Wikimedia\AtEase\AtEase;
-
 /**
  * Diff-based history compression
- * Requires xdiff 1.5+ and zlib
+ * Requires xdiff and zlib
  */
 class DiffHistoryBlob implements HistoryBlob {
 	/** @var string[] Uncompressed item cache */
@@ -119,7 +117,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	 */
 	private function compress() {
 		if ( !function_exists( 'xdiff_string_rabdiff' ) ) {
-			throw new MWException( "Need xdiff 1.5+ support to write DiffHistoryBlob\n" );
+			throw new MWException( "Need xdiff support to write DiffHistoryBlob\n" );
 		}
 		if ( isset( $this->mDiffs ) ) {
 			// Already compressed
@@ -195,12 +193,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	 * @return string
 	 */
 	private function diff( $t1, $t2 ) {
-		# Need to do a null concatenation with warnings off, due to bugs in the current version of xdiff
-		# "String is not zero-terminated"
-		AtEase::suppressWarnings();
-		$diff = xdiff_string_rabdiff( $t1, $t2 ) . '';
-		AtEase::restoreWarnings();
-		return $diff;
+		return xdiff_string_rabdiff( $t1, $t2 );
 	}
 
 	/**
@@ -210,10 +203,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	 */
 	private function patch( $base, $diff ) {
 		if ( function_exists( 'xdiff_string_bpatch' ) ) {
-			AtEase::suppressWarnings();
-			$text = xdiff_string_bpatch( $base, $diff ) . '';
-			AtEase::restoreWarnings();
-			return $text;
+			return xdiff_string_bpatch( $base, $diff );
 		}
 
 		# Pure PHP implementation
