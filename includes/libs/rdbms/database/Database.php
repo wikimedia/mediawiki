@@ -1260,18 +1260,26 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Run a batch of SQL query statements and return the results
+	 * Run a batch of SQL query statements and return the results.
 	 *
 	 * @see Database::query()
 	 *
 	 * @param string[] $sqls Map of (statement ID => SQL statement)
 	 * @param string $fname Name of the calling function
 	 * @param int $flags Bit field of IDatabase::QUERY_* constants
-	 * @param string $summarySql Virtual SQL for profiling (e.g. "UPSERT INTO TABLE 'x'")
+	 * @param string|null $summarySql Virtual SQL for profiling (e.g. "UPSERT INTO TABLE 'x'")
 	 * @return array<string,QueryStatus> Ordered map of (statement ID => QueryStatus)
 	 * @since 1.39
 	 */
-	public function queryMulti( array $sqls, string $fname, int $flags, string $summarySql ) {
+	public function queryMulti(
+		array $sqls, string $fname = __METHOD__, int $flags = 0, ?string $summarySql = null
+	) {
+		if ( !$sqls ) {
+			return [];
+		}
+		if ( $summarySql === null ) {
+			$summarySql = reset( $sqls );
+		}
 		// Make sure that this caller is allowed to issue these query statements
 		foreach ( $sqls as $sql ) {
 			$this->assertQueryIsCurrentlyAllowed( $sql, $fname );
@@ -1303,11 +1311,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Execute a set of queries without enforcing public (non-Database) caller restrictions
+	 * Execute a set of queries without enforcing public (non-Database) caller restrictions.
 	 *
-	 * Retry it if there is a recoverable connection loss (e.g. no important state lost)
+	 * Retry it if there is a recoverable connection loss (e.g. no important state lost).
 	 *
-	 * This does not precheck for transaction/session state errors or critical section errors
+	 * This does not precheck for transaction/session state errors or critical section errors.
 	 *
 	 * @see Database::query()
 	 * @see Database::querMulti()
@@ -1323,7 +1331,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	final protected function executeQuery( $sqls, $fname, $flags, $summarySql ) {
 		if ( is_array( $sqls ) ) {
-			// Query consists of an atomic match of statements
+			// Query consists of an atomic batch of statements
 			$multiMode = true;
 			$statementsById = $sqls;
 		} else {
@@ -1341,8 +1349,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( $this->isWriteQuery( $sql, $flags ) ) {
 				$verb = $this->getQueryVerb( $sql );
 				// Temporary table writes are not "meaningful" writes, since they are only
-				// visible to one (ephermal) session, so treat them as reads instead. This
-				// can be overriden during integration testing via $flags. For simplicity,
+				// visible to one (ephemeral) session, so treat them as reads instead. This
+				// can be overridden during integration testing via $flags. For simplicity,
 				// disallow CREATE/DROP statements during multi queries, avoiding the need
 				// to speculatively track whether a table will be temporary at query time.
 				if ( $multiMode && in_array( $verb, [ 'CREATE', 'DROP' ] ) ) {
@@ -1358,7 +1366,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					$isPermWrite = $isPermWrite || ( $tmpType !== self::TEMP_NORMAL );
 				}
 				// Permit temporary table writes on replica connections, but require a writable
-				// master connection for writes to persistent tables. Note that this
+				// master connection for writes to persistent tables.
 				if ( $isPermWrite ) {
 					$this->assertIsWritablePrimary();
 					// DBConnRef uses QUERY_REPLICA_ROLE to enforce replica roles during query()
@@ -1591,7 +1599,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				"{method} [{runtime}s] {db_server}: {sql}",
 				$this->getLogContext( [
 					'method' => $fname,
-					'sql' => $summarySql,
+					'sql' => implode( "; ", $statementsById ),
 					'domain' => $this->getDomainID(),
 					'runtime' => round( $queryRuntime, 3 ),
 					'db_log_category' => 'query'

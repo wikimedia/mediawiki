@@ -254,6 +254,15 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, [ $sql, $fname, $flags ] );
 	}
 
+	public function queryMulti(
+		array $sqls, string $fname = __METHOD__, int $flags = 0, ?string $summarySql = null
+	) {
+		if ( $this->role !== ILoadBalancer::DB_PRIMARY ) {
+			$flags |= IDatabase::QUERY_REPLICA_ROLE;
+		}
+		return $this->__call( __FUNCTION__, [ $sqls, $fname, $flags, $summarySql ] );
+	}
+
 	public function newSelectQueryBuilder(): SelectQueryBuilder {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
