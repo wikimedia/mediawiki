@@ -6,6 +6,7 @@ use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\QueryStatus;
 use Wikimedia\Rdbms\TransactionProfiler;
 use Wikimedia\RequestTimeout\RequestTimeout;
 
@@ -28,13 +29,11 @@ class DatabaseTestHelper extends Database {
 	 */
 	protected $lastSqls = [];
 
-	/** @var array List of row arrays */
-	protected $nextResult = [];
+	/** @var array Stack of result maps */
+	protected $nextResMapQueue = [];
 
 	/** @var array|null */
-	protected $nextError = null;
-	/** @var array|null */
-	protected $lastError = null;
+	protected $lastResMap = null;
 
 	/**
 	 * @var string[] Array of tables to be considered as existing by tableExist()
@@ -100,19 +99,17 @@ class DatabaseTestHelper extends Database {
 
 	/**
 	 * @param mixed $res Use an array of row arrays to set row result
-	 */
-	public function forceNextResult( $res ) {
-		$this->nextResult = $res;
-	}
-
-	/**
 	 * @param int $errno Error number
 	 * @param string $error Error text
 	 * @param array $options
 	 *  - isKnownStatementRollbackError: Return value for isKnownStatementRollbackError()
 	 */
-	public function forceNextQueryError( $errno, $error, $options = [] ) {
-		$this->nextError = [ 'errno' => $errno, 'error' => $error ] + $options;
+	public function forceNextResult( $res, $errno = 0, $error = '', $options = [] ) {
+		$this->nextResMapQueue[] = [
+			'res' => $res,
+			'errno' => $errno,
+			'error' => $error
+		] + $options;
 	}
 
 	protected function addSql( $sql ) {
@@ -182,16 +179,16 @@ class DatabaseTestHelper extends Database {
 	}
 
 	public function lastErrno() {
-		return $this->lastError ? $this->lastError['errno'] : -1;
+		return $this->lastResMap ? $this->lastResMap['errno'] : -1;
 	}
 
 	public function lastError() {
-		return $this->lastError ? $this->lastError['error'] : 'test';
+		return $this->lastResMap ? $this->lastResMap['error'] : 'test';
 	}
 
 	protected function isKnownStatementRollbackError( $errno ) {
-		return ( $this->lastError['errno'] ?? 0 ) === $errno
-			? ( $this->lastError['isKnownStatementRollbackError'] ?? false )
+		return ( $this->lastResMap['errno'] ?? 0 ) === $errno
+			? ( $this->lastResMap['isKnownStatementRollbackError'] ?? false )
 			: false;
 	}
 
@@ -232,24 +229,25 @@ class DatabaseTestHelper extends Database {
 		$this->forcedAffectedCountQueue = $counts;
 	}
 
-	protected function doQuery( $sql ) {
+	protected function doSingleStatementQuery( string $sql ): QueryStatus {
 		$sql = preg_replace( '< /\* .+?  \*/>', '', $sql );
 		$this->addSql( $sql );
 
-		if ( $this->nextError ) {
-			$this->lastError = $this->nextError;
-			$this->nextError = null;
-			return false;
+		if ( $this->nextResMapQueue ) {
+			$this->lastResMap = array_shift( $this->nextResMapQueue );
+			if ( !$this->lastResMap['errno'] && $this->forcedAffectedCountQueue ) {
+				$this->affectedRowCount = array_shift( $this->forcedAffectedCountQueue );
+			}
+		} else {
+			$this->lastResMap = [ 'res' => [], 'errno' => 0, 'error' => '' ];
 		}
+		$res = $this->lastResMap['res'];
 
-		$res = $this->nextResult;
-		$this->nextResult = [];
-		$this->lastError = null;
-
-		if ( $this->forcedAffectedCountQueue ) {
-			$this->affectedRowCount = array_shift( $this->forcedAffectedCountQueue );
-		}
-
-		return new FakeResultWrapper( $res );
+		return new QueryStatus(
+			is_bool( $res ) ? $res : new FakeResultWrapper( $res ),
+			$this->affectedRows(),
+			$this->lastError(),
+			$this->lastErrno()
+		);
 	}
 }
