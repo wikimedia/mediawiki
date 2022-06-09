@@ -431,6 +431,10 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 		$this->startupTimestamp = $this->getCurrentTime();
 		$this->logger->debug(
+			'ChronologyProtector using store {class}',
+			[ 'class' => get_class( $this->store ) ]
+		);
+		$this->logger->debug(
 			__METHOD__ .
 			": client ID is {$this->clientId}; key is {$this->key}"
 		);
