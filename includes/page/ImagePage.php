@@ -1064,15 +1064,15 @@ EOT
 	 * Output a drop-down box for language options for the file
 	 *
 	 * @param array $langChoices Array of string language codes
-	 * @param string|null $renderLang Language code for the language we want the file to rendered in.
+	 * @param string|null $renderLang Language code for the language we want the file to rendered in,
+	 *  it is pre-selected in the drop down box, use null to select the default case in the option list
 	 * @return string HTML to insert underneath image.
 	 */
-	protected function doRenderLangOpt( array $langChoices, $renderLang = null ) {
-		$script =
-			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::Script );
+	protected function doRenderLangOpt( array $langChoices, $renderLang ) {
+		$script = $this->getContext()->getConfig()->get( MainConfigNames::Script );
 		$opts = '';
 
-		$matchedRenderLang = $this->displayImg->getMatchedLanguage( $renderLang );
+		$matchedRenderLang = $renderLang === null ? null : $this->displayImg->getMatchedLanguage( $renderLang );
 
 		foreach ( $langChoices as $lang ) {
 			$opts .= $this->createXmlOptionStringForLanguage(
