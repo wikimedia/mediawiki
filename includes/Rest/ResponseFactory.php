@@ -23,7 +23,7 @@ class ResponseFactory {
 	private $textFormatters;
 
 	/** @var bool Whether to send exception backtraces to the client */
-	private $sendExceptionBacktrace = false;
+	private $showExceptionDetails = false;
 
 	/**
 	 * @param ITextFormatter[] $textFormatters
@@ -33,12 +33,14 @@ class ResponseFactory {
 	}
 
 	/**
-	 * Controls whether error responses should include a backtrace
+	 * Control whether web responses may include a exception messager and backtrace
+	 *
+	 * @see $wgShowExceptionDetails
 	 * @since 1.39
-	 * @param bool $sendExceptionBacktrace
+	 * @param bool $showExceptionDetails
 	 */
-	public function setSendExceptionBacktrace( bool $sendExceptionBacktrace ): void {
-		$this->sendExceptionBacktrace = $sendExceptionBacktrace;
+	public function setShowExceptionDetails( bool $showExceptionDetails ): void {
+		$this->showExceptionDetails = $showExceptionDetails;
 	}
 
 	/**
@@ -241,18 +243,21 @@ class ResponseFactory {
 					)
 				);
 			}
-		} else {
+		} elseif ( $this->showExceptionDetails ) {
 			$response = $this->createHttpError( 500, [
 				'message' => 'Error: exception of type ' . get_class( $exception ) . ': '
 					. $exception->getMessage(),
 				'exception' => MWExceptionHandler::getStructuredExceptionData(
 					$exception,
-					MWExceptionHandler::CAUGHT_BY_OTHER,
-					$this->sendExceptionBacktrace
+					MWExceptionHandler::CAUGHT_BY_OTHER
 				)
 			] );
 			// XXX: should we try to do something useful with ILocalizedException?
 			// XXX: should we try to do something useful with common MediaWiki errors like ReadOnlyError?
+		} else {
+			$response = $this->createHttpError( 500, [
+				'message' => 'Error: exception of type ' . get_class( $exception ),
+			] );
 		}
 		return $response;
 	}
