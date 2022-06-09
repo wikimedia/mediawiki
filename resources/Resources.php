@@ -634,35 +634,6 @@ return [
 		]
 	],
 
-	'wvui' => [
-		'deprecated' => 'Deprecated in 1.39. Use `@wikimedia/codex` instead.',
-		'packageFiles' => [
-			'resources/src/wvui/wvui.js',
-			'resources/lib/wvui/wvui.commonjs2.js',
-		],
-		'styles' => [
-			'resources/lib/wvui/wvui.css',
-		],
-		'dependencies' => [
-			'vue',
-			'@vue/composition-api',
-		],
-	],
-
-	'wvui-search' => [
-		'deprecated' => 'Deprecated in 1.39. Use `@wikimedia/codex-search` instead.',
-		'packageFiles' => [
-			'resources/src/wvui/wvui-search.js',
-			'resources/lib/wvui/wvui-search.commonjs2.js',
-		],
-		'styles' => [
-			'resources/lib/wvui/wvui-search.css',
-		],
-		'dependencies' => [
-			'vue'
-		],
-	],
-
 	'@wikimedia/codex' => [
 		'packageFiles' => [
 			'resources/src/codex/codex.js',
