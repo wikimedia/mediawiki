@@ -1993,6 +1993,12 @@ class ParserTestRunner {
 			$mwServices->resetServiceForTesting( 'LanguageConverterFactory' );
 			$mwServices->resetServiceForTesting( 'LanguageFactory' );
 			$mwServices->resetServiceForTesting( 'LanguageNameUtils' );
+			// The SiteConfig depends on the content language as well
+			// as the config vars in SiteConfig::CONSTRUCTOR_OPTIONS,
+			// so reset it as well.
+			// T310283: be more selective about resetting SiteConfig if
+			// performance is a concern.
+			$mwServices->resetServiceForTesting( 'ParsoidSiteConfig' );
 		};
 		$setup[] = $reset;
 		$teardown[] = $reset;
