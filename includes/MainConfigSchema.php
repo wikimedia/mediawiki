@@ -9016,10 +9016,11 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * If set to true, uncaught exceptions will print the exception message and a
-	 * complete stack trace to output. This should only be used for debugging, as it
-	 * may reveal private information in function parameters due to PHP's backtrace
-	 * formatting.  If set to false, only the exception's class will be shown.
+	 * Show exception message and stack trace when printing details about uncaught exceptions
+	 * in web response output.
+	 *
+	 * This may reveal private information in error messages or function parameters.
+	 * If set to false, only the exception type or class name will be exposed.
 	 */
 	public const ShowExceptionDetails = [
 		'default' => false,
