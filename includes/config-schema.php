@@ -36,7 +36,7 @@ return [
 			'default' => '/wiki',
 		],
 		'UsePathInfo' => [
-			'default' => true,
+			'default' => null,
 		],
 		'Script' => [
 			'default' => false,
@@ -267,7 +267,7 @@ return [
 			'type' => 'array',
 		],
 		'ShowEXIF' => [
-			'default' => true,
+			'default' => null,
 		],
 		'UpdateCompatibleMetadata' => [
 			'default' => false,
@@ -1008,8 +1008,8 @@ return [
 			'default' => 120,
 		],
 		'CriticalSectionTimeLimit' => [
-			'default' => 180,
-			'type' => 'integer',
+			'default' => 180.0,
+			'type' => 'number',
 		],
 		'MiserMode' => [
 			'default' => false,
@@ -4259,7 +4259,7 @@ return [
 			'type' => 'number',
 		],
 		'HTTPConnectTimeout' => [
-			'default' => 5,
+			'default' => 5.0,
 			'type' => 'number',
 		],
 		'HTTPMaxTimeout' => [
