@@ -699,8 +699,9 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		// 'whatlinkshere-hidelinks', 'whatlinkshere-hideimages'
 		// To be sure they will be found by grep
 		foreach ( $filters as $filter ) {
-			$msg = $this->msg( 'hide' )->text();
-			$msg = $this->msg( "whatlinkshere-{$filter}", $msg )->text();
+			// Parameter only provided for backwards-compatibility with old translations
+			$hide = $this->msg( 'hide' )->text();
+			$msg = $this->msg( "whatlinkshere-{$filter}", $hide )->text();
 			$fields[$filter] = [
 				'type' => 'check',
 				'name' => $filter,
