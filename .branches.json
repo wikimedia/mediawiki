@@ -84,7 +84,8 @@
     "extensions/StandardDialogs",
     "skins/Tweeki",
     "extensions/ExternalData",
-    "extensions/RemovePII"
+    "extensions/RemovePII",
+    "extensions/ImportDump"
   ],
   "stable": [
     "extensions/SnapProjectEmbed",
