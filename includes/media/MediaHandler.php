@@ -1037,7 +1037,7 @@ abstract class MediaHandler {
 	 *
 	 * @since 1.32
 	 *
-	 * @param string $userPreferredLanguage Language code requesed
+	 * @param string $userPreferredLanguage Language code requested
 	 * @param string[] $availableLanguages Languages present in the file
 	 * @return string|null Language code picked or null if not supported/available
 	 */
