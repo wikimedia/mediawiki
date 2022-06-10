@@ -10,7 +10,7 @@
  * @author Amire80
  */
 
-$fallback = 'fr';
+$fallback = 'shi-latn, fr';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Midya',

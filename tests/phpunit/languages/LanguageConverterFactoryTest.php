@@ -359,7 +359,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		yield 'shi' => [
 			'shi', 'ShiConverter',
 			[ 'shi', 'shi-tfng', 'shi-latn' ],
-			[ 'shi' => 'shi-tfng','shi-tfng' => 'shi','shi-latn' => 'shi' ],
+			[ 'shi' => [ 'shi-latn', 'shi-tfng' ],'shi-tfng' => 'shi','shi-latn' => 'shi' ],
 			[], [],
 			[
 				'shi' => 'bidirectional',
