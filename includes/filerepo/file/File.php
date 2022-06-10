@@ -659,7 +659,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * Get the language code from the available languages for this file that matches the language
 	 * requested by the user
 	 *
-	 * @param string $userPreferredLanguage
+	 * @param string|null $userPreferredLanguage
 	 * @return string|null
 	 */
 	public function getMatchedLanguage( $userPreferredLanguage ) {

@@ -606,7 +606,7 @@ EOT
 			}
 
 			$renderLangOptions = $this->displayImg->getAvailableLanguages();
-			if ( $renderLang !== null && count( $renderLangOptions ) >= 1 ) {
+			if ( count( $renderLangOptions ) >= 1 ) {
 				$out->addHTML( $this->doRenderLangOpt( $renderLangOptions, $renderLang ) );
 			}
 
@@ -1064,10 +1064,10 @@ EOT
 	 * Output a drop-down box for language options for the file
 	 *
 	 * @param array $langChoices Array of string language codes
-	 * @param string $renderLang Language code for the language we want the file to rendered in.
+	 * @param string|null $renderLang Language code for the language we want the file to rendered in.
 	 * @return string HTML to insert underneath image.
 	 */
-	protected function doRenderLangOpt( array $langChoices, $renderLang ) {
+	protected function doRenderLangOpt( array $langChoices, $renderLang = null ) {
 		$script = MediaWikiServices::getInstance()->getMainConfig()->get( 'Script' );
 		$opts = '';
 
