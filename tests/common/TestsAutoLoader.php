@@ -70,6 +70,7 @@ $wgAutoloadClasses += [
 	'TestLocalisationCache' => "$testDir/phpunit/mocks/TestLocalisationCache.php",
 	'TestUser' => "$testDir/phpunit/includes/TestUser.php",
 	'TestUserRegistry' => "$testDir/phpunit/includes/TestUserRegistry.php",
+	'MWTestDox' => "$testDir/phpunit/MWTestDox.php",
 
 	# tests/phpunit/includes
 	'FactoryArgTestTrait' => "$testDir/phpunit/unit/includes/FactoryArgTestTrait.php",
