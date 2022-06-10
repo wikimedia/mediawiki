@@ -1593,3 +1593,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-NativeSvgHandler
 	branch = REL1_38
 	ignore = dirty
+[submodule "extensions/ImportDump"]
+	path = extensions/ImportDump
+	url = https://github.com/miraheze/ImportDump
+	branch = master
+	ignore = dirty
