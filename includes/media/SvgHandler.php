@@ -118,7 +118,7 @@ class SvgHandler extends ImageHandler {
 	 *
 	 * @see https://www.w3.org/TR/SVG/struct.html#SystemLanguageAttribute
 	 * @param string $userPreferredLanguage
-	 * @param array $svgLanguages
+	 * @param string[] $svgLanguages
 	 * @return string|null
 	 */
 	public function getMatchedLanguage( $userPreferredLanguage, array $svgLanguages ) {
