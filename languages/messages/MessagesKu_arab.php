@@ -14,7 +14,7 @@
  * @author Muhammed taha
  */
 
-$fallback = 'ckb';
+$fallback = 'ku, ckb';
 
 $rtl = true;
 
