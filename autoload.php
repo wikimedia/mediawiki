@@ -1510,7 +1510,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Message\\TextFormatter' => __DIR__ . '/includes/Message/TextFormatter.php',
 	'MediaWiki\\Message\\UserGroupMembershipParam' => __DIR__ . '/includes/Message/UserGroupMembershipParam.php',
 	'MediaWiki\\Navigation\\PagerNavigationBuilder' => __DIR__ . '/includes/Navigation/PagerNavigationBuilder.php',
-	'MediaWiki\\Navigation\\PrevNextNavigationRenderer' => __DIR__ . '/includes/Navigation/PrevNextNavigationRenderer.php',
 	'MediaWiki\\OutputHandler' => __DIR__ . '/includes/OutputHandler.php',
 	'MediaWiki\\Page\\ContentModelChangeFactory' => __DIR__ . '/includes/page/ContentModelChangeFactory.php',
 	'MediaWiki\\Page\\DeletePage' => __DIR__ . '/includes/page/DeletePage.php',
