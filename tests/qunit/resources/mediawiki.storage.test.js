@@ -3,6 +3,8 @@
 
 	QUnit.test( 'set/get(Object) with storage support', function ( assert ) {
 		var data = {},
+			done = assert.async(),
+			EXPIRY_PREFIX = '_EXPIRY_',
 			object = { test: 'value' },
 			stub = {
 				setItem: function ( k, v ) {
@@ -15,8 +17,17 @@
 				removeItem: function ( k ) {
 					delete data[ k ];
 					return true;
+				},
+				key: function ( i ) {
+					return Object.keys( data )[ i ];
 				}
 			};
+
+		Object.defineProperty( stub, 'length', {
+			get: function () {
+				return Object.keys( data ).length;
+			}
+		} );
 
 		this.sandbox.stub( mw.storage, 'store', stub );
 
@@ -36,6 +47,34 @@
 		mw.storage.set( 'baz', 'Non-JSON' );
 		assert.strictEqual( mw.storage.getObject( 'baz' ), null, 'Non-JSON values are null' );
 
+		var now = Math.floor( Date.now() / 1000 );
+		mw.storage.set( 'foo', 'test', 60 * 60 );
+		assert.true( mw.storage.get( EXPIRY_PREFIX + 'foo' ) > now, 'Future expiry time stored' );
+		assert.strictEqual( mw.storage.get( 'foo' ), 'test', 'Non-expired item fetched from store' );
+
+		mw.storage.setObject( 'foo', 'test', 60 * 60 );
+		assert.true( mw.storage.get( EXPIRY_PREFIX + 'foo' ) > now, 'Future expiry time stored (object)' );
+		assert.strictEqual( mw.storage.getObject( 'foo' ), 'test', 'Non-expired item fetched from store (object)' );
+
+		mw.storage.setObject( 'foo', 'test', -60 );
+		assert.strictEqual( mw.storage.get( 'foo' ), null, 'Expired item returns null' );
+		assert.strictEqual( data.foo, '"test"', 'Expired item exists in storage' );
+
+		mw.storage.set( 'baz', 'test' );
+		assert.strictEqual( mw.storage.get( EXPIRY_PREFIX + 'baz' ), null, 'Item with no expiry has no expiry item' );
+
+		mw.storage.set( 'foo', 'test', 60 * 60 );
+		mw.storage.remove( 'foo' );
+		assert.strictEqual( mw.storage.get( EXPIRY_PREFIX + 'baz' ), null, 'Removed item has no expiry' );
+
+		assert.throws( function () {
+			mw.storage.set( EXPIRY_PREFIX + 'foo', 'test', 60 * 60 );
+		}, 'Error thrown when key prefix conflicts with EXPIRY_PREFIX' );
+
+		mw.storage.clearExpired().then( function () {
+			assert.deepEqual( Object.keys( data ), [ 'baz' ], 'Only unexpired keys present after #clearExpired' );
+			done();
+		} );
 	} );
 
 	QUnit.test( 'set/get(Object) with storage methods disabled', function ( assert ) {
