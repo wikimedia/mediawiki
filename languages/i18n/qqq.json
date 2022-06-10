@@ -378,7 +378,7 @@
 	"sitesubtitle": "{{Ignore}}",
 	"actions": "{{Identical|Action}}",
 	"namespaces": "Currently there's lack of documentation about usages of this message, please join [[phab:T190158]] to discuss.\n{{Identical|Namespace}}",
-	"variants": "Used by the Vector skin.",
+	"variants": "Used by the Vector skin. Refers to language variants, for example in the context of script conversion.",
 	"navigation-heading": "Heading shown above the navigation menu (sidebar) for screen-readers (or in non-standard skins).",
 	"errorpagetitle": "Message shown in browser title bar when encountering error operation.\n\n{{Identical|Error}}",
 	"returnto": "{{Identical|Return to $1}}",
