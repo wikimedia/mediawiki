@@ -12,7 +12,7 @@
  * @author Urhixidur
  */
 
-$fallback = 'kk-cyrl';
+$fallback = 'kk, kk-cyrl';
 
 $separatorTransformTable = [
 	',' => "\u{00A0}",
