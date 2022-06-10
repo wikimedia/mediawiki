@@ -2237,7 +2237,7 @@
 	"usermessage-template": "MediaWiki:UserMessage",
 	"watchlist": "รายการเฝ้าดู",
 	"mywatchlist": "รายการเฝ้าดู",
-	"watchlistfor2": "สำหรับ $1 $2",
+	"watchlistfor2": "สำหรับ $1",
 	"nowatchlist": "ไม่มีรายการในรายการเฝ้าดูของคุณ",
 	"watchlistanontext": "โปรดเข้าสู่ระบบเพื่อดูหรือแก้ไขรายการในรายการเฝ้าดูของคุณ",
 	"watchnologin": "ยังไม่ได้เข้าสู่ระบบ",

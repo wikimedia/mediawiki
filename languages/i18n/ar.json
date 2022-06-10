@@ -2577,7 +2577,7 @@
 	"undeleterevision-missing": "مراجعة غير صحيحة أو مفقودة.\nربما لديك وصلة سيئة، أو ربما المراجعة تم استرجاعها أو إزالتها من الأرشيف.",
 	"undeleterevision-duplicate-revid": "{{PLURAL:$1|مراجعة واحدة|$1 مراجعة}} لم يمكن استعادتها, لأن ال<code>rev_id</code> {{PLURAL:$1|الخاص بها}}  كان مستخدما بالفعل.",
 	"undelete-nodiff": "لم يتم العثور على مراجعة سابقة.",
-	"undeletebtn": "استرجاع",
+	"undeletebtn": "ألغ الحذف",
 	"undeletelink": "اعرض/استعد",
 	"undeleteviewlink": "اعرض",
 	"undelete-undeletetalk": "استرجع جميع نسخ صفحة النقاش المرتبطة",
