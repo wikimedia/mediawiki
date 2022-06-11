@@ -1023,7 +1023,7 @@ abstract class MediaHandler {
 	 * @stable to override
 	 *
 	 * @param File $file
-	 * @return string[] Array of language codes, or empty array if unsupported.
+	 * @return string[] Array of IETF language codes, or empty array if unsupported.
 	 * @since 1.23
 	 */
 	public function getAvailableLanguages( File $file ) {
@@ -1037,9 +1037,9 @@ abstract class MediaHandler {
 	 *
 	 * @since 1.32
 	 *
-	 * @param string $userPreferredLanguage Language code requested
-	 * @param string[] $availableLanguages Languages present in the file
-	 * @return string|null Language code picked or null if not supported/available
+	 * @param string $userPreferredLanguage IETF Language code requested
+	 * @param string[] $availableLanguages IETF Languages present in the file
+	 * @return string|null IETF Language code picked or null if not supported/available
 	 */
 	public function getMatchedLanguage( $userPreferredLanguage, array $availableLanguages ) {
 		return null;
@@ -1057,7 +1057,7 @@ abstract class MediaHandler {
 	 * @stable to override
 	 *
 	 * @param File $file
-	 * @return string|null Language code or null if multi-language not supported for filetype.
+	 * @return string|null IETF Language code or null if multi-language not supported for filetype.
 	 * @since 1.23
 	 */
 	public function getDefaultRenderLanguage( File $file ) {

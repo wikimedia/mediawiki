@@ -102,6 +102,21 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 				'svgLanguages' => [ 'de-DE', 'sr-Cyrl', 'sr-Latn-ME', 'en-US', 'fr' ],
 				'expectedMatch' => 'sr-Latn-ME',
 			],
+			'deprecated MW code als' => [
+				'userPreferredLanguage' => 'als',
+				'svgLanguages' => [ 'en', 'als', 'gsw' ],
+				'expectedMatch' => 'als',
+			],
+			'deprecated language code i-klingon' => [
+				'userPreferredLanguage' => 'i-klingon',
+				'svgLanguages' => [ 'i-klingon' ],
+				'expectedMatch' => 'i-klingon',
+			],
+			'complex IETF language code' => [
+				'userPreferredLanguage' => 'he',
+				'svgLanguages' => [ 'he-IL-u-ca-hebrew-tz-jeruslm' ],
+				'expectedMatch' => 'he-IL-u-ca-hebrew-tz-jeruslm',
+			],
 		];
 	}
 
@@ -164,6 +179,11 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 				[ 'width' => 123, 'lang' => 'ru' ],
 				'langru-123px',
 				'Include lang in thumb'
+			],
+			[
+				[ 'width' => 123, 'lang' => 'zh-Hans' ],
+				'langzh-hans-123px',
+				'Lowercase language codes',
 			],
 			[
 				[ 'width' => 123, 'targetlang' => 'ru' ],
@@ -324,9 +344,12 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 						'ru-RU' => SVGReader::LANG_PREFIX_MATCH,
 						'ru' => SVGReader::LANG_FULL_MATCH,
 						'fr-CA' => SVGReader::LANG_PREFIX_MATCH,
+						'zh-Hans' => SVGReader::LANG_FULL_MATCH,
+						'zh-Hans-TW' => SVGReader::LANG_FULL_MATCH,
+						'he-IL-u-ca-hebrew-tz-jeruslm' => SVGReader::LANG_FULL_MATCH,
 					],
 				],
-				[ 'en', 'ru' ],
+				[ 'en', 'ru', 'zh-hans', 'zh-hans-tw', 'he-il-u-ca-hebrew-tz-jeruslm' ],
 			],
 		];
 	}
@@ -353,6 +376,45 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 			[ [ 'lang' => 'ru' ], 'ru', 'Language from lang 2' ],
 			[ [ 'targetlang' => 'fr' ], 'fr', 'Language from targetlang' ],
 			[ [ 'lang' => 'fr', 'targetlang' => 'de' ], 'fr', 'lang overrides targetlang' ],
+		];
+	}
+
+	/**
+	 * @covers SvgHandler::parseParamString()
+	 * @dataProvider provideParseParamString
+	 *
+	 * @param string $paramString
+	 * @param array $expected
+	 * @param string $message
+	 * @return void
+	 */
+	public function testParseParamString( string $paramString, $expected, $message ) {
+		/** @var SvgHandler $handler */
+		$handler = TestingAccessWrapper::newFromObject( new SvgHandler() );
+		$params = $handler->parseParamString( $paramString );
+		self::assertSame( $expected, $params, $message );
+		if ( $params === false ) {
+			return;
+		}
+		foreach ( $expected as $key => $value ) {
+			self::assertArrayHasKey( $key, $params, $message );
+			self::assertEquals( $value, $params[$key], $message );
+		}
+	}
+
+	public function provideParseParamString() {
+		return [
+			[ '100px', [ 'width' => '100', 'lang' => 'en' ], 'Only width' ],
+			[ 'langde-100px', [ 'width' => '100', 'lang' => 'de' ], 'German language and width' ],
+			[ 'langzh-hans-100px', [ 'width' => '100', 'lang' => 'zh-hans' ], 'Chinese language and width' ],
+			[ 'langzh-Hans-100px', false, 'Capitalized language code' ],
+			[ 'langzh-TW-100px', false, 'Deprecated MW language code' ],
+			[ 'langund-100px', [ 'width' => '100', 'lang' => 'und' ], 'Undetermined language code' ],
+			[ 'langzh-%25-100px', false, 'Invalid IETF language code' ],
+			[ 'langhe-il-u-ca-hebrew-tz-jeruslm-100px',
+				[ 'width' => '100', 'lang' => 'he-il-u-ca-hebrew-tz-jeruslm' ],
+				'Very complex IETF language code'
+			],
 		];
 	}
 }

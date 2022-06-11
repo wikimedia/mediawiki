@@ -321,7 +321,7 @@ class ImagePage extends Article {
 	 *
 	 * @param WebRequest $request
 	 * @param File $file
-	 * @return string|null
+	 * @return string|null a valid IETF language tag
 	 */
 	private function getLanguageForRendering( WebRequest $request, File $file ) {
 		$handler = $file->getHandler();
@@ -331,7 +331,9 @@ class ImagePage extends Article {
 
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$requestLanguage =
-			$request->getVal( 'lang', $config->get( MainConfigNames::LanguageCode ) );
+			$request->getVal( 'lang',
+				LanguageCode::bcp47( $config->get( MainConfigNames::LanguageCode ) )
+			);
 		if ( $handler->validateParam( 'lang', $requestLanguage ) ) {
 			return $file->getMatchedLanguage( $requestLanguage );
 		}
@@ -1114,14 +1116,15 @@ EOT
 	 * @return string
 	 */
 	private function createXmlOptionStringForLanguage( $lang, $selected ) {
-		$code = LanguageCode::bcp47( $lang );
+		// TODO: There is no good way to get the language name of a BCP code,
+		// as MW language codes take precedence
 		$name = MediaWikiServices::getInstance()
 			->getLanguageNameUtils()
-			->getLanguageName( $code, $this->getContext()->getLanguage()->getCode() );
+			->getLanguageName( $lang, $this->getContext()->getLanguage()->getCode() );
 		if ( $name !== '' ) {
-			$display = $this->getContext()->msg( 'img-lang-opt', $code, $name )->text();
+			$display = $this->getContext()->msg( 'img-lang-opt', $lang, $name )->text();
 		} else {
-			$display = $code;
+			$display = $lang;
 		}
 		return "\n" .
 			Xml::option(
