@@ -790,7 +790,8 @@ return [
 	'mediawiki.diff' => [
 		'scripts' => [
 			'resources/src/mediawiki.diff.styles/diff.js',
-		]
+		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.diff.styles' => [
 		'styles' => [
@@ -1361,6 +1362,7 @@ return [
 		'dependencies' => [
 			'jquery.spinner',
 			'mediawiki.api',
+			'mediawiki.diff',
 			'mediawiki.diff.styles',
 			'mediawiki.user',
 			'mediawiki.page.preview',
@@ -1734,6 +1736,7 @@ return [
 		'styles' => 'mediawiki.page.preview.css',
 		'dependencies' => [
 			'mediawiki.api',
+			'mediawiki.diff',
 			'mediawiki.diff.styles',
 			'mediawiki.jqueryMsg',
 			'mediawiki.language',
