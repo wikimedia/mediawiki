@@ -1528,11 +1528,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-StandardDialogs
 	branch = master
 	ignore = dirty
-[submodule "extensions/Patroller"]
-	path = extensions/Patroller
-	url = https://github.com/wikimedia/mediawiki-extensions-Patroller
-	branch = REL1_38
-	ignore = dirty
 [submodule "extensions/StructuredNavigation"]
 	path = extensions/StructuredNavigation
 	url = https://github.com/wikimedia/mediawiki-extensions-StructuredNavigation
