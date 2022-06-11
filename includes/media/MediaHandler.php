@@ -1052,6 +1052,7 @@ abstract class MediaHandler {
 	 * If getAvailableLanguages returns a non-empty array, this must return
 	 * a valid language code. Otherwise can return null if files of this
 	 * type do not support alternative language renderings.
+	 * It can also return 'und' for explicitly requesting an undetermined language
 	 *
 	 * @stable to override
 	 *
