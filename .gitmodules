@@ -1603,3 +1603,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-GrowthExperiments
 	branch = REL1_38
 	ignore = dirty
+[submodule "extensions/Share"]
+	path = extensions/Share
+	url = https://github.com/AgentIsai/Share
+	branch = master
+	ignore = dirty
