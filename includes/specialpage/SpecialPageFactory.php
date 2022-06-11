@@ -646,7 +646,10 @@ class SpecialPageFactory {
 			'class' => \SpecialApiSandbox::class,
 		],
 		'Statistics' => [
-			'class' => \SpecialStatistics::class
+			'class' => \SpecialStatistics::class,
+			'services' => [
+				'UserGroupManager',
+			]
 		],
 		'Allmessages' => [
 			'class' => \SpecialAllMessages::class,

@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\User\UserGroupManager;
 
 /**
  * Special page lists various statistics, including the contents of
@@ -33,8 +34,15 @@ class SpecialStatistics extends SpecialPage {
 	private $edits, $good, $images, $total, $users,
 		$activeUsers = 0;
 
-	public function __construct() {
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
+	/**
+	 * @param UserGroupManager $userGroupManager
+	 */
+	public function __construct( UserGroupManager $userGroupManager ) {
 		parent::__construct( 'Statistics' );
+		$this->userGroupManager = $userGroupManager;
 	}
 
 	public function execute( $par ) {
@@ -200,14 +208,7 @@ class SpecialStatistics extends SpecialPage {
 		$linkRenderer = $this->getLinkRenderer();
 		$lang = $this->getLanguage();
 		$text = '';
-		foreach (
-			$this->getConfig()->get( MainConfigNames::GroupPermissions ) as $group => $permissions
-		) {
-			# Skip generic * and implicit groups
-			if ( in_array( $group, $this->getConfig()->get( MainConfigNames::ImplicitGroups ) )
-				|| $group == '*' ) {
-				continue;
-			}
+		foreach ( $this->userGroupManager->listAllGroups() as $group ) {
 			$groupnameLocalized = $lang->getGroupName( $group );
 			$linkTarget = UserGroupMembership::getGroupPage( $group )
 				?: Title::makeTitleSafe( NS_PROJECT, $group );
