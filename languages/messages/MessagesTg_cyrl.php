@@ -18,6 +18,8 @@
  * @author לערי ריינהארט
  */
 
+$fallback = 'tg';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Вижа',
