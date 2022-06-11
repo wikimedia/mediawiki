@@ -1598,3 +1598,8 @@
 	url = https://github.com/miraheze/ImportDump
 	branch = master
 	ignore = dirty
+[submodule "extensions/GrowthExperiments"]
+	path = extensions/GrowthExperiments
+	url = https://github.com/wikimedia/mediawiki-extensions-GrowthExperiments
+	branch = REL1_38
+	ignore = dirty
