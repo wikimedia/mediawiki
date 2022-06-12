@@ -458,11 +458,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-Tabs
 	branch = REL1_38
 	ignore = dirty
-[submodule "skins/foreground"]
-	path = skins/foreground
-	url = https://github.com/jthingelstad/foreground
-	branch = master
-	ignore = dirty
 [submodule "extensions/AddHTMLMetaAndTitle"]
 	path = extensions/AddHTMLMetaAndTitle
 	url = https://github.com/wikimedia/mediawiki-extensions-AddHTMLMetaAndTitle
@@ -522,11 +517,6 @@
 	path = extensions/CookieWarning
 	url = https://github.com/wikimedia/mediawiki-extensions-CookieWarning
 	branch = REL1_38
-	ignore = dirty
-[submodule "extensions/FancyBoxThumbs"]
-	path = extensions/FancyBoxThumbs
-	url = https://github.com/Universal-Omega/FancyBoxThumbs
-	branch = master
 	ignore = dirty
 [submodule "extensions/Maps"]
 	path = extensions/Maps
@@ -748,11 +738,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-LoginNotify
 	branch = REL1_38
 	ignore = dirty
-[submodule "extensions/AddThis"]
-	path = extensions/AddThis
-	url = https://github.com/wikimedia/mediawiki-extensions-AddThis
-	branch = REL1_38
-	ignore = dirty
 [submodule "extensions/MagicNoCache"]
 	path = extensions/MagicNoCache
 	url = https://github.com/wikimedia/mediawiki-extensions-MagicNoCache
@@ -823,11 +808,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-Description2
 	branch = REL1_38
 	ignore = dirty
-[submodule "skins/pivot"]
-	path = skins/pivot
-	url = https://github.com/Hutchy68/pivot
-	ignore = dirty
-	branch = master
 [submodule "extensions/GeoData"]
 	path = extensions/GeoData
 	url = https://github.com/wikimedia/mediawiki-extensions-GeoData
@@ -938,11 +918,6 @@
 	url = https://github.com/Hutchy68/Purge
 	branch = master
 	ignore = dirty
-[submodule "extensions/GettingStarted"]
-	path = extensions/GettingStarted
-	url = https://github.com/wikimedia/mediawiki-extensions-GettingStarted
-	branch = REL1_38
-	ignore = dirty
 [submodule "extensions/RottenLinks"]
 	path = extensions/RottenLinks
 	url = https://github.com/miraheze/RottenLinks
@@ -1037,11 +1012,6 @@
 	path = extensions/CommonsMetadata
 	url = https://github.com/wikimedia/mediawiki-extensions-CommonsMetadata
 	branch = REL1_38
-	ignore = dirty
-[submodule "extensions/HeaderFooter"]
-	path = extensions/HeaderFooter
-	url = https://github.com/enterprisemediawiki/HeaderFooter
-	branch = master
 	ignore = dirty
 [submodule "extensions/AutoCreatePage"]
 	path = extensions/AutoCreatePage
@@ -1467,11 +1437,6 @@
 	path = extensions/MintyDocs
 	url = https://github.com/wikimedia/mediawiki-extensions-MintyDocs
 	branch = master
-	ignore = dirty
-[submodule "extensions/MagicNumberedHeadings"]
-	path = extensions/MagicNumberedHeadings
-	url = https://github.com/wikimedia/mediawiki-extensions-MagicNumberedHeadings
-	branch = REL1_38
 	ignore = dirty
 [submodule "extensions/EmbedSpotify"]
 	path = extensions/EmbedSpotify
