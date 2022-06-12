@@ -21,8 +21,15 @@ class MWPostgreSqlPlatform extends MWPostgreSqlPlatformCompat {
 		$default = $column['default'] ?? null;
 
 		if ( $type instanceof TimestampType && $default ) {
-			$timestamp = new ConvertibleTimestamp( $default );
-			$pgTimestamp = $timestamp->getTimestamp( TS_POSTGRES );
+			if ( isset( $column['allowInfinite'] ) &&
+				$column['allowInfinite'] &&
+				$default === 'infinity'
+			) {
+				$pgTimestamp = $default;
+			} else {
+				$timestamp = new ConvertibleTimestamp( $default );
+				$pgTimestamp = $timestamp->getTimestamp( TS_POSTGRES );
+			}
 
 			return " DEFAULT '$pgTimestamp' ";
 		}
