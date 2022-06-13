@@ -84,7 +84,7 @@ var RcTopSectionWidget = function MwRcfiltersUiRcTopSectionWidget(
 		);
 
 	// Hack: For jumpiness reasons, this should be a sibling of -head
-	$( '.rcfilters-head' ).before( this.$top );
+	$( '.mw-rcfilters-head' ).before( this.$top );
 
 	// Initialize top links position
 	widget.switchTopLinks( topLinksCookieValue );
