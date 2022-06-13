@@ -2783,7 +2783,7 @@
 	"watchlistedit-clear-submit": "Fshije listën e mbikëqyrjes (Kjo është e përhershme!)",
 	"watchlistedit-clear-done": "Lista mbikëqyrëse u fshi.",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|1 titull u largua|$1 tituj u larguan}}:",
-	"watchlistedit-too-many": "Ka shumë faqe për të shfaqur këtu.",
+	"watchlistedit-too-many": "Faqja jote e mbikëqyrjes është përditësuar. Janë shumë faqe për t'i shfaqur këtu.",
 	"watchlisttools-clear": "Spastro listën e mbikëqyrjeve",
 	"watchlisttools-view": "Shih ndryshimet e rëndësishme",
 	"watchlisttools-edit": "Shihni dhe redaktoni listë vëzhgimesh",
