@@ -637,7 +637,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	}
 
 	/**
-	 * Gives a (possibly empty) list of languages to render
+	 * Gives a (possibly empty) list of IETF languages to render
 	 * the file in.
 	 *
 	 * If the file doesn't have translations, or if the file
@@ -657,7 +657,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	}
 
 	/**
-	 * Get the language code from the available languages for this file that matches the language
+	 * Get the IETF language code from the available languages for this file that matches the language
 	 * requested by the user
 	 *
 	 * @param string $userPreferredLanguage
@@ -679,7 +679,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * In files that support multiple language, what is the default language
 	 * to use if none specified.
 	 *
-	 * @return string|null Lang code, or null if filetype doesn't support multiple languages.
+	 * @return string|null IETF Lang code, or null if filetype doesn't support multiple languages.
 	 * @since 1.23
 	 */
 	public function getDefaultRenderLanguage() {

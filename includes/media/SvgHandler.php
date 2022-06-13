@@ -145,6 +145,7 @@ class SvgHandler extends ImageHandler {
 
 	/**
 	 * Determines render language from image parameters
+	 * This is a lowercase IETF language
 	 *
 	 * @param array $params
 	 * @return string
@@ -534,11 +535,11 @@ class SvgHandler extends ImageHandler {
 		if ( in_array( $name, [ 'width', 'height' ] ) ) {
 			// Reject negative heights, widths
 			return ( $value > 0 );
-		} elseif ( $name == 'lang' ) {
+		}
+		if ( $name == 'lang' ) {
 			// Validate $code
 			if ( $value === ''
-				|| !MediaWikiServices::getInstance()->getLanguageNameUtils()
-					->isValidCode( $value )
+				|| !Language::isWellFormedLanguageTag( $value )
 			) {
 				return false;
 			}
@@ -569,8 +570,12 @@ class SvgHandler extends ImageHandler {
 
 	public function parseParamString( $str ) {
 		$m = false;
-		if ( preg_match( '/^lang([a-z]+(?:-[a-z]+)*)-(\d+)px$/i', $str, $m ) ) {
-			return [ 'width' => array_pop( $m ), 'lang' => $m[1] ];
+		// Language codes are supposed to be lowercase
+		if ( preg_match( '/^lang([a-z]+(?:-[a-z]+)*)-(\d+)px$/', $str, $m ) ) {
+			if ( Language::isWellFormedLanguageTag( $m[1] ) ) {
+				return [ 'width' => array_pop( $m ), 'lang' => $m[1] ];
+			}
+			return [ 'width' => array_pop( $m ), 'lang' => self::SVG_DEFAULT_RENDER_LANG ];
 		}
 		if ( preg_match( '/^(\d+)px$/', $str, $m ) ) {
 			return [ 'width' => $m[1], 'lang' => self::SVG_DEFAULT_RENDER_LANG ];
