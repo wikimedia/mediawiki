@@ -217,13 +217,18 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * For back-compat, subclasses may return a raw SQL query here, as a string.
-	 * This is strongly deprecated; getQueryInfo() should be overridden instead.
+	 * @deprecated since 1.39; getQueryInfo() should be overridden instead.
 	 * @throws MWException
 	 * @return string
 	 * @suppress PhanPluginNeverReturnMethod
 	 */
 	protected function getSQL() {
-		/* Implement getQueryInfo() instead */
+		MWDebug::detectDeprecatedOverride(
+			$this,
+			__CLASS__,
+			'getSQL',
+			'1.39'
+		);
 		throw new MWException( "Bug in a QueryPage: doesn't implement getQueryInfo() nor "
 			. "getQuery() properly" );
 	}
