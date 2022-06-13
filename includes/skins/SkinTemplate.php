@@ -315,7 +315,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'notspecialpage', !$title->isSpecialPage() );
 		$tpl->set( 'searchaction', $this->getSearchLink() );
 		$tpl->set( 'searchtitle', SpecialPage::getTitleFor( 'Search' )->getPrefixedDBkey() );
-		$tpl->set( 'search', trim( $request->getVal( 'search' ) ) );
+		$tpl->set( 'search', trim( $request->getVal( 'search', '' ) ) );
 		$tpl->set( 'stylepath', $config->get( 'StylePath' ) );
 		$tpl->set( 'articlepath', $config->get( 'ArticlePath' ) );
 		$tpl->set( 'scriptpath', $config->get( 'ScriptPath' ) );
