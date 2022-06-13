@@ -19,7 +19,7 @@ class StringCommentIterator extends ArrayIterator {
 		parent::__construct( $strings );
 	}
 
-	public function current() {
+	public function current(): CommentItem {
 		return new CommentItem( parent::current() );
 	}
 }

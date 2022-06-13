@@ -38,6 +38,7 @@ abstract class IteratorDecorator implements Iterator {
 	 * @inheritDoc
 	 * @stable to override
 	 */
+	#[\ReturnTypeWillChange]
 	public function current() {
 		return $this->iterator->current();
 	}
@@ -46,6 +47,7 @@ abstract class IteratorDecorator implements Iterator {
 	 * @inheritDoc
 	 * @stable to override
 	 */
+	#[\ReturnTypeWillChange]
 	public function key() {
 		return $this->iterator->key();
 	}
@@ -54,7 +56,7 @@ abstract class IteratorDecorator implements Iterator {
 	 * @inheritDoc
 	 * @stable to override
 	 */
-	public function next() {
+	public function next(): void {
 		$this->iterator->next();
 	}
 
@@ -62,7 +64,7 @@ abstract class IteratorDecorator implements Iterator {
 	 * @inheritDoc
 	 * @stable to override
 	 */
-	public function rewind() {
+	public function rewind(): void {
 		$this->iterator->rewind();
 	}
 
@@ -70,7 +72,7 @@ abstract class IteratorDecorator implements Iterator {
 	 * @inheritDoc
 	 * @stable to override
 	 */
-	public function valid() {
+	public function valid(): bool {
 		return $this->iterator->valid();
 	}
 }
