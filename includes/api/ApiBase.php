@@ -1307,6 +1307,18 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Reset static caches of database state.
+	 *
+	 * @internal For testing only
+	 */
+	public static function clearCacheForTest(): void {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new RuntimeException( 'Not allowed outside tests' );
+		}
+		self::$filterIDsCache = [];
+	}
+
+	/**
 	 * Filter out-of-range values from a list of positive integer IDs
 	 * @since 1.33
 	 * @param string[][] $fields Array of pairs of table and field to check

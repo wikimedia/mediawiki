@@ -36,6 +36,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		// Avoid leaking session over tests
 		MediaWiki\Session\SessionManager::getGlobalSession()->clear();
 
+		ApiBase::clearCacheForTest();
+
 		parent::tearDown();
 	}
 
