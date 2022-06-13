@@ -261,7 +261,7 @@ class Names {
 		'ko' => '한국어', # Korean
 		'ko-kp' => '조선말', # Korean (DPRK), T190324
 		'koi' => 'перем коми', # Komi-Permyak
-		'kr' => 'Kanuri', # Kanuri, Central
+		'kr' => 'kanuri', # Kanuri
 		'krc' => 'къарачай-малкъар', # Karachay-Balkar
 		'kri' => 'Krio', # Krio
 		'krj' => 'Kinaray-a', # Kinaray-a
