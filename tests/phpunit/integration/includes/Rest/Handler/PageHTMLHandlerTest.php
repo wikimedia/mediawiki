@@ -9,6 +9,8 @@ use HashBagOStuff;
 use HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Rest\Handler\PageHTMLHandler;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -90,11 +92,14 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getWikiPageFactory()
 		);
 
+		$config = [
+			'RightsUrl' => 'https://example.com/rights',
+			'RightsText' => 'some rights',
+			'ParsoidCacheConfig' =>
+				MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig )
+		];
 		$handler = new PageHTMLHandler(
-			new HashConfig( [
-				'RightsUrl' => 'https://example.com/rights',
-				'RightsText' => 'some rights',
-			] ),
+			new HashConfig( $config ),
 			$this->getServiceContainer()->getRevisionLookup(),
 			$this->getServiceContainer()->getTitleFormatter(),
 			$parserCacheFactory,

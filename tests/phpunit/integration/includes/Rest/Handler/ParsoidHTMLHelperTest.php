@@ -8,7 +8,10 @@ use EmptyBagOStuff;
 use Exception;
 use ExtensionRegistry;
 use HashBagOStuff;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Rest\Handler\ParsoidHTMLHelper;
@@ -96,11 +99,18 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param BagOStuff|null $cache
 	 * @param Parsoid|MockObject|null $parsoid
+	 * @param array $config
+	 *
 	 * @return ParsoidHTMLHelper
 	 * @throws Exception
 	 */
-	private function newHelper( BagOStuff $cache = null, Parsoid $parsoid = null ): ParsoidHTMLHelper {
+	private function newHelper(
+		BagOStuff $cache = null,
+		Parsoid $parsoid = null,
+		array $config = []
+	): ParsoidHTMLHelper {
 		$cache = $cache ?: new EmptyBagOStuff();
+		$config += MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig );
 
 		$parserCache = new ParserCache(
 			'TestPCache',
@@ -131,7 +141,11 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 			$revisionOutputCache,
 			$this->getServiceContainer()->getGlobalIdGenerator(),
 			$stash,
-			new NullStatsdDataFactory()
+			new NullStatsdDataFactory(),
+			new ServiceOptions(
+				ParsoidHTMLHelper::CONSTRUCTOR_OPTIONS,
+				[ 'ParsoidCacheConfig' => $config ]
+			)
 		);
 
 		if ( $parsoid !== null ) {
@@ -384,6 +398,44 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectExceptionObject( $expectedException );
 		$helper->getHtml();
+	}
+
+	public function provideCacheThresholdData() {
+		return [
+			yield "fast parse" => [ 1, 2 ], // high threshold, no caching
+			yield "slow parse" => [ 0, 1 ], // low threshold, caching
+		];
+	}
+
+	/**
+	 * @dataProvider provideCacheThresholdData()
+	 */
+	public function testHtmlWithCacheThreshold(
+		$cacheThresholdTime,
+		$expectedCalls
+	) {
+		$page = $this->getExistingTestPage( __METHOD__ );
+		$config = [ 'CacheThresholdTime' => $cacheThresholdTime ];
+
+		$cache = new HashBagOStuff();
+		$parsoid = $this->createNoOpMock( Parsoid::class, [ 'wikitext2html' ] );
+		// With CacheThresholdTime set to 1, the page will be parsed multiple times
+		// in this case, at least 2 times since it was fast to parse.
+		$parsoid->expects( $this->exactly( $expectedCalls ) )
+			->method( 'wikitext2html' )
+			->willReturn( new PageBundle( 'mocked HTML', null, null, '1.0' ) );
+
+		$helper = $this->newHelper( $cache, $parsoid, $config );
+
+		$helper->init( $page, self::PARAM_DEFAULTS );
+		$htmlresult = $helper->getHtml()->getRawText();
+		$this->assertStringContainsString( 'mocked HTML', $htmlresult );
+
+		$helper = $this->newHelper( $cache, $parsoid, $config );
+		$helper->init( $page, self::PARAM_DEFAULTS );
+		$htmlresult = $helper->getHtml()->getRawText();
+		$this->assertNotNull( $helper->getHtml()->getExtensionData( ParsoidHTMLHelper::PARSOID_PAGE_BUNDLE_KEY ) );
+		$this->assertStringContainsString( 'mocked HTML', $htmlresult );
 	}
 
 }

@@ -2385,6 +2385,7 @@ config-schema:
         default:
             StashBackend: null
             StashDuration: 86400
+            CacheThresholdTime: 0.0
         description: |-
             Configuration for the caching related to parsoid output. The configuration contains the
             following keys:
@@ -2399,6 +2400,9 @@ config-schema:
                   Should be long enough for users to finish editing,
                   since losing an entry from the stash may mean that the user can't save their edit.
                   This is set to one day per default.
+            - CacheThresholdTime: If parsing is completed before this time (in seconds), assume it's
+                  a small page that is fast for parsing and does not need caching. Setting this to zero
+                  causes all outputs to be cached.
             @since 1.39
             @unstable Per MediaWiki 1.39, the structure of this configuration is still subject to
                       change.

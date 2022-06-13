@@ -3750,6 +3750,10 @@ class MainConfigSchema {
 	 *       since losing an entry from the stash may mean that the user can't save their edit.
 	 *       This is set to one day per default.
 	 *
+	 * - CacheThresholdTime: If parsing is completed before this time (in seconds), assume it's
+	 *       a small page that is fast for parsing and does not need caching. Setting this to zero
+	 *       causes all outputs to be cached.
+	 *
 	 * @since 1.39
 	 * @unstable Per MediaWiki 1.39, the structure of this configuration is still subject to
 	 *           change.
@@ -3758,7 +3762,8 @@ class MainConfigSchema {
 		'type' => 'object',
 		'default' => [
 			'StashBackend' => null,
-			'StashDuration' => 24 * 60 * 60
+			'StashDuration' => 24 * 60 * 60,
+			'CacheThresholdTime' => 0.0
 		]
 	];
 
