@@ -189,7 +189,7 @@ class EditConstraintFactory {
 	/**
 	 * @param string $summary
 	 * @param string $section
-	 * @param string $sectionHeading
+	 * @param ?string $sectionHeading
 	 * @param string $text
 	 * @param string $reqIP
 	 * @param Title $title
@@ -198,7 +198,7 @@ class EditConstraintFactory {
 	public function newSpamRegexConstraint(
 		string $summary,
 		string $section,
-		string $sectionHeading,
+		?string $sectionHeading,
 		string $text,
 		string $reqIP,
 		Title $title
