@@ -25,7 +25,8 @@
 			"ديفيد",
 			"පසිඳු කාවින්ද",
 			"아라",
-			"MinecraftAustralia"
+			"MinecraftAustralia",
+			"Dowlinme"
 		]
 	},
 	"tog-underline": "Folínte faoi naisc:",
@@ -1430,6 +1431,7 @@
 	"blankpage": "Leathanach bán",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|chlib amháin|clib}}]]: $2",
 	"diff-form-submit": "Taispeáin difríochtaí",
+	"htmlform-submit": "Cuir isteach",
 	"htmlform-selectorother-other": "Eile",
 	"logentry-move-move": "{{GENDER:$2|Bhog}} $1 an leathanach $3 go $4",
 	"feedback-cancel": "Cealaigh",

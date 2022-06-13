@@ -1035,7 +1035,7 @@
 	"revdelete-show-file-submit": "Oui",
 	"revdelete-selected-text": "{{PLURAL:$1|Version sélectionnée|Versions sélectionnées}} de [[:$2]] :",
 	"revdelete-selected-file": "{{PLURAL:$1|Version de fichier sélectionnée|Versions de fichier sélectionnées}} de [[:$2]] :",
-	"logdelete-selected": "{{PLURAL:$1|Événement de journal sélectionné|Événements de journal sélectionnés}} :",
+	"logdelete-selected": "Événement{{PLURAL:$1||s}} de journal sélectionné{{PLURAL:$1||s}} :",
 	"revdelete-text-text": "Les révisions supprimées continueront à apparaître dans l’historique de la page, mais une partie de leur contenu sera inaccessible au public.",
 	"revdelete-text-file": "Les versions de fichier supprimées continueront à apparaître dans l’historique des fichiers, mais une partie de leur contenu sera indisponible au public.",
 	"logdelete-text": "Les événements tracés de suppression continueront à apparaître dans les journaux, mais une partie de leur contenu sera inaccessible au public.",

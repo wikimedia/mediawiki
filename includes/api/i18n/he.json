@@ -1435,7 +1435,7 @@
 	"apihelp-undelete-param-watchlist": "הוספה או הסרה של הדף ללא תנאי מרשימת המעקב של המשתמש הנוכחי, להשתמש בהעדפות או לא לשנות את המעקב.",
 	"apihelp-undelete-param-watchlistexpiry": "חותם־זמן לתפוגת רשימת המעקב. יש להשמיט את הפרמטר הזה לגמרי כדי להותיר את התפוגה הנוכחית ללא שינוי.",
 	"apihelp-undelete-example-page": "שחזור ממחיקה של הדף <kbd>Main Page</kbd>.",
-	"apihelp-undelete-example-revisions": "שחזור שתי גרסאות של הדף <kbd>Main Page</kbd>.",
+	"apihelp-undelete-example-revisions": "שחזור ממחיקה של שתי גרסאות של הדף <kbd>Main Page</kbd>.",
 	"apihelp-unlinkaccount-summary": "ביטול קישור של חשבון צד־שלישי מהמשתמש הנוכחי.",
 	"apihelp-unlinkaccount-example-simple": "לנסות להסיר את הקישור של המשתמש הנוכחי לספק המשויך עם <kbd>FooAuthenticationRequest</kbd>.",
 	"apihelp-upload-summary": "העלאת קובץ, או קבלת מצב ההעלאות הממתינות.",

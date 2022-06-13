@@ -395,7 +395,7 @@
 	"accmailtitle": "Consínia enviá.",
 	"accmailtext": "Se t'á enviau una consínia aleatória pa [[User talk:$1|$1]] a La consínia pa \"$1\" a $2.\n\nEs possibri escambial la consínia de la cuenta entrandu ena tu cuenta, ena página d'''[[Special:ChangePassword|escambial consínia]]''.",
 	"newarticle": "(Nuevu)",
-	"newarticletext": "Esti artículu entovia nu desisti.\nSi quieis crial esti artículu, escribi nel cuairu d'embahu\n(si t'es mestel, mira la [$1 páhina d'ayua]).\nSi nu quieis crial esti artículu, solu tiinis que pursal nel botón \"'''atrás'''\" del tu escrucaol.",
+	"newarticletext": "Esti artícalu entovía no essesti.\nSi quieris crial esti artícalu, escrevi nel quairu d'embaxu\n(si t'es mestel, mira la [$1 página d'ayúa]).\nSi no quieris crial esti artícalu, namás tienis qu'achuchal nel botón \"'''atrás'''\" del tu buscaol.",
 	"anontalkpagetext": "----''Esta es la caraba dun usuáriu anónimu qu'entovia nu á criau una cuenta, u nu la gasta, asínque tenemus que usal la su direción IP pa ientificalu. Una mesma direción IP puei sel gastá pol varius usuárius, polo que si creis que s'án derihiu a tí con cosas que nu vinin a cuentu, pol favol [[Special:UserLogin|cria una cuenta]] pa evital huturus pobremas con otrus usuárius anónimus.''",
 	"noarticletext": "Entovia nu ai dengún testu escrebiu nesta páhina.\nPueis [[Special:Search/{{PAGENAME}}|landeal el entítulu del artículu]] en otras páhinas,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],\nu [{{fullurl:{{FULLPAGENAME}}|action=edit}} eital ésta]</span>.",
 	"userpage-userdoesnotexist": "La cuenta d'usuáriu \"<nowiki>$1</nowiki>\" nu está rustria. Pol favol, compreba que rialmenti quieis crial/eital esta páhina.",

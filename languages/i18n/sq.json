@@ -46,7 +46,8 @@
 			"Besnik b",
 			"Eraldkerciku",
 			"Ftillimi",
-			"Vanished 456321456"
+			"Vanished 456321456",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Nënvizimi i lidhjes:",
@@ -2199,7 +2200,7 @@
 	"sp-contributions-deleted": "kontributet e grisura të {{GENDER:$1|përdoruesit|përdorueses}}",
 	"sp-contributions-uploads": "ngarkimet",
 	"sp-contributions-logs": "regjistra",
-	"sp-contributions-talk": "Diskutoni",
+	"sp-contributions-talk": "diskutoni",
 	"sp-contributions-userrights": "menaxhimi i të drejtave të {{GENDER:$1|përdoruesit}}",
 	"sp-contributions-blocked-notice": "Ky përdorues është i bllokuar.\nBllokimi i fundit është shfaqur më poshtë për referencë:",
 	"sp-contributions-blocked-notice-anon": "Kjo adresë IP është e bllokuar aktualisht.\nBllokimi i funditë është më poshtë për referencë:",

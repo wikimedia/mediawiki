@@ -2611,7 +2611,7 @@
 	"sp-contributions-blocked-notice-anon": "عنوان الأيبي هذا ممنوع حاليا.\nآخر مدخلة لسجل المنع معروضة هنا كمرجع:",
 	"sp-contributions-blocked-notice-anon-partial": "عنوان الأيبي هذا ممنوع جزئيا حاليا.\nأحدث مدخلة في سجل المنع معروضة بالأسفل كمرجع:",
 	"sp-contributions-search": "بحث عن مساهمات",
-	"sp-contributions-username": "عنوان أيبي أو اسم مستخدم:",
+	"sp-contributions-username": "عنوان بروتوكول إنترنت أو اسم مستخدم:",
 	"sp-contributions-toponly": "أظهر النسخ الحالية فقط",
 	"sp-contributions-newonly": "أظهر إنشاء الصفحات فقط",
 	"sp-contributions-hideminor": "أخف التعديلات الطفيفة",

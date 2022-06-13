@@ -178,7 +178,8 @@
 			"魔琴",
 			"ShuyanW",
 			"SunAfterRain",
-			"StarrySky"
+			"StarrySky",
+			"Diskdance"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -315,7 +316,7 @@
 	"noindex-category": "不可索引页面",
 	"broken-file-category": "含有受损文件链接的页面",
 	"categoryviewer-pagedlinks": "（$1）（$2）",
-	"category-header-numerals": "$1–$2",
+	"category-header-numerals": "$1~$2",
 	"about": "关于",
 	"article": "内容页面",
 	"newwindow": "（在新窗口中打开）",
@@ -1594,7 +1595,7 @@
 	"recentchanges-label-plusminus": "该页面字节数的前后变化",
 	"recentchanges-legend-heading": "<strong>说明：</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}}（见[[Special:NewPages|新页面列表]]）",
-	"recentchanges-legend-plusminus": "（<em>±123</em>）",
+	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-legend-watchlistexpiry": "临时监视的页面",
 	"recentchanges-submit": "显示",
 	"rcfilters-tag-remove": "移除“$1”",
@@ -2663,6 +2664,7 @@
 	"undelete-error-long": "恢复被删除的文件时出错：\n\n$1",
 	"undelete-show-file-confirm": "确定要查看文件“<nowiki>$1</nowiki>”于$2$3被删除的版本吗？",
 	"undelete-show-file-submit": "是",
+	"undelete-revision-row2": "$1 ($2) $3 . . $4 $5 $6 $7 $8",
 	"namespace": "命名空间：",
 	"invert": "反选",
 	"tooltip-invert": "请选择该框以隐藏指定命名空间（及相关命名空间，若被选择）的页面更改",
