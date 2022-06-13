@@ -48,7 +48,6 @@ use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
-use Wikimedia\Parsoid\Utils\PHPUtils;
 use Wikimedia\Parsoid\Utils\Timing;
 
 /**
@@ -133,7 +132,7 @@ abstract class ParsoidHandler extends Handler {
 	 */
 	protected function getParsedBody(): array {
 		$request = $this->getRequest();
-		list( $contentType ) = explode( ';', $request->getHeader( 'Content-Type' )[0] ?? '', 2 );
+		[ $contentType ] = explode( ';', $request->getHeader( 'Content-Type' )[0] ?? '', 2 );
 		switch ( $contentType ) {
 			case 'application/x-www-form-urlencoded':
 			case 'multipart/form-data':
@@ -201,6 +200,9 @@ abstract class ParsoidHandler extends Handler {
 		$attribs['envOptions'] = [
 			// We use `prefix` but ought to use `domain` (T206764)
 			'prefix' => $attribs['iwp'],
+			// For the legacy "domain" path parameter used by the endpoints exposed
+			// by the parsoid extension.
+			'domain' => $request->getPathParam( 'domain' ),
 			'pageName' => $attribs['pageName'],
 			'offsetType' => $attribs['offsetType'],
 			'cookie' => $request->getHeaderLine( 'Cookie' ),
@@ -318,17 +320,20 @@ abstract class ParsoidHandler extends Handler {
 
 	/**
 	 * Redirect to another Parsoid URL (e.g. canonization)
+	 *
 	 * @param string $path Target URL
+	 * @param array $pathParams Path parameters to inject into path
 	 * @param array $queryParams Query parameters
+	 *
 	 * @return Response
 	 */
 	protected function createRedirectResponse(
-		string $path, array $queryParams = []
+		string $path, array $pathParams = [], array $queryParams = []
 	): Response {
 		// FIXME this should not be necessary in the REST entry point
 		unset( $queryParams['title'] );
 
-		$url = $this->getRouter()->getRouteUrl( $path, [], $queryParams );
+		$url = $this->getRouter()->getRouteUrl( $path, $pathParams, $queryParams );
 		if ( $this->getRequest()->getMethod() === 'POST' ) {
 			$response = $this->getResponseFactory()->createTemporaryRedirect( $url );
 		} else {
@@ -383,6 +388,26 @@ abstract class ParsoidHandler extends Handler {
 	}
 
 	/**
+	 * Get the base path of the route that was used to invoke this handler.
+	 * Useful when the handler is exposed in multiple locations, e.g. for
+	 * backwards compatibility.
+	 *
+	 * @return string
+	 */
+	protected function getParsoidBasePath(): string {
+		$path = $this->getConfig()['path'];
+
+		if ( str_starts_with( $path, '/{domain}/v3/' ) ) {
+			// Backwards compatibility mode for endpoints exposed
+			// by the parsoid extension.
+			// XXX: This shouldn't be here, find a better way.
+			return '/{domain}/v3';
+		} else {
+			return '/coredev/v0';
+		}
+	}
+
+	/**
 	 * Expand the current URL with the latest revision number and redirect there.
 	 *
 	 * @param PageConfig $pageConfig
@@ -394,7 +419,6 @@ abstract class ParsoidHandler extends Handler {
 	): Response {
 		$format = $this->getRequest()->getPathParam( 'format' );
 		$target = $pageConfig->getTitle();
-		$encodedTarget = PHPUtils::encodeURIComponent( $target );
 		$revid = $pageConfig->getRevisionId();
 
 		if ( $revid === null ) {
@@ -403,14 +427,21 @@ abstract class ParsoidHandler extends Handler {
 
 		$this->metrics->increment( 'redirectToOldid.' . $format );
 
+		$pathParams = [
+			'domain' => $attribs['envOptions']['domain'],
+			'format' => $format,
+			'title' => $target,
+			'revision' => $revid
+		];
+
 		if ( $this->getRequest()->getMethod() === 'POST' ) {
-			$from = $this->getRequest()->getPathParam( 'from' );
-			$newPath = "/coredev/v0/transform/$from/to/$format/$encodedTarget/$revid";
+			$pathParams['from'] = $this->getRequest()->getPathParam( 'from' );
+			$newPath = $this->getParsoidBasePath() . '/transform/{from}/to/{format}/{title}/{revision}';
 		} else {
-			// TODO: Change this to the /v1/ revision endpoint
-			$newPath = "/v3/page/$format/$encodedTarget/$revid";
+			// TODO: Change this to the /core/v1/ revision endpoint
+			$newPath = "/{domain}/v3/page/{format}/{title}/{revision}";
 		}
-		return $this->createRedirectResponse( $newPath, $this->getRequest()->getQueryParams() );
+		return $this->createRedirectResponse( $newPath, $pathParams, $this->getRequest()->getQueryParams() );
 	}
 
 	/**
@@ -470,14 +501,20 @@ abstract class ParsoidHandler extends Handler {
 				$redirectInfo = $this->dataAccess->getPageInfo(
 					$pageConfig, [ $redirectTarget ]
 				);
-				$encodedTarget = PHPUtils::encodeURIComponent( $redirectTarget );
-				$redirectPath =
-					"/v3/page/$encodedTarget/wikitext";
+				$pathParams = [
+					'domain' => $attribs['envOptions']['domain'],
+					'format' => $format,
+					'title' => $redirectTarget,
+					'revision' => $redirectInfo['revId']
+				];
+
+				// TODO: change to core/v1/ page and revision endpoints
+				$redirectPath = '/{domain}/v3/page/{title}/wikitext';
 				if ( $redirectInfo['revId'] ) {
-					$redirectPath .= '/' . $redirectInfo['revId'];
+					$redirectPath .= '/{revision}';
 				}
 				throw new ResponseException(
-					$this->createRedirectResponse( "", $request->getQueryParams() )
+					$this->createRedirectResponse( $redirectPath, $pathParams, $request->getQueryParams() )
 				);
 			}
 		}
