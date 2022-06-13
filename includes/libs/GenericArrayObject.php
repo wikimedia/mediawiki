@@ -92,7 +92,7 @@ abstract class GenericArrayObject extends ArrayObject {
 	 *
 	 * @param mixed $value
 	 */
-	public function append( $value ) {
+	public function append( $value ): void {
 		$this->setElement( null, $value );
 	}
 
@@ -104,7 +104,7 @@ abstract class GenericArrayObject extends ArrayObject {
 	 * @param mixed $index
 	 * @param mixed $value
 	 */
-	public function offsetSet( $index, $value ) {
+	public function offsetSet( $index, $value ): void {
 		$this->setElement( $index, $value );
 	}
 
@@ -183,7 +183,7 @@ abstract class GenericArrayObject extends ArrayObject {
 	 *
 	 * @return string
 	 */
-	public function serialize() {
+	public function serialize(): string {
 		return serialize( $this->__serialize() );
 	}
 
@@ -194,7 +194,7 @@ abstract class GenericArrayObject extends ArrayObject {
 	 *
 	 * @return array
 	 */
-	public function __serialize() {
+	public function __serialize(): array {
 		return $this->getSerializationData();
 	}
 
@@ -221,7 +221,7 @@ abstract class GenericArrayObject extends ArrayObject {
 	 *
 	 * @param string $serialization
 	 */
-	public function unserialize( $serialization ) {
+	public function unserialize( $serialization ): void {
 		$this->__unserialize( unserialize( $serialization ) );
 	}
 
@@ -232,7 +232,7 @@ abstract class GenericArrayObject extends ArrayObject {
 	 *
 	 * @param array $serializationData
 	 */
-	public function __unserialize( $serializationData ) {
+	public function __unserialize( $serializationData ): void {
 		foreach ( $serializationData['data'] as $offset => $value ) {
 			// Just set the element, bypassing checks and offset resolving,
 			// as these elements have already gone through this.
