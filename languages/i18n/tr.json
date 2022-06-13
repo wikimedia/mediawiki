@@ -2196,7 +2196,7 @@
 	"pager-newer-n": "{{PLURAL:$1|1 daha yeni|$1 daha yeni}}",
 	"pager-older-n": "{{PLURAL:$1|1 daha eski|$1 daha eski}}",
 	"suppress": "Gözetle",
-	"querypage-disabled": "Bu özel sayfa, performansa dayalı nedenlerle devre dışı bırakılır.",
+	"querypage-disabled": "Bu özel sayfa, sunuculardaki performans nedenleriyle devre dışı bırakıldı.",
 	"apihelp": "API yardımı",
 	"apihelp-no-such-module": "\"$1\" modülü bulunamadı.",
 	"apisandbox": "API deneme tahtası",
