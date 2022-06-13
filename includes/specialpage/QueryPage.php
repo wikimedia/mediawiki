@@ -412,13 +412,16 @@ abstract class QueryPage extends SpecialPage {
 							$dbw->insert( 'querycache', $vals, $fname );
 						}
 						// Update the querycache_info record for the page
-						$dbw->delete( 'querycache_info',
-							[ 'qci_type' => $this->getName() ],
-							$fname
-						);
-						$dbw->insert( 'querycache_info',
-							[ 'qci_type' => $this->getName(),
-								'qci_timestamp' => $dbw->timestamp() ],
+						$dbw->upsert(
+							'querycache_info',
+							[
+								'qci_type' => $this->getName(),
+								'qci_timestamp' => $dbw->timestamp(),
+							],
+							'qci_type',
+							[
+								'qci_timestamp' => $dbw->timestamp(),
+							],
 							$fname
 						);
 					}
