@@ -216,7 +216,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				// to also set the targetlang based on the page language.  Don't add this unless we're
 				// already scaling since a set $finalThumbParams usually expects a width.
 				if ( $badFileContextTitle && $finalThumbParams ) {
-					$finalThumbParams['targetlang'] = $badFileContextTitle->getPageLanguage()->getCode();
+					# T310453: Use page view language for language variants.
+					$finalThumbParams['targetlang'] = strtolower(
+						$badFileContextTitle->getPageViewLanguage()->getHtmlCode()
+					);
 				}
 
 				// Get information about the current version first
