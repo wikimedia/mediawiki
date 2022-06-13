@@ -1087,7 +1087,7 @@ EOT
 			Xml::option(
 				$this->getContext()->msg( 'img-lang-default' )->text(),
 				'und',
-				$matchedRenderLang === null
+				$matchedRenderLang === null || $matchedRenderLang === 'und'
 			);
 
 		$select = Html::rawElement(

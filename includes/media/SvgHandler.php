@@ -36,6 +36,8 @@ use Wikimedia\ScopedCallback;
 class SvgHandler extends ImageHandler {
 	public const SVG_METADATA_VERSION = 2;
 
+	private const SVG_DEFAULT_RENDER_LANG = 'en';
+
 	/** @var array A list of metadata tags that can be converted
 	 *  to the commonly used exif tags. This allows messages
 	 *  to be reused, and consistent tag names for {{#formatmetadata:..}}
@@ -122,6 +124,10 @@ class SvgHandler extends ImageHandler {
 	 * @return string|null
 	 */
 	public function getMatchedLanguage( $userPreferredLanguage, array $svgLanguages ) {
+		// Explicitly requested undetermined language (text without svg systemLanguage attribute)
+		if ( $userPreferredLanguage === 'und' ) {
+			return 'und';
+		}
 		foreach ( $svgLanguages as $svgLang ) {
 			if ( strcasecmp( $svgLang, $userPreferredLanguage ) === 0 ) {
 				return $svgLang;
@@ -144,7 +150,7 @@ class SvgHandler extends ImageHandler {
 	 * @return string
 	 */
 	protected function getLanguageFromParams( array $params ) {
-		return $params['lang'] ?? $params['targetlang'] ?? 'en';
+		return $params['lang'] ?? $params['targetlang'] ?? self::SVG_DEFAULT_RENDER_LANG;
 	}
 
 	/**
@@ -154,7 +160,7 @@ class SvgHandler extends ImageHandler {
 	 * @return string
 	 */
 	public function getDefaultRenderLanguage( File $file ) {
-		return 'en';
+		return self::SVG_DEFAULT_RENDER_LANG;
 	}
 
 	/**
@@ -551,7 +557,7 @@ class SvgHandler extends ImageHandler {
 	public function makeParamString( $params ) {
 		$lang = '';
 		$code = $this->getLanguageFromParams( $params );
-		if ( $code !== 'en' ) {
+		if ( $code !== self::SVG_DEFAULT_RENDER_LANG ) {
 			$lang = 'lang' . strtolower( $code ) . '-';
 		}
 		if ( !isset( $params['width'] ) ) {
@@ -565,11 +571,11 @@ class SvgHandler extends ImageHandler {
 		$m = false;
 		if ( preg_match( '/^lang([a-z]+(?:-[a-z]+)*)-(\d+)px$/i', $str, $m ) ) {
 			return [ 'width' => array_pop( $m ), 'lang' => $m[1] ];
-		} elseif ( preg_match( '/^(\d+)px$/', $str, $m ) ) {
-			return [ 'width' => $m[1], 'lang' => 'en' ];
-		} else {
-			return false;
 		}
+		if ( preg_match( '/^(\d+)px$/', $str, $m ) ) {
+			return [ 'width' => $m[1], 'lang' => self::SVG_DEFAULT_RENDER_LANG ];
+		}
+		return false;
 	}
 
 	public function getParamMap() {
