@@ -2256,7 +2256,7 @@ class ApiMain extends ApiBase {
 
 		// Fill 'permissions'
 		$help['permissions'] .= Html::openElement( 'div',
-			[ 'class' => 'apihelp-block apihelp-permissions' ] );
+			[ 'class' => [ 'apihelp-block', 'apihelp-permissions' ] ] );
 		$m = $this->msg( 'api-help-permissions' );
 		if ( !$m->isDisabled() ) {
 			$help['permissions'] .= Html::rawElement( 'div', [ 'class' => 'apihelp-block-head' ],

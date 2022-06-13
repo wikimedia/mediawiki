@@ -283,7 +283,7 @@ abstract class ApiFormatBase extends ApiBase {
 
 				if ( $this->mHttpStatus && $this->mHttpStatus !== 200 ) {
 					$out->addHTML(
-						Html::rawElement( 'div', [ 'class' => 'api-pretty-header api-pretty-status' ],
+						Html::rawElement( 'div', [ 'class' => [ 'api-pretty-header', 'api-pretty-status' ] ],
 							$this->msg(
 								'api-format-prettyprint-status',
 								$this->mHttpStatus,
