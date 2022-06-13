@@ -13,6 +13,7 @@ use ReflectionException;
  * @since 1.39
  */
 class ReflectionSchemaSource implements SettingsSource {
+	use JsonSchemaTrait;
 
 	/**
 	 * Name of a PHP class
@@ -40,7 +41,6 @@ class ReflectionSchemaSource implements SettingsSource {
 	 */
 	public function load(): array {
 		$schemas = [];
-		$jsonTypeHelper = new JsonTypeHelper();
 
 		try {
 			$class = new ReflectionClass( $this->class );
@@ -63,7 +63,7 @@ class ReflectionSchemaSource implements SettingsSource {
 					}
 				}
 
-				$schema = $jsonTypeHelper->normalizeJsonSchema( $schema );
+				$schema = self::normalizeJsonSchema( $schema );
 
 				$schemas[ $name ] = $schema;
 			}

@@ -379,8 +379,8 @@ class SettingsBuilder {
 			foreach ( $settings['config-schema'] as $key => $schema ) {
 				$this->configSchema->addSchema( $key, $schema );
 
-				if ( array_key_exists( 'default', $schema ) ) {
-					$defaults[$key] = $schema['default'];
+				if ( $this->configSchema->hasDefaultFor( $key ) ) {
+					$defaults[$key] = $this->configSchema->getDefaultFor( $key );
 				}
 			}
 		}

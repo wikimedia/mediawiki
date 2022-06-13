@@ -6,6 +6,7 @@ use Config;
 use JsonSchema\Constraints\Constraint;
 use JsonSchema\Validator;
 use MediaWiki\Settings\SettingsBuilderException;
+use MediaWiki\Settings\Source\JsonSchemaTrait;
 use StatusValue;
 use function array_key_exists;
 
@@ -17,6 +18,7 @@ use function array_key_exists;
  * accessing them independently of each other, for each config key.
  */
 class ConfigSchemaAggregator implements ConfigSchema {
+	use JsonSchemaTrait;
 
 	/** @var array[] Maps config keys to JSON schema structures */
 	private $schemas = [];
@@ -44,6 +46,11 @@ class ConfigSchemaAggregator implements ConfigSchema {
 	 * @param string $sourceName
 	 */
 	public function addSchema( string $key, array $schema, string $sourceName = 'unknown' ) {
+		if ( isset( $schema['properties'] ) ) {
+			// Collect the defaults of nested property declarations into the top level default.
+			$schema['default'] = self::getDefaultFromJsonSchema( $schema );
+		}
+
 		$this->schemas[$key] = $schema;
 
 		$this->setListValueInternal( $schema, $this->defaults, $key, 'default', $sourceName );

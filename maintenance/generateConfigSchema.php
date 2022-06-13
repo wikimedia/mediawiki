@@ -205,7 +205,8 @@ class GenerateConfigSchema extends Maintenance {
 			'default',
 			'type',
 			'mergeStrategy',
-			'description'
+			'description',
+			'properties'
 		] );
 
 		$schemaExtra = [];
