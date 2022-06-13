@@ -1024,6 +1024,11 @@ class StatusTest extends MediaWikiLangTestCase {
 		(string)Status::newFatal( 'foo', $loremIpsum, $abc );
 		(string)Status::newFatal( wfMessage( 'foo' ) );
 		(string)( Status::newFatal( 'foo' )->fatal( 'bar' ) );
+
+		$status = Status::newGood();
+		$status->warning( 'foo', $loremIpsum );
+		$status->error( 'bar', $abc );
+		(string)$status;
 	}
 
 }

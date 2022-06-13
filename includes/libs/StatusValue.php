@@ -370,7 +370,7 @@ class StatusValue {
 	public function __toString() {
 		$status = $this->isOK() ? "OK" : "Error";
 		if ( count( $this->errors ) ) {
-			$errorcount = "collected " . ( count( $this->errors ) ) . " error(s) on the way";
+			$errorcount = "collected " . ( count( $this->errors ) ) . " message(s) on the way";
 		} else {
 			$errorcount = "no errors detected";
 		}
@@ -388,7 +388,7 @@ class StatusValue {
 			$valstr
 		);
 		if ( count( $this->errors ) > 0 ) {
-			$hdr = sprintf( "+-%'-4s-+-%'-25s-+-%'-40s-+\n", "", "", "" );
+			$hdr = sprintf( "+-%'-8s-+-%'-25s-+-%'-36s-+\n", "", "", "" );
 			$i = 1;
 			$out .= "\n";
 			$out .= $hdr;
@@ -404,15 +404,16 @@ class StatusValue {
 					$params = [];
 				}
 
+				$type = $error['type'];
 				$keyChunks = str_split( $key, 25 );
-				$paramsChunks = str_split( $this->flattenParams( $params, " | " ), 40 );
+				$paramsChunks = str_split( $this->flattenParams( $params, " | " ), 36 );
 
 				// array_map(null,...) is like Python's zip()
-				foreach ( array_map( null, [ $i ], $keyChunks, $paramsChunks )
-					as [ $iChunk, $keyChunk, $paramsChunk ]
+				foreach ( array_map( null, [ $type ], $keyChunks, $paramsChunks )
+					as [ $typeChunk, $keyChunk, $paramsChunk ]
 				) {
-					$out .= sprintf( "| %4s | %-25.25s | %-40.40s |\n",
-						$iChunk,
+					$out .= sprintf( "| %-8s | %-25.25s | %-36.36s |\n",
+						$typeChunk,
 						$keyChunk,
 						$paramsChunk
 					);
