@@ -307,8 +307,8 @@ class EditPage implements IEditObject {
 	/** @var string */
 	public $section = '';
 
-	/** @var string */
-	public $sectiontitle = '';
+	/** @var string|null */
+	public $sectiontitle = null;
 
 	/** @var string|null
 	 * Timestamp from the first time the edit form was rendered.
@@ -1146,13 +1146,17 @@ class EditPage implements IEditObject {
 			# section titles.
 			$this->summary = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->summary );
 
-			# Treat sectiontitle the same way as summary.
+			# Allow setting sectiontitle different from the edit summary.
 			# Note that wpSectionTitle is not yet a part of the actual edit form, as wpSummary is
 			# currently doing double duty as both edit summary and section title. Right now this
 			# is just to allow API edits to work around this limitation, but this should be
 			# incorporated into the actual edit form when EditPage is rewritten (T20654, T28312).
-			$this->sectiontitle = $request->getText( 'wpSectionTitle' );
-			$this->sectiontitle = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->sectiontitle );
+			if ( $request->getCheck( 'wpSectionTitle' ) ) {
+				$this->sectiontitle = $request->getText( 'wpSectionTitle' );
+				$this->sectiontitle = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->sectiontitle );
+			} else {
+				$this->sectiontitle = null;
+			}
 
 			$this->edittime = $request->getVal( 'wpEdittime' );
 			$this->editRevId = $request->getIntOrNull( 'editRevId' );
@@ -1266,7 +1270,7 @@ class EditPage implements IEditObject {
 			wfDebug( __METHOD__ . ": Not a posted form." );
 			$this->textbox1 = '';
 			$this->summary = '';
-			$this->sectiontitle = '';
+			$this->sectiontitle = null;
 			$this->edittime = '';
 			$this->editRevId = null;
 			$this->starttime = wfTimestampNow();
@@ -1284,7 +1288,7 @@ class EditPage implements IEditObject {
 
 			// When creating a new section, we can preload a section title by passing it as the
 			// preloadtitle parameter in the URL (T15100)
-			if ( $this->section === 'new' && $request->getVal( 'preloadtitle' ) ) {
+			if ( $this->section === 'new' && $request->getCheck( 'preloadtitle' ) ) {
 				$this->sectiontitle = $request->getVal( 'preloadtitle' );
 				// Once wpSummary isn't being use for setting section titles, we should delete this.
 				$this->summary = $request->getVal( 'preloadtitle' );
@@ -2082,23 +2086,27 @@ class EditPage implements IEditObject {
 			$services->getContentLanguage()->getCode()
 		);
 
-		if ( $this->sectiontitle !== '' ) {
-			$newSectionAnchor = $this->guessSectionName( $this->sectiontitle );
-			// If no edit summary was specified, create one automatically from the section
-			// title and have it link to the new section. Otherwise, respect the summary as
-			// passed.
-			if ( $this->summary === '' ) {
+		if ( $this->sectiontitle !== null ) {
+			if ( $this->sectiontitle !== '' ) {
+				$newSectionAnchor = $this->guessSectionName( $this->sectiontitle );
+				// If no edit summary was specified, create one automatically from the section
+				// title and have it link to the new section. Otherwise, respect the summary as
+				// passed.
+				if ( $this->summary === '' ) {
+					$messageValue = MessageValue::new( 'newsectionsummary' )
+						->plaintextParams( $parser->stripSectionName( $this->sectiontitle ) );
+					$newSectionSummary = $textFormatter->format( $messageValue );
+				}
+			}
+		} else {
+			if ( $this->summary !== '' ) {
+				$newSectionAnchor = $this->guessSectionName( $this->summary );
+				// This is a new section, so create a link to the new section
+				// in the revision summary.
 				$messageValue = MessageValue::new( 'newsectionsummary' )
-					->plaintextParams( $parser->stripSectionName( $this->sectiontitle ) );
+					->plaintextParams( $parser->stripSectionName( $this->summary ) );
 				$newSectionSummary = $textFormatter->format( $messageValue );
 			}
-		} elseif ( $this->summary !== '' ) {
-			$newSectionAnchor = $this->guessSectionName( $this->summary );
-			// This is a new section, so create a link to the new section
-			// in the revision summary.
-			$messageValue = MessageValue::new( 'newsectionsummary' )
-				->plaintextParams( $parser->stripSectionName( $this->summary ) );
-			$newSectionSummary = $textFormatter->format( $messageValue );
 		}
 		return [ $newSectionSummary, $newSectionAnchor ];
 	}
@@ -2290,7 +2298,7 @@ class EditPage implements IEditObject {
 
 			$result['sectionanchor'] = '';
 			if ( $this->section === 'new' ) {
-				if ( $this->sectiontitle !== '' ) {
+				if ( $this->sectiontitle !== null ) {
 					// Insert the section title above the content.
 					$content = $content->addSectionHeader( $this->sectiontitle );
 				} elseif ( $this->summary !== '' ) {
@@ -2395,7 +2403,7 @@ class EditPage implements IEditObject {
 				}
 			}
 
-			if ( $this->sectiontitle !== '' ) {
+			if ( $this->sectiontitle !== null ) {
 				$sectionTitle = $this->sectiontitle;
 			} else {
 				$sectionTitle = $this->summary;

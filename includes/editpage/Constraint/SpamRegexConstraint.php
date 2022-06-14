@@ -63,7 +63,7 @@ class SpamRegexConstraint implements IEditConstraint {
 	 * @param SpamChecker $spamChecker
 	 * @param string $summary
 	 * @param string $section
-	 * @param string $sectionHeading
+	 * @param ?string $sectionHeading
 	 * @param string $text
 	 * @param string $reqIP for logging hits
 	 * @param Title $title for logging hits
@@ -73,7 +73,7 @@ class SpamRegexConstraint implements IEditConstraint {
 		SpamChecker $spamChecker,
 		string $summary,
 		string $section,
-		string $sectionHeading,
+		?string $sectionHeading,
 		string $text,
 		string $reqIP,
 		Title $title
@@ -84,7 +84,7 @@ class SpamRegexConstraint implements IEditConstraint {
 			// sectiontitle is only set if the API is used with `sectiontitle`, otherwise
 			// the summary is used which comes from the API `summary` parameter or the
 			// "Add Topic" user interface
-			$sectionHeadingToCheck = ( $sectionHeading !== '' ? $sectionHeading : $summary );
+			$sectionHeadingToCheck = $sectionHeading ?? $summary;
 		} else {
 			// No section heading to check
 			$sectionHeadingToCheck = '';
