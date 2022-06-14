@@ -2022,7 +2022,9 @@ describe( '/transform/ endpoint', function () {
 					html.should.not.match( /\s+data-parsoid\s*=\s*['"]/ );
 					const doc = domino.createDocument( html );
 					const meta = doc.querySelector( 'meta[property="mw:html:version"], meta[property="mw:htmlVersion"]' );
-					meta.getAttribute( 'content' ).should.equal( contentVersion );
+					meta.getAttribute( 'content' ).should.satisfy(
+						( version ) => semver.satisfies( version, `^${contentVersion}` )
+					);
 				} ) )
 				.end( done );
 		} );
