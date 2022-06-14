@@ -773,8 +773,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		if ( $this->isStructuredFilterUiEnabled() ) {
 			$rcfilterContainer = Html::element(
 				'div',
-				// TODO: Remove deprecated rcfilters-container class
-				[ 'class' => 'rcfilters-container mw-rcfilters-container' ]
+				[ 'class' => 'mw-rcfilters-container' ]
 			);
 
 			$loadingContainer = Html::rawElement(
@@ -786,12 +785,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				)
 			);
 
-			// Wrap both with rcfilters-head
+			// Wrap both with mw-rcfilters-head
 			$this->getOutput()->addHTML(
 				Html::rawElement(
 					'div',
-					// TODO: Remove deprecated rcfilters-head class
-					[ 'class' => 'rcfilters-head mw-rcfilters-head' ],
+					[ 'class' => 'mw-rcfilters-head' ],
 					$rcfilterContainer . $form
 				)
 			);
