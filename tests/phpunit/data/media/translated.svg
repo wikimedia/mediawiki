@@ -2,6 +2,10 @@
 <svg xmlns="http://www.w3.org/2000/svg">
 	<g>
 		<switch>
+			<text systemLanguage="zh-Hans-CN"><tspan>zh-Hans-CN</tspan></text>
+			<text systemLanguage="zh-Hant-TW"><tspan>zh-Hant-TW</tspan></text>
+			<text systemLanguage="als"><tspan>als</tspan></text>
+			<text systemLanguage="gsw"><tspan>gsw</tspan></text>
 			<text systemLanguage="ru"><tspan>RU</tspan></text>
 			<text systemLanguage="de"><tspan>DE</tspan></text>
 			<text>fallback</text>
