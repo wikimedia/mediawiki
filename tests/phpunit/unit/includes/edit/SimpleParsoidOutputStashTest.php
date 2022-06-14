@@ -11,7 +11,7 @@ use Wikimedia\Parsoid\Core\PageBundle;
 class SimpleParsoidOutputStashTest extends \MediaWikiUnitTestCase {
 
 	public function testSetAndGet() {
-		$stash = new SimpleParsoidOutputStash( new HashBagOStuff() );
+		$stash = new SimpleParsoidOutputStash( new HashBagOStuff(), 12 );
 
 		$key = new ParsoidRenderID( 7, 'acme' );
 		$pageBundle = new PageBundle( 'Hello World' );

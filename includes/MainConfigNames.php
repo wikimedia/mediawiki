@@ -1485,6 +1485,12 @@ class MainConfigNames {
 	public const MainStash = 'MainStash';
 
 	/**
+	 * Name constant for the ParsoidCacheConfig setting, for use with Config::get()
+	 * @see MainConfigSchema::ParsoidCacheConfig
+	 */
+	public const ParsoidCacheConfig = 'ParsoidCacheConfig';
+
+	/**
 	 * Name constant for the ChronologyProtectorStash setting, for use with Config::get()
 	 * @see MainConfigSchema::ChronologyProtectorStash
 	 */
