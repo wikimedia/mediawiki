@@ -19,6 +19,7 @@ const parsoidOptions = {
 // FIXME(T283875): These should all be re-enabled
 const skipForNow = true;
 
+// Minimal version required, caret semantic applies
 const defaultContentVersion = '2.4.0';
 
 // section wrappers are a distraction from the main business of
@@ -43,8 +44,35 @@ function validateDoc( doc, nodeName, emptyLead ) {
 	nonEmptySection.firstChild.nodeName.should.equal( nodeName );
 }
 
+// Matcher checking that the result status is 200, including the actual response
+// text in the output if it isn't.
 function status200( res ) {
 	assert.strictEqual( res.status, 200, res.text );
+}
+
+// Return a matcher function that checks whether a content type matches the given parameters.
+function contentTypeMatcher( expectedMime, expectedSpec, expectedVersion ) {
+	const pattern = /^([-\w]+\/[-\w]+); charset=utf-8; profile="https:\/\/www.mediawiki.org\/wiki\/Specs\/([-\w]+)\/(\d+\.\d+\.\d+)"$/;
+
+	return ( actual ) => {
+		const parts = pattern.exec( actual );
+		if ( !parts ) {
+			return false;
+		}
+
+		const [ , mime, spec, version ] = parts;
+
+		// match version using caret semantics
+		if ( !semver.satisfies( version, `^${expectedVersion || defaultContentVersion}` ) ) {
+			return false;
+		}
+
+		if ( mime !== expectedMime || spec !== expectedSpec ) {
+			return false;
+		}
+
+		return true;
+	};
 }
 
 // TODO: Replace all occurrences of (Lint Page/Lint_Page) with `page`.
@@ -58,7 +86,7 @@ describe( '/transform/ endpoint', function () {
 	let revid;
 
 	before( async function () {
-		this.timeout( 10000 );
+		this.timeout( 30000 );
 
 		const alice = await action.alice();
 
@@ -117,10 +145,10 @@ describe( '/transform/ endpoint', function () {
 
 	const acceptableHtmlResponse = function ( contentVersion, expectFunc ) {
 		return function ( res ) {
-			res.statusCode.should.equal( 200 );
+			res.statusCode.should.equal( 200, res.txt );
 			res.headers.should.have.property( 'content-type' );
-			res.headers[ 'content-type' ].should.equal(
-				'text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/' + contentVersion + '"'
+			res.headers[ 'content-type' ].should.satisfy(
+				contentTypeMatcher( 'text/html', 'HTML', contentVersion )
 			);
 			res.text.should.not.equal( '' );
 			if ( expectFunc ) {
@@ -131,32 +159,25 @@ describe( '/transform/ endpoint', function () {
 
 	const acceptablePageBundleResponse = function ( contentVersion, expectFunc ) {
 		return function ( res ) {
-			res.statusCode.should.equal( 200 );
+			res.statusCode.should.equal( 200, res.txt );
 			res.headers.should.have.property( 'content-type' );
-			res.headers[ 'content-type' ].should.equal(
-				'application/json; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/pagebundle/' + contentVersion + '"'
-			);
+			res.headers[ 'content-type' ].should.satisfy( contentTypeMatcher( 'application/json', 'pagebundle', contentVersion ) );
 			res.body.should.have.property( 'html' );
 			res.body.html.should.have.property( 'headers' );
 			res.body.html.headers.should.have.property( 'content-type' );
-			res.body.html.headers[ 'content-type' ].should.equal(
-				'text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/' + contentVersion + '"'
-			);
+			res.body.html.headers[ 'content-type' ].should.satisfy( contentTypeMatcher( 'text/html', 'HTML', contentVersion ) );
 			res.body.html.should.have.property( 'body' );
 			res.body.should.have.property( 'data-parsoid' );
 			res.body[ 'data-parsoid' ].should.have.property( 'headers' );
 			res.body[ 'data-parsoid' ].headers.should.have.property( 'content-type' );
-			res.body[ 'data-parsoid' ].headers[ 'content-type' ].should.equal(
-				'application/json; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/data-parsoid/' + contentVersion + '"'
-			);
+			res.body[ 'data-parsoid' ].headers[ 'content-type' ].should.satisfy( contentTypeMatcher( 'application/json', 'data-parsoid', contentVersion ) );
 			res.body[ 'data-parsoid' ].should.have.property( 'body' );
+
 			if ( semver.gte( contentVersion, '999.0.0' ) ) {
 				res.body.should.have.property( 'data-mw' );
 				res.body[ 'data-mw' ].should.have.property( 'headers' );
 				res.body[ 'data-mw' ].headers.should.have.property( 'content-type' );
-				res.body[ 'data-mw' ].headers[ 'content-type' ].should.equal(
-					'application/json; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/data-mw/' + contentVersion + '"'
-				);
+				res.body[ 'data-mw' ].headers[ 'content-type' ].should.satisfy( contentTypeMatcher( 'application/json', 'data-mw', contentVersion ) );
 				res.body[ 'data-mw' ].should.have.property( 'body' );
 			}
 			if ( expectFunc ) {
@@ -395,9 +416,8 @@ describe( '/transform/ endpoint', function () {
 		return function ( res ) {
 			res.statusCode.should.equal( 200 );
 			res.headers.should.have.property( 'content-type' );
-			res.headers[ 'content-type' ].should.equal(
-				'text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/' + defaultContentVersion + '"'
-			);
+			res.headers[ 'content-type' ].should.satisfy( contentTypeMatcher( 'text/html', 'HTML' ) );
+
 			const doc = domino.createDocument( res.text );
 			if ( expectFunc ) {
 				return expectFunc( doc );
@@ -413,16 +433,12 @@ describe( '/transform/ endpoint', function () {
 			res.body.should.have.property( 'html' );
 			res.body.html.should.have.property( 'headers' );
 			res.body.html.headers.should.have.property( 'content-type' );
-			res.body.html.headers[ 'content-type' ].should.equal(
-				'text/html; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/HTML/' + defaultContentVersion + '"'
-			);
+			res.body.html.headers[ 'content-type' ].should.satisfy( contentTypeMatcher( 'text/html', 'HTML' ) );
 			res.body.html.should.have.property( 'body' );
 			res.body.should.have.property( 'data-parsoid' );
 			res.body[ 'data-parsoid' ].should.have.property( 'headers' );
 			res.body[ 'data-parsoid' ].headers.should.have.property( 'content-type' );
-			res.body[ 'data-parsoid' ].headers[ 'content-type' ].should.equal(
-				'application/json; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/data-parsoid/' + defaultContentVersion + '"'
-			);
+			res.body[ 'data-parsoid' ].headers[ 'content-type' ].should.satisfy( contentTypeMatcher( 'application/json', 'data-parsoid' ) );
 			res.body[ 'data-parsoid' ].should.have.property( 'body' );
 			// TODO: Check data-mw when 999.x is the default.
 			console.assert( !semver.gte( defaultContentVersion, '999.0.0' ) );
@@ -647,7 +663,12 @@ describe( '/transform/ endpoint', function () {
 				.expect( 307 ) // no revid or wikitext source provided
 				.expect( function ( res ) {
 					res.headers.should.have.property( 'location' );
-					assert.strictEqual( res.headers.location.startsWith( PARSOID_URL + endpointPrefix + `/transform/wikitext/to/html/${pageEncoded}/` ), true );
+					const expected = PARSOID_URL + endpointPrefix +
+						`/transform/wikitext/to/html/${pageEncoded}/`;
+
+					assert.strictEqual(
+						res.headers.location.startsWith( expected ), true, res.headers.location
+					);
 				} )
 				.end( done );
 		} );
@@ -1948,7 +1969,6 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		it( 'should refuse an unknown conversion (2.x -> 999.x)', function ( done ) {
-			previousRevHTML.html.headers[ 'content-type' ].should.equal( 'text/html;profile="https://www.mediawiki.org/wiki/Specs/HTML/2.4.0"' );
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/pagebundle/Reuse_Page/100' )
 				.set( 'Accept', 'application/json; profile="https://www.mediawiki.org/wiki/Specs/pagebundle/999.0.0"' )
