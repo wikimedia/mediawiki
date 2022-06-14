@@ -312,7 +312,7 @@ class ApiHelp extends ApiBase {
 					// so English language and direction must be set explicitly,
 					// otherwise parentheses will get broken in RTL wikis
 					$headerAttr = [
-						'class' => 'apihelp-header apihelp-module-name',
+						'class' => [ 'apihelp-header', 'apihelp-module-name' ],
 						'dir' => 'ltr',
 						'lang' => 'en',
 					];
@@ -371,7 +371,7 @@ class ApiHelp extends ApiBase {
 
 			$flags = $module->getHelpFlags();
 			$help['flags'] .= Html::openElement( 'div',
-				[ 'class' => 'apihelp-block apihelp-flags' ] );
+				[ 'class' => [ 'apihelp-block', 'apihelp-flags' ] ] );
 			$msg = $context->msg( 'api-help-flags' );
 			if ( !$msg->isDisabled() ) {
 				$help['flags'] .= self::wrap(
@@ -440,7 +440,7 @@ class ApiHelp extends ApiBase {
 					$urls = [ $urls ];
 				}
 				$help['help-urls'] .= Html::openElement( 'div',
-					[ 'class' => 'apihelp-block apihelp-help-urls' ]
+					[ 'class' => [ 'apihelp-block', 'apihelp-help-urls' ] ]
 				);
 				$msg = $context->msg( 'api-help-help-urls' );
 				if ( !$msg->isDisabled() ) {
@@ -463,7 +463,7 @@ class ApiHelp extends ApiBase {
 			$groups = [];
 			if ( $params || $dynamicParams !== null ) {
 				$help['parameters'] .= Html::openElement( 'div',
-					[ 'class' => 'apihelp-block apihelp-parameters' ]
+					[ 'class' => [ 'apihelp-block', 'apihelp-parameters' ] ]
 				);
 				$msg = $context->msg( 'api-help-parameters' );
 				if ( !$msg->isDisabled() ) {
@@ -586,7 +586,7 @@ class ApiHelp extends ApiBase {
 			$examples = $module->getExamplesMessages();
 			if ( $examples ) {
 				$help['examples'] .= Html::openElement( 'div',
-					[ 'class' => 'apihelp-block apihelp-examples' ] );
+					[ 'class' => [ 'apihelp-block', 'apihelp-examples' ] ] );
 				$msg = $context->msg( 'api-help-examples' );
 				if ( !$msg->isDisabled() ) {
 					$help['examples'] .= self::wrap(
