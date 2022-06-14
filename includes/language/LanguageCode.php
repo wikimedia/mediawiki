@@ -98,9 +98,15 @@ class LanguageCode {
 
 		// Although these next codes aren't *wrong* per se, including
 		// both the script and the country code helps compatibility with
-		// other BCP 47 users. Note that MW also uses `zh-Hans`/`zh-Hant`,
+		// other BCP 47 users. Note that MW also uses
+		// `kk-Arab`/`kk-Cyrl`/`kk-Latn`, `zh-Hans`/`zh-Hant`,
 		// without a country code, and those should be left alone.
-		// (See $variantfallbacks in LanguageZh.php for Hans/Hant id.)
+		// `kk` has the Suppress-Script: Cyrl field, so `kk-KZ` won't be mapped
+		// to `kk-Cyrl-KZ`.
+		// (See getVariantsFallbacks() in KkConverter.php for Arab/Cyrl/Latn id.)
+		// (See getVariantsFallbacks() in ZhConverter.php for Hans/Hant id.)
+		'kk-cn' => 'kk-Arab-CN',
+		'kk-tr' => 'kk-Latn-TR',
 		'zh-cn' => 'zh-Hans-CN',
 		'zh-sg' => 'zh-Hans-SG',
 		'zh-my' => 'zh-Hans-MY',
