@@ -241,7 +241,6 @@ class SkinTemplate extends Skin {
 		$out = $this->getOutput();
 		$config = $this->getConfig();
 		$tpl = $this->setupTemplateForOutput();
-		$data = $this->getTemplateData();
 
 		$tpl->set( 'title', $out->getPageTitle() );
 		$tpl->set( 'pagetitle', $out->getHTMLTitle() );
