@@ -4118,8 +4118,6 @@
 	"limitreport-walltime-value": "$1 {{PLURAL:$1|second|seconds}}",
 	"limitreport-ppvisitednodes": "Preprocessor visited node count",
 	"limitreport-ppvisitednodes-value": "$1/$2",
-	"limitreport-ppgeneratednodes": "Preprocessor generated node count",
-	"limitreport-ppgeneratednodes-value": "$1/$2",
 	"limitreport-postexpandincludesize": "Post-expand include size",
 	"limitreport-postexpandincludesize-value": "$1/$2 {{PLURAL:$2|byte|bytes}}",
 	"limitreport-templateargumentsize": "Template argument size",
