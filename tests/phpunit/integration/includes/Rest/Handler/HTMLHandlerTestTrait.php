@@ -18,7 +18,7 @@ trait HTMLHandlerTestTrait {
 
 	private function getParsoidOutputStash(): ParsoidOutputStash {
 		if ( !$this->parsoidOutputStash ) {
-			$this->parsoidOutputStash = new SimpleParsoidOutputStash( new HashBagOStuff() );
+			$this->parsoidOutputStash = new SimpleParsoidOutputStash( new HashBagOStuff(), 120 );
 		}
 		return $this->parsoidOutputStash;
 	}

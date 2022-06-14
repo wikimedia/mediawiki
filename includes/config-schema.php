@@ -503,6 +503,10 @@ return [
 			],
 			'EnableWANCacheReaper' => false,
 			'MainStash' => 'db-replicated',
+			'ParsoidCacheConfig' => [
+				'StashBackend' => null,
+				'StashDuration' => 86400,
+			],
 			'ChronologyProtectorStash' => null,
 			'ParserCacheExpireTime' => 86400,
 			'OldRevisionParserCacheExpireTime' => 3600,
@@ -2573,6 +2577,7 @@ return [
 			],
 			'WANObjectCaches' => 'object',
 			'EnableWANCacheReaper' => 'boolean',
+			'ParsoidCacheConfig' => 'object',
 			'ChronologyProtectorStash' => [
 				0 => 'string',
 				1 => 'null',
