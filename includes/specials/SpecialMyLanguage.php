@@ -73,15 +73,49 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 	}
 
 	/**
-	 * Assuming the user's interface language is fi. Given input Page, it
-	 * returns Page/fi if it exists, otherwise Page. Given input Page/de,
-	 * it returns Page/fi if it exists, otherwise Page/de if it exists,
-	 * otherwise Page.
+	 * Find a title. This may return the base page, e.g. if the UI and
+	 * content language are the same.
+	 *
+	 * Examples, assuming the UI language is fi and the content language
+	 * is en:
+	 * - input Page: returns Page/fi if it exists, otherwise Page
+	 * - input Page/de: returns Page/fi if it exists, otherwise Page/de
+	 * if it exists, otherwise Page
 	 *
 	 * @param string|null $subpage
 	 * @return Title|null
 	 */
 	public function findTitle( $subpage ) {
+		return $this->findTitleInternal( $subpage, false );
+	}
+
+	/**
+	 * Find a title for transclusion. This avoids returning the base
+	 * page, if a suitable alternative exists.
+	 *
+	 * Examples, assuming the UI language is fi and the content language
+	 * is en:
+	 * - input Page: returns Page/fi if it exists, otherwise Page/en if
+	 * it exists, otherwise Page
+	 * - input Page/de: returns Page/fi if it exists, otherwise Page/de
+	 * if it exists, otherwise Page/en if it exists, otherwise Page
+	 *
+	 * @param string|null $subpage
+	 * @return Title|null
+	 */
+	public function findTitleForTransclusion( $subpage ) {
+		return $this->findTitleInternal( $subpage, true );
+	}
+
+	/**
+	 * Find a title, depending on the content language and the user's
+	 * interface language.
+	 *
+	 * @param string|null $subpage
+	 * @param bool $forTransclusion
+	 * @return Title|null
+	 */
+	private function findTitleInternal( $subpage, $forTransclusion ) {
 		// base = title without language code suffix
 		// provided = the title as it was given
 		$base = $provided = null;
@@ -111,7 +145,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		$uiLang = $this->getLanguage();
 		$contLang = $this->getContentLanguage();
 
-		if ( $uiLang->equals( $contLang ) ) {
+		if ( $uiLang->equals( $contLang ) && !$forTransclusion ) {
 			// Short circuit when the current UI language is the
 			// wiki's default language to avoid unnecessary page lookups.
 			return $base;
@@ -131,7 +165,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		// Check for fallback languages specified by the UI language
 		$possibilities = $uiLang->getFallbackLanguages();
 		foreach ( $possibilities as $lang ) {
-			if ( $lang !== $contLang->getCode() ) {
+			if ( $forTransclusion || $lang !== $contLang->getCode() ) {
 				$proposed = $base->getSubpage( $lang );
 				if ( $proposed && $proposed->exists() ) {
 					return $proposed;
