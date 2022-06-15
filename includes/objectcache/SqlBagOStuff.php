@@ -620,36 +620,30 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		$mt = $this->makeTimestampedModificationToken( $mtime, $db );
 
-		if ( $this->multiPrimaryMode ) {
-			// @TODO: use multi-row upsert() with VALUES() once supported in Database
-			foreach ( $argsByKey as $key => [ $value, $exptime ] ) {
-				$serialValue = $this->getSerialized( $value, $key );
-				$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
-				$db->upsert(
-					$ptable,
-					$this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt ),
-					[ [ 'keyname' ] ],
-					$this->buildUpsertSetForOverwrite( $db, $serialValue, $expiry, $mt ),
-					__METHOD__
-				);
-				$resByKey[$key] = true;
+		$rows = [];
+		foreach ( $argsByKey as $key => [ $value, $exptime ] ) {
+			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
+			$serialValue = $this->getSerialized( $value, $key );
+			$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt );
 
-				$valueSizesByKey[$key] = [ strlen( $serialValue ), 0 ];
-			}
+			$valueSizesByKey[$key] = [ strlen( $serialValue ), 0 ];
+		}
+
+		if ( $this->multiPrimaryMode ) {
+			$db->upsert(
+				$ptable,
+				$rows,
+				[ [ 'keyname' ] ],
+				$this->buildMultiUpsertSetForOverwrite( $db, $mt ),
+				__METHOD__
+			);
 		} else {
 			// T288998: use REPLACE, if possible, to avoid cluttering the binlogs
-			$rows = [];
-			foreach ( $argsByKey as $key => [ $value, $exptime ] ) {
-				$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
-				$serialValue = $this->getSerialized( $value, $key );
-				$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt );
-
-				$valueSizesByKey[$key] = [ strlen( $serialValue ), 0 ];
-			}
 			$db->replace( $ptable, 'keyname', $rows, __METHOD__ );
-			foreach ( $argsByKey as $key => $unused ) {
-				$resByKey[$key] = true;
-			}
+		}
+
+		foreach ( $argsByKey as $key => $unused ) {
+			$resByKey[$key] = true;
 		}
 
 		$this->updateOpStats( self::METRIC_OP_SET, $valueSizesByKey );
@@ -690,7 +684,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$ptable,
 				$rows,
 				[ [ 'keyname' ] ],
-				$this->buildUpsertSetForOverwrite( $db, self::TOMB_SERIAL, $expiry, $mt ),
+				$this->buildMultiUpsertSetForOverwrite( $db, $mt ),
 				__METHOD__
 			);
 		} else {
@@ -745,7 +739,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			->fetchFieldValues();
 		$existingByKey = array_fill_keys( $existingKeys, true );
 
-		// @TODO: use multi-row upsert() with VALUES() once supported in Database
+		$rows = [];
 		foreach ( $argsByKey as $key => [ $value, $exptime ] ) {
 			if ( isset( $existingByKey[$key] ) ) {
 				$this->logger->debug( __METHOD__ . ": $key already exists" );
@@ -754,16 +748,21 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 			$serialValue = $this->getSerialized( $value, $key );
 			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
-			$db->upsert(
-				$ptable,
-				$this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt ),
-				[ [ 'keyname' ] ],
-				$this->buildUpsertSetForOverwrite( $db, $serialValue, $expiry, $mt ),
-				__METHOD__
-			);
-			$resByKey[$key] = true;
+			$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt );
 
 			$valueSizesByKey[$key] = [ strlen( $serialValue ), 0 ];
+		}
+
+		$db->upsert(
+			$ptable,
+			$rows,
+			[ [ 'keyname' ] ],
+			$this->buildMultiUpsertSetForOverwrite( $db, $mt ),
+			__METHOD__
+		);
+
+		foreach ( $argsByKey as $key => $unused ) {
+			$resByKey[$key] = !isset( $existingByKey[$key] );
 		}
 
 		$this->updateOpStats( self::METRIC_OP_ADD, $valueSizesByKey );
@@ -813,31 +812,39 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$curTokensByKey[$row->keyname] = $this->getCasTokenFromRow( $db, $row );
 		}
 
-		// @TODO: use multi-row upsert() with VALUES() once supported in Database
+		$rows = [];
+		$nonMatchingByKey = [];
 		foreach ( $argsByKey as $key => [ $value, $exptime, $casToken ] ) {
 			$curToken = $curTokensByKey[$key] ?? null;
 			if ( $curToken === null ) {
+				$nonMatchingByKey[$key] = true;
 				$this->logger->debug( __METHOD__ . ": $key does not exists" );
 				continue;
 			}
 
 			if ( $curToken !== $casToken ) {
+				$nonMatchingByKey[$key] = true;
 				$this->logger->debug( __METHOD__ . ": $key does not have a matching token" );
 				continue;
 			}
 
 			$serialValue = $this->getSerialized( $value, $key );
 			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
-			$db->upsert(
-				$ptable,
-				$this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt ),
-				[ [ 'keyname' ] ],
-				$this->buildUpsertSetForOverwrite( $db, $serialValue, $expiry, $mt ),
-				__METHOD__
-			);
-			$resByKey[$key] = true;
+			$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt );
 
 			$valueSizesByKey[$key] = [ strlen( $serialValue ), 0 ];
+		}
+
+		$db->upsert(
+			$ptable,
+			$rows,
+			[ [ 'keyname' ] ],
+			$this->buildMultiUpsertSetForOverwrite( $db, $mt ),
+			__METHOD__
+		);
+
+		foreach ( $argsByKey as $key => $unused ) {
+			$resByKey[$key] = !isset( $nonMatchingByKey[$key] );
 		}
 
 		$this->updateOpStats( self::METRIC_OP_CAS, $valueSizesByKey );
@@ -878,21 +885,28 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				->where( $this->buildExistenceConditions( $db, array_keys( $argsByKey ), (int)$mtime ) )
 				->caller( __METHOD__ )
 				->fetchResultSet();
-			// @TODO: use multi-row upsert() with VALUES() once supported in Database
+
+			$rows = [];
+			$existingKeys = [];
 			foreach ( $res as $curRow ) {
 				$key = $curRow->keyname;
+				$existingKeys[$key] = true;
 				$serialValue = $this->dbDecodeSerialValue( $db, $curRow->value );
 				[ $exptime ] = $argsByKey[$key];
 				$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
+				$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt );
+			}
 
-				$db->upsert(
-					$ptable,
-					$this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt ),
-					[ [ 'keyname' ] ],
-					$this->buildUpsertSetForOverwrite( $db, $serialValue, $expiry, $mt ),
-					__METHOD__
-				);
-				$resByKey[$key] = true;
+			$db->upsert(
+				$ptable,
+				$rows,
+				[ [ 'keyname' ] ],
+				$this->buildMultiUpsertSetForOverwrite( $db, $mt ),
+				__METHOD__
+			);
+
+			foreach ( $argsByKey as $key => $unused ) {
+				$resByKey[$key] = isset( $existingKeys[$key] );
 			}
 		} else {
 			$keysBatchesByExpiry = [];
@@ -1169,20 +1183,13 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * SET array for handling key overwrites when a live or stale key exists
 	 *
 	 * @param IDatabase $db
-	 * @param string|int $serialValue New value
-	 * @param int $expiry Expiration timestamp or TTL_INDEFINITE
 	 * @param string $mt Modification token
 	 * @return array
 	 */
-	private function buildUpsertSetForOverwrite(
-		IDatabase $db,
-		$serialValue,
-		int $expiry,
-		string $mt
-	) {
+	private function buildMultiUpsertSetForOverwrite( IDatabase $db, string $mt ) {
 		$expressionsByColumn = [
-			'value'   => $db->addQuotes( $this->dbEncodeSerialValue( $db, $serialValue ) ),
-			'exptime' => $db->addQuotes( $this->encodeDbExpiry( $db, $expiry ) )
+			'value'   => $db->buildExcludedValue( 'value' ),
+			'exptime' => $db->buildExcludedValue( 'exptime' )
 		];
 
 		$set = [];
