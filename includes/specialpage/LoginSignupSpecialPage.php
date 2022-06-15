@@ -621,10 +621,10 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected function getBenefitsContainerHtml(): string {
 		$benefitsContainer = '';
 		if ( $this->isSignup() && $this->showExtraInformation() ) {
-			// messages used:
-			// createacct-benefit-icon1 createacct-benefit-head1 createacct-benefit-body1
-			// createacct-benefit-icon2 createacct-benefit-head2 createacct-benefit-body2
-			// createacct-benefit-icon3 createacct-benefit-head3 createacct-benefit-body3
+			// The following messages are used here:
+			// * createacct-benefit-icon1 createacct-benefit-head1 createacct-benefit-body1
+			// * createacct-benefit-icon2 createacct-benefit-head2 createacct-benefit-body2
+			// * createacct-benefit-icon3 createacct-benefit-head3 createacct-benefit-body3
 			$benefitCount = 3;
 			$benefitList = '';
 			for ( $benefitIdx = 1; $benefitIdx <= $benefitCount; $benefitIdx++ ) {
@@ -830,6 +830,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 						}
 						return true;
 					},
+					// The following messages are used here:
+					// * createacct-email-ph
+					// * createacct-another-email-ph
 					'placeholder-message' => 'createacct-' . $anotherPart . 'email-ph',
 				],
 				'realname' => [
@@ -871,6 +874,11 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'createaccount' => [
 					// submit button
 					'type' => 'submit',
+					// The following messages are used here:
+					// * createacct-submit
+					// * createacct-another-submit
+					// * createacct-continue-submit
+					// * createacct-another-continue-submit
 					'default' => $this->msg( 'createacct-' . $anotherPart . $continuePart .
 						'submit' )->text(),
 					'name' => 'wpCreateaccount',
@@ -929,6 +937,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'loginattempt' => [
 					// submit button
 					'type' => 'submit',
+					// The following messages are used here:
+					// * pt-login-button
+					// * pt-login-continue-button
 					'default' => $this->msg( 'pt-login-' . $continuePart . 'button' )->text(),
 					'id' => 'wpLoginAttempt',
 					'weight' => 100,
