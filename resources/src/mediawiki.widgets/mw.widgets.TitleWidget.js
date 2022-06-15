@@ -419,7 +419,7 @@
 	mw.widgets.TitleWidget.prototype.getOptionWidgetData = function ( title, data ) {
 		var mwTitle = new mw.Title( title ),
 			description = data.description;
-		if ( data.missing && !description ) {
+		if ( !description && ( data.missing && !data.known ) ) {
 			description = mw.msg( 'mw-widgets-titleinput-description-new-page' );
 		}
 		return {
@@ -430,7 +430,7 @@
 			showImages: this.showImages,
 			imageUrl: this.showImages ? data.imageUrl : null,
 			description: this.showDescriptions ? description : null,
-			missing: data.missing,
+			missing: data.missing && !data.known,
 			redirect: data.redirect,
 			disambiguation: data.disambiguation,
 			query: this.highlightSearchQuery ? this.getQueryValue() : null,
