@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Weekeejames",
-			"WikiEditor50"
+			"WikiEditor50",
+			"Amire80"
 		]
 	},
 	"sunday": "Domingo",
@@ -95,7 +96,7 @@
 	"accountcreatedtext": "Creao ya el cuenta registro por usuario $1.",
 	"changepassword": "Cambia con el contraseña",
 	"blockedtitle": "El usuario es prohibido o bloqueado",
-	"accmailtitle": "Enviao ya el contraseña.",
+	"accmailtitle": "Enviao ya el contraseña",
 	"accmailtext": "El contraseña que el sistema ya escogi automatico por usuario [[User talk:$1|$1]] enviado ya a $2.\n\nEl contraseña de este nuevo cuenta puede cambia na pagina ''[[Special:ChangePassword|cambia el contraseña]]'' despues el autenticacion.",
 	"search-result-size": "$1 ({{PLURAL:$2|1 palabra|$2 maga palabra}})",
 	"recentchanges": "Maga reciente cambio",

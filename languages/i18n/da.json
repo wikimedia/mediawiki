@@ -850,6 +850,8 @@
 	"expansion-depth-exceeded-warning": "Siden overskred ekspansionsdybden",
 	"parser-unstrip-loop-warning": "Unstrip-loop opdaget",
 	"unstrip-depth-warning": "Unstrip rekursionsgrænse er nået ($1)",
+	"unstrip-depth-category": "Sider hvor dybdegrænsen for unstrip er nået",
+	"unstrip-size-category": "Sider hvor størrelsesgrænsen for unstrip er nået",
 	"converter-manual-rule-error": "Fejl opdaget i manuel sprogkonvertingsregel",
 	"undo-success": "Redigeringen kan fjernes.\nKontroller venligst sammenligningen herunder for at bekræfte at det er hvad du ønsker at gøre, og gem så ændringerne for at fuldføre fjernelsen.",
 	"undo-failure": "Redigeringen kunne ikke fjernes på grund af konflikter med efterfølgende redigeringer.",

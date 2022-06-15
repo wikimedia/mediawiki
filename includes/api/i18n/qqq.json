@@ -19,7 +19,8 @@
 			"Siebrand",
 			"Tacsipacsi",
 			"Umherirrender",
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"Verdy p"
 		]
 	},
 	"apihelp-main-summary": "{{doc-apihelp-summary|main}}",
@@ -325,7 +326,7 @@
 	"apihelp-move-param-tags": "{{doc-apihelp-param|move|tags}}",
 	"apihelp-move-example-move": "{{doc-apihelp-example|move}}",
 	"apihelp-opensearch-summary": "{{doc-apihelp-summary|opensearch}}",
-	"apihelp-opensearch-param-search": "{{doc-apihelp-param|opensearch|search}}",
+	"apihelp-opensearch-param-search": "{{doc-apihelp-param|opensearch|search}}\n{{Identical|Search string}}",
 	"apihelp-opensearch-param-limit": "{{doc-apihelp-param|opensearch|limit}}",
 	"apihelp-opensearch-param-namespace": "{{doc-apihelp-param|opensearch|namespace}}",
 	"apihelp-opensearch-param-suggest": "{{doc-apihelp-param|opensearch|suggest}}",
@@ -1014,7 +1015,7 @@
 	"apihelp-query+pageswithprop-example-generator": "{{doc-apihelp-example|query+pageswithprop}}",
 	"apihelp-query+prefixsearch-summary": "{{doc-apihelp-summary|query+prefixsearch}}",
 	"apihelp-query+prefixsearch-extended-description": "{{doc-apihelp-extended-description|query+prefixsearch}}",
-	"apihelp-query+prefixsearch-param-search": "{{doc-apihelp-param|query+prefixsearch|search}}",
+	"apihelp-query+prefixsearch-param-search": "{{doc-apihelp-param|query+prefixsearch|search}}\n{{Identical|Search string}}",
 	"apihelp-query+prefixsearch-param-namespace": "{{doc-apihelp-param|query+prefixsearch|namespace}}",
 	"apihelp-query+prefixsearch-param-limit": "{{doc-apihelp-param|query+prefixsearch|limit}}",
 	"apihelp-query+prefixsearch-param-offset": "{{doc-apihelp-param|query+prefixsearch|offset}}",

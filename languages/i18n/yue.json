@@ -567,6 +567,7 @@
 	"botpasswords-updated-body": "{{GENDER:$2|用戶}}「$2」嘅機械人「$1」嘅密碼已經更新咗。",
 	"botpasswords-deleted-title": "鏟咗機械人密碼",
 	"botpasswords-deleted-body": "{{GENDER:$2|用戶}}「$2」嘅機械人「$1」嘅密碼已經剷走咗。",
+	"botpasswords-newpassword": "用嚟登入<strong>$1</strong>嘅新密碼係<strong>$2</strong>。<em>請記低呢個密碼以供未來參考使用。</em><br>（舊式機械人嘅登入名需要同最終用戶名一樣，你亦都可以用<strong>$3</strong>作為用戶名，<strong>$4</strong>作為密碼。）",
 	"botpasswords-no-provider": "BotPasswordsSessionProvider用唔到。",
 	"botpasswords-restriction-failed": "機械人密碼限制令到呢次簽到失敗。",
 	"botpasswords-invalid-name": "呢個用戶名無機械人密碼分隔字（「$1」）",
