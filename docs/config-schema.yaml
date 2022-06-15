@@ -5187,6 +5187,7 @@ config-schema:
             renderfile: { ip: [700, 30], user: [700, 30] }
             renderfile-nonstandard: { ip: [70, 30], user: [70, 30] }
             stashedit: { ip: [30, 60], newbie: [30, 60] }
+            stashbasehtml: { ip: [5, 60], newbie: [5, 60] }
             changetag: { ip: [8, 60], newbie: [8, 60] }
             editcontentmodel: { newbie: [2, 120], user: [8, 60] }
         type: object

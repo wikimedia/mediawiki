@@ -35,6 +35,7 @@ use ParserCache;
 use ParserOptions;
 use ParserOutput;
 use TitleValue;
+use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Parsoid\Config\PageConfig;
@@ -94,6 +95,9 @@ class ParsoidHTMLHelper {
 	/** @var IBufferingStatsdDataFactory */
 	private $stats;
 
+	/** @var User */
+	private $user;
+
 	/**
 	 * @param ParserCache $parserCache
 	 * @param RevisionOutputCache $revisionOutputCache
@@ -118,14 +122,17 @@ class ParsoidHTMLHelper {
 	/**
 	 * @param PageRecord $page
 	 * @param array $parameters
+	 * @param User $user
 	 * @param RevisionRecord|null $revision
 	 */
 	public function init(
 		PageRecord $page,
 		array $parameters,
+		User $user,
 		?RevisionRecord $revision = null
 	) {
 		$this->page = $page;
+		$this->user = $user;
 		$this->revision = $revision;
 		$this->stash = $parameters['stash'];
 		$this->flavor = $parameters['stash'] ? 'stash' : 'view'; // more to come, T308743
@@ -252,6 +259,15 @@ class ParsoidHTMLHelper {
 		$parserOutput = $this->getParserOutput();
 
 		if ( $this->stash ) {
+			if ( $this->user->pingLimiter( 'stashbasehtml' ) ) {
+				throw new LocalizedHttpException(
+					MessageValue::new( 'parsoid-stash-rate-limit-error' ),
+					// See https://www.rfc-editor.org/rfc/rfc6585#section-4
+					429,
+					[ 'reason' => 'Rate limiter tripped, wait for a few minutes and try again' ]
+				);
+			}
+
 			$parsoidStashKey = ParsoidRenderID::newFromKey(
 				$parserOutput->getExtensionData( self::RENDER_ID_KEY )
 			);

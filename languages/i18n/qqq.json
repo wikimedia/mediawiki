@@ -4685,5 +4685,6 @@
 	"skin-action-undelete": "Tab at top of page, in vector skin.\n{{Identical|Undelete}}",
 	"skin-action-delete": "Used in the Vector skin, as the name of a tab at the top of the page. See for example {{canonicalurl:Translating:MediaWiki|useskin=vector}}\n\n{{Identical|Delete}}",
 	"skin-action-move": "The \"Move\" action renames pages.\n\nUsed in the Vector skin, on the tabs at the top of the page. See for example {{canonicalurl:Talk:Main_Page|useskin=vector}}\n\n{{Identical|Move}}",
-	"copyupload-allowed-domains": "{{notranslate}}"
+	"copyupload-allowed-domains": "{{notranslate}}",
+	"parsoid-stash-rate-limit-error": "Error message returned by parsoid REST endpoints when the rate limit for stashing has been exceeded."
 }

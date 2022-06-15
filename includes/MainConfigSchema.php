@@ -8115,6 +8115,11 @@ class MainConfigSchema {
 				'ip' => [ 30, 60 ],
 				'newbie' => [ 30, 60 ],
 			],
+			// Stash base HTML for VE edits
+			'stashbasehtml' => [
+				'ip' => [ 5, 60 ],
+				'newbie' => [ 5, 60 ],
+			],
 			// Adding or removing change tags
 			'changetag' => [
 				'ip' => [ 8, 60 ],
