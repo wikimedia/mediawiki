@@ -310,6 +310,14 @@ abstract class Skin extends ContextSource {
 				'width=device-width, initial-scale=1.0, ' .
 				'user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0'
 			);
+		} else {
+			// Make sure the skin is zoomed out on a mobile device.
+			// Assuming a 300px mobile display,
+			// 0.25 zoom * 1200 = 300px.
+			$out->addMeta(
+				'viewport',
+				'width=1200px, initial-scale=0.25'
+			);
 		}
 
 		$tags = [
