@@ -774,7 +774,7 @@
 	"edit-slots-cannot-remove": "The following {{PLURAL:$1|slot is|slots are}} required and cannot be removed: $2.",
 	"edit-slots-missing": "The following {{PLURAL:$1|slot is|slots are}} missing: $2.",
 	"postedit-confirmation-created": "The page has been created.",
-	"postedit-confirmation-restored": "The page has been undeleted.",
+	"postedit-confirmation-restored": "The page has been restored.",
 	"postedit-confirmation-saved": "Your edit was saved.",
 	"postedit-confirmation-published": "Your edit was published.",
 	"postedit-temp-created-label": "Temporary account",
