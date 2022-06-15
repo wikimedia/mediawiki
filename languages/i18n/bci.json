@@ -1636,8 +1636,6 @@
 	"rollbacklink": "yi i noun",
 	"rollbacklinkcount": "Nan amoun fa $1, noun klèklèlè {{PLURAL:$1||s}}",
 	"protectlogpage": "Sassalè sou journali",
-	"protectedarticle": "wa sassa \"[[$1]]\"",
-	"modifiedarticleprotection": "\"[[$1]]\" i sassalè sou atin moun bé katchili",
 	"protect-default": "Man wiki interneti conti lé fouè moun bé klouaa bé atin",
 	"restriction-edit": "Klè noun",
 	"restriction-move": "Katchi floua boué nga i douman",

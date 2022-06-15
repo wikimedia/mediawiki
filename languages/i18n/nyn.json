@@ -477,7 +477,6 @@
 	"rollbacklinkcount": "garura $1 {{PLURAL:$1|ekyihindirwe|ebihindirwe}}",
 	"changecontentmodel-reason-label": "Enshoga:",
 	"logentry-contentmodel-change-revertlink": "garuza oku kyabire kiri",
-	"protectedarticle": "Rusibirwe Orubaju \"[[$1]]\"",
 	"protectcomment": "Enshoga:",
 	"protect-default": "Yikiriza abakozesa boona",
 	"restriction-edit": "Gorora",

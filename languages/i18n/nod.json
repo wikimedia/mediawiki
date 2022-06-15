@@ -412,8 +412,6 @@
 	"delete-legend": "ᩃᩫ᩠ᨷ",
 	"rollbacklink": "ᨿᩬ᩶ᩁᨻᩖᩥᨠᩃ᩠ᩅᨯᨯ᩠ᨿᩅ",
 	"rollbacklinkcount": "ᨿᩬ᩶ᩁᨻᩖᩥᨠᩃ᩠ᩅᨯᨯ᩠ᨿᩅ $1 {{PLURAL:$1|ᨠᩣ᩠ᩁᨠᩯ᩶ᨡᩱ}}",
-	"protectedarticle": "ᨣᩩ᩶ᨾᨠᩢ᩠ᨶ \"[[$1]]\" ᩓ᩠ᩅ",
-	"modifiedarticleprotection": "ᨸᩖ᩠᩵ᨿᩁᨠᩣ᩠ᩁᨲᩢ᩠᩶ᨦᨣ᩵ᩤᩁᨷᩫ᩠ᨷᨣᩩ᩶ᨾᨠᩢ᩠ᨶᨡᩬᨦ \"[[$1]]\"",
 	"protect-default": "ᩋᨶᩩᨬᩣ᩠ᨲᨹᩪ᩶ᨩᩲ᩶ᨩᩩᨤᩫ᩠ᨶ",
 	"restriction-edit": "ᨠᩯ᩶ᨡᩱ",
 	"restriction-move": "ᨿ᩶ᩣ᩠ᨿ",

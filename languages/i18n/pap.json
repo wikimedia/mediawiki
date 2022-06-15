@@ -574,7 +574,6 @@
 	"unblocklink": "desblokia",
 	"contribslink": "kontrib'nan",
 	"autoblocker": "Bo tabata outomatikamente blokiá pasombra \"[[User:$1|$1]]\" a uza e IP adrès aki resientemente. E rason ku $1 tabata blokiá ta: \"'''$2'''\"",
-	"unblocklogentry": "a desblokia $1",
 	"articleexists": "Tin un página ku e título ei kaba, òf e\ntítulo ku bo a skohe no ta válido.\nPor fabor skohe un otro título.",
 	"movelogpage": "Move e registro",
 	"export": "Eksportá página",

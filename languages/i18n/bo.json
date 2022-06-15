@@ -649,8 +649,6 @@
 	"deleteotherreason": "རྒྱུ་མཚན་གཞན་པའམ་འཕར་མ།",
 	"deletereasonotherlist": "རྒྱུ་མཚན་གཞན།",
 	"rollbacklink": "རྒྱབ་འགྲིལ་གཏོང་བ།",
-	"protectedarticle": "འགོག་སྲུང་བྱས་ཟིན།\"[[$1]]\"",
-	"modifiedarticleprotection": "\"[[$1]]\" ལ་སྲུང་སྐྱོབ་རིམ་པ་བཟོ་བཅོས་བྱས་བ།",
 	"protectcomment": "རྒྱུ་མཚན།",
 	"protectexpiry": "དུས་ཡུན་རྫོགས་ཚད།",
 	"protect_expiry_invalid": "དུས་ཡུན་རྫོགས་ཚད་ནོར་བ།",

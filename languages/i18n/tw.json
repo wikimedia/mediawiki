@@ -830,8 +830,6 @@
 	"delete-error-associated-doesnotexist": "Sɛ faako a yɛkasa nni hɔ a, wontumi nnyi mfiri hɔ.",
 	"rollbacklink": "san kɔ w'akyi",
 	"rollbacklinkcount": "san {{PLURAL:$1|sesa}} kɔ w'akyi",
-	"protectedarticle": "Yɛn abɔ ho ban \"[[$1]]\"",
-	"modifiedarticleprotection": "bammɔ nsesae a ɛwɔ hɔ ma \"[[$1]]\"",
 	"protect-default": "Ma obiara a ɔdi dwuma kwan",
 	"restriction-edit": "Sesa",
 	"restriction-move": "Kɔ",

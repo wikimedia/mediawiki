@@ -532,8 +532,6 @@
 	"rollback-confirmation-no": "Saabasɛ",
 	"rollbacklink": "viise le poorum",
 	"rollbacklinkcount": "Bilum lebe poorum $1 {{PLURAL:$1|edit|edits}}",
-	"protectedarticle": "Gu \"[[$1]]\"",
-	"modifiedarticleprotection": "tee gu'a seteŋɔ bo \"[[$1]]\"",
 	"protect-default": "Sakɛ bɔ tuneba za’a",
 	"restriction-edit": "Demese",
 	"restriction-move": "Lɛgum",

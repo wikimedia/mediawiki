@@ -478,7 +478,6 @@
 	"unblocklink": "ov-tjöödtjehtidh",
 	"contribslink": "dåarjoeh",
 	"blocklogpage": "Tjöödtjehtidh logge",
-	"blocklogentry": "blåhkedidh \"[[$1]]\" $2 $3",
 	"lockdb": "Tjuevtedh daatabaase",
 	"lockbtn": "Tjuevtedh daatabaase",
 	"databasenotlocked": "Daatabaase lea ijje tjuevtedh.",

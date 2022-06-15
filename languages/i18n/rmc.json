@@ -472,8 +472,6 @@
 	"rollback-confirmation-no": "Te zrušinel",
 	"rollbacklink": "Pale",
 	"rollbacklinkcount": "Pale $1 {{PLURAL:$1|pikeriben|pikeribena}}",
-	"protectedarticle": "\"[[$1]]\" hin tejle {{GENDER:$1|phanďo|phanďi}}",
-	"modifiedarticleprotection": "O visariben le bidarangutňaskera urovňake prekalo \"[[$1]]\"",
 	"protect-default": "Te domukel sakoneske",
 	"restriction-edit": "Te pikerel",
 	"restriction-move": "Avrete te thovel",

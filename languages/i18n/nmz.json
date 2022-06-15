@@ -421,8 +421,6 @@
 	"enotif_reset": "Takn b'nyan wadii bii",
 	"rollbacklink": "bidgm hɛb",
 	"rollbacklinkcount": "ŋmɛɛlg $1{{PLURAL:$1|lagiib}}",
-	"protectedarticle": "L'gɛgra \"[[$1]]\" jugun",
-	"modifiedarticleprotection": "Na b'lagii tiim \"[[$1]]\" jugun kigb",
 	"protect-default": "Sii zaŋtbee ŋmɛmʋe huru",
 	"restriction-edit": "Manyii",
 	"restriction-move": "Tɔtg",
