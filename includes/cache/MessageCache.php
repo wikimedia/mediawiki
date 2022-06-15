@@ -53,6 +53,12 @@ define( 'MSG_CACHE_VERSION', 2 );
  * @ingroup Cache
  */
 class MessageCache implements LoggerAwareInterface {
+	/**
+	 * The size of the MapCacheLRU which stores message data. The maximum
+	 * number of languages which can be efficiently loaded in a given request.
+	 */
+	public const MAX_REQUEST_LANGUAGES = 10;
+
 	private const FOR_UPDATE = 1; // force message reload
 
 	/** How long to wait for memcached locks */
@@ -197,7 +203,7 @@ class MessageCache implements LoggerAwareInterface {
 		$this->hookRunner = new HookRunner( $hookContainer );
 
 		// limit size
-		$this->cache = new MapCacheLRU( 5 );
+		$this->cache = new MapCacheLRU( self::MAX_REQUEST_LANGUAGES );
 
 		$this->mDisable = !( $options['useDB'] ?? true );
 	}
