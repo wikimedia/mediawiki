@@ -448,6 +448,7 @@
 	"rollbacklinkcount": "Ovirikanyiha $1 {{PLURAL:$1|ereerilo|ireerihelo}}",
 	"protectedarticle": "Ookhapelela \"[[$1]]\"",
 	"protect-default": "Oweemiherya anamarumeela wotheene",
+	"restriction-edit": "Oleeliherya",
 	"restriction-move": "Okumiha",
 	"namespace": "Nlaka na masina",
 	"blanknamespace": "Nuulupale",
@@ -471,7 +472,7 @@
 	"sp-contributions-submit": "Ophavelasa",
 	"whatlinkshere": "Enilupanyerya exeeni va",
 	"whatlinkshere-title": "Mapuro ni miluttelelo sa $1",
-	"whatlinkshere-page": "Opuro",
+	"whatlinkshere-page": "Opuro:",
 	"linkshere": "Mapuro ala anttharelana aakhalana miluttelelo sinceene iniireliwa <strong>$2</strong>:",
 	"nolinkshere": "Kiikhanle ikuphelelo wiireliwaka <strong>$2</strong>. Ni ikhalelo sowaalakhanyiwa",
 	"isredirect": "opuro oottharelanihiwa",
@@ -529,6 +530,6 @@
 	"tags-active-no": "Nnaari",
 	"tags-delete": "ocipiha",
 	"tags-hitcount": "$1 {{PLURAL:$1|nvirikanyiho wookiserya|mivirikanyiho sookiserya}}",
-	"searchsuggest-search": "Ophavelasa opuro wa nsina",
+	"searchsuggest-search": "Ophavelasa {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|nihiku|mahiku}}"
 }
