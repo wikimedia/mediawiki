@@ -6,6 +6,7 @@ use Config;
 use IBufferingStatsdDataFactory;
 use LogicException;
 use MediaWiki\Edit\ParsoidOutputStash;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -59,13 +60,17 @@ class RevisionHTMLHandler extends SimpleHandler {
 	}
 
 	protected function postValidationSetup() {
-		$this->contentHelper->init( $this->getAuthority(), $this->getValidatedParams() );
+		// TODO: Once Authority supports rate limit (T310476), just inject the Authority.
+		$user = MediaWikiServices::getInstance()->getUserFactory()
+			->newFromUserIdentity( $this->getAuthority()->getUser() );
+
+		$this->contentHelper->init( $user, $this->getValidatedParams() );
 
 		$page = $this->contentHelper->getPage();
 		$revision = $this->contentHelper->getTargetRevision();
 
 		if ( $page && $revision ) {
-			$this->htmlHelper->init( $page, $this->getValidatedParams(), $revision );
+			$this->htmlHelper->init( $page, $this->getValidatedParams(), $user, $revision );
 		}
 	}
 

@@ -399,4 +399,25 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame( $etag1, $etag2 );
 	}
 
+	public function testStashingWithRateLimitExceeded() {
+		// Set the rate limit to 1 request per minute
+		$this->mergeMwGlobalArrayValue( 'wgRateLimits',
+			[
+				'stashbasehtml' => [
+					'&can-bypass' => false,
+					'ip' => [ 1, 60 ],
+					'newbie' => [ 1, 60 ]
+				]
+			] );
+		$this->setMwGlobals( [ 'wgMainCacheType' => CACHE_ANYTHING ] );
+
+		$page = $this->getExistingTestPage();
+
+		$this->executePageHTMLRequest( $page, [ 'stash' => true ] );
+		// In this request, the rate limit has been exceeded, so it should throw.
+		$this->expectException( LocalizedHttpException::class );
+		$this->expectExceptionCode( 429 );
+		$this->executePageHTMLRequest( $page, [ 'stash' => true ] );
+	}
+
 }
