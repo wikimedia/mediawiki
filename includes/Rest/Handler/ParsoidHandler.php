@@ -21,21 +21,25 @@ namespace MediaWiki\Rest\Handler;
 
 use Composer\Semver\Semver;
 use ExtensionRegistry;
+use InvalidArgumentException;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseException;
 use MediaWiki\Revision\RevisionAccessException;
+use MobileContext;
 use ParserOutput;
 use RequestContext;
 use Title;
 use UIDGenerator;
 use WikiMap;
 use Wikimedia\Http\HttpAcceptParser;
+use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Config\PageConfigFactory;
@@ -126,6 +130,54 @@ abstract class ParsoidHandler extends Handler {
 	}
 
 	/**
+	 * Verify that the {domain} path parameter matches the actual domain.
+	 * @todo Remove this when we no longer need to support the {domain}
+	 *       parameter with backwards compatibility with the parsoid
+	 *       extension.
+	 * @param string $domain Domain name parameter to validate
+	 */
+	protected function assertDomainIsCorrect( $domain ): void {
+		// We are cutting some corners here (IDN, non-ASCII casing)
+		// since domain name support is provisional.
+		// TODO use a proper validator instead
+		$server = \RequestContext::getMain()->getConfig()->get( 'Server' );
+		$expectedDomain = wfParseUrl( $server )['host'] ?? null;
+		if ( !$expectedDomain ) {
+			throw new LogicException( 'Cannot parse $wgServer' );
+		}
+		if ( strcasecmp( $expectedDomain, $domain ) === 0 ) {
+			return;
+		}
+
+		// TODO: This should really go away! It's only acceptable because
+		//       this entire method is going to be removed once we no longer
+		//       need the parsoid extension endpoints with the {domain} parameter.
+		if ( $this->extensionRegistry->isLoaded( 'MobileFrontend' ) ) {
+			// @phan-suppress-next-line PhanUndeclaredClassMethod
+			$mobileServer = MobileContext::singleton()->getMobileUrl( $server );
+			$expectedMobileDomain = wfParseUrl( $mobileServer )['host'] ?? null;
+			if ( $expectedMobileDomain && strcasecmp( $expectedMobileDomain, $domain ) === 0 ) {
+				return;
+			}
+		}
+
+		$msg = new DataMessageValue(
+			'mwparsoid-invalid-domain',
+			[],
+			'invalid-domain',
+			[ 'expected' => $expectedDomain, 'actual' => $domain, ]
+		);
+
+		throw new LocalizedHttpException( $msg, 400, [
+			'error' => 'parameter-validation-failed',
+			'name' => 'domain',
+			'value' => $domain,
+			'failureCode' => $msg->getCode(),
+			'failureData' => $msg->getData(),
+		] );
+	}
+
+	/**
 	 * Get the parsed body by content-type
 	 *
 	 * @return array
@@ -201,7 +253,7 @@ abstract class ParsoidHandler extends Handler {
 			// We use `prefix` but ought to use `domain` (T206764)
 			'prefix' => $attribs['iwp'],
 			// For the legacy "domain" path parameter used by the endpoints exposed
-			// by the parsoid extension.
+			// by the parsoid extension. Will be null for core endpoints.
 			'domain' => $request->getPathParam( 'domain' ),
 			'pageName' => $attribs['pageName'],
 			'offsetType' => $attribs['offsetType'],
@@ -214,6 +266,12 @@ abstract class ParsoidHandler extends Handler {
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
 		];
 		$attribs['opts'] = $opts;
+
+		// TODO: Remove assertDomainIsCorrect() once we no longer need to support the {domain}
+		//       parameter for the endpoints exposed by the parsoid extension.
+		if ( empty( $this->parsoidSettings['debugApi'] ) && $attribs['envOptions']['domain'] !== null ) {
+			$this->assertDomainIsCorrect( $attribs['envOptions']['domain'] );
+		}
 
 		$this->requestAttributes = $attribs;
 		return $this->requestAttributes;
@@ -388,23 +446,51 @@ abstract class ParsoidHandler extends Handler {
 	}
 
 	/**
-	 * Get the base path of the route that was used to invoke this handler.
-	 * Useful when the handler is exposed in multiple locations, e.g. for
-	 * backwards compatibility.
+	 * Get the path for the transform endpoint. May be overwritten to override the path.
+	 *
+	 * This is done in the parsoid extension, for backwards compatibility
+	 * with the old endpoint URLs.
+	 *
+	 * @param string $format The format the endpoint is expected to return.
 	 *
 	 * @return string
 	 */
-	protected function getParsoidBasePath(): string {
-		$path = $this->getConfig()['path'];
+	protected function getTransformEndpoint( string $format = ParsoidFormatHelper::FORMAT_HTML ): string {
+		return '/coredev/v0/transform/{from}/to/{format}/{title}/{revision}';
+	}
 
-		if ( str_starts_with( $path, '/{domain}/v3/' ) ) {
-			// Backwards compatibility mode for endpoints exposed
-			// by the parsoid extension.
-			// XXX: This shouldn't be here, find a better way.
-			return '/{domain}/v3';
-		} else {
-			return '/coredev/v0';
+	/**
+	 * Get the path for the page content endpoint. May be overwritten to override the path.
+	 *
+	 * This is done in the parsoid extension, for backwards compatibility
+	 * with the old endpoint URLs.
+	 *
+	 * @param string $format The format the endpoint is expected to return.
+	 *
+	 * @return string
+	 */
+	protected function getPageContentEndpoint( string $format = ParsoidFormatHelper::FORMAT_HTML ): string {
+		if ( $format !== ParsoidFormatHelper::FORMAT_HTML ) {
+			throw new InvalidArgumentException( 'Unsupported page content format: ' . $format );
 		}
+		return '/v1/page/{title}/html';
+	}
+
+	/**
+	 * Get the path for the page content endpoint. May be overwritten to override the path.
+	 *
+	 * This is done in the parsoid extension, for backwards compatibility
+	 * with the old endpoint URLs.
+	 *
+	 * @param string $format The format the endpoint is expected to return.
+	 *
+	 * @return string
+	 */
+	protected function getRevisionContentEndpoint( string $format = ParsoidFormatHelper::FORMAT_HTML ): string {
+		if ( $format !== ParsoidFormatHelper::FORMAT_HTML ) {
+			throw new InvalidArgumentException( 'Unsupported revision content format: ' . $format );
+		}
+		return '/v1/revision/{revision}/html';
 	}
 
 	/**
@@ -436,10 +522,10 @@ abstract class ParsoidHandler extends Handler {
 
 		if ( $this->getRequest()->getMethod() === 'POST' ) {
 			$pathParams['from'] = $this->getRequest()->getPathParam( 'from' );
-			$newPath = $this->getParsoidBasePath() . '/transform/{from}/to/{format}/{title}/{revision}';
+			$newPath = $this->getTransformEndpoint( $format );
 		} else {
-			// TODO: Change this to the /core/v1/ revision endpoint
-			$newPath = "/{domain}/v3/page/{format}/{title}/{revision}";
+			$newPath = $this->getRevisionContentEndpoint( $format );
+
 		}
 		return $this->createRedirectResponse( $newPath, $pathParams, $this->getRequest()->getQueryParams() );
 	}
@@ -508,10 +594,12 @@ abstract class ParsoidHandler extends Handler {
 					'revision' => $redirectInfo['revId']
 				];
 
-				// TODO: change to core/v1/ page and revision endpoints
-				$redirectPath = '/{domain}/v3/page/{title}/wikitext';
+				// NOTE: Core doesn't have REST endpoints that return raw wikitext,
+				//       so the below will fail unless the methods are overwritten.
 				if ( $redirectInfo['revId'] ) {
-					$redirectPath .= '/{revision}';
+					$redirectPath = $this->getRevisionContentEndpoint( 'wikitext' );
+				} else {
+					$redirectPath = $this->getPageContentEndpoint( 'wikitext' );
 				}
 				throw new ResponseException(
 					$this->createRedirectResponse( $redirectPath, $pathParams, $request->getQueryParams() )
