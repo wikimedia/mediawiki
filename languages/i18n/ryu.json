@@ -417,8 +417,6 @@
 	"rollback-confirmation-no": "とぅりちゃーすん",
 	"rollbacklink": "まちむどぅし",
 	"rollbacklinkcount": "$1{{PLURAL:$1|直すん}}を巻ちむどぅし",
-	"protectedarticle": "「[[$1]]」を保護したさ",
-	"modifiedarticleprotection": "「[[$1]]」ぬ保護設定変更したさ",
 	"protect-default": "まじりぬ利用者んかい許可",
 	"restriction-edit": "直すん",
 	"restriction-move": "うちゅすん",

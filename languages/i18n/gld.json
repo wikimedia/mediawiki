@@ -430,8 +430,6 @@
 	"dellogpage": "О̄сихачи халиа",
 	"rollbacklink": "бугӯри",
 	"rollbacklinkcount": "Кэндэлими энэури $1 {{PLURAL:$1 модан нирухэвэни}}",
-	"protectedarticle": "эй страницава «[[$1]]» тонгасими ачаси",
-	"modifiedarticleprotection": "страница защитани гой настройка очини «[[$1]]»",
 	"protect-default": "Хэм наи эйвэ тонгасими ая",
 	"restriction-edit": "Калаори",
 	"restriction-move": "Энэвэмбури",

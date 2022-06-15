@@ -477,8 +477,6 @@
 	"enotif_reset": "标记所有页面作已眙",
 	"rollbacklink": "倒回去",
 	"rollbacklinkcount": "回退$1次{{PLURAL:$1|编辑}}",
-	"protectedarticle": "保护“[[$1]]”",
-	"modifiedarticleprotection": "更改“[[$1]]”亇保护设定",
 	"protect-default": "允许所有用户",
 	"restriction-edit": "增改",
 	"restriction-move": "移走",

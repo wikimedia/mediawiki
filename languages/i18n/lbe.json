@@ -399,8 +399,6 @@
 	"enotif_reset": "Аьш дишин циняв лажин ххал дуршиврий",
 	"rollbacklink": "махъун кӀура даен дан",
 	"rollbacklinkcount": "ккуру бан $1 {{PLURAL:$1|дахханашаву|дахханашавуртув}}",
-	"protectedarticle": "Буруччаву чӀапӀул лажинналул «[[$1]]»",
-	"modifiedarticleprotection": "даххана дурссар лажинналул мура хасшиву гуждурну «[[$1]]»",
 	"protect-default": "Кьа буруччуну",
 	"restriction-edit": "Дакьин дуван",
 	"restriction-move": "ЦӀа даххана даву",

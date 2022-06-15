@@ -28,6 +28,7 @@
 			"Xiplus",
 			"Yukiseaside",
 			"Yuyu",
+			"Z423x5c6",
 			"和平至上",
 			"星海"
 		]
@@ -86,6 +87,8 @@
 	"oct": "10月",
 	"nov": "11月",
 	"dec": "12月",
+	"period-am": "上晝",
+	"period-pm": "下晝",
 	"pagecategories": "{{PLURAL:$1|分類}}",
 	"hidden-categories": "{{PLURAL:$1|隱藏分類}}",
 	"mytalk": "我的討論頁",

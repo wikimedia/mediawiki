@@ -485,7 +485,6 @@
 	"rollbacklink": "chenj am bak",
 	"rollbacklinkcount": "komot $1 {{PLURAL:$1|chenj|chenj-dem}}",
 	"changecontentmodel-submit": "Chenj-am",
-	"protectedarticle": "dem protet \"[[$1]]\"",
 	"protect-default": "Mek you alau evri yuza-dem",
 	"restriction-edit": "Chenj-am",
 	"restriction-move": "Muv-am",

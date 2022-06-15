@@ -590,8 +590,6 @@
 	"delete-confirm": "Jaukkâd \"$1\"",
 	"delete-legend": "Seeid jaukkummuš",
 	"delete-edit-reasonlist": "Muuʹtt jaukkeemmääinaid",
-	"modifiedarticleprotection": "muuʹtti seeid \"[[$1]]\" suejjeemasetõõzzid",
-	"movedarticleprotection": "siiʹrdi suejjeemasetõõzzid seeidast \"[[$2]]\" sijddu \"[[$1]]\"",
 	"modifiedarticleprotection-comment": "{{GENDER:$2|muuʹtti}} suejjeemasetõõzzid seeidast \"[[$1]]\"",
 	"protect-title": "Muuʹtt suejjeemasetõõzzid seeidast \"$1\"",
 	"protect-edit-reasonlist": "Muuʹtt suõjjeemmääinaid",

@@ -374,8 +374,6 @@
 	"contribslink": "imnikelo",
 	"autoblocker": "Autoblocked ngoba ikheli lakho le-IP isanda ezisetshenziswa yilo \"[[User:$1|$1]]\".\nIsizathu esinikeziwe for $1 sika block kuyinto \"$2\"",
 	"blocklog-showlog": "Lo msebenzisi uvinjiwe ngaphambilini.\nI log block ehlinzekwe ngezansi ukuze uthole inkomba:",
-	"blocklogentry": "ivinjiwe [[$1]] nge isikhathi kokuphela $2 $3",
-	"reblock-logentry": "changed izilungiselelo block [[$1]] nge isikhathi kokuphela $2 $3",
 	"blocklogtext": "Lena log ye ukuvinjwa umsebenzisi nezenzo yokuvula.\nivinjiwe ngokuzenzakalela amakheli IP kungukuthi efakwe ohlwini.\nBheka [[Special:BlockList|block uhlu]] ukuze uthole uhlu oluphelele yokuvinjelwa esebenzako njenganje nemabhuloki.",
 	"range_block_disabled": "Ikhono umengameli ukudala uhla emabhuloki kukhutshaziwe.",
 	"ipb_expiry_temp": "Hidden igama lomsebenzisi emabhuloki kumele kube unomphela.",
