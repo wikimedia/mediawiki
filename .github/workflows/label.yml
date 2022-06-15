@@ -18,7 +18,7 @@ jobs:
         list=$(git -c color.diff=false diff --submodule=diff $submodule | sed -n -e s/^diff\ --git\ a\\///p)
         pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
 
-        codechangeFiles="(extensions|skins)\/.*\/(.*\.php|.*\.js|.*\.css|.*\.less|.*\.scss|.*\.vue|.*\.lua|.*\.d\.ts|extension(\-(repo|client))?\.json|skin\.json)$"
+        codechangeFiles="(extensions|skins)\/.*\/(.*\.php|.*\.js|.*\.css|.*\.less|.*\.scss|.*\.vue|.*\.lua|.*\.mustache|.*\.d\.ts|extension(\-(repo|client))?\.json|skin\.json)$"
         schemaFiles="(extensions|skins)\/.*\/.*\.sql$"
 
         buildFiles="(extensions|skins)\/.*\/(\.github\/.*|\.phan\/.*|tests\/.*|composer(\.json|\.lock)|package(\-lock)?\.json|yarn\.lock|\.phpcs\.xml|\.stylelintrc\.json|\.eslintrc\.json|\.prettierrc|\.stylelintignore|\.eslintignore|\.prettierignore|tsconfig\.json|\.nvmrc|\.svgo\.config\.js|Gruntfile\.js|bundlesize\.config\.json|jsdoc\.json|tsconfig\.json)$"
