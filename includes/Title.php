@@ -2489,30 +2489,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * Determines if $user is unable to edit this page because it has been protected
-	 * by $wgNamespaceProtection.
-	 *
-	 * @deprecated since 1.34, hard-deprecated since 1.37
-	 * @param User $user User object to check permissions
-	 * @return bool
-	 */
-	public function isNamespaceProtected( User $user ) {
-		global $wgNamespaceProtection;
-
-		wfDeprecated( __METHOD__, '1.34' );
-
-		if ( isset( $wgNamespaceProtection[$this->mNamespace] ) ) {
-			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-			foreach ( (array)$wgNamespaceProtection[$this->mNamespace] as $right ) {
-				if ( !$permissionManager->userHasRight( $user, $right ) ) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	/**
 	 * Cascading protection: Return true if cascading restrictions apply to this page, false if not.
 	 *
 	 * @deprecated since 1.37, use RestrictionStore::isCascadeProtected instead
