@@ -2084,7 +2084,7 @@
 	"statistics-edits-average": "Her sayfadaki ortalama değişiklik",
 	"statistics-users": "Kayıtlı kullanıcılar",
 	"statistics-users-active": "Aktif kullanıcılar",
-	"statistics-users-active-desc": "Son {{PLURAL:$1|günde|$1 günde}} çalışma yapan kullanıcılar",
+	"statistics-users-active-desc": "Son {{PLURAL:$1|günde|$1 günde}} düzenleme yapan kullanıcılar",
 	"pageswithprop": "Bir sayfa özelliğine sahip sayfalar",
 	"pageswithprop-legend": "Bir sayfa özelliğine sahip sayfalar",
 	"pageswithprop-text": "Bu sayfa belirli bir sayfa özelliğini kullanan sayfaları listeler.",

@@ -4113,5 +4113,6 @@
 	"skin-action-protect": "Schützen",
 	"skin-action-undelete": "Wiederherstellen",
 	"skin-action-delete": "Löschen",
-	"skin-action-move": "Verschieben"
+	"skin-action-move": "Verschieben",
+	"parsoid-stash-rate-limit-error": "Die Vorabspeicherung ist fehlgeschlagen, weil ein Limit überschritten wurde. Bitte versuche es später noch einmal."
 }

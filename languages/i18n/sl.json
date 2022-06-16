@@ -739,7 +739,7 @@
 	"edit-slots-cannot-remove": "{{PLURAL:$1|Naslednja reža je zahtevana in je|Naslednji reži sta zahtevani in ju|Naslednje reže so zahtevane in jih}} ne morete odstraniti: $2.",
 	"edit-slots-missing": "{{PLURAL:$1|Manjka naslednja reža|Manjkata naslednji reži|Manjkajo naslednje reže}}: $2.",
 	"postedit-confirmation-created": "Stran je ustvarjena.",
-	"postedit-confirmation-restored": "Stran je vrnjena.",
+	"postedit-confirmation-restored": "Stran je obnovljena.",
 	"postedit-confirmation-saved": "Vaše urejanje je shranjeno.",
 	"postedit-confirmation-published": "Vaše urejanje je objavljeno.",
 	"postedit-temp-created-label": "Začasni račun",
@@ -3980,5 +3980,6 @@
 	"skin-action-protect": "Zaščiti",
 	"skin-action-undelete": "Obnovi",
 	"skin-action-delete": "Izbriši",
-	"skin-action-move": "Preimenuj"
+	"skin-action-move": "Preimenuj",
+	"parsoid-stash-rate-limit-error": "Ločeno hranjenje je spodletelo, ker je omejitev hitrosti presežena. Prosimo, poskusite znova pozneje."
 }

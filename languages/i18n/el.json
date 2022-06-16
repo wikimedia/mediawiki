@@ -1354,7 +1354,7 @@
 	"grant-createaccount": "Δημιουργία λογαριασμών",
 	"grant-createeditmovepage": "Δημιουργία, επεξεργασία και μετακίνηση σελίδων",
 	"grant-delete": "Διαγραφή σελίδων, αναθεωρήσεων και καταχωρίσεων σε αρχεία καταγραφής",
-	"grant-editinterface": "Επεξεργασία του ονοματοχώρου Mediawiki και JSON ιστότοπου/χρηστών",
+	"grant-editinterface": "Επεξεργασία του ονοματοχώρου MediaWiki και JSON ιστότοπου/χρηστών",
 	"grant-editmycssjs": "Επεξεργασία των CSS/JSON/JavaScript του χρήστη σας",
 	"grant-editmyoptions": "Επεξεργασία των προτιμήσεων χρήστη σας και ρυθμίσεων JSON",
 	"grant-editmywatchlist": "Επεξεργασία της λίστας παρακολούθησής σας",
