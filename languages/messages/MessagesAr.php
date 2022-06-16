@@ -471,5 +471,6 @@ $arabicCombiningDiacritics =
 
 $linkTrail = '/^([a-zء-ي' . $arabicCombiningDiacritics . ']+)(.*)$/sDu';
 $linkPrefixCharset = 'a-zA-Zء-ي' . $arabicCombiningDiacritics;
+unset( $arabicCombiningDiacritics );
 
 $digitGroupingPattern = "#,##0.###";

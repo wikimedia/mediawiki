@@ -49,3 +49,4 @@ $arabicCombiningDiacritics =
 	'\\x{06E8}' .
 	'\\x{06EA}-\\x{06ED}';
 $linkTrail = '/^([a-zء-ي' . $arabicCombiningDiacritics . 'چڠڤکݢڽۏ]+)(.*)$/sDu';
+unset( $arabicCombiningDiacritics );
