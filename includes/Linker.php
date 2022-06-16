@@ -1145,7 +1145,9 @@ class Linker {
 					$edits = $user->getEditCount();
 				}
 				if ( $edits === 0 ) {
-					$attribs['class'] .= ' new';
+					// Note: "new" class is inappropriate here, as "new" class
+					// should only be used for pages that do not exist.
+					$attribs['class'] .= ' mw-usertoollinks-contribs-no-edits';
 				}
 			}
 			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $userText );
