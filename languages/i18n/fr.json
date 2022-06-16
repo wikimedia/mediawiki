@@ -4339,5 +4339,6 @@
 	"skin-action-protect": "Protéger",
 	"skin-action-undelete": "Restaurer",
 	"skin-action-delete": "Supprimer",
-	"skin-action-move": "Renommer"
+	"skin-action-move": "Renommer",
+	"parsoid-stash-rate-limit-error": "La dissimulation a échoué parce que le taux limite d’utilisation a été dépassé. Veuillez essayer à nouveau plus tard."
 }
