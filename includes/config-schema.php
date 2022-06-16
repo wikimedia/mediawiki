@@ -506,6 +506,7 @@ return [
 			'ParsoidCacheConfig' => [
 				'StashBackend' => null,
 				'StashDuration' => 86400,
+				'CacheThresholdTime' => 0.0,
 			],
 			'ChronologyProtectorStash' => null,
 			'ParserCacheExpireTime' => 86400,

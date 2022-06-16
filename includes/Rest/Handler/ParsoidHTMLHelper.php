@@ -22,8 +22,10 @@
 namespace MediaWiki\Rest\Handler;
 
 use IBufferingStatsdDataFactory;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
@@ -62,6 +64,14 @@ class ParsoidHTMLHelper {
 	 */
 	public const PARSOID_PAGE_BUNDLE_KEY = 'parsoid-page-bundle';
 
+	/**
+	 * @internal
+	 * @var string[]
+	 */
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::ParsoidCacheConfig
+	];
+
 	/** @var ParserCache */
 	private $parserCache;
 
@@ -98,25 +108,33 @@ class ParsoidHTMLHelper {
 	/** @var User */
 	private $user;
 
+	/** @var mixed */
+	private $parsoidCacheConfig;
+
 	/**
 	 * @param ParserCache $parserCache
 	 * @param RevisionOutputCache $revisionOutputCache
 	 * @param GlobalIdGenerator $globalIdGenerator
 	 * @param ParsoidOutputStash $parsoidOutputStash
 	 * @param IBufferingStatsdDataFactory $statsDataFactory
+	 * @param ServiceOptions $options
 	 */
 	public function __construct(
 		ParserCache $parserCache,
 		RevisionOutputCache $revisionOutputCache,
 		GlobalIdGenerator $globalIdGenerator,
 		ParsoidOutputStash $parsoidOutputStash,
-		IBufferingStatsdDataFactory $statsDataFactory
+		IBufferingStatsdDataFactory $statsDataFactory,
+		ServiceOptions $options
 	) {
 		$this->parserCache = $parserCache;
 		$this->globalIdGenerator = $globalIdGenerator;
 		$this->revisionOutputCache = $revisionOutputCache;
 		$this->parsoidOutputStash = $parsoidOutputStash;
 		$this->stats = $statsDataFactory;
+
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->parsoidCacheConfig = $options->get( MainConfigNames::ParsoidCacheConfig );
 	}
 
 	/**
@@ -393,7 +411,9 @@ class ParsoidHTMLHelper {
 			return $this->parserOutput;
 		}
 
+		$startTime = microtime( true );
 		$this->parserOutput = $this->parse();
+		$time = microtime( true ) - $startTime;
 
 		// TODO: when we make tighter integration with Parsoid, render ID should become
 		// a standard ParserOutput property. Nothing else needs it now, so don't generate
@@ -406,12 +426,14 @@ class ParsoidHTMLHelper {
 		$this->parserOutput->setCacheRevisionId( $revId );
 		$this->parserOutput->setCacheTime( $now );
 
-		if ( $isOld ) {
-			$this->revisionOutputCache->save( $this->parserOutput, $this->revision, $parserOptions, $now );
-			$this->stats->increment( 'parsoidhtmlhelper.stashing.revision.cache.miss' );
-		} else {
-			$this->parserCache->save( $this->parserOutput, $this->page, $parserOptions, $now );
-			$this->stats->increment( 'parsoidhtmlhelper.stashing.parser.cache.miss' );
+		if ( $time > $this->parsoidCacheConfig['CacheThresholdTime'] ) {
+			if ( $isOld ) {
+				$this->revisionOutputCache->save( $this->parserOutput, $this->revision, $parserOptions, $now );
+				$this->stats->increment( 'parsoidhtmlhelper.stashing.revision.cache.miss' );
+			} else {
+				$this->parserCache->save( $this->parserOutput, $this->page, $parserOptions, $now );
+				$this->stats->increment( 'parsoidhtmlhelper.stashing.parser.cache.miss' );
+			}
 		}
 
 		return $this->parserOutput;
