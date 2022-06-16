@@ -1676,12 +1676,15 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	 *
 	 * Connection and query errors will be suppressed and logged
 	 *
-	 * @internal For use by LoadBalancer only
 	 * @param string $fname Calling function name
+	 * @param string $flush Flush flag, set to a situationally valid IDatabase::FLUSHING_*
+	 *   constant to disable warnings about explicitly rolling back implicit transactions.
+	 *   This will silently break any ongoing explicit transaction. Only set the flush flag
+	 *   if you are sure that it is safe to ignore these warnings in your context.
 	 * @throws DBError If an error occurs, {@see query}
 	 * @since 1.38
 	 */
-	public function flushSession( $fname = __METHOD__ );
+	public function flushSession( $fname = __METHOD__, $flush = self::FLUSHING_ONE );
 
 	/**
 	 * Commit any transaction but error out if writes or callbacks are pending
