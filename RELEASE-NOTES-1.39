@@ -249,6 +249,8 @@ because of Phabricator reports.
 	- mediawiki.legacy.config
 	- mediawiki.legacy.shared
 	- mediawiki.legacy.commonPrint
+* LogFormatter::styleRestricedElement(), deprecated since 1.37, has been
+  removed. Use ::styleRestrictedElement() instead.
 * …
 
 === Deprecations in 1.39 ===
