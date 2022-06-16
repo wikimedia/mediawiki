@@ -1149,7 +1149,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @inheritDoc
 	 */
 	public function getBy( $wikiId = self::LOCAL ): int {
-		$this->deprecateInvalidCrossWiki( $wikiId, '1.38' );
+		$this->assertWiki( $wikiId );
 		return ( $this->blocker ) ? $this->blocker->getId( $wikiId ) : 0;
 	}
 

@@ -100,7 +100,7 @@ class SystemBlock extends AbstractBlock {
 	 * @inheritDoc
 	 */
 	public function getBy( $wikiId = self::LOCAL ): int {
-		$this->deprecateInvalidCrossWiki( $wikiId, '1.38' );
+		$this->assertWiki( $wikiId );
 		return 0;
 	}
 
