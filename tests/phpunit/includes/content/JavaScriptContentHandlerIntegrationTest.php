@@ -40,7 +40,9 @@ class JavaScriptContentHandlerIntegrationTest extends TextContentHandlerIntegrat
 			'expectedFields' => [
 				'Links' => [
 				],
-				// Sections /should/ be empty as well: T307691
+				# T307691
+				'Sections' => [
+				],
 			],
 		];
 	}

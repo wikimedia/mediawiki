@@ -1428,6 +1428,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	public function isConversionTable() {
 		// @todo ConversionTable should become a separate content model.
+		// @todo And the prefix should be localized, too!
 
 		return $this->mNamespace === NS_MEDIAWIKI &&
 			strpos( $this->getText(), 'Conversiontable/' ) === 0;

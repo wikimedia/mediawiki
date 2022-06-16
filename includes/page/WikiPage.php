@@ -1932,14 +1932,30 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @return ParserOptions
 	 */
 	public function makeParserOptions( $context ) {
+		return self::makeParserOptionsFromTitleAndModel(
+			$this->getTitle(), $this->getContentModel(), $context
+		);
+	}
+
+	/**
+	 * Create canonical parser options for a given title and content model.
+	 * @internal
+	 * @param PageReference $pageRef
+	 * @param string $contentModel
+	 * @param IContextSource|UserIdentity|string $context See ::makeParserOptions
+	 * @return ParserOptions
+	 */
+	public static function makeParserOptionsFromTitleAndModel(
+		PageReference $pageRef, string $contentModel, $context
+	) {
 		$options = ParserOptions::newCanonical( $context );
 
-		if ( $this->getTitle()->isConversionTable() ) {
+		$title = Title::castFromPageReference( $pageRef );
+		if ( $title->isConversionTable() ) {
 			// @todo ConversionTable should become a separate content model, so
 			// we don't need special cases like this one, but see T313455.
 			$options->disableContentConversion();
 		}
-		$contentModel = $this->getContentModel();
 		if ( $contentModel !== CONTENT_MODEL_WIKITEXT ) {
 			$textModelsToParse = MediaWikiServices::getInstance()->getMainConfig()->get(
 				MainConfigNames::TextModelsToParse );
