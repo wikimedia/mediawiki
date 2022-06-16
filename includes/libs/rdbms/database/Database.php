@@ -4039,12 +4039,23 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->transactionManager = $transactionManager;
 	}
 
-	public function flushSession( $fname = __METHOD__ ) {
+	public function flushSession( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		if ( $this->trxLevel() ) {
 			// Any existing transaction should have been rolled back already
 			throw new DBUnexpectedError(
 				$this,
 				"$fname: transaction still in progress (not yet rolled back)"
+			);
+		}
+
+		if (
+			$flush !== self::FLUSHING_INTERNAL &&
+			$flush !== self::FLUSHING_ALL_PEERS &&
+			$this->getFlag( self::DBO_TRX )
+		) {
+			throw new DBUnexpectedError(
+				$this,
+				"$fname: Expected mass flush of all peer connections (DBO_TRX set)"
 			);
 		}
 

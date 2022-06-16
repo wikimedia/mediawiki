@@ -23,7 +23,6 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\PageEditStash;
-use MediaWiki\User\UserIdentity;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
@@ -211,21 +210,6 @@ class ApiStashEdit extends ApiBase {
 		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $ret );
-	}
-
-	/**
-	 * @param WikiPage $page
-	 * @param Content $content Edit content
-	 * @param UserIdentity $user
-	 * @param string $summary Edit summary
-	 * @return string ApiStashEdit::ERROR_* constant
-	 * @since 1.25
-	 * @deprecated Since 1.34, hard deprecated since 1.38
-	 */
-	public function parseAndStash( WikiPage $page, Content $content, UserIdentity $user, $summary ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		$updater = $page->newPageUpdater( $user );
-		return $this->pageEditStash->parseAndCache( $updater, $content, $user, $summary ?? '' );
 	}
 
 	public function getAllowedParams() {
