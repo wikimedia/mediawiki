@@ -92,7 +92,7 @@ class ContentHandlerFunctionalTest extends MediaWikiIntegrationTestCase {
 
 			$title = $this->getExistingTestPage()->getTitle();
 			$user = $this->getTestUser()->getUser();
-			$popts = ParserOptions::newCanonical( 'canonical' );
+			$popts = ParserOptions::newFromAnon();
 			$content = $handler->makeEmptyContent();
 
 			$this->assertInstanceOf(
@@ -120,7 +120,7 @@ class ContentHandlerFunctionalTest extends MediaWikiIntegrationTestCase {
 				->getContentHandler( $model );
 
 			$title = $this->getExistingTestPage()->getTitle();
-			$popts = ParserOptions::newCanonical( 'canonical' );
+			$popts = ParserOptions::newFromAnon();
 			$content = $handler->makeEmptyContent();
 
 			$this->assertInstanceOf(

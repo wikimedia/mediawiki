@@ -38,7 +38,7 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 		$options = null
 	) {
 		if ( !$options ) {
-			$options = ParserOptions::newCanonical( 'canonical' );
+			$options = ParserOptions::newFromAnon();
 		}
 
 		if ( !$rev ) {
@@ -66,7 +66,7 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testDoWorkLoadRevision() {
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$rev1 = $this->makeRevision( $page, 'First!' );
 		$rev2 = $this->makeRevision( $page, 'Second!' );
@@ -83,7 +83,7 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testDoWorkParserCache() {
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$rev1 = $this->makeRevision( $page, 'First!' );
 
@@ -99,7 +99,7 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testDoWorkWithFakeRevision() {
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$rev = $this->makeRevision( $page, 'NOPE' );
 
@@ -150,7 +150,7 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 	public function testMagicWords( $wikitext, $callback ) {
 		static $counter = 1;
 
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$page = $this->getNonexistingTestPage( __METHOD__ . $counter++ );
 		$this->editPage( $page, $wikitext );
 		$rev = $page->getRevisionRecord();
@@ -174,7 +174,7 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testDoWorkDeletedContent() {
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$page = $this->getExistingTestPage( __METHOD__ );
 		$rev1 = $page->getRevisionRecord();
 

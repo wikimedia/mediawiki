@@ -185,7 +185,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * @return ParserOptions
 	 */
 	private function getParserOptions() {
-		return ParserOptions::newCanonical( 'canonical' );
+		return ParserOptions::newFromAnon();
 	}
 
 	/**
@@ -228,7 +228,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$parserCache = $this->getParserCache( new HashBagOStuff() );
 		$access = $this->getParserOutputAccessWithCache( $parserCache );
 
-		$parserOptions = ParserOptions::newCanonical( 'canonical' );
+		$parserOptions = ParserOptions::newFromAnon();
 		$page = $this->getNonexistingTestPage( __METHOD__ );
 		$this->editPage( $page, 'Hello \'\'World\'\'!' );
 
@@ -334,10 +334,10 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	public function testLatestRevisionCacheSplit() {
 		$access = $this->getParserOutputAccessWithCache();
 
-		$frenchOptions = ParserOptions::newCanonical( 'canonical' );
+		$frenchOptions = ParserOptions::newFromAnon();
 		$frenchOptions->setUserLang( 'fr' );
 
-		$tongaOptions = ParserOptions::newCanonical( 'canonical' );
+		$tongaOptions = ParserOptions::newFromAnon();
 		$tongaOptions->setUserLang( 'to' );
 
 		$page = $this->getNonexistingTestPage( __METHOD__ );
@@ -517,10 +517,10 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	public function testOldRevisionCacheSplit() {
 		$access = $this->getParserOutputAccessWithCache();
 
-		$frenchOptions = ParserOptions::newCanonical( 'canonical' );
+		$frenchOptions = ParserOptions::newFromAnon();
 		$frenchOptions->setUserLang( 'fr' );
 
-		$tongaOptions = ParserOptions::newCanonical( 'canonical' );
+		$tongaOptions = ParserOptions::newFromAnon();
 		$tongaOptions->setUserLang( 'to' );
 
 		$page = $this->getNonexistingTestPage( __METHOD__ );
