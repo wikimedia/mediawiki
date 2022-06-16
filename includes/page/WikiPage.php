@@ -75,10 +75,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 	/**
 	 * @var bool
-	 * @todo make protected
 	 * @note for access by subclasses only
 	 */
-	public $mDataLoaded = false;
+	protected $mDataLoaded = false;
 
 	/**
 	 * A cache of the page_is_redirect field, loaded with page data
@@ -113,17 +112,15 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 	/**
 	 * @var int|false False means "not loaded"
-	 * @todo make protected
 	 * @note for access by subclasses only
 	 */
-	public $mLatest = false;
+	protected $mLatest = false;
 
 	/**
 	 * @var PreparedEdit|false Map of cache fields (text, parser output, ect) for a proposed/new edit
-	 * @todo make protected
 	 * @note for access by subclasses only
 	 */
-	public $mPreparedEdit = false;
+	protected $mPreparedEdit = false;
 
 	/**
 	 * @var int|null
