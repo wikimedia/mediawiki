@@ -366,7 +366,7 @@ class ParsoidHTMLHelper {
 		}
 
 		$revId = $this->revision ? $this->revision->getId() : $this->page->getLatest();
-		$parserOptions = ParserOptions::newCanonical( 'canonical' );
+		$parserOptions = ParserOptions::newFromAnon();
 
 		$isOld = $revId !== $this->page->getLatest();
 

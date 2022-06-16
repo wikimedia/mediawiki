@@ -1285,7 +1285,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		}
 
 		if ( !$parserOptions ) {
-			$parserOptions = ParserOptions::newCanonical( 'canonical' );
+			$parserOptions = ParserOptions::newFromAnon();
 		}
 
 		$options = $noCache ? ParserOutputAccess::OPT_NO_CACHE : 0;
