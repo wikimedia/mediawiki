@@ -28,7 +28,7 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 		$options = null
 	) {
 		if ( !$options ) {
-			$options = ParserOptions::newCanonical( 'canonical' );
+			$options = ParserOptions::newFromAnon();
 		}
 
 		if ( !$rev ) {
@@ -69,7 +69,7 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 	}
 
 	public function testUpdateCachedOutput() {
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$page = $this->getExistingTestPage( __METHOD__ );
 
 		$parserCache = $this->installParserCache();
@@ -91,7 +91,7 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 	 */
 	public function testFetchAfterMissWithLock() {
 		$bag = new HashBagOStuff();
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$page = $this->getExistingTestPage( __METHOD__ );
 
 		$this->installParserCache( $bag );

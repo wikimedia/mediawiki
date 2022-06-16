@@ -153,7 +153,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			RevisionStoreRecord::class,
 			PageIdentityValue::localIdentity( 0, NS_MAIN, __METHOD__ )
 		);
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage(
@@ -174,7 +174,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			PageIdentityValue::localIdentity( 0, NS_MAIN, 'RenderTestPage' )
 		);
 
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
@@ -206,7 +206,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 
 		$rev = $this->getMockRevision( RevisionStoreRecord::class, $title, null, 0, $content );
 
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
@@ -225,7 +225,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			21
 		);
 
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
@@ -255,7 +255,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			11
 		);
 
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
@@ -285,7 +285,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			11
 		);
 
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
@@ -316,7 +316,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			RevisionRecord::DELETED_TEXT
 		);
 
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
@@ -336,7 +336,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			RevisionRecord::DELETED_TEXT
 		);
 
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
@@ -370,7 +370,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			RevisionRecord::DELETED_TEXT
 		);
 
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
@@ -408,7 +408,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			0,
 			$content );
 
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
@@ -454,7 +454,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 
 		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
@@ -492,7 +492,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			RevisionRecord::DELETED_TEXT
 		);
 
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
@@ -526,7 +526,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			PageIdentityValue::localIdentity( 3, NS_MAIN, 'RenderTestPage' )
 		);
 
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
@@ -570,7 +570,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rev->setContent( SlotRecord::MAIN, $content );
 		$rev->setContent( 'aux', $content );
 
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
@@ -598,7 +598,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 		$rev->setContent( 'aux', new WikitextContent( '[[Goats]]' ) );
 
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
@@ -643,7 +643,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$rev->setId( 123 );
 		$rev->setContent( SlotRecord::MAIN, new WikitextContent( 'FooBar' ) );
 
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$rr = new RenderedRevision(
 			$rev,
 			$options,
