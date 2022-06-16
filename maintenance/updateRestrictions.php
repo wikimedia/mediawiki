@@ -48,7 +48,7 @@ class UpdateRestrictions extends Maintenance {
 		}
 
 		if ( !$dbw->fieldExists( 'page', 'page_restrictions' ) ) {
-			$this->output( 'Migration is not needed.' );
+			$this->output( 'Migration is not needed.\n' );
 			return true;
 		}
 
