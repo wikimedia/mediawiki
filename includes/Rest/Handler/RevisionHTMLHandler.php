@@ -5,6 +5,7 @@ namespace MediaWiki\Rest\Handler;
 use Config;
 use IBufferingStatsdDataFactory;
 use LogicException;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageLookup;
@@ -55,7 +56,8 @@ class RevisionHTMLHandler extends SimpleHandler {
 			$parserCacheFactory->getRevisionOutputCache( 'parsoid' ),
 			$globalIdGenerator,
 			$parsoidOutputStash,
-			$statsDataFactory
+			$statsDataFactory,
+			new ServiceOptions( ParsoidHTMLHelper::CONSTRUCTOR_OPTIONS, $config )
 		);
 	}
 

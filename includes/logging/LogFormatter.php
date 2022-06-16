@@ -772,17 +772,6 @@ class LogFormatter {
 	}
 
 	/**
-	 * Helper method for styling restricted element.
-	 * @deprecated since 1.37, use ::styleRestrictedElement instead
-	 * @param string $content
-	 * @return string HTML or wiki text
-	 */
-	protected function styleRestricedElement( $content ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->styleRestrictedElement( $content );
-	}
-
-	/**
 	 * Shortcut for wfMessage which honors local context.
 	 * @param string $key
 	 * @param mixed ...$params

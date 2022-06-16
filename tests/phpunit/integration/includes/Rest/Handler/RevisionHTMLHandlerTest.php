@@ -9,6 +9,8 @@ use HashBagOStuff;
 use HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Rest\Handler\RevisionHTMLHandler;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -72,6 +74,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param Parsoid|MockObject|null $parsoid
+	 *
 	 * @return RevisionHTMLHandler
 	 * @throws Exception
 	 */
@@ -102,11 +105,14 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			}
 		);
 
+		$config = [
+			'RightsUrl' => 'https://example.com/rights',
+			'RightsText' => 'some rights',
+			'ParsoidCacheConfig' =>
+				MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig )
+		];
 		$handler = new RevisionHTMLHandler(
-			new HashConfig( [
-				'RightsUrl' => 'https://example.com/rights',
-				'RightsText' => 'some rights',
-			] ),
+			new HashConfig( $config ),
 			$this->getServiceContainer()->getRevisionLookup(),
 			$this->getServiceContainer()->getTitleFormatter(),
 			$parserCacheFactory,
