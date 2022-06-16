@@ -1999,6 +1999,8 @@ class ParserTestRunner {
 			// T310283: be more selective about resetting SiteConfig if
 			// performance is a concern.
 			$mwServices->resetServiceForTesting( 'ParsoidSiteConfig' );
+			// DataAccess depends on config vars, so reset it
+			$mwServices->resetServiceForTesting( 'ParsoidDataAccess' );
 		};
 		$setup[] = $reset;
 		$teardown[] = $reset;
