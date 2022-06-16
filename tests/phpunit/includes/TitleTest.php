@@ -2109,28 +2109,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Title::isNamespaceProtected
-	 */
-	public function testIsNamespaceProtected() {
-		$this->hideDeprecated( 'Title::isNamespaceProtected' );
-		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
-		$this->setMwGlobals( [
-			'wgNamespaceProtection' => []
-		] );
-		$this->assertFalse(
-			$title->isNamespaceProtected( $this->getTestUser()->getUser() )
-		);
-		$this->setMwGlobals( [
-			'wgNamespaceProtection' => [
-				NS_MAIN => [ 'edit-main' ]
-			]
-		] );
-		$this->assertTrue(
-			$title->isNamespaceProtected( $this->getTestUser()->getUser() )
-		);
-	}
-
-	/**
 	 * @covers Title::isCascadeProtected
 	 */
 	public function testIsCascadeProtected() {

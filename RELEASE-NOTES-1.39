@@ -251,6 +251,7 @@ because of Phabricator reports.
 	- mediawiki.legacy.commonPrint
 * LogFormatter::styleRestricedElement(), deprecated since 1.37, has been
   removed. Use ::styleRestrictedElement() instead.
+* Title::isNamespaceProtected(), deprecated in 1.34, has been removed.
 * …
 
 === Deprecations in 1.39 ===
