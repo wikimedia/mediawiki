@@ -252,6 +252,7 @@ because of Phabricator reports.
 * LogFormatter::styleRestricedElement(), deprecated since 1.37, has been
   removed. Use ::styleRestrictedElement() instead.
 * Title::isNamespaceProtected(), deprecated in 1.34, has been removed.
+* ApiStashEdit::parseAndStash(), deprecated in 1.34, has been removed.
 * …
 
 === Deprecations in 1.39 ===
