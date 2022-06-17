@@ -213,13 +213,13 @@ config-schema:
             The `2x` key is a path to the 2x version of square logo
             The `svg` key is a path to the svg version of square logo
             The `icon` key is a path to the version of the logo without wordmark and tagline
-            The `wordmark` key may be false or an array with the following fields
+            The `wordmark` key may be null or an array with the following fields
              - `src` path to wordmark version
              - `1x` path to svg wordmark version (if you want to
                 support browsers with SVG support with an SVG logo)
              - `width` width of the logo in pixels
              - `height` height of the logo in pixels
-            The `tagline` key may be false or array with the following fields
+            The `tagline` key may be null or array with the following fields
              - `src` path to tagline image
              - `width` width of the tagline in pixels
              - `height` height of the tagline in pixels
