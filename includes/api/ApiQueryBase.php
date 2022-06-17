@@ -569,21 +569,6 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * Convert an input title or title prefix into a namespace constant and dbkey.
-	 *
-	 * @since 1.26
-	 * @deprecated sine 1.35, use parsePrefixedTitlePart() instead.
-	 * @param string $titlePart Title part parsePrefixedTitlePart instead
-	 * @param int $defaultNamespace Default namespace if none is given
-	 * @return array (int, string) Namespace number and DBkey
-	 */
-	public function prefixedTitlePartToKey( $titlePart, $defaultNamespace = NS_MAIN ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$t = $this->parsePrefixedTitlePart( $titlePart, $defaultNamespace );
-		return [ $t->getNamespace(), $t->getDBkey() ];
-	}
-
-	/**
 	 * @param string $hash
 	 * @return bool
 	 */
