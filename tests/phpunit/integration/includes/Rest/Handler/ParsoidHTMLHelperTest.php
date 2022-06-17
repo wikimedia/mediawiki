@@ -8,22 +8,16 @@ use EmptyBagOStuff;
 use Exception;
 use ExtensionRegistry;
 use HashBagOStuff;
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
-use MediaWiki\MainConfigNames;
-use MediaWiki\MainConfigSchema;
+use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
-use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Rest\Handler\ParsoidHTMLHelper;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
 use NullStatsdDataFactory;
-use ParserCache;
 use PHPUnit\Framework\MockObject\MockObject;
-use Psr\Log\NullLogger;
 use User;
-use WANObjectCache;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
@@ -99,53 +93,17 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param BagOStuff|null $cache
 	 * @param Parsoid|MockObject|null $parsoid
-	 * @param array $config
-	 *
 	 * @return ParsoidHTMLHelper
 	 * @throws Exception
 	 */
-	private function newHelper(
-		BagOStuff $cache = null,
-		Parsoid $parsoid = null,
-		array $config = []
-	): ParsoidHTMLHelper {
+	private function newHelper( BagOStuff $cache = null, Parsoid $parsoid = null ): ParsoidHTMLHelper {
 		$cache = $cache ?: new EmptyBagOStuff();
-		$config += MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig );
-
-		$parserCache = new ParserCache(
-			'TestPCache',
-			$cache,
-			self::CACHE_EPOCH,
-			$this->getServiceContainer()->getHookContainer(),
-			$this->getServiceContainer()->getJsonCodec(),
-			new NullStatsdDataFactory(),
-			new NullLogger(),
-			$this->getServiceContainer()->getTitleFactory(),
-			$this->getServiceContainer()->getWikiPageFactory()
-		);
-
-		$revisionOutputCache = new RevisionOutputCache(
-			'TestRCache',
-			new WANObjectCache( [ 'cache' => $cache ] ),
-			60 * 60,
-			self::CACHE_EPOCH,
-			$this->getServiceContainer()->getJsonCodec(),
-			new NullStatsdDataFactory(),
-			new NullLogger()
-		);
-
-		$stash = new SimpleParsoidOutputStash( $cache );
+		$stash = new SimpleParsoidOutputStash( $cache, 1 );
 
 		$helper = new ParsoidHTMLHelper(
-			$parserCache,
-			$revisionOutputCache,
-			$this->getServiceContainer()->getGlobalIdGenerator(),
 			$stash,
 			new NullStatsdDataFactory(),
-			new ServiceOptions(
-				ParsoidHTMLHelper::CONSTRUCTOR_OPTIONS,
-				[ 'ParsoidCacheConfig' => $config ]
-			)
+			$this->getServiceContainer()->getParsoidOutputAccess()
 		);
 
 		if ( $parsoid !== null ) {
@@ -195,7 +153,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( $revInfo['html'], $htmlresult );
 
 		// Test that data-parsoid has been added to ParserOutput
-		$pageBundle = $helper->getHtml()->getExtensionData( ParsoidHTMLHelper::PARSOID_PAGE_BUNDLE_KEY );
+		$pageBundle = $helper->getHtml()->getExtensionData( ParsoidOutputAccess::PARSOID_PAGE_BUNDLE_KEY );
 
 		$this->assertIsArray( $pageBundle );
 		$this->assertArrayHasKey( 'parsoid', $pageBundle );
@@ -227,7 +185,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		$helper = $this->newHelper( $cache, $parsoid );
 		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser(), $rev );
 		$htmlresult = $helper->getHtml()->getRawText();
-		$this->assertNotNull( $helper->getHtml()->getExtensionData( ParsoidHTMLHelper::PARSOID_PAGE_BUNDLE_KEY ) );
+		$this->assertNotNull( $helper->getHtml()->getExtensionData( ParsoidOutputAccess::PARSOID_PAGE_BUNDLE_KEY ) );
 		$this->assertStringContainsString( 'mocked HTML', $htmlresult );
 	}
 
@@ -246,7 +204,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		$eTag = $helper->getETag();
 		$parsoidStashKey = ParsoidRenderID::newFromETag( $eTag );
 
-		$stash = new SimpleParsoidOutputStash( $cache );
+		$stash = new SimpleParsoidOutputStash( $cache, 1 );
 		$this->assertNotNull( $stash->get( $parsoidStashKey ) );
 	}
 
@@ -321,22 +279,22 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 
 	public function provideETagSuffix() {
 		yield 'stash + html' =>
-			[ [ 'stash' => true ], 'html', '/stash/html' ];
+		[ [ 'stash' => true ], 'html', '/stash/html' ];
 
 		yield 'view html' =>
-			[ [], 'html', '/view/html' ];
+		[ [], 'html', '/view/html' ];
 
 		yield 'stash + wrapped' =>
-			[ [ 'stash' => true ], 'with_html', '/stash/with_html' ];
+		[ [ 'stash' => true ], 'with_html', '/stash/with_html' ];
 
 		yield 'view wrapped' =>
-			[ [], 'with_html', '/view/with_html' ];
+		[ [], 'with_html', '/view/with_html' ];
 
 		yield 'stash' =>
-			[ [ 'stash' => true ], '', '/stash' ];
+		[ [ 'stash' => true ], '', '/stash' ];
 
 		yield 'nothing' =>
-			[ [], '', '/view' ];
+		[ [], '', '/view' ];
 	}
 
 	/**
@@ -398,44 +356,6 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectExceptionObject( $expectedException );
 		$helper->getHtml();
-	}
-
-	public function provideCacheThresholdData() {
-		return [
-			yield "fast parse" => [ 1, 2 ], // high threshold, no caching
-			yield "slow parse" => [ 0, 1 ], // low threshold, caching
-		];
-	}
-
-	/**
-	 * @dataProvider provideCacheThresholdData()
-	 */
-	public function testHtmlWithCacheThreshold(
-		$cacheThresholdTime,
-		$expectedCalls
-	) {
-		$page = $this->getExistingTestPage( __METHOD__ );
-		$config = [ 'CacheThresholdTime' => $cacheThresholdTime ];
-
-		$cache = new HashBagOStuff();
-		$parsoid = $this->createNoOpMock( Parsoid::class, [ 'wikitext2html' ] );
-		// With CacheThresholdTime set to 1, the page will be parsed multiple times
-		// in this case, at least 2 times since it was fast to parse.
-		$parsoid->expects( $this->exactly( $expectedCalls ) )
-			->method( 'wikitext2html' )
-			->willReturn( new PageBundle( 'mocked HTML', null, null, '1.0' ) );
-
-		$helper = $this->newHelper( $cache, $parsoid, $config );
-
-		$helper->init( $page, self::PARAM_DEFAULTS );
-		$htmlresult = $helper->getHtml()->getRawText();
-		$this->assertStringContainsString( 'mocked HTML', $htmlresult );
-
-		$helper = $this->newHelper( $cache, $parsoid, $config );
-		$helper->init( $page, self::PARAM_DEFAULTS );
-		$htmlresult = $helper->getHtml()->getRawText();
-		$this->assertNotNull( $helper->getHtml()->getExtensionData( ParsoidHTMLHelper::PARSOID_PAGE_BUNDLE_KEY ) );
-		$this->assertStringContainsString( 'mocked HTML', $htmlresult );
 	}
 
 }

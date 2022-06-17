@@ -119,6 +119,7 @@ use MediaWiki\Parser\ParserObserver;
 use MediaWiki\Parser\Parsoid\Config\DataAccess as MWDataAccess;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory as MWPageConfigFactory;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig as MWSiteConfig;
+use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\GroupPermissionsLookup;
@@ -184,6 +185,7 @@ use Wikimedia\Parsoid\Config\Api\DataAccess as ApiDataAccess;
 use Wikimedia\Parsoid\Config\Api\SiteConfig as ApiSiteConfig;
 use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\SiteConfig;
+use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\RequestTimeout;
 use Wikimedia\Services\RecursiveServiceDependencyException;
@@ -1208,6 +1210,7 @@ return [
 			$services->getRevisionRenderer(),
 			$services->getSlotRoleRegistry(),
 			$services->getParserCache(),
+			$services->getParsoidOutputAccess(),
 			$services->getJobQueueGroup(),
 			$services->getMessageCache(),
 			$services->getContentLanguage(),
@@ -1320,6 +1323,24 @@ return [
 			$services->getContentTransformer(),
 			$services->getReadOnlyMode(),
 			$services->getParserFactory() // *legacy* parser factory
+		);
+	},
+
+	'ParsoidOutputAccess' => static function ( MediaWikiServices $services ): ParsoidOutputAccess {
+		return new ParsoidOutputAccess(
+			new ServiceOptions(
+				ParsoidOutputAccess::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			$services->getParserCacheFactory(),
+			$services->getRevisionLookup(),
+			$services->getGlobalIdGenerator(),
+			$services->getStatsdDataFactory(),
+			new Parsoid(
+				$services->get( 'ParsoidSiteConfig' ),
+				$services->get( 'ParsoidDataAccess' )
+			),
+			$services->getParsoidPageConfigFactory()
 		);
 	},
 

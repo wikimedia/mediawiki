@@ -100,6 +100,7 @@ use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
+use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\GroupPermissionsLookup;
@@ -1421,6 +1422,15 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getParsoidDataAccess(): DataAccess {
 		return $this->getService( 'ParsoidDataAccess' );
+	}
+
+	/**
+	 * @return ParsoidOutputAccess
+	 * @since 1.39
+	 * @unstable
+	 */
+	public function getParsoidOutputAccess(): ParsoidOutputAccess {
+		return $this->getService( 'ParsoidOutputAccess' );
 	}
 
 	/**

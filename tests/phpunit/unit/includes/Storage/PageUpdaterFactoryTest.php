@@ -28,6 +28,9 @@ class PageUpdaterFactoryTest extends MediaWikiUnitTestCase {
 			'UseAutomaticEditSummaries' => null,
 			'ManualRevertSearchRadius' => null,
 			'UseRCPatrol' => null,
+			'ParsoidCacheConfig' => [
+				'WarmParsoidParserCache' => false
+			],
 		];
 
 		$lb = $this->createNoOpMock( LoadBalancer::class );
