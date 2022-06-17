@@ -172,18 +172,6 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	}
 
 	/**
-	 * Get a replica DB connection for the specified cluster
-	 *
-	 * @param string $cluster Cluster name
-	 * @return DBConnRef
-	 * @deprecated since 1.34
-	 */
-	public function getSlave( $cluster ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->getReplica( $cluster );
-	}
-
-	/**
 	 * Get a primary database connection for the specified cluster
 	 *
 	 * @param string $cluster Cluster name
