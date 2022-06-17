@@ -113,6 +113,7 @@ describe( 'Page Source', () => {
 			assert.strictEqual( isNaN( postEditDate.getTime() ), false );
 			assert.notEqual( preEditDate, postEditDate );
 			assert.notEqual( preEditEtag, postEditEtag );
+			assert.match( postEditHeaders.etag, /^".*"$/, 'ETag must be present and not marked weak' );
 		} );
 	} );
 

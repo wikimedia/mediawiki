@@ -127,8 +127,10 @@ abstract class ParsoidHandler extends Handler {
 		parent::checkPreconditions();
 
 		// Disable precondition checks by ignoring the return value above.
-		// Parsoid/JS doesn't implement these checks.
-		// See https://phabricator.wikimedia.org/T238849#5683035 for a discussion.
+		// This works around the problem that Visual Editor sends weak ETags with
+		// If-Match headers in some requests, which always fails. The weak ETags seem
+		// to originate from Varnish. See T238849 for the issue that prompted this
+		// workaround, and T310710 for removing it.
 		return null;
 	}
 
@@ -697,7 +699,7 @@ abstract class ParsoidHandler extends Handler {
 			}
 			if ( $request->getMethod() === 'GET' ) {
 				$tid = UIDGenerator::newUUIDv1();
-				$response->addHeader( 'Etag', "W/\"{$oldid}/{$tid}\"" );
+				$response->addHeader( 'Etag', "\"{$oldid}/{$tid}\"" );
 			}
 
 			// FIXME: For pagebundle requests, this can be somewhat inflated

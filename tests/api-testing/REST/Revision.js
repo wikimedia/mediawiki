@@ -142,6 +142,7 @@ describe( 'Revision', () => {
 
 			assert.match( text, /<html / );
 			assert.match( text, /Hello World/ );
+			assert.match( headers.etag, /^".*"$/, 'ETag must be present and not marked weak' );
 		} );
 
 		it( 'should return 404 for revision that does not exist', async () => {
