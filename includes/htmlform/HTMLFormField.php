@@ -685,7 +685,7 @@ abstract class HTMLFormField {
 	 *
 	 * @param string $value The value to set the input to.
 	 *
-	 * @return OOUI\FieldLayout|OOUI\ActionFieldLayout
+	 * @return OOUI\FieldLayout
 	 */
 	public function getOOUI( $value ) {
 		$inputField = $this->getInputOOUI( $value );
@@ -784,14 +784,9 @@ abstract class HTMLFormField {
 	 * Get a FieldLayout (or subclass thereof) to wrap this field in when using OOUI output.
 	 * @param OOUI\Widget $inputField
 	 * @param array $config
-	 * @return OOUI\FieldLayout|OOUI\ActionFieldLayout
-	 * @suppress PhanUndeclaredProperty Only some subclasses declare mClassWithButton
+	 * @return OOUI\FieldLayout
 	 */
 	protected function getFieldLayoutOOUI( $inputField, $config ) {
-		if ( isset( $this->mClassWithButton ) ) {
-			$buttonWidget = $this->mClassWithButton->getInputOOUI( '' );
-			return new HTMLFormActionFieldLayout( $inputField, $buttonWidget, $config );
-		}
 		return new HTMLFormFieldLayout( $inputField, $config );
 	}
 

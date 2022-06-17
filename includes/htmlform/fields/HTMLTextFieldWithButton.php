@@ -20,4 +20,9 @@ class HTMLTextFieldWithButton extends HTMLTextField {
 	public function getInputHTML( $value ) {
 		return $this->mClassWithButton->getElement( parent::getInputHTML( $value ) );
 	}
+
+	protected function getFieldLayoutOOUI( $inputField, $config ) {
+		$buttonWidget = $this->mClassWithButton->getInputOOUI( '' );
+		return new HTMLFormActionFieldLayout( $inputField, $buttonWidget, $config );
+	}
 }
