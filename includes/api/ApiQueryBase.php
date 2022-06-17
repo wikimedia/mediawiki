@@ -655,22 +655,4 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	// endregion -- end of utility methods
-
-	/***************************************************************************/
-	// region   Deprecated methods
-	/** @name   Deprecated methods */
-
-	/**
-	 * Filters hidden users (where the user doesn't have the right to view them)
-	 * Also adds relevant block information
-	 *
-	 * @deprecated since 1.34, use ApiQueryBlockInfoTrait instead
-	 * @param bool $showBlockInfo
-	 */
-	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		$this->addBlockInfoToQuery( $showBlockInfo );
-	}
-
-	// endregion -- end of deprecated methods
 }
