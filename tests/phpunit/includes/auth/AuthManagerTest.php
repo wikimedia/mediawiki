@@ -1645,17 +1645,17 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Auth\AuthManager::authorizeCreateAccount()
 	 */
 	public function testAuthorizeCreateAccount_DNSBlacklist() {
-		$this->setMwGlobals( [
-			'wgEnableDnsBlacklist' => true,
-			'wgDnsBlacklistUrls' => [
+		$this->overrideConfigValues( [
+			'EnableDnsBlacklist' => true,
+			'DnsBlacklistUrls' => [
 				'local.wmftest.net', // This will resolve for every subdomain, which works to test "listed?"
 			],
-			'wgProxyWhitelist' => [],
+			'ProxyWhitelist' => [],
 		] );
 		$this->initializeManager( true );
 		$status = $this->manager->authorizeCreateAccount( new \User );
 		$this->assertStatusError( 'sorbs_create_account_reason', $status );
-		$this->setMwGlobals( 'wgProxyWhitelist', [ '127.0.0.1' ] );
+		$this->overrideConfigValue( 'ProxyWhitelist', [ '127.0.0.1' ] );
 		$this->initializeManager( true );
 		$status = $this->manager->authorizeCreateAccount( new \User );
 		$this->assertStatusGood( $status );
