@@ -23,6 +23,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\Rdbms\IDatabase;
@@ -139,11 +140,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	/**
 	 * @inheritDoc
 	 */
-	public static function checkStructuredFilterUiEnabled( $user ) {
-		if ( $user instanceof Config ) {
-			wfDeprecated( __METHOD__ . ' with Config argument', '1.34' );
-			$user = func_get_arg( 1 );
-		}
+	public static function checkStructuredFilterUiEnabled( UserIdentity $user ) {
 		return !MediaWikiServices::getInstance()
 			->getUserOptionsLookup()
 			->getOption( $user, 'wlenhancedfilters-disable' );

@@ -1859,11 +1859,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @param UserIdentity $user
 	 * @return bool
 	 */
-	public static function checkStructuredFilterUiEnabled( $user ) {
-		if ( $user instanceof Config ) {
-			wfDeprecated( __METHOD__ . ' with Config argument', '1.34' );
-			$user = func_get_arg( 1 );
-		}
+	public static function checkStructuredFilterUiEnabled( UserIdentity $user ) {
 		return !MediaWikiServices::getInstance()
 			->getUserOptionsLookup()
 			->getOption( $user, 'rcenhancedfilters-disable' );
