@@ -1400,16 +1400,31 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [ 'a' => 'w', 'b' => 'x', 'c' => 'z' ], $op->getIndicators() );
 
 		// Test with addParserOutputMetadata
-		$pOut1 = $this->createParserOutputStub( 'getIndicators', [ 'c' => 'u', 'd' => 'v' ] );
+		// Note that the indicators are wrapped.
+		$pOut1 = $this->createParserOutputStub( [
+			'getIndicators' => [ 'c' => 'u', 'd' => 'v' ],
+			'getWrapperDivClass' => 'wrapper1',
+		] );
 		$op->addParserOutputMetadata( $pOut1 );
-		$this->assertSame( [ 'a' => 'w', 'b' => 'x', 'c' => 'u', 'd' => 'v' ],
-			$op->getIndicators() );
+		$this->assertSame( [
+			'a' => 'w',
+			'b' => 'x',
+			'c' => '<div class="wrapper1">u</div>',
+			'd' => '<div class="wrapper1">v</div>',
+		], $op->getIndicators() );
 
 		// Test with addParserOutput
-		$pOut2 = $this->createParserOutputStub( 'getIndicators', [ 'a' => '!!!' ] );
+		$pOut2 = $this->createParserOutputStub( [
+			'getIndicators' => [ 'a' => '!!!' ],
+			'getWrapperDivClass' => 'wrapper2',
+		] );
 		$op->addParserOutput( $pOut2 );
-		$this->assertSame( [ 'a' => '!!!', 'b' => 'x', 'c' => 'u', 'd' => 'v' ],
-			$op->getIndicators() );
+		$this->assertSame( [
+			'a' => '<div class="wrapper2">!!!</div>',
+			'b' => 'x',
+			'c' => '<div class="wrapper1">u</div>',
+			'd' => '<div class="wrapper1">v</div>',
+		], $op->getIndicators() );
 	}
 
 	/**

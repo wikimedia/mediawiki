@@ -1618,6 +1618,10 @@ class OutputPage extends ContextSource {
 	 *
 	 * In case of duplicate keys, existing values are overwritten.
 	 *
+	 * @note External code which calls this method should ensure that
+	 * any indicators sourced from parsed wikitext are wrapped with
+	 * the appropriate class; see note in ::getIndicators().
+	 *
 	 * @param string[] $indicators
 	 * @since 1.25
 	 */
@@ -1636,6 +1640,15 @@ class OutputPage extends ContextSource {
 	 * @since 1.25
 	 */
 	public function getIndicators() {
+		// Note that some -- but not all -- indicators will be wrapped
+		// with a class appropriate for user-generated wikitext content
+		// (usually .mw-parser-output). The exceptions would be an
+		// indicator added via ::addHelpLink() below, which adds content
+		// which don't come from the parser and is not user-generated;
+		// and any indicators added by extensions which may call
+		// OutputPage::setIndicators() directly.  In the latter case the
+		// caller is responsible for wrapping any parser-generated
+		// indicators.
 		return $this->mIndicators;
 	}
 
@@ -1668,6 +1681,9 @@ class OutputPage extends ContextSource {
 			$text
 		);
 
+		// See note in ::getIndicators() above -- unlike wikitext-generated
+		// indicators which come from ParserOutput, this indicator will not
+		// be wrapped.
 		$this->setIndicators( [ 'mw-helplink' => $link ] );
 	}
 
@@ -2027,7 +2043,17 @@ class OutputPage extends ContextSource {
 		$this->mLanguageLinks =
 			array_merge( $this->mLanguageLinks, $parserOutput->getLanguageLinks() );
 		$this->addCategoryLinks( $parserOutput->getCategories() );
-		$this->setIndicators( $parserOutput->getIndicators() );
+
+		// Parser-generated indicators get wrapped like other parser output.
+		$wrapClass = $parserOutput->getWrapperDivClass();
+		$result = [];
+		foreach ( $parserOutput->getIndicators() as $name => $html ) {
+			if ( $html !== '' && $wrapClass !== '' ) {
+				$html = Html::rawElement( 'div', [ 'class' => $wrapClass ], $html );
+			}
+			$result[$name] = $html;
+		}
+		$this->setIndicators( $result );
 
 		// FIXME: Best practice is for OutputPage to be an accumulator, as
 		// addParserOutputMetadata() may be called multiple times, but the
