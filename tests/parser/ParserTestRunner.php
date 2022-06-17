@@ -1572,35 +1572,6 @@ class ParserTestRunner {
 		);
 	}
 
-	private function setupParsoidTransform( ParserTest $test ): array {
-		$services = MediaWikiServices::getInstance();
-		$pageConfigFactory = $services->get( 'ParsoidPageConfigFactory' );
-		$pageConfig = null;
-		[ $title, $options, $revId ] = $this->setupParserOptions(
-			$test,
-			static function ( $context, $title, $revId, $wikitext ) use ( $pageConfigFactory, &$pageConfig ) {
-				$pageConfig = $pageConfigFactory->create(
-					$title,
-					$context->getUser(),
-					// @todo T270310: Parsoid doesn't have a mechanism
-					// to override revid with a fake revision, like the
-					// legacy parser does, so {{REVISIONID}} will be
-					// 'wrong' in parser tests.  Probably need to
-					// override
-					// ParserOptions::getCurrentRevisionRecordCallback()
-					// (like we do for the 'lastsavedrevision' option
-					// below) in order to fix this.
-					null/*$revId*/,
-					// @todo T270310: Parsoid should really accept a
-					// RevisionRecord here, instead of raw wikitext.
-					$wikitext,
-					$context->getLanguage()->getCode()
-				);
-				return $pageConfig->getParserOptions();
-			} );
-		return [ $pageConfig, $title, $options, $revId ];
-	}
-
 	/**
 	 * @param Parsoid $parsoid
 	 * @param PageConfig $pageConfig
@@ -1769,6 +1740,38 @@ class ParserTestRunner {
 			}
 			return new ParserTestResult( $test, $mode, $bufExpected, $bufOut );
 		}
+	}
+
+	private function setupParsoidTransform( ParserTest $test ): array {
+		$services = MediaWikiServices::getInstance();
+		$pageConfigFactory = $services->get( 'ParsoidPageConfigFactory' );
+		$pageConfig = null;
+		$runner = $this;
+		[ $title, $options, $revId ] = $this->setupParserOptions(
+			$test,
+			static function ( $context, $title, $revId, $wikitext ) use ( $runner, $pageConfigFactory, &$pageConfig ) {
+				$user = $context->getUser();
+				$content = new WikitextContent( $wikitext );
+				$title = Title::newFromRow( (object)[
+					'page_id' => 187,
+					'page_len' => $content->getSize(),
+					'page_latest' => 1337,
+					'page_namespace' => $title->getNamespace(),
+					'page_title' => $title->getDBkey(),
+					'page_is_redirect' => 0
+				] );
+				$revRecord = new MutableRevisionRecord( $title );
+				$revRecord->setContent( SlotRecord::MAIN, $content )
+					->setUser( $user )
+					->setTimestamp( strval( $runner->getFakeTimestamp() ) )
+					->setPageId( $title->getArticleID() )
+					->setId( $title->getLatestRevID() );
+				$pageConfig = $pageConfigFactory->create(
+					$title, $user, $revRecord, $context->getLanguage()->getCode()
+				);
+				return $pageConfig->getParserOptions();
+			} );
+		return [ $pageConfig, $title, $options, $revId ];
 	}
 
 	/**
@@ -1999,6 +2002,8 @@ class ParserTestRunner {
 			// T310283: be more selective about resetting SiteConfig if
 			// performance is a concern.
 			$mwServices->resetServiceForTesting( 'ParsoidSiteConfig' );
+			// DataAccess depends on config vars, so reset it
+			$mwServices->resetServiceForTesting( 'ParsoidDataAccess' );
 		};
 		$setup[] = $reset;
 		$teardown[] = $reset;
