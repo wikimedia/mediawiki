@@ -597,9 +597,9 @@ abstract class ParsoidHandler extends Handler {
 				// NOTE: Core doesn't have REST endpoints that return raw wikitext,
 				//       so the below will fail unless the methods are overwritten.
 				if ( $redirectInfo['revId'] ) {
-					$redirectPath = $this->getRevisionContentEndpoint( 'wikitext' );
+					$redirectPath = $this->getRevisionContentEndpoint( ParsoidFormatHelper::FORMAT_WIKITEXT );
 				} else {
-					$redirectPath = $this->getPageContentEndpoint( 'wikitext' );
+					$redirectPath = $this->getPageContentEndpoint( ParsoidFormatHelper::FORMAT_WIKITEXT );
 				}
 				throw new ResponseException(
 					$this->createRedirectResponse( $redirectPath, $pathParams, $request->getQueryParams() )
