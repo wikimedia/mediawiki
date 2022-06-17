@@ -1327,8 +1327,8 @@ return [
 		// TODO: Determine storage requirements and config options for stashing parsoid
 		//       output for VE edits (T309016).
 		$config = $services->getMainConfig()->get( MainConfigNames::ParsoidCacheConfig );
-		$backend = $config['StashBackend']
-			? ObjectCache::getInstance( $config['StashBackend'] )
+		$backend = $config['StashType']
+			? ObjectCache::getInstance( $config['StashType'] )
 			: $services->getMainObjectStash();
 
 		return new SimpleParsoidOutputStash( $backend, $config['StashDuration'] );

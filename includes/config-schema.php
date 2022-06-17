@@ -504,7 +504,7 @@ return [
 			'EnableWANCacheReaper' => false,
 			'MainStash' => 'db-replicated',
 			'ParsoidCacheConfig' => [
-				'StashBackend' => null,
+				'StashType' => null,
 				'StashDuration' => 86400,
 				'CacheThresholdTime' => 0.0,
 			],
