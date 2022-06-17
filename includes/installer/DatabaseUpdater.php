@@ -1336,14 +1336,6 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * @deprecated since 1.35, use ifTableNotExists() instead
-	 */
-	protected function ifNoActorTable( $func, ...$params ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->ifTableNotExists( 'actor', $func, ...$params );
-	}
-
-	/**
 	 * Only run a function if a table does not exist
 	 *
 	 * @since 1.35
