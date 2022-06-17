@@ -261,6 +261,9 @@ because of Phabricator reports.
   removed. Use ApiQueryBlockInfoTrait instead.
 * ExternalStoreDB::getSlave(), deprecated in 1.34, has been removed. Use
   ExternalStoreDB::getReplica() instead.
+* ChangesListSpecialPage::checkStructuredFilterUiEnabled() and
+  SpecialWatchlist::checkStructuredFilterUiEnabled() now support UserIdentity
+  as the only argument. Passing Config argument was deprecated in 1.34.
 * …
 
 === Deprecations in 1.39 ===
