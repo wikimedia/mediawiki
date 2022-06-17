@@ -3737,7 +3737,7 @@ class MainConfigSchema {
 	 * Configuration for the caching related to parsoid output. The configuration contains the
 	 * following keys:
 	 *
-	 * - StashBackend: The name of the object store to be used by the ParsoidOutputStash service,
+	 * - StashType: The type of object store to be used by the ParsoidOutputStash service,
 	 *       which stores the base state of HTML based edits.
 	 *       Valid options are the keys of {@link $wgObjectCaches}, e.g. CACHE_* constants.
 	 *       Per default, the value of the MainStash setting will be used.
@@ -3761,7 +3761,7 @@ class MainConfigSchema {
 	public const ParsoidCacheConfig = [
 		'type' => 'object',
 		'default' => [
-			'StashBackend' => null,
+			'StashType' => null,
 			'StashDuration' => 24 * 60 * 60,
 			'CacheThresholdTime' => 0.0
 		]
