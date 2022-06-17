@@ -256,7 +256,7 @@ class SlotRecord {
 	 *        in revision history.
 	 */
 	public function __construct( \stdClass $row, $content, bool $derived = false ) {
-		Assert::parameterType( 'Content|callable', $content, '$content' );
+		Assert::parameterType( [ 'Content', 'callable' ], $content, '$content' );
 
 		Assert::parameter(
 			property_exists( $row, 'slot_revision_id' ),
