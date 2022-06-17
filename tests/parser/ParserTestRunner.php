@@ -1767,7 +1767,7 @@ class ParserTestRunner {
 					->setPageId( $title->getArticleID() )
 					->setId( $title->getLatestRevID() );
 				$pageConfig = $pageConfigFactory->create(
-					$title, $user, $revRecord, $context->getLanguage()->getCode()
+					$title, $user, $revRecord, null, $context->getLanguage()->getCode()
 				);
 				return $pageConfig->getParserOptions();
 			} );
