@@ -257,6 +257,8 @@ because of Phabricator reports.
 * Passing null instead of a NamespaceInfo instance to LinkCache::__construct()
   is not supported anymore. It is recommended to request an instance from the
   service container.
+* ApiQueryBase::showHiddenUsersAddBlockInfo(), deprecated in 1.34, has been
+  removed. Use ApiQueryBlockInfoTrait instead.
 * …
 
 === Deprecations in 1.39 ===
