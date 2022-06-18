@@ -106,7 +106,7 @@ class RevisionStore
 	private $blobStore;
 
 	/**
-	 * @var bool|string
+	 * @var false|string
 	 */
 	private $wikiId;
 
@@ -210,7 +210,7 @@ class RevisionStore
 		HookContainer $hookContainer,
 		$wikiId = WikiAwareEntity::LOCAL
 	) {
-		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
+		Assert::parameterType( [ 'string', 'false' ], $wikiId, '$wikiId' );
 
 		$this->loadBalancer = $loadBalancer;
 		$this->blobStore = $blobStore;

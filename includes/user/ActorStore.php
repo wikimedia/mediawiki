@@ -73,8 +73,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		LoggerInterface $logger,
 		$wikiId = WikiAwareEntity::LOCAL
 	) {
-		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
-		Assert::parameter( $wikiId !== true, '$wikiId', 'must be false or a string' );
+		Assert::parameterType( [ 'string', 'false' ], $wikiId, '$wikiId' );
 
 		$this->loadBalancer = $loadBalancer;
 		$this->userNameUtils = $userNameUtils;
