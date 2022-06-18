@@ -55,7 +55,6 @@ class RevisionStoreFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	public function provideWikiIds() {
-		yield [ true ];
 		yield [ false ];
 		yield [ 'somewiki' ];
 	}
