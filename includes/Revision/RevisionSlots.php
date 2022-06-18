@@ -51,7 +51,7 @@ class RevisionSlots {
 	 *        or a callback that returns such a structure.
 	 */
 	public function __construct( $slots ) {
-		Assert::parameterType( 'array|callable', $slots, '$slots' );
+		Assert::parameterType( [ 'array', 'callable' ], $slots, '$slots' );
 
 		if ( is_callable( $slots ) ) {
 			$this->slots = $slots;

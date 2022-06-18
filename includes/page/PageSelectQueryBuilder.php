@@ -41,7 +41,7 @@ class PageSelectQueryBuilder extends SelectQueryBuilder {
 	 * @return PageSelectQueryBuilder
 	 */
 	public function wherePageIds( $pageIds ): self {
-		Assert::parameterType( 'integer|array', $pageIds, '$pageIds' );
+		Assert::parameterType( [ 'integer', 'array' ], $pageIds, '$pageIds' );
 
 		if ( $pageIds ) {
 			$this->conds( [ 'page_id' => $pageIds ] );
@@ -87,7 +87,7 @@ class PageSelectQueryBuilder extends SelectQueryBuilder {
 	 * @return PageSelectQueryBuilder
 	 */
 	public function whereTitles( int $namespace, $pageTitles ): self {
-		Assert::parameterType( 'string|array', $pageTitles, '$pageTitles' );
+		Assert::parameterType( [ 'string', 'array' ], $pageTitles, '$pageTitles' );
 		$this->conds( [ 'page_namespace' => $namespace ] );
 		$this->conds( [ 'page_title' => $pageTitles ] );
 		return $this;
