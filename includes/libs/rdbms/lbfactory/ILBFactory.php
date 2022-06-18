@@ -88,7 +88,7 @@ interface ILBFactory {
 	public function getLocalDomainID();
 
 	/**
-	 * @param DatabaseDomain|string|bool $domain Database domain
+	 * @param DatabaseDomain|string|false $domain Database domain
 	 * @return string Value of $domain if provided or the local domain otherwise
 	 * @since 1.32
 	 */
@@ -120,7 +120,7 @@ interface ILBFactory {
 	 * @note The local/default database domain used by the load balancer instance will
 	 * still inherit from this ILBFactory instance, regardless of the $domain parameter.
 	 *
-	 * @param bool|string $domain Domain ID, or false for the current domain
+	 * @param string|false $domain Domain ID, or false for the current domain
 	 * @return ILoadBalancerForOwner
 	 */
 	public function newMainLB( $domain = false ): ILoadBalancerForOwner;
@@ -133,7 +133,7 @@ interface ILBFactory {
 	 * @note The local/default database domain used by the load balancer instance will
 	 * still inherit from this ILBFactory instance, regardless of the $domain parameter.
 	 *
-	 * @param bool|string $domain Domain ID, or false for the current domain
+	 * @param string|false $domain Domain ID, or false for the current domain
 	 * @return ILoadBalancer
 	 */
 	public function getMainLB( $domain = false ): ILoadBalancer;
@@ -415,7 +415,7 @@ interface ILBFactory {
 	/**
 	 * Get the UNIX timestamp when the client last touched the DB, if they did so recently
 	 *
-	 * @param DatabaseDomain|string|bool $domain Domain ID, or false for the current domain
+	 * @param DatabaseDomain|string|false $domain Domain ID, or false for the current domain
 	 * @return float|false UNIX timestamp; false if not recent or on record
 	 */
 	public function getChronologyProtectorTouched( $domain = false );

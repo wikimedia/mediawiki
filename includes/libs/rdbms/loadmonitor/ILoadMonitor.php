@@ -49,7 +49,7 @@ interface ILoadMonitor extends LoggerAwareInterface {
 	 * Perform load ratio adjustment before deciding which server to use
 	 *
 	 * @param int[] &$weightByServer Map of (server index => float weight)
-	 * @param string|bool $domain
+	 * @param string|false $domain
 	 */
 	public function scaleLoads( array &$weightByServer, $domain );
 
@@ -60,7 +60,7 @@ interface ILoadMonitor extends LoggerAwareInterface {
 	 *
 	 * @param int[] $serverIndexes
 	 * @param string $domain
-	 * @return array Map of (server index => float|int|bool)
+	 * @return array Map of (server index => float|int|false)
 	 */
 	public function getLagTimes( array $serverIndexes, $domain );
 }

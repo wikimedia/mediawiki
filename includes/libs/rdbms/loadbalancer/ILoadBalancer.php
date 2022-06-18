@@ -133,7 +133,7 @@ interface ILoadBalancer {
 	public function getLocalDomainID(): string;
 
 	/**
-	 * @param DatabaseDomain|string|bool $domain Database domain
+	 * @param DatabaseDomain|string|false $domain Database domain
 	 * @return string Value of $domain if it is foreign or the local domain otherwise
 	 * @since 1.32
 	 */
@@ -169,9 +169,9 @@ interface ILoadBalancer {
 	 * Subsequent calls with the same $group will not need to make new connection attempts
 	 * since the acquired connection for each group is preserved.
 	 *
-	 * @param string|bool $group Query group or false for the generic group
-	 * @param string|bool $domain DB domain ID or false for the local domain
-	 * @return int|bool Specific server index, or false if no live handle can be obtained
+	 * @param string|false $group Query group or false for the generic group
+	 * @param string|false $domain DB domain ID or false for the local domain
+	 * @return int|false Specific server index, or false if no live handle can be obtained
 	 */
 	public function getReaderIndex( $group = false, $domain = false );
 
@@ -186,7 +186,7 @@ interface ILoadBalancer {
 	 * will return true. This is useful for discouraging clients from taking further actions
 	 * if session consistency could not be maintained with respect to their last actions.
 	 *
-	 * @param DBPrimaryPos|bool $pos Primary position or false
+	 * @param DBPrimaryPos|false $pos Primary position or false
 	 */
 	public function waitFor( $pos );
 
@@ -196,7 +196,7 @@ interface ILoadBalancer {
 	 * This method is only intended for use a throttling mechanism for high-volume updates.
 	 * Unlike waitFor(), failure does not effect getLaggedReplicaMode()/laggedReplicaUsed().
 	 *
-	 * @param DBPrimaryPos|bool $pos Primary position or false
+	 * @param DBPrimaryPos|false $pos Primary position or false
 	 * @param int|null $timeout Max seconds to wait; default is mWaitTimeout
 	 * @return bool Success (able to connect and no timeouts reached)
 	 */
@@ -213,7 +213,7 @@ interface ILoadBalancer {
 	 *
 	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param int $flags Bitfield of CONN_* class constants
-	 * @return Database|bool False if no such connection is open
+	 * @return Database|false False if no such connection is open
 	 */
 	public function getAnyOpenConnection( $i, $flags = 0 );
 
@@ -263,12 +263,12 @@ interface ILoadBalancer {
 	 *
 	 * @param int $i Specific (overrides $groups) or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
-	 * @param string|bool $domain DB domain ID or false for the local domain
+	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants
 	 *
 	 * @note This method throws DBAccessError if ILoadBalancer::disable() was called
 	 *
-	 * @return IDatabase|bool This returns false on failure if CONN_SILENCE_ERRORS is set
+	 * @return IDatabase|false This returns false on failure if CONN_SILENCE_ERRORS is set
 	 * @throws DBError If no live handle could be obtained and CONN_SILENCE_ERRORS is not set
 	 * @throws DBAccessError If disable() was previously called
 	 * @throws InvalidArgumentException
@@ -310,7 +310,7 @@ interface ILoadBalancer {
 	 * @deprecated since 1.39, use ILoadBalancer::getConnection() instead.
 	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
-	 * @param string|bool $domain DB domain ID or false for the local domain
+	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return DBConnRef
 	 */
@@ -320,7 +320,7 @@ interface ILoadBalancer {
 	 * @internal Only to be used by DBConnRef
 	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
-	 * @param string|bool $domain DB domain ID or false for the local domain
+	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return IDatabase
 	 */
@@ -341,7 +341,7 @@ interface ILoadBalancer {
 	 * @deprecated since 1.38, use ILoadBalancer::getConnectionRef() instead.
 	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
-	 * @param string|bool $domain DB domain ID or false for the local domain
+	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants
 	 * @return IDatabase Live connection handle
 	 * @throws DBError If no live handle could be obtained
@@ -364,7 +364,7 @@ interface ILoadBalancer {
 	 *
 	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
-	 * @param string|bool $domain DB domain ID or false for the local domain
+	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return DBConnRef Live connection handle
 	 * @throws DBError If no live handle could be obtained
@@ -456,7 +456,7 @@ interface ILoadBalancer {
 	/**
 	 * Get the current primary replication position
 	 *
-	 * @return DBPrimaryPos|bool Returns false if not applicable
+	 * @return DBPrimaryPos|false Returns false if not applicable
 	 * @throws DBError
 	 * @since 1.37
 	 */
@@ -474,7 +474,7 @@ interface ILoadBalancer {
 	 * This can be useful for implementing session consistency, where the session
 	 * will be resumed across multiple HTTP requests or CLI script instances.
 	 *
-	 * @return DBPrimaryPos|bool Replication position or false if not applicable
+	 * @return DBPrimaryPos|false Replication position or false if not applicable
 	 * @since 1.34
 	 */
 	public function getReplicaResumePos();
@@ -512,7 +512,7 @@ interface ILoadBalancer {
 
 	/**
 	 * Get the timestamp of the latest write query done by this thread
-	 * @return float|bool UNIX timestamp or false
+	 * @return float|false UNIX timestamp or false
 	 * @since 1.37
 	 */
 	public function lastPrimaryChangeTimestamp();
@@ -529,7 +529,7 @@ interface ILoadBalancer {
 
 	/**
 	 * @note This method will trigger a DB connection if not yet done
-	 * @param string|bool $domain DB domain ID or false for the local domain
+	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @return bool Whether the database for generic connections this request is highly "lagged"
 	 */
 	public function getLaggedReplicaMode( $domain = false );
@@ -546,8 +546,8 @@ interface ILoadBalancer {
 
 	/**
 	 * @note This method may trigger a DB connection if not yet done
-	 * @param string|bool $domain DB domain ID or false for the local domain
-	 * @return string|bool Reason the primary is read-only or false if it is not
+	 * @param string|false $domain DB domain ID or false for the local domain
+	 * @return string|false Reason the primary is read-only or false if it is not
 	 */
 	public function getReadOnlyReason( $domain = false );
 
@@ -563,7 +563,7 @@ interface ILoadBalancer {
 	 * May attempt to open connections to replica DBs on the default DB. If there is
 	 * no lag, the maximum lag will be reported as -1.
 	 *
-	 * @param bool|string $domain Domain ID or false for the default database
+	 * @param string|false $domain Domain ID or false for the default database
 	 * @return array{0:string,1:float|int|false,2:int} (host, max lag, index of max lagged host)
 	 */
 	public function getMaxLag( $domain = false );
@@ -575,7 +575,7 @@ interface ILoadBalancer {
 	 *
 	 * Values may be "false" if replication is too broken to estimate
 	 *
-	 * @param string|bool $domain
+	 * @param string|false $domain
 	 * @return float[]|int[]|false[] Map of (server index => lag) in order of server index
 	 */
 	public function getLagTimes( $domain = false );
@@ -588,7 +588,7 @@ interface ILoadBalancer {
 	 * to get an accurate position.
 	 *
 	 * @param IDatabase $conn Replica DB
-	 * @param DBPrimaryPos|bool $pos Primary position; default: current position
+	 * @param DBPrimaryPos|false $pos Primary position; default: current position
 	 * @param int $timeout Timeout in seconds [optional]
 	 * @return bool Success
 	 * @since 1.37

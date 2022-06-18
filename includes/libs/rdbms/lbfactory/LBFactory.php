@@ -95,14 +95,14 @@ abstract class LBFactory implements ILBFactory {
 
 	/** @var int|null Ticket used to delegate transaction ownership */
 	private $ticket;
-	/** @var string|bool String if a requested DBO_TRX transaction round is active */
+	/** @var string|false String if a requested DBO_TRX transaction round is active */
 	private $trxRoundId = false;
 	/** @var string One of the ROUND_* class constants */
 	private $trxRoundStage = self::ROUND_CURSORY;
 	/** @var int Default replication wait timeout */
 	private $replicationWaitTimeout;
 
-	/** @var string|bool Reason all LBs are read-only or false if not */
+	/** @var string|false Reason all LBs are read-only or false if not */
 	protected $readOnlyReason = false;
 
 	/** @var string|null */
@@ -191,7 +191,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	/**
-	 * @param DatabaseDomain|string|bool $domain
+	 * @param DatabaseDomain|string|false $domain
 	 * @return DatabaseDomain
 	 */
 	final protected function resolveDomainInstance( $domain ) {

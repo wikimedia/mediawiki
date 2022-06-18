@@ -322,7 +322,7 @@ class DatabaseSqlite extends Database {
 
 	/**
 	 * Returns version of currently supported SQLite fulltext search module or false if none present.
-	 * @return string
+	 * @return string|false
 	 */
 	public static function getFulltextSearchModule() {
 		static $cachedResult = null;
@@ -655,7 +655,7 @@ class DatabaseSqlite extends Database {
 	 *
 	 * @param string $table
 	 * @param string $field
-	 * @return SQLiteField|bool False on failure
+	 * @return SQLiteField|false False on failure
 	 */
 	public function fieldInfo( $table, $field ) {
 		$tableName = $this->tableName( $table );

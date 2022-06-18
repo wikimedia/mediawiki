@@ -53,7 +53,7 @@ class ConnectionManager {
 
 	/**
 	 * @param ILoadBalancer $loadBalancer
-	 * @param string|bool $domain Optional logical DB name, defaults to current wiki.
+	 * @param string|false $domain Optional logical DB name, defaults to current wiki.
 	 *        This follows the convention for database names used by $loadBalancer.
 	 * @param string[] $groups see LoadBalancer::getConnection
 	 *

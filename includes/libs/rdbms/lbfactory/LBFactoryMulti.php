@@ -247,7 +247,7 @@ class LBFactoryMulti extends LBFactory {
 	 * @param string $clusterName
 	 * @param array $serverTemplate
 	 * @param array $groupLoads
-	 * @param string|bool $readOnlyReason
+	 * @param string|false $readOnlyReason
 	 * @return LoadBalancer
 	 */
 	private function newLoadBalancer(
