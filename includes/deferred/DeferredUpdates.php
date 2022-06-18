@@ -132,7 +132,7 @@ class DeferredUpdates {
 		// excessive pending update queue sizes when long-running scripts never trigger the
 		// basic RDBMs hooks for running pending updates.
 		if ( $commandLineMode ) {
-			self::tryOpportunisticExecute( 'run' );
+			self::tryOpportunisticExecute();
 		}
 	}
 
@@ -274,19 +274,14 @@ class DeferredUpdates {
 	 * there are still busy DB handles, then EnqueueableDataUpdate updates might be enqueued
 	 * as jobs. This avoids excessive memory use and risk of losing updates due to failures.
 	 *
-	 * The $mode parameter determines how the updates are processed. Use "run" to process the
-	 * updates by running them. Otherwise, use "enqueue" to process the updates by converting
-	 * the EnqueueableDataUpdate instances to jobs and running the others.
-	 *
 	 * Note that this method operates on updates from all stages and thus should not be called
 	 * during web requests. It is only intended for long-running Maintenance scripts.
 	 *
-	 * @param string $mode Either "run" or "enqueue" [default: "run"]
-	 * @return bool Whether updates were allowed to run
 	 * @internal For use by Maintenance
 	 * @since 1.28
+	 * @return bool Whether updates were allowed to run
 	 */
-	public static function tryOpportunisticExecute( $mode = 'run' ) {
+	public static function tryOpportunisticExecute(): bool {
 		// Leave execution up to the current loop if an update is already in progress
 		// or if updates are explicitly disabled
 		if ( self::getRecursiveExecutionStackDepth()
@@ -297,7 +292,7 @@ class DeferredUpdates {
 
 		// Run the updates for this context if they will have outer transaction scope
 		if ( !self::areDatabaseTransactionsActive() ) {
-			self::doUpdates( $mode, self::ALL );
+			self::doUpdates( 'run', self::ALL );
 
 			return true;
 		}

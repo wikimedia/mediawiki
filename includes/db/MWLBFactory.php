@@ -405,7 +405,7 @@ abstract class MWLBFactory {
 			$lbFactory->setWaitForReplicationListener(
 				__METHOD__,
 				static function () use ( $stats, $config ) {
-					DeferredUpdates::tryOpportunisticExecute( 'run' );
+					DeferredUpdates::tryOpportunisticExecute();
 					// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
 					MediaWiki::emitBufferedStatsdData( $stats, $config );
 				}
@@ -416,7 +416,7 @@ abstract class MWLBFactory {
 				__METHOD__,
 				static function ( $trigger ) use ( $stats, $config ) {
 					if ( $trigger === IDatabase::TRIGGER_COMMIT ) {
-						DeferredUpdates::tryOpportunisticExecute( 'run' );
+						DeferredUpdates::tryOpportunisticExecute();
 					}
 					// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
 					MediaWiki::emitBufferedStatsdData( $stats, $config );
