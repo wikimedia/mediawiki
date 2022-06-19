@@ -57,25 +57,14 @@ class LinkHolderArray {
 
 	/**
 	 * @param Parser $parent
-	 * @param ILanguageConverter|null $languageConverter
-	 * @param HookContainer|null $hookContainer
+	 * @param ILanguageConverter $languageConverter
+	 * @param HookContainer $hookContainer
 	 */
-	public function __construct( Parser $parent, ILanguageConverter $languageConverter = null,
-		HookContainer $hookContainer = null
+	public function __construct( Parser $parent, ILanguageConverter $languageConverter,
+		HookContainer $hookContainer
 	) {
 		$this->parent = $parent;
-
-		if ( !$languageConverter ) {
-			wfDeprecated( __METHOD__ . ' without $languageConverter parameter', '1.35' );
-			$languageConverter = MediaWikiServices::getInstance()
-				->getLanguageConverterFactory()
-				->getLanguageConverter( $parent->getTargetLanguage() );
-		}
 		$this->languageConverter = $languageConverter;
-		if ( !$hookContainer ) {
-			wfDeprecated( __METHOD__ . ' without $hookContainer parameter', '1.35' );
-			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		}
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
