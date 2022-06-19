@@ -1713,9 +1713,10 @@ class Article implements Page {
 	 * @param bool $forceKnown Should the image be shown as a bluelink regardless of existence?
 	 * @return string Containing HTML with redirect link
 	 *
-	 * @deprecated since 1.30
+	 * @deprecated since 1.30, hard-deprecated since 1.39
 	 */
 	public function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
+		wfDeprecated( __METHOD__, '1.30' );
 		$lang = $this->getTitle()->getPageLanguage();
 		$out = $this->getContext()->getOutput();
 		if ( $appendSubtitle ) {
