@@ -20,7 +20,6 @@
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Maintenance\MaintenanceParameters;
 use MediaWiki\Maintenance\MaintenanceRunner;
@@ -75,6 +74,10 @@ abstract class Maintenance {
 
 	// Const for getStdin()
 	public const STDIN_ALL = -1;
+
+	// Help group names
+	public const SCRIPT_DEPENDENT_PARAMETERS = 'Script dependent parameters';
+	public const GENERIC_MAINTENANCE_PARAMETERS = 'Generic maintenance parameters';
 
 	/**
 	 * @var MaintenanceParameters
@@ -134,18 +137,6 @@ abstract class Maintenance {
 	 * @var int|null
 	 */
 	protected $mBatchSize = null;
-
-	/**
-	 * Generic options added by addDefaultParams()
-	 * @var string[]
-	 */
-	private $mGenericParameters = [];
-
-	/**
-	 * Generic options which might or not be supported by the script
-	 * @var string[]
-	 */
-	private $mDependentParameters = [];
 
 	/**
 	 * Used by getDB() / setDB()
@@ -373,7 +364,7 @@ abstract class Maintenance {
 				'per batch, default: ' . $this->mBatchSize, false, true );
 			if ( $this->supportsOption( 'batch-size' ) ) {
 				// This seems a little ugly...
-				$this->mDependentParameters[] = 'batch-size';
+				$this->parameters->assignGroup( self::SCRIPT_DEPENDENT_PARAMETERS, [ 'batch-size' ] );
 			}
 		}
 	}
@@ -546,23 +537,10 @@ abstract class Maintenance {
 
 		$this->addOption( 'help', 'Display this help message', false, false, 'h' );
 		$this->addOption( 'quiet', 'Whether to suppress non-error output', false, false, 'q' );
-		$this->addOption( 'conf', 'Location of LocalSettings.php, if not default', false, true );
-		$this->addOption( 'wiki', 'For specifying the wiki ID', false, true );
-		$this->addOption( 'globals', 'Output globals at the end of processing for debugging' );
-		$this->addOption(
-			'memory-limit',
-			'Set a specific memory limit for the script, '
-				. '"max" for no limit or "default" to avoid changing it',
-			false,
-			true
-		);
-		$this->addOption( 'server', "The protocol and server name to use in URLs, e.g. " .
-			"http://en.wikipedia.org. This is sometimes necessary because " .
-			"server name detection may fail in command line scripts.", false, true );
-		$this->addOption( 'profiler', 'Profiler output format (usually "text")', false, true );
 
 		# Save generic options to display them separately in help
-		$this->mGenericParameters = $this->parameters->getOptionNames();
+		$generic = [ 'help', 'quiet' ];
+		$this->parameters->assignGroup( self::GENERIC_MAINTENANCE_PARAMETERS, $generic );
 
 		# Script-dependent options:
 
@@ -575,10 +553,11 @@ abstract class Maintenance {
 
 		# Save additional script-dependent options to display
 		# them separately in help
-		$this->mDependentParameters = array_diff(
+		$dependent = array_diff(
 			$this->parameters->getOptionNames(),
-			$this->mGenericParameters
+			$generic
 		);
+		$this->parameters->assignGroup( self::SCRIPT_DEPENDENT_PARAMETERS, $dependent );
 	}
 
 	/**
@@ -693,67 +672,39 @@ abstract class Maintenance {
 	 */
 	public function setup() {
 		$this->loadParamsAndArgs();
-
-		# Set the memory limit
-		# Note we need to set it again later in case LocalSettings changed it
-		$this->adjustMemoryLimit();
 	}
 
 	/**
 	 * Normally we disable the memory_limit when running admin scripts.
 	 * Some scripts may wish to actually set a limit, however, to avoid
-	 * blowing up unexpectedly. We also support a --memory-limit option,
-	 * to allow sysadmins to explicitly set one if they'd prefer to override
-	 * defaults (or for people using Suhosin which yells at you for trying
-	 * to disable the limits)
+	 * blowing up unexpectedly.
 	 * @stable to override
 	 * @return string
 	 */
 	public function memoryLimit() {
-		$limit = $this->getOption( 'memory-limit', 'max' );
-		$limit = trim( $limit, "\" '" ); // trim quotes in case someone misunderstood
-		return $limit;
+		return 'max';
 	}
 
 	/**
 	 * Adjusts PHP's memory limit to better suit our needs, if needed.
+	 * @deprecated since 1.39, now controlled by MaintenanceRunner
 	 */
 	protected function adjustMemoryLimit() {
-		$limit = $this->memoryLimit();
+		wfDeprecated( __METHOD__, '1.39' );
+
+		if ( $this->parameters->hasOption( 'memory-limit' ) ) {
+			$limit = $this->parameters->getOption( 'memory-limit' );
+			$limit = trim( $limit, "\" '" ); // trim quotes in case someone misunderstood
+		} else {
+			$limit = $this->memoryLimit();
+		}
+
 		if ( $limit == 'max' ) {
 			$limit = -1; // no memory limit
 		}
 		if ( $limit != 'default' ) {
 			ini_set( 'memory_limit', $limit );
 		}
-	}
-
-	/**
-	 * Activate the profiler (assuming $wgProfiler is set)
-	 */
-	protected function activateProfiler() {
-		global $wgProfiler, $wgTrxProfilerLimits;
-
-		$output = $this->getOption( 'profiler' );
-		if ( !$output ) {
-			return;
-		}
-
-		if ( isset( $wgProfiler['class'] ) ) {
-			$class = $wgProfiler['class'];
-			/** @var Profiler $profiler */
-			$profiler = new $class(
-				[ 'sampling' => 1, 'output' => [ $output ] ]
-					+ $wgProfiler
-					+ [ 'threshold' => 0.0 ]
-			);
-			$profiler->setAllowOutput();
-			Profiler::replaceStubInstance( $profiler );
-		}
-
-		$trxProfiler = Profiler::instance()->getTransactionProfiler();
-		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
-		$trxProfiler->setExpectations( $wgTrxProfilerLimits['Maintenance'], __METHOD__ );
 	}
 
 	/**
@@ -772,15 +723,6 @@ abstract class Maintenance {
 	 * @param array $argv
 	 */
 	public function loadWithArgv( $argv ) {
-		$this->parameters->assignGroup(
-			'Generic maintenance parameters',
-			$this->mGenericParameters
-		);
-		$this->parameters->assignGroup(
-			'Script dependent parameters',
-			$this->mDependentParameters
-		);
-
 		if ( $this->mDescription ) {
 			$this->parameters->setDescription( $this->mDescription );
 		}
@@ -978,9 +920,6 @@ abstract class Maintenance {
 			}
 		}
 
-		// Per-script profiling; useful for debugging
-		$this->activateProfiler();
-
 		$this->afterFinalSetup();
 
 		$overrides['ShowExceptionDetails'] = true;
@@ -989,8 +928,6 @@ abstract class Maintenance {
 		$ini = [
 			'max_execution_time' => 0,
 		];
-
-		$this->adjustMemoryLimit();
 
 		$settingsBuilder->loadArray( [ 'config' => $overrides, 'php-ini' => $ini ] );
 	}
@@ -1005,8 +942,10 @@ abstract class Maintenance {
 	/**
 	 * Potentially debug globals. Originally a feature only
 	 * for refreshLinks
+	 * @deprecated since 1.39, now controlled by MaintenanceRunner.
 	 */
 	public function globals() {
+		wfDeprecated( __METHOD__, '1.39' );
 		if ( $this->hasOption( 'globals' ) ) {
 			print_r( $GLOBALS );
 		}

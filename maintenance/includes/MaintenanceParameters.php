@@ -264,24 +264,13 @@ class MaintenanceParameters {
 	}
 
 	/**
-	 * Merge parameter declarations from $other into this instance.
+	 * Merge options declarations from $other into this instance.
 	 *
 	 * @param MaintenanceParameters $other
 	 */
-	public function merge( MaintenanceParameters $other ) {
+	public function mergeOptions( MaintenanceParameters $other ) {
 		$this->mOptDefs = $other->mOptDefs + $this->mOptDefs;
 		$this->mShortOptionMap = $other->mShortOptionMap + $this->mShortOptionMap;
-		$this->mArgDefs = array_merge( $this->mArgDefs, $other->mArgDefs );
-		$this->mAllowUnregisteredOptions = $this->mAllowUnregisteredOptions
-			|| $other->mAllowUnregisteredOptions;
-
-		$this->mName = $other->mName ?: $this->mName;
-		$this->mDescription = $other->mDescription ?: $this->mDescription;
-
-		$this->mArgOffsets = [];
-		foreach ( $this->mArgDefs as $ofs => [ 'name' => $name ] ) {
-			$this->mArgOffsets[$name] = $ofs;
-		}
 
 		$this->clear();
 	}
