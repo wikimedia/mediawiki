@@ -38,6 +38,7 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 		$expectedOutput, // The expected output
 		$desc // Description
 	) {
+		$this->hideDeprecated( 'MWTimestamp::getHumanTimestamp' );
 		$this->setMockUserOptions( [
 			'timecorrection' => $timeCorrection,
 			'date' => $dateFormat

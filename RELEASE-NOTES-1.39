@@ -355,6 +355,8 @@ because of Phabricator reports.
   - ::setUserObj() → ::setUsername()
   - ::setUserIP() → ::setUsername()
 * ObjectCache::addBusyCallback() is deprecated and non-functional.
+* MWTimestamp::getHumanTimestamp(), deprecated in 1.26, now emits deprecation
+  warnings.
 * …
 
 === Other changes in 1.39 ===
