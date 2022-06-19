@@ -50,41 +50,23 @@ WIKITEXT;
 	}
 
 	private function getMockRepoGroup() {
-		$mock = $this->createMock( RepoGroup::class );
+		$mock = $this->createNoOpMock( RepoGroup::class, [ 'findFile' ] );
 		$mock->expects( $this->once() )->method( 'findFile' )
 			->willReturnCallback( function ( $name ) {
-				$mockFile = $this->createMock( File::class );
+				$mockFile = $this->createNoOpMock( File::class, [ 'getTitle' ] );
 				$mockFile->expects( $this->once() )->method( 'getTitle' )
 					->willReturnCallback( static function () use ( $name ) {
-						switch ( $name ) {
-							case 'Redirect to bad.jpg':
-								return new TitleValue( NS_FILE, 'Bad.jpg' );
-							case 'Redirect_to_good.jpg':
-								return new TitleValue( NS_FILE, 'Good.jpg' );
-							case 'Redirect to hook bad.jpg':
-								return new TitleValue( NS_FILE, 'Hook_bad.jpg' );
-							case 'Redirect to hook good.jpg':
-								return new TitleValue( NS_FILE, 'Hook_good.jpg' );
-							default:
-								return new TitleValue( NS_FILE, $name );
-						}
+						$redirectMap = [
+							'Redirect to bad.jpg' => 'Bad.jpg',
+							'Redirect_to_good.jpg' => 'Good.jpg',
+							'Redirect to hook bad.jpg' => 'Hook_bad.jpg',
+							'Redirect to hook good.jpg' => 'Hook_good.jpg',
+						];
+						$redirectTarget = $redirectMap[$name] ?? $name;
+						return new TitleValue( NS_FILE, $redirectTarget );
 					} );
-				$mockFile->expects( $this->never() )->method( $this->anythingBut( 'getTitle' ) );
 				return $mockFile;
 			} );
-		$mock->expects( $this->never() )->method( $this->anythingBut( 'findFile' ) );
-
-		return $mock;
-	}
-
-	/**
-	 * Just returns null for every findFile().
-	 * @return RepoGroup
-	 */
-	private function getMockRepoGroupNull() {
-		$mock = $this->createMock( RepoGroup::class );
-		$mock->expects( $this->once() )->method( 'findFile' )->willReturn( null );
-		$mock->expects( $this->never() )->method( $this->anythingBut( 'findFile' ) );
 
 		return $mock;
 	}
@@ -121,12 +103,15 @@ WIKITEXT;
 	 * @covers ::isBadFile
 	 */
 	public function testIsBadFile_nullRepoGroup( $name, $title, $expected ) {
+		$nullRepoGroup = $this->createNoOpMock( RepoGroup::class, [ 'findFile' ] );
+		$nullRepoGroup->expects( $this->once() )->method( 'findFile' )->willReturn( null );
+
 		$bfl = new BadFileLookup(
 			static function () {
 				return self::BAD_FILE_LIST;
 			},
 			new EmptyBagOStuff,
-			$this->getMockRepoGroupNull(),
+			$nullRepoGroup,
 			$this->getDummyTitleParser( [ 'throwMockExceptions' => true ] ),
 			$this->hookContainer
 		);
