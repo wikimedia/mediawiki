@@ -233,6 +233,8 @@ because of Phabricator reports.
   RevisionArchiveRecord, RevisionFactory, RevisionLookup, RevisionRecord,
   RevisionSlots, RevisionStore, RevisionStoreRecord, SlotRecord, and
   SuppressedDataException.
+* Calling getBy() on an AbstractBlock from the wrong wiki, deprecated since
+  1.38, now throws an exception.
 * Passing a MediaWiki\Linker\LinkTarget to EditPage::makeTemplatesOnThisPageList
   or TemplatesOnThisPageFormatter::format is no longer supported,
   a MediaWiki\Page\PageIdentity is required.
