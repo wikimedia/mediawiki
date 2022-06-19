@@ -327,34 +327,28 @@ class MaintenanceParametersTest extends TestCase {
 		);
 	}
 
-	public function testMerge() {
+	public function testMergeOptions() {
 		$params = new MaintenanceParameters();
 		$params->setName( 'Foo' );
 		$params->setDescription( 'Frobs the foo' );
 
-		$params->addArg( 'one', 'First arg', true );
-
 		$params->addOption( 'flag', 'First flag', false, false, 'f' );
 
-		$params->setOptionsAndArgs( [ 'flag' => 1 ], [ 'ONE' ] );
+		$params->setOptionsAndArgs( [ 'flag' => 1 ], [] );
 
 		$other = new MaintenanceParameters();
 		$other->setName( 'Bar' );
 		$other->setDescription( 'Mars the bar' );
 
 		$other->addOption( 'value', 'Some value', true, true );
-		$other->addArg( 'two', 'Second arg', false );
 
-		$params->merge( $other );
+		$params->mergeOptions( $other );
 
 		// declarations from both objects are presetn
 		$this->assertTrue( $params->supportsOption( 'flag' ) );
 		$this->assertTrue( $params->supportsOption( 'value' ) );
-		$this->assertSame( 'one', $params->getArgName( 0 ) );
-		$this->assertSame( 'two', $params->getArgName( 1 ) );
 
 		// values are reset
-		$this->assertFalse( $params->hasArg( 'one' ) );
 		$this->assertFalse( $params->hasOption( 'flag' ) );
 	}
 
