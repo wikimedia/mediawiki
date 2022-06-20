@@ -1378,6 +1378,10 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * Get the main Parser instance. This is unsafe when the caller is not in
+	 * a top-level context, because re-entering the parser will throw an
+	 * exception.
+	 *
 	 * @since 1.29
 	 * @return Parser
 	 */

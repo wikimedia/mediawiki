@@ -108,6 +108,9 @@ class ParserFactory {
 	/** @var WANObjectCache */
 	private $wanCache;
 
+	/** @var Parser|null */
+	private $mainInstance;
+
 	/**
 	 * @param ServiceOptions $svcOptions
 	 * @param MagicWordFactory $magicWordFactory
@@ -216,4 +219,34 @@ class ParserFactory {
 			self::$inParserFactory--;
 		}
 	}
+
+	/**
+	 * Get the main shared instance. This is unsafe when the caller is not in
+	 * a top-level context, because re-entering the parser will throw an
+	 * exception.
+	 *
+	 * @since 1.39
+	 * @return Parser
+	 */
+	public function getMainInstance() {
+		if ( $this->mainInstance === null ) {
+			$this->mainInstance = $this->create();
+		}
+		return $this->mainInstance;
+	}
+
+	/**
+	 * Get the main shared instance, or if it is locked, get a new instance
+	 *
+	 * @since 1.39
+	 * @return Parser
+	 */
+	public function getInstance() {
+		$instance = $this->getMainInstance();
+		if ( $instance->isLocked() ) {
+			$instance = $this->create();
+		}
+		return $instance;
+	}
+
 }

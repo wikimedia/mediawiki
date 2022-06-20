@@ -36,7 +36,7 @@ class SignatureValidatorFactory {
 	private $serviceOptions;
 
 	/** @var callable */
-	private $parserClosure;
+	private $parserFactoryClosure;
 
 	/** @var SpecialPageFactory */
 	private $specialPageFactory;
@@ -46,22 +46,22 @@ class SignatureValidatorFactory {
 
 	/**
 	 * @param ServiceOptions $options
-	 * @param callable $parserClosure A function which returns a Parser. We use this
-	 *   instead of an actual Parser to avoid a circular dependency, since Parser also
-	 *   needs a SignatureValidatorFactory for signature formatting.
+	 * @param callable $parserFactoryClosure A function which returns a ParserFactory.
+	 *   We use this instead of an actual ParserFactory to avoid a circular dependency,
+	 *   since Parser also needs a SignatureValidatorFactory for signature formatting.
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param TitleFactory $titleFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		callable $parserClosure,
+		callable $parserFactoryClosure,
 		SpecialPageFactory $specialPageFactory,
 		TitleFactory $titleFactory
 	) {
 		// Configuration
 		$this->serviceOptions = $options;
 		$this->serviceOptions->assertRequiredOptions( SignatureValidator::CONSTRUCTOR_OPTIONS );
-		$this->parserClosure = $parserClosure;
+		$this->parserFactoryClosure = $parserFactoryClosure;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->titleFactory = $titleFactory;
 	}
@@ -82,7 +82,7 @@ class SignatureValidatorFactory {
 			$user,
 			$localizer,
 			$popts,
-			( $this->parserClosure )(),
+			( $this->parserFactoryClosure )(),
 			$this->specialPageFactory,
 			$this->titleFactory
 		);
