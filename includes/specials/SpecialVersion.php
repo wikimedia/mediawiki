@@ -1101,44 +1101,6 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Obtains the full path of an extensions AUTHORS or CREDITS file if
-	 * one exists.
-	 *
-	 * @param string $extDir Path to the extensions root directory
-	 *
-	 * @since 1.23
-	 * @deprecated since 1.35 Use MediaWiki\ExtensionInfo::getAuthorsFileName()
-	 *
-	 * @return bool|string False if no such file exists, otherwise returns
-	 * a path to it.
-	 */
-	public static function getExtAuthorsFileName( $extDir ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return ExtensionInfo::getAuthorsFileName( $extDir );
-	}
-
-	/**
-	 * Obtains the full path of an extensions COPYING or LICENSE file if
-	 * one exists.
-	 *
-	 * @param string $extDir Path to the extensions root directory
-	 *
-	 * @since 1.23
-	 * @deprecated since 1.35 Use MediaWiki\ExtensionInfo::getLicenseFileNames()
-	 *
-	 * @return bool|string False if no such file exists, otherwise returns
-	 * a path to it.
-	 */
-	public static function getExtLicenseFileName( $extDir ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$licenses = ExtensionInfo::getLicenseFileNames( $extDir );
-		if ( count( $licenses ) === 0 ) {
-			return false;
-		}
-		return $licenses[0];
-	}
-
-	/**
 	 * Convert an array of items into a list for display.
 	 *
 	 * @param array $list List of elements to display
