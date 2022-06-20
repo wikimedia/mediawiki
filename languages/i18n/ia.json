@@ -3970,5 +3970,6 @@
 	"skin-action-protect": "Proteger",
 	"skin-action-undelete": "Restaurar",
 	"skin-action-delete": "Deler",
-	"skin-action-move": "Renominar"
+	"skin-action-move": "Renominar",
+	"parsoid-stash-rate-limit-error": "Le immagazinage in reserva ha fallite perque le limite de frequentia ha essite excedite. Per favor tenta lo de novo plus tarde."
 }

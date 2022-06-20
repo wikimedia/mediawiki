@@ -4127,5 +4127,6 @@
 	"skin-action-protect": "Заштити",
 	"skin-action-undelete": "Врати",
 	"skin-action-delete": "Избриши",
-	"skin-action-move": "Премести"
+	"skin-action-move": "Премести",
+	"parsoid-stash-rate-limit-error": "Складирањето не успеа бидејќи е надмината временската граница. Обидете се повторно подоцна."
 }

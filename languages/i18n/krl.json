@@ -431,7 +431,7 @@
 	"whatlinkshere-links": "← linkit",
 	"whatlinkshere-hideredirs": "$1 ohjaukšet",
 	"whatlinkshere-hidetrans": "$1 šisällytykšet",
-	"whatlinkshere-hidelinks": "$1 linkit",
+	"whatlinkshere-hidelinks": "Piilota linkit",
 	"ipboptions": "2 tuntie:2 hours,1 päivä:1 day,3 päivyä:3 days,1 netäli:1 week,2 netälie:2 weeks,1 kuukauši:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuoši:1 year,ikuini:infinite",
 	"ipblocklist-submit": "Ečindy",
 	"blocklink": "Lukiče",

@@ -24,6 +24,7 @@
 			"Foomin10",
 			"Foresttttttt",
 			"Fryed-peach",
+			"Funa-enpitu",
 			"Hatukanezumi",
 			"Hijiri",
 			"Hinaloe",
@@ -4249,5 +4250,6 @@
 	"skin-action-protect": "保護",
 	"skin-action-undelete": "復元",
 	"skin-action-delete": "削除",
-	"skin-action-move": "移動"
+	"skin-action-move": "移動",
+	"parsoid-stash-rate-limit-error": "レート制限を超えたため、ストッシングに失敗しました。後で再試行してください。"
 }

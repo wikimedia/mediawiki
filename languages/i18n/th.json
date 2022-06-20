@@ -2524,7 +2524,7 @@
 	"whatlinkshere-hideredirs": "$1การเปลี่ยนทาง",
 	"whatlinkshere-hidetrans": "$1การใช้แม่แบบ",
 	"whatlinkshere-hidelinks": "$1ลิงก์",
-	"whatlinkshere-hideimages": "$1ลิงก์ไฟล์",
+	"whatlinkshere-hideimages": "ซ่อนลิงก์ไฟล์",
 	"whatlinkshere-sectionredir": "เปลี่ยนทางไปยังส่วน \"$1\"",
 	"whatlinkshere-submit": "ไป",
 	"autoblockid": "บล็อกอัตโนมัติ #$1",

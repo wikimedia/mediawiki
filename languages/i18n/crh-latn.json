@@ -291,6 +291,7 @@
 	"perfcachedts": "Aşağıdaki malümat keşten alındı, keşniñ soñki yañartılğan vaqtı: $1. Keşte eñ çoq {{PLURAL:$1|bir netice|$1 netice}} saqlanıp tura.",
 	"querypage-no-updates": "Bu saifeni deñiştirmege şimdi izin yoq. Bu malümat aman yañartılmaycaq.",
 	"viewsource": "Kodunı köster",
+	"skin-action-viewsource": "Kodunı kör",
 	"viewsource-title": "“$1” saifesiniñ menba kodu",
 	"actionthrottled": "Areket toqtaldı",
 	"actionthrottledtext": "Spamğa qarşı küreş sebebinden bu areketni az vaqıt içinde çoq kere tekrarlap olamaysıñız. Mümkün olğan qarardan ziyade areket yaptıñız. Bir qaç daqqadan soñ tekrarlap baqıñız.",
