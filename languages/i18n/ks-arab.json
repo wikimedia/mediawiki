@@ -168,7 +168,7 @@
 	"jumptonavigation": "رَہنُمٲیی",
 	"jumptosearch": "تَلاش",
 	"pool-errorunknown": "نامعلوٗم غَلطی",
-	"aboutsite": "{{SITENAME}} مُتعلِق",
+	"aboutsite": "{{GRAMMAR:دُکرٛٲوؠ|{{SITENAME}}}} مُتعلِق",
 	"aboutpage": "Project:مُتعلِق",
 	"copyrightpage": "{{ns:project}}:جُملہٕ حَقوٗق",
 	"currentevents": "خَبَر",

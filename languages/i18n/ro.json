@@ -920,7 +920,7 @@
 	"revdelete-failure": "'''Nu s-a putut modifica vizibilitatea versiunii:'''\n$1",
 	"logdelete-success": "Vizibilitatea jurnalului modificată.",
 	"logdelete-failure": "'''Vizibilitatea jurnalului nu poate fi definită:'''\n$1",
-	"revdel-restore": "Schimbă vizibilitatea",
+	"revdel-restore": "schimbă vizibilitatea",
 	"pagehist": "Istoricul paginii",
 	"deletedhist": "Istoric șters",
 	"revdelete-hide-current": "Eroare la ștergerea elementului datat $2, $1: reprezintă versiunea curentă și nu poate fi ștearsă.",

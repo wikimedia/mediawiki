@@ -24,7 +24,8 @@
 			"列维劳德",
 			"Tranve",
 			"星海",
-			"Sidishandsome"
+			"Sidishandsome",
+			"Diskdance"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|說明文件]]\n* [[mw:Special:MyLanguage/API:FAQ|常見問題]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 郵寄清單]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 報告錯誤及請求功能]\n</div>\n<strong>狀態資訊：</strong>MediaWiki API 已是成熟、穩定，並積極支援以改善的介面。儘管我們儘可能避免，但仍偶有需要重大變更的情況，請訂閱[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 郵寄清單]以便獲得更新通知。\n\n<strong>錯誤的請求：</strong>當 API 收到錯誤的請求，會發出以「MediaWiki-API-Error」為鍵的 HTTP 標頭欄位，隨後標頭欄位的值，以及傳回的錯誤碼會設為相同值。詳細資訊請參閱 [[mw:Special:MyLanguage/API:Errors_and_warnings|API: 錯誤與警告]]。\n\n<p class=\"mw-apisandbox-link\"><strong>測試：</strong>要簡化 API 請求的測試過程，請見 [[Special:ApiSandbox]]。</p>",
@@ -965,7 +966,7 @@
 	"apihelp-query+linkshere-param-show": "僅顯示符合這些準則的項目：\n;redirect：僅顯示重新導向。\n;!redirect：僅顯示非重新導向。",
 	"apihelp-query+linkshere-example-simple": "取得連結至 [[Main Page]] 的頁面清單。",
 	"apihelp-query+linkshere-example-generator": "取得連結至 [[Main Page]] 的相關頁面資訊。",
-	"apihelp-query+logevents-summary": "從日誌中獲取事件。",
+	"apihelp-query+logevents-summary": "從日誌中取得事件。",
 	"apihelp-query+logevents-param-prop": "要取得的屬性。",
 	"apihelp-query+logevents-paramvalue-prop-ids": "添加日誌事件的 ID。",
 	"apihelp-query+logevents-paramvalue-prop-title": "添加日誌事件的頁面標題。",
@@ -1289,8 +1290,8 @@
 	"apihelp-query+users-paramvalue-prop-centralids": "替使用者添加中心 ID 與附加狀態。",
 	"apihelp-query+users-paramvalue-prop-cancreate": "表明是否可替有效但尚未註冊的使用者名稱建立帳號。",
 	"apihelp-query+users-param-attachedwiki": "以 <kbd>$1prop=centralids</kbd> 來表明使用者是否附加於由此 ID 所識別出的 wiki。",
-	"apihelp-query+users-param-users": "要獲取的使用者清單。",
-	"apihelp-query+users-param-userids": "要獲取的使用者 ID 清單。",
+	"apihelp-query+users-param-users": "要取得資訊的使用者清單。",
+	"apihelp-query+users-param-userids": "要取得資訊的使用者 ID 清單。",
 	"apihelp-query+users-param-token": "請改用 <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>。",
 	"apihelp-query+users-example-simple": "返回使用者 <kbd>Example</kbd> 的資訊。",
 	"apihelp-query+watchlist-summary": "取得在目前使用者的監視清單裡，頁面的近期變更。",
@@ -1775,7 +1776,7 @@
 	"apierror-specialpage-cantexecute": "您沒有權限來查看此特殊頁面的結果。",
 	"apierror-stashedfilenotfound": "在儲藏裡找不到檔案：$1。",
 	"apierror-stashedit-missingtext": "給予的雜湊裡查無儲藏文字。",
-	"apierror-stashfailed-complete": "大量上傳已完成，請檢查狀態來獲取詳情。",
+	"apierror-stashfailed-complete": "已完成大量上傳，請檢查狀態以取得詳細資訊。",
 	"apierror-stashfailed-nosession": "沒有帶此鍵的分塊上傳 session。",
 	"apierror-stashfilestorage": "在儲藏裡不能儲存上傳：$1。",
 	"apierror-stashinvalidfile": "無效的儲藏檔案。",

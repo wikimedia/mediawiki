@@ -1077,7 +1077,7 @@
 	"apihelp-query+siteinfo-paramvalue-prop-fileextensions": "Devolve a lista de extenxións de ficheiro (tipos de ficheiro) permitidas para subir ficheiros.",
 	"apihelp-query+siteinfo-paramvalue-prop-rightsinfo": "Devolve a información dos dereitos (licenza) da wiki se está dispoñible.",
 	"apihelp-query+siteinfo-paramvalue-prop-restrictions": "Devolve información dos tipos de restricións (protección) dispoñibles.",
-	"apihelp-query+siteinfo-paramvalue-prop-languages": "Devolve unha lista dos idiomas que soporta Mediawiki (opcionalmente pode localizarse usando <var>$1inlanguagecode</var>).",
+	"apihelp-query+siteinfo-paramvalue-prop-languages": "Devolve unha lista dos idiomas que soporta MediaWiki (opcionalmente pode localizarse usando <var>$1inlanguagecode</var>).",
 	"apihelp-query+siteinfo-paramvalue-prop-languagevariants": "Devolve unha lista de códigos de lingua para os que [[mw:Special:MyLanguage/LanguageConverter|LanguageConverter]] está activo, e as variantes soportadas para cada un.",
 	"apihelp-query+siteinfo-paramvalue-prop-skins": "Devolve unha lista de todas as aparencias dispoñibles (opcionalmente pode localizarse usando <var>$1inlanguagecode</var>, noutro caso no idioma do contido).",
 	"apihelp-query+siteinfo-paramvalue-prop-extensiontags": "Devolve unha lista de etiquetas de extensión de analizador.",

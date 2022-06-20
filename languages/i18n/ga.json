@@ -476,6 +476,7 @@
 	"permissionserrorstext-withaction": "Níl cead agat $2, mar gheall ar {{PLURAL:$1|an fáth|na fáthanna}} seo a leanas:",
 	"recreate-moveddeleted-warn": "'''Rabhadh: Tá tú ag athchruthú leathanaigh a scriosadh cheana.'''\n\nAn bhfuil tú cinnte go bhfuil sé oiriúnach an leathanach seo a cur in eagar?\nCuirtear an loga scriosta ar fáil anseo mar áis:",
 	"log-fulllog": "Féach ar an logchomhad iomlán",
+	"postedit-confirmation-restored": "Díscriosadh an leathanach.",
 	"undo-summary": "Cealaíodh athrú $1 le [[Special:Contributions/$2|$2]] ([[User talk:$2|plé]])",
 	"viewpagelogs": "Féach ar logaí faoin leathanach seo",
 	"nohistory": "Níl aon stáir athraithe ag an leathanach seo.",

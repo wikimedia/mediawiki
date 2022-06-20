@@ -320,6 +320,7 @@
 	"readonly": "Gefræghord is belocen",
 	"enterlockreason": "Writ race þæs loces and apinsunge þæs timan æfter þæm þe þæt loc sie geopenod",
 	"readonlytext": "Se gefræghord is nu belocen wiþ niwu þing and gewrixlungu, weninga þæt gelimpe to uphealdenne þæt gefræghord, and þæræfter biþ he eft on gewunan.\n\nSe endebyrdnessbewita se beleac hine wrat þas race: $1",
+	"missing-article": "Se gefræghord ne fand þone trametgewrit se he wolde afindan, se hatte \"$1\" $2. Swylc belimp oftoste cymð ðonne man fogaþ asprungen 'diff' oþðe stærhlenc to tramet oftogen. Elleswise, byggan meaht ðu habban gefunden in þære hnesceware. Leoflice meld þisne belimp to [[Special:ListUsers/sysop|administrator]], and geife se URL.",
 	"missingarticle-rev": "(niwung#: $1)",
 	"missingarticle-diff": "(Toberenness: $1, $2)",
 	"internalerror": "Inweard woh",
