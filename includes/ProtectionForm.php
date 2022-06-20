@@ -135,8 +135,9 @@ class ProtectionForm {
 		} else {
 			$this->mPerformer->authorizeRead( 'protect', $this->mTitle, $this->mPermStatus );
 		}
-		if ( wfReadOnly() ) {
-			$this->mPermStatus->fatal( 'readonlytext', wfReadOnlyReason() );
+		$readOnlyMode = $services->getReadOnlyMode();
+		if ( $readOnlyMode->isReadOnly() ) {
+			$this->mPermStatus->fatal( 'readonlytext', $readOnlyMode->getReason() );
 		}
 		$this->disabled = !$this->mPermStatus->isGood();
 		$this->disabledAttrib = $this->disabled ? [ 'disabled' => 'disabled' ] : [];

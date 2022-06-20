@@ -2653,7 +2653,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * This will purge no more than $wgUpdateRowsPerQuery page_restrictions rows
 	 */
 	public static function purgeExpiredRestrictions() {
-		if ( wfReadOnly() ) {
+		if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 			return;
 		}
 
@@ -3634,7 +3634,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return bool True if the update succeeded
 	 */
 	public function invalidateCache( $purgeTime = null ) {
-		if ( wfReadOnly() ) {
+		if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 			return false;
 		}
 		if ( $this->mArticleID === 0 ) {

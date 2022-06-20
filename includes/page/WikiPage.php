@@ -1304,7 +1304,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$oldid = 0,
 		RevisionRecord $oldRev = null
 	) {
-		if ( wfReadOnly() ) {
+		if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 			return;
 		}
 
@@ -2126,8 +2126,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	public function doUpdateRestrictions( array $limit, array $expiry,
 		&$cascade, $reason, UserIdentity $user, $tags = []
 	) {
-		if ( wfReadOnly() ) {
-			return Status::newFatal( wfMessage( 'readonlytext', wfReadOnlyReason() ) );
+		$readOnlyMode = MediaWikiServices::getInstance()->getReadOnlyMode();
+		if ( $readOnlyMode->isReadOnly() ) {
+			return Status::newFatal( wfMessage( 'readonlytext', $readOnlyMode->getReason() ) );
 		}
 
 		$this->loadPageData( 'fromdbmaster' );
@@ -3089,7 +3090,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param ParserOutput $parserOutput Current version page output
 	 */
 	public function triggerOpportunisticLinksUpdate( ParserOutput $parserOutput ) {
-		if ( wfReadOnly() ) {
+		if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 			return;
 		}
 

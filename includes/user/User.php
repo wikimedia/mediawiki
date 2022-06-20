@@ -2789,7 +2789,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @todo Only rarely do all these fields need to be set!
 	 */
 	public function saveSettings() {
-		if ( wfReadOnly() ) {
+		if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 			// @TODO: caller should deal with this instead!
 			// This should really just be an exception.
 			MWExceptionHandler::logException( new DBExpectedError(

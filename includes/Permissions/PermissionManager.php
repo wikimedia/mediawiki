@@ -404,7 +404,7 @@ class PermissionManager {
 	/**
 	 * Can $user perform $action on a page? This is an internal function,
 	 * with multiple levels of checks depending on performance needs; see $rigor below.
-	 * It does not check wfReadOnly().
+	 * It does not check ReadOnlyMode::isReadOnly().
 	 *
 	 * @param string $action Action that permission needs to be checked for
 	 * @param User $user User to check
