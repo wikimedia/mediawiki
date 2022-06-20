@@ -279,6 +279,10 @@ because of Phabricator reports.
   ::isTargetMuted() instead.
 * WebRequest::checkUrlExtension(), deprecated in 1.35, has been removed.
 * ContentHandler::cleanupHandlersCache(), deprecated in 1.35, has been removed.
+* SpecialVersion::getExtAuthorsFileName, deprecated in 1.35, has been removed.
+  Use MediaWiki\ExtensionInfo::getAuthorsFileName.
+* SpecialVersion::getExtLicenseFileName, deprecated in 1.35, has been removed.
+  Use MediaWiki\ExtensionInfo::getLicenseFileNames.
 * …
 
 === Deprecations in 1.39 ===
