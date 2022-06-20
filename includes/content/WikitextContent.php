@@ -60,7 +60,7 @@ class WikitextContent extends TextContent {
 	 */
 	public function getSection( $sectionId ) {
 		$text = $this->getText();
-		$sect = MediaWikiServices::getInstance()->getParser()
+		$sect = MediaWikiServices::getInstance()->getParserFactory()->getInstance()
 			->getSection( $text, $sectionId, false );
 
 		if ( $sect === false ) {
@@ -111,7 +111,7 @@ class WikitextContent extends TextContent {
 			}
 		} else {
 			# Replacing an existing section; roll out the big guns
-			$text = MediaWikiServices::getInstance()->getParser()
+			$text = MediaWikiServices::getInstance()->getParserFactory()->getInstance()
 				->replaceSection( $oldtext, $sectionId, $text );
 		}
 
