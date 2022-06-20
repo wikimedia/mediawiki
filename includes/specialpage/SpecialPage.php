@@ -394,7 +394,9 @@ class SpecialPage implements MessageLocalizer {
 	 * @throws ReadOnlyError
 	 */
 	public function checkReadOnly() {
-		if ( wfReadOnly() ) {
+		// Can not inject the ReadOnlyMode as it would break the installer since
+		// it instantiates SpecialPageFactory before the DB (via ParserFactory for message parsing)
+		if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 			throw new ReadOnlyError;
 		}
 	}
