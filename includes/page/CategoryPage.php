@@ -112,20 +112,4 @@ class CategoryPage extends Article {
 		$out->addHTML( $viewer->getHTML() );
 		$this->addHelpLink( 'Help:Categories' );
 	}
-
-	/**
-	 * @deprecated since 1.35
-	 */
-	public function getCategoryViewerClass() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->mCategoryViewerClass;
-	}
-
-	/**
-	 * @deprecated since 1.35
-	 */
-	public function setCategoryViewerClass( $class ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$this->mCategoryViewerClass = $class;
-	}
 }
