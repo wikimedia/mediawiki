@@ -125,6 +125,9 @@ because of Phabricator reports.
 * (T308813) Added language support for Nigerian Pidgin (pcm).
 * (T309763) Added language support for Tai Nüa (tdd).
 * (T310040) Added language support for Fante (fat).
+* (T310976) Added language support for Tumbuka (tum). (Actually, it was
+  in Names.php and even used for a Wikipedia, but actualy localization
+  was added only now.)
 * (T304920) In Swahili, The "Media" namespace is now "Media", as in English,
   and the "File" namespace is now "Faili". The old name of the "File" namespace
   was "Picha", and it's kept for backwards compatibility. If you manage a wiki
