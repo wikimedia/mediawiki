@@ -31,7 +31,8 @@
 			"McDutchie",
 			"MuratTheTurkish",
 			"Srđan",
-			"Идеологист"
+			"Идеологист",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Потцртување на врски:",
@@ -2523,7 +2524,7 @@
 	"month": "Од месец (и порано):",
 	"year": "Од година (и порано):",
 	"date": "Од датумот (и порано):",
-	"sp-contributions-blocklog": "Дневник на блокирања",
+	"sp-contributions-blocklog": "дневник на блокирања",
 	"sp-contributions-suppresslog": "притаени придонесите на {{GENDER:$1|корисникот|корисничката}}",
 	"sp-contributions-deleted": "избришани придонеси на {{GENDER:$1|корисникот}}",
 	"sp-contributions-uploads": "подигања",

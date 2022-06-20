@@ -127,7 +127,9 @@
 			"列维劳德",
 			"星海",
 			"魔琴",
-			"SunAfterRain"
+			"SunAfterRain",
+			"Diskdance",
+			"LuciferianThomas"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -3680,7 +3682,7 @@
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|已變更}} $3 的保護層級 $4 [連鎖]",
 	"logentry-rights-rights": "$1已將{{GENDER:$6|$3}}的使用者群組從$4{{GENDER:$2|變更}}為$5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|已變更}} $3 的群組成員資格",
-	"logentry-rights-autopromote": "$1 已自動{{GENDER:$2|提升}}從 $4 成為 $5",
+	"logentry-rights-autopromote": "$1已從$4自動{{GENDER:$2|提升}}為$5",
 	"logentry-upload-upload": "$1 {{GENDER:$2|已上傳}} $3",
 	"logentry-upload-overwrite": "$1{{GENDER:$2|上傳了}}$3的新版本",
 	"logentry-upload-revert": "$1{{GENDER:$2|已還原}}$3至舊版本",
@@ -3688,8 +3690,8 @@
 	"log-description-managetags": "此頁面列出與[[Special:Tags|標籤]]相關的管理工作項目。 在日誌中僅包含由管理員手動所做的操作；被 Wiki 軟體所建立或刪除的標籤項目，不會記錄在此日誌中",
 	"logentry-managetags-create": "$1{{GENDER:$2|已建立}}標籤「$4」",
 	"logentry-managetags-delete": "$1{{GENDER:$2|已刪除}}標籤「$4」（已自$5個{{PLURAL:$5|修訂或日誌|修訂或日誌}}中移除）",
-	"logentry-managetags-activate": "$1 {{GENDER:$2|已啟用}}標籤 \"$4\" 供使用者與機器人使用",
-	"logentry-managetags-deactivate": "$1 {{GENDER:$2|已停用}}標籤 \"$4\" 供使用者與機器人使用",
+	"logentry-managetags-activate": "$1{{GENDER:$2|已啟用}}標籤「$4」供使用者與機器人使用",
+	"logentry-managetags-deactivate": "$1{{GENDER:$2|已停用}}標籤「$4」供使用者與機器人使用",
 	"log-name-tag": "標籤日誌",
 	"log-description-tag": "當使用者自各別修訂或日誌項目加入或移除[[Special:Tags|標籤]]時會顯示於此頁面。 此日誌並不會列出當時對標籤所做的編輯、刪除或類似的動作。",
 	"logentry-tag-update-add-revision": "$1 {{GENDER:$2|已新增}}{{PLURAL:$7|標籤|標籤}} $6 至頁面 $3 的修訂 $4。",

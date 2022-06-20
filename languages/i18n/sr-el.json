@@ -3447,7 +3447,7 @@
 	"tag-mw-blank-description": "Izmene koje brišu čitav sadržaj stranice",
 	"tag-mw-replace": "uklonjena većina teksta",
 	"tag-mw-replace-description": "Izmene koje uklanjaju više od 90% sadržaja stranice",
-	"tag-mw-rollback": "brzo vraćanje",
+	"tag-mw-rollback": "vraćanje",
 	"tag-mw-rollback-description": "Izmene koje vraćaju stranicu na prethodne izmene",
 	"tag-mw-undo": "poništenje",
 	"tag-mw-undo-description": "Izmene koje poništavaju prethodne izmene",

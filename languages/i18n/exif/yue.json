@@ -8,7 +8,8 @@
 			"Waihorace",
 			"William915",
 			"Yueman",
-			"Moon0319"
+			"Moon0319",
+			"Z423x5c6"
 		]
 	},
 	"exif-imagewidth": "闊",
@@ -126,6 +127,8 @@
 	"exif-gpsdifferential": "GPS 差動修正",
 	"exif-jpegfilecomment": "JPEG文件註",
 	"exif-keywords": "關鍵字",
+	"exif-worldregioncreated": "影呢幅相嘅地方",
+	"exif-countrycreated": "影呢幅相嘅國家",
 	"exif-countrydest": "顯示國家",
 	"exif-countrycodedest": "顯示國家地區碼",
 	"exif-provinceorstatedest": "顯示省份或州份或領域地區",

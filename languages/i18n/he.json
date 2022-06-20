@@ -775,7 +775,7 @@
 	"edit-slots-cannot-remove": "{{PLURAL:$1|המשבצת הבאה נדרשת ולא ניתן להסיר אותה|המשבצות הבאות נדרשות ולא ניתן להסיר אותן}}: $2.",
 	"edit-slots-missing": "{{PLURAL:$1|המשבצת הבאה חסרה|המשבצות הבאות חסרות}}: $2.",
 	"postedit-confirmation-created": "הדף נוצר.",
-	"postedit-confirmation-restored": "הדף שוחזר.",
+	"postedit-confirmation-restored": "הדף שנמחק שוחזר.",
 	"postedit-confirmation-saved": "העריכה שלך נשמרה.",
 	"postedit-confirmation-published": "העריכה שלך פורסמה.",
 	"edit-already-exists": "לא ניתן ליצור דף חדש.\nהוא כבר קיים.",

@@ -818,7 +818,7 @@
 	"edit-slots-cannot-remove": "{{PLURAL:$1|O seguinte segmento é obrigatório e não pode ser removido|Os seguintes segmentos são obrigatórios e não podem ser removidos}}: $2.",
 	"edit-slots-missing": "{{PLURAL:$1|Falta o seguinte segmento|Faltam os seguintes segmentos}}: $2.",
 	"postedit-confirmation-created": "A página foi criada.",
-	"postedit-confirmation-restored": "A página foi restaurada.",
+	"postedit-confirmation-restored": "Esta página foi restaurada.",
 	"postedit-confirmation-saved": "A sua edição foi gravada.",
 	"postedit-confirmation-published": "A sua edição foi publicada.",
 	"edit-already-exists": "Não foi possível criar uma página nova.\nEla já existia.",

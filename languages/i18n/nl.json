@@ -111,7 +111,8 @@
 			"Danieldegroot2",
 			"Dark Loon",
 			"Dutchy45",
-			"Nickthijssen1994"
+			"Nickthijssen1994",
+			"Elderson"
 		]
 	},
 	"tog-underline": "Links onderstrepen:",
@@ -834,7 +835,7 @@
 	"edit-slots-cannot-remove": "De volgende {{PLURAL:$1|sleuf is vereist en kan|sleuven zijn vereist en kunnen}} niet worden verwijderd: $2.",
 	"edit-slots-missing": "De volgende {{PLURAL:$1|sleuf ontbreekt|sleuven ontbreken}}: $2.",
 	"postedit-confirmation-created": "De pagina is aangemaakt.",
-	"postedit-confirmation-restored": "De pagina is hersteld.",
+	"postedit-confirmation-restored": "De pagina is teruggeplaatst.",
 	"postedit-confirmation-saved": "Uw bewerking is opgeslagen.",
 	"postedit-confirmation-published": "Uw bewerking is opgeslagen.",
 	"edit-already-exists": "De pagina is niet aangemaakt.\nDeze bestaat al.",
