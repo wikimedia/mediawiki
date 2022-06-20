@@ -68,6 +68,7 @@ class MWTimestamp extends ConvertibleTimestamp {
 	public function getHumanTimestamp(
 		MWTimestamp $relativeTo = null, UserIdentity $user = null, Language $lang = null
 	) {
+		wfDeprecated( __METHOD__, '1.26' );
 		if ( $lang === null ) {
 			$lang = RequestContext::getMain()->getLanguage();
 		}
