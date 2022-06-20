@@ -1176,20 +1176,6 @@ class WebRequest {
 	}
 
 	/**
-	 * This function formerly did a security check to prevent an XSS
-	 * vulnerability in IE6, as documented in T30235. Since IE6 support has
-	 * been dropped, this function now returns true unconditionally.
-	 *
-	 * @deprecated since 1.35
-	 * @param array $extList
-	 * @return bool
-	 */
-	public function checkUrlExtension( $extList = [] ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return true;
-	}
-
-	/**
 	 * Parse the Accept-Language header sent by the client into an array
 	 *
 	 * @return array [ languageCode => q-value ] sorted by q-value in
