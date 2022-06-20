@@ -7,20 +7,20 @@
  * @since 1.29
  */
 class ConfiguredReadOnlyMode {
-	/** @var string|bool|null */
+	/** @var string|false|null */
 	private $reason;
 
 	/** @var string|null */
 	private $reasonFile;
 
 	/**
-	 * @param string|bool|null $reason Current reason for read-only mode, if known. null means look
+	 * @param string|false|null $reason Current reason for read-only mode, if known. null means look
 	 *   in $reasonFile instead.
 	 * @param string|null $reasonFile A file to look in for a reason, if $reason is null. If it
 	 *   exists and is non-empty, its contents are treated as the reason for read-only mode.
 	 *   Otherwise, the wiki is not read-only.
 	 */
-	public function __construct( $reason, $reasonFile = null ) {
+	public function __construct( $reason, ?string $reasonFile = null ) {
 		$this->reason = $reason;
 		$this->reasonFile = $reasonFile;
 	}
@@ -30,14 +30,14 @@ class ConfiguredReadOnlyMode {
 	 *
 	 * @return bool
 	 */
-	public function isReadOnly() {
+	public function isReadOnly(): bool {
 		return $this->getReason() !== false;
 	}
 
 	/**
 	 * Get the value of $wgReadOnly or the contents of $wgReadOnlyFile.
 	 *
-	 * @return string|bool String when in read-only mode; false otherwise
+	 * @return string|false String when in read-only mode; false otherwise
 	 */
 	public function getReason() {
 		if ( $this->reason !== null ) {
@@ -59,9 +59,9 @@ class ConfiguredReadOnlyMode {
 	 * Set the read-only mode, which will apply for the remainder of the
 	 * request or until a service reset.
 	 *
-	 * @param string|null $msg
+	 * @param string|false|null $msg
 	 */
-	public function setReason( $msg ) {
+	public function setReason( $msg ): void {
 		$this->reason = $msg;
 	}
 }
