@@ -2524,7 +2524,7 @@
 	"whatlinkshere-next": "{{PLURAL:$1|d'un anans|anans ëd $1}}",
 	"whatlinkshere-links": "← anliure",
 	"whatlinkshere-hideredirs": "$1 ridiression",
-	"whatlinkshere-hidetrans": "$1 anclusion",
+	"whatlinkshere-hidetrans": "Stërmé la transclusion",
 	"whatlinkshere-hidelinks": "$1 anliure",
 	"whatlinkshere-hideimages": "$1 liure da archivi",
 	"whatlinkshere-sectionredir": "ridiression a la session \"$1\"",

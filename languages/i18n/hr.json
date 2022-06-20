@@ -378,6 +378,7 @@
 	"perfcachedts": "Sljedeći podaci su iz međuspremnika i posljednji puta su ažurirani $2 u $3. Međuspremnik sadrži {{PLURAL:$4|1=jedan rezultat|$4 rezultat|$4 rezultata}} pretraživanja.",
 	"querypage-no-updates": "Osvježavanje ove stranice je trenutačno onemogućeno. Nove promjene neće biti vidljive.",
 	"viewsource": "Vidi izvornik",
+	"skin-action-viewsource": "Vidi kôd",
 	"viewsource-title": "Vidi kôd stranice $1",
 	"actionthrottled": "Uređivanje je usporeno",
 	"actionthrottledtext": "Prekoračili ste ograničenje u broju radnji dopuštenih u određenom vremenu koje služi kao mjera protiv spama. Pokušajte opet za nekoliko minuta.",
