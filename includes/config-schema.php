@@ -973,7 +973,10 @@ return [
 					'cost' => 9,
 				],
 				'pbkdf2' => [
-					'class' => 'Pbkdf2Password',
+					'factory' => [
+						0 => 'AbstractPbkdf2Password',
+						1 => 'newInstance',
+					],
 					'algo' => 'sha512',
 					'cost' => '30000',
 					'length' => '64',

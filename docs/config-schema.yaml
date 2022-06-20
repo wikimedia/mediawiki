@@ -4511,13 +4511,17 @@ config-schema:
             pbkdf2-legacyA: { class: LayeredParameterizedPassword, types: [A, pbkdf2] }
             pbkdf2-legacyB: { class: LayeredParameterizedPassword, types: [B, pbkdf2] }
             bcrypt: { class: BcryptPassword, cost: 9 }
-            pbkdf2: { class: Pbkdf2Password, algo: sha512, cost: '30000', length: '64' }
+            pbkdf2: { factory: [AbstractPbkdf2Password, newInstance], algo: sha512, cost: '30000', length: '64' }
             argon2: { class: Argon2Password, algo: auto }
         type: object
         description: |-
-            Configuration for built-in password types. Maps the password type
-            to an array of options. The 'class' option is the Password class to
-            use. All other options are class-dependent.
+            Configuration for built-in password types.
+            Maps the password type to an array of options:
+            - class: The Password class to use.
+            - factory (since 1.40): A function that creates and returns a suitable Password object.
+              This option is intended only for internal use; the function signature is unstable and
+              subject to change in future versions.
+            All other options are class-dependent.
             An advanced example:
             ```
             $wgPasswordConfig['bcrypt-peppered'] = [
