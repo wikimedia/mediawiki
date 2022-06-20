@@ -25,7 +25,7 @@ class ReadOnlyMode {
 	 *
 	 * @return bool
 	 */
-	public function isReadOnly() {
+	public function isReadOnly(): bool {
 		return $this->getReason() !== false;
 	}
 
@@ -35,7 +35,7 @@ class ReadOnlyMode {
 	 * This checks the configuration and registered DB load balancers for
 	 * read-only mode. This may result in DB connection being made.
 	 *
-	 * @return string|bool String when in read-only mode; false otherwise
+	 * @return string|false String when in read-only mode; false otherwise
 	 */
 	public function getReason() {
 		$reason = $this->configuredReadOnly->getReason();
@@ -43,19 +43,16 @@ class ReadOnlyMode {
 			return $reason;
 		}
 		$reason = $this->loadBalancer->getReadOnlyReason();
-		if ( $reason !== false && $reason !== null ) {
-			return $reason;
-		}
-		return false;
+		return $reason ?? false;
 	}
 
 	/**
 	 * Set the read-only mode, which will apply for the remainder of the
 	 * request or until a service reset.
 	 *
-	 * @param string|null $msg
+	 * @param string|false|null $msg
 	 */
-	public function setReason( $msg ) {
+	public function setReason( $msg ): void {
 		$this->configuredReadOnly->setReason( $msg );
 	}
 }
