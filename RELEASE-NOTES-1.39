@@ -361,6 +361,7 @@ because of Phabricator reports.
 * ObjectCache::addBusyCallback() is deprecated and non-functional.
 * MWTimestamp::getHumanTimestamp(), deprecated in 1.26, now emits deprecation
   warnings.
+* Article::viewRedirect(), deprecated in 1.30, now emits deprecation warnings.
 * …
 
 === Other changes in 1.39 ===
