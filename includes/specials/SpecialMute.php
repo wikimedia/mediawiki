@@ -253,17 +253,6 @@ class SpecialMute extends FormSpecialPage {
 	}
 
 	/**
-	 * @deprecated since 1.35, use isTargetMuted
-	 *
-	 * @param string $userOption
-	 * @return bool
-	 */
-	public function isTargetBlacklisted( $userOption ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->isTargetMuted( $userOption );
-	}
-
-	/**
 	 * @param string $userOption
 	 * @return array
 	 */

@@ -275,6 +275,8 @@ because of Phabricator reports.
   because that is an invalid value for a dbDomain.
 * LinkHolderArray::__construct() had its signature changed. The class was marked
   internal in 1.35.
+* SpecialMute::isTargetBlacklisted(), deprecated in 1.35, has been removed. Use
+  ::isTargetMuted() instead.
 * …
 
 === Deprecations in 1.39 ===
@@ -357,6 +359,9 @@ because of Phabricator reports.
   - ::setUserObj() → ::setUsername()
   - ::setUserIP() → ::setUsername()
 * ObjectCache::addBusyCallback() is deprecated and non-functional.
+* MWTimestamp::getHumanTimestamp(), deprecated in 1.26, now emits deprecation
+  warnings.
+* Article::viewRedirect(), deprecated in 1.30, now emits deprecation warnings.
 * …
 
 === Other changes in 1.39 ===
