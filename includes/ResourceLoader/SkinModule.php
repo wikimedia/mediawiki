@@ -615,21 +615,14 @@ class SkinModule extends LessVarFileModule {
 			// no backwards compatibility changes needed.
 		}
 
-		// @todo: Note the beta cluster and other wikis may be using
-		// unsupported configuration where these values are set to false.
-		// The boolean check can be removed when this has been addressed.
-		if ( !empty( $logos['wordmark'] ) ) {
+		if ( isset( $logos['wordmark'] ) ) {
 			// Allow skins to scale the wordmark with browser font size (T207789)
 			$logos['wordmark'] = self::getRelativeSizedLogo( $logos['wordmark'] );
 		}
-
-		// @todo: Note the beta cluster and other wikis may be using
-		// unsupported configuration where these values are set to false.
-		// The boolean check can be removed when this has been addressed.
-		if ( !empty( $logos['tagline'] ) ) {
+		if ( isset( $logos['tagline'] ) ) {
 			$logos['tagline'] = self::getRelativeSizedLogo( $logos['tagline'] );
 		}
-		// return the modified logos!
+
 		return $logos;
 	}
 
@@ -699,7 +692,7 @@ class SkinModule extends LessVarFileModule {
 		$lessVars = parent::getLessVars( $context );
 		$logos = self::getAvailableLogos( $this->getConfig() );
 
-		if ( !empty( $logos['wordmark'] ) ) {
+		if ( isset( $logos['wordmark'] ) ) {
 			$logo = $logos['wordmark'];
 			$lessVars[ 'logo-enabled' ] = true;
 			$lessVars[ 'logo-wordmark-url' ] = CSSMin::buildUrlValue( $logo['src'] );
