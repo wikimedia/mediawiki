@@ -27,7 +27,7 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
-use MWException;
+use RuntimeException;
 use SvgHandler;
 use SVGReader;
 use Wikimedia\Minify\CSSMin;
@@ -190,9 +190,8 @@ class Image {
 		}
 		if ( isset( $desc['default'] ) ) {
 			return $this->getLocalPath( $desc['default'] );
-		} else {
-			throw new MWException( 'No matching path found' );
 		}
+		throw new RuntimeException( 'No matching path found' );
 	}
 
 	/**
@@ -297,7 +296,7 @@ class Image {
 
 		$path = $this->getPath( $context );
 		if ( !file_exists( $path ) ) {
-			throw new MWException( "File '$path' does not exist" );
+			throw new RuntimeException( "File '$path' does not exist" );
 		}
 
 		if ( $this->getExtension() !== 'svg' ) {
