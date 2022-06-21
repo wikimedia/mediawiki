@@ -1785,9 +1785,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * If user is blocked, return the specified reason for the block.
 	 *
 	 * @deprecated since 1.35 Use AbstractBlock::getReasonComment instead
+	 * Hard deprecated since 1.39.
 	 * @return string Blocking reason
 	 */
 	public function blockedFor() {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->getBlockedStatus();
 		return $this->mBlockreason;
 	}

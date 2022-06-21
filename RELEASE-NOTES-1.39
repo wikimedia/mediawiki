@@ -375,6 +375,7 @@ because of Phabricator reports.
 * MWTimestamp::getHumanTimestamp(), deprecated in 1.26, now emits deprecation
   warnings.
 * Article::viewRedirect(), deprecated in 1.30, now emits deprecation warnings.
+* User::blockedFor(), deprecated in 1.35, now emits deprecation warnings.
 * …
 
 === Other changes in 1.39 ===
