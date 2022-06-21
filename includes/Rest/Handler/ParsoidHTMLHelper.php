@@ -289,14 +289,14 @@ class ParsoidHTMLHelper {
 				$this->makePageBundle( $parserOutput )
 			);
 			if ( !$stashSuccess ) {
-				$this->stats->increment( 'parsoidhtmlhelper.stashing.stash.failed' );
+				$this->stats->increment( 'parsoidhtmlhelper.stash.fail' );
 				throw new LocalizedHttpException(
 					MessageValue::new( 'rest-html-backend-error' ),
 					500,
 					[ 'reason' => 'Failed to stash parser output' ]
 				);
 			}
-			$this->stats->increment( 'parsoidhtmlhelper.stashing.stash.save' );
+			$this->stats->increment( 'parsoidhtmlhelper.stash.save' );
 		}
 
 		return $parserOutput;
@@ -386,11 +386,11 @@ class ParsoidHTMLHelper {
 		if ( $isOld ) {
 			$this->parserOutput = $this->revisionOutputCache->get( $this->revision,
 				$parserOptions );
-			$this->stats->increment( 'parsoidhtmlhelper.stashing.revision.cache.hit' );
+			$statsKey = 'parsoidhtmlhelper.revision.cache';
 		} else {
 			$this->parserOutput = $this->parserCache->get( $this->page,
 				$parserOptions );
-			$this->stats->increment( 'parsoidhtmlhelper.stashing.parser.cache.hit' );
+			$statsKey = 'parsoidhtmlhelper.parser.cache';
 
 			if ( $this->parserOutput ) {
 				// Ignore cached ParserOutput if it is incomplete,
@@ -403,8 +403,11 @@ class ParsoidHTMLHelper {
 			}
 		}
 		if ( $this->parserOutput ) {
+			$this->stats->increment( $statsKey . '.get.hit' );
 			return $this->parserOutput;
 		}
+
+		$this->stats->increment( $statsKey . '.get.miss' );
 
 		$startTime = microtime( true );
 		$this->parserOutput = $this->parse();
@@ -424,11 +427,12 @@ class ParsoidHTMLHelper {
 		if ( $time > $this->parsoidCacheConfig['CacheThresholdTime'] ) {
 			if ( $isOld ) {
 				$this->revisionOutputCache->save( $this->parserOutput, $this->revision, $parserOptions, $now );
-				$this->stats->increment( 'parsoidhtmlhelper.stashing.revision.cache.miss' );
 			} else {
 				$this->parserCache->save( $this->parserOutput, $this->page, $parserOptions, $now );
-				$this->stats->increment( 'parsoidhtmlhelper.stashing.parser.cache.miss' );
 			}
+			$this->stats->increment( $statsKey . '.save.ok' );
+		} else {
+			$this->stats->increment( $statsKey . '.save.skipfast' );
 		}
 
 		return $this->parserOutput;
