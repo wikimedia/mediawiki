@@ -21,30 +21,6 @@ class CssContentTest extends TextContentTest {
 		return new CssContent( $text );
 	}
 
-	public static function dataGetParserOutput() {
-		return [
-			[
-				'MediaWiki:Test.css',
-				null,
-				"hello <world>\n",
-				"<pre class=\"mw-code mw-css\" dir=\"ltr\">\nhello &lt;world>\n\n</pre>"
-			],
-			[
-				'MediaWiki:Test.css',
-				null,
-				"/* hello [[world]] */\n",
-				"<pre class=\"mw-code mw-css\" dir=\"ltr\">\n/* hello [[world]] */\n\n</pre>",
-				[
-					'Links' => [
-						[ 'World' => 0 ]
-					]
-				]
-			],
-
-			// TODO: more...?
-		];
-	}
-
 	// XXX: currently, preSaveTransform is applied to styles. this may change or become optional.
 	public static function dataPreSaveTransform() {
 		return [

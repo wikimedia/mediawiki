@@ -11,30 +11,6 @@ class JavaScriptContentTest extends TextContentTest {
 		return new JavaScriptContent( $text );
 	}
 
-	public static function dataGetParserOutput() {
-		return [
-			[
-				'MediaWiki:Test.js',
-				null,
-				"hello <world>\n",
-				"<pre class=\"mw-code mw-js\" dir=\"ltr\">\nhello &lt;world>\n\n</pre>"
-			],
-			[
-				'MediaWiki:Test.js',
-				null,
-				"hello(); // [[world]]\n",
-				"<pre class=\"mw-code mw-js\" dir=\"ltr\">\nhello(); // [[world]]\n\n</pre>",
-				[
-					'Links' => [
-						[ 'World' => 0 ]
-					]
-				]
-			],
-
-			// TODO: more...?
-		];
-	}
-
 	// XXX: Unused function
 	public static function dataGetSection() {
 		return [
