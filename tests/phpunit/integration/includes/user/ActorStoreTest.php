@@ -369,7 +369,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 		];
 		yield 'registered, zero user name' => [
 			static function () {
-				return new UserIdentityValue( 26, '0', 0 );
+				return new UserIdentityValue( 26, '0' );
 			}, // $actorCallback
 			46, // $expected
 		];

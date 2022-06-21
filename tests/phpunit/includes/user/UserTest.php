@@ -910,7 +910,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $user, User::newFromIdentity( $user ) );
 
 		// ID only
-		$identity = new UserIdentityValue( $user->getId(), '', 0 );
+		$identity = new UserIdentityValue( $user->getId(), '' );
 		$result = User::newFromIdentity( $identity );
 		$this->assertInstanceOf( User::class, $result );
 		$this->assertSame( $user->getId(), $result->getId(), 'ID' );
@@ -918,7 +918,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $user->getActorId(), $result->getActorId(), 'Actor' );
 
 		// Name only
-		$identity = new UserIdentityValue( 0, $user->getName(), 0 );
+		$identity = new UserIdentityValue( 0, $user->getName() );
 		$result = User::newFromIdentity( $identity );
 		$this->assertInstanceOf( User::class, $result );
 		$this->assertSame( $user->getId(), $result->getId(), 'ID' );
