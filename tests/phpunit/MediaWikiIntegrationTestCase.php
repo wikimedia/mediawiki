@@ -2170,10 +2170,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * This should only be used for small data sets.
 	 *
-	 * @param IDatabase $source
-	 * @param IDatabase $target
+	 * @param IMaintainableDatabase $source
+	 * @param IMaintainableDatabase $target
 	 */
-	public function copyTestData( IDatabase $source, IDatabase $target ) {
+	public function copyTestData( IMaintainableDatabase $source, IMaintainableDatabase $target ) {
 		if ( $this->db->getType() === 'sqlite' ) {
 			// SQLite uses a non-temporary copy of the searchindex table for testing,
 			// which gets deleted and re-created when setting up the secondary connection,

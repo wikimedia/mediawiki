@@ -5,11 +5,10 @@ namespace MediaWiki\Tests\Maintenance;
 use CloneDatabase;
 use DumpBackup;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use WikiExporter;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 use XmlDumpWriter;
 
 /**
@@ -27,9 +26,9 @@ class BackupDumperPageTest extends DumpTestCase {
 	private $dbClone;
 
 	/**
-	 * @var ILoadBalancer
+	 * @var IMaintainableDatabase
 	 */
-	private $streamingLoadBalancer;
+	private $sinkDb;
 
 	public function addDBData() {
 		parent::addDBData();
@@ -41,36 +40,33 @@ class BackupDumperPageTest extends DumpTestCase {
 		if ( $this->dbClone ) {
 			$this->dbClone->destroy();
 		}
-		if ( $this->streamingLoadBalancer ) {
-			$this->streamingLoadBalancer->closeAll( __METHOD__ );
+		if ( $this->sinkDb ) {
+			$this->sinkDb->close( __METHOD__ );
 		}
 
 		parent::tearDown();
 	}
 
 	/**
-	 * Returns a new database connection which is separate from the conenctions returned
+	 * Returns a new database connection which is separate from the connections returned
 	 * by the default LoadBalancer instance.
 	 *
 	 * @return IDatabase
 	 */
-	private function newStreamingDBConnection() {
-		// Create a *new* LoadBalancer, so no connections are shared
-		if ( !$this->streamingLoadBalancer ) {
-			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-
-			$this->streamingLoadBalancer = $lbFactory->newMainLB();
+	private function newSinkDbConnection() {
+		if ( !$this->sinkDb ) {
+			// Make an untracked DB_PRIMARY connection
+			$sinkLb = $this->getServiceContainer()->getDBLoadBalancerFactory()->newMainLB();
+			$this->sinkDb = $sinkLb->getConnectionInternal( DB_PRIMARY );
 		}
 
-		$db = $this->streamingLoadBalancer->getConnection( DB_PRIMARY );
-
 		// Make sure the DB connection has the fake table clones and the fake table prefix
-		$this->dbClone = MediaWikiIntegrationTestCase::setupDatabaseWithTestPrefix( $db );
+		$this->dbClone = MediaWikiIntegrationTestCase::setupDatabaseWithTestPrefix( $this->sinkDb );
 
 		// Make sure the DB connection has all the test data
-		$this->copyTestData( $this->db, $db );
+		$this->copyTestData( $this->db, $this->sinkDb );
 
-		return $db;
+		return $this->sinkDb;
 	}
 
 	/**
@@ -92,7 +88,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		if ( $this->db->getType() === 'sqlite' ) {
 			$dumper->setDB( $this->db );
 		} else {
-			$dumper->setDB( $this->newStreamingDBConnection() );
+			$dumper->setDB( $this->newSinkDbConnection() );
 		}
 
 		return $dumper;
