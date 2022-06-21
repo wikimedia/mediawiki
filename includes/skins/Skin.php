@@ -2168,6 +2168,8 @@ abstract class Skin extends ContextSource {
 		if ( $isLink ) {
 			$attrs = $item;
 			foreach ( [ 'single-id', 'text', 'msg', 'tooltiponly', 'context', 'primary',
+						// These fields provide context for skins to modify classes and should not be outputted to skin
+						'icon', 'button',
 						'tooltip-params', 'exists', 'link-html' ] as $k ) {
 				unset( $attrs[$k] );
 			}
