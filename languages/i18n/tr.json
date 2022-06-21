@@ -4149,5 +4149,6 @@
 	"skin-action-protect": "Koru",
 	"skin-action-undelete": "Geri al",
 	"skin-action-delete": "Sil",
-	"skin-action-move": "Taşı"
+	"skin-action-move": "Taşı",
+	"parsoid-stash-rate-limit-error": "Hız sınırı aşıldığından saklama başarısız oldu. Lütfen daha sonra tekrar deneyiniz."
 }
