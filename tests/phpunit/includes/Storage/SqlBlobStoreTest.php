@@ -53,7 +53,6 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\SqlBlobStore::getLegacyEncoding()
-	 * @covers \MediaWiki\Storage\SqlBlobStore::getLegacyEncodingConversionLang()
 	 * @covers \MediaWiki\Storage\SqlBlobStore::setLegacyEncoding()
 	 */
 	public function testGetSetLegacyEncoding() {
@@ -61,9 +60,6 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $store->getLegacyEncoding() );
 		$store->setLegacyEncoding( 'foo' );
 		$this->assertSame( 'foo', $store->getLegacyEncoding() );
-
-		$this->hideDeprecated( SqlBlobStore::class . '::getLegacyEncodingConversionLang' );
-		$this->assertNull( $store->getLegacyEncodingConversionLang() );
 	}
 
 	/**

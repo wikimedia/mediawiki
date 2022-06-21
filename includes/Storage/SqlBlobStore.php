@@ -155,15 +155,6 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	}
 
 	/**
-	 * @deprecated since 1.34 No longer needed
-	 * @return null
-	 */
-	public function getLegacyEncodingConversionLang() {
-		wfDeprecated( __METHOD__ );
-		return null;
-	}
-
-	/**
 	 * Set the legacy encoding to assume for blobs that do not have the utf-8 flag set.
 	 *
 	 * @note The second parameter, Language $language, was removed in 1.34.
