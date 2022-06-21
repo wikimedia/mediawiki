@@ -333,8 +333,8 @@ class ApiLoginTest extends ApiTestCase {
 		];
 
 		$this->setGroupPermissions( 'sysop', 'noratelimit', false );
-		$this->setMwGlobals( 'wgMainCacheType', 'hash' );
-		$this->setMwGlobals( 'wgPasswordAttemptThrottle', $throttle );
+		$this->setMainCache( CACHE_HASH );
+		$this->overrideConfigValue( 'PasswordAttemptThrottle', $throttle );
 
 		list( $name, $password ) = $this->setUpForBotPassword();
 

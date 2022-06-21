@@ -2580,9 +2580,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->setGroupPermissions( '*', 'autocreateaccount', false );
 		$this->initializeManager( true );
 
-		$this->mergeMwGlobalArrayValue( 'wgObjectCaches',
-			[ __METHOD__ => [ 'class' => 'HashBagOStuff' ] ] );
-		$this->setMwGlobals( [ 'wgMainCacheType' => __METHOD__ ] );
+		$this->setMainCache( CACHE_HASH );
 
 		// Set up lots of mocks...
 		$mocks = [];

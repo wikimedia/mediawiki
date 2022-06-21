@@ -26,10 +26,12 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 	private $store;
 
 	protected function getManager() {
-		\ObjectCache::$instances['testSessionStore'] = new TestBagOStuff();
+		$this->store = new TestBagOStuff();
+		$cacheType = $this->setMainCache( $this->store );
+
 		$this->config = new \HashConfig( [
 			'LanguageCode' => 'en',
-			'SessionCacheType' => 'testSessionStore',
+			'SessionCacheType' => $cacheType,
 			'ObjectCacheSessionExpiry' => 100,
 			'SessionProviders' => [
 				[ 'class' => \DummySessionProvider::class ],
@@ -43,7 +45,6 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 				|| preg_match( '/^(Persisting|Unpersisting) session (for|due to)/', $m )
 			) ? null : $m;
 		} );
-		$this->store = new TestBagOStuff();
 
 		return new SessionManager( [
 			'config' => $this->config,
@@ -127,7 +128,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$manager = TestingAccessWrapper::newFromObject( new SessionManager( [
 			'config' => $this->config,
 		] ) );
-		$this->assertSame( \ObjectCache::$instances['testSessionStore'], $manager->store );
+		$this->assertSame( $this->store, $manager->store );
 
 		foreach ( [
 			'config' => '$options[\'config\'] must be an instance of Config',

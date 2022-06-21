@@ -94,7 +94,7 @@ class ObjectCache {
 			// Always recognize these ones
 			if ( $id === CACHE_NONE ) {
 				return new EmptyBagOStuff();
-			} elseif ( $id === 'hash' ) {
+			} elseif ( $id === CACHE_HASH ) {
 				return new HashBagOStuff();
 			}
 

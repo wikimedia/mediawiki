@@ -32,8 +32,9 @@ class ApiStashEditTest extends ApiTestCase {
 			$this->getServiceContainer()->getHookContainer(),
 			PageEditStash::INITIATOR_USER
 		) );
-		// Clear rate-limiting cache between tests
-		$this->setMwGlobals( 'wgMainCacheType', 'hash' );
+
+		// Enable the main cache, so we have a place to store rate limit counters.
+		$this->setMainCache( CACHE_HASH );
 	}
 
 	/**

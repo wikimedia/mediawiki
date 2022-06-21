@@ -344,6 +344,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				'apc' => $hashCache,
 				'apcu' => $hashCache,
 				'wincache' => $hashCache,
+				'UTCache' => $hashCache,
 			] + $baseConfig->get( MainConfigNames::ObjectCaches );
 
 		// Use hash based caches
@@ -835,6 +836,45 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// When nothing reads config from globals anymore, we will no longer need to call
 		// setMwGlobals() here.
 		$this->setMwGlobals( "wg$key", $value );
+	}
+
+	/**
+	 * Set the main object cache that will be returned by ObjectCache::getLocalClusterInstance().
+	 *
+	 * Per default, the main object cache is disabled during testing (that is, the cache is an
+	 * EmptyBagOStuff).
+	 *
+	 * The $cache parameter support the following kinds of values:
+	 * - a string: refers to an entry in the ObjectCaches array, see MainConfigSchema::ObjectCaches.
+	 *   MainCacheType will be set to this value. Use CACHE_HASH to use a HashBagOStuff.
+	 * - an int: refers to an entry in the ObjectCaches array, see MainConfigSchema::ObjectCaches.
+	 *   MainCacheType will be set to this value. Use CACHE_NONE to disable caching.
+	 * - a BagOStuff: the object will be injected into the ObjectCache class under the name
+	 *   'UTCache', and MainCacheType will be set to 'UTCache'.
+	 *
+	 * @note Most entries in the ObjectCaches config setting are overwritten during testing.
+	 *       To set the cache to anything other than CACHE_HASH, you will have to override
+	 *       the ObjectCaches setting first.
+	 *
+	 * @note This will cause any existing service instances to be reset.
+	 *
+	 * @param string|BagOStuff $cache
+	 *
+	 * @return string|int The new value of the MainCacheType setting.
+	 */
+	protected function setMainCache( $cache ) {
+		if ( $cache instanceof BagOStuff ) {
+			// ObjectCache::$instances is reset after each test by resetNonGlobalServices().
+			ObjectCache::$instances[ 'UTCache' ] = $cache;
+			$cache = 'UTCache';
+		}
+
+		if ( !is_string( $cache ) && !is_int( $cache ) ) {
+			throw new InvalidArgumentException( 'Bad type of $cache parameter: ' . get_debug_type( $cache ) );
+		}
+
+		$this->overrideConfigValue( MainConfigNames::MainCacheType, $cache );
+		return $cache;
 	}
 
 	/**

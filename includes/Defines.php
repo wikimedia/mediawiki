@@ -87,6 +87,7 @@ define( 'CACHE_NONE', 0 ); // Do not cache
 define( 'CACHE_DB', 1 ); // Store cache objects in the DB
 define( 'CACHE_MEMCACHED', 'memcached-php' ); // Backwards-compatability alias for Memcached
 define( 'CACHE_ACCEL', 3 ); // APC or WinCache
+define( 'CACHE_HASH', 'hash' ); // A HashBagOStuff, mostly useful for testing. Not configurable
 /** @} */
 
 /** @{

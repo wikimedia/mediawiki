@@ -168,6 +168,31 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'YYY', $config->get( MainConfigNames::JobTypeConf ) );
 	}
 
+	public function testSetMainCache() {
+		// Cache should be disabled per default during testing.
+		$this->assertInstanceOf( EmptyBagOStuff::class, ObjectCache::getLocalClusterInstance() );
+
+		// Use HashBagOStuff.
+		$this->setMainCache( CACHE_HASH );
+		$cache = ObjectCache::getLocalClusterInstance();
+		$this->assertInstanceOf( HashBagOStuff::class, $cache );
+
+		// Install different HashBagOStuff
+		$cache = new HashBagOStuff();
+		$name = $this->setMainCache( $cache );
+		$this->assertSame( $cache, ObjectCache::getLocalClusterInstance() );
+		$this->assertSame( $cache, ObjectCache::getInstance( $name ) );
+
+		// Our custom cache object should not replace an existing entry.
+		$this->assertNotSame( $cache, ObjectCache::getInstance( CACHE_HASH ) );
+		$this->setMainCache( CACHE_HASH );
+		$this->assertNotSame( $cache, ObjectCache::getLocalClusterInstance() );
+
+		// We should be able to disable the cache.
+		$this->assertSame( CACHE_NONE, $this->setMainCache( CACHE_NONE ) );
+		$this->assertInstanceOf( EmptyBagOStuff::class, ObjectCache::getLocalClusterInstance() );
+	}
+
 	public function testOverrideMwServices() {
 		$initialServices = MediaWikiServices::getInstance();
 

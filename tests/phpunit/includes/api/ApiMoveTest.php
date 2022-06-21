@@ -247,9 +247,9 @@ class ApiMoveTest extends ApiTestCase {
 
 		$name = ucfirst( __FUNCTION__ );
 
-		$this->setMwGlobals( 'wgMainCacheType', 'hash' );
+		$this->setMainCache( CACHE_HASH );
 
-		$this->mergeMwGlobalArrayValue( 'wgRateLimits',
+		$this->overrideConfigValue( 'RateLimits',
 			[ 'move' => [ '&can-bypass' => false, 'user' => [ 1, 60 ] ] ] );
 
 		$id = $this->createPage( $name );
