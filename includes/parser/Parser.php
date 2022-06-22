@@ -4464,12 +4464,11 @@ class Parser {
 					# that sections inside <includeonly> should be counted.
 					$editsectionPage = $titleText;
 					$editsectionSection = "T-$sectionIndex";
-					$editsectionContent = null;
 				} else {
 					$editsectionPage = $this->getTitle()->getPrefixedText();
 					$editsectionSection = $sectionIndex;
-					$editsectionContent = $headlineHint;
 				}
+				$editsectionContent = $headlineHint;
 				// We use a bit of pesudo-xml for editsection markers. The
 				// language converter is run later on. Using a UNIQ style marker
 				// leads to the converter screwing up the tokens when it
@@ -4485,11 +4484,7 @@ class Parser {
 				$editlink = '<mw:editsection page="' . htmlspecialchars( $editsectionPage, ENT_COMPAT );
 				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 				$editlink .= '" section="' . htmlspecialchars( $editsectionSection, ENT_COMPAT ) . '"';
-				if ( $editsectionContent !== null ) {
-					$editlink .= '>' . $editsectionContent . '</mw:editsection>';
-				} else {
-					$editlink .= '/>';
-				}
+				$editlink .= '>' . $editsectionContent . '</mw:editsection>';
 			} else {
 				$editlink = '';
 			}
