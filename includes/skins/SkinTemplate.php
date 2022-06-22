@@ -1297,6 +1297,17 @@ class SkinTemplate extends Skin {
 			if ( $subjectId === 'user' ) {
 				$subjectMsg = wfMessage( 'nstab-user', $subjectPage->getRootText() );
 			} else {
+				// The following messages are used here:
+				// * nstab-main
+				// * nstab-media
+				// * nstab-special
+				// * nstab-project
+				// * nstab-image
+				// * nstab-mediawiki
+				// * nstab-template
+				// * nstab-help
+				// * nstab-category
+				// * nstab-<subject namespace key>
 				$subjectMsg = [ "nstab-$subjectId" ];
 			}
 			if ( $subjectPage->isMainPage() ) {
@@ -1308,9 +1319,10 @@ class SkinTemplate extends Skin {
 			);
 			$content_navigation['namespaces'][$subjectId]['context'] = 'subject';
 			// Use the following messages if defined or talk if not:
-			// nstab-user_talk, nstab-media_talk, nstab-project_talk
-			// nstab-image_talk, nstab-mediawiki_talk, nstab-template_talk
-			// nstab-help_talk, nstab-category_talk
+			// * nstab-talk, nstab-user_talk, nstab-media_talk, nstab-project_talk
+			// * nstab-image_talk, nstab-mediawiki_talk, nstab-template_talk
+			// * nstab-help_talk, nstab-category_talk,
+			// * nstab-<subject namespace key>_talk
 			$content_navigation['namespaces'][$talkId] = $this->tabAction(
 				$talkPage, [ "nstab-$talkId", "talk" ], $isTalk, '', $userCanRead
 			);
