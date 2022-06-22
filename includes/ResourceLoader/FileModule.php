@@ -541,7 +541,7 @@ class FileModule extends Module {
 		}
 
 		// Merge all the file paths we were able discover directly from the module definition.
-		// This is the master list of direct-dependent files for this module.
+		// This is the primary list of direct-dependent files for this module.
 		$files = array_merge(
 			$files,
 			$packageFiles,
@@ -563,7 +563,7 @@ class FileModule extends Module {
 		$files = array_merge( $files, $this->getFileDependencies( $context ) );
 
 		// Filter out any duplicates. Typically introduced by getFileDependencies() which
-		// may lazily re-discover a master file.
+		// may lazily re-discover a primary file.
 		$files = array_unique( $files );
 
 		// Don't return array keys or any other form of file path here, only the hashes.
