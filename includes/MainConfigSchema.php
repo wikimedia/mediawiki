@@ -3522,6 +3522,14 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * The object cache type for stats storage.
+	 * {@link \Wikimedia\WRStats\WRStatsFactory}
+	 */
+	public const StatsCacheType = [
+		'default' => CACHE_ANYTHING,
+	];
+
+	/**
 	 * Advanced object cache configuration.
 	 *
 	 * Use this to define the class names and constructor parameters which are used

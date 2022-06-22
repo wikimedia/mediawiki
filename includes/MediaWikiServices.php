@@ -194,6 +194,7 @@ use Wikimedia\Services\NoSuchServiceException;
 use Wikimedia\Services\SalvageableService;
 use Wikimedia\Services\ServiceContainer;
 use Wikimedia\UUID\GlobalIdGenerator;
+use Wikimedia\WRStats\WRStatsFactory;
 
 /**
  * Service locator for MediaWiki core services.
@@ -2012,6 +2013,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getWikiRevisionUploadImporter(): UploadRevisionImporter {
 		return $this->getService( 'UploadRevisionImporter' );
+	}
+
+	/**
+	 * @since 1.39
+	 * @return WRStatsFactory
+	 */
+	public function getWRStatsFactory(): WRStatsFactory {
+		return $this->getService( 'WRStatsFactory' );
 	}
 
 }

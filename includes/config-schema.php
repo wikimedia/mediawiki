@@ -431,6 +431,7 @@ return [
 			'ParserCacheType' => -1,
 			'SessionCacheType' => -1,
 			'LanguageConverterCacheType' => -1,
+			'StatsCacheType' => -1,
 			'ObjectCaches' => [
 				0 => [
 					'class' => 'EmptyBagOStuff',

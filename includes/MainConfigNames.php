@@ -1455,6 +1455,12 @@ class MainConfigNames {
 	public const LanguageConverterCacheType = 'LanguageConverterCacheType';
 
 	/**
+	 * Name constant for the StatsCacheType setting, for use with Config::get()
+	 * @see MainConfigSchema::StatsCacheType
+	 */
+	public const StatsCacheType = 'StatsCacheType';
+
+	/**
 	 * Name constant for the ObjectCaches setting, for use with Config::get()
 	 * @see MainConfigSchema::ObjectCaches
 	 */

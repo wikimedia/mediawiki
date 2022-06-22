@@ -1439,6 +1439,12 @@ $wgSessionCacheType = null;
 $wgLanguageConverterCacheType = null;
 
 /**
+ * Config variable stub for the StatsCacheType setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::StatsCacheType
+ */
+$wgStatsCacheType = null;
+
+/**
  * Config variable stub for the ObjectCaches setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ObjectCaches
  */
