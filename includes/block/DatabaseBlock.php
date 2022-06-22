@@ -66,9 +66,6 @@ class DatabaseBlock extends AbstractBlock {
 	private $mId;
 
 	/** @var bool */
-	private $mFromPrimary;
-
-	/** @var bool */
 	private $isAutoblocking;
 
 	/** @var Restriction[] */
@@ -126,8 +123,6 @@ class DatabaseBlock extends AbstractBlock {
 		$this->isEmailBlocked( (bool)$options['blockEmail'] );
 		$this->isCreateAccountBlocked( (bool)$options['createAccount'] );
 		$this->isUsertalkEditAllowed( (bool)$options['allowUsertalk'] );
-
-		$this->mFromPrimary = false;
 	}
 
 	/**
