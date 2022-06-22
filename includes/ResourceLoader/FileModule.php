@@ -718,26 +718,24 @@ class FileModule extends Module {
 	}
 
 	/**
-	 * Collates file paths by option (where provided).
+	 * Collates styles file paths by 'media' option (or 'all' if 'media' is not set)
 	 *
 	 * @param array $list List of file paths in any combination of index/path
 	 *     or path/options pairs
-	 * @param string $option Option name
-	 * @param mixed $default Default value if the option isn't set
-	 * @return string[][] List of file paths, collated by $option
+	 * @return string[][] List of collated file paths
 	 */
-	protected static function collateFilePathListByOption( array $list, $option, $default ) {
+	private static function collateStyleFilesByMedia( array $list ) {
 		$collatedFiles = [];
 		foreach ( $list as $key => $value ) {
 			if ( is_int( $key ) ) {
 				// File name as the value
-				if ( !isset( $collatedFiles[$default] ) ) {
-					$collatedFiles[$default] = [];
+				if ( !isset( $collatedFiles['all'] ) ) {
+					$collatedFiles['all'] = [];
 				}
-				$collatedFiles[$default][] = $value;
+				$collatedFiles['all'][] = $value;
 			} elseif ( is_array( $value ) ) {
 				// File name as the key, options array as the value
-				$optionValue = $value[$option] ?? $default;
+				$optionValue = $value['media'] ?? 'all';
 				if ( !isset( $collatedFiles[$optionValue] ) ) {
 					$collatedFiles[$optionValue] = [];
 				}
@@ -863,11 +861,9 @@ class FileModule extends Module {
 	 */
 	public function getStyleFiles( Context $context ) {
 		return array_merge_recursive(
-			self::collateFilePathListByOption( $this->styles, 'media', 'all' ),
-			self::collateFilePathListByOption(
-				self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' ),
-				'media',
-				'all'
+			self::collateStyleFilesByMedia( $this->styles ),
+			self::collateStyleFilesByMedia(
+				self::tryForKey( $this->skinStyles, $context->getSkin(), 'default' )
 			)
 		);
 	}
@@ -880,10 +876,8 @@ class FileModule extends Module {
 	 * @return array A list of file paths collated by media type
 	 */
 	protected function getSkinStyleFiles( $skinName ) {
-		return self::collateFilePathListByOption(
-			self::tryForKey( $this->skinStyles, $skinName ),
-			'media',
-			'all'
+		return self::collateStyleFilesByMedia(
+			self::tryForKey( $this->skinStyles, $skinName )
 		);
 	}
 
@@ -917,7 +911,7 @@ class FileModule extends Module {
 	 */
 	public function getAllStyleFiles() {
 		$collatedStyleFiles = array_merge_recursive(
-			self::collateFilePathListByOption( $this->styles, 'media', 'all' ),
+			self::collateStyleFilesByMedia( $this->styles ),
 			$this->getAllSkinStyleFiles()
 		);
 
