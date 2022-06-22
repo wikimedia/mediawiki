@@ -1339,7 +1339,6 @@ class FileModule extends Module {
 	 *
 	 * @param Context $context
 	 * @return array|null Package files data structure, see ResourceLoaderModule::getScript()
-	 * @throws RuntimeException If a file doesn't exist, or parsing a .vue file fails
 	 */
 	public function getPackageFiles( Context $context ) {
 		if ( $this->packageFiles === null ) {

@@ -112,7 +112,6 @@ class ImageModule extends Module {
 	 *         ],
 	 *     ]
 	 * @endcode
-	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $options = [], $localBasePath = null ) {
 		$this->localBasePath = static::extractLocalBasePath( $options, $localBasePath );

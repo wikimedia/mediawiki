@@ -27,7 +27,7 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
-use MWException;
+use RuntimeException;
 use SvgHandler;
 use SVGReader;
 use Wikimedia\Minify\CSSMin;
@@ -73,7 +73,6 @@ class Image {
 	 * @param string $basePath Directory to which paths in descriptor refer
 	 * @param array $variants
 	 * @param string|null $defaultColor of the base variant
-	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $name, $module, $descriptor, $basePath, array $variants,
 		$defaultColor = null
@@ -168,7 +167,6 @@ class Image {
 	 *
 	 * @param Context $context Any context
 	 * @return string
-	 * @throws MWException If no matching path is found
 	 */
 	public function getPath( Context $context ) {
 		$desc = $this->descriptor;
@@ -192,9 +190,8 @@ class Image {
 		}
 		if ( isset( $desc['default'] ) ) {
 			return $this->getLocalPath( $desc['default'] );
-		} else {
-			throw new MWException( 'No matching path found' );
 		}
+		throw new RuntimeException( 'No matching path found' );
 	}
 
 	/**
@@ -288,7 +285,6 @@ class Image {
 	 * @param string|false $format Format to get the data for, 'original' or 'rasterized'. Optional; if
 	 *     given, overrides the data from $context.
 	 * @return string|false Possibly binary image data, or false on failure
-	 * @throws MWException If the image file doesn't exist
 	 */
 	public function getImageData( Context $context, $variant = false, $format = false ) {
 		if ( $variant === false ) {
@@ -300,7 +296,7 @@ class Image {
 
 		$path = $this->getPath( $context );
 		if ( !file_exists( $path ) ) {
-			throw new MWException( "File '$path' does not exist" );
+			throw new RuntimeException( "File '$path' does not exist" );
 		}
 
 		if ( $this->getExtension() !== 'svg' ) {
