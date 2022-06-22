@@ -39,7 +39,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 		$data = self::getAllModules();
 		$illegalDeps = [ 'startup' ];
 		// Can't depend on modules in the `noscript` group, find all such module names
-		// to add to $ilegalDeps. See T291735
+		// to add to $illegalDeps. See T291735
 		/** @var RL\Module $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			if ( $module->getGroup() === 'noscript' ) {
