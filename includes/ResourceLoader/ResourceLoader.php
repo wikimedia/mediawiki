@@ -791,11 +791,9 @@ class ResourceLoader implements LoggerAwareInterface {
 			try {
 				// Preload for getCombinedVersion() and for batch makeModuleResponse()
 				$this->preloadModuleInfo( array_keys( $modules ), $context );
-			}
-			catch ( TimeoutException $e ) {
+			} catch ( TimeoutException $e ) {
 				throw $e;
-			}
-			catch ( Exception $e ) {
+			} catch ( Exception $e ) {
 				$this->outputErrorAndLog( $e, 'Preloading module info failed: {exception}' );
 			}
 
@@ -803,11 +801,9 @@ class ResourceLoader implements LoggerAwareInterface {
 			$versionHash = '';
 			try {
 				$versionHash = $this->getCombinedVersion( $context, array_keys( $modules ) );
-			}
-			catch ( TimeoutException $e ) {
+			} catch ( TimeoutException $e ) {
 				throw $e;
-			}
-			catch ( Exception $e ) {
+			} catch ( Exception $e ) {
 				$this->outputErrorAndLog( $e, 'Calculating version hash failed: {exception}' );
 			}
 
@@ -1099,9 +1095,6 @@ class ResourceLoader implements LoggerAwareInterface {
 	public function makeModuleResponse( Context $context,
 		array $modules, array $missing = []
 	) {
-		$out = '';
-		$states = [];
-
 		if ( $modules === [] && $missing === [] ) {
 			return <<<MESSAGE
 /* This file is the Web entry point for MediaWiki's ResourceLoader:
@@ -1120,6 +1113,7 @@ MESSAGE;
 			return $data;
 		}
 
+		$states = [];
 		foreach ( $missing as $name ) {
 			$states[$name] = 'missing';
 		}
@@ -1128,6 +1122,7 @@ MESSAGE;
 		$filter = $only === 'styles' ? 'minify-css' : 'minify-js';
 		$debug = (bool)$context->getDebug();
 
+		$out = '';
 		foreach ( $modules as $name => $module ) {
 			try {
 				$content = $module->getModuleContent( $context );
@@ -1190,17 +1185,17 @@ MESSAGE;
 						break;
 				}
 
-				if ( !$debug ) {
+				if ( $debug ) {
+					// In debug mode, separate each response by a new line.
+					// For example, between 'mw.loader.implement();' statements.
+					$strContent = self::ensureNewline( $strContent );
+				} else {
 					$strContent = self::filter( $filter, $strContent, [
 						// Important: Do not cache minifications of embedded modules
 						// This is especially for the private 'user.options' module,
 						// which varies on every pageview and would explode the cache (T84960)
 						'cache' => !$module->shouldEmbedModule( $context )
 					] );
-				} else {
-					// In debug mode, separate each response by a new line.
-					// For example, between 'mw.loader.implement();' statements.
-					$strContent = self::ensureNewline( $strContent );
 				}
 
 				if ( $only === 'scripts' ) {
@@ -1209,7 +1204,6 @@ MESSAGE;
 				} else {
 					$out .= $strContent;
 				}
-
 			} catch ( TimeoutException $e ) {
 				throw $e;
 			} catch ( Exception $e ) {
@@ -1375,18 +1369,19 @@ MESSAGE;
 			foreach ( $styles as $style ) {
 				$style = trim( $style );
 				// Don't output an empty "@media print { }" block (T42498)
-				if ( $style !== '' ) {
-					// Transform the media type based on request params and config
-					// The way that this relies on $wgRequest to propagate request params is slightly evil
-					$media = OutputPage::transformCssMedia( $media );
-
-					if ( $media === '' || $media == 'all' ) {
-						$out[] = $style;
-					} elseif ( is_string( $media ) ) {
-						$out[] = "@media $media {\n" . str_replace( "\n", "\n\t", "\t" . $style ) . "}";
-					}
-					// else: skip
+				if ( $style === '' ) {
+					continue;
 				}
+				// Transform the media type based on request params and config
+				// The way that this relies on $wgRequest to propagate request params is slightly evil
+				$media = OutputPage::transformCssMedia( $media );
+
+				if ( $media === '' || $media == 'all' ) {
+					$out[] = $style;
+				} elseif ( is_string( $media ) ) {
+					$out[] = "@media $media {\n" . str_replace( "\n", "\n\t", "\t" . $style ) . "}";
+				}
+				// else: skip
 			}
 		}
 		return $out;
@@ -1679,20 +1674,20 @@ MESSAGE;
 				// This is not a set of modules in foo.bar,baz notation
 				// but a single module
 				$retval[] = $group;
-			} else {
-				// This is a set of modules in foo.bar,baz notation
-				$pos = strrpos( $group, '.' );
-				if ( $pos === false ) {
-					// Prefixless modules, i.e. without dots
-					$retval = array_merge( $retval, explode( ',', $group ) );
-				} else {
-					// We have a prefix and a bunch of suffixes
-					$prefix = substr( $group, 0, $pos ); // 'foo'
-					$suffixes = explode( ',', substr( $group, $pos + 1 ) ); // [ 'bar', 'baz' ]
-					foreach ( $suffixes as $suffix ) {
-						$retval[] = "$prefix.$suffix";
-					}
-				}
+				continue;
+			}
+			// This is a set of modules in foo.bar,baz notation
+			$pos = strrpos( $group, '.' );
+			if ( $pos === false ) {
+				// Prefixless modules, i.e. without dots
+				$retval = array_merge( $retval, explode( ',', $group ) );
+				continue;
+			}
+			// We have a prefix and a bunch of suffixes
+			$prefix = substr( $group, 0, $pos ); // 'foo'
+			$suffixes = explode( ',', substr( $group, $pos + 1 ) ); // [ 'bar', 'baz' ]
+			foreach ( $suffixes as $suffix ) {
+				$retval[] = "$prefix.$suffix";
 			}
 		}
 		return $retval;
