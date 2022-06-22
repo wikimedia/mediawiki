@@ -68,10 +68,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 	/**
 	 * @var Title
-	 * @todo make protected
 	 * @note for access by subclasses only
 	 */
-	public $mTitle;
+	protected $mTitle;
 
 	/**
 	 * @var bool
