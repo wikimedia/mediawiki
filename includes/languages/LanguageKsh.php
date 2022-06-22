@@ -1,7 +1,5 @@
 <?php
 /**
- * Ripuarian (Ripoarėsh) specific code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,28 +17,27 @@
  *
  * @file
  * @author Purodha Blissenbach
- * @ingroup Language
  */
 
 /**
  * Ripuarian (Ripoarėsh)
  *
- * @ingroup Language
+ * @ingroup Languages
  */
 class LanguageKsh extends Language {
+	// Do not add male wiki families, since that's the default.
+	// No need add neuter wikis having names ending in -wiki.
 	private static $familygender = [
-		// Do not add male wiki families, since that's the default.
-		// No need add neuter wikis having names ending in -wiki.
-			'wikipedia' => 'f',
-			'wikiversity' => 'f',
-			'wiktionary' => 'n',
-			'wikibooks' => 'n',
-			'wikiquote' => 'n',
-			'wikisource' => 'n',
-			'wikitravel' => 'n',
-			'wikia' => 'f',
-			'translatewiki.net' => 'n',
-		];
+		'wikipedia' => 'f',
+		'wikiversity' => 'f',
+		'wiktionary' => 'n',
+		'wikibooks' => 'n',
+		'wikiquote' => 'n',
+		'wikisource' => 'n',
+		'wikitravel' => 'n',
+		'wikia' => 'f',
+		'translatewiki.net' => 'n',
+	];
 
 	/**
 	 * Convert from the nominative form of a noun to other cases.

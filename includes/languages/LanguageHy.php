@@ -1,8 +1,5 @@
 <?php
-
 /**
- * Armenian (Հայերեն) specific code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -20,7 +17,6 @@
  *
  * @file
  * @author Ruben Vardanyan (Me@RubenVardanyan.com)
- * @ingroup Language
  */
 
 use MediaWiki\MainConfigNames;
@@ -29,7 +25,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Armenian (Հայերեն)
  *
- * @ingroup Language
+ * @ingroup Languages
  */
 class LanguageHy extends Language {
 

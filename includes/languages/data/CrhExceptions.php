@@ -1,16 +1,15 @@
 <?php
+namespace MediaWiki\Languages\Data;
+
+use CrhConverter as Crh;
+
 /**
  * Exceptions Tables for Crimean Tatar (crh / Qırımtatarca)
  *
  * Adapted from https://crh.wikipedia.org/wiki/Qullan%C4%B1c%C4%B1:Don_Alessandro/Translit
  *
- * @file
+ * @ingroup Language
  */
-
-namespace MediaWiki\Languages\Data;
-
-use CrhConverter as Crh;
-
 class CrhExceptions {
 
 	private const WB = '\b'; # default word boundary; may be updated in the future

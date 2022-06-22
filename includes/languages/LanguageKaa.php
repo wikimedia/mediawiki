@@ -1,8 +1,5 @@
 <?php
-
 /**
- * Karakalpak (Qaraqalpaqsha) specific code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
 
 use MediaWiki\MainConfigNames;
@@ -28,7 +24,7 @@ use MediaWiki\MediaWikiServices;
 /**
  * Karakalpak (Qaraqalpaqsha)
  *
- * @ingroup Language
+ * @ingroup Languages
  */
 class LanguageKaa extends Language {
 
