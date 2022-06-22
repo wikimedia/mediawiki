@@ -1686,6 +1686,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 	}
 
 	private function triggerParserCacheUpdate() {
+		$this->assertHasRevision( __METHOD__ );
+
 		$userParserOptions = ParserOptions::newFromUser( $this->user );
 		// Decide whether to save the final canonical parser output based on the fact that
 		// users are typically redirected to viewing pages right after they edit those pages.

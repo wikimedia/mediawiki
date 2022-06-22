@@ -430,6 +430,15 @@ class ParserCache {
 		$cacheTime = $cacheTime ?: wfTimestampNow();
 		$revId = $revId ?: $page->getLatest( PageRecord::LOCAL );
 
+		if ( !$revId ) {
+			$this->logger->debug(
+				'Parser output cannot be saved if the revision ID is not known',
+				[ 'name' => $this->name ]
+			);
+			$this->incrementStats( $page, 'save.norevid' );
+			return;
+		}
+
 		$metadata = new CacheTime;
 		$metadata->recordOptions( $parserOutput->getUsedOptions() );
 		$metadata->updateCacheExpiry( $expire );
