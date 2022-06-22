@@ -19,7 +19,14 @@
  */
 
 /**
- * @defgroup Language Language
+ * @defgroup Language Internationalisation
+ *
+ * See https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation for more information.
+ */
+
+/**
+ * @defgroup Languages Languages
+ * @ingroup Language
  */
 
 use CLDRPluralRuleParser\Evaluator;
@@ -37,7 +44,8 @@ use Wikimedia\AtEase\AtEase;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
- * Internationalisation code
+ * Base class for language-specific code.
+ *
  * See https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation for more information.
  *
  * @ingroup Language

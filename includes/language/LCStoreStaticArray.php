@@ -1,7 +1,5 @@
 <?php
 /**
- *  Localisation cache storage based on PHP files and static arrays.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -23,7 +21,10 @@
 use Wikimedia\StaticArrayWriter;
 
 /**
+ * Localisation cache storage based on PHP files and static arrays.
+ *
  * @since 1.26
+ * @ingroup Language
  */
 class LCStoreStaticArray implements LCStore {
 	/** @var string|null Current language code. */

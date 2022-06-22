@@ -18,10 +18,6 @@
  * @file
  */
 
-/**
- * @defgroup Language Language
- */
-
 namespace MediaWiki\Languages;
 
 use BagOStuff;

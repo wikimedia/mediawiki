@@ -25,7 +25,8 @@ use Wikimedia\ScopedCallback;
 
 /**
  * LCStore implementation which uses the standard DB functions to store data.
- * This will work on any MediaWiki installation.
+ *
+ * @ingroup Language
  */
 class LCStoreDB implements LCStore {
 	/** @var string|null Language code */
