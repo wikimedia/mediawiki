@@ -250,7 +250,7 @@
 	"readonly": "Dàttub njoxe bi dañu koo caabi",
 	"enterlockreason": "Biralal ngirtey tëj gi ak diir bi mu war a amee",
 	"readonlytext": "Ci jamono jii yokk yeek coppitey xët yi jàppandiwuñu ndax dàttub njoxe bi dañu koo caabi, xéj-na dañoo nekk ciy liggéey, su ñu noppee rekk dàttub njoxe bi baaxaat.\nYorkat bi def caabi ji, joxe na yii lay :$1",
-	"missing-article": "Dàttub njox bi manuta fexe ba gis mbidum ab jukki bu mu waaroona mana gis, mi ngi tudd  « $1 » $2.\n\nLi koy waral yenn saa yi mooy da ngay jéma ubbi ab lëkkalekaay, jaare ko ci ab jaar-jaar walla méngaleeb ay sumb yu aw xët wu faru.\n\nSu dul loolu kon daa am ag njuumte ci tëriinu Mediawiki bi.\nDi la sakku nga yegge ko ab [[Special:ListUsers/sysop|yorkat]] , jox ko màkkaan bi.",
+	"missing-article": "Dàttub njox bi manuta fexe ba gis mbidum ab jukki bu mu waaroona mana gis, mi ngi tudd  « $1 » $2.\n\nLi koy waral yenn saa yi mooy da ngay jéma ubbi ab lëkkalekaay, jaare ko ci ab jaar-jaar walla méngaleeb ay sumb yu aw xët wu faru.\n\nSu dul loolu kon daa am ag njuumte ci tëriinu MediaWiki bi.\nDi la sakku nga yegge ko ab [[Special:ListUsers/sysop|yorkat]] , jox ko màkkaan bi.",
 	"missingarticle-rev": "(Limu sumb bi# : $1)",
 	"missingarticle-diff": "(Wuute : $1, $2)",
 	"readonly_lag": "Dàttub njoxe bi daa caabi boppam ngir may ñaareelu joxekaay yi dap joxekaay bu njëkk bi.",

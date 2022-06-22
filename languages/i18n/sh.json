@@ -24,7 +24,8 @@
 			"לערי ריינהארט",
 			"ديفيد",
 			"아라",
-			"McDutchie"
+			"McDutchie",
+			"Vipz"
 		]
 	},
 	"tog-underline": "Podvlačenje linkova:",
@@ -3158,7 +3159,7 @@
 	"version-poweredby-translators": "translatewiki.net prevodioci",
 	"version-poweredby-various": "Različiti autori",
 	"version-credits-summary": "Htjeli bismo da zahvalimo sljedećim osobama na njihovom doprinosu [[Special:Version|MediaWiki]].",
-	"version-license-info": "Mediawiki je slobodni softver; možete ga redistribuirati i/ili mijenjati pod uslovima GNU-ove opće javne licence Fondacije slobodnog softvera; ili u verziji 2 Licence, ili nekoj od kasniji verzija (po vašoj volji).\n\nMediaWiki se nudi u nadi da će biti korisna, ali <em>BEZ IKAKVIH GARANCIJA</em>; čak i bez podrazumjevane garancije o <strong>KOMERCIJALNOSTI</strong> ili <strong>PRIKLADNOSTI ZA ODREĐENU SVRHU</strong>. Za više informacija, pogledajte GNU-ovu opću javnu licencu.\n\nZajedno s ovim programom trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/COPYING primjerak GNU-ove opće javne licence]; ako niste dobili primjerak, pišite na Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA ili je [//www.gnu.org/licenses/old-licenses/gpl-2.0.html pročitajte ovdje].",
+	"version-license-info": "MediaWiki je slobodni softver; možete ga redistribuirati i/ili mijenjati pod uslovima GNU-ove opće javne licence Fondacije slobodnog softvera; ili u verziji 2 Licence, ili nekoj od kasniji verzija (po vašoj volji).\n\nMediaWiki se nudi u nadi da će biti korisna, ali <em>BEZ IKAKVIH GARANCIJA</em>; čak i bez podrazumjevane garancije o <strong>KOMERCIJALNOSTI</strong> ili <strong>PRIKLADNOSTI ZA ODREĐENU SVRHU</strong>. Za više informacija, pogledajte GNU-ovu opću javnu licencu.\n\nZajedno s ovim programom trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/COPYING primjerak GNU-ove opće javne licence]; ako niste dobili primjerak, pišite na Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA ili je [//www.gnu.org/licenses/old-licenses/gpl-2.0.html pročitajte ovdje].",
 	"version-software": "Instalirani softver",
 	"version-software-product": "Proizvod",
 	"version-software-version": "Verzija",

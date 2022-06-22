@@ -493,6 +493,7 @@
 	"recreate-moveddeleted-warn": "'''Rabhadh: Tá tú ag athchruthú leathanaigh a scriosadh cheana.'''\n\nAn bhfuil tú cinnte go bhfuil sé oiriúnach an leathanach seo a cur in eagar?\nCuirtear an loga scriosta ar fáil anseo mar áis:",
 	"moveddeleted-notice": "Níl an leathanach seo ann.\nTugtar an scriosadh, an chosaint agus an loga gluaiseachta don leathanach thíos le haghaidh tagartha.",
 	"log-fulllog": "Féach ar an logchomhad iomlán",
+	"postedit-confirmation-restored": "Díscriosadh an leathanach.",
 	"content-model-wikitext": "vicitéacs",
 	"undo-failure": "Ní fhéadfaí an t-eagar a dhíchur mar gheall ar athruithe idirmheánacha contrártha.",
 	"undo-summary": "Cealaíodh athrú $1 le [[Special:Contributions/$2|$2]] ([[User talk:$2|plé]])",

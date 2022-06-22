@@ -418,7 +418,7 @@
 	"preview": "Baqıp çıquv",
 	"showpreview": "Baqıp çıq",
 	"showdiff": "Deñiştirmelerni köster",
-	"anoneditwarning": "'''Diqqat''': Saytqa kirmegeniñizden sebep deñiştirmeler tarihına siziñ IP adresiñiz yazılır. <strong>[$1 Kiriñiz]</strong> ya da <strong>[$2 Esap ettiñiz]</strong>, ettigiñiz deñiştirmeler adıñız ve diğer avantajlar üstüne bağlı bolacaq.",
+	"anoneditwarning": "'''Diqqat''': Saytqa kirmegeniñizden sebep deñiştirmeler tarihına siziñ IP adresiñiz yazılır. <strong>[$1 Kiriñiz]</strong> ya da <strong>[$2 Esap etiñiz]</strong>, ettigiñiz deñiştirmeler adıñız ve diğer avantajlar üstüne bağlı bolacaq.",
 	"anonpreviewwarning": "<em>Saytqa kirmediñiz. Saifeni yayınlasañız deñiştirmeler tarihına siziñ IP adresiñiz yazılır.</em>",
 	"missingsummary": "'''Hatırlatma.''' Deñiştirmeleriñizni qısqadan tarif etmediñiz. \"Saifeni saqla\" dögmesine tekrar basuv ile deñiştirmeleriñiz tefsirsiz saqlanacaqlar.",
 	"missingcommenttext": "Lütfen, aşağıda tefsir yazıñız.",
@@ -1474,7 +1474,7 @@
 	"logentry-move-move_redir": "$1, $3 saifesiniñ adını yönetme üzerinden $4 dep {{GENDER:$2|deñiştirdi}}",
 	"logentry-move-move_redir-noredirect": "$1 adlı qullanıcı $3 saifesiniñ adını yönetme üzerinden yañı bir yönetme qaldırmayıp $4 dep {{GENDER:$2|deñiştirdi}}",
 	"searchsuggest-search": "{{SITENAME}} içinde qıdır",
-	"searchsuggest-containing": "içinde bu olğan...",
+	"searchsuggest-containing": "İçeren saifelerni qıdır",
 	"duration-days": "$1 {{PLURAL:$1|kün}}",
 	"pagelang-language": "Til"
 }

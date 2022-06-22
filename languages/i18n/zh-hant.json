@@ -128,7 +128,8 @@
 			"Stang",
 			"魔琴",
 			"SunAfterRain",
-			"Diskdance"
+			"Diskdance",
+			"LuciferianThomas"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -3719,7 +3720,7 @@
 	"logentry-protect-modify-cascade": "$1{{GENDER:$2|已變更}}$3的保護設定$4[連鎖]",
 	"logentry-rights-rights": "$1已將{{GENDER:$6|$3}}的使用者群組從$4{{GENDER:$2|變更}}為$5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|已變更}} $3 的群組成員資格",
-	"logentry-rights-autopromote": "$1 已自動{{GENDER:$2|提升}}從 $4 成為 $5",
+	"logentry-rights-autopromote": "$1已從$4自動{{GENDER:$2|提升}}為$5",
 	"logentry-upload-upload": "$1 {{GENDER:$2|已上傳}} $3",
 	"logentry-upload-overwrite": "$1{{GENDER:$2|上傳了}}$3的新版本",
 	"logentry-upload-revert": "$1{{GENDER:$2|已還原}}$3至舊版本",

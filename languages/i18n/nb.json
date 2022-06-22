@@ -56,7 +56,9 @@
 			"Wouterkoch",
 			"לערי ריינהארט",
 			"아라",
-			"Abuluntu"
+			"Abuluntu",
+			"Mn00ch",
+			"Yupik"
 		]
 	},
 	"tog-underline": "Strek under lenker:",
@@ -292,7 +294,7 @@
 	"badaccess-group0": "Du har ikke tilgang til å utføre handlingen du prøvde på.",
 	"badaccess-groups": "Handlingen du prøvde å utføre kan kun utføres av brukere i {{PLURAL:$2|gruppa|gruppene}} $1.",
 	"versionrequired": "Versjon $1 av MediaWiki er påkrevd",
-	"versionrequiredtext": "Versjon $1 av Mediawiki er nødvendig for å bruke denne siden.\nSe [[Special:Version|versjonssiden]]",
+	"versionrequiredtext": "Versjon $1 av MediaWiki er nødvendig for å bruke denne siden.\nSe [[Special:Version|versjonssiden]]",
 	"ok": "OK",
 	"pagetitle": "$1 – {{SITENAME}}",
 	"retrievedfrom": "Hentet fra «$1»",
@@ -2257,7 +2259,7 @@
 	"listgrants-grant": "Tildeling",
 	"listgrants-rights": "Rettigheter",
 	"trackingcategories": "Sporingskategorier",
-	"trackingcategories-summary": "Denne siden lister sporingskategorier som befolkes automatisk av Mediawiki-programvaren. Navnene deres kan endres ved å redigere de tilhørende systembeskjedene i {{ns:8}}-navnerommet.",
+	"trackingcategories-summary": "Denne siden lister sporingskategorier som befolkes automatisk av MediaWiki-programvaren. Navnene deres kan endres ved å redigere de tilhørende systembeskjedene i {{ns:8}}-navnerommet.",
 	"trackingcategories-msg": "Sporingskategori",
 	"trackingcategories-name": "Beskjednavn",
 	"trackingcategories-desc": "Inklusjonskriterium for kategorien",
