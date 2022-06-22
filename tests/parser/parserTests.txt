@@ -1485,8 +1485,7 @@ Self-closed tag hooks
 <pre typeof="mw:Extension/pre" about="#mwt2" data-parsoid='{"stx":"html"}' data-mw='{"name":"pre","attrs":{}}'></pre>
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt5" data-mw='{"name":"gallery","attrs":{},"body":null}'>
 </ul>
-<p><span typeof="mw:Extension/indicator" about="#mwt7" data-mw='{"name":"indicator","attrs":{"name":"something"}}'>
-</span></p>
+<p><link typeof="mw:Extension/indicator" about="#mwt7" data-mw='{"name":"indicator","attrs":{"name":"something"}}' /></p>
 !! end
 
 ###
@@ -24299,10 +24298,8 @@ LST Sections: Newfangled approach
 <section begin="2011-05-16" />
 <section end="2014-04-10 (MW 1.23wmf22)" />
 !! html/parsoid
-<p><span typeof="mw:Extension/section" about="#mwt4" data-mw='{"name":"section","attrs":{"begin":"2011-05-16"}}'>
-</span>
-<span typeof="mw:Extension/section" about="#mwt6" data-mw='{"name":"section","attrs":{"end":"2014-04-10 (MW 1.23wmf22)"}}'>
-</span></p>
+<p><link typeof="mw:Extension/section" about="#mwt4" data-mw='{"name":"section","attrs":{"begin":"2011-05-16"}}' />
+<link typeof="mw:Extension/section" about="#mwt6" data-mw='{"name":"section","attrs":{"end":"2014-04-10 (MW 1.23wmf22)"}}' /></p>
 !! end
 
 #--------- Test stripping of empty nodes in template content ----------
@@ -29666,7 +29663,7 @@ showindicators
 1&2&3&amp;4&amp;amp;5=Indicator
 
 !! html/parsoid
-<p><span typeof="mw:Extension/indicator" about="#mwt3" data-mw='{"name":"indicator","attrs":{"name":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"body":{"extsrc":"Indicator"}}'></span></p>
+<p><link typeof="mw:Extension/indicator" about="#mwt3" data-mw='{"name":"indicator","attrs":{"name":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"body":{"extsrc":"Indicator"}}' /></p>
 !! end
 
 # this version of the test strips out the ambiguity so Parsoid rts cleanly
@@ -29680,7 +29677,7 @@ showindicators
 1&2&3&amp;4&amp;amp;5=Indicator
 
 !! html/parsoid
-<p><span typeof="mw:Extension/indicator" about="#mwt3" data-mw='{"name":"indicator","attrs":{"name":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"body":{"extsrc":"Indicator"}}'></span></p>
+<p><link typeof="mw:Extension/indicator" about="#mwt3" data-mw='{"name":"indicator","attrs":{"name":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"body":{"extsrc":"Indicator"}}' /></p>
 !! end
 
 # This fragment mode is what Parsoid supports.
