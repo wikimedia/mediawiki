@@ -1082,20 +1082,6 @@ class FileModule extends Module {
 	}
 
 	/**
-	 * @deprecated since 1.35 Use compileLessString() instead
-	 * @param string $fileName
-	 * @param Context $context
-	 * @return string
-	 * @codeCoverageIgnore
-	 */
-	protected function compileLessFile( $fileName, Context $context ) {
-		wfDeprecated( __METHOD__, '1.35' );
-
-		$style = $this->getFileContents( $fileName, 'LESS' );
-		return $this->compileLessString( $style, $fileName, $context );
-	}
-
-	/**
 	 * Compile a LESS string into CSS.
 	 *
 	 * Keeps track of all used files and adds them to localFileRefs.
