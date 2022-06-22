@@ -50,17 +50,11 @@ use Wikimedia\Rdbms\IDatabase;
  * @since 1.34 Renamed from Block.
  */
 class DatabaseBlock extends AbstractBlock {
-	/**
-	 * @deprecated since 1.34. Use getType to check whether a block is autoblocking.
-	 * @var bool
-	 */
-	public $mAuto;
+	/** @var bool */
+	private $mAuto;
 
-	/**
-	 * @deprecated since 1.34. Use getParentBlockId instead.
-	 * @var int
-	 */
-	public $mParentBlockId;
+	/** @var int */
+	private $mParentBlockId;
 
 	/** @var int */
 	private $mId;
@@ -123,6 +117,10 @@ class DatabaseBlock extends AbstractBlock {
 		$this->isEmailBlocked( (bool)$options['blockEmail'] );
 		$this->isCreateAccountBlocked( (bool)$options['createAccount'] );
 		$this->isUsertalkEditAllowed( (bool)$options['allowUsertalk'] );
+
+		// hard deprecated since 1.39
+		$this->deprecatePublicProperty( 'mAuto', '1.34', __CLASS__ );
+		$this->deprecatePublicProperty( 'mParentBlockId', '1.34', __CLASS__ );
 	}
 
 	/**
