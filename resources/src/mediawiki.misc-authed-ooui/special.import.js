@@ -2,6 +2,11 @@
  * JavaScript for Special:Import
  */
 $( function () {
+
+	if ( mw.config.get( 'wgCanonicalSpecialPageName' ) !== 'Import' ) {
+		return;
+	}
+
 	var projectDropdownInput, subprojectDropdownInput,
 		sources = [];
 

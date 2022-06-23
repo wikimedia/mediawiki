@@ -72,9 +72,6 @@ class SpecialImport extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$this->getOutput()->addModules( 'mediawiki.special.import' );
-		$this->getOutput()->addModuleStyles( 'mediawiki.special.import.styles.ooui' );
-
 		$this->importSources = $this->getConfig()->get( MainConfigNames::ImportSources );
 		// Avoid phan error by checking the type
 		if ( !is_array( $this->importSources ) ) {
@@ -104,6 +101,9 @@ class SpecialImport extends SpecialPage {
 		if ( $errors ) {
 			throw new PermissionsError( 'import', $errors );
 		}
+
+		$this->getOutput()->addModules( 'mediawiki.misc-authed-ooui' );
+		$this->getOutput()->addModuleStyles( 'mediawiki.special.import.styles.ooui' );
 
 		$this->checkReadOnly();
 

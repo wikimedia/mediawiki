@@ -2144,6 +2144,7 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.misc-authed-ooui",
 		'scripts' => [
 			'special.changecredentials.js',
+			'special.import.js',
 			'special.movePage.js',
 			'special.mute.js',
 			'special.pageLanguage.js',
@@ -2153,7 +2154,7 @@ return [
 			'mediawiki.api', // special.changecredentials.js
 			'mediawiki.htmlform.ooui', // special.changecredentials.js
 			'mediawiki.widgets.visibleLengthLimit', // special.movePage.js, special.undelete.js
-			'mediawiki.widgets', // special.movePage.js, special.undelete.js
+			'mediawiki.widgets', // special.movePage.js, special.undelete.js, special.import.js
 			'oojs-ui-core', // special.pageLanguage.js
 		],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -2258,12 +2259,6 @@ return [
 			'tags-edit-chosen-placeholder',
 			'tags-edit-chosen-no-results',
 		],
-	],
-	'mediawiki.special.import' => [
-		'scripts' => 'resources/src/mediawiki.special.import.js',
-		'dependencies' => [
-			'mediawiki.widgets'
-		]
 	],
 	'mediawiki.special.import.styles.ooui' => [
 		'styles' => 'resources/src/mediawiki.special.import.styles.ooui.less',
