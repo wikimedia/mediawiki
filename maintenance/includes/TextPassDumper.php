@@ -557,8 +557,7 @@ TEXT
 				->getContentHandlerFactory()
 				->getContentHandler( $model )
 				->exportTransform( $text, $format );
-		}
-		catch ( MWException $ex ) {
+		} catch ( MWException $ex ) {
 			wfWarn( "Unable to apply export transformation for content model '$model': " .
 				$ex->getMessage() );
 

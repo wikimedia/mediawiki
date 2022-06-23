@@ -791,8 +791,7 @@ abstract class SearchEngine {
 				$handler = MediaWikiServices::getInstance()
 					->getContentHandlerFactory()
 					->getContentHandler( $model );
-			}
-			catch ( MWUnknownContentModelException $e ) {
+			} catch ( MWUnknownContentModelException $e ) {
 				// If we can find no handler, ignore it
 				continue;
 			}

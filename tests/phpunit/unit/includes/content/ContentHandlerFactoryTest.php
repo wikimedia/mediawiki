@@ -178,8 +178,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 			try {
 				$factory->getContentHandler( $modelID );
 				$this->assertTrue( false );
-			}
-			catch ( \Throwable $exception ) {
+			} catch ( \Throwable $exception ) {
 				$this->assertInstanceOf( $exceptionClassName, $exception );
 			}
 		}
