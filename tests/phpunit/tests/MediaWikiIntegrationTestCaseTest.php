@@ -72,6 +72,20 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	public function testObjectCache() {
+		$this->assertSame( 'hash', $this->getServiceContainer()->getMainConfig()->get( MainConfigNames::MainCacheType ) );
+
+		$this->assertInstanceOf( HashBagOStuff::class, ObjectCache::getLocalClusterInstance() );
+		$this->assertInstanceOf( HashBagOStuff::class, ObjectCache::getLocalServerInstance() );
+		$this->assertInstanceOf( HashBagOStuff::class, ObjectCache::getInstance( CACHE_ANYTHING ) );
+		$this->assertInstanceOf( HashBagOStuff::class, ObjectCache::getInstance( CACHE_ACCEL ) );
+		$this->assertInstanceOf( HashBagOStuff::class, ObjectCache::getInstance( CACHE_DB ) );
+		$this->assertInstanceOf( HashBagOStuff::class, ObjectCache::getInstance( CACHE_MEMCACHED ) );
+
+		$this->assertInstanceOf( HashBagOStuff::class, $this->getServiceContainer()->getLocalServerObjectCache() );
+		$this->assertInstanceOf( HashBagOStuff::class, $this->getServiceContainer()->getMainObjectStash() );
+	}
+
 	/**
 	 * @covers MediaWikiIntegrationTestCase::setMwGlobals
 	 * @covers MediaWikiIntegrationTestCase::tearDown
@@ -169,8 +183,8 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSetMainCache() {
-		// Cache should be disabled per default during testing.
-		$this->assertInstanceOf( EmptyBagOStuff::class, ObjectCache::getLocalClusterInstance() );
+		// Cache should be set to a hash per default.
+		$this->assertInstanceOf( HashBagOStuff::class, ObjectCache::getLocalClusterInstance() );
 
 		// Use HashBagOStuff.
 		$this->setMainCache( CACHE_HASH );

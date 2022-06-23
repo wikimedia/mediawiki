@@ -247,8 +247,6 @@ class ApiMoveTest extends ApiTestCase {
 
 		$name = ucfirst( __FUNCTION__ );
 
-		$this->setMainCache( CACHE_HASH );
-
 		$this->overrideConfigValue( 'RateLimits',
 			[ 'move' => [ '&can-bypass' => false, 'user' => [ 1, 60 ] ] ] );
 
