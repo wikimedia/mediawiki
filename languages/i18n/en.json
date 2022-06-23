@@ -404,6 +404,7 @@
 	"userlogin-yourname-ph": "Enter your username",
 	"createacct-another-username-ph": "Enter the username",
 	"createacct-helpusername": "",
+	"createacct-username-help": "",
 	"yourpassword": "Password:",
 	"prefs-help-yourpassword": "Account recovery is enabled. See $1 for more settings.",
 	"userlogin-yourpassword": "Password",
