@@ -29,7 +29,7 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, createElementVNode, createTextVNode, resolveComponent, withModifiers, renderSlot, createBlock, resolveDynamicComponent, withCtx, normalizeStyle, createVNode, Fragment, getCurrentInstance, onUnmounted, watch, toRef, withDirectives, renderList, mergeProps, vShow, vModelDynamic, withKeys, toRefs } from "vue";
+import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, createElementVNode, createTextVNode, resolveComponent, withModifiers, renderSlot, createBlock, resolveDynamicComponent, withCtx, Fragment, createVNode, Transition, normalizeStyle, getCurrentInstance, onUnmounted, watch, toRef, withDirectives, renderList, mergeProps, vShow, vModelDynamic, withKeys, toRefs } from "vue";
 var svgArticleSearch = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>';
 var svgClear = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0zm5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>';
 var svgImageLayoutFrameless = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>';
@@ -306,55 +306,74 @@ const _sfc_main$6 = defineComponent({
     "change"
   ],
   setup: (props, { emit }) => {
+    const thumbnailLoaded = ref(false);
+    const thumbnailStyle = ref({});
     const onMouseEnter = () => {
-      emit("change", "highlighted");
+      emit("change", "highlighted", true);
+    };
+    const onMouseLeave = () => {
+      emit("change", "highlighted", false);
     };
     const onMouseDown = (e) => {
       if (e.button === 0) {
-        emit("change", "active");
+        emit("change", "active", true);
       }
     };
     const onClick = () => {
-      emit("change", "selected");
+      emit("change", "selected", true);
     };
     const highlightQuery = computed(() => props.searchQuery.length > 0);
     const rootClasses = computed(() => {
       return {
         "cdx-menu-item--selected": props.selected,
-        "cdx-menu-item--active": props.active,
+        "cdx-menu-item--active": props.active && props.highlighted,
         "cdx-menu-item--highlighted": props.highlighted,
         "cdx-menu-item--enabled": !props.disabled,
         "cdx-menu-item--disabled": props.disabled,
         "cdx-menu-item--highlight-query": highlightQuery.value,
         "cdx-menu-item--bold-label": props.boldLabel,
+        "cdx-menu-item--has-description": !!props.description,
         "cdx-menu-item--hide-description-overflow": props.hideDescriptionOverflow
       };
     });
     const contentTag = computed(() => props.url ? "a" : "span");
     const title = computed(() => props.label || String(props.value));
-    const thumbnailBackgroundImage = computed(() => {
-      if (props.thumbnail) {
-        const escapedUrl = props.thumbnail.url.replace(/([\\"\n])/g, "\\$1");
-        return `url("${escapedUrl}")`;
+    const preloadThumbnail = (url) => {
+      const escapedUrl = url.replace(/([\\"\n])/g, "\\$1");
+      const image = new Image();
+      image.onload = () => {
+        thumbnailStyle.value = { backgroundImage: `url("${escapedUrl}")` };
+        thumbnailLoaded.value = true;
+      };
+      image.onerror = () => {
+        thumbnailLoaded.value = false;
+      };
+      image.src = escapedUrl;
+    };
+    onMounted(() => {
+      var _a;
+      if (((_a = props.thumbnail) == null ? void 0 : _a.url) && props.showThumbnail) {
+        preloadThumbnail(props.thumbnail.url);
       }
-      return "";
     });
     return {
       onMouseEnter,
+      onMouseLeave,
       onMouseDown,
       onClick,
       highlightQuery,
       rootClasses,
       contentTag,
       title,
-      thumbnailBackgroundImage,
-      defaultThumbnailIcon: cdxIconImageLayoutFrameless
+      defaultThumbnailIcon: cdxIconImageLayoutFrameless,
+      thumbnailStyle,
+      thumbnailLoaded
     };
   }
 });
 const _hoisted_1$5 = ["id", "aria-disabled", "aria-selected"];
 const _hoisted_2$3 = {
-  key: 1,
+  key: 0,
   class: "cdx-menu-item__thumbnail-placeholder"
 };
 const _hoisted_3$2 = { class: "cdx-menu-item__text" };
@@ -372,8 +391,9 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
     "aria-disabled": _ctx.disabled,
     "aria-selected": _ctx.selected,
     onMouseenter: _cache[0] || (_cache[0] = (...args) => _ctx.onMouseEnter && _ctx.onMouseEnter(...args)),
-    onMousedown: _cache[1] || (_cache[1] = withModifiers((...args) => _ctx.onMouseDown && _ctx.onMouseDown(...args), ["prevent"])),
-    onClick: _cache[2] || (_cache[2] = (...args) => _ctx.onClick && _ctx.onClick(...args))
+    onMouseleave: _cache[1] || (_cache[1] = (...args) => _ctx.onMouseLeave && _ctx.onMouseLeave(...args)),
+    onMousedown: _cache[2] || (_cache[2] = withModifiers((...args) => _ctx.onMouseDown && _ctx.onMouseDown(...args), ["prevent"])),
+    onClick: _cache[3] || (_cache[3] = (...args) => _ctx.onClick && _ctx.onClick(...args))
   }, [
     renderSlot(_ctx.$slots, "default", {}, () => [
       (openBlock(), createBlock(resolveDynamicComponent(_ctx.contentTag), {
@@ -383,17 +403,25 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
         default: withCtx(() => {
           var _a, _b, _c, _d, _e;
           return [
-            _ctx.showThumbnail && _ctx.thumbnail ? (openBlock(), createElementBlock("span", {
-              key: 0,
-              style: normalizeStyle({ backgroundImage: _ctx.thumbnailBackgroundImage }),
-              class: "cdx-menu-item__thumbnail"
-            }, null, 4)) : _ctx.showThumbnail ? (openBlock(), createElementBlock("span", _hoisted_2$3, [
-              createVNode(_component_cdx_icon, {
-                icon: _ctx.defaultThumbnailIcon,
-                class: "cdx-menu-item__thumbnail-placeholder__icon"
-              }, null, 8, ["icon"])
-            ])) : _ctx.icon ? (openBlock(), createBlock(_component_cdx_icon, {
-              key: 2,
+            _ctx.showThumbnail ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
+              !_ctx.thumbnailLoaded ? (openBlock(), createElementBlock("span", _hoisted_2$3, [
+                createVNode(_component_cdx_icon, {
+                  icon: _ctx.defaultThumbnailIcon,
+                  class: "cdx-menu-item__thumbnail-placeholder__icon"
+                }, null, 8, ["icon"])
+              ])) : createCommentVNode("", true),
+              createVNode(Transition, { name: "cdx-menu-item__thumbnail" }, {
+                default: withCtx(() => [
+                  _ctx.thumbnailLoaded ? (openBlock(), createElementBlock("span", {
+                    key: 0,
+                    style: normalizeStyle(_ctx.thumbnailStyle),
+                    class: "cdx-menu-item__thumbnail"
+                  }, null, 4)) : createCommentVNode("", true)
+                ]),
+                _: 1
+              })
+            ], 64)) : _ctx.icon ? (openBlock(), createBlock(_component_cdx_icon, {
+              key: 1,
               icon: _ctx.icon,
               class: "cdx-menu-item__icon"
             }, null, 8, ["icon"])) : createCommentVNode("", true),
@@ -582,12 +610,13 @@ const _sfc_main$4 = defineComponent({
       return computedMenuItems.value.find((menuItem) => menuItem.value === props.selected);
     }
     function handleMenuItemChange(menuState, menuItem) {
+      var _a;
       if (menuItem && menuItem.disabled) {
         return;
       }
       switch (menuState) {
         case "selected":
-          emit("update:selected", (menuItem == null ? void 0 : menuItem.value) || null);
+          emit("update:selected", (_a = menuItem == null ? void 0 : menuItem.value) != null ? _a : null);
           emit("update:expanded", false);
           activeMenuItem.value = null;
           break;
@@ -704,8 +733,12 @@ const _sfc_main$4 = defineComponent({
       document.removeEventListener("mouseup", onMouseUp);
     });
     watch(toRef(props, "expanded"), (newVal) => {
-      if (!newVal && highlightedMenuItem.value) {
-        highlightedMenuItem.value = null;
+      const selectedMenuItem = findSelectedMenuItem();
+      if (!newVal && highlightedMenuItem.value && selectedMenuItem === void 0) {
+        handleMenuItemChange("highlighted");
+      }
+      if (newVal && selectedMenuItem !== void 0) {
+        handleMenuItemChange("highlighted", selectedMenuItem);
       }
     });
     return {
@@ -764,12 +797,18 @@ function _sfc_render$4(_ctx, _cache, $props, $setup, $data, $options) {
         "bold-label": _ctx.boldLabel,
         "hide-description-overflow": _ctx.hideDescriptionOverflow,
         "search-query": _ctx.searchQuery,
-        onChange: ($event) => _ctx.handleMenuItemChange($event, menuItem),
+        onChange: (menuState, setState) => _ctx.handleMenuItemChange(menuState, setState && menuItem),
         onClick: ($event) => _ctx.$emit("menu-item-click", menuItem)
       }), {
-        default: withCtx(() => [
-          renderSlot(_ctx.$slots, "default", { menuItem })
-        ]),
+        default: withCtx(() => {
+          var _a2, _b2;
+          return [
+            renderSlot(_ctx.$slots, "default", {
+              menuItem,
+              active: menuItem.value === ((_a2 = _ctx.activeMenuItem) == null ? void 0 : _a2.value) && menuItem.value === ((_b2 = _ctx.highlightedMenuItem) == null ? void 0 : _b2.value)
+            })
+          ];
+        }),
         _: 2
       }, 1040, ["selected", "active", "highlighted", "show-thumbnail", "bold-label", "hide-description-overflow", "search-query", "onChange", "onClick"]);
     }), 128)),
@@ -921,11 +960,9 @@ const _sfc_main$2 = defineComponent({
       rootStyle,
       otherAttrs
     } = useSplitAttributes(attrs, internalClasses);
-    const isFocused = ref(false);
-    const isActive = computed(() => isFocused.value || !!wrappedModel.value);
     const inputClasses = computed(() => {
       return {
-        "cdx-text-input__input--is-active": isActive.value
+        "cdx-text-input__input--has-value": !!wrappedModel.value
       };
     });
     const onClear = () => {
@@ -938,11 +975,9 @@ const _sfc_main$2 = defineComponent({
       emit("change", event);
     };
     const onFocus = (event) => {
-      isFocused.value = true;
       emit("focus", event);
     };
     const onBlur = (event) => {
-      isFocused.value = false;
       emit("blur", event);
     };
     return {
@@ -1120,7 +1155,7 @@ const _sfc_main = defineComponent({
     },
     searchResults: {
       type: Array,
-      default: () => []
+      required: true
     },
     buttonLabel: {
       type: String,
@@ -1152,7 +1187,7 @@ const _sfc_main = defineComponent({
     }
   },
   emits: [
-    "new-input",
+    "input",
     "search-result-click",
     "submit"
   ],
@@ -1230,7 +1265,7 @@ const _sfc_main = defineComponent({
         debounceId = void 0;
       }
       const handleUpdateInputValue = () => {
-        emit("new-input", newVal);
+        emit("input", newVal);
       };
       if (immediate) {
         handleUpdateInputValue();
@@ -1452,10 +1487,12 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
                 ])
               ], 2)
             ]),
-            default: withCtx(({ menuItem }) => [
+            default: withCtx(({ menuItem, active }) => [
               menuItem.value === _ctx.MenuFooterValue ? (openBlock(), createElementBlock("a", {
                 key: 0,
-                class: "cdx-typeahead-search__search-footer",
+                class: normalizeClass(["cdx-typeahead-search__search-footer", {
+                  "cdx-typeahead-search__search-footer__active": active
+                }]),
                 href: _ctx.asSearchResult(menuItem).url,
                 onClickCapture: withModifiers(($event) => _ctx.onSearchFooterClick(_ctx.asSearchResult(menuItem)), ["stop"])
               }, [
@@ -1468,7 +1505,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
                     createElementVNode("strong", _hoisted_6, toDisplayString(_ctx.searchQuery), 1)
                   ])
                 ])
-              ], 40, _hoisted_4)) : createCommentVNode("", true)
+              ], 42, _hoisted_4)) : createCommentVNode("", true)
             ]),
             _: 3
           }, 16, ["id", "expanded", "show-pending", "selected", "menu-items", "search-query", "show-no-results-slot", "aria-label", "onUpdate:selected", "onMenuItemKeyboardNavigation"])

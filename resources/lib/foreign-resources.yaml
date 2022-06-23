@@ -95,8 +95,8 @@ CLDRPluralRuleParser:
 
 codex:
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.1.0-alpha.7.tgz
-  integrity: sha512-iTbw+/mfkDPom0JLps8mi7FV3B83eJxAvWC6qN/sBpWvERy0EGjxfdFiHHwor0LVFqPCZO2SA1rSQripNhRzRw==
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.1.0-alpha.8.tgz
+  integrity: sha512-oDnyYAZG2ecUsSsPVN18bztnsv19xXzxDetKLKd2CwAFqmKcdgGuPK7WcKfUNzVOMSesYjCFrlpqMpND8TULdQ==
   dest:
     package/dist/codex.es.js:
     package/dist/codex.umd.js:
@@ -107,8 +107,8 @@ codex:
 
 codex-icons:
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.1.0-alpha.7.tgz
-  integrity: sha512-qYcVHHXImJj5y5+C3+Z05xBohwRuRI9b5IBuFEslOMXmrRf3V3vvHzESYdCK5uoDs7bWPQkCVjOoTVSTmi4gHw==
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.1.0-alpha.8.tgz
+  integrity: sha512-H/DEG4korFvszcJIveLKFHoUGfGUj4oC3sSb5gsocZLfNQCRRRkGEkTEY23V9pPX68ovejza2b44MeVfvbReEQ==
   dest:
     package/dist/codex-icons.json:
     package/LICENSE:
@@ -116,8 +116,8 @@ codex-icons:
 
 codex-search:
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.1.0-alpha.7.tgz
-  integrity: sha512-MSEq7Y3W7RMV0F3yOZmnQHGbNCPcIZSquZEmBjHd88NrK3r/avbiuznulJF8CFdW8nAnk/BUbBLSKHGJd1H5hQ==
+  src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.1.0-alpha.8.tgz
+  integrity: sha512-tB0EavJGmCXyLsXWRZh1UZfHi3D0pY1vXPPAgC219/v1f3WxOZSIrbbRWhLfGqbm1nkrHB4pwmgVK6rWiGxF5g==
   dest:
     package/dist/codex-search.es.js:
     package/dist/codex-search.umd.js:
