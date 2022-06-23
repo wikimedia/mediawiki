@@ -381,6 +381,10 @@ because of Phabricator reports.
   warnings.
 * Article::viewRedirect(), deprecated in 1.30, now emits deprecation warnings.
 * User::blockedFor(), deprecated in 1.35, now emits deprecation warnings.
+* Access to previously public properties AbstractBlock::$mExpiry,
+  AbstractBlock::$mHideName, AbstractBlock::$mTimestamp, DatabaseBlock::$mAuto,
+  and DatabaseBlock::$mParentBlockId, deprecated in 1.34, now emits deprecation
+  warnings.
 * …
 
 === Other changes in 1.39 ===

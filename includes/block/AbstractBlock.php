@@ -21,6 +21,7 @@
 namespace MediaWiki\Block;
 
 use CommentStoreComment;
+use DeprecationHelper;
 use IContextSource;
 use InvalidArgumentException;
 use MediaWiki\DAO\WikiAwareEntityTrait;
@@ -37,22 +38,17 @@ use User;
  * @since 1.34 Factored out from DatabaseBlock (previously Block).
  */
 abstract class AbstractBlock implements Block {
+	use DeprecationHelper;
 	use WikiAwareEntityTrait;
 
 	/** @var CommentStoreComment */
 	protected $reason;
 
-	/**
-	 * @deprecated since 1.34. Use getTimestamp and setTimestamp instead.
-	 * @var string
-	 */
-	public $mTimestamp = '';
+	/** @var string */
+	protected $mTimestamp = '';
 
-	/**
-	 * @deprecated since 1.34. Use getExpiry and setExpiry instead.
-	 * @var string
-	 */
-	public $mExpiry = '';
+	/** @var string */
+	protected $mExpiry = '';
 
 	/** @var bool */
 	protected $mBlockEmail = false;
@@ -63,11 +59,8 @@ abstract class AbstractBlock implements Block {
 	/** @var bool */
 	protected $blockCreateAccount = false;
 
-	/**
-	 * @deprecated since 1.34. Use getHideName and setHideName instead.
-	 * @var bool
-	 */
-	public $mHideName = false;
+	/** @var bool */
+	protected $mHideName = false;
 
 	/** @var bool */
 	protected $isHardblock;
@@ -115,6 +108,11 @@ abstract class AbstractBlock implements Block {
 		$this->setTimestamp( wfTimestamp( TS_MW, $options['timestamp'] ) );
 		$this->setHideName( (bool)$options['hideName'] );
 		$this->isHardblock( !$options['anonOnly'] );
+
+		// hard deprecated since 1.39
+		$this->deprecatePublicProperty( 'mExpiry', '1.34', __CLASS__ );
+		$this->deprecatePublicProperty( 'mHideName', '1.34', __CLASS__ );
+		$this->deprecatePublicProperty( 'mTimestamp', '1.34', __CLASS__ );
 	}
 
 	/**
