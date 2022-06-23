@@ -19,6 +19,8 @@ require_once __DIR__ . '/Maintenance.php';
 class AddSite extends Maintenance {
 
 	public function __construct() {
+		parent::__construct();
+
 		$this->addDescription( 'Add a site definition into the sites table.' );
 
 		$this->addArg( 'globalid', 'The global id of the site to add, e.g. "wikipedia".', true );
@@ -30,8 +32,6 @@ class AddSite extends Maintenance {
 			' https://example.com/wiki/\$1.', false, true );
 		$this->addOption( 'filepath', 'The URL to files of this site, e.g. https://example' .
 			'.com/w/\$1.', false, true );
-
-		parent::__construct();
 	}
 
 	/**
