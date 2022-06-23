@@ -1160,8 +1160,9 @@ class SkinTemplate extends Skin {
 	private function getWatchLinkAttrs(
 		string $mode, Authority $performer, Title $title, ?string $action, bool $onPage
 	): array {
+		$isWatchMode = $action == 'watch';
 		$class = 'mw-watchlink ' . (
-			$onPage && ( $action == 'watch' || $action == 'unwatch' ) ? 'selected' : ''
+			$onPage && ( $isWatchMode || $action == 'unwatch' ) ? 'selected' : ''
 			);
 
 		// Add class identifying the page is temporarily watched, if applicable.
@@ -1173,6 +1174,8 @@ class SkinTemplate extends Skin {
 
 		return [
 			'class' => $class,
+			'button' => true,
+			'icon' => $isWatchMode ? 'star' : 'unStar',
 			// uses 'watch' or 'unwatch' message
 			'text' => $this->msg( $mode )->text(),
 			'href' => $title->getLocalURL( [ 'action' => $mode ] ),
