@@ -112,7 +112,7 @@ class SpecialVersion extends SpecialPage {
 		// Now figure out what to do
 		switch ( strtolower( $parts[0] ) ) {
 			case 'credits':
-				$out->addModuleStyles( 'mediawiki.special.version' );
+				$out->addModuleStyles( 'mediawiki.special' );
 
 				$wikiText = '{{int:version-credits-not-found}}';
 				if ( $extName === 'MediaWiki' ) {
@@ -177,7 +177,7 @@ class SpecialVersion extends SpecialPage {
 				}
 				break;
 			default:
-				$out->addModuleStyles( 'mediawiki.special.version' );
+				$out->addModuleStyles( 'mediawiki.special' );
 				$out->addWikiTextAsInterface(
 					self::getMediaWikiCredits() .
 					self::softwareInformation() .
