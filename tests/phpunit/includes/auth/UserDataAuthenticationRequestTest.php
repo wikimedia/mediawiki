@@ -14,7 +14,7 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( 'wgHiddenPrefs', [] );
+		$this->overrideConfigValue( 'HiddenPrefs', [] );
 	}
 
 	/**
@@ -55,8 +55,8 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 	public function testLoadFromSubmission(
 		array $args, array $data, $expectState, $hiddenPref = null, $enableEmail = null
 	) {
-		$this->setMwGlobals( 'wgHiddenPrefs', $hiddenPref );
-		$this->setMwGlobals( 'wgEnableEmail', $enableEmail );
+		$this->overrideConfigValue( 'HiddenPrefs', $hiddenPref );
+		$this->overrideConfigValue( 'EnableEmail', $enableEmail );
 		parent::testLoadFromSubmission( $args, $data, $expectState );
 	}
 

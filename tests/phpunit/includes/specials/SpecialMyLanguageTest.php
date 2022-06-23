@@ -84,4 +84,37 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 			[ null, 'Media:Fail', 'en', 'ar' ],
 		];
 	}
+
+	/**
+	 * @covers SpecialMyLanguage::findTitleForTransclusion
+	 * @dataProvider provideFindTitleForTransclusion
+	 * @param string $expected
+	 * @param string $subpage
+	 * @param string $langCode
+	 * @param string $userLang
+	 */
+	public function testFindTitleForTransclusion( $expected, $subpage, $langCode, $userLang ) {
+		$this->setContentLang( $langCode );
+		$services = $this->getServiceContainer();
+		$special = new SpecialMyLanguage(
+			$services->getLanguageNameUtils(),
+			$services->getRedirectLookup()
+		);
+		$special->getContext()->setLanguage( $userLang );
+		// Test with subpages both enabled and disabled
+		$this->mergeMwGlobalArrayValue( 'wgNamespacesWithSubpages', [ NS_MAIN => true ] );
+		$this->assertTitle( $expected, $special->findTitleForTransclusion( $subpage ) );
+		$this->mergeMwGlobalArrayValue( 'wgNamespacesWithSubpages', [ NS_MAIN => false ] );
+		$this->assertTitle( $expected, $special->findTitleForTransclusion( $subpage ) );
+	}
+
+	public static function provideFindTitleForTransclusion() {
+		// See addDBDataOnce() for page declarations
+		return [
+			// [ $expected, $subpage, $langCode, $userLang ]
+			[ 'Page/Another/en', 'Page/Another/en', 'en', 'en' ],
+			[ 'Page/Another/en', 'Page/Another', 'en', 'en' ],
+			[ 'Page/Another/en', 'Page/Another', 'en', 'frc' ],
+		];
+	}
 }

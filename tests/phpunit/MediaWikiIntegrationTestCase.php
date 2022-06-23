@@ -747,31 +747,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * The key is added to the array of globals that will be reset afterwards
 	 * in the tearDown().
 	 *
-	 * @par Example
-	 * @code
-	 *     protected function setUp() : void {
-	 *         parent::setUp();
-	 *         $this->setMwGlobals( 'wgRestrictStuff', true );
-	 *     }
-	 *
-	 *     function testFoo() {}
-	 *
-	 *     function testBar() {}
-	 *         $this->assertTrue( self::getX()->doStuff() );
-	 *
-	 *         $this->setMwGlobals( 'wgRestrictStuff', false );
-	 *         $this->assertTrue( self::getX()->doStuff() );
-	 *     }
-	 *
-	 *     function testQuux() {}
-	 * @endcode
+	 * @note Since 1.39, use overrideConfigValue() to override configuration.
+	 *       Since then, setMwGlobals() should only be used for the rare case of global variables
+	 *       that are not configuration.
 	 *
 	 * @param array|string $pairs Key to the global variable, or an array
 	 *  of key/value pairs.
 	 * @param mixed|null $value Value to set the global to (ignored
 	 *  if an array is given as first argument).
-	 *
-	 * @note This will call resetServices().
 	 *
 	 * @since 1.21
 	 */
@@ -787,6 +770,67 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		$this->resetServices();
+	}
+
+	/**
+	 * Overrides a config setting for the duration of the current test case.
+	 * The original value of the config setting will be restored after the test case finishes.
+	 *
+	 * @note This will cause any existing service instances to be reset.
+	 *
+	 * @see setMwGlobals
+	 * @see \MediaWiki\Settings\SettingsBuilder::overrideConfigValue
+	 *
+	 * @par Example
+	 * @code
+	 *     protected function setUp() : void {
+	 *         parent::setUp();
+	 *         $this->overrideConfigValue( 'RestrictStuff', true );
+	 *     }
+	 *
+	 *     function testFoo() {}
+	 *
+	 *     function testBar() {}
+	 *         $this->assertTrue( self::getX()->doStuff() );
+	 *
+	 *         $this->overrideConfigValue( 'RestrictStuff', false );
+	 *         $this->assertTrue( self::getX()->doStuff() );
+	 *     }
+	 *
+	 *     function testQuux() {}
+	 * @endcode
+	 *
+	 * @param string $key
+	 * @param mixed $value
+	 *
+	 * @since 1.39
+	 */
+	protected function overrideConfigValue( string $key, $value ) {
+		$this->setMwGlobals( "wg$key", $value );
+	}
+
+	/**
+	 * Overrides a set of config settings for the duration of the current test case.
+	 * The original values of the config settings will be restored after the test case finishes.
+	 *
+	 * @note This will cause any existing service instances to be reset.
+	 *
+	 * @see setMwGlobals
+	 * @see \MediaWiki\Settings\SettingsBuilder::overrideConfigValues
+	 *
+	 * @param array<string,mixed> $values
+	 *
+	 * @since 1.39
+	 */
+	protected function overrideConfigValues( array $values ) {
+		$vars = [];
+
+		foreach ( $values as $key => $value ) {
+			$var = "wg$key";
+			$vars[$var] = $value;
+		}
+
+		$this->setMwGlobals( $vars );
 	}
 
 	/**
