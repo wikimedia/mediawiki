@@ -290,14 +290,6 @@ jquery.fullscreen:
   src: https://raw.githubusercontent.com/theopolisme/jquery-fullscreen/v2.1.0/jquery.fullscreen.js
   integrity: sha384-G4KPs2d99tgcsyUnJ3eeZ1r2hEKDwZfc4+/xowL/LIemq2VVwEE8HpVAWt4WYNLR
 
-jquery.hoverIntent:
-  license: MIT
-  homepage: https://github.com/briancherne/jquery-hoverIntent
-  version: 823603fdac
-  type: file
-  src: https://raw.githubusercontent.com/briancherne/jquery-hoverIntent/823603fdac/jquery.hoverIntent.js
-  integrity: sha384-lca0haN0hqFGGh2aYUhtAgX9dhVHfQnTADH4svDeM6gcXnL7aFGeAi1NYwipDMyS
-
 jquery.i18n:
   license: MIT OR GPL-2.0-or-later
   homepage: https://github.com/wikimedia/jquery.i18n
