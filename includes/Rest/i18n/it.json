@@ -1,12 +1,36 @@
 {
 	"@metadata": {
 		"authors": [
-			"Beta16"
+			"Beta16",
+			"GpieroMW"
 		]
 	},
+	"rest-prefix-mismatch": "Il percorso richiesto ($1) non è all'interno del percorso radice REST API ($2)",
+	"rest-wrong-method": "Il metodo richiesto ($1) non è {{PLURAL:$3|un metodo consentito per questo percorso|uno dei metodi consentiti per questo percorso}} ($2)",
+	"rest-no-match": "Il relativo percorso ($1) richiesto non coincide con nessun controller conosciuto",
 	"rest-nonexistent-title": "Il titolo indicato ($1) non esiste",
-	"rest-nonexistent-revision": "La versione richiesta ($1) non esiste.",
+	"rest-nonexistent-title-revision": "La versione richiesta ($1) non esiste per la pagina indicata ($2)",
+	"rest-nonexistent-revision": "La versione richiesta ($1) non esiste",
 	"rest-nonexistent-user": "L'utente indicato ($1) non esiste",
 	"rest-invalid-user": "Il nome utente indicato ($1) non è valido",
-	"rest-permission-denied-anon": "Non accessibile ad utenti anonimi"
+	"rest-permission-denied-anon": "Non accessibile ad utenti anonimi",
+	"rest-permission-denied-title": "L'utente non ha i privilegi per leggere il titolo ($1)",
+	"rest-permission-denied-revision": "L'utente non ha accesso alla versione richiesta ($1).",
+	"rest-resource-limit-exceeded": "Superati i limiti di risorse per elaborare la richiesta.",
+	"rest-pagehistory-incompatible-params": "Non possono essere specificati entrambi i parametri \"older_than\" e \"newer_than\"",
+	"rest-pagehistory-param-range-error": "ID versione deve essere maggiore di 0",
+	"rest-pagehistory-timestamp-error": "Impossibile recuperare l'orario per la versione indicata ($1)",
+	"rest-pagehistorycount-type-unrecognized": "Il tipo di conteggio specificato ($1) non è valido",
+	"rest-pagehistorycount-parameters-invalid": "La combinazione di parametri specificata non è supportata.",
+	"rest-compare-page-mismatch": "La versione specificata appartiene a pagine differenti; il confronto è rifiutato.",
+	"rest-compare-permission-denied": "L'utente non ha accesso alle versioni richieste",
+	"rest-compare-nonexistent": "La versione specificata dal parametro $1 non esiste.",
+	"rest-compare-inaccessible": "La versione specificata dal parametro $1 non è accessibile pubblicamente.",
+	"rest-pagehistorycount-too-many-revisions": "Il titolo indicato contiene troppe versioni per recuperare questo conteggio.",
+	"rest-search-error": "Errore nel restituire il risultato della ricerca: $1",
+	"rest-page-source-type-error": "Il tipo di contenuto della pagina sorgente richiesta non è supportato",
+	"rest-no-revision": "Impossibile recuperare la versione per il titolo $1",
+	"rest-missing-body-field": "Campo obbligatorio \"$1\" mancante nel corpo della richiesta.",
+	"rest-update-cannot-create-page": "La pagina \"$1\" non può essere creata perché già esiste. Per aggiornare la pagina esistente, fornire l'ID versione base nella struttura sotto \"l'ultima\" chiave nel corpo richiesto.",
+	"rest-cannot-load-file": "Il file per il titolo \"$1\" non può essere caricato."
 }

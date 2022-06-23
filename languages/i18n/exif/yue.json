@@ -8,7 +8,8 @@
 			"Roy17",
 			"Waihorace",
 			"William915",
-			"Yueman"
+			"Yueman",
+			"Z423x5c6"
 		]
 	},
 	"exif-imagewidth": "闊",
@@ -126,6 +127,8 @@
 	"exif-gpsdifferential": "GPS 差動修正",
 	"exif-jpegfilecomment": "JPEG文件註",
 	"exif-keywords": "關鍵字",
+	"exif-worldregioncreated": "影呢幅相嘅地方",
+	"exif-countrycreated": "影呢幅相嘅國家",
 	"exif-countrydest": "顯示國家",
 	"exif-countrycodedest": "顯示國家地區碼",
 	"exif-provinceorstatedest": "顯示省份或州份或領域地區",
@@ -314,5 +317,9 @@
 	"exif-urgency-normal": "正常 ($1)",
 	"exif-urgency-low": "低 ($1)",
 	"exif-urgency-high": "高 ($1)",
-	"exif-urgency-other": "用戶自訂優先權（$1）"
+	"exif-urgency-other": "用戶自訂優先權（$1）",
+	"exif-usepanoramaviewer-true": "好",
+	"exif-usepanoramaviewer-false": "唔好",
+	"exif-exposurelockused-true": "係",
+	"exif-exposurelockused-false": "唔係"
 }

@@ -161,7 +161,7 @@
 	"config-ns-other-default": "MonWiki",
 	"config-project-namespace-help": "Seguint l'exemple de la Viquipèdia, molts wikis mantenen les seves pàgines de polítiques separades de les pàgines de contingut, en un «espai de noms de projecte».\nTots els títols de pàgina d'aquest espai de noms comencen amb un cert prefix, que podeu especificar a continuació.\nNormalment el prefix es deriva del nom del wiki, però no pot contenir caràcters de puntuació com ara «#» o «:».",
 	"config-ns-invalid": "L'espai de noms especificat «<nowiki>$1</nowiki>» no és vàlid.\nEspecifiqueu un espai de noms de projecte diferent.",
-	"config-ns-conflict": "L'espai de noms especificat «<nowiki>$1</nowiki>» entra en conflicte amb un espai de noms per defecte de Mediawiki.\nEspecifique un espai de noms de projecte diferent.",
+	"config-ns-conflict": "L'espai de noms especificat «<nowiki>$1</nowiki>» entra en conflicte amb un espai de noms per defecte de MediaWiki.\nEspecifique un espai de noms de projecte diferent.",
 	"config-admin-box": "Compte de l'administrador",
 	"config-admin-name": "El vostre nom d'usuari:",
 	"config-admin-password": "Contrasenya:",
