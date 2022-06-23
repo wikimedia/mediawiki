@@ -340,6 +340,9 @@ because of Phabricator reports.
   warnings (T296430).
 * (T244138) QueryPage::getSQL() is deprecated. Instead QueryPage::getQueryInfo()
   should be overriden.
+* Calling new JobRunner() directly without $serviceOptions now emits
+  deprecation warnings. Use MediaWikiServices::getInstance()->getJobRunner()
+  instead.
 * Passing an array of targets to Article::getRedirectHeaderHtml() is
   deprecated. Supply a single redirect target instead (T296430).
 * The following Less mediawiki.mixins have been deprecated:

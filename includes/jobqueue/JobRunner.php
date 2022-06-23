@@ -126,7 +126,7 @@ class JobRunner implements LoggerAwareInterface {
 		LoggerInterface $logger = null
 	) {
 		if ( !$serviceOptions || $serviceOptions instanceof LoggerInterface ) {
-			// TODO: wfDeprecated( __METHOD__ . ' called directly. Use MediaWikiServices instead', '1.35' );
+			wfDeprecated( __METHOD__ . ' called directly. Use MediaWikiServices instead', '1.39' );
 			$logger = $serviceOptions;
 			$serviceOptions = new ServiceOptions(
 				static::CONSTRUCTOR_OPTIONS,
