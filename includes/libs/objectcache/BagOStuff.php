@@ -454,12 +454,15 @@ abstract class BagOStuff implements
 	 * Callers should make sure that both ($init - $step) and $exptime are invariants for all
 	 * operations to any given key. The value of $init should be at least that of $step.
 	 *
+	 * The new value is returned, except if the WRITE_BACKGROUND flag is given, in which case
+	 * the handler may choose to return true to indicate that the operation has been dispatched.
+	 *
 	 * @param string $key Key built via makeKey() or makeGlobalKey()
 	 * @param int $exptime Time-to-live (in seconds) or a UNIX timestamp expiration
 	 * @param int $step Amount to increase the key value by [default: 1]
 	 * @param int|null $init Value to initialize the key to if it does not exist [default: $step]
 	 * @param int $flags Bit field of class WRITE_* constants [optional]
-	 * @return int|bool New value or false on failure
+	 * @return int|bool New value or false on failure or true for an asynchronous update.
 	 * @since 1.24
 	 */
 	abstract public function incrWithInit( $key, $exptime, $step = 1, $init = null, $flags = 0 );
