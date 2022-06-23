@@ -318,7 +318,7 @@ abstract class Skin extends ContextSource {
 			// for larger screens with max-widths and margins.
 			$out->addMeta(
 				'viewport',
-				'width=1000px'
+				'width=1000'
 			);
 		}
 
