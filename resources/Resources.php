@@ -2012,6 +2012,7 @@ return [
 			'resources/src/mediawiki.special/block.less',
 			'resources/src/mediawiki.special/listFiles.less',
 			'resources/src/mediawiki.special/blocklist.less',
+			'resources/src/mediawiki.special/version.css',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -2447,9 +2448,6 @@ return [
 			'oojs-ui.styles.icons-interactions',
 			'user.options',
 		],
-	],
-	'mediawiki.special.version' => [
-		'styles' => 'resources/src/mediawiki.special.version.css',
 	],
 
 	/* MediaWiki Installer */
