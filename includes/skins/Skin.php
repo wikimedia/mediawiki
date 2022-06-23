@@ -312,11 +312,13 @@ abstract class Skin extends ContextSource {
 			);
 		} else {
 			// Make sure the skin is zoomed out on a mobile device.
-			// Assuming a 300px mobile display,
-			// 0.25 zoom * 1200 = 300px.
+			// Do not set initial-scale and let mobile device optimize.
+			// Width is based on the value of @width-breakpoint-desktop
+			// This is as @width-breakpoint-desktop-wide usually tends to optimize
+			// for larger screens with max-widths and margins.
 			$out->addMeta(
 				'viewport',
-				'width=1200px, initial-scale=0.25'
+				'width=1000px'
 			);
 		}
 
