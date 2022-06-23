@@ -1764,7 +1764,7 @@ class EditPage implements IEditObject {
 			if ( $spName ) {
 				$specialPage = $specialPageFactory->getPage( $spName );
 				if ( $specialPage instanceof SpecialMyLanguage ) {
-					$title = $specialPage->getRedirect( $spParam );
+					$title = $specialPage->findTitleForTransclusion( $spParam );
 				}
 			}
 		}
