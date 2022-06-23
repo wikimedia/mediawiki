@@ -80,29 +80,29 @@ class StartUpModule extends Module {
 				// Unknown module names are allowed here, this is only an optimisation.
 				// Checks for illegal and unknown dependencies happen as PHPUnit structure tests,
 				// and also client-side at run-time.
-				$flat = [];
-			} else {
-				$data = $registryData[$moduleName];
-				$flat = $data['dependencies'];
+				$dependencyCache[$moduleName] = [];
+				return [];
+			}
 
-				// Prevent recursion
-				$handled[] = $moduleName;
-				foreach ( $data['dependencies'] as $dependency ) {
-					if ( in_array( $dependency, $handled, true ) ) {
-						// If we encounter a circular dependency, then stop the optimiser and leave the
-						// original dependencies array unmodified. Circular dependencies are not
-						// supported in ResourceLoader. Awareness of them exists here so that we can
-						// optimise the registry when it isn't broken, and otherwise transport the
-						// registry unchanged. The client will handle this further.
-						throw new CircularDependencyError();
-					} else {
-						// Recursively add the dependencies of the dependencies
-						$flat = array_merge(
-							$flat,
-							self::getImplicitDependencies( $registryData, $dependency, $handled )
-						);
-					}
+			$data = $registryData[$moduleName];
+			$flat = $data['dependencies'];
+
+			// Prevent recursion
+			$handled[] = $moduleName;
+			foreach ( $data['dependencies'] as $dependency ) {
+				if ( in_array( $dependency, $handled, true ) ) {
+					// If we encounter a circular dependency, then stop the optimiser and leave the
+					// original dependencies array unmodified. Circular dependencies are not
+					// supported in ResourceLoader. Awareness of them exists here so that we can
+					// optimise the registry when it isn't broken, and otherwise transport the
+					// registry unchanged. The client will handle this further.
+					throw new CircularDependencyError();
 				}
+				// Recursively add the dependencies of the dependencies
+				$flat = array_merge(
+					$flat,
+					self::getImplicitDependencies( $registryData, $dependency, $handled )
+				);
 			}
 
 			$dependencyCache[$moduleName] = $flat;
@@ -164,9 +164,6 @@ class StartUpModule extends Module {
 		// Allow disabling target filter, for use by SpecialJavaScriptTest.
 		$byPassTargetFilter = $this->getConfig()->get( MainConfigNames::EnableJavaScriptTest ) && $target === 'test';
 
-		$out = '';
-		$states = [];
-		$registryData = [];
 		$moduleNames = $resourceLoader->getModuleNames();
 
 		// Preload with a batch so that the below calls to getVersionHash() for each module
@@ -185,6 +182,8 @@ class StartUpModule extends Module {
 		}
 
 		// Get registry data
+		$states = [];
+		$registryData = [];
 		foreach ( $moduleNames as $name ) {
 			$module = $resourceLoader->getModule( $name );
 			$moduleTargets = $module->getTargets();
@@ -257,7 +256,7 @@ class StartUpModule extends Module {
 		self::compileUnresolvedDependencies( $registryData );
 
 		// Register sources
-		$out .= ResourceLoader::makeLoaderSourcesScript( $context, $resourceLoader->getSources() );
+		$out = ResourceLoader::makeLoaderSourcesScript( $context, $resourceLoader->getSources() );
 
 		// Figure out the different call signatures for mw.loader.register
 		$registrations = [];

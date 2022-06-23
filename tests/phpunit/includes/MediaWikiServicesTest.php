@@ -208,8 +208,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		try {
 			MediaWikiServices::getInstance()->getService( 'DBLoadBalancerFactory' );
 			$this->fail( 'DBLoadBalancerFactory should have been disabled' );
-		}
-		catch ( ServiceDisabledException $ex ) {
+		} catch ( ServiceDisabledException $ex ) {
 			// ok, as expected
 		} catch ( Throwable $ex ) {
 			$this->fail( 'ServiceDisabledException expected, caught ' . get_class( $ex ) );
