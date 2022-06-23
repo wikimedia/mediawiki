@@ -300,10 +300,6 @@ JS;
 	 * @return string|WrappedStringList HTML
 	 */
 	public function getHeadHtml( $nojsClass = null ) {
-		$nonce = $this->options['nonce'];
-		$data = $this->getData();
-		$chunks = [];
-
 		$script = $this->getDocumentClassNameScript( $nojsClass );
 
 		// Inline script: Declare mw.config variables for this page.
@@ -313,6 +309,8 @@ JS;
 RLCONF = {$confJson};
 ";
 		}
+
+		$data = $this->getData();
 
 		// Inline script: Declare initial module states for this page.
 		$states = array_merge( $this->exemptStates, $data['states'] );
@@ -335,14 +333,14 @@ RLPAGEMODULES = {$pageModulesJson};
 			$script = ResourceLoader::filter( 'minify-js', $script, [ 'cache' => false ] );
 		}
 
-		$chunks[] = Html::inlineScript( $script, $nonce );
+		$chunks = [];
+		$chunks[] = Html::inlineScript( $script, $this->options['nonce'] );
 
 		// Inline RLQ: Embedded modules
 		if ( $data['embed']['general'] ) {
 			$chunks[] = $this->getLoad(
 				$data['embed']['general'],
-				Module::TYPE_COMBINED,
-				$nonce
+				Module::TYPE_COMBINED
 			);
 		}
 
@@ -350,8 +348,7 @@ RLPAGEMODULES = {$pageModulesJson};
 		if ( $data['styles'] ) {
 			$chunks[] = $this->getLoad(
 				$data['styles'],
-				Module::TYPE_STYLES,
-				$nonce
+				Module::TYPE_STYLES
 			);
 		}
 
@@ -359,8 +356,7 @@ RLPAGEMODULES = {$pageModulesJson};
 		if ( $data['embed']['styles'] ) {
 			$chunks[] = $this->getLoad(
 				$data['embed']['styles'],
-				Module::TYPE_STYLES,
-				$nonce
+				Module::TYPE_STYLES
 			);
 		}
 
@@ -375,7 +371,6 @@ RLPAGEMODULES = {$pageModulesJson};
 		$chunks[] = $this->getLoad(
 			'startup',
 			Module::TYPE_SCRIPTS,
-			$nonce,
 			$startupQuery
 		);
 
@@ -404,7 +399,8 @@ RLPAGEMODULES = {$pageModulesJson};
 		return self::makeContext( $this->context, $group, $type );
 	}
 
-	private function getLoad( $modules, $only, $nonce, array $extraQuery = [] ) {
+	private function getLoad( $modules, $only, array $extraQuery = [] ) {
+		$nonce = $this->options['nonce'];
 		return self::makeLoad( $this->context, (array)$modules, $only, $extraQuery, $nonce );
 	}
 
@@ -484,18 +480,19 @@ RLPAGEMODULES = {$pageModulesJson};
 					$moduleSetNames = array_keys( $moduleSet );
 					$context->setModules( $moduleSetNames );
 					if ( $embed ) {
+						$response = $rl->makeModuleResponse( $context, $moduleSet );
 						// Decide whether to use style or script element
 						if ( $only == Module::TYPE_STYLES ) {
-							$chunks[] = Html::inlineStyle(
-								$rl->makeModuleResponse( $context, $moduleSet )
-							);
+							$chunks[] = Html::inlineStyle( $response );
 						} else {
 							$chunks[] = ResourceLoader::makeInlineScript(
-								$rl->makeModuleResponse( $context, $moduleSet ),
+								$response,
 								$nonce
 							);
 						}
 					} else {
+						// Not embedded
+
 						// Special handling for the user group; because users might change their stuff
 						// on-wiki like user pages, or user preferences; we need to find the highest
 						// timestamp of these user-changeable modules so we can ensure cache misses on change
