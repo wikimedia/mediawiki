@@ -92,6 +92,35 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	/**
+	 * @covers MediaWikiIntegrationTestCase::overrideConfigValue
+	 * @covers MediaWikiIntegrationTestCase::overrideConfigValues
+	 */
+	public function testOverrideConfigValues() {
+		$nsInfo1 = $this->getServiceContainer()->getNamespaceInfo();
+
+		$oldSitename = $this->getServiceContainer()->getMainConfig()->get( 'Sitename' );
+
+		$this->overrideConfigValue( 'Sitename', 'TestingSitenameOverride' );
+		$nsInfo2 = $this->getServiceContainer()->getNamespaceInfo();
+
+		$this->overrideConfigValues( [ 'TestDummyConfig4556' => 'TestDummyConfigOverride' ] );
+		$nsInfo3 = $this->getServiceContainer()->getNamespaceInfo();
+
+		$this->assertNotSame( $nsInfo1, $nsInfo2, 'Service instances should have been reset' );
+		$this->assertNotSame( $nsInfo2, $nsInfo3, 'Service instances should have been reset' );
+
+		$config = $this->getServiceContainer()->getMainConfig();
+		$this->assertSame( 'TestingSitenameOverride', $config->get( 'Sitename' ) );
+		$this->assertSame( 'TestDummyConfigOverride', $config->get( 'TestDummyConfig4556' ) );
+
+		$this->mediaWikiTearDown();
+
+		$config = $this->getServiceContainer()->getMainConfig();
+		$this->assertSame( $oldSitename, $config->get( 'Sitename' ), 'Config variable should have been restored' );
+		$this->assertFalse( $config->has( 'TestDummyConfig4556' ), 'Config variable should have been unset' );
+	}
+
 	public function testOverrideMwServices() {
 		$initialServices = MediaWikiServices::getInstance();
 
