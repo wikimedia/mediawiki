@@ -404,12 +404,21 @@ class WikiModule extends Module {
 	 * @return array
 	 */
 	public function getStyles( Context $context ) {
+		$remoteDir = $this->getConfig()->get( MainConfigNames::ScriptPath );
+		if ( $remoteDir === '' ) {
+			// When the site is configured with the script path at the
+			// document root, MediaWiki uses an empty string but that is
+			// not a valid URI path. Expand to a slash to avoid fatals
+			// later in CSSMin::resolveUrl().
+			// See also FilePath::extractBasePaths, T282280.
+			$remoteDir = '/';
+		}
+
 		$styles = [];
 		foreach ( $this->getPages( $context ) as $titleText => $options ) {
 			if ( $options['type'] !== 'style' ) {
 				continue;
 			}
-			$media = $options['media'] ?? 'all';
 			$style = $this->getContent( $titleText, $context );
 			if ( strval( $style ) === '' ) {
 				continue;
@@ -417,20 +426,12 @@ class WikiModule extends Module {
 			if ( $this->getFlip( $context ) ) {
 				$style = CSSJanus::transform( $style, true, false );
 			}
-			$remoteDir = $this->getConfig()->get( MainConfigNames::ScriptPath );
-			if ( $remoteDir === '' ) {
-				// When the site is configured with the script path at the
-				// document root, MediaWiki uses an empty string but that is
-				// not a valid URI path. Expand to a slash to avoid fatals
-				// later in CSSMin::resolveUrl().
-				// See also FilePath::extractBasePaths, T282280.
-				$remoteDir = '/';
-			}
 
 			$style = MemoizedCallable::call(
 				[ CSSMin::class, 'remap' ],
 				[ $style, false, $remoteDir, true ]
 			);
+			$media = $options['media'] ?? 'all';
 			if ( !isset( $styles[$media] ) ) {
 				$styles[$media] = [];
 			}
