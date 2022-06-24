@@ -10,7 +10,7 @@ class ReadOnlyErrorTest extends MediaWikiIntegrationTestCase {
 		$e = new ReadOnlyError();
 		$this->assertEquals( 'readonly', $e->title );
 		$this->assertEquals( 'readonlytext', $e->msg );
-		$this->assertEquals( wfReadOnlyReason() ?: [], $e->params );
+		$this->assertEquals( $this->getServiceContainer()->getReadOnlyMode()->getReason() ?: [], $e->params );
 	}
 
 }

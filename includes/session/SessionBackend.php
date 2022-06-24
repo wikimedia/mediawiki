@@ -691,7 +691,7 @@ final class SessionBackend {
 					'user' => $this->user->__toString(),
 			] );
 			$this->user->setToken();
-			if ( !wfReadOnly() ) {
+			if ( !MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 				// Promise that the token set here will be valid; save it at end of request
 				$user = $this->user;
 				\DeferredUpdates::addCallableUpdate( static function () use ( $user ) {
