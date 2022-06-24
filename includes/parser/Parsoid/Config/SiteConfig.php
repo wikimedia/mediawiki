@@ -86,6 +86,10 @@ class SiteConfig extends ISiteConfig {
 		MainConfigNames::LocalTZoffset,
 		MainConfigNames::ThumbLimits,
 		MainConfigNames::MaxTemplateDepth,
+		MainConfigNames::NoFollowLinks,
+		MainConfigNames::NoFollowNsExceptions,
+		MainConfigNames::NoFollowDomainExceptions,
+		MainConfigNames::ExternalLinkTarget,
 	];
 
 	/** @var ServiceOptions */
@@ -723,5 +727,19 @@ class SiteConfig extends ISiteConfig {
 	/** @inheritDoc */
 	protected function getProtocols(): array {
 		return $this->config->get( MainConfigNames::UrlProtocols );
+	}
+
+	/** @return array */
+	public function getNoFollowConfig(): array {
+		return [
+			'nofollow' => $this->config->get( MainConfigNames::NoFollowLinks ),
+			'nsexceptions' => $this->config->get( MainConfigNames::NoFollowNsExceptions ),
+			'domainexceptions' => $this->config->get( MainConfigNames::NoFollowDomainExceptions )
+		];
+	}
+
+	/** @return string|false */
+	public function getExternalLinkTarget() {
+		return $this->config->get( MainConfigNames::ExternalLinkTarget );
 	}
 }
