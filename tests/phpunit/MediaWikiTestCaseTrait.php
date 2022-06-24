@@ -391,4 +391,24 @@ trait MediaWikiTestCaseTrait {
 		$this->assertStatusOK( $status, $message );
 		$this->assertStatusMessage( $messageKey, $status, $message );
 	}
+
+	/**
+	 * Put each HTML element on its own line and then equals() the results
+	 *
+	 * Use for nicely formatting of PHPUnit diff output when comparing very
+	 * simple HTML
+	 *
+	 * @since 1.20
+	 * @since 1.39 available in MediaWikiUnitTestCase
+	 *
+	 * @param string $expected HTML on oneline
+	 * @param string $actual HTML on oneline
+	 * @param string $msg Optional message
+	 */
+	protected function assertHTMLEquals( $expected, $actual, $msg = '' ) {
+		$expected = str_replace( '>', ">\n", $expected );
+		$actual = str_replace( '>', ">\n", $actual );
+
+		$this->assertEquals( $expected, $actual, $msg );
+	}
 }
