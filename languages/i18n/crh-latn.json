@@ -464,7 +464,7 @@
 	"previewconflict": "Bu baqıp çıquv yuqarı tarir penceresindeki metinniñ saqlanuvdan soñ olacaq körünişini aks ete.",
 	"session_fail_preview": "''' Server siz yapqan deñiştirmelerni sessiya identifikatorı\ncoyulğanı sebebinden saqlap olamadı. Bu vaqtınca problemadır. Lütfen, tekrar saqlap baqıñız.\nBundan da soñ olıp çıqmasa, malümat lokal faylğa saqlañız da brauzeriñizni bir qapatıp\naçıñız.'''",
 	"session_fail_preview_html": "'''Afu etiñiz! HTML sessiyanıñ malümatları ğayıp olğanı sebebinden siziñ deñiştirmeleriñizni qabul etmege imkân yoqtır.'''",
-	"editing": "$1 saifesi deñiştirile",
+	"editing": "Deñiştir $1",
 	"creating": "“$1” saifesini yaratuv",
 	"editingsection": "“$1” saifesinde bölük deñiştireyatasız",
 	"editingcomment": "“$1” saifesini deñiştireyatasız (yañı bölük)",

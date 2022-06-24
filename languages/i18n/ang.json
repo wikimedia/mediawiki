@@ -316,6 +316,7 @@
 	"missingarticle-rev": "(niwung#: $1)",
 	"missingarticle-diff": "(Toberenness: $1, $2)",
 	"readonly_lag": "Se gefræghord is gelucen be his agnan styrunge hwilum niw gefræghordþeowa offareþ mid þæm ordfruman.",
+	"nonwrite-api-promise-error": "Seo 'Promise-Non-Write-API-Action' foremearcung wæs asended ac hiere gebed næs APIbed.",
 	"timeouterror": "Se þeowa id forealded",
 	"timeouterror-text": "Seo lengste tid, seo is $1 {{PLURAL:S1|second|seconda}} wæs oferstigen.",
 	"internalerror": "Inweard woh",
