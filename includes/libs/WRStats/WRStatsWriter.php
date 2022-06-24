@@ -34,6 +34,10 @@ class WRStatsWriter {
 			$this->metricSpecs[$name] = new MetricSpec( $spec );
 		}
 		$this->prefixComponents = is_array( $prefix ) ? $prefix : [ $prefix ];
+		if ( !count( $this->prefixComponents ) ) {
+			throw new WRStatsError( __METHOD__ .
+				': there must be at least one prefix component' );
+		}
 	}
 
 	/**
