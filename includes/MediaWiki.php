@@ -682,7 +682,7 @@ class MediaWiki {
 
 		// Run updates that need to block the client or affect output (this is the last chance)
 		DeferredUpdates::doUpdates(
-			'run',
+			null,
 			$config->get( MainConfigNames::ForceDeferredUpdatesPreSend )
 				? DeferredUpdates::ALL
 				: DeferredUpdates::PRESEND
