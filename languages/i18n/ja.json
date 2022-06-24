@@ -2492,6 +2492,7 @@
 	"deleteprotected": "このページは保護されているため削除できません。",
 	"deleting-backlinks-warning": "<strong>警告:</strong> 削除しようとしているページは、[[Special:WhatLinksHere/{{FULLPAGENAME}}|他のページ]]からリンクまたは参照読み込みされています。",
 	"deleting-subpages-warning": "<strong>警告:</strong> 削除しようとしているページには、[[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|下位ページ|$1 件の下位ページ|51=50 件以上の下位ページ}}]]があります。",
+	"deleting-talkpage-subpages-warning": "<strong>警告:</strong> 削除しようとしているページに関連付けられたトークページには[[Special:PrefixIndex/{{TALKPAGENAME}}/|{{PLURAL:$1|$1のサブページ}}]]があります。",
 	"rollback": "編集を巻き戻し",
 	"rollback-confirmation-confirm": "ご確認ください:",
 	"rollback-confirmation-yes": "巻き戻し",
