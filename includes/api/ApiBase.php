@@ -1046,7 +1046,7 @@ abstract class ApiBase extends ContextSource {
 				$this->dieWithError( 'apierror-pagecannotexist' );
 			}
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
-			$pageObj = WikiPage::factory( $titleObj );
+			$pageObj = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $titleObj );
 			if ( $load !== false ) {
 				$pageObj->loadPageData( $load );
 			}
@@ -1054,7 +1054,7 @@ abstract class ApiBase extends ContextSource {
 			if ( $load === false ) {
 				$load = 'fromdb';
 			}
-			$pageObj = WikiPage::newFromID( $params['pageid'], $load );
+			$pageObj = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromID( $params['pageid'], $load );
 			if ( !$pageObj ) {
 				$this->dieWithError( [ 'apierror-nosuchpageid', $params['pageid'] ] );
 			}
