@@ -745,7 +745,7 @@ class LocalFile extends File {
 	 * @internal
 	 */
 	public function maybeUpgradeRow() {
-		if ( wfReadOnly() || $this->upgrading ) {
+		if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() || $this->upgrading ) {
 			return;
 		}
 
@@ -854,7 +854,7 @@ class LocalFile extends File {
 	 * format.
 	 */
 	protected function reserializeMetadata() {
-		if ( wfReadOnly() ) {
+		if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 			return;
 		}
 		$dbw = $this->repo->getPrimaryDB();

@@ -604,12 +604,11 @@ class MediaWiki {
 			// Recursion guard
 			$this->getTitle()->isSpecial( 'RunJobs' ) ||
 			// Short circuit if there is nothing to do
-			( $jobRunRate <= 0 || wfReadOnly() ) ||
+			$jobRunRate <= 0 ||
+			MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ||
 			// Avoid blocking the client on stock apache; see doPostOutputShutdown()
-			(
-				$this->context->getRequest()->getMethod() === 'HEAD' ||
-				$this->context->getRequest()->getHeader( 'If-Modified-Since' )
-			)
+			$this->context->getRequest()->getMethod() === 'HEAD' ||
+			$this->context->getRequest()->getHeader( 'If-Modified-Since' )
 		) {
 			return;
 		}
@@ -622,10 +621,6 @@ class MediaWiki {
 			$n = 1;
 		} else {
 			$n = intval( $jobRunRate );
-		}
-
-		if ( wfReadOnly() ) {
-			return;
 		}
 
 		// Note that DeferredUpdates will catch and log any errors (T88312)

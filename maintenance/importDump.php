@@ -113,7 +113,7 @@ TEXT
 	}
 
 	public function execute() {
-		if ( wfReadOnly() ) {
+		if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 			$this->fatalError( "Wiki is in read-only mode; you'll need to disable it for import to work." );
 		}
 

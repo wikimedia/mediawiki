@@ -1552,7 +1552,7 @@ abstract class ApiBase extends ContextSource {
 		$this->dieWithError(
 			'apierror-readonly',
 			'readonly',
-			[ 'readonlyreason' => wfReadOnlyReason() ]
+			[ 'readonlyreason' => MediaWikiServices::getInstance()->getReadOnlyMode()->getReason() ]
 		);
 	}
 
