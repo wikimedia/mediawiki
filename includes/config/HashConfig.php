@@ -95,4 +95,12 @@ class HashConfig implements Config, MutableConfig, IterableConfig {
 	public function getNames(): array {
 		return array_keys( $this->settings );
 	}
+
+	/**
+	 * Clears all config variables.
+	 * @since 1.39
+	 */
+	public function clear() {
+		$this->settings = [];
+	}
 }

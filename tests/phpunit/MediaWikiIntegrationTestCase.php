@@ -137,6 +137,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private $overriddenServices = [];
 
 	/**
+	 * @var ?HashConfig
+	 */
+	private $overriddenConfig = null;
+
+	/**
 	 * @var array[] contains temporary hooks as a list of name/handler pairs,
 	 *      where a name/false pair indicates the hook being cleared.
 	 */
@@ -309,23 +314,23 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Create a config suitable for testing, based on a base config, default overrides,
-	 * and custom overrides.
+	 * Determine config overrides, taking into account the local system's actual settings and
+	 * avoiding interference with any custom overrides.
 	 *
-	 * @param Config|null $baseConfig
-	 * @param Config|null $customOverrides
+	 * @param Config $baseConfig Used to get the baseline value for settings.
+	 *        This is used when the override should only affect part of a setting
+	 *        that contains a complex structure, such ObjectCaches.
+	 * @param Config|null $customOverrides Custom overrides that should take precedence
+	 *        over the default overrides. Settings from $customOverrides that conflict
+	 *        with a default override will replace that default override.
 	 *
-	 * @return Config
+	 * @return array Config overrides
 	 */
-	private static function makeTestConfig(
-		Config $baseConfig = null,
+	private static function getConfigOverrides(
+		Config $baseConfig,
 		Config $customOverrides = null
-	) {
-		$defaultOverrides = new HashConfig();
-
-		if ( !$baseConfig ) {
-			$baseConfig = self::$originalServices->getBootstrapConfig();
-		}
+	): array {
+		$overrides = [];
 
 		/* Some functions require some kind of caching, and will end up using the db,
 		 * which we can't allow, as that would open a new connection for mysql.
@@ -341,18 +346,32 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				'wincache' => $hashCache,
 			] + $baseConfig->get( MainConfigNames::ObjectCaches );
 
-		$defaultOverrides->set( MainConfigNames::ObjectCaches, $objectCaches );
-		$defaultOverrides->set( MainConfigNames::MainCacheType, CACHE_NONE );
-		$defaultOverrides->set( MainConfigNames::JobTypeConf, [ 'default' => [ 'class' => JobQueueMemory::class ] ] );
+		// Use hash based caches
+		$overrides[ MainConfigNames::ObjectCaches ] = $objectCaches;
+
+		// Disable the cache for the duration of the test.
+		$overrides[ MainConfigNames::MainCacheType ] = CACHE_NONE;
+
+		// Don't actually store jobs
+		$overrides[ MainConfigNames::JobTypeConf ] = [ 'default' => [ 'class' => JobQueueMemory::class ] ];
 
 		// Use a fast hash algorithm to hash passwords.
-		$defaultOverrides->set( MainConfigNames::PasswordDefault, 'A' );
+		$overrides[ MainConfigNames::PasswordDefault ] = 'A';
 
-		$testConfig = $customOverrides
-			? new MultiConfig( [ $customOverrides, $defaultOverrides, $baseConfig ] )
-			: new MultiConfig( [ $defaultOverrides, $baseConfig ] );
+		// Since $overrides would shadow entries in $customOverrides, copy any
+		// conflicting entries from $customOverrides into $overrides.
+		// Later, $overrides and $customOverrides will be combined in a MultiConfig.
+		// If $customOverrides was an IterableConfig, we wouldn't need to do that,
+		// we could just copy it entirely into $overrides.
+		if ( $customOverrides ) {
+			foreach ( $overrides as $key => $dummy ) {
+				if ( $customOverrides->has( $key ) ) {
+					$overrides[ $key ] = $customOverrides->get( $key );
+				}
+			}
+		}
 
-		return $testConfig;
+		return $overrides;
 	}
 
 	/**
@@ -629,6 +648,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// Clear any cached test users so they don't retain references to old services
 		TestUserRegistry::clear();
 
+		// Restore config
+		if ( $this->overriddenConfig ) {
+			$this->overriddenConfig->clear();
+		}
+
 		// Restore mw globals
 		foreach ( $this->mwGlobals as $key => $value ) {
 			$GLOBALS[$key] = $value;
@@ -806,6 +830,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.39
 	 */
 	protected function overrideConfigValue( string $key, $value ) {
+		$this->overriddenConfig->set( $key, $value );
+
+		// When nothing reads config from globals anymore, we will no longer need to call
+		// setMwGlobals() here.
 		$this->setMwGlobals( "wg$key", $value );
 	}
 
@@ -826,10 +854,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$vars = [];
 
 		foreach ( $values as $key => $value ) {
+			$this->overriddenConfig->set( $key, $value );
 			$var = "wg$key";
 			$vars[$var] = $value;
 		}
 
+		// When nothing reads config from globals anymore, we will no longer need to call
+		// setMwGlobals() here.
 		$this->setMwGlobals( $vars );
 	}
 
@@ -1026,18 +1057,17 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *       Tests should use either overrideMwServices() or setService(), but not mix both.
 	 *       Since 1.34, resetServices() is available as an alternative compatible with setService().
 	 *
-	 * @since 1.27
-	 *
-	 * @param Config|null $configOverrides Configuration overrides for the new MediaWikiServices
+	 * @param Config|null $customOverrides Custom configuration overrides for the new MediaWikiServices
 	 *        instance.
 	 * @param callable[] $services An associative array of services to re-define. Keys are service
 	 *        names, values are callables.
 	 *
 	 * @return MediaWikiServices
 	 * @throws MWException
+	 * @since 1.27
 	 */
 	protected function overrideMwServices(
-		Config $configOverrides = null, array $services = []
+		Config $customOverrides = null, array $services = []
 	) {
 		if ( $this->overriddenServices ) {
 			throw new MWException(
@@ -1045,13 +1075,39 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 					implode( ', ', $this->overriddenServices )
 			);
 		}
-		$newInstance = self::installMockMwServices( $configOverrides );
+
+		$this->overriddenConfig = new HashConfig();
+
+		// Create the Config object that will be stacked on top of the real bootstrap config
+		// to create the config that will be used as the bootstrap as well as the main config
+		// by the service container.
+		// overrideConfigValue() will write to $this->overriddenConfig later and reset
+		// services as appropriate.
+		// Make sure that $this->overriddenConfig is the top layer of overrides.
+		// XXX: If $customOverrides was guaranteed to be an IterableConfig, this could be
+		//      simplified by making getConfigOverrides() copy it into the $configOverrides array.
+		//      Or we could just get rid of $customOverrides.
+		if ( $customOverrides ) {
+			$serviceConfig = new MultiConfig( [ $this->overriddenConfig, $customOverrides ] );
+		} else {
+			$serviceConfig = $this->overriddenConfig;
+		}
+
+		$newInstance = self::installMockMwServices( $serviceConfig );
 
 		if ( $this->localServices ) {
 			$this->localServices->destroy();
 		}
 
 		$this->localServices = $newInstance;
+
+		// Determine the config overrides that should apply during testing.
+		$configOverrides = self::getConfigOverrides(
+			self::$originalServices->getMainConfig(),
+			$customOverrides
+		);
+
+		$this->overrideConfigValues( $configOverrides );
 
 		foreach ( $services as $name => $callback ) {
 			$newInstance->redefineService( $name, $callback );
@@ -1094,20 +1150,23 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			}
 		}
 
-		if ( !$configOverrides ) {
-			$configOverrides = new HashConfig();
-		}
-
 		$oldConfigFactory = self::$originalServices->getConfigFactory();
 		$oldLoadBalancerFactory = self::$originalServices->getDBLoadBalancerFactory();
 
-		$testConfig = self::makeTestConfig( null, $configOverrides );
+		$originalConfig = self::$originalServices->getBootstrapConfig();
+
+		if ( $configOverrides ) {
+			$testConfig = new MultiConfig( [ $configOverrides, $originalConfig ] );
+		} else {
+			$testConfig = $originalConfig;
+		}
+
 		$newServices = new MediaWikiServices( $testConfig );
 
 		// Load the default wiring from the specified files.
 		// NOTE: this logic mirrors the logic in MediaWikiServices::newInstance
-		if ( $configOverrides->has( MainConfigNames::ServiceWiringFiles ) ) {
-			$wiringFiles = $testConfig->get( MainConfigNames::ServiceWiringFiles );
+		if ( $configOverrides && $configOverrides->has( MainConfigNames::ServiceWiringFiles ) ) {
+			$wiringFiles = $configOverrides->get( MainConfigNames::ServiceWiringFiles );
 			$newServices->loadWiringFiles( $wiringFiles );
 		} else {
 			// (T247990) Avoid including default wirings many times - use cached wirings

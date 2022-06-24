@@ -121,6 +121,53 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $config->has( 'TestDummyConfig4556' ), 'Config variable should have been unset' );
 	}
 
+	/**
+	 * Some configuration variables are overridden when setting up the test environment.
+	 * Make sure that these can be overridden consistently.
+	 */
+	public function testOverrideTestConfig() {
+		$config = $this->getServiceContainer()->getMainConfig();
+
+		// Check that default overrides were applied
+		$this->assertSame(
+			'A',
+			$config->get( MainConfigNames::PasswordDefault )
+		);
+
+		// Make sure that overrides applied by the test environment are
+		// consistent between the main config and global variables.
+		$this->assertSame(
+			$config->get( MainConfigNames::MainCacheType ),
+			$GLOBALS[ 'wgMainCacheType' ]
+		);
+		$this->assertSame(
+			$config->get( MainConfigNames::PasswordDefault ),
+			$GLOBALS[ 'wgPasswordDefault' ]
+		);
+		$this->assertSame(
+			$config->get( MainConfigNames::JobTypeConf ),
+			$GLOBALS[ 'wgJobTypeConf' ]
+		);
+
+		$this->overrideConfigValue( MainConfigNames::JobTypeConf, 'XXX' );
+		$config = $this->getServiceContainer()->getMainConfig();
+		$this->assertSame( 'XXX', $config->get( MainConfigNames::JobTypeConf ) );
+		$this->assertSame( 'XXX', $GLOBALS[ 'wgJobTypeConf' ] );
+
+		$this->overrideConfigValues( [ MainConfigNames::JobTypeConf => 'YYY' ] );
+		$config = $this->getServiceContainer()->getMainConfig();
+		$this->assertSame( 'YYY', $config->get( MainConfigNames::JobTypeConf ) );
+		$this->assertSame( 'YYY', $GLOBALS[ 'wgJobTypeConf' ] );
+
+		$this->setMwGlobals( 'wgJobTypeConf', 'ZZZ' );
+		$config = $this->getServiceContainer()->getMainConfig();
+		$this->assertSame( 'ZZZ', $GLOBALS[ 'wgJobTypeConf' ] );
+
+		// Values set with overrideConfigValue() take precedence over values set
+		// with setMwGlobals().
+		$this->assertSame( 'YYY', $config->get( MainConfigNames::JobTypeConf ) );
+	}
+
 	public function testOverrideMwServices() {
 		$initialServices = MediaWikiServices::getInstance();
 
