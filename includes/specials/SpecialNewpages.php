@@ -245,10 +245,10 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		// Option value -> message mapping
 		$filters = [
-			'hideliu' => 'rcshowhideliu',
-			'hidepatrolled' => 'rcshowhidepatr',
-			'hidebots' => 'rcshowhidebots',
-			'hideredirs' => 'whatlinkshere-hideredirs'
+			'hideliu' => 'newpages-showhide-registered',
+			'hidepatrolled' => 'newpages-showhide-patrolled',
+			'hidebots' => 'newpages-showhide-bots',
+			'hideredirs' => 'newpages-showhide-redirect'
 		];
 		foreach ( $this->customFilters as $key => $params ) {
 			$filters[$key] = $params['msg'];
