@@ -83,10 +83,12 @@ class DerivativeContextTest extends MediaWikiUnitTestCase {
 		];
 		$initialWikiPage = $this->createMock( WikiPage::class );
 		$initialWikiPage->expects( $this->any() )->method( 'getTitle' )->willReturn( $initialTitle );
+		$newWikiPage = $this->createMock( WikiPage::class );
+		$newWikiPage->expects( $this->any() )->method( 'getTitle' );
 		yield 'get/set WikiPage' => [
 			'initialContext' => $initialContext,
 			'initialValue' => $initialWikiPage,
-			'newValue' => $this->createNoOpMock( WikiPage::class ),
+			'newValue' => $newWikiPage,
 			'getter' => 'getWikiPage',
 			'setter' => 'setWikiPage',
 		];

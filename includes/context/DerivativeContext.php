@@ -176,6 +176,10 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @param WikiPage $wikiPage
 	 */
 	public function setWikiPage( WikiPage $wikiPage ) {
+		$pageTitle = $wikiPage->getTitle();
+		if ( !$this->title || !$pageTitle->equals( $this->title ) ) {
+			$this->setTitle( $pageTitle );
+		}
 		$this->wikipage = $wikiPage;
 	}
 
@@ -189,6 +193,10 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @return WikiPage
 	 */
 	public function getWikiPage() {
+		if ( !$this->wikipage && $this->title ) {
+			$this->wikipage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->title );
+		}
+
 		return $this->wikipage ?: $this->getContext()->getWikiPage();
 	}
 
