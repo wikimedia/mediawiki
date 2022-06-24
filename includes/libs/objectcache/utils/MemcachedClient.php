@@ -1051,10 +1051,6 @@ class MemcachedClient implements StorageAwareness {
 					$this->_fread( $sock, $match[3] + 2 ), // data
 				);
 			} elseif ( $decl == "END" ) {
-				if ( count( $results ) == 0 ) {
-					return false;
-				}
-
 				/**
 				 * All data has been read, time to process the data and build
 				 * meaningful return values.
