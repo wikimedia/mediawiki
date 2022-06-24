@@ -443,7 +443,7 @@ class ImportImages extends Maintenance {
 				while ( ( $file = readdir( $dhl ) ) !== false ) {
 					if ( is_file( $dir . '/' . $file ) ) {
 						$ext = pathinfo( $file, PATHINFO_EXTENSION );
-						if ( array_search( strtolower( $ext ), $exts ) !== false ) {
+						if ( in_array( strtolower( $ext ), $exts ) ) {
 							$files[] = $dir . '/' . $file;
 						}
 					} elseif ( $recurse && is_dir( $dir . '/' . $file ) && $file !== '..' && $file !== '.' ) {

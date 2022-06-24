@@ -297,7 +297,7 @@ $wgAutoloadClasses += [
 
 /**
  * Alias any PHPUnit 4 era PHPUnit_... class
- * to it's PHPUnit 6 replacement. For most classes
+ * to its PHPUnit 6 replacement. For most classes
  * this is a direct _ -> \ replacement, but for
  * some others we might need to maintain a manual
  * mapping. Once we drop support for PHPUnit 4 this

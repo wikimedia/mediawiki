@@ -92,8 +92,6 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 	}
 
 	protected function run( ApiPageSet $resultPageSet = null ) {
-		$user = $this->getUser();
-
 		$pageSet = $this->getPageSet();
 		$pageMap = $pageSet->getGoodAndMissingTitlesByNamespace();
 		$pageCount = count( $pageSet->getGoodAndMissingPages() );

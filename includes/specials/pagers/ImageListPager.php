@@ -164,7 +164,6 @@ class ImageListPager extends TablePager {
 	 * @return array The query conditions.
 	 */
 	protected function buildQueryConds( $table ) {
-		$prefix = $table === 'image' ? 'img' : 'oi';
 		$conds = [];
 
 		if ( $this->mUserName !== null ) {

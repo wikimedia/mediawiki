@@ -212,7 +212,7 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 		if ( !$contentHandler instanceof ContentHandler ) {
 			throw new MWException(
 				"ContentHandler for model {$modelID} must supply a ContentHandler instance, "
-				. get_class( $contentHandler ) . 'given.'
+				. get_class( $contentHandler ) . ' given.'
 			);
 		}
 	}

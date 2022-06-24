@@ -121,8 +121,6 @@ class SpecialExpandTemplates extends SpecialPage {
 				);
 			}
 
-			$config = $this->getConfig();
-
 			$tmp = $this->tidy->tidy( $tmp );
 
 			$out->addHTML( $tmp );

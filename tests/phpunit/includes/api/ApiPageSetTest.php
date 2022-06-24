@@ -219,7 +219,7 @@ class ApiPageSetTest extends ApiTestCase {
 
 	/**
 	 * Test that ApiPageSet is calling GenderCache for provided user names to prefill the
-	 * GenderCache and avoid a performance issue when loading each users' gender on it's own.
+	 * GenderCache and avoid a performance issue when loading each users' gender on its own.
 	 * The test is setting the "missLimit" to 0 on the GenderCache to trigger misses logic.
 	 * When the "misses" property is no longer 0 at the end of the test,
 	 * something was requested which is not part of the cache. Than the test is failing.

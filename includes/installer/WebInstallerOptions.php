@@ -615,7 +615,7 @@ class WebInstallerOptions extends WebInstallerPage {
 		}
 		$defaultSkin = $this->getVar( 'wgDefaultSkin' );
 		$skinsToInstallLowercase = array_map( 'strtolower', $skinsToInstall );
-		if ( $skinsToInstall && array_search( $defaultSkin, $skinsToInstallLowercase ) === false ) {
+		if ( $skinsToInstall && !in_array( $defaultSkin, $skinsToInstallLowercase ) ) {
 			$this->parent->showError( 'config-skins-must-enable-default' );
 			$retVal = false;
 		}

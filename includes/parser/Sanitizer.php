@@ -397,7 +397,6 @@ class Sanitizer {
 		// These options are @internal:
 		$attrCallback = $options['attrCallback'] ?? null;
 		$attrCallbackArgs = $options['attrCallbackArgs'] ?? [];
-		$tidy = $options['tidy'] ?? true;
 
 		// This disallows HTML5-style "missing trailing semicolon" attributes
 		// In wikitext "clean&copy" does *not* contain an entity.

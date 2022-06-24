@@ -96,7 +96,6 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 	 * @return void
 	 */
 	protected function run( ApiPageSet $resultPageSet = null ) {
-		$user = $this->getUser();
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
 

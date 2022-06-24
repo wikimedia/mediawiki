@@ -119,7 +119,6 @@ class ActionFactory {
 				'RedirectLookup',
 				'RestrictionStore',
 				'LinksMigration',
-				'MainConfig'
 			],
 		],
 		'markpatrolled' => [

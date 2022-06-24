@@ -262,7 +262,6 @@ class UserAuthority implements Authority {
 				$rigor
 			);
 
-			$blockError = false;
 			foreach ( $errors as $err ) {
 				$status->fatal( wfMessage( ...$err ) );
 
