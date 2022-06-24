@@ -4450,5 +4450,9 @@
 	"skin-action-delete": "Delete",
 	"skin-action-move": "Move",
 	"copyupload-allowed-domains": "",
-	"parsoid-stash-rate-limit-error": "Stashing failed because rate limit was exceeded. Please try again later."
+	"parsoid-stash-rate-limit-error": "Stashing failed because rate limit was exceeded. Please try again later.",
+	"newpages-showhide-bots": "$1 bots",
+	"newpages-showhide-patrolled": "$1 patrolled edits",
+	"newpages-showhide-redirect": "$1 redirects",
+	"newpages-showhide-registered": "$1 registered users"
 }
