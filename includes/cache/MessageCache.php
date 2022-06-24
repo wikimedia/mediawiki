@@ -744,8 +744,11 @@ class MessageCache implements LoggerAwareInterface {
 		// Check if individual cache keys should exist and update cache accordingly
 		$newTextByTitle = []; // map of (title => content)
 		$newBigTitles = []; // map of (title => latest revision ID), like EXCESSIVE in loadFromDB()
+		// Can not inject the WikiPageFactory as it would break the installer since
+		// it instantiates MessageCache before the DB.
+		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
 		foreach ( $replacements as list( $title ) ) {
-			$page = WikiPage::factory( Title::makeTitle( NS_MEDIAWIKI, $title ) );
+			$page = $wikiPageFactory->newFromTitle( Title::makeTitle( NS_MEDIAWIKI, $title ) );
 			$page->loadPageData( $page::READ_LATEST );
 			$text = $this->getMessageTextFromContent( $page->getContent() );
 			// Remember the text for the blob store update later on
