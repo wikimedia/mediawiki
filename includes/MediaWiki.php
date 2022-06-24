@@ -415,9 +415,8 @@ class MediaWiki {
 		$title = $this->context->getTitle();
 		$services = MediaWikiServices::getInstance();
 		if ( $this->context->canUseWikiPage() ) {
-			// Try to use request context wiki page, as there
-			// is already data from db saved in per process
-			// cache there from this->getAction() call.
+			// Reuse the WikiPage instance from context, as it may already have been initialized
+			// by an earlier this->getAction() call.
 			$page = $this->context->getWikiPage();
 		} else {
 			// This case should not happen, but just in case.
@@ -889,7 +888,6 @@ class MediaWiki {
 		// Get title from request parameters,
 		// is set on the fly by parseTitle the first time.
 		$title = $this->getTitle();
-		$action = $this->getAction();
 		$wgTitle = $title;
 
 		// Set DB query expectations for this HTTP request
@@ -907,6 +905,10 @@ class MediaWiki {
 		}
 
 		if ( $title->canExist() && HTMLFileCache::useFileCache( $this->context ) ) {
+			// getAction() may trigger DB queries, so avoid eagerly initializing it if possible.
+			// This reduces the cost of requests that exit early due to tryNormaliseRedirect()
+			// or a MediaWikiPerformAction / BeforeInitialize hook handler.
+			$action = $this->getAction();
 			// Try low-level file cache hit
 			$cache = new HTMLFileCache( $title, $action );
 			if ( $cache->isCacheGood( /* Assume up to date */ ) ) {
