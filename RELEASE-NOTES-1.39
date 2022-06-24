@@ -385,6 +385,8 @@ because of Phabricator reports.
   AbstractBlock::$mHideName, AbstractBlock::$mTimestamp, DatabaseBlock::$mAuto,
   and DatabaseBlock::$mParentBlockId, deprecated in 1.34, now emits deprecation
   warnings.
+* Access to previously public properties User::$mBlock, User::$mBlockedby, and
+  User::$mHideName, deprecated in 1.35, now emits deprecation warnings.
 * …
 
 === Other changes in 1.39 ===

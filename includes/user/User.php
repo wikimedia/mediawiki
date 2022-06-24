@@ -196,16 +196,13 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/** @var string|null */
 	protected $mDatePreference;
 	/**
-	 * @deprecated since 1.35. Instead, use User::getBlock to get the block,
-	 *  then AbstractBlock::getByName to get the blocker's name; or use the
-	 *  GetUserBlock hook to set or unset a block.
 	 * @var string|int -1 when the block is unset
 	 */
-	public $mBlockedby;
+	private $mBlockedby;
 	/** @var string|false */
 	protected $mHash;
 	/**
-	 * TODO: This should be removed when User::BlockedFor
+	 * TODO: This should be removed when User::blockedFor
 	 * and AbstractBlock::getReason are hard deprecated.
 	 * @var string
 	 */
@@ -214,23 +211,14 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	protected $mGlobalBlock;
 	/** @var bool */
 	protected $mLocked;
-	/**
-	 * @deprecated since 1.35. Instead, use User::getBlock to get the block,
-	 *  then AbstractBlock::getHideName to determine whether the block hides
-	 *  the user; or use the GetUserBlock hook to hide or unhide a user.
-	 * @var bool
-	 */
-	public $mHideName;
+	/** @var bool */
+	private $mHideName;
 
 	/** @var WebRequest */
 	private $mRequest;
 
-	/**
-	 * @deprecated since 1.35. Instead, use User::getBlock to get the block;
-	 *  or the GetUserBlock hook to set or unset a block.
-	 * @var AbstractBlock|null
-	 */
-	public $mBlock;
+	/** @var AbstractBlock|null */
+	private $mBlock;
 
 	/** @var AbstractBlock|bool */
 	private $mBlockedFromCreateAccount = false;
@@ -291,6 +279,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			wfDeprecated( 'User::$mOptions', '1.35' );
 			$options = MediaWikiServices::getInstance()->getUserOptionsLookup()->getOptions( $this );
 			return $options;
+		} elseif ( in_array( $name, [ 'mBlock', 'mBlockedby', 'mHideName' ] ) ) {
+			// hard deprecated since 1.39
+			wfDeprecated( "User::\$$name", '1.35' );
+			$value = $this->$name;
+			return $value;
 		} elseif ( !property_exists( $this, $name ) ) {
 			// T227688 - do not break $u->foo['bar'] = 1
 			wfLogWarning( 'tried to get non-existent property' );
@@ -318,6 +311,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			foreach ( $value as $key => $val ) {
 				$userOptionsManager->setOption( $this, $key, $val );
 			}
+		} elseif ( in_array( $name, [ 'mBlock', 'mBlockedby', 'mHideName' ] ) ) {
+			// hard deprecated since 1.39
+			wfDeprecated( "User::\$$name", '1.35' );
+			$this->$name = $value;
 		} elseif ( !property_exists( $this, $name ) ) {
 			$this->$name = $value;
 		} else {
