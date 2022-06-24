@@ -13,7 +13,6 @@
 
 	var con = window.console;
 
-	/* https://github.com/gajus/eslint-plugin-jsdoc/issues/806 */
 	/**
 	 * Log a message to window.console, if possible.
 	 *
@@ -45,7 +44,6 @@
 			}
 		}
 	}
-	/* eslint-enable jsdoc/valid-types */
 
 	/**
 	 * Create an object that can be read from or written to via methods that allow
