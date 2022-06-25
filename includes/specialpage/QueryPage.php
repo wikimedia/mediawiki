@@ -223,12 +223,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @suppress PhanPluginNeverReturnMethod
 	 */
 	protected function getSQL() {
-		MWDebug::detectDeprecatedOverride(
-			$this,
-			__CLASS__,
-			'getSQL',
-			'1.39'
-		);
+		wfDeprecated( __METHOD__, '1.39' );
 		throw new MWException( "Bug in a QueryPage: doesn't implement getQueryInfo() nor "
 			. "getQuery() properly" );
 	}
@@ -535,6 +530,12 @@ abstract class QueryPage extends SpecialPage {
 			);
 		} else {
 			// Old-fashioned raw SQL style, deprecated
+			MWDebug::detectDeprecatedOverride(
+				$this,
+				__CLASS__,
+				'getSQL',
+				'1.39'
+			);
 			$sql = $this->getSQL();
 			$sql .= ' ORDER BY ' . implode( ', ', $order );
 			$sql = $dbr->limitResult( $sql, $limit, $offset );
