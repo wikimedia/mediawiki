@@ -167,7 +167,6 @@ class ForkController {
 	protected function prepareEnvironment() {
 		// Don't share DB, storage, or memcached connections
 		MediaWikiServices::resetChildProcessServices();
-		JobQueueGroup::destroySingletons();
 		ObjectCache::clear();
 		RedisConnectionPool::destroySingletons();
 	}
