@@ -51,7 +51,11 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 		'LocalTZoffset' => null,
 		'ThumbLimits' => [ 4242 ],
 		'MaxTemplateDepth' => 42,
-		'LegalTitleChars' => 'abc'
+		'LegalTitleChars' => 'abc',
+		'NoFollowLinks' => true,
+		'NoFollowNsExceptions' => [ 5 ],
+		'NoFollowDomainExceptions' => [ 'www.mediawiki.org' ],
+		'ExternalLinkTarget' => false,
 	];
 
 	private function createMockOrOverride( string $class, array $overrides ) {
@@ -177,6 +181,21 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			'getProtocols',
 			[ 'blabla' ]
 		];
+		yield 'getNoFollowConfig' => [
+			[],
+			'getNoFollowConfig',
+			[ 'nofollow' => true, 'nsexceptions' => [ 5 ], 'domainexceptions' => [ 'www.mediawiki.org' ] ]
+		];
+		yield 'getExternalLinkTargetEmpty' => [
+			[],
+			'getExternalLinkTarget',
+			false
+		];
+		yield 'getExternalLinkTargetString' => [
+			[ 'ExternalLinkTarget' => "_blank" ],
+			'getExternalLinkTarget',
+			"_blank"
+		];
 	}
 
 	/**
@@ -192,6 +211,8 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::getMaxTemplateDepth
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::legalTitleChars
 	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::getProtocols
+	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::getNoFollowConfig
+	 * @covers \MediaWiki\Parser\Parsoid\Config\SiteConfig::getExternalLinkTarget
 	 * @dataProvider provideConfigParameterPassed
 	 * @param array $settings
 	 * @param string $method
