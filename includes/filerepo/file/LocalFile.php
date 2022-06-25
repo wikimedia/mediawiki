@@ -1920,7 +1920,11 @@ class LocalFile extends File {
 
 		$descTitle = $this->getTitle();
 		$descId = $descTitle->getArticleID();
-		$wikiPage = new WikiFilePage( $descTitle );
+		$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $descTitle );
+		if ( !$wikiPage instanceof WikiFilePage ) {
+			throw new MWException( 'Cannot instance WikiFilePage for ' . $this->getName()
+				. ', got instance of ' . get_class( $wikiPage ) );
+		}
 		$wikiPage->setFile( $this );
 
 		// Determine log action. If reupload is done by reverting, use a special log_action.
