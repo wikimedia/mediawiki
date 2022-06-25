@@ -292,6 +292,7 @@ because of Phabricator reports.
   in 1.35, have been removed.
 * SqlBlobStore::getLegacyEncodingConversionLang(), deprecated in 1.34, has been
   removed.
+* wfCanIPUseHTTPS(), deprecated in 1.37, has been removed.
 * …
 
 === Deprecations in 1.39 ===
@@ -388,7 +389,9 @@ because of Phabricator reports.
 * Access to previously public properties User::$mBlock, User::$mBlockedby, and
   User::$mHideName, deprecated in 1.35, now emits deprecation warnings.
 * JobQueueGroup::singleton() and ::destroySingletons(), deprecated in 1.37, now
-  emits deprecation warnings.
+  emit deprecation warnings.
+* Title::getNotificationTimestamp(), deprecated in 1.35, now emits deprecation
+  warnings.
 * …
 
 === Other changes in 1.39 ===
