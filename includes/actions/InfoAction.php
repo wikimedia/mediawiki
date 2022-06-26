@@ -113,7 +113,6 @@ class InfoAction extends FormlessAction {
 	 * @param RedirectLookup $redirectLookup
 	 * @param RestrictionStore $restrictionStore
 	 * @param LinksMigration $linksMigration
-	 * @param Config $config
 	 */
 	public function __construct(
 		Page $page,
@@ -133,8 +132,7 @@ class InfoAction extends FormlessAction {
 		WatchedItemStoreInterface $watchedItemStore,
 		RedirectLookup $redirectLookup,
 		RestrictionStore $restrictionStore,
-		LinksMigration $linksMigration,
-		Config $config
+		LinksMigration $linksMigration
 	) {
 		parent::__construct( $page, $context );
 		$this->contentLanguage = $contentLanguage;

@@ -509,7 +509,6 @@ class UploadStash {
 	 */
 	protected function fetchFileMetadata( $key, $readFromDB = DB_REPLICA ) {
 		// populate $fileMetadata[$key]
-		$dbr = null;
 		if ( $readFromDB === DB_PRIMARY ) {
 			// sometimes reading from the primary DB is necessary, if there's replication lag.
 			$dbr = $this->repo->getPrimaryDB();

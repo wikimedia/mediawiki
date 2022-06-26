@@ -378,7 +378,6 @@ class HistoryPager extends ReverseChronologicalPager {
 		$canRevDelete = $this->getAuthority()->isAllowed( 'deleterevision' );
 		// Show checkboxes for each revision, to allow for revision deletion and
 		// change tags
-		$visibility = $revRecord->getVisibility();
 		if ( $canRevDelete || $this->showTagEditUI ) {
 			$this->setPreventClickjacking( true );
 			// If revision was hidden from sysops and we don't need the checkbox

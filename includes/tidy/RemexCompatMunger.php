@@ -274,7 +274,6 @@ class RemexCompatMunger implements TreeHandler {
 
 		$inline = isset( self::$onlyInlineElements[$elementName] );
 		$under = $preposition === TreeBuilder::UNDER;
-		$elementToEnd = null;
 
 		if ( isset( self::$metadataElements[$elementName] ) ) {
 			// The element is a metadata element, that we allow to appear in

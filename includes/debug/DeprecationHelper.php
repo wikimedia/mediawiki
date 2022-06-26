@@ -22,7 +22,7 @@
 
 /**
  * Use this trait in classes which have properties for which public access
- * is deprecated or implementation has been move to another class.
+ * is deprecated or implementation has been moved to another class.
  * Set the list of properties in $deprecatedPublicProperties
  * and make the properties non-public. The trait will preserve public access
  * but issue deprecation warnings when it is needed.
@@ -37,11 +37,11 @@
  *                 'movedValue',
  *                 '1.35',
  *                 function () {
- *                     return MediawikiServices()::getInstance()
+ *                     return MediaWikiServices()::getInstance()
  *                         ->getNewImplementationService()->getValue();
  *                 },
  *                 function ( $value ) {
- *                     MediawikiServices()::getInstance()
+ *                     MediaWikiServices()::getInstance()
  *                         ->getNewImplementationService()->setValue( $value );
  *                 }
  *             );

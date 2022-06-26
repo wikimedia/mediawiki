@@ -356,7 +356,6 @@ class MWExceptionHandler {
 			return false;
 		}
 
-		$url = WebRequest::getGlobalRequestURL();
 		$msgParts = [
 			'[{reqId}] {exception_url}   PHP Fatal Error',
 			( $line || $file ) ? ' from' : '',

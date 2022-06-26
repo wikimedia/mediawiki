@@ -329,7 +329,6 @@ class ImagePage extends Article {
 			return null;
 		}
 
-		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$requestLanguage =
 			$request->getVal( 'lang',
 				LanguageCode::bcp47( $this->getTitle()->getPageViewLanguage()->getCode() )

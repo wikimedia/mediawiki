@@ -163,7 +163,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 			[
 				[ 'width' => 123, 'lang' => 'en', 'targetlang' => 'ru' ],
 				'123px',
-				"lang should override targetlang even of it's in English"
+				"lang should override targetlang even if it's in English"
 			],
 			[
 				[ 'width' => 123, 'targetlang' => 'en' ],
