@@ -371,7 +371,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			$originalRevIndex
 		);
 
-		$wikiPage = new WikiPage( Title::newFromText( self::PAGE_NAME ) );
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( self::PAGE_NAME ) );
 		$wikiPage->doUserEditContent(
 			new WikitextContent( $newContent ),
 			$this->getTestSysop()->getUser(),

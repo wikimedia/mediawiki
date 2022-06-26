@@ -441,7 +441,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	public function testDataIndexFields() {
 		$mockEngine = $this->createMock( SearchEngine::class );
 		$title = Title::newFromText( 'Not_Main_Page', NS_MAIN );
-		$page = new WikiPage( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		$this->setTemporaryHook( 'SearchDataForIndex',
 			static function (
@@ -470,7 +470,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testParserOutputForIndexing() {
 		$title = Title::newFromText( 'Smithee', NS_MAIN );
-		$page = new WikiPage( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		$out = $page->getContentHandler()->getParserOutputForIndexing( $page );
 		$this->assertInstanceOf( ParserOutput::class, $out );

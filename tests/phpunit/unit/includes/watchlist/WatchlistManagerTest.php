@@ -35,23 +35,11 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		// service
 		$wikiPageFactory = $this->createMock( WikiPageFactory::class );
 		$wikiPageFactory->method( 'newFromTitle' )->willReturnCallback(
-			static function ( PageIdentity $pageIdentity ) {
-				// We can't use Title::castFromPageIdentity because that
-				// calls Title::resetArticleID which uses MediaWikiServices
-				// Thankfully, however, the only methods on the Title that are
-				// actually needed all work in unit tests
-				$title = Title::makeTitle(
-					$pageIdentity->getNamespace(),
-					$pageIdentity->getDBkey()
-				);
-				// WikiPage::construct calls Title::canExist which returns early
-				// if the id is already set, otherwise would break in unit tests
-				$title->mArticleID = $pageIdentity->getId();
-
-				// We can use an actual WikiPage, constructor works in unit tests
-				// now that the PageIdentity we give it is a real Title object,
-				// and ::getTitle works in unit tests too
-				return new WikiPage( $title );
+			function ( PageIdentity $pageIdentity ) {
+				$title = Title::castFromPageReference( $pageIdentity );
+				$wikiPage = $this->createMock( WikiPage::class );
+				$wikiPage->method( 'getTitle' )->willReturn( $title );
+				return $wikiPage;
 			}
 		);
 		return $wikiPageFactory;

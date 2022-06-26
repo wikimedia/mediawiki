@@ -21,6 +21,7 @@ use NamespaceInfo;
 use Psr\Log\NullLogger;
 use ReadOnlyMode;
 use RepoGroup;
+use Title;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Rdbms\ILoadBalancer;
 use WikiPage;
@@ -90,8 +91,11 @@ class UndeletePageTest extends MediaWikiUnitTestCase {
 	public function provideAssociatedTalk(): Generator {
 		$getWpFactory = function ( bool $talkExists ): WikiPageFactory {
 			$wpFactory = $this->createMock( WikiPageFactory::class );
-			$wpFactory->method( 'newFromTitle' )->willReturnCallback( static function ( $t ) {
-				return new WikiPage( $t );
+			$wpFactory->method( 'newFromTitle' )->willReturnCallback( function ( $t ) {
+				$title = Title::castFromPageReference( $t );
+				$wikiPage = $this->createMock( WikiPage::class );
+				$wikiPage->method( 'getTitle' )->willReturn( $title );
+				return $wikiPage;
 			} );
 			$wpFactory->method( 'newFromLinkTarget' )->willReturnCallback(
 				function ( LinkTarget $t ) use ( $talkExists ) {

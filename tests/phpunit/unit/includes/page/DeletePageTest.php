@@ -26,6 +26,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use NamespaceInfo;
 use PHPUnit\Framework\MockObject\MockObject;
+use Title;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -265,8 +266,12 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 	public function provideAssociatedTalk(): Generator {
 		$getWpFactory = function ( bool $talkExists ): WikiPageFactory {
 			$wpFactory = $this->createMock( WikiPageFactory::class );
-			$wpFactory->method( 'newFromTitle' )->willReturnCallback( static function ( $t ) {
-				return new WikiPage( $t );
+			$wpFactory->method( 'newFromTitle' )->willReturnCallback( function ( $t ) {
+				$title = Title::castFromPageReference( $t );
+				$wikiPage = $this->createMock( WikiPage::class );
+				$wikiPage->method( 'getTitle' )->willReturn( $title );
+				$wikiPage->method( 'getNamespace' )->willReturn( $title->getNamespace() );
+				return $wikiPage;
 			} );
 			$wpFactory->method( 'newFromLinkTarget' )->willReturnCallback(
 				function ( LinkTarget $t ) use ( $talkExists ) {

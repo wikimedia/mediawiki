@@ -35,7 +35,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		$testTitle = Title::newFromText( 'UTTest' );
-		$this->testWikiPage = new WikiPage( $testTitle );
+		$this->testWikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $testTitle );
 		$testContext = new DerivativeContext( RequestContext::getMain() );
 		$testContext->setTitle( $testTitle );
 		$this->context = $testContext;

@@ -43,7 +43,7 @@ class LinksDeletionUpdateTest extends MediaWikiLangTestCase {
 		$res = $this->insertPage( 'Source' );
 		$id = $res['id'];
 		$title = $res['title'];
-		$wikiPage = new WikiPage( $title );
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		$po = new ParserOutput();
 		$po->addCategory( 'Cat', 'cat' );

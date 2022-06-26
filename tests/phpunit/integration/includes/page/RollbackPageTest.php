@@ -120,7 +120,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		// Use the confirmed group for user2 to make sure the user is different
 		$user2 = $this->getTestUser( [ 'confirmed' ] )->getUser();
 
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		// Make some edits
 		$text = "one";
 		$status1 = $this->editPage( $page, $text, "section one", NS_MAIN, $admin );
@@ -194,7 +194,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRollbackFailSameContent() {
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser( [ 'sysop' ] )->getUser();
 
@@ -257,7 +257,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			$this->markTestSkipped( 'Rollback tag deactivated, skipped the test.' );
 		}
 
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser()->getUser();
 
@@ -274,7 +274,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRollbackBot() {
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser()->getUser();
 
@@ -292,7 +292,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRollbackBotNotAllowed() {
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		$admin = $this->mockUserAuthorityWithoutPermissions(
 			$this->getTestSysop()->getUser(), [ 'markbotedits', 'bot' ] );
 		$user1 = $this->getTestUser()->getUser();
@@ -319,7 +319,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideRollbackPatrolAndBot
 	 */
 	public function testRollbackPatrolAndBot( bool $markAsBot ) {
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser()->getUser();
 
@@ -381,7 +381,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRollbackCustomSummary() {
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser()->getUser();
 
@@ -411,7 +411,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRollbackChangesContentModel() {
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser()->getUser();
 

@@ -153,7 +153,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertSame( 'Success', $re['edit']['result'] );
 
 		// -- validate -----------------------------------------------------
-		$page = new WikiPage( Title::newFromText( $name ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) );
 		$content = $page->getContent();
 		$this->assertNotNull( $content, 'Page should have been created' );
 
@@ -949,7 +949,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'undoafter' => $revId1,
 		] );
 
-		$text = ( new WikiPage( $titleObj ) )->getContent()->getText();
+		$text = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $titleObj )->getContent()->getText();
 
 		$this->assertSame( '1', $text );
 	}
@@ -974,7 +974,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'undo' => $revId,
 		] );
 
-		$text = ( new WikiPage( Title::newFromText( $name ) ) )->getContent()
+		$text = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) )->getContent()
 			->getText();
 		$this->assertSame( '3', $text );
 	}
@@ -995,7 +995,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'undoafter' => $revId2,
 		] );
 
-		$text = ( new WikiPage( Title::newFromText( $name ) ) )->getContent()
+		$text = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) )->getContent()
 			->getText();
 		$this->assertSame( '2', $text );
 	}
@@ -1066,7 +1066,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'md5' => md5( 'Alert: ' ),
 		] );
 
-		$text = ( new WikiPage( Title::newFromText( $name ) ) )
+		$text = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) )
 			->getContent()->getText();
 		$this->assertSame( 'Alert: Some text', $text );
 	}
@@ -1083,7 +1083,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'md5' => md5( ' is nice' ),
 		] );
 
-		$text = ( new WikiPage( Title::newFromText( $name ) ) )
+		$text = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) )
 			->getContent()->getText();
 		$this->assertSame( 'Some text is nice', $text );
 	}
@@ -1101,7 +1101,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'md5' => md5( 'Alert:  is nice' ),
 		] );
 
-		$text = ( new WikiPage( Title::newFromText( $name ) ) )
+		$text = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) )
 			->getContent()->getText();
 		$this->assertSame( 'Alert: Some text is nice', $text );
 	}
@@ -1168,7 +1168,7 @@ class ApiEditPageTest extends ApiTestCase {
 			] );
 		} finally {
 			// Validate that content was not changed
-			$text = ( new WikiPage( Title::newFromText( $name ) ) )
+			$text = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) )
 				->getContent()->getText();
 
 			$this->assertSame( 'Some text', $text );
@@ -1270,7 +1270,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'section' => 'new',
 		] );
 
-		$text = ( new WikiPage( Title::newFromText( $name ) ) )
+		$text = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) )
 			->getContent()->getText();
 
 		$this->assertSame( "Initial content\n\n== New section ==", $text );
@@ -1306,7 +1306,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'section' => 'new',
 		] );
 
-		$page = new WikiPage( Title::newFromText( $name ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) );
 
 		$this->assertSame( "Initial content\n\n== My section ==\n\nMore content",
 			$page->getContent()->getText() );
@@ -1328,7 +1328,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'summary' => 'Add new section',
 		] );
 
-		$page = new WikiPage( Title::newFromText( $name ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) );
 
 		$this->assertSame( "Initial content\n\n== Add new section ==\n\nMore content",
 			$page->getContent()->getText() );
@@ -1352,7 +1352,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'summary' => 'Add new section',
 		] );
 
-		$page = new WikiPage( Title::newFromText( $name ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) );
 
 		$this->assertSame( "Initial content\n\n== My section ==\n\nMore content",
 			$page->getContent()->getText() );
@@ -1374,7 +1374,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'section' => '1',
 		] );
 
-		$text = ( new WikiPage( Title::newFromText( $name ) ) )
+		$text = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) )
 			->getContent()->getText();
 
 		$this->assertSame( "== Section 1 ==\n\nContent and more content\n\n" .
@@ -1393,7 +1393,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'section' => '0',
 		] );
 
-		$text = ( new WikiPage( Title::newFromText( $name ) ) )
+		$text = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) )
 			->getContent()->getText();
 
 		$this->assertSame( "Content and more content\n\n== Section 1 ==\n\n" .
@@ -1416,7 +1416,7 @@ class ApiEditPageTest extends ApiTestCase {
 				'section' => '1',
 			] );
 		} finally {
-			$text = ( new WikiPage( Title::newFromText( $name ) ) )
+			$text = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) )
 				->getContent()->getText();
 
 			$this->assertSame( 'Content', $text );
@@ -1438,7 +1438,7 @@ class ApiEditPageTest extends ApiTestCase {
 				'section' => 'It is unlikely that this is valid',
 			] );
 		} finally {
-			$text = ( new WikiPage( Title::newFromText( $name ) ) )
+			$text = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) )
 				->getContent()->getText();
 
 			$this->assertSame( 'Content', $text );
