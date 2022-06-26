@@ -4,7 +4,14 @@
 
 THIS IS NOT A RELEASE YET
 
-=== Changes since MediaWiki 1.37.1 ===
+=== Changes since MediaWiki 1.38.1 ===
+* Localisation updates.
+* (T309426) Repair language selector for SVGs.
+* (T310013) Fix default value for $wgShowEXIF and $wgUsePathInfo.
+* (T308471) SECURITY: Escape welcomeuser message passed to showSuccessPage().
+* (T308473) SECURITY: Escape contributions-title msg for use within page title.
+* (T311272) Call parent constructor of AddSite maintenance script first.
+* MediaWiki: Don't eagerly initialize action name.
 
 == MediaWiki 1.38.1 ==
 
