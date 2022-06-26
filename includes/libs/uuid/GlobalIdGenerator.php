@@ -37,6 +37,11 @@ class GlobalIdGenerator {
 
 	/** @var string Temporary directory */
 	protected $tmpDir;
+	/** @var string
+	 * File prefix containing user ID to prevent collisions
+	 * if multiple users run MediaWiki (T268420)
+	 */
+	protected $uniqueFilePrefix;
 	/** @var string Local file path */
 	protected $nodeIdFile;
 	/** @var string Node ID in binary (32 bits) */
@@ -92,12 +97,13 @@ class GlobalIdGenerator {
 			throw new InvalidArgumentException( "No temp directory provided" );
 		}
 		$this->tmpDir = $tempDirectory;
-		$this->nodeIdFile = $tempDirectory . '/' . self::FILE_PREFIX . '-UID-nodeid';
+		$this->uniqueFilePrefix = self::FILE_PREFIX . getmyuid();
+		$this->nodeIdFile = $tempDirectory . '/' . $this->uniqueFilePrefix . '-UID-nodeid';
 		// If different processes run as different users, they may have different temp dirs.
 		// This is dealt with by initializing the clock sequence number and counters randomly.
-		$this->lockFile88 = $tempDirectory . '/' . self::FILE_PREFIX . '-UID-88';
-		$this->lockFile128 = $tempDirectory . '/' . self::FILE_PREFIX . '-UID-128';
-		$this->lockFileUUID = $tempDirectory . '/' . self::FILE_PREFIX . '-UUID-128';
+		$this->lockFile88 = $tempDirectory . '/' . $this->uniqueFilePrefix . '-UID-88';
+		$this->lockFile128 = $tempDirectory . '/' . $this->uniqueFilePrefix . '-UID-128';
+		$this->lockFileUUID = $tempDirectory . '/' . $this->uniqueFilePrefix . '-UUID-128';
 
 		$this->shellCallback = $shellCallback;
 	}
@@ -373,7 +379,7 @@ class GlobalIdGenerator {
 			throw new RuntimeException( "Requested bit size ($bits) is out of range." );
 		}
 
-		$path = $this->tmpDir . '/' . self::FILE_PREFIX . '-' . rawurlencode( $bucket ) . '-48';
+		$path = $this->tmpDir . '/' . $this->uniqueFilePrefix . '-' . rawurlencode( $bucket ) . '-48';
 		// Get the UID lock file handle
 		if ( isset( $this->fileHandles[$path] ) ) {
 			$handle = $this->fileHandles[$path];
