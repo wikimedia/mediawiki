@@ -453,7 +453,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertEditPage( 'Hello Wörld C', Title::newFromText( __METHOD__ ), 'Hello Wörld C' );
 		$this->assertEditPage(
 			'Hello Wörld D',
-			new WikiPage( Title::newFromText( __METHOD__ ) ),
+			$this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) ),
 			'Hello Wörld D'
 		);
 	}

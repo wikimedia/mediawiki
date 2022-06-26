@@ -299,7 +299,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
 
 		$title = Title::newFromText( 'Testing' );
-		$wikiPage = new WikiPage( $title );
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$wikiPage->doUserEditContent(
 			new WikitextContent( '[[Category:Foo]]' ),
 			$this->getTestSysop()->getUser(),
@@ -345,9 +345,9 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
 
 		$templateTitle = Title::newFromText( 'Template:TestingTemplate' );
-		$templatePage = new WikiPage( $templateTitle );
+		$templatePage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $templateTitle );
 
-		$wikiPage = new WikiPage( Title::newFromText( 'Testing' ) );
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( 'Testing' ) );
 		$wikiPage->doUserEditContent(
 			new WikitextContent( '{{TestingTemplate}}' ),
 			$this->getTestSysop()->getUser(),
@@ -355,7 +355,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 		$this->runAllRelatedJobs();
 
-		$otherWikiPage = new WikiPage( Title::newFromText( 'Some_other_page' ) );
+		$otherWikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( 'Some_other_page' ) );
 		$otherWikiPage->doUserEditContent(
 			new WikitextContent( '{{TestingTemplate}}' ),
 			$this->getTestSysop()->getUser(),

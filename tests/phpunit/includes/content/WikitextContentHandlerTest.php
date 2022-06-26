@@ -270,7 +270,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	public function testDataIndexFieldsFile() {
 		$mockEngine = $this->createMock( SearchEngine::class );
 		$title = Title::newFromText( 'Somefile.jpg', NS_FILE );
-		$page = new WikiPage( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		$fileHandler = $this->getMockBuilder( FileContentHandler::class )
 			->disableOriginalConstructor()

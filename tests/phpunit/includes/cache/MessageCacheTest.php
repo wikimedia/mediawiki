@@ -68,7 +68,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		}
 
 		$title = Title::newFromText( $title, NS_MEDIAWIKI );
-		$wikiPage = new WikiPage( $title );
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$content = ContentHandler::makeContent( $content, $title );
 		$summary = CommentStoreComment::newUnsavedComment( "$lang translation test case" );
 

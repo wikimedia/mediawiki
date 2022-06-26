@@ -228,14 +228,14 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 	 * @return RecentChange
 	 */
 	private function getCategorizationChange( $timestamp, $thisId, $lastId ) {
-		$wikiPage = new WikiPage( Title::newFromText( 'Testpage' ) );
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( 'Testpage' ) );
 		$wikiPage->doUserEditContent(
 			new WikitextContent( 'Some random text' ),
 			$this->getTestSysop()->getUser(),
 			'page created'
 		);
 
-		$wikiPage = new WikiPage( Title::newFromText( 'Category:Foo' ) );
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( 'Category:Foo' ) );
 		$wikiPage->doUserEditContent(
 			new WikitextContent( 'Some random text' ),
 			$this->getTestSysop()->getUser(),
