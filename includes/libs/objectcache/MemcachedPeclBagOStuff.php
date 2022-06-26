@@ -39,13 +39,17 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
 	/** @var array Memcached options */
 	private static $OPTS_SYNC_WRITES = [
-		Memcached::OPT_NO_BLOCK => false, // async I/O (using TCP buffers)
-		Memcached::OPT_BUFFER_WRITES => false // libmemcached buffers
+		// async I/O (using TCP buffers)
+		Memcached::OPT_NO_BLOCK => false,
+		// libmemcached buffers
+		Memcached::OPT_BUFFER_WRITES => false,
 	];
 	/** @var array Memcached options */
 	private static $OPTS_ASYNC_WRITES = [
-		Memcached::OPT_NO_BLOCK => true, // async I/O (using TCP buffers)
-		Memcached::OPT_BUFFER_WRITES => true // libmemcached buffers
+		// async I/O (using TCP buffers)
+		Memcached::OPT_NO_BLOCK => true,
+		// libmemcached buffers
+		Memcached::OPT_BUFFER_WRITES => true,
 	];
 
 	/**
@@ -506,7 +510,8 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 */
 	private function acquireAsyncClient() {
 		if ( $this->asyncClient ) {
-			return $this->asyncClient; // dedicated buffering instance
+			// dedicated buffering instance
+			return $this->asyncClient;
 		}
 
 		// Modify the main instance to temporarily buffer writes

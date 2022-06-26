@@ -795,7 +795,8 @@ class WANObjectCache implements
 		$walltime = $opts['walltime'] ?? $this->timeSinceLoggedMiss( $key, $now );
 
 		if ( $ttl < 0 ) {
-			return true; // not cacheable
+			// not cacheable
+			return true;
 		}
 
 		// Forbid caching data that only exists within an uncommitted transaction. Also, lower
@@ -859,7 +860,8 @@ class WANObjectCache implements
 				]
 			);
 
-			return true; // no-op the write for being unsafe
+			// no-op the write for being unsafe
+			return true;
 		}
 
 		// TTL to use in staleness checks (does not effect persistence layer TTL)
@@ -904,7 +906,8 @@ class WANObjectCache implements
 					return ( is_string( $cWrapped ) ) ? false : $wrapped;
 				},
 				$storeTTL,
-				1 // 1 attempt
+				// 1 attempt
+				1
 			);
 		}
 
@@ -1517,8 +1520,7 @@ class WANObjectCache implements
 			}
 		}
 
-		$res = $this->fetchOrRegenerate( $key, $ttl, $callback, $opts, $cbParams );
-		list( $value, $valueVersion, $curAsOf ) = $res;
+		[ $value, $valueVersion, $curAsOf ] = $this->fetchOrRegenerate( $key, $ttl, $callback, $opts, $cbParams );
 		if ( $valueVersion !== $version ) {
 			// Current value has a different version; use the variant key for this version.
 			// Regenerate the variant value if it is not newer than the main value at $key
@@ -1724,8 +1726,10 @@ class WANObjectCache implements
 					'since' => $setOpts['since'] ?? $preCallbackTime,
 					'version' => $version,
 					'staleTTL' => $staleTTL,
-					'lockTSE' => $lockTSE, // informs lag vs performance trade-offs
-					'creating' => ( $curValue === false ), // optimization
+					// informs lag vs performance trade-offs
+					'lockTSE' => $lockTSE,
+					// optimization
+					'creating' => ( $curValue === false ),
 					'walltime' => $walltime
 				] + $setOpts;
 				// @phan-suppress-next-line PhanTypeMismatchArgument,PhanPossiblyUndeclaredVariable False positive
@@ -2155,8 +2159,10 @@ class WANObjectCache implements
 	) {
 		$checkKeys = $opts['checkKeys'] ?? [];
 		$minAsOf = $opts['minAsOf'] ?? self::MIN_TIMESTAMP_NONE;
-		unset( $opts['lockTSE'] ); // incompatible
-		unset( $opts['busyValue'] ); // incompatible
+
+		// unset incompatible keys
+		unset( $opts['lockTSE'] );
+		unset( $opts['busyValue'] );
 
 		// Batch load required keys into the in-process warmup cache
 		$keysByIdGet = $this->getNonProcessCachedMultiKeys( $keyedIds, $opts );
@@ -2256,7 +2262,8 @@ class WANObjectCache implements
 		if ( is_array( $wrapped ) && $wrapped[self::FLD_TIME] < $minAsOf ) {
 			$isStale = true;
 			$this->logger->warning( "Reaping stale value key '$key'." );
-			$ttlReap = self::HOLDOFF_TTL; // avoids races with tombstone creation
+			// avoids races with tombstone creation
+			$ttlReap = self::HOLDOFF_TTL;
 			$ok = $this->cache->changeTTL( $valueSisterKey, $ttlReap );
 			if ( !$ok ) {
 				$this->logger->error( "Could not complete reap of key '$key'." );
@@ -2612,9 +2619,11 @@ class WANObjectCache implements
 	 * @since 1.28
 	 */
 	public function adaptiveTTL( $mtime, $maxTTL, $minTTL = 30, $factor = 0.2 ) {
-		$mtime = (int)$mtime; // handle fractional seconds and string integers
+		// handle fractional seconds and string integers
+		$mtime = (int)$mtime;
 		if ( $mtime <= 0 ) {
-			return $minTTL; // no last-modified time provided
+			// no last-modified time provided
+			return $minTTL;
 		}
 
 		$age = (int)$this->getCurrentTime() - $mtime;
@@ -2825,9 +2834,7 @@ class WANObjectCache implements
 		// Ramp up $chance from 0 to its nominal value over RAMPUP_TTL seconds to avoid stampedes
 		$chance *= ( $timeOld <= self::RAMPUP_TTL ) ? $timeOld / self::RAMPUP_TTL : 1;
 
-		$decision = ( mt_rand( 1, 1000000000 ) <= 1000000000 * $chance );
-
-		return $decision;
+		return ( mt_rand( 1, 1000000000 ) <= 1000000000 * $chance );
 	}
 
 	/**
@@ -2863,9 +2870,7 @@ class WANObjectCache implements
 
 		$chance = ( 1 - $curTTL / $effectiveLowTTL );
 
-		$decision = ( mt_rand( 1, 1000000000 ) <= 1000000000 * $chance );
-
-		return $decision;
+		return ( mt_rand( 1, 1000000000 ) <= 1000000000 * $chance );
 	}
 
 	/**
@@ -3129,7 +3134,8 @@ class WANObjectCache implements
 			return $this->wallClockOverride;
 		}
 
-		$clockTime = (float)time(); // call this first
+		// call this first
+		$clockTime = (float)time();
 		// microtime() uses an initial gettimeofday() call added to usage clocks.
 		// This can severely drift from time() and the microtime() value of other threads
 		// due to undercounting of the amount of time elapsed. Instead of seeing the current

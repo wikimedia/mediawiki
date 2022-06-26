@@ -107,7 +107,8 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		if ( $this->hasKey( $key ) && !$this->expire( $key ) ) {
-			return false; // key already set
+			// key already set
+			return false;
 		}
 
 		return $this->doSet( $key, $value, $exptime, $flags );
@@ -196,6 +197,7 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function convertGenericKey( $key ) {
-		return $key; // short-circuit; already uses "generic" keys
+		// short-circuit; already uses "generic" keys
+		return $key;
 	}
 }

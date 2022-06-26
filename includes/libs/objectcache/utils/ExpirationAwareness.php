@@ -37,13 +37,13 @@ interface ExpirationAwareness {
 	/** @var int One hour, in seconds */
 	public const TTL_HOUR = 3600;
 	/** @var int One day, in seconds */
-	public const TTL_DAY = 86400; // 24 * 3600
+	public const TTL_DAY = 86400;
 	/** @var int One week, in seconds */
-	public const TTL_WEEK = 604800; // 7 * 24 * 3600
+	public const TTL_WEEK = 604800;
 	/** @var int One month, in seconds */
-	public const TTL_MONTH = 2592000; // 30 * 24 * 3600
+	public const TTL_MONTH = 2592000;
 	/** @var int One year, in seconds */
-	public const TTL_YEAR = 31536000; // 365 * 24 * 3600
+	public const TTL_YEAR = 31536000;
 
 	/** @var int Reasonably strict cache time that last the life of quick requests */
 	public const TTL_PROC_SHORT = 3;

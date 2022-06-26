@@ -96,8 +96,10 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		}
 
 		$this->syncTimeout = $params['syncTimeout'] ?? 3;
-		$this->segmentationSize = $params['segmentationSize'] ?? 8388608; // 8MiB
-		$this->segmentedValueMaxSize = $params['segmentedValueMaxSize'] ?? 67108864; // 64MiB
+		// Default to 8MiB if segmentationSize is not set
+		$this->segmentationSize = $params['segmentationSize'] ?? 8388608;
+		// Default to 64MiB if segmentedValueMaxSize is not set
+		$this->segmentedValueMaxSize = $params['segmentedValueMaxSize'] ?? 67108864;
 	}
 
 	/**
@@ -212,7 +214,8 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		}
 
 		if ( !SerializedValueContainer::isSegmented( $mainValue ) ) {
-			return true; // no segments to delete
+			// no segments to delete
+			return true;
 		}
 
 		$orderedKeys = array_map(
@@ -283,7 +286,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	final protected function mergeViaCas( $key, callable $callback, $exptime, $attempts, $flags ) {
 		$attemptsLeft = $attempts;
 		do {
-			$token = self::PASS_BY_REF; // passed by reference
+			$token = self::PASS_BY_REF;
 			// Get the old value and CAS token from cache
 			$watchPoint = $this->watchErrors();
 			$currentValue = $this->resolveSegments(
@@ -304,13 +307,16 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			$value = $callback( $this, $key, $currentValue, $exptime );
 			$keyWasNonexistant = ( $currentValue === false );
 			$valueMatchesOldValue = ( $value === $currentValue );
-			unset( $currentValue ); // free RAM in case the value is large
+			// free RAM in case the value is large
+			unset( $currentValue );
 
 			$watchPoint = $this->watchErrors();
 			if ( $value === false || $exptime < 0 ) {
-				$success = true; // do nothing
+				// do nothing
+				$success = true;
 			} elseif ( $valueMatchesOldValue && $attemptsLeft !== $attempts ) {
-				$success = true; // recently set by another thread to the same value
+				// recently set by another thread to the same value
+				$success = true;
 			} elseif ( $keyWasNonexistant ) {
 				// Try to create the key, failing if it gets created in the meantime
 				$success = $this->add( $key, $value, $exptime, $flags );
@@ -350,7 +356,8 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 				[ 'key' => $key ]
 			);
 
-			return false; // caller may have meant to use add()?
+			// caller may have meant to use add()?
+			return false;
 		}
 
 		list( $entry, $usable ) = $this->makeValueOrSegmentList( $key, $value, $exptime, $flags );
@@ -371,10 +378,11 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		// @TODO: the use of lock() assumes that all other relevant sets() use a lock
 		if ( !$this->lock( $key, 0 ) ) {
-			return false; // non-blocking
+			// non-blocking
+			return false;
 		}
 
-		$curCasToken = self::PASS_BY_REF; // passed by reference
+		$curCasToken = self::PASS_BY_REF;
 		$watchPoint = $this->watchErrors();
 		$exists = ( $this->doGet( $key, self::READ_LATEST, $curCasToken ) !== false );
 		if ( $this->getLastError( $watchPoint ) ) {
@@ -387,7 +395,8 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		} elseif ( $exists && $this->tokensMatch( $casToken, $curCasToken ) ) {
 			$success = $this->doSet( $key, $value, $exptime, $flags );
 		} else {
-			$success = false; // mismatched or failed
+			// mismatched or failed
+			$success = false;
 			$this->logger->info(
 				__METHOD__ . ' failed due to race condition for {key}.',
 				[ 'key' => $key, 'key_exists' => $exists ]
@@ -543,14 +552,16 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 				if ( $this->add( $this->makeLockKey( $key ), 1, $exptime ) ) {
 					$lockTsUnix = microtime( true );
 
-					return WaitConditionLoop::CONDITION_REACHED; // locked!
+					// locked!
+					return WaitConditionLoop::CONDITION_REACHED;
 				} elseif ( $this->getLastError( $watchPoint ) ) {
 					$this->logger->warning(
 						"$fname failed due to I/O error for {key}.",
 						[ 'key' => $key ]
 					);
 
-					return WaitConditionLoop::CONDITION_ABORTED; // network partition?
+					// network partition?
+					return WaitConditionLoop::CONDITION_ABORTED;
 				}
 
 				return WaitConditionLoop::CONDITION_CONTINUE;
@@ -812,7 +823,8 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 				if ( isset( $segmentsByKey[$segmentKey] ) ) {
 					$parts[] = $segmentsByKey[$segmentKey];
 				} else {
-					return false; // missing segment
+					// missing segment
+					return false;
 				}
 			}
 
@@ -842,7 +854,8 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 
 		if (
 			$this->fieldHasFlags( $flags, self::WRITE_ALLOW_SEGMENTS ) &&
-			!is_int( $value ) && // avoid breaking incr()/decr()
+			// avoid breaking incr()/decr()
+			!is_int( $value ) &&
 			is_finite( $this->segmentationSize )
 		) {
 			$segmentSize = $this->segmentationSize;
@@ -991,7 +1004,8 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		$sizes = [];
 		foreach ( $valueByKey as $key => $value ) {
 			if ( $value === false ) {
-				$sizes[] = null; // not storable, don't bother
+				// not storable, don't bother
+				$sizes[] = null;
 				continue;
 			}
 
