@@ -196,7 +196,7 @@ because of Phabricator reports.
     removed.
 * Experimental wiki farm support: Automatic detection of the requested site
   within a wiki farm based on the requested domain has been removed.
-  Use the MW_WIKI_NAME environment variable to specifiy the name of the site
+  Use the MW_WIKI_NAME environment variable to specify the name of the site
   to load configuration for. Using the WIKI_NAME environment variable for this
   purpose is deprecated. This is only relevant if you have been using
   $wgWikiFarmSettingsDirectory to load wiki farm config.
@@ -340,7 +340,7 @@ because of Phabricator reports.
   AbstractContent::getUltimateRedirectTarget() are now emitting deprecation
   warnings (T296430).
 * (T244138) QueryPage::getSQL() is deprecated. Instead QueryPage::getQueryInfo()
-  should be overriden.
+  should be overridden.
 * Calling new JobRunner() directly without $serviceOptions now emits
   deprecation warnings. Use MediaWikiServices::getInstance()->getJobRunner()
   instead.

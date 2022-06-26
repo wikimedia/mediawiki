@@ -331,7 +331,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$resolvedGroups = [ $groups, $this->defaultGroup ];
 		} elseif ( is_array( $groups ) ) {
 			$resolvedGroups = $groups;
-			if ( array_search( $this->defaultGroup, $resolvedGroups ) === false ) {
+			if ( !in_array( $this->defaultGroup, $resolvedGroups ) ) {
 				$resolvedGroups[] = $this->defaultGroup;
 			}
 		} else {

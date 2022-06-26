@@ -716,8 +716,6 @@ class RevisionStore
 			$blobAddress = $this->storeContentBlob( $protoSlot, $page, $blobHints );
 		}
 
-		$contentId = null;
-
 		if ( $protoSlot->hasContentId() ) {
 			$contentId = $protoSlot->getContentId();
 		} else {

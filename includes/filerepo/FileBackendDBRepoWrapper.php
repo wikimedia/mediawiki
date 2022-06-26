@@ -68,7 +68,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 	}
 
 	/**
-	 * Translate a legacy "title" path to it's "sha1" counterpart
+	 * Translate a legacy "title" path to its "sha1" counterpart
 	 *
 	 * E.g. mwstore://local-backend/local-public/a/ab/<name>.jpg
 	 * => mwstore://local-backend/local-original/x/y/z/<sha1>.jpg

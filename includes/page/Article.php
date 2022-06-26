@@ -1495,7 +1495,6 @@ class Article implements Page {
 			return true;
 		}
 		$outputPage = $this->getContext()->getOutput();
-		$user = $this->getContext()->getUser();
 		// Used in wikilinks, should not contain whitespaces
 		$titleText = $this->getTitle()->getPrefixedDBkey();
 		// If the user is not allowed to see it...

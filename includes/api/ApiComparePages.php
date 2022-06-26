@@ -342,7 +342,6 @@ class ApiComparePages extends ApiBase {
 	private function guessModel( $role ) {
 		$params = $this->extractRequestParams();
 
-		$title = null;
 		foreach ( [ 'from', 'to' ] as $prefix ) {
 			if ( $params["{$prefix}rev"] !== null ) {
 				$rev = $this->getRevisionById( $params["{$prefix}rev"] );

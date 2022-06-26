@@ -92,8 +92,6 @@ class ApiSetPageLanguage extends ApiBase {
 			$this->dieWithError( 'apierror-missingtitle' );
 		}
 
-		$user = $this->getUser();
-
 		// Check that the user is allowed to edit the page
 		$this->checkTitleUserPermissions( $titleObj, 'edit' );
 
