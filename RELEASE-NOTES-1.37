@@ -5,6 +5,20 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.37.2 ===
+* Localisation updates.
+* (T289879) Type hints for ArrayAccess and JsonSerializable.
+* (T304783) TemplateParser: avoid warnings when called by NoLocalSettings.
+* Rebuilt vendor with composer 2.3.3.
+* Fix old_name in UserLogoutComplete hook.
+* (T289879) Address some deprecations for PHP 8.1.
+* (T193565) UserGroupManager: Fix dbDomain in addUserToGroup() deferred update.
+* (T309114) LocalFile::prerenderThumbnails: Limit the number of thumbnail jobs
+  triggered.
+* (T307982) Updated wikimedia/parsoid from v0.14.0 to v0.14.1.
+* (T308471) SECURITY: Escape welcomeuser message passed to showSuccessPage().
+* (T308473) SECURITY: Escape contributions-title msg for use within page title.
+* (T311272) Call parent constructor of AddSite maintenance script first.
+* MediaWiki: Don't eagerly initialize action name.
 
 == MediaWiki 1.37.2 ==
 
@@ -216,7 +230,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * Updated psr/container from v1.0.0 to v1.1.1.
 * Updated wikimedia/minify from v2.2.2 to v2.2.4.
 * Updated wikimedia/object-factory from v3.0.0 to v3.0.2.
-* Updated wikimedia/parsoid from v0.13.1 to v0.14.0.
+* Updated wikimedia/parsoid from v0.13.1 to v0.14.1.
 * Updated wikimedia/relpath from v2.1.1 to v3.0.0.
 * Updated wikimedia/remex-html from v2.3.1 to v2.3.2.
 * Updated wikimedia/shellbox from v1.0.4 to v2.0.0.
