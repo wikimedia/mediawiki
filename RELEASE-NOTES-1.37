@@ -19,6 +19,7 @@ THIS IS NOT A RELEASE YET
 * (T308473) SECURITY: Escape contributions-title msg for use within page title.
 * (T311272) Call parent constructor of AddSite maintenance script first.
 * MediaWiki: Don't eagerly initialize action name.
+* Updated wikimedia/shellbox from v2.0.0 to v2.1.1.
 
 == MediaWiki 1.37.2 ==
 
@@ -233,7 +234,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * Updated wikimedia/parsoid from v0.13.1 to v0.14.1.
 * Updated wikimedia/relpath from v2.1.1 to v3.0.0.
 * Updated wikimedia/remex-html from v2.3.1 to v2.3.2.
-* Updated wikimedia/shellbox from v1.0.4 to v2.0.0.
+* Updated wikimedia/shellbox from v1.0.4 to v2.1.1.
 * Updated wikimedia/wait-condition-loop from v2.0.1 to v2.0.2.
 * Updated zordius/lightncandy from v1.2.5 to v1.2.6.
 
