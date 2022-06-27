@@ -685,7 +685,6 @@ class ContribsPager extends RangeChronologicalPager {
 			);
 			# Mark current revisions
 			$topmarktext = '';
-			$user = $this->getUser();
 
 			if ( $row->rev_id === $row->page_latest ) {
 				$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
@@ -763,7 +762,8 @@ class ContribsPager extends RangeChronologicalPager {
 
 			$comment = $lang->getDirMark() . $comment;
 
-			$d = ChangesList::revDateLink( $revRecord, $user, $lang, $page );
+			$authority = $this->getAuthority();
+			$d = ChangesList::revDateLink( $revRecord, $authority, $lang, $page );
 
 			# When querying for an IP range, we want to always show user and user talk links.
 			$userlink = '';
@@ -788,7 +788,7 @@ class ContribsPager extends RangeChronologicalPager {
 			}
 
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
-			$del = Linker::getRevDeleteLink( $user, $revRecord, $page );
+			$del = Linker::getRevDeleteLink( $authority, $revRecord, $page );
 			if ( $del !== '' ) {
 				$del .= ' ';
 			}

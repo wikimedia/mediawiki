@@ -75,11 +75,11 @@ class RevDelFileItem extends RevDelItem {
 	}
 
 	public function canView() {
-		return $this->file->userCan( File::DELETED_RESTRICTED, $this->list->getUser() );
+		return $this->file->userCan( File::DELETED_RESTRICTED, $this->list->getAuthority() );
 	}
 
 	public function canViewContent() {
-		return $this->file->userCan( File::DELETED_FILE, $this->list->getUser() );
+		return $this->file->userCan( File::DELETED_FILE, $this->list->getAuthority() );
 	}
 
 	public function getBits() {
@@ -189,7 +189,7 @@ class RevDelFileItem extends RevDelItem {
 	 * @return string HTML
 	 */
 	protected function getComment() {
-		if ( $this->file->userCan( File::DELETED_COMMENT, $this->list->getUser() ) ) {
+		if ( $this->file->userCan( File::DELETED_COMMENT, $this->list->getAuthority() ) ) {
 			$block = Linker::commentBlock( $this->file->getDescription() );
 		} else {
 			$block = ' ' . $this->list->msg( 'rev-deleted-comment' )->escaped();

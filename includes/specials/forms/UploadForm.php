@@ -164,7 +164,7 @@ class UploadForm extends HTMLForm {
 		}
 
 		$canUploadByUrl = UploadFromUrl::isEnabled()
-			&& ( UploadFromUrl::isAllowed( $this->getUser() ) === true )
+			&& ( UploadFromUrl::isAllowed( $this->getAuthority() ) === true )
 			&& $this->getConfig()->get( MainConfigNames::CopyUploadsFromSpecialUpload );
 		$radio = $canUploadByUrl;
 		$selectedSourceType = strtolower( $this->getRequest()->getText( 'wpSourceType', 'File' ) );

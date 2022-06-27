@@ -29,20 +29,20 @@ class ApiManageTags extends ApiBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
-		$user = $this->getUser();
+		$authority = $this->getAuthority();
 
 		// make sure the user is allowed
 		if ( $params['operation'] !== 'delete'
-			&& !$this->getAuthority()->isAllowed( 'managechangetags' )
+			&& !$authority->isAllowed( 'managechangetags' )
 		) {
 			$this->dieWithError( 'tags-manage-no-permission', 'permissiondenied' );
-		} elseif ( !$this->getAuthority()->isAllowed( 'deletechangetags' ) ) {
+		} elseif ( !$authority->isAllowed( 'deletechangetags' ) ) {
 			$this->dieWithError( 'tags-delete-no-permission', 'permissiondenied' );
 		}
 
 		// Check if user can add the log entry tags which were requested
 		if ( $params['tags'] ) {
-			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $this->getAuthority() );
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $authority );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );
 			}
@@ -55,16 +55,16 @@ class ApiManageTags extends ApiBase {
 		$tags = $params['tags'] ?: [];
 		switch ( $params['operation'] ) {
 			case 'create':
-				$status = ChangeTags::createTagWithChecks( $tag, $reason, $user, $ignoreWarnings, $tags );
+				$status = ChangeTags::createTagWithChecks( $tag, $reason, $authority, $ignoreWarnings, $tags );
 				break;
 			case 'delete':
-				$status = ChangeTags::deleteTagWithChecks( $tag, $reason, $user, $ignoreWarnings, $tags );
+				$status = ChangeTags::deleteTagWithChecks( $tag, $reason, $authority, $ignoreWarnings, $tags );
 				break;
 			case 'activate':
-				$status = ChangeTags::activateTagWithChecks( $tag, $reason, $user, $ignoreWarnings, $tags );
+				$status = ChangeTags::activateTagWithChecks( $tag, $reason, $authority, $ignoreWarnings, $tags );
 				break;
 			case 'deactivate':
-				$status = ChangeTags::deactivateTagWithChecks( $tag, $reason, $user, $ignoreWarnings, $tags );
+				$status = ChangeTags::deactivateTagWithChecks( $tag, $reason, $authority, $ignoreWarnings, $tags );
 				break;
 			default:
 				// unreachable

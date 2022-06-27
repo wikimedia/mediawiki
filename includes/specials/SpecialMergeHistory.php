@@ -400,7 +400,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$mh = $this->mergeHistoryFactory->newMergeHistory( $targetTitle, $destTitle, $this->mTimestamp );
 
 		// Merge!
-		$mergeStatus = $mh->merge( $this->getUser(), $this->mComment );
+		$mergeStatus = $mh->merge( $this->getAuthority(), $this->mComment );
 		if ( !$mergeStatus->isOK() ) {
 			// Failed merge
 			$this->getOutput()->addWikiMsg( $mergeStatus->getMessage() );

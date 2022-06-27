@@ -540,7 +540,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return string
 	 */
 	private function revLink( RevisionRecord $rev ) {
-		return ChangesList::revDateLink( $rev, $this->getUser(), $this->getLanguage(),
+		return ChangesList::revDateLink( $rev, $this->getAuthority(), $this->getLanguage(),
 			$this->getTitle() );
 	}
 

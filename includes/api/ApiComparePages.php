@@ -461,7 +461,7 @@ class ApiComparePages extends ApiBase {
 					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 					$newRev = MutableRevisionRecord::newFromParentRevision( $rev );
 					$content = $rev->getContent( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER,
-						$this->getUser() );
+						$this->getAuthority() );
 					if ( !$content ) {
 						$this->dieWithError(
 							[ 'apierror-missingcontent-revid-role', $rev->getId(), SlotRecord::MAIN ], 'missingcontent'
@@ -562,7 +562,7 @@ class ApiComparePages extends ApiBase {
 				if ( !$rev ) {
 					$this->dieWithError( "apierror-compare-no{$prefix}revision" );
 				}
-				$oldContent = $rev->getContent( $role, RevisionRecord::FOR_THIS_USER, $this->getUser() );
+				$oldContent = $rev->getContent( $role, RevisionRecord::FOR_THIS_USER, $this->getAuthority() );
 				if ( !$oldContent ) {
 					$this->dieWithError(
 						[ 'apierror-missingcontent-revid-role', $rev->getId(), wfEscapeWikiText( $role ) ],
@@ -642,7 +642,7 @@ class ApiComparePages extends ApiBase {
 				$anyHidden = true;
 			}
 			if ( isset( $this->props['user'] ) ) {
-				$user = $rev->getUser( RevisionRecord::FOR_THIS_USER, $this->getUser() );
+				$user = $rev->getUser( RevisionRecord::FOR_THIS_USER, $this->getAuthority() );
 				if ( $user ) {
 					$vals["{$prefix}user"] = $user->getName();
 					$vals["{$prefix}userid"] = $user->getId();
@@ -654,7 +654,7 @@ class ApiComparePages extends ApiBase {
 				$anyHidden = true;
 			}
 			if ( isset( $this->props['comment'] ) || isset( $this->props['parsedcomment'] ) ) {
-				$comment = $rev->getComment( RevisionRecord::FOR_THIS_USER, $this->getUser() );
+				$comment = $rev->getComment( RevisionRecord::FOR_THIS_USER, $this->getAuthority() );
 				if ( $comment !== null ) {
 					if ( isset( $this->props['comment'] ) ) {
 						$vals["{$prefix}comment"] = $comment->text;

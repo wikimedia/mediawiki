@@ -900,7 +900,7 @@ class MediaWiki {
 				}
 				// Do any stats increment/watchlist stuff, assuming user is viewing the
 				// latest revision (which should always be the case for file cache)
-				$this->context->getWikiPage()->doViewUpdates( $this->context->getUser() );
+				$this->context->getWikiPage()->doViewUpdates( $this->context->getAuthority() );
 				// Tell OutputPage that output is taken care of
 				$output->disable();
 

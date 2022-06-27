@@ -66,7 +66,7 @@ class RevDelLogItem extends RevDelItem {
 
 	public function canView() {
 		return LogEventsList::userCan(
-			$this->row, RevisionRecord::DELETED_RESTRICTED, $this->list->getUser()
+			$this->row, RevisionRecord::DELETED_RESTRICTED, $this->list->getAuthority()
 		);
 	}
 
@@ -154,7 +154,7 @@ class RevDelLogItem extends RevDelItem {
 
 	public function getApiData( ApiResult $result ) {
 		$logEntry = DatabaseLogEntry::newFromRow( $this->row );
-		$user = $this->list->getUser();
+		$user = $this->list->getAuthority();
 		$ret = [
 			'id' => $logEntry->getId(),
 			'type' => $logEntry->getType(),
