@@ -446,6 +446,7 @@ because of Phabricator reports.
 * ContextSource::getStats(), RequestContext::getStats(), and
   DerivativeContext::getStats(), deprecated in 1.27, now emit deprecation
   warnings.
+* ManualLogEntry::setTags(), deprecated in 1.33, now emits deprecation warnings.
 * …
 
 === Other changes in 1.39 ===
