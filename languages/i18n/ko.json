@@ -813,7 +813,7 @@
 	"edit-slots-cannot-remove": "다음의 {{PLURAL:$1|슬롯}}은 필수이므로 제거할 수 없습니다: $2.",
 	"edit-slots-missing": "다음의 {{PLURAL:$1|슬롯}}이 없습니다: $2.",
 	"postedit-confirmation-created": "문서가 만들어졌습니다.",
-	"postedit-confirmation-restored": "문서가 삭제 취소되었습니다.",
+	"postedit-confirmation-restored": "문서가 복구되었습니다.",
 	"postedit-confirmation-saved": "편집을 저장했습니다.",
 	"postedit-confirmation-published": "편집이 게시되었습니다.",
 	"edit-already-exists": "새 문서를 만들 수 없습니다.\n문서가 이미 존재합니다.",

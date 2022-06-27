@@ -3550,7 +3550,7 @@
 	"logentry-newusers-autocreate": "Ο λογαριασμός χρήστη $1 δημιουργήθηκε αυτόματα",
 	"logentry-protect-move_prot": "{{GENDER:$2|Ο|Η}} $1 μετακίνησε τις ρυθμίσεις προστασίας από την $4 στην $3",
 	"logentry-protect-unprotect": "{{GENDER:$2|Ο|Η}} $1 αφαίρεσε την προστασία από την $3",
-	"logentry-protect-protect": "$1 προστάτευσε τη σελίδα $3 $4",
+	"logentry-protect-protect": "{{GENDER:$2|Ο|Η}} $1 προστάτευσε τη σελίδα $3 $4",
 	"logentry-protect-protect-cascade": "{{GENDER:$2|Ο|Η}} $1 προστάτεψε την $3 $4 [διαδοχική]",
 	"logentry-protect-modify": "$1 {{GENDER:$2|άλλαξε}} επίπεδο προστασίας για $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|άλλαξε}} επίπεδο προστασίας για $3 $4 [διαδοχική]",

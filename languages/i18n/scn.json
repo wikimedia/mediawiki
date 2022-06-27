@@ -681,7 +681,7 @@
 	"duplicate-args-category": "Pàggini chi cuntèninu chiamati a template cu argumenti duplicati",
 	"duplicate-args-category-desc": "La pàggina cunteni chiamati a template chi adòpiranu argumenti duplicati, comu <code><nowiki>{{cicciu|plutu=1|plutu=2}}</nowiki></code> o <code><nowiki>{{cicciu|plutu|1=papirinu}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "Accura: Sta pàggina cunteni troppi chiamati ê parser functions.\n\nAvissi a èssiri menu di $2, ô mumentu ci {{PLURAL:$1|nn'è $1|nni sunnu $1}}.",
-	"expensive-parserfunction-category": "Pàggini cu troppi chiamati ê parser functions",
+	"expensive-parserfunction-category": "Pàggini cu troppi chiamati ê funzioni parser",
 	"post-expand-template-inclusion-warning": "Accura: la diminzioni di li template nziriti è troppu granni.\nArcuni template non vènunu nziriti.",
 	"post-expand-template-inclusion-category": "Pàggini unni la diminsioni dê template nclusi supira lu limiti cunsintutu",
 	"post-expand-template-argument-warning": "<strong>Accura:</strong> Sta pàggina cunteni almenu n'argomentu d'un template ca havi na diminsioni troppu rossa pi èssiri espansu. St'argomenti verrannu omessi.",

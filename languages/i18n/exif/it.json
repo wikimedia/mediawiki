@@ -14,7 +14,8 @@
 			"Rippitippi",
 			"SabineCretella",
 			"Stefano-c",
-			"Valepert"
+			"Valepert",
+			"GpieroMW"
 		]
 	},
 	"exif-imagewidth": "Larghezza",
@@ -284,6 +285,10 @@
 	"exif-scenetype-1": "Fotografia diretta",
 	"exif-customrendered-0": "Processo normale",
 	"exif-customrendered-1": "Processo personalizzato",
+	"exif-customrendered-2": "HDR (originale non salvato)",
+	"exif-customrendered-3": "HDR (originale salvato)",
+	"exif-customrendered-4": "Originale (per HDR)",
+	"exif-customrendered-6": "Panorama",
 	"exif-exposuremode-0": "Esposizione automatica",
 	"exif-exposuremode-1": "Esposizione manuale",
 	"exif-exposuremode-2": "Bracketing automatico",

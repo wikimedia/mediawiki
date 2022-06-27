@@ -1680,6 +1680,7 @@
 	"compare-rev1": "Modêye 1",
 	"compare-rev2": "Modêye 2",
 	"compare-submit": "Comparer",
+	"htmlform-submit": "Evoyî",
 	"logentry-delete-delete": "$1 a disfacé l’&nbsp;pådje $3",
 	"logentry-delete-restore": "$1 {{GENDER:$2|a rapexhî}} l’&nbsp;pådje $3",
 	"logentry-delete-event": "$1 a candjî l' veyåvisté d' {{PLURAL:$5| èn evenmint|$5 evenmints}} do djournå åd fwait di $3: $4",
