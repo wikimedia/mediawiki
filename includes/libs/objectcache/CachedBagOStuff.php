@@ -135,7 +135,8 @@ class CachedBagOStuff extends BagOStuff {
 			return $this->set( $key, $value, $exptime, $flags );
 		}
 
-		return false; // key already set
+		// key already set
+		return false;
 	}
 
 	// These just call the backend (tested elsewhere)
@@ -215,7 +216,8 @@ class CachedBagOStuff extends BagOStuff {
 	}
 
 	protected function convertGenericKey( $key ) {
-		return $key; // short-circuit; already uses "generic" keys
+		// short-circuit; already uses "generic" keys
+		return $key;
 	}
 
 	public function setMulti( array $valueByKey, $exptime = 0, $flags = 0 ) {

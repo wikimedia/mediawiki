@@ -88,15 +88,13 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		$blob = $this->nativeSerialize ? $value : $this->getSerialized( $value, $key );
 		$ttl = $this->getExpirationAsTTL( $exptime );
-		$success = apcu_store( $key . self::KEY_SUFFIX, $blob, $ttl );
-		return $success;
+		return apcu_store( $key . self::KEY_SUFFIX, $blob, $ttl );
 	}
 
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		$blob = $this->nativeSerialize ? $value : $this->getSerialized( $value, $key );
 		$ttl = $this->getExpirationAsTTL( $exptime );
-		$success = apcu_add( $key . self::KEY_SUFFIX, $blob, $ttl );
-		return $success;
+		return apcu_add( $key . self::KEY_SUFFIX, $blob, $ttl );
 	}
 
 	protected function doDelete( $key, $flags = 0 ) {
@@ -190,6 +188,7 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function convertGenericKey( $key ) {
-		return $key; // short-circuit; already uses "generic" keys
+		// short-circuit; already uses "generic" keys
+		return $key;
 	}
 }

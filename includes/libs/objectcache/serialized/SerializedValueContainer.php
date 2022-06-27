@@ -7,8 +7,10 @@
  */
 class SerializedValueContainer {
 	private const SCHEMA = '__svc_schema__';
-	private const SCHEMA_UNIFIED = 'DAAIDgoKAQw'; // 64 bit UID
-	private const SCHEMA_SEGMENTED = 'CAYCDAgCDw4'; // 64 bit UID
+	// 64 bit UID
+	private const SCHEMA_UNIFIED = 'DAAIDgoKAQw';
+	// 64 bit UID
+	private const SCHEMA_SEGMENTED = 'CAYCDAgCDw4';
 
 	public const UNIFIED_DATA = '__data__';
 	public const SEGMENTED_HASHES = '__hashes__';
