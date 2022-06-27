@@ -32,6 +32,7 @@ use MediaWiki\ResourceLoader\MwUrlModule;
 use MediaWiki\ResourceLoader\OOUIFileModule;
 use MediaWiki\ResourceLoader\OOUIIconPackModule;
 use MediaWiki\ResourceLoader\OOUIImageModule;
+use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\ResourceLoader\SiteModule;
 use MediaWiki\ResourceLoader\SiteStylesModule;
 use MediaWiki\ResourceLoader\SkinModule;
@@ -157,7 +158,18 @@ return [
 
 			// (not this though)
 			[ 'name' => 'config.json', 'callback' => 'ResourceLoader::getSiteConfigSettings' ],
-			[ 'name' => 'user.json', 'callback' => 'ResourceLoader::getUserDefaults' ],
+			[
+				'name' => 'user.json',
+				'callback' => static function ( Context $context ) {
+					$services = MediaWikiServices::getInstance();
+
+					return ResourceLoader::getUserDefaults(
+						$context,
+						$services->getHookContainer(),
+						$services->getUserOptionsLookup()
+					);
+				}
+			],
 			[
 				'name' => 'legacy.wikibits.js',
 				'callback' => static function ( Context $context, Config $config ) {
