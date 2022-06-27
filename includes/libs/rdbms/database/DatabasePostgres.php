@@ -175,7 +175,7 @@ class DatabasePostgres extends Database {
 	private function makeConnectionString( $vars ) {
 		$s = '';
 		foreach ( $vars as $name => $value ) {
-			$s .= "$name='" . str_replace( "'", "\\'", $value ) . "' ";
+			$s .= "$name='" . str_replace( [ "\\", "'" ], [ "\\\\", "\\'" ], $value ) . "' ";
 		}
 
 		return $s;
