@@ -713,10 +713,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() )
 			->setMethod( 'GET' )
 			->setTitle( $this->getPageTitle() )
-			// When target is defined, the user is paging through results
-			// so we hide the form by default to allow users to focus on browsing
-			// rather than defining parameters
-			->setCollapsibleOptions( $this->opts['target'] ?? false )
 			->setWrapperLegendMsg( 'whatlinkshere' )
 			->setSubmitTextMsg( 'whatlinkshere-submit' );
 
