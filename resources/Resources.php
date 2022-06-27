@@ -1440,7 +1440,6 @@ return [
 	],
 	'mediawiki.action.view.redirect' => [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.redirect.js',
-		'dependencies' => 'jquery.client',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.action.view.redirectPage' => [
