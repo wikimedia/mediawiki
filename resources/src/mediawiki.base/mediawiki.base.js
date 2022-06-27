@@ -102,9 +102,9 @@ Message.prototype = {
 	 * @chainable
 	 */
 	params: function ( parameters ) {
-		for ( var i = 0; i < parameters.length; i++ ) {
-			this.parameters.push( parameters[ i ] );
-		}
+		// Optimization: push all parameter arguments at once. Can't use spread operator
+		// `this.parameters.push( ...parameters );` yet, but apply() does the same thing.
+		Array.prototype.push.apply( this.parameters, parameters );
 		return this;
 	},
 
