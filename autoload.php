@@ -994,7 +994,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\SkinBuildSidebarHook' => __DIR__ . '/includes/skins/Hook/SkinBuildSidebarHook.php',
 	'MediaWiki\\Hook\\SkinCopyrightFooterHook' => __DIR__ . '/includes/skins/Hook/SkinCopyrightFooterHook.php',
 	'MediaWiki\\Hook\\SkinEditSectionLinksHook' => __DIR__ . '/includes/skins/Hook/SkinEditSectionLinksHook.php',
-	'MediaWiki\\Hook\\SkinGetPoweredByHook' => __DIR__ . '/includes/skins/Hook/SkinGetPoweredByHook.php',
 	'MediaWiki\\Hook\\SkinPreloadExistenceHook' => __DIR__ . '/includes/skins/Hook/SkinPreloadExistenceHook.php',
 	'MediaWiki\\Hook\\SkinSubPageSubtitleHook' => __DIR__ . '/includes/skins/Hook/SkinSubPageSubtitleHook.php',
 	'MediaWiki\\Hook\\SkinTemplateGetLanguageLinkHook' => __DIR__ . '/includes/skins/Hook/SkinTemplateGetLanguageLinkHook.php',
