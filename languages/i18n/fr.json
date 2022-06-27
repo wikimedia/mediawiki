@@ -4340,5 +4340,9 @@
 	"skin-action-undelete": "Restaurer",
 	"skin-action-delete": "Supprimer",
 	"skin-action-move": "Renommer",
-	"parsoid-stash-rate-limit-error": "La dissimulation a échoué parce que le taux limite d’utilisation a été dépassé. Veuillez essayer à nouveau plus tard."
+	"parsoid-stash-rate-limit-error": "La dissimulation a échoué parce que le taux limite d’utilisation a été dépassé. Veuillez essayer à nouveau plus tard.",
+	"newpages-showhide-bots": "$1 robot(s)",
+	"newpages-showhide-patrolled": "$1 modification(s) patrouillée(s)",
+	"newpages-showhide-redirect": "$1 redirections(s)",
+	"newpages-showhide-registered": "$1 utilisateur(s) inscrit(s)"
 }

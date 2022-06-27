@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"DannyS712",
 			"Kaganer",
 			"Litingatinga Silozi",
@@ -118,7 +119,7 @@
 	"protect_change": "fetuhile bukelezi",
 	"unprotect": "bukelezi tamuhile",
 	"newpage": "Petulo hlolinu",
-	"talkpagelinktext": "Bulelezi",
+	"talkpagelinktext": "bulelezi",
 	"specialpage": "Petulo Zwenti",
 	"personaltools": "Solume sisebelisoni",
 	"talk": "Bulelezi",

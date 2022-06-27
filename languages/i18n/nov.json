@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"BRG (on nov.wikipedia.org)",
 			"Chrisportelli",
 			"MF-Warburg",
@@ -91,7 +92,7 @@
 	"delete": "Ekarta",
 	"protect": "Protekte",
 	"newpage": "Novi pagine",
-	"talkpagelinktext": "Diskusione",
+	"talkpagelinktext": "diskusione",
 	"specialpage": "Spesial Pagine",
 	"talk": "Diskusione",
 	"toolbox": "Utensiles",

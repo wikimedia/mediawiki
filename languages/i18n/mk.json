@@ -4128,5 +4128,9 @@
 	"skin-action-undelete": "Врати",
 	"skin-action-delete": "Избриши",
 	"skin-action-move": "Премести",
-	"parsoid-stash-rate-limit-error": "Складирањето не успеа бидејќи е надмината временската граница. Обидете се повторно подоцна."
+	"parsoid-stash-rate-limit-error": "Складирањето не успеа бидејќи е надмината временската граница. Обидете се повторно подоцна.",
+	"newpages-showhide-bots": "$1 ботови",
+	"newpages-showhide-patrolled": "$1 проверени уредувања",
+	"newpages-showhide-redirect": "$1 пренасочувања",
+	"newpages-showhide-registered": "$1 најавени корисници"
 }

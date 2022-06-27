@@ -51,6 +51,7 @@
 			"Micke",
 			"Mikez",
 			"Mjälten",
+			"Myskoxen",
 			"NH",
 			"Najami",
 			"Nemo bis",
@@ -4063,5 +4064,9 @@
 	"skin-action-protect": "Skrivskydda",
 	"skin-action-undelete": "Återställ",
 	"skin-action-delete": "Radera",
-	"skin-action-move": "Flytta"
+	"skin-action-move": "Flytta",
+	"newpages-showhide-bots": "$1 robotar",
+	"newpages-showhide-patrolled": "$1 patrullerade redigeringar",
+	"newpages-showhide-redirect": "$1 omdirigeringar",
+	"newpages-showhide-registered": "$1 registrerade användare"
 }

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Arwel Parry",
 			"Cymrodor",
 			"Dafyddt",
@@ -198,7 +199,7 @@
 	"skin-action-unprotect": "Newid y diogelwch",
 	"unprotect": "Newid y diogelwch",
 	"newpage": "Tudalen newydd",
-	"talkpagelinktext": "Sgwrs",
+	"talkpagelinktext": "sgwrs",
 	"specialpage": "Tudalen Arbennig",
 	"personaltools": "Offer personol",
 	"talk": "Sgwrs",

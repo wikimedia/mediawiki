@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Bogups",
 			"DannyS712",
 			"Macofe",
@@ -162,7 +163,7 @@
 	"skin-action-unprotect": "Хъумэныр техыжын",
 	"unprotect": "Хъумэныр техыжын",
 	"newpage": "НапэкӀуэцӀыщӀэ",
-	"talkpagelinktext": "Тепсэлъыхьыгъуэ",
+	"talkpagelinktext": "тепсэлъыхьыгъуэ",
 	"specialpage": "Лэжыгъэ напэкӀуэцӀ",
 	"personaltools": "Уи Ӏэмэпсымэхэр",
 	"talk": "Тепсэлъэхьыгъуэ",

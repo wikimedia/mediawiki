@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Andria",
 			"DannyS712",
 			"L2212",
@@ -183,7 +184,7 @@
 	"skin-action-unprotect": "Muda amparu",
 	"unprotect": "Muda amparu",
 	"newpage": "Pàgina noa",
-	"talkpagelinktext": "Cuntierra",
+	"talkpagelinktext": "cuntierra",
 	"specialpage": "Pàgina Ispetziale",
 	"personaltools": "Ainas personales",
 	"talk": "Cuntierras",

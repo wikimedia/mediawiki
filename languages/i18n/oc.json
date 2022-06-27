@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Boulaur",
 			"BrennodAloisi",
 			"COMISSIONTOPOC",
@@ -199,7 +200,7 @@
 	"skin-action-unprotect": "Desprotegir",
 	"unprotect": "Desprotegir",
 	"newpage": "Pagina novèla",
-	"talkpagelinktext": "Discussion",
+	"talkpagelinktext": "discussion",
 	"specialpage": "Pagina especiala",
 	"personaltools": "Aisinas personalas",
 	"talk": "Discussion",

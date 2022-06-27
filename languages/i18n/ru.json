@@ -4236,5 +4236,9 @@
 	"skin-action-undelete": "Восстановить",
 	"skin-action-delete": "Удалить",
 	"skin-action-move": "Переименовать",
-	"parsoid-stash-rate-limit-error": "Сбой сохранения во временное хранилище, так как превышен предел скорости. Пожалуйста, попробуйте позже."
+	"parsoid-stash-rate-limit-error": "Сбой сохранения во временное хранилище, так как превышен предел скорости. Пожалуйста, попробуйте позже.",
+	"newpages-showhide-bots": "$1 ботов",
+	"newpages-showhide-patrolled": "$1 проверенные правки",
+	"newpages-showhide-redirect": "$1 перенаправления",
+	"newpages-showhide-registered": "$1 зарегистрированных"
 }

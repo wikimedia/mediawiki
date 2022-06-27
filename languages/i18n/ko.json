@@ -4064,5 +4064,9 @@
 	"skin-action-protect": "보호",
 	"skin-action-undelete": "삭제 취소",
 	"skin-action-delete": "삭제",
-	"skin-action-move": "이동"
+	"skin-action-move": "이동",
+	"newpages-showhide-bots": "봇을 $1",
+	"newpages-showhide-patrolled": "점검한 편집을 $1",
+	"newpages-showhide-redirect": "넘겨주기를 $1",
+	"newpages-showhide-registered": "등록된 사용자 $1"
 }

@@ -2251,7 +2251,7 @@
 	"allmessages-not-supported-database": "ئەم لاپەڕە ناتوانی بەکاربێت لەبەر ئەوەی '''$wgUseDatabaseMessages''' لەکار خستراوە.",
 	"allmessages-filter-legend": "پاڵێو",
 	"allmessages-filter-unmodified": "نەگۆڕدراو",
-	"allmessages-filter-all": "هەموو",
+	"allmessages-filter-all": "ھەموو",
 	"allmessages-filter-modified": "گۆڕدراو",
 	"allmessages-prefix": "پاڵێو بە پێشگر:",
 	"allmessages-language": "زمان:",
