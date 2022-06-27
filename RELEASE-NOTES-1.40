@@ -77,6 +77,11 @@ because of Phabricator reports.
   return the current value. It simply sets the OutputPage::mEnableClientCache
   to true. Use OutputPage::disableClientCache to disable client side caching
   instead.
+* Changes to skins:
+  - The internal protected method Skin::getFooterLinks() was removed.
+    It had no known usages. Different than SkinTemplate::getFooterLinks.
+  - The internal public method Skin::getSiteFooterLinks() was removed.
+    It had no known usages.
 * BagOStuff::makeKeyInternal(), deprecated for public use in 1.36, is now a
   protected method of MediumSpecificBagOStuff.
 * The following public properties of Parser, deprecated in 1.35,
@@ -93,6 +98,12 @@ because of Phabricator reports.
 * …
 
 === Deprecations in 1.40 ===
+* Changes to skins:
+  - The public Skin::footerLink is deprecated.
+    Use SkinComponentMenuLink::getTemplateData instead.
+    It now emits deprecation warnings.
+  - The protected Skin::lastModified is deprecated, and marked for @internal use
+    and now emits deprecation warnings.
 * …
 
 === Other changes in 1.40 ===

@@ -100,9 +100,10 @@ class SkinComponentRegistry {
 				);
 				break;
 			case 'toc':
-				$component = new SkinComponentTableOfContents(
-					$skin->getOutput()
-				);
+				$component = new SkinComponentTableOfContents( $skin->getOutput() );
+				break;
+			case 'footer':
+				$component = new SkinComponentFooter( $skin );
 				break;
 			default:
 				throw new RuntimeException( 'Unknown component: ' . $name );
@@ -117,5 +118,6 @@ class SkinComponentRegistry {
 		$this->registerComponent( 'logos' );
 		$this->registerComponent( 'toc' );
 		$this->registerComponent( 'search-box' );
+		$this->registerComponent( 'footer' );
 	}
 }

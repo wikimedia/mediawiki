@@ -181,8 +181,7 @@ class SkinTemplate extends Skin {
 	 * @inheritDoc
 	 */
 	public function getTemplateData() {
-		return parent::getTemplateData() +
-			$this->getPortletsTemplateData() + $this->getFooterTemplateData();
+		return parent::getTemplateData() + $this->getPortletsTemplateData();
 	}
 
 	/**
@@ -268,7 +267,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'newtalk', $this->getNewtalks() );
 		$tpl->set( 'logo', $this->logoText() );
 
-		$footerData = $this->getFooterLinks();
+		$footerData = $this->getComponent( 'footer' )->getTemplateData();
 		$tpl->set( 'copyright', $footerData['info']['copyright'] ?? false );
 		// No longer used
 		$tpl->set( 'viewcount', false );
@@ -282,12 +281,15 @@ class SkinTemplate extends Skin {
 
 		// Flatten for compat with the 'footerlinks' key in QuickTemplate-based skins.
 		$flattenedfooterlinks = [];
-		foreach ( $footerData as $category => $links ) {
-			$flattenedfooterlinks[$category] = array_keys( $links );
-			foreach ( $links as $key => $value ) {
-				// For full support with BaseTemplate we also need to
-				// copy over the keys.
-				$tpl->set( $key, $value );
+		foreach ( $footerData as $category => $data ) {
+			if ( $category !== 'data-icons' ) {
+				foreach ( $data['array-items'] as $item ) {
+					$key = str_replace( 'data-', '', $category );
+					$flattenedfooterlinks[$key][] = $item['name'];
+					// For full support with BaseTemplate we also need to
+					// copy over the keys.
+					$tpl->set( $item['name'], $item['html'] );
+				}
 			}
 		}
 		$tpl->set( 'footerlinks', $flattenedfooterlinks );
@@ -798,74 +800,6 @@ class SkinTemplate extends Skin {
 				'data-portlets-first' => $sidebar[0] ?? null,
 				'array-portlets-rest' => array_slice( $sidebar, 1 ),
 			],
-		];
-	}
-
-	/**
-	 * Get rows that make up the footer
-	 * @return array for use in Mustache template describing the footer elements.
-	 */
-	private function getFooterTemplateData(): array {
-		$data = [];
-		foreach ( $this->getFooterLinks() as $category => $links ) {
-			$items = [];
-			$rowId = "footer-$category";
-
-			foreach ( $links as $key => $link ) {
-				// Link may be null. If so don't include it.
-				if ( $link ) {
-					$items[] = [
-						// Monobook uses name rather than id.
-						// We may want to change monobook to adhere to the same contract however.
-						'name' => $key,
-						'id' => "$rowId-$key",
-						'html' => $link,
-					];
-				}
-			}
-
-			$data['data-' . $category] = [
-				'id' => $rowId,
-				'className' => null,
-				'array-items' => $items
-			];
-		}
-
-		// If footer icons are enabled append to the end of the rows
-		$footerIcons = $this->getFooterIcons();
-
-		if ( count( $footerIcons ) > 0 ) {
-			$icons = [];
-			foreach ( $footerIcons as $blockName => $blockIcons ) {
-				$html = '';
-				foreach ( $blockIcons as $icon ) {
-					$html .= $this->makeFooterIcon( $icon );
-				}
-				// For historic reasons this mimics the `icononly` option
-				// for BaseTemplate::getFooterIcons. Empty rows should not be output.
-				if ( $html ) {
-					$block = htmlspecialchars( $blockName );
-					$icons[] = [
-						'name' => $block,
-						'id' => 'footer-' . $block . 'ico',
-						'html' => $html,
-					];
-				}
-			}
-
-			// Empty rows should not be output.
-			// This is how Vector has behaved historically but we can revisit later if necessary.
-			if ( count( $icons ) > 0 ) {
-				$data['data-icons'] = [
-					'id' => 'footer-icons',
-					'className' => 'noprint',
-					'array-items' => $icons,
-				];
-			}
-		}
-
-		return [
-			'data-footer' => $data,
 		];
 	}
 
