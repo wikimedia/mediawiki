@@ -437,7 +437,7 @@ class PageUpdater {
 	}
 
 	private function getWikiId() {
-		return false; // TODO: get from RevisionStore!
+		return $this->revisionStore->getWikiId();
 	}
 
 	/**
