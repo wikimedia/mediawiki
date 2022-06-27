@@ -1626,4 +1626,33 @@
 		);
 	} );
 
+	QUnit.test( 'T311145 - style tags ignored in sortkey', function ( assert ) {
+		var $table = $(
+			'<table class="sortable">' +
+			'<tr><th>A</th></tr>' +
+			'<tr><td>10</td></tr>' +
+			'<tr><td>2<style>.sortable { display:none; }</style></td></tr>' +
+			'</table>'
+		);
+		$table.tablesorter();
+		$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+		assert.deepEqual(
+			tableExtract( $table ),
+			[
+				// The test doesn't actually test the sortkey, just contents
+				[ '2.sortable { display:none; }' ],
+				[ '10' ]
+			],
+			'style tags in sortkey'
+		);
+
+		var parsers = $table.data( 'tablesorter' ).config.parsers;
+		assert.strictEqual(
+			parsers[ 0 ].id,
+			'number',
+			'detectParserForColumn() detect parser.id "number"'
+		);
+	} );
+
 }() );

@@ -86,6 +86,9 @@
 				if ( $( elem ).hasClass( 'reference' ) ) {
 					return null;
 				}
+				if ( elem.nodeName.toLowerCase() === 'style' ) {
+					return null;
+				}
 				return getElementSortKey( elem );
 			}
 			if ( elem.nodeType === Node.TEXT_NODE ) {
