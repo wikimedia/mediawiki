@@ -670,7 +670,7 @@
 	"cannotchangeemail": "本wiki不允许对账户的电子邮件地址进行更改。",
 	"emaildisabled": "该网站无法发送电子邮件。",
 	"accountcreated": "已创建账号",
-	"accountcreatedtext": "[[{{ns:User}}:$1|$1]]（[[{{ns:User talk}}:$1|对话]]）的账号已创建。",
+	"accountcreatedtext": "[[{{ns:User}}:$1|$1]]（[[{{ns:User talk}}:$1|讨论]]）的账号已创建。",
 	"createaccount-title": "在{{SITENAME}}创建新账号",
 	"createaccount-text": "有人在{{SITENAME}}中利用您的邮箱创建了一个名为 \"$2\" 的新帐户（$4），密码是 \"$3\" 。您应该立即登录并更改密码。\n\n如果该账户创建错误的话，您可以忽略此信息。",
 	"login-throttled": "您最近尝试登录的次数过多。\n请等待$1后再试。",

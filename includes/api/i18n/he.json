@@ -257,7 +257,7 @@
 	"apihelp-imagerotate-example-generator": "לסובב את כל התמונות ב־<kbd>Category:Flip</kbd> ב־<kbd>180</kbd> מעלות.",
 	"apihelp-import-summary": "יבוא דף מוויקי אחר או מקובץ XML.",
 	"apihelp-import-extended-description": "יש לשים לב לכך שפעולת HTTP POST צריכה להיעשות בתור העלאת קובץ (כלומר, עם multipart/form-data) בזמן שליחת קובץ לפרמטר <var>xml</var>.",
-	"apihelp-import-param-summary": "תקציר ייבוא רשומות יומן.",
+	"apihelp-import-param-summary": "תקציר יבוא רשומות יומן.",
 	"apihelp-import-param-xml": "קובץ XML שהועלה.",
 	"apihelp-import-param-interwikiprefix": "לייבוא באמצעות העלאת קבצים: תחילית הבינוויקי שתוצג עבור שמות משתמשים שאינם מוכרים (וגם עבור שמות משתמשים מוכרים אם <var>$1assignknownusers</var> מוגדר).",
 	"apihelp-import-param-assignknownusers": "הקצאת העריכות למשתמשים המקומיים כאשר משתמשים בשמות זהים קיימים באתר המקומי.",
