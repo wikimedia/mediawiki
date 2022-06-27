@@ -1111,7 +1111,7 @@
 	"prefs-user-downloaddata-label": "Access account data:",
 	"prefs-user-downloaddata-info": "My account data from this project",
 	"prefs-user-downloaddata-help-message": "",
-	"prefs-user-restoreprefs-label": "Delete account data:",
+	"prefs-user-restoreprefs-label": "Reset settings:",
 	"prefs-user-restoreprefs-info": "Restore all default preferences (in all sections)",
 	"savedprefs": "Your preferences have been saved.",
 	"savedrights": "The user groups of {{GENDER:$1|$1}} have been saved.",
