@@ -162,7 +162,7 @@ class RevertAction extends FormAction {
 			0,
 			false,
 			false,
-			$this->getUser(),
+			$this->getAuthority(),
 			[],
 			true,
 			true

@@ -86,7 +86,7 @@ class WatchAction extends FormAction {
 		// because it also checks for changed expiry.
 		$result = $this->watchlistManager->setWatch(
 			true,
-			$this->getContext()->getAuthority(),
+			$this->getAuthority(),
 			$this->getTitle(),
 			$this->getRequest()->getVal( 'wp' . $this->expiryFormFieldName )
 		);
