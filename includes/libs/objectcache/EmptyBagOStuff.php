@@ -60,11 +60,13 @@ class EmptyBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
-		return $init; // faster
+		// faster
+		return $init;
 	}
 
 	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
-		return true; // faster
+		// faster
+		return true;
 	}
 
 	public function setNewPreparedValues( array $valueByKey ) {
@@ -77,6 +79,7 @@ class EmptyBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function convertGenericKey( $key ) {
-		return $key; // short-circuit; already uses "generic" keys
+		// short-circuit; already uses "generic" keys
+		return $key;
 	}
 }

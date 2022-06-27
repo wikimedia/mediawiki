@@ -122,7 +122,8 @@ class MultiWriteBagOStuff extends BagOStuff {
 		}
 
 		$value = false;
-		$missIndexes = []; // backends checked
+		// backends checked
+		$missIndexes = [];
 		foreach ( $this->cacheIndexes as $i ) {
 			$value = $this->callKeyMethodOnTierCache(
 				$i,
@@ -360,7 +361,8 @@ class MultiWriteBagOStuff extends BagOStuff {
 	}
 
 	protected function convertGenericKey( $key ) {
-		return $key; // short-circuit; already uses "generic" keys
+		// short-circuit; already uses "generic" keys
+		return $key;
 	}
 
 	public function addBusyCallback( callable $workCallback ) {
@@ -434,7 +436,8 @@ class MultiWriteBagOStuff extends BagOStuff {
 				if ( $storeRes === false ) {
 					$res = false;
 				} elseif ( $res === null ) {
-					$res = $storeRes; // first synchronous result
+					// first synchronous result
+					$res = $storeRes;
 				}
 			} else {
 				// Secondary write in async mode: do not block this HTTP request

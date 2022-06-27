@@ -191,7 +191,8 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 			return $this->set( $key, $value, $exptime, $flags );
 		}
 
-		return false; // key already set
+		// key already set
+		return false;
 	}
 
 	protected function doDelete( $key, $flags = 0 ) {
@@ -224,7 +225,8 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	private function doIncr( $key, $value = 1, $flags = 0 ) {
 		// @TODO: make this atomic and respect existing key expiration
 		$n = $this->get( $key, self::READ_LATEST );
-		if ( $this->isInteger( $n ) ) { // key exists?
+		// key exists?
+		if ( $this->isInteger( $n ) ) {
 			$n = max( $n + (int)$value, 0 );
 			return $this->set( $key, $n ) ? $n : false;
 		}
@@ -252,7 +254,8 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function convertGenericKey( $key ) {
-		return $key; // short-circuit; already uses "generic" keys
+		// short-circuit; already uses "generic" keys
+		return $key;
 	}
 
 	/**

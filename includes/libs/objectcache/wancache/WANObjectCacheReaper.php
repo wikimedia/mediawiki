@@ -132,7 +132,8 @@ class WANObjectCacheReaper implements LoggerAwareInterface {
 				[ $this->cache, $event['item'] ]
 			);
 			foreach ( $keys as $key ) {
-				unset( $keyEvents[$key] ); // use only the latest per key
+				// use only the latest per key
+				unset( $keyEvents[$key] );
 				$keyEvents[$key] = [
 					'pos' => $event['pos'],
 					'id' => $event['id']
