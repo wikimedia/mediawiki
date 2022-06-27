@@ -3116,6 +3116,7 @@
 	"mediawarning": "<strong>אזהרה:</strong> סוג קובץ זה עלול להכיל קוד זדוני.\nהרצת הקוד עלולה לסכן את המחשב שלך.",
 	"imagemaxsize": "גודל תמונה מרבי בדפי תיאור של קבצים:",
 	"thumbsize": "גודל של תמונות ממוזערות:",
+	"widthheight": "<span dir=\"ltr\">$1 × $2</span>",
 	"widthheightpage": "$1 × $2, {{PLURAL:$3|דף אחד|$3 דפים}}",
 	"file-info": "גודל הקובץ: $1, סוג MIME‏: $2",
 	"file-info-size": "<span dir=\"ltr\">$1 × $2</span> פיקסלים, גודל הקובץ: $3, סוג MIME‏: $4",
@@ -4098,5 +4099,9 @@
 	"skin-action-undelete": "שחזור ממחיקה",
 	"skin-action-delete": "מחיקה",
 	"skin-action-move": "העברה",
-	"parsoid-stash-rate-limit-error": "שמירה במאגר נכשלה בשל עקיפת קצב. נא לנסות שוב מאוחר יותר."
+	"parsoid-stash-rate-limit-error": "שמירה במאגר נכשלה בשל עקיפת קצב. נא לנסות שוב מאוחר יותר.",
+	"newpages-showhide-bots": "$1 בוטים",
+	"newpages-showhide-patrolled": "$1 עריכות בדוקות",
+	"newpages-showhide-redirect": "$1 הפניות",
+	"newpages-showhide-registered": "$1 משתמשים רשומים"
 }

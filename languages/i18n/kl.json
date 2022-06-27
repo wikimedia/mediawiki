@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Aputtu",
 			"Iketsi",
 			"Kaare",
@@ -96,7 +97,7 @@
 	"skin-action-unprotect": "Illersorunnaaruk",
 	"unprotect": "Illersorunnaaruk",
 	"newpage": "Qupperneq nutaaq",
-	"talkpagelinktext": "Oqallinneq",
+	"talkpagelinktext": "oqallinneq",
 	"personaltools": "Namminermut sannatit",
 	"talk": "Oqallinneq",
 	"views": "Takutitat",

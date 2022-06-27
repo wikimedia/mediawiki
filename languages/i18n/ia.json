@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Carlosedepaula",
 			"Fitoschido",
 			"Geitost",
@@ -191,7 +192,7 @@
 	"skin-action-unprotect": "Cambiar protection",
 	"unprotect": "Cambiar protection",
 	"newpage": "Nove pagina",
-	"talkpagelinktext": "Discussion",
+	"talkpagelinktext": "discussion",
 	"specialpage": "Pagina special",
 	"personaltools": "Instrumentos personal",
 	"talk": "Discussion",

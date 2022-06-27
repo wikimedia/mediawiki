@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Denö",
 			"Ghiutun",
 			"Hiloin Natoi",
@@ -171,7 +172,7 @@
 	"skin-action-unprotect": "Vaihta suojavustu",
 	"unprotect": "Vaihta suojavustu",
 	"newpage": "Uuzi sivu",
-	"talkpagelinktext": "Pagin",
+	"talkpagelinktext": "pagin",
 	"specialpage": "Erikoine sivu",
 	"personaltools": "Omat instrumentat",
 	"talk": "Paginat",

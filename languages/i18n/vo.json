@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"DannyS712",
 			"Fitoschido",
 			"Geitost",
@@ -164,7 +165,7 @@
 	"skin-action-unprotect": "Votükön jeli",
 	"unprotect": "Votükön jeli",
 	"newpage": "Pad nulik",
-	"talkpagelinktext": "Bespik",
+	"talkpagelinktext": "bespik",
 	"specialpage": "Pad patik",
 	"personaltools": "Stums pösodik",
 	"talk": "Bespik",

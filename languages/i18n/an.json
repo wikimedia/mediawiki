@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Carlos Cristia",
 			"DannyS712",
 			"Fitoschido",
@@ -177,7 +178,7 @@
 	"skin-action-unprotect": "Cambiar protección",
 	"unprotect": "Cambiar protección",
 	"newpage": "Pachina nueva",
-	"talkpagelinktext": "Descutir",
+	"talkpagelinktext": "descutir",
 	"specialpage": "Pachina Especial",
 	"personaltools": "Ferramientas personals",
 	"talk": "Discusión",

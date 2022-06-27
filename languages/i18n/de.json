@@ -4114,5 +4114,9 @@
 	"skin-action-undelete": "Wiederherstellen",
 	"skin-action-delete": "Löschen",
 	"skin-action-move": "Verschieben",
-	"parsoid-stash-rate-limit-error": "Die Vorabspeicherung ist fehlgeschlagen, weil ein Limit überschritten wurde. Bitte versuche es später noch einmal."
+	"parsoid-stash-rate-limit-error": "Die Vorabspeicherung ist fehlgeschlagen, weil ein Limit überschritten wurde. Bitte versuche es später noch einmal.",
+	"newpages-showhide-bots": "Bots $1",
+	"newpages-showhide-patrolled": "Kontrollierte Änderungen $1",
+	"newpages-showhide-redirect": "Weiterleitungen $1",
+	"newpages-showhide-registered": "Registrierte Benutzer $1"
 }

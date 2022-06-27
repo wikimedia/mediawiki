@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"DannyS712",
 			"Fitoschido",
 			"Lpachuau",
@@ -163,7 +164,7 @@
 	"skin-action-unprotect": "Vanhimna dinhmun tidanglam rawh",
 	"unprotect": "Vanhimna dinhmun tidanglam rawh",
 	"newpage": "Phek thar",
-	"talkpagelinktext": "Sawihona",
+	"talkpagelinktext": "sawihona",
 	"specialpage": "Vohbik phek",
 	"personaltools": "Mimal hmanruate",
 	"talk": "Sawihona",

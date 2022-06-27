@@ -4093,5 +4093,9 @@
 	"skin-action-protect": "Beveiligen",
 	"skin-action-undelete": "Terugplaatsen",
 	"skin-action-delete": "Verwijderen",
-	"skin-action-move": "Hernoemen"
+	"skin-action-move": "Hernoemen",
+	"newpages-showhide-bots": "robots $1",
+	"newpages-showhide-patrolled": "gecontroleerde bewerkingen $1",
+	"newpages-showhide-redirect": "doorverwijzingen $1",
+	"newpages-showhide-registered": "geregistreerde gebruikers $1"
 }

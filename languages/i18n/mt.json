@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"CharlieTheCabbie",
 			"Chrisportelli",
 			"DannyS712",
@@ -191,7 +192,7 @@
 	"skin-action-unprotect": "Biddel il-protezzjoni",
 	"unprotect": "Biddel il-protezzjoni",
 	"newpage": "Paġna ġdida",
-	"talkpagelinktext": "Diskussjoni",
+	"talkpagelinktext": "diskussjoni",
 	"specialpage": "Paġna speċjali",
 	"personaltools": "Għodda personali",
 	"talk": "Diskussjoni",
