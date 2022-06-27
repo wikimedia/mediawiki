@@ -1220,14 +1220,6 @@ SQL;
 		return "'" . pg_escape_string( $conn, (string)$s ) . "'";
 	}
 
-	public function buildGroupConcatField(
-		$delim, $table, $field, $conds = '', $join_conds = []
-	) {
-		$fld = "array_to_string(array_agg($field)," . $this->addQuotes( $delim ) . ')';
-
-		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
-	}
-
 	public function streamStatementEnd( &$sql, &$newLine ) {
 		# Allow dollar quoting for function declarations
 		if ( substr( $newLine, 0, 4 ) == '$mw$' ) {

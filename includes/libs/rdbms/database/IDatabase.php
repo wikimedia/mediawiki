@@ -884,26 +884,6 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	public function update( $table, $set, $conds, $fname = __METHOD__, $options = [] );
 
 	/**
-	 * Build a GROUP_CONCAT or equivalent statement for a query.
-	 *
-	 * This is useful for combining a field for several rows into a single string.
-	 * NULL values will not appear in the output, duplicated values will appear,
-	 * and the resulting delimiter-separated values have no defined sort order.
-	 * Code using the results may need to use the PHP unique() or sort() methods.
-	 *
-	 * @param string $delim Glue to bind the results together
-	 * @param string|array $table Table name
-	 * @param string $field Field name
-	 * @param string|array $conds Conditions
-	 * @param string|array $join_conds Join conditions
-	 * @return string SQL text
-	 * @since 1.23
-	 */
-	public function buildGroupConcatField(
-		$delim, $table, $field, $conds = '', $join_conds = []
-	);
-
-	/**
 	 * Build a reference to a column value from the conflicting proposed upsert() row.
 	 *
 	 * The reference comes in the form of an alias, function, or parenthesized SQL expression.
@@ -921,29 +901,6 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	 * @since 1.39
 	 */
 	public function buildExcludedValue( $column );
-
-	/**
-	 * Equivalent to IDatabase::selectSQLText() except wraps the result in Subquery
-	 *
-	 * @see IDatabase::selectSQLText()
-	 *
-	 * @param string|array $table Table name
-	 * @param string|array $vars Field names
-	 * @param string|array $conds Conditions
-	 * @param string $fname Caller function name
-	 * @param string|array $options Query options
-	 * @param string|array $join_conds Join conditions
-	 * @return Subquery
-	 * @since 1.31
-	 */
-	public function buildSelectSubquery(
-		$table,
-		$vars,
-		$conds = '',
-		$fname = __METHOD__,
-		$options = [],
-		$join_conds = []
-	);
 
 	/**
 	 * Returns true if DBs are assumed to be on potentially different servers

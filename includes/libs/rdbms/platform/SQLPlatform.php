@@ -1301,4 +1301,25 @@ class SQLPlatform implements ISQLPlatform {
 
 		return $sql;
 	}
+
+	/**
+	 * @inheritDoc
+	 * @stable to override
+	 */
+	public function buildGroupConcatField(
+		$delim, $table, $field, $conds = '', $join_conds = []
+	) {
+		$fld = "GROUP_CONCAT($field SEPARATOR " . $this->quoter->addQuotes( $delim ) . ')';
+
+		return '(' . $this->selectSQLText( $table, $fld, $conds, __METHOD__, [], $join_conds ) . ')';
+	}
+
+	public function buildSelectSubquery(
+		$table, $vars, $conds = '', $fname = __METHOD__,
+		$options = [], $join_conds = []
+	) {
+		return new Subquery(
+			$this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds )
+		);
+	}
 }

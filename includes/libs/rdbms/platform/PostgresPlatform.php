@@ -98,4 +98,11 @@ class PostgresPlatform extends SQLPlatform {
 		return parent::relationSchemaQualifier();
 	}
 
+	public function buildGroupConcatField(
+		$delim, $table, $field, $conds = '', $join_conds = []
+	) {
+		$fld = "array_to_string(array_agg($field)," . $this->quoter->addQuotes( $delim ) . ')';
+
+		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
+	}
 }

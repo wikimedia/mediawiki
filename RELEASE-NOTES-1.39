@@ -317,6 +317,7 @@ because of Phabricator reports.
   - ::getInfinity()
   - ::setTableAliases()
   - ::setIndexAliases()
+  - ::buildGroupConcatField()
 * …
 
 === Deprecations in 1.39 ===

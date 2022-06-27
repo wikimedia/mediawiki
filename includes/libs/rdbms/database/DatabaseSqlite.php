@@ -832,14 +832,6 @@ class DatabaseSqlite extends Database {
 		return $this->lockMgr->unlock( [ $lockName ], LockManager::LOCK_EX )->isGood();
 	}
 
-	public function buildGroupConcatField(
-		$delim, $table, $field, $conds = '', $join_conds = []
-	) {
-		$fld = "group_concat($field," . $this->addQuotes( $delim ) . ')';
-
-		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
-	}
-
 	/**
 	 * @param string $oldName
 	 * @param string $newName

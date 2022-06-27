@@ -2535,18 +2535,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function buildGroupConcatField(
-		$delim, $table, $field, $conds = '', $join_conds = []
-	) {
-		$fld = "GROUP_CONCAT($field SEPARATOR " . $this->addQuotes( $delim ) . ')';
-
-		return '(' . $this->selectSQLText( $table, $fld, $conds, __METHOD__, [], $join_conds ) . ')';
-	}
-
-	/**
 	 * Check type and bounds conditions parameters for update
 	 *
 	 * In order to prevent possible performance or replication issues,
@@ -2568,15 +2556,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				throw new DBUnexpectedError( $this, $fname . ' called with empty conditions' );
 			}
 		}
-	}
-
-	public function buildSelectSubquery(
-		$table, $vars, $conds = '', $fname = __METHOD__,
-		$options = [], $join_conds = []
-	) {
-		return new Subquery(
-			$this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds )
-		);
 	}
 
 	public function buildExcludedValue( $column ) {
@@ -4937,6 +4916,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function setIndexAliases( array $aliases ) {
 		$this->platform->setIndexAliases( $aliases );
+	}
+
+	public function buildGroupConcatField(
+		$delim, $table, $field, $conds = '', $join_conds = []
+	) {
+		return $this->platform->buildGroupConcatField( $delim, $table, $field, $conds, $join_conds );
+	}
+
+	public function buildSelectSubquery(
+		$table, $vars, $conds = '', $fname = __METHOD__,
+		$options = [], $join_conds = []
+	) {
+		return $this->platform->buildSelectSubquery( $table, $vars, $conds, $fname, $options, $join_conds );
 	}
 
 	/* End of methods delegated to SQLPlatform. */
