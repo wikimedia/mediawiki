@@ -199,16 +199,16 @@ abstract class Module implements LoggerAwareInterface {
 	 */
 	public function getDeprecationInformation( Context $context ) {
 		$deprecationInfo = $this->deprecated;
-		if ( $deprecationInfo ) {
-			$name = $this->getName();
-			$warning = 'This page is using the deprecated ResourceLoader module "' . $name . '".';
-			if ( is_string( $deprecationInfo ) ) {
-				$warning .= "\n" . $deprecationInfo;
-			}
-			return 'mw.log.warn(' . $context->encodeJson( $warning ) . ');';
-		} else {
+		if ( !$deprecationInfo ) {
 			return '';
 		}
+
+		$name = $this->getName();
+		$warning = 'This page is using the deprecated ResourceLoader module "' . $name . '".';
+		if ( is_string( $deprecationInfo ) ) {
+			$warning .= "\n" . $deprecationInfo;
+		}
+		return 'mw.log.warn(' . $context->encodeJson( $warning ) . ');';
 	}
 
 	/**
@@ -699,8 +699,6 @@ abstract class Module implements LoggerAwareInterface {
 	 * @return string[] Array of HTTP response headers
 	 */
 	final public function getHeaders( Context $context ) {
-		$headers = [];
-
 		$formattedLinks = [];
 		foreach ( $this->getPreloadLinks( $context ) as $url => $attribs ) {
 			$link = "<{$url}>;rel=preload";
@@ -710,10 +708,9 @@ abstract class Module implements LoggerAwareInterface {
 			$formattedLinks[] = $link;
 		}
 		if ( $formattedLinks ) {
-			$headers[] = 'Link: ' . implode( ',', $formattedLinks );
+			return [ 'Link: ' . implode( ',', $formattedLinks ) ];
 		}
-
-		return $headers;
+		return [];
 	}
 
 	/**
@@ -1045,37 +1042,36 @@ abstract class Module implements LoggerAwareInterface {
 	 *  that uses `mw.log.error()` to communicate a syntax error.
 	 */
 	protected function validateScriptFile( $fileName, $contents ) {
-		$error = null;
-
-		if ( $this->getConfig()->get( MainConfigNames::ResourceLoaderValidateJS ) ) {
-			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-			// Cache potentially slow parsing of JavaScript code during the
-			// critical path. This happens lazily when responding to requests
-			// for modules=site, modules=user, and Gadgets.
-			$error = $cache->getWithSetCallback(
-				$cache->makeKey(
-					'resourceloader-userjsparse',
-					self::USERJSPARSE_CACHE_VERSION,
-					md5( $contents ),
-					$fileName
-				),
-				$cache::TTL_WEEK,
-				static function () use ( $contents, $fileName ) {
-					$parser = new JSParser();
-					try {
-						// Ignore compiler warnings (T77169)
-						// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-						@$parser->parse( $contents, $fileName, 1 );
-					} catch ( TimeoutException $e ) {
-						throw $e;
-					} catch ( Exception $e ) {
-						return $e->getMessage();
-					}
-					// Cache success as null
-					return null;
-				}
-			);
+		if ( !$this->getConfig()->get( MainConfigNames::ResourceLoaderValidateJS ) ) {
+			return $contents;
 		}
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		// Cache potentially slow parsing of JavaScript code during the
+		// critical path. This happens lazily when responding to requests
+		// for modules=site, modules=user, and Gadgets.
+		$error = $cache->getWithSetCallback(
+			$cache->makeKey(
+				'resourceloader-userjsparse',
+				self::USERJSPARSE_CACHE_VERSION,
+				md5( $contents ),
+				$fileName
+			),
+			$cache::TTL_WEEK,
+			static function () use ( $contents, $fileName ) {
+				$parser = new JSParser();
+				try {
+					// Ignore compiler warnings (T77169)
+					// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+					@$parser->parse( $contents, $fileName, 1 );
+				} catch ( TimeoutException $e ) {
+					throw $e;
+				} catch ( Exception $e ) {
+					return $e->getMessage();
+				}
+				// Cache success as null
+				return null;
+			}
+		);
 
 		if ( $error ) {
 			// Send the error to the browser console client-side.
@@ -1089,9 +1085,8 @@ abstract class Module implements LoggerAwareInterface {
 					$error
 				) .
 				');';
-		} else {
-			return $contents;
 		}
+		return $contents;
 	}
 
 	/**
