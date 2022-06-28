@@ -35,7 +35,6 @@ use ParserOutput;
 use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Parsoid\Core\PageBundle;
 
 /**
  * Helper for getting output of a given wikitext page rendered by parsoid.
@@ -116,20 +115,6 @@ class ParsoidHTMLHelper {
 	}
 
 	/**
-	 * @param ParserOutput $parserOutput
-	 *
-	 * @return PageBundle
-	 */
-	private function makePageBundle( ParserOutput $parserOutput ): PageBundle {
-		$pbData = $parserOutput->getExtensionData( ParsoidOutputAccess::PARSOID_PAGE_BUNDLE_KEY );
-		return new PageBundle(
-			$parserOutput->getRawText(),
-			$pbData['parsoid'] ?? [],
-			$pbData['mw'] ?? []
-		);
-	}
-
-	/**
 	 * @return ParserOutput a tuple with html and content-type
 	 * @throws LocalizedHttpException
 	 */
@@ -151,7 +136,7 @@ class ParsoidHTMLHelper {
 			);
 			$stashSuccess = $this->parsoidOutputStash->set(
 				$parsoidStashKey,
-				$this->makePageBundle( $parserOutput )
+				$this->parsoidOutputAccess->getParsoidPageBundle( $parserOutput )
 			);
 			if ( !$stashSuccess ) {
 				$this->stats->increment( 'parsoidhtmlhelper.stash.fail' );

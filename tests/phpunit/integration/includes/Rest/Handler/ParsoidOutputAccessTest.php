@@ -108,6 +108,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
 	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParsoidRenderID
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParsoidPageBundle
 	 */
 	public function testGetParserOutput() {
 		$access = $this->getParsoidOutputAccessWithCache( 1 );
@@ -124,6 +125,14 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		// check that getParsoidRenderID() doesn't throw
 		$this->assertNotNull( $access->getParsoidRenderID( $output ) );
+
+		// check that getParsoidPageBundle() returns the correct data
+		$pageBundle = $access->getParsoidPageBundle( $output );
+		$this->assertSame( $output->getRawText(), $pageBundle->html );
+
+		// The actual values of these fields come from newMockParsoid(). We could check them here.
+		$this->assertNotEmpty( $pageBundle->mw );
+		$this->assertNotEmpty( $pageBundle->parsoid );
 	}
 
 	/**
