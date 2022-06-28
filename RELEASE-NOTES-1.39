@@ -95,6 +95,8 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Updated vue/compat from 3.2.23 to 3.2.31.
 * Updated wikimedia/minify from 2.2.6 to 2.3.0.
 * Updated wikimedia/ip-set from 3.0.0 to 3.1.0.
+* Updated wikimedia/xmp-reader from 0.8.1 to 0.8.2.
+* Updated wikimedia/timestamp from 3.0.0 to 4.0.0.
 * …
 
 ===== Changed development-only external libraries =====
