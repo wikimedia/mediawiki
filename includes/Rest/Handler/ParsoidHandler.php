@@ -120,20 +120,6 @@ abstract class ParsoidHandler extends Handler {
 		$this->metrics = $siteConfig->metrics();
 	}
 
-	/** @inheritDoc */
-	public function checkPreconditions() {
-		// Execute this since this sets up state
-		// needed for other functionality.
-		parent::checkPreconditions();
-
-		// Disable precondition checks by ignoring the return value above.
-		// This works around the problem that Visual Editor sends weak ETags with
-		// If-Match headers in some requests, which always fails. The weak ETags seem
-		// to originate from Varnish. See T238849 for the issue that prompted this
-		// workaround, and T310710 for removing it.
-		return null;
-	}
-
 	/**
 	 * Verify that the {domain} path parameter matches the actual domain.
 	 * @todo Remove this when we no longer need to support the {domain}
