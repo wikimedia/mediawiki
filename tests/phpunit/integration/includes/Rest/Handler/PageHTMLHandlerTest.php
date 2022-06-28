@@ -12,6 +12,7 @@ use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Rest\Handler\PageHTMLHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -23,10 +24,8 @@ use Psr\Log\NullLogger;
 use WANObjectCache;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
-use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
-use Wikimedia\TestingAccessWrapper;
 use WikiPage;
 
 /**
@@ -72,24 +71,24 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @param Parsoid|MockObject|null $parsoid
 	 *
 	 * @return PageHTMLHandler
-	 * @throws Exception
 	 */
-	private function newHandler( Parsoid $parsoid = null ): PageHTMLHandler {
+	private function newHandler( ?Parsoid $parsoid = null ): PageHTMLHandler {
 		$parserCacheFactoryOptions = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
 			'CacheEpoch' => '20200202112233',
-			'OldRevisionParserCacheExpireTime' => 60,
+			'OldRevisionParserCacheExpireTime' => 60 * 60,
 		] );
 
+		$services = $this->getServiceContainer();
 		$parserCacheFactory = new ParserCacheFactory(
 			$this->parserCacheBagOStuff,
-			new WANObjectCache( [ 'cache' => $this->parserCacheBagOStuff ] ),
+			new WANObjectCache( [ 'cache' => $this->parserCacheBagOStuff, ] ),
 			$this->createHookContainer(),
 			new JsonCodec(),
 			new NullStatsdDataFactory(),
 			new NullLogger(),
 			$parserCacheFactoryOptions,
-			$this->getServiceContainer()->getTitleFactory(),
-			$this->getServiceContainer()->getWikiPageFactory()
+			$services->getTitleFactory(),
+			$services->getWikiPageFactory()
 		);
 
 		$config = [
@@ -98,22 +97,32 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			'ParsoidCacheConfig' =>
 				MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig )
 		];
-		$handler = new PageHTMLHandler(
-			new HashConfig( $config ),
-			$this->getServiceContainer()->getRevisionLookup(),
-			$this->getServiceContainer()->getTitleFormatter(),
+
+		$parsoidOutputAccess = new ParsoidOutputAccess(
+			new ServiceOptions(
+				ParsoidOutputAccess::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
 			$parserCacheFactory,
-			$this->getServiceContainer()->getGlobalIdGenerator(),
-			$this->getServiceContainer()->getPageStore(),
-			$this->getParsoidOutputStash(),
-			$this->getServiceContainer()->getStatsdDataFactory()
+			$services->getRevisionLookup(),
+			$services->getGlobalIdGenerator(),
+			$services->getStatsdDataFactory(),
+			$parsoid ?? new Parsoid(
+				$services->get( 'ParsoidSiteConfig' ),
+				$services->get( 'ParsoidDataAccess' )
+			),
+			$services->getParsoidPageConfigFactory()
 		);
 
-		if ( $parsoid !== null ) {
-			$handlerWrapper = TestingAccessWrapper::newFromObject( $handler );
-			$helperWrapper = TestingAccessWrapper::newFromObject( $handlerWrapper->htmlHelper );
-			$helperWrapper->parsoid = $parsoid;
-		}
+		$handler = new PageHTMLHandler(
+			new HashConfig( $config ),
+			$services->getRevisionLookup(),
+			$services->getTitleFormatter(),
+			$services->getPageStore(),
+			$this->getParsoidOutputStash(),
+			$services->getStatsdDataFactory(),
+			$parsoidOutputAccess
+		);
 
 		return $handler;
 	}
@@ -162,35 +171,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( '<!DOCTYPE html>', $htmlResponse );
 		$this->assertStringContainsString( '<html', $htmlResponse );
 		$this->assertStringContainsString( self::HTML, $htmlResponse );
-	}
-
-	public function testHtmlIsCached() {
-		$this->checkParsoidInstalled();
-
-		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
-		$request = new RequestData(
-			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
-		);
-
-		$parsoid = $this->createNoOpMock( Parsoid::class, [ 'wikitext2html' ] );
-		$parsoid->expects( $this->once() )
-			->method( 'wikitext2html' )
-			->willReturn( new PageBundle( 'mocked HTML', null, null, '1.0' ) );
-
-		$handler = $this->newHandler( $parsoid );
-		$response = $this->executeHandler( $handler, $request, [
-			'format' => 'html'
-		] );
-		$htmlResponse = (string)$response->getBody();
-		$this->assertStringContainsString( 'mocked HTML', $htmlResponse );
-
-		// check that we can run the test again and ensure that the parse is only run once
-		$handler = $this->newHandler( $parsoid );
-		$response = $this->executeHandler( $handler, $request, [
-			'format' => 'html'
-		] );
-		$htmlResponse = (string)$response->getBody();
-		$this->assertStringContainsString( 'mocked HTML', $htmlResponse );
 	}
 
 	public function testEtagLastModified() {

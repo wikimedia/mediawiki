@@ -1,0 +1,323 @@
+<?php
+/**
+ * Copyright (C) 2011-2022 Wikimedia Foundation and others.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ */
+
+namespace MediaWiki\Parser\Parsoid;
+
+use Config;
+use HashConfig;
+use IBufferingStatsdDataFactory;
+use InvalidArgumentException;
+use Liuggio\StatsdClient\Factory\StatsdDataFactory;
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageRecord;
+use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
+use MediaWiki\Parser\RevisionOutputCache;
+use MediaWiki\Rest\LocalizedHttpException;
+use MediaWiki\Revision\RevisionAccessException;
+use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\RevisionRecord;
+use ParserCache;
+use ParserOptions;
+use ParserOutput;
+use Wikimedia\Message\MessageValue;
+use Wikimedia\Parsoid\Core\ClientError;
+use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
+use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\UUID\GlobalIdGenerator;
+
+/**
+ * MediaWiki service for getting Parsoid Output objects.
+ * @since 1.39
+ * @unstable
+ */
+class ParsoidOutputAccess {
+	/**
+	 * @internal
+	 * @var string Name of the parsoid parser cache instance
+	 */
+	public const PARSOID_PARSER_CACHE_NAME = 'parsoid';
+
+	/**
+	 * @var string Key used to store the parsoid render ID in ParserOutput
+	 */
+	private const RENDER_ID_KEY = 'parsoid-render-id';
+
+	/**
+	 * @internal needed in test case
+	 * @var string Key used to store parsoid page bundle data in ParserOutput
+	 */
+	public const PARSOID_PAGE_BUNDLE_KEY = 'parsoid-page-bundle';
+
+	/** @var int Do not check the cache before parsing (force parse) */
+	public const OPT_FORCE_PARSE = 1;
+
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::ParsoidCacheConfig
+	];
+
+	/** @var RevisionOutputCache */
+	private $revisionOutputCache;
+
+	/** @var ParserCache */
+	private $parserCache;
+
+	/** @var GlobalIdGenerator */
+	private $globalIdGenerator;
+
+	/** @var StatsdDataFactory */
+	private $stats;
+
+	/** @var Config */
+	private $parsoidCacheConfig;
+
+	/** @var Parsoid */
+	private $parsoid;
+
+	/** @var PageConfigFactory */
+	private $parsoidPageConfigFactory;
+
+	/** @var RevisionLookup */
+	private $revisionLookup;
+
+	public function __construct(
+		ServiceOptions $options,
+		ParserCacheFactory $parserCacheFactory,
+		RevisionLookup $revisionLookup,
+		GlobalIdGenerator $globalIdGenerator,
+		IBufferingStatsdDataFactory $stats,
+		Parsoid $parsoid,
+		PageConfigFactory $parsoidPageConfigFactory
+	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->parsoidCacheConfig = new HashConfig( $options->get( MainConfigNames::ParsoidCacheConfig ) );
+		$this->revisionOutputCache = $parserCacheFactory
+			->getRevisionOutputCache( self::PARSOID_PARSER_CACHE_NAME );
+		$this->parserCache = $parserCacheFactory->getParserCache( self::PARSOID_PARSER_CACHE_NAME );
+		$this->revisionLookup = $revisionLookup;
+		$this->globalIdGenerator = $globalIdGenerator;
+		$this->stats = $stats;
+		$this->parsoid = $parsoid;
+		$this->parsoidPageConfigFactory = $parsoidPageConfigFactory;
+	}
+
+	/**
+	 * @param PageRecord $page
+	 * @param ParserOptions $parserOpts
+	 * @param ?RevisionRecord $revision
+	 * @param int $options See the OPT_XXX constants
+	 *
+	 * @return ParserOutput
+	 * @throws LocalizedHttpException
+	 */
+	public function getParserOutput(
+		PageRecord $page,
+		ParserOptions $parserOpts,
+		?RevisionRecord $revision = null,
+		int $options = 0
+	): ParserOutput {
+		$revId = $revision ? $revision->getId() : $page->getLatest();
+		if ( !$revision ) {
+			$revision = $this->revisionLookup->getRevisionById( $revId );
+
+			if ( !$revision ) {
+				throw new RevisionAccessException(
+					'Revision {revId} not found',
+					[ 'revId' => $revId ]
+				);
+			}
+		}
+
+		$isOld = $revId !== $page->getLatest();
+		$statsKey = $isOld ? 'ParsoidOutputAccess.Cache.revision' : 'ParsoidOutputAccess.Cache.parser';
+
+		if ( !( $options & self::OPT_FORCE_PARSE ) ) {
+			$parserOutput = $this->getCachedParserOutput(
+				$page,
+				$parserOpts,
+				$revision,
+				$isOld,
+				$statsKey
+			);
+
+			if ( $parserOutput ) {
+				return $parserOutput;
+			}
+		}
+
+		$startTime = microtime( true );
+		$parserOutput = $this->parse( $page, $revision );
+		$time = microtime( true ) - $startTime;
+
+		// TODO: when we make tighter integration with Parsoid, render ID should become
+		// a standard ParserOutput property. Nothing else needs it now, so don't generate
+		// it in ParserCache just yet.
+		$parsoidRenderId = new ParsoidRenderID( $revId, $this->globalIdGenerator->newUUIDv1() );
+		$parserOutput->setExtensionData( self::RENDER_ID_KEY, $parsoidRenderId->getKey() );
+
+		// XXX: ParserOutput should just always record the revision ID and timestamp
+		$now = wfTimestampNow();
+		$parserOutput->setCacheRevisionId( $revId );
+		$parserOutput->setCacheTime( $now );
+
+		if ( $time > $this->parsoidCacheConfig->get( 'CacheThresholdTime' ) ) {
+			if ( $isOld ) {
+				$this->revisionOutputCache->save( $parserOutput, $revision, $parserOpts, $now );
+			} else {
+				$this->parserCache->save( $parserOutput, $page, $parserOpts, $now );
+			}
+			$this->stats->increment( $statsKey . '.save.ok' );
+		} else {
+			$this->stats->increment( $statsKey . '.save.skipfast' );
+		}
+
+		return $parserOutput;
+	}
+
+	/**
+	 * @param PageRecord $page
+	 * @param ?RevisionRecord $revision
+	 *
+	 * @return ParserOutput
+	 * @throws LocalizedHttpException
+	 */
+	private function parse( PageRecord $page, ?RevisionRecord $revision = null ): ParserOutput {
+		try {
+			$pageConfig = $this->parsoidPageConfigFactory->create(
+				$page,
+				null,
+				$revision
+			);
+			$startTime = microtime( true );
+			$pageBundle = $this->parsoid->wikitext2html( $pageConfig, [
+				'pageBundle' => true,
+			] );
+			$parserOutput = $this->createParserOutputFromPageBundle( $pageBundle );
+			$time = microtime( true ) - $startTime;
+			if ( $time > 3 ) {
+				LoggerFactory::getInstance( 'slow-parsoid' )
+					->info( 'Parsing {title} was slow, took {time} seconds', [
+						'time' => number_format( $time, 2 ),
+						'title' => (string)$page,
+					] );
+			}
+			return $parserOutput;
+		} catch ( ClientError $e ) {
+			throw new LocalizedHttpException(
+				MessageValue::new( 'rest-html-backend-error' ),
+				400,
+				[ 'reason' => $e->getMessage() ]
+			);
+		} catch ( ResourceLimitExceededException $e ) {
+			throw new LocalizedHttpException(
+				MessageValue::new( 'rest-resource-limit-exceeded' ),
+				413,
+				[ 'reason' => $e->getMessage() ]
+			);
+		}
+	}
+
+	/**
+	 * Creates a ParserOutput object containing the relevant data from
+	 * the given PageBundle object.
+	 *
+	 * We need to inject data-parsoid and other properties into the
+	 * parser output object for caching, so we can use it for VE edits
+	 * and transformations.
+	 *
+	 * @param PageBundle $pageBundle
+	 *
+	 * @return ParserOutput
+	 */
+	private function createParserOutputFromPageBundle( PageBundle $pageBundle ): ParserOutput {
+		$parserOutput = new ParserOutput( $pageBundle->html );
+		$parserOutput->setExtensionData(
+			self::PARSOID_PAGE_BUNDLE_KEY,
+			[
+				'parsoid' => $pageBundle->parsoid,
+				'mw' => $pageBundle->mw
+			]
+		);
+
+		return $parserOutput;
+	}
+
+	/**
+	 * NOTE: This needs to be ParserOutput returned by ->getParserOutput()
+	 *   in this class.
+	 *
+	 * @param ParserOutput $parserOutput
+	 *
+	 * @return ParsoidRenderID
+	 */
+	public function getParsoidRenderID( ParserOutput $parserOutput ): ParsoidRenderID {
+		// XXX: ParserOutput may be coming from the parser cache, so we need to be careful
+		// when we change how we store the render key in the ParserOutput object.
+		$renderId = $parserOutput->getExtensionData( self::RENDER_ID_KEY );
+		if ( !$renderId ) {
+			throw new InvalidArgumentException( 'ParserOutput does not have a render ID' );
+		}
+
+		return ParsoidRenderID::newFromKey( $renderId );
+	}
+
+	/**
+	 * @param PageRecord $page
+	 * @param ParserOptions $parserOpts
+	 * @param RevisionRecord|null $revision
+	 * @param bool $isOld
+	 * @param string $statsKey
+	 *
+	 * @return ?ParserOutput
+	 */
+	protected function getCachedParserOutput(
+		PageRecord $page,
+		ParserOptions $parserOpts,
+		?RevisionRecord $revision,
+		bool $isOld,
+		string $statsKey
+	): ?ParserOutput {
+		if ( $isOld ) {
+			$parserOutput = $this->revisionOutputCache->get( $revision, $parserOpts );
+		} else {
+			$parserOutput = $this->parserCache->get( $page, $parserOpts );
+		}
+
+		if ( $parserOutput ) {
+			// Ignore cached ParserOutput if it is incomplete,
+			// because it was stored by an old version of the code.
+			if ( !$parserOutput->getExtensionData( self::PARSOID_PAGE_BUNDLE_KEY )
+				|| !$parserOutput->getExtensionData( self::RENDER_ID_KEY )
+			) {
+				$parserOutput = null;
+			}
+		}
+
+		if ( $parserOutput ) {
+			$this->stats->increment( $statsKey . '.get.hit' );
+			return $parserOutput;
+		} else {
+			$this->stats->increment( $statsKey . '.get.miss' );
+			return null;
+		}
+	}
+}

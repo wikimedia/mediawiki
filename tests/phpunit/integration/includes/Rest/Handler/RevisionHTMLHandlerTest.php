@@ -12,6 +12,7 @@ use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Rest\Handler\RevisionHTMLHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -24,10 +25,8 @@ use Psr\Log\NullLogger;
 use WANObjectCache;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
-use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
-use Wikimedia\TestingAccessWrapper;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -73,17 +72,25 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param Parsoid|MockObject|null $parsoid
+	 * @param ?Parsoid $parsoid
 	 *
 	 * @return RevisionHTMLHandler
-	 * @throws Exception
 	 */
-	private function newHandler( Parsoid $parsoid = null ): RevisionHTMLHandler {
+	private function newHandler( ?Parsoid $parsoid = null ): RevisionHTMLHandler {
+		/** @var GlobalIdGenerator|MockObject $idGenerator */
+		$idGenerator = $this->createNoOpMock( GlobalIdGenerator::class, [ 'newUUIDv1' ] );
+		$idGenerator->method( 'newUUIDv1' )->willReturnCallback(
+			static function () {
+				return 'uuid' . ++self::$uuidCounter;
+			}
+		);
+
 		$parserCacheFactoryOptions = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
 			'CacheEpoch' => '20200202112233',
 			'OldRevisionParserCacheExpireTime' => 60 * 60,
 		] );
 
+		$services = $this->getServiceContainer();
 		$parserCacheFactory = new ParserCacheFactory(
 			$this->parserCacheBagOStuff,
 			new WANObjectCache( [ 'cache' => $this->parserCacheBagOStuff, ] ),
@@ -92,17 +99,8 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			new NullStatsdDataFactory(),
 			new NullLogger(),
 			$parserCacheFactoryOptions,
-			$this->getServiceContainer()->getTitleFactory(),
-			$this->getServiceContainer()->getWikiPageFactory()
-		);
-
-		/** @var GlobalIdGenerator|MockObject $idGenerator */
-		$idGenerator = $this->createNoOpMock( GlobalIdGenerator::class, [ 'newUUIDv1' ] );
-
-		$idGenerator->method( 'newUUIDv1' )->willReturnCallback(
-			static function () {
-				return 'uuid' . ++self::$uuidCounter;
-			}
+			$services->getTitleFactory(),
+			$services->getWikiPageFactory()
 		);
 
 		$config = [
@@ -111,22 +109,32 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			'ParsoidCacheConfig' =>
 				MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig )
 		];
-		$handler = new RevisionHTMLHandler(
-			new HashConfig( $config ),
-			$this->getServiceContainer()->getRevisionLookup(),
-			$this->getServiceContainer()->getTitleFormatter(),
+
+		$parsoidOutputAccess = new ParsoidOutputAccess(
+			new ServiceOptions(
+				ParsoidOutputAccess::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
 			$parserCacheFactory,
+			$services->getRevisionLookup(),
 			$idGenerator,
-			$this->getServiceContainer()->getPageStore(),
-			$this->getParsoidOutputStash(),
-			$this->getServiceContainer()->getStatsdDataFactory()
+			$services->getStatsdDataFactory(),
+			$parsoid ?? new Parsoid(
+				$services->get( 'ParsoidSiteConfig' ),
+				$services->get( 'ParsoidDataAccess' )
+			),
+			$services->getParsoidPageConfigFactory()
 		);
 
-		if ( $parsoid !== null ) {
-			$handlerWrapper = TestingAccessWrapper::newFromObject( $handler );
-			$helperWrapper = TestingAccessWrapper::newFromObject( $handlerWrapper->htmlHelper );
-			$helperWrapper->parsoid = $parsoid;
-		}
+		$handler = new RevisionHTMLHandler(
+			new HashConfig( $config ),
+			$services->getRevisionLookup(),
+			$services->getTitleFormatter(),
+			$services->getPageStore(),
+			$this->getParsoidOutputStash(),
+			$services->getStatsdDataFactory(),
+			$parsoidOutputAccess
+		);
 
 		return $handler;
 	}
@@ -187,35 +195,6 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( '<!DOCTYPE html>', $htmlResponse );
 		$this->assertStringContainsString( '<html', $htmlResponse );
 		$this->assertStringContainsString( self::HTML, $htmlResponse );
-	}
-
-	public function testHtmlIsCached() {
-		$this->checkParsoidInstalled();
-
-		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
-		$request = new RequestData(
-			[ 'pathParams' => [ 'id' => $revisions['first']->getId() ] ]
-		);
-
-		$parsoid = $this->createNoOpMock( Parsoid::class, [ 'wikitext2html' ] );
-		$parsoid->expects( $this->once() )
-			->method( 'wikitext2html' )
-			->willReturn( new PageBundle( 'mocked HTML', null, null, '1.0' ) );
-
-		$handler = $this->newHandler( $parsoid );
-		$response = $this->executeHandler( $handler, $request, [
-			'format' => 'html'
-		] );
-		$htmlResponse = (string)$response->getBody();
-		$this->assertStringContainsString( 'mocked HTML', $htmlResponse );
-
-		// check that we can run the test again and ensure that the parse is only run once
-		$handler = $this->newHandler( $parsoid );
-		$response = $this->executeHandler( $handler, $request, [
-			'format' => 'html'
-		] );
-		$htmlResponse = (string)$response->getBody();
-		$this->assertStringContainsString( 'mocked HTML', $htmlResponse );
 	}
 
 	public function testEtagLastModified() {

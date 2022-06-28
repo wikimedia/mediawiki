@@ -507,6 +507,7 @@ return [
 				'StashType' => null,
 				'StashDuration' => 86400,
 				'CacheThresholdTime' => 0.0,
+				'WarmParsoidParserCache' => false,
 			],
 			'ChronologyProtectorStash' => null,
 			'ParserCacheExpireTime' => 86400,
