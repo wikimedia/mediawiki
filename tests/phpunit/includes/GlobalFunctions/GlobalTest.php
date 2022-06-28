@@ -105,6 +105,7 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::wfReadOnly
 	 */
 	public function testReadOnlyEmpty() {
+		$this->hideDeprecated( 'wfReadOnly' );
 		$this->assertFalse( wfReadOnly() );
 		$this->assertFalse( wfReadOnly() );
 	}
@@ -114,6 +115,7 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::wfReadOnly
 	 */
 	public function testReadOnlySet() {
+		$this->hideDeprecated( 'wfReadOnly' );
 		global $wgReadOnlyFile;
 
 		$f = fopen( $wgReadOnlyFile, "wt" );
@@ -129,6 +131,7 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::wfReadOnlyReason
 	 */
 	public function testReadOnlyGlobalChange() {
+		$this->hideDeprecated( 'wfReadOnlyReason' );
 		$this->assertFalse( wfReadOnlyReason() );
 
 		$this->setMwGlobals( [
