@@ -80,6 +80,11 @@ class RollbackEdits extends Maintenance {
 		}
 
 		$doer = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
+		$byUser = $services->getUserIdentityLookup()->getUserIdentityByName( $username );
+
+		if ( !$byUser ) {
+			$this->fatalError( 'Unknown user.' );
+		}
 
 		$wikiPageFactory = $services->getWikiPageFactory();
 		$rollbackPageFactory = $services->getRollbackPageFactory();
@@ -87,7 +92,7 @@ class RollbackEdits extends Maintenance {
 			$page = $wikiPageFactory->newFromTitle( $t );
 			$this->output( 'Processing ' . $t->getPrefixedText() . '...' );
 			$rollbackResult = $rollbackPageFactory
-				->newRollbackPage( $page, $doer, $user )
+				->newRollbackPage( $page, $doer, $byUser )
 				->markAsBot( $bot )
 				->setSummary( $summary )
 				->rollback();
