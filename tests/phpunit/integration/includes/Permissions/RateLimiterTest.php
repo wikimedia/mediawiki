@@ -11,6 +11,8 @@ use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
+use MWTimestamp;
+use ObjectCache;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 
@@ -39,7 +41,7 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers User::pingLimiter
+	 * @covers \MediaWiki\Permissions\RateLimiter::limit
 	 */
 	public function testPingLimiterGlobal() {
 		$limits = [
@@ -68,19 +70,7 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		$cacheAccess = TestingAccessWrapper::newFromObject( $cache );
 		$cacheAccess->keyspace = 'xwiki';
 
-		$services = $this->getServiceContainer();
-
-		$limiter = new RateLimiter(
-			new ServiceOptions( RateLimiter::CONSTRUCTOR_OPTIONS, [
-				MainConfigNames::RateLimits => $limits,
-				MainConfigNames::RateLimitsExcludedIPs => [], // TODO
-			] ),
-			$cache,
-			$this->getMockContralIdProvider(),
-			$services->getUserFactory(),
-			$services->getUserGroupManager(),
-			$services->getHookContainer()
-		);
+		$limiter = $this->newRateLimiter( $limits, [], $cache );
 
 		// Set up some fake users
 		$anon1 = $this->newFakeAnon( '1.2.3.4' );
@@ -141,11 +131,177 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $limiter->limit( $karaY1, 'move' ), 'Second move by another user' );
 	}
 
+	/**
+	 * @covers \MediaWiki\Permissions\RateLimiter::limit
+	 */
+	public function testPingLimiterWithStaleCache() {
+		global $wgMainCacheType;
+
+		$limits = [
+			'edit' => [
+				'user' => [ 1, 60 ],
+			],
+		];
+
+		$bagTime = 1600000000.0;
+		$appTime = 1600000000;
+		$bag = new HashBagOStuff();
+
+		// TODO: make the main object cache a service we can override, T243233
+		ObjectCache::$instances[$wgMainCacheType] = $bag;
+
+		$bag->setMockTime( $bagTime ); // this is a reference!
+		MWTimestamp::setFakeTime( static function () use ( &$appTime ) {
+			return (int)$appTime;
+		} );
+
+		$user = $this->newFakeUser( 'Frank', '1.2.3.4', 111 );
+		$limiter = $this->newRateLimiter( $limits, [], $bag );
+
+		$this->assertFalse( $limiter->limit( $user, 'edit' ), 'limit not reached' );
+		$this->assertTrue( $limiter->limit( $user, 'edit' ), 'limit reached' );
+
+		// Make it so that rate limits are expired according to MWTimestamp::time(),
+		// but not according to $cache->getCurrentTime(), emulating the conditions
+		// that trigger T246991.
+		$bagTime += 10;
+		$appTime += 100;
+
+		$this->assertFalse( $limiter->limit( $user, 'edit' ), 'limit expired' );
+		$this->assertTrue( $limiter->limit( $user, 'edit' ), 'limit functional after expiry' );
+	}
+
+	/**
+	 * @covers \MediaWiki\Permissions\RateLimiter::limit
+	 */
+	public function testPingLimiterRate() {
+		global $wgMainCacheType;
+
+		$limits = [
+			'edit' => [
+				'user' => [ 3, 60 ],
+			],
+		];
+
+		$fakeTime = 1600000000;
+		$store = new HashBagOStuff();
+
+		// TODO: make the main object cache a service we can override, T243233
+		ObjectCache::$instances[$wgMainCacheType] = $store;
+
+		$store->setMockTime( $fakeTime ); // this is a reference!
+		MWTimestamp::setFakeTime( static function () use ( &$fakeTime ) {
+			return (int)$fakeTime;
+		} );
+
+		$user = $this->newFakeUser( 'Frank', '1.2.3.4', 111 );
+		$limiter = $this->newRateLimiter( $limits, [], $store );
+
+		// The limit is 3 per 60 second. Do 5 edits at an emulated 50 second interval.
+		// They should all pass. This tests that the counter doesn't just keeps increasing
+		// but gets reset in an appropriate way.
+		$this->assertFalse( $limiter->limit( $user, 'edit' ), 'first ping should pass' );
+
+		$fakeTime += 50;
+		$this->assertFalse( $limiter->limit( $user, 'edit' ), 'second ping should pass' );
+
+		$fakeTime += 50;
+		$this->assertFalse( $limiter->limit( $user, 'edit' ), 'third ping should pass' );
+
+		$fakeTime += 50;
+		$this->assertFalse( $limiter->limit( $user, 'edit' ), 'fourth ping should pass' );
+
+		$fakeTime += 50;
+		$this->assertFalse( $limiter->limit( $user, 'edit' ), 'fifth ping should pass' );
+	}
+
+	/**
+	 * @covers \MediaWiki\Permissions\RateLimiter::limit
+	 */
+	public function testPingLimiterHook() {
+		$limits = [
+			'edit' => [
+				'user' => [ 3, 60 ],
+			],
+		];
+
+		$user = $this->newFakeUser( 'Frank', '1.2.3.4', 111 );
+		$limiter = $this->newRateLimiter( $limits, [] );
+
+		// Hook leaves $result false
+		$this->setTemporaryHook(
+			'PingLimiter',
+			static function ( &$user, $action, &$result, $incrBy ) {
+				return false;
+			}
+		);
+		$this->assertFalse(
+			$limiter->limit( $user, 'edit' ),
+			'Hooks that just return false leave $result false'
+		);
+		$this->removeTemporaryHook( 'PingLimiter' );
+
+		// Hook sets $result to true
+		$this->setTemporaryHook(
+			'PingLimiter',
+			static function ( &$user, $action, &$result, $incrBy ) {
+				$result = true;
+				return false;
+			}
+		);
+		$this->assertTrue(
+			$limiter->limit( $user, 'edit' ),
+			'Hooks can set $result to true'
+		);
+		$this->removeTemporaryHook( 'PingLimiter' );
+
+		// Unknown action
+		$this->assertFalse(
+			$limiter->limit( $user, 'FakeActionWithNoRateLimit' ),
+			'Actions with no rate limit set do not trip the rate limiter'
+		);
+	}
+
+	public function provideIsPingLimitable() {
+		$user = new UserIdentityValue( 123, 'Foo' );
+
+		yield 'IP not excluded'
+			=> [ [], new RateLimitSubject( $user, '1.2.3.4', [] ), false ];
+
+		yield 'IP excluded'
+			=> [ [ '1.2.3.4' ], new RateLimitSubject( $user, '1.2.3.4', [] ), true ];
+
+		yield 'IP subnet excluded'
+			=> [ [ '1.2.3.0/8' ], new RateLimitSubject( $user, '1.2.3.4', [] ), true ];
+
+		$flags = [ RateLimitSubject::EXEMPT => true ];
+		yield 'noratelimit right'
+			=> [ [], new RateLimitSubject( $user, '1.2.3.4', $flags ), true ];
+	}
+
+	/**
+	 * @dataProvider provideIsPingLimitable
+	 * @covers \MediaWiki\Permissions\RateLimiter::isExempt
+	 *
+	 * @param array $rateLimitExcludeIps
+	 * @param RateLimitSubject $subject
+	 * @param bool $expected
+	 */
+	public function testIsExempt(
+		array $rateLimitExcludeIps,
+		RateLimitSubject $subject,
+		bool $expected
+	) {
+		$limiter = $this->newRateLimiter( [], $rateLimitExcludeIps );
+
+		$this->assertSame( $expected, $limiter->isExempt( $subject ) );
+	}
+
 	private function newFakeAnon( string $ip ) {
 		return new RateLimitSubject(
 			new UserIdentityValue( 0, $ip ),
 			$ip,
-			[ RateLimitSubject::NEWBIE => true ] // TODO
+			[ RateLimitSubject::NEWBIE => true ]
 		);
 	}
 
@@ -153,8 +309,42 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		return new RateLimitSubject(
 			new UserIdentityValue( $id, $name ),
 			$ip,
-			[] // TODO
+			[]
 		);
+	}
+
+	/**
+	 * @param array $limits
+	 * @param array $excludedIPs
+	 * @param HashBagOStuff|null $cache
+	 *
+	 * @return RateLimiter
+	 * @throws \Exception
+	 */
+	protected function newRateLimiter(
+		array $limits,
+		array $excludedIPs,
+		HashBagOStuff $cache = null
+	): RateLimiter {
+		if ( $cache === null ) {
+			$cache = new HashBagOStuff();
+		}
+
+		$services = $this->getServiceContainer();
+
+		$limiter = new RateLimiter(
+			new ServiceOptions( RateLimiter::CONSTRUCTOR_OPTIONS, [
+				MainConfigNames::RateLimits => $limits,
+				MainConfigNames::RateLimitsExcludedIPs => $excludedIPs,
+			] ),
+			$cache,
+			$this->getMockContralIdProvider(),
+			$services->getUserFactory(),
+			$services->getUserGroupManager(),
+			$services->getHookContainer()
+		);
+
+		return $limiter;
 	}
 
 }
