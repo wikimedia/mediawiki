@@ -72,7 +72,7 @@ class ShellboxClientFactory {
 	}
 
 	private function getUrl( ?string $service ): ?string {
-		if ( $this->urls === null || !strlen( $this->key ) ) {
+		if ( $this->urls === null || $this->key === null || $this->key === '' ) {
 			return null;
 		}
 		$url = $this->urls[$service] ?? $this->urls['default'] ?? null;
