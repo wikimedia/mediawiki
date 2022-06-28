@@ -63,10 +63,9 @@ class ParsoidOutputAccess {
 	private const RENDER_ID_KEY = 'parsoid-render-id';
 
 	/**
-	 * @internal needed in test case
 	 * @var string Key used to store parsoid page bundle data in ParserOutput
 	 */
-	public const PARSOID_PAGE_BUNDLE_KEY = 'parsoid-page-bundle';
+	private const PARSOID_PAGE_BUNDLE_KEY = 'parsoid-page-bundle';
 
 	/** @var int Do not check the cache before parsing (force parse) */
 	public const OPT_FORCE_PARSE = 1;
@@ -278,6 +277,22 @@ class ParsoidOutputAccess {
 		}
 
 		return ParsoidRenderID::newFromKey( $renderId );
+	}
+
+	/**
+	 * Returns a Parsoid PageBundle equivalent to the given ParserOutput.
+	 *
+	 * @param ParserOutput $parserOutput
+	 *
+	 * @return PageBundle
+	 */
+	public function getParsoidPageBundle( ParserOutput $parserOutput ): PageBundle {
+		$pbData = $parserOutput->getExtensionData( self::PARSOID_PAGE_BUNDLE_KEY );
+		return new PageBundle(
+			$parserOutput->getRawText(),
+			$pbData['parsoid'] ?? [],
+			$pbData['mw'] ?? []
+		);
 	}
 
 	/**
