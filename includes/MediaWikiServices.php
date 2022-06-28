@@ -104,6 +104,7 @@ use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidatorFactory;
@@ -1494,6 +1495,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getProxyLookup(): ProxyLookup {
 		return $this->getService( 'ProxyLookup' );
+	}
+
+	/**
+	 * @since 1.39
+	 * @return RateLimiter
+	 */
+	public function getRateLimiter(): RateLimiter {
+		return $this->getService( 'RateLimiter' );
 	}
 
 	/**
