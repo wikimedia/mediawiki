@@ -35,6 +35,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Permissions\UserAuthority;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\UserFactory;
@@ -410,7 +411,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 					$this->queryFlagsUsed = $flags;
 				}
 
-				list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+				[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
 				$row = wfGetDB( $index )->selectRow(
 					'actor',
 					[ 'actor_id', 'actor_user', 'actor_name' ],
@@ -1143,7 +1144,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			return false;
 		}
 
-		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = wfGetDB( $index );
 
 		$userQuery = self::getQueryInfo();
@@ -1452,15 +1453,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool True if rate limited
 	 */
 	public function isPingLimitable() {
-		$rateLimitsExcludedIPs = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::RateLimitsExcludedIPs );
-		if ( IPUtils::isInRanges( $this->getRequest()->getIP(), $rateLimitsExcludedIPs ) ) {
-			// No other good way currently to disable rate limits
-			// for specific IPs. :P
-			// But this is a crappy hack and should die.
-			return false;
-		}
-		return !$this->isAllowed( 'noratelimit' );
+		$limiter = MediaWikiServices::getInstance()->getRateLimiter();
+		$subject = $this->toRateLimitSubject();
+		return !$limiter->isExempt( $subject );
 	}
 
 	/**
@@ -1480,232 +1475,17 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @throws MWException
 	 */
 	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
-		$logger = LoggerFactory::getInstance( 'ratelimit' );
+		$limiter = MediaWikiServices::getInstance()->getRateLimiter();
+		$subject = $this->toRateLimitSubject();
+		return $limiter->limit( $subject, $action, $incrBy );
+	}
 
-		// Call the 'PingLimiter' hook
-		$result = false;
-		if ( !$this->getHookRunner()->onPingLimiter( $this, $action, $result, $incrBy ) ) {
-			return $result;
-		}
-
-		$rateLimits =
-			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RateLimits );
-		if ( !isset( $rateLimits[$action] ) ) {
-			return false;
-		}
-
-		$limits = array_merge(
-			[ '&can-bypass' => true ],
-			$rateLimits[$action]
-		);
-
-		// Some groups shouldn't trigger the ping limiter, ever
-		if ( $limits['&can-bypass'] && !$this->isPingLimitable() ) {
-			return false;
-		}
-
-		$logger->debug( __METHOD__ . ": limiting $action rate for {$this->getName()}" );
-
-		$keys = [];
-		$id = $this->getId();
-		$isNewbie = $this->isNewbie();
-		$cache = ObjectCache::getLocalClusterInstance();
-
-		if ( $id == 0 ) {
-			// "shared anon" limit, for all anons combined
-			if ( isset( $limits['anon'] ) ) {
-				$keys[$cache->makeKey( 'limiter', $action, 'anon' )] = $limits['anon'];
-			}
-		} else {
-			// "global per name" limit, across sites
-			if ( isset( $limits['user-global'] ) ) {
-				$lookup = MediaWikiServices::getInstance()
-					->getCentralIdLookupFactory()
-					->getNonLocalLookup();
-
-				$centralId = $lookup
-					? $lookup->centralIdFromLocalUser( $this, CentralIdLookup::AUDIENCE_RAW )
-					: 0;
-
-				if ( $centralId ) {
-					// We don't have proper realms, use provider ID.
-					$realm = $lookup->getProviderId();
-
-					$globalKey = $cache->makeGlobalKey( 'limiter', $action, 'user-global',
-						$realm, $centralId );
-				} else {
-					// Fall back to a local key for a local ID
-					$globalKey = $cache->makeKey( 'limiter', $action, 'user-global',
-						'local', $id );
-				}
-				$keys[$globalKey] = $limits['user-global'];
-			}
-		}
-
-		if ( $isNewbie ) {
-			// "per ip" limit for anons and newbie users
-			if ( isset( $limits['ip'] ) ) {
-				$ip = $this->getRequest()->getIP();
-				$keys[$cache->makeGlobalKey( 'limiter', $action, 'ip', $ip )] = $limits['ip'];
-			}
-			// "per subnet" limit for anons and newbie users
-			if ( isset( $limits['subnet'] ) ) {
-				$ip = $this->getRequest()->getIP();
-				$subnet = IPUtils::getSubnet( $ip );
-				if ( $subnet !== false ) {
-					$keys[$cache->makeGlobalKey( 'limiter', $action, 'subnet', $subnet )] = $limits['subnet'];
-				}
-			}
-		}
-
-		// determine the "per user account" limit
-		$userLimit = false;
-		if ( $id !== 0 && isset( $limits['user'] ) ) {
-			// default limit for logged-in users
-			$userLimit = $limits['user'];
-		}
-		// limits for newbie logged-in users (overrides all the normal user limits)
-		if ( $id !== 0 && $isNewbie && isset( $limits['newbie'] ) ) {
-			$userLimit = $limits['newbie'];
-		} else {
-			// Check for group-specific limits
-			// If more than one group applies, use the highest allowance (if higher than the default)
-			$userGroups = MediaWikiServices::getInstance()->getUserGroupManager()->getUserGroups( $this );
-			foreach ( $userGroups as $group ) {
-				if ( isset( $limits[$group] ) ) {
-					if ( $userLimit === false
-						// @phan-suppress-next-line PhanTypeArraySuspicious False positive
-						|| $limits[$group][0] / $limits[$group][1] > $userLimit[0] / $userLimit[1]
-					) {
-						$userLimit = $limits[$group];
-					}
-				}
-			}
-		}
-
-		// Set the user limit key
-		if ( $userLimit !== false ) {
-			// phan is confused because &can-bypass's value is a bool, so it assumes
-			// that $userLimit is also a bool here.
-			// @phan-suppress-next-line PhanTypeInvalidExpressionArrayDestructuring
-			list( $max, $period ) = $userLimit;
-			$logger->debug( __METHOD__ . ": effective user limit: $max in {$period}s" );
-			$keys[$cache->makeKey( 'limiter', $action, 'user', $id )] = $userLimit;
-		}
-
-		// ip-based limits for all ping-limitable users
-		if ( isset( $limits['ip-all'] ) ) {
-			$ip = $this->getRequest()->getIP();
-			// ignore if user limit is more permissive
-			if ( $isNewbie || $userLimit === false
-				// @phan-suppress-next-line PhanTypeArraySuspicious False positive
-				|| $limits['ip-all'][0] / $limits['ip-all'][1] > $userLimit[0] / $userLimit[1] ) {
-				$keys[$cache->makeGlobalKey( 'limiter', $action, 'ip-all', $ip )] = $limits['ip-all'];
-			}
-		}
-
-		// subnet-based limits for all ping-limitable users
-		if ( isset( $limits['subnet-all'] ) ) {
-			$ip = $this->getRequest()->getIP();
-			$subnet = IPUtils::getSubnet( $ip );
-			if ( $subnet !== false ) {
-				// ignore if user limit is more permissive
-				if ( $isNewbie || $userLimit === false
-					// @phan-suppress-next-line PhanTypeArraySuspicious False positive
-					|| $limits['ip-all'][0] / $limits['ip-all'][1]
-					// @phan-suppress-next-line PhanTypeArraySuspicious False positive
-					> $userLimit[0] / $userLimit[1] ) {
-					$keys[$cache->makeGlobalKey( 'limiter', $action, 'subnet-all', $subnet )] = $limits['subnet-all'];
-				}
-			}
-		}
-
-		// XXX: We may want to use $cache->getCurrentTime() here, but that would make it
-		//      harder to test for T246991. Also $cache->getCurrentTime() is documented
-		//      as being for testing only, so it apparently should not be called here.
-		$now = MWTimestamp::time();
-		$clockFudge = 3; // avoid log spam when a clock is slightly off
-
-		$triggered = false;
-		foreach ( $keys as $key => $limit ) {
-
-			// Do the update in a merge callback, for atomicity.
-			// To use merge(), we need to explicitly track the desired expiry timestamp.
-			// This tracking was introduced to investigate T246991. Once it is no longer needed,
-			// we could go back to incrWithInit(), though that has more potential for race
-			// conditions between the get() and incrWithInit() calls.
-			$cache->merge(
-				$key,
-				function ( $cache, $key, $data, &$expiry )
-					use ( $action, $logger, &$triggered, $now, $clockFudge, $limit, $incrBy )
-				{
-					// phan is confused because &can-bypass's value is a bool, so it assumes
-					// that $userLimit is also a bool here.
-					// @phan-suppress-next-line PhanTypeInvalidExpressionArrayDestructuring
-					list( $max, $period ) = $limit;
-
-					$expiry = $now + (int)$period;
-					$count = 0;
-
-					// Already pinged?
-					if ( $data ) {
-						// NOTE: in order to investigate T246991, we write the expiry time
-						//       into the payload, along with the count.
-						$fields = explode( '|', $data );
-						$storedCount = (int)( $fields[0] ?? 0 );
-						$storedExpiry = (int)( $fields[1] ?? PHP_INT_MAX );
-
-						// Found a stale entry. This should not happen!
-						if ( $storedExpiry < ( $now + $clockFudge ) ) {
-							$logger->info(
-								'User::pingLimiter: '
-								. 'Stale rate limit entry, cache key failed to expire (T246991)',
-								[
-									'action' => $action,
-									'user' => $this->getName(),
-									'limit' => $max,
-									'period' => $period,
-									'count' => $storedCount,
-									'key' => $key,
-									'expiry' => MWTimestamp::convert( TS_DB, $storedExpiry ),
-								]
-							);
-						} else {
-							// NOTE: We'll keep the original expiry when bumping counters,
-							//       resulting in a kind of fixed-window throttle.
-							$expiry = min( $storedExpiry, $now + (int)$period );
-							$count = $storedCount;
-						}
-					}
-
-					// Limit exceeded!
-					if ( $count >= $max ) {
-						if ( !$triggered ) {
-							$logger->info(
-								'User::pingLimiter: User tripped rate limit',
-								[
-									'action' => $action,
-									'user' => $this->getName(),
-									'ip' => $this->getRequest()->getIP(),
-									'limit' => $max,
-									'period' => $period,
-									'count' => $count,
-									'key' => $key
-								]
-							);
-						}
-
-						$triggered = true;
-					}
-
-					$count += $incrBy;
-					$data = "$count|$expiry";
-					return $data;
-				}
-			);
-		}
-
-		return $triggered;
+	private function toRateLimitSubject(): RateLimitSubject {
+		$flags = [
+			'exempt' => $this->isAllowed( 'noratelimit' ),
+			'newbie' => $this->isNewbie(),
+		];
+		return new RateLimitSubject( $this, $this->getRequest()->getIP(), $flags );
 	}
 
 	/**
@@ -2869,7 +2649,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			return 0;
 		}
 
-		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = wfGetDB( $index );
 
 		$id = $db->selectField( 'user',
