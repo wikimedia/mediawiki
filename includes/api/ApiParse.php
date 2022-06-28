@@ -379,7 +379,7 @@ class ApiParse extends ApiBase {
 			if ( $this->section !== false ) {
 				if ( $this->section === 'new' ) {
 					// Insert the section title above the content.
-					if ( $params['sectiontitle'] !== null && $params['sectiontitle'] !== '' ) {
+					if ( $params['sectiontitle'] !== null ) {
 						$this->content = $this->content->addSectionHeader( $params['sectiontitle'] );
 					}
 				} else {

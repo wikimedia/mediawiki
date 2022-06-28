@@ -128,8 +128,11 @@ just a test"
 	public function testAddSectionHeader() {
 		$content = $this->newContent( 'hello world' );
 		$content = $content->addSectionHeader( 'test' );
-
 		$this->assertEquals( "== test ==\n\nhello world", $content->getText() );
+
+		$content = $this->newContent( 'hello world' );
+		$content = $content->addSectionHeader( '' );
+		$this->assertEquals( "hello world", $content->getText() );
 	}
 
 	public static function dataPreSaveTransform() {
