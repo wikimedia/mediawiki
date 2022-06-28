@@ -448,37 +448,36 @@ class Image {
 			}
 			return false;
 
-		} else {
-			// Write input to and read output from a temporary file
-			$tempFilenameSvg = tempnam( wfTempDir(), 'ResourceLoaderImage' );
-			$tempFilenamePng = tempnam( wfTempDir(), 'ResourceLoaderImage' );
-
-			file_put_contents( $tempFilenameSvg, $svg );
-
-			$svgReader = new SVGReader( $tempFilenameSvg );
-			$metadata = $svgReader->getMetadata();
-			if ( !isset( $metadata['width'] ) || !isset( $metadata['height'] ) ) {
-				unlink( $tempFilenameSvg );
-				return false;
-			}
-
-			$handler = new SvgHandler;
-			$res = $handler->rasterize(
-				$tempFilenameSvg,
-				$tempFilenamePng,
-				$metadata['width'],
-				$metadata['height']
-			);
-			unlink( $tempFilenameSvg );
-
-			$png = null;
-			if ( $res === true ) {
-				$png = file_get_contents( $tempFilenamePng );
-				unlink( $tempFilenamePng );
-			}
-
-			return $png ?: false;
 		}
+		// Write input to and read output from a temporary file
+		$tempFilenameSvg = tempnam( wfTempDir(), 'ResourceLoaderImage' );
+		$tempFilenamePng = tempnam( wfTempDir(), 'ResourceLoaderImage' );
+
+		file_put_contents( $tempFilenameSvg, $svg );
+
+		$svgReader = new SVGReader( $tempFilenameSvg );
+		$metadata = $svgReader->getMetadata();
+		if ( !isset( $metadata['width'] ) || !isset( $metadata['height'] ) ) {
+			unlink( $tempFilenameSvg );
+			return false;
+		}
+
+		$handler = new SvgHandler;
+		$res = $handler->rasterize(
+			$tempFilenameSvg,
+			$tempFilenamePng,
+			$metadata['width'],
+			$metadata['height']
+		);
+		unlink( $tempFilenameSvg );
+
+		if ( $res === true ) {
+			$png = file_get_contents( $tempFilenamePng );
+			unlink( $tempFilenamePng );
+			return $png;
+		}
+
+		return false;
 	}
 
 	/**
