@@ -706,13 +706,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			// the default saved query
 			count( $knownParams ) === 0
 		) {
+			$prefJson = MediaWikiServices::getInstance()
+				->getUserOptionsLookup()
+				->getOption( $this->getUser(), $this->getSavedQueriesPreferenceName() );
+
 			// Get the saved queries data and parse it
-			$savedQueries = FormatJson::decode(
-				MediaWikiServices::getInstance()
-					->getUserOptionsLookup()
-					->getOption( $this->getUser(), $this->getSavedQueriesPreferenceName() ),
-				true
-			);
+			$savedQueries = $prefJson ? FormatJson::decode( $prefJson, true ) : false;
 
 			if ( $savedQueries && isset( $savedQueries[ 'default' ] ) ) {
 				// Only load queries that are 'version' 2, since those
