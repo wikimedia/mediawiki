@@ -103,7 +103,7 @@ class ApiRevisionDelete extends ApiBase {
 		);
 		$status = $list->setVisibility( [
 			'value' => $bitfield,
-			'comment' => $params['reason'],
+			'comment' => $params['reason'] ?? '',
 			'perItemStatus' => true,
 			'tags' => $params['tags']
 		] );
@@ -176,7 +176,9 @@ class ApiRevisionDelete extends ApiBase {
 				ParamValidator::PARAM_TYPE => [ 'yes', 'no', 'nochange' ],
 				ParamValidator::PARAM_DEFAULT => 'nochange',
 			],
-			'reason' => null,
+			'reason' => [
+				ParamValidator::PARAM_TYPE => 'string'
+			],
 			'tags' => [
 				ParamValidator::PARAM_TYPE => 'tags',
 				ParamValidator::PARAM_ISMULTI => true,

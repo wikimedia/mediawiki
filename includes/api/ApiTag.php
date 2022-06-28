@@ -224,6 +224,7 @@ class ApiTag extends ApiBase {
 				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'reason' => [
+				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_DEFAULT => '',
 			],
 			'tags' => [

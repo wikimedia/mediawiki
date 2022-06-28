@@ -33,6 +33,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		$revid = array_shift( $this->revs );
 		$out = $this->doApiRequestWithToken( [
 			'action' => 'revisiondelete',
+			'reason' => __METHOD__,
 			'type' => 'revision',
 			'target' => self::$page,
 			'ids' => $revid,
@@ -59,6 +60,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		// Now test unhiding!
 		$out2 = $this->doApiRequestWithToken( [
 			'action' => 'revisiondelete',
+			'reason' => __METHOD__,
 			'type' => 'revision',
 			'target' => self::$page,
 			'ids' => $revid,
@@ -92,6 +94,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		// Hide revisions
 		$this->doApiRequestWithToken( [
 			'action' => 'revisiondelete',
+			'reason' => __METHOD__,
 			'type' => 'revision',
 			'target' => self::$page,
 			'ids' => $revid,
@@ -100,6 +103,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 
 		$out = $this->doApiRequestWithToken( [
 			'action' => 'revisiondelete',
+			'reason' => __METHOD__,
 			'type' => 'revision',
 			'target' => self::$page,
 			'ids' => $revid,
@@ -136,6 +140,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 
 		$this->doApiRequestWithToken( [
 			'action' => 'revisiondelete',
+			'reason' => __METHOD__,
 			'type' => 'revision',
 			'target' => self::$page,
 			'ids' => $revid,

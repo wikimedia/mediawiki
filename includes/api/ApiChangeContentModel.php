@@ -120,7 +120,9 @@ class ApiChangeContentModel extends ApiBase {
 			'pageid' => [
 				ParamValidator::PARAM_TYPE => 'integer',
 			],
-			'summary' => null,
+			'summary' => [
+				ParamValidator::PARAM_TYPE => 'string',
+			],
 			'tags' => [
 				ParamValidator::PARAM_TYPE => 'tags',
 				ParamValidator::PARAM_ISMULTI => true,

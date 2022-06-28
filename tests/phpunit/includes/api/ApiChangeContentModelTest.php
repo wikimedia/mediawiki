@@ -67,6 +67,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 
 		$this->doApiRequestWithToken( [
 				'action' => 'changecontentmodel',
+				'summary' => __METHOD__,
 				'title' => 'ExistingPage',
 				'model' => 'text'
 			],
@@ -88,6 +89,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 
 		$this->doApiRequestWithToken( [
 			'action' => 'changecontentmodel',
+			'summary' => __METHOD__,
 			'title' => 'ExistingPage',
 			'model' => 'wikitext'
 		] );
@@ -114,6 +116,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		$this->setExpectedApiException( 'invalid-content-data' );
 		$this->doApiRequestWithToken( [
 				'action' => 'changecontentmodel',
+				'summary' => __METHOD__,
 				'title' => 'PageWithTextThatIsNotValidJSON',
 				'model' => 'json'
 			],
@@ -156,6 +159,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 
 		$this->doApiRequestWithToken( [
 				'action' => 'changecontentmodel',
+				'summary' => __METHOD__,
 				'title' => 'ExistingPage',
 				'model' => 'text'
 			],
@@ -198,6 +202,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 
 		$this->doApiRequestWithToken( [
 				'action' => 'changecontentmodel',
+				'summary' => __METHOD__,
 				'title' => 'ExistingPage',
 				'model' => 'text'
 			],
@@ -232,6 +237,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 
 		$this->doApiRequestWithToken( [
 				'action' => 'changecontentmodel',
+				'summary' => __METHOD__,
 				'title' => 'Dummy:NoDirectEditing',
 				'model' => 'wikitext'
 			],
@@ -246,6 +252,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 
 		$this->doApiRequestWithToken( [
 				'action' => 'changecontentmodel',
+				'summary' => __METHOD__,
 				'title' => 'ExistingPage',
 				'model' => 'text',
 				'tags' => 'api edit content model tag',
@@ -272,6 +279,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 
 		$data = $this->doApiRequestWithToken( [
 			'action' => 'changecontentmodel',
+			'summary' => __METHOD__,
 			'title' => 'ExistingPage',
 			'model' => 'text',
 			'tags' => 'api edit content model tag',
@@ -292,6 +300,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 
 		$data = $this->doApiRequestWithToken( [
 			'action' => 'changecontentmodel',
+			'summary' => __METHOD__,
 			'title' => 'ExistingPage',
 			'model' => 'wikitext',
 			'tags' => 'api edit content model tag',
