@@ -52,7 +52,6 @@ class DeprecatedHooks {
 		'ProtectionForm::buildForm' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
 		'ResourceLoaderTestModules' => [ 'deprecatedVersion' => '1.33' ],
 		'RollbackComplete' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
-		'SkinGetPoweredBy' => [ 'deprecatedVersion' => '1.37' ],
 		'SpecialMuteSubmit' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'UserLoadFromDatabase' => [ 'deprecatedVersion' => '1.37' ],
 		'UserSetCookies' => [ 'deprecatedVersion' => '1.27' ],

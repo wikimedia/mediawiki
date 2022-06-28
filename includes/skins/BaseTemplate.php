@@ -18,7 +18,6 @@
  * @file
  */
 
-use MediaWiki\MainConfigNames;
 use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
@@ -32,56 +31,6 @@ use Wikimedia\WrappedStringList;
  * @stable to extend
  */
 abstract class BaseTemplate extends QuickTemplate {
-
-	/**
-	 * @internal for usage by BaseTemplate or SkinTemplate.
-	 * @param Config $config
-	 * @param Skin $skin
-	 * @return string
-	 */
-	public static function getCopyrightIconHTML( Config $config, Skin $skin ): string {
-		$out = '';
-		$footerIcons = $config->get( MainConfigNames::FooterIcons );
-		$copyright = $footerIcons['copyright']['copyright'] ?? null;
-		// T291325: $wgFooterIcons['copyright']['copyright'] can return an array.
-		if ( $copyright !== null ) {
-			$out = $skin->makeFooterIcon( $copyright );
-		} elseif ( $config->get( MainConfigNames::RightsIcon ) ) {
-			$icon = htmlspecialchars( $config->get( MainConfigNames::RightsIcon ), ENT_COMPAT );
-			$url = $config->get( MainConfigNames::RightsUrl );
-			if ( $url ) {
-				$out .= '<a href="' . htmlspecialchars( $url, ENT_COMPAT ) . '">';
-			}
-			$text = htmlspecialchars( $config->get( MainConfigNames::RightsText ), ENT_COMPAT );
-			$out .= "<img src=\"$icon\" alt=\"$text\" width=\"88\" height=\"31\" />";
-			if ( $url ) {
-				$out .= '</a>';
-			}
-		}
-		return $out;
-	}
-
-	/**
-	 * @internal for usage by BaseTemplate or SkinTemplate.
-	 * @param Config $config
-	 * @return string of HTML
-	 */
-	public static function getPoweredByHTML( Config $config ): string {
-		$resourceBasePath = $config->get( MainConfigNames::ResourceBasePath );
-		$url1 = htmlspecialchars(
-			"$resourceBasePath/resources/assets/poweredby_mediawiki_88x31.png"
-		);
-		$url1_5 = htmlspecialchars(
-			"$resourceBasePath/resources/assets/poweredby_mediawiki_132x47.png"
-		);
-		$url2 = htmlspecialchars(
-			"$resourceBasePath/resources/assets/poweredby_mediawiki_176x62.png"
-		);
-		$text = '<a href="https://www.mediawiki.org/"><img src="' . $url1
-			. '" srcset="' . $url1_5 . ' 1.5x, ' . $url2 . ' 2x" '
-			. 'height="31" width="88" alt="Powered by MediaWiki" loading="lazy" /></a>';
-		return $text;
-	}
 
 	/**
 	 * Get a Message object with its context set

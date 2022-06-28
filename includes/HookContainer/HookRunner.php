@@ -327,7 +327,6 @@ class HookRunner implements
 	\MediaWiki\Hook\SkinBuildSidebarHook,
 	\MediaWiki\Hook\SkinCopyrightFooterHook,
 	\MediaWiki\Hook\SkinEditSectionLinksHook,
-	\MediaWiki\Hook\SkinGetPoweredByHook,
 	\MediaWiki\Hook\SkinPreloadExistenceHook,
 	\MediaWiki\Hook\SkinSubPageSubtitleHook,
 	\MediaWiki\Hook\SkinTemplateGetLanguageLinkHook,
@@ -3471,13 +3470,6 @@ class HookRunner implements
 		return $this->container->run(
 			'SkinEditSectionLinks',
 			[ $skin, $title, $section, $tooltip, &$result, $lang ]
-		);
-	}
-
-	public function onSkinGetPoweredBy( &$text, $skin ) {
-		return $this->container->run(
-			'SkinGetPoweredBy',
-			[ &$text, $skin ]
 		);
 	}
 

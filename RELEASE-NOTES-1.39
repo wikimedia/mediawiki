@@ -199,6 +199,12 @@ because of Phabricator reports.
   - Skin::getPortletData has been made private.
   - SkinTemplate::getPersonalToolsList(), deprecated in 1.35 has been
     removed.
+  - The following SkinTemplate template data, deprecated in 1.37,
+    have been removed:
+     - poweredbyico
+     - copyrightico
+  - The following hooks, deprecated in 1.37, have been removed:
+     - SkinGetPoweredBy: SkinGetPoweredByHook
 * Experimental wiki farm support: Automatic detection of the requested site
   within a wiki farm based on the requested domain has been removed.
   Use the MW_WIKI_NAME environment variable to specify the name of the site
