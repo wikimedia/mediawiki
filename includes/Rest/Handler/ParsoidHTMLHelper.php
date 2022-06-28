@@ -201,11 +201,35 @@ class ParsoidHTMLHelper {
 	 */
 	private function getParserOutput(): ParserOutput {
 		if ( !$this->parserOutput ) {
-			$this->parserOutput = $this->parsoidOutputAccess->getParserOutput(
+			$status = $this->parsoidOutputAccess->getParserOutput(
 				$this->page,
 				ParserOptions::newFromAnon(),
 				$this->revision
 			);
+
+			if ( !$status->isOK() ) {
+				if ( $status->hasMessage( 'parsoid-client-error' ) ) {
+					throw new LocalizedHttpException(
+						MessageValue::new( 'rest-html-backend-error' ),
+						400,
+						[ 'reason' => $status->getErrors() ]
+					);
+				} elseif ( $status->hasMessage( 'parsoid-resource-limit-exceeded' ) ) {
+					throw new LocalizedHttpException(
+						MessageValue::new( 'rest-resource-limit-exceeded' ),
+						413,
+						[ 'reason' => $status->getErrors() ]
+					);
+				} else {
+					throw new LocalizedHttpException(
+						MessageValue::new( 'rest-html-backend-error' ),
+						500,
+						[ 'reason' => $status->getErrors() ]
+					);
+				}
+			}
+
+			$this->parserOutput = $status->getValue();
 		}
 
 		return $this->parserOutput;

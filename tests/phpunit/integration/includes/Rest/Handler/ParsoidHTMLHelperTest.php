@@ -22,6 +22,7 @@ use ParserOptions;
 use ParserOutput;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
+use Status;
 use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
@@ -80,7 +81,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 				$pout = new ParserOutput( self::MOCK_HTML );
 				$pout->setCacheRevisionId( $rev ? $rev->getId() : $page->getLatest() );
 				$pout->setCacheTime( wfTimestampNow() ); // will use fake time
-				return $pout;
+				return Status::newGood( $pout );
 			} );
 
 		$parsoid->expects( $this->exactlyOrAny( $expectedCalls[ 'getParsoidRenderID' ] ) )
