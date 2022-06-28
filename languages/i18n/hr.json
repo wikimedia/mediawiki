@@ -927,7 +927,7 @@
 	"revertmerge": "Razdvoji",
 	"mergelogpagetext": "Slijedi popis posljednjih spajanja povijesti stranica.",
 	"history-title": "$1: Povijest izmjena",
-	"difference-title": "$1: Razlika između inačica",
+	"difference-title": "$1: razlika između inačica",
 	"difference-title-multipage": "$1 i $2: Razlika između stranica",
 	"difference-multipage": "(Razlika između stranica)",
 	"lineno": "Redak $1:",
