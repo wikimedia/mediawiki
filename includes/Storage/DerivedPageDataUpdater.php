@@ -32,13 +32,16 @@ use InvalidArgumentException;
 use JobQueueGroup;
 use Language;
 use LogicException;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -313,12 +316,20 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 	/** @var PermissionManager */
 	private $permissionManager;
 
+	/** @var bool */
+	private $warmParsoidParserCache;
+
+	/** @var ParsoidOutputAccess */
+	private $parsoidOutputAccess;
+
 	/**
+	 * @param ServiceOptions $options
 	 * @param WikiPage $wikiPage
 	 * @param RevisionStore $revisionStore
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param ParserCache $parserCache
+	 * @param ParsoidOutputAccess $parsoidOutputAccess
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param MessageCache $messageCache
 	 * @param Language $contLang
@@ -334,11 +345,13 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 	 * @param PermissionManager $permissionManager
 	 */
 	public function __construct(
+		ServiceOptions $options,
 		WikiPage $wikiPage,
 		RevisionStore $revisionStore,
 		RevisionRenderer $revisionRenderer,
 		SlotRoleRegistry $slotRoleRegistry,
 		ParserCache $parserCache,
+		ParsoidOutputAccess $parsoidOutputAccess,
 		JobQueueGroup $jobQueueGroup,
 		MessageCache $messageCache,
 		Language $contLang,
@@ -376,6 +389,9 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$this->permissionManager = $permissionManager;
 
 		$this->logger = new NullLogger();
+		$this->warmParsoidParserCache = $options
+			->get( MainConfigNames::ParsoidCacheConfig )['WarmParsoidParserCache'];
+		$this->parsoidOutputAccess = $parsoidOutputAccess;
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -1808,6 +1824,34 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$this->parserCache->save(
 			$output, $wikiPage, $this->getCanonicalParserOptions(),
 			$timestamp, $this->revision->getId()
+		);
+
+		// If we enable cache warming with parsoid outputs, let's do it at the same
+		// time we're populating the parser cache with pre-generated HTML.
+		if ( $this->warmParsoidParserCache ) {
+			$this->doParsoidCacheUpdate();
+		}
+	}
+
+	public function doParsoidCacheUpdate() {
+		$this->assertHasRevision( __METHOD__ );
+
+		$wikiPage = $this->getWikiPage(); // TODO: ParserCache should accept a RevisionRecord instead
+		$rev = $this->getRevision();
+		$parserOpts = $this->getCanonicalParserOptions();
+
+		// Make sure that ParsoidOutputAccess recognizes the revision as the current one.
+		Assert::precondition(
+			$wikiPage->getLatest() === $rev->getId(),
+			'The ID of the new revision must match the page\'s current revision ID'
+		);
+
+		// getParserOutput() will write to ParserCache
+		$this->parsoidOutputAccess->getParserOutput(
+			$wikiPage,
+			$parserOpts,
+			$rev,
+			ParsoidOutputAccess::OPT_FORCE_PARSE
 		);
 	}
 

@@ -5,11 +5,10 @@ namespace MediaWiki\Rest\Handler;
 use Config;
 use IBufferingStatsdDataFactory;
 use LogicException;
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageLookup;
-use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
@@ -17,7 +16,6 @@ use MediaWiki\Rest\StringStream;
 use MediaWiki\Revision\RevisionLookup;
 use TitleFormatter;
 use Wikimedia\Assert\Assert;
-use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * A handler that returns Parsoid HTML for the following routes:
@@ -38,11 +36,10 @@ class PageHTMLHandler extends SimpleHandler {
 		Config $config,
 		RevisionLookup $revisionLookup,
 		TitleFormatter $titleFormatter,
-		ParserCacheFactory $parserCacheFactory,
-		GlobalIdGenerator $globalIdGenerator,
 		PageLookup $pageLookup,
 		ParsoidOutputStash $parsoidOutputStash,
-		IBufferingStatsdDataFactory $statsDataFactory
+		IBufferingStatsdDataFactory $statsDataFactory,
+		ParsoidOutputAccess $parsoidOutputAccess
 	) {
 		$this->contentHelper = new PageContentHelper(
 			$config,
@@ -51,12 +48,9 @@ class PageHTMLHandler extends SimpleHandler {
 			$pageLookup
 		);
 		$this->htmlHelper = new ParsoidHTMLHelper(
-			$parserCacheFactory->getParserCache( 'parsoid' ),
-			$parserCacheFactory->getRevisionOutputCache( 'parsoid' ),
-			$globalIdGenerator,
 			$parsoidOutputStash,
 			$statsDataFactory,
-			new ServiceOptions( ParsoidHTMLHelper::CONSTRUCTOR_OPTIONS, $config )
+			$parsoidOutputAccess
 		);
 	}
 

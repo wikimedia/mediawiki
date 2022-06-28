@@ -50,11 +50,10 @@
 			"MainConfig",
 			"RevisionLookup",
 			"TitleFormatter",
-			"ParserCacheFactory",
-			"GlobalIdGenerator",
 			"PageStore",
 			"ParsoidOutputStash",
-			"StatsdDataFactory"
+			"StatsdDataFactory",
+			"ParsoidOutputAccess"
 		],
 		"format": "html"
 	},
@@ -65,11 +64,10 @@
 			"MainConfig",
 			"RevisionLookup",
 			"TitleFormatter",
-			"ParserCacheFactory",
-			"GlobalIdGenerator",
 			"PageStore",
 			"ParsoidOutputStash",
-			"StatsdDataFactory"
+			"StatsdDataFactory",
+			"ParsoidOutputAccess"
 		],
 		"format": "with_html"
 	},
@@ -152,11 +150,10 @@
 			"MainConfig",
 			"RevisionLookup",
 			"TitleFormatter",
-			"ParserCacheFactory",
-			"GlobalIdGenerator",
 			"PageStore",
 			"ParsoidOutputStash",
-			"StatsdDataFactory"
+			"StatsdDataFactory",
+			"ParsoidOutputAccess"
 		],
 		"format": "html"
 	},
@@ -167,11 +164,10 @@
 			"MainConfig",
 			"RevisionLookup",
 			"TitleFormatter",
-			"ParserCacheFactory",
-			"GlobalIdGenerator",
 			"PageStore",
 			"ParsoidOutputStash",
-			"StatsdDataFactory"
+			"StatsdDataFactory",
+			"ParsoidOutputAccess"
 		],
 		"format": "with_html"
 	},

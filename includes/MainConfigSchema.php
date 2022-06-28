@@ -3754,6 +3754,9 @@ class MainConfigSchema {
 	 *       a small page that is fast for parsing and does not need caching. Setting this to zero
 	 *       causes all outputs to be cached.
 	 *
+	 * - WarmParsoidParserCache: Setting this to true will pre-populate the parsoid parser cache
+	 *       with parsoid outputs on page edits. This speeds up loading HTML into Visual Editor.
+	 *
 	 * @since 1.39
 	 * @unstable Per MediaWiki 1.39, the structure of this configuration is still subject to
 	 *           change.
@@ -3763,7 +3766,8 @@ class MainConfigSchema {
 		'default' => [
 			'StashType' => null,
 			'StashDuration' => 24 * 60 * 60,
-			'CacheThresholdTime' => 0.0
+			'CacheThresholdTime' => 0.0,
+			'WarmParsoidParserCache' => false,
 		]
 	];
 
