@@ -514,10 +514,6 @@ __INDEXATTR__;
 		return parent::selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 	}
 
-	protected function makeInsertNonConflictingVerbAndOptions() {
-		return [ 'INSERT INTO', 'ON CONFLICT DO NOTHING' ];
-	}
-
 	public function doInsertNonConflicting( $table, array $rows, $fname ) {
 		// Postgres 9.5 supports "ON CONFLICT"
 		if ( $this->getServerVersion() >= 9.5 ) {

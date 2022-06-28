@@ -2292,22 +2292,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @param string $option Query option flag (e.g. "IGNORE" or "FOR UPDATE")
-	 * @param array $options Combination option/value map and boolean option list
-	 * @return bool Whether the option appears as an integer-keyed value in the options
-	 * @since 1.35
-	 */
-	final protected function isFlagInOptions( $option, array $options ) {
-		foreach ( array_keys( $options, $option, true ) as $k ) {
-			if ( is_int( $k ) ) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
 	 * @param array|string $var Field parameter in the style of select()
 	 * @return string|null Column name or null; ignores aliases
 	 */
@@ -2388,7 +2372,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->isFlagInOptions( 'IGNORE', $options ) ) {
 			$this->doInsertNonConflicting( $table, $rows, $fname );
 		} else {
-			$this->doInsert( $table, $rows, $fname );
+			$sql = $this->platform->insertSqlText( $table, $rows );
+			$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 		}
 
 		return true;
@@ -2402,86 +2387,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string $fname
 	 * @since 1.35
 	 */
-	protected function doInsert( $table, array $rows, $fname ) {
-		$encTable = $this->tableName( $table );
-		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
-
-		$sql = "INSERT INTO $encTable ($sqlColumns) VALUES $sqlTuples";
-
-		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
-	}
-
-	/**
-	 * @see Database::insert()
-	 * @stable to override
-	 * @param string $table
-	 * @param array $rows Non-empty list of rows
-	 * @param string $fname
-	 * @since 1.35
-	 */
 	protected function doInsertNonConflicting( $table, array $rows, $fname ) {
-		$encTable = $this->tableName( $table );
-		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
-		list( $sqlVerb, $sqlOpts ) = $this->makeInsertNonConflictingVerbAndOptions();
-
-		$sql = rtrim( "$sqlVerb $encTable ($sqlColumns) VALUES $sqlTuples $sqlOpts" );
-
+		$sql = $this->platform->insertNonConflictingSqlText( $table, $rows );
 		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
-	}
-
-	/**
-	 * @stable to override
-	 * @return string[] ("INSERT"-style SQL verb, "ON CONFLICT"-style clause or "")
-	 * @since 1.35
-	 */
-	protected function makeInsertNonConflictingVerbAndOptions() {
-		return [ 'INSERT IGNORE INTO', '' ];
-	}
-
-	/**
-	 * Make SQL lists of columns, row tuples, and column aliases for INSERT/VALUES expressions
-	 *
-	 * The tuple column order is that of the columns of the first provided row.
-	 * The provided rows must have exactly the same keys and ordering thereof.
-	 *
-	 * @param array[] $rows Non-empty list of (column => value) maps
-	 * @param string $aliasPrefix Optional prefix to prepend to the magic alias names
-	 * @return array (comma-separated columns, comma-separated tuples, comma-separated aliases)
-	 * @since 1.35
-	 */
-	protected function makeInsertLists( array $rows, $aliasPrefix = '' ) {
-		$firstRow = $rows[0];
-		if ( !is_array( $firstRow ) || !$firstRow ) {
-			throw new DBUnexpectedError( $this, 'Got an empty row list or empty row' );
-		}
-		// List of columns that define the value tuple ordering
-		$tupleColumns = array_keys( $firstRow );
-
-		$valueTuples = [];
-		foreach ( $rows as $row ) {
-			$rowColumns = array_keys( $row );
-			// VALUES(...) requires a uniform correspondence of (column => value)
-			if ( $rowColumns !== $tupleColumns ) {
-				throw new DBUnexpectedError(
-					$this,
-					'Got row columns (' . implode( ', ', $rowColumns ) . ') ' .
-					'instead of expected (' . implode( ', ', $tupleColumns ) . ')'
-				);
-			}
-			// Make the value tuple that defines this row
-			$valueTuples[] = '(' . $this->makeList( $row, self::LIST_COMMA ) . ')';
-		}
-
-		$magicAliasFields = [];
-		foreach ( $tupleColumns as $column ) {
-			$magicAliasFields[] = $aliasPrefix . $column;
-		}
-
-		return [
-			$this->makeList( $tupleColumns, self::LIST_NAMES ),
-			implode( ',', $valueTuples ),
-			$this->makeList( $magicAliasFields, self::LIST_NAMES )
-		];
 	}
 
 	/**
@@ -2668,7 +2576,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $identityKey ) {
 			$this->doReplace( $table, $identityKey, $rows, $fname );
 		} else {
-			$this->doInsert( $table, $rows, $fname );
+			$sql = $this->platform->insertSqlText( $table, $rows );
+			$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 		}
 	}
 
@@ -2756,7 +2665,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->assertValidUpsertSetArray( $set, $identityKey, $rows );
 			$this->doUpsert( $table, $rows, $identityKey, $set, $fname );
 		} else {
-			$this->doInsert( $table, $rows, $fname );
+			$sql = $this->platform->insertSqlText( $table, $rows );
+			$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 		}
 
 		return true;
@@ -3042,22 +2952,16 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		array $selectOptions,
 		$selectJoinConds
 	) {
-		list( $sqlVerb, $sqlOpts ) = $this->isFlagInOptions( 'IGNORE', $insertOptions )
-			? $this->makeInsertNonConflictingVerbAndOptions()
-			: [ 'INSERT INTO', '' ];
-		$encDstTable = $this->tableName( $destTable );
-		$sqlDstColumns = implode( ',', array_keys( $varMap ) );
-		$selectSql = $this->selectSQLText(
+		$sql = $this->platform->insertSelectNativeSqlText(
+			$destTable,
 			$srcTable,
-			array_values( $varMap ),
+			$varMap,
 			$conds,
 			$fname,
+			$insertOptions,
 			$selectOptions,
 			$selectJoinConds
 		);
-
-		$sql = rtrim( "$sqlVerb $encDstTable ($sqlDstColumns) $selectSql $sqlOpts" );
-
 		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 	}
 
@@ -4929,6 +4833,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$options = [], $join_conds = []
 	) {
 		return $this->platform->buildSelectSubquery( $table, $vars, $conds, $fname, $options, $join_conds );
+	}
+
+	protected function makeInsertLists( array $rows, $aliasPrefix = '' ) {
+		return $this->platform->makeInsertLists( $rows, $aliasPrefix );
+	}
+
+	final protected function isFlagInOptions( $option, array $options ) {
+		return $this->platform->isFlagInOptions( $option, $options );
 	}
 
 	/* End of methods delegated to SQLPlatform. */
