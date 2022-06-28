@@ -35,7 +35,6 @@ use ParserOutput;
 use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Parsoid\Core\PageBundle;
 
 /**
  * Helper for getting output of a given wikitext page rendered by parsoid.
@@ -116,20 +115,6 @@ class ParsoidHTMLHelper {
 	}
 
 	/**
-	 * @param ParserOutput $parserOutput
-	 *
-	 * @return PageBundle
-	 */
-	private function makePageBundle( ParserOutput $parserOutput ): PageBundle {
-		$pbData = $parserOutput->getExtensionData( ParsoidOutputAccess::PARSOID_PAGE_BUNDLE_KEY );
-		return new PageBundle(
-			$parserOutput->getRawText(),
-			$pbData['parsoid'] ?? [],
-			$pbData['mw'] ?? []
-		);
-	}
-
-	/**
 	 * @return ParserOutput a tuple with html and content-type
 	 * @throws LocalizedHttpException
 	 */
@@ -151,7 +136,7 @@ class ParsoidHTMLHelper {
 			);
 			$stashSuccess = $this->parsoidOutputStash->set(
 				$parsoidStashKey,
-				$this->makePageBundle( $parserOutput )
+				$this->parsoidOutputAccess->getParsoidPageBundle( $parserOutput )
 			);
 			if ( !$stashSuccess ) {
 				$this->stats->increment( 'parsoidhtmlhelper.stash.fail' );
@@ -216,11 +201,35 @@ class ParsoidHTMLHelper {
 	 */
 	private function getParserOutput(): ParserOutput {
 		if ( !$this->parserOutput ) {
-			$this->parserOutput = $this->parsoidOutputAccess->getParserOutput(
+			$status = $this->parsoidOutputAccess->getParserOutput(
 				$this->page,
 				ParserOptions::newFromAnon(),
 				$this->revision
 			);
+
+			if ( !$status->isOK() ) {
+				if ( $status->hasMessage( 'parsoid-client-error' ) ) {
+					throw new LocalizedHttpException(
+						MessageValue::new( 'rest-html-backend-error' ),
+						400,
+						[ 'reason' => $status->getErrors() ]
+					);
+				} elseif ( $status->hasMessage( 'parsoid-resource-limit-exceeded' ) ) {
+					throw new LocalizedHttpException(
+						MessageValue::new( 'rest-resource-limit-exceeded' ),
+						413,
+						[ 'reason' => $status->getErrors() ]
+					);
+				} else {
+					throw new LocalizedHttpException(
+						MessageValue::new( 'rest-html-backend-error' ),
+						500,
+						[ 'reason' => $status->getErrors() ]
+					);
+				}
+			}
+
+			$this->parserOutput = $status->getValue();
 		}
 
 		return $this->parserOutput;

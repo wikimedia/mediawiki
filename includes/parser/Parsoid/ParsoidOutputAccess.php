@@ -38,7 +38,7 @@ use MediaWiki\Revision\RevisionRecord;
 use ParserCache;
 use ParserOptions;
 use ParserOutput;
-use Wikimedia\Message\MessageValue;
+use Status;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
@@ -63,10 +63,9 @@ class ParsoidOutputAccess {
 	private const RENDER_ID_KEY = 'parsoid-render-id';
 
 	/**
-	 * @internal needed in test case
 	 * @var string Key used to store parsoid page bundle data in ParserOutput
 	 */
-	public const PARSOID_PAGE_BUNDLE_KEY = 'parsoid-page-bundle';
+	private const PARSOID_PAGE_BUNDLE_KEY = 'parsoid-page-bundle';
 
 	/** @var int Do not check the cache before parsing (force parse) */
 	public const OPT_FORCE_PARSE = 1;
@@ -126,7 +125,7 @@ class ParsoidOutputAccess {
 	 * @param ?RevisionRecord $revision
 	 * @param int $options See the OPT_XXX constants
 	 *
-	 * @return ParserOutput
+	 * @return Status<ParserOutput>
 	 * @throws LocalizedHttpException
 	 */
 	public function getParserOutput(
@@ -134,7 +133,7 @@ class ParsoidOutputAccess {
 		ParserOptions $parserOpts,
 		?RevisionRecord $revision = null,
 		int $options = 0
-	): ParserOutput {
+	): Status {
 		$revId = $revision ? $revision->getId() : $page->getLatest();
 		if ( !$revision ) {
 			$revision = $this->revisionLookup->getRevisionById( $revId );
@@ -160,13 +159,19 @@ class ParsoidOutputAccess {
 			);
 
 			if ( $parserOutput ) {
-				return $parserOutput;
+				return Status::newGood( $parserOutput );
 			}
 		}
 
 		$startTime = microtime( true );
-		$parserOutput = $this->parse( $page, $revision );
+		$status = $this->parse( $page, $revision );
 		$time = microtime( true ) - $startTime;
+
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
+		$parserOutput = $status->getValue();
 
 		// TODO: when we make tighter integration with Parsoid, render ID should become
 		// a standard ParserOutput property. Nothing else needs it now, so don't generate
@@ -190,17 +195,17 @@ class ParsoidOutputAccess {
 			$this->stats->increment( $statsKey . '.save.skipfast' );
 		}
 
-		return $parserOutput;
+		return $status;
 	}
 
 	/**
 	 * @param PageRecord $page
 	 * @param ?RevisionRecord $revision
 	 *
-	 * @return ParserOutput
+	 * @return Status<ParserOutput>
 	 * @throws LocalizedHttpException
 	 */
-	private function parse( PageRecord $page, ?RevisionRecord $revision = null ): ParserOutput {
+	private function parse( PageRecord $page, ?RevisionRecord $revision = null ): Status {
 		try {
 			$pageConfig = $this->parsoidPageConfigFactory->create(
 				$page,
@@ -220,19 +225,11 @@ class ParsoidOutputAccess {
 						'title' => (string)$page,
 					] );
 			}
-			return $parserOutput;
+			return Status::newGood( $parserOutput );
 		} catch ( ClientError $e ) {
-			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-html-backend-error' ),
-				400,
-				[ 'reason' => $e->getMessage() ]
-			);
+			return Status::newFatal( 'parsoid-client-error', $e->getMessage() );
 		} catch ( ResourceLimitExceededException $e ) {
-			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-resource-limit-exceeded' ),
-				413,
-				[ 'reason' => $e->getMessage() ]
-			);
+			return Status::newFatal( 'parsoid-resource-limit-exceeded', $e->getMessage() );
 		}
 	}
 
@@ -278,6 +275,22 @@ class ParsoidOutputAccess {
 		}
 
 		return ParsoidRenderID::newFromKey( $renderId );
+	}
+
+	/**
+	 * Returns a Parsoid PageBundle equivalent to the given ParserOutput.
+	 *
+	 * @param ParserOutput $parserOutput
+	 *
+	 * @return PageBundle
+	 */
+	public function getParsoidPageBundle( ParserOutput $parserOutput ): PageBundle {
+		$pbData = $parserOutput->getExtensionData( self::PARSOID_PAGE_BUNDLE_KEY );
+		return new PageBundle(
+			$parserOutput->getRawText(),
+			$pbData['parsoid'] ?? [],
+			$pbData['mw'] ?? []
+		);
 	}
 
 	/**
