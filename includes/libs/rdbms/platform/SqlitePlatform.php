@@ -105,4 +105,12 @@ class SqlitePlatform extends SQLPlatform {
 
 		return parent::makeSelectOptions( $options );
 	}
+
+	public function buildGroupConcatField(
+		$delim, $table, $field, $conds = '', $join_conds = []
+	) {
+		$fld = "group_concat($field," . $this->quoter->addQuotes( $delim ) . ')';
+
+		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
+	}
 }
