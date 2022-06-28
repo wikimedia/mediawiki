@@ -45,6 +45,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserRigorOptions;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
+use Wikimedia\DebugInfo\DebugInfoTrait;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBExpectedError;
@@ -71,6 +72,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  */
 #[AllowDynamicProperties]
 class User implements Authority, UserIdentity, UserEmailContact {
+	use DebugInfoTrait;
 	use ProtectedHookAccessorTrait;
 	use WikiAwareEntityTrait;
 
@@ -231,7 +233,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/** @var int User::READ_* constant bitfield used to load data */
 	protected $queryFlagsUsed = self::READ_NORMAL;
 
-	/** @var Authority|null lazy-initialized Authority of this user */
+	/**
+	 * @var UserAuthority|null lazy-initialized Authority of this user
+	 * @noVarDump
+	 */
 	private $mThisAsAuthority;
 
 	/** @var bool|null */
@@ -1350,6 +1355,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 
 		if ( $wgFullyInitialised && $this->mFrom ) {
 			$services = MediaWikiServices::getInstance();
+
 			if ( $services->peekService( 'PermissionManager' ) ) {
 				$services->getPermissionManager()->invalidateUsersRightsCache( $this );
 			}
@@ -1466,16 +1472,19 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool True if a rate limiter was tripped
 	 */
 	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
-		$limiter = MediaWikiServices::getInstance()->getRateLimiter();
-		$subject = $this->toRateLimitSubject();
-		return $limiter->limit( $subject, $action, $incrBy );
+		return $this->getThisAsAuthority()->limit( $action, $incrBy, null );
 	}
 
-	private function toRateLimitSubject(): RateLimitSubject {
+	/**
+	 * @internal for use by UserAuthority only!
+	 * @return RateLimitSubject
+	 */
+	public function toRateLimitSubject(): RateLimitSubject {
 		$flags = [
 			'exempt' => $this->isAllowed( 'noratelimit' ),
 			'newbie' => $this->isNewbie(),
 		];
+
 		return new RateLimitSubject( $this, $this->getRequest()->getIP(), $flags );
 	}
 
@@ -3529,9 +3538,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Returns the Authority of this User if it's the main request context user.
 	 * This is intended to exist only for the period of transition to Authority.
-	 * @return Authority
+	 * @return UserAuthority
 	 */
-	private function getThisAsAuthority(): Authority {
+	private function getThisAsAuthority(): UserAuthority {
 		if ( !$this->mThisAsAuthority ) {
 			// TODO: For users that are not User::isGlobalSessionUser,
 			// creating a UserAuthority here is incorrect, since it depends
@@ -3541,7 +3550,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			// and use it here.
 			$this->mThisAsAuthority = new UserAuthority(
 				$this,
-				MediaWikiServices::getInstance()->getPermissionManager()
+				MediaWikiServices::getInstance()->getPermissionManager(),
+				MediaWikiServices::getInstance()->getRateLimiter()
 			);
 		}
 		return $this->mThisAsAuthority;

@@ -107,11 +107,6 @@ class ApiMove extends ApiBase {
 			}
 		}
 
-		// Rate limit
-		if ( $user->pingLimiter( 'move' ) ) {
-			$this->dieWithError( 'apierror-ratelimited' );
-		}
-
 		// Move the page
 		$toTitleExists = $toTitle->exists();
 		$mp = $this->movePageFactory->newMovePage( $fromTitle, $toTitle );
