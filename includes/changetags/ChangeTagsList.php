@@ -80,6 +80,11 @@ abstract class ChangeTagsList extends RevisionListBase {
 	 * @param Authority $performer
 	 * @return Status
 	 */
-	abstract public function updateChangeTagsOnAll( $tagsToAdd, $tagsToRemove, $params,
-													$reason, Authority $performer );
+	abstract public function updateChangeTagsOnAll(
+		array $tagsToAdd,
+		array $tagsToRemove,
+		?string $params,
+		string $reason,
+		Authority $performer
+	);
 }

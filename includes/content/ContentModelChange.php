@@ -261,7 +261,7 @@ class ContentModelChange {
 	 */
 	public function doContentModelChange(
 		IContextSource $context,
-		$comment,
+		string $comment,
 		$bot
 	) {
 		$status = $this->createNewContent();
