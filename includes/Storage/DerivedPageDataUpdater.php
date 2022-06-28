@@ -1846,13 +1846,23 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 			'The ID of the new revision must match the page\'s current revision ID'
 		);
 
+		$this->logger->debug( __METHOD__ . ': generating Parsoid output' );
+
 		// getParserOutput() will write to ParserCache
-		$this->parsoidOutputAccess->getParserOutput(
+		$status = $this->parsoidOutputAccess->getParserOutput(
 			$wikiPage,
 			$parserOpts,
 			$rev,
 			ParsoidOutputAccess::OPT_FORCE_PARSE
 		);
+
+		if ( !$status->isOK() ) {
+			$this->logger->error( __METHOD__ . ': Parsoid error', [
+				'errors' => $status->getErrors(),
+				'page' => $wikiPage->getTitle()->getPrefixedText(),
+				'rev' => $rev->getId(),
+			] );
+		}
 	}
 
 }
