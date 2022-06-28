@@ -662,14 +662,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->lazyMasterHandle;
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function implicitOrderby() {
-		return $this->platform->implicitOrderby();
-	}
-
 	public function lastQuery() {
 		return $this->lastQuery;
 	}
@@ -2012,16 +2004,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->query( $sql, $fname, $flags );
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
-		$options = [], $join_conds = []
-	) {
-		return $this->platform->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
-	}
-
 	public function selectRow( $table, $vars, $conds, $fname = __METHOD__,
 		$options = [], $join_conds = []
 	) {
@@ -2552,50 +2534,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return true;
 	}
 
-	public function makeList( array $a, $mode = self::LIST_COMMA ) {
-		return $this->platform->makeList( $a, $mode );
-	}
-
-	public function makeWhereFrom2d( $data, $baseKey, $subKey ) {
-		return $this->platform->makeWhereFrom2d( $data, $baseKey, $subKey );
-	}
-
-	public function factorConds( $condsArray ) {
-		return $this->platform->factorConds( $condsArray );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function bitNot( $field ) {
-		return $this->platform->bitNot( $field );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function bitAnd( $fieldLeft, $fieldRight ) {
-		return $this->platform->bitAnd( $fieldLeft, $fieldRight );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function bitOr( $fieldLeft, $fieldRight ) {
-		return $this->platform->bitOr( $fieldLeft, $fieldRight );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function buildConcat( $stringList ) {
-		return $this->platform->buildConcat( $stringList );
-	}
-
 	/**
 	 * @inheritDoc
 	 * @stable to override
@@ -2606,30 +2544,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$fld = "GROUP_CONCAT($field SEPARATOR " . $this->addQuotes( $delim ) . ')';
 
 		return '(' . $this->selectSQLText( $table, $fld, $conds, __METHOD__, [], $join_conds ) . ')';
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function buildGreatest( $fields, $values ) {
-		return $this->platform->buildGreatest( $fields, $values );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function buildLeast( $fields, $values ) {
-		return $this->platform->buildLeast( $fields, $values );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function buildSubstring( $input, $startPosition, $length = null ) {
-		return $this->platform->buildSubstring( $input, $startPosition, $length );
 	}
 
 	/**
@@ -2654,22 +2568,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				throw new DBUnexpectedError( $this, $fname . ' called with empty conditions' );
 			}
 		}
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function buildStringCast( $field ) {
-		return $this->platform->buildStringCast( $field );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function buildIntegerCast( $field ) {
-		return $this->platform->buildIntegerCast( $field );
 	}
 
 	public function buildSelectSubquery(
@@ -2744,22 +2642,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function tableName( $name, $format = 'quoted' ) {
-		return $this->platform->tableName( $name, $format );
-	}
-
-	public function tableNames( ...$tables ) {
-		return $this->platform->tableNames( ...$tables );
-	}
-
-	public function tableNamesN( ...$tables ) {
-		return $this->platform->tableNamesN( ...$tables );
-	}
-
-	/**
 	 * Get an aliased field name
 	 * e.g. fieldName AS newFieldName
 	 *
@@ -2774,16 +2656,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} else {
 			return $name . ' AS ' . $this->addIdentifierQuotes( $alias ); // PostgreSQL needs AS
 		}
-	}
-
-	/**
-	 * Allows for index remapping in queries where this is not consistent across DBMS
-	 *
-	 * @param string $index
-	 * @return string
-	 */
-	protected function indexName( $index ) {
-		return $this->platform->indexName( $index );
 	}
 
 	/**
@@ -2803,44 +2675,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} else {
 			return "'" . $this->strencode( $s ) . "'";
 		}
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function addIdentifierQuotes( $s ) {
-		return $this->platform->addIdentifierQuotes( $s );
-	}
-
-	/**
-	 * Returns if the given identifier looks quoted or not according to
-	 * the database convention for quoting identifiers
-	 *
-	 * @stable to override
-	 * @note Do not use this to determine if untrusted input is safe.
-	 *   A malicious user can trick this function.
-	 * @param string $name
-	 * @return bool
-	 */
-	public function isQuotedIdentifier( $name ) {
-		return $this->platform->isQuotedIdentifier( $name );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function buildLike( $param, ...$params ) {
-		return $this->platform->buildLike( $param, ...$params );
-	}
-
-	public function anyChar() {
-		return $this->platform->anyChar();
-	}
-
-	public function anyString() {
-		return $this->platform->anyString();
 	}
 
 	public function nextSequenceValue( $seqName ) {
@@ -3246,66 +3080,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$sql = rtrim( "$sqlVerb $encDstTable ($sqlDstColumns) $selectSql $sqlOpts" );
 
 		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function limitResult( $sql, $limit, $offset = false ) {
-		return $this->platform->limitResult( $sql, $limit, $offset );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function unionSupportsOrderAndLimit() {
-		return $this->platform->unionSupportsOrderAndLimit();
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function unionQueries( $sqls, $all ) {
-		return $this->platform->unionQueries( $sqls, $all );
-	}
-
-	public function unionConditionPermutations(
-		$table,
-		$vars,
-		array $permute_conds,
-		$extra_conds = '',
-		$fname = __METHOD__,
-		$options = [],
-		$join_conds = []
-	) {
-		return $this->platform->unionConditionPermutations(
-			$table,
-			$vars,
-			$permute_conds,
-			$extra_conds,
-			$fname,
-			$options,
-			$join_conds
-		);
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function conditional( $cond, $caseTrueExpression, $caseFalseExpression ) {
-		return $this->platform->conditional( $cond, $caseTrueExpression, $caseFalseExpression );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function strreplace( $orig, $old, $new ) {
-		return $this->platform->strreplace( $orig, $old, $new );
 	}
 
 	/**
@@ -4128,18 +3902,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function timestamp( $ts = 0 ) {
-		return $this->platform->timestamp( $ts );
-	}
-
-	public function timestampOrNull( $ts = null ) {
-		return $this->platform->timestampOrNull( $ts );
-	}
-
 	public function affectedRows() {
 		return $this->affectedRowCount ?? $this->fetchAffectedRowCount();
 	}
@@ -4761,22 +4523,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @inheritDoc
 	 * @stable to override
 	 */
-	public function getInfinity() {
-		return $this->platform->getInfinity();
-	}
-
-	public function encodeExpiry( $expiry ) {
-		return $this->platform->encodeExpiry( $expiry );
-	}
-
-	public function decodeExpiry( $expiry, $format = TS_MW ) {
-		return $this->platform->decodeExpiry( $expiry, $format );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function setBigSelects( $value = true ) {
 		// no-op
 	}
@@ -4801,29 +4547,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		return false;
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function setTableAliases( array $aliases ) {
-		$this->platform->setTableAliases( $aliases );
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function getTableAliases() {
-		return $this->platform->getTableAliases();
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function setIndexAliases( array $aliases ) {
-		$this->platform->setIndexAliases( $aliases );
 	}
 
 	/**
@@ -5047,6 +4770,176 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->conn = null;
 		}
 	}
+
+	/* Start of methods delegated to SQLPlatform. Avoid using them outside of rdbms library */
+
+	public function implicitOrderby() {
+		return $this->platform->implicitOrderby();
+	}
+
+	public function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
+								   $options = [], $join_conds = []
+	) {
+		return $this->platform->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
+	}
+
+	public function makeList( array $a, $mode = self::LIST_COMMA ) {
+		return $this->platform->makeList( $a, $mode );
+	}
+
+	public function makeWhereFrom2d( $data, $baseKey, $subKey ) {
+		return $this->platform->makeWhereFrom2d( $data, $baseKey, $subKey );
+	}
+
+	public function factorConds( $condsArray ) {
+		return $this->platform->factorConds( $condsArray );
+	}
+
+	public function bitNot( $field ) {
+		return $this->platform->bitNot( $field );
+	}
+
+	public function bitAnd( $fieldLeft, $fieldRight ) {
+		return $this->platform->bitAnd( $fieldLeft, $fieldRight );
+	}
+
+	public function bitOr( $fieldLeft, $fieldRight ) {
+		return $this->platform->bitOr( $fieldLeft, $fieldRight );
+	}
+
+	public function buildConcat( $stringList ) {
+		return $this->platform->buildConcat( $stringList );
+	}
+
+	public function buildGreatest( $fields, $values ) {
+		return $this->platform->buildGreatest( $fields, $values );
+	}
+
+	public function buildLeast( $fields, $values ) {
+		return $this->platform->buildLeast( $fields, $values );
+	}
+
+	public function buildSubstring( $input, $startPosition, $length = null ) {
+		return $this->platform->buildSubstring( $input, $startPosition, $length );
+	}
+
+	public function buildStringCast( $field ) {
+		return $this->platform->buildStringCast( $field );
+	}
+
+	public function buildIntegerCast( $field ) {
+		return $this->platform->buildIntegerCast( $field );
+	}
+
+	public function tableName( $name, $format = 'quoted' ) {
+		return $this->platform->tableName( $name, $format );
+	}
+
+	public function tableNames( ...$tables ) {
+		return $this->platform->tableNames( ...$tables );
+	}
+
+	public function tableNamesN( ...$tables ) {
+		return $this->platform->tableNamesN( ...$tables );
+	}
+
+	protected function indexName( $index ) {
+		return $this->platform->indexName( $index );
+	}
+
+	public function addIdentifierQuotes( $s ) {
+		return $this->platform->addIdentifierQuotes( $s );
+	}
+
+	public function isQuotedIdentifier( $name ) {
+		return $this->platform->isQuotedIdentifier( $name );
+	}
+
+	public function buildLike( $param, ...$params ) {
+		return $this->platform->buildLike( $param, ...$params );
+	}
+
+	public function anyChar() {
+		return $this->platform->anyChar();
+	}
+
+	public function anyString() {
+		return $this->platform->anyString();
+	}
+
+	public function limitResult( $sql, $limit, $offset = false ) {
+		return $this->platform->limitResult( $sql, $limit, $offset );
+	}
+
+	public function unionSupportsOrderAndLimit() {
+		return $this->platform->unionSupportsOrderAndLimit();
+	}
+
+	public function unionQueries( $sqls, $all ) {
+		return $this->platform->unionQueries( $sqls, $all );
+	}
+
+	public function unionConditionPermutations(
+		$table,
+		$vars,
+		array $permute_conds,
+		$extra_conds = '',
+		$fname = __METHOD__,
+		$options = [],
+		$join_conds = []
+	) {
+		return $this->platform->unionConditionPermutations(
+			$table,
+			$vars,
+			$permute_conds,
+			$extra_conds,
+			$fname,
+			$options,
+			$join_conds
+		);
+	}
+
+	public function conditional( $cond, $caseTrueExpression, $caseFalseExpression ) {
+		return $this->platform->conditional( $cond, $caseTrueExpression, $caseFalseExpression );
+	}
+
+	public function strreplace( $orig, $old, $new ) {
+		return $this->platform->strreplace( $orig, $old, $new );
+	}
+
+	public function timestamp( $ts = 0 ) {
+		return $this->platform->timestamp( $ts );
+	}
+
+	public function timestampOrNull( $ts = null ) {
+		return $this->platform->timestampOrNull( $ts );
+	}
+
+	public function getInfinity() {
+		return $this->platform->getInfinity();
+	}
+
+	public function encodeExpiry( $expiry ) {
+		return $this->platform->encodeExpiry( $expiry );
+	}
+
+	public function decodeExpiry( $expiry, $format = TS_MW ) {
+		return $this->platform->decodeExpiry( $expiry, $format );
+	}
+
+	public function setTableAliases( array $aliases ) {
+		$this->platform->setTableAliases( $aliases );
+	}
+
+	public function getTableAliases() {
+		return $this->platform->getTableAliases();
+	}
+
+	public function setIndexAliases( array $aliases ) {
+		$this->platform->setIndexAliases( $aliases );
+	}
+
+	/* End of methods delegated to SQLPlatform. */
 }
 
 /**
