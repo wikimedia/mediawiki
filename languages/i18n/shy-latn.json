@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"DannyS712",
-			"Vikoula5"
+			"Vikoula5",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Aderrer n iseɣwan:",
@@ -180,7 +181,7 @@
 	"protect_change": "beddel tiḥḥerzi",
 	"unprotect": "Beddel amesten",
 	"newpage": "Asebter amaynut",
-	"talkpagelinktext": "Mmeslay",
+	"talkpagelinktext": "mmeslay",
 	"specialpage": "Asebter uslig",
 	"personaltools": "Dduzan inu",
 	"talk": "Asqerdec",

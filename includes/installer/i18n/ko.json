@@ -16,7 +16,8 @@
 			"Ykhwong",
 			"아라",
 			"렌즈",
-			"Yunbj"
+			"Yunbj",
+			"Bluehill"
 		]
 	},
 	"config-desc": "미디어위키를 위한 설치 관리자",
@@ -149,7 +150,7 @@
 	"config-unknown-collation": "<strong>경고:</strong> 데이터베이스가 인식하지 않는 집합을 사용하고 있습니다.",
 	"config-db-web-account": "웹 접근을 위한 데이터베이스 계정",
 	"config-db-web-help": "위키의 일반적인 작업을 수행하는 동안 데이터베이스 서버에 연결하는 데 사용할 웹 서버의 계정 이름과 비밀번호를 선택하세요.",
-	"config-db-web-account-same": "설치를 위해 같은 계정 사용",
+	"config-db-web-account-same": "설치할 때와 동일한 계정 사용",
 	"config-db-web-create": "이 계정이 아직 존재하지 않을 경우 계정 만들기",
 	"config-db-web-no-create-privs": "설치를 위해 지정한 계정이 계정을 만들 수 있는 충분한 권한이 없습니다.\n여기서 지정한 계정은 이미 존재해야 합니다.",
 	"config-mysql-engine": "저장소 엔진:",

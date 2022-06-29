@@ -15,7 +15,8 @@
 			"Smeira",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Dislienükön yümis:",
@@ -172,7 +173,7 @@
 	"protect_change": "votükön",
 	"unprotect": "Votükön jeli",
 	"newpage": "Pad nulik",
-	"talkpagelinktext": "Bespik",
+	"talkpagelinktext": "bespik",
 	"specialpage": "Pad patik",
 	"personaltools": "Stums pösodik",
 	"talk": "Bespik",
@@ -667,7 +668,6 @@
 	"restoreprefs": "Geikön lü paramets kösömik valik",
 	"prefs-editing": "Redakam",
 	"searchresultshead": "Suk",
-	"stub-threshold": "Soliad pro fomätam <a href=\"#\" class=\"stub\">sidayümas</a> (jöläts):",
 	"recentchangesdays": "Dels ad pajonön in votükams nulik:",
 	"recentchangesdays-max": "(maxum: {{PLURAL:$1|del|dels}} $1)",
 	"recentchangescount": "Num kösömik redakamas ad pajonön:",

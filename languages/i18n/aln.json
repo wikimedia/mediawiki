@@ -11,7 +11,9 @@
 			"Mdupont",
 			"Olsi",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"Amire80",
+			"Vanished 456321456"
 		]
 	},
 	"tog-underline": "Nënvizoji vegzat",
@@ -174,7 +176,7 @@
 	"protect_change": "ndrysho",
 	"unprotect": "Hiq mbrojtjen",
 	"newpage": "Faqe e re",
-	"talkpagelinktext": "Bisedo",
+	"talkpagelinktext": "bisedo",
 	"specialpage": "Faqe speciale",
 	"personaltools": "Vegla vetjake",
 	"talk": "Bisedimi",
@@ -600,7 +602,6 @@
 	"restoreprefs": "Kthe tâna përcaktimet si në fillim",
 	"prefs-editing": "Tue redaktue",
 	"searchresultshead": "Kërkimi",
-	"stub-threshold": "Pragu për formatimin e <a href=\"#\" class=\"stub\">vegzave të cungueme</a> në (byte):",
 	"recentchangesdays": "Numri i ditëve për me i tregue te ndryshimet e freskëta:",
 	"recentchangesdays-max": "(maksimum $1 {{PLURAL:$1|ditë|ditë}})",
 	"recentchangescount": "Numri i redaktimeve me u tregue:",

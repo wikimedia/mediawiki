@@ -8,7 +8,8 @@
 			"Macofe",
 			"Node ue",
 			"Singularity",
-			"Xqt"
+			"Xqt",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Kahalalo i nā loulou:",
@@ -176,7 +177,7 @@
 	"protect_change": "hoʻololi",
 	"unprotect": "E hoʻololi i ka ho‘omalu",
 	"newpage": "‘Ao‘ao hou",
-	"talkpagelinktext": "Walaʻau",
+	"talkpagelinktext": "walaʻau",
 	"specialpage": "‘Ao‘ao kūikawā",
 	"personaltools": "Hāmeʻa ponoʻī",
 	"talk": "walaʻau",

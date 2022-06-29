@@ -2453,5 +2453,15 @@
 	"changecredentials-submit": "Oanmeldgegevens feroarje",
 	"credentialsform-provider": "Soarte oanmeldgegevens:",
 	"credentialsform-account": "Akkountnamme:",
+	"specialmute": "Stilhâlde",
+	"specialmute-success": "Jo foarkarren foar it stilhâlden binne bywurke. Alle stilholden meidoggers binne yn [[Special:Preferences|jo foarkarren]] te besjen.",
+	"specialmute-submit": "Befêstigje",
+	"specialmute-label-mute-email": "Gjin e-mail ûntfange fan dizze {{GENDER:$1|meidogger|meidochster}}",
+	"specialmute-header": "Stel jo foarkarren yn foar it stilhâlden fan meidogger <b>{{BIDI:[[User:$1|$1]]}}</b>.",
+	"specialmute-error-invalid-user": "De frege meidochnamme koe net fûn wurde.",
+	"specialmute-error-no-options": "De funksjes foar stilhâlden binne net beskikber. Dat kin komme om't jo jo e-mailadres net befêstige hawwe, of om't it wikibehear e-mail- as listfunksjes útskeakele hat op dizze wiki.",
+	"specialmute-email-footer": "Om e-mailfoarkarren oangeande meidogger {{BIDI:$2}} te behearen, gean nei <$1>.",
+	"specialmute-login-required": "Meld jo oan om jo foarkarren foar it stilhâlden wizigje te kinnen.",
+	"mute-preferences": "Stilhâlden ynstelle",
 	"userlogout-continue": "Wolle jo jo ôfmelde?"
 }
