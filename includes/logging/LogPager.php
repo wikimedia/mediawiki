@@ -174,7 +174,6 @@ class LogPager extends ReverseChronologicalPager {
 	 *   empty string means no restriction
 	 */
 	private function limitType( $types ) {
-		$user = $this->getUser();
 		$restrictions = $this->getConfig()->get( MainConfigNames::LogRestrictions );
 		// If $types is not an array, make it an array
 		$types = ( $types === '' ) ? [] : (array)$types;
@@ -200,7 +199,7 @@ class LogPager extends ReverseChronologicalPager {
 		// we don't require that "specific request" so that the links-in-logs feature
 		// works. See T269761
 		$audience = ( $types || $this->hasEqualsClause( 'log_id' ) ) ? 'user' : 'public';
-		$hideLogs = LogEventsList::getExcludeClause( $this->mDb, $audience, $user );
+		$hideLogs = LogEventsList::getExcludeClause( $this->mDb, $audience, $this->getAuthority() );
 		if ( $hideLogs !== false ) {
 			$this->mConds[] = $hideLogs;
 		}

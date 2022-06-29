@@ -295,7 +295,7 @@ class SpecialTags extends SpecialPage {
 		$tag = trim( strval( $data['Tag'] ) );
 		$ignoreWarnings = isset( $data['IgnoreWarnings'] ) && $data['IgnoreWarnings'] === '1';
 		$status = ChangeTags::createTagWithChecks( $tag, $data['Reason'],
-			$context->getUser(), $ignoreWarnings );
+			$context->getAuthority(), $ignoreWarnings );
 
 		if ( $status->isGood() ) {
 			$out->redirect( $this->getPageTitle()->getLocalURL() );

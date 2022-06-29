@@ -92,7 +92,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->fld_details = isset( $prop['details'] );
 		$this->fld_tags = isset( $prop['tags'] );
 
-		$hideLogs = LogEventsList::getExcludeClause( $db, 'user', $this->getUser() );
+		$hideLogs = LogEventsList::getExcludeClause( $db, 'user', $this->getAuthority() );
 		if ( $hideLogs !== false ) {
 			$this->addWhere( $hideLogs );
 		}
@@ -316,7 +316,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			ApiResult::META_TYPE => 'assoc',
 		];
 		$anyHidden = false;
-		$user = $this->getUser();
 
 		if ( $this->fld_ids ) {
 			$vals['logid'] = (int)$row->log_id;
@@ -326,12 +325,13 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$title = Title::makeTitle( $row->log_namespace, $row->log_title );
 		}
 
+		$authority = $this->getAuthority();
 		if ( $this->fld_title || $this->fld_ids || $this->fld_details && $row->log_params !== '' ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
 				$vals['actionhidden'] = true;
 				$anyHidden = true;
 			}
-			if ( LogEventsList::userCan( $row, LogPage::DELETED_ACTION, $user ) ) {
+			if ( LogEventsList::userCan( $row, LogPage::DELETED_ACTION, $authority ) ) {
 				if ( $this->fld_title ) {
 					// @phan-suppress-next-next-line PhanTypeMismatchArgumentNullable,PhanPossiblyUndeclaredVariable
 					// title is set when used
@@ -357,7 +357,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$vals['userhidden'] = true;
 				$anyHidden = true;
 			}
-			if ( LogEventsList::userCan( $row, LogPage::DELETED_USER, $user ) ) {
+			if ( LogEventsList::userCan( $row, LogPage::DELETED_USER, $authority ) ) {
 				if ( $this->fld_user ) {
 					$vals['user'] = $row->actor_name;
 				}
@@ -379,7 +379,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$vals['commenthidden'] = true;
 				$anyHidden = true;
 			}
-			if ( LogEventsList::userCan( $row, LogPage::DELETED_COMMENT, $user ) ) {
+			if ( LogEventsList::userCan( $row, LogPage::DELETED_COMMENT, $authority ) ) {
 				if ( $this->fld_comment ) {
 					$vals['comment'] = $this->commentStore->getComment( 'log_comment', $row )->text;
 				}
@@ -426,7 +426,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if ( $params['prop'] !== null && in_array( 'parsedcomment', $params['prop'] ) ) {
 			// formatComment() calls wfMessage() among other things
 			return 'anon-public-user-private';
-		} elseif ( LogEventsList::getExcludeClause( $this->getDB(), 'user', $this->getUser() )
+		} elseif ( LogEventsList::getExcludeClause( $this->getDB(), 'user', $this->getAuthority() )
 			=== LogEventsList::getExcludeClause( $this->getDB(), 'public' )
 		) { // Output can only contain public data.
 			return 'public';

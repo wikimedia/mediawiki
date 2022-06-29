@@ -433,8 +433,6 @@ class LogEventsList extends ContextSource {
 			return '';
 		}
 
-		$user = $this->getUser();
-
 		// If change tag editing is available to this user, return the checkbox
 		if ( $this->flags & self::USE_CHECKBOXES && $this->showTagEditUI ) {
 			return Xml::check(
@@ -450,18 +448,19 @@ class LogEventsList extends ContextSource {
 		}
 
 		$del = '';
+		$authority = $this->getAuthority();
 		// Don't show useless checkbox to people who cannot hide log entries
-		if ( $this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
-			$canHide = $this->getAuthority()->isAllowed( 'deletelogentry' );
-			$canViewSuppressedOnly = $this->getAuthority()->isAllowed( 'viewsuppressed' ) &&
-				!$this->getAuthority()->isAllowed( 'suppressrevision' );
+		if ( $authority->isAllowed( 'deletedhistory' ) ) {
+			$canHide = $authority->isAllowed( 'deletelogentry' );
+			$canViewSuppressedOnly = $authority->isAllowed( 'viewsuppressed' ) &&
+				!$authority->isAllowed( 'suppressrevision' );
 			$entryIsSuppressed = self::isDeleted( $row, LogPage::DELETED_RESTRICTED );
 			$canViewThisSuppressedEntry = $canViewSuppressedOnly && $entryIsSuppressed;
 			if ( $row->log_deleted || $canHide ) {
 				// Show checkboxes instead of links.
 				if ( $canHide && $this->flags & self::USE_CHECKBOXES && !$canViewThisSuppressedEntry ) {
 					// If event was hidden from sysops
-					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) {
+					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $authority ) ) {
 						$del = Xml::check( 'deleterevisions', false, [ 'disabled' => 'disabled' ] );
 					} else {
 						$del = Xml::check(
@@ -472,7 +471,7 @@ class LogEventsList extends ContextSource {
 					}
 				} else {
 					// If event was hidden from sysops
-					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) {
+					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $authority ) ) {
 						$del = Linker::revDeleteLinkDisabled( $canHide );
 					} else {
 						$query = [

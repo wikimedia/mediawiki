@@ -186,7 +186,7 @@ class LogFormatter {
 	protected function canView( $field ) {
 		if ( $this->audience == self::FOR_THIS_USER ) {
 			return LogEventsList::userCanBitfield(
-				$this->entry->getDeleted(), $field, $this->context->getUser() ) &&
+				$this->entry->getDeleted(), $field, $this->context->getAuthority() ) &&
 				self::canViewLogType();
 		} else {
 			return !$this->entry->isDeleted( $field ) && self::canViewLogType();

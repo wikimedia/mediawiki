@@ -598,7 +598,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 
 			$userCanView = RevisionRecord::userCanBitfield(
 				$row->rev_deleted,
-				RevisionRecord::DELETED_COMMENT, $this->getUser()
+				RevisionRecord::DELETED_COMMENT, $this->getAuthority()
 			);
 
 			if ( $userCanView ) {
