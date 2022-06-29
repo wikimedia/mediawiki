@@ -428,6 +428,8 @@ because of Phabricator reports.
   emit deprecation warnings.
 * Title::getNotificationTimestamp(), deprecated in 1.35, now emits deprecation
   warnings.
+* Global functions wfReadOnly and wfReadOnlyReason, deprecated in 1.38, now
+  emit deprecation warnings.
 * …
 
 === Other changes in 1.39 ===
