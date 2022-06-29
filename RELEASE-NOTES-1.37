@@ -2,7 +2,7 @@
 
 == MediaWiki 1.37.3 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.37 branch.
 
 === Changes since MediaWiki 1.37.2 ===
 * Localisation updates.
@@ -28,6 +28,12 @@ THIS IS NOT A RELEASE YET
 * (T311552) ChangesListSpecialPage: Don't pass null to FormatJson::decode().
 * (T311569) FileBackend::isStoragePath() Handle being passed null.
 * (T311544) Pass int to ApiUsageException::newWithMessage()'s $httpCode param.
+* (T311678) SpecialEditWatchlist: Prevent passing null to strtolower().
+* (T281741) ChangeTags: Fix adding CSS classes for hidden tags.
+* (T296642) changetags: Fix management of a '0' tag.
+* (T311554) ChangeTags: Return early in formatSummaryRow() if $tags === null.
+* (T303033) Handle null in ChangeTags::modifyDisplayQuery.
+* Updated wikimedia/common-passwords from 0.3.0 to 0.4.0.
 
 == MediaWiki 1.37.2 ==
 
@@ -246,6 +252,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * Updated wikimedia/wait-condition-loop from v2.0.1 to v2.0.2.
 * Updated zordius/lightncandy from v1.2.5 to v1.2.6.
 * Updated guzzlehttp/guzzle from 7.2.0 to 7.4.5.
+* Updated wikimedia/common-passwords from 0.3.0 to 0.4.0.
 
 ===== Changed development-only external libraries =====
 * Updated qunit from 2.10.0 to 2.16.0.
