@@ -1,7 +1,5 @@
 <?php
 /**
- * Data caching with dependencies.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,14 +16,15 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Cache
  */
 
 /**
- * This class stores an arbitrary value along with its dependencies.
- * Users should typically only use DependencyWrapper::getValueFromCache(),
+ * Store an arbitrary value whilst representing several CacheDependency objects as one.
+ *
+ * You should typically only use DependencyWrapper::getValueFromCache(),
  * rather than instantiating one of these objects directly.
- * @ingroup Cache
+ *
+ * @ingroup Language
  */
 class DependencyWrapper {
 	private $value;

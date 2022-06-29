@@ -1,7 +1,5 @@
 <?php
 /**
- * Localisation messages cache.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Cache
  */
 
 use MediaWiki\HookContainer\HookContainer;
@@ -47,10 +44,9 @@ use Wikimedia\ScopedCallback;
 define( 'MSG_CACHE_VERSION', 2 );
 
 /**
- * Cache of messages that are defined by MediaWiki namespace pages or by hooks
+ * Cache messages that are defined by MediaWiki-namespace pages or by hooks.
  *
- * Performs various MediaWiki namespace-related functions
- * @ingroup Cache
+ * @ingroup Language
  */
 class MessageCache implements LoggerAwareInterface {
 	/**

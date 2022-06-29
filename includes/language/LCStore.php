@@ -34,6 +34,8 @@
  *
  * The values stored are PHP variables suitable for serialize(). Implementations
  * of LCStore are responsible for serializing and unserializing.
+ *
+ * @ingroup Language
  */
 interface LCStore {
 

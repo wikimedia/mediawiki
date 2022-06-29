@@ -1,7 +1,5 @@
 <?php
 /**
- * Balinese specific code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,19 +16,19 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
 
 /**
+ * Balinese specific code.
  *
- * @ingroup Language
+ * @ingroup Languages
  */
 class BanConverter extends LanguageConverterIcu {
 
 	/**
 	 * Get Main language code.
-	 * @since 1.36
 	 *
+	 * @since 1.36
 	 * @return string
 	 */
 	public function getMainCode(): string {
@@ -39,8 +37,8 @@ class BanConverter extends LanguageConverterIcu {
 
 	/**
 	 * Get supported variants of the language.
-	 * @since 1.36
 	 *
+	 * @since 1.36
 	 * @return array
 	 */
 	public function getLanguageVariants(): array {
@@ -49,8 +47,8 @@ class BanConverter extends LanguageConverterIcu {
 
 	/**
 	 * Get language variants fallbacks.
-	 * @since 1.36
 	 *
+	 * @since 1.36
 	 * @return array
 	 */
 	public function getVariantsFallbacks(): array {

@@ -19,8 +19,11 @@
  */
 
 /**
- * A localisation cache optimised for loading large amounts of data for many
- * languages. Used by rebuildLocalisationCache.php.
+ * LocalisationCache optimised for loading many languages at once.
+ *
+ * Used by maintenance/rebuildLocalisationCache.php.
+ *
+ * @ingroup Language
  */
 class LocalisationCacheBulkLoad extends LocalisationCache {
 

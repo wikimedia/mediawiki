@@ -30,6 +30,8 @@ use Cdb\Writer;
  * available than it is with the PHP port.
  *
  * See Cdb.php and https://cr.yp.to/cdb.html
+ *
+ * @ingroup Language
  */
 class LCStoreCDB implements LCStore {
 
