@@ -34,7 +34,7 @@ use Psr\Log\LoggerInterface;
 use Wikimedia\IPUtils;
 
 /**
- * Provides rate limiting for a set of actions based on severa counter
+ * Provides rate limiting for a set of actions based on several counter
  * buckets.
  *
  * @since 1.39

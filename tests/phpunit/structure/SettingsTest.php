@@ -184,7 +184,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		if ( isset( $schema['properties'] ) ) {
 			$this->assertContains(
 				'object', $type,
-				'must be of type "object", since is defines properties'
+				'must be of type "object", since it defines properties'
 			);
 
 			$defaults = $schema['default'] ?? [];
@@ -278,7 +278,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 			$this->assertContains(
 				'object',
 				$type,
-				'should be declared to be an object if schemas are defined for "proeprties" ' .
+				'should be declared to be an object if schemas are defined for "properties" ' .
 					'or "additionalProperties"'
 			);
 		}
