@@ -60,8 +60,14 @@ class TransformHandler extends ParsoidHandler {
 		$request = $this->getRequest();
 		$from = $request->getPathParam( 'from' );
 		$format = $request->getPathParam( 'format' );
-		if ( !isset( ParsoidFormatHelper::VALID_TRANSFORM[$from] ) || !in_array( $format,
-				ParsoidFormatHelper::VALID_TRANSFORM[$from],
+
+		// XXX: Fallback to the default valid transforms in case the request is
+		//      coming from a legacy client (restbase) that supports everything
+		//      in the default valid transforms.
+		$validTransformations = $this->getConfig()['transformations'] ?? ParsoidFormatHelper::VALID_TRANSFORM;
+
+		if ( !isset( $validTransformations[$from] ) || !in_array( $format,
+				$validTransformations[$from],
 				true ) ) {
 			throw new HttpException( "Invalid transform: ${from}/to/${format}",
 				404 );
