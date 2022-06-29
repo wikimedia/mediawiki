@@ -2353,6 +2353,7 @@
 	"sp-contributions-hideminor": "Kuzhat ar c'hemmoù dister",
 	"sp-contributions-submit": "Klask",
 	"whatlinkshere": "Pajennoù liammet",
+	"whatlinkshere-count": "Diskwelet $1 {{PLURAL:$1|elfenn}}.",
 	"whatlinkshere-title": "Pajennoù liammet ouzh \"$1\"",
 	"whatlinkshere-page": "Pajenn :",
 	"linkshere": "Ar pajennoù a-is zo enno ul liamm a gas war-du '''$2''':",

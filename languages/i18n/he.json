@@ -1090,7 +1090,7 @@
 	"prefs-help-tokenmanagement": "באפשרותך לצפות במפתח הסודי לחשבונך, שמאפשר גישה להזנה (ה־Feed האינטרנטי) של רשימת המעקב שלך, ולאפס אותו. כל מי שיודע את המפתח יכול לקרוא את רשימת המעקב שלך, לכן אין לשתף אותו.",
 	"prefs-user-downloaddata-label": "גישה לנתוני חשבון:",
 	"prefs-user-downloaddata-info": "נתוני החשבון שלי מהמיזם הזה",
-	"prefs-user-restoreprefs-label": "מחיקת נתוני חשבון:",
+	"prefs-user-restoreprefs-label": "איפוס הגדרות:",
 	"prefs-user-restoreprefs-info": "שחזור כל העדפות ברירת המחדל (בכל החלקים)",
 	"savedprefs": "ההעדפות שלך נשמרו.",
 	"savedrights": "קבוצות {{GENDER:$1|המשתמש|המשתמשת}} של \"$1\" נשמרו.",

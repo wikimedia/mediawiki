@@ -1147,7 +1147,7 @@
 	"prefs-help-tokenmanagement": "Możesz zobaczyć i zresetować tajny klucz przypisany do Twojego konta, służący do uzyskania dostępu do kanału internetowego zmian w obserwowanych przez ciebie stronach. Każdy, kto go zna, będzie mógł je zobaczyć, więc nie udostępniaj go.",
 	"prefs-user-downloaddata-label": "Zobacz dane konta:",
 	"prefs-user-downloaddata-info": "Dane mojego konta w tym projekcie",
-	"prefs-user-restoreprefs-label": "Usuń dane konta:",
+	"prefs-user-restoreprefs-label": "Zresetuj ustawienia:",
 	"prefs-user-restoreprefs-info": "Przywróć wszystkie domyślne preferencje (we wszystkich zakładkach)",
 	"savedprefs": "Twoje preferencje zostały zapisane.",
 	"savedrights": "Zapisano grupy {{GENDER:$1|użytkownika $1|użytkowniczki $1}}.",

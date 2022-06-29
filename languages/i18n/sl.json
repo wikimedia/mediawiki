@@ -1057,7 +1057,7 @@
 	"prefs-help-tokenmanagement": "Lahko si ogledate ali ponastavite skrivni ključ vašega računa, s katerim lahko dostopate do spletnega vira svojega spiska nadzorov. Vaš spisek nadzorov lahko bere vsak, ki pozna vaš ključ, zato ga ne delite.",
 	"prefs-user-downloaddata-label": "Podatki o dostopu do računa:",
 	"prefs-user-downloaddata-info": "Podatki o mojem računu v tem projektu",
-	"prefs-user-restoreprefs-label": "Izbriši podatke o računu:",
+	"prefs-user-restoreprefs-label": "Ponastavi nastavitve:",
 	"prefs-user-restoreprefs-info": "Obnovi vse privzete nastavitve (v vseh razdelkih)",
 	"savedprefs": "Spremembe smo uspešno shranili.",
 	"savedrights": "Uporabniške skupine {{GENDER:$1|$1}} smo shranili.",

@@ -1183,7 +1183,7 @@
 	"prefs-help-tokenmanagement": "Puoi visualizzare e reimpostare la chiave segreta per la tua utenza con cui puoi accedere al feed web dei tuoi osservati speciali. Chiunque conosca la chiave sarà in grado di leggere i tuoi osservati speciali, quindi non condividerla.",
 	"prefs-user-downloaddata-label": "Dati accesso utenza:",
 	"prefs-user-downloaddata-info": "Dati della mia utenza su questo progetto",
-	"prefs-user-restoreprefs-label": "Cancella dati utenza:",
+	"prefs-user-restoreprefs-label": "Ripristina impostazioni:",
 	"prefs-user-restoreprefs-info": "Ripristina tutte le preferenze predefinite (in tutte le sezioni)",
 	"savedprefs": "Le preferenze sono state salvate.",
 	"savedrights": "I gruppi utente di {{GENDER:$1|$1}} sono stati salvati.",
