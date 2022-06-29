@@ -9,17 +9,16 @@ use MediaWiki\Rest\Validator\BodyValidator;
 use MediaWiki\Rest\Validator\JsonBodyValidator;
 use MediaWiki\Rest\Validator\NullBodyValidator;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\MockObject\MockObject;
-use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Services\ServiceContainer;
 
 /**
  * @covers \MediaWiki\Rest\Validator\Validator
  */
 class ValidatorTest extends \MediaWikiUnitTestCase {
-
+	use DummyServicesTrait;
 	use MockAuthorityTrait;
 
 	public function provideValidateBody() {
@@ -120,9 +119,7 @@ class ValidatorTest extends \MediaWikiUnitTestCase {
 	 * @dataProvider provideValidateBody
 	 */
 	public function testValidateBody( BodyValidator $bodyValidator, RequestData $requestData, $expected ) {
-		/** @var ServiceContainer|MockObject $serviceContainer */
-		$serviceContainer = $this->createNoOpMock( ServiceContainer::class );
-		$objectFactory = new ObjectFactory( $serviceContainer );
+		$objectFactory = $this->getDummyObjectFactory();
 
 		/** @var Handler|MockObject $handler */
 		$handler = $this->getMockBuilder( Handler::class )

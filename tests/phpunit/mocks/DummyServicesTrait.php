@@ -41,6 +41,7 @@ use MediaWiki\User\UserNameUtils;
 use MediaWikiTitleCodec;
 use NamespaceInfo;
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Container\ContainerInterface;
 use Psr\Log\NullLogger;
 use ReadOnlyMode;
 use TitleFormatter;
@@ -49,7 +50,9 @@ use WatchedItem;
 use WatchedItemStore;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
+use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Services\NoSuchServiceException;
 
 /**
  * Trait to get helper services that can be used in unit tests
@@ -363,6 +366,30 @@ trait DummyServicesTrait {
 			$serviceOptions,
 			$options['hookContainer'] ?? $this->createHookContainer()
 		);
+	}
+
+	/**
+	 * @param array<string,mixed> $services services that exist, keys are service names,
+	 *   values are the service to return. Any service not in this array does not exist.
+	 * @return ObjectFactory
+	 */
+	private function getDummyObjectFactory( array $services = [] ): ObjectFactory {
+		$container = $this->createMock( ContainerInterface::class );
+		$container->method( 'has' )
+			->willReturnCallback( static function ( $serviceName ) use ( $services ) {
+				return array_key_exists( $serviceName, $services );
+			} );
+		$container->method( 'get' )
+			->willReturnCallback( static function ( $serviceName ) use ( $services ) {
+				if ( array_key_exists( $serviceName, $services ) ) {
+					return $services[$serviceName];
+				}
+				// Need to throw some exception that implements the PSR
+				// NotFoundExceptionInterface, use the exception from the Services
+				// library which implements it and has a helpful message
+				throw new NoSuchServiceException( $serviceName );
+			} );
+		return new ObjectFactory( $container );
 	}
 
 	/**

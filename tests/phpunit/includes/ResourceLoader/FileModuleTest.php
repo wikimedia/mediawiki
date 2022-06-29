@@ -8,25 +8,23 @@ use LogicException;
 use MediaWiki\ResourceLoader\FileModule;
 use MediaWiki\ResourceLoader\FilePath;
 use MediaWiki\ResourceLoader\ResourceLoader;
-use Psr\Container\ContainerInterface;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use ResourceLoaderFileTestModule;
 use ResourceLoaderTestCase;
 use RuntimeException;
 use SkinFactory;
-use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @group ResourceLoader
  * @covers \MediaWiki\ResourceLoader\FileModule
  */
 class FileModuleTest extends ResourceLoaderTestCase {
+	use DummyServicesTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
 
-		$skinFactory = new SkinFactory(
-			new ObjectFactory( $this->createMock( ContainerInterface::class ) ), []
-		);
+		$skinFactory = new SkinFactory( $this->getDummyObjectFactory(), [] );
 		// The empty spec shouldn't matter since this test should never call it
 		$skinFactory->register(
 			'fakeskin',

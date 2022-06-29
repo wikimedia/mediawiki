@@ -4,8 +4,8 @@ namespace MediaWiki\Auth;
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserNameUtils;
-use Psr\Container\ContainerInterface;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -15,6 +15,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
 	use AuthenticationProviderTestTrait;
+	use DummyServicesTrait;
 
 	private $manager = null;
 	private $config = null;
@@ -44,14 +45,12 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$hookContainer = $mwServices->getHookContainer();
 
 		if ( !$this->manager ) {
-			$services = $this->createNoOpAbstractMock( ContainerInterface::class );
-			$objectFactory = new \Wikimedia\ObjectFactory\ObjectFactory( $services );
 			$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
 
 			$this->manager = new AuthManager(
 				new \MediaWiki\Request\FauxRequest(),
 				$config,
-				$objectFactory,
+				$this->getDummyObjectFactory(),
 				$hookContainer,
 				$mwServices->getReadOnlyMode(),
 				$userNameUtils,

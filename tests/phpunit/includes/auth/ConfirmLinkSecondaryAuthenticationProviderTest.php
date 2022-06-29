@@ -3,9 +3,8 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserNameUtils;
-use Psr\Container\ContainerInterface;
-use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -14,6 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
 	use AuthenticationProviderTestTrait;
+	use DummyServicesTrait;
 
 	/**
 	 * @dataProvider provideGetAuthenticationRequests
@@ -251,7 +251,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$manager = new AuthManager(
 			$request,
 			$config,
-			new ObjectFactory( $this->createNoOpMock( ContainerInterface::class ) ),
+			$this->getDummyObjectFactory(),
 			$mwServices->getHookContainer(),
 			$mwServices->getReadOnlyMode(),
 			$mwServices->getUserNameUtils(),

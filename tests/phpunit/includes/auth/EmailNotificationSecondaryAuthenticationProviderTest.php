@@ -3,10 +3,9 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserNameUtils;
-use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
-use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -15,6 +14,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
 	use AuthenticationProviderTestTrait;
+	use DummyServicesTrait;
 
 	/**
 	 * @param array $options
@@ -94,7 +94,7 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiInt
 		$authManager = new AuthManager(
 			new \MediaWiki\Request\FauxRequest(),
 			new \HashConfig(),
-			new ObjectFactory( $this->createNoOpAbstractMock( ContainerInterface::class ) ),
+			$this->getDummyObjectFactory(),
 			$hookContainer,
 			$mwServices->getReadOnlyMode(),
 			$userNameUtils,

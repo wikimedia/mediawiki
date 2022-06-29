@@ -1,8 +1,7 @@
 <?php
 
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserFactory;
-use Psr\Container\ContainerInterface;
-use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @covers ApiModuleManager
@@ -10,6 +9,7 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * @group medium
  */
 class ApiModuleManagerTest extends MediaWikiUnitTestCase {
+	use DummyServicesTrait;
 
 	private function getModuleManager() {
 		// getContext is called in ApiBase::__construct
@@ -17,16 +17,15 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 		$apiMain->method( 'getContext' )
 			->willReturn( $this->createMock( RequestContext::class ) );
 
-		$containerInterface = $this->createMock( ContainerInterface::class );
 		// Only needs to be able to provide the services used in the tests below, we
 		// don't need a full copy of MediaWikiServices's services. The only service
 		// actually used is a UserFactory, for demonstration purposes
-		$containerInterface->method( 'get' )
-			->with( 'UserFactory' )
-			->willReturn( $this->createMock( UserFactory::class ) );
+		$objectFactory = $this->getDummyObjectFactory( [
+			'UserFactory' => $this->createMock( UserFactory::class ),
+		] );
 		return new ApiModuleManager(
 			$apiMain,
-			new ObjectFactory( $containerInterface )
+			$objectFactory
 		);
 	}
 

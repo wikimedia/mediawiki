@@ -22,8 +22,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
-use Psr\Container\ContainerInterface;
-use Wikimedia\ObjectFactory\ObjectFactory;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 
 /**
  * @group API
@@ -33,6 +32,7 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * @covers ApiParse
  */
 class ApiParseTest extends ApiTestCase {
+	use DummyServicesTrait;
 
 	protected static $pageId;
 	protected static $revIds = [];
@@ -163,7 +163,7 @@ class ApiParseTest extends ApiTestCase {
 	 * @todo Should this code be in MediaWikiIntegrationTestCase or something?
 	 */
 	protected function setupSkin() {
-		$factory = new SkinFactory( new ObjectFactory( $this->createMock( ContainerInterface::class ) ), [] );
+		$factory = new SkinFactory( $this->getDummyObjectFactory(), [] );
 		$factory->register( 'testing', 'Testing', function () {
 			$skin = $this->getMockBuilder( SkinFallback::class )
 				->onlyMethods( [ 'getDefaultModules' ] )
