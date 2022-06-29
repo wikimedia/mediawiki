@@ -1236,7 +1236,7 @@
 	"prefs-help-tokenmanagement": "Vous pouvez voir et réinitialiser la clé secrète de votre compte qui peut accéder au flux Web de votre liste de suivi. Toute personne connaissant la clé pourra lire votre liste de suivi, ne la partagez donc pas.",
 	"prefs-user-downloaddata-label": "Données d’accès du compte :",
 	"prefs-user-downloaddata-info": "Mes données de compte sur ce projet",
-	"prefs-user-restoreprefs-label": "Effacer les données du compte :",
+	"prefs-user-restoreprefs-label": "Réinitialiser la configuration :",
 	"prefs-user-restoreprefs-info": "Rétablir toutes les préférences par défaut (dans toutes les sections)",
 	"savedprefs": "Les préférences ont été sauvegardées.",
 	"savedrights": "Les groupes de l’utilisat{{GENDER:$1|eur|rice}} $1 ont été enregistrés.",

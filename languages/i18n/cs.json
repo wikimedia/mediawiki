@@ -1099,7 +1099,7 @@
 	"prefs-help-tokenmanagement": "Můžete si prohlédnout nebo reinicializovat tajný klíč k vašemu účtu, který poskytuje přístup k webovému kanálu vašeho seznamu sledovaných stránek. Kdokoli, kdo tento klíč zná, může číst váš seznam sledovaných stránek, takže ho nesdílejte.",
 	"prefs-user-downloaddata-label": "Přístup k datům o účtu:",
 	"prefs-user-downloaddata-info": "Data mého účtu z tohoto projektu",
-	"prefs-user-restoreprefs-label": "Smazat data účtu:",
+	"prefs-user-restoreprefs-label": "Resetovat nastavení:",
 	"prefs-user-restoreprefs-info": "Obnovit všechna výchozí nastavení (ve všech sekcích)",
 	"savedprefs": "Nastavení byla uložena.",
 	"savedrights": "Skupiny {{GENDER:$1|uživatele|uživatelky}} $1 byly uloženy.",
@@ -4091,5 +4091,9 @@
 	"skin-action-protect": "Zamknout",
 	"skin-action-undelete": "Obnovit",
 	"skin-action-delete": "Smazat",
-	"skin-action-move": "Přesunout"
+	"skin-action-move": "Přesunout",
+	"newpages-showhide-bots": "$1 boty",
+	"newpages-showhide-patrolled": "$1 prověřené editace",
+	"newpages-showhide-redirect": "$1 přesměrování",
+	"newpages-showhide-registered": "$1 registrované uživatele"
 }

@@ -1056,7 +1056,7 @@
 	"prefs-help-tokenmanagement": "Tu pote vider e reinitialisar le clave secrete pro tu conto que pote acceder al aggregator Web de tu observatorio. Tote persona que cognosce le clave potera leger tu observatorio, dunque non divulga lo.",
 	"prefs-user-downloaddata-label": "Acceder al datos del conto:",
 	"prefs-user-downloaddata-info": "Le datos de mi conto de iste projecto",
-	"prefs-user-restoreprefs-label": "Deler le datos del conto:",
+	"prefs-user-restoreprefs-label": "Reinitialisar le configuration:",
 	"prefs-user-restoreprefs-info": "Restaurar tote le preferentias predefinite (in tote le sectiones)",
 	"savedprefs": "Tu preferentias ha essite confirmate.",
 	"savedrights": "Le gruppos de usator de {{GENDER:$1|$1}} ha essite salveguardate.",
@@ -3972,5 +3972,9 @@
 	"skin-action-undelete": "Restaurar",
 	"skin-action-delete": "Deler",
 	"skin-action-move": "Renominar",
-	"parsoid-stash-rate-limit-error": "Le immagazinage in reserva ha fallite perque le limite de frequentia ha essite excedite. Per favor tenta lo de novo plus tarde."
+	"parsoid-stash-rate-limit-error": "Le immagazinage in reserva ha fallite perque le limite de frequentia ha essite excedite. Per favor tenta lo de novo plus tarde.",
+	"newpages-showhide-bots": "$1 robots",
+	"newpages-showhide-patrolled": "$1 modificationes patruliate",
+	"newpages-showhide-redirect": "$1 redirectiones",
+	"newpages-showhide-registered": "$1 usatores registrate"
 }
