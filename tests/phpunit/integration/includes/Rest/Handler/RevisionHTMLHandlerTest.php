@@ -123,6 +123,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 				$services->get( 'ParsoidSiteConfig' ),
 				$services->get( 'ParsoidDataAccess' )
 			),
+			$services->getParsoidSiteConfig(),
 			$services->getParsoidPageConfigFactory()
 		);
 
