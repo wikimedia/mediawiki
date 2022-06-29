@@ -2382,11 +2382,11 @@ config-schema:
             @since 1.26
     ParsoidCacheConfig:
         type: object
-        default:
-            StashType: null
-            StashDuration: 86400
-            CacheThresholdTime: 0.0
-            WarmParsoidParserCache: false
+        properties:
+            StashType: { type: [integer, string, 'null'], default: null }
+            StashDuration: { type: integer, default: 86400 }
+            CacheThresholdTime: { type: number, default: 0.0 }
+            WarmParsoidParserCache: { type: boolean, default: false }
         description: |-
             Configuration for the caching related to parsoid output. The configuration contains the
             following keys:
@@ -2493,14 +2493,14 @@ config-schema:
             MediaWiki:Foo/ja is ignored if MediaWiki:Foo doesn't exist.
             This option is probably only useful for translatewiki.net.
     LocalisationCacheConf:
-        default:
-            class: LocalisationCache
-            store: detect
-            storeClass: false
-            storeDirectory: false
-            storeServer: []
-            forceRecache: false
-            manualRecache: false
+        properties:
+            class: { type: string, default: LocalisationCache }
+            store: { type: string, default: detect }
+            storeClass: { type: [boolean, string], default: false }
+            storeDirectory: { type: [boolean, string], default: false }
+            storeServer: { type: object, default: [] }
+            forceRecache: { type: boolean, default: false }
+            manualRecache: { type: boolean, default: false }
         type: object
         description: |-
             Localisation cache configuration.
@@ -4630,13 +4630,13 @@ config-schema:
             @deprecated This feature is under development, don't assume this flag's existence or function
             outside of MediaWiki.
     AutoCreateTempUser:
-        default:
-            enabled: false
-            actions: [edit]
-            genPattern: '*Unregistered $1'
-            matchPattern: '*$1'
-            serialProvider: { type: local }
-            serialMapping: { type: plain-numeric }
+        properties:
+            enabled: { type: boolean, default: false }
+            actions: { type: array, default: [edit] }
+            genPattern: { type: string, default: '*Unregistered $1' }
+            matchPattern: { type: string, default: '*$1' }
+            serialProvider: { type: object, default: { type: local } }
+            serialMapping: { type: object, default: { type: plain-numeric } }
         type: object
         description: |-
             Configuration for automatic creation of temporary accounts on page save.
@@ -6844,6 +6844,9 @@ config-schema:
     JobTypeConf:
         default:
             default: { class: JobQueueDB, order: random, claimTTL: 3600 }
+        additionalProperties:
+            type: object
+            properties: { class: { type: string }, order: { type: string }, claimTTL: { type: integer } }
         type: object
         description: |-
             Map of job types to configuration arrays.

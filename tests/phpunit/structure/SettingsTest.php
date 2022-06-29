@@ -9,6 +9,7 @@ use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\Source\FileSource;
+use MediaWiki\Settings\Source\JsonSchemaTrait;
 use MediaWiki\Settings\Source\PhpSettingsSource;
 use MediaWiki\Settings\Source\ReflectionSchemaSource;
 use MediaWiki\Settings\Source\SettingsSource;
@@ -19,6 +20,7 @@ use MediaWikiIntegrationTestCase;
  * @coversNothing
  */
 class SettingsTest extends MediaWikiIntegrationTestCase {
+	use JsonSchemaTrait;
 
 	/**
 	 * Returns the main configuration schema as a settings array.
@@ -175,19 +177,37 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 * Check that the schema for each config variable contains all necessary information.
 	 * @dataProvider provideArraysHaveMergeStrategy
 	 */
-	public function testArraysHaveMergeStrategy( $schema ) {
-		$this->assertArrayHasKey(
-			'default',
-			$schema,
-			'should specify a default value'
-		);
-
+	public function testSchemaCompleteness( $schema ) {
 		$type = $schema['type'] ?? null;
 		$type = (array)$type;
 
+		if ( isset( $schema['properties'] ) ) {
+			$this->assertContains(
+				'object', $type,
+				'must be of type "object", since is defines properties'
+			);
+
+			$defaults = $schema['default'] ?? [];
+			foreach ( $schema['properties'] as $key => $sch ) {
+				// must have a default in the schema, or in the top level default
+				if ( !array_key_exists( 'default', $sch ) ) {
+					$this->assertArrayHasKey( $key, $defaults, "property $key must have a default" );
+				} else {
+					$defaults[$key] = $sch['default'];
+				}
+			}
+		} else {
+			$this->assertArrayHasKey(
+				'default',
+				$schema,
+				'should specify a default value'
+			);
+			$defaults = $schema['default'];
+		}
+
 		// If the default is an array, the type must be declared, so we know whether
 		// it's a list (JS "array") or a map (JS "object").
-		if ( is_array( $schema['default'] ) ) {
+		if ( is_array( $defaults ) ) {
 			$this->assertTrue(
 				in_array( 'array', $type ) || in_array( 'object', $type ),
 				'must be of type "array" or "object", since the default is an array'
@@ -196,7 +216,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 
 		// If the default value of a list is not empty, check that it is an indexed array,
 		// not an associative array.
-		if ( in_array( 'array', $type ) && !empty( $schema['default'] ) ) {
+		if ( in_array( 'array', $type ) && !empty( $defaults ) ) {
 			if ( empty( $schema['ignoreKeys'] ) ) {
 				$this->assertArrayHasKey(
 					0,
@@ -244,6 +264,23 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 					'should not specify mergeStrategy "array_merge" since its type is "object"'
 				);
 			}
+		}
+
+		if ( isset( $schema['items'] ) ) {
+			$this->assertContains(
+				'array',
+				$type,
+				'should be declared to be an array if an "items" schema is defined'
+			);
+		}
+
+		if ( isset( $schema['additionalProperties'] ) || isset( $schema['properties'] ) ) {
+			$this->assertContains(
+				'object',
+				$type,
+				'should be declared to be an object if schemas are defined for "proeprties" ' .
+					'or "additionalProperties"'
+			);
 		}
 	}
 
@@ -532,10 +569,12 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 			$this->assertArrayHasKey( $name, $defaults );
 			$this->assertArrayHasKey( "wg$name", $prefixed );
 
-			$this->assertSame( $sch['default'] ?? null, $defaults[$name] );
-			$this->assertSame( $sch['default'] ?? null, $prefixed["wg$name"] );
+			$expected = self::getDefaultFromJsonSchema( $sch );
 
-			$this->assertSame( $sch['default'] ?? null, MainConfigSchema::getDefaultValue( $name ) );
+			$this->assertSame( $expected, $defaults[$name] );
+			$this->assertSame( $expected, $prefixed["wg$name"] );
+
+			$this->assertSame( $expected, MainConfigSchema::getDefaultValue( $name ) );
 		}
 	}
 

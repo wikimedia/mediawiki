@@ -45,6 +45,7 @@ use LayeredParameterizedPassword;
 use LocalIdLookup;
 use LocalisationCache;
 use LogFormatter;
+use MediaWiki\Settings\Source\JsonSchemaTrait;
 use MediaWikiSite;
 use MemcachedPeclBagOStuff;
 use MemcachedPhpBagOStuff;
@@ -93,7 +94,10 @@ use WinCacheBagOStuff;
  * - type: identifies the allowed value type or types. In addition to JSON Schema types,
  *         PHPDoc style type definitions are supported for convenience.
  *         Note that 'array' must not be used for associative arrays.
- *         To avoid confusion, use 'list' for sequential arrays and 'map' for associative arrays.
+ *         To avoid confusion, use 'list' for sequential arrays and 'map' for associative arrays
+ *         with uniform values. The 'object' type should be used for structures that have a known
+ *         set of meaningful properties, especially if each property may have a different kind
+ *         of value.
  *
  * The following additional keys are used by MediaWiki:
  * - mergeStrategy: see the {@link MediaWiki\Settings\Config\MergeStrategy}.
@@ -105,6 +109,7 @@ use WinCacheBagOStuff;
  * @since 1.39
  */
 class MainConfigSchema {
+	use JsonSchemaTrait;
 
 	/**
 	 * Returns a generator for iterating over all config settings and their default values.
@@ -142,7 +147,7 @@ class MainConfigSchema {
 			}
 
 			$name = $const->getName();
-			yield "$prefix$name" => $value['default'] ?? null;
+			yield "$prefix$name" => self::getDefaultFromJsonSchema( $value );
 		}
 	}
 
@@ -170,7 +175,7 @@ class MainConfigSchema {
 			throw new InvalidArgumentException( "Unknown setting: $name" );
 		}
 
-		return $value['default'] ?? null;
+		return self::getDefaultFromJsonSchema( $value );
 	}
 
 	/***************************************************************************/
@@ -3763,11 +3768,11 @@ class MainConfigSchema {
 	 */
 	public const ParsoidCacheConfig = [
 		'type' => 'object',
-		'default' => [
-			'StashType' => null,
-			'StashDuration' => 24 * 60 * 60,
-			'CacheThresholdTime' => 0.0,
-			'WarmParsoidParserCache' => false,
+		'properties' => [
+			'StashType' => [ 'type' => 'int|string|null', 'default' => null ],
+			'StashDuration' => [ 'type' => 'int', 'default' => 24 * 60 * 60 ],
+			'CacheThresholdTime' => [ 'type' => 'float', 'default' => 0.0 ],
+			'WarmParsoidParserCache' => [ 'type' => 'bool', 'default' => false ],
 		]
 	];
 
@@ -3935,16 +3940,16 @@ class MainConfigSchema {
 	 *                Use maintenance/rebuildLocalisationCache.php instead.
 	 */
 	public const LocalisationCacheConf = [
-		'default' => [
-			'class' => LocalisationCache::class,
-			'store' => 'detect',
-			'storeClass' => false,
-			'storeDirectory' => false,
-			'storeServer' => [],
-			'forceRecache' => false,
-			'manualRecache' => false,
+		'properties' => [
+			'class' => [ 'type' => 'string', 'default' => LocalisationCache::class ],
+			'store' => [ 'type' => 'string', 'default' => 'detect' ],
+			'storeClass' => [ 'type' => 'false|string', 'default' => false ],
+			'storeDirectory' => [ 'type' => 'false|string', 'default' => false ],
+			'storeServer' => [ 'type' => 'object', 'default' => [] ],
+			'forceRecache' => [ 'type' => 'bool', 'default' => false ],
+			'manualRecache' => [ 'type' => 'bool', 'default' => false ],
 		],
-		'type' => 'map',
+		'type' => 'object',
 	];
 
 	/**
@@ -7187,13 +7192,13 @@ class MainConfigSchema {
 	 * @since 1.39
 	 */
 	public const AutoCreateTempUser = [
-		'default' => [
-			'enabled' => false,
-			'actions' => [ 'edit' ],
-			'genPattern' => '*Unregistered $1',
-			'matchPattern' => '*$1',
-			'serialProvider' => [ 'type' => 'local' ],
-			'serialMapping' => [ 'type' => 'plain-numeric' ]
+		'properties' => [
+			'enabled' => [ 'type' => 'bool', 'default' => false ],
+			'actions' => [ 'type' => 'list', 'default' => [ 'edit' ] ],
+			'genPattern' => [ 'type' => 'string', 'default' => '*Unregistered $1' ],
+			'matchPattern' => [ 'type' => 'string', 'default' => '*$1' ],
+			'serialProvider' => [ 'type' => 'object', 'default' => [ 'type' => 'local' ] ],
+			'serialMapping' => [ 'type' => 'object', 'default' => [ 'type' => 'plain-numeric' ] ]
 		],
 		'type' => 'object',
 	];
@@ -10788,7 +10793,19 @@ class MainConfigSchema {
 	 */
 	public const JobTypeConf = [
 		'default' => [
-			'default' => [ 'class' => JobQueueDB::class, 'order' => 'random', 'claimTTL' => 3600 ],
+			'default' => [
+				'class' => JobQueueDB::class,
+				'order' => 'random',
+				'claimTTL' => 3600
+			],
+		],
+		'additionalProperties' => [
+			'type' => 'object',
+			'properties' => [
+				'class' => [ 'type' => 'string' ],
+				'order' => [ 'type' => 'string' ],
+				'claimTTL' => [ 'type' => 'int' ]
+			],
 		],
 		'type' => 'map',
 	];

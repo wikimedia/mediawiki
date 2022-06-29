@@ -80,6 +80,31 @@ class ConfigSchemaAggregatorTest extends TestCase {
 		$this->assertSame( 'bla', $aggregator->getDefaultFor( 'with_default' ) );
 	}
 
+	public function testGetDefaultsFromProperties() {
+		$aggregator = new ConfigSchemaAggregator();
+		$aggregator->addSchema( 'test', [
+			'default' => [ 'a' => 111, 'c' => 333 ],
+			'properties' => [
+				'a' => [ 'default' => 222 ],
+				'b' => [
+					'properties' => [
+						'b-1' => [ 'default' => 777 ]
+					]
+				]
+			]
+		] );
+
+		$expected = [
+			'a' => 222, // overwritten by property
+			'c' => 333, // kept from top level
+			'b' => [ // complex property
+				'b-1' => 777 // nested default
+			]
+		];
+
+		$this->assertSame( $expected, $aggregator->getDefaultFor( 'test' ) );
+	}
+
 	public function testDefaultOverrideFails() {
 		$aggregator = new ConfigSchemaAggregator();
 		$aggregator->addSchema( 'foo', [ 'default' => 'bla', ] );
