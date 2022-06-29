@@ -15,7 +15,7 @@ BRANCH="${BRANCH//[$'\t\r\n ']}"
 
 if [ "$BRANCH" == "4.1.x" ] ||  [ "$BRANCH" == "4.2.x" ]
 then
-	BRANCH="REL1_35"
+	BRANCH="REL1_35-$BRANCH"
 fi
 
 printf "\n${PURPLE}Fetching installer: ${NC}"
