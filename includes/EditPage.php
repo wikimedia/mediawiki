@@ -3080,7 +3080,7 @@ class EditPage implements IEditObject {
 	private function showCustomIntro(): bool {
 		if ( $this->editintro ) {
 			$title = Title::newFromText( $this->editintro );
-			if ( $this->isPageExistingAndViewable( $title, $this->context->getUser() ) ) {
+			if ( $this->isPageExistingAndViewable( $title, $this->context->getAuthority() ) ) {
 				// Added using template syntax, to take <noinclude>'s into account.
 				$this->context->getOutput()->addWikiTextAsContent(
 					'<div class="mw-editintro">{{:' . $title->getFullText() . '}}</div>',

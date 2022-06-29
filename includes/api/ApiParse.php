@@ -772,13 +772,13 @@ class ApiParse extends ApiBase {
 		if ( $getContent || $this->section !== false || $isDeleted ) {
 			if ( $rev ) {
 				$this->content = $rev->getContent(
-					SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $this->getUser()
+					SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $this->getAuthority()
 				);
 				if ( !$this->content ) {
 					$this->dieWithError( [ 'apierror-missingcontent-revid', $revId ] );
 				}
 			} else {
-				$this->content = $page->getContent( RevisionRecord::FOR_THIS_USER, $this->getUser() );
+				$this->content = $page->getContent( RevisionRecord::FOR_THIS_USER, $this->getAuthority() );
 				if ( !$this->content ) {
 					$this->dieWithError( [ 'apierror-missingcontent-pageid', $page->getId() ] );
 				}

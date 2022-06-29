@@ -1343,7 +1343,7 @@ abstract class Skin extends ContextSource {
 		$nav_urls['mainpage'] = [ 'href' => self::makeMainPageUrl() ];
 		if ( $uploadNavigationUrl ) {
 			$nav_urls['upload'] = [ 'href' => $uploadNavigationUrl ];
-		} elseif ( UploadBase::isEnabled() && UploadBase::isAllowed( $this->getUser() ) === true ) {
+		} elseif ( UploadBase::isEnabled() && UploadBase::isAllowed( $this->getAuthority() ) === true ) {
 			$nav_urls['upload'] = [ 'href' => self::makeSpecialUrl( 'Upload' ) ];
 		} else {
 			$nav_urls['upload'] = false;

@@ -142,7 +142,7 @@ class ApiBlock extends ApiBase {
 			!$this->blockPermissionCheckerFactory
 				->newBlockPermissionChecker(
 					$target,
-					$this->getUser()
+					$this->getAuthority()
 				)
 				->checkEmailPermissions()
 		) {

@@ -231,7 +231,7 @@ class ProtectedPagesPager extends TablePager {
 					if ( LogEventsList::userCanBitfield(
 						$row->log_deleted,
 						LogPage::DELETED_USER,
-						$this->getUser()
+						$this->getAuthority()
 					) ) {
 						$formatted = Linker::userLink( (int)$value, $username )
 							. Linker::userToolLinks( (int)$value, $username );
@@ -266,7 +266,7 @@ class ProtectedPagesPager extends TablePager {
 					if ( LogEventsList::userCanBitfield(
 						$row->log_deleted,
 						LogPage::DELETED_COMMENT,
-						$this->getUser()
+						$this->getAuthority()
 					) ) {
 						$formatted = $this->formattedComments[$this->getResultOffset()];
 					} else {

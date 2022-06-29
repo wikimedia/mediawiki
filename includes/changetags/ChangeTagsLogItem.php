@@ -51,7 +51,7 @@ class ChangeTagsLogItem extends RevisionItemBase {
 
 	public function canView() {
 		return LogEventsList::userCan(
-			$this->row, RevisionRecord::SUPPRESSED_ALL, $this->list->getUser()
+			$this->row, RevisionRecord::SUPPRESSED_ALL, $this->list->getAuthority()
 		);
 	}
 
