@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\User\UserGroupManager;
 
 /**
  * This special page lists the defined password policies for user groups.
@@ -32,8 +33,15 @@ use MediaWiki\MainConfigNames;
  */
 class SpecialPasswordPolicies extends SpecialPage {
 
-	public function __construct() {
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
+	/**
+	 * @param UserGroupManager $userGroupManager
+	 */
+	public function __construct( UserGroupManager $userGroupManager ) {
 		parent::__construct( 'PasswordPolicies' );
+		$this->userGroupManager = $userGroupManager;
 	}
 
 	/**
@@ -61,20 +69,11 @@ class SpecialPasswordPolicies extends SpecialPage {
 		$config = $this->getConfig();
 		$policies = $config->get( MainConfigNames::PasswordPolicy );
 
-		$groupPermissions = $config->get( MainConfigNames::GroupPermissions );
-		$revokePermissions = $config->get( MainConfigNames::RevokePermissions );
-		$addGroups = $config->get( MainConfigNames::AddGroups );
-		$removeGroups = $config->get( MainConfigNames::RemoveGroups );
-		$groupsAddToSelf = $config->get( MainConfigNames::GroupsAddToSelf );
-		$groupsRemoveFromSelf = $config->get( MainConfigNames::GroupsRemoveFromSelf );
-		$allGroups = array_unique( array_merge(
-			array_keys( $groupPermissions ),
-			array_keys( $revokePermissions ),
-			array_keys( $addGroups ),
-			array_keys( $removeGroups ),
-			array_keys( $groupsAddToSelf ),
-			array_keys( $groupsRemoveFromSelf )
-		) );
+		$implicitGroups = $this->userGroupManager->listAllImplicitGroups();
+		$allGroups = array_merge(
+			$this->userGroupManager->listAllGroups(),
+			$implicitGroups
+		);
 		asort( $allGroups );
 
 		$linkRenderer = $this->getLinkRenderer();
@@ -101,7 +100,7 @@ class SpecialPasswordPolicies extends SpecialPage {
 					SpecialPage::getTitleFor( 'Listusers' ),
 					$this->msg( 'listgrouprights-members' )->text()
 				);
-			} elseif ( !in_array( $group, $config->get( MainConfigNames::ImplicitGroups ) ) ) {
+			} elseif ( !in_array( $group, $implicitGroups ) ) {
 				$grouplink = '<br />' . $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'Listusers' ),
 					$this->msg( 'listgrouprights-members' )->text(),

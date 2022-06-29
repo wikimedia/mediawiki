@@ -511,7 +511,10 @@ class SpecialPageFactory {
 			]
 		],
 		'PasswordPolicies' => [
-			'class' => \SpecialPasswordPolicies::class
+			'class' => \SpecialPasswordPolicies::class,
+			'services' => [
+				'UserGroupManager',
+			]
 		],
 
 		// Recent changes and logs
