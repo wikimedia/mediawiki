@@ -3,13 +3,14 @@
 namespace MediaWiki\Tests\Unit\Settings\Source;
 
 use InvalidArgumentException;
-use MediaWiki\Settings\Source\JsonTypeHelper;
+use MediaWiki\Settings\Source\JsonSchemaTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \MediaWiki\Settings\Source\JsonTypeHelper
+ * @covers \MediaWiki\Settings\Source\JsonSchemaTrait
  */
-class JsonTypeHelperTest extends TestCase {
+class JsonSchemaTraitTest extends TestCase {
+	use JsonSchemaTrait;
 
 	public function providePhpDocToJson() {
 		yield 'int' => [ 'int', 'integer' ];
@@ -33,8 +34,7 @@ class JsonTypeHelperTest extends TestCase {
 	 * @param string|string[] $json
 	 */
 	public function testPhpDocToJson( $phpDoc, $json ) {
-		$helper = new JsonTypeHelper();
-		$actual = $helper->phpDocToJson( $phpDoc );
+		$actual = self::phpDocToJson( $phpDoc );
 		$this->assertSame( $json, $actual );
 	}
 
@@ -66,6 +66,23 @@ class JsonTypeHelperTest extends TestCase {
 			]
 		];
 
+		yield 'properties' => [
+			[
+				'type' => 'object',
+				'properties' => [
+					'foo' => [ 'type' => 'float' ],
+					'bar' => [ 'type' => '?list', 'items' => [ 'type' => 'float' ] ],
+				]
+			],
+			[
+				'type' => 'object',
+				'properties' => [
+					'foo' => [ 'type' => 'number' ],
+					'bar' => [ 'type' => [ 'array', 'null' ], 'items' => [ 'type' => 'number' ] ],
+				]
+			]
+		];
+
 		yield 'nested' => [
 			[
 				'type' => '?dict',
@@ -94,8 +111,7 @@ class JsonTypeHelperTest extends TestCase {
 	 * @param array $expected
 	 */
 	public function testNormalizeJsonSchema( $schema, $expected ) {
-		$helper = new JsonTypeHelper();
-		$actual = $helper->normalizeJsonSchema( $schema );
+		$actual = self::normalizeJsonSchema( $schema );
 		$this->assertSame( $expected, $actual );
 	}
 
@@ -119,8 +135,7 @@ class JsonTypeHelperTest extends TestCase {
 	 * @param string $phpDoc
 	 */
 	public function testJsonToPhpDoc( $json, $phpDoc ) {
-		$helper = new JsonTypeHelper();
-		$actual = $helper->jsonToPhpDoc( $json );
+		$actual = self::jsonToPhpDoc( $json );
 		$this->assertSame( $phpDoc, $actual );
 	}
 
@@ -134,17 +149,98 @@ class JsonTypeHelperTest extends TestCase {
 	 * @param mixed $bad
 	 */
 	public function testJsonToPhpDoc_invalidArgument( $bad ) {
-		$helper = new JsonTypeHelper();
-
 		$this->expectException( InvalidArgumentException::class );
-		$helper->jsonToPhpDoc( $bad );
+		self::jsonToPhpDoc( $bad );
 	}
 
 	public function testPhpDocToJson_invalidArgument() {
-		$helper = new JsonTypeHelper();
-
 		$this->expectException( InvalidArgumentException::class );
-		$helper->phpDocToJson( null );
+		self::phpDocToJson( null );
+	}
+
+	public function provideGetDefaultFromJsonSchema() {
+		yield 'empty' => [ [], null ];
+
+		yield 'no default, no properties' => [
+			[ 'type' => 'string' ],
+			null
+		];
+
+		yield 'simple default, no properties' => [
+			[ 'type' => 'string', 'default' => 'kitten' ],
+			'kitten'
+		];
+
+		yield 'no default, but properties' => [
+			[
+				'properties' => [
+					'a' => [ 'type' => 'int' ],
+					'b' => [ 'type' => 'int' ],
+				]
+			],
+			[ 'a' => null, 'b' => null ]
+		];
+
+		yield 'default from properties' => [
+			[
+				'properties' => [
+					'a' => [ 'default' => 1 ],
+					'b' => [ 'default' => 2 ],
+				]
+			],
+			[ 'a' => 1, 'b' => 2 ]
+		];
+
+		yield 'combined default' => [
+			[
+				'default' => [
+					'a' => 11,
+					'x' => 99
+				],
+				'properties' => [
+					'a' => [ 'default' => 1 ],
+					'b' => [ 'default' => 2 ],
+				]
+			],
+			[ 'a' => 1, 'x' => 99, 'b' => 2 ]
+		];
+
+		yield 'nested properties' => [
+			[
+				'properties' => [
+					'a' => [ 'default' => 1 ],
+					'b' => [
+						'default' => [],
+						'properties' => [
+							'x' => [ 'default' => 7 ],
+							'y' => [
+								'properties' => [
+									'foo' => [ 'default' => 13 ],
+									'bar' => [ 'type' => 'int' ]
+								]
+							],
+						]
+					],
+				]
+			],
+			[
+				'a' => 1,
+				'b' => [
+					'x' => 7,
+					'y' => [ 'foo' => 13, 'bar' => null ]
+				]
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetDefaultFromJsonSchema
+	 * @param array $schema
+	 * @param mixed $default
+	 */
+	public function testGetDefaultFromJsonSchema( $schema, $default ) {
+		$actual = self::getDefaultFromJsonSchema( $schema );
+		$this->assertSame( $default, $actual );
 	}
 
 }

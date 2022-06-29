@@ -34,7 +34,6 @@ use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\PageReference;
-use MediaWiki\Settings\Source\ReflectionSchemaSource;
 use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
@@ -82,15 +81,7 @@ trait DummyServicesTrait {
 		if ( $defaultSettings !== null ) {
 			return $defaultSettings;
 		}
-		$defaultSettings = [];
-		// false -> do not include docs
-		$source = new ReflectionSchemaSource( MainConfigSchema::class, false );
-		$settings = $source->load();
-		$schema = $settings[ 'config-schema' ];
-		// Just get the defaults
-		foreach ( $schema as $key => $value ) {
-			$defaultSettings[ $key ] = $value[ 'default' ];
-		}
+		$defaultSettings = iterator_to_array( MainConfigSchema::listDefaultValues() );
 		return $defaultSettings;
 	}
 

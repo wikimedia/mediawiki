@@ -3003,6 +3003,22 @@ return [
 				'type' => 'number',
 			],
 		],
+		'JobTypeConf' => [
+			'additionalProperties' => [
+				'type' => 'object',
+				'properties' => [
+					'class' => [
+						'type' => 'string',
+					],
+					'order' => [
+						'type' => 'string',
+					],
+					'claimTTL' => [
+						'type' => 'integer',
+					],
+				],
+			],
+		],
 		'TrackingCategories' => [
 			'deprecated' => 'since 1.25 Extensions should now register tracking categories using the new extension registration system.',
 		],
