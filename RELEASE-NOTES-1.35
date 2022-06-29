@@ -12,7 +12,7 @@ PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 
 == MediaWiki 1.35.7 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.35 branch.
 
 === Changes since MediaWiki 1.35.6 ===
 * Localisation updates.
@@ -36,6 +36,11 @@ THIS IS NOT A RELEASE YET
 * (T311552) ChangesListSpecialPage: Don't pass null to FormatJson::decode().
 * (T311569) FileBackend::isStoragePath() Handle being passed null.
 * (T311544) Pass int to ApiUsageException::newWithMessage()'s $httpCode param.
+* (T311678) SpecialEditWatchlist: Prevent passing null to strtolower().
+* (T281741) ChangeTags: Fix adding CSS classes for hidden tags.
+* (T296642) changetags: Fix management of a '0' tag.
+* (T311554) ChangeTags: Return early in formatSummaryRow() if $tags === null.
+* (T303033) Handle null in ChangeTags::modifyDisplayQuery.
 
 == MediaWiki 1.35.6 ==
 
