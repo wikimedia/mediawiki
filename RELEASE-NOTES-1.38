@@ -2,7 +2,7 @@
 
 == MediaWiki 1.38.2 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.38 branch.
 
 === Changes since MediaWiki 1.38.1 ===
 * Localisation updates.
@@ -16,13 +16,18 @@ THIS IS NOT A RELEASE YET
 * (T289926) Avoid passing null to trim() in SkinTemplate.
 * (T289879) Address deprecations for PHP 8.1.
 * (T311473) rollbackEdits: Pass user identity to RollbackPage.
-* Upgrading wikimedia/remex-html (3.0.1 => 3.0.2).
+* Upgrade wikimedia/remex-html from 3.0.1 to 3.0.2.
 * (T311551) ShellboxClientFactory::getUrl(): Check if $this->key is null.
 * (T311552) ChangesListSpecialPage: Don't pass null to FormatJson::decode().
 * (T311569) FileBackend::isStoragePath() Handle being passed null.
 * (T311544) Pass int to ApiUsageException::newWithMessage()'s $httpCode param.
+* (T311678) SpecialEditWatchlist: Prevent passing null to strtolower().
+* (T311554) ChangeTags: Return early in formatSummaryRow() if $tags === null.
+* Upgrade wikimedia/common-passwords from 0.3.0 to 0.4.0.
 
 == MediaWiki 1.38.1 ==
+
+This is a maintenance release of the MediaWiki 1.38 branch.
 
 === Changes since MediaWiki 1.38.0 ===
 * (T309860) Add justinrainbow/json-schema to vendor.
@@ -210,7 +215,8 @@ For notes on 1.37.x and older releases, see HISTORY.
 * Updated wikimedia/request-timeout from 1.1.0 to 1.2.0.
 * Updated wikimedia/shellbox from 2.0.0 to 3.0.0.
 * Updated wikimedia/wrappedstring from 3.2.0 to 4.0.1.
-* Updated wikimedia/remex-html (3.0.1 => 3.0.2).
+* Updated wikimedia/remex-html from 3.0.1 to 3.0.2.
+* Updated wikimedia/common-passwords from 0.3.0 to 0.4.0.
 
 ===== Changed development-only external libraries =====
 * Updated QUnit from 2.16.0 to 2.18.0.
