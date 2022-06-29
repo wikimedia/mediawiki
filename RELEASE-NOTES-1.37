@@ -20,6 +20,14 @@ THIS IS NOT A RELEASE YET
 * (T311272) Call parent constructor of AddSite maintenance script first.
 * MediaWiki: Don't eagerly initialize action name.
 * Updated wikimedia/shellbox from v2.0.0 to v2.1.1.
+* (T311384, CVE-2022-27776) Updated guzzlehttp/guzzle from 7.2.0 to 7.4.5.
+* (T289926) Avoid passing null to trim() in SkinTemplate.
+* (T311473) rollbackEdits: Pass user identity to RollbackPage.
+* (T307282) Avoid passing null to strcasecmp(), for PHP 8.1.
+* (T311551) ShellboxClientFactory::getUrl(): Check if $this->key is null.
+* (T311552) ChangesListSpecialPage: Don't pass null to FormatJson::decode().
+* (T311569) FileBackend::isStoragePath() Handle being passed null.
+* (T311544) Pass int to ApiUsageException::newWithMessage()'s $httpCode param.
 
 == MediaWiki 1.37.2 ==
 
@@ -237,6 +245,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * Updated wikimedia/shellbox from v1.0.4 to v2.1.1.
 * Updated wikimedia/wait-condition-loop from v2.0.1 to v2.0.2.
 * Updated zordius/lightncandy from v1.2.5 to v1.2.6.
+* Updated guzzlehttp/guzzle from 7.2.0 to 7.4.5.
 
 ===== Changed development-only external libraries =====
 * Updated qunit from 2.10.0 to 2.16.0.
