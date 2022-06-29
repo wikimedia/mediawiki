@@ -13,7 +13,7 @@ BRANCH=${BRANCH%%[[:space:]]}
 BRANCH=${BRANCH##[[:space:]]}
 BRANCH="${BRANCH//[$'\t\r\n ']}"
 
-if [ "$BRANCH" == "4.1.x" ]
+if [ "$BRANCH" == "4.1.x" ] ||  [ "$BRANCH" == "4.2.x" ]
 then
 	BRANCH="REL1_35"
 fi
