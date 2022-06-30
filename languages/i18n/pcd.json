@@ -4,7 +4,8 @@
 			"Cérilew",
 			"Geoleplubo",
 			"Hercule",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Loïens soulinés:",
@@ -168,7 +169,7 @@
 	"action-unprotect": "Canger l'garantie",
 	"unprotect": "Canger l'garantie",
 	"newpage": "Nouvèle pache",
-	"talkpagelinktext": "Dviser",
+	"talkpagelinktext": "dviser",
 	"specialpage": "Pache éspéchiale",
 	"personaltools": "Otis dech uzeu",
 	"talk": "distchuter",
@@ -647,7 +648,7 @@
 	"watching": "Suire…",
 	"unwatching": "n'poin suire…",
 	"deletepage-submit": "Défacer l'pache",
-	"confirmdeletetext": "Vos alez défacer eune pache ou un fichié aveuc toutes chés antieusses vérchons.<br /> Confreumer éq ch'est cho éq vos voulez foaire, éq vos conprindez chés consécanches et pi éq ch'est bin s'lon el [[{{MediaWiki:Policy-url}}|politique éd MédiaWiki]].",
+	"confirmdeletetext": "Vos alez défacer eune pache ou un fichié aveuc toutes chés antieusses vérchons.<br /> Confreumer éq ch'est cho éq vos voulez foaire, éq vos conprindez chés consécanches et pi éq ch'est bin s'lon el [[{{MediaWiki:Policy-url}}|politique éd MediaWiki]].",
 	"actioncomplete": "Accion toute piéte",
 	"actionfailed": "L’action n'a poin réussi",
 	"deletedtext": "« $1 » o té défacé.\nVir $2 pou eune lisse d'chés darinnes défachons.",

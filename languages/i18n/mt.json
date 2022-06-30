@@ -20,7 +20,8 @@
 			"Urhixidur",
 			"Vlad5250",
 			"Weather Top Wizard",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Sottolinjar tal-ħoloq:",
@@ -191,7 +192,7 @@
 	"action-unprotect": "Biddel il-protezzjoni",
 	"unprotect": "Biddel il-protezzjoni",
 	"newpage": "Paġna ġdida",
-	"talkpagelinktext": "Diskussjoni",
+	"talkpagelinktext": "diskussjoni",
 	"specialpage": "Paġna speċjali",
 	"personaltools": "Għodda personali",
 	"talk": "Diskussjoni",
@@ -569,11 +570,11 @@
 	"subject": "Suġġett/Titlu:",
 	"minoredit": "Din hija modifika minuri",
 	"watchthis": "Segwi din il-paġna",
-	"savearticle": "Salva l-paġna",
+	"savearticle": "Ippubblika l-paġna",
 	"savechanges": "Salva l-bidliet",
 	"publishpage": "Ippubblika l-paġna",
 	"publishchanges": "Ippubblika l-modifiki",
-	"savearticle-start": "Salva l-paġna...",
+	"savearticle-start": "Ippubblika l-paġna...",
 	"savechanges-start": "Salva l-bidliet...",
 	"publishpage-start": "Ippubblika l-paġna...",
 	"publishchanges-start": "Ippubblika l-bidliet...",

@@ -15,7 +15,8 @@
 			"Smeira",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Dislienükön yümis:",
@@ -164,7 +165,7 @@
 	"action-unprotect": "Votükön jeli",
 	"unprotect": "Votükön jeli",
 	"newpage": "Pad nulik",
-	"talkpagelinktext": "Bespik",
+	"talkpagelinktext": "bespik",
 	"specialpage": "Pad patik",
 	"personaltools": "Stums pösodik",
 	"talk": "Bespik",
@@ -1872,7 +1873,6 @@
 	"expand_templates_preview": "Büologed",
 	"special-characters-group-ipa": "LFB",
 	"special-characters-group-greek": "Grikänapük",
-	"view-view-foreign": "Logön su $1",
 	"nstab-mainpage": "Cifapad",
 	"skin-action-protect": "Jelön",
 	"skin-action-undelete": "Sämoükön",

@@ -84,7 +84,9 @@
 			"WillsonEP09",
 			"WongKentir",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Ezagren",
+			"Mbee-wiki"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -1182,6 +1184,7 @@
 	"linterror-multiple-unclosed-formatting-tags": "Beberapa tag pemformatan yang tidak ditutup  pada halaman",
 	"linterror-obsolete-tag": "Tag HTML yang tidak digunakan lagi",
 	"linterror-self-closed-tag": "Tag yang menutup sendiri",
+	"linterror-stripped-tag": "Tag lucut",
 	"linterror-tidy-font-bug": "Tag font mencoba untuk mengubah warna pranala",
 	"linterror-tidy-whitespace-bug": "Kekutu penguraian spasi",
 	"linterror-unclosed-quotes-in-heading": "Kutipan tidak tertutup yang keluar dari daftar isi",
@@ -2729,7 +2732,7 @@
 	"emailblock": "surel diblokir",
 	"blocklist-nousertalk": "tidak dapat menyunting halaman pembicaraan sendiri",
 	"blocklist-editing": "penyuntingan",
-	"blocklist-editing-sitewide": "editing (keseluruhan situs)",
+	"blocklist-editing-sitewide": "menyunting (keseluruhan situs)",
 	"blocklist-editing-page": "laman",
 	"blocklist-editing-ns": "Ruang nama",
 	"blocklist-editing-action": "action",
@@ -3867,7 +3870,7 @@
 	"mediastatistics-allbytes": "Total ukuran berkas untuk semua {{PLURAL:$3|$3 berkas}}: {{PLURAL:$1|$1 bita}} ($2).",
 	"mediastatistics-table-mimetype": "Tipe MIME",
 	"mediastatistics-table-extensions": "Ekstensi",
-	"mediastatistics-table-count": "Jumlah file",
+	"mediastatistics-table-count": "Jumlah berkas",
 	"mediastatistics-table-totalbytes": "Ukuran gabungan",
 	"mediastatistics-header-unknown": "Tidak diketahui",
 	"mediastatistics-header-bitmap": "Gambar bitmap",

@@ -3,7 +3,8 @@
 		"authors": [
 			"1233qwer1234qwer4",
 			"Akamycoco",
-			"Lalotahes"
+			"Lalotahes",
+			"Amire80"
 		]
 	},
 	"sunday": "kaSangayan",
@@ -101,7 +102,7 @@
 	"create-local": "baba:aw rinpa: hini ray ’asang kapakSekla’an",
 	"delete": "boloe’",
 	"newpage": "’ima SaSo’ ye:myen",
-	"talkpagelinktext": " kapaehrahrangan",
+	"talkpagelinktext": "kapaehrahrangan",
 	"specialpage": " ’ima nonak yemyen",
 	"personaltools": " ’in nonak a nom matwaw",
 	"talk": "maehrahrang",
@@ -678,7 +679,6 @@
 	"log-action-filter-all": "saeboeh",
 	"log-action-filter-block-block": "soksok",
 	"authmanager-userdoesnotexist": "kamamatawaw zhanghaw \"$1\" ’i’ini’ ka:at ka raro:o’",
-	"view-view-foreign": "ray $1 komita’",
 	"view-create-local": "baba:aw rinpa: hini ray ’asang kapakSekla’an",
 	"nstab-mainpage": "So:ye’",
 	"skin-action-delete": "boloe’",
