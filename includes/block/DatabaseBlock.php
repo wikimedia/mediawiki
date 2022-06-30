@@ -605,7 +605,7 @@ class DatabaseBlock extends AbstractBlock {
 		}
 
 		# Make a new block object with the desired properties.
-		$autoblock = new DatabaseBlock;
+		$autoblock = new DatabaseBlock( [ 'wiki' => $this->getWikiId() ] );
 		wfDebug( "Autoblocking {$this->getTargetName()}@" . $autoblockIP );
 		$autoblock->setTarget( $autoblockIP );
 		$autoblock->setBlocker( $blocker );
@@ -638,7 +638,8 @@ class DatabaseBlock extends AbstractBlock {
 
 		# Insert the block...
 		$status = MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock(
-			$autoblock
+			$autoblock,
+			$this->getDBConnection( DB_PRIMARY )
 		);
 		return $status
 			? $status['id']
