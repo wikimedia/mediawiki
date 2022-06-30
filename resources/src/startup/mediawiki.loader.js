@@ -249,6 +249,21 @@
 		rAF = window.requestAnimationFrame || setTimeout;
 
 	/**
+	 * Append an HTML element to `document.head` or before a specified node.
+	 *
+	 * @private
+	 * @param {HTMLElement} el
+	 * @param {Node|null} [nextNode]
+	 */
+	function addToHead( el, nextNode ) {
+		if ( nextNode && nextNode.parentNode ) {
+			nextNode.parentNode.insertBefore( el, nextNode );
+		} else {
+			document.head.appendChild( el );
+		}
+	}
+
+	/**
 	 * Create a new style element and add it to the DOM.
 	 *
 	 * @private
@@ -260,11 +275,7 @@
 	function newStyleTag( text, nextNode ) {
 		var el = document.createElement( 'style' );
 		el.appendChild( document.createTextNode( text ) );
-		if ( nextNode && nextNode.parentNode ) {
-			nextNode.parentNode.insertBefore( el, nextNode );
-		} else {
-			document.head.appendChild( el );
-		}
+		addToHead( el, nextNode );
 		return el;
 	}
 
@@ -794,11 +805,7 @@
 		// see #addEmbeddedCSS, T33676, T43331, and T49277 for details.
 		el.href = url;
 
-		if ( nextNode && nextNode.parentNode ) {
-			nextNode.parentNode.insertBefore( el, nextNode );
-		} else {
-			document.head.appendChild( el );
-		}
+		addToHead( el, nextNode );
 	}
 
 	/**
