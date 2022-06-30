@@ -180,7 +180,7 @@ class ChangeTags {
 	 * @return-taint onlysafefor_htmlnoent
 	 */
 	public static function formatSummaryRow( $tags, $page, MessageLocalizer $localizer = null ) {
-		if ( $tags === '' ) {
+		if ( $tags === '' || $tags === null ) {
 			return [ '', [] ];
 		}
 		if ( !$localizer ) {
