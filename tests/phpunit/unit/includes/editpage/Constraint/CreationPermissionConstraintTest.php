@@ -35,7 +35,6 @@ class CreationPermissionConstraintTest extends MediaWikiUnitTestCase {
 	use MockTitleTrait;
 
 	public function testPass() {
-		$title = $this->createMock( Title::class );
 		$constraint = new CreationPermissionConstraint(
 			$this->mockRegisteredAuthorityWithPermissions( [ 'create' ] ),
 			$this->makeMockTitle( __METHOD__ )
@@ -44,8 +43,6 @@ class CreationPermissionConstraintTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testFailure() {
-		$title = $this->createMock( Title::class );
-
 		$constraint = new CreationPermissionConstraint(
 			$this->mockRegisteredAuthorityWithoutPermissions( [ 'create' ] ),
 			$this->makeMockTitle( __METHOD__ )
