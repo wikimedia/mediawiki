@@ -789,7 +789,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @return int
 	 */
 	public static function getMode( $request, $par ) {
-		$mode = strtolower( $request->getVal( 'action', $par ) );
+		$mode = strtolower( $request->getVal( 'action', $par ?? '' ) );
 
 		switch ( $mode ) {
 			case 'clear':

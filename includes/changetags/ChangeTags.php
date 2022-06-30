@@ -99,22 +99,21 @@ class ChangeTags {
 	 * Creates HTML for the given tags
 	 *
 	 * @param string $tags Comma-separated list of tags
-	 * @param string $page A label for the type of action which is being displayed,
-	 *   for example: 'history', 'contributions' or 'newpages'
-	 * @param IContextSource|null $context
-	 * @note Even though it takes null as a valid argument, an IContextSource is preferred
+	 * @param string $page Unused
+	 * @param MessageLocalizer|null $localizer
+	 * @note Even though it takes null as a valid argument, a MessageLocalizer is preferred
 	 *       in a new code, as the null value is subject to change in the future
 	 * @return array Array with two items: (html, classes)
 	 *   - html: String: HTML for displaying the tags (empty string when param $tags is empty)
 	 *   - classes: Array of strings: CSS classes used in the generated html, one class for each tag
 	 * @return-taint onlysafefor_htmlnoent
 	 */
-	public static function formatSummaryRow( $tags, $page, IContextSource $context = null ) {
-		if ( !$tags ) {
+	public static function formatSummaryRow( $tags, $page, MessageLocalizer $localizer = null ) {
+		if ( $tags === '' || $tags === null ) {
 			return [ '', [] ];
 		}
-		if ( !$context ) {
-			$context = RequestContext::getMain();
+		if ( !$localizer ) {
+			$localizer = RequestContext::getMain();
 		}
 
 		$classes = [];
@@ -122,27 +121,27 @@ class ChangeTags {
 		$tags = explode( ',', $tags );
 		$displayTags = [];
 		foreach ( $tags as $tag ) {
-			if ( !$tag ) {
+			if ( $tag === '' ) {
 				continue;
 			}
-			$description = self::tagDescription( $tag, $context );
+			$classes[] = Sanitizer::escapeClass( "mw-tag-$tag" );
+			$description = self::tagDescription( $tag, $localizer );
 			if ( $description === false ) {
 				continue;
 			}
 			$displayTags[] = Xml::tags(
 				'span',
 				[ 'class' => 'mw-tag-marker ' .
-								Sanitizer::escapeClass( "mw-tag-marker-$tag" ) ],
+					Sanitizer::escapeClass( "mw-tag-marker-$tag" ) ],
 				$description
 			);
-			$classes[] = Sanitizer::escapeClass( "mw-tag-$tag" );
 		}
 
 		if ( !$displayTags ) {
-			return [ '', [] ];
+			return [ '', $classes ];
 		}
 
-		$markers = $context->msg( 'tag-list-wrapper' )
+		$markers = $localizer->msg( 'tag-list-wrapper' )
 			->numParams( count( $displayTags ) )
 			->rawParams( implode( ' ', $displayTags ) )
 			->parse();
@@ -309,8 +308,18 @@ class ChangeTags {
 		&$rev_id = null, &$log_id = null, $params = null, RecentChange $rc = null,
 		User $user = null
 	) {
-		$tagsToAdd = array_filter( (array)$tagsToAdd ); // Make sure we're submitting all tags...
-		$tagsToRemove = array_filter( (array)$tagsToRemove );
+		$tagsToAdd = array_filter(
+			(array)$tagsToAdd, // Make sure we're submitting all tags...
+			static function ( $value ) {
+				return ( $value ?? '' ) !== '';
+			}
+		);
+		$tagsToRemove = array_filter(
+			(array)$tagsToRemove,
+			static function ( $value ) {
+				return ( $value ?? '' ) !== '';
+			}
+		);
 
 		if ( !$rc_id && !$rev_id && !$log_id ) {
 			throw new MWException( 'At least one of: RCID, revision ID, and log ID MUST be ' .
@@ -789,7 +798,7 @@ class ChangeTags {
 	 * @param string|array &$conds Conditions used in query, see Database::select
 	 * @param array &$join_conds Join conditions, see Database::select
 	 * @param string|array &$options Options, see Database::select
-	 * @param string|array $filter_tag Tag(s) to select on
+	 * @param string|array|false|null $filter_tag Tag(s) to select on (OR)
 	 *
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
 	 */
@@ -819,7 +828,16 @@ class ChangeTags {
 			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
-		if ( $wgUseTagFilter && $filter_tag ) {
+		if ( !$wgUseTagFilter ) {
+			return;
+		}
+
+		if ( !is_array( $filter_tag ) ) {
+			// some callers provide false or null
+			$filter_tag = (string)$filter_tag;
+		}
+
+		if ( $filter_tag !== [] && $filter_tag !== '' ) {
 			// Somebody wants to filter on a tag.
 			// Add an INNER JOIN on change_tag
 
@@ -1511,7 +1529,7 @@ class ChangeTags {
 					$fname
 				);
 
-				return array_filter( array_unique( $tags ) );
+				return array_unique( $tags );
 			},
 			[
 				'checkKeys' => [ $cache->makeKey( 'valid-tags-db' ) ],
@@ -1546,7 +1564,7 @@ class ChangeTags {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
 
 				$hookRunner->onListDefinedTags( $tags );
-				return array_filter( array_unique( $tags ) );
+				return array_unique( $tags );
 			},
 			[
 				'checkKeys' => [ $cache->makeKey( 'valid-tags-hook' ) ],

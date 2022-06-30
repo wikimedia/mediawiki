@@ -27,7 +27,8 @@
 			"Edwingudfriend",
 			"McDutchie",
 			"Wangombe",
-			"Amire80"
+			"Amire80",
+			"Hasley"
 		]
 	},
 	"tog-underline": "Wekea mstari viungo:",
@@ -176,7 +177,7 @@
 	"returnto": "Rudia $1.",
 	"tagline": "Kutoka {{SITENAME}}",
 	"help": "Msaada",
-	"help-mediawiki": "Msaada kuhusu Mediawiki",
+	"help-mediawiki": "Msaada kuhusu MediaWiki",
 	"search": "Tafuta",
 	"searchbutton": "Tafuta",
 	"go": "Nenda",

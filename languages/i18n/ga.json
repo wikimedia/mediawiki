@@ -25,7 +25,8 @@
 			"ديفيد",
 			"පසිඳු කාවින්ද",
 			"아라",
-			"MinecraftAustralia"
+			"MinecraftAustralia",
+			"Dowlinme"
 		]
 	},
 	"tog-underline": "Folínte faoi naisc:",
@@ -475,6 +476,7 @@
 	"permissionserrorstext-withaction": "Níl cead agat $2, mar gheall ar {{PLURAL:$1|an fáth|na fáthanna}} seo a leanas:",
 	"recreate-moveddeleted-warn": "'''Rabhadh: Tá tú ag athchruthú leathanaigh a scriosadh cheana.'''\n\nAn bhfuil tú cinnte go bhfuil sé oiriúnach an leathanach seo a cur in eagar?\nCuirtear an loga scriosta ar fáil anseo mar áis:",
 	"log-fulllog": "Féach ar an logchomhad iomlán",
+	"postedit-confirmation-restored": "Díscriosadh an leathanach.",
 	"undo-summary": "Cealaíodh athrú $1 le [[Special:Contributions/$2|$2]] ([[User talk:$2|plé]])",
 	"viewpagelogs": "Féach ar logaí faoin leathanach seo",
 	"nohistory": "Níl aon stáir athraithe ag an leathanach seo.",
@@ -1430,6 +1432,7 @@
 	"blankpage": "Leathanach bán",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|chlib amháin|clib}}]]: $2",
 	"diff-form-submit": "Taispeáin difríochtaí",
+	"htmlform-submit": "Cuir isteach",
 	"htmlform-selectorother-other": "Eile",
 	"logentry-move-move": "{{GENDER:$2|Bhog}} $1 an leathanach $3 go $4",
 	"feedback-cancel": "Cealaigh",

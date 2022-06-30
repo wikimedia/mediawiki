@@ -563,7 +563,7 @@
 	"api-help-param-token-webui": "За складност, се прифаќа и шифрата што се користи за обичниот кориснички посредник.",
 	"api-help-param-disabled-in-miser-mode": "Исклучено поради [[mw:Special:MyLanguage/Manual:$wgMiserMode|скржавиот режим]].",
 	"api-help-param-limited-in-miser-mode": "<strong>Напомена:</strong> Бидејќи сте во [[mw:Special:MyLanguage/Manual:$wgMiserMode|скржав режим]], користејќи го ова може да добиете помалку од <var>$1limit</var> исходни ставки пред да продолжите; во крајни случаи може да не добиете ниедна ставка.",
-	"api-help-param-direction": "Во која насока да се набројува:\n;понови:Прво најстарите. Напомена: $1start мора да биде пред $1end.\n;постари:Прво најновите (по основно). Напомена: $1start мора да биде подоцна од $1end.",
+	"api-help-param-direction": "Во која насока да се набројува:\n;newer:Прво најстарите. Напомена: $1start мора да биде пред $1end.\n;older:Прво најновите (по основно). Напомена: $1start мора да биде подоцна од $1end.",
 	"api-help-param-continue": "Употребете го ова за да продолжите кога има повеќе расположиви ставки.",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(нема опис)</span>",
 	"api-help-examples": "{{PLURAL:$1|Пример|Примери}}:",

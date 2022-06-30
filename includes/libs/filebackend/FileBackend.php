@@ -1522,11 +1522,11 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * Check if a given path is a "mwstore://" path.
 	 * This does not do any further validation or any existence checks.
 	 *
-	 * @param string $path
+	 * @param string|null $path
 	 * @return bool
 	 */
 	final public static function isStoragePath( $path ) {
-		return ( strpos( $path, 'mwstore://' ) === 0 );
+		return ( strpos( $path ?? '', 'mwstore://' ) === 0 );
 	}
 
 	/**

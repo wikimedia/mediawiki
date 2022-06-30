@@ -1431,10 +1431,10 @@ abstract class ApiBase extends ContextSource {
 	 * @param string|array|Message $msg See ApiErrorFormatter::addError()
 	 * @param string|null $code See ApiErrorFormatter::addError()
 	 * @param array|null $data See ApiErrorFormatter::addError()
-	 * @param int|null $httpCode HTTP error code to use
+	 * @param int $httpCode HTTP error code to use
 	 * @throws ApiUsageException always
 	 */
-	public function dieWithError( $msg, $code = null, $data = null, $httpCode = null ) {
+	public function dieWithError( $msg, $code = null, $data = null, $httpCode = 0 ) {
 		throw ApiUsageException::newWithMessage( $this, $msg, $code, $data, $httpCode );
 	}
 
