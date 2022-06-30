@@ -35,10 +35,13 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use ParserCache;
 use ParserOptions;
 use ParserOutput;
 use Status;
+use UnexpectedValueException;
+use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
@@ -97,7 +100,21 @@ class ParsoidOutputAccess {
 
 	/** @var RevisionLookup */
 	private $revisionLookup;
+	/**
+	 * @var SiteConfig
+	 */
+	private $siteConfig;
 
+	/**
+	 * @param ServiceOptions $options
+	 * @param ParserCacheFactory $parserCacheFactory
+	 * @param RevisionLookup $revisionLookup
+	 * @param GlobalIdGenerator $globalIdGenerator
+	 * @param IBufferingStatsdDataFactory $stats
+	 * @param Parsoid $parsoid
+	 * @param SiteConfig $siteConfig
+	 * @param PageConfigFactory $parsoidPageConfigFactory
+	 */
 	public function __construct(
 		ServiceOptions $options,
 		ParserCacheFactory $parserCacheFactory,
@@ -105,6 +122,7 @@ class ParsoidOutputAccess {
 		GlobalIdGenerator $globalIdGenerator,
 		IBufferingStatsdDataFactory $stats,
 		Parsoid $parsoid,
+		SiteConfig $siteConfig,
 		PageConfigFactory $parsoidPageConfigFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -116,7 +134,21 @@ class ParsoidOutputAccess {
 		$this->globalIdGenerator = $globalIdGenerator;
 		$this->stats = $stats;
 		$this->parsoid = $parsoid;
+		$this->siteConfig = $siteConfig;
 		$this->parsoidPageConfigFactory = $parsoidPageConfigFactory;
+	}
+
+	/**
+	 * @param string $model
+	 *
+	 * @return bool
+	 */
+	public function supportsContentModel( string $model ): bool {
+		if ( $model === CONTENT_MODEL_WIKITEXT ) {
+			return true;
+		}
+
+		return $this->siteConfig->getContentModelHandler( $model ) !== null;
 	}
 
 	/**
@@ -148,6 +180,11 @@ class ParsoidOutputAccess {
 
 		$isOld = $revId !== $page->getLatest();
 		$statsKey = $isOld ? 'ParsoidOutputAccess.Cache.revision' : 'ParsoidOutputAccess.Cache.parser';
+
+		$mainSlot = $revision->getSlot( SlotRecord::MAIN );
+		if ( !$this->supportsContentModel( $mainSlot->getModel() ) ) {
+			throw new UnexpectedValueException( 'Parsoid does not support content model ' . $mainSlot->getModel() );
+		}
 
 		if ( !( $options & self::OPT_FORCE_PARSE ) ) {
 			$parserOutput = $this->getCachedParserOutput(

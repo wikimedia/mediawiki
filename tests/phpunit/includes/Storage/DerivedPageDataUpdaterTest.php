@@ -8,6 +8,7 @@ use Content;
 use ContentHandler;
 use DeferredUpdates;
 use DummyContentHandlerForTesting;
+use JavaScriptContent;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Parser\ParserCacheFactory;
@@ -1241,6 +1242,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParsoidCacheUpdate()
 	 */
 	public function testDoParserCacheUpdate() {
 		$this->setMwGlobals( 'wgParsoidCacheConfig', [
@@ -1324,6 +1326,54 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertGreaterThan( $rev->getTimestamp(), $cached->getCacheTime() );
 		$this->assertSame( $rev->getId(), $cached->getCacheRevisionId() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParsoidCacheUpdate()
+	 */
+	public function testDoParserCacheUpdateForJavaScriptContent() {
+		$this->setMwGlobals( 'wgParsoidCacheConfig', [
+			'CacheThresholdTime' => 0.0,
+			'WarmParsoidParserCache' => true, // enable caching
+		] );
+
+		$page = $this->getPage( __METHOD__ );
+		$this->createRevision( $page, 'Dummy' );
+
+		$user = $this->getTestUser()->getUser();
+
+		$update = new RevisionSlotsUpdate();
+		$update->modifyContent( 'main', new JavaScriptContent( '{ first: "main"; }' ) );
+
+		// Emulate update after edit ----------
+		$parserCacheFactory = $this->getServiceContainer()->getParserCacheFactory();
+		$parserCache = $parserCacheFactory->getParserCache( ParserCacheFactory::DEFAULT_NAME );
+		$parsoidCache = $parserCacheFactory->getParserCache( ParsoidOutputAccess::PARSOID_PARSER_CACHE_NAME );
+
+		$parserCache->deleteOptionsKey( $page );
+		$parsoidCache->deleteOptionsKey( $page );
+
+		$rev = $this->makeRevision( $page->getTitle(), $update, $user, 'rev', null );
+		$rev->setTimestamp( '20100101000000' );
+		$rev->setParentId( $page->getLatest() );
+
+		$updater = $this->getDerivedPageDataUpdater( $page );
+		$updater->prepareContent( $user, $update, false );
+
+		$rev->setId( 1107 );
+		$updater->prepareUpdate( $rev );
+
+		// Force the page timestamp, so we notice whether ParserOutput::getTimestamp
+		// or ParserOutput::getCacheTime are used.
+		// Also ensure $page->getLatest() returns the correct revision ID, so the parser
+		// cache doesn't get confused.
+		TestingAccessWrapper::newFromObject( $page )->setLastEdit( $rev );
+		$updater->doParserCacheUpdate();
+
+		// The cached ParserOutput should not use the revision timestamp
+		$cached = $parserCache->get( $page, $updater->getCanonicalParserOptions(), true );
+		$this->assertIsObject( $cached );
 	}
 
 }

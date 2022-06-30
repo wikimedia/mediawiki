@@ -111,6 +111,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 				$services->get( 'ParsoidSiteConfig' ),
 				$services->get( 'ParsoidDataAccess' )
 			),
+			$services->getParsoidSiteConfig(),
 			$services->getParsoidPageConfigFactory()
 		);
 
