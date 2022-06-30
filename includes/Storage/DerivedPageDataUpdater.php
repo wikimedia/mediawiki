@@ -1840,6 +1840,12 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$rev = $this->getRevision();
 		$parserOpts = $this->getCanonicalParserOptions();
 
+		$mainSlot = $rev->getSlot( SlotRecord::MAIN );
+		if ( !$this->parsoidOutputAccess->supportsContentModel( $mainSlot->getModel() ) ) {
+			$this->logger->debug( __METHOD__ . ': Parsoid does not support content model ' . $mainSlot->getModel() );
+			return;
+		}
+
 		// Make sure that ParsoidOutputAccess recognizes the revision as the current one.
 		Assert::precondition(
 			$wikiPage->getLatest() === $rev->getId(),

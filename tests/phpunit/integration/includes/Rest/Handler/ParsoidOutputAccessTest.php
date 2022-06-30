@@ -79,6 +79,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$services->getGlobalIdGenerator(),
 			$stats,
 			$this->newMockParsoid( $expectedParses ),
+			$services->getParsoidSiteConfig(),
 			$services->getParsoidPageConfigFactory()
 		);
 	}
@@ -125,6 +126,22 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getNonexistingTestPage( __METHOD__ );
 
 		$this->expectException( RevisionAccessException::class );
+		$access->getParserOutput( $page, $parserOptions );
+	}
+
+	/**
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
+	 */
+	public function testGetParserOutputThrowsIfNotWikitext() {
+		$access = $this->getParsoidOutputAccessWithCache( 0 );
+		$parserOptions = $this->getParserOptions();
+
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$updater = $page->newPageUpdater( $this->getTestUser()->getUserIdentity() );
+		$updater->setContent( SlotRecord::MAIN, new JavaScriptContent( '{}' ) );
+		$updater->saveRevision( CommentStoreComment::newUnsavedComment( 'testing' ) );
+
+		$this->expectException( UnexpectedValueException::class );
 		$access->getParserOutput( $page, $parserOptions );
 	}
 
@@ -274,5 +291,20 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		// check that getParsoidRenderID() doesn't throw
 		$output1 = $status1->getValue();
 		$this->assertNotNull( $access->getParsoidRenderID( $output1 ) );
+	}
+
+	public function provideSupportsContentModels() {
+		yield [ CONTENT_MODEL_WIKITEXT, true ];
+		yield [ CONTENT_MODEL_JSON, true ];
+		yield [ CONTENT_MODEL_JAVASCRIPT, false ];
+		yield [ 'xyzzy', false ];
+	}
+
+	/**
+	 * @dataProvider provideSupportsContentModels
+	 */
+	public function testSupportsContentModel( $model, $expected ) {
+		$access = $this->getParsoidOutputAccessWithCache( 0 );
+		$this->assertSame( $expected, $access->supportsContentModel( $model ) );
 	}
 }

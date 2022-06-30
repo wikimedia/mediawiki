@@ -1338,9 +1338,10 @@ return [
 			$services->getGlobalIdGenerator(),
 			$services->getStatsdDataFactory(),
 			new Parsoid(
-				$services->get( 'ParsoidSiteConfig' ),
-				$services->get( 'ParsoidDataAccess' )
+				$services->getParsoidSiteConfig(),
+				$services->getParsoidDataAccess()
 			),
+			$services->getParsoidSiteConfig(),
 			$services->getParsoidPageConfigFactory()
 		);
 	},
