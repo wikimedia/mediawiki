@@ -203,7 +203,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should not accept requests for older content versions (pagebundle)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should not accept requests for older content versions (pagebundle)', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.set( 'Accept', 'application/json; profile="https://www.mediawiki.org/wiki/Specs/HTML/0.0.0"' )
@@ -226,7 +227,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should not accept requests for other profiles (pagebundle)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should not accept requests for other profiles (pagebundle)', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.set( 'Accept', 'application/json; profile="something different"' )
@@ -245,7 +247,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept wildcards (pagebundle)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should accept wildcards (pagebundle)', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.set( 'Accept', '*/*' )
@@ -268,7 +271,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should prefer higher quality (pagebundle)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should prefer higher quality (pagebundle)', function ( done ) {
 			const contentVersion = '999.0.0';
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
@@ -290,7 +294,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept requests for the latest content version (pagebundle)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should accept requests for the latest content version (pagebundle)', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.send( { wikitext: '== h2 ==' } )
@@ -310,7 +315,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept requests for content version 2.x (pagebundle)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should accept requests for content version 2.x (pagebundle)', function ( done ) {
 			const contentVersion = '2.4.0';
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
@@ -337,7 +343,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept requests for older content version 2.x (pagebundle)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should accept requests for older content version 2.x (pagebundle)', function ( done ) {
 			const contentVersion = '2.4.0';
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
@@ -351,10 +358,9 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should sanity check 2.x content (pagebundle)', function ( done ) {
-			if ( skipForNow ) {
-				return this.skip();
-			} // Missing files in wiki
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should sanity check 2.x content (pagebundle)', function ( done ) {
+			// Missing files in wiki
 			const contentVersion = '2.4.0';
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
@@ -380,7 +386,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept requests for content version 999.x (pagebundle)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should accept requests for content version 999.x (pagebundle)', function ( done ) {
 			const contentVersion = '999.0.0';
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
@@ -541,7 +548,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept wikitext as a string for pagebundle', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should accept wikitext as a string for pagebundle', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.send( {
@@ -553,7 +561,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept json contentmodel as a string for pagebundle', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should accept json contentmodel as a string for pagebundle', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.send( {
@@ -592,7 +601,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should require a title when no wikitext is provided (pagebundle)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should require a title when no wikitext is provided (pagebundle)', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.send( {} )
@@ -608,7 +618,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should error when revision not found (transform, wt2pb)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should error when revision not found (transform, wt2pb)', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/Doesnotexist' )
 				.send( {} )
@@ -634,7 +645,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept an original title (pagebundle)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should accept an original title (pagebundle)', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.send( {
@@ -687,7 +699,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should not require a title when empty wikitext is provided (pagebundle)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should not require a title when empty wikitext is provided (pagebundle)', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.send( {
@@ -803,7 +816,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should respect body parameter in wikitext->pagebundle requests (body_only)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should respect body parameter in wikitext->pagebundle requests (body_only)', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.send( {
@@ -870,7 +884,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should not allow subst with pagebundle', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should not allow subst with pagebundle', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 				.send( { wikitext: '{{1x|foo}}', subst: 'true' } )
@@ -1193,7 +1208,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept original html for selser (default)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should accept original html for selser (default)', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1236,7 +1252,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept original html for selser (1.1.1, meta)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should accept original html for selser (1.1.1, meta)', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1279,7 +1296,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should accept original html for selser (1.1.1, headers)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should accept original html for selser (1.1.1, headers)', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1323,7 +1341,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should return http 400 if supplied data-parsoid is empty', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should return http 400 if supplied data-parsoid is empty', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1348,6 +1367,7 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// FIXME: Pagebundle validation in general is needed
+		// Support for transforming from/to pagebundle is disabled in production.
 		it.skip( 'should return http 400 if supplied data-parsoid is a string', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
@@ -1380,10 +1400,9 @@ describe( '/transform/ endpoint', function () {
 		// string and we have a reliable way of determining that selser
 		// was used.
 
-		it( 'should use selser with supplied wikitext', function ( done ) {
-			if ( skipForNow ) {
-				return this.skip();
-			} // Create Junk Page
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should use selser with supplied wikitext', function ( done ) {
+			// Create Junk Page
 			// New and old html are identical, which should produce no diffs
 			// and reuse the original wikitext.
 			client.req
@@ -1423,10 +1442,9 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should use selser with wikitext fetched from the mw api', function ( done ) {
-			if ( skipForNow ) {
-				return this.skip();
-			} // Creat Junk Page
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should use selser with wikitext fetched from the mw api', function ( done ) {
+			// Creat Junk Page
 			// New and old html are identical, which should produce no diffs
 			// and reuse the original wikitext.
 			client.req
@@ -1458,7 +1476,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should fallback to non-selective serialization', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should fallback to non-selective serialization', function ( done ) {
 			// Without the original wikitext and an unavailable
 			// TemplateFetch for the source (no revision id provided),
 			// it should fallback to non-selective serialization.
@@ -1490,7 +1509,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should apply data-parsoid to duplicated ids', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should apply data-parsoid to duplicated ids', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1519,7 +1539,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should return a 400 for missing inline data-mw (2.x)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should return a 400 for missing inline data-mw (2.x)', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1543,7 +1564,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should return a 400 for not supplying data-mw', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should return a 400 for not supplying data-mw', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1567,7 +1589,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should apply original data-mw', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should apply original data-mw', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1607,7 +1630,8 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		// Sanity check data-mw was applied in the previous test
-		it( 'should return a 400 for missing modified data-mw', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should return a 400 for missing modified data-mw', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1636,7 +1660,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should give precedence to inline data-mw over original', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should give precedence to inline data-mw over original', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1665,7 +1690,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should not apply original data-mw if modified is supplied', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should not apply original data-mw if modified is supplied', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1716,7 +1742,8 @@ describe( '/transform/ endpoint', function () {
 		//   non-inline-data-mw = modified || original
 		//   inline-data-mw > non-inline-data-mw
 
-		it( 'should apply original data-mw when modified is absent (captions 1)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should apply original data-mw when modified is absent (captions 1)', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1754,7 +1781,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should give precedence to inline data-mw over modified (captions 2)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should give precedence to inline data-mw over modified (captions 2)', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1799,7 +1827,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should give precedence to modified data-mw over original (captions 3)', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should give precedence to modified data-mw over original (captions 3)', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1873,7 +1902,8 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should fail to downgrade the original version for an unknown transition', function ( done ) {
+		// Support for transforming from/to pagebundle is disabled in production.
+		it.skip( 'should fail to downgrade the original version for an unknown transition', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
 				.send( {
@@ -1895,7 +1925,8 @@ describe( '/transform/ endpoint', function () {
 
 	} ); // end html2wt
 
-	describe( 'pb2pb', function () {
+	// Support for transforming from/to pagebundle is disabled in production.
+	describe.skip( 'pb2pb', function () {
 
 		it( 'should require an original or previous version', function ( done ) {
 			client.req
@@ -2210,4 +2241,72 @@ describe( '/transform/ endpoint', function () {
 
 	} ); // end pb2pb
 
+	// Since we're disabling the pagebundle transform, let's make sure that trying to
+	// send a request to the endpoint returns a 404 error.
+	describe( 'Pagebundle transform (from/format) disabled, should return 404 as response code', function () {
+		it( '/transform/pagebundle/to/pagebundle/Reuse_Page/100', function ( done ) {
+			client.req
+				.post( endpointPrefix + '/transform/pagebundle/to/pagebundle/Reuse_Page/100' )
+				.send( {} )
+				.expect( 404 )
+				.end( done );
+		} );
+
+		it( '/transform/pagebundle/to/wikitext/', function ( done ) {
+			client.req
+				.post( endpointPrefix + '/transform/pagebundle/to/wikitext/' )
+				.send( {
+					html: '<!DOCTYPE html>\n<html prefix="dc: http://purl.org/dc/terms/ mw: http://mediawiki.org/rdf/" about="http://localhost/index.php/Special:Redirect/revision/1"><head prefix="mwr: http://localhost/index.php/Special:Redirect/"><meta property="mw:articleNamespace" content="0"/><link rel="dc:replaces" resource="mwr:revision/0"/><meta property="dc:modified" content="2014-09-12T22:46:59.000Z"/><meta about="mwr:user/0" property="dc:title" content="MediaWiki default"/><link rel="dc:contributor" resource="mwr:user/0"/><meta property="mw:revisionSHA1" content="8e0aa2f2a7829587801db67d0424d9b447e09867"/><meta property="dc:description" content=""/><link rel="dc:isVersionOf" href="http://localhost/index.php/Main_Page"/><title>Main_Page</title><base href="http://localhost/index.php/"/><link rel="stylesheet" href="//localhost/load.php?modules=mediawiki.legacy.commonPrint,shared|mediawiki.skinning.elements|mediawiki.skinning.content|mediawiki.skinning.interface|skins.vector.styles|site|mediawiki.skinning.content.parsoid&amp;only=styles&amp;debug=true&amp;skin=vector"/></head><body data-parsoid=\'{"dsr":[0,592,0,0]}\' lang="en" class="mw-content-ltr sitedir-ltr ltr mw-body mw-body-content mediawiki" dir="ltr"><p data-parsoid=\'{"dsr":[0,59,0,0]}\'><strong data-parsoid=\'{"stx":"html","dsr":[0,59,8,9]}\'>MediaWiki has been successfully installed.</strong></p>\n\n<p data-parsoid=\'{"dsr":[61,171,0,0]}\'>Consult the <a rel="mw:ExtLink" href="//meta.wikimedia.org/wiki/Help:Contents" data-parsoid=\'{"dsr":[73,127,41,1]}\'>User\'s Guide</a> for information on using the wiki software.</p>\n\n<h2 data-parsoid=\'{"dsr":[173,194,2,2]}\'> Getting started </h2>\n<ul data-parsoid=\'{"dsr":[195,592,0,0]}\'><li data-parsoid=\'{"dsr":[195,300,1,0]}\'> <a rel="mw:ExtLink" href="//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings" data-parsoid=\'{"dsr":[197,300,75,1]}\'>Configuration settings list</a></li>\n<li data-parsoid=\'{"dsr":[301,373,1,0]}\'> <a rel="mw:ExtLink" href="//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ" data-parsoid=\'{"dsr":[303,373,56,1]}\'>MediaWiki FAQ</a></li>\n<li data-parsoid=\'{"dsr":[374,472,1,0]}\'> <a rel="mw:ExtLink" href="https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce" data-parsoid=\'{"dsr":[376,472,65,1]}\'>MediaWiki release mailing list</a></li>\n<li data-parsoid=\'{"dsr":[473,592,1,0]}\'> <a rel="mw:ExtLink" href="//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources" data-parsoid=\'{"dsr":[475,592,80,1]}\'>Localise MediaWiki for your language</a></li></ul></body></html>',
+					original: {
+						html: {
+							headers: {
+								'content-type': 'text/html;profile="https://www.mediawiki.org/wiki/Specs/HTML/' + defaultContentVersion + '"'
+							},
+							body: "<!DOCTYPE html>\n<html prefix=\"dc: http://purl.org/dc/terms/ mw: http://mediawiki.org/rdf/\" about=\"http://localhost/index.php/Special:Redirect/revision/1\"><head prefix=\"mwr: http://localhost/index.php/Special:Redirect/\"><meta property=\"mw:articleNamespace\" content=\"0\"/><link rel=\"dc:replaces\" resource=\"mwr:revision/0\"/><meta property=\"dc:modified\" content=\"2014-09-12T22:46:59.000Z\"/><meta about=\"mwr:user/0\" property=\"dc:title\" content=\"MediaWiki default\"/><link rel=\"dc:contributor\" resource=\"mwr:user/0\"/><meta property=\"mw:revisionSHA1\" content=\"8e0aa2f2a7829587801db67d0424d9b447e09867\"/><meta property=\"dc:description\" content=\"\"/><link rel=\"dc:isVersionOf\" href=\"http://localhost/index.php/Main_Page\"/><title>Main_Page</title><base href=\"http://localhost/index.php/\"/><link rel=\"stylesheet\" href=\"//localhost/load.php?modules=mediawiki.legacy.commonPrint,shared|mediawiki.skinning.elements|mediawiki.skinning.content|mediawiki.skinning.interface|skins.vector.styles|site|mediawiki.skinning.content.parsoid&amp;only=styles&amp;debug=true&amp;skin=vector\"/></head><body id=\"mwAA\" lang=\"en\" class=\"mw-content-ltr sitedir-ltr ltr mw-body mw-body-content mediawiki\" dir=\"ltr\"><p id=\"mwAQ\"><strong id=\"mwAg\">MediaWiki has been successfully installed.</strong></p>\n\n<p id=\"mwAw\">Consult the <a rel=\"mw:ExtLink\" href=\"//meta.wikimedia.org/wiki/Help:Contents\" id=\"mwBA\">User's Guide</a> for information on using the wiki software.</p>\n\n<h2 id=\"mwBQ\"> Getting started </h2>\n<ul id=\"mwBg\"><li id=\"mwBw\"> <a rel=\"mw:ExtLink\" href=\"//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings\" id=\"mwCA\">Configuration settings list</a></li>\n<li id=\"mwCQ\"> <a rel=\"mw:ExtLink\" href=\"//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ\" id=\"mwCg\">MediaWiki FAQ</a></li>\n<li id=\"mwCw\"> <a rel=\"mw:ExtLink\" href=\"https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce\" id=\"mwDA\">MediaWiki release mailing list</a></li>\n<li id=\"mwDQ\"> <a rel=\"mw:ExtLink\" href=\"//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources\" id=\"mwDg\">Localise MediaWiki for your language</a></li></ul></body></html>"
+						},
+						'data-parsoid': {
+							headers: {
+								'content-type': 'application/json;profile="https://www.mediawiki.org/wiki/Specs/data-parsoid/' + defaultContentVersion + '"'
+							},
+							body: {
+								counter: 14,
+								ids: {
+									mwAA: { dsr: [ 0, 592, 0, 0 ] },
+									mwAQ: { dsr: [ 0, 59, 0, 0 ] },
+									mwAg: { stx: 'html', dsr: [ 0, 59, 8, 9 ] },
+									mwAw: { dsr: [ 61, 171, 0, 0 ] },
+									mwBA: { dsr: [ 73, 127, 41, 1 ] },
+									mwBQ: { dsr: [ 173, 194, 2, 2 ] },
+									mwBg: { dsr: [ 195, 592, 0, 0 ] },
+									mwBw: { dsr: [ 195, 300, 1, 0 ] },
+									mwCA: { dsr: [ 197, 300, 75, 1 ] },
+									mwCQ: { dsr: [ 301, 373, 1, 0 ] },
+									mwCg: { dsr: [ 303, 373, 56, 1 ] },
+									mwCw: { dsr: [ 374, 472, 1, 0 ] },
+									mwDA: { dsr: [ 376, 472, 65, 1 ] },
+									mwDQ: { dsr: [ 473, 592, 1, 0 ] },
+									mwDg: { dsr: [ 475, 592, 80, 1 ] }
+								}
+							}
+						}
+					}
+				} )
+				.expect( 404 )
+				.end( done );
+		} );
+
+		it( '/transform/wikitext/to/pagebundle/', function ( done ) {
+			client.req
+				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
+				.set( 'Accept', 'application/json; profile="https://www.mediawiki.org/wiki/Specs/HTML/0.0.0"' )
+				.send( { wikitext: '== h2 ==' } )
+				.expect( 404 )
+				.expect( function ( res ) {
+					JSON.parse( res.error.text ).message.should.equal(
+						'Invalid transform: wikitext/to/pagebundle'
+					);
+				} )
+				.end( done );
+		} );
+	} );
 } );
