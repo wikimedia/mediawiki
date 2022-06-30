@@ -318,14 +318,40 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $val, "No value yet" );
 
 		$val = $this->cache->incrWithInit( $key, 0, 1, 3 );
-		$this->assertEquals( 3, $val, "Correct init value" );
+		$this->assertSame( 3, $val, "Correct init value" );
 
 		$val = $this->cache->incrWithInit( $key, 0, 1, 3 );
-		$this->assertEquals( 4, $val, "Correct init value" );
+		$this->assertSame( 4, $val, "Correct incremented value" );
 		$this->cache->delete( $key );
 
 		$val = $this->cache->incrWithInit( $key, 0, 5 );
-		$this->assertEquals( 5, $val, "Correct init value" );
+		$this->assertSame( 5, $val, "Correct incremented value" );
+	}
+
+	public function testIncrWithInitAsync() {
+		$key = $this->cache->makeKey( $this->testKey() );
+		$val = $this->cache->get( $key );
+		$this->assertFalse( $val, "No value yet" );
+
+		$val = $this->cache->incrWithInit( $key, 0, 1, 3, BagOStuff::WRITE_BACKGROUND );
+		if ( $val === true ) {
+			$val = $this->cache->get( $key );
+			for ( $i = 0; $i < 1000 && $val !== 3; $i++ ) {
+				usleep( 1000 );
+				$val = $this->cache->get( $key );
+			}
+		}
+		$this->assertSame( 3, $val );
+
+		$val = $this->cache->incrWithInit( $key, 0, 1, 3, BagOStuff::WRITE_BACKGROUND );
+		if ( $val === true ) {
+			$val = $this->cache->get( $key );
+			for ( $i = 0; $i < 1000 && $val !== 4; $i++ ) {
+				usleep( 1000 );
+				$val = $this->cache->get( $key );
+			}
+		}
+		$this->assertSame( 4, $val );
 	}
 
 	/**

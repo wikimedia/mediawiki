@@ -279,11 +279,25 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( $key, $result );
 	}
 
-	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
+	protected function doIncrWithInitAsync( $key, $exptime, $step, $init ) {
 		$this->debug( "incrWithInit($key)" );
-
+		$client = $this->acquireSyncClient();
 		$routeKey = $this->validateKeyAndPrependRoute( $key );
+		$watchPoint = $this->watchErrors();
+		$client->setOption( Memcached::OPT_NOREPLY, true );
+		try {
+			$this->checkResult( $key, $client->add( $routeKey, $init - $step, $this->fixExpiry( $exptime ) ) );
+			$this->checkResult( $key, $client->increment( $routeKey, $step ) );
+		} finally {
+			$client->setOption( Memcached::OPT_NOREPLY, false );
+		}
+		$lastError = $this->getLastError( $watchPoint );
+		return !$lastError;
+	}
 
+	protected function doIncrWithInitSync( $key, $exptime, $step, $init ) {
+		$this->debug( "incrWithInit($key)" );
+		$routeKey = $this->validateKeyAndPrependRoute( $key );
 		$client = $this->acquireSyncClient();
 		$watchPoint = $this->watchErrors();
 		$result = $client->increment( $routeKey, $step );

@@ -1000,6 +1000,10 @@ class MemcachedClient implements StorageAwareness {
 		}
 
 		$line = $this->_fgets( $sock );
+		if ( $this->_debug ) {
+			$this->_debugprint( "$cmd($key): $line" );
+		}
+
 		$match = array();
 		if ( !preg_match( '/^(\d+)/', $line, $match ) ) {
 			$this->_last_cmd_status = self::ERR_NO_RESPONSE;
@@ -1007,7 +1011,7 @@ class MemcachedClient implements StorageAwareness {
 			return null;
 		}
 
-		return $match[1];
+		return (int)$match[1];
 	}
 
 	// }}}
