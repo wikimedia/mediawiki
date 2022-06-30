@@ -291,7 +291,7 @@ class RecentChange implements Taggable {
 				'rc_user_text' => 'recentchanges_actor.actor_name',
 			] + $commentQuery['fields'],
 			'joins' => [
-				'recentchanges_actor' => [ 'JOIN', 'actor_id=rc_actor' ]
+				'recentchanges_actor' => [ 'STRAIGHT_JOIN', 'actor_id=rc_actor' ]
 			] + $commentQuery['joins'],
 		];
 	}
