@@ -1,7 +1,5 @@
 <?php
 /**
- * Language names.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,13 +16,12 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
 
 namespace MediaWiki\Languages\Data;
 
 /**
- * Language names in their own languages (language autonyms).
+ * Language names in their own languages (known as "language autonyms").
  *
  * These determine things like interwikis, language selectors, and so on.
  * Safe to change without running scripts on the respective sites.
