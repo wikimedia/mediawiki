@@ -208,7 +208,7 @@ class ChangeTags {
 			$displayTags[] = Xml::tags(
 				'span',
 				[ 'class' => 'mw-tag-marker ' .
-								Sanitizer::escapeClass( "mw-tag-marker-$tag" ) ],
+					Sanitizer::escapeClass( "mw-tag-marker-$tag" ) ],
 				$description
 			);
 		}
