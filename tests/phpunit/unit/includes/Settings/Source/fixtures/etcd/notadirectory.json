@@ -1,0 +1,9 @@
+{
+	"action": "get",
+	"node": {
+		"key": "/mediawiki",
+		"value": "foo",
+		"modifiedIndex": 1,
+		"createdIndex": 1
+	}
+}
