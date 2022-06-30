@@ -19,7 +19,9 @@
  */
 
 /**
- * Null store backend, used to avoid DB errors during install
+ * Null store backend, used to avoid DB errors during install.
+ *
+ * @ingroup Language
  */
 class LCStoreNull implements LCStore {
 

@@ -1,7 +1,5 @@
 <?php
 /**
- * Cache of the contents of localisation files.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -30,8 +28,10 @@ use MediaWiki\MainConfigNames;
 use Psr\Log\LoggerInterface;
 
 /**
- * Class for caching the contents of localisation files, Messages*.php
- * and *.i18n.php.
+ * Caching for the contents of localisation files.
+ *
+ * Including for i18n JSON files under `/languages/messages`, `Messages*.php`,
+ * and `*.i18n.php`.
  *
  * An instance of this class is available using MediaWikiServices.
  *
@@ -40,6 +40,8 @@ use Psr\Log\LoggerInterface;
  * zh-hans -> en ). Some common errors are corrected, for example namespace
  * names with spaces instead of underscores, but heavyweight processing, such
  * as grammatical transformation, is done by the caller.
+ *
+ * @ingroup Language
  */
 class LocalisationCache {
 	public const VERSION = 4;
