@@ -1,7 +1,5 @@
 <?php
 /**
- * Kazakh (Қазақша) specific code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,14 +16,16 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
 
 /**
- * class that handles Cyrillic, Latin and Arabic scripts for Kazakh
- * right now it only distinguish kk_cyrl, kk_latn, kk_arab and kk_kz, kk_tr, kk_cn.
+ * Kazakh (Қазақша) specific code.
  *
- * @ingroup Language
+ * This handles Cyrillic, Latin and Arabic scripts for Kazakh.
+ * Right now, we distinguish `kk_cyrl`, `kk_latn`, `kk_arab`, `kk_kz`, `kk_tr`,
+ * and `kk_cn`.
+ *
+ * @ingroup Languages
  */
 class LanguageKk extends LanguageKk_cyrl {
 	/**

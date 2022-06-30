@@ -1,11 +1,5 @@
 <?php
-
-use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
-
 /**
- * Kazakh (Қазақша) specific code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -22,14 +16,17 @@ use MediaWiki\MediaWikiServices;
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
+// phpcs:ignoreFile Squiz.Classes.ValidClassName.NotCamelCaps
+
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
+
 /**
  * Kazakh (Қазақша)
  *
- * @ingroup Language
+ * @ingroup Languages
  */
-// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class LanguageKk_cyrl extends Language {
 	# Convert from the nominative form of a noun to some other case
 	# Invoked with {{GRAMMAR:case|word}}
