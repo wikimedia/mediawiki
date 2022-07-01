@@ -1358,6 +1358,8 @@ abstract class Skin extends ContextSource {
 		$nav_urls['contributions'] = false;
 		$nav_urls['log'] = false;
 		$nav_urls['blockip'] = false;
+		$nav_urls['changeblockip'] = false;
+		$nav_urls['unblockip'] = false;
 		$nav_urls['mute'] = false;
 		$nav_urls['emailuser'] = false;
 		$nav_urls['userrights'] = false;
@@ -1415,10 +1417,23 @@ abstract class Skin extends ContextSource {
 			];
 
 			if ( $this->getAuthority()->isAllowed( 'block' ) ) {
-				$nav_urls['blockip'] = [
-					'text' => $this->msg( 'blockip', $rootUser )->text(),
-					'href' => self::makeSpecialUrlSubpage( 'Block', $rootUser )
-				];
+				// Check if the user is already blocked
+				$userBlock = MediaWikiServices::getInstance()
+				->getBlockManager()
+				->getUserBlock( $user, null, true );
+				if ( $userBlock ) {
+					$nav_urls['changeblockip'] = [
+						'href' => self::makeSpecialUrlSubpage( 'Block', $rootUser )
+					];
+					$nav_urls['unblockip'] = [
+						'href' => self::makeSpecialUrlSubpage( 'Unblock', $rootUser )
+					];
+				} else {
+					$nav_urls['blockip'] = [
+						'text' => $this->msg( 'blockip', $rootUser )->text(),
+						'href' => self::makeSpecialUrlSubpage( 'Block', $rootUser )
+					];
+				}
 			}
 
 			if ( $this->showEmailUser( $user ) ) {
@@ -1965,8 +1980,8 @@ abstract class Skin extends ContextSource {
 				$toolbox['feeds']['links'][$key]['class'] = 'feedlink';
 			}
 		}
-		foreach ( [ 'contributions', 'log', 'blockip', 'emailuser', 'mute',
-			'userrights', 'upload', 'specialpages' ] as $special
+		foreach ( [ 'contributions', 'log', 'blockip', 'changeblockip', 'unblockip',
+			'emailuser', 'mute', 'userrights', 'upload', 'specialpages' ] as $special
 		) {
 			if ( $navUrls[$special] ?? null ) {
 				$toolbox[$special] = $navUrls[$special];
