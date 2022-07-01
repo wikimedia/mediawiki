@@ -397,14 +397,29 @@ abstract class ParsoidHandler extends Handler {
 	protected function createRedirectResponse(
 		string $path, array $pathParams = [], array $queryParams = []
 	): Response {
-		// FIXME this should not be necessary in the REST entry point
+		// FIXME: We should be using $this->getRouteUrl here. But that uses the CanonicalServer
+		//        setting as the base URL, which is incorrect when redirecting to private
+		//        endpoints. See T311867.
+		global $wgRestPath;
+		$path = wfExpandUrl( "$wgRestPath$path", PROTO_CURRENT );
+
+		foreach ( $pathParams as $param => $value ) {
+			// NOTE: we use rawurlencode here, since execute() uses rawurldecode().
+			// Spaces in path params must be encoded to %20 (not +).
+			$path = str_replace( '{' . $param . '}', rawurlencode( $value ), $path );
+		}
+
+		// XXX: this should not be necessary in the REST entry point
 		unset( $queryParams['title'] );
 
-		$url = $this->getRouter()->getRouteUrl( $path, $pathParams, $queryParams );
+		if ( $queryParams ) {
+			$path .= ( strpos( $path, '?' ) === false ? '?' : '&' )
+				. http_build_query( $queryParams, '', '&', PHP_QUERY_RFC3986 );
+		}
 		if ( $this->getRequest()->getMethod() === 'POST' ) {
-			$response = $this->getResponseFactory()->createTemporaryRedirect( $url );
+			$response = $this->getResponseFactory()->createTemporaryRedirect( $path );
 		} else {
-			$response = $this->getResponseFactory()->createLegacyTemporaryRedirect( $url );
+			$response = $this->getResponseFactory()->createLegacyTemporaryRedirect( $path );
 		}
 		$response->setHeader( 'Cache-Control', 'private,no-cache,s-maxage=0' );
 		return $response;
