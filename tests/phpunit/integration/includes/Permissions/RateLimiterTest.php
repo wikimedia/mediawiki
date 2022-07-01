@@ -11,9 +11,10 @@ use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
-use MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\WRStats\BagOStuffStatsStore;
+use Wikimedia\WRStats\WRStatsFactory;
 
 /**
  * @coversDefaultClass \MediaWiki\Permissions\RateLimiter
@@ -40,7 +41,9 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Permissions\RateLimiter::limit
+	 * @covers ::limit
+	 * @covers \Wikimedia\WRStats\WRStatsFactory
+	 * @covers \Wikimedia\WRStats\BagOStuffStatsStore
 	 */
 	public function testPingLimiterGlobal() {
 		$limits = [
@@ -65,11 +68,12 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 
 		// Set up a fake cache for storing limits
 		$cache = new HashBagOStuff( [ 'keyspace' => 'xwiki' ] );
-
 		$cacheAccess = TestingAccessWrapper::newFromObject( $cache );
 		$cacheAccess->keyspace = 'xwiki';
 
-		$limiter = $this->newRateLimiter( $limits, [], $cache );
+		$statsFactory = new WRStatsFactory( new BagOStuffStatsStore( $cache ) );
+
+		$limiter = $this->newRateLimiter( $limits, [], $statsFactory );
 
 		// Set up some fake users
 		$anon1 = $this->newFakeAnon( '1.2.3.4' );
@@ -144,15 +148,13 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		$appTime = 1600000000;
 		$bag = new HashBagOStuff();
 
-		$this->setMainCache( $bag );
+		$statsFactory = new WRStatsFactory( new BagOStuffStatsStore( $bag ) );
+		$statsFactory->setCurrentTime( $appTime );
 
 		$bag->setMockTime( $bagTime ); // this is a reference!
-		MWTimestamp::setFakeTime( static function () use ( &$appTime ) {
-			return (int)$appTime;
-		} );
 
 		$user = $this->newFakeUser( 'Frank', '1.2.3.4', 111 );
-		$limiter = $this->newRateLimiter( $limits, [], $bag );
+		$limiter = $this->newRateLimiter( $limits, [], $statsFactory );
 
 		$this->assertFalse( $limiter->limit( $user, 'edit' ), 'limit not reached' );
 		$this->assertTrue( $limiter->limit( $user, 'edit' ), 'limit reached' );
@@ -161,14 +163,15 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		// but not according to $cache->getCurrentTime(), emulating the conditions
 		// that trigger T246991.
 		$bagTime += 10;
-		$appTime += 100;
+		$statsFactory->setCurrentTime( $appTime += 100 );
 
 		$this->assertFalse( $limiter->limit( $user, 'edit' ), 'limit expired' );
 		$this->assertTrue( $limiter->limit( $user, 'edit' ), 'limit functional after expiry' );
 	}
 
 	/**
-	 * @covers \MediaWiki\Permissions\RateLimiter::limit
+	 * @covers ::limit
+	 * @covers ::getConditions
 	 */
 	public function testPingLimiterRate() {
 		$limits = [
@@ -180,36 +183,33 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		$fakeTime = 1600000000;
 		$cache = new HashBagOStuff();
 
-		$this->setMainCache( $cache );
-
 		$cache->setMockTime( $fakeTime ); // this is a reference!
-		MWTimestamp::setFakeTime( static function () use ( &$fakeTime ) {
-			return (int)$fakeTime;
-		} );
+		$statsFactory = new WRStatsFactory( new BagOStuffStatsStore( $cache ) );
+		$statsFactory->setCurrentTime( $fakeTime );
 
 		$user = $this->newFakeUser( 'Frank', '1.2.3.4', 111 );
-		$limiter = $this->newRateLimiter( $limits, [], $cache );
+		$limiter = $this->newRateLimiter( $limits, [], $statsFactory );
 
 		// The limit is 3 per 60 second. Do 5 edits at an emulated 50 second interval.
 		// They should all pass. This tests that the counter doesn't just keeps increasing
 		// but gets reset in an appropriate way.
 		$this->assertFalse( $limiter->limit( $user, 'edit' ), 'first ping should pass' );
 
-		$fakeTime += 50;
+		$statsFactory->setCurrentTime( $fakeTime += 50 );
 		$this->assertFalse( $limiter->limit( $user, 'edit' ), 'second ping should pass' );
 
-		$fakeTime += 50;
+		$statsFactory->setCurrentTime( $fakeTime += 50 );
 		$this->assertFalse( $limiter->limit( $user, 'edit' ), 'third ping should pass' );
 
-		$fakeTime += 50;
+		$statsFactory->setCurrentTime( $fakeTime += 50 );
 		$this->assertFalse( $limiter->limit( $user, 'edit' ), 'fourth ping should pass' );
 
-		$fakeTime += 50;
+		$statsFactory->setCurrentTime( $fakeTime += 50 );
 		$this->assertFalse( $limiter->limit( $user, 'edit' ), 'fifth ping should pass' );
 	}
 
 	/**
-	 * @covers \MediaWiki\Permissions\RateLimiter::limit
+	 * @covers ::limit
 	 */
 	public function testPingLimiterHook() {
 		$limits = [
@@ -274,7 +274,7 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideIsPingLimitable
-	 * @covers \MediaWiki\Permissions\RateLimiter::isExempt
+	 * @covers ::isExempt
 	 *
 	 * @param array $rateLimitExcludeIps
 	 * @param RateLimitSubject $subject
@@ -298,18 +298,18 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	private function newFakeUser( string $name, string $ip, int $id ) {
+	private function newFakeUser( string $name, string $ip, int $id, $newbie = false ) {
 		return new RateLimitSubject(
 			new UserIdentityValue( $id, $name ),
 			$ip,
-			[]
+			[ RateLimitSubject::NEWBIE => $newbie ]
 		);
 	}
 
 	/**
 	 * @param array $limits
 	 * @param array $excludedIPs
-	 * @param HashBagOStuff|null $cache
+	 * @param WRStatsFactory|null $statsFactory
 	 *
 	 * @return RateLimiter
 	 * @throws \Exception
@@ -317,10 +317,10 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 	protected function newRateLimiter(
 		array $limits,
 		array $excludedIPs,
-		HashBagOStuff $cache = null
+		WRStatsFactory $statsFactory = null
 	): RateLimiter {
-		if ( $cache === null ) {
-			$cache = new HashBagOStuff();
+		if ( $statsFactory === null ) {
+			$statsFactory = new WRStatsFactory( new BagOStuffStatsStore( new HashBagOStuff() ) );
 		}
 
 		$services = $this->getServiceContainer();
@@ -330,7 +330,7 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 				MainConfigNames::RateLimits => $limits,
 				MainConfigNames::RateLimitsExcludedIPs => $excludedIPs,
 			] ),
-			$cache,
+			$statsFactory,
 			$this->getMockContralIdProvider(),
 			$services->getUserFactory(),
 			$services->getUserGroupManager(),
@@ -338,6 +338,29 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		);
 
 		return $limiter;
+	}
+
+	/**
+	 * Test limit with different limit types
+	 * @covers ::limit
+	 * @covers ::getConditions
+	 */
+	public function testLimitTypes() {
+		$limits = [
+			'edit' => [
+				'user' => [ 1, 60 ],
+				'ip' => [ 2, 60 ],
+			],
+		];
+
+		$user1 = $this->newFakeUser( 'User1', '127.0.0.1', 1, true );
+		$user2 = $this->newFakeUser( 'User2', '127.0.0.1', 2, true );
+		$user3 = $this->newFakeUser( 'User3', '127.0.0.1', 3, true );
+
+		$limiter = $this->newRateLimiter( $limits, [] );
+		$this->assertFalse( $limiter->limit( $user1, 'edit' ) );
+		$this->assertFalse( $limiter->limit( $user2, 'edit' ) );
+		$this->assertTrue( $limiter->limit( $user3, 'edit' ) );
 	}
 
 }
