@@ -755,6 +755,7 @@
 	"emailconfirmlink": "Link to [[Special:ConfirmEmail]].\n\nAppears in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}} after saving your email address but before it has been authenticated.",
 	"invalidemailaddress": "Shown as a warning when written an invalid email address in [[Special:Preferences]] and {{fullurl:Special:UserLogin|type=signup}} page",
 	"cannotchangeemail": "Error message shown when user goes to [[Special:ChangeEmail]] but email addresses cannot be changed on the site.",
+	"changeemail-maxlength": "Error message shown when user tries to set a new email address with more than 255 characters in [[Special:ChangeEmail]] and [[Special:CreateAccount]].",
 	"emaildisabled": "Error message shown when user tries to set an email address but email features are disabled.",
 	"emailsender": "{{optional}}",
 	"accountcreated": "Used as page title in [[Special:UserLogin]].\n\nSee also:\n* {{msg-mw|Accountcreated|title}}\n* {{msg-mw|Accountcreatedtext|message}}",
