@@ -459,61 +459,6 @@ __INDEXATTR__;
 		return $res->numRows() > 0;
 	}
 
-	public function selectSQLText(
-		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
-	) {
-		if ( is_string( $options ) ) {
-			$options = [ $options ];
-		}
-
-		// Change the FOR UPDATE option as necessary based on the join conditions. Then pass
-		// to the parent function to get the actual SQL text.
-		// In Postgres when using FOR UPDATE, only the main table and tables that are inner joined
-		// can be locked. That means tables in an outer join cannot be FOR UPDATE locked. Trying to
-		// do so causes a DB error. This wrapper checks which tables can be locked and adjusts it
-		// accordingly.
-		// MySQL uses "ORDER BY NULL" as an optimization hint, but that is illegal in PostgreSQL.
-		if ( is_array( $options ) ) {
-			$forUpdateKey = array_search( 'FOR UPDATE', $options, true );
-			if ( $forUpdateKey !== false && $join_conds ) {
-				unset( $options[$forUpdateKey] );
-				$options['FOR UPDATE'] = [];
-
-				$toCheck = $table;
-				reset( $toCheck );
-				while ( $toCheck ) {
-					$alias = key( $toCheck );
-					$name = $toCheck[$alias];
-					unset( $toCheck[$alias] );
-
-					$hasAlias = !is_numeric( $alias );
-					if ( !$hasAlias && is_string( $name ) ) {
-						$alias = $name;
-					}
-
-					if ( !isset( $join_conds[$alias] ) ||
-						!preg_match( '/^(?:LEFT|RIGHT|FULL)(?: OUTER)? JOIN$/i', $join_conds[$alias][0] )
-					) {
-						if ( is_array( $name ) ) {
-							// It's a parenthesized group, process all the tables inside the group.
-							$toCheck = array_merge( $toCheck, $name );
-						} else {
-							// Quote alias names so $this->tableName() won't mangle them
-							$options['FOR UPDATE'][] = $hasAlias ?
-								$this->platform->addIdentifierQuotes( $alias ) : $alias;
-						}
-					}
-				}
-			}
-
-			if ( isset( $options['ORDER BY'] ) && $options['ORDER BY'] == 'NULL' ) {
-				unset( $options['ORDER BY'] );
-			}
-		}
-
-		return parent::selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
-	}
-
 	public function doInsertNonConflicting( $table, array $rows, $fname ) {
 		// Postgres 9.5 supports "ON CONFLICT"
 		if ( $this->getServerVersion() >= 9.5 ) {
