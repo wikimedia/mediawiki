@@ -1047,7 +1047,7 @@
 	"revertmerge": "取消合併",
 	"mergelogpagetext": "以下是最近合併頁面歷史的清單。",
 	"history-title": "「$1」：修訂歷史",
-	"difference-title": "「$1」：修訂間的差異",
+	"difference-title": "「$1」：修訂間差異",
 	"difference-title-multipage": "「$1」與「$2」：頁面間的差異",
 	"difference-multipage": "(頁面間的差異)",
 	"lineno": "行 $1：",

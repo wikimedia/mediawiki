@@ -1111,7 +1111,7 @@
 	"revertmerge": "取消合并",
 	"mergelogpagetext": "下面是最近将一个页面历史合并到另一个页面的列表。",
 	"history-title": "$1：修订历史",
-	"difference-title": "“$1”的版本间差异",
+	"difference-title": "“$1”：修订间差异",
 	"difference-title-multipage": "“$1”与“$2”：页面之间的差异",
 	"difference-multipage": "（页面间差异）",
 	"lineno": "第$1行：",
@@ -4227,5 +4227,9 @@
 	"skin-action-protect": "保护",
 	"skin-action-undelete": "还原",
 	"skin-action-delete": "删除",
-	"skin-action-move": "移动"
+	"skin-action-move": "移动",
+	"newpages-showhide-bots": "$1机器人",
+	"newpages-showhide-patrolled": "$1已巡查的编辑",
+	"newpages-showhide-redirect": "$1重定向",
+	"newpages-showhide-registered": "$1注册用户"
 }

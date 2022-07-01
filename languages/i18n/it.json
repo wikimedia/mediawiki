@@ -4113,5 +4113,7 @@
 	"skin-action-protect": "Proteggi",
 	"skin-action-undelete": "Ripristina",
 	"skin-action-delete": "Cancella",
-	"skin-action-move": "Sposta"
+	"skin-action-move": "Sposta",
+	"newpages-showhide-patrolled": "$1 le modifiche verificate",
+	"newpages-showhide-registered": "$1 gli utenti registrati"
 }

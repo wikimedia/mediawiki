@@ -389,6 +389,8 @@
 	"exif-poserolldegrees": "Наклон (в градусах)",
 	"exif-initialviewheadingdegrees": "Изначальный горизонтальный угол вида (в градусах)",
 	"exif-initialviewpitchdegrees": "Изначальный угол вида (в градусах)",
+	"exif-initialviewrolldegrees": "Изначальный вид наклона (в градусах)",
+	"exif-initialhorizontalfovdegrees": "Изначальный FOV (в градусах по горизонтали)",
 	"exif-initialverticalfovdegrees": "Изначальный FOV (в градусах по вертикали)",
 	"exif-sourcephotoscount": "Число исходных фотографий",
 	"exif-croppedareaimagewidthpixels": "Обрезанная ширина панорамы",
