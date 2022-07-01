@@ -4100,6 +4100,8 @@
 	"skin-action-delete": "מחיקה",
 	"skin-action-move": "העברה",
 	"parsoid-stash-rate-limit-error": "שמירה במאגר נכשלה בשל עקיפת קצב. נא לנסות שוב מאוחר יותר.",
+	"parsoid-resource-limit-exceeded": "משאבי פרסואיד עברו את המגבלה: $1",
+	"parsoid-client-error": "קלט פרסואיד בלתי־תקין: $1",
 	"newpages-showhide-bots": "$1 בוטים",
 	"newpages-showhide-patrolled": "$1 עריכות בדוקות",
 	"newpages-showhide-redirect": "$1 הפניות",

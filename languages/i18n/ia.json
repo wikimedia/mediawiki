@@ -3973,6 +3973,8 @@
 	"skin-action-delete": "Deler",
 	"skin-action-move": "Renominar",
 	"parsoid-stash-rate-limit-error": "Le immagazinage in reserva ha fallite perque le limite de frequentia ha essite excedite. Per favor tenta lo de novo plus tarde.",
+	"parsoid-resource-limit-exceeded": "Limite de ressources de Parsoid excedite: $1",
+	"parsoid-client-error": "Entrata de Parsoid non valide: $1",
 	"newpages-showhide-bots": "$1 robots",
 	"newpages-showhide-patrolled": "$1 modificationes patruliate",
 	"newpages-showhide-redirect": "$1 redirectiones",

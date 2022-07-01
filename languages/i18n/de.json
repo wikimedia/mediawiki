@@ -4115,6 +4115,8 @@
 	"skin-action-delete": "Löschen",
 	"skin-action-move": "Verschieben",
 	"parsoid-stash-rate-limit-error": "Die Vorabspeicherung ist fehlgeschlagen, weil ein Limit überschritten wurde. Bitte versuche es später noch einmal.",
+	"parsoid-resource-limit-exceeded": "Limit für Parsoid-Ressourcen überschritten: $1",
+	"parsoid-client-error": "Ungültige Parsoid-Eingabe: $1",
 	"newpages-showhide-bots": "Bots $1",
 	"newpages-showhide-patrolled": "Kontrollierte Änderungen $1",
 	"newpages-showhide-redirect": "Weiterleitungen $1",

@@ -3982,6 +3982,8 @@
 	"skin-action-delete": "Izbriši",
 	"skin-action-move": "Preimenuj",
 	"parsoid-stash-rate-limit-error": "Ločeno hranjenje je spodletelo, ker je omejitev hitrosti presežena. Prosimo, poskusite znova pozneje.",
+	"parsoid-resource-limit-exceeded": "Omejitev sredstev Parsoida presežena: $1",
+	"parsoid-client-error": "Neveljaven vhod Parsoida: $1",
 	"newpages-showhide-bots": "$1 bote",
 	"newpages-showhide-patrolled": "$1 pregledana urejanja",
 	"newpages-showhide-redirect": "$1 preusmeritve",

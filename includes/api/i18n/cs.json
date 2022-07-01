@@ -68,7 +68,7 @@
 	"apihelp-edit-summary": "Vytvářet a upravovat stránky.",
 	"apihelp-edit-param-title": "Název stránky, kterou chcete editovat. Nelze použít společně s <var>$1pageid</var>.",
 	"apihelp-edit-param-pageid": "ID stránky, která se má editovat. Není možné použít společně s <var>$1title</var>.",
-	"apihelp-edit-param-sectiontitle": "Název nové sekce.",
+	"apihelp-edit-param-sectiontitle": "Název nové sekce při použití <var>$1section=new</var>.",
 	"apihelp-edit-param-text": "Obsah stránky.",
 	"apihelp-edit-param-minor": "Označit toto jako malou editaci",
 	"apihelp-edit-param-notminor": "Nemalá editace.",

@@ -2596,7 +2596,7 @@
 	"whatlinkshere-prev": "{{PLURAL:$1|পূর্ববর্তী|পূর্ববর্তী $1টি}}",
 	"whatlinkshere-next": "{{PLURAL:$1|পরবর্তী|পরবর্তী $1টি}}",
 	"whatlinkshere-links": "← সংযোগগুলি",
-	"whatlinkshere-hideredirs": "পুনঃনির্দেশসমূহ $1",
+	"whatlinkshere-hideredirs": "পুনর্নির্দেশনাগুলো লুকান",
 	"whatlinkshere-hidetrans": "অন্তর্ভুক্তকরণ আড়াল করো",
 	"whatlinkshere-hidelinks": "সংযোগ আড়াল করো",
 	"whatlinkshere-hideimages": "ফাইল সংযোগ $1",
@@ -4083,5 +4083,9 @@
 	"skin-action-protect": "সুরক্ষা",
 	"skin-action-undelete": "পুনরুদ্ধার",
 	"skin-action-delete": "অপসারণ",
-	"skin-action-move": "স্থানান্তর"
+	"skin-action-move": "স্থানান্তর",
+	"newpages-showhide-bots": "বটগুলো $1",
+	"newpages-showhide-patrolled": "পরীক্ষিত সম্পাদনা $1",
+	"newpages-showhide-redirect": "পুনর্নির্দেশনাগুলো $1",
+	"newpages-showhide-registered": "নিবন্ধিত ব্যবহারকারীদের $1"
 }
