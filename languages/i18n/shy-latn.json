@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"DannyS712",
-			"Vikoula5"
+			"Vikoula5",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Aderrer n iseɣwan:",
@@ -172,7 +173,7 @@
 	"action-unprotect": "Beddel amesten",
 	"unprotect": "Beddel amesten",
 	"newpage": "Asebter amaynut",
-	"talkpagelinktext": "Mmeslay",
+	"talkpagelinktext": "mmeslay",
 	"specialpage": "Asebter uslig",
 	"personaltools": "Dduzan inu",
 	"talk": "Asqerdec",
@@ -1412,7 +1413,6 @@
 	"duration-days": "$1 {{PLURAL:$1|ass|ussan}}",
 	"randomrootpage": "Asebter aẓaṛ agacuran",
 	"authmanager-realname-label": "Isem n ṣṣeḥ:",
-	"view-view-foreign": "Sken di $1",
 	"view-create-local": "Rnu aglam n adigan",
 	"nstab-mainpage": "Asebter agejdan",
 	"view-edit-local": "Rnu aglam adigan",

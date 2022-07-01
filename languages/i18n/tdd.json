@@ -665,6 +665,7 @@
 	"edit-slots-cannot-remove": "{{PLURAL:$1|ᥞᥧᥰᥢᥭᥳ|ᥞᥧᥰᥓᥫᥰᥢᥭᥳ}} ᥙᥥᥢᥴᥟᥢᥴᥘᥨᥝᥱᥝᥭᥳ ᥘᥦᥲ ᥖᥥᥴᥟᥛᥱᥓᥣᥒᥲ ᥛᥩᥖᥱᥙᥦᥖᥲ: $2.",
 	"edit-slots-missing": "{{PLURAL:$1|ᥞᥧᥰᥢᥭᥳ|ᥞᥧᥰᥓᥫᥰᥢᥭᥳ}} ᥞᥨᥒᥲᥞᥣᥭᥴᥝᥭᥳ: $2.",
 	"postedit-confirmation-created": "ᥢᥣᥲᥘᥤᥐᥲᥢᥭᥳ ᥗᥧᥐᥱᥔᥣᥒᥲᥕᥝᥳᥕᥝᥲ.",
+	"postedit-confirmation-restored": "ᥢᥣᥲᥘᥤᥐᥲᥢᥭᥳ ᥗᥧᥐᥱᥝᥭᥳᥑᥪᥢᥰᥕᥝᥳᥕᥝᥲ.",
 	"postedit-confirmation-saved": "ᥘᥩᥒᥲᥛᥦᥰᥗᥖᥰᥓᥝᥲᥐᥝᥱ ᥔᥤᥛᥰᥙᥢᥴᥕᥝᥳᥕᥝᥲ.",
 	"postedit-confirmation-published": "ᥘᥩᥒᥲᥛᥦᥰᥗᥖᥰᥓᥝᥲᥐᥝᥱᥢᥢᥳ ᥗᥧᥐᥱᥙᥪᥢᥴᥟᥩᥐᥱᥐᥣᥱᥕᥝᥳ.",
 	"edit-already-exists": "ᥟᥛᥱᥓᥣᥒᥲ ᥐᥩᥱᥔᥣᥒᥲ ᥢᥣᥲᥘᥤᥐᥲᥟᥢᥴᥛᥬᥱ.\nᥛᥢᥰᥛᥤᥰᥝᥭᥳᥗᥣᥲᥕᥝᥲ.",

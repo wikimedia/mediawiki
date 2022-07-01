@@ -356,5 +356,15 @@
 	"exif-urgency-normal": "Normal ($1)",
 	"exif-urgency-low": "Landeuh ($1)",
 	"exif-urgency-high": "Luhur ($1)",
-	"exif-urgency-other": "Prioritas robahluyuan ($1)"
+	"exif-urgency-other": "Prioritas robahluyuan ($1)",
+	"exif-firstphotodate": "Titimangsa poto mimiti",
+	"exif-lastphotodate": "Titimangsa poto panungtung",
+	"exif-projectiontype": "Tipe proyéksi",
+	"exif-projectiontype-equirectangular": "Pasagi panjang",
+	"exif-usepanoramaviewer": "Paké pamidang panorama",
+	"exif-usepanoramaviewer-true": "Enya",
+	"exif-usepanoramaviewer-false": "Henteu",
+	"exif-exposurelockused": "Maké konci pajanan",
+	"exif-exposurelockused-true": "Enya",
+	"exif-exposurelockused-false": "Henteu"
 }

@@ -3,7 +3,8 @@
 		"authors": [
 			"DannyS712",
 			"Filipinayzd",
-			"Rinconada"
+			"Rinconada",
+			"Amire80"
 		]
 	},
 	"tog-hideminor": "Itago a mga gatikot na pagbalyow sa mga bagong pagribay",
@@ -134,7 +135,7 @@
 	"action-unprotect": "Ribayan a proteksyon",
 	"unprotect": "Ribayan a proteksyon",
 	"newpage": "Bagong pahina",
-	"talkpagelinktext": "Magbisara",
+	"talkpagelinktext": "magbisara",
 	"specialpage": "Espesyal na pahina",
 	"personaltools": "Mga personal na gamit",
 	"talk": "Pagbisara",
@@ -659,7 +660,6 @@
 	"feedback-message": "Mensahe:",
 	"searchsuggest-search": "Pag-anapon a {{SITENAME}}",
 	"expand_templates_remove_nowiki": "Itago a <nowiki> tags sa resulta",
-	"view-view-foreign": "Silung sa $1",
 	"view-create-local": "Dugangan sa lokal na deskripsyon",
 	"nstab-mainpage": "Unang pahina",
 	"skin-action-protect": "Protektaran",

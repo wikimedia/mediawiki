@@ -6,7 +6,8 @@
 			"Kengšepā",
 			"Ohpuu",
 			"Warbola",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"sunday": "pivāpǟva",
@@ -101,7 +102,7 @@
 	"protect": "Kaitsõmi",
 	"protect_change": "mõitiņt",
 	"newpage": "Ūž lēḑ",
-	"talkpagelinktext": "Nõvpidāmi",
+	"talkpagelinktext": "nõvpidāmi",
 	"personaltools": "Ummizt tīeažād",
 	"talk": "Nõvpidāmi",
 	"views": "vaņtlimiži",
@@ -549,7 +550,6 @@
 	"external_image_whitelist": "  #Jettõgid se jadā bäz mõitiņtõmõt<pre>\n#Pangid regulār-ekpressij jagūd ( set merkid // vail vȯlbi jag) mōzõpēḑõn \n#Ne āt sidtõd vikipēdij-uļļizt bīldad internet adresõdõks\n#Sidtõd vȯlbizt nägţõbõd bīldadõks, mūn kȭrdal nägţõbõd setku bīlda siḑīm \n#Merkõks # irgõbõd rīndad āt komentārd \n#Se um nei-īž sūrd ja piškizt tǟdõdõks\n\n#Pangid tikkiž regulār-ekpressij jagūd sīe krīpš pāikal. Jettõgid se jadā bäz mõitiņtõmõt mūoḑ pǟlõ  </pre>",
 	"tag-filter": "[[Special:Tags|Tag]] sõggõl:",
 	"deletepage": "Kištāntõgid se lēḑ jarā",
-	"view-view-foreign": "Vaņțõl pāikas $1",
 	"nstab-mainpage": "Eḑḑilēḑ",
 	"skin-action-protect": "Kaitsõmi",
 	"skin-action-delete": "Kištāntõgid jarā",

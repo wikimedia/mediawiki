@@ -13,7 +13,8 @@
 			"Sulev Iva (Võrok)",
 			"Trixt",
 			"Võrok",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Lingiq ala tõmmadaq",
@@ -175,7 +176,7 @@
 	"action-unprotect": "Muudaq kaidsõt",
 	"unprotect": "Muudaq kaidsõt",
 	"newpage": "Vahtsõnõ artikli",
-	"talkpagelinktext": "Arotus",
+	"talkpagelinktext": "arotus",
 	"specialpage": "Tallituslehekülg",
 	"personaltools": "Erätüüriistaq",
 	"talk": "Arotus",
@@ -1591,7 +1592,6 @@
 	"searchsuggest-search": "Otsminõ {{GRAMMAR:elative|{{SITENAME}}}}",
 	"duration-days": "$1 {{PLURAL:$1|päiv|päivä}}",
 	"randomrootpage": "Johuslinõ juurlehekülg",
-	"view-view-foreign": "Kaeq $1 pääl",
 	"view-create-local": "Luuq paigapääline seletüs",
 	"nstab-mainpage": "Pääleht",
 	"view-edit-local": "Toimõndaq paigapäälist seletüst",

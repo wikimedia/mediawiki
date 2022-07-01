@@ -14,7 +14,8 @@
 			"Steafan31",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Fo-loidhneadh nan ceanglaichean:",
@@ -184,7 +185,7 @@
 	"action-unprotect": "Atharraich an dìon",
 	"unprotect": "Atharraich an dìon",
 	"newpage": "Duilleag ùr",
-	"talkpagelinktext": "Deasbaireachd",
+	"talkpagelinktext": "deasbaireachd",
 	"specialpage": "Duilleag shònraichte",
 	"personaltools": "Innealan pearsanta",
 	"talk": "Deasbaireachd",
@@ -2848,7 +2849,6 @@
 	"special-characters-group-gujarati": "Gujarati",
 	"mw-widgets-mediasearch-noresults": "Cha deach toradh a lorg.",
 	"randomrootpage": "Duilleag root air thuaiream",
-	"view-view-foreign": "Seall air $1",
 	"view-create-local": "Cuir tuairisgeul ionadail ris",
 	"nstab-mainpage": "Prìomh-dhuilleag",
 	"view-edit-local": "Deasaich an tuairisgeul ionadail",

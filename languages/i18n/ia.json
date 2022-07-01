@@ -17,7 +17,8 @@
 			"Shirayuki",
 			"Yfdyh000",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Sublinear ligamines:",
@@ -191,7 +192,7 @@
 	"action-unprotect": "Cambiar protection",
 	"unprotect": "Cambiar protection",
 	"newpage": "Nove pagina",
-	"talkpagelinktext": "Discussion",
+	"talkpagelinktext": "discussion",
 	"specialpage": "Pagina special",
 	"personaltools": "Instrumentos personal",
 	"talk": "Discussion",
@@ -3963,7 +3964,6 @@
 	"config-missing-key": "Le parametro de configuration MediaWiki \"$1\" es mancante.",
 	"config-invalid-key": "Parametro de configuration MediaWiki \"$1\" non valide: $2",
 	"changeslist-nocomment": "Nulle summario de modification",
-	"view-view-foreign": "Vider sur $1",
 	"view-create-local": "Adder description local",
 	"nstab-mainpage": "Pagina principal",
 	"view-edit-local": "Modificar description local",

@@ -25,7 +25,8 @@
 			"Xð",
 			"Горан Анђелковић",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Soslinhar los ligams :",
@@ -199,7 +200,7 @@
 	"action-unprotect": "Desprotegir",
 	"unprotect": "Desprotegir",
 	"newpage": "Pagina novèla",
-	"talkpagelinktext": "Discussion",
+	"talkpagelinktext": "discussion",
 	"specialpage": "Pagina especiala",
 	"personaltools": "Aisinas personalas",
 	"talk": "Discussion",
@@ -3329,7 +3330,6 @@
 	"pageid": "ID de pagina $1",
 	"passwordpolicies-group": "Grop",
 	"passwordpolicies-policies": "Politicas",
-	"view-view-foreign": "Veire sus $1",
 	"view-create-local": "Apondre una descripcion locala",
 	"nstab-mainpage": "Acuèlh",
 	"view-edit-local": "Modificar la descripcion locala",

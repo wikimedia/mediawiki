@@ -35,7 +35,8 @@
 			"Vlad5250",
 			"sco.wikipedia.org editors",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Unnerline airtins:",
@@ -204,7 +205,7 @@
 	"action-unprotect": "Chynge protection",
 	"unprotect": "Chynge protection",
 	"newpage": "New page",
-	"talkpagelinktext": "Tauk",
+	"talkpagelinktext": "tauk",
 	"specialpage": "Byordinar Page",
 	"personaltools": "Personal tuils",
 	"talk": "Tauk",
@@ -3094,7 +3095,6 @@
 	"specialmute": "Lowden",
 	"gotointerwiki": "Leavin {{SITENAME}}",
 	"passwordpolicies-group": "Groop",
-	"view-view-foreign": "See oan $1",
 	"view-create-local": "Eik local descreeption",
 	"nstab-mainpage": "Main Page",
 	"view-edit-local": "Eedit the local descreeption",
