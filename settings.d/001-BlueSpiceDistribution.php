@@ -27,6 +27,9 @@ $GLOBALS['bsgPermissionConfig']['invitesignup'] = [
 	'type' => 'global',
 	'roles' => [ 'admin' ]
 ];
+wfLoadExtension( 'MenuEditor' );
+wfLoadExtension( 'EnhancedUpload' );
+$GLOBALS['wgEnhancedUploadOverrideStandardUpload'] = true;
 
 $GLOBALS['wgGroupTypes'] = [
 	'*'                => 'implicit',
