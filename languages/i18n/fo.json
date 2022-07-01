@@ -17,7 +17,8 @@
 			"Urhixidur",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Undirstrika leinki:",
@@ -187,7 +188,7 @@
 	"protect_change": "broyt",
 	"unprotect": "Broyt friðing",
 	"newpage": "Nýggj síða",
-	"talkpagelinktext": "Kjak",
+	"talkpagelinktext": "kjak",
 	"specialpage": "Serstøk síða",
 	"personaltools": "Persónlig amboð",
 	"talk": "Kjak",
@@ -818,9 +819,6 @@
 	"restoreprefs": "Nullstilla alt til standard innstillingar (í øllum teigum)",
 	"prefs-editing": "Broyting av greinum",
 	"searchresultshead": "Leita",
-	"stub-threshold": "Avmarkað til stubba leinki formatering $1:",
-	"stub-threshold-sample-link": "dømi",
-	"stub-threshold-disabled": "Er gjørt óvirki",
 	"recentchangesdays": "Dagar av vísa í seinastu broytingum:",
 	"recentchangesdays-max": "Í mesta lagi $1 {{PLURAL:$1|dagur|dagar}}",
 	"recentchangescount": "Tal av rættingum at vísa í standard:",

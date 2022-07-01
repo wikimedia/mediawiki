@@ -47,7 +47,7 @@
 	"apihelp-edit-param-text": "Nội dung trang.",
 	"apihelp-edit-param-summary": "Tóm lược sửa đổi. Cũng là đề mục khi $1section=new và $1sectiontitle không được đặt.",
 	"apihelp-edit-param-minor": "Đánh dấu đây là sửa đổi nhỏ.",
-	"apihelp-edit-param-notminor": "Không đánh dấu đây là sửa đổi nhỏ thậm chí nếu người dùng bật tùy chọn \"{{int:tog-minordefault}}\".",
+	"apihelp-edit-param-notminor": "Không đánh dấu đây là sửa đổi nhỏ thậm chí nếu người dùng bật tùy chọn “{{int:tog-minordefault}}”.",
 	"apihelp-edit-param-bot": "Đánh dấu sửa đổi này là sửa đổi bot.",
 	"apihelp-edit-param-createonly": "Không sửa đổi trang nếu nó đã tồn tại.",
 	"apihelp-edit-param-nocreate": "Gây lỗi nếu trang không tồn tại.",

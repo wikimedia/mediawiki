@@ -84,7 +84,9 @@
 			"아라",
 			"Chinamoonroll",
 			"Hanif Al Husaini",
-			"Nohirara"
+			"Nohirara",
+			"Ezagren",
+			"Mbee-wiki"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -3865,7 +3867,7 @@
 	"mediastatistics-allbytes": "Total ukuran berkas untuk semua {{PLURAL:$3|$3 berkas}}: {{PLURAL:$1|$1 bita}} ($2).",
 	"mediastatistics-table-mimetype": "Tipe MIME",
 	"mediastatistics-table-extensions": "Ekstensi",
-	"mediastatistics-table-count": "Jumlah file",
+	"mediastatistics-table-count": "Jumlah berkas",
 	"mediastatistics-table-totalbytes": "Ukuran gabungan",
 	"mediastatistics-header-unknown": "Tidak diketahui",
 	"mediastatistics-header-bitmap": "Gambar bitmap",

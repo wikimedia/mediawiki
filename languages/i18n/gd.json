@@ -14,7 +14,8 @@
 			"Steafan31",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Fo-loidhneadh nan ceanglaichean:",
@@ -193,7 +194,7 @@
 	"protect_change": "mùth",
 	"unprotect": "Atharraich an dìon",
 	"newpage": "Duilleag ùr",
-	"talkpagelinktext": "Deasbaireachd",
+	"talkpagelinktext": "deasbaireachd",
 	"specialpage": "Duilleag shònraichte",
 	"personaltools": "Innealan pearsanta",
 	"talk": "Deasbaireachd",
@@ -932,8 +933,6 @@
 	"restoreprefs": "Aisig na roghainnean bunaiteach uile (anns gach earrann)",
 	"prefs-editing": "Deasachadh",
 	"searchresultshead": "Lorg",
-	"stub-threshold": "An stairsneach airson fòrmatadh cheanglaichean nam bun ($1):",
-	"stub-threshold-disabled": "À comas",
 	"recentchangesdays": "Co mheud latha a thèid a shealltainn sna mùthaidhean ùra:",
 	"recentchangesdays-max": "$1 {{PLURAL:$1|latha|latha|làithean|latha}} air a' char as motha",
 	"recentchangescount": "Uiread a dheasachaidhean a thèid a shealltainn a ghnàth:",

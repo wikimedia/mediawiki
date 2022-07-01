@@ -5,7 +5,8 @@
 			"Laitei",
 			"Reihpaleituh",
 			"Teitei",
-			"Teitei Para"
+			"Teitei Para",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Link châtlâh pakhâhna:",
@@ -665,6 +666,7 @@
 	"block-log-flags-nocreate": "account taona khaw hawpa a châ",
 	"proxyblocker": "Proxy khawtuhpa",
 	"movelogpage": "Log paly",
+	"movereason": "A chhâpa:",
 	"export": "Châhmiazy thaoh",
 	"thumbnail-more": "Palai",
 	"importlogpage": "Pangiapa log",
@@ -797,6 +799,7 @@
 	"tags-active-yes": "Ei khoh",
 	"tags-active-no": "Khoh vana",
 	"tags-hitcount": "$1 {{PLURAL:$1|pathlaipa|pathlaipazy}}",
+	"htmlform-submit": "Pangia",
 	"logentry-delete-delete": "$1 {{GENDER:$2|deleted}} châhmia $3",
 	"logentry-delete-restore": "$1 ta châhmia $3 ($4) a {{GENDER:$2|sohpathi haw}}",
 	"logentry-delete-revision": "$1 {{GENDER:$2|changed}} visibility of {{PLURAL:$5|a revision|$5 revisions}} on page $3: $4",
@@ -810,7 +813,7 @@
 	"logentry-upload-upload": "$1 ta $3 {{GENDER:$2|a khâh haw}}",
 	"logentry-upload-overwrite": "$1 cha $3 vâsie thiehpa a {{GENDER:$2|khâh haw}}",
 	"searchsuggest-search": "‎Tlua {{SITENAME}}",
-	"searchsuggest-containing": "Châhmiazy liata term kha tlua",
+	"searchsuggest-containing": "Châhmiazy lia ypazy tlua teh",
 	"duration-days": "$1 {{PLURAL:$1|noh|nohzy}}",
 	"mw-widgets-mediasearch-recent-uploads": "{{GENDER:$1|Nâma}} na khâpa theihpazy",
 	"mw-widgets-mediasearch-results-aria-label": "Media tluapa theilâpazy",
