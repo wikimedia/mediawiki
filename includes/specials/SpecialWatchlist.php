@@ -465,15 +465,15 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$query_options = array_merge( $orderByAndLimit, $query_options );
 		$query_options['MAX_EXECUTION_TIME'] =
 			$this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries );
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->tables( $tables )
+			->conds( $conds )
+			->fields( $fields )
+			->options( $query_options )
+			->joinConds( $join_conds )
+			->caller( __METHOD__ );
 
-		return $dbr->select(
-			$tables,
-			$fields,
-			$conds,
-			__METHOD__,
-			$query_options,
-			$join_conds
-		);
+		return $queryBuilder->fetchResultSet();
 	}
 
 	/**
