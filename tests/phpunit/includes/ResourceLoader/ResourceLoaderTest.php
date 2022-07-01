@@ -1150,7 +1150,11 @@ END
 			$keysToExclude[] = 'exclude';
 		}, true );
 
-		$defaults = ResourceLoader::getUserDefaults( $ctx );
+		$defaults = ResourceLoader::getUserDefaults(
+			$ctx,
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getUserOptionsLookup()
+		);
 		$this->assertSame( [ 'include' => 1 ], $defaults );
 	}
 }

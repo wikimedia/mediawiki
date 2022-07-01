@@ -38,6 +38,7 @@ use MediaWiki\HeaderCallback;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserOptionsLookup;
 use MWException;
 use MWExceptionHandler;
 use MWExceptionRenderer;
@@ -1982,14 +1983,21 @@ MESSAGE;
 	 * Get user default options to expose to JavaScript on all pages via `mw.user.options`.
 	 *
 	 * @internal Exposed for use from Resources.php
+	 *
 	 * @param Context $context
+	 * @param HookContainer $hookContainer
+	 * @param UserOptionsLookup $userOptionsLookup
+	 *
 	 * @return array
 	 */
-	public static function getUserDefaults( Context $context ): array {
-		// TODO inject
-		$defaultOptions = MediaWikiServices::getInstance()->getUserOptionsLookup()->getDefaultOptions();
+	public static function getUserDefaults(
+		Context $context,
+		HookContainer $hookContainer,
+		UserOptionsLookup $userOptionsLookup
+	): array {
+		$defaultOptions = $userOptionsLookup->getDefaultOptions();
 		$keysToExclude = [];
-		$hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+		$hookRunner = new HookRunner( $hookContainer );
 		$hookRunner->onResourceLoaderExcludeUserOptions( $keysToExclude, $context );
 		foreach ( $keysToExclude as $excludedKey ) {
 			unset( $defaultOptions[ $excludedKey ] );
