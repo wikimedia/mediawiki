@@ -72,7 +72,7 @@ class SpecialLinkSearch extends QueryPage {
 		$out->setPreventClickjacking( false );
 
 		$request = $this->getRequest();
-		$target = $request->getVal( 'target', $par );
+		$target = $request->getVal( 'target', $par ?? '' );
 		$namespace = $request->getIntOrNull( 'namespace' );
 
 		$protocols_list = [];
