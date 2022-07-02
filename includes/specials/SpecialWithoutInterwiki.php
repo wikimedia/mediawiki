@@ -37,8 +37,8 @@ class SpecialWithoutInterwiki extends PageQueryPage {
 	}
 
 	public function execute( $par ) {
-		$this->prefix = Title::capitalize(
-			$this->getRequest()->getVal( 'prefix', $par ), NS_MAIN );
+		$prefix = $this->getRequest()->getVal( 'prefix', $par );
+		$this->prefix = $prefix !== null ? Title::capitalize( $prefix, NS_MAIN ) : '';
 		parent::execute( $par );
 	}
 
