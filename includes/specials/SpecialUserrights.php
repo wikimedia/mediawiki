@@ -629,7 +629,7 @@ class UserrightsPage extends SpecialPage {
 				'user',
 				'username',
 				30,
-				str_replace( '_', ' ', $this->mTarget ),
+				$this->mTarget ? str_replace( '_', ' ', $this->mTarget ) : '',
 				[
 					'class' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
 				] + (
