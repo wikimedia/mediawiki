@@ -520,7 +520,7 @@ class ImageListPager extends TablePager {
 						$name
 					);
 				} else {
-					$link = htmlspecialchars( $value );
+					$link = $value !== null ? htmlspecialchars( $value ) : '';
 				}
 
 				return $link;
