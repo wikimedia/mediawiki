@@ -443,6 +443,7 @@ class Names {
 		'sr-ec' => 'српски (ћирилица)', # Serbian Cyrillic ekavian
 		'sr-el' => 'srpski (latinica)', # Serbian Latin ekavian
 		'srn' => 'Sranantongo', # Sranan Tongo
+		'sro' => 'sardu campidanesu', # Campidanese Sardinian
 		'ss' => 'SiSwati', # Swati
 		'st' => 'Sesotho', # Southern Sotho
 		'stq' => 'Seeltersk', # Saterland Frisian
