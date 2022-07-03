@@ -56,7 +56,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	private $output;
 
 	/**
-	 * @var User
+	 * @var User|null
 	 */
 	private $user;
 
@@ -236,14 +236,19 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @return User
 	 */
 	public function getUser() {
+		if ( !$this->user && $this->authority ) {
+			// Keep user consistent by using a possible set authority
+			$this->user = MediaWikiServices::getInstance()
+				->getUserFactory()
+				->newFromAuthority( $this->authority );
+		}
 		return $this->user ?: $this->getContext()->getUser();
 	}
 
 	public function setAuthority( Authority $authority ) {
 		$this->authority = $authority;
-		$this->user = MediaWikiServices::getInstance()
-			->getUserFactory()
-			->newFromAuthority( $authority );
+		// If needed, a User object is constructed from this authority
+		$this->user = null;
 	}
 
 	/**
