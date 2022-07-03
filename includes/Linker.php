@@ -1856,17 +1856,13 @@ class Linker {
 
 		// Up to the value of $wgShowRollbackEditCount revisions are counted
 		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
-		// T270033 Index renaming
-		$revIndex = $dbr->indexExists( 'revision', 'page_timestamp',  __METHOD__ )
-			? 'page_timestamp'
-			: 'rev_page_timestamp';
 		$res = $dbr->select(
 			$revQuery['tables'],
 			[ 'rev_user_text' => $revQuery['fields']['rev_user_text'], 'rev_deleted' ],
 			[ 'rev_page' => $revRecord->getPageId() ],
 			__METHOD__,
 			[
-				'USE INDEX' => [ 'revision' => $revIndex ],
+				'USE INDEX' => [ 'revision' => 'rev_page_timestamp' ],
 				'ORDER BY' => [ 'rev_timestamp DESC', 'rev_id DESC' ],
 				'LIMIT' => $showRollbackEditCount + 1
 			],

@@ -281,10 +281,6 @@ class RollbackPage {
 		}
 
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
-		// T270033 Index renaming
-		$revIndex = $dbw->indexExists( 'revision', 'page_timestamp',  __METHOD__ )
-			? 'page_timestamp'
-			: 'rev_page_timestamp';
 
 		// TODO: move this query to RevisionSelectQueryBuilder when it's available
 		// Get the last edit not by this person...
@@ -299,7 +295,7 @@ class RollbackPage {
 			],
 			__METHOD__,
 			[
-				'USE INDEX' => [ 'revision' => $revIndex ],
+				'USE INDEX' => [ 'revision' => 'rev_page_timestamp' ],
 				'ORDER BY' => [ 'rev_timestamp DESC', 'rev_id DESC' ]
 			],
 			$actorWhere['joins']
