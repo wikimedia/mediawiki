@@ -68,7 +68,7 @@ class RequestContext implements IContextSource, MutableContext {
 	private $output;
 
 	/**
-	 * @var User
+	 * @var User|null
 	 */
 	private $user;
 
@@ -358,7 +358,14 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public function getUser() {
 		if ( $this->user === null ) {
-			$this->user = User::newFromSession( $this->getRequest() );
+			if ( $this->authority !== null ) {
+				// Keep user consistent by using a possible set authority
+				$this->user = MediaWikiServices::getInstance()
+					->getUserFactory()
+					->newFromAuthority( $this->authority );
+			} else {
+				$this->user = User::newFromSession( $this->getRequest() );
+			}
 		}
 
 		return $this->user;
@@ -369,10 +376,8 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public function setAuthority( Authority $authority ) {
 		$this->authority = $authority;
-		// Keep user consistent
-		$this->user = MediaWikiServices::getInstance()
-			->getUserFactory()
-			->newFromAuthority( $authority );
+		// If needed, a User object is constructed from this authority
+		$this->user = null;
 		// Invalidate cached user interface language
 		$this->lang = null;
 	}
