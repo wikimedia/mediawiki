@@ -269,8 +269,14 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
 		$mtime = $this->getCurrentTime();
 
+		if ( $flags & self::WRITE_BACKGROUND ) {
+			$callback = [ $this, 'modifyTableSpecificBlobsForIncrInitAsync' ];
+		} else {
+			$callback = [ $this, 'modifyTableSpecificBlobsForIncrInit' ];
+		}
+
 		$result = $this->modifyBlobs(
-			[ $this, 'modifyTableSpecificBlobsForIncrInit' ],
+			$callback,
 			$mtime,
 			[ $key => [ $step, $init, $exptime ] ],
 			$flags,
@@ -984,6 +990,42 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		$this->updateOpStats( self::METRIC_OP_INCR, array_keys( $argsByKey ) );
+	}
+
+	/**
+	 * Same as modifyTableSpecificBlobsForIncrInit() but does not return the
+	 * new value.
+	 *
+	 * @param IDatabase $db
+	 * @param string $ptable
+	 * @param float $mtime
+	 * @param array<string,array> $argsByKey
+	 * @param array<string,mixed> &$resByKey
+	 * @throws DBError
+	 */
+	private function modifyTableSpecificBlobsForIncrInitAsync(
+		IDatabase $db,
+		string $ptable,
+		float $mtime,
+		array $argsByKey,
+		array &$resByKey
+	) {
+		foreach ( $argsByKey as $key => list( $step, $init, $exptime ) ) {
+			$mt = $this->makeTimestampedModificationToken( $mtime, $db );
+			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
+			$db->upsert(
+				$ptable,
+				$this->buildUpsertRow( $db, $key, $init, $expiry, $mt ),
+				[ [ 'keyname' ] ],
+				$this->buildIncrUpsertSet( $db, $step, $init, $expiry, $mt, (int)$mtime ),
+				__METHOD__
+			);
+			if ( !$db->affectedRows() ) {
+				$this->logger->warning( __METHOD__ . ": failed to set new $key value" );
+			} else {
+				$resByKey[$key] = true;
+			}
+		}
 	}
 
 	/**
