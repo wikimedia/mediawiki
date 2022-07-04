@@ -388,6 +388,8 @@ abstract class ParsoidHandler extends Handler {
 	/**
 	 * Redirect to another Parsoid URL (e.g. canonization)
 	 *
+	 * @stable to override
+	 *
 	 * @param string $path Target URL
 	 * @param array $pathParams Path parameters to inject into path
 	 * @param array $queryParams Query parameters
@@ -397,32 +399,41 @@ abstract class ParsoidHandler extends Handler {
 	protected function createRedirectResponse(
 		string $path, array $pathParams = [], array $queryParams = []
 	): Response {
-		// FIXME: We should be using $this->getRouteUrl here. But that uses the CanonicalServer
-		//        setting as the base URL, which is incorrect when redirecting to private
-		//        endpoints. See T311867.
-		global $wgRestPath;
-		$path = wfExpandUrl( "$wgRestPath$path", PROTO_CURRENT );
-
-		foreach ( $pathParams as $param => $value ) {
-			// NOTE: we use rawurlencode here, since execute() uses rawurldecode().
-			// Spaces in path params must be encoded to %20 (not +).
-			$path = str_replace( '{' . $param . '}', rawurlencode( $value ), $path );
-		}
-
-		// XXX: this should not be necessary in the REST entry point
+		// FIXME this should not be necessary in the REST entry point
 		unset( $queryParams['title'] );
 
-		if ( $queryParams ) {
-			$path .= ( strpos( $path, '?' ) === false ? '?' : '&' )
-				. http_build_query( $queryParams, '', '&', PHP_QUERY_RFC3986 );
-		}
+		$url = $this->getRedirectRouteUrl( $path, $pathParams, $queryParams );
+
 		if ( $this->getRequest()->getMethod() === 'POST' ) {
-			$response = $this->getResponseFactory()->createTemporaryRedirect( $path );
+			// 307 response
+			$response = $this->getResponseFactory()->createTemporaryRedirect( $url );
 		} else {
-			$response = $this->getResponseFactory()->createLegacyTemporaryRedirect( $path );
+			// 302 response
+			$response = $this->getResponseFactory()->createLegacyTemporaryRedirect( $url );
 		}
 		$response->setHeader( 'Cache-Control', 'private,no-cache,s-maxage=0' );
 		return $response;
+	}
+
+	/**
+	 * Returns the target URL for a redirect to the given path and parameters.
+	 * This exists so subclasses can override it to control whether the redirect
+	 * should go to a private or to a public URL.
+	 *
+	 * @see Router::getRouteUrl()
+	 *
+	 * @stable to override
+	 *
+	 * @param string $path
+	 * @param array $pathParams
+	 * @param array $queryParams
+	 *
+	 * @return string
+	 */
+	protected function getRedirectRouteUrl(
+		string $path, array $pathParams = [], array $queryParams = []
+	) {
+		return $this->getRouter()->getRouteUrl( $path, $pathParams, $queryParams );
 	}
 
 	/**
@@ -475,6 +486,8 @@ abstract class ParsoidHandler extends Handler {
 	 * This is done in the parsoid extension, for backwards compatibility
 	 * with the old endpoint URLs.
 	 *
+	 * @stable to override
+	 *
 	 * @param string $format The format the endpoint is expected to return.
 	 *
 	 * @return string
@@ -488,6 +501,8 @@ abstract class ParsoidHandler extends Handler {
 	 *
 	 * This is done in the parsoid extension, for backwards compatibility
 	 * with the old endpoint URLs.
+	 *
+	 * @stable to override
 	 *
 	 * @param string $format The format the endpoint is expected to return.
 	 *
@@ -505,6 +520,8 @@ abstract class ParsoidHandler extends Handler {
 	 *
 	 * This is done in the parsoid extension, for backwards compatibility
 	 * with the old endpoint URLs.
+	 *
+	 * @stable to override
 	 *
 	 * @param string $format The format the endpoint is expected to return.
 	 *

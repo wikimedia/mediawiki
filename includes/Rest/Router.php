@@ -336,7 +336,8 @@ class Router {
 		foreach ( $pathParams as $param => $value ) {
 			// NOTE: we use rawurlencode here, since execute() uses rawurldecode().
 			// Spaces in path params must be encoded to %20 (not +).
-			$route = str_replace( '{' . $param . '}', rawurlencode( $value ), $route );
+			// Slashes must be encoded as %2F.
+			$route = str_replace( '{' . $param . '}', rawurlencode( (string)$value ), $route );
 		}
 
 		return $route;
