@@ -818,6 +818,7 @@
 	"changeemail-submit": "Cambiar correo electrónico",
 	"changeemail-throttled": "Has intentado acceder demasiadas veces.\nEspera $1 antes de intentarlo de nuevo.",
 	"changeemail-nochange": "Escribe una dirección de correo electrónico nueva diferente.",
+	"changeemail-maxlength": "Su dirección de correo electrónico debe tener como máximo 255 caracteres.",
 	"resettokens": "Restablecer claves",
 	"resettokens-text": "Aquí puedes restablecer las claves que permiten el acceso a ciertos datos privados asociados a tu cuenta.\n\nDeberías hacerlo si los has compartido por accidente, o si ha habido intrusiones en tu cuenta.",
 	"resettokens-no-tokens": "No hay claves para restablecer.",
@@ -1273,7 +1274,7 @@
 	"prefs-help-tokenmanagement": "Puedes ver y reiniciar la clave secreta que te permite ver tu lista de seguimiento vía Web. Cualquier persona que conozca dicha clave podrá ver tu lista de seguimiento. No la compartas.",
 	"prefs-user-downloaddata-label": "Datos de la cuenta:",
 	"prefs-user-downloaddata-info": "Mi información de cuenta de este proyecto",
-	"prefs-user-restoreprefs-label": "Eliminar datos de la cuenta:",
+	"prefs-user-restoreprefs-label": "Reiniciar ajustes:",
 	"prefs-user-restoreprefs-info": "Restaurar la configuración predeterminada (en todas las secciones)",
 	"savedprefs": "Se han guardado tus preferencias.",
 	"savedrights": "Se han guardado los grupos de {{GENDER:$1|usuario|usuaria}} de $1.",
@@ -4220,5 +4221,11 @@
 	"skin-action-protect": "Proteger",
 	"skin-action-undelete": "Restaurar",
 	"skin-action-delete": "Borrar",
-	"skin-action-move": "Trasladar"
+	"skin-action-move": "Trasladar",
+	"parsoid-resource-limit-exceeded": "Límite de recursos de Parsoid excedido: $1",
+	"parsoid-client-error": "Parsoide de entrada no válido: $1",
+	"newpages-showhide-bots": "$1 bots",
+	"newpages-showhide-patrolled": "$1 ediciones verificadas",
+	"newpages-showhide-redirect": "$1 redirecciones",
+	"newpages-showhide-registered": "$1 usuarios registrados"
 }
