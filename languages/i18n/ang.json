@@ -349,6 +349,8 @@
 	"title-invalid-interwiki": "Se trametnama se ðu firmetest befehþ betwuhwicihlenc þe man ne sceal brucan in trametnamum.",
 	"title-invalid-talk-namespace": "Se trametnama se ðu firmetest is for motungtramte se ne mæg beon.",
 	"title-invalid-characters": "Se trametnama se ðu firmetest befehþ ungenge bocstafas: \"$1\".",
+	"title-invalid-relative": "Ðes trametnama hæfþ edlesende paþ. Edlesende trametnaman (./, ../) sind ungenge, forþæm þe oft biþ brucendes ymbsceawere ungripor mid hiera.",
+	"title-invalid-magic-tilde": "Se trametnama se ðu firmetest  befiehþ ungengu drylicu tildeæfterfylging (<nowiki>~~~</nowiki>).",
 	"title-invalid-too-long": "Se tramettitul þone þu wilt is to lang.  He ne sceal beon lengra þonne $1 {{PLURAL:$1|lytelbita|lytelbitena}} on UTF-8 runwritgesetnesse.",
 	"title-invalid-leading-colon": "Se tramettitul þone þu wilt belycþ ungenge tægeltwageprice æt his onginne.",
 	"querypage-no-updates": "Edniwunga þisses trametes ne sindon nu gelyfda. \nGefræge her ne wyrþ hraðe edniwod.",

@@ -3090,6 +3090,7 @@
 	"mediawarning": "<strong>אזהרה:</strong> סוג קובץ זה עלול להכיל קוד זדוני.\nהרצת הקוד עלולה לסכן את המחשב שלך.",
 	"imagemaxsize": "גודל תמונה מרבי בדפי תיאור של קבצים:",
 	"thumbsize": "גודל של תמונות ממוזערות:",
+	"widthheight": "<span dir=\"ltr\">$1 × $2</span>",
 	"widthheightpage": "$1 × $2, {{PLURAL:$3|דף אחד|$3 דפים}}",
 	"file-info": "גודל הקובץ: $1, סוג MIME‏: $2",
 	"file-info-size": "<span dir=\"ltr\">$1 × $2</span> פיקסלים, גודל הקובץ: $3, סוג MIME‏: $4",

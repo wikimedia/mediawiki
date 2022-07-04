@@ -32,7 +32,8 @@
 			"McDutchie",
 			"Mrkczr",
 			"Yivan000",
-			"Yivangamer"
+			"Yivangamer",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Pagsasalungguhit ng link:",
@@ -1744,6 +1745,8 @@
 	"rollback-success": "Ibinalik ang mga pagbabago ni $1; ibinalik sa huling bersyon ni $2.",
 	"sessionfailure-title": "Nabigong pulong",
 	"sessionfailure": "Tila mayroong suliraning may kaugnayan sa iyong sesyon ng login;\nKinansela ang gawaing ito bilang pag-iingat laban sa pagnanakaw ng sesyon.\nPakipindot ang pindutang \"ibalik\" Bumalik muli sa nakaraang pahina at ikarga uli (''reload'') ito at pagkatapos subukan muli.",
+	"changecontentmodel-title-label": "Pamagat ng pahina",
+	"changecontentmodel-reason-label": "Dahilan:",
 	"protectlogpage": "Talaan ng proteksyon",
 	"protectlogtext": "Nasa ibaba ang isang talaan ng mga pagbabago sa mga pruteksiyon ng pahina.\nTingnan ang [[Special:ProtectedPages|talaan ng pinuprutektahang mga pahina]] para sa talaan ng kasalukuyang gumaganang mga pagprutekta ng pahina.",
 	"protectedarticle": "prinotektahan ang \"[[$1]]\"",
@@ -2553,6 +2556,9 @@
 	"version-entrypoints-header-url": "URL",
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath Landas ng artikulo]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath Landas ng panitik]",
+	"version-libraries-license": "Lisensya",
+	"version-libraries-description": "Paglalarawan",
+	"version-libraries-authors": "Mga tagapagmatnugot",
 	"redirect": "Redirect ayon sa file o ID ng tagagamit, pahina, pagbabago, o tala",
 	"redirect-summary": "Rini-redirect sa isang file (pangalan ng file), isang pahina (ID ng pagbabago o ng pahina), pahina ng tagagamit (ID nakanumero ng tagagamit), o isang entry ng tala (ID ng tala) ang natatanging pahinang ito. Paggamit: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]], o [[{{#Special:Redirect}}/logid/186]].",
 	"redirect-submit": "Puntahan",

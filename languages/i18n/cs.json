@@ -1421,7 +1421,7 @@
 	"action-autoconfirmed": "nebýt omezeni rychlostními limity na dané IP adrese",
 	"action-bigdelete": "mazat stránky s dlouhou historií",
 	"action-blockemail": "zablokovat uživateli možnost posílání e-mailů",
-	"action-bot": "být označen jako \"bot\"",
+	"action-bot": "být označen jako „bot“",
 	"action-editprotected": "editovat stránky zamčené na „{{int:protect-level-sysop}}“",
 	"action-editsemiprotected": "editovat stránky zamčené na „{{int:protect-level-autoconfirmed}}“",
 	"action-editinterface": "upravovat uživatelské rozhraní",

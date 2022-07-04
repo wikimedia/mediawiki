@@ -455,6 +455,7 @@
 	"editundo": "رَد کٕرو",
 	"diff-empty": "(کانٛہہ فَرَق نہٕ)",
 	"searchresults": "تَلاش نَتیٖجہٕ",
+	"search-filter-title-prefix": "خٲلی تِمَن صَفَن مَنٛز کٔرِو تَلاش یُہُنٛد عُنٛوان \"$1\" سٟتؠ شُروٗع گَژھان چھُ",
 	"search-filter-title-prefix-reset": "تَمام صَفَن مَنٛز کٔرِو تَلاش",
 	"searchresults-title": "''$1'' تَلاش نَتیٖجہٕ",
 	"prevn": "پٔتِم {{PLURAL:$1|$1}}",

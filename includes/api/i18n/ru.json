@@ -52,7 +52,8 @@
 			"Wileyfoxyx",
 			"Ice bulldog",
 			"Pacha Tchernof",
-			"Tanzun"
+			"Tanzun",
+			"Fenixs-ru"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документация]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> MediaWiki API — зрелый и стабильный интерфейс, активно поддерживаемый и улучшаемый. Мы стараемся избегать ломающих изменений, однако изредка они могут быть необходимы. Подпишитесь на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].</p>",
@@ -317,8 +318,8 @@
 	"apihelp-mergehistory-param-toid": "Идентификатор страницы, в историю которой будет добавлено объединяемое. Не может быть использовано одновременно с <var>$1to</var>.",
 	"apihelp-mergehistory-param-timestamp": "Временная метка, до которой версии будут перемещены из истории страницы-источника в историю целевой страницы. Если опущено, в целевую страницу будет перемещена вся история правок страницы-источника.",
 	"apihelp-mergehistory-param-reason": "Причина для объединения истории.",
-	"apihelp-mergehistory-example-merge": "Переместить всю историю правок страницы <kbd>Oldpage</kbd> на страницу <kbd>Newpage</kdb>.",
-	"apihelp-mergehistory-example-merge-timestamp": "Переместить историю правок из <kbd>Oldpage</kbd>, совершённых до <kbd>2015-12-31T04:37:41Z</kbd>, на страницу <kbd>Newpage</kdb>.",
+	"apihelp-mergehistory-example-merge": "Переместить всю историю правок страницы <kbd>Oldpage</kbd> на страницу <kbd>Newpage</kbd>.",
+	"apihelp-mergehistory-example-merge-timestamp": "Переместить историю правок из <kbd>Oldpage</kbd>, совершённых до <kbd>2015-12-31T04:37:41Z</kbd>, на страницу <kbd>Newpage</kbd>.",
 	"apihelp-move-summary": "Переименование страницы.",
 	"apihelp-move-param-from": "Название переименовываемой страницы. Нельзя использовать одновременно с <var>$1fromid</var>.",
 	"apihelp-move-param-fromid": "Идентификатор переименовываемой страницы. Нельзя использовать одновременно с <var>$1from</var>.",
