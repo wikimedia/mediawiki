@@ -45,6 +45,8 @@ This is a security and maintenance release of the MediaWiki 1.35 branch.
 * (T296642) changetags: Fix management of a '0' tag.
 * (T311554) ChangeTags: Return early in formatSummaryRow() if $tags === null.
 * (T303033) Handle null in ChangeTags::modifyDisplayQuery.
+* Change type hints for BatchRowIterator and NotRecursiveIterator for
+  compatibility with PHP 8.1
 
 == MediaWiki 1.35.6 ==
 
