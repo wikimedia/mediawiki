@@ -266,6 +266,7 @@ $wgAutoloadClasses += [
 	'MediaWiki\Tests\Structure\BundleSizeTest' => "$testDir/phpunit/structure/BundleSizeTest.php",
 
 	# tests/phpunit/unit/includes/Rest
+	'MediaWiki\Tests\Rest\RestTestTrait' => "$testDir/phpunit/unit/includes/Rest/RestTestTrait.php",
 	'MediaWiki\Tests\Rest\Handler\SessionHelperTestTrait' => "$testDir/phpunit/unit/includes/Rest/SessionHelperTestTrait.php",
 
 	# tests/phpunit/unit/includes/Rest/Handler
