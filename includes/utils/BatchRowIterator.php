@@ -216,14 +216,14 @@ class BatchRowIterator implements RecursiveIterator {
 	/**
 	 * @return bool True when this result set has rows
 	 */
-	public function hasChildren() {
+	public function hasChildren(): bool {
 		return $this->current && count( $this->current );
 	}
 
 	/**
-	 * @return RecursiveIterator
+	 * @return null|RecursiveIterator
 	 */
-	public function getChildren() {
+	public function getChildren(): ?RecursiveIterator {
 		return new NotRecursiveIterator( new ArrayIterator( $this->current ) );
 	}
 
