@@ -75,7 +75,7 @@ class MappedIterator extends FilterIterator {
 		parent::rewind();
 	}
 
-	public function accept() {
+	public function accept(): bool {
 		$value = call_user_func( $this->vCallback, $this->getInnerIterator()->current() );
 		$ok = ( $this->aCallback ) ? call_user_func( $this->aCallback, $value ) : true;
 		if ( $ok ) {
