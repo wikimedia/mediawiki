@@ -259,20 +259,26 @@ class Site implements Serializable {
 
 	/**
 	 * Returns the domain of the site, ie en.wikipedia.org
-	 * Or false if it's not known.
+	 * Or null if it's not known.
 	 *
 	 * @since 1.21
 	 *
 	 * @return string|null
 	 */
-	public function getDomain() {
+	public function getDomain(): ?string {
 		$path = $this->getLinkPath();
 
 		if ( $path === null ) {
 			return null;
 		}
 
-		return parse_url( $path, PHP_URL_HOST );
+		$domain = parse_url( $path, PHP_URL_HOST );
+
+		if ( $domain === false ) {
+			$domain = null;
+		}
+
+		return $domain;
 	}
 
 	/**
