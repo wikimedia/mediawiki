@@ -200,7 +200,7 @@ class DBSiteStore implements SiteStore {
 				'site_source' => $site->getSource(),
 				'site_language' => $site->getLanguageCode() ?? '',
 				'site_protocol' => $site->getProtocol(),
-				'site_domain' => strrev( $site->getDomain() ) . '.',
+				'site_domain' => strrev( $site->getDomain() ?? '' ) . '.',
 				'site_data' => serialize( $site->getExtraData() ),
 
 				// Site config
