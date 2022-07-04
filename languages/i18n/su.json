@@ -173,6 +173,7 @@
 	"returnto": "Balik deui ka $1.",
 	"tagline": "Ti {{SITENAME}}",
 	"help": "Pitulung",
+	"help-mediawiki": "Pitulung ngeunaan MediaWiki",
 	"search": "Paluruh",
 	"search-ignored-headings": "# <!-- antepkeun ieu baris sakumaha ayana wé --> <pre>\n# Judul anu bakal diantep ku pamaluruhan.\n# Éditan kana ieu bakal dilarapkeun geuwat kalayan judul nu kaindéks\n# Anjeun bisa maksa pangindékan deui ieu kaca ku cara ngédit kosong (''null édit'')\n# Sintaksisna mah siga kieu yeuh:\n#   * Sagalaning ti karakter \"#\" nepi ka ahir baris éta téh mangrupa koméntar.\n#   * Unggal baris teu-kosong mah judul perenah bakal diantepkeun.\nRujukan\nTutumbu luar\nTempo ogé\n #</pre>",
 	"searchbutton": "Paluruh",

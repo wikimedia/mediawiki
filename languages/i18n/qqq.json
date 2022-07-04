@@ -236,7 +236,9 @@
 			"SunAfterRain",
 			"Msz2001",
 			"Pols12",
-			"Titore"
+			"Titore",
+			"1233qwer1234qwer4",
+			"No Sleep till Krupki"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1224,7 +1226,7 @@
 	"diff-multi-manyusers": "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and the intermediate revisions have been edited by more than 100 users.\n\nParameters:\n* $1 - the number of revisions, will always be 101 or more\n* $2 - the number of users that were found, which was limited at 100\n{{Related|Diff-multi}}",
 	"diff-paragraph-moved-tonew": "Explaining title tag for the indicating symbols when a paragraph was moved hinting to the new location in the Diff view.",
 	"diff-paragraph-moved-toold": "Explaining title tag for the indicating symbols when a paragraph was moved hinting to the old location in the Diff view.",
-	"difference-missing-revision": "Text displayed when the requested revision does not exist using a diff link.\n\nExample: [{{canonicalurl:Project:News|diff=426850&oldid=99999999}} Diff with invalid revision#]\n\nParameters:\n* $1 - the list of missing revisions IDs\n* $2 - the number of items in $1 (one or two)",
+	"difference-missing-revision": "Text displayed when the requested revision does not exist using a diff link.\n\nExample: [{{canonicalurl:Project:News|diff=426850&oldid=99999999}} Diff with invalid revision#]\n\nParameters:\n* $1 - the list of missing revision IDs\n* $2 - the number of items in $1 (one or two)",
 	"search-summary": "{{doc-specialpagesummary|search}}",
 	"searchresults": "This is the title of the page that contains the results of a search.\n\n{{Identical|Search results}}",
 	"search-filter-title-prefix": "Subtitle added to indicate that the user is filtering for pages whose title starts with $1, \n* $1 - the title prefix",
@@ -1430,7 +1432,7 @@
 	"prefs-advancedrendering": "Used in [[Special:Preferences]], tab \"Appearance\".\n{{Identical|Advanced options}}",
 	"prefs-advancedsearchoptions": "Used in [[Special:Preferences]], tab \"Search options\".\n{{Identical|Advanced options}}",
 	"prefs-advancedwatchlist": "Used in [[Special:Preferences]], tab \"Watchlist\".\n{{Identical|Advanced options}}",
-	"prefs-displayrc": "\"Display\" is a noun that specifies the kind of \"options\". So translate as \"options about display\", not as \"display the options\".\n\nUsed in [[Special:Preferences]], tab \"Recent changes\". The display options refer to:\n* {{msg-mw|Recentchangesdays}}\n* {{msg-mw|Recentchangescount}}",
+	"prefs-displayrc": "\"Display\" is an adjective that specifies the kind of \"options\". So translate as \"options about display\", not as \"display the options\".\n\nUsed in [[Special:Preferences]], tab \"Recent changes\". The display options refer to:\n* {{msg-mw|Recentchangesdays}}\n* {{msg-mw|Recentchangescount}}",
 	"prefs-displaywatchlist": "\"Display\" is a noun that specifies the kind of \"options\". So translate as \"options about display\", not as \"display the options\".\n\nUsed in [[Special:Preferences]], tab \"Watchlist\". The display options refer to:\n* {{msg-mw|Prefs-watchlist-days}}\n* {{msg-mw|Prefs-watchlist-edits}}",
 	"prefs-changesrc": "Section heading in [[Special:Preferences]], tab \"Recent changes\". Describes the types of changes/edits that will be shown on Special:RecentChanges (the heading is followed by a list of checkboxes).",
 	"prefs-changeswatchlist": "Section heading in [[Special:Preferences]], tab \"Watchlist\". Describes the types of changes/edits that will be shown on Special:Watchlist (the heading is followed by a list of checkboxes).",

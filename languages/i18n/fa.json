@@ -1507,7 +1507,7 @@
 	"rcfilters-activefilters-show-tooltip": "نمایش محیط پالایه فعال",
 	"rcfilters-advancedfilters": "پالایه‌‌های پیشرفته",
 	"rcfilters-limit-title": "تعداد تغییرات برای نمایش",
-	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|تغییر|تغییر}}, $2",
+	"rcfilters-limit-and-date-label": "$1 {{PLURAL:$1|تغییر|تغییر}}، $2",
 	"rcfilters-limit-and-date-popup-dialog-aria-label": "پالایش نتایج بر پایه تعداد تغییرات و بازه زمانی",
 	"rcfilters-date-popup-title": "دوره زمانی برای جستجو",
 	"rcfilters-days-title": "روزهای اخیر",

@@ -2109,7 +2109,7 @@
 	"tooltip-namespace_association": "वार्तालाप या विषय नामपदहरूलाई सम्बन्धित नामपदको रुपमा लिनको लागि सन्दुकमा चिनो लगाउनुहोस्।",
 	"blanknamespace": "(मुख्य)",
 	"contributions": "{{GENDER:$1|प्रयोगकर्ता}}का योगदानहरू",
-	"contributions-title": "$1को प्रयोगकर्ता योगदानहरू",
+	"contributions-title": "$1को योगदानहरू",
 	"mycontris": "योगदानहरू",
 	"anoncontribs": "योगदानहरू",
 	"contribsub2": " {{GENDER:$3|$1}} ($2)को लागि",

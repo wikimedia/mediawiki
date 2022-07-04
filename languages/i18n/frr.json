@@ -16,7 +16,8 @@
 			"Tacsipacsi",
 			"Vlad5250",
 			"아라",
-			"Scratcheur-2020Send"
+			"Scratcheur-2020Send",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Ferwisangen onerstrik:",
@@ -195,7 +196,7 @@
 	"protect_change": "feranre",
 	"unprotect": "Sidjenseekerhaid",
 	"newpage": "Nei sidj",
-	"talkpagelinktext": "Diskusioon",
+	"talkpagelinktext": "diskusioon",
 	"specialpage": "Spezial-sidj",
 	"personaltools": "Min werktjüügen",
 	"talk": "Diskusioon",
@@ -2694,7 +2695,7 @@
 	"tags": "Feranrangskääntiaken",
 	"tag-filter": "[[Special:Tags|Kääntiaken]] filter:",
 	"tag-filter-submit": "Filter",
-	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Kääntiaken|Kääntiakens}}]]: $2",
+	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Kääntiaken|Kääntiaken}}]]: $2",
 	"tag-mw-new-redirect": "Nei widjerfeerang",
 	"tag-mw-new-redirect-description": "Feranrangen, diar en nei widjerfeerang iinracht.",
 	"tag-mw-removed-redirect": "Widjerfeerang wechnimen",
@@ -2704,7 +2705,7 @@
 	"tag-mw-undo": "Turag saaten",
 	"tags-title": "Kääntiaken",
 	"tags-intro": "Det sidj wiset kääntiaken, diar för't bewerkin brükt wurd, an wat jo men.",
-	"tags-tag": "Kääntiaken-nööm",
+	"tags-tag": "Kääntiaken nööm",
 	"tags-display-header": "Nööm üüb feranrangslisten",
 	"tags-description-header": "Widjloftag beskriiwang",
 	"tags-source-header": "Kwel",
