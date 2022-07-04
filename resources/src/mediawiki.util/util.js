@@ -637,12 +637,12 @@ util = {
 	 * Based on \Wikimedia\IPUtils::isIPv6 in PHP.
 	 *
 	 *     // Valid
-	 *     mw.util.isIPv4Address( '2001:db8:a:0:0:0:0:0' );
-	 *     mw.util.isIPv4Address( '2001:db8:a::' );
+	 *     mw.util.isIPv6Address( '2001:db8:a:0:0:0:0:0' );
+	 *     mw.util.isIPv6Address( '2001:db8:a::' );
 	 *
 	 *     // Invalid
-	 *     mw.util.isIPv4Address( '2001:db8:a::/32' );
-	 *     mw.util.isIPv4Address( 'hello' );
+	 *     mw.util.isIPv6Address( '2001:db8:a::/32' );
+	 *     mw.util.isIPv6Address( 'hello' );
 	 *
 	 * @param {string} address
 	 * @param {boolean} [allowBlock=false]
