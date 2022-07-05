@@ -1174,7 +1174,16 @@ class DifferenceEngine extends ContextSource {
 		if ( $this->mOldid && $this->mNewid ) {
 			// Check if subclass is still using the old way
 			// for backwards-compatibility
-			$key = $this->getDiffBodyCacheKey();
+			$detected = MWDebug::detectDeprecatedOverride(
+				$this,
+				__CLASS__,
+				'getDiffBodyCacheKey',
+				'1.31'
+			);
+			$key = null;
+			if ( $detected ) {
+				$key = $this->getDiffBodyCacheKey();
+			}
 			if ( $key === null ) {
 				$key = $cache->makeKey( ...$this->getDiffBodyCacheKeyParams() );
 			}
@@ -1274,13 +1283,15 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Returns the cache key for diff body text or content.
 	 *
-	 * @deprecated since 1.31, use getDiffBodyCacheKeyParams() instead
+	 * @deprecated since 1.31, use getDiffBodyCacheKeyParams() instead.
+	 *  Hard deprecated in 1.39.
 	 * @since 1.23
 	 *
 	 * @throws MWException
 	 * @return string|null
 	 */
 	protected function getDiffBodyCacheKey() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return null;
 	}
 
@@ -1339,9 +1350,17 @@ class DifferenceEngine extends ContextSource {
 		$this->mNewid = 987654321;
 
 		// This will repeat a bunch of unnecessary key fields for each slot. Not nice but harmless.
-		$cacheString = $this->getDiffBodyCacheKey();
-		if ( $cacheString ) {
-			return [ $cacheString ];
+		$detected = MWDebug::detectDeprecatedOverride(
+			$this,
+			__CLASS__,
+			'getDiffBodyCacheKey',
+			'1.31'
+		);
+		if ( $detected ) {
+			$cacheString = $this->getDiffBodyCacheKey();
+			if ( $cacheString ) {
+				return [ $cacheString ];
+			}
 		}
 
 		$params = $this->getDiffBodyCacheKeyParams();
