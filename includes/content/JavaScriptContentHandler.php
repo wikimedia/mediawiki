@@ -93,7 +93,7 @@ class JavaScriptContentHandler extends CodeContentHandler {
 		}
 
 		$text = $content->getText();
-		$pst = $services->getParser()->preSaveTransform(
+		$pst = $services->getParserFactory()->getInstance()->preSaveTransform(
 			$text,
 			$pstParams->getPage(),
 			$pstParams->getUser(),
@@ -130,7 +130,7 @@ class JavaScriptContentHandler extends CodeContentHandler {
 		'@phan-var TextContent $content';
 		if ( in_array( $content->getModel(), $textModelsToParse ) ) {
 			// parse just to get links etc into the database, HTML is replaced below.
-			$output = MediaWikiServices::getInstance()->getParser()
+			$output = MediaWikiServices::getInstance()->getParserFactory()->getInstance()
 				->parse(
 					$content->getText(),
 					$cpoParams->getPage(),

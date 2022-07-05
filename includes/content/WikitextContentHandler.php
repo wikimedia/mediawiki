@@ -212,7 +212,7 @@ class WikitextContentHandler extends TextContentHandler {
 
 		$text = $content->getText();
 
-		$parser = MediaWikiServices::getInstance()->getParser();
+		$parser = MediaWikiServices::getInstance()->getParserFactory()->getInstance();
 		$pst = $parser->preSaveTransform(
 			$text,
 			$pstParams->getPage(),
@@ -258,12 +258,13 @@ class WikitextContentHandler extends TextContentHandler {
 		'@phan-var WikitextContent $content';
 
 		$text = $content->getText();
-		$plt = MediaWikiServices::getInstance()->getParser()->getPreloadText(
-			$text,
-			$pltParams->getPage(),
-			$pltParams->getParserOptions(),
-			$pltParams->getParams()
-		);
+		$plt = MediaWikiServices::getInstance()->getParserFactory()->getInstance()
+			->getPreloadText(
+				$text,
+				$pltParams->getPage(),
+				$pltParams->getParserOptions(),
+				$pltParams->getParams()
+			);
 
 		$contentClass = $this->getContentClass();
 		return new $contentClass( $plt );
