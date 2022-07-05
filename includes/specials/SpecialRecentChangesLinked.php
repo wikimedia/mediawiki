@@ -222,20 +222,20 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 				}
 			}
 
-			$query = $dbr->selectSQLText(
-				array_merge( $tables, [ $link_table ] ),
-				$select,
-				$conds + $subconds,
-				__METHOD__,
-				$order + $query_options,
-				$join_conds + [ $link_table => [ 'JOIN', $subjoin ] ]
-			);
+			$queryBuilder = $dbr->newSelectQueryBuilder()
+				->tables( $tables )
+				->table( $link_table )
+				->fields( $select )
+				->where( $conds + $subconds )
+				->caller( __METHOD__ )
+				->options( $order + $query_options )
+				->joinConds( $join_conds + [ $link_table => [ 'JOIN', $subjoin ] ] );
 
 			if ( $dbr->unionSupportsOrderAndLimit() ) {
-				$query = $dbr->limitResult( $query, $limit );
+				$queryBuilder->limit( $limit );
 			}
 
-			$subsql[] = $query;
+			$subsql[] = $queryBuilder->getSQL();
 		}
 
 		if ( count( $subsql ) == 0 ) {
