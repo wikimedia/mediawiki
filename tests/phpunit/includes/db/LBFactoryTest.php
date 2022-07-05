@@ -256,6 +256,13 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testChronologyProtector() {
 		$now = microtime( true );
 
+		$hasChangesFunc = static function ( $mockDB ) {
+			$p = $mockDB->writesOrCallbacksPending();
+			$last = $mockDB->lastDoneWrites();
+
+			return is_float( $last ) || $p;
+		};
+
 		// (a) First HTTP request
 		$m1Pos = new MySQLPrimaryPos( 'db1034-bin.000976/843431247', $now );
 		$m2Pos = new MySQLPrimaryPos( 'db1064-bin.002400/794074907', $now );
@@ -277,15 +284,11 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb1->method( 'hasReplicaServers' )->willReturn( true );
 		$lb1->method( 'hasStreamingReplicaServers' )->willReturn( true );
 		$lb1->method( 'getAnyOpenConnection' )->willReturn( $mockDB1 );
-		$lb1->method( 'hasOrMadeRecentPrimaryChanges' )->will( $this->returnCallback(
-				static function () use ( $mockDB1 ) {
-					$p = 0;
-					$p |= $mockDB1->writesOrCallbacksPending();
-					$p |= $mockDB1->lastDoneWrites();
-
-					return (bool)$p;
-				}
-			) );
+		$lb1->method( 'hasOrMadeRecentPrimaryChanges' )->willReturnCallback(
+			static function () use ( $mockDB1, $hasChangesFunc ) {
+				return $hasChangesFunc( $mockDB1 );
+			}
+		);
 		$lb1->method( 'getPrimaryPos' )->willReturn( $m1Pos );
 		$lb1->method( 'getReplicaResumePos' )->willReturn( $m1Pos );
 		$lb1->method( 'getServerName' )->with( 0 )->willReturn( 'master1' );
@@ -306,15 +309,11 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb2->method( 'hasReplicaServers' )->willReturn( true );
 		$lb2->method( 'hasStreamingReplicaServers' )->willReturn( true );
 		$lb2->method( 'getAnyOpenConnection' )->willReturn( $mockDB2 );
-		$lb2->method( 'hasOrMadeRecentPrimaryChanges' )->will( $this->returnCallback(
-			static function () use ( $mockDB2 ) {
-				$p = 0;
-				$p |= $mockDB2->writesOrCallbacksPending();
-				$p |= $mockDB2->lastDoneWrites();
-
-				return (bool)$p;
+		$lb2->method( 'hasOrMadeRecentPrimaryChanges' )->willReturnCallback(
+			static function () use ( $mockDB2, $hasChangesFunc ) {
+				return $hasChangesFunc( $mockDB2 );
 			}
-		) );
+		);
 		$lb2->method( 'getPrimaryPos' )->willReturn( $m2Pos );
 		$lb2->method( 'getReplicaResumePos' )->willReturn( $m2Pos );
 		$lb2->method( 'getServerName' )->with( 0 )->willReturn( 'master2' );
