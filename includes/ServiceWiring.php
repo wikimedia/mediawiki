@@ -1241,7 +1241,7 @@ return [
 	},
 
 	'Parser' => static function ( MediaWikiServices $services ): Parser {
-		return $services->getParserFactory()->create();
+		return $services->getParserFactory()->getMainInstance();
 	},
 
 	'ParserCache' => static function ( MediaWikiServices $services ): ParserCache {
@@ -1732,9 +1732,9 @@ return [
 				SignatureValidator::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
 			),
-			// Use a closure for Parser to avoid a circular dependency
+			// Use a closure for ParserFactory to avoid a circular dependency
 			static function () use ( $services ) {
-				return $services->getParser();
+				return $services->getParserFactory();
 			},
 			$services->getSpecialPageFactory(),
 			$services->getTitleFactory()

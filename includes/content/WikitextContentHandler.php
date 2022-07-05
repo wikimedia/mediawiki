@@ -212,7 +212,7 @@ class WikitextContentHandler extends TextContentHandler {
 
 		$text = $content->getText();
 
-		$parser = MediaWikiServices::getInstance()->getParser();
+		$parser = MediaWikiServices::getInstance()->getParserFactory()->getInstance();
 		$pst = $parser->preSaveTransform(
 			$text,
 			$pstParams->getPage(),
@@ -258,12 +258,13 @@ class WikitextContentHandler extends TextContentHandler {
 		'@phan-var WikitextContent $content';
 
 		$text = $content->getText();
-		$plt = MediaWikiServices::getInstance()->getParser()->getPreloadText(
-			$text,
-			$pltParams->getPage(),
-			$pltParams->getParserOptions(),
-			$pltParams->getParams()
-		);
+		$plt = MediaWikiServices::getInstance()->getParserFactory()->getInstance()
+			->getPreloadText(
+				$text,
+				$pltParams->getPage(),
+				$pltParams->getParserOptions(),
+				$pltParams->getParams()
+			);
 
 		$contentClass = $this->getContentClass();
 		return new $contentClass( $plt );
@@ -290,7 +291,7 @@ class WikitextContentHandler extends TextContentHandler {
 		$revId = $cpoParams->getRevId();
 
 		list( $redir, $text ) = $content->getRedirectTargetAndText();
-		$parserOutput = $services->getParser()->getFreshParser()
+		$parserOutput = $services->getParserFactory()->getInstance()
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			->parse( $text, $title, $parserOptions, true, true, $revId );
 
