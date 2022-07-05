@@ -438,6 +438,8 @@ because of Phabricator reports.
   emit deprecation warnings.
 * Overriding or calling DifferenceEngine::getDiffBodyCacheKey(), deprecated in
   1.31, now emits deprecation warnings.
+* Access to previously public property WikiRevision::$fileIsTemp, deprecated in
+  1.29, now emits deprecation warnings.
 * …
 
 === Other changes in 1.39 ===
