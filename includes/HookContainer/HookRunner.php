@@ -3496,6 +3496,9 @@ class HookRunner implements
 		);
 	}
 
+	/**
+	 * @deprecated since 1.39 Use onSkinTemplateNavigation__Universal instead
+	 */
 	public function onSkinTemplateNavigation( $sktemplate, &$links ): void {
 		$this->container->run(
 			'SkinTemplateNavigation',
@@ -3504,6 +3507,9 @@ class HookRunner implements
 		);
 	}
 
+	/**
+	 * @deprecated since 1.39 Use onSkinTemplateNavigation__Universal instead
+	 */
 	public function onSkinTemplateNavigation__SpecialPage( $sktemplate, &$links ): void {
 		$this->container->run(
 			'SkinTemplateNavigation::SpecialPage',

@@ -206,6 +206,10 @@ because of Phabricator reports.
      - copyrightico
   - The following hooks, deprecated in 1.37, have been removed:
      - SkinGetPoweredBy: SkinGetPoweredByHook
+  - The following hooks are deprecated and replaced with
+    SkinTemplateNavigation::Universal:
+     - SkinTemplateNavigation::SpecialPage
+     - SkinTemplateNavigation
 * Experimental wiki farm support: Automatic detection of the requested site
   within a wiki farm based on the requested domain has been removed.
   Use the MW_WIKI_NAME environment variable to specify the name of the site
