@@ -44,7 +44,7 @@ class ParserPreloadTest extends MediaWikiIntegrationTestCase {
 		$this->testParser->setOptions( $this->testParserOptions );
 		$this->testParser->clearState();
 
-		$this->title = Title::newFromText( 'Preload Test' );
+		$this->title = Title::makeTitle( NS_MAIN, 'Preload Test' );
 	}
 
 	public function testPreloadSimpleText() {

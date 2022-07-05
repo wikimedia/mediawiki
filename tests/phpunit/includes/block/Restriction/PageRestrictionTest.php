@@ -36,7 +36,7 @@ class PageRestrictionTest extends RestrictionTestCase {
 	public function testGetTitle() {
 		$class = $this->getClass();
 		$restriction = new $class( 1, 2 );
-		$title = \Title::newFromText( 'Pluto' );
+		$title = \Title::makeTitle( NS_MAIN, 'Pluto' );
 		$title->mArticleID = 2;
 		$restriction->setTitle( $title );
 		$this->assertSame( $title, $restriction->getTitle() );
@@ -62,7 +62,7 @@ class PageRestrictionTest extends RestrictionTestCase {
 
 	public function testNewFromTitle() {
 		$class = $this->getClass();
-		$title = \Title::newFromText( 'Pluto' );
+		$title = \Title::makeTitle( NS_MAIN, 'Pluto' );
 		$restriction = $class::newFromTitle( 'Mars' );
 		$restriction2 = $class::newFromTitle( $title );
 

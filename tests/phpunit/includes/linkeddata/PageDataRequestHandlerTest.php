@@ -254,7 +254,7 @@ class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
 	}
 
 	public function provideHttpContentNegotiation() {
-		$helsinki = Title::newFromText( 'Helsinki' );
+		$helsinki = Title::makeTitle( NS_MAIN, 'Helsinki' );
 		return [
 			'Accept Header of HTML' => [
 				$helsinki,

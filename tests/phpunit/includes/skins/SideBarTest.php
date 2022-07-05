@@ -86,14 +86,14 @@ class SideBarTest extends MediaWikiLangTestCase {
 					# ** Baz|Fred
 					[
 						'text' => 'Fred',
-						'href' => Title::newFromText( 'Baz' )->getLocalURL(),
+						'href' => Title::makeTitle( NS_MAIN, 'Baz' )->getLocalURL(),
 						'id' => 'n-Fred',
 						'active' => null,
 						'icon' => null,
 					],
 					[
 						'text' => 'title-to-display',
-						'href' => Title::newFromText( 'page-to-go-to' )->getLocalURL(),
+						'href' => Title::makeTitle( NS_MAIN, 'Page-to-go-to' )->getLocalURL(),
 						'id' => 'n-title-to-display',
 						'active' => null,
 						'icon' => null,

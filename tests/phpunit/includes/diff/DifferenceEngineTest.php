@@ -53,7 +53,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	 */
 	protected function getTitle() {
 		$namespace = $this->getDefaultWikitextNS();
-		return Title::newFromText( 'Kitten', $namespace );
+		return Title::makeTitle( $namespace, 'Kitten' );
 	}
 
 	/**

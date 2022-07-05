@@ -376,7 +376,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			]
 		);
 		$file = OldLocalFile::newFromTitle(
-			Title::newFromText( 'File:Random-11m.png' ),
+			Title::makeTitle( NS_FILE, 'Random-11m.png' ),
 			$this->getServiceContainer()->getRepoGroup()->getLocalRepo(),
 			'20201105235242'
 		);
@@ -576,7 +576,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestSysop()->getUserIdentity();
 		$actorId = $norm->acquireActorId( $user, $dbw );
 		$comment = $services->getCommentStore()->createComment( $dbw, 'comment' );
-		$title = Title::newFromText( 'File:Random-11m.png' );
+		$title = Title::makeTitle( NS_FILE, 'Random-11m.png' );
 
 		if ( $blobs ) {
 			$blobStore = $services->getBlobStore();
@@ -715,7 +715,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			public function __construct( $meta ) {
 				$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 				parent::__construct(
-					Title::newFromText( 'File:TestLegacyMetadataRoundTrip' ),
+					Title::makeTitle( NS_FILE, 'TestLegacyMetadataRoundTrip' ),
 					$repo );
 				$this->loadMetadataFromString( $meta );
 				$this->dataLoaded = true;
@@ -835,7 +835,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				] )
 			] + $conf
 		);
-		$title = Title::newFromText( 'File:Test.jpg' );
+		$title = Title::makeTitle( NS_FILE, 'Test.jpg' );
 		$file = new LocalFile( $title, $repo );
 
 		if ( $props['mime'] === 'application/pdf' ) {
@@ -872,7 +872,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				] )
 			]
 		);
-		$title = Title::newFromText( 'File:Test.jpg' );
+		$title = Title::makeTitle( NS_FILE, 'Test.jpg' );
 		$file = new LocalFile( $title, $repo );
 		$path = __DIR__ . '/../../../data/media/test.jpg';
 		$status = $file->upload(
@@ -960,7 +960,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				'basePath' => '/nonexistent'
 			] )
 		] );
-		$title = Title::newFromText( 'File:Test.pdf' );
+		$title = Title::makeTitle( NS_FILE, 'Test.pdf' );
 		$file = new LocalFile( $title, $repo );
 		TestingAccessWrapper::newFromObject( $file )->handler = $this->getMockPdfHandler();
 		$file->load();
@@ -1016,7 +1016,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			]
 		);
 
-		$title = Title::newFromText( 'File:Png-native-test.png' );
+		$title = Title::makeTitle( NS_FILE, 'Png-native-test.png' );
 		$file = new LocalFile( $title, $repo );
 		$file->load();
 		$file->maybeUpgradeRow();

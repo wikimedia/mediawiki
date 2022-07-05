@@ -370,7 +370,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	public function testPopulatedIntegration() {
 		$this->tablesUsed[] = 'page';
 		$user = $this->getTestUser()->getUser();
-		$title = Title::newFromText( 'ContribsPagerTest' );
+		$title = Title::makeTitle( NS_MAIN, 'ContribsPagerTest' );
 		$this->editPage( $title, '', '', NS_MAIN, $user );
 		$pager = $this->getContribsPager( [], $user );
 		$this->assertIsString( $pager->getBody() );

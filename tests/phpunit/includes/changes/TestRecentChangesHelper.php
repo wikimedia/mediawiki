@@ -162,7 +162,7 @@ class TestRecentChangesHelper {
 
 		$context->setUser( $user );
 
-		$title = Title::newFromText( 'RecentChanges', NS_SPECIAL );
+		$title = Title::makeTitle( NS_SPECIAL, 'RecentChanges' );
 		$context->setTitle( $title );
 
 		return $context;

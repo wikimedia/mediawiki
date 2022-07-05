@@ -34,7 +34,7 @@ class TitleDefTest extends TypeDefTestCase {
 	) {
 		if ( $this->dataName() === 'must exist (success)' ) {
 			$updater = MediaWikiServices::getInstance()->getWikiPageFactory()
-				->newFromTitle( Title::newFromText( 'exists' ) )
+				->newFromTitle( Title::makeTitle( NS_MAIN, 'Exists' ) )
 				->newPageUpdater( new User )
 				->setContent( SlotRecord::MAIN, new WikitextContent( 'exists' ) );
 			$updater->saveRevision( CommentStoreComment::newUnsavedComment( 'test' ) );
@@ -94,7 +94,7 @@ class TitleDefTest extends TypeDefTestCase {
 			// Underscore-to-space conversion not happening here but later in validate().
 			'String' => [ 'User:John_Doe', 'User:John_Doe' ],
 			'TitleValue' => [ new TitleValue( NS_USER, 'John_Doe' ), 'User:John Doe' ],
-			'Title' => [ Title::newFromText( 'User:John_Doe' ), 'User:John Doe' ],
+			'Title' => [ Title::makeTitle( NS_USER, 'John_Doe' ), 'User:John Doe' ],
 		];
 	}
 
