@@ -2235,6 +2235,11 @@ config-schema:
             which are used when parsing certain text and interface messages.
             For available types see $wgMainCacheType.
             @since 1.20
+    StatsCacheType:
+        default: -1
+        description: |-
+            The object cache type for stats storage.
+            {@link \Wikimedia\WRStats\WRStatsFactory}
     ObjectCaches:
         default:
             0: { class: EmptyBagOStuff, reportDupes: false }

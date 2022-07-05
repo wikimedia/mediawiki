@@ -191,6 +191,8 @@ use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\RequestTimeout;
 use Wikimedia\Services\RecursiveServiceDependencyException;
 use Wikimedia\UUID\GlobalIdGenerator;
+use Wikimedia\WRStats\BagOStuffStatsStore;
+use Wikimedia\WRStats\WRStatsFactory;
 
 /** @phpcs-require-sorted-array */
 return [
@@ -2172,6 +2174,14 @@ return [
 			$services->getWikiPageFactory(),
 			$services->getPageUpdaterFactory(),
 			$services->getUserFactory()
+		);
+	},
+
+	'WRStatsFactory' => static function ( MediaWikiServices $services ): WRStatsFactory {
+		return new WRStatsFactory(
+			new BagOStuffStatsStore(
+				ObjectCache::getInstance( $services->getMainConfig()->get( 'StatsCacheType' ) )
+			)
 		);
 	},
 
