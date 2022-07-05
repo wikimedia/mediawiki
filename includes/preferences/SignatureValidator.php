@@ -28,7 +28,7 @@ use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 use MultiHttpClient;
-use Parser;
+use ParserFactory;
 use ParserOptions;
 use ParsoidVirtualRESTService;
 use SpecialPage;
@@ -52,8 +52,8 @@ class SignatureValidator {
 	private $localizer;
 	/** @var ParserOptions */
 	private $popts;
-	/** @var Parser */
-	private $parser;
+	/** @var ParserFactory */
+	private $parserFactory;
 	/** @var ServiceOptions */
 	private $serviceOptions;
 	/** @var SpecialPageFactory */
@@ -66,7 +66,7 @@ class SignatureValidator {
 	 * @param UserIdentity $user
 	 * @param ?MessageLocalizer $localizer
 	 * @param ParserOptions $popts
-	 * @param Parser $parser
+	 * @param ParserFactory $parserFactory
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param TitleFactory $titleFactory
 	 */
@@ -75,15 +75,14 @@ class SignatureValidator {
 		UserIdentity $user,
 		?MessageLocalizer $localizer,
 		ParserOptions $popts,
-		Parser $parser,
+		ParserFactory $parserFactory,
 		SpecialPageFactory $specialPageFactory,
 		TitleFactory $titleFactory
 	) {
 		$this->user = $user;
 		$this->localizer = $localizer;
 		$this->popts = $popts;
-		// Fetch the parser, will be used to create a new parser via getFreshParser() when needed
-		$this->parser = $parser;
+		$this->parserFactory = $parserFactory;
 		// Configuration
 		$this->serviceOptions = $options;
 		$this->serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -210,7 +209,7 @@ class SignatureValidator {
 	 */
 	protected function applyPreSaveTransform( string $signature ) {
 		// This may be called by the Parser when it's displaying a signature, so we need a new instance
-		$parser = $this->parser->getFreshParser();
+		$parser = $this->parserFactory->getInstance();
 
 		$pstSignature = $parser->preSaveTransform(
 			$signature,
@@ -293,7 +292,7 @@ class SignatureValidator {
 	 */
 	protected function checkUserLinks( string $signature ): bool {
 		// This may be called by the Parser when it's displaying a signature, so we need a new instance
-		$parser = $this->parser->getFreshParser();
+		$parser = $this->parserFactory->getInstance();
 
 		// Check for required links. This one's easier to do with the PHP Parser.
 		$pout = $parser->parse(

@@ -6462,6 +6462,17 @@ class Parser {
 	}
 
 	/**
+	 * Will entry points such as parse() throw an exception due to the parser
+	 * already being active?
+	 *
+	 * @since 1.39
+	 * @return bool
+	 */
+	public function isLocked() {
+		return (bool)$this->mInParse;
+	}
+
+	/**
 	 * Strip outer <p></p> tag from the HTML source of a single paragraph.
 	 *
 	 * Returns original HTML if the <p/> tag has any attributes, if there's no wrapping <p/> tag,
@@ -6487,6 +6498,7 @@ class Parser {
 	 * $oldParser->getFreshParser()->parse( ... );
 	 * if you're unsure if $oldParser is safe to use.
 	 *
+	 * @deprecated since 1.39, use ParserFactory::getInstance()
 	 * @since 1.24
 	 * @return Parser A parser object that is not parsing anything
 	 */
