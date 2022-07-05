@@ -29,6 +29,7 @@ use MediaWiki\Diff\WordAccumulator;
 /**
  * Performs a word-level diff on several lines
  *
+ * @newable
  * @ingroup DifferenceEngine
  */
 class WordLevelDiff extends \Diff {
@@ -38,6 +39,9 @@ class WordLevelDiff extends \Diff {
 	protected $bailoutComplexity = 40000000; // Roughly 6K x 6K words changed
 
 	/**
+	 * @stable to call
+	 * @todo Don't do work in the constructor, use a service to create diffs instead (T257472).
+	 *
 	 * @param string[] $linesBefore
 	 * @param string[] $linesAfter
 	 */
