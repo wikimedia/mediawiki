@@ -334,10 +334,7 @@ class LinkBatch {
 		// This is similar to LinkHolderArray::replaceInternal
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		$table = 'page';
-		$fields = array_merge(
-			LinkCache::getSelectFields(),
-			[ 'page_namespace', 'page_title' ]
-		);
+		$fields = LinkCache::getSelectFields();
 
 		$conds = $this->constructSet( 'page', $dbr );
 

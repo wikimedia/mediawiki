@@ -1545,7 +1545,7 @@ class OutputPage extends ContextSource {
 		$dbr = wfGetDB( DB_REPLICA );
 		$fields = array_merge(
 			LinkCache::getSelectFields(),
-			[ 'page_namespace', 'page_title', 'pp_value' ]
+			[ 'pp_value' ]
 		);
 
 		$res = $dbr->newSelectQueryBuilder()
