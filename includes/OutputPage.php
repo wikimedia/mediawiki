@@ -1548,16 +1548,16 @@ class OutputPage extends ContextSource {
 			[ 'page_namespace', 'page_title', 'pp_value' ]
 		);
 
-		$res = $dbr->select( [ 'page', 'page_props' ],
-			$fields,
-			$lb->constructSet( 'page', $dbr ),
-			__METHOD__,
-			[],
-			[ 'page_props' => [ 'LEFT JOIN', [
+		$res = $dbr->newSelectQueryBuilder()
+			->select( $fields )
+			->from( 'page' )
+			->leftJoin( 'page_props', null, [
 				'pp_propname' => 'hiddencat',
-				'pp_page = page_id'
-			] ] ]
-		);
+				'pp_page = page_id',
+			] )
+			->where( $lb->constructSet( 'page', $dbr ) )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		# Add the results to the link cache
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
