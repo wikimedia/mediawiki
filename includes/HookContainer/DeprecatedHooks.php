@@ -59,6 +59,8 @@ class DeprecatedHooks {
 		'userCan' => [ 'deprecatedVersion' => '1.37' ],
 		'ArticleDelete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
 		'ArticleDeleteComplete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
+		'SkinTemplateNavigation' => [ 'deprecatedVersion' => '1.39' ],
+		'SkinTemplateNavigation::SpecialPage' => [ 'deprecatedVersion' => '1.39' ],
 	];
 
 	/**
@@ -93,7 +95,7 @@ class DeprecatedHooks {
 	 * @throws InvalidArgumentException Hook has already been marked deprecated
 	 */
 	public function markDeprecated( string $hook, string $version,
-		?string $component = null, bool $silent = false
+								   ?string $component = null, bool $silent = false
 	): void {
 		if ( isset( $this->deprecatedHooks[$hook] ) ) {
 			throw new InvalidArgumentException(

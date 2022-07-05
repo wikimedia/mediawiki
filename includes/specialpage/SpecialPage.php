@@ -40,6 +40,7 @@ use MediaWiki\SpecialPage\SpecialPageFactory;
  * @stable to extend
  *
  * @ingroup SpecialPage
+ * @deprecated since 1.17, use SpecialPageFactory instead
  */
 class SpecialPage implements MessageLocalizer {
 	/**
