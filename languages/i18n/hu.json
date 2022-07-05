@@ -57,7 +57,8 @@
 			"아라",
 			"Luckylukee81",
 			"McDutchie",
-			"Balint36"
+			"Balint36",
+			"Blua lago"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -2135,7 +2136,7 @@
 	"apisandbox-request-selectformat-label": "Kérésadatok megjelenítése a következő formátumban:",
 	"apisandbox-request-format-url-label": "URL-lekérdezés",
 	"apisandbox-request-url-label": "Kérő URL:",
-	"apisandbox-request-json-label": "JSON kérése:",
+	"apisandbox-request-json-label": "A kérés JSON-ben:",
 	"apisandbox-request-time": "Kérés hossza: $1 ms",
 	"apisandbox-results-fixtoken": "Token javítása és újrapróbálkozás",
 	"apisandbox-results-fixtoken-fail": "A(z) „$1” token lekérése sikertelen.",
@@ -3385,6 +3386,7 @@
 	"tag-mw-reverted": "Visszaállítva",
 	"tag-mw-reverted-description": "Olyan szerkesztések, amiket egy későbbi szerkesztés visszavont",
 	"tag-mw-server-side-upload": "Szerveroldali feltöltés",
+	"tag-mw-server-side-upload-description": "Egy karbantartószkripttel feltöltött médiafájlok",
 	"tag-mw-add-media-description": "Médiát beszúró szerkesztések",
 	"tag-mw-remove-media-description": "Médiát eltávolító szerkesztések",
 	"tags-title": "Címkék",

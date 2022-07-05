@@ -1497,6 +1497,7 @@
 	"feedback-cancel": "Cealaigh",
 	"feedback-message": "Teachtaireacht:",
 	"searchsuggest-search": "Cuardaigh {{SITENAME}}",
+	"searchsuggest-containing": "Cuardaigh leathanaigh ina bhfuil",
 	"duration-days": "$1 {{PLURAL:$1|lá}}",
 	"expand_templates_remove_comments": "Scrios nótaí tráchta",
 	"expand_templates_preview": "Réamhamharc",

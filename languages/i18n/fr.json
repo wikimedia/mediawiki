@@ -189,7 +189,8 @@
 			"아라",
 			"Ajeje Brazorf",
 			"Jules*",
-			"Paraboule"
+			"Paraboule",
+			"Cigaryno"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -219,9 +220,9 @@
 	"tog-oldsig": "Votre signature actuelle :",
 	"tog-fancysig": "Traiter la signature comme du wikitexte (sans lien automatique)",
 	"tog-uselivepreview": "Afficher les aperçus sans recharger la page",
-	"tog-forceeditsummary": "M’avertir lorsque je n’ai pas spécifié de résumé de modification (ou s’il s’agit du résumé d’annulation par défaut)",
-	"tog-watchlisthideown": "Masquer mes propres modifications dans la liste de suivi",
-	"tog-watchlisthidebots": "Masquer les modifications faites par des robots dans la liste de suivi",
+	"tog-forceeditsummary": "M’avertir lorsque je n’ai pas spécifié de résumé des modifications (ou s’il s’agit du résumé d’annulation par défaut)",
+	"tog-watchlisthideown": "Masquer mes modifications dans la liste de suivi",
+	"tog-watchlisthidebots": "Masquer les modifications par des robots dans la liste de suivi",
 	"tog-watchlisthideminor": "Masquer les modifications mineures dans la liste de suivi",
 	"tog-watchlisthideliu": "Masquer les modifications faites par des utilisateurs inscrits dans la liste de suivi",
 	"tog-watchlistreloadautomatically": "Recharger automatiquement la liste de suivi lorsque les options de filtrage sont modifiées (JavaScript requis)",
@@ -2934,7 +2935,7 @@
 	"cant-move-user-page": "Vous n’avez pas la permission de renommer les pages principales des utilisateurs (sauf les sous-pages).",
 	"cant-move-to-user-page": "Vous n’avez pas la permission de renommer une page vers une page utilisateur (mais vous pouvez le faire vers une sous-page utilisateur).",
 	"cant-move-category-page": "Vous n’avez pas la permission de renommer les pages de catégorie.",
-	"cant-move-to-category-page": "Vous n’avez pas la permission de renommer une page vers une page de catégorie.",
+	"cant-move-to-category-page": "Vous n’avez pas la permission de déplacer une page vers une page de catégorie.",
 	"cant-move-subpages": "Vous n’avez pas le droit de renommer des sous-pages.",
 	"namespace-nosubpages": "L’espace de noms « $1 » n’autorise pas les sous-pages.",
 	"newtitle": "Nouveau titre :",

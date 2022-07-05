@@ -356,7 +356,7 @@
 	"privacypage": "Project:Gizlilik politikası",
 	"badaccess": "İzin hatası",
 	"badaccess-group0": "Bu işlemi yapma yetkiniz yok.",
-	"badaccess-groups": "İstediğiniz işlem, $1 {{PLURAL:$2|grubundaki|gruplarındaki}} kullanıcılarla sınırlıdır.",
+	"badaccess-groups": "İstediğiniz işlem, yalnızca $1 {{PLURAL:$2|grubundaki|gruplarındaki}} kullanıcılar tarafından yapılabilir.",
 	"versionrequired": "MediaWiki'nin $1 sürümü gerekiyor",
 	"versionrequiredtext": "Bu sayfayı kullanmak için MediaWiki'nin $1 sürümü gerekmektedir. [[Special:Version|Sürüm sayfasına]] bakınız.",
 	"ok": "Tamam",

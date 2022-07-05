@@ -86,7 +86,8 @@
 			"Hanif Al Husaini",
 			"Nohirara",
 			"Ezagren",
-			"Mbee-wiki"
+			"Mbee-wiki",
+			"Robfirstname"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -101,8 +102,8 @@
 	"tog-editsectiononrightclick": "Fungsikan penyuntingan bagian dengan mengeklik kanan pada judul bagian",
 	"tog-watchcreations": "Tambahkan halaman yang saya buat dan berkas yang saya unggah ke daftar pantauan",
 	"tog-watchdefault": "Tambahkan halaman yang saya sunting ke daftar pantauan",
-	"tog-watchmoves": "Tambahkan halaman yang saya pindahkan ke daftar pantauan",
-	"tog-watchdeletion": "Tambahkan halaman yang saya hapus ke daftar pantauan",
+	"tog-watchmoves": "Tambahkan halaman dan berkas yang saya pindahkan ke daftar pantauan",
+	"tog-watchdeletion": "Tambahkan halaman dan berkas yang saya hapus ke daftar pantauan",
 	"tog-watchuploads": "Tambahkan berkas baru yang saya unggah ke daftar pantauan",
 	"tog-watchrollback": "Tambahkan halaman yang pernah saya kembalikan ke dalam daftar pantauan saya",
 	"tog-minordefault": "Tandai semua suntingan sebagai suntingan kecil secara baku",
@@ -2366,7 +2367,7 @@
 	"addedwatchindefinitelytext": "\"[[:$1]]\" dan halaman pembicaraannya telah ditambahkan ke [[Special:Watchlist|daftar pantauan]] secara permanen.",
 	"addedwatchindefinitelytext-talk": "\"[[:$1]]\" dan halaman terkaitnya telah ditambahkan ke [[Special:Watchlist|daftar pantauan]] Anda secara permanen.",
 	"removewatch": "Hapus dari daftar pantauan",
-	"removedwatchtext": "\"[[:$1]]\" dan diskusinya telah dihapus dari [[Special:Watchlist|watchlist]] Anda.",
+	"removedwatchtext": "\"[[:$1]]\" dan diskusinya telah dihapus dari [[Special:Watchlist|daftar pantauan]] Anda.",
 	"removedwatchtext-talk": "\"[[:$1]]\" dan halaman terkaitnya telah dihapus dari [[Special:Watchlist|daftar pantauan Anda]].",
 	"removedwatchtext-short": "Halaman \"$1\" telah dihapus dari daftar pantauan Anda.",
 	"watch": "Pantau",
@@ -2735,7 +2736,7 @@
 	"emailblock": "surel diblokir",
 	"blocklist-nousertalk": "tidak dapat menyunting halaman pembicaraan sendiri",
 	"blocklist-editing": "penyuntingan",
-	"blocklist-editing-sitewide": "editing (keseluruhan situs)",
+	"blocklist-editing-sitewide": "menyunting (keseluruhan situs)",
 	"blocklist-editing-page": "laman",
 	"blocklist-editing-ns": "Ruang nama",
 	"blocklist-editing-action": "action",

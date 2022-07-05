@@ -13,7 +13,8 @@
 			"Putnik",
 			"Александр Сигачёв",
 			"Chadyka",
-			"Fenixs-ru"
+			"Fenixs-ru",
+			"Pacha Tchernof"
 		]
 	},
 	"exif-imagewidth": "Ширина",
@@ -376,15 +377,28 @@
 	"exif-firstphotodate": "Дата первой фотографии",
 	"exif-lastphotodate": "Дата последней фотографии",
 	"exif-projectiontype": "Тип проекции",
+	"exif-projectiontype-equirectangular": "Равноугольный",
 	"exif-usepanoramaviewer": "Использовать программу просмотра панорам",
 	"exif-usepanoramaviewer-true": "Да",
 	"exif-usepanoramaviewer-false": "Нет",
 	"exif-exposurelockused": "Используется блокировка экспозиции",
 	"exif-exposurelockused-true": "Да",
 	"exif-exposurelockused-false": "Нет",
+	"exif-poseheadingdegrees": "Угол направления по горизонтали (в градусах)",
+	"exif-posepitchdegrees": "Угол по вертикали (в градусах)",
+	"exif-poserolldegrees": "Наклон (в градусах)",
+	"exif-initialviewheadingdegrees": "Изначальный горизонтальный угол вида (в градусах)",
+	"exif-initialviewpitchdegrees": "Изначальный угол вида (в градусах)",
+	"exif-initialviewrolldegrees": "Изначальный вид наклона (в градусах)",
+	"exif-initialhorizontalfovdegrees": "Изначальный FOV (в градусах по горизонтали)",
+	"exif-initialverticalfovdegrees": "Изначальный FOV (в градусах по вертикали)",
+	"exif-sourcephotoscount": "Число исходных фотографий",
 	"exif-croppedareaimagewidthpixels": "Обрезанная ширина панорамы",
 	"exif-croppedareaimageheightpixels": "Обрезанная высота панорамы",
 	"exif-fullpanowidthpixels": "Полная ширина панорамы",
 	"exif-fullpanoheightpixels": "Полная высота панорамы",
+	"exif-croppedarealeftpixels": "Обрезание панорамы слева",
+	"exif-croppedareatoppixels": "Обрезание панорамы сверху",
+	"exif-initialcameradolly": "Изначальный вид камеры",
 	"exif-stitchingsoftware": "Программное обеспечение для сшивания"
 }

@@ -57,7 +57,8 @@
 			"NguoiDungKhongDinhDanh",
 			"Thingofme",
 			"Keo010122",
-			"NguyenHung"
+			"NguyenHung",
+			"RiceCracker12"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -3847,7 +3848,7 @@
 	"limitreport-unstrip-size": "Kích thước unstrip sau khi bung",
 	"limitreport-unstrip-size-value": "$1/$2 byte",
 	"expandtemplates": "Bung bản mẫu",
-	"expand_templates_intro": "Trang đặc biệt này sẽ nhận vào mã wiki và bung tất cả các bản mẫu trong nó ra một cách đệ quy cho đến hết. Nó cũng bung cả những hàm cú pháp như <code><nowiki>{{</nowiki>#language:…}}</code>, và những biến số như <code><nowiki>{{</nowiki>CURRENTDAY}}</code>. Thực ra nó bung các dữ liệu bình thường đặt trong ngoặc móc.",
+	"expand_templates_intro": "Trang đặc biệt này sẽ nhận vào mã wiki và bung tất cả các bản mẫu trong nó ra một cách đệ quy cho đến hết.\nNó cũng bung cả các hàm cú pháp như <code><nowiki>{{</nowiki>#language:…}}</code>, và các biến như <code><nowiki>{{</nowiki>CURRENTDAY}}</code>.\nNói chung, nó bung gần như bất kỳ thứ gì được đặt trong hai cặp ngoặc kép.",
 	"expand_templates_title": "Tên của trang văn cảnh (để phân tích {{FULLPAGENAME}} v.v.):",
 	"expand_templates_input": "Mã wiki để bung:",
 	"expand_templates_output": "Kết quả",

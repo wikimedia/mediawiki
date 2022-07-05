@@ -2801,6 +2801,7 @@
 	"version-ext-colheader-version": "Versiono",
 	"version-ext-colheader-description": "Deskripto",
 	"version-ext-colheader-credits": "Autori",
+	"version-credits-not-found": "Nula detaloza informo pri autoreso di ca extenso trovesis.",
 	"version-poweredby-credits": "Ca wiki mantenesas per <strong>[https://www.mediawiki.org/ MediaWiki]</strong>, autoroyuro © 2001-$1 $2.",
 	"version-poweredby-others": "altri",
 	"version-software-product": "Produkturo",

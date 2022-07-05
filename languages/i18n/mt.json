@@ -1973,7 +1973,7 @@
 	"emailccsubject": "Kopja tal-messaġġ tiegħek lil $1: $2",
 	"emailsent": "Il-messaġġ intbagħat",
 	"emailsenttext": "Il-messaġġ bil-posta elettronika intbagħat.",
-	"emailuserfooter": "Din il-posta elettronika intbgħatet minn $1 lil $2 bl-użu tal-funzjoni \"{{int:emailuser}}\" fuq {{SITENAME}}.",
+	"emailuserfooter": "Din l-email intbgħatet minn {{GENDER:$1|$1}} lil {{GENDER:$2|$2}} bl-użu tal-funzjoni \"{{int:emailuser}}\" fuq {{SITENAME}}. Jekk twieġeb direttament, l-indirizz tiegħek tal-email jasal għand {{GENDER:$1|$1}}, u b'hekk tkun esponejt l-indirizz tiegħek f'din il-korrespondenza.",
 	"usermessage-summary": "Messaġġ tas-sistema",
 	"usermessage-editor": "Messaġġier tas-sistema",
 	"watchlist": "Lista ta' osservazzjonijiet",

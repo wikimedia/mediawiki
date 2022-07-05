@@ -1063,6 +1063,7 @@
 	"boteditletter": "b",
 	"unpatrolledletter": "!",
 	"rc-change-size": "$1",
+	"rc-change-size-new": "Oʻzgarishdan keyin sahifa hajmi: $1 bayt",
 	"newsectionsummary": "/* $1 */ yangi mavzu",
 	"rc-enhanced-expand": "Tasfilotlarni koʻrsatish",
 	"rc-enhanced-hide": "Tafsilotlolarni yashirish",
