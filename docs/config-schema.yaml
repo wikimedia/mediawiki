@@ -4614,15 +4614,15 @@ config-schema:
             active sessions (i.e. it will log everyone out).
             @since 1.27
     SessionProviders:
-        type: array
-        ignoreKeys: true
+        type: object
         default:
             MediaWiki\Session\CookieSessionProvider: { class: MediaWiki\Session\CookieSessionProvider, args: [{ priority: 30, callUserSetCookiesHook: true }] }
             MediaWiki\Session\BotPasswordSessionProvider: { class: MediaWiki\Session\BotPasswordSessionProvider, args: [{ priority: 75 }], services: [GrantsInfo] }
         description: |-
             MediaWiki\Session\SessionProvider configuration.
-            Values are ObjectFactory specifications for the SessionProviders
-            to be used. Keys in the array are ignored. Order is not significant.
+            Values are ObjectFactory specifications for the SessionProviders to be
+            used. Keys in the array are ignored; the class name is conventionally
+            used as the key to avoid collisions. Order is not significant.
             @since 1.27
     AllowRequiringEmailForResets:
         default: false
