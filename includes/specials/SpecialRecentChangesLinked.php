@@ -188,6 +188,15 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$subsql = []; // SELECT statements to combine with UNION
 
 		foreach ( $link_tables as $link_table ) {
+			$queryBuilder = $dbr->newSelectQueryBuilder();
+			$linksMigration = \MediaWiki\MediaWikiServices::getInstance()->getLinksMigration();
+			$queryBuilder = $queryBuilder
+				->tables( $tables )
+				->fields( $select )
+				->where( $conds )
+				->caller( __METHOD__ )
+				->options( $order + $query_options )
+				->joinConds( $join_conds );
 			$pfx = $prefix[$link_table];
 
 			// imagelinks and categorylinks tables have no xx_namespace field,
@@ -206,30 +215,47 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 					if ( $ns != $link_ns ) {
 						continue;
 					} // should never happen, but check anyway
-					$subconds = [ "{$pfx}_to" => $dbkey ];
+					$queryBuilder->where( [ "{$pfx}_to" => $dbkey ] );
 				} else {
-					$subconds = [ "{$pfx}_namespace" => $ns, "{$pfx}_title" => $dbkey ];
+					if ( isset( $linksMigration::$mapping[$link_table] ) ) {
+						$queryBuilder->where( $linksMigration->getLinksConditions( $link_table, $title ) );
+					} else {
+						$queryBuilder->where( [ "{$pfx}_namespace" => $ns, "{$pfx}_title" => $dbkey ] );
+					}
 				}
-				$subjoin = "rc_cur_id = {$pfx}_from";
+				$queryBuilder->join( $link_table, null, "rc_cur_id = {$pfx}_from" );
 			} else {
 				// find changes to pages linked from this page
-				$subconds = [ "{$pfx}_from" => $id ];
+				$queryBuilder->where( [ "{$pfx}_from" => $id ] );
 				if ( $link_table == 'imagelinks' || $link_table == 'categorylinks' ) {
-					$subconds["rc_namespace"] = $link_ns;
-					$subjoin = "rc_title = {$pfx}_to";
+					$queryBuilder->where( [ "rc_namespace" => $link_ns ] );
+					$queryBuilder->join( $link_table, null, "rc_title = {$pfx}_to" );
 				} else {
-					$subjoin = [ "rc_namespace = {$pfx}_namespace", "rc_title = {$pfx}_title" ];
+					// TODO: Move this to LinksMigration
+					if ( isset( $linksMigration::$mapping[$link_table] ) ) {
+						$queryInfo = $linksMigration->getQueryInfo( $link_table, $link_table );
+						list( $nsField, $titleField ) = $linksMigration->getTitleFields( $link_table );
+						if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
+							$joinTable = 'linktarget';
+						} else {
+							$joinTable = $link_table;
+						}
+						$queryBuilder->join(
+							$joinTable,
+							null,
+							[ "rc_namespace = {$nsField}", "rc_title = {$titleField}" ]
+						);
+						$queryBuilder->joinConds( $queryInfo['joins'] );
+						$queryBuilder->table( $link_table );
+					} else {
+						$queryBuilder->join(
+							$link_table,
+							null,
+							[ "rc_namespace = {$pfx}_namespace", "rc_title = {$pfx}_title" ]
+						);
+					}
 				}
 			}
-
-			$queryBuilder = $dbr->newSelectQueryBuilder()
-				->tables( $tables )
-				->table( $link_table )
-				->fields( $select )
-				->where( $conds + $subconds )
-				->caller( __METHOD__ )
-				->options( $order + $query_options )
-				->joinConds( $join_conds + [ $link_table => [ 'JOIN', $subjoin ] ] );
 
 			if ( $dbr->unionSupportsOrderAndLimit() ) {
 				$queryBuilder->limit( $limit );
