@@ -385,8 +385,6 @@ class CategoryViewer extends ContextSource {
 				array_merge(
 					LinkCache::getSelectFields(),
 					[
-						'page_namespace',
-						'page_title',
 						'cl_sortkey',
 						'cat_id',
 						'cat_title',
