@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * Split into separate \MediaWiki\Tests\Unit\XmlTest for unit tests
  *
@@ -30,10 +32,8 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 			101 => 'Custom_talk',
 		] );
 
-		$this->setMwGlobals( [
-			'wgLang' => $langObj,
-			'wgUseMediaWikiUIEverywhere' => false,
-		] );
+		$this->setMwGlobals( 'wgLang', $langObj );
+		$this->overrideConfigValue( MainConfigNames::UseMediaWikiUIEverywhere, false );
 	}
 
 	public function provideElement() {

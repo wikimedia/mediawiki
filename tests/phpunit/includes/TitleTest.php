@@ -2,6 +2,7 @@
 
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\RestrictionStore;
@@ -34,21 +35,21 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			]
 		);
 
-		$this->setMwGlobals( [
-			'wgAllowUserJs' => false,
-			'wgDefaultLanguageVariant' => false,
-			'wgMetaNamespace' => 'Project',
-			'wgServer' => 'https://example.org',
-			'wgCanonicalServer' => 'https://example.org',
-			'wgScriptPath' => '/w',
-			'wgScript' => '/w/index.php',
-			'wgArticlePath' => '/wiki/$1',
+		$this->overrideConfigValues( [
+			MainConfigNames::AllowUserJs => false,
+			MainConfigNames::DefaultLanguageVariant => false,
+			MainConfigNames::MetaNamespace => 'Project',
+			MainConfigNames::Server => 'https://example.org',
+			MainConfigNames::CanonicalServer => 'https://example.org',
+			MainConfigNames::ScriptPath => '/w',
+			MainConfigNames::Script => '/w/index.php',
+			MainConfigNames::ArticlePath => '/wiki/$1',
 		] );
 		$this->setUserLang( 'en' );
-		$this->setMwGlobals( 'wgLanguageCode', 'en' );
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
 
 		// For testSecureAndSplitValid, testSecureAndSplitInvalid
-		$this->setMwGlobals( 'wgLocalInterwikis', [ 'localtestiw' ] );
+		$this->overrideConfigValue( MainConfigNames::LocalInterwikis, [ 'localtestiw' ] );
 
 		// Define valid interwiki prefixes and their configuration
 		// DummyServicesTrait::getDummyInterwikiLookup
@@ -472,11 +473,11 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$query2 = false,
 		$proto = false
 	) {
-		$this->setMwGlobals( [
-			'wgServer' => 'https://xx.wiki.test',
-			'wgArticlePath' => '/wiki/$1',
-			'wgExternalInterwikiFragmentMode' => 'legacy',
-			'wgFragmentMode' => [ 'html5', 'legacy' ]
+		$this->overrideConfigValues( [
+			MainConfigNames::Server => 'https://xx.wiki.test',
+			MainConfigNames::ArticlePath => '/wiki/$1',
+			MainConfigNames::ExternalInterwikiFragmentMode => 'legacy',
+			MainConfigNames::FragmentMode => [ 'html5', 'legacy' ]
 		] );
 
 		$title = Title::makeTitle( $ns, $title, $fragment, $interwiki );
@@ -956,13 +957,13 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	public function testGetPageViewLanguage( $expected, $titleText, $contLang,
 		$lang, $variant, $msg = ''
 	) {
-		// Setup environnement for this test
-		$this->setMwGlobals( [
-			'wgDefaultLanguageVariant' => $variant,
-			'wgAllowUserJs' => true,
+		// Setup environment for this test
+		$this->overrideConfigValues( [
+			MainConfigNames::DefaultLanguageVariant => $variant,
+			MainConfigNames::AllowUserJs => true,
 		] );
 		$this->setUserLang( $lang );
-		$this->setMwGlobals( 'wgLanguageCode', $contLang );
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, $contLang );
 
 		$title = Title::newFromText( $titleText );
 		$this->assertInstanceOf( Title::class, $title,
@@ -1719,9 +1720,9 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @param string $expected
 	 */
 	public function testGetFragmentForURL( $titleStr, $expected ) {
-		$this->setMwGlobals( [
-			'wgFragmentMode' => [ 'html5' ],
-			'wgExternalInterwikiFragmentMode' => 'legacy',
+		$this->overrideConfigValues( [
+			MainConfigNames::FragmentMode => [ 'html5' ],
+			MainConfigNames::ExternalInterwikiFragmentMode => 'legacy',
 		] );
 		// InterwikiLookup is configured in setUp()
 
@@ -1747,11 +1748,14 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideIsRawHtmlMessage
 	 */
 	public function testIsRawHtmlMessage( $textForm, $expected ) {
-		$this->setMwGlobals( 'wgRawHtmlMessages', [
-			'foobar',
-			'foo_bar',
-			'foo-bar',
-		] );
+		$this->overrideConfigValue(
+			MainConfigNames::RawHtmlMessages,
+			[
+				'foobar',
+				'foo_bar',
+				'foo-bar',
+			]
+		);
 
 		$title = Title::newFromText( $textForm );
 		$this->assertSame( $expected, $title->isRawHtmlMessage() );
@@ -2063,9 +2067,9 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsSemiProtected() {
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
-		$this->setMwGlobals( [
-			'wgSemiprotectedRestrictionLevels' => [ 'autoconfirmed' ],
-			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ]
+		$this->overrideConfigValues( [
+			MainConfigNames::SemiprotectedRestrictionLevels => [ 'autoconfirmed' ],
+			MainConfigNames::RestrictionLevels => [ '', 'autoconfirmed', 'sysop' ]
 		] );
 		$rs = $this->getServiceContainer()->getRestrictionStore();
 		$wrapper = TestingAccessWrapper::newFromObject( $rs );
@@ -2092,9 +2096,9 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsProtected() {
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
-		$this->setMwGlobals( [
-			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
-			'wgRestrictionTypes' => [ 'create', 'edit', 'move', 'upload' ]
+		$this->overrideConfigValues( [
+			MainConfigNames::RestrictionLevels => [ '', 'autoconfirmed', 'sysop' ],
+			MainConfigNames::RestrictionTypes => [ 'create', 'edit', 'move', 'upload' ]
 		] );
 		$rs = $this->getServiceContainer()->getRestrictionStore();
 		$wrapper = TestingAccessWrapper::newFromObject( $rs );
@@ -2231,7 +2235,10 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$existingPage = $this->getExistingTestPage();
 		$title = $existingPage->getTitle();
 
-		$this->setMwGlobals( 'wgNamespacesWithSubpages', [ $title->getNamespace() => true ] );
+		$this->overrideConfigValue(
+			MainConfigNames::NamespacesWithSubpages,
+			[ $title->getNamespace() => true ]
+		);
 
 		$this->getExistingTestPage( $title->getSubpage( 'A' ) );
 		$this->getExistingTestPage( $title->getSubpage( 'B' ) );
@@ -2249,7 +2256,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Page\PageStore::getSubpages
 	 */
 	public function testGetSubpages_disabled() {
-		$this->setMwGlobals( 'wgNamespacesWithSubpages', [] );
+		$this->overrideConfigValue( MainConfigNames::NamespacesWithSubpages, [] );
 
 		$existingPage = $this->getExistingTestPage();
 		$title = $existingPage->getTitle();
@@ -2429,7 +2436,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideTitleEditURLsWithActionPaths
 	 */
 	public function testGetEditUrlWithActionPaths( Title $title, $expected ) {
-		$this->setMwGlobals( 'wgActionPaths', [ 'edit' => '/wiki/edit/$1' ] );
+		$this->overrideConfigValue( MainConfigNames::ActionPaths, [ 'edit' => '/wiki/edit/$1' ] );
 		$actual = $title->getEditURL();
 		$this->assertSame( $expected, $actual );
 	}

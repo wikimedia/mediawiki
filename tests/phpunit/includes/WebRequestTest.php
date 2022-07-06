@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group WebRequest
  */
@@ -392,9 +394,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetIP( $expected, $input, $cdn, $xffList, $private, $description ) {
 		$this->setServerVars( $input );
-		$this->setMwGlobals( [
-			'wgUsePrivateIPs' => $private,
-		] );
+		$this->overrideConfigValue( MainConfigNames::UsePrivateIPs, $private );
 
 		$hookContainer = $this->createHookContainer( [
 			'IsTrustedProxy' => static function ( &$ip, &$trusted ) use ( $xffList ) {
@@ -582,10 +582,10 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetIpLackOfRemoteAddrThrowAnException() {
 		// ensure that local install state doesn't interfere with test
-		$this->setMwGlobals( [
-			'wgCdnServers' => [],
-			'wgCdnServersNoPurge' => [],
-			'wgUsePrivateIPs' => false,
+		$this->overrideConfigValues( [
+			MainConfigNames::CdnServers => [],
+			MainConfigNames::CdnServersNoPurge => [],
+			MainConfigNames::UsePrivateIPs => false,
 		] );
 
 		$hookContainer = $this->createHookContainer();

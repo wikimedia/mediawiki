@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -19,19 +20,19 @@ class ApiEditPageTest extends ApiTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgExtraNamespaces' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::ExtraNamespaces => [
 				12312 => 'Dummy',
 				12313 => 'Dummy_talk',
 				12314 => 'DummyNonText',
 				12315 => 'DummyNonText_talk',
 			],
-			'wgNamespaceContentModels' => [
+			MainConfigNames::NamespaceContentModels => [
 				12312 => 'testing',
 				12314 => 'testing-nontext',
 			],
-			'wgWatchlistExpiry' => true,
-			'wgWatchlistExpiryMaxDuration' => '6 months',
+			MainConfigNames::WatchlistExpiry => true,
+			MainConfigNames::WatchlistExpiryMaxDuration => '6 months',
 		] );
 		$this->mergeMwGlobalArrayValue( 'wgContentHandlers', [
 			'testing' => 'DummyContentHandlerForTesting',
@@ -1586,8 +1587,10 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertFalse( Title::newFromText( $name )->exists() );
 
 		ChangeTags::defineTag( 'custom tag' );
-		$this->setMwGlobals( 'wgRevokePermissions',
-			[ 'user' => [ 'applychangetags' => true ] ] );
+		$this->overrideConfigValue(
+			MainConfigNames::RevokePermissions,
+			[ 'user' => [ 'applychangetags' => true ] ]
+		);
 
 		try {
 			$this->doApiRequestWithToken( [
@@ -1717,8 +1720,10 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( "You don't have permission to create image redirects." );
 
-		$this->setMwGlobals( 'wgRevokePermissions',
-			[ 'user' => [ 'upload' => true ] ] );
+		$this->overrideConfigValue(
+			MainConfigNames::RevokePermissions,
+			[ 'user' => [ 'upload' => true ] ]
+		);
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1735,7 +1740,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'The content you supplied exceeds the article size limit of 1 kibibyte.'
 		);
 
-		$this->setMwGlobals( 'wgMaxArticleSize', 1 );
+		$this->overrideConfigValue( MainConfigNames::MaxArticleSize, 1 );
 
 		$text = str_repeat( '!', 1025 );
 
@@ -1757,7 +1762,10 @@ class ApiEditPageTest extends ApiTestCase {
 			'The action you have requested is limited to users in'
 		);
 
-		$this->setMwGlobals( 'wgRevokePermissions', [ '*' => [ 'edit' => true ] ] );
+		$this->overrideConfigValue(
+			MainConfigNames::RevokePermissions,
+			[ '*' => [ 'edit' => true ] ]
+		);
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1774,8 +1782,10 @@ class ApiEditPageTest extends ApiTestCase {
 			"You don't have permission to change the content model of a page."
 		);
 
-		$this->setMwGlobals( 'wgRevokePermissions',
-			[ 'user' => [ 'editcontentmodel' => true ] ] );
+		$this->overrideConfigValue(
+			MainConfigNames::RevokePermissions,
+			[ 'user' => [ 'editcontentmodel' => true ] ]
+		);
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * Tests for Rollback API.
  *
@@ -19,9 +21,7 @@ class ApiRollbackTest extends ApiTestCase {
 			[ 'watchlist', 'watchlist_expiry' ]
 		);
 
-		$this->setMwGlobals( [
-			'wgWatchlistExpiry' => true,
-		] );
+		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 	}
 
 	public function testProtectWithWatch(): void {

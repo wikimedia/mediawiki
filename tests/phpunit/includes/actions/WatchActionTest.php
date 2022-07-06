@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
@@ -102,7 +103,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testOnSubmitHookAborted() {
 		// WatchlistExpiry feature flag.
-		$this->setMwGlobals( 'wgWatchlistExpiry', true );
+		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 
 		$testContext = $this->getMockBuilder( DerivativeContext::class )
 			->onlyMethods( [ 'getRequest' ] )
@@ -239,7 +240,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		ConvertibleTimestamp::setFakeTime( '20200917120000' );
 
 		// WatchlistExpiry feature flag.
-		$this->setMwGlobals( 'wgWatchlistExpiry', $watchlistExpiry );
+		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, $watchlistExpiry );
 
 		// Set up context, request, and output.
 		/** @var MockObject|IContextSource $testContext */

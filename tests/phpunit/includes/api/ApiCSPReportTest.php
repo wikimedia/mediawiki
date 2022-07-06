@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group API
  * @group medium
@@ -59,11 +61,10 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 			'source-file' => 'https://source.test/path/file?query',
 		];
 
-		$this->setMwGlobals( [
-			'wgCSPFalsePositiveUrls' => [
-				'https://blocked.test/path/' => true,
-			],
-		] );
+		$this->overrideConfigValue(
+			MainConfigNames::CSPFalsePositiveUrls,
+			[ 'https://blocked.test/path/' => true ]
+		);
 		$log = $this->doExecute( $params, $cspReport );
 
 		$this->assertSame(

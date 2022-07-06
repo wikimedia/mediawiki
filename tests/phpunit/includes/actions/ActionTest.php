@@ -3,6 +3,7 @@
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 
 /**
@@ -20,33 +21,36 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		$context = $this->getContext();
-		$this->setMwGlobals( 'wgActions', [
-			'null' => null,
-			'disabled' => false,
-			'view' => true,
-			'edit' => true,
-			'revisiondelete' => [
-				'class' => SpecialPageAction::class,
-				'services' => [
-					'SpecialPageFactory',
+		$this->overrideConfigValue(
+			MainConfigNames::Actions,
+			[
+				'null' => null,
+				'disabled' => false,
+				'view' => true,
+				'edit' => true,
+				'revisiondelete' => [
+					'class' => SpecialPageAction::class,
+					'services' => [
+						'SpecialPageFactory',
+					],
+					'args' => [
+						// SpecialPageAction is used for both 'editchangetags' and
+						// 'revisiondelete' actions, tell it which one this is
+						'revisiondelete',
+					],
 				],
-				'args' => [
-					// SpecialPageAction is used for both 'editchangetags' and
-					// 'revisiondelete' actions, tell it which one this is
-					'revisiondelete',
-				],
-			],
-			'dummy' => true,
-			'access' => 'ControlledAccessDummyAction',
-			'unblock' => 'RequiresUnblockDummyAction',
-			'string' => 'NamedDummyAction',
-			'declared' => 'NonExistingClassName',
-			'callable' => [ $this, 'dummyActionCallback' ],
-			'object' => new InstantiatedDummyAction(
-				$this->getArticle(),
-				$context
-			),
-		] );
+				'dummy' => true,
+				'access' => 'ControlledAccessDummyAction',
+				'unblock' => 'RequiresUnblockDummyAction',
+				'string' => 'NamedDummyAction',
+				'declared' => 'NonExistingClassName',
+				'callable' => [ $this, 'dummyActionCallback' ],
+				'object' => new InstantiatedDummyAction(
+					$this->getArticle(),
+					$context
+				),
+			]
+		);
 	}
 
 	/**
