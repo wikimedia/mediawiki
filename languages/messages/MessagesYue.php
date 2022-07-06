@@ -23,8 +23,6 @@
  * @author Yfdyh000
  */
 
-$fallback = 'zh-hk, zh-hant, zh, zh-hans';
-
 $namespaceNames = [
 	NS_MEDIA            => '媒體',
 	NS_SPECIAL          => '特別',
