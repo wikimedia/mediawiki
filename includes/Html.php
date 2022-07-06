@@ -229,7 +229,7 @@ class Html {
 	 * @return string
 	 */
 	public static function element( $element, $attribs = [], $contents = '' ) {
-		return self::rawElement( $element, $attribs, strtr( $contents, [
+		return self::rawElement( $element, $attribs, strtr( $contents ?? '', [
 			// There's no point in escaping quotes, >, etc. in the contents of
 			// elements.
 			'&' => '&amp;',
