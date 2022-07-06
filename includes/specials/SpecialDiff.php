@@ -47,7 +47,7 @@ class SpecialDiff extends RedirectSpecialPage {
 	 * @return Title|bool
 	 */
 	public function getRedirect( $subpage ) {
-		$parts = explode( '/', $subpage );
+		$parts = $subpage !== null ? explode( '/', $subpage ) : [];
 
 		// Try to parse the values given, generating somewhat pretty URLs if possible
 		if ( count( $parts ) === 1 && $parts[0] !== '' ) {
