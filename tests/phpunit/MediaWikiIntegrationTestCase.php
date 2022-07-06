@@ -2489,10 +2489,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				->getRevisionById( $rev );
 		}
 
-		$title = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
-
 		RevisionDeleter::createList(
-			'revision', RequestContext::getMain(), $title, [ $rev->getId() ]
+			'revision', RequestContext::getMain(), $rev->getPage(), [ $rev->getId() ]
 		)->setVisibility( [
 			'value' => $value,
 			'comment' => $comment,

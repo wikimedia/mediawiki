@@ -1119,9 +1119,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 	protected function revisionRecordToRow( RevisionRecord $revRecord, $options = [ 'page', 'user', 'comment' ] ) {
 		// XXX: the WikiPage object loads another RevisionRecord from the database. Not great.
-		$page = WikiPage::factory(
-			Title::newFromLinkTarget( $revRecord->getPageAsLinkTarget() )
-		);
+		$page = WikiPage::factory( $revRecord->getPage() );
 
 		$revUser = $revRecord->getUser();
 		$actorId = $this->getServiceContainer()

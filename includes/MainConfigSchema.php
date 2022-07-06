@@ -101,7 +101,6 @@ use WinCacheBagOStuff;
  *
  * The following additional keys are used by MediaWiki:
  * - mergeStrategy: see the {@link MediaWiki\Settings\Config\MergeStrategy}.
- * - ignoreKeys: the array should be handled like a set, keys are ignored for validation.
  *
  * @note After changing this file, run maintenance/generateConfigSchema.php to update
  *       all the files derived from the information in MainConfigSchema.
