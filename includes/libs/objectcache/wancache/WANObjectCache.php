@@ -3130,18 +3130,7 @@ class WANObjectCache implements
 	 * @codeCoverageIgnore
 	 */
 	protected function getCurrentTime() {
-		if ( $this->wallClockOverride ) {
-			return $this->wallClockOverride;
-		}
-
-		// call this first
-		$clockTime = (float)time();
-		// microtime() uses an initial gettimeofday() call added to usage clocks.
-		// This can severely drift from time() and the microtime() value of other threads
-		// due to undercounting of the amount of time elapsed. Instead of seeing the current
-		// time as being in the past, use the value of time(). This avoids setting cache values
-		// that will immediately be seen as expired and possibly cause stampedes.
-		return max( microtime( true ), $clockTime );
+		return $this->wallClockOverride ?: microtime( true );
 	}
 
 	/**
