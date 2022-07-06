@@ -27,7 +27,7 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 		$contextMock->method( 'getRequest' )->willReturn(
 			new FauxRequest( [] )
 		);
-		$title = Title::newFromText( 'HistoryPagerTest' );
+		$title = Title::makeTitle( NS_MAIN, 'HistoryPagerTest' );
 		$contextMock->method( 'getTitle' )->willReturn( $title );
 
 		$contextMock->method( 'getWikiPage' )->willReturn( $wikiPageMock );
@@ -77,7 +77,7 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 		}, $results );
 
 		$pager->revisions = array_map( static function ( $result ) {
-			$title = Title::newFromText( 'HistoryPagerTest' );
+			$title = Title::makeTitle( NS_MAIN, 'HistoryPagerTest' );
 			$r = new MutableRevisionRecord( $title );
 			$r->setId( $result[ 'rev_id' ] );
 			return $r;

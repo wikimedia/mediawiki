@@ -34,7 +34,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$testTitle = Title::newFromText( 'UTTest' );
+		$testTitle = Title::makeTitle( NS_MAIN, 'UTTest' );
 		$this->testWikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $testTitle );
 		$testContext = new DerivativeContext( RequestContext::getMain() );
 		$testContext->setTitle( $testTitle );
@@ -216,7 +216,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$testContext->method( 'msg' )->willReturnCallback( static function ( $msgKey ) {
 			return new RawMessage( $msgKey );
 		} );
-		$talkPageTitle = Title::newFromText( 'Talk:UTTest' );
+		$talkPageTitle = Title::makeTitle( NS_TALK, 'UTTest' );
 		$testContext->setTitle( $talkPageTitle );
 		$watchAction = $this->getWatchAction(
 			Article::newFromTitle( $talkPageTitle, $testContext ),

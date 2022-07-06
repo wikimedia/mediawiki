@@ -64,7 +64,7 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 			$slots,
 		];
 
-		$title = Title::newFromText( 'Dummy' );
+		$title = Title::makeTitle( NS_MAIN, 'Dummy' );
 		$title->resetArticleID( 17 );
 
 		yield 'all info, local, with Title' => [
@@ -112,7 +112,7 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 
 		$row = $protoRow;
 		yield 'no length, no hash' => [
-			Title::newFromText( 'DummyDoesNotExist' ),
+			Title::makeTitle( NS_MAIN, 'DummyDoesNotExist' ),
 			$user,
 			$comment,
 			(object)$row,
@@ -186,7 +186,7 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideConstructorFailure() {
-		$title = Title::newFromText( 'Dummy' );
+		$title = Title::makeTitle( NS_MAIN, 'Dummy' );
 		$title->resetArticleID( 17 );
 
 		$user = new UserIdentityValue( 11, 'Tester' );
