@@ -29,7 +29,6 @@ use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
-use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
@@ -163,7 +162,8 @@ class DatabaseBlock extends AbstractBlock {
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public static function getQueryInfo() {
-		$commentQuery = CommentStore::getStore()->getJoin( 'ipb_reason' );
+		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
+		$commentQuery = $commentStore->getJoin( 'ipb_reason' );
 		return [
 			'tables' => [
 				'ipblocks',
@@ -432,15 +432,15 @@ class DatabaseBlock extends AbstractBlock {
 		// don't save that as 0 though, see T282890
 		$this->mParentBlockId = $row->ipb_parent_block_id ? (int)$row->ipb_parent_block_id : null;
 
-		$this->setBlocker( MediaWikiServices::getInstance()
-			->getActorNormalization()
+		$services = MediaWikiServices::getInstance();
+		$this->setBlocker( $services->getActorNormalization()
 			->newActorFromRowFields( $row->ipb_by, $row->ipb_by_text, $row->ipb_by_actor ) );
 
 		// I wish I didn't have to do this
 		$db = $this->getDBConnection( DB_REPLICA );
 		$this->setExpiry( $db->decodeExpiry( $row->ipb_expiry ) );
 		$this->setReason(
-			CommentStore::getStore()
+			$services->getCommentStore()
 			// Legacy because $row may have come from self::selectFields()
 			->getCommentLegacy( $db, 'ipb_reason', $row )
 		);

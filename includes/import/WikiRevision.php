@@ -24,7 +24,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\SlotRecord;
@@ -686,8 +685,8 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 				. $this->timestamp );
 			return false;
 		}
-		$actorId = MediaWikiServices::getInstance()->getActorNormalization()
-			->acquireActorId( $user, $dbw );
+		$services = MediaWikiServices::getInstance();
+		$actorId = $services->getActorNormalization()->acquireActorId( $user, $dbw );
 		$data = [
 			'log_type' => $this->type,
 			'log_action' => $this->action,
@@ -696,7 +695,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 			'log_namespace' => $this->getTitle()->getNamespace(),
 			'log_title' => $this->getTitle()->getDBkey(),
 			'log_params' => $this->params
-		] + CommentStore::getStore()->insert( $dbw, 'log_comment', $this->getComment() );
+		] + $services->getCommentStore()->insert( $dbw, 'log_comment', $this->getComment() );
 		$dbw->insert( 'logging', $data, __METHOD__ );
 
 		return true;

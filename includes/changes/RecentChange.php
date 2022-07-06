@@ -21,7 +21,6 @@
  */
 
 use MediaWiki\ChangeTags\Taggable;
-use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -260,7 +259,7 @@ class RecentChange implements Taggable {
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public static function getQueryInfo() {
-		$commentQuery = CommentStore::getStore()->getJoin( 'rc_comment' );
+		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'rc_comment' );
 		// Optimizer sometimes refuses to pick up the correct join order (T311360)
 		$commentQuery['joins']['comment_rc_comment'][0] = 'STRAIGHT_JOIN';
 		return [
@@ -410,7 +409,8 @@ class RecentChange implements Taggable {
 	 * @param bool $send self::SEND_FEED or self::SEND_NONE
 	 */
 	public function save( $send = self::SEND_FEED ) {
-		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		$services = MediaWikiServices::getInstance();
+		$mainConfig = $services->getMainConfig();
 		$putIPinRC = $mainConfig->get( MainConfigNames::PutIPinRC );
 		$dbw = wfGetDB( DB_PRIMARY );
 		if ( !is_array( $this->mExtra ) ) {
@@ -448,12 +448,11 @@ class RecentChange implements Taggable {
 		# Convert mAttribs['rc_comment'] for CommentStore
 		$comment = $row['rc_comment'];
 		unset( $row['rc_comment'], $row['rc_comment_text'], $row['rc_comment_data'] );
-		$row += CommentStore::getStore()->insert( $dbw, 'rc_comment', $comment );
+		$row += $services->getCommentStore()->insert( $dbw, 'rc_comment', $comment );
 
 		# Normalize UserIdentity to actor ID
 		$user = $this->getPerformerIdentity();
-		$actorStore = MediaWikiServices::getInstance()->getActorStore();
-		$row['rc_actor'] = $actorStore->acquireActorId( $user, $dbw );
+		$row['rc_actor'] = $services->getActorStore()->acquireActorId( $user, $dbw );
 		unset( $row['rc_user'], $row['rc_user_text'] );
 
 		# Don't reuse an existing rc_id for the new row, if one happens to be
@@ -504,7 +503,7 @@ class RecentChange implements Taggable {
 			$mainConfig->get( MainConfigNames::EnotifWatchlist ) ||
 			$mainConfig->get( MainConfigNames::ShowUpdatedMarker )
 		) {
-			$userFactory = MediaWikiServices::getInstance()->getUserFactory();
+			$userFactory = $services->getUserFactory();
 			$editor = $userFactory->newFromUserIdentity( $this->getPerformerIdentity() );
 			$page = $this->getPage();
 			$title = Title::castFromPageReference( $page );
@@ -544,7 +543,7 @@ class RecentChange implements Taggable {
 		if ( $this->mAttribs['rc_user'] > 0 ) {
 			$jobs[] = RecentChangesUpdateJob::newCacheUpdateJob();
 		}
-		MediaWikiServices::getInstance()->getJobQueueGroup()->lazyPush( $jobs );
+		$services->getJobQueueGroup()->lazyPush( $jobs );
 	}
 
 	/**
@@ -1138,7 +1137,7 @@ class RecentChange implements Taggable {
 		// rc_deleted MUST be set
 		$this->mAttribs['rc_deleted'] = $row->rc_deleted;
 
-		$comment = CommentStore::getStore()
+		$comment = MediaWikiServices::getInstance()->getCommentStore()
 			// Legacy because $row may have come from self::selectFields()
 			->getCommentLegacy( wfGetDB( DB_REPLICA ), 'rc_comment', $row, true )
 			->text;
@@ -1168,7 +1167,7 @@ class RecentChange implements Taggable {
 	 */
 	public function getAttribute( $name ) {
 		if ( $name === 'rc_comment' ) {
-			return CommentStore::getStore()
+			return MediaWikiServices::getInstance()->getCommentStore()
 				->getComment( 'rc_comment', $this->mAttribs, true )->text;
 		}
 

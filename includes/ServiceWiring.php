@@ -2201,7 +2201,8 @@ return [
 		return new WikiExporterFactory(
 			$services->getHookContainer(),
 			$services->getRevisionStore(),
-			$services->getTitleParser()
+			$services->getTitleParser(),
+			$services->getCommentStore()
 		);
 	},
 

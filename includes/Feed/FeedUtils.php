@@ -26,7 +26,6 @@ namespace MediaWiki\Feed;
 use DerivativeContext;
 use Html;
 use LogFormatter;
-use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
@@ -96,8 +95,9 @@ class FeedUtils {
 		if ( $row->rc_deleted & RevisionRecord::DELETED_COMMENT ) {
 			$formattedComment = wfMessage( 'rev-deleted-comment' )->escaped();
 		} elseif ( $formattedComment === null ) {
-			$formattedComment = MediaWikiServices::getInstance()->getCommentFormatter()->format(
-				CommentStore::getStore()->getComment( 'rc_comment', $row )->text );
+			$services = MediaWikiServices::getInstance();
+			$formattedComment = $services->getCommentFormatter()->format(
+				$services->getCommentStore()->getComment( 'rc_comment', $row )->text );
 		}
 		return self::formatDiffRow2( $titleObj,
 			$row->rc_last_oldid, $row->rc_this_oldid,

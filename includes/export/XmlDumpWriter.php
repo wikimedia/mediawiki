@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -83,15 +84,22 @@ class XmlDumpWriter {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var CommentStore */
+	private $commentStore;
+
 	/**
 	 * @param int $contentMode WRITE_CONTENT or WRITE_STUB.
 	 * @param string $schemaVersion which schema version the generated XML should comply to.
 	 * One of the values from self::$supportedSchemas, using the XML_DUMP_SCHEMA_VERSION_XX
 	 * constants.
+	 * @param HookContainer|null $hookContainer
+	 * @param CommentStore|null $commentStore
 	 */
 	public function __construct(
 		$contentMode = self::WRITE_CONTENT,
-		$schemaVersion = XML_DUMP_SCHEMA_VERSION_11
+		$schemaVersion = XML_DUMP_SCHEMA_VERSION_11,
+		?HookContainer $hookContainer = null,
+		?CommentStore $commentStore = null
 	) {
 		Assert::parameter(
 			in_array( $contentMode, [ self::WRITE_CONTENT, self::WRITE_STUB ], true ),
@@ -108,7 +116,10 @@ class XmlDumpWriter {
 
 		$this->contentMode = $contentMode;
 		$this->schemaVersion = $schemaVersion;
-		$this->hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+		$this->hookRunner = new HookRunner(
+			$hookContainer ?? MediaWikiServices::getInstance()->getHookContainer()
+		);
+		$this->commentStore = $commentStore ?? MediaWikiServices::getInstance()->getCommentStore();
 	}
 
 	/**
@@ -594,7 +605,7 @@ class XmlDumpWriter {
 		if ( $row->log_deleted & LogPage::DELETED_COMMENT ) {
 			$out .= "    " . Xml::element( 'comment', [ 'deleted' => 'deleted' ] ) . "\n";
 		} else {
-			$comment = CommentStore::getStore()->getComment( 'log_comment', $row )->text;
+			$comment = $this->commentStore->getComment( 'log_comment', $row )->text;
 			if ( $comment != '' ) {
 				$out .= "    " . Xml::elementClean( 'comment', null, strval( $comment ) ) . "\n";
 			}

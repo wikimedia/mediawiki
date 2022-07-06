@@ -23,7 +23,6 @@
  * @since 1.19
  */
 
-use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
@@ -120,7 +119,7 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 	}
 
 	public function getComment() {
-		return CommentStore::getStore()
+		return MediaWikiServices::getInstance()->getCommentStore()
 			// Legacy because the row may have used RecentChange::selectFields()
 			->getCommentLegacy( wfGetDB( DB_REPLICA ), 'rc_comment', $this->row )->text;
 	}
