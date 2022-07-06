@@ -767,7 +767,7 @@
 	"nbytes": "$1 {{PLURAL:$1|بائٹ|بائٹہٕ}}",
 	"ncategories": "$1 {{PLURAL:$1|زاتھ|زٲژ}}",
 	"nlinks": "$1 {{PLURAL:$1|کُنٛڈٕ}}",
-	"nmembers": "{{PLURAL:$1|رُکُن}}",
+	"nmembers": "$1 {{PLURAL:$1|رُکُن}}",
 	"lonelypages": "ئتيٖم صَفہٕ",
 	"uncategorizedpages": "زٲژو وَرٲے صَفہٕ",
 	"uncategorizedcategories": "زٲژو وَرٲے زٲژٕ",
