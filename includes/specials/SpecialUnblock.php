@@ -24,7 +24,6 @@
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\UnblockUserFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
@@ -234,36 +233,6 @@ class SpecialUnblock extends SpecialPage {
 		}
 
 		return $fields;
-	}
-
-	/**
-	 * Process the form
-	 *
-	 * @deprecated since 1.36, use UnblockUser instead
-	 * @param array $data
-	 * @param IContextSource $context
-	 * @return array|bool [ [ message key, parameters ] ] on failure, True on success
-	 */
-	public static function processUnblock( array $data, IContextSource $context ) {
-		wfDeprecated( __METHOD__, '1.36' );
-
-		if ( !isset( $data['Tags'] ) ) {
-			$data['Tags'] = [];
-		}
-
-		$unblockUser = MediaWikiServices::getInstance()->getUnblockUserFactory()->newUnblockUser(
-			$data['Target'],
-			$context->getAuthority(),
-			$data['Reason'],
-			$data['Tags']
-		);
-
-		$status = $unblockUser->unblock();
-		if ( !$status->isOK() ) {
-			return $status->getErrorsArray();
-		}
-
-		return true;
 	}
 
 	/**
