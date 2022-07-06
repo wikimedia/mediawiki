@@ -106,7 +106,7 @@ class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 
 		$this->setTemporaryHook( $hook, static function ( $term, &$title ) {
 			if ( $term === [ 'Hook' ] || $term === 'Hook' ) {
-				$title = Title::newFromText( 'TitleFromHook' );
+				$title = Title::makeTitle( NS_MAIN, 'TitleFromHook' );
 				return false;
 			}
 			return null;
@@ -126,7 +126,7 @@ class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetNearMatchResultSet() {
 		$services = $this->getServiceContainer();
-		$this->addGoodLinkObject( 42, Title::newFromText( "Test Link" ) );
+		$this->addGoodLinkObject( 42, Title::makeTitle( NS_MAIN, "Test Link" ) );
 
 		$config = new HashConfig( [
 			'EnableSearchContributorsByIP' => false,

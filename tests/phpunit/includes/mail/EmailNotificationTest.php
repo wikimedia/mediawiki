@@ -26,7 +26,7 @@ class EmailNotificationTest extends MediaWikiIntegrationTestCase {
 		$store = $this->getServiceContainer()->getWatchedItemStore();
 
 		// both Alice and Bob watch 'Foobar'
-		$title = Title::newFromText( 'Foobar' );
+		$title = Title::makeTitle( NS_MAIN, 'Foobar' );
 		$alice = $this->getTestSysop()->getUser();
 		$store->addWatch( $alice, $title );
 		$bob = $this->getTestUser()->getUser();

@@ -31,14 +31,14 @@ class ImportLinkCacheIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->doImport( $this->importStreamSource );
 
 		// Imported title
-		$loremIpsum = Title::newFromText( 'Lorem ipsum' );
+		$loremIpsum = Title::makeTitle( NS_MAIN, 'Lorem ipsum' );
 
 		$this->assertSame(
 			$loremIpsum->getArticleID(),
 			$loremIpsum->getArticleID( Title::GAID_FOR_UPDATE )
 		);
 
-		$categoryLoremIpsum = Title::newFromText( 'Category:Lorem ipsum' );
+		$categoryLoremIpsum = Title::makeTitle( NS_CATEGORY, 'Lorem ipsum' );
 
 		$this->assertSame(
 			$categoryLoremIpsum->getArticleID(),
@@ -53,14 +53,14 @@ class ImportLinkCacheIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->doImport( $this->importStreamSource );
 
 		// ReImported title
-		$loremIpsum = Title::newFromText( 'Lorem ipsum' );
+		$loremIpsum = Title::makeTitle( NS_MAIN, 'Lorem ipsum' );
 
 		$this->assertSame(
 			$loremIpsum->getArticleID(),
 			$loremIpsum->getArticleID( Title::GAID_FOR_UPDATE )
 		);
 
-		$categoryLoremIpsum = Title::newFromText( 'Category:Lorem ipsum' );
+		$categoryLoremIpsum = Title::makeTitle( NS_CATEGORY, 'Lorem ipsum' );
 
 		$this->assertSame(
 			$categoryLoremIpsum->getArticleID(),

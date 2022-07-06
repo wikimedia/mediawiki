@@ -431,7 +431,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @covers RecentChange::newForCategorization
 	 */
 	public function testHiddenCategoryChange( $isHidden ) {
-		$categoryTitle = Title::newFromText( 'CategoryPage', NS_CATEGORY );
+		$categoryTitle = Title::makeTitle( NS_CATEGORY, 'CategoryPage' );
 
 		$pageProps = $this->getMockPageProps();
 		$pageProps->expects( $this->once() )

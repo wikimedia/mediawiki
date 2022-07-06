@@ -29,7 +29,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	 * @dataProvider providePreSaveTransform
 	 */
 	public function testPreSaveTransform( $text, $expected ) {
-		$title = Title::newFromText( str_replace( '::', '__', __METHOD__ ) );
+		$title = Title::makeTitle( NS_MAIN, 'TestPreSaveTransform' );
 		$user = new User();
 		$user->setName( "127.0.0.1" );
 		$popts = ParserOptions::newFromUser( $user );
@@ -75,7 +75,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	public function testRecursiveParse() {
-		$title = Title::newFromText( 'foo' );
+		$title = Title::makeTitle( NS_MAIN, 'Foo' );
 		$parser = $this->getServiceContainer()->getParser();
 		$po = ParserOptions::newFromAnon();
 		$parser->setHook( 'recursivecallparser', [ $this, 'helperParserFunc' ] );
@@ -87,7 +87,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	public function helperParserFunc( $input, $args, $parser ) {
-		$title = Title::newFromText( 'foo' );
+		$title = Title::makeTitle( NS_MAIN, 'Foo' );
 		$po = ParserOptions::newFromAnon();
 		$parser->parse( $input, $title, $po );
 		return 'bar';
@@ -95,7 +95,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 	public function testCallParserFunction() {
 		// Normal parses test passing PPNodes. Test passing an array.
-		$title = Title::newFromText( str_replace( '::', '__', __METHOD__ ) );
+		$title = Title::makeTitle( NS_MAIN, 'TestCallParserFunction' );
 		$parser = $this->getServiceContainer()->getParser();
 		$parser->startExternalParse(
 			$title,
@@ -118,7 +118,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	 * @covers ParserOutput::getSections
 	 */
 	public function testGetSections() {
-		$title = Title::newFromText( str_replace( '::', '__', __METHOD__ ) );
+		$title = Title::makeTitle( NS_MAIN, 'TestGetSections' );
 		$out = $this->getServiceContainer()->getParser()->parse(
 			"==foo==\n<h2>bar</h2>\n==baz==\n",
 			$title,
@@ -201,7 +201,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	public function testWrapOutput() {
-		$title = Title::newFromText( 'foo' );
+		$title = Title::makeTitle( NS_MAIN, 'Foo' );
 		$po = ParserOptions::newFromAnon();
 		$parser = $this->getServiceContainer()->getParser();
 		$parser->parse( 'Hello World', $title, $po );

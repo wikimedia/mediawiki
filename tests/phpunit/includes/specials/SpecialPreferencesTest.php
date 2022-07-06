@@ -45,7 +45,7 @@ class SpecialPreferencesTest extends MediaWikiIntegrationTestCase {
 		$context = new RequestContext();
 		$context->setRequest( new FauxRequest() );
 		$context->setUser( $user );
-		$context->setTitle( Title::newFromText( 'Test' ) );
+		$context->setTitle( Title::makeTitle( NS_MAIN, 'Test' ) );
 
 		$services = $this->getServiceContainer();
 		# Do the call, should not spurt a fatal error.

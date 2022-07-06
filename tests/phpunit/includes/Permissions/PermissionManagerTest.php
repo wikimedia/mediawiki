@@ -1326,7 +1326,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 */
 	public function testDeleteRedirect() {
 		$this->editPage( 'ExistentRedirect3', '#REDIRECT [[Existent]]' );
-		$page = Title::newFromText( 'ExistentRedirect3' );
+		$page = Title::makeTitle( NS_MAIN, 'ExistentRedirect3' );
 		$pm = $this->getServiceContainer()->getPermissionManager();
 
 		$user = $this->getTestUser()->getUser();
@@ -1348,7 +1348,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$admin = $this->getTestSysop()->getUser();
 
 		$permManager = $this->getServiceContainer()->getPermissionManager();
-		$userJs = Title::newFromText( 'Example/common.js', NS_USER );
+		$userJs = Title::makeTitle( NS_USER, 'Example/common.js' );
 
 		$this->assertTrue( $permManager->userCan( 'delete', $admin, $userJs ) );
 		$this->assertTrue( $permManager->userCan( 'delete', $interfaceAdmin, $userJs ) );
@@ -1365,7 +1365,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * blocked status on a special page
 	 */
 	public function testBlockedFromNonProperPage() {
-		$page = Title::newFromText( 'Special:Blankpage' );
+		$page = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
 		$pm = $this->getServiceContainer()->getPermissionManager();
 		$user = $this->getMockBuilder( User::class )
 			->onlyMethods( [ 'getBlock' ] )

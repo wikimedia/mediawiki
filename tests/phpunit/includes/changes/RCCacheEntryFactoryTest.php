@@ -223,7 +223,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 		$user = $this->getMutableTestUser()->getUser();
 		$context = $this->testRecentChangesHelper->getTestContext( $user );
 
-		$title = Title::newFromText( 'RecentChanges', NS_SPECIAL );
+		$title = Title::makeTitle( NS_SPECIAL, 'RecentChanges' );
 		$context->setTitle( $title );
 
 		return $context;

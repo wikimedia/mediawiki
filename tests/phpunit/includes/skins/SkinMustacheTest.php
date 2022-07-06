@@ -104,7 +104,7 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 		$config = $this->getServiceContainer()->getMainConfig();
 		$bodytext = '<p>hello</p>';
 		$context = new RequestContext();
-		$title = Title::newFromText( 'Mustache skin' );
+		$title = Title::makeTitle( NS_MAIN, 'Mustache skin' );
 		$context->setTitle( $title );
 		$out = $this->getMockOutputPage( $bodytext, $title );
 		$context->setOutput( $out );
