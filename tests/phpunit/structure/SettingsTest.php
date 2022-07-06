@@ -217,14 +217,11 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		// If the default value of a list is not empty, check that it is an indexed array,
 		// not an associative array.
 		if ( in_array( 'array', $type ) && !empty( $defaults ) ) {
-			if ( empty( $schema['ignoreKeys'] ) ) {
-				$this->assertArrayHasKey(
-					0,
-					$schema['default'],
-					'should have a default value starting with index 0, since its type is "array", '
-						. 'and ignoreKeys is not set.'
-				);
-			}
+			$this->assertArrayHasKey(
+				0,
+				$schema['default'],
+				'should have a default value starting with index 0, since its type is "array".'
+			);
 		}
 
 		$mergeStrategy = $schema['mergeStrategy'] ?? null;

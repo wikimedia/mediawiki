@@ -248,11 +248,6 @@ class ConfigSchemaAggregatorTest extends TestCase {
 			'config' => [ 'foo' => [ 0 => 'x', 1 => 'y' ] ],
 			'valid' => true,
 		];
-		yield 'array with ignoreKeys' => [
-			'config-schema' => [ 'foo' => [ 'type' => 'array', 'ignoreKeys' => true ], ],
-			'config' => [ 'foo' => [ 'x' => 'bla', 'blabla' ] ],
-			'valid' => true,
-		];
 	}
 
 	/**
