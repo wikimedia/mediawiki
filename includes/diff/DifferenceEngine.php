@@ -1509,8 +1509,10 @@ class DifferenceEngine extends ContextSource {
 	 * @return bool|string
 	 *
 	 * @deprecated since 1.32, use a TextSlotDiffRenderer instead.
+	 *  Hard deprecated since 1.39.
 	 */
 	protected function textDiff( $otext, $ntext ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		$slotDiffRenderer = $this->contentHandlerFactory
 			->getContentHandler( CONTENT_MODEL_TEXT )
 			->getSlotDiffRenderer( $this->getContext() );
