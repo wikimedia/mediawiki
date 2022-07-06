@@ -334,6 +334,8 @@ because of Phabricator reports.
   - ::setTableAliases()
   - ::setIndexAliases()
   - ::buildGroupConcatField()
+* SpecialUnblock::processUnblock(), deprecated in 1.36, has been removed. Use
+  UnblockUser instead.
 * …
 
 === Deprecations in 1.39 ===
