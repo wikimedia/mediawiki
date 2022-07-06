@@ -2788,6 +2788,7 @@
 	"autoblockid": "Bloqueo automático n.º $1",
 	"block": "Bloquear usuario",
 	"unblock": "Desbloquear usuario",
+	"changeblockip": "Cambiar bloqueo",
 	"blockip": "Bloquear {{GENDER:$1|al usuario|a la usuaria}}",
 	"blockiptext": "Utiliza el siguiente formulario para bloquear el acceso de escritura a un determinado usuario o dirección IP.\nEsto debería hacerse solo para prevenir vandalismo y de acuerdo a las [[{{MediaWiki:Policy-url}}|políticas]].\nExplica la razón específica del bloqueo (por ejemplo, citando las páginas en particular que han sido objeto de vandalismo).\nPuedes bloquear intervalos IP con la sintaxis [https://es.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]; el intervalo más grande permitido es /$1 para IPv4 y /$2 para IPv6.",
 	"ipaddressorusername": "Dirección IP, nombre de usuario o identificador de bloqueo:",
