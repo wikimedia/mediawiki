@@ -9,6 +9,7 @@ use Exception;
 use ExtensionRegistry;
 use HashBagOStuff;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
@@ -106,7 +107,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 			$this->markTestSkipped( 'Parsoid is not configured' );
 		}
 
-		$this->setMwGlobals( 'wgCacheEpoch', self::CACHE_EPOCH );
+		$this->overrideConfigValue( MainConfigNames::CacheEpoch, self::CACHE_EPOCH );
 
 		// Clean up these tables after each test
 		$this->tablesUsed = [

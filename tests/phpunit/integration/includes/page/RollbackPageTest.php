@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Page;
 use ChangeTags;
 use DatabaseLogEntry;
 use JsonContent;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\RollbackPage;
@@ -36,7 +37,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( 'wgUseRCPatrol', true );
+		$this->overrideConfigValue( MainConfigNames::UseRCPatrol, true );
 		$this->tablesUsed = array_merge( $this->tablesUsed, [
 			'page',
 			'recentchanges',

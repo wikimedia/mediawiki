@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group Templates
  * @coversDefaultClass TemplateParser
@@ -14,16 +16,14 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgSecretKey' => self::SECRET_KEY,
-		] );
+		$this->overrideConfigValue( MainConfigNames::SecretKey, self::SECRET_KEY );
 	}
 
 	/**
 	 * @covers ::getTemplate
 	 */
 	public function testGetTemplateNeverCacheWithoutSecretKey() {
-		$this->setMwGlobals( 'wgSecretKey', false );
+		$this->overrideConfigValue( MainConfigNames::SecretKey, false );
 
 		// Expect no cache interaction
 		$cache = $this->createMock( BagOStuff::class );
