@@ -2900,5 +2900,8 @@
 	"skin-action-protect": "সুৰক্ষিত কৰক",
 	"skin-action-undelete": "পুনৰুদ্ধাৰ কৰক",
 	"skin-action-delete": "মচক",
-	"skin-action-move": "স্থানান্তৰ কৰক"
+	"skin-action-move": "স্থানান্তৰ কৰক",
+	"newpages-showhide-bots": "ব'টসমূহক $1",
+	"newpages-showhide-redirect": "পুনঃনিৰ্দেশসমূহক $1",
+	"newpages-showhide-registered": "পঞ্জীভুক্ত সদস্যসমূহক $1"
 }

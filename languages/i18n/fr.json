@@ -4164,7 +4164,7 @@
 	"log-action-filter-block-block": "Blocage",
 	"log-action-filter-block-reblock": "Modification de blocage",
 	"log-action-filter-block-unblock": "Déblocage",
-	"log-action-filter-contentmodel-change": "Changement de modèle de contenu",
+	"log-action-filter-contentmodel-change": "Changement du modèle de contenu",
 	"log-action-filter-contentmodel-new": "Création de page avec un modèle de contenu différent du contenu par défaut",
 	"log-action-filter-delete-delete": "Suppression de pages",
 	"log-action-filter-delete-delete_redir": "Écrasement de redirection",
