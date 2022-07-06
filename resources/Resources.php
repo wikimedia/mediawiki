@@ -1076,20 +1076,6 @@ return [
 			'upload-foreign-cant-upload',
 		]
 	],
-	'mediawiki.ForeignStructuredUpload' => [
-		'localBasePath' => "$wgBaseDirectory/resources/src",
-		'remoteBasePath' => "$wgResourceBasePath/resources/src",
-		'packageFiles' => [
-			'mediawiki.ForeignStructuredUpload.js',
-			[ 'name' => 'config.json', 'config' => [ MainConfigNames::UploadDialog ] ],
-		],
-		'dependencies' => [
-			'mediawiki.ForeignUpload',
-		],
-		'messages' => [
-			'upload-foreign-cant-load-config',
-		],
-	],
 	'mediawiki.Upload.Dialog' => [
 		'scripts' => [
 			'resources/src/mediawiki.Upload.Dialog.js',
@@ -1157,9 +1143,16 @@ return [
 		],
 	],
 	'mediawiki.ForeignStructuredUpload.BookletLayout' => [
-		'scripts' => 'resources/src/mediawiki.ForeignStructuredUpload.BookletLayout/BookletLayout.js',
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.ForeignStructuredUpload.BookletLayout",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.ForeignStructuredUpload.BookletLayout",
+		'packageFiles' => [
+			"index.js",
+			'ForeignStructuredUpload.js',
+			[ 'name' => 'config.json', 'config' => [ MainConfigNames::UploadDialog ] ],
+			"BookletLayout.js",
+		],
 		'dependencies' => [
-			'mediawiki.ForeignStructuredUpload',
+			'mediawiki.ForeignUpload',
 			'mediawiki.Upload.BookletLayout',
 			'mediawiki.widgets.CategoryMultiselectWidget',
 			'mediawiki.widgets.DateInputWidget',
@@ -1169,6 +1162,7 @@ return [
 			'mediawiki.libs.jpegmeta',
 		],
 		'messages' => [
+			'upload-foreign-cant-load-config',
 			'upload-form-label-own-work',
 			'upload-form-label-infoform-categories',
 			'upload-form-label-infoform-date',
