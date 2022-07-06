@@ -121,6 +121,11 @@ class WikitextContentHandler extends TextContentHandler {
 		return true;
 	}
 
+	/** @inheritDoc */
+	public function supportsPreloadContent(): bool {
+		return true;
+	}
+
 	/**
 	 * @return FileContentHandler
 	 */
