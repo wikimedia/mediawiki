@@ -419,13 +419,6 @@ class ConfigSchemaAggregator implements ConfigSchema {
 			}
 		}
 
-		if ( isset( $schema['ignoreKeys'] ) && $schema['ignoreKeys'] ) {
-			if ( is_array( $value ) ) {
-				// This array acts as a set, any array keys should be ignored.
-				$value = array_values( $value );
-			}
-		}
-
 		$this->validator->validate(
 			$value,
 			$schema,
