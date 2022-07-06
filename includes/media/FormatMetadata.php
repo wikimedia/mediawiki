@@ -1110,18 +1110,16 @@ class FormatMetadata extends ContextSource {
 	 * @param bool|IContextSource $context
 	 * @return string Single value (in wiki-syntax).
 	 * @since 1.23
-	 * @deprecated since 1.36, appears to have no callers
+	 * @deprecated since 1.36, appears to have no callers. Hard deprecated since 1.39.
 	 */
 	public static function flattenArrayContentLang( $vals, $type = 'ul',
 		$noHtml = false, $context = false
 	) {
+		wfDeprecated( __METHOD__, '1.36' );
 		// Allow $noHtml to be omitted.
 		if ( $noHtml instanceof IContextSource ) {
 			$context = $noHtml;
 			$noHtml = false;
-		}
-		if ( $noHtml ) {
-			wfDeprecated( __METHOD__ . ' with $noHtml = true', '1.36' );
 		}
 		$obj = new FormatMetadata;
 		if ( $context ) {
