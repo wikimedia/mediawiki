@@ -342,6 +342,7 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Parser\RevisionOutputCache::encodeAsJson
 	 */
 	public function testCyclicStructuresDoNotBlowUpInJson() {
+		$this->markTestSkipped( 'Temporarily disabled: T314338' );
 		$testLogger = new TestLogger( true );
 		$cache = $this->createRevisionOutputCache( null, $testLogger );
 
