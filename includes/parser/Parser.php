@@ -3889,7 +3889,7 @@ class Parser {
 			return $name;
 		}
 
-		$attrText = !isset( $params['attr'] ) ? null : $frame->expand( $params['attr'] );
+		$attrText = !isset( $params['attr'] ) ? '' : $frame->expand( $params['attr'] );
 		if ( substr( $attrText, 0, $errorLen ) === $errorStr ) {
 			// See above
 			return $attrText;
@@ -3938,9 +3938,6 @@ class Parser {
 				}
 			}
 		} else {
-			if ( $attrText === null ) {
-				$attrText = '';
-			}
 			if ( isset( $params['attributes'] ) ) {
 				foreach ( $params['attributes'] as $attrName => $attrValue ) {
 					$attrText .= ' ' . htmlspecialchars( $attrName ) . '="' .
