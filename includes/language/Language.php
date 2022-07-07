@@ -2528,26 +2528,31 @@ class Language {
 		$diffDay = (bool)( (int)$ts->timestamp->format( 'w' ) -
 			(int)$relativeTo->timestamp->format( 'w' ) );
 		$days = $diff->days ?: (int)$diffDay;
-		if ( $diff->invert || $days > 5
-			&& $ts->timestamp->format( 'Y' ) !== $relativeTo->timestamp->format( 'Y' )
-		) {
-			// Timestamps are in different years: use full timestamp
-			// Also do full timestamp for future dates
+
+		if ( $diff->invert ) {
+			// Future dates: Use full timestamp
 			/**
 			 * @todo FIXME: Add better handling of future timestamps.
 			 */
 			$format = $this->getDateFormatString( 'both', $user->getDatePreference() ?: 'default' );
 			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) );
+		} elseif (
+			$days > 5 &&
+			$ts->timestamp->format( 'Y' ) !== $relativeTo->timestamp->format( 'Y' )
+		) {
+			// Timestamps are in different years and more than 5 days apart: use full date
+			$format = $this->getDateFormatString( 'date', $user->getDatePreference() ?: 'default' );
+			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) );
 		} elseif ( $days > 5 ) {
-			// Timestamps are in same year,  but more than 5 days ago: show day and month only.
+			// Timestamps are in same year and more than 5 days ago: show day and month only.
 			$format = $this->getDateFormatString( 'pretty', $user->getDatePreference() ?: 'default' );
 			$ts = $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) );
 		} elseif ( $days > 1 ) {
-			// Timestamp within the past week: show the day of the week and time
+			// Timestamp within the past 5 days: show the day of the week and time
 			$format = $this->getDateFormatString( 'time', $user->getDatePreference() ?: 'default' );
 			$weekday = self::WEEKDAY_MESSAGES[(int)$ts->timestamp->format( 'w' )];
-			// Messages:
-			// sunday-at, monday-at, tuesday-at, wednesday-at, thursday-at, friday-at, saturday-at
+			// The following messages are used here:
+			// * sunday-at, monday-at, tuesday-at, wednesday-at, thursday-at, friday-at, saturday-at
 			$ts = wfMessage( "$weekday-at" )
 				->inLanguage( $this )
 				->params( $this->sprintfDate( $format, $ts->getTimestamp( TS_MW ) ) )
