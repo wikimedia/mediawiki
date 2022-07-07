@@ -318,28 +318,24 @@ class Category {
 	 */
 	public function getMembers( $limit = false, $offset = '' ) {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-
-		$conds = [ 'cl_to' => $this->getName(), 'cl_from = page_id' ];
-		$options = [ 'ORDER BY' => 'cl_sortkey' ];
+		$queryBuilder = $dbr->newSelectQueryBuilder();
+		$queryBuilder->select( [ 'page_id', 'page_namespace', 'page_title', 'page_len',
+				'page_is_redirect', 'page_latest' ] )
+			->from( 'categorylinks' )
+			->join( 'page', null, [ 'cl_from = page_id' ] )
+			->where( [ 'cl_to' => $this->getName() ] )
+			->orderBy( 'cl_sortkey' )
+			->caller( __METHOD__ );
 
 		if ( $limit ) {
-			$options['LIMIT'] = $limit;
+			$queryBuilder->limit( $limit );
 		}
 
 		if ( $offset !== '' ) {
-			$conds[] = 'cl_sortkey > ' . $dbr->addQuotes( $offset );
+			$queryBuilder->andWhere( 'cl_sortkey > ' . $dbr->addQuotes( $offset ) );
 		}
 
-		$result = TitleArray::newFromResult(
-			$dbr->select(
-				[ 'page', 'categorylinks' ],
-				[ 'page_id', 'page_namespace', 'page_title', 'page_len',
-					'page_is_redirect', 'page_latest' ],
-				$conds,
-				__METHOD__,
-				$options
-			)
-		);
+		$result = TitleArray::newFromResult( $queryBuilder->fetchResultSet() );
 
 		return $result;
 	}
