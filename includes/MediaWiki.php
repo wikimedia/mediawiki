@@ -432,10 +432,9 @@ class MediaWiki {
 		$article = Article::newFromWikiPage( $page, $this->context );
 
 		// Skip some unnecessary code if the content model doesn't support redirects
-		if ( !$services->getContentHandlerFactory()
-				->getContentHandler( $title->getContentModel() )
-				->supportsRedirects()
-		) {
+		// Use the page content model rather than invoking Title::getContentModel()
+		// to avoid querying page data twice (T206498)
+		if ( !$page->getContentHandler()->supportsRedirects() ) {
 			return $article;
 		}
 
