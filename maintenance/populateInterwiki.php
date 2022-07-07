@@ -138,7 +138,9 @@ TEXT
 					[
 						'iw_prefix' => $prefix,
 						'iw_url' => $d['url'],
-						'iw_local' => 1
+						'iw_local' => 1,
+						'iw_api' => '',
+						'iw_wikiid' => '',
 					],
 					__METHOD__,
 					[ 'IGNORE' ]
