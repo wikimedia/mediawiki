@@ -2580,8 +2580,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->setGroupPermissions( '*', 'autocreateaccount', false );
 		$this->initializeManager( true );
 
-		$this->setMainCache( CACHE_HASH );
-
 		// Set up lots of mocks...
 		$mocks = [];
 		foreach ( [ 'pre', 'primary', 'secondary' ] as $key ) {

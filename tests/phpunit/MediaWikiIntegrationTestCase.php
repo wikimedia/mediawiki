@@ -350,8 +350,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// Use hash based caches
 		$overrides[ MainConfigNames::ObjectCaches ] = $objectCaches;
 
-		// Disable the cache for the duration of the test.
-		$overrides[ MainConfigNames::MainCacheType ] = CACHE_NONE;
+		// Use a hash based BagOStuff as the main cache
+		$overrides[ MainConfigNames::MainCacheType ] = CACHE_HASH;
 
 		// Don't actually store jobs
 		$overrides[ MainConfigNames::JobTypeConf ] = [ 'default' => [ 'class' => JobQueueMemory::class ] ];
@@ -1228,6 +1228,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				$oldConfigFactory,
 				[ 'main' => $bootstrapConfig ]
 			)
+		);
+		$newServices->redefineService(
+			'LocalServerObjectCache',
+			static function ( MediaWikiServices $services ) {
+				return ObjectCache::getInstance( 'hash' );
+			}
 		);
 		$newServices->resetServiceForTesting( 'DBLoadBalancerFactory' );
 		$newServices->redefineService(
