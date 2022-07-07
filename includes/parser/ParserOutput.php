@@ -2329,6 +2329,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			if ( !array_key_exists( $key, $a ) ) {
 				$a[$key] = $bValue;
 			} elseif (
+				is_array( $a[$key] ) &&
 				isset( $a[$key][self::MW_MERGE_STRATEGY_KEY] ) &&
 				isset( $bValue[self::MW_MERGE_STRATEGY_KEY] )
 			) {
