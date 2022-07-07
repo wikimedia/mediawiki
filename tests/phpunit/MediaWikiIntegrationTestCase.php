@@ -1325,9 +1325,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		if ( $lang instanceof Language ) {
 			// Set to the exact object requested
 			$this->setService( 'ContentLanguage', $lang );
-			$this->setMwGlobals( 'wgLanguageCode', $lang->getCode() );
+			$this->overrideConfigValue( MainConfigNames::LanguageCode, $lang->getCode() );
 		} else {
-			$this->setMwGlobals( 'wgLanguageCode', $lang );
+			$this->overrideConfigValue( MainConfigNames::LanguageCode, $lang );
 		}
 	}
 
@@ -1348,20 +1348,20 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param mixed|null $newValue
 	 */
 	public function setGroupPermissions( $newPerms, $newKey = null, $newValue = null ) {
-		global $wgGroupPermissions;
-
 		if ( is_string( $newPerms ) ) {
 			$newPerms = [ $newPerms => [ $newKey => $newValue ] ];
 		}
 
-		$newPermissions = $wgGroupPermissions;
+		$newPermissions = $this->getServiceContainer()->getMainConfig()
+			->get( MainConfigNames::GroupPermissions );
+
 		foreach ( $newPerms as $group => $permissions ) {
 			foreach ( $permissions as $key => $value ) {
 				$newPermissions[$group][$key] = $value;
 			}
 		}
 
-		$this->setMwGlobals( 'wgGroupPermissions', $newPermissions );
+		$this->overrideConfigValue( MainConfigNames::GroupPermissions, $newPermissions );
 	}
 
 	/**

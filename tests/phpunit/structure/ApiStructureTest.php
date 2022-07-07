@@ -72,7 +72,7 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getMainConfig(),
 		] ) );
 		foreach ( $globals as $k => $v ) {
-			$this->setMwGlobals( "wg$k", $v );
+			$this->overrideConfigValue( $k, $v );
 		}
 
 		// Fetch module.
