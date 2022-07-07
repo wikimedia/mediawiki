@@ -387,7 +387,8 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 	public function testStashingWithRateLimitExceeded() {
 		// Set the rate limit to 1 request per minute
-		$this->mergeMwGlobalArrayValue( 'wgRateLimits',
+		$this->overrideConfigValue(
+			'RateLimits',
 			[
 				'stashbasehtml' => [
 					'&can-bypass' => false,
@@ -395,7 +396,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 					'newbie' => [ 1, 60 ]
 				]
 			] );
-		$this->setMwGlobals( [ 'wgMainCacheType' => CACHE_ANYTHING ] );
+		$this->setMainCache( CACHE_HASH );
 
 		$page = $this->getExistingTestPage();
 

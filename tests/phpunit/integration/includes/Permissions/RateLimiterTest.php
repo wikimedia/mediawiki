@@ -12,7 +12,6 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
-use ObjectCache;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 
@@ -135,8 +134,6 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Permissions\RateLimiter::limit
 	 */
 	public function testPingLimiterWithStaleCache() {
-		global $wgMainCacheType;
-
 		$limits = [
 			'edit' => [
 				'user' => [ 1, 60 ],
@@ -147,8 +144,7 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		$appTime = 1600000000;
 		$bag = new HashBagOStuff();
 
-		// TODO: make the main object cache a service we can override, T243233
-		ObjectCache::$instances[$wgMainCacheType] = $bag;
+		$this->setMainCache( $bag );
 
 		$bag->setMockTime( $bagTime ); // this is a reference!
 		MWTimestamp::setFakeTime( static function () use ( &$appTime ) {
@@ -175,8 +171,6 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Permissions\RateLimiter::limit
 	 */
 	public function testPingLimiterRate() {
-		global $wgMainCacheType;
-
 		$limits = [
 			'edit' => [
 				'user' => [ 3, 60 ],
@@ -184,18 +178,17 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$fakeTime = 1600000000;
-		$store = new HashBagOStuff();
+		$cache = new HashBagOStuff();
 
-		// TODO: make the main object cache a service we can override, T243233
-		ObjectCache::$instances[$wgMainCacheType] = $store;
+		$this->setMainCache( $cache );
 
-		$store->setMockTime( $fakeTime ); // this is a reference!
+		$cache->setMockTime( $fakeTime ); // this is a reference!
 		MWTimestamp::setFakeTime( static function () use ( &$fakeTime ) {
 			return (int)$fakeTime;
 		} );
 
 		$user = $this->newFakeUser( 'Frank', '1.2.3.4', 111 );
-		$limiter = $this->newRateLimiter( $limits, [], $store );
+		$limiter = $this->newRateLimiter( $limits, [], $cache );
 
 		// The limit is 3 per 60 second. Do 5 edits at an emulated 50 second interval.
 		// They should all pass. This tests that the counter doesn't just keeps increasing
