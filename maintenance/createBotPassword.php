@@ -24,6 +24,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
+
 class CreateBotPassword extends Maintenance {
 	/**
 	 * Width of initial column of --showgrants output
@@ -80,7 +82,9 @@ class CreateBotPassword extends Maintenance {
 			$this->fatalError( implode( "\n", $errors ) );
 		}
 
-		$invalidGrants = array_diff( $grants, MWGrants::getValidGrants() );
+		$services = MediaWikiServices::getInstance();
+		$grantsInfo = $services->getGrantsInfo();
+		$invalidGrants = array_diff( $grants, $grantsInfo->getValidGrants() );
 		if ( count( $invalidGrants ) > 0 ) {
 			$this->fatalError(
 				"These grants are invalid: " . implode( ', ', $invalidGrants ) . "\n" .
@@ -88,7 +92,7 @@ class CreateBotPassword extends Maintenance {
 			);
 		}
 
-		$passwordFactory = MediaWiki\MediaWikiServices::getInstance()->getPasswordFactory();
+		$passwordFactory = $services->getPasswordFactory();
 
 		$userId = User::idFromName( $username );
 		if ( $userId === null ) {
@@ -131,7 +135,7 @@ class CreateBotPassword extends Maintenance {
 	}
 
 	public function showGrants() {
-		$permissions = MWGrants::getValidGrants();
+		$permissions = MediaWikiServices::getInstance()->getGrantsInfo()->getValidGrants();
 		sort( $permissions );
 
 		$this->output( str_pad( 'GRANT', self::SHOWGRANTS_COLUMN_WIDTH ) . " DESCRIPTION\n" );

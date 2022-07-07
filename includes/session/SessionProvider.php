@@ -569,7 +569,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 * Fetch the rights allowed the user when the specified session is active.
 	 *
 	 * This is mainly meant for allowing the user to restrict access to the account
-	 * by certain methods; you probably want to use this with MWGrants. The returned
+	 * by certain methods; you probably want to use this with GrantsInfo. The returned
 	 * rights will be intersected with the user's actual rights.
 	 *
 	 * @stable to override
