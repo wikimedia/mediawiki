@@ -76,9 +76,9 @@ class SpecialPageLanguage extends FormSpecialPage {
 		return true;
 	}
 
-	protected function preText() {
+	protected function preHtml() {
 		$this->getOutput()->addModules( 'mediawiki.misc-authed-ooui' );
-		return parent::preText();
+		return parent::preHtml();
 	}
 
 	protected function getFormFields() {
@@ -143,7 +143,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		return $page;
 	}
 
-	protected function postText() {
+	protected function postHtml() {
 		if ( $this->par ) {
 			return $this->showLogFragment( $this->par );
 		}

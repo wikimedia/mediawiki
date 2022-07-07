@@ -557,7 +557,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * Add header elements like block log entries, etc.
 	 * @return string
 	 */
-	protected function preText() {
+	protected function preHtml() {
 		$this->getOutput()->addModuleStyles( [
 			'mediawiki.widgets.TagMultiselectWidget.styles',
 			'mediawiki.special',
@@ -607,7 +607,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * Add footer elements to the form
 	 * @return string
 	 */
-	protected function postText() {
+	protected function postHtml() {
 		$links = [];
 
 		$this->getOutput()->addModuleStyles( 'mediawiki.special' );

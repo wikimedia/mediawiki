@@ -1983,10 +1983,12 @@ function wfLocalFile( $title ) {
 /**
  * Should low-performance queries be disabled?
  *
+ * @deprecated since 1.39, unused and directly hard-deprecated
  * @return bool
  * @codeCoverageIgnore
  */
 function wfQueriesMustScale() {
+	wfDeprecated( __FUNCTION__, '1.39' );
 	global $wgMiserMode;
 	return $wgMiserMode
 		|| ( SiteStats::pages() > 100000
