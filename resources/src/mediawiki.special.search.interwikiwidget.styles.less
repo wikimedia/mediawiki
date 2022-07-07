@@ -6,10 +6,6 @@
 /* stylelint-disable selector-class-pattern */
 
 .mw-searchresults-has-iw {
-	.iw-headline {
-		font-weight: bold;
-	}
-
 	.iw-results {
 		list-style: none;
 		margin: 0;
@@ -21,17 +17,18 @@
 		vertical-align: top;
 		width: 100%;
 		float: left;
-		background-color: @colorGray15;
-		margin-bottom: 1em;
+		margin-bottom: 2em;
 		word-break: break-word;
 	}
 
 	.iw-result__title {
-		font-size: 108%; /* Matching regular search title */
+		font-size: 108%;
+		/* Matching regular search title */
 	}
 
 	.iw-result:after,
-	.iw-result__content:after { /* Clearfix */
+	.iw-result__content:after {
+		/* Clearfix */
 		visibility: hidden;
 		display: block;
 		font-size: 0;
@@ -40,19 +37,27 @@
 		height: 0;
 	}
 
+	.iw-result__header {
+		font-size: 1.2em;
+		margin-bottom: 0.5em;
+	}
+
+	.iw-result__header a {
+		vertical-align: middle;
+		color: #000;
+	}
+
 	.iw-result__footer {
-		float: right;
-		font-size: 97%; /* Matching main search result font-size */
+		/* Matching main search result font-size */
 		margin-top: 0.5em;
 	}
 
 	.iw-result__footer a {
 		vertical-align: middle;
-		font-style: italic;
 	}
 
 	.oo-ui-icon-favicon {
-		padding-right: 1em;
+		margin-right: 0.5em;
 	}
 
 	/* Image search result */
@@ -105,8 +110,10 @@
 	@media only screen and ( min-width: @width-breakpoint-tablet ) {
 		#mw-interwiki-results {
 			width: 30%;
-			display: inline-block; /* Used to align interwiki sidebar with the top of the main search results */
-			margin-left: 8%; /* Since inline-block causes whitespace issues, this is 8 instead of 10% */
+			display: inline-block;
+			/* Used to align interwiki sidebar with the top of the main search results */
+			margin-left: 8%;
+			/* Since inline-block causes whitespace issues, this is 8 instead of 10% */
 		}
 
 		.mw-search-createlink,
