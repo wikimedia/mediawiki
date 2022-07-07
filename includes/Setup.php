@@ -58,6 +58,7 @@ use MediaWiki\MainConfigSchema;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\Config\GlobalConfigBuilder;
 use MediaWiki\Settings\Config\PhpIniSink;
+use MediaWiki\Settings\DynamicDefaultValues;
 use MediaWiki\Settings\LocalSettingsLoader;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\Source\PhpSettingsSource;
@@ -244,6 +245,18 @@ if ( $wgSettings->getConfig()->get( MainConfigNames::WikiFarmSettingsDirectory )
 	unset( $wikiFarmSettingsLoader );
 }
 
+// Apply dynamic defaults declared in config schema callbacks.
+$dynamicDefaults = new DynamicDefaultValues( $wgSettings->getConfigSchema() );
+$dynamicDefaults->applyDynamicDefaults( $wgSettings->getConfigBuilder() );
+
+// Make updated config available in global scope.
+$wgSettings->apply();
+
+// Apply dynamic defaults implemented in SetupDynamicConfig.php.
+// Ideally, all logic in SetupDynamicConfig would be converted to
+// callbacks in the config schema.
+require __DIR__ . '/SetupDynamicConfig.php';
+
 // All settings should be loaded now.
 $wgSettings->finalize();
 if ( $wgBaseDirectory !== MW_INSTALL_PATH ) {
@@ -273,11 +286,6 @@ ExtensionRegistry::getInstance()->finish();
 // shell command and need to send a special locale, you can override the locale
 // with Command::environment().
 putenv( "LC_ALL=" . setlocale( LC_ALL, 'C.UTF-8', 'C' ) );
-
-/**
- * Expand dynamic defaults and shortcuts
- */
-require __DIR__ . '/SetupDynamicConfig.php';
 
 MWDebug::setup();
 

@@ -5,6 +5,7 @@ namespace MediaWiki\Settings\Config;
 use Config;
 use JsonSchema\Constraints\Constraint;
 use JsonSchema\Validator;
+use MediaWiki\Settings\DynamicDefaultValues;
 use MediaWiki\Settings\SettingsBuilderException;
 use MediaWiki\Settings\Source\JsonSchemaTrait;
 use StatusValue;
@@ -26,17 +27,20 @@ class ConfigSchemaAggregator implements ConfigSchema {
 	/** @var array Map of config keys to default values, for optimized access */
 	private $defaults = [];
 
+	/** @var array Map of config keys to dynamic default declaration ararys, for optimized access */
+	private $dynamicDefaults = [];
+
 	/** @var array Map of config keys to types, for optimized access */
 	private $types = [];
 
 	/** @var array Map of config keys to merge strategies, for optimized access */
 	private $mergeStrategies = [];
 
-	/** @var Validator */
-	private $validator;
-
 	/** @var MergeStrategy[]|null */
 	private $mergeStrategyCache;
+
+	/** @var Validator */
+	private $validator;
 
 	/**
 	 * Add a config schema to the aggregator.
@@ -56,6 +60,7 @@ class ConfigSchemaAggregator implements ConfigSchema {
 		$this->setListValueInternal( $schema, $this->defaults, $key, 'default', $sourceName );
 		$this->setListValueInternal( $schema, $this->types, $key, 'type', $sourceName );
 		$this->setListValueInternal( $schema, $this->mergeStrategies, $key, 'mergeStrategy', $sourceName );
+		$this->setListValueInternal( $schema, $this->dynamicDefaults, $key, 'dynamicDefault', $sourceName );
 
 		if ( isset( $schema['mergeStrategy'] ) ) {
 			// TODO: mark cache as incomplete rather than throwing it away
@@ -88,6 +93,20 @@ class ConfigSchemaAggregator implements ConfigSchema {
 				);
 			}
 			$target[$key] = $schema[$fieldName];
+		}
+	}
+
+	/**
+	 * Add multiple schema definitions.
+	 *
+	 * @see addSchema()
+	 *
+	 * @param array[] $schemas An associative array mapping config variable
+	 *        names to their respective schemas.
+	 */
+	public function addSchemaMulti( array $schemas ) {
+		foreach ( $schemas as $key => $sch ) {
+			$this->addSchema( $key, $sch );
 		}
 	}
 
@@ -156,13 +175,36 @@ class ConfigSchemaAggregator implements ConfigSchema {
 	}
 
 	/**
+	 * Declare dynamic defaults
+	 *
+	 * @see DynamicDefaultValues.
+	 *
+	 * @param array $dynamicDefaults
+	 * @param string $sourceName
+	 */
+	public function addDynamicDefaults( array $dynamicDefaults, string $sourceName = 'unknown' ) {
+		$this->mergeListInternal(
+			$dynamicDefaults,
+			$this->dynamicDefaults,
+			'dynamicDefaults',
+			$sourceName
+		);
+	}
+
+	/**
 	 * Get a list of all defined keys
 	 *
 	 * @return string[]
 	 */
 	public function getDefinedKeys(): array {
 		return array_keys(
-			array_merge( $this->schemas, $this->defaults, $this->types, $this->mergeStrategies )
+			array_merge(
+				$this->schemas,
+				$this->defaults,
+				$this->types,
+				$this->mergeStrategies,
+				$this->dynamicDefaults
+			)
 		);
 	}
 
@@ -188,6 +230,10 @@ class ConfigSchemaAggregator implements ConfigSchema {
 			$schema['mergeStrategy'] = $this->mergeStrategies[$key];
 		}
 
+		if ( isset( $this->dynamicDefaults[$key] ) ) {
+			$schema['dynamicDefault'] = $this->dynamicDefaults[$key];
+		}
+
 		return $schema;
 	}
 
@@ -201,7 +247,8 @@ class ConfigSchemaAggregator implements ConfigSchema {
 		return isset( $this->schemas[ $key ] )
 			|| array_key_exists( $key, $this->defaults )
 			|| isset( $this->types[ $key ] )
-			|| isset( $this->mergeStrategies[ $key ] );
+			|| isset( $this->mergeStrategies[ $key ] )
+			|| isset( $this->dynamicDefaults[ $key ] );
 	}
 
 	/**
@@ -232,6 +279,16 @@ class ConfigSchemaAggregator implements ConfigSchema {
 	}
 
 	/**
+	 * Get all dynamic default declarations.
+	 * @see DynamicDefaultValues.
+	 *
+	 * @return array<string,array>
+	 */
+	public function getDynamicDefaults(): array {
+		return $this->dynamicDefaults;
+	}
+
+	/**
 	 * Check if the $key has a default values set in the schema.
 	 *
 	 * @param string $key
@@ -243,7 +300,7 @@ class ConfigSchemaAggregator implements ConfigSchema {
 
 	/**
 	 * Get default value for the $key.
-	 * For keys that do not define a default, null is assumed.
+	 * If no default value was declared, this returns null.
 	 *
 	 * @param string $key
 	 * @return mixed
@@ -260,6 +317,17 @@ class ConfigSchemaAggregator implements ConfigSchema {
 	 */
 	public function getTypeFor( string $key ) {
 		return $this->types[$key] ?? null;
+	}
+
+	/**
+	 * Get a dynamic default declaration for $key.
+	 * If no dynamic default is declared, this returns null.
+	 *
+	 * @param string $key
+	 * @return ?array An associative array of the form expected by DynamicDefaultValues.
+	 */
+	public function getDynamicDefaultDeclarationFor( string $key ): ?array {
+		return $this->dynamicDefaults[$key] ?? null;
 	}
 
 	/**

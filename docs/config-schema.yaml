@@ -79,7 +79,8 @@ config-schema:
             Other paths will be set to defaults based on it unless they are directly
             set in LocalSettings.php
     UsePathInfo:
-        default: null
+        dynamicDefault:
+            callback: [MediaWiki\MainConfigSchema, getDefaultUsePathInfo]
         description: |-
             Whether to support URLs like index.php/Page_title.
             The effective default value is determined at runtime:
@@ -90,37 +91,56 @@ config-schema:
             you have customized it, having this incorrectly set to true can cause
             redirect loops when "pretty URLs" are used.
             @since 1.2.1
+        default: null
     Script:
         default: false
+        dynamicDefault:
+            use: [ScriptPath]
+            callback: [MediaWiki\MainConfigSchema, getDefaultScript]
         description: |-
             The URL path to index.php.
             Defaults to "{$wgScriptPath}/index.php".
     LoadScript:
         default: false
+        dynamicDefault:
+            use: [ScriptPath]
+            callback: [MediaWiki\MainConfigSchema, getDefaultLoadScript]
         description: |-
             The URL path to load.php.
             Defaults to "{$wgScriptPath}/load.php".
             @since 1.17
     RestPath:
         default: false
+        dynamicDefault:
+            use: [ScriptPath]
+            callback: [MediaWiki\MainConfigSchema, getDefaultRestPath]
         description: |-
             The URL path to the REST API
             Defaults to "{$wgScriptPath}/rest.php"
             @since 1.34
     StylePath:
         default: false
+        dynamicDefault:
+            use: [ResourceBasePath]
+            callback: [MediaWiki\MainConfigSchema, getDefaultStylePath]
         description: |-
             The URL path of the skins directory.
             Defaults to "{$wgResourceBasePath}/skins".
             @since 1.3
     LocalStylePath:
         default: false
+        dynamicDefault:
+            use: [ScriptPath]
+            callback: [MediaWiki\MainConfigSchema, getDefaultLocalStylePath]
         description: |-
             The URL path of the skins directory. Should not point to an external domain.
             Defaults to "{$wgScriptPath}/skins".
             @since 1.17
     ExtensionAssetsPath:
         default: false
+        dynamicDefault:
+            use: [ResourceBasePath]
+            callback: [MediaWiki\MainConfigSchema, getDefaultExtensionAssetsPath]
         description: |-
             The URL path of the extensions directory.
             Defaults to "{$wgResourceBasePath}/extensions".
@@ -156,6 +176,9 @@ config-schema:
             @since 1.38
     ArticlePath:
         default: false
+        dynamicDefault:
+            use: [Script, UsePathInfo]
+            callback: [MediaWiki\MainConfigSchema, getDefaultArticlePath]
         description: |-
             The URL path for primary article page views. This path should contain $1,
             which is replaced by the article title.
@@ -163,6 +186,9 @@ config-schema:
             depending on $wgUsePathInfo.
     UploadPath:
         default: false
+        dynamicDefault:
+            use: [ScriptPath]
+            callback: [MediaWiki\MainConfigSchema, getDefaultUploadPath]
         description: |-
             The URL path for the images directory.
             Defaults to "{$wgScriptPath}/images".
@@ -185,14 +211,23 @@ config-schema:
             @since 1.36
     UploadDirectory:
         default: false
+        dynamicDefault:
+            use: [BaseDirectory]
+            callback: [MediaWiki\MainConfigSchema, getDefaultUploadDirectory]
         description: 'The filesystem path of the images directory. Defaults to "{$IP}/images".'
     FileCacheDirectory:
         default: false
+        dynamicDefault:
+            use: [UploadDirectory]
+            callback: [MediaWiki\MainConfigSchema, getDefaultFileCacheDirectory]
         description: |-
             Directory where the cached page will be saved.
             Defaults to "{$wgUploadDirectory}/cache".
     Logo:
         default: false
+        dynamicDefault:
+            use: [ResourceBasePath]
+            callback: [MediaWiki\MainConfigSchema, getDefaultLogo]
         description: |-
             The URL path of the wiki logo. The logo size should be 135x135 pixels.
             Defaults to "$wgResourceBasePath/resources/assets/change-your-logo.svg".
@@ -398,6 +433,9 @@ config-schema:
             completeness.
     DeletedDirectory:
         default: false
+        dynamicDefault:
+            use: [UploadDirectory]
+            callback: [MediaWiki\MainConfigSchema, getDefaultDeletedDirectory]
         description: |-
             What directory to place deleted uploads in.
             Defaults to "{$wgUploadDirectory}/deleted".
@@ -423,6 +461,9 @@ config-schema:
         type:
             - object
             - boolean
+        dynamicDefault:
+            use: [UploadDirectory, ScriptPath, Favicon, UploadBaseUrl, UploadPath, HashedUploadDirectory, ThumbnailScriptPath, GenerateThumbnailOnParse, DeletedDirectory, UpdateCompatibleMetadata]
+            callback: [MediaWiki\MainConfigSchema, getDefaultLocalFileRepo]
         description: |-
             File repository structures
             $wgLocalFileRepo is a single repository structure, and $wgForeignFileRepos is
@@ -716,7 +757,8 @@ config-schema:
             Additional parameters are specific to the lock manager class used.
             These settings should be global to all wikis.
     ShowEXIF:
-        default: null
+        dynamicDefault:
+            callback: [MediaWiki\MainConfigSchema, getDefaultShowEXIF]
         description: |-
             Whether to show Exif data.
             The effective default value is determined at runtime:
@@ -728,6 +770,7 @@ config-schema:
             ```{.ini}
             extension=extensions/php_exif.dll
             ```
+        default: null
     UpdateCompatibleMetadata:
         default: false
         description: 'Shortcut for the ''updateCompatibleMetadata'' setting of $wgLocalFileRepo.'
@@ -1767,6 +1810,9 @@ config-schema:
             configuration of $wgLBFactoryConf.
     SharedPrefix:
         default: false
+        dynamicDefault:
+            use: [DBprefix]
+            callback: [MediaWiki\MainConfigSchema, getDefaultSharedPrefix]
         description: '@see $wgSharedDB'
     SharedTables:
         default:
@@ -1779,6 +1825,9 @@ config-schema:
             The installer will add 'actor' to this list for all new wikis.
     SharedSchema:
         default: false
+        dynamicDefault:
+            use: [DBmwschema]
+            callback: [MediaWiki\MainConfigSchema, getDefaultSharedSchema]
         description: |-
             @see $wgSharedDB
             @since 1.23
@@ -1858,6 +1907,9 @@ config-schema:
         description: 'File to log database errors to'
     DBerrorLogTZ:
         default: false
+        dynamicDefault:
+            use: [Localtimezone]
+            callback: [MediaWiki\MainConfigSchema, getDefaultDBerrorLogTZ]
         description: |-
             Timezone to use in the error log.
             Defaults to the wiki timezone ($wgLocaltimezone).
@@ -2414,6 +2466,7 @@ config-schema:
             @since 1.39
             @unstable Per MediaWiki 1.39, the structure of this configuration is still subject to
                       change.
+        default: null
     ChronologyProtectorStash:
         default: null
         type:
@@ -2531,6 +2584,7 @@ config-schema:
                             $wgCacheDirectory is used instead.
             manualRecache: Set this to true to disable cache updates on web requests.
                            Use maintenance/rebuildLocalisationCache.php instead.
+        default: null
     CachePages:
         default: true
         description: 'Allow client-side caching of pages'
@@ -2973,7 +3027,8 @@ config-schema:
             letter.
             @since 1.32
     Localtimezone:
-        default: null
+        dynamicDefault:
+            callback: [MediaWiki\MainConfigSchema, getDefaultLocaltimezone]
         description: |-
             Fake out the timezone that the server thinks it's in. This will be used for
             date display and not for what's stored in the DB. Leave to null to retain
@@ -2992,14 +3047,18 @@ config-schema:
             $wgLocaltimezone = 'Europe/Sweden';
             $wgLocaltimezone = 'CET';
             ```
-    LocalTZoffset:
         default: null
+    LocalTZoffset:
+        dynamicDefault:
+            use: [Localtimezone]
+            callback: [MediaWiki\MainConfigSchema, getDefaultLocalTZoffset]
         description: |-
             Set an offset from UTC in minutes to use for the default timezone setting
             for anonymous users and new user accounts.
             This setting is used for most date/time displays in the software, and is
             overridable in user preferences. It is *not* used for signature timestamps.
             By default, this will be set to match $wgLocaltimezone.
+        default: null
     OverrideUcfirstCharacters:
         default: {  }
         type: object
@@ -3554,6 +3613,9 @@ config-schema:
             ```
     ResourceBasePath:
         default: null
+        dynamicDefault:
+            use: [ScriptPath]
+            callback: [MediaWiki\MainConfigSchema, getDefaultResourceBasePath]
         description: |-
             The default 'remoteBasePath' value for instances of MediaWiki\ResourceLoader\FileModule.
             Defaults to $wgScriptPath.
@@ -3646,6 +3708,9 @@ config-schema:
             @since 1.35
     MetaNamespace:
         default: false
+        dynamicDefault:
+            use: [Sitename]
+            callback: [MediaWiki\MainConfigSchema, getDefaultMetaNamespace]
         description: |-
             Name of the project namespace. If left set to false, $wgSitename will be
             used instead.
@@ -4685,6 +4750,7 @@ config-schema:
                   - uppercase: (bool) With "filtered-radix", whether to use uppercase
                     letters, default false.
             @since 1.39
+        default: null
     AutoblockExpiry:
         default: 86400
         description: 'Number of seconds before autoblock entries expire. Default 86400 = 1 day.'
@@ -5537,6 +5603,9 @@ config-schema:
             the domain specified by $wgCookieDomain.
     CookieSecure:
         default: detect
+        dynamicDefault:
+            use: [ForceHTTPS]
+            callback: [MediaWiki\MainConfigSchema, getDefaultCookieSecure]
         description: |-
             Whether the "secure" flag should be set on the cookie. This can be:
               - true:      Set secure flag
@@ -5554,6 +5623,9 @@ config-schema:
             check.
     CookiePrefix:
         default: false
+        dynamicDefault:
+            use: [SharedDB, SharedPrefix, SharedTables, DBname, DBprefix]
+            callback: [MediaWiki\MainConfigSchema, getDefaultCookiePrefix]
         description: |-
             Cookies generated by MediaWiki have names starting with this prefix. Set it
             to a string to use a custom prefix. Setting it to false causes the database
@@ -6090,6 +6162,9 @@ config-schema:
             @since 1.31
     ReadOnlyFile:
         default: false
+        dynamicDefault:
+            use: [UploadDirectory]
+            callback: [MediaWiki\MainConfigSchema, getDefaultReadOnlyFile]
         description: |-
             If this lock file exists (size > 0), the wiki will be forced into read-only mode.
             Its contents will be shown to users as part of the read-only warning

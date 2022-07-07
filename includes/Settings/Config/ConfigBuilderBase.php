@@ -6,8 +6,6 @@ abstract class ConfigBuilderBase implements ConfigBuilder {
 
 	abstract protected function has( string $key ): bool;
 
-	abstract protected function get( string $key );
-
 	abstract protected function update( string $key, $value );
 
 	/**

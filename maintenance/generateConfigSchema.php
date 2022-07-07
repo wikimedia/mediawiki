@@ -199,12 +199,14 @@ class GenerateConfigSchema extends Maintenance {
 			'default' => $aggregator->getDefaults(),
 			'type' => $aggregator->getTypes(),
 			'mergeStrategy' => $aggregator->getMergeStrategyNames(),
+			'dynamicDefault' => $aggregator->getDynamicDefaults(),
 		];
 
 		$keyMask = array_flip( [
 			'default',
 			'type',
 			'mergeStrategy',
+			'dynamicDefault',
 			'description',
 			'properties'
 		] );
@@ -292,6 +294,9 @@ class GenerateConfigSchema extends Maintenance {
 				$sch['deprecated'] = wordwrap( $sch['deprecated'] );
 			}
 		}
+
+		// Dynamic defaults are not relevant to yaml consumers
+		unset( $sch['dynamicDefault'] );
 
 		$yamlFlags = Yaml::DUMP_OBJECT_AS_MAP
 			| Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK

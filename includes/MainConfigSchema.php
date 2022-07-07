@@ -23,6 +23,8 @@ use ClearUserWatchlistJob;
 use ClearWatchlistNotificationsJob;
 use ContentModelLogFormatter;
 use CssContentHandler;
+use DateTime;
+use DateTimeZone;
 use DeleteLinksJob;
 use DeleteLogFormatter;
 use DeletePageJob;
@@ -44,6 +46,7 @@ use JsonContentHandler;
 use LayeredParameterizedPassword;
 use LocalIdLookup;
 use LocalisationCache;
+use LocalRepo;
 use LogFormatter;
 use MediaWiki\Settings\Source\JsonSchemaTrait;
 use MediaWikiSite;
@@ -78,6 +81,7 @@ use UserGroupExpiryJob;
 use UserOptionsUpdateJob;
 use WANObjectCache;
 use WatchlistExpiryJob;
+use WebRequest;
 use WikitextContentHandler;
 use WinCacheBagOStuff;
 
@@ -98,9 +102,14 @@ use WinCacheBagOStuff;
  *         with uniform values. The 'object' type should be used for structures that have a known
  *         set of meaningful properties, especially if each property may have a different kind
  *         of value.
+ *         See {@link MediaWiki\Settings\Source\JsonTypeHelper} for details.
  *
  * The following additional keys are used by MediaWiki:
  * - mergeStrategy: see the {@link MediaWiki\Settings\Config\MergeStrategy}.
+ * - dynamicDefault: Specified a callback that computes the effective default at runtime, based
+ *   on the value of other config variables or on the system environment.
+ *   See {@link MediaWiki\Settings\Source\ReflectionSchemaSource}
+ *   and {@link MediaWiki\Settings\DynamicDefaultValues} for details.
  *
  * @note After changing this file, run maintenance/generateConfigSchema.php to update
  *       all the files derived from the information in MainConfigSchema.
@@ -328,8 +337,21 @@ class MainConfigSchema {
 	 * @since 1.2.1
 	 */
 	public const UsePathInfo = [
-		'default' => null,
+		'dynamicDefault' => true,
 	];
+
+	/**
+	 * @return bool
+	 */
+	public static function getDefaultUsePathInfo(): bool {
+		// These often break when PHP is set up in CGI mode.
+		// PATH_INFO *may* be correct if cgi.fix_pathinfo is set, but then again it may not;
+		// lighttpd converts incoming path data to lowercase on systems
+		// with case-insensitive filesystems, and there have been reports of
+		// problems on Apache as well.
+		return !str_contains( PHP_SAPI, 'cgi' ) && !str_contains( PHP_SAPI, 'apache2filter' ) &&
+			!str_contains( PHP_SAPI, 'isapi' );
+	}
 
 	/**
 	 * The URL path to index.php.
@@ -338,7 +360,16 @@ class MainConfigSchema {
 	 */
 	public const Script = [
 		'default' => false,
+		'dynamicDefault' => [ 'use' => [ 'ScriptPath' ] ]
 	];
+
+	/**
+	 * @param mixed $scriptPath Value of ScriptPath
+	 * @return string
+	 */
+	public static function getDefaultScript( $scriptPath ): string {
+		return "$scriptPath/index.php";
+	}
 
 	/**
 	 * The URL path to load.php.
@@ -349,7 +380,16 @@ class MainConfigSchema {
 	 */
 	public const LoadScript = [
 		'default' => false,
+		'dynamicDefault' => [ 'use' => [ 'ScriptPath' ] ]
 	];
+
+	/**
+	 * @param mixed $scriptPath Value of ScriptPath
+	 * @return string
+	 */
+	public static function getDefaultLoadScript( $scriptPath ): string {
+		return "$scriptPath/load.php";
+	}
 
 	/**
 	 * The URL path to the REST API
@@ -359,7 +399,16 @@ class MainConfigSchema {
 	 */
 	public const RestPath = [
 		'default' => false,
+		'dynamicDefault' => [ 'use' => [ 'ScriptPath' ] ]
 	];
+
+	/**
+	 * @param mixed $scriptPath Value of ScriptPath
+	 * @return string
+	 */
+	public static function getDefaultRestPath( $scriptPath ): string {
+		return "$scriptPath/rest.php";
+	}
 
 	/**
 	 * The URL path of the skins directory.
@@ -370,7 +419,16 @@ class MainConfigSchema {
 	 */
 	public const StylePath = [
 		'default' => false,
+		'dynamicDefault' => [ 'use' => [ 'ResourceBasePath' ] ]
 	];
+
+	/**
+	 * @param mixed $resourceBasePath Value of ResourceBasePath
+	 * @return string
+	 */
+	public static function getDefaultStylePath( $resourceBasePath ): string {
+		return "$resourceBasePath/skins";
+	}
 
 	/**
 	 * The URL path of the skins directory. Should not point to an external domain.
@@ -381,7 +439,17 @@ class MainConfigSchema {
 	 */
 	public const LocalStylePath = [
 		'default' => false,
+		'dynamicDefault' => [ 'use' => [ 'ScriptPath' ] ]
 	];
+
+	/**
+	 * @param mixed $scriptPath Value of ScriptPath
+	 * @return string
+	 */
+	public static function getDefaultLocalStylePath( $scriptPath ): string {
+		// Avoid ResourceBasePath here since that may point to a different domain (e.g. CDN)
+		return "$scriptPath/skins";
+	}
 
 	/**
 	 * The URL path of the extensions directory.
@@ -392,7 +460,16 @@ class MainConfigSchema {
 	 */
 	public const ExtensionAssetsPath = [
 		'default' => false,
+		'dynamicDefault' => [ 'use' => [ 'ResourceBasePath' ] ]
 	];
+
+	/**
+	 * @param mixed $resourceBasePath Value of ResourceBasePath
+	 * @return string
+	 */
+	public static function getDefaultExtensionAssetsPath( $resourceBasePath ): string {
+		return "$resourceBasePath/extensions";
+	}
 
 	/**
 	 * Extensions directory in the file system.
@@ -440,7 +517,20 @@ class MainConfigSchema {
 	 */
 	public const ArticlePath = [
 		'default' => false,
+		'dynamicDefault' => [ 'use' => [ 'Script', 'UsePathInfo' ] ]
 	];
+
+	/**
+	 * @param string $script Value of Script
+	 * @param mixed $usePathInfo Value of UsePathInfo
+	 * @return string
+	 */
+	public static function getDefaultArticlePath( string $script, $usePathInfo ): string {
+		if ( $usePathInfo ) {
+			return "$script/$1";
+		}
+		return "$script?title=$1";
+	}
 
 	/**
 	 * The URL path for the images directory.
@@ -449,7 +539,16 @@ class MainConfigSchema {
 	 */
 	public const UploadPath = [
 		'default' => false,
+		'dynamicDefault' => [ 'use' => [ 'ScriptPath' ] ]
 	];
+
+	/**
+	 * @param mixed $scriptPath Value of ScriptPath
+	 * @return string
+	 */
+	public static function getDefaultUploadPath( $scriptPath ): string {
+		return "$scriptPath/images";
+	}
 
 	/**
 	 * The base path for img_auth.php. This is used to interpret the request URL
@@ -482,7 +581,16 @@ class MainConfigSchema {
 	 */
 	public const UploadDirectory = [
 		'default' => false,
+		'dynamicDefault' => [ 'use' => [ 'BaseDirectory' ] ]
 	];
+
+	/**
+	 * @param mixed $baseDirectory Value of BaseDirectory
+	 * @return string
+	 */
+	public static function getDefaultUploadDirectory( $baseDirectory ): string {
+		return "$baseDirectory/images";
+	}
 
 	/**
 	 * Directory where the cached page will be saved.
@@ -491,7 +599,16 @@ class MainConfigSchema {
 	 */
 	public const FileCacheDirectory = [
 		'default' => false,
+		'dynamicDefault' => [ 'use' => [ 'UploadDirectory' ] ]
 	];
+
+	/**
+	 * @param mixed $uploadDirectory Value of UploadDirectory
+	 * @return string
+	 */
+	public static function getDefaultFileCacheDirectory( $uploadDirectory ): string {
+		return "$uploadDirectory/cache";
+	}
 
 	/**
 	 * The URL path of the wiki logo. The logo size should be 135x135 pixels.
@@ -503,7 +620,16 @@ class MainConfigSchema {
 	 */
 	public const Logo = [
 		'default' => false,
+		'dynamicDefault' => [ 'use' => [ 'ResourceBasePath' ] ]
 	];
+
+	/**
+	 * @param mixed $resourceBasePath Value of ResourceBasePath
+	 * @return string
+	 */
+	public static function getDefaultLogo( $resourceBasePath ): string {
+		return "$resourceBasePath/resources/assets/change-your-logo.svg";
+	}
 
 	/**
 	 * Specification for different versions of the wiki logo.
@@ -785,7 +911,16 @@ class MainConfigSchema {
 	 */
 	public const DeletedDirectory = [
 		'default' => false,
+		'dynamicDefault' => [ 'use' => [ 'UploadDirectory' ] ]
 	];
+
+	/**
+	 * @param mixed $uploadDirectory Value of UploadDirectory
+	 * @return string
+	 */
+	public static function getDefaultDeletedDirectory( $uploadDirectory ): string {
+		return "$uploadDirectory/deleted";
+	}
 
 	/**
 	 * Set this to true if you use img_auth and want the user to see details on why access failed.
@@ -951,7 +1086,32 @@ class MainConfigSchema {
 	public const LocalFileRepo = [
 		'default' => false,
 		'type' => 'map|false',
+		'dynamicDefault' => [ 'use' => [ 'UploadDirectory', 'ScriptPath', 'Favicon', 'UploadBaseUrl',
+			'UploadPath', 'HashedUploadDirectory', 'ThumbnailScriptPath',
+			'GenerateThumbnailOnParse', 'DeletedDirectory', 'UpdateCompatibleMetadata' ] ],
 	];
+
+	public static function getDefaultLocalFileRepo(
+		$uploadDirectory, $scriptPath, $favicon, $uploadBaseUrl, $uploadPath,
+		$hashedUploadDirectory, $thumbnailScriptPath, $generateThumbnailOnParse, $deletedDirectory,
+		$updateCompatibleMetadata
+	) {
+		return [
+			'class' => LocalRepo::class,
+			'name' => 'local',
+			'directory' => $uploadDirectory,
+			'scriptDirUrl' => $scriptPath,
+			'favicon' => $favicon,
+			'url' => $uploadBaseUrl ? $uploadBaseUrl . $uploadPath : $uploadPath,
+			'hashLevels' => $hashedUploadDirectory ? 2 : 0,
+			'thumbScriptUrl' => $thumbnailScriptPath,
+			'transformVia404' => !$generateThumbnailOnParse,
+			'deletedDir' => $deletedDirectory,
+			'deletedHashLevels' => $hashedUploadDirectory ? 3 : 0,
+			'updateCompatibleMetadata' => $updateCompatibleMetadata,
+			'reserializeMetadata' => $updateCompatibleMetadata,
+		];
+	}
 
 	/**
 	 * Enable the use of files from one or more other wikis.
@@ -1240,8 +1400,15 @@ class MainConfigSchema {
 	 * ```
 	 */
 	public const ShowEXIF = [
-		'default' => null,
+		'dynamicDefault' => [ 'callback' => [ self::class, 'getDefaultShowEXIF' ] ],
 	];
+
+	/**
+	 * @return bool
+	 */
+	public static function getDefaultShowEXIF(): bool {
+		return function_exists( 'exif_read_data' );
+	}
 
 	/**
 	 * Shortcut for the 'updateCompatibleMetadata' setting of $wgLocalFileRepo.
@@ -2811,7 +2978,16 @@ class MainConfigSchema {
 	 */
 	public const SharedPrefix = [
 		'default' => false,
+		'dynamicDefault' => [ 'use' => [ 'DBprefix' ] ]
 	];
+
+	/**
+	 * @param mixed $dbPrefix Value of DBprefix
+	 * @return mixed
+	 */
+	public static function getDefaultSharedPrefix( $dbPrefix ) {
+		return $dbPrefix;
+	}
 
 	/**
 	 * @see $wgSharedDB
@@ -2832,7 +3008,16 @@ class MainConfigSchema {
 	 */
 	public const SharedSchema = [
 		'default' => false,
+		'dynamicDefault' => [ 'use' => [ 'DBmwschema' ] ]
 	];
+
+	/**
+	 * @param mixed $dbMwschema Value of DBmwschema
+	 * @return mixed
+	 */
+	public static function getDefaultSharedSchema( $dbMwschema ) {
+		return $dbMwschema;
+	}
 
 	/**
 	 * Database load balancer
@@ -2956,7 +3141,12 @@ class MainConfigSchema {
 	 */
 	public const DBerrorLogTZ = [
 		'default' => false,
+		'dynamicDefault' => [ 'use' => [ 'Localtimezone' ] ]
 	];
+
+	public static function getDefaultDBerrorLogTZ( $localtimezone ) {
+		return $localtimezone;
+	}
 
 	/**
 	 * Other wikis on this site, can be administered from a single developer account.
@@ -4676,8 +4866,21 @@ class MainConfigSchema {
 	 * ```
 	 */
 	public const Localtimezone = [
-		'default' => null,
+		'dynamicDefault' => true,
 	];
+
+	public static function getDefaultLocaltimezone(): string {
+		// This defaults to the `date.timezone` value of the PHP INI option. If this option is not set,
+		// it falls back to UTC. Prior to PHP 7.0, this fallback produced a warning.
+		$localtimezone = date_default_timezone_get();
+		if ( !$localtimezone ) {
+			// Make doubly sure we have a valid time zone, even if date_default_timezone_get()
+			// returned garbage.
+			$localtimezone = 'UTC';
+		}
+
+		return $localtimezone;
+	}
 
 	/**
 	 * Set an offset from UTC in minutes to use for the default timezone setting
@@ -4689,8 +4892,13 @@ class MainConfigSchema {
 	 * By default, this will be set to match $wgLocaltimezone.
 	 */
 	public const LocalTZoffset = [
-		'default' => null,
+		'dynamicDefault' => [ 'use' => [ 'Localtimezone' ] ]
 	];
+
+	public static function getDefaultLocalTZoffset( $localtimezone ): int {
+		$offset = ( new DateTimeZone( $localtimezone ) )->getOffset( new DateTime() );
+		return (int)( $offset / 60 );
+	}
 
 	/**
 	 * Map of Unicode characters for which capitalization is overridden in
@@ -5487,7 +5695,16 @@ class MainConfigSchema {
 	 */
 	public const ResourceBasePath = [
 		'default' => null,
+		'dynamicDefault' => [ 'use' => [ 'ScriptPath' ] ]
 	];
+
+	/**
+	 * @param mixed $scriptPath Value of ScriptPath
+	 * @return string
+	 */
+	public static function getDefaultResourceBasePath( $scriptPath ): string {
+		return $scriptPath;
+	}
 
 	/**
 	 * Override how long a CDN or browser may cache a ResourceLoader HTTP response.
@@ -5634,7 +5851,16 @@ class MainConfigSchema {
 	 */
 	public const MetaNamespace = [
 		'default' => false,
+		'dynamicDefault' => [ 'use' => [ 'Sitename' ] ]
 	];
+
+	/**
+	 * @param mixed $sitename Value of Sitename
+	 * @return string
+	 */
+	public static function getDefaultMetaNamespace( $sitename ): string {
+		return str_replace( ' ', '_', $sitename );
+	}
 
 	/**
 	 * Name of the project talk namespace.
@@ -8757,7 +8983,12 @@ class MainConfigSchema {
 	 */
 	public const CookieSecure = [
 		'default' => 'detect',
+		'dynamicDefault' => [ 'use' => [ 'ForceHTTPS' ] ]
 	];
+
+	public static function getDefaultCookieSecure( $forceHTTPS ): bool {
+		return $forceHTTPS || ( WebRequest::detectProtocol() === 'https' );
+	}
 
 	/**
 	 * By default, MediaWiki checks if the client supports cookies during the
@@ -8776,7 +9007,19 @@ class MainConfigSchema {
 	 */
 	public const CookiePrefix = [
 		'default' => false,
+		'dynamicDefault' => [
+			'use' => [ 'SharedDB', 'SharedPrefix', 'SharedTables', 'DBname', 'DBprefix' ]
+		],
 	];
+
+	public static function getDefaultCookiePrefix(
+		$sharedDB, $sharedPrefix, $sharedTables, $dbName, $dbPrefix
+	): string {
+		if ( $sharedDB && in_array( 'user', $sharedTables ) ) {
+			return $sharedDB . ( $sharedPrefix ? "_$sharedPrefix" : '' );
+		}
+		return $dbName . ( $dbPrefix ? "_$dbPrefix" : '' );
+	}
 
 	/**
 	 * Set authentication cookies to HttpOnly to prevent access by JavaScript,
@@ -9662,7 +9905,16 @@ class MainConfigSchema {
 	 */
 	public const ReadOnlyFile = [
 		'default' => false,
+		'dynamicDefault' => [ 'use' => [ 'UploadDirectory' ] ]
 	];
+
+	/**
+	 * @param mixed $uploadDirectory Value of UploadDirectory
+	 * @return string
+	 */
+	public static function getDefaultReadOnlyFile( $uploadDirectory ): string {
+		return "$uploadDirectory/lock_yBgMBwiR";
+	}
 
 	/**
 	 * When you run the web-based upgrade utility, it will tell you what to set

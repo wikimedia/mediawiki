@@ -26,7 +26,7 @@ class GlobalConfigBuilder extends ConfigBuilderBase {
 		return array_key_exists( $var, $GLOBALS );
 	}
 
-	protected function get( string $key ) {
+	public function get( string $key ) {
 		$var = $this->getVarName( $key );
 		return $GLOBALS[ $var ] ?? null;
 	}
