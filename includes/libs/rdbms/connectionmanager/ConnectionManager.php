@@ -91,29 +91,25 @@ class ConnectionManager {
 	}
 
 	/**
-	 * Returns a connection to the primary DB, for updating. The connection should later be released
-	 * by calling releaseConnection().
+	 * Returns a connection to the primary DB, for updating.
 	 *
 	 * @since 1.29
 	 * @since 1.37 Added optional $flags parameter
 	 * @param int $flags
 	 * @return IDatabase
-	 * @deprecated since 1.38; Use getWriteConnectionRef()
 	 */
 	public function getWriteConnection( int $flags = 0 ) {
 		return $this->getConnection( DB_PRIMARY, null, $flags );
 	}
 
 	/**
-	 * Returns a database connection for reading. The connection should later be released by
-	 * calling releaseConnection().
+	 * Returns a database connection for reading.
 	 *
 	 * @since 1.29
 	 * @since 1.37 Added optional $flags parameter
 	 * @param string[]|null $groups
 	 * @param int $flags
 	 * @return IDatabase
-	 * @deprecated since 1.38; Use getReadConnectionRef()
 	 */
 	public function getReadConnection( ?array $groups = null, int $flags = 0 ) {
 		$groups = $groups ?? $this->groups;
@@ -135,6 +131,7 @@ class ConnectionManager {
 	 * @since 1.29
 	 *
 	 * @return DBConnRef
+	 * @deprecated since 1.39; Use getWriteConnection()
 	 */
 	public function getWriteConnectionRef() {
 		return $this->getConnectionRef( DB_PRIMARY );
@@ -146,6 +143,7 @@ class ConnectionManager {
 	 * @since 1.29
 	 * @param string[]|null $groups
 	 * @return DBConnRef
+	 * @deprecated since 1.38; Use getReadConnection()
 	 */
 	public function getReadConnectionRef( array $groups = null ) {
 		$groups = $groups ?? $this->groups;
@@ -157,6 +155,7 @@ class ConnectionManager {
 	 *
 	 * @since 1.38
 	 * @return DBConnRef
+	 * @deprecated since 1.39; Use getWriteConnection()
 	 */
 	public function getLazyWriteConnectionRef(): DBConnRef {
 		return $this->getConnectionRef( DB_PRIMARY );
@@ -168,6 +167,7 @@ class ConnectionManager {
 	 * @since 1.37
 	 * @param string[]|null $groups
 	 * @return DBConnRef
+	 * @deprecated since 1.39; Use getReadConnection()
 	 */
 	public function getLazyReadConnectionRef( array $groups = null ) {
 		$groups = $groups ?? $this->groups;
