@@ -2617,6 +2617,7 @@
 	"autoblockid": "Autoblok #$1",
 	"block": "Zablokovat uživatele",
 	"unblock": "Odblokovat uživatele",
+	"changeblockip": "Změnit blokování",
 	"blockip": "Zablokovat {{GENDER:$1|uživatele|uživatelku}}",
 	"blockiptext": "Tento formulář slouží k zablokování editací z konkrétní IP adresy nebo uživatelského jména.\nToto by mělo být používáno jen v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].\nUdejte přesný důvod níže (například ocitujte, které stránky byly poškozeny).\nIP rozsahy můžete blokovat pomocí syntaxe [https://cs.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]; největší dovolený rozsah je /$1 pro IPv4 a /$2 pro IPv6.",
 	"ipaddressorusername": "IP adresa, uživatelské jméno nebo ID blokování:",
