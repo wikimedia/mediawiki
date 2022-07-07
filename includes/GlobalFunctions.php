@@ -24,7 +24,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point" );
 }
 
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ProcOpenError;
@@ -1953,31 +1952,6 @@ function wfGetDB( $db, $groups = [], $wiki = false ) {
 			->getMainLB( $wiki )
 			->getMaintenanceConnectionRef( $db, $groups, $wiki );
 	}
-}
-
-/**
- * Find a file.
- * @deprecated since 1.34, use MediaWikiServices
- * @param string|LinkTarget $title
- * @param array $options Associative array of options (see RepoGroup::findFile)
- * @return File|bool File, or false if the file does not exist
- */
-function wfFindFile( $title, $options = [] ) {
-	wfDeprecated( __FUNCTION__, '1.34' );
-	return MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title, $options );
-}
-
-/**
- * Get an object referring to a locally registered file.
- * Returns a valid placeholder object if the file does not exist.
- *
- * @deprecated since 1.34, hard deprecated since 1.37, use MediaWikiServices
- * @param Title|string $title
- * @return LocalFile|null A File, or null if passed an invalid Title
- */
-function wfLocalFile( $title ) {
-	wfDeprecated( __FUNCTION__, '1.34' );
-	return MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()->newFile( $title );
 }
 
 /**

@@ -336,6 +336,7 @@ because of Phabricator reports.
   - ::buildGroupConcatField()
 * SpecialUnblock::processUnblock(), deprecated in 1.36, has been removed. Use
   UnblockUser instead.
+* wfLocalFile() and wfFindFile(), deprecated in 1.34, have been removed.
 * …
 
 === Deprecations in 1.39 ===
