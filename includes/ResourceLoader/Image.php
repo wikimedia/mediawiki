@@ -315,7 +315,8 @@ class Image {
 		if ( $format === 'rasterized' ) {
 			$data = $this->rasterize( $data );
 			if ( !$data ) {
-				wfDebugLog( 'ResourceLoaderImage', __METHOD__ . " failed to rasterize for $path" );
+				$logger = $context->getResourceLoader()->getLogger();
+				$logger->error( __METHOD__ . " failed to rasterize for $path" );
 			}
 		}
 
