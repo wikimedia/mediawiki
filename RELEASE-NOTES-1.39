@@ -309,6 +309,7 @@ because of Phabricator reports.
 * SqlBlobStore::getLegacyEncodingConversionLang(), deprecated in 1.34, has been
   removed.
 * wfCanIPUseHTTPS(), deprecated in 1.37, has been removed.
+* wfGetScriptUrl(), deprecated in 1.35, has been removed.
 * The following methods of Database class, are no longer stable to override:
   - ::implicitOrderby()
   - ::selectSQLText()
@@ -336,6 +337,7 @@ because of Phabricator reports.
   - ::buildGroupConcatField()
 * SpecialUnblock::processUnblock(), deprecated in 1.36, has been removed. Use
   UnblockUser instead.
+* wfLocalFile() and wfFindFile(), deprecated in 1.34, have been removed.
 * …
 
 === Deprecations in 1.39 ===

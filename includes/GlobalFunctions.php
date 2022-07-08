@@ -24,7 +24,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point" );
 }
 
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ProcOpenError;
@@ -1956,31 +1955,6 @@ function wfGetDB( $db, $groups = [], $wiki = false ) {
 }
 
 /**
- * Find a file.
- * @deprecated since 1.34, use MediaWikiServices
- * @param string|LinkTarget $title
- * @param array $options Associative array of options (see RepoGroup::findFile)
- * @return File|bool File, or false if the file does not exist
- */
-function wfFindFile( $title, $options = [] ) {
-	wfDeprecated( __FUNCTION__, '1.34' );
-	return MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title, $options );
-}
-
-/**
- * Get an object referring to a locally registered file.
- * Returns a valid placeholder object if the file does not exist.
- *
- * @deprecated since 1.34, hard deprecated since 1.37, use MediaWikiServices
- * @param Title|string $title
- * @return LocalFile|null A File, or null if passed an invalid Title
- */
-function wfLocalFile( $title ) {
-	wfDeprecated( __FUNCTION__, '1.34' );
-	return MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()->newFile( $title );
-}
-
-/**
  * Should low-performance queries be disabled?
  *
  * @deprecated since 1.39, unused and directly hard-deprecated
@@ -2013,31 +1987,6 @@ function wfScript( $script = 'index' ) {
 		return $wgLoadScript;
 	} else {
 		return "{$wgScriptPath}/{$script}.php";
-	}
-}
-
-/**
- * Get the script URL.
- *
- * @deprecated since 1.35. Use wfScript() to obtain an entry point URL.
- * @return string Script URL
- */
-function wfGetScriptUrl() {
-	wfDeprecated( __FUNCTION__, '1.35' );
-	if ( isset( $_SERVER['SCRIPT_NAME'] ) ) {
-		/* as it was called, minus the query string.
-		 *
-		 * Some sites use Apache rewrite rules to handle subdomains,
-		 * and have PHP set up in a weird way that causes PHP_SELF
-		 * to contain the rewritten URL instead of the one that the
-		 * outside world sees.
-		 *
-		 * If in this mode, use SCRIPT_URL instead, which mod_rewrite
-		 * provides containing the "before" URL.
-		 */
-		return $_SERVER['SCRIPT_NAME'];
-	} else {
-		return $_SERVER['URL'];
 	}
 }
 
