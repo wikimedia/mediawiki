@@ -23,11 +23,9 @@ use UserCache;
 use Wikimedia\TestingAccessWrapper;
 
 /**
+ * For the integration tests, see \MediaWiki\Tests\Integration\Permissions\PermissionManagerTest.
+ *
  * @author DannyS712
- *
- * See \MediaWiki\Tests\Integration\Permissions\PermissionManagerTest
- * for integration tests
- *
  * @covers \MediaWiki\Permissions\PermissionManager
  */
 class PermissionManagerTest extends MediaWikiUnitTestCase {
@@ -103,9 +101,7 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
-	 *
-	 * Does not include testing the `editmyuserjsredirect` functionality, that is covered
+	 * Does not cover the `editmyuserjsredirect` functionality, which is covered
 	 * in testCheckUserConfigPermissionsForRedirect
 	 *
 	 * @dataProvider provideTestCheckUserConfigPermissions
@@ -203,8 +199,6 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserConfigPermissions
-	 *
 	 * @dataProvider provideTestCheckUserConfigPermissionsForRedirect
 	 */
 	public function testCheckUserConfigPermissionsForRedirect(
@@ -273,8 +267,6 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Permissions\PermissionManager::checkPageRestrictions
-	 *
 	 * @dataProvider provideTestCheckPageRestrictions
 	 */
 	public function testCheckPageRestrictions(
@@ -347,8 +339,6 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Permissions\PermissionManager::checkQuickPermissions
-	 *
 	 * @dataProvider provideTestCheckQuickPermissions
 	 */
 	public function testCheckQuickPermissions(
@@ -413,6 +403,7 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 
 	public function provideTestCheckQuickPermissions() {
 		// $namespace, $pageTitle, $userIsAnon, $action, $rights, $expectedError
+
 		// Four different possible errors when trying to create
 		yield 'Anon createtalk fail' => [
 			NS_TALK, 'Example', 'anon', 'create', [], 'nocreatetext'
@@ -481,9 +472,6 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	/**
-	 * @covers \MediaWiki\Permissions\PermissionManager::checkQuickPermissions
-	 */
 	public function testCheckQuickPermissionsHook() {
 		$title = $this->createMock( Title::class );
 		$user = $this->createMock( User::class );
