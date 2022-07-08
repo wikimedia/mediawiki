@@ -490,6 +490,9 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	 *
 	 * If no result rows are returned from the query, false is returned.
 	 *
+	 * New callers should use {@link newSelectQueryBuilder} with {@link SelectQueryBuilder::fetchField}
+	 * instead, which is more readable and less error-prone.
+	 *
 	 * @param string|array $table Table name. {@see select} for details.
 	 * @param string|array $var The field name to select. This must be a valid SQL fragment: do not
 	 *  use unvalidated user input. Can be an array, but must contain exactly 1 element then.
@@ -510,6 +513,9 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	 *
 	 * If no result rows are returned from the query, an empty array is returned.
 	 *
+	 * New callers should use {@link newSelectQueryBuilder} with {@link SelectQueryBuilder::fetchFieldValues}
+	 * instead, which is more readable and less error-prone.
+	 *
 	 * @param string|array $table Table name. {@see select} for details.
 	 * @param string $var The field name to select. This must be a valid SQL
 	 *   fragment: do not use unvalidated user input.
@@ -528,6 +534,9 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 
 	/**
 	 * Execute a SELECT query constructed using the various parameters provided
+	 *
+	 * New callers should use {@link newSelectQueryBuilder} with {@link SelectQueryBuilder::fetchResultSet}
+	 * instead, which is more readable and less error-prone.
 	 *
 	 * @param string|array $table Table name(s)
 	 *
@@ -722,6 +731,9 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	 *
 	 * This method is convenient for fetching a row based on a unique key condition.
 	 *
+	 * New callers should use {@link newSelectQueryBuilder} with {@link SelectQueryBuilder::fetchRow}
+	 * instead, which is more readable and less error-prone.
+	 *
 	 * @param string|array $table Table name
 	 * @param string|array $vars Field names
 	 * @param string|array $conds Conditions
@@ -753,6 +765,9 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	 *
 	 * Takes the same arguments as IDatabase::select().
 	 *
+	 * New callers should use {@link newSelectQueryBuilder} with {@link SelectQueryBuilder::estimateRowCount}
+	 * instead, which is more readable and less error-prone.
+	 *
 	 * @param string|string[] $tables Table name(s)
 	 * @param string $var Column for which NULL values are not counted [default "*"]
 	 * @param array|string $conds Filters on the table
@@ -772,6 +787,9 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	 * This is useful when trying to do COUNT(*) but with a LIMIT for performance.
 	 *
 	 * Takes the same arguments as IDatabase::select().
+	 *
+	 * New callers should use {@link newSelectQueryBuilder} with {@link SelectQueryBuilder::fetchRowCount}
+	 * instead, which is more readable and less error-prone.
 	 *
 	 * @since 1.27 Added $join_conds parameter
 	 *
