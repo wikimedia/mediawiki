@@ -1991,31 +1991,6 @@ function wfScript( $script = 'index' ) {
 }
 
 /**
- * Get the script URL.
- *
- * @deprecated since 1.35. Use wfScript() to obtain an entry point URL.
- * @return string Script URL
- */
-function wfGetScriptUrl() {
-	wfDeprecated( __FUNCTION__, '1.35' );
-	if ( isset( $_SERVER['SCRIPT_NAME'] ) ) {
-		/* as it was called, minus the query string.
-		 *
-		 * Some sites use Apache rewrite rules to handle subdomains,
-		 * and have PHP set up in a weird way that causes PHP_SELF
-		 * to contain the rewritten URL instead of the one that the
-		 * outside world sees.
-		 *
-		 * If in this mode, use SCRIPT_URL instead, which mod_rewrite
-		 * provides containing the "before" URL.
-		 */
-		return $_SERVER['SCRIPT_NAME'];
-	} else {
-		return $_SERVER['URL'];
-	}
-}
-
-/**
  * Convenience function converts boolean values into "true"
  * or "false" (string) values
  *
