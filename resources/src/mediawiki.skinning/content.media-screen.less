@@ -15,10 +15,9 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	border-bottom: 0;  // No border to figcaption
 	background-color: @background-color-thumbinner-screen;
 
-	> *:first-child {
-		> audio,
-		> img,
-		> video {
+	> a:first-child,
+	> span:first-child {
+		> *:first-child:not( .mw-broken-media ) {
 			border: @border-thumbimage-screen;
 			background: @background-color-thumbimage-screen;
 		}
@@ -36,11 +35,12 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	}
 }
 
-.mw-image-border > *:first-child {
-	> audio,
-	> img,
-	> video {
-		border: @border-thumbborder-screen;
+.mw-image-border {
+	> a:first-child,
+	> span:first-child {
+		> *:first-child:not( .mw-broken-media ) {
+			border: @border-thumbborder-screen;
+		}
 	}
 }
 

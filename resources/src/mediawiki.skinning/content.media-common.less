@@ -146,19 +146,15 @@ figure[ typeof~='mw:Audio/Frame' ] {
 		float: none;
 	}
 
-	> *:first-child {
-		> audio,
-		> img,
-		> video {
+	> a:first-child,
+	> span:first-child {
+		> *:first-child {
 			margin: 3px;
 		}
+
 		/**
 		 * Broken media get a span instead.
-		 *
-		 * FIXME: The `> span:first-child` can be removed when version 2.4.0
-		 * of the content is no longer supported
 		 */
-		> span:first-child,
 		> span.mw-broken-media {
 			display: inline-block;
 			/* The extra horizontal margin here is to make up for the lack of a border */
@@ -215,10 +211,9 @@ figure[ typeof~='mw:Audio/Frame' ] {
 /**
  * Inline media items
  */
-*:first-child {
-	> audio,
-	> img,
-	> video {
+span:first-child,
+a:first-child {
+	> *:first-child {
 		.mw-valign-middle > & {
 			vertical-align: middle;
 		}
