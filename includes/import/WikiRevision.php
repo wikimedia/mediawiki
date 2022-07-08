@@ -746,10 +746,11 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.12.2
-	 * @deprecated in 1.31. No replacement
+	 * @deprecated in 1.31. No replacement. Hard deprecated in 1.39.
 	 * @return bool|string
 	 */
 	public function downloadSource() {
+		wfDeprecated( __METHOD__, '1.31' );
 		$importer = new ImportableUploadRevisionImporter(
 			$this->config->get( MainConfigNames::EnableUploads ),
 			LoggerFactory::getInstance( 'UploadRevisionImporter' )
