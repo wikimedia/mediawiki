@@ -805,6 +805,23 @@ There's usually someone online in #mediawiki on irc.libera.chat.
 
 = MediaWiki 1.37 =
 
+== MediaWiki 1.37.4 ==
+
+This is a maintenance release of the MediaWiki 1.37 branch.
+
+=== Changes since MediaWiki 1.37.3 ===
+* Localisation updates.
+* (T311568) UploadBase::setTempFile() handle $tempPath being passed as null.
+* (T311559) SpecialListFiles: user parameter isn't always present.
+* (T311561) ImageListPager: Don't call htmlspecialchars() on null.
+* (T311920) SpecialBlockList: Prevent passing null to trim().
+* (T311921) SpecialUserrights: Don't pass null to str_replace.
+* (T311570) SpecialWithoutInterwiki: Don't pass null through to
+  Title::capitalize().
+* (T311574, T311576) SpecialLinkSearch: Don't pass null through to the parser.
+* (T312059) Update guzzlehttp/guzzle to 7.4.5 in vendor.
+* (T296435, T297669) cache: Add four fields to LinkCache::getSelectFields.
+
 == MediaWiki 1.37.3 ==
 
 This is a security and maintenance release of the MediaWiki 1.37 branch.
