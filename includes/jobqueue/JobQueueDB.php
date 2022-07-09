@@ -707,7 +707,7 @@ class JobQueueDB extends JobQueue {
 							'job_token' => '',
 							'job_token_timestamp' => $dbw->timestamp( $now ) // time of release
 						],
-						[ 'job_id' => $ids, "job_token != ''" ],
+						[ 'job_id' => $ids, "job_token != {$dbw->addQuotes( '' )}" ],
 						__METHOD__
 					);
 					$affected = $dbw->affectedRows();
