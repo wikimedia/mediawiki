@@ -1220,7 +1220,7 @@ class ParserTestRunner {
 	 * @param ParserTestMode $mode The test mode
 	 * @return ParserTestResult|false false if skipped
 	 */
-	 public function runLegacyTest( ParserTest $test, ParserTestMode $mode ) {
+	public function runLegacyTest( ParserTest $test, ParserTestMode $mode ) {
 		$desc = ( $test->comment ?? '' ) . $test->testName;
 		wfDebug( __METHOD__ . ": running $desc" );
 		$opts = $test->options;
@@ -1300,7 +1300,7 @@ class ParserTestRunner {
 
 		$testResult = new ParserTestResult( $test, $mode, $expected, $out );
 		return $testResult;
-	 }
+	}
 
 	/**
 	 * Add information from the parser output to the result string

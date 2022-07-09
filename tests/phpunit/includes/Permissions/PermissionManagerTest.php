@@ -1338,7 +1338,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'TitleParser',
 			'TitleFormatter',
 			'PermissionManager',
-		  ] as $service ) {
+		] as $service ) {
 			$this->getServiceContainer()->resetServiceForTesting( $service );
 		}
 

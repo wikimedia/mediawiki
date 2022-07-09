@@ -1366,7 +1366,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 						throw new DBReadOnlyRoleError(
 							$this,
 							"Cannot write; target role is DB_REPLICA"
-						 );
+						);
 					}
 				}
 				$hasPermWrite = $hasPermWrite || $isPermWrite;
@@ -1410,7 +1410,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->fieldHasBit( $firstQs->flags, self::ERR_RETRY_QUERY ) &&
 			// The retry has not been exhausted (consume it now)
 			$retryLeft && !( $retryLeft = false )
-		 );
+		);
 
 		foreach ( $statusByStatementId as $statementId => $qs ) {
 			// Register creation and dropping of temporary tables
