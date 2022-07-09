@@ -3,6 +3,8 @@
  * This is included by Setup.php to adjust the values of globals before services are initialized.
  * It's split into a separate file so it can be tested.
  */
+
+use MediaWiki\MainConfigSchema;
 use Wikimedia\AtEase\AtEase;
 
 // For backwards compatibility, the value of wgLogos is copied to wgLogo.
@@ -219,7 +221,16 @@ if ( $wgEnableEmail ) {
 	$wgUsersNotifiedOnAllChanges = [];
 }
 
-date_default_timezone_set( $wgLocaltimezone );
+if ( !$wgLocaltimezone ) {
+	// NOTE: The automatic dynamic default only kicks in if $wgLocaltimezone is null,
+	//       but the installer writes $wgLocaltimezone into LocalSettings, and may
+	//       produce (or may have produced historically) an empty string for some
+	//       reason. To be compatible with existing LocalSettings.php files, we need
+	//       to gracefully handle the case of $wgLocaltimezone being the empty string.
+	//       See T305093#8063451.
+	$wgLocaltimezone = MainConfigSchema::getDefaultLocaltimezone();
+}
+
 // The part after the System| is ignored, but rest of MW fills it out as the local offset.
 $wgDefaultUserOptions['timecorrection'] = "System|$wgLocalTZoffset";
 

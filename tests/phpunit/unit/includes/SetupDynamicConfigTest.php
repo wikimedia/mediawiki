@@ -1041,12 +1041,4 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	/**
-	 * @coversNothing Only covers code in global scope, no way to annotate that?
-	 */
-	public function testSetLocaltimezone(): void {
-		$tz = 'America/Los_Angeles';
-		$this->testGlobals( [ 'Localtimezone' => $tz ], [] );
-		$this->assertSame( $tz, date_default_timezone_get() );
-	}
 }

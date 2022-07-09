@@ -575,4 +575,12 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	/**
+	 * @coversNothing Only covers code in global scope, no way to annotate that?
+	 */
+	public function testSetLocaltimezone(): void {
+		// Make sure the configured timezone ewas applied to the PHP runtime.
+		$tz = $this->getServiceContainer()->getMainConfig()->get( 'Localtimezone' );
+		$this->assertSame( $tz, date_default_timezone_get() );
+	}
 }
