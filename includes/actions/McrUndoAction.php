@@ -314,7 +314,7 @@ class McrUndoAction extends FormAction {
 			$parserOptions->setIsSectionPreview( false );
 
 			$parserOutput = $this->revisionRenderer
-				->getRenderedRevision( $rev, $parserOptions, $this->context->getUser() )
+				->getRenderedRevision( $rev, $parserOptions, $this->getAuthority() )
 				->getRevisionParserOutput();
 			$previewHTML = $parserOutput->getText( [
 				'enableSectionEditLinks' => false,
@@ -370,7 +370,7 @@ class McrUndoAction extends FormAction {
 		}
 
 		$status = new PermissionStatus();
-		$this->getContext()->getAuthority()->authorizeWrite( 'edit', $this->getTitle(), $status );
+		$this->getAuthority()->authorizeWrite( 'edit', $this->getTitle(), $status );
 		if ( !$status->isOK() ) {
 			throw new PermissionsError( 'edit', $status );
 		}
@@ -419,7 +419,7 @@ class McrUndoAction extends FormAction {
 
 			$updater->markAsRevert( EditResult::REVERT_UNDO, $this->undo, $this->undoafter );
 
-			if ( $this->useRCPatrol && $this->getContext()->getAuthority()
+			if ( $this->useRCPatrol && $this->getAuthority()
 					->authorizeWrite( 'autopatrol', $this->getTitle() )
 			) {
 				$updater->setRcPatrolStatus( RecentChange::PRC_AUTOPATROLLED );

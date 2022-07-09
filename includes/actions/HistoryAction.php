@@ -261,7 +261,7 @@ class HistoryAction extends FormlessAction {
 				'value' => $tagFilter,
 			]
 		];
-		if ( $this->getContext()->getAuthority()->isAllowed( 'deletedhistory' ) ) {
+		if ( $this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 			$fields[] = [
 				'type' => 'check',
 				'label' => $this->msg( 'history-show-deleted' )->text(),
