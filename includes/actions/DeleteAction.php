@@ -322,7 +322,7 @@ class DeleteAction extends FormlessAction {
 	}
 
 	protected function showEditReasonsLinks(): void {
-		if ( $this->getContext()->getAuthority()->isAllowed( 'editinterface' ) ) {
+		if ( $this->getAuthority()->isAllowed( 'editinterface' ) ) {
 			$link = '';
 			if ( $this->isSuppressionAllowed() ) {
 				$link .= $this->linkRenderer->makeKnownLink(
@@ -347,7 +347,7 @@ class DeleteAction extends FormlessAction {
 	 * @return bool
 	 */
 	protected function isSuppressionAllowed(): bool {
-		return $this->getContext()->getAuthority()->isAllowed( 'suppressrevision' );
+		return $this->getAuthority()->isAllowed( 'suppressrevision' );
 	}
 
 	/**
@@ -410,7 +410,7 @@ class DeleteAction extends FormlessAction {
 			]
 		);
 
-		$delPage = $this->deletePageFactory->newDeletePage( $this->getWikiPage(), $this->getContext()->getAuthority() );
+		$delPage = $this->deletePageFactory->newDeletePage( $this->getWikiPage(), $this->getAuthority() );
 		if ( $delPage->canProbablyDeleteAssociatedTalk()->isGood() ) {
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
@@ -507,7 +507,7 @@ class DeleteAction extends FormlessAction {
 	 */
 	protected function runExecuteChecks(): void {
 		$permissionStatus = PermissionStatus::newEmpty();
-		if ( !$this->getContext()->getAuthority()->definitelyCan( 'delete', $this->getTitle(), $permissionStatus ) ) {
+		if ( !$this->getAuthority()->definitelyCan( 'delete', $this->getTitle(), $permissionStatus ) ) {
 			throw new PermissionsError( 'delete', $permissionStatus );
 		}
 

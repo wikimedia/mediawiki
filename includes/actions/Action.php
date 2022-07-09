@@ -22,6 +22,7 @@
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 
 /**
  * @defgroup Actions Actions
@@ -168,6 +169,16 @@ abstract class Action implements MessageLocalizer {
 	 */
 	final public function getUser() {
 		return $this->getContext()->getUser();
+	}
+
+	/**
+	 * Shortcut to get the Authority executing this instance
+	 *
+	 * @return Authority
+	 * @since 1.39
+	 */
+	final public function getAuthority(): Authority {
+		return $this->getContext()->getAuthority();
 	}
 
 	/**

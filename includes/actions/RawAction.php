@@ -157,7 +157,7 @@ class RawAction extends FormlessAction {
 			$rootPage = strtok( $title->getText(), '/' );
 			$userFromTitle = User::newFromName( $rootPage, 'usable' );
 			if ( !$userFromTitle || !$userFromTitle->isRegistered() ) {
-				$elevated = $this->getContext()->getAuthority()->isAllowed( 'editinterface' );
+				$elevated = $this->getAuthority()->isAllowed( 'editinterface' );
 				$elevatedText = $elevated ? 'by elevated ' : '';
 				$log = LoggerFactory::getInstance( "security" );
 				$log->warning(

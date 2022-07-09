@@ -422,7 +422,7 @@ class InfoAction extends FormlessAction {
 			$this->languageNameUtils->getLanguageName( $pageLang, $lang->getCode() );
 		// Link to Special:PageLanguage with pre-filled page title if user has permissions
 		if ( $config->get( MainConfigNames::PageLanguageUseDB )
-			&& $this->getContext()->getAuthority()->probablyCan( 'pagelang', $title )
+			&& $this->getAuthority()->probablyCan( 'pagelang', $title )
 		) {
 			$pageLangHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
 				SpecialPage::getTitleValueFor( 'PageLanguage', $title->getPrefixedText() ),
@@ -438,7 +438,7 @@ class InfoAction extends FormlessAction {
 		// Content model of the page
 		$modelHtml = htmlspecialchars( ContentHandler::getLocalizedName( $title->getContentModel() ) );
 		// If the user can change it, add a link to Special:ChangeContentModel
-		if ( $this->getContext()->getAuthority()->probablyCan( 'editcontentmodel', $title ) ) {
+		if ( $this->getAuthority()->probablyCan( 'editcontentmodel', $title ) ) {
 			$modelHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
 				SpecialPage::getTitleValueFor( 'ChangeContentModel', $title->getPrefixedText() ),
 				$this->msg( 'pageinfo-content-model-change' )->text()
@@ -478,7 +478,7 @@ class InfoAction extends FormlessAction {
 		];
 
 		$unwatchedPageThreshold = $config->get( MainConfigNames::UnwatchedPageThreshold );
-		if ( $this->getContext()->getAuthority()->isAllowed( 'unwatchedpages' ) ||
+		if ( $this->getAuthority()->isAllowed( 'unwatchedpages' ) ||
 			( $unwatchedPageThreshold !== false &&
 				$pageCounts['watchers'] >= $unwatchedPageThreshold )
 		) {
@@ -493,7 +493,7 @@ class InfoAction extends FormlessAction {
 			) {
 				$minToDisclose = $config->get( MainConfigNames::UnwatchedPageSecret );
 				if ( $pageCounts['visitingWatchers'] > $minToDisclose ||
-					$this->getContext()->getAuthority()->isAllowed( 'unwatchedpages' ) ) {
+					$this->getAuthority()->isAllowed( 'unwatchedpages' ) ) {
 					$pageInfo['header-basic'][] = [
 						$this->msg( 'pageinfo-visiting-watchers' ),
 						$lang->formatNum( $pageCounts['visitingWatchers'] )
