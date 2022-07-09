@@ -34,6 +34,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use MWException;
 use stdClass;
 use Title;
@@ -607,7 +608,7 @@ class DatabaseBlock extends AbstractBlock {
 		# Make a new block object with the desired properties.
 		$autoblock = new DatabaseBlock( [ 'wiki' => $this->getWikiId() ] );
 		wfDebug( "Autoblocking {$this->getTargetName()}@" . $autoblockIP );
-		$autoblock->setTarget( $autoblockIP );
+		$autoblock->setTarget( UserIdentityValue::newAnonymous( $autoblockIP, $this->getWikiId() ) );
 		$autoblock->setBlocker( $blocker );
 		$autoblock->setReason(
 			wfMessage(
