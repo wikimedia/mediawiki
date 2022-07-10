@@ -83,7 +83,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Korjaus1",
-			"Moottori"
+			"Moottori",
+			"Huusmik"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -803,7 +804,7 @@
 	"edit-slots-cannot-remove": "{{PLURAL:$1|Seuraava slotti vaaditaan eikä sitä voi poistaa|Seuraavat alueet vaaditaan eikä niitä voida poistaa}}: $2.",
 	"edit-slots-missing": "{{PLURAL:$1|Seuraava slotti puuttuu|Seuraavat slotit puuttuvat}}: $2.",
 	"postedit-confirmation-created": "Sivu on nyt luotu.",
-	"postedit-confirmation-restored": "Sivu on nyt palautettu (aiempaan versioonsa).",
+	"postedit-confirmation-restored": "Sivu on palautettu.",
 	"postedit-confirmation-saved": "Muokkauksesi on tallennettu.",
 	"postedit-confirmation-published": "Muokkauksesi julkaistiin.",
 	"edit-already-exists": "Uuden sivun luominen ei onnistunut.\nSe on jo olemassa.",
@@ -879,8 +880,10 @@
 	"nextrevision": "Uudempi versio →",
 	"currentrevisionlink": "Nykyinen versio",
 	"cur": "nyk.",
+	"tooltip-cur": "Ero uusimpaan versioon",
 	"next": "seur.",
 	"last": "edell.",
+	"tooltip-last": "Ero edelliseen versioon",
 	"page_first": "ensimmäinen sivu",
 	"page_last": "viimeinen sivu",
 	"histlegend": "Eroavaisuuksien valinta: Merkitse niiden versioiden valintaympyrät, joita haluat vertailla, ja paina enter tai alhaalla olevaa nappia.<br />\nSelitys: <strong>({{int:cur}})</strong> = eroavaisuudet uusimpaan versioon, <strong>({{int:last}})</strong> = eroavaisuudet edeltävään versioon, <strong>{{int:minoreditletter}}</strong> = pieni muutos.",
@@ -2399,6 +2402,7 @@
 	"exbeforeblank": "ennen tyhjentämistä sisälsi: ”$1”",
 	"delete-confirm": "Poista ”$1”",
 	"delete-legend": "Sivun poisto",
+	"delete-talk-summary-prefix": "Poistettu yhdessä isäntäsivun kanssa syyllä: $1",
 	"historywarning": "<strong>Varoitus:</strong> Sivulla, jota olet poistamassa, on muokkaushistoriaa ja sitä on muokattu $1 {{PLURAL:$1|kerran|kertaa}}:",
 	"historyaction-submit": "Näytä versiot",
 	"confirmdeletetext": "Olet poistamassa sivun ja kaiken sen historian.\nVahvista, että olet aikeissa tehdä tämän ja että ymmärrät teon seuraukset ja teet poiston [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.",

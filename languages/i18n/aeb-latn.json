@@ -7,7 +7,8 @@
 			"GeekEmad",
 			"Kuwaity26",
 			"Malekbr",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Ḩut şţar ţaḩt il-lyeñ:",
@@ -126,7 +127,7 @@
 	"action-unprotect": "Baddil il-ḩimêye",
 	"unprotect": "Baddil il-ḩimêye",
 	"newpage": "Pāj jdīde",
-	"talkpagelinktext": "Ḩdīŧ",
+	"talkpagelinktext": "ḩdīŧ",
 	"specialpage": "Sʾafħa spesyàl",
 	"personaltools": "Mēģūnik",
 	"talk": "Ḩdīŧ",
@@ -424,7 +425,6 @@
 	"specialpages": "Safḩāt spēsyāl",
 	"logentry-upload-upload": "$1 {{GENDER:$2|şab|şabbit}} $3",
 	"searchsuggest-search": "Lawwij",
-	"view-view-foreign": "Cūf ģlā $1",
 	"skin-action-protect": "Ħàmi",
 	"skin-action-move": "Ḩawwil"
 }

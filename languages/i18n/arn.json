@@ -11,7 +11,8 @@
 			"Ndołkah",
 			"Poquil",
 			"Remember the dot",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Miñche wiringen trarintuku:",
@@ -128,7 +129,7 @@
 	"action-unprotect": "Kalekünun kuñiwtun",
 	"unprotect": "Kalekünun kuñiwtun",
 	"newpage": "We tapülh",
-	"talkpagelinktext": "Nütramkan",
+	"talkpagelinktext": "nütramkan",
 	"specialpage": "Kangelu",
 	"personaltools": "Kizungechi küzawpeyüm",
 	"talk": "Nütramkawün",
@@ -786,7 +787,6 @@
 	"rightsnone": "chemnorume",
 	"searchsuggest-search": "Kintun {{SITENAME}} mew",
 	"duration-days": "$1 {{PLURAL:$1|antü}}",
-	"view-view-foreign": "Pen $1 mew",
 	"view-create-local": "Püñamtun ñi faw chumngen",
 	"nstab-mainpage": "Ñizol Wvbgiñ",
 	"skin-action-protect": "Nürüfkünun",

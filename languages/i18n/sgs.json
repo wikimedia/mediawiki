@@ -10,7 +10,8 @@
 			"Reedy",
 			"Zordsdavini",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Pabriežtė nūruodas:",
@@ -173,7 +174,7 @@
 	"action-unprotect": "Keistė apsarga",
 	"unprotect": "Keistė apsarga",
 	"newpage": "Naus poslapis",
-	"talkpagelinktext": "Aptarėms",
+	"talkpagelinktext": "aptarėms",
 	"specialpage": "Specēlos poslapis",
 	"personaltools": "Asabėnē rakondā",
 	"talk": "Aptarėms",
@@ -1858,7 +1859,6 @@
 	"special-characters-group-lao": "Laosėitėškā",
 	"special-characters-group-khmer": "Kigmerėškā",
 	"mw-widgets-titleinput-description-redirect": "nusokėms i $1",
-	"view-view-foreign": "Parveiziet $1",
 	"view-create-local": "Prėkergtė vėitėni aprašīma",
 	"nstab-mainpage": "Pėrms poslapis",
 	"view-edit-local": "Taisītė vėitėni aprašīma",

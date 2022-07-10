@@ -251,7 +251,7 @@ class SkinTemplate extends Skin {
 		$tpl->deprecate( 'searchaction', '1.36' );
 
 		$tpl->set( 'searchtitle', $searchTitle->getPrefixedDBkey() );
-		$tpl->set( 'search', trim( $request->getVal( 'search' ) ) );
+		$tpl->set( 'search', trim( $request->getVal( 'search', '' ) ) );
 		$tpl->set( 'stylepath', $config->get( 'StylePath' ) );
 		$tpl->set( 'articlepath', $config->get( 'ArticlePath' ) );
 		$tpl->set( 'scriptpath', $config->get( 'ScriptPath' ) );

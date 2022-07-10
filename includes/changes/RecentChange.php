@@ -258,6 +258,8 @@ class RecentChange implements Taggable {
 	 */
 	public static function getQueryInfo() {
 		$commentQuery = CommentStore::getStore()->getJoin( 'rc_comment' );
+		// Optimizer sometimes refuses to pick up the correct join order (T311360)
+		$commentQuery['joins']['comment_rc_comment'][0] = 'STRAIGHT_JOIN';
 		return [
 			'tables' => [
 				'recentchanges',
@@ -290,7 +292,7 @@ class RecentChange implements Taggable {
 				'rc_user_text' => 'recentchanges_actor.actor_name',
 			] + $commentQuery['fields'],
 			'joins' => [
-				'recentchanges_actor' => [ 'JOIN', 'actor_id=rc_actor' ]
+				'recentchanges_actor' => [ 'STRAIGHT_JOIN', 'actor_id=rc_actor' ]
 			] + $commentQuery['joins'],
 		];
 	}

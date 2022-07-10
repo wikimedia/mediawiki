@@ -230,13 +230,14 @@
 			"ديفيد",
 			"아라",
 			"AnupamM",
-			"Francodiaz7"
+			"Francodiaz7",
+			"Enly M"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
-	"tog-hideminor": "Ocultar las ediciones menores en cambios recientes",
+	"tog-hideminor": "Ocultar las ediciones menores de cambios recientes",
 	"tog-hidepatrolled": "Ocultar las ediciones verificadas de cambios recientes",
-	"tog-newpageshidepatrolled": "Ocultar, de la lista de páginas nuevas, las páginas verificadas",
+	"tog-newpageshidepatrolled": "Ocultar la páginas verificadas de la lista de páginas nuevas.",
 	"tog-hidecategorization": "Ocultar la categorización de páginas",
 	"tog-extendwatchlist": "Mostrar todos los cambios en la lista de seguimiento, no solo los más recientes",
 	"tog-usenewrc": "Agrupar los cambios por página en cambios recientes y en la lista de seguimiento",
@@ -257,7 +258,7 @@
 	"tog-enotifrevealaddr": "Mostrar mi dirección de correo electrónico en los correos de notificación",
 	"tog-shownumberswatching": "Mostrar el número de usuarios que la vigilan",
 	"tog-oldsig": "Tu firma actual:",
-	"tog-fancysig": "Tratar la firma como wikitexto (sin un enlace automático a su página de {{usuario|usuaria}})",
+	"tog-fancysig": "Tratar la firma como wikitexto (sin un enlace automático a tu página de usuario)",
 	"tog-uselivepreview": "Mostrar previsualizaciones sin tener que recargar la página",
 	"tog-forceeditsummary": "Preguntarme cuando ingrese un resumen de edición en blanco (o el resumen de deshacer predeterminado)",
 	"tog-watchlisthideown": "Ocultar mis ediciones de la lista de seguimiento",

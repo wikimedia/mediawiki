@@ -25,7 +25,7 @@
 			"לערי ריינהארט",
 			"ديفيد",
 			"아라",
-			"McDutchie"
+			"Vipz"
 		]
 	},
 	"tog-underline": "Podvlačenje linkova:",
@@ -52,7 +52,7 @@
 	"tog-enotifrevealaddr": "Otkrij moju e-adresu u porukama obaviještenja",
 	"tog-shownumberswatching": "Prikaži broj korisnika koji prate",
 	"tog-oldsig": "Postojeći potpis:",
-	"tog-fancysig": "Smatraj potpis kao wikitekst (bez automatskog linka)",
+	"tog-fancysig": "Smatraj potpis kao wikitekst (bez automatskog linka ka tvojoj korisničkoj stranici)",
 	"tog-uselivepreview": "Prikazuj pregled bez ponovnog učitavanja stranice",
 	"tog-forceeditsummary": "Opomeni me pri unosu praznog sažetka (ili predodređenog sažetka pri uklanjanju izmjene)",
 	"tog-watchlisthideown": "Sakrij moje izmjene s praćenih",
@@ -3143,7 +3143,7 @@
 	"version-poweredby-translators": "translatewiki.net prevodioci",
 	"version-poweredby-various": "Različiti autori",
 	"version-credits-summary": "Htjeli bismo da zahvalimo sljedećim osobama na njihovom doprinosu [[Special:Version|MediaWiki]].",
-	"version-license-info": "Mediawiki je slobodni softver; možete ga redistribuirati i/ili mijenjati pod uslovima GNU-ove opće javne licence Fondacije slobodnog softvera; ili u verziji 2 Licence, ili nekoj od kasniji verzija (po vašoj volji).\n\nMediaWiki se nudi u nadi da će biti korisna, ali <em>BEZ IKAKVIH GARANCIJA</em>; čak i bez podrazumjevane garancije o <strong>KOMERCIJALNOSTI</strong> ili <strong>PRIKLADNOSTI ZA ODREĐENU SVRHU</strong>. Za više informacija, pogledajte GNU-ovu opću javnu licencu.\n\nZajedno s ovim programom trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/COPYING primjerak GNU-ove opće javne licence]; ako niste dobili primjerak, pišite na Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA ili je [//www.gnu.org/licenses/old-licenses/gpl-2.0.html pročitajte ovdje].",
+	"version-license-info": "MediaWiki je slobodni softver; možete ga redistribuirati i/ili mijenjati pod uslovima GNU-ove opće javne licence Fondacije slobodnog softvera; ili u verziji 2 Licence, ili nekoj od kasniji verzija (po vašoj volji).\n\nMediaWiki se nudi u nadi da će biti korisna, ali <em>BEZ IKAKVIH GARANCIJA</em>; čak i bez podrazumjevane garancije o <strong>KOMERCIJALNOSTI</strong> ili <strong>PRIKLADNOSTI ZA ODREĐENU SVRHU</strong>. Za više informacija, pogledajte GNU-ovu opću javnu licencu.\n\nZajedno s ovim programom trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/COPYING primjerak GNU-ove opće javne licence]; ako niste dobili primjerak, pišite na Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA ili je [//www.gnu.org/licenses/old-licenses/gpl-2.0.html pročitajte ovdje].",
 	"version-software": "Instalirani softver",
 	"version-software-product": "Proizvod",
 	"version-software-version": "Verzija",
@@ -3762,7 +3762,6 @@
 	"deflate-invaliddeflate": "Sadržaj nije ispravno pročišćen",
 	"unprotected-js": "JavaScript ne može da se učita sa nezaštićenih stranica iz bezbednosnih razloga. Samo napravite JavaScript u imenskom prostoru MediaWiki: ili kao korisničku podstranicu",
 	"userlogout-continue": "Želite se odjaviti?",
-	"view-view-foreign": "Vidi na $1",
 	"view-create-local": "Dodaj lokalni opis",
 	"nstab-mainpage": "Glavna stranica",
 	"view-edit-local": "Uredi lokalni opis",

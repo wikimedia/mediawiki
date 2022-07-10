@@ -5,7 +5,8 @@
 			"Macofe",
 			"Mohau",
 			"Urhixidur",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Tsenya mothalafase go dihlomaganyo:",
@@ -132,7 +133,7 @@
 	"action-unprotect": "Fetola go lota",
 	"unprotect": "Fetola go lota",
 	"newpage": "Letlakala le lempsha",
-	"talkpagelinktext": "Bolela",
+	"talkpagelinktext": "bolela",
 	"specialpage": "Matlaka a itšeng",
 	"personaltools": "Dithulusu tša gago (''personal'')",
 	"talk": "Poledišano",
@@ -860,7 +861,6 @@
 	"deletepage": "Phumula letlakala",
 	"searchsuggest-search": "Fetleka  {{SITENAME}}",
 	"expand_templates_output": "Phetho",
-	"view-view-foreign": "Leba go $1",
 	"skin-action-protect": "Lota",
 	"skin-action-delete": "Phumula",
 	"skin-action-move": "Huduša"

@@ -15,7 +15,8 @@
 			"Tagimata",
 			"Taylortheturtle",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Kuritan sa idalom ang mga tabid:",
@@ -175,7 +176,7 @@
 	"action-unprotect": "Dulaon ang pagpangapin",
 	"unprotect": "Dulaon ang pagpangapin",
 	"newpage": "Bag-o nga pahina",
-	"talkpagelinktext": "Hisayranay",
+	"talkpagelinktext": "hisayranay",
 	"specialpage": "Espesyal nga panid",
 	"personaltools": "Mga kinaugalingon nga galamiton",
 	"talk": "Paghisayranay",
@@ -1383,7 +1384,6 @@
 	"rightsnone": "(wala)",
 	"searchsuggest-search": "Pangitaa",
 	"expand_templates_preview": "Ipakita subong",
-	"view-view-foreign": "Lantawon sa $1",
 	"view-create-local": "Magdugang sg deskripsiyong lokal",
 	"nstab-mainpage": "Tigunang panid",
 	"skin-action-protect": "Pangapinan",

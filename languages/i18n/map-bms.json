@@ -12,7 +12,8 @@
 			"StefanusRA",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Garisen ngisoré pranala:",
@@ -181,7 +182,7 @@
 	"action-unprotect": "Owahi pangreksan",
 	"unprotect": "Owahi pangreksan",
 	"newpage": "Kaca anyar",
-	"talkpagelinktext": "Dopokan",
+	"talkpagelinktext": "dopokan",
 	"specialpage": "Kaca khusus",
 	"personaltools": "Piranti pribadi",
 	"talk": "bahas",
@@ -1369,7 +1370,6 @@
 	"tag-filter": "Filter [[Special:Tags|Tag]]:",
 	"rightsnone": "(ora ana)",
 	"searchsuggest-search": "Golet",
-	"view-view-foreign": "Deleng nang $1",
 	"view-create-local": "Tambahna pawedharan lokal",
 	"nstab-mainpage": "Kaca Utama",
 	"view-edit-local": "Sunting deskripsi lokal",

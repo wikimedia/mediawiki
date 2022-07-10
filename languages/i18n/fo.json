@@ -17,7 +17,8 @@
 			"Urhixidur",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Undirstrika leinki:",
@@ -179,7 +180,7 @@
 	"action-unprotect": "Broyt friðing",
 	"unprotect": "Broyt friðing",
 	"newpage": "Nýggj síða",
-	"talkpagelinktext": "Kjak",
+	"talkpagelinktext": "kjak",
 	"specialpage": "Serstøk síða",
 	"personaltools": "Persónlig amboð",
 	"talk": "Kjak",
@@ -2206,7 +2207,6 @@
 	"mw-widgets-mediasearch-input-placeholder": "Leita eftir miðli",
 	"mw-widgets-mediasearch-noresults": "Ongi úrslit funnin.",
 	"mw-widgets-titleinput-description-new-page": "síðan er ikki til enn",
-	"view-view-foreign": "Vís á $1",
 	"view-create-local": "Skriva lokala frágreiðing",
 	"nstab-mainpage": "Forsíða",
 	"view-edit-local": "Rætta lokala frágreiðing",

@@ -8,7 +8,8 @@
 			"Mashoi7",
 			"Matma Rex",
 			"Misosoof",
-			"Pyscowicz"
+			"Pyscowicz",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Linkien alleviivuamine:",
@@ -171,7 +172,7 @@
 	"action-unprotect": "Vaihta suojavustu",
 	"unprotect": "Vaihta suojavustu",
 	"newpage": "Uuzi sivu",
-	"talkpagelinktext": "Pagin",
+	"talkpagelinktext": "pagin",
 	"specialpage": "Erikoine sivu",
 	"personaltools": "Omat instrumentat",
 	"talk": "Paginat",
@@ -915,7 +916,6 @@
 	"mw-widgets-mediasearch-input-placeholder": "Eči syväindyö",
 	"mw-widgets-mediasearch-noresults": "Ei löydynyh tuloksii",
 	"mw-widgets-titleinput-description-new-page": "sivuu ei vie ole",
-	"view-view-foreign": "Kačo saital $1",
 	"view-create-local": "Ližiä paikalline kuvavus",
 	"nstab-mainpage": "Piäsivu",
 	"view-edit-local": "Kohendele paikallistu kuvavustu",

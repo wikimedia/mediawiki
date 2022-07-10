@@ -3,7 +3,8 @@
 		"authors": [
 			"D'AroemenenZullenNiVergaan",
 			"Dumitrachi T. Fundu",
-			"Hakka"
+			"Hakka",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Subliniadzâ ligâtura:",
@@ -160,7 +161,7 @@
 	"action-unprotect": "Alâxeaști protecția",
 	"unprotect": "Alâxeaști protecția",
 	"newpage": "Frânḑâ nauâ",
-	"talkpagelinktext": "Zburari",
+	"talkpagelinktext": "zburari",
 	"specialpage": "Frândzâ specialâ",
 	"personaltools": "Halatili a meali",
 	"talk": "Muabeț",
@@ -421,7 +422,6 @@
 	"imgmultigo": "Du-ti!",
 	"table_pager_limit_submit": "Du-ti",
 	"specialpages": "Frândzâ speciali",
-	"view-view-foreign": "Vedz la $1",
 	"view-create-local": "Adavgâ descrierea localâ",
 	"view-edit-local": "Alâxeaști descrierea localâ",
 	"skin-action-protect": "Apârâ"

@@ -83,13 +83,9 @@ Other paths will be set to defaults based on it unless they are directly
 set in LocalSettings.php
 
 # UsePathInfo {#UsePathInfo}
-Whether to support URLs like index.php/Page_title These often break when PHP
-is set up in CGI mode. PATH_INFO *may* be correct if cgi.fix_pathinfo is set,
-but then again it may not; lighttpd converts incoming path data to lowercase
-on systems with case-insensitive filesystems, and there have been reports of
-problems on Apache as well.
-
-To be safe we'll continue to keep it off by default.
+Whether to support URLs like index.php/Page_title.
+The effective default value is determined at runtime:
+it will be enabled in environments where it is expected to be safe.
 
 Override this to false if $_SERVER['PATH_INFO'] contains unexpectedly
 incorrect garbage, or to true if it is really correct.
@@ -702,7 +698,9 @@ Additional parameters are specific to the lock manager class used.
 These settings should be global to all wikis.
 
 # ShowEXIF {#ShowEXIF}
-Show Exif data, on by default if available.
+Whether to show Exif data.
+The effective default value is determined at runtime:
+enabled if PHP's EXIF extension module is loaded.
 
 Requires PHP's Exif extension: https://www.php.net/manual/en/ref.exif.php
 @note FOR WINDOWS USERS:

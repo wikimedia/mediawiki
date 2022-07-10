@@ -111,7 +111,8 @@
 			"Wolf Lambert",
 			"Xxmarijnw",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Elderson"
 		]
 	},
 	"tog-underline": "Links onderstrepen:",
@@ -829,7 +830,7 @@
 	"edit-slots-cannot-remove": "De volgende {{PLURAL:$1|sleuf is vereist en kan|sleuven zijn vereist en kunnen}} niet worden verwijderd: $2.",
 	"edit-slots-missing": "De volgende {{PLURAL:$1|sleuf ontbreekt|sleuven ontbreken}}: $2.",
 	"postedit-confirmation-created": "De pagina is aangemaakt.",
-	"postedit-confirmation-restored": "De pagina is hersteld.",
+	"postedit-confirmation-restored": "De pagina is teruggeplaatst.",
 	"postedit-confirmation-saved": "Uw bewerking is opgeslagen.",
 	"postedit-confirmation-published": "Uw bewerking is opgeslagen.",
 	"edit-already-exists": "De pagina is niet aangemaakt.\nDeze bestaat al.",
@@ -3952,7 +3953,7 @@
 	"log-action-filter-upload-upload": "Nieuwe upload",
 	"log-action-filter-upload-overwrite": "Herupload",
 	"log-action-filter-upload-revert": "Terugdraaiing",
-	"authmanager-authn-not-in-progress": "Verificatie is niet in behandeling, of de sessiegegevens zijn verloren gegaan. Start opnieuw vanaf het begin.",
+	"authmanager-authn-not-in-progress": "De authenticatie is niet in behandeling, of de sessiegegevens zijn verloren gegaan. Begin opnieuw.",
 	"authmanager-authn-no-primary": "De ingevoerde inloggegevens kunnen niet worden geverifieerd.",
 	"authmanager-authn-no-local-user": "De ingevoerde inloggegevens zijn niet gekoppeld aan een gebruiker op deze wiki.",
 	"authmanager-authn-no-local-user-link": "De ingevoerde inloggegevens zijn geldig, maar zijn niet gekoppeld aan een gebruiker op deze wiki. Meld u op een andere manier aan, of maak een nieuw account aan, en u krijgt een optie om uw eerdere inloggegevens aan dat account te koppelen.",
@@ -3983,7 +3984,7 @@
 	"authprovider-confirmlink-request-label": "Accounts die aan elkaar gekoppeld moeten worden.",
 	"authprovider-confirmlink-success-line": "$1: Succesvol gekoppeld.",
 	"authprovider-confirmlink-failed": "Het koppelen van accounts is niet volledig gelukt: $1",
-	"authprovider-confirmlink-ok-help": "Doorgaan na het weergeven van de storingsmeldingen over het koppelen.",
+	"authprovider-confirmlink-ok-help": "Doorgaan na het weergeven van foutmeldingen over het koppelen.",
 	"authprovider-resetpass-skip-label": "Overslaan",
 	"authprovider-resetpass-skip-help": "Sla het resetten van het wachtwoord over.",
 	"authform-nosession-login": "De verificatie is geslaagd, maar uw browser heeft niet \"onthouden\" ingelogd te zijn.\n\n$1",

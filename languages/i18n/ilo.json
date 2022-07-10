@@ -11,7 +11,8 @@
 			"Saluyot",
 			"Urhixidur",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Pinag-ugisan ti silpo:",
@@ -181,7 +182,7 @@
 	"action-unprotect": "Sukatan ti salaknib",
 	"unprotect": "Sukatan ti salaknib",
 	"newpage": "Baro a panid",
-	"talkpagelinktext": "Tungtungan",
+	"talkpagelinktext": "tungtungan",
 	"specialpage": "Espesial a panid",
 	"personaltools": "Bukod a ramramit",
 	"talk": "Pagtungtungan",
@@ -3584,7 +3585,6 @@
 	"paramvalidator-help-type-user-subtype-cidr": "Sakup ti IP",
 	"paramvalidator-help-type-user-subtype-interwiki": "nagan ti interwiki (kas ti \"prefix>ExampleName\")",
 	"paramvalidator-help-type-user-subtype-id": "ID ti agar-aramat (kas ti \"#12345\")",
-	"view-view-foreign": "Kitaen iti $1",
 	"view-create-local": "Agnayon iti lokal a deskripsion",
 	"nstab-mainpage": "Umuna a Panid",
 	"view-edit-local": "Urnosen ti lokal a deskripsion",

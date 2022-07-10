@@ -26,7 +26,8 @@
 			"Vlad5250",
 			"Xxglennxx",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Tanlinellu cysylltiadau:",
@@ -198,7 +199,7 @@
 	"action-unprotect": "Newid y diogelwch",
 	"unprotect": "Newid y diogelwch",
 	"newpage": "Tudalen newydd",
-	"talkpagelinktext": "Sgwrs",
+	"talkpagelinktext": "sgwrs",
 	"specialpage": "Tudalen Arbennig",
 	"personaltools": "Offer personol",
 	"talk": "Sgwrs",
@@ -3143,7 +3144,6 @@
 	"authmanager-realname-help": "Enw cywir y defnyddiwr",
 	"authmanager-provider-temporarypassword": "Cyfrinair dros-dro",
 	"credentialsform-account": "Enw'r cyfri:",
-	"view-view-foreign": "Gweld ar $1",
 	"view-create-local": "Ychwanegu disgrifiad ar y wici hwn",
 	"nstab-mainpage": "Hafan",
 	"view-edit-local": "Golygu'r disgrifiad ar y wici hwn",

@@ -274,6 +274,16 @@ if ( $wgLoadScript === false ) {
 if ( $wgRestPath === false ) {
 	$wgRestPath = "$wgScriptPath/rest.php";
 }
+if ( $wgUsePathInfo === null ) {
+	// These often break when PHP is set up in CGI mode.
+	// PATH_INFO *may* be correct if cgi.fix_pathinfo is set, but then again it may not;
+	// lighttpd converts incoming path data to lowercase on systems
+	// with case-insensitive filesystems, and there have been reports of
+	// problems on Apache as well.
+	$wgUsePathInfo = ( strpos( PHP_SAPI, 'cgi' ) === false ) &&
+		( strpos( PHP_SAPI, 'apache2filter' ) === false ) &&
+		( strpos( PHP_SAPI, 'isapi' ) === false );
+}
 if ( $wgArticlePath === false ) {
 	if ( $wgUsePathInfo ) {
 		$wgArticlePath = "$wgScript/$1";
@@ -420,6 +430,13 @@ $wgLockManagers[] = [
 	'name' => 'nullLockManager',
 	'class' => NullLockManager::class,
 ];
+
+/**
+ * Determine whether EXIF info can be shown
+ */
+if ( $wgShowEXIF === null ) {
+	$wgShowEXIF = function_exists( 'exif_read_data' );
+}
 
 /**
  * Default parameters for the "<gallery>" tag.
