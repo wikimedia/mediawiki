@@ -87,9 +87,10 @@ final class EnqueueJob extends Job implements GenericParameterJob {
 	/**
 	 * @param array $jobsByWiki
 	 * @return EnqueueJob
-	 * @deprecated Since 1.33; use newFromJobsByDomain()
+	 * @deprecated Since 1.33; use newFromJobsByDomain(). Hard deprecated since 1.39.
 	 */
 	public static function newFromJobsByWiki( array $jobsByWiki ) {
+		wfDeprecated( __METHOD__, '1.33' );
 		return self::newFromJobsByDomain( $jobsByWiki );
 	}
 
