@@ -95,6 +95,44 @@
 				}
 			}
 		},
+		"suggests": {
+			"type": "object",
+			"description": "Indicates what versions of PHP and MediaWiki extensions or skins are optional suggestions. This syntax may be extended in the future, for example to check dependencies between other services.",
+			"additionalProperties": false,
+			"properties": {
+				"platform": {
+					"type": "object",
+					"description": "Indicates optional version constraints against platform services.",
+					"additionalProperties": false,
+					"properties": {
+						"php": {
+							"type": "string",
+							"description": "Optional version constraint string against PHP."
+						},
+						"ability-shell": {
+							"type": "boolean",
+							"default": false,
+							"description": "Whether this extension requires shell access."
+						}
+					},
+					"patternProperties": {
+						"^ext-": {
+							"type": "string",
+							"description": "Optional PHP extension.",
+							"enum": ["*"]
+						}
+					}
+				},
+				"extensions": {
+					"type": "object",
+					"description": "Set of optional version constraint strings against specific extensions."
+				},
+				"skins": {
+					"type": "object",
+					"description": "Set of optional version constraint strings against specific skins."
+				}
+			}
+		},
 		"dev-requires": {
 			"type": "object",
 			"description": "Indicates what dependencies are required for development purposes such as running tests. This syntax may be extended in the future.",
