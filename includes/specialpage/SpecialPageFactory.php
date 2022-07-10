@@ -413,6 +413,8 @@ class SpecialPageFactory {
 				'PasswordFactory',
 				'AuthManager',
 				'CentralIdLookup',
+				'GrantsInfo',
+				'GrantsLocalization',
 			]
 		],
 		'PasswordReset' => [
