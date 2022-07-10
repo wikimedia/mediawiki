@@ -469,7 +469,7 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 
 		$this->assertSame(
 			'test <a href="/index.php/User:AlwaysKnownFoo" title="User:AlwaysKnownFoo">User:AlwaysKnownFoo</a>',
-			 $result
+			$result
 		);
 	}
 

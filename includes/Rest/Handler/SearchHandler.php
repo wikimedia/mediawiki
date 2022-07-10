@@ -408,11 +408,11 @@ class SearchHandler extends Handler {
 			// Type-ahead completion matches should be cached by the client and
 			// in the CDN, especially for short prefixes.
 			// See also $wgSearchSuggestCacheExpiry and ApiOpenSearch
-			 if ( $this->permissionManager->isEveryoneAllowed( 'read' ) ) {
+			if ( $this->permissionManager->isEveryoneAllowed( 'read' ) ) {
 				$response->setHeader( 'Cache-Control', 'public, max-age=' . $this->completionCacheExpiry );
-			 } else {
-				 $response->setHeader( 'Cache-Control', 'no-store, max-age=0' );
-			 }
+			} else {
+				$response->setHeader( 'Cache-Control', 'no-store, max-age=0' );
+			}
 		}
 
 		return $response;

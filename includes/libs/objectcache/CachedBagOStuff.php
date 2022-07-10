@@ -122,10 +122,10 @@ class CachedBagOStuff extends BagOStuff {
 		}
 
 		return $this->store->proxyCall(
-			 __FUNCTION__,
-			 self::ARG0_KEY,
-			 self::RES_NONKEY,
-			 func_get_args(),
+			__FUNCTION__,
+			self::ARG0_KEY,
+			self::RES_NONKEY,
+			func_get_args(),
 			$this
 		);
 	}
@@ -146,10 +146,10 @@ class CachedBagOStuff extends BagOStuff {
 		$this->procCache->delete( $key );
 
 		return $this->store->proxyCall(
-			 __FUNCTION__,
-			 self::ARG0_KEY,
-			  self::RES_NONKEY,
-			  func_get_args(),
+			__FUNCTION__,
+			self::ARG0_KEY,
+			self::RES_NONKEY,
+			func_get_args(),
 			$this
 		);
 	}
@@ -228,10 +228,10 @@ class CachedBagOStuff extends BagOStuff {
 		}
 
 		return $this->store->proxyCall(
-			 __FUNCTION__,
-			 self::ARG0_KEYMAP,
-			 self::RES_NONKEY,
-			 func_get_args(),
+			__FUNCTION__,
+			self::ARG0_KEYMAP,
+			self::RES_NONKEY,
+			func_get_args(),
 			$this
 		);
 	}
@@ -245,9 +245,9 @@ class CachedBagOStuff extends BagOStuff {
 
 		return $this->store->proxyCall(
 			__FUNCTION__,
-			 self::ARG0_KEYARR,
-			 self::RES_NONKEY,
-			 func_get_args(),
+			self::ARG0_KEYARR,
+			self::RES_NONKEY,
+			func_get_args(),
 			$this
 		);
 	}
@@ -260,10 +260,10 @@ class CachedBagOStuff extends BagOStuff {
 		}
 
 		return $this->store->proxyCall(
-			 __FUNCTION__,
-			 self::ARG0_KEYARR,
-			 self::RES_NONKEY,
-			 func_get_args(),
+			__FUNCTION__,
+			self::ARG0_KEYARR,
+			self::RES_NONKEY,
+			func_get_args(),
 			$this
 		);
 	}
@@ -272,8 +272,8 @@ class CachedBagOStuff extends BagOStuff {
 		$this->procCache->delete( $key );
 
 		return $this->store->proxyCall(
-			 __FUNCTION__,
-			  self::ARG0_KEY,
+			__FUNCTION__,
+			self::ARG0_KEY,
 			self::RES_NONKEY,
 			func_get_args(),
 			$this
@@ -284,10 +284,10 @@ class CachedBagOStuff extends BagOStuff {
 		$this->procCache->delete( $key );
 
 		return $this->store->proxyCall(
-			 __FUNCTION__,
-			 self::ARG0_KEY,
-			 self::RES_NONKEY,
-			 func_get_args(),
+			__FUNCTION__,
+			self::ARG0_KEY,
+			self::RES_NONKEY,
+			func_get_args(),
 			$this
 		);
 	}
@@ -296,10 +296,10 @@ class CachedBagOStuff extends BagOStuff {
 		$this->procCache->delete( $key );
 
 		return $this->store->proxyCall(
-			 __FUNCTION__,
-			 self::ARG0_KEY,
-			 self::RES_NONKEY,
-			 func_get_args(),
+			__FUNCTION__,
+			self::ARG0_KEY,
+			self::RES_NONKEY,
+			func_get_args(),
 			$this
 		);
 	}

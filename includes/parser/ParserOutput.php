@@ -986,9 +986,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// @todo: these aren't serialized/unserialized
 		$this->mWarningMsgs[$msg] = $args;
 		$s = wfMessage( $msg, ...$args )
-		   // some callers set the title here?
-		   ->inContentLanguage() // because this ends up in cache
-		   ->text();
+			// some callers set the title here?
+			->inContentLanguage() // because this ends up in cache
+			->text();
 		$this->mWarnings[$s] = 1;
 	}
 
