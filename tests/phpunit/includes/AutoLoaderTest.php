@@ -71,10 +71,13 @@ class AutoLoaderTest extends MediaWikiIntegrationTestCase {
 	public function testWrongCaseSerializedClass() {
 		$this->setMwGlobals( 'wgAutoloadAttemptLowercase', true );
 
-		$dummyCereal = 'O:29:"testautoloadedserializedclass":0:{}';
-		$uncerealized = unserialize( $dummyCereal );
-		$this->assertFalse( $uncerealized instanceof __PHP_Incomplete_Class,
-			"unserialize() can load classes case-insensitively." );
+		$dummySer = 'O:29:"testautoloadedserializedclass":0:{}';
+		$dummy = unserialize( $dummySer );
+		$this->assertSame(
+			get_class( $dummy ),
+			TestAutoloadedSerializedClass::class,
+			'load class case-insensitively'
+		);
 	}
 
 	public function testPsr4() {
