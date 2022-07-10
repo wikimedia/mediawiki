@@ -871,7 +871,7 @@ class DatabaseSqlite extends Database {
 					'CREATE TABLE',
 					'CREATE TEMPORARY TABLE',
 					$sqlCreateTable
-				 );
+				);
 			}
 		}
 

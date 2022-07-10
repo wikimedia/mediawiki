@@ -77,7 +77,7 @@ class ParsoidTestFileSuite extends TestSuite {
 
 			// Add a "selser-auto-composite" composite test
 			if ( in_array( 'selser', $testModes ) &&
-				 ( $runnerOpts['selser'] ?? null ) !== 'noauto' &&
+				( $runnerOpts['selser'] ?? null ) !== 'noauto' &&
 				( $t->options['parsoid']['selser'] ?? null ) !== 'noauto'
 			) {
 				$mode = new ParserTestMode( 'selser-auto-composite', $runnerOpts['changetree'] ?? null );

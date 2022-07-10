@@ -1261,7 +1261,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			$mockContLang = $this->createMock( Language::class );
 			$mockContLang
 				->method( 'convertHtml' )
-				  ->willReturnArgument( 0 );
+				->willReturnArgument( 0 );
 
 			$mockLanguageConverter = $this
 				->createMock( ILanguageConverter::class );

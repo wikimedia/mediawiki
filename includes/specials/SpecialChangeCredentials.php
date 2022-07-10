@@ -265,7 +265,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 				Html::successBox(
 					$out->msg( static::$messagePrefix . '-success' )->parse()
 				)
-			 );
+			);
 			$out->returnToMain();
 		}
 	}
