@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MainConfigNames;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -36,7 +38,6 @@ class ClearInterwikiCache extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgLocalDatabases;
 		$dbr = $this->getDB( DB_REPLICA );
 		$cache = ObjectCache::getLocalClusterInstance();
 		$res = $dbr->select( 'interwiki', [ 'iw_prefix' ], '', __METHOD__ );
@@ -45,7 +46,7 @@ class ClearInterwikiCache extends Maintenance {
 			$prefixes[] = $row->iw_prefix;
 		}
 
-		foreach ( $wgLocalDatabases as $wikiId ) {
+		foreach ( $this->getConfig()->get( MainConfigNames::LocalDatabases ) as $wikiId ) {
 			$this->output( "$wikiId..." );
 			foreach ( $prefixes as $prefix ) {
 				$cache->delete( "$wikiId:interwiki:$prefix" );

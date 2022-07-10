@@ -34,6 +34,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 class ImportImages extends Maintenance {
@@ -125,8 +126,6 @@ class ImportImages extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgFileExtensions, $wgRestrictionLevels;
-
 		$services = MediaWikiServices::getInstance();
 		$permissionManager = $services->getPermissionManager();
 
@@ -148,7 +147,7 @@ class ImportImages extends Maintenance {
 		# Prepare the list of allowed extensions
 		$extensions = $this->hasOption( 'extensions' )
 			? explode( ',', strtolower( $this->getOption( 'extensions' ) ) )
-			: $wgFileExtensions;
+			: $this->getConfig()->get( MainConfigNames::FileExtensions );
 
 		# Search the path provided for candidates for import
 		$files = $this->findFiles( $dir, $extensions, $this->hasOption( 'search-recursively' ) );
@@ -364,8 +363,9 @@ class ImportImages extends Maintenance {
 					$doProtect = false;
 
 					$protectLevel = $this->getOption( 'protect' );
+					$restrictionLevels = $this->getConfig()->get( MainConfigNames::RestrictionLevels );
 
-					if ( $protectLevel && in_array( $protectLevel, $wgRestrictionLevels ) ) {
+					if ( $protectLevel && in_array( $protectLevel, $restrictionLevels ) ) {
 						$doProtect = true;
 					}
 					if ( $this->hasOption( 'unprotect' ) ) {

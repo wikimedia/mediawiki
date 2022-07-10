@@ -22,6 +22,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MainConfigNames;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -45,14 +47,15 @@ class McTest extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgObjectCaches, $wgMainCacheType;
+		$config = $this->getConfig();
+		$objectCaches = $config->get( MainConfigNames::ObjectCaches );
 
-		$cacheType = $this->getOption( 'cache', $wgMainCacheType );
+		$cacheType = $this->getOption( 'cache', $config->get( MainConfigNames::MainCacheType ) );
 		$iterations = $this->getOption( 'i', 100 );
 		$classOverride = $this->getOption( 'class' );
 		$server = $this->getArg( 0 );
 
-		if ( !isset( $wgObjectCaches[$cacheType] ) ) {
+		if ( !isset( $objectCaches[$cacheType] ) ) {
 			$this->fatalError( "No configured '$cacheType' cache" );
 		}
 
@@ -62,14 +65,14 @@ class McTest extends Maintenance {
 			}
 			$class = $classOverride;
 		} else {
-			$class = $wgObjectCaches[$cacheType]['class'];
+			$class = $objectCaches[$cacheType]['class'];
 		}
 
 		if ( $server !== null ) {
 			$servers = [ $server ];
 		} else {
 			// Note that some caches, like apcu, do not have a server list
-			$servers = $wgObjectCaches[$cacheType]['servers'] ?? [ null ];
+			$servers = $objectCaches[$cacheType]['servers'] ?? [ null ];
 		}
 
 		// Use longest server string for output alignment
@@ -79,7 +82,7 @@ class McTest extends Maintenance {
 		/** @var BagOStuff[] $cacheByServer */
 		$cacheByServer = [];
 		foreach ( $servers as $server ) {
-			$conf = $wgObjectCaches[$cacheType];
+			$conf = $objectCaches[$cacheType];
 			if ( $server !== null ) {
 				$conf['servers'] = [ $server ];
 				$host = $server;

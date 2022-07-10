@@ -23,6 +23,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MainConfigNames;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -42,7 +44,7 @@ class RenameDbPrefix extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgDBname;
+		$dbName = $this->getConfig()->get( MainConfigNames::DBname );
 
 		// Allow for no old prefix
 		if ( $this->getOption( 'old', 0 ) === '0' ) {
@@ -68,7 +70,7 @@ class RenameDbPrefix extends Maintenance {
 			$this->output( "Same prefix. Nothing to rename!\n", true );
 		}
 
-		$this->output( "Renaming DB prefix for tables of $wgDBname from '$old' to '$new'\n" );
+		$this->output( "Renaming DB prefix for tables of $dbName from '$old' to '$new'\n" );
 		$count = 0;
 
 		$dbw = $this->getDB( DB_PRIMARY );
