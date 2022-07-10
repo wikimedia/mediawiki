@@ -77,7 +77,7 @@
 		"wikimedia/timestamp": "4.0.0",
 		"wikimedia/wait-condition-loop": "2.0.2",
 		"wikimedia/wrappedstring": "4.0.1",
-		"wikimedia/xmp-reader": "0.8.2",
+		"wikimedia/xmp-reader": "0.8.3",
 		"zordius/lightncandy": "1.2.6"
 	},
 	"require-dev": {
