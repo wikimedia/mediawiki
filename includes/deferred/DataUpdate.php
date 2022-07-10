@@ -78,9 +78,10 @@ abstract class DataUpdate implements DeferrableUpdate {
 	 *
 	 * @param DataUpdate[] $updates A list of DataUpdate instances
 	 * @throws Exception
-	 * @deprecated Since 1.28 Use DeferredUpdates::execute()
+	 * @deprecated Since 1.28 Use DeferredUpdates::execute(). Hard deprecated since 1.39.
 	 */
 	public static function runUpdates( array $updates ) {
+		wfDeprecated( __METHOD__, '1.28' );
 		foreach ( $updates as $update ) {
 			$update->doUpdate();
 		}

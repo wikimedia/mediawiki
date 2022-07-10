@@ -74,9 +74,10 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * @param string[] $urls
 	 *
 	 * @return CdnCacheUpdate
-	 * @deprecated Since 1.35 Use HtmlCacheUpdater instead
+	 * @deprecated Since 1.35 Use HtmlCacheUpdater instead. Hard deprecated since 1.39.
 	 */
 	public static function newFromTitles( $pages, $urls = [] ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return new CdnCacheUpdate( array_merge( $pages, $urls ) );
 	}
 
