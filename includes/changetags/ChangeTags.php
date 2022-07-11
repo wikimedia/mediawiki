@@ -781,7 +781,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function updateTagsWithChecks( $tagsToAdd, $tagsToRemove,
-		$rc_id, $rev_id, $log_id, $params, $reason, Authority $performer
+		$rc_id, $rev_id, $log_id, $params, string $reason, Authority $performer
 	) {
 		if ( $tagsToAdd === null ) {
 			$tagsToAdd = [];
@@ -1180,7 +1180,7 @@ class ChangeTags {
 	 * @return int ID of the inserted log entry
 	 * @since 1.25
 	 */
-	protected static function logTagManagementAction( $action, $tag, $reason,
+	protected static function logTagManagementAction( string $action, string $tag, string $reason,
 		UserIdentity $user, $tagCount = null, array $logEntryTags = []
 	) {
 		$dbw = wfGetDB( DB_PRIMARY );
@@ -1261,8 +1261,8 @@ class ChangeTags {
 	 * entry as its value
 	 * @since 1.25
 	 */
-	public static function activateTagWithChecks( $tag, $reason, Authority $performer,
-		$ignoreWarnings = false, array $logEntryTags = []
+	public static function activateTagWithChecks( string $tag, string $reason, Authority $performer,
+		bool $ignoreWarnings = false, array $logEntryTags = []
 	) {
 		// are we allowed to do this?
 		$result = self::canActivateTag( $tag, $performer );
@@ -1328,8 +1328,8 @@ class ChangeTags {
 	 * entry as its value
 	 * @since 1.25
 	 */
-	public static function deactivateTagWithChecks( $tag, $reason, Authority $performer,
-		$ignoreWarnings = false, array $logEntryTags = []
+	public static function deactivateTagWithChecks( string $tag, string $reason, Authority $performer,
+		bool $ignoreWarnings = false, array $logEntryTags = []
 	) {
 		// are we allowed to do this?
 		$result = self::canDeactivateTag( $tag, $performer );
@@ -1443,8 +1443,8 @@ class ChangeTags {
 	 * entry as its value
 	 * @since 1.25
 	 */
-	public static function createTagWithChecks( $tag, $reason, Authority $performer,
-		$ignoreWarnings = false, array $logEntryTags = []
+	public static function createTagWithChecks( string $tag, string $reason, Authority $performer,
+		bool $ignoreWarnings = false, array $logEntryTags = []
 	) {
 		// are we allowed to do this?
 		$result = self::canCreateTag( $tag, $performer );
@@ -1576,8 +1576,8 @@ class ChangeTags {
 	 * entry as its value
 	 * @since 1.25
 	 */
-	public static function deleteTagWithChecks( $tag, $reason, Authority $performer,
-		$ignoreWarnings = false, array $logEntryTags = []
+	public static function deleteTagWithChecks( string $tag, string $reason, Authority $performer,
+		bool $ignoreWarnings = false, array $logEntryTags = []
 	) {
 		// are we allowed to do this?
 		$result = self::canDeleteTag( $tag, $performer );
