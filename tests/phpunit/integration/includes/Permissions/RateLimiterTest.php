@@ -42,6 +42,8 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers ::limit
+	 * @covers ::__construct
+	 * @covers ::getConditions
 	 * @covers \Wikimedia\WRStats\WRStatsFactory
 	 * @covers \Wikimedia\WRStats\BagOStuffStatsStore
 	 */
@@ -135,7 +137,8 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Permissions\RateLimiter::limit
+	 * @covers ::limit
+	 * @covers ::getConditions
 	 */
 	public function testPingLimiterWithStaleCache() {
 		$limits = [
@@ -255,7 +258,7 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideIsPingLimitable() {
+	public function provideIsExempt() {
 		$user = new UserIdentityValue( 123, 'Foo' );
 
 		yield 'IP not excluded'
@@ -273,7 +276,7 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideIsPingLimitable
+	 * @dataProvider provideIsExempt
 	 * @covers ::isExempt
 	 *
 	 * @param array $rateLimitExcludeIps
@@ -361,6 +364,60 @@ class RateLimiterTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $limiter->limit( $user1, 'edit' ) );
 		$this->assertFalse( $limiter->limit( $user2, 'edit' ) );
 		$this->assertTrue( $limiter->limit( $user3, 'edit' ) );
+	}
+
+	/**
+	 * Test that '&can-bypass' can be used to impose limits on users
+	 * who are otherwise exempt from limits.
+	 *
+	 * @covers ::limit
+	 */
+	public function testCanBypass() {
+		$limits = [
+			'edit' => [
+				'user' => [ 1, 60 ],
+			],
+			'delete' => [
+				'&can-bypass' => false,
+				'user' => [ 1, 60 ],
+			],
+		];
+
+		$user = new RateLimitSubject(
+			new UserIdentityValue( 7, 'Garth' ),
+			'127.0.0.1',
+			[ RateLimitSubject::EXEMPT => true ]
+		);
+
+		$limiter = $this->newRateLimiter( $limits, [] );
+		$this->assertFalse( $limiter->limit( $user, 'edit' ) );
+		$this->assertFalse( $limiter->limit( $user, 'delete' ) );
+
+		$this->assertFalse( $limiter->limit( $user, 'edit' ), 'bypass should be granted' );
+		$this->assertTrue( $limiter->limit( $user, 'delete' ), 'bypass should be denied' );
+	}
+
+	/**
+	 * Test that the most permissive limit is used when a limit is defined for
+	 * multiple groups a user belongs to.
+	 *
+	 * @covers ::limit
+	 */
+	public function testGroupLimits() {
+		$limits = [
+			'edit' => [
+				'user' => [ 1, 60 ],
+				'autoconfirmed' => [ 2, 60 ],
+			],
+		];
+
+		$user = $this->getTestUser( [ 'autoconfirmed' ] )->getUser();
+		$user = new RateLimitSubject( $user, '127.0.0.1', [] );
+
+		$limiter = $this->newRateLimiter( $limits, [] );
+		$this->assertFalse( $limiter->limit( $user, 'edit' ) );
+		$this->assertFalse( $limiter->limit( $user, 'edit' ), 'limit for autoconfirmed used' );
+		$this->assertTrue( $limiter->limit( $user, 'edit' ), 'limit for autoconfirmed exceeded' );
 	}
 
 }
