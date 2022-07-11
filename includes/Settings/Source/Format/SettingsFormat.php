@@ -10,7 +10,7 @@ use UnexpectedValueException;
  * source contents into settings arrays.
  *
  * @since 1.38
- * @todo mark as stable before the 1.38 release
+ * @stable to implement
  */
 interface SettingsFormat extends Stringable {
 	/**

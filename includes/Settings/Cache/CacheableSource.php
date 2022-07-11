@@ -9,7 +9,7 @@ use MediaWiki\Settings\Source\SettingsSource;
  * (enough) and deterministic hash key for cache indexing.
  *
  * @since 1.38
- * @todo mark as stable before the 1.38 release
+ * @stable to implement
  */
 interface CacheableSource extends SettingsSource {
 	/**

@@ -11,7 +11,7 @@ use MediaWiki\Settings\SettingsBuilderException;
  * specified relative to the location of that file.
  *
  * @since 1.38
- * @todo mark as stable before the 1.38 release
+ * @stable to implement
  */
 interface SettingsIncludeLocator {
 
