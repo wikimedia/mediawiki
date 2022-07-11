@@ -2817,5 +2817,9 @@
 	"skin-action-protect": "ကာကွယ်ပါ",
 	"skin-action-undelete": "မဖျက်တော့ရန်",
 	"skin-action-delete": "ဖျက်​ပါ​",
-	"skin-action-move": "ရွှေ့ပါ"
+	"skin-action-move": "ရွှေ့ပါ",
+	"newpages-showhide-bots": "ဘော့များ $1ရန်",
+	"newpages-showhide-patrolled": "စောင့်ကြပ်တည်းဖြတ်မှုများ $1ရန်",
+	"newpages-showhide-redirect": "ပြန်ညွှန်းများ $1ရန်",
+	"newpages-showhide-registered": "မှတ်ပုံတင်ထားသော အသုံးပြုသူများ $1ရန်"
 }
