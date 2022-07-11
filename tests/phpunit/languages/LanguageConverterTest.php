@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 
@@ -28,9 +29,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		parent::setUp();
 		$this->setContentLang( 'tg' );
 
-		$this->setMwGlobals( [
-			'wgDefaultLanguageVariant' => false,
-		] );
+		$this->overrideConfigValue( MainConfigNames::DefaultLanguageVariant, false );
 		$this->setContextUser( new User );
 
 		$this->lang = $this->createMock( Language::class );
@@ -155,9 +154,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @covers LanguageConverter::getPreferredVariant
 	 */
 	public function testGetPreferredVariantDefaultLanguageVariant( $globalVal, $expected ) {
-		global $wgDefaultLanguageVariant;
-
-		$wgDefaultLanguageVariant = $globalVal;
+		$this->overrideConfigValue( MainConfigNames::DefaultLanguageVariant, $globalVal );
 		$this->assertEquals( $expected, $this->lc->getPreferredVariant() );
 	}
 

@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Maintenance;
 
 use CloneDatabase;
 use DumpBackup;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use WikiExporter;
@@ -118,9 +119,9 @@ class BackupDumperPageTest extends DumpTestCase {
 
 		// Performing the dump. Suppress warnings, since we want to test
 		// accessing broken revision data (page 5).
-		$this->setMwGlobals( 'wgDevelopmentWarnings', false );
+		$this->overrideConfigValue( MainConfigNames::DevelopmentWarnings, false );
 		$dumper->execute();
-		$this->setMwGlobals( 'wgDevelopmentWarnings', true );
+		$this->overrideConfigValue( MainConfigNames::DevelopmentWarnings, true );
 
 		// Checking syntax and schema
 		$this->assertDumpSchema( $tmpFile, $this->getXmlSchemaPath( $schemaVersion ) );
@@ -163,9 +164,9 @@ class BackupDumperPageTest extends DumpTestCase {
 
 		// Performing the dump. Suppress warnings, since we want to test
 		// accessing broken revision data (page 5).
-		$this->setMwGlobals( 'wgDevelopmentWarnings', false );
+		$this->overrideConfigValue( MainConfigNames::DevelopmentWarnings, false );
 		$dumper->execute();
-		$this->setMwGlobals( 'wgDevelopmentWarnings', true );
+		$this->overrideConfigValue( MainConfigNames::DevelopmentWarnings, true );
 
 		// Checking the dumped data
 		$this->assertDumpSchema( $tmpFile, $this->getXmlSchemaPath( $schemaVersion ) );
@@ -200,9 +201,9 @@ class BackupDumperPageTest extends DumpTestCase {
 
 		// Performing the dump. Suppress warnings, since we want to test
 		// accessing broken revision data (page 5).
-		$this->setMwGlobals( 'wgDevelopmentWarnings', false );
+		$this->overrideConfigValue( MainConfigNames::DevelopmentWarnings, false );
 		$dumper->dump( WikiExporter::CURRENT, WikiExporter::STUB );
-		$this->setMwGlobals( 'wgDevelopmentWarnings', true );
+		$this->overrideConfigValue( MainConfigNames::DevelopmentWarnings, true );
 
 		// Checking the dumped data
 		$this->assertDumpSchema( $tmpFile, $this->getXmlSchemaPath( $schemaVersion ) );
@@ -238,9 +239,9 @@ class BackupDumperPageTest extends DumpTestCase {
 
 		// Performing the dump. Suppress warnings, since we want to test
 		// accessing broken revision data (page 5).
-		$this->setMwGlobals( 'wgDevelopmentWarnings', false );
+		$this->overrideConfigValue( MainConfigNames::DevelopmentWarnings, false );
 		$dumper->dump( WikiExporter::CURRENT, WikiExporter::STUB );
-		$this->setMwGlobals( 'wgDevelopmentWarnings', true );
+		$this->overrideConfigValue( MainConfigNames::DevelopmentWarnings, true );
 
 		// Checking the dumped data
 		$this->gunzip( $tmpFile );
@@ -311,9 +312,9 @@ class BackupDumperPageTest extends DumpTestCase {
 
 		// Performing the dump. Suppress warnings, since we want to test
 		// accessing broken revision data (page 5).
-		$this->setMwGlobals( 'wgDevelopmentWarnings', false );
+		$this->overrideConfigValue( MainConfigNames::DevelopmentWarnings, false );
 		$dumper->dump( WikiExporter::FULL, WikiExporter::STUB );
-		$this->setMwGlobals( 'wgDevelopmentWarnings', true );
+		$this->overrideConfigValue( MainConfigNames::DevelopmentWarnings, true );
 
 		$this->assertTrue( fclose( $dumper->stderr ), "Closing stderr handle" );
 		$this->assertNotEmpty( file_get_contents( $fnameReport ) );

@@ -11,6 +11,7 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Session\SessionId;
@@ -55,18 +56,15 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$localZone = 'UTC';
 		$localOffset = date( 'Z' ) / 60;
 
-		$this->setMwGlobals( [
-			'wgLocaltimezone' => $localZone,
-			'wgLocalTZoffset' => $localOffset,
-			'wgNamespaceProtection' => [
-				NS_MEDIAWIKI => 'editinterface',
-			],
-			'wgRevokePermissions' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::Localtimezone => $localZone,
+			MainConfigNames::LocalTZoffset => $localOffset,
+			MainConfigNames::RevokePermissions => [
 				'formertesters' => [
 					'runtest' => true
 				]
 			],
-			'wgAvailableRights' => [
+			MainConfigNames::AvailableRights => [
 				'test',
 				'runtest',
 				'writetest',
@@ -172,6 +170,10 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->setTitle( $namespace );
 
 		$this->mergeMwGlobalArrayValue( 'wgNamespaceProtection', $namespaceProtection );
+		$this->overrideConfigValue(
+			'NamespaceProtection',
+			$namespaceProtection + [ NS_MEDIAWIKI => 'editinterface' ]
+		);
 
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
 
@@ -416,8 +418,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	}
 
 	public function testAutocreatePermissionsHack() {
-		$this->setMwGlobals( [
-			'wgAutoCreateTempUser' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::AutoCreateTempUser => [
 				'enabled' => true,
 				'actions' => [ 'edit' ],
 				'serialProvider' => [ 'type' => 'local' ],
@@ -425,7 +427,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				'matchPattern' => '*Unregistered $1',
 				'genPattern' => '*Unregistered $1'
 			],
-			'wgGroupPermissions' => [
+			MainConfigNames::GroupPermissions => [
 				'*' => [ 'edit' => false ],
 				'user' => [ 'edit' => true, 'createpage' => true ],
 			]
@@ -455,9 +457,9 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideTestCheckUserBlockActions
 	 */
 	public function testCheckUserBlockActions( $block, $restriction, $expected ) {
-		$this->setMwGlobals( [
-			'wgEmailConfirmToEdit' => false,
-			'wgEnablePartialActionBlocks' => true,
+		$this->overrideConfigValues( [
+			MainConfigNames::EmailConfirmToEdit => false,
+			MainConfigNames::EnablePartialActionBlocks => true,
 		] );
 
 		if ( $restriction ) {
@@ -621,9 +623,9 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideTestCheckUserBlockMessage
 	 */
 	public function testCheckUserBlockMessage( $blockType, $blockParams, $restriction, $expected ) {
-		$this->setMwGlobals( [
-			'wgEmailConfirmToEdit' => false,
-		] );
+		$this->overrideConfigValue(
+			MainConfigNames::EmailConfirmToEdit, false
+		);
 		$block = new $blockType( array_merge( [
 			'address' => '127.0.8.1',
 			'by' => $this->user,
@@ -700,9 +702,9 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideTestCheckUserBlockEmailConfirmToEdit
 	 */
 	public function testCheckUserBlockEmailConfirmToEdit( $emailConfirmToEdit, $assertion ) {
-		$this->setMwGlobals( [
-			'wgEmailConfirmToEdit' => $emailConfirmToEdit,
-			'wgEmailAuthentication' => true,
+		$this->overrideConfigValues( [
+			MainConfigNames::EmailConfirmToEdit => $emailConfirmToEdit,
+			MainConfigNames::EmailAuthentication => true,
 		] );
 
 		$this->overrideUserPermissions( $this->user, [
@@ -748,11 +750,11 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$tester->method( 'requiresUnblock' )
 			->willReturn( false );
 
-		$this->setMwGlobals( [
-			'wgActions' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::Actions => [
 				'tester' => $tester,
 			],
-			'wgGroupPermissions' => [
+			MainConfigNames::GroupPermissions => [
 				'*' => [
 					'tester' => true,
 				],
@@ -820,9 +822,10 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 *  - 'pageRestrictions': (array|null) If non-empty, page restriction titles for the block.
 	 */
 	public function testIsBlockedFrom( $title, $expect, array $options = [] ) {
-		$this->setMwGlobals( [
-			'wgBlockAllowsUTEdit' => $options['blockAllowsUTEdit'] ?? true,
-		] );
+		$this->overrideConfigValue(
+			MainConfigNames::BlockAllowsUTEdit,
+			$options['blockAllowsUTEdit'] ?? true
+		);
 
 		$user = $this->getTestUser()->getUser();
 
@@ -1208,8 +1211,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideGetRestrictionLevels
 	 */
 	public function testGetRestrictionLevels( array $expected, $ns, array $userGroups = null ) {
-		$this->setMwGlobals( [
-			'wgGroupPermissions' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::GroupPermissions => [
 				'*' => [ 'edit' => true ],
 				'autoconfirmed' => [ 'editsemiprotected' => true ],
 				'sysop' => [
@@ -1218,16 +1221,16 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				],
 				'privileged' => [ 'privileged' => true ],
 			],
-			'wgRevokePermissions' => [
+			MainConfigNames::RevokePermissions => [
 				'noeditsemiprotected' => [ 'editsemiprotected' => true ],
 			],
-			'wgNamespaceProtection' => [
+			MainConfigNames::NamespaceProtection => [
 				NS_MAIN => 'autoconfirmed',
 				NS_USER => 'sysop',
 				101 => [ 'editsemiprotected', 'privileged' ],
 			],
-			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
-			'wgAutopromote' => []
+			MainConfigNames::RestrictionLevels => [ '', 'autoconfirmed', 'sysop' ],
+			MainConfigNames::Autopromote => []
 		] );
 		$user = $userGroups === null ? null : $this->getTestUser( $userGroups )->getUser();
 		$this->assertSame( $expected, $this->getServiceContainer()
@@ -1236,9 +1239,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGetAllPermissions() {
-		$this->setMwGlobals( [
-			'wgAvailableRights' => [ 'test_right' ]
-		] );
+		$this->overrideConfigValue( MainConfigNames::AvailableRights, [ 'test_right' ] );
 		$this->resetServices();
 		$this->assertContains(
 			'test_right',
@@ -1327,10 +1328,10 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideWhitelistRead
 	 */
 	public function testWhitelistRead( array $whitelist, string $title, bool $shouldAllow ) {
-		$this->setMwGlobals( 'wgWhitelistRead', $whitelist );
+		$this->overrideConfigValue( MainConfigNames::WhitelistRead, $whitelist );
 		$this->setGroupPermissions( '*', 'read', false );
 
-		$this->setMwGlobals( 'wgLanguageCode', 'es' );
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'es' );
 		foreach ( [
 			'ContentLanguage',
 			'MainConfig',

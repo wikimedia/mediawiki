@@ -115,7 +115,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 		$oldSitename = $this->getServiceContainer()->getMainConfig()->get( 'Sitename' );
 
-		$this->overrideConfigValue( 'Sitename', 'TestingSitenameOverride' );
+		$this->overrideConfigValue( MainConfigNames::Sitename, 'TestingSitenameOverride' );
 		$nsInfo2 = $this->getServiceContainer()->getNamespaceInfo();
 
 		$this->overrideConfigValues( [ 'TestDummyConfig4556' => 'TestDummyConfigOverride' ] );
@@ -294,7 +294,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	public function testNullLogger_mutateAndRestore() {
 		// Don't rely on the $wgDebugLogGroups and $wgDebugLogFile settings in
 		// WMF CI to make LEVEL_DEBUG (100) the default. Control this in the test.
-		$this->setMwGlobals( 'wgDebugToolbar', true );
+		$this->overrideConfigValue( MainConfigNames::DebugToolbar, true );
 
 		$logger = LoggerFactory::getInstance( 'tomutate' );
 		// Unwrap from LogCapturingSpi
@@ -384,7 +384,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $lang, $dummy->lang );
 
 		// the actual test: change config, reset services.
-		$this->setMwGlobals( 'wgLanguageCode', 'qqx' );
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'qqx' );
 		$this->resetServices();
 
 		// the overridden service instance should still be there
