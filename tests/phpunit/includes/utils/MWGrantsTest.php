@@ -26,6 +26,7 @@ class MWGrantsTest extends MediaWikiIntegrationTestCase {
 	 * @covers MWGrants::getValidGrants
 	 */
 	public function testGetValidGrants() {
+		$this->hideDeprecated( 'MWGrants::getValidGrants' );
 		$this->assertSame(
 			[ 'hidden1', 'hidden2', 'normal', 'normal2', 'admin' ],
 			MWGrants::getValidGrants()
@@ -36,6 +37,7 @@ class MWGrantsTest extends MediaWikiIntegrationTestCase {
 	 * @covers MWGrants::getRightsByGrant
 	 */
 	public function testGetRightsByGrant() {
+		$this->hideDeprecated( 'MWGrants::getRightsByGrant' );
 		$this->assertSame(
 			[
 				'hidden1' => [ 'read' ],
@@ -55,6 +57,7 @@ class MWGrantsTest extends MediaWikiIntegrationTestCase {
 	 * @param array $rights
 	 */
 	public function testGetGrantRights( $grants, $rights ) {
+		$this->hideDeprecated( 'MWGrants::getGrantRights' );
 		$this->assertSame( $rights, MWGrants::getGrantRights( $grants ) );
 	}
 
@@ -73,6 +76,7 @@ class MWGrantsTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $valid
 	 */
 	public function testGrantsAreValid( $grants, $valid ) {
+		$this->hideDeprecated( 'MWGrants::grantsAreValid' );
 		$this->assertSame( $valid, MWGrants::grantsAreValid( $grants ) );
 	}
 
@@ -90,6 +94,7 @@ class MWGrantsTest extends MediaWikiIntegrationTestCase {
 	 * @param array $expect
 	 */
 	public function testGetGrantGroups( $grants, $expect ) {
+		$this->hideDeprecated( 'MWGrants::getGrantGroups' );
 		$this->assertSame( $expect, MWGrants::getGrantGroups( $grants ) );
 	}
 
@@ -112,6 +117,7 @@ class MWGrantsTest extends MediaWikiIntegrationTestCase {
 	 * @covers MWGrants::getHiddenGrants
 	 */
 	public function testGetHiddenGrants() {
+		$this->hideDeprecated( 'MWGrants::getHiddenGrants' );
 		$this->assertSame( [ 'hidden1', 'hidden2' ], MWGrants::getHiddenGrants() );
 	}
 
