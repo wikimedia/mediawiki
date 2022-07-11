@@ -57,6 +57,10 @@ class UpdateMediaWiki extends Maintenance {
 			'skip-external-dependencies',
 			'Skips checking whether external dependencies are up to date, mostly for developers'
 		);
+		$this->addOption(
+			'skip-config-validation',
+			'Skips checking whether the existing configuration is valid'
+		);
 	}
 
 	public function getDbType() {
@@ -102,6 +106,11 @@ class UpdateMediaWiki extends Maintenance {
 				$err = error_get_last();
 				$this->fatalError( "Problem opening the schema file for writing: $file\n\t{$err['message']}" );
 			}
+		}
+
+		// Check for warnings about settings, and abort if there are any.
+		if ( !$this->hasOption( 'skip-config-validation' ) ) {
+			$this->validateSettings();
 		}
 
 		// T206765: We need to load the installer i18n files as some of errors come installer/updater code
@@ -257,6 +266,45 @@ class UpdateMediaWiki extends Maintenance {
 		}
 
 		parent::validateParamsAndArgs();
+	}
+
+	private function formatWarnings( array $warnings ) {
+		$text = '';
+		foreach ( $warnings as $warning ) {
+			$warning = wordwrap( $warning, 75, "\n  " );
+			$text .= "* $warning\n";
+		}
+		return $text;
+	}
+
+	private function validateSettings() {
+		global $wgSettings;
+
+		$warnings = [];
+		if ( $wgSettings->getWarnings() ) {
+			$warnings = $wgSettings->getWarnings();
+		}
+
+		$status = $wgSettings->validate();
+		if ( !$status->isOk() ) {
+			foreach ( $status->getErrorsByType( 'error' ) as $msg ) {
+				$msg = wfMessage( $msg['message'], ...$msg['params'] );
+				$warnings[] = $msg->text();
+			}
+		}
+
+		$deprecations = $wgSettings->detectDeprecatedConfig();
+		foreach ( $deprecations as $key => $msg ) {
+			$warnings[] = "$key is deprecated: $msg";
+		}
+
+		if ( $warnings ) {
+			$this->fatalError( "Some of your configuration settings caused a warning:\n\n"
+				. $this->formatWarnings( $warnings ) . "\n"
+				. "Please correct the issue before running update.php again.\n"
+				. "If you know what you are doing, you can bypass this check\n"
+				. "using --skip-config-validation.\n" );
+		}
 	}
 }
 

@@ -4656,12 +4656,13 @@ class MainConfigSchema {
 	 * Functionally the same as $wgExtraLanguageCodes, but deprecated. Instead of
 	 * appending values to this array, append them to $wgExtraLanguageCodes.
 	 *
-	 * @deprecated since 1.29
+	 * @note Since 1.29, this should not be set directly in LocalSettings,
+	 *       ExtraLanguageCodes should be set instead. However, DummyLanguageCodes
+	 *       will be initialized and can be read internally.
 	 */
 	public const DummyLanguageCodes = [
 		'default' => [],
 		'type' => 'map',
-		'deprecated' => 'since 1.29',
 	];
 
 	/**
