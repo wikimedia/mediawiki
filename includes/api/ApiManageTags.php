@@ -109,6 +109,7 @@ class ApiManageTags extends ApiBase {
 			],
 			'reason' => [
 				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_DEFAULT => '',
 			],
 			'ignorewarnings' => [
 				ParamValidator::PARAM_TYPE => 'boolean',
