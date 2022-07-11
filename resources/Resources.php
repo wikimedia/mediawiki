@@ -2552,6 +2552,8 @@ return [
 			'mediawiki.widgets.styles',
 			// TitleInputWidget
 			'oojs-ui.styles.icons-content',
+			// CopyTextLayout uses 'copy'
+			'oojs-ui.styles.icons-editing-advanced',
 			'mediawiki.Title',
 			'mediawiki.api',
 			'mediawiki.String',
