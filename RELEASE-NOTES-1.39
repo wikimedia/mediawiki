@@ -468,6 +468,14 @@ because of Phabricator reports.
 * …
 
 === Other changes in 1.39 ===
+* Dynamic default values are now applied before extension registration callbacks
+  are run. This way, extensions have a complete view of config variables, with
+  all defaults applied. For example, when the default value of X used to be
+  static but becomes dynamic, and an extension reads the value of X in the
+  registration callback, it will now continue to function as expected. In some
+  cases however, this may cause an undesired change in behavior: if the dynamic
+  default of setting X depends on the value of setting Y, and an extension
+  changes Y, the changed value of Y will no longer affect the value of X.
 * …
 
 == Compatibility ==
