@@ -25,7 +25,8 @@ use MediaWiki\Page\PageReference;
  * HTML file cache invalidation all the pages linking to a given title
  *
  * @ingroup Cache
- * @deprecated Since 1.34; Enqueue jobs from HTMLCacheUpdateJob::newForBacklinks instead
+ * @deprecated Since 1.34; Enqueue jobs from HTMLCacheUpdateJob::newForBacklinks instead.
+ *  Hard deprecated since 1.39.
  */
 class HTMLCacheUpdate extends DataUpdate {
 	/** @var PageReference */
@@ -42,6 +43,7 @@ class HTMLCacheUpdate extends DataUpdate {
 	public function __construct(
 		PageReference $pageTo, $table, $causeAction = 'unknown', $causeAgent = 'unknown'
 	) {
+		wfDeprecated( __CLASS__, '1.34' );
 		$this->pageTo = $pageTo;
 		$this->table = $table;
 		$this->causeAction = $causeAction;
