@@ -287,6 +287,9 @@ ExtensionRegistry::getInstance()->finish();
 // with Command::environment().
 putenv( "LC_ALL=" . setlocale( LC_ALL, 'C.UTF-8', 'C' ) );
 
+// Set PHP runtime to the desired timezone
+date_default_timezone_set( $wgLocaltimezone );
+
 MWDebug::setup();
 
 // Enable the global service locator.
