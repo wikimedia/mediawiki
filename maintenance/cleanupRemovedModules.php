@@ -48,11 +48,12 @@ class CleanupRemovedModules extends Maintenance {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$rl = MediaWikiServices::getInstance()->getResourceLoader();
 		$moduleNames = $rl->getModuleNames();
-		$res = $dbw->select( 'module_deps',
-			[ 'md_module', 'md_skin' ],
-			$moduleNames ? 'md_module NOT IN (' . $dbw->makeList( $moduleNames ) . ')' : '1=1',
-			__METHOD__
-		);
+		$res = $dbw->newSelectQueryBuilder()
+			->select( [ 'md_module', 'md_skin' ] )
+			->from( 'module_deps' )
+			->where( $moduleNames ? 'md_module NOT IN (' . $dbw->makeList( $moduleNames ) . ')' : '1=1' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		$rows = iterator_to_array( $res, false );
 
 		$modDeps = $dbw->tableName( 'module_deps' );

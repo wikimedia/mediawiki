@@ -54,12 +54,12 @@ class CleanupUploadStash extends Maintenance {
 		$cutoff = time() - (int)$this->getConfig()->get( MainConfigNames::UploadStashMaxAge );
 
 		$this->output( "Getting list of files to clean up...\n" );
-		$res = $dbr->select(
-			'uploadstash',
-			'us_key',
-			'us_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $cutoff ) ),
-			__METHOD__
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( 'us_key' )
+			->from( 'uploadstash' )
+			->where( 'us_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $cutoff ) ) )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		// Delete all registered stash files...
 		if ( $res->numRows() == 0 ) {
