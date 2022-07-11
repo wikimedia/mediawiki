@@ -198,7 +198,7 @@
 	"cactions": "Ọzọ kwa",
 	"tool-link-userrights": "gbanwee {{GENDER:$1|user}} otu ndia",
 	"tool-link-userrights-readonly": "lee {{GENDER:$1|user}} otu ndia",
-	"tool-link-emailuser": "Ziga mailụ a{{GENDER:$1|user}}",
+	"tool-link-emailuser": "Zigara {{GENDER:$1|onye ọrụ}} mail a",
 	"imagepage": "Zìri ihu àfabà",
 	"mediawikipage": "Zìri ihunde ozi",
 	"templatepage": "Zìri ihunde àtụ̀",
