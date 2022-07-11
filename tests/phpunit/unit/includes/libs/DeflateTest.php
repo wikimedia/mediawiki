@@ -26,6 +26,7 @@ class DeflateTest extends PHPUnit\Framework\TestCase {
 
 	public function provideIsDeflated() {
 		return [
+			// mw.deflate('foobar')
 			[ 'rawdeflate,S8vPT0osAgA=', true ],
 			[ 'abcdefghijklmnopqrstuvwxyz', false ],
 		];
