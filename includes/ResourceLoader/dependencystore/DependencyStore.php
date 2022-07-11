@@ -21,9 +21,9 @@
 namespace Wikimedia\DependencyStore;
 
 /**
- * Class for tracking per-entity dependency path lists that are expensive to mass compute
+ * Track per-module dependency file paths that are expensive to mass compute
  *
- * @internal This should not be used outside of ResourceLoader and ResourceLoader\Module
+ * @internal For use by ResourceLoader\Module only
  */
 abstract class DependencyStore {
 	/** @var string */
@@ -74,14 +74,6 @@ abstract class DependencyStore {
 	/**
 	 * Set the currently tracked dependencies for an entity
 	 *
-	 * Dependency data should be set to persist as long as anything might rely on it existing
-	 * in order to check the validity of some previously computed work. This can be achieved
-	 * while minimizing storage space under the following scheme:
-	 *   - a) computed work has a TTL (time-to-live)
-	 *   - b) when work is computed, the dependency data is updated
-	 *   - c) the dependency data has a TTL higher enough to accounts for skew/latency
-	 *   - d) the TTL of tracked dependency data is renewed upon access
-	 *
 	 * @param string $type Entity type
 	 * @param string $entity Entity name
 	 * @param array $data Map of (paths: paths, asOf: UNIX timestamp or null)
@@ -113,14 +105,4 @@ abstract class DependencyStore {
 	 * @throws DependencyStoreException
 	 */
 	abstract public function remove( $type, $entities );
-
-	/**
-	 * Set the expiry for the currently tracked dependencies for an entity or set of entities
-	 *
-	 * @param string $type Entity type
-	 * @param string|string[] $entities Entity name(s)
-	 * @param int $ttl New time-to-live in seconds
-	 * @throws DependencyStoreException
-	 */
-	abstract public function renew( $type, $entities, $ttl );
 }

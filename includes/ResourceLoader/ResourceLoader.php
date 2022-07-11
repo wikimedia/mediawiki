@@ -106,7 +106,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	/** @var string */
 	private const RL_DEP_STORE_PREFIX = 'ResourceLoaderModule';
 	/** @var int How long to preserve indirect dependency metadata in our backend store. */
-	private const RL_MODULE_DEP_TTL = BagOStuff::TTL_WEEK;
+	private const RL_MODULE_DEP_TTL = BagOStuff::TTL_YEAR;
 	/** @var int */
 	private const MAXAGE_RECOVER = 60;
 
@@ -525,22 +525,23 @@ class ResourceLoader implements LoggerAwareInterface {
 			} else {
 				$this->depStoreUpdateBuffer[$entity] = null;
 			}
-		} elseif ( $priorPaths ) {
-			// Dependency store needs to store the existing path list for longer
-			$this->depStoreUpdateBuffer[$entity] = '*';
 		}
 
-		// Use a DeferrableUpdate to flush the buffered dependency updates...
+		// If paths were unchanged, leave the dependency store unchanged also.
+		// The entry will eventually expire, after which we will briefly issue an incomplete
+		// version hash for a 5-min startup window, the module then recomputes and rediscovers
+		// the paths and arrive at the same module version hash once again. It will churn
+		// part of the browser cache once, for clients connecting during that window.
+
 		if ( !$hasPendingUpdate ) {
 			DeferredUpdates::addCallableUpdate( function () {
 				$updatesByEntity = $this->depStoreUpdateBuffer;
-				$this->depStoreUpdateBuffer = []; // consume
+				$this->depStoreUpdateBuffer = [];
 				$cache = ObjectCache::getLocalClusterInstance();
 
 				$scopeLocks = [];
 				$depsByEntity = [];
 				$entitiesUnreg = [];
-				$entitiesRenew = [];
 				foreach ( $updatesByEntity as $entity => $update ) {
 					$lockKey = $cache->makeKey( 'rl-deps', $entity );
 					$scopeLocks[$entity] = $cache->getScopedLock( $lockKey, 0 );
@@ -551,8 +552,6 @@ class ResourceLoader implements LoggerAwareInterface {
 					}
 					if ( $update === null ) {
 						$entitiesUnreg[] = $entity;
-					} elseif ( $update === '*' ) {
-						$entitiesRenew[] = $entity;
 					} else {
 						$depsByEntity[$entity] = $update;
 					}
@@ -561,7 +560,6 @@ class ResourceLoader implements LoggerAwareInterface {
 				$ttl = self::RL_MODULE_DEP_TTL;
 				$this->depStore->storeMulti( self::RL_DEP_STORE_PREFIX, $depsByEntity, $ttl );
 				$this->depStore->remove( self::RL_DEP_STORE_PREFIX, $entitiesUnreg );
-				$this->depStore->renew( self::RL_DEP_STORE_PREFIX, $entitiesRenew, $ttl );
 			} );
 		}
 	}
