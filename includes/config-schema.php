@@ -380,7 +380,7 @@ return [
 			'DatabaseReplicaLagWarning' => 10,
 			'DatabaseReplicaLagCritical' => 30,
 			'MaxExecutionTimeForExpensiveQueries' => 0,
-			'TemplateLinksSchemaMigrationStage' => 3,
+			'TemplateLinksSchemaMigrationStage' => 259,
 			'ContentHandlers' => [
 				'wikitext' => 'WikitextContentHandler',
 				'javascript' => 'JavaScriptContentHandler',

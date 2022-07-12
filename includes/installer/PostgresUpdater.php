@@ -600,6 +600,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropTable', 'revision_actor_temp' ],
 			[ 'runMaintenance', UpdateRestrictions::class, 'maintenance/updateRestrictions.php' ],
 			[ 'dropPgField', 'page', 'page_restrictions' ],
+			[ 'migrateTemplatelinks' ],
+			[ 'changeNullableField', 'templatelinks', 'tl_target_id', 'NOT NULL', true ],
+			[ 'changePrimaryKey', 'templatelinks', [ 'tl_from', 'tl_target_id' ], 'templatelinks_pk' ],
 		];
 	}
 
