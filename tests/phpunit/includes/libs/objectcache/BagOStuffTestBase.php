@@ -254,6 +254,18 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $this->cache->add( $key, 'test', 5 ) );
 	}
 
+	public function testAddBackground() {
+		$key = $this->cache->makeKey( $this->testKey() );
+		$this->assertFalse( $this->cache->get( $key ) );
+		$this->assertTrue(
+			$this->cache->add( $key, 'test', 5, BagOStuff::WRITE_BACKGROUND )
+		);
+		for ( $i = 0; $i < 100 && $this->cache->get( $key ) !== 'test'; $i++ ) {
+			usleep( 1000 );
+		}
+		$this->assertSame( 'test', $this->cache->get( $key ) );
+	}
+
 	/**
 	 * @covers MediumSpecificBagOStuff::get
 	 */
@@ -426,6 +438,13 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	public function testDelete() {
+		// Delete of non-existent key should return true
+		$key = $this->cache->makeKey( 'nonexistent' );
+		$this->assertTrue( $this->cache->delete( $key ) );
+		$this->assertTrue( $this->cache->delete( $key, BagOStuff::WRITE_BACKGROUND ) );
+	}
+
 	/**
 	 * @covers MediumSpecificBagOStuff::get
 	 * @covers MediumSpecificBagOStuff::getMulti
@@ -489,6 +508,12 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 
 		$this->assertTrue( $this->cache->delete( $key ) );
 		$this->assertFalse( $this->cache->get( $key ) );
+	}
+
+	public function testSetBackground() {
+		$key = $this->cache->makeKey( $this->testKey() );
+		$this->assertTrue(
+			$this->cache->set( $key, 'background', BagOStuff::WRITE_BACKGROUND ) );
 	}
 
 	/**
