@@ -47,9 +47,9 @@ class Sanitizer {
 	 */
 	private const CHAR_REFS_REGEX =
 		'/&([A-Za-z0-9\x80-\xff]+;)
-		 |&\#([0-9]+);
-		 |&\#[xX]([0-9A-Fa-f]+);
-		 |(&)/x';
+		|&\#([0-9]+);
+		|&\#[xX]([0-9A-Fa-f]+);
+		|(&)/x';
 
 	/**
 	 * Acceptable tag name charset from HTML5 parsing spec

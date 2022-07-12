@@ -4756,8 +4756,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->platform->implicitOrderby();
 	}
 
-	public function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
-								   $options = [], $join_conds = []
+	public function selectSQLText(
+		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
 		return $this->platform->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 	}

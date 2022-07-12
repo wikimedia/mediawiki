@@ -94,8 +94,8 @@ class DeprecatedHooks {
 	 * @param bool $silent True to not raise any deprecation warning
 	 * @throws InvalidArgumentException Hook has already been marked deprecated
 	 */
-	public function markDeprecated( string $hook, string $version,
-								   ?string $component = null, bool $silent = false
+	public function markDeprecated(
+		string $hook, string $version, ?string $component = null, bool $silent = false
 	): void {
 		if ( isset( $this->deprecatedHooks[$hook] ) ) {
 			throw new InvalidArgumentException(
