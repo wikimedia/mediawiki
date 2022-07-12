@@ -15,9 +15,11 @@
 		 beStrictAboutTestsThatDoNotTestAnything="true"
 		 beStrictAboutOutputDuringTests="true"
 		 printerClass="MediaWikiPHPUnitResultPrinter"
+		 stderr="true"
 		 verbose="false">
 	<php>
-		<ini name="memory_limit" value="512M" />
+		<ini name="memory_limit" value="-1" />
+		<ini name="max_execution_time" value="0" />
 	</php>
 	<testsuites>
 		<testsuite name="core:unit">
