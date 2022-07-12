@@ -91,6 +91,7 @@ class SpecialDoubleRedirects extends QueryPage {
 
 				'b_namespace' => 'pb.page_namespace',
 				'b_title' => 'pb.page_title',
+				'b_fragment' => 'ra.rd_fragment',
 
 				// Select fields from redirect instead of page. Because there may
 				// not actually be a page table row for this target (e.g. for interwiki redirects)
@@ -196,9 +197,11 @@ class SpecialDoubleRedirects extends QueryPage {
 		);
 
 		$titleB = Title::makeTitle( $deep->b_namespace, $deep->b_title );
+		// We show fragment, but don't link to it, as it probably doesn't exist anymore.
+		$titleBFrag = Title::makeTitle( $deep->b_namespace, $deep->b_title, $deep->b_fragment );
 		$linkB = $linkRenderer->makeKnownLink(
 			$titleB,
-			null,
+			$titleBFrag->getFullText(),
 			[],
 			[ 'redirect' => 'no' ]
 		);
