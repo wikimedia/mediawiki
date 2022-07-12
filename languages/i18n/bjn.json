@@ -1723,6 +1723,7 @@
 	"deletionlog": "log pahapusan",
 	"log-name-create": "Log paulahan laman",
 	"log-description-create": "Di bawah ngini log paulahan laman hanyar.",
+	"logentry-create-create": "$1 {{GENDER:$2|maulah}} laman $3",
 	"reverted": "Dibulikakan ka raralatan tadamini",
 	"deletecomment": "Alasan:",
 	"deleteotherreason": "Alasan lain/tambahan:",

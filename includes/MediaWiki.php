@@ -42,9 +42,6 @@ class MediaWiki {
 	private $context;
 	/** @var Config */
 	private $config;
-
-	/** @var string|null Cache what action this request is */
-	private $action;
 	/** @var int Class DEFER_* constant; how non-blocking post-response tasks should run */
 	private $postSendStrategy;
 
@@ -173,11 +170,7 @@ class MediaWiki {
 	 * @return string Action
 	 */
 	public function getAction(): string {
-		if ( $this->action === null ) {
-			$this->action = $this->context->getActionName();
-		}
-
-		return $this->action;
+		return $this->context->getActionName();
 	}
 
 	/**
@@ -296,10 +289,11 @@ class MediaWiki {
 							$this->context->setRequest( $derivateRequest );
 							// Do not varnish cache these. May vary even for anons
 							$output->lowerCdnMaxage( 0 );
+							// NOTE: This also clears any action cache.
+							// Action should not have been computed yet, but if it was,
+							// we reset it because special pages only support "view".
 							$this->context->setTitle( $target );
 							$wgTitle = $target;
-							// Reset action type cache. (Special pages have only view)
-							$this->action = null;
 							$title = $target;
 							$output->addJsConfigVars( [
 								'wgInternalRedirectTargetUrl' => $target->getLinkURL( $query ),
@@ -417,8 +411,8 @@ class MediaWiki {
 		$title = $this->context->getTitle();
 		$services = MediaWikiServices::getInstance();
 		if ( $this->context->canUseWikiPage() ) {
-			// Reuse the WikiPage instance from context, as it may already have been initialized
-			// by an earlier this->getAction() call.
+			// Optimization: Reuse the WikiPage instance from context, to avoid
+			// repeat fetching or computation of data already loaded.
 			$page = $this->context->getWikiPage();
 		} else {
 			// This case should not happen, but just in case.
@@ -477,12 +471,14 @@ class MediaWiki {
 						$rarticle->setRedirectedFrom( $title );
 
 						$article = $rarticle;
+						// NOTE: This also clears any action cache
 						$this->context->setTitle( $target );
 						$this->context->setWikiPage( $article->getPage() );
 					}
 				}
 			} else {
 				// Article may have been changed by hook
+				// NOTE: This also clears any action cache
 				$this->context->setTitle( $article->getTitle() );
 				$this->context->setWikiPage( $article->getPage() );
 			}

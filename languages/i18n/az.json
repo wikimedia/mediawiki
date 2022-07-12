@@ -1821,6 +1821,7 @@
 	"enotif_minoredit": "Bu kiçik redaktədir",
 	"created": "yaradıldı",
 	"changed": "dəyişdi",
+	"deletepage-deletetalk": "Əlaqəli müzakirə səhifəsini də sil",
 	"deletepage-submit": "Səhifəni sil",
 	"confirm": "Təsdiq et",
 	"excontent": "Köhnə məzmun: '$1'",

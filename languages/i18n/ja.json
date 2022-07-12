@@ -4256,5 +4256,9 @@
 	"skin-action-undelete": "復元",
 	"skin-action-delete": "削除",
 	"skin-action-move": "移動",
-	"parsoid-stash-rate-limit-error": "レート制限を超えたため、ストッシングに失敗しました。後で再試行してください。"
+	"parsoid-stash-rate-limit-error": "レート制限を超えたため、ストッシングに失敗しました。後で再試行してください。",
+	"newpages-showhide-bots": "ボットを$1",
+	"newpages-showhide-patrolled": "巡回された編集を$1",
+	"newpages-showhide-redirect": "リダイレクトを$1",
+	"newpages-showhide-registered": "登録利用者を$1"
 }

@@ -2669,6 +2669,7 @@
 	"autoblockid": "自動封鎖 #$1",
 	"block": "封鎖使用者",
 	"unblock": "解除封鎖使用者",
+	"changeblockip": "變更封鎖",
 	"blockip": "封鎖{{GENDER:$1|使用者}}",
 	"blockiptext": "填寫以下表單可封鎖特定 IP 位址或使用者的編輯權限。\n只有為了防止破壞，並符合[[{{MediaWiki:Policy-url}}|方針]]的情況下方可採取此行動。\n請在下方填寫一個具體的原因（例如：引述一個被破壞的頁面）。\n您可以使用[//zh.wikipedia.org/wiki/无类别域间路由 CIDR]語法格式封鎖 IP 範圍，最大允許的範圍 IPv4 為 /$1、IPv6 為 /$2。",
 	"ipaddressorusername": "IP 位址、使用者名稱或封鎖 ID：",
@@ -4102,5 +4103,9 @@
 	"skin-action-protect": "保護",
 	"skin-action-undelete": "取消刪除",
 	"skin-action-delete": "刪除",
-	"skin-action-move": "移動"
+	"skin-action-move": "移動",
+	"newpages-showhide-bots": "$1機器人",
+	"newpages-showhide-patrolled": "$1已巡查的編輯",
+	"newpages-showhide-redirect": "$1重新導向",
+	"newpages-showhide-registered": "$1已註冊的使用者"
 }

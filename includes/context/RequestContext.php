@@ -294,10 +294,9 @@ class RequestContext implements IContextSource, MutableContext {
 		// expensive operations to compute this. The computation involves creation
 		// of Article, WikiPage, and ContentHandler objects (and the various
 		// database queries these classes require to be instantiated), as well
-		// as potentially slow extension hooks at various level in these
-		// classes.
+		// as potentially slow extension hooks in these classes.
 		//
-		// This is value frequently needed in OutputPage and in various
+		// This value is frequently needed in OutputPage and in various
 		// Skin-related methods and classes.
 		if ( $this->action === null ) {
 			$this->action = MediaWikiServices::getInstance()
@@ -310,18 +309,15 @@ class RequestContext implements IContextSource, MutableContext {
 
 	private function clearActionName(): void {
 		if ( $this->action !== null ) {
-			// Log if cleared after something already computed it as that is
-			// likely to cause bugs (given the first caller may be using it for
-			// something), and also because it's an expensive thing to needlessly
-			// compute multiple times even when it produces the same value.
+			// If we're clearing after something else has actually already computed the action,
+			// emit a warning.
 			//
-			// TODO: Once confident we don't rely on this,
-			// change to E_USER_WARNING with trigger_error and silence error
-			// in relevant tests.
-			$logger = LoggerFactory::getInstance( 'Setup' );
-			$logger->warning( 'Changing action after getActionName was already called',
-				[ 'exception' => new Exception ]
-			);
+			// Doing so is unstable, given the first caller got something that turns out to be
+			// incomplete or incorrect. Even if we end up re-creating an instance of the same
+			// class, we may now be acting on a different title/skin/user etc.
+			//
+			// Re-computing the action is expensive and can be a performance problem (T302623).
+			trigger_error( 'Unexpected clearActionName after getActionName already called' );
 			$this->action = null;
 		}
 	}
