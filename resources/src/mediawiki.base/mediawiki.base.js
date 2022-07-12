@@ -336,8 +336,8 @@ var trackHandlers = [];
  * well-defined purpose.
  *
  * Data handlers are registered via `mw.trackSubscribe`, and receive the full set of
- * events that match their subscription, including those that fired before the handler was
- * bound.
+ * events that match their subscription, including buffered events that fired before the handler
+ * was subscribed.
  *
  * @param {string} topic Topic name
  * @param {Object|number|string} [data] Data describing the event.
@@ -350,10 +350,18 @@ mw.track = function ( topic, data ) {
 /**
  * Register a handler for subset of analytic events, specified by topic.
  *
- * Handlers will be called once for each tracked event, including any events that fired before the
- * handler was registered; 'this' is set to a plain object with a topic' property naming the event, and a
- * 'data' property which is an object of event-specific data. The event topic and event data are
- * also passed to the callback as the first and second arguments, respectively.
+ * Handlers will be called once for each tracked event, including for any buffered events that
+ * fired before the handler was subscribed. The callback is passed a `topic` string, and optional
+ * `data` event object. The `this` value for the callback is a plain object with `topic` and
+ * `data` properties set to those same values.
+ *
+ * Example to monitor all topics for debugging:
+ *
+ *     mw.trackSubscribe( '', console.log );
+ *
+ * Example to subscribe to any of `foo.*`, e.g. both `foo.bar` and `foo.quux`:
+ *
+ *     mw.trackSubscribe( 'foo.', console.log );
  *
  * @param {string} topic Handle events whose name starts with this string prefix
  * @param {Function} callback Handler to call for each matching tracked event
