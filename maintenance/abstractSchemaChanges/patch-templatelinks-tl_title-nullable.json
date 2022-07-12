@@ -1,5 +1,5 @@
 {
-	"comment": "Making tl_title and tl_namespace nullable as part of normalizing templatelinks (T306674)",
+	"comment": "Changing the primary key as part of normalizing templatelinks (T306674)",
 	"before": {
 		"name": "templatelinks",
 		"comment": "Track template inclusions. The target page may or may not exist, and due to renames and deletions may refer to different page records as time goes by.",
