@@ -24,6 +24,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -68,14 +69,14 @@ class PurgeParserCache extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgParserCacheExpireTime;
-
 		$inputDate = $this->getOption( 'expiredate' );
 		$inputAge = $this->getOption( 'age' );
+
 		if ( $inputDate !== null ) {
 			$timestamp = strtotime( $inputDate );
 		} elseif ( $inputAge !== null ) {
-			$timestamp = time() + $wgParserCacheExpireTime - intval( $inputAge );
+			$expireTime = (int)$this->getConfig()->get( MainConfigNames::ParserCacheExpireTime );
+			$timestamp = time() + $expireTime - intval( $inputAge );
 		} else {
 			$this->fatalError( "Must specify either --expiredate or --age" );
 		}

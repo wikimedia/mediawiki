@@ -16,6 +16,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  */
+
+use MediaWiki\MainConfigNames;
 use Wikimedia\Purtle\RdfWriter;
 use Wikimedia\Purtle\RdfWriterFactory;
 use Wikimedia\Rdbms\IDatabase;
@@ -116,8 +118,7 @@ class DumpCategoriesAsRdf extends Maintenance {
 	 * @param int $timestamp
 	 */
 	public function addDumpHeader( $timestamp ) {
-		global $wgRightsUrl;
-		$licenseUrl = $wgRightsUrl;
+		$licenseUrl = $this->getConfig()->get( MainConfigNames::RightsUrl );
 		if ( substr( $licenseUrl, 0, 2 ) == '//' ) {
 			$licenseUrl = 'https:' . $licenseUrl;
 		}

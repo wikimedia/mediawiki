@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MainConfigNames;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -37,15 +39,14 @@ class DeleteSelfExternals extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgServer;
-
 		// Extract the host and scheme from $wgServer
-		$bits = wfParseUrl( $wgServer );
+		$server = $this->getConfig()->get( MainConfigNames::Server );
+		$bits = wfParseUrl( $server );
 		if ( !$bits ) {
 			$this->fatalError( 'Could not parse $wgServer' );
 		}
 
-		$this->output( "Deleting self externals from $wgServer\n" );
+		$this->output( "Deleting self externals from $server\n" );
 		$db = $this->getDB( DB_PRIMARY );
 
 		// If it's protocol-relative, we need to do both http and https.
