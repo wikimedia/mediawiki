@@ -84,10 +84,10 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 		?string $pagelanguageOverride = null,
 		?array $parsoidSettings = null
 	): \Wikimedia\Parsoid\Config\PageConfig {
-		$title = ( $pageId instanceof PageIdentity ) ?
-			   Title::castFromPageIdentity( $pageId ) :
-			   /* backwards compatibility with Parsoid <= 0.16.0-a12 */
-			   Title::castFromLinkTarget( $pageId );
+		$title = ( $pageId instanceof PageIdentity )
+			? Title::castFromPageIdentity( $pageId )
+			/* backwards compatibility with Parsoid <= 0.16.0-a12 */
+			: Title::castFromLinkTarget( $pageId );
 		'@phan-var Title $title';
 
 		if ( !empty( $parsoidSettings['debugApi'] ) ) {

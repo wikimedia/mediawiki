@@ -113,36 +113,66 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 
 	public static function dateFilterOptionProcessingProvider() {
 		return [
-			[ [ 'start' => '2016-05-01',
-				'end' => '2016-06-01',
-				'year' => null,
-				'month' => null ],
-			  [ 'start' => '2016-05-01',
-				'end' => '2016-06-01' ] ],
-			[ [ 'start' => '2016-05-01',
-				'end' => '2016-06-01',
-				'year' => '',
-				'month' => '' ],
-			  [ 'start' => '2016-05-01',
-				'end' => '2016-06-01' ] ],
-			[ [ 'start' => '2016-05-01',
-				'end' => '2016-06-01',
-				'year' => '2012',
-				'month' => '5' ],
-			  [ 'start' => '',
-				'end' => '2012-05-31' ] ],
-			[ [ 'start' => '',
-				'end' => '',
-				'year' => '2012',
-				'month' => '5' ],
-			  [ 'start' => '',
-				'end' => '2012-05-31' ] ],
-			[ [ 'start' => '',
-				'end' => '',
-				'year' => '2012',
-				'month' => '' ],
-			  [ 'start' => '',
-				'end' => '2012-12-31' ] ],
+			[
+				[
+					'start' => '2016-05-01',
+					'end' => '2016-06-01',
+					'year' => null,
+					'month' => null
+				],
+				[
+					'start' => '2016-05-01',
+					'end' => '2016-06-01'
+				]
+			],
+			[
+				[
+					'start' => '2016-05-01',
+					'end' => '2016-06-01',
+					'year' => '',
+					'month' => ''
+				],
+				[
+					'start' => '2016-05-01',
+					'end' => '2016-06-01'
+				]
+			],
+			[
+				[
+					'start' => '2016-05-01',
+					'end' => '2016-06-01',
+					'year' => '2012',
+					'month' => '5'
+				],
+				[
+					'start' => '',
+					'end' => '2012-05-31'
+				]
+			],
+			[
+				[
+					'start' => '',
+					'end' => '',
+					'year' => '2012',
+					'month' => '5'
+				],
+				[
+					'start' => '',
+					'end' => '2012-05-31'
+				]
+			],
+			[
+				[
+					'start' => '',
+					'end' => '',
+					'year' => '2012',
+					'month' => ''
+				],
+				[
+					'start' => '',
+					'end' => '2012-12-31'
+				]
+			],
 		];
 	}
 

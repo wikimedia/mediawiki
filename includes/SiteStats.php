@@ -184,7 +184,7 @@ class SiteStats {
 			$cache->makeKey( 'SiteStats', 'jobscount' ),
 			$cache::TTL_MINUTE,
 			static function ( $oldValue, &$ttl, array &$setOpts ) {
-				try{
+				try {
 					$jobs = array_sum( MediaWikiServices::getInstance()->getJobQueueGroup()->getQueueSizes() );
 				} catch ( JobQueueError $e ) {
 					$jobs = 0;
