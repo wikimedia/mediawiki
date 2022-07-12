@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group AuthManager
  * @covers \MediaWiki\Auth\UserDataAuthenticationRequest
@@ -14,7 +16,7 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->overrideConfigValue( 'HiddenPrefs', [] );
+		$this->overrideConfigValue( MainConfigNames::HiddenPrefs, [] );
 	}
 
 	/**
@@ -55,8 +57,8 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 	public function testLoadFromSubmission(
 		array $args, array $data, $expectState, $hiddenPref = null, $enableEmail = null
 	) {
-		$this->overrideConfigValue( 'HiddenPrefs', $hiddenPref );
-		$this->overrideConfigValue( 'EnableEmail', $enableEmail );
+		$this->overrideConfigValue( MainConfigNames::HiddenPrefs, $hiddenPref );
+		$this->overrideConfigValue( MainConfigNames::EnableEmail, $enableEmail );
 		parent::testLoadFromSubmission( $args, $data, $expectState );
 	}
 
