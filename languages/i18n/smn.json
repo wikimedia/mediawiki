@@ -250,6 +250,7 @@
 	"toc": "Siskáldâslisto",
 	"showtoc": "čääiti",
 	"hidetoc": "čievâ",
+	"collapsible-collapse": "Čievâ",
 	"collapsible-expand": "Čääiti",
 	"confirmable-confirm": "Lah-uv {{GENDER:$1|tun}} vises?",
 	"confirmable-yes": "Joo",
