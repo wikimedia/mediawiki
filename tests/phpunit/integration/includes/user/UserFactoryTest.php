@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
@@ -186,8 +187,9 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNewTempPlaceholder() {
-		$this->setMwGlobals( [
-			'wgAutoCreateTempUser' => [
+		$this->overrideConfigValue(
+			MainConfigNames::AutoCreateTempUser,
+			[
 				'enabled' => true,
 				'actions' => [ 'edit' ],
 				'genPattern' => '*Unregistered $1',
@@ -195,7 +197,7 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 				'serialProvider' => [ 'type' => 'local' ],
 				'serialMapping' => [ 'type' => 'plain-numeric' ],
 			]
-		] );
+		);
 		$user = $this->getUserFactory()->newTempPlaceholder();
 		$this->assertTrue( $user->isTemp() );
 		$this->assertFalse( $user->isRegistered() );
@@ -204,8 +206,9 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNewUnsavedTempUser() {
-		$this->setMwGlobals( [
-			'wgAutoCreateTempUser' => [
+		$this->overrideConfigValue(
+			MainConfigNames::AutoCreateTempUser,
+			[
 				'enabled' => true,
 				'actions' => [ 'edit' ],
 				'genPattern' => '*Unregistered $1',
@@ -213,7 +216,7 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 				'serialProvider' => [ 'type' => 'local' ],
 				'serialMapping' => [ 'type' => 'plain-numeric' ],
 			]
-		] );
+		);
 		$user = $this->getUserFactory()->newUnsavedTempUser( '*Unregistered 1234' );
 		$this->assertTrue( $user->isTemp() );
 		$this->assertFalse( $user->isNamed() );

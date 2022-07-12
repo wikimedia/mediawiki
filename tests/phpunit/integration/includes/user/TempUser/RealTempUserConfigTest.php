@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Tests\User\TempUser;
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @covers \MediaWiki\User\TempUser\RealTempUserConfig
  * @group Database
@@ -67,9 +69,7 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 	 * @param bool $expected
 	 */
 	public function testIsAutoCreateAction( $config, $action, $expected ) {
-		$this->setMwGlobals( [
-			'wgAutoCreateTempUser' => $config
-		] );
+		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, $config );
 		$tuc = $this->getServiceContainer()->getTempUserConfig();
 		$this->assertSame( $expected, $tuc->isAutoCreateAction( $action ) );
 	}
@@ -106,17 +106,16 @@ class RealTempUserConfigTest extends \MediaWikiIntegrationTestCase {
 	 * @param bool $expected
 	 */
 	public function testIsReservedName( $config, $name, $expected ) {
-		$this->setMwGlobals( [
-			'wgAutoCreateTempUser' => $config
-		] );
+		$this->overrideConfigValue( MainConfigNames::AutoCreateTempUser, $config );
 		$tuc = $this->getServiceContainer()->getTempUserConfig();
 		$this->assertSame( $expected, $tuc->isReservedName( $name ) );
 	}
 
 	private function getTempUserConfig() {
-		$this->setMwGlobals( [
-			'wgAutoCreateTempUser' => [ 'enabled' => true ] + self::DEFAULTS
-		] );
+		$this->overrideConfigValue(
+			MainConfigNames::AutoCreateTempUser,
+			[ 'enabled' => true ] + self::DEFAULTS
+		);
 		return $this->getServiceContainer()->getTempUserConfig();
 	}
 

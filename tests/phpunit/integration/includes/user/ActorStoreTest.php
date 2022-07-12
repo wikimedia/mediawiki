@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\User;
 use CannotCreateActorException;
 use InvalidArgumentException;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
@@ -781,9 +782,10 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 * @covers ::acquireSystemActorId
 	 */
 	public function testAcquireSystemActorId_replaceReserved() {
-		$this->setMwGlobals( [
-			'wgReservedUsernames' => [ 'RESERVED' ],
-		] );
+		$this->overrideConfigValue(
+			MainConfigNames::ReservedUsernames,
+			[ 'RESERVED' ]
+		);
 		$store = $this->getStore();
 		$originalActor = new UserIdentityValue( 0, 'RESERVED' );
 		$actorId = $store->createNewActor( $originalActor, $this->db );

@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Export;
 
 use FactoryArgTestTrait;
 use MediaWiki\Export\WikiExporterFactory;
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use WikiExporter;
 use XmlDumpWriter;
@@ -16,9 +17,10 @@ class WikiExporterFactoryTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( [
-			'XmlDumpSchemaVersion' => XmlDumpWriter::$supportedSchemas[0],
-		] );
+		$this->overrideConfigValue(
+			MainConfigNames::XmlDumpSchemaVersion,
+			XmlDumpWriter::$supportedSchemas[0]
+		);
 	}
 
 	protected static function getFactoryClass() {
