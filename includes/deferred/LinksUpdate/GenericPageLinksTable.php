@@ -111,9 +111,11 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 	protected function insertLink( $linkId ) {
 		$row = [
 			$this->getFromNamespaceField() => $this->getSourcePage()->getNamespace(),
-			$this->getNamespaceField() => $linkId[0],
-			$this->getTitleField() => $linkId[1]
 		];
+		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
+			$row[$this->getNamespaceField()] = $linkId[0];
+			$row[$this->getTitleField()] = $linkId[1];
+		}
 		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_NEW ) {
 			$row[$this->getTargetIdField()] = $this->linkTargetLookup->acquireLinkTargetId(
 				$this->makeTitle( $linkId ),

@@ -41,7 +41,6 @@ class LinksMigrationTest extends MediaWikiUnitTestCase {
 
 	public function provideReadOld() {
 		yield [ SCHEMA_COMPAT_READ_OLD ];
-		yield [ SCHEMA_COMPAT_OLD ];
 	}
 
 	/**

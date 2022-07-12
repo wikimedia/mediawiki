@@ -184,11 +184,11 @@ CREATE INDEX pl_backlinks_namespace ON pagelinks (
 
 CREATE TABLE templatelinks (
   tl_from INT DEFAULT 0 NOT NULL,
+  tl_target_id BIGINT NOT NULL,
+  tl_from_namespace INT DEFAULT 0 NOT NULL,
   tl_namespace INT DEFAULT 0 NOT NULL,
   tl_title TEXT DEFAULT '' NOT NULL,
-  tl_from_namespace INT DEFAULT 0 NOT NULL,
-  tl_target_id BIGINT DEFAULT NULL,
-  PRIMARY KEY(tl_from, tl_namespace, tl_title)
+  PRIMARY KEY(tl_from, tl_target_id)
 );
 
 CREATE INDEX tl_namespace ON templatelinks (tl_namespace, tl_title, tl_from);

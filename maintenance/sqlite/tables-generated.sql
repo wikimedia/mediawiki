@@ -177,11 +177,11 @@ CREATE INDEX pl_backlinks_namespace ON /*_*/pagelinks (
 
 CREATE TABLE /*_*/templatelinks (
   tl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  tl_target_id BIGINT UNSIGNED NOT NULL,
+  tl_from_namespace INTEGER DEFAULT 0 NOT NULL,
   tl_namespace INTEGER DEFAULT 0 NOT NULL,
   tl_title BLOB DEFAULT '' NOT NULL,
-  tl_from_namespace INTEGER DEFAULT 0 NOT NULL,
-  tl_target_id BIGINT UNSIGNED DEFAULT NULL,
-  PRIMARY KEY(tl_from, tl_namespace, tl_title)
+  PRIMARY KEY(tl_from, tl_target_id)
 );
 
 CREATE INDEX tl_namespace ON /*_*/templatelinks (tl_namespace, tl_title, tl_from);

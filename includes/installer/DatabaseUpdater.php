@@ -1205,6 +1205,27 @@ abstract class DatabaseUpdater {
 		$this->output( "done.\n" );
 	}
 
+	protected function migrateTemplatelinks() {
+		if ( $this->updateRowExists( MigrateLinksTable::class . 'templatelinks' ) ) {
+			$this->output( "Templatelinks table have been already migrated...\n" );
+			return;
+		}
+		/**
+		 * @var MigrateLinksTable $task
+		 */
+		$task = $this->maintenance->runChild(
+			MigrateLinksTable::class, 'migrateLinksTable.php'
+		);
+		'@phan-var MigrateLinksTable $task';
+		$task->loadParamsAndArgs( MigrateLinksTable::class, [
+			'force' => true,
+			'table' => 'templatelinks'
+		] );
+		$this->output( "Running migrate templatelinks...\n" );
+		$task->execute();
+		$this->output( "done.\n" );
+	}
+
 	/**
 	 * Migrate comments to the new 'comment' table
 	 * @since 1.30
