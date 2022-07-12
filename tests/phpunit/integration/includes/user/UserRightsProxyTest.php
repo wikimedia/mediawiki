@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\User;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWikiIntegrationTestCase;
@@ -20,9 +21,7 @@ class UserRightsProxyTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgLocalDatabases' => [ 'foowiki' ],
-		] );
+		$this->overrideConfigValue( MainConfigNames::LocalDatabases, [ 'foowiki' ] );
 
 		$dbMock = $this->createMock( DBConnRef::class );
 

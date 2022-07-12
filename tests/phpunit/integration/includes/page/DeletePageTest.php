@@ -6,6 +6,7 @@ use CommentStoreComment;
 use Content;
 use ContentHandler;
 use DeferredUpdates;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
@@ -269,9 +270,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 
 		if ( !$immediate ) {
 			// Ensure that the job queue can be used
-			$this->setMwGlobals( [
-				'wgDeleteRevisionsBatchSize' => 1
-			] );
+			$this->overrideConfigValue( MainConfigNames::DeleteRevisionsBatchSize, 1 );
 			$this->editPage( $page, "second revision" );
 		}
 

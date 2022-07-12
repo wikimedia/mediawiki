@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\User\TempUser;
 
 use ExtensionRegistry;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Session\Session;
 use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\TempUser\SerialMapping;
@@ -34,8 +35,9 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'user';
 		$this->tablesUsed[] = 'user_autocreate_serial';
 
-		$this->setMwGlobals( [
-			'wgAutoCreateTempUser' => [
+		$this->overrideConfigValue(
+			MainConfigNames::AutoCreateTempUser,
+			[
 				'enabled' => true,
 				'actions' => [ 'edit' ],
 				'genPattern' => '*Unregistered $1',
@@ -43,7 +45,7 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 				'serialProvider' => [ 'type' => 'local' ],
 				'serialMapping' => [ 'type' => 'plain-numeric' ]
 			]
-		] );
+		);
 		$tuc = $this->getServiceContainer()->getTempUserCreator();
 		$this->assertTrue( $tuc->isAutoCreateAction( 'edit' ) );
 		$this->assertTrue( $tuc->isReservedName( '*Unregistered 1' ) );
@@ -111,11 +113,10 @@ class TempUserCreatorTest extends \MediaWikiIntegrationTestCase {
 
 	public function testAcquireName_db() {
 		$this->tablesUsed[] = 'user_autocreate_serial';
-		$this->setMwGlobals( [
-			'wgAutoCreateTempUser' => [
-					'enabled' => true,
-				] + self::DEFAULTS
-		] );
+		$this->overrideConfigValue(
+			MainConfigNames::AutoCreateTempUser,
+			[ 'enabled' => true ] + self::DEFAULTS
+		);
 		$tuc = TestingAccessWrapper::newFromObject(
 			$this->getServiceContainer()->getTempUserCreator()
 		);
