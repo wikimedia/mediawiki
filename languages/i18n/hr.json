@@ -619,7 +619,7 @@
 	"changeemail-password": "Zaporka za projekt {{SITENAME}}:",
 	"changeemail-submit": "Promijeni e-mail",
 	"changeemail-throttled": "Nedavno ste se previše puta pokušali prijaviti.\nMolimo Vas pričekajte $1 prije nego što pokušate ponovno.",
-	"changeemail-nochange": "Molimo vas, upišite neku novu adresu e-pošte.",
+	"changeemail-nochange": "Molimo Vas, upišite neku novu adresu e-pošte.",
 	"resettokens": "Ponovo postavljanje tajnoga ključa",
 	"resettokens-text": "Možete ponovo postaviti tajni ključ koji Vam dopušta pristupanje određenim osobnim podatcima povezanim s Vašim ovdje navedenim suradničkim računom.\n\nTrebali bi to načiniti ukoliko ga kojim slučajem priopćite nekome ili ukoliko je Vaš suradnički račun ugrožen.",
 	"resettokens-no-tokens": "Nema tajnih ključeva za ponovno postavljanje",
