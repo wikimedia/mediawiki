@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 use Psr\Container\ContainerInterface;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -149,7 +150,10 @@ class ApiParseTest extends ApiTestCase {
 			'IGNORE'
 		);
 
-		$this->setMwGlobals( 'wgExtraInterlanguageLinkPrefixes', [ 'madeuplanguage' ] );
+		$this->overrideConfigValue(
+			MainConfigNames::ExtraInterlanguageLinkPrefixes,
+			[ 'madeuplanguage' ]
+		);
 		$this->tablesUsed[] = 'interwiki';
 	}
 
@@ -882,11 +886,14 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testConcurrentLimitPageParse() {
-		$this->setMwGlobals( 'wgPoolCounterConf', [
-			'ApiParser' => [
-				'class' => MockPoolCounterFailing::class,
+		$this->overrideConfigValue(
+			MainConfigNames::PoolCounterConf,
+			[
+				'ApiParser' => [
+					'class' => MockPoolCounterFailing::class,
+				]
 			]
-		] );
+		);
 
 		try {
 			$this->doApiRequest( [
@@ -900,11 +907,14 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testConcurrentLimitContentParse() {
-		$this->setMwGlobals( 'wgPoolCounterConf', [
-			'ApiParser' => [
-				'class' => MockPoolCounterFailing::class,
+		$this->overrideConfigValue(
+			MainConfigNames::PoolCounterConf,
+			[
+				'ApiParser' => [
+					'class' => MockPoolCounterFailing::class,
+				]
 			]
-		] );
+		);
 
 		try {
 			$this->doApiRequest( [

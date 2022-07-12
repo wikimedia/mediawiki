@@ -21,9 +21,7 @@ class ApiMoveTest extends ApiTestCase {
 			[ 'watchlist', 'watchlist_expiry' ]
 		);
 
-		$this->setMwGlobals( [
-			'wgWatchlistExpiry' => true,
-		] );
+		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 	}
 
 	/**
@@ -249,7 +247,8 @@ class ApiMoveTest extends ApiTestCase {
 		$name = ucfirst( __FUNCTION__ );
 
 		$this->overrideConfigValue( MainConfigNames::RateLimits,
-			[ 'move' => [ '&can-bypass' => false, 'user' => [ 1, 60 ] ] ] );
+			[ 'move' => [ '&can-bypass' => false, 'user' => [ 1, 60 ] ] ]
+		);
 
 		$id = $this->createPage( $name );
 

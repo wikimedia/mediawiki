@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -138,7 +139,7 @@ class ApiComparePagesTest extends ApiTestCase {
 	 * @dataProvider provideDiff
 	 */
 	public function testDiff( $params, $expect, $exceptionCode = false, $sysop = false ) {
-		$this->setMwGlobals( [ 'wgDiffEngine' => 'php' ] );
+		$this->overrideConfigValue( MainConfigNames::DiffEngine, 'php' );
 
 		$this->doReplacements( $params );
 

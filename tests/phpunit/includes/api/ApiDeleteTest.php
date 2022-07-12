@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * Tests for MediaWiki api.php?action=delete.
  *
@@ -20,9 +22,7 @@ class ApiDeleteTest extends ApiTestCase {
 			[ 'change_tag', 'change_tag_def', 'logging', 'watchlist', 'watchlist_expiry' ]
 		);
 
-		$this->setMwGlobals( [
-			'wgWatchlistExpiry' => true,
-		] );
+		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 	}
 
 	public function testDelete() {
@@ -46,7 +46,9 @@ class ApiDeleteTest extends ApiTestCase {
 	}
 
 	public function testBatchedDelete() {
-		$this->setMwGlobals( 'wgDeleteRevisionsBatchSize', 1 );
+		$this->overrideConfigValue(
+			MainConfigNames::DeleteRevisionsBatchSize, 1
+		);
 
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 		for ( $i = 1; $i <= 3; $i++ ) {
@@ -177,8 +179,10 @@ class ApiDeleteTest extends ApiTestCase {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
 		ChangeTags::defineTag( 'custom tag' );
-		$this->setMwGlobals( 'wgRevokePermissions',
-			[ 'user' => [ 'applychangetags' => true ] ] );
+		$this->overrideConfigValue(
+			MainConfigNames::RevokePermissions,
+			[ 'user' => [ 'applychangetags' => true ] ]
+		);
 
 		$this->editPage( $name, 'Some text' );
 
