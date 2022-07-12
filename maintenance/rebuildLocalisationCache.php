@@ -93,8 +93,6 @@ class RebuildLocalisationCache extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgLocalisationCacheConf, $wgCacheDirectory;
-
 		$force = $this->hasOption( 'force' );
 		$threads = $this->getOption( 'threads', 1 );
 		if ( $threads < 1 || $threads != intval( $threads ) ) {
@@ -110,7 +108,7 @@ class RebuildLocalisationCache extends Maintenance {
 			$threads = 1;
 		}
 
-		$conf = $wgLocalisationCacheConf;
+		$conf = $this->getConfig()->get( MainConfigNames::LocalisationCacheConf );
 		// Allow fallbacks to create CDB files
 		$conf['manualRecache'] = false;
 		$conf['forceRecache'] = $force || !empty( $conf['forceRecache'] );
@@ -130,7 +128,7 @@ class RebuildLocalisationCache extends Maintenance {
 				$conf,
 				$services->getMainConfig()
 			),
-			LocalisationCache::getStoreFromConf( $conf, $wgCacheDirectory ),
+			LocalisationCache::getStoreFromConf( $conf, $this->getConfig()->get( MainConfigNames::CacheDirectory ) ),
 			LoggerFactory::getInstance( 'localisation' ),
 			$this->hasOption( 'skip-message-purge' ) ? [] :
 				[ static function () use ( $services ) {
