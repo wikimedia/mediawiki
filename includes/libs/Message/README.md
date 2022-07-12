@@ -115,8 +115,8 @@ generate the output string:
      to fall back to appropriate other languages. Details of the fallback are
      unspecified here.
    - If no translation can be found in any fallback language, a string should
-	 be returned that indicates at minimum the message key that was unable to
-	 be found.
+     be returned that indicates at minimum the message key that was unable to
+     be found.
 2. Replace placeholders with parameter values.
    - Note that placeholders must not be replaced recursively. That is, if a
      parameter's value contains text that looks like a placeholder, it must not

@@ -515,12 +515,12 @@ abstract class LanguageConverter implements ILanguageConverter {
 			return $text;
 		}
 		/* we convert everything except:
-		   1. HTML markups (anything between < and >)
-		   2. HTML entities
-		   3. placeholders created by the parser
-		   IMPORTANT: Beware of failure from pcre.backtrack_limit (T124404).
-		   Minimize use of backtracking where possible.
-		*/
+		 * 1. HTML markups (anything between < and >)
+		 * 2. HTML entities
+		 * 3. placeholders created by the parser
+		 * IMPORTANT: Beware of failure from pcre.backtrack_limit (T124404).
+		 * Minimize use of backtracking where possible.
+		 */
 		static $reg;
 		if ( $reg === null ) {
 			$marker = '|' . Parser::MARKER_PREFIX . '[^\x7f]++\x7f';

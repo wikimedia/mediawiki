@@ -888,7 +888,7 @@ class ApiParseTest extends ApiTestCase {
 			]
 		] );
 
-		try{
+		try {
 			$this->doApiRequest( [
 				'action' => 'parse',
 				'page' => __CLASS__,
@@ -906,7 +906,7 @@ class ApiParseTest extends ApiTestCase {
 			]
 		] );
 
-		try{
+		try {
 			$this->doApiRequest( [
 				'action' => 'parse',
 				'oldid' => self::$revIds['revdel'],
