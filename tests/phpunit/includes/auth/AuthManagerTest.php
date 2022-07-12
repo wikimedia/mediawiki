@@ -13,6 +13,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
@@ -1646,16 +1647,16 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	 */
 	public function testAuthorizeCreateAccount_DNSBlacklist() {
 		$this->overrideConfigValues( [
-			'EnableDnsBlacklist' => true,
-			'DnsBlacklistUrls' => [
+			MainConfigNames::EnableDnsBlacklist => true,
+			MainConfigNames::DnsBlacklistUrls => [
 				'local.wmftest.net', // This will resolve for every subdomain, which works to test "listed?"
 			],
-			'ProxyWhitelist' => [],
+			MainConfigNames::ProxyWhitelist => [],
 		] );
 		$this->initializeManager( true );
 		$status = $this->manager->authorizeCreateAccount( new \User );
 		$this->assertStatusError( 'sorbs_create_account_reason', $status );
-		$this->overrideConfigValue( 'ProxyWhitelist', [ '127.0.0.1' ] );
+		$this->overrideConfigValue( MainConfigNames::ProxyWhitelist, [ '127.0.0.1' ] );
 		$this->initializeManager( true );
 		$status = $this->manager->authorizeCreateAccount( new \User );
 		$this->assertStatusGood( $status );

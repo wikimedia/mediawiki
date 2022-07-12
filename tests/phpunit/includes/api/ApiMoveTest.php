@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\SlotRecord;
 
 /**
@@ -247,7 +248,7 @@ class ApiMoveTest extends ApiTestCase {
 
 		$name = ucfirst( __FUNCTION__ );
 
-		$this->overrideConfigValue( 'RateLimits',
+		$this->overrideConfigValue( MainConfigNames::RateLimits,
 			[ 'move' => [ '&can-bypass' => false, 'user' => [ 1, 60 ] ] ] );
 
 		$id = $this->createPage( $name );

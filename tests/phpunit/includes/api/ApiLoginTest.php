@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Session\BotPasswordSessionProvider;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\TestingAccessWrapper;
@@ -333,7 +334,7 @@ class ApiLoginTest extends ApiTestCase {
 		];
 
 		$this->setGroupPermissions( 'sysop', 'noratelimit', false );
-		$this->overrideConfigValue( 'PasswordAttemptThrottle', $throttle );
+		$this->overrideConfigValue( MainConfigNames::PasswordAttemptThrottle, $throttle );
 
 		list( $name, $password ) = $this->setUpForBotPassword();
 

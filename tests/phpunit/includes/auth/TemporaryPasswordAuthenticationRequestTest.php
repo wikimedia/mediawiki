@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group AuthManager
  * @covers \MediaWiki\Auth\TemporaryPasswordAuthenticationRequest
@@ -33,8 +35,8 @@ class TemporaryPasswordAuthenticationRequestTest extends AuthenticationRequestTe
 		];
 
 		$this->overrideConfigValues( [
-			'MinimalPasswordLength' => 10,
-			'PasswordPolicy' => $policy,
+			MainConfigNames::MinimalPasswordLength => 10,
+			MainConfigNames::PasswordPolicy => $policy,
 		] );
 
 		$ret1 = TemporaryPasswordAuthenticationRequest::newRandom();
@@ -44,12 +46,12 @@ class TemporaryPasswordAuthenticationRequestTest extends AuthenticationRequestTe
 		$this->assertNotSame( $ret1->password, $ret2->password );
 
 		$policy['policies']['default']['MinimalPasswordLength'] = 15;
-		$this->overrideConfigValue( 'PasswordPolicy', $policy );
+		$this->overrideConfigValue( MainConfigNames::PasswordPolicy, $policy );
 		$ret = TemporaryPasswordAuthenticationRequest::newRandom();
 		$this->assertEquals( 15, strlen( $ret->password ) );
 
 		$policy['policies']['default']['MinimalPasswordLength'] = [ 'value' => 20 ];
-		$this->overrideConfigValue( 'PasswordPolicy', $policy );
+		$this->overrideConfigValue( MainConfigNames::PasswordPolicy, $policy );
 		$ret = TemporaryPasswordAuthenticationRequest::newRandom();
 		$this->assertEquals( 20, strlen( $ret->password ) );
 	}

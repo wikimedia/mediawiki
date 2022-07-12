@@ -810,7 +810,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @code
 	 *     protected function setUp() : void {
 	 *         parent::setUp();
-	 *         $this->overrideConfigValue( 'RestrictStuff', true );
+	 *         $this->overrideConfigValue( MainConfigNames::RestrictStuff, true );
 	 *     }
 	 *
 	 *     function testFoo() {}
@@ -818,7 +818,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *     function testBar() {}
 	 *         $this->assertTrue( self::getX()->doStuff() );
 	 *
-	 *         $this->overrideConfigValue( 'RestrictStuff', false );
+	 *         $this->overrideConfigValue( MainConfigNames::RestrictStuff, false );
 	 *         $this->assertTrue( self::getX()->doStuff() );
 	 *     }
 	 *

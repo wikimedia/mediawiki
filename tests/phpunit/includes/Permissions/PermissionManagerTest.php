@@ -171,7 +171,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		$this->mergeMwGlobalArrayValue( 'wgNamespaceProtection', $namespaceProtection );
 		$this->overrideConfigValue(
-			'NamespaceProtection',
+			MainConfigNames::NamespaceProtection,
 			$namespaceProtection + [ NS_MEDIAWIKI => 'editinterface' ]
 		);
 
