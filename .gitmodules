@@ -1568,3 +1568,8 @@
 	url = https://github.com/AgentIsai/Share
 	branch = master
 	ignore = dirty
+[submodule "extensions/IPInfo"]
+	path = extensions/IPInfo
+	url = https://github.com/wikimedia/mediawiki-extensions-IPInfo
+	branch = REL1_38
+	ignore = dirty
