@@ -1335,7 +1335,6 @@ $wgAutoloadLocalClasses = [
 	'ResetAuthenticationThrottle' => __DIR__ . '/maintenance/resetAuthenticationThrottle.php',
 	'ResetPageRandom' => __DIR__ . '/maintenance/resetPageRandom.php',
 	'ResetUserEmail' => __DIR__ . '/maintenance/resetUserEmail.php',
-	'ResetUserTokens' => __DIR__ . '/maintenance/resetUserTokens.php',
 	'ResourceFileCache' => __DIR__ . '/includes/cache/ResourceFileCache.php',
 	'ResourceLoader' => __DIR__ . '/includes/ResourceLoader/ResourceLoader.php',
 	'ResourceLoaderCircularDependencyError' => __DIR__ . '/includes/ResourceLoader/CircularDependencyError.php',
