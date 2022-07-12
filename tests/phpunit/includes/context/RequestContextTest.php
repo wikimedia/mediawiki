@@ -190,8 +190,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'aaa', $context->getActionName(), 'first from factory' );
 		$this->assertSame( 'aaa', $context->getActionName(), 'cached first' );
 
-		// Ignore warning from clearActionName
-		@$context->setTitle( $this->createMock( Title::class ) );
+		$context->setTitle( $this->createMock( Title::class ) );
 		$this->assertSame( 'bbb', $context->getActionName(), 'second from factory' );
 		$this->assertSame( 'bbb', $context->getActionName(), 'cached second' );
 	}
