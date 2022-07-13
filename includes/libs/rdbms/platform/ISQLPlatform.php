@@ -147,7 +147,7 @@ interface ISQLPlatform {
 	 *    [ baseKeyVal => [ subKeyVal => [ignored], ... ], ... ]
 	 * @param string $baseKey Field name to match the base-level keys to (eg 'pl_namespace')
 	 * @param string $subKey Field name to match the sub-level keys to (eg 'pl_title')
-	 * @return string|bool SQL fragment, or false if no items in array
+	 * @return string|false SQL fragment, or false if no items in array
 	 */
 	public function makeWhereFrom2d( $data, $baseKey, $subKey );
 
@@ -202,7 +202,7 @@ interface ISQLPlatform {
 	 *
 	 * @param string $sql SQL query we will append the limit too
 	 * @param int $limit The SQL limit
-	 * @param int|bool $offset The SQL offset (default false)
+	 * @param int|false $offset The SQL offset (default false)
 	 * @return string
 	 * @since 1.34 in IDatabase, moved to ISQLPlatform in 1.39
 	 */

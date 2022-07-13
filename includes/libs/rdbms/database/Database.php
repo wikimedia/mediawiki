@@ -131,9 +131,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private $lastPing = 0.0;
 	/** @var string The last SQL query attempted */
 	private $lastQuery = '';
-	/** @var float|bool UNIX timestamp of last write query */
+	/** @var float|false UNIX timestamp of last write query */
 	private $lastWriteTime = false;
-	/** @var string|bool */
+	/** @var string|false */
 	private $lastPhpError = false;
 	/** @var float Query round trip time estimate */
 	private $lastRoundTripEstimate = 0.0;
@@ -815,7 +815,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Restore the previous error handler and return the last PHP error for this DB
 	 *
-	 * @return bool|string
+	 * @return string|false
 	 */
 	protected function restoreErrorHandler() {
 		restore_error_handler();
@@ -827,7 +827,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @return string|bool Last PHP error for this DB (typically connection errors)
+	 * @return string|false Last PHP error for this DB (typically connection errors)
 	 */
 	protected function getLastPHPError() {
 		if ( $this->lastPhpError ) {
@@ -2626,7 +2626,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @stable to override
 	 * @param string $name Field name
-	 * @param string|bool $alias Alias (optional)
+	 * @param string|false $alias Alias (optional)
 	 * @return string SQL name for aliased field. Will not alias a field to its own name
 	 */
 	protected function fieldNameWithAlias( $name, $alias = false ) {
@@ -4511,7 +4511,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @return array|bool Tuple of (read-only reason, "role" or "lb") or false if it is not
+	 * @return array|false Tuple of (read-only reason, "role" or "lb") or false if it is not
 	 */
 	protected function getReadOnlyReason() {
 		if ( $this->topologyRole === self::ROLE_STREAMING_REPLICA ) {

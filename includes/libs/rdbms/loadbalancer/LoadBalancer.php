@@ -108,7 +108,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	/** @var bool[] Map of (domain => whether to use "temp tables only" mode) */
 	private $tempTablesOnlyMode = [];
 
-	/** @var string|bool Explicit DBO_TRX transaction round active or false if none */
+	/** @var string|false Explicit DBO_TRX transaction round active or false if none */
 	private $trxRoundId = false;
 	/** @var string Stage of the current transaction round in the transaction round life-cycle */
 	private $trxRoundStage = self::ROUND_CURSORY;
@@ -116,13 +116,13 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private $errorConnection;
 	/** @var int[] The group replica server indexes keyed by group */
 	private $readIndexByGroup = [];
-	/** @var bool|DBPrimaryPos Replication sync position or false if not set */
+	/** @var DBPrimaryPos|false Replication sync position or false if not set */
 	private $waitForPos;
 	/** @var bool Whether the generic reader fell back to a lagged replica DB */
 	private $laggedReplicaMode = false;
 	/** @var string The last DB selection or connection error */
 	private $lastError = 'Unknown error';
-	/** @var string|bool Reason this instance is read-only or false if not */
+	/** @var string|false Reason this instance is read-only or false if not */
 	private $readOnlyReason = false;
 	/** @var int Total number of new connections ever made with this instance */
 	private $connectionCounter = 0;
@@ -287,7 +287,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	/**
-	 * @param DatabaseDomain|string|bool $domain
+	 * @param DatabaseDomain|string|false $domain
 	 * @return DatabaseDomain
 	 */
 	final protected function resolveDomainInstance( $domain ): DatabaseDomain {
@@ -314,7 +314,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	/**
 	 * Resolve $groups into a list of query groups defining as having database servers
 	 *
-	 * @param string[]|string|bool $groups Query group(s) in preference order, [], or false
+	 * @param string[]|string|false $groups Query group(s) in preference order, [], or false
 	 * @param int $i Specific server index or DB_PRIMARY/DB_REPLICA
 	 * @return string[] Non-empty group list in preference order with the default group appended
 	 */
@@ -428,7 +428,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @param array $loads
 	 * @param string $domain Resolved DB domain
 	 * @param int|float $maxLag Restrict the maximum allowed lag to this many seconds, or INF for no max
-	 * @return bool|int|string
+	 * @return int|string|false
 	 */
 	private function getRandomNonLagged( array $loads, string $domain, $maxLag = INF ) {
 		$lags = $this->getLagTimes( $domain );
@@ -485,7 +485,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 *
 	 * @param int $i Specific server index or DB_PRIMARY/DB_REPLICA
 	 * @param string[] $groups Non-empty query group list in preference order
-	 * @param string|bool $domain
+	 * @param string|false $domain
 	 * @return int A specific server index (replica DBs are checked for connectivity)
 	 */
 	private function getConnectionIndex( $i, array $groups, $domain ) {
@@ -605,7 +605,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			throw new InvalidArgumentException( "Server configuration array is empty" );
 		}
 
-		/** @var int|bool $i Index of selected server */
+		/** @var int|false $i Index of selected server */
 		$i = false;
 		/** @var bool $laggedReplicaMode Whether server is considered lagged */
 		$laggedReplicaMode = false;
@@ -747,7 +747,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	/**
-	 * @param DBPrimaryPos|bool $pos
+	 * @param DBPrimaryPos|false $pos
 	 */
 	private function setWaitForPositionIfHigher( $pos ) {
 		if ( !$pos ) {
@@ -914,7 +914,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @internal
 	 * @param int $i Specific (overrides $groups) or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
-	 * @param string|bool $domain DB domain ID or false for the local domain
+	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants
 	 * @return IDatabase
 	 */
@@ -1176,7 +1176,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @param int $i Specific server index
 	 * @param string $domain Domain ID to open
 	 * @param int $flags Class CONN_* constant bitfield
-	 * @return Database|bool Returns false on connection error
+	 * @return Database|false Returns false on connection error
 	 * @throws DBError When database selection fails
 	 * @throws InvalidArgumentException When the server index is invalid
 	 * @throws UnexpectedValueException When the DB domain of the connection is corrupted

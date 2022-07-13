@@ -317,7 +317,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param string $fname
 	 * @param string|array $options
 	 * @param array $join_conds
-	 * @return bool|int
+	 * @return int|false
 	 */
 	public function estimateRowCount(
 		$tables,
@@ -385,7 +385,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * @param string $table
 	 * @param string $field
-	 * @return bool|MySQLField
+	 * @return MySQLField|false
 	 */
 	public function fieldInfo( $table, $field ) {
 		$res = $this->query(
@@ -746,7 +746,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * Get the position of the primary DB from SHOW SLAVE STATUS
 	 *
-	 * @return MySQLPrimaryPos|bool
+	 * @return MySQLPrimaryPos|false
 	 */
 	public function getReplicaPos() {
 		$now = microtime( true ); // as-of-time *before* fetching GTID variables
@@ -776,7 +776,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * Get the position of the primary DB from SHOW MASTER STATUS
 	 *
-	 * @return MySQLPrimaryPos|bool
+	 * @return MySQLPrimaryPos|false
 	 */
 	public function getPrimaryPos() {
 		$now = microtime( true ); // as-of-time *before* fetching GTID variables

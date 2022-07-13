@@ -747,7 +747,7 @@ class SQLPlatform implements ISQLPlatform {
 	 *
 	 * @stable to override
 	 * @param string $name Field name
-	 * @param string|bool $alias Alias (optional)
+	 * @param string|false $alias Alias (optional)
 	 * @return string SQL name for aliased field. Will not alias a field to its own name
 	 */
 	protected function fieldNameWithAlias( $name, $alias = false ) {
@@ -896,7 +896,7 @@ class SQLPlatform implements ISQLPlatform {
 	 *
 	 * @see Database::tableName()
 	 * @param string|Subquery $table Table name or object with a 'sql' field
-	 * @param string|bool $alias Table alias (optional)
+	 * @param string|false $alias Table alias (optional)
 	 * @return string SQL name for aliased table. Will not alias a table to its own name
 	 */
 	protected function tableNameWithAlias( $table, $alias = false ) {
