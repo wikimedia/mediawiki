@@ -49,11 +49,11 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 			return false;
 		}
 		if ( !$dbw->tableExists( 'linktarget', __METHOD__ ) ) {
-			$this->output( "Run update.php to create the table.\n" );
+			$this->output( "Run update.php to create the linktarget table.\n" );
 			return true;
 		}
 
-		$this->output( "Starting the populating $targetColumn column\n" );
+		$this->output( "Populating the $targetColumn column\n" );
 		$updated = 0;
 
 		$highestPageId = $dbw->newSelectQueryBuilder()
@@ -77,10 +77,7 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 			$pageId += $this->getBatchSize();
 		}
 
-		$this->output(
-			"Completed populating normalization of $table, "
-			. "$updated rows updated.\n"
-		);
+		$this->output( "Completed normalization of $table, $updated rows updated.\n" );
 
 		return true;
 	}
