@@ -13,20 +13,26 @@ use MediaWiki\ResourceLoader\ResourceLoader;
  */
 interface ResourceLoaderTestModulesHook {
 	/**
-	 * Use this hook to register ResourceLoader modules that are only available
-	 * when $wgEnableJavaScriptTest is true. Use this for test suites and
-	 * other test-only resources.
+	 * Register QUnit tests to load on [[Special:JavaScriptTest]].
 	 *
-	 * @since 1.35
-	 * @param array &$testModules One array of modules per test framework.
-	 *   The modules array follows the same format as `$wgResourceModules`.
-	 *   For example:
-	 *   	$testModules['qunit']['ext.Example.test'] = [
+	 * The tests files take the form of a ResourceLoader module that will only be registered
+	 * when $wgEnableJavaScriptTest is true, and automatically discovered and loaded when
+	 * visiting [[Special:JavaScriptTest]].
+	 *
+	 * The `$testModules` array follows the same format as $wgResourceModules, and is additionally
+	 * keyed by test framework.
+	 *
+	 * For example:
+	 *
+	 *   	$testModules['qunit']['test.Example'] = [
 	 *   		'localBasePath' => __DIR__ . '/tests/qunit',
 	 *   		'remoteExtPath' => 'Example/tests/qunit',
-	 *   		'script' => [ 'tests/qunit/foo.js' ],
+	 *   		'script' => [ 'tests/qunit/foo.test.js' ],
 	 *   		'dependencies' => [ 'ext.Example.foo' ]
 	 *   	 ];
+	 *
+	 * @since 1.35
+	 * @param array &$testModules
 	 * @param ResourceLoader $rl
 	 * @return void This hook must not abort, it must return no value
 	 */

@@ -9564,7 +9564,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Allow running of javascript test suites via [[Special:JavaScriptTest]] (such as QUnit).
+	 * Allow running of QUnit tests via [[Special:JavaScriptTest]].
 	 */
 	public const EnableJavaScriptTest = [
 		'default' => false,

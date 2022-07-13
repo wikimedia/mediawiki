@@ -135,7 +135,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 			. $rl->makeModuleResponse( $embedContext, [
 				'user.options' => $rl->getModule( 'user.options' ),
 			] )
-			// Load all the test suites
+			// Load all the test modules
 			. Xml::encodeJsCall( 'mw.loader.load', [ $modules ] )
 		);
 		$encModules = Xml::encodeJsVar( $modules );
