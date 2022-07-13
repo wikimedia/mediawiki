@@ -24,13 +24,10 @@ use BagOStuff;
 use InvalidArgumentException;
 
 /**
- * Lightweight class for tracking path dependencies lists via an object cache instance
+ * Track per-module file dependencies in object cache via BagOStuff.
  *
- * This does not throw DependencyStoreException due to I/O errors since it is optimized for
- * speed and availability. Read methods return empty placeholders on failure. Write methods
- * might issue I/O in the background and return immediately. However, reads methods will at
- * least block on the resolution (success/failure) of any such pending writes.
- *
+ * @see $wgResourceLoaderUseObjectCacheForDeps
+ * @internal For use by ResourceLoader\Module only
  * @since 1.35
  */
 class KeyValueDependencyStore extends DependencyStore {
@@ -93,17 +90,6 @@ class KeyValueDependencyStore extends DependencyStore {
 
 		if ( $keys ) {
 			$this->stash->deleteMulti( $keys, BagOStuff::WRITE_BACKGROUND );
-		}
-	}
-
-	public function renew( $type, $entities, $ttl ) {
-		$keys = [];
-		foreach ( (array)$entities as $entity ) {
-			$keys[] = $this->getStoreKey( $type, $entity );
-		}
-
-		if ( $keys ) {
-			$this->stash->changeTTLMulti( $keys, $ttl, BagOStuff::WRITE_BACKGROUND );
 		}
 	}
 
