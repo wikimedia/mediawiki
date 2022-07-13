@@ -1,19 +1,45 @@
-const pako = require( '../../lib/pako/pako_deflate.js' );
+/**
+ * Convert a byte stream to base64 text.
+ *
+ * @deprecated Use mw.deflateAsync
+ * @example
+ * return mw.loader.using( 'mediawiki.deflate' ).then( () => mw.deflate( html ) );
+ * @param {string} data
+ * @return {string} Compressed data
+ */
+mw.deflate = function ( data ) {
+	const pako = require( '../../lib/pako/pako_deflate.js' );
+	return 'rawdeflate,' + bytesToBase64( pako.deflateRaw( data, { level: 5 } ) );
+};
 
 /**
  * Convert a byte stream to base64 text.
- * Before using load the mediawiki.deflate ResourceLoader module.
+ *
+ * Uses browser native CompressionStream if available.
  *
  * @example
- * return mw.loader.using( 'mediawiki.deflate' ).then( function () {
- *    return mw.deflate( html );
- * } );
+ * return mw.loader.using( 'mediawiki.deflate' ).then( () => mw.deflateAsync( html ) );
  * @param {string} data
- * @return {string}
+ * @return {Promise<string>} Compressed data
  */
-mw.deflate = function ( data ) {
-	return 'rawdeflate,' + bytesToBase64( pako.deflateRaw( data, { level: 5 } ) );
+mw.deflateAsync = function ( data ) {
+	if ( window.CompressionStream ) {
+		return compress( data ).then( ( buffer ) => 'rawdeflate,' + bytesToBase64( new Uint8Array( buffer ) ) );
+	} else {
+		return Promise.resolve( mw.deflate( data ) );
+	}
 };
+
+function compress( string ) {
+	const byteArray = new TextEncoder().encode( string );
+	// eslint-disable-next-line compat/compat
+	const cs = new CompressionStream( 'deflate-raw' );
+	const writer = cs.writable.getWriter();
+	writer.write( byteArray );
+	writer.close();
+
+	return new Response( cs.readable ).arrayBuffer();
+}
 
 /*
  * Convert a byte stream to base64 text.
