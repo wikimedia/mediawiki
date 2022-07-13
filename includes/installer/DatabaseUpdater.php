@@ -1207,7 +1207,7 @@ abstract class DatabaseUpdater {
 
 	protected function migrateTemplatelinks() {
 		if ( $this->updateRowExists( MigrateLinksTable::class . 'templatelinks' ) ) {
-			$this->output( "Templatelinks table have been already migrated...\n" );
+			$this->output( "...templatelinks table has already been migrated.\n" );
 			return;
 		}
 		/**
@@ -1221,7 +1221,7 @@ abstract class DatabaseUpdater {
 			'force' => true,
 			'table' => 'templatelinks'
 		] );
-		$this->output( "Running migrate templatelinks...\n" );
+		$this->output( "Running migrateLinksTable.php on templatelinks...\n" );
 		$task->execute();
 		$this->output( "done.\n" );
 	}
