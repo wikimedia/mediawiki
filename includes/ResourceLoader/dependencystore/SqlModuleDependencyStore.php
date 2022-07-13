@@ -27,11 +27,16 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
- * Class for tracking per-entity dependency path lists in the module_deps table
+ * Track per-module file dependencies in the core module_deps table
  *
- * This should not be used outside of ResourceLoader and ResourceLoader\Module
+ * Wiki farms that are too big for maintenance/update.php, can clean up
+ * unneeded data for modules that no longer exist after a MW upgrade,
+ * by running maintenance/cleanupRemovedModules.php.
  *
- * @internal For use with ResourceLoader/ResourceLoader\Module only
+ * To force a rebuild and incurr a small penalty in browser cache churn,
+ * run maintenance/purgeModuleDeps.php instead.
+ *
+ * @internal For use by ResourceLoader\Module only
  * @since 1.35
  */
 class SqlModuleDependencyStore extends DependencyStore {
@@ -149,10 +154,6 @@ class SqlModuleDependencyStore extends DependencyStore {
 		} catch ( DBError $e ) {
 			throw new DependencyStoreException( $e->getMessage() );
 		}
-	}
-
-	public function renew( $type, $entities, $ttl ) {
-		// no-op
 	}
 
 	/**
