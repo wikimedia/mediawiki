@@ -51,6 +51,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	public const EDIT_CLEAR = 1;
 	public const EDIT_RAW = 2;
 	public const EDIT_NORMAL = 3;
+	public const VIEW = 4;
 
 	protected $successMessage;
 
@@ -143,6 +144,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$this->outputSubtitle();
 
 		switch ( $mode ) {
+			case self::VIEW:
+				$title = SpecialPage::getTitleFor( 'Watchlist' );
+				$out->redirect( $title->getLocalURL() );
+				break;
 			case self::EDIT_RAW:
 				$out->setPageTitle( $this->msg( 'watchlistedit-raw-title' ) );
 				$form = $this->getRawForm();
@@ -172,6 +177,15 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	protected function outputSubtitle() {
 		$out = $this->getOutput();
+		$skin = $this->getSkin();
+		// For legacy skins render the tabs in the subtitle
+		$subpageSubtitle = $skin->supportsMenu( 'associated-pages' ) ? '' :
+			' ' .
+				self::buildTools(
+					null,
+					$this->getLinkRenderer(),
+					$this->currentMode
+				);
 		$out->addSubtitle(
 			Html::element(
 				'span',
@@ -183,13 +197,22 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				// Empty string parameter can be removed when all messages
 				// are updated to not use $2
 				$this->msg( 'watchlistfor2', $this->getUser()->getName(), '' )->text()
-			) . ' ' .
-			self::buildTools(
-				null,
-				$this->getLinkRenderer(),
-				$this->currentMode
-			)
+			) . $subpageSubtitle
 		);
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getAssociatedNavigationLinks() {
+		return SpecialWatchlist::WATCHLIST_TAB_PATHS;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getShortDescription( string $path = '' ): string {
+		return SpecialWatchlist::getShortDescriptionHelper( $this, $path );
 	}
 
 	/**
@@ -823,6 +846,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$mode = strtolower( $request->getRawVal( 'action', $par ?? '' ) );
 
 		switch ( $mode ) {
+			case 'view':
+				return self::VIEW;
 			case 'clear':
 			case self::EDIT_CLEAR:
 				return self::EDIT_CLEAR;
