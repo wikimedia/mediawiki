@@ -2023,7 +2023,10 @@ class EditPage implements IEditObject {
 				throw new ReadOnlyError;
 
 			case self::AS_RATE_LIMITED:
-				throw new ThrottledError();
+				$out->wrapWikiTextAsInterface( 'error',
+					wfMessage( 'actionthrottledtext' )->plain()
+				);
+				return true;
 
 			case self::AS_NO_CREATE_PERMISSION:
 				$permission = $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage';
