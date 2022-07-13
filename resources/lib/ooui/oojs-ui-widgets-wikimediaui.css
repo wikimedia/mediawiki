@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.44.0
+ * OOUI v0.44.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-05-17T17:51:03Z
+ * Date: 2022-07-13T13:25:55Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ),
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
@@ -268,7 +268,6 @@
   vertical-align: middle;
   overflow: hidden;
   box-sizing: border-box;
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
   background-color: #f8f9fa;
   width: 3.5em;
@@ -347,12 +346,11 @@
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:active:focus .oo-ui-toggleSwitchWidget-grip {
   background-color: #fff;
   border-color: #fff;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:focus {
   border-color: #36c;
   box-shadow: inset 0 0 0 1px #36c;
-  outline: 0;
+  outline: 1px solid transparent;
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:focus .oo-ui-toggleSwitchWidget-grip {
   border-color: #36c;
@@ -364,7 +362,6 @@
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on .oo-ui-toggleSwitchWidget-grip {
   background-color: #fff;
   border-color: #fff;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled.oo-ui-toggleWidget-on:hover {
   background-color: #447ff5;
@@ -794,7 +791,7 @@
   opacity: 1;
 }
 .oo-ui-tagMultiselectWidget-handle .oo-ui-tagMultiselectWidget-group > input:focus {
-  outline: 0;
+  outline: 1px solid transparent;
 }
 .oo-ui-tagMultiselectWidget-handle .oo-ui-tagMultiselectWidget-group > input:first-child {
   margin-left: 0.14285714em;
@@ -834,7 +831,7 @@
 }
 .oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-inlined.oo-ui-tagMultiselectWidget-focus .oo-ui-tagMultiselectWidget-handle {
   border-color: #36c;
-  outline: 0;
+  outline: 1px solid transparent;
   box-shadow: inset 0 0 0 1px #36c;
 }
 .oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-inlined.oo-ui-flaggedElement-invalid .oo-ui-tagMultiselectWidget-handle,
@@ -908,7 +905,7 @@
 .oo-ui-tagItemWidget.oo-ui-widget-enabled:focus {
   border-color: #36c;
   box-shadow: inset 0 0 0 1px #36c;
-  outline: 0;
+  outline: 1px solid transparent;
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled:not( .oo-ui-tagItemWidget-fixed ) {
   background-color: #f8f9fa;

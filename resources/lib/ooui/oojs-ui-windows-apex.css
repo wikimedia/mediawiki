@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.44.0
+ * OOUI v0.44.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-05-17T17:51:03Z
+ * Date: 2022-07-13T13:25:55Z
  */
 
 .oo-ui-window {
@@ -45,6 +45,14 @@
   top: 0;
   /* @noflip */
   left: 0;
+}
+.oo-ui-window-focusTrap {
+  display: none;
+}
+.oo-ui-windowManager-modal .oo-ui-window-focusTrap,
+.oo-ui-windowManager-fullscreen .oo-ui-window-focusTrap,
+.oo-ui-windowManager-forceTrapFocus .oo-ui-window-focusTrap {
+  display: block;
 }
 
 .oo-ui-dialog-content > .oo-ui-window-head,
@@ -120,9 +128,6 @@
   color: #666;
   text-align: left;
 }
-.oo-ui-messageDialog-actions {
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-}
 .oo-ui-messageDialog-actions .oo-ui-actionWidget {
   min-height: 2.5em;
   margin-right: 0;
@@ -140,6 +145,11 @@
 }
 .oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-flaggedElement-progressive .oo-ui-labelElement-label {
   font-weight: bold;
+}
+.oo-ui-messageDialog-actions-horizontal {
+  width: calc(100% + 2px);
+  margin-left: -1px;
+  margin-right: -1px;
 }
 .oo-ui-messageDialog-actions-horizontal .oo-ui-actionWidget {
   margin: 0;
@@ -168,13 +178,6 @@
 }
 .oo-ui-messageDialog-actions-horizontal .oo-ui-actionWidget:only-child > .oo-ui-buttonElement-button {
   border-radius: 0 0 3px 3px;
-}
-@supports ( width: calc( 100% + 2px ) ) {
-  .oo-ui-messageDialog-actions-horizontal {
-    width: calc(100% + 2px);
-    margin-left: -1px;
-    margin-right: -1px;
-  }
 }
 .oo-ui-messageDialog-actions-vertical .oo-ui-actionWidget {
   margin: -1px 0 0;

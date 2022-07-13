@@ -20,6 +20,18 @@
 		"code": {
 			"file": "../wikimediaui/images/icons/code.svg"
 		},
+		"copy": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/copy-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/copy-rtl.svg"
+			}
+		},
+		"cut": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/cut-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/cut-rtl.svg"
+			}
+		},
 		"hieroglyph": {
 			"file": "../wikimediaui/images/icons/hieroglyph.svg"
 		},
@@ -78,6 +90,12 @@
 			"file": {
 				"ltr": "../wikimediaui/images/icons/outline-ltr.svg",
 				"rtl": "../wikimediaui/images/icons/outline-rtl.svg"
+			}
+		},
+		"paste": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/paste-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/paste-rtl.svg"
 			}
 		},
 		"puzzle": {
