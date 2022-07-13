@@ -316,7 +316,7 @@
 	"sort-ascending": "מיון בסדר עולה",
 	"sort-initial": "אתחול מיון",
 	"sort-rowspan-error": "הדף הזה מכיל טבלה עם מאפיין rowspan שמקיף יותר שורות מכמה שבאמת יש בטבלה. באפשרותך לתקן את זה באמצעות עריכת הדף.",
-	"nstab-main": "דף תוכן",
+	"nstab-main": "דף",
 	"nstab-user": "דף {{GENDER:$1|משתמש|משתמשת}}",
 	"nstab-media": "דף מדיה",
 	"nstab-special": "דף מיוחד",

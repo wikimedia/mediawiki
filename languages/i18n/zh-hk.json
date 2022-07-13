@@ -336,5 +336,6 @@
 	"searchsuggest-search": "搜尋{{SITENAME}}",
 	"api-error-publishfailed": "內部錯誤：伺服器發佈暫存檔案失敗。",
 	"duration-days": "$1日",
-	"nstab-mainpage": "首頁"
+	"nstab-mainpage": "首頁",
+	"newpages-showhide-bots": "$1機械人"
 }

@@ -656,7 +656,7 @@
 	"undo-success": "Babakan kawa diwalangi.\nTulung dipariksa panandingan di bawah hagan mayakinakan ngini apa nang Pian handak gawi, wan limbah itu simpan paubahan di bawah hagan manuntungakan pawalangan babakan.",
 	"undo-failure": "Babakan ngini kada kawa dipasahi maraga ada cakutan di tangah babakan-babakan.",
 	"undo-norev": "Babakan kada kawa diwalangi karana ini kadada atawa tahapus.",
-	"undo-summary": "←Mawalangakan ralatan $1 ulih [[Special:Contributions/$2|$2]] ([[User talk:$2|Pandir]])",
+	"undo-summary": "←Mamasahakan ralatan $1 ulih [[Special:Contributions/$2|$2]] ([[User talk:$2|Pandir]])",
 	"undo-summary-import": "Bulikakan ralatan $1 nang diimpur ulih pamakai [[:$2|$3]]",
 	"undo-summary-import2": "Bulikakan ralatan $1 nang diimpur ulih pamakai $2",
 	"viewpagelogs": "Janaki log laman ngini",

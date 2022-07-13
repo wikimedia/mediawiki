@@ -3298,5 +3298,9 @@
 	"skin-action-protect": "保護",
 	"skin-action-undelete": "取消剷走",
 	"skin-action-delete": "剷走",
-	"skin-action-move": "搬"
+	"skin-action-move": "搬",
+	"newpages-showhide-bots": "$1機械人",
+	"newpages-showhide-patrolled": "$1巡過嘅修改",
+	"newpages-showhide-redirect": "$1跳轉",
+	"newpages-showhide-registered": "$1註冊咗嘅用戶"
 }

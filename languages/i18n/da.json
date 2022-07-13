@@ -2421,7 +2421,7 @@
 	"whatlinkshere-hideredirs": "Skjul omdirigeringer",
 	"whatlinkshere-hidetrans": "Skjul inkluderinger",
 	"whatlinkshere-hidelinks": "Skjul henvisninger",
-	"whatlinkshere-hideimages": "$1 filhenvisninger",
+	"whatlinkshere-hideimages": "Skjul filhenvisninger",
 	"whatlinkshere-submit": "Vis",
 	"autoblockid": "Autoblock #$1",
 	"block": "Bloker bruger",
