@@ -1273,7 +1273,7 @@
 	"group-user-member": "{{GENDER:$1|کاربر}}",
 	"group-autoconfirmed-member": "{{GENDER:$1|کاربر تأییدشده}}",
 	"group-bot-member": "ربات",
-	"group-sysop-member": "{{GENDER:$1|مدیریت}}",
+	"group-sysop-member": "{{GENDER:$1|مدیر}}",
 	"group-interface-admin-member": "{{GENDER:$1|مدیر رابط کاربری}}",
 	"group-bureaucrat-member": "{{GENDER:$1|دیوان‌سالار}}",
 	"group-suppress-member": "{{GENDER:$1|پنهانگر}}",
