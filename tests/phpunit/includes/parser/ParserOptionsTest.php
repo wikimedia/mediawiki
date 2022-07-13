@@ -32,9 +32,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		$contLang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'qqx' );
 
 		$this->setContentLang( $contLang );
-		$this->setMwGlobals( [
-			'wgLang' => $userLang,
-		] );
+		$this->setUserLang( $userLang );
 
 		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'de' );
 		$lang2 = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'bug' );
