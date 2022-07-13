@@ -84,7 +84,7 @@ class MWCryptHash {
 	}
 
 	/**
-	 * Generate an acceptably unstable one-way-hash of some text
+	 * Generate a cryptographic hash value (message digest) for a string,
 	 * making use of the best hash algorithm that we have available.
 	 *
 	 * @param string $data
@@ -96,13 +96,13 @@ class MWCryptHash {
 	}
 
 	/**
-	 * Generate an acceptably unstable one-way-hmac of some text
+	 * Generate a keyed cryptographic hash value (HMAC) for a string,
 	 * making use of the best hash algorithm that we have available.
 	 *
 	 * @param string $data
 	 * @param string $key
 	 * @param bool $raw True to return binary data, false to return it hex-encoded
-	 * @return string An hmac hash of the data + key
+	 * @return string An HMAC hash of the data + key
 	 */
 	public static function hmac( $data, $key, $raw = true ) {
 		if ( !is_string( $key ) ) {
