@@ -105,7 +105,11 @@ class RepoGroup {
 		if ( isset( $options['bypassCache'] ) ) {
 			$options['latest'] = $options['bypassCache']; // b/c
 		}
-		$options += [ 'time' => false ];
+		if ( isset( $options['time'] ) && $options['time'] !== false ) {
+			$options['time'] = wfTimestamp( TS_MW, $options['time'] );
+		} else {
+			$options['time'] = false;
+		}
 
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
@@ -118,7 +122,6 @@ class RepoGroup {
 
 		# Check the cache
 		$dbkey = $title->getDBkey();
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		$timeKey = is_string( $options['time'] ) ? $options['time'] : '';
 		if ( empty( $options['ignoreRedirect'] )
 			&& empty( $options['private'] )
