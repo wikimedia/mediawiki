@@ -372,6 +372,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			'scripts' => new ResourceLoaderFilePath( 'script.js', $filePath, 'rlfilepath' ),
 			'templates' => new ResourceLoaderFilePath( 'template.html', $filePath, 'rlfilepath' ),
 		] );
+		$testModule->setName( 'testModule' );
 		$expectedModule = new ResourceLoaderFileModule( [
 			'localBasePath' => $filePath,
 			'remoteBasePath' => 'rlfilepath',
@@ -382,6 +383,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			'scripts' => 'script.js',
 			'templates' => 'template.html',
 		] );
+		$expectedModule->setName( 'expectedModule' );
 
 		$context = $this->getResourceLoaderContext();
 		$this->assertEquals(

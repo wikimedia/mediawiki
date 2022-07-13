@@ -737,27 +737,30 @@ END
 
 	protected function getFailFerryMock( $getter = 'getScript' ) {
 		$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-			->onlyMethods( [ $getter ] )
+					 ->onlyMethods( [ $getter, 'getName' ] )
 			->getMock();
 		$mock->method( $getter )->will( $this->throwException(
 			new Exception( 'Ferry not found' )
 		) );
+		$mock->method( 'getName' )->willReturn( __METHOD__ );
 		return $mock;
 	}
 
 	protected function getSimpleModuleMock( $script = '' ) {
 		$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-			->onlyMethods( [ 'getScript' ] )
+					 ->onlyMethods( [ 'getScript', 'getName' ] )
 			->getMock();
 		$mock->method( 'getScript' )->willReturn( $script );
+		$mock->method( 'getName' )->willReturn( __METHOD__ );
 		return $mock;
 	}
 
 	protected function getSimpleStyleModuleMock( $styles = '' ) {
 		$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-			->onlyMethods( [ 'getStyles' ] )
+					 ->onlyMethods( [ 'getStyles', 'getName' ] )
 			->getMock();
 		$mock->method( 'getStyles' )->willReturn( [ '' => $styles ] );
+		$mock->method( 'getName' )->willReturn( __METHOD__ );
 		return $mock;
 	}
 
@@ -1042,10 +1045,11 @@ END
 	 */
 	public function testMakeModuleResponseExtraHeaders() {
 		$module = $this->getMockBuilder( ResourceLoaderTestModule::class )
-			->onlyMethods( [ 'getPreloadLinks' ] )->getMock();
+					   ->onlyMethods( [ 'getPreloadLinks', 'getName' ] )->getMock();
 		$module->method( 'getPreloadLinks' )->willReturn( [
 			'https://example.org/script.js' => [ 'as' => 'script' ],
 		] );
+		$module->method( 'getName' )->willReturn( __METHOD__ );
 
 		$rl = new EmptyResourceLoader();
 		$context = $this->getResourceLoaderContext(
@@ -1073,17 +1077,19 @@ END
 	 */
 	public function testMakeModuleResponseExtraHeadersMulti() {
 		$foo = $this->getMockBuilder( ResourceLoaderTestModule::class )
-			->onlyMethods( [ 'getPreloadLinks' ] )->getMock();
+			->onlyMethods( [ 'getPreloadLinks', 'getName' ] )->getMock();
 		$foo->method( 'getPreloadLinks' )->willReturn( [
 			'https://example.org/script.js' => [ 'as' => 'script' ],
 		] );
+		$foo->method( 'getName' )->willReturn( __METHOD__ );
 
 		$bar = $this->getMockBuilder( ResourceLoaderTestModule::class )
-			->onlyMethods( [ 'getPreloadLinks' ] )->getMock();
+			->onlyMethods( [ 'getPreloadLinks', 'getName' ] )->getMock();
 		$bar->method( 'getPreloadLinks' )->willReturn( [
 			'/example.png' => [ 'as' => 'image' ],
 			'/example.jpg' => [ 'as' => 'image' ],
 		] );
+		$bar->method( 'getName' )->willReturn( __METHOD__ );
 
 		$rl = new EmptyResourceLoader();
 		$context = $this->getResourceLoaderContext(
