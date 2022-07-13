@@ -138,8 +138,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	private $modules = [];
 	/** @var array[] Map of (module name => associative info array) */
 	private $moduleInfos = [];
-	/** @var string[] List of module names that contain QUnit test suites */
-	private $testSuiteModuleNames = [];
+	/** @var string[] List of module names that contain QUnit tests */
+	private $testModuleNames = [];
 	/** @var string[] Map of (source => path); E.g. [ 'source-id' => 'http://.../load.php' ] */
 	private $sources = [];
 	/** @var array Errors accumulated during a respond() call. Exposed for testing. */
@@ -320,26 +320,26 @@ class ResourceLoader implements LoggerAwareInterface {
 		$testModules = $testModulesMeta['qunit']
 			+ $extRegistry->getAttribute( 'QUnitTestModules' );
 
-		$testSuiteModuleNames = [];
+		$testModuleNames = [];
 		foreach ( $testModules as $name => &$module ) {
 			// Turn any single-module dependency into an array
 			if ( isset( $module['dependencies'] ) && is_string( $module['dependencies'] ) ) {
 				$module['dependencies'] = [ $module['dependencies'] ];
 			}
 
-			// Ensure the testrunner loads before any test suites
+			// Ensure the testrunner loads before any tests
 			$module['dependencies'][] = 'mediawiki.qunit-testrunner';
 
-			// Keep track of the test suites to load on SpecialJavaScriptTest
-			$testSuiteModuleNames[] = $name;
+			// Keep track of the modules to load on SpecialJavaScriptTest
+			$testModuleNames[] = $name;
 		}
 
-		// Core test suites (their names have further precedence).
+		// Core test modules (their names have further precedence).
 		$testModules = ( include MW_INSTALL_PATH . '/tests/qunit/QUnitTestResources.php' ) + $testModules;
-		$testSuiteModuleNames[] = 'test.MediaWiki';
+		$testModuleNames[] = 'test.MediaWiki';
 
 		$this->register( $testModules );
-		$this->testSuiteModuleNames = $testSuiteModuleNames;
+		$this->testModuleNames = $testModuleNames;
 	}
 
 	/**
@@ -382,14 +382,14 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get a list of module names with QUnit test suites.
+	 * Get a list of modules with QUnit tests.
 	 *
 	 * @internal For use by SpecialJavaScriptTest only
 	 * @return string[]
 	 * @codeCoverageIgnore
 	 */
 	public function getTestSuiteModuleNames() {
-		return $this->testSuiteModuleNames;
+		return $this->testModuleNames;
 	}
 
 	/**
