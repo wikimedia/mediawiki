@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.44.0
+ * OOUI v0.44.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-05-17T17:51:03Z
+ * Date: 2022-07-13T13:25:55Z
  */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ),
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
@@ -270,7 +270,6 @@
   vertical-align: middle;
   overflow: hidden;
   box-sizing: border-box;
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
   background-color: #ebebeb;
   background-image: linear-gradient(to bottom, #ddd 0, #fafafa 100%);
@@ -847,7 +846,6 @@
 }
 .oo-ui-tagItemWidget.oo-ui-widget-disabled {
   opacity: 0.5;
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
   box-shadow: none;
   color: #333;

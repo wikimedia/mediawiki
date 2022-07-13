@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.44.0
+ * OOUI v0.44.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-05-17T17:51:03Z
+ * Date: 2022-07-13T13:25:55Z
  */
 
 .oo-ui-window {
@@ -44,6 +44,14 @@
   top: 0;
   /* @noflip */
   left: 0;
+}
+.oo-ui-window-focusTrap {
+  display: none;
+}
+.oo-ui-windowManager-modal .oo-ui-window-focusTrap,
+.oo-ui-windowManager-fullscreen .oo-ui-window-focusTrap,
+.oo-ui-windowManager-forceTrapFocus .oo-ui-window-focusTrap {
+  display: block;
 }
 
 .oo-ui-dialog-content > .oo-ui-window-head,
@@ -211,24 +219,24 @@
   outline: 1px solid #c8ccd1;
 }
 .oo-ui-processDialog-content .oo-ui-window-head {
-  min-height: 2.85714286em;
+  min-height: 3em;
 }
 .oo-ui-processDialog-content .oo-ui-window-body {
-  top: 2.85714286em;
+  top: 3em;
 }
 .oo-ui-processDialog-navigation {
   position: relative;
-  min-height: 2.85714286em;
+  min-height: 3em;
 }
 .oo-ui-processDialog-location {
-  min-height: 2.85714286em;
+  min-height: 3em;
   text-align: center;
   cursor: default;
 }
 .oo-ui-processDialog-title {
   font-size: 1.1em;
   font-weight: bold;
-  line-height: 2.5974026em;
+  line-height: 2.72727273em;
 }
 .oo-ui-processDialog .oo-ui-actionWidget > .oo-ui-buttonElement-button {
   border-radius: 0;
@@ -249,7 +257,7 @@
   border-color: #36c;
 }
 .oo-ui-processDialog .oo-ui-actionWidget.oo-ui-iconElement > .oo-ui-buttonElement-button {
-  min-height: 2.85714286em;
+  min-height: 3em;
   padding-top: 0;
   padding-left: 3.14285714em;
   padding-right: 0;

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.44.0
+ * OOUI v0.44.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-05-17T17:51:03Z
+ * Date: 2022-07-13T13:25:55Z
  */
 .oo-ui-tool {
   box-sizing: border-box;
@@ -50,7 +50,6 @@
 .oo-ui-tool.oo-ui-widget-enabled .oo-ui-iconElement-icon {
   opacity: 0.87;
   transition: opacity 100ms;
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
 .oo-ui-tool.oo-ui-widget-enabled .oo-ui-tool-title {
@@ -394,7 +393,6 @@
 .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator {
   opacity: 0.87;
   transition: opacity 100ms;
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
 .oo-ui-popupToolGroup.oo-ui-widget-enabled > .oo-ui-popupToolGroup-handle:hover .oo-ui-iconElement-icon,
@@ -436,7 +434,7 @@
   color: #36c;
 }
 .oo-ui-popupToolGroup-tools .oo-ui-tool.oo-ui-widget-enabled .oo-ui-tool-link:focus {
-  outline: 0;
+  outline: 1px solid transparent;
   box-shadow: inset 0 0 0 2px #36c;
 }
 .oo-ui-popupToolGroup.oo-ui-flaggedElement-progressive > .oo-ui-popupToolGroup-handle {
@@ -617,10 +615,18 @@
 .oo-ui-toolbar-tools .oo-ui-popupTool-popup,
 .oo-ui-toolbar-popups .oo-ui-popupTool-popup {
   white-space: normal;
+  -webkit-touch-callout: default;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }
 .oo-ui-toolbar-narrow .oo-ui-toolbar-tools,
 .oo-ui-toolbar-narrow.oo-ui-toolbar-popups {
   white-space: normal;
+}
+.oo-ui-toolbar-after {
+  float: right;
 }
 .oo-ui-toolbar-actions {
   float: right;

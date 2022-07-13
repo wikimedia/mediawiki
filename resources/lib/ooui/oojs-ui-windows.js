@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.44.0
+ * OOUI v0.44.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-05-17T17:50:55Z
+ * Date: 2022-07-13T13:25:47Z
  */
 ( function ( OO ) {
 
@@ -287,9 +287,7 @@ OO.ui.ActionSet.prototype.onActionChange = function () {
  * @return {boolean} Action is special
  */
 OO.ui.ActionSet.prototype.isSpecial = function ( action ) {
-	var flag;
-
-	for ( flag in this.special ) {
+	for ( var flag in this.special ) {
 		if ( action === this.special[ flag ] ) {
 			return true;
 		}
@@ -313,27 +311,27 @@ OO.ui.ActionSet.prototype.isSpecial = function ( action ) {
  * @return {OO.ui.ActionWidget[]} Action widgets matching all criteria
  */
 OO.ui.ActionSet.prototype.get = function ( filters ) {
-	var i, len, list, category, actions, index, match, matches;
-
 	if ( filters ) {
 		this.organize();
 
+		var i, len;
 		// Collect candidates for the 3 categories "actions", "flags" and "modes"
-		matches = [];
-		for ( category in this.categorized ) {
-			list = filters[ category ];
+		var matches = [];
+		for ( var category in this.categorized ) {
+			var list = filters[ category ];
 			if ( list ) {
 				if ( !Array.isArray( list ) ) {
 					list = [ list ];
 				}
 				for ( i = 0, len = list.length; i < len; i++ ) {
-					actions = this.categorized[ category ][ list[ i ] ];
+					var actions = this.categorized[ category ][ list[ i ] ];
 					if ( Array.isArray( actions ) ) {
 						matches.push.apply( matches, actions );
 					}
 				}
 			}
 		}
+		var match;
 		// Remove by boolean filters
 		for ( i = 0, len = matches.length; i < len; i++ ) {
 			match = matches[ i ];
@@ -349,7 +347,7 @@ OO.ui.ActionSet.prototype.get = function ( filters ) {
 		// Remove duplicates
 		for ( i = 0, len = matches.length; i < len; i++ ) {
 			match = matches[ i ];
-			index = matches.lastIndexOf( match );
+			var index = matches.lastIndexOf( match );
 			while ( index !== i ) {
 				matches.splice( index, 1 );
 				len--;
@@ -399,11 +397,9 @@ OO.ui.ActionSet.prototype.getOthers = function () {
  * @fires change
  */
 OO.ui.ActionSet.prototype.setMode = function ( mode ) {
-	var i, len, action;
-
 	this.changing = true;
-	for ( i = 0, len = this.list.length; i < len; i++ ) {
-		action = this.list[ i ];
+	for ( var i = 0, len = this.list.length; i < len; i++ ) {
+		var action = this.list[ i ];
 		action.toggle( action.hasMode( mode ) );
 	}
 
@@ -427,11 +423,9 @@ OO.ui.ActionSet.prototype.setMode = function ( mode ) {
  * @return {OO.ui.ActionSet} The widget, for chaining
  */
 OO.ui.ActionSet.prototype.setAbilities = function ( actions ) {
-	var i, len, action, item;
-
-	for ( i = 0, len = this.list.length; i < len; i++ ) {
-		item = this.list[ i ];
-		action = item.getAction();
+	for ( var i = 0, len = this.list.length; i < len; i++ ) {
+		var item = this.list[ i ];
+		var action = item.getAction();
 		if ( actions[ action ] !== undefined ) {
 			item.setDisabled( !actions[ action ] );
 		}
@@ -474,11 +468,9 @@ OO.ui.ActionSet.prototype.forEach = function ( filter, callback ) {
  * @fires change
  */
 OO.ui.ActionSet.prototype.add = function ( actions ) {
-	var i, len, action;
-
 	this.changing = true;
-	for ( i = 0, len = actions.length; i < len; i++ ) {
-		action = actions[ i ];
+	for ( var i = 0, len = actions.length; i < len; i++ ) {
+		var action = actions[ i ];
 		action.connect( this, {
 			click: [ 'emit', 'click', action ],
 			toggle: [ 'onActionChange' ]
@@ -505,12 +497,10 @@ OO.ui.ActionSet.prototype.add = function ( actions ) {
  * @fires change
  */
 OO.ui.ActionSet.prototype.remove = function ( actions ) {
-	var i, len, index, action;
-
 	this.changing = true;
-	for ( i = 0, len = actions.length; i < len; i++ ) {
-		action = actions[ i ];
-		index = this.list.indexOf( action );
+	for ( var i = 0, len = actions.length; i < len; i++ ) {
+		var action = actions[ i ];
+		var index = this.list.indexOf( action );
 		if ( index !== -1 ) {
 			action.disconnect( this );
 			this.list.splice( index, 1 );
@@ -535,12 +525,11 @@ OO.ui.ActionSet.prototype.remove = function ( actions ) {
  * @fires change
  */
 OO.ui.ActionSet.prototype.clear = function () {
-	var i, len, action,
-		removed = this.list.slice();
+	var removed = this.list.slice();
 
 	this.changing = true;
-	for ( i = 0, len = this.list.length; i < len; i++ ) {
-		action = this.list[ i ];
+	for ( var i = 0, len = this.list.length; i < len; i++ ) {
+		var action = this.list[ i ];
 		action.disconnect( this );
 	}
 
@@ -565,17 +554,17 @@ OO.ui.ActionSet.prototype.clear = function () {
  * @return {OO.ui.ActionSet} The widget, for chaining
  */
 OO.ui.ActionSet.prototype.organize = function () {
-	var i, iLen, j, jLen, flag, action, category, list, item, special,
-		specialFlags = this.constructor.static.specialFlags;
+	var specialFlags = this.constructor.static.specialFlags;
 
 	if ( !this.organized ) {
 		this.categorized = {};
 		this.special = {};
 		this.others = [];
-		for ( i = 0, iLen = this.list.length; i < iLen; i++ ) {
-			action = this.list[ i ];
+		for ( var i = 0, iLen = this.list.length; i < iLen; i++ ) {
+			var action = this.list[ i ];
+			var j, jLen;
 			// Populate the 3 categories "actions", "flags" and "modes"
-			for ( category in this.categories ) {
+			for ( var category in this.categories ) {
 				if ( !this.categorized[ category ] ) {
 					this.categorized[ category ] = {};
 				}
@@ -585,12 +574,12 @@ OO.ui.ActionSet.prototype.organize = function () {
 				 * {@see OO.ui.FlaggedElement.getFlags}
 				 * {@see OO.ui.ActionWidget.getModes}
 				 */
-				list = action[ this.categories[ category ] ]();
+				var list = action[ this.categories[ category ] ]();
 				if ( !Array.isArray( list ) ) {
 					list = [ list ];
 				}
 				for ( j = 0, jLen = list.length; j < jLen; j++ ) {
-					item = list[ j ];
+					var item = list[ j ];
 					if ( !this.categorized[ category ][ item ] ) {
 						this.categorized[ category ][ item ] = [];
 					}
@@ -599,9 +588,9 @@ OO.ui.ActionSet.prototype.organize = function () {
 			}
 			if ( action.isVisible() ) {
 				// Populate special/others
-				special = false;
+				var special = false;
 				for ( j = 0, jLen = specialFlags.length; j < jLen; j++ ) {
-					flag = specialFlags[ j ];
+					var flag = specialFlags[ j ];
 					if ( !this.special[ flag ] && action.hasFlag( flag ) ) {
 						this.special[ flag ] = action;
 						special = true;
@@ -760,8 +749,6 @@ OO.initClass( OO.ui.Process );
  *  rejected and any remaining steps are not performed.
  */
 OO.ui.Process.prototype.execute = function () {
-	var i, len, promise;
-
 	/**
 	 * Continue execution.
 	 *
@@ -772,8 +759,7 @@ OO.ui.Process.prototype.execute = function () {
 	function proceed( step ) {
 		return function () {
 			// Execute step in the correct context
-			var deferred,
-				result = step.callback.call( step.context );
+			var result = step.callback.call( step.context );
 
 			if ( result === false ) {
 				// Use rejected promise for boolean false results
@@ -784,7 +770,7 @@ OO.ui.Process.prototype.execute = function () {
 					throw new Error( 'Cannot go back in time: flux capacitor is out of service' );
 				}
 				// Use a delayed promise for numbers, expecting them to be in milliseconds
-				deferred = $.Deferred();
+				var deferred = $.Deferred();
 				setTimeout( deferred.resolve, result );
 				return deferred.promise();
 			}
@@ -806,10 +792,11 @@ OO.ui.Process.prototype.execute = function () {
 		};
 	}
 
+	var promise;
 	if ( this.steps.length ) {
 		// Generate a chain reaction of promises
 		promise = proceed( this.steps[ 0 ] )();
-		for ( i = 1, len = this.steps.length; i < len; i++ ) {
+		for ( var i = 1, len = this.steps.length; i < len; i++ ) {
 			promise = promise.then( proceed( this.steps[ i ] ) );
 		}
 	} else {
@@ -1033,7 +1020,9 @@ OO.ui.WindowInstance.prototype.isClosed = function () {
  * @cfg {OO.Factory} [factory] Window factory to use for automatic instantiation
  *  Note that window classes that are instantiated with a factory must have
  *  a {@link OO.ui.Dialog#static-name static name} property that specifies a symbolic name.
- * @cfg {boolean} [modal=true] Prevent interaction outside the dialog
+ * @cfg {boolean} [modal=true] Prevent interaction outside the current window
+ * @cfg {boolean} [forceTrapFocus] Force the trapping of focus within windows. This is done
+ *  automatically for modal window managers and full screen windows.
  */
 OO.ui.WindowManager = function OoUiWindowManager( config ) {
 	// Configuration initialization
@@ -1057,17 +1046,23 @@ OO.ui.WindowManager = function OoUiWindowManager( config ) {
 	this.currentWindow = null;
 	this.globalEvents = false;
 	this.$returnFocusTo = null;
+	this.isolated = false;
 	this.$ariaHidden = null;
+	this.$inert = null;
 	this.onWindowResizeTimeout = null;
 	this.onWindowResizeHandler = this.onWindowResize.bind( this );
 	this.afterWindowResizeHandler = this.afterWindowResize.bind( this );
+	this.onWindowFocusHandler = this.onWindowFocus.bind( this );
 
 	// Initialization
 	this.$element
 		.addClass( 'oo-ui-windowManager' )
-		.toggleClass( 'oo-ui-windowManager-modal', this.modal );
+		.toggleClass( 'oo-ui-windowManager-modal', this.modal )
+		.toggleClass( 'oo-ui-windowManager-forceTrapFocus', !!config.forceTrapFocus );
 	if ( this.modal ) {
-		this.$element.attr( 'aria-hidden', true );
+		this.$element
+			.attr( 'aria-hidden', 'true' )
+			.attr( 'inert', '' );
 	}
 };
 
@@ -1151,6 +1146,15 @@ OO.ui.WindowManager.static.defaultSize = 'medium';
 /* Methods */
 
 /**
+ * Check if the window manager is modal, preventing interaction outside the current window
+ *
+ * @return {boolean} The window manager is modal
+ */
+OO.ui.WindowManager.prototype.isModal = function () {
+	return this.modal;
+};
+
+/**
  * Handle window resize events.
  *
  * @private
@@ -1159,6 +1163,26 @@ OO.ui.WindowManager.static.defaultSize = 'medium';
 OO.ui.WindowManager.prototype.onWindowResize = function () {
 	clearTimeout( this.onWindowResizeTimeout );
 	this.onWindowResizeTimeout = setTimeout( this.afterWindowResizeHandler, 200 );
+};
+
+/**
+ * Handle window focus events.
+ *
+ * @private
+ * @param {jQuery.Event} e Window focus event
+ */
+OO.ui.WindowManager.prototype.onWindowFocus = function () {
+	var currentWindow = this.getCurrentWindow();
+	if (
+		// This event should only be bound while a window is open
+		currentWindow &&
+		// Focus can be moved outside the window focus traps but pressing tab
+		// from the address bar (T307995). When this happens move focus back
+		// to the start of the current window.
+		!OO.ui.contains( currentWindow.$element[ 0 ], document.activeElement )
+	) {
+		currentWindow.focus();
+	}
 };
 
 /**
@@ -1221,9 +1245,7 @@ OO.ui.WindowManager.prototype.isOpened = function ( win ) {
  * @return {boolean} Window is being managed
  */
 OO.ui.WindowManager.prototype.hasWindow = function ( win ) {
-	var name;
-
-	for ( name in this.windows ) {
+	for ( var name in this.windows ) {
 		if ( this.windows[ name ] === win ) {
 			return true;
 		}
@@ -1344,8 +1366,7 @@ OO.ui.WindowManager.prototype.getCurrentWindow = function () {
  * @fires opening
  */
 OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, compatOpening ) {
-	var error,
-		manager = this;
+	var manager = this;
 	data = data || {};
 
 	// Internal parameter 'lifecycle' allows this method to always return
@@ -1381,6 +1402,7 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, comp
 	}
 
 	// Error handling
+	var error;
 	if ( !this.hasWindow( win ) ) {
 		error = 'Cannot open window: window is not attached to manager';
 	} else if ( this.lifecycle && this.lifecycle.isOpened() ) {
@@ -1401,7 +1423,7 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, comp
 	this.preparingToOpen.done( function () {
 		if ( manager.modal ) {
 			manager.toggleGlobalEvents( true );
-			manager.toggleAriaIsolation( true );
+			manager.toggleIsolation( true );
 		}
 		manager.$returnFocusTo = data.$returnFocusTo !== undefined ?
 			data.$returnFocusTo :
@@ -1459,11 +1481,9 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, comp
  * @fires closing
  */
 OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
-	var error,
-		manager = this,
+	var manager = this,
 		compatClosing = $.Deferred(),
-		lifecycle = this.lifecycle,
-		compatOpened;
+		lifecycle = this.lifecycle;
 
 	// Argument handling
 	if ( typeof win === 'string' ) {
@@ -1473,6 +1493,7 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 	}
 
 	// Error handling
+	var error;
 	if ( !lifecycle ) {
 		error = 'Cannot close window: no window is currently open';
 	} else if ( !win ) {
@@ -1518,7 +1539,7 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 		manager.preparingToClose = null;
 		manager.emit( 'closing', win, compatClosing, data );
 		lifecycle.deferreds.closing.resolve( data );
-		compatOpened = manager.compatOpened;
+		var compatOpened = manager.compatOpened;
 		manager.compatOpened = null;
 		compatOpened.resolve( compatClosing.promise(), data );
 		manager.togglePreventIosScrolling( false );
@@ -1530,7 +1551,7 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 						compatClosing.notify( { state: 'teardown' } );
 						if ( manager.modal ) {
 							manager.toggleGlobalEvents( false );
-							manager.toggleAriaIsolation( false );
+							manager.toggleIsolation( false );
 						}
 						if ( manager.$returnFocusTo && manager.$returnFocusTo.length ) {
 							manager.$returnFocusTo[ 0 ].focus();
@@ -1596,13 +1617,12 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
  *  explicit nor a statically configured symbolic name.
  */
 OO.ui.WindowManager.prototype.addWindows = function ( windows ) {
-	var i, len, win, name, list;
-
+	var list;
 	if ( Array.isArray( windows ) ) {
 		// Convert to map of windows by looking up symbolic names from static configuration
 		list = {};
-		for ( i = 0, len = windows.length; i < len; i++ ) {
-			name = windows[ i ].constructor.static.name;
+		for ( var i = 0, len = windows.length; i < len; i++ ) {
+			var name = windows[ i ].constructor.static.name;
 			if ( !name ) {
 				throw new Error( 'Windows must have a `name` static property defined.' );
 			}
@@ -1613,9 +1633,9 @@ OO.ui.WindowManager.prototype.addWindows = function ( windows ) {
 	}
 
 	// Add windows
-	for ( name in list ) {
-		win = list[ name ];
-		this.windows[ name ] = win.toggle( false );
+	for ( var n in list ) {
+		var win = list[ n ];
+		this.windows[ n ] = win.toggle( false );
 		this.$element.append( win.$element );
 		win.setManager( this );
 	}
@@ -1633,15 +1653,14 @@ OO.ui.WindowManager.prototype.addWindows = function ( windows ) {
  * @throws {Error} An error is thrown if the named windows are not managed by the window manager.
  */
 OO.ui.WindowManager.prototype.removeWindows = function ( names ) {
-	var promises,
-		manager = this;
+	var manager = this;
 
 	function cleanup( name, win ) {
 		delete manager.windows[ name ];
 		win.$element.detach();
 	}
 
-	promises = names.map( function ( name ) {
+	var promises = names.map( function ( name ) {
 		var cleanupWindow,
 			win = manager.windows[ name ];
 		if ( !win ) {
@@ -1677,14 +1696,12 @@ OO.ui.WindowManager.prototype.clearWindows = function () {
  * @return {OO.ui.WindowManager} The manager, for chaining
  */
 OO.ui.WindowManager.prototype.updateWindowSize = function ( win ) {
-	var isFullscreen;
-
 	// Bypass for non-current, and thus invisible, windows
 	if ( win !== this.currentWindow ) {
 		return;
 	}
 
-	isFullscreen = win.getSize() === 'full';
+	var isFullscreen = win.getSize() === 'full';
 
 	this.$element.toggleClass( 'oo-ui-windowManager-fullscreen', isFullscreen );
 	this.$element.toggleClass( 'oo-ui-windowManager-floating', !isFullscreen );
@@ -1707,16 +1724,16 @@ OO.ui.WindowManager.prototype.updateWindowSize = function ( win ) {
  * @return {OO.ui.WindowManager} The manager, for chaining
  */
 OO.ui.WindowManager.prototype.togglePreventIosScrolling = function ( on ) {
-	var
-		isIos = /ipad|iphone|ipod/i.test( navigator.userAgent ),
+	var isIos = /ipad|iphone|ipod/i.test( navigator.userAgent ),
 		$body = $( this.getElementDocument().body ),
-		scrollableRoot = OO.ui.Element.static.getRootScrollableElement( $body[ 0 ] ),
 		stackDepth = $body.data( 'windowManagerGlobalEvents' ) || 0;
 
 	// Only if this is the first/last WindowManager (see #toggleGlobalEvents)
 	if ( !isIos || stackDepth !== 1 ) {
 		return this;
 	}
+
+	var scrollableRoot = OO.ui.Element.static.getRootScrollableElement( $body[ 0 ] );
 
 	if ( on ) {
 		// We can't apply this workaround for non-fullscreen dialogs, because the user would see the
@@ -1737,7 +1754,7 @@ OO.ui.WindowManager.prototype.togglePreventIosScrolling = function ( on ) {
 };
 
 /**
- * Bind or unbind global events for scrolling.
+ * Bind or unbind global events for scrolling/focus.
  *
  * @private
  * @param {boolean} [on] Bind global events
@@ -1745,23 +1762,24 @@ OO.ui.WindowManager.prototype.togglePreventIosScrolling = function ( on ) {
  * @return {OO.ui.WindowManager} The manager, for chaining
  */
 OO.ui.WindowManager.prototype.toggleGlobalEvents = function ( on ) {
-	var scrollWidth, bodyMargin,
-		$body = $( this.getElementDocument().body ),
-		// We could have multiple window managers open so only modify
-		// the body css at the bottom of the stack
-		stackDepth = $body.data( 'windowManagerGlobalEvents' ) || 0;
+	var $body = $( this.getElementDocument().body );
+	var $window = $( this.getElementWindow() );
+	// We could have multiple window managers open so only modify
+	// the body css at the bottom of the stack
+	var stackDepth = $body.data( 'windowManagerGlobalEvents' ) || 0;
 
 	on = on === undefined ? !!this.globalEvents : !!on;
 
 	if ( on ) {
 		if ( !this.globalEvents ) {
-			$( this.getElementWindow() ).on( {
+			$window.on( {
 				// Start listening for top-level window dimension changes
-				'orientationchange resize': this.onWindowResizeHandler
+				'orientationchange resize': this.onWindowResizeHandler,
+				focus: this.onWindowFocusHandler
 			} );
 			if ( stackDepth === 0 ) {
-				scrollWidth = window.innerWidth - document.documentElement.clientWidth;
-				bodyMargin = parseFloat( $body.css( 'margin-right' ) ) || 0;
+				var scrollWidth = window.innerWidth - document.documentElement.clientWidth;
+				var bodyMargin = parseFloat( $body.css( 'margin-right' ) ) || 0;
 				$body
 					.addClass( 'oo-ui-windowManager-modal-active' )
 					.css( 'margin-right', bodyMargin + scrollWidth );
@@ -1770,9 +1788,10 @@ OO.ui.WindowManager.prototype.toggleGlobalEvents = function ( on ) {
 			this.globalEvents = true;
 		}
 	} else if ( this.globalEvents ) {
-		$( this.getElementWindow() ).off( {
+		$window.off( {
 			// Stop listening for top-level window dimension changes
-			'orientationchange resize': this.onWindowResizeHandler
+			'orientationchange resize': this.onWindowResizeHandler,
+			focus: this.onWindowFocusHandler
 		} );
 		stackDepth--;
 		if ( stackDepth === 0 ) {
@@ -1788,56 +1807,73 @@ OO.ui.WindowManager.prototype.toggleGlobalEvents = function ( on ) {
 };
 
 /**
- * Toggle screen reader visibility of content other than the window manager.
+ * Toggle isolation of content other than the window manager.
+ *
+ * This hides the content from screen readers (aria-hidden) and makes
+ * it invisible to user input events (inert).
  *
  * @private
  * @param {boolean} [isolate] Make only the window manager visible to screen readers
  * @chainable
  * @return {OO.ui.WindowManager} The manager, for chaining
  */
-OO.ui.WindowManager.prototype.toggleAriaIsolation = function ( isolate ) {
-	var $topLevelElement;
-	isolate = isolate === undefined ? !this.$ariaHidden : !!isolate;
+OO.ui.WindowManager.prototype.toggleIsolation = function ( isolate ) {
+	this.isolated = isolate === undefined ? !this.isolated : !!isolate;
 
-	if ( isolate ) {
-		if ( !this.$ariaHidden ) {
-			// Find the top level element containing the window manager or the
-			// window manager's element itself in case its a direct child of body
-			$topLevelElement = this.$element.parentsUntil( 'body' ).last();
-			$topLevelElement = $topLevelElement.length === 0 ? this.$element : $topLevelElement;
+	if ( this.isolated ) {
+		// In case previously set by another window manager
+		this.$element
+			.removeAttr( 'aria-hidden' )
+			.removeAttr( 'inert' );
 
-			// In case previously set by another window manager
-			this.$element.removeAttr( 'aria-hidden' );
+		var $el = this.$element;
 
-			// Hide everything other than the window manager from screen readers
-			this.$ariaHidden = $( document.body )
-				.children()
-				.not( 'script' )
-				.not( $topLevelElement )
-				.attr( 'aria-hidden', true );
+		var ariaHidden = [];
+		var inert = [];
+
+		// Walk up the tree
+		while ( !$el.is( 'body' ) && $el.length ) {
+			// Hide all siblings at each level, just leaving the path to the manager visible.
+			var $siblings = $el.siblings().not( 'script' );
+			// $ariaHidden/$inert exclude elements which already have aria-hidden/inert set,
+			// as we wouldn't want to reset those attributes when window closes.
+			// This will also support multiple window managers opening on top of each other,
+			// as an element hidden by another manager will not be re-enabled until *that*
+			// manager closes its window.
+			ariaHidden.push.apply( ariaHidden, $siblings.not( '[aria-hidden=true]' ).toArray() );
+			inert.push.apply( inert, $siblings.not( '[inert]' ).toArray() );
+			$el = $el.parent();
 		}
-	} else if ( this.$ariaHidden ) {
+		// Build lists as plain arrays for performance ($.add is slow)
+		this.$ariaHidden = $( ariaHidden );
+		this.$inert = $( inert );
+
+		// Hide everything other than the window manager from screen readers
+		this.$ariaHidden.attr( 'aria-hidden', 'true' );
+		this.$inert.attr( 'inert', '' );
+	} else {
 		// Restore screen reader visibility
 		this.$ariaHidden.removeAttr( 'aria-hidden' );
+		this.$inert.removeAttr( 'inert' );
 		this.$ariaHidden = null;
+		this.$inert = null;
 
 		// and hide the window manager
-		this.$element.attr( 'aria-hidden', true );
+		this.$element
+			.attr( 'aria-hidden', 'true' )
+			.attr( 'inert', '' );
 	}
 
 	return this;
 };
 
+// Deprecated alias, since 0.44.1
+OO.ui.WindowManager.prototype.toggleAriaIsolation = OO.ui.WindowManager.prototype.toggleIsolation;
+
 /**
  * Destroy the window manager.
- *
- * Destroying the window manager ensures that it will no longer listen to events. If you would like
- * to continue using the window manager, but wish to remove all windows from it, use the
- * #clearWindows method instead.
  */
 OO.ui.WindowManager.prototype.destroy = function () {
-	this.toggleGlobalEvents( false );
-	this.toggleAriaIsolation( false );
 	this.clearWindows();
 	this.$element.remove();
 };
@@ -1925,9 +1961,18 @@ OO.ui.Window = function OoUiWindow( config ) {
 	 */
 	this.$overlay = $( '<div>' );
 	this.$content = $( '<div>' );
-
-	this.$focusTrapBefore = $( '<div>' ).prop( 'tabIndex', 0 );
-	this.$focusTrapAfter = $( '<div>' ).prop( 'tabIndex', 0 );
+	/**
+	 * Set focus traps
+	 *
+	 * It is considered best practice to trap focus in a loop within a modal dialog, even
+	 * though with 'inert' support we could allow focus to break out to the browser chrome.
+	 *
+	 * - https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/dialog.html#kbd_label
+	 * - https://allyjs.io/tutorials/accessible-dialog.html#reacting-to-kbdtabkbd-and-kbdshift-tabkbd
+	 * - https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role#focus_management
+	 */
+	this.$focusTrapBefore = $( '<div>' ).addClass( 'oo-ui-window-focusTrap' ).prop( 'tabIndex', 0 );
+	this.$focusTrapAfter = this.$focusTrapBefore.clone();
 	this.$focusTraps = this.$focusTrapBefore.add( this.$focusTrapAfter );
 
 	// Initialization
@@ -2119,11 +2164,11 @@ OO.ui.Window.prototype.withoutSizeTransitions = function ( callback ) {
  * @return {number} The height of the window contents (the dialog head, body and foot) in pixels
  */
 OO.ui.Window.prototype.getContentHeight = function () {
-	var bodyHeight,
-		win = this,
+	var win = this,
 		bodyStyleObj = this.$body[ 0 ].style,
 		frameStyleObj = this.$frame[ 0 ].style;
 
+	var bodyHeight;
 	// Temporarily resize the frame so getBodyHeight() can use scrollHeight measurements.
 	// Disable transitions first, otherwise we'll get values from when the window was animating.
 	this.withoutSizeTransitions( function () {
@@ -2264,6 +2309,7 @@ OO.ui.Window.prototype.setManager = function ( manager ) {
 	}
 
 	this.manager = manager;
+
 	this.initialize();
 
 	return this;
@@ -2317,10 +2363,10 @@ OO.ui.Window.prototype.updateSize = function () {
  * @return {OO.ui.Window} The window, for chaining
  */
 OO.ui.Window.prototype.setDimensions = function ( dim ) {
-	var height,
-		win = this,
+	var win = this,
 		styleObj = this.$frame[ 0 ].style;
 
+	var height;
 	// Calculate the height we need to set using the correct width
 	if ( dim.height === undefined ) {
 		this.withoutSizeTransitions( function () {
@@ -2370,6 +2416,7 @@ OO.ui.Window.prototype.initialize = function () {
 
 	// Events
 	this.$element.on( 'mousedown', this.onMouseDown.bind( this ) );
+	this.$focusTraps.on( 'focus', this.onFocusTrapFocused.bind( this ) );
 
 	// Initialization
 	this.$head.addClass( 'oo-ui-window-head' );
@@ -2387,8 +2434,19 @@ OO.ui.Window.prototype.initialize = function () {
  * @param {jQuery.Event} event Focus event
  */
 OO.ui.Window.prototype.onFocusTrapFocused = function ( event ) {
-	var backwards = this.$focusTrapBefore.is( event.target ),
-		element = OO.ui.findFocusable( this.$content, backwards );
+	var backwards = this.$focusTrapBefore.is( event.target );
+	this.focus( backwards );
+};
+
+/**
+ * Focus the window
+ *
+ * @param {boolean} focusLast Focus the last focusable element in the window, instead of the first
+ * @chainable
+ * @return {OO.ui.Window} The window, for chaining
+ */
+OO.ui.Window.prototype.focus = function ( focusLast ) {
+	var element = OO.ui.findFocusable( this.$content, !!focusLast );
 	if ( element ) {
 		// There's a focusable element inside the content, at the front or
 		// back depending on which focus trap we hit; select it.
@@ -2401,6 +2459,7 @@ OO.ui.Window.prototype.onFocusTrapFocused = function ( event ) {
 		// escape into the page.
 		this.$content.trigger( 'focus' );
 	}
+	return this;
 };
 
 /**
@@ -2458,9 +2517,6 @@ OO.ui.Window.prototype.setup = function ( data ) {
 	var win = this;
 
 	this.toggle( true );
-
-	this.focusTrapHandler = OO.ui.bind( this.onFocusTrapFocused, this );
-	this.$focusTraps.on( 'focus', this.focusTrapHandler );
 
 	return this.getSetupProcess( data ).execute().then( function () {
 		win.updateSize();
@@ -2535,7 +2591,6 @@ OO.ui.Window.prototype.teardown = function ( data ) {
 		// Force redraw by asking the browser to measure the elements' widths
 		win.$element.removeClass( 'oo-ui-window-active' ).width();
 
-		win.$focusTraps.off( 'focus', win.focusTrapHandler );
 		win.toggle( false );
 	} );
 };
@@ -2679,13 +2734,12 @@ OO.ui.Dialog.static.escapable = true;
  * @param {jQuery.Event} e Key down event
  */
 OO.ui.Dialog.prototype.onDialogKeyDown = function ( e ) {
-	var actions;
 	if ( e.which === OO.ui.Keys.ESCAPE && this.constructor.static.escapable ) {
 		this.executeAction( '' );
 		e.preventDefault();
 		e.stopPropagation();
 	} else if ( e.which === OO.ui.Keys.ENTER && ( e.ctrlKey || e.metaKey ) ) {
-		actions = this.actions.get( { flags: 'primary', visible: true, disabled: false } );
+		var actions = this.actions.get( { flags: 'primary', visible: true, disabled: false } );
 		if ( actions.length > 0 ) {
 			this.executeAction( actions[ 0 ].getAction() );
 			e.preventDefault();
@@ -2816,8 +2870,8 @@ OO.ui.Dialog.prototype.initialize = function () {
  * @return {OO.ui.ActionWidget[]} Action widgets
  */
 OO.ui.Dialog.prototype.getActionWidgets = function ( actions ) {
-	var i, len, widgets = [];
-	for ( i = 0, len = actions.length; i < len; i++ ) {
+	var widgets = [];
+	for ( var i = 0, len = actions.length; i < len; i++ ) {
 		widgets.push( this.getActionWidget( actions[ i ] ) );
 	}
 	return widgets;
@@ -2865,10 +2919,8 @@ OO.ui.Dialog.prototype.attachActions = function () {
  * @return {OO.ui.Dialog} The dialog, for chaining
  */
 OO.ui.Dialog.prototype.detachActions = function () {
-	var i, len;
-
 	// Detach all actions that may have been previously attached
-	for ( i = 0, len = this.attachedActions.length; i < len; i++ ) {
+	for ( var i = 0, len = this.attachedActions.length; i < len; i++ ) {
 		this.attachedActions[ i ].$element.detach();
 	}
 	this.attachedActions = [];
@@ -3078,15 +3130,14 @@ OO.ui.MessageDialog.prototype.getReadyProcess = function ( data ) {
  * @inheritdoc
  */
 OO.ui.MessageDialog.prototype.getBodyHeight = function () {
-	var bodyHeight, oldOverflow,
-		$scrollable = this.container.$element;
+	var $scrollable = this.container.$element;
 
-	oldOverflow = $scrollable[ 0 ].style.overflow;
+	var oldOverflow = $scrollable[ 0 ].style.overflow;
 	$scrollable[ 0 ].style.overflow = 'hidden';
 
 	OO.ui.Element.static.reconsiderScrollbars( $scrollable[ 0 ] );
 
-	bodyHeight = this.text.$element.outerHeight( true );
+	var bodyHeight = this.text.$element.outerHeight( true );
 	$scrollable[ 0 ].style.overflow = oldOverflow;
 
 	return bodyHeight;
@@ -3096,9 +3147,10 @@ OO.ui.MessageDialog.prototype.getBodyHeight = function () {
  * @inheritdoc
  */
 OO.ui.MessageDialog.prototype.setDimensions = function ( dim ) {
-	var
-		dialog = this,
+	var dialog = this,
 		$scrollable = this.container.$element;
+
+	// Parent method
 	OO.ui.MessageDialog.super.prototype.setDimensions.call( this, dim );
 
 	// Twiddle the overflow property, otherwise an unnecessary scrollbar will be produced.
@@ -3170,19 +3222,17 @@ OO.ui.MessageDialog.prototype.getActionWidgetConfig = function ( config ) {
  * @inheritdoc
  */
 OO.ui.MessageDialog.prototype.attachActions = function () {
-	var i, len, special, others;
-
 	// Parent method
 	OO.ui.MessageDialog.super.prototype.attachActions.call( this );
 
-	special = this.actions.getSpecial();
-	others = this.actions.getOthers();
+	var special = this.actions.getSpecial();
+	var others = this.actions.getOthers();
 
 	if ( special.safe ) {
 		this.$actions.append( special.safe.$element );
 		special.safe.toggleFramed( true );
 	}
-	for ( i = 0, len = others.length; i < len; i++ ) {
+	for ( var i = 0, len = others.length; i < len; i++ ) {
 		this.$actions.append( others[ i ].$element );
 		others[ i ].toggleFramed( true );
 	}
@@ -3419,18 +3469,16 @@ OO.ui.ProcessDialog.prototype.getActionWidgetConfig = function ( config ) {
  * @inheritdoc
  */
 OO.ui.ProcessDialog.prototype.attachActions = function () {
-	var i, len, other, special, others;
-
 	// Parent method
 	OO.ui.ProcessDialog.super.prototype.attachActions.call( this );
 
-	special = this.actions.getSpecial();
-	others = this.actions.getOthers();
+	var special = this.actions.getSpecial();
+	var others = this.actions.getOthers();
 	if ( special.primary ) {
 		this.$primaryActions.append( special.primary.$element );
 	}
-	for ( i = 0, len = others.length; i < len; i++ ) {
-		other = others[ i ];
+	for ( var i = 0, len = others.length; i < len; i++ ) {
+		var other = others[ i ];
 		this.$otherActions.append( other.$element );
 	}
 	if ( special.safe ) {
@@ -3478,9 +3526,9 @@ OO.ui.ProcessDialog.prototype.setDimensions = function () {
  * @return {OO.ui.MessageDialog} The dialog, for chaining
  */
 OO.ui.ProcessDialog.prototype.fitLabel = function () {
-	var safeWidth, primaryWidth, biggerWidth, labelWidth, navigationWidth, leftWidth, rightWidth,
-		size = this.getSizeProperties();
+	var size = this.getSizeProperties();
 
+	var navigationWidth;
 	if ( typeof size.width !== 'number' ) {
 		if ( this.isOpened() ) {
 			navigationWidth = this.$head.width() - 20;
@@ -3499,12 +3547,13 @@ OO.ui.ProcessDialog.prototype.fitLabel = function () {
 		navigationWidth = size.width - 20;
 	}
 
-	safeWidth = this.$safeActions.width();
-	primaryWidth = this.$primaryActions.width();
-	biggerWidth = Math.max( safeWidth, primaryWidth );
+	var safeWidth = this.$safeActions.width();
+	var primaryWidth = this.$primaryActions.width();
+	var biggerWidth = Math.max( safeWidth, primaryWidth );
 
-	labelWidth = this.title.$element.width();
+	var labelWidth = this.title.$element.width();
 
+	var leftWidth, rightWidth;
 	if ( !OO.ui.isMobile() && 2 * biggerWidth + labelWidth < navigationWidth ) {
 		// We have enough space to center the label
 		leftWidth = rightWidth = biggerWidth;
@@ -3532,8 +3581,7 @@ OO.ui.ProcessDialog.prototype.fitLabel = function () {
  * @param {OO.ui.Error[]|OO.ui.Error} errors Errors to be handled
  */
 OO.ui.ProcessDialog.prototype.showErrors = function ( errors ) {
-	var i, len, actions,
-		items = [],
+	var items = [],
 		abilities = {},
 		recoverable = true,
 		warning = false;
@@ -3542,7 +3590,7 @@ OO.ui.ProcessDialog.prototype.showErrors = function ( errors ) {
 		errors = [ errors ];
 	}
 
-	for ( i = 0, len = errors.length; i < len; i++ ) {
+	for ( var i = 0, len = errors.length; i < len; i++ ) {
 		if ( !errors[ i ].isRecoverable() ) {
 			recoverable = false;
 		}
@@ -3558,7 +3606,7 @@ OO.ui.ProcessDialog.prototype.showErrors = function ( errors ) {
 	if ( recoverable ) {
 		abilities[ this.currentAction ] = true;
 		// Copy the flags from the first matching action.
-		actions = this.actions.get( { actions: this.currentAction } );
+		var actions = this.actions.get( { actions: this.currentAction } );
 		if ( actions.length ) {
 			this.retryButton.clearFlags().setFlags( actions[ 0 ].getFlags() );
 		}
@@ -3708,15 +3756,14 @@ OO.ui.confirm = function ( text, options ) {
  *  resolve to `null`.
  */
 OO.ui.prompt = function ( text, options ) {
-	var instance,
-		manager = OO.ui.getWindowManager(),
+	var manager = OO.ui.getWindowManager(),
 		textInput = new OO.ui.TextInputWidget( ( options && options.textInput ) || {} ),
 		textField = new OO.ui.FieldLayout( textInput, {
 			align: 'top',
 			label: text
 		} );
 
-	instance = manager.openWindow( 'message', $.extend( {
+	var instance = manager.openWindow( 'message', $.extend( {
 		message: textField.$element
 	}, options ) );
 
