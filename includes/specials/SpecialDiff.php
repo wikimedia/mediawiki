@@ -89,7 +89,7 @@ class SpecialDiff extends RedirectSpecialPage {
 				'label-message' => 'diff-form-revid',
 				// Remove validation callback when using int type - T256425
 				'validation-callback' => function ( $value ) {
-					$value = trim( $value );
+					$value = trim( $value ?? '' );
 					if ( preg_match( '/^\d*$/', $value )
 						|| in_array( $value, [ 'prev', 'cur', 'next' ], true )
 					) {
