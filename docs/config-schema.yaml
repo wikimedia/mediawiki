@@ -5955,7 +5955,7 @@ config-schema:
             @deprecated since 1.30
     EnableJavaScriptTest:
         default: false
-        description: 'Allow running of javascript test suites via [[Special:JavaScriptTest]] (such as QUnit).'
+        description: 'Allow running of QUnit tests via [[Special:JavaScriptTest]].'
     CachePrefix:
         default: false
         description: |-
