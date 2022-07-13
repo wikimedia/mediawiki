@@ -206,13 +206,15 @@
 			$fields.each( function () {
 				var $el = $( this );
 
-				var spec, $elOrLayout;
+				var spec, $elOrLayout, $form;
 				if ( $el.is( '[data-ooui]' ) ) {
 					// $elOrLayout should be a FieldLayout that mixes in mw.htmlform.Element
 					$elOrLayout = OO.ui.FieldLayout.static.infuse( $el );
+					$form = $elOrLayout.$element.closest( 'form' );
 					spec = $elOrLayout.condState;
 				} else {
 					$elOrLayout = $el;
+					$form = $el.closest( 'form' );
 					spec = $el.data( 'condState' );
 				}
 
@@ -224,7 +226,7 @@
 				var test = {};
 				[ 'hide', 'disable' ].forEach( function ( type ) {
 					if ( spec[ type ] ) {
-						var v = conditionParse( $root, spec[ type ] );
+						var v = conditionParse( $form, spec[ type ] );
 						fields = fields.concat( fields, v[ 0 ] );
 						test[ type ] = v[ 1 ];
 					}
