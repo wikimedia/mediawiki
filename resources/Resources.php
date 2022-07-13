@@ -2321,6 +2321,7 @@ return [
 		'scripts' => 'resources/src/mediawiki.special.search.commonsInterwikiWidget.js',
 		'dependencies' => [
 			'mediawiki.api',
+			'mediawiki.Title',
 			'mediawiki.Uri'
 		],
 		'targets' => [ 'desktop', 'mobile' ],
