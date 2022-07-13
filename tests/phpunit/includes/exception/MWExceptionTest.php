@@ -24,8 +24,13 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 	 * @covers MWException::useOutputPage
 	 */
 	public function testUseOutputPage( $expected, $langObj, $fullyInitialised, $outputPage ) {
+		if ( $langObj !== null ) {
+			$this->setUserLang( $langObj );
+		} else {
+			// Reset the global to unset
+			$this->setMwGlobals( 'wgLang', $langObj );
+		}
 		$this->setMwGlobals( [
-			'wgLang' => $langObj,
 			'wgFullyInitialised' => $fullyInitialised,
 			'wgOut' => $outputPage,
 		] );

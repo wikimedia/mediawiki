@@ -32,7 +32,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 			101 => 'Custom_talk',
 		] );
 
-		$this->setMwGlobals( 'wgLang', $langObj );
+		$this->setUserLang( $langObj );
 		$this->overrideConfigValue( MainConfigNames::UseMediaWikiUIEverywhere, false );
 	}
 
