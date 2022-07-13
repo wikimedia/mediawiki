@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.44.0
+ * OOUI v0.44.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-05-17T17:50:55Z
+ * Date: 2022-07-13T13:25:47Z
  */
 ( function ( OO ) {
 
@@ -293,6 +293,7 @@
  * @cfg {boolean} [actions] Add an actions section to the toolbar. Actions are commands that are
  *  included in the toolbar, but are not configured as tools. By default, actions are displayed on
  *  the right side of the toolbar.
+ *  This feature is deprecated. It is suggested to use the ToolGroup 'align' property instead.
  * @cfg {string} [position='top'] Whether the toolbar is positioned above ('top') or below
  *  ('bottom') content.
  * @cfg {jQuery} [$overlay] An overlay for the popup.
@@ -324,9 +325,11 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 	this.tools = {};
 	this.position = config.position || 'top';
 	this.$bar = $( '<div>' );
+	this.$after = $( '<div>' );
 	this.$actions = $( '<div>' );
 	this.$popups = $( '<div>' );
 	this.initialized = false;
+	this.narrow = false;
 	this.narrowThreshold = null;
 	this.onWindowResizeHandler = this.onWindowResize.bind( this );
 	this.$overlay = ( config.$overlay === true ? OO.ui.getDefaultOverlay() : config.$overlay ) ||
@@ -334,18 +337,21 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 
 	// Events
 	this.$element
-		.add( this.$bar ).add( this.$group ).add( this.$actions )
+		.add( this.$bar ).add( this.$group ).add( this.$after ).add( this.$actions )
 		.on( 'mousedown keydown', this.onPointerDown.bind( this ) );
 
 	// Initialization
+	this.$bar.addClass( 'oo-ui-toolbar-bar' );
 	this.$group.addClass( 'oo-ui-toolbar-tools' );
+	this.$after.addClass( 'oo-ui-toolbar-tools oo-ui-toolbar-after' );
+	this.$popups.addClass( 'oo-ui-toolbar-popups' );
+
+	this.$bar.append( this.$group, this.$after );
 	if ( config.actions ) {
 		this.$bar.append( this.$actions.addClass( 'oo-ui-toolbar-actions' ) );
 	}
-	this.$popups.addClass( 'oo-ui-toolbar-popups' );
-	this.$bar
-		.addClass( 'oo-ui-toolbar-bar' )
-		.append( this.$group, '<div style="clear:both"></div>' );
+	this.$bar.append( $( '<div>' ).css( 'clear', 'both' ) );
+
 	// Possible classes: oo-ui-toolbar-position-top, oo-ui-toolbar-position-bottom
 	this.$element
 		.addClass( 'oo-ui-toolbar oo-ui-toolbar-position-' + this.position )
@@ -380,6 +386,12 @@ OO.mixinClass( OO.ui.Toolbar, OO.ui.mixin.GroupElement );
  * @param {boolean} There are active toolgroups in this toolbar
  */
 
+/**
+ * @event resize
+ *
+ * Toolbar has resized to a point where narrow mode has changed
+ */
+
 /* Methods */
 
 /**
@@ -398,6 +410,19 @@ OO.ui.Toolbar.prototype.getToolFactory = function () {
  */
 OO.ui.Toolbar.prototype.getToolGroupFactory = function () {
 	return this.toolGroupFactory;
+};
+
+/**
+ * @inheritdoc {OO.ui.mixin.GroupElement}
+ */
+OO.ui.Toolbar.prototype.insertItemElements = function ( itemWidget ) {
+	// Mixin method
+	OO.ui.mixin.GroupElement.prototype.insertItemElements.apply( this, arguments );
+
+	if ( itemWidget.align === 'after' ) {
+		// Toolbar only ever appends ToolGroups to the end, so we can ignore 'index'
+		this.$after.append( itemWidget.$element );
+	}
 };
 
 /**
@@ -426,10 +451,32 @@ OO.ui.Toolbar.prototype.onPointerDown = function ( e ) {
  * @param {jQuery.Event} e Window resize event
  */
 OO.ui.Toolbar.prototype.onWindowResize = function () {
-	this.$element.add( this.$popups ).toggleClass(
-		'oo-ui-toolbar-narrow',
-		this.$bar[ 0 ].clientWidth <= this.getNarrowThreshold()
-	);
+	this.setNarrow( this.$bar[ 0 ].clientWidth <= this.getNarrowThreshold() );
+};
+
+/**
+ * Check if the toolbar is in narrow mode
+ *
+ * @return {boolean} Toolbar is in narrow mode
+ */
+OO.ui.Toolbar.prototype.isNarrow = function () {
+	return this.narrow;
+};
+
+/**
+ * Set the narrow mode flag
+ *
+ * @param {boolean} narrow Toolbar is in narrow mode
+ */
+OO.ui.Toolbar.prototype.setNarrow = function ( narrow ) {
+	if ( narrow !== this.narrow ) {
+		this.narrow = narrow;
+		this.$element.add( this.$popups ).toggleClass(
+			'oo-ui-toolbar-narrow',
+			this.narrow
+		);
+		this.emit( 'resize' );
+	}
 };
 
 /**
@@ -441,7 +488,8 @@ OO.ui.Toolbar.prototype.onWindowResize = function () {
  */
 OO.ui.Toolbar.prototype.getNarrowThreshold = function () {
 	if ( this.narrowThreshold === null ) {
-		this.narrowThreshold = this.$group[ 0 ].offsetWidth + this.$actions[ 0 ].offsetWidth;
+		this.narrowThreshold = this.$group[ 0 ].offsetWidth + this.$after[ 0 ].offsetWidth +
+			this.$actions[ 0 ].offsetWidth;
 	}
 	return this.narrowThreshold;
 };
@@ -479,16 +527,15 @@ OO.ui.Toolbar.prototype.initialize = function () {
  * @param {Array|string} [groups.demote] Tools to demote to the end of the toolgroup
  */
 OO.ui.Toolbar.prototype.setup = function ( groups ) {
-	var i, len, type, toolGroup, groupConfig,
-		items = [],
-		defaultType = 'bar';
+	var defaultType = 'bar';
 
 	// Cleanup previous groups
 	this.reset();
 
+	var items = [];
 	// Build out new groups
-	for ( i = 0, len = groups.length; i < len; i++ ) {
-		groupConfig = groups[ i ];
+	for ( var i = 0, len = groups.length; i < len; i++ ) {
+		var groupConfig = groups[ i ];
 		if ( groupConfig.include === '*' ) {
 			// Apply defaults to catch-all groups
 			if ( groupConfig.type === undefined ) {
@@ -499,9 +546,9 @@ OO.ui.Toolbar.prototype.setup = function ( groups ) {
 			}
 		}
 		// Check type has been registered
-		type = this.getToolGroupFactory().lookup( groupConfig.type ) ?
+		var type = this.getToolGroupFactory().lookup( groupConfig.type ) ?
 			groupConfig.type : defaultType;
-		toolGroup = this.getToolGroupFactory().create( type, this, groupConfig );
+		var toolGroup = this.getToolGroupFactory().create( type, this, groupConfig );
 		items.push( toolGroup );
 		this.groupsByName[ groupConfig.name ] = toolGroup;
 		toolGroup.connect( this, {
@@ -545,11 +592,9 @@ OO.ui.Toolbar.prototype.getToolGroupByName = function ( name ) {
  * Remove all tools and toolgroups from the toolbar.
  */
 OO.ui.Toolbar.prototype.reset = function () {
-	var i, len;
-
 	this.groupsByName = {};
 	this.tools = {};
-	for ( i = 0, len = this.items.length; i < len; i++ ) {
+	for ( var i = 0, len = this.items.length; i < len; i++ ) {
 		this.items[ i ].destroy();
 	}
 	this.clearItems();
@@ -644,6 +689,8 @@ OO.ui.Toolbar.prototype.getToolAccelerator = function () {
  * @param {Object} [config] Configuration options
  * @cfg {string|Function} [title] Title text or a function that returns text. If this config is
  *  omitted, the value of the {@link #static-title static title} property is used.
+ * @cfg {boolean} [displayBothIconAndLabel] See static.displayBothIconAndLabel
+ * @cfg {Object} [narrowConfig] See static.narrowConfig
  *
  *  The title is used in different ways depending on the type of toolgroup that contains the tool.
  *  The title is used as a tooltip if the tool is part of a {@link OO.ui.BarToolGroup bar}
@@ -681,6 +728,9 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 		icon: 'check',
 		classes: [ 'oo-ui-tool-checkIcon' ]
 	} );
+	this.displayBothIconAndLabel = config.displayBothIconAndLabel !== undefined ?
+		config.displayBothIconAndLabel : this.constructor.static.displayBothIconAndLabel;
+	this.narrowConfig = config.narrowConfig || this.constructor.static.narrowConfig;
 
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
@@ -691,7 +741,8 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 
 	// Events
 	this.toolbar.connect( this, {
-		updateState: 'onUpdateState'
+		updateState: 'onUpdateState',
+		resize: 'onToolbarResize'
 	} );
 
 	// Initialization
@@ -720,7 +771,6 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 		.addClass( 'oo-ui-tool' )
 		.addClass( 'oo-ui-tool-name-' +
 			this.constructor.static.name.replace( /^([^/]+)\/([^/]+).*$/, '$1-$2' ) )
-		.toggleClass( 'oo-ui-tool-with-label', this.constructor.static.displayBothIconAndLabel )
 		.append( this.$link );
 	this.setTitle( config.title || this.constructor.static.title );
 };
@@ -828,6 +878,17 @@ OO.ui.Tool.static.isCompatibleWith = function () {
 	return false;
 };
 
+/**
+ * Config options to change when toolbar is in narrow mode
+ *
+ * Supports `displayBothIconAndLabel`, `title` and `icon` properties.
+ *
+ * @static
+ * @inheritable
+ * @property {Object|null}
+ */
+OO.ui.Tool.static.narrowConfig = null;
+
 /* Methods */
 
 /**
@@ -893,6 +954,23 @@ OO.ui.Tool.prototype.setActive = function ( state ) {
 OO.ui.Tool.prototype.setTitle = function ( title ) {
 	this.title = OO.ui.resolveMsg( title );
 	this.updateTitle();
+	// Update classes
+	this.setDisplayBothIconAndLabel( this.displayBothIconAndLabel );
+	return this;
+};
+
+/**
+ * Set the tool's displayBothIconAndLabel state.
+ *
+ * Update title classes if necessary
+ *
+ * @param {boolean} displayBothIconAndLabel
+ * @chainable
+ * @return {OO.ui.Tool} The tool, for chaining
+ */
+OO.ui.Tool.prototype.setDisplayBothIconAndLabel = function ( displayBothIconAndLabel ) {
+	this.displayBothIconAndLabel = displayBothIconAndLabel;
+	this.$element.toggleClass( 'oo-ui-tool-with-label', !!this.title && this.displayBothIconAndLabel );
 	return this;
 };
 
@@ -912,6 +990,39 @@ OO.ui.Tool.prototype.getTitle = function () {
  */
 OO.ui.Tool.prototype.getName = function () {
 	return this.constructor.static.name;
+};
+
+/**
+ * Handle resize events from the toolbar
+ */
+OO.ui.Tool.prototype.onToolbarResize = function () {
+	if ( !this.narrowConfig ) {
+		return;
+	}
+	if ( this.toolbar.isNarrow() ) {
+		if ( this.narrowConfig.displayBothIconAndLabel !== undefined ) {
+			this.wideDisplayBothIconAndLabel = this.displayBothIconAndLabel;
+			this.setDisplayBothIconAndLabel( this.narrowConfig.displayBothIconAndLabel );
+		}
+		if ( this.narrowConfig.title !== undefined ) {
+			this.wideTitle = this.title;
+			this.setTitle( this.narrowConfig.title );
+		}
+		if ( this.narrowConfig.icon !== undefined ) {
+			this.wideIcon = this.icon;
+			this.setIcon( this.narrowConfig.icon );
+		}
+	} else {
+		if ( this.wideDisplayBothIconAndLabel !== undefined ) {
+			this.setDisplayBothIconAndLabel( this.wideDisplayBothIconAndLabel );
+		}
+		if ( this.wideTitle !== undefined ) {
+			this.setTitle( this.wideTitle );
+		}
+		if ( this.wideIcon !== undefined ) {
+			this.setIcon( this.wideIcon );
+		}
+	}
 };
 
 /**
@@ -994,6 +1105,7 @@ OO.ui.Tool.prototype.destroy = function () {
  * @cfg {Array|string} [demote=[]] List of tools to demote to the end of the toolgroup, see above.
  *  This setting is particularly useful when tools have been added to the toolgroup
  *  en masse (e.g., via the catch-all selector).
+ * @cfg {string} [align='before'] Alignment within the toolbar, either 'before' or 'after'.
  */
 OO.ui.ToolGroup = function OoUiToolGroup( toolbar, config ) {
 	// Allow passing positional parameters inside the config object
@@ -1020,6 +1132,7 @@ OO.ui.ToolGroup = function OoUiToolGroup( toolbar, config ) {
 	this.exclude = config.exclude || [];
 	this.promote = config.promote || [];
 	this.demote = config.demote || [];
+	this.align = config.align || 'before';
 	this.onDocumentMouseKeyUpHandler = this.onDocumentMouseKeyUp.bind( this );
 
 	// Events
@@ -1129,11 +1242,11 @@ OO.ui.ToolGroup.prototype.isDisabled = function () {
  * @inheritdoc
  */
 OO.ui.ToolGroup.prototype.updateDisabled = function () {
-	var i, item, allDisabled = true;
+	var allDisabled = true;
 
 	if ( this.constructor.static.autoDisable ) {
-		for ( i = this.items.length - 1; i >= 0; i-- ) {
-			item = this.items[ i ];
+		for ( var i = this.items.length - 1; i >= 0; i-- ) {
+			var item = this.items[ i ];
 			if ( !item.isDisabled() ) {
 				allDisabled = false;
 				break;
@@ -1274,9 +1387,9 @@ OO.ui.ToolGroup.prototype.onMouseOutBlur = function ( e ) {
  * @return {OO.ui.Tool|null} Tool, `null` if none was found
  */
 OO.ui.ToolGroup.prototype.findTargetTool = function ( e ) {
-	var tool,
-		$item = $( e.target ).closest( '.oo-ui-tool-link' );
+	var $item = $( e.target ).closest( '.oo-ui-tool-link' );
 
+	var tool;
 	if ( $item.length ) {
 		tool = $item.parent().data( 'oo-ui-tool' );
 	}
@@ -1312,8 +1425,7 @@ OO.ui.ToolGroup.prototype.getToolbar = function () {
  * Add and remove tools based on configuration.
  */
 OO.ui.ToolGroup.prototype.populate = function () {
-	var i, len, name, tool,
-		toolFactory = this.toolbar.getToolFactory(),
+	var toolFactory = this.toolbar.getToolFactory(),
 		names = {},
 		add = [],
 		remove = [],
@@ -1321,8 +1433,9 @@ OO.ui.ToolGroup.prototype.populate = function () {
 			this.include, this.exclude, this.promote, this.demote
 		);
 
+	var name;
 	// Build a list of needed tools
-	for ( i = 0, len = list.length; i < len; i++ ) {
+	for ( var i = 0, len = list.length; i < len; i++ ) {
 		name = list[ i ];
 		if (
 			// Tool exists
@@ -1334,7 +1447,7 @@ OO.ui.ToolGroup.prototype.populate = function () {
 			// before creating it, but we can't call reserveTool() yet because we haven't created
 			// the tool.
 			this.toolbar.tools[ name ] = true;
-			tool = this.tools[ name ];
+			var tool = this.tools[ name ];
 			if ( !tool ) {
 				// Auto-initialize tools on first use
 				this.tools[ name ] = tool = toolFactory.create( name, this );
@@ -1373,11 +1486,9 @@ OO.ui.ToolGroup.prototype.populate = function () {
  * Destroy toolgroup.
  */
 OO.ui.ToolGroup.prototype.destroy = function () {
-	var name;
-
 	this.clearItems();
 	this.toolbar.getToolFactory().disconnect( this );
-	for ( name in this.tools ) {
+	for ( var name in this.tools ) {
 		this.toolbar.releaseTool( this.tools[ name ] );
 		this.tools[ name ].disconnect( this ).destroy();
 		delete this.tools[ name ];
@@ -1421,19 +1532,18 @@ OO.inheritClass( OO.ui.ToolFactory, OO.Factory );
  * @return {string[]} List of tools
  */
 OO.ui.ToolFactory.prototype.getTools = function ( include, exclude, promote, demote ) {
-	var i, len, included, promoted, demoted,
-		auto = [],
+	var auto = [],
 		used = {};
 
 	// Collect included and not excluded tools
-	included = OO.simpleArrayDifference( this.extract( include ), this.extract( exclude ) );
+	var included = OO.simpleArrayDifference( this.extract( include ), this.extract( exclude ) );
 
 	// Promotion
-	promoted = this.extract( promote, used );
-	demoted = this.extract( demote, used );
+	var promoted = this.extract( promote, used );
+	var demoted = this.extract( demote, used );
 
 	// Auto
-	for ( i = 0, len = included.length; i < len; i++ ) {
+	for ( var i = 0, len = included.length; i < len; i++ ) {
 		if ( !used[ included[ i ] ] ) {
 			auto.push( included[ i ] );
 		}
@@ -1465,13 +1575,13 @@ OO.ui.ToolFactory.prototype.getTools = function ( include, exclude, promote, dem
  * @return {string[]} List of extracted tool names
  */
 OO.ui.ToolFactory.prototype.extract = function ( collection, used ) {
-	var i, len, item, name, tool,
-		names = [];
+	var names = [];
 
 	collection = !Array.isArray( collection ) ? [ collection ] : collection;
 
-	for ( i = 0, len = collection.length; i < len; i++ ) {
-		item = collection[ i ];
+	for ( var i = 0, len = collection.length; i < len; i++ ) {
+		var item = collection[ i ];
+		var name, tool;
 		if ( item === '*' ) {
 			for ( name in this.registry ) {
 				tool = this.registry[ name ];
@@ -1544,14 +1654,13 @@ OO.ui.ToolFactory.prototype.extract = function ( collection, used ) {
  * @constructor
  */
 OO.ui.ToolGroupFactory = function OoUiToolGroupFactory() {
-	var i, l, defaultClasses;
 	// Parent constructor
 	OO.Factory.call( this );
 
-	defaultClasses = this.constructor.static.getDefaultClasses();
+	var defaultClasses = this.constructor.static.getDefaultClasses();
 
 	// Register default toolgroups
-	for ( i = 0, l = defaultClasses.length; i < l; i++ ) {
+	for ( var i = 0, l = defaultClasses.length; i < l; i++ ) {
 		this.register( defaultClasses[ i ] );
 	}
 };
@@ -1967,6 +2076,7 @@ OO.ui.BarToolGroup.static.name = 'bar';
  * @param {OO.ui.Toolbar} toolbar
  * @param {Object} [config] Configuration options
  * @cfg {string} [header] Text to display at the top of the popup
+ * @cfg {Object} [narrowConfig] See static.narrowConfig
  */
 OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	// Allow passing positional parameters inside the config object
@@ -1990,6 +2100,7 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	// Don't conflict with parent method of the same name
 	this.onPopupDocumentMouseKeyUpHandler = this.onPopupDocumentMouseKeyUp.bind( this );
 	this.$handle = $( '<span>' );
+	this.narrowConfig = config.narrowConfig || this.constructor.static.narrowConfig;
 
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
@@ -2016,6 +2127,9 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 		keyup: this.onHandleMouseKeyUp.bind( this ),
 		mousedown: this.onHandleMouseKeyDown.bind( this ),
 		mouseup: this.onHandleMouseKeyUp.bind( this )
+	} );
+	this.toolbar.connect( this, {
+		resize: 'onToolbarResize'
 	} );
 
 	// Initialization
@@ -2052,6 +2166,19 @@ OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.mixin.ClippableElement );
 OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.mixin.FloatableElement );
 OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.mixin.TabIndexedElement );
 
+/* Static properties */
+
+/**
+ * Config options to change when toolbar is in narrow mode
+ *
+ * Supports `invisibleLabel`, label` and `icon` properties.
+ *
+ * @static
+ * @inheritable
+ * @property {Object|null}
+ */
+OO.ui.PopupToolGroup.static.narrowConfig = null;
+
 /* Methods */
 
 /**
@@ -2063,6 +2190,39 @@ OO.ui.PopupToolGroup.prototype.setDisabled = function () {
 
 	if ( this.isDisabled() && this.isElementAttached() ) {
 		this.setActive( false );
+	}
+};
+
+/**
+ * Handle resize events from the toolbar
+ */
+OO.ui.PopupToolGroup.prototype.onToolbarResize = function () {
+	if ( !this.narrowConfig ) {
+		return;
+	}
+	if ( this.toolbar.isNarrow() ) {
+		if ( this.narrowConfig.invisibleLabel !== undefined ) {
+			this.wideInvisibleLabel = this.invisibleLabel;
+			this.setInvisibleLabel( this.narrowConfig.invisibleLabel );
+		}
+		if ( this.narrowConfig.label !== undefined ) {
+			this.wideLabel = this.label;
+			this.setLabel( this.narrowConfig.label );
+		}
+		if ( this.narrowConfig.icon !== undefined ) {
+			this.wideIcon = this.icon;
+			this.setIcon( this.narrowConfig.icon );
+		}
+	} else {
+		if ( this.wideInvisibleLabel !== undefined ) {
+			this.setInvisibleLabel( this.wideInvisibleLabel );
+		}
+		if ( this.wideLabel !== undefined ) {
+			this.setLabel( this.wideLabel );
+		}
+		if ( this.wideIcon !== undefined ) {
+			this.setIcon( this.wideIcon );
+		}
 	}
 };
 
@@ -2105,19 +2265,18 @@ OO.ui.PopupToolGroup.prototype.onMouseKeyUp = function ( e ) {
  * @inheritdoc
  */
 OO.ui.PopupToolGroup.prototype.onMouseKeyDown = function ( e ) {
-	var $focused, $firstFocusable, $lastFocusable;
 	// Shift-Tab on the first tool in the group jumps to the handle.
 	// Tab on the last tool in the group jumps to the next group.
 	if ( !this.isDisabled() && e.which === OO.ui.Keys.TAB ) {
 		// We can't use this.items because ListToolGroup inserts the extra fake
 		// expand/collapse tool.
-		$focused = $( document.activeElement );
-		$firstFocusable = OO.ui.findFocusable( this.$group );
+		var $focused = $( document.activeElement );
+		var $firstFocusable = OO.ui.findFocusable( this.$group );
 		if ( $focused[ 0 ] === $firstFocusable[ 0 ] && e.shiftKey ) {
 			this.$handle.trigger( 'focus' );
 			return false;
 		}
-		$lastFocusable = OO.ui.findFocusable( this.$group, true );
+		var $lastFocusable = OO.ui.findFocusable( this.$group, true );
 		if ( $focused[ 0 ] === $lastFocusable[ 0 ] && !e.shiftKey ) {
 			// Focus this group's handle and let the browser's tab handling happen
 			// (no 'return false').
@@ -2410,10 +2569,9 @@ OO.ui.ListToolGroup.static.name = 'list';
  * @inheritdoc
  */
 OO.ui.ListToolGroup.prototype.populate = function () {
-	var i, len, allowCollapse = [];
-
 	OO.ui.ListToolGroup.super.prototype.populate.call( this );
 
+	var allowCollapse = [];
 	// Update the list of collapsible tools
 	if ( this.allowCollapse !== undefined ) {
 		allowCollapse = this.allowCollapse;
@@ -2422,7 +2580,7 @@ OO.ui.ListToolGroup.prototype.populate = function () {
 	}
 
 	this.collapsibleTools = [];
-	for ( i = 0, len = allowCollapse.length; i < len; i++ ) {
+	for ( var i = 0, len = allowCollapse.length; i < len; i++ ) {
 		if ( this.tools[ allowCollapse[ i ] ] !== undefined ) {
 			this.collapsibleTools.push( this.tools[ allowCollapse[ i ] ] );
 		}
@@ -2441,9 +2599,8 @@ OO.ui.ListToolGroup.prototype.populate = function () {
  * @return {OO.ui.Tool} Expand collapse tool
  */
 OO.ui.ListToolGroup.prototype.getExpandCollapseTool = function () {
-	var ExpandCollapseTool;
 	if ( this.expandCollapseTool === undefined ) {
-		ExpandCollapseTool = function () {
+		var ExpandCollapseTool = function () {
 			ExpandCollapseTool.super.apply( this, arguments );
 		};
 
@@ -2655,10 +2812,9 @@ OO.ui.MenuToolGroup.static.name = 'menu';
  * @private
  */
 OO.ui.MenuToolGroup.prototype.onUpdateState = function () {
-	var name,
-		labelTexts = [];
+	var labelTexts = [];
 
-	for ( name in this.tools ) {
+	for ( var name in this.tools ) {
 		if ( this.tools[ name ].isActive() ) {
 			labelTexts.push( this.tools[ name ].getTitle() );
 		}

@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.44.0
+ * OOUI v0.44.1
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-05-17T17:51:03Z
+ * Date: 2022-07-13T13:25:55Z
  */
 .oo-ui-icon-arrowNext {
   background-image: /* @embed */ url(themes/wikimediaui/images/icons/arrowNext-ltr.svg);
@@ -2095,6 +2095,24 @@
 .oo-ui-image-progressive.oo-ui-icon-code {
   background-image: /* @embed */ url(themes/wikimediaui/images/icons/code-progressive.svg);
 }
+.oo-ui-icon-copy {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/copy-ltr.svg);
+}
+.oo-ui-image-invert.oo-ui-icon-copy {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/copy-ltr-invert.svg);
+}
+.oo-ui-image-progressive.oo-ui-icon-copy {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/copy-ltr-progressive.svg);
+}
+.oo-ui-icon-cut {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/cut-ltr.svg);
+}
+.oo-ui-image-invert.oo-ui-icon-cut {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/cut-ltr-invert.svg);
+}
+.oo-ui-image-progressive.oo-ui-icon-cut {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/cut-ltr-progressive.svg);
+}
 .oo-ui-icon-hieroglyph {
   background-image: /* @embed */ url(themes/wikimediaui/images/icons/hieroglyph.svg);
 }
@@ -2247,6 +2265,15 @@
 }
 .oo-ui-image-progressive.oo-ui-icon-outline {
   background-image: /* @embed */ url(themes/wikimediaui/images/icons/outline-ltr-progressive.svg);
+}
+.oo-ui-icon-paste {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/paste-ltr.svg);
+}
+.oo-ui-image-invert.oo-ui-icon-paste {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/paste-ltr-invert.svg);
+}
+.oo-ui-image-progressive.oo-ui-icon-paste {
+  background-image: /* @embed */ url(themes/wikimediaui/images/icons/paste-ltr-progressive.svg);
 }
 .oo-ui-icon-puzzle {
   background-image: /* @embed */ url(themes/wikimediaui/images/icons/puzzle-ltr.svg);
