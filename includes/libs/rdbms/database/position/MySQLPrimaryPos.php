@@ -318,7 +318,7 @@ class MySQLPrimaryPos implements DBPrimaryPos {
 	/**
 	 * @see https://dev.mysql.com/doc/refman/5.7/en/show-master-status.html
 	 * @see https://dev.mysql.com/doc/refman/5.7/en/show-slave-status.html
-	 * @return array|bool Map of (binlog:<string>, pos:(<integer>, <integer>)) or false
+	 * @return array|false Map of (binlog:<string>, pos:(<integer>, <integer>)) or false
 	 */
 	protected function getBinlogCoordinates() {
 		return ( $this->binLog !== null && $this->logPos !== null )

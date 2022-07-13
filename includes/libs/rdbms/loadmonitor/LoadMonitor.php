@@ -112,7 +112,7 @@ class LoadMonitor implements ILoadMonitor {
 
 	/**
 	 * @param array $serverIndexes
-	 * @param string|bool $domain
+	 * @param string|false $domain
 	 * @return array
 	 * @throws DBAccessError
 	 */
@@ -193,7 +193,7 @@ class LoadMonitor implements ILoadMonitor {
 
 	/**
 	 * @param array $serverIndexes
-	 * @param string|bool $domain
+	 * @param string|false $domain
 	 * @param array|false $priorStates
 	 * @return array
 	 * @throws DBAccessError

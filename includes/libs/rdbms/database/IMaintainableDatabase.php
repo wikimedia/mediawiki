@@ -54,7 +54,7 @@ interface IMaintainableDatabase extends IDatabase {
 	 * @param string $filename File name to open
 	 * @param callable|null $lineCallback Optional function called before reading each line
 	 * @param callable|null $resultCallback Optional function called for each MySQL result
-	 * @param bool|string $fname Calling function name or false if name should be
+	 * @param string|false $fname Calling function name or false if name should be
 	 *   generated dynamically using $filename
 	 * @param callable|null $inputCallback Optional function called for each
 	 *   complete line sent

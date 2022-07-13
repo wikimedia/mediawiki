@@ -302,7 +302,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	 * High values could be due to scanning, updates, locking, and such.
 	 *
 	 * @param string $type IDatabase::ESTIMATE_* constant [default: ESTIMATE_ALL]
-	 * @return float|bool Returns false if not transaction is active
+	 * @return float|false Returns false if not transaction is active
 	 * @since 1.26
 	 */
 	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL );
@@ -1222,7 +1222,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	/**
 	 * Get the replication position of this replica DB
 	 *
-	 * @return DBPrimaryPos|bool False if this is not a replica DB
+	 * @return DBPrimaryPos|false False if this is not a replica DB
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function getReplicaPos();
@@ -1230,7 +1230,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	/**
 	 * Get the position of this primary DB
 	 *
-	 * @return DBPrimaryPos|bool False if this is not a primary DB
+	 * @return DBPrimaryPos|false False if this is not a primary DB
 	 * @throws DBError If an error occurs, {@see query}
 	 * @since 1.37
 	 */
