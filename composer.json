@@ -168,7 +168,7 @@
 		"allow-plugins": {
 			"composer/package-versions-deprecated": true,
 			"wikimedia/composer-merge-plugin": true,
-			"composer/installers": false
+			"composer/installers": true
 		}
 	},
 	"extra": {
