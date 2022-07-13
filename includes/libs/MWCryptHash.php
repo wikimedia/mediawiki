@@ -46,23 +46,17 @@ class MWCryptHash {
 			return self::$algo;
 		}
 
-		$algos = hash_algos();
-		$preference = [ 'whirlpool', 'sha256', 'sha1', 'md5' ];
+		$algos = hash_hmac_algos();
+		$preference = [ 'whirlpool', 'sha256' ];
 
 		foreach ( $preference as $algorithm ) {
-			if ( in_array( $algorithm, $algos ) ) {
+			if ( in_array( $algorithm, $algos, true ) ) {
 				self::$algo = $algorithm;
-
 				return self::$algo;
 			}
 		}
 
-		// We only reach here if no acceptable hash is found in the list, this should
-		// be a technical impossibility since most of php's hash list is fixed and
-		// some of the ones we list are available as their own native functions
-		// But since we already require at least 5.2 and hash() was default in
-		// 5.1.2 we don't bother falling back to methods like sha1 and md5.
-		throw new DomainException( "Could not find an acceptable hashing function in hash_algos()" );
+		throw new DomainException( 'Could not find an acceptable hashing function.' );
 	}
 
 	/**
