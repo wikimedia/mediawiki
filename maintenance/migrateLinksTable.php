@@ -116,30 +116,20 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 				"title on pages between $lowPageId and $highPageId\n" );
 			$id = MediaWikiServices::getInstance()->getLinkTargetLookup()->acquireLinkTargetId( $title, $dbw );
 			$conds = [
+				$targetColumn => null,
 				$mapping[$table]['ns'] => $ns,
 				$mapping[$table]['title'] => $titleString,
 				"$pageIdColumn BETWEEN $lowPageId AND $highPageId"
 			];
-			while ( true ) {
-				$dbw->update(
-					$table,
-					[ $targetColumn => $id ],
-					array_merge( [ $targetColumn => null ], $conds ),
-					__METHOD__,
-					[ 'LIMIT' => $batchSize ]
-				);
-				$updatedInThisBatch = $dbw->affectedRows();
-				$updated += $updatedInThisBatch;
-				$this->output( "Updated $updatedInThisBatch rows\n" );
-				// Sleep between batches for replication to catch up
-				MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
-				$sleep = (int)$this->getOption( 'sleep', 0 );
-				if ( $sleep > 0 ) {
-					sleep( $sleep );
-				}
-				if ( !$updatedInThisBatch ) {
-					break;
-				}
+			$dbw->update( $table, [ $targetColumn => $id ], $conds, __METHOD__ );
+			$updatedInThisBatch = $dbw->affectedRows();
+			$updated += $updatedInThisBatch;
+			$this->output( "Updated $updatedInThisBatch rows\n" );
+			// Sleep between batches for replication to catch up
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
+			$sleep = (int)$this->getOption( 'sleep', 0 );
+			if ( $sleep > 0 ) {
+				sleep( $sleep );
 			}
 		}
 		return $updated;
