@@ -70,8 +70,7 @@ class EntryPoint {
 		return ( new Router(
 			$routeFiles,
 			ExtensionRegistry::getInstance()->getAttribute( 'RestRoutes' ),
-			$conf->get( MainConfigNames::CanonicalServer ),
-			$conf->get( MainConfigNames::RestPath ),
+			new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $conf ),
 			$services->getLocalServerObjectCache(),
 			$responseFactory,
 			$authorizer,

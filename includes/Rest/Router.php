@@ -4,7 +4,9 @@ namespace MediaWiki\Rest;
 
 use AppendIterator;
 use BagOStuff;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
@@ -35,6 +37,9 @@ class Router {
 
 	/** @var string */
 	private $baseUrl;
+
+	/** @var string */
+	private $privateBaseUrl;
 
 	/** @var string */
 	private $rootPath;
@@ -76,10 +81,19 @@ class Router {
 	private $session;
 
 	/**
+	 * @internal
+	 * @var array
+	 */
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::CanonicalServer,
+		MainConfigNames::InternalServer,
+		MainConfigNames::RestPath,
+	];
+
+	/**
 	 * @param string[] $routeFiles List of names of JSON files containing routes
 	 * @param array $extraRoutes Extension route array
-	 * @param string $baseUrl
-	 * @param string $rootPath The base path for routes, relative to the base URL
+	 * @param ServiceOptions $options
 	 * @param BagOStuff $cacheBag A cache in which to store the matcher trees
 	 * @param ResponseFactory $responseFactory
 	 * @param BasicAuthorizerInterface $basicAuth
@@ -94,8 +108,7 @@ class Router {
 	public function __construct(
 		$routeFiles,
 		$extraRoutes,
-		$baseUrl,
-		$rootPath,
+		ServiceOptions $options,
 		BagOStuff $cacheBag,
 		ResponseFactory $responseFactory,
 		BasicAuthorizerInterface $basicAuth,
@@ -106,10 +119,13 @@ class Router {
 		HookContainer $hookContainer,
 		Session $session
 	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+
 		$this->routeFiles = $routeFiles;
 		$this->extraRoutes = $extraRoutes;
-		$this->baseUrl = $baseUrl;
-		$this->rootPath = $rootPath;
+		$this->baseUrl = $options->get( MainConfigNames::CanonicalServer );
+		$this->privateBaseUrl = $options->get( MainConfigNames::InternalServer );
+		$this->rootPath = $options->get( MainConfigNames::RestPath );
 		$this->cacheBag = $cacheBag;
 		$this->responseFactory = $responseFactory;
 		$this->basicAuth = $basicAuth;
@@ -261,23 +277,69 @@ class Router {
 
 	/**
 	 * Returns a full URL for the given route.
-	 * Intended for use in redirects.
+	 * Intended for use in redirects and when including links to endpoints in output.
 	 *
 	 * @param string $route
 	 * @param array $pathParams
 	 * @param array $queryParams
 	 *
-	 * @return false|string
+	 * @return string
+	 * @see getPrivateRouteUrl
+	 *
 	 */
-	public function getRouteUrl( $route, $pathParams = [], $queryParams = [] ) {
+	public function getRouteUrl(
+		string $route,
+		array $pathParams = [],
+		array $queryParams = []
+	): string {
+		$route = $this->substPathParams( $route, $pathParams );
+		$url = $this->baseUrl . $this->rootPath . $route;
+		return wfAppendQuery( $url, $queryParams );
+	}
+
+	/**
+	 * Returns a full private URL for the given route.
+	 * Private URLs are for use within the local subnet, they may use host names or ports
+	 * or paths that are not publicly accessible.
+	 * Intended for use in redirects and when including links to endpoints in output.
+	 *
+	 * @note Only private endpoints should use this method for redirects or links to
+	 *       include on the response! Public endpoints should not expose the URLs
+	 *       of private endpoints to the public!
+	 *
+	 * @since 1.39
+	 * @see getRouteUrl
+	 *
+	 * @param string $route
+	 * @param array $pathParams
+	 * @param array $queryParams
+	 *
+	 * @return string
+	 */
+	public function getPrivateRouteUrl(
+		string $route,
+		array $pathParams = [],
+		array $queryParams = []
+	): string {
+		$route = $this->substPathParams( $route, $pathParams );
+		$url = $this->privateBaseUrl . $this->rootPath . $route;
+		return wfAppendQuery( $url, $queryParams );
+	}
+
+	/**
+	 * @param string $route
+	 * @param array $pathParams
+	 *
+	 * @return string
+	 */
+	protected function substPathParams( string $route, array $pathParams ): string {
 		foreach ( $pathParams as $param => $value ) {
 			// NOTE: we use rawurlencode here, since execute() uses rawurldecode().
 			// Spaces in path params must be encoded to %20 (not +).
 			$route = str_replace( '{' . $param . '}', rawurlencode( $value ), $route );
 		}
 
-		$url = $this->baseUrl . $this->rootPath . $route;
-		return wfAppendQuery( $url, $queryParams );
+		return $route;
 	}
 
 	/**
@@ -441,4 +503,5 @@ class Router {
 
 		return $this;
 	}
+
 }

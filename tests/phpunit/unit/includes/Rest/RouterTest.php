@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Rest;
 
 use GuzzleHttp\Psr7\Uri;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\BasicAccess\StaticBasicAuthorizer;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
@@ -11,23 +12,19 @@ use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseException;
-use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
-use MediaWiki\Rest\Validator\Validator;
-use MediaWiki\Tests\Rest\Handler\SessionHelperTestTrait;
-use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\MockObject\MockObject;
-use Psr\Container\ContainerInterface;
 use RuntimeException;
 use Throwable;
-use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @covers \MediaWiki\Rest\Router
  */
 class RouterTest extends \MediaWikiUnitTestCase {
-	use MockAuthorityTrait;
-	use SessionHelperTestTrait;
+	use RestTestTrait;
+
+	private const CANONICAL_SERVER = 'https://wiki.example.com';
+	private const INTERNAL_SERVER = 'http://api.local:8080';
 
 	/** @var Throwable[] */
 	private $reportedErrors = [];
@@ -43,11 +40,7 @@ class RouterTest extends \MediaWikiUnitTestCase {
 		$authError = null,
 		$additionalRouteFiles = []
 	) {
-		$objectFactory = new ObjectFactory(
-			$this->getMockForAbstractClass( ContainerInterface::class )
-		);
 		$routeFiles = array_merge( [ __DIR__ . '/testRoutes.json' ], $additionalRouteFiles );
-		$authority = $this->mockAnonUltimateAuthority();
 
 		/** @var MockObject|ErrorReporter $mockErrorReporter */
 		$mockErrorReporter = $this->createNoOpMock( ErrorReporter::class, [ 'reportError' ] );
@@ -56,21 +49,19 @@ class RouterTest extends \MediaWikiUnitTestCase {
 				$this->reportedErrors[] = $e;
 			} );
 
-		return new Router(
-			$routeFiles,
-			[],
-			'http://wiki.example.com',
-			'/rest',
-			new \EmptyBagOStuff(),
-			new ResponseFactory( [] ),
-			new StaticBasicAuthorizer( $authError ),
-			$authority,
-			$objectFactory,
-			new Validator( $objectFactory, $request, $authority ),
-			$mockErrorReporter,
-			$this->createHookContainer(),
-			$this->getSession()
-		);
+		$config = [
+			MainConfigNames::CanonicalServer => self::CANONICAL_SERVER,
+			MainConfigNames::InternalServer => self::INTERNAL_SERVER,
+			MainConfigNames::RestPath => '/rest'
+		];
+
+		return $this->newRouter( [
+			'routeFiles' => $routeFiles,
+			'request' => $request,
+			'config' => $config,
+			'errorReporter' => $mockErrorReporter,
+			'basicAuth' => new StaticBasicAuthorizer( $authError ),
+		] );
 	}
 
 	public function testPrefixMismatch() {
@@ -243,7 +234,21 @@ class RouterTest extends \MediaWikiUnitTestCase {
 		$router = $this->createRouter( $request );
 
 		$url = $router->getRouteUrl( $route, $path, $query );
-		$this->assertRegExp( '!^https?://[\w.]+/!', $url );
+		$this->assertStringStartsWith( self::CANONICAL_SERVER, $url );
+
+		$uri = new Uri( $url );
+		$this->assertStringContainsString( $expectedUrl, $uri );
+	}
+
+	/**
+	 * @dataProvider provideGetRouteUrl
+	 */
+	public function testGetPrivateRouteUrl( $route, $expectedUrl, $query = [], $path = [] ) {
+		$request = new RequestData( [ 'uri' => new Uri( '/rest/mock/route' ) ] );
+		$router = $this->createRouter( $request );
+
+		$url = $router->getPrivateRouteUrl( $route, $path, $query );
+		$this->assertStringStartsWith( self::INTERNAL_SERVER, $url );
 
 		$uri = new Uri( $url );
 		$this->assertStringContainsString( $expectedUrl, $uri );
