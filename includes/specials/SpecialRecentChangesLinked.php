@@ -245,8 +245,10 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 							null,
 							[ "rc_namespace = {$nsField}", "rc_title = {$titleField}" ]
 						);
-						$queryBuilder->joinConds( $queryInfo['joins'] );
-						$queryBuilder->table( $link_table );
+						if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
+							$queryBuilder->joinConds( $queryInfo['joins'] );
+							$queryBuilder->table( $link_table );
+						}
 					} else {
 						$queryBuilder->join(
 							$link_table,
