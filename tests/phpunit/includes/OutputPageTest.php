@@ -1878,7 +1878,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'yourhook' => [ $this, 'parserOutputHookCallback' ],
 			'theirhook' => [ __CLASS__, 'parserOutputHookCallbackStatic' ],
 			'uncalled' => function () {
-				$this->assertTrue( false );
+				$this->fail();
 			},
 		] );
 

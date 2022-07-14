@@ -130,7 +130,7 @@ trait FactoryArgTestTrait {
 			}
 		}
 
-		$this->assertFalse( true, "Param $name not received by " . static::getInstanceClass() );
+		$this->fail( "Param $name not received by " . static::getInstanceClass() );
 	}
 
 	/**
