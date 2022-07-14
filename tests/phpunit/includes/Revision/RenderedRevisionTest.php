@@ -502,9 +502,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 
 		// MutableRevisionRecord with ID should not be used by the parser,
 		// revision should be loaded instead!
-		$revisionStore = $this->getMockBuilder( RevisionStore::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$revisionStore = $this->createMock( RevisionStore::class );
 
 		$revisionStore->expects( $this->once() )
 			->method( 'getKnownCurrentRevision' )

@@ -424,8 +424,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function newSearchEngine() {
-		$searchEngine = $this->getMockBuilder( SearchEngine::class )
-			->getMock();
+		$searchEngine = $this->createMock( SearchEngine::class );
 
 		$searchEngine->method( 'makeSearchFieldMapping' )
 			->willReturnCallback( static function ( $name, $type ) {
@@ -510,9 +509,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		// test B/C renderer
-		$customDifferenceEngine = $this->getMockBuilder( DifferenceEngine::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$customDifferenceEngine = $this->createMock( DifferenceEngine::class );
 		// hack to track object identity across cloning
 		$customDifferenceEngine->objectId = 12345;
 		$customContentHandler = $this->getMockBuilder( ContentHandler::class )
@@ -539,9 +536,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		// test that B/C renderer does not get used when getSlotDiffRendererInternal is overridden
-		$customDifferenceEngine = $this->getMockBuilder( DifferenceEngine::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$customDifferenceEngine = $this->createMock( DifferenceEngine::class );
 		$customSlotDiffRenderer = $this->getMockBuilder( SlotDiffRenderer::class )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
@@ -567,9 +562,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		// test that the hook handler takes precedence
-		$customDifferenceEngine = $this->getMockBuilder( DifferenceEngine::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$customDifferenceEngine = $this->createMock( DifferenceEngine::class );
 		$customContentHandler = $this->getMockBuilder( ContentHandler::class )
 			->setConstructorArgs( [ 'foo', [] ] )
 			->onlyMethods( [ 'createDifferenceEngine' ] )

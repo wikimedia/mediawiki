@@ -740,9 +740,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * an action of the same name.
 	 */
 	public function testCheckUserBlockActionPermission() {
-		$tester = $this->getMockBuilder( Action::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$tester = $this->createMock( Action::class );
 		$tester->method( 'getName' )
 			->willReturn( 'tester' );
 		$tester->method( 'getRestriction' )

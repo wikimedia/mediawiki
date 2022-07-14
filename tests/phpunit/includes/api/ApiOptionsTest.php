@@ -30,9 +30,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->mUserMock = $this->getMockBuilder( User::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$this->mUserMock = $this->createMock( User::class );
 
 		// No actual DB data
 		$this->mUserMock->method( 'getInstanceForUpdate' )->willReturn( $this->mUserMock );

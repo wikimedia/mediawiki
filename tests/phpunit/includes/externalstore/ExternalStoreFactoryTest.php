@@ -76,11 +76,9 @@ class ExternalStoreFactoryTest extends MediaWikiIntegrationTestCase {
 		$mwStore = $esFactory->getStore( 'mwstore' );
 		$this->assertTrue( $mwStore->isReadOnly( 'memstore1' ), "Location is read-only" );
 
-		$lb = $this->getMockBuilder( \Wikimedia\Rdbms\LoadBalancer::class )
-			->disableOriginalConstructor()->getMock();
+		$lb = $this->createMock( \Wikimedia\Rdbms\LoadBalancer::class );
 		$lb->method( 'getReadOnlyReason' )->willReturn( 'Locked' );
-		$lbFactory = $this->getMockBuilder( LBFactory::class )
-			->disableOriginalConstructor()->getMock();
+		$lbFactory = $this->createMock( LBFactory::class );
 		$lbFactory->method( 'getExternalLB' )->willReturn( $lb );
 
 		$this->setService( 'DBLoadBalancerFactory', $lbFactory );

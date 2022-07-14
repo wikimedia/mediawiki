@@ -15,9 +15,7 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 	 * @return MockObject|OutputPage
 	 */
 	private function getMockOutputPage( $html, $title ) {
-		$mockContentSecurityPolicy = $this->getMockBuilder( ContentSecurityPolicy::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$mockContentSecurityPolicy = $this->createMock( ContentSecurityPolicy::class );
 
 		$mockContentSecurityPolicy->method( 'getNonce' )
 			->willReturn( 'secret' );

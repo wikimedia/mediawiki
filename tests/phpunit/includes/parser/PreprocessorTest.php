@@ -29,9 +29,7 @@ class PreprocessorTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getContentLanguage() );
 
 		$wanCache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
-		$parser = $this->getMockBuilder( Parser::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$parser = $this->createMock( Parser::class );
 		$parser->method( 'getStripList' )->willReturn( [
 			'gallery', 'display map' /* Used by Maps, see r80025 CR */, '/foo'
 		] );

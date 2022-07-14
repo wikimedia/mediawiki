@@ -11,7 +11,7 @@ class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 
 	public function testAffected() {
-		$logger = $this->getMockBuilder( LoggerInterface::class )->getMock();
+		$logger = $this->createMock( LoggerInterface::class );
 		$logger->expects( $this->exactly( 3 ) )->method( 'warning' );
 
 		$tp = new TransactionProfiler();
@@ -25,7 +25,7 @@ class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testReadTime() {
-		$logger = $this->getMockBuilder( LoggerInterface::class )->getMock();
+		$logger = $this->createMock( LoggerInterface::class );
 		// 1 per query
 		$logger->expects( $this->exactly( 2 ) )->method( 'warning' );
 
@@ -40,7 +40,7 @@ class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testWriteTime() {
-		$logger = $this->getMockBuilder( LoggerInterface::class )->getMock();
+		$logger = $this->createMock( LoggerInterface::class );
 		// 1 per query, 1 per trx, and one "sub-optimal trx" entry
 		$logger->expects( $this->exactly( 4 ) )->method( 'warning' );
 
@@ -55,7 +55,7 @@ class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testAffectedTrx() {
-		$logger = $this->getMockBuilder( LoggerInterface::class )->getMock();
+		$logger = $this->createMock( LoggerInterface::class );
 		$logger->expects( $this->once() )->method( 'warning' );
 
 		$tp = new TransactionProfiler();
@@ -67,7 +67,7 @@ class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testWriteTimeTrx() {
-		$logger = $this->getMockBuilder( LoggerInterface::class )->getMock();
+		$logger = $this->createMock( LoggerInterface::class );
 		// 1 per trx, and one "sub-optimal trx" entry
 		$logger->expects( $this->exactly( 2 ) )->method( 'warning' );
 
@@ -80,7 +80,7 @@ class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testConns() {
-		$logger = $this->getMockBuilder( LoggerInterface::class )->getMock();
+		$logger = $this->createMock( LoggerInterface::class );
 		$logger->expects( $this->exactly( 2 ) )->method( 'warning' );
 
 		$tp = new TransactionProfiler();
@@ -94,7 +94,7 @@ class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testMasterConns() {
-		$logger = $this->getMockBuilder( LoggerInterface::class )->getMock();
+		$logger = $this->createMock( LoggerInterface::class );
 		$logger->expects( $this->exactly( 2 ) )->method( 'warning' );
 
 		$tp = new TransactionProfiler();
@@ -111,7 +111,7 @@ class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testReadQueryCount() {
-		$logger = $this->getMockBuilder( LoggerInterface::class )->getMock();
+		$logger = $this->createMock( LoggerInterface::class );
 		$logger->expects( $this->exactly( 2 ) )->method( 'warning' );
 
 		$tp = new TransactionProfiler();
@@ -125,7 +125,7 @@ class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testWriteQueryCount() {
-		$logger = $this->getMockBuilder( LoggerInterface::class )->getMock();
+		$logger = $this->createMock( LoggerInterface::class );
 		$logger->expects( $this->exactly( 2 ) )->method( 'warning' );
 
 		$tp = new TransactionProfiler();

@@ -44,9 +44,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	 * @return IDatabase
 	 */
 	private function getDatabaseMock() {
-		$db = $this->getMockBuilder( IDatabase::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$db = $this->createMock( IDatabase::class );
 
 		$open = true;
 		$db->method( 'select' )->willReturnCallback( static function () use ( &$open ) {

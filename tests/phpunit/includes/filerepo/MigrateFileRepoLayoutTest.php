@@ -30,9 +30,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 			]
 		] );
 
-		$dbMock = $this->getMockBuilder( Wikimedia\Rdbms\IDatabase::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$dbMock = $this->createMock( Wikimedia\Rdbms\IDatabase::class );
 
 		$imageRow = (object)[
 			'img_name' => $filename,

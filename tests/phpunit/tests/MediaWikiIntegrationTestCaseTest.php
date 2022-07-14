@@ -217,8 +217,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	public function testSetService() {
 		$initialServices = MediaWikiServices::getInstance();
 		$initialService = $initialServices->getDBLoadBalancer();
-		$mockService = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()->getMock();
+		$mockService = $this->createMock( LoadBalancer::class );
 
 		$this->setService( 'DBLoadBalancer', $mockService );
 		$this->assertNotSame(
@@ -360,9 +359,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$services = MediaWikiServices::getInstance();
 
 		// override a service instance
-		$myReadOnlyMode = $this->getMockBuilder( ReadOnlyMode::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$myReadOnlyMode = $this->createMock( ReadOnlyMode::class );
 		$this->setService( 'ReadOnlyMode', $myReadOnlyMode );
 		$this->setTemporaryHook( 'MyTestHook', static function ( &$n ) {
 			$n++;

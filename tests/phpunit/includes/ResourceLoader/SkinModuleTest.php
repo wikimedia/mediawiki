@@ -249,8 +249,7 @@ CSS
 			'ParserEnableLegacyMediaDOM' => false,
 		] + self::getSettings() ) );
 
-		$ctx = $this->getMockBuilder( Context::class )
-			->disableOriginalConstructor()->getMock();
+		$ctx = $this->createMock( Context::class );
 
 		$this->assertEquals(
 			$expected,
@@ -412,8 +411,7 @@ CSS
 	 * @covers \MediaWiki\ResourceLoader\SkinModule::getLogoData
 	 */
 	public function testPreloadLinkHeaders( $config, $lang, $result ) {
-		$ctx = $this->getMockBuilder( Context::class )
-			->disableOriginalConstructor()->getMock();
+		$ctx = $this->createMock( Context::class );
 		$ctx->method( 'getLanguage' )->willReturn( $lang );
 		$module = new SkinModule();
 		$module->setConfig( new HashConfig( $config + [
@@ -516,9 +514,7 @@ CSS
 	public function testNoPreloadLogos() {
 		$module = new SkinModule( [ 'features' => [ 'logo' => false ] ] );
 		$context =
-			$this->getMockBuilder( Context::class )
-				->disableOriginalConstructor()
-				->getMock();
+			$this->createMock( Context::class );
 		$preloadLinks = $module->getPreloadLinks( $context );
 		$this->assertArrayEquals( [], $preloadLinks );
 	}
@@ -529,8 +525,7 @@ CSS
 	public function testPreloadLogos() {
 		$module = new SkinModule();
 		$module->setConfig( self::getMinimalConfig() );
-		$context = $this->getMockBuilder( Context::class )
-			->disableOriginalConstructor()->getMock();
+		$context = $this->createMock( Context::class );
 
 		$preloadLinks = $module->getPreloadLinks( $context );
 		$this->assertNotSameSize( [], $preloadLinks );

@@ -129,7 +129,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	}
 
 	public function testRegisterDuplicate() {
-		$logger = $this->getMockBuilder( \Psr\Log\LoggerInterface::class )->getMock();
+		$logger = $this->createMock( \Psr\Log\LoggerInterface::class );
 		$logger->expects( $this->once() )
 			->method( 'warning' );
 		$resourceLoader = new EmptyResourceLoader( null, $logger );

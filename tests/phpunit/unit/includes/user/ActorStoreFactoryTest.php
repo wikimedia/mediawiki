@@ -106,14 +106,12 @@ class ActorStoreFactoryTest extends MediaWikiUnitTestCase {
 	 * @return MockObject|ILBFactory
 	 */
 	private function getMockLoadBalancerFactory( $expectDomain ) {
-		$mock = $this->getMockBuilder( ILBFactory::class )
-			->disableOriginalConstructor()->getMock();
+		$mock = $this->createMock( ILBFactory::class );
 
 		$mock->method( 'getMainLB' )
 			->willReturnCallback( function ( $domain ) use ( $expectDomain ) {
 				$this->assertSame( $expectDomain, $domain );
-				return $this->getMockBuilder( ILoadBalancer::class )
-					->disableOriginalConstructor()->getMock();
+				return $this->createMock( ILoadBalancer::class );
 			} );
 
 		return $mock;

@@ -390,9 +390,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 				return true;
 			} );
 
-		$lb = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$lb = $this->createMock( LoadBalancer::class );
 		$lb->method( 'getConnectionRef' )
 			->willReturn( $db );
 

@@ -354,9 +354,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 		$user = new UserIdentityValue( 42, 'Test' );
 
 		/** @var CommentStoreComment $comment */
-		$comment = $this->getMockBuilder( CommentStoreComment::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$comment = $this->createMock( CommentStoreComment::class );
 
 		$content = new DummyContentForTesting( 'Test' );
 
