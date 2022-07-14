@@ -177,7 +177,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		foreach ( $handlerSpecs as $modelID => $handlerSpec ) {
 			try {
 				$factory->getContentHandler( $modelID );
-				$this->assertTrue( false );
+				$this->fail();
 			} catch ( \Throwable $exception ) {
 				$this->assertInstanceOf( $exceptionClassName, $exception );
 			}
