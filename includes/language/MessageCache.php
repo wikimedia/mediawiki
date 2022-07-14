@@ -301,7 +301,23 @@ class MessageCache implements LoggerAwareInterface {
 			return true;
 		}
 
-		# Loading code starts
+		try {
+			return $this->loadUnguarded( $code, $mode );
+		} catch ( Throwable $e ) {
+			// Don't try to load again during the exception handler
+			$this->mDisable = true;
+			throw $e;
+		}
+	}
+
+	/**
+	 * Load messages from the cache or database, without exception guarding.
+	 *
+	 * @param string $code Language to which load messages
+	 * @param int|null $mode Use MessageCache::FOR_UPDATE to skip process cache [optional]
+	 * @return bool
+	 */
+	private function loadUnguarded( $code, $mode ) {
 		$success = false; # Keep track of success
 		$staleCache = false; # a cache array with expired data, or false if none has been loaded
 		$where = []; # Debug info, delayed to avoid spamming debug log too much
