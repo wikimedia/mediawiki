@@ -917,7 +917,6 @@ class MainConfigNames {
 	/**
 	 * Name constant for the EnableSpecialMute setting, for use with Config::get()
 	 * @see MainConfigSchema::EnableSpecialMute
-	 * @deprecated since 1.34
 	 */
 	public const EnableSpecialMute = 'EnableSpecialMute';
 
@@ -2082,7 +2081,6 @@ class MainConfigNames {
 	/**
 	 * Name constant for the IncludeLegacyJavaScript setting, for use with Config::get()
 	 * @see MainConfigSchema::IncludeLegacyJavaScript
-	 * @deprecated since 1.26: Always declare dependencies.
 	 */
 	public const IncludeLegacyJavaScript = 'IncludeLegacyJavaScript';
 
@@ -2650,8 +2648,6 @@ class MainConfigNames {
 	/**
 	 * Name constant for the AllowRequiringEmailForResets setting, for use with Config::get()
 	 * @see MainConfigSchema::AllowRequiringEmailForResets
-	 * @deprecated This feature is under development, don't assume this flag's existence or
-	 *    function outside of MediaWiki
 	 */
 	public const AllowRequiringEmailForResets = 'AllowRequiringEmailForResets';
 
