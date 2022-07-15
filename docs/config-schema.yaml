@@ -1545,13 +1545,11 @@ config-schema:
             This can potentially be abused, as it's hard to track.
     EnableSpecialMute:
         default: false
-        deprecated: 'since 1.34'
         description: |-
             Set to true to enable the Special Mute page. This allows users
             to mute unwanted communications from other users, and is linked
             to from emails originating from Special:Email.
             @since 1.34
-            @deprecated since 1.34
     EnableUserEmailMuteList:
         default: false
         description: |-
@@ -3645,10 +3643,10 @@ config-schema:
             This will still be overridden when the debug URL parameter is used.
     IncludeLegacyJavaScript:
         default: false
-        deprecated: 'since 1.26: Always declare dependencies.'
         description: |-
             Whether to ensure the mediawiki.legacy library is loaded before other modules.
-            @deprecated since 1.26: Always declare dependencies.
+            @note Discouraged since 1.26: Always declare dependencies.
+                  May be needed on some wikis for backwards compatibility.
     ResourceLoaderMaxQueryLength:
         default: false
         type:
@@ -4693,14 +4691,11 @@ config-schema:
             @since 1.27
     AllowRequiringEmailForResets:
         default: false
-        deprecated: |-
-            This feature is under development, don't assume this flag's existence or
-            function outside of MediaWiki
         description: |-
             Temporary feature flag that controls whether users will see a checkbox allowing them to
             require providing email during password resets.
-            @deprecated This feature is under development, don't assume this flag's existence or function
-            outside of MediaWiki.
+            @unstable This feature is under development, don't assume this flag's existence or function
+                     outside of Wikimedia.
     AutoCreateTempUser:
         properties:
             enabled: { type: boolean, default: false }
@@ -4884,9 +4879,9 @@ config-schema:
             Improperly setting this could mean that your users will be unable to perform
             certain essential tasks, so use at your own risk!
     GroupInheritsPermissions:
-        default: []
-        type: array
-        items:
+        default: {  }
+        type: object
+        additionalProperties:
             type: string
         description: |-
             Groups that should inherit permissions from another group
@@ -5157,7 +5152,9 @@ config-schema:
     AccountCreationThrottle:
         default:
             - { count: 0, seconds: 86400 }
-        type: array
+        type:
+            - integer
+            - array
         description: |-
             Number of accounts each IP address may create per specified period(s).
             **Example:**
@@ -5175,6 +5172,8 @@ config-schema:
              ],
             ];
             ```
+            @note For backwards compatibility reasons, this my also be given as a single
+                  integer, representing the number of account creations per day.
             @warning Requires $wgMainCacheType to be enabled
     SpamRegex:
         default: []
@@ -5495,7 +5494,7 @@ config-schema:
         default: false
         type:
             - boolean
-            - array
+            - object
         description: |-
             Controls Content-Security-Policy header [Experimental]
             @see https://www.w3.org/TR/CSP2/
@@ -5505,7 +5504,7 @@ config-schema:
         default: false
         type:
             - boolean
-            - array
+            - object
         description: |-
             Controls Content-Security-Policy-Report-Only header
             @since 1.32
@@ -6898,9 +6897,9 @@ config-schema:
               machine on your cluster has 'outside' web access you could restrict uploadFromUrl )
             These settings should be global to all wikis.
     JobBackoffThrottling:
-        default: []
-        type: array
-        items:
+        default: {  }
+        type: object
+        additionalProperties:
             type: number
         description: |-
             Map of job types to how many job "work items" should be run per second

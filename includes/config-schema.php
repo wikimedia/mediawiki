@@ -2687,7 +2687,7 @@ return [
 			'EnablePartialActionBlocks' => 'boolean',
 			'GroupPermissions' => 'object',
 			'RevokePermissions' => 'object',
-			'GroupInheritsPermissions' => 'array',
+			'GroupInheritsPermissions' => 'object',
 			'ImplicitGroups' => 'array',
 			'GroupsAddToSelf' => 'object',
 			'GroupsRemoveFromSelf' => 'object',
@@ -2702,7 +2702,10 @@ return [
 			'AddGroups' => 'object',
 			'RemoveGroups' => 'object',
 			'AvailableRights' => 'array',
-			'AccountCreationThrottle' => 'array',
+			'AccountCreationThrottle' => [
+				0 => 'integer',
+				1 => 'array',
+			],
 			'SpamRegex' => 'array',
 			'SummarySpamRegex' => 'array',
 			'DnsBlacklistUrls' => 'array',
@@ -2728,11 +2731,11 @@ return [
 			],
 			'CSPHeader' => [
 				0 => 'boolean',
-				1 => 'array',
+				1 => 'object',
 			],
 			'CSPReportOnlyHeader' => [
 				0 => 'boolean',
-				1 => 'array',
+				1 => 'object',
 			],
 			'CSPFalsePositiveUrls' => 'object',
 			'AllowCrossOrigin' => 'boolean',
@@ -2802,7 +2805,7 @@ return [
 			'ServiceWiringFiles' => 'array',
 			'JobClasses' => 'object',
 			'JobTypesExcludedFromDefaultQueue' => 'array',
-			'JobBackoffThrottling' => 'array',
+			'JobBackoffThrottling' => 'object',
 			'JobSerialCommitThreshold' => [
 				0 => 'number',
 				1 => 'boolean',
@@ -3120,9 +3123,6 @@ return [
 		'UploadStashScalerBaseUrl' => [
 			'deprecated' => 'since 1.36 Use thumbProxyUrl in $wgLocalFileRepo',
 		],
-		'EnableSpecialMute' => [
-			'deprecated' => 'since 1.34',
-		],
 		'SharedDB' => [
 			'deprecated' => 'since 1.21 In new code, use the $wiki parameter to LBFactory::getMainLB() to access remote databases. Using LBFactory::getMainLB() allows the shared database to reside on separate servers to the wiki\'s own database, with suitable configuration of $wgLBFactoryConf',
 		],
@@ -3141,9 +3141,6 @@ return [
 			'items' => [
 				'type' => 'string',
 			],
-		],
-		'IncludeLegacyJavaScript' => [
-			'deprecated' => 'since 1.26: Always declare dependencies.',
 		],
 		'AllowImageTag' => [
 			'deprecated' => 'since 1.35; register an extension tag named <img> instead.',
@@ -3174,9 +3171,6 @@ return [
 		'MaximalPasswordLength' => [
 			'deprecated' => 'since 1.26, use $wgPasswordPolicy\'s MaximalPasswordLength.',
 		],
-		'AllowRequiringEmailForResets' => [
-			'deprecated' => 'This feature is under development, don\'t assume this flag\'s existence or function outside of MediaWiki',
-		],
 		'GroupPermissions' => [
 			'additionalProperties' => [
 				'type' => 'object',
@@ -3186,7 +3180,7 @@ return [
 			],
 		],
 		'GroupInheritsPermissions' => [
-			'items' => [
+			'additionalProperties' => [
 				'type' => 'string',
 			],
 		],
@@ -3226,7 +3220,7 @@ return [
 			'deprecated' => 'since 1.35',
 		],
 		'JobBackoffThrottling' => [
-			'items' => [
+			'additionalProperties' => [
 				'type' => 'number',
 			],
 		],

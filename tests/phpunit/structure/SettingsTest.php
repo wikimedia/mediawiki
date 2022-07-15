@@ -74,6 +74,15 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusOK( $validationResult );
 	}
 
+	/**
+	 * Check that currently loaded config does not use deprecated settings.
+	 */
+	public function testCurrentSettingsNotDeprecated() {
+		global $wgSettings;
+		$deprecations = $wgSettings->detectDeprecatedConfig();
+		$this->assertEquals( [], $deprecations );
+	}
+
 	public function provideConfigGeneration() {
 		yield 'includes/config-schema.php' => [
 			'option' => '--schema',

@@ -901,7 +901,6 @@ $wgEnableUserEmail = null;
 /**
  * Config variable stub for the EnableSpecialMute setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::EnableSpecialMute
- * @deprecated since 1.34
  */
 $wgEnableSpecialMute = null;
 
@@ -2066,7 +2065,6 @@ $wgResourceLoaderDebug = null;
 /**
  * Config variable stub for the IncludeLegacyJavaScript setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::IncludeLegacyJavaScript
- * @deprecated since 1.26: Always declare dependencies.
  */
 $wgIncludeLegacyJavaScript = null;
 
@@ -2634,8 +2632,6 @@ $wgSessionProviders = null;
 /**
  * Config variable stub for the AllowRequiringEmailForResets setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::AllowRequiringEmailForResets
- * @deprecated This feature is under development, don't assume this flag's existence or
- *    function outside of MediaWiki
  */
 $wgAllowRequiringEmailForResets = null;
 

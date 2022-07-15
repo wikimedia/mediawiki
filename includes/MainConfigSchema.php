@@ -2543,11 +2543,9 @@ class MainConfigSchema {
 	 * to from emails originating from Special:Email.
 	 *
 	 * @since 1.34
-	 * @deprecated since 1.34
 	 */
 	public const EnableSpecialMute = [
 		'default' => false,
-		'deprecated' => 'since 1.34',
 	];
 
 	/**
@@ -5755,11 +5753,11 @@ class MainConfigSchema {
 	/**
 	 * Whether to ensure the mediawiki.legacy library is loaded before other modules.
 	 *
-	 * @deprecated since 1.26: Always declare dependencies.
+	 * @note Discouraged since 1.26: Always declare dependencies.
+	 *       May be needed on some wikis for backwards compatibility.
 	 */
 	public const IncludeLegacyJavaScript = [
 		'default' => false,
-		'deprecated' => 'since 1.26: Always declare dependencies.',
 	];
 
 	/**
@@ -7378,13 +7376,11 @@ class MainConfigSchema {
 	 * Temporary feature flag that controls whether users will see a checkbox allowing them to
 	 * require providing email during password resets.
 	 *
-	 * @deprecated This feature is under development, don't assume this flag's existence or function
-	 * outside of MediaWiki.
+	 * @unstable This feature is under development, don't assume this flag's existence or function
+	 *          outside of Wikimedia.
 	 */
 	public const AllowRequiringEmailForResets = [
 		'default' => false,
-		'deprecated' => 'This feature is under development, don\'t assume this flag\'s existence ' .
-			'or function outside of MediaWiki',
 	];
 
 	/**
@@ -7768,8 +7764,8 @@ class MainConfigSchema {
 	 */
 	public const GroupInheritsPermissions = [
 		'default' => [],
-		'type' => 'list',
-		'items' => [ 'type' => 'string', ],
+		'type' => 'map',
+		'additionalProperties' => [ 'type' => 'string', ],
 	];
 
 	/**
@@ -8148,6 +8144,9 @@ class MainConfigSchema {
 	 * ];
 	 * ```
 	 *
+	 * @note For backwards compatibility reasons, this my also be given as a single
+	 *       integer, representing the number of account creations per day.
+	 *
 	 * @warning Requires $wgMainCacheType to be enabled
 	 */
 	public const AccountCreationThrottle = [
@@ -8155,7 +8154,7 @@ class MainConfigSchema {
 			'count' => 0,
 			'seconds' => 86400,
 		] ],
-		'type' => 'list',
+		'type' => 'int|list',
 	];
 
 	/**
@@ -8819,7 +8818,7 @@ class MainConfigSchema {
 	 */
 	public const CSPHeader = [
 		'default' => false,
-		'type' => 'false|list',
+		'type' => 'false|object',
 	];
 
 	/**
@@ -8829,7 +8828,7 @@ class MainConfigSchema {
 	 */
 	public const CSPReportOnlyHeader = [
 		'default' => false,
-		'type' => 'false|list',
+		'type' => 'false|object',
 	];
 
 	/**
@@ -11031,8 +11030,8 @@ class MainConfigSchema {
 	 */
 	public const JobBackoffThrottling = [
 		'default' => [],
-		'type' => 'list',
-		'items' => [ 'type' => 'float', ],
+		'type' => 'map',
+		'additionalProperties' => [ 'type' => 'float', ],
 	];
 
 	/**
