@@ -1454,7 +1454,10 @@ array (
 )
 </pre>
 !! html/parsoid
-<pre typeof="mw:Extension/tåg" data-mw='{"name":"tåg","attrs":{},"body":{"extsrc":"tåg"}}' data-parsoid='{}' about="#mwt2"></pre>
+<pre typeof="mw:Extension/tåg" about="#mwt3" data-mw='{"name":"tåg","attrs":{},"body":{"extsrc":"tåg"}}'>'tåg'
+array (
+)
+</pre>
 !! end
 
 !! test
@@ -3761,7 +3764,10 @@ array (
 )
 </pre>
 !! html/parsoid
-<p> a </p><pre typeof="mw:Extension/tag" about="#mwt2" data-mw='{"name":"tag","attrs":{}}'></pre>
+<p> a </p><pre typeof="mw:Extension/tag" about="#mwt2" data-mw='{"name":"tag","attrs":{}}'>NULL
+array (
+)
+</pre>
 !! end
 
 !! test
@@ -8613,7 +8619,7 @@ wgParserEnableLegacyMediaDOM=false
 </p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="&#39;&#39;Pentecoste&#39;&#39; (page does not exist)"><i>Pentecoste</i></a>
 </p>
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Denys_Savchenko_''Pentecoste''.jpg"><span class="mw-broken-media" resource="./File:Denys_Savchenko_''Pentecoste''.jpg" data-parsoid='{"a":{"resource":"./File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"},"sa":{"resource":"File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"}}'>File:Denys Savchenko ''Pentecoste''.jpg</span></a></span></p>
+<p><span class="mw-default-size" typeof="mw:Error mw:File" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Denys_Savchenko_''Pentecoste''.jpg"><span class="mw-broken-media" resource="./File:Denys_Savchenko_''Pentecoste''.jpg" data-parsoid='{"a":{"resource":"./File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"},"sa":{"resource":"File:Denys_Savchenko_&apos;&apos;Pentecoste&apos;&apos;.jpg"}}'>File:Denys Savchenko ''Pentecoste''.jpg</span></a></span></p>
 <p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''" class="new">''Pentecoste''</a></p>
 <p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''" class="new">Pentecoste</a></p>
 <p><a rel="mw:WikiLink" href="./''Pentecoste''" title="''Pentecoste''" class="new"><i>Pentecoste</i></a></p>
@@ -13562,17 +13568,23 @@ array (
 </pre>
 !! html/parsoid
 <p>This form breaks the template, which is unfortunate:</p>
-<ul>
-<li>{{1x|foo-{bar}bat}}</li>
-</ul>
-<p>But if the broken language converter markup is inside an extension tag, nothing bad happens:</p>
-<ul>
-<li><span typeof="mw:Nowiki">foo-{bar}bat</span></li>
-<li><span typeof="mw:Nowiki mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;nowiki>foo-{bar}bat&lt;/nowiki>"}},"i":0}}]}'>foo-{bar}bat</span></li>
-<li><pre typeof="mw:Extension/pre" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"foo-{bar}bat"}}'>foo-{bar}bat</pre></li>
-<li><pre typeof="mw:Extension/pre mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;pre>foo-{bar}bat&lt;/pre>"}},"i":0}}]}'>foo-{bar}bat</pre></li>
-</ul>
-<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"foo-{bar}bat"}}'></pre> <pre typeof="mw:Extension/tag mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;tag>foo-{bar}bat&lt;/tag>"}},"i":0}}]}'></pre>
+<ul><li>{{1x|foo-{bar}bat}}</li></ul>
+
+<p>But if the broken language converter markup is inside an extension
+tag, nothing bad happens:</p>
+<ul><li><span typeof="mw:Nowiki">foo-{bar}bat</span></li>
+<li><span typeof="mw:Nowiki mw:Transclusion" about="#mwt9" data-parsoid='{"pi":[[{"k":"1"}]],}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;nowiki>foo-{bar}bat&lt;/nowiki>"}},"i":0}}]}'>foo-{bar}bat</span></li>
+<li><pre typeof="mw:Extension/pre" about="#mwt11" data-parsoid='{"stx":"html"}' data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"foo-{bar}bat"}}'>foo-{bar}bat</pre></li>
+<li><pre typeof="mw:Extension/pre mw:Transclusion" about="#mwt12" data-parsoid='{"stx":"html","pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;pre>foo-{bar}bat&lt;/pre>"}},"i":0}}]}'>foo-{bar}bat</pre></li></ul>
+
+<pre typeof="mw:Extension/tag" about="#mwt16" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"foo-{bar}bat"}}'>'foo-{bar}bat'
+array (
+)
+</pre>
+<pre typeof="mw:Extension/tag mw:Transclusion" about="#mwt17" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;tag>foo-{bar}bat&lt;/tag>"}},"i":0}}]}'>'foo-{bar}bat'
+array (
+)
+</pre>
 !! end
 
 !! test
@@ -14123,7 +14135,7 @@ File with template filename
 !! wikitext
 [[File:{{1x|Foobar.jpg}}]]
 !! html/parsoid
-<p><span class="mw-default-size" typeof="mw:Image mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"href"},{"html":"File:&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"Foobar.jpg\"}},\"i\":0}}]}&apos;>Foobar.jpg&lt;/span>"}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:{{1x|Foobar.jpg}}"}}'/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:File mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"href"},{"html":"File:&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"Foobar.jpg\"}},\"i\":0}}]}&apos;>Foobar.jpg&lt;/span>"}]]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:{{1x|Foobar.jpg}}"}}'/></a></span></p>
 !! end
 
 !!test
@@ -16294,6 +16306,22 @@ parsoid=html2wt
 [[Category:Toxine bactérienne]]
 !! end
 
+!! article
+Template:emptytemplate
+!! text
+!! endarticle
+
+!! test
+Empty templates should be handled properly without being redlinked
+!! options
+parsoid=wt2html
+!! wikitext
+{{emptytemplate}}
+!! html/php
+!! html/parsoid
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"emptytemplate","href":"./Template:Emptytemplate"},"params":{},"i":0}}]}'></span>
+!! end
+
 !! test
 Parsoid: Defaultsort
 !! wikitext
@@ -16306,6 +16334,7 @@ Parsoid: Defaultsort
 Parsoid: Defaultsort variations (T236846)
 !! wikitext
 {{DEFAULTSORT}}
+
 {{DEFAULTSORT:}}
 {{DEFAULTSORT:DOGGIE}}
 !! html/php
@@ -16313,7 +16342,7 @@ Parsoid: Defaultsort variations (T236846)
 </p><p><br />
 </p>
 !! html/parsoid
-<span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"DEFAULTSORT","href":"./Template:DEFAULTSORT"},"params":{},"i":0}}]}'></span>
+<p><a rel="mw:WikiLink" href="./Template:DEFAULTSORT" title="Template:DEFAULTSORT" typeof="mw:Transclusion" about="#mwt1" class="new" data-mw='{"parts":[{"template":{"target":{"wt":"DEFAULTSORT","href":"./Template:DEFAULTSORT"},"params":{},"i":0}}]}'>Template:DEFAULTSORT</a></p>
 <meta property="mw:PageProp/categorydefaultsort" content="" data-parsoid='{"src":"{{DEFAULTSORT:}}"}'/>
 <meta property="mw:PageProp/categorydefaultsort" content="DOGGIE" data-parsoid='{"src":"{{DEFAULTSORT:DOGGIE}}"}'/>
 !! end
@@ -17608,7 +17637,7 @@ wgParserEnableLegacyMediaDOM=false
 </p>
 !! html/parsoid
 <p>[[Media:Foobar.jpg|<a rel="mw:WikiLink" href="./Test" title="Test" class="new">Test</a>]]
-[[Media:Foobar.jpg|<span class="mw-default-size" typeof="mw:Image"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></span>]]</p>
+[[Media:Foobar.jpg|<span class="mw-default-size" typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></span>]]</p>
 !! end
 
 !! test
@@ -18109,7 +18138,9 @@ array (
 )
 </pre>
 !! html/parsoid
-<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":""}}' data-parsoid='{}' about="#mwt2"></pre>
+<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":""}}' about="#mwt2">''
+array (
+)</pre>
 !! end
 
 ## Don't expect parsoid to rt this form.
@@ -18125,7 +18156,10 @@ array (
 )
 </pre>
 !! html/parsoid
-<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{}}' data-parsoid='{}' about="#mwt2"></pre>
+<pre typeof="mw:Extension/tag" about="#mwt3" data-mw='{"name":"tag","attrs":{}}'>NULL
+array (
+)
+</pre>
 !! end
 
 !! test
@@ -18138,7 +18172,10 @@ array (
 )
 </pre>
 !! html/parsoid
-<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{}}' data-parsoid='{}' about="#mwt2"></pre>
+<pre typeof="mw:Extension/tag" about="#mwt3" data-mw='{"name":"tag","attrs":{}}'>NULL
+array (
+)
+</pre>
 !! end
 
 !! test
@@ -18151,7 +18188,9 @@ array (
 )
 </pre>
 !! html/parsoid
-<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"input"}}' data-parsoid='{}' about="#mwt2"></pre>
+<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"input"}}' about="#mwt2">'input'
+array (
+)</pre>
 !! end
 
 ## Don't expect parsoid to rt this form.
@@ -18167,7 +18206,10 @@ array (
 )
 </pre>
 !! html/parsoid
-<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"input"}}' data-parsoid='{}' about="#mwt2"></pre>
+<pre typeof="mw:Extension/tag" about="#mwt3" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"input"}}'>'input'
+array (
+)
+</pre>
 !! end
 
 ## Don't expect parsoid to rt this form.
@@ -18183,7 +18225,10 @@ array (
 )
 </pre>
 !! html/parsoid
-<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"input"}}' data-parsoid='{}' about="#mwt2"></pre>
+<pre typeof="mw:Extension/tag" about="#mwt3" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"input"}}'>'input'
+array (
+)
+</pre>
 !! end
 
 !! test
@@ -18198,7 +18243,10 @@ array (
 )
 </tag></pre><p>&lt;/tag&gt;</p>
 !! html/parsoid
-<pre typeof="mw:Extension/tag" about="#mwt2" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"&lt;tag>"}}'></pre><p>&lt;/tag></p>
+<pre typeof="mw:Extension/tag" about="#mwt3" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"&lt;tag>"}}'>'<tag>'
+array (
+)
+</tag></pre><p>&lt;/tag></p>
 !! end
 
 !! test
@@ -18215,7 +18263,14 @@ array (
 )
 </pre>
 !! html/parsoid
-<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{"width":"200","height":"100","depth":"50","square":""},"body":{"extsrc":""}}' data-parsoid='{}' about="#mwt2"></pre>
+<pre typeof="mw:Extension/tag" about="#mwt3" data-mw='{"name":"tag","attrs":{"width":"200","height":"100","depth":"50","square":""},"body":{"extsrc":""}}'>''
+array (
+  'width' => '200',
+  'height' => '100',
+  'depth' => '50',
+  'square' => '',
+)
+</pre>
 !! end
 
 ## Don't expect parsoid to rt this form.
@@ -18235,7 +18290,14 @@ array (
 )
 </pre>
 !! html/parsoid
-<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{"width":"200","height":"100","depth":"50","square":""},"body":{"extsrc":""}}' data-parsoid='{}' about="#mwt2"></pre>
+<pre typeof="mw:Extension/tag" about="#mwt3" data-mw='{"name":"tag","attrs":{"width":"200","height":"100","depth":"50","square":""},"body":{"extsrc":""}}'>''
+array (
+  'width' => '200',
+  'height' => '100',
+  'depth' => '50',
+  'square' => '',
+)
+</pre>
 !! end
 
 !! test
@@ -18249,7 +18311,11 @@ array (
 )
 </pre>
 !! html/parsoid
-<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{"filename":"/tmp/bla"},"body":{"extsrc":""}}' data-parsoid='{}' about="#mwt2"></pre>
+<pre typeof="mw:Extension/tag" about="#mwt3" data-mw='{"name":"tag","attrs":{"filename":"/tmp/bla"},"body":{"extsrc":""}}'>''
+array (
+  'filename' => '/tmp/bla',
+)
+</pre>
 !! end
 
 ## Don't expect parsoid to rt this form.
@@ -18266,7 +18332,11 @@ array (
 )
 </pre><p>text</p>
 !! html/parsoid
-<pre typeof="mw:Extension/tag" about="#mwt2" data-mw='{"name":"tag","attrs":{"foo":"bar"}}'></pre><p>text</p>
+<pre typeof="mw:Extension/tag" about="#mwt3" data-mw='{"name":"tag","attrs":{"foo":"bar"}}'>NULL
+array (
+  'foo' => 'bar',
+)
+</pre><p>text</p>
 !! end
 
 ## </tag> should be output literally since there is no matching tag that begins it
@@ -18292,7 +18362,15 @@ array (
 &lt;/tag&gt;
 </p>
 !! html/parsoid
-<pre typeof="mw:Extension/tag" data-mw='{"name":"tag","attrs":{"width":"200","height":"100","depth":"50","square":""}}' about="#mwt2"></pre><p>other stuff
+<pre typeof="mw:Extension/tag" about="#mwt3" data-mw='{"name":"tag","attrs":{"width":"200","height":"100","depth":"50","square":""}}'>NULL
+array (
+  'width' => '200',
+  'height' => '100',
+  'depth' => '50',
+  'square' => '',
+)
+</pre>
+<p>other stuff
 &lt;/tag></p>
 !! end
 
@@ -18596,7 +18674,7 @@ wgParserEnableLegacyMediaDOM=false
 !! html/parsoid
 <p><meta typeof="mw:LanguageVariant" data-mw-variant='{"add":true,"oneway":[{"f":"foAjrjvi","l":"sr-el","t":"\" onload=\"alert(1)\" data-foo=\""}]}'/></p>
 
-<p><span class="mw-default-size" typeof="mw:Image mw:ExpandedAttrs" about="#mwt1" data-mw='{"attribs":[["alt",{"html":"alt=&lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"disabled\":{\"t\":\"\"}}&apos; data-parsoid=&apos;{\"fl\":[],\"dsr\":[76,80,null,2]}&apos;>&lt;/span>foAjrjvi&lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"disabled\":{\"t\":\"\"}}&apos; data-parsoid=&apos;{\"fl\":[],\"dsr\":[88,92,null,2]}&apos;>&lt;/span>","txt":"foAjrjvi"}]]}'><a href="./Датотека:Foobar.jpg" class="mw-file-description"><img alt="foAjrjvi" resource="./Датотека:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./Датотека:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
+<p><span class="mw-default-size" typeof="mw:File mw:ExpandedAttrs" about="#mwt1" data-mw='{"attribs":[["alt",{"html":"alt=&lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"disabled\":{\"t\":\"\"}}&apos; data-parsoid=&apos;{\"fl\":[],\"dsr\":[76,80,null,2]}&apos;>&lt;/span>foAjrjvi&lt;span typeof=\"mw:LanguageVariant\" data-mw-variant=&apos;{\"disabled\":{\"t\":\"\"}}&apos; data-parsoid=&apos;{\"fl\":[],\"dsr\":[88,92,null,2]}&apos;>&lt;/span>","txt":"foAjrjvi"}]]}'><a href="./Датотека:Foobar.jpg" class="mw-file-description"><img alt="foAjrjvi" resource="./Датотека:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./Датотека:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
 !! end
 
 !! test
@@ -23366,7 +23444,7 @@ wgParserEnableLegacyMediaDOM=false
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./User:+%25" title="User:+%" data-parsoid='{"stx":"simple","a":{"href":"./User:+%25"},"sa":{"href":"User:+%"}}' class="new">User:+%</a> <a rel="mw:WikiLink" href="./Page+title%25" title="Page+title%" data-parsoid='{"stx":"simple","a":{"href":"./Page+title%25"},"sa":{"href":"Page+title%"}}' class="new">Page+title%</a>
 <a rel="mw:WikiLink" href="./%25+" title="%+" data-parsoid='{"stx":"simple","a":{"href":"./%25+"},"sa":{"href":"%+"}}' class="new">%+</a> <a rel="mw:WikiLink" href="./%25+" title="%+" data-parsoid='{"stx":"piped","a":{"href":"./%25+"},"sa":{"href":"%+"}}' class="new">%20</a> <a rel="mw:WikiLink" href="./%25+" title="%+" data-parsoid='{"stx":"simple","a":{"href":"./%25+"},"sa":{"href":"%+ "}}' class="new">%+ </a> <a rel="mw:WikiLink" href="./%25+r" title="%+r" data-parsoid='{"stx":"simple","a":{"href":"./%25+r"},"sa":{"href":"%+r"}}' class="new">%+r</a>
-<a rel="mw:WikiLink" href="./%25" title="%" data-parsoid='{"stx":"simple","a":{"href":"./%25"},"sa":{"href":"%"}}' class="new">%</a> <a rel="mw:WikiLink" href="./+" title="+" data-parsoid='{"stx":"simple","a":{"href":"./+"},"sa":{"href":"+"}}' class="new">+</a> <span class="mw-default-size" typeof="mw:Error mw:Image" data-parsoid='{"optList":[{"ck":"bogus","ak":"foo"},{"ck":"caption","ak":"[[bar]]"}]}' data-mw='{"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./Bar\" title=\"Bar\" data-parsoid=&apos;{\"stx\":\"simple\",\"a\":{\"href\":\"./Bar\"},\"sa\":{\"href\":\"bar\"},\"dsr\":[94,101,2,2]}&apos;>bar&lt;/a>","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/%25+abc9"><span class="mw-broken-media" resource="./File:%25+abc9" data-parsoid='{"a":{"resource":"./File:%25+abc9"},"sa":{"resource":"File:%+abc%39"}}'>File:%+abc9</span></a></span>
+<a rel="mw:WikiLink" href="./%25" title="%" data-parsoid='{"stx":"simple","a":{"href":"./%25"},"sa":{"href":"%"}}' class="new">%</a> <a rel="mw:WikiLink" href="./+" title="+" data-parsoid='{"stx":"simple","a":{"href":"./+"},"sa":{"href":"+"}}' class="new">+</a> <span class="mw-default-size" typeof="mw:Error mw:File" data-parsoid='{"optList":[{"ck":"bogus","ak":"foo"},{"ck":"caption","ak":"[[bar]]"}]}' data-mw='{"caption":"&lt;a rel=\"mw:WikiLink\" href=\"./Bar\" title=\"Bar\" data-parsoid=&apos;{\"stx\":\"simple\",\"a\":{\"href\":\"./Bar\"},\"sa\":{\"href\":\"bar\"},\"dsr\":[94,101,2,2]}&apos;>bar&lt;/a>","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/%25+abc9"><span class="mw-broken-media" resource="./File:%25+abc9" data-parsoid='{"a":{"resource":"./File:%25+abc9"},"sa":{"resource":"File:%+abc%39"}}'>File:%+abc9</span></a></span>
 <a rel="mw:WikiLink" href="./3E" title="3E" data-parsoid='{"stx":"simple","a":{"href":"./3E"},"sa":{"href":"%33%45"}}' class="new">3E</a> <a rel="mw:WikiLink" href="./3E+" title="3E+" data-parsoid='{"stx":"simple","a":{"href":"./3E+"},"sa":{"href":"%33%45+"}}' class="new">3E+</a></p>
 !! end
 
@@ -23555,7 +23633,7 @@ __TOC__
 <h2><span class="mw-headline" id="Image">Image <span class="mw-default-size" typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></span></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Image">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 !! html/parsoid
 <meta property="mw:PageProp/toc" data-parsoid='{}'/>
-<h2 id="Image" data-parsoid='{}'>Image <span class="mw-default-size" typeof="mw:Image"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"Image:foobar.jpg"}}'/></a></span></h2>
+<h2 id="Image" data-parsoid='{}'>Image <span class="mw-default-size" typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"Image:foobar.jpg"}}'/></a></span></h2>
 !! end
 
 !! test
@@ -25966,7 +26044,7 @@ parsoid=html2wt
 !! options
 parsoid=html2wt
 !! html/parsoid
- <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>caption</figcaption></figure>
+ <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>caption</figcaption></figure>
 !! wikitext
  [[File:Foobar.jpg|thumb|caption]]
 !! end
@@ -26588,8 +26666,8 @@ Multi-line image caption generated by templates with/without trailing newlines
 [[File:Foobar.jpg|thumb|300x300px|foo\n{{1x|A}}\n{{1x|B}}\n{{1x|C}}]]
 [[File:Foobar.jpg|thumb|300x300px|foo\n{{1x|A}}\n{{1x|B}}\n{{1x|C}}\n\n]]
 !! html/parsoid
-<figure typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="34" width="300" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/450px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/600px-Foobar.jpg 2x"/></a><figcaption>foo\n<span about="#mwt9" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"A"}},"i":0}}]}'>A</span>\n<span about="#mwt10" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"B"}},"i":0}}]}'>B</span>\n<span about="#mwt11" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"C"}},"i":0}}]}'>C</span></figcaption></figure>
-<figure typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="34" width="300" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/450px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/600px-Foobar.jpg 2x"/></a><figcaption>foo\n<span about="#mwt12" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"A"}},"i":0}}]}'>A</span>\n<span about="#mwt13" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"B"}},"i":0}}]}'>B</span>\n<span about="#mwt14" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"C"}},"i":0}}]}'>C</span>\n\n</figcaption></figure>
+<figure typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="34" width="300" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/450px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/600px-Foobar.jpg 2x"/></a><figcaption>foo\n<span about="#mwt9" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"A"}},"i":0}}]}'>A</span>\n<span about="#mwt10" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"B"}},"i":0}}]}'>B</span>\n<span about="#mwt11" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"C"}},"i":0}}]}'>C</span></figcaption></figure>
+<figure typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="34" width="300" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/450px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/600px-Foobar.jpg 2x"/></a><figcaption>foo\n<span about="#mwt12" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"A"}},"i":0}}]}'>A</span>\n<span about="#mwt13" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"B"}},"i":0}}]}'>B</span>\n<span about="#mwt14" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"C"}},"i":0}}]}'>C</span>\n\n</figcaption></figure>
 !! end
 
 !! test
@@ -30076,7 +30154,7 @@ parsoid=html2wt
 !! wikitext
 [[File:Foobar.jpg|right|200x200px|Caption]]
 !! html/parsoid
-<figure class="mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="23" width="200"/></a><figcaption><p>Caption</p></figcaption></figure>
+<figure class="mw-halign-right" typeof="mw:File"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="23" width="200"/></a><figcaption><p>Caption</p></figcaption></figure>
 !! end
 
 !! test
