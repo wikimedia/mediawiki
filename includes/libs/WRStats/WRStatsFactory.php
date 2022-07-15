@@ -64,4 +64,24 @@ class WRStatsFactory {
 	public function createReader( $specs, $prefix = 'WRStats' ) {
 		return new WRStatsReader( $this->store, $specs, $prefix );
 	}
+
+	/**
+	 * Create a rate limiter.
+	 *
+	 * @param LimitCondition[] $conditions An array in which the key is the
+	 *   condition name, and the value is a LimitCondition describing the limit.
+	 * @param string|string[] $prefix A string or array of strings to prefix
+	 *   before storage keys.
+	 * @param array $options An associative array of options:
+	 *   - bucketCount: Each window is divided into this many time buckets.
+	 *     Fetching the current count will typically result in a request for
+	 *     this many keys.
+	 * @return WRStatsRateLimiter
+	 */
+	public function createRateLimiter(
+		$conditions, $prefix = 'WRStats', $options = []
+	) {
+		return new WRStatsRateLimiter(
+			$this->store, $conditions, $prefix, $options );
+	}
 }
