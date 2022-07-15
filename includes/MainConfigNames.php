@@ -1794,7 +1794,6 @@ class MainConfigNames {
 	/**
 	 * Name constant for the DummyLanguageCodes setting, for use with Config::get()
 	 * @see MainConfigSchema::DummyLanguageCodes
-	 * @deprecated since 1.29
 	 */
 	public const DummyLanguageCodes = 'DummyLanguageCodes';
 

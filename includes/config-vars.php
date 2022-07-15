@@ -1778,7 +1778,6 @@ $wgExtraLanguageCodes = null;
 /**
  * Config variable stub for the DummyLanguageCodes setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::DummyLanguageCodes
- * @deprecated since 1.29
  */
 $wgDummyLanguageCodes = null;
 

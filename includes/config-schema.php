@@ -3137,9 +3137,6 @@ return [
 		'SquidPurgeUseHostHeader' => [
 			'deprecated' => 'since 1.33',
 		],
-		'DummyLanguageCodes' => [
-			'deprecated' => 'since 1.29',
-		],
 		'RawHtmlMessages' => [
 			'items' => [
 				'type' => 'string',
