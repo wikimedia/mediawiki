@@ -1908,7 +1908,7 @@
 	"upload_source_file": "(tập tin từ thiết bị của bạn)",
 	"listfiles-delete": "xóa",
 	"listfiles-summary": "Trang đặc biệt này liệt kê các tập tin được tải lên.",
-	"listfiles-userdoesnotexist": "Tài khoản người dùng “$1” không được đăng ký.",
+	"listfiles-userdoesnotexist": "Chưa có tài khoản với tên “$1”.",
 	"imgfile": "tập tin",
 	"listfiles": "Danh sách tập tin",
 	"listfiles_subpage": "Tập tin do $1 tải lên",

@@ -2574,6 +2574,7 @@
 	"autoblockid": "Аутоматска блокада #$1",
 	"block": "Блокирање корисника",
 	"unblock": "Деблокирање корисника",
+	"changeblockip": "промени блок",
 	"blockip": "Блокирај {{GENDER:$1|корисника|корисницу}}",
 	"blockiptext": "Користите доњи образац да бисте блокирали корисника или IP адресу.\nОво би требало да вршите само ради спречавања вандализма, у складу са [[{{MediaWiki:Policy-url}}|смерницама]].\nИспод изаберите или напишите конкретан разлог.\nМожете блокирати опсеге IP адреса помоћу [https://sr.wikipedia.org/wiki/CIDR CIDR] синтаксе; највећи дозвољени опсег за IPv4 је /$1 односно /$2 за IPv6.",
 	"ipaddressorusername": "IP адреса, корисничко име или ID:",
@@ -4098,5 +4099,9 @@
 	"skin-action-protect": "Заштити",
 	"skin-action-undelete": "Врати",
 	"skin-action-delete": "Избриши",
-	"skin-action-move": "Премести"
+	"skin-action-move": "Премести",
+	"newpages-showhide-bots": "$1 ботове",
+	"newpages-showhide-patrolled": "$1 патролиране измене",
+	"newpages-showhide-redirect": "$1 преусмерења",
+	"newpages-showhide-registered": "$1 регистроване кориснике"
 }
