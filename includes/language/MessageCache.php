@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -50,6 +51,15 @@ define( 'MSG_CACHE_VERSION', 2 );
  */
 class MessageCache implements LoggerAwareInterface {
 	/**
+	 * Options to be included in the ServiceOptions
+	 */
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::UseDatabaseMessages,
+		MainConfigNames::MaxMsgCacheEntrySize,
+		MainConfigNames::AdaptiveMessageCache,
+	];
+
+	/**
 	 * The size of the MapCacheLRU which stores message data. The maximum
 	 * number of languages which can be efficiently loaded in a given request.
 	 */
@@ -76,7 +86,7 @@ class MessageCache implements LoggerAwareInterface {
 	 *
 	 * @var MapCacheLRU Map of (language code => key => " <MESSAGE>" or "!TOO BIG" or "!ERROR")
 	 */
-	protected $cache;
+	private $cache;
 
 	/**
 	 * Map of (lowercase message key => unused) for all software defined messages
@@ -88,47 +98,53 @@ class MessageCache implements LoggerAwareInterface {
 	/**
 	 * @var bool[] Map of (language code => boolean)
 	 */
-	protected $cacheVolatile = [];
+	private $cacheVolatile = [];
 
 	/**
 	 * Should mean that database cannot be used, but check
 	 * @var bool
 	 */
-	protected $mDisable;
+	private $disable;
+
+	/** @var int Maximum entry size in bytes */
+	private $maxEntrySize;
+
+	/** @var bool */
+	private $adaptive;
 
 	/**
 	 * Message cache has its own parser which it uses to transform messages
 	 * @var ParserOptions
 	 */
-	protected $mParserOptions;
+	private $parserOptions;
 	/** @var Parser */
-	protected $mParser;
+	private $parser;
 
 	/**
 	 * @var bool
 	 */
-	protected $mInParser = false;
+	private $inParser = false;
 
 	/** @var WANObjectCache */
-	protected $wanCache;
+	private $wanCache;
 	/** @var BagOStuff */
-	protected $clusterCache;
+	private $clusterCache;
 	/** @var BagOStuff */
-	protected $srvCache;
+	private $srvCache;
 	/** @var Language */
-	protected $contLang;
+	private $contLang;
 	/** @var string */
-	protected $contLangCode;
+	private $contLangCode;
 	/** @var ILanguageConverter */
-	protected $contLangConverter;
+	private $contLangConverter;
 	/** @var LanguageFactory */
-	protected $langFactory;
+	private $langFactory;
 	/** @var LocalisationCache */
-	protected $localisationCache;
+	private $localisationCache;
 	/** @var LanguageNameUtils */
-	protected $languageNameUtils;
+	private $languageNameUtils;
 	/** @var LanguageFallback */
-	protected $languageFallback;
+	private $languageFallback;
 	/** @var HookRunner */
 	private $hookRunner;
 
@@ -162,9 +178,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param Language $contLang Content language of site
 	 * @param LanguageConverterFactory $langConverterFactory
 	 * @param LoggerInterface $logger
-	 * @param array $options
-	 *  - useDB (bool): Whether to allow message overrides from "MediaWiki:" pages.
-	 *    Default: true.
+	 * @param ServiceOptions $options
 	 * @param LanguageFactory $langFactory
 	 * @param LocalisationCache $localisationCache
 	 * @param LanguageNameUtils $languageNameUtils
@@ -178,7 +192,7 @@ class MessageCache implements LoggerAwareInterface {
 		Language $contLang,
 		LanguageConverterFactory $langConverterFactory,
 		LoggerInterface $logger,
-		array $options,
+		ServiceOptions $options,
 		LanguageFactory $langFactory,
 		LocalisationCache $localisationCache,
 		LanguageNameUtils $languageNameUtils,
@@ -201,7 +215,10 @@ class MessageCache implements LoggerAwareInterface {
 		// limit size
 		$this->cache = new MapCacheLRU( self::MAX_REQUEST_LANGUAGES );
 
-		$this->mDisable = !( $options['useDB'] ?? true );
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->disable = !$options->get( MainConfigNames::UseDatabaseMessages );
+		$this->maxEntrySize = $options->get( MainConfigNames::MaxMsgCacheEntrySize );
+		$this->adaptive = $options->get( MainConfigNames::AdaptiveMessageCache );
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -214,7 +231,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @return ParserOptions
 	 */
 	private function getParserOptions() {
-		if ( !$this->mParserOptions ) {
+		if ( !$this->parserOptions ) {
 			$context = RequestContext::getMain();
 			$user = $context->getUser();
 			if ( !$user->isSafeToLoad() ) {
@@ -226,14 +243,14 @@ class MessageCache implements LoggerAwareInterface {
 				return $po;
 			}
 
-			$this->mParserOptions = ParserOptions::newFromContext( $context );
+			$this->parserOptions = ParserOptions::newFromContext( $context );
 			// Messages may take parameters that could come
 			// from malicious sources. As a precaution, disable
 			// the <html> parser tag when parsing messages.
-			$this->mParserOptions->setAllowUnsafeRawHtml( false );
+			$this->parserOptions->setAllowUnsafeRawHtml( false );
 		}
 
-		return $this->mParserOptions;
+		return $this->parserOptions;
 	}
 
 	/**
@@ -242,7 +259,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param string $code Optional language code, see documentation of load().
 	 * @return array|false The cache array, or false if not in cache.
 	 */
-	protected function getLocalCache( $code ) {
+	private function getLocalCache( $code ) {
 		$cacheKey = $this->srvCache->makeKey( __CLASS__, $code );
 
 		return $this->srvCache->get( $cacheKey );
@@ -254,7 +271,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param string $code
 	 * @param array $cache The cache array
 	 */
-	protected function saveToLocalCache( $code, $cache ) {
+	private function saveToLocalCache( $code, $cache ) {
 		$cacheKey = $this->srvCache->makeKey( __CLASS__, $code );
 		$this->srvCache->set( $cacheKey, $cache );
 	}
@@ -280,18 +297,18 @@ class MessageCache implements LoggerAwareInterface {
 	 * @throws InvalidArgumentException
 	 * @return bool
 	 */
-	protected function load( $code, $mode = null ) {
+	private function load( $code, $mode = null ) {
 		if ( !is_string( $code ) ) {
 			throw new InvalidArgumentException( "Missing language code" );
 		}
 
-		# Don't do double loading...
+		// Don't do double loading...
 		if ( $this->isLanguageLoaded( $code ) && $mode != self::FOR_UPDATE ) {
 			return true;
 		}
 
-		# 8 lines of code just to say (once) that message cache is disabled
-		if ( $this->mDisable ) {
+		// Show a log message (once) if loading is disabled
+		if ( $this->disable ) {
 			static $shownDisabled = false;
 			if ( !$shownDisabled ) {
 				$this->logger->debug( __METHOD__ . ': disabled' );
@@ -301,17 +318,33 @@ class MessageCache implements LoggerAwareInterface {
 			return true;
 		}
 
-		# Loading code starts
-		$success = false; # Keep track of success
-		$staleCache = false; # a cache array with expired data, or false if none has been loaded
-		$where = []; # Debug info, delayed to avoid spamming debug log too much
+		try {
+			return $this->loadUnguarded( $code, $mode );
+		} catch ( Throwable $e ) {
+			// Don't try to load again during the exception handler
+			$this->disable = true;
+			throw $e;
+		}
+	}
 
-		# Hash of the contents is stored in memcache, to detect if data-center cache
-		# or local cache goes out of date (e.g. due to replace() on some other server)
+	/**
+	 * Load messages from the cache or database, without exception guarding.
+	 *
+	 * @param string $code Language to which load messages
+	 * @param int|null $mode Use MessageCache::FOR_UPDATE to skip process cache [optional]
+	 * @return bool
+	 */
+	private function loadUnguarded( $code, $mode ) {
+		$success = false; // Keep track of success
+		$staleCache = false; // a cache array with expired data, or false if none has been loaded
+		$where = []; // Debug info, delayed to avoid spamming debug log too much
+
+		// Hash of the contents is stored in memcache, to detect if data-center cache
+		// or local cache goes out of date (e.g. due to replace() on some other server)
 		list( $hash, $hashVolatile ) = $this->getValidationHash( $code );
 		$this->cacheVolatile[$code] = $hashVolatile;
 
-		# Try the local cache and check against the cluster hash key...
+		// Try the local cache and check against the cluster hash key...
 		$cache = $this->getLocalCache( $code );
 		if ( !$cache ) {
 			$where[] = 'local cache is empty';
@@ -332,14 +365,14 @@ class MessageCache implements LoggerAwareInterface {
 
 		if ( !$success ) {
 			$cacheKey = $this->clusterCache->makeKey( 'messages', $code );
-			# Try the global cache. If it is empty, try to acquire a lock. If
-			# the lock can't be acquired, wait for the other thread to finish
-			# and then try the global cache a second time.
+			// Try the global cache. If it is empty, try to acquire a lock. If
+			// the lock can't be acquired, wait for the other thread to finish
+			// and then try the global cache a second time.
 			for ( $failedAttempts = 0; $failedAttempts <= 1; $failedAttempts++ ) {
 				if ( $hashVolatile && $staleCache ) {
-					# Do not bother fetching the whole cache blob to avoid I/O.
-					# Instead, just try to get the non-blocking $statusKey lock
-					# below, and use the local stale value if it was not acquired.
+					// Do not bother fetching the whole cache blob to avoid I/O.
+					// Instead, just try to get the non-blocking $statusKey lock
+					// below, and use the local stale value if it was not acquired.
 					$where[] = 'global cache is presumed expired';
 				} else {
 					$cache = $this->clusterCache->get( $cacheKey );
@@ -349,9 +382,9 @@ class MessageCache implements LoggerAwareInterface {
 						$where[] = 'global cache is expired';
 						$staleCache = $cache;
 					} elseif ( $hashVolatile ) {
-						# DB results are replica DB lag prone until the holdoff TTL passes.
-						# By then, updates should be reflected in loadFromDBWithLock().
-						# One thread regenerates the cache while others use old values.
+						// DB results are replica DB lag prone until the holdoff TTL passes.
+						// By then, updates should be reflected in loadFromDBWithLock().
+						// One thread regenerates the cache while others use old values.
 						$where[] = 'global cache is expired/volatile';
 						$staleCache = $cache;
 					} else {
@@ -363,36 +396,36 @@ class MessageCache implements LoggerAwareInterface {
 				}
 
 				if ( $success ) {
-					# Done, no need to retry
+					// Done, no need to retry
 					break;
 				}
 
-				# We need to call loadFromDB. Limit the concurrency to one process.
-				# This prevents the site from going down when the cache expires.
-				# Note that the DB slam protection lock here is non-blocking.
+				// We need to call loadFromDB. Limit the concurrency to one process.
+				// This prevents the site from going down when the cache expires.
+				// Note that the DB slam protection lock here is non-blocking.
 				$loadStatus = $this->loadFromDBWithLock( $code, $where, $mode );
 				if ( $loadStatus === true ) {
 					$success = true;
 					break;
 				} elseif ( $staleCache ) {
-					# Use the stale cache while some other thread constructs the new one
+					// Use the stale cache while some other thread constructs the new one
 					$where[] = 'using stale cache';
 					$this->cache->set( $code, $staleCache );
 					$success = true;
 					break;
 				} elseif ( $failedAttempts > 0 ) {
-					# Already blocked once, so avoid another lock/unlock cycle.
-					# This case will typically be hit if memcached is down, or if
-					# loadFromDB() takes longer than LOCK_WAIT.
+					// Already blocked once, so avoid another lock/unlock cycle.
+					// This case will typically be hit if memcached is down, or if
+					// loadFromDB() takes longer than LOCK_WAIT.
 					$where[] = "could not acquire status key.";
 					break;
 				} elseif ( $loadStatus === 'cantacquire' ) {
-					# Wait for the other thread to finish, then retry. Normally,
-					# the memcached get() will then yield the other thread's result.
+					// Wait for the other thread to finish, then retry. Normally,
+					// the memcached get() will then yield the other thread's result.
 					$where[] = 'waited for other thread to complete';
 					$this->getReentrantScopedLock( $cacheKey );
 				} else {
-					# Disable cache; $loadStatus is 'disabled'
+					// Disable cache; $loadStatus is 'disabled'
 					break;
 				}
 			}
@@ -400,11 +433,11 @@ class MessageCache implements LoggerAwareInterface {
 
 		if ( !$success ) {
 			$where[] = 'loading FAILED - cache is disabled';
-			$this->mDisable = true;
+			$this->disable = true;
 			$this->cache->set( $code, [] );
 			$this->logger->error( __METHOD__ . ": Failed to load $code" );
-			# This used to throw an exception, but that led to nasty side effects like
-			# the whole wiki being instantly down if the memcached server died
+			// This used to throw an exception, but that led to nasty side effects like
+			// the whole wiki being instantly down if the memcached server died
 		}
 
 		if ( !$this->isLanguageLoaded( $code ) ) {
@@ -423,9 +456,9 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param int|null $mode Use MessageCache::FOR_UPDATE to use DB_PRIMARY
 	 * @return true|string True on success or one of ("cantacquire", "disabled")
 	 */
-	protected function loadFromDBWithLock( $code, array &$where, $mode = null ) {
-		# If cache updates on all levels fail, give up on message overrides.
-		# This is to avoid easy site outages; see $saveSuccess comments below.
+	private function loadFromDBWithLock( $code, array &$where, $mode = null ) {
+		// If cache updates on all levels fail, give up on message overrides.
+		// This is to avoid easy site outages; see $saveSuccess comments below.
 		$statusKey = $this->clusterCache->makeKey( 'messages', $code, 'status' );
 		$status = $this->clusterCache->get( $statusKey );
 		if ( $status === 'error' ) {
@@ -433,13 +466,13 @@ class MessageCache implements LoggerAwareInterface {
 			return 'disabled';
 		}
 
-		# Now let's regenerate
+		// Now let's regenerate
 		$where[] = 'loading from database';
 
-		# Lock the cache to prevent conflicting writes.
-		# This lock is non-blocking so stale cache can quickly be used.
-		# Note that load() will call a blocking getReentrantScopedLock()
-		# after this if it really need to wait for any current thread.
+		// Lock the cache to prevent conflicting writes.
+		// This lock is non-blocking so stale cache can quickly be used.
+		// Note that load() will call a blocking getReentrantScopedLock()
+		// after this if it really need to wait for any current thread.
 		$cacheKey = $this->clusterCache->makeKey( 'messages', $code );
 		$scopedLock = $this->getReentrantScopedLock( $cacheKey, 0 );
 		if ( !$scopedLock ) {
@@ -485,11 +518,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param int|null $mode Use MessageCache::FOR_UPDATE to skip process cache
 	 * @return array Loaded messages for storing in caches
 	 */
-	protected function loadFromDB( $code, $mode = null ) {
-		$maxMsgCacheEntrySize = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::MaxMsgCacheEntrySize );
-		$adaptiveMessageCache = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::AdaptiveMessageCache );
+	private function loadFromDB( $code, $mode = null ) {
 		// (T164666) The query here performs really poorly on WMF's
 		// contributions replicas. We don't have a way to say "any group except
 		// contributions", so for the moment let's specify 'api'.
@@ -499,7 +528,7 @@ class MessageCache implements LoggerAwareInterface {
 		$cache = [];
 
 		$mostused = []; // list of "<cased message key>/<code>"
-		if ( $adaptiveMessageCache && $code !== $this->contLangCode ) {
+		if ( $this->adaptive && $code !== $this->contLangCode ) {
 			if ( !$this->cache->has( $this->contLangCode ) ) {
 				$this->load( $this->contLangCode );
 			}
@@ -519,8 +548,8 @@ class MessageCache implements LoggerAwareInterface {
 		} elseif ( $code !== $this->contLangCode ) {
 			$conds[] = 'page_title' . $dbr->buildLike( $dbr->anyString(), '/', $code );
 		} else {
-			# Effectively disallows use of '/' character in NS_MEDIAWIKI for uses
-			# other than language code.
+			// Effectively disallows use of '/' character in NS_MEDIAWIKI for uses
+			// other than language code.
 			$conds[] = 'page_title NOT' .
 				$dbr->buildLike( $dbr->anyString(), '/', $dbr->anyString() );
 		}
@@ -529,13 +558,12 @@ class MessageCache implements LoggerAwareInterface {
 		$res = $dbr->select(
 			'page',
 			[ 'page_title', 'page_latest' ],
-			array_merge( $conds, [ 'page_len > ' . intval( $maxMsgCacheEntrySize ) ] ),
+			array_merge( $conds, [ 'page_len > ' . intval( $this->maxEntrySize ) ] ),
 			__METHOD__ . "($code)-big"
 		);
 		foreach ( $res as $row ) {
 			// Include entries/stubs for all keys in $mostused in adaptive mode
-			if ( $adaptiveMessageCache || $this->isMainCacheable( $row->page_title )
-			) {
+			if ( $this->adaptive || $this->isMainCacheable( $row->page_title ) ) {
 				$cache[$row->page_title] = '!TOO BIG';
 			}
 			// At least include revision ID so page changes are reflected in the hash
@@ -566,7 +594,7 @@ class MessageCache implements LoggerAwareInterface {
 			$revQuery['tables'],
 			$revQuery['fields'],
 			array_merge( $conds, [
-				'page_len <= ' . intval( $maxMsgCacheEntrySize ),
+				'page_len <= ' . intval( $this->maxEntrySize ),
 				'page_latest = rev_id' // get the latest revision only
 			] ),
 			__METHOD__ . "($code)-small",
@@ -580,8 +608,7 @@ class MessageCache implements LoggerAwareInterface {
 		$revisions = $result->isOK() ? $result->getValue() : [];
 		foreach ( $res as $row ) {
 			// Include entries/stubs for all keys in $mostused in adaptive mode
-			if ( $adaptiveMessageCache || $this->isMainCacheable( $row->page_title )
-			) {
+			if ( $this->adaptive || $this->isMainCacheable( $row->page_title ) ) {
 				try {
 					$rev = $revisions[$row->rev_id] ?? null;
 					$content = $rev ? $rev->getContent( SlotRecord::MAIN ) : null;
@@ -612,9 +639,9 @@ class MessageCache implements LoggerAwareInterface {
 		$cache['VERSION'] = MSG_CACHE_VERSION;
 		ksort( $cache );
 
-		# Hash for validating local cache (APC). No need to take into account
-		# messages larger than $wgMaxMsgCacheEntrySize, since those are only
-		# stored and fetched from memcache.
+		// Hash for validating local cache (APC). No need to take into account
+		// messages larger than $wgMaxMsgCacheEntrySize, since those are only
+		// stored and fetched from memcache.
 		$cache['HASH'] = md5( serialize( $cache ) );
 		$cache['EXPIRY'] = wfTimestamp( TS_MW, time() + self::WAN_TTL );
 		unset( $cache['EXCESSIVE'] ); // only needed for hash
@@ -680,7 +707,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param string|false $text New contents of the page (false if deleted)
 	 */
 	public function replace( $title, $text ) {
-		if ( $this->mDisable ) {
+		if ( $this->disable ) {
 			return;
 		}
 
@@ -712,9 +739,6 @@ class MessageCache implements LoggerAwareInterface {
 	 * @throws MWException
 	 */
 	public function refreshAndReplaceInternal( $code, array $replacements ) {
-		$maxMsgCacheEntrySize = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::MaxMsgCacheEntrySize );
-
 		// Allow one caller at a time to avoid race conditions
 		$scopedLock = $this->getReentrantScopedLock(
 			$this->clusterCache->makeKey( 'messages', $code )
@@ -752,7 +776,7 @@ class MessageCache implements LoggerAwareInterface {
 			// Note that if $text is false, then $cache should have a !NONEXISTANT entry
 			if ( !is_string( $text ) ) {
 				$cache[$title] = '!NONEXISTENT';
-			} elseif ( strlen( $text ) > $maxMsgCacheEntrySize ) {
+			} elseif ( strlen( $text ) > $this->maxEntrySize ) {
 				$cache[$title] = '!TOO BIG';
 				$newBigTitles[$title] = $page->getLatest();
 			} else {
@@ -804,7 +828,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param array $cache
 	 * @return bool
 	 */
-	protected function isCacheExpired( $cache ) {
+	private function isCacheExpired( $cache ) {
 		if ( !isset( $cache['VERSION'] ) || !isset( $cache['EXPIRY'] ) ) {
 			return true;
 		}
@@ -827,7 +851,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param string|false $code Language code (default: false)
 	 * @return bool
 	 */
-	protected function saveToCaches( array $cache, $dest, $code = false ) {
+	private function saveToCaches( array $cache, $dest, $code = false ) {
 		if ( $dest === 'all' ) {
 			$cacheKey = $this->clusterCache->makeKey( 'messages', $code );
 			$success = $this->clusterCache->set( $cacheKey, $cache );
@@ -847,7 +871,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param string $code
 	 * @return array (hash or false, bool expiry/volatility status)
 	 */
-	protected function getValidationHash( $code ) {
+	private function getValidationHash( $code ) {
 		$curTTL = null;
 		$value = $this->wanCache->get(
 			$this->wanCache->makeKey( 'messages', $code, 'hash', 'v1' ),
@@ -885,7 +909,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param string $code
 	 * @param array $cache Cached messages with a version
 	 */
-	protected function setValidationHash( $code, array $cache ) {
+	private function setValidationHash( $code, array $cache ) {
 		$this->wanCache->set(
 			$this->wanCache->makeKey( 'messages', $code, 'hash', 'v1' ),
 			[
@@ -901,7 +925,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param int $timeout Wait timeout in seconds
 	 * @return null|ScopedCallback
 	 */
-	protected function getReentrantScopedLock( $key, $timeout = self::WAIT_SEC ) {
+	private function getReentrantScopedLock( $key, $timeout = self::WAIT_SEC ) {
 		return $this->clusterCache->getScopedLock( $key, $timeout, self::LOCK_TTL, __METHOD__ );
 	}
 
@@ -959,7 +983,7 @@ class MessageCache implements LoggerAwareInterface {
 		$message = $this->getMessageFromFallbackChain(
 			wfGetLangObj( $langcode ),
 			$lckey,
-			!$this->mDisable && $useDB
+			!$this->disable && $useDB
 		);
 
 		// If we still have no message, maybe the key was in fact a full key so try that
@@ -981,9 +1005,9 @@ class MessageCache implements LoggerAwareInterface {
 			// Fix whitespace
 			$message = str_replace(
 				[
-					# Fix for trailing whitespace, removed by textarea
+					// Fix for trailing whitespace, removed by textarea
 					'&#32;',
-					# Fix for NBSP, converted to space by firefox
+					// Fix for NBSP, converted to space by firefox
 					'&nbsp;',
 					'&#160;',
 					'&shy;'
@@ -1013,7 +1037,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param bool $useDB Whether to include messages from the wiki database
 	 * @return string|false The message, or false if not found
 	 */
-	protected function getMessageFromFallbackChain( $lang, $lckey, $useDB ) {
+	private function getMessageFromFallbackChain( $lang, $lckey, $useDB ) {
 		$alreadyTried = [];
 
 		// First try the requested language.
@@ -1253,7 +1277,7 @@ class MessageCache implements LoggerAwareInterface {
 			return $message;
 		}
 
-		if ( $this->mInParser ) {
+		if ( $this->inParser ) {
 			return $message;
 		}
 
@@ -1264,9 +1288,9 @@ class MessageCache implements LoggerAwareInterface {
 			$popts->setTargetLanguage( $language );
 
 			$userlang = $popts->setUserLang( $language );
-			$this->mInParser = true;
+			$this->inParser = true;
 			$message = $parser->transformMsg( $message, $popts, $page );
-			$this->mInParser = false;
+			$this->inParser = false;
 			$popts->setUserLang( $userlang );
 		}
 
@@ -1277,13 +1301,13 @@ class MessageCache implements LoggerAwareInterface {
 	 * @return Parser
 	 */
 	public function getParser() {
-		if ( !$this->mParser ) {
+		if ( !$this->parser ) {
 			$parser = MediaWikiServices::getInstance()->getParser();
-			# Clone it and store it
-			$this->mParser = clone $parser;
+			// Clone it and store it
+			$this->parser = clone $parser;
 		}
 
-		return $this->mParser;
+		return $this->parser;
 	}
 
 	/**
@@ -1299,7 +1323,7 @@ class MessageCache implements LoggerAwareInterface {
 	) {
 		global $wgTitle;
 
-		if ( $this->mInParser ) {
+		if ( $this->inParser ) {
 			return htmlspecialchars( $text );
 		}
 
@@ -1322,27 +1346,27 @@ class MessageCache implements LoggerAwareInterface {
 		}
 		// Sometimes $wgTitle isn't set either...
 		if ( !$page ) {
-			# It's not uncommon having a null $wgTitle in scripts. See r80898
-			# Create a ghost title in such case
+			// It's not uncommon having a null $wgTitle in scripts. See r80898
+			// Create a ghost title in such case
 			$page = PageReferenceValue::localReference(
 				NS_SPECIAL,
 				'Badtitle/title not set in ' . __METHOD__
 			);
 		}
 
-		$this->mInParser = true;
+		$this->inParser = true;
 		$res = $parser->parse( $text, $page, $popts, $linestart );
-		$this->mInParser = false;
+		$this->inParser = false;
 
 		return $res;
 	}
 
 	public function disable() {
-		$this->mDisable = true;
+		$this->disable = true;
 	}
 
 	public function enable() {
-		$this->mDisable = false;
+		$this->disable = false;
 	}
 
 	/**
@@ -1358,7 +1382,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @since 1.27
 	 */
 	public function isDisabled() {
-		return $this->mDisable;
+		return $this->disable;
 	}
 
 	/**

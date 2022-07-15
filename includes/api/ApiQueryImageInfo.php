@@ -782,7 +782,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],
-			'localonly' => false,
+			'localonly' => [
+				ParamValidator::PARAM_TYPE => 'boolean',
+				ParamValidator::PARAM_DEFAULT => false,
+			],
 		];
 	}
 
