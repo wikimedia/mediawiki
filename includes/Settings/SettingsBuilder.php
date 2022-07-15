@@ -80,6 +80,9 @@ class SettingsBuilder {
 	 */
 	private $defaultsNeedMerging = false;
 
+	/** @var string[] */
+	private $warnings = [];
+
 	/**
 	 * @param string $baseDir
 	 * @param ExtensionRegistry $extensionRegistry
@@ -193,6 +196,37 @@ class SettingsBuilder {
 	public function validate(): StatusValue {
 		$config = $this->getConfig();
 		return $this->configSchema->validateConfig( $config );
+	}
+
+	/**
+	 * Detect usage of deprecated settings. A setting is counted as used if
+	 * it has a value other than the default.
+	 *
+	 * @note this is slow, so you probably don't want to do this on every request.
+	 *
+	 * @return array<string,string> an associative array mapping config keys
+	 *         to the deprecation messages from the schema.
+	 */
+	public function detectDeprecatedConfig(): array {
+		$config = $this->getConfig();
+		$keys = $this->getDefinedConfigKeys();
+		$deprecated = [];
+
+		foreach ( $keys as $key ) {
+			$sch = $this->configSchema->getSchemaFor( $key );
+			if ( !isset( $sch['deprecated'] ) ) {
+				continue;
+			}
+
+			$default = $sch['default'] ?? null;
+			$value = $config->get( $key );
+
+			if ( $value !== $default ) {
+				$deprecated[$key] = $sch['deprecated'];
+			}
+		}
+
+		return $deprecated;
 	}
 
 	/**
@@ -577,6 +611,32 @@ class SettingsBuilder {
 	public function getConfigBuilder(): ConfigBuilder {
 		$this->apply();
 		return $this->configSink;
+	}
+
+	/**
+	 * Log a settings related warning, such as a deprecated config variable.
+	 *
+	 * This can be used during bootstrapping, when the regular logger is not yet available.
+	 * The warnings will be passed to a regular logger after bootstrapping is complete.
+	 * In addition, the updater will fail if it finds any warnings.
+	 * This allows us to warn about deprecated settings, and make sure they are
+	 * replaced before the update proceeds.
+	 *
+	 * @param string $msg
+	 */
+	public function warning( string $msg ) {
+		$this->assertNotFinished();
+		$this->warnings[] = trim( $msg );
+	}
+
+	/**
+	 * Returns any warnings logged by calling warning().
+	 *
+	 * @internal
+	 * @return string[]
+	 */
+	public function getWarnings(): array {
+		return $this->warnings;
 	}
 
 }

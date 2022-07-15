@@ -4,7 +4,9 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\ConfigSchemaAggregator;
+use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\DynamicDefaultValues;
+use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\Source\ReflectionSchemaSource;
 use Wikimedia\AtEase\AtEase;
 
@@ -726,10 +728,6 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			[ 'DummyLanguageCodes' => [ 'qqq' => 'qqqq', 'foo' => 'bar', 'bh' => 'hb' ] ],
 			[ 'DummyLanguageCodes' => self::getExpectedDummyLanguageCodes(
 				[ 'qqq' => 'qqqq', 'foo' => 'bar', 'bh' => 'hb' ] ) ],
-			static function ( self $testObj ): void {
-				$testObj->expectDeprecationAndContinue(
-					'/Use of \$wgDummyLanguageCodes was deprecated in MediaWiki 1\.29\./' );
-			},
 		];
 		yield '$wgExtraLanguageCodes set' => [
 			[ 'ExtraLanguageCodes' => [ 'foo' => 'bar' ] ],
@@ -743,10 +741,6 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			],
 			[ 'DummyLanguageCodes' => self::getExpectedDummyLanguageCodes(
 				[ 'foo' => 'bar', 'abc' => 'def' ], [ 'foo' => 'baz', 'ghi' => 'jkl' ] ) ],
-			static function ( self $testObj ): void {
-				$testObj->expectDeprecationAndContinue(
-					'/Use of \$wgDummyLanguageCodes was deprecated in MediaWiki 1\.29\./' );
-			},
 		];
 		yield '$wgDatabaseReplicaLagWarning set' => [
 			[ 'DatabaseReplicaLagWarning' => 20 ],
@@ -755,11 +749,6 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 		yield '$wgSlaveLagWarning set' => [
 			[ 'SlaveLagWarning' => 20 ],
 			[ 'DatabaseReplicaLagWarning' => 20, 'SlaveLagWarning' => 20 ],
-			static function ( self $testObj ): void {
-				$testObj->expectDeprecationAndContinue(
-					'/Use of \$wgSlaveLagWarning set but \$wgDatabaseReplicaLagWarning unchanged;' .
-					' using \$wgSlaveLagWarning was deprecated in MediaWiki 1\.36\./' );
-			},
 		];
 		// XXX The settings are out of sync, this doesn't look intended
 		yield '$wgDatabaseReplicaLagWarning and $wgSlaveLagWarning set' => [
@@ -773,11 +762,6 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 		yield '$wgSlaveLagCritical set' => [
 			[ 'SlaveLagCritical' => 40 ],
 			[ 'DatabaseReplicaLagCritical' => 40, 'SlaveLagCritical' => 40 ],
-			static function ( self $testObj ): void {
-				$testObj->expectDeprecationAndContinue(
-					'/Use of \$wgSlaveLagCritical set but \$wgDatabaseReplicaLagCritical unchanged;' .
-					' using \$wgSlaveLagCritical was deprecated in MediaWiki 1\.36\./' );
-			},
 		];
 		// XXX The settings are out of sync, this doesn't look intended
 		yield '$wgDatabaseReplicaLagCritical and $wgSlaveLagCritical set' => [
@@ -1021,6 +1005,13 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			$$var = $val;
 		}
 
+		// phpcs:ignore MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgSettings
+		$wgSettings = new SettingsBuilder(
+			MW_INSTALL_PATH,
+			$this->createNoOpMock( ExtensionRegistry::class ),
+			$configBuilder,
+			$this->createNoOpMock( PhpIniSink::class )
+		);
 		require MW_INSTALL_PATH . '/includes/SetupDynamicConfig.php';
 
 		if ( is_callable( $expected ) ) {

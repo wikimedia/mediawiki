@@ -229,6 +229,10 @@ if ( !$wgLocaltimezone ) {
 	//       to gracefully handle the case of $wgLocaltimezone being the empty string.
 	//       See T305093#8063451.
 	$wgLocaltimezone = MainConfigSchema::getDefaultLocaltimezone();
+	$wgSettings->warning(
+		'The Localtimezone setting must a valid timezone string or null. '
+		. 'It must not be an empty string or false.'
+	);
 }
 
 // The part after the System| is ignored, but rest of MW fills it out as the local offset.
@@ -247,7 +251,10 @@ if ( is_array( $wgExtraNamespaces ) ) {
 
 // Hard-deprecate setting $wgDummyLanguageCodes in LocalSettings.php
 if ( count( $wgDummyLanguageCodes ) !== 0 ) {
-	wfDeprecated( '$wgDummyLanguageCodes', '1.29' );
+	$wgSettings->warning(
+		'Do not add to DummyLanguageCodes directly, ' .
+		'add to ExtraLanguageCodes instead.'
+	);
 }
 // Merge in the legacy language codes, incorporating overrides from the config
 $wgDummyLanguageCodes += [
@@ -273,10 +280,8 @@ if ( isset( $wgSlaveLagWarning ) ) {
 	// If the old value is set to something other than the default, use it.
 	if ( $wgDatabaseReplicaLagWarning === 10 && $wgSlaveLagWarning !== 10 ) {
 		$wgDatabaseReplicaLagWarning = $wgSlaveLagWarning;
-		wfDeprecated(
-			'$wgSlaveLagWarning set but $wgDatabaseReplicaLagWarning unchanged; using $wgSlaveLagWarning',
-			'1.36'
-		);
+		$wgSettings->warning( 'SlaveLagWarning is no longer supported, ' .
+			'use DatabaseReplicaLagWarning instead!' );
 	}
 } else {
 	// Backwards-compatibility for extensions that read this value.
@@ -287,10 +292,8 @@ if ( isset( $wgSlaveLagCritical ) ) {
 	// If the old value is set to something other than the default, use it.
 	if ( $wgDatabaseReplicaLagCritical === 30 && $wgSlaveLagCritical !== 30 ) {
 		$wgDatabaseReplicaLagCritical = $wgSlaveLagCritical;
-		wfDeprecated(
-			'$wgSlaveLagCritical set but $wgDatabaseReplicaLagCritical unchanged; using $wgSlaveLagCritical',
-			'1.36'
-		);
+		$wgSettings->warning( 'SlaveLagCritical is no longer supported, ' .
+			'use DatabaseReplicaLagCritical instead!' );
 	}
 } else {
 	// Backwards-compatibility for extensions that read this value.

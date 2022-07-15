@@ -566,6 +566,17 @@ if ( !$wgCommandLineMode ) {
 	Pingback::schedulePingback();
 }
 
+$settingsWarnings = $wgSettings->getWarnings();
+if ( $settingsWarnings ) {
+	$logger = LoggerFactory::getInstance( 'Settings' );
+	foreach ( $settingsWarnings as $msg ) {
+		$logger->warning( $msg );
+	}
+	unset( $logger );
+}
+
+unset( $settingsWarnings );
+
 // Explicit globals, so this works with bootstrap.php
 global $wgFullyInitialised;
 $wgFullyInitialised = true;
