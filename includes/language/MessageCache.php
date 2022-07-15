@@ -295,16 +295,11 @@ class MessageCache implements LoggerAwareInterface {
 	 *
 	 * @param string $code Language to which load messages
 	 * @param int|null $mode Use MessageCache::FOR_UPDATE to skip process cache [optional]
-	 * @throws InvalidArgumentException
 	 * @return bool
 	 */
-	private function load( $code, $mode = null ) {
-		if ( !is_string( $code ) ) {
-			throw new InvalidArgumentException( "Missing language code" );
-		}
-
+	private function load( string $code, $mode = null ) {
 		// Don't do double loading...
-		if ( $this->isLanguageLoaded( $code ) && $mode != self::FOR_UPDATE ) {
+		if ( $this->isLanguageLoaded( $code ) && $mode !== self::FOR_UPDATE ) {
 			return true;
 		}
 
@@ -524,7 +519,7 @@ class MessageCache implements LoggerAwareInterface {
 		// contributions replicas. We don't have a way to say "any group except
 		// contributions", so for the moment let's specify 'api'.
 		// @todo: Get rid of this hack.
-		$dbr = wfGetDB( ( $mode == self::FOR_UPDATE ) ? DB_PRIMARY : DB_REPLICA, 'api' );
+		$dbr = wfGetDB( ( $mode === self::FOR_UPDATE ) ? DB_PRIMARY : DB_REPLICA, 'api' );
 
 		$cache = [];
 
@@ -705,12 +700,11 @@ class MessageCache implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Separate the revision/page rows in $res into an array of cacheable rows
-	 * and an array of uncacheable rows.
+	 * Separate cacheable from uncacheable rows in a page/revsion query result.
 	 *
 	 * @param IResultWrapper $res
-	 * @return IResultWrapper[]|stdClass[][] An array with the cacheable rows
-	 *   in the first element and the uncacheable rows in the second element.
+	 * @return array{0:IResultWrapper|stdClass[],1:stdClass[]} An array with the cacheable
+	 *    rows in the first element and the uncacheable rows in the second.
 	 */
 	private function separateCacheableRows( $res ) {
 		if ( $this->adaptive ) {
@@ -765,9 +759,8 @@ class MessageCache implements LoggerAwareInterface {
 	/**
 	 * @param string $code
 	 * @param array[] $replacements List of (title, message key) pairs
-	 * @throws MWException
 	 */
-	public function refreshAndReplaceInternal( $code, array $replacements ) {
+	public function refreshAndReplaceInternal( string $code, array $replacements ) {
 		// Allow one caller at a time to avoid race conditions
 		$scopedLock = $this->getReentrantScopedLock(
 			$this->clusterCache->makeKey( 'messages', $code )
@@ -861,7 +854,7 @@ class MessageCache implements LoggerAwareInterface {
 		if ( !isset( $cache['VERSION'] ) || !isset( $cache['EXPIRY'] ) ) {
 			return true;
 		}
-		if ( $cache['VERSION'] != MSG_CACHE_VERSION ) {
+		if ( $cache['VERSION'] !== MSG_CACHE_VERSION ) {
 			return true;
 		}
 		if ( wfTimestampNow() >= $cache['EXPIRY'] ) {
@@ -987,17 +980,15 @@ class MessageCache implements LoggerAwareInterface {
 	 *   - If boolean and true, create object from the wikis content language
 	 *   - If language object, use it as given
 	 *
-	 * @throws MWException When given an invalid key
 	 * @return string|false False if the message doesn't exist, otherwise the
 	 *   message (which can be empty)
 	 */
 	public function get( $key, $useDB = true, $langcode = true ) {
 		if ( is_int( $key ) ) {
-			// Fix numerical strings that somehow become ints
-			// on their way here
+			// Fix numerical strings that somehow become ints on their way here
 			$key = (string)$key;
 		} elseif ( !is_string( $key ) ) {
-			throw new MWException( 'Non-string key given' );
+			throw new TypeError( 'Message key must be a string' );
 		} elseif ( $key === '' ) {
 			// Shortcut: the empty key is always missing
 			return false;
@@ -1021,7 +1012,7 @@ class MessageCache implements LoggerAwareInterface {
 			// We may get calls for things that are http-urls from sidebar
 			// Let's not load nonexistent languages for those
 			// They usually have more than one slash.
-			if ( count( $parts ) == 2 && $parts[1] !== '' ) {
+			if ( count( $parts ) === 2 && $parts[1] !== '' ) {
 				$message = $this->localisationCache->getSubitem( $parts[1], 'messages', $parts[0] );
 				if ( $message === null ) {
 					$message = false;
