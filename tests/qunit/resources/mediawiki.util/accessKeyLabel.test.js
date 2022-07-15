@@ -1,7 +1,7 @@
 ( function () {
 	var getAccessKeyPrefixTestData, updateTooltipAccessKeysTestData;
 
-	QUnit.module( 'jquery.accessKeyLabel', QUnit.newMwEnvironment( {
+	QUnit.module( 'mediawiki.util: jquery.accessKeyLabel', QUnit.newMwEnvironment( {
 		messages: {
 			brackets: '[$1]',
 			'word-separator': ' '
