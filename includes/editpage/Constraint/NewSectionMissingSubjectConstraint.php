@@ -23,37 +23,37 @@ namespace MediaWiki\EditPage\Constraint;
 use StatusValue;
 
 /**
- * For a new section, do not allow the user to post with an empty summary unless they choose to
+ * For a new section, do not allow the user to post with an empty subject (section title) unless they choose to
  *
- * @since 1.36
+ * @since 1.39
  * @internal
  * @author DannyS712
  */
-class NewSectionMissingSummaryConstraint implements IEditConstraint {
+class NewSectionMissingSubjectConstraint implements IEditConstraint {
 
 	/** @var string */
-	private $userSummary;
+	private $subject;
 
 	/** @var bool */
-	private $allowBlankSummary;
+	private $allowBlankSubject;
 
 	/** @var string|null */
 	private $result;
 
 	/**
-	 * @param string $userSummary
-	 * @param bool $allowBlankSummary
+	 * @param string $subject
+	 * @param bool $allowBlankSubject
 	 */
 	public function __construct(
-		string $userSummary,
-		bool $allowBlankSummary
+		string $subject,
+		bool $allowBlankSubject
 	) {
-		$this->userSummary = $userSummary;
-		$this->allowBlankSummary = $allowBlankSummary;
+		$this->subject = $subject;
+		$this->allowBlankSubject = $allowBlankSubject;
 	}
 
 	public function checkConstraint(): string {
-		if ( !$this->allowBlankSummary && trim( $this->userSummary ) == '' ) {
+		if ( !$this->allowBlankSubject && trim( $this->subject ) == '' ) {
 			// TODO this was == in EditPage, can it be === ?
 			$this->result = self::CONSTRAINT_FAILED;
 		} else {
@@ -67,6 +67,8 @@ class NewSectionMissingSummaryConstraint implements IEditConstraint {
 		if ( $this->result === self::CONSTRAINT_FAILED ) {
 			// From EditPage, regarding the fatal:
 			// or 'missingcommentheader' if $section == 'new'. Blegh
+			// For new sections, the subject is also used for the summary,
+			// so we report missing summaries if the section is missing
 			$statusValue->fatal( 'missingsummary' );
 			$statusValue->value = self::AS_SUMMARY_NEEDED;
 		}
