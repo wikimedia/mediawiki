@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @coversNothing Just a sample
  */
@@ -14,11 +16,11 @@ class SampleTest extends MediaWikiLangTestCase {
 		// happen as they should (including the restoration for setMwGlobals).
 		parent::setUp();
 
-		// This sets the globals and will restore them automatically
+		// This sets the config settings, and will restore them automatically
 		// after each test.
-		$this->setContentLang( 'en' );
-		$this->setMwGlobals( [
-			'wgCapitalLinks' => true,
+		$this->overrideConfigValues( [
+			MainConfigNames::LanguageCode => 'en',
+			MainConfigNames::CapitalLinks => true,
 		] );
 	}
 

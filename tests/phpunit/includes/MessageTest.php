@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\UserGroupMembershipParam;
 use MediaWiki\Page\PageReference;
@@ -15,9 +16,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgForceUIMsgAsContentMsg' => [],
-		] );
+		$this->overrideConfigValue( MainConfigNames::ForceUIMsgAsContentMsg, [] );
 		$this->setUserLang( 'en' );
 	}
 
@@ -408,7 +407,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers CoreTagHooks::html
 	 */
 	public function testRawHtmlInMsg() {
-		$this->setMwGlobals( 'wgRawHtml', true );
+		$this->overrideConfigValue( MainConfigNames::RawHtml, true );
 
 		$msg = new RawMessage( '<html><script>alert("xss")</script></html>' );
 		$txt = '<span class="error">&lt;html&gt; tags cannot be' .
@@ -764,9 +763,9 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::extractParam
 	 */
 	public function testMessageAsParam() {
-		$this->setMwGlobals( [
-			'wgScript' => '/wiki/index.php',
-			'wgArticlePath' => '/wiki/$1',
+		$this->overrideConfigValues( [
+			MainConfigNames::Script => '/wiki/index.php',
+			MainConfigNames::ArticlePath => '/wiki/$1',
 		] );
 
 		$msg = new Message( 'returnto', [
@@ -869,9 +868,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::inContentLanguage
 	 */
 	public function testInContentLanguageOverride() {
-		$this->setMwGlobals( [
-			'wgForceUIMsgAsContentMsg' => [ 'mainpage' ],
-		] );
+		$this->overrideConfigValue( MainConfigNames::ForceUIMsgAsContentMsg, [ 'mainpage' ] );
 		$this->setUserLang( 'fr' );
 
 		// NOTE: make sure internal caching of the message text is reset appropriately.

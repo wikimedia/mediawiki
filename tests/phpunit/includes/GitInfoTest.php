@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MainConfigNames;
+
 /**
  * @covers GitInfo
  */
@@ -42,7 +45,7 @@ class GitInfoTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( 'wgGitInfoCacheDirectory', __DIR__ . '/../data/gitinfo' );
+		$this->overrideConfigValue( MainConfigNames::GitInfoCacheDirectory, __DIR__ . '/../data/gitinfo' );
 	}
 
 	protected function assertValidGitInfo( GitInfo $gitInfo ) {

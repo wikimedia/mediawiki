@@ -10,8 +10,8 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		// Avoid 'GetHumanTimestamp' hook and others
-		$this->setMwGlobals( 'wgHooks', [] );
+		// Avoid 'GetHumanTimestamp' hook
+		$this->clearHook( 'GetHumanTimestamp' );
 	}
 
 	private function setMockUserOptions( array $options ) {

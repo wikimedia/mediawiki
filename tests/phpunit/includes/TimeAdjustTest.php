@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 class TimeAdjustTest extends MediaWikiLangTestCase {
 	/**
 	 * Test offset usage for a given Language::userAdjust
@@ -7,7 +9,7 @@ class TimeAdjustTest extends MediaWikiLangTestCase {
 	 * @covers Language::userAdjust
 	 */
 	public function testUserAdjust( $date, $localTZoffset, $expected ) {
-		$this->setMwGlobals( 'wgLocalTZoffset', $localTZoffset );
+		$this->overrideConfigValue( MainConfigNames::LocalTZoffset, $localTZoffset );
 
 		$this->assertEquals(
 			$expected,
