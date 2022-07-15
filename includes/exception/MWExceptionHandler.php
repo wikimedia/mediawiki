@@ -660,10 +660,10 @@ TXT;
 	 * @code
 	 *  {
 	 *    "id": "c41fb419",
-	 *    "type": "MWException",
+	 *    "type": "Exception",
 	 *    "file": "/var/www/mediawiki/includes/cache/MessageCache.php",
 	 *    "line": 704,
-	 *    "message": "Non-string key given",
+	 *    "message": "Example message",
 	 *    "url": "/wiki/Main_Page"
 	 *  }
 	 * @endcode
@@ -672,13 +672,13 @@ TXT;
 	 * @code
 	 *  {
 	 *    "id": "dc457938",
-	 *    "type": "MWException",
-	 *    "file": "/vagrant/mediawiki/includes/cache/MessageCache.php",
+	 *    "type": "Exception",
+	 *    "file": "/var/www/mediawiki/includes/cache/MessageCache.php",
 	 *    "line": 704,
-	 *    "message": "Non-string key given",
+	 *    "message": "Example message",
 	 *    "url": "/wiki/Main_Page",
 	 *    "backtrace": [{
-	 *      "file": "/vagrant/mediawiki/extensions/VisualEditor/VisualEditor.hooks.php",
+	 *      "file": "/var/www/mediawiki/includes/OutputPage.php",
 	 *      "line": 80,
 	 *      "function": "get",
 	 *      "class": "MessageCache",
