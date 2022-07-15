@@ -1025,6 +1025,8 @@ return [
 			'class' => get_class( $clusterCache )
 		] );
 
+		$options = new ServiceOptions( MessageCache::CONSTRUCTOR_OPTIONS, $mainConfig );
+
 		return new MessageCache(
 			$services->getMainWANObjectCache(),
 			$clusterCache,
@@ -1032,7 +1034,7 @@ return [
 			$services->getContentLanguage(),
 			$services->getLanguageConverterFactory(),
 			$logger,
-			[ 'useDB' => $mainConfig->get( MainConfigNames::UseDatabaseMessages ) ],
+			$options,
 			$services->getLanguageFactory(),
 			$services->getLocalisationCache(),
 			$services->getLanguageNameUtils(),
