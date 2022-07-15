@@ -667,7 +667,6 @@
 	"missingcommenttext": "Please enter a comment.",
 	"missingcommentheader": "<strong>Reminder:</strong> You have not provided a subject for this comment.\nIf you click \"$1\" again, your edit will be published without one.",
 	"summary-preview": "Preview of edit summary:",
-	"subject-preview": "Preview of subject:",
 	"previewerrortext": "An error occurred while attempting to preview your changes.",
 	"blockedtitle": "User is blocked",
 	"blockedtext-partial": "<strong>Your username or IP address is blocked from doing this. You may still be able to do other things on this site, such as editing certain pages.</strong> You can view the full block details at [[Special:MyContributions|account contributions]].\n\nThe block was made by $1.\n\nThe reason given is <em>$2</em>.\n\n* Start of block: $8\n* Expiration of block: $6\n* Intended blockee: $7\n* Block ID #$5",
