@@ -35,6 +35,7 @@ use MediaWiki\Revision\SlotRecord;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\ScopedCallback;
 
@@ -601,39 +602,42 @@ class MessageCache implements LoggerAwareInterface {
 			[ 'STRAIGHT_JOIN' ],
 			$revQuery['joins']
 		);
-		$result = $revisionStore->newRevisionsFromBatch( $res, [
+
+		// Don't load content from uncacheable rows (T313004)
+		[ $cacheableRows, $uncacheableRows ] = $this->separateCacheableRows( $res );
+		$result = $revisionStore->newRevisionsFromBatch( $cacheableRows, [
 			'slots' => [ SlotRecord::MAIN ],
 			'content' => true
 		] );
 		$revisions = $result->isOK() ? $result->getValue() : [];
-		foreach ( $res as $row ) {
-			// Include entries/stubs for all keys in $mostused in adaptive mode
-			if ( $this->adaptive || $this->isMainCacheable( $row->page_title ) ) {
-				try {
-					$rev = $revisions[$row->rev_id] ?? null;
-					$content = $rev ? $rev->getContent( SlotRecord::MAIN ) : null;
-					$text = $this->getMessageTextFromContent( $content );
-				} catch ( TimeoutException $e ) {
-					throw $e;
-				} catch ( Exception $ex ) {
-					$text = false;
-				}
 
-				if ( !is_string( $text ) ) {
-					$entry = '!ERROR';
-					$this->logger->error(
-						__METHOD__
-						. ": failed to load message page text for {$row->page_title} ($code)"
-					);
-				} else {
-					$entry = ' ' . $text;
-				}
-				$cache[$row->page_title] = $entry;
-			} else {
-				// T193271: cache object gets too big and slow to generate.
-				// At least include revision ID so page changes are reflected in the hash.
-				$cache['EXCESSIVE'][$row->page_title] = $row->page_latest;
+		foreach ( $cacheableRows as $row ) {
+			try {
+				$rev = $revisions[$row->rev_id] ?? null;
+				$content = $rev ? $rev->getContent( SlotRecord::MAIN ) : null;
+				$text = $this->getMessageTextFromContent( $content );
+			} catch ( TimeoutException $e ) {
+				throw $e;
+			} catch ( Exception $ex ) {
+				$text = false;
 			}
+
+			if ( !is_string( $text ) ) {
+				$entry = '!ERROR';
+				$this->logger->error(
+					__METHOD__
+					. ": failed to load message page text for {$row->page_title} ($code)"
+				);
+			} else {
+				$entry = ' ' . $text;
+			}
+			$cache[$row->page_title] = $entry;
+		}
+
+		foreach ( $uncacheableRows as $row ) {
+			// T193271: cache object gets too big and slow to generate.
+			// At least include revision ID so page changes are reflected in the hash.
+			$cache['EXCESSIVE'][$row->page_title] = $row->page_latest;
 		}
 
 		$cache['VERSION'] = MSG_CACHE_VERSION;
@@ -698,6 +702,31 @@ class MessageCache implements LoggerAwareInterface {
 			// Use individual subitem
 			return $this->localisationCache->getSubitem( $code, 'messages', $msg ) !== null;
 		}
+	}
+
+	/**
+	 * Separate the revision/page rows in $res into an array of cacheable rows
+	 * and an array of uncacheable rows.
+	 *
+	 * @param IResultWrapper $res
+	 * @return IResultWrapper[]|stdClass[][] An array with the cacheable rows
+	 *   in the first element and the uncacheable rows in the second element.
+	 */
+	private function separateCacheableRows( $res ) {
+		if ( $this->adaptive ) {
+			// Include entries/stubs for all keys in $mostused in adaptive mode
+			return [ $res, [] ];
+		}
+		$cacheableRows = [];
+		$uncacheableRows = [];
+		foreach ( $res as $row ) {
+			if ( $this->isMainCacheable( $row->page_title ) ) {
+				$cacheableRows[] = $row;
+			} else {
+				$uncacheableRows[] = $row;
+			}
+		}
+		return [ $cacheableRows, $uncacheableRows ];
 	}
 
 	/**
