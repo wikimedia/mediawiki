@@ -1482,7 +1482,7 @@ return [
 	'RateLimiter' => static function ( MediaWikiServices $services ): RateLimiter {
 		return new RateLimiter(
 			new ServiceOptions( RateLimiter::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
-			ObjectCache::getLocalClusterInstance(),
+			$services->getWRStatsFactory(),
 			$services->getCentralIdLookupFactory()->getNonLocalLookup(),
 			$services->getUserFactory(),
 			$services->getUserGroupManager(),

@@ -14,6 +14,9 @@ class WRStatsFactory {
 	/** @var StatsStore */
 	private $store;
 
+	/** @var float|int|null */
+	private $now;
+
 	/**
 	 * @param StatsStore $store
 	 */
@@ -48,7 +51,11 @@ class WRStatsFactory {
 	 * @return WRStatsWriter
 	 */
 	public function createWriter( $specs, $prefix = 'WRStats' ) {
-		return new WRStatsWriter( $this->store, $specs, $prefix );
+		$writer = new WRStatsWriter( $this->store, $specs, $prefix );
+		if ( $this->now !== null ) {
+			$writer->setCurrentTime( $this->now );
+		}
+		return $writer;
 	}
 
 	/**
@@ -62,7 +69,11 @@ class WRStatsFactory {
 	 * @return WRStatsReader
 	 */
 	public function createReader( $specs, $prefix = 'WRStats' ) {
-		return new WRStatsReader( $this->store, $specs, $prefix );
+		$reader = new WRStatsReader( $this->store, $specs, $prefix );
+		if ( $this->now !== null ) {
+			$reader->setCurrentTime( $this->now );
+		}
+		return $reader;
 	}
 
 	/**
@@ -81,7 +92,20 @@ class WRStatsFactory {
 	public function createRateLimiter(
 		$conditions, $prefix = 'WRStats', $options = []
 	) {
-		return new WRStatsRateLimiter(
+		$rateLimiter = new WRStatsRateLimiter(
 			$this->store, $conditions, $prefix, $options );
+		if ( $this->now !== null ) {
+			$rateLimiter->setCurrentTime( $this->now );
+		}
+		return $rateLimiter;
+	}
+
+	/**
+	 * Set a current timestamp to be injected into new instances on creation
+	 *
+	 * @param float|int $now Seconds since epoch
+	 */
+	public function setCurrentTime( $now ) {
+		$this->now = $now;
 	}
 }

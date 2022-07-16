@@ -421,7 +421,6 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 				]
 			]
 		);
-		$this->setMainCache( CACHE_HASH );
 
 		$page = $this->getExistingTestPage();
 
