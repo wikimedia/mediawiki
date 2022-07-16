@@ -432,12 +432,6 @@ class RecentChange implements Taggable {
 				: null;
 		}
 
-		# If our database is strict about IP addresses, use NULL instead of an empty string
-		$strictIPs = $dbw->getType() === 'postgres'; // legacy
-		if ( $strictIPs && $this->mAttribs['rc_ip'] == '' ) {
-			unset( $this->mAttribs['rc_ip'] );
-		}
-
 		$row = $this->mAttribs;
 
 		# Trim spaces on user supplied text
@@ -1140,14 +1134,6 @@ class RecentChange implements Taggable {
 		$this->mAttribs['rc_timestamp'] = wfTimestamp( TS_MW, $this->mAttribs['rc_timestamp'] );
 		// rc_deleted MUST be set
 		$this->mAttribs['rc_deleted'] = $row->rc_deleted;
-
-		if ( isset( $this->mAttribs['rc_ip'] ) ) {
-			// Clean up CIDRs for Postgres per T164898. ("127.0.0.1" casts to "127.0.0.1/32")
-			$n = strpos( $this->mAttribs['rc_ip'], '/' );
-			if ( $n !== false ) {
-				$this->mAttribs['rc_ip'] = substr( $this->mAttribs['rc_ip'], 0, $n );
-			}
-		}
 
 		$comment = CommentStore::getStore()
 			// Legacy because $row may have come from self::selectFields()
