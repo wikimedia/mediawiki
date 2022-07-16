@@ -3665,6 +3665,7 @@
 	"htmlform-title-badnamespace": "[[:$1]] non si trova nel namespace \"{{ns:$2}}\".",
 	"htmlform-title-not-creatable": "\"$1\" è il titolo di una pagina non creabile",
 	"htmlform-title-not-exists": "$1 non esiste.",
+	"htmlform-title-interwiki": "$1 è un titolo interwiki, dovrebbe essere locale.",
 	"htmlform-user-not-exists": "<strong>$1</strong> non esiste.",
 	"htmlform-user-not-valid": "<strong>$1</strong> non è un nome utente valido.",
 	"htmlform-tag-not-allowed": "$1 non è un'etichetta consentita",

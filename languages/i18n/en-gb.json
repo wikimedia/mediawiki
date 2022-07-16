@@ -30,7 +30,6 @@
 			"Jon Harald Søby",
 			"KATMAKROFAN",
 			"Kreal39",
-			"Kwame Ohenaku Darko",
 			"Lemondoge",
 			"Lloffiwr",
 			"Matma Rex",
@@ -137,8 +136,5 @@
 	"logentry-suppress-block": "$1 {{GENDER:$2|blocked}} {{GENDER:$4|$3}} with an expiry time of $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|changed}} block settings for {{GENDER:$4|$3}} with an expiry time of $5 $6",
 	"feedback-error1": "Error: Unrecognised result from API",
-	"changeslist-nocomment": "No edit summary",
-	"skin-action-protect": "Bɔ ho ban",
-	"skin-action-undelete": "Mpopa",
-	"skin-action-delete": "Twa mu"
+	"changeslist-nocomment": "No edit summary"
 }
