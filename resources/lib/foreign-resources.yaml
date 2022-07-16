@@ -323,14 +323,14 @@ ooui:
 pako:
   type: multi-file
   files:
-    pako_deflate.js:
-      src: https://raw.githubusercontent.com/nodeca/pako/1.0.10/dist/pako_deflate.js
-      integrity: sha384-5WMh5CB1LExc7cwu9KhrrJNgHsi75Q1U6APn5dpmeFGEalKInNRzqTkUkHXb9JA9
+    pako_deflate.es5.js:
+      src: https://raw.githubusercontent.com/nodeca/pako/2.0.4/dist/pako_deflate.es5.js
+      integrity: sha384-msHzmf3Olqx90vEgQHrbqpn7Kx6Tv0L5VXKPQoq+yDnkrvKwzlufduA/rLk1suNV
     README.md:
-      src: https://raw.githubusercontent.com/nodeca/pako/1.0.10/README.md
-      integrity: sha384-lI5OTOkO7/0yGfYTICjdLvpYcj5DVpWMTRFS+I7t0usiyiA1jLqBmyDELv/zrGQZ
+      src: https://raw.githubusercontent.com/nodeca/pako/2.0.4/README.md
+      integrity: sha384-mQ9cShSJ6yG8JTPL7LkbnfUnTmc7LA2hnBMSNfb5X7xk6pTFzVTurK9gcSMgJu3B
     LICENSE:
-      src: https://raw.githubusercontent.com/nodeca/pako/1.0.10/LICENSE
+      src: https://raw.githubusercontent.com/nodeca/pako/2.0.4/LICENSE
       integrity: sha384-9tg5LwdfxM6Fpdp6Sep9VI0qXS7Eg5gQRPvNrfV3DKIkVVL3EwSK2atu+zRoEwJg
 
 promise-polyfill:

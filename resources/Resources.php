@@ -2929,7 +2929,7 @@ return [
 	'mediawiki.deflate' => [
 		'packageFiles' => [
 			'resources/src/mediawiki.deflate/mw.deflate.js',
-			'resources/lib/pako/pako_deflate.js',
+			'resources/lib/pako/pako_deflate.es5.js',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
