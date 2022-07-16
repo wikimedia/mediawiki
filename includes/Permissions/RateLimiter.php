@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Permissions;
 
-use BagOStuff;
 use CentralIdLookup;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
@@ -29,9 +28,10 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
-use MWTimestamp;
 use Psr\Log\LoggerInterface;
 use Wikimedia\IPUtils;
+use Wikimedia\WRStats\LimitCondition;
+use Wikimedia\WRStats\WRStatsFactory;
 
 /**
  * Provides rate limiting for a set of actions based on several counter
@@ -44,8 +44,8 @@ class RateLimiter {
 	/** @var LoggerInterface */
 	private $logger;
 
-	/** @var BagOStuff */
-	private $store;
+	/** @var WRStatsFactory */
+	private $wrstatsFactory;
 
 	/** @var ServiceOptions */
 	private $options;
@@ -75,7 +75,7 @@ class RateLimiter {
 
 	/**
 	 * @param ServiceOptions $options
-	 * @param BagOStuff $store
+	 * @param WRStatsFactory $wrstatsFactory
 	 * @param CentralIdLookup|null $centralIdLookup
 	 * @param UserFactory $userFactory
 	 * @param UserGroupManager $userGroupManager
@@ -83,7 +83,7 @@ class RateLimiter {
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		BagOStuff $store,
+		WRStatsFactory $wrstatsFactory,
 		?CentralIdLookup $centralIdLookup,
 		UserFactory $userFactory,
 		UserGroupManager $userGroupManager,
@@ -93,21 +93,13 @@ class RateLimiter {
 
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
-		$this->store = $store;
+		$this->wrstatsFactory = $wrstatsFactory;
 		$this->centralIdLookup = $centralIdLookup;
 		$this->userFactory = $userFactory;
 		$this->userGroupManager = $userGroupManager;
 		$this->hookRunner = new HookRunner( $hookContainer );
 
 		$this->rateLimits = $this->options->get( MainConfigNames::RateLimits );
-	}
-
-	private function makeGlobalKey( $action, ...$components ): string {
-		return $this->store->makeGlobalKey( 'limiter', $action, ...$components );
-	}
-
-	private function makeLocalKey( $action, ...$components ): string {
-		return $this->store->makeKey( 'limiter', $action, ...$components );
 	}
 
 	/**
@@ -143,7 +135,7 @@ class RateLimiter {
 	 * @param int $incrBy Positive amount to increment counter by, 1 per default.
 	 *        Use 0 to check the limit without bumping the counter.
 	 *
-	 * @return bool True if a rate limit as exceeded.
+	 * @return bool True if a rate limit was exceeded.
 	 */
 	public function limit( RateLimitSubject $subject, string $action, int $incrBy = 1 ) {
 		$user = $subject->getUser();
@@ -160,30 +152,27 @@ class RateLimiter {
 			return false;
 		}
 
-		$limits = array_merge(
-			[ '&can-bypass' => true ],
-			$this->rateLimits[$action]
-		);
-
 		// Some groups shouldn't trigger the ping limiter, ever
-		if ( $limits['&can-bypass'] && $this->isExempt( $subject ) ) {
+		if ( $this->canBypass( $action ) && $this->isExempt( $subject ) ) {
 			return false;
 		}
 
+		$conds = $this->getConditions( $action );
+		$limiter = $this->wrstatsFactory->createRateLimiter( $conds, [ 'limiter', $action ] );
+		$limitBatch = $limiter->createBatch( $incrBy );
 		$this->logger->debug( __METHOD__ . ": limiting $action rate for {$user->getName()}" );
 
-		$keys = [];
 		$id = $user->getId();
 		$isNewbie = $subject->is( RateLimitSubject::NEWBIE );
 
 		if ( $id == 0 ) {
 			// "shared anon" limit, for all anons combined
-			if ( isset( $limits['anon'] ) ) {
-				$keys[$this->makeLocalKey( $action, 'anon' )] = $limits['anon'];
+			if ( isset( $conds['anon'] ) ) {
+				$limitBatch->localOp( 'anon', [] );
 			}
 		} else {
 			// "global per name" limit, across sites
-			if ( isset( $limits['user-global'] ) ) {
+			if ( isset( $conds['user-global'] ) ) {
 
 				$centralId = $this->centralIdLookup
 					? $this->centralIdLookup->centralIdFromLocalUser( $user, CentralIdLookup::AUDIENCE_RAW )
@@ -192,86 +181,76 @@ class RateLimiter {
 				if ( $centralId ) {
 					// We don't have proper realms, use provider ID.
 					$realm = $this->centralIdLookup->getProviderId();
-
-					$globalKey = $this->makeGlobalKey( $action, 'user-global', $realm, $centralId );
+					$limitBatch->globalOp( 'user-global', [ $realm, $centralId ] );
 				} else {
 					// Fall back to a local key for a local ID
-					$globalKey = $this->makeLocalKey( $action, 'user-global', 'local', $id );
+					$limitBatch->localOp( 'user-global', [ 'local', $id ] );
 				}
-				$keys[$globalKey] = $limits['user-global'];
 			}
 		}
 
 		if ( $isNewbie && $ip ) {
 			// "per ip" limit for anons and newbie users
-			if ( isset( $limits['ip'] ) ) {
-				$keys[$this->makeGlobalKey( $action, 'ip', $ip )] = $limits['ip'];
+			if ( isset( $conds['ip'] ) ) {
+				$limitBatch->globalOp( 'ip', $ip );
 			}
 			// "per subnet" limit for anons and newbie users
-			if ( isset( $limits['subnet'] ) ) {
+			if ( isset( $conds['subnet'] ) ) {
 				$subnet = IPUtils::getSubnet( $ip );
 				if ( $subnet !== false ) {
-					$keys[$this->makeGlobalKey( $action, 'subnet', $subnet )] = $limits['subnet'];
+					$limitBatch->globalOp( 'subnet', $subnet );
 				}
 			}
 		}
 
 		// determine the "per user account" limit
-		$userLimit = false;
-		if ( $id !== 0 && isset( $limits['user'] ) ) {
+		$userEntityType = false;
+		if ( $id !== 0 && isset( $conds['user'] ) ) {
 			// default limit for logged-in users
-			$userLimit = $limits['user'];
+			$userEntityType = 'user';
 		}
 		// limits for newbie logged-in users (overrides all the normal user limits)
-		if ( $id !== 0 && $isNewbie && isset( $limits['newbie'] ) ) {
-			$userLimit = $limits['newbie'];
+		if ( $id !== 0 && $isNewbie && isset( $conds['newbie'] ) ) {
+			$userEntityType = 'newbie';
 		} else {
 			// Check for group-specific limits
 			// If more than one group applies, use the highest allowance (if higher than the default)
 			$userGroups = $this->userGroupManager->getUserGroups( $user );
 			foreach ( $userGroups as $group ) {
-				if ( isset( $limits[$group] ) ) {
-					if ( $userLimit === false
-						// @phan-suppress-next-line PhanTypeArraySuspicious False positive
-						|| $limits[$group][0] / $limits[$group][1] > $userLimit[0] / $userLimit[1]
+				if ( isset( $conds[$group] ) ) {
+					if ( $userEntityType === false
+						|| $conds[$group]->perSecond() > $conds[$userEntityType]->perSecond()
 					) {
-						$userLimit = $limits[$group];
+						$userEntityType = $group;
 					}
 				}
 			}
 		}
 
 		// Set the user limit key
-		if ( $userLimit !== false ) {
-			// phan is confused because &can-bypass's value is a bool, so it assumes
-			// that $userLimit is also a bool here.
-			// @phan-suppress-next-line PhanTypeInvalidExpressionArrayDestructuring
-			[ $max, $period ] = $userLimit;
-			$this->logger->debug( __METHOD__ . ": effective user limit: $max in {$period}s" );
-			$keys[$this->makeLocalKey( $action, 'user', $id )] = $userLimit;
+		if ( $userEntityType !== false ) {
+			$limitBatch->localOp( $userEntityType, $id );
 		}
 
 		// ip-based limits for all ping-limitable users
-		if ( isset( $limits['ip-all'] ) && $ip ) {
+		if ( isset( $conds['ip-all'] ) && $ip ) {
 			// ignore if user limit is more permissive
-			if ( $isNewbie || $userLimit === false
-				// @phan-suppress-next-line PhanTypeArraySuspicious False positive
-				|| $limits['ip-all'][0] / $limits['ip-all'][1] > $userLimit[0] / $userLimit[1] ) {
-				$keys[$this->makeGlobalKey( $action, 'ip-all', $ip )] = $limits['ip-all'];
+			if ( $isNewbie || $userEntityType === false
+				|| $conds['ip-all']->perSecond() > $conds[$userEntityType]->perSecond()
+			) {
+				$limitBatch->globalOp( 'ip-all', $ip );
 			}
 		}
 
 		// subnet-based limits for all ping-limitable users
-		if ( isset( $limits['subnet-all'] ) && $ip ) {
+		if ( isset( $conds['subnet-all'] ) && $ip ) {
 			$subnet = IPUtils::getSubnet( $ip );
 			if ( $subnet !== false ) {
 				// ignore if user limit is more permissive
-				if ( $isNewbie || $userLimit === false
-					// @phan-suppress-next-line PhanTypeArraySuspicious False positive
-					|| $limits['ip-all'][0] / $limits['ip-all'][1]
-					// @phan-suppress-next-line PhanTypeArraySuspicious False positive
-					> $userLimit[0] / $userLimit[1] ) {
-					$keys[$this->makeGlobalKey( $action, 'subnet-all', $subnet )] = $limits['subnet-all'];
+				if ( $isNewbie || $userEntityType === false
+					|| $conds['ip-all']->perSecond() > $conds[$userEntityType]->perSecond()
+				) {
+					$limitBatch->globalOp( 'subnet-all', $subnet );
 				}
 			}
 		}
@@ -281,92 +260,47 @@ class RateLimiter {
 			'ip' => $ip,
 		];
 
-		return $this->checkLimits( $action, $incrBy, $keys, $loggerInfo );
-	}
-
-	private function checkLimits( string $action, int $incrBy, array $limits, array $loggerInfo ): bool {
-		// XXX: We may want to use $this->store->getCurrentTime() here, but that would make it
-		//      harder to test for T246991. Also $this->store->getCurrentTime() is documented
-		//      as being for testing only, so it apparently should not be called here.
-		$now = MWTimestamp::time();
-		$clockFudge = 3; // avoid log spam when a clock is slightly off
-
-		$triggered = false;
-		foreach ( $limits as $key => $limit ) {
-
-			// Do the update in a merge callback, for atomicity.
-			// To use merge(), we need to explicitly track the desired expiry timestamp.
-			// This tracking was introduced to investigate T246991. Once it is no longer needed,
-			// we could go back to incrWithInit(), though that has more potential for race
-			// conditions between the get() and incrWithInit() calls.
-			$this->store->merge(
-				$key,
-				function ( $store, $key, $data, &$expiry )
-				use ( $action, &$triggered, $loggerInfo, $now, $clockFudge, $limit, $incrBy )
-				{
-					// phan is confused because &can-bypass's value is a bool, so it assumes
-					// that $userLimit is also a bool here.
-					[ $max, $period ] = $limit;
-
-					$expiry = $now + (int)$period;
-					$count = 0;
-
-					// Already pinged?
-					if ( $data ) {
-						// NOTE: in order to investigate T246991, we write the expiry time
-						//       into the payload, along with the count.
-						$fields = explode( '|', $data );
-						$storedCount = (int)( $fields[0] ?? 0 );
-						$storedExpiry = (int)( $fields[1] ?? PHP_INT_MAX );
-
-						// Found a stale entry. This should not happen!
-						if ( $storedExpiry < ( $now + $clockFudge ) ) {
-							$this->logger->info(
-								'User::pingLimiter: '
-								. 'Stale rate limit entry, cache key failed to expire (T246991)',
-								[
-									'action' => $action,
-									'limit' => $max,
-									'period' => $period,
-									'count' => $storedCount,
-									'key' => $key,
-									'expiry' => MWTimestamp::convert( TS_DB, $storedExpiry ),
-								] + $loggerInfo
-							);
-						} else {
-							// NOTE: We'll keep the original expiry when bumping counters,
-							//       resulting in a kind of fixed-window throttle.
-							$expiry = min( $storedExpiry, $now + (int)$period );
-							$count = $storedCount;
-						}
-					}
-
-					// Limit exceeded!
-					if ( $count >= $max ) {
-						if ( !$triggered ) {
-							$this->logger->info(
-								'User::pingLimiter: User tripped rate limit',
-								[
-									'action' => $action,
-									'limit' => $max,
-									'period' => $period,
-									'count' => $count,
-									'key' => $key
-								] + $loggerInfo
-							);
-						}
-
-						$triggered = true;
-					}
-
-					$count += $incrBy;
-					$data = "$count|$expiry";
-					return $data;
-				}
+		$batchResult = $limitBatch->tryIncr();
+		foreach ( $batchResult->getFailedResults() as $type => $result ) {
+			$this->logger->info(
+				'User::pingLimiter: User tripped rate limit',
+				[
+					'action' => $action,
+					'limit' => $result->condition->limit,
+					'period' => $result->condition->window,
+					'count' => $result->prevTotal,
+					'key' => $type
+				] + $loggerInfo
 			);
 		}
 
-		return $triggered;
+		return !$batchResult->isAllowed();
+	}
+
+	private function canBypass( string $action ) {
+		return $this->rateLimits[$action]['&can-bypass'] ?? true;
+	}
+
+	/**
+	 * @param string $action
+	 * @return LimitCondition[]
+	 */
+	private function getConditions( $action ) {
+		if ( !isset( $this->rateLimits[$action] ) ) {
+			return [];
+		}
+		$conds = [];
+		foreach ( $this->rateLimits[$action] as $entityType => $limitInfo ) {
+			if ( $entityType[0] === '&' ) {
+				continue;
+			}
+			[ $limit, $window ] = $limitInfo;
+			$conds[$entityType] = new LimitCondition(
+				$limit,
+				$window
+			);
+		}
+		return $conds;
 	}
 
 }
