@@ -317,20 +317,32 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * Determine config overrides, taking into account the local system's actual settings and
 	 * avoiding interference with any custom overrides.
 	 *
-	 * @param Config $baseConfig Used to get the baseline value for settings.
-	 *        This is used when the override should only affect part of a setting
-	 *        that contains a complex structure, such ObjectCaches.
 	 * @param Config|null $customOverrides Custom overrides that should take precedence
 	 *        over the default overrides. Settings from $customOverrides that conflict
 	 *        with a default override will replace that default override.
+	 * @param Config|null $baseConfig Used to get the baseline value for settings.
+	 *        This is used when the override should only affect part of a setting
+	 *        that contains a complex structure, such ObjectCaches.
+	 *        If not given, the original main config will be used.
+	 *        The base config will not be used as a fallback for config keys that are
+	 *        not overwritten, it is only used to determine values of keys that are
+	 *        overwritten.
 	 *
 	 * @return array Config overrides
 	 */
-	private static function getConfigOverrides(
-		Config $baseConfig,
-		Config $customOverrides = null
+	public static function getConfigOverrides(
+		Config $customOverrides = null,
+		Config $baseConfig = null
 	): array {
 		$overrides = [];
+
+		if ( !$baseConfig ) {
+			if ( self::$originalServices ) {
+				$baseConfig = self::$originalServices->getMainConfig();
+			} else {
+				$baseConfig = MediaWikiServices::getInstance()->getMainConfig();
+			}
+		}
 
 		/* Some functions require some kind of caching, and will end up using the db,
 		 * which we can't allow, as that would open a new connection for mysql.
@@ -1133,6 +1145,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$serviceConfig = $this->overriddenConfig;
 		}
 
+		// NOTE: $serviceConfig doesn't have the overrides yet, they will be added
+		//       by calling overrideConfigValues() below.
 		$newInstance = self::installMockMwServices( $serviceConfig );
 
 		if ( $this->localServices ) {
@@ -1142,10 +1156,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$this->localServices = $newInstance;
 
 		// Determine the config overrides that should apply during testing.
-		$configOverrides = self::getConfigOverrides(
-			self::$originalServices->getMainConfig(),
-			$customOverrides
-		);
+		$configOverrides = self::getConfigOverrides( $customOverrides );
 
 		$this->overrideConfigValues( $configOverrides );
 
@@ -1164,21 +1175,38 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * the ConfigFactory and the DBLoadBalancerFactory service, which are inherited from
 	 * the original MediaWikiServices.
 	 *
+	 * @warning This method interacts with global state in a complex way. There should
+	 * generally be no need to call it directly. Subclasses should use more specific methods
+	 * like setService() or overrideConfigValues() instead.
+	 *
 	 * @note The new original MediaWikiServices instance can later be restored by calling
 	 * restoreMwServices(). That original is determined by the first call to this method, or
 	 * by setUpBeforeClass, whichever is called first. The caller is responsible for managing
 	 * and, when appropriate, destroying any other MediaWikiServices instances that may get
 	 * replaced when calling this method.
 	 *
-	 * @param Config|null $configOverrides Configuration overrides for the new MediaWikiServices
-	 *        instance.
+	 * @param Config|array|null $configOverrides Configuration overrides for the new
+	 *        MediaWikiServices instance. Should be constructed by calling getConfigOverrides(),
+	 *        to ensure that the configuration is safe for testing.
 	 *
 	 * @return MediaWikiServices the new mock service locator.
 	 */
-	public static function installMockMwServices( Config $configOverrides = null ) {
+	public static function installMockMwServices( $configOverrides = null ) {
 		// Make sure we have the original service locator
 		if ( !self::$originalServices ) {
 			self::$originalServices = MediaWikiServices::getInstance();
+		}
+
+		if ( $configOverrides === null ) {
+			// Only use the default overrides if $configOverrides is not given.
+			// Don't try to be smart and combine the custom overrides with the default overrides.
+			// This gives overrideMwServices() full control over the configuration when it calls
+			// this method.
+			$configOverrides = self::getConfigOverrides();
+		}
+
+		if ( is_array( $configOverrides ) ) {
+			$configOverrides = new HashConfig( $configOverrides );
 		}
 
 		// (T247990) Cache the original service wirings to work around a memory leak on PHP 7.4 and above
@@ -1194,12 +1222,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$oldLoadBalancerFactory = self::$originalServices->getDBLoadBalancerFactory();
 
 		$originalConfig = self::$originalServices->getBootstrapConfig();
-
-		if ( $configOverrides ) {
-			$testConfig = new MultiConfig( [ $configOverrides, $originalConfig ] );
-		} else {
-			$testConfig = $originalConfig;
-		}
+		$testConfig = new MultiConfig( [ $configOverrides, $originalConfig ] );
 
 		$newServices = new MediaWikiServices( $testConfig );
 
