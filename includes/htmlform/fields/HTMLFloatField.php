@@ -17,7 +17,7 @@ class HTMLFloatField extends HTMLTextField {
 			return $p;
 		}
 
-		$value = trim( $value );
+		$value = trim( $value ?? '' );
 
 		# https://www.w3.org/TR/html5/infrastructure.html#floating-point-numbers
 		# with the addition that a leading '+' sign is ok.
