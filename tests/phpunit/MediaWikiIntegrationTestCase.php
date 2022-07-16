@@ -1229,6 +1229,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				[ 'main' => $bootstrapConfig ]
 			)
 		);
+		$newServices->resetServiceForTesting( 'LocalServerObjectCache' );
 		$newServices->redefineService(
 			'LocalServerObjectCache',
 			static function ( MediaWikiServices $services ) {
