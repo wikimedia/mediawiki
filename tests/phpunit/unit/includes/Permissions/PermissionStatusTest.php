@@ -35,6 +35,9 @@ class PermissionStatusTest extends MediaWikiUnitTestCase {
 		$this->assertStatusOK( $status );
 		$this->assertStatusGood( $status );
 		$this->assertSame( [], $status->getErrors() );
+
+		// should not throw!
+		$status->throwErrorPageError();
 	}
 
 	public function testBlock() {
@@ -46,6 +49,7 @@ class PermissionStatusTest extends MediaWikiUnitTestCase {
 		$status->setBlock( $block );
 
 		$this->assertSame( $block, $status->getBlock() );
+		$this->assertTrue( $status->isBlocked() );
 		$this->assertFalse( $status->isOK() );
 	}
 

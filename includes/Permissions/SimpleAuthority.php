@@ -87,7 +87,7 @@ class SimpleAuthority implements Authority {
 	 *
 	 * @return bool
 	 */
-	public function isAllowed( string $permission ): bool {
+	public function isAllowed( string $permission, PermissionStatus $status = null ): bool {
 		return isset( $this->permissions[ $permission ] );
 	}
 
@@ -164,6 +164,7 @@ class SimpleAuthority implements Authority {
 	/**
 	 * @inheritDoc
 	 *
+	 * @since 1.40
 	 * @param string $action
 	 * @param PageIdentity $target
 	 * @param PermissionStatus|null $status
@@ -175,6 +176,30 @@ class SimpleAuthority implements Authority {
 		PageIdentity $target,
 		PermissionStatus $status = null
 	): bool {
+		return $this->checkPermission( $action, $status );
+	}
+
+	/**
+	 * @inheritDoc
+	 *
+	 * @since 1.41
+	 * @param string $action
+	 * @param PermissionStatus|null $status
+	 * @return bool
+	 */
+	public function isDefinitelyAllowed( string $action, PermissionStatus $status = null ): bool {
+		return $this->checkPermission( $action, $status );
+	}
+
+	/**
+	 * @inheritDoc
+	 *
+	 * @since 1.41
+	 * @param string $action
+	 * @param PermissionStatus|null $status
+	 * @return bool
+	 */
+	public function authorizeAction( string $action, PermissionStatus $status = null ): bool {
 		return $this->checkPermission( $action, $status );
 	}
 

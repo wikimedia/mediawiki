@@ -89,6 +89,22 @@ class SimpleAuthorityTest extends MediaWikiUnitTestCase {
 		$this->assertStatusNotOK( $status );
 	}
 
+	public function testAuthorize() {
+		$actor = new UserIdentityValue( 12, 'Test' );
+		$authority = new SimpleAuthority( $actor, [ 'foo', 'bar' ] );
+
+		$this->assertTrue( $authority->authorizeAction( 'foo' ) );
+		$this->assertTrue( $authority->authorizeAction( 'bar' ) );
+		$this->assertFalse( $authority->authorizeAction( 'quux' ) );
+
+		$status = new PermissionStatus();
+		$authority->authorizeAction( 'foo', $status );
+		$this->assertStatusOK( $status );
+
+		$authority->authorizeAction( 'quux', $status );
+		$this->assertStatusNotOK( $status );
+	}
+
 	public function testAuthorizeRead() {
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
 		$actor = new UserIdentityValue( 12, 'Test' );
