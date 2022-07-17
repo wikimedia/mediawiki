@@ -409,17 +409,17 @@ class ImportImages extends Maintenance {
 			$this->output( "\n" );
 			foreach (
 				[
-					'count' => 'Found',
-					'limit' => 'Limit',
-					'ignored' => 'Ignored',
-					'added' => 'Added',
-					'skipped' => 'Skipped',
-					'overwritten' => 'Overwritten',
-					'failed' => 'Failed'
-				] as $var => $desc
+					'Found' => $count,
+					'Limit' => $limit,
+					'Ignored' => $ignored,
+					'Added' => $added,
+					'Skipped' => $skipped,
+					'Overwritten' => $overwritten,
+					'Failed' => $failed,
+				] as $desc => $number
 			) {
-				if ( $$var > 0 ) {
-					$this->output( "{$desc}: {$$var}\n" );
+				if ( $number > 0 ) {
+					$this->output( "{$desc}: {$number}\n" );
 				}
 			}
 		} else {
