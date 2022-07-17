@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -13,9 +14,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	 * @covers Linker::userLink
 	 */
 	public function testUserLink( $expected, $userId, $userName, $altUserName = false, $msg = '' ) {
-		$this->setMwGlobals( [
-			'wgArticlePath' => '/wiki/$1',
-		] );
+		$this->overrideConfigValue( MainConfigNames::ArticlePath, '/wiki/$1' );
 
 		// We'd also test the warning, but injecting a mock logger into a static method is tricky.
 		if ( !$userName ) {
@@ -633,9 +632,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideTooltipAndAccesskeyAttribs
 	 */
 	public function testTooltipAndAccesskeyAttribs( $name, $msgParams, $options, $expected ) {
-		$this->setMwGlobals( [
-			'wgWatchlistExpiry' => true,
-		] );
+		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 		$user = $this->createMock( User::class );
 		$user->method( 'isRegistered' )->willReturn( true );
 

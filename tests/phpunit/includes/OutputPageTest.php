@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
@@ -82,9 +83,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'Sitename' => false,
 		] );
 		$outputPage->setTitle( Title::makeTitle( NS_MAIN, 'Test' ) );
-		$this->setMwGlobals( [
-			'wgScript' => '/w/index.php',
-		] );
+		$this->overrideConfigValue( MainConfigNames::Script, '/w/index.php' );
 		return $outputPage;
 	}
 
@@ -404,7 +403,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @covers OutputPage::addParserOutput
 	 */
 	public function testCSPParserOutput() {
-		$this->setMwGlobals( [ 'wgCSPHeader' => [] ] );
+		$this->overrideConfigValue( MainConfigNames::CSPHeader, [] );
 		foreach ( [ 'Default', 'Script', 'Style' ] as $type ) {
 			$op = $this->newInstance();
 			$ltype = strtolower( $type );
@@ -1255,7 +1254,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	private function setupCategoryTests(
 		array $fakeResults, callable $variantLinkCallback = null
 	): OutputPage {
-		$this->setMwGlobals( 'wgUsePigLatinVariant', true );
+		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 
 		if ( $variantLinkCallback ) {
 			$mockContLang = $this->createMock( Language::class );
@@ -1867,7 +1866,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		self::$parserOutputHookCalled = [];
 
-		$this->setMwGlobals( 'wgParserOutputHooks', [
+		$this->overrideConfigValue( MainConfigNames::ParserOutputHooks, [
 			'myhook' => function ( OutputPage $innerOp, ParserOutput $innerPOut, $data )
 			use ( $op, $pOut ) {
 				$this->assertSame( $op, $innerOp );
@@ -2253,7 +2252,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		// We have to reset the cookies because getCacheVaryCookies may have already been called
 		TestingAccessWrapper::newFromClass( OutputPage::class )->cacheVaryCookies = null;
 
-		$this->setMwGlobals( 'wgCacheVaryCookies', [ 'cookie1' ] );
+		$this->overrideConfigValue( MainConfigNames::CacheVaryCookies, [ 'cookie1' ] );
 		$this->setTemporaryHook( 'GetCacheVaryCookies',
 			function ( $innerOP, &$cookies ) use ( $op, $expectedCookies ) {
 				$this->assertSame( $op, $innerOP );
@@ -2598,10 +2597,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @covers OutputPage::makeResourceLoaderLink
 	 */
 	public function testMakeResourceLoaderLink( $args, $expectedHtml ) {
-		$this->setMwGlobals( [
-			'wgResourceLoaderDebug' => false,
-			'wgLoadScript' => 'http://127.0.0.1:8080/w/load.php',
-			'wgCSPReportOnlyHeader' => true,
+		$this->overrideConfigValues( [
+			MainConfigNames::ResourceLoaderDebug => false,
+			MainConfigNames::LoadScript => 'http://127.0.0.1:8080/w/load.php',
+			MainConfigNames::CSPReportOnlyHeader => true,
 		] );
 		$class = new ReflectionClass( OutputPage::class );
 		$method = $class->getMethod( 'makeResourceLoaderLink' );
@@ -2719,12 +2718,12 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @covers OutputPage::buildExemptModules
 	 */
 	public function testBuildExemptModules( array $exemptStyleModules, $expect ) {
-		$this->setMwGlobals( [
-			'wgResourceLoaderDebug' => false,
-			'wgLoadScript' => '/w/load.php',
+		$this->overrideConfigValues( [
+			MainConfigNames::ResourceLoaderDebug => false,
+			MainConfigNames::LoadScript => '/w/load.php',
 			// Stub wgCacheEpoch as it influences getVersionHash used for the
 			// urls in the expected HTML
-			'wgCacheEpoch' => '20140101000000',
+			MainConfigNames::CacheEpoch => '20140101000000',
 		] );
 
 		// Set up stubs

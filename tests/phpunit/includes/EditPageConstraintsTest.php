@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\EditPage\SpamChecker;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 
 /**
@@ -18,14 +19,14 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setContentLang( $this->getServiceContainer()->getContentLanguage() );
-
-		$this->setMwGlobals( [
-			'wgExtraNamespaces' => [
+		$contLang = $this->getServiceContainer()->getContentLanguage();
+		$this->overrideConfigValues( [
+			MainConfigNames::ExtraNamespaces => [
 				12312 => 'Dummy',
 				12313 => 'Dummy_talk',
 			],
-			'wgNamespaceContentModels' => [ 12312 => 'testing' ],
+			MainConfigNames::NamespaceContentModels => [ 12312 => 'testing' ],
+			MainConfigNames::LanguageCode => $contLang->getCode(),
 		] );
 		$this->mergeMwGlobalArrayValue(
 			'wgContentHandlers',
@@ -524,9 +525,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	/** PageSizeConstraint integration */
 	public function testPageSizeConstraintBeforeMerge() {
 		// Max size: 1 kibibyte
-		$this->setMwGlobals( [
-			'wgMaxArticleSize' => 1
-		] );
+		$this->overrideConfigValue( MainConfigNames::MaxArticleSize, 1 );
 
 		$edit = [
 			'wpTextbox1' => str_repeat( 'text', 1000 )
@@ -544,9 +543,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	/** PageSizeConstraint integration */
 	public function testPageSizeConstraintAfterMerge() {
 		// Max size: 1 kibibyte
-		$this->setMwGlobals( [
-			'wgMaxArticleSize' => 1
-		] );
+		$this->overrideConfigValue( MainConfigNames::MaxArticleSize, 1 );
 
 		$edit = [
 			'wpSection' => 'new',

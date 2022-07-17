@@ -2,6 +2,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Rest\Handler\MediaTestTrait;
@@ -72,7 +73,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		// To avoid problems with namespace localization
-		$this->setMwGlobals( 'wgLanguageCode', 'en' );
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
 
 		// Ensure we have some pages that are guaranteed to exist or not
 		$this->getExistingTestPage( 'Existent' );

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group Database
  * @group Category
@@ -8,13 +10,15 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgAllowUserJs' => false,
-			'wgDefaultLanguageVariant' => false,
-			'wgMetaNamespace' => 'Project',
-		] );
 		$this->setUserLang( 'en' );
-		$this->setContentLang( 'en' );
+
+		$this->overrideConfigValues( [
+			MainConfigNames::AllowUserJs => false,
+			MainConfigNames::DefaultLanguageVariant => false,
+			MainConfigNames::MetaNamespace => 'Project',
+			MainConfigNames::LanguageCode => 'en',
+		] );
+
 		$this->tablesUsed[] = 'category';
 	}
 

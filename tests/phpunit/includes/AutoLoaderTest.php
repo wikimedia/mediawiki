@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -63,13 +64,13 @@ class AutoLoaderTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testWrongCaseClass() {
-		$this->setMwGlobals( 'wgAutoloadAttemptLowercase', true );
+		$this->overrideConfigValue( MainConfigNames::AutoloadAttemptLowercase, true );
 
 		$this->assertTrue( class_exists( 'testautoLoadedcamlCLASS' ) );
 	}
 
 	public function testWrongCaseSerializedClass() {
-		$this->setMwGlobals( 'wgAutoloadAttemptLowercase', true );
+		$this->overrideConfigValue( MainConfigNames::AutoloadAttemptLowercase, true );
 
 		$dummySer = 'O:29:"testautoloadedserializedclass":0:{}';
 		$dummy = unserialize( $dummySer );

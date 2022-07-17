@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
@@ -177,16 +178,16 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers MergeHistory::merge
 	 */
 	public function testSourceUpdateForNoRedirectSupport() {
-		$this->setMwGlobals( [
-			'wgExtraNamespaces' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::ExtraNamespaces => [
 				2030 => 'NoRedirect',
 				2030 => 'NoRedirect_talk'
 			],
 
-			'wgNamespaceContentModels' => [
+			MainConfigNames::NamespaceContentModels => [
 				2030 => 'testing'
 			],
-			'wgContentHandlers' => [
+			MainConfigNames::ContentHandlers => [
 				// Relies on the DummyContentHandlerForTesting not
 				// supporting redirects by default. If this ever gets
 				// changed this test has to be fixed.
@@ -205,6 +206,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $title->exists() );
 
 		$status = $mh->merge( static::getTestSysop()->getUser() );
+		$this->assertStatusOK( $status );
 
 		$this->assertFalse( $title->exists() );
 	}

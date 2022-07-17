@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * Test class for Export methods.
  *
@@ -11,9 +13,7 @@ class ExportTest extends MediaWikiLangTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( [
-			'wgCapitalLinks' => true,
-		] );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, true );
 	}
 
 	/**

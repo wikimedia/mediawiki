@@ -1,13 +1,13 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 class HtmlTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgUseMediaWikiUIEverywhere' => false,
-		] );
+		$this->overrideConfigValue( MainConfigNames::UseMediaWikiUIEverywhere, false );
 
 		$langFactory = $this->getServiceContainer()->getLanguageFactory();
 		$contLangObj = $langFactory->getLanguage( 'en' );
