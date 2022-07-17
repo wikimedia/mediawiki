@@ -128,6 +128,7 @@ MediaWiki supports over 350 languages. Many localisations are updated regularly.
 Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
+* (T311975) Added language support for Ghanaian Pidgin (gpe).
 * (T307080) Added language support for Okinawan (ryu).
 * (T307887) Added language support for Mooré (mos).
 * (T308813) Added language support for Nigerian Pidgin (pcm).

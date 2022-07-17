@@ -186,6 +186,7 @@ class Names {
 		'gom-latn' => 'Gõychi Konknni', # Goan Konkani (Latin script)
 		'gor' => 'Bahasa Hulontalo', # Gorontalo
 		'got' => '𐌲𐌿𐍄𐌹𐍃𐌺', # Gothic
+		'gpe' => 'Ghanaian Pidgin', # Ghanaian Pidgin
 		'grc' => 'Ἀρχαία ἑλληνικὴ', # Ancient Greek
 		'gsw' => 'Alemannisch', # Alemannic
 		'gu' => 'ગુજરાતી', # Gujarati
