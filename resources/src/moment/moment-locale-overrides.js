@@ -1,6 +1,14 @@
 /* global moment */
 
 ( function () {
+	// Define a locale if the current language doesn't have one, so that we can apply overrides
+	// without affecting the defaults for English (T313188)
+	if ( moment.locale() === 'en' && mw.config.get( 'wgUserLanguage' ) !== 'en' ) {
+		moment.defineLocale( mw.config.get( 'wgUserLanguage' ), {
+			parentLocale: 'en'
+		} );
+	}
+
 	// HACK: Overwrite moment's i18n with MediaWiki's for the current language so that
 	// wgTranslateNumerals is respected.
 	moment.updateLocale( moment.locale(), {
