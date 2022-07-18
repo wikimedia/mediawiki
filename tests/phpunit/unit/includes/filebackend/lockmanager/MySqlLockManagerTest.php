@@ -30,11 +30,8 @@ class MySqlLockManagerTest extends MediaWikiUnitTestCase {
 	 *     on already (locksHeld member)
 	 */
 	public function testGetLocksOnServer( array $params ) {
-		$mockDb = $this->createMock( IDatabase::class );
-
-		$mockDb->expects( $this->never() )->method( $this->anythingBut( 'query', 'startAtomic',
-			'selectField', 'insert', 'setSessionOptions', 'trxLevel', 'rollback', 'close',
-			'addQuotes' ) );
+		$mockDb = $this->createNoOpMock( IDatabase::class, [ 'query', 'startAtomic', 'selectField',
+			'insert', 'setSessionOptions', 'trxLevel', 'rollback', 'close', 'addQuotes' ] );
 
 		$isolationSet = false;
 		$trxStarted = false;
@@ -279,12 +276,10 @@ class MySqlLockManagerTest extends MediaWikiUnitTestCase {
 	 * @param int $expectedRollbacks How many times we expect rollback() to be called
 	 */
 	public function testReleaseAllLocks( $trxLevel, $expectedRollbacks ) {
-		$mockDb = $this->createMock( IDatabase::class );
+		$mockDb = $this->createNoOpMock( IDatabase::class, [ 'query', 'startAtomic', 'selectField',
+			'insert', 'setSessionOptions', 'trxLevel', 'rollback', 'close', 'addQuotes' ] );
 		$mockDb->expects( $this->once() )->method( 'trxLevel' )->willReturn( $trxLevel );
 		$mockDb->expects( $this->exactly( $expectedRollbacks ) )->method( 'rollback' );
-		$mockDb->expects( $this->never() )->method( $this->anythingBut( 'query', 'startAtomic',
-			'selectField', 'insert', 'setSessionOptions', 'trxLevel', 'rollback', 'close',
-			'addQuotes' ) );
 
 		$lm = new MySqlLockManager( [
 			'dbServers' => [ 'main' => $mockDb ],
@@ -310,14 +305,12 @@ class MySqlLockManagerTest extends MediaWikiUnitTestCase {
 	 * @covers MySqlLockManager::releaseAllLocks
 	 */
 	public function testReleaseAllLocks_exception() {
-		$mockDb = $this->createMock( IDatabase::class );
+		$mockDb = $this->createNoOpMock( IDatabase::class, [ 'query', 'startAtomic', 'selectField',
+			'insert', 'setSessionOptions', 'trxLevel', 'rollback', 'close', 'addQuotes' ] );
 		// These methods will be called once by unlock() and again by destructor
 		$mockDb->expects( $this->exactly( 2 ) )->method( 'trxLevel' )->willReturn( 1 );
 		$mockDb->expects( $this->exactly( 2 ) )->method( 'rollback' )
 			->will( $this->throwException( new DBError( $mockDb, '' ) ) );
-		$mockDb->expects( $this->never() )->method( $this->anythingBut( 'query', 'startAtomic',
-			'selectField', 'insert', 'setSessionOptions', 'trxLevel', 'rollback', 'close',
-			'addQuotes' ) );
 
 		$lm = new MySqlLockManager( [
 			'dbServers' => [ 'main' => $mockDb ],
