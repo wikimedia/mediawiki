@@ -18,18 +18,8 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	 */
 	private function getLoadBalancerMock() {
 		$lb = $this->createMock( ILoadBalancer::class );
-
-		$lb->method( 'getConnection' )->willReturnCallback(
-			function () {
-				return $this->getDatabaseMock();
-			}
-		);
-
-		$lb->method( 'getConnectionInternal' )->willReturnCallback(
-			function () {
-				return $this->getDatabaseMock();
-			}
-		);
+		$lb->method( 'getConnection' )->willReturn( $this->getDatabaseMock() );
+		$lb->method( 'getConnectionInternal' )->willReturn( $this->getDatabaseMock() );
 
 		$lb->method( 'getConnectionRef' )->willReturnCallback(
 			function () use ( $lb ) {
@@ -90,11 +80,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		$lb->expects( $this->once() )
 			->method( 'getConnectionInternal' )
 			->with( DB_PRIMARY, [ 'test' ], 'dummy', ILoadBalancer::CONN_TRX_AUTOCOMMIT )
-			->willReturnCallback(
-				function () {
-					return $this->getDatabaseMock();
-				}
-			);
+			->willReturn( $this->getDatabaseMock() );
 
 		$ref = new DBConnRef(
 			$lb,
