@@ -1147,11 +1147,14 @@ class PageUpdater {
 			}
 		}
 
-		$rev->setPageId( $title->getArticleID() );
-
 		if ( $parent ) {
 			$oldid = $parent->getId();
 			$rev->setParentId( $oldid );
+
+			if ( $title->getArticleID() !== $parent->getPageId() ) {
+				wfWarn( __METHOD__ . ': Encountered stale Title object with no page ID! '
+					. 'Using page ID from parent revision: ' . $parent->getPageId() );
+			}
 		} else {
 			$oldid = 0;
 		}
