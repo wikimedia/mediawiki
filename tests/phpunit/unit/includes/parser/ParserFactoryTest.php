@@ -49,9 +49,8 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$urlUtils = $this->createMock( UrlUtils::class );
+		$urlUtils = $this->createNoOpMock( UrlUtils::class, [ 'validProtocols' ] );
 		$urlUtils->method( 'validProtocols' )->willReturn( 'http:\/\/|https:\/\/' );
-		$urlUtils->expects( $this->never() )->method( $this->anythingBut( 'validProtocols' ) );
 
 		$factory = new ParserFactory(
 			$options,

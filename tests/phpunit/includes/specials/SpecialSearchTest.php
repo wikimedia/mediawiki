@@ -482,10 +482,8 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		$searchTerm = "Test create link not shown if variant link is known";
 		$variantLink = "the replaced link variant text should not be visible";
 
-		$variantTitle = $this->createNoOpMock(
-			Title::class,
-			[ 'isKnown', 'getPrefixedText', 'getDBkey', 'isExternal' ]
-		);
+		$variantTitle = $this->createNoOpMock( Title::class, [ 'isKnown', 'getPrefixedText',
+			'getDBkey', 'isExternal' ] );
 
 		$variantTitle->method( "isKnown" )->willReturn( true );
 		$variantTitle->method( "isExternal" )->willReturn( false );

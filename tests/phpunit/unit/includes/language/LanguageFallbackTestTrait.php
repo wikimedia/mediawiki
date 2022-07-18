@@ -39,7 +39,7 @@ trait LanguageFallbackTestTrait {
 	 * @return LocalisationCache
 	 */
 	protected function getMockLocalisationCache( $expectedGets, $map ) {
-		$mockLocCache = $this->createMock( LocalisationCache::class );
+		$mockLocCache = $this->createNoOpMock( LocalisationCache::class, [ 'getItem' ] );
 		$mockLocCache->expects( $this->exactly( $expectedGets ) )->method( 'getItem' )
 			->with( $this->anything(),
 				$this->logicalOr( 'fallbackSequence', 'originalFallbackSequence' ) )
@@ -53,7 +53,6 @@ trait LanguageFallbackTestTrait {
 				}
 				return $fallbacks;
 			} );
-		$mockLocCache->expects( $this->never() )->method( $this->anythingBut( 'getItem' ) );
 		return $mockLocCache;
 	}
 
