@@ -2497,6 +2497,7 @@
 	"deleteprotected": "Non puoi cancellare questa pagina perché è stata protetta.",
 	"deleting-backlinks-warning": "<strong>Attenzione:</strong> [[Special:WhatLinksHere/{{FULLPAGENAME}}|altre pagine]] contengono collegamenti o inclusioni alla pagina che stai per cancellare.",
 	"deleting-subpages-warning": "<strong>Attenzione:</strong> la pagina che stai per cancellare ha [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|una sottopagina|$1 sottopagine|51=più di 50 sottopagine}}]].",
+	"deleting-talkpage-subpages-warning": "<strong>Attenzione:</strong> La pagina di discussione associata alla pagina che stai cancellando ha [[Special:PrefixIndex/{{TALKPAGENAME}}/|{{PLURAL:$1|una sottopagina|$1 sottopagine|51=più di 50 sottopagine}}]].",
 	"rollback": "Annulla le modifiche",
 	"rollback-confirmation-confirm": "Per favore conferma:",
 	"rollback-confirmation-yes": "Rollback",

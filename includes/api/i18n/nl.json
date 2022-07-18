@@ -99,7 +99,7 @@
 	"apihelp-edit-param-title": "Naam van de te bewerken pagina. Kan niet in combinatie met <var>$1pageid</var> gebruikt worden.",
 	"apihelp-edit-param-pageid": "Pagina-ID van de te bewerken pagina. Kan niet in combinatie met <var>$1title</var> gebruikt worden.",
 	"apihelp-edit-param-section": "Sectie identificatiecode. <kbd>0</kbd> voor de bovenste sectie, <kbd>new</kbd> voor een nieuwe sectie. Meestal een positief getal, maar kan ook niet-numeriek zijn.",
-	"apihelp-edit-param-sectiontitle": "De naam van een nieuwe sectie.",
+	"apihelp-edit-param-sectiontitle": "De titel van een nieuwe sectie bij gebruik van <var>$1 section=new</var>.",
 	"apihelp-edit-param-text": "Pagina-inhoud.",
 	"apihelp-edit-param-tags": "De labels voor de revisie wijzigen.",
 	"apihelp-edit-param-minor": "Mankeer deze bewerking als een kleine bewerking.",

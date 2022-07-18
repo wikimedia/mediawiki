@@ -285,7 +285,7 @@
 	"confirmable-confirm": "Sigurado {{GENDER:$1|ka}} ba?",
 	"confirmable-yes": "Oo",
 	"confirmable-no": "Hindi",
-	"thisisdeleted": "Tingnan o ibalik ang $1?",
+	"thisisdeleted": "Tingnan o i-undelete ang $1?",
 	"viewdeleted": "Tingnan ang $1?",
 	"restorelink": "{{PLURAL:$1|isang binurang pagbabago|$1 binurang pagbabago}}",
 	"feed-invalid": "Hindi tanggap na uri ng serbisyo ng pagpaparating.",

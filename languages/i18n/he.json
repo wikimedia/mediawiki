@@ -2230,7 +2230,7 @@
 	"activeusers-noresult": "לא נמצאו משתמשים.",
 	"activeusers-submit": "הצגת משתמשים פעילים",
 	"listgrouprights": "רשימת הרשאות לקבוצה",
-	"listgrouprights-summary": "זוהי רשימה של קבוצות המשתמש המוגדרות באתר זה, עם ההרשאות של כל קבוצה.\nמידע נוסף על ההרשאות ניתן למצוא [[{{MediaWiki:Listgrouprights-helppage}}|כאן]].",
+	"listgrouprights-summary": "זוהי רשימה של קבוצות המשתמש המוגדרות בוויקי הזה, עם ההרשאות של כל קבוצה.\nייתכן שיש [[{{MediaWiki:Listgrouprights-helppage}}|מידע נוסף]] על הרשאות פרטניות.",
 	"listgrouprights-key": "מקרא:\n* <span class=\"listgrouprights-granted\">הרשאה שניתנת</span>\n* <span class=\"listgrouprights-revoked\">הרשאה שנשללת</span>",
 	"listgrouprights-group": "קבוצה",
 	"listgrouprights-rights": "הרשאות",

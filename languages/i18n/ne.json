@@ -1053,7 +1053,7 @@
 	"editinguser": "प्रयोगकर्ता '''[[User:$1|$1]]''' $2 को अधिकार परिवर्तन गर्ने\n{{GENDER:$1|प्रयोगकर्ता}}को प्रयोगकर्ता अधिकार परिवर्तन हुँदैछ <strong>[[User:$1|$1]]</strong> $2",
 	"viewinguserrights": "{{GENDER:$1|user}} <strong>[[User:$1|$1]]</strong> $2 काे प्रयाेगकर्ता अधिकारहरू हेर्दै",
 	"userrights-editusergroup": "{{GENDER:$1|प्रयोगकर्ता}} समूहहरू सम्पादन गर्नुहोस्",
-	"userrights-viewusergroup": "{{GENDER:$1|प्रयोगकर्ता}} समूहहरू हेर्नुहोस्।",
+	"userrights-viewusergroup": "{{GENDER:$1|प्रयोगकर्ता}} समूहहरू हेर्नुहोस्",
 	"saveusergroups": "{{GENDER:$1|प्रयोगकर्ता}} समूहहरू सङ्ग्रह गर्नुहोस्",
 	"userrights-groupsmember": "को सदस्य:",
 	"userrights-groupsmember-auto": "अंतर्निहित सदस्य:",

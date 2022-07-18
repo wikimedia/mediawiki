@@ -307,6 +307,7 @@
 	"perfcachedts": "下列係緩存數據，其最後更新時間係$1。單淨有{{PLURAL:$4|一嘅結果|$4嘅結果}}會畀顯示。",
 	"querypage-no-updates": "當前禁止對邇頁面進行更新。\n邇位嘅數據將做毋得分立即重新整理。",
 	"viewsource": "Khon ngièn-sṳ́-mâ",
+	"skin-action-viewsource": "khon ngièn-sṳ́-mâ",
 	"viewsource-title": "Khon $1 ke ngièn-sṳ́-mâ",
 	"actionthrottled": "動作已經壓制",
 	"actionthrottledtext": "基於反垃圾嘅考量，短時間內毋可以多次重複某操作，今下汝已經超過邇隻上限。\n請在數分鐘後再嘗試。",
