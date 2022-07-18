@@ -502,7 +502,7 @@ class UserrightsPage extends SpecialPage {
 		$logEntry = new ManualLogEntry( 'rights', 'rights' );
 		$logEntry->setPerformer( $this->getUser() );
 		$logEntry->setTarget( $user->getUserPage() );
-		$logEntry->setComment( $reason );
+		$logEntry->setComment( is_string( $reason ) ? $reason : "" );
 		$logEntry->setParameters( [
 			'4::oldgroups' => $oldGroups,
 			'5::newgroups' => $newGroups,
