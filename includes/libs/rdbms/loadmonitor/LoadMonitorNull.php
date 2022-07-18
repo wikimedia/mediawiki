@@ -22,6 +22,7 @@
 namespace Wikimedia\Rdbms;
 
 use BagOStuff;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use Psr\Log\LoggerInterface;
 use WANObjectCache;
 
@@ -32,6 +33,9 @@ class LoadMonitorNull implements ILoadMonitor {
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
+	}
+
+	public function setStatsdDataFactory( StatsdDataFactoryInterface $statsFactory ) {
 	}
 
 	public function scaleLoads( array &$loads, $domain ) {
