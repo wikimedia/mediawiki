@@ -50,6 +50,7 @@ use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Core\SelserData;
+use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
@@ -585,7 +586,7 @@ abstract class ParsoidHandler extends Handler {
 			$metrics->increment( 'wt2html.parse.version.notdefault' );
 		}
 
-		$parsoid = new Parsoid( $this->siteConfig, $this->dataAccess );
+		$parsoid = $this->newParsoid();
 
 		if ( $doSubst ) {
 			if ( $format !== ParsoidFormatHelper::FORMAT_HTML ) {
@@ -769,6 +770,14 @@ abstract class ParsoidHandler extends Handler {
 		return $response;
 	}
 
+	protected function newParsoid(): Parsoid {
+		return new Parsoid( $this->siteConfig, $this->dataAccess );
+	}
+
+	protected function parseHTML( string $html, bool $validateXMLNames = false ): Document {
+		return DOMUtils::parseHTML( $html, true );
+	}
+
 	/**
 	 * HTML -> wikitext helper.
 	 *
@@ -789,7 +798,7 @@ abstract class ParsoidHandler extends Handler {
 		$timing = Timing::start( $metrics );
 
 		try {
-			$doc = DOMUtils::parseHTML( $html, true );
+			$doc = $this->parseHTML( $html, true );
 		} catch ( ClientError $e ) {
 			throw new HttpException( $e->getMessage(), 400 );
 		}
@@ -844,7 +853,7 @@ abstract class ParsoidHandler extends Handler {
 					$downgradeTiming = Timing::start( $metrics );
 					Parsoid::downgrade( $downgrade, $origPb );
 					$downgradeTiming->end( 'downgrade.time' );
-					$oldBody = DOMCompat::getBody( DOMUtils::parseHTML( $origPb->html ) );
+					$oldBody = DOMCompat::getBody( $this->parseHTML( $origPb->html ) );
 				} else {
 					throw new HttpException(
 						"Modified ({$vEdited}) and original ({$vOriginal}) html are of "
@@ -919,7 +928,7 @@ abstract class ParsoidHandler extends Handler {
 			// If we got original html, parse it
 			if ( isset( $original['html'] ) ) {
 				if ( !$oldBody ) {
-					$oldBody = DOMCompat::getBody( DOMUtils::parseHTML( $original['html']['body'] ) );
+					$oldBody = DOMCompat::getBody( $this->parseHTML( $original['html']['body'] ) );
 				}
 				if ( $opts['from'] === ParsoidFormatHelper::FORMAT_PAGEBUNDLE && $origPb !== null ) {
 					$this->validatePb( $origPb, $envOptions['inputContentVersion'] );
@@ -951,7 +960,7 @@ abstract class ParsoidHandler extends Handler {
 			$selserData = null;
 		}
 
-		$parsoid = new Parsoid( $this->siteConfig, $this->dataAccess );
+		$parsoid = $this->newParsoid();
 
 		$timing->end( 'html2wt.init' );
 
@@ -1064,7 +1073,7 @@ abstract class ParsoidHandler extends Handler {
 			Parsoid::downgrade( $downgrade, $pb );
 
 			if ( !empty( $attribs['body_only'] ) ) {
-				$doc = DOMUtils::parseHTML( $pb->html );
+				$doc = $this->parseHTML( $pb->html );
 				$body = DOMCompat::getBody( $doc );
 				$pb->html = ContentUtils::toXML( $body, [
 					'innerXML' => true,
@@ -1099,7 +1108,7 @@ abstract class ParsoidHandler extends Handler {
 	protected function updateRedLinks(
 		PageConfig $pageConfig, array $attribs, array $revision
 	) {
-		$parsoid = new Parsoid( $this->siteConfig, $this->dataAccess );
+		$parsoid = $this->newParsoid();
 
 		$pb = new PageBundle(
 			$revision['html']['body'],
@@ -1154,7 +1163,7 @@ abstract class ParsoidHandler extends Handler {
 			);
 		}
 
-		$parsoid = new Parsoid( $this->siteConfig, $this->dataAccess );
+		$parsoid = $this->newParsoid();
 
 		$pb = new PageBundle(
 			$revision['html']['body'],

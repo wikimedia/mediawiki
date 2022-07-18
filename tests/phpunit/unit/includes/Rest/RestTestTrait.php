@@ -40,7 +40,7 @@ trait RestTestTrait {
 		$objectFactory = new ObjectFactory(
 			$this->getMockForAbstractClass( ContainerInterface::class )
 		);
-		$authority = $this->mockAnonUltimateAuthority();
+		$authority = $params['authority'] ?? $this->mockAnonUltimateAuthority();
 
 		$config = ( $params['config'] ?? [] ) + [
 			MainConfigNames::CanonicalServer => 'https://wiki.example.com',

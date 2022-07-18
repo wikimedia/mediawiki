@@ -1321,7 +1321,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		// FIXME: Pagebundle validation in general is needed
+		// FIXME: This test never passed. Pagebundle validation in general is needed
 		// Support for transforming from/to pagebundle is disabled in production.
 		it.skip( 'should return http 400 if supplied data-parsoid is a string', function ( done ) {
 			client.req
