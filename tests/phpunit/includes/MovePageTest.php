@@ -27,11 +27,9 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	 * @return MovePage
 	 */
 	private function newMovePageWithMocks( $old, $new, array $params = [] ): MovePage {
-		$mockLB = $this->createMock( LoadBalancer::class );
+		$mockLB = $this->createNoOpMock( LoadBalancer::class, [ 'getConnectionRef' ] );
 		$mockLB->method( 'getConnectionRef' )
 			->willReturn( $params['db'] ?? $this->createNoOpMock( IDatabase::class ) );
-		$mockLB->expects( $this->never() )
-			->method( $this->anythingBut( 'getConnectionRef', '__destruct' ) );
 
 		// If we don't use a manual mock for something specific, get a full
 		// NamespaceInfo service from DummyServicesTrait::getDummyNamespaceInfo

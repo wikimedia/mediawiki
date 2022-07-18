@@ -19,7 +19,8 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 	protected function getMockLocalisationCache( $hooks = [] ) {
 		global $IP;
 
-		$mockLangNameUtils = $this->createMock( LanguageNameUtils::class );
+		$mockLangNameUtils = $this->createNoOpMock( LanguageNameUtils::class,
+			[ 'isValidBuiltInCode', 'isSupportedLanguage', 'getMessagesFileName' ] );
 		$mockLangNameUtils->method( 'isValidBuiltInCode' )->willReturnCallback(
 			static function ( $code ) {
 				// Copy-paste, but it's only one line
@@ -46,9 +47,6 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 				return "$IP/languages/messages/Messages$code.php";
 			}
 		);
-		$mockLangNameUtils->expects( $this->never() )->method( $this->anythingBut(
-			'isValidBuiltInCode', 'isSupportedLanguage', 'getMessagesFileName'
-		) );
 
 		$hookContainer = $this->createHookContainer( $hooks );
 

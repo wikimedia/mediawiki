@@ -32,11 +32,9 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->overrideConfigValue( MainConfigNames::DefaultLanguageVariant, false );
 		$this->setContextUser( new User );
 
-		$this->lang = $this->createMock( Language::class );
+		$this->lang = $this->createNoOpMock( Language::class, [ 'factory', 'getNsText', 'ucfirst' ] );
 		$this->lang->method( 'getNsText' )->with( NS_MEDIAWIKI )->willReturn( 'MediaWiki' );
 		$this->lang->method( 'ucfirst' )->willReturnCallback( 'ucfirst' );
-		$this->lang->expects( $this->never() )
-			->method( $this->anythingBut( 'factory', 'getNsText', 'ucfirst' ) );
 		$this->lc = new DummyConverter( $this->lang );
 	}
 

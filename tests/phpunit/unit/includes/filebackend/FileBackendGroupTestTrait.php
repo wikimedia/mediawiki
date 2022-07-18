@@ -379,10 +379,11 @@ trait FileBackendGroupTestTrait {
 		$expectedExtensionType,
 		$expectedGuessedMimeType
 	) {
-		$mimeAnalyzer = $this->createMock( MimeAnalyzer::class );
+		$mimeAnalyzer = $this->createNoOpMock( MimeAnalyzer::class,
+			[ 'getMimeTypeFromExtensionOrNull', 'guessMimeType' ] );
 		$mimeAnalyzer->expects( $this->once() )->method( 'getMimeTypeFromExtensionOrNull' )
 			->willReturn( $expectedExtensionType );
-		$tmpFileFactory = $this->createMock( TempFSFileFactory::class );
+		$tmpFileFactory = $this->createNoOpMock( TempFSFileFactory::class, [ 'newTempFSFile' ] );
 
 		if ( !$expectedExtensionType && $fsPath ) {
 			$tmpFileFactory->expects( $this->never() )->method( 'newTempFSFile' );
@@ -402,11 +403,6 @@ trait FileBackendGroupTestTrait {
 			$tmpFileFactory->expects( $this->never() )->method( 'newTempFSFile' );
 			$mimeAnalyzer->expects( $this->never() )->method( 'guessMimeType' );
 		}
-
-		$mimeAnalyzer->expects( $this->never() )
-			->method( $this->anythingBut( 'getMimeTypeFromExtensionOrNull', 'guessMimeType' ) );
-		$tmpFileFactory->expects( $this->never() )
-			->method( $this->anythingBut( 'newTempFSFile' ) );
 
 		$obj = $this->newObj( [
 			'mimeAnalyzer' => $mimeAnalyzer,

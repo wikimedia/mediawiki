@@ -128,15 +128,13 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		array $callbacks = [],
 		array $counts = []
 	): RevisionLookup {
-		$mock = $this->createMock( RevisionLookup::class );
+		$mock = $this->createNoOpMock( RevisionLookup::class, array_keys( $callbacks ) );
 		foreach ( $callbacks as $method => $callback ) {
 			$count = isset( $counts[$method] ) ? $this->exactly( $counts[$method] ) : $this->any();
 			$mock->expects( $count )
 				->method( $method )
 				->willReturnCallback( $callbacks[$method] );
 		}
-		$mock->expects( $this->never() )
-			->method( $this->anythingBut( ...array_keys( $callbacks ) ) );
 		return $mock;
 	}
 
