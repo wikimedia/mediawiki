@@ -1484,6 +1484,14 @@ class ParserTestRunner {
 	 * @return ParserTestResult|false false if skipped
 	 */
 	private function wt2wt( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test, ParserTestMode $mode ) {
+		$html = $test->sections['html/parsoid+integrated'] ?? $test->parsoidHtml;
+		if ( $html === null ) {
+			// We currently don't run this in standalone mode.
+			// The expectation is to add html/parsoid sections
+			// if we want to run these tests.
+			return false;
+		}
+
 		Assert::invariant(
 			$test->wikitext !== null,
 			"All tests include a wikitext section"
@@ -1580,6 +1588,14 @@ class ParserTestRunner {
 	 * @return ParserTestResult|false false if skipped
 	 */
 	private function selser( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test, ParserTestMode $mode ) {
+		$html = $test->sections['html/parsoid+integrated'] ?? $test->parsoidHtml;
+		if ( $html === null ) {
+			// We currently don't run this in standalone mode.
+			// The expectation is to add html/parsoid sections
+			// if we want to run these tests.
+			return false;
+		}
+
 		Assert::invariant(
 			$test->wikitext !== null,
 			"All tests include a wikitext section"
@@ -1656,6 +1672,13 @@ class ParserTestRunner {
 	 * @return ParserTestResult|false false if skipped
 	 */
 	private function selserAutoEdit( Parsoid $parsoid, PageConfig $pageConfig, ParserTest $test, ParserTestMode $mode ) {
+		$html = $test->sections['html/parsoid+integrated'] ?? $test->parsoidHtml;
+		if ( $html === null ) {
+			// We currently don't run this in standalone mode.
+			// The expectation is to add html/parsoid sections
+			// if we want to run these tests.
+			return false;
+		}
 		Assert::invariant(
 			$test->wikitext !== null,
 			"All tests include a wikitext section"
