@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"DaSupremo"
 		]
 	},
@@ -302,7 +303,7 @@
 	"editing": "Dey edit $1",
 	"creating": "Creating $1",
 	"editingsection": "Editing $1 (section)",
-	"templatesused": "{{PLURAL:$1|Template|Templates}} dem use for dis page top",
+	"templatesused": "{{PLURAL:$1|Template|Templates}} dem use for dis page top:",
 	"templatesusedpreview": "{{PLURAL:$1|Template|Templates}} dem use for dis preview:",
 	"template-protected": "(protected)",
 	"template-semiprotected": "(semi-protected)",

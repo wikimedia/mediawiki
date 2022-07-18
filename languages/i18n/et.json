@@ -620,6 +620,7 @@
 	"changeemail-submit": "Muuda e-posti aadress",
 	"changeemail-throttled": "Oled proovinud liiga palju kordi sisse logida.\nPalun oota $1, enne kui uuesti proovid.",
 	"changeemail-nochange": "Palun sisesta teistsugune uus e-posti aadress.",
+	"changeemail-maxlength": "E-posti aadress peaks sisaldama kõige rohkem 255 märki.",
 	"resettokens": "Lubade lähtestamine",
 	"resettokens-text": "Saad lähtestada load, mida on vaja siin sinu kontoga seotud kindlatele eraandmetele ligipääsuks.\n\nPeaksid load lähtestama, kui jagasid neid kogemata või kui su konto on kellegi teise võimusesse sattunud.",
 	"resettokens-no-tokens": "Lähtestatavad load puuduvad.",
@@ -1072,7 +1073,7 @@
 	"prefs-help-tokenmanagement": "Saad vaadata ja lähtestada salavõtit, mis võimaldab juurdepääsu konto jälgimisloendi veebivoole. Igaüks, kes võtit teab, saab lugeda sinu jälgimisloendit. Seega ära jaga seda.",
 	"prefs-user-downloaddata-label": "Juurdepääs konto andmetele:",
 	"prefs-user-downloaddata-info": "Laadi alla minu konto andmed sellest projektist",
-	"prefs-user-restoreprefs-label": "Konto andmete kustutamine:",
+	"prefs-user-restoreprefs-label": "Lähtestamise sätted:",
 	"prefs-user-restoreprefs-info": "Taasta kõik vaike-eelistused (kõigis alaosades)",
 	"savedprefs": "Sinu eelistused on salvestatud.",
 	"savedrights": "Kasutaja $1 rühmad on salvestatud.",
@@ -2580,6 +2581,7 @@
 	"autoblockid": "Automaatblokeering #$1",
 	"block": "Kasutaja blokeerimine",
 	"unblock": "Kasutaja blokeeringu eemaldamine",
+	"changeblockip": "Muuda blokeeringut",
 	"blockip": "Blokeeri {{GENDER:$1|kasutaja}}",
 	"blockiptext": "See vorm on kindla IP-aadressi või kasutajanime kirjutamisõiguste blokeerimiseks.\nSeda tohib teha ainult vandalismi vältimiseks ja kooskõlas [[{{MediaWiki:Policy-url}}|{{GRAMMAR:genitive|{{SITENAME}}}} sisekorraga]].\nTäida ka põhjuse väli, näiteks viidates lehekülgedele, mis rikuti.\nIP-aadresside vahemikke saad blokeerida [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]-süntaksi abil; suurim lubatud vahemik on IPv4 jaoks /$1 ja IPv6 jaoks /$2.",
 	"ipaddressorusername": "IP-aadress, kasutajanimi või blokeeringu identifikaator:",
@@ -4010,5 +4012,12 @@
 	"skin-action-protect": "Kaitse",
 	"skin-action-undelete": "Taasta",
 	"skin-action-delete": "Kustuta",
-	"skin-action-move": "Teisalda"
+	"skin-action-move": "Teisalda",
+	"parsoid-stash-rate-limit-error": "Ajutine salvestamine nurjus, sest ületati piirmäära. Palun proovi hiljem uuesti.",
+	"parsoid-resource-limit-exceeded": "Parsoidi ressursipiirang ületatud: $1",
+	"parsoid-client-error": "Parsoidi sisend vigane: $1",
+	"newpages-showhide-bots": "robotid ($1)",
+	"newpages-showhide-patrolled": "kontrollitud muudatused ($1)",
+	"newpages-showhide-redirect": "ümbersuunamised ($1)",
+	"newpages-showhide-registered": "registreeritud kasutajad ($1)"
 }
