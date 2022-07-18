@@ -71,11 +71,7 @@ class QueryAllSpecialPagesTest extends MediaWikiIntegrationTestCase {
 			$msg = "SQL query for page {$page->getName()} should give a result wrapper object";
 
 			$result = $page->reallyDoQuery( 50 );
-			if ( $result instanceof ResultWrapper ) {
-				$this->assertTrue( true, $msg );
-			} else {
-				$this->assertFalse( false, $msg );
-			}
+			$this->assertInstanceOf( ResultWrapper::class, $result, $msg );
 		}
 	}
 }
