@@ -2745,12 +2745,12 @@ class EditPage implements IEditObject {
 	 * @param string $newModel
 	 * @param string $reason
 	 */
-	private function addContentModelChangeLogEntry( UserIdentity $user, $oldModel, $newModel, $reason ): void {
+	private function addContentModelChangeLogEntry( UserIdentity $user, $oldModel, $newModel, $reason = "" ): void {
 		$new = $oldModel === false;
 		$log = new ManualLogEntry( 'contentmodel', $new ? 'new' : 'change' );
 		$log->setPerformer( $user );
 		$log->setTarget( $this->mTitle );
-		$log->setComment( $reason );
+		$log->setComment( is_string( $reason ) ? $reason : "" );
 		$log->setParameters( [
 			'4::oldmodel' => $oldModel,
 			'5::newmodel' => $newModel

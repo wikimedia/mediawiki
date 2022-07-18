@@ -44,7 +44,7 @@ class ImportReporter extends ContextSource {
 	 * @param string $interwiki
 	 * @param string|bool $reason
 	 */
-	public function __construct( $importer, $upload, $interwiki, $reason = false ) {
+	public function __construct( $importer, $upload, $interwiki, $reason = "" ) {
 		$this->mOriginalPageOutCallback =
 			$importer->setPageOutCallback( [ $this, 'reportPage' ] );
 		$this->mOriginalLogCallback =
@@ -52,7 +52,7 @@ class ImportReporter extends ContextSource {
 		$importer->setNoticeCallback( [ $this, 'reportNotice' ] );
 		$this->mIsUpload = $upload;
 		$this->mInterwiki = $interwiki;
-		$this->reason = $reason;
+		$this->reason = is_string( $reason ) ? $reason : "";
 	}
 
 	/**
