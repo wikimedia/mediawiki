@@ -209,7 +209,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$user = $this->getTestUser()->getUser();
 
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
-		// Needs edit rights to pass EditRightConstraint and reach NewSectionMissingSummaryConstraint
+		// Needs edit rights to pass EditRightConstraint and reach NewSectionMissingSubjectConstraint
 		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
 
 		$edit = [
@@ -490,21 +490,21 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	/** NewSectionMissingSummaryConstraint integration */
-	public function testNewSectionMissingSummaryConstraint() {
+	/** NewSectionMissingSubjectConstraint integration */
+	public function testNewSectionMissingSubjectConstraint() {
 		// Require the summary
 		$this->mergeMwGlobalArrayValue(
 			'wgDefaultUserOptions',
 			[ 'forceeditsummary' => 1 ]
 		);
 
-		$page = $this->getExistingTestPage( 'NewSectionMissingSummaryConstraint page does exist' );
+		$page = $this->getExistingTestPage( 'NewSectionMissingSubjectConstraint page does exist' );
 		$title = $page->getTitle();
 
 		$user = $this->getTestUser()->getUser();
 
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
-		// Needs edit rights to pass EditRightConstraint and reach NewSectionMissingSummaryConstraint
+		// Needs edit rights to pass EditRightConstraint and reach NewSectionMissingSubjectConstraint
 		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
 
 		$edit = [
