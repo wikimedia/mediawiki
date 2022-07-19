@@ -68,6 +68,15 @@ class TestMode {
 	}
 
 	/**
+	 * Helper function: returns true if we are running this test to cache some info
+	 * for use in later tests.
+	 * @return bool
+	 */
+	public function isCachingMode() {
+		return $this->mode === 'cache';
+	}
+
+	/**
 	 * Returns a string representation of this test mode, which can also
 	 * be used as an array key or for human-friendly output.
 	 * @return string
