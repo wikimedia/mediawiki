@@ -35,7 +35,7 @@
 		}, config.textInput ) );
 		this.button = new OO.ui.ButtonWidget( $.extend( {
 			label: mw.msg( 'mw-widgets-copytextlayout-copy' ),
-			icon: 'articles'
+			icon: 'copy'
 		}, config.button ) );
 		this.successMessage = config.successMessage || mw.msg( 'mw-widgets-copytextlayout-copy-success' );
 		this.failMessage = config.failMessage || mw.msg( 'mw-widgets-copytextlayout-copy-fail' );
