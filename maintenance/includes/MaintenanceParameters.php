@@ -75,6 +75,19 @@ class MaintenanceParameters {
 	private $errors = [];
 
 	/**
+	 * Returns a reference to a member field.
+	 * This is a backwards compatibility hack, it should be removed as soon as possible!
+	 *
+	 * @param string $fieldName
+	 *
+	 * @return mixed A reference to a member field
+	 * @internal For use by the Maintenance class, for backwards compatibility support.
+	 */
+	public function &getFieldReference( string $fieldName ) {
+		return $this->$fieldName;
+	}
+
+	/**
 	 * Assigns a list of parameters to the given group.
 	 * The given parameters will be shown as part of the given group
 	 * in the help message.
@@ -250,6 +263,32 @@ class MaintenanceParameters {
 	 */
 	public function getArgName( int $argIndex ): ?string {
 		return $this->mArgDefs[ $argIndex ]['name'] ?? null;
+	}
+
+	/**
+	 * Programmatically set the value of the given option.
+	 * Useful for setting up child scripts, see runChild().
+	 *
+	 * @param string $name
+	 * @param mixed|null $value
+	 */
+	public function setOption( string $name, $value ): void {
+		$this->mOptions[$name] = $value;
+	}
+
+	/**
+	 * Programmatically set the value of the given argument.
+	 * Useful for setting up child scripts, see runChild().
+	 *
+	 * @param string|int $argId
+	 * @param string $value
+	 */
+	public function setArg( $argId, $value ): void {
+		// arg lookup by name
+		if ( is_string( $argId ) && isset( $this->mArgOffsets[$argId] ) ) {
+			$argId = $this->mArgOffsets[$argId];
+		}
+		$this->mArgs[$argId] = $value;
 	}
 
 	/**
