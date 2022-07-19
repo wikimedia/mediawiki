@@ -1027,6 +1027,7 @@
 	"userrights-conflict": "کێشە لە گۆڕینی مافەکانی بەکارھێنەر! تکایە دووبارە بەسەر گۆڕانکارییەکانت بچۆرەوە و پاشکەوتیان بکە.",
 	"group": "گرووپ:",
 	"group-user": "بەکارھێنەران",
+	"group-named": "بەکارھێنەرە تۆمارکراوەکان",
 	"group-autoconfirmed": "بەکارھێنەرانی پەسەندکراوی خۆگەڕ",
 	"group-bot": "بۆتەکان",
 	"group-sysop": "بەڕێوەبەران",
@@ -1042,6 +1043,7 @@
 	"group-bureaucrat-member": "{{GENDER:$1|بیوروکرات}}",
 	"group-suppress-member": "{{GENDER:$1|کپکەر}}",
 	"grouppage-user": "{{ns:project}}:بەکارھێنەران",
+	"grouppage-named": "{{ns:project}}:بەکارھێنەرە تۆمارکراوەکان",
 	"grouppage-autoconfirmed": "{{ns:project}}:بەکارھێنەرانی پەسەندکراوی خۆگەڕ",
 	"grouppage-bot": "{{ns:project}}:بۆت",
 	"grouppage-sysop": "{{ns:project}}:بەڕێوەبەران",
@@ -2986,5 +2988,9 @@
 	"skin-action-protect": "پاراستن",
 	"skin-action-undelete": "سڕینەوە بگەڕێنەوە",
 	"skin-action-delete": "سڕینەوە",
-	"skin-action-move": "گواستنەوە"
+	"skin-action-move": "گواستنەوە",
+	"newpages-showhide-bots": "بۆتەکان $1",
+	"newpages-showhide-patrolled": "دەستکارییە پشکێنراوەکان $1",
+	"newpages-showhide-redirect": "ڕەوانەکەرەکان $1",
+	"newpages-showhide-registered": "بەکارھێنەرە تۆمارکراوەکان $1"
 }
