@@ -2299,7 +2299,7 @@ class EditPage implements IEditObject {
 				if ( $this->sectiontitle !== null ) {
 					// Insert the section title above the content.
 					$content = $content->addSectionHeader( $this->sectiontitle );
-				} elseif ( $this->summary !== '' ) {
+				} else {
 					// Insert the section title above the content.
 					$content = $content->addSectionHeader( $this->summary );
 				}
@@ -4412,7 +4412,7 @@ class EditPage implements IEditObject {
 
 			# If we're adding a comment, we need to show the
 			# summary as the headline
-			if ( $this->section === "new" && $this->summary !== "" ) {
+			if ( $this->section === "new" ) {
 				$content = $content->addSectionHeader( $this->summary );
 			}
 
