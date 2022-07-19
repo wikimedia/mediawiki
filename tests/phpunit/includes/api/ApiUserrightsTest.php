@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 
 /**
  * @group API
@@ -17,9 +19,9 @@ class ApiUserrightsTest extends ApiTestCase {
 			$this->tablesUsed,
 			[ 'change_tag', 'change_tag_def', 'logging' ]
 		);
-		$this->setMwGlobals( [
-			'wgAddGroups' => [],
-			'wgRemoveGroups' => [],
+		$this->overrideConfigValues( [
+			MainConfigNames::AddGroups => [],
+			MainConfigNames::RemoveGroups => [],
 		] );
 	}
 
@@ -35,10 +37,16 @@ class ApiUserrightsTest extends ApiTestCase {
 		$this->setGroupPermissions( 'bureaucrat', 'userrights', false );
 
 		if ( $add ) {
-			$this->mergeMwGlobalArrayValue( 'wgAddGroups', [ 'bureaucrat' => $add ] );
+			$this->overrideConfigValue(
+				MainConfigNames::AddGroups,
+				[ 'bureaucrat' => $add ] + MainConfigSchema::getDefaultValue( MainConfigNames::AddGroups )
+			);
 		}
 		if ( $remove ) {
-			$this->mergeMwGlobalArrayValue( 'wgRemoveGroups', [ 'bureaucrat' => $remove ] );
+			$this->overrideConfigValue(
+				MainConfigNames::RemoveGroups,
+				[ 'bureaucrat' => $remove ] + MainConfigSchema::getDefaultValue( MainConfigNames::RemoveGroups )
+			);
 		}
 	}
 

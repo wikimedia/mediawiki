@@ -6,6 +6,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
@@ -511,9 +512,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::getByName()
 	 */
 	public function testCrossWikiBlocking() {
-		$this->setMwGlobals( [
-			'wgLocalDatabases' => [ 'm' ],
-		] );
+		$this->overrideConfigValue( MainConfigNames::LocalDatabases, [ 'm' ] );
 		$dbMock = $this->createMock( DBConnRef::class );
 		$dbMock->method( 'decodeExpiry' )->willReturn( 'infinity' );
 		$lbMock = $this->createMock( ILoadBalancer::class );
@@ -597,9 +596,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::getWikiId
 	 */
 	public function testGetWikiId() {
-		$this->setMwGlobals( [
-			'wgLocalDatabases' => [ 'foo' ],
-		] );
+		$this->overrideConfigValue( MainConfigNames::LocalDatabases, [ 'foo' ] );
 		$dbMock = $this->createMock( DBConnRef::class );
 		$dbMock->method( 'decodeExpiry' )->willReturn( 'infinity' );
 		$lbMock = $this->createMock( ILoadBalancer::class );
@@ -725,9 +722,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::appliesToTitle
 	 */
 	public function testAppliesToTitleReturnsTrueOnSitewideBlock() {
-		$this->setMwGlobals( [
-			'wgBlockDisablesLogin' => false,
-		] );
+		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 		$user = $this->getTestUser()->getUser();
 		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
@@ -756,9 +751,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::appliesToTitle
 	 */
 	public function testAppliesToTitleOnPartialBlock() {
-		$this->setMwGlobals( [
-			'wgBlockDisablesLogin' => false,
-		] );
+		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 		$user = $this->getTestUser()->getUser();
 		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
@@ -792,9 +785,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::appliesToPage
 	 */
 	public function testAppliesToReturnsTrueOnSitewideBlock() {
-		$this->setMwGlobals( [
-			'wgBlockDisablesLogin' => false,
-		] );
+		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 		$user = $this->getTestUser()->getUser();
 		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
@@ -821,9 +812,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::appliesToPage
 	 */
 	public function testAppliesToPageOnPartialPageBlock() {
-		$this->setMwGlobals( [
-			'wgBlockDisablesLogin' => false,
-		] );
+		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 		$user = $this->getTestUser()->getUser();
 		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
@@ -854,9 +843,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::appliesToNamespace
 	 */
 	public function testAppliesToNamespaceOnPartialNamespaceBlock() {
-		$this->setMwGlobals( [
-			'wgBlockDisablesLogin' => false,
-		] );
+		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 		$user = $this->getTestUser()->getUser();
 		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
@@ -883,9 +870,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::appliesToRight
 	 */
 	public function testBlockAllowsPurge() {
-		$this->setMwGlobals( [
-			'wgBlockDisablesLogin' => false,
-		] );
+		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 		$block = new DatabaseBlock();
 		$this->assertFalse( $block->appliesToRight( 'purge' ) );
 	}
