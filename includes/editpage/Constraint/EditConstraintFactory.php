@@ -188,7 +188,6 @@ class EditConstraintFactory {
 
 	/**
 	 * @param string $summary
-	 * @param string $section
 	 * @param ?string $sectionHeading
 	 * @param string $text
 	 * @param string $reqIP
@@ -197,7 +196,6 @@ class EditConstraintFactory {
 	 */
 	public function newSpamRegexConstraint(
 		string $summary,
-		string $section,
 		?string $sectionHeading,
 		string $text,
 		string $reqIP,
@@ -207,7 +205,6 @@ class EditConstraintFactory {
 			$this->loggerFactory->getLogger( 'SpamRegex' ),
 			$this->spamRegexChecker,
 			$summary,
-			$section,
 			$sectionHeading,
 			$text,
 			$reqIP,

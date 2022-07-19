@@ -36,7 +36,7 @@ use MediaWiki\EditPage\Constraint\EditRightConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
 use MediaWiki\EditPage\Constraint\ImageRedirectConstraint;
 use MediaWiki\EditPage\Constraint\MissingCommentConstraint;
-use MediaWiki\EditPage\Constraint\NewSectionMissingSummaryConstraint;
+use MediaWiki\EditPage\Constraint\NewSectionMissingSubjectConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
 use MediaWiki\EditPage\Constraint\SelfRedirectConstraint;
 use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
@@ -75,6 +75,7 @@ use OOUI\ButtonWidget;
 use OOUI\CheckboxInputWidget;
 use OOUI\DropdownInputWidget;
 use OOUI\FieldLayout;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\ScopedCallback;
@@ -304,6 +305,9 @@ class EditPage implements IEditObject {
 
 	/** @var string|null */
 	public $sectiontitle = null;
+
+	/** @var string|null */
+	private $newSectionAnchor = null;
 
 	/** @var string|null
 	 * Timestamp from the first time the edit form was rendered.
@@ -1134,23 +1138,30 @@ class EditPage implements IEditObject {
 
 			$this->unicodeCheck = $request->getText( 'wpUnicodeCheck' );
 
-			$this->summary = $request->getText( 'wpSummary' );
+			if ( $this->section === 'new' ) {
+				# Allow setting sectiontitle different from the edit summary.
+				# Note that wpSectionTitle is not yet a part of the actual edit form, as wpSummary is
+				# currently doing double duty as both edit summary and section title. Right now this
+				# is just to allow API edits to work around this limitation, but this should be
+				# incorporated into the actual edit form when EditPage is rewritten (T20654, T28312).
+				if ( $request->getCheck( 'wpSectionTitle' ) ) {
+					$this->sectiontitle = $request->getText( 'wpSectionTitle' );
+					if ( $request->getCheck( 'wpSummary' ) ) {
+						$this->summary = $request->getText( 'wpSummary' );
+					}
+				} else {
+					$this->sectiontitle = $request->getText( 'wpSummary' );
+					# If the summary consists of a heading, e.g. '==Foobar==', extract the title from the
+					# header syntax, e.g. 'Foobar'. This is mainly an issue when we are using wpSummary for
+					# section titles. (T3600)
+					# (This may be no longer desirable, now that this code is an API for other editing interfaces?)
+					$this->sectiontitle = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->sectiontitle );
+				}
 
-			# If the summary consists of a heading, e.g. '==Foobar==', extract the title from the
-			# header syntax, e.g. 'Foobar'. This is mainly an issue when we are using wpSummary for
-			# section titles.
-			$this->summary = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->summary );
-
-			# Allow setting sectiontitle different from the edit summary.
-			# Note that wpSectionTitle is not yet a part of the actual edit form, as wpSummary is
-			# currently doing double duty as both edit summary and section title. Right now this
-			# is just to allow API edits to work around this limitation, but this should be
-			# incorporated into the actual edit form when EditPage is rewritten (T20654, T28312).
-			if ( $request->getCheck( 'wpSectionTitle' ) ) {
-				$this->sectiontitle = $request->getText( 'wpSectionTitle' );
-				$this->sectiontitle = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->sectiontitle );
+				$this->setNewSectionSummary();
 			} else {
 				$this->sectiontitle = null;
+				$this->summary = $request->getText( 'wpSummary' );
 			}
 
 			$this->edittime = $request->getVal( 'wpEdittime' );
@@ -1285,8 +1296,7 @@ class EditPage implements IEditObject {
 			// preloadtitle parameter in the URL (T15100)
 			if ( $this->section === 'new' && $request->getCheck( 'preloadtitle' ) ) {
 				$this->sectiontitle = $request->getVal( 'preloadtitle' );
-				// Once wpSummary isn't being use for setting section titles, we should delete this.
-				$this->summary = $request->getVal( 'preloadtitle' );
+				$this->setNewSectionSummary();
 			} elseif ( $this->section !== 'new' && $request->getVal( 'summary' ) !== '' ) {
 				$this->summary = $request->getText( 'summary' );
 				if ( $this->summary !== '' ) {
@@ -2069,42 +2079,31 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Return the summary to be used for a new section.
-	 *
-	 * @return string[] array with two values, the summary and the anchor text
+	 * Set the edit summary and link anchor to be used for a new section.
 	 */
-	private function newSectionSummary(): array {
-		$newSectionSummary = $this->summary;
-		$newSectionAnchor = '';
+	private function setNewSectionSummary(): void {
+		Assert::precondition( $this->section === 'new', 'This method can only be called for new sections' );
+		Assert::precondition( $this->sectiontitle !== null, 'This method can only be called for new sections' );
+
 		$services = MediaWikiServices::getInstance();
 		$parser = $services->getParser();
 		$textFormatter = $services->getMessageFormatterFactory()->getTextFormatter(
 			$services->getContentLanguage()->getCode()
 		);
 
-		if ( $this->sectiontitle !== null ) {
-			if ( $this->sectiontitle !== '' ) {
-				$newSectionAnchor = $this->guessSectionName( $this->sectiontitle );
-				// If no edit summary was specified, create one automatically from the section
-				// title and have it link to the new section. Otherwise, respect the summary as
-				// passed.
-				if ( $this->summary === '' ) {
-					$messageValue = MessageValue::new( 'newsectionsummary' )
-						->plaintextParams( $parser->stripSectionName( $this->sectiontitle ) );
-					$newSectionSummary = $textFormatter->format( $messageValue );
-				}
+		if ( $this->sectiontitle !== '' ) {
+			$this->newSectionAnchor = $this->guessSectionName( $this->sectiontitle );
+			// If no edit summary was specified, create one automatically from the section
+			// title and have it link to the new section. Otherwise, respect the summary as
+			// passed.
+			if ( $this->summary === '' ) {
+				$messageValue = MessageValue::new( 'newsectionsummary' )
+					->plaintextParams( $parser->stripSectionName( $this->sectiontitle ) );
+				$this->summary = $textFormatter->format( $messageValue );
 			}
 		} else {
-			if ( $this->summary !== '' ) {
-				$newSectionAnchor = $this->guessSectionName( $this->summary );
-				// This is a new section, so create a link to the new section
-				// in the revision summary.
-				$messageValue = MessageValue::new( 'newsectionsummary' )
-					->plaintextParams( $parser->stripSectionName( $this->summary ) );
-				$newSectionSummary = $textFormatter->format( $messageValue );
-			}
+			$this->newSectionAnchor = '';
 		}
-		return [ $newSectionSummary, $newSectionAnchor ];
 	}
 
 	/**
@@ -2208,7 +2207,6 @@ class EditPage implements IEditObject {
 		$constraintRunner->addConstraint(
 			$constraintFactory->newSpamRegexConstraint(
 				$this->summary,
-				$this->section,
 				$this->sectiontitle,
 				$this->textbox1,
 				$this->context->getRequest()->getIP(),
@@ -2297,14 +2295,8 @@ class EditPage implements IEditObject {
 				if ( $this->sectiontitle !== null ) {
 					// Insert the section title above the content.
 					$content = $content->addSectionHeader( $this->sectiontitle );
-				} else {
-					// Insert the section title above the content.
-					$content = $content->addSectionHeader( $this->summary );
 				}
-
-				[ $newSectionSummary, $anchor ] = $this->newSectionSummary();
-				$this->summary = $newSectionSummary;
-				$result['sectionanchor'] = $anchor;
+				$result['sectionanchor'] = $this->newSectionAnchor;
 			}
 
 			$pageUpdater = $this->page->newPageUpdater( $pstUser )
@@ -2368,10 +2360,9 @@ class EditPage implements IEditObject {
 				|| ( $this->editRevId !== null && $this->editRevId != $latest )
 			) {
 				$this->isConflict = true;
-				[ $newSectionSummary, $newSectionAnchor ] = $this->newSectionSummary();
 				if ( $this->section === 'new' ) {
 					if ( $this->page->getUserText() === $requestUser->getName() &&
-						$this->page->getComment() === $newSectionSummary
+						$this->page->getComment() === $this->summary
 					) {
 						// Probably a duplicate submission of a new comment.
 						// This can happen when CDN resends a request after
@@ -2399,12 +2390,6 @@ class EditPage implements IEditObject {
 				}
 			}
 
-			if ( $this->sectiontitle !== null ) {
-				$sectionTitle = $this->sectiontitle;
-			} else {
-				$sectionTitle = $this->summary;
-			}
-
 			$content = null;
 
 			if ( $this->isConflict ) {
@@ -2424,14 +2409,14 @@ class EditPage implements IEditObject {
 					$content = $this->page->replaceSectionAtRev(
 						$this->section,
 						$textbox_content,
-						$sectionTitle,
+						$this->sectiontitle,
 						$this->editRevId
 					);
 				} else {
 					$content = $this->page->replaceSectionContent(
 						$this->section,
 						$textbox_content,
-						$sectionTitle,
+						$this->sectiontitle,
 						$this->edittime
 					);
 				}
@@ -2443,7 +2428,7 @@ class EditPage implements IEditObject {
 				$content = $this->page->replaceSectionAtRev(
 					$this->section,
 					$textbox_content,
-					$sectionTitle
+					$this->sectiontitle
 				);
 			}
 
@@ -2491,8 +2476,8 @@ class EditPage implements IEditObject {
 
 			if ( $this->section === 'new' ) {
 				$constraintRunner->addConstraint(
-					new NewSectionMissingSummaryConstraint(
-						$this->summary,
+					new NewSectionMissingSubjectConstraint(
+						$this->sectiontitle,
 						$this->allowBlankSummary
 					)
 				);
@@ -2522,9 +2507,7 @@ class EditPage implements IEditObject {
 			# All's well
 			$sectionAnchor = '';
 			if ( $this->section === 'new' ) {
-				[ $newSectionSummary, $anchor ] = $this->newSectionSummary();
-				$this->summary = $newSectionSummary;
-				$sectionAnchor = $anchor;
+				$sectionAnchor = $this->newSectionAnchor;
 			} elseif ( $this->section !== '' ) {
 				# Try to get a section anchor from the section source, redirect
 				# to edited section if header found.
@@ -2677,7 +2660,7 @@ class EditPage implements IEditObject {
 			$this->hookError = $failed->getHookError();
 		} elseif (
 			$failed instanceof AutoSummaryMissingSummaryConstraint ||
-			$failed instanceof NewSectionMissingSummaryConstraint
+			$failed instanceof NewSectionMissingSubjectConstraint
 		) {
 			$this->missingSummary = true;
 		} elseif ( $failed instanceof MissingCommentConstraint ) {
@@ -3743,7 +3726,7 @@ class EditPage implements IEditObject {
 		$labelText = $this->context->msg( $isSubjectPreview ? 'subject' : 'summary' )->parse();
 		$this->context->getOutput()->addHTML(
 			$this->getSummaryInputWidget(
-				$this->summary,
+				$isSubjectPreview ? $this->sectiontitle : $this->summary,
 				$labelText,
 				[ 'class' => $summaryClass ]
 			)
@@ -3757,17 +3740,17 @@ class EditPage implements IEditObject {
 	 * @return string
 	 */
 	private function getSummaryPreview( bool $isSubjectPreview ): string {
+		// FIXME When $isSubjectPreview is true, this previews the summary anyway, despite the label
+		// stating "Preview of subject:". This seems weird, but it was clearly intentional in b49d9f5ae3
+		// (2008) and unchanged since then. Admittedly, previewing just the subject (section title)
+		// would be redundant since it's included in the main preview. However, live preview
+		// (mediawiki.action.edit.preview.js) does just that. Someone should decide and make them both
+		// the same, I'm just keeping it unchanged for now.
+
 		// avoid spaces in preview, gets always trimmed on save
 		$summary = trim( $this->summary );
 		if ( $summary === '' || ( !$this->preview && !$this->diff ) ) {
 			return "";
-		}
-
-		if ( $isSubjectPreview ) {
-			$summary = $this->context->msg( 'newsectionsummary' )
-				->rawParams( MediaWikiServices::getInstance()->getParser()
-					->stripSectionName( $summary ) )
-				->inContentLanguage()->text();
 		}
 
 		$message = $isSubjectPreview ? 'subject-preview' : 'summary-preview';
@@ -3945,11 +3928,11 @@ class EditPage implements IEditObject {
 		$textboxContent = $this->toEditContent( $this->textbox1 );
 		if ( $this->editRevId !== null ) {
 			$newContent = $this->page->replaceSectionAtRev(
-				$this->section, $textboxContent, $this->summary, $this->editRevId
+				$this->section, $textboxContent, $this->sectiontitle, $this->editRevId
 			);
 		} else {
 			$newContent = $this->page->replaceSectionContent(
-				$this->section, $textboxContent, $this->summary, $this->edittime
+				$this->section, $textboxContent, $this->sectiontitle, $this->edittime
 			);
 		}
 
@@ -4401,10 +4384,8 @@ class EditPage implements IEditObject {
 				}
 			}
 
-			# If we're adding a comment, we need to show the
-			# summary as the headline
 			if ( $this->section === "new" ) {
-				$content = $content->addSectionHeader( $this->summary );
+				$content = $content->addSectionHeader( $this->sectiontitle );
 			}
 
 			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args

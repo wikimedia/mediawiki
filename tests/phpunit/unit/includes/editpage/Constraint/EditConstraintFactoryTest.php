@@ -92,7 +92,6 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 			SpamRegexConstraint::class,
 			$factory->newSpamRegexConstraint(
 				'EditSummary',
-				'new',
 				'SectionHeading',
 				'Text',
 				'RequestIP',
