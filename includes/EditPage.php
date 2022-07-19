@@ -225,11 +225,6 @@ class EditPage implements IEditObject {
 	private $mParserOutput;
 
 	/**
-	 * @var bool Has a summary been preset using GET parameter &summary= ?
-	 */
-	private $hasPresetSummary = false;
-
-	/**
 	 * @var RevisionRecord|bool|null
 	 *
 	 * A RevisionRecord corresponding to $this->editRevId or $this->edittime
@@ -1295,7 +1290,10 @@ class EditPage implements IEditObject {
 			} elseif ( $this->section !== 'new' && $request->getVal( 'summary' ) !== '' ) {
 				$this->summary = $request->getText( 'summary' );
 				if ( $this->summary !== '' ) {
-					$this->hasPresetSummary = true;
+					// If a summary has been preset using &summary= we don't want to prompt for
+					// a different summary. Only prompt for a summary if the summary is blanked.
+					// (T19416)
+					$this->autoSumm = md5( '' );
 				}
 			}
 
@@ -2299,7 +2297,7 @@ class EditPage implements IEditObject {
 				if ( $this->sectiontitle !== null ) {
 					// Insert the section title above the content.
 					$content = $content->addSectionHeader( $this->sectiontitle );
-				} elseif ( $this->summary !== '' ) {
+				} else {
 					// Insert the section title above the content.
 					$content = $content->addSectionHeader( $this->summary );
 				}
@@ -3310,13 +3308,6 @@ class EditPage implements IEditObject {
 
 		if ( $this->selfRedirect ) {
 			$out->addHTML( Html::hidden( 'wpIgnoreSelfRedirect', true ) );
-		}
-
-		if ( $this->hasPresetSummary ) {
-			// If a summary has been preset using &summary= we don't want to prompt for
-			// a different summary. Only prompt for a summary if the summary is blanked.
-			// (T19416)
-			$this->autoSumm = md5( '' );
 		}
 
 		$autosumm = $this->autoSumm !== '' ? $this->autoSumm : md5( $this->summary );
@@ -4412,7 +4403,7 @@ class EditPage implements IEditObject {
 
 			# If we're adding a comment, we need to show the
 			# summary as the headline
-			if ( $this->section === "new" && $this->summary !== "" ) {
+			if ( $this->section === "new" ) {
 				$content = $content->addSectionHeader( $this->summary );
 			}
 
