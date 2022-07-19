@@ -48,21 +48,15 @@ class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function replaceSearchEngineConfig() {
-		$config = $this->getMockBuilder( SearchEngineConfig::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$config = $this->createMock( SearchEngineConfig::class );
 		$this->setService( 'SearchEngineConfig', $config );
 
 		return $config;
 	}
 
 	private function replaceSearchEngine() {
-		$engine = $this->getMockBuilder( SearchEngine::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$engineFactory = $this->getMockBuilder( SearchEngineFactory::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$engine = $this->createMock( SearchEngine::class );
+		$engineFactory = $this->createMock( SearchEngineFactory::class );
 		$engineFactory->method( 'create' )
 			->willReturn( $engine );
 		$this->setService( 'SearchEngineFactory', $engineFactory );

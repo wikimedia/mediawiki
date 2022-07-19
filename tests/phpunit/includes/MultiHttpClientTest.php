@@ -48,9 +48,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function mockHttpRequestFactory( $httpRequest ) {
-		$factory = $this->getMockBuilder( MediaWiki\Http\HttpRequestFactory::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$factory = $this->createMock( MediaWiki\Http\HttpRequestFactory::class );
 		$factory->method( 'create' )
 			->willReturn( $httpRequest );
 		return $factory;
@@ -248,9 +246,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 	) {
 		$url = 'http://www.example.test';
 		$httpRequest = $this->getHttpRequest( StatusValue::newGood( 200 ), 200 );
-		$factory = $this->getMockBuilder( MediaWiki\Http\HttpRequestFactory::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$factory = $this->createMock( MediaWiki\Http\HttpRequestFactory::class );
 		$factory->method( 'create' )
 			->with(
 				$url,

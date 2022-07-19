@@ -55,9 +55,7 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	 * @return GenderCache
 	 */
 	private function getGenderCache() {
-		$genderCache = $this->getMockBuilder( GenderCache::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$genderCache = $this->createMock( GenderCache::class );
 
 		$genderCache->method( 'getGenderOf' )
 			->willReturnCallback( static function ( $userName ) {

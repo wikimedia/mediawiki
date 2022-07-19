@@ -226,9 +226,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$db = $loadBalancer->getConnection( DB_REPLICA );
 
 		/** @var SqlBlobStore $blobStore */
-		$blobStore = $this->getMockBuilder( SqlBlobStore::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$blobStore = $this->createMock( SqlBlobStore::class );
 
 		$store = new RevisionStore(
 			$loadBalancer,
@@ -3165,9 +3163,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$revRecord1 = $editStatus->getValue()['revision-record'];
 
 		$contentAddress = $revRecord1->getSlot( SlotRecord::MAIN )->getAddress();
-		$mockBlobStore = $this->getMockBuilder( SqlBlobStore::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$mockBlobStore = $this->createMock( SqlBlobStore::class );
 		$mockBlobStore
 			->expects( $this->once() )
 			->method( 'getBlobBatch' )
@@ -3248,9 +3244,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$revRecord1 = $editStatus->getValue()['revision-record'];
 
 		$contentAddress = $revRecord1->getSlot( SlotRecord::MAIN )->getAddress();
-		$mockBlobStore = $this->getMockBuilder( SqlBlobStore::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$mockBlobStore = $this->createMock( SqlBlobStore::class );
 		$mockBlobStore
 			->expects( $this->once() )
 			->method( 'getBlobBatch' )

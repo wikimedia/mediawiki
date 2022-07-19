@@ -6,9 +6,7 @@ class WebInstallerOutputTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetCSS() {
 		$_SERVER['DOCUMENT_ROOT'] = __DIR__ . '../../../';
-		$installer = $this->getMockBuilder( WebInstaller::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$installer = $this->createMock( WebInstaller::class );
 		$out = new WebInstallerOutput( $installer );
 		$css = $out->getCSS();
 		$this->assertStringContainsString(

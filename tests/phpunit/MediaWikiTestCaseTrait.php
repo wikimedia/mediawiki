@@ -307,9 +307,7 @@ trait MediaWikiTestCaseTrait {
 	 */
 	protected function getMockMessage( $text = '', $params = [] ) {
 		/** @var MockObject $msg */
-		$msg = $this->getMockBuilder( Message::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$msg = $this->createMock( Message::class );
 		$msg->method( 'toString' )->willReturn( $text );
 		$msg->method( '__toString' )->willReturn( $text );
 		$msg->method( 'text' )->willReturn( $text );

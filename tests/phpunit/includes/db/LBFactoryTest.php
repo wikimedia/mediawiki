@@ -270,16 +270,12 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
 		// Primary DB 1
 		/** @var IDatabase|\PHPUnit\Framework\MockObject\MockObject $mockDB1 */
-		$mockDB1 = $this->getMockBuilder( IDatabase::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$mockDB1 = $this->createMock( IDatabase::class );
 		$mockDB1->method( 'writesOrCallbacksPending' )->willReturn( true );
 		$mockDB1->method( 'lastDoneWrites' )->willReturn( $now );
 		$mockDB1->method( 'getPrimaryPos' )->willReturn( $m1Pos );
 		// Load balancer for primary DB 1
-		$lb1 = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$lb1 = $this->createMock( LoadBalancer::class );
 		$lb1->method( 'getConnection' )->willReturn( $mockDB1 );
 		$lb1->method( 'getServerCount' )->willReturn( 2 );
 		$lb1->method( 'hasReplicaServers' )->willReturn( true );
@@ -295,16 +291,12 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb1->method( 'getServerName' )->with( 0 )->willReturn( 'master1' );
 		// Primary DB 2
 		/** @var IDatabase|\PHPUnit\Framework\MockObject\MockObject $mockDB2 */
-		$mockDB2 = $this->getMockBuilder( IDatabase::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$mockDB2 = $this->createMock( IDatabase::class );
 		$mockDB2->method( 'writesOrCallbacksPending' )->willReturn( true );
 		$mockDB2->method( 'lastDoneWrites' )->willReturn( $now );
 		$mockDB2->method( 'getPrimaryPos' )->willReturn( $m2Pos );
 		// Load balancer for primary DB 2
-		$lb2 = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$lb2 = $this->createMock( LoadBalancer::class );
 		$lb2->method( 'getConnection' )->willReturn( $mockDB2 );
 		$lb2->method( 'getServerCount' )->willReturn( 2 );
 		$lb2->method( 'hasReplicaServers' )->willReturn( true );
@@ -348,9 +340,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		// (b) Second HTTP request
 
 		// Load balancer for primary DB 1
-		$lb1 = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$lb1 = $this->createMock( LoadBalancer::class );
 		$lb1->method( 'getServerCount' )->willReturn( 2 );
 		$lb1->method( 'hasReplicaServers' )->willReturn( true );
 		$lb1->method( 'hasStreamingReplicaServers' )->willReturn( true );
@@ -358,9 +348,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb1->expects( $this->once() )
 			->method( 'waitFor' )->with( $m1Pos );
 		// Load balancer for primary DB 2
-		$lb2 = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$lb2 = $this->createMock( LoadBalancer::class );
 		$lb2->method( 'getServerCount' )->willReturn( 2 );
 		$lb2->method( 'hasReplicaServers' )->willReturn( true );
 		$lb2->method( 'hasStreamingReplicaServers' )->willReturn( true );

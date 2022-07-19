@@ -297,9 +297,7 @@ TEXT
 	}
 
 	private function getImageMock( Context $context, $dataUriReturnValue ) {
-		$image = $this->getMockBuilder( Image::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$image = $this->createMock( Image::class );
 		$image->method( 'getDataUri' )
 			->willReturn( $dataUriReturnValue );
 		$image->method( 'getUrl' )

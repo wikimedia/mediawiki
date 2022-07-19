@@ -94,9 +94,7 @@ class InterwikiLookupAdapterTest extends \MediaWikiUnitTestCase {
 	}
 
 	private function getSiteLookup( SiteList $sites ) {
-		$siteLookup = $this->getMockBuilder( SiteLookup::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$siteLookup = $this->createMock( SiteLookup::class );
 
 		$siteLookup->method( 'getSites' )
 			->willReturn( $sites );

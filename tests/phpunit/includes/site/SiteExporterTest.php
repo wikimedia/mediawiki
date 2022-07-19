@@ -72,7 +72,7 @@ class SiteExporterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function newSiteStore( SiteList $sites ) {
-		$store = $this->getMockBuilder( SiteStore::class )->getMock();
+		$store = $this->createMock( SiteStore::class );
 
 		$store->expects( $this->once() )
 			->method( 'saveSites' )

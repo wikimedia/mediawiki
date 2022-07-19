@@ -10,7 +10,7 @@ class SpecialUncategorizedCategoriesTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetQueryInfo( $msgContent, $expected ) {
 		$msg = new RawMessage( $msgContent );
-		$mockContext = $this->getMockBuilder( RequestContext::class )->getMock();
+		$mockContext = $this->createMock( RequestContext::class );
 		$mockContext->method( 'msg' )->willReturn( $msg );
 		$services = $this->getServiceContainer();
 		$special = new SpecialUncategorizedCategories(
