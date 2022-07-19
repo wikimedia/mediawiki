@@ -512,10 +512,13 @@ class SpecialSearch extends SpecialPage {
 
 		// If we have no results and have not already displayed an error message
 		if ( $num === 0 && !$hasSearchErrors ) {
+			$wikiId = WikiMap::getCurrentWikiId();
+			$localizedWikiName = $this->msg( "project-localized-name-{$wikiId}" )->text();
 			$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>", [
 				$hasOtherResults ? 'search-nonefound-thiswiki' : 'search-nonefound',
 				wfEscapeWikiText( $term ),
 				$term,
+				$localizedWikiName
 			] );
 		}
 
