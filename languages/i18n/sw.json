@@ -29,7 +29,8 @@
 			"Wangombe",
 			"Amire80",
 			"Hasley",
-			"Hussein m mmbaga"
+			"Hussein m mmbaga",
+			"MaryMunyoki"
 		]
 	},
 	"tog-underline": "Wekea mstari viungo:",
@@ -1827,10 +1828,11 @@
 	"undelete-error-short": "Hitilafu wakati wa kurudisha faili: $1",
 	"undelete-error-long": "Hitilafu zilitokea wakati wa kurudisha faili:\n\n$1",
 	"undelete-show-file-submit": "Ndiyo",
-	"namespace": "Chagua eneo la wiki:",
+	"namespace": "Eneo la wiki:",
 	"invert": "Geuza uteuzi",
 	"namespace_association": "Eneo linalohusisha",
 	"blanknamespace": "(Kuu)",
+	"contributions": "Michango ya watumiaji",
 	"tool-link-contributions": "Michango ya {{GENDER:$1|mtumiaji}}",
 	"contributions-title": "Michango ya mtumiaji $1",
 	"mycontris": "Michango",
@@ -2395,7 +2397,7 @@
 	"feedback-thanks": "Ahsante! Maoni yako yamewekwa kwenye ukurasa wa \"[$2 $1]\".",
 	"feedback-thanks-title": "Asante!",
 	"searchsuggest-search": "Kutafuta",
-	"searchsuggest-containing": "ya maneno...",
+	"searchsuggest-containing": "Tafuta kurasa zilizo na",
 	"api-error-emptypage": "Kutengeneza mpya, kurasa tupu hazikubaliwi",
 	"api-error-unknown-warning": "Ilani isiojulikana: \"$1\".",
 	"api-error-unknownerror": "Hitlafu isiyojulikana: \"$1\".",

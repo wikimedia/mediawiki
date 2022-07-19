@@ -3006,7 +3006,7 @@
 	"feedback-thanks-title": "Mabalos!",
 	"feedback-useragent": "Ahente nin paragamit:",
 	"searchsuggest-search": "Maghanap sa {{SITENAME}}",
-	"searchsuggest-containing": "may laog na...",
+	"searchsuggest-containing": "Naghahanap nin mga pahinang igwa nang laog",
 	"api-clientside-error-timeout": "An serbidor dae nakapagsimbag sa laog kan pinaghunang panahon.",
 	"api-error-badtoken": "Panlaog na kasalaan: Raot na pangilip",
 	"api-error-emptypage": "Nagmumukna nin bago, mayong laog na mga pahina dae pinagtutugutan.",

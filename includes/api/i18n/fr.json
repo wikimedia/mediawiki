@@ -147,7 +147,7 @@
 	"apihelp-compare-paramvalue-prop-size": "La taille des révisions « from » et « to ».",
 	"apihelp-compare-param-slots": "Retourne les diffs individuels pour ces ''slots'', plutôt qu’un diff combiné pour tous les ''slots''.",
 	"apihelp-compare-example-1": "Créer une différence entre les révisions 1 et 2.",
-	"apihelp-createaccount-summary": "Créer un nouveau compte utilisateur.",
+	"apihelp-createaccount-summary": "Créer un nouveau compte d’utilisateur.",
 	"apihelp-createaccount-param-preservestate": "Si <kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd> a retourné true pour <samp>hasprimarypreservedstate</samp>, les demandes marquées comme <samp>primary-required</samp> doivent être omises. Si elle a retourné une valeur non vide pour <samp>preservedusername</samp>, ce nom d’utilisateur doit être utilisé pour le paramètre <var>username</var>.",
 	"apihelp-createaccount-example-create": "Commencer le processus de création de l’utilisateur <kbd>Exemple</kbd> avec le mot de passe <kbd>ExempleMotDePasse</kbd>.",
 	"apihelp-cspreport-summary": "Utilisé par les navigateurs pour signaler les violations de la politique de confidentialité du contenu. Ce module ne devrait jamais être utilisé, sauf quand il est utilisé automatiquement par un navigateur web compatible avec CSP.",

@@ -33,7 +33,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"McDutchie",
-			"Amire80"
+			"Amire80",
+			"Kunokuno"
 		]
 	},
 	"tog-underline": "Pagsasalungguhit ng link:",
@@ -592,6 +593,8 @@
 	"savearticle": "Ilathala ang pahina",
 	"publishpage": "Ilimbag ang pahina",
 	"publishchanges": "Ilathala ang binago",
+	"publishpage-start": "I-publish ang page…",
+	"publishchanges-start": "I-publish ang mga pagbabago...",
 	"preview": "Pasilip",
 	"showpreview": "Pasilip",
 	"showdiff": "Ipakita ang pagbabago",

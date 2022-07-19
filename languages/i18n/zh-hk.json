@@ -275,6 +275,7 @@
 	"blanknamespace": "（主要）",
 	"contributions": "用戶貢獻",
 	"tool-link-contributions": "{{GENDER:$1|用戶}}貢獻",
+	"contributions-title": "$1的用戶貢獻",
 	"sp-contributions-deleted": "已刪除的{{GENDER:$1|用戶}}貢獻",
 	"sp-contributions-userrights": "{{GENDER:$1|用戶}}權限管理",
 	"sp-contributions-blocked-notice": "這位{{GENDER:$1|用戶}}目前被封鎖。以下提供最近的封鎖日誌以供參考：",

@@ -3053,7 +3053,7 @@
 	"feedback-thanks-title": "Matur nuwun!",
 	"feedback-useragent": "Agèn naraguna:",
 	"searchsuggest-search": "Golèk ing {{SITENAME}}",
-	"searchsuggest-containing": "ngemu...",
+	"searchsuggest-containing": "Golèk kaca sing nduwèni ukara iki",
 	"api-clientside-error-timeout": "Paladèné ora nanggapi sajeroné wektu sing dikarepaké.",
 	"api-error-badtoken": "Masalah njero: Token ala.",
 	"api-error-emptypage": "Nggawé kaca kosong anyar ora dilikaké.",
