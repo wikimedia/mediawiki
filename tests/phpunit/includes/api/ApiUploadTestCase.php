@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * Abstract class to support upload tests
  */
@@ -17,10 +19,7 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgEnableUploads' => true,
-		] );
-
+		$this->overrideConfigValue( MainConfigNames::EnableUploads, true );
 		$this->clearFakeUploads();
 	}
 

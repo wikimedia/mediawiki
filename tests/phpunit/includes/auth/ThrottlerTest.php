@@ -4,6 +4,7 @@ namespace MediaWiki\Auth;
 
 use BagOStuff;
 use HashBagOStuff;
+use MediaWiki\MainConfigNames;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -39,8 +40,10 @@ class ThrottlerTest extends \MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( BagOStuff::class, $throttlerPriv->cache );
 		$this->assertInstanceOf( LoggerInterface::class, $throttlerPriv->logger );
 
-		$this->setMwGlobals( [ 'wgPasswordAttemptThrottle' => [ [ 'count' => 321,
-			'seconds' => 654 ] ] ] );
+		$this->overrideConfigValue(
+			MainConfigNames::PasswordAttemptThrottle,
+			[ [ 'count' => 321, 'seconds' => 654 ] ]
+		);
 		$throttler = new Throttler();
 		$throttler->setLogger( new NullLogger() );
 		$throttlerPriv = TestingAccessWrapper::newFromObject( $throttler );

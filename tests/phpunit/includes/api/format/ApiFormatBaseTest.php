@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\TestingAccessWrapper;
 
@@ -13,9 +14,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( [
-			'wgServer' => 'http://example.org'
-		] );
+		$this->overrideConfigValue( MainConfigNames::Server, 'http://example.org' );
 	}
 
 	/**
@@ -62,9 +61,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 			'returnPrinter' => true,
 		];
 
-		$this->setMwGlobals( [
-			'wgApiFrameOptions' => 'DENY',
-		] );
+		$this->overrideConfigValue( MainConfigNames::ApiFrameOptions, 'DENY' );
 
 		$ret = parent::encodeData( $params, $data, $options );
 		/** @var ApiFormatBase $printer */
@@ -209,9 +206,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 	}
 
 	public function testDisable() {
-		$this->setMwGlobals( [
-			'wgApiFrameOptions' => 'DENY',
-		] );
+		$this->overrideConfigValue( MainConfigNames::ApiFrameOptions, 'DENY' );
 
 		$printer = $this->getMockFormatter( null, 'mock' );
 		$printer->method( 'execute' )->willReturnCallback( static function () use ( $printer ) {
@@ -235,9 +230,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 	}
 
 	public function testNullMimeType() {
-		$this->setMwGlobals( [
-			'wgApiFrameOptions' => 'DENY',
-		] );
+		$this->overrideConfigValue( MainConfigNames::ApiFrameOptions, 'DENY' );
 
 		$printer = $this->getMockFormatter( null, 'mock', [ 'getMimeType' ] );
 		$printer->method( 'execute' )->willReturnCallback( static function () use ( $printer ) {
@@ -279,27 +272,21 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		);
 	}
 
-	public function testApiFrameOptions() {
-		$this->setMwGlobals( [ 'wgApiFrameOptions' => 'DENY' ] );
+	public function provideApiFrameOptions() {
+		yield 'Override ApiFrameOptions to DENY' => [ 'DENY', 'DENY' ];
+		yield 'Override ApiFrameOptions to SAMEORIGIN' => [ 'SAMEORIGIN', 'SAMEORIGIN' ];
+		yield 'Override ApiFrameOptions to false' => [ false, null ];
+	}
+
+	/**
+	 * @dataProvider provideApiFrameOptions
+	 */
+	public function testApiFrameOptions( $customConfig, $expectedHeader ) {
+		$this->overrideConfigValue( MainConfigNames::ApiFrameOptions, $customConfig );
 		$printer = $this->getMockFormatter( null, 'mock' );
 		$printer->initPrinter();
 		$this->assertSame(
-			'DENY',
-			$printer->getMain()->getRequest()->response()->getHeader( 'X-Frame-Options' )
-		);
-
-		$this->setMwGlobals( [ 'wgApiFrameOptions' => 'SAMEORIGIN' ] );
-		$printer = $this->getMockFormatter( null, 'mock' );
-		$printer->initPrinter();
-		$this->assertSame(
-			'SAMEORIGIN',
-			$printer->getMain()->getRequest()->response()->getHeader( 'X-Frame-Options' )
-		);
-
-		$this->setMwGlobals( [ 'wgApiFrameOptions' => false ] );
-		$printer = $this->getMockFormatter( null, 'mock' );
-		$printer->initPrinter();
-		$this->assertNull(
+			$expectedHeader,
 			$printer->getMain()->getRequest()->response()->getHeader( 'X-Frame-Options' )
 		);
 	}

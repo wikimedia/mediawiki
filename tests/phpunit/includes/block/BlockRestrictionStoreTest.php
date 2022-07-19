@@ -7,6 +7,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
+use MediaWiki\MainConfigNames;
 
 /**
  * @group Database
@@ -35,9 +36,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 	 * @covers ::rowToRestriction
 	 */
 	public function testLoadMultipleRestrictions() {
-		$this->setMwGlobals( [
-			'wgBlockDisablesLogin' => false,
-		] );
+		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 		$block = $this->insertBlock();
 
 		$pageFoo = $this->getExistingTestPage( 'Foo' );

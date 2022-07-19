@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group API
  * @group medium
@@ -43,7 +45,7 @@ class ApiQueryTokensTest extends ApiTestCase {
 	public function testContinuation(): void {
 		// one token is 42 characters, so 100 is enough for 2 tokens but not 3
 		$size = 100;
-		$this->setMwGlobals( 'wgAPIMaxResultSize', $size );
+		$this->overrideConfigValue( MainConfigNames::APIMaxResultSize, $size );
 
 		[ $result ] = $this->doApiRequest( [
 			'action' => 'query',
