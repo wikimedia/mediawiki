@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
@@ -39,9 +41,9 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testGeneral() {
-		$this->setMwGlobals( [
-			'wgAllowExternalImagesFrom' => '//localhost/',
-			'wgMainPageIsDomainRoot' => true,
+		$this->overrideConfigValues( [
+			MainConfigNames::AllowExternalImagesFrom => '//localhost/',
+			MainConfigNames::MainPageIsDomainRoot => true,
 		] );
 
 		$data = $this->doQuery();
@@ -100,7 +102,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testNamespacesExtraNS() {
-		$this->setMwGlobals( 'wgExtraNamespaces', [ '138' => 'Testing' ] );
+		$this->overrideConfigValue( MainConfigNames::ExtraNamespaces, [ '138' => 'Testing' ] );
 		$this->assertSame(
 			array_keys( $this->getServiceContainer()->getContentLanguage()->getFormattedNamespaces() ),
 			array_keys( $this->doQuery( 'namespaces' ) )
@@ -108,8 +110,8 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testNamespacesProtection() {
-		$this->setMwGlobals(
-			'wgNamespaceProtection',
+		$this->overrideConfigValue(
+			MainConfigNames::NamespaceProtection,
 			[
 				'0' => '',
 				'2' => [ '' ],
@@ -163,9 +165,9 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	 * @dataProvider interwikiMapProvider
 	 */
 	public function testInterwikiMap( $filter ) {
-		$this->setMwGlobals( [
-			'wgServer' => 'https://local.example',
-			'wgScriptPath' => '/w',
+		$this->overrideConfigValues( [
+			MainConfigNames::Server => 'https://local.example',
+			MainConfigNames::ScriptPath => '/w',
 		] );
 
 		$dbw = wfGetDB( DB_PRIMARY );
@@ -194,10 +196,10 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		);
 		$this->tablesUsed[] = 'interwiki';
 
-		$this->setMwGlobals( [
-			'wgLocalInterwikis' => [ 'self' ],
-			'wgExtraInterlanguageLinkPrefixes' => [ 'self' ],
-			'wgExtraLanguageNames' => [ 'self' => 'Recursion' ],
+		$this->overrideConfigValues( [
+			MainConfigNames::LocalInterwikis => [ 'self' ],
+			MainConfigNames::ExtraInterlanguageLinkPrefixes => [ 'self' ],
+			MainConfigNames::ExtraLanguageNames => [ 'self' => 'Recursion' ],
 		] );
 		$this->resetServices();
 
@@ -261,7 +263,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$mockLB->method( 'getLocalDomainID' )->willReturn( 'testdomain' );
 		$this->setService( 'DBLoadBalancer', $mockLB );
 
-		$this->setMwGlobals( 'wgShowHostnames', $showHostnames );
+		$this->overrideConfigValue( MainConfigNames::ShowHostnames, $showHostnames );
 
 		$expected = [];
 		if ( $includeAll ) {
@@ -313,11 +315,11 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 
 		$this->setGroupPermissions( 'viscount', 'perambulate', 'yes' );
 		$this->setGroupPermissions( 'viscount', 'legislate', '0' );
-		$this->setMwGlobals( [
-			'wgAddGroups' => [ 'viscount' => true, 'bot' => [] ],
-			'wgRemoveGroups' => [ 'viscount' => [ 'sysop' ], 'bot' => [ '*', 'earl' ] ],
-			'wgGroupsAddToSelf' => [ 'bot' => [ 'bureaucrat', 'sysop' ] ],
-			'wgGroupsRemoveFromSelf' => [ 'bot' => [ 'bot' ] ],
+		$this->overrideConfigValues( [
+			MainConfigNames::AddGroups => [ 'viscount' => true, 'bot' => [] ],
+			MainConfigNames::RemoveGroups => [ 'viscount' => [ 'sysop' ], 'bot' => [ '*', 'earl' ] ],
+			MainConfigNames::GroupsAddToSelf => [ 'bot' => [ 'bureaucrat', 'sysop' ] ],
+			MainConfigNames::GroupsRemoveFromSelf => [ 'bot' => [ 'bot' ] ],
 		] );
 
 		$data = $this->doQuery( 'usergroups', $numInGroup ? [ 'sinumberingroup' => '' ] : [] );
@@ -363,7 +365,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 
 	public function testFileExtensions() {
 		// Add duplicate
-		$this->setMwGlobals( 'wgFileExtensions', [ 'png', 'gif', 'jpg', 'png' ] );
+		$this->overrideConfigValue( MainConfigNames::FileExtensions, [ 'png', 'gif', 'jpg', 'png' ] );
 
 		$expected = [ [ 'ext' => 'png' ], [ 'ext' => 'gif' ], [ 'ext' => 'jpg' ] ];
 
@@ -426,7 +428,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			'license-name' => 'PD',
 		];
 
-		$this->setMwGlobals( 'wgExtensionCredits', [ 'api' => [
+		$this->overrideConfigValue( MainConfigNames::ExtensionCredits, [ 'api' => [
 			$val,
 			[
 				'author' => [ 'John Smith', 'John Smith Jr.', '...' ],
@@ -475,10 +477,10 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			? wfExpandUrl( $expectedUrlOrTitle->getLinkURL(), PROTO_CURRENT )
 			: $expectedUrlOrTitle;
 
-		$this->setMwGlobals( [
-			'wgRightsPage' => $page,
-			'wgRightsUrl' => $url,
-			'wgRightsText' => $text,
+		$this->overrideConfigValues( [
+			MainConfigNames::RightsPage => $page,
+			MainConfigNames::RightsUrl => $url,
+			MainConfigNames::RightsText => $text,
 		] );
 		$this->assertSame(
 			[ 'url' => $expectedUrl, 'text' => $expectedText ],
@@ -487,10 +489,10 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 
 		// The installer sets these options to empty string if not specified otherwise,
 		// test that this behaves the same as null.
-		$this->setMwGlobals( [
-			'wgRightsPage' => $page ?? '',
-			'wgRightsUrl' => $url ?? '',
-			'wgRightsText' => $text ?? '',
+		$this->overrideConfigValues( [
+			MainConfigNames::RightsPage => $page ?? '',
+			MainConfigNames::RightsUrl => $url ?? '',
+			MainConfigNames::RightsText => $text ?? '',
 		] );
 		$this->assertSame(
 			[ 'url' => $expectedUrl, 'text' => $expectedText ],
@@ -577,7 +579,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testLanguageVariantsDisabled() {
-		$this->setMwGlobals( 'wgDisableLangConversion', true );
+		$this->overrideConfigValue( MainConfigNames::DisableLangConversion, true );
 
 		$this->assertSame( [], $this->doQuery( 'languagevariants' ) );
 	}
@@ -656,9 +658,10 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testProtocols() {
-		global $wgUrlProtocols;
-
-		$this->assertSame( $wgUrlProtocols, $this->doQuery( 'protocols' ) );
+		$urlProtocol = MainConfigSchema::getDefaultValue(
+			MainConfigNames::UrlProtocols
+		);
+		$this->assertSame( $urlProtocol, $this->doQuery( 'protocols' ) );
 	}
 
 	public function testDefaultOptions() {
@@ -704,8 +707,10 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$size = strlen( $protocol );
 		$protocols = [ $protocol ];
 
-		$this->setMwGlobals( 'wgUrlProtocols', $protocols );
-		$this->setMwGlobals( 'wgAPIMaxResultSize', $size );
+		$this->overrideConfigValues( [
+			MainConfigNames::UrlProtocols => [ $protocol ],
+			MainConfigNames::APIMaxResultSize => $size,
+		] );
 
 		$res = $this->doApiRequest( [
 			'action' => 'query',

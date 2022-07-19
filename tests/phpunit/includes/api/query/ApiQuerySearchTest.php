@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group medium
  * @covers ApiQuerySearch
@@ -97,9 +99,7 @@ class ApiQuerySearchTest extends ApiTestCase {
 	}
 
 	private function registerMockSearchEngine() {
-		$this->setMwGlobals( [
-			'wgSearchType' => MockSearchEngine::class,
-		] );
+		$this->overrideConfigValue( MainConfigNames::SearchType, MockSearchEngine::class );
 	}
 
 	/**
