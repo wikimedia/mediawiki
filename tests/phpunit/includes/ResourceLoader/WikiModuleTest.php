@@ -246,9 +246,7 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 		$module->method( 'getPages' )->willReturn( $pages );
 		$module->method( 'getTitleInfo' )->willReturn( $titleInfo );
 
-		$context = $this->getMockBuilder( Context::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$context = $this->createMock( Context::class );
 
 		$module = TestingAccessWrapper::newFromObject( $module );
 		$this->assertSame( $expected, $module->getTitleInfo( $context ), 'Title info' );

@@ -66,14 +66,6 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 		return $db;
 	}
 
-	/**
-	 * @return MockObject|IDatabase
-	 */
-	private function getMockDatabase() {
-		return $this->getMockBuilder( IDatabase::class )
-			->disableOriginalConstructor()->getMock();
-	}
-
 	private function getDummyPageRow( $extra = [] ) {
 		return (object)( $extra + [
 			'page_id' => 1337,
@@ -263,7 +255,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::getTitle
 	 */
 	public function testGetTitle_correctFallbackAndthrowsExceptionAfterFallbacks() {
-		$db = $this->getMockDatabase();
+		$db = $this->createMock( IDatabase::class );
 		$mockLoadBalancer = $this->installMockLoadBalancer( $db );
 
 		// Assert that the first call uses a REPLICA and the second falls back to master

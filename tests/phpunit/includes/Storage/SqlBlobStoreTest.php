@@ -684,9 +684,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 			new ExternalStoreFactory( [ 'ForTesting' ], [ 'ForTesting://cluster1' ], 'test-id' )
 		);
 
-		$lb = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$lb = $this->createMock( LoadBalancer::class );
 		$access = $this->getServiceContainer()->getExternalStoreAccess();
 
 		$blobStore = new SqlBlobStore( $lb, $access, $cache );

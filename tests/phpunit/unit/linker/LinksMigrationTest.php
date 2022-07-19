@@ -20,8 +20,7 @@ class LinksMigrationTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetLinksConditionsReadNew( $configValue ) {
 		$title = new TitleValue( NS_USER, 'Someuser' );
-		$linkTargetStore = $this->getMockBuilder( LinkTargetLookup::class )
-			->disableOriginalConstructor()->getMock();
+		$linkTargetStore = $this->createMock( LinkTargetLookup::class );
 		$linkTargetStore->method( 'getLinkTargetId' )
 			->with( $title )
 			->willReturn( 1 );
@@ -49,8 +48,7 @@ class LinksMigrationTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetLinksConditionsReadOld( $configValue ) {
 		$title = new TitleValue( NS_USER, 'Someuser' );
-		$linkTargetStore = $this->getMockBuilder( LinkTargetLookup::class )
-			->disableOriginalConstructor()->getMock();
+		$linkTargetStore = $this->createMock( LinkTargetLookup::class );
 		$linkTargetStore->expects( $this->never() )->method( 'getLinkTargetId' );
 		$linkTargetStore->expects( $this->never() )->method( 'acquireLinkTargetId' );
 

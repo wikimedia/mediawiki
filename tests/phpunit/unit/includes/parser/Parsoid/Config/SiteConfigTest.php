@@ -606,9 +606,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			->method( 'getLanguage' )
 			->with( 'zh' )
 			->willReturn( $langMock );
-		$langConverterMock = $this->getMockBuilder( ZhConverter::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$langConverterMock = $this->createMock( ZhConverter::class );
 		$langConverterMock
 			->method( 'hasVariants' )
 			->willReturn( true );

@@ -189,9 +189,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		$newServices = $this->newMediaWikiServices();
 		$oldServices = MediaWikiServices::forceGlobalInstance( $newServices );
 
-		$lbFactory = $this->getMockBuilder( \Wikimedia\Rdbms\LBFactorySimple::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$lbFactory = $this->createMock( \Wikimedia\Rdbms\LBFactorySimple::class );
 
 		$newServices->redefineService(
 			'DBLoadBalancerFactory',

@@ -7,7 +7,6 @@ use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
-use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * @group Database
@@ -410,15 +409,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $rcType, RecentChange::parseToRCType( $type ) );
 	}
 
-	/**
-	 * @return MockObject|PageProps
-	 */
-	private function getMockPageProps() {
-		return $this->getMockBuilder( PageProps::class )
-			->disableOriginalConstructor()
-			->getMock();
-	}
-
 	public function provideCategoryContent() {
 		return [
 			[ true ],
@@ -433,7 +423,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	public function testHiddenCategoryChange( $isHidden ) {
 		$categoryTitle = Title::makeTitle( NS_CATEGORY, 'CategoryPage' );
 
-		$pageProps = $this->getMockPageProps();
+		$pageProps = $this->createMock( PageProps::class );
 		$pageProps->expects( $this->once() )
 			->method( 'getProperties' )
 			->with( $categoryTitle, 'hiddencat' )

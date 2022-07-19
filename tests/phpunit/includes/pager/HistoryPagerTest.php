@@ -17,9 +17,7 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 	 * @return HistoryPager
 	 */
 	private function getHistoryPager( array $results ) {
-		$wikiPageMock = $this->getMockBuilder( WikiPage::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$wikiPageMock = $this->createMock( WikiPage::class );
 		$contextMock = $this->getMockBuilder( RequestContext::class )
 			->disableOriginalConstructor()
 			->onlyMethods( [ 'getRequest', 'getWikiPage', 'getTitle' ] )

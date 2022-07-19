@@ -332,8 +332,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 
 		$user = $this->getMockUserWithId( 1 );
 
-		$mockExtension = $this->getMockBuilder( WatchedItemQueryServiceExtension::class )
-			->getMock();
+		$mockExtension = $this->createMock( WatchedItemQueryServiceExtension::class );
 		$mockExtension->expects( $this->once() )
 			->method( 'modifyWatchedItemsWithRCInfoQuery' )
 			->with(

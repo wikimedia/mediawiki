@@ -28,16 +28,12 @@ class ExternalStoreAccessTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testReadOnly() {
 		/** @var  ExternalStoreMedium|MockObject $medium */
-		$medium = $this->getMockBuilder( ExternalStoreMedium::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$medium = $this->createMock( ExternalStoreMedium::class );
 
 		$medium->method( 'isReadOnly' )->willReturn( true );
 
 		/** @var  ExternalStoreFactory|MockObject $esFactory */
-		$esFactory = $this->getMockBuilder( ExternalStoreFactory::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$esFactory = $this->createMock( ExternalStoreFactory::class );
 
 		$esFactory->method( 'getWriteBaseUrls' )->willReturn( [ 'test:' ] );
 		$esFactory->method( 'getStoreForUrl' )->willReturn( $medium );

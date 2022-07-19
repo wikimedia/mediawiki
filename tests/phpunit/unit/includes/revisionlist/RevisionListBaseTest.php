@@ -30,9 +30,7 @@ class RevisionListBaseTest extends MediaWikiUnitTestCase {
 		// Actual contents aren't used
 		$fakeRow = (object)[ 'key' => 'val' ];
 
-		$resultWrapper = $this->getMockBuilder( IResultWrapper::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$resultWrapper = $this->createMock( IResultWrapper::class );
 		$resultWrapper->expects( $this->once() )
 			->method( 'rewind' );
 		$resultWrapper->expects( $this->once() )
@@ -63,9 +61,7 @@ class RevisionListBaseTest extends MediaWikiUnitTestCase {
 		$this->assertFalse( $revisionListBase->valid() );
 		$this->assertSame( 0, $revisionListBase->length() );
 
-		$resultWrapper = $this->getMockBuilder( IResultWrapper::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$resultWrapper = $this->createMock( IResultWrapper::class );
 		$resultWrapper->expects( $this->once() )
 			->method( 'key' )
 			->willReturn( 991 );

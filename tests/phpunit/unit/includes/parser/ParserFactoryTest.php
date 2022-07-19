@@ -45,9 +45,7 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 		$mwFactory
 			->method( 'getVariableIDs' )->willReturn( [] );
 
-		$languageConverterFactory = $this->getMockBuilder( LanguageConverterFactory::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$languageConverterFactory = $this->createMock( LanguageConverterFactory::class );
 
 		$urlUtils = $this->createNoOpMock( UrlUtils::class, [ 'validProtocols' ] );
 		$urlUtils->method( 'validProtocols' )->willReturn( 'http:\/\/|https:\/\/' );

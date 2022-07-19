@@ -968,9 +968,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @return BlockRestrictionStore
 	 */
 	private function getBlockRestrictionStore(): BlockRestrictionStore {
-		$loadBalancer = $this->getMockBuilder( LoadBalancer::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$loadBalancer = $this->createMock( LoadBalancer::class );
 
 		return new BlockRestrictionStore( $loadBalancer );
 	}

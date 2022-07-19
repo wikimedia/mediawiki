@@ -335,9 +335,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$currentRevision->setTimestamp( '20160606000000' );
 		$currentRevision->setContent( SlotRecord::MAIN, new WikitextContent( 'CURRENT' ) );
 
-		$revisionStore = $this->getMockBuilder( RevisionStore::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$revisionStore = $this->createMock( RevisionStore::class );
 
 		$revisionStore
 			->method( 'getKnownCurrentRevision' )

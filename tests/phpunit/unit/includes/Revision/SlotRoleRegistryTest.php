@@ -28,9 +28,7 @@ class SlotRoleRegistryTest extends MediaWikiUnitTestCase {
 	}
 
 	private function makeNameTableStore( array $names = [] ) {
-		$mock = $this->getMockBuilder( NameTableStore::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$mock = $this->createMock( NameTableStore::class );
 
 		$mock->method( 'getMap' )
 			->willReturn( $names );
@@ -108,9 +106,7 @@ class SlotRoleRegistryTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'foo', $handler->getRole() );
 
 		/** @var Title $title */
-		$title = $this->getMockBuilder( Title::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$title = $this->createMock( Title::class );
 		$this->assertSame( 'FooModel', $handler->getDefaultModel( $title ) );
 	}
 
