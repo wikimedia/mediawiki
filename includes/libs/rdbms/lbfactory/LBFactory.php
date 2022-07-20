@@ -27,7 +27,9 @@ use BagOStuff;
 use EmptyBagOStuff;
 use Exception;
 use Generator;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
+use NullStatsdDataFactory;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
@@ -52,6 +54,8 @@ abstract class LBFactory implements ILBFactory {
 	private $profiler;
 	/** @var TransactionProfiler */
 	private $trxProfiler;
+	/** @var StatsdDataFactoryInterface */
+	private $statsd;
 	/** @var LoggerInterface */
 	private $replLogger;
 	/** @var LoggerInterface */
@@ -71,7 +75,6 @@ abstract class LBFactory implements ILBFactory {
 	protected $srvCache;
 	/** @var WANObjectCache */
 	protected $wanCache;
-
 	/** @var DatabaseDomain Local domain */
 	protected $localDomain;
 
@@ -151,6 +154,7 @@ abstract class LBFactory implements ILBFactory {
 
 		$this->profiler = $conf['profiler'] ?? null;
 		$this->trxProfiler = $conf['trxProfiler'] ?? new TransactionProfiler();
+		$this->statsd = $conf['statsdDataFactory'] ?? new NullStatsdDataFactory();
 
 		$this->csProvider = $conf['criticalSectionProvider'] ?? null;
 
@@ -670,6 +674,7 @@ abstract class LBFactory implements ILBFactory {
 			'perfLogger' => $this->perfLogger,
 			'errorLogger' => $this->errorLogger,
 			'deprecationLogger' => $this->deprecationLogger,
+			'statsdDataFactory' => $this->statsd,
 			'cliMode' => $this->cliMode,
 			'agent' => $this->agent,
 			'maxLag' => $this->maxLag,

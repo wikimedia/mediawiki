@@ -25,7 +25,9 @@ use ArrayUtils;
 use BagOStuff;
 use EmptyBagOStuff;
 use InvalidArgumentException;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
+use NullStatsdDataFactory;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
@@ -58,6 +60,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private $profiler;
 	/** @var TransactionProfiler */
 	private $trxProfiler;
+	/** @var StatsdDataFactoryInterface */
+	private $statsd;
 	/** @var LoggerInterface */
 	private $connLogger;
 	/** @var LoggerInterface */
@@ -232,6 +236,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$this->clusterName = $params['clusterName'] ?? null;
 		$this->profiler = $params['profiler'] ?? null;
 		$this->trxProfiler = $params['trxProfiler'] ?? new TransactionProfiler();
+		$this->statsd = $params['statsdDataFactory'] ?? new NullStatsdDataFactory();
 
 		$this->csProvider = $params['criticalSectionProvider'] ?? null;
 
@@ -419,6 +424,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$this->loadMonitor = new $class(
 				$this, $this->srvCache, $this->wanCache, $this->loadMonitorConfig );
 			$this->loadMonitor->setLogger( $this->replLogger );
+			$this->loadMonitor->setStatsdDataFactory( $this->statsd );
 		}
 
 		return $this->loadMonitor;
