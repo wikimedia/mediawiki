@@ -452,7 +452,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 
 		$max = $this->expect[$expectation][self::FLD_LIMIT];
 		$by = $this->expect[$expectation][self::FLD_FNAME];
-		$message = "Expectation ($expectation <= $max) by $by not met (actual: {actual})";
+		$message = "Expectation ($expectation <= $max) by $by not met (actual: {actualSeconds})";
 		if ( $trxId ) {
 			$message .= ' in trx #{trxId}';
 		}
@@ -463,7 +463,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 				'measure' => $expectation,
 				'maxSeconds' => $max,
 				'by' => $by,
-				'actual' => $actual,
+				'actualSeconds' => $actual,
 				'query' => $this->getGeneralizedSql( $query ),
 				'exception' => new RuntimeException(),
 				'trxId' => $trxId,
