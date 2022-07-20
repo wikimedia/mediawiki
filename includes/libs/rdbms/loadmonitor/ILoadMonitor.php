@@ -25,6 +25,7 @@ namespace Wikimedia\Rdbms;
 
 use BagOStuff;
 use Psr\Log\LoggerAwareInterface;
+use StatsdAwareInterface;
 use WANObjectCache;
 
 /**
@@ -32,7 +33,7 @@ use WANObjectCache;
  *
  * @ingroup Database
  */
-interface ILoadMonitor extends LoggerAwareInterface {
+interface ILoadMonitor extends LoggerAwareInterface, StatsdAwareInterface {
 	/**
 	 * Construct a new LoadMonitor with a given LoadBalancer parent
 	 *

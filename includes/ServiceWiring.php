@@ -567,7 +567,8 @@ return [
 			$cpStash,
 			$srvCache,
 			$wanCache,
-			$services->getCriticalSectionProvider()
+			$services->getCriticalSectionProvider(),
+			$services->getStatsdDataFactory()
 		);
 
 		$class = MWLBFactory::getLBFactoryClass( $lbConf );

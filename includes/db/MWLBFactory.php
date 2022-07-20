@@ -21,6 +21,7 @@
  * @ingroup Database
  */
 
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
@@ -75,6 +76,7 @@ abstract class MWLBFactory {
 	 * @param BagOStuff $srvCache
 	 * @param WANObjectCache $wanCache
 	 * @param CriticalSectionProvider $csProvider
+	 * @param StatsdDataFactoryInterface $statsdDataFactory
 	 * @return array
 	 * @internal For use with service wiring
 	 */
@@ -85,7 +87,8 @@ abstract class MWLBFactory {
 		BagOStuff $cpStash,
 		BagOStuff $srvCache,
 		WANObjectCache $wanCache,
-		CriticalSectionProvider $csProvider
+		CriticalSectionProvider $csProvider,
+		StatsdDataFactoryInterface $statsdDataFactory
 	) {
 		$options->assertRequiredOptions( self::APPLY_DEFAULT_CONFIG_OPTIONS );
 
@@ -107,6 +110,7 @@ abstract class MWLBFactory {
 			'perfLogger' => LoggerFactory::getInstance( 'DBPerformance' ),
 			'errorLogger' => [ MWExceptionHandler::class, 'logException' ],
 			'deprecationLogger' => [ static::class, 'logDeprecation' ],
+			'statsdDataFactory' => $statsdDataFactory,
 			'cliMode' => $options->get( 'CommandLineMode' ),
 			'readOnlyReason' => $readOnlyMode->getReason(),
 			'defaultGroup' => $options->get( MainConfigNames::DBDefaultGroup ),
