@@ -42,7 +42,8 @@
 			"아라",
 			"Tomato Cream",
 			"Amire80",
-			"No Sleep till Krupki"
+			"No Sleep till Krupki",
+			"Tīgelika"
 		]
 	},
 	"tog-underline": "Падкрэсліваць спасылкі:",
@@ -1215,7 +1216,7 @@
 	"group-sysop": "Адміністратары",
 	"group-interface-admin": "Адміністратары інтэрфейсу",
 	"group-bureaucrat": "Бюракраты",
-	"group-suppress": "Схоўваючыя",
+	"group-suppress": "Схавальнікі",
 	"group-all": "(усе)",
 	"group-user-member": "{{GENDER:$1|удзельнік|удзельніца}}",
 	"group-autoconfirmed-member": "{{GENDER:$1|аўтапацверджаны ўдзельнік|аўтапацверджаная ўдзельніца}}",
@@ -1230,7 +1231,7 @@
 	"grouppage-sysop": "{{ns:project}}:Адміністратары",
 	"grouppage-interface-admin": "{{ns:project}}:Адміністратары інтэрфейсу",
 	"grouppage-bureaucrat": "{{ns:project}}:Бюракраты",
-	"grouppage-suppress": "{{ns:project}}:Схоўваючыя",
+	"grouppage-suppress": "{{ns:project}}:Схавальнікі",
 	"right-read": "Чытаць старонкі",
 	"right-edit": "Правіць старонкі",
 	"right-createpage": "Ствараць старонкі (не размоўныя)",

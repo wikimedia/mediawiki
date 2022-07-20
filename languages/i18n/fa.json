@@ -139,7 +139,7 @@
 	"tog-requireemail": "ایمیل‌های بازنشانی رمز عبور فقط هنگامی ارسال می‌شود که هم آدرس ایمیل و هم نام کاربری ارائه شده باشد.",
 	"underline-always": "همیشه",
 	"underline-never": "هرگز",
-	"underline-default": "پوسته یا پیش‌فرض مرورگر",
+	"underline-default": "پیش‌فرض پوسته یا مرورگر",
 	"editfont-style": "سبک قلم جعبهٔ ویرایش:",
 	"editfont-monospace": "قلم با فاصلهٔ ثابت",
 	"editfont-sansserif": "قلم بدون گوشه",
