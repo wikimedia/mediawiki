@@ -311,14 +311,13 @@ abstract class Skin extends ContextSource {
 				'user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0'
 			);
 		} else {
-			// Make sure the skin is zoomed out on a mobile device.
-			// Do not set initial-scale and let mobile device optimize.
 			// Width is based on the value of @width-breakpoint-desktop
 			// This is as @width-breakpoint-desktop-wide usually tends to optimize
 			// for larger screens with max-widths and margins.
+			// The initial-scale is required to allow font-size adjustment in iOS devices (see T311795).
 			$out->addMeta(
 				'viewport',
-				'width=1000'
+				'width=1000, initial-scale=1.0'
 			);
 		}
 
