@@ -3740,23 +3740,14 @@ class EditPage implements IEditObject {
 	 * @return string
 	 */
 	private function getSummaryPreview( bool $isSubjectPreview ): string {
-		// FIXME When $isSubjectPreview is true, this previews the summary anyway, despite the label
-		// stating "Preview of subject:". This seems weird, but it was clearly intentional in b49d9f5ae3
-		// (2008) and unchanged since then. Admittedly, previewing just the subject (section title)
-		// would be redundant since it's included in the main preview. However, live preview
-		// (mediawiki.action.edit.preview.js) does just that. Someone should decide and make them both
-		// the same, I'm just keeping it unchanged for now.
-
 		// avoid spaces in preview, gets always trimmed on save
 		$summary = trim( $this->summary );
 		if ( $summary === '' || ( !$this->preview && !$this->diff ) ) {
 			return "";
 		}
 
-		$message = $isSubjectPreview ? 'subject-preview' : 'summary-preview';
-
 		$commentFormatter = MediaWikiServices::getInstance()->getCommentFormatter();
-		$summary = $this->context->msg( $message )->parse()
+		$summary = $this->context->msg( 'summary-preview' )->parse()
 			. $commentFormatter->formatBlock( $summary, $this->mTitle, $isSubjectPreview );
 		return Xml::tags( 'div', [ 'class' => 'mw-summary-preview' ], $summary );
 	}

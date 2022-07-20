@@ -1752,7 +1752,6 @@ return [
 			'oojs-ui-core',
 		],
 		'messages' => [
-			'subject-preview',
 			'summary-preview',
 			'parentheses',
 			'templatesusedpreview',

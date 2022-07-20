@@ -18,20 +18,18 @@
 	 * @private
 	 * @param {jQuery} $formNode
 	 * @param {Object} response
-	 * @param {string} section
 	 */
-	function showEditSummary( $formNode, response, section ) {
+	function showEditSummary( $formNode, response ) {
 		var parse = response.parse;
 
 		if ( !parse || !parse.parsedsummary ) {
 			return;
 		}
 
-		var isSubject = ( section === 'new' ),
-			$summaryPreview = $formNode.find( '.mw-summary-preview' ).empty();
+		var $summaryPreview = $formNode.find( '.mw-summary-preview' ).empty();
 
 		$summaryPreview.append(
-			mw.message( isSubject ? 'subject-preview' : 'summary-preview' ).parse(),
+			mw.message( 'summary-preview' ).parse(),
 			' ',
 			$( '<span>' ).addClass( 'comment' ).html(
 				// There is no equivalent to rawParams
@@ -259,6 +257,7 @@
 			if ( section === 'new' ) {
 				params.section = 'new';
 				params.sectiontitle = params.summary;
+				delete params.summary;
 			}
 		}
 
@@ -408,7 +407,7 @@
 
 		return $.when( parseRequest, diffRequest )
 			.done( function ( response, diffResponse ) {
-				showEditSummary( config.$formNode, response[ 0 ], section );
+				showEditSummary( config.$formNode, response[ 0 ] );
 
 				if ( config.showDiff ) {
 					parseDiffResponse( config, diffResponse[ 0 ] );
