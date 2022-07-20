@@ -20,13 +20,6 @@ use Wikimedia\Assert\PostconditionException;
  */
 class SlotRoleRegistryTest extends MediaWikiUnitTestCase {
 
-	/**
-	 * @return Title
-	 */
-	private function makeBlankTitleObject() {
-		return $this->createMock( Title::class );
-	}
-
 	private function makeNameTableStore( array $names = [] ) {
 		$mock = $this->createMock( NameTableStore::class );
 
@@ -69,7 +62,7 @@ class SlotRoleRegistryTest extends MediaWikiUnitTestCase {
 		$handler = $registry->getRoleHandler( 'Foo' );
 		$this->assertSame( 'foo', $handler->getRole() );
 
-		$title = $this->makeBlankTitleObject();
+		$title = $this->createMock( Title::class );
 		$this->assertSame( 'FooModel', $handler->getDefaultModel( $title ) );
 	}
 
@@ -160,7 +153,7 @@ class SlotRoleRegistryTest extends MediaWikiUnitTestCase {
 			);
 		} );
 
-		$title = $this->makeBlankTitleObject();
+		$title = $this->createMock( Title::class );
 		$this->assertEquals( [ 'main' ], $registry->getRequiredRoles( $title ) );
 	}
 
@@ -179,7 +172,7 @@ class SlotRoleRegistryTest extends MediaWikiUnitTestCase {
 		} );
 		$registry->defineRoleWithModel( 'FOO', CONTENT_MODEL_TEXT );
 
-		$title = $this->makeBlankTitleObject();
+		$title = $this->createMock( Title::class );
 		$this->assertEquals( [ 'main', 'foo' ], $registry->getAllowedRoles( $title ) );
 	}
 
@@ -198,7 +191,7 @@ class SlotRoleRegistryTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( $registry->isKnownRole( 'Bar' ) );
 		$this->assertFalse( $registry->isKnownRole( 'xyzzy' ) );
 
-		$title = $this->makeBlankTitleObject();
+		$title = $this->createMock( Title::class );
 		$this->assertArrayEquals( [ 'foo', 'bar' ], $registry->getKnownRoles( $title ) );
 	}
 
