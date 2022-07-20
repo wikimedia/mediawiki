@@ -1966,7 +1966,7 @@ return [
 			],
 			'WatchlistExpiry' => false,
 			'WatchlistPurgeRate' => 0.1,
-			'WatchlistExpiryMaxDuration' => '6 months',
+			'WatchlistExpiryMaxDuration' => '1 year',
 			'RightsPage' => null,
 			'RightsUrl' => null,
 			'RightsText' => null,

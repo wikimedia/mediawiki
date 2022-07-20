@@ -965,7 +965,7 @@ hello
 	}
 
 	public function provideWatchlistExpiry() {
-		$standardOptions = [ 'infinite', '1 week', '1 month', '3 months', '6 months' ];
+		$standardOptions = [ 'infinite', '1 week', '1 month', '3 months', '6 months', '1 year' ];
 		return [
 			'not watched, request nothing' => [
 				'existingExpiry' => '',

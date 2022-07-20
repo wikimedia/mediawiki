@@ -352,7 +352,8 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 				'1 week' => '1 week',
 				'1 month' => '1 month',
 				'3 months' => '3 months',
-				'6 months' => '6 months'
+				'6 months' => '6 months',
+				'1 year' => '1 year',
 			],
 			'default' => 'infinite'
 		];
@@ -369,7 +370,8 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 				'1 week' => '1 week',
 				'1 month' => '1 month',
 				'3 months' => '3 months',
-				'6 months' => '6 months'
+				'6 months' => '6 months',
+				'1 year' => '1 year',
 			],
 			'default' => '2020-07-10T00:00:00Z'
 		];
@@ -386,7 +388,8 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 				'1 week' => '1 week',
 				'1 month' => '1 month',
 				'3 months' => '3 months',
-				'6 months' => '6 months'
+				'6 months' => '6 months',
+				'1 year' => '1 year',
 			],
 			'default' => '2020-06-17T00:00:00Z'
 		];
@@ -401,7 +404,8 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 				'1 week' => '1 week',
 				'1 month' => '1 month',
 				'3 months' => '3 months',
-				'6 months' => '6 months'
+				'6 months' => '6 months',
+				'1 year' => '1 year',
 			],
 			'default' => 'infinite'
 		];
