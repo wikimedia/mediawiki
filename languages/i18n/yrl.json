@@ -3,6 +3,7 @@
 		"authors": [
 			"Amire80",
 			"Cristianwcorreaa",
+			"Duke of Wikipädia",
 			"Karapananguasú Kururú Teremembé",
 			"Languaeditor",
 			"Luk3",
@@ -219,6 +220,7 @@
 	"red-link-title": "$1 (sowa aikueĩma)",
 	"nstab-main": "Sowa",
 	"nstab-user": "{{GENDER:$1|Puruçara sowa}}",
+	"nstab-media": "Media-kaá",
 	"nstab-special": "Sowa makuana",
 	"nstab-project": "Mumuekawaçawa sowa",
 	"nstab-image": "Mukatiuruçawa",
@@ -930,6 +932,7 @@
 	"tags-edit": "Umurupiawa",
 	"tags-delete": "umuçaká",
 	"tags-hitcount": "$1 {{PLURAL:$1|sinimuka|sinimuka'etá}}",
+	"htmlform-submit": "Mundú",
 	"htmlform-no": "Ãã",
 	"htmlform-yes": "Ẽẽ",
 	"htmlform-date-placeholder": "YYYY-DD-MM",
