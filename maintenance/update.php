@@ -212,7 +212,11 @@ class UpdateMediaWiki extends Maintenance {
 
 		$updater->setFileAccess();
 
-		$updater->purgeCache();
+		// Fandom change - Disable post-update cache invalidation (CATS-3063)
+		// purgeCache() invalidates the global check key for MessageBlobStore,
+		// which results in MessageBlobStore being emptied every minute due to
+		// wiki creations or site-wide update.php runs.
+		// $updater->purgeCache();
 
 		$time2 = microtime( true );
 
