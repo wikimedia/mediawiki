@@ -701,6 +701,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			'size' => 40,
 			'autofocus' => !$target,
 			'section' => 'contribs-top',
+			'ipallowed' => true,
+			'iprange' => true,
 		];
 
 		$ns = $this->opts['namespace'] ?? null;
@@ -833,7 +835,17 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		$htmlForm->prepareForm();
 
-		return $htmlForm->getHTML( false );
+		// Submission is handled elsewhere, but do this to check for and display errors
+		$htmlForm->setSubmitCallback( static function () {
+			return true;
+		} );
+		$result = $htmlForm->tryAuthorizedSubmit();
+		if ( !( $result === true || ( $result instanceof Status && $result->isGood() ) ) ) {
+			// Uncollapse if there are errors
+			$htmlForm->setCollapsibleOptions( false );
+		}
+
+		return $htmlForm->getHTML( $result );
 	}
 
 	/**
