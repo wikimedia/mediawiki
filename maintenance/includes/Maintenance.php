@@ -194,6 +194,9 @@ abstract class Maintenance {
 	 */
 	public function __construct() {
 		$this->parameters = new MaintenanceParameters();
+		$this->mOptions =& $this->parameters->getFieldReference( 'mOptions' );
+		$this->orderedOptions =& $this->parameters->getFieldReference( 'optionsSequence' );
+		$this->mArgs =& $this->parameters->getFieldReference( 'mArgs' );
 		$this->addDefaultParams();
 	}
 
@@ -335,6 +338,32 @@ abstract class Maintenance {
 	 */
 	protected function getArg( $argId = 0, $default = null ) {
 		return $this->parameters->getArg( $argId, $default );
+	}
+
+	/**
+	 * Programmatically set the value of the given option.
+	 * Useful for setting up child scripts, see runChild().
+	 *
+	 * @since 1.39
+	 *
+	 * @param string $name
+	 * @param mixed|null $value
+	 */
+	public function setOption( string $name, $value ): void {
+		$this->parameters->setOption( $name, $value );
+	}
+
+	/**
+	 * Programmatically set the value of the given argument.
+	 * Useful for setting up child scripts, see runChild().
+	 *
+	 * @since 1.39
+	 *
+	 * @param string|int $argId Arg index or name
+	 * @param mixed|null $value
+	 */
+	public function setArg( $argId, $value ): void {
+		$this->parameters->setArg( $argId, $value );
 	}
 
 	/**
@@ -734,11 +763,6 @@ abstract class Maintenance {
 			$this->error( $errors );
 			$this->maybeHelp( true );
 		}
-
-		// compatibility
-		$this->mOptions = $this->parameters->getOptions();
-		$this->orderedOptions = $this->parameters->getOptionsSequence();
-		$this->mArgs = $this->parameters->getArgs();
 
 		$this->loadSpecialVars();
 		$this->mInputLoaded = true;
