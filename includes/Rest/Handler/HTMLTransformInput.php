@@ -4,27 +4,74 @@ namespace MediaWiki\Rest\Handler;
 
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\DOM\Document;
 
 /**
  * @unstable
  */
-class TransformContext {
+class HTMLTransformInput {
 	/** @var array */
-	private $original;
+	private $original = [];
 
 	/** @var array */
-	private $opts;
+	private $opts = [];
 
-	/** @var array */
-	private $attribs;
+	/** @var ?int */
+	private $oldid = null;
+
+	/** @var Document */
+	private $doc;
+
+	/** @var ?array */
+	private $modifiedDataMW;
+
+	/** @var string */
+	private $inputFormat;
 
 	/**
-	 * @param array $attribs
+	 * @param Document $doc
 	 */
-	public function __construct( array $attribs ) {
-		$this->attribs = $attribs;
-		$this->original = $attribs['opts']['original'] ?? [];
-		$this->opts = $attribs['opts'] ?? [];
+	public function __construct( Document $doc ) {
+		$this->doc = $doc;
+	}
+
+	public function setOptions( array $options ) {
+		$this->opts = $options;
+	}
+
+	/**
+	 * @param string $format Either ParsoidFormatHelper::FORMAT_HTML
+	 *        or ParsoidFormatHelper::FORMAT_PAGEBUNDLE.
+	 */
+	public function setInputFormat( string $format ) {
+		$this->inputFormat = $format;
+	}
+
+	/**
+	 * @param array $dataMW
+	 */
+	public function setModifiedDataMW( array $dataMW ): void {
+		$this->modifiedDataMW = $dataMW;
+	}
+
+	/**
+	 * @param int $oldid
+	 */
+	public function setOriginalRevisionId( int $oldid ): void {
+		$this->oldid = $oldid;
+	}
+
+	/**
+	 * @param array $originalData
+	 *
+	 * @return void
+	 */
+	public function setOriginalData( array $originalData ) {
+		$this->original = $originalData;
+	}
+
+	public function getModifiedDocument(): Document {
+		return $this->doc;
 	}
 
 	public function hasOriginalHtml(): bool {
@@ -51,7 +98,7 @@ class TransformContext {
 	}
 
 	public function inputIsPageBundle(): bool {
-		return $this->opts['from'] === ParsoidFormatHelper::FORMAT_PAGEBUNDLE;
+		return $this->inputFormat === ParsoidFormatHelper::FORMAT_PAGEBUNDLE;
 	}
 
 	public function getOriginalPageBundle(): PageBundle {
@@ -75,7 +122,7 @@ class TransformContext {
 		$pb = new PageBundle(
 			'',
 			[ 'ids' => [] ],  // So it validates
-			$this->opts['data-mw']['body'] ?? null
+			$this->modifiedDataMW ?? null
 		);
 
 		$errorMessage = '';
@@ -87,11 +134,11 @@ class TransformContext {
 	}
 
 	public function hasModifiedDataMW(): bool {
-		return isset( $this->opts['data-mw'] );
+		return $this->modifiedDataMW !== null;
 	}
 
-	public function getOldId(): ?int {
-		return $this->attribs['oldid'] ?? null;
+	public function getOriginalRevisionId(): ?int {
+		return $this->oldid;
 	}
 
 	public function getContentModel(): ?string {
@@ -101,4 +148,5 @@ class TransformContext {
 	public function getEnvironmentOffsetType(): string {
 		return $this->opts['offsetType'] ?? 'byte';
 	}
+
 }

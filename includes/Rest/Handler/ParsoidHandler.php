@@ -125,7 +125,7 @@ abstract class ParsoidHandler extends Handler {
 	/**
 	 * Get selected serialization data from old HTML.
 	 *
-	 * @param TransformContext $context
+	 * @param HTMLTransformInput $input
 	 * @param PageBundle|null $origPb
 	 * @param string $inputContentVersion
 	 * @param Document $doc
@@ -136,7 +136,7 @@ abstract class ParsoidHandler extends Handler {
 	 * @throws HttpException
 	 */
 	private function getSelserData(
-		TransformContext $context,
+		HTMLTransformInput $input,
 		?PageBundle $origPb,
 		string $inputContentVersion,
 		Document $doc,
@@ -144,19 +144,19 @@ abstract class ParsoidHandler extends Handler {
 		PageConfig $pageConfig
 	): ?SelserData {
 		$oldhtml = null;
-		if ( $context->inputIsPageBundle() ) {
+		if ( $input->inputIsPageBundle() ) {
 			// Apply the pagebundle to the parsed doc.  This supports the
 			// simple edit scenarios where data-mw might not necessarily
 			// have been retrieved.
 			if ( !$origPb ) {
-				$origPb = $context->getOriginalPageBundle();
+				$origPb = $input->getOriginalPageBundle();
 			}
 
 			// Verify that the top-level parsoid object either doesn't contain
 			// offsetType, or that it matches the conversion that has been
 			// explicitly requested.
 			if ( isset( $origPb->parsoid['offsetType'] ) ) {
-				$offsetType = $context->getEnvironmentOffsetType();
+				$offsetType = $input->getEnvironmentOffsetType();
 				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$origOffsetType = $origPb->parsoid['offsetType'];
 				if ( $origOffsetType !== $offsetType ) {
@@ -168,7 +168,7 @@ abstract class ParsoidHandler extends Handler {
 			$pb = $origPb;
 			// However, if a modified data-mw was provided,
 			// original data-mw is omitted to avoid losing deletions.
-			if ( $context->hasModifiedDataMW() && Semver::satisfies( $inputContentVersion,
+			if ( $input->hasModifiedDataMW() && Semver::satisfies( $inputContentVersion,
 					'^999.0.0' ) ) {
 				// Don't modify `origPb`, it's used below.
 				$pb = new PageBundle( '',
@@ -182,11 +182,11 @@ abstract class ParsoidHandler extends Handler {
 		}
 
 		// If we got original html, parse it
-		if ( $context->hasOriginalHtml() ) {
+		if ( $input->hasOriginalHtml() ) {
 			if ( !$oldBody ) {
-				$oldBody = DOMCompat::getBody( $this->parseHTML( $context->getOriginalHtml() ) );
+				$oldBody = DOMCompat::getBody( $this->parseHTML( $input->getOriginalHtml() ) );
 			}
-			if ( $context->inputIsPageBundle() && $origPb !== null ) {
+			if ( $input->inputIsPageBundle() && $origPb !== null ) {
 				$this->validatePb( $origPb,
 					$inputContentVersion );
 				// @phan-suppress-next-line PhanTypeMismatchArgumentSuperType
@@ -201,7 +201,7 @@ abstract class ParsoidHandler extends Handler {
 		//   "Both it and the oldid parameter are needed for
 		//    clean round-tripping of HTML retrieved earlier with"
 		// So, no oldid => no selser
-		$hasOldId = ( $context->getOldId() !== null );
+		$hasOldId = ( $input->getOriginalRevisionId() !== null );
 
 		if ( $hasOldId && !empty( $this->parsoidSettings['useSelser'] ) ) {
 			if ( !$pageConfig->getRevisionContent() ) {
@@ -366,6 +366,31 @@ abstract class ParsoidHandler extends Handler {
 
 		$this->requestAttributes = $attribs;
 		return $this->requestAttributes;
+	}
+
+	protected function getHTMLTransformInput( array $attribs, string $html ) {
+		$doc = $this->parseHTML( $html, true );
+
+		$input = new HTMLTransformInput( $doc );
+		$input->setOptions( $attribs['opts'] ?? [] );
+		$input->setInputFormat( $attribs['opts']['from'] );
+
+		if ( isset( $attribs['oldid'] ) ) {
+			$input->setOriginalRevisionId( $attribs['oldid'] );
+		}
+
+		if ( isset( $attribs['opts']['data-mw']['body'] ) ) {
+			$input->setModifiedDataMW( $attribs['opts']['data-mw']['body'] );
+		}
+
+		if ( !empty( $attribs['opts']['original'] ) ) {
+			// XXX: maybe split this up into setOriginalHTML, etc?
+			//      We could pass the original HTML already parsed as well.
+			//      We could also set a PageBundle object.
+			$input->setOriginalData( $attribs['opts']['original'] );
+		}
+
+		return $input;
 	}
 
 	/**
@@ -888,12 +913,11 @@ abstract class ParsoidHandler extends Handler {
 	protected function html2wt(
 		PageConfig $pageConfig, array $attribs, string $html
 	) {
-		$context = new TransformContext( $attribs );
 		try {
+			$input = $this->getHTMLTransformInput( $attribs, $html );
 			$wikitext = $this->transformHtmlToWikitext(
 				$pageConfig,
-				$context,
-				$html
+				$input
 			);
 
 			$response = $this->getResponseFactory()->create();
@@ -908,18 +932,17 @@ abstract class ParsoidHandler extends Handler {
 
 	protected function transformHtmlToWikitext(
 		PageConfig $pageConfig,
-		TransformContext $context,
-		string $html
+		HTMLTransformInput $input
 	): string {
 		$metrics = $this->metrics;
 
 		// Performance Timing options
 		$timing = Timing::start( $metrics );
 
-		$doc = $this->parseHTML( $html, true );
+		$doc = $input->getModifiedDocument();
 
 		// FIXME: Should perhaps be strlen instead
-		$htmlSize = mb_strlen( $html );
+		$htmlSize = mb_strlen( $input->getOriginalHtml() );
 
 		// Send input size to statsd/Graphite
 		$metrics->timing( 'html2wt.size.input', $htmlSize );
@@ -931,10 +954,10 @@ abstract class ParsoidHandler extends Handler {
 		$vEdited = DOMUtils::extractInlinedContentVersion( $doc );
 
 		// Check for version mismatches between original & edited doc
-		if ( !$context->hasOriginalHtml() ) {
+		if ( !$input->hasOriginalHtml() ) {
 			$inputContentVersion = $vEdited;
 		} else {
-			$vOriginal = $context->getOriginalSchemaVersion();
+			$vOriginal = $input->getOriginalSchemaVersion();
 			if ( $vEdited === null ) {
 				// If version of edited doc is unavailable we assume
 				// the edited doc is derived from the original doc.
@@ -948,11 +971,11 @@ abstract class ParsoidHandler extends Handler {
 				// We need to downgrade the original to match the edited doc's version.
 				$downgrade = Parsoid::findDowngrade( $vOriginal, $vEdited );
 				// Downgrades are only for pagebundle
-				if ( $downgrade && $context->inputIsPageBundle() ) {
+				if ( $downgrade && $input->inputIsPageBundle() ) {
 					$metrics->increment(
 						"downgrade.from.{$downgrade['from']}.to.{$downgrade['to']}"
 					);
-					$origPb = $context->getOriginalPageBundle();
+					$origPb = $input->getOriginalPageBundle();
 					$downgradeTiming = Timing::start( $metrics );
 					Parsoid::downgrade( $downgrade, $origPb );
 					$downgradeTiming->end( 'downgrade.time' );
@@ -980,16 +1003,16 @@ abstract class ParsoidHandler extends Handler {
 		// existing inline data-mw.  But, no data-parsoid application, since
 		// that's internal, we only expect to find it in its original,
 		// unmodified form.
-		if ( $context->inputIsPageBundle() && $context->hasModifiedDataMW()
+		if ( $input->inputIsPageBundle() && $input->hasModifiedDataMW()
 			&& Semver::satisfies( $inputContentVersion, '^999.0.0' )
 		) {
 			// `opts` isn't a revision, but we'll find a `data-mw` there.
-			$pb = $context->getModifiedPageBundle( $inputContentVersion );
+			$pb = $input->getModifiedPageBundle( $inputContentVersion );
 			PageBundle::apply( $doc, $pb );
 		}
 
 		$selserData = $this->getSelserData(
-			$context,
+			$input,
 			$origPb,
 			$inputContentVersion,
 			$doc,
@@ -1004,8 +1027,8 @@ abstract class ParsoidHandler extends Handler {
 		try {
 			$wikitext = $parsoid->dom2wikitext( $pageConfig, $doc, [
 				'inputContentVersion' => $inputContentVersion,
-				'offsetType' => $context->getEnvironmentOffsetType(),
-				'contentmodel' => $context->getContentModel(),
+				'offsetType' => $input->getEnvironmentOffsetType(),
+				'contentmodel' => $input->getContentModel(),
 				'htmlSize' => $htmlSize,
 			], $selserData );
 		} catch ( ClientError $e ) {
@@ -1014,10 +1037,10 @@ abstract class ParsoidHandler extends Handler {
 			throw new HttpException( $e->getMessage(), 413 );
 		}
 
-		if ( $html ) {  // Avoid division by zero
+		if ( $input->getOriginalHtml() ) {  // Avoid division by zero
 			$total = $timing->end( 'html2wt.total' );
 			$metrics->timing( 'html2wt.size.output', strlen( $wikitext ) );
-			$metrics->timing( 'html2wt.timePerInputKB', $total * 1024 / strlen( $html ) );
+			$metrics->timing( 'html2wt.timePerInputKB', $total * 1024 / strlen( $input->getOriginalHtml() ) );
 		}
 
 		return $wikitext;
