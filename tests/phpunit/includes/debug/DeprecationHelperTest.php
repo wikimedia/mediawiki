@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -17,7 +18,7 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 		$this->testClass = new TestDeprecatedClass();
 		$this->testSubclass = new TestDeprecatedSubclass();
-		$this->setMwGlobals( 'wgDevelopmentWarnings', false );
+		$this->overrideConfigValue( MainConfigNames::DevelopmentWarnings, false );
 	}
 
 	/**

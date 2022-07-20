@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
@@ -375,7 +376,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideIsInRCLifespan
 	 */
 	public function testIsInRCLifespan( $maxAge, $offset, $tolerance, $expected ) {
-		$this->setMwGlobals( 'wgRCMaxAge', $maxAge );
+		$this->overrideConfigValue( MainConfigNames::RCMaxAge, $maxAge );
 		// Calculate this here instead of the data provider because the provider
 		// is expanded early on and the full test suite may take longer than 100 minutes
 		// when coverage is enabled.
@@ -527,9 +528,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @covers RecentChange::doMarkPatrolled
 	 */
 	public function testDoMarkPatrolledPermissions_NoRcPatrol() {
-		$this->setMwGlobals( [
-			'wgUseRCPatrol' => false
-		] );
+		$this->overrideConfigValue( MainConfigNames::UseRCPatrol, false );
 		$rc = $this->getDummyEditRecentChange();
 		$errors = $rc->doMarkPatrolled( $this->mockRegisteredUltimateAuthority() );
 		$this->assertContains( [ 'rcpatroldisabled' ], $errors );

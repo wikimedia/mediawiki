@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @covers ChangeTags
  * @group Database
@@ -43,7 +45,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$modifiedQuery,
 		$exclude = false
 	) {
-		$this->setMwGlobals( 'wgUseTagFilter', $useTags );
+		$this->overrideConfigValue( MainConfigNames::UseTagFilter, $useTags );
 
 		if ( $avoidReopeningTables && $this->db->getType() !== 'mysql' ) {
 			$this->markTestSkipped( 'MySQL only' );
@@ -468,7 +470,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 	 * @covers ChangeTags::getSoftwareTags
 	 */
 	public function testGetSoftwareTags( $softwareTags, $expected ) {
-		$this->setMwGlobals( 'wgSoftwareTags', $softwareTags );
+		$this->overrideConfigValue( MainConfigNames::SoftwareTags, $softwareTags );
 
 		$actual = ChangeTags::getSoftwareTags();
 		// Order of tags in arrays is not important

@@ -3,6 +3,7 @@
 use MediaWiki\Deferred\LinksUpdate\LinksTable;
 use MediaWiki\Deferred\LinksUpdate\LinksTableGroup;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
@@ -61,7 +62,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 				'iw_wikiid' => 'linksupdatetest',
 			]
 		);
-		$this->setMwGlobals( 'wgRCWatchCategoryMembership', true );
+		$this->overrideConfigValue( MainConfigNames::RCWatchCategoryMembership, true );
 	}
 
 	public function addDBDataOnce() {
@@ -237,7 +238,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	 */
 	public function testUpdate_categorylinks() {
 		/** @var ParserOutput $po */
-		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
+		$this->overrideConfigValue( MainConfigNames::CategoryCollation, 'uppercase' );
 
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
@@ -296,7 +297,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	public function testOnAddingAndRemovingCategory_recentChangesRowIsAdded() {
-		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
+		$this->overrideConfigValue( MainConfigNames::CategoryCollation, 'uppercase' );
 
 		$title = Title::newFromText( 'Testing' );
 		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
@@ -342,7 +343,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	public function testOnAddingAndRemovingCategoryToTemplates_embeddingPagesAreIgnored() {
-		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
+		$this->overrideConfigValue( MainConfigNames::CategoryCollation, 'uppercase' );
 
 		$templateTitle = Title::newFromText( 'Template:TestingTemplate' );
 		$templatePage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $templateTitle );
@@ -390,7 +391,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	public function testUpdate_categorylinks_move() {
-		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
+		$this->overrideConfigValue( MainConfigNames::CategoryCollation, 'uppercase' );
 
 		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Old", self::$testingPageId );
@@ -644,9 +645,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	 * @covers ParserOutput::addLanguageLink
 	 */
 	public function testUpdate_langlinks() {
-		$this->setMwGlobals( [
-			'wgCapitalLinks' => true,
-		] );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, true );
 
 		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );

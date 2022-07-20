@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\TestingAccessWrapper;
@@ -134,15 +136,14 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	}
 
 	public function testReplaceCache() {
-		global $wgWANObjectCaches;
-
 		// We need a WAN cache for this.
-		$this->setMwGlobals( [
-			'wgMainWANCache' => 'hash',
-			'wgWANObjectCaches' => $wgWANObjectCaches + [
+		$this->overrideConfigValues( [
+			MainConfigNames::MainWANCache => CACHE_HASH,
+			MainConfigNames::WANObjectCaches =>
+				MainConfigSchema::getDefaultValue( MainConfigNames::WANObjectCaches ) + [
 				'hash' => [
 					'class'    => WANObjectCache::class,
-					'cacheId'  => 'hash',
+					'cacheId'  => CACHE_HASH,
 					'channels' => []
 				]
 			]
