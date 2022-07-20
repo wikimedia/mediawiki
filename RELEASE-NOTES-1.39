@@ -149,6 +149,9 @@ because of Phabricator reports.
   you mean to use it as "Media:", these need to be replaced to "Media:".
 * (T309866) Some namespace translations were updated for Kyrgyz (ky). The old
   ones are retained as aliases for backwards compatibility.
+* (T117845) Started the renaming of the language codes for Serbian from sr-ec
+  and sr-el to sr-cyrl and sr-latn.
+* …
 
 === Breaking changes in 1.39 ===
 * Basic non-JavaScript (Grade C) support has been dropped for Internet Explorer
