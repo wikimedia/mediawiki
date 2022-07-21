@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @author Addshore
  */
@@ -14,6 +16,7 @@ class JobTest extends MediaWikiIntegrationTestCase {
 	 * @covers Job::toString
 	 */
 	public function testToString( $job, $expected ) {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
 		$this->assertEquals( $expected, $job->toString() );
 	}
 

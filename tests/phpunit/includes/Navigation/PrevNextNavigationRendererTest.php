@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Navigation\PrevNextNavigationRenderer;
 use Wikimedia\TestingAccessWrapper;
 
@@ -20,6 +21,7 @@ class PrevNextNavigationRendererTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideBuildPrevNextNavigation
 	 */
 	public function testBuildPrevNextNavigation( $offset, $limit, $atEnd, $subPage ) {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
 		$this->setUserLang( 'qqx' ); // disable i18n
 
 		$prevNext = new PrevNextNavigationRenderer( RequestContext::getMain() );

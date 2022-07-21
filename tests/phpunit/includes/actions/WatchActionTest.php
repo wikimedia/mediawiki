@@ -34,6 +34,9 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
+		$this->overrideConfigValues( [
+			MainConfigNames::LanguageCode => 'en',
+		] );
 
 		$testTitle = Title::makeTitle( NS_MAIN, 'UTTest' );
 		$this->testWikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $testTitle );

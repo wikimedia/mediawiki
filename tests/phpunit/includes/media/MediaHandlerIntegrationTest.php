@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group Media
  */
@@ -10,6 +12,7 @@ class MediaHandlerIntegrationTest extends MediaWikiMediaTestCase {
 	 * @covers MediaHandler::formatMetadataHelper
 	 */
 	public function testFormatMetadataHelper() {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
 		$testHandler = new class extends MediaHandler {
 			public function formatMetadata( $image, $context = false ) {
 				return $this->formatMetadataHelper( [

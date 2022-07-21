@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 class ContentTransformerTest extends MediaWikiIntegrationTestCase {
 
 	public function preSaveTransformProvider() {
@@ -17,6 +19,7 @@ class ContentTransformerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider preSaveTransformProvider
 	 */
 	public function testPreSaveTransform( $content, $expectedContainText ) {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
 		$services = $this->getServiceContainer();
 		$title = Title::newFromText( 'Test' );
 		$user = new User();
