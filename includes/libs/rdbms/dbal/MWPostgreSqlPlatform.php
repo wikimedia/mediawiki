@@ -62,6 +62,26 @@ class MWPostgreSqlPlatform extends MWPostgreSqlPlatformCompat {
 	/**
 	 * @inheritDoc
 	 */
+	public function getBlobTypeDeclarationSQL( array $column ) {
+		// MySQL goes with varbinary for collation reasons, but postgres can't
+		// properly understand BYTEA type and works just fine with TEXT type
+		// FIXME: This should be fixed at some point (T257755)
+		return 'TEXT';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getBinaryTypeDeclarationSQL( array $column ) {
+		// MySQL goes with varbinary for collation reasons, but postgres can't
+		// properly understand BYTEA type and works just fine with TEXT type
+		// FIXME: This should be fixed at some point (T257755)
+		return 'TEXT';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
 	public function getFloatDeclarationSQL( array $column ) {
 		return 'FLOAT';
 	}
