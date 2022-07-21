@@ -629,7 +629,6 @@
 	"missingcommenttext": "Scrîvi 'n coménto chi de sotta",
 	"missingcommentheader": "<strong>Aregòrdite:</strong> no t'hæ specificòu o soggetto de sto commento. Sciaccando torna \"$1\", a modiffica a saiâ sarvâ sensa.",
 	"summary-preview": "Anteprìmma de l'ògetto da modìffica:",
-	"subject-preview": "Anteprìmma do sogètto:",
 	"previewerrortext": "Gh'è stæto un errô mentre se çercava de mostrâ l'anteprimma.",
 	"blockedtitle": "L'utente o l'é bloccòu",
 	"blockedtext-partial": "<strong>A-a to utensa ò adresso IP gh'è stæto vietou de fâ sta cosa chie. Foscia ti poeu ancon fâ de l'atro inte sto scito, comme modificâ de paggine.</strong> Ti poeu amiâ tutti i detalli do blocco insce [[Special:MyContributions|contributi utente]].\n\nO blocco o l'è stæto fæto da $1.\n\nA raxon fornia a l'è <em>$2</em>.\n\n* Comenso do blocco: $8\n* Terme do blocco: $6\n* Destinataio do blocco: $7\n* ID Blocco #$5",

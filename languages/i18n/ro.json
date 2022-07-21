@@ -665,7 +665,6 @@
 	"missingcommenttext": "Vă rugăm să introduceți un comentariu.",
 	"missingcommentheader": "<strong>Amintire:</strong> Nu ați oferit un subiect pentru acest comentariu. Dacă apăsați din nou butonul „$1”, modificarea dvs. va fi publicată fără unul.",
 	"summary-preview": "Previzualizare descriere:",
-	"subject-preview": "Previzualizare subiect/titlu:",
 	"previewerrortext": "A survenit o eroare ca urmare a tentativei de previzualizare a modificărilor dumneavoastră.",
 	"blockedtitle": "Utilizatorul este blocat",
 	"blockedtext-partial": "<strong>Contul sau adresa dumneavoastră IP a fost blocat de la această acțiune. Puteți face în continuare alte lucruri pe acest wiki, precum editarea unor pagini.</strong> Puteți vedea detaliile blocării în [[Special:MyContributions|lista contribuțiilor]].\n\nBlocarea a fost făcută de $1.\n\nMotivul oferit este <em>$2</em>.\n\n* Începutul blocării: $8\n* Expirarea blocării: $6\n* Persoana țintită de blocare: $7\n* ID blocare #$5",

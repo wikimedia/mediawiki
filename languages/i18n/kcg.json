@@ -543,7 +543,6 @@
 	"anoneditwarning": "<strong>Gba:</strong> A ka̱n nwuo bah. A̱vwuonswat IP ang ka na vwuot ma̱ wowot a̱zaghyi konyan ka̱nang a jhyuk kyang. Ka̱ a <strong>[$1 nwuo]</strong> ke a <strong>[$2 khwuk a̱la̱n]</strong>, á̱ na nkyiak njhyuk ang na nang á̱di̱dam kaswuo a̱lyoot-a̱tyunta̱m ang nia, a̱mgba̱m ma̱ng záng jhyang.",
 	"missingcommenttext": "Ma̱sa̱kut tyia̱ a̱di̱dam.",
 	"summary-preview": "Nwuaná̱son nam-a̱lyiat jhyuk:",
-	"subject-preview": "Nwuaná̱son a̱pyia̱ a̱lyiat:",
 	"previewerrortext": "Ghyuap nyia̱ ma̱nang a kwan di nwuaná̱son a̱ka̱shai ang hu.",
 	"blockedtitle": "Á̱ fwun a̱tyunta̱m wu",
 	"blockedtext": "<strong>Á̱ fwun a̱lyoot-a̱tyunta̱m ku a̱vwuonswat IP ang ka.</strong>\n\nA̱tyu a̱ ku fwun a̱ni wa yet $1.\nJat ji nang gu ku nwuak ja yet <em>$2</em>.\n\n* Tsa fwun hu: $8\n* Tyiai fwun hu: $6\n* A̱tyu nang á̱ fa fwun wu: $7\n\nA maai a myim ma̱ng $1 ku [[{{MediaWiki:Grouppage-sysop}}|a̱kwak a̱son]] a̱ghyang a lyiat ma̱ng a̱nggu tazwa fwun hu.\nA maai a nyia̱ ta̱m ma̱ng kyangta̱m \"{{int:emailuser}}\" hu ka̱ a cak a̱tsak a̱vwuonswat ta̱m-i wu mami [[Special:Preferences|ndan-cat]] ang na, a̱wot si̱ a̱hwa si̱ yet ka̱nang á̱ ku fwun ang di̱ nyian ta̱m ma̱ng a̱nhu hwa bah.\nA̱vwuonswat IP ang ka mi̱ di̱ yong huni kya yet $3, a̱wot a̱si̱ ID ka nang á̱ fwun kya yet #$5.\nMa̱sa̱kut mbeang a̱mgba̱m a̱kyokyuat nkhang tazwa wuni mami a̱mgba̱m lyip nang a lyip a̱ni.",

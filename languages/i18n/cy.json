@@ -617,7 +617,6 @@
 	"missingcommenttext": "Rhowch eich sylwadau isod.",
 	"missingcommentheader": "<strong>Nodyn atgoffa:</strong> \nNid ydych wedi cynnig unrhywbeth yn y blwch 'Pwnc:'. Os y cliciwch \"$1\" eto fe gedwir y golygiad heb bennawd.",
 	"summary-preview": "Rhagolwg o'r crynodeb:",
-	"subject-preview": "Rhagolwg pwnc:",
 	"previewerrortext": "Cafwyd nam tra'n ceisio creu rhagolwg o'r newidiadau.",
 	"blockedtitle": "Mae'r defnyddiwr hwn wedi cael ei flocio",
 	"blockedtext": "<strong>Mae eich enw defnyddiwr neu'ch cyfeiriad IP wedi cael ei flocio.</strong>\n\n$1 a osododd y bloc.\nY rheswm a roddwyd dros y blocio yw: <em>$2</em>.\n\n*Dechreuodd y bloc am: $8\n*Bydd y bloc yn dod i ben am: $6\n*Defnyddiwr a flociwyd: $7\n\nGallwch gysylltu â $1 neu un arall o'r [[{{MediaWiki:Grouppage-sysop}}|gweinyddwyr]] i drafod y bloc.\nGallwch ddefnyddio'r nodwedd \"{{int:emailuser}}\" os oes cyfeiriad e-bost dilys wedi'i nodi yn eich [[Special:Preferences|dewisiadau]], ac nad ydych wedi'ch blocio rhag ei ddefnyddio.\n$3 yw eich cyfeiriad IP presennol, a chyfeirnod y bloc yw #$5.\nWrth wneud ymholiadau, cofiwch gynnwys yr holl fanylion uchod.",

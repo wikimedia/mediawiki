@@ -651,7 +651,6 @@
 	"missingcommenttext": "Molim unesite komentar.",
 	"missingcommentheader": "<strong>Podsjetnik:</strong> Niste napisali sažetak ovoga komentara. Ako ponovno stisnete <i>$1</i>, Vaš će komentar biti objavljen bez sažetka.",
 	"summary-preview": "Pregled polja Sažetak:",
-	"subject-preview": "Pregled teme:",
 	"previewerrortext": "Došlo je do pogreške u prikazu pretpregleda Vaših promjena.",
 	"blockedtitle": "Suradnik je blokiran",
 	"blockedtext-partial": "<strong>Vaše suradničko ime ili IP-adresa blokirani su za ovu radnju. Moguće je da i dalje možete činiti druge stvari na ovome mrežnom mjestu, kao što je uređivanje određenih članaka. </strong> Sve pojedinosti blokiranja možete vidjeti na [[Special:MyContributions|stranici s doprinosima računa]].\n\nOvo je blokiranje zadao/la $1.\n\nRazlog koji je dan <em>$2</em>.\n\n* Početak blokiranja: $8\n* Istjek blokiranja: $6\n* Blokirani suradnik ili IP-adresa: $7\n* ID blokade #$5",

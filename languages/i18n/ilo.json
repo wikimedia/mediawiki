@@ -602,7 +602,6 @@
 	"missingcommenttext": "Pangngaasi nga agikabil iti komentario.",
 	"missingcommentheader": "<strong>Palagip:</strong> Saanka pay a nakaited iti suheto para iti daytoy a komentario.\nNo pindutem manen ti \"$1\", maipablaakto ti inurnosmo nga awan ti pakabuklanna.",
 	"summary-preview": "Panangipadas ti pakabuklan ti panagurnos:",
-	"subject-preview": "Panangipadas ti suheto:",
 	"previewerrortext": "Adda napasamak a maysa a biddut bayat a nagpadpadas kadagiti binawbaliwam.",
 	"blockedtitle": "Naseraan ti agar-aramat",
 	"blockedtext": "<strong>Naseraan ti naganmo nga agar-aramat wenno ti adres ti IP.</strong>\n\nTi serra ket inaramid babaen ni $1. \nTi naited a rason ket <em>$2</em>.\n\n* Rugi ti serra: $8\n* Panagpaso ti serra: $6\n* Naikeddeng a nangserra: $7\n\nMabalinmo a kontaken ni $1 wenno sabali pay nga [[{{MediaWiki:Grouppage-sysop}}|administrador]] no kayatmo a maipalawag daytoy a panagserra.\nMabalino nga aramaten ti ramit nga {{int:emailuser}} no adda umiso nga adres ti esurat a nainaganan iti [[Special:Preferences|pakabilangan ti kakaykayatam]] ken no saanka a naserraan nga agaramat iti daytoy.\nTi agdama nga adres ti IP ket $3, ti naserraan nga ID ket #$5. \nPangngaasi nga iramanmo amin dagiti salaysay dita ngato kadagiti ania man nga aramidem nga usisa.",

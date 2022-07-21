@@ -533,7 +533,6 @@
 	"missingcommenttext": "Ji kerema xwe kurteya naverokê binivîsîne.",
 	"missingcommentheader": "<strong>Zanibe:</strong> Te sernav/mijarek nenivîsandiye ji bo vê şîroveyê. Heke tu carekî din li ser \"$1\" bitikînî, ev guhartina te bê sernav/mijar wê were weşandin.",
 	"summary-preview": "Pêşdîtina kurtenivîsa guhartinê:",
-	"subject-preview": "Pêşdîtina mijarê:",
 	"previewerrortext": "Di pêşdîtina guhartinên te de pirsgirêkek derket.",
 	"blockedtitle": "Bikarhêner astengkirî ye",
 	"blockedtext": "'''Navê te yê bikarhêneriyê an jî IPya te hate astengkirin.'''\n\nAstengkirin ji aliyê $1 ve pêk hat. Sedema astengkirina te ev e: ''$2''.\n\n* Destpêka astengkirinê: $8\n* Xelasbûna astengkirinê: $6\n* Astengkirin ji van re: $7\n\nTu dikarî bi $1 re an jî bi [[{{MediaWiki:Grouppage-sysop}}|koordînatorên]] din re ji bo astengkirinê têkiliyê deyinî. Tu dikarî 'Ji vê/vî bikarhênerê/î re e-name bişîne' bi kar bînî ger di [[Special:Preferences|tercihên xwe]] de navnîşana e-nameyeke derbasdar bi kar bînî û tu ji bo bikaranîna vê fonksiyonê nehatî astengkirin.\n\nIPya te ya niha $3 ye, û IDya astengkirina te #$5 e. Ji kerema xwe yek ji van hejmaran têxe nav peyama xwe yên bo daxwazên rakirina vê astengiyê.",

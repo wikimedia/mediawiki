@@ -732,7 +732,6 @@
 	"missingcommenttext": "Plaats uw reactie.",
 	"missingcommentheader": "<strong>Let op:</strong> u hebt geen onderwerp/kop voor deze opmerking opgegeven.\nAls u opnieuw op \"$1\" klikt, wordt uw wijziging zonder een onderwerp/kop gepubliceerd.",
 	"summary-preview": "Voorvertoning van de bewerkingssamenvatting:",
-	"subject-preview": "Voorvertoning van het onderwerp:",
 	"previewerrortext": "Er is een fout opgetreden tijdens het weergeven van uw wijzigingen.",
 	"blockedtitle": "Gebruiker is geblokkeerd",
 	"blockedtext-partial": "<strong>Uw gebruikersnaam of IP-adres is geblokkeerd voor het uitvoeren van deze handeling. U kunt mogelijk nog andere dingen doen, zoals bepaalde pagina's op deze wiki bewerken.</strong> U kunt de volledige details van de blokkade bekijken op de pagina met uw [[Special:MyContributions|gebruikersbijdragen]].\n\nDe blokkade is opgelegd door $1.\n\nDe opgegeven reden is <em>$2</em>.\n\n* Aanvang blokkade: $8\n* Einde blokkade: $6\n* Bedoeld te blokkeren: $7\n* Blokkadenummer #$5",

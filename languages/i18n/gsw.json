@@ -571,7 +571,6 @@
 	"missingcommenttext": "Bitte gib Dyy Kommentar unte yy.",
 	"missingcommentheader": "<strong>Obacht:</strong> Du hesch kei Iberschrift für dä Kommentar yygee.\nWänn nomol uf „$1“ drucksch, wird Dyyni Bearbeitig ohni Iberschrift gspicheret.",
 	"summary-preview": "Vorschou vor Zämefassig:",
-	"subject-preview": "Vorschau vum Betreff:",
 	"previewerrortext": "Es het e Fähler ’gä bim Versuech, e Vorschou vo dynen Änderige z zeige.",
 	"blockedtitle": "Benutzer isch gsperrt.",
 	"blockedtext": "<strong>Dyy Benutzername oder Dyyni IP-Adräss isch gsperrt wore.</strong>\n\nD Sperrig isch vu $1 uusgfiert wore.\nAs Grund isch ''$2'' aagee wore.\n\n* Aafang vu dr Sperrig: $8\n* Ändi vu dr Sperrig: $6\n* Sperrig betrifft: $7\n\nDu chasch $1 oder e andere [[{{MediaWiki:Grouppage-sysop}}|Ammann]] kontaktiere go dischpetiere iber die Sperrig.\nDu chasch d „{{int:emailuser}}“-Funktion bruche, wänn e giltigi E-Mail-Adräss in Dyyne [[Special:Preferences|Benutzerkonto-Yystellige]] yydrait isch, oder solang die Funktion fir Di nit gsperrt isch.\nDyy aktuälli IP-Adräss isch $3, un d Sperr-ID isch #$5.\nBitte fieg in jedi Aafrog, wu du stellsch, alli Information yy.",

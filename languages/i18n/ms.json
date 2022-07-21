@@ -651,7 +651,6 @@
 	"missingcommenttext": "Sila masukkan komen.",
 	"missingcommentheader": "<strong>Peringatan:</strong> Anda belum menyatakan tajuk perkara bagi komen ini.\nJika anda klik \"$1\" sekali lagi, suntingan anda akan tersimpan tanpa tajuk.",
 	"summary-preview": "Pralihat ringkasan suntingan:",
-	"subject-preview": "Pralihat perkara:",
 	"previewerrortext": "Ralat berlaku ketika cuba mempratayangkan hasil suntingan anda.",
 	"blockedtitle": "Pengguna disekat",
 	"blockedtext-partial": "<strong>Nama pengguna atau alamat IP anda telah disekat daripada membuat sebarang perubahan kepada laman ini. Anda masih boleh menyunting laman lain di wiki ini.</strong> Anda boleh lihat butiran sekatan secara penuh di [[Special:MyContributions|sumbangan akaun]].\n\nSekatan telah dibuat oleh $1.\n\nSebab yang diberikan ialah <em>$2</em>.\n\n* Mula sekatan: $8\n* Tarikh mansuh sekatan: $6\n* Pengguna sasaran: $7\n* ID sekatan #$5",

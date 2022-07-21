@@ -638,7 +638,6 @@
 	"missingcommenttext": "Voluntez skribar komento.",
 	"missingcommentheader": "<strong>Atencez:</strong> Vu ne furnisis titulo por ica komento.\nSe vu itere kliktos \"$1\", vua redakto salveskos sen irga titulo.",
 	"summary-preview": "Previdado di la rezumo:",
-	"subject-preview": "Previdado di la temo:",
 	"previewerrortext": "Eventis eroro kande on probis krear previdado pri vua modifikuri.",
 	"blockedtitle": "L'uzero blokusesis",
 	"blockedtext-partial": "<strong>Vua uzero-nomo od IP-adreso blokusesis koncerne modifikuri en ca pagino. Vu ankore povas facar altra kozi ca Wiki, exemple redaktar kelka pagini.</strong> Vu povas vidar omna detali pri la blokuso en [[Special:MyContributions|account contributions]].\n\n$1 blokusis vu. La motivo esis <em>$2</em>.\n\n* Komenco dil blokuso: $8\n* Fino dil blokuso: $6\n* Motivo dil blokuso: $7\n* Blokuso #$5",

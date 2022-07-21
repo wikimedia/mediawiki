@@ -647,7 +647,6 @@
 	"missingcommenttext": "Mesedez, iruzkin bat sartu.",
 	"missingcommentheader": "<strong>Oharra:</strong> Ez duzu iruzkin honetarako inolako gairik ezarri. Berriro ere \"$1\" sakatuz gero, zure edizioa gairik gabe gordeko da.",
 	"summary-preview": "Laburpenaren aurreikuspena:",
-	"subject-preview": "Gaiaren aurrebista:",
 	"previewerrortext": "Errore bat gertatu da aldaketak aurrezten saiatzean.",
 	"blockedtitle": "Erabiltzailea blokeatuta dago",
 	"blockedtext-partial": "<strong>Zure erabiltzaile izena edo IP helbidea blokeatuta dago eta ezin du hau egin. Hala ere, gune honetan beste beste eragiketa batzuk egin ditzakezu, adibidez orri batzuk editatu.</strong> Blokeoaren xehetasun guztiak hemen ikus ditzakezu: [[Special:MyContributions|kontuaren ekarpenak]].\n\nBlokeoa $1 wikilariak ezarri du.\n\nBlokeatzeko, arrazoi hau eman du: <em>$2</em>.\n\n* Blokeoaren hasiera: $8\n* Blokeoaren amaiera: $6\n* Blokeatua: $7\n* Blokeoaren IDa: #$5",

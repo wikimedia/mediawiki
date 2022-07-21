@@ -512,7 +512,6 @@
 	"missingcommenttext": "請贊之",
 	"missingcommentheader": "'''醒示：'''子未概標之，復「$1」則文倍焉。",
 	"summary-preview": "覽概：",
-	"subject-preview": "覽題：",
 	"blockedtitle": "汝見禁矣",
 	"blockedtext": "'''子名、IP見禁。'''禁者$1也，因''$2''故。\n\n* 始之時為：$8\n* 終之時為：$6\n* 見禁之人：$7\n\n存惑可詢$1，或[[{{MediaWiki:Grouppage-sysop}}|有秩]]，[[Special:Preferences|簿註]]無驛則信不遣。另，子IP為$3，其禁號為#$5。詢時切附之。",
 	"autoblockedtext": "爾之IP或簿自禁，因簿先用，禁者$1也。因故：:\\'\\'$2\\'\\'\n\n* 始之時為：$8\n* 終之時為：$6\n* 見禁之人：$7\n\n存惑可詢$1，或[[{{MediaWiki:Grouppage-sysop}}|有秩]]，[[Special:Preferences|簿註]]無驛則信不遣。另，子用IP $3，禁號為#$5。詢時切附之。",

@@ -746,7 +746,6 @@
 	"missingcommenttext": "請輸入一段評論。",
 	"missingcommentheader": "<strong>提醒：</strong>您未填寫此評論的主旨。\n若您再點選 \"$1\" 一次，將略過主旨/標題直接發布您的評論。",
 	"summary-preview": "編輯摘要預覽：",
-	"subject-preview": "預覽主旨：",
 	"previewerrortext": "嘗試預覽您的變更時發生錯誤。",
 	"blockedtitle": "使用者已被封鎖",
 	"blockedtext-partial": "<strong>您的使用者名稱或 IP 地址被禁止做出此操作，但您仍可在此網站上做出其它行為，例如編輯某些頁面。</strong>您可以在[[Special:MyContributions|帳號貢獻]]檢視完整的封鎖詳情。\n\n封鎖是由$1所執行。\n\n原因出自<em>$2</em>。\n\n*封鎖開始時間：$8\n*封鎖結束時間：$6\n*防止行為：$7\n*封鎖 ID #$5",

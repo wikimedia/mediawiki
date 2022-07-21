@@ -808,7 +808,6 @@
 	"missingcommenttext": "请输入一段评论。",
 	"missingcommentheader": "<strong>提示：</strong>您还没有为此评论提供一个标题。\n如果您再次点击“$1”，您的编辑将不带标题发布。",
 	"summary-preview": "编辑摘要的预览：",
-	"subject-preview": "主题的预览：",
 	"previewerrortext": "尝试预览您的更改时发生错误。",
 	"blockedtitle": "用户被封禁",
 	"blockedtext-partial": "<strong>您的用户名或IP地址已被禁止进行此操作，但您仍可在此wiki上进行其他操作。</strong>您可以在[[Special:MyContributions|帐号贡献]]查看完整的封禁详情。\n\n封禁是由$1所执行。\n\n原因是<em>$2</em>。\n\n*封禁开始时间：$8\n*封禁结束时间：$6\n*禁止的操作：$7\n*封禁ID：#$5",

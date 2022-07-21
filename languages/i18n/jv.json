@@ -584,7 +584,6 @@
 	"missingcommenttext": "Sumangga isi mawa tanggepan.",
 	"missingcommentheader": "<strong>Pangéling-éling:</strong> Kowé durung mènèhi subyèk tumrap tanggapan iki.\nManawa kowé ngeklik \"$1\" manèh, besutanmu bakal kasimpen tanpa subyèk.",
 	"summary-preview": "Pratuduh ringkesan besutan:",
-	"subject-preview": "Pratuduh jejer:",
 	"previewerrortext": "Ana masalah nalika njajal mratuduhaké owahanmu.",
 	"blockedtitle": "Naraguna kapenggak",
 	"blockedtext": "<strong>Jeneng naragunamu utawa alamat IP-mu kapenggak.</strong>\n\nKang menggak ya iku $1.\nDhedhasaré <i>$2</i>.\n\n* Kapenggak wiwit: $8\n* Kapenggak nganti: $6\n* Kang arep pinenggak: $7\n\nKowé bisa sesambungan marang $1 utawa [[{{MediaWiki:Grouppage-sysop}}|panata liyané]] saperlu ngrembug pamenggakmu.\n\nKowé ora bisa nganggo fitur \"{{int:emailuser}}\" yèn kowé wis ngisi alamat layang èlèktronik kang trep ing [[Special:Preferences|pilalan]]mu lan kowé ora pinenggak saka anggonmu nganggo iku.\n\nAlamat IP-mu $3, lan ID penggakané #$5.\nTulung kabèh rerincèn ing dhuwur iki kolebokaké ing saben kwèrimu.",

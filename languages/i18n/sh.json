@@ -628,7 +628,6 @@
 	"missingcommenttext": "Molimo unesite komentar.",
 	"missingcommentheader": "<strong>Podsjetnik:</strong> Niste napisali temu za ovaj komentar.\nAko ponovo kliknete na \"$1\", vaša izmjena će biti sačuvana bez teme/naslova.",
 	"summary-preview": "Pretpregled sažetka:",
-	"subject-preview": "Pretpregled naslova:",
 	"previewerrortext": "Dogodila se greška prilikom prikazivanja vaših izmjena.",
 	"blockedtitle": "Korisnik je blokiran",
 	"blockedtext-partial": "<strong>Vašem korisničkom imenu ili IP adresi je zabranjeno praviti izmjene na ovoj stranici. Još uvijek možete da uređujete druge stranice na ovom wikiju.</strong> Sve pojedinosti o zabrani naći ćete u [[Special:MyContributions|doprinosima naloga]].\n\nZabranu je dao/la $1.\n\nNaveden je sljedeći razlog: <em>$2</em>.\n\n* Početak zabrane: $8\n* Istek zabrane: $6\n* Predviđeni zabranjenik: $7\n* Naznaka zabrane #$5",

@@ -646,7 +646,6 @@
 	"missingcommenttext": "请输入备注。",
 	"missingcommentheader": "<strong>提示：</strong>侬朆为此评论提供标题。如果侬再次单击“$1”，侬个编辑将弗带标题保存。",
 	"summary-preview": "编辑摘要个预览：",
-	"subject-preview": "主题个预览：",
 	"previewerrortext": "尝试预览侬个更改个辰光发生哉错误。",
 	"blockedtitle": "用户畀查封",
 	"blockedtext-partial": "<strong>侬个用户名或IP地址畀禁止做箇事体哉。侬作兴仍旧好勒本站做别样事体，譬方说编辑特定页面。</strong>侬好勒[[Special:MyContributions|账号贡献]]望完整个查封细节。\n\n由$1查封。\n\n畀出个原因是<em>$2</em>。\n\n* 查封开始辰光：$8\n* 查封到期辰光：$6\n* 目标查封对象：$7\n* 查封ID #$5",

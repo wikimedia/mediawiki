@@ -635,7 +635,6 @@
 	"missingcommenttext": "Unesite komentar.",
 	"missingcommentheader": "<strong>Napomena:</strong> Niste napisali naslov ovog komentara.\nAko ponovo kliknete na \"$1\", Vaša izmjena će biti sačuvana bez naslova.",
 	"summary-preview": "Pregled sažetka:",
-	"subject-preview": "Pregled teme:",
 	"previewerrortext": "Došlo je do greške pri pokušaju pregleda izmjena.",
 	"blockedtitle": "Korisnik je blokiran",
 	"blockedtext-partial": "<strong> Vaš username ili IP adresa su blokirani za ovu radnju. Još uvijek možda možete raditi druge stvari na ovoj stranici, kao što je editovanje određenih članaka. </strong> Možete vidjeti sve detalje blokiranja na [[Special:MyContributions|account contributions]].\n\nOvo blokiranje je urađeno od strane $1.\n\nRazlog koji je dat je <em>$2</em>.\n\n* Početak blokiranja: $8\n* Istek blokiranja: $6\n* Namjeren blokirani: $7\n* Block ID #$5",

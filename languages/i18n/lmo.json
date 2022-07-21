@@ -641,7 +641,6 @@
 	"missingcommenttext": "Per piasè, met dent on coment",
 	"missingcommentheader": "<strong>Atenzione:</strong> l'è stad minga specificad l'oget de quell coment chì. Cont el schiscà de noeuv in su \"$1\" la modifica la vegnarà publicada senza nissuna descrizzion.",
 	"summary-preview": "Proeuva di modifiche che te seet adree a fà",
-	"subject-preview": "Previsulazazzion de l'oget:",
 	"previewerrortext": "A l'è capità un eror in del cors del tentativ de previsualizazzion di to cambiament.",
 	"blockedtitle": "Utenza blocada",
 	"blockedtext-partial": "<strong>Al to cunt o adress IP el gh'è stad proibid de fà quel'operazzion chì. Te podarisset fà di alter azzion in quell sit chì, compagn che la modifega de certe pagine.</strong> te podet vedè i detali del bloch in di [[Special:MyContributions|contribuzzion del cunt]].\n\nel bloch l'è stad efetuad de $1.\n\nLa reson fornida l'è <em>$2</em>.\n\n* Prenzippi del blocch: $8\n* Fin del blocch: $6\n* Destinatari del blocco: $7\n* ID del blocch #$5",

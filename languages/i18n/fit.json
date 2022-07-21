@@ -614,7 +614,6 @@
 	"missingcommenttext": "Kirjota kommentti.",
 	"missingcommentheader": "<strong>Huomautus:</strong> Et ole antanut aiherubriikkia tälle kommentile. Napsauta ”$1”, jos halvaat säästää kommenttisi ilman sellaista.",
 	"summary-preview": "Yhteenveon esikattelu:",
-	"subject-preview": "Aiherubriikin esikattelu:",
 	"previewerrortext": "Mookkaustesi esikattelun toteuttamisessa oon tapahtunu virhe.",
 	"blockedtitle": "Käyttäjä oon estetty",
 	"blockedtext-partial": "<strong>Käyttäjänimesi tai IP-osoitteesi oon estetty tekemästä tätä. Saatat silti voia yhä tehä muita asioita tässä wikissä, kuten mookata yksittäisiä sivuja.</strong> Voit kattoa eston täyelliset informaatiot [[Special:MyContributions|käyttäjän muokkaussivulta]].\n\nEston antoi $1.\n\nAnnettu syy oon <em>$2</em>.\n\n* Eston alkamisaika: $8\n* Eston päättymisaika: $6\n* Eston kohe: $7\n* Eston tunnus #$5",

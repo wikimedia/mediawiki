@@ -443,7 +443,6 @@
 	"anoneditwarning": "'''Obral !''' Rin til medogluyayan. Rinafe IP mane ko bubetarizvot zo stragatar.  Ede <strong>[$1 va int dogluyal]</strong> oke <strong>[$2 pataredul]</strong>, betaks ik aryona belunda pu rinaf webesikyolt di zo gad.",
 	"missingcommenttext": "Va sebuks valevon bazel, vay !!",
 	"summary-preview": "Abdinedira va vildeks :",
-	"subject-preview": "Abdinedira va detce :",
 	"previewerrortext": "Rokla sokiyir edje va betakseem fu abdinedil.",
 	"blockedtitle": "Elekan favesik",
 	"blockedtext": "<strong>Rinafa favesikpata oku IP mane tid elekayane.</strong>\n\nElekara skuyuna gan $1.\nLazava tir <em>$2</em>.\n\n* Elekaratoza : $8\n* Eleckaratena : $6\n* Xialana elekara : $7\n\nTa keyaksera va $1 ok konar [[{{MediaWiki:Grouppage-sysop}}|ristusik]] rotuzeral.\nVa '\"e-mail\" staksara pu bat favesik' me rofavel vaxede \"e-mail\" mane tir koe rinaf [[Special:Preferences|lodamaceem]] ise vaon faveson me zo elekayal.\nRinafe tise IP mane tir $3 isen ID elekara tir #$5.\nVa batyona pinta ko kota erura vay di bazel !!",

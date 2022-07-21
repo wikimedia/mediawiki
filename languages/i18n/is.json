@@ -633,7 +633,6 @@
 	"missingcommenttext": "Gerðu svo vel og skrifaðu athugasemd.",
 	"missingcommentheader": "<strong>Áminning:</strong> Þú hefur ekki tilgreint efni fyrir svarið. Ef þú smellir á \"$1\" aftur verður breytingin þín vistuð án þess.",
 	"summary-preview": "Forskoða breytingarágrip:",
-	"subject-preview": "Forskoðun viðfangsefnis:",
 	"previewerrortext": "Óvænt villa kom upp þegar reynt var að forskoða breytingarnar þínar.",
 	"blockedtitle": "Notandi er bannaður",
 	"blockedtext": "<strong>Notandanafn þitt eða IP-vistfang hefur verið bannað.</strong>\n\nBannið var sett af $1.\nUppgefin ástæða er eftirfarandi: <em>$2</em>.\n\n* Bannið hófst: $8\n* Banninu lýkur: $6\n* Sá sem banna átti: $7\n\nÞú getur haft samband við $1 eða annan [[{{MediaWiki:Grouppage-sysop}}|stjórnanda]] til að ræða bannið.\nÞú getur notað {{int:emailuser}}„“ aðgerðina ef gilt netfang er skráð í [[Special:Preferences|kjörstillingum þínum]] og að þér hafi ekki verið bannað að nota það.\nNúverandi vistfang þitt er $3, og bannnúmerið er #$5.\nHafðu með allar þessar upplýsingar hér fyrir ofan í fyrirspurnum þínum.",

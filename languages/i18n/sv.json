@@ -712,7 +712,6 @@
 	"missingcommenttext": "Var god och skriv en kommentar.",
 	"missingcommentheader": "<strong>Påminnelse:</strong> Du har inte skrivit något ämne för den här kommentaren.\nOm du trycker på \"$1\" igen kommer din redigering publiceras utan rubrik.",
 	"summary-preview": "Förhandsgranskning av redigeringssammanfattning:",
-	"subject-preview": "Förhandsgranskning av ämne:",
 	"previewerrortext": "Ett fel uppstod när dina ändringar skulle förhandsgranskas.",
 	"blockedtitle": "Användaren är blockerad",
 	"blockedtext-partial": "<strong>Ditt användarnamn eller IP-adress har blockerats från att göra detta. Du kan fortfarande göra andra saker på denna webbplats, som att redigera vissa sidor.</strong> Du kan se de fullständiga blockeringsdetaljerna på [[Special:MyContributions|kontobidragen]].\n\nBlockeringen gjordes av $1.\n\nAnledningen var <em>$2</em>.\n\n* Blockeringen startade: $8\n* Blockeringen gäller till: $6\n* Blockeringen är avsedd för: $7\n* Blockerings-ID nr $5",

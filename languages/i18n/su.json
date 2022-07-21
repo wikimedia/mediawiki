@@ -591,7 +591,6 @@
 	"missingcommenttext": "Mangga tulis koméntar di handapeun ieu.",
 	"missingcommentheader": "<strong>Pépéling</strong>: Anjeun can ngeusian judul pikeun ieu koméntar.\nMun anjeun ngaklik deui \"$1\", éditan anjeun bakal disimpen tanpa koméntar.",
 	"summary-preview": "Pramidang tingkesan édit:",
-	"subject-preview": "Pramidang subyék:",
 	"previewerrortext": "Aya éror nalika nyobaan nyawang robahan anjeun.",
 	"blockedtitle": "Pamaké dipeungpeuk",
 	"blockedtext": "<strong>Ngaran pamaké atawa alamat IP anjeun dipeungpeuk.</strong>\n\nDipeungpeuk ku $1.\nAlesanana <em>$2</em>.\n\n* Mimiti dipeungpeuk: $8\n* Anggeusan dipeungpeuk: $6\n* Sasaran anu dipeungpeuk: $7\n\nAnjeun bisa ngontak $1 atawa [[{{MediaWiki:Grouppage-sysop}}|kuncén]] lianna pikeun nyawalakeun ieu hal.\nAnjeun teu bisa maké fitur \"{{int:emailuser}}\" mun anjeun teu ngadaptarkeun alamat surélék nu sah dina [[Special:Preferences|préferénsi akun]] anjeun sarta henteu dipeungpeuk tina migunakeun éta fitur.\nAlamat IP anjeun $3, kalayan ID peungpeukna #$5.\nLampirkeun informasi ieu dina unggal kueri anjeun.",

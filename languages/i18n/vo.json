@@ -414,7 +414,6 @@
 	"missingcommenttext": "Penolös, begö! küpeti dono.",
 	"missingcommentheader": "'''Meib:''' No epenol yegädi/tiädi küpete at.\nIf ovälol dönu knopi: \"$1\", redakam olik podakipon nen on.",
 	"summary-preview": "Büologed brefik:",
-	"subject-preview": "Büologed yegäda/diläda:",
 	"blockedtitle": "Geban peblokon",
 	"blockedtext": "'''Gebananem u ladet-IP olik(s) peblokon(s).'''\n\nBlokam at pejenükon fa geban: $1.\nKod binon: ''$2''.\n\n* Prim blokama: $8\n* Fin blokama: $6\n* Geban pedesinöl: $7\n\nKanol penön gebane: $1, u [[{{MediaWiki:Grouppage-sysop}}|guvane]] votik, ad bespikön blokami.\nKanol gebön yümi: 'penön gebane at' bisä ladet leäktronik verätik lonöföl patuvon in [[Special:Preferences|buükams kala]] olik e geb onik no peblokon. Ladet-IP nuik ola binon $3 e nüm blokama binon #$5. Mäniotolös nünis löpik valik in peneds ola.",
 	"autoblockedtext": "Ladet-IP olik peblokon itjäfidiko bi pägebon fa geban, kel peblokon fa geban: $1.\nKod blokama äbinon:\n\n:''$2''\n\n* Prim bloküpa: $8\n* Fin bloküpa: $6\n* Geban pedesinöl: $7\n\nDalol penön gebane: $1 u balane [[{{MediaWiki:Grouppage-sysop}}|guvanas votik]] ad bespikön blokami at.\n\nKüpälolös, das no dalol gebön yümi: „penön gebane at“ if no labol ladeti leäktronik lonöföl in [[Special:Preferences|büukams olik]] ed if geb onik fa ol no peblokon.\n\nLadet-IP olik binon $3, e nüm blokama at binon #$5. Mäniotolös nünis löpik valik in peneds valik ola.",

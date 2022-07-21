@@ -592,7 +592,6 @@
 	"missingcommenttext": "Skriiw en komentaar.",
 	"missingcommentheader": "<strong>Paase üüb:</strong> Dü heest nian teemo uunden. Wan dü noch ans üüb „$1“ trakst, woort din feranrang saner auerskraft seekert.",
 	"summary-preview": "Föörskau faan det tuupfaadang:",
-	"subject-preview": "Föörskau faan det auerskraft:",
 	"previewerrortext": "Diar as wat skiaf gingen, üs en föörskau faan din feranrangen wiset wurd skul.",
 	"blockedtitle": "Brüker as speret",
 	"blockedtext": "<strong>Dan brükernööm of din IP-adres as speret wurden.</strong>\n\nDet as maaget wurden faan $1.\nDi grünj as <em>$2</em>.\n\n* Began: $8\n* Aanj: $6\n* Bedraapt: $7\n\nDü könst $1 kontaktiare of uk en [[{{MediaWiki:Grouppage-sysop}}|administraator]] am det tu diskutiarin.\n\nDü könst det funktjuun '{{int:emailuser}}' brük, wan dü en rocht e-mail-adres uun din [[Special:Preferences|iinstelangen]] uunden heest an wan det ei speret wurden as.\n\nUugenblakelk as din IP-addres $3, an det sper-ID as #$5.\nFör arke uunfraag wurd aal jo informatjuunen boowen brükt.",

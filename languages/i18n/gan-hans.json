@@ -363,7 +363,6 @@
 	"missingcommenttext": "请到底下评论。",
 	"missingcommentheader": "''提示:''' 汝𠮶评论冇提供标题。若系汝捺过到$1𠮶话，汝保存𠮶编辑就会冇标题。",
 	"summary-preview": "摘要预览:",
-	"subject-preview": "主题/头条预览:",
 	"blockedtitle": "用户封到嘞",
 	"blockedtext": "倷𠮶用户名或IP地址拖$1封到嘞。\n\n个道封锁系$1封𠮶。个中原因系''$2''。\n\n* 个回封锁𠮶开始时间系：$8\n* 个回封锁𠮶到期时间系：$6\n* 对于拖查封𠮶人：$7\n\n倷联系得正$1或别𠮶[[{{MediaWiki:Grouppage-sysop}}|管理员]]，讨论个回封锁。除非倷到倷𠮶[[Special:Preferences|帐号参数设置]]里度设正嘞有效𠮶email，伓然𠮶话倷系用伓正“email到个只用户”𠮶功能。设正嘞有效𠮶email后，个只功能系伓会拖封到𠮶。倷𠮶IP地址系$3，许拖封到𠮶ID系 #$5。请倷到全部𠮶查询里度注明个只地址同／或查封ID。",
 	"autoblockedtext": "别𠮶人用过倷𠮶IP地址，故系佢拖自动锁到嘞。封佢𠮶人系$1.\n下首系封锁𠮶理由:\n\n:''$2''\n\n* 封锁开始: $8\n* 封锁过期: $6\n\n倷联系得正$1或别𠮶[[{{MediaWiki:Grouppage-sysop}}|管理员]]去谈下个道封锁。\n\n注意𠮶系话伓定倷冇\"e-mail个只用户\"𠮶功能，除非倷到[[Special:Preferences|用户设置]]有只注册email地址，再就系倷冇因为用佢拖封过。\n\n倷𠮶封锁ID系$5。请到查询𠮶时间都要紧标到佢。",

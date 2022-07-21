@@ -692,7 +692,6 @@
 	"missingcommenttext": "Skriv venligst en kommentar.",
 	"missingcommentheader": "<strong>Bemærk:</strong> Du har ikke angivet en emne for denne kommentar. Hvis du trykker \"$1\" én gang til, gemmes dine ændringer uden emne.",
 	"summary-preview": "Forhåndsvisning af sammenfatning:",
-	"subject-preview": "Forhåndsvisning af emne:",
 	"previewerrortext": "Der opstod en fejl under forsøget på at lave en forhåndsvisning af dine ændringer.",
 	"blockedtitle": "Bruger er blokeret",
 	"blockedtext-partial": "<strong> Dit brugernavn eller IP adresse er blevet blokeret fra at lave ændringer på denne side. Du kan stadigvæk redigere andre sider på denne wiki.</strong> Du kan se de fulde blokeringsdetaljer under dine [[Special:MyContributions|kontobidrag]].\n\nBlokeringen er foretaget af $1.\n\nDen anførte grund er <em>$2</em>.\n \n* Blokeringen starter: $8\n* Blokeringen udløber: $6\n* Blokeringen er rettet mod: $7\n* Blokerings ID #$5",

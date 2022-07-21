@@ -602,7 +602,6 @@
 	"missingcommenttext": "Plaats dien opmèrking.",
 	"missingcommentheader": "'''Let op:''' Doe höbs gén ongerwerp/kop veur deze opmèrking opgegaeve. Esse oppernuuj op \"$1\" kliks, wörd dien verangering zonger ongerwerp/kop opgeslage.",
 	"summary-preview": "Veurvertuining van de bewirkingssamevatting:",
-	"subject-preview": "Veurvertoeaning van 't óngerwirp:",
 	"previewerrortext": "'n Fout is opgetraoje tiejes 't waergaeve van dien verangeringe.",
 	"blockedtitle": "Gebroeker is geblokkeerd",
 	"blockedtext": "'''Dien gebroekersaccount of IP-adres is geblokkeerd.'''\n\nDe blokkade is oetgeveurd door $1. De opgegaeve raej is ''$2''.\n\n* Aanvang blokkade: $8\n* Ènj blokkade: $6\n* Bedoeld te blokkere: $7\n\nDe kèns contak opnumme mit $1 of 'ne angere [[{{MediaWiki:Grouppage-sysop}}|systeemwèrker]] óm de blokkade te besjpraeke.\nDe kèns gein gebroek make van de functie 'e-mail deze gebroeker', behauve es te 'n geldig e-mailadres höbs opgegaeve in dien [[Special:Preferences|veurkäöre]] en 't gebroek van deze fónksie neet geblokkeerd is.\nDien hujig IP-adres is $3 en 't nómmer van de blokkade is #$5. Vermeld beide gegaeves wens te örges op dees blokkade reageers.",

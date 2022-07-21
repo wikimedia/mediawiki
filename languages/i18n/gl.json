@@ -644,7 +644,6 @@
 	"missingcommenttext": "Por favor, escriba un comentario.",
 	"missingcommentheader": "<strong>Aviso:</strong> Non escribiu ningún texto no asunto deste comentario.\nSe preme en \"$1\" de novo, a súa edición será publicada sen el.",
 	"summary-preview": "Vista previa do resumo de edición:",
-	"subject-preview": "Vista previa do asunto:",
 	"previewerrortext": "Produciuse un erro ao intentar previsualizar os cambios.",
 	"blockedtitle": "O usuario está bloqueado",
 	"blockedtext-partial": "<strong>O seu nome de usuario ou enderezo IP está bloqueado para facer isto. Aínda pode facer outras cousas neste sitio, como editar certas páxinas.</strong> Pode ver os detalles completos do bloqueo nas [[Special:MyContributions|contribucións da súa conta]].\n\nO bloqueo realizouno $1.\n\nO motivo indicado é <em>$2</em>.\n\n* Comezo do bloqueo: $8\n* Expiración do bloqueo: $6\n* Usuario bloqueado: $7\n* ID de bloqueo #$5",

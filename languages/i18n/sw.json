@@ -546,7 +546,6 @@
 	"missingcommenttext": "Tafadhali andika muhtasari chini.",
 	"missingcommentheader": "'''Kikumbusho:''' Hujaweka kichwa cha habari/mada kwa ajili ya maelezo haya.\nIwapo utabonyeza tena Hifadhi, haririo lako litahifadhiwa bila kichwa cha habari.",
 	"summary-preview": "Hakikisho la muhtasari:",
-	"subject-preview": "Hakikisha kichwa cha habari/mada:",
 	"previewerrortext": "Hitilafu ilitokea wakati ya kujaribu hakikisho mabadiliko yako.",
 	"blockedtitle": "Mtumiaji amezuiwa",
 	"blockedtext": "'''Jina lako la mtumiaji au anwani yako ya IP imezuiwa.'''\n\nUmezuiwa na $1.\nSababu aliyetambua ni ''$2''\n\n* Mwanzo wa uzuio: $8\n* Mwisho wa uzuio: $6\n* Aliyezuiwa: $7\n\nUnaweza kuwasiliana na $1 au [[{{MediaWiki:Grouppage-sysop}}|mkabidhi]] kuzungumza uzuio.\nHuwezi kutumia kipengele cha 'kumtuma mtumiaji barua pepe' isipopatikana anwani halisi ya barua pepe katika\n[[Special:Preferences|mapendekezo ya akaunti]] yako, na usipozuiwa kuitumia.\nAnwani yako ya IP ni $3, na namba ya uzuio ni #$5. Tafadhali taja namba hizi ukitaka kuwasiliana kuhusu uzuio huu.",

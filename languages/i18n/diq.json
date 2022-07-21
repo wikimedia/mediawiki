@@ -650,7 +650,6 @@
 	"missingcommenttext": "Cêr de jû fıkır bınusên, şıma rê zehmet.",
 	"missingcommentheader": "<strong>Teme:</strong> Şıma seba nê fıkrvaci yew mewzu/sernuşte nênuşt.\nEke şıma reyna \"$1\" bıtıknê, vırnayışê şıa bê mewzu/sernuşte do qeyd bo.",
 	"summary-preview": "Verasayışê xulasa:",
-	"subject-preview": "Verqaytê mewzu:",
 	"previewerrortext": "Verasayışê vırnayışê şıma de yew xeta veciya miyan.",
 	"blockedtitle": "Karber kılit biyo",
 	"blockedtext-partial": "<strong>Namey karberi ya zi adresê IP şıma nê hereketi kerdışi rê kerdo bloqe. Reyna zi şıma şenê ena sita de zey  pela vurnayışi uçb şenê bıkerê.</strong> Detayanê bloqey pêroy [[Special:MyContributions|iştirakê hesabi]] ra şenê bıvinê .\n\nBloqe  terefê $1 ra deyayo \n\nSebebê cı : <em>$2</em>.\n\n* Bloqe kewtış : $8\n* Bloqe bas bıyayış : $6\n* Bloqe wazıyayış : $7\n* Numrey bloqey #$5",

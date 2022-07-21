@@ -729,7 +729,6 @@
 	"missingcommenttext": "Wprowadź komentarz poniżej.",
 	"missingcommentheader": "<strong>Uwaga:</strong> Nie podano tytułu dla tego komentarza.\nJeśli ponownie klikniesz „$1”, zmiany zostaną opublikowane bez niego.",
 	"summary-preview": "Podgląd opisu zmian:",
-	"subject-preview": "Podgląd tematu:",
 	"previewerrortext": "Wystąpił błąd podczas próby podglądu Twoich zmian.",
 	"blockedtitle": "Użytkownik jest zablokowany",
 	"blockedtext-partial": "<strong>Twoje konto lub adres IP jest wyłączone z wykonywania tej czynności. Możesz wciąż mieć możliwość wykonywania innych operacji, takich jak edytowanie poszczególnych stron na tej wiki.</strong> Więcej szczegółów na temat blokady znajdziesz na swojej [[Special:MyContributions|stronie swojego wkładu]].\n\nBlokada została nałożona przez $1.\n\nPodany powód to: <em>$2</em>.\n\n* Początek blokady: $8\n* Wygaśnięcie blokady: $6\n* Zablokowany został: $7\n* Identyfikator blokady: #$5",

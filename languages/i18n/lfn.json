@@ -590,7 +590,6 @@
 	"missingcommenttext": "Presenta un comenta, per favore.",
 	"missingcommentheader": "<strong>Avisa:</strong> Tu no ia furni un tema per esta comenta.\nSi tu clica \"$1\" denova, tua edita va es fisada sin tema.",
 	"summary-preview": "Previde de resoma:",
-	"subject-preview": "Previde de tema:",
 	"previewerrortext": "Un era ia aveni en atenta previde tua cambias.",
 	"blockedtitle": "Usor es impedida",
 	"blockedtext": "<strong>Tua nom de usor o adirije IP es impedida.</strong>\n\nLa impedi ia es fada par $1.\nLa razona donada es <em>$2</em>.\n\n* Comensa de impedi: $8\n* Fini de impedi: $6\n* Conta impedida: $7\n\nTu pote contata $1 o un otra [[{{MediaWiki:Grouppage-sysop}}|dirijor]] per discute esta impedi.\nTu no pote usa la funsiona \"{{int:emailuser}}\" estra si un adirije valida\nde eposta es spesifada en tua [[Special:Preferences|preferes de conta]] e tu no es impedida de usa lo.\nTua adirije IP presente es $3, e la numero de impedi es #$5.\nInclui tota esta detalias en cualce demandas cual tu fa, per favore.",

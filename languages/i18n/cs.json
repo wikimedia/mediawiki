@@ -682,7 +682,6 @@
 	"missingcommenttext": "Prosím, zadejte komentář.",
 	"missingcommentheader": "<strong>Připomenutí:</strong> Nezadali jste předmět pro tento komentář.\nPokud ještě jednou kliknete na „$1“, bude vaše editace zveřejněna bez něj.",
 	"summary-preview": "Náhled shrnutí:",
-	"subject-preview": "Náhled předmětu:",
 	"previewerrortext": "Při pokusu o zobrazení náhledu vašich změn došlo k chybě.",
 	"blockedtitle": "Uživatel zablokován",
 	"blockedtext-partial": "<strong>Vašemu uživatelskému jménu nebo IP adrese byla zablokována tato činnost. Je však možné, že i nadále smíte vykonávat jiné činnosti na této wiki, jako je editace konkrétních stránek.</strong> Úplné podrobnosti zablokování si můžete prohlédnout v [[Special:MyContributions|seznamu příspěvků]].\n\nZablokování provedl $1.\n\nUdaným důvodem blokování bylo <em>$2</em>.\n\n* Začátek blokování: $8\n* Konec blokování: $6\n* Původně blokovaný uživatel: $7\n* Identifikační číslo bloku: #$5",

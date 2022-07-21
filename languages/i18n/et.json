@@ -654,7 +654,6 @@
 	"missingcommenttext": "Palun sisesta kommentaar.",
 	"missingcommentheader": "<strong>Meeldetuletus:</strong> Sa pole kirjutanud kommentaarile teemat.\nKui klõpsad uuesti nuppu \"$1\", siis avaldatakse kommentaar ilma teemata.",
 	"summary-preview": "Resümee eelvaade:",
-	"subject-preview": "Resümee eelvaade:",
 	"previewerrortext": "Sinu muudatuste eelvaatluse juures esines tõrge.",
 	"blockedtitle": "Kasutaja on blokeeritud",
 	"blockedtext-partial": "<strong>Selle toimingu tegemine sinu kasutajanime või IP-aadressi alt on blokeeritud. Sulle võivad olla jätkuvalt lubatud teised toimingud siin saidil, näiteks kindlate lehekülgede redigeerimine.</strong> Kõiki blokeeringu üksikasju näed [[Special:MyContributions|konto kaastööloendis]].\n\nBlokeeris $1.\n\nTema põhjendus on järgmine: <em>$2</em>.\n\n* Blokeeringu algus: $8\n* Blokeeringu lõpp: $6\n* Sooviti blokeerida: $7\n* Blokeeringu number: $5",
