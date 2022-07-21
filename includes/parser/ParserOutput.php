@@ -2346,10 +2346,20 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				} else {
 					throw new InvalidArgumentException( "Unknown merge strategy $strategy" );
 				}
-			} elseif ( $a[$key] !== $bValue ) {
-				// Silently replace for now; in the future will first emit
-				// a deprecation warning, and then (later) throw.
-				$a[$key] = $bValue;
+			} else {
+				$valuesSame = ( $a[$key] === $bValue );
+				if ( ( !$valuesSame ) &&
+					 is_object( $a[$key] ) &&
+					 is_object( $bValue )
+				) {
+					$jsonCodec = MediaWikiServices::getInstance()->getJsonCodec();
+					$valuesSame = ( $jsonCodec->serialize( $a[$key] ) === $jsonCodec->serialize( $bValue ) );
+				}
+				if ( !$valuesSame ) {
+					// Silently replace for now; in the future will first emit
+					// a deprecation warning, and then (later) throw.
+					$a[$key] = $bValue;
+				}
 			}
 		}
 		return $a;
