@@ -39,8 +39,18 @@ class DeduplicateArchiveRevId extends LoggedUpdateMaintenance {
 
 		PopulateArchiveRevId::checkMysqlAutoIncrementBug( $dbw );
 
-		$minId = $dbw->selectField( 'archive', 'MIN(ar_rev_id)', [], __METHOD__ );
-		$maxId = $dbw->selectField( 'archive', 'MAX(ar_rev_id)', [], __METHOD__ );
+		$minId = $dbw->newSelectQueryBuilder()
+			->select( 'MIN(ar_rev_id)' )
+			->from( 'archive' )
+			->options( [] )
+			->caller( __METHOD__ )
+			->fetchField();
+		$maxId = $dbw->newSelectQueryBuilder()
+			->select( 'MAX(ar_rev_id)' )
+			->from( 'archive' )
+			->options( [] )
+			->caller( __METHOD__ )
+			->fetchField();
 		$batchSize = $this->getBatchSize();
 
 		$revActorQuery = ActorMigration::newMigration()->getJoin( 'rev_user' );
@@ -52,42 +62,43 @@ class DeduplicateArchiveRevId extends LoggedUpdateMaintenance {
 
 			// Lock the archive and revision table rows for the IDs we're checking
 			// to try to prevent deletions or undeletions from confusing things.
-			$dbw->selectRowCount(
-				'archive',
-				'1',
-				[ 'ar_rev_id >= ' . (int)$id, 'ar_rev_id <= ' . (int)$endId ],
-				__METHOD__,
-				[ 'FOR UPDATE' ]
-			);
-			$dbw->selectRowCount(
-				'revision',
-				'1',
-				[ 'rev_id >= ' . (int)$id, 'rev_id <= ' . (int)$endId ],
-				__METHOD__,
-				[ 'LOCK IN SHARE MODE' ]
-			);
+			$dbw->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'archive' )
+				->where( [ 'ar_rev_id >= ' . (int)$id, 'ar_rev_id <= ' . (int)$endId ] )
+				->caller( __METHOD__ )
+				->forUpdate()
+				->fetchRowCount();
+			$dbw->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'archive' )
+				->where( [ 'ar_rev_id >= ' . (int)$id, 'ar_rev_id <= ' . (int)$endId ] )
+				->caller( __METHOD__ )
+				->lockInShareMode()
+				->fetchRowCount();
 
 			// Figure out the ar_rev_ids we actually need to look at
-			$res = $dbw->select(
-				[ 'archive', 'revision' ] + $revActorQuery['tables'],
-				[ 'rev_id', 'rev_timestamp', 'rev_sha1' ] + $revActorQuery['fields'],
-				[ 'ar_rev_id >= ' . (int)$id, 'ar_rev_id <= ' . (int)$endId ],
-				__METHOD__,
-				[ 'DISTINCT' ],
-				[ 'revision' => [ 'JOIN', 'ar_rev_id = rev_id' ] ] + $revActorQuery['joins']
-			);
+			$res = $dbw->newSelectQueryBuilder()
+				->select( [ 'rev_id', 'rev_timestamp', 'rev_sha1' ] + $revActorQuery['fields'] )
+				->tables( [ 'archive', 'revision' ] + $revActorQuery['tables'] )
+				->where( [ 'ar_rev_id >= ' . (int)$id, 'ar_rev_id <= ' . (int)$endId ] )
+				->caller( __METHOD__ )
+				->distinct()
+				->joinConds( [ 'revision', [ 'ar_rev_id = rev_id' ] ] + $revActorQuery['joins'] )
+				->fetchResultSet();
 			$revRows = [];
 			foreach ( $res as $row ) {
 				$revRows[$row->rev_id] = $row;
 			}
 
-			$arRevIds = $dbw->selectFieldValues(
-				[ 'archive' ],
-				'ar_rev_id',
-				[ 'ar_rev_id >= ' . (int)$id, 'ar_rev_id <= ' . (int)$endId ],
-				__METHOD__,
-				[ 'GROUP BY' => 'ar_rev_id', 'HAVING' => 'COUNT(*) > 1' ]
-			);
+			$arRevIds = $dbw->newSelectQueryBuilder()
+				->select( 'ar_rev_id' )
+				->from( 'archive' )
+				->where( [ 'ar_rev_id >= ' . (int)$id, 'ar_rev_id <= ' . (int)$endId ] )
+				->caller( __METHOD__ )
+				->groupBy( 'ar_rev_id' )
+				->having( 'COUNT(*) > 1' )
+				->fetchFieldValues();
 			$arRevIds = array_values( array_unique( array_merge( $arRevIds, array_keys( $revRows ) ) ) );
 
 			if ( $arRevIds ) {
@@ -113,13 +124,13 @@ class DeduplicateArchiveRevId extends LoggedUpdateMaintenance {
 	 */
 	private function processArRevIds( IDatabase $dbw, array $arRevIds, array $revRows ) {
 		// Select all the data we need for deduplication
-		$res = $dbw->select(
-			[ 'archive' ],
-			[ 'ar_id', 'ar_rev_id', 'ar_namespace', 'ar_title', 'ar_actor',
-				'ar_timestamp', 'ar_sha1' ],
-			[ 'ar_rev_id' => $arRevIds ],
-			__METHOD__
-		);
+		$res = $dbw->newSelectQueryBuilder()
+			->select( [ 'ar_id', 'ar_rev_id', 'ar_namespace', 'ar_title', 'ar_actor',
+				'ar_timestamp', 'ar_sha1' ] )
+			->from( 'archive' )
+			->where( [ 'ar_rev_id' => $arRevIds ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		// Determine which rows we need to delete or reassign
 		$seen = [];

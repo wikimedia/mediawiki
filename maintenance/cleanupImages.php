@@ -127,14 +127,24 @@ class CleanupImages extends TableCleanup {
 	}
 
 	private function imageExists( $name, $db ) {
-		return (bool)$db->selectField( 'image', '1', [ 'img_name' => $name ], __METHOD__ );
+		return (bool)$db->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'image' )
+			->where( [ 'img_name' => $name ] )
+			->caller( __METHOD__ )
+			->fetchField();
 	}
 
 	private function pageExists( $name, $db ) {
-		return (bool)$db->selectField( 'page', '1',
-			[ 'page_namespace' => NS_FILE, 'page_title' => $name ],
-			__METHOD__
-		);
+		return (bool)$db->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'page' )
+			->where( [
+				'page_namespace' => NS_FILE,
+				'page_title' => $name,
+			] )
+			->caller( __METHOD__ )
+			->fetchField();
 	}
 
 	private function pokeFile( $orig, $new ) {

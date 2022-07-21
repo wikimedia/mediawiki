@@ -140,25 +140,25 @@ TEXT
 
 		// Find all TitleValue-invalid titles.
 		$percent = $dbr->anyString();
-		$res = $dbr->select(
-			$table,
-			[
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [
 				'id' => $idField,
 				'ns' => $nsField,
 				'title' => $titleField,
-			],
+			] )
+			->from( $table )
 			// The REGEXP operator is not cross-DBMS, so we have to use lots of LIKEs
-			[ $dbr->makeList( [
+			->where( $dbr->makeList( [
 				$titleField . $dbr->buildLike( $percent, ' ', $percent ),
 				$titleField . $dbr->buildLike( $percent, "\r", $percent ),
 				$titleField . $dbr->buildLike( $percent, "\n", $percent ),
 				$titleField . $dbr->buildLike( $percent, "\t", $percent ),
 				$titleField . $dbr->buildLike( '_', $percent ),
 				$titleField . $dbr->buildLike( $percent, '_' ),
-			], LIST_OR ) ],
-			__METHOD__,
-			[ 'LIMIT' => $this->getBatchSize() ]
-		);
+			], LIST_OR ) )
+			->limit( $this->getBatchSize() )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$this->outputStatus( "Number of invalid rows: " . $res->numRows() . "\n" );
 		if ( !$res->numRows() ) {

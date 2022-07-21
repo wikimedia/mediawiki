@@ -48,9 +48,14 @@ class CheckImages extends Maintenance {
 		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		$fileQuery = LocalFile::getQueryInfo();
 		do {
-			$res = $dbr->select( $fileQuery['tables'], $fileQuery['fields'],
-				[ 'img_name > ' . $dbr->addQuotes( $start ) ],
-				__METHOD__, [ 'LIMIT' => $this->getBatchSize() ], $fileQuery['joins'] );
+			$res = $dbr->newSelectQueryBuilder()
+				->select( $fileQuery['fields'] )
+				->tables( $fileQuery['tables'] )
+				->where( 'img_name > ' . $dbr->addQuotes( $start ) )
+				->joinConds( $fileQuery['joins'] )
+				->caller( __METHOD__ )
+				->limit( $this->getBatchSize() )
+				->fetchResultSet();
 			foreach ( $res as $row ) {
 				$numImages++;
 				$start = $row->img_name;

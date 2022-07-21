@@ -481,6 +481,10 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	 * Create an empty SelectQueryBuilder which can be used to run queries
 	 * against this connection.
 	 *
+	 * @note A new query builder must be created per query. Query builders
+	 *   should not be reused since this uses a fluent interface and the state of
+	 *   the builder changes during the query which may cause unexpected results.
+	 *
 	 * @return SelectQueryBuilder
 	 */
 	public function newSelectQueryBuilder(): SelectQueryBuilder;

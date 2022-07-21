@@ -40,12 +40,12 @@ class CheckBadRedirects extends Maintenance {
 	public function execute() {
 		$this->output( "Fetching redirects...\n" );
 		$dbr = $this->getDB( DB_REPLICA );
-		$result = $dbr->select(
-			[ 'page' ],
-			[ 'page_namespace', 'page_title', 'page_latest' ],
-			[ 'page_is_redirect' => 1 ],
-			__METHOD__
-		);
+		$result = $dbr->newSelectQueryBuilder()
+			->select( [ 'page_namespace', 'page_title', 'page_latest' ] )
+			->from( 'page' )
+			->where( [ 'page_is_redirect' => 1 ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$count = $result->numRows();
 		$this->output( "Found $count redirects.\n" .

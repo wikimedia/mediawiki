@@ -40,7 +40,11 @@ class ClearInterwikiCache extends Maintenance {
 	public function execute() {
 		$dbr = $this->getDB( DB_REPLICA );
 		$cache = ObjectCache::getLocalClusterInstance();
-		$res = $dbr->select( 'interwiki', [ 'iw_prefix' ], '', __METHOD__ );
+		$res = $dbr->newSelectQueryBuilder()
+			->select( 'iw_prefix' )
+			->from( 'interwiki' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		$prefixes = [];
 		foreach ( $res as $row ) {
 			$prefixes[] = $row->iw_prefix;
