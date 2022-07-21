@@ -303,7 +303,7 @@ abstract class ApiFormatBase extends ApiBase {
 			if ( $this->getIsWrappedHtml() ) {
 				// This is a special output mode mainly intended for ApiSandbox use
 				$time = $this->getMain()->getRequest()->getElapsedTime();
-				$json = FormatJson::encode(
+				echo FormatJson::encode(
 					[
 						'status' => (int)( $this->mHttpStatus ?: 200 ),
 						'statustext' => HttpStatus::getMessage( $this->mHttpStatus ?: 200 ),
@@ -317,17 +317,6 @@ abstract class ApiFormatBase extends ApiBase {
 					],
 					false, FormatJson::ALL_OK
 				);
-
-				// T68776: OutputHandler::mangleFlashPolicy() avoids a nasty bug in
-				// Flash, but what it does isn't friendly for the API, so we need to
-				// work around it.
-				if ( preg_match( '/\<\s*cross-domain-policy\s*\>/i', $json ) ) {
-					$json = preg_replace(
-						'/\<(\s*cross-domain-policy\s*)\>/i', '\\u003C$1\\u003E', $json
-					);
-				}
-
-				echo $json;
 			} else {
 				// API handles its own clickjacking protection.
 				// Note, that $wgBreakFrames will still override $wgApiFrameOptions for format mode.

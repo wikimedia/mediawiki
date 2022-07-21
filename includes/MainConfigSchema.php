@@ -5245,15 +5245,15 @@ class MainConfigSchema {
 	/** @name   ResourceLoader settings */
 
 	/**
-	 * When OutputHandler is used, mangle any output that contains
-	 * <cross-domain-policy>. Without this, an attacker can send their own
-	 * cross-domain policy unless it is prevented by the crossdomain.xml file at
-	 * the domain root.
+	 * Formerly a workaround for a security vulnerability caused by installation
+	 * of Flash as a browser extension.
 	 *
 	 * @since 1.25
+	 * @deprecated since 1.39
 	 */
 	public const MangleFlashPolicy = [
 		'default' => true,
+		'deprecated' => 'since 1.39; no longer has any effect',
 	];
 
 	/**

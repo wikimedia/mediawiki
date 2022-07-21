@@ -24,6 +24,9 @@ For notes on 1.38.x and older releases, see HISTORY.
   $wgLocalFileRepo.
 * The DBO_SSL flag in $wgDBservers and $wgLBFactoryConf has been deprecated in
   favour of a boolean "ssl" parameter.
+* $wgMangleFlashPolicy is deprecated and is no longer functional. Users who are
+  somehow still using Flash as a browser extension will be exposed to CSRF
+  vulnerabilities.
 * …
 
 ==== New configuration ====
