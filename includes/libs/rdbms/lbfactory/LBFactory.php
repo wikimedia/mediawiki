@@ -844,10 +844,6 @@ abstract class LBFactory implements ILBFactory {
 		}
 	}
 
-	public function __destruct() {
-		$this->destroy();
-	}
-
 	/**
 	 * @param float|null &$time Mock UNIX timestamp for testing
 	 * @codeCoverageIgnore
