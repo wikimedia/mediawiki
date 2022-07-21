@@ -78,12 +78,12 @@ class CleanupSpam extends Maintenance {
 				$dbr = $this->getDB( DB_REPLICA, [], $wikiId );
 
 				foreach ( $protConds as $conds ) {
-					$count = $dbr->selectField(
-						'externallinks',
-						'COUNT(*)',
-						$conds,
-						__METHOD__
-					);
+					$count = $dbr->newSelectQueryBuilder()
+						->select( 'COUNT(*)' )
+						->from( 'externallinks' )
+						->where( $conds )
+						->caller( __METHOD__ )
+						->fetchField();
 					if ( $count ) {
 						$found = true;
 						$cmd = wfShellWikiCmd(
@@ -106,12 +106,13 @@ class CleanupSpam extends Maintenance {
 			/** @var Database $dbr */
 			$dbr = $this->getDB( DB_REPLICA );
 			foreach ( $protConds as $prot => $conds ) {
-				$res = $dbr->select(
-					'externallinks',
-					[ 'DISTINCT el_from' ],
-					$conds,
-					__METHOD__
-				);
+				$res = $dbr->newSelectQueryBuilder()
+					->select( 'el_from' )
+					->distinct()
+					->from( 'externallinks' )
+					->where( $conds )
+					->caller( __METHOD__ )
+					->fetchResultSet();
 				$count = $res->numRows();
 				$this->output( "Found $count articles containing $spec\n" );
 				foreach ( $res as $row ) {

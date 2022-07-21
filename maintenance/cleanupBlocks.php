@@ -43,7 +43,11 @@ class CleanupBlocks extends Maintenance {
 		$db = $this->getDB( DB_PRIMARY );
 		$blockQuery = DatabaseBlock::getQueryInfo();
 
-		$max = $db->selectField( 'ipblocks', 'MAX(ipb_user)', [], __METHOD__ );
+		$max = $db->newSelectQueryBuilder()
+			->select( 'MAX(ipb_user)' )
+			->from( 'ipblocks' )
+			->caller( __METHOD__ )
+			->fetchField();
 
 		// Step 1: Clean up any duplicate user blocks
 		$batchSize = $this->getBatchSize();
@@ -53,31 +57,28 @@ class CleanupBlocks extends Maintenance {
 
 			$delete = [];
 
-			$res = $db->select(
-				'ipblocks',
-				[ 'ipb_user' ],
-				[
-					"ipb_user >= " . $from,
-					"ipb_user <= " . (int)$to,
-				],
-				__METHOD__,
-				[
-					'GROUP BY' => 'ipb_user',
-					'HAVING' => 'COUNT(*) > 1',
-				]
-			);
+			$res = $db->newSelectQueryBuilder()
+				->select( 'ipb_user' )
+				->from( 'ipblocks' )
+				->where( [
+					'ipb_user >= ' . $from,
+					'ipb_user <= ' . (int)$to,
+				] )
+				->groupBy( 'ipb_user' )
+				->having( 'COUNT(*) > 1' )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 			foreach ( $res as $row ) {
 				$bestBlock = null;
-				$res2 = $db->select(
-					$blockQuery['tables'],
-					$blockQuery['fields'],
-					[
+				$res2 = $db->newSelectQueryBuilder()
+					->select( $blockQuery['fields'] )
+					->tables( $blockQuery['tables'] )
+					->where( [
 						'ipb_user' => $row->ipb_user,
-					],
-					__METHOD__,
-					[],
-					$blockQuery['joins']
-				);
+					] )
+					->joinConds( $blockQuery['joins'] )
+					->caller( __METHOD__ )
+					->fetchResultSet();
 				foreach ( $res2 as $row2 ) {
 					$block = DatabaseBlock::newFromRow( $row2 );
 					if ( !$bestBlock ) {
@@ -124,17 +125,17 @@ class CleanupBlocks extends Maintenance {
 			$to = min( $max, $from + $batchSize - 1 );
 			$this->output( "Cleaning up mismatched user name ($from-$to of $max)\n" );
 
-			$res = $db->select(
-				[ 'ipblocks', 'user' ],
-				[ 'ipb_id', 'user_name' ],
-				[
+			$res = $db->newSelectQueryBuilder()
+				->select( [ 'ipb_id', 'user_name' ] )
+				->tables( [ 'ipblocks', 'user' ] )
+				->where( [
 					'ipb_user = user_id',
 					"ipb_user >= " . $from,
 					"ipb_user <= " . (int)$to,
 					'ipb_address != user_name',
-				],
-				__METHOD__
-			);
+				] )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 			foreach ( $res as $row ) {
 				$db->update(
 					'ipblocks',

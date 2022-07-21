@@ -151,16 +151,14 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
 		while ( true ) {
 			// Fetch the rows needing update
-			$res = $dbw->select(
-				$table,
-				array_merge( $primaryKey, [ $idField, $nameField ], $orderby ),
-				array_merge( $conds, [ $next ] ),
-				__METHOD__,
-				[
-					'ORDER BY' => $orderby,
-					'LIMIT' => $this->mBatchSize,
-				]
-			);
+			$res = $dbw->newSelectQueryBuilder()
+				->select( array_merge( $primaryKey, [ $idField, $nameField ], $orderby ) )
+				->from( $table )
+				->where( array_merge( $conds, [ $next ] ) )
+				->orderBy( $orderby )
+				->limit( $this->mBatchSize )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 			if ( !$res->numRows() ) {
 				break;
 			}
