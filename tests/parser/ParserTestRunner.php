@@ -1047,8 +1047,18 @@ class ParserTestRunner {
 						// This is an auto-edit test with either a CLI changetree
 						// or a change tree that should be generated
 						$mode = new ParserTestMode( 'selser-auto', json_decode( $runner->options['changetree'] ) );
+						$result = $this->runTest( $test, $mode );
+
+						// FIXME: Test.php in Parsoid doesn't know which tests are being
+						// skipped for what reason. For now, prevent crashers on skipped tests
+						// by matching expectations of Test.php::isDuplicateChangeTree(..)
+						if ( $result->expected === 'SKIP' ) {
+							// Make sure change tree is not null for skipped selser tests
+							$test->changetree = [];
+						}
+					} else {
+						$result = $this->runTest( $test, $mode );
 					}
-					$result = $this->runTest( $test, $mode );
 					$ok = $ok && $result->isSuccess();
 				}
 			);
@@ -1375,11 +1385,15 @@ class ParserTestRunner {
 	 *  output in the $test object.
 	 * @param string $rawActual
 	 * @param callable $normalizer normalizer of expected & actual output strings
-	 * @return ParserTestResult
+	 * @return ParserTestResult|false
 	 */
 	private function processResults(
 		ParserTest $test, ParserTestMode $mode, $rawExpected, string $rawActual, callable $normalizer
-	): ParserTestResult {
+	) {
+		if ( $mode->isCachingMode() ) {
+			return false;
+		}
+
 		if ( !$this->options['knownFailures'] ) {
 			// Ignore known failures
 			$expectedFailure = null;
@@ -1397,23 +1411,21 @@ class ParserTestRunner {
 			list( $actual, $expected ) = $normalizer( $rawActual, $rawExpected, $standalone );
 		}
 
-		if ( $this->options['updateKnownFailures'] ) {
-			if ( $actual !== $expected ) {
-				if ( $expectedFailure === null ) {
-					$test->knownFailures["$mode"] = $rawActual;
+		if ( $this->options['updateKnownFailures'] && $actual !== $expected ) {
+			if ( $expectedFailure === null ) {
+				$test->knownFailures["$mode"] = $rawActual;
+			} else {
+				if ( is_callable( $rawExpected ) ) {
+					$rawExpected = $rawExpected();
+				}
+				list( $actual, $expected ) = $normalizer( $rawActual, $rawExpected );
+				if ( $actual === $expected ) {
+					wfDebug( "$mode: EXPECTED TO FAIL, BUT PASSED!" );
+					// Expected to fail, but passed!
+					unset( $test->knownFailures["$mode"] );
 				} else {
-					if ( is_callable( $rawExpected ) ) {
-						$rawExpected = $rawExpected();
-					}
-					list( $actual, $expected ) = $normalizer( $rawActual, $rawExpected );
-					if ( $actual === $expected ) {
-						wfDebug( "$mode: EXPECTED TO FAIL, BUT PASSED!" );
-						// Expected to fail, but passed!
-						unset( $test->knownFailures["$mode"] );
-					} else {
-						wfDebug( "$mode: KNOWN FAILURE CHANGED!" );
-						$test->knownFailures["$mode"] = $rawActual;
-					}
+					wfDebug( "$mode: KNOWN FAILURE CHANGED!" );
+					$test->knownFailures["$mode"] = $rawActual;
 				}
 			}
 		}
@@ -1457,7 +1469,7 @@ class ParserTestRunner {
 			"All tests include a wikitext section"
 		);
 
-		if ( $html === null && $mode->mode !== 'cache' ) {
+		if ( $html === null && !$mode->isCachingMode() ) {
 			// Nothing to test, but if mode is 'cache' we're executing this
 			// in order to set cachedBODYstr (say, for a wt2wt test)
 			return false;
@@ -1532,7 +1544,7 @@ class ParserTestRunner {
 			// integrated mode.
 			return false; // Skip. Nothing to test.
 		}
-		if ( $test->wikitext === null && $mode->mode !== 'cache' ) {
+		if ( $test->wikitext === null && !$mode->isCachingMode() ) {
 			// If mode is 'cache' we're executing this in order to
 			// set cachedWTstr.
 			throw new MWException( 'Error in the test setup' );
