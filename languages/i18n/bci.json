@@ -545,7 +545,6 @@
 	"anoneditwarning": "<strong>Warning:</strong> Amoun nan wlou man noun. I sô tin, floua boué klwaa nga amoun klèklè noun, bé woun amoun addressi IP i nza noun. Sè amoun <strong>[$1 wlou noun]</strong> annzè <strong>[$2 amoun yi interneti conti]</strong>, liké klwaa nga amoun klèklè, bé fa man amoun interneti conti douman i goumin, kôkoun amoun klwa yé liké ouflè vié moun ékoun.",
 	"missingcommenttext": "Yaki, klè ndè nga sou kokolè wafan.",
 	"summary-preview": "Liké katchilè i sou ndè kpôlè i noun nianlè:",
-	"subject-preview": "Akpassoua douman i nianlè:",
 	"previewerrortext": "Kè nga amoun niannian amoun liké katchilè moun, satofouanlè ndè koun fitéli.",
 	"blockedtitle": "Ba djran interneti yofouè nga",
 	"blockedtext": "<strong>Bé djranni amoun interneti conti douman aanzè adressi IP.</strong>\n\n$1 yè ô djranni i ô.\nLiké nga ôman ô yé sô yè <em>$2</em>.\n\n* Djranlè i bobolè: $8\n* Djranlè i aviéliè: $6\n* Interneti conti nga bé djranni i: $7\n\nAmoun kloua flê $1 aanzè [[{{MediaWiki:Grouppage-sysop}}|administrateur]] ouflè nan amoun koko djranlè i sou yalè.\nAmoun kloua fa liké kè \"{{int:emailuser}}\" sa, sè adressi email kpa koun ô wo amoun [[Special:Preferences|klounklossou nigué moun]] bé noun, nan bé nan djran man amoun email sô i falè sou ka.\nDô nga sou amoun adressi IP yô lé $3, kôkoun djranlè i ID yô lé #$5.\nAmoun yatchi, amoun fa ndè nga bé wo nglo wafan moun bé klouaa fa sié i sa klouaa nga amoun woussa moun bé noun.",

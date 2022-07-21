@@ -639,7 +639,6 @@
 	"missingcommenttext": "Prosimo, vnesite komentar.",
 	"missingcommentheader": "<strong>Opozorilo:</strong> Niste vnesli zadeve za ta komentar.\nČe boste ponovno kliknili »$1«, bo vaše urejanje objavljeno brez nje.",
 	"summary-preview": "Povzetek urejanja:",
-	"subject-preview": "Predogled zadeve:",
 	"previewerrortext": "Med poskusom prikaza predogleda vaših sprememb je prišlo do napake.",
 	"blockedtitle": "Uporabnik je blokiran",
 	"blockedtext-partial": "<strong>Vaše uporabniško ime ali IP-naslov je blokiran pred tem dejanjem. Morda še vedno lahko počnete druge stvari na tej strani, kot je urejanje določenih strani.</strong> Polne podrobnosti blokade si lahko ogledate na [[Special:MyContributions|prispevkih računa]].\n\nBlokado je opravil(-a) $1.\n\nPodani razlog je <em>$2</em>.\n\n* Začetek blokade: $8\n* Potek blokade: $6\n* Blokirani uporabnik: $7\n* ID blokade #$5",

@@ -281,7 +281,6 @@
 	"showdiff": "Diişilmäkleri göster",
 	"anoneditwarning": "Sessiya açmadınız deyni yazının diişmäk istoriyasına diil nik, IP adresiniz registrat olunacêk.",
 	"summary-preview": "Ön siir özeti:",
-	"subject-preview": "Konu/başlık ön siiri:",
 	"blockedtitle": "Kullanıcı kösteklendi.",
 	"blockedtext": "Kullanıcı adınız yaki parolunuz $1 tarafından kösteklendi.\n\nSizi köstek edän önderci: $1. Köstek sebebi: ''$2''.\n\nEer düşünürsünüz ani köstek diil dooru o sebeptän angısı belirtildi, var nicä konuşmaa bu situațiyanı $1lan yaki başka bir [[{{MediaWiki:Grouppage-sysop}}|önderci]]län.\n\nHerliim girmediniz [[Special:Preferences|seçimner]] bölümünde geçerli bir e-mail adresi, yok nicä kullanmaa \"Kullanıcıya e-mail gönder\" seçimini.\n\nŞindi IP adresiniz $3. Yalvarêrêz bu adresi belirtmää her angı bir sorgu yapar kana.",
 	"blockednoreason": "hiç bir sebep belirtilmedi",

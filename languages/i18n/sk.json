@@ -662,7 +662,6 @@
 	"missingcommenttext": "Prosím, vložte komentár.",
 	"missingcommentheader": "<strong>Pripomienka:</strong> Neuviedli ste predmet tohto komentára.\nAk znova kliknete na tlačidlo $1, Vaša úprava sa uloží bez neho.",
 	"summary-preview": "Náhľad zhrnutia:",
-	"subject-preview": "Náhľad predmetu:",
 	"previewerrortext": "Pri pokuse o zobrazenie náhľadu došlo k chybe.",
 	"blockedtitle": "Používateľ je zablokovaný",
 	"blockedtext-partial": "<strong>Vášmu používateľskému menu alebo IP adrese bola táto činnosť zablokovaná. Je však možné, že na tejto wiki môžete vykonávať iné činnosti aj naďalej, akou je napríklad úprava konkrétnych stránok</strong> Úplné podrobnosti zablokovania si môžete pozrieť v [[Special:MyContributions|zozname príspevkov]].\n\nZablokovanie vykonal $1.\n\nUvedeným dôvodom blokovania je <em>$2</em>.\n\n* Začiatok blokovania: $8\n* Koniec blokovania: $6\n* Pôvodne blokovaný používateľ: $7\n* Identifikačné číslo bloku: #$5",

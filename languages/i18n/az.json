@@ -655,7 +655,6 @@
 	"missingcommenttext": "Zəhmət olmasa, şərh yazın.",
 	"missingcommentheader": "<strong>Xatırlatma:</strong> Bu şərh üçün bir mövzu vermədiniz.\nYenidən \"$1\" düyməsinə basarsanız, düzəlişiniz heçnəsiz saxlanacaq.",
 	"summary-preview": "Dəyişikliyin izahının görünüşü:",
-	"subject-preview": "Sərlövhə belə olacaq:",
 	"previewerrortext": "Redaktələrinizin sınaq görüntüsü göstərilərkən bir səhv baş verdi.",
 	"blockedtitle": "İstifadəçi bloklanıb",
 	"blockedtext-partial": "<strong>İstifadəçi adınız və ya İP ünvanınız bu fəaliyyəti icra etməkdən bloklanıb. Siz bu vikidə digər səhifələrdə bu fəaliyyəti edə bilərsiniz.</strong> Blok detallarını [[Special:MyContributions|istifadəçi fəaliyyətləri]] səhifəsində görə bilərsiniz.\n\nBloklayan: $1\nVerilmiş səbəb:<em>$2</em>\n\n*Blokun başlaması: $8\n*Blokun bitməsi: $6\n*Blok üçün nəzərdə tutulan şəxs: $7\n*Blok ID #$5",

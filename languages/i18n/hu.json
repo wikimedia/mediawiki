@@ -672,7 +672,6 @@
 	"missingcommenttext": "Kérjük, írj összefoglalót a szerkesztésedhez.",
 	"missingcommentheader": "<strong>Emlékeztető:</strong> Nem adtad meg a megjegyzés tárgyát.\nHa tárgy nélkül akarod elküldeni a megjegyzést, kattints újra a „$1” gombra.",
 	"summary-preview": "A szerkesztési összefoglaló előnézete:",
-	"subject-preview": "Tárgy előnézete:",
 	"previewerrortext": "Hiba történt a változások előnézetének megjelenítése során.",
 	"blockedtitle": "A szerkesztő blokkolva van",
 	"blockedtext-partial": "<strong>Szerkesztőneved vagy IP-címed számára blokkoltuk ezt a tevékenységet. Továbbra is csinálhatsz más dolgokat ezen az oldalon (például szerkeszthetsz egyéb lapokat).</strong> A blokkolás további részleteit a [[Special:MyContributions|fiók közreműködéseinél]] találod.\n\nA blokkolást $1 hajtotta végre.\n\nAz általa megadott indok: <em>$2.</em>\n\n* A blokk kezdete: $8\n* A blokk lejárata: $6\n* Blokkolt szerkesztő: $7\n* A blokkolás azonosítószáma: $5",

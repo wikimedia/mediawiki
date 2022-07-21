@@ -643,7 +643,6 @@
 	"missingcommenttext": "Prašome įvesti komentarą.",
 	"missingcommentheader": "<strong>Priminimas:</strong> Jūs nenurodėte šio komentaro antraštės.\nJei vėl paspausite „$1“, jūsų keitimas bus paskelbtas be jo.",
 	"summary-preview": "Keitimo santraukos peržiūra:",
-	"subject-preview": "Temos peržiūra:",
 	"previewerrortext": "Įvyko klaida bandant peržiūrėti jūsų pakeitimus.",
 	"blockedtitle": "Naudotojas yra užblokuotas",
 	"blockedtext-partial": "<strong>Jūsų naudotojo vardas arba IP adresas buvo užblokuotas, uždraudžiant atlikti šiuos veiksmus. Tikriausiai Jūs vis dar galėsite šioje svetainėje atlikti įvairius kitus veiksmus, pavyzdžiui, redaguoti tam tikrus puslapius.</strong> Išsamesnę informaciją apie blokavimą galite peržiūrėti savo [[Special:MyContributions|naudotojo indėlio]] puslapyje.\n\nUžblokavo administratorius $1.\n\nNurodyta priežastis: <em>$2</em>.\n\n* Blokavimo pradžia: $8\n* Blokavimo pabaiga: $6\n* Užblokuotasis: $7\n* Blokavimo ID #$5",

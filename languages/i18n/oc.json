@@ -620,7 +620,6 @@
 	"missingcommenttext": "Mercé de metre un comentari.",
 	"missingcommentheader": "<strong>Rapèl :</strong> Avètz pas provesit cap de subjècte per aqueste comentari.\nSe clicatz tornamai sus « {{int:Savearticle}} », vòstra modificacion serà enregistrada sens subjècte.",
 	"summary-preview": "Previsualizacion del resumit de modificacion:",
-	"subject-preview": "Previsualizacion del subjècte :",
 	"previewerrortext": "S'es produsida una error quand ensagèretz  de previsualizar los cambiaments.",
 	"blockedtitle": "L'utilizaire es blocat",
 	"blockedtext": "'''Vòstre compte d'utilizaire o vòstra adreça IP es estat blocat'''\n\nLo blocatge es estat efectuat per $1.\nLa rason invocada es la seguenta : ''$2''.\n\n* Començament del blocatge : $8\n* Expiracion del blocatge : $6\n* Compte blocat : $7.\n\nPodètz contactar $1 o un autre [[{{MediaWiki:Grouppage-sysop}}|administrator]] per ne discutir.\nPodètz pas utilizar la foncion « Mandar un corrièr electronic a aqueste utilizaire » que se una adreça de corrièr valida es especificada dins vòstras [[Special:Preferences|preferéncias]].\nVòstra adreça IP actuala es $3 e vòstre identificant de blocatge es #$5.\nInclusètz aquesta adreça dins tota requèsta.",

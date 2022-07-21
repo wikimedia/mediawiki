@@ -751,7 +751,6 @@
 	"missingcommenttext": "コメントを入力してください。",
 	"missingcommentheader": "<strong>注意:</strong> このコメントに対する題名が空欄です。\n「$1」ボタンをもう一度押すと、空のまま編集が公開されます。",
 	"summary-preview": "要約のプレビュー:",
-	"subject-preview": "題名のプレビュー:",
 	"previewerrortext": "変更のプレビューを処理中に、エラーが発生しました。",
 	"blockedtitle": "利用者はブロックされています",
 	"blockedtext-partial": "<strong>あなたの利用者名またはIPアドレスはこの操作をブロックされています。特定のページの編集など、このサイト上での他の操作をすることはできるかもしれません。</strong>ブロックの詳細は[[Special:MyContributions|アカウントの投稿記録]]で確認できます。\n\nブロックは$1によって実施されました。\n\nブロックの理由は <em>$2</em> です。\n\n* ブロック開始日時: $8\n* ブロック解除予定: $6\n* ブロック対象: $7\n* ブロックID #$5",

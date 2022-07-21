@@ -476,7 +476,6 @@
 	"missingcommenttext": "請在下背輸入評論。",
 	"missingcommentheader": "'''提示:''' 汝還無為邇條評論提供一隻標題。假使汝再次單擊「$1」，您嘅編寫將毋帶標題保存。",
 	"summary-preview": "摘要預覽:",
-	"subject-preview": "主題/標題預覽：",
 	"blockedtitle": "用戶分查封",
 	"blockedtext": "Ngì-ke yung-fu-miàng fe̍t-chá IP thi-tiám yí-kîn pûn $1 chhà-fûng.\n\nLiá-chhṳ chhà-fûng he yù $1 só fûng ke. Tông-chûng ke ngièn-yîn he ''$2''. Ngì khó-yî lièn-lo̍k $1 fe̍t-chá khì-thâ ke [[{{MediaWiki:Grouppage-sysop}}|Kón-lî-yèn]], thó-lun liá-chhṳ ke chhà-fûng. Chhù-fî ngì yí-kîn chhai ngì-ke [[Special:Preferences|Chong-ho chhâm-su sat-chṳ]] chûng sat-thin liáu yit-ke yû-háu ke email, féu-chet ngì-he put-nèn sṳ́-yung “email liá-vi yung-fu” ke kûng-yung. Ngì-ke IP thi-tiám he $3, yì-yèn ke chhà-fûng ID he #$5. Chhiáng ngì chhai só-yû chhà-chhìm chûng chu-mìn liá-ke thi-tiám khi̍p／fe̍t-he chhà-fûng ID.",
 	"autoblockedtext": "Ngì-ke IP thi-tiám yí-kîn pûn chhṳ-thung chhà-fûng, lî-yù he siên-chhièn ke nang yit-vi yung-fu pûn $1 só chhà-fûng. Yì-yèn chhà-fûng ke ngièn-yîn he: ''$2'' liá-chhṳ chhà-fûng ke khì-kiên he: $6 ngì khó-yî lièn-lo̍k $1 fe̍t-chá khì-thâ ke [[{{MediaWiki:Grouppage-sysop}}|kón-lî-yèn]], thó-lun liá-chhṳ chhà-fûng. Chhù-fî ngì yí-kîn chhai ngì-ke [[Special:Preferences|fu-thèu chhâm-su sat-chṳ]] chûng sat-thin yit-ke yû-háu ke email thi-tiám, féu-chet ngì-he put-nèn sṳ́-yung \"email liá-vi yung-fu\" ke kûng-nèn. Ngì-ke chhà-fûng ID he $5. Chhiáng ngì chhai só-yû thiàu-chhà chûng chu-mìn liá-ke chhà-fûng ID.",

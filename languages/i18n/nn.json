@@ -597,7 +597,6 @@
 	"missingcommenttext": "Ver venleg og skriv ein kommentar nedanfor.",
 	"missingcommentheader": "'''Påminning:''' Du har ikkje oppgjeve noko emne/overskrift for denne kommentaren.\nDersom du trykkjer «$1» ein gong til, vert endringa di lagra utan.",
 	"summary-preview": "Førehandsvising av endringssamandraget:",
-	"subject-preview": "Førehandsvising av emne/overskrift:",
 	"blockedtitle": "Brukaren er blokkert",
 	"blockedtext-partial": "<strong>Brukarnamnet ditt er blokkert frå å endra denne sida. Du kan framleis endra andre sider på denne wikien.</strong> Du kan sjå alle detaljane om blokkeringa i [[Special:MyContributions|bidragslista]].\n\nBlokkeringa vart gjord av $1.\n\nDen oppgjevne årsaka er <em>$2</em>.\n\n* Blokkeringa byrja: $8\n* Blokkeringa endar: $6\n* Blokkeringa gjeld brukar: $7\n* Blokkerings-ID #$5",
 	"blockedtext": "<strong>Brukarnamnet ditt eller IP-adressa di er blokkert.</strong>\n\nBlokkeringa vart gjord av $1.\nDen oppgjevne årsaka er <em>$2</em>.\n\n* Blokkeringa byrja: $8\n* Blokkeringa endar: $6\n* Blokkeringa gjeld brukar: $7\n\nDu kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa.\nVer merksam på at du ikkje kan bruke «{{int:emailuser}}»-funksjonen minder du har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]] og ikkje er blokkert frå å bruke denne funksjonen.\nDen gjeldande IP-adressa di er $3, og blokkerings-ID-en er #$5.\nTa med alle opplysingane over ved eventuelle førespurnader.",

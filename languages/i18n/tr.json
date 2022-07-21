@@ -743,7 +743,6 @@
 	"missingcommenttext": "Lütfen bir yorum yazın.",
 	"missingcommentheader": "<strong>Uyarı:</strong> Bu yorum için bir konu girmediniz.\nEğer \"$1\" seçeneğine tekrar tıklarsanız, düzenlemeniz konu olmadan kaydedilecektir.",
 	"summary-preview": "Değişiklik özetinin önizlemesi:",
-	"subject-preview": "Konunun önizlemesi:",
 	"previewerrortext": "Yaptığınız değişikliklerin önizlemesi sırasında bir hata oluştu.",
 	"blockedtitle": "Kullanıcı engellendi",
 	"blockedtext-partial": "<strong>Kullanıcı adınızın veya IP adresinizin bunu yapması engellenmiştir. Bu sitede yine de belirli sayfaları düzenleme gibi başka şeyler yapabilirsiniz.</strong> Tüm blok ayrıntılarını [[Special:MyContributions|hesap katkılarında]] görebilirsiniz.\n\nEngel, $1 tarafından verilmiştir.\n\nSebebi ise şudur: <em>$2</em>.\n\n* Engel başlangıcı: $8\n* Engel bitişi: $6\n* İstenilen engel: $7\n* Engel numarası #$5",

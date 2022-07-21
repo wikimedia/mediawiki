@@ -332,7 +332,6 @@
 	"showdiff": "viska ro se binxo",
 	"missingcommenttext": ".i ko ciska pa pinka",
 	"summary-preview": "purzga jvinu le ve skicu be le nu binxo",
-	"subject-preview": "purzga jvinu le se casnu",
 	"previewerrortext": ".i da nabmi fi le nu co'a purzga le nu binxo",
 	"blockedtext": "<strong>lo do plino cmene ja kibjo'e judri cu pu co'u</strong>\n\nti pu mo'u se $1 ri'a lo nu <em>$2</em>\n\n* lo vi co'a bu'u $8\n* ti ba fanmo bu'u $6\n* ti pu se smuni lo nu $7\n\ndo ka'e tavla $1 ji lo drata [[{{MediaWiki:Grouppage-sysop}}|.sysop.]] fi ti\n\ndo ca le kibjo'e judri cu $3 e nai lo fonjudri be do cu $5",
 	"whitelistedittext": ".i sarcu fa le nu do $1 kei le nu do bixygau pa papri",

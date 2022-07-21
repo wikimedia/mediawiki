@@ -678,7 +678,6 @@
 	"missingcommenttext": "Xin hãy nhập bình luận vào đây.",
 	"missingcommentheader": "<strong>Nhắc nhở:</strong> Bạn chưa ghi chủ đề/tiêu đề cho bàn luận này.\nNếu bạn nhấn nút “$1” lần nữa, sửa đổi của bạn sẽ được xuất bản mà không có đề mục.",
 	"summary-preview": "Xem trước dòng tóm lược sửa đổi:",
-	"subject-preview": "Xem trước đề mục:",
 	"previewerrortext": "Có lỗi xảy ra khi xem trước những thay đổi của bạn.",
 	"blockedtitle": "Thành viên bị cấm",
 	"blockedtext-partial": "<strong>Tài khoản hoặc IP của bạn đã bị cấm không được phép thực hiện tác vụ này. Có lẽ bạn vẫn có thể thực hiện những tác vụ khác tại wiki này, chẳng hạn như sửa đổi các trang cụ thể.</strong> Bạn có thể xem chi tiết đầy đủ về việc cấm tại [[Special:MyContributions|các đóng góp của tài khoản]].\n\nViệc cấm được thực hiện bởi $1.\n\nLý do được đưa ra là <em>$2</em>.\n\n* Ngày bắt đầu cấm: $8\n* Ngày hết hạn cấm: $6\n* Người bị cấm: $7\n* Mã số cấm #$5",

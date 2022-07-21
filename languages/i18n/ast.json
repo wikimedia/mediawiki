@@ -623,7 +623,6 @@
 	"missingcommenttext": "Escribi un comentariu.",
 	"missingcommentheader": "<strong>Recordatoriu:</strong> Nun conseñasti un asuntu pa esti comentariu.\nSi calques nuevamente «$1», la to edición guardaráse ensin nengunu.",
 	"summary-preview": "Vista previa del resume d'edición:",
-	"subject-preview": "Vista previa del asuntu:",
 	"previewerrortext": "Hebo un error al intentar entever los cambios.",
 	"blockedtitle": "L'usuariu ta bloquiáu",
 	"blockedtext-partial": "<strong>El to usuariu o direición IP tien bloquiáo facer esto. Entá pues facer otres coses nesti sitiu, como editar determinaes páxines.</strong> Pues ver los detalles completos del bloquéu en [[Special:MyContributions|contribuciones de la cuenta]].\n\nEl bloquéu fízolu $1.\n\nEl motivu dau ye <em>$2</em>.\n\n* Entamu de bloquéu: $8\n* Caducidá del bloquéu: $6\n* Bloquéu destináu a: $7\n* ID del bloquéu #$5",

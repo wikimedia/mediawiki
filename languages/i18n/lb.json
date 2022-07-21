@@ -622,7 +622,6 @@
 	"missingcommenttext": "Gitt wgl. eng Bemierkung an.",
 	"missingcommentheader": "<strong>Denkt drun:</strong> Dir hutt kee Sujet fir dës Bemierkung aginn.\nWann Dir nach en Kéier op \"$1\" klickt da gëtt Är Ännerung ouni Titel verëffentlecht.",
 	"summary-preview": "Resumé vun der Ännerung kucken ouni ze späicheren:",
-	"subject-preview": "Sujet kucken ouni ze späicheren:",
 	"previewerrortext": "Beim Versuch fir Är Ännerungen ze weisen, ass e Feeler geschitt.",
 	"blockedtitle": "Benotzer ass gespaart",
 	"blockedtext": "<strong>Äre Benotzernumm oder Är IP-Adress gouf gespaart.</strong>\n\nD'Spär gouf vum $1 gemaach.\nAls Grond gouf <em>$2</em> uginn.\n\n* Ufank vun der Spär: $8\n* Enn vun der Spär: $6\n* Spär betrëfft: $7\n\nDir kënnt den/d' $1 kontaktéieren oder ee vun den aneren [[{{MediaWiki:Grouppage-sysop}}|Administrateure]] fir iwwer d'Spär ze schwätzen.\n\nDir kënnt d'Funktioun \"{{int:emailuser}}\" nëmme benotzen, wann Dir eng gëlteg E-Mail Adress bei Ären [[Special:Preferences|Astellungen]] aginn hutt.\nÄr aktuell IP-Adress ass $3 an d'Nummer vun der Spär ass #$5.\nSchreift all dës Informatioune wgl. bei all Ufro derbäi.",

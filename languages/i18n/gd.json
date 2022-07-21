@@ -584,7 +584,6 @@
 	"missingcommenttext": "Cuir a-steach beachd.",
 	"missingcommentheader": "<strong>Cuimhnich:</strong> Cha dug thu seachad cuspair airson a’ bheachd seo.\nMa bhriogas tu air “$1” a-rithist, thèid na dheasaich thu a shàbhaladh as aonais.",
 	"summary-preview": "Ro-shealladh gearr-chunntas an deasachaidh:",
-	"subject-preview": "Ro-shealladh a’ chuspair:",
 	"previewerrortext": "Thachair mearachd fhad ’s a bha sinn airson ro-shealladh nan atharraichean a shealltainn dhut.",
 	"blockedtitle": "Tha an cleachdair air a bhacadh",
 	"blockedtext": "<strong>Chaidh an t-ainm-cleachdaiche no an seòladh IP agad a bhacadh.</strong>\n\n’S e $1 a chur am bacadh seo ort.\n’S e “<em>$2</em>” an t-adbhar a thug iad.\n\n* Toiseach a’ bhacaidh: $8\n* Deireadh a’ bhacaidh: $6\n* An neach air a bheil am bacadh: $7\n\n’S urrainn dhut fios a chur gu $1 no [[{{MediaWiki:Grouppage-sysop}}|rianaire]] eile gus am bacadh seo a dheasbad.\nChan urrainn dhut an gleus “Cuir post-d dhan chleachdaiche seo” a chleachdadh ach ma tha seòladh puist-d dligheach ann an [[Special:Preferences|roghainnean a’ chunntais agad]] agus mura deach bacadh a chur air a chleachdadh.\n’S e $3 an seòladh IP làithreach agus agus ’s e #$5 ID a’ bhacaidh.\nThoir iomradh air a’ mhion-fhiosrachadh gu h-àrd ma chuireas tu ceist sam bith mu dhèidhinn.",

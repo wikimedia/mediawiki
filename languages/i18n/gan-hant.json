@@ -356,7 +356,6 @@
 	"missingcommenttext": "請到底下評論。",
 	"missingcommentheader": "''提示:''' 汝嗰評論冇提供標題。若係汝捺過到$1嗰話，汝保存嗰編輯就會冇標題。",
 	"summary-preview": "摘要預覽:",
-	"subject-preview": "主題/頭條預覽:",
 	"blockedtitle": "用戶封到哩",
 	"blockedtext": "汝嗰用戶名或IP地址拕$1封到哩。\n\n箇道封鎖係$1封嗰。個中原因係''$2''。\n\n* 箇回封鎖嗰開始時間係：$8\n* 箇回封鎖嗰到期時間係：$6\n* 對於拕查封嗰人：$7\n\n汝聯繫得正$1或別嗰[[{{MediaWiki:Grouppage-sysop}}|管理員]]，討論箇回封鎖。除吥到汝嗰[[Special:Preferences|帳號參數設置]]裡度設正哩有效嗰email，伓然嗰話汝係用伓正「email到箇隻用戶」嗰功能。設正哩有效嗰email後，箇隻功能係伓會拕封到嗰。汝嗰IP地址係$3，許拕封到嗰ID係 #$5。請汝到全部嗰查詢裡度注明箇隻地址同／或查封ID。",
 	"autoblockedtext": "別嗰人用過倷嗰IP地址，故係佢拕自動鎖到嘞。封佢嗰人係$1.\n下首係封鎖嗰理由:\n\n:''$2''\n\n* 封鎖開始: $8\n* 封鎖過期: $6\n\n倷聯繫得正$1或別嗰[[{{MediaWiki:Grouppage-sysop}}|管理員]]去談下箇道封鎖。\n\n注意嗰係話伓定倷冇\"e-mail箇隻用戶\"嗰功能，除非倷到[[Special:Preferences|用戶設置]]有隻註冊email地址，再就係倷冇因為用佢拕封過。\n\n倷嗰封鎖ID係$5。請到查詢嗰時間都要緊標到佢。",

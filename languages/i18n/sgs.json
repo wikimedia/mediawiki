@@ -464,7 +464,6 @@
 	"missingcommenttext": "Duokat pāiškėnėma apatiuo.",
 	"missingcommentheader": "'''Primėnėms:''' Tamsta nadaviet pakeitėma paaiškėnėma. Jēgo apent paspausat \"$1\", Tamstas pakeitėms būs ėšsauguots ba anuo.",
 	"summary-preview": "Pāiškėnėma parvaiza:",
-	"subject-preview": "Skėrsnelė/ontraštės parvaiza:",
 	"previewerrortext": "Miegėnant parveizietė pakeitėmus nūtėka klaida.",
 	"blockedtitle": "Nauduotuos īr ožgints",
 	"blockedtext": "'''Tamstas nauduotuojė vards aba IP adresos ožgints īr.'''\n\nOžgīnė nauduotuos $1.\nDingstės ''$2''.\n\n* Ožgīnėms prasėdė̄jė: $8\n* Ožgīnėms pasėbengs: $6\n* Kas tor būtė ožgints: $7\n\nTamsta galat parašītė $1 aba kėtėim\n[[{{MediaWiki:Grouppage-sysop}}|admėnėstratuorėm]], jēgo mīslėjat, ka Tamstā ožgīnė ba grieka.\nTamsta negalat „rašītė gromata ton nauduotuojō“, jēgo nasat davis tėkra sava el. pašta adresa sava [[Special:Preferences|paskīruos nustatīmūs]] ė nasat ožgints nu anuos nauduojėma.\nTamstas dabartėnis IP adresos īr $3, vuo ožgīnėma ID īr #$5. Prašuom nuruodītė ton, kumet prašīsėt atgėnoms.",

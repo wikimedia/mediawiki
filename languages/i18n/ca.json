@@ -690,7 +690,6 @@
 	"missingcommenttext": "Introduïu un comentari.",
 	"missingcommentheader": "<strong>Recordatori:</strong> No heu proporcionat cap tema per a aquest comentari. \nSi torneu a fer clic a \"$1\", la vostra edició es publicarà sense tema.",
 	"summary-preview": "Previsualització del resum de modificació:",
-	"subject-preview": "Previsualització de l’assumpte:",
 	"previewerrortext": "S'ha produït un error quan es provava de previsualitzar els canvis.",
 	"blockedtitle": "L'usuari està blocat",
 	"blockedtext-partial": "<strong>El vostre nom d'usuari o adreça IP està bloquejada per a realitzar aquesta tasca. Tot i això, encara podeu fer altres operacions en aquest lloc, com ara editar algunes pàgines.</strong>podeu veure'n tots els detalls a [[Special:MyContributions|contribucions del compte]].\n\nEl bloqueig ha estat efectuat per $1.\n\nLa raó del bloqueig és <em>$2</em>.\n\n* Inici del bloqueig: $8\n* Expiració del bloqueig: $6\n* Destinatari del bloqueig: $7\n* ID del bloqueig #$5",

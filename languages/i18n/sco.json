@@ -609,7 +609,6 @@
 	"missingcommenttext": "Please enter ae comment ablo.",
 	"missingcommentheader": "<strong>Reminder:</strong> Ye hae nae providit a subject for this comment.\nIf ye click \"$1\" again, yer eedit will be saved withoot ane.",
 	"summary-preview": "Preview o eedit summary:",
-	"subject-preview": "Preview o subject:",
 	"previewerrortext": "An error occurred while attemptin tae preview yer chynges.",
 	"blockedtitle": "Uiser is blockit",
 	"blockedtext": "<strong>Yer uisername or IP address haes been blockit.</strong>\n\nThe block wis makit bi $1.\nThe raison gieen is <em>$2</em>.\n\n* Stairt o block: $8\n* Expirie o block: $6\n* Intended blockee: $7\n\nYe can contact $1 or anither [[{{MediaWiki:Grouppage-sysop}}|admeenistrater]] tae discuss the block.\nYe canna uise the \"wab-mail this uiser\" feature onless ae valid wab-mail address is speceefied in yer [[Special:Preferences|accoont preferences]] n ye'v naw been blockit fae uisin it.\nYer current IP address is $3, n the block ID is #$5.\nPlease incluide aw the abuin details in onie speirins that ye mak.",

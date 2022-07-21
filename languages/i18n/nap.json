@@ -619,7 +619,6 @@
 	"missingcommenttext": "Pe' piacere, scrivete nu commento.",
 	"missingcommentheader": "<strong>Arricurdateve:</strong> nun s'è specificato l'oggetto/titolo pe stu commento. Clicann' 'a \"$1\" n'ata vota 'o cagnamiento sarrà sarvato c' 'o titolo/oggetto abbacante.",
 	"summary-preview": "Anteprimma'e l'oggetto:",
-	"subject-preview": "Anteprimma 'e l'oggetto:",
 	"previewerrortext": "È succiesso n'errore quanno se steva a ffà pre-veré 'e cagnamiente vuoste.",
 	"blockedtitle": "Utente bloccato.",
 	"blockedtext": "<strong>'O nomme utente o l'IP vuosto è stato bloccato.</strong>\n\n’O blocco è stato mpustato ’a $1. 'O mutivo d’’o blocco è chisto: ''$2''\n\n* ’O blocco è abbiato: $8\n* ’O blocco fernesce: $6\n* Tiempo 'e blocco: $7\n\nPutite cuntattà $1 o n'atu [[{{MediaWiki:Grouppage-sysop}}|ammenistratore]] pe discutere chisto blocco.\n\nPutíte ausà ’a funzione \"{{int:emailuser}}\" si avìte riggistrato nu ndirizzo e-mail buono dint’’e [[Special:Preferences|preferenze]] e si l'uso 'e chesta funzione nun è stato bloccato.\n\nMo 'o ndirizzo IP vuosto è $3 e 'o nummero d’’o blocco è #$5.\nPe piacere avite a specificà tutte sti dettaglie quanno facite cocche dumanna.",

@@ -764,7 +764,6 @@
 	"missingcommenttext": "Inserisci un commento.",
 	"missingcommentheader": "<strong>Attenzione:</strong> non è stato specificato l'oggetto di questo commento. Premendo di nuovo \"$1\" la modifica verrà pubblicata senza.",
 	"summary-preview": "Anteprima dell'oggetto della modifica:",
-	"subject-preview": "Anteprima dell'oggetto:",
 	"previewerrortext": "Si è verificato un errore durante il tentativo di mostrare l'anteprima delle tue modifiche.",
 	"blockedtitle": "Utente bloccato.",
 	"blockedtext-partial": "<strong>Alla tua utenza o indirizzo IP è stato vietato di effettuare questa operazione. Potresti ancora eseguire altre azioni in questo sito, come modificare altre pagine.</strong> Puoi vedere tutti i dettagli del blocco su [[Special:MyContributions|contributi dell'utenza]].\n\nIl blocco è stato effettuato da $1.\n\nLa ragione data è <em>$2</em>.\n\n* Inizio del blocco: $8\n* Scadenza del blocco: $6\n* Destinatario del blocco: $7\n* ID Blocco #$5",

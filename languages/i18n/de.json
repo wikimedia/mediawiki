@@ -739,7 +739,6 @@
 	"missingcommenttext": "Bitte gib einen Kommentar ein.",
 	"missingcommentheader": "<strong>Achtung:</strong> Du hast keinen Betreff eingegeben. Wenn du erneut auf „$1“ klickst, wird deine Bearbeitung ohne Überschrift veröffentlicht.",
 	"summary-preview": "Vorschau der Zusammenfassungszeile:",
-	"subject-preview": "Vorschau der Zusammenfassungszeile:",
 	"previewerrortext": "Beim Versuch, eine Vorschau deiner Änderungen anzuzeigen, ist ein Fehler aufgetreten.",
 	"blockedtitle": "Benutzer ist gesperrt",
 	"blockedtext-partial": "<strong>Dein Benutzerkonto oder deine IP-Adresse ist für das Durchführen dieser Aktion gesperrt. Du kannst möglicherweise noch andere Sachen in diesem Wiki, wie z.B. bestimmte Seiten, bearbeiten.</strong> Du kannst die vollständigen Einzelheiten in deinen [[Special:MyContributions|Benutzerbeiträgen]] einsehen.\n\nDie Sperre wurde von $1 durchgeführt.\n\nDie angegebene Begründung lautet: <em>$2</em>.\n\n* Beginn der Sperre: $8\n* Ablauf der Sperre: $6\n* Sperre betrifft: $7\n* Sperrkennung: #$5",

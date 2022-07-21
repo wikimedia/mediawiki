@@ -579,7 +579,6 @@
 	"missingcommenttext": "Ssekcem awennit deg ukessar.",
 	"missingcommentheader": "<strong>Asmekti:</strong> ur d-muddeḍ ara asentel n uwennit-agi.\nMa tsenndeḍ tikelt-nniḍen ɣef \"$1\", abeddel-ik ad yettwasekles s war asentel.",
 	"summary-preview": "Taskant n ugzul n ubeddel :",
-	"subject-preview": "Taskant n usentel :",
 	"blockedtitle": "Amseqdac iɛekkel",
 	"blockedtext": "'''Amiḍan-ik n useqdac neɣ tansa n IP weḥlen.'''\n\nAsewḥel yega-t $1.\nTaɣẓint d tagi : ''$2''.\n\n* Tazwara n usewḥel : $8\n* Tagara n usewḥel : $6\n* Amiḍan iweḥlen : $7.\n\n\nTzemreḍ ad tnermseḍ $1 neɣ [[{{MediaWiki:Grouppage-sysop}}|anedbal]]-nniḍen akken ad tsmelayem.\nUr tezmireḍ ara ad tesqedceḍ tawuri \"nemres aseqdac-agi\" ma yella tella tensa tameɣtut deg[[Special:Preferences|ismenyifen n useqdac]], udiɣ ma yella tawuri-agi ur tewḥil ara. Tansa-ik IP n tura d $3, ID n usewḥeld #$5.\nSuddu-d akk talɣut-agi deg tuttriwin ara d-azdneḍ.",
 	"autoblockedtext": "'''Tansa-ik IP tewḥel s wudem awurman acku i tt-yesseqdacen  yesweḥli-t $1.\n\n\nTaɣẓint d tagi :\n:<em>$2</em>\n\n* Tazwara n usewḥel : $8\n* Tagara n usewḥel : $6\n* Amiḍan iweḥlen : $7.\n\n\nTzemreḍ ad tnermseḍ $1 neɣ [[{{MediaWiki:Grouppage-sysop}}|anedbal]]-nniḍen akken ad tsmelayem.\nUr tezmireḍ ara ad tesqedceḍ tawuri \"nermres aseqdac-agi\" ma yella tella tensa tameɣtut deg[[Special:Preferences|ismenyifen n useqdac]], udiɣ ma yella tawuri-agi ur tewḥil ara. \n\nTansa-ik IP n tura d $3, ID n usewḥeld #$5.\nSuddu-d akk talɣut-agi deg tuttriwin ara d-azdneḍ.",

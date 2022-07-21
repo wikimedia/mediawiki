@@ -587,7 +587,6 @@
 	"missingcommenttext": "Jekk jogħġbok ħalli kumment.",
 	"missingcommentheader": "'''Twissija:''' Ma ġie speċifikat l-ebda suġġett/titlu għal dan il-kumment.\nJekk terġa' tagħfas \"$1\", il-modifika tiegħek se tiġi salvata mingħajr wieħed.",
 	"summary-preview": "Dehra proviżorja tat-taqsira:",
-	"subject-preview": "Dehra proviżorja tas-suġġett:",
 	"previewerrortext": "Kien hemm żball waqt tentattiv biex tintwera previżżjoni tal-bidliet",
 	"blockedtitle": "L-utent ġie bblokkjat",
 	"blockedtext": "'''L-isem tal-utent jew l-indirizz IP tiegħek ġew imblukkat.'''\n\nIl-blokk twettaq minn $1. Ir-raġuni mogħtiha kienet ''$2''.\n\n* Il-blokk jibda: $8\n* Il-blokk jintemm: $6\n* Il-blokk kien għal: $7\n\nTista' tikkuntattja lil $1 jew xi [[{{MediaWiki:Grouppage-sysop}}|amministratur]] ieħor biex tiddiskuti dan il-blokk.\n\nMa tistax tuża' l-faċilità \"ikteb lil dan l-utent\" sakemm m'għandekx indirizz validu tal-email fil-[[Special:Preferences|preferenzi tal-kont]] tiegħek u ma ġejtx miżmum milli tużah.\n\nL-IP kurrenti tiegħek huwa $3, u l-ID tal-imblukkar huwa #$5.<br />Jekk jogħġbok inkludi mqar wieħed minn dawn it-tnejn f'kwalunkwe rikjesta.",

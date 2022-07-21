@@ -498,7 +498,6 @@
 	"missingsummary": "<strong>Ammenta·ti</strong> No as frunidu unu resumu de sas modìficas. Si as a incarcare torra \"$1\", sa modìfica tua at a èssere sarvada chene resumu.",
 	"missingcommenttext": "Inserta unu cummentu.",
 	"summary-preview": "Antiprima ogetu:",
-	"subject-preview": "Antiprima tema/tìtulu:",
 	"blockedtitle": "S'impitadore est istadu bloccadu",
 	"blockedtext": "<strong>Custu nùmene impitadore o indiritzu IP est stadu bloccadu.</strong>\n\nSu bloccu est stadu postu dae $1.\nSu motivu de su bloccu est: <em>$2</em>.\n\n* Su bloccu incumentzat: $8\n* Su bloccu scadit: $6\n* Intervallu de bloccu: $7\n\nSi boles, podes tzerriare $1 o un'àteru [[{{MediaWiki:Grouppage-sysop}}|amministradore]] pro faeddare de su bloccu.\nNota ca sa funtzione 'Ispedi un'email a custu impitadore' no est ativa si no est istadu registradu un'indiritzu email vàlidu in is [[Special:Preferences|preferèntzias]] tuas o si s'impreu de custa funtzione est istadu arreadu.\nS'indiritzu IP atuale est $3, su nùmeru ID de su bloccu est #$5.\nPro praghere ispetzìfica totus is particulares in antis in cale siat pregonta de acrarimentu.",
 	"blockednoreason": "perunu motivu inditadu",

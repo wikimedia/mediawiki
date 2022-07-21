@@ -677,7 +677,6 @@
 	"missingcommenttext": "Bonvolu entajpi komenton.",
 	"missingcommentheader": "<strong>Memorigo:</strong> Vi ne provizis temon por ĉi tiu komento.\nSe vi alklakos \"$1\" denove, via redakto estos publikigita sen ĝi.",
 	"summary-preview": "Resuma antaŭrigardo:",
-	"subject-preview": "Antaŭrigardo de temo:",
 	"previewerrortext": "Dum provo antaŭrigardi viajn ŝanĝojn okazis eraro.",
 	"blockedtitle": "La uzanto estas forbarita.",
 	"blockedtext-partial": "<strong>Al via uzantnomo aŭ IP-adreso estas malebligita ĉi tiu agado. Vi eble povas ankoraŭ fari aliajn agadojn en ĉi tiu retejo, ekzemple redakti certajn paĝojn.</strong> Ĉiujn detalojn pri la forbaro vi povas vidi ĉe [[Special:MyContributions|kontribuoj de via konto]].\n \nVin forbaris $1.\n\nIndikita kialo estas <em>$2</em>.\n\n* Komenco de forbaro: $8\n* Fino de forbaro: $6\n* Intencita forbarito: $7\n* Identigilo de forbaro #$5",

@@ -502,7 +502,6 @@
 	"missingcommenttext": "Scréver un cumèint ché sòta.",
 	"missingcommentheader": "<strong>Atensiòun:<strong> an n'é mìa stê precişê l'argumèint de sté mudéfica. S'es tōrna a clichêr insém a \"$1\" la mudéfica la gnirà salvêda sèinsa.",
 	"summary-preview": "Guêrda la mudéfica che t'é fât:",
-	"subject-preview": "Guêrda préma l'argumèint:",
 	"previewerrortext": "A gh'é stê 'n erōr mèinter a s'é serchê ed guardêr al lavōr préma 'd salvêrel.",
 	"blockedtitle": "Utèint bluchê",
 	"blockedtext": " '''Al tō nòm utèint o indirés IP l'é stê bluchê.'''\n\nAl blôch l'é stê fât da $1. Al mutîv dal blôch l'é còst:  ''$2''.\n\n*Inési dal blôch: $8\n*Scadèinsa dal blôch: $6\n*Intervâl ed blôch: $7\n\nS' ét vō, l'é pusébil mètres in cuntât cun $1 o 'n êter [[{{MediaWiki:Grouppage-sysop}}|aministradōr]] per discóter dal blôch.\n\nGuêrda che la funsiòun 'Scrév a l'utèint' an n'é mìa in ôvra s' an n'é mìa stê registrtê un indirés ed pôsta eletrônica vâlid int al tō [[Special:Preferences| preferèinsi]] o se sté funsiòun l'é stêda bluchêda. L'indirés IP 'd adèsa l'é $3, al nóme ID dal blôch l'é #$5. T'é perghê ed precişêr tót j elemèint ed préma per ògni dmânda de spiegasiòun",

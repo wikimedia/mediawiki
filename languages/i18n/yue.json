@@ -658,7 +658,6 @@
 	"missingcommenttext": "請打評語。",
 	"missingcommentheader": "<strong>提醒：</strong>你響呢個註解度並無提供一個主題／標題。如果你再撳一次「$1」，你嘅編輯就會無題。",
 	"summary-preview": "睇睇編輯摘要:",
-	"subject-preview": "主題預覽：",
 	"previewerrortext": "預覽你嘅修改嗰陣出錯。",
 	"blockedtitle": "用戶已經封鎖",
 	"blockedtext": "<strong>你嘅用戶名或者IP地址已經俾人封咗。</strong>\n\n呢次封鎖係由$1所封嘅。\n俾咗嘅原因係<em>$2</em>。\n\n* 呢次封鎖嘅開始時間係：$8\n* 呢次封鎖嘅到期時間係：$6\n* 被封鎖者：$7\n\n你可以聯絡 $1 或者其他嘅[[{{MediaWiki:Grouppage-sysop}}|管理員]]討論呢次封鎖。\n如果你已經響你嘅[[Special:Preferences|戶口喜好設定]]入面設定咗有效嘅電郵地址，又冇被禁止使用嘅話，你可以用「{{int:emailuser}}」呢個功能。\n你現時嘅IP地址係 $3 ，而個封鎖ID係 #$5。\n請喺你嘅查詢都註明以上封鎖嘅資料。",

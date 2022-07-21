@@ -852,7 +852,6 @@
 	"missingcommenttext": "Escribe un comentario.",
 	"missingcommentheader": "<strong>Atención:</strong> no has escrito un asunto para este comentario.\nSi haces clic nuevamente en \"$1\" tu edición se grabará sin él.",
 	"summary-preview": "Previsualización del resumen de edición:",
-	"subject-preview": "Previsualización del asunto:",
 	"previewerrortext": "Se ha producido un error al intentar previsualizar tus cambios.",
 	"blockedtitle": "El usuario está bloqueado",
 	"blockedtext-partial": "<strong>Tu nombre de usuario o dirección IP está bloqueada para hacer esto. Aún puedes editar otros páginas en esta wiki.</strong> Puedes ver los detalles completos de bloqueo en [[Special:MyContributions|contribuciones de la cuenta]].\n\nEl bloqueo fue hecho por $1.\n\nLa razón dada es <em>$2</em>.\n\n* Inicio del bloqueo: $8\n* Caducidad del bloqueo: $6\n* Bloqueo destinado a: $7\n* ID del bloqueo: $5",

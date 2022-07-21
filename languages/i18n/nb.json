@@ -678,7 +678,6 @@
 	"missingcommenttext": "Skriv inn en kommentar.",
 	"missingcommentheader": "<strong>Husk:</strong> Du har ikke angitt et emne for denne kommentaren.\nHvis du trykker «$1» igjen blir redigeringen din publisert uten forklaring.",
 	"summary-preview": "Forhåndsvisning av redigeringsforklaring:",
-	"subject-preview": "Forhåndsvisning av emne:",
 	"previewerrortext": "En feil oppsto mens endringene dine skulle forhåndsvises.",
 	"blockedtitle": "Brukeren er blokkert",
 	"blockedtext-partial": "<strong>Brukernavnet ditt eller IP-adressen din er blokkert fra å gjøre dette. Du kan fortsatt redigere andre sider på denne wikien.</strong> Du kan se blokkeringsdetaljene under [[Special:MyContributions|bidragslisten]].\n\nBlokkeringen ble gjort av $1.\n\nDen angitte årsaken er <em>$2</em>.\n\n* Blokkeringen startet: $8\n* Blokkeringen løper ut: $6\n* Blokkeringen er ment for: $7\n* Blokkerings-ID #$5",

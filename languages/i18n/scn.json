@@ -568,7 +568,6 @@
 	"missingcommenttext": "Pi favuri nzirisci un cummentu.",
 	"missingcommentheader": "<strong>Accura:</strong> Nun fu spicificatu l'oggettu/ntistazzioni di stu cummentu. Primennu di novu \"$1\", lu canciamentu veni pùbblicatu senza avìrinni.",
 	"summary-preview": "Antiprima dû riassuntu dû canciamentu:",
-	"subject-preview": "Antiprima di l'oggettu:",
 	"previewerrortext": "Ammattìu n'erruri nta l'ammustrari li tò canciamenti.",
 	"blockedtitle": "L'utenti è bluccatu",
 	"blockedtext": "'''Stu nomu d'utenti o nnirizzu IP havi statu bluccatu.'''\n\nLu bloccu fu fattu di $1. Lu mutivu dû bloccu è: ''$2''.\n\n* Accuminzata dû bloccu: $8\n* Fini dû bloccu: $6\n* Ntirvallu dû bloccu: $7\n\nPoi cuntattari a $1 o a n'àutru [[{{MediaWiki:Grouppage-sysop}}|amministraturi]] pi discùtiri dû bloccu.\n\nNun poi usari la carattirìstica 'manna n'email a st'utenti' siddu nun è spicificatu nu nnirizzu email vàlidu nta li toi [[Special:Preferences|prifirenzi]] e siddu nun hai statu bluccatu di l'usari.\n\nLu tò nnirizzu IP attuali è $3, e lu nùmmiru ID dû bloccu è #$5.\n\nSpicìfica tutti li dittagghi pricidenti nta quarsiasi addumannata di chiarimenti.",

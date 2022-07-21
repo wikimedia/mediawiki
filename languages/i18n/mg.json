@@ -599,7 +599,6 @@
 	"missingcommenttext": "Mampidira ambangovangony azafady.",
 	"missingcommentheader": "<strong>Fampatsiahivana:</strong> Tsy nampiditra lohahevitra ho an'ity hafatra ity ianao. \nRaha tsindrianao fanindroany \"$1\" dia ho tehirizina tsy misy lohahevitra ny hafatrao.",
 	"summary-preview": "Topi-mason'ny ambangovangom-panovana :",
-	"subject-preview": "Topi-mason-dohahevitra:",
 	"previewerrortext": "Nisy hadisoana nitranga tamin'ny fanandramana namoaka topi-mason'ny fanovanao",
 	"blockedtitle": "Mpikambana voasakana",
 	"blockedtext": "<strong>Voasakana ny adiresy IP-nao na ny anaram-pikambanao.</strong>\n\nI $1 no nanao ny sakana.\nNy antony nomeny dia <em>$2</em>.\n\n* Fiantombohan'ny sakana: $8\n* Fitsaharan'ny sakana: $6\n* Ny iriana ho sakanana: $7\n\nAzonao atao ny mifandray amin'i $1 na [[{{MediaWiki:Grouppage-sysop}}|mpandrindra]] hafa raha mila miady hevitra momba ny sakana.\nAfaka mampiasa ny fahafahana \"{{int:emailuser}}\" ianao raha tsy nanome adiresy azo anoratana anao ao amin'ny [[Special:Preferences|safidin'ny kaontinao]] ary koa raha tsy nosakanana tsy afaka mampiasa azy ianao.\nNy adiresy IP-nao dia $3 ary ny ID ny sakana dia #$5.\nSoraty avokoa ireo antsipirihany eo ambony ireo anatin'ny hataka izay ataonao.",

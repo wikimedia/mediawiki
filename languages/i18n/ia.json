@@ -638,7 +638,6 @@
 	"missingcommenttext": "Per favor entra un commento.",
 	"missingcommentheader": "<strong>Rememoration:</strong> Tu non ha fornite un subjecto pro iste commento.\nSi tu clicca sur \"$1\" de novo, le modification essera publicate sin subjecto.",
 	"summary-preview": "Previsualisation del summario de modification:",
-	"subject-preview": "Previsualisation del subjecto:",
 	"previewerrortext": "Un error ha occurrite durante le tentativa de previsualisar le cambiamentos.",
 	"blockedtitle": "Le usator es blocate",
 	"blockedtext-partial": "<strong>Tu nomine de usator o adresse IP es blocate pro iste operation. Es possibile que tu pote totevia facer altere cosas sur iste wiki, p.ex. modificar certe paginas.</strong> Vide le detalios complete de iste blocada sur le pagina de [[Special:MyContributions|tu contributiones]].\n\nLe blocada ha essite facite per $1.\n\nLe motivo specificate es <em>$2</em>.\n\n* Initio del blocada: $8\n* Expiration del blocada: $6\n* Blocato intendite: $7\n* ID del blocada: #$5",

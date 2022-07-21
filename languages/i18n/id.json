@@ -707,7 +707,6 @@
 	"missingcommenttext": "Tolong masukkan komentar.",
 	"missingcommentheader": "'''Peringatan:''' Anda belum memberikan subjek atau judul untuk komentar Anda. Jika Anda kembali menekan \"$1\", suntingan Anda akan diterbitkan tanpa judul tersebut.",
 	"summary-preview": "Pratayang ringkasan suntingan:",
-	"subject-preview": "Pratayang subjek:",
 	"previewerrortext": "Kesalahan terjadi saat mencoba memperlihatkan pratayang perubahan Anda.",
 	"blockedtitle": "Pengguna diblokir",
 	"blockedtext-partial": "<strong>Nama pengguna atau alamat IP Anda telah diblokir dari penyuntingan di halaman ini. Anda masih dapat menyunting halaman lain di wiki ini.</strong> Anda dapat melihat perincian lengkap pemblokiran pada [[Special:MyContributions|kontribusi akun]].\n\nPemblokiran dilakukan oleh $1.\n\nAlasan yang diberikan adalah <em>$2</em>.\n\n* Diblokir sejak: $8\n* Blokir kedaluwarsa pada: $6\n* Sasaran pemblokiran: $7\n* ID pemblokiran#$5",

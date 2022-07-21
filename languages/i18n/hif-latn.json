@@ -584,7 +584,6 @@
 	"missingcommenttext": "Meharbani kar ke aapan vichar deo.",
 	"missingcommentheader": "<strong>Yaad karawa jaae hae:</strong> Aap ii vichar ke vishay nai likha hai.\nAgar aap \"$1\"  pe click karaa tab bina vishay ke iske publish kar dewa jaai.",
 	"summary-preview": "Sanchhep jhalak:",
-	"subject-preview": "Subject ke jhalak:",
 	"previewerrortext": "Aap ke badlao ke preview kare ke time kuchh garrbarro hae gais hai.",
 	"blockedtitle": "Sadasya ke rok dewa gais hai",
 	"blockedtext": "<strong>Aapke user name nai to IP address ke rok dewa gae hai.</strong>\n\nRoke waala hai $1.\nIske kaaran hai <em>$2</em>.\n\n* Roke ke suruu: $8\n* Roke kab khatam hoi: $6\n* Kiske rokaa jae hai: $7\n\nAap $1 ke mile saktaa hai nai to duusra [[{{MediaWiki:Grouppage-sysop}}|administrator]] se rukawat ke baare me baat karo.\nAap ii sadasya ke 'email this user' feature ke kaam me lae ke baat nai kare saktaa hai jab tak ki ek kanuni email address aapke [[Special:Preferences|account preferences]] me nai hai aur aap ke iske kaam me laae ke roka nai gae hai.\nAap ke abhi ke IP address $3 hai, aur roka gae ID hai #$5.\nMeharbani kar ke chahe ek nai to duno ke aapan sawaal me rakho.",

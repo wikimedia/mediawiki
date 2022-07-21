@@ -309,7 +309,6 @@
 	"anoneditwarning": "'''Raaue:''' Cha nel oo loggit stiagh.\nBee dt'enmys IP recortyssit ayns shennaghys reaghee yn duillag shoh.",
 	"missingcommenttext": "Taggloo er heese, my sailt.",
 	"summary-preview": "Roie-haishbynys y ghiare-choontey:",
-	"subject-preview": "Roie-haishbynys cooish/kione-linney:",
 	"blockedtitle": "Ta'n ymmydeyr glast magh",
 	"blockedtext": "'''Ta dt'ennym ymmydeyr ny dt'enmys IP currit fo ghlass.'''\n\nV'ou glassit magh ec $1. T'eh yn oyr na ''$2''.\n\n* Toshiaght y ghlass: $8\n* Jerrey yn ghlass: $6\n* Currit da: $7\n\nFoddee oo cur fys er $1 ny [[{{MediaWiki:Grouppage-sysop}}|reireyder]] elley dy resooney magh y ghlass.\nCha nod oo jannoo ymmyd jeh'n chummey 'cur post-L da'n ymmydeyr shoh' mannagh vel eh sonrit ayns dty [[Special:Preferences|choontys tosheeaghtyn]] as mannagh vel ou glasst magh.<br />\nShe $3 dt'enmys IP roie, as she dt'enney ghlass na #$5. Cur ad lesh dagh ooilley eysht.",
 	"blockednoreason": "cha nel fa currit",

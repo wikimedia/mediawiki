@@ -536,7 +536,6 @@
 	"anoneditwarning": "'''Advertiment:''' Vu ne es registrat.\nTui adresse de IP va esser public\n\n\n<strong>Advertiment:</strong> Vu ne es inloggat. Vor adresse de IP va esser publicmen visibil si tu fa quelcunc changes. Si vu <strong>[$1 inlogga]</strong> o <strong>[$2 crea un conto]</strong>, vor changes va esser atribuet a vor usator-nómine, junt con altri beneficies.",
 	"missingcommenttext": "Ples intrar che un comentarie.",
 	"summary-preview": "Prevision de redaction in summarium:",
-	"subject-preview": "Prevision de tema:",
 	"blockedtitle": "Li usator es blocat",
 	"blockedtext": "<strong>Tui nómine de usator o adresse de IP ha esset blocat.</strong>\n\nLi blocada esset fat per $1.\nLi rason dat es <em>$2</em>.\n\n* Orígine del blocada: $8\n* Expiration del blocada: $6\n* Destinatario del blocada: $7\n\nVu posse contacter $1 o altri [[{{MediaWiki:Grouppage-sysop}}|administrator]] por discusser li blocada.\nVu posse usar li ressurse \"{{int:emailuser}}\" si un adresse postal electronic valid es specificat in tui [[Special:Preferences|preferenties]] e vu ne have esset blocat usant it.\nTui current adresse de IP es $3, e li ID del blocada es #$5.\nPleser includer omni li detallies supra in qualcunc question que vu far.",
 	"whitelistedittext": "Vu have que $1 por redacter págines.",

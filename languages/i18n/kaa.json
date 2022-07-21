@@ -340,7 +340,6 @@
 	"missingcommenttext": "Kommentariydi to'mende kiritin'.",
 	"missingcommentheader": "'''Eskertpe:''' Bul kommentariy ushın atama ko'rsetpedin'iz.\nEger ja'ne \"$1\" bassan'ız, o'zgerislerin'iz olsız saqlanadı.",
 	"summary-preview": "Juwmag'ın ko'rip shıg'ıw:",
-	"subject-preview": "Atamanı aldınnan qaraw:",
 	"blockedtitle": "Paydalanıwshı bloklang'an",
 	"blockedtext": "'''Paydalaniwshı atın'ız yamasa IP adresin'iz bloklang'an.'''\n\nBloklawdı $1 a'melge asırg'an.\nKeltirilgen sebebi: ''$2''.\n\n* Bloklaw baslang'an: $8\n* Bloklaw tamamlang'an: $6\n* Bloklaw maqseti: $7\n\nUsı bloklawdı diskussiya qılıw ushın $1 yamasa basqa [[{{MediaWiki:Grouppage-sysop}}|administratorlar]] menen baylanısqa shıg'ıwın'ızg'a boladı.\nSiz [[Special:Preferences|akkaunt sazlawların'ızda]] haqıyqıy e-mailin'izdı ko'rsetpegenin'izshe ha'mde onı paydalanıwdan bloklang'an bolg'anısha \"Usı paydalanıwshıg'a xat jazıw\" qa'siyetinen qollana almaysız.\nSizin' ha'zirgi IP adresin'iz: $3, bloklaw IDı: #$5.\nUsılardın' birewin yamasa ekewinde ha'r bir sorawın'ızg'a qosın'.",
 	"blockednoreason": "hesh sebep keltirilmegen",
