@@ -450,18 +450,6 @@ abstract class Skin extends ContextSource {
 			}
 		}
 
-		// Footer links (used by SkinTemplate::prepareQuickTemplate)
-		if ( $this->getConfig()->get( MainConfigNames::FooterLinkCacheExpiry ) <= 0 ) {
-			$titles = array_merge(
-				$titles,
-				array_filter( [
-					$this->footerLinkTitle( 'privacy', 'privacypage' ),
-					$this->footerLinkTitle( 'aboutsite', 'aboutpage' ),
-					$this->footerLinkTitle( 'disclaimers', 'disclaimerpage' ),
-				] )
-			);
-		}
-
 		$this->getHookRunner()->onSkinPreloadExistence( $titles, $this );
 
 		if ( $titles ) {
@@ -1026,14 +1014,15 @@ abstract class Skin extends ContextSource {
 	 */
 	public function footerLink( $desc, $page ) {
 		$title = $this->footerLinkTitle( $desc, $page );
-
 		if ( !$title ) {
 			return '';
 		}
 
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		return $linkRenderer->makeKnownLink(
-			$title,
+		// Similar to Skin::addToSidebarPlain
+		// Optimization: Avoid LinkRenderer here as it requires extra DB info
+		// to add unneeded classes even for makeKnownLink (T313462).
+		return Html::element( 'a',
+			[ 'href' => $title->fixSpecialName()->getLinkURL() ],
 			$this->msg( $desc )->text()
 		);
 	}
@@ -1062,34 +1051,11 @@ abstract class Skin extends ContextSource {
 	 * @return string[] Map of (key => HTML) for 'privacy', 'about', 'disclaimer'
 	 */
 	public function getSiteFooterLinks() {
-		$callback = function () {
-			return [
-				'privacy' => $this->footerLink( 'privacy', 'privacypage' ),
-				'about' => $this->footerLink( 'aboutsite', 'aboutpage' ),
-				'disclaimer' => $this->footerLink( 'disclaimers', 'disclaimerpage' )
-			];
-		};
-
-		$services = MediaWikiServices::getInstance();
-		$msgCache = $services->getMessageCache();
-		$wanCache = $services->getMainWANObjectCache();
-		$config = $this->getConfig();
-
-		return ( $config->get( MainConfigNames::FooterLinkCacheExpiry ) > 0 )
-			? $wanCache->getWithSetCallback(
-				$wanCache->makeKey( 'footer-links' ),
-				$config->get( MainConfigNames::FooterLinkCacheExpiry ),
-				$callback,
-				[
-					'checkKeys' => [
-						// Unless there is both no exact $code override nor an i18n definition
-						// in the software, the only MediaWiki page to check is for $code.
-						$msgCache->getCheckKey( $this->getLanguage()->getCode() )
-					],
-					'lockTSE' => 30
-				]
-			)
-			: $callback();
+		return [
+			'privacy' => $this->footerLink( 'privacy', 'privacypage' ),
+			'about' => $this->footerLink( 'aboutsite', 'aboutpage' ),
+			'disclaimer' => $this->footerLink( 'disclaimers', 'disclaimerpage' )
+		];
 	}
 
 	/**
