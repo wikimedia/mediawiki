@@ -60,9 +60,17 @@ class EraseArchivedFile extends Maintenance {
 			// specified version
 			$dbw = $this->getDB( DB_PRIMARY );
 			$fileQuery = ArchivedFile::getQueryInfo();
-			$row = $dbw->selectRow( $fileQuery['tables'], $fileQuery['fields'],
-				[ 'fa_storage_group' => 'deleted', 'fa_storage_key' => $filekey ],
-				__METHOD__, [], $fileQuery['joins'] );
+			$row = $dbw->newSelectQueryBuilder()
+				->select( $fileQuery['fields'] )
+				->tables( $fileQuery['tables'] )
+				->where( [
+					'fa_storage_group' => 'deleted',
+					'fa_storage_key' => $filekey
+				] )
+				->joinConds( $fileQuery['joins'] )
+				->caller( __METHOD__ )
+				->fetchRow();
+
 			if ( !$row ) {
 				$this->fatalError( "No deleted file exists with key '$filekey'." );
 			}
@@ -91,9 +99,16 @@ class EraseArchivedFile extends Maintenance {
 	protected function scrubAllVersions( $name ) {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$fileQuery = ArchivedFile::getQueryInfo();
-		$res = $dbw->select( $fileQuery['tables'], $fileQuery['fields'],
-			[ 'fa_name' => $name, 'fa_storage_group' => 'deleted' ],
-			__METHOD__, [], $fileQuery['joins'] );
+		$res = $dbw->newSelectQueryBuilder()
+			->select( $fileQuery['fields'] )
+			->tables( $fileQuery['tables'] )
+			->where( [
+				'fa_name' => $name,
+				'fa_storage_group' => 'deleted'
+			] )
+			->joinConds( $fileQuery['joins'] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		foreach ( $res as $row ) {
 			$this->scrubVersion( ArchivedFile::newFromRow( $row ) );
 		}

@@ -49,17 +49,17 @@ class DeleteDefaultMessages extends Maintenance {
 		$userFactory = $services->getUserFactory();
 		$actorQuery = ActorMigration::newMigration()
 			->getWhere( $dbr, 'rev_user', $userFactory->newFromName( 'MediaWiki default' ) );
-		$res = $dbr->select(
-			[ 'page', 'revision' ] + $actorQuery['tables'],
-			[ 'page_namespace', 'page_title' ],
-			[
+
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'page_namespace', 'page_title' ] )
+			->tables( [ 'page', 'revision' ] + $actorQuery['tables'] )
+			->where( [
 				'page_namespace' => NS_MEDIAWIKI,
 				$actorQuery['conds'],
-			],
-			__METHOD__,
-			[],
-			[ 'revision' => [ 'JOIN', 'page_latest=rev_id' ] ] + $actorQuery['joins']
-		);
+			] )
+			->joinConds( [ 'revision' => [ 'JOIN', 'page_latest=rev_id' ] ] + $actorQuery['joins'] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		if ( $res->numRows() == 0 ) {
 			// No more messages left
