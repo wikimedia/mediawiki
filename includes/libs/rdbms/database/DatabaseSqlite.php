@@ -565,10 +565,6 @@ class DatabaseSqlite extends Database {
 		return $options;
 	}
 
-	protected function makeInsertNonConflictingVerbAndOptions() {
-		return [ 'INSERT OR IGNORE INTO', '' ];
-	}
-
 	protected function doReplace( $table, array $identityKey, array $rows, $fname ) {
 		$encTable = $this->tableName( $table );
 		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
