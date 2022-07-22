@@ -1,13 +1,12 @@
 <?php
 /**
- * Test class for ArrayUtils class
+ * @covers ArrayUtils
  */
 class ArrayUtilsTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
 	/**
-	 * @covers ArrayUtils::findLowerBound
 	 * @dataProvider provideFindLowerBound
 	 */
 	public function testFindLowerBound(
@@ -129,7 +128,6 @@ class ArrayUtilsTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers ArrayUtils::arrayDiffAssocRecursive
 	 * @dataProvider provideArrayDiffAssocRecursive
 	 */
 	public function testArrayDiffAssocRecursive( $expected, ...$args ) {
@@ -305,7 +303,6 @@ class ArrayUtilsTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideCartesianProduct
-	 * @covers ArrayUtils::cartesianProduct
 	 */
 	public function testCartesianProduct( $inputs, $expected ) {
 		$result = ArrayUtils::cartesianProduct( ...$inputs );
@@ -353,5 +350,119 @@ class ArrayUtilsTest extends PHPUnit\Framework\TestCase {
 				[ $ac, $ad, $bc, $bd ]
 			],
 		];
+	}
+
+	public function provideConsistentSort() {
+		yield 'initial' => [
+			[
+				'tag1',
+				'tag2',
+				'tag3',
+			],
+			'foobar',
+			[ 'tag2', 'tag3', 'tag1' ],
+			[ 1 => 'tag2', 2 => 'tag3', 0 => 'tag1' ],
+		];
+		yield 'adding preserves order' => [
+			[
+				'tag1',
+				'tag2',
+				'tag3',
+				'tag4',
+			],
+			'foobar',
+			[ 'tag2', 'tag4', 'tag3', 'tag1' ],
+			[ 1 => 'tag2', 3 => 'tag4', 2 => 'tag3', 0 => 'tag1' ],
+		];
+		yield 'depool preserves order' => [
+			[
+				'tag1',
+				'tag3',
+			],
+			'foobar',
+			[ 'tag3', 'tag1' ],
+			[ 1 => 'tag3', 0 => 'tag1' ],
+		];
+		yield 'input order is not significant' => [
+			[
+				// Backwards
+				'tag3',
+				'tag2',
+				'tag1',
+			],
+			'foobar',
+			[ 'tag2', 'tag3', 'tag1' ],
+			[ 1 => 'tag2', 0 => 'tag3', 2 => 'tag1' ],
+		];
+		yield 'input keys are not significant' => [
+			[
+				'z' => 'tag2',
+				'y' => 'tag3',
+				'x' => 'tag1',
+			],
+			'foobar',
+			[ 'tag2', 'tag3', 'tag1' ],
+			[ 'z' => 'tag2', 'y' => 'tag3', 'x' => 'tag1' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideConsistentSort
+	 */
+	public function testConsistentSort( $array, string $key, array $expectList, array $expect ) {
+		$actual = $array;
+		ArrayUtils::consistentHashSort( $actual, $key );
+		$this->assertSame( $expect, $actual );
+		$this->assertSame( $expectList, array_values( $actual ) );
+	}
+
+	public function provideConsistentSortStability() {
+		yield 'initial' => [
+			[ 'tag1', 'tag2', 'tag3', 'tag4' ],
+			[
+				'foo' => 'tag3',
+				'bar' => 'tag2',
+				'qux' => 'tag4',
+				'quux' => 'tag1',
+				'garply' => 'tag3',
+			],
+		];
+		yield 'depool tag2' => [
+			[ 'tag1', 'tag3', 'tag4' ],
+			[
+				'foo' => 'tag3',
+				'bar' => 'tag1', # changed from tag2
+				'qux' => 'tag4',
+				'quux' => 'tag1',
+				'garply' => 'tag3',
+			],
+		];
+		yield 'add tag5' => [
+			[ 'tag1', 'tag3', 'tag4', 'tag5' ],
+			[
+				'foo' => 'tag3',
+				'bar' => 'tag1',
+				'qux' => 'tag4',
+				'quux' => 'tag5', # changed from tag1
+				'garply' => 'tag3',
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideConsistentSortStability
+	 */
+	public function testConsistentSortStability( $serverTags, $expected ) {
+		$actual = [];
+		foreach ( $expected as $key => $_ ) {
+			$sortedTags = $serverTags;
+			ArrayUtils::consistentHashSort( $sortedTags, $key );
+			reset( $sortedTags );
+			$dest = $serverTags[key( $sortedTags )];
+
+			$actual[$key] = $dest;
+		}
+
+		$this->assertSame( $expected, $actual );
 	}
 }
