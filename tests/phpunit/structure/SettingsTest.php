@@ -83,6 +83,15 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( [], $deprecations );
 	}
 
+	/**
+	 * Check that currently loaded config does not have warnings.
+	 */
+	public function testCurrentSettingsHaveNoWarnings() {
+		global $wgSettings;
+		$deprecations = $wgSettings->getWarnings();
+		$this->assertEquals( [], $deprecations );
+	}
+
 	public function provideConfigGeneration() {
 		yield 'includes/config-schema.php' => [
 			'option' => '--schema',
