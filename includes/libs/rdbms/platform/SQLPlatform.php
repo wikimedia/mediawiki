@@ -1322,4 +1322,116 @@ class SQLPlatform implements ISQLPlatform {
 			$this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds )
 		);
 	}
+
+	public function insertSqlText( $table, array $rows ) {
+		$encTable = $this->tableName( $table );
+		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
+
+		return "INSERT INTO $encTable ($sqlColumns) VALUES $sqlTuples";
+	}
+
+	/**
+	 * Make SQL lists of columns, row tuples, and column aliases for INSERT/VALUES expressions
+	 *
+	 * The tuple column order is that of the columns of the first provided row.
+	 * The provided rows must have exactly the same keys and ordering thereof.
+	 *
+	 * @param array[] $rows Non-empty list of (column => value) maps
+	 * @param string $aliasPrefix Optional prefix to prepend to the magic alias names
+	 * @return array (comma-separated columns, comma-separated tuples, comma-separated aliases)
+	 * @since 1.35
+	 */
+	public function makeInsertLists( array $rows, $aliasPrefix = '' ) {
+		$firstRow = $rows[0];
+		if ( !is_array( $firstRow ) || !$firstRow ) {
+			throw new DBLanguageError( 'Got an empty row list or empty row' );
+		}
+		// List of columns that define the value tuple ordering
+		$tupleColumns = array_keys( $firstRow );
+
+		$valueTuples = [];
+		foreach ( $rows as $row ) {
+			$rowColumns = array_keys( $row );
+			// VALUES(...) requires a uniform correspondence of (column => value)
+			if ( $rowColumns !== $tupleColumns ) {
+				throw new DBLanguageError(
+					'Got row columns (' . implode( ', ', $rowColumns ) . ') ' .
+					'instead of expected (' . implode( ', ', $tupleColumns ) . ')'
+				);
+			}
+			// Make the value tuple that defines this row
+			$valueTuples[] = '(' . $this->makeList( $row, self::LIST_COMMA ) . ')';
+		}
+
+		$magicAliasFields = [];
+		foreach ( $tupleColumns as $column ) {
+			$magicAliasFields[] = $aliasPrefix . $column;
+		}
+
+		return [
+			$this->makeList( $tupleColumns, self::LIST_NAMES ),
+			implode( ',', $valueTuples ),
+			$this->makeList( $magicAliasFields, self::LIST_NAMES )
+		];
+	}
+
+	public function insertNonConflictingSqlText( $table, array $rows ) {
+		$encTable = $this->tableName( $table );
+		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
+		list( $sqlVerb, $sqlOpts ) = $this->makeInsertNonConflictingVerbAndOptions();
+
+		return rtrim( "$sqlVerb $encTable ($sqlColumns) VALUES $sqlTuples $sqlOpts" );
+	}
+
+	/**
+	 * @stable to override
+	 * @return string[] ("INSERT"-style SQL verb, "ON CONFLICT"-style clause or "")
+	 * @since 1.35
+	 */
+	protected function makeInsertNonConflictingVerbAndOptions() {
+		return [ 'INSERT IGNORE INTO', '' ];
+	}
+
+	public function insertSelectNativeSqlText(
+		$destTable,
+		$srcTable,
+		array $varMap,
+		$conds,
+		$fname,
+		array $insertOptions,
+		array $selectOptions,
+		$selectJoinConds
+	) {
+		list( $sqlVerb, $sqlOpts ) = $this->isFlagInOptions( 'IGNORE', $insertOptions )
+			? $this->makeInsertNonConflictingVerbAndOptions()
+			: [ 'INSERT INTO', '' ];
+		$encDstTable = $this->tableName( $destTable );
+		$sqlDstColumns = implode( ',', array_keys( $varMap ) );
+		$selectSql = $this->selectSQLText(
+			$srcTable,
+			array_values( $varMap ),
+			$conds,
+			$fname,
+			$selectOptions,
+			$selectJoinConds
+		);
+
+		return rtrim( "$sqlVerb $encDstTable ($sqlDstColumns) $selectSql $sqlOpts" );
+	}
+
+	/**
+	 * @param string $option Query option flag (e.g. "IGNORE" or "FOR UPDATE")
+	 * @param array $options Combination option/value map and boolean option list
+	 * @return bool Whether the option appears as an integer-keyed value in the options
+	 * @since 1.35
+	 */
+	public function isFlagInOptions( $option, array $options ) {
+		foreach ( array_keys( $options, $option, true ) as $k ) {
+			if ( is_int( $k ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 }

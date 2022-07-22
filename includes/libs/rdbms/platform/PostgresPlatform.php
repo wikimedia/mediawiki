@@ -105,4 +105,8 @@ class PostgresPlatform extends SQLPlatform {
 
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
 	}
+
+	protected function makeInsertNonConflictingVerbAndOptions() {
+		return [ 'INSERT INTO', 'ON CONFLICT DO NOTHING' ];
+	}
 }

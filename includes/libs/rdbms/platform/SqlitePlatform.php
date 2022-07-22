@@ -113,4 +113,8 @@ class SqlitePlatform extends SQLPlatform {
 
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
 	}
+
+	protected function makeInsertNonConflictingVerbAndOptions() {
+		return [ 'INSERT OR IGNORE INTO', '' ];
+	}
 }
