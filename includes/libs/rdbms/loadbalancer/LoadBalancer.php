@@ -1603,7 +1603,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 		foreach ( $this->getOpenConnections() as $conn ) {
 			$srvName = $conn->getServerName();
-			$this->connLogger->debug( "$fname: closing connection to database '$srvName'." );
 			$conn->close( $fname );
 		}
 
@@ -2482,11 +2481,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			],
 			$extras
 		);
-	}
-
-	public function __destruct() {
-		// Avoid connection leaks
-		$this->disable( __METHOD__ );
 	}
 }
 
