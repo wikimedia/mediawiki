@@ -549,6 +549,9 @@ because of Phabricator reports.
   warnings.
 * Instantiating HTMLCacheUpdate class, deprecated in 1.34, now emits deprecation
   warnings.
+* ISQLPlatform::tableNames() (implemented by IDatabase) is soft deprecated.
+  None of the tableName*() functions should be used by most users;
+  if you absolutely must use raw SQL, write several tableName() calls instead.
 * …
 
 === Other changes in 1.39 ===

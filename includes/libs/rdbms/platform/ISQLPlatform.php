@@ -498,6 +498,9 @@ interface ISQLPlatform {
 	 *
 	 * @param string ...$tables
 	 * @return array
+	 * @deprecated since 1.39; if you must format table names,
+	 * write several calls to {@link tableName} or use {@link tableNamesN}
+	 * instead of calling this function.
 	 */
 	public function tableNames( ...$tables );
 
