@@ -406,16 +406,11 @@
 				.addClass( 'mw-content-' + dir );
 		}
 
-		$content
-			.detach()
-			.html( response.parse.text );
+		$content.html( response.parse.text );
+
+		config.$previewNode.append( $content ).show();
 
 		mw.hook( 'wikipage.content' ).fire( $content );
-
-		// Reattach.
-		config.$previewNode.append( $content );
-
-		config.$previewNode.show();
 	}
 
 	/**
