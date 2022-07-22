@@ -460,12 +460,12 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider provideUpdate
 	 * @covers Wikimedia\Rdbms\Database::update
-	 * @covers Wikimedia\Rdbms\Database::makeUpdateOptions
-	 * @covers Wikimedia\Rdbms\Database::makeUpdateOptionsArray
-	 * @covers Wikimedia\Rdbms\Database::assertConditionIsNotEmpty
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::makeUpdateOptions
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::makeUpdateOptionsArray
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::assertConditionIsNotEmpty
 	 */
 	public function testUpdate( $sql, $sqlText ) {
-		$this->hideDeprecated( 'Wikimedia\Rdbms\Database::update' );
+		$this->hideDeprecated( 'Wikimedia\Rdbms\Platform\SQLPlatform::updateSqlText' );
 		$this->database->update(
 			$sql['table'],
 			$sql['values'],
@@ -557,9 +557,9 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider provideUpdateEmptyCondition
 	 * @covers Wikimedia\Rdbms\Database::update
-	 * @covers Wikimedia\Rdbms\Database::makeUpdateOptions
-	 * @covers Wikimedia\Rdbms\Database::makeUpdateOptionsArray
-	 * @covers Wikimedia\Rdbms\Database::assertConditionIsNotEmpty
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::makeUpdateOptions
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::makeUpdateOptionsArray
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::assertConditionIsNotEmpty
 	 */
 	public function testUpdateEmptyCondition( $sql ) {
 		$this->expectDeprecation();
@@ -601,7 +601,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider provideDelete
 	 * @covers Wikimedia\Rdbms\Database::delete
-	 * @covers Wikimedia\Rdbms\Database::assertConditionIsNotEmpty
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::assertConditionIsNotEmpty
 	 */
 	public function testDelete( $sql, $sqlText ) {
 		$this->database->delete(
@@ -643,7 +643,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider provideDeleteEmptyCondition
 	 * @covers Wikimedia\Rdbms\Database::delete
-	 * @covers Wikimedia\Rdbms\Database::assertConditionIsNotEmpty
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::assertConditionIsNotEmpty
 	 */
 	public function testDeleteEmptyCondition( $sql ) {
 		try {
@@ -654,7 +654,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			);
 			$this->fail( 'The Database::delete should raise exception' );
 		} catch ( Exception $e ) {
-			$this->assertStringContainsString( 'delete called with empty conditions', $e->getMessage() );
+			$this->assertStringContainsString( 'deleteSqlText called with empty conditions', $e->getMessage() );
 		}
 	}
 

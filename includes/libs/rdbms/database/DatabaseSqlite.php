@@ -539,32 +539,6 @@ class DatabaseSqlite extends Database {
 		return in_array( 'UNIQUE', $options );
 	}
 
-	/**
-	 * @param array $options
-	 * @return array
-	 */
-	protected function makeUpdateOptionsArray( $options ) {
-		$options = parent::makeUpdateOptionsArray( $options );
-		$options = $this->rewriteIgnoreKeyword( $options );
-
-		return $options;
-	}
-
-	/**
-	 * @param array $options
-	 * @return array
-	 */
-	private function rewriteIgnoreKeyword( $options ) {
-		# SQLite uses OR IGNORE not just IGNORE
-		foreach ( $options as $k => $v ) {
-			if ( $v == 'IGNORE' ) {
-				$options[$k] = 'OR IGNORE';
-			}
-		}
-
-		return $options;
-	}
-
 	protected function doReplace( $table, array $identityKey, array $rows, $fname ) {
 		$encTable = $this->tableName( $table );
 		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
