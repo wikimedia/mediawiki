@@ -463,6 +463,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		$wgRequest = RequestContext::getMain()->getRequest();
 		MediaWiki\Session\SessionManager::resetCache();
+
+		TestUserRegistry::clear();
 	}
 
 	public function run( TestResult $result = null ): TestResult {
@@ -1335,6 +1337,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 	private static function resetLegacyGlobals() {
 		ParserOptions::clearStaticCache();
+
+		// User objects may hold service references!
+		RequestContext::getMain()->getUser()->clearInstanceCache();
+
+		TestUserRegistry::clearInstanceCaches();
 	}
 
 	/**
