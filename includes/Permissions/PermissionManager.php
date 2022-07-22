@@ -355,7 +355,7 @@ class PermissionManager {
 			}
 		}
 
-		return $errors;
+		return array_values( $errors );
 	}
 
 	/**
