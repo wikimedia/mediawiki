@@ -22,6 +22,14 @@ class MessageContentTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $msg, $cnt->getMessage() );
 	}
 
+	public function testGetTextForSummary() {
+		$msg = new RawMessage( 'ää' );
+		$this->hideDeprecated( 'MessageContent' );
+		$cnt = new MessageContent( $msg );
+
+		$this->assertSame( 'ä', $cnt->getTextForSummary( 3 ) );
+	}
+
 	public function testSerialize() {
 		$msg = new Message( 'about' );
 		$this->hideDeprecated( 'MessageContent' );

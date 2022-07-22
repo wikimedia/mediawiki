@@ -18,6 +18,7 @@ use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiLangTestCase;
+use Message;
 use RequestContext;
 use stdClass;
 use TestAllServiceOptionsUsed;
@@ -1359,5 +1360,36 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		yield 'local namespace' => [ [ 'Usuario:Foo' ], 'User:Foo', true ];
 		yield 'legacy mainspace' => [ [ ':Foo' ], 'Foo', true ];
 		yield 'local special' => [ [ 'Especial:Todas' ], 'Special:Allpages', true ];
+	}
+
+	/**
+	 * @covers \MediaWiki\Permissions\PermissionManager::getPermissionErrors
+	 */
+	public function testGetPermissionErrors_ignoreErrors() {
+		$hookCallback = static function ( $title, $user, $action, &$result ) {
+			$result = [
+				[ 'ignore', 'param' ],
+				[ 'noignore', 'param' ],
+				'ignore',
+				'noignore',
+				new Message( 'ignore' ),
+			];
+			return false;
+		};
+		$this->setTemporaryHook( 'getUserPermissionsErrors', $hookCallback );
+
+		$pm = $this->getServiceContainer()->getPermissionManager();
+		$errors = $pm->getPermissionErrors(
+			'read',
+			$this->user,
+			$this->title,
+			$pm::RIGOR_QUICK,
+			[ 'ignore' ]
+		);
+
+		$this->assertSame( [
+			[ 'noignore', 'param' ],
+			'noignore',
+		], $errors );
 	}
 }

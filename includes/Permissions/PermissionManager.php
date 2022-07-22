@@ -39,6 +39,7 @@ use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MessageSpecifier;
 use NamespaceInfo;
+use PermissionsError;
 use RequestContext;
 use SpecialPage;
 use Title;
@@ -355,7 +356,36 @@ class PermissionManager {
 			}
 		}
 
-		return $errors;
+		return array_values( $errors );
+	}
+
+	/**
+	 * Like {@link getPermissionErrors}, but immediately throw if there are any errors.
+	 *
+	 * @param string $action Action that permission needs to be checked for
+	 * @param User $user User to check
+	 * @param LinkTarget $page
+	 * @param string $rigor One of PermissionManager::RIGOR_ constants
+	 *   - RIGOR_QUICK  : does cheap permission checks from replica DBs (usable for GUI creation)
+	 *   - RIGOR_FULL   : does cheap and expensive checks possibly from a replica DB
+	 *   - RIGOR_SECURE : does cheap and expensive checks, using the primary DB as needed
+	 * @param string[] $ignoreErrors Set this to a list of message keys
+	 *   whose corresponding errors may be ignored.
+	 *
+	 * @throws PermissionsError
+	 */
+	public function throwPermissionErrors(
+		$action,
+		User $user,
+		LinkTarget $page,
+		$rigor = self::RIGOR_SECURE,
+		$ignoreErrors = []
+	): void {
+		$permissionErrors = $this->getPermissionErrors(
+			$action, $user, $page, $rigor, $ignoreErrors );
+		if ( $permissionErrors !== [] ) {
+			throw new PermissionsError( $action, $permissionErrors );
+		}
 	}
 
 	/**

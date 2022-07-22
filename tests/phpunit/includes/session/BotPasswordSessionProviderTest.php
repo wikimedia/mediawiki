@@ -185,9 +185,9 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$request = new \FauxRequest;
 		$request->setCookie( '_BPsession', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'wgCookiePrefix' );
 
-		if ( !defined( 'MW_API' ) ) {
+		if ( !defined( 'MW_API' ) && !defined( 'MW_REST_API' ) ) {
 			$this->assertNull( $provider->provideSessionInfo( $request ) );
-			define( 'MW_API', 1 );
+			define( 'MW_API', 1 ); // TODO this irreversibly affects all future tests!
 		}
 
 		$info = $provider->provideSessionInfo( $request );
