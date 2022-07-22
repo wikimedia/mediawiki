@@ -3951,6 +3951,15 @@ class Parser {
 	}
 
 	/**
+	 * @param string $lowerTagName
+	 * @return bool
+	 */
+	public function tagNeedsNowikiStrippedInTagPF( string $lowerTagName ): bool {
+		$parsoidSiteConfig = MediaWikiServices::getInstance()->getParsoidSiteConfig();
+		return $parsoidSiteConfig->tagNeedsNowikiStrippedInTagPF( $lowerTagName );
+	}
+
+	/**
 	 * Return the text to be used for a given extension tag.
 	 * This is the ghost of strip().
 	 *
@@ -3961,13 +3970,17 @@ class Parser {
 	 *     inner      Contents of extension element
 	 *     noClose    Original text did not have a close tag
 	 * @param PPFrame $frame
+	 * @param bool $processNowiki Process nowiki tags by running the nowiki tag handler
+	 *     Normally, nowikis are only processed for the HTML output type. With this
+	 *     arg set to true, they are processed (and converted to a nowiki strip marker)
+	 *     for all output types.
 	 *
 	 * @throws MWException
 	 * @return string
 	 * @internal
 	 * @since 1.12
 	 */
-	public function extensionSubstitution( array $params, PPFrame $frame ) {
+	public function extensionSubstitution( array $params, PPFrame $frame, bool $processNowiki = false ) {
 		static $errorStr = '<span class="error">';
 		static $errorLen = 20;
 
@@ -3993,7 +4006,7 @@ class Parser {
 			. sprintf( '%08X', $this->mMarkerIndex++ ) . self::MARKER_SUFFIX;
 
 		$markerType = 'general';
-		if ( $this->ot['html'] ) {
+		if ( $this->ot['html'] || ( $processNowiki && $name === 'nowiki' ) ) {
 			$name = strtolower( $name );
 			$attributes = Sanitizer::decodeTagAttributes( $attrText );
 			if ( isset( $params['attributes'] ) ) {
