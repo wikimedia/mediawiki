@@ -12,6 +12,11 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
+		$this->overrideConfigValues( [
+			MainConfigNames::LanguageCode => 'en',
+			MainConfigNames::UseMediaWikiUIEverywhere => false,
+		] );
+
 		$langObj = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$langObj->setNamespaces( [
 			-2 => 'Media',
@@ -33,7 +38,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$this->setUserLang( $langObj );
-		$this->overrideConfigValue( MainConfigNames::UseMediaWikiUIEverywhere, false );
 	}
 
 	public function provideElement() {
@@ -95,13 +99,23 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideMonthSelector() {
-		global $wgLang;
+		# providers are run before services are set up
+		$lang = new class() {
+			public function getMonthName( $i ) {
+				$months = [
+					'January', 'February', 'March', 'April', 'May', 'June',
+					'July', 'August', 'September', 'October', 'November',
+					'December',
+				];
+				return $months[$i - 1] ?? 'unknown';
+			}
+		};
 
 		$header = '<select name="month" id="month" class="mw-month-selector">';
 		$header2 = '<select name="month" id="monthSelector" class="mw-month-selector">';
 		$monthsString = '';
 		for ( $i = 1; $i < 13; $i++ ) {
-			$monthName = $wgLang->getMonthName( $i );
+			$monthName = $lang->getMonthName( $i );
 			$monthsString .= "<option value=\"{$i}\">{$monthName}</option>";
 			if ( $i !== 12 ) {
 				$monthsString .= "\n";
