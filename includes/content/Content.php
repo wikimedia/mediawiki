@@ -66,7 +66,8 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @param int $maxLength Maximum length of the summary text.
+	 * @param int $maxLength Maximum length of the summary text, in bytes.
+	 * Usually implemented using {@link Language::truncateForDatabase()}.
 	 *
 	 * @return string The summary text.
 	 */
