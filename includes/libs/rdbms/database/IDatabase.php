@@ -146,9 +146,6 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	/** @var string Unknown replication topology role */
 	public const ROLE_UNKNOWN = 'unknown';
 
-	/** @var string Unconditional update/delete of whole table */
-	public const ALL_ROWS = '*';
-
 	/**
 	 * Get a human-readable string describing the current software version
 	 *

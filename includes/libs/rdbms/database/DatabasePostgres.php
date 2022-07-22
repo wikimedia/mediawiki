@@ -498,14 +498,6 @@ __INDEXATTR__;
 		$this->affectedRowCount = $affectedRowCount;
 	}
 
-	protected function makeUpdateOptionsArray( $options ) {
-		$options = $this->normalizeOptions( $options );
-		// PostgreSQL doesn't support anything like "ignore" for UPDATE.
-		$options = array_diff( $options, [ 'IGNORE' ] );
-
-		return parent::makeUpdateOptionsArray( $options );
-	}
-
 	/**
 	 * INSERT SELECT wrapper
 	 * $varMap must be an associative array of the form [ 'dest1' => 'source1', ... ]

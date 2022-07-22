@@ -164,4 +164,12 @@ class PostgresPlatform extends SQLPlatform {
 	protected function makeInsertNonConflictingVerbAndOptions() {
 		return [ 'INSERT INTO', 'ON CONFLICT DO NOTHING' ];
 	}
+
+	protected function makeUpdateOptionsArray( $options ) {
+		$options = $this->normalizeOptions( $options );
+		// PostgreSQL doesn't support anything like "ignore" for UPDATE.
+		$options = array_diff( $options, [ 'IGNORE' ] );
+
+		return parent::makeUpdateOptionsArray( $options );
+	}
 }

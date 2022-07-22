@@ -43,6 +43,9 @@ interface ISQLPlatform {
 	/** @var int Combine list with OR clauses */
 	public const LIST_OR = 4;
 
+	/** @var string Unconditional update/delete of whole table */
+	public const ALL_ROWS = '*';
+
 	/**
 	 * @param string|int $field
 	 * @return string

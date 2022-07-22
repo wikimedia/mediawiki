@@ -1434,4 +1434,166 @@ class SQLPlatform implements ISQLPlatform {
 
 		return false;
 	}
+
+	/**
+	 * Build an SQL condition to find rows with matching key values to those in $rows.
+	 *
+	 * @param array[] $rows Non-empty list of rows
+	 * @param string[] $uniqueKey List of columns that define a single unique index
+	 * @return string
+	 */
+	public function makeKeyCollisionCondition( array $rows, array $uniqueKey ) {
+		if ( !$rows ) {
+			throw new DBLanguageError( "Empty row array" );
+		} elseif ( !$uniqueKey ) {
+			throw new DBLanguageError( "Empty unique key array" );
+		}
+
+		if ( count( $uniqueKey ) == 1 ) {
+			// Use a simple IN(...) clause
+			$column = reset( $uniqueKey );
+			$values = array_column( $rows, $column );
+			if ( count( $values ) !== count( $rows ) ) {
+				throw new DBLanguageError( "Missing values for unique key ($column)" );
+			}
+
+			return $this->makeList( [ $column => $values ], self::LIST_AND );
+		}
+
+		$nullByUniqueKeyColumn = array_fill_keys( $uniqueKey, null );
+
+		$orConds = [];
+		foreach ( $rows as $row ) {
+			$rowKeyMap = array_intersect_key( $row, $nullByUniqueKeyColumn );
+			if ( count( $rowKeyMap ) != count( $uniqueKey ) ) {
+				throw new DBLanguageError(
+					"Missing values for unique key (" . implode( ',', $uniqueKey ) . ")"
+				);
+			}
+			$orConds[] = $this->makeList( $rowKeyMap, self::LIST_AND );
+		}
+
+		return count( $orConds ) > 1
+			? $this->makeList( $orConds, self::LIST_OR )
+			: $orConds[0];
+	}
+
+	public function deleteJoinSqlText( $delTable, $joinTable, $delVar, $joinVar, $conds ) {
+		if ( !$conds ) {
+			throw new DBLanguageError( __METHOD__ . ' called with empty $conds' );
+		}
+
+		$delTable = $this->tableName( $delTable );
+		$joinTable = $this->tableName( $joinTable );
+		$sql = "DELETE FROM $delTable WHERE $delVar IN (SELECT $joinVar FROM $joinTable ";
+		if ( $conds != '*' ) {
+			$sql .= 'WHERE ' . $this->makeList( $conds, self::LIST_AND );
+		}
+		$sql .= ')';
+
+		return $sql;
+	}
+
+	public function deleteSqlText( $table, $conds ) {
+		$this->assertConditionIsNotEmpty( $conds, __METHOD__, false );
+
+		$table = $this->tableName( $table );
+		$sql = "DELETE FROM $table";
+
+		if ( $conds !== self::ALL_ROWS ) {
+			if ( is_array( $conds ) ) {
+				$conds = $this->makeList( $conds, self::LIST_AND );
+			}
+			$sql .= ' WHERE ' . $conds;
+		}
+
+		return $sql;
+	}
+
+	public function updateSqlText( $table, $set, $conds, $options ) {
+		$this->assertConditionIsNotEmpty( $conds, __METHOD__, true );
+		$table = $this->tableName( $table );
+		$opts = $this->makeUpdateOptions( $options );
+		$sql = "UPDATE $opts $table SET " . $this->makeList( $set, self::LIST_SET );
+
+		if ( $conds && $conds !== self::ALL_ROWS ) {
+			if ( is_array( $conds ) ) {
+				$conds = $this->makeList( $conds, self::LIST_AND );
+			}
+			$sql .= ' WHERE ' . $conds;
+		}
+
+		return $sql;
+	}
+
+	/**
+	 * Check type and bounds conditions parameters for update
+	 *
+	 * In order to prevent possible performance or replication issues,
+	 * empty condition for 'update' and 'delete' queries isn't allowed
+	 *
+	 * @param array|string $conds conditions to be validated on emptiness
+	 * @param string $fname caller's function name to be passed to exception
+	 * @param bool $deprecate define the assertion type. If true then
+	 *   wfDeprecated will be called, otherwise DBUnexpectedError will be
+	 *   raised.
+	 * @since 1.35, moved to SQLPlatform in 1.39
+	 */
+	protected function assertConditionIsNotEmpty( $conds, string $fname, bool $deprecate ) {
+		$isCondValid = ( is_string( $conds ) || is_array( $conds ) ) && $conds;
+		if ( !$isCondValid ) {
+			if ( $deprecate ) {
+				wfDeprecated( $fname . ' called with empty $conds', '1.35', false, 4 );
+			} else {
+				throw new DBLanguageError( $fname . ' called with empty conditions' );
+			}
+		}
+	}
+
+	/**
+	 * Make UPDATE options for the Database::update function
+	 *
+	 * @stable to override
+	 * @param array $options The options passed to Database::update
+	 * @return string
+	 */
+	protected function makeUpdateOptions( $options ) {
+		$opts = $this->makeUpdateOptionsArray( $options );
+
+		return implode( ' ', $opts );
+	}
+
+	/**
+	 * Make UPDATE options array for Database::makeUpdateOptions
+	 *
+	 * @stable to override
+	 * @param array $options
+	 * @return array
+	 */
+	protected function makeUpdateOptionsArray( $options ) {
+		$options = $this->normalizeOptions( $options );
+
+		$opts = [];
+
+		if ( in_array( 'IGNORE', $options ) ) {
+			$opts[] = 'IGNORE';
+		}
+
+		return $opts;
+	}
+
+	/**
+	 * @param string|array $options
+	 * @return array Combination option/value map and boolean option list
+	 * @since 1.35, moved to SQLPlatform in 1.39
+	 */
+	final public function normalizeOptions( $options ) {
+		if ( is_array( $options ) ) {
+			return $options;
+		} elseif ( is_string( $options ) ) {
+			return ( $options === '' ) ? [] : [ $options ];
+		} else {
+			throw new DBLanguageError( __METHOD__ . ': expected string or array' );
+		}
+	}
 }
