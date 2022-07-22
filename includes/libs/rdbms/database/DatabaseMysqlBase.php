@@ -1082,34 +1082,6 @@ abstract class DatabaseMysqlBase extends Database {
 		);
 	}
 
-	/**
-	 * DELETE where the condition is a join. MySql uses multi-table deletes.
-	 * @param string $delTable
-	 * @param string $joinTable
-	 * @param string $delVar
-	 * @param string $joinVar
-	 * @param array|string $conds
-	 * @param bool|string $fname
-	 * @throws DBUnexpectedError
-	 */
-	public function deleteJoin(
-		$delTable, $joinTable, $delVar, $joinVar, $conds, $fname = __METHOD__
-	) {
-		if ( !$conds ) {
-			throw new DBUnexpectedError( $this, __METHOD__ . ' called with empty $conds' );
-		}
-
-		$delTable = $this->tableName( $delTable );
-		$joinTable = $this->tableName( $joinTable );
-		$sql = "DELETE $delTable FROM $delTable, $joinTable WHERE $delVar=$joinVar ";
-
-		if ( $conds != '*' ) {
-			$sql .= ' AND ' . $this->makeList( $conds, self::LIST_AND );
-		}
-
-		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
-	}
-
 	protected function doUpsert(
 		string $table,
 		array $rows,

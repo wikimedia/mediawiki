@@ -19,6 +19,8 @@
  */
 namespace Wikimedia\Rdbms\Platform;
 
+use Wikimedia\Rdbms\DBLanguageError;
+
 /**
  * @since 1.39
  * @see ISQLPlatform
@@ -81,5 +83,21 @@ class MySQLPlatform extends SQLPlatform {
 	 */
 	public function ignoreIndexClause( $index ) {
 		return "IGNORE INDEX (" . $this->indexName( $index ) . ")";
+	}
+
+	public function deleteJoinSqlText( $delTable, $joinTable, $delVar, $joinVar, $conds ) {
+		if ( !$conds ) {
+			throw new DBLanguageError( __METHOD__ . ' called with empty $conds' );
+		}
+
+		$delTable = $this->tableName( $delTable );
+		$joinTable = $this->tableName( $joinTable );
+		$sql = "DELETE $delTable FROM $delTable, $joinTable WHERE $delVar=$joinVar ";
+
+		if ( $conds != '*' ) {
+			$sql .= ' AND ' . $this->makeList( $conds, self::LIST_AND );
+		}
+
+		return $sql;
 	}
 }
