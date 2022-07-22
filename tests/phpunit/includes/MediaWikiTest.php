@@ -14,6 +14,7 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::Script => '/w/index.php',
 			MainConfigNames::ArticlePath => '/wiki/$1',
 			MainConfigNames::ActionPaths => [],
+			MainConfigNames::LanguageCode => 'en',
 		] );
 
 		// phpcs:disable MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals

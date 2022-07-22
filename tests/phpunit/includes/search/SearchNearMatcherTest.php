@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @covers SearchNearMatcher
  */
@@ -73,6 +75,7 @@ class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 		$titleText,
 		$enableSearchContributorsByIP = false
 	) {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
 		$services = $this->getServiceContainer();
 		$this->addGoodLinkObject( 42, Title::newFromText( $titleText ) );
 		$config = new HashConfig( [

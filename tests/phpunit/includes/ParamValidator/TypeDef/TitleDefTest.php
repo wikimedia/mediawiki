@@ -3,6 +3,7 @@
 namespace MediaWiki\ParamValidator\TypeDef;
 
 use CommentStoreComment;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use Title;
@@ -10,15 +11,14 @@ use TitleValue;
 use User;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
-use Wikimedia\ParamValidator\TypeDef\TypeDefTestCase;
 use WikitextContent;
 
 /**
  * @covers \MediaWiki\ParamValidator\TypeDef\TitleDef
  */
-class TitleDefTest extends TypeDefTestCase {
-
+class TitleDefTest extends TypeDefIntegrationTestCase {
 	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
 		return new TitleDef(
 			$callbacks,
 			MediaWikiServices::getInstance()->getTitleFactory()

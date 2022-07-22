@@ -27,9 +27,11 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
+		$this->overrideConfigValues( [
+			MainConfigNames::LanguageCode => 'en',
+			MainConfigNames::DefaultLanguageVariant => false,
+		] );
 		$this->setContentLang( 'tg' );
-
-		$this->overrideConfigValue( MainConfigNames::DefaultLanguageVariant, false );
 		$this->setContextUser( new User );
 
 		$this->lang = $this->createNoOpMock( Language::class, [ 'factory', 'getNsText', 'ucfirst' ] );
@@ -200,10 +202,13 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideTitlesToConvert
 	 * @covers LanguageConverter::convertTitle
 	 *
-	 * @param LinkTarget|PageReference $title title to convert
+	 * @param LinkTarget|PageReference|callable $title title to convert
 	 * @param string $expected
 	 */
 	public function testConvertTitle( $title, string $expected ): void {
+		if ( is_callable( $title ) ) {
+			$title = $title();
+		}
 		$actual = $this->lc->convertTitle( $title );
 		$this->assertSame( $expected, $actual );
 	}
@@ -219,12 +224,18 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 				'Акс:Dummy title',
 			],
 			'Title MainPage default' => [
-				Title::newMainPage(),
-				'Main Page',
+				static function () {
+					// Don't call this until services have been set up
+					return Title::newMainPage();
+				},
+				'Саҳифаи аслӣ',
 			],
 			'Title MainPage with MessageLocalizer' => [
-				Title::newMainPage( new MockMessageLocalizer() ),
-				'Main Page',
+				static function () {
+					// Don't call this until services have been set up
+					return Title::newMainPage( new MockMessageLocalizer() );
+				},
+				'Саҳифаи аслӣ',
 			],
 			'TitleValue' => [
 				new TitleValue( NS_FILE, 'Dummy page' ),
