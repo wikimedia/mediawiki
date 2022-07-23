@@ -10,9 +10,11 @@ class ReadOnlyModeTest extends MediaWikiUnitTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
+
+		// Do not use wfTmpDir() as that depends on globals.
 		// Based on MediaWikiIntegrationTestCase::getNewTempFile()
 		$this->fileName = tempnam(
-			wfTempDir(),
+			TempFSFile::getUsableTempDirectory(),
 			'MW_PHPUnit_ReadOnlyModeTest'
 		);
 	}
