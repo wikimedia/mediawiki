@@ -1,11 +1,13 @@
 <?php
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
@@ -2528,7 +2530,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * Edits or creates a page/revision
-	 * @param string|Title|WikiPage $page the page to edit
+	 * @param string|PageIdentity|LinkTarget|WikiPage $page the page to edit
 	 * @param string|Content $content the new content of the page
 	 * @param string $summary Optional summary string for the revision
 	 * @param int $defaultNs Optional namespace id
@@ -2551,14 +2553,18 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				' method should return true. Use @group Database or $this->tablesUsed.' );
 		}
 
+		$services = $this->getServiceContainer();
 		if ( $page instanceof WikiPage ) {
 			$title = $page->getTitle();
-		} elseif ( $page instanceof Title ) {
-			$title = $page;
-			$page = WikiPage::factory( $title );
+		} elseif ( $page instanceof PageIdentity ) {
+			$page = $services->getWikiPageFactory()->newFromTitle( $page );
+			$title = $page->getTitle();
+		} elseif ( $page instanceof LinkTarget ) {
+			$page = $services->getWikiPageFactory()->newFromLinkTarget( $page );
+			$title = $page->getTitle();
 		} else {
-			$title = Title::newFromText( $page, $defaultNs );
-			$page = WikiPage::factory( $title );
+			$title = $services->getTitleFactory()->newFromText( $page, $defaultNs );
+			$page = $services->getWikiPageFactory()->newFromTitle( $title );
 		}
 
 		if ( $performer === null ) {
@@ -2566,7 +2572,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		if ( is_string( $content ) ) {
-			$content = ContentHandler::makeContent( $content, $title );
+			$content = $services->getContentHandlerFactory()
+				->getContentHandler( $title->getContentModel() )
+				->unserializeContent( $content );
 		}
 
 		return $page->doUserEditContent(

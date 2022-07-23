@@ -30,12 +30,12 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	private function doPageEdit( User $user, LinkTarget $target, $content, $summary ) {
-		$title = Title::newFromLinkTarget( $target );
-		$page = WikiPage::factory( $title );
-		$page->doUserEditContent(
-			ContentHandler::makeContent( $content, $title ),
-			$user,
-			$summary
+		$this->editPage(
+			$target,
+			$content,
+			$summary,
+			NS_MAIN,
+			$user
 		);
 	}
 
@@ -62,12 +62,12 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	private function doAnonPageEdit( LinkTarget $target, $content, $summary ) {
-		$title = Title::newFromLinkTarget( $target );
-		$page = WikiPage::factory( $title );
-		$page->doUserEditContent(
-			ContentHandler::makeContent( $content, $title ),
-			User::newFromId( 0 ),
-			$summary
+		$this->editPage(
+			$target,
+			$content,
+			$summary,
+			NS_MAIN,
+			$this->getServiceContainer()->getUserFactory()->newAnonymous()
 		);
 	}
 

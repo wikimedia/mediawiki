@@ -23,12 +23,12 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 	private function doPageEdit( User $user, LinkTarget $target, $summary ) {
 		static $i = 0;
 
-		$title = Title::newFromLinkTarget( $target );
-		$page = WikiPage::factory( $title );
-		$page->doUserEditContent(
-			ContentHandler::makeContent( __CLASS__ . $i++, $title ),
-			$user,
-			$summary
+		$this->editPage(
+			$target,
+			__CLASS__ . $i++,
+			$summary,
+			NS_MAIN,
+			$user
 		);
 	}
 
