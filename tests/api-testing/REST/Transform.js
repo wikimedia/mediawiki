@@ -1185,6 +1185,7 @@ describe( '/transform/ endpoint', function () {
 				.send( {
 					html: htmlOfMainPageWithDataParsoid
 				} )
+				.expect( status200 )
 				.expect( validWikitextResponse() )
 				.end( done );
 		} );
@@ -1198,6 +1199,7 @@ describe( '/transform/ endpoint', function () {
 						revid: 1
 					}
 				} )
+				.expect( status200 )
 				.expect( validWikitextResponse() )
 				.end( done );
 		} );
