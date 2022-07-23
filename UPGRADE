@@ -90,10 +90,6 @@ MediaWiki.
 
 Extensions usually need to be upgraded at the same time as the MediaWiki core.
 
-In MediaWiki 1.14 some extensions were migrated into the core. Please see the
-HISTORY section "Migrated extensions" and disable these extensions in your
-LocalSettings.php
-
 === Test ===
 
 It makes sense to test your wiki immediately following any kind of maintenance
