@@ -26,6 +26,7 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use NamespaceInfo;
 use PHPUnit\Framework\MockObject\MockObject;
+use Title;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -45,6 +46,13 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		$ret->method( 'exists' )->willReturn( true );
 		$ret->method( 'getId' )->willReturn( 123 );
 		$ret->method( 'getRevisionRecord' )->willReturn( $this->createMock( RevisionRecord::class ) );
+
+		$title = $this->createMock( Title::class );
+		$title->method( 'getPrefixedText' )->willReturn( 'Foo' );
+		$title->method( 'getText' )->willReturn( 'Foo' );
+		$title->method( 'getDBkey' )->willReturn( 'Foo' );
+		$title->method( 'getNamespace' )->willReturn( 0 );
+		$ret->method( 'getTitle' )->willReturn( $title );
 		return $ret;
 	}
 
