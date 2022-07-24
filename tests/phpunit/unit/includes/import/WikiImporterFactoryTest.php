@@ -3,7 +3,9 @@
 namespace MediaWiki\Tests\Import;
 
 use FactoryArgTestTrait;
+use ImportSource;
 use MediaWikiUnitTestCase;
+use ReflectionParameter;
 use WikiImporter;
 use WikiImporterFactory;
 
@@ -27,5 +29,15 @@ class WikiImporterFactoryTest extends MediaWikiUnitTestCase {
 
 	protected function getFactoryMethodName() {
 		return 'getWikiImporter';
+	}
+
+	protected function getOverriddenMockValueForParam( ReflectionParameter $param ) {
+		if ( $param->getType()->getName() !== ImportSource::class ) {
+			return [];
+		}
+
+		$importSource = $this->createMock( ImportSource::class );
+		$importSource->method( 'atEnd' )->willReturn( true );
+		return [ $importSource ];
 	}
 }
