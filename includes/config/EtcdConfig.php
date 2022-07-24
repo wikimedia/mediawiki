@@ -277,7 +277,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 
 		static $terminalCodes = [ 404 => true ];
 		if ( $rcode < 200 || $rcode > 399 ) {
-			$response['error'] = strlen( $rerr ) ? $rerr : "HTTP $rcode ($rdesc)";
+			$response['error'] = strlen( $rerr ?? '' ) ? $rerr : "HTTP $rcode ($rdesc)";
 			$response['retry'] = empty( $terminalCodes[$rcode] );
 			return $response;
 		}
