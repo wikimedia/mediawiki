@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Platform\MySQLPlatform;
 
 class MySQLPlatformTest extends PHPUnit\Framework\TestCase {
@@ -36,6 +37,17 @@ class MySQLPlatformTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform::addIdentifierQuotes
+	 */
+	public function testAddIdentifierQuotesNull() {
+		$platform = new MySQLPlatform( new AddQuoterMock() );
+		AtEase::suppressWarnings(); // php8.1
+		$quoted = $platform->addIdentifierQuotes( null );
+		AtEase::restoreWarnings();
+		$this->assertEquals( '``', $quoted );
+	}
+
+	/**
 	 * Feeds testAddIdentifierQuotes
 	 *
 	 * Named per T22281 convention.
@@ -44,9 +56,6 @@ class MySQLPlatformTest extends PHPUnit\Framework\TestCase {
 		return [
 			// Format: expected, input
 			[ '``', '' ],
-
-			// Yeah I really hate loosely typed PHP idiocies nowadays
-			[ '``', null ],
 
 			// Dear codereviewer, guess what addIdentifierQuotes()
 			// will return with thoses:
