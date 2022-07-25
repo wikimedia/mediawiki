@@ -20,7 +20,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 			'wgLoadScript' => false,
 			'wgExtensionAssetsPath' => false,
 			'wgStylePath' => false,
-			'wgResourceBasePath' => null,
+			'wgResourceBasePath' => '/w',
 			'wgCrossSiteAJAXdomains' => [
 				'sister-site.somewhere.com',
 				'*.wikipedia.org',
