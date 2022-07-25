@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group ContentHandler
  * @group Database
@@ -208,11 +210,11 @@ class JavaScriptContentTest extends TextContentTest {
 	 * @dataProvider provideUpdateRedirect
 	 */
 	public function testUpdateRedirect( $oldText, $expectedText ) {
-		$this->setMwGlobals( [
-			'wgServer' => '//example.org',
-			'wgScriptPath' => '/w',
-			'wgScript' => '/w/index.php',
-			'wgResourceBasePath' => '/w',
+		$this->overrideConfigValues( [
+			MainConfigNames::Server => '//example.org',
+			MainConfigNames::ScriptPath => '/w',
+			MainConfigNames::Script => '/w/index.php',
+			MainConfigNames::ResourceBasePath => '/w',
 		] );
 		$target = Title::newFromText( "testUpdateRedirect_target" );
 
@@ -268,11 +270,11 @@ class JavaScriptContentTest extends TextContentTest {
 	 * @dataProvider provideGetRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $text ) {
-		$this->setMwGlobals( [
-			'wgServer' => '//example.org',
-			'wgScriptPath' => '/w',
-			'wgScript' => '/w/index.php',
-			'wgResourceBasePath' => '/w',
+		$this->overrideConfigValues( [
+			MainConfigNames::Server => '//example.org',
+			MainConfigNames::ScriptPath => '/w',
+			MainConfigNames::Script => '/w/index.php',
+			MainConfigNames::ResourceBasePath => '/w',
 		] );
 		$content = new JavaScriptContent( $text );
 		$target = $content->getRedirectTarget();

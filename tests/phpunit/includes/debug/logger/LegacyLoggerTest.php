@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Logger;
 
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 
@@ -139,7 +140,7 @@ class LegacyLoggerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideShouldEmit
 	 */
 	public function testShouldEmit( $level, $config, $expected ) {
-		$this->setMwGlobals( 'wgDebugLogGroups', [ 'fakechannel' => $config ] );
+		$this->overrideConfigValue( MainConfigNames::DebugLogGroups, [ 'fakechannel' => $config ] );
 		$this->assertEquals(
 			$expected,
 			LegacyLogger::shouldEmit( 'fakechannel', 'some message', $level, [] )

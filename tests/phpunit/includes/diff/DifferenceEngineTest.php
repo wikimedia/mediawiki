@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -34,7 +35,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 			self::$revisions = $this->doEdits();
 		}
 
-		$this->setMwGlobals( [ 'wgDiffEngine' => 'php' ] );
+		$this->overrideConfigValue( MainConfigNames::DiffEngine, 'php' );
 
 		$slotRoleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
 
