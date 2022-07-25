@@ -3142,6 +3142,9 @@ return [
 				'type' => 'string',
 			],
 		],
+		'MangleFlashPolicy' => [
+			'deprecated' => 'since 1.39; no longer has any effect',
+		],
 		'AllowImageTag' => [
 			'deprecated' => 'since 1.35; register an extension tag named <img> instead.',
 		],
