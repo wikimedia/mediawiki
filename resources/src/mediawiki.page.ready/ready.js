@@ -12,23 +12,27 @@ if ( mw.config.get( 'wgBreakFrames' ) ) {
 }
 
 mw.hook( 'wikipage.content' ).add( function ( $content ) {
-	var $sortable, $collapsible,
-		dependencies = [];
+	var modules = [];
+
+	var $collapsible;
 	if ( config.collapsible ) {
 		$collapsible = $content.find( '.mw-collapsible' );
 		if ( $collapsible.length ) {
-			dependencies.push( 'jquery.makeCollapsible' );
+			modules.push( 'jquery.makeCollapsible' );
 		}
 	}
+
+	var $sortable;
 	if ( config.sortable ) {
 		$sortable = $content.find( 'table.sortable' );
 		if ( $sortable.length ) {
-			dependencies.push( 'jquery.tablesorter' );
+			modules.push( 'jquery.tablesorter' );
 		}
 	}
-	if ( dependencies.length ) {
+
+	if ( modules.length ) {
 		// Both modules are preloaded by Skin::getDefaultModules()
-		mw.loader.using( dependencies ).then( function () {
+		mw.loader.using( modules ).then( function () {
 			// For tables that are both sortable and collapsible,
 			// it must be made sortable first and collapsible second.
 			// This is because jquery.tablesorter stumbles on the
@@ -47,7 +51,6 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 
 // Handle elements outside the wikipage content
 $( function () {
-	var $nodes;
 
 	// Add accesskey hints to the tooltips
 	$( '[accesskey]' ).updateTooltipAccessKeys();
@@ -87,7 +90,7 @@ $( function () {
 		mw.hook( 'wikipage.content' ).fire( $content );
 	}
 
-	$nodes = $( '.catlinks[data-mw="interface"]' );
+	var $nodes = $( '.catlinks[data-mw="interface"]' );
 	if ( $nodes.length ) {
 		/**
 		 * Fired when categories are being added to the DOM
@@ -129,12 +132,12 @@ $( function () {
 
 	// Turn logout to a POST action
 	$( config.selectorLogoutLink ).on( 'click', function ( e ) {
-		var api = new mw.Api(),
-			url = this.href;
 		mw.notify(
 			mw.message( 'logging-out-notify' ),
 			{ tag: 'logout', autoHide: false }
 		);
+		var api = new mw.Api();
+		var url = this.href;
 		api.postWithToken( 'csrf', {
 			action: 'logout'
 		} ).then(
