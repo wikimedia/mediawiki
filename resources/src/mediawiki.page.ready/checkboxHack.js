@@ -160,9 +160,9 @@ function updateAriaExpanded( checkbox, button ) {
  */
 function setCheckedState( checkbox, checked ) {
 	/** @type {Event} @ignore */
-	var e;
 	checkbox.checked = checked;
 	// Chrome and Firefox sends the builtin Event with .bubbles == true and .composed == true.
+	var e;
 	if ( typeof Event === 'function' ) {
 		e = new Event( 'input', { bubbles: true, composed: true } );
 	} else {
