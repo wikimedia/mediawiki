@@ -3,8 +3,6 @@
  */
 ( function () {
 	$( function () {
-		var tabs, previousTab, switchingNoHash;
-
 		// Make sure the accessibility tip is focussable so that keyboard users take notice,
 		// but hide it by default to reduce visual clutter.
 		// Make sure it becomes visible when focused.
@@ -15,7 +13,7 @@
 			} )
 			.insertBefore( '.mw-htmlform-ooui-wrapper' );
 
-		tabs = OO.ui.infuse( $( '.mw-prefs-tabs' ) );
+		var tabs = OO.ui.infuse( $( '.mw-prefs-tabs' ) );
 
 		// Support: Chrome
 		// https://bugs.chromium.org/p/chromium/issues/detail?id=1252507
@@ -39,18 +37,18 @@
 			}
 		}
 
-		function onTabPanelSet( panel ) {
-			var scrollTop, active;
+		var switchingNoHash;
 
+		function onTabPanelSet( panel ) {
 			if ( switchingNoHash ) {
 				return;
 			}
 			// Handle hash manually to prevent jumping,
 			// therefore save and restore scrollTop to prevent jumping.
-			scrollTop = $( window ).scrollTop();
+			var scrollTop = $( window ).scrollTop();
 			// Changing the hash apparently causes keyboard focus to be lost?
 			// Save and restore it. This makes no sense though.
-			active = document.activeElement;
+			var active = document.activeElement;
 			location.hash = '#' + panel.getName();
 			if ( active ) {
 				active.focus();
@@ -80,14 +78,13 @@
 		// Jump to correct section as indicated by the hash.
 		// This function is called onload and onhashchange.
 		function detectHash() {
-			var hash = location.hash,
-				matchedElement, $parentSection;
+			var hash = location.hash;
 			if ( /^#mw-prefsection-[\w]+$/.test( hash ) ) {
 				mw.storage.session.remove( 'mwpreferences-prevTab' );
 				switchPrefTab( hash.slice( 1 ) );
 			} else if ( /^#mw-[\w-]+$/.test( hash ) ) {
-				matchedElement = document.getElementById( hash.slice( 1 ) );
-				$parentSection = $( matchedElement ).closest( '.mw-prefs-section-fieldset' );
+				var matchedElement = document.getElementById( hash.slice( 1 ) );
+				var $parentSection = $( matchedElement ).closest( '.mw-prefs-section-fieldset' );
 				if ( $parentSection.length ) {
 					mw.storage.session.remove( 'mwpreferences-prevTab' );
 					// Switch to proper tab and scroll to selected item.
@@ -109,7 +106,7 @@
 			.trigger( 'hashchange' );
 
 		// Restore the active tab after saving the preferences
-		previousTab = mw.storage.session.get( 'mwpreferences-prevTab' );
+		var previousTab = mw.storage.session.get( 'mwpreferences-prevTab' );
 		if ( previousTab ) {
 			switchPrefTab( previousTab, true );
 			// Deleting the key, the tab states should be reset until we press Save

@@ -3,8 +3,7 @@
  */
 ( function () {
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
-		var timezoneWidget, $localtimeHolder, servertime,
-			$target = $root.find( '#wpTimeCorrection' );
+		var $target = $root.find( '#wpTimeCorrection' );
 
 		if (
 			// This preference could theoretically be disabled ($wgHiddenPrefs)
@@ -18,10 +17,10 @@
 		// Guesses Timezone from browser and updates fields onchange.
 
 		// This is identical to OO.ui.infuse( ... ), but it makes the class name of the result known.
-		timezoneWidget = mw.widgets.SelectWithInputWidget.static.infuse( $target );
+		var timezoneWidget = mw.widgets.SelectWithInputWidget.static.infuse( $target );
 
-		$localtimeHolder = $( '#wpLocalTime' );
-		servertime = parseInt( $( 'input[name="wpServerTime"]' ).val(), 10 );
+		var $localtimeHolder = $( '#wpLocalTime' );
+		var servertime = parseInt( $( 'input[name="wpServerTime"]' ).val(), 10 );
 
 		function minutesToHours( min ) {
 			var tzHour = Math.floor( Math.abs( min ) / 60 ),
@@ -32,11 +31,11 @@
 		}
 
 		function hoursToMinutes( hour ) {
-			var minutes,
-				arr = hour.split( ':' );
+			var arr = hour.split( ':' );
 
 			arr[ 0 ] = parseInt( arr[ 0 ], 10 );
 
+			var minutes;
 			if ( arr.length === 1 ) {
 				// Specification is of the form [-]XX
 				minutes = arr[ 0 ] * 60;
@@ -56,9 +55,9 @@
 		}
 
 		function updateTimezoneSelection() {
-			var timeZone, minuteDiff, localTime, newValue,
-				type = timezoneWidget.dropdowninput.getValue();
+			var type = timezoneWidget.dropdowninput.getValue();
 
+			var minuteDiff;
 			if ( type === 'other' ) {
 				// User specified time zone manually in <input>
 				// Grab data from the textbox, parse it.
@@ -68,6 +67,7 @@
 				if ( type === 'guess' ) {
 					// If available, get the named time zone from the browser.
 					// (We also support older browsers where this API is not available.)
+					var timeZone;
 					try {
 						// This may return undefined
 						timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -78,6 +78,7 @@
 					// Get the time offset
 					minuteDiff = -( new Date().getTimezoneOffset() );
 
+					var newValue;
 					if ( timeZone ) {
 						// Try to save both time zone and offset
 						newValue = 'ZoneInfo|' + minuteDiff + '|' + timeZone;
@@ -96,7 +97,7 @@
 			}
 
 			// Determine local time from server time and minutes difference, for display.
-			localTime = servertime + minuteDiff;
+			var localTime = servertime + minuteDiff;
 
 			// Bring time within the [0,1440) range.
 			localTime = ( ( localTime % 1440 ) + 1440 ) % 1440;
