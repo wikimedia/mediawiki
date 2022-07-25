@@ -491,6 +491,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			->getMock();
 		$mockRequest->method( 'getSession' )->willReturn( $session );
 		$userMock->method( 'getRequest' )->willReturn( $mockRequest );
+		$userMock->method( 'getTitleKey' )->willReturn( '' );
 		return $userMock;
 	}
 }
