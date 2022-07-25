@@ -104,6 +104,8 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Updated wikimedia/base-convert from 2.0.1 to 2.0.2.
 * Updated wikimedia/php-session-serializer from 2.0.0 to 2.0.1.
 * Updated wikimedia/running-stat from 1.2.1 to 2.0.0.
+* Updated wikimedia/scoped-callback from 3.0.0 to 4.0.0.
+* Updated wikimedia/services from 2.0.1 to 3.0.0.
 * …
 
 ===== Changed development-only external libraries =====
