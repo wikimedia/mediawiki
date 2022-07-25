@@ -2207,7 +2207,7 @@
 	"categoriespagetext": "{{PLURAL:$1|הקטגוריה הבאה קיימת|הקטגוריות הבאות קיימות}} באתר הוויקי, {{PLURAL:$1|והיא עשויה|והן עשויות}} להיות בשימוש או לא להיות בשימוש.\nניתן לעיין גם ב[[Special:WantedCategories|רשימת הקטגוריות המבוקשות]].",
 	"categoriesfrom": "הצגת קטגוריות החל מ:",
 	"deletedcontributions": "תרומות משתמש מחוקות",
-	"deletedcontributions-title": "תרומות מחוקות של המשתמש $1",
+	"deletedcontributions-title": "תרומות מחוקות של {{GENDER:$1|המשתמש|המשתמשת}} $1",
 	"sp-deletedcontributions-contribs": "תרומות",
 	"linksearch": "חיפוש קישורים חיצוניים",
 	"linksearch-pat": "תבנית קישור לחיפוש:",

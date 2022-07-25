@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"AminSanaei",
+			"Amire80",
 			"BaRaN6161 TURK",
 			"Fitoschido",
 			"Macofe",
@@ -559,7 +560,7 @@
 	"tooltip-invert": "ائره تيک بزنين تا دؤجئه نؤمفضا مئنˇ ولگؤنˇ تغىيرؤن (ؤ باخي تيک بزئه نؤمفضا'ن) دخۊته بۊمؤن.",
 	"namespace_association": "مؤرتبطˇ نؤمفضا",
 	"tooltip-namespace_association": "ائره' تيک بزنين تا گبˇ نؤمفضا ىا مؤرتبط مؤضۊع ىا دؤجين بۊبؤ نؤمفضا ني شامل بۊبۊن.",
-	"blanknamespace": "گت",
+	"blanknamespace": "(گت)",
 	"tool-link-contributions": "{{GENDER:$1|کارگير}}ˇ مۊشارکتؤن",
 	"mycontris": "مۊشارکتؤن",
 	"anoncontribs": "مۊشارکتؤن",

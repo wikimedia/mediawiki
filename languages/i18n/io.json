@@ -2388,6 +2388,8 @@
 	"badipaddress": "IP-adreso ne esas valida",
 	"blockipsuccesssub": "Blokusado sucesis",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] blokusesis.<br />\nVidez [[Special:BlockList|blokuso-listo]] por revizar blokusuri.",
+	"ipb-blockingself": "Vu esas proxim blokusar vu propra! Ka vu fakte deziras facar to?",
+	"ipb-confirmhideuser": "Vu esas proxim blokuso di uzero kun supreso-opciono kapabligita. To supresos olua nomo en omna listi e mencioni en ''log''-i (enrejistruri). Ka vu fakte deziras facar to?",
 	"ipb-edit-dropdown": "Redaktar blokuso-motivi",
 	"ipb-unblock-addr": "Desblokusar $1",
 	"ipb-blocklist": "Vidar existanta blokusi",
