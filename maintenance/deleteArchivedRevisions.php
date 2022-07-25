@@ -43,7 +43,11 @@ class DeleteArchivedRevisions extends Maintenance {
 		$dbw = $this->getDB( DB_PRIMARY );
 
 		if ( !$this->hasOption( 'delete' ) ) {
-			$count = $dbw->selectField( 'archive', 'COUNT(*)', '', __METHOD__ );
+			$count = $dbw->newSelectQueryBuilder()
+				->select( 'COUNT(*)' )
+				->from( 'archive' )
+				->caller( __METHOD__ )
+				->fetchField();
 			$this->output( "Found $count revisions to delete.\n" );
 			$this->output( "Please run the script again with the --delete option "
 				. "to really delete the revisions.\n" );
