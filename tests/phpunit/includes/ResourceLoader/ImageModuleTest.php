@@ -179,6 +179,7 @@ class ImageModuleTest extends ResourceLoaderTestCase {
 				],
 			],
 		] );
+		$testModule->setName( 'testModule' );
 		$expectedModule = new ImageModule( [
 			'localBasePath' => $filePath,
 			'remoteBasePath' => 'rlfilepath',
@@ -193,6 +194,7 @@ class ImageModuleTest extends ResourceLoaderTestCase {
 				],
 			],
 		] );
+		$expectedModule->setName( 'testModule' );
 
 		$context = $this->getResourceLoaderContext();
 		$this->assertEquals(
