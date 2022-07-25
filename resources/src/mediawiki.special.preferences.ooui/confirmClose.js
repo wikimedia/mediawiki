@@ -4,34 +4,29 @@
  */
 ( function () {
 	$( function () {
-		var allowCloseWindow, saveButton;
-
 		// Check if all of the form values are unchanged.
 		// (This function could be changed to infuse and check OOUI widgets, but that would only make it
 		// slower and more complicated. It works fine to treat them as HTML elements.)
 		function isPrefsChanged() {
 			// eslint-disable-next-line no-jquery/no-sizzle
-			var $inputs = $( '#mw-prefs-form :input[name]' ),
-				input, $input, inputType,
-				index, optIndex,
-				opt;
+			var $inputs = $( '#mw-prefs-form :input[name]' );
 
-			for ( index = 0; index < $inputs.length; index++ ) {
-				input = $inputs[ index ];
-				$input = $( input );
+			for ( var index = 0; index < $inputs.length; index++ ) {
+				var input = $inputs[ index ];
+				var $input = $( input );
 
 				// Different types of inputs have different methods for accessing defaults
 				if ( $input.is( 'select' ) ) {
 					// <select> has the property defaultSelected for each option
-					for ( optIndex = 0; optIndex < input.options.length; optIndex++ ) {
-						opt = input.options[ optIndex ];
+					for ( var optIndex = 0; optIndex < input.options.length; optIndex++ ) {
+						var opt = input.options[ optIndex ];
 						if ( opt.selected !== opt.defaultSelected ) {
 							return true;
 						}
 					}
 				} else if ( $input.is( 'input' ) || $input.is( 'textarea' ) ) {
 					// <input> has defaultValue or defaultChecked
-					inputType = input.type;
+					var inputType = input.type;
 					if ( inputType === 'radio' || inputType === 'checkbox' ) {
 						if ( input.checked !== input.defaultChecked ) {
 							return true;
@@ -45,7 +40,7 @@
 			return false;
 		}
 
-		saveButton = OO.ui.infuse( $( '#prefcontrol' ) );
+		var saveButton = OO.ui.infuse( $( '#prefcontrol' ) );
 
 		// Disable the button to save preferences unless preferences have changed
 		// Check if preferences have been changed before JS has finished loading
@@ -65,7 +60,7 @@
 		} );
 
 		// Prompt users if they try to leave the page without saving.
-		allowCloseWindow = mw.confirmCloseWindow( {
+		var allowCloseWindow = mw.confirmCloseWindow( {
 			test: isPrefsChanged
 		} );
 		$( '#mw-prefs-form' ).on( 'submit', allowCloseWindow.release );

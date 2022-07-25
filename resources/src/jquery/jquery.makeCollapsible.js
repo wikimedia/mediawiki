@@ -21,7 +21,6 @@
 	 * @param {Object|undefined} [options]
 	 */
 	function toggleElement( $collapsible, action, $defaultToggle, options ) {
-		var $collapsibleContent, $containers, hookCallback;
 		options = options || {};
 
 		// Validate parameters
@@ -42,11 +41,12 @@
 		// allowing the module to be testable, and making it possible to
 		// e.g. implement persistence via cookies
 		$collapsible.trigger( action === 'expand' ? 'beforeExpand.mw-collapsible' : 'beforeCollapse.mw-collapsible' );
-		hookCallback = function () {
+		var hookCallback = function () {
 			$collapsible.trigger( action === 'expand' ? 'afterExpand.mw-collapsible' : 'afterCollapse.mw-collapsible' );
 		};
 
 		// Handle different kinds of elements
+		var $containers;
 		if ( !options.plainMode && $collapsible.is( 'table' ) ) {
 			// Tables
 			// If there is a caption, hide all rows; otherwise, only hide body rows
@@ -69,7 +69,7 @@
 			}
 		} else {
 			// Everything else: <div>, <p> etc.
-			$collapsibleContent = $collapsible.find( '> .mw-collapsible-content' );
+			var $collapsibleContent = $collapsible.find( '> .mw-collapsible-content' );
 
 			// If a collapsible-content is defined, act on it
 			if ( !options.plainMode && $collapsibleContent.length ) {
@@ -98,7 +98,6 @@
 	 * @param {Object|undefined} options
 	 */
 	function togglingHandler( $toggle, $collapsible, e, options ) {
-		var wasCollapsed, $textContainer, collapseText, expandText;
 		options = options || {};
 
 		if ( e ) {
@@ -119,6 +118,7 @@
 		}
 
 		// This allows the element to be hidden on initial toggle without fiddling with the class
+		var wasCollapsed;
 		if ( options.wasCollapsed !== undefined ) {
 			wasCollapsed = options.wasCollapsed;
 		} else {
@@ -143,10 +143,10 @@
 
 		// Toggle the text ("Show"/"Hide") within elements tagged with mw-collapsible-text
 		if ( options.toggleText ) {
-			collapseText = options.toggleText.collapseText;
-			expandText = options.toggleText.expandText;
+			var collapseText = options.toggleText.collapseText;
+			var expandText = options.toggleText.expandText;
 
-			$textContainer = $toggle.find( '.mw-collapsible-text' );
+			var $textContainer = $toggle.find( '.mw-collapsible-text' );
 			if ( $textContainer.length ) {
 				$textContainer.text( wasCollapsed ? collapseText : expandText );
 			}
@@ -163,15 +163,13 @@
 	 * @private
 	 */
 	function hashHandler() {
-		var fragment, $parents;
-
-		fragment = document.querySelector( ':target' );
+		var fragment = document.querySelector( ':target' );
 		if ( !fragment ) {
 			// The fragment doesn't exist
 			return;
 		}
 
-		$parents = $( fragment ).parents( '.mw-collapsed' );
+		var $parents = $( fragment ).parents( '.mw-collapsed' );
 		if ( !$parents.length ) {
 			// The fragment is not in a collapsed element
 			return;
@@ -227,12 +225,9 @@
 		options = options || {};
 
 		this.each( function () {
-			var $collapsible, collapseText, expandText, $caption, $toggle, actionHandler,
-				buildDefaultToggleLink, $firstItem, collapsibleId, $customTogglers, firstval;
-
 			// Ensure class "mw-collapsible" is present in case .makeCollapsible()
 			// is called on element(s) that don't have it yet.
-			$collapsible = $( this ).addClass( 'mw-collapsible' );
+			var $collapsible = $( this ).addClass( 'mw-collapsible' );
 
 			// Return if it has been enabled already.
 			if ( $collapsible.data( 'mw-made-collapsible' ) ) {
@@ -246,11 +241,11 @@
 			}
 
 			// Use custom text or default?
-			collapseText = options.collapseText || $collapsible.attr( 'data-collapsetext' ) || mw.msg( 'collapsible-collapse' );
-			expandText = options.expandText || $collapsible.attr( 'data-expandtext' ) || mw.msg( 'collapsible-expand' );
+			var collapseText = options.collapseText || $collapsible.attr( 'data-collapsetext' ) || mw.msg( 'collapsible-collapse' );
+			var expandText = options.expandText || $collapsible.attr( 'data-expandtext' ) || mw.msg( 'collapsible-expand' );
 
 			// Default click/keypress handler and toggle link to use when none is present
-			actionHandler = function ( e, opts ) {
+			var actionHandler = function ( e, opts ) {
 				var defaultOpts = {
 					toggleClasses: true,
 					toggleARIA: true,
@@ -261,7 +256,7 @@
 			};
 
 			// Default toggle link. Only build it when needed to avoid jQuery memory leaks (event data).
-			buildDefaultToggleLink = function () {
+			var buildDefaultToggleLink = function () {
 				return $( '<a>' )
 					.addClass( 'mw-collapsible-text' )
 					.text( collapseText )
@@ -275,10 +270,11 @@
 
 			// Check if this element has a custom position for the toggle link
 			// (ie. outside the container or deeper inside the tree)
+			var $customTogglers;
 			if ( options.$customTogglers ) {
 				$customTogglers = $( options.$customTogglers );
 			} else {
-				collapsibleId = $collapsible.attr( 'id' ) || '';
+				var collapsibleId = $collapsible.attr( 'id' ) || '';
 				if ( collapsibleId.indexOf( 'mw-customcollapsible-' ) === 0 ) {
 					collapsibleId = $.escapeSelector( collapsibleId );
 					$customTogglers = $( '.' + collapsibleId.replace( 'mw-customcollapsible', 'mw-customtoggle' ) )
@@ -287,6 +283,7 @@
 			}
 
 			// Add event handlers to custom togglers or create our own ones
+			var $toggle;
 			if ( $customTogglers && $customTogglers.length ) {
 				actionHandler = function ( e, opts ) {
 					var defaultOpts = {};
@@ -301,11 +298,12 @@
 				// contents and add the toggle link. Different elements are
 				// treated differently.
 
+				var $firstItem;
 				if ( $collapsible.is( 'table' ) ) {
 
 					// If the table has a caption, collapse to the caption
 					// as opposed to the first row
-					$caption = $collapsible.find( '> caption' );
+					var $caption = $collapsible.find( '> caption' );
 					if ( $caption.length ) {
 						$toggle = $caption.find( '> .mw-collapsible-toggle' );
 
@@ -341,7 +339,7 @@
 						// Make sure the numeral order doesn't get messed up, force the first (soon to be second) item
 						// to be "1". Except if the value-attribute is already used.
 						// If no value was set WebKit returns "", Mozilla returns '-1', others return 0, null or undefined.
-						firstval = $firstItem.prop( 'value' );
+						var firstval = $firstItem.prop( 'value' );
 						if ( firstval === undefined || !firstval || firstval === '-1' || firstval === -1 ) {
 							$firstItem.prop( 'value', '1' );
 						}
