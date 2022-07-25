@@ -59,7 +59,12 @@ class DeleteOldRevisions extends Maintenance {
 
 		# Get "active" revisions from the page table
 		$this->output( "Searching for active revisions..." );
-		$res = $dbw->select( 'page', 'page_latest', $pageConds, __METHOD__ );
+		$res = $dbw->newSelectQueryBuilder()
+			->select( 'page_latest' )
+			->from( 'page' )
+			->where( $pageConds )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		$latestRevs = [];
 		foreach ( $res as $row ) {
 			$latestRevs[] = $row->page_latest;
@@ -71,7 +76,12 @@ class DeleteOldRevisions extends Maintenance {
 		if ( count( $latestRevs ) > 0 ) {
 			$revConds[] = 'rev_id NOT IN (' . $dbw->makeList( $latestRevs ) . ')';
 		}
-		$res = $dbw->select( 'revision', 'rev_id', $revConds, __METHOD__ );
+		$res = $dbw->newSelectQueryBuilder()
+			->select( 'rev_id' )
+			->from( 'revision' )
+			->where( $revConds )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		$oldRevs = [];
 		foreach ( $res as $row ) {
 			$oldRevs[] = $row->rev_id;

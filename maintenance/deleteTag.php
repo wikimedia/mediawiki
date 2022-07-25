@@ -56,13 +56,13 @@ class DeleteTag extends Maintenance {
 		// Iterate over change_tag, deleting rows in batches
 		$count = 0;
 		do {
-			$ids = $dbw->selectFieldValues(
-				'change_tag',
-				'ct_id',
-				[ 'ct_tag_id' => $tagId ],
-				__METHOD__,
-				[ 'LIMIT' => $this->getBatchSize() ]
-			);
+			$ids = $dbw->newSelectQueryBuilder()
+				->select( 'ct_id' )
+				->from( 'change_tag' )
+				->where( [ 'ct_tag_id' => $tagId ] )
+				->limit( $this->getBatchSize() )
+				->caller( __METHOD__ )
+				->fetchFieldValues();
 
 			if ( !$ids ) {
 				break;
