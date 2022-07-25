@@ -2033,6 +2033,7 @@ class MainConfigNames {
 	/**
 	 * Name constant for the MangleFlashPolicy setting, for use with Config::get()
 	 * @see MainConfigSchema::MangleFlashPolicy
+	 * @deprecated since 1.39; no longer has any effect
 	 */
 	public const MangleFlashPolicy = 'MangleFlashPolicy';
 

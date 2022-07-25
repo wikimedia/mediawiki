@@ -586,16 +586,17 @@ class BacklinkCache {
 
 		// @todo: use UNION without breaking tests that use temp tables
 		$resSets = [];
+		$conds = [
+			'tl_from = pr_page',
+			'pr_cascade' => 1,
+			'page_id = tl_from'
+		];
+		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+		$linkConds = $linksMigration->getLinksConditions( 'templatelinks', TitleValue::newFromPage( $this->page ) );
 		$resSets[] = $dbr->select(
 			[ 'templatelinks', 'page_restrictions', 'page' ],
 			[ 'page_namespace', 'page_title', 'page_id' ],
-			[
-				'tl_namespace' => $this->page->getNamespace(),
-				'tl_title' => $this->page->getDBkey(),
-				'tl_from = pr_page',
-				'pr_cascade' => 1,
-				'page_id = tl_from'
-			],
+			array_merge( $conds, $linkConds ),
 			__METHOD__,
 			[ 'DISTINCT' ]
 		);

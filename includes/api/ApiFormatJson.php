@@ -98,15 +98,6 @@ class ApiFormatJson extends ApiFormatBase {
 			// @codeCoverageIgnoreEnd
 		}
 
-		// T68776: OutputHandler::mangleFlashPolicy() avoids a nasty bug in
-		// Flash, but what it does isn't friendly for the API, so we need to
-		// work around it.
-		if ( preg_match( '/\<\s*cross-domain-policy(?=\s|\>)/i', $json ) ) {
-			$json = preg_replace(
-				'/\<(\s*cross-domain-policy(?=\s|\>))/i', '\\u003C$1', $json
-			);
-		}
-
 		if ( isset( $params['callback'] ) ) {
 			$callback = preg_replace( "/[^][.\\'\\\"_A-Za-z0-9]/", '', $params['callback'] );
 			# Prepend a comment to try to avoid attacks against content

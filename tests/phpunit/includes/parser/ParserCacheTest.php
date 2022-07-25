@@ -477,6 +477,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$options->setOption( $this->getDummyUsedOptions()[0], 'value1' );
 
 		$wikiPageMock = $this->createMock( WikiPage::class );
+		$wikiPageMock->method( 'getContentModel' )->willReturn( 'wikitext' );
 		$wikiPageFactoryMock = $this->createMock( WikiPageFactory::class );
 		$wikiPageFactoryMock->method( 'newFromTitle' )
 			->with( $this->page )
@@ -527,6 +528,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		$mockPage = $this->createNoOpMock( PageRecord::class, [ 'exists', 'assertWiki' ] );
 		$mockPage->method( 'exists' )->willReturn( false );
 		$wikiPageMock = $this->createMock( WikiPage::class );
+		$wikiPageMock->method( 'getContentModel' )->willReturn( 'wikitext' );
 		$wikiPageFactoryMock = $this->createMock( WikiPageFactory::class );
 		$wikiPageFactoryMock->method( 'newFromTitle' )
 			->with( $mockPage )

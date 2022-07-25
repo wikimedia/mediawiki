@@ -5,6 +5,7 @@ namespace MediaWiki\Deferred\LinksUpdate;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Page\PageReferenceValue;
 use Title;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Shared code for pagelinks and templatelinks. They are very similar tables
@@ -60,9 +61,15 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 	abstract protected function getFromNamespaceField();
 
 	protected function getExistingFields() {
+		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
+			return [
+				'ns' => $this->getNamespaceField(),
+				'title' => $this->getTitleField()
+			];
+		}
 		return [
-			'ns' => $this->getNamespaceField(),
-			'title' => $this->getTitleField()
+			'ns' => 'lt_namespace',
+			'title' => 'lt_title',
 		];
 	}
 
@@ -80,6 +87,22 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 		}
 
 		return $this->existingLinks;
+	}
+
+	protected function fetchExistingRows(): IResultWrapper {
+		$queryBuilder = $this->getDB()->newSelectQueryBuilder()
+			->select( $this->getExistingFields() )
+			->from( $this->getTableName() )
+			->where( $this->getFromConds() );
+
+		// This read is for updating, it's conceptually better to use the write config
+		if ( !( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) ) {
+			$queryBuilder->join( 'linktarget', null, [ $this->getTargetIdField() . '=lt_id' ] );
+		}
+
+		return $queryBuilder
+			->caller( __METHOD__ )
+			->fetchResultSet();
 	}
 
 	protected function getNewLinkIDs() {
@@ -126,10 +149,19 @@ abstract class GenericPageLinksTable extends TitleLinksTable {
 	}
 
 	protected function deleteLink( $linkId ) {
-		$this->deleteRow( [
-			$this->getNamespaceField() => $linkId[0],
-			$this->getTitleField() => $linkId[1]
-		] );
+		if ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_OLD ) {
+			$this->deleteRow( [
+				$this->getNamespaceField() => $linkId[0],
+				$this->getTitleField() => $linkId[1]
+			] );
+		} elseif ( $this->linksTargetNormalizationStage() & SCHEMA_COMPAT_WRITE_NEW ) {
+			$this->deleteRow( [
+				$this->getTargetIdField() => $this->linkTargetLookup->acquireLinkTargetId(
+					$this->makeTitle( $linkId ),
+					$this->getDB()
+				)
+			] );
+		}
 	}
 
 	protected function needForcedLinkRefresh() {

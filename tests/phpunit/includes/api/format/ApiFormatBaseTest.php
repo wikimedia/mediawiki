@@ -144,12 +144,6 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 				[ 'wrappedhtml' => 1 ],
 				[ 'name' => 'mockfm', 'status' => 400 ]
 			],
-			'wrapped HTML format, cross-domain-policy' => [
-				[ 'continue' => '< CrOsS-DoMaIn-PoLiCy >' ],
-				'{"status":200,"statustext":"OK","html":"<pre class=\"api-pretty-content\">Format MOCK: &lt;b>ok&lt;/b></pre>","modules":["mediawiki.apipretty"],"continue":"\u003C CrOsS-DoMaIn-PoLiCy \u003E","time":1234}',
-				[ 'wrappedhtml' => 1 ],
-				[ 'name' => 'mockfm' ]
-			],
 		];
 	}
 

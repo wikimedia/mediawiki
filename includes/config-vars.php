@@ -2017,6 +2017,7 @@ $wgEnableCanonicalServerLink = null;
 /**
  * Config variable stub for the MangleFlashPolicy setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::MangleFlashPolicy
+ * @deprecated since 1.39; no longer has any effect
  */
 $wgMangleFlashPolicy = null;
 
