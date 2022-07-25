@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Agusbou2015",
+			"Amire80",
 			"Andemta",
 			"Codex Sinaiticus",
 			"DannyS712",
@@ -1252,7 +1253,7 @@
 	"undelete-show-file-submit": "አዎን",
 	"namespace": "ዓይነት፦",
 	"invert": "(ምርጫውን ለመገልበጥ)",
-	"blanknamespace": "መጣጥፎች",
+	"blanknamespace": "(መጣጥፎች)",
 	"tool-link-contributions": "የአባል አስተዋጽኦች",
 	"contributions-title": "የ$1 አስተዋጽኦች",
 	"mycontris": "የኔ አስተዋጽኦች፤",
