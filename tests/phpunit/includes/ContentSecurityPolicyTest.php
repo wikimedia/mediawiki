@@ -20,7 +20,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::LoadScript => false,
 			MainConfigNames::ExtensionAssetsPath => false,
 			MainConfigNames::StylePath => false,
-			MainConfigNames::ResourceBasePath => null,
+			MainConfigNames::ResourceBasePath => '/w',
 			MainConfigNames::CrossSiteAJAXdomains => [
 				'sister-site.somewhere.com',
 				'*.wikipedia.org',
