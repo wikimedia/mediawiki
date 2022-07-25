@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @covers OldChangesList
  *
@@ -21,9 +23,7 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgArticlePath' => '/wiki/$1',
-		] );
+		$this->overrideConfigValue( MainConfigNames::ArticlePath, '/wiki/$1' );
 		$this->setUserLang( 'qqx' );
 		$this->testRecentChangesHelper = new TestRecentChangesHelper();
 	}

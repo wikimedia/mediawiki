@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 
 /**
@@ -247,7 +248,7 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 	 * @covers WikitextContentHandler::getChangeTag
 	 */
 	public function testGetChangeTag( $old, $new, $flags, $expected ) {
-		$this->setMwGlobals( 'wgSoftwareTags', [
+		$this->overrideConfigValue( MainConfigNames::SoftwareTags, [
 			'mw-new-redirect' => true,
 			'mw-removed-redirect' => true,
 			'mw-changed-redirect-target' => true,

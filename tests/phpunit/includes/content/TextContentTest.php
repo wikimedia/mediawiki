@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group ContentHandler
  * @group Database
@@ -25,15 +27,15 @@ class TextContentTest extends MediaWikiLangTestCase {
 
 		RequestContext::getMain()->setTitle( $this->context->getTitle() );
 
-		$this->setMwGlobals( [
-			'wgTextModelsToParse' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::TextModelsToParse => [
 				CONTENT_MODEL_WIKITEXT,
 				CONTENT_MODEL_CSS,
 				CONTENT_MODEL_JAVASCRIPT,
 			],
-			'wgCapitalLinks' => true,
-			'wgHooks' => [], // bypass hook ContentGetParserOutput that force custom rendering
+			MainConfigNames::CapitalLinks => true,
 		] );
+		$this->clearHook( 'ContentGetParserOutput' );
 	}
 
 	/**
@@ -97,7 +99,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	 * @covers TextContent::isCountable
 	 */
 	public function testIsCountable( $text, $hasLinks, $mode, $expected ) {
-		$this->setMwGlobals( 'wgArticleCountMethod', $mode );
+		$this->overrideConfigValue( MainConfigNames::ArticleCountMethod, $mode );
 
 		$content = $this->newContent( $text );
 
