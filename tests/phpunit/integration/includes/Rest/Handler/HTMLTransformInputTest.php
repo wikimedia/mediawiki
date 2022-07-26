@@ -63,24 +63,17 @@ class HTMLTransformInputTest extends MediaWikiIntegrationTestCase {
 	private function newHTMLTransformInput() {
 		$doc = DOMUtils::parseHTML( self::ORIG_HTML, true );
 		$input = new HTMLTransformInput( $doc );
-		$opts = [
-			'from' => 'pagebundle',
-			'contentmodel' => 'wikitext',
-			'data-mw' => [
-				'body' => self::MODIFIED_DATA_MW,
-				'headers' => [
-					'content-type' => 'application/json; charset=utf-8',
-				],
-			],
-			'original' => $this->getOriginalData()
-		];
+		$originalData = $this->getOriginalData();
 
 		// Set some options to assert on $input.
-		$input->setOptions( $opts );
+		$input->setOptions( [
+			'contentmodel' => 'wikitext',
+			'offsetType' => 'byte',
+		] );
 		$input->setInputFormat( 'pagebundle' );
 		$input->setModifiedDataMW( [ self::MODIFIED_DATA_MW ] );
-		$input->setOriginalRevisionId( $opts['original']['revid'] );
-		$input->setOriginalData( $opts['original'] );
+		$input->setOriginalRevisionId( $originalData['revid'] );
+		$input->setOriginalData( $originalData );
 
 		return $input;
 	}
@@ -186,6 +179,6 @@ class HTMLTransformInputTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetEnvOpts() {
 		$ctx = $this->newHTMLTransformInput();
-		$this->assertSame( 'byte', $ctx->getEnvironmentOffsetType() );
+		$this->assertSame( 'byte', $ctx->getOffsetType() );
 	}
 }

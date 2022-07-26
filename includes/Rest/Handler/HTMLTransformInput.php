@@ -14,7 +14,7 @@ class HTMLTransformInput {
 	private $original = [];
 
 	/** @var array */
-	private $opts = [];
+	private $options = [];
 
 	/** @var ?int */
 	private $oldid = null;
@@ -36,7 +36,7 @@ class HTMLTransformInput {
 	}
 
 	public function setOptions( array $options ) {
-		$this->opts = $options;
+		$this->options = $options;
 	}
 
 	/**
@@ -142,11 +142,11 @@ class HTMLTransformInput {
 	}
 
 	public function getContentModel(): ?string {
-		return $this->opts['contentmodel'] ?? null;
+		return $this->options['contentmodel'] ?? null;
 	}
 
-	public function getEnvironmentOffsetType(): string {
-		return $this->opts['offsetType'] ?? 'byte';
+	public function getOffsetType(): string {
+		return $this->options['offsetType'];
 	}
 
 }
