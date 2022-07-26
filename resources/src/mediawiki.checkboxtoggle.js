@@ -18,7 +18,7 @@
 		var $checkboxes = $( 'li input[type="checkbox"]' );
 
 		function selectAll( check ) {
-			$checkboxes.prop( 'checked', check ).change();
+			$checkboxes.prop( 'checked', check ).trigger( 'change' );
 		}
 
 		$( '.mw-checkbox-all' ).on( 'click', function () {
@@ -30,7 +30,7 @@
 		$( '.mw-checkbox-invert' ).on( 'click', function () {
 			$checkboxes.prop( 'checked', function ( i, val ) {
 				return !val;
-			} ).change();
+			} ).trigger( 'change' );
 		} );
 
 	} );
