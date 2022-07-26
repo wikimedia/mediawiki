@@ -374,6 +374,31 @@ function bindDismissOnFocusLoss( window, checkbox, button, target ) {
 }
 
 /**
+ * Dismiss the target when clicking on a link to prevent the target from being open
+ * when navigating to a new page.
+ *
+ * @param {Window} window
+ * @param {HTMLInputElement} checkbox
+ * @param {HTMLElement} button
+ * @param {Node} target
+ * @return {function(): void} Cleanup function that removes the added event listeners.
+ * @ignore
+ */
+function bindDismissOnClickLink( checkbox, target ) {
+	function dismissIfClickLinkEvent( event ) {
+		// Handle clicks to links and link children elements
+		if ( event.target.nodeName === 'A' || event.target.parentNode.nodeName === 'A' ) {
+			setCheckedState( checkbox, false );
+		}
+	}
+	target.addEventListener( 'click', dismissIfClickLinkEvent );
+
+	return function () {
+		target.removeEventListener( 'click', dismissIfClickLinkEvent );
+	};
+}
+
+/**
  * Dismiss the target when clicking or focusing elsewhere and update the `aria-expanded` attribute
  * based on checkbox state (target visibility) changes made by **the user.** When tapping the button
  * itself, clear the focus outline.
@@ -396,7 +421,8 @@ function bind( window, checkbox, button, target ) {
 		bindToggleOnClick( checkbox, button ),
 		bindToggleOnEnter( checkbox ),
 		bindDismissOnClickOutside( window, checkbox, button, target ),
-		bindDismissOnFocusLoss( window, checkbox, button, target )
+		bindDismissOnFocusLoss( window, checkbox, button, target ),
+		bindDismissOnClickLink( checkbox, target )
 	];
 
 	return function () {
@@ -414,5 +440,6 @@ module.exports = {
 	bindToggleOnEnter: bindToggleOnEnter,
 	bindDismissOnClickOutside: bindDismissOnClickOutside,
 	bindDismissOnFocusLoss: bindDismissOnFocusLoss,
+	bindDismissOnClickLink: bindDismissOnClickLink,
 	bind: bind
 };
