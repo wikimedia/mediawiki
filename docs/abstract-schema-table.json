@@ -36,6 +36,7 @@
 							"bigint",
 							"binary",
 							"blob",
+							"boolean",
 							"datetimetz",
 							"decimal",
 							"float",
@@ -134,7 +135,8 @@
 				},
 				"required": [
 					"name",
-					"type"
+					"type",
+					"options"
 				]
 			}
 		},
@@ -165,13 +167,19 @@
 					},
 					"unique": {
 						"type": "boolean",
-						"description": "If the index is unique"
+						"description": "If the index is unique",
+						"default": false
 					},
 					"flags": {
 						"type": "array",
 						"items": {
-							"type": "string"
-						}
+							"type": "string",
+							"enum": [
+								"fulltext",
+								"spatial"
+							]
+						},
+						"uniqueItems": true
 					},
 					"options": {
 						"type": "object",
@@ -191,7 +199,8 @@
 				},
 				"required": [
 					"name",
-					"columns"
+					"columns",
+					"unique"
 				]
 			}
 		},
