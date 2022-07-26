@@ -41,3 +41,5 @@ $magicWords = [
 	'currenttime'               => [ '1', 'NAKO_BJALE', 'CURRENTTIME' ],
 	'currentyear'               => [ '1', 'NGWAGA_BJALE', 'CURRENTYEAR' ],
 ];
+
+$linkTrail = '/^([A-Za-zŠÔÊšôê]+)(.*)$/sDu';
