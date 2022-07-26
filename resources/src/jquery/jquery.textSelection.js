@@ -45,10 +45,45 @@
 	 * @return {Mixed} Depending on the command
 	 */
 	$.fn.textSelection = function ( command, commandOptions ) {
-		function supportsExecCommand() {
+		// Checks if you can try to use insertText (it might still fail).
+		function supportsInsertText() {
 			return $( this ).data( 'jquery.textSelection' ) === undefined &&
+				typeof document.execCommand === 'function' &&
 				typeof document.queryCommandSupported === 'function' &&
 				document.queryCommandSupported( 'insertText' );
+		}
+
+		/**
+		 * Insert text into textarea or contenteditable.
+		 *
+		 * @ignore
+		 * @param {HTMLElement} field Field to select.
+		 * @param {string} content Text to insert.
+		 * @param {Function} fallback To execute as a fallback.
+		 */
+		function execInsertText( field, content, fallback ) {
+			// try to insert text
+			var pasted = true;
+			if ( !supportsInsertText() ) {
+				pasted = false;
+			} else {
+				field.focus();
+				try {
+					if ( !document.execCommand( 'insertText', false, content ) ) {
+						pasted = false;
+					}
+				} catch ( e ) {
+					pasted = false;
+				}
+			}
+			// fallback
+			if ( !pasted ) {
+				if ( typeof fallback === 'function' ) {
+					fallback.call( field, content );
+				} else {
+					throw new Error( 'paste unsuccessful, execCommand not supported' );
+				}
+			}
 		}
 
 		var fn = {
@@ -73,14 +108,10 @@
 			setContents: function ( content ) {
 				return this.each( function () {
 					var scrollTop = this.scrollTop;
-					if ( supportsExecCommand() ) {
-						this.select();
-						if ( !document.execCommand( 'insertText', false, content ) ) {
-							$( this ).val( content );
-						}
-					} else {
+					this.select();
+					execInsertText( this, content, function () {
 						$( this ).val( content );
-					}
+					} );
 					// Setting this.value may scroll the textarea, restore the scroll position
 					this.scrollTop = scrollTop;
 				} );
@@ -115,7 +146,7 @@
 			 */
 			replaceSelection: function ( value ) {
 				return this.each( function () {
-					if ( !supportsExecCommand() || !document.execCommand( 'insertText', false, value ) ) {
+					execInsertText( this, value, function () {
 						var allText = $( this ).textSelection( 'getContents' );
 						var currSelection = $( this ).textSelection( 'getCaretPosition', { startAndEnd: true } );
 						var startPos = currSelection[ 0 ];
@@ -127,7 +158,7 @@
 							start: startPos,
 							end: startPos + value.length
 						} );
-					}
+					} );
 				} );
 			},
 
