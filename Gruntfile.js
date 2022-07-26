@@ -55,7 +55,7 @@ module.exports = function ( grunt ) {
 			files: [
 				'.{stylelintrc,eslintrc.json}',
 				'**/*',
-				'!{docs,extensions,node_modules,skins,vendor}/**'
+				'!{extensions,node_modules,skins,vendor}/**'
 			],
 			tasks: 'test'
 		},
