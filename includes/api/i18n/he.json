@@ -1421,7 +1421,7 @@
 	"apihelp-tag-param-tags": "אילו תגים להחיל על רשומת היומן שתיווצר כתוצאה מהפעולה הזאת.",
 	"apihelp-tag-example-rev": "הוספת התג <kbd>vandalism</kbd> לגרסה עם המזהה 123 בלי לציין סיבה",
 	"apihelp-tag-example-log": "הסרת התג <kbd>spam</kbd> מרשומה עם המזהה 123 עם הסיבה <kbd>Wrongly applied</kbd>",
-	"apihelp-unblock-summary": "שחרור משתמש מחסימה.",
+	"apihelp-unblock-summary": "שחרור חסימת משתמש.",
 	"apihelp-unblock-param-id": "מזהה החסימה לשחרור (מתקבל דרך <kbd>list=blocks</kbd>). לא יכול לשמש יחד עם <var>$1user</var>.",
 	"apihelp-unblock-param-user": "שם משתמש שתוסר ממנו חסימה. לא יכול לשמש יחד עם <var>$1id</var>.",
 	"apihelp-unblock-param-userid": "יש לציין <kbd>$1user=#<var>ID</var></kbd> במקום.",

@@ -25,7 +25,8 @@
 			"Tarikozket",
 			"Uğur Başak",
 			"Vito Genovese",
-			"Vugar 1981"
+			"Vugar 1981",
+			"Cobija"
 		]
 	},
 	"exif-imagewidth": "Genişlik",
@@ -365,7 +366,7 @@
 	"exif-gpsdirection-t": "Gerçek yönü",
 	"exif-gpsdirection-m": "Manyetik yönü",
 	"exif-ycbcrpositioning-1": "Ortalanmış",
-	"exif-ycbcrpositioning-2": "Eş-yerleştirilmiş",
+	"exif-ycbcrpositioning-2": "Eşyerleştirilmiş",
 	"exif-dc-contributor": "Katkıda bulunanlar",
 	"exif-dc-coverage": "Medyanın konumsal ya da zamansal kapsamı",
 	"exif-dc-date": "Tarih",
