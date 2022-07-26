@@ -19,6 +19,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 
 		// Exactly the same
 		$module = new ResourceLoaderFileModule( $baseParams );
+		$module->setName( "" );
 		$this->assertEquals(
 			$version,
 			json_encode( $module->getVersionHash( $context ) ),
@@ -29,6 +30,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		$module = new ResourceLoaderFileModule( [
 			'dependencies' => [ 'mediawiki', 'jquery' ],
 		] + $baseParams );
+		$module->setName( "" );
 		$this->assertEquals(
 			$version,
 			json_encode( $module->getVersionHash( $context ) ),
@@ -39,6 +41,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		$module = new ResourceLoaderFileModule( [
 			'messages' => [ 'world', 'hello' ],
 		] + $baseParams );
+		$module->setName( "" );
 		$this->assertEquals(
 			$version,
 			json_encode( $module->getVersionHash( $context ) ),
@@ -49,6 +52,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		$module = new ResourceLoaderFileModule( [
 			'scripts' => [ 'bar.js', 'foo.js' ],
 		] + $baseParams );
+		$module->setName( "" );
 		$this->assertNotEquals(
 			$version,
 			json_encode( $module->getVersionHash( $context ) ),
@@ -57,6 +61,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 
 		// Subclass
 		$module = new ResourceLoaderFileModuleTestingSubclass( $baseParams );
+		$module->setName( "" );
 		$this->assertNotEquals(
 			$version,
 			json_encode( $module->getVersionHash( $context ) ),
@@ -69,6 +74,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 	 */
 	public function testGetVersionHash_debug() {
 		$module = new ResourceLoaderTestModule( [ 'script' => 'foo();' ] );
+		$module->setName( "" );
 		$context = $this->getResourceLoaderContext( [ 'debug' => 'true' ] );
 		$this->assertSame( '', $module->getVersionHash( $context ) );
 	}
@@ -81,6 +87,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		$module = new ResourceLoaderTestModule( [
 			'script' => 'foo();'
 		] );
+		$module->setName( "" );
 		$version = $module->getVersionHash( $context );
 		$this->assertSame( ResourceLoader::HASH_LENGTH, strlen( $version ), 'Hash length' );
 	}
@@ -93,6 +100,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		$module = $this->getMockBuilder( ResourceLoaderModule::class )
 			->onlyMethods( [ 'getDefinitionSummary' ] )->getMock();
 		$module->method( 'getDefinitionSummary' )->willReturn( [ 'a' => 'summary' ] );
+		$module->setName( "" );
 
 		$this->expectException( LogicException::class );
 		$this->expectExceptionMessage( 'must call parent' );
@@ -111,6 +119,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		] );
 		$context = $this->getResourceLoaderContext( [ 'debug' => 'true' ] );
 		$module->setConfig( $context->getResourceLoader()->getConfig() );
+		$module->setName( "" );
 
 		$this->assertEquals(
 			[
@@ -218,6 +227,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		$module = new ResourceLoaderTestModule( [
 			'script' => $raw
 		] );
+		$module->setName( "" );
 		$this->assertEquals( $raw, $module->getScript( $context ), 'Raw script' );
 		$this->assertEquals(
 			$build,
@@ -271,6 +281,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		$context = $this->getResourceLoaderContext();
 
 		$module = new ResourceLoaderTestModule();
+		$module->setName( "" );
 		$this->assertSame( [], $module->getHeaders( $context ), 'Default' );
 
 		$module = $this->getMockBuilder( ResourceLoaderTestModule::class )
@@ -292,6 +303,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 			'https://example.org/script.js' => [ 'as' => 'script' ],
 			'/example.png' => [ 'as' => 'image' ],
 		] );
+		$module->setName( "" );
 		$this->assertSame(
 			[
 				'Link: <https://example.org/script.js>;rel=preload;as=script,' .
