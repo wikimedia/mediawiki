@@ -2582,7 +2582,7 @@
 	"sp-contributions-concurrency-ip": "מצטערים, קיבלנו יותר מדי בקשות מכתובת ה־IP שלך. נא לנסות שוב מאוחר יותר.",
 	"whatlinkshere": "דפים המקושרים לכאן",
 	"whatlinkshere-count": "{{PLURAL:$1|מוצג פריט אחד|מוצגים $1 פריטים}}",
-	"whatlinkshere-title": "דפים המקשרים לדף \"$1\"",
+	"whatlinkshere-title": "דפים המקושרים לדף \"$1\"",
 	"whatlinkshere-page": "דף:",
 	"linkshere": "הדפים שלהלן מקשרים לדף <strong>$2</strong>:",
 	"nolinkshere": "אין דפים המקשרים לדף <strong>$2</strong>.",
