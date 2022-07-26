@@ -63,6 +63,8 @@ For notes on 1.39.x and older releases, see HISTORY.
 * (T324910) On pages using multi-content revisions, the raw content of a
   specific slot can be retrieved using the action=raw&slot=<role-name> query
   parameters.
+* (T313804) The preferences page now provides a search bar to find preferences,
+  regardless of the tab on which they appear.
 * …
 
 === New developer features in 1.40 ===
