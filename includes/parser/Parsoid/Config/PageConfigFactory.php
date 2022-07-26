@@ -19,10 +19,8 @@
 
 namespace MediaWiki\Parser\Parsoid\Config;
 
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -68,26 +66,23 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 	 * in background job parsing, although there are corner cases during
 	 * extension processing where a non-null $user could affect the output.
 	 *
-	 * @param PageIdentity|LinkTarget $pageId The page represented by the PageConfig.
+	 * @param PageIdentity $pageId The page represented by the PageConfig.
 	 * @param ?UserIdentity $user User who is doing rendering (for parsing options).
 	 * @param int|RevisionRecord|null $revision Revision id or a revision record
-	 * @param ?string $wikitextOverride Deprecated; should always be null.
+	 * @param ?string $unused
 	 * @param ?string $pagelanguageOverride
 	 * @param ?array $parsoidSettings Used to enable the debug API if requested
 	 * @return \Wikimedia\Parsoid\Config\PageConfig
 	 */
 	public function create(
-		$pageId,
+		PageIdentity $pageId,
 		?UserIdentity $user = null,
 		$revision = null,
-		?string $wikitextOverride = null, /* Deprecated */
+		?string $unused = null, /* Added to mollify CI with cross-repo uses */
 		?string $pagelanguageOverride = null,
 		?array $parsoidSettings = null
 	): \Wikimedia\Parsoid\Config\PageConfig {
-		$title = ( $pageId instanceof PageIdentity )
-			? Title::castFromPageIdentity( $pageId )
-			/* backwards compatibility with Parsoid <= 0.16.0-a12 */
-			: Title::castFromLinkTarget( $pageId );
+		$title = Title::castFromPageIdentity( $pageId );
 		'@phan-var Title $title';
 
 		if ( !empty( $parsoidSettings['debugApi'] ) ) {
@@ -95,20 +90,21 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 				throw new \InvalidArgumentException(
 					"Revision not provided. Cannot lookup revision via debug API." );
 			}
-			$revid = is_int( $revision ) ? $revision : $revision->getId();
 
 			$content = $revision->getContent( SlotRecord::MAIN );
-			if ( !( $content instanceof WikitextContent ) ) {
+			if ( $content instanceof WikitextContent ) {
+				$wtContent = $content->getText();
+				return ApiPageConfig::fromSettings( $parsoidSettings, [
+					"title" => $title->getPrefixedText(),
+					"pageContent" => $wtContent,
+					"pageLanguage" => $pagelanguageOverride,
+					"revid" => $revision->getId(),
+					"loadData" => true,
+				] );
+			} else {
 				throw new \UnexpectedValueException(
 					"Non-wikitext content models not supported by debug API" );
 			}
-			return ApiPageConfig::fromSettings( $parsoidSettings, [
-				"title" => $title->getPrefixedText(),
-				"pageContent" => $content->getText(),
-				"pageLanguage" => $pagelanguageOverride,
-				"revid" => $revid,
-				"loadData" => true,
-			] );
 		}
 
 		if ( $revision === null ) {
@@ -127,31 +123,28 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 		} elseif ( !is_int( $revision ) ) {
 			$revisionRecord = $revision;
 		} else {
-			$revisionId = $revision; // This is an integer
 			// Fetch the correct revision record by the supplied id.
 			// This accesses the replica DB and may (or may not) fail over to
 			// the primary DB if the revision isn't found.
-			$revisionRecord = $this->revisionStore->getRevisionById(
-				$revisionId
-			);
+			$revisionRecord = $this->revisionStore->getRevisionById( $revision );
 			if ( $revisionRecord === null ) {
 				// This revision really ought to exist.  Check the primary DB.
 				// This *could* cause two requests to the primary DB if there
 				// were pending writes, but this codepath should be very rare.
 				// [T259855]
 				$revisionRecord = $this->revisionStore->getRevisionById(
-					$revisionId, RevisionStore::READ_LATEST
+					$revision, RevisionStore::READ_LATEST
 				);
 				$success = ( $revisionRecord !== null ) ? 'success' : 'failure';
 				LoggerFactory::getInstance( 'Parsoid' )->error(
 					"Retried revision fetch after failure: {$success}", [
-						'id' => $revisionId,
+						'id' => $revision,
 						'title' => $title->getPrefixedText(),
 					]
 				);
 			}
 			if ( $revisionRecord === null ) {
-				throw new RevisionAccessException( "Can't find revision {$revisionId}" );
+				throw new RevisionAccessException( "Can't find revision {$revision}" );
 			}
 		}
 
@@ -164,28 +157,6 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 			)
 		) {
 			throw new RevisionAccessException( 'Not an available content version.' );
-		}
-
-		// FIXME: We need this fallback temporarily to make sure Parsoid repo
-		// doesn't break and so we don't have to worry about keeping deploys
-		// synced between core and Parsoid. Once gerrit:804300 merges, we can
-		// get rid of this override once more.
-		if ( $wikitextOverride !== null ) {
-			if ( $revisionRecord ) {
-				// PORT-FIXME this is not really the right thing to do; need
-				// a clone-like constructor for MutableRevisionRecord
-				$revisionRecord = MutableRevisionRecord::newFromParentRevision(
-					$revisionRecord
-				);
-			} else {
-				$revisionRecord = new MutableRevisionRecord( $title );
-			}
-			$revisionRecord->setSlot(
-				SlotRecord::newUnsaved(
-					SlotRecord::MAIN,
-					new WikitextContent( $wikitextOverride )
-				)
-			);
 		}
 
 		$parserOptions =
