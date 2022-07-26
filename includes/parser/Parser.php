@@ -5888,7 +5888,9 @@ class Parser {
 
 		# Use specified revision timestamp, falling back to the current timestamp
 		$revObject = $this->getRevisionRecordObject();
-		$timestamp = $revObject ? $revObject->getTimestamp() : $this->mOptions->getTimestamp();
+		$timestamp = $revObject && $revObject->getTimestamp()
+			? $revObject->getTimestamp()
+			: $this->mOptions->getTimestamp();
 		$this->mOutput->setRevisionTimestampUsed( $timestamp ); // unadjusted time zone
 
 		# The cryptic '' timezone parameter tells to use the site-default

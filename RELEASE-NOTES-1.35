@@ -14,6 +14,10 @@ PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 
 === Changes since MediaWiki 1.35.7 ===
 
+* Change type hints for BatchRowIterator and NotRecursiveIterator for
+* Parser will use current timestamp instead of null if passed a RevisionRecord
+  that does not have a timestamp.
+
 == MediaWiki 1.35.7 ==
 
 This is a security and maintenance release of the MediaWiki 1.35 branch.
@@ -45,7 +49,6 @@ This is a security and maintenance release of the MediaWiki 1.35 branch.
 * (T296642) changetags: Fix management of a '0' tag.
 * (T311554) ChangeTags: Return early in formatSummaryRow() if $tags === null.
 * (T303033) Handle null in ChangeTags::modifyDisplayQuery.
-* Change type hints for BatchRowIterator and NotRecursiveIterator for
   compatibility with PHP 8.1
 
 == MediaWiki 1.35.6 ==
