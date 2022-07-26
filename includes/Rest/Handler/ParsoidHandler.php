@@ -156,7 +156,7 @@ abstract class ParsoidHandler extends Handler {
 			// offsetType, or that it matches the conversion that has been
 			// explicitly requested.
 			if ( isset( $origPb->parsoid['offsetType'] ) ) {
-				$offsetType = $input->getEnvironmentOffsetType();
+				$offsetType = $input->getOffsetType();
 				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 				$origOffsetType = $origPb->parsoid['offsetType'];
 				if ( $origOffsetType !== $offsetType ) {
@@ -372,7 +372,10 @@ abstract class ParsoidHandler extends Handler {
 		$doc = $this->parseHTML( $html, true );
 
 		$input = new HTMLTransformInput( $doc );
-		$input->setOptions( $attribs['opts'] ?? [] );
+		$input->setOptions( [
+			'contentmodel' => $attribs['opts']['contentmodel'] ?? null,
+			'offsetType' => $attribs['offsetType'] ?? 'byte',
+		] );
 		$input->setInputFormat( $attribs['opts']['from'] );
 
 		if ( isset( $attribs['oldid'] ) ) {
@@ -1044,7 +1047,7 @@ abstract class ParsoidHandler extends Handler {
 		try {
 			$wikitext = $parsoid->dom2wikitext( $pageConfig, $doc, [
 				'inputContentVersion' => $inputContentVersion,
-				'offsetType' => $input->getEnvironmentOffsetType(),
+				'offsetType' => $input->getOffsetType(),
 				'contentmodel' => $input->getContentModel(),
 				'htmlSize' => $htmlSize,
 			], $selserData );
