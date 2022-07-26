@@ -29,6 +29,7 @@
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -1293,9 +1294,24 @@ class ParserTestRunner {
 		}
 
 		if ( isset( $output ) && isset( $opts['showflags'] ) ) {
-			$actualFlags = array_keys( TestingAccessWrapper::newFromObject( $output )->mFlags );
+			$actualFlags = [];
+			foreach ( ParserOutputFlags::cases() as $name ) {
+				if ( $output->getOutputFlag( $name ) ) {
+					$actualFlags[] = $name;
+				}
+			}
 			sort( $actualFlags );
 			$out .= "\nflags=" . implode( ', ', $actualFlags );
+			# In 1.21 we deprecated the use of arbitrary keys for
+			# ParserOutput::setFlag() by extensions; if we find anyone
+			# still doing that complain about it.
+			$oldFlags = array_diff_key(
+				TestingAccessWrapper::newFromObject( $output )->mFlags,
+				array_fill_keys( ParserOutputFlags::cases(), true )
+			);
+			if ( $oldFlags ) {
+				wfDeprecated( 'Arbitrary flags in ParserOutput', '1.39' );
+			}
 		}
 
 		ScopedCallback::consume( $teardownGuard );

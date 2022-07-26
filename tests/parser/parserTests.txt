@@ -20659,6 +20659,10 @@ parsoid={ "modes": ["wt2html","html2html"], "normalizePhp": true }
 <dd>&#x10fffd; &#x10fffe; &#x10ffff;</dd></dl>
 !! end
 
+# test added in 4e717c01589378893c98e333884315c166c217b3
+# __FORCETOC__ won't set show-toc if there are no sections
+# present to show; also test that __NEWSECTIONLINK__ results in the
+# proper ParserOutputFlag being set.
 !! test
 __FORCETOC__ override
 !! options
@@ -20669,7 +20673,7 @@ __FORCETOC__
 !! html/php
 <p><br />
 </p>
-flags=
+flags=mw-NewSection
 !! end
 
 !! test
