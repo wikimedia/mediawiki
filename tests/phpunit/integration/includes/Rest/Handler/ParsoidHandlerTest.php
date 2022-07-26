@@ -902,6 +902,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		// DSR offsetType mismatch: UCS2 vs byte ///////////////////////////////
 		$attribs = [
+			'offsetType' => 'byte',
 			'envOptions' => [
 				'offsetType' => 'byte',
 			],
@@ -927,6 +928,38 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$html,
 			new HttpException(
 				'DSR offsetType mismatch: UCS2 vs byte',
+				406
+			)
+		];
+
+		// DSR offsetType mismatch: byte vs. UCS2 ///////////////////////////////
+		$attribs = [
+			'offsetType' => 'UCS2',
+			'envOptions' => [
+				'offsetType' => 'UCS2',
+			],
+			'opts' => [
+				// Enable selser
+				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
+				'original' => [
+					'html' => [
+						'headers' => $htmlHeaders,
+						'body' => $html,
+					],
+					'data-parsoid' => [
+						'body' => [
+							'offsetType' => 'byte',
+							'ids' => [],
+						]
+					],
+				]
+			],
+		];
+		yield 'DSR offsetType mismatch: byte vs UCS2' => [
+			$attribs,
+			$html,
+			new HttpException(
+				'DSR offsetType mismatch: byte vs UCS2',
 				406
 			)
 		];
