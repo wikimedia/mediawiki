@@ -78,7 +78,7 @@ class DatabaseSqlite extends Database {
 	public function __construct( array $params ) {
 		if ( isset( $params['dbFilePath'] ) ) {
 			$this->dbPath = $params['dbFilePath'];
-			if ( !strlen( $params['dbname'] ) ) {
+			if ( !isset( $params['dbname'] ) || $params['dbname'] === '' ) {
 				$params['dbname'] = self::generateDatabaseName( $this->dbPath );
 			}
 		} elseif ( isset( $params['dbDirectory'] ) ) {
