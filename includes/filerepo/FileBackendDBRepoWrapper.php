@@ -118,7 +118,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 						__METHOD__
 					);
 				}
-				if ( !strlen( $sha1 ) ) {
+				if ( $sha1 === null || !strlen( $sha1 ) ) {
 					$resolved[$i] = $path; // give up
 					continue;
 				}
