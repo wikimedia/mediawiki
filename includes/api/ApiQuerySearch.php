@@ -365,13 +365,16 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		if ( isset( $prop['titlesnippet'] ) ) {
 			$fields[] = 'title';
 		}
-		if ( isset( $prop['redirectsnippet'] ) ) {
+		// checking snippet and title variants is a bit special cased, but some search
+		// engines generate the title variant from the snippet and thus must have the
+		// snippet requested to provide the title.
+		if ( isset( $prop['redirectsnippet'] ) || isset( $prop['redirecttitle'] ) ) {
 			$fields[] = 'redirect';
 		}
 		if ( isset( $prop['categorysnippet'] ) ) {
 			$fields[] = 'category';
 		}
-		if ( isset( $prop['sectionsnippet'] ) ) {
+		if ( isset( $prop['sectionsnippet'] ) || isset( $prop['sectiontitle'] ) ) {
 			$fields[] = 'heading';
 		}
 		return $fields;
