@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @coversDefaultClass LocalRepo
  * @group Database
@@ -269,10 +271,10 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::getInfo
 	 */
 	public function testGetInfo() {
-		$this->setMwGlobals( [
-			'wgServer' => '//example.org',
-			'wgFavicon' => 'https://global.example/favicon.ico',
-			'wgSitename' => 'Test my site',
+		$this->overrideConfigValues( [
+			MainConfigNames::Server => '//example.org',
+			MainConfigNames::Favicon => 'https://global.example/favicon.ico',
+			MainConfigNames::Sitename => 'Test my site',
 		] );
 
 		$repo = $this->newRepo( [ 'favicon' => '/img/favicon.ico' ] );

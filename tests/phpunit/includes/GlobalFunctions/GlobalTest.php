@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Logger\LegacyLogger;
+use MediaWiki\MainConfigNames;
 
 /**
  * @group Database
@@ -13,10 +14,10 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 		$readOnlyFile = $this->getNewTempFile();
 		unlink( $readOnlyFile );
 
-		$this->setMwGlobals( [
-			'wgReadOnly' => null,
-			'wgReadOnlyFile' => $readOnlyFile,
-			'wgUrlProtocols' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::ReadOnly => null,
+			MainConfigNames::ReadOnlyFile => $readOnlyFile,
+			MainConfigNames::UrlProtocols => [
 				'http://',
 				'https://',
 				'mailto:',
@@ -134,9 +135,7 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( 'wfReadOnlyReason' );
 		$this->assertFalse( wfReadOnlyReason() );
 
-		$this->setMwGlobals( [
-			'wgReadOnly' => 'reason'
-		] );
+		$this->overrideConfigValue( MainConfigNames::ReadOnly, 'reason' );
 
 		$this->assertSame( 'reason', wfReadOnlyReason() );
 	}
@@ -246,9 +245,7 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	public function testDebugFunctionTest() {
 		$debugLogFile = $this->getNewTempFile();
 
-		$this->setMwGlobals( [
-			'wgDebugLogFile' => $debugLogFile,
-		] );
+		$this->overrideConfigValue( MainConfigNames::DebugLogFile, $debugLogFile );
 		$this->setLogger( 'wfDebug', new LegacyLogger( 'wfDebug' ) );
 
 		unlink( $debugLogFile );

@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group GlobalFunctions
  * @covers ::wfParseUrl
@@ -28,7 +30,7 @@ class WfParseUrlTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( 'wgUrlProtocols', [
+		$this->overrideConfigValue( MainConfigNames::UrlProtocols, [
 			'//',
 			'http://',
 			'https://',
