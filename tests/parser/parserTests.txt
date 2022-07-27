@@ -1521,10 +1521,8 @@ Implicit newline insertion/sol when expanding templates (T241150/T14974/T2529)
 <ol><li>foo</li>
 <li>foo</li></ol>
 !! html/parsoid
-<ol typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"#foo"}},"i":0}},{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"#foo"}},"i":1}}]}'>
-<li>foo</li>
-<li>foo</li>
-</ol>
+<ol about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}],[{"k":"1"}]],"dsr":[0,22,null,null]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"#foo"}},"i":0}},{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"#foo"}},"i":1}}]}'><li>foo</li>
+<li>foo</li></ol>
 !! end
 
 ###
@@ -10597,7 +10595,6 @@ List items are not parsed correctly following a <pre> block (T2785)
 <li>zar</li></ul>
 !! end
 
-# FIXME: Might benefit from a html/parsoid since this has a template
 !! test
 List items from template
 !! wikitext
@@ -10612,7 +10609,7 @@ List items from template
 *item 0
 *notSOL{{inner list}}
 *item 2
-!! html
+!! html/php
 <ul><li>item 1</li>
 <li>item 2</li></ul>
 <ul><li>item 0</li>
@@ -10621,6 +10618,18 @@ List items from template
 <ul><li>item 0</li>
 <li>notSOL</li>
 <li>item 1</li>
+<li>item 2</li></ul>
+!! html/parsoid
+<ul about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"inner list","href":"./Template:Inner_list"},"params":{},"i":0}},"\n*item 2"]}'><li>item 1</li>
+<li>item 2</li></ul>
+
+<ul><li>item 0</li>
+<li about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"inner list","href":"./Template:Inner_list"},"params":{},"i":0}}]}'>item 1</li>
+<li>item 2</li></ul>
+
+<ul><li>item 0</li>
+<li>notSOL</li><span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"inner list","href":"./Template:Inner_list"},"params":{},"i":0}}]}'>
+</span><li about="#mwt3">item 1</li>
 <li>item 2</li></ul>
 !! end
 
@@ -10811,9 +10820,8 @@ parsoid=wt2html
 !! wikitext
 * {{bullet}}
 !! html/parsoid
-<ul>
-<li class="mw-empty-elt"> </li><li about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"bullet","href":"./Template:Bullet"},"params":{},"i":0}}]}'> Bar</li>
-</ul>
+<ul><li class="mw-empty-elt"></li><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"bullet","href":"./Template:Bullet"},"params":{},"i":0}}]}'>
+</span><li about="#mwt1">Bar</li></ul>
 !! end
 
 # ------------------------------------------------------------------------
@@ -12642,7 +12650,7 @@ Template:table
 T2529: Template with table, not included at beginning of line
 !! wikitext
 foo {{table}}
-!! html
+!! html/php
 <p>foo 
 </p>
 <table>
@@ -12654,6 +12662,13 @@ foo {{table}}
 <td>3</td>
 <td>4
 </td></tr></tbody></table>
+!! html/parsoid
+<p>foo </p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"table","href":"./Template:Table"},"params":{},"i":0}}]}'>
+</span><table about="#mwt1">
+<tbody><tr><td>1</td><td>2</td></tr>
+<tr>
+<td>3</td><td>4</td></tr>
+</tbody></table>
 !! end
 
 !! test
@@ -13334,7 +13349,7 @@ Preprocessor precedence 5: tplarg takes precedence over template
 !! html/php
 <ul><li>Bar</li></ul>
 !! html/parsoid
-<ul typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Precedence5","href":"./Template:Precedence5"},"params":{"1":{"wt":"Bullet"}},"i":0}}]}'><li>Bar</li></ul>
+<ul about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Precedence5","href":"./Template:Precedence5"},"params":{"1":{"wt":"Bullet"}},"i":0}}]}'><li>Bar</li></ul>
 !! end
 
 !! test
@@ -13433,19 +13448,10 @@ Preprocessor precedence 9: groups of braces
 <dt>7</dt>
 <dd>{Bullet}</dd></dl>
 !! html/parsoid
-<dl about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Preprocessor precedence 9","href":"./Template:Preprocessor_precedence_9"},"params":{"1":{"wt":"Four"},"2":{"wt":"Bullet"},"3":{"wt":"1"},"4":{"wt":"2"}},"i":0}}]}'>
-<dt>4</dt>
-<dd>{Four}</dd>
-<dt>5</dt>
-<dd></dd>
-</dl><ul about="#mwt1">
-<li>Bar</li>
-</ul><span about="#mwt1"> </span><dl about="#mwt1">
-<dt>6</dt>
-<dd>Four</dd>
-<dt>7</dt>
-<dd>{Bullet}</dd>
-</dl>
+<dl about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Preprocessor precedence 9","href":"./Template:Preprocessor_precedence_9"},"params":{"1":{"wt":"Four"},"2":{"wt":"Bullet"},"3":{"wt":"1"},"4":{"wt":"2"}},"i":0}}]}'><dt>4</dt><dd>{Four}</dd>
+<dt>5</dt><dd></dd></dl><ul about="#mwt1"><li>Bar</li></ul><span about="#mwt1">
+</span><dl about="#mwt1"><dt>6</dt><dd>Four</dd>
+<dt>7</dt><dd>{Bullet}</dd></dl>
 !! end
 
 !! article
@@ -13484,28 +13490,13 @@ language=zh
 <dt>7</dt>
 <dd>raw2</dd></dl>
 !! html/parsoid
-<dl about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Preprocessor precedence 10","href":"./Template:Preprocessor_precedence_10"},"params":{"1":{"wt":"Three"},"2":{"wt":"raw2"},"3":{"wt":"Bullet"},"4":{"wt":"1"},"5":{"wt":"2"}},"i":0}}]}'>
-<dt>1</dt>
-<dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw"}}'></span></dd>
-<dt>2</dt>
-<dd>-</dd>
-</dl><ul about="#mwt1">
-<li>Bar-</li>
-</ul><span about="#mwt1"> </span><dl about="#mwt1">
-<dt>3</dt>
-<dd>-Three-</dd>
-<dt>4</dt>
-<dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw2"}}'></span></dd>
-<dt>5</dt>
-<dd>-</dd>
-</dl><ul about="#mwt1">
-<li>Bar-</li>
-</ul><span about="#mwt1"> </span><dl about="#mwt1">
-<dt>6</dt>
-<dd>-Three-</dd>
-<dt>7</dt>
-<dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw2"}}'></span></dd>
-</dl>
+<dl about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"},{"k":"2"},{"k":"3"},{"k":"4"},{"k":"5"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"Preprocessor precedence 10","href":"./Template:Preprocessor_precedence_10"},"params":{"1":{"wt":"Three"},"2":{"wt":"raw2"},"3":{"wt":"Bullet"},"4":{"wt":"1"},"5":{"wt":"2"}},"i":0}}]}'><dt>1</dt><dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw"}}'></span></dd>
+<dt>2</dt><dd>-</dd></dl><ul about="#mwt1"><li>Bar-</li></ul><span about="#mwt1">
+</span><dl about="#mwt1"><dt>3</dt><dd>-Three-</dd>
+<dt>4</dt><dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw2"}}'></span></dd>
+<dt>5</dt><dd>-</dd></dl><ul about="#mwt1"><li>Bar-</li></ul><span about="#mwt1">
+</span><dl about="#mwt1"><dt>6</dt><dd>-Three-</dd>
+<dt>7</dt><dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw2"}}'></span></dd></dl>
 !! end
 
 !! test
@@ -14288,7 +14279,7 @@ Table cell with attribute before expanded attribute
 !! html/php
 <div style="background:#f9f9f9;">foo</div>
 !! html/parsoid
-<div style="background:#f9f9f9;" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html"}' data-mw='{"attribs":[[{"txt":"style","html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"style{{=}}\\\"background:&amp;amp;#35;f9f9f9;\\\"\"}},\"i\":0}}]}&#39;>style&lt;/span>&lt;span typeof=\"mw:Nowiki\" about=\"#mwt1\" data-parsoid=\"{}\">=&lt;/span>&lt;span about=\"#mwt1\" data-parsoid=\"{}\">\"background:&lt;/span>&lt;span typeof=\"mw:Entity\" about=\"#mwt1\" data-parsoid=&#39;{\"src\":\"&amp;amp;#35;\",\"srcContent\":\"#\"}&#39;>#&lt;/span>&lt;span about=\"#mwt1\" data-parsoid=\"{}\">f9f9f9;\"&lt;/span>"},{"html":""}]]}'>foo</div>
+<div style="background:#f9f9f9;" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html"}' data-mw='{"attribs":[[{"txt":"style","html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[5,47,null,null]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"style{{=}}\\\"background:&amp;amp;#35;f9f9f9;\\\"\"}},\"i\":0}}]}&apos;>style=\"background:&lt;/span>&lt;span typeof=\"mw:Entity\" about=\"#mwt1\" data-parsoid=&apos;{\"src\":\"&amp;amp;#35;\",\"srcContent\":\"#\"}&apos;>#&lt;/span>&lt;span about=\"#mwt1\" data-parsoid=\"{}\">f9f9f9;\"&lt;/span>"},{"html":""}]]}'>foo</div>
 !! end
 
 !! test
@@ -14584,7 +14575,8 @@ Templates: Wiki Tables: 7. Fosterable <ref>s should get fostered
 
 <references />
 !! html/parsoid
-<p about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"PartialTable","href":"./Template:PartialTable"},"params":{},"i":0}},"&lt;ref>foo&lt;/ref>\n|}"]}'><sup about="#mwt3" class="mw-ref reference" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{},"body":{"id":"mw-reference-text-cite_note-1"}}'><a href="./Parser_test#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></sup></p><table about="#mwt2">
+<p about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"PartialTable","href":"./Template:PartialTable"},"params":{},"i":0}},"&lt;ref>foo&lt;/ref>\n|}"]}'>
+<sup about="#mwt3" class="mw-ref reference" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{},"body":{"id":"mw-reference-text-cite_note-1"}}'><a href="./Parser_test#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></sup></p><table about="#mwt2">
 <tbody>
 </tbody></table>
 
@@ -14613,16 +14605,16 @@ Templates: Wiki Tables: 8. Fosterable meta-tags should get fostered
 |foo
 |}
 !! html/parsoid
-<meta typeof="mw:Transclusion mw:Includes/OnlyInclude" about="#mwt1" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"UnclosedTableEndsWithTR","href":"./Template:UnclosedTableEndsWithTR"},"params":{},"i":0}},"\n&lt;onlyinclude>\n|foo\n&lt;/onlyinclude>\n|}"]}'/><table about="#mwt1">
-
+<meta typeof="mw:Transclusion mw:Includes/OnlyInclude" about="#mwt1" data-mw='{"parts":[{"template":{"target":{"wt":"UnclosedTableEndsWithTR","href":"./Template:UnclosedTableEndsWithTR"},"params":{},"i":0}},"\n&lt;onlyinclude>\n|foo\n&lt;/onlyinclude>\n|}"]}'/>
+<table about="#mwt1">
 <tbody><tr>
 
 <td>foo
 <meta typeof="mw:Includes/OnlyInclude/End"/></td></tr>
-</tbody></tbody></table>
+</tbody></table>
 
 <meta typeof="mw:Includes/NoInclude" data-parsoid='{"src":"&lt;noinclude>"}'/>
-<meta typeof="mw:Transclusion mw:Includes/NoInclude/End" about="#mwt2" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"UnclosedTableEndsWithTR","href":"./Template:UnclosedTableEndsWithTR"},"params":{},"i":0}},"\n&lt;/noinclude>\n|foo\n|}"]}'/><table about="#mwt2">
+<meta about="#mwt2" typeof="mw:Transclusion mw:Includes/NoInclude/End" data-mw='{"parts":[{"template":{"target":{"wt":"UnclosedTableEndsWithTR","href":"./Template:UnclosedTableEndsWithTR"},"params":{},"i":0}},"\n&lt;/noinclude>\n|foo\n|}"]}'/> <table about="#mwt2">
 <tbody><tr>
 
 <td>foo</td></tr>
@@ -18282,6 +18274,9 @@ Expansion of multi-line templates in attribute values (T8255)
 <div style="background: {{identity|#00FF00}}">-</div>
 !! html
 <div style="background: #00FF00">-</div>
+!! html/parsoid
+<div style="background: 
+#00FF00" about="#mwt2" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html","a":{"style":"background: \n#00FF00"},"sa":{"style":"background: {{identity|#00FF00}}"}}' data-mw='{"attribs":[[{"txt":"style"},{"html":"background: &lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&apos;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[24,44,null,null]}&apos; data-mw=&apos;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"identity\",\"href\":\"./Template:Identity\"},\"params\":{\"1\":{\"wt\":\"#00FF00\"}},\"i\":0}}]}&apos;>\n#00FF00&lt;/span>"}]]}'>-</div>
 !! end
 
 !! test
@@ -20473,6 +20468,60 @@ Single {{!}} in table cell
 </tbody></table>
 !! end
 
+!! article
+Template:T290526
+!! text
+Main Page{{!}}Something else
+!! endarticle
+
+!! test
+Using {{!}} in wikilinks (T290526)
+!! wikitext
+[[Main Page{{!}}Something else]]
+
+[[{{T290526}}]]
+!! html
+<p><a href="/wiki/Main_Page" title="Main Page">Something else</a>
+</p><p><a href="/wiki/Main_Page" title="Main Page">Something else</a>
+</p>
+!! end
+
+!! test
+Using {{!}} in template arguments (T290526)
+!! wikitext
+{{1x|Main Page{{!}}Something else}}
+
+{{1x|{{T290526}}}}
+!! html/php
+<p>Main Page|Something else
+</p><p>Main Page|Something else
+</p>
+!! html/parsoid
+<p><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"Main Page{{!}}Something else"}},"i":0}}]}'>Main Page|Something else</span></p>
+
+<p><span about="#mwt3" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"{{T290526}}"}},"i":0}}]}'>Main Page|Something else</span></p>
+!! end
+
+# wt2wt,html2wt,html2html modes will add <nowiki> around the {{ }} in
+# the last line
+!! test
+Using {{!}} in template arguments, part 2 (T290526)
+!! options
+parsoid=wt2html
+!! wikitext
+{{ Main Page|Something else }}
+
+{{ {{T290526}} }}
+!! html/php
+<p><a href="/index.php?title=Template:Main_Page&amp;action=edit&amp;redlink=1" class="new" title="Template:Main Page (page does not exist)">Template:Main Page</a>
+</p><p>{{ Main Page|Something else }}
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Template:Main_Page" title="Template:Main Page" about="#mwt1" typeof="mw:Transclusion" class="new" data-parsoid='{"stx":"simple","a":{"href":"./Template:Main_Page"},"sa":{"href":"Template:Main_Page"},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"Main Page","href":"./Template:Main_Page"},"params":{"1":{"wt":"Something else "}},"i":0}}]}'>Template:Main_Page</a></p>
+
+<p>{{ <span about="#mwt9" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"T290526","href":"./Template:T290526"},"params":{},"i":0}}]}'>Main Page|Something else</span> }}</p>
+!! end
+
 !! test
 Say the magic word
 !! options
@@ -22578,18 +22627,24 @@ language=ban variant=ban-x-palmleaf
 T2529: Uncovered bullet
 !! wikitext
 *Foo {{bullet}}
-!! html
+!! html/php
 <ul><li>Foo</li>
 <li>Bar</li></ul>
+!! html/parsoid
+<ul><li>Foo</li><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"bullet","href":"./Template:Bullet"},"params":{},"i":0}}]}'>
+</span><li about="#mwt1">Bar</li></ul>
 !! end
 
 !! test
 T2529: Uncovered bullet in a deeply nested list
 !! wikitext
 *******Foo {{bullet}}
-!! html
+!! html/php
 <ul><li><ul><li><ul><li><ul><li><ul><li><ul><li><ul><li>Foo</li></ul></li></ul></li></ul></li></ul></li></ul></li></ul></li>
 <li>Bar</li></ul>
+!! html/parsoid
+<ul><li><ul><li><ul><li><ul><li><ul><li><ul><li><ul><li>Foo</li></ul></li></ul></li></ul></li></ul></li></ul></li></ul></li><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"bullet","href":"./Template:Bullet"},"params":{},"i":0}}]}'>
+</span><li about="#mwt1">Bar</li></ul>
 !! end
 
 !! test
@@ -22599,7 +22654,7 @@ x
 
 {{table}}
 y
-!! html
+!! html/php
 <p>x
 </p>
 <table>
@@ -22613,15 +22668,30 @@ y
 </td></tr></tbody></table>
 <p>y
 </p>
+!! html/parsoid
+<p>x</p>
+
+<table about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"table","href":"./Template:Table"},"params":{},"i":0}}]}'>
+<tbody><tr><td>1</td><td>2</td></tr>
+<tr>
+<td>3</td><td>4</td></tr>
+</tbody></table>
+<p>y</p>
 !! end
 
+## FIXME: Parsoid & legacy parser results differ here.
+## This will be fixed in integrated mode testing and standalone
+## mode testing will be disabled on this test since parser functions
+## aren't properly implemented in Parsoid for standalone testing.
 !! test
 T2529: Uncovered bullet in parser function result
 !! wikitext
 *Foo {{lc:{{bullet}} }}
-!! html
+!! html/php
 <ul><li>Foo</li>
 <li>bar</li></ul>
+!! html/parsoid
+<ul><li>Foo <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"lc:{{bullet}} ","function":"lc"},"params":{},"i":0}}]}'>bar </span></li></ul>
 !! end
 
 !! test
@@ -24428,9 +24498,11 @@ x<langconvert from="crh-latn" to="crh-cyrl"/>x
 Using {{=}} when it expands to "=" should not create a tracking category
 !! wikitext
 This uses {{=}} and {{Template:=}}.
-!! html
+!! html/php
 <p>This uses = and =.
 </p>
+!! html/parsoid
+<p>This uses <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"=","function":"="},"params":{},"i":0}}]}'>=</span> and <span typeof="mw:Nowiki mw:Transclusion" about="#mwt2" data-mw='{"parts":[{"template":{"target":{"wt":"Template:=","href":"./Template:="},"params":{},"i":0}}]}'>=</span>.</p>
 !! end
 
 # Repeat the test, looking at categories.  Note: none should be emitted!
@@ -24514,15 +24586,9 @@ parsoid=wt2html,wt2wt
 <ol><li>a</li></ol>
 <dl><dd>a</dd></dl>
 !! html/parsoid
-<span about="#mwt1" typeof="mw:Transclusion">
-</span><ul about="#mwt1"><li>a</li>
-</ul>
-<span about="#mwt2" typeof="mw:Transclusion">
-</span><ol about="#mwt2"><li>a</li>
-</ol>
-<span about="#mwt3" typeof="mw:Transclusion">
-</span><dl about="#mwt3"><dd>a</dd>
-</dl>
+<ul about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"*a"}},"i":0}}]}'><li>a</li></ul>
+<ol about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"#a"}},"i":0}}]}'><li>a</li></ol>
+<dl about="#mwt3" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":":a"}},"i":0}}]}'><dd>a</dd></dl>
 !!end
 
 #### -----------------------------------------------------------------
@@ -24576,24 +24642,24 @@ LST Sections: Newfangled approach
 
 !! test
 Empty LI and TR nodes should be stripped from template content
+!! options
+parsoid=wt2html,wt2wt
 !! wikitext
 {{EmptyLITest}}
 {{EmptyTRTest}}
 !! html/parsoid
-<ul about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"EmptyLITest","href":"./Template:EmptyLITest"},"params":{},"i":0}}]}'>
-<li>a</li>
-<li>b</li>
-</ul>
+<ul about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"EmptyLITest","href":"./Template:EmptyLITest"},"params":{},"i":0}}]}'><li>a</li>
+
+
+<li>b</li></ul>
 <table about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"EmptyTRTest","href":"./Template:EmptyTRTest"},"params":{},"i":0}}]}'>
 <tbody>
 <tr>
-<td>foo</td>
-</tr>
+<td>foo</td></tr>
+
 <tr>
-<td>bar</td>
-</tr>
-</tbody>
-</table>
+<td>bar</td></tr>
+</tbody></table>
 !! end
 
 !! test
@@ -27134,7 +27200,8 @@ parsoid=wt2html
 </div>
 |}
 !! html/parsoid
-<div about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"OpenTable","href":"./Template:OpenTable"},"params":{},"i":0}},"\n&lt;div>\n"]}' data-parsoid='{"stx":"html","autoInsertedEnd":true,"pi":[[]]}'></div><span about="#mwt1">
+<div about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"OpenTable","href":"./Template:OpenTable"},"params":{},"i":0}},"\n&lt;div>\n"]}' data-parsoid='{"stx":"html","autoInsertedEnd":true,"pi":[[]]}'>
+</div><span about="#mwt1">
 </span>
 <table about="#mwt1" data-parsoid='{"autoInsertedEnd":true}'></table>
 
