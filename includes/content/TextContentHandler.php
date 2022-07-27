@@ -197,7 +197,9 @@ class TextContentHandler extends ContentHandler {
 	 * provided by getHtml().
 	 *
 	 * For content models listed in $wgTextModelsToParse, this method will call the MediaWiki
-	 * wikitext parser on the text to extract any (wikitext) links, magic words, etc.
+	 * wikitext parser on the text to extract any (wikitext) links, magic words, etc.,
+	 * but note that the Table of Contents will *not* be generated
+	 * (feature added by T307691, but should be refactored: T313455).
 	 *
 	 * Subclasses may override this to provide custom content processing.
 	 * For custom HTML generation alone, it is sufficient to override getHtml().
