@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
@@ -54,7 +55,7 @@ class ExternalStoreFactoryTest extends MediaWikiIntegrationTestCase {
 		$active = [ 'memory', 'mwstore' ];
 		$defaults = [ 'memory://cluster1', 'memory://cluster2', 'mwstore://memstore1' ];
 		$esFactory = new ExternalStoreFactory( $active, $defaults, 'db-prefix' );
-		$this->setMwGlobals( 'wgFileBackends', [
+		$this->overrideConfigValue( MainConfigNames::FileBackends, [
 			[
 				'name' => 'memstore1',
 				'class' => 'MemoryFileBackend',

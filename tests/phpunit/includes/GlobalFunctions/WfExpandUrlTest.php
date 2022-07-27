@@ -1,4 +1,6 @@
 <?php
+
+use MediaWiki\MainConfigNames;
 use MediaWiki\Utils\UrlUtils;
 
 /**
@@ -14,14 +16,14 @@ class WfExpandUrlTest extends MediaWikiIntegrationTestCase {
 		$defaultProto, string $expected
 	) {
 		$conf = [
-			'wgServer' => $options[UrlUtils::SERVER] ?? null,
-			'wgCanonicalServer' => $options[UrlUtils::CANONICAL_SERVER] ?? null,
-			'wgInternalServer' => $options[UrlUtils::INTERNAL_SERVER] ?? null,
-			'wgHttpsPort' => $options[UrlUtils::HTTPS_PORT] ?? 443,
+			MainConfigNames::Server => $options[UrlUtils::SERVER] ?? null,
+			MainConfigNames::CanonicalServer => $options[UrlUtils::CANONICAL_SERVER] ?? null,
+			MainConfigNames::InternalServer => $options[UrlUtils::INTERNAL_SERVER] ?? null,
+			MainConfigNames::HttpsPort => $options[UrlUtils::HTTPS_PORT] ?? 443,
 		];
 		$currentProto = $options[UrlUtils::FALLBACK_PROTOCOL];
 
-		$this->setMwGlobals( $conf );
+		$this->overrideConfigValues( $conf );
 		$this->setRequest( new FauxRequest( [], false, null, $currentProto ) );
 		$this->assertEquals( $expected, wfExpandUrl( $input, $defaultProto ) );
 	}
