@@ -1120,11 +1120,16 @@
 	function makeQueryString( params ) {
 		// Optimisation: This is a fairly hot code path with batchRequest() loops.
 		// Avoid overhead from Object.keys and Array.forEach.
-		var chunks = [];
+		// String concatenation is faster than array pushing and joining, see
+		// https://phabricator.wikimedia.org/P19931
+		var str = '';
 		for ( var key in params ) {
-			chunks.push( encodeURIComponent( key ) + '=' + encodeURIComponent( params[ key ] ) );
+			// Parameters are separated by &, added before all parameters other than
+			// the first
+			str += ( str ? '&' : '' ) + encodeURIComponent( key ) + '=' +
+				encodeURIComponent( params[ key ] );
 		}
-		return chunks.join( '&' );
+		return str;
 	}
 
 	/**
