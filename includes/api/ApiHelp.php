@@ -492,8 +492,13 @@ class ApiHelp extends ApiBase {
 						$groups[] = $name;
 					}
 
+					$encodedParamName = $module->encodeParamName( $name );
+					$paramNameAttribs = [ 'dir' => 'ltr', 'lang' => 'en' ];
+					if ( isset( $anchor ) ) {
+						$paramNameAttribs['id'] = "$anchor:$encodedParamName";
+					}
 					$help['parameters'] .= Html::rawElement( 'dt', [],
-						Html::element( 'span', [ 'dir' => 'ltr', 'lang' => 'en' ], $module->encodeParamName( $name ) )
+						Html::element( 'span', $paramNameAttribs, $encodedParamName )
 					);
 
 					// Add description
