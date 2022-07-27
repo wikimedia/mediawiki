@@ -323,6 +323,7 @@
 	"sort-descending": "Csökkenő sorrend",
 	"sort-ascending": "Növekvő sorrend",
 	"sort-initial": "Eredeti sorrend",
+	"sort-rowspan-error": "Ez az oldal olyan rowspan attribútummal rendelkező táblázatot tartalmaz, amely több sort fed le, mint amennyi a táblázatban valójában van. Ez az oldal szerkesztésével javítható.",
 	"nstab-main": "Szócikk",
 	"nstab-user": "{{GENDER:$1|Felhasználói lap}}",
 	"nstab-media": "Média",

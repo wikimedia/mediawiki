@@ -10,7 +10,8 @@
 			"Shantanoo",
 			"Siddhartha Ghai",
 			"आलोक",
-			"रोहित रावत"
+			"रोहित रावत",
+			"Saurmandal"
 		]
 	},
 	"exif-imagewidth": "चौड़ाई",
@@ -34,7 +35,7 @@
 	"exif-primarychromaticities": "क्रोमॅटिसिटीज ऑफ प्राईमारिटीज",
 	"exif-ycbcrcoefficients": "कलर स्पेस ट्रान्स्फॉर्मेशन मॅट्रीक्स कोएफिशीयंट्स",
 	"exif-referenceblackwhite": "काले और सफेद संदर्भ मूल्योंकी जोड़ी",
-	"exif-datetime": "फ़ाईल बदलाव दिनांक और समय",
+	"exif-datetime": "फ़ाइल में बदलाव का दिनांक और समय",
 	"exif-imagedescription": "चित्र शीर्षक",
 	"exif-make": "कैमेरा उत्पादक",
 	"exif-model": "कैमेरा मॉडेल",
@@ -49,7 +50,7 @@
 	"exif-pixelxdimension": "छवि चौड़ाई",
 	"exif-pixelydimension": "छवि ऊँचाई",
 	"exif-usercomment": "सदस्य टिप्पणी",
-	"exif-relatedsoundfile": "संबंधित ध्वनी फ़ाईल",
+	"exif-relatedsoundfile": "संबंधित ध्वनि फ़ाइल",
 	"exif-datetimeoriginal": "डाटा बनाने का दिनांक और समय",
 	"exif-datetimedigitized": "डिजिटाईज़िंग का दिनांक और समय",
 	"exif-subsectime": "दिनांकसमय उपसेकंद",
@@ -79,7 +80,7 @@
 	"exif-subjectlocation": "सब्जेक्टका स्थान",
 	"exif-exposureindex": "एक्स्पोज़र इन्डेक्स",
 	"exif-sensingmethod": "सेन्सींग पद्धती",
-	"exif-filesource": "फ़ाईल स्रोत",
+	"exif-filesource": "फ़ाइल का स्रोत",
 	"exif-scenetype": "सीनका प्रकार",
 	"exif-customrendered": "कस्टम इमेज प्रोसेसिंग",
 	"exif-exposuremode": "एक्स्पोज़र मोड",

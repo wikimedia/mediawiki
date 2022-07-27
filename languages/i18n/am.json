@@ -18,7 +18,8 @@
 			"Stephanecbisson",
 			"Teferra",
 			"Yeniesil",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "በመያያዣ ስር አስምር",
@@ -1261,7 +1262,7 @@
 	"undelete-show-file-submit": "አዎን",
 	"namespace": "ዓይነት፦",
 	"invert": "(ምርጫውን ለመገልበጥ)",
-	"blanknamespace": "መጣጥፎች",
+	"blanknamespace": "(መጣጥፎች)",
 	"tool-link-contributions": "የአባል አስተዋጽኦች",
 	"contributions-title": "የ$1 አስተዋጽኦች",
 	"mycontris": "የኔ አስተዋጽኦች፤",

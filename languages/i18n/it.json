@@ -4106,6 +4106,7 @@
 	"paramvalidator-help-type-title": "Tipo: titolo della pagina",
 	"paramvalidator-help-type-title-must-exist": "Accetta solamente pagine esistenti.",
 	"paramvalidator-help-type-title-no-must-exist": "Accetta pagine non esistenti.",
+	"nonmain-slot-differences-therefore-readonly": "Non è possibile modificare il wikitesto di questa versione della pagina, poiché dopo questa versione sono state apportate modifiche ai dati della pagina non basate sul wikitesto. [$1 Per ripristinare questa versione clicca qui].",
 	"config-missing-key": "Manca il parametro di configurazione MediaWiki \"$1\"",
 	"config-invalid-key": "Parametro di configurazione MediaWiki non valido \"$1\":$2",
 	"changeslist-nocomment": "Nessun oggetto della modifica",

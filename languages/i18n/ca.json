@@ -3705,6 +3705,7 @@
 	"searchsuggest-containing": "Cerca pàgines que continguin",
 	"search-match-redirect-label": "Redirigeix a coincidències exactes en cercar",
 	"search-match-redirect-help": "Selecciona per a redirigir a una pàgina quan el títol de la pàgina coincideixi amb el que heu cercat",
+	"searchlimit-label": "Nombre de resultats de la cerca que es mostraran a cada pàgina:",
 	"searchlimit-help": "Nombre màxim: 500",
 	"api-clientside-error-noconnect": "No s'ha pogut connectar amb el servidor. Assegureu-vos que teniu una connexió a Internet funcionant i torneu-ho a provar.",
 	"api-clientside-error-http": "El servidor ha tornat un error: HTTP $1.",
