@@ -1240,10 +1240,13 @@
 					length += bytesAdded;
 					moduleMap[ prefix ].push( suffix );
 				}
-				// If there's anything left in moduleMap, request that too
-				if ( length ) {
-					doRequest();
-				}
+				// Optimization: Skip `length` check.
+				// moduleMap will contain at least one module here. The loop above leaves the last module
+				// undispatched (and maybe some before it), so for moduleMap to be empty here, there must
+				// have been no modules to iterate in the current group to start with, but we only create
+				// a group in `splits` when the first module in the group is seen, so there are always
+				// modules in the group when this code is reached.
+				doRequest();
 			}
 		}
 	}
