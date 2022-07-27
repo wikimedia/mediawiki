@@ -129,12 +129,8 @@ class SpecialFileDuplicateSearch extends SpecialPage {
 				'default' => $this->filename,
 			],
 		];
-		$hiddenFields = [
-			'title' => $this->getPageTitle()->getPrefixedDBkey(),
-		];
 		$htmlForm = HTMLForm::factory( 'ooui', $formFields, $this->getContext() );
-		$htmlForm->addHiddenFields( $hiddenFields );
-		$htmlForm->setAction( wfScript() );
+		$htmlForm->setTitle( $this->getPageTitle() );
 		$htmlForm->setMethod( 'get' );
 		$htmlForm->setSubmitTextMsg( $this->msg( 'fileduplicatesearch-submit' ) );
 
