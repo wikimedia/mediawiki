@@ -469,7 +469,10 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'page:RenderTestPage!', $html );
 		$this->assertStringContainsString( 'rev:!', $html );
 		$this->assertStringContainsString( 'user:!', $html );
-		$this->assertStringContainsString( 'time:!', $html );
+		// Per parser docs, if revision object does not contain a timestamp
+		// then parser uses current time. Hence don't expect time to be
+		// empty or a specific time.
+		$this->assertStringContainsString( 'time:2', $html );
 	}
 
 	public function testGetRevisionParserOutput_incompleteWithId() {
