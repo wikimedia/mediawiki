@@ -8,7 +8,6 @@ use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\DynamicDefaultValues;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\Source\ReflectionSchemaSource;
-use Wikimedia\AtEase\AtEase;
 
 class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 	/** @var string */
@@ -183,9 +182,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			'CacheEpoch' => static function (): string {
 				// We need a callback that will be evaluated at test time, because otherwise this
 				// doesn't work on CI for some reason.
-				AtEase::suppressWarnings();
-				$ret = max( '20030516000000', gmdate( 'YmdHis', filemtime( MW_CONFIG_FILE ) ) );
-				AtEase::restoreWarnings();
+				$ret = max( '20030516000000', gmdate( 'YmdHis', @filemtime( MW_CONFIG_FILE ) ) );
 				return $ret;
 			},
 		];

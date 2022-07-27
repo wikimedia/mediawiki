@@ -19,7 +19,6 @@
  */
 
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Platform\MySQLPlatform;
 
 class MySQLPlatformTest extends PHPUnit\Framework\TestCase {
@@ -41,9 +40,8 @@ class MySQLPlatformTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testAddIdentifierQuotesNull() {
 		$platform = new MySQLPlatform( new AddQuoterMock() );
-		AtEase::suppressWarnings(); // php8.1
-		$quoted = $platform->addIdentifierQuotes( null );
-		AtEase::restoreWarnings();
+		// Ignore PHP 8.1+ warning about null to str_replace()
+		$quoted = @$platform->addIdentifierQuotes( null );
 		$this->assertEquals( '``', $quoted );
 	}
 
