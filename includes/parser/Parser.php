@@ -4499,8 +4499,9 @@ class Parser {
 
 		$this->setOutputType( $oldType );
 
-		# Never ever show TOC if no headers
-		if ( $numVisible < 1 ) {
+		# Never ever show TOC if no headers (or suppressed)
+		$suppressToc = $this->mOptions->getSuppressTOC();
+		if ( $numVisible < 1 || $suppressToc ) {
 			$enoughToc = false;
 		}
 
@@ -4510,9 +4511,19 @@ class Parser {
 			}
 			$toc = Linker::tocList( $toc, $this->mOptions->getUserLangObj() );
 			$this->mOutput->setTOCHTML( $toc );
+		} else {
+			// Record the fact that the TOC should not be shown. T294950
+			$this->mOutput->setOutputFlag( ParserOutputFlags::HIDE_TOC );
 		}
 
-		if ( $isMain ) {
+		if ( $isMain && !$suppressToc ) {
+			// We generally output the section information via the API
+			// even if there isn't "enough" of a ToC to merit showing
+			// it -- but the "suppress TOC" parser option is set when
+			// any sections that might be found aren't "really there"
+			// (ie, JavaScript content that might have spurious === or
+			// <h2>: T307691) so we will *not* set section information
+			// in that case.
 			$this->mOutput->setSections( $tocraw );
 		}
 
