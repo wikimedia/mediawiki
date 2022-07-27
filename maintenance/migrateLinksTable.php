@@ -69,7 +69,7 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 		}
 		$highestPageId = $highestPageId[0];
 		$pageId = 0;
-		while ( $pageId < $highestPageId ) {
+		while ( $pageId <= $highestPageId ) {
 			// Given the indexes and the structure of links tables,
 			// we need to split the update into batches of pages.
 			// Otherwise the queries will take a really long time in production and cause read-only.
@@ -86,8 +86,8 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 		$batchSize = $this->getBatchSize();
 		$targetColumn = $mapping[$table]['target_id'];
 		$pageIdColumn = $mapping[$table]['page_id'];
-		// BETWEEN is not inclusive, let's add one more.
-		$highPageId = $lowPageId + $batchSize + 1;
+		// BETWEEN is inclusive, let's subtract one.
+		$highPageId = $lowPageId + $batchSize - 1;
 		$dbw = $this->getDB( DB_PRIMARY );
 		$updated = 0;
 
