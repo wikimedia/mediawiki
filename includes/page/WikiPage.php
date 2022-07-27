@@ -1936,8 +1936,19 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 		if ( $this->getTitle()->isConversionTable() ) {
 			// @todo ConversionTable should become a separate content model, so
-			// we don't need special cases like this one.
+			// we don't need special cases like this one, but see T313455.
 			$options->disableContentConversion();
+		}
+		$contentModel = $this->getContentModel();
+		if ( $contentModel !== CONTENT_MODEL_WIKITEXT ) {
+			$textModelsToParse = MediaWikiServices::getInstance()->getMainConfig()->get(
+				MainConfigNames::TextModelsToParse );
+			if ( in_array( $contentModel, $textModelsToParse, true ) ) {
+				// @todo Content model should have a means to tweak options, so
+				// we don't need special cases like this one. (T313455)
+				// ( See TextContentHandler::fillParserOutput() )
+				$options->setSuppressTOC(); # T307691
+			}
 		}
 
 		return $options;

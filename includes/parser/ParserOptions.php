@@ -759,6 +759,31 @@ class ParserOptions {
 	}
 
 	/**
+	 * Should the table of contents be suppressed?
+	 * Used when parsing "code" pages (like JavaScript) as wikitext
+	 * for backlink support and categories, but where we don't want
+	 * other metadata generated (like the table of contents).
+	 * @see T307691
+	 * @since 1.39
+	 * @return bool
+	 */
+	public function getSuppressTOC() {
+		return $this->getOption( 'suppressTOC' );
+	}
+
+	/**
+	 * Suppress generation of the table of contents.
+	 * Used when parsing "code" pages (like JavaScript) as wikitext
+	 * for backlink support and categories, but where we don't want
+	 * other metadata generated (like the table of contents).
+	 * @see T307691
+	 * @since 1.39
+	 */
+	public function setSuppressTOC() {
+		$this->setOption( 'suppressTOC', true );
+	}
+
+	/**
 	 * If the wiki is configured to allow raw html ($wgRawHtml = true)
 	 * is it allowed in the specific case of parsing this page.
 	 *
@@ -1129,6 +1154,7 @@ class ParserOptions {
 				'interfaceMessage' => false,
 				'targetLanguage' => null,
 				'removeComments' => true,
+				'suppressTOC' => false,
 				'enableLimitReport' => false,
 				'preSaveTransform' => true,
 				'isPreview' => false,
