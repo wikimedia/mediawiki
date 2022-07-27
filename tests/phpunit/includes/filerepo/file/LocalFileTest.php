@@ -5,6 +5,7 @@
  * @todo Split tests into providers and test methods
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
@@ -51,7 +52,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $info
 	 */
 	public function testGetHashPath( $expected, $capitalLinks, array $info ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getHashPath() );
 	}
@@ -72,7 +73,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $info
 	 */
 	public function testGetRel( $expected, $capitalLinks, array $info ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getRel() );
@@ -94,7 +95,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $info
 	 */
 	public function testGetUrlRel( $expected, $capitalLinks, array $info ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getUrlRel() );
@@ -117,7 +118,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $args
 	 */
 	public function testGetArchivePath( $expected, $capitalLinks, array $info, array $args ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getArchivePath( ...$args ) );
@@ -146,7 +147,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $args
 	 */
 	public function testGetThumbPath( $expected, $capitalLinks, array $info, array $args ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getThumbPath( ...$args ) );
@@ -175,7 +176,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $args
 	 */
 	public function testGetArchiveUrl( $expected, $capitalLinks, array $info, array $args ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getArchiveUrl( ...$args ) );
@@ -199,7 +200,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $args
 	 */
 	public function testGetThumbUrl( $expected, $capitalLinks, array $info, array $args ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getThumbUrl( ...$args ) );
@@ -225,7 +226,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	public function testGetArchiveVirtualUrl(
 		$expected, $capitalLinks, array $info, array $args
 	) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getArchiveVirtualUrl( ...$args ) );
@@ -249,7 +250,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $args
 	 */
 	public function testGetThumbVirtualUrl( $expected, $capitalLinks, array $info, array $args ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getThumbVirtualUrl( ...$args ) );
@@ -272,7 +273,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $info
 	 */
 	public function testGetUrl( $expected, $capitalLinks, array $info ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getUrl() );

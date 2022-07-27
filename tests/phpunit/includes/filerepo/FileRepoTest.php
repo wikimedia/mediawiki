@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 class FileRepoTest extends MediaWikiIntegrationTestCase {
 
 	/**
@@ -60,7 +62,7 @@ class FileRepoTest extends MediaWikiIntegrationTestCase {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'File repos with initial capital false' );
 
-		$this->setMwGlobals( 'wgCapitalLinks', true );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, true );
 
 		new FileRepo( [
 			'name' => 'foobar',

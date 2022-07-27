@@ -22,6 +22,7 @@ namespace MediaWiki\Tests\EditPage;
 
 use Language;
 use MediaWiki\EditPage\TextboxBuilder;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\User\StaticUserOptionsLookup;
@@ -79,10 +80,10 @@ class TextboxBuilderTest extends MediaWikiIntegrationTestCase {
 		$protectionModes,
 		$expected
 	) {
-		$this->setMwGlobals( [
+		$this->overrideConfigValue(
 			// set to trick PermissionManager::getNamespaceRestrictionLevels
-			'wgRestrictionLevels' => $restrictionLevels
-		] );
+			MainConfigNames::RestrictionLevels, $restrictionLevels
+		);
 
 		$mockRestrictionStore = $this->createMock( RestrictionStore::class );
 		$pageIdValue = PageIdentityValue::localIdentity( 1, NS_MAIN, 'test' );
