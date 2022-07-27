@@ -443,9 +443,9 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		$this->debug( "touch($key)" );
 
 		$routeKey = $this->validateKeyAndPrependRoute( $key );
-		$noReplyScope = $this->noReplyScope( $flags );
+		// Avoid NO_REPLY due to libmemcached hang
+		// https://phabricator.wikimedia.org/T310662#8031692
 		$result = $this->client->touch( $routeKey, $this->fixExpiry( $exptime ) );
-		ScopedCallback::consume( $noReplyScope );
 
 		return $this->checkResult( $key, $result );
 	}
