@@ -926,18 +926,6 @@ class DatabaseSqlite extends Database {
 		return $endArray;
 	}
 
-	public function dropTable( $table, $fname = __METHOD__ ) {
-		if ( !$this->tableExists( $table, $fname ) ) {
-			return false;
-		}
-
-		// No CASCADE support; https://www.sqlite.org/lang_droptable.html
-		$sql = "DROP TABLE " . $this->tableName( $table );
-		$this->query( $sql, $fname, self::QUERY_CHANGE_SCHEMA );
-
-		return true;
-	}
-
 	protected function doTruncate( array $tables, $fname ) {
 		$this->startAtomic( $fname );
 

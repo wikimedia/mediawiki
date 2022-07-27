@@ -4204,23 +4204,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			return false;
 		}
 
-		$this->doDropTable( $table, $fname );
+		$sql = $this->platform->dropTableSqlText( $table );
+		$this->query( $sql, $fname, self::QUERY_CHANGE_SCHEMA );
 
 		return true;
-	}
-
-	/**
-	 * @see Database::dropTable()
-	 * @stable to override
-	 * @param string $table
-	 * @param string $fname
-	 */
-	protected function doDropTable( $table, $fname ) {
-		// https://mariadb.com/kb/en/drop-table/
-		// https://dev.mysql.com/doc/refman/8.0/en/drop-table.html
-		// https://www.postgresql.org/docs/9.2/sql-truncate.html
-		$sql = "DROP TABLE " . $this->tableName( $table ) . " CASCADE";
-		$this->query( $sql, $fname, self::QUERY_CHANGE_SCHEMA );
 	}
 
 	public function truncate( $tables, $fname = __METHOD__ ) {
