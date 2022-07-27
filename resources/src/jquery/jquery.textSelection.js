@@ -69,7 +69,13 @@
 			} else {
 				field.focus();
 				try {
-					if ( !document.execCommand( 'insertText', false, content ) ) {
+					if (
+						// Ensure the field was focused, otherwise we can't use execCommand() to change it.
+						// focus() can fail if e.g. the field is disabled, or its container is inert.
+						document.activeElement !== field ||
+						// Try to insert
+						!document.execCommand( 'insertText', false, content )
+					) {
 						pasted = false;
 					}
 				} catch ( e ) {
