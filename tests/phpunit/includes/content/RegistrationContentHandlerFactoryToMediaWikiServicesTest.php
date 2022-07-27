@@ -24,14 +24,6 @@ class RegistrationContentHandlerFactoryToMediaWikiServicesTest extends MediaWiki
 				},
 			]
 		);
-
-		$this->getServiceContainer()->resetServiceForTesting( 'ContentHandlerFactory' );
-	}
-
-	protected function tearDown(): void {
-		$this->getServiceContainer()->resetServiceForTesting( 'ContentHandlerFactory' );
-
-		parent::tearDown();
 	}
 
 	/**

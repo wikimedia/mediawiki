@@ -37,16 +37,6 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 				}
 			],
 		] );
-
-		// Reset LinkCache
-		$this->getServiceContainer()->resetServiceForTesting( 'LinkCache' );
-	}
-
-	protected function tearDown(): void {
-		// Reset LinkCache
-		$this->getServiceContainer()->resetServiceForTesting( 'LinkCache' );
-
-		parent::tearDown();
 	}
 
 	public function addDBDataOnce() {

@@ -1239,7 +1239,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 	public function testGetAllPermissions() {
 		$this->overrideConfigValue( MainConfigNames::AvailableRights, [ 'test_right' ] );
-		$this->resetServices();
 		$this->assertContains(
 			'test_right',
 			$this->getServiceContainer()
@@ -1331,16 +1330,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->setGroupPermissions( '*', 'read', false );
 
 		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'es' );
-		foreach ( [
-			'ContentLanguage',
-			'MainConfig',
-			'_MediaWikiTitleCodec',
-			'TitleParser',
-			'TitleFormatter',
-			'PermissionManager',
-		] as $service ) {
-			$this->getServiceContainer()->resetServiceForTesting( $service );
-		}
 
 		$title = Title::newFromText( $title );
 		$pm = $this->getServiceContainer()->getPermissionManager();
