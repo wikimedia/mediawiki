@@ -46,7 +46,7 @@ trait DoctrineAbstractSchemaTrait {
 			}
 		}
 
-		if ( isset( $schemaSpec['pk'] ) ) {
+		if ( isset( $schemaSpec['pk'] ) && $schemaSpec['pk'] !== [] ) {
 			$table->setPrimaryKey( $schemaSpec['pk'] );
 		}
 
