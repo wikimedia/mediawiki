@@ -1156,9 +1156,9 @@
 			query.modules = packed.str;
 			// The packing logic can change the effective order, even if the input was
 			// sorted. As such, the call to getCombinedVersion() must use this
-			// effective order, instead of currReqModules, as otherwise the combined
-			// version will not match the hash expected by the server based on
-			// combining versions from the module query string in-order. (T188076)
+			// effective order to ensure that the combined version will match the hash
+			// expected by the server based on combining versions from the module
+			// query string in-order. (T188076)
 			query.version = getCombinedVersion( packed.list );
 			query = sortQuery( query );
 			addScript( sourceLoadScript + '?' + makeQueryString( query ) );
@@ -1211,7 +1211,7 @@
 				// We may need to split up the request to honor the query string length limit,
 				// so build it piece by piece.
 				var length = currReqBaseLength;
-				var currReqModules = [];
+				var havePending = false;
 				moduleMap = Object.create( null ); // { prefix: [ suffixes ] }
 
 				for ( var i = 0; i < modules.length; i++ ) {
@@ -1224,23 +1224,23 @@
 							modules[ i ].length + 3; // '%7C'.length == 3
 
 					// If the url would become too long, create a new one, but don't create empty requests
-					if ( currReqModules.length && length + bytesAdded > mw.loader.maxQueryLength ) {
+					if ( havePending && length + bytesAdded > mw.loader.maxQueryLength ) {
 						// Dispatch what we've got...
 						doRequest();
 						// .. and start again.
 						length = currReqBaseLength;
 						moduleMap = Object.create( null );
-						currReqModules = [];
+						// Optimization: Omit `havePending = false;` as it'll change again below
 					}
 					if ( !moduleMap[ prefix ] ) {
 						moduleMap[ prefix ] = [];
 					}
 					length += bytesAdded;
 					moduleMap[ prefix ].push( suffix );
-					currReqModules.push( modules[ i ] );
+					havePending = true;
 				}
 				// If there's anything left in moduleMap, request that too
-				if ( currReqModules.length ) {
+				if ( havePending ) {
 					doRequest();
 				}
 			}
