@@ -368,18 +368,6 @@ class DatabaseSqlite extends Database {
 		);
 	}
 
-	protected function isWriteQuery( $sql, $flags ) {
-		return parent::isWriteQuery( $sql, $flags ) && !preg_match( '/^(ATTACH|PRAGMA)\b/i', $sql );
-	}
-
-	protected function isTransactableQuery( $sql ) {
-		return parent::isTransactableQuery( $sql ) && !in_array(
-			$this->getQueryVerb( $sql ),
-			[ 'ATTACH', 'PRAGMA' ],
-			true
-		);
-	}
-
 	protected function doSingleStatementQuery( string $sql ): QueryStatus {
 		$conn = $this->getBindingHandle();
 

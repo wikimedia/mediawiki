@@ -750,7 +750,7 @@ class SQLPlatform implements ISQLPlatform {
 	 * @param string|false $alias Alias (optional)
 	 * @return string SQL name for aliased field. Will not alias a field to its own name
 	 */
-	protected function fieldNameWithAlias( $name, $alias = false ) {
+	public function fieldNameWithAlias( $name, $alias = false ) {
 		if ( !$alias || (string)$alias === (string)$name ) {
 			return $name;
 		} else {
@@ -1602,5 +1602,118 @@ class SQLPlatform implements ISQLPlatform {
 		// https://dev.mysql.com/doc/refman/8.0/en/drop-table.html
 		// https://www.postgresql.org/docs/9.2/sql-truncate.html
 		return "DROP TABLE " . $this->tableName( $table ) . " CASCADE";
+	}
+
+	/**
+	 * @param string $sql SQL query
+	 * @return string|null
+	 */
+	public function getQueryVerb( $sql ) {
+		// Distinguish ROLLBACK from ROLLBACK TO SAVEPOINT
+		return preg_match(
+			'/^\s*(rollback\s+to\s+savepoint|[a-z]+)/i',
+			$sql,
+			$m
+		) ? strtoupper( $m[1] ) : null;
+	}
+
+	/**
+	 * Determine whether a SQL statement is sensitive to isolation level.
+	 *
+	 * A SQL statement is considered transactable if its result could vary
+	 * depending on the transaction isolation level. Operational commands
+	 * such as 'SET' and 'SHOW' are not considered to be transactable.
+	 *
+	 * Main purpose: Used by query() to decide whether to begin a transaction
+	 * before the current query (in DBO_TRX mode, on by default).
+	 *
+	 * @stable to override
+	 * @param string $sql
+	 * @return bool
+	 */
+	public function isTransactableQuery( $sql ) {
+		return !in_array(
+			$this->getQueryVerb( $sql ),
+			[
+				'BEGIN',
+				'ROLLBACK',
+				'ROLLBACK TO SAVEPOINT',
+				'COMMIT',
+				'SET',
+				'SHOW',
+				'CREATE',
+				'ALTER',
+				'USE',
+				'SHOW'
+			],
+			true
+		);
+	}
+
+	/**
+	 * Determine whether a query writes to the DB. When in doubt, this returns true.
+	 *
+	 * Main use cases:
+	 *
+	 * - Subsequent web requests should not need to wait for replication from
+	 *   the primary position seen by this web request, unless this request made
+	 *   changes to the primary DB. This is handled by ChronologyProtector by checking
+	 *   doneWrites() at the end of the request. doneWrites() returns true if any
+	 *   query set lastWriteTime; which query() does based on isWriteQuery().
+	 *
+	 * - Reject write queries to replica DBs, in query().
+	 *
+	 * @param string $sql SQL query
+	 * @param int $flags Query flags to query()
+	 * @return bool
+	 */
+	public function isWriteQuery( $sql, $flags ) {
+		// Check if a SQL wrapper method already flagged the query as a write
+		if (
+			$this->fieldHasBit( $flags, self::QUERY_CHANGE_ROWS ) ||
+			$this->fieldHasBit( $flags, self::QUERY_CHANGE_SCHEMA )
+		) {
+			return true;
+		}
+		// Check if a SQL wrapper method already flagged the query as a non-write
+		if (
+			$this->fieldHasBit( $flags, self::QUERY_CHANGE_NONE ) ||
+			$this->fieldHasBit( $flags, self::QUERY_CHANGE_TRX ) ||
+			$this->fieldHasBit( $flags, self::QUERY_CHANGE_LOCKS )
+		) {
+			return false;
+		}
+		// Treat SELECT queries without FOR UPDATE queries as non-writes. This matches
+		// how MySQL enforces read_only (FOR SHARE and LOCK IN SHADE MODE are allowed).
+		// Handle (SELECT ...) UNION (SELECT ...) queries in a similar fashion.
+		if ( preg_match( '/^\s*\(?SELECT\b/i', $sql ) ) {
+			return (bool)preg_match( '/\bFOR\s+UPDATE\)?\s*$/i', $sql );
+		}
+		// BEGIN and COMMIT queries are considered non-write queries here.
+		// Database backends and drivers (MySQL, MariaDB, php-mysqli) generally
+		// treat these as write queries, in that their results have "affected rows"
+		// as meta data as from writes, instead of "num rows" as from reads.
+		// But, we treat them as non-write queries because when reading data (from
+		// either replica or primary DB) we use transactions to enable repeatable-read
+		// snapshots, which ensures we get consistent results from the same snapshot
+		// for all queries within a request. Use cases:
+		// - Treating these as writes would trigger ChronologyProtector (see method doc).
+		// - We use this method to reject writes to replicas, but we need to allow
+		//   use of transactions on replicas for read snapshots. This is fine given
+		//   that transactions by themselves don't make changes, only actual writes
+		//   within the transaction matter, which we still detect.
+		return !preg_match(
+			'/^\s*(BEGIN|ROLLBACK|COMMIT|SAVEPOINT|RELEASE|SET|SHOW|EXPLAIN|USE)\b/i',
+			$sql
+		);
+	}
+
+	/**
+	 * @param int $flags A bitfield of flags
+	 * @param int $bit Bit flag constant
+	 * @return bool Whether the bit field has the specified bit flag set
+	 */
+	final protected function fieldHasBit( int $flags, int $bit ) {
+		return ( ( $flags & $bit ) === $bit );
 	}
 }

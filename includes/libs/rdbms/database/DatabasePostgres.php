@@ -188,11 +188,6 @@ class DatabasePostgres extends Database {
 		return $this->conn ? pg_close( $this->conn ) : true;
 	}
 
-	protected function isTransactableQuery( $sql ) {
-		return parent::isTransactableQuery( $sql ) &&
-			!preg_match( '/^SELECT\s+pg_(try_|)advisory_\w+\(/', $sql );
-	}
-
 	public function doSingleStatementQuery( string $sql ): QueryStatus {
 		$conn = $this->getBindingHandle();
 
