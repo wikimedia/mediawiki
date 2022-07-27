@@ -6,7 +6,7 @@ use Exception;
 use MediaWiki\Rest\Handler\HTMLTransformInput;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Parsoid\Core\ClientError;
-use Wikimedia\Parsoid\Utils\DOMUtils;
+use Wikimedia\Parsoid\Utils\ContentUtils;
 
 /**
  * @covers \MediaWiki\Rest\Handler\HTMLTransformInput
@@ -61,8 +61,7 @@ class HTMLTransformInputTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function newHTMLTransformInput() {
-		$doc = DOMUtils::parseHTML( self::ORIG_HTML, true );
-		$input = new HTMLTransformInput( $doc );
+		$input = new HTMLTransformInput( self::ORIG_HTML );
 		$originalData = $this->getOriginalData();
 
 		// Set some options to assert on $input.
@@ -113,8 +112,7 @@ class HTMLTransformInputTest extends MediaWikiIntegrationTestCase {
 	 * @throws ClientError
 	 */
 	public function testBadOriginalData( array $original, Exception $exception ) {
-		$doc = DOMUtils::parseHTML( self::ORIG_HTML, true );
-		$input = new HTMLTransformInput( $doc );
+		$input = new HTMLTransformInput( self::ORIG_HTML );
 
 		$this->expectException( get_class( $exception ) );
 		$this->expectExceptionMessage( $exception->getMessage() );
@@ -131,6 +129,11 @@ class HTMLTransformInputTest extends MediaWikiIntegrationTestCase {
 	public function testGetOriginalSchemaVersion() {
 		$ctx = $this->newHTMLTransformInput();
 		$this->assertSame( '2.4.0', $ctx->getOriginalSchemaVersion() );
+	}
+
+	public function testGetSchemaVersion() {
+		$ctx = $this->newHTMLTransformInput();
+		$this->assertSame( '2.4.0', $ctx->getSchemaVersion() );
 	}
 
 	public function testInputIsPageBundle() {
@@ -151,6 +154,14 @@ class HTMLTransformInputTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			self::ORIG_HTML,
 			$ctx->getOriginalHtml()
+		);
+	}
+
+	public function testGetOriginalBody() {
+		$ctx = $this->newHTMLTransformInput();
+		$this->assertSame(
+			self::ORIG_BODY,
+			ContentUtils::toXML( $ctx->getOriginalBody() )
 		);
 	}
 
@@ -180,5 +191,33 @@ class HTMLTransformInputTest extends MediaWikiIntegrationTestCase {
 	public function testGetEnvOpts() {
 		$ctx = $this->newHTMLTransformInput();
 		$this->assertSame( 'byte', $ctx->getOffsetType() );
+	}
+
+	private function getTextFromFile( string $name ): string {
+		return trim( file_get_contents( __DIR__ . "/data/Transform/$name" ) );
+	}
+
+	public function testDowngrade() {
+		$html = $this->getTextFromFile( 'Minimal.html' ); // Uses profile version 2.4.0
+		$input = new HTMLTransformInput( $html );
+		$input->setInputFormat( 'pagebundle' );
+
+		$original = $this->getOriginalData();
+
+		// Specify newer profile version for original HTML
+		$original['html']['headers']['content-type'] = 'text/html;profile="https://www.mediawiki.org/wiki/Specs/HTML/999.0.0"';
+
+		// The profile version given inline in the original HTML doesn't matter, it's ignored
+		$original['html']['body'] = $html;
+
+		$input->setOriginalData( $original );
+		$oldBody = $input->getOriginalBody();
+
+		$input->downgradeOriginalData( '2.4.0' );
+
+		// all getters should now reflect the state after the downgrade.
+		$this->assertSame( '2.5.0', $input->getOriginalSchemaVersion() );
+		$this->assertNotSame( $html, $input->getOriginalHtml() );
+		$this->assertNotSame( $oldBody, ContentUtils::toXML( $input->getOriginalBody() ) );
 	}
 }
