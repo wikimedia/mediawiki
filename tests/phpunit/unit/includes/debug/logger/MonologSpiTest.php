@@ -165,7 +165,6 @@ class MonologSpiTest extends \MediaWikiUnitTestCase {
 		$logger = $monologSpi->getLogger( 'mychannel' );
 		$wrapperMonologSpi = TestingAccessWrapper::newFromObject( $monologSpi );
 		$this->assertInstanceOf( \Psr\Log\LoggerInterface::class, $logger );
-		$this->assertInstanceOf( \Monolog\Logger::class, $logger );
 		$this->assertCount( 1, $wrapperMonologSpi->singletons['loggers'] );
 		$this->assertArrayHasKey( 'mychannel', $wrapperMonologSpi->singletons['loggers'] );
 
@@ -213,7 +212,6 @@ class MonologSpiTest extends \MediaWikiUnitTestCase {
 		$logger = $monologSpi->getLogger( 'emptychannel' );
 		$wrapperMonologSpi = TestingAccessWrapper::newFromObject( $monologSpi );
 		$this->assertInstanceOf( \Psr\Log\LoggerInterface::class, $logger );
-		$this->assertInstanceOf( \Monolog\Logger::class, $logger );
 		$this->assertCount( 1, $wrapperMonologSpi->singletons['loggers'] );
 		$this->assertArrayHasKey( 'emptychannel', $wrapperMonologSpi->singletons['loggers'] );
 		$actualHandlers = $logger->getHandlers();

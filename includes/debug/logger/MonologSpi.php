@@ -23,6 +23,7 @@ namespace MediaWiki\Logger;
 use MediaWiki\Logger\Monolog\BufferHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
@@ -185,7 +186,7 @@ class MonologSpi implements Spi {
 	 * name will return the cached instance.
 	 *
 	 * @param string $channel Logging channel
-	 * @return \Psr\Log\LoggerInterface Logger instance
+	 * @return LoggerInterface
 	 */
 	public function getLogger( $channel ) {
 		if ( !isset( $this->singletons['loggers'][$channel] ) ) {
@@ -204,9 +205,9 @@ class MonologSpi implements Spi {
 	 * Create a logger.
 	 * @param string $channel Logger channel
 	 * @param array $spec Configuration
-	 * @return \Monolog\Logger
+	 * @return LoggerInterface
 	 */
-	protected function createLogger( $channel, $spec ) {
+	protected function createLogger( $channel, $spec ): LoggerInterface {
 		$obj = new Logger( $channel );
 
 		if ( isset( $spec['calls'] ) ) {

@@ -165,20 +165,17 @@ class LegacyLoggerTest extends MediaWikiIntegrationTestCase {
 				$dest + [ 'level' => LogLevel::CRITICAL ],
 				false,
 			],
-		];
-
-		if ( class_exists( \Monolog\Logger::class ) ) {
-			$tests[] = [
+			[
 				\Monolog\Logger::INFO,
 				$dest + [ 'level' => LogLevel::INFO ],
 				true,
-			];
-			$tests[] = [
+			],
+			[
 				\Monolog\Logger::WARNING,
 				$dest + [ 'level' => LogLevel::EMERGENCY ],
 				false,
-			];
-		}
+			]
+		];
 
 		return $tests;
 	}
