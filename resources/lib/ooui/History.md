@@ -1,4 +1,18 @@
 # OOUI Release History
+## v0.44.2 / 2022-07-27
+### Features
+* SelectWidget: Add Home/End/PageUp/PageDown support, tweak arrow keys wrapping (Bartosz Dziewoński)
+
+### Styles
+* FieldLayout: Adjust help popup with `align: left/right` and long label (Bartosz Dziewoński)
+* FieldLayout: Fix and document the behavior when no label is given (Bartosz Dziewoński)
+* PopupWidget: Fix clipping when the popup is forced to be narrower (Bartosz Dziewoński)
+* icons: Invert icons in dark/high contrast mode (Ed Sanders)
+
+### Code
+* Follow-up Ic4d3993d: Setup demo pages after append (Ed Sanders)
+
+
 ## v0.44.1 / 2022-07-12
 ### Features
 * Element: Added `alignToTop` as an option to `scrollIntoView` (Svantje Lilienthal)

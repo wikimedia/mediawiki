@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.44.1
+ * OOUI v0.44.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-07-13T13:25:47Z
+ * Date: 2022-07-27T15:22:47Z
  */
 ( function ( OO ) {
 
@@ -5572,11 +5572,16 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 	var clipHeight = allotedHeight < naturalHeight;
 
 	if ( clipWidth ) {
-		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars.
-		// See T157672.
+		// Set overflow to 'scroll' first to avoid browser bugs causing bogus scrollbars (T67059),
+		// then to 'auto' which is what we want.
 		// Forcing a reflow is a smaller workaround than calling reconsiderScrollbars() for
 		// this case.
 		this.$clippable.css( 'overflowX', 'scroll' );
+		// eslint-disable-next-line no-void
+		void this.$clippable[ 0 ].offsetHeight; // Force reflow
+		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars.
+		// See T157672.
+		this.$clippable.css( 'overflowX', 'auto' );
 		// eslint-disable-next-line no-void
 		void this.$clippable[ 0 ].offsetHeight; // Force reflow
 		this.$clippable.css( {
@@ -5591,11 +5596,16 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		} );
 	}
 	if ( clipHeight ) {
-		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars.
-		// See T157672.
+		// Set overflow to 'scroll' first to avoid browser bugs causing bogus scrollbars (T67059),
+		// then to 'auto' which is what we want.
 		// Forcing a reflow is a smaller workaround than calling reconsiderScrollbars() for
 		// this case.
 		this.$clippable.css( 'overflowY', 'scroll' );
+		// eslint-disable-next-line no-void
+		void this.$clippable[ 0 ].offsetHeight; // Force reflow
+		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars.
+		// See T157672.
+		this.$clippable.css( 'overflowY', 'auto' );
 		// eslint-disable-next-line no-void
 		void this.$clippable[ 0 ].offsetHeight; // Force reflow
 		this.$clippable.css( {
@@ -5748,6 +5758,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 		this.$body.append( config.$content );
 	}
 
+	this.padded = !!config.padded;
 	if ( config.padded ) {
 		this.$body.addClass( 'oo-ui-popupWidget-body-padded' );
 	}
@@ -6197,10 +6208,12 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
 
 	// Set height and width before we do anything else, since it might cause our measurements
 	// to change (e.g. due to scrollbars appearing or disappearing), and it also affects centering
-	this.$popup.css( {
-		width: this.width !== null ? this.width : 'auto',
-		height: this.height !== null ? this.height : 'auto'
-	} );
+	this.setIdealSize(
+		// The properties refer to the width of this.$popup, but we set the properties on this.$body to
+		// make calculations work out right (T180173), so we subtract padding here.
+		this.width !== null ? this.width - ( this.padded ? 24 : 0 ) : 'auto',
+		this.height !== null ? this.height - ( this.padded ? 10 : 0 ) : 'auto'
+	);
 
 	var align = alignMap[ direction ][ this.align ] || this.align;
 	var popupPosition = this.popupPosition;
@@ -6216,9 +6229,7 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
 	var near = vertical ? 'top' : 'left';
 	var far = vertical ? 'bottom' : 'right';
 	var sizeProp = vertical ? 'Height' : 'Width';
-	var popupSize = vertical ?
-		( this.height || this.$popup.height() ) :
-		( this.width || this.$popup.width() );
+	var popupSize = vertical ? this.$popup.height() : this.$popup.width();
 
 	this.setAnchorEdge( anchorEdgeMap[ popupPosition ] );
 	this.horizontalPosition = vertical ? popupPosition : hPosMap[ align ];
@@ -7021,6 +7032,27 @@ OO.mixinClass( OO.ui.SelectWidget, OO.ui.mixin.GroupWidget );
  * @param {OO.ui.OptionWidget[]} items Removed items
  */
 
+/* Static Properties */
+
+/**
+ * Whether this widget will respond to the navigation keys Home, End, PageUp, PageDown.
+ *
+ * @static
+ * @inheritable
+ * @property {boolean}
+ */
+OO.ui.SelectWidget.static.handleNavigationKeys = false;
+
+/**
+ * Whether selecting items using arrow keys or navigation keys in this widget will wrap around after
+ * the user reaches the beginning or end of the list.
+ *
+ * @static
+ * @inheritable
+ * @property {boolean}
+ */
+OO.ui.SelectWidget.static.listWrapsAround = true;
+
 /* Static methods */
 
 /**
@@ -7195,13 +7227,12 @@ OO.ui.SelectWidget.prototype.onMouseLeave = function () {
 OO.ui.SelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 	var handled = false,
 		selected = this.findSelectedItems(),
-		currentItem = this.findHighlightedItem() || (
+		currentItem = this.isVisible() && this.findHighlightedItem() || (
 			Array.isArray( selected ) ? selected[ 0 ] : selected
-		),
-		firstItem = this.getItems()[ 0 ];
+		);
 
 	var nextItem;
-	if ( !this.isDisabled() && this.isVisible() ) {
+	if ( !this.isDisabled() ) {
 		switch ( e.keyCode ) {
 			case OO.ui.Keys.ENTER:
 				if ( currentItem ) {
@@ -7212,17 +7243,42 @@ OO.ui.SelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 				break;
 			case OO.ui.Keys.UP:
 			case OO.ui.Keys.LEFT:
-				this.clearKeyPressBuffer();
-				nextItem = currentItem ?
-					this.findRelativeSelectableItem( currentItem, -1 ) : firstItem;
-				handled = true;
-				break;
 			case OO.ui.Keys.DOWN:
 			case OO.ui.Keys.RIGHT:
 				this.clearKeyPressBuffer();
-				nextItem = currentItem ?
-					this.findRelativeSelectableItem( currentItem, 1 ) : firstItem;
+				nextItem = this.findRelativeSelectableItem(
+					currentItem,
+					e.keyCode === OO.ui.Keys.UP || e.keyCode === OO.ui.Keys.LEFT ? -1 : 1,
+					null,
+					this.constructor.static.listWrapsAround
+				);
 				handled = true;
+				break;
+			case OO.ui.Keys.HOME:
+			case OO.ui.Keys.END:
+				if ( this.constructor.static.handleNavigationKeys ) {
+					this.clearKeyPressBuffer();
+					nextItem = this.findRelativeSelectableItem(
+						null,
+						e.keyCode === OO.ui.Keys.HOME ? 1 : -1,
+						null,
+						this.constructor.static.listWrapsAround
+					);
+					handled = true;
+				}
+				break;
+			case OO.ui.Keys.PAGEUP:
+			case OO.ui.Keys.PAGEDOWN:
+				if ( this.constructor.static.handleNavigationKeys ) {
+					this.clearKeyPressBuffer();
+					nextItem = this.findRelativeSelectableItem(
+						currentItem,
+						e.keyCode === OO.ui.Keys.PAGEUP ? -10 : 10,
+						null,
+						this.constructor.static.listWrapsAround
+					);
+					handled = true;
+				}
 				break;
 			case OO.ui.Keys.ESCAPE:
 			case OO.ui.Keys.TAB:
@@ -7237,7 +7293,7 @@ OO.ui.SelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 		}
 
 		if ( nextItem ) {
-			if ( nextItem.constructor.static.highlightable ) {
+			if ( this.isVisible() && nextItem.constructor.static.highlightable ) {
 				this.highlightItem( nextItem );
 			} else {
 				this.chooseItem( nextItem );
@@ -7326,7 +7382,7 @@ OO.ui.SelectWidget.prototype.onDocumentKeyPress = function ( e ) {
 	this.keyPressBufferTimer = setTimeout( this.clearKeyPressBuffer.bind( this ), 1500 );
 
 	var selected = this.findSelectedItems();
-	var item = this.findHighlightedItem() || (
+	var item = this.isVisible() && this.findHighlightedItem() || (
 		Array.isArray( selected ) ? selected[ 0 ] : selected
 	);
 
@@ -7772,42 +7828,67 @@ OO.ui.SelectWidget.prototype.chooseItem = function ( item ) {
 
 /**
  * Find an option by its position relative to the specified item (or to the start of the option
- * array, if item is `null`). The direction in which to search through the option array is specified
- * with a number: -1 for reverse (the default) or 1 for forward. The method will return an option,
- * or `null` if there are no options in the array.
+ * array, if item is `null`). The direction and distance in which to search through the option array
+ * is specified with a number: e.g. -1 for the previous item (the default) or 1 for the next item,
+ * or 15 for the 15th next item, etc. The method will return an option, or `null` if there are no
+ * options in the array.
  *
  * @param {OO.ui.OptionWidget|null} item Item to describe the start position, or `null` to start at
  *  the beginning of the array.
- * @param {number} direction Direction to move in: -1 to move backward, 1 to move forward
+ * @param {number} offset Relative position: negative to move backward, positive to move forward
  * @param {Function} [filter] Only consider items for which this function returns
  *  true. Function takes an OO.ui.OptionWidget and returns a boolean.
+ * @param {boolean} [wrap=false] Do not wrap around after reaching the last or first item
  * @return {OO.ui.OptionWidget|null} Item at position, `null` if there are no items in the select
  */
-OO.ui.SelectWidget.prototype.findRelativeSelectableItem = function ( item, direction, filter ) {
-	var increase = direction > 0 ? 1 : -1,
+OO.ui.SelectWidget.prototype.findRelativeSelectableItem = function ( item, offset, filter, wrap ) {
+	var step = offset > 0 ? 1 : -1,
 		len = this.items.length;
+	if ( wrap === undefined ) {
+		wrap = true;
+	}
 
 	var nextIndex;
 	if ( item instanceof OO.ui.OptionWidget ) {
-		var currentIndex = this.items.indexOf( item );
-		nextIndex = ( currentIndex + increase + len ) % len;
+		nextIndex = this.items.indexOf( item );
 	} else {
 		// If no item is selected and moving forward, start at the beginning.
 		// If moving backward, start at the end.
-		nextIndex = direction > 0 ? 0 : len - 1;
+		nextIndex = offset > 0 ? 0 : len - 1;
+		offset -= step;
 	}
 
+	var previousItem = item;
+	var nextItem = null;
 	for ( var i = 0; i < len; i++ ) {
 		item = this.items[ nextIndex ];
 		if (
 			item instanceof OO.ui.OptionWidget && item.isSelectable() &&
 			( !filter || filter( item ) )
 		) {
-			return item;
+			nextItem = item;
 		}
-		nextIndex = ( nextIndex + increase + len ) % len;
+
+		if ( offset === 0 && nextItem && nextItem !== previousItem ) {
+			// We walked at least the desired number of steps *and* we've selected a different item.
+			// This is to ensure that disabled items don't cause us to get stuck or return null.
+			break;
+		}
+
+		nextIndex += step;
+		if ( nextIndex < 0 || nextIndex >= len ) {
+			if ( wrap ) {
+				nextIndex = ( nextIndex + len ) % len;
+			} else {
+				// We ran out of the list, return whichever was the last valid item
+				break;
+			}
+		}
+		if ( offset !== 0 ) {
+			offset -= step;
+		}
 	}
-	return null;
+	return nextItem;
 };
 
 /**
@@ -8185,6 +8266,10 @@ OO.mixinClass( OO.ui.MenuSelectWidget, OO.ui.mixin.FloatableElement );
 
 /* Static properties */
 
+OO.ui.MenuSelectWidget.static.handleNavigationKeys = true;
+
+OO.ui.MenuSelectWidget.static.listWrapsAround = false;
+
 /**
  * Positions to flip to if there isn't room in the container for the
  * menu in a specific direction.
@@ -8229,7 +8314,7 @@ OO.ui.MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 			Array.isArray( selected ) ? selected[ 0 ] : selected
 		);
 
-	if ( !this.isDisabled() && this.isVisible() && this.getVisibleItems().length ) {
+	if ( !this.isDisabled() && this.getVisibleItems().length ) {
 		switch ( e.keyCode ) {
 			case OO.ui.Keys.TAB:
 				if ( currentItem ) {
@@ -8241,7 +8326,9 @@ OO.ui.MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 				break;
 			case OO.ui.Keys.LEFT:
 			case OO.ui.Keys.RIGHT:
-				// Do nothing if a text field is associated, arrow keys will be handled natively
+			case OO.ui.Keys.HOME:
+			case OO.ui.Keys.END:
+				// Do nothing if a text field is associated, these keys will be handled by the text input
 				if ( !this.$input ) {
 					OO.ui.MenuSelectWidget.super.prototype.onDocumentKeyDown.call( this, e );
 				}
@@ -8661,9 +8748,8 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	this.$handle.on( {
 		click: this.onClick.bind( this ),
 		keydown: this.onKeyDown.bind( this ),
-		// Hack? Handle type-to-search when menu is not expanded and not handling its own events.
-		keypress: this.menu.onDocumentKeyPressHandler,
-		blur: this.menu.clearKeyPressBuffer.bind( this.menu )
+		keypress: this.onKeyPress.bind( this ),
+		blur: this.onBlur.bind( this )
 	} );
 	this.menu.connect( this, {
 		select: 'onMenuSelect',
@@ -8771,28 +8857,55 @@ OO.ui.DropdownWidget.prototype.onClick = function ( e ) {
  * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.DropdownWidget.prototype.onKeyDown = function ( e ) {
-	if (
-		!this.isDisabled() &&
-		(
-			e.which === OO.ui.Keys.ENTER ||
-			(
-				e.which === OO.ui.Keys.SPACE &&
-				// Avoid conflicts with type-to-search, see SelectWidget#onKeyPress.
-				// Space only closes the menu is the user is not typing to search.
-				this.menu.keyPressBuffer === ''
-			) ||
-			(
-				!this.menu.isVisible() &&
-				(
-					e.which === OO.ui.Keys.UP ||
-					e.which === OO.ui.Keys.DOWN
-				)
-			)
-		)
-	) {
-		this.menu.toggle();
-		return false;
+	if ( !this.isDisabled() ) {
+		switch ( e.keyCode ) {
+			case OO.ui.Keys.ENTER:
+				this.menu.toggle();
+				return false;
+			case OO.ui.Keys.SPACE:
+				if ( this.menu.keyPressBuffer === '' ) {
+					// Avoid conflicts with type-to-search, see SelectWidget#onKeyPress.
+					// Space only opens the menu is the user is not typing to search.
+					this.menu.toggle();
+					return false;
+				}
+				break;
+			case OO.ui.Keys.UP:
+			case OO.ui.Keys.LEFT:
+			case OO.ui.Keys.DOWN:
+			case OO.ui.Keys.RIGHT:
+			case OO.ui.Keys.HOME:
+			case OO.ui.Keys.END:
+			case OO.ui.Keys.PAGEUP:
+			case OO.ui.Keys.PAGEDOWN:
+				// Hack? Handle keyboard events the same as MenuSelectWidget would, even
+				// when menu is not expanded and therefore not handling events.
+				return this.menu.onDocumentKeyDown( e );
+		}
 	}
+};
+
+/**
+ * Handle key press events.
+ *
+ * @private
+ * @param {jQuery.Event} e Key press event
+ * @return {undefined|boolean} False to prevent default if event is handled
+ */
+OO.ui.DropdownWidget.prototype.onKeyPress = function ( e ) {
+	// Hack? Handle keyboard events the same as MenuSelectWidget would, even
+	// when menu is not expanded and therefore not handling events.
+	return this.menu.onDocumentKeyPress( e );
+};
+
+/**
+ * Handle blur events.
+ *
+ * @private
+ * @param {jQuery.Event} e Blur event
+ */
+OO.ui.DropdownWidget.prototype.onBlur = function () {
+	this.menu.clearKeyPressBuffer();
 };
 
 /**
@@ -12513,6 +12626,12 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 
 	// Configuration initialization
 	config = $.extend( { align: 'left', helpInline: false }, config );
+
+	if ( config.help && !config.label ) {
+		// Add an empty label. For some combinations of 'helpInline' and 'align'
+		// there would be no space in the interface to display the help text otherwise.
+		config.label = ' ';
+	}
 
 	// Parent constructor
 	OO.ui.FieldLayout.super.call( this, config );

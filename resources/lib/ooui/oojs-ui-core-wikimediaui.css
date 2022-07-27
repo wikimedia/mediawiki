@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.44.1
+ * OOUI v0.44.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-07-13T13:25:55Z
+ * Date: 2022-07-27T15:22:55Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -415,6 +415,11 @@
 .oo-ui-iconElement-noIcon {
   display: none;
 }
+@media (forced-colors: active) and (prefers-color-scheme: dark) {
+  .oo-ui-iconElement-icon:not( .oo-ui-image-invert ) {
+    filter: invert(1) hue-rotate(180deg);
+  }
+}
 
 .oo-ui-indicatorElement-indicator {
   background-size: contain;
@@ -429,6 +434,11 @@
 }
 .oo-ui-indicatorElement-noIndicator {
   display: none;
+}
+@media (forced-colors: active) and (prefers-color-scheme: dark) {
+  .oo-ui-indicatorElement-indicator:not( .oo-ui-image-invert ) {
+    filter: invert(1) hue-rotate(180deg);
+  }
 }
 
 .oo-ui-pendingElement-pending {
@@ -462,17 +472,17 @@
 .oo-ui-fieldLayout:after {
   clear: both;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body,
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body {
+.oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body,
+.oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body {
   display: flex;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field,
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
+.oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field,
+.oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
   width: 60%;
   flex-shrink: 0;
 }
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
-.oo-ui-fieldLayout.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
+.oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-left > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header,
+.oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
   word-wrap: break-word;
   flex-grow: 1;
 }
@@ -533,6 +543,7 @@
 .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-right > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-help {
   margin-right: 0;
   margin-left: -6px;
+  height: 2.28571429em;
 }
 .oo-ui-fieldLayout.oo-ui-labelElement.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
   padding-top: 0;
