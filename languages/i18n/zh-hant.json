@@ -677,7 +677,7 @@
 	"resetpass-submit-cancel": "取消",
 	"resetpass-wrong-oldpass": "無效的臨時或現有密碼。\n您可能已經變更了密碼，或者已經請求一個新的臨時密碼。",
 	"resetpass-recycled": "請將您的密碼更改成與目前內容不同的密碼。",
-	"resetpass-temp-emailed": "您使用臨時電子郵件傳送的密碼登入。\n要完成登入，您必須在這裡設定一個新密碼：",
+	"resetpass-temp-emailed": "您使用電子郵件傳送的臨時密碼登入。\n要完成登入，您必須在這裡設定一個新密碼：",
 	"resetpass-temp-password": "臨時密碼：",
 	"resetpass-abort-generic": "擴充套件已中止了變更密碼的操作。",
 	"resetpass-expired": "您的密碼已過期。請設定一個新的密碼以登入。",
