@@ -341,6 +341,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$originalDataParsoid = $this->getJsonFromFile( 'MainPage-original.data-parsoid' );
 		$attribs = [
 			'opts' => [
+				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'original' => [
 					'html' => [
 						'headers' => $htmlHeaders,
@@ -364,6 +365,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		// should use original html for selser (1.1.1, meta) ///////////////////
 		$attribs = [
 			'opts' => [
+				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'original' => [
 					'html' => [
 						'headers' => [
@@ -391,6 +393,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		// should accept original html for selser (1.1.1, headers) ////////////
 		$attribs = [
 			'opts' => [
+				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'original' => [
 					'html' => [
 						'headers' => [
@@ -429,6 +432,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$attribs = [
 			'oldid' => 1, // Will be replaced by the revision ID of the default test page
 			'opts' => [
+				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'original' => [
 					'html' => [
 						'headers' => $htmlHeaders,
@@ -452,6 +456,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$attribs = [
 			// No wikitext, no revid/oldid
 			'opts' => [
+				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'original' => [
 					'html' => [
 						'headers' => $htmlHeaders,
@@ -477,6 +482,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$attribs = [
 			'opts' => [
+				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'original' => [
 					'html' => [
 						'headers' => $htmlHeaders,
@@ -491,7 +497,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		yield 'should apply data-parsoid to duplicated ids' => [
 			$attribs,
 			$html,
-			[ '<div>data-parsoid test</div><div>data-parsoid test</div>' ],
+			[ '<div>data-parsoid test<div>data-parsoid test' ],
 		];
 
 		// should apply original data-mw ///////////////////////////////////////
@@ -513,7 +519,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 		$attribs = [
 			'opts' => [
-				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE, // enable data-mw processing
+				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'original' => [
 					'html' => [
 						'headers' => $htmlHeaders,
@@ -541,7 +547,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$dataMediaWiki = [ 'ids' => [ 'mwAQ' => [] ] ]; // Missing data-mw.parts!
 		$attribs = [
 			'opts' => [
-				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE, // enable data-mw processing
+				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'original' => [
 					'html' => [
 						'headers' => $htmlHeaders,
@@ -582,7 +588,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 		$attribs = [
 			'opts' => [
-				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE, // enable data-mw processing
+				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'data-mw' => [ // modified data
 					'body' => $dataMediaWikiModified,
 				],
@@ -620,7 +626,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$attribs = [
 			'opts' => [
-				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE, // enable data-mw processing
+				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'original' => [
 					'data-parsoid' => [
 						'body' => $dataParsoid,
@@ -651,7 +657,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$attribs = [
 			'opts' => [
-				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE, // enable data-mw processing
+				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'data-mw' => [
 					'body' => $dataMediaWikiModified,
 				],
@@ -684,7 +690,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$attribs = [
 			'opts' => [
-				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE, // enable data-mw processing
+				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'data-mw' => [
 					'body' => $dataMediaWikiModified,
 				],
@@ -725,7 +731,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$htmlOfMinimal = $this->getTextFromFile( 'Minimal.html' ); // Uses profile version 2.4.0
 		$attribs = [
 			'opts' => [
-				// Downgrades are only for pagebundle
 				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'original' => [
 					'html' => [
@@ -751,7 +756,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$htmlOfMinimal = $this->getTextFromFile( 'Minimal.html' ); // Uses profile version 2.4.0
 		$attribs = [
 			'opts' => [
-				// Downgrades are only for pagebundle
 				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'original' => [
 					'html' => [
@@ -907,7 +911,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 				'offsetType' => 'byte',
 			],
 			'opts' => [
-				// Enable selser
 				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'original' => [
 					'html' => [
