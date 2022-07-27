@@ -143,4 +143,9 @@ class SqlitePlatform extends SQLPlatform {
 
 		return $options;
 	}
+
+	public function dropTableSqlText( $table ) {
+		// No CASCADE support; https://www.sqlite.org/lang_droptable.html
+		return "DROP TABLE " . $this->tableName( $table );
+	}
 }

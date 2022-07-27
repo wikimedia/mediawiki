@@ -358,6 +358,8 @@ because of Phabricator reports.
 * Maintenance script resetUserTokens.php, deprecated in 1.27, has been removed.
 * Database::doInsert() has been removed without deprecation as it's not used
   outside core. Users should override SqlPlatform::insertSqlText() instead.
+* Database::doDropTable() has been removed without deprecation as it's not used
+  outside core. Users should override SqlPlatform::dropTableSqlText() instead.
 * …
 
 === Deprecations in 1.39 ===

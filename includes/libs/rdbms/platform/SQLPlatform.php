@@ -1596,4 +1596,11 @@ class SQLPlatform implements ISQLPlatform {
 			throw new DBLanguageError( __METHOD__ . ': expected string or array' );
 		}
 	}
+
+	public function dropTableSqlText( $table ) {
+		// https://mariadb.com/kb/en/drop-table/
+		// https://dev.mysql.com/doc/refman/8.0/en/drop-table.html
+		// https://www.postgresql.org/docs/9.2/sql-truncate.html
+		return "DROP TABLE " . $this->tableName( $table ) . " CASCADE";
+	}
 }
