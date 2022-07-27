@@ -5,6 +5,8 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.38.2 ===
+* Parser will use current timestamp instead of null if passed a RevisionRecord
+  that does not have a timestamp
 
 == MediaWiki 1.38.2 ==
 
