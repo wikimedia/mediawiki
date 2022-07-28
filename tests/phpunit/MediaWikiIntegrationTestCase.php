@@ -1052,8 +1052,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * The primary use case for this method is to allow changes to global configuration variables
 	 * to take effect on services that get initialized based on these global configuration
-	 * variables. Similarly, it may be necessary to call resetServices() after calling setService(),
-	 * so the newly set service gets picked up by any other service definitions that may use it.
+	 * variables. It is called by setMwGlobals/overrideConfigValues
 	 *
 	 * @see MediaWikiServices::resetServiceForTesting.
 	 *

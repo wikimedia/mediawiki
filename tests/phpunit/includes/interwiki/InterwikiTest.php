@@ -47,7 +47,6 @@ class InterwikiTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function setWgInterwikiCache( $interwikiCache ) {
-		$this->getServiceContainer()->resetServiceForTesting( 'InterwikiLookup' );
 		$this->setMwGlobals( 'wgInterwikiCache', $interwikiCache );
 	}
 

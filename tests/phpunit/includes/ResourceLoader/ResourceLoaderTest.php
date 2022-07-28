@@ -249,8 +249,6 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	public function testMediawikiVariablesDefault( array $config, array $importPaths, $skin, $expectedFile ) {
 		$this->setMwGlobals( $config );
 		$reset = ExtensionRegistry::getInstance()->setAttributeForTest( 'SkinLessImportPaths', $importPaths );
-		// Reset Skin::getSkinNames for Context
-		$this->getServiceContainer()->resetServiceForTesting( 'SkinFactory' );
 
 		$context = $this->getResourceLoaderContext( [ 'skin' => $skin ] );
 		$module = new FileModule( [
