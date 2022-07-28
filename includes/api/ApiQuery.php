@@ -289,6 +289,9 @@ class ApiQuery extends ApiBase {
 		],
 		'backlinks' => [
 			'class' => ApiQueryBacklinks::class,
+			'services' => [
+				'LinksMigration',
+			]
 		],
 		'blocks' => [
 			'class' => ApiQueryBlocks::class,
@@ -316,6 +319,9 @@ class ApiQuery extends ApiBase {
 		],
 		'embeddedin' => [
 			'class' => ApiQueryBacklinks::class,
+			'services' => [
+				'LinksMigration',
+			]
 		],
 		'exturlusage' => [
 			'class' => ApiQueryExtLinksUsage::class,
@@ -329,6 +335,9 @@ class ApiQuery extends ApiBase {
 		],
 		'imageusage' => [
 			'class' => ApiQueryBacklinks::class,
+			'services' => [
+				'LinksMigration',
+			]
 		],
 		'iwbacklinks' => [
 			'class' => ApiQueryIWBacklinks::class,
