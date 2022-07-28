@@ -37,6 +37,9 @@ use Wikimedia\IPUtils;
  * @see Database
  */
 class DatabaseMysqli extends DatabaseMysqlBase {
+	/** @var int Last implicit row ID for the session (0 if none) */
+	private $sessionLastAutoRowId;
+
 	protected function doSingleStatementQuery( string $sql ): QueryStatus {
 		$conn = $this->getBindingHandle();
 
@@ -44,6 +47,10 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		AtEase::suppressWarnings();
 		$res = $conn->query( $sql );
 		AtEase::restoreWarnings();
+		// Note that mysqli::insert_id only reflects the last query statement
+		$insertId = (int)$conn->insert_id;
+		$this->lastQueryInsertId = $insertId;
+		$this->sessionLastAutoRowId = $insertId ?: $this->sessionLastAutoRowId;
 
 		return new QueryStatus(
 			$res instanceof mysqli_result ? new MysqliResultWrapper( $this, $res ) : $res,
@@ -140,10 +147,23 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		return ( $this->conn instanceof mysqli ) ? mysqli_close( $this->conn ) : true;
 	}
 
-	public function insertId() {
-		$conn = $this->getBindingHandle();
+	protected function lastInsertId() {
+		return $this->sessionLastAutoRowId;
+	}
 
-		return (int)$conn->insert_id;
+	protected function doHandleSessionLossPreconnect() {
+		// https://mariadb.com/kb/en/last_insert_id/
+		$this->sessionLastAutoRowId = 0;
+	}
+
+	public function insertId() {
+		if ( $this->lastEmulatedInsertId === null ) {
+			$conn = $this->getBindingHandle();
+			// Note that mysqli::insert_id only reflects the last query statement
+			$this->lastEmulatedInsertId = (int)$conn->insert_id;
+		}
+
+		return $this->lastEmulatedInsertId;
 	}
 
 	/**

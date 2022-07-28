@@ -211,22 +211,46 @@ interface IDatabase extends IReadableDatabase {
 	public function pendingWriteCallers();
 
 	/**
-	 * Get the inserted value of an auto-increment row
+	 * Get the sequence-based ID assigned by the last query method call
 	 *
-	 * This should only be called after an insert that used an auto-incremented
-	 * value. If no such insert was previously done in the current database
-	 * session, the return value is undefined.
+	 * This method should only be called when all the following hold true:
+	 *   - (a) A method call was made to insert(), upsert(), replace(), or insertSelect()
+	 *   - (b) The method call attempts to insert exactly one row
+	 *   - (c) The method call omits the value of exactly one auto-increment column
+	 *   - (d) The method call succeeded
+	 *   - (e) No subsequent method calls were made, with the exception of affectedRows(),
+	 *         lastErrno(), lastError(), and getType()
+	 *
+	 * In all other cases, the return value is unspecified.
+	 *
+	 * When the query method is either insert() with "IGNORE", upsert(), or insertSelect(),
+	 * callers should first check affectedRows() before calling this method, making sure that
+	 * the query method actually created a row. Otherwise, an ID from a previous insert might
+	 * be incorrectly assumed to belong to last insert.
 	 *
 	 * @return int
 	 */
 	public function insertId();
 
 	/**
-	 * Get the number of rows affected by the last attempted query statement
+	 * Get the number of rows affected by the last query method call
 	 *
-	 * Similar to https://www.php.net/mysql_affected_rows but includes rows matched
-	 * but not changed (ie. an UPDATE which sets all fields to the same value they already have).
-	 * To get the old mysql_affected_rows behavior, include non-equality of the fields in WHERE.
+	 * This method should only be called when all the following hold true:
+	 *   - (a) A method call was made to insert(), upsert(), replace(), update(), delete(),
+	 *         insertSelect(), query() with a non-SELECT statement, or queryMulti() with a
+	 *         non-SELECT terminal statement
+	 *   - (b) The method call succeeded
+	 *   - (c) No subsequent method calls were made, with the exception of affectedRows(),
+	 *         lastErrno(), lastError(), and getType()
+	 *
+	 * In all other cases, the return value is unspecified.
+	 *
+	 * UPDATE queries consider rows affected even when all their new column values match
+	 * the previous values. Such rows can be excluded from the count by changing the WHERE
+	 * clause to filter them out.
+	 *
+	 * If the last query method call was to query() or queryMulti(), then the results
+	 * are based on the (last) statement provided to that call and are driver-specific.
 	 *
 	 * @return int
 	 */

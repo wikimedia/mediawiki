@@ -1571,6 +1571,11 @@ class SQLPlatform implements ISQLPlatform {
 		return $sql;
 	}
 
+	/**
+	 * @param string $table
+	 * @param string|array $conds
+	 * @return string
+	 */
 	public function deleteSqlText( $table, $conds ) {
 		$this->assertConditionIsNotEmpty( $conds, __METHOD__, false );
 

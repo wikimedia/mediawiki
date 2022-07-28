@@ -525,11 +525,13 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testTransactionCallbackChains() {
-		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
+		global $wgDBserver, $wgDBport, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype;
+		global $wgSQLiteDataDir;
 
 		$servers = [
 			[
 				'host' => $wgDBserver,
+				'port' => $wgDBport,
 				'dbname' => $wgDBname,
 				'tablePrefix' => $this->dbPrefix(),
 				'user' => $wgDBuser,

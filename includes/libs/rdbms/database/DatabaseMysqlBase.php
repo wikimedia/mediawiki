@@ -588,8 +588,10 @@ abstract class DatabaseMysqlBase extends Database {
 	protected function doReplace( $table, array $identityKey, array $rows, $fname ) {
 		$encTable = $this->tableName( $table );
 		[ $sqlColumns, $sqlTuples ] = $this->platform->makeInsertLists( $rows );
-
+		// https://dev.mysql.com/doc/refman/8.0/en/replace.html
 		$sql = "REPLACE INTO $encTable ($sqlColumns) VALUES $sqlTuples";
+		// Note that any auto-increment columns on conflicting rows will be reassigned
+		// due to combined DELETE+INSERT semantics. This will be reflected in insertId().
 		$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'REPLACE', $table );
 		$this->query( $query, $fname );
 	}

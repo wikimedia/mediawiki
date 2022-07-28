@@ -99,8 +99,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var array<string,array> Map of (name => (type,pristine,trx ID)) for current temp tables */
 	protected $sessionTempTables = [];
 
-	/** @var int|null Affected row count for the last query statement */
-	protected $affectedRowCount;
+	/** @var int Affected row count for the last statement to query() */
+	protected $lastQueryAffectedRows = 0;
+	/** @var int|null Insert (row) ID for the last statement to query() (null if not supported) */
+	protected $lastQueryInsertId;
+
+	/** @var int|null Affected row count for the last query method call; null if unspecified */
+	protected $lastEmulatedAffectedRows;
+	/** @var int|null Insert (row) ID for the last query method call; null if unspecified */
+	protected $lastEmulatedInsertId;
 
 	/** @var string Last error during connection; empty string if none */
 	protected $lastConnectError = '';
@@ -109,7 +116,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private $lastPing = 0.0;
 	/** @var float|false UNIX timestamp of last write query */
 	private $lastWriteTime = false;
-	/** @var string|false */
+	/** @var string|false The last PHP error from a query or connection attempt */
 	private $lastPhpError = false;
 
 	/** @var int|null Current critical section numeric ID */
@@ -865,7 +872,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$ps = $this->profiler ? ( $this->profiler )( $generalizedSql->stringify() ) : null;
 		$startTime = microtime( true );
 
-		$this->affectedRowCount = 0;
+		// Clear any overrides from a prior "query method". Note that this does not affect
+		// any such methods that are currently invoking query() itself since those query
+		// methods set these fields before returning.
+		$this->lastEmulatedAffectedRows = null;
+		$this->lastEmulatedInsertId = null;
+
 		if ( $isPermWrite ) {
 			$this->lastWriteTime = $startTime;
 			$this->transactionManager->transactionWritingIn(
@@ -887,7 +899,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$affectedRowCount = $status->rowsAffected;
 		$returnedRowCount = $status->rowsReturned;
-		$this->affectedRowCount = $status->rowsAffected;
+		$this->lastQueryAffectedRows = $affectedRowCount;
 
 		if ( $status->res !== false ) {
 			if ( $isPermWrite && $this->trxLevel() ) {
@@ -1184,10 +1196,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	private function handleSessionLossPreconnect() {
 		// Clean up tracking of session-level things...
-		// https://dev.mysql.com/doc/refman/5.7/en/implicit-commit.html
+		// https://mariadb.com/kb/en/create-table/#create-temporary-table
 		// https://www.postgresql.org/docs/9.2/static/sql-createtable.html (ignoring ON COMMIT)
 		$this->sessionTempTables = [];
-		// https://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_get-lock
+		// https://mariadb.com/kb/en/get_lock/
 		// https://www.postgresql.org/docs/9.4/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$this->sessionNamedLocks = [];
 		// Session loss implies transaction loss (T67263)
@@ -1637,7 +1649,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->doReplace( $table, $identityKey, $rows, $fname );
 		} else {
 			$sql = $this->platform->insertSqlText( $table, $rows );
-			$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'REPLACE', $table );
+			$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'INSERT', $table );
 			$this->query( $query, $fname );
 		}
 	}
@@ -1653,23 +1665,40 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	protected function doReplace( $table, array $identityKey, array $rows, $fname ) {
 		$affectedRowCount = 0;
+		$insertId = null;
 		$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 		try {
 			foreach ( $rows as $row ) {
 				// Delete any conflicting rows (including ones inserted from $rows)
-				$sqlCondition = $this->platform->makeKeyCollisionCondition( [ $row ], $identityKey );
-				$this->delete( $table, [ $sqlCondition ], $fname );
-				$affectedRowCount += $this->affectedRows();
+				$query = new Query(
+					$this->platform->deleteSqlText(
+						$table,
+						[ $this->platform->makeKeyCollisionCondition( [ $row ], $identityKey ) ]
+					),
+					self::QUERY_CHANGE_ROWS,
+					'DELETE',
+					$table
+				);
+				$this->query( $query, $fname );
+				$affectedRowCount += $this->lastQueryAffectedRows;
 				// Insert the new row
-				$this->insert( $table, $row, $fname );
-				$affectedRowCount += $this->affectedRows();
+				$query = new Query(
+					$this->platform->dispatchingInsertSqlText( $table, $row, [] ),
+					self::QUERY_CHANGE_ROWS,
+					'INSERT',
+					$table
+				);
+				$this->query( $query, $fname );
+				$affectedRowCount += $this->lastQueryAffectedRows;
+				$insertId = $insertId ?: $this->lastQueryInsertId;
 			}
 			$this->endAtomic( $fname );
 		} catch ( DBError $e ) {
 			$this->cancelAtomic( $fname );
 			throw $e;
 		}
-		$this->affectedRowCount = $affectedRowCount;
+		$this->lastEmulatedAffectedRows = $affectedRowCount;
+		$this->lastEmulatedInsertId = $insertId;
 	}
 
 	public function upsert( $table, array $rows, $uniqueKeys, array $set, $fname = __METHOD__ ) {
@@ -1713,14 +1742,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	) {
 		$encTable = $this->tableName( $table );
 		$sqlColumnAssignments = $this->makeList( $set, self::LIST_SET );
+		// Get any AUTO_INCREMENT/SERIAL column for this table so we can set insertId()
+		$autoIncrementColumn = $this->getInsertIdColumnForUpsert( $table );
 		// Check if there is a SQL assignment expression in $set
 		$useWith = isset( $set[0] );
-
 		// Subclasses might need explicit type casting within "WITH...AS (VALUES ...)"
 		// so that these CTE rows can be referenced within the SET clause assigments.
 		$typeByColumn = $useWith ? $this->getValueTypesForWithClause( $table ) : [];
 
+		$first = true;
 		$affectedRowCount = 0;
+		$insertId = null;
 		$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 		try {
 			foreach ( $rows as $row ) {
@@ -1734,40 +1766,64 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					[ $row ],
 					$identityKey
 				);
-				// https://www.sqlite.org/lang_update.html
-				// https://mariadb.com/kb/en/with/
-				// https://dev.mysql.com/doc/refman/8.0/en/update.html
-				// https://www.postgresql.org/docs/9.2/sql-update.html
-				$sql =
+				$query = new Query(
 					( $useWith ? "WITH __VALS ($sqlVals) AS (VALUES $sqlTuples) " : "" ) .
-					"UPDATE $encTable SET $sqlColumnAssignments " .
-					"WHERE ($sqlConditions)";
-				$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'UPDATE', $table );
+						"UPDATE $encTable SET $sqlColumnAssignments " .
+						"WHERE ($sqlConditions)",
+					self::QUERY_CHANGE_ROWS,
+					'UPDATE',
+					$table
+				);
 				$this->query( $query, $fname );
-				$rowsUpdated = $this->affectedRows();
+				$rowsUpdated = $this->lastQueryAffectedRows;
 				$affectedRowCount += $rowsUpdated;
-				// Insert the new row if there are no conflicts
-				if ( $rowsUpdated <= 0 ) {
-					// https://sqlite.org/lang_insert.html
-					// https://mariadb.com/kb/en/with/
-					// https://dev.mysql.com/doc/refman/8.0/en/with.html
-					// https://www.postgresql.org/docs/9.2/sql-insert.html
-					$sql = "INSERT INTO $encTable ($sqlColumns) VALUES $sqlTuples";
-					$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'INSERT', $table );
+				if ( $rowsUpdated > 0 ) {
+					// Conflicting row found and updated
+					if ( $first && $autoIncrementColumn !== null ) {
+						// @TODO: use "RETURNING" instead (when supported by SQLite)
+						$query = new Query(
+							"SELECT $autoIncrementColumn AS id FROM $encTable " .
+							"WHERE ($sqlConditions)",
+							self::QUERY_CHANGE_NONE,
+							'SELECT',
+							$table
+						);
+						$sRes = $this->query( $query, $fname, self::QUERY_CHANGE_ROWS );
+						$insertId = (int)$sRes->fetchRow()['id'];
+					}
+				} else {
+					// No conflicting row found
+					$query = new Query(
+						"INSERT INTO $encTable ($sqlColumns) VALUES $sqlTuples",
+						self::QUERY_CHANGE_ROWS,
+						'INSERT',
+						$table
+					);
 					$this->query( $query, $fname );
-					$affectedRowCount += $this->affectedRows();
+					$affectedRowCount += $this->lastQueryAffectedRows;
 				}
+				$first = false;
 			}
+			$this->endAtomic( $fname );
 		} catch ( DBError $e ) {
 			$this->cancelAtomic( $fname );
 			throw $e;
 		}
-		$this->endAtomic( $fname );
-		// Set the affected row count for the whole operation
-		$this->affectedRowCount = $affectedRowCount;
+		$this->lastEmulatedAffectedRows = $affectedRowCount;
+		$this->lastEmulatedInsertId = $insertId;
 	}
 
 	/**
+	 * @stable to override
+	 * @param string $table
+	 * @return string|null The AUTO_INCREMENT/SERIAL column; null if not needed
+	 */
+	protected function getInsertIdColumnForUpsert( $table ) {
+		return null;
+	}
+
+	/**
+	 * @stable to override
 	 * @param string $table
 	 * @return array<string,string> Map of (column => type); [] if not needed
 	 */
@@ -1920,29 +1976,37 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			array_merge( $selectOptions, [ 'FOR UPDATE' ] ),
 			$selectJoinConds
 		);
-		if ( !$res ) {
-			return;
-		}
 
 		$affectedRowCount = 0;
-		$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
-		try {
-			$rows = [];
-			foreach ( $res as $row ) {
-				$rows[] = (array)$row;
+		$insertId = null;
+		if ( $res ) {
+			$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
+			try {
+				$rows = [];
+				foreach ( $res as $row ) {
+					$rows[] = (array)$row;
+				}
+				// Avoid inserts that are too huge
+				$rowBatches = array_chunk( $rows, $this->nonNativeInsertSelectBatchSize );
+				foreach ( $rowBatches as $rows ) {
+					$query = new Query(
+						$this->platform->dispatchingInsertSqlText( $destTable, $rows, $insertOptions ),
+						self::QUERY_CHANGE_ROWS,
+						'INSERT',
+						$destTable
+					);
+					$this->query( $query, $fname );
+					$affectedRowCount += $this->lastQueryAffectedRows;
+					$insertId = $insertId ?: $this->lastQueryInsertId;
+				}
+				$this->endAtomic( $fname );
+			} catch ( DBError $e ) {
+				$this->cancelAtomic( $fname );
+				throw $e;
 			}
-			// Avoid inserts that are too huge
-			$rowBatches = array_chunk( $rows, $this->nonNativeInsertSelectBatchSize );
-			foreach ( $rowBatches as $rows ) {
-				$this->insert( $destTable, $rows, $fname, $insertOptions );
-				$affectedRowCount += $this->affectedRows();
-			}
-		} catch ( DBError $e ) {
-			$this->cancelAtomic( $fname );
-			throw $e;
 		}
-		$this->endAtomic( $fname );
-		$this->affectedRowCount = $affectedRowCount;
+		$this->lastEmulatedAffectedRows = $affectedRowCount;
+		$this->lastEmulatedInsertId = $insertId;
 	}
 
 	/**
@@ -2203,7 +2267,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$dbErrors = [];
 		$this->runOnTransactionIdleCallbacks( self::TRIGGER_COMMIT, $dbErrors );
 		$this->runTransactionListenerCallbacks( self::TRIGGER_COMMIT, $dbErrors );
-		$this->affectedRowCount = 0; // for the sake of consistency
+		$this->lastEmulatedAffectedRows = 0; // for the sake of consistency
 		if ( $dbErrors ) {
 			throw $dbErrors[0];
 		}
@@ -2219,7 +2283,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private function runTransactionPostRollbackCallbacks() {
 		$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
 		$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
-		$this->affectedRowCount = 0; // for the sake of consistency
+		$this->lastEmulatedAffectedRows = 0; // for the sake of consistency
 	}
 
 	final public function startAtomic(
@@ -2381,7 +2445,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->transactionManager->modifyCallbacksForCancel( $this, $excisedIds, $newTopSection );
 		}
 
-		$this->affectedRowCount = 0; // for the sake of consistency
+		$this->lastEmulatedAffectedRows = 0; // for the sake of consistency
 
 		$this->completeCriticalSection( __METHOD__, $cs );
 
@@ -2663,8 +2727,39 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function affectedRows() {
-		return $this->affectedRowCount;
+		$this->lastEmulatedAffectedRows ??= $this->lastQueryAffectedRows;
+
+		return $this->lastEmulatedAffectedRows;
 	}
+
+	public function insertId() {
+		if ( $this->lastEmulatedInsertId === null ) {
+			// Guard against misuse of this method by checking affectedRows(). Note that calls
+			// to insert() with "IGNORE" and calls to insertSelect() might not add any rows.
+			if ( $this->affectedRows() ) {
+				$this->lastEmulatedInsertId = $this->lastInsertId();
+			} else {
+				$this->lastEmulatedInsertId = 0;
+			}
+		}
+
+		return $this->lastEmulatedInsertId;
+	}
+
+	/**
+	 * Get a row ID from the last insert statement to implicitly assign one within the session
+	 *
+	 * If the statement involved assigning sequence IDs to multiple rows, then the return value
+	 * will be any one of those values (database-specific). If the statement was an "UPSERT" and
+	 * some existing rows were updated, then the result will either reflect only IDs of created
+	 * rows or it will reflect IDs of both created and updated rows (this is database-specific).
+	 *
+	 * The result is unspecified if the statement gave an error.
+	 *
+	 * @return int Sequence ID, 0 (if none)
+	 * @throws DBError
+	 */
+	abstract protected function lastInsertId();
 
 	public function ping() {
 		if ( $this->isOpen() ) {
