@@ -383,17 +383,31 @@ class BitmapHandler extends TransformationalImageHandler {
 	 * @return MediaTransformError|false Error object if error occurred, false (=no error) otherwise
 	 */
 	protected function transformCustom( $image, $params ) {
-		# Use a custom convert command
+		// Use a custom convert command
 		$customConvertCommand = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::CustomConvertCommand );
 
-		# Variables: %s %d %w %h
-		$src = Shell::escape( $params['srcPath'] );
-		$dst = Shell::escape( $params['dstPath'] );
-		$cmd = $customConvertCommand;
-		$cmd = str_replace( '%s', $src, str_replace( '%d', $dst, $cmd ) ); # Filenames
-		$cmd = str_replace( '%h', Shell::escape( $params['physicalHeight'] ),
-			str_replace( '%w', Shell::escape( $params['physicalWidth'] ), $cmd ) ); # Size
+		// Variables: %s %d %w %h
+		$matchLookupTable = [
+			'%d' => Shell::escape( $params['dstPath'] ),
+			'%s' => Shell::escape( $params['srcPath'] ),
+			'%w' => Shell::escape( $params['physicalWidth'] ),
+			'%h' => Shell::escape( $params['physicalHeight'] ),
+		];
+		// Find all variables in the original command at once,
+		// so that replacement values cannot inject variable placeholders
+		$cmd = preg_replace_callback( '/%[dswh]/',
+			static function ( $m ) use ( &$matchLookupTable ) {
+				if ( !isset( $matchLookupTable[$m[0]] ) ) {
+					return $m[0];
+				}
+				// We only want to replace each of the variables once
+				$replacement = $matchLookupTable[$m[0]];
+				unset( $matchLookupTable[$m[0]] );
+				return $replacement;
+			},
+			$customConvertCommand
+		);
 		wfDebug( __METHOD__ . ": Running custom convert command $cmd" );
 		$retval = 0;
 		$err = wfShellExecWithStderr( $cmd, $retval );
