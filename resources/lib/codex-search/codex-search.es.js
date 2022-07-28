@@ -29,7 +29,7 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, createElementVNode, createTextVNode, resolveComponent, withModifiers, renderSlot, createBlock, resolveDynamicComponent, withCtx, Fragment, createVNode, Transition, normalizeStyle, getCurrentInstance, onUnmounted, watch, toRef, withDirectives, renderList, mergeProps, vShow, vModelDynamic, withKeys, toRefs } from "vue";
+import { ref, onMounted, defineComponent, computed, openBlock, createElementBlock, normalizeClass, toDisplayString, createCommentVNode, resolveComponent, createVNode, Transition, withCtx, normalizeStyle, createElementVNode, createTextVNode, withModifiers, renderSlot, createBlock, resolveDynamicComponent, Fragment, getCurrentInstance, onUnmounted, watch, toRef, withDirectives, renderList, mergeProps, vShow, Comment, warn, vModelDynamic, withKeys, toRefs } from "vue";
 var svgArticleSearch = '<path d="M12.43 14.34A5 5 0 0110 15a5 5 0 113.95-2L17 16.09V3a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 001.45-.63z"/><circle cx="10" cy="10" r="3"/>';
 var svgClear = '<path d="M10 0a10 10 0 1010 10A10 10 0 0010 0zm5.66 14.24-1.41 1.41L10 11.41l-4.24 4.25-1.42-1.42L8.59 10 4.34 5.76l1.42-1.42L10 8.59l4.24-4.24 1.41 1.41L11.41 10z"/>';
 var svgImageLayoutFrameless = '<path d="M19 3H1v14h18zM3 14l3.5-4.5 2.5 3L12.5 8l4.5 6z"/><path d="M19 5H1V3h18zm0 12H1v-2h18z"/>';
@@ -98,7 +98,7 @@ var _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _sfc_main$8 = defineComponent({
+const _sfc_main$9 = defineComponent({
   name: "CdxIcon",
   props: {
     icon: {
@@ -143,11 +143,11 @@ const _sfc_main$8 = defineComponent({
     };
   }
 });
-const _hoisted_1$7 = ["aria-hidden"];
-const _hoisted_2$5 = { key: 0 };
+const _hoisted_1$8 = ["aria-hidden"];
+const _hoisted_2$6 = { key: 0 };
 const _hoisted_3$3 = ["innerHTML"];
 const _hoisted_4$2 = ["d"];
-function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
+function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("span", {
     ref: "rootElement",
     class: normalizeClass(["cdx-icon", _ctx.rootClasses]),
@@ -160,7 +160,7 @@ function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
       viewBox: "0 0 20 20",
       "aria-hidden": !_ctx.iconLabel
     }, [
-      _ctx.iconLabel ? (openBlock(), createElementBlock("title", _hoisted_2$5, toDisplayString(_ctx.iconLabel), 1)) : createCommentVNode("", true),
+      _ctx.iconLabel ? (openBlock(), createElementBlock("title", _hoisted_2$6, toDisplayString(_ctx.iconLabel), 1)) : createCommentVNode("", true),
       _ctx.iconSvg ? (openBlock(), createElementBlock("g", {
         key: 1,
         fill: "currentColor",
@@ -170,10 +170,78 @@ function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
         d: _ctx.iconPath,
         fill: "currentColor"
       }, null, 8, _hoisted_4$2))
-    ], 8, _hoisted_1$7))
+    ], 8, _hoisted_1$8))
   ], 2);
 }
-var CdxIcon = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$8]]);
+var CdxIcon = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$9]]);
+var Thumbnail_vue_vue_type_style_index_0_lang = "";
+const _sfc_main$8 = defineComponent({
+  name: "CdxThumbnail",
+  components: { CdxIcon },
+  props: {
+    thumbnail: {
+      type: [Object, null],
+      default: null
+    },
+    placeholderIcon: {
+      type: [String, Object],
+      default: cdxIconImageLayoutFrameless
+    }
+  },
+  setup: (props) => {
+    const thumbnailLoaded = ref(false);
+    const thumbnailStyle = ref({});
+    const preloadThumbnail = (url) => {
+      const escapedUrl = url.replace(/([\\"\n])/g, "\\$1");
+      const image = new Image();
+      image.onload = () => {
+        thumbnailStyle.value = { backgroundImage: `url("${escapedUrl}")` };
+        thumbnailLoaded.value = true;
+      };
+      image.onerror = () => {
+        thumbnailLoaded.value = false;
+      };
+      image.src = escapedUrl;
+    };
+    onMounted(() => {
+      var _a;
+      if ((_a = props.thumbnail) == null ? void 0 : _a.url) {
+        preloadThumbnail(props.thumbnail.url);
+      }
+    });
+    return {
+      thumbnailStyle,
+      thumbnailLoaded
+    };
+  }
+});
+const _hoisted_1$7 = { class: "cdx-thumbnail" };
+const _hoisted_2$5 = {
+  key: 0,
+  class: "cdx-thumbnail__placeholder"
+};
+function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_cdx_icon = resolveComponent("cdx-icon");
+  return openBlock(), createElementBlock("span", _hoisted_1$7, [
+    !_ctx.thumbnailLoaded ? (openBlock(), createElementBlock("span", _hoisted_2$5, [
+      createVNode(_component_cdx_icon, {
+        icon: _ctx.placeholderIcon,
+        class: "cdx-thumbnail__placeholder__icon"
+      }, null, 8, ["icon"])
+    ])) : createCommentVNode("", true),
+    createVNode(Transition, { name: "cdx-thumbnail__image" }, {
+      default: withCtx(() => [
+        _ctx.thumbnailLoaded ? (openBlock(), createElementBlock("span", {
+          key: 0,
+          style: normalizeStyle(_ctx.thumbnailStyle),
+          class: "cdx-thumbnail__image"
+        }, null, 4)) : createCommentVNode("", true)
+      ]),
+      _: 1
+    })
+  ]);
+}
+var CdxThumbnail = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$8]]);
 function regExpEscape(value) {
   return value.replace(/([\\{}()|.?*+\-^$[\]])/g, "\\$1");
 }
@@ -229,7 +297,7 @@ var CdxSearchResultTitle = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", 
 var MenuItem_vue_vue_type_style_index_0_lang = "";
 const _sfc_main$6 = defineComponent({
   name: "CdxMenuItem",
-  components: { CdxIcon, CdxSearchResultTitle },
+  components: { CdxIcon, CdxThumbnail, CdxSearchResultTitle },
   props: {
     id: {
       type: String,
@@ -306,8 +374,6 @@ const _sfc_main$6 = defineComponent({
     "change"
   ],
   setup: (props, { emit }) => {
-    const thumbnailLoaded = ref(false);
-    const thumbnailStyle = ref({});
     const onMouseEnter = () => {
       emit("change", "highlighted", true);
     };
@@ -338,24 +404,6 @@ const _sfc_main$6 = defineComponent({
     });
     const contentTag = computed(() => props.url ? "a" : "span");
     const title = computed(() => props.label || String(props.value));
-    const preloadThumbnail = (url) => {
-      const escapedUrl = url.replace(/([\\"\n])/g, "\\$1");
-      const image = new Image();
-      image.onload = () => {
-        thumbnailStyle.value = { backgroundImage: `url("${escapedUrl}")` };
-        thumbnailLoaded.value = true;
-      };
-      image.onerror = () => {
-        thumbnailLoaded.value = false;
-      };
-      image.src = escapedUrl;
-    };
-    onMounted(() => {
-      var _a;
-      if (((_a = props.thumbnail) == null ? void 0 : _a.url) && props.showThumbnail) {
-        preloadThumbnail(props.thumbnail.url);
-      }
-    });
     return {
       onMouseEnter,
       onMouseLeave,
@@ -364,24 +412,18 @@ const _sfc_main$6 = defineComponent({
       highlightQuery,
       rootClasses,
       contentTag,
-      title,
-      defaultThumbnailIcon: cdxIconImageLayoutFrameless,
-      thumbnailStyle,
-      thumbnailLoaded
+      title
     };
   }
 });
 const _hoisted_1$5 = ["id", "aria-disabled", "aria-selected"];
-const _hoisted_2$3 = {
-  key: 0,
-  class: "cdx-menu-item__thumbnail-placeholder"
-};
-const _hoisted_3$2 = { class: "cdx-menu-item__text" };
-const _hoisted_4$1 = ["lang"];
-const _hoisted_5$1 = /* @__PURE__ */ createTextVNode(/* @__PURE__ */ toDisplayString(" ") + " ");
+const _hoisted_2$3 = { class: "cdx-menu-item__text" };
+const _hoisted_3$2 = ["lang"];
+const _hoisted_4$1 = /* @__PURE__ */ createTextVNode(/* @__PURE__ */ toDisplayString(" ") + " ");
+const _hoisted_5$1 = ["lang"];
 const _hoisted_6$1 = ["lang"];
-const _hoisted_7 = ["lang"];
 function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
+  const _component_cdx_thumbnail = resolveComponent("cdx-thumbnail");
   const _component_cdx_icon = resolveComponent("cdx-icon");
   const _component_cdx_search_result_title = resolveComponent("cdx-search-result-title");
   return openBlock(), createElementBlock("li", {
@@ -403,29 +445,16 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
         default: withCtx(() => {
           var _a, _b, _c, _d, _e;
           return [
-            _ctx.showThumbnail ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-              !_ctx.thumbnailLoaded ? (openBlock(), createElementBlock("span", _hoisted_2$3, [
-                createVNode(_component_cdx_icon, {
-                  icon: _ctx.defaultThumbnailIcon,
-                  class: "cdx-menu-item__thumbnail-placeholder__icon"
-                }, null, 8, ["icon"])
-              ])) : createCommentVNode("", true),
-              createVNode(Transition, { name: "cdx-menu-item__thumbnail" }, {
-                default: withCtx(() => [
-                  _ctx.thumbnailLoaded ? (openBlock(), createElementBlock("span", {
-                    key: 0,
-                    style: normalizeStyle(_ctx.thumbnailStyle),
-                    class: "cdx-menu-item__thumbnail"
-                  }, null, 4)) : createCommentVNode("", true)
-                ]),
-                _: 1
-              })
-            ], 64)) : _ctx.icon ? (openBlock(), createBlock(_component_cdx_icon, {
+            _ctx.showThumbnail ? (openBlock(), createBlock(_component_cdx_thumbnail, {
+              key: 0,
+              thumbnail: _ctx.thumbnail,
+              class: "cdx-menu-item__thumbnail"
+            }, null, 8, ["thumbnail"])) : _ctx.icon ? (openBlock(), createBlock(_component_cdx_icon, {
               key: 1,
               icon: _ctx.icon,
               class: "cdx-menu-item__icon"
             }, null, 8, ["icon"])) : createCommentVNode("", true),
-            createElementVNode("span", _hoisted_3$2, [
+            createElementVNode("span", _hoisted_2$3, [
               _ctx.highlightQuery ? (openBlock(), createBlock(_component_cdx_search_result_title, {
                 key: 0,
                 title: _ctx.title,
@@ -437,9 +466,9 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
                 lang: (_b = _ctx.language) == null ? void 0 : _b.label
               }, [
                 createElementVNode("bdi", null, toDisplayString(_ctx.title), 1)
-              ], 8, _hoisted_4$1)),
+              ], 8, _hoisted_3$2)),
               _ctx.match ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
-                _hoisted_5$1,
+                _hoisted_4$1,
                 _ctx.highlightQuery ? (openBlock(), createBlock(_component_cdx_search_result_title, {
                   key: 0,
                   title: _ctx.match,
@@ -451,7 +480,7 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
                   lang: (_d = _ctx.language) == null ? void 0 : _d.match
                 }, [
                   createElementVNode("bdi", null, toDisplayString(_ctx.match), 1)
-                ], 8, _hoisted_6$1))
+                ], 8, _hoisted_5$1))
               ], 64)) : createCommentVNode("", true),
               _ctx.description ? (openBlock(), createElementBlock("span", {
                 key: 3,
@@ -459,7 +488,7 @@ function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
                 lang: (_e = _ctx.language) == null ? void 0 : _e.description
               }, [
                 createElementVNode("bdi", null, toDisplayString(_ctx.description), 1)
-              ], 8, _hoisted_7)) : createCommentVNode("", true)
+              ], 8, _hoisted_6$1)) : createCommentVNode("", true)
             ])
           ];
         }),
@@ -641,7 +670,7 @@ const _sfc_main$4 = defineComponent({
       handleMenuItemChange("highlighted", newHighlightedMenuItem);
       emit("menu-item-keyboard-navigation", newHighlightedMenuItem);
     }
-    function highlightPrev() {
+    function highlightPrev(highlightedIndex) {
       var _a;
       const findPrevEnabled = (startIndex) => {
         for (let index = startIndex - 1; index >= 0; index--) {
@@ -650,14 +679,13 @@ const _sfc_main$4 = defineComponent({
           }
         }
       };
-      const highlightedIndex = (_a = highlightedMenuItemIndex.value) != null ? _a : computedMenuItems.value.length;
-      const prev = findPrevEnabled(highlightedIndex) || findPrevEnabled(computedMenuItems.value.length);
+      highlightedIndex = highlightedIndex || computedMenuItems.value.length;
+      const prev = (_a = findPrevEnabled(highlightedIndex)) != null ? _a : findPrevEnabled(computedMenuItems.value.length);
       handleHighlight(prev);
     }
-    function highlightNext() {
-      var _a;
+    function highlightNext(highlightedIndex) {
       const findNextEnabled = (startIndex) => computedMenuItems.value.find((item, index) => !item.disabled && index > startIndex);
-      const highlightedIndex = (_a = highlightedMenuItemIndex.value) != null ? _a : -1;
+      highlightedIndex = highlightedIndex != null ? highlightedIndex : -1;
       const next = findNextEnabled(highlightedIndex) || findNextEnabled(-1);
       handleHighlight(next);
     }
@@ -699,7 +727,7 @@ const _sfc_main$4 = defineComponent({
             if (highlightedMenuItem.value === null) {
               handleMenuItemChange("highlighted", findSelectedMenuItem());
             }
-            highlightPrev();
+            highlightPrev(highlightedMenuItemIndex.value);
           } else {
             handleExpandMenu();
           }
@@ -710,7 +738,29 @@ const _sfc_main$4 = defineComponent({
             if (highlightedMenuItem.value === null) {
               handleMenuItemChange("highlighted", findSelectedMenuItem());
             }
+            highlightNext(highlightedMenuItemIndex.value);
+          } else {
+            handleExpandMenu();
+          }
+          return true;
+        case "Home":
+          maybePrevent();
+          if (props.expanded) {
+            if (highlightedMenuItem.value === null) {
+              handleMenuItemChange("highlighted", findSelectedMenuItem());
+            }
             highlightNext();
+          } else {
+            handleExpandMenu();
+          }
+          return true;
+        case "End":
+          maybePrevent();
+          if (props.expanded) {
+            if (highlightedMenuItem.value === null) {
+              handleMenuItemChange("highlighted", findSelectedMenuItem());
+            }
+            highlightPrev();
           } else {
             handleExpandMenu();
           }
@@ -828,6 +878,50 @@ function makeStringTypeValidator(allowedValues) {
 var Button_vue_vue_type_style_index_0_lang = "";
 const buttonTypeValidator = makeStringTypeValidator(ButtonTypes);
 const buttonActionValidator = makeStringTypeValidator(ButtonActions);
+const validateIconOnlyButtonAttrs = (attrs) => {
+  if (!attrs["aria-label"] && !attrs["aria-hidden"]) {
+    warn(`icon-only buttons require one of the following attribute: aria-label or aria-hidden.
+		See documentation on https://doc.wikimedia.org/codex/main/components/button.html#default-icon-only`);
+  }
+};
+function flattenVNodeContents(nodes) {
+  const flattenedContents = [];
+  for (const node of nodes) {
+    if (typeof node === "string" && node.trim() !== "") {
+      flattenedContents.push(node);
+    } else if (Array.isArray(node)) {
+      flattenedContents.push(...flattenVNodeContents(node));
+    } else if (typeof node === "object" && node) {
+      if (typeof node.type === "string" || typeof node.type === "object") {
+        flattenedContents.push(node);
+      } else if (node.type !== Comment) {
+        if (typeof node.children === "string" && node.children.trim() !== "") {
+          flattenedContents.push(node.children);
+        } else if (Array.isArray(node.children)) {
+          flattenedContents.push(...flattenVNodeContents(node.children));
+        }
+      }
+    }
+  }
+  return flattenedContents;
+}
+const isIconOnlyButton = (slotContent, attrs) => {
+  if (!slotContent) {
+    return false;
+  }
+  const flattenedContents = flattenVNodeContents(slotContent);
+  if (flattenedContents.length !== 1) {
+    return false;
+  }
+  const soleNode = flattenedContents[0];
+  const isIconComponent = typeof soleNode === "object" && typeof soleNode.type === "object" && "name" in soleNode.type && soleNode.type.name === CdxIcon.name;
+  const isSvgTag = typeof soleNode === "object" && soleNode.type === "svg";
+  if (isIconComponent || isSvgTag) {
+    validateIconOnlyButtonAttrs(attrs);
+    return true;
+  }
+  return false;
+};
 const _sfc_main$3 = defineComponent({
   name: "CdxButton",
   props: {
@@ -843,12 +937,16 @@ const _sfc_main$3 = defineComponent({
     }
   },
   emits: ["click"],
-  setup(props, { emit }) {
-    const rootClasses = computed(() => ({
-      [`cdx-button--action-${props.action}`]: true,
-      [`cdx-button--type-${props.type}`]: true,
-      "cdx-button--framed": props.type !== "quiet"
-    }));
+  setup(props, { emit, slots, attrs }) {
+    const rootClasses = computed(() => {
+      var _a;
+      return {
+        [`cdx-button--action-${props.action}`]: true,
+        [`cdx-button--type-${props.type}`]: true,
+        "cdx-button--framed": props.type !== "quiet",
+        "cdx-button--icon-only": isIconOnlyButton((_a = slots.default) == null ? void 0 : _a.call(slots), attrs)
+      };
+    });
     const onClick = (event) => {
       emit("click", event);
     };
@@ -1462,7 +1560,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
             selected: _ctx.selection,
             "menu-items": _ctx.searchResultsWithFooter,
             "search-query": _ctx.highlightQuery ? _ctx.searchQuery : "",
-            "show-no-results-slot": _ctx.searchQuery.length > 0 && _ctx.searchResults.length === 0
+            "show-no-results-slot": _ctx.searchQuery.length > 0 && _ctx.searchResults.length === 0 && _ctx.$slots["search-no-results-text"] && _ctx.$slots["search-no-results-text"]().length > 0
           }, _ctx.menuConfig, {
             "aria-label": _ctx.searchResultsLabel,
             "onUpdate:selected": _ctx.onUpdateMenuSelection,
