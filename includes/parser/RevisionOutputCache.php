@@ -113,6 +113,9 @@ class RevisionOutputCache {
 	 * for a given page considering the given options and the array of
 	 * used options.
 	 *
+	 * If there is a possibility the revision does not have a revision id, use
+	 * makeParserOutputKeyOptionalRevId() instead.
+	 *
 	 * @warning The exact format of the key is considered internal and is subject
 	 * to change, thus should not be used as storage or long-term caching key.
 	 * This is intended to be used for logging or keying something transient.
@@ -131,8 +134,41 @@ class RevisionOutputCache {
 		$usedOptions = ParserOptions::allCacheVaryingOptions();
 
 		$revId = $revision->getId();
+		if ( !$revId ) {
+			// If RevId is null, this would probably be unsafe to use as a cache key.
+			throw new InvalidArgumentException( "Revision must have an id number" );
+		}
 		$hash = $options->optionsHash( $usedOptions );
+		return $this->cache->makeKey( $this->name, $revId, $hash );
+	}
 
+	/**
+	 * Get a key that will be used for locks or pool counter
+	 *
+	 * Similar to makeParserOutputKey except the revision id might be null,
+	 * in which case it is unsafe to cache, but still needs a key for things like
+	 * poolcounter.
+	 *
+	 * @warning The exact format of the key is considered internal and is subject
+	 * to change, thus should not be used as storage or long-term caching key.
+	 * This is intended to be used for logging or keying something transient.
+	 *
+	 * @param RevisionRecord $revision
+	 * @param ParserOptions $options
+	 * @param array|null $usedOptions currently ignored
+	 * @return string
+	 * @internal
+	 */
+	public function makeParserOutputKeyOptionalRevId(
+		RevisionRecord $revision,
+		ParserOptions $options,
+		array $usedOptions = null
+	): string {
+		$usedOptions = ParserOptions::allCacheVaryingOptions();
+
+		// revId may be null.
+		$revId = (string)$revision->getId();
+		$hash = $options->optionsHash( $usedOptions );
 		return $this->cache->makeKey( $this->name, $revId, $hash );
 	}
 
