@@ -1360,10 +1360,11 @@ class SkinTemplate extends Skin {
 					$isTalkClass = $isTalk ? ' istalk' : '';
 					// Whether the user is editing the page
 					$isEditing = $onPage && ( $action == 'edit' || $action == 'submit' );
+					$isRedirect = $page && $page->isRedirect();
 					// Whether to show the "Add a new section" tab
 					// Checks if this is a current rev of talk page and is not forced to be hidden
 					$showNewSection = !$out->forceHideNewSectionLink()
-						&& ( ( $isTalk && $out->isRevisionCurrent() ) || $out->showNewSectionLink() );
+						&& ( ( $isTalk && !$isRedirect && $out->isRevisionCurrent() ) || $out->showNewSectionLink() );
 					$section = $request->getVal( 'section' );
 
 					if ( $title->exists()
