@@ -27,6 +27,8 @@ class SpecialPreferencesTest extends MediaWikiIntegrationTestCase {
 		// Set a low limit
 		$this->setMwGlobals( 'wgMaxSigChars', 2 );
 		$user = $this->createMock( User::class );
+		$user->method( 'getTitleKey' )
+			->willReturn( __CLASS__ );
 		$user->method( 'isAnon' )
 			->willReturn( false );
 
