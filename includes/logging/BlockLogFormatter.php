@@ -90,9 +90,18 @@ class BlockLogFormatter extends LogFormatter {
 					$text = (int)$ns === NS_MAIN
 						? $this->msg( 'blanknamespace' )->escaped()
 						: htmlspecialchars( $this->context->getLanguage()->getFormattedNsText( $ns ) );
-					$params = [ 'namespace' => $ns ];
-
-					return $this->makePageLink( SpecialPage::getTitleFor( 'Allpages' ), $params, $text );
+					if ( $this->plaintext ) {
+						// Because the plaintext cannot link to the Special:AllPages
+						// link that is linked to in non-plaintext mode, just return
+						// the name of the namespace.
+						return $text;
+					} else {
+						return $this->makePageLink(
+							SpecialPage::getTitleFor( 'Allpages' ),
+							[ 'namespace' => $ns ],
+							$text
+						);
+					}
 				}, $namespaces );
 
 				$actions = $params[6]['actions'] ?? [];
