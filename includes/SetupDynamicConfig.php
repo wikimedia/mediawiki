@@ -244,11 +244,6 @@ $wgDefaultUserOptions['timecorrection'] = "System|$wgLocalTZoffset";
  */
 $wgCanonicalNamespaceNames = NamespaceInfo::CANONICAL_NAMES;
 
-// @todo UGLY UGLY
-if ( is_array( $wgExtraNamespaces ) ) {
-	$wgCanonicalNamespaceNames += $wgExtraNamespaces;
-}
-
 // Hard-deprecate setting $wgDummyLanguageCodes in LocalSettings.php
 if ( count( $wgDummyLanguageCodes ) !== 0 ) {
 	$wgSettings->warning(
