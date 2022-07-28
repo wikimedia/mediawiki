@@ -33,7 +33,6 @@ class ApiUploadTest extends ApiUploadTestCase {
 			$this->getServiceContainer()->getMainWANObjectCache(),
 			$this->createMock( MimeAnalyzer::class )
 		) );
-		$this->resetServices();
 
 		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 	}

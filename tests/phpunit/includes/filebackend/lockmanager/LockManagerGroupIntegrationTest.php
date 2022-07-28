@@ -14,7 +14,6 @@ class LockManagerGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testWgLockManagers() {
 		$this->overrideConfigValue( MainConfigNames::LockManagers,
 			[ [ 'name' => 'a', 'class' => 'b' ], [ 'name' => 'c', 'class' => 'd' ] ] );
-		$this->getServiceContainer()->resetServiceForTesting( 'LockManagerGroupFactory' );
 
 		$lmg = $this->getServiceContainer()->getLockManagerGroupFactory()->getLockManagerGroup();
 		$domain = WikiMap::getCurrentWikiDbDomain()->getId();
@@ -29,7 +28,6 @@ class LockManagerGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	public function testSingletonFalse() {
 		$this->overrideConfigValue( MainConfigNames::LockManagers, [ [ 'name' => 'a', 'class' => 'b' ] ] );
-		$this->getServiceContainer()->resetServiceForTesting( 'LockManagerGroupFactory' );
 
 		$this->assertSame(
 			WikiMap::getCurrentWikiDbDomain()->getId(),
@@ -42,7 +40,6 @@ class LockManagerGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	public function testSingletonNull() {
 		$this->overrideConfigValue( MainConfigNames::LockManagers, [ [ 'name' => 'a', 'class' => 'b' ] ] );
-		$this->getServiceContainer()->resetServiceForTesting( 'LockManagerGroupFactory' );
 
 		$this->assertSame(
 			WikiMap::getCurrentWikiDbDomain()->getId(),

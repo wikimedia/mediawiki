@@ -41,10 +41,7 @@ class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertEmpty(
 			array_diff( array_keys( $options ), $globals, array_keys( $serviceMembers ) ) );
 
-		$this->resetServices();
-
 		$services = $this->getServiceContainer();
-		$services->resetServiceForTesting( 'FileBackendGroup' );
 
 		$obj = $services->getFileBackendGroup();
 

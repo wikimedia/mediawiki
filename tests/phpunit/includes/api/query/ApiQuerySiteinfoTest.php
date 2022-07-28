@@ -201,7 +201,6 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			MainConfigNames::ExtraInterlanguageLinkPrefixes => [ 'self' ],
 			MainConfigNames::ExtraLanguageNames => [ 'self' => 'Recursion' ],
 		] );
-		$this->resetServices();
 
 		$this->getServiceContainer()->getMessageCache()->enable();
 

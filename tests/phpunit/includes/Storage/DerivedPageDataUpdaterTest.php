@@ -590,7 +590,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			],
 		] );
 
-		$this->getServiceContainer()->resetServiceForTesting( 'ContentHandlerFactory' );
 		$user = $this->getTestUser()->getUser();
 		$page = $this->getPage( __METHOD__ );
 		$this->createRevision( $page, __METHOD__ );

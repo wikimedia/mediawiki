@@ -574,8 +574,6 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			'Correct blocker name'
 		);
 		$this->assertEquals( 'm>MetaWikiUser', $block->getByName(), 'Correct blocker name' );
-
-		$this->resetServices();
 	}
 
 	/**

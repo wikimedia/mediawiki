@@ -2030,7 +2030,6 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			foreach ( $options as $key => $val ) {
 				$this->overrideConfigValue( $key, $val );
 			}
-			$this->resetServices();
 		}
 		$this->assertSame( $expected,
 			Language::fetchLanguageNames( ...$otherArgs )[strtolower( $code )] ?? '' );
