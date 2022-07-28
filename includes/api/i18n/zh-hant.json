@@ -156,7 +156,7 @@
 	"apihelp-edit-param-section": "章節標籤。<kbd>0</kbd> 代表最上層章節，<kbd>new</kbd> 代表新章節。通常是正整數但也可以是非數字。",
 	"apihelp-edit-param-sectiontitle": "新章節的標題。",
 	"apihelp-edit-param-text": "頁面內容。",
-	"apihelp-edit-param-summary": "編輯摘要。 當未設定 $1section=new 與 $1sectiontitle 時也會當做章節標題。",
+	"apihelp-edit-param-summary": "編輯摘要。\n\n未提供本參數或本參數為空時，[[mw:Special:MyLanguage/Autosummary|會自動生成編輯摘要]]。\n\n使用<var>$1section=new</var>且未提供<var>$1sectiontitle</var>時，本參數的值用於填入章節標題，同時會自動生成編輯摘要。",
 	"apihelp-edit-param-tags": "更改套用到修訂的標籤。",
 	"apihelp-edit-param-minor": "標記此編輯為小編輯。",
 	"apihelp-edit-param-notminor": "不要標記此編輯為小編輯，即使有設定到「{{int:tog-minordefault}}」使用者偏好設定。",

@@ -860,7 +860,7 @@
 	"edit_form_incomplete": "<strong>编辑表单的某些部分没有到达服务器，请检查您的编辑是否完整并重试。</strong>",
 	"editing": "编辑“$1”",
 	"edit-textarea-aria-label": "Wikitext源代码编辑器",
-	"creating": "正在创建$1",
+	"creating": "创建“$1”",
 	"editingsection": "编辑“$1”（章节）",
 	"editingcomment": "编辑“$1”（新章节）",
 	"editconflict": "编辑冲突：$1",
