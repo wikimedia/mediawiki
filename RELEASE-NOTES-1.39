@@ -96,7 +96,7 @@ For notes on 1.38.x and older releases, see HISTORY.
 ==== Changed external libraries ====
 * Updated OOUI from v0.43.2 to v0.44.2.
 * Updated composer/semver from 3.2.6 to 3.3.2.
-* Updated vue/compat from 3.2.23 to 3.2.31.
+* Updated vue/compat from 3.2.23 to 3.2.37.
 * Updated wikimedia/minify from 2.2.6 to 2.3.0.
 * Updated wikimedia/ip-set from 3.0.0 to 3.1.0.
 * Updated wikimedia/xmp-reader from 0.8.1 to 0.8.3.
