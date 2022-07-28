@@ -825,7 +825,7 @@ abstract class ParsoidHandler extends Handler {
 	}
 
 	protected function parseHTML( string $html, bool $validateXMLNames = false ): Document {
-		return DOMUtils::parseHTML( $html, true );
+		return DOMUtils::parseHTML( $html, $validateXMLNames );
 	}
 
 	/**

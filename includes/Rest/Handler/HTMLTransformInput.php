@@ -152,7 +152,7 @@ class HTMLTransformInput {
 
 	public function getModifiedDocument(): Document {
 		if ( !$this->doc ) {
-			$this->doc = $this->parseHTML( $this->html );
+			$this->doc = $this->parseHTML( $this->html, true );
 			$vEdited = DOMUtils::extractInlinedContentVersion( $this->doc )
 				?: Parsoid::defaultHTMLVersion();
 
@@ -197,12 +197,13 @@ class HTMLTransformInput {
 
 	/**
 	 * @param string $html
+	 * @param bool $validateXMLNames
 	 *
 	 * @return Document
 	 * @throws ClientError
 	 */
-	protected function parseHTML( string $html ): Document {
-		return DOMUtils::parseHTML( $html, true );
+	protected function parseHTML( string $html, bool $validateXMLNames = false ): Document {
+		return DOMUtils::parseHTML( $html, $validateXMLNames );
 	}
 
 	/**
