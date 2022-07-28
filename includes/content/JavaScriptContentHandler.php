@@ -127,14 +127,18 @@ class JavaScriptContentHandler extends CodeContentHandler {
 	) {
 		$textModelsToParse = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::TextModelsToParse );
-		'@phan-var TextContent $content';
+		'@phan-var JavaScriptContent $content';
 		if ( in_array( $content->getModel(), $textModelsToParse ) ) {
 			// parse just to get links etc into the database, HTML is replaced below.
 			$output = MediaWikiServices::getInstance()->getParserFactory()->getInstance()
 				->parse(
 					$content->getText(),
 					$cpoParams->getPage(),
-					$cpoParams->getParserOptions(),
+					WikiPage::makeParserOptionsFromTitleAndModel(
+						$cpoParams->getPage(),
+						$content->getModel(),
+						'canonical'
+					),
 					true,
 					true,
 					$cpoParams->getRevId()

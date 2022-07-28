@@ -119,7 +119,11 @@ class CssContentHandler extends CodeContentHandler {
 				->parse(
 					$content->getText(),
 					$cpoParams->getPage(),
-					$cpoParams->getParserOptions(),
+					WikiPage::makeParserOptionsFromTitleAndModel(
+						$cpoParams->getPage(),
+						$content->getModel(),
+						'canonical'
+					),
 					true,
 					true,
 					$cpoParams->getRevId()
