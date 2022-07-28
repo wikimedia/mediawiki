@@ -275,7 +275,6 @@ abstract class ParsoidHandler extends Handler {
 			'contentmodel' => $attribs['opts']['contentmodel'] ?? null,
 			'offsetType' => $attribs['offsetType'] ?? 'byte',
 		] );
-		$input->setInputFormat( $attribs['opts']['from'] );
 
 		if ( isset( $attribs['oldid'] ) ) {
 			$input->setOriginalRevisionId( $attribs['oldid'] );
@@ -286,10 +285,18 @@ abstract class ParsoidHandler extends Handler {
 		}
 
 		if ( !empty( $attribs['opts']['original'] ) ) {
-			// XXX: maybe split this up into setOriginalHTML, etc?
-			//      We could pass the original HTML already parsed as well.
-			//      We could also set a PageBundle object.
-			$input->setOriginalData( $attribs['opts']['original'] );
+			$original = $attribs['opts']['original'];
+
+			if ( $attribs['opts']['from'] !== ParsoidFormatHelper::FORMAT_PAGEBUNDLE ) {
+				// XXX: Throw instead? And also throw if the input format is pagebundle,
+				//      and the fields are missing?
+				unset( $original['data-parsoid'] );
+				unset( $original['data-mw'] );
+			}
+
+			// XXX: We could create a PageBundle object here, instead of passing
+			//      an array.
+			$input->setOriginalData( $original );
 		}
 
 		return $input;
@@ -853,9 +860,6 @@ abstract class ParsoidHandler extends Handler {
 	 * Get selected serialization data from old HTML.
 	 *
 	 * @param HTMLTransformInput $input
-	 * @param PageBundle|null $origPb
-	 * @param string $inputContentVersion
-	 * @param Document $doc
 	 * @param PageConfig $pageConfig
 	 *
 	 * @return SelserData|null
@@ -863,62 +867,9 @@ abstract class ParsoidHandler extends Handler {
 	 */
 	private function getSelserData(
 		HTMLTransformInput $input,
-		?PageBundle $origPb,
-		string $inputContentVersion,
-		Document $doc,
 		PageConfig $pageConfig
 	): ?SelserData {
-		$oldhtml = null;
-		if ( $input->inputIsPageBundle() ) {
-			// Apply the pagebundle to the parsed doc.  This supports the
-			// simple edit scenarios where data-mw might not necessarily
-			// have been retrieved.
-			if ( !$origPb ) {
-				$origPb = $input->getOriginalPageBundle();
-			}
-
-			// Verify that the top-level parsoid object either doesn't contain
-			// offsetType, or that it matches the conversion that has been
-			// explicitly requested.
-			if ( isset( $origPb->parsoid['offsetType'] ) ) {
-				$offsetType = $input->getOffsetType();
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-				$origOffsetType = $origPb->parsoid['offsetType'];
-				if ( $origOffsetType !== $offsetType ) {
-					throw new HttpException( 'DSR offsetType mismatch: ' . $origOffsetType . ' vs ' . $offsetType,
-						406 );
-				}
-			}
-
-			$pb = $origPb;
-			// However, if a modified data-mw was provided,
-			// original data-mw is omitted to avoid losing deletions.
-			if ( $input->hasModifiedDataMW() && Semver::satisfies( $inputContentVersion,
-					'^999.0.0' ) ) {
-				// Don't modify `origPb`, it's used below.
-				$pb = new PageBundle( '',
-					$pb->parsoid,
-					[ 'ids' => [] ] );
-			}
-			$this->validatePb( $pb,
-				$inputContentVersion );
-			PageBundle::apply( $doc,
-				$pb );
-		}
-
-		// If we got original html, parse it
-		if ( $input->hasOriginalHtml() ) {
-			$oldBody = $input->getOriginalBody();
-			if ( $input->inputIsPageBundle() && $origPb !== null ) {
-				$this->validatePb( $origPb,
-					$inputContentVersion );
-				// @phan-suppress-next-line PhanTypeMismatchArgumentSuperType
-				PageBundle::apply( $oldBody->ownerDocument,
-					$origPb );
-			}
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
-			$oldhtml = ContentUtils::toXML( $oldBody );
-		}
+		$oldhtml = $input->getOriginalHtml();
 
 		// As per https://www.mediawiki.org/wiki/Parsoid/API#v1_API_entry_points
 		//   "Both it and the oldid parameter are needed for
@@ -958,34 +909,14 @@ abstract class ParsoidHandler extends Handler {
 		// Send input size to statsd/Graphite
 		$metrics->timing( 'html2wt.size.input', $htmlSize );
 
-		$origPb = null;
 		$inputContentVersion = $input->getSchemaVersion();
-
-		if ( $input->hasOriginalHtml() ) {
-			$input->downgradeOriginalData( $inputContentVersion );
-		}
 
 		$metrics->increment(
 			'html2wt.original.version.' . $inputContentVersion
 		);
 
-		// If available, the modified data-mw blob is applied, while preserving
-		// existing inline data-mw.  But, no data-parsoid application, since
-		// that's internal, we only expect to find it in its original,
-		// unmodified form.
-		if ( $input->inputIsPageBundle() && $input->hasModifiedDataMW()
-			&& Semver::satisfies( $inputContentVersion, '^999.0.0' )
-		) {
-			// `opts` isn't a revision, but we'll find a `data-mw` there.
-			$pb = $input->getModifiedPageBundle();
-			PageBundle::apply( $doc, $pb );
-		}
-
 		$selserData = $this->getSelserData(
 			$input,
-			$origPb,
-			$inputContentVersion,
-			$doc,
 			$pageConfig
 		);
 

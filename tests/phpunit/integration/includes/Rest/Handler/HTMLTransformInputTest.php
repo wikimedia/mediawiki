@@ -3,6 +3,8 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use Exception;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use LogicException;
 use MediaWiki\Rest\Handler\HTMLTransformInput;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\Parsoid\Core\ClientError;
@@ -69,8 +71,7 @@ class HTMLTransformInputTest extends MediaWikiIntegrationTestCase {
 			'contentmodel' => 'wikitext',
 			'offsetType' => 'byte',
 		] );
-		$input->setInputFormat( 'pagebundle' );
-		$input->setModifiedDataMW( [ self::MODIFIED_DATA_MW ] );
+
 		$input->setOriginalRevisionId( $originalData['revid'] );
 		$input->setOriginalData( $originalData );
 
@@ -136,9 +137,9 @@ class HTMLTransformInputTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( '2.4.0', $ctx->getSchemaVersion() );
 	}
 
-	public function testInputIsPageBundle() {
+	public function testHasOriginalDataParsoid() {
 		$ctx = $this->newHTMLTransformInput();
-		$this->assertTrue( $ctx->inputIsPageBundle() );
+		$this->assertTrue( $ctx->hasOriginalDataParsoid() );
 	}
 
 	public function testGetOriginalPageBundle() {
@@ -152,7 +153,7 @@ class HTMLTransformInputTest extends MediaWikiIntegrationTestCase {
 	public function testGetOriginalHtml() {
 		$ctx = $this->newHTMLTransformInput();
 		$this->assertSame(
-			self::ORIG_HTML,
+			self::ORIG_BODY,
 			$ctx->getOriginalHtml()
 		);
 	}
@@ -163,19 +164,6 @@ class HTMLTransformInputTest extends MediaWikiIntegrationTestCase {
 			self::ORIG_BODY,
 			ContentUtils::toXML( $ctx->getOriginalBody() )
 		);
-	}
-
-	public function testGetModifiedPageBundle() {
-		$ctx = $this->newHTMLTransformInput();
-		$this->assertSame(
-			[ self::MODIFIED_DATA_MW ],
-			$ctx->getModifiedPageBundle( '1.1' )->mw
-		);
-	}
-
-	public function testHasModifiedDataMw() {
-		$ctx = $this->newHTMLTransformInput();
-		$this->assertTrue( $ctx->hasModifiedDataMw() );
 	}
 
 	public function testOldId() {
@@ -200,7 +188,6 @@ class HTMLTransformInputTest extends MediaWikiIntegrationTestCase {
 	public function testDowngrade() {
 		$html = $this->getTextFromFile( 'Minimal.html' ); // Uses profile version 2.4.0
 		$input = new HTMLTransformInput( $html );
-		$input->setInputFormat( 'pagebundle' );
 
 		$original = $this->getOriginalData();
 
@@ -211,13 +198,129 @@ class HTMLTransformInputTest extends MediaWikiIntegrationTestCase {
 		$original['html']['body'] = $html;
 
 		$input->setOriginalData( $original );
-		$oldBody = $input->getOriginalBody();
 
-		$input->downgradeOriginalData( '2.4.0' );
+		// should automatically apply downgrade
+		$oldBody = $input->getOriginalBody();
 
 		// all getters should now reflect the state after the downgrade.
 		$this->assertSame( '2.5.0', $input->getOriginalSchemaVersion() );
 		$this->assertNotSame( $html, $input->getOriginalHtml() );
 		$this->assertNotSame( $oldBody, ContentUtils::toXML( $input->getOriginalBody() ) );
+	}
+
+	public function testModifiedDataMW() {
+		$html = $this->getTextFromFile( 'Minimal-999.html' ); // Uses profile version 2.4.0
+		$input = new HTMLTransformInput( $html );
+
+		$original = $this->getOriginalData();
+
+		$input->setOriginalData( $original );
+		$input->setModifiedDataMW( self::MODIFIED_DATA_MW );
+
+		// should automatically apply downgrade
+		$doc = $input->getModifiedDocument();
+		$html = ContentUtils::toXML( $doc );
+
+		// all getters should now reflect the state after the downgrade.
+		$this->assertNotSame( '"hi"', $html );
+	}
+
+	public function testMetrics() {
+		$html = '<html><body>xyz</body></html>'; // no schema version!
+		$input = new HTMLTransformInput( $html );
+
+		$metrics = $this->createNoOpMock( StatsdDataFactoryInterface::class, [ 'increment' ] );
+		$metrics->expects( $this->atLeastOnce() )->method( 'increment' );
+		$input->setMetrics( $metrics );
+
+		// getSchemaVersion should ioncrement the html2wt.original.version.notinline counter
+		// because the input HTML doesn't contain a schema version.
+		$input->getSchemaVersion();
+	}
+
+	public function testHtmlSize() {
+		$html = '<html><body>hällö</body></html>'; // no schema version!
+		$input = new HTMLTransformInput( $html );
+
+		$this->assertSame( 33, $input->getModifiedHtmlSize() );
+	}
+
+	public function testSetOriginalWikitext() {
+		$html = '<html><body>xyz</body></html>'; // no schema version!
+		$input = new HTMLTransformInput( $html );
+
+		$originalData = [
+			'wikitext' => [ 'body' => 'hi' ],
+		];
+
+		// mainly check that this doesn't explode.
+		$input->setOriginalData( $originalData );
+
+		$this->assertFalse( $input->hasOriginalHtml() );
+		$this->assertFalse( $input->hasOriginalDataParsoid() );
+	}
+
+	public function testSetOriginalHTML() {
+		$html = '<html><body>xyz</body></html>'; // no schema version!
+		$input = new HTMLTransformInput( $html );
+
+		$originalData = [
+			'html' => [
+				'headers' => [
+					'content-type' => 'text/html;profile="https://www.mediawiki.org/wiki/Specs/HTML/999.0.0"',
+				],
+				'body' => 'hi',
+			],
+		];
+
+		// mainly check that this doesn't explode.
+		$input->setOriginalData( $originalData );
+
+		$this->assertTrue( $input->hasOriginalHtml() );
+		$this->assertFalse( $input->hasOriginalDataParsoid() );
+	}
+
+	public function testSetOriginalDataTwice() {
+		$html = '<html><body>xyz</body></html>'; // no schema version!
+		$input = new HTMLTransformInput( $html );
+
+		$originalData = $this->getOriginalData();
+		$input->setOriginalData( $originalData );
+
+		$this->expectException( LogicException::class );
+		$input->setOriginalData( $originalData );
+	}
+
+	public function testSetOriginalDataAfterGetModified() {
+		// Use HTML that contains a schema version!
+		// Otherwise, we won't trigger the right error.
+		$html = $this->getTextFromFile( 'Minimal.html' );
+		$input = new HTMLTransformInput( $html );
+
+		$input->getModifiedDocument();
+
+		$this->expectException( LogicException::class );
+		$this->expectExceptionMessage( 'getModifiedDocument()' );
+
+		$originalData = $this->getOriginalData();
+		$input->setOriginalData( $originalData );
+	}
+
+	public function testOffsetTypeMismatch() {
+		$input = new HTMLTransformInput( self::ORIG_HTML );
+		$originalData = $this->getOriginalData();
+
+		// Set some options to assert on $input.
+		$input->setOptions( [
+			'contentmodel' => 'wikitext',
+			'offsetType' => 'byte',
+		] );
+
+		$originalData['data-parsoid']['body']['offsetType'] = 'UCS2';
+
+		$input->setOriginalData( $originalData );
+
+		$this->expectException( ClientError::class );
+		$input->getOriginalPageBundle();
 	}
 }
