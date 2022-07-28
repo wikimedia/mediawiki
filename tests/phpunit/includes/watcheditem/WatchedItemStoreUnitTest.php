@@ -68,6 +68,8 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	) {
 		$loadBalancer = $this->getMockLoadBalancer( $mockDb, $expectedConnectionType );
 		$mock = $this->createMock( LBFactory::class );
+		$mock->method( 'getLocalDomainID' )
+			->willReturn( 'phpunitdb' );
 		$mock->method( 'getMainLB' )
 			->willReturn( $loadBalancer );
 		$mock->method( 'getLBsForOwner' )
@@ -3252,7 +3254,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$stash->set(
 			$stash->makeGlobalKey(
 				'watchlist-recent-updates',
-				'',
+				'phpunitdb',
 				$user->getId()
 			),
 			$cacheValue
@@ -3300,6 +3302,6 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			$title,
 			'force',
 			$oldid );
-		$this->assertIsArray( $stash->get( 'global:watchlist-recent-updates::1' ) );
+		$this->assertIsArray( $stash->get( 'global:watchlist-recent-updates:phpunitdb:1' ) );
 	}
 }
