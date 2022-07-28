@@ -32,6 +32,7 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 					'watchlisthidecategorization' => 0,
 					'watchlistreloadautomatically' => 0,
 					'watchlistunwatchlinks' => 0,
+					'timecorrection' => '0'
 				],
 			'wgWatchlistExpiry' => true
 		] );
