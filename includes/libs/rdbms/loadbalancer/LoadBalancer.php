@@ -2096,7 +2096,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$key = $this->srvCache->makeGlobalKey(
 			'rdbms-server-readonly',
 			$conn->getServerName(),
-			$conn->getDBname(),
+			(string)$conn->getDBname(),
 			(string)$conn->dbSchema()
 		);
 
