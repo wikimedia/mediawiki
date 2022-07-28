@@ -759,11 +759,11 @@ class CoreParserFunctions {
 	 * can't be called too many times per page.
 	 * @param Parser $parser
 	 * @param string $name
-	 * @param string|null $arg1
-	 * @param string|null $arg2
+	 * @param string $arg1
+	 * @param string $arg2
 	 * @return string
 	 */
-	public static function pagesincategory( $parser, $name = '', $arg1 = null, $arg2 = null ) {
+	public static function pagesincategory( $parser, $name = '', $arg1 = '', $arg2 = '' ) {
 		static $magicWords = null;
 		if ( $magicWords === null ) {
 			$magicWords = $parser->getMagicWordFactory()->newArray( [
