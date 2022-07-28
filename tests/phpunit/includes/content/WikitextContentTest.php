@@ -25,18 +25,6 @@ more stuff
 		return new WikitextContent( $text );
 	}
 
-	public static function dataGetParserOutput() {
-		return [
-			[
-				"WikitextContentTest_testGetParserOutput",
-				CONTENT_MODEL_WIKITEXT,
-				"hello ''world''\n",
-				"<div class=\"mw-parser-output\"><p>hello <i>world</i>\n</p>\n\n\n</div>"
-			],
-			// TODO: more...?
-		];
-	}
-
 	public static function dataGetSection() {
 		return [
 			[ self::$sections,

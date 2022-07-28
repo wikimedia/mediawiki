@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @group ContentHandler
+ * @group Database
+ *        ^--- needed, because we do need the database to test link updates
+ */
 class TextContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 
 	public static function provideGetParserOutput() {
@@ -27,7 +32,9 @@ class TextContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 		$html = $po->getText();
 		$html = preg_replace( '#<!--.*?-->#sm', '', $html ); // strip comments
 
-		$this->assertEquals( $expectedHtml, trim( $html ) );
+		if ( $expectedHtml !== null ) {
+			$this->assertEquals( $expectedHtml, trim( $html ) );
+		}
 
 		if ( $expectedFields ) {
 			foreach ( $expectedFields as $field => $exp ) {
