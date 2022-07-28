@@ -460,6 +460,11 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 
 		$mock = $this->createMock( UserOptionsManager::class );
 		$mock->method( 'getOptions' )->willReturn( $userOptions );
+		$mock->method( 'getOption' )->willReturnCallback(
+			static function ( $user, $option ) use ( $userOptions ) {
+				return $userOptions[$option] ?? null;
+			}
+		);
 		if ( $defaultOptions ) {
 			$mock->method( 'getDefaultOptions' )->willReturn( $defaults );
 		}
