@@ -3,6 +3,7 @@
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Edit\PreparedEdit;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\Authority;
@@ -12,6 +13,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 
@@ -67,6 +69,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 				$this->deletePage( $p, "testing done." );
 			}
 		}
+		ParserOptions::clearStaticCache();
 		parent::tearDown();
 	}
 
@@ -965,12 +968,137 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	/**
+	 * @dataProvider provideMakeParserOptions
+	 * @covers WikiPage::makeParserOptions
+	 */
+	public function testMakeParserOptions( int $ns, string $title, string $model, $context, callable $expectation ) {
+		// Ensure we're working with the default values during this test.
+		$this->overrideConfigValues( [
+			MainConfigNames::TextModelsToParse => [
+				CONTENT_MODEL_WIKITEXT,
+				CONTENT_MODEL_JAVASCRIPT,
+				CONTENT_MODEL_CSS,
+			],
+			MainConfigNames::DisableLangConversion => false,
+		] );
+		// Call the context function first, which lets us setup the
+		// overall wiki context before invoking the function-under-test
+		if ( is_callable( $context ) ) {
+			$context = $context( $this );
+		}
+		$page = $this->createPage(
+			Title::makeTitle( $ns, $title ), __METHOD__, $model
+		);
+		$parserOptions = $page->makeParserOptions( $context );
+		$expected = $expectation();
+		$this->assertTrue( $expected->matches( $parserOptions ) );
+	}
+
+	/**
+	 * @dataProvider provideMakeParserOptions
+	 * @covers WikiPage::makeParserOptionsFromTitleAndModel
+	 */
+	public function testMakeParserOptionsFromTitleAndModel( int $ns, string $title, string $model, $context, callable $expectation ) {
+		// Ensure we're working with the default values during this test.
+		$this->overrideConfigValues( [
+			MainConfigNames::TextModelsToParse => [
+				CONTENT_MODEL_WIKITEXT,
+				CONTENT_MODEL_JAVASCRIPT,
+				CONTENT_MODEL_CSS,
+			],
+			MainConfigNames::DisableLangConversion => false,
+		] );
+		// Call the context function first, which lets us setup the
+		// overall wiki context before invoking the function-under-test
+		if ( is_callable( $context ) ) {
+			$context = $context( $this );
+		}
+		$parserOptions = WikiPage::makeParserOptionsFromTitleAndModel(
+			Title::makeTitle( $ns, $title ), $model, $context
+		);
+		$expected = $expectation();
+		$this->assertTrue( $expected->matches( $parserOptions ) );
+	}
+
+	public function provideMakeParserOptions() {
+		// Default canonical parser options for a normal wikitext page
+		yield [
+			NS_MAIN, 'Main Page', CONTENT_MODEL_WIKITEXT, 'canonical',
+			static function () {
+				return ParserOptions::newFromAnon();
+			},
+		];
+		// JavaScript should have Table Of Contents suppressed
+		yield [
+			NS_MAIN, 'JavaScript Test', CONTENT_MODEL_JAVASCRIPT, 'canonical',
+			static function () {
+				$po = ParserOptions::newFromAnon();
+				$po->setSuppressTOC();
+				return $po;
+			},
+		];
+		// CSS should have Table Of Contents suppressed
+		yield [
+			NS_MAIN, 'CSS Test', CONTENT_MODEL_CSS, 'canonical',
+			static function () {
+				$po = ParserOptions::newFromAnon();
+				$po->setSuppressTOC();
+				return $po;
+			},
+		];
+		// Language Conversion tables have content conversion disabled
+		yield [
+			NS_MEDIAWIKI, 'Conversiontable/Test', CONTENT_MODEL_WIKITEXT,
+			static function ( $test ) {
+				// Switch wiki to a language where LanguageConverter is enabled
+				$test->setContentLang( 'zh' );
+				$test->setUserLang( 'en' );
+				return 'canonical';
+			},
+			static function () {
+				$po = ParserOptions::newFromAnon();
+				$po->disableContentConversion();
+				// "Canonical" PO should use content language not user language
+				Assert::assertSame( 'zh', $po->getUserLang() );
+				return $po;
+			},
+		];
+		// Test "non-canonical" options: parser option should use user
+		// language here, not content language
+		$user = null;
+		yield [
+			NS_MAIN, 'Main Page', CONTENT_MODEL_WIKITEXT,
+			static function ( $test ) use ( &$user ) {
+				$test->setContentLang( 'qqx' );
+				$test->setUserLang( 'fr' );
+				$user = $test->getTestUser()->getUser();
+				return $user;
+			},
+			static function () use ( &$user ) {
+				$po = ParserOptions::newFromUser( $user );
+				Assert::assertSame( 'fr', $po->getUserLang() );
+				return $po;
+			},
+		];
+	}
+
 	public function provideGetParserOutput() {
 		return [
 			[
 				CONTENT_MODEL_WIKITEXT,
 				"hello ''world''\n",
 				"<div class=\"mw-parser-output\"><p>hello <i>world</i></p></div>"
+			],
+			[
+				CONTENT_MODEL_JAVASCRIPT,
+				"var test='<h2>not really a heading</h2>';",
+				"<pre class=\"mw-code mw-js\" dir=\"ltr\">\nvar test='&lt;h2>not really a heading&lt;/h2>';\n</pre>",
+			],
+			[
+				CONTENT_MODEL_CSS,
+				"/* Not ''wikitext'' */",
+				"<pre class=\"mw-code mw-css\" dir=\"ltr\">\n/* Not ''wikitext'' */\n</pre>",
 			],
 			// @todo more...?
 		];

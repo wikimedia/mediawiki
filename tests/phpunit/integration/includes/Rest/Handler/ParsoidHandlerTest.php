@@ -31,6 +31,8 @@ use Wikimedia\Parsoid\Parsoid;
 
 /**
  * @group Database
+ * @covers \MediaWiki\Rest\Handler\ParsoidHandler
+ * @covers \MediaWiki\Rest\Handler\HTMLTransformInput
  */
 class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	use RestTestTrait;
@@ -525,6 +527,33 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			[ '<div>data-parsoid test<div>data-parsoid test' ],
 		];
 
+		// should ignore data-parsoid if the input format is not pagebundle ////////////////////////
+		$html = '<html><body id="mwAA"><div id="mwBB">data-parsoid test</div>' .
+			'<div id="mwBB">data-parsoid test</div></body></html>';
+		$originalHtml = '<html><body id="mwAA"><div id="mwBB">data-parsoid test</div></body></html>';
+
+		$attribs = [
+			'opts' => [
+				'from' => ParsoidFormatHelper::FORMAT_HTML,
+				'original' => [
+					'html' => [
+						'headers' => $htmlHeaders,
+						'body' => $originalHtml
+					],
+					'data-parsoid' => [
+						// This has 'autoInsertedEnd' => true, which would cause
+						// closing </div> tags to be omitted.
+						'body' => $dataParsoid,
+					]
+				]
+			],
+		];
+		yield 'should ignore data-parsoid if the input format is not pagebundle' => [
+			$attribs,
+			$html,
+			[ '<div>data-parsoid test</div><div>data-parsoid test</div>' ],
+		];
+
 		// should apply original data-mw ///////////////////////////////////////
 		$html = '<p about="#mwt1" typeof="mw:Transclusion" id="mwAQ">hi</p>';
 		$originalHtml = '<p about="#mwt1" typeof="mw:Transclusion" id="mwAQ">ho</p>';
@@ -825,8 +854,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @param string $html
 	 * @param string[] $expectedText
 	 * @param string[] $expectedHeaders
-	 *
-	 * @covers \MediaWiki\Rest\Handler\ParsoidHandler::html2wt
 	 */
 	public function testHtml2wt(
 		array $attribs,
@@ -956,11 +983,11 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$html,
 			new HttpException(
 				'DSR offsetType mismatch: UCS2 vs byte',
-				406
+				400
 			)
 		];
 
-		// DSR offsetType mismatch: byte vs. UCS2 ///////////////////////////////
+		// DSR offsetType mismatch: byte vs UCS2 ///////////////////////////////
 		$attribs = [
 			'offsetType' => 'UCS2',
 			'envOptions' => [
@@ -988,7 +1015,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$html,
 			new HttpException(
 				'DSR offsetType mismatch: byte vs UCS2',
-				406
+				400
 			)
 		];
 
@@ -1124,8 +1151,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @param array $attribs
 	 * @param string $html
 	 * @param Exception $expectedException
-	 *
-	 * @covers \MediaWiki\Rest\Handler\ParsoidHandler::html2wt
 	 */
 	public function testHtml2wtThrows(
 		array $attribs,
@@ -1173,8 +1198,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @param Exception $throw
 	 * @param Exception $expectedException
-	 *
-	 * @covers \MediaWiki\Rest\Handler\ParsoidHandler::html2wt
 	 */
 	public function testHtml2wtHandlesDom2wikitextException(
 		Exception $throw,
@@ -1205,9 +1228,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$handler->html2wt( $pageConfig, $attribs, $html );
 	}
 
-	/**
-	 * @covers \MediaWiki\Rest\Handler\ParsoidHandler::html2wt
-	 */
 	public function testHtml2wtHandlesParseHtmlException() {
 		$html = '<p>hi</p>';
 		$page = $this->getExistingTestPage();
@@ -1253,7 +1273,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetRequestAttributes
-	 * @covers \MediaWiki\Rest\Handler\ParsoidHandler::getRequestAttributes
 	 */
 	public function testGetRequestAttributes() {
 		// TODO: also test tryToCreatePageConfig
@@ -1267,7 +1286,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetRequestAttributesThrows
-	 * @covers \MediaWiki\Rest\Handler\ParsoidHandler::getRequestAttributes
 	 */
 	public function testGetRequestAttributesThrows() {
 		// TODO: also test tryToCreatePageConfig
