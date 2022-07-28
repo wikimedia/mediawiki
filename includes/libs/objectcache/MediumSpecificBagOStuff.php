@@ -999,6 +999,19 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return $this->makeKeyInternal( $this->keyspace, func_get_args() );
 	}
 
+	/**
+	 * Make a cache key for the given keyspace and components
+	 *
+	 * Long components might be converted to respective hashes due to size constraints.
+	 * In extreme cases, all of them might be combined into a single hash component.
+	 *
+	 * @param string $keyspace Keyspace component
+	 * @param string[]|int[] $components Key components (key collection name first)
+	 * @return string Keyspace-prepended list of encoded components as a colon-separated value
+	 * @since 1.27
+	 */
+	abstract protected function makeKeyInternal( $keyspace, $components );
+
 	protected function convertGenericKey( $key ) {
 		$components = $this->componentsFromGenericKey( $key );
 		if ( count( $components ) < 2 ) {

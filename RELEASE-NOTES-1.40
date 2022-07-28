@@ -70,6 +70,8 @@ because of Phabricator reports.
 * …
 
 === Breaking changes in 1.40 ===
+* BagOStuff::makeKeyInternal(), deprecated for public use in 1.36, is now a
+  protected method of MediumSpecificBagOStuff.
 * …
 
 === Deprecations in 1.40 ===
