@@ -4511,9 +4511,12 @@ class Parser {
 			}
 			$toc = Linker::tocList( $toc, $this->mOptions->getUserLangObj() );
 			$this->mOutput->setTOCHTML( $toc );
-		} else {
-			// Record the fact that the TOC should not be shown. T294950
-			$this->mOutput->setOutputFlag( ParserOutputFlags::HIDE_TOC );
+			// Record the fact that the TOC should be shown. T294950
+			// (We shouldn't be looking at ::getTOCHTML() for this because
+			// eventually that will be replaced (T293513) and
+			// ::getSections() will contain sections even if there aren't
+			// $enoughToc to show.)
+			$this->mOutput->setOutputFlag( ParserOutputFlags::SHOW_TOC );
 		}
 
 		if ( $isMain && !$suppressToc ) {
