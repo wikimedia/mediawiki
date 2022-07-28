@@ -44,7 +44,6 @@ class MediaWikiLoggerPHPUnitExtension implements
 	 * @inheritDoc
 	 */
 	public function executeBeforeTest( string $test ): void {
-		$this->lastTestLogs = null;
 		$this->originalSpi = LoggerFactory::getProvider();
 		$this->spi = new LogCapturingSpi( $this->originalSpi );
 		LoggerFactory::registerProvider( $this->spi );
