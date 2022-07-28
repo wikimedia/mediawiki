@@ -1773,7 +1773,6 @@ $wgAutoloadLocalClasses = [
 	'WikiStatsOutput' => __DIR__ . '/maintenance/language/StatOutputs.php',
 	'WikiTextStructure' => __DIR__ . '/includes/content/WikiTextStructure.php',
 	'Wikimedia\\DependencyStore\\DependencyStore' => __DIR__ . '/includes/ResourceLoader/dependencystore/DependencyStore.php',
-	'Wikimedia\\DependencyStore\\DependencyStoreException' => __DIR__ . '/includes/ResourceLoader/dependencystore/DependencyStoreException.php',
 	'Wikimedia\\DependencyStore\\KeyValueDependencyStore' => __DIR__ . '/includes/ResourceLoader/dependencystore/KeyValueDependencyStore.php',
 	'Wikimedia\\DependencyStore\\SqlModuleDependencyStore' => __DIR__ . '/includes/ResourceLoader/dependencystore/SqlModuleDependencyStore.php',
 	'Wikimedia\\LightweightObjectStore\\ExpirationAwareness' => __DIR__ . '/includes/libs/objectcache/utils/ExpirationAwareness.php',
