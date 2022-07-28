@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -22,7 +23,7 @@ class CategoryMembershipChangeJobTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( 'wgRCWatchCategoryMembership', true );
+		$this->overrideConfigValue( MainConfigNames::RCWatchCategoryMembership, true );
 		$this->setContentLang( 'qqx' );
 	}
 

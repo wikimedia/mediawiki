@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 class EmailNotificationTest extends MediaWikiIntegrationTestCase {
 
 	protected $emailNotification;
@@ -14,9 +16,7 @@ class EmailNotificationTest extends MediaWikiIntegrationTestCase {
 
 		$this->emailNotification = new EmailNotification();
 
-		$this->setMwGlobals( [
-			'wgWatchlistExpiry' => true,
-		] );
+		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 	}
 
 	/**

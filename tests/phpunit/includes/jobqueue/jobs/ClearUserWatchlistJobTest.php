@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @covers ClearUserWatchlistJob
  *
@@ -39,7 +41,7 @@ class ClearUserWatchlistJobTest extends MediaWikiIntegrationTestCase {
 		$watchedItemStore->addWatch( $user, new TitleValue( 0, 'C' ) );
 		$watchedItemStore->addWatch( $user, new TitleValue( 1, 'C' ) );
 
-		$this->setMwGlobals( 'wgUpdateRowsPerQuery', 2 );
+		$this->overrideConfigValue( MainConfigNames::UpdateRowsPerQuery, 2 );
 
 		$jobQueueGroup = $this->getServiceContainer()->getJobQueueGroup();
 		$jobQueueGroup->push(
@@ -66,7 +68,7 @@ class ClearUserWatchlistJobTest extends MediaWikiIntegrationTestCase {
 
 	public function testRunWithWatchlistExpiry() {
 		// Set up.
-		$this->setMwGlobals( 'wgWatchlistExpiry', true );
+		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 		$user = $this->getUser();
 		$watchedItemStore = $this->getWatchedItemStore();
 
