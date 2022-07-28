@@ -132,6 +132,9 @@ abstract class BagOStuff implements
 	// if supported, do not block on completion until the next read
 	public const WRITE_BACKGROUND = 64;
 
+	/** Abort after the first merge conflict */
+	public const MAX_CONFLICTS_ONE = 1;
+
 	/** @var string Global keyspace; used by makeGlobalKey() */
 	protected const GLOBAL_KEYSPACE = 'global';
 	/** @var string Precomputed global cache key prefix (needs no encoding) */
