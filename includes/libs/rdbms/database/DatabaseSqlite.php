@@ -529,7 +529,7 @@ class DatabaseSqlite extends Database {
 
 	protected function doReplace( $table, array $identityKey, array $rows, $fname ) {
 		$encTable = $this->tableName( $table );
-		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
+		list( $sqlColumns, $sqlTuples ) = $this->platform->makeInsertLists( $rows );
 		// https://sqlite.org/lang_insert.html
 		$this->query(
 			"REPLACE INTO $encTable ($sqlColumns) VALUES $sqlTuples",

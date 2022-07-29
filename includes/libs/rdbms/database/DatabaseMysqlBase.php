@@ -1090,7 +1090,7 @@ abstract class DatabaseMysqlBase extends Database {
 		string $fname
 	) {
 		$encTable = $this->tableName( $table );
-		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
+		list( $sqlColumns, $sqlTuples ) = $this->platform->makeInsertLists( $rows );
 		$sqlColumnAssignments = $this->makeList( $set, self::LIST_SET );
 		// No need to expose __NEW.* since buildExcludedValue() uses VALUES(column)
 
@@ -1106,7 +1106,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 	protected function doReplace( $table, array $identityKey, array $rows, $fname ) {
 		$encTable = $this->tableName( $table );
-		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
+		list( $sqlColumns, $sqlTuples ) = $this->platform->makeInsertLists( $rows );
 
 		$sql = "REPLACE INTO $encTable ($sqlColumns) VALUES $sqlTuples";
 

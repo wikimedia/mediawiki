@@ -365,6 +365,14 @@ because of Phabricator reports.
   - Database::doSavepoint -> SQLPlatform::savepointSqlText
   - Database::doReleaseSavepoint -> SQLPlatform::releaseSavepointSqlText
   - Database::doRollbackToSavepoint -> SQLPlatform::rollbackToSavepointSqlText
+* The following protected methods of Database class have been removed without
+  deprecation as they are not used outside core. Users should call
+  corresponding methods in SQLPlatform:
+  - Database::makeInsertLists -> SQLPlatform::makeInsertLists
+  - Database::isFlagInOptions -> SQLPlatform::isFlagInOptions
+  - Database::normalizeOptions -> SQLPlatform::normalizeOptions
+  - Database::fieldNameWithAlias -> SQLPlatform::fieldNameWithAlias
+  - Database::isTransactableQuery -> SQLPlatform::isTransactableQuery
 * …
 
 === Deprecations in 1.39 ===
