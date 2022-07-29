@@ -4,6 +4,8 @@ class DummyContentForTesting extends AbstractContent {
 
 	public const MODEL_ID = "testing";
 
+	private $data;
+
 	public function __construct( $data ) {
 		parent::__construct( self::MODEL_ID );
 

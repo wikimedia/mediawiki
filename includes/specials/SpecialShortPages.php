@@ -188,8 +188,8 @@ class SpecialShortPages extends QueryPage {
 		$size = $this->msg( 'nbytes' )->numParams( $result->value )->escaped();
 
 		return $exists
-			? "${hlinkInParentheses} {$dm}{$plink} {$dm}[{$size}]"
-			: "<del>${hlinkInParentheses} {$dm}{$plink} {$dm}[{$size}]</del>";
+			? "{$hlinkInParentheses} {$dm}{$plink} {$dm}[{$size}]"
+			: "<del>{$hlinkInParentheses} {$dm}{$plink} {$dm}[{$size}]</del>";
 	}
 
 	protected function getGroupName() {

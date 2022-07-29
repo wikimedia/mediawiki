@@ -74,7 +74,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 	final public static function mediaWikiSetUpBeforeClass(): void {
 		$reflection = new ReflectionClass( static::class );
 		$dirSeparator = DIRECTORY_SEPARATOR;
-		if ( stripos( $reflection->getFileName(), "${dirSeparator}unit${dirSeparator}" ) === false ) {
+		if ( stripos( $reflection->getFileName(), "{$dirSeparator}unit{$dirSeparator}" ) === false ) {
 			self::fail( 'This unit test needs to be in "tests/phpunit/unit"!' );
 		}
 

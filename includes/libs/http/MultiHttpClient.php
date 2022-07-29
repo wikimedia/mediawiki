@@ -692,7 +692,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		}
 		$parsedUrl = wfParseUrl( $req['url'] );
 		if ( $parsedUrl === false ) {
-			throw new Exception( "Invalid url specified: ${req['url']}" );
+			throw new Exception( "Invalid url specified: {$req['url']}" );
 		}
 		// Set the current host in the Host header
 		$req['headers']['Host'] = $parsedUrl['host'];

@@ -46,11 +46,11 @@ class MWExceptionHandlerTest extends \MediaWikiUnitTestCase {
 		$dummyFile = TestThrowerDummy::getFile();
 		$dummyClass = TestThrowerDummy::class;
 		$expected = <<<TEXT
-from ${dummyFile}(17)
-#0 ${dummyFile}(13): ${dummyClass}->getQuux()
-#1 ${dummyFile}(9): ${dummyClass}->getBar()
-#2 ${dummyFile}(5): ${dummyClass}->doFoo()
-#3 ${startFile}($startLine): ${dummyClass}->main()
+from {$dummyFile}(17)
+#0 {$dummyFile}(13): {$dummyClass}->getQuux()
+#1 {$dummyFile}(9): {$dummyClass}->getBar()
+#2 {$dummyFile}(5): {$dummyClass}->doFoo()
+#3 {$startFile}($startLine): {$dummyClass}->main()
 TEXT;
 
 		// Trim up until our call()

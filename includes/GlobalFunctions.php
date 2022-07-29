@@ -1575,7 +1575,7 @@ function wfRecursiveRemoveDir( $dir ) {
  */
 function wfPercent( $nr, int $acc = 2, bool $round = true ) {
 	$accForFormat = $acc >= 0 ? $acc : 0;
-	$ret = sprintf( "%.${accForFormat}f", $nr );
+	$ret = sprintf( "%.{$accForFormat}f", $nr );
 	return $round ? round( (float)$ret, $acc ) . '%' : "$ret%";
 }
 
