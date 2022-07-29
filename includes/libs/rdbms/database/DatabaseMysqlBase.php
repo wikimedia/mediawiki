@@ -1279,11 +1279,6 @@ abstract class DatabaseMysqlBase extends Database {
 		return in_array( $name, $this->listViews( $prefix, __METHOD__ ) );
 	}
 
-	protected function isTransactableQuery( $sql ) {
-		return parent::isTransactableQuery( $sql ) &&
-			!preg_match( '/^SELECT\s+(GET|RELEASE|IS_FREE)_LOCK\(/', $sql );
-	}
-
 	public function selectSQLText(
 		$table,
 		$vars,

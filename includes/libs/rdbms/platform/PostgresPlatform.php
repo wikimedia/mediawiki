@@ -172,4 +172,9 @@ class PostgresPlatform extends SQLPlatform {
 
 		return parent::makeUpdateOptionsArray( $options );
 	}
+
+	public function isTransactableQuery( $sql ) {
+		return parent::isTransactableQuery( $sql ) &&
+			!preg_match( '/^SELECT\s+pg_(try_|)advisory_\w+\(/', $sql );
+	}
 }
