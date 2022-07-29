@@ -358,13 +358,13 @@ because of Phabricator reports.
 * Maintenance script resetUserTokens.php, deprecated in 1.27, has been removed.
 * These methods in Database have been removed without deprecation as they are
   not used outside core. Users should override corresponding methods in
-  SqlPlatform instead:
-  - Database::doInsert -> SqlPlatform::insertSqlText
-  - Database::doDropTable -> SqlPlatform::dropTableSqlText
-  - Database::doRollback -> SqlPlatform::rollbackSqlText
-  - Database::doSavepoint -> SqlPlatform::savepointSqlText
-  - Database::doReleaseSavepoint -> SqlPlatform::releaseSavepointSqlText
-  - Database::doRollbackToSavepoint -> SqlPlatform::rollbackToSavepointSqlText
+  SQLPlatform instead:
+  - Database::doInsert -> SQLPlatform::insertSqlText
+  - Database::doDropTable -> SQLPlatform::dropTableSqlText
+  - Database::doRollback -> SQLPlatform::rollbackSqlText
+  - Database::doSavepoint -> SQLPlatform::savepointSqlText
+  - Database::doReleaseSavepoint -> SQLPlatform::releaseSavepointSqlText
+  - Database::doRollbackToSavepoint -> SQLPlatform::rollbackToSavepointSqlText
 * …
 
 === Deprecations in 1.39 ===

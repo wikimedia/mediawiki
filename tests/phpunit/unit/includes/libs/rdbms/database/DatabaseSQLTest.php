@@ -1510,7 +1510,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers Wikimedia\Rdbms\Database::rollback
-	 * @covers Wikimedia\Rdbms\Platform\SqlPlatform::rollbackSqlText
+	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::rollbackSqlText
 	 */
 	public function testTransactionRollback() {
 		$this->database->begin( __METHOD__ );
@@ -1775,9 +1775,9 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\Platform\SqlPlatform::savepointSqlText
-	 * @covers \Wikimedia\Rdbms\Platform\SqlPlatform::releaseSavepointSqlText
-	 * @covers \Wikimedia\Rdbms\Platform\SqlPlatform::rollbackToSavepointSqlText
+	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::savepointSqlText
+	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::releaseSavepointSqlText
+	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::rollbackToSavepointSqlText
 	 * @covers \Wikimedia\Rdbms\Database::startAtomic
 	 * @covers \Wikimedia\Rdbms\Database::endAtomic
 	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
@@ -2002,9 +2002,9 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\Platform\SqlPlatform::savepointSqlText
-	 * @covers \Wikimedia\Rdbms\Platform\SqlPlatform::releaseSavepointSqlText
-	 * @covers \Wikimedia\Rdbms\Platform\SqlPlatform::rollbackToSavepointSqlText
+	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::savepointSqlText
+	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::releaseSavepointSqlText
+	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::rollbackToSavepointSqlText
 	 * @covers \Wikimedia\Rdbms\Database::startAtomic
 	 * @covers \Wikimedia\Rdbms\Database::endAtomic
 	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
@@ -2056,9 +2056,9 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\Platform\SqlPlatform::savepointSqlText
-	 * @covers \Wikimedia\Rdbms\Platform\SqlPlatform::releaseSavepointSqlText
-	 * @covers \Wikimedia\Rdbms\Platform\SqlPlatform::rollbackToSavepointSqlText
+	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::savepointSqlText
+	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::releaseSavepointSqlText
+	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::rollbackToSavepointSqlText
 	 * @covers \Wikimedia\Rdbms\Database::startAtomic
 	 * @covers \Wikimedia\Rdbms\Database::endAtomic
 	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
@@ -2238,9 +2238,9 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\Platform\SqlPlatform::savepointSqlText
-	 * @covers \Wikimedia\Rdbms\Platform\SqlPlatform::releaseSavepointSqlText
-	 * @covers \Wikimedia\Rdbms\Platform\SqlPlatform::rollbackToSavepointSqlText
+	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::savepointSqlText
+	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::releaseSavepointSqlText
+	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::rollbackToSavepointSqlText
 	 * @covers \Wikimedia\Rdbms\Database::startAtomic
 	 * @covers \Wikimedia\Rdbms\Database::endAtomic
 	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
