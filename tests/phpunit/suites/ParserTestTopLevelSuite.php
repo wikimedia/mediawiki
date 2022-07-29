@@ -15,6 +15,9 @@ use Wikimedia\ScopedCallback;
 class ParserTestTopLevelSuite extends TestSuite {
 	use SuiteEventsTrait;
 
+	/** @var PhpunitTestRecorder */
+	private $ptRecorder;
+
 	/** @var ParserTestRunner */
 	private $ptRunner;
 
