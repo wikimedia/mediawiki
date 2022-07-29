@@ -544,7 +544,7 @@ The supported versions are:
 
 * MariaDB 10.3 or higher
 * MySQL 5.7.0 or higher
-* PostgreSQL 9.4 or later
+* PostgreSQL 9.5 or later
 * SQLite 3.8.0 or later
 
 == Online documentation ==

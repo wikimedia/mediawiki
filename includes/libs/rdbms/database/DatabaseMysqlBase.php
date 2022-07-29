@@ -327,8 +327,8 @@ abstract class DatabaseMysqlBase extends Database {
 		$options = [],
 		$join_conds = []
 	) {
-		$conds = $this->normalizeConditions( $conds, $fname );
-		$column = $this->extractSingleFieldFromList( $var );
+		$conds = $this->platform->normalizeConditions( $conds, $fname );
+		$column = $this->platform->extractSingleFieldFromList( $var );
 		if ( is_string( $column ) && !in_array( $column, [ '*', '1' ] ) ) {
 			$conds[] = "$column IS NOT NULL";
 		}
