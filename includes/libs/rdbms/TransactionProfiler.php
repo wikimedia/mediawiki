@@ -236,7 +236,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * @param string $id ID string of transaction
 	 */
 	public function transactionWritingIn( $server, $db, string $id ) {
-		$name = "{$server} ({$db}) (TRX#$id)";
+		$name = "{$db} {$server} TRX#$id";
 		if ( isset( $this->dbTrxHoldingLocks[$name] ) ) {
 			$this->logger->warning( "Nested transaction for '$name' - out of sync." );
 		}
@@ -345,7 +345,8 @@ class TransactionProfiler implements LoggerAwareInterface {
 		float $writeTime,
 		int $affected
 	) {
-		$name = "{$server} ({$db}) (TRX#$id)";
+		// Must match $name in transactionWritingIn()
+		$name = "{$db} {$server} TRX#$id";
 		if ( !isset( $this->dbTrxMethodTimes[$name] ) ) {
 			$this->logger->warning( "Detected no transaction for '$name' - out of sync." );
 			return;
@@ -357,7 +358,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 		if ( $this->isAboveThreshold( $writeTime, 'writeQueryTime' ) ) {
 			$this->reportExpectationViolated(
 				'writeQueryTime',
-				"[transaction writes to {$server} ({$db})]",
+				"[transaction writes to {$db} at {$server}]",
 				$writeTime,
 				$id
 			);
@@ -367,7 +368,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 		if ( $this->isAboveThreshold( $affected, 'maxAffected' ) ) {
 			$this->reportExpectationViolated(
 				'maxAffected',
-				"[transaction writes to {$server} ({$db})]",
+				"[transaction writes to {$db} at {$server}]",
 				$affected,
 				$id
 			);
@@ -393,9 +394,9 @@ class TransactionProfiler implements LoggerAwareInterface {
 			$trace = '';
 			foreach ( $this->dbTrxMethodTimes[$name] as $i => [ $query, $sTime, $end ] ) {
 				$trace .= sprintf(
-					"%d\t%.6f\t%s\n", $i, ( $end - $sTime ), $this->getGeneralizedSql( $query ) );
+					"%-2d %.3fs %s\n", $i, ( $end - $sTime ), $this->getGeneralizedSql( $query ) );
 			}
-			$this->logger->warning( "Sub-optimal transaction on DB(s) [{dbs}]: \n{trace}", [
+			$this->logger->warning( "Sub-optimal transaction [{dbs}]:\n{trace}", [
 				'dbs' => implode( ', ', array_keys( $this->dbTrxHoldingLocks[$name]['conns'] ) ),
 				'trace' => $trace
 			] );
