@@ -100,4 +100,9 @@ class MySQLPlatform extends SQLPlatform {
 
 		return $sql;
 	}
+
+	public function isTransactableQuery( $sql ) {
+		return parent::isTransactableQuery( $sql ) &&
+			!preg_match( '/^SELECT\s+(GET|RELEASE|IS_FREE)_LOCK\(/', $sql );
+	}
 }

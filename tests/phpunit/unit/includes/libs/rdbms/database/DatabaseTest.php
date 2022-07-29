@@ -783,36 +783,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\Database::isWriteQuery
-	 * @param string $query
-	 * @param bool $res
-	 * @dataProvider provideIsWriteQuery
-	 */
-	public function testIsWriteQuery( string $query, bool $res ) {
-		$db = TestingAccessWrapper::newFromObject( $this->db );
-		$this->assertSame( $res, $db->isWriteQuery( $query, 0 ) );
-	}
-
-	/**
-	 * Provider for testIsWriteQuery
-	 * @return array
-	 */
-	public function provideIsWriteQuery(): array {
-		return [
-			[ 'SELECT foo', false ],
-			[ '  SELECT foo FROM bar', false ],
-			[ 'BEGIN', false ],
-			[ 'SHOW EXPLAIN FOR 12;', false ],
-			[ 'USE foobar', false ],
-			[ '(SELECT 1)', false ],
-			[ 'INSERT INTO foo', true ],
-			[ 'TRUNCATE bar', true ],
-			[ 'DELETE FROM baz', true ],
-			[ 'CREATE TABLE foobar', true ]
-		];
-	}
-
-	/**
 	 * @covers \Wikimedia\Rdbms\Database::executeQuery()
 	 * @covers \Wikimedia\Rdbms\Database::assertIsWritablePrimary()
 	 */

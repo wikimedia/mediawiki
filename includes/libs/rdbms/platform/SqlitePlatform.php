@@ -148,4 +148,16 @@ class SqlitePlatform extends SQLPlatform {
 		// No CASCADE support; https://www.sqlite.org/lang_droptable.html
 		return "DROP TABLE " . $this->tableName( $table );
 	}
+
+	public function isTransactableQuery( $sql ) {
+		return parent::isTransactableQuery( $sql ) && !in_array(
+				$this->getQueryVerb( $sql ),
+				[ 'ATTACH', 'PRAGMA' ],
+				true
+			);
+	}
+
+	public function isWriteQuery( $sql, $flags ) {
+		return parent::isWriteQuery( $sql, $flags ) && !preg_match( '/^(ATTACH|PRAGMA)\b/i', $sql );
+	}
 }
