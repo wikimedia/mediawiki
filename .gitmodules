@@ -1236,7 +1236,7 @@
 [submodule "extensions/DynamicPageList3"]
 	path = extensions/DynamicPageList3
 	url = https://github.com/Universal-Omega/DynamicPageList3
-	branch = master
+	branch = revision
 	ignore = dirty
 [submodule "extensions/Report"]
 	path = extensions/Report
