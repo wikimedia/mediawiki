@@ -186,6 +186,6 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			$ymd = 20320101;
 		}
 
-		return MWTimestamp::getInstance( "${ymd}000000" );
+		return MWTimestamp::getInstance( "{$ymd}000000" );
 	}
 }

@@ -169,7 +169,7 @@ class ImportStreamSource implements ImportSource {
 		# Have to do a DB-key replacement ourselves; otherwise spaces get
 		# URL-encoded to +, which is wrong in this case. Similar to logic in
 		# Title::getLocalURL
-		$link = $firstIw->getURL( strtr( "${additionalIwPrefixes}Special:Export/$page",
+		$link = $firstIw->getURL( strtr( "{$additionalIwPrefixes}Special:Export/$page",
 			' ', '_' ) );
 
 		$params = [];
