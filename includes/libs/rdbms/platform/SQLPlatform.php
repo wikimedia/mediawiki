@@ -1716,4 +1716,26 @@ class SQLPlatform implements ISQLPlatform {
 	final protected function fieldHasBit( int $flags, int $bit ) {
 		return ( ( $flags & $bit ) === $bit );
 	}
+
+	public function buildExcludedValue( $column ) {
+		/* @see Database::doUpsert() */
+		// This can be treated like a single value since __VALS is a single row table
+		return "(SELECT __$column FROM __VALS)";
+	}
+
+	public function savepointSqlText( $identifier ) {
+		return 'SAVEPOINT ' . $this->addIdentifierQuotes( $identifier );
+	}
+
+	public function releaseSavepointSqlText( $identifier ) {
+		return 'RELEASE SAVEPOINT ' . $this->addIdentifierQuotes( $identifier );
+	}
+
+	public function rollbackToSavepointSqlText( $identifier ) {
+		return 'ROLLBACK TO SAVEPOINT ' . $this->addIdentifierQuotes( $identifier );
+	}
+
+	public function rollbackSqlText() {
+		return 'ROLLBACK';
+	}
 }
