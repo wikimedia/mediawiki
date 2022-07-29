@@ -201,7 +201,7 @@ class ForeignResourceManager {
 			$this->verbose( "... passed integrity check for {$src}\n" );
 			$this->cacheSet( $key, $data );
 		} elseif ( $this->action === 'make-sri' ) {
-			$this->output( "Integrity for {$src}\n\tintegrity: ${actualIntegrity}\n" );
+			$this->output( "Integrity for {$src}\n\tintegrity: {$actualIntegrity}\n" );
 		} else {
 			throw new Exception( "Integrity check failed for {$src}\n" .
 				"\tExpected: {$integrity}\n" .
