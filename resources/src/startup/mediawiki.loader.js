@@ -1209,9 +1209,9 @@
 				var currReqBaseLength = makeQueryString( currReqBase ).length + 23;
 
 				// We may need to split up the request to honor the query string length limit,
-				// so build it piece by piece.
-				var length = currReqBaseLength;
-				var havePending = false;
+				// so build it piece by piece. `length` does not include the characters from
+				// the request base, see below
+				var length = 0;
 				moduleMap = Object.create( null ); // { prefix: [ suffixes ] }
 
 				for ( var i = 0; i < modules.length; i++ ) {
@@ -1223,26 +1223,30 @@
 							suffix.length + 3 : // '%2C'.length == 3
 							modules[ i ].length + 3; // '%7C'.length == 3
 
-					// If the url would become too long, create a new one, but don't create empty requests
-					if ( havePending && length + bytesAdded > mw.loader.maxQueryLength ) {
+					// If the url would become too long, create a new one, but don't create empty requests.
+					// The value of `length` only reflects the request-specific bytes relating to the
+					// accumulated entries in moduleMap so far. It does not include the base length,
+					// which we account for separately so that length is 0 when moduleMap is empty.
+					if ( length && length + currReqBaseLength + bytesAdded > mw.loader.maxQueryLength ) {
 						// Dispatch what we've got...
 						doRequest();
 						// .. and start again.
-						length = currReqBaseLength;
+						length = 0;
 						moduleMap = Object.create( null );
-						// Optimization: Omit `havePending = false;` as it'll change again below
 					}
 					if ( !moduleMap[ prefix ] ) {
 						moduleMap[ prefix ] = [];
 					}
 					length += bytesAdded;
 					moduleMap[ prefix ].push( suffix );
-					havePending = true;
 				}
-				// If there's anything left in moduleMap, request that too
-				if ( havePending ) {
-					doRequest();
-				}
+				// Optimization: Skip `length` check.
+				// moduleMap will contain at least one module here. The loop above leaves the last module
+				// undispatched (and maybe some before it), so for moduleMap to be empty here, there must
+				// have been no modules to iterate in the current group to start with, but we only create
+				// a group in `splits` when the first module in the group is seen, so there are always
+				// modules in the group when this code is reached.
+				doRequest();
 			}
 		}
 	}
