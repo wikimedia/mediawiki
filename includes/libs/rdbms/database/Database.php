@@ -2280,12 +2280,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return true;
 	}
 
-	public function buildExcludedValue( $column ) {
-		/* @see Database::doUpsert() */
-		// This can be treated like a single value since __VALS is a single row table
-		return "(SELECT __$column FROM __VALS)";
-	}
-
 	/**
 	 * @inheritDoc
 	 * @stable to override
@@ -3032,54 +3026,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Create a savepoint
-	 *
-	 * This is used internally to implement atomic sections. It should not be
-	 * used otherwise.
-	 *
-	 * @stable to override
-	 * @since 1.31
-	 * @param string $identifier Identifier for the savepoint
-	 * @param string $fname Calling function name
-	 */
-	protected function doSavepoint( $identifier, $fname ) {
-		$sql = 'SAVEPOINT ' . $this->addIdentifierQuotes( $identifier );
-		$this->query( $sql, $fname, self::QUERY_CHANGE_TRX );
-	}
-
-	/**
-	 * Release a savepoint
-	 *
-	 * This is used internally to implement atomic sections. It should not be
-	 * used otherwise.
-	 *
-	 * @stable to override
-	 * @since 1.31
-	 * @param string $identifier Identifier for the savepoint
-	 * @param string $fname Calling function name
-	 */
-	protected function doReleaseSavepoint( $identifier, $fname ) {
-		$sql = 'RELEASE SAVEPOINT ' . $this->addIdentifierQuotes( $identifier );
-		$this->query( $sql, $fname, self::QUERY_CHANGE_TRX );
-	}
-
-	/**
-	 * Rollback to a savepoint
-	 *
-	 * This is used internally to implement atomic sections. It should not be
-	 * used otherwise.
-	 *
-	 * @stable to override
-	 * @since 1.31
-	 * @param string $identifier Identifier for the savepoint
-	 * @param string $fname Calling function name
-	 */
-	protected function doRollbackToSavepoint( $identifier, $fname ) {
-		$sql = 'ROLLBACK TO SAVEPOINT ' . $this->addIdentifierQuotes( $identifier );
-		$this->query( $sql, $fname, self::QUERY_CHANGE_TRX );
-	}
-
-	/**
 	 * @param string $fname
 	 * @return string
 	 */
@@ -3129,7 +3075,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				// transaction (e.g. changes from other sections or from outside of sections)
 				try {
 					$savepointId = $this->nextSavepointId( $fname );
-					$this->doSavepoint( $savepointId, $fname );
+					$sql = $this->platform->savepointSqlText( $savepointId );
+					$this->query( $sql, $fname, self::QUERY_CHANGE_TRX );
 				} catch ( DBError $e ) {
 					$this->completeCriticalSection( __METHOD__, $cs, $e );
 					throw $e;
@@ -3162,7 +3109,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->commit( $fname, self::FLUSHING_INTERNAL );
 				$runPostCommitCallbacks = true;
 			} elseif ( $savepointId !== null && $savepointId !== self::NOT_APPLICABLE ) {
-				$this->doReleaseSavepoint( $savepointId, $fname );
+				$sql = $this->platform->releaseSavepointSqlText( $savepointId );
+				$this->query( $sql, $fname, self::QUERY_CHANGE_TRX );
 			}
 		} catch ( DBError $e ) {
 			$this->completeCriticalSection( __METHOD__, $cs, $e );
@@ -3218,7 +3166,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				} else {
 					// Atomic section nested within the transaction; rollback the transaction
 					// to the state prior to this section and trigger its cancellation callbacks
-					$this->doRollbackToSavepoint( $savepointId, $fname );
+					$sql = $this->platform->rollbackToSavepointSqlText( $savepointId );
+					$this->query( $sql, $fname, self::QUERY_CHANGE_TRX );
 					$this->transactionManager->setTrxStatusToOk(); // no exception; recovered
 					$this->transactionManager->runOnAtomicSectionCancelCallbacks(
 						$this,
@@ -3392,7 +3341,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->assertHasConnectionHandle();
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
-		$this->doRollback( $fname );
+		$sql = $this->platform->rollbackSqlText();
+		if ( $this->trxLevel() ) {
+			# Disconnects cause rollback anyway, so ignore those errors
+			$this->query( $sql, $fname, self::QUERY_SILENCE_ERRORS | self::QUERY_CHANGE_TRX );
+		}
 		$this->transactionManager->onRollback( $this );
 		// With FLUSHING_ALL_PEERS, callbacks will run when requested by a dedicated phase
 		// within LoadBalancer. With FLUSHING_INTERNAL, callbacks will run when requested by
@@ -3401,21 +3354,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->runTransactionPostRollbackCallbacks();
 		}
 		$this->completeCriticalSection( __METHOD__, $cs );
-	}
-
-	/**
-	 * Issues the ROLLBACK command to the database server.
-	 *
-	 * @stable to override
-	 * @see Database::rollback()
-	 * @param string $fname
-	 * @throws DBError
-	 */
-	protected function doRollback( $fname ) {
-		if ( $this->trxLevel() ) {
-			# Disconnects cause rollback anyway, so ignore those errors
-			$this->query( 'ROLLBACK', $fname, self::QUERY_SILENCE_ERRORS | self::QUERY_CHANGE_TRX );
-		}
 	}
 
 	/**
@@ -4570,6 +4508,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	protected function isTransactableQuery( $sql ) {
 		return $this->platform->isTransactableQuery( $sql );
+	}
+
+	public function buildExcludedValue( $column ) {
+		return $this->platform->buildExcludedValue( $column );
 	}
 
 	/* End of methods delegated to SQLPlatform. */

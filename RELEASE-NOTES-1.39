@@ -356,10 +356,15 @@ because of Phabricator reports.
   UnblockUser instead.
 * wfLocalFile() and wfFindFile(), deprecated in 1.34, have been removed.
 * Maintenance script resetUserTokens.php, deprecated in 1.27, has been removed.
-* Database::doInsert() has been removed without deprecation as it's not used
-  outside core. Users should override SqlPlatform::insertSqlText() instead.
-* Database::doDropTable() has been removed without deprecation as it's not used
-  outside core. Users should override SqlPlatform::dropTableSqlText() instead.
+* These methods in Database have been removed without deprecation as they are
+  not used outside core. Users should override corresponding methods in
+  SQLPlatform instead:
+  - Database::doInsert -> SQLPlatform::insertSqlText
+  - Database::doDropTable -> SQLPlatform::dropTableSqlText
+  - Database::doRollback -> SQLPlatform::rollbackSqlText
+  - Database::doSavepoint -> SQLPlatform::savepointSqlText
+  - Database::doReleaseSavepoint -> SQLPlatform::releaseSavepointSqlText
+  - Database::doRollbackToSavepoint -> SQLPlatform::rollbackToSavepointSqlText
 * …
 
 === Deprecations in 1.39 ===

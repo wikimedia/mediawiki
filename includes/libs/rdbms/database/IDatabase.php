@@ -880,25 +880,6 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	public function update( $table, $set, $conds, $fname = __METHOD__, $options = [] );
 
 	/**
-	 * Build a reference to a column value from the conflicting proposed upsert() row.
-	 *
-	 * The reference comes in the form of an alias, function, or parenthesized SQL expression.
-	 * It can be used in upsert() SET expressions to handle the merging of column values between
-	 * each conflicting pair of existing and proposed rows. Such proposed rows are said to have
-	 * been "excluded" from insertion in favor of updating the existing row.
-	 *
-	 * This is useful for multi-row upserts() since the proposed values cannot just be included
-	 * as literals in the SET expressions.
-	 *
-	 * @see IDatabase::upsert()
-	 *
-	 * @param string $column Column name
-	 * @return string SQL expression returning a scalar
-	 * @since 1.39
-	 */
-	public function buildExcludedValue( $column );
-
-	/**
 	 * Returns true if DBs are assumed to be on potentially different servers
 	 *
 	 * In systems like mysql/mariadb, different databases can easily be referenced on a single

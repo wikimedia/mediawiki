@@ -1308,17 +1308,6 @@ abstract class DatabaseMysqlBase extends Database {
 		return $sql;
 	}
 
-	public function buildExcludedValue( $column ) {
-		/* @see DatabaseMysqlBase::doUpsert() */
-		// Within "INSERT INTO ON DUPLICATE KEY UPDATE" statements:
-		//   - MySQL>= 8.0.20 supports and prefers "VALUES ... AS".
-		//   - MariaDB >= 10.3.3 supports and prefers VALUE().
-		//   - Both support the old VALUES() function
-		// https://dev.mysql.com/doc/refman/8.0/en/insert-on-duplicate.html
-		// https://mariadb.com/kb/en/insert-on-duplicate-key-update/
-		return "VALUES($column)";
-	}
-
 	/**
 	 * @return bool Whether GTID support is used (mockable for testing)
 	 */
