@@ -1208,7 +1208,7 @@
 	"filetype-bad-ie-mime": "Dit bestân kin net tafoege wurde, om't Internet Explorer dy idintifisearje soe as \"$1\", in net talitten bestânstype dat potinsjeel skealik is.",
 	"filetype-unwanted-type": "'''\".$1\"''' is in net winske bestânstype.\n{{PLURAL:$3|Oanwiisd bestânstype is|Oanwiisde bestânstypen binne}} $2.",
 	"filetype-banned-type": "<strong>\".$1\"</strong> {{PLURAL:$4|is gjin talitten bestânstype|binne gjin talitten bestânstypen}}.\nTalitten {{PLURAL:$3|bestânstype is|bestânstypen binne}} $2.",
-	"filetype-missing": "It bestân hat gjin ekstinsje (lykas \".jpg\").",
+	"filetype-missing": "It bestân hat gjin taheaksel (lykas \".jpg\").",
 	"large-file": "Oanbefelling: meitsje bestannen net grutter as $1; dit bestân is $2.",
 	"largefileserver": "It bestân is grutter as dat de ynstelling fan de server talit.",
 	"emptyfile": "It bestân dat jo opladen hawwe liket leech te wêzen.\nDat soe komme kinne fan in typflater yn 'e bestânsnamme.\nGean nei oft jo dit bestân wier bedoelden op te laden.",
