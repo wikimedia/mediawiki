@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Linker\LinksMigration;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -38,11 +39,16 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	 */
 	private $rootTitle;
 
+	/**
+	 * @var LinksMigration
+	 */
+	private $linksMigration;
+
 	private $params;
 	/** @var array */
 	private $cont;
 	private $redirect;
-	private $bl_ns, $bl_from, $bl_from_ns, $bl_table, $bl_code, $bl_title, $bl_fields, $hasNS;
+	private $bl_ns, $bl_from, $bl_from_ns, $bl_table, $bl_code, $bl_title, $hasNS;
 
 	/** @var string */
 	private $helpUrl;
@@ -83,34 +89,32 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
+	 * @param LinksMigration $linksMigration
 	 */
-	public function __construct( ApiQuery $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName, LinksMigration $linksMigration ) {
 		$settings = $this->backlinksSettings[$moduleName];
 		$prefix = $settings['prefix'];
 		$code = $settings['code'];
 		$this->resultArr = [];
 
 		parent::__construct( $query, $moduleName, $code );
-		$this->bl_ns = $prefix . '_namespace';
+		$this->bl_table = $settings['linktbl'];
+		$this->hasNS = $moduleName !== 'imageusage';
+		$this->linksMigration = $linksMigration;
+		if ( isset( $this->linksMigration::$mapping[$this->bl_table] ) ) {
+			list( $this->bl_ns, $this->bl_title ) = $this->linksMigration->getTitleFields( $this->bl_table );
+		} else {
+			$this->bl_ns = $prefix . '_namespace';
+			if ( $this->hasNS ) {
+				$this->bl_title = $prefix . '_title';
+			} else {
+				$this->bl_title = $prefix . '_to';
+			}
+		}
 		$this->bl_from = $prefix . '_from';
 		$this->bl_from_ns = $prefix . '_from_namespace';
-		$this->bl_table = $settings['linktbl'];
 		$this->bl_code = $code;
 		$this->helpUrl = $settings['helpurl'];
-
-		$this->hasNS = $moduleName !== 'imageusage';
-		if ( $this->hasNS ) {
-			$this->bl_title = $prefix . '_title';
-			$this->bl_fields = [
-				$this->bl_ns,
-				$this->bl_title
-			];
-		} else {
-			$this->bl_title = $prefix . '_to';
-			$this->bl_fields = [
-				$this->bl_title
-			];
-		}
 	}
 
 	public function execute() {
@@ -139,10 +143,16 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		}
 		$this->addFields( [ 'page_is_redirect', 'from_ns' => 'page_namespace' ] );
 
-		$this->addWhereFld( $this->bl_title, $this->rootTitle->getDBkey() );
-		if ( $this->hasNS ) {
-			$this->addWhereFld( $this->bl_ns, $this->rootTitle->getNamespace() );
+		if ( isset( $this->linksMigration::$mapping[$this->bl_table] ) ) {
+			$conds = $this->linksMigration->getLinksConditions( $this->bl_table, $this->rootTitle );
+			$this->addWhere( $conds );
+		} else {
+			$this->addWhereFld( $this->bl_title, $this->rootTitle->getDBkey() );
+			if ( $this->hasNS ) {
+				$this->addWhereFld( $this->bl_ns, $this->rootTitle->getNamespace() );
+			}
 		}
+
 		$this->addWhereFld( $this->bl_from_ns, $this->params['namespace'] );
 
 		if ( count( $this->cont ) >= 2 ) {
@@ -219,6 +229,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	}
 
 	/**
+	 * @todo This should support links migration but since it's unreachable for templatelinks
+	 *     it's not needed right now.
 	 * @param ApiPageSet|null $resultPageSet
 	 * @return void
 	 */
