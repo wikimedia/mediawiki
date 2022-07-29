@@ -1527,7 +1527,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			!$this->fieldHasBit( $flags, self::QUERY_IGNORE_DBO_TRX ) &&
 			!$this->trxLevel() &&
 			$this->getFlag( self::DBO_TRX ) &&
-			$this->isTransactableQuery( $sql )
+			$this->platform->isTransactableQuery( $sql )
 		) {
 			$this->begin( __METHOD__ . " ($fname)", self::TRANSACTION_INTERNAL );
 			$this->transactionManager->turnOnAutomatic();
@@ -1847,7 +1847,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new DBUnexpectedError( $this, 'Cannot use more than one field' );
 		}
 
-		$options = $this->normalizeOptions( $options );
+		$options = $this->platform->normalizeOptions( $options );
 		$options['LIMIT'] = 1;
 
 		$res = $this->select( $table, $var, $cond, $fname, $options, $join_conds );
@@ -1872,7 +1872,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new DBUnexpectedError( $this, "Cannot use an array of fields" );
 		}
 
-		$options = $this->normalizeOptions( $options );
+		$options = $this->platform->normalizeOptions( $options );
 		$res = $this->select( $table, [ 'value' => $var ], $cond, $fname, $options, $join_conds );
 		if ( $res === false ) {
 			throw new DBUnexpectedError( $this, "Got false from select()" );
@@ -2249,8 +2249,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			return true;
 		}
 
-		$options = $this->normalizeOptions( $options );
-		if ( $this->isFlagInOptions( 'IGNORE', $options ) ) {
+		$options = $this->platform->normalizeOptions( $options );
+		if ( $this->platform->isFlagInOptions( 'IGNORE', $options ) ) {
 			$this->doInsertNonConflicting( $table, $rows, $fname );
 		} else {
 			$sql = $this->platform->insertSqlText( $table, $rows );
@@ -2450,7 +2450,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		try {
 			foreach ( $rows as $row ) {
 				// Update any existing conflicting row (including ones inserted from $rows)
-				[ $sqlColumns, $sqlTuples, $sqlVals ] = $this->makeInsertLists( [ $row ], '__' );
+				[ $sqlColumns, $sqlTuples, $sqlVals ] = $this->platform->makeInsertLists( [ $row ], '__' );
 				$sqlConditions = $this->platform->makeKeyCollisionCondition( [ $row ], $identityKey );
 				// Since "WITH...AS (VALUES ...)" loses type information, subclasses should
 				// override with method if that might cause problems with the SET clause.
@@ -2544,8 +2544,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	) {
 		static $hints = [ 'NO_AUTO_COLUMNS' ];
 
-		$insertOptions = $this->normalizeOptions( $insertOptions );
-		$selectOptions = $this->normalizeOptions( $selectOptions );
+		$insertOptions = $this->platform->normalizeOptions( $insertOptions );
+		$selectOptions = $this->platform->normalizeOptions( $selectOptions );
 
 		if ( $this->cliMode && $this->isInsertSelectSafe( $insertOptions, $selectOptions ) ) {
 			// For massive migrations with downtime, we don't want to select everything
@@ -2616,7 +2616,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// know how big the INSERT is going to be.
 		$fields = [];
 		foreach ( $varMap as $dstColumn => $sourceColumnOrSql ) {
-			$fields[] = $this->fieldNameWithAlias( $sourceColumnOrSql, $dstColumn );
+			$fields[] = $this->platform->fieldNameWithAlias( $sourceColumnOrSql, $dstColumn );
 		}
 		$res = $this->select(
 			$srcTable,
@@ -4488,26 +4488,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$options = [], $join_conds = []
 	) {
 		return $this->platform->buildSelectSubquery( $table, $vars, $conds, $fname, $options, $join_conds );
-	}
-
-	protected function makeInsertLists( array $rows, $aliasPrefix = '' ) {
-		return $this->platform->makeInsertLists( $rows, $aliasPrefix );
-	}
-
-	final protected function isFlagInOptions( $option, array $options ) {
-		return $this->platform->isFlagInOptions( $option, $options );
-	}
-
-	final protected function normalizeOptions( $options ) {
-		return $this->platform->normalizeOptions( $options );
-	}
-
-	protected function fieldNameWithAlias( $name, $alias = false ) {
-		return $this->platform->fieldNameWithAlias( $name, $alias );
-	}
-
-	protected function isTransactableQuery( $sql ) {
-		return $this->platform->isTransactableQuery( $sql );
 	}
 
 	public function buildExcludedValue( $column ) {
