@@ -65,6 +65,7 @@ use Wikimedia\ScopedCallback;
  *
  * @newable in 1.35 only, the constructor is @internal since 1.36
  */
+#[AllowDynamicProperties]
 class User implements Authority, UserIdentity, UserEmailContact {
 	use ProtectedHookAccessorTrait;
 	use WikiAwareEntityTrait;
