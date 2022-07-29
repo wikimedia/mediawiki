@@ -127,7 +127,7 @@ class LessVarFileModule extends FileModule {
 		// but we must still carry on and produce a valid LESS variable declaration,
 		// to avoid a LESS syntax error (T267785).
 		foreach ( $this->lessVariables as $msgKey ) {
-			$vars['msg-' . $msgKey] = self::wrapAndEscapeMessage( $messages[$msgKey] ?? "⧼${msgKey}⧽" );
+			$vars['msg-' . $msgKey] = self::wrapAndEscapeMessage( $messages[$msgKey] ?? "⧼{$msgKey}⧽" );
 		}
 
 		return $vars;

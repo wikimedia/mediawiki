@@ -69,7 +69,7 @@ class TransformHandler extends ParsoidHandler {
 		if ( !isset( $validTransformations[$from] ) || !in_array( $format,
 				$validTransformations[$from],
 				true ) ) {
-			throw new HttpException( "Invalid transform: ${from}/to/${format}",
+			throw new HttpException( "Invalid transform: {$from}/to/{$format}",
 				404 );
 		}
 		$attribs = &$this->getRequestAttributes();

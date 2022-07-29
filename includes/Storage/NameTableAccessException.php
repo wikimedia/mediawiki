@@ -39,7 +39,7 @@ class NameTableAccessException extends RuntimeException {
 	 * @return NameTableAccessException
 	 */
 	public static function newFromDetails( $tableName, $accessType, $accessValue ) {
-		$message = "Failed to access name from ${tableName} using ${accessType} = ${accessValue}";
+		$message = "Failed to access name from {$tableName} using {$accessType} = {$accessValue}";
 		return new self( $message );
 	}
 
