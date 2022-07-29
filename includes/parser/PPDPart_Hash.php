@@ -21,11 +21,6 @@
 
 /**
  * @ingroup Parser
- *
- * @property int $eqpos
- * @property int $commentEnd
- * @property int $visualEnd
- * @property string[] $out
  */
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class PPDPart_Hash {
@@ -33,6 +28,21 @@ class PPDPart_Hash {
 	 * @var string[] Output accumulator
 	 */
 	public $out;
+
+	/**
+	 * @var int|null Index of equals sign, if found
+	 */
+	public $eqpos;
+
+	/**
+	 * @var int|null
+	 */
+	public $commentEnd;
+
+	/**
+	 * @var int|null
+	 */
+	public $visualEnd;
 
 	public function __construct( $out = '' ) {
 		$this->out = [];
