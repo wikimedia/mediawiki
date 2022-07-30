@@ -1573,3 +1573,7 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-IPInfo
 	branch = REL1_38
 	ignore = dirty
+[submodule "extensions/PageProperties"]
+	path = extensions/PageProperties
+	url = https://github.com/wikimedia/mediawiki-extensions-PageProperties
+	branch = REL1_38
