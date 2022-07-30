@@ -253,6 +253,11 @@ class ParserTestsMaintenance extends Maintenance {
 		if ( $recorderLB ) {
 			$recorderLB->closeAll( __METHOD__ );
 		}
+		if ( $tester->unexpectedTestPasses ) {
+			$recorder->warning( "There were some unexpected passing tests. " .
+				"Please rerun with --updateKnownFailures option." );
+			$ok = false;
+		}
 		if ( !$ok ) {
 			exit( 1 );
 		}
