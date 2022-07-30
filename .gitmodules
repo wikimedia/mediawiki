@@ -1577,3 +1577,4 @@
 	path = extensions/PageProperties
 	url = https://github.com/wikimedia/mediawiki-extensions-PageProperties
 	branch = REL1_38
+	ignore = dirty
