@@ -7,55 +7,43 @@ $( function () {
 		return;
 	}
 
-	var projectDropdownInput, subprojectDropdownInput,
-		sources = [];
+	var projectDropdownInput, subprojectDropdownInput;
 
 	function updateImportSubprojectList() {
-		var firstItem,
-			project = projectDropdownInput.getValue();
-
+		var project = projectDropdownInput.getValue();
 		subprojectDropdownInput.dropdownWidget.getMenu().getItems().forEach( function ( item ) {
 			item.toggle( item.getData().indexOf( project + '::' ) === 0 );
 		} );
 
-		firstItem = subprojectDropdownInput.dropdownWidget.menu.findFirstSelectableItem();
+		var firstItem = subprojectDropdownInput.dropdownWidget.menu.findFirstSelectableItem();
 		subprojectDropdownInput.toggle( !!firstItem );
 		subprojectDropdownInput.dropdownWidget.menu.selectItem( firstItem );
 	}
 
-	if ( $( '#mw-input-subproject' ).length ) {
+	var $subprojectInput = $( '#mw-input-subproject' );
+	if ( $subprojectInput.length ) {
 		projectDropdownInput = OO.ui.infuse( $( '#mw-input-interwiki' ) );
-		subprojectDropdownInput = OO.ui.infuse( $( '#mw-input-subproject' ) );
+		subprojectDropdownInput = OO.ui.infuse( $subprojectInput );
 
 		projectDropdownInput.on( 'change', updateImportSubprojectList );
 		updateImportSubprojectList();
 	}
 
-	if ( $( '#mw-input-xmlimport' ).length ) {
-		sources.push( 'upload' );
-	}
-	if ( $( '#mw-input-interwiki' ).length ) {
-		sources.push( 'interwiki' );
-	}
-
+	// HACK: Move namespace selector next to the corresponding input, between other radio inputs.
+	var sources = [ 'upload', 'interwiki' ];
 	sources.forEach( function ( name ) {
-		// Don't infuse the individual RadioSelectWidgets, broken up as a hack.
-		var $radios = $( '#mw-import-' + name + '-form input[name=mapping]' ),
-			namespace = OO.ui.infuse( $( '#mw-import-namespace-' + name ) ),
-			rootpage = OO.ui.infuse( $( '#mw-interwiki-rootpage-' + name ) );
+		// IDs: mw-import-mapping-upload, mw-import-mapping-interwiki
+		var $mappingInput = $( '#mw-import-mapping-' + name );
+		// IDs: mw-import-namespace-upload, mw-import-namespace-interwiki
+		var $namespaceInput = $( '#mw-import-namespace-' + name );
 
-		// HACK: Move namespace selector next to the corresponding radio input.
-		$radios.filter( '[value=namespace]' ).closest( '.oo-ui-fieldLayout' ).after(
-			namespace.$element.closest( '.oo-ui-fieldLayout' )
-		);
+		if ( $mappingInput.length && $namespaceInput.length ) {
+			var mappingWidget = OO.ui.infuse( $mappingInput );
+			var namespaceWidget = OO.ui.infuse( $namespaceInput );
 
-		function onRadioChange() {
-			var value = $radios.filter( ':checked' ).val();
-			namespace.setDisabled( value !== 'namespace' );
-			rootpage.setDisabled( value !== 'subpage' );
+			var $namespaceRadio = mappingWidget.radioSelectWidget.findItemFromData( 'namespace' ).$element;
+			var $namespaceField = namespaceWidget.$element.closest( '.oo-ui-fieldLayout' );
+			$namespaceRadio.after( $namespaceField );
 		}
-
-		$radios.on( 'change', onRadioChange );
-		onRadioChange();
 	} );
 } );

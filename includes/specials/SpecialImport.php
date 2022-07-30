@@ -268,7 +268,7 @@ class SpecialImport extends SpecialPage {
 			'mapping' => [
 				'type' => 'radio',
 				'name' => 'mapping',
-				// mw-import-mapping-interwiki, mw-import-mapping-upload
+				// IDs: mw-import-mapping-interwiki, mw-import-mapping-upload
 				'id' => "mw-import-mapping-$sourceName",
 				'options-messages' => [
 					'import-mapping-default' => 'default',
@@ -280,18 +280,19 @@ class SpecialImport extends SpecialPage {
 			'namespace' => [
 				'type' => 'namespaceselect',
 				'name' => 'namespace',
-				// mw-import-namespace-interwiki, mw-import-namespace-upload
+				// IDs: mw-import-namespace-interwiki, mw-import-namespace-upload
 				'id' => "mw-import-namespace-$sourceName",
 				'default' => $defaultNamespace ?: '',
-				'all' => null
+				'all' => null,
+				'disable-if' => [ '!==', 'mapping', 'namespace' ],
 			],
 			'rootpage' => [
 				'type' => 'text',
 				'name' => 'rootpage',
-				// Should be "mw-import-rootpage-...", but we keep this inaccurate
-				// ID for legacy reasons
-				// mw-interwiki-rootpage-interwiki, mw-interwiki-rootpage-upload
+				// Should be "mw-import-...", but we keep the inaccurate ID for compat
+				// IDs: mw-interwiki-rootpage-interwiki, mw-interwiki-rootpage-upload
 				'id' => "mw-interwiki-rootpage-$sourceName",
+				'disable-if' => [ '!==', 'mapping', 'subpage' ],
 			],
 		];
 	}
