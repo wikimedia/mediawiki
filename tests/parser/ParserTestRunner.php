@@ -155,6 +155,14 @@ class ParserTestRunner {
 	private $defaultTitle;
 
 	/**
+	 * Did some Parsoid test pass where it was expected to fail?
+	 * This can happen if the test failure is recorded in the -knownFailures.json file
+	 * but the test result changed, or functionality changed that causes tests to pass.
+	 * @var bool
+	 */
+	public $unexpectedTestPasses = false;
+
+	/**
 	 * Table name prefix.
 	 */
 	public const DB_PREFIX = 'parsertest_';
@@ -1103,7 +1111,7 @@ class ParserTestRunner {
 		}
 
 		if ( $testFileInfo->knownFailuresPath && $old !== $contents ) {
-			error_log( "Updating known failures file: {$testFileInfo->knownFailuresPath}" );
+			$this->recorder->warning( "Updating known failures file: {$testFileInfo->knownFailuresPath}" );
 			file_put_contents( $testFileInfo->knownFailuresPath, $contents );
 		}
 	}
@@ -1391,39 +1399,48 @@ class ParserTestRunner {
 		}
 
 		if ( !$this->options['knownFailures'] ) {
-			// Ignore known failures
 			$expectedFailure = null;
 		} else {
 			$expectedFailure = $test->knownFailures["$mode"] ?? null;
 		}
-		if ( $expectedFailure !== null ) {
-			$actual = $rawActual;
-			$expected = $expectedFailure;
-		} else {
-			if ( is_callable( $rawExpected ) ) {
-				$rawExpected = $rawExpected();
-			}
-			$standalone = false; // We're testing in integrated mode
-			list( $actual, $expected ) = $normalizer( $rawActual, $rawExpected, $standalone );
+
+		$expectedToFail = $expectedFailure !== null;
+		$knownFailureChanged = $expectedToFail && $expectedFailure !== $rawActual;
+
+		if ( is_callable( $rawExpected ) ) {
+			$rawExpected = $rawExpected();
+		}
+		list( $actual, $expected ) = $normalizer( $rawActual, $rawExpected, false /* standalone */ );
+		$passed = $actual === $expected;
+
+		$unexpectedPass = $expectedToFail && $passed;
+		$unexpectedFail = !$expectedToFail && !$passed;
+
+		if ( $unexpectedPass ) {
+			$this->recorder->warning( "{$test->testName}: $mode: EXPECTED TO FAIL, BUT PASSED!" );
 		}
 
-		if ( $this->options['updateKnownFailures'] && $actual !== $expected ) {
-			if ( $expectedFailure === null ) {
-				$test->knownFailures["$mode"] = $rawActual;
+		if ( $this->options['updateKnownFailures'] && (
+			$knownFailureChanged || $unexpectedFail || $unexpectedPass
+		) ) {
+			if ( $unexpectedPass ) {
+				unset( $test->knownFailures["$mode"] );
 			} else {
-				if ( is_callable( $rawExpected ) ) {
-					$rawExpected = $rawExpected();
+				if ( $knownFailureChanged ) {
+					$this->recorder->warning( "{$test->testName}: $mode: KNOWN FAILURE CHANGED!" );
 				}
-				list( $actual, $expected ) = $normalizer( $rawActual, $rawExpected );
-				if ( $actual === $expected ) {
-					wfDebug( "$mode: EXPECTED TO FAIL, BUT PASSED!" );
-					// Expected to fail, but passed!
-					unset( $test->knownFailures["$mode"] );
-				} else {
-					wfDebug( "$mode: KNOWN FAILURE CHANGED!" );
-					$test->knownFailures["$mode"] = $rawActual;
-				}
+				$test->knownFailures["$mode"] = $rawActual;
 			}
+		}
+
+		if ( $unexpectedPass ) {
+			if ( !$this->options['updateKnownFailures'] ) {
+				$this->unexpectedTestPasses = true;
+			}
+		} elseif ( $expectedToFail && !$knownFailureChanged ) {
+			// Don't flag failures noisily when nothing really changed
+			$expected = $expectedFailure;
+			$actual = $rawActual;
 		}
 
 		return new ParserTestResult( $test, $mode, $expected, $actual );
