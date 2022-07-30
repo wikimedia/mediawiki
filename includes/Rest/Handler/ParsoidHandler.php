@@ -929,7 +929,7 @@ abstract class ParsoidHandler extends Handler {
 				'inputContentVersion' => $inputContentVersion,
 				'offsetType' => $input->getOffsetType(),
 				'contentmodel' => $input->getContentModel(),
-				'htmlSize' => $htmlSize,
+				'htmlSize' => $htmlSize, // used to trigger status 413 if the input is too big
 			], $selserData );
 		} catch ( ClientError $e ) {
 			throw new HttpException( $e->getMessage(), 400 );
@@ -940,6 +940,9 @@ abstract class ParsoidHandler extends Handler {
 		if ( $htmlSize ) {  // Avoid division by zero
 			$total = $timing->end( 'html2wt.total' );
 			$metrics->timing( 'html2wt.size.output', strlen( $wikitext ) );
+
+			// NOTE: the name timePerInputKB is misleading, since $htmlSize is
+			//       in characters, not bytes.
 			$metrics->timing( 'html2wt.timePerInputKB', $total * 1024 / $htmlSize );
 		}
 
