@@ -64,6 +64,8 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	) {
 		$loadBalancer = $this->getMockLoadBalancer( $mockDb, $expectedConnectionType );
 		$mock = $this->createMock( LBFactory::class );
+		$mock->method( 'getLocalDomainID' )
+			->willReturn( WikiMap::getCurrentWikiId() );
 		$mock->method( 'getMainLB' )
 			->willReturn( $loadBalancer );
 		return $mock;
@@ -3295,6 +3297,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			$title,
 			'force',
 			$oldid );
-		$this->assertIsArray( $stash->get( 'global:watchlist-recent-updates::1' ) );
+		$this->assertIsArray( $stash->get( 'global:watchlist-recent-updates:' . WikiMap::getCurrentWikiId() . ':1' ) );
 	}
 }
