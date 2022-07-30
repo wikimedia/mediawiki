@@ -819,7 +819,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 						// AuthManager will check most of these, but that will make the auth
 						// session fail and this won't, so nicer to do it this way
 						if ( !$value &&
-						$this->getConfig()->get( MainConfigNames::EmailConfirmToEdit ) ) {
+							$this->getConfig()->get( MainConfigNames::EmailConfirmToEdit )
+						) {
 							// no point in allowing registration without email when email is
 							// required to edit
 							return $this->msg( 'noemailtitle' );
