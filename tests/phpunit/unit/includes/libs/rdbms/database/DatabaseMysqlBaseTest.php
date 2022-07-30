@@ -50,6 +50,18 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::addIdentifierQuotes
+	 */
+	public function testAddIdentifierQuotesNull() {
+		$db = $this->getMockBuilder( DatabaseMysqli::class )
+			->disableOriginalConstructor()
+			->onlyMethods( [] )
+			->getMock();
+		$quoted = @$db->addIdentifierQuotes( null );
+		$this->assertEquals( '``', $quoted );
+	}
+
+	/**
 	 * Feeds testAddIdentifierQuotes
 	 *
 	 * Named per T22281 convention.
@@ -58,9 +70,6 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		return [
 			// Format: expected, input
 			[ '``', '' ],
-
-			// Yeah I really hate loosely typed PHP idiocies nowadays
-			[ '``', null ],
 
 			// Dear codereviewer, guess what addIdentifierQuotes()
 			// will return with thoses:
