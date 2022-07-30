@@ -1151,17 +1151,24 @@ class EditPage implements IEditObject {
 					}
 				} else {
 					$this->sectiontitle = $request->getText( 'wpSummary' );
-					# If the summary consists of a heading, e.g. '==Foobar==', extract the title from the
-					# header syntax, e.g. 'Foobar'. This is mainly an issue when we are using wpSummary for
-					# section titles. (T3600)
-					# (This may be no longer desirable, now that this code is an API for other editing interfaces?)
-					$this->sectiontitle = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->sectiontitle );
 				}
-
-				$this->setNewSectionSummary();
 			} else {
 				$this->sectiontitle = null;
 				$this->summary = $request->getText( 'wpSummary' );
+			}
+
+			# If the summary consists of a heading, e.g. '==Foobar==', extract the title from the
+			# header syntax, e.g. 'Foobar'. This is mainly an issue when we are using wpSummary for
+			# section titles. (T3600)
+			# It is weird to modify 'sectiontitle', even when it is provided when using the API, but API
+			# users have come to rely on it: https://github.com/wikimedia-gadgets/twinkle/issues/1625
+			$this->summary = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->summary );
+			if ( $this->sectiontitle !== null ) {
+				$this->sectiontitle = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->sectiontitle );
+			}
+
+			if ( $this->section === 'new' ) {
+				$this->setNewSectionSummary();
 			}
 
 			$this->edittime = $request->getVal( 'wpEdittime' );
