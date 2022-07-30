@@ -54,7 +54,7 @@ class SpecialCategories extends SpecialPage {
 		$this->addHelpLink( 'Help:Categories' );
 		$this->getOutput()->setPreventClickjacking( false );
 
-		$from = $this->getRequest()->getText( 'from', $par );
+		$from = $this->getRequest()->getText( 'from', $par ?? '' );
 
 		$cap = new CategoryPager(
 			$this->getContext(),
