@@ -57,7 +57,7 @@ define( 'MEDIAWIKI', true );
 $IP = wfDetectInstallPath();
 
 $runner = new MaintenanceRunner();
-$runner->init( $maintClass );
+$runner->initForClass( $maintClass, $GLOBALS['argv'] );
 
 // We used to call this variable $self, but it was moved
 // to $maintenance->mSelf. Keep that here for b/c
@@ -66,16 +66,16 @@ $self = $runner->getName();
 $runner->defineSettings();
 
 // Custom setup for Maintenance entry point
-if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
+if ( !defined( 'MW_FINAL_SETUP_CALLBACK' ) ) {
 
 	// Define a function, since we can't put a closure or object
-	// reference into MW_SETUP_CALLBACK.
+	// reference into MW_FINAL_SETUP_CALLBACK.
 	function wfMaintenanceSetup( SettingsBuilder $settingsBuilder ) {
 		global $runner;
-		$runner->overrideConfig( $settingsBuilder );
+		$runner->setup( $settingsBuilder );
 	}
 
-	define( 'MW_SETUP_CALLBACK', 'wfMaintenanceSetup' );
+	define( 'MW_FINAL_SETUP_CALLBACK', 'wfMaintenanceSetup' );
 }
 
 // Initialize MediaWiki (load settings, initialized session,
