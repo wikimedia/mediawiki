@@ -119,6 +119,10 @@ For notes on 1.38.x and older releases, see HISTORY.
 * …
 
 === Bug fixes in 1.39 ===
+* (T314013) $wgExtraNamespaces no longer overrides canonical namespace names
+  specified in extension.json files. While this setting can still be used to
+  rename extension-defined namespaces, system administrators may need to run
+  namespaceDupes.php after upgrading.
 * …
 
 === Action API changes in 1.39 ===
@@ -373,6 +377,9 @@ because of Phabricator reports.
   - Database::normalizeOptions -> SQLPlatform::normalizeOptions
   - Database::fieldNameWithAlias -> SQLPlatform::fieldNameWithAlias
   - Database::isTransactableQuery -> SQLPlatform::isTransactableQuery
+* $wgCanonicalNamespaceNames no longer includes custom namespaces defined using
+  $wgExtraNamespaces. Extensions should use the NamespaceInfo service instead
+  of accessing this configuration setting directly.
 * …
 
 === Deprecations in 1.39 ===
