@@ -239,10 +239,11 @@ class HTMLTransformInputTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testHtmlSize() {
-		$html = '<html><body>hällö</body></html>'; // no schema version!
+		$html = '<html><body>hällö</body></html>'; // use some multi-byte characters
 		$input = new HTMLTransformInput( $html );
 
-		$this->assertSame( 33, $input->getModifiedHtmlSize() );
+		// make sure it counts characters, not bytes
+		$this->assertSame( 31, $input->getModifiedHtmlSize() );
 	}
 
 	public function testSetOriginalWikitext() {

@@ -142,12 +142,12 @@ class HTMLTransformInput {
 	}
 
 	/**
-	 * The size of the modified HTML in bytes.
+	 * The size of the modified HTML in characters.
 	 *
 	 * @return int
 	 */
 	public function getModifiedHtmlSize(): int {
-		return strlen( $this->html );
+		return mb_strlen( $this->html );
 	}
 
 	public function getModifiedDocument(): Document {
