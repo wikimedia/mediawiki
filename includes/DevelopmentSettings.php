@@ -69,7 +69,7 @@ unset( $logDir );
  */
 
 global $wgRateLimits, $wgEnableJavaScriptTest, $wgRestAPIAdditionalRouteFiles,
-	$wgDeferredUpdateStrategy;
+	$wgDeferredUpdateStrategy, $wgParsoidSettings, $wgMaxArticleSize;
 
 // Set almost infinite rate limits. This allows integration tests to run unthrottled
 // in CI and for devs locally (T225796), but doesn't turn a large chunk of production
@@ -100,6 +100,12 @@ $wgPasswordAttemptThrottle = [
 // Caveat: this does not wait for jobs to be executed, and it does
 // not wait for database replication to complete.
 $wgForceDeferredUpdatesPreSend = true;
+
+// Set size limits for parsing small enough so we can test them,
+// but not so small that they interfere with other tests.
+$wgMaxArticleSize = 20; // in Kilobyte
+$wgParsoidSettings['wt2htmlLimits']['wikitextSize'] = 20 * 1024; // $wgMaxArticleSize, in byte
+$wgParsoidSettings['html2wtLimits']['htmlSize'] = 100 * 1024; // in characters!
 
 /**
  * Experimental changes that may later become the default.

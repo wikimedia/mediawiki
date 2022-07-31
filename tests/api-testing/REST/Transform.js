@@ -11,9 +11,13 @@ const url = require( 'url' );
 const fs = require( 'fs' );
 
 const parsoidOptions = {
+	// Limits from DevelopmentSettings.php
 	limits: {
-		wt2html: { maxWikitextSize: 20000 },
-		html2wt: { maxHTMLSize: 10000 }
+		// Measured in bytes, per ParserOptions::getMaxIncludeSize.
+		wt2html: { maxWikitextSize: 20 * 1024 },
+
+		// Measured in characters.
+		html2wt: { maxHTMLSize: 100 * 1024 }
 	}
 };
 
@@ -895,19 +899,27 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should return a request too large error (post wt)', function ( done ) {
-			if ( skipForNow ) {
-				return this.skip();
-			} // Set limits in config
+		it( 'should return a request too large error when just over limit (post wt)', function ( done ) {
 			client.req
-				.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
+				.post( endpointPrefix + '/transform/wikitext/to/html/' )
 				.send( {
-					original: {
-						title: 'Large_Page'
-					},
+					// One over limit.
+					// Use single-byte characters, since the limit is in byte.
 					wikitext: 'a'.repeat( parsoidOptions.limits.wt2html.maxWikitextSize + 1 )
 				} )
 				.expect( 413 )
+				.end( done );
+		} );
+
+		it( 'should not return a request too large error when just under limit (post wt)', function ( done ) {
+			client.req
+				.post( endpointPrefix + '/transform/wikitext/to/html/' )
+				.send( {
+					// One under limit.
+					// Use single-byte characters, since the limit is in byte.
+					wikitext: 'a'.repeat( parsoidOptions.limits.wt2html.maxWikitextSize - 1 )
+				} )
+				.expect( 200 )
 				.end( done );
 		} );
 
@@ -1849,19 +1861,27 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		it( 'should return a request too large error', function ( done ) {
-			if ( skipForNow ) {
-				return this.skip();
-			} // Set limits in config
+		it( 'should return a request too large error when just over limit', function ( done ) {
 			client.req
 				.post( endpointPrefix + '/transform/html/to/wikitext/' )
 				.send( {
-					original: {
-						title: 'Large_Page'
-					},
-					html: 'a'.repeat( parsoidOptions.limits.html2wt.maxHTMLSize + 1 )
+					// One over limit.
+					// Use multi-byte characters, since the limit is in characters.
+					html: 'ä'.repeat( parsoidOptions.limits.html2wt.maxHTMLSize + 1 )
 				} )
 				.expect( 413 )
+				.end( done );
+		} );
+
+		it( 'should not return a request too large error when just under limit', function ( done ) {
+			client.req
+				.post( endpointPrefix + '/transform/html/to/wikitext/' )
+				.send( {
+					// One under limit.
+					// Use multi-byte characters, since the limit is in characters.
+					html: 'ä'.repeat( parsoidOptions.limits.html2wt.maxHTMLSize - 1 )
+				} )
+				.expect( 200 )
 				.end( done );
 		} );
 
