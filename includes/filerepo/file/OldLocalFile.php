@@ -90,9 +90,9 @@ class OldLocalFile extends LocalFile {
 	 *
 	 * @param string $sha1 Base-36 SHA-1
 	 * @param LocalRepo $repo
-	 * @param string|bool $timestamp MW_timestamp (optional)
+	 * @param string|false $timestamp MW_timestamp (optional)
 	 *
-	 * @return bool|OldLocalFile
+	 * @return static|false
 	 */
 	public static function newFromKey( $sha1, $repo, $timestamp = false ) {
 		$dbr = $repo->getReplicaDB();

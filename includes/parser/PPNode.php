@@ -69,7 +69,7 @@ interface PPNode {
 	/**
 	 * Returns an item of an array-type node
 	 * @param int $i
-	 * @return bool|PPNode
+	 * @return PPNode|false
 	 */
 	public function item( $i );
 

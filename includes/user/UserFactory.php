@@ -198,7 +198,7 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	 * @param ?int $userId
 	 * @param ?string $userName
 	 * @param ?int $actorId
-	 * @param bool|string $dbDomain
+	 * @param string|false $dbDomain
 	 * @return User
 	 * @throws InvalidArgumentException if none of userId, userName, and actorId are specified
 	 */

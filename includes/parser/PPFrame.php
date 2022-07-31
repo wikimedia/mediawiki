@@ -40,8 +40,8 @@ interface PPFrame {
 	/**
 	 * Create a child frame
 	 *
-	 * @param array|bool $args
-	 * @param bool|Title $title
+	 * @param array|false $args
+	 * @param Title|false $title
 	 * @param int $indexOffset A number subtracted from the index attributes of the arguments
 	 *
 	 * @return PPFrame
@@ -129,7 +129,7 @@ interface PPFrame {
 	/**
 	 * Get an argument to this frame by name
 	 * @param int|string $name
-	 * @return string|bool
+	 * @return string|false
 	 */
 	public function getArgument( $name );
 

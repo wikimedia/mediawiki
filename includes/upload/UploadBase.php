@@ -61,7 +61,7 @@ abstract class UploadBase {
 	protected $mRemoveTempFile;
 	/** @var string|null */
 	protected $mSourceType;
-	/** @var Title|bool|null */
+	/** @var Title|false|null */
 	protected $mTitle = false;
 	/** @var int */
 	protected $mTitleError = 0;
@@ -331,7 +331,7 @@ abstract class UploadBase {
 
 	/**
 	 * @param string $srcPath The source path
-	 * @return string|bool The real path if it was a virtual URL Returns false on failure
+	 * @return string|false The real path if it was a virtual URL Returns false on failure
 	 */
 	public function getRealPath( $srcPath ) {
 		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
@@ -2029,7 +2029,7 @@ abstract class UploadBase {
 	 * - The file looks like a thumbnail and the original exists
 	 *
 	 * @param File $file The File object to check
-	 * @return array|bool False if the file does not exist, else an array
+	 * @return array|false False if the file does not exist, else an array
 	 */
 	public static function getExistsWarning( $file ) {
 		if ( $file->exists() ) {
@@ -2246,7 +2246,7 @@ abstract class UploadBase {
 	 *
 	 * @param UserIdentity $user
 	 * @param string $statusKey
-	 * @return Status[]|bool
+	 * @return Status[]|false
 	 */
 	public static function getSessionStatus( UserIdentity $user, $statusKey ) {
 		$store = self::getUploadSessionStore();
@@ -2264,7 +2264,7 @@ abstract class UploadBase {
 	 *
 	 * @param UserIdentity $user
 	 * @param string $statusKey
-	 * @param array|bool $value
+	 * @param array|false $value
 	 * @return void
 	 */
 	public static function setSessionStatus( UserIdentity $user, $statusKey, $value ) {

@@ -179,7 +179,7 @@ class RevisionOutputCache {
 	 * @param RevisionRecord $revision
 	 * @param ParserOptions $parserOptions
 	 *
-	 * @return ParserOutput|bool False on failure
+	 * @return ParserOutput|false False on failure
 	 */
 	public function get( RevisionRecord $revision, ParserOptions $parserOptions ) {
 		if ( $this->cacheExpiry <= 0 ) {

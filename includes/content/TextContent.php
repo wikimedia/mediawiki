@@ -175,7 +175,7 @@ class TextContent extends AbstractContent {
 	 *
 	 * @note this allows any text-based content to be transcluded as if it was wikitext.
 	 *
-	 * @return string|bool The raw text, or false if the conversion failed.
+	 * @return string|false The raw text, or false if the conversion failed.
 	 */
 	public function getWikitextForTransclusion() {
 		/** @var WikitextContent $wikitext */
@@ -251,7 +251,7 @@ class TextContent extends AbstractContent {
 	 * @param string $lossy Flag, set to "lossy" to allow lossy conversion. If lossy conversion is not
 	 *     allowed, full round-trip conversion is expected to work without losing information.
 	 *
-	 * @return Content|bool A content object with the content model $toModel, or false if that
+	 * @return Content|false A content object with the content model $toModel, or false if that
 	 *     conversion is not supported.
 	 * @throws MWUnknownContentModelException
 	 *

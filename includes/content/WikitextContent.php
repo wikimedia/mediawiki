@@ -54,7 +54,7 @@ class WikitextContent extends TextContent {
 	/**
 	 * @param string|int $sectionId
 	 *
-	 * @return Content|bool|null
+	 * @return Content|false|null
 	 *
 	 * @see Content::getSection()
 	 */
@@ -71,7 +71,7 @@ class WikitextContent extends TextContent {
 	}
 
 	/**
-	 * @param string|int|null|bool $sectionId
+	 * @param string|int|null|false $sectionId
 	 * @param Content $with
 	 * @param string $sectionTitle
 	 *

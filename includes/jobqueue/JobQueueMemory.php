@@ -111,7 +111,7 @@ class JobQueueMemory extends JobQueue {
 	/**
 	 * @see JobQueue::doPop
 	 *
-	 * @return RunnableJob|bool
+	 * @return RunnableJob|false
 	 */
 	protected function doPop() {
 		if ( $this->doGetSize() == 0 ) {

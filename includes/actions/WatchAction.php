@@ -138,7 +138,7 @@ class WatchAction extends FormAction {
 	 * @todo Move this somewhere better when it's being used in more than just this action.
 	 *
 	 * @param MessageLocalizer $msgLocalizer
-	 * @param WatchedItem|bool $watchedItem
+	 * @param WatchedItem|false $watchedItem
 	 *
 	 * @return mixed[] With keys `options` (string[]) and `default` (string).
 	 */

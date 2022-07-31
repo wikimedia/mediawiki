@@ -828,7 +828,7 @@ abstract class ContentHandler {
 	 * @param Content $myContent One of the page's conflicting contents.
 	 * @param Content $yourContent One of the page's conflicting contents.
 	 *
-	 * @return Content|bool Always false.
+	 * @return Content|false Always false.
 	 */
 	public function merge3( Content $oldContent, Content $myContent, Content $yourContent ) {
 		return false;
@@ -1046,7 +1046,7 @@ abstract class ContentHandler {
 	 * @param Title $title The page's title
 	 * @param bool &$hasHistory Whether the page has a history
 	 *
-	 * @return mixed String containing deletion reason or empty string, or
+	 * @return string|false String containing deletion reason or empty string, or
 	 *    boolean false if no revision occurred
 	 */
 	public function getAutoDeleteReason( Title $title, &$hasHistory = false ) {

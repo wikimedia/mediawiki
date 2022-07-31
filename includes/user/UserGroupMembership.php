@@ -188,7 +188,7 @@ class UserGroupMembership {
 	 * of the group appears in the UI, it can link to this page.
 	 *
 	 * @param string $group Internal group name
-	 * @return Title|bool Title of the page if it exists, false otherwise
+	 * @return Title|false Title of the page if it exists, false otherwise
 	 */
 	public static function getGroupPage( $group ) {
 		$msg = wfMessage( "grouppage-$group" )->inContentLanguage();

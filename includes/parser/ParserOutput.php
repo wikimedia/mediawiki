@@ -1159,7 +1159,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * If $tag is set, the section with that tag will only be included once
 	 * in a given page.
 	 * @param string $section
-	 * @param string|bool $tag
+	 * @param string|false $tag
 	 */
 	public function addHeadItem( $section, $tag = false ): void {
 		if ( $tag !== false ) {

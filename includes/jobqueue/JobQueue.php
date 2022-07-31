@@ -44,7 +44,7 @@ abstract class JobQueue {
 	protected $claimTTL;
 	/** @var int Maximum number of times to try a job */
 	protected $maxTries;
-	/** @var string|bool Read only rationale (or false if r/w) */
+	/** @var string|false Read only rationale (or false if r/w) */
 	protected $readOnlyReason;
 	/** @var StatsdDataFactoryInterface */
 	protected $stats;
@@ -211,7 +211,7 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * @return string|bool Read-only rational or false if r/w
+	 * @return string|false Read-only rational or false if r/w
 	 * @since 1.27
 	 */
 	public function getReadOnlyReason() {
@@ -395,7 +395,7 @@ abstract class JobQueue {
 	 * Outside callers should use JobQueueGroup::pop() instead of this function.
 	 *
 	 * @throws JobQueueError
-	 * @return RunnableJob|bool Returns false if there are no jobs
+	 * @return RunnableJob|false Returns false if there are no jobs
 	 */
 	final public function pop() {
 		$this->assertNotReadOnly();
@@ -419,7 +419,7 @@ abstract class JobQueue {
 
 	/**
 	 * @see JobQueue::pop()
-	 * @return RunnableJob|bool
+	 * @return RunnableJob|false
 	 */
 	abstract protected function doPop();
 

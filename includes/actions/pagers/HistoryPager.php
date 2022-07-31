@@ -324,7 +324,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @todo document some more, and maybe clean up the code (some params redundant?)
 	 *
 	 * @param stdClass $row The database row corresponding to the previous line.
-	 * @param bool|string $notificationtimestamp
+	 * @param string|false $notificationtimestamp
 	 * @param int $resultOffset The offset into the current result set
 	 * @return string HTML output for the row
 	 */
