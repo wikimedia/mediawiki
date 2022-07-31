@@ -717,9 +717,9 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			[ 'CanonicalNamespaceNames' => [ NS_MAIN => 'abc' ] ],
 			[],
 		];
-		yield '$wgExtraNamespaces set' => [
+		yield 'Setting $wgExtraNamespaces does not affect $wgCanonicalNamespaceNames' => [
 			[ 'ExtraNamespaces' => [ 100 => 'Extra' ] ],
-			[ 'CanonicalNamespaceNames' => NamespaceInfo::CANONICAL_NAMES + [ 100 => 'Extra' ] ],
+			[],
 		];
 		yield '$wgDummyLanguageCodes set' => [
 			[ 'DummyLanguageCodes' => [ 'qqq' => 'qqqq', 'foo' => 'bar', 'bh' => 'hb' ] ],
