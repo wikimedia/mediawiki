@@ -339,6 +339,7 @@
 	"rev-deleted-text-unhide": "Tän versio seeidast lij <strong>jaukkuum</strong>.\nLââʹssteâđid vuäǯǯ [{{fullurl:{{#Special:Log}}/delete|page=$1}} jaukkeemrekisteeʹrest]. Vuäitak kuuitâǥ [$1 vueiʹnned tän muttâz], jõs haaʹlääk juäʹtǩǩed.",
 	"rev-deleted-text-view": "Tän versio seeidast lij <strong>jaukkuum</strong>. Vuäitak kuuitâǥ vueiʹnned tõn. Lââʹssteâđid vuäǯǯ [{{fullurl:{{#Special:Log}}/delete|page=$1}} jaukkeemrekisteeʹrest].",
 	"rev-showdeleted": "čuäʹjet",
+	"revdelete-hide-comment": "Õʹhtteǩeässmõš",
 	"revdelete-hide-user": "Čiõǥǥ õõʹnninõõm/IP-addrõõzz",
 	"revdelete-radio-set": "Čiõkkum",
 	"revdelete-log": "Mäinn:",
