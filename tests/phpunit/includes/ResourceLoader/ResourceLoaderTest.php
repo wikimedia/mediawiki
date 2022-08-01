@@ -1092,12 +1092,17 @@ END
 	}
 
 	public function testRespondInternalFailures() {
-		$module = new ResourceLoaderTestModule( [ 'script' => 'foo();' ] );
+		$module = $this->getMockBuilder( ResourceLoaderTestModule::class )
+			->onlyMethods( [ 'getDefinitionSummary', 'enableModuleContentVersion' ] )
+			->getMock();
+		$module->method( 'enableModuleContentVersion' )
+			->willReturn( false );
+		$module->method( 'getDefinitionSummary' )
+			->willThrowException( new Exception( 'Version error' ) );
 		$rl = $this->getMockBuilder( EmptyResourceLoader::class )
 			->onlyMethods( [
 				'measureResponseTime',
 				'preloadModuleInfo',
-				'getCombinedVersion',
 				'tryRespondNotModified',
 				'makeModuleResponse',
 				'sendResponseHeaders',
@@ -1108,14 +1113,15 @@ END
 				return $module;
 			}
 		] );
-		$context = $this->getResourceLoaderContext( [ 'modules' => 'test' ], $rl );
+		$context = $this->getResourceLoaderContext(
+			[ 'modules' => 'test', 'debug' => 'false' ],
+			$rl
+		);
 		// Disable logging from outputErrorAndLog
 		$this->setLogger( 'exception', new \Psr\Log\NullLogger() );
 
 		$rl->expects( $this->once() )->method( 'preloadModuleInfo' )
 			->willThrowException( new Exception( 'Preload error' ) );
-		$rl->expects( $this->once() )->method( 'getCombinedVersion' )
-			->willThrowException( new Exception( 'Version error' ) );
 		$rl->expects( $this->once() )->method( 'makeModuleResponse' )
 			->with( $context, [ 'test' => $module ] )
 			->willReturn( 'foo;' );
