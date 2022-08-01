@@ -56,6 +56,7 @@ use Wikimedia\ScopedCallback;
  *       anonymous (IP) user is to call the constructor directly. A factory
  *       method for that purpose should be added to TitleFactory, see T257464.
  */
+#[AllowDynamicProperties]
 class User implements IDBAccessObject, UserIdentity {
 	use ProtectedHookAccessorTrait;
 
