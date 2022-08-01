@@ -29,6 +29,7 @@ use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class ChangeTags {
 	/**
@@ -123,6 +124,16 @@ class ChangeTags {
 		'mw-reverted',
 		'mw-server-side-upload',
 	];
+
+	/**
+	 * Name of change_tag table
+	 */
+	private const CHANGE_TAG = 'change_tag';
+
+	/**
+	 * Name of change_tag_def table
+	 */
+	private const CHANGE_TAG_DEF = 'change_tag_def';
 
 	/**
 	 * If true, this class attempts to avoid reopening database tables within the same query,
@@ -381,57 +392,57 @@ class ChangeTags {
 			// LogEntry/LogPage and WikiPage match rev/log/rc timestamps,
 			// so use that relation to avoid full table scans.
 			if ( $log_id ) {
-				$rc_id = $dbw->selectField(
-					[ 'logging', 'recentchanges' ],
-					'rc_id',
-					[
-						'log_id' => $log_id,
+				$rc_id = $dbw->newSelectQueryBuilder()
+					->select( 'rc_id' )
+					->from( 'logging' )
+					->join( 'recentchanges', null, [
 						'rc_timestamp = log_timestamp',
 						'rc_logid = log_id'
-					],
-					__METHOD__
-				);
+					] )
+					->where( [ 'log_id' => $log_id ] )
+					->caller( __METHOD__ )
+					->fetchField();
 			} elseif ( $rev_id ) {
-				$rc_id = $dbw->selectField(
-					[ 'revision', 'recentchanges' ],
-					'rc_id',
-					[
-						'rev_id' => $rev_id,
+				$rc_id = $dbw->newSelectQueryBuilder()
+					->select( 'rc_id' )
+					->from( 'revision' )
+					->join( 'recentchanges', null, [
 						'rc_this_oldid = rev_id'
-					],
-					__METHOD__
-				);
+					] )
+					->where( [ 'rev_id' => $rev_id ] )
+					->caller( __METHOD__ )
+					->fetchField();
 			}
 		} elseif ( !$log_id && !$rev_id ) {
 			// Info might be out of date, somewhat fractionally, on replica DB.
-			$log_id = $dbw->selectField(
-				'recentchanges',
-				'rc_logid',
-				[ 'rc_id' => $rc_id ],
-				__METHOD__
-			);
-			$rev_id = $dbw->selectField(
-				'recentchanges',
-				'rc_this_oldid',
-				[ 'rc_id' => $rc_id ],
-				__METHOD__
-			);
+			$log_id = $dbw->newSelectQueryBuilder()
+				->select( 'rc_logid' )
+				->from( 'recentchanges' )
+				->where( [ 'rc_id' => $rc_id ] )
+				->caller( __METHOD__ )
+				->fetchField();
+			$rev_id = $dbw->newSelectQueryBuilder()
+				->select( 'rc_this_oldid' )
+				->from( 'recentchanges' )
+				->where( [ 'rc_id' => $rc_id ] )
+				->caller( __METHOD__ )
+				->fetchField();
 		}
 
 		if ( $log_id && !$rev_id ) {
-			$rev_id = $dbw->selectField(
-				'log_search',
-				'ls_value',
-				[ 'ls_field' => 'associated_rev_id', 'ls_log_id' => $log_id ],
-				__METHOD__
-			);
+			$rev_id = $dbw->newSelectQueryBuilder()
+				->select( 'ls_value' )
+				->from( 'log_search' )
+				->where( [ 'ls_field' => 'associated_rev_id', 'ls_log_id' => $log_id ] )
+				->caller( __METHOD__ )
+				->fetchField();
 		} elseif ( !$log_id && $rev_id ) {
-			$log_id = $dbw->selectField(
-				'log_search',
-				'ls_log_id',
-				[ 'ls_field' => 'associated_rev_id', 'ls_value' => (string)$rev_id ],
-				__METHOD__
-			);
+			$log_id = $dbw->newSelectQueryBuilder()
+				->select( 'ls_log_id' )
+				->from( 'log_search' )
+				->where( [ 'ls_field' => 'associated_rev_id', 'ls_value' => (string)$rev_id ] )
+				->caller( __METHOD__ )
+				->fetchField();
 		}
 
 		$prevTags = self::getTags( $dbw, $rc_id, $rev_id, $log_id );
@@ -461,7 +472,7 @@ class ChangeTags {
 			// T207881: update the counts at the end of the transaction
 			$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tagsToAdd, $fname ) {
 				$dbw->update(
-					'change_tag_def',
+					self::CHANGE_TAG_DEF,
 					[ 'ctd_count = ctd_count + 1' ],
 					[ 'ctd_name' => $tagsToAdd ],
 					$fname
@@ -486,7 +497,7 @@ class ChangeTags {
 
 			}
 
-			$dbw->insert( 'change_tag', $tagsRows, __METHOD__, [ 'IGNORE' ] );
+			$dbw->insert( self::CHANGE_TAG, $tagsRows, __METHOD__, [ 'IGNORE' ] );
 		}
 
 		// delete from change_tag
@@ -501,19 +512,19 @@ class ChangeTags {
 						'ct_tag_id' => $changeTagDefStore->getId( $tag ),
 					]
 				);
-				$dbw->delete( 'change_tag', $conds, __METHOD__ );
+				$dbw->delete( self::CHANGE_TAG, $conds, __METHOD__ );
 				if ( $dbw->affectedRows() ) {
 					// T207881: update the counts at the end of the transaction
 					$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tag, $fname ) {
 						$dbw->update(
-							'change_tag_def',
+							self::CHANGE_TAG_DEF,
 							[ 'ctd_count = ctd_count - 1' ],
 							[ 'ctd_name' => $tag ],
 							$fname
 						);
 
 						$dbw->delete(
-							'change_tag_def',
+							self::CHANGE_TAG_DEF,
 							[ 'ctd_name' => $tag, 'ctd_count' => 0, 'ctd_user_defined' => 0 ],
 							$fname
 						);
@@ -556,13 +567,12 @@ class ChangeTags {
 				'ct_log_id' => $log_id,
 			]
 		);
-
-		$result = $db->select(
-			'change_tag',
-			[ 'ct_tag_id', 'ct_params' ],
-			$conds,
-			__METHOD__
-		);
+		$result = $db->newSelectQueryBuilder()
+			->select( [ 'ct_tag_id', 'ct_params' ] )
+			->from( self::CHANGE_TAG )
+			->where( $conds )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$tags = [];
 		$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
@@ -978,7 +988,7 @@ class ChangeTags {
 	 * @return string
 	 */
 	public static function getDisplayTableName() {
-		$tagTable = 'change_tag';
+		$tagTable = self::CHANGE_TAG;
 		if ( self::$avoidReopeningTablesForTesting && defined( 'MW_PHPUNIT_TEST' ) ) {
 			$db = wfGetDB( DB_REPLICA );
 
@@ -995,12 +1005,12 @@ class ChangeTags {
 				if ( !$db->tableExists( $tagTable ) ) {
 					$db->query(
 						'CREATE TEMPORARY TABLE IF NOT EXISTS ' . $db->tableName( $tagTable )
-						. ' LIKE ' . $db->tableName( 'change_tag' ),
+						. ' LIKE ' . $db->tableName( self::CHANGE_TAG ),
 						__METHOD__
 					);
 					$db->query(
 						'INSERT IGNORE INTO ' . $db->tableName( $tagTable )
-						. ' SELECT * FROM ' . $db->tableName( 'change_tag' ),
+						. ' SELECT * FROM ' . $db->tableName( self::CHANGE_TAG ),
 						__METHOD__
 					);
 				}
@@ -1034,8 +1044,8 @@ class ChangeTags {
 			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
-		$tagTables = [ 'change_tag', 'change_tag_def' ];
-		$join_cond_ts_tags = [ 'change_tag_def' => [ 'JOIN', 'ct_tag_id=ctd_id' ] ];
+		$tagTables = [ self::CHANGE_TAG, self::CHANGE_TAG_DEF ];
+		$join_cond_ts_tags = [ self::CHANGE_TAG_DEF => [ 'JOIN', 'ct_tag_id=ctd_id' ] ];
 		$field = 'ctd_name';
 
 		return wfGetDB( DB_REPLICA )->buildGroupConcatField(
@@ -1127,7 +1137,7 @@ class ChangeTags {
 			'ctd_count' => 0
 		];
 		$dbw->upsert(
-			'change_tag_def',
+			self::CHANGE_TAG_DEF,
 			$tagDef,
 			'ctd_name',
 			[ 'ctd_user_defined' => 1 ],
@@ -1150,14 +1160,14 @@ class ChangeTags {
 		$dbw = wfGetDB( DB_PRIMARY );
 
 		$dbw->update(
-			'change_tag_def',
+			self::CHANGE_TAG_DEF,
 			[ 'ctd_user_defined' => 0 ],
 			[ 'ctd_name' => $tag ],
 			__METHOD__
 		);
 
 		$dbw->delete(
-			'change_tag_def',
+			self::CHANGE_TAG_DEF,
 			[ 'ctd_name' => $tag, 'ctd_count' => 0 ],
 			__METHOD__
 		);
@@ -1486,8 +1496,8 @@ class ChangeTags {
 		self::undefineTag( $tag );
 
 		// delete from change_tag
-		$dbw->delete( 'change_tag', [ 'ct_tag_id' => $tagId ], __METHOD__ );
-		$dbw->delete( 'change_tag_def', [ 'ctd_name' => $tag ], __METHOD__ );
+		$dbw->delete( self::CHANGE_TAG, [ 'ct_tag_id' => $tagId ], __METHOD__ );
+		$dbw->delete( self::CHANGE_TAG_DEF, [ 'ctd_name' => $tag ], __METHOD__ );
 		$dbw->endAtomic( __METHOD__ );
 
 		// give extensions a chance
@@ -1669,13 +1679,12 @@ class ChangeTags {
 				$dbr = wfGetDB( DB_REPLICA );
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
-
-				$tags = $dbr->selectFieldValues(
-					'change_tag_def',
-					'ctd_name',
-					[ 'ctd_user_defined' => 1 ],
-					$fname
-				);
+				$tags = $dbr->newSelectQueryBuilder()
+					->select( 'ctd_name' )
+					->from( self::CHANGE_TAG_DEF )
+					->where( [ 'ctd_user_defined' => 1 ] )
+					->caller( $fname )
+					->fetchFieldValues();
 
 				return array_unique( $tags );
 			},
@@ -1753,13 +1762,12 @@ class ChangeTags {
 			WANObjectCache::TTL_MINUTE * 5,
 			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
 				$dbr = wfGetDB( DB_REPLICA );
-				$res = $dbr->select(
-					'change_tag_def',
-					[ 'ctd_name', 'ctd_count' ],
-					[],
-					$fname,
-					[ 'ORDER BY' => 'ctd_count DESC' ]
-				);
+				$res = $dbr->newSelectQueryBuilder()
+					->select( [ 'ctd_name', 'ctd_count' ] )
+					->from( self::CHANGE_TAG_DEF )
+					->orderBy( 'ctd_count', SelectQueryBuilder::SORT_DESC )
+					->caller( $fname )
+					->fetchResultSet();
 
 				$out = [];
 				foreach ( $res as $row ) {

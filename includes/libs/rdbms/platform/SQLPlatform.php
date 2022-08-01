@@ -22,6 +22,7 @@ namespace Wikimedia\Rdbms\Platform;
 use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use RuntimeException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database\DbQuoter;
 use Wikimedia\Rdbms\DBLanguageError;
@@ -949,7 +950,7 @@ class SQLPlatform implements ISQLPlatform {
 			$this->logger->warning(
 				__METHOD__ . ": use of subqueries is not supported this way",
 				[
-					'exception' => new \RuntimeException(),
+					'exception' => new RuntimeException(),
 					'db_log_category' => 'sql',
 				]
 			);
@@ -1737,5 +1738,240 @@ class SQLPlatform implements ISQLPlatform {
 
 	public function rollbackSqlText() {
 		return 'ROLLBACK';
+	}
+
+	public function dispatchingInsertSqlText( $table, $rows, $options ) {
+		$rows = $this->normalizeRowArray( $rows );
+		if ( !$rows ) {
+			return false;
+		}
+
+		$options = $this->normalizeOptions( $options );
+		if ( $this->isFlagInOptions( 'IGNORE', $options ) ) {
+			return $this->insertNonConflictingSqlText( $table, $rows );
+		} else {
+			return $this->insertSqlText( $table, $rows );
+		}
+	}
+
+	/**
+	 * @param array $rowOrRows A single (field => value) map or a list of such maps
+	 * @return array[] List of (field => value) maps
+	 * @since 1.35
+	 */
+	final protected function normalizeRowArray( array $rowOrRows ) {
+		if ( !$rowOrRows ) {
+			$rows = [];
+		} elseif ( isset( $rowOrRows[0] ) ) {
+			$rows = $rowOrRows;
+		} else {
+			$rows = [ $rowOrRows ];
+		}
+
+		foreach ( $rows as $row ) {
+			if ( !is_array( $row ) ) {
+				throw new DBLanguageError( "Got non-array in row array" );
+			} elseif ( !$row ) {
+				throw new DBLanguageError( "Got empty array in row array" );
+			}
+		}
+
+		return $rows;
+	}
+
+	/**
+	 * Validate and normalize parameters to upsert() or replace()
+	 *
+	 * @param string|string[]|string[][] $uniqueKeys Unique indexes (only one is allowed)
+	 * @param array[] &$rows The row array, which will be replaced with a normalized version.
+	 * @return string[]|null List of columns that defines a single unique index, or null for
+	 *   a legacy fallback to plain insert.
+	 * @since 1.35
+	 */
+	final public function normalizeUpsertParams( $uniqueKeys, &$rows ) {
+		$rows = $this->normalizeRowArray( $rows );
+		if ( !$rows ) {
+			return null;
+		}
+		if ( !$uniqueKeys ) {
+			// For backwards compatibility, allow insertion of rows with no applicable key
+			$this->logger->warning(
+				"upsert/replace called with no unique key",
+				[
+					'exception' => new RuntimeException(),
+					'db_log_category' => 'sql',
+				]
+			);
+			return null;
+		}
+		$identityKey = $this->normalizeUpsertKeys( $uniqueKeys );
+		if ( $identityKey ) {
+			$allDefaultKeyValues = $this->assertValidUpsertRowArray( $rows, $identityKey );
+			if ( $allDefaultKeyValues ) {
+				// For backwards compatibility, allow insertion of rows with all-NULL
+				// values for the unique columns (e.g. for an AUTOINCREMENT column)
+				$this->logger->warning(
+					"upsert/replace called with all-null values for unique key",
+					[
+						'exception' => new RuntimeException(),
+						'db_log_category' => 'sql',
+					]
+				);
+				return null;
+			}
+		}
+		return $identityKey;
+	}
+
+	/**
+	 * @param array|string $conds
+	 * @param string $fname
+	 * @return array
+	 * @since 1.31
+	 */
+	final public function normalizeConditions( $conds, $fname ) {
+		if ( $conds === null || $conds === false ) {
+			$this->logger->warning(
+				__METHOD__
+				. ' called from '
+				. $fname
+				. ' with incorrect parameters: $conds must be a string or an array',
+				[ 'db_log_category' => 'sql' ]
+			);
+			return [];
+		} elseif ( $conds === '' ) {
+			return [];
+		}
+
+		return is_array( $conds ) ? $conds : [ $conds ];
+	}
+
+	/**
+	 * @param string|string[]|string[][] $uniqueKeys Unique indexes (only one is allowed)
+	 * @return string[]|null List of columns that defines a single unique index,
+	 *   or null for a legacy fallback to plain insert.
+	 * @since 1.35
+	 */
+	private function normalizeUpsertKeys( $uniqueKeys ) {
+		if ( is_string( $uniqueKeys ) ) {
+			return [ $uniqueKeys ];
+		} elseif ( !is_array( $uniqueKeys ) ) {
+			throw new DBLanguageError( 'Invalid unique key array' );
+		} else {
+			if ( count( $uniqueKeys ) !== 1 || !isset( $uniqueKeys[0] ) ) {
+				throw new DBLanguageError(
+					"The unique key array should contain a single unique index" );
+			}
+
+			$uniqueKey = $uniqueKeys[0];
+			if ( is_string( $uniqueKey ) ) {
+				// Passing a list of strings for single-column unique keys is too
+				// easily confused with passing the columns of composite unique key
+				$this->logger->warning( __METHOD__ .
+					" called with deprecated parameter style: " .
+					"the unique key array should be a string or array of string arrays",
+					[
+						'exception' => new RuntimeException(),
+						'db_log_category' => 'sql',
+					] );
+				return $uniqueKeys;
+			} elseif ( is_array( $uniqueKey ) ) {
+				return $uniqueKey;
+			} else {
+				throw new DBLanguageError( 'Invalid unique key array entry' );
+			}
+		}
+	}
+
+	/**
+	 * @param array<int,array> $rows Normalized list of rows to insert
+	 * @param string[] $identityKey Columns of the (unique) identity key to UPSERT upon
+	 * @return bool Whether all the rows have NULL/absent values for all identity key columns
+	 * @since 1.37
+	 */
+	final protected function assertValidUpsertRowArray( array $rows, array $identityKey ) {
+		$numNulls = 0;
+		foreach ( $rows as $row ) {
+			foreach ( $identityKey as $column ) {
+				$numNulls += ( isset( $row[$column] ) ? 0 : 1 );
+			}
+		}
+
+		if (
+			$numNulls &&
+			$numNulls !== ( count( $rows ) * count( $identityKey ) )
+		) {
+			throw new DBLanguageError(
+				"NULL/absent values for unique key (" . implode( ',', $identityKey ) . ")"
+			);
+		}
+
+		return (bool)$numNulls;
+	}
+
+	/**
+	 * @param array $set Combined column/literal assignment map and SQL assignment list
+	 * @param string[] $identityKey Columns of the (unique) identity key to UPSERT upon
+	 * @param array<int,array> $rows List of rows to upsert
+	 * @since 1.37
+	 */
+	final public function assertValidUpsertSetArray(
+		array $set,
+		array $identityKey,
+		array $rows
+	) {
+		// Sloppy callers might construct the SET array using the ROW array, leaving redundant
+		// column definitions for identity key columns. Detect this for backwards compatibility.
+		$soleRow = ( count( $rows ) == 1 ) ? reset( $rows ) : null;
+		// Disallow value changes for any columns in the identity key. This avoids additional
+		// insertion order dependencies that are unwieldy and difficult to implement efficiently
+		// in PostgreSQL.
+		foreach ( $set as $k => $v ) {
+			if ( is_string( $k ) ) {
+				// Key is a column name and value is a literal (e.g. string, int, null, ...)
+				if ( in_array( $k, $identityKey, true ) ) {
+					if ( $soleRow && array_key_exists( $k, $soleRow ) && $soleRow[$k] === $v ) {
+						$this->logger->warning(
+							__METHOD__ . " called with redundant assignment to column '$k'",
+							[
+								'exception' => new RuntimeException(),
+								'db_log_category' => 'sql',
+							]
+						);
+					} else {
+						throw new DBLanguageError(
+							"Cannot reassign column '$k' since it belongs to identity key"
+						);
+					}
+				}
+			} elseif ( preg_match( '/^([a-zA-Z0-9_]+)\s*=/', $v, $m ) ) {
+				// Value is of the form "<unquoted alphanumeric column> = <SQL expression>"
+				if ( in_array( $m[1], $identityKey, true ) ) {
+					throw new DBLanguageError(
+						"Cannot reassign column '{$m[1]}' since it belongs to identity key"
+					);
+				}
+			}
+		}
+	}
+
+	/**
+	 * @param array|string $var Field parameter in the style of select()
+	 * @return string|null Column name or null; ignores aliases
+	 */
+	final public function extractSingleFieldFromList( $var ) {
+		if ( is_array( $var ) ) {
+			if ( !$var ) {
+				$column = null;
+			} elseif ( count( $var ) == 1 ) {
+				$column = $var[0] ?? reset( $var );
+			} else {
+				throw new DBLanguageError( __METHOD__ . ': got multiple columns' );
+			}
+		} else {
+			$column = $var;
+		}
+
+		return $column;
 	}
 }
