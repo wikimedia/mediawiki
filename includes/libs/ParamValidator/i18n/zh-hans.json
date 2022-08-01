@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Func"
+			"Func",
+			"Diskdance"
 		]
 	},
 	"paramvalidator-badbool": "布尔类型参数\"$1\"的值\"$2\"无效。传递 $3 为真，或 $5 为假。",
@@ -42,7 +43,7 @@
 	"paramvalidator-help-multi-max": "值的最大值为{{PLURAL:$1|$1}}（允许更高上限的客户端为{{PLURAL:$2|$2}}）。",
 	"paramvalidator-help-multi-max-simple": "值的最大值为{{PLURAL:$1|$1}}。",
 	"paramvalidator-help-multi-all": "要指定所有值，请使用<kbd>$1</kbd>。",
-	"paramvalidator-help-required": "这个参数是必须的。",
+	"paramvalidator-help-required": "这个参数是必需的。",
 	"paramvalidator-help-type-boolean": "类型：{{PLURAL:$1|1=布尔|2=布尔列表}}",
 	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=必须为空|可以为空，或$1}}",
 	"paramvalidator-help-type-enum": "{{PLURAL:$1|1=下列值之一|2=多个值（使用U+007C(管道符)分隔，或者用U+001F作为列表前缀，并用U+001F分隔）}}：$2",

@@ -216,7 +216,7 @@
 	"talk": "وتووێژ",
 	"views": "بینینەکان",
 	"toolbox": "ئامرازەکان",
-	"tool-link-userrights": "بینینی گرووپەکانی {{GENDER:$1|بەکارھێنەر}}",
+	"tool-link-userrights": "گرووپەکانی {{GENDER:$1|بەکارھێنەر}} بگۆڕە",
 	"tool-link-userrights-readonly": "بینینی گرووپەکانی {{GENDER:$1|بەکارھێنەر}}",
 	"tool-link-emailuser": "ئیمەیلی ئەم {{GENDER:$1|بەکارھێنەر}}ە",
 	"imagepage": "پەڕەی پەڕگە نیشان بدە",

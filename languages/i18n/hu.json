@@ -57,7 +57,8 @@
 			"Hanna Tardos",
 			"Luckylukee81",
 			"McDutchie",
-			"Balint36"
+			"Balint36",
+			"Blua lago"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -2241,7 +2242,7 @@
 	"post-expand-template-argument-category-desc": "A lap nagyobb a <code>$wgMaxArticleSize</code> változóban megadott értéknél egy sablonparaméter kibontása után (valami hármas kapcsos zárójelek között, mint pl. <code>{{{1}}}</code>).",
 	"expensive-parserfunction-category-desc": "A lap túl sok költséges elemzőfüggvényt használ (mint az <code>#ifexist</code>). Lásd még a [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit] lapot.",
 	"broken-file-category-desc": "A lap törött fájllinket tartalmaz (egy fájlt beillesztő link, ami nem létező fájlra mutat).",
-	"hidden-category-category-desc": "A kategória <code><nowiki>__HIDDENCAT__</nowiki></code> kódot tartalmat, ezért alapértelmezésben a kategória nem jelenik meg a lapokon.",
+	"hidden-category-category-desc": "A kategória <code><nowiki>__HIDDENCAT__</nowiki></code> kódot tartalmaz, ezért alapértelmezésben a kategória nem jelenik meg a lapokon.",
 	"trackingcategories-nodesc": "Nem található leírás.",
 	"trackingcategories-disabled": "A kategória le van tiltva",
 	"mailnologin": "Nincs feladó",

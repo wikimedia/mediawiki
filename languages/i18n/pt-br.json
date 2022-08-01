@@ -133,7 +133,9 @@
 			"Mariagarbin",
 			"MuratTheTurkish",
 			"Stanglavine",
-			"Wiiformii"
+			"Wiiformii",
+			"Duke of Wikipädia",
+			"YuriNikolai"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -297,7 +299,7 @@
 	"searchbutton": "Pesquisar",
 	"go": "Ir",
 	"searcharticle": "Ir",
-	"history": "Histórico da página",
+	"history": "Histórico",
 	"history_short": "Histórico",
 	"history_small": "histórico",
 	"updatedmarker": "atualizado desde sua última visita",
@@ -863,7 +865,7 @@
 	"edit-slots-cannot-remove": "{{PLURAL:$1|O seguinte segmento é obrigatório e não pode ser removido|Os seguintes segmentos são obrigatórios e não podem ser removidos}}: $2.",
 	"edit-slots-missing": "{{PLURAL:$1|Falta o seguinte segmento|Faltam os seguintes segmentos}}: $2.",
 	"postedit-confirmation-created": "A página foi criada.",
-	"postedit-confirmation-restored": "Esta página foi restaurada.",
+	"postedit-confirmation-restored": "A página foi restaurada.",
 	"postedit-confirmation-saved": "Sua edição foi salva",
 	"postedit-confirmation-published": "A sua edição foi publicada.",
 	"edit-already-exists": "Não foi possível criar uma nova página.\nEla já existia.",
@@ -1302,7 +1304,7 @@
 	"userrights-expiry-current": "Expira a $1",
 	"userrights-expiry-none": "Não expira",
 	"userrights-expiry": "Expira em:",
-	"userrights-expiry-existing": "A proteção atual expirará às $3 de $2",
+	"userrights-expiry-existing": "Tempo de expiração atual: $3 de $2",
 	"userrights-expiry-othertime": "Outra duração:",
 	"userrights-expiry-options": "1 dia:1 day,1 semana:1 week,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year",
 	"userrights-invalid-expiry": "O tempo de expiração para o grupo \"$1\" é inválido.",

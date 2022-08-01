@@ -36,7 +36,8 @@
 			"Tigerfell",
 			"Zabe",
 			"SaldırganSincap",
-			"ThisCarthing"
+			"ThisCarthing",
+			"Wnme"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -439,7 +440,7 @@
 	"emailccsubject": "Kopie Ihrer Nachricht an $1: $2",
 	"emailsenttext": "Ihre E-Mail wurde verschickt.",
 	"nowatchlist": "Es befinden sich keine Einträge auf Ihrer Beobachtungsliste.",
-	"watchlistanontext": "Sie müssen sich $1, um Ihre Beobachtungsliste sehen oder Einträge auf ihr bearbeiten zu können.",
+	"watchlistanontext": "Melden Sie sich an, um Ihre Beobachtungsliste zu sehen oder Einträge auf ihr zu bearbeiten.",
 	"watchnologin": "Sie sind nicht angemeldet",
 	"addedwatchtext": "Die Seite „[[:$1]]“ wurde zu Ihrer [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.\n\nSpätere Änderungen an dieser Seite und der dazugehörigen Diskussionsseite werden dort gelistet.",
 	"removedwatchtext": "Die Seite „[[:$1]]“ wurde von Ihrer [[Special:Watchlist|Beobachtungsliste]] entfernt.",

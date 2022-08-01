@@ -18,7 +18,8 @@
 			"Yeniesil",
 			"아라",
 			"MuratTheTurkish",
-			"Agusbou2015"
+			"Agusbou2015",
+			"Amire80"
 		]
 	},
 	"tog-underline": "በመያያዣ ስር አስምር",
@@ -1260,7 +1261,7 @@
 	"undelete-show-file-submit": "አዎን",
 	"namespace": "ዓይነት፦",
 	"invert": "(ምርጫውን ለመገልበጥ)",
-	"blanknamespace": "መጣጥፎች",
+	"blanknamespace": "(መጣጥፎች)",
 	"contributions": "የአባል አስተዋጽኦች",
 	"contributions-title": "የ$1 አስተዋጽኦች",
 	"mycontris": "የኔ አስተዋጽኦች፤",
