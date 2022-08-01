@@ -1001,7 +1001,7 @@
 	"prefs-help-watchlist-token2": "Homañ zo an alc'hwez kuzh davit  gwazh web ho roll evezhiañ.\nForzh piv a anavez anezhañ a c'hallo lenn ho roll evezhiañ, neuze na roit anezhañ da zen ebet.\nM'ho pez ezhomm, [[Special:ResetTokens|e c'hallit  adderaouiñ anezhañ]].",
 	"prefs-user-downloaddata-label": "Gwelout roadennoù ar gont:",
 	"prefs-user-downloaddata-info": "Roadennoù ma c’hont evit ar raktres-mañ",
-	"prefs-user-restoreprefs-label": "Diverkañ roadennoù ar gont:",
+	"prefs-user-restoreprefs-label": "Adderaouekat roadennoù ar gont:",
 	"prefs-user-restoreprefs-info": "Adlakaat an holl dibaboù dre ziouer (en holl rannoù)",
 	"savedprefs": "Enrollet eo bet ar penndibaboù.",
 	"savedrights": "Enrollet eo bet strolladoù implijer {{GENDER:$1|$1}}.",
