@@ -1166,7 +1166,7 @@
 	"tooltip-invert": "Tiiq kasti märk, ku tahat ärq käkkiq muutmisõq validu nimeruumi lehti pääl (ja, ku valit, sis ka tuuga köüdetün nimeruumin)",
 	"namespace_association": "Köüdet nimeruum",
 	"tooltip-namespace_association": "Tiiq kasti märk, ku tahat vallq ka validu nimeruumiga köüdedü arotus- vai sisulehhti nimeruumi",
-	"blanknamespace": "(artikliq)",
+	"blanknamespace": "(Artikliq)",
 	"contributions": "{{GENDER:$1|Pruukja}} toimõndusõq",
 	"contributions-title": "Pruukja $1 toimõndusõq",
 	"mycontris": "Hindä kirotusõq",

@@ -57,7 +57,8 @@
 			"Nguyễn Mạnh An",
 			"Phunh",
 			"Thingofme",
-			"NguyenHung"
+			"NguyenHung",
+			"RiceCracker12"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -1902,7 +1903,7 @@
 	"listfiles-delete": "xóa",
 	"listfiles-summary": "Trang đặc biệt này liệt kê các tập tin được tải lên.",
 	"listfiles_search_for": "Tìm kiếm theo tên tập tin:",
-	"listfiles-userdoesnotexist": "Tài khoản người dùng “$1” không được đăng ký.",
+	"listfiles-userdoesnotexist": "Chưa có tài khoản với tên “$1”.",
 	"imgfile": "tập tin",
 	"listfiles": "Danh sách tập tin",
 	"listfiles_subpage": "Tập tin do $1 tải lên",

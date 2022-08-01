@@ -3332,7 +3332,7 @@
 	"removecredentials": "Suprimir las informacions d'identificacion",
 	"removecredentials-submit": "Suprimir las informacions d'identificacion",
 	"credentialsform-provider": "Tipe d’informacion d’identificacion :",
-	"credentialsform-account": "Nom de compte :",
+	"credentialsform-account": "Nom du compte :",
 	"cannotlink-no-provider-title": "I a pas de comptes que pòdon èsser ligats",
 	"cannotlink-no-provider": "I a pas de compte que pòsca èsser ligat.",
 	"linkaccounts": "Ligar los comptes",

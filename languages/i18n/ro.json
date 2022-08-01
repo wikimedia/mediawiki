@@ -2627,7 +2627,7 @@
 	"block-prevent-edit": "Modificare",
 	"block-reason": "Motiv:",
 	"block-target": "Numele de utilizator sau adresa IP:",
-	"unblockip": "Deblochează adresă IP",
+	"unblockip": "Deblocare utilizator",
 	"unblockiptext": "Folosiți formularul de mai jos pentru a restaura permisiunea de scriere pentru adrese IP sau nume de utilizator blocate anterior.",
 	"ipusubmit": "Elimină blocarea",
 	"unblocked": "[[User:$1|$1]] a fost deblocat",

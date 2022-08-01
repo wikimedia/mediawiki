@@ -60,7 +60,8 @@
 			"Robert Knobloch",
 			"Want",
 			"Adam N.",
-			"TheMatto58"
+			"TheMatto58",
+			"Spotter"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -2575,7 +2576,7 @@
 	"whatlinkshere": "Odkazuje sem",
 	"whatlinkshere-count": "{{PLURAL:$1|Zobrazena jedna položka|Zobrazeny $1 položky|Zobrazeno $1 položek}}.",
 	"whatlinkshere-title": "Stránky odkazující na „$1“",
-	"whatlinkshere-page": "Strana:",
+	"whatlinkshere-page": "Stránka:",
 	"linkshere": "Na <strong>$2</strong> odkazují tyto stránky:",
 	"nolinkshere": "Žádná stránka na <strong>$2</strong> neodkazuje.",
 	"nolinkshere-ns": "Ve zvoleném jmenném prostoru na <strong>$2</strong> neodkazuje žádná stránka.",

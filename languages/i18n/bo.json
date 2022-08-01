@@ -8,7 +8,8 @@
 			"Shirayuki",
 			"YeshiTuhden",
 			"ཁ་བཏགས་ནག་པོ",
-			"아라"
+			"아라",
+			"TayfunEt."
 		]
 	},
 	"tog-underline": "འོག་ཐིག་ཅན་ལ་སྦྲེལ་མཐུད།",
@@ -275,6 +276,7 @@
 	"nstab-template": "དཔེ་པང་།",
 	"nstab-help": "རོགས་རམ་ཤོག་ངོས།",
 	"nstab-category": "དཀར་ཆག",
+	"mainpage-nstab": "གཙོ་གནད་ཤོག་ངོས།",
 	"nosuchaction": "བྱ་འགུལ་འདི་འདྲ་མེད།",
 	"nosuchactiontext": "དྲ་ཚིགས་གཞིར་གཟུངས་ཀྱི་བྱ་བ་ཕན་མེད་རེད་འདུག།\nཁྱེད་ཀྱི་དྲ་ཚིགས་ཁ་བྱང་འབྲི་སྟངས་ནོར་བ་ཡིན་སྲིད། ཡང་ན་དྲ་ཚིགས་ཁ་བྱང་ནོར་བ་ཞིག་ལ་སྦྲེལ་མཐུད་བྱེད་འདུག།\n{{SITENAME}} འདིར་གཉེན་ཆས་ཀྱི་ལས་རྩོལ་ཡིན་སྲིད།",
 	"nosuchspecialpage": "དམིགས་བསལ་ཤོག་ངོས་འདི་འདྲ་ཞིག་མི་འདུག",
@@ -539,10 +541,15 @@
 	"recentchanges-label-unpatrolled": "རྩོམ་སྒྲིག་འདི་སྐོར་ཞིབ་བྱེད་རྒྱུ་རེད་འདུག།",
 	"rclistfrom": "$3 $2 ལས་འགོ་བཙུགས་ཏེ་འགྱུར་བཅོས་གསར་བ་སྟོན་ཅིག",
 	"rcshowhideminor": "$1 རྩོམ་སྒྲིག་ཕལ་བ།",
+	"rcshowhideminor-hide": "སྦས།",
 	"rcshowhidebots": "$1 རང་འགུལ་འཕྲུལ་ཆས།",
+	"rcshowhidebots-show": "སྟོན།",
 	"rcshowhideliu": "$1 ཐོ་འགོད་སྤྱོད་མི།",
+	"rcshowhideliu-hide": "སྦས།",
 	"rcshowhideanons": "མིང་མེད་སྤྱོད་མི $1",
+	"rcshowhideanons-hide": "སྦས།",
 	"rcshowhidemine": "$1ངའི་རྩོམ་སྒྲིག",
+	"rcshowhidemine-hide": "སྦས།",
 	"rclinks": "འདས་བའི་ཉིན་ $2 <br />$3 ནང་ཚུན་གྱི་བཟོ་བཅོས་གཞུག་མ་ $1 སྟོན་ཅིག",
 	"diff": "མི་འདྲ་ས།",
 	"hist": "ལོ་རྒྱུས།",
@@ -791,5 +798,6 @@
 	"watchlisttools-raw": "ལྟ་ཐོའི་གོ་རིམ་བཅོས་སྒྲིག",
 	"specialpages": "ཆེད་ལས་ཤོག་ངོས།",
 	"tag-filter": "འདེམས་འཚག། [[Special:Tags|Tag]]",
-	"rightsnone": "(སྟོང་པ།)"
+	"rightsnone": "(སྟོང་པ།)",
+	"searchsuggest-search": "འཚོལ། {{SITENAME}}"
 }

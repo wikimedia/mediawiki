@@ -1417,7 +1417,7 @@
 	"apihelp-tokens-param-type": "סוגי האסימונים לבקש.",
 	"apihelp-tokens-example-edit": "אחזור אסימון עריכה (ברירת המחדל).",
 	"apihelp-tokens-example-emailmove": "אחזור אסימון דוא\"ל ואסימון העברה.",
-	"apihelp-unblock-summary": "שחרור משתמש מחסימה.",
+	"apihelp-unblock-summary": "שחרור חסימת משתמש.",
 	"apihelp-unblock-param-id": "מזהה החסימה לשחרור (מתקבל דרך <kbd>list=blocks</kbd>). לא יכול לשמש יחד עם <var>$1user</var>.",
 	"apihelp-unblock-param-user": "שם משתמש שתוסר ממנו חסימה. לא יכול לשמש יחד עם <var>$1id</var>.",
 	"apihelp-unblock-param-userid": "יש לציין <kbd>$1user=#<var>ID</var></kbd> במקום.",

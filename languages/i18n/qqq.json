@@ -238,7 +238,8 @@
 			"Pols12",
 			"Titore",
 			"1233qwer1234qwer4",
-			"No Sleep till Krupki"
+			"No Sleep till Krupki",
+			"Saurmandal"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1805,7 +1806,7 @@
 	"rcfilters-filter-minor-label": "Label for the filter for showing edits marked as minor.",
 	"rcfilters-filter-minor-description": "Description for the filter for showing edits marked as minor.",
 	"rcfilters-filter-major-label": "Label for the filter for showing edits not marked as minor.",
-	"rcfilters-filter-major-description": " Description for the filter for showing edits not marked as minor.",
+	"rcfilters-filter-major-description": "Description for the filter for showing edits not marked as minor.",
 	"rcfilters-filtergroup-watchlist": "Title for the watchlist filter group (only available on [[Special:Recentchanges]])",
 	"rcfilters-filter-watchlist-watched-label": "Label for the filter for showing changes to pages on your watchlist.",
 	"rcfilters-filter-watchlist-watched-description": "Description for the filter for showing changes to pages on your watchlist.",
@@ -2629,7 +2630,7 @@
 	"addedwatchtext": "Message shown after clicking on the {{msg-mw|Watch}} tab in a content namespace page. Parameters:\n* $1 - page title\nSee also:\n* {{msg-mw|Removedwatchtext}}\n* {{msg-mw|Addedwatchtext-talk}}",
 	"addedwatchtext-talk": "Message shown after clicking on the {{msg-mw|Watch}} tab in a talk namespace page. Parameters:\n* $1 - page title\nSee also:\n* {{msg-mw|Removedwatchtext-talk}}\n* {{msg-mw|Addedwatchtext}}",
 	"addedwatchtext-short": "Explanation shown when watching item from [[Special:UnwatchedPages]].\n\nSee also:\n* {{msg-mw|Removedwatchtext-short}}\n* {{msg-mw|Addedwatchtext}}",
-	"addedwatchexpiry-options-label": "Text for watchlist expiry dropdown shown after clicking on the {{msg-mw|Watch}} tab in a content namespace page.",
+	"addedwatchexpiry-options-label": "Text for watchlist expiry dropdown shown after clicking on the {{msg-mw|Watch}} tab in a content namespace page. Can be translated as a prompt that asks \"For how long should this page be watched\". Can be identical to {{msg-mw|Confirm-watch-label}}.",
 	"addedwatchexpiryhours": "Message shown after selecting to watch an article page temporarily and there is less than one day until the expiry time.\n\nParameter:\n* $1 - article title",
 	"addedwatchexpiryhours-talk": "Message shown after selecting to watch a talk page temporarily and there is less than one day until the expiry time.\n\nParameter:\n* $1 - talk page title",
 	"addedwatchexpirytext": "Message shown after selecting to watch a page temporarily. A selection is made from the watchlist expiry dropdown options in the pop up. Parameters:\n* $1 - page title\n* $2 - the expiry selected\n\nSee also:\n* {{msg-mw|Addedwatchindefinitelytext}}",
@@ -3676,7 +3677,7 @@
 	"confirm-purge-bottom": "Additional description for Purge form.",
 	"confirm-watch-button": "Used as Submit button text.\n{{Identical|OK}}",
 	"confirm-watch-top": "Used as confirmation message.",
-	"confirm-watch-label": "Label for select list of watchlist expiry options.",
+	"confirm-watch-label": "Label for select list of watchlist expiry options. Can be translated as a prompt that asks \"For how long should this page be watched\". Can be identical to {{msg-mw|Addedwatchexpiry-options-label}}.",
 	"watchlist-expiry-options": "Options for the expiry of watchlist items.\n\n{{doc-mediawiki-options-list}}",
 	"watchlist-expires-in-aria-label": "ARIA label for the clock icon in expiring entries in Special:Watchlist.",
 	"confirm-watch-button-expiry": "Used as Submit button text.",

@@ -89,7 +89,8 @@
 			"아라",
 			"DDPAT",
 			"McDutchie",
-			"Renvoy"
+			"Renvoy",
+			"Ice bulldog"
 		]
 	},
 	"tog-underline": "Підкреслювання посилань:",
@@ -4009,7 +4010,7 @@
 	"log-action-filter-block-unblock": "Розблокування",
 	"log-action-filter-contentmodel-change": "Зміна моделі вмісту",
 	"log-action-filter-contentmodel-new": "Створення сторінки з нестандартною моделлю вмісту",
-	"log-action-filter-delete-delete": "Видалення сторінки",
+	"log-action-filter-delete-delete": "Вилучення сторінки",
 	"log-action-filter-delete-delete_redir": "Перезапис перенаправлення",
 	"log-action-filter-delete-restore": "Відновлення сторінки",
 	"log-action-filter-delete-event": "Вилучення журналу",

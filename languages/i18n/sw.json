@@ -28,7 +28,9 @@
 			"McDutchie",
 			"Wangombe",
 			"Amire80",
-			"Hasley"
+			"Hasley",
+			"Hussein m mmbaga",
+			"MaryMunyoki"
 		]
 	},
 	"tog-underline": "Wekea mstari viungo:",
@@ -1823,7 +1825,7 @@
 	"undelete-error-short": "Hitilafu wakati wa kurudisha faili: $1",
 	"undelete-error-long": "Hitilafu zilitokea wakati wa kurudisha faili:\n\n$1",
 	"undelete-show-file-submit": "Ndiyo",
-	"namespace": "Chagua eneo la wiki:",
+	"namespace": "Eneo la wiki:",
 	"invert": "Geuza uteuzi",
 	"namespace_association": "Eneo linalohusisha",
 	"blanknamespace": "(Kuu)",
@@ -1955,7 +1957,7 @@
 	"movenotallowedfile": "Hauna ruhusa ya kuhamisha faili.",
 	"cant-move-user-page": "Huna ruhusa ya kuhamisha kurasa za watumiaji (isopokuwa kurasa ndogo).",
 	"cant-move-to-user-page": "Huna ruhusa ya kuhamisha ukurasa katika ukurasa wa mtumiaji (isipokuwa katika ukurasa mdogo wa mtumiaji).",
-	"newtitle": "Kuelekeza jina jipya:",
+	"newtitle": "Kichwa cha habari kipya:",
 	"move-watch": "Fuatilia ukurasa huu",
 	"movepagebtn": "Hamisha ukurasa",
 	"pagemovedsub": "Umefaulu kuhamisha ukurasa",

@@ -33,7 +33,8 @@
 			"Mrkczr",
 			"Yivan000",
 			"Yivangamer",
-			"Amire80"
+			"Amire80",
+			"Kunokuno"
 		]
 	},
 	"tog-underline": "Pagsasalungguhit ng link:",
@@ -593,6 +594,8 @@
 	"savearticle": "Ilathala ang pahina",
 	"publishpage": "Ilimbag ang pahina",
 	"publishchanges": "Ilathala ang binago",
+	"publishpage-start": "Ilathala ang pahina…",
+	"publishchanges-start": "Ilathala ang mga pagbabago...",
 	"preview": "Pasilip",
 	"showpreview": "Pasilip",
 	"showdiff": "Ipakita ang pagbabago",

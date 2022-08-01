@@ -270,6 +270,7 @@
 	"protect-expiry-options": "一小時:1 hour,一日:1 day,一星期:1 week,二星期:2 weeks,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year,無限期:infinite",
 	"blanknamespace": "（主要）",
 	"contributions": "{{GENDER:$1|用戶}}貢獻",
+	"contributions-title": "$1的用戶貢獻",
 	"sp-contributions-deleted": "已刪除的{{GENDER:$1|用戶}}貢獻",
 	"sp-contributions-userrights": "{{GENDER:$1|用戶}}權限管理",
 	"sp-contributions-blocked-notice-partial": "這位用戶目前被部分封鎖。以下提供最近的封鎖日誌以供參考：",
