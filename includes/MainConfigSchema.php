@@ -3781,7 +3781,6 @@ class MainConfigSchema {
 	 *   - replicaOnly: Whether to only use replica servers and only support read operations.
 	 *      This option requires the use of LoadBalancer and should only be used by
 	 *      ReplicatedBagOStuff.
-	 *   - syncTimeout: Max seconds to wait for replica DBs to catch up for WRITE_SYNC.
 	 *   - writeBatchSize: Default maximum number of rows to change in each query for write
 	 *      operations that can be chunked into a set of smaller writes.
 	 *
