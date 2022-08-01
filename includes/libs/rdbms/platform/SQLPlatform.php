@@ -2070,4 +2070,16 @@ class SQLPlatform implements ISQLPlatform {
 			$ins
 		);
 	}
+
+	public function lockSQLText( $lockName, $timeout ) {
+		throw new RuntimeException( 'locking must be implemented in subclasses' );
+	}
+
+	public function lockIsFreeSQLText( $lockName ) {
+		throw new RuntimeException( 'locking must be implemented in subclasses' );
+	}
+
+	public function unlockSQLText( $lockName ) {
+		throw new RuntimeException( 'locking must be implemented in subclasses' );
+	}
 }

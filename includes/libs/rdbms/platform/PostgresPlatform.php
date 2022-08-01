@@ -177,4 +177,34 @@ class PostgresPlatform extends SQLPlatform {
 		return parent::isTransactableQuery( $sql ) &&
 			!preg_match( '/^SELECT\s+pg_(try_|)advisory_\w+\(/', $sql );
 	}
+
+	public function lockSQLText( $lockName, $timeout ) {
+		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
+		$key = $this->quoter->addQuotes( $this->bigintFromLockName( $lockName ) );
+		return "SELECT (CASE WHEN pg_try_advisory_lock($key) " .
+			"THEN EXTRACT(epoch from clock_timestamp()) " .
+			"ELSE NULL " .
+			"END) AS acquired";
+	}
+
+	public function lockIsFreeSQLText( $lockName ) {
+		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
+		$key = $this->quoter->addQuotes( $this->bigintFromLockName( $lockName ) );
+		return "SELECT (CASE(pg_try_advisory_lock($key))
+			WHEN 'f' THEN 'f' ELSE pg_advisory_unlock($key) END) AS unlocked";
+	}
+
+	public function unlockSQLText( $lockName ) {
+		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
+		$key = $this->quoter->addQuotes( $this->bigintFromLockName( $lockName ) );
+		return "SELECT pg_advisory_unlock($key) AS released";
+	}
+
+	/**
+	 * @param string $lockName
+	 * @return string Integer
+	 */
+	private function bigintFromLockName( $lockName ) {
+		return \Wikimedia\base_convert( substr( sha1( $lockName ), 0, 15 ), 16, 10 );
+	}
 }
