@@ -1,17 +1,21 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 class ImagePageTest extends MediaWikiMediaTestCase {
 
 	protected function setUp(): void {
-		$this->setMwGlobals( 'wgImageLimits', [
-			[ 320, 240 ],
-			[ 640, 480 ],
-			[ 800, 600 ],
-			[ 1024, 768 ],
-			[ 1280, 1024 ]
-		] );
+		$this->overrideConfigValue(
+			MainConfigNames::ImageLimits,
+			[
+				[ 320, 240 ],
+				[ 640, 480 ],
+				[ 800, 600 ],
+				[ 1024, 768 ],
+				[ 1280, 1024 ]
+			]
+		);
 		parent::setUp();
 	}
 
@@ -63,9 +67,9 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 			$params['lang'] = $lang;
 		}
 		$request = new FauxRequest( $params );
-		$this->setMwGlobals( [
-			'wgLanguageCode' => $wikiLangCode,
-			'wgDefaultLanguageVariant' => $wikiLangVariant
+		$this->overrideConfigValues( [
+			MainConfigNames::LanguageCode => $wikiLangCode,
+			MainConfigNames::DefaultLanguageVariant => $wikiLangVariant
 		] );
 
 		$page = $this->getImagePage( 'translated.svg' );

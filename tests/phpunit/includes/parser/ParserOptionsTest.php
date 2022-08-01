@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\ScopedCallback;
@@ -12,9 +13,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgRenderHashAppend' => '',
-		] );
+		$this->overrideConfigValue( MainConfigNames::RenderHashAppend, '' );
 
 		// This is crazy, but registering false, null, or other falsey values
 		// as a hook callback "works".
@@ -137,7 +136,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	public function testOptionsHash(
 		$usedOptions, $expect, $options, $globals = [], $hookFunc = null
 	) {
-		$this->setMwGlobals( $globals );
+		$this->overrideConfigValues( $globals );
 		$this->setTemporaryHook( 'PageRenderingHash', $hookFunc );
 
 		$popt = ParserOptions::newFromAnon();
@@ -173,7 +172,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 				[],
 				'canonical!wgRenderHashAppend!onPageRenderingHash',
 				[],
-				[ 'wgRenderHashAppend' => '!wgRenderHashAppend' ],
+				[ MainConfigNames::RenderHashAppend => '!wgRenderHashAppend' ],
 				[ __CLASS__ . '::onPageRenderingHash' ],
 			],
 		];

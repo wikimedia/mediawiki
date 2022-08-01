@@ -1,6 +1,7 @@
 <?php
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Logger\Spi as LoggerSpi;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -673,11 +674,14 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$testingAccess->localCache = [];
 
 		// inject mock PoolCounter status
-		$this->setMwGlobals( [ 'wgParserCacheExpireTime' => 60, 'wgPoolCounterConf' => [
-			'ArticleView' => [ 'factory' => function () use ( $status, $fastStale ) {
-				return $this->makePoolCounter( $status, $fastStale );
-			} ],
-		] ] );
+		$this->overrideConfigValues( [
+			MainConfigNames::ParserCacheExpireTime => 60,
+			MainConfigNames::PoolCounterConf => [
+				'ArticleView' => [ 'factory' => function () use ( $status, $fastStale ) {
+					return $this->makePoolCounter( $status, $fastStale );
+				} ],
+			]
+		] );
 
 		// expire parser cache
 		MWTimestamp::setFakeTime( '2020-05-05T01:02:03' );
@@ -695,11 +699,14 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * stale output can be returned.
 	 */
 	public function testPoolWorkTimeout() {
-		$this->setMwGlobals( [ 'wgParserCacheExpireTime' => 60, 'wgPoolCounterConf' => [
-			'ArticleView' => [ 'factory' => function () {
-				return $this->makePoolCounter( Status::newGood( PoolCounter::TIMEOUT ) );
-			} ],
-		] ] );
+		$this->overrideConfigValues( [
+			MainConfigNames::ParserCacheExpireTime => 60,
+			MainConfigNames::PoolCounterConf => [
+				'ArticleView' => [ 'factory' => function () {
+					return $this->makePoolCounter( Status::newGood( PoolCounter::TIMEOUT ) );
+				} ],
+			]
+		] );
 
 		$access = $this->getParserOutputAccessNoCache();
 
@@ -715,11 +722,14 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * Tests that a PoolCounter error does not prevent output from being generated.
 	 */
 	public function testPoolWorkError() {
-		$this->setMwGlobals( [ 'wgParserCacheExpireTime' => 60, 'wgPoolCounterConf' => [
-			'ArticleView' => [ 'factory' => function () {
-				return $this->makePoolCounter( Status::newFatal( 'some-error' ) );
-			} ],
-		] ] );
+		$this->overrideConfigValues( [
+			MainConfigNames::ParserCacheExpireTime => 60,
+			MainConfigNames::PoolCounterConf => [
+				'ArticleView' => [ 'factory' => function () {
+					return $this->makePoolCounter( Status::newFatal( 'some-error' ) );
+				} ],
+			]
+		] );
 
 		$access = $this->getParserOutputAccessNoCache();
 

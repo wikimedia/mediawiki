@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -232,9 +233,9 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 	public function testEscapeIdForStuff( $stuff, array $config, $id, $expected, $mode = null ) {
 		$func = "Sanitizer::escapeIdFor{$stuff}";
 		$iwFlavor = array_pop( $config );
-		$this->setMwGlobals( [
-			'wgFragmentMode' => $config,
-			'wgExternalInterwikiFragmentMode' => $iwFlavor,
+		$this->overrideConfigValues( [
+			MainConfigNames::FragmentMode => $config,
+			MainConfigNames::ExternalInterwikiFragmentMode => $iwFlavor,
 		] );
 		$escaped = $func( $id, $mode );
 		self::assertEquals( $expected, $escaped );
@@ -299,7 +300,7 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 	 * @covers Sanitizer::escapeIdInternal()
 	 */
 	public function testInvalidFragmentThrows() {
-		$this->setMwGlobals( 'wgFragmentMode', [ 'boom!' ] );
+		$this->overrideConfigValue( MainConfigNames::FragmentMode, [ 'boom!' ] );
 		$this->expectException( InvalidArgumentException::class );
 		Sanitizer::escapeIdForAttribute( 'This should throw' );
 	}
@@ -308,7 +309,7 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 	 * @covers Sanitizer::escapeIdForAttribute()
 	 */
 	public function testNoPrimaryFragmentModeThrows() {
-		$this->setMwGlobals( 'wgFragmentMode', [ 666 => 'html5' ] );
+		$this->overrideConfigValue( MainConfigNames::FragmentMode, [ 666 => 'html5' ] );
 		$this->expectException( UnexpectedValueException::class );
 		Sanitizer::escapeIdForAttribute( 'This should throw' );
 	}
@@ -317,7 +318,7 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 	 * @covers Sanitizer::escapeIdForLink()
 	 */
 	public function testNoPrimaryFragmentModeThrows2() {
-		$this->setMwGlobals( 'wgFragmentMode', [ 666 => 'html5' ] );
+		$this->overrideConfigValue( MainConfigNames::FragmentMode, [ 666 => 'html5' ] );
 		$this->expectException( UnexpectedValueException::class );
 		Sanitizer::escapeIdForLink( 'This should throw' );
 	}

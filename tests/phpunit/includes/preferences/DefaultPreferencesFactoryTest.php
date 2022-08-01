@@ -6,6 +6,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
@@ -61,7 +62,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$services = $this->getServiceContainer();
 
 		$this->setMwGlobals( 'wgParser', $services->getParserFactory()->create() );
-		$this->setMwGlobals( 'wgDisableLangConversion', false );
+		$this->overrideConfigValue( MainConfigNames::DisableLangConversion, false );
 		$this->config = $services->getMainConfig();
 	}
 
