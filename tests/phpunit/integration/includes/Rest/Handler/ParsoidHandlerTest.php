@@ -17,6 +17,7 @@ use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Tests\Rest\RestTestTrait;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
@@ -1239,7 +1240,8 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			] + self::DEFAULT_ATTRIBS;
 
 		$input = $this->newHTMLTransformInput( $html, [
-			'parseHTML' => static function () {
+			'parseHTML' => static function ( $html, $validate ) {
+				Assert::assertTrue( $validate, '$validate' );
 				throw new ClientError( 'test' );
 			}
 		] );
