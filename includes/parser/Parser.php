@@ -2865,7 +2865,7 @@ class Parser {
 		}
 
 		$value = CoreMagicVariables::expand(
-			$this, $index, $ts, $this->nsInfo, $this->svcOptions, $this->logger
+			$this, $index, $ts, $this->svcOptions, $this->logger
 		);
 
 		if ( $value === null ) {

@@ -1390,7 +1390,29 @@ class CoreParserFunctions {
 				return '';
 			}
 		}
-		// fetch revision from cache/database and return the value
+		// Fetch revision from cache/database and return the value.
+		// Inform the edit saving system that getting the canonical output
+		// after revision insertion requires a parse that used that exact
+		// revision ID.
+		if ( $t->equals( $parser->getTitle() ) && $title === null ) {
+			// special handling for no-arg case: use speculative rev id
+			// for current page.
+			$parser->getOutput()->setOutputFlag( ParserOutputFlags::VARY_REVISION_ID );
+			$id = $parser->getRevisionId();
+			if ( $id === 0 ) {
+				$rev = $parser->getRevisionRecordObject();
+				if ( $rev ) {
+					$id = $rev->getId();
+				}
+			}
+			if ( !$id ) {
+				$id = $parser->getOptions()->getSpeculativeRevId();
+				if ( $id ) {
+					$parser->getOutput()->setSpeculativeRevIdUsed( $id );
+				}
+			}
+			return (string)$id;
+		}
 		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_REVISION_ID );
 		return $rev ? $rev->getId() : '';
 	}
