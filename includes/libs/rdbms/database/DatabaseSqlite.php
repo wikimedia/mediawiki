@@ -100,8 +100,7 @@ class DatabaseSqlite extends Database {
 		$this->platform = new SqlitePlatform(
 			$this,
 			$params['queryLogger'],
-			$this->currentDomain->getSchema(),
-			$this->currentDomain->getTablePrefix()
+			$this->currentDomain
 		);
 	}
 

@@ -120,8 +120,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$this->platform = new MySQLPlatform(
 			$this,
 			$params['queryLogger'],
-			$this->currentDomain->getSchema(),
-			$this->currentDomain->getTablePrefix()
+			$this->currentDomain
 		);
 	}
 

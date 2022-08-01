@@ -67,8 +67,7 @@ class DatabasePostgres extends Database {
 		$this->platform = new PostgresPlatform(
 			$this,
 			$params['queryLogger'],
-			$this->currentDomain->getSchema(),
-			$this->currentDomain->getTablePrefix()
+			$this->currentDomain
 		);
 	}
 
@@ -139,8 +138,7 @@ class DatabasePostgres extends Database {
 			}
 			$this->determineCoreSchema( $schema );
 			$this->currentDomain = new DatabaseDomain( $db, $schema, $tablePrefix );
-			$this->platform->setSchema( $schema );
-			$this->platform->setPrefix( $tablePrefix );
+			$this->platform->setCurrentDomain( $this->currentDomain );
 		} catch ( RuntimeException $e ) {
 			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
@@ -164,8 +162,7 @@ class DatabasePostgres extends Database {
 			);
 		} else {
 			$this->currentDomain = $domain;
-			$this->platform->setSchema( $domain->getSchema() );
-			$this->platform->setPrefix( $domain->getTablePrefix() );
+			$this->platform->setCurrentDomain( $this->currentDomain );
 		}
 
 		return true;
