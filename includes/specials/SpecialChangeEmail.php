@@ -62,7 +62,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 	public function execute( $par ) {
 		$out = $this->getOutput();
 		$out->disallowUserJs();
-
+		$out->addModules( 'mediawiki.special.changeemail' );
 		parent::execute( $par );
 	}
 
@@ -123,6 +123,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 		$form->addHiddenFields( $this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
 
 		$form->addHeaderText( $this->msg( 'changeemail-header' )->parseAsBlock() );
+		$form->setSubmitID( 'change_email_submit' );
 	}
 
 	public function onSubmit( array $data ) {

@@ -2272,6 +2272,15 @@ return [
 		'styles' => 'resources/src/mediawiki.special.import.styles.ooui.less',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'mediawiki.special.changecredentials' => [
+		'targets' => [ 'desktop', 'mobile' ],
+		'scripts' => [ 'resources/src/mediawiki.special.changecredentails.js' ],
+	],
+	'mediawiki.special.changeemail' => [
+		'targets' => [ 'desktop', 'mobile' ],
+		'scripts' => [ 'resources/src/mediawiki.special.changeemail.js' ],
+	],
+
 	'mediawiki.special.preferences.ooui' => [
 		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => [
