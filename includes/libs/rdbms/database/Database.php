@@ -547,31 +547,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->topologyRootMaster;
 	}
 
-	final public function trxLevel() {
-		// FIXME: A lot of tests disable constructor leading to trx manager being
-		// null and breaking, this is unacceptable but hopefully this should
-		// happen less by moving these functions to the transaction manager class.
-		if ( !$this->transactionManager ) {
-			$this->transactionManager = new TransactionManager( new NullLogger() );
-		}
-		return $this->transactionManager->trxLevel();
-	}
-
-	public function trxTimestamp() {
-		return $this->transactionManager->trxTimestamp();
-	}
-
-	/**
-	 * Get the status of the current transaction
-	 *
-	 * @return int One of the TransactionManager::STATUS_TRX_* class constants
-	 * @since 1.31
-	 * @internal This method should not be used outside of Database/LoadBalancer
-	 */
-	public function trxStatus() {
-		return $this->transactionManager->trxStatus();
-	}
-
 	/**
 	 * Get important session state that cannot be recovered upon connection loss
 	 *
@@ -670,14 +645,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->lastWriteTime ?: false;
 	}
 
-	public function writesPending() {
-		return $this->transactionManager->writesPending();
-	}
-
-	public function writesOrCallbacksPending() {
-		return $this->transactionManager->writesOrCallbacksPending();
-	}
-
 	/**
 	 * @return bool
 	 * @since 1.39
@@ -700,32 +667,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		return null;
-	}
-
-	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL ) {
-		return $this->transactionManager->pendingWriteQueryDuration( $this, $type );
-	}
-
-	public function pendingWriteCallers() {
-		if ( !$this->transactionManager ) {
-			return [];
-		}
-		return $this->transactionManager->pendingWriteCallers();
-	}
-
-	/**
-	 * List the methods that have write queries or callbacks for the current transaction
-	 *
-	 * @internal This method should not be used outside of Database/LoadBalancer
-	 *
-	 * @return string[]
-	 * @since 1.32
-	 */
-	public function pendingWriteAndCallbackCallers() {
-		if ( !$this->transactionManager ) {
-			return [];
-		}
-		return $this->transactionManager->pendingWriteAndCallbackCallers();
 	}
 
 	public function isOpen() {
@@ -2713,19 +2654,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Consume and run any "on transaction pre-commit" callbacks
-	 *
-	 * @internal This method should not be used outside of Database/LoadBalancer
-	 *
-	 * @since 1.22
-	 * @return int Number of callbacks attempted
-	 * @throws Throwable Any exception thrown by a callback
-	 */
-	public function runOnTransactionPreCommitCallbacks() {
-		return $this->transactionManager->runOnTransactionPreCommitCallbacks( $this );
-	}
-
-	/**
 	 * Actually run any "transaction listener" callbacks
 	 *
 	 * @internal This method should not be used outside of Database/LoadBalancer
@@ -2779,14 +2707,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
 		$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
 		$this->affectedRowCount = 0; // for the sake of consistency
-	}
-
-	/**
-	 * @param string $fname
-	 * @return string
-	 */
-	private function nextSavepointId( $fname ) {
-		return $this->transactionManager->nextSavePointId( $this, $fname );
 	}
 
 	final public function startAtomic(
@@ -3174,10 +3094,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function flushSnapshot( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		$this->transactionManager->onFlushSnapshot( $this, $fname, $flush, $this->getTransactionRoundId() );
 		$this->commit( $fname, self::FLUSHING_INTERNAL );
-	}
-
-	public function explicitTrxActive() {
-		return $this->transactionManager->explicitTrxActive();
 	}
 
 	/**
@@ -4064,6 +3980,66 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->conn = null;
 		}
 	}
+
+	/* Start of methods delegated to TransactionManager. Avoid using them outside of rdbms library */
+
+	final public function trxLevel() {
+		// FIXME: A lot of tests disable constructor leading to trx manager being
+		// null and breaking, this is unacceptable but hopefully this should
+		// happen less by moving these functions to the transaction manager class.
+		if ( !$this->transactionManager ) {
+			$this->transactionManager = new TransactionManager( new NullLogger() );
+		}
+		return $this->transactionManager->trxLevel();
+	}
+
+	public function trxTimestamp() {
+		return $this->transactionManager->trxTimestamp();
+	}
+
+	public function trxStatus() {
+		return $this->transactionManager->trxStatus();
+	}
+
+	public function writesPending() {
+		return $this->transactionManager->writesPending();
+	}
+
+	public function writesOrCallbacksPending() {
+		return $this->transactionManager->writesOrCallbacksPending();
+	}
+
+	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL ) {
+		return $this->transactionManager->pendingWriteQueryDuration( $this, $type );
+	}
+
+	public function pendingWriteCallers() {
+		if ( !$this->transactionManager ) {
+			return [];
+		}
+		return $this->transactionManager->pendingWriteCallers();
+	}
+
+	public function pendingWriteAndCallbackCallers() {
+		if ( !$this->transactionManager ) {
+			return [];
+		}
+		return $this->transactionManager->pendingWriteAndCallbackCallers();
+	}
+
+	public function runOnTransactionPreCommitCallbacks() {
+		return $this->transactionManager->runOnTransactionPreCommitCallbacks( $this );
+	}
+
+	private function nextSavepointId( $fname ) {
+		return $this->transactionManager->nextSavePointId( $this, $fname );
+	}
+
+	public function explicitTrxActive() {
+		return $this->transactionManager->explicitTrxActive();
+	}
+
+	/* End of methods delegated to TransactionManager. */
 
 	/* Start of methods delegated to SQLPlatform. Avoid using them outside of rdbms library */
 
