@@ -357,8 +357,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 	 * @dataProvider provideSuppressBlockLogDatabaseRows
 	 */
 	public function testSuppressBlockLogDatabaseRows( $row, $extra ) {
-		$this->setMwGlobals(
-			'wgGroupPermissions',
+		$this->setGroupPermissions(
 			[
 				'oversight' => [
 					'viewsuppressed' => true,
@@ -499,8 +498,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 	 * @dataProvider provideSuppressReblockLogDatabaseRows
 	 */
 	public function testSuppressReblockLogDatabaseRows( $row, $extra ) {
-		$this->setMwGlobals(
-			'wgGroupPermissions',
+		$this->setGroupPermissions(
 			[
 				'oversight' => [
 					'viewsuppressed' => true,

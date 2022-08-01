@@ -221,8 +221,9 @@ EOF
 	 */
 	public function testUnknownUserHandling( $assign, $create ) {
 		$hookId = -99;
-		$this->setMwGlobals( 'wgHooks', [
-			'ImportHandleUnknownUser' => [ function ( $name ) use ( $assign, $create, &$hookId ) {
+		$this->setTemporaryHook(
+			'ImportHandleUnknownUser',
+			function ( $name ) use ( $assign, $create, &$hookId ) {
 				if ( !$assign ) {
 					$this->fail( 'ImportHandleUnknownUser was called unexpectedly' );
 				}
@@ -235,8 +236,8 @@ EOF
 					return false;
 				}
 				return true;
-			} ]
-		] );
+			}
+		);
 
 		$user = $this->getTestUser()->getUser();
 

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -16,7 +17,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	 */
 	public function testGetIndependentMetaArray( $filename, $expected ) {
 		$this->filePath = __DIR__ . '/../../data/media/';
-		$this->setMwGlobals( 'wgShowEXIF', true );
+		$this->overrideConfigValue( MainConfigNames::ShowEXIF, true );
 
 		$file = $this->dataFile( $filename, 'image/svg+xml' );
 		$handler = new SvgHandler();
@@ -208,7 +209,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 		array $params,
 		array $paramsExpected = null
 	) {
-		$this->setMwGlobals( 'wgSVGMaxSize', 1000 );
+		$this->overrideConfigValue( MainConfigNames::SVGMaxSize, 1000 );
 
 		/** @var SvgHandler $handler */
 		$handler = TestingAccessWrapper::newFromObject( new SvgHandler() );
@@ -293,7 +294,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	 * @param bool $expected
 	 */
 	public function testIsEnabled( $converter, $expected ) {
-		$this->setMwGlobals( 'wgSVGConverter', $converter );
+		$this->overrideConfigValue( MainConfigNames::SVGConverter, $converter );
 
 		$handler = new SvgHandler();
 		self::assertEquals( $expected, $handler->isEnabled() );

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Shell\Shell;
 
 /**
@@ -32,7 +33,7 @@ class JpegPixelFormatTest extends MediaWikiMediaTestCase {
 		}
 
 		$fmtStr = var_export( $pixelFormat, true );
-		$this->setMwGlobals( 'wgJpegPixelFormat', $pixelFormat );
+		$this->overrideConfigValue( MainConfigNames::JpegPixelFormat, $pixelFormat );
 
 		$file = $this->dataFile( $sourceFile, 'image/jpeg' );
 
