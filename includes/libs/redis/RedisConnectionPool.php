@@ -227,11 +227,22 @@ class RedisConnectionPool implements LoggerAwareInterface {
 		} else {
 			// TCP connection
 			if ( preg_match( '/^\[(.+)\]:(\d+)$/', $server, $m ) ) {
-				list( $host, $port ) = [ $m[1], (int)$m[2] ]; // (ip, port)
-			} elseif ( preg_match( '/^([^:]+):(\d+)$/', $server, $m ) ) {
-				list( $host, $port ) = [ $m[1], (int)$m[2] ]; // (ip or path, port)
+				// (ip, port)
+				list( $host, $port ) = [ $m[1], (int)$m[2] ];
+			} elseif ( preg_match( '/^((?:[\w]+\:\/\/)?[^:]+):(\d+)$/', $server, $m ) ) {
+				// (ip, uri or path, port)
+				list( $host, $port ) = [ $m[1], (int)$m[2] ];
+				if (
+					substr( $host, 0, 6 ) === 'tls://'
+					&& version_compare( phpversion( 'redis' ), '5.0.0' ) < 0
+				) {
+					throw new RuntimeException(
+						'A newer version of the Redis client library is required to use TLS. ' .
+						'See https://www.mediawiki.org/wiki/Redis#Setup' );
+				}
 			} else {
-				list( $host, $port ) = [ $server, 6379 ]; // (ip or path, port)
+				// (ip or path, port)
+				list( $host, $port ) = [ $server, 6379 ];
 			}
 		}
 
