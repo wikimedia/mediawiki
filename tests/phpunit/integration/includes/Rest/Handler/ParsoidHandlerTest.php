@@ -846,6 +846,20 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$expectedText,
 			[ 'Content-Type' => $wikiTextContentType ], // TODO: this is a lie, it returns JSON!
 		];
+
+		// page bundle input should work with no original data present  ///////////
+		$htmlOfMinimal = $this->getTextFromFile( 'Minimal.html' ); // Uses profile version 2.4.0
+		$attribs = [
+			'opts' => [
+				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
+				'original' => [],
+			],
+		];
+		yield 'page bundle input should work with no original data present' => [
+			$attribs,
+			$htmlOfMinimal,
+			[ '123' ]
+		];
 	}
 
 	/**
