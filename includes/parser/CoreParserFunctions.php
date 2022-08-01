@@ -1554,12 +1554,20 @@ class CoreParserFunctions {
 		if ( $t === null ) {
 			return '';
 		}
-		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_USER );
-		if ( $rev === null ) {
-			return '';
+		// VARY_USER informs the edit saving system that getting the canonical
+		// output after revision insertion requires a parse that used the
+		// actual user ID.
+		if ( $t->equals( $parser->getTitle() ) ) {
+			// Fall back to Parser's "revision user" for the current title
+			$parser->getOutput()->setOutputFlag( ParserOutputFlags::VARY_USER );
+			// Note that getRevisionUser() can return null; we need to
+			// be sure to cast this to (an empty) string, since returning
+			// null means "magic variable not handled".
+			return (string)$parser->getRevisionUser();
 		}
-		$user = $rev->getUser();
+		// Fetch revision from cache/database and return the value.
+		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_USER );
+		$user = ( $rev !== null ) ? $rev->getUser() : null;
 		return $user ? $user->getName() : '';
 	}
 
