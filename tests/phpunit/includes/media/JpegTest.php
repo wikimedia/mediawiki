@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group Media
  * @covers JpegHandler
@@ -12,7 +14,7 @@ class JpegTest extends MediaWikiMediaTestCase {
 		parent::setUp();
 		$this->checkPHPExtension( 'exif' );
 
-		$this->setMwGlobals( 'wgShowEXIF', true );
+		$this->overrideConfigValue( MainConfigNames::ShowEXIF, true );
 
 		$this->handler = new JpegHandler;
 	}
@@ -75,7 +77,7 @@ class JpegTest extends MediaWikiMediaTestCase {
 			$this->markTestSkipped( "Exiftool not installed, cannot test ICC profile swapping" );
 		}
 
-		$this->setMwGlobals( 'wgUseTinyRGBForJPGThumbnails', true );
+		$this->overrideConfigValue( MainConfigNames::UseTinyRGBForJPGThumbnails, true );
 
 		$sourceFilepath = $this->filePath . $sourceFilename;
 		$controlFilepath = $this->filePath . $controlFilename;

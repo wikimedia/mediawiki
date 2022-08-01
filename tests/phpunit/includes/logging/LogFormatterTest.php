@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentityValue;
 
 /**
@@ -51,9 +52,9 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgLogTypes' => [ 'phpunit' ],
-			'wgLogActionsHandlers' => [ 'phpunit/test' => LogFormatter::class,
+		$this->overrideConfigValues( [
+			MainConfigNames::LogTypes => [ 'phpunit' ],
+			MainConfigNames::LogActionsHandlers => [ 'phpunit/test' => LogFormatter::class,
 				'phpunit/param' => LogFormatter::class ],
 		] );
 

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
@@ -7,10 +9,10 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		$this->setCacheConfig();
-		$this->setMwGlobals( [
-			'wgMainCacheType' => CACHE_NONE,
-			'wgMessageCacheType' => CACHE_NONE,
-			'wgParserCacheType' => CACHE_NONE,
+		$this->setMainCache( CACHE_NONE );
+		$this->overrideConfigValues( [
+			MainConfigNames::MessageCacheType => CACHE_NONE,
+			MainConfigNames::ParserCacheType => CACHE_NONE,
 		] );
 	}
 
@@ -24,7 +26,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 			CACHE_ACCEL => [ 'class' => HashBagOStuff::class ],
 			'hash' => [ 'class' => HashBagOStuff::class ],
 		];
-		$this->setMwGlobals( 'wgObjectCaches', $arr + $defaults );
+		$this->overrideConfigValue( MainConfigNames::ObjectCaches, $arr + $defaults );
 	}
 
 	/** @covers ObjectCache::newAnything */
@@ -38,9 +40,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 	/** @covers ObjectCache::newAnything */
 	public function testNewAnythingHash() {
-		$this->setMwGlobals( [
-			'wgMainCacheType' => 'hash'
-		] );
+		$this->setMainCache( CACHE_HASH );
 
 		$this->assertInstanceOf(
 			HashBagOStuff::class,
@@ -51,9 +51,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 	/** @covers ObjectCache::newAnything */
 	public function testNewAnythingAccel() {
-		$this->setMwGlobals( [
-			'wgMainCacheType' => CACHE_ACCEL
-		] );
+		$this->setMainCache( CACHE_ACCEL );
 
 		$this->assertInstanceOf(
 			HashBagOStuff::class,
@@ -64,9 +62,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 	/** @covers ObjectCache::newAnything */
 	public function testNewAnythingNoAccel() {
-		$this->setMwGlobals( [
-			'wgMainCacheType' => CACHE_ACCEL
-		] );
+		$this->setMainCache( CACHE_ACCEL );
 
 		$this->setCacheConfig( [
 			// Mock APC not being installed (T160519, T147161)
@@ -82,9 +78,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 	/** @covers ObjectCache::newAnything */
 	public function testNewAnythingNoAccelNoDb() {
-		$this->setMwGlobals( [
-			'wgMainCacheType' => CACHE_ACCEL
-		] );
+		$this->setMainCache( CACHE_ACCEL );
 
 		$this->setCacheConfig( [
 			// Mock APC not being installed (T160519, T147161)

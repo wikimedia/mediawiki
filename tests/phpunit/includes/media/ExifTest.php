@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group Media
  * @covers Exif
@@ -15,7 +17,7 @@ class ExifTest extends MediaWikiIntegrationTestCase {
 
 		$this->mediaPath = __DIR__ . '/../../data/media/';
 
-		$this->setMwGlobals( 'wgShowEXIF', true );
+		$this->overrideConfigValue( MainConfigNames::ShowEXIF, true );
 	}
 
 	public function testGPSExtraction() {

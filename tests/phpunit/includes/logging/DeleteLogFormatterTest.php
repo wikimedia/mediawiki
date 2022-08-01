@@ -477,8 +477,7 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 	 * @dataProvider provideSuppressRevisionLogDatabaseRows
 	 */
 	public function testSuppressRevisionLogDatabaseRows( $row, $extra ) {
-		$this->setMwGlobals(
-			'wgGroupPermissions',
+		$this->setGroupPermissions(
 			[
 				'oversight' => [
 					'viewsuppressed' => true,
@@ -719,8 +718,7 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 	 * @dataProvider provideSuppressEventLogDatabaseRows
 	 */
 	public function testSuppressEventLogDatabaseRows( $row, $extra ) {
-		$this->setMwGlobals(
-			'wgGroupPermissions',
+		$this->setGroupPermissions(
 			[
 				'oversight' => [
 					'viewsuppressed' => true,
@@ -891,8 +889,7 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 	 * @dataProvider provideSuppressDeleteLogDatabaseRows
 	 */
 	public function testSuppressDeleteLogDatabaseRows( $row, $extra ) {
-		$this->setMwGlobals(
-			'wgGroupPermissions',
+		$this->setGroupPermissions(
 			[
 				'oversight' => [
 					'viewsuppressed' => true,
