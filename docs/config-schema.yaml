@@ -2634,11 +2634,6 @@ config-schema:
     SidebarCacheExpiry:
         default: 86400
         description: 'Expiry time for the sidebar cache, in seconds'
-    FooterLinkCacheExpiry:
-        default: 0
-        description: |-
-            Expiry time for the footer link cache, in seconds, or 0 if disabled
-            @since 1.35
     UseGzip:
         default: false
         description: |-
