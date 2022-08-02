@@ -191,6 +191,20 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 				);
 			}
 
+			public function tryToCreatePageConfig(
+				array $attribs, ?string $wikitext = null, bool $html2WtMode = false
+			): PageConfig {
+				if ( isset( $this->overrides['tryToCreatePageConfig'] ) ) {
+					return $this->overrides['tryToCreatePageConfig'](
+						$attribs, $wikitext, $html2WtMode
+					);
+				}
+
+				return parent::tryToCreatePageConfig(
+					$attribs, $wikitext, $html2WtMode
+				);
+			}
+
 			public function createRedirectResponse(
 				string $path,
 				array $pathParams = [],
@@ -1261,6 +1275,137 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->expectExceptionMessage( $expectedException->getMessage() );
 
 		$handler->html2wt( $pageConfig, $attribs, $html );
+	}
+
+	public function provideRoundTripNoSelser() {
+		yield 'space in heading' => [
+			"==foo==\nsomething\n"
+		];
+	}
+
+	public function provideRoundTripNeedingSelser() {
+		yield 'uppercase tags' => [
+			"<DIV>foo</div>"
+		];
+	}
+
+	/**
+	 * @dataProvider provideRoundTripNoSelser
+	 */
+	public function testRoundTripWithHTML( $wikitext ) {
+		$handler = $this->newParsoidHandler();
+
+		$attribs = self::DEFAULT_ATTRIBS;
+		$attribs['opts']['from'] = ParsoidFormatHelper::FORMAT_WIKITEXT;
+		$attribs['opts']['format'] = ParsoidFormatHelper::FORMAT_HTML;
+
+		$pageConfig = $handler->tryToCreatePageConfig( $attribs, $wikitext );
+		$response = $handler->wt2html( $pageConfig, $attribs, $wikitext );
+		$body = $response->getBody();
+		$body->rewind();
+		$html = $body->getContents();
+
+		// Got HTML, now convert back
+		$attribs = self::DEFAULT_ATTRIBS;
+		$attribs['opts']['from'] = ParsoidFormatHelper::FORMAT_HTML;
+		$attribs['opts']['format'] = ParsoidFormatHelper::FORMAT_WIKITEXT;
+
+		$pageConfig = $handler->tryToCreatePageConfig( $attribs, null, true );
+		$response = $handler->html2wt( $pageConfig, $attribs, $html );
+		$body = $response->getBody();
+		$body->rewind();
+		$actual = $body->getContents();
+
+		// apply some normalization before comparing
+		$actual = trim( $actual );
+		$wikitext = trim( $wikitext );
+
+		$this->assertSame( $wikitext, $actual );
+	}
+
+	/**
+	 * @dataProvider provideRoundTripNoSelser
+	 */
+	public function testRoundTripWithPageBundleWithoutOriginalHTML( $wikitext ) {
+		$handler = $this->newParsoidHandler();
+
+		$attribs = self::DEFAULT_ATTRIBS;
+		$attribs['opts']['from'] = ParsoidFormatHelper::FORMAT_WIKITEXT;
+		$attribs['opts']['format'] = ParsoidFormatHelper::FORMAT_PAGEBUNDLE;
+
+		$pageConfig = $handler->tryToCreatePageConfig( $attribs, $wikitext );
+		$response = $handler->wt2html( $pageConfig, $attribs, $wikitext );
+		$body = $response->getBody();
+		$body->rewind();
+		$pbJson = $body->getContents();
+
+		$pbData = json_decode( $pbJson, JSON_OBJECT_AS_ARRAY );
+		$html = $pbData['html']['body']; // HTML with data-parsoid stripped out
+
+		// Got HTML, now convert back
+		$attribs = self::DEFAULT_ATTRIBS;
+		$attribs['opts']['from'] = ParsoidFormatHelper::FORMAT_PAGEBUNDLE;
+		$attribs['opts']['format'] = ParsoidFormatHelper::FORMAT_WIKITEXT;
+		$attribs['opts']['original'] = [
+			'data-parsoid' => $pbData['data-parsoid'],
+		];
+
+		$pageConfig = $handler->tryToCreatePageConfig( $attribs, null, true );
+		$response = $handler->html2wt( $pageConfig, $attribs, $html );
+		$body = $response->getBody();
+		$body->rewind();
+		$actual = $body->getContents();
+
+		// apply some normalization before comparing
+		$actual = trim( $actual );
+		$wikitext = trim( $wikitext );
+
+		$this->assertSame( $wikitext, $actual );
+	}
+
+	/**
+	 * @dataProvider provideRoundTripNoSelser
+	 * @dataProvider provideRoundTripNeedingSelser
+	 */
+	public function testRoundTripWithSelser( $wikitext ) {
+		$handler = $this->newParsoidHandler();
+
+		$attribs = self::DEFAULT_ATTRIBS;
+		$attribs['opts']['from'] = ParsoidFormatHelper::FORMAT_WIKITEXT;
+		$attribs['opts']['format'] = ParsoidFormatHelper::FORMAT_PAGEBUNDLE;
+
+		$page = $this->getExistingTestPage();
+		$revid = $page->getLatest();
+
+		$pageConfig = $handler->tryToCreatePageConfig( $attribs, $wikitext );
+		$response = $handler->wt2html( $pageConfig, $attribs, $wikitext );
+		$body = $response->getBody();
+		$body->rewind();
+		$pbJson = $body->getContents();
+
+		$pbData = json_decode( $pbJson, JSON_OBJECT_AS_ARRAY );
+		$html = $pbData['html']['body']; // HTML with data-parsoid stripped out
+
+		// Got HTML, now convert back
+		$attribs = self::DEFAULT_ATTRIBS;
+		$attribs['oldid'] = $revid;
+		$attribs['opts']['revid'] = $revid;
+		$attribs['opts']['from'] = ParsoidFormatHelper::FORMAT_PAGEBUNDLE;
+		$attribs['opts']['format'] = ParsoidFormatHelper::FORMAT_WIKITEXT;
+		$attribs['opts']['original'] = $pbData;
+		$attribs['opts']['original']['wikitext']['body'] = $wikitext;
+
+		$pageConfig = $handler->tryToCreatePageConfig( $attribs, $wikitext, true );
+		$response = $handler->html2wt( $pageConfig, $attribs, $html );
+		$body = $response->getBody();
+		$body->rewind();
+		$actual = $body->getContents();
+
+		// apply some normalization before comparing
+		$actual = trim( $actual );
+		$wikitext = trim( $wikitext );
+
+		$this->assertSame( $wikitext, $actual );
 	}
 
 	public function provideGetRequestAttributes() {

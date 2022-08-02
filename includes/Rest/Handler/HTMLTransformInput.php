@@ -28,8 +28,18 @@ class HTMLTransformInput {
 	/** @var ?int */
 	private $oldid = null;
 
+	/**
+	 * Whether $this->doc has had any necessary processing applied,
+	 * such as injecting data-parsoid attributes from a PageBundle.
+	 * @var bool
+	 */
+	private $docHasBeenProcessed = false;
+
 	/** @var ?Document */
 	private $doc = null;
+
+	/** @var ?string */
+	private $docVersion = null;
 
 	/** @var ?array */
 	private $modifiedDataMW = null;
@@ -105,18 +115,11 @@ class HTMLTransformInput {
 
 		$this->original = $originalData;
 
-		// Sometimes we can have [ 'original' => [ 'wikitext' => '...' ] ]
-		// as input data, so just don't try to construct a page bundle if
-		// we don't have HTML.
-		if ( !isset( $this->original['html'] ) ) {
-			return;
-		}
-
 		$vOriginal = ParsoidFormatHelper::parseContentTypeHeader(
 			$originalData['html']['headers']['content-type'] ?? ''
 		);
 
-		if ( $vOriginal === null ) {
+		if ( $vOriginal === null && isset( $this->original['html']['body'] ) ) {
 			throw new ClientError(
 				'Content-type of original html is missing.'
 			);
@@ -135,6 +138,11 @@ class HTMLTransformInput {
 
 		// If we have a full page bundle, validate it.
 		if ( $this->originalPageBundle->parsoid !== null || $this->originalPageBundle->mw !== null ) {
+			if ( !$vOriginal ) {
+				// NOTE: can't call getSchemaVersion, since that relies on getOriginalPageBundle.
+				$vOriginal = $this->docVersion ?: Parsoid::defaultHTMLVersion();
+			}
+
 			if ( !$this->originalPageBundle->validate( $vOriginal, $errorMessage ) ) {
 				throw new ClientError( $errorMessage );
 			}
@@ -150,17 +158,27 @@ class HTMLTransformInput {
 		return mb_strlen( $this->html );
 	}
 
-	public function getModifiedDocument(): Document {
+	private function getModifiedDocumentRaw(): Document {
 		if ( !$this->doc ) {
 			$this->doc = $this->parseHTML( $this->html, true );
-			$vEdited = DOMUtils::extractInlinedContentVersion( $this->doc )
-				?: Parsoid::defaultHTMLVersion();
-
-			$pb = $this->getPageBundleForModifiedDocument( $vEdited );
-			PageBundle::apply( $this->doc, $pb );
+			$this->docVersion = DOMUtils::extractInlinedContentVersion( $this->doc );
 		}
 
 		return $this->doc;
+	}
+
+	public function getModifiedDocument(): Document {
+		$doc = $this->getModifiedDocumentRaw();
+
+		if ( !$this->docHasBeenProcessed ) {
+			$vEdited = $this->docVersion ?: Parsoid::defaultHTMLVersion();
+			$pb = $this->getPageBundleForModifiedDocument( $vEdited );
+
+			PageBundle::apply( $doc, $pb );
+			$this->docHasBeenProcessed = true;
+		}
+
+		return $doc;
 	}
 
 	/**
@@ -278,21 +296,23 @@ class HTMLTransformInput {
 	 * @return string
 	 */
 	public function getSchemaVersion(): string {
-		// Get the content version of the edited doc, if available
-		$inputContentVersion = DOMUtils::extractInlinedContentVersion(
-			$this->getModifiedDocument()
-		);
+		if ( $this->docVersion ) {
+			return $this->docVersion;
+		}
 
-		if ( !$inputContentVersion ) {
-			$inputContentVersion = $this->getOriginalSchemaVersion();
+		// will initialize $this->docVersion
+		$this->getModifiedDocumentRaw();
+
+		if ( !$this->docVersion ) {
+			$this->docVersion = $this->getOriginalSchemaVersion();
 			$this->incrementMetrics( 'html2wt.original.version.notinline' );
 		}
 
-		if ( !$inputContentVersion ) {
-			$inputContentVersion = Parsoid::defaultHTMLVersion();
+		if ( !$this->docVersion ) {
+			$this->docVersion = Parsoid::defaultHTMLVersion();
 		}
 
-		return $inputContentVersion;
+		return $this->docVersion;
 	}
 
 	private function getPageBundleForModifiedDocument( string $schemaVersion ): PageBundle {
