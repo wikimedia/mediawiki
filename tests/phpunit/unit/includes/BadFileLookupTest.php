@@ -18,11 +18,11 @@ Comment line, no effect [[File:Good.jpg]]
 *[[Image:Bad2.jpg]] also works
 * So does [[Bad3.jpg]]
 * [[User:Bad4.jpg]] works although it is silly
-* [[File:Redirect to good.jpg]] doesn't do anything if RepoGroup is working, because we only look at
+* [[File:Redirect to good.jpg]] does not do anything if RepoGroup is working, because we only look at
   the final name, but will work if RepoGroup returns null
 * List line with no link
-* [[Malformed title<>]] doesn't break anything, the line is ignored [[File:Good.jpg]]
-* [[File:Bad5.jpg]] before [[malformed title<>]] doesn't ignore the line
+* [[Malformed title<>]] does not break anything, the line is ignored [[File:Good.jpg]]
+* [[File:Bad5.jpg]] before [[malformed title<>]] does not ignore the line
 WIKITEXT;
 
 	/** @var HookContainer */
@@ -152,7 +152,7 @@ WIKITEXT;
 			'Hook says good' => [ 'Hook good.jpg', null, false ],
 			'Redirect to hook bad image' => [ 'Redirect to hook bad.jpg', null, true ],
 			'Redirect to hook good image' => [ 'Redirect to hook good.jpg', null, false ],
-			'Malformed title doesn\'t break the line' => [ 'Bad5.jpg', null, true ],
+			'Malformed title does not break the line' => [ 'Bad5.jpg', null, true ],
 		];
 	}
 }
