@@ -271,6 +271,11 @@ abstract class ParsoidHandler extends Handler {
 
 	protected function getHTMLTransformInput( array $attribs, string $html ) {
 		$input = new HTMLTransformInput( $html );
+
+		if ( $this->metrics ) {
+			$input->setMetrics( $this->metrics );
+		}
+
 		$input->setOptions( [
 			'contentmodel' => $attribs['opts']['contentmodel'] ?? null,
 			'offsetType' => $attribs['offsetType'] ?? 'byte',
