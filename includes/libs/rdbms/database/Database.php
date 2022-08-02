@@ -282,8 +282,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->platform = new SQLPlatform(
 			$this,
 			$params['queryLogger'],
-			$this->currentDomain->getSchema(),
-			$this->currentDomain->getTablePrefix()
+			$this->currentDomain
 		);
 	}
 
@@ -572,7 +571,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->currentDomain->getSchema(),
 				$prefix
 			);
-			$this->platform->setPrefix( $prefix );
+			$this->platform->setCurrentDomain( $this->currentDomain );
 		}
 
 		return $old;
@@ -595,7 +594,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				( $schema !== '' ) ? $schema : null,
 				$this->currentDomain->getTablePrefix()
 			);
-			$this->platform->setSchema( $this->currentDomain->getSchema() );
+			$this->platform->setCurrentDomain( $this->currentDomain );
 		}
 
 		return (string)$old;
@@ -2017,8 +2016,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	protected function doSelectDomain( DatabaseDomain $domain ) {
 		$this->currentDomain = $domain;
-		$this->platform->setSchema( $domain->getSchema() );
-		$this->platform->setPrefix( $domain->getTablePrefix() );
+		$this->platform->setCurrentDomain( $this->currentDomain );
 	}
 
 	public function getDBname() {

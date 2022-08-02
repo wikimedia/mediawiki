@@ -25,6 +25,7 @@ use Psr\Log\NullLogger;
 use RuntimeException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database\DbQuoter;
+use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DBLanguageError;
 use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\Subquery;
@@ -42,20 +43,21 @@ class SQLPlatform implements ISQLPlatform {
 	protected $tableAliases = [];
 	/** @var string[] Current map of (index alias => index) */
 	protected $indexAliases = [];
-	/** @var string|null */
-	protected $schema;
-	/** @var string */
-	private $prefix;
+	/** @var DatabaseDomain|null */
+	protected $currentDomain;
 	/** @var DbQuoter */
 	protected $quoter;
 	/** @var LoggerInterface */
 	protected $logger;
 
-	public function __construct( DbQuoter $quoter, LoggerInterface $logger = null, $schema = null, $prefix = '' ) {
+	public function __construct(
+		DbQuoter $quoter,
+		LoggerInterface $logger = null,
+		DatabaseDomain $currentDomain = null
+	) {
 		$this->quoter = $quoter;
 		$this->logger = $logger ?? new NullLogger();
-		$this->schema = $schema;
-		$this->prefix = $prefix;
+		$this->currentDomain = $currentDomain;
 	}
 
 	/**
@@ -583,11 +585,15 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	public function setPrefix( $prefix ) {
-		$this->prefix = $prefix;
+		$this->currentDomain = new DatabaseDomain(
+			$this->currentDomain->getDatabase(),
+			$this->currentDomain->getSchema(),
+			$prefix
+		);
 	}
 
-	public function setSchema( $schema ) {
-		$this->schema = $schema;
+	public function setCurrentDomain( DatabaseDomain $currentDomain ) {
+		$this->currentDomain = $currentDomain;
 	}
 
 	/**
@@ -987,6 +993,11 @@ class SQLPlatform implements ISQLPlatform {
 	public function qualifiedTableComponents( $name ) {
 		# We reverse the explode so that database.table and table both output the correct table.
 		$dbDetails = explode( '.', $name, 3 );
+		if ( $this->currentDomain ) {
+			$currentDomainPrefix = $this->currentDomain->getTablePrefix();
+		} else {
+			$currentDomainPrefix = null;
+		}
 		if ( count( $dbDetails ) == 3 ) {
 			list( $database, $schema, $table ) = $dbDetails;
 			# We don't want any prefix added in this case
@@ -1007,11 +1018,11 @@ class SQLPlatform implements ISQLPlatform {
 					: $this->relationSchemaQualifier();
 				$prefix = is_string( $this->tableAliases[$table]['prefix'] )
 					? $this->tableAliases[$table]['prefix']
-					: $this->prefix;
+					: $currentDomainPrefix;
 			} else {
 				$database = '';
 				$schema = $this->relationSchemaQualifier(); # Default schema
-				$prefix = $this->prefix; # Default prefix
+				$prefix = $currentDomainPrefix; # Default prefix
 			}
 		}
 
@@ -1020,10 +1031,13 @@ class SQLPlatform implements ISQLPlatform {
 
 	/**
 	 * @stable to override
-	 * @return string Schema to use to qualify relations in queries
+	 * @return string|null Schema to use to qualify relations in queries
 	 */
 	protected function relationSchemaQualifier() {
-		return $this->schema;
+		if ( $this->currentDomain ) {
+			return $this->currentDomain->getSchema();
+		}
+		return null;
 	}
 
 	/**

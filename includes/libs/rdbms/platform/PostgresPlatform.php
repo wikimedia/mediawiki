@@ -145,7 +145,7 @@ class PostgresPlatform extends SQLPlatform {
 	}
 
 	protected function relationSchemaQualifier() {
-		if ( $this->coreSchema === $this->schema ) {
+		if ( $this->coreSchema === $this->currentDomain->getSchema() ) {
 			// The schema to be used is now in the search path; no need for explicit qualification
 			return '';
 		}
