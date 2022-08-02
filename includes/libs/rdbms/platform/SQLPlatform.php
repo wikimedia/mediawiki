@@ -25,6 +25,7 @@ use Psr\Log\NullLogger;
 use RuntimeException;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database\DbQuoter;
+use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DBLanguageError;
 use Wikimedia\Rdbms\LikeMatch;
 use Wikimedia\Rdbms\Subquery;
@@ -42,20 +43,23 @@ class SQLPlatform implements ISQLPlatform {
 	protected $tableAliases = [];
 	/** @var string[] Current map of (index alias => index) */
 	protected $indexAliases = [];
-	/** @var string|null */
-	protected $schema;
-	/** @var string */
-	private $prefix;
+	/** @var DatabaseDomain|null */
+	protected $currentDomain;
+	/** @var array|null Current variables use for schema element placeholders */
+	protected $schemaVars;
 	/** @var DbQuoter */
 	protected $quoter;
 	/** @var LoggerInterface */
 	protected $logger;
 
-	public function __construct( DbQuoter $quoter, LoggerInterface $logger = null, $schema = null, $prefix = '' ) {
+	public function __construct(
+		DbQuoter $quoter,
+		LoggerInterface $logger = null,
+		DatabaseDomain $currentDomain = null
+	) {
 		$this->quoter = $quoter;
 		$this->logger = $logger ?? new NullLogger();
-		$this->schema = $schema;
-		$this->prefix = $prefix;
+		$this->currentDomain = $currentDomain;
 	}
 
 	/**
@@ -583,11 +587,15 @@ class SQLPlatform implements ISQLPlatform {
 	}
 
 	public function setPrefix( $prefix ) {
-		$this->prefix = $prefix;
+		$this->currentDomain = new DatabaseDomain(
+			$this->currentDomain->getDatabase(),
+			$this->currentDomain->getSchema(),
+			$prefix
+		);
 	}
 
-	public function setSchema( $schema ) {
-		$this->schema = $schema;
+	public function setCurrentDomain( DatabaseDomain $currentDomain ) {
+		$this->currentDomain = $currentDomain;
 	}
 
 	/**
@@ -987,6 +995,11 @@ class SQLPlatform implements ISQLPlatform {
 	public function qualifiedTableComponents( $name ) {
 		# We reverse the explode so that database.table and table both output the correct table.
 		$dbDetails = explode( '.', $name, 3 );
+		if ( $this->currentDomain ) {
+			$currentDomainPrefix = $this->currentDomain->getTablePrefix();
+		} else {
+			$currentDomainPrefix = null;
+		}
 		if ( count( $dbDetails ) == 3 ) {
 			list( $database, $schema, $table ) = $dbDetails;
 			# We don't want any prefix added in this case
@@ -1007,11 +1020,11 @@ class SQLPlatform implements ISQLPlatform {
 					: $this->relationSchemaQualifier();
 				$prefix = is_string( $this->tableAliases[$table]['prefix'] )
 					? $this->tableAliases[$table]['prefix']
-					: $this->prefix;
+					: $currentDomainPrefix;
 			} else {
 				$database = '';
 				$schema = $this->relationSchemaQualifier(); # Default schema
-				$prefix = $this->prefix; # Default prefix
+				$prefix = $currentDomainPrefix; # Default prefix
 			}
 		}
 
@@ -1020,10 +1033,13 @@ class SQLPlatform implements ISQLPlatform {
 
 	/**
 	 * @stable to override
-	 * @return string Schema to use to qualify relations in queries
+	 * @return string|null Schema to use to qualify relations in queries
 	 */
 	protected function relationSchemaQualifier() {
-		return $this->schema;
+		if ( $this->currentDomain ) {
+			return $this->currentDomain->getSchema();
+		}
+		return null;
 	}
 
 	/**
@@ -1973,5 +1989,97 @@ class SQLPlatform implements ISQLPlatform {
 		}
 
 		return $column;
+	}
+
+	public function setSchemaVars( $vars ) {
+		$this->schemaVars = is_array( $vars ) ? $vars : null;
+	}
+
+	/**
+	 * Get schema variables. If none have been set via setSchemaVars(), then
+	 * use some defaults from the current object.
+	 *
+	 * @return array
+	 */
+	protected function getSchemaVars() {
+		return $this->schemaVars ?? $this->getDefaultSchemaVars();
+	}
+
+	/**
+	 * Get schema variables to use if none have been set via setSchemaVars().
+	 *
+	 * Override this in derived classes to provide variables for tables.sql
+	 * and SQL patch files.
+	 *
+	 * @stable to override
+	 * @return array
+	 */
+	protected function getDefaultSchemaVars() {
+		return [];
+	}
+
+	/**
+	 * Database-independent variable replacement. Replaces a set of variables
+	 * in an SQL statement with their contents as given by $this->getSchemaVars().
+	 *
+	 * Supports '{$var}' `{$var}` and / *$var* / (without the spaces) style variables.
+	 *
+	 * - '{$var}' should be used for text and is passed through the database's
+	 *   addQuotes method.
+	 * - `{$var}` should be used for identifiers (e.g. table and database names).
+	 *   It is passed through the database's addIdentifierQuotes method which
+	 *   can be overridden if the database uses something other than backticks.
+	 * - / *_* / or / *$wgDBprefix* / passes the name that follows through the
+	 *   database's tableName method.
+	 * - / *i* / passes the name that follows through the database's indexName method.
+	 * - In all other cases, / *$var* / is left unencoded. Except for table options,
+	 *   its use should be avoided. In 1.24 and older, string encoding was applied.
+	 *
+	 * @stable to override
+	 * @param string $ins SQL statement to replace variables in
+	 * @return string The new SQL statement with variables replaced
+	 */
+	public function replaceVars( $ins ) {
+		$vars = $this->getSchemaVars();
+		return preg_replace_callback(
+			'!
+				/\* (\$wgDBprefix|[_i]) \*/ (\w*) | # 1-2. tableName, indexName
+				\'\{\$ (\w+) }\'                  | # 3. addQuotes
+				`\{\$ (\w+) }`                    | # 4. addIdentifierQuotes
+				/\*\$ (\w+) \*/                     # 5. leave unencoded
+			!x',
+			function ( $m ) use ( $vars ) {
+				// Note: Because of <https://bugs.php.net/bug.php?id=51881>,
+				// check for both nonexistent keys *and* the empty string.
+				if ( isset( $m[1] ) && $m[1] !== '' ) {
+					if ( $m[1] === 'i' ) {
+						return $this->indexName( $m[2] );
+					} else {
+						return $this->tableName( $m[2] );
+					}
+				} elseif ( isset( $m[3] ) && $m[3] !== '' && array_key_exists( $m[3], $vars ) ) {
+					return $this->quoter->addQuotes( $vars[$m[3]] );
+				} elseif ( isset( $m[4] ) && $m[4] !== '' && array_key_exists( $m[4], $vars ) ) {
+					return $this->addIdentifierQuotes( $vars[$m[4]] );
+				} elseif ( isset( $m[5] ) && $m[5] !== '' && array_key_exists( $m[5], $vars ) ) {
+					return $vars[$m[5]];
+				} else {
+					return $m[0];
+				}
+			},
+			$ins
+		);
+	}
+
+	public function lockSQLText( $lockName, $timeout ) {
+		throw new RuntimeException( 'locking must be implemented in subclasses' );
+	}
+
+	public function lockIsFreeSQLText( $lockName ) {
+		throw new RuntimeException( 'locking must be implemented in subclasses' );
+	}
+
+	public function unlockSQLText( $lockName ) {
+		throw new RuntimeException( 'locking must be implemented in subclasses' );
 	}
 }

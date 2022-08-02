@@ -160,4 +160,61 @@ class SqlitePlatform extends SQLPlatform {
 	public function isWriteQuery( $sql, $flags ) {
 		return parent::isWriteQuery( $sql, $flags ) && !preg_match( '/^(ATTACH|PRAGMA)\b/i', $sql );
 	}
+
+	/**
+	 * @param string $s
+	 * @return string
+	 */
+	public function replaceVars( $s ) {
+		$s = parent::replaceVars( $s );
+		if ( preg_match( '/^\s*(CREATE|ALTER) TABLE/i', $s ) ) {
+			// CREATE TABLE hacks to allow schema file sharing with MySQL
+
+			// binary/varbinary column type -> blob
+			$s = preg_replace( '/\b(var)?binary(\(\d+\))/i', 'BLOB', $s );
+			// no such thing as unsigned
+			$s = preg_replace( '/\b(un)?signed\b/i', '', $s );
+			// INT -> INTEGER
+			$s = preg_replace( '/\b(tiny|small|medium|big|)int(\s*\(\s*\d+\s*\)|\b)/i', 'INTEGER', $s );
+			// floating point types -> REAL
+			$s = preg_replace(
+				'/\b(float|double(\s+precision)?)(\s*\(\s*\d+\s*(,\s*\d+\s*)?\)|\b)/i',
+				'REAL',
+				$s
+			);
+			// varchar -> TEXT
+			$s = preg_replace( '/\b(var)?char\s*\(.*?\)/i', 'TEXT', $s );
+			// TEXT normalization
+			$s = preg_replace( '/\b(tiny|medium|long)text\b/i', 'TEXT', $s );
+			// BLOB normalization
+			$s = preg_replace( '/\b(tiny|small|medium|long|)blob\b/i', 'BLOB', $s );
+			// BOOL -> INTEGER
+			$s = preg_replace( '/\bbool(ean)?\b/i', 'INTEGER', $s );
+			// DATETIME -> TEXT
+			$s = preg_replace( '/\b(datetime|timestamp)\b/i', 'TEXT', $s );
+			// No ENUM type
+			$s = preg_replace( '/\benum\s*\([^)]*\)/i', 'TEXT', $s );
+			// binary collation type -> nothing
+			$s = preg_replace( '/\bbinary\b/i', '', $s );
+			// auto_increment -> autoincrement
+			$s = preg_replace( '/\bauto_increment\b/i', 'AUTOINCREMENT', $s );
+			// No explicit options
+			$s = preg_replace( '/\)[^);]*(;?)\s*$/', ')\1', $s );
+			// AUTOINCREMENT should immediately follow PRIMARY KEY
+			$s = preg_replace( '/primary key (.*?) autoincrement/i', 'PRIMARY KEY AUTOINCREMENT $1', $s );
+		} elseif ( preg_match( '/^\s*CREATE (\s*(?:UNIQUE|FULLTEXT)\s+)?INDEX/i', $s ) ) {
+			// No truncated indexes
+			$s = preg_replace( '/\(\d+\)/', '', $s );
+			// No FULLTEXT
+			$s = preg_replace( '/\bfulltext\b/i', '', $s );
+		} elseif ( preg_match( '/^\s*DROP INDEX/i', $s ) ) {
+			// DROP INDEX is database-wide, not table-specific, so no ON <table> clause.
+			$s = preg_replace( '/\sON\s+[^\s]*/i', '', $s );
+		} elseif ( preg_match( '/^\s*INSERT IGNORE\b/i', $s ) ) {
+			// INSERT IGNORE --> INSERT OR IGNORE
+			$s = preg_replace( '/^\s*INSERT IGNORE\b/i', 'INSERT OR IGNORE', $s );
+		}
+
+		return $s;
+	}
 }

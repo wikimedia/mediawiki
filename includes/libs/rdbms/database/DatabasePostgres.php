@@ -67,8 +67,7 @@ class DatabasePostgres extends Database {
 		$this->platform = new PostgresPlatform(
 			$this,
 			$params['queryLogger'],
-			$this->currentDomain->getSchema(),
-			$this->currentDomain->getTablePrefix()
+			$this->currentDomain
 		);
 	}
 
@@ -139,8 +138,7 @@ class DatabasePostgres extends Database {
 			}
 			$this->determineCoreSchema( $schema );
 			$this->currentDomain = new DatabaseDomain( $db, $schema, $tablePrefix );
-			$this->platform->setSchema( $schema );
-			$this->platform->setPrefix( $tablePrefix );
+			$this->platform->setCurrentDomain( $this->currentDomain );
 		} catch ( RuntimeException $e ) {
 			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
@@ -164,8 +162,7 @@ class DatabasePostgres extends Database {
 			);
 		} else {
 			$this->currentDomain = $domain;
-			$this->platform->setSchema( $domain->getSchema() );
-			$this->platform->setPrefix( $domain->getTablePrefix() );
+			$this->platform->setCurrentDomain( $this->currentDomain );
 		}
 
 		return true;
@@ -1115,12 +1112,8 @@ SQL;
 	}
 
 	public function doLockIsFree( string $lockName, string $method ) {
-		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
-		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
-
 		$res = $this->query(
-			"SELECT (CASE(pg_try_advisory_lock($key))
-			WHEN 'f' THEN 'f' ELSE pg_advisory_unlock($key) END) AS unlocked",
+			$this->platform->lockIsFreeSQLText( $lockName ),
 			$method,
 			self::QUERY_CHANGE_LOCKS
 		);
@@ -1130,17 +1123,13 @@ SQL;
 	}
 
 	public function doLock( string $lockName, string $method, int $timeout ) {
-		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
-		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
+		$sql = $this->platform->lockSQLText( $lockName, $timeout );
 
 		$acquired = null;
 		$loop = new WaitConditionLoop(
-			function () use ( $lockName, $key, $timeout, $method, &$acquired ) {
+			function () use ( $lockName, $sql, $timeout, $method, &$acquired ) {
 				$res = $this->query(
-					"SELECT (CASE WHEN pg_try_advisory_lock($key) " .
-						"THEN EXTRACT(epoch from clock_timestamp()) " .
-						"ELSE NULL " .
-					"END) AS acquired",
+					$sql,
 					$method,
 					self::QUERY_CHANGE_LOCKS
 				);
@@ -1162,11 +1151,8 @@ SQL;
 	}
 
 	public function doUnlock( string $lockName, string $method ) {
-		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
-		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
-
 		$result = $this->query(
-			"SELECT pg_advisory_unlock($key) AS released",
+			$this->platform->unlockSQLText( $lockName ),
 			$method,
 			self::QUERY_CHANGE_LOCKS
 		);
@@ -1199,14 +1185,6 @@ SQL;
 
 	protected static function getAttributes() {
 		return [ self::ATTR_SCHEMAS_AS_TABLE_GROUPS => true ];
-	}
-
-	/**
-	 * @param string $lockName
-	 * @return string Integer
-	 */
-	private function bigintFromLockName( $lockName ) {
-		return \Wikimedia\base_convert( substr( sha1( $lockName ), 0, 15 ), 16, 10 );
 	}
 }
 

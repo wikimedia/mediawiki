@@ -120,8 +120,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$this->platform = new MySQLPlatform(
 			$this,
 			$params['queryLogger'],
-			$this->currentDomain->getSchema(),
-			$this->currentDomain->getTablePrefix()
+			$this->currentDomain
 		);
 	}
 
@@ -990,10 +989,8 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	public function doLockIsFree( string $lockName, string $method ) {
-		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
-
 		$res = $this->query(
-			"SELECT IS_FREE_LOCK($encName) AS unlocked",
+			$this->platform->lockIsFreeSQLText( $lockName ),
 			$method,
 			self::QUERY_CHANGE_LOCKS
 		);
@@ -1003,13 +1000,8 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	public function doLock( string $lockName, string $method, int $timeout ) {
-		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
-		// Unlike NOW(), SYSDATE() gets the time at invocation rather than query start.
-		// The precision argument is silently ignored for MySQL < 5.6 and MariaDB < 5.3.
-		// https://dev.mysql.com/doc/refman/5.6/en/date-and-time-functions.html#function_sysdate
-		// https://dev.mysql.com/doc/refman/5.6/en/fractional-seconds.html
 		$res = $this->query(
-			"SELECT IF(GET_LOCK($encName,$timeout),UNIX_TIMESTAMP(SYSDATE(6)),NULL) AS acquired",
+			$this->platform->lockSQLText( $lockName, $timeout ),
 			$method,
 			self::QUERY_CHANGE_LOCKS
 		);
@@ -1019,22 +1011,14 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	public function doUnlock( string $lockName, string $method ) {
-		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
-
 		$res = $this->query(
-			"SELECT RELEASE_LOCK($encName) AS released",
+			$this->platform->unlockSQLText( $lockName ),
 			$method,
 			self::QUERY_CHANGE_LOCKS
 		);
 		$row = $res->fetchObject();
 
 		return ( $row->released == 1 );
-	}
-
-	private function makeLockName( $lockName ) {
-		// https://dev.mysql.com/doc/refman/5.7/en/locking-functions.html#function_get-lock
-		// MySQL 5.7+ enforces a 64 char length limit.
-		return ( strlen( $lockName ) > 64 ) ? sha1( $lockName ) : $lockName;
 	}
 
 	public function namedLocksEnqueue() {
@@ -1047,7 +1031,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// https://mariadb.com/kb/en/release_all_locks/
 		$releaseLockFields = [];
 		foreach ( $this->sessionNamedLocks as $name => $info ) {
-			$encName = $this->addQuotes( $this->makeLockName( $name ) );
+			$encName = $this->addQuotes( $this->platform->makeLockName( $name ) );
 			$releaseLockFields[] = "RELEASE_LOCK($encName)";
 		}
 		if ( $releaseLockFields ) {
