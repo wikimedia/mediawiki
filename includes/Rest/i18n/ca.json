@@ -6,6 +6,7 @@
 			"Toniher"
 		]
 	},
+	"rest-prefix-mismatch": "El camí sol·licitat ($1) no es troba dins del camí arrel ($2) de l'API REST",
 	"rest-nonexistent-title": "El títol especificat ($1) no existeix",
 	"rest-nonexistent-title-revision": "La revisió especificada ($1) no existeix per a la pàgina especificada ($2)",
 	"rest-nonexistent-revision": "La revisió especificada ($1) no existeix",
@@ -24,9 +25,12 @@
 	"rest-search-error": "S'ha produït un error en retornar els resultats de la cerca: $1",
 	"rest-page-source-type-error": "No és permès el tipus de contingut de la font de la pàgina sol·licitada",
 	"rest-no-revision": "No s'ha pogut recuperar la revisió del títol $1",
+	"rest-media-too-many-links": "S'han trobat massa enllaços multimèdia en el títol $1 ($2 permesos)",
 	"rest-html-backend-error": "No es pot recuperar l'HTML de Parsoid.",
 	"rest-bad-json-body": "Cos de la sol·licitud incorrecte. Cal que sigui un objecte JSON.",
+	"rest-json-body-parse-error": "L'anàlisi del cos de sol·licitud com a JSON ha fallat: $1",
 	"rest-missing-body-field": "No hi és el camp obligatori «$1» en el cos de la sol·licitud.",
 	"rest-bad-content-model": "Model de contingut incorrecte: $1",
+	"rest-update-cannot-create-page": "No es pot crear la pàgina «$1» perquè ja existeix. Per a actualitzar la pàgina existent, proporcioneu l'ID de revisió base en l'estructura sota la clau «latest» en el cos de sol·licitud.",
 	"rest-cannot-load-file": "No es pot carregar el fitxer corresponent al títol «$1»."
 }

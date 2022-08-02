@@ -2935,6 +2935,7 @@
 	"logentry-partialblock-block-ns": "la {{PLURAL:$1|nomaro (''namespace'')|nomari (''namespaces'')}} $2",
 	"logentry-partialblock-block": "$1 {{GENDER:$2|blokusis}} {{GENDER:$4|$3}} pro $7 dum $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|modifikis}} la blokuso di {{GENDER:$4|$3}} por periodo di $5 $6",
+	"logentry-import-interwiki": "$1 {{GENDER:$2|importis}} $3 de altra wiki",
 	"logentry-move-move": "$1 {{GENDER:$2|movis}} la pagino $3 a $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|movis}} la pagino $3 a $4 sen lasar ridirektilo",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|movis}} la pagino $3 a $4 sen lasar ridirekto",

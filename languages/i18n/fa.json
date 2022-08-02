@@ -2736,7 +2736,7 @@
 	"ipblocklist-no-results": "دسترسی حساب کاربری یا نشانی آی‌پی موردنظر، قطع نیست.",
 	"blocklink": "بستن دسترسی",
 	"unblocklink": "باز کردن",
-	"change-blocklink": "تغییر بستن دسترسی",
+	"change-blocklink": "تغییر قطع دسترسی",
 	"empty-username": "(نام کاربری موجود نیست)",
 	"contribslink": "مشارکت‌ها",
 	"emaillink": "ارسال ایمیل",
