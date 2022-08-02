@@ -906,8 +906,7 @@ class WANObjectCache implements
 					return ( is_string( $cWrapped ) ) ? false : $wrapped;
 				},
 				$storeTTL,
-				// 1 attempt
-				1
+				( $this->cache )::MAX_CONFLICTS_ONE
 			);
 		}
 
