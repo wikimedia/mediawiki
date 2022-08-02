@@ -2182,12 +2182,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 
 	/**
 	 * Reset a token stored in the preferences (like the watchlist one).
-	 * *Does not* save user's preferences (similarly to setOption()).
+	 * *Does not* save user's preferences (similarly to UserOptionsManager::setOption()).
 	 *
 	 * @param string $oname The option name to reset the token in
 	 * @return string|bool New token value, or false if this option is disabled.
 	 * @see getTokenFromOption()
-	 * @see setOption()
+	 * @see UserOptionsManager::setOption
 	 */
 	public function resetTokenFromOption( $oname ) {
 		$hiddenPrefs =
