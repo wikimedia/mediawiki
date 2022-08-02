@@ -26,6 +26,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class CategoryViewer extends ContextSource {
 	use ProtectedHookAccessorTrait;
@@ -380,9 +381,8 @@ class CategoryViewer extends ContextSource {
 				$this->flip[$type] = true;
 			}
 
-			$res = $dbr->select(
-				[ 'page', 'categorylinks', 'category' ],
-				array_merge(
+			$queryBuilder = $dbr->newSelectQueryBuilder();
+			$queryBuilder->select( array_merge(
 					LinkCache::getSelectFields(),
 					[
 						'cl_sortkey',
@@ -394,22 +394,28 @@ class CategoryViewer extends ContextSource {
 						'cl_sortkey_prefix',
 						'cl_collation'
 					]
-				),
-				array_merge( [ 'cl_to' => $this->page->getDBkey() ], $extraConds ),
-				__METHOD__,
-				[
-					'USE INDEX' => [ 'categorylinks' => 'cl_sortkey' ],
-					'LIMIT' => $this->limit + 1,
-					'ORDER BY' => $this->flip[$type] ? 'cl_sortkey DESC' : 'cl_sortkey',
-				],
-				[
-					'categorylinks' => [ 'JOIN', 'cl_from = page_id' ],
-					'category' => [ 'LEFT JOIN', [
-						'cat_title = page_title',
-						'page_namespace' => NS_CATEGORY
-					] ]
-				]
-			);
+				) )
+				->from( 'page' )
+				->where( [ 'cl_to' => $this->page->getDBkey() ] )
+				->andWhere( $extraConds )
+				->useIndex( [ 'categorylinks' => 'cl_sortkey' ] );
+
+			if ( $this->flip[$type] ) {
+				$queryBuilder->orderBy( 'cl_sortkey', SelectQueryBuilder::SORT_DESC );
+			} else {
+				$queryBuilder->orderBy( 'cl_sortkey' );
+			}
+
+			$queryBuilder
+				->join( 'categorylinks', null, [ 'cl_from = page_id' ] )
+				->leftJoin( 'category', null, [
+					'cat_title = page_title',
+					'page_namespace' => NS_CATEGORY
+				] )
+				->limit( $this->limit + 1 )
+				->caller( __METHOD__ );
+
+			$res = $queryBuilder->fetchResultSet();
 
 			$this->getHookRunner()->onCategoryViewer__doCategoryQuery( $type, $res );
 			$linkCache = MediaWikiServices::getInstance()->getLinkCache();

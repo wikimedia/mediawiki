@@ -240,15 +240,15 @@ class SiteStats {
 	 * @return stdClass
 	 */
 	private static function doLoadFromDB( IDatabase $db ) {
-		$rows = $db->select(
-			'site_stats',
-			self::selectFields(),
-			'*',
-			__METHOD__
-		);
+		$fields = self::selectFields();
+		$rows = $db->newSelectQueryBuilder()
+			->select( $fields )
+			->from( 'site_stats' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		$finalRow = new stdClass();
 		foreach ( $rows as $row ) {
-			foreach ( self::selectFields() as $field ) {
+			foreach ( $fields as $field ) {
 				$finalRow->$field = $finalRow->$field ?? 0;
 				if ( $row->$field ) {
 					$finalRow->$field += $row->$field;

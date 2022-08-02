@@ -354,18 +354,18 @@ class HistoryAction extends FormlessAction {
 		$page_id = $this->getWikiPage()->getId();
 
 		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
-		return $dbr->select(
-			$revQuery['tables'],
-			$revQuery['fields'],
-			array_merge( [ 'rev_page' => $page_id ], $offsets ),
-			__METHOD__,
-			[
-				'ORDER BY' => "rev_timestamp $dirs",
-				'USE INDEX' => [ 'revision' => 'rev_page_timestamp' ],
-				'LIMIT' => $limit
-			],
-			$revQuery['joins']
-		);
+
+		$res = $dbr->newSelectQueryBuilder()
+			->queryInfo( $revQuery )
+			->where( [ 'rev_page' => $page_id ] )
+			->andWhere( $offsets )
+			->useIndex( [ 'revision' => 'rev_page_timestamp' ] )
+			->orderBy( [ 'rev_timestamp' ], $dirs )
+			->limit( $limit )
+			->caller( __METHOD__ )
+			->fetchResultSet();
+
+		return $res;
 	}
 
 	/**
