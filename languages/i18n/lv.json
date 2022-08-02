@@ -361,6 +361,7 @@
 	"querypage-no-updates": "Šīs lapas atjaunošana pagaidām ir atslēgta. Te esošie dati tuvākajā laikā netiks atjaunoti.",
 	"querypage-updates-periodical": "Šī lapa tiek atjaunināta periodiski.",
 	"viewsource": "Aplūkot kodu",
+	"skin-action-viewsource": "Aplūkot kodu",
 	"viewsource-title": "Apskatīt $1 izejas kodu",
 	"actionthrottled": "Darbība netika atļauta",
 	"actionthrottledtext": "Kā ļaunprātīgas izmantošanas novēršanas līdzeklis jums ir liegts šo darbību veikt pārāk daudz reižu īsā laika sprīdī, un jūs esat pārsniedzis šo ierobežojumu.\nLūdzu, pēc dažām minūtēm mēģiniet vēlreiz.",
