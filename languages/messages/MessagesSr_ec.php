@@ -32,7 +32,7 @@
  * @author לערי ריינהארט
  */
 
-$fallback = 'sr-cyrl';
+$fallback = 'sr-cyrl, sr';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Медиј',
