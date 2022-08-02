@@ -23,7 +23,7 @@
  * @author לערי ריינהארט
  */
 
-$fallback = 'sr-latn';
+$fallback = 'sr-latn, sr';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Medij',
