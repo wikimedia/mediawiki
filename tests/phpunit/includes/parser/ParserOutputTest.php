@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Tests\Parser\ParserCacheSerializationTestCases;
 use Wikimedia\TestingAccessWrapper;
@@ -18,9 +19,10 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		parent::setUp();
 
 		MWTimestamp::setFakeTime( ParserCacheSerializationTestCases::FAKE_TIME );
-		$this->setMwGlobals( [
-			'wgParserCacheExpireTime' => ParserCacheSerializationTestCases::FAKE_CACHE_EXPIRY
-		] );
+		$this->overrideConfigValue(
+			MainConfigNames::ParserCacheExpireTime,
+			ParserCacheSerializationTestCases::FAKE_CACHE_EXPIRY
+		);
 	}
 
 	/**
@@ -245,10 +247,10 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * @param string $expect Expected output
 	 */
 	public function testGetText( $options, $text, $expect ) {
-		$this->setMwGlobals( [
-			'wgArticlePath' => '/wiki/$1',
-			'wgScriptPath' => '/w',
-			'wgScript' => '/w/index.php',
+		$this->overrideConfigValues( [
+			MainConfigNames::ArticlePath => '/wiki/$1',
+			MainConfigNames::ScriptPath => '/w',
+			MainConfigNames::Script => '/w/index.php',
 		] );
 
 		$po = new ParserOutput( $text );
@@ -580,9 +582,7 @@ EOF
 	 * @dataProvider provideGetText_absoluteURLs
 	 */
 	public function testGetText_absoluteURLs( string $text, string $expectedText ) {
-		$this->setMwGlobals( [
-			'wgServer' => '//TEST_SERVER'
-		] );
+		$this->overrideConfigValue( MainConfigNames::Server, '//TEST_SERVER' );
 		$parserOutput = new ParserOutput( $text );
 		$this->assertSame( $expectedText, $parserOutput->getText( [ 'absoluteURLs' => true ] ) );
 	}

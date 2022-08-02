@@ -308,7 +308,7 @@ class RevisionQueryInfoTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::getQueryInfo
 	 */
 	public function testRevisionStoreGetQueryInfo( $migrationStageSettings, $options, $expected ) {
-		$this->setMwGlobals( $migrationStageSettings );
+		$this->overrideConfigValues( $migrationStageSettings );
 
 		$store = $this->getServiceContainer()->getRevisionStore();
 
@@ -325,7 +325,7 @@ class RevisionQueryInfoTest extends MediaWikiIntegrationTestCase {
 		$options,
 		$expected
 	) {
-		$this->setMwGlobals( $migrationStageSettings );
+		$this->overrideConfigValues( $migrationStageSettings );
 
 		$store = $this->getServiceContainer()->getRevisionStore();
 
@@ -338,7 +338,7 @@ class RevisionQueryInfoTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::getArchiveQueryInfo
 	 */
 	public function testRevisionStoreGetArchiveQueryInfo( $migrationStageSettings, $expected ) {
-		$this->setMwGlobals( $migrationStageSettings );
+		$this->overrideConfigValues( $migrationStageSettings );
 
 		$store = $this->getServiceContainer()->getRevisionStore();
 

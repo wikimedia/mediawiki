@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\ResourceLoader;
 
 use LogicException;
+use MediaWiki\MainConfigNames;
 use MediaWiki\ResourceLoader\FileModule;
 use MediaWiki\ResourceLoader\Module;
 use MediaWiki\ResourceLoader\ResourceLoader;
@@ -169,7 +170,7 @@ class ModuleTest extends ResourceLoaderTestCase {
 	 * @covers \MediaWiki\ResourceLoader\Module::validateScriptFile
 	 */
 	public function testValidateScriptFile() {
-		$this->setMwGlobals( 'wgResourceLoaderValidateJS', true );
+		$this->overrideConfigValue( MainConfigNames::ResourceLoaderValidateJS, true );
 
 		$context = $this->getResourceLoaderContext();
 

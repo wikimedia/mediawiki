@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -375,7 +376,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 	/** @dataProvider provideGuessSectionNameFromWikiText */
 	public function testGuessSectionNameFromWikiText( $input, $mode, $expected ) {
-		$this->setMwGlobals( [ 'wgFragmentMode' => [ $mode ] ] );
+		$this->overrideConfigValue( MainConfigNames::FragmentMode, [ $mode ] );
 		$result = $this->getServiceContainer()->getParser()
 			->guessSectionNameFromWikiText( $input );
 		$this->assertEquals( $expected, $result );
