@@ -7,6 +7,7 @@ use Exception;
 use ExtensionRegistry;
 use FauxRequest;
 use InvalidArgumentException;
+use MediaWiki\MainConfigNames;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\FileModule;
 use MediaWiki\ResourceLoader\ResourceLoader;
@@ -29,10 +30,8 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgSkinLessVariablesImportPaths' => [],
-			'wgShowExceptionDetails' => true,
-		] );
+		$this->setMwGlobals( 'wgSkinLessVariablesImportPaths', [] );
+		$this->overrideConfigValue( MainConfigNames::ShowExceptionDetails, true );
 	}
 
 	/**
@@ -41,13 +40,12 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 */
 	public function testServiceWiring() {
 		$ranHook = 0;
-		$this->setMwGlobals( 'wgHooks', [
-			'ResourceLoaderRegisterModules' => [
-				static function ( &$resourceLoader ) use ( &$ranHook ) {
-					$ranHook++;
-				}
-			]
-		] );
+		$this->setTemporaryHook(
+			'ResourceLoaderRegisterModules',
+			static function ( &$resourceLoader ) use ( &$ranHook ) {
+				$ranHook++;
+			}
+		);
 
 		$this->getServiceContainer()->getResourceLoader();
 
@@ -229,7 +227,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 			],
 			[
 				'config' => [
-					'wgValidSkinNames' => [
+					MainConfigNames::ValidSkinNames => [
 						// Required to make Context::getSkin work
 						'example' => 'Example',
 					],
@@ -247,7 +245,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 * @dataProvider provideMediaWikiVariablesCases
 	 */
 	public function testMediawikiVariablesDefault( array $config, array $importPaths, $skin, $expectedFile ) {
-		$this->setMwGlobals( $config );
+		$this->overrideConfigValues( $config );
 		$reset = ExtensionRegistry::getInstance()->setAttributeForTest( 'SkinLessImportPaths', $importPaths );
 
 		$context = $this->getResourceLoaderContext( [ 'skin' => $skin ] );

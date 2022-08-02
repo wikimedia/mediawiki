@@ -274,7 +274,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::prepareContentForEdit
 	 */
 	public function testDoUserEditContent() {
-		$this->setMwGlobals( 'wgPageCreationLog', true );
+		$this->overrideConfigValue( MainConfigNames::PageCreationLog, true );
 
 		$page = $this->newPage( __METHOD__ );
 		$title = $page->getTitle();
@@ -831,9 +831,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers \Mediawiki\Page\RedirectLookup::getRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $model, $text, $target ) {
-		$this->setMwGlobals( [
-			'wgCapitalLinks' => true,
-		] );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, true );
 
 		$page = $this->createPage( $title, $text, $model );
 
@@ -936,7 +934,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::isCountable
 	 */
 	public function testIsCountable( $title, $model, $text, $mode, $expected ) {
-		$this->setMwGlobals( 'wgArticleCountMethod', $mode );
+		$this->overrideConfigValue( MainConfigNames::ArticleCountMethod, $mode );
 
 		$title = Title::newFromText( $title );
 

@@ -2,6 +2,8 @@
 
 declare( strict_types = 1 );
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @covers LinkHolderArray
  */
@@ -16,7 +18,7 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 	 * @param bool $expected
 	 */
 	public function testIsBig( int $size, int $global, bool $expected ) {
-		$this->setMwGlobals( 'wgLinkHolderBatchSize', $global );
+		$this->overrideConfigValue( MainConfigNames::LinkHolderBatchSize, $global );
 		$linkHolderArray = new LinkHolderArray(
 			$this->createMock( Parser::class ),
 			$this->createMock( ILanguageConverter::class ),
