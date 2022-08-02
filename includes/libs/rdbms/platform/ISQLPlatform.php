@@ -608,4 +608,13 @@ interface ISQLPlatform {
 	 * @since 1.39
 	 */
 	public function buildExcludedValue( $column );
+
+	/**
+	 * Set schema variables to be used when streaming commands from SQL files or stdin
+	 *
+	 * Variables appear as SQL comments and are substituted by their corresponding values
+	 *
+	 * @param array|null $vars Map of (variable => value) or null to use the defaults
+	 */
+	public function setSchemaVars( $vars );
 }

@@ -1,12 +1,13 @@
 <?php
 
+use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseSqlite;
+use Wikimedia\Rdbms\Platform\SqlitePlatform;
 use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\TransactionProfiler;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group sqlite
@@ -89,9 +90,9 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	 */
 	private function replaceVars( $sql ) {
 		/** @var Database $wrapper */
-		$wrapper = TestingAccessWrapper::newFromObject( $this->db );
+		$platform = new SqlitePlatform( new AddQuoterMock() );
 		// normalize spacing to hide implementation details
-		return preg_replace( '/\s+/', ' ', $wrapper->replaceVars( $sql ) );
+		return preg_replace( '/\s+/', ' ', $platform->replaceVars( $sql ) );
 	}
 
 	private function assertResultIs( $expected, $res ) {
@@ -161,7 +162,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::replaceVars
+	 * @covers \Wikimedia\Rdbms\Platform\SqlitePlatform::replaceVars
 	 */
 	public function testReplaceVars() {
 		$this->assertEquals( 'foo', $this->replaceVars( 'foo' ), "Don't break anything accidentally" );

@@ -45,6 +45,8 @@ class SQLPlatform implements ISQLPlatform {
 	protected $indexAliases = [];
 	/** @var DatabaseDomain|null */
 	protected $currentDomain;
+	/** @var array|null Current variables use for schema element placeholders */
+	protected $schemaVars;
 	/** @var DbQuoter */
 	protected $quoter;
 	/** @var LoggerInterface */
@@ -1987,5 +1989,85 @@ class SQLPlatform implements ISQLPlatform {
 		}
 
 		return $column;
+	}
+
+	public function setSchemaVars( $vars ) {
+		$this->schemaVars = is_array( $vars ) ? $vars : null;
+	}
+
+	/**
+	 * Get schema variables. If none have been set via setSchemaVars(), then
+	 * use some defaults from the current object.
+	 *
+	 * @return array
+	 */
+	protected function getSchemaVars() {
+		return $this->schemaVars ?? $this->getDefaultSchemaVars();
+	}
+
+	/**
+	 * Get schema variables to use if none have been set via setSchemaVars().
+	 *
+	 * Override this in derived classes to provide variables for tables.sql
+	 * and SQL patch files.
+	 *
+	 * @stable to override
+	 * @return array
+	 */
+	protected function getDefaultSchemaVars() {
+		return [];
+	}
+
+	/**
+	 * Database-independent variable replacement. Replaces a set of variables
+	 * in an SQL statement with their contents as given by $this->getSchemaVars().
+	 *
+	 * Supports '{$var}' `{$var}` and / *$var* / (without the spaces) style variables.
+	 *
+	 * - '{$var}' should be used for text and is passed through the database's
+	 *   addQuotes method.
+	 * - `{$var}` should be used for identifiers (e.g. table and database names).
+	 *   It is passed through the database's addIdentifierQuotes method which
+	 *   can be overridden if the database uses something other than backticks.
+	 * - / *_* / or / *$wgDBprefix* / passes the name that follows through the
+	 *   database's tableName method.
+	 * - / *i* / passes the name that follows through the database's indexName method.
+	 * - In all other cases, / *$var* / is left unencoded. Except for table options,
+	 *   its use should be avoided. In 1.24 and older, string encoding was applied.
+	 *
+	 * @stable to override
+	 * @param string $ins SQL statement to replace variables in
+	 * @return string The new SQL statement with variables replaced
+	 */
+	public function replaceVars( $ins ) {
+		$vars = $this->getSchemaVars();
+		return preg_replace_callback(
+			'!
+				/\* (\$wgDBprefix|[_i]) \*/ (\w*) | # 1-2. tableName, indexName
+				\'\{\$ (\w+) }\'                  | # 3. addQuotes
+				`\{\$ (\w+) }`                    | # 4. addIdentifierQuotes
+				/\*\$ (\w+) \*/                     # 5. leave unencoded
+			!x',
+			function ( $m ) use ( $vars ) {
+				// Note: Because of <https://bugs.php.net/bug.php?id=51881>,
+				// check for both nonexistent keys *and* the empty string.
+				if ( isset( $m[1] ) && $m[1] !== '' ) {
+					if ( $m[1] === 'i' ) {
+						return $this->indexName( $m[2] );
+					} else {
+						return $this->tableName( $m[2] );
+					}
+				} elseif ( isset( $m[3] ) && $m[3] !== '' && array_key_exists( $m[3], $vars ) ) {
+					return $this->quoter->addQuotes( $vars[$m[3]] );
+				} elseif ( isset( $m[4] ) && $m[4] !== '' && array_key_exists( $m[4], $vars ) ) {
+					return $this->addIdentifierQuotes( $vars[$m[4]] );
+				} elseif ( isset( $m[5] ) && $m[5] !== '' && array_key_exists( $m[5], $vars ) ) {
+					return $vars[$m[5]];
+				} else {
+					return $m[0];
+				}
+			},
+			$ins
+		);
 	}
 }
