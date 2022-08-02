@@ -712,15 +712,18 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * Get a user page target for things like logs.
 	 * This handles account and IP range targets.
-	 * @param UserIdentity|string $target
+	 * @param UserIdentity|string|null $target
 	 * @return PageReference|null
 	 */
 	protected static function getTargetUserTitle( $target ): ?PageReference {
 		if ( $target instanceof UserIdentity ) {
 			return PageReferenceValue::localReference( NS_USER, $target->getName() );
-		} elseif ( IPUtils::isIPAddress( $target ) ) {
+		}
+
+		if ( is_string( $target ) && IPUtils::isIPAddress( $target ) ) {
 			return PageReferenceValue::localReference( NS_USER, $target );
 		}
+
 		return null;
 	}
 
