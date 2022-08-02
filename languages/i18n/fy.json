@@ -327,6 +327,7 @@
 	"perfcachedts": "It neikommende is bewarre data, dy't it lêst bywurke is op $2 om $3. In maksimum fan {{PLURAL:$4|ien resultaat is|$4 resultaten binne}} beskikber yn 'e oerslach.",
 	"querypage-no-updates": "Dizze side kin net bywurke wurde. Dizze gegevens wurde net ferfarske.",
 	"viewsource": "Boarne besjen",
+	"skin-action-viewsource": "Boarne besjen",
 	"viewsource-title": "Besjoch de boarne foar $1",
 	"actionthrottled": "Hanneling opkeard",
 	"actionthrottledtext": "As maatregel tsjin misbrûk is it tal kearen per tiidsienheid beheind dat jo dizze hanneling ferrjochtsje kinne. Jo binne oer de limyt. Besykje it in tal minuten letter wer.",
