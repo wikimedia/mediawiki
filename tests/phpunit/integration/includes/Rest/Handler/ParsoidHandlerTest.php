@@ -979,6 +979,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$htmlOfMinimal2222 = $this->getTextFromFile( 'Minimal-2222.html' );
 		$attribs = [
 			'opts' => [
+				'from' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
 				'original' => [
 					'html' => [
 						'headers' => [
@@ -995,8 +996,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$attribs,
 			$htmlOfMinimal,
 			new HttpException(
-				'Modified (2.4.0) and original (2222.0.0) html are of different ' .
-				'type, and no path to downgrade.', 400
+				'No downgrade possible from schema version 2222.0.0 to 2.4.0.', 400
 			)
 		];
 
@@ -1066,6 +1066,15 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		// Could not find previous revision ////////////////////////////
 		$attribs = [
 			'oldid' => 1155779922,
+			'opts' => [
+				// set original HTML to enable selser
+				'original' => [
+					'html' => [
+						'headers' => $htmlHeaders,
+						'body' => $html,
+					]
+				]
+			]
 		];
 		yield 'Could not find previous revision' => [
 			$attribs,

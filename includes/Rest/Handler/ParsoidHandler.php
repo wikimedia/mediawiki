@@ -289,23 +289,36 @@ abstract class ParsoidHandler extends Handler {
 			$transform->setOriginalRevisionId( $attribs['oldid'] );
 		}
 
-		if ( isset( $attribs['opts']['data-mw']['body'] ) ) {
-			$transform->setModifiedDataMW( $attribs['opts']['data-mw']['body'] );
+		$original = $attribs['opts']['original'] ?? [];
+
+		// NOTE: We may have an 'original' key that contains no html, but
+		//       just wikitext. We can ignore that here, we only care if there is HTML.
+		if ( !empty( $original['html']['headers']['content-type'] ) ) {
+			$vOriginal = ParsoidFormatHelper::parseContentTypeHeader(
+				$original['html']['headers']['content-type']
+			);
+
+			if ( $vOriginal ) {
+				$transform->setOriginalSchemaVersion( $vOriginal );
+			}
 		}
 
-		if ( !empty( $attribs['opts']['original'] ) ) {
-			$original = $attribs['opts']['original'];
+		if ( isset( $original['html']['body'] ) ) {
+			$transform->setOriginalHtml( $original['html']['body'] );
+		}
 
-			if ( $attribs['opts']['from'] !== ParsoidFormatHelper::FORMAT_PAGEBUNDLE ) {
-				// XXX: Throw instead? And also throw if the input format is pagebundle,
-				//      and the fields are missing?
-				unset( $original['data-parsoid'] );
-				unset( $original['data-mw'] );
+		if ( $attribs['opts']['from'] === ParsoidFormatHelper::FORMAT_PAGEBUNDLE ) {
+			if ( isset( $original['data-parsoid']['body'] ) ) {
+				$transform->setOriginalDataParsoid( $original['data-parsoid']['body'] );
 			}
 
-			// XXX: We could create a PageBundle object here, instead of passing
-			//      an array.
-			$transform->setOriginalData( $original );
+			if ( isset( $original['data-mw']['body'] ) ) {
+				$transform->setOriginalDataMW( $original['data-mw']['body'] );
+			}
+		}
+
+		if ( isset( $attribs['opts']['data-mw']['body'] ) ) {
+			$transform->setModifiedDataMW( $attribs['opts']['data-mw']['body'] );
 		}
 
 		return $transform;
