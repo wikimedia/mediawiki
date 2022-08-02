@@ -114,7 +114,7 @@ abstract class SchemaMaintenance extends Maintenance {
 		}
 
 		foreach ( $platforms as $platform ) {
-			$sqlPath = $this->getOption( 'sql', dirname( __DIR__ ) );
+			$sqlPath = $this->getOption( 'sql', dirname( $jsonPath ) );
 
 			// MediaWiki, and some extensions place mysql .sql files in the directory root, instead of a dedicated
 			// sub directory. If mysql/ doesn't exist, assume that the .sql files should be in the directory root.
@@ -160,13 +160,14 @@ abstract class SchemaMaintenance extends Maintenance {
 	 * @return string
 	 */
 	private function getSqlPathWithFileName( string $relativeJsonPath, string $sqlPath ): string {
-		if ( str_ends_with( $relativeJsonPath, 'tables.json' ) ) {
-			$sqlPath .= '/tables-generated.sql';
+		$jsonFilename = pathinfo( $relativeJsonPath, PATHINFO_FILENAME );
+		if ( str_starts_with( $jsonFilename, 'tables' ) ) {
+			$sqlFileName = $jsonFilename . '-generated.sql';
 		} else {
-			$sqlPath .= '/' . pathinfo( $relativeJsonPath, PATHINFO_FILENAME ) . '.sql';
+			$sqlFileName = $jsonFilename . '.sql';
 		}
 
-		return $sqlPath;
+		return $sqlPath . '/' . $sqlFileName;
 	}
 
 	private function writeSchema(

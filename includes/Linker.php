@@ -27,6 +27,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Some internal bits split of from Skin.php. These functions are used
@@ -1858,18 +1859,16 @@ class Linker {
 
 		// Up to the value of $wgShowRollbackEditCount revisions are counted
 		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
-		$res = $dbr->select(
-			$revQuery['tables'],
-			[ 'rev_user_text' => $revQuery['fields']['rev_user_text'], 'rev_deleted' ],
-			[ 'rev_page' => $revRecord->getPageId() ],
-			__METHOD__,
-			[
-				'USE INDEX' => [ 'revision' => 'rev_page_timestamp' ],
-				'ORDER BY' => [ 'rev_timestamp DESC', 'rev_id DESC' ],
-				'LIMIT' => $showRollbackEditCount + 1
-			],
-			$revQuery['joins']
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'rev_user_text' => $revQuery['fields']['rev_user_text'], 'rev_deleted' ] )
+			->tables( $revQuery['tables'] )
+			->where( [ 'rev_page' => $revRecord->getPageId() ] )
+			->joinConds( $revQuery['joins'] )
+			->useIndex( [ 'revision' => 'rev_page_timestamp' ] )
+			->orderBy( [ 'rev_timestamp', 'rev_id' ], SelectQueryBuilder::SORT_DESC )
+			->limit( $showRollbackEditCount + 1 )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$revUser = $revRecord->getUser( RevisionRecord::RAW );
 		$revUserText = $revUser ? $revUser->getName() : '';

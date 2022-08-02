@@ -686,13 +686,13 @@ class MovePage {
 
 		if ( $protected ) {
 			# Protect the redirect title as the title used to be...
-			$res = $dbw->select(
-				'page_restrictions',
-				[ 'pr_type', 'pr_level', 'pr_cascade', 'pr_expiry' ],
-				[ 'pr_page' => $pageid ],
-				__METHOD__,
-				'FOR UPDATE'
-			);
+			$res = $dbw->newSelectQueryBuilder()
+				->select( [ 'pr_type', 'pr_level', 'pr_cascade', 'pr_expiry' ] )
+				->from( 'page_restrictions' )
+				->where( [ 'pr_page' => $pageid ] )
+				->forUpdate()
+				->caller( __METHOD__ )
+				->fetchResultSet();
 			$rowsInsert = [];
 			foreach ( $res as $row ) {
 				$rowsInsert[] = [
