@@ -139,9 +139,11 @@ MediaWiki supports over 350 languages. Many localisations are updated regularly.
 Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
-* (T313200) Added language support for Rundi (Kirundi, rn). (Actually, it was
-  in Names.php and even used for a Wikipedia, but actual localization
-  was added only now.)
+* Actual localization was added for several languages, which were already
+  in Names.php and even used for a Wikipedia:
+** (T313200) Added language support for Rundi (Kirundi, rn).
+** (T310976) Added language support for Tumbuka (ChiTumbuka, tum).
+** (T314270) Added language support for Kanuri (kr).
 * (T313199) Added language support for Sylheti (syl).
 * (T311975) Added language support for Ghanaian Pidgin (gpe).
 * (T307080) Added language support for Okinawan (ryu).
@@ -149,9 +151,6 @@ because of Phabricator reports.
 * (T308813) Added language support for Nigerian Pidgin (pcm).
 * (T309763) Added language support for Tai Nüa (tdd).
 * (T310040) Added language support for Fante (fat).
-* (T310976) Added language support for Tumbuka (tum). (Actually, it was
-  in Names.php and even used for a Wikipedia, but actual localization
-  was added only now.)
 * (T311034) Added language support for Campidanese Sardinian (sro).
 * (T304920) In Swahili, The "Media" namespace is now "Media", as in English,
   and the "File" namespace is now "Faili". The old name of the "File" namespace
