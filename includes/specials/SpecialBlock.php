@@ -610,13 +610,15 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * Get a user page target for things like logs.
 	 * This handles account and IP range targets.
-	 * @param User|string $target
+	 * @param User|string|null $target
 	 * @return Title|null
 	 */
 	protected static function getTargetUserTitle( $target ) {
 		if ( $target instanceof User ) {
 			return $target->getUserPage();
-		} elseif ( IPUtils::isIPAddress( $target ) ) {
+		}
+
+		if ( is_string( $target ) && IPUtils::isIPAddress( $target ) ) {
 			return Title::makeTitleSafe( NS_USER, $target );
 		}
 
