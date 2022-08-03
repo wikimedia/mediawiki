@@ -69,7 +69,7 @@
 		"wikimedia/relpath": "3.0.0",
 		"wikimedia/remex-html": "3.0.2",
 		"wikimedia/request-timeout": "1.2.0",
-		"wikimedia/running-stat": "2.0.0",
+		"wikimedia/running-stat": "2.1.0",
 		"wikimedia/scoped-callback": "4.0.0",
 		"wikimedia/services": "3.0.0",
 		"wikimedia/shellbox": "3.0.0",
