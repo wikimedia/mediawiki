@@ -542,7 +542,6 @@ return [
 			'RenderHashAppend' => '',
 			'EnableSidebarCache' => false,
 			'SidebarCacheExpiry' => 86400,
-			'FooterLinkCacheExpiry' => 0,
 			'UseGzip' => false,
 			'InvalidateCacheOnLocalSettingsChange' => true,
 			'ExtensionInfoMTime' => false,
