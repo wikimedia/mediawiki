@@ -795,14 +795,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 
 		// Combine versions to propagate cache invalidation
-		$versionHash = '';
-		try {
-			$versionHash = $this->getCombinedVersion( $context, array_keys( $modules ) );
-		} catch ( TimeoutException $e ) {
-			throw $e;
-		} catch ( Exception $e ) {
-			$this->outputErrorAndLog( $e, 'Calculating version hash failed: {exception}' );
-		}
+		$versionHash = $this->getCombinedVersion( $context, array_keys( $modules ) );
 
 		// See RFC 2616 § 3.11 Entity Tags
 		// https://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.11
