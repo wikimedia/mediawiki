@@ -1622,12 +1622,6 @@ class MainConfigNames {
 	public const SidebarCacheExpiry = 'SidebarCacheExpiry';
 
 	/**
-	 * Name constant for the FooterLinkCacheExpiry setting, for use with Config::get()
-	 * @see MainConfigSchema::FooterLinkCacheExpiry
-	 */
-	public const FooterLinkCacheExpiry = 'FooterLinkCacheExpiry';
-
-	/**
 	 * Name constant for the UseGzip setting, for use with Config::get()
 	 * @see MainConfigSchema::UseGzip
 	 */

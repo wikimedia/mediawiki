@@ -1606,12 +1606,6 @@ $wgEnableSidebarCache = null;
 $wgSidebarCacheExpiry = null;
 
 /**
- * Config variable stub for the FooterLinkCacheExpiry setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::FooterLinkCacheExpiry
- */
-$wgFooterLinkCacheExpiry = null;
-
-/**
  * Config variable stub for the UseGzip setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::UseGzip
  */
