@@ -257,10 +257,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	public function __construct( array $params ) {
 		$this->connectionParams = [
-			'host' => strlen( $params['host'] ) ? $params['host'] : null,
-			'user' => strlen( $params['user'] ) ? $params['user'] : null,
-			'dbname' => strlen( $params['dbname'] ) ? $params['dbname'] : null,
-			'schema' => strlen( $params['schema'] ) ? $params['schema'] : null,
+			'host' => ( isset( $params['host'] ) && $params['host'] !== '' )
+				? $params['host']
+				: null,
+			'user' => ( isset( $params['user'] ) && $params['user'] !== '' )
+				? $params['user']
+				: null,
+			'dbname' => ( isset( $params['dbname'] ) && $params['dbname'] !== '' )
+				? $params['dbname']
+				: null,
+			'schema' => ( isset( $params['schema'] ) && $params['schema'] !== '' )
+				? $params['schema']
+				: null,
 			'password' => is_string( $params['password'] ) ? $params['password'] : null,
 			'tablePrefix' => (string)$params['tablePrefix']
 		];
@@ -564,6 +572,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function tablePrefix( $prefix = null ) {
 		$old = $this->currentDomain->getTablePrefix();
+
 		if ( $prefix !== null ) {
 			$this->currentDomain = new DatabaseDomain(
 				$this->currentDomain->getDatabase(),
@@ -576,16 +585,20 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function dbSchema( $schema = null ) {
-		if ( strlen( $schema ) && $this->getDBname() === null ) {
-			throw new DBUnexpectedError( $this, "Cannot set schema to '$schema'; no database set" );
-		}
-
 		$old = $this->currentDomain->getSchema();
+
 		if ( $schema !== null ) {
+			if ( $schema !== '' && $this->getDBname() === null ) {
+				throw new DBUnexpectedError(
+					$this,
+					"Cannot set schema to '$schema'; no database set"
+				);
+			}
+
 			$this->currentDomain = new DatabaseDomain(
 				$this->currentDomain->getDatabase(),
 				// DatabaseDomain uses null for unspecified schemas
-				strlen( $schema ) ? $schema : null,
+				( $schema !== '' ) ? $schema : null,
 				$this->currentDomain->getTablePrefix()
 			);
 		}
@@ -2899,7 +2912,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return string Relation name with quoted and merged $namespace as needed
 	 */
 	private function prependDatabaseOrSchema( $namespace, $relation, $format ) {
-		if ( strlen( $namespace ) ) {
+		if ( $namespace !== null && $namespace !== '' ) {
 			if ( $format === 'quoted' && !$this->isQuotedIdentifier( $namespace ) ) {
 				$namespace = $this->addIdentifierQuotes( $namespace );
 			}
