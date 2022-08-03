@@ -781,7 +781,6 @@ final class SessionBackend {
 		}
 
 		$flags = $this->persist ? 0 : CachedBagOStuff::WRITE_CACHE_ONLY;
-		$flags |= CachedBagOStuff::WRITE_SYNC; // write to all datacenters
 		$this->store->set(
 			$this->store->makeKey( 'MWSession', (string)$this->id ),
 			[
