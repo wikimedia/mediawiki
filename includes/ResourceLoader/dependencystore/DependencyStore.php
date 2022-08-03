@@ -53,7 +53,6 @@ abstract class DependencyStore {
 	 * @param string $type Entity type
 	 * @param string $entity Entity name
 	 * @return array Map of (paths: paths, asOf: UNIX timestamp or null)
-	 * @throws DependencyStoreException
 	 */
 	final public function retrieve( $type, $entity ) {
 		return $this->retrieveMulti( $type, [ $entity ] )[$entity];
@@ -63,11 +62,9 @@ abstract class DependencyStore {
 	 * Get the currently tracked dependencies for a set of entities
 	 *
 	 * @see KeyValueDependencyStore::retrieve()
-	 *
 	 * @param string $type Entity type
 	 * @param string[] $entities Entity names
 	 * @return array[] Map of (entity => (paths: paths, asOf: UNIX timestamp or null))
-	 * @throws DependencyStoreException
 	 */
 	abstract public function retrieveMulti( $type, array $entities );
 
@@ -78,7 +75,6 @@ abstract class DependencyStore {
 	 * @param string $entity Entity name
 	 * @param array $data Map of (paths: paths, asOf: UNIX timestamp or null)
 	 * @param int $ttl New time-to-live in seconds
-	 * @throws DependencyStoreException
 	 */
 	final public function store( $type, $entity, array $data, $ttl ) {
 		$this->storeMulti( $type, [ $entity => $data ], $ttl );
@@ -88,11 +84,9 @@ abstract class DependencyStore {
 	 * Set the currently tracked dependencies for a set of entities
 	 *
 	 * @see KeyValueDependencyStore::store()
-	 *
 	 * @param string $type Entity type
 	 * @param array[] $dataByEntity Map of (entity => (paths: paths, asOf: UNIX timestamp or null))
 	 * @param int $ttl New time-to-live in seconds
-	 * @throws DependencyStoreException
 	 *
 	 */
 	abstract public function storeMulti( $type, array $dataByEntity, $ttl );
@@ -102,7 +96,6 @@ abstract class DependencyStore {
 	 *
 	 * @param string $type Entity type
 	 * @param string|string[] $entities Entity name(s)
-	 * @throws DependencyStoreException
 	 */
 	abstract public function remove( $type, $entities );
 }
