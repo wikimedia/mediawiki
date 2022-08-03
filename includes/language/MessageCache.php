@@ -515,11 +515,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @return array Loaded messages for storing in caches
 	 */
 	private function loadFromDB( $code, $mode = null ) {
-		// (T164666) The query here performs really poorly on WMF's
-		// contributions replicas. We don't have a way to say "any group except
-		// contributions", so for the moment let's specify 'api'.
-		// @todo: Get rid of this hack.
-		$dbr = wfGetDB( ( $mode === self::FOR_UPDATE ) ? DB_PRIMARY : DB_REPLICA, 'api' );
+		$dbr = wfGetDB( ( $mode === self::FOR_UPDATE ) ? DB_PRIMARY : DB_REPLICA );
 
 		$cache = [];
 
