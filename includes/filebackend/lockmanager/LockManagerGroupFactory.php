@@ -3,7 +3,6 @@
 namespace MediaWiki\FileBackend\LockManager;
 
 use LockManagerGroup;
-use Wikimedia\Rdbms\LBFactory;
 
 /**
  * Service to construct LockManagerGroups.
@@ -15,9 +14,6 @@ class LockManagerGroupFactory {
 	/** @var array */
 	private $lockManagerConfigs;
 
-	/** @var LBFactory */
-	private $lbFactory;
-
 	/** @var LockManagerGroup[] (domain => LockManagerGroup) */
 	private $instances = [];
 
@@ -26,12 +22,10 @@ class LockManagerGroupFactory {
 	 *
 	 * @param string $defaultDomain
 	 * @param array $lockManagerConfigs In format of $wgLockManagers
-	 * @param LBFactory $lbFactory
 	 */
-	public function __construct( $defaultDomain, array $lockManagerConfigs, LBFactory $lbFactory ) {
+	public function __construct( $defaultDomain, array $lockManagerConfigs ) {
 		$this->defaultDomain = $defaultDomain;
 		$this->lockManagerConfigs = $lockManagerConfigs;
-		$this->lbFactory = $lbFactory;
 	}
 
 	/**
@@ -46,7 +40,7 @@ class LockManagerGroupFactory {
 
 		if ( !isset( $this->instances[$domain] ) ) {
 			$this->instances[$domain] =
-				new LockManagerGroup( $domain, $this->lockManagerConfigs, $this->lbFactory );
+				new LockManagerGroup( $domain, $this->lockManagerConfigs );
 		}
 
 		return $this->instances[$domain];
