@@ -970,6 +970,9 @@ class ChangesList extends ContextSource {
 				$attrs['data-mw-logaction'] =
 					$rc->mAttribs['rc_log_type'] . '/' . $rc->mAttribs['rc_log_action'];
 				break;
+			case RecentChange::SRC_CATEGORIZE:
+				$attrs['data-mw-revid'] = $rc->mAttribs['rc_this_oldid'];
+				break;
 		}
 
 		$attrs[ 'data-mw-ts' ] = $rc->getAttribute( 'rc_timestamp' );
