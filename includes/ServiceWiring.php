@@ -920,8 +920,7 @@ return [
 	'LockManagerGroupFactory' => static function ( MediaWikiServices $services ): LockManagerGroupFactory {
 		return new LockManagerGroupFactory(
 			WikiMap::getCurrentWikiDbDomain()->getId(),
-			$services->getMainConfig()->get( MainConfigNames::LockManagers ),
-			$services->getDBLoadBalancerFactory()
+			$services->getMainConfig()->get( MainConfigNames::LockManagers )
 		);
 	},
 
