@@ -58,7 +58,7 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers MultiWriteBagOStuff
 	 */
-	public function testSyncMerge() {
+	public function testSyncMergeAsync() {
 		$key = 'keyA';
 		$value = 'value';
 		$func = static function () use ( $value ) {
@@ -79,16 +79,33 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 
 		// Set in tier 2
 		$this->assertEquals( $value, $this->cache2->get( $key ), 'Written to tier 2' );
+	}
+
+	/**
+	 * @covers MultiWriteBagOStuff
+	 */
+	public function testSyncMergeSync() {
+		// Like setUp() but without 'async'
+		$cache1 = new HashBagOStuff();
+		$cache2 = new HashBagOStuff();
+		$cache = new MultiWriteBagOStuff( [
+			'caches' => [ $cache1, $cache2 ]
+		] );
+		$value = 'value';
+		$func = static function () use ( $value ) {
+			return $value;
+		};
 
 		$key = 'keyB';
 
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->begin();
-		$this->cache->merge( $key, $func, 0, 1, BagOStuff::WRITE_SYNC );
+		$cache->merge( $key, $func );
 
 		// Set in tier 1
-		$this->assertEquals( $value, $this->cache1->get( $key ), 'Written to tier 1' );
-		// Also set in tier 2
-		$this->assertEquals( $value, $this->cache2->get( $key ), 'Written to tier 2' );
+		$this->assertEquals( $value, $cache1->get( $key ), 'Written to tier 1' );
+		// Immediately set in tier 2
+		$this->assertEquals( $value, $cache2->get( $key ), 'Written to tier 2' );
 
 		$dbw->commit();
 	}

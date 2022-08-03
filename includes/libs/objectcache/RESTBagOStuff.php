@@ -36,15 +36,6 @@ use Psr\Log\LoggerInterface;
  *   inherit a native and best-effort implementation based on get+set.
  *   These should not be relied upon.
  *
- * - The `WRITE_SYNC` flag is ignored.
- *
- *   As with most BagOStuff backends, this flag is unsupported. It receives
- *   special mention here, as it was introduced for Multi-DC MediaWiki support
- *   and set by MediaWiki's SessionBackend for many years, for which
- *   RESTBagOStuff was developed. As part of T270225 and other T270223 subtasks,
- *   it was decided that we don't actually need synchronous waiting for session
- *   writes.
- *
  * ### Backend requirements
  *
  * The HTTP server will receive requests for URLs like `{baseURL}/{KEY}`. It

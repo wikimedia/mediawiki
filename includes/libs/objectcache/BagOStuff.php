@@ -62,14 +62,12 @@ use Wikimedia\ScopedCallback;
  *    from the local datacenter (e.g. by avoiding replica DBs or invoking quorom reads).
  *  - Write operation methods, e.g. set(), should be synchronous in the local datacenter, with
  *    asynchronous cross-datacenter replication. This replication can be either "best effort"
- *    or eventually consistent. When used with WRITE_SYNC, such operations will wait until all
- *    datacenters are updated or a timeout occurs. If the write succeeded, then any subsequent
- *    get() operations with READ_LATEST, regardless of datacenter, should reflect the changes.
+ *    or eventually consistent. If the write succeeded, then any subsequent `get()` operations with
+ *    READ_LATEST, regardless of datacenter, should reflect the changes.
  *  - Locking operation methods, e.g. lock(), unlock(), and getScopedLock(), should only apply
  *    to the local datacenter.
  *  - Any set of single-key write operation method calls originating from a single datacenter
- *    should observe "best effort" linearizability. Any set of single-key write operations using
- *    WRITE_SYNC, regardless of the datacenter, should observe "best effort" linearizability.
+ *    should observe "best effort" linearizability.
  *    In this context, "best effort" means that consistency holds as long as connectivity is
  *    strong, network latency is low, and there are no relevant storage server failures.
  *    Per https://en.wikipedia.org/wiki/PACELC_theorem, the store should act as a PA/EL
@@ -121,8 +119,6 @@ abstract class BagOStuff implements
 	public const READ_VERIFIED = 2;
 
 	/** Bitfield constants for set()/merge(); these are only advisory */
-	// if supported, block until the write is fully replicated
-	public const WRITE_SYNC = 4;
 	// only change state of the in-memory cache
 	public const WRITE_CACHE_ONLY = 8;
 	// allow partitioning of the value if it is large

@@ -34,8 +34,6 @@ use Wikimedia\WaitConditionLoop;
 abstract class MediumSpecificBagOStuff extends BagOStuff {
 	/** @var array<string,array> Map of (key => (class, depth, expiry) */
 	protected $locks = [];
-	/** @var int Seconds */
-	protected $syncTimeout;
 	/** @var int Bytes; chunk size of segmented cache values */
 	protected $segmentationSize;
 	/** @var int Bytes; maximum total size of a segmented cache value */
@@ -77,7 +75,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *   - logger: Psr\Log\LoggerInterface instance
 	 *   - reportDupes: Whether to emit warning log messages for all keys that were
 	 *      requested more than once (requires an asyncHandler).
-	 *   - syncTimeout: How long to wait with WRITE_SYNC in seconds.
 	 *   - segmentationSize: The chunk size, in bytes, of segmented values. The value should
 	 *      not exceed the maximum size of values in the storage backend, as configured by
 	 *      the site administrator.
@@ -86,7 +83,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 *      amount of I/O between application and cache servers that the network can handle.
 	 * @param array $params
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{logger?:Psr\Log\LoggerInterface,asyncHandler?:callable,reportDupes?:bool,syncTimeout?:int,segmentationSize?:int|float,segmentedValueMaxSize?:int} $params
+	 * @phan-param array{logger?:Psr\Log\LoggerInterface,asyncHandler?:callable,reportDupes?:bool,segmentationSize?:int|float,segmentedValueMaxSize?:int} $params
 	 */
 	public function __construct( array $params = [] ) {
 		parent::__construct( $params );
@@ -95,7 +92,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			$this->reportDupes = true;
 		}
 
-		$this->syncTimeout = $params['syncTimeout'] ?? 3;
 		// Default to 8MiB if segmentationSize is not set
 		$this->segmentationSize = $params['segmentationSize'] ?? 8388608;
 		// Default to 64MiB if segmentedValueMaxSize is not set

@@ -137,7 +137,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *   - tableName: string
 	 *   - shards: int
 	 *   - replicaOnly: bool
-	 *   - syncTimeout: int|float
 	 *   - writeBatchSize: int
 	 */
 	public function __construct( $params ) {
@@ -581,14 +580,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		$success = !in_array( false, $resByKey, true );
-
-		if ( $shardIndexesAffected && $this->useLB
-			&& $this->fieldHasFlags( $flags, self::WRITE_SYNC )
-		) {
-			if ( !$this->waitForReplication() ) {
-				$success = false;
-			}
-		}
 
 		foreach ( $shardIndexesAffected as $shardIndex ) {
 			try {
@@ -1852,36 +1843,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			}
 		}
 		throw new InvalidArgumentException( "Unknown server tag: $tag" );
-	}
-
-	/**
-	 * Wait for replica DBs to catch up to the primary DB
-	 *
-	 * @return bool Success
-	 */
-	private function waitForReplication() {
-		if ( !$this->useLB ) {
-			return true; // striped only, no LoadBalancer
-		}
-
-		$lb = $this->getLoadBalancer();
-		if ( !$lb->hasStreamingReplicaServers() ) {
-			return true;
-		}
-
-		try {
-			// Wait for any replica DBs to catch up
-			$primaryPos = $lb->getPrimaryPos();
-			if ( !$primaryPos ) {
-				return true; // not applicable
-			}
-
-			return $lb->waitForAll( $primaryPos, $this->syncTimeout );
-		} catch ( DBError $e ) {
-			$this->setAndLogDBError( $e );
-
-			return false;
-		}
 	}
 
 	/**
