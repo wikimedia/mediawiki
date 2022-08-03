@@ -50,7 +50,7 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 	 * @param array $params Additional parameters include:
 	 *   - maxKeys : only allow this many keys (using oldest-first eviction)
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{logger?:Psr\Log\LoggerInterface,asyncHandler?:callable,keyspace?:string,reportDupes?:bool,syncTimeout?:int,segmentationSize?:int,segmentedValueMaxSize?:int,maxKeys?:int} $params
+	 * @phan-param array{logger?:Psr\Log\LoggerInterface,asyncHandler?:callable,keyspace?:string,reportDupes?:bool,segmentationSize?:int,segmentedValueMaxSize?:int,maxKeys?:int} $params
 	 */
 	public function __construct( $params = [] ) {
 		$params['segmentationSize'] = $params['segmentationSize'] ?? INF;

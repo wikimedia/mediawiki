@@ -68,13 +68,8 @@ use WebRequest;
  *   are either synced to all remote data centres, or locally overwritten by another write
  *   that is.
  *
- * - Support BagOStuff::WRITE_SYNC flag. The data must writable with synchronous replication
- *   waited for, across all data centres. This is used when resetting or deleting a session,
- *   which must not be lost or overwritten by earlier or overlapping write actions.
- *
- * The SessionManager uses set() and delete() for write operations, which should by default
- * be synchronous in the local data centre, and replicate asynchronously to any others.
- * This behaviour can be overridden by the use of the WRITE_SYNC flag.
+ * The SessionManager uses `set()` and `delete()` for write operations, which should be
+ * synchronous in the local data centre, and replicate asynchronously to any others.
  *
  * @ingroup Session
  * @since 1.27

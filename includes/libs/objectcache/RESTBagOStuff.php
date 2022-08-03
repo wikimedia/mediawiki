@@ -5,30 +5,67 @@ use Psr\Log\LoggerInterface;
 /**
  * Interface to key-value storage behind an HTTP server.
  *
- * Uses URL of the form "baseURL/{KEY}" to store, fetch, and delete values.
+ * ### Important caveats
  *
- * E.g., when base URL is `/sessions/v1`, then the store would do:
+ * This interface is currently an incomplete BagOStuff implementation,
+ * supported only for use with MediaWiki features that accept a dedicated
+ * cache type to use for a narrow set of cache keys that share the same
+ * key expiry and replication requirements, and where the key-value server
+ * in question is statically configured with domain knowledge of said
+ * key expiry and replication requirements.
  *
- * `PUT /sessions/v1/12345758`
+ * Specifically, RESTBagOStuff has the following limitations:
  *
- * and fetch would do:
+ * - The expiry parameter is ignored in methods like `set()`.
  *
- * `GET /sessions/v1/12345758`
+ *   There is not currently an agreed protocol for sending this to a
+ *   server. This class is written for use with MediaWiki\Session\SessionManager
+ *   and Kask/Cassanda at WMF, which does not expose a customizable expiry.
  *
- * delete would do:
+ *   As such, it is not recommended to use RESTBagOStuff to back a general
+ *   purpose cache type (such as MediaWiki's main cache, or main stash).
+ *   Instead, it is only supported toMediaWiki features where a cache type can
+ *   be pointed for a narrow set of keys that naturally share the same TTL
+ *   anyway, or where the feature behaves correctly even if the logical expiry
+ *   is longer than specified (e.g. immutable keys, or value verification)
  *
- * `DELETE /sessions/v1/12345758`
+ * - Most methods are non-atomic.
+ *
+ *   The class should only be used for get, set, and delete operations.
+ *   Advanced methods like `incr()`, `add()` and `lock()` do exist but
+ *   inherit a native and best-effort implementation based on get+set.
+ *   These should not be relied upon.
+ *
+ * ### Backend requirements
+ *
+ * The HTTP server will receive requests for URLs like `{baseURL}/{KEY}`. It
+ * must implement the GET, PUT and DELETE methods.
+ *
+ * E.g., when the base URL is `/sessions/v1`, then `set()` will:
+ *
+ * `PUT /sessions/v1/mykeyhere`
+ *
+ * and `get()` would do:
+ *
+ * `GET /sessions/v1/mykeyhere`
+ *
+ * and `delete()` would do:
+ *
+ * `DELETE /sessions/v1/mykeyhere`
+ *
+ * ### Example configuration
  *
  * Minimal generic configuration:
  *
  * @code
  * $wgObjectCaches['sessions'] = array(
  *	'class' => 'RESTBagOStuff',
- *	'url' => 'http://localhost:7231/wikimedia.org/somepath/'
+ *	'url' => 'http://localhost:7231/example/'
  * );
  * @endcode
  *
- * Configuration for Kask (session storage):
+ *
+ * Configuration for [Kask](https://www.mediawiki.org/wiki/Kask) session store:
  * @code
  * $wgObjectCaches['sessions'] = array(
  *	'class' => 'RESTBagOStuff',
@@ -70,7 +107,8 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	private $url;
 
 	/**
-	 * @var array http parameters: readHeaders, writeHeaders, deleteHeaders, writeMethod
+	 * HTTP parameters: readHeaders, writeHeaders, deleteHeaders, writeMethod.
+	 * @var array
 	 */
 	private $httpParams;
 
@@ -165,8 +203,6 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
-		// @TODO: respect WRITE_SYNC (e.g. EACH_QUORUM)
-		// @TODO: respect $exptime
 		$req = [
 			'method' => $this->httpParams['writeMethod'],
 			'url' => $this->url . rawurlencode( $key ),
@@ -186,7 +222,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
-		// @TODO: make this atomic
+		// NOTE: This is non-atomic
 		if ( $this->get( $key ) === false ) {
 			return $this->set( $key, $value, $exptime, $flags );
 		}
@@ -196,7 +232,6 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doDelete( $key, $flags = 0 ) {
-		// @TODO: respect WRITE_SYNC (e.g. EACH_QUORUM)
 		$req = [
 			'method' => 'DELETE',
 			'url' => $this->url . rawurlencode( $key ),
@@ -223,7 +258,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	private function doIncr( $key, $value = 1, $flags = 0 ) {
-		// @TODO: make this atomic and respect existing key expiration
+		// NOTE: This is non-atomic
 		$n = $this->get( $key, self::READ_LATEST );
 		// key exists?
 		if ( $this->isInteger( $n ) ) {
@@ -235,7 +270,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
-		// @TODO: make this atomic and respect existing key expiration
+		// NOTE: This is non-atomic
 		$curValue = $this->doGet( $key );
 		if ( $curValue === false ) {
 			$newValue = $this->doSet( $key, $init, $exptime ) ? $init : false;
@@ -330,6 +365,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 
 	/**
 	 * Handle storage error
+	 *
 	 * @param string $msg Error message
 	 * @param int $rcode Error code from client
 	 * @param string $rerr Error message from client
