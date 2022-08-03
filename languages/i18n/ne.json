@@ -2740,6 +2740,7 @@
 	"autosumm-blank": "पृष्ठ खाली गरीयो",
 	"autosumm-replace": "पृष्ठलाई '$1' संग हटाइदै",
 	"autoredircomment": "पृष्ठ[[$1]]मा पठाइएको",
+	"autosumm-changed-redirect-target": "अनुप्रेषण [[$1]] बाट [[$2]] मा परिवर्तन गरियो",
 	"autosumm-new": " $1 को साथमा पृष्ठ शृजना भयो",
 	"autosumm-newblank": "खाली पृष्ठ तयार गर्ने",
 	"size-bytes": "$1 {{PLURAL:$1|बाइट|बाइटहरू}}",
