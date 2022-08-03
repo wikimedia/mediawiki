@@ -765,90 +765,78 @@ class ResourceLoader implements LoggerAwareInterface {
 
 		$responseTime = $this->measureResponseTime();
 
-		$response = '';
-		try { // TimeoutException
-			// Find out which modules are missing and instantiate the others
-			$modules = [];
-			$missing = [];
-			foreach ( $context->getModules() as $name ) {
-				$module = $this->getModule( $name );
-				if ( $module ) {
-					// Do not allow private modules to be loaded from the web.
-					// This is a security issue, see T36907.
-					if ( $module->getGroup() === Module::GROUP_PRIVATE ) {
-						// Not a serious error, just means something is trying to access it (T101806)
-						$this->logger->debug( "Request for private module '$name' denied" );
-						$this->errors[] = "Cannot build private module \"$name\"";
-						continue;
-					}
-					$modules[$name] = $module;
-				} else {
-					$missing[] = $name;
+		// Find out which modules are missing and instantiate the others
+		$modules = [];
+		$missing = [];
+		foreach ( $context->getModules() as $name ) {
+			$module = $this->getModule( $name );
+			if ( $module ) {
+				// Do not allow private modules to be loaded from the web.
+				// This is a security issue, see T36907.
+				if ( $module->getGroup() === Module::GROUP_PRIVATE ) {
+					// Not a serious error, just means something is trying to access it (T101806)
+					$this->logger->debug( "Request for private module '$name' denied" );
+					$this->errors[] = "Cannot build private module \"$name\"";
+					continue;
 				}
-			}
-
-			try {
-				// Preload for getCombinedVersion() and for batch makeModuleResponse()
-				$this->preloadModuleInfo( array_keys( $modules ), $context );
-			} catch ( TimeoutException $e ) {
-				throw $e;
-			} catch ( Exception $e ) {
-				$this->outputErrorAndLog( $e, 'Preloading module info failed: {exception}' );
-			}
-
-			// Combine versions to propagate cache invalidation
-			$versionHash = '';
-			try {
-				$versionHash = $this->getCombinedVersion( $context, array_keys( $modules ) );
-			} catch ( TimeoutException $e ) {
-				throw $e;
-			} catch ( Exception $e ) {
-				$this->outputErrorAndLog( $e, 'Calculating version hash failed: {exception}' );
-			}
-
-			// See RFC 2616 § 3.11 Entity Tags
-			// https://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.11
-			$etag = 'W/"' . $versionHash . '"';
-
-			// Try the client-side cache first
-			if ( $this->tryRespondNotModified( $context, $etag ) ) {
-				return; // output handled (buffers cleared)
-			}
-
-			// Use file cache if enabled and available...
-			if ( $this->useFileCache ) {
-				$fileCache = ResourceFileCache::newFromContext( $context );
-				if ( $this->tryRespondFromFileCache( $fileCache, $context, $etag ) ) {
-					return; // output handled
-				}
+				$modules[$name] = $module;
 			} else {
-				$fileCache = null;
+				$missing[] = $name;
 			}
+		}
 
-			// Generate a response
-			$response = $this->makeModuleResponse( $context, $modules, $missing );
-
-			// Capture any PHP warnings from the output buffer and append them to the
-			// error list if we're in debug mode.
-			if ( $context->getDebug() ) {
-				$warnings = ob_get_contents();
-				if ( strlen( $warnings ) ) {
-					$this->errors[] = $warnings;
-				}
-			}
-
-			// Consider saving the response to file cache (unless there are errors).
-			if ( $fileCache && !$this->errors && $missing === [] &&
-				ResourceFileCache::useFileCache( $context ) ) {
-				if ( $fileCache->isCacheWorthy() ) {
-					// There were enough hits, save the response to the cache
-					$fileCache->saveText( $response );
-				} else {
-					$fileCache->incrMissesRecent( $context->getRequest() );
-				}
-			}
+		try {
+			// Preload for getCombinedVersion() and for batch makeModuleResponse()
+			$this->preloadModuleInfo( array_keys( $modules ), $context );
 		} catch ( TimeoutException $e ) {
-			$this->outputErrorAndLog( $e, "Request timed out" );
+			throw $e;
+		} catch ( Exception $e ) {
+			$this->outputErrorAndLog( $e, 'Preloading module info failed: {exception}' );
+		}
+
+		// Combine versions to propagate cache invalidation
+		$versionHash = $this->getCombinedVersion( $context, array_keys( $modules ) );
+
+		// See RFC 2616 § 3.11 Entity Tags
+		// https://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.11
+		$etag = 'W/"' . $versionHash . '"';
+
+		// Try the client-side cache first
+		if ( $this->tryRespondNotModified( $context, $etag ) ) {
+			return; // output handled (buffers cleared)
+		}
+
+		// Use file cache if enabled and available...
+		if ( $this->useFileCache ) {
+			$fileCache = ResourceFileCache::newFromContext( $context );
+			if ( $this->tryRespondFromFileCache( $fileCache, $context, $etag ) ) {
+				return; // output handled
+			}
+		} else {
+			$fileCache = null;
+		}
+
+		// Generate a response
+		$response = $this->makeModuleResponse( $context, $modules, $missing );
+
+		// Capture any PHP warnings from the output buffer and append them to the
+		// error list if we're in debug mode.
+		if ( $context->getDebug() ) {
+			$warnings = ob_get_contents();
+			if ( strlen( $warnings ) ) {
+				$this->errors[] = $warnings;
+			}
+		}
+
+		// Consider saving the response to file cache (unless there are errors).
+		if ( $fileCache && !$this->errors && $missing === [] &&
+			ResourceFileCache::useFileCache( $context ) ) {
+			if ( $fileCache->isCacheWorthy() ) {
+				// There were enough hits, save the response to the cache
+				$fileCache->saveText( $response );
+			} else {
+				$fileCache->incrMissesRecent( $context->getRequest() );
+			}
 		}
 
 		$this->sendResponseHeaders( $context, $etag, (bool)$this->errors, $this->extraHeaders );
