@@ -2576,7 +2576,18 @@ class ParserTestRunner {
 		// get a reference to the mock object.
 		if ( $this->disableSaveParse ) {
 			$services->getMessageCache()->getParser();
-			$restore = $this->executeSetupSnippets( [ 'wgParser' => new ParserTestMockParser ] );
+			$services->disableService( 'Parser' );
+			$services->disableService( 'ParserFactory' );
+			$services->redefineService(
+				'Parser',
+				static function () {
+					return new ParserTestMockParser;
+				}
+			);
+			$restore = static function () {
+				MediaWikiServices::getInstance()->resetServiceForTesting( 'Parser' );
+				MediaWikiServices::getInstance()->resetServiceForTesting( 'ParserFactory' );
+			};
 		} else {
 			$restore = false;
 		}

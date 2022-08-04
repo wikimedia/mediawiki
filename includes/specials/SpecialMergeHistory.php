@@ -111,14 +111,14 @@ class SpecialMergeHistory extends SpecialPage {
 	private function loadRequestParams() {
 		$request = $this->getRequest();
 		$this->mAction = $request->getRawVal( 'action' );
-		$this->mTarget = $request->getVal( 'target' );
-		$this->mDest = $request->getVal( 'dest' );
+		$this->mTarget = $request->getVal( 'target', '' );
+		$this->mDest = $request->getVal( 'dest', '' );
 		$this->mSubmitted = $request->getBool( 'submitted' );
 
 		$this->mTargetID = intval( $request->getVal( 'targetID' ) );
 		$this->mDestID = intval( $request->getVal( 'destID' ) );
 		$this->mTimestamp = $request->getVal( 'mergepoint' );
-		if ( !preg_match( '/[0-9]{14}/', $this->mTimestamp ) ) {
+		if ( $this->mTimestamp === null || !preg_match( '/[0-9]{14}/', $this->mTimestamp ) ) {
 			$this->mTimestamp = '';
 		}
 		$this->mComment = $request->getText( 'wpComment' );

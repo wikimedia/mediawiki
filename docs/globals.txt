@@ -56,11 +56,6 @@ $wgLang
 	Language object selected by user preferences.
 	Use IContextSource::getLanguage() instead.
 
-$wgParser
-	Parser object. Parser extensions used to register their hooks here;
-	modern code should use the ParserFirstCallInit hook for that.
-	Use MediaWikiServices::getParser() instead.
-
 $wgRequest
 	WebRequest object, to get request data
 	Use IContextSource::getRequest() instead.

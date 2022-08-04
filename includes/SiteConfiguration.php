@@ -136,7 +136,10 @@ class SiteConfiguration {
 	public $wikis = [];
 
 	/**
-	 * The whole array of settings
+	 * The whole array of settings.
+	 *
+	 * If the key "@replaceableSettings" exists, it contains a list of setting
+	 * names that are subject to string replacement of $params.
 	 */
 	public $settings = [];
 
@@ -185,7 +188,13 @@ class SiteConfiguration {
 	) {
 		$params = $this->mergeParams( $wiki, $suffix, $params, $wikiTags );
 		$overrides = $this->settings[$settingName] ?? null;
-		return $overrides ? $this->processSetting( $overrides, $wiki, $params ) : null;
+		$value = $overrides ? $this->processSetting( $overrides, $wiki, $params['tags'] ) : null;
+		if ( !array_key_exists( '@replaceableSettings', $this->settings )
+			|| in_array( $settingName, $this->settings['@replaceableSettings'] )
+		) {
+			$this->doReplacements( $value, $params['replacements'] );
+		}
+		return $value;
 	}
 
 	/**
@@ -216,24 +225,23 @@ class SiteConfiguration {
 	 *
 	 * @param array $thisSetting An array of overrides for a given setting.
 	 * @param string $wiki Wiki ID of the wiki in question.
-	 * @param array $params Array of parameters.
+	 * @param string[] $tags Array of tags.
 	 * @return mixed The value of the setting requested.
 	 */
-	private function processSetting( array $thisSetting, $wiki, array $params ) {
+	private function processSetting( $thisSetting, $wiki, $tags ) {
 		$retval = null;
 
 		if ( array_key_exists( $wiki, $thisSetting ) ) {
 			// Found override by Wiki ID.
 			$retval = $thisSetting[$wiki];
 		} else {
-			if ( array_key_exists( "+$wiki", $thisSetting ) && is_array( $thisSetting["+$wiki"] ) ) {
+			if ( array_key_exists( "+$wiki", $thisSetting ) ) {
 				// Found mergable override by Wiki ID.
 				// We continue to look for more merge candidates.
 				$retval = $thisSetting["+$wiki"];
 			}
 
-			$done = false;
-			foreach ( $params['tags'] as $tag ) {
+			foreach ( $tags as $tag ) {
 				if ( array_key_exists( $tag, $thisSetting ) ) {
 					if ( is_array( $retval ) && is_array( $thisSetting[$tag] ) ) {
 						// Found a mergable override by Tag, without "+" operator.
@@ -245,9 +253,8 @@ class SiteConfiguration {
 						// that a setting uses both mergable array values and non-array values.
 						$retval = $thisSetting[$tag];
 					}
-					$done = true;
-					break;
-				} elseif ( array_key_exists( "+$tag", $thisSetting ) && is_array( $thisSetting["+$tag"] ) ) {
+					return $retval;
+				} elseif ( array_key_exists( "+$tag", $thisSetting ) ) {
 					// Found a mergable override by Tag with "+" operator.
 					// Merge it with any "+wiki" or "+tag" matches from before,
 					// and keep looking for more merge candidates.
@@ -255,7 +262,7 @@ class SiteConfiguration {
 				}
 			}
 
-			if ( !$done && array_key_exists( 'default', $thisSetting ) ) {
+			if ( array_key_exists( 'default', $thisSetting ) ) {
 				if ( is_array( $retval ) && is_array( $thisSetting['default'] ) ) {
 					// Found a mergable default
 					// Merge it with any "+wiki" or "+tag" matches from before.
@@ -269,19 +276,25 @@ class SiteConfiguration {
 				}
 			}
 		}
+		return $retval;
+	}
 
-		// Type-safe string replacements, don't do replacements on non-strings.
-		if ( is_string( $retval ) ) {
-			$retval = strtr( $retval, $params['replacements'] );
-		} elseif ( is_array( $retval ) ) {
-			foreach ( $retval as &$val ) {
+	/**
+	 * Do string replacements
+	 *
+	 * @param string &$value
+	 * @param array $replacements
+	 */
+	private function doReplacements( &$value, $replacements ) {
+		if ( is_string( $value ) ) {
+			$value = strtr( $value, $replacements );
+		} elseif ( is_array( $value ) ) {
+			foreach ( $value as &$val ) {
 				if ( is_string( $val ) ) {
-					$val = strtr( $val, $params['replacements'] );
+					$val = strtr( $val, $replacements );
 				}
 			}
 		}
-
-		return $retval;
 	}
 
 	/**
@@ -294,17 +307,31 @@ class SiteConfiguration {
 	 */
 	public function getAll( $wiki, $suffix = null, $params = [], $wikiTags = [] ) {
 		$params = $this->mergeParams( $wiki, $suffix, $params, $wikiTags );
+		$tags = $params['tags'];
 		$localSettings = [];
 		foreach ( $this->settings as $varname => $overrides ) {
-			$append = substr( $varname, 0, 1 ) === '+';
-			$var = $append ? substr( $varname, 1 ) : $varname;
-
-			$value = $this->processSetting( $overrides, $wiki, $params );
-			if ( $append && is_array( $value ) && is_array( $GLOBALS[$var] ) ) {
-				$value = self::arrayMerge( $value, $GLOBALS[$var] );
+			$value = $this->processSetting( $overrides, $wiki, $tags );
+			if ( $varname[0] === '+' ) {
+				$varname = substr( $varname, 1 );
+				if ( is_array( $value ) && is_array( $GLOBALS[$varname] ) ) {
+					$value = self::arrayMerge( $value, $GLOBALS[$varname] );
+				}
 			}
 			if ( $value !== null ) {
-				$localSettings[$var] = $value;
+				$localSettings[$varname] = $value;
+			}
+		}
+
+		$replacements = $params['replacements'];
+		if ( array_key_exists( '@replaceableSettings', $this->settings ) ) {
+			foreach ( $this->settings['@replaceableSettings'] as $varname ) {
+				if ( array_key_exists( $varname, $localSettings ) ) {
+					$this->doReplacements( $localSettings[$varname], $replacements );
+				}
+			}
+		} else {
+			foreach ( $localSettings as &$value ) {
+				$this->doReplacements( $value, $replacements );
 			}
 		}
 		return $localSettings;
@@ -371,7 +398,12 @@ class SiteConfiguration {
 	 */
 	public function extractGlobalSetting( $setting, $wiki, $params ) {
 		$overrides = $this->settings[$setting] ?? null;
-		$value = $overrides ? $this->processSetting( $overrides, $wiki, $params ) : null;
+		$value = $overrides ? $this->processSetting( $overrides, $wiki, $params['tags'] ) : null;
+		if ( !array_key_exists( '@replaceableSettings', $this->settings )
+			|| in_array( $setting, $this->settings['@replaceableSettings'] )
+		) {
+			$this->doReplacements( $value, $params['replacements'] );
+		}
 		if ( $value !== null ) {
 			if ( substr( $setting, 0, 1 ) == '+' && is_array( $value ) ) {
 				$setting = substr( $setting, 1 );
