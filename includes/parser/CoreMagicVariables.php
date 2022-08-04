@@ -95,63 +95,38 @@ class CoreMagicVariables {
 			case 'localday2':
 				return $pageLang->formatNumNoSeparators( self::makeTsLocal( $svcOptions, $ts )->format( 'd' ) );
 			case 'pagename':
-				return wfEscapeWikiText( $title->getText() );
 			case 'pagenamee':
-				return wfEscapeWikiText( $title->getPartialURL() );
 			case 'fullpagename':
-				return wfEscapeWikiText( $title->getPrefixedText() );
 			case 'fullpagenamee':
-				return wfEscapeWikiText( $title->getPrefixedURL() );
 			case 'subpagename':
-				return wfEscapeWikiText( $title->getSubpageText() );
 			case 'subpagenamee':
-				return wfEscapeWikiText( $title->getSubpageUrlForm() );
 			case 'rootpagename':
-				return wfEscapeWikiText( $title->getRootText() );
 			case 'rootpagenamee':
-				return wfEscapeWikiText( wfUrlencode( str_replace(
-					' ',
-					'_',
-					$title->getRootText()
-				) ) );
 			case 'basepagename':
-				return wfEscapeWikiText( $title->getBaseText() );
 			case 'basepagenamee':
-				return wfEscapeWikiText( wfUrlencode( str_replace(
-					' ',
-					'_',
-					$title->getBaseText()
-				) ) );
 			case 'talkpagename':
-				if ( $title->canHaveTalkPage() ) {
-					$talkPage = $title->getTalkPage();
-					return wfEscapeWikiText( $talkPage->getPrefixedText() );
-				}
-				return '';
 			case 'talkpagenamee':
-				if ( $title->canHaveTalkPage() ) {
-					$talkPage = $title->getTalkPage();
-					return wfEscapeWikiText( $talkPage->getPrefixedURL() );
-				}
-				return '';
 			case 'subjectpagename':
-				$subjPage = $title->getSubjectPage();
-				return wfEscapeWikiText( $subjPage->getPrefixedText() );
 			case 'subjectpagenamee':
-				$subjPage = $title->getSubjectPage();
-				return wfEscapeWikiText( $subjPage->getPrefixedURL() );
-			case 'pageid': // requested in T25427
-				// Inform the edit saving system that getting the canonical output
-				// after page insertion requires a parse that used that exact page ID
-				self::setOutputFlag( $parser, $logger, ParserOutputFlags::VARY_PAGE_ID, '{{PAGEID}} used' );
-				$value = $title->getArticleID();
-				if ( !$value ) {
-					$value = $parser->getOptions()->getSpeculativePageId();
-					if ( $value ) {
-						$parser->getOutput()->setSpeculativePageIdUsed( $value );
-					}
-				}
-				return (string)$value;
+			case 'pageid':
+			case 'namespace':
+			case 'namespacee':
+			case 'namespacenumber':
+			case 'talkspace':
+			case 'talkspacee':
+			case 'subjectspace':
+			case 'subjectspacee':
+			case 'cascadingsources':
+				# First argument of the corresponding parser function
+				# (second argument of the PHP implementation) is
+				# "title".
+
+				# Note that for many of these {{FOO}} is subtly different
+				# from {{FOO:{{PAGENAME}}}}, so we can't pass $title here
+				# we have to explicitly use the "no arguments" form of the
+				# parser function by passing `null` to indicate a missing
+				# argument (which then defaults to the current page title).
+				return CoreParserFunctions::$id( $parser, null );
 			case 'revisionid':
 				$namespace = $title->getNamespace();
 				if (
@@ -224,25 +199,6 @@ class CoreMagicVariables {
 				return (string)$parser->getRevisionUser();
 			case 'revisionsize':
 				return (string)$parser->getRevisionSize();
-			case 'namespace':
-				return str_replace( '_', ' ',
-					$parser->getContentLanguage()->getNsText( $title->getNamespace() ) );
-			case 'namespacee':
-				return wfUrlencode( $parser->getContentLanguage()->getNsText( $title->getNamespace() ) );
-			case 'namespacenumber':
-				return (string)$title->getNamespace();
-			case 'talkspace':
-				return $title->canHaveTalkPage()
-					? str_replace( '_', ' ', $title->getTalkNsText() )
-					: '';
-			case 'talkspacee':
-				return $title->canHaveTalkPage()
-					? wfUrlencode( $title->getTalkNsText() )
-					: '';
-			case 'subjectspace':
-				return str_replace( '_', ' ', $title->getSubjectNsText() );
-			case 'subjectspacee':
-				return ( wfUrlencode( $title->getSubjectNsText() ) );
 			case 'currentdayname':
 				return $pageLang->getWeekdayName( (int)$ts->format( 'w' ) + 1 );
 			case 'currentyear':
@@ -278,19 +234,14 @@ class CoreMagicVariables {
 			case 'localdow':
 				return $pageLang->formatNum( self::makeTsLocal( $svcOptions, $ts )->format( 'w' ) );
 			case 'numberofarticles':
-				return $pageLang->formatNum( SiteStats::articles() );
 			case 'numberoffiles':
-				return $pageLang->formatNum( SiteStats::images() );
 			case 'numberofusers':
-				return $pageLang->formatNum( SiteStats::users() );
 			case 'numberofactiveusers':
-				return $pageLang->formatNum( SiteStats::activeUsers() );
 			case 'numberofpages':
-				return $pageLang->formatNum( SiteStats::pages() );
 			case 'numberofadmins':
-				return $pageLang->formatNum( SiteStats::numberingroup( 'sysop' ) );
 			case 'numberofedits':
-				return $pageLang->formatNum( SiteStats::edits() );
+				# second argument is 'raw'; magic variables are "not raw"
+				return CoreParserFunctions::$id( $parser, null );
 			case 'currenttimestamp':
 				return $ts->getTimestamp( TS_MW );
 			case 'localtimestamp':
@@ -315,8 +266,6 @@ class CoreMagicVariables {
 				return $parser->getContentLanguage()->getCode();
 			case 'pagelanguage':
 				return $pageLang->getCode();
-			case 'cascadingsources':
-				return CoreParserFunctions::cascadingsources( $parser );
 			default:
 				// This is not one of the core magic variables
 				return null;

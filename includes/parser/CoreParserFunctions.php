@@ -67,20 +67,45 @@ class CoreParserFunctions {
 			'ns', 'nse', 'urlencode', 'lcfirst', 'ucfirst', 'lc', 'uc',
 			'localurl', 'localurle', 'fullurl', 'fullurle', 'canonicalurl',
 			'canonicalurle', 'formatnum', 'grammar', 'gender', 'plural', 'bidi',
-			'numberofpages', 'numberofusers', 'numberofactiveusers',
-			'numberofarticles', 'numberoffiles', 'numberofadmins',
-			'numberingroup', 'numberofedits', 'language',
+			'numberingroup', 'language',
 			'padleft', 'padright', 'anchorencode', 'defaultsort', 'filepath',
 			'pagesincategory', 'pagesize', 'protectionlevel', 'protectionexpiry',
-			'namespace',
-			'namespacee', 'namespacenumber', 'talkspace', 'talkspacee',
-			'subjectspace', 'subjectspacee', 'pagename', 'pagenamee',
-			'fullpagename', 'fullpagenamee', 'rootpagename', 'rootpagenamee',
-			'basepagename', 'basepagenamee', 'subpagename', 'subpagenamee',
-			'talkpagename', 'talkpagenamee', 'subjectpagename',
-			'subjectpagenamee', 'pageid', 'revisionid', 'revisionday',
+			# The following are the "parser function" forms of magic
+			# variables defined in CoreMagicVariables.  The no-args form will
+			# go through the magic variable code path (and be cached); the
+			# presence of arguments will cause the parser function form to
+			# be invoked. (Note that the actual implementation will pass
+			# a Parser object as first argument, in addition to the
+			# parser function parameters.)
+
+			# For this group, the first parameter to the parser function is
+			# "page title", and the no-args form (and the magic variable)
+			# defaults to "current page title".
+			'pagename', 'pagenamee',
+			'fullpagename', 'fullpagenamee',
+			'subpagename', 'subpagenamee',
+			'rootpagename', 'rootpagenamee',
+			'basepagename', 'basepagenamee',
+			'talkpagename', 'talkpagenamee',
+			'subjectpagename', 'subjectpagenamee',
+			'pageid', 'revisionid', 'revisionday',
 			'revisionday2', 'revisionmonth', 'revisionmonth1', 'revisionyear',
-			'revisiontimestamp', 'revisionuser', 'cascadingsources',
+			'revisiontimestamp',
+			'revisionuser',
+			'cascadingsources',
+			'namespace', 'namespacee', 'namespacenumber', 'talkspace', 'talkspacee',
+			'subjectspace', 'subjectspacee',
+
+			# More parser functions corresponding to CoreMagicVariables.
+			# For this group, the first parameter to the parser function is
+			# "raw" (uses the 'raw' format if present) and the no-args form
+			# (and the magic variable) defaults to 'not raw'.
+			'numberofarticles', 'numberoffiles',
+			'numberofusers',
+			'numberofactiveusers',
+			'numberofpages',
+			'numberofadmins',
+			'numberofedits',
 		];
 		foreach ( $noHashFunctions as $func ) {
 			$parser->setFunctionHook( $func, [ __CLASS__, $func ], Parser::SFH_NO_HASH );
@@ -545,7 +570,7 @@ class CoreParserFunctions {
 	 * Formats a number according to a language.
 	 *
 	 * @param int|float $num
-	 * @param string $raw
+	 * @param ?string $raw
 	 * @param Language|StubUserLang $language
 	 * @param MagicWordFactory|null $magicWordFactory To evaluate $raw
 	 * @return string
@@ -553,7 +578,7 @@ class CoreParserFunctions {
 	public static function formatRaw(
 		$num, $raw, $language, MagicWordFactory $magicWordFactory = null
 	) {
-		if ( $raw !== null ) {
+		if ( $raw !== null && $raw !== '' ) {
 			if ( !$magicWordFactory ) {
 				$magicWordFactory = MediaWikiServices::getInstance()->getMagicWordFactory();
 			}
@@ -613,6 +638,24 @@ class CoreParserFunctions {
 	}
 
 	/**
+	 * Helper function for preprocessing an optional argument which represents
+	 * a title.
+	 * @param Parser $parser
+	 * @param string|null $t if null, returns the Parser's Title
+	 *   for consistency with magic variable forms
+	 * @return ?Title
+	 */
+	private static function makeTitle( Parser $parser, ?string $t ) {
+		if ( $t === null ) {
+			// For consistency with magic variable forms
+			$title = $parser->getTitle();
+		} else {
+			$title = Title::newFromText( $t );
+		}
+		return $title;
+	}
+
+	/**
 	 * Given a title, return the namespace name that would be given by the
 	 * corresponding magic word
 	 * @param Parser $parser
@@ -621,7 +664,7 @@ class CoreParserFunctions {
 	 * @since 1.39
 	 */
 	public static function namespace( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -644,7 +687,7 @@ class CoreParserFunctions {
 	}
 
 	public static function namespacee( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -652,15 +695,15 @@ class CoreParserFunctions {
 	}
 
 	public static function namespacenumber( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
-		return $t->getNamespace();
+		return (string)$t->getNamespace();
 	}
 
 	public static function talkspace( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null || !$t->canHaveTalkPage() ) {
 			return '';
 		}
@@ -668,7 +711,7 @@ class CoreParserFunctions {
 	}
 
 	public static function talkspacee( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null || !$t->canHaveTalkPage() ) {
 			return '';
 		}
@@ -676,7 +719,7 @@ class CoreParserFunctions {
 	}
 
 	public static function subjectspace( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -684,7 +727,7 @@ class CoreParserFunctions {
 	}
 
 	public static function subjectspacee( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -699,7 +742,7 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function pagename( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -707,7 +750,7 @@ class CoreParserFunctions {
 	}
 
 	public static function pagenamee( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -715,7 +758,7 @@ class CoreParserFunctions {
 	}
 
 	public static function fullpagename( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -723,7 +766,7 @@ class CoreParserFunctions {
 	}
 
 	public static function fullpagenamee( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -731,7 +774,7 @@ class CoreParserFunctions {
 	}
 
 	public static function subpagename( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -739,7 +782,7 @@ class CoreParserFunctions {
 	}
 
 	public static function subpagenamee( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -747,7 +790,7 @@ class CoreParserFunctions {
 	}
 
 	public static function rootpagename( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -755,7 +798,7 @@ class CoreParserFunctions {
 	}
 
 	public static function rootpagenamee( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -763,7 +806,7 @@ class CoreParserFunctions {
 	}
 
 	public static function basepagename( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -771,7 +814,7 @@ class CoreParserFunctions {
 	}
 
 	public static function basepagenamee( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -779,7 +822,7 @@ class CoreParserFunctions {
 	}
 
 	public static function talkpagename( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null || !$t->canHaveTalkPage() ) {
 			return '';
 		}
@@ -787,7 +830,7 @@ class CoreParserFunctions {
 	}
 
 	public static function talkpagenamee( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null || !$t->canHaveTalkPage() ) {
 			return '';
 		}
@@ -795,7 +838,7 @@ class CoreParserFunctions {
 	}
 
 	public static function subjectpagename( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -803,7 +846,7 @@ class CoreParserFunctions {
 	}
 
 	public static function subjectpagenamee( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -1267,7 +1310,7 @@ class CoreParserFunctions {
 	 * @since 1.23
 	 */
 	public static function pageid( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( !$t ) {
 			return '';
 		} elseif ( !$t->canExist() || $t->isExternal() ) {
@@ -1317,7 +1360,7 @@ class CoreParserFunctions {
 	 * @since 1.23
 	 */
 	public static function revisionid( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -1352,7 +1395,7 @@ class CoreParserFunctions {
 	 * @since 1.23
 	 */
 	public static function revisionday( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -1369,7 +1412,7 @@ class CoreParserFunctions {
 	 * @since 1.23
 	 */
 	public static function revisionday2( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -1386,7 +1429,7 @@ class CoreParserFunctions {
 	 * @since 1.23
 	 */
 	public static function revisionmonth( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -1403,7 +1446,7 @@ class CoreParserFunctions {
 	 * @since 1.23
 	 */
 	public static function revisionmonth1( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -1420,7 +1463,7 @@ class CoreParserFunctions {
 	 * @since 1.23
 	 */
 	public static function revisionyear( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -1437,7 +1480,7 @@ class CoreParserFunctions {
 	 * @since 1.23
 	 */
 	public static function revisiontimestamp( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -1454,7 +1497,7 @@ class CoreParserFunctions {
 	 * @since 1.23
 	 */
 	public static function revisionuser( $parser, $title = null ) {
-		$t = Title::newFromText( $title );
+		$t = self::makeTitle( $parser, $title );
 		if ( $t === null ) {
 			return '';
 		}
@@ -1474,7 +1517,7 @@ class CoreParserFunctions {
 	 * unless cascading protection sources for the page have already been loaded.
 	 *
 	 * @param Parser $parser
-	 * @param string $title
+	 * @param ?string $title
 	 *
 	 * @return string
 	 * @since 1.23
