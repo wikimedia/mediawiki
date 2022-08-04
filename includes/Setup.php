@@ -494,7 +494,7 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 }
 
 // Explicit globals, so this works with bootstrap.php
-global $wgUser, $wgLang, $wgOut, $wgParser, $wgTitle;
+global $wgUser, $wgLang, $wgOut, $wgTitle;
 
 /**
  * @var User $wgUser
@@ -515,14 +515,6 @@ $wgLang = new StubUserLang;
  * @var OutputPage $wgOut
  */
 $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
-
-/**
- * @var Parser $wgParser
- * @deprecated since 1.32, use MediaWikiServices::getInstance()->getParser() instead
- */
-$wgParser = new DeprecatedGlobal( 'wgParser', static function () {
-	return MediaWikiServices::getInstance()->getParser();
-}, '1.32' );
 
 /**
  * @var Title|null $wgTitle
