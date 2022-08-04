@@ -111,8 +111,8 @@ class SpecialMergeHistory extends SpecialPage {
 	private function loadRequestParams() {
 		$request = $this->getRequest();
 		$this->mAction = $request->getRawVal( 'action' );
-		$this->mTarget = $request->getVal( 'target' );
-		$this->mDest = $request->getVal( 'dest' );
+		$this->mTarget = $request->getVal( 'target', '' );
+		$this->mDest = $request->getVal( 'dest', '' );
 		$this->mSubmitted = $request->getBool( 'submitted' );
 
 		$this->mTargetID = intval( $request->getVal( 'targetID' ) );
