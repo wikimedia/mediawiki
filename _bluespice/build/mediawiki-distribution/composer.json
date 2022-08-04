@@ -4,6 +4,7 @@
 		"url": "https://packages.bluespice.com/"
 	}],
 	"require": {
+		"mediawiki/abuse-filter": "dev-master",
 		"mediawiki/category-tree": "dev-master",
 		"mediawiki/cite": "dev-master",
 		"mediawiki/cite-this-page": "dev-master",
@@ -14,6 +15,7 @@
 		"mediawiki/input-box": "dev-master",
 		"mediawiki/interwiki": "dev-master",
 		"mediawiki/localisation-update": "dev-master",
+		"mediawiki/math": "dev-master",
 		"mediawiki/multimedia-viewer": "dev-master",
 		"mediawiki/nuke": "dev-master",
 		"mediawiki/o-a-t-h-auth": "dev-master",
@@ -24,15 +26,16 @@
 		"mediawiki/renameuser": "dev-master",
 		"mediawiki/replace-text": "dev-master",
 		"mediawiki/scribunto": "dev-master",
+		"mediawiki/secure-link-fixer": "dev-master",
 		"mediawiki/spam-blacklist": "dev-master",
 		"mediawiki/syntax-highlight": "dev-master",
+		"mediawiki/template-data": "dev-master",
 		"mediawiki/text-extracts": "dev-master",
 		"mediawiki/title-blacklist": "dev-master",
+		"mediawiki/visual-editor": "dev-master",
 		"mediawiki/wiki-editor": "dev-master",
-		"mediawiki/template-data": "dev-master",
-		"mediawiki/page-images": "dev-master",
-		"mediawiki/text-extracts": "dev-master",
 
+		"mediawiki/minervaneue-skin": "dev-master",
 		"mediawiki/monobook-skin": "dev-master",
 		"mediawiki/vector-skin": "dev-master",
 		"mediawiki/timeless-skin": "dev-master"
