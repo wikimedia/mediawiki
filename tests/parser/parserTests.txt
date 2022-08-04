@@ -11514,8 +11514,9 @@ flags=
 !! end
 
 !! test
-Magic Word: {{REVISIONTIMESTAMP}} on non-existing page
+Magic Word: {{REVISIONTIMESTAMP}} on not-yet-existing current page
 !! options
+title=[[This page does not exist]]
 parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 showflags
 !! wikitext
@@ -11524,6 +11525,31 @@ showflags
 <p>123
 </p>
 flags=vary-revision-timestamp
+!! end
+
+!! test
+Magic Word: {{REVISIONTIMESTAMP:{{PAGENAME}}}} on not-yet-existing current page
+!! options
+title=[[This page does not exist]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONTIMESTAMP:{{PAGENAME}}}}
+!! html/*
+
+flags=vary-revision-timestamp
+!! end
+
+!! test
+Magic Word: {{REVISIONTIMESTAMP:...}}} on non-existing non-current page
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONTIMESTAMP:This page does not exist}}
+!! html/*
+
+flags=
 !! end
 
 !! test
@@ -11537,6 +11563,56 @@ showflags
 !! html/*
 <p>127.0.0.1
 </p>
+flags=vary-user
+!! end
+
+!! test
+Magic Word: {{REVISIONUSER}} on not-yet-existing current page
+!! options
+title=[[This page does not exist]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONUSER}}
+!! html/*
+
+flags=vary-user
+!! end
+
+!! test
+Magic Word: {{REVISIONUSER:{{PAGENAME}}}} on not-yet-existing current page
+!! options
+title=[[This page does not exist]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONUSER:{{PAGENAME}}}}
+!! html/*
+
+flags=vary-user
+!! end
+
+!! test
+Magic Word: {{REVISIONUSER:...}} on non-existing non-current page
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONUSER:This page does not exist}}
+!! html/*
+
+flags=
+!! end
+
+!! test
+Magic Word: {{REVISIONUSER}} on non-latest revision
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONUSER}}
+!! html/*
+
 flags=vary-user
 !! end
 
