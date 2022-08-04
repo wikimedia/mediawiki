@@ -5,6 +5,7 @@ namespace MediaWiki\Maintenance;
 use Config;
 use Exception;
 use LCStoreNull;
+use LogicException;
 use Maintenance;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
@@ -12,6 +13,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use MWException;
 use Profiler;
+use ReflectionClass;
 
 /**
  * A runner for maintenance scripts.
@@ -106,15 +108,18 @@ class MaintenanceRunner {
 	 *        the script to run at index 1.
 	 */
 	public function initFromWrapper( array $argv ) {
-		$scriptClass = null;
+		$script = null;
 
 		$this->parameters->setName( $argv[0] );
 		$this->parameters->setAllowUnregisteredOptions( true );
 		$this->parameters->addArg(
 			'script',
-			'The class name of the maintenance script to run. ' .
-				'Dots (.) are supported as namespace separator. ' .
-				'"MyExt:SomeScript" expands to "MediaWiki\Extension\MyExt\Maintenance\SomeScript".',
+			'The name of the maintenance script to run. ' .
+			'Can be given as a class name or file name. ' .
+			'Dots (.) are supported as namespace separator. ' .
+			'"MyExt:SomeScript" expands to "MediaWiki\Extension\MyExt\Maintenance\SomeScript". ' .
+			'If a plain name is given, this is assumed to refer to a file in ' .
+			'the maintenance directory',
 			true
 		);
 
@@ -125,35 +130,26 @@ class MaintenanceRunner {
 		$argv = array_slice( $argv, 2 );
 
 		if ( $this->parameters->validate() ) {
-			$scriptClass = $this->parameters->getArg( 0 );
+			$script = $this->parameters->getArg( 0 );
 
 			// Special handling for the 'help' command
-			if ( $scriptClass === 'help' ) {
+			if ( $script === 'help' ) {
 				if ( $this->parameters->hasArg( 1 ) ) {
-					$scriptClass = $this->parameters->getArg( 1 );
+					$script = $this->parameters->getArg( 1 );
 
 					// turn <help> <command> into <command> --help
-					$this->parameters->loadWithArgv( [ $scriptClass ] );
+					$this->parameters->loadWithArgv( [ $script ] );
 					$argv = [ '--help' ];
 				} else {
 					// same as no command
-					$scriptClass = null;
+					$script = null;
 				}
 			}
 		}
 
-		if ( $scriptClass ) {
-			// Support "$ext:$script" format
-			if ( preg_match( '/^([\w.\\\\]+):([\w.\\\\]+)$/', $scriptClass, $m ) ) {
-				$scriptClass = "MediaWiki\\Extension\\{$m[1]}\\Maintenance\\{$m[2]}";
-			}
-
-			// Accept dot (.) as namespace separators as well.
-			// Backslashes are just annoying on the command line.
-			$scriptClass = strtr( $scriptClass, '.', '\\' );
-
+		if ( $script ) {
 			// Strip another argument from $argv!
-			$this->initInternal( $scriptClass, $argv );
+			$this->initInternal( $script, $argv );
 		} else {
 			$this->showHelpAndExit();
 		}
@@ -179,16 +175,17 @@ class MaintenanceRunner {
 
 	/**
 	 * Initialize the runner.
+	 *
 	 * @note Called before Setup.php
 	 *
-	 * @param string $scriptClass The script to run
+	 * @param string $script The script to run
 	 * @param string[] $scriptArgv The arguments to pass to the maintenance script,
 	 *        not including the script itself.
 	 */
-	private function initInternal( string $scriptClass, array $scriptArgv ) {
+	private function initInternal( string $script, array $scriptArgv ) {
 		global $IP, $wgCommandLineMode;
 
-		$this->script = $scriptClass;
+		$this->script = $script;
 		$this->scriptArgv = $scriptArgv;
 
 		# Abort if called from a web server
@@ -225,24 +222,76 @@ class MaintenanceRunner {
 		}
 	}
 
+	private function findScriptClass( string $script ): string {
+		// Plain name given, refers to a file in the maintenance directory
+		if ( class_exists( $script ) ) {
+			return $script;
+		}
+
+		if ( preg_match( '/^\w+$/', $script ) ) {
+			// XXX: Look up name in an extension attribute (use an extension prefix)?
+			// XXX: Try if the name matches a file in the maintenance directory?
+			$script = MW_INSTALL_PATH . "/maintenance/{$script}.php";
+		}
+
+		if ( str_ends_with( $script, '.php' ) && file_exists( $script ) ) {
+			$maintClass = null;
+
+			// It's a file, include it
+			$scriptClass = include $script;
+
+			// Traditional script files set the $maintClass variable
+			// at the end of the file.
+			// @phan-suppress-next-line PhanImpossibleCondition Phan doesn't understand includes.
+			if ( $maintClass ) {
+				return $maintClass;
+			}
+
+			// We also support returning a class name, that's nicer.
+			if ( is_string( $scriptClass ) ) {
+				return $scriptClass;
+			}
+		}
+
+		$scriptClass = $script;
+
+		// Support "$ext:$script" format
+		if ( preg_match( '/^([\w.\\\\]+):([\w.\\\\]+)$/', $scriptClass, $m ) ) {
+			$scriptClass = "MediaWiki\\Extension\\{$m[1]}\\Maintenance\\{$m[2]}";
+		}
+
+		// Accept dot (.) as namespace separators as well.
+		// Backslashes are just annoying on the command line.
+		$scriptClass = strtr( $scriptClass, '.', '\\' );
+
+		return $scriptClass;
+	}
+
 	/**
 	 * MW_FINAL_SETUP_CALLBACK handler, for setting up the Maintenance object.
 	 *
 	 * @param SettingsBuilder $settings
 	 */
 	public function setup( SettingsBuilder $settings ) {
-		// NOTE: we can't check this earlier, since we need the autoloader to be initialized.
-		if ( !class_exists( $this->script ) ) {
-			$this->fatalError( "{$this->script} not found.\n" );
+		// NOTE: this has to happen after the autoloader has been initialized.
+		$scriptClass = $this->findScriptClass( $this->script );
+
+		if ( !class_exists( $scriptClass ) ) {
+			$this->fatalError( "Script {$this->script} not found (class $scriptClass).\n" );
+		}
+
+		$cls = new ReflectionClass( $scriptClass );
+		if ( !$cls->isSubclassOf( Maintenance::class ) ) {
+			$this->fatalError( "Class {$this->script} is not a subclass of Maintenance.\n" );
 		}
 
 		// Initialize the actual Maintenance object
-		// TODO: allow the script to be specified by an alias name
-		$this->scriptObject = new $this->script();
+		$this->scriptObject = new $scriptClass;
 		$this->scriptObject->setName( $this->getName() );
 
 		if ( !$this->scriptObject instanceof Maintenance ) {
-			$this->fatalError( "{$this->script} is not a maintenance script.\n" );
+			// This should never happen, we already checked if the class is a subclass of Maintenance!
+			throw new LogicException( 'Incompatible script object' );
 		}
 
 		// Inject runner stuff into the script's parameter definitions.
