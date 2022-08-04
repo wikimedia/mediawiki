@@ -2577,5 +2577,6 @@
 	"skin-action-delete": "Hapus",
 	"skin-action-move": "Pindahakan",
 	"newpages-showhide-patrolled": "$1 babakan taitihi",
-	"newpages-showhide-redirect": "$1 paugahan"
+	"newpages-showhide-redirect": "$1 paugahan",
+	"newpages-showhide-registered": "$1 pamakai tadaptar"
 }
