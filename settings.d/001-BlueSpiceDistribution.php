@@ -28,6 +28,9 @@ $GLOBALS['bsgPermissionConfig']['invitesignup'] = [
 	'roles' => [ 'admin' ]
 ];
 wfLoadExtension( 'MenuEditor' );
+$GLOBALS['wgHooks']['SetupAfterCache'][] = function() {
+	$GLOBALS[ 'wgMenuEditorMediawikiSidebarAllowedKeywords' ] = [];
+};
 wfLoadExtension( 'EnhancedUpload' );
 $GLOBALS['wgEnhancedUploadOverrideStandardUpload'] = true;
 
