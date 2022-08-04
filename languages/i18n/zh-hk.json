@@ -298,6 +298,7 @@
 	"contribslink": "貢獻",
 	"blocklogtext": "這是用戶的封禁與解禁操作的日誌記錄。\n自動封禁的 IP 位址不予包含。\n請參考 [[Special:BlockList|封禁清單]] 以檢視目前的封禁。",
 	"semiprotectedpagemovewarning": "<strong>注意：</strong>本頁已經被保護，只有自動確認用戶才可移動。\n以下提供最近的日誌以便參考：",
+	"tooltip-pt-tmpuserpage": "你的自動生成臨時用戶名",
 	"tooltip-pt-login": "我們建議您登入，但這並非必要",
 	"tooltip-pt-createaccount": "我們建議您建立一個賬號并登入，但這並非必要",
 	"tooltip-ca-talk": "和正文頁面相關的討論",
