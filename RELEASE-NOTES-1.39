@@ -42,6 +42,8 @@ For notes on 1.38.x and older releases, see HISTORY.
 * $wgCdnMatchParameterOrder can be set to false if MediaWiki is behind a CDN
   that re-orders query parameters. This will make the code that matches request
   URLs to canonical CDN URLs insensitive to parameter order.
+* $wgMultiShardSiteStats – split site_stats across multiple rows.
+  Only useful for very large, heavily edited wikis. (T306589)
 * …
 
 ==== Changed configuration ====

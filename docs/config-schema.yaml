@@ -2241,7 +2241,6 @@ config-schema:
             It should be set to true in really large wikis with big flow of edits,
             Otherwise it can cause inaccuracy in data.
             @since 1.39
-            @warning EXPERIMENTAL!
     CacheDirectory:
         default: false
         description: |-
