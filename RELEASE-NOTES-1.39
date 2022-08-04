@@ -471,6 +471,8 @@ because of Phabricator reports.
   warnings.
 * Article::viewRedirect(), deprecated in 1.30, now emits deprecation warnings.
 * Parser::getFreshParser() is deprecated, use ParserFactory::getInstance().
+* CoreParserFunctions::mwnamespace() is deprecated and emits deprecation
+  warnings, use CoreParserFunctions::namespace() instead.
 * User::blockedFor(), deprecated in 1.35, now emits deprecation warnings.
 * Access to previously public properties AbstractBlock::$mExpiry,
   AbstractBlock::$mHideName, AbstractBlock::$mTimestamp, DatabaseBlock::$mAuto,
