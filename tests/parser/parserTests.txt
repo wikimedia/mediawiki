@@ -8600,7 +8600,7 @@ language=kaa
 !! wikitext
 [[Something]]'nice
 !! html
-<p><a href="/index.php?title=Something&amp;action=edit&amp;redlink=1" class="new" title="Something (bet ele jaratılmag&#39;an)">Something'nice</a>
+<p><a href="/index.php?title=Something&amp;action=edit&amp;redlink=1" class="new" title="Something (bet ele jaratılmaǵan)">Something'nice</a>
 </p>
 !! end
 
