@@ -172,7 +172,7 @@ class RebuildLocalisationCache extends Maintenance {
 				$socketpair = [];
 				// Create a pair of sockets so that the child can communicate
 				// the number of rebuilt langs to the parent.
-				if ( socket_create_pair( AF_UNIX, SOCK_STREAM, 0, $socketpair ) === false ) {
+				if ( !socket_create_pair( AF_UNIX, SOCK_STREAM, 0, $socketpair ) ) {
 					$this->fatalError( 'socket_create_pair failed' );
 				}
 
