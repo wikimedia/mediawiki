@@ -895,15 +895,13 @@ class ApiParse extends ApiBase {
 		$lb = $this->linkBatchFactory->newLinkBatch();
 		$lb->setArray( [ NS_CATEGORY => $links ] );
 		$db = $this->getDB();
-		$res = $db->select( [ 'page', 'page_props' ],
-			[ 'page_title', 'pp_propname' ],
-			$lb->constructSet( 'page', $db ),
-			__METHOD__,
-			[],
-			[ 'page_props' => [
-				'LEFT JOIN', [ 'pp_propname' => 'hiddencat', 'pp_page = page_id' ]
-			] ]
-		);
+		$res = $db->newSelectQueryBuilder()
+			->select( [ 'page_title', 'pp_propname' ] )
+			->from( 'page' )
+			->where( $lb->constructSet( 'page', $db ) )
+			->leftJoin( 'page_props', null, [ 'pp_propname' => 'hiddencat', 'pp_page = page_id' ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		$hiddencats = [];
 		foreach ( $res as $row ) {
 			$hiddencats[$row->page_title] = isset( $row->pp_propname );

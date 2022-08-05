@@ -168,16 +168,16 @@ class ApiOpenSearch extends ApiBase {
 			$lb = $this->linkBatchFactory->newLinkBatch( $titles );
 			if ( !$lb->isEmpty() ) {
 				$db = $this->getDB();
-				$res = $db->select(
-					[ 'page', 'redirect' ],
-					[ 'page_namespace', 'page_title', 'rd_namespace', 'rd_title' ],
-					[
-						'rd_from = page_id',
+				$res = $db->newSelectQueryBuilder()
+					->select( [ 'page_namespace', 'page_title', 'rd_namespace', 'rd_title' ] )
+					->from( 'page' )
+					->where( [
 						'rd_interwiki IS NULL OR rd_interwiki = ' . $db->addQuotes( '' ),
-						$lb->constructSet( 'page', $db ),
-					],
-					__METHOD__
-				);
+						$lb->constructSet( 'page', $db )
+					] )
+					->join( 'redirect', null, [ 'rd_from = page_id' ] )
+					->caller( __METHOD__ )
+					->fetchResultSet();
 				foreach ( $res as $row ) {
 					$redirects[$row->page_namespace][$row->page_title] =
 						[ $row->rd_namespace, $row->rd_title ];
