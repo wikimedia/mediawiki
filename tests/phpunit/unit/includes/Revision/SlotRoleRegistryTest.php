@@ -191,8 +191,7 @@ class SlotRoleRegistryTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( $registry->isKnownRole( 'Bar' ) );
 		$this->assertFalse( $registry->isKnownRole( 'xyzzy' ) );
 
-		$title = $this->createMock( Title::class );
-		$this->assertArrayEquals( [ 'foo', 'bar' ], $registry->getKnownRoles( $title ) );
+		$this->assertArrayEquals( [ 'foo', 'bar' ], $registry->getKnownRoles() );
 	}
 
 }
