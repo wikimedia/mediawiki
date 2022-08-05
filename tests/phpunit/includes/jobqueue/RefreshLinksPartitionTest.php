@@ -39,7 +39,7 @@ class RefreshLinksPartitionTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$job = new RefreshLinksJob( $title, [ 'recursive' => true, 'table' => 'pagelinks' ]
-			+ Job::newRootJobParams( "refreshlinks:pagelinks:{$title->getPrefixedText()}" ) );
+			+ Job::newRootJobParams( 'refreshlinks:pagelinks:' . $title->getPrefixedText() ) );
 		$extraParams = $job->getRootJobParams();
 		$jobs = BacklinkJobUtils::partitionBacklinkJob( $job, 9, 1, [ 'params' => $extraParams ] );
 

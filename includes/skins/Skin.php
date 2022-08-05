@@ -1426,7 +1426,7 @@ abstract class Skin extends ContextSource {
 				if ( str_contains( $rootUser, $delimiter ) ) {
 					// Username contains interwiki delimiter, link it via the
 					// #{userid} syntax. (T260222)
-					$linkArgs = [ false, [ 'user' => "#{$user->getId()}" ] ];
+					$linkArgs = [ false, [ 'user' => '#' . $user->getId() ] ];
 				} else {
 					$linkArgs = [ $rootUser ];
 				}
