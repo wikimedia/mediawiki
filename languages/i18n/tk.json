@@ -564,7 +564,7 @@
 	"preview": "Deslapky syn",
 	"showpreview": "Deslapky syny görkez",
 	"showdiff": "Üýtgeşmeleri görkez",
-	"anoneditwarning": "<strong>Duýduryş:</strong> Hasaba girmänsiňiz. Şonuň üçin hem IP adresiňiz bu sahypanyň özgerdişler geçmişine ýazylyp alynar. <strong>[[$1 Hasaba giriň]]</strong> ýa-da <strong>[[$2 Hasap dörediň]]</strong>, düzetmeleriňiz, beýleki peýdalar bilen birlikde ulanyjy adyňyz bilen baglanyşykly bolar.",
+	"anoneditwarning": "<strong>Duýduryş:</strong> Hasaba girmänsiňiz. Şonuň üçin hem IP adresiňiz bu sahypanyň özgerdişler geçmişine ýazylyp alynar. <strong>[$1 Hasaba giriň]</strong> ýa-da <strong>[$2 Hasap dörediň]</strong>, düzetmeleriňiz, beýleki peýdalar bilen birlikde ulanyjy adyňyz bilen baglanyşykly bolar.",
 	"anonpreviewwarning": "<em>Hasab açmadyňyz. Neşir etmek IP adresiňizi bu sahypanyň redaktirleme taryhyna ýazar.</em>",
 	"autocreate-preview-warning": "<em>Hasab açmadyňyz. Düzedişiňiz awtomatiki usulda dörediler we IP adresiňiz administratorlara görüner.</em>",
 	"missingsummary": "'''Ýatlatma:''' Redaktirleme mazmunyny ýazmadyňyz.\nSahypany ýazdyr düwmesine ýene bir gezek bassaňyz, özgerdişiňiz mazmunsyz ýazdyrylar.",
