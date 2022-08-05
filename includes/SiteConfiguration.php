@@ -229,6 +229,9 @@ class SiteConfiguration {
 	 * @return mixed The value of the setting requested.
 	 */
 	private function processSetting( $thisSetting, $wiki, $tags ) {
+		// Optimization: Avoid native type hint on private method called by hot getAll()
+		// <https://gerrit.wikimedia.org/r/c/mediawiki/core/+/820244>
+
 		$retval = null;
 
 		if ( array_key_exists( $wiki, $thisSetting ) ) {
@@ -286,6 +289,9 @@ class SiteConfiguration {
 	 * @param array $replacements
 	 */
 	private function doReplacements( &$value, $replacements ) {
+		// Optimization: Avoid native type hint on private method called by hot getAll()
+		// <https://gerrit.wikimedia.org/r/c/mediawiki/core/+/820244>
+
 		if ( is_string( $value ) ) {
 			$value = strtr( $value, $replacements );
 		} elseif ( is_array( $value ) ) {
@@ -506,8 +512,8 @@ class SiteConfiguration {
 			$ret['params']['site'] = $ret['suffix'];
 		}
 
-		// Precompute the replacements to allow re-use over hundreds of processSetting()
-		// calls, as optimisation for getAll() and extractAllGlobals().
+		// Optimization: For hot getAll() code path, precompute replacements to re-use
+		// over hundreds of processSetting() calls.
 		$ret['replacements'] = [];
 		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		foreach ( $ret['params'] as $key => $value ) {
