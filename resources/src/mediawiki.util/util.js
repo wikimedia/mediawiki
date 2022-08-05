@@ -189,28 +189,18 @@ util = {
 	},
 
 	/**
-	 * Encode page titles for use in a URL
+	 * Encode page titles in a way that matches `wfUrlencode` in PHP.
 	 *
-	 * We want / and : to be included as literal characters in our title URLs
-	 * as they otherwise fatally break the title.
-	 *
-	 * The others are decoded because we can, it's prettier and matches behaviour
-	 * of `wfUrlencode` in PHP.
+	 * This is important both for readability and consistency in the user experience,
+	 * as well as for caching. If URLs are not formatted in the canonical way, they
+	 * may be subject to drastically shorter cache durations and/or miss automatic
+	 * purging after edits, thus leading to stale content being served from a
+	 * non-canonical URL.
 	 *
 	 * @param {string} str String to be encoded.
 	 * @return {string} Encoded string
 	 */
-	wikiUrlencode: function ( str ) {
-		return encodeURIComponent( String( str ) )
-			.replace( /'/g, '%27' )
-			.replace( /%20/g, '_' )
-			.replace( /%3B/g, ';' )
-			.replace( /%40/g, '@' )
-			.replace( /%24/g, '$' )
-			.replace( /%2C/g, ',' )
-			.replace( /%2F/g, '/' )
-			.replace( /%3A/g, ':' );
-	},
+	wikiUrlencode: mw.internalWikiUrlencode,
 
 	/**
 	 * Get the URL to a given local wiki page name,
