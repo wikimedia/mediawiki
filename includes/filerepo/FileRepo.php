@@ -110,7 +110,7 @@ class FileRepo {
 	/** @var string|false Public zone URL. */
 	protected $url;
 
-	/** @var string The base thumbnail URL. Defaults to "<url>/thumb". */
+	/** @var string|false The base thumbnail URL. Defaults to "<url>/thumb". */
 	protected $thumbUrl;
 
 	/** @var int The number of directory levels for hash-based division of files */
@@ -216,11 +216,8 @@ class FileRepo {
 		}
 
 		$this->url = $info['url'] ?? false; // a subclass may set the URL (e.g. ForeignAPIRepo)
-		if ( isset( $info['thumbUrl'] ) ) {
-			$this->thumbUrl = $info['thumbUrl'];
-		} else {
-			$this->thumbUrl = $this->url ? "{$this->url}/thumb" : false;
-		}
+		$defaultThumbUrl = $this->url ? $this->url . '/thumb' : false;
+		$this->thumbUrl = $info['thumbUrl'] ?? $defaultThumbUrl;
 		$this->hashLevels = $info['hashLevels'] ?? 2;
 		$this->deletedHashLevels = $info['deletedHashLevels'] ?? $this->hashLevels;
 		$this->transformVia404 = !empty( $info['transformVia404'] );

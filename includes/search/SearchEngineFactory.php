@@ -57,12 +57,8 @@ class SearchEngineFactory {
 
 		$mappings = $this->config->getSearchMappings();
 
-		if ( isset( $mappings[$class] ) ) {
-			$spec = $mappings[$class];
-		} else {
-			// Convert non mapped classes to ObjectFactory spec
-			$spec = [ 'class' => $class ];
-		}
+		// Convert non mapped classes to ObjectFactory spec
+		$spec = $mappings[$class] ?? [ 'class' => $class ];
 
 		$args = [];
 

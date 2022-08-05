@@ -1832,11 +1832,7 @@ abstract class ApiBase extends ContextSource {
 				$settings = [];
 			}
 
-			if ( isset( $settings[self::PARAM_HELP_MSG] ) ) {
-				$msg = $settings[self::PARAM_HELP_MSG];
-			} else {
-				$msg = $this->msg( "apihelp-{$path}-param-{$param}" );
-			}
+			$msg = $settings[self::PARAM_HELP_MSG] ?? $this->msg( "apihelp-$path-param-$param" );
 			$msg = self::makeMessage( $msg, $this->getContext(),
 				[ $prefix, $param, $name, $path ] );
 			if ( !$msg ) {
@@ -1911,11 +1907,7 @@ abstract class ApiBase extends ContextSource {
 				$deprecatedValues = $settings[EnumDef::PARAM_DEPRECATED_VALUES] ?? [];
 
 				foreach ( $settings[ParamValidator::PARAM_TYPE] as $value ) {
-					if ( isset( $valueMsgs[$value] ) ) {
-						$msg = $valueMsgs[$value];
-					} else {
-						$msg = "apihelp-{$path}-paramvalue-{$param}-{$value}";
-					}
+					$msg = $valueMsgs[$value] ?? "apihelp-$path-paramvalue-$param-$value";
 					$m = self::makeMessage( $msg, $this->getContext(),
 						[ $prefix, $param, $name, $path, $value ] );
 					if ( $m ) {

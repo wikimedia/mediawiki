@@ -3617,12 +3617,8 @@ class Parser {
 
 		// Defaults to Parser::statelessFetchTemplate()
 		$templateCb = $this->mOptions->getTemplateCallback();
-		$stuff = call_user_func( $templateCb, $title, $this );
-		if ( isset( $stuff['revision-record'] ) ) {
-			$revRecord = $stuff['revision-record'];
-		} else {
-			$revRecord = null;
-		}
+		$stuff = $templateCb( $title, $this );
+		$revRecord = $stuff['revision-record'] ?? null;
 
 		$text = $stuff['text'];
 		if ( is_string( $stuff['text'] ) ) {
