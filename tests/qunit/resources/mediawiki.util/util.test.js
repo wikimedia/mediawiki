@@ -152,24 +152,25 @@
 		} );
 	} );
 
-	QUnit.test( 'wikiUrlencode', function ( assert ) {
-		assert.strictEqual( util.wikiUrlencode( 'Test:A & B/Here' ), 'Test:A_%26_B/Here' );
-		// See also wfUrlencodeTest.php#provideURLS
-		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( {
-			'+': '%2B',
-			'&': '%26',
-			'=': '%3D',
-			':': ':',
-			';@$-_.!*': ';@$-_.!*',
-			'/': '/',
-			'~': '~',
-			'[]': '%5B%5D',
-			'<>': '%3C%3E',
-			'\'': '%27'
-		}, function ( input, output ) {
-			assert.strictEqual( util.wikiUrlencode( input ), output );
-		} );
+	QUnit.test.each( 'wikiUrlencode', [
+		[ 'Test:A & B/Here', 'Test:A_%26_B/Here' ],
+
+		// NOTE: Keep in sync with wfUrlencodeTest.php#provideURLS
+		[ '+', '%2B' ],
+		[ '&', '%26' ],
+		[ '=', '%3D' ],
+		[ ':', ':' ],
+		[ '/', '/' ],
+		[ '~', '~' ],
+		[ '\'', '%27' ],
+		[ '[]', '%5B%5D' ],
+		[ '<>', '%3C%3E' ],
+		[
+			';@$-_.!*()',
+			';@$-_.!*()'
+		]
+	], function ( assert, data ) {
+		assert.strictEqual( util.wikiUrlencode( data[ 0 ] ), data[ 1 ], data[ 0 ] );
 	} );
 
 	QUnit.test( 'getUrl', function ( assert ) {

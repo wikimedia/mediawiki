@@ -93,37 +93,30 @@ class WfUrlencodeTest extends MediaWikiUnitTestCase {
 	 * testing method much like the testEncodingUrlWith() method above.
 	 */
 	public static function provideURLS() {
+		// NOTE: Keep in sync with qunit/mediawiki.util/util.test.js
 		return [
-			# ## RFC 1738 chars
-			// + is not safe
+			// Plus is not safe, ambigious with space.
 			[ '+', '%2B' ],
-			// & and = not safe in queries
+			// & and = not safe in query parameters.
 			[ '&', '%26' ],
 			[ '=', '%3D' ],
-
 			[ ':', [
 				'Apache' => ':',
 				'Microsoft-IIS/7' => '%3A',
 			] ],
-
-			// remaining chars do not need encoding
-			[
-				';@$-_.!*',
-				';@$-_.!*',
-			],
-
-			# ## Other tests
-			// slash remain unchanged. %2F seems to break things
+			// Encoding a slash to %2F would actively break things
 			[ '/', '/' ],
-			// T105265
+			// Avoid redirect loop in Chromium T105265
 			[ '~', '~' ],
-
-			// Other 'funnies' chars
+			// Apostrophe
+			[ '\'', '%27' ],
 			[ '[]', '%5B%5D' ],
 			[ '<>', '%3C%3E' ],
-
-			// Apostrophe is encoded
-			[ '\'', '%27' ],
+			// Remaining special chars do not need encoding
+			[
+				';@$-_.!*()',
+				';@$-_.!*()',
+			],
 		];
 	}
 }
