@@ -26,11 +26,10 @@ class DateTimeInputWidget extends \OOUI\InputWidget {
 	 */
 	public function __construct( array $config = [] ) {
 		// We need $this->type set before calling the parent constructor
-		if ( isset( $config['type'] ) ) {
-			$this->type = $config['type'];
-		} else {
+		if ( !isset( $config['type'] ) ) {
 			throw new \InvalidArgumentException( '$config[\'type\'] must be specified' );
 		}
+		$this->type = $config['type'];
 
 		parent::__construct( $config );
 

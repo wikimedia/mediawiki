@@ -167,13 +167,8 @@ class PageConfig extends IPageConfig {
 		// (Parsoid will track dependencies, etc, itself.)
 		// The callback defaults to Parser::statelessFetchTemplate()
 		$templateCb = $this->parserOptions->getTemplateCallback();
-		$stuff = call_user_func( $templateCb, $title, $this );
-		if ( isset( $stuff['revision-record'] ) ) {
-			$revRecord = $stuff['revision-record'];
-		} else {
-			$revRecord = null;
-		}
-		return $revRecord;
+		$stuff = $templateCb( $title, $this );
+		return $stuff['revision-record'] ?? null;
 	}
 
 	/**
