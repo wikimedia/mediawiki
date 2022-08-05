@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
@@ -106,9 +107,7 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 		$context->setTitle( $title );
 		$out = $this->getMockOutputPage( $bodytext, $title );
 		$context->setOutput( $out );
-		$this->setMwGlobals( [
-			'wgLogos' => [],
-		] );
+		$this->overrideConfigValue( MainConfigNames::Logos, [] );
 		$skin = new SkinMustache( [
 			'name' => 'test',
 			'templateDirectory' => __DIR__,

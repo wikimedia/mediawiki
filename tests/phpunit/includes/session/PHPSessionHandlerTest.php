@@ -3,6 +3,7 @@
 namespace MediaWiki\Session;
 
 use BadMethodCallException;
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 use UnexpectedValueException;
@@ -104,9 +105,9 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( '$_SESSION' );
 		$reset[] = $this->getResetter( $rProp );
 
-		$this->setMwGlobals( [
-			'wgSessionProviders' => [ [ 'class' => \DummySessionProvider::class ] ],
-			'wgObjectCacheSessionExpiry' => 2,
+		$this->overrideConfigValues( [
+			MainConfigNames::SessionProviders => [ [ 'class' => \DummySessionProvider::class ] ],
+			MainConfigNames::ObjectCacheSessionExpiry => 2,
 		] );
 
 		$store = new TestBagOStuff();

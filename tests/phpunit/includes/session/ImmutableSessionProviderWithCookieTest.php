@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use TestLogger;
@@ -112,7 +113,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 	}
 
 	public function testGetSessionIdFromCookie() {
-		$this->setMwGlobals( 'wgCookiePrefix', 'wgCookiePrefix' );
+		$this->overrideConfigValue( MainConfigNames::CookiePrefix, 'wgCookiePrefix' );
 		$request = new \FauxRequest();
 		$request->setCookies( [
 			'' => 'empty---------------------------',
@@ -182,10 +183,10 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 	 * @param bool $forceHTTPS
 	 */
 	public function testPersistSession( $secure, $remember, $forceHTTPS ) {
-		$this->setMwGlobals( [
-			'wgCookieExpiration' => 100,
-			'wgSecureLogin' => false,
-			'wgForceHTTPS' => $forceHTTPS,
+		$this->overrideConfigValues( [
+			MainConfigNames::CookieExpiration => 100,
+			MainConfigNames::SecureLogin => false,
+			MainConfigNames::ForceHTTPS => $forceHTTPS,
 		] );
 
 		$provider = $this->getProvider( 'session', null, $forceHTTPS, new NullLogger() );
