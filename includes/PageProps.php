@@ -123,20 +123,12 @@ class PageProps {
 		}
 
 		if ( $queryIDs ) {
-			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-			$result = $dbr->select(
-				'page_props',
-				[
-					'pp_page',
-					'pp_propname',
-					'pp_value'
-				],
-				[
-					'pp_page' => $queryIDs,
-					'pp_propname' => $propertyNames
-				],
-				__METHOD__
-			);
+			$queryBuilder = $this->loadBalancer->getConnectionRef( DB_REPLICA )->newSelectQueryBuilder();
+			$queryBuilder->select( [ 'pp_page', 'pp_propname', 'pp_value' ] )
+				->from( 'page_props' )
+				->where( [ 'pp_page' => $queryIDs, 'pp_propname' => $propertyNames ] )
+				->caller( __METHOD__ );
+			$result = $queryBuilder->fetchResultSet();
 
 			foreach ( $result as $row ) {
 				$pageID = $row->pp_page;
@@ -181,19 +173,12 @@ class PageProps {
 		}
 
 		if ( $queryIDs != [] ) {
-			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-			$result = $dbr->select(
-				'page_props',
-				[
-					'pp_page',
-					'pp_propname',
-					'pp_value'
-				],
-				[
-					'pp_page' => $queryIDs,
-				],
-				__METHOD__
-			);
+			$queryBuilder = $this->loadBalancer->getConnectionRef( DB_REPLICA )->newSelectQueryBuilder();
+			$queryBuilder->select( [ 'pp_page', 'pp_propname', 'pp_value' ] )
+				->from( 'page_props' )
+				->where( [ 'pp_page' => $queryIDs ] )
+				->caller( __METHOD__ );
+			$result = $queryBuilder->fetchResultSet();
 
 			$currentPageID = 0;
 			$pageProperties = [];
