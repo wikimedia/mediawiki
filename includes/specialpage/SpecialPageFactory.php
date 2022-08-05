@@ -597,6 +597,9 @@ class SpecialPageFactory {
 		],
 		'Filepath' => [
 			'class' => \SpecialFilepath::class,
+			'services' => [
+				'SearchEngineFactory',
+			]
 		],
 		'MediaStatistics' => [
 			'class' => \SpecialMediaStatistics::class,
