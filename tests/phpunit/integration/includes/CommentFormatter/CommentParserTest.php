@@ -11,6 +11,7 @@ use SiteConfiguration;
 use Title;
 
 /**
+ * @group Database
  * @covers \MediaWiki\CommentFormatter\CommentParser
  */
 class CommentParserTest extends \MediaWikiIntegrationTestCase {

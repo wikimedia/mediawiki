@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Permissions\Authority;
 
 /**
  * @group API
@@ -20,7 +21,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		return $this->getTestUser()->getUser();
 	}
 
-	private function doPageEdit( User $user, LinkTarget $target, $summary ) {
+	private function doPageEdit( Authority $performer, LinkTarget $target, $summary ) {
 		static $i = 0;
 
 		$this->editPage(
@@ -28,7 +29,7 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 			__CLASS__ . $i++,
 			$summary,
 			NS_MAIN,
-			$user
+			$performer
 		);
 	}
 

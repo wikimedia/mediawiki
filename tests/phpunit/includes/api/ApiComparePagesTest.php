@@ -18,13 +18,13 @@ class ApiComparePagesTest extends ApiTestCase {
 		$content = $this->getServiceContainer()->getContentHandlerFactory()
 			->getContentHandler( $model )
 			->unserializeContent( $text );
-		$user = static::getTestSysop()->getUser();
+		$performer = static::getTestSysop()->getAuthority();
 		$status = $this->editPage(
 			$title,
 			$content,
 			'Test for ApiComparePagesTest: ' . $text,
 			NS_MAIN,
-			$user
+			$performer
 		);
 		if ( !$status->isOK() ) {
 			$this->fail( "Failed to create $title: " . $status->getWikiText( false, false, 'en' ) );
@@ -152,19 +152,19 @@ class ApiComparePagesTest extends ApiTestCase {
 			'errorformat' => 'none',
 		];
 
-		$user = $sysop
-			? static::getTestSysop()->getUser()
-			: static::getTestUser()->getUser();
+		$performer = $sysop
+			? static::getTestSysop()->getAuthority()
+			: static::getTestUser()->getAuthority();
 		if ( $exceptionCode ) {
 			try {
-				$this->doApiRequest( $params, null, false, $user );
+				$this->doApiRequest( $params, null, false, $performer );
 				$this->fail( 'Expected exception not thrown' );
 			} catch ( ApiUsageException $ex ) {
 				$this->assertTrue( $this->apiExceptionHasCode( $ex, $exceptionCode ),
 					"Exception with code $exceptionCode" );
 			}
 		} else {
-			$apiResult = $this->doApiRequest( $params, null, false, $user );
+			$apiResult = $this->doApiRequest( $params, null, false, $performer );
 			$apiResult = $apiResult[0];
 			$this->doReplacements( $expect );
 			$this->assertEquals( $expect, $apiResult );

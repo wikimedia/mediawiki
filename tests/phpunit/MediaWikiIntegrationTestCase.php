@@ -2534,7 +2534,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param string|Content $content the new content of the page
 	 * @param string $summary Optional summary string for the revision
 	 * @param int $defaultNs Optional namespace id
-	 * @param Authority|null $performer If null, static::getTestUser()->getUser() is used.
+	 * @param Authority|null $performer If null, static::getTestUser()->getAuthority() is used.
 	 * @return Status Object as returned by WikiPage::doUserEditContent()
 	 * @throws MWException If this test cases's needsDB() method doesn't return true.
 	 *         Test cases can use "@group Database" to enable database test support,
@@ -2568,7 +2568,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		if ( $performer === null ) {
-			$performer = static::getTestUser()->getUser();
+			$performer = static::getTestUser()->getAuthority();
 		}
 
 		if ( is_string( $content ) ) {

@@ -23,14 +23,14 @@ class ApiQueryAllRevisionsTest extends ApiTestCase {
 			'Some text',
 			'inserting content',
 			NS_MAIN,
-			$this->getTestSysop()->getUser()
+			$this->getTestSysop()->getAuthority()
 		);
 		$this->editPage(
 			$title,
 			'Some other text',
 			'adding revision',
 			NS_MAIN,
-			$this->getTestSysop()->getUser()
+			$this->getTestSysop()->getAuthority()
 		);
 
 		$apiResult = $this->doApiRequest( [

@@ -26,9 +26,9 @@ class ApiQueryUserInfoTest extends ApiTestCase {
 		];
 
 		$page = $this->getNonexistingTestPage();
-		$user = $this->getTestUser()->getUser();
+		$performer = $this->getTestUser()->getAuthority();
 
-		$apiResult = $this->doApiRequest( $params, null, false, $user );
+		$apiResult = $this->doApiRequest( $params, null, false, $performer );
 		$this->assertArrayNotHasKey( 'continue', $apiResult[0] );
 		$this->assertArrayHasKey( 'query', $apiResult[0] );
 		$this->assertArrayHasKey( 'userinfo', $apiResult[0]['query'] );
@@ -41,7 +41,7 @@ class ApiQueryUserInfoTest extends ApiTestCase {
 
 		$revisionTimestamp = MWTimestamp::convert( TS_ISO_8601, $page->getTimestamp() );
 
-		$apiResult = $this->doApiRequest( $params, null, false, $user );
+		$apiResult = $this->doApiRequest( $params, null, false, $performer );
 		$this->assertArrayNotHasKey( 'continue', $apiResult[0] );
 		$this->assertArrayHasKey( 'query', $apiResult[0] );
 		$this->assertArrayHasKey( 'userinfo', $apiResult[0]['query'] );

@@ -24,7 +24,7 @@ use Wikimedia\TestingAccessWrapper;
 class ApiParamValidatorTest extends ApiTestCase {
 
 	private function getValidator( FauxRequest $request ): array {
-		$context = $this->apiContext->newTestContext( $request, $this->getTestUser()->getUser() );
+		$context = $this->apiContext->newTestContext( $request, $this->getTestUser()->getAuthority() );
 		$main = new ApiMain( $context );
 		return [
 			new ApiParamValidator( $main, $this->getServiceContainer()->getObjectFactory() ),

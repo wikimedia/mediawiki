@@ -173,7 +173,7 @@ class ApiEditPageTest extends ApiTestCase {
 		// Preload the page with some text
 		$page->doUserEditContent(
 			ContentHandler::makeContent( $text, $page->getTitle() ),
-			$this->getTestSysop()->getUser(),
+			$this->getTestSysop()->getAuthority(),
 			'summary'
 		);
 

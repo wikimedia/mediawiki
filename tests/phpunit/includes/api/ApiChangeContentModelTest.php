@@ -104,7 +104,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		$invalidJSON = 'Foo\nBar\nEaster egg\nT22281';
 		$wikipage->doUserEditContent(
 			ContentHandler::makeContent( $invalidJSON, $wikipage->getTitle() ),
-			$this->getTestSysop()->getUser(),
+			$this->getTestSysop()->getAuthority(),
 			'EditSummaryForThisTest',
 			EDIT_UPDATE | EDIT_SUPPRESS_RC
 		);
@@ -224,7 +224,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 			$dummyContent,
 			'EditSummaryForThisTest',
 			NS_MAIN,
-			$this->getTestSysop()->getUser()
+			$this->getTestSysop()->getAuthority()
 		);
 		$this->assertSame(
 			'testing',
