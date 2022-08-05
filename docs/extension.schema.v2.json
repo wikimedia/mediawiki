@@ -491,7 +491,7 @@
 			"properties": {
 				"localBasePath": {
 					"type": "string",
-					"description": "Prefix for local paths to files in $options, relative to extenion directory"
+					"description": "Prefix for local paths to files in $options, relative to extension directory"
 				},
 				"remoteExtPath": {
 					"type": "string",
@@ -552,7 +552,7 @@
 			"properties": {
 				"localBasePath": {
 					"type": "string",
-					"description": "Prefix for local paths to files in $options, relative to extenion directory"
+					"description": "Prefix for local paths to files in $options, relative to extension directory"
 				},
 				"scripts": {
 					"type": "array",
