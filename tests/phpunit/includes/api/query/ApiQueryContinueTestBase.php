@@ -114,11 +114,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 			foreach ( $q['pages'] as $p ) {
 				$m = $p['title'];
 				if ( isset( $p['links'] ) ) {
-					$m .= '/[' . implode( ',', array_map(
-						static function ( $v ) {
-							return $v['title'];
-						},
-						$p['links'] ) ) . ']';
+					$m .= '/[' . implode( ',', array_column( $p['links'], 'title' ) ) . ']';
 				}
 				if ( isset( $p['categories'] ) ) {
 					$m .= '/(' . implode( ',', array_map(
@@ -131,11 +127,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 			}
 		}
 		if ( isset( $q['allcategories'] ) ) {
-			$print[] = '*Cats/(' . implode( ',', array_map(
-				static function ( $v ) {
-					return $v['*'];
-				},
-				$q['allcategories'] ) ) . ')';
+			$print[] = '*Cats/(' . implode( ',', array_column( $q['allcategories'], '*' ) ) . ')';
 		}
 		self::getItems( $q, 'allpages', 'Pages', $print );
 		self::getItems( $q, 'alllinks', 'Links', $print );
@@ -145,12 +137,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 
 	private static function getItems( $q, $moduleName, $name, &$print ) {
 		if ( isset( $q[$moduleName] ) ) {
-			$print[] = "*$name/[" . implode( ',',
-				array_map(
-					static function ( $v ) {
-						return $v['title'];
-					},
-					$q[$moduleName] ) ) . ']';
+			$print[] = "*$name/[" . implode( ',', array_column( $q[$moduleName], 'title' ) ) . ']';
 		}
 	}
 
