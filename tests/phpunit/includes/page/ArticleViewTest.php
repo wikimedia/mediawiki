@@ -697,8 +697,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 			$services->getDBLoadBalancerFactory(),
 			$services->getHookContainer(),
 			$services->getHtmlCacheUpdater(),
-			$services->getRevisionStore(),
-			$services->getMainWANObjectCache()
+			$services->getRevisionStore()
 		);
 	}
 }
