@@ -167,7 +167,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$title = $params['title'];
 		if ( $title !== null ) {
 			$titleObj = Title::newFromText( $title );
-			if ( $titleObj === null ) {
+			if ( $titleObj === null || $titleObj->isExternal() ) {
 				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $title ) ] );
 			}
 			$this->addWhereFld( 'rc_namespace', $titleObj->getNamespace() );

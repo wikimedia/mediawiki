@@ -123,7 +123,7 @@ class ApiFeedRecentChanges extends ApiBase {
 	private function getFeedObject( $feedFormat, $specialPageName ) {
 		if ( $specialPageName === 'Recentchangeslinked' ) {
 			$title = Title::newFromText( $this->params['target'] );
-			if ( !$title ) {
+			if ( !$title || $title->isExternal() ) {
 				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $this->params['target'] ) ] );
 			}
 

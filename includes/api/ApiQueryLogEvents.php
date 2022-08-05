@@ -215,7 +215,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$title = $params['title'];
 		if ( $title !== null ) {
 			$titleObj = Title::newFromText( $title );
-			if ( $titleObj === null ) {
+			if ( $titleObj === null || $titleObj->isExternal() ) {
 				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $title ) ] );
 			}
 			$this->addWhereFld( 'log_namespace', $titleObj->getNamespace() );
@@ -234,7 +234,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 
 			$title = Title::newFromText( $prefix );
-			if ( $title === null ) {
+			if ( $title === null || $title->isExternal() ) {
 				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $prefix ) ] );
 			}
 			$this->addWhereFld( 'log_namespace', $title->getNamespace() );
