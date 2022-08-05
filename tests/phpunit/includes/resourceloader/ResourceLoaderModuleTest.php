@@ -15,6 +15,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		];
 
 		$module = new ResourceLoaderFileModule( $baseParams );
+		$module->setName( "" );
 		$version = json_encode( $module->getVersionHash( $context ) );
 
 		// Exactly the same
