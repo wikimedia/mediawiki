@@ -31,6 +31,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\IPUtils;
 use Wikimedia\NonSerializable\NonSerializableTrait;
@@ -111,6 +112,11 @@ class Article implements Page {
 	private $userNameUtils;
 
 	/**
+	 * @var UserOptionsLookup
+	 */
+	private $userOptionsLookup;
+
+	/**
 	 * @var RevisionRecord|null Revision to be shown
 	 *
 	 * Initialized by getOldIDFromRequest() or fetchRevisionRecord(). While the output of
@@ -131,6 +137,7 @@ class Article implements Page {
 		$this->revisionStore = $services->getRevisionStore();
 		$this->watchlistManager = $services->getWatchlistManager();
 		$this->userNameUtils = $services->getUserNameUtils();
+		$this->userOptionsLookup = $services->getUserOptionsLookup();
 	}
 
 	/**
@@ -848,7 +855,6 @@ class Article implements Page {
 		$user = $this->getContext()->getUser();
 		$diff = $request->getVal( 'diff' );
 		$rcid = $request->getInt( 'rcid' );
-		$diffOnly = $request->getBool( 'diffonly', $user->getOption( 'diffonly' ) );
 		$purge = $request->getRawVal( 'action' ) === 'purge';
 		$unhide = $request->getInt( 'unhide' ) == 1;
 		$oldid = $this->getOldID();
@@ -891,13 +897,20 @@ class Article implements Page {
 			'diff-type' => $request->getVal( 'diff-type' ),
 			'expand-url' => $this->viewIsRenderAction
 		] );
-		$de->showDiffPage( $diffOnly );
+		$de->showDiffPage( $this->isDiffOnlyView() );
 
 		// Run view updates for the newer revision being diffed (and shown
-		// below the diff if not $diffOnly).
+		// below the diff if not diffOnly).
 		list( $old, $new ) = $de->mapDiffPrevNext( $oldid, $diff );
 		// New can be false, convert it to 0 - this conveniently means the latest revision
 		$this->mPage->doViewUpdates( $user, (int)$new );
+	}
+
+	protected function isDiffOnlyView() {
+		return $this->getContext()->getRequest()->getBool(
+			'diffonly',
+			$this->userOptionsLookup->getBoolOption( $this->getContext()->getUser(), 'diffonly' )
+		);
 	}
 
 	/**

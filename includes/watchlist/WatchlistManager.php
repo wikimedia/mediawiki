@@ -40,7 +40,6 @@ use NamespaceInfo;
 use ReadOnlyMode;
 use Status;
 use StatusValue;
-use TitleValue;
 use User;
 use WatchedItemStoreInterface;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
@@ -499,8 +498,7 @@ class WatchlistManager {
 		}
 
 		// Only call addWatchIgnoringRights() or removeWatch() if there's been a change in the watched status.
-		$link = TitleValue::newFromPage( $target );
-		$oldWatchedItem = $this->watchedItemStore->getWatchedItem( $performer->getUser(), $link );
+		$oldWatchedItem = $this->watchedItemStore->getWatchedItem( $performer->getUser(), $target );
 		$changingWatchStatus = (bool)$oldWatchedItem !== $watch;
 		if ( $oldWatchedItem && $expiry !== null ) {
 			// If there's an old watched item, a non-null change to the expiry requires an UPDATE.

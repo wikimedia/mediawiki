@@ -99,7 +99,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		if ( isset( $params['badfilecontexttitle'] ) ) {
 			$badFileContextTitle = Title::newFromText( $params['badfilecontexttitle'] );
-			if ( !$badFileContextTitle ) {
+			if ( !$badFileContextTitle || $badFileContextTitle->isExternal() ) {
 				$p = $this->getModulePrefix();
 				$this->dieWithError( [ 'apierror-bad-badfilecontexttitle', $p ], 'invalid-title' );
 			}

@@ -81,7 +81,7 @@
 						"^ext-": {
 							"type": "string",
 							"description": "Required PHP extension.",
-							"enum": ["*"]
+							"enum": [ "*" ]
 						}
 					}
 				},
@@ -119,7 +119,7 @@
 						"^ext-": {
 							"type": "string",
 							"description": "Optional PHP extension.",
-							"enum": ["*"]
+							"enum": [ "*" ]
 						}
 					}
 				},
@@ -161,7 +161,7 @@
 						"^ext-": {
 							"type": "string",
 							"description": "Required PHP extension.",
-							"enum": ["*"]
+							"enum": [ "*" ]
 						}
 					}
 				},
@@ -222,7 +222,7 @@
 									"description": "Path to a file containing a JavaScript \"skip function\", if desired."
 								},
 								"scripts": {
-									"type": ["string", "array"],
+									"type": [ "string", "array" ],
 									"description": "Scripts to always include (array of file paths)",
 									"items": {
 										"type": "string"
@@ -259,21 +259,21 @@
 									}
 								},
 								"debugScripts": {
-									"type": ["string", "array"],
+									"type": [ "string", "array" ],
 									"description": "Scripts to include in debug contexts",
 									"items": {
 										"type": "string"
 									}
 								},
 								"dependencies": {
-									"type": ["string", "array"],
+									"type": [ "string", "array" ],
 									"description": "Modules which must be loaded before this module",
 									"items": {
 										"type": "string"
 									}
 								},
 								"styles": {
-									"type": ["string", "array", "object"],
+									"type": [ "string", "array", "object" ],
 									"description": "Styles to always load",
 									"items": {
 										"type": "string"
@@ -295,7 +295,7 @@
 									}
 								},
 								"messages": {
-									"type": ["string", "array"],
+									"type": [ "string", "array" ],
 									"description": "Messages to always load",
 									"items": {
 										"type": "string"
@@ -306,7 +306,7 @@
 									"description": "Group with which this module should be loaded"
 								},
 								"deprecated": {
-									"type": ["object", "string", "boolean"],
+									"type": [ "object", "string", "boolean" ],
 									"description": "Whether the module is deprecated and usage is discouraged. Either a boolean, or a string or an object with key message can be used to customise deprecation message."
 								},
 								"position": {
@@ -318,11 +318,11 @@
 									]
 								},
 								"templates": {
-									"type": ["object", "array"],
+									"type": [ "object", "array" ],
 									"description": "Templates to be loaded for client-side usage"
 								},
 								"targets": {
-									"type": ["string", "array"],
+									"type": [ "string", "array" ],
 									"description": "ResourceLoader target the module can run on",
 									"items": {
 										"type": "string"
@@ -333,10 +333,10 @@
 									"description": "Whether to skip CSSJanus LTR-to-RTL flipping for this module. Recommended for styles imported from libraries that already properly handle their RTL styles. Default is false, meaning CSSJanus will be applied on RTL-mode output."
 								},
 								"packageFiles": {
-									"type": ["string", "array"],
+									"type": [ "string", "array" ],
 									"description": "Package files that can be require()d",
 									"items": {
-										"type": ["string", "object"]
+										"type": [ "string", "object" ]
 									}
 								},
 								"es6": {
@@ -365,7 +365,7 @@
 									]
 								},
 								"targets": {
-									"type": ["string", "array"],
+									"type": [ "string", "array" ],
 									"description": "ResourceLoader target the module can run on",
 									"items": {
 										"type": "string"
@@ -443,7 +443,7 @@
 									"pattern": "^(?!ResourceLoader(File|Image|Wiki)Module).*$"
 								}
 							},
-							"required": ["class"]
+							"required": [ "class" ]
 						}
 					]
 				}
@@ -468,7 +468,7 @@
 			"properties": {
 				"localBasePath": {
 					"type": "string",
-					"description": "Prefix for local paths to files in $options, relative to extenion directory"
+					"description": "Prefix for local paths to files in $options, relative to extension directory"
 				},
 				"remoteExtPath": {
 					"type": "string",
@@ -479,42 +479,42 @@
 					"description": "Prefix for URLs to files in $options, relative to $wgStylePath"
 				},
 				"scripts": {
-					"type": ["string", "array"],
+					"type": [ "string", "array" ],
 					"description": "Scripts to include (array of file paths)",
 					"items": {
 						"type": "string"
 					}
 				},
 				"packageFiles": {
-					"type": ["string", "array"],
+					"type": [ "string", "array" ],
 					"description": "Package files that can be require()d",
 					"items": {
-						"type": ["string", "object"]
+						"type": [ "string", "object" ]
 					}
 				},
 				"dependencies": {
-					"type": ["string", "array"],
+					"type": [ "string", "array" ],
 					"description": "Modules which must be loaded before this module",
 					"items": {
 						"type": "string"
 					}
 				},
 				"styles": {
-					"type": ["string", "array", "object"],
+					"type": [ "string", "array", "object" ],
 					"description": "Styles to load",
 					"items": {
 						"type": "string"
 					}
 				},
 				"templates": {
-					"type": ["object", "array"],
+					"type": [ "object", "array" ],
 					"description": "Templates to be loaded for client-side usage",
 					"items": {
 						"type": "string"
 					}
 				},
 				"messages": {
-					"type": ["string", "array"],
+					"type": [ "string", "array" ],
 					"description": "Messages to load",
 					"items": {
 						"type": "string"
@@ -529,7 +529,7 @@
 			"properties": {
 				"localBasePath": {
 					"type": "string",
-					"description": "Prefix for local paths to files in $options, relative to extenion directory"
+					"description": "Prefix for local paths to files in $options, relative to extension directory"
 				},
 				"scripts": {
 					"type": "array",
@@ -616,7 +616,7 @@
 						"type": "string"
 					},
 					"protection": {
-						"type": ["string", "array"],
+						"type": [ "string", "array" ],
 						"description": "Userright(s) required to edit in this namespace"
 					},
 					"capitallinkoverride": {
@@ -639,7 +639,7 @@
 						"default": true
 					}
 				},
-				"required": ["id", "constant", "name"]
+				"required": [ "id", "constant", "name" ]
 			}
 		},
 		"TrackingCategories": {
@@ -884,7 +884,7 @@
 				"type": "object",
 				"properties": {
 					"factory": {
-						"type": ["string", "array"],
+						"type": [ "string", "array" ],
 						"description": "A factory function to be called to create the handler for this hook"
 					},
 					"class": {
@@ -918,7 +918,7 @@
 					},
 					"component": {
 						"type": "string",
-						"description" : "The component to which the deprecated version relates. If omitted, the extension name will be used."
+						"description": "The component to which the deprecated version relates. If omitted, the extension name will be used."
 					},
 					"silent": {
 						"type": "boolean",
@@ -993,7 +993,7 @@
 		},
 		"ValidSkinNames": {
 			"type": "object",
-			"description":  "Mapping of skin canonical names to PHP class name using the Object Factory specification. Or historically, the human readable name of the skin."
+			"description": "Mapping of skin canonical names to PHP class name using the Object Factory specification. Or historically, the human readable name of the skin."
 		},
 		"FeedClasses": {
 			"type": "object",
@@ -1127,7 +1127,7 @@
 						"description": "The path template. This should start with an initial slash, designating the root of the REST API. Path parameters are enclosed in braces, for example /endpoint/{param}."
 					},
 					"factory": {
-						"type": ["string", "array"],
+						"type": [ "string", "array" ],
 						"description": "A factory function to be called to create the handler for this route"
 					},
 					"class": {
@@ -1159,7 +1159,7 @@
 						"description": "Object factory specification for a class implementing Wikimedia\\Parsoid\\Ext\\ExtensionModule",
 						"properties": {
 							"factory": {
-								"type": ["string", "array"],
+								"type": [ "string", "array" ],
 								"description": "A factory function to be called to create an ExtensionModule. This should be omitted if a class is specified."
 							}
 						},
@@ -1226,7 +1226,7 @@
 											"description": "Additional Parsoid processing configuration for this extension tag"
 										}
 									},
-									"required": ["name"]
+									"required": [ "name" ]
 								}
 							}
 						}
@@ -1235,14 +1235,14 @@
 			}
 		},
 		"TempUserSerialProviders": {
-			"type" : "object",
+			"type": "object",
 			"description": "Map of temporary user serial provider type name to ObjectFactory spec",
 			"patternProperties": {
 				".*": {
 					"type": "object",
 					"properties": {
 						"factory": {
-							"type": ["string", "array"],
+							"type": [ "string", "array" ],
 							"description": "A factory function"
 						},
 						"class": {
@@ -1262,14 +1262,14 @@
 			}
 		},
 		"TempUserSerialMappings": {
-			"type" : "object",
+			"type": "object",
 			"description": "Map of temporary user serial map type name to ObjectFactory spec",
 			"patternProperties": {
 				".*": {
 					"type": "object",
 					"properties": {
 						"factory": {
-							"type": ["string", "array"],
+							"type": [ "string", "array" ],
 							"description": "A factory function"
 						},
 						"class": {

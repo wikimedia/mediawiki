@@ -370,7 +370,7 @@ class MergeHistory {
 		$logEntry = new ManualLogEntry( 'merge', 'merge' );
 		$logEntry->setPerformer( $performer->getUser() );
 		$logEntry->setComment( $reason );
-		$logEntry->setTarget( TitleValue::newFromPage( $this->source ) );
+		$logEntry->setTarget( $this->source );
 		$logEntry->setParameters( [
 			'4::dest' => $this->titleFormatter->getPrefixedText( $this->dest ),
 			'5::mergepoint' => $this->getTimestampLimit()->getTimestamp( TS_MW )

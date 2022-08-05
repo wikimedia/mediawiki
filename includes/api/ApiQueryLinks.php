@@ -129,7 +129,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			$lb = $this->linkBatchFactory->newLinkBatch();
 			foreach ( $params[$this->titlesParam] as $t ) {
 				$title = Title::newFromText( $t );
-				if ( !$title ) {
+				if ( !$title || $title->isExternal() ) {
 					$this->addWarning( [ 'apiwarn-invalidtitle', wfEscapeWikiText( $t ) ] );
 				} elseif ( !$filterNS || isset( $filterNS[$title->getNamespace()] ) ) {
 					$lb->addObj( $title );
