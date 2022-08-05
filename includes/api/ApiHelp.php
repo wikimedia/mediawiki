@@ -582,7 +582,11 @@ class ApiHelp extends ApiBase {
 					$sandbox = SpecialPage::getTitleFor( 'ApiSandbox' )->getLocalURL() . '#' . $qs;
 					$help['examples'] .= Html::rawElement( 'dt', null, $msg->parse() );
 					$help['examples'] .= Html::rawElement( 'dd', null,
-						Html::element( 'a', [ 'href' => $link, 'dir' => 'ltr' ], "api.php?$qs" ) . ' ' .
+						Html::element( 'a', [
+							'href' => $link,
+							'dir' => 'ltr',
+							'rel' => 'nofollow',
+						], "api.php?$qs" ) . ' ' .
 						Html::rawElement( 'a', [ 'href' => $sandbox ],
 							$context->msg( 'api-help-open-in-apisandbox' )->parse() )
 					);
