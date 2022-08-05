@@ -7,7 +7,9 @@
 /resources/src/skip-*
 
 # Build tooling
-/docs/
+/docs/coverage/
+/docs/js/
+/docs/latex/
 /vendor/
 /tests/coverage/
 /tests/phpunit/data/registration/duplicate_keys.json
