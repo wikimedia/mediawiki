@@ -282,10 +282,8 @@ CSS
 	 * @covers \MediaWiki\ResourceLoader\SkinModule::isKnownEmpty
 	 */
 	public function testIsKnownEmpty() {
-		$module = $this->getMockBuilder( SkinModule::class )
-			->disableOriginalConstructor()->onlyMethods( [] )->getMock();
-		$ctx = $this->getMockBuilder( Context::class )
-			->disableOriginalConstructor()->getMock();
+		$module = new SkinModule();
+		$ctx = $this->createMock( Context::class );
 
 		$this->assertFalse( $module->isKnownEmpty( $ctx ) );
 	}

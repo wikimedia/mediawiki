@@ -604,10 +604,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::buildIntegerCast
 	 */
 	public function testBuildIntegerCast() {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
-			->disableOriginalConstructor()
-			->onlyMethods( [] )
-			->getMock();
+		$db = $this->createPartialMock( DatabaseMysqli::class, [] );
 		TestingAccessWrapper::newFromObject( $db )->platform = new MySQLPlatform( new AddQuoterMock() );
 
 		/** @var IDatabase $db */
@@ -638,10 +635,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform::normalizeJoinType
 	 */
 	public function testNormalizeJoinTypeSqb() {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
-			->disableOriginalConstructor()
-			->onlyMethods( [] )
-			->getMock();
+		$db = $this->createPartialMock( DatabaseMysqli::class, [] );
 
 		TestingAccessWrapper::newFromObject( $db )->currentDomain =
 			new DatabaseDomain( null, null, '' );
