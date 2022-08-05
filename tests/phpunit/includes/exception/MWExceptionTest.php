@@ -43,18 +43,12 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 		return [
 			// expected, langObj, wgFullyInitialised, wgOut
 			[ false, null, null, null ],
-			[ false, $this->getMockLanguage(), null, null ],
-			[ false, $this->getMockLanguage(), true, null ],
+			[ false, $this->createMock( Language::class ), null, null ],
+			[ false, $this->createMock( Language::class ), true, null ],
 			[ false, null, true, null ],
 			[ false, null, null, true ],
-			[ true, $this->getMockLanguage(), true, true ],
+			[ true, $this->createMock( Language::class ), true, true ],
 		];
-	}
-
-	private function getMockLanguage() {
-		return $this->getMockBuilder( Language::class )
-			->disableOriginalConstructor()
-			->getMock();
 	}
 
 	/**

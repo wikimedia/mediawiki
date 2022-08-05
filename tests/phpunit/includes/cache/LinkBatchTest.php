@@ -145,9 +145,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 		$nonexisting1 = $this->getNonexistingTestPage( __METHOD__ . 'x' )->getTitle();
 		$nonexisting2 = $this->getNonexistingTestPage( __METHOD__ . 'y' )->getTitle();
 
-		$cache = $this->getMockBuilder( LinkCache::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$cache = $this->createMock( LinkCache::class );
 
 		$good = [];
 		$bad = [];
