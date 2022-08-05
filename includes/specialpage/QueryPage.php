@@ -266,9 +266,21 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
-	 * Is this query expensive (for some definition of expensive)? Then we
-	 * don't let it run in miser mode. $wgDisableQueryPages causes all query
-	 * pages to be declared expensive. Some query pages are always expensive.
+	 * Should this query page only be updated offline on large wikis?
+	 *
+	 * If the query for this page is considered too expensive to run on-demand
+	 * for large wikis (e.g. every time the special page is viewed), then
+	 * implement this as returning true.
+	 *
+	 * "Large wikis" are those that enable $wgMiserMode. The value of
+	 * ::isExpensive() has no effect by default when $wgMiserMode is off.
+	 *
+	 * It is expected that such large wikis, periodically run the
+	 * UpdateSpecialPages maintenance script to update these query pages.
+	 *
+	 * By enabling $wgDisableQueryPages, all query pages will be considered
+	 * as expensive and updated offline only, even query pages that do not
+	 * mark themselves as expensive.
 	 *
 	 * @stable to override
 	 * @return bool

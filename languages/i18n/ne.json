@@ -2014,7 +2014,7 @@
 	"rollback-confirmation-confirm": "कृपया सुनिश्चित गर्नुहाेस्",
 	"rollback-confirmation-yes": "पूर्ववत",
 	"rollback-confirmation-no": "रद्द गर्नुहोस्",
-	"rollbacklink": "पूर्ववत्",
+	"rollbacklink": "रोलब्याक",
 	"rollbacklinkcount": "पूर्ववत $1 {{PLURAL:$1|सम्पादन|सम्पादनहरू}}",
 	"rollbacklinkcount-morethan": "$1 भन्दा बढी {{PLURAL:$1|सम्पादन|सम्पादनहरू}} पूर्ववत गर्ने",
 	"rollbackfailed": "पूर्ववत असफल",
