@@ -1915,12 +1915,8 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			$expectedParams = array_merge( [ $callee ], $expectedParams );
 		}
 
-		$mockRestrictionStore = $this->createMock( RestrictionStore::class );
-
 		$expectedMethod = $options['expectedMethod'] ?? $method;
-
-		// Don't try to forward to a method that doesn't exist!
-		$this->assertIsCallable( [ $mockRestrictionStore, $expectedMethod ] );
+		$mockRestrictionStore = $this->createNoOpMock( RestrictionStore::class, [ $expectedMethod ] );
 
 		$expectedCall = $mockRestrictionStore->expects( $this->once() )
 			->method( $expectedMethod )
@@ -1928,9 +1924,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		if ( !isset( $options['void'] ) ) {
 			$expectedCall->willReturn( $return );
 		}
-
-		$mockRestrictionStore->expects( $this->never() )
-			->method( $this->anythingBut( $expectedMethod ) );
 
 		$this->setService( 'RestrictionStore', $mockRestrictionStore );
 
