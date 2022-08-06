@@ -36,6 +36,18 @@ class DBConnRef implements IMaintainableDatabase {
 	/** @var int One of DB_PRIMARY/DB_REPLICA */
 	private $role;
 
+	/**
+	 * @var int Reference to the $modcount passed to the constructor.
+	 *      $conn is valid if $modCountRef and $modCountFix are the same.
+	 */
+	private $modCountRef;
+
+	/**
+	 * @var int Last known good value of $modCountRef
+	 *      $conn is valid if $modCountRef and $modCountFix are the same.
+	 */
+	private $modCountFix;
+
 	private const FLD_INDEX = 0;
 	private const FLD_GROUP = 1;
 	private const FLD_DOMAIN = 2;
@@ -45,11 +57,19 @@ class DBConnRef implements IMaintainableDatabase {
 	 * @param ILoadBalancer $lb Connection manager for $conn
 	 * @param IDatabase|array $conn Database or (server index, query groups, domain, flags)
 	 * @param int $role The type of connection asked for; one of DB_PRIMARY/DB_REPLICA
+	 * @param null|int &$modcount Reference to a modification counter for invalidating
+	 *        any wrapped connection and forcing a new connection to be acquired.
+	 *
 	 * @internal This method should not be called outside of LoadBalancer
 	 */
-	public function __construct( ILoadBalancer $lb, $conn, $role ) {
+	public function __construct( ILoadBalancer $lb, $conn, $role, &$modcount = 0 ) {
 		$this->lb = $lb;
 		$this->role = $role;
+
+		// $this->conn is valid as long as $this->modCountRef and $this->modCountFix are the same.
+		$this->modCountRef = &$modcount; // remember reference
+		$this->modCountFix = $modcount;  // remember current value
+
 		if ( $conn instanceof IDatabase && !( $conn instanceof DBConnRef ) ) {
 			$this->conn = $conn; // live handle
 		} elseif ( is_array( $conn ) && count( $conn ) >= 4 && $conn[self::FLD_DOMAIN] !== false ) {
@@ -59,11 +79,32 @@ class DBConnRef implements IMaintainableDatabase {
 		}
 	}
 
-	public function __call( $name, array $arguments ) {
-		if ( $this->conn === null ) {
-			list( $index, $groups, $wiki, $flags ) = $this->params;
-			$this->conn = $this->lb->getConnectionInternal( $index, $groups, $wiki, $flags );
+	/**
+	 * Make sure we are using the correct connection.
+	 */
+	private function ensureConnection() {
+		if ( $this->modCountFix !== $this->modCountRef ) {
+			// Mod counter changed, discard existing connection,
+			// Unless we are in an ongoing transaction.
+			// This is triggered by LoadBalancer::reconfigure(), to allow changed settings
+			// to take effect. The primary use case are replica servers being taken out of
+			// rotation, or the primary database changing.
+
+			if ( !$this->conn->trxLevel() ) {
+				$this->lb->closeConnection( $this->conn );
+				$this->conn = null;
+			}
 		}
+
+		if ( $this->conn === null ) {
+			[ $index, $groups, $wiki, $flags ] = $this->params;
+			$this->conn = $this->lb->getConnectionInternal( $index, $groups, $wiki, $flags );
+			$this->modCountFix = $this->modCountRef;
+		}
+	}
+
+	public function __call( $name, array $arguments ) {
+		$this->ensureConnection();
 
 		return $this->conn->$name( ...$arguments );
 	}

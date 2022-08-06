@@ -138,6 +138,12 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	/** @var DatabaseDomain[] Map of (domain ID => domain instance) */
 	private $nonLocalDomainCache = [];
 
+	/**
+	 * @var int Modification counter for invalidating connections held by
+	 *      DBConnRef instances. This is bumped by reconfigure().
+	 */
+	private $modcount = 0;
+
 	private const INFO_SERVER_INDEX = 'serverIndex';
 	private const INFO_AUTOCOMMIT_ONLY = 'autoCommitOnly';
 	private const INFO_FORIEGN = 'foreign';
@@ -184,6 +190,17 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private const READER_INDEX_NONE = -1;
 
 	public function __construct( array $params ) {
+		$this->configure( $params );
+
+		$this->conns = self::newTrackedConnectionsArray();
+	}
+
+	/**
+	 * @param array $params A database configuration array, see $wgLBFactoryConf.
+	 *
+	 * @return void
+	 */
+	protected function configure( array $params ): void {
 		if ( !isset( $params['servers'] ) || !count( $params['servers'] ) ) {
 			throw new InvalidArgumentException( 'Missing or empty "servers" parameter' );
 		}
@@ -202,16 +219,14 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			if ( ++$listKey !== $i ) {
 				throw new UnexpectedValueException( 'List expected for "servers" parameter' );
 			}
-			$this->servers[$i] = $server;
+			$this->servers[ $i ] = $server;
 			foreach ( ( $server['groupLoads'] ?? [] ) as $group => $ratio ) {
-				$this->groupLoads[$group][$i] = $ratio;
+				$this->groupLoads[ $group ][ $i ] = $ratio;
 			}
-			$this->groupLoads[self::GROUP_GENERIC][$i] = $server['load'];
+			$this->groupLoads[ self::GROUP_GENERIC ][ $i ] = $server['load'];
 		}
 
 		$this->waitTimeout = $params['waitTimeout'] ?? self::MAX_WAIT_DEFAULT;
-
-		$this->conns = self::newTrackedConnectionsArray();
 
 		if ( isset( $params['readOnlyReason'] ) && is_string( $params['readOnlyReason'] ) ) {
 			$this->readOnlyReason = $params['readOnlyReason'];
@@ -223,10 +238,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$this->srvCache = $params['srvCache'] ?? new EmptyBagOStuff();
 		$this->wanCache = $params['wanCache'] ?? WANObjectCache::newEmpty();
 		$this->errorLogger = $params['errorLogger'] ?? static function ( Throwable $e ) {
-			trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
+				trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 		};
 		$this->deprecationLogger = $params['deprecationLogger'] ?? static function ( $msg ) {
-			trigger_error( $msg, E_USER_DEPRECATED );
+				trigger_error( $msg, E_USER_DEPRECATED );
 		};
 		$this->replLogger = $params['replLogger'] ?? new NullLogger();
 		$this->connLogger = $params['connLogger'] ?? new NullLogger();
@@ -256,7 +271,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		$group = $params['defaultGroup'] ?? self::GROUP_GENERIC;
-		$this->defaultGroup = isset( $this->groupLoads[$group] ) ? $group : self::GROUP_GENERIC;
+		$this->defaultGroup = isset( $this->groupLoads[ $group ] ) ? $group : self::GROUP_GENERIC;
 	}
 
 	private static function newTrackedConnectionsArray() {
@@ -547,7 +562,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		// Pick a server to use, accounting for weights, load, lag, and "waitForPos"
 		$this->lazyLoadReplicationPositions(); // optimizes server candidate selection
-		list( $i, $laggedReplicaMode ) = $this->pickReaderIndex( $loads, $domain );
+		[ $i, $laggedReplicaMode ] = $this->pickReaderIndex( $loads, $domain );
 		if ( $i === false ) {
 			// DB connection unsuccessful
 			return false;
@@ -1073,7 +1088,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$domain = $this->resolveDomainID( $domain );
 		$role = $this->getRoleFromIndex( $i );
 
-		return new DBConnRef( $this, [ $i, $groups, $domain, $flags ], $role );
+		return new DBConnRef( $this, [ $i, $groups, $domain, $flags ], $role, $this->modcount );
 	}
 
 	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase {
@@ -1095,9 +1110,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		$domain = $this->resolveDomainID( $domain );
 		$role = $this->getRoleFromIndex( $i );
-		$conn = $this->getConnectionInternal( $i, $groups, $domain, $flags );
 
-		return new DBConnRef( $this, $conn, $role );
+		return new DBConnRef( $this, [ $i, $groups, $domain, $flags ], $role, $this->modcount );
 	}
 
 	/**
@@ -1591,6 +1605,37 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		return $highestPos;
+	}
+
+	/**
+	 * Apply updated configuration.
+	 *
+	 * This invalidates any open connections. However, existing connections may continue to be
+	 * used while they are in an active transaction. In that case, the old connection will be
+	 * discarded on the first operation after the transaction is complete. The next operation
+	 * will use a new connection based on the new configuration.
+	 *
+	 * @internal for use by LBFactory::reconfigure()
+	 *
+	 * @see DBConnRef::ensureConnection()
+	 * @see LBFactory::reconfigure()
+	 *
+	 * @param array $params A database configuration array, see $wgLBFactoryConf.
+	 *
+	 * @return void
+	 */
+	public function reconfigure( array $params ) {
+		// NOTE: We could close all connection here, but some may be in the middle of
+		//       a transaction. So instead, we leave it to DBConnRef to close the
+		//       connection when it detects that the modcount has changed and no
+		//       transaction is open.
+
+		$this->configure( $params );
+
+		// Bump modification counter to invalidate the connections held by DBConnRef
+		// instances. This will cause the next call to a method on the DBConnRef
+		// to get a new connection from getConnectionInternal()
+		$this->modcount++;
 	}
 
 	public function disable( $fname = __METHOD__ ) {
@@ -2482,6 +2527,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$extras
 		);
 	}
+
 }
 
 /**

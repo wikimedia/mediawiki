@@ -152,6 +152,7 @@ use MediaWiki\Watchlist\WatchlistManager;
 use MessageCache;
 use MimeAnalyzer;
 use MWException;
+use MWLBFactory;
 use NamespaceInfo;
 use ObjectCache;
 use OldRevisionImporter;
@@ -938,6 +939,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDBLoadBalancerFactory(): LBFactory {
 		return $this->getService( 'DBLoadBalancerFactory' );
+	}
+
+	/**
+	 * @since 1.39
+	 * @return MWLBFactory
+	 */
+	public function getDBLoadBalancerFactoryConfigBuilder(): MWLBFactory {
+		return $this->getService( 'DBLoadBalancerFactoryConfigBuilder' );
 	}
 
 	/**
