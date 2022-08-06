@@ -51,7 +51,6 @@ class QueryAllSpecialPagesTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Test SQL for each of our QueryPages objects
-	 * @group Database
 	 */
 	public function testQuerypageSqlQuery() {
 		global $wgDBtype;

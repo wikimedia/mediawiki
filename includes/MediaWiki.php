@@ -972,11 +972,7 @@ class MediaWiki {
 		return $request->getSession()->shouldForceHTTPS() ||
 			// Check the cookie manually, for paranoia
 			$request->getCookie( 'forceHTTPS', '' ) ||
-			// Avoid checking the user and groups unless it's enabled.
-			(
-				$this->context->getUser()->isRegistered()
-				&& $this->context->getUser()->requiresHTTPS()
-			);
+			$this->context->getUser()->requiresHTTPS();
 	}
 
 	/**

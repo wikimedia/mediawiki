@@ -2,6 +2,9 @@
 
 use MediaWiki\MainConfigNames;
 
+/**
+ * @group Database
+ */
 class EmailNotificationTest extends MediaWikiIntegrationTestCase {
 
 	protected $emailNotification;

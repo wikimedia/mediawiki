@@ -2228,18 +2228,19 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function requiresHTTPS() {
-		$forceHTTPS =
-			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::ForceHTTPS );
-		$secureLogin =
-			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::SecureLogin );
-		if ( $forceHTTPS ) {
-			return true;
-		}
-		if ( !$secureLogin ) {
+		if ( !$this->isRegistered() ) {
 			return false;
 		}
-		return MediaWikiServices::getInstance()
-			->getUserOptionsLookup()
+
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
+		if ( $config->get( MainConfigNames::ForceHTTPS ) ) {
+			return true;
+		}
+		if ( !$config->get( MainConfigNames::SecureLogin ) ) {
+			return false;
+		}
+		return $services->getUserOptionsLookup()
 			->getBoolOption( $this, 'prefershttps' );
 	}
 

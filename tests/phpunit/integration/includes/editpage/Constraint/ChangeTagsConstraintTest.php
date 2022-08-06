@@ -28,7 +28,7 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
  * @author DannyS712
  *
  * @covers \MediaWiki\EditPage\Constraint\ChangeTagsConstraint
- * @group database
+ * @group Database
  */
 class ChangeTagsConstraintTest extends MediaWikiIntegrationTestCase {
 	use EditConstraintTestTrait;
