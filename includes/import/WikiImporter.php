@@ -865,16 +865,14 @@ class WikiImporter {
 			$revision->setComment( $logInfo['comment'] );
 		}
 
-		if ( isset( $logInfo['contributor']['ip'] ) ) {
-			$revision->setUserIP( $logInfo['contributor']['ip'] );
-		}
-
-		if ( !isset( $logInfo['contributor']['username'] ) ) {
-			$revision->setUsername( $this->externalUserNames->addPrefix( 'Unknown user' ) );
-		} else {
+		if ( isset( $logInfo['contributor']['username'] ) ) {
 			$revision->setUsername(
 				$this->externalUserNames->applyPrefix( $logInfo['contributor']['username'] )
 			);
+		} elseif ( isset( $logInfo['contributor']['ip'] ) ) {
+			$revision->setUserIP( $logInfo['contributor']['ip'] );
+		} else {
+			$revision->setUsername( $this->externalUserNames->addPrefix( 'Unknown user' ) );
 		}
 
 		return $this->logItemCallback( $revision );
@@ -1124,12 +1122,12 @@ class WikiImporter {
 		if ( isset( $revisionInfo['minor'] ) ) {
 			$revision->setMinor( true );
 		}
-		if ( isset( $revisionInfo['contributor']['ip'] ) ) {
-			$revision->setUserIP( $revisionInfo['contributor']['ip'] );
-		} elseif ( isset( $revisionInfo['contributor']['username'] ) ) {
+		if ( isset( $revisionInfo['contributor']['username'] ) ) {
 			$revision->setUsername(
 				$this->externalUserNames->applyPrefix( $revisionInfo['contributor']['username'] )
 			);
+		} elseif ( isset( $revisionInfo['contributor']['ip'] ) ) {
+			$revision->setUserIP( $revisionInfo['contributor']['ip'] );
 		} else {
 			$revision->setUsername( $this->externalUserNames->addPrefix( 'Unknown user' ) );
 		}
@@ -1235,13 +1233,12 @@ class WikiImporter {
 		$revision->setSize( intval( $uploadInfo['size'] ) );
 		$revision->setComment( $uploadInfo['comment'] );
 
-		if ( isset( $uploadInfo['contributor']['ip'] ) ) {
-			$revision->setUserIP( $uploadInfo['contributor']['ip'] );
-		}
 		if ( isset( $uploadInfo['contributor']['username'] ) ) {
 			$revision->setUsername(
 				$this->externalUserNames->applyPrefix( $uploadInfo['contributor']['username'] )
 			);
+		} elseif ( isset( $uploadInfo['contributor']['ip'] ) ) {
+			$revision->setUserIP( $uploadInfo['contributor']['ip'] );
 		}
 		$revision->setNoUpdates( $this->mNoUpdates );
 
