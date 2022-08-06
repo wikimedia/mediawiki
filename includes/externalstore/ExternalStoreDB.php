@@ -353,12 +353,12 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 */
 	private function batchFetchBlobs( $cluster, array $ids ) {
 		$dbr = $this->getReplica( $cluster );
-		$res = $dbr->select(
-			$this->getTable( $dbr, $cluster ),
-			[ 'blob_id', 'blob_text' ],
-			[ 'blob_id' => array_keys( $ids ) ],
-			__METHOD__
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'blob_id', 'blob_text' ] )
+			->from( $this->getTable( $dbr, $cluster ) )
+			->where( [ 'blob_id' => array_keys( $ids ) ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$ret = [];
 		if ( $res !== false ) {
@@ -372,11 +372,12 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			);
 			$scope = $this->lbFactory->getTransactionProfiler()->silenceForScope();
 			$dbw = $this->getPrimary( $cluster );
-			$res = $dbw->select(
-				$this->getTable( $dbr, $cluster ),
-				[ 'blob_id', 'blob_text' ],
-				[ 'blob_id' => array_keys( $ids ) ],
-				__METHOD__ );
+			$res = $dbw->newSelectQueryBuilder()
+				->select( [ 'blob_id', 'blob_text' ] )
+				->from( $this->getTable( $dbr, $cluster ) )
+				->where( [ 'blob_id' => array_keys( $ids ) ] )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 			ScopedCallback::consume( $scope );
 			if ( $res === false ) {
 				$this->logger->error( __METHOD__ . ": primary failed on '$cluster'" );
