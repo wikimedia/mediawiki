@@ -564,7 +564,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 */
 	protected function areFiltersInConflict() {
 		$opts = $this->getOptions();
-		/** @var ChangesListFilterGroup $group */
 		foreach ( $this->getFilterGroups() as $group ) {
 			if ( $group->getConflictingGroups() ) {
 				wfLogWarning(
@@ -573,16 +572,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				);
 			}
 
-			/** @var ChangesListFilter $conflictingFilter */
 			foreach ( $group->getConflictingFilters() as $conflictingFilter ) {
 				if ( $conflictingFilter->activelyInConflictWithGroup( $group, $opts ) ) {
 					return true;
 				}
 			}
 
-			/** @var ChangesListFilter $filter */
 			foreach ( $group->getFilters() as $filter ) {
-				/** @var ChangesListFilter $conflictingFilter */
 				foreach ( $filter->getConflictingFilters() as $conflictingFilter ) {
 					if (
 						$conflictingFilter->activelyInConflictWithFilter( $filter, $opts ) &&
