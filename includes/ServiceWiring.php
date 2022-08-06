@@ -1682,7 +1682,8 @@ return [
 			$services->getMainConfig(),
 			$services->getContentLanguage(),
 			$services->getHookContainer(),
-			ExtensionRegistry::getInstance()->getAttribute( 'SearchMappings' )
+			ExtensionRegistry::getInstance()->getAttribute( 'SearchMappings' ),
+			$services->getUserOptionsLookup()
 		);
 	},
 
@@ -2090,6 +2091,7 @@ return [
 			$services->getCommentStore(),
 			$services->getWatchedItemStore(),
 			$services->getHookContainer(),
+			$services->getUserOptionsLookup(),
 			$services->getMainConfig()->get( MainConfigNames::WatchlistExpiry ),
 			$services->getMainConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries )
 		);

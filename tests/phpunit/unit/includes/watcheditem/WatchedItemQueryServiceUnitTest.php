@@ -2,6 +2,7 @@
 
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\User\UserOptionsLookup;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
@@ -31,14 +32,19 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @param DBConnRef $mockDb
+	 * @param UserOptionsLookup|null $userOptionsLookup
 	 * @return WatchedItemQueryService
 	 */
-	private function newService( DBConnRef $mockDb ) {
+	private function newService(
+		DBConnRef $mockDb,
+		UserOptionsLookup $userOptionsLookup = null
+	) {
 		return new WatchedItemQueryService(
 			$this->getMockLoadBalancer( $mockDb ),
 			$this->getMockCommentStore(),
 			$this->getMockWatchedItemStore(),
 			$this->createHookContainer(),
+			$userOptionsLookup ?? $this->createMock( UserOptionsLookup::class ),
 			false
 		);
 	}
@@ -1275,13 +1281,14 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 			)
 			->willReturn( [] );
 
-		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUserWithId( 1 );
-		$otherUser = $this->getMockUserWithId( 2, true, null, [ 'getOption' ] );
-		$otherUser->expects( $this->once() )
+		$otherUser = $this->getMockUserWithId( 2, true );
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->expects( $this->once() )
 			->method( 'getOption' )
-			->with( 'watchlisttoken' )
+			->with( $otherUser, 'watchlisttoken' )
 			->willReturn( '0123456789abcdef' );
+		$queryService = $this->newService( $mockDb, $userOptionsLookup );
 
 		$items = $queryService->getWatchedItemsWithRecentChangeInfo(
 			$user,

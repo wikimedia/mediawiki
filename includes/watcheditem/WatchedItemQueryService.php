@@ -6,6 +6,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -73,6 +74,9 @@ class WatchedItemQueryService {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/**
 	 * @var bool Correlates to $wgWatchlistExpiry feature flag.
 	 */
@@ -88,6 +92,7 @@ class WatchedItemQueryService {
 		CommentStore $commentStore,
 		WatchedItemStoreInterface $watchedItemStore,
 		HookContainer $hookContainer,
+		UserOptionsLookup $userOptionsLookup,
 		bool $expiryEnabled = false,
 		int $maxQueryExecutionTime = 0
 	) {
@@ -95,6 +100,7 @@ class WatchedItemQueryService {
 		$this->commentStore = $commentStore;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->userOptionsLookup = $userOptionsLookup;
 		$this->expiryEnabled = $expiryEnabled;
 		$this->maxQueryExecutionTime = $maxQueryExecutionTime;
 	}
@@ -139,7 +145,7 @@ class WatchedItemQueryService {
 	 *                                 timestamp to start enumerating from
 	 *        'end'                 => string (format accepted by wfTimestamp) requires 'dir' option,
 	 *                                 timestamp to end enumerating
-	 *        'watchlistOwner'      => User user whose watchlist items should be listed if different
+	 *        'watchlistOwner'      => UserIdentity user whose watchlist items should be listed if different
 	 *                                 than the one specified with $user param, requires
 	 *                                 'watchlistOwnerToken' option
 	 *        'watchlistOwnerToken' => string a watchlist token used to access another user's
@@ -200,7 +206,7 @@ class WatchedItemQueryService {
 		);
 		if ( array_key_exists( 'watchlistOwner', $options ) ) {
 			Assert::parameterType(
-				User::class,
+				UserIdentity::class,
 				$options['watchlistOwner'],
 				'$options[\'watchlistOwner\']'
 			);
@@ -505,10 +511,10 @@ class WatchedItemQueryService {
 
 	private function getWatchlistOwnerId( UserIdentity $user, array $options ) {
 		if ( array_key_exists( 'watchlistOwner', $options ) ) {
-			/** @var User $watchlistOwner */
+			/** @var UserIdentity $watchlistOwner */
 			$watchlistOwner = $options['watchlistOwner'];
 			$ownersToken =
-				$watchlistOwner->getOption( 'watchlisttoken' );
+				$this->userOptionsLookup->getOption( $watchlistOwner, 'watchlisttoken' );
 			$token = $options['watchlistOwnerToken'];
 			if ( $ownersToken == '' || !hash_equals( $ownersToken, $token ) ) {
 				throw ApiUsageException::newWithMessage( null, 'apierror-bad-watchlist-token', 'bad_wltoken' );

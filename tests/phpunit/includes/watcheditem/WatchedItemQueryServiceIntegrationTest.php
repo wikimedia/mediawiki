@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\User\UserOptionsLookup;
+
 /**
  * @group Database
  *
@@ -156,8 +158,6 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 	public function testGetWatchedItemsWithRecentChangeInfo_watchlistOwnerAndInvalidToken( $token ) {
 		// Moved from the Unit test because the ApiUsageException call creates a Message object
 		// and down the line needs MediaWikiServices
-		$queryService = $this->getServiceContainer()->getWatchedItemQueryService();
-
 		$user = $this->createNoOpMock(
 			User::class,
 			[ 'isRegistered', 'getId', 'useRCPatrol' ]
@@ -168,15 +168,21 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 
 		$otherUser = $this->createNoOpMock(
 			User::class,
-			[ 'isRegistered', 'getId', 'useRCPatrol', 'getOption' ]
+			[ 'isRegistered', 'getId', 'useRCPatrol' ]
 		);
 		$otherUser->method( 'isRegistered' )->willReturn( true );
 		$otherUser->method( 'getId' )->willReturn( 2 );
 		$otherUser->method( 'useRCPatrol' )->willReturn( true );
-		$otherUser->expects( $this->once() )
+
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->expects( $this->once() )
 			->method( 'getOption' )
-			->with( 'watchlisttoken' )
+			->with( $otherUser, 'watchlisttoken' )
 			->willReturn( '0123456789abcdef' );
+
+		$this->setService( 'UserOptionsLookup', $userOptionsLookup );
+
+		$queryService = $this->getServiceContainer()->getWatchedItemQueryService();
 
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( 'Incorrect watchlist token provided' );
