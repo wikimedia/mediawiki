@@ -713,12 +713,17 @@ util = {
 	 *   Special:Redirect which is less efficient. Otherwise, it is a direct thumbnail URL.
 	 */
 	parseImageUrl: function ( url ) {
-		var i, name, decodedName, width, match, strippedUrl,
-			urlTemplate = null,
-			// thumb.php-generated thumbnails
-			// thumb.php?f=<name>&w[idth]=<width>[px]
-			thumbPhpRegex = /thumb\.php/,
-			regexes = [
+		var name, decodedName, width, urlTemplate;
+
+		// thumb.php-generated thumbnails
+		// thumb.php?f=<name>&w[idth]=<width>[px]
+		if ( /thumb\.php/.test( url ) ) {
+			decodedName = mw.util.getParamValue( 'f', url );
+			name = encodeURIComponent( decodedName );
+			width = mw.util.getParamValue( 'width', url ) || mw.util.getParamValue( 'w', url );
+			urlTemplate = url.replace( /([&?])w(?:idth)?=[^&]+/g, '' ) + '&width={width}';
+		} else {
+			var regexes = [
 				// Thumbnails
 				// /<hash prefix>/<name>/[<options>-]<width>-<name*>[.<ext>]
 				// where <name*> could be the filename, 'thumbnail.<ext>' (for long filenames)
@@ -737,15 +742,8 @@ util = {
 				// /<name>
 				/\/([^\s/]+)$/
 			];
-
-		if ( thumbPhpRegex.test( url ) ) {
-			decodedName = mw.util.getParamValue( 'f', url );
-			name = encodeURIComponent( decodedName );
-			width = mw.util.getParamValue( 'width', url ) || mw.util.getParamValue( 'w', url );
-			urlTemplate = url.replace( /([&?])w(?:idth)?=[^&]+/g, '' ) + '&width={width}';
-		} else {
-			for ( i = 0; i < regexes.length; i++ ) {
-				match = url.match( regexes[ i ] );
+			for ( var i = 0; i < regexes.length; i++ ) {
+				var match = url.match( regexes[ i ] );
 				if ( match ) {
 					name = match[ 1 ];
 					decodedName = decodeURIComponent( name );
@@ -769,7 +767,7 @@ util = {
 			} else if ( width && !urlTemplate ) {
 				// Javascript does not expose regexp capturing group indexes, and the width
 				// part could in theory also occur in the filename so hide that first.
-				strippedUrl = url.replace( name, '{name}' )
+				var strippedUrl = url.replace( name, '{name}' )
 					.replace( name, '{name}' )
 					.replace( width + 'px-', '{width}px-' );
 				urlTemplate = strippedUrl.replace( /\{name\}/g, name );
