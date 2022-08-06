@@ -201,19 +201,14 @@ util = {
 	 * @return {string} Encoded string
 	 */
 	wikiUrlencode: function ( str ) {
-		return util.rawurlencode( str )
+		return encodeURIComponent( String( str ) )
+			.replace( /'/g, '%27' )
 			.replace( /%20/g, '_' )
-			// wfUrlencode replacements
 			.replace( /%3B/g, ';' )
 			.replace( /%40/g, '@' )
 			.replace( /%24/g, '$' )
-			.replace( /%21/g, '!' )
-			.replace( /%2A/g, '*' )
-			.replace( /%28/g, '(' )
-			.replace( /%29/g, ')' )
 			.replace( /%2C/g, ',' )
 			.replace( /%2F/g, '/' )
-			.replace( /%7E/g, '~' )
 			.replace( /%3A/g, ':' );
 	},
 
