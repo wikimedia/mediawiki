@@ -3,6 +3,7 @@
 use MediaWiki\MediaWikiServices;
 
 /**
+ * @group Database
  * @covers MediaWiki\Linker\LinkTargetStore
  */
 class LinkTargetStoreTest extends MediaWikiIntegrationTestCase {
