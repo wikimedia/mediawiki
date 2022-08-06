@@ -866,7 +866,7 @@ class Linker {
 		$newRel = Parser::getExternalLinkRel( $url, $title );
 		if ( !isset( $attribs['rel'] ) || $attribs['rel'] === '' ) {
 			$attribs['rel'] = $newRel;
-		} elseif ( $newRel !== '' ) {
+		} elseif ( $newRel !== null ) {
 			// Merge the rel attributes.
 			$newRels = explode( ' ', $newRel );
 			$oldRels = explode( ' ', $attribs['rel'] );
