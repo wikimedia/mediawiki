@@ -33,8 +33,6 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 	 * @dataProvider provideAuthorizeAllowOrigin
 	 */
 	public function testAuthorizeAllowOrigin( bool $isRegistered, bool $needsWriteAccess, string $origin ) {
-		$user = new UserIdentityValue( (int)$isRegistered, __CLASS__ );
-
 		$cors = new CorsUtils(
 			$this->createServiceOptions( [
 				'CrossSiteAJAXdomains' => [
@@ -42,7 +40,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 				],
 			] ),
 			$this->createNoOpMock( ResponseFactory::class ),
-			$user
+			new UserIdentityValue( (int)$isRegistered, __CLASS__ )
 		);
 
 		$request = $this->createMock( RequestInterface::class );
@@ -100,12 +98,10 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testAuthorizeDisallowOrigin() {
-		$user = new UserIdentityValue( 0, __CLASS__ );
-
 		$cors = new CorsUtils(
 			$this->createServiceOptions(),
 			$this->createMock( ResponseFactory::class ),
-			$user
+			new UserIdentityValue( 0, __CLASS__ )
 		);
 
 		$request = $this->createMock( RequestInterface::class );
@@ -138,10 +134,14 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 			new UserIdentityValue( 0, __CLASS__ )
 		);
 
-		$request = $this->createMock( RequestInterface::class );
 		$response = $this->createNoOpMock( ResponseInterface::class );
 
-		$this->assertTrue( true, 'Tests that no methods are called on $response, assertion for making phpunit happy' );
+		$result = $cors->modifyResponse(
+			$this->createMock( RequestInterface::class ),
+			$response
+		);
+
+		$this->assertSame( $response, $result );
 	}
 
 	public function testModifyResponseAllowOrigin() {
@@ -152,8 +152,6 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 			$this->createNoOpMock( ResponseFactory::class ),
 			new UserIdentityValue( 0, __CLASS__ )
 		);
-
-		$request = $this->createMock( RequestInterface::class );
 
 		$response = new Response();
 
@@ -174,15 +172,13 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 	 * @param string $isRegistered
 	 */
 	public function testModifyResponseAllowTrustedOriginCookieAuth( string $requestMethod, bool $isRegistered ) {
-		$user = new UserIdentityValue( (int)$isRegistered, __CLASS__ );
-
 		$cors = new CorsUtils(
 			$this->createServiceOptions( [
 				'AllowCrossOrigin' => true,
 				'RestAllowCrossOriginCookieAuth' => true,
 			] ),
 			$this->createNoOpMock( ResponseFactory::class ),
-			$user
+			new UserIdentityValue( (int)$isRegistered, __CLASS__ )
 		);
 
 		$request = $this->createMock( RequestInterface::class );
@@ -231,15 +227,13 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 		string $requestMethod,
 		bool $isRegistered
 	) {
-		$user = new UserIdentityValue( (int)$isRegistered, __CLASS__ );
-
 		$cors = new CorsUtils(
 			$this->createServiceOptions( [
 				'AllowCrossOrigin' => true,
 				'RestAllowCrossOriginCookieAuth' => true,
 			] ),
 			$this->createNoOpMock( ResponseFactory::class ),
-			$user
+			new UserIdentityValue( (int)$isRegistered, __CLASS__ )
 		);
 
 		$request = $this->createMock( RequestInterface::class );
