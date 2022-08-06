@@ -273,12 +273,13 @@ class EmailNotification {
 			}
 
 			if ( $config->get( MainConfigNames::EnotifWatchlist ) ) {
+				$userOptionsLookup = $mwServices->getUserOptionsLookup();
 				// Send updates to watchers other than the current editor
 				// and don't send to watchers who are blocked and cannot login
 				$userArray = UserArray::newFromIDs( $watchers );
 				foreach ( $userArray as $watchingUser ) {
-					if ( $watchingUser->getOption( 'enotifwatchlistpages' )
-						&& ( !$minorEdit || $watchingUser->getOption( 'enotifminoredits' ) )
+					if ( $userOptionsLookup->getOption( $watchingUser, 'enotifwatchlistpages' )
+						&& ( !$minorEdit || $userOptionsLookup->getOption( $watchingUser, 'enotifminoredits' ) )
 						&& $watchingUser->isEmailConfirmed()
 						&& $watchingUser->getId() != $userTalkId
 						&& !in_array( $watchingUser->getName(),
@@ -315,13 +316,15 @@ class EmailNotification {
 	 * @return bool
 	 */
 	private function canSendUserTalkEmail( UserIdentity $editor, $title, $minorEdit ) {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
 		$isUserTalkPage = ( $title->getNamespace() === NS_USER_TALK );
 
 		if ( !$config->get( MainConfigNames::EnotifUserTalk ) || !$isUserTalkPage ) {
 			return false;
 		}
 
+		$userOptionsLookup = $services->getUserOptionsLookup();
 		$targetUser = User::newFromName( $title->getText() );
 
 		if ( !$targetUser || $targetUser->isAnon() ) {
@@ -333,8 +336,8 @@ class EmailNotification {
 			// @TODO Partial blocks should not prevent the user from logging in.
 			//       see: https://phabricator.wikimedia.org/T208895
 			wfDebug( __METHOD__ . ": talk page owner is blocked and cannot login, no notification sent" );
-		} elseif ( $targetUser->getOption( 'enotifusertalkpages' )
-			&& ( !$minorEdit || $targetUser->getOption( 'enotifminoredits' ) )
+		} elseif ( $userOptionsLookup->getOption( $targetUser, 'enotifusertalkpages' )
+			&& ( !$minorEdit || $userOptionsLookup->getOption( $targetUser, 'enotifminoredits' ) )
 		) {
 			if ( !$targetUser->isEmailConfirmed() ) {
 				wfDebug( __METHOD__ . ": talk page owner doesn't have validated email" );
@@ -355,7 +358,9 @@ class EmailNotification {
 	 * @param MessageCache $messageCache
 	 */
 	private function composeCommonMailtext( MessageCache $messageCache ) {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
+		$userOptionsLookup = $services->getUserOptionsLookup();
 
 		$this->composed_common = true;
 
@@ -453,7 +458,7 @@ class EmailNotification {
 		);
 		if ( $config->get( MainConfigNames::EnotifRevealEditorAddress )
 			&& ( $this->editor->getEmail() != '' )
-			&& $this->editor->getOption( 'enotifrevealaddr' )
+			&& $userOptionsLookup->getOption( $this->editor, 'enotifrevealaddr' )
 		) {
 			$editorAddress = MailAddress::newFromUser( $this->editor );
 			if ( $config->get( MainConfigNames::EnotifFromEditor ) ) {

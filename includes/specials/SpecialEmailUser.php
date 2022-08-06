@@ -229,13 +229,23 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return 'nowikiemail';
 		}
 
-		if ( !$target->getOption( 'email-allow-new-users' ) && $sender->isNewbie() ) {
+		$userOptionsLookup = MediaWikiServices::getInstance()
+			->getUserOptionsLookup();
+		if ( !$userOptionsLookup->getOption(
+				$target,
+				'email-allow-new-users'
+			) && $sender->isNewbie()
+		) {
 			wfDebug( "User does not allow user emails from new users." );
 
 			return 'nowikiemail';
 		}
 
-		$muteList = $target->getOption( 'email-blacklist', '' );
+		$muteList = $userOptionsLookup->getOption(
+			$target,
+			'email-blacklist',
+			''
+		);
 		if ( $muteList ) {
 			$muteList = MultiUsernameFilter::splitIds( $muteList );
 			$senderId = MediaWikiServices::getInstance()
