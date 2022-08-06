@@ -659,6 +659,7 @@ class Article implements Page {
 		# Ensure that UI elements requiring revision ID have
 		# the correct version information.
 		$outputPage->setRevisionId( $this->getRevIdFetched() );
+		$outputPage->setRevisionIsCurrent( $rev->isCurrent() );
 		# Preload timestamp to avoid a DB hit
 		$outputPage->setRevisionTimestamp( $rev->getTimestamp() );
 
@@ -758,7 +759,9 @@ class Article implements Page {
 	) {
 		# Ensure that UI elements requiring revision ID have
 		# the correct version information.
-		$outputPage->setRevisionId( $pOutput->getCacheRevisionId() ?? $this->getRevIdFetched() );
+		$oldid = $pOutput->getCacheRevisionId() ?? $this->getRevIdFetched();
+		$outputPage->setRevisionId( $oldid );
+		$outputPage->setRevisionIsCurrent( $oldid === $this->mPage->getLatest() );
 		# Ensure that the skin has the necessary ToC information
 		# (and do this before OutputPage::addParserOutput() calls the
 		# OutputPageParserOutput hook)
