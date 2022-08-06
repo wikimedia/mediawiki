@@ -232,4 +232,18 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	 * @since 1.33
 	 */
 	public function setLocalDomainPrefix( $prefix );
+
+	/**
+	 * Reconfigure using the given config array.
+	 * If the config changed, this invalidates all existing connections.
+	 *
+	 * @warning This must only be called in top level code, typically via
+	 * LBFactory::reconfigure.
+	 *
+	 * @since 1.39
+	 *
+	 * @param array $conf A configuration array, using the same structure as
+	 *        the one passed to the LoadBalancer's constructor.
+	 */
+	public function reconfigure( array $conf );
 }

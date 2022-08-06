@@ -106,6 +106,9 @@ class LBFactoryMulti extends LBFactory {
 	 *   - readOnlyBySection: map of (main section => message text or false).
 	 *      String values make sections read only, whereas anything else does not
 	 *      restrict read/write mode. [optional]
+	 *   - configCallback: A callback that returns a conf array that can be passed to
+	 *      the reconfigure() method. This will be used to autoReconfigure() to load
+	 *      any updated configuration.
 	 */
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );

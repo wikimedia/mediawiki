@@ -1147,7 +1147,9 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Wait for replica DBs to catch up
+	 * Wait for replica DBs to catch up.
+	 *
+	 * @note Since 1.39, this also calls LBFactory::autoReconfigure().
 	 *
 	 * @return bool Whether the replica DB wait succeeded
 	 * @since 1.36
@@ -1158,6 +1160,14 @@ abstract class Maintenance {
 			[ 'timeout' => 30, 'ifWritesSince' => $this->lastReplicationWait ]
 		);
 		$this->lastReplicationWait = microtime( true );
+
+		// If possible, apply changes to the database configuration.
+		// The primary use case for this is taking replicas out of rotation.
+		// Long-running scripts may otherwise keep connections to
+		// de-pooled database hosts, and may even re-connect to them.
+		// If no config callback was configured, this has no effect.
+		$lbFactory->autoReconfigure();
+
 		return $waitSucceeded;
 	}
 

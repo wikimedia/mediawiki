@@ -367,6 +367,7 @@ class WikiExporter {
 			}
 
 			$lastLogId = $this->outputLogStream( $result );
+			$this->reloadDBConfig();
 		}
 	}
 
@@ -501,6 +502,10 @@ class WikiExporter {
 			if ( $done && $lastRow ) {
 				$this->finishPageStreamOutput( $lastRow );
 			}
+
+			if ( !$done ) {
+				$this->reloadDBConfig();
+			}
 		}
 	}
 
@@ -554,6 +559,7 @@ class WikiExporter {
 					. ' revision ' . $revRow->rev_id . ': ' . $ex->getMessage() );
 			}
 			$lastRow = $revRow;
+			$this->reloadDBConfig();
 		}
 
 		if ( $rowCarry ) {
@@ -620,5 +626,16 @@ class WikiExporter {
 			$this->sink->writeLogItem( $row, $output );
 		}
 		return $row->log_id ?? null;
+	}
+
+	/**
+	 * Attempt to reload the database configuration, so any changes can take effect.
+	 * Dynamic reloading can be enabled by setting $wgLBFactoryConf['configCallback']
+	 * to a function that returns an array of any keys that should be updated
+	 * in LBFactoryConf.
+	 */
+	private function reloadDBConfig() {
+		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
+			->autoReconfigure();
 	}
 }
