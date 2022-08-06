@@ -1696,6 +1696,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$user = User::newFromName( 'UserWhoMayRequireHTTPS' );
+		$user->addToDatabase();
 		$this->getServiceContainer()->getUserOptionsManager()->setOption(
 			$user,
 			'prefershttps',
@@ -1703,7 +1704,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		);
 		$user->saveSettings();
 
-		$user = User::newFromName( $user->getName() );
+		$this->assertTrue( $user->isRegistered() );
 		$this->assertSame( $expected, $user->requiresHTTPS() );
 	}
 
@@ -1724,6 +1725,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$user = User::newFromName( 'UserWhoMayRequireHTTP' );
+		$user->addToDatabase();
 		$this->getServiceContainer()->getUserOptionsManager()->setOption(
 			$user,
 			'prefershttps',
@@ -1731,7 +1733,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		);
 		$user->saveSettings();
 
-		$user = User::newFromName( $user->getName() );
+		$this->assertTrue( $user->isRegistered() );
 		$this->assertFalse(
 			$user->requiresHTTPS(),
 			'User preference ignored if wgSecureLogin  is false'
@@ -1748,6 +1750,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$user = User::newFromName( 'UserWhoMayRequireHTTP' );
+		$user->addToDatabase();
 		$this->getServiceContainer()->getUserOptionsManager()->setOption(
 			$user,
 			'prefershttps',
@@ -1755,7 +1758,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		);
 		$user->saveSettings();
 
-		$user = User::newFromName( $user->getName() );
+		$this->assertTrue( $user->isRegistered() );
 		$this->assertTrue(
 			$user->requiresHTTPS(),
 			'User preference ignored if wgForceHTTPS is true'

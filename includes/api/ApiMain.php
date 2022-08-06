@@ -1859,8 +1859,7 @@ class ApiMain extends ApiBase {
 			(
 				$this->getConfig()->get( MainConfigNames::ForceHTTPS ) ||
 				$request->getSession()->shouldForceHTTPS() ||
-				( $this->getUser()->isRegistered() &&
-					$this->getUser()->requiresHTTPS() )
+				$this->getUser()->requiresHTTPS()
 			)
 		) {
 			$this->addDeprecation( 'apiwarn-deprecation-httpsexpected', 'https-expected' );
