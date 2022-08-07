@@ -825,7 +825,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 							return $this->msg( 'noemailcreate' );
 						} elseif ( $value && !Sanitizer::validateEmail( $value ) ) {
 							return $this->msg( 'invalidemailaddress' );
-						} elseif ( strlen( $value ) > 255 ) {
+						} elseif ( is_string( $value ) && strlen( $value ) > 255 ) {
 							return $this->msg( 'changeemail-maxlength' );
 						}
 						return true;
