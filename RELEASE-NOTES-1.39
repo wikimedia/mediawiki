@@ -386,6 +386,10 @@ because of Phabricator reports.
 * $wgCanonicalNamespaceNames no longer includes custom namespaces defined using
   $wgExtraNamespaces. Extensions should use the NamespaceInfo service instead
   of accessing this configuration setting directly.
+* These methods have been moved from IDatabase to IMaintainableDatabase:
+  - IDatabase::fieldExists -> IMaintainableDatabase::fieldExists
+  - IDatabase::indexExists -> IMaintainableDatabase::indexExists
+  - IDatabase::tableExists -> IMaintainableDatabase::tableExists
 * …
 
 === Deprecations in 1.39 ===
