@@ -54,21 +54,20 @@ class DBConnRef implements IMaintainableDatabase {
 	private const FLD_FLAGS = 3;
 
 	/**
+	 * @internal May not be used outside Rdbms LoadBalancer
 	 * @param ILoadBalancer $lb Connection manager for $conn
 	 * @param array $params [server index, query groups, domain, flags]
 	 * @param int $role The type of connection asked for; one of DB_PRIMARY/DB_REPLICA
-	 * @param null|int &$modcount Reference to a modification counter for invalidating
-	 *        any wrapped connection and forcing a new connection to be acquired.
-	 *
-	 * @internal This method should not be called outside of LoadBalancer
+	 * @param null|int &$modcount Reference to a modification counter. This is for
+	 *  LoadBalancer::reconfigure to indicate that a new connection should be acquired.
 	 */
 	public function __construct( ILoadBalancer $lb, $params, $role, &$modcount = 0 ) {
-		if ( is_array( $params ) && count( $params ) >= 4 && $params[self::FLD_DOMAIN] !== false ) {
-			$this->params = $params;
-		} else {
+		if ( !is_array( $params ) || count( $params ) < 4 || $params[self::FLD_DOMAIN] === false ) {
 			throw new InvalidArgumentException( "Missing lazy connection arguments." );
 		}
+
 		$this->lb = $lb;
+		$this->params = $params;
 		$this->role = $role;
 
 		// $this->conn is valid as long as $this->modCountRef and $this->modCountFix are the same.
@@ -81,12 +80,10 @@ class DBConnRef implements IMaintainableDatabase {
 	 */
 	private function ensureConnection() {
 		if ( $this->modCountFix !== $this->modCountRef ) {
-			// Mod counter changed, discard existing connection,
-			// Unless we are in an ongoing transaction.
+			// Discard existing connection, unless we are in an ongoing transaction.
 			// This is triggered by LoadBalancer::reconfigure(), to allow changed settings
 			// to take effect. The primary use case are replica servers being taken out of
 			// rotation, or the primary database changing.
-
 			if ( !$this->conn->trxLevel() ) {
 				$this->lb->closeConnection( $this->conn );
 				$this->conn = null;
