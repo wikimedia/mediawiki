@@ -274,7 +274,7 @@
 	"apihelp-linkaccount-example-link": "Startet den Prozess der Verknüpfung mit einem Konto von <kbd>Example</kbd>.",
 	"apihelp-login-summary": "Anmelden und Authentifizierungs-Cookies beziehen.",
 	"apihelp-login-extended-description": "Diese Aktion sollte nur in Kombination mit [[Special:BotPasswords]] verwendet werden. Die Verwendung für die Anmeldung beim Hauptkonto ist veraltet und kann ohne Warnung fehlschlagen. Um sich sicher beim Hauptkonto anzumelden, verwende <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",
-	"apihelp-login-extended-description-nobotpasswords": "Diese Aktion ist veraltet und kann ohne Vorwarnung fehlschlagen. Um sich sicher anzumelden, verwende <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",
+	"apihelp-login-extended-description-nobotpasswords": "Diese Aktion ist veraltet und kann ohne Vorwarnung fehlschlagen. Um dich sicher anzumelden, verwende <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",
 	"apihelp-login-param-name": "Benutzername.",
 	"apihelp-login-param-password": "Passwort.",
 	"apihelp-login-param-domain": "Domain (optional).",

@@ -901,7 +901,7 @@
 	"shown-title": "Осы бетте {{PLURAL:$1|жазба}} көрсету.",
 	"viewprevnext": "Көрсетілуі: ($1 {{int:pipe-separator}} $2) ($3) жазба",
 	"searchmenu-exists": "'''Бұл жобада «[[:$1]]» деген бет бар.'''",
-	"searchmenu-new": "<strong>«[[:$1]]» осындай атпен бұл уикиде бетті бастау!</strong> {{PLURAL:$2|0=|Іздегеніңіз бойынша табылған беттер:|Табылған іздеу нәтижелері:}}",
+	"searchmenu-new": "<strong>«[[:$1]]» деген бетті уикиде бастау!</strong> {{PLURAL:$2|0=|Іздегеніңіз бойынша табылған беттер:|Табылған іздеу нәтижелері:}}",
 	"searchprofile-articles": "Негізгі беттер",
 	"searchprofile-images": "Мультимедиа",
 	"searchprofile-everything": "Барлық жерде",

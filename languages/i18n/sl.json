@@ -1353,7 +1353,7 @@
 	"action-block": "blokiranje urejanja s tega uporabniškega računa",
 	"action-protect": "spremembo stopnje zaščite te strani",
 	"action-rollback": "hitra vrnitev urejanj zadnjega uporabnika, ki je urejal določeno stran",
-	"action-import": "uvoz strani iz drugega wikija",
+	"action-import": "uvoz strani iz drugega vikija",
 	"action-importupload": "uvoz strani iz naložene datoteke",
 	"action-patrol": "označevanje sprememb drugih kot nadzorovane",
 	"action-autopatrol": "označevanje svojih urejanj kot nadzorovane",

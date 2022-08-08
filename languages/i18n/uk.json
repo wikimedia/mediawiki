@@ -2129,7 +2129,7 @@
 	"protectedpages-submit": "Показувати сторінки",
 	"protectedpages-unknown-timestamp": "Невідомо",
 	"protectedpages-unknown-performer": "Невідомий користувач",
-	"protectedtitles": "Заборонені назви",
+	"protectedtitles": "Захищені назви сторінок",
 	"protectedtitles-summary": "На цій сторінці перелічені назви, які захищені від створення. Для перегляду списку сторінок, які на цей момент захищені, див.  [[{{#special:ProtectedPages}}|{{int:protectedpages}}]].",
 	"protectedtitlesempty": "Зараз нема захищених назв із зазначеними параметрами.",
 	"protectedtitles-submit": "Показувати заголовки",

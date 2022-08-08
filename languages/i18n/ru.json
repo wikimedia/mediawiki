@@ -170,7 +170,8 @@
 			"Tanzun",
 			"Ice bulldog",
 			"Fraxinus.cs",
-			"Le Loi"
+			"Le Loi",
+			"MirandaBlack"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -2277,11 +2278,11 @@
 	"booksources-search": "Найти",
 	"booksources-text": "На этой странице приведён список ссылок на сайты, где вы, возможно, найдёте дополнительную информацию о книге. Это интернет-магазины и системы поиска в библиотечных каталогах.",
 	"booksources-invalid-isbn": "Указанный номер ISBN, судя по всему, содержит ошибку. Пожалуйста, проверьте, что при переносе номера из первоисточника не возникло искажений.",
-	"magiclink-tracking-rfc": "RFC анашанатә зхьарԥшқәа рдаҟьақәа",
+	"magiclink-tracking-rfc": "Страницы, использующие волшебные ссылки RFC",
 	"magiclink-tracking-rfc-desc": "Эта страница использует волшебные ссылки RFC. См. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] о том, как осуществить перенос.",
-	"magiclink-tracking-pmid": "PMID анашанатә зхьарԥшқәа рдаҟьақәа",
+	"magiclink-tracking-pmid": "Страницы, использующие волшебные ссылки PMID",
 	"magiclink-tracking-pmid-desc": "Эта страница использует волшебные ссылки PMID. См. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] о том, как осуществить перенос.",
-	"magiclink-tracking-isbn": "ISBN анашанатә зхьарԥшқәа рдаҟьақәа",
+	"magiclink-tracking-isbn": "Страницы, использующие волшебные ссылки ISBN",
 	"magiclink-tracking-isbn-desc": "Эта страница использует волшебные ссылки ISBN. См. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] о том, как осуществить перенос.",
 	"specialloguserlabel": "Исполнитель:",
 	"speciallogtitlelabel": "Цель (название страницы или «{{ns:user}}:Имя участника»):",

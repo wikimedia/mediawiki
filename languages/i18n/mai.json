@@ -1993,7 +1993,7 @@
 	"deleteprotected": "अहाँ इ पन्ना नै मेटा सकए छी कियाकि ई सुरक्षण कएल गेल अछि",
 	"deleting-backlinks-warning": "<strong>चेतावनी:</strong> जे पृष्ठ अहाँ मेटाबै लेल जा रहल छी ओ  [[Special:WhatLinksHere/{{FULLPAGENAME}}|अन्य पृष्ठसभ]] सँ जुडल अछि अथवा ट्रान्सक्ल्युड करैत अछि।",
 	"rollback": "प्रत्यावर्तित सम्पादन",
-	"rollbacklink": "पूर्ववत्",
+	"rollbacklink": "रोलब्याक",
 	"rollbacklinkcount": "$1 {{PLURAL:$1|सम्पादन}} पूर्ववत करी",
 	"rollbacklinkcount-morethan": "$1 सँ अधिक {{PLURAL:$1|सम्पादन}} पूर्ववत करू",
 	"rollbackfailed": "प्रत्यावर्तन असफल",

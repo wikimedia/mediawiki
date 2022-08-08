@@ -1592,6 +1592,7 @@
 	"specialpageinfo-submit": "ᥐᥣᥱᥓᥧᥰ ᥢᥣᥲᥘᥤᥐᥲ",
 	"specialpagehistory-submit": "ᥐᥣᥱᥓᥧᥰ ᥢᥣᥲᥘᥤᥐᥲ",
 	"specialpurge-submit": "ᥐᥣᥱᥓᥧᥰ ᥢᥣᥲᥘᥤᥐᥲ",
+	"htmlform-submit": "ᥖᥣᥒᥱ ᥑᥪᥢᥲ",
 	"revdelete-content-hid": "ᥘᥛᥰ ᥘᥬᥰ ᥟᥢ ᥔᥫᥒᥱ ᥝᥭᥳ",
 	"searchsuggest-search": "ᥔᥩᥐ ᥞᥣᥴ {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|ᥝᥢᥰ|ᥝᥢᥰ.}}",

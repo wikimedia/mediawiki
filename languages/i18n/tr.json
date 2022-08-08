@@ -2489,7 +2489,7 @@
 	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|mesaj]]) tarafından yapılan değişiklikler geri alınarak, [[User:$1|$1]] tarafından değiştirilmiş önceki sürüm geri getirildi",
 	"revertpage-anon": "[[Special:Contributions/$2|$2]] tarafından yapılan düzenlemeler [[User:$1|$1]] tarafından yapılan son düzeltmeye geri döndürüldü",
 	"revertpage-nouser": "Gizli bir kullanıcı tarafından yapılan değişiklikler geri alınarak {{GENDER:$1|[[User:$1|$1]]}} tarafından yapılan son revizyon geri getirildi",
-	"rollback-success": "{{GENDER:$3|$1}} tarafından yapılan değişiklikler geri alınarak;\n{{GENDER:$4|$2}} tarafından değiştirilmiş önceki sürüme geri dönüldü.",
+	"rollback-success": "{{GENDER:$3|$1}} tarafından yapılan değişiklikler geri döndürülerek;\n{{GENDER:$4|$2}} tarafından değiştirilmiş son sürüm geri getirildi.",
 	"sessionfailure-title": "Oturum başarısızlığı",
 	"sessionfailure": "Oturum açma oturumunuzla ilgili bir sorun var gibi görünüyor;\nbu eylem, oturum ele geçirmeye karşı bir önlem olarak iptal edildi.\nLütfen formu tekrar gönderin.",
 	"changecontentmodel": "Bir sayfanın içerik modelini değiştir",
