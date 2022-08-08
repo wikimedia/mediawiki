@@ -390,6 +390,8 @@ because of Phabricator reports.
   - IDatabase::fieldExists -> IMaintainableDatabase::fieldExists
   - IDatabase::indexExists -> IMaintainableDatabase::indexExists
   - IDatabase::tableExists -> IMaintainableDatabase::tableExists
+* DBConnRef doesn't accept live connection in constructor anymore.
+  Only parameters for getting connection should be provided.
 * …
 
 === Deprecations in 1.39 ===

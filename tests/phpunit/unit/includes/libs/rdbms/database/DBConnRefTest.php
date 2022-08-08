@@ -74,7 +74,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	 */
 	private function getDBConnRef( ILoadBalancer $lb = null ) {
 		$lb = $lb ?: $this->getLoadBalancerMock();
-		return new DBConnRef( $lb, $this->getDatabaseMock(), DB_PRIMARY );
+		return new DBConnRef( $lb, [ DB_PRIMARY, [], 'mywiki', 0 ], DB_PRIMARY );
 	}
 
 	/**
@@ -102,13 +102,6 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testConstruct() {
-		$lb = $this->getLoadBalancerMock();
-		$ref = new DBConnRef( $lb, $this->getDatabaseMock(), DB_PRIMARY );
-
-		$this->assertInstanceOf( IResultWrapper::class, $ref->select( 'whatever', '*' ) );
-	}
-
-	public function testConstruct_params() {
 		$lb = $this->createMock( ILoadBalancer::class );
 
 		$lb->expects( $this->once() )
