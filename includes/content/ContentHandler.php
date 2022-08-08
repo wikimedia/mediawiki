@@ -39,6 +39,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRenderingProvider;
 use MediaWiki\Search\ParserOutputSearchDataExtractor;
+use Wikimedia\ScopedCallback;
 
 /**
  * A content handler knows how do deal with a specific type of content on a wiki
@@ -1701,6 +1702,11 @@ abstract class ContentHandler {
 		$title = $services->getTitleFactory()->castFromPageReference( $cpoParams->getPage() );
 		$parserOptions = $cpoParams->getParserOptions();
 
+		if ( $parserOptions->getIsPreview() ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
+			$scopedCallback = $parserOptions->setupFakeRevision( $title, $content, $parserOptions->getUserIdentity() );
+		}
+
 		$po = new ParserOutput();
 		$parserOptions->registerWatcher( [ $po, 'recordOption' ] );
 		if ( Hooks::runner()->onContentGetParserOutput(
@@ -1729,6 +1735,9 @@ abstract class ContentHandler {
 		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 		Hooks::runner()->onContentAlterParserOutput( $content, $title, $po );
 		$parserOptions->registerWatcher( null );
+		if ( isset( $scopedCallback ) ) {
+			ScopedCallback::consume( $scopedCallback );
+		}
 
 		return $po;
 	}
